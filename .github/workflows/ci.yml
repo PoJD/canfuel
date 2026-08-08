@@ -1,0 +1,66 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tools:
+    name: nástroje a fixtures (Python)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: testy canlog.py a replay.py
+        working-directory: tools
+        run: python -m unittest discover -p 'test_*.py' -v
+
+      - name: souhrn všech fixtures
+        run: |
+          for f in test/fixtures/*.txt; do
+            python tools/canlog.py "$f" | head -5
+          done
+
+      - name: referenční dekodér projde logy
+        run: |
+          python tools/replay.py --every 500 test/fixtures/02_idle_60s.txt
+          python tools/replay.py --every 500 test/fixtures/06_trip_reset.txt
+          python tools/replay.py --every 100 test/fixtures/07_accel.txt
+
+  core:
+    name: jádro v C (gcc na hostu)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Hlídá nepřekročitelné pravidlo z CLAUDE.md: decode.c, compute.c
+      # a txframes.c nesmí obsahovat <xc.h>. Bez toho by jádro přestalo
+      # jít testovat na hostu a celý přístup by se tiše rozpadl.
+      - name: jádro neobsahuje hardwarové includy
+        working-directory: test
+        run: make check-pure
+
+      - name: hostové testy
+        working-directory: test
+        run: make test
+
+  firmware:
+    name: build XC8
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Skeleton. XC8 vyžaduje instalaci s licencí, takže se sem doplní
+      # až ve fázi 1, kdy bude co překládat.
+      - name: zatím není co překládat
+        run: |
+          if [ -d mplab ] && find mplab -name '*.X' -type d | grep -q .; then
+            echo "MPLAB projekt existuje — doplnit sem instalaci XC8"
+            exit 1
+          fi
+          echo "mplab/ je zatím prázdný, přeskakuji"

@@ -1,0 +1,42 @@
+# build hostových testů
+test/build/
+*.o
+*.a
+*.exe
+*.out
+
+# MPLAB X / XC8
+mplab/**/build/
+mplab/**/dist/
+mplab/**/nbproject/private/
+mplab/**/debug/
+*.cof
+*.hxl
+*.sdb
+*.p1
+*.d
+*.pre
+*.lst
+*.sym
+*.rlf
+*.cmf
+*.mum
+*.obj
+*.hex
+*.elf
+*.map
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# editory a OS
+.vscode/
+.idea/
+*.swp
+*~
+Thumbs.db
+desktop.ini
