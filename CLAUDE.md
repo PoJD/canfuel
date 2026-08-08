@@ -9,6 +9,43 @@ MCU: PIC18F25K80, 16 MHz, XC8. The board lives in the `kicad` repo.
 
 ---
 
+## Current state — read this first
+
+**Phase 0 is done; the firmware itself does not exist yet.** `src/` is empty,
+`mplab/` is empty, and `test/` holds fixtures and a Makefile but no `test_*.c`.
+
+What does exist and works:
+
+- `tools/canlog.py` — log parser, both formats, 77 tests green
+- `tools/replay.py` — reference decoder in Python, reproduces the measured
+  idle flow of 310 µl/s exactly
+- `test/fixtures/` — seven real logs from the car, documented
+- `docs/` — decoding, frame layout, refuelling reset, the overall plan
+
+CI has three jobs. `tools` runs the Python tests and is doing real work today.
+`core` runs `make check-pure` and `make test`, which currently pass by doing
+nothing because `src/` is empty. `firmware` is a placeholder until there is an
+MPLAB project to build.
+
+### Next step: phase 1, the C core
+
+Order and reasoning are in `docs/implementation-plan.md` §3. In short:
+`decode.c` → restart detection → `compute.c` → `txframes.c` → `persist.c` →
+`main.c`, each step verified against the fixtures.
+
+`tools/replay.py` is the oracle. It is written against the same table the C
+will be, so `tools/test_replay.py` doubles as the template for
+`test/test_compute.c` — same fixtures, same expected numbers. Once the host
+build exists, wire a `--host-build` switch into `replay.py` so the two outputs
+can be diffed directly.
+
+### Local toolchain
+
+gcc and make are installed. XC8 is not — the `firmware` CI job and any real
+device build still need it.
+
+---
+
 ## Language
 
 **Everything in this repository is written in English** — code, identifiers,
