@@ -1,195 +1,200 @@
-# Dekódování hnacího CANu — VW New Beetle, motor AQY
+# Decoding the powertrain CAN bus — VW New Beetle, AQY engine
 
-Sběrnice 500 kbps, PQ34. Všechny hodnoty níže jsou ověřené měřením na autě,
-logy jsou v `test/fixtures/`.
+500 kbps bus, PQ34 platform. Every value below was verified by measurement on
+the car; the logs live in `test/fixtures/`.
 
-Rozlišujeme dva stupně jistoty:
+Two levels of confidence are distinguished:
 
-- **Potvrzeno** — sedí napříč všemi logy a je to zamčené testem v `tools/`.
-- **Otevřené** — zapsáno, ale ještě to nemá jednoznačný důkaz. Viz konec souboru.
+- **Confirmed** — holds across every log and is pinned down by a test in `tools/`.
+- **Open** — written down but not yet proven. See the end of this file.
 
 ---
 
-## Přítomná ID
+## IDs present on the bus
 
-Periodicky se vysílá čtrnáct ID:
+Fourteen IDs are broadcast periodically:
 
 ```
 0x050  0x0C2  0x1A0  0x280  0x288  0x320  0x420
 0x480  0x488  0x4A0  0x520  0x5A0  0x5D0  0x5D8
 ```
 
-Zamčeno testem `test_regular_id_set`. Jediné, co se v krátkém logu nemusí
-objevit, je 0x520 — chodí zhruba jednou za sekundu.
+Pinned down by `test_regular_id_set`. The only one that may be missing from a
+short log is 0x520, which arrives roughly once a second.
 
-**0x767 není periodický rámec.** Objeví se právě jednou, v `06_trip_reset.txt`
-na první časové značce, s DLC 2 a daty `3c fe`. Je to jednorázová diagnostická
-odpověď zachycená při připojení USBtinu. Firmware ho ignoruje, ale rozsah
-0x7xx kvůli němu nelze považovat za úplně tichý.
+**0x767 is not a periodic frame.** It appears exactly once, in
+`06_trip_reset.txt` on the first timestamp, with DLC 2 and payload `3c fe`.
+It is a one-shot diagnostic response captured as the USBtin connected. The
+firmware ignores it, but the 0x7xx range can no longer be called completely
+quiet because of it.
 
-**Volné pro převodník:** 0x600–0x602 se na sběrnici nevyskytují v žádném logu
+**Free for the converter:** 0x600–0x602 appear in none of the logs
 (`test_target_ids_are_free`).
 
 ---
 
-## Tabulka signálů
+## Signal table
 
-| Signál | ID | Bajty | Vzorec | Poznámka |
+| Signal | ID | Bytes | Formula | Note |
 |---|---|---|---|---|
-| Čítač spotřeby | 0x480 | 2–3 LE, maska 0x7FFF | 1 = 1 µl | 15bit, přetéká na 32768 |
-| Rychlost | 0x1A0 | 2–3 LE | × 0,005 km/h | brána v b1, viz níže |
-| Otáčky | 0x280 | 2–3 LE | × 0,25 ot/min | |
-| Teplota kapaliny | 0x288 | 1 | × 0,75 − 48 °C | 0xFF = chyba |
-| Teplota oleje | 0x420 | 3 | × 0,75 − 48 °C | 0xFF při vypnutém motoru |
-| Palivo v nádrži | 0x320 | 2, maska 0x7F | litry | bit 0x80 = rezerva |
-| Moment (indikovaný) | 0x280 | 7 | ~0,67 Nm/bit | u AQY max 172 Nm |
-| Škrticí klapka | 0x280 | 5 | 38 = klidová poloha | |
-| Zatížení motoru | 0x280 | 6 | | 0 při vypnutém motoru |
-| Rychlosti kol | 0x4A0 | 4× 16bit LE | (raw >> 1) × 0,01 km/h | bit 0 = směr |
-| Zrychlení | 0x5A0 | 0 | (val − 127) / 100 G | |
-| Dveře | 0x320 | 0 | bitová maska | |
+| Fuel counter | 0x480 | 2–3 LE, mask 0x7FFF | 1 = 1 µl | 15-bit, wraps at 32768 |
+| Speed | 0x1A0 | 2–3 LE | × 0.005 km/h | validity gate in b1, see below |
+| Engine speed | 0x280 | 2–3 LE | × 0.25 rpm | |
+| Coolant temperature | 0x288 | 1 | × 0.75 − 48 °C | 0xFF = fault |
+| Oil temperature | 0x420 | 3 | × 0.75 − 48 °C | 0xFF with the engine off |
+| Fuel in tank | 0x320 | 2, mask 0x7F | litres | bit 0x80 = reserve lamp |
+| Torque (indicated) | 0x280 | 7 | ~0.67 Nm/bit | 172 Nm max on the AQY |
+| Throttle position | 0x280 | 5 | 38 = rest position | |
+| Engine load | 0x280 | 6 | | 0 with the engine off |
+| Wheel speeds | 0x4A0 | 4× 16-bit LE | (raw >> 1) × 0.01 km/h | bit 0 = direction |
+| Acceleration | 0x5A0 | 0 | (val − 127) / 100 G | |
+| Doors | 0x320 | 0 | bit mask | |
 
-DLC je pro každé ID konstantní: 0x050 má 4 bajty, 0x5D0 má 6, zbytek 8.
-Parser s pevnou délkou 8 by na 0x050 a 0x5D0 spadl.
+DLC is constant per ID: 0x050 carries 4 bytes, 0x5D0 carries 6, everything
+else 8. A parser that assumes a fixed length of 8 would break on 0x050 and 0x5D0.
 
 ---
 
-## Past 1: brána platnosti rychlosti není rovnost
+## Trap 1: the speed validity gate is not an equality
 
-Bajt 1 rámce 0x1A0 je **bitové pole**, ne jedna hodnota. Naměřené stavy:
+Byte 1 of frame 0x1A0 is a **bit field**, not a single value. Measured states:
 
-| b1 | Význam | Rychlost |
+| b1 | Meaning | Speed |
 |---|---|---|
-| 0x40 | základní platný stav | platná |
-| 0x48 | platný, s dalším příznakem | **platná** |
-| 0x50 | platný, s dalším příznakem | **platná** |
-| 0x43 | inicializační rampa po zapnutí zapalování | zahodit |
-| 0x42 | totéž, jen 2 rámce | zahodit |
+| 0x40 | base valid state | valid |
+| 0x48 | valid, with another flag set | **valid** |
+| 0x50 | valid, with another flag set | **valid** |
+| 0x43 | post-ignition init ramp | discard |
+| 0x42 | same thing, only 2 frames | discard |
 
-Správné pravidlo:
+The correct rule:
 
 ```c
 speed_valid = (b1 & 0x40) && !(b1 & 0x03);
 ```
 
-**Proč na tom záleží.** V `07_accel.txt` je 0x48 většinový stav — 1301 rámců
-z 1991 — a nese plný rozsah rychlosti včetně maxima 24,78 km/h. Test na
-rovnost `b1 == 0x40` zahodí dvě třetiny vzorků a ujetá dráha vyjde 14 m místo
-27 m. To by přímo zkazilo FuelAvg i Range, tedy dvě ze čtyř hlavních čísel
-na displeji.
+**Why it matters.** In `07_accel.txt` the majority state is 0x48 — 1301 frames
+out of 1991 — and it carries the full speed range including the 24.78 km/h
+peak. Testing for equality with `0x40` throws away two thirds of the samples
+and distance comes out as 14 m instead of 27 m. That would directly corrupt
+FuelAvg and Range, two of the four headline numbers on the display.
 
-Rampa 0x43 se objevuje jen v logách, které začínají zapnutím zapalování
-(`01_ign_only`, `06_trip_reset`) — trvá ~0,4 s a raw hodnota během ní klesá
-464 → 0. Zamčeno testem `test_init_ramp_only_after_ignition_on`.
+The 0x43 ramp only shows up in logs that start with the ignition being switched
+on (`01_ign_only`, `06_trip_reset`). It lasts ~0.4 s and the raw value falls
+464 → 0 during it. Pinned down by `test_init_ramp_only_after_ignition_on`.
 
-## Past 2: čítač spotřeby se po vypnutí zapalování resetuje
+## Trap 2: the fuel counter resets when the ignition goes off
 
-Delta se počítá `(nový − starý) mod 32768`. Bez detekce restartu by delta
-po novém zapnutí zapalování dala skok o desítky tisíc mikrolitrů.
+The delta is `(new − old) mod 32768`. Without restart detection, the first
+delta after the ignition is switched back on jumps by tens of thousands of
+microlitres.
 
 ```c
-if (counter == 0 || rpm == 0) { prev = counter; return; }  /* reinicializovat */
+if (counter == 0 || rpm == 0) { prev = counter; return; }  /* reinitialise */
 ```
 
-V `06_trip_reset.txt` to sepne 324× — a je to správně, všechny detekce padnou
-do souvislého úvodního úseku, kdy běží zapalování bez motoru. V `07_accel.txt`
-nesepne ani jednou.
+In `06_trip_reset.txt` this triggers 324 times — and that is correct. Every
+detection falls inside the contiguous opening stretch where the ignition is on
+but the engine is not running. In `07_accel.txt` it never triggers.
 
-## Past 3: bit 15 čítače není konstantní
+## Trap 3: bit 15 of the counter is not constant
 
-`docs/sensors.md` v repu `mfd15` tvrdí, že bit 15 je konstantně 1. **Není.**
-Naměřeno napříč všemi logy:
+`docs/sensors.md` in the `mfd15` repo claims bit 15 is constantly 1. **It is not.**
+Measured across every log:
 
-- Od zapnutí zapalování je **nula**, dokud 15bitový čítač poprvé nepřeteče.
-- Při prvním přetečení se přehodí na jedničku a už tam zůstane.
+- It is **zero** from ignition on until the 15-bit counter first wraps.
+- At that first wrap it flips to one and stays there.
 
-Vidět je to v `06_trip_reset.txt`, kde jde sekvence `32767 → 15` a bit 15 se
-u toho přehodí z 0 na 1. V `01_ign_only.txt` je bit nulový, protože motor
-stojí a čítač je celý nulový.
+It is visible in `06_trip_reset.txt`, where the sequence runs `32767 → 15` and
+bit 15 flips from 0 to 1 at the same sample. In `01_ign_only.txt` the bit is
+zero because the engine is not running and the counter is all zeros.
 
-Pro výpočet je to jedno — maska 0x7FFF ho zahodí. Použitelné je to jako
-příznak „tenhle cyklus zapalování je ještě mladý".
+It makes no difference to the arithmetic — the 0x7FFF mask drops it. It is
+usable as a "this ignition cycle is still young" flag.
 
-## Past 4: FuelAvg dělí skoro nulovou dráhou
+## Trap 4: FuelAvg divides by an almost-zero distance
 
-Průměrná spotřeba je podíl akumulátorů. Hned po nastartování je dráha téměř
-nulová a podíl utíká do nesmyslů — na `06_trip_reset.txt` vyšlo **21 395
-l/100 km**, než auto popojelo. Pod 100 m ujeté dráhy se musí vracet nula.
+The average fuel consumption is a ratio of accumulators. Right after starting,
+distance is nearly zero and the ratio runs away — on `06_trip_reset.txt` it
+produced **21,395 l/100 km** before the car had moved. Below 100 m of distance
+it must return zero.
 
 ---
 
-## Ověřené hodnoty pro testy
+## Verified values for tests
 
-| Log | Co to je | Čítač celkem | Doba | Průtok |
+| Log | What it is | Counter total | Duration | Flow |
 |---|---|---|---|---|
-| `01_ign_only` | zapalování bez motoru | 0 µl | — | 0 |
-| `02_idle_60s` | zahřátý volnoběh 797 ot/min | 18 652 µl | 60,1 s | **310 µl/s = 1,12 l/h** |
-| `05_rev3000` | 2940 ot/min v neutrálu | 1 940 µl | 1,93 s | 1005 µl/s = 3,62 l/h |
-| `06_trip_reset` | stání a popojetí | 51 992 µl | 135,0 s | 385 µl/s |
-| `07_accel` | rozjezd na 24,8 km/h | 9 752 µl | 15,9 s | 613 µl/s |
+| `01_ign_only` | ignition on, engine off | 0 µl | — | 0 |
+| `02_idle_60s` | warm idle at 797 rpm | 18,652 µl | 60.1 s | **310 µl/s = 1.12 l/h** |
+| `05_rev3000` | 2940 rpm in neutral | 1,940 µl | 1.93 s | 1005 µl/s = 3.62 l/h |
+| `06_trip_reset` | standing plus a short crawl | 51,992 µl | 135.0 s | 385 µl/s |
+| `07_accel` | acceleration to 24.8 km/h | 9,752 µl | 15.9 s | 613 µl/s |
 
-Zahřívací křivka teploty kapaliny napříč první session:
-`idle` 68,25 → `05_rev3000` 90,0 → `03_drive` 99,0 → `01_ign_only` 100,5 °C.
+Coolant warm-up curve across the first session:
+`idle` 68.25 → `05_rev3000` 90.0 → `03_drive` 99.0 → `01_ign_only` 100.5 °C.
 
-Ujetá dráha v `06_trip_reset` vychází 125 m, což sedí na „popojet aspoň
-0,1 km" z checklistu harnessu.
-
----
-
-## Periody rámců
-
-Zadání uvádí 0x1A0 = 7,5 ms, 0x4A0 = 8,0 ms, 0x280 = 10,5 ms, 0x288 = 11,8 ms,
-0x480 = 49,5 ms.
-
-**Z logů se to potvrdit nedá** a je potřeba s tím počítat. Časové značky
-z USBtinVieweru jsou kvantované po ~15,6 ms (tik systémového časovače
-Windows), takže naměřené periody vycházejí jako násobky: 16, 31, 47, 94,
-188 ms. Rozlišit 7,5 od 10,5 ms je pod rozlišovací schopností záznamu.
-
-Navíc je 39–51 % řádků v každém logu **bezprostředním duplikátem** předchozího
-rámce se stejným ID i daty. Na výpočet delty to vliv nemá (delta je nula),
-ale měřenou periodu to zdvojnásobuje.
-
-Nepřímý důkaz pro 49,5 ms u 0x480: při této periodě vychází volnoběžný průtok
-z `02_idle_60s` na 310,1 µl/s, což je přesně hodnota ze zadání, a délka
-záznamu na 60,1 s, což sedí na název souboru. To je silná shoda.
+Distance in `06_trip_reset` comes out as 125 m, which matches the "drive at
+least 0.1 km" step in the harness checklist.
 
 ---
 
-## Co na sběrnici NENÍ
+## Frame periods
 
-- **Lambda** — 0x488 je ve všech logách konstantní `ff ff ff 8d ff ff ff ff`.
-- **Napětí baterie** — systematicky prohledáno, nic. Řeší se interním
-  senzorem displeje.
-- **Venkovní teplota** — 0x420 b1 i b2 jsou nulové, čidlo v autě není.
-- **Trip kilometry a trip reset** — viz otevřené otázky.
+The specification quotes 0x1A0 = 7.5 ms, 0x4A0 = 8.0 ms, 0x280 = 10.5 ms,
+0x288 = 11.8 ms, 0x480 = 49.5 ms.
+
+**The logs cannot confirm this** and that has to be accounted for. USBtinViewer
+timestamps are quantised to ~15.6 ms (the Windows timer tick), so measured
+periods come out as multiples: 16, 31, 47, 94, 188 ms. Telling 7.5 ms from
+10.5 ms is below the resolution of the recording.
+
+On top of that, 39–51 % of the lines in every log are an **immediate duplicate**
+of the preceding frame, same ID and same payload. It has no effect on delta
+arithmetic (the delta is zero) but it doubles any measured period.
+
+Indirect evidence for 49.5 ms on 0x480: at that period the idle flow from
+`02_idle_60s` works out to 310.1 µl/s, exactly the figure in the specification,
+and the recording length to 60.1 s, which matches the file name. That is a
+strong agreement.
 
 ---
 
-## Otevřené otázky
+## What is NOT on the bus
 
-1. **Průtok v `05_rev3000` nesedí na zadání.** Zadání uvádí 958 µl/s, z dat
-   vychází 1005 µl/s. Rozdíl 5 % nesedí na data, ale na předpokládanou
-   periodu 0x480 — při 51,9 ms by vyšlo přesně 958. Log časové značky nemá,
-   takže to rozhodne až měření periody na živé sběrnici.
+- **Lambda** — 0x488 is constant `ff ff ff 8d ff ff ff ff` in every log.
+- **Battery voltage** — searched systematically, nothing. Solved with the
+  display's internal sensor instead.
+- **Ambient temperature** — 0x420 b1 and b2 are both zero; the car has no sensor.
+- **Trip odometer and trip reset** — see open questions.
 
-2. **Počáteční hodnota čítače v `07_accel`.** Zadání uvádí 13247 → 22622,
-   v souboru je první vzorek 12870. Konec sedí, začátek ne. Rozdíl 377 µl
-   je několik prvních rámců — pravděpodobně se v zadání počítalo od jiného
-   místa v logu.
+---
 
-3. **0x288 b5 a b6** — zátěžové a nedekódované. Kandidáti MAF, předstih,
-   vstřikovací čas. Nejrychleji porovnáním s měřenými bloky ve VCDS.
+## Open questions
 
-4. **0x420 b3 = olej, nebo IAT?** `07_accel` byl pořízen právě na tohle.
-   Teplota během rozjezdu drží 75,75 → 76,5 °C, tedy **neklesá**. IAT by
-   při rozjezdu spadl. To mluví pro olej, ale rozjezd byl krátký (16 s),
-   takže to není definitivní.
+1. **The flow in `05_rev3000` does not match the specification.** It quotes
+   958 µl/s, the data gives 1005 µl/s. The 5 % gap is not in the data but in
+   the assumed 0x480 period — at 51.9 ms it would come out at exactly 958. The
+   log has no timestamps, so only measuring the period on a live bus can settle it.
 
-5. **AccelG: podélné, nebo příčné?** Rozhodne zaparkování napříč na svahu.
+2. **The starting counter value in `07_accel`.** The specification quotes
+   13247 → 22622; the first sample in the file is 12870. The end matches, the
+   start does not. The 377 µl difference is a handful of early frames — the
+   specification was probably computed from a later point in the log.
 
-6. **Zdroj trip resetu** — kandidát 0x5D8 b0. Log `06_trip_reset` byl
-   pořízen právě na tohle a ještě není vyhodnocený.
+3. **0x288 b5 and b6** — load-dependent and undecoded. Candidates are MAF,
+   ignition advance and injection time. Fastest route is comparing against
+   measuring blocks in VCDS.
 
-7. **Kalibrace ztrátového momentu** — dva body jsou v logách (volnoběh
-   a 2940 ot/min v neutrálu), zbývá dosadit.
+4. **Is 0x420 b3 oil or IAT?** `07_accel` was recorded to answer exactly this.
+   Temperature holds at 75.75 → 76.5 °C during the acceleration, so it does
+   **not** fall. IAT would drop when accelerating. That argues for oil, but the
+   run was short (16 s), so it is not conclusive.
+
+5. **AccelG: longitudinal or lateral?** Parking across a slope settles it.
+
+6. **Source of the trip reset** — candidate 0x5D8 b0. `06_trip_reset` was
+   recorded for this and has not been analysed yet.
+
+7. **Drag torque calibration** — both points are in the logs (idle and 2940 rpm
+   in neutral); they just need to be substituted in.

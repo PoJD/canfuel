@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Prozene log dekoderem a vypise, co by prevodnik poslal na sbernici.
+"""Run a log through the decoder and print what the converter would transmit.
 
-Ve fazi 0 je tohle referencni implementace v Pythonu. Je zamerne napsana
-podle stejne tabulky jako budouci src/decode.c a src/compute.c, aby slo
-porovnavat vysledek radek po radku -- az bude host build hotovy, prida se
-sem prepinac --host-build a rozdil obou vystupu bude tvrdy test.
+In phase 0 this is the reference implementation, written in Python. It follows
+the same table as the future src/decode.c and src/compute.c on purpose, so the
+two can be compared line by line -- once the host build exists, a --host-build
+switch lands here and the diff between the two outputs becomes a hard test.
 
-Do te doby slouzi ke dvema vecem: overit vzorce ocima na realnych datech
-a mit cim zkontrolovat prvni verzi ceckoveho jadra.
+Until then it serves two purposes: eyeballing the formulas against real data,
+and having something to check the first C core against.
 
-Pouziti:
+Usage:
     python tools/replay.py test/fixtures/03_drive.txt
     python tools/replay.py --csv test/fixtures/07_accel.txt > out.csv
     python tools/replay.py --every 20 test/fixtures/06_trip_reset.txt
@@ -24,26 +24,26 @@ from typing import Optional
 
 from canlog import Frame, parse_file
 
-# --- konstanty, ktere v C skonci v config.h -------------------------------
+# --- constants that will end up in config.h ------------------------------
 
-PERIOD_0X480_MS = 49.5      # perioda citace spotreby, kdyz log nema znacky
-FUELNOW_LH_BELOW_KMH = 4.0  # pod timhle se posila l/h, nad tim l/100 km
-FUELNOW_CLAMP = 999         # 99,9 na displeji
-RANGE_DEFAULT_L100 = 9.0    # nez najedeme 5 km, dojezd pocitame s timhle
-AVG_MIN_M = 100             # pod timhle je prumer deleni skoro nulou
+PERIOD_0X480_MS = 49.5      # fuel counter period, used when a log has no timestamps
+FUELNOW_LH_BELOW_KMH = 4.0  # below this we send l/h, above it l/100 km
+FUELNOW_CLAMP = 999         # 99.9 on the display
+RANGE_DEFAULT_L100 = 9.0    # used for range until we have driven 5 km
+AVG_MIN_M = 100             # below this the average divides by nearly zero
 COUNTER_MODULO = 32768
 
-# Brana platnosti rychlosti v 0x1A0 bajt 1. Neni to rovnost, je to bitova
-# maska -- podrobne zduvodneni v docs/can-decoding.md.
-SPEED_GATE_REQUIRED = 0x40  # tenhle bit musi byt nastaveny
-SPEED_GATE_FORBIDDEN = 0x03  # tyhle znamenaji inicializacni rampu po zapalovani
+# Speed validity gate in 0x1A0 byte 1. It is not an equality, it is a bit
+# mask -- the reasoning is spelled out in docs/can-decoding.md.
+SPEED_GATE_REQUIRED = 0x40   # this bit must be set
+SPEED_GATE_FORBIDDEN = 0x03  # these mark the post-ignition init ramp
 
 
-# --- dekodovani -----------------------------------------------------------
+# --- decoding -------------------------------------------------------------
 
 @dataclass
 class Decoded:
-    """Posledni znamy stav sbernice. Odpovida vystupu decode.c."""
+    """Last known bus state. Mirrors the output of decode.c."""
 
     rpm: float = 0.0
     speed_kmh: float = 0.0
@@ -65,7 +65,7 @@ def u16le(d: bytes, i: int) -> int:
 
 
 def decode(frame: Frame, st: Decoded) -> None:
-    """Zapise jeden ramec do stavu. Zadna matematika spotreby, jen extrakce."""
+    """Fold one frame into the state. Extraction only, no fuel maths."""
     d = frame.data
     cid = frame.can_id
 
@@ -76,10 +76,10 @@ def decode(frame: Frame, st: Decoded) -> None:
         st.torque_ind_nm = d[7] * 0.67
 
     elif cid == 0x1A0 and len(d) >= 4:
-        # Bajt 1 je bitove pole, ne jedna hodnota. Bit 0x40 znamena "rychlost
-        # plati", spodni dva bity jsou inicializacni rampa po zapnuti
-        # zapalovani (0x43, 0x42) a musi se zahodit. Bity 0x08 a 0x10 na
-        # platnost vliv nemaji -- v 07_accel je 0x48 dokonce vetsinovy stav.
+        # Byte 1 is a bit field, not a single value. Bit 0x40 means "speed is
+        # valid", the low two bits mark the init ramp that runs for ~0.4 s
+        # after ignition on and must be thrown away. Bits 0x08 and 0x10 do not
+        # affect validity -- in 07_accel 0x48 is in fact the majority state.
         st.speed_valid = bool(d[1] & SPEED_GATE_REQUIRED) and not (d[1] & SPEED_GATE_FORBIDDEN)
         if st.speed_valid:
             st.speed_kmh = u16le(d, 2) * 0.005
@@ -103,11 +103,11 @@ def decode(frame: Frame, st: Decoded) -> None:
         st.counter_wrapped = bool(raw & 0x8000)
 
 
-# --- vypocty --------------------------------------------------------------
+# --- computation ----------------------------------------------------------
 
 @dataclass
 class Compute:
-    """Akumulatory. Odpovida compute.c."""
+    """Accumulators. Mirrors compute.c."""
 
     prev_counter: Optional[int] = None
     total_ul: int = 0
@@ -118,11 +118,11 @@ class Compute:
     _flow_window: list = field(default_factory=list)
 
     def on_counter(self, st: Decoded, now_ms: float) -> None:
-        """Nova hodnota citace. Vraci se pres self.total_ul.
+        """A new counter reading. The result lands in self.total_ul.
 
-        Past, kvuli ktere tenhle kod existuje: po vypnuti zapalovani se citac
-        resetuje na nulu. Bez detekce restartu by delta dala skok o desitky
-        tisic mikrolitru.
+        The trap this code exists for: the counter resets to zero when the
+        ignition is switched off. Without restart detection the delta would
+        jump by tens of thousands of microlitres out of nowhere.
         """
         c = st.fuel_counter
         if c is None:
@@ -147,7 +147,7 @@ class Compute:
         self.total_ul += delta_ul
         if dt_s:
             self._flow_window.append((delta_ul, dt_s))
-            # klouzave okno ~1 s, jinak cislo na displeji tanci
+            # ~1 s sliding window, otherwise the number on the display dances
             while sum(w[1] for w in self._flow_window) > 1.0 and len(self._flow_window) > 1:
                 self._flow_window.pop(0)
             win_ul = sum(w[0] for w in self._flow_window)
@@ -158,7 +158,7 @@ class Compute:
         if st.speed_valid and st.speed_kmh > 0 and dt_s > 0:
             self.total_mm += int(st.speed_kmh / 3.6 * dt_s * 1000.0)
 
-    # -- odvozene veliciny ------------------------------------------------
+    # -- derived quantities ------------------------------------------------
 
     @property
     def flow_lh(self) -> float:
@@ -166,19 +166,20 @@ class Compute:
 
     @property
     def avg_l100(self) -> float:
-        """Podil akumulatoru, ne prumer okamzitych hodnot -- stani na semaforu
-        tak prumer neznici.
+        """A ratio of accumulators, not an average of instantaneous values --
+        that way idling at a red light does not ruin the average.
 
-        Pod AVG_MIN_M se vraci nula. Bez teto pojistky vychazi po nastartovani
-        deleni skoro nulovou drahou -- na 06_trip_reset to davalo 21 395
-        l/100 km, nez auto popojelo. Na displeji by to byla useknuta 99,9.
+        Below AVG_MIN_M it returns zero. Without that guard we divide by an
+        almost-zero distance right after starting; on 06_trip_reset that gave
+        21,395 l/100 km before the car had moved. The display would show a
+        clamped 99.9.
         """
         if self.total_mm < AVG_MIN_M * 1000:
             return 0.0
         return (self.total_ul / 1000.0) / (self.total_mm / 1000.0) * 100.0
 
     def fuel_now(self, st: Decoded) -> tuple[float, str]:
-        """Dvoji jednotka. Jediny prah, zadna hystereze."""
+        """Dual unit. A single threshold, no hysteresis."""
         if not st.speed_valid or st.speed_kmh < FUELNOW_LH_BELOW_KMH:
             return min(self.flow_lh, FUELNOW_CLAMP / 10.0), "l/h"
         l100 = self.flow_lh / st.speed_kmh * 100.0
@@ -190,7 +191,7 @@ class Compute:
         return st.tank_l / basis * 100.0
 
 
-# --- prehravani -----------------------------------------------------------
+# --- replaying ------------------------------------------------------------
 
 def replay(path: str, *, csv: bool = False, every: int = 1, fix_doubled: bool = True):
     frames = parse_file(path, fix_doubled=fix_doubled)
@@ -201,13 +202,13 @@ def replay(path: str, *, csv: bool = False, every: int = 1, fix_doubled: bool = 
     n480 = 0
     rows = 0
 
-    header = ["t_s", "rpm", "km/h", "clt", "ul_s", "l/h", "FuelNow", "jedn",
+    header = ["t_s", "rpm", "km/h", "clt", "ul_s", "l/h", "FuelNow", "unit",
               "FuelAvg", "tank_l", "range_km", "total_ul", "total_m"]
     if csv:
         print(",".join(header))
     else:
         print(f"# {path}")
-        print(f"# cas {'odhadnuty z periody 0x480' if synthetic else 'z casovych znacek logu'}")
+        print(f"# time {'estimated from the 0x480 period' if synthetic else 'from log timestamps'}")
         print("  " + "".join(h.rjust(10) for h in header))
 
     prev_ms = None
@@ -248,19 +249,19 @@ def replay(path: str, *, csv: bool = False, every: int = 1, fix_doubled: bool = 
         if not synthetic:
             stamped = [f.ts_ms for f in frames if f.can_id == 0x480]
             span_s = (stamped[-1] - stamped[0]) / 1000.0
-        print(f"# celkem {cp.total_ul} ul za {span_s:.2f} s "
+        print(f"# total {cp.total_ul} ul over {span_s:.2f} s "
               f"-> {cp.total_ul / span_s:.0f} ul/s = {cp.total_ul / span_s * 3.6 / 1000:.2f} l/h")
-        print(f"# ujeto {cp.total_mm / 1000:.0f} m, prumer {cp.avg_l100:.2f} l/100 km, "
-              f"detekovano restartu: {cp.restarts}")
+        print(f"# distance {cp.total_mm / 1000:.0f} m, average {cp.avg_l100:.2f} l/100 km, "
+              f"restarts detected: {cp.restarts}")
 
 
 def main(argv=None) -> int:
-    ap = argparse.ArgumentParser(description="Prehraje log referencnim dekoderem.")
+    ap = argparse.ArgumentParser(description="Replay a log through the reference decoder.")
     ap.add_argument("files", nargs="+")
     ap.add_argument("--csv", action="store_true")
-    ap.add_argument("--every", type=int, default=1, help="vypsat jen kazdy N-ty radek")
+    ap.add_argument("--every", type=int, default=1, help="print only every Nth row")
     ap.add_argument("--no-fix-doubled", action="store_true",
-                    help="nechat zdvojeny soubor tak, jak je (viz fixtures/README.md)")
+                    help="leave a doubled file as it is (see fixtures/README.md)")
     args = ap.parse_args(argv)
 
     for path in args.files:

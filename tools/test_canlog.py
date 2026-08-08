@@ -1,17 +1,18 @@
 #!/usr/bin/env python3
-"""Testy canlog.py -- parsovani obou formatu a kotvy proti realnym fixtures.
+"""Tests for canlog.py -- both log formats plus anchors against real fixtures.
 
-Spousteni:
+Running them:
     python -m unittest discover -s tools -p 'test_*.py' -v
     python tools/test_canlog.py
 
-Ucel je dvoji. Jednak zkontrolovat parser samotny, jednak zamknout nekolik
-hodnot vyctenych z realnych logu. Kdyby se fixtures nekdy prekodovaly nebo
-prohodily, tyhle testy to chyti driv, nez se podle nich zacne ladit firmware.
+There are two goals here. One is checking the parser itself. The other is
+pinning down a handful of values read out of the real logs. If the fixtures
+were ever re-encoded or swapped, these tests catch it before anyone tunes
+firmware against them.
 
-Cisla nize jsou zmerena z techto konkretnich souboru, ne opsana ze zadani.
-Kde se merenim rozchazeji se zadanim, je to poznamenane u testu i
-v docs/can-decoding.md.
+Every number below was measured from these specific files, not copied from
+the specification. Where measurement and specification disagree it is noted
+at the test and in docs/can-decoding.md.
 """
 
 from __future__ import annotations
@@ -25,8 +26,8 @@ from canlog import Frame, LogFormatError, parse_file, parse_line, undouble
 
 FIXTURES = Path(__file__).resolve().parent.parent / "test" / "fixtures"
 
-# Perioda ramce 0x480. U logu bez casovych znacek je to jediny zpusob, jak
-# z citace udelat prutok, takze na ni visi vsechny absolutni hodnoty nize.
+# Period of frame 0x480. For logs without timestamps this is the only way to
+# turn the counter into a rate, so every absolute value below hangs off it.
 PERIOD_0X480_S = 0.0495
 
 
@@ -35,7 +36,7 @@ def u16le(data: bytes, i: int) -> int:
 
 
 class TestParseLineSlcan(unittest.TestCase):
-    """Format A -- syrovy slcan proud."""
+    """Format A -- raw slcan stream."""
 
     def test_standard_frame(self):
         f = parse_line("t1a0800400100fefe001d")
@@ -45,7 +46,8 @@ class TestParseLineSlcan(unittest.TestCase):
         self.assertIsNone(f.ts_ms)
 
     def test_short_dlc(self):
-        # 0x5D0 chodi jako DLC 6, ne 8 -- klasicka past na parser s pevnou delkou.
+        # 0x5D0 arrives with DLC 6, not 8 -- the classic trap for a parser
+        # that assumes a fixed length.
         f = parse_line("t5d06000349090032")
         self.assertEqual(f.can_id, 0x5D0)
         self.assertEqual(f.dlc, 6)
@@ -81,7 +83,7 @@ class TestParseLineSlcan(unittest.TestCase):
 
 
 class TestParseLineViewer(unittest.TestCase):
-    """Format B -- TSV export z USBtinVieweru."""
+    """Format B -- TSV export from USBtinViewer."""
 
     ICON = "jar:file:/C:/x/USBtinViewer_v1.3.1.jar!/res/icons/receive.png"
 
@@ -111,7 +113,7 @@ class TestParseLineViewer(unittest.TestCase):
 
 class TestFormatDetection(unittest.TestCase):
     def test_tab_decides(self):
-        """Format se pozna podle tabulatoru; slcan ho nikdy neobsahuje."""
+        """The tab tells the formats apart; slcan never contains one."""
         self.assertIsNone(parse_line("t1a0800400100fefe001d").ts_ms)
         self.assertIsNotNone(parse_line("2078\ticon\t1a0h\t8\t00 40 01 00 fe fe 00 1d").ts_ms)
 
@@ -130,38 +132,39 @@ class TestFixturesExist(unittest.TestCase):
 
     def test_all_present(self):
         for name in self.EXPECTED:
-            self.assertTrue((FIXTURES / name).is_file(), f"chybi fixture {name}")
+            self.assertTrue((FIXTURES / name).is_file(), f"missing fixture {name}")
 
 
 class TestFixtureContent(unittest.TestCase):
-    """Kotvy proti realnym logum. Vsechny hodnoty zmerene z techto souboru."""
+    """Anchors against the real logs. Every value measured from these files."""
 
     @classmethod
     def setUpClass(cls):
         cls.frames = {p.name: parse_file(p) for p in FIXTURES.glob("*.txt")}
 
-    # -- ID na sbernici -----------------------------------------------------
+    # -- IDs on the bus -----------------------------------------------------
 
     REGULAR_IDS = {0x050, 0x0C2, 0x1A0, 0x280, 0x288, 0x320,
                    0x420, 0x480, 0x488, 0x4A0, 0x520, 0x5A0, 0x5D0, 0x5D8}
 
     def test_regular_id_set(self):
-        """Periodicky vysilanych ID je presne 14 -- viz docs/can-decoding.md.
+        """Exactly 14 IDs are broadcast periodically -- see docs/can-decoding.md.
 
-        Vyjimka: 0x520 je tak pomale, ze se do kratkych logu nevejde vzdycky.
+        Exception: 0x520 is slow enough that it misses short logs.
         """
         for name, frames in self.frames.items():
             seen = {f.can_id for f in frames}
             unexpected = seen - self.REGULAR_IDS - {0x767}
-            self.assertEqual(unexpected, set(), f"{name}: neznama ID")
-            self.assertTrue(seen >= self.REGULAR_IDS - {0x520}, f"{name}: chybi ID {self.REGULAR_IDS - seen}")
+            self.assertEqual(unexpected, set(), f"{name}: unknown IDs")
+            self.assertTrue(seen >= self.REGULAR_IDS - {0x520},
+                            f"{name}: missing IDs {self.REGULAR_IDS - seen}")
 
     def test_0x767_is_a_one_off(self):
-        """0x767 je v 06 presne jednou, hned na prvni znacce, s DLC 2.
+        """0x767 appears exactly once, in 06, on the first timestamp, DLC 2.
 
-        Neni to periodicky ramec sbernice, ale jednorazova diagnosticka
-        odpoved zachycena pri pripojeni USBtinu. Firmware ho ma ignorovat,
-        ale rozsah 0x7xx uz kvuli nemu nelze povazovat za uplne tichy.
+        It is not a periodic bus frame but a one-shot diagnostic response
+        captured as the USBtin connected. Firmware should ignore it, but the
+        0x7xx range can no longer be called completely quiet because of it.
         """
         hits = [(n, f) for n, fr in self.frames.items() for f in fr if f.can_id == 0x767]
         self.assertEqual(len(hits), 1)
@@ -171,19 +174,19 @@ class TestFixtureContent(unittest.TestCase):
         self.assertEqual(frame.data, bytes.fromhex("3cfe"))
 
     def test_target_ids_are_free(self):
-        """0x600-0x602 nesmi na sbernici byt -- prevodnik je chce pro sebe."""
+        """0x600-0x602 must not be on the bus -- the converter wants them."""
         for name, frames in self.frames.items():
             collisions = {f.can_id for f in frames if 0x600 <= f.can_id <= 0x602}
-            self.assertEqual(collisions, set(), f"{name}: obsazene ID")
+            self.assertEqual(collisions, set(), f"{name}: IDs already taken")
 
     def test_dlc_is_stable_per_id(self):
-        """Kazde ID ma po celou dobu stejnou delku; 0x050 ma 4, 0x5D0 ma 6."""
+        """Each ID keeps one length throughout; 0x050 has 4, 0x5D0 has 6."""
         for name, frames in self.frames.items():
             per_id: dict[int, set[int]] = {}
             for f in frames:
                 per_id.setdefault(f.can_id, set()).add(f.dlc)
             for can_id, dlcs in per_id.items():
-                self.assertEqual(len(dlcs), 1, f"{name}: 0x{can_id:03X} ma DLC {dlcs}")
+                self.assertEqual(len(dlcs), 1, f"{name}: 0x{can_id:03X} has DLC {dlcs}")
             self.assertEqual(per_id[0x050], {4})
             self.assertEqual(per_id[0x5D0], {6})
             self.assertEqual(per_id[0x480], {8})
@@ -199,7 +202,7 @@ class TestFixtureContent(unittest.TestCase):
         for name in ("06_trip_reset.txt", "07_accel.txt"):
             ts = [f.ts_ms for f in self.frames[name]]
             self.assertTrue(all(t is not None for t in ts), name)
-            self.assertEqual(ts, sorted(ts), f"{name}: casove znacky nejsou monotonni")
+            self.assertEqual(ts, sorted(ts), f"{name}: timestamps are not monotonic")
 
     def test_frame_counts(self):
         counts = {name: len(fr) for name, fr in self.frames.items()}
@@ -211,7 +214,7 @@ class TestFixtureContent(unittest.TestCase):
         self.assertEqual(counts["07_accel.txt"], 11188)
         self.assertEqual(counts["idle.txt"], 1136)
 
-    # -- dekodovane signaly -------------------------------------------------
+    # -- decoded signals ----------------------------------------------------
 
     def rpm(self, name):
         return [u16le(f.data, 2) * 0.25 for f in self.frames[name] if f.can_id == 0x280]
@@ -220,20 +223,20 @@ class TestFixtureContent(unittest.TestCase):
         return [u16le(f.data, 2) & 0x7FFF for f in self.frames[name] if f.can_id == 0x480]
 
     def test_ign_only_engine_is_off(self):
-        """01_ign_only: motor stoji, takze otacky i citac jsou tvrde nuly."""
+        """01_ign_only: the engine is not running, so rpm and counter are hard zeros."""
         self.assertTrue(all(r == 0 for r in self.rpm("01_ign_only.txt")))
         self.assertEqual(set(self.counter("01_ign_only.txt")), {0})
 
     def test_idle_rpm(self):
-        """02 je zahraty volnobeh 797 ot/min, presne jak rika zadani."""
+        """02 is a warm idle at 797 rpm, exactly as the specification says."""
         self.assertAlmostEqual(statistics.median(self.rpm("02_idle_60s.txt")), 797, delta=1)
 
     def test_rev3000_rpm(self):
-        """05 je 2940 ot/min v neutralu -- druhy kalibracni bod ztratoveho momentu."""
+        """05 is 2940 rpm in neutral -- the second calibration point for drag torque."""
         self.assertAlmostEqual(statistics.median(self.rpm("05_rev3000.txt")), 2940, delta=2)
 
     def test_clt_warmup_curve(self):
-        """Teplota kapaliny roste napric session: idle 68 -> 05 90 -> 03 99 -> 01 100,5."""
+        """Coolant temperature rises across the session: idle 68 -> 05 90 -> 03 99 -> 01 100.5."""
         def clt(name):
             vals = [f.data[1] * 0.75 - 48 for f in self.frames[name] if f.can_id == 0x288]
             return statistics.median(vals)
@@ -243,19 +246,19 @@ class TestFixtureContent(unittest.TestCase):
         self.assertAlmostEqual(clt("01_ign_only.txt"), 100.50, places=2)
 
     def test_counter_bit15_is_a_sticky_wrap_flag(self):
-        """Bit 15 NENI konstantne 1, jak tvrdi docs/sensors.md.
+        """Bit 15 is NOT constantly 1, contrary to what docs/sensors.md claims.
 
-        Zmereno napric vsemi logy: bit 15 je nula od zapnuti zapalovani az do
-        prvniho preteceni 15bitoveho citace, pak uz zustane trvale jedna.
-        - 01_ign_only: motor stoji, citac je nula -> bit 15 je nula.
-        - 06_trip_reset: zacina na nule, pri preteceni 32767 -> 15 se prehodi.
-        - ostatni logy: motor bezi dlouho, citac uz pretekl -> jedna.
+        Measured across every log: bit 15 stays zero from ignition on until the
+        15-bit counter first wraps, and is then permanently one.
+        - 01_ign_only: engine off, counter zero -> bit 15 is zero.
+        - 06_trip_reset: starts at zero, flips when 32767 -> 15 wraps.
+        - all other logs: engine has run a while, already wrapped -> one.
 
-        Pro vypocet je to jedno, maska 0x7FFF ho zahodi. Pouzitelne je to ale
-        jako priznak "tenhle cyklus zapalovani je jeste mlady".
+        It makes no difference to the arithmetic, the 0x7FFF mask drops it.
+        It is usable as a "this ignition cycle is still young" flag.
 
-        02_idle_60s je z tohoto testu vyjmuty, protoze je zdvojeny (viz nize)
-        a druha kopie priznak zdanlive vrati zpatky na nulu.
+        02_idle_60s is excluded because it is doubled (see below) and the
+        second copy appears to reset the flag back to zero.
         """
         for name, frames in self.frames.items():
             if name == "02_idle_60s.txt":
@@ -263,7 +266,7 @@ class TestFixtureContent(unittest.TestCase):
             b15 = [(f.data[3] >> 7) & 1 for f in frames if f.can_id == 0x480]
             if 1 in b15:
                 first = b15.index(1)
-                self.assertTrue(all(b == 1 for b in b15[first:]), f"{name}: bit 15 neni sticky")
+                self.assertTrue(all(b == 1 for b in b15[first:]), f"{name}: bit 15 is not sticky")
 
     def test_counter_masked_to_15_bits(self):
         for name, frames in self.frames.items():
@@ -271,22 +274,23 @@ class TestFixtureContent(unittest.TestCase):
             self.assertTrue(all(0 <= v < 32768 for v in masked), name)
 
     def test_counter_only_moves_forward(self):
-        """Delta se pocita (novy - stary) mod 32768 a nikdy nesmi byt zaporna."""
+        """The delta is (new - old) mod 32768 and must never come out negative."""
         for name in self.frames:
             vals = self.counter(name)
             deltas = [(b - a) % 32768 for a, b in zip(vals, vals[1:])]
-            # Preskok pres pulku rozsahu by znamenal, ze jsme minuli pretečeni
-            # nebo ze se citac resetoval po vypnuti zapalovani.
+            # A jump past half the range would mean we missed a wrap, or that
+            # the counter reset after the ignition was switched off.
             big = [d for d in deltas if d > 16384]
-            self.assertEqual(big, [], f"{name}: podezrele delty {big[:5]}")
+            self.assertEqual(big, [], f"{name}: suspicious deltas {big[:5]}")
 
     def test_accel_counter_span(self):
-        """07_accel ma casove znacky, takze je to jediny fixture, ze ktereho
-        jde absolutni prutok odvodit bez odhadu periody ramce.
+        """07_accel is timestamped, so it is the only fixture from which an
+        absolute flow rate follows without assuming a frame period.
 
-        Zadani (BOOTSTRAP sekce 3) uvadi 13247 -> 22622 za 15,9 s. Konec sedi,
-        zacatek ne -- v souboru je prvni vzorek 12870. Rozdil je 377 ul, tedy
-        nekolik prvnich ramcu. Viz docs/can-decoding.md, otevrene otazky.
+        The specification (BOOTSTRAP section 3) quotes 13247 -> 22622 over
+        15.9 s. The end matches, the start does not -- the first sample in the
+        file is 12870. The difference of 377 ul is a handful of early frames.
+        See docs/can-decoding.md, open questions.
         """
         vals = self.counter("07_accel.txt")
         self.assertEqual(vals[0], 12870)
@@ -300,21 +304,22 @@ class TestFixtureContent(unittest.TestCase):
         self.assertEqual(total, 9752)
 
     def test_speed_gate_is_a_bitmask_not_an_equality(self):
-        """Bajt 1 ramce 0x1A0 je bitove pole, ne jedna hodnota.
+        """Byte 1 of frame 0x1A0 is a bit field, not a single value.
 
-        Zadani (BOOTSTRAP sekce 3) rika "platne jen kdyz b1 == 0x40". To je
-        prilis prisne. Namerene stavy napric logy:
+        The specification (BOOTSTRAP section 3) says "valid only when
+        b1 == 0x40". That is too strict. States measured across the logs:
 
-            0x40  zakladni platny stav
-            0x48  taky platny -- v 07_accel je dokonce vetsinovy (1301/1991)
-                  a nese plny rozsah rychlosti vcetne maxima 24,78 km/h
-            0x50  taky platny, 11-15 km/h
-            0x43  inicializacni rampa po zapnuti zapalovani -> zahodit
-            0x42  totez, jen 2 ramce
+            0x40  base valid state
+            0x48  also valid -- in 07_accel it is the majority (1301/1991)
+                  and carries the full speed range including the 24.78 km/h peak
+            0x50  also valid, 11-15 km/h
+            0x43  post-ignition init ramp -> discard
+            0x42  same thing, only 2 frames
 
-        Rovnost na 0x40 by v 07_accel zahodila dve tretiny vzorku rychlosti
-        a ujeta draha by vysla 14 m misto 27 m. To by primo zkazilo FuelAvg
-        i Range. Spravne pravidlo je (b1 & 0x40) && !(b1 & 0x03).
+        Testing for equality with 0x40 would throw away two thirds of the speed
+        samples in 07_accel and distance would come out as 14 m instead of 27 m.
+        That would directly corrupt FuelAvg and Range. The correct rule is
+        (b1 & 0x40) && !(b1 & 0x03).
         """
         frames = [f for f in self.frames["07_accel.txt"] if f.can_id == 0x1A0]
         gates = {f.data[1] for f in frames}
@@ -323,20 +328,20 @@ class TestFixtureContent(unittest.TestCase):
         def speeds(gate):
             return [u16le(f.data, 2) * 0.005 for f in frames if f.data[1] == gate]
 
-        # 0x48 neni okrajovy stav a nese stejne rychlosti jako 0x40
+        # 0x48 is not a fringe state and carries the same speeds as 0x40
         self.assertGreater(len(speeds(0x48)), len(speeds(0x40)))
         self.assertAlmostEqual(max(speeds(0x48)), 24.70, places=2)
         self.assertAlmostEqual(max(speeds(0x40)), 24.78, places=2)
 
     def test_init_ramp_only_after_ignition_on(self):
-        """0x43 a 0x42 jsou jen v logach, ktere zacinaji zapnutim zapalovani."""
+        """0x43 and 0x42 appear only in logs that start with ignition on."""
         for name, frames in self.frames.items():
             gates = {f.data[1] for f in frames if f.can_id == 0x1A0}
             ramp = gates & {0x42, 0x43}
             if name in ("01_ign_only.txt", "06_trip_reset.txt"):
                 self.assertEqual(ramp, {0x42, 0x43}, name)
             else:
-                self.assertEqual(ramp, set(), f"{name}: necekana rampa {ramp}")
+                self.assertEqual(ramp, set(), f"{name}: unexpected ramp {ramp}")
 
     def test_valid_speed_is_in_range(self):
         for name, frames in self.frames.items():
@@ -346,25 +351,25 @@ class TestFixtureContent(unittest.TestCase):
             self.assertLess(max(valid), 200.0, name)
 
     def test_tank_reserve_bit(self):
-        """Nadrz hlasi 0 l a sviti rezerva -- bajt 2 rámce 0x320 je presne 0x80."""
+        """The tank reads 0 l with the reserve lamp on -- byte 2 of 0x320 is exactly 0x80."""
         for name in ("01_ign_only.txt", "03_drive.txt", "05_rev3000.txt"):
             vals = {f.data[2] for f in self.frames[name] if f.can_id == 0x320}
             self.assertEqual(vals, {0x80}, name)
 
     def test_no_lambda_on_0x488(self):
-        """0x488 je konstantni, lambda na sbernici neni."""
+        """0x488 is constant, there is no lambda on the bus."""
         for name, frames in self.frames.items():
             payloads = {f.data for f in frames if f.can_id == 0x488}
             self.assertEqual(payloads, {bytes.fromhex("ffffff8dffffffff")}, name)
 
 
 class TestDoubledFixture(unittest.TestCase):
-    """02_idle_60s.txt obsahuje zaznam presne dvakrat.
+    """02_idle_60s.txt contains the recording exactly twice.
 
-    Neni to teorie -- obe poloviny souboru jsou radek po radku shodne.
-    Nechavame ho v repu tak, jak prisel z USBtinu, a opravujeme az pri cteni,
-    aby se nemenila puvodni namerena data. Kdyby se soubor nekdy prepsal
-    ocistenou verzi, tenhle test spadne a bude to videt.
+    This is not a theory -- the two halves of the file match line for line.
+    We keep it in the repo the way it came out of the USBtin and correct it at
+    read time, so the original measurement is never rewritten. If the file were
+    ever replaced with a cleaned version, this test would fail and say so.
     """
 
     def lines(self, name):
@@ -381,7 +386,7 @@ class TestDoubledFixture(unittest.TestCase):
             if path.name == "02_idle_60s.txt":
                 continue
             lines = self.lines(path.name)
-            self.assertEqual(undouble(lines), lines, f"{path.name} je take zdvojeny")
+            self.assertEqual(undouble(lines), lines, f"{path.name} is doubled as well")
 
     def test_undouble_is_idempotent(self):
         once = undouble(self.lines("02_idle_60s.txt"))
@@ -391,8 +396,9 @@ class TestDoubledFixture(unittest.TestCase):
     def test_undouble_leaves_normal_input_alone(self):
         self.assertEqual(undouble(["a", "b", "c"]), ["a", "b", "c"])
         self.assertEqual(undouble([]), [])
-        # dva stejne radky za sebou jeste neznamenaji zdvojeny soubor,
-        # ale rozlisit to nejde -- proto se undouble pousti jen na cely log
+        # Two identical lines in a row do not yet make a doubled file, but the
+        # two cases cannot be told apart -- which is why undouble is only ever
+        # applied to a whole log.
         self.assertEqual(undouble(["a", "a"]), ["a"])
 
     def test_parse_file_fix_doubled(self):
@@ -402,7 +408,7 @@ class TestDoubledFixture(unittest.TestCase):
 
 
 class TestFuelRates(unittest.TestCase):
-    """Absolutni prutoky. Logy bez casovych znacek stoji na perioda 0x480."""
+    """Absolute flow rates. Logs without timestamps rest on the 0x480 period."""
 
     def counter_total(self, name, *, fix_doubled=False):
         frames = parse_file(FIXTURES / name, fix_doubled=fix_doubled)
@@ -411,10 +417,10 @@ class TestFuelRates(unittest.TestCase):
         return total, len(vals), frames
 
     def test_idle_flow_matches_specification(self):
-        """Zahraty volnobeh 797 ot/min -> 310 ul/s = 1,12 l/h.
+        """Warm idle at 797 rpm -> 310 ul/s = 1.12 l/h.
 
-        Vychazi to na desetinu presne, ale jen ze souboru zbaveneho zdvojeni.
-        Bez opravy by vysel dvojnasobek a cely vypocet spotreby by byl mimo.
+        It lands on the decimal, but only for the de-duplicated file. Without
+        the fix the rate doubles and the whole fuel calculation is off by 100 %.
         """
         total, n, _ = self.counter_total("02_idle_60s.txt", fix_doubled=True)
         self.assertEqual(n, 1216)
@@ -424,11 +430,11 @@ class TestFuelRates(unittest.TestCase):
         self.assertAlmostEqual(total / span_s, 310, delta=2)
 
     def test_rev3000_flow(self):
-        """2940 ot/min v neutralu. Zadani uvadi 958 ul/s, z dat vychazi 1005.
+        """2940 rpm in neutral. The specification says 958 ul/s, the data gives 1005.
 
-        Rozdil 5 % nesedi na data, ale na predpokladanou periodu 0x480 --
-        pri 51,9 ms by vyslo presne 958. Log casove znacky nema, takze to
-        rozhodne az mereni na sbernici. Viz docs/can-decoding.md.
+        The 5 % gap is not in the data but in the assumed 0x480 period -- at
+        51.9 ms it would come out at exactly 958. The log has no timestamps, so
+        only a measurement on the live bus can settle it. See docs/can-decoding.md.
         """
         total, n, _ = self.counter_total("05_rev3000.txt")
         self.assertEqual(total, 1940)
@@ -440,7 +446,7 @@ class TestFuelRates(unittest.TestCase):
         self.assertEqual(total, 0)
 
     def test_timestamped_logs_need_no_period_assumption(self):
-        """06 a 07 maji znacky, takze jsou to jedine logy s tvrdym prutokem."""
+        """06 and 07 are stamped, so they are the only logs with a hard rate."""
         for name, expect_ul, expect_s in (("06_trip_reset.txt", 51992, 134.979),
                                           ("07_accel.txt", 9752, 15.915)):
             total, _, frames = self.counter_total(name)

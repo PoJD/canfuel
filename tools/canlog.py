@@ -1,32 +1,33 @@
 #!/usr/bin/env python3
-"""Parser logu z USBtinu. Umi oba formaty, ktere mame ve fixtures.
+"""Parser for USBtin logs. Handles both formats found in our fixtures.
 
-Format A -- syrovy slcan proud, tak jak ho USBtin posila po seriove lince
-a jak ho stary zaznam ulozil bez uprav:
+Format A -- raw slcan stream, exactly as the USBtin emits it over the serial
+line and as the older recordings stored it without post-processing:
 
     t1a0800400100fefe001d
     ^ ^  ^^
-    | |  +- data, 2 hex znaky na bajt
-    | +---- DLC, jeden hex znak
-    +------ 11bit ID, tri hex znaky
+    | |  +- payload, two hex chars per byte
+    | +---- DLC, one hex char
+    +------ 11-bit ID, three hex chars
 
-Casove znacky v nem nejsou. Vraci se ts=None a je na volajicim, jestli si
-cas dopocita z period ramcu (viz docs/can-decoding.md, sekce o periodach --
-neni to spolehlive).
+It carries no timestamps. Frames come back with ts_ms=None and it is up to
+the caller to derive time from frame periods (see docs/can-decoding.md,
+the section on periods -- it is not reliable).
 
-Format B -- export z USBtinVieweru, pet sloupcu oddelenych tabulatorem:
+Format B -- USBtinViewer export, five tab-separated columns:
 
     2078 <TAB> jar:file:/...receive.png <TAB> 320h <TAB> 8 <TAB> 05 00 86 ...
-    ts (ms)    ikona radku               ID+h    DLC    bajty po mezerach
+    ts (ms)    row icon                   ID+h    DLC    space-separated bytes
 
-Radky s ikonou info.png jsou hlasky vieweru ("Connected to USBtin", ...):
-maji prazdny sloupec ID i DLC a text v poslednim sloupci. Preskakuji se.
+Rows carrying info.png are viewer messages ("Connected to USBtin", ...):
+their ID and DLC columns are empty and the last column holds the text.
+They are skipped.
 
-Pouziti z prikazove radky:
+Command line usage:
 
-    python canlog.py FILE [FILE ...]           # souhrn per ID
-    python canlog.py --dump FILE               # vypis vsech ramcu
-    python canlog.py --id 0x480 --dump FILE    # jen jedno ID
+    python canlog.py FILE [FILE ...]           # per-ID summary
+    python canlog.py --dump FILE               # print every frame
+    python canlog.py --id 0x480 --dump FILE    # restrict to one ID
 """
 
 from __future__ import annotations
@@ -41,14 +42,14 @@ __all__ = ["Frame", "parse_line", "parse_file", "iter_frames", "undouble",
 
 
 class LogFormatError(ValueError):
-    """Radek vypada jako ramec, ale nejde rozebrat."""
+    """The line looks like a frame but cannot be taken apart."""
 
 
 @dataclass(frozen=True)
 class Frame:
-    """Jeden CAN ramec z logu.
+    """A single CAN frame from a log.
 
-    ts_ms je None u formatu A, ktery casove znacky neobsahuje.
+    ts_ms is None for format A, which carries no timestamps.
     """
 
     ts_ms: Optional[int]
@@ -65,11 +66,11 @@ class Frame:
 
 
 # --------------------------------------------------------------------------
-# parsovani
+# parsing
 # --------------------------------------------------------------------------
 
 def _parse_slcan(line: str) -> Optional[Frame]:
-    """Format A: tIIILDD...  (a 'T' varianta pro 29bit ID)."""
+    """Format A: tIIILDD...  (plus the 'T' variant for 29-bit IDs)."""
     kind = line[0]
     if kind == "t":
         id_len = 3
@@ -80,38 +81,39 @@ def _parse_slcan(line: str) -> Optional[Frame]:
 
     head = 1 + id_len + 1  # 't' + ID + DLC
     if len(line) < head:
-        raise LogFormatError(f"slcan radek je prilis kratky: {line!r}")
+        raise LogFormatError(f"slcan line is too short: {line!r}")
 
     try:
         can_id = int(line[1:1 + id_len], 16)
         dlc = int(line[1 + id_len], 16)
     except ValueError as exc:
-        raise LogFormatError(f"nectitelne ID/DLC: {line!r}") from exc
+        raise LogFormatError(f"unreadable ID/DLC: {line!r}") from exc
 
     if dlc > 8:
         raise LogFormatError(f"DLC {dlc} > 8: {line!r}")
 
     payload = line[head:head + 2 * dlc]
     if len(payload) != 2 * dlc:
-        raise LogFormatError(f"DLC={dlc} slibuje {2 * dlc} hex znaku, je jich {len(payload)}: {line!r}")
+        raise LogFormatError(
+            f"DLC={dlc} promises {2 * dlc} hex chars, found {len(payload)}: {line!r}")
 
     try:
         data = bytes.fromhex(payload)
     except ValueError as exc:
-        raise LogFormatError(f"nectitelna data: {line!r}") from exc
+        raise LogFormatError(f"unreadable payload: {line!r}") from exc
 
     return Frame(None, can_id, data)
 
 
 def _parse_viewer(line: str) -> Optional[Frame]:
-    """Format B: ts <TAB> ikona <TAB> IDh <TAB> DLC <TAB> bajty."""
+    """Format B: ts <TAB> icon <TAB> IDh <TAB> DLC <TAB> bytes."""
     cols = line.split("\t")
     if len(cols) < 5:
         return None
 
     ts_raw, _icon, id_raw, dlc_raw, data_raw = cols[0], cols[1], cols[2], cols[3], cols[4]
 
-    # Informacni radky vieweru maji prazdne ID i DLC a text v poslednim sloupci.
+    # Viewer info rows have empty ID and DLC and carry text in the last column.
     if not id_raw.strip() or not dlc_raw.strip():
         return None
 
@@ -123,7 +125,7 @@ def _parse_viewer(line: str) -> Optional[Frame]:
         can_id = int(id_txt, 16)
         dlc = int(dlc_raw.strip())
     except ValueError as exc:
-        raise LogFormatError(f"nectitelne ID/DLC: {line!r}") from exc
+        raise LogFormatError(f"unreadable ID/DLC: {line!r}") from exc
 
     if dlc > 8:
         raise LogFormatError(f"DLC {dlc} > 8: {line!r}")
@@ -131,19 +133,19 @@ def _parse_viewer(line: str) -> Optional[Frame]:
     try:
         data = bytes.fromhex(data_raw.replace(" ", ""))
     except ValueError as exc:
-        raise LogFormatError(f"nectitelna data: {line!r}") from exc
+        raise LogFormatError(f"unreadable payload: {line!r}") from exc
 
     if len(data) != dlc:
-        raise LogFormatError(f"DLC={dlc}, ale bajtu je {len(data)}: {line!r}")
+        raise LogFormatError(f"DLC={dlc} but found {len(data)} bytes: {line!r}")
 
     ts_ms = int(ts_raw.strip()) if ts_raw.strip() else None
     return Frame(ts_ms, can_id, data)
 
 
 def parse_line(line: str) -> Optional[Frame]:
-    """Rozebere jeden radek. Vraci None u radku, ktery ramec nenese.
+    """Take one line apart. Returns None for lines that carry no frame.
 
-    Rozliseni formatu je podle tabulatoru -- format A ho nikdy neobsahuje.
+    The format is told apart by the tab character -- format A never contains one.
     """
     line = line.rstrip("\r\n")
     if not line.strip():
@@ -154,29 +156,29 @@ def parse_line(line: str) -> Optional[Frame]:
 
 
 def iter_frames(fh, *, strict: bool = False) -> Iterator[Frame]:
-    """Prozene otevreny soubor a vraci ramce.
+    """Walk an open file (or any iterable of lines) and yield frames.
 
-    strict=True nechá LogFormatError probublat ven i s cislem radku;
-    ve vychozim rezimu se poskozeny radek preskoci (USBtin obcas urizne
-    posledni radek pri zavreni portu).
+    strict=True lets LogFormatError propagate with the line number attached.
+    By default a damaged line is skipped -- the USBtin occasionally truncates
+    the last line when the port is closed.
     """
     for lineno, line in enumerate(fh, start=1):
         try:
             frame = parse_line(line)
         except LogFormatError as exc:
             if strict:
-                raise LogFormatError(f"radek {lineno}: {exc}") from exc
+                raise LogFormatError(f"line {lineno}: {exc}") from exc
             continue
         if frame is not None:
             yield frame
 
 
 def undouble(lines: list[str]) -> list[str]:
-    """Zahodi druhou kopii, kdyz soubor obsahuje zaznam presne dvakrat.
+    """Drop the second copy when a file contains the recording exactly twice.
 
-    Fixture 02_idle_60s.txt je takhle poskozeny -- obe poloviny jsou bajt po
-    bajtu shodne. Bez teto opravy vychazi volnobezny prutok dvojnasobny.
-    Detaily viz test/fixtures/README.md.
+    Fixture 02_idle_60s.txt is damaged this way -- both halves are identical
+    byte for byte. Without this correction the idle fuel rate comes out
+    doubled. See test/fixtures/README.md for the details.
     """
     n = len(lines)
     if n >= 2 and n % 2 == 0 and lines[: n // 2] == lines[n // 2:]:
@@ -185,11 +187,11 @@ def undouble(lines: list[str]) -> list[str]:
 
 
 def parse_file(path, *, strict: bool = False, fix_doubled: bool = False) -> list[Frame]:
-    """Nacte cely log.
+    """Read a whole log.
 
-    fix_doubled=True nejdriv zkontroluje, jestli soubor neobsahuje zaznam
-    dvakrat, a pripadnou druhou kopii zahodi. Pro vypocet spotreby to zapinej
-    vzdycky; pro kontrolu integrity souboru naopak nikdy.
+    fix_doubled=True first checks whether the file holds the recording twice
+    and discards the second copy. Turn it on for any fuel calculation; leave
+    it off when checking file integrity.
     """
     with open(path, "r", encoding="utf-8", errors="replace") as fh:
         if not fix_doubled:
@@ -204,17 +206,17 @@ def parse_file(path, *, strict: bool = False, fix_doubled: bool = False) -> list
 
 def _summary(path: str, frames: list[Frame]) -> None:
     if not frames:
-        print(f"{path}: zadny ramec")
+        print(f"{path}: no frames")
         return
 
     stamped = [f.ts_ms for f in frames if f.ts_ms is not None]
-    fmt = "USBtinViewer (s casovymi znackami)" if stamped else "slcan (bez casovych znacek)"
+    fmt = "USBtinViewer (timestamped)" if stamped else "slcan (no timestamps)"
 
     print(f"{path}")
     print(f"  format : {fmt}")
-    print(f"  ramcu  : {len(frames)}")
+    print(f"  frames : {len(frames)}")
     if stamped:
-        print(f"  rozsah : {stamped[0]} .. {stamped[-1]} ms ({(stamped[-1] - stamped[0]) / 1000:.2f} s)")
+        print(f"  span   : {stamped[0]} .. {stamped[-1]} ms ({(stamped[-1] - stamped[0]) / 1000:.2f} s)")
 
     per_id: dict[int, int] = {}
     dlcs: dict[int, set[int]] = {}
@@ -222,21 +224,21 @@ def _summary(path: str, frames: list[Frame]) -> None:
         per_id[f.can_id] = per_id.get(f.can_id, 0) + 1
         dlcs.setdefault(f.can_id, set()).add(f.dlc)
 
-    print("  ID     ramcu   DLC")
+    print("  ID      frames   DLC")
     for can_id in sorted(per_id):
         seen = ",".join(str(d) for d in sorted(dlcs[can_id]))
-        print(f"  0x{can_id:03X}  {per_id[can_id]:7d}   {seen}")
+        print(f"  0x{can_id:03X}  {per_id[can_id]:8d}   {seen}")
 
 
 def main(argv: Optional[list[str]] = None) -> int:
-    ap = argparse.ArgumentParser(description="Parser logu z USBtinu (oba formaty).")
+    ap = argparse.ArgumentParser(description="Parser for USBtin logs (both formats).")
     ap.add_argument("files", nargs="+")
-    ap.add_argument("--dump", action="store_true", help="vypsat ramce misto souhrnu")
+    ap.add_argument("--dump", action="store_true", help="print frames instead of a summary")
     ap.add_argument("--id", type=lambda s: int(s, 0), action="append",
-                    help="filtrovat na dane ID, lze opakovat (napr. --id 0x480)")
-    ap.add_argument("--strict", action="store_true", help="spadnout na prvnim poskozenem radku")
+                    help="restrict to this ID, repeatable (e.g. --id 0x480)")
+    ap.add_argument("--strict", action="store_true", help="fail on the first damaged line")
     ap.add_argument("--fix-doubled", action="store_true",
-                    help="zahodit druhou kopii, kdyz soubor obsahuje zaznam dvakrat")
+                    help="drop the second copy when the file holds the recording twice")
     args = ap.parse_args(argv)
 
     wanted = set(args.id) if args.id else None

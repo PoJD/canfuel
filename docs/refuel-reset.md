@@ -1,59 +1,62 @@
-# Reset průměrné spotřeby — pouze při tankování
+# Resetting the average — on refuelling only
 
-Žádné tlačítko, žádná licence Can Switching, žádné RTC. Chová se to jako
-„spotřeba od tankování" v moderních autech.
+No button, no Can Switching licence, no RTC. It behaves like the "since
+refuelling" average in modern cars.
 
 ---
 
-## Pravidlo
+## The rule
 
 ```
-tankStableL = medián (0x320 b2 & 0x7F) přes posledních 20–30 s stání (v < 1 km/h)
+tankStableL = median of (0x320 b2 & 0x7F) over the last 20-30 s of standing (v < 1 km/h)
 ```
 
-- Aktualizovat **jen vestoje**. Za jízdy hodnotu ignorovat úplně.
-- Nárůst `tankStableL` o **více než 3 L** = tankování → vynulovat akumulátory
-  průměru.
-- Pravidlo platí i v rámci jedné session, takže pokrývá i tankování
-  s běžícím motorem.
-- `tankStableL` se ukládá do EEPROM jako součást stávajícího 12B záznamu
-  (zápis 1× za 60 s), aby přežil vypnutí zapalování.
-- Při prvním startu s prázdnou EEPROM jen inicializovat, **neresetovat**.
+- Update **only while stationary**. Ignore the value entirely while driving.
+- A rise in `tankStableL` of **more than 3 L** means refuelling → clear the
+  average accumulators.
+- The rule also applies within a single session, so it covers refuelling with
+  the engine running.
+- `tankStableL` is stored in EEPROM as part of the existing 12-byte record
+  (written once every 60 s) so it survives the ignition being switched off.
+- On the very first start with an empty EEPROM, initialise only — do not reset.
 
 ---
 
-## Proč práh 3 L a proč medián
+## Why a 3 L threshold and why a median
 
-Naměřeno na reálných datech.
+Both were measured on real data.
 
-Vestoje má hodnota rozptyl jen 2–3 L a drtivě dominuje jedna hodnota —
-1584 z 1622 vzorků bylo přesně 6 L. Za jízdy je rozptyl 9–10 L a rovnoměrně
-rozprostřený, protože plovák v nádrži šplouchá při každém zatáčení a brzdění.
+While standing, the value varies by only 2–3 L and one reading dominates
+overwhelmingly — 1584 of 1622 samples were exactly 6 L. While driving the
+spread is 9–10 L and evenly distributed, because the float in the tank sloshes
+on every corner and every brake application.
 
-Okamžitá hodnota je tedy nepoužitelná, medián z klidu je pevný jako skála.
+So the instantaneous value is unusable, while the median taken at rest is rock
+solid.
 
-Že je to reálné, potvrzuje i `07_accel.txt`: během krátkého rozjezdu skáče
-b2 mezi 1, 5, 7 a 9 litry. Kdyby se na okamžitou hodnotu navázal reset,
-spouštěl by se při každém rozjezdu.
-
----
-
-## Proč ne trip reset z přístrojovky
-
-Původní návrh (viz `implementacni-plan.md`, §5) chtěl navázat na trip reset
-přístrojovky a měl dvě varianty za `#ifdef`. Log `06_trip_reset.txt` byl
-pořízen právě na to rozhodnutí a **zatím není vyhodnocený**.
-
-Vazba na tankování je proti tomu lepší v tom, že nepotřebuje ani sniff, ani
-licenci, ani rozhodnutí — funguje na datech, která už spolehlivě máme. Pokud
-se z `06_trip_reset.txt` ukáže, že se trip km na sběrnici vysílají, dá se
-varianta CLUSTER přidat jako druhý spouštěč, ne jako náhrada.
+`07_accel.txt` confirms this is real: during a short pull-away, b2 jumps
+between 1, 5, 7 and 9 litres. If the reset were tied to the instantaneous
+value, it would fire on every pull-away.
 
 ---
 
-## Pozor při implementaci
+## Why not the trip reset from the instrument cluster
 
-Nádrž v současných datech hlásí **0 litrů a svítící rezervu** (b2 = 0x80)
-ve všech logách první session. Testovat pravidlo na těchto datech tedy nejde
-— je potřeba log z natankování. Do té doby to musí jet na syntetických
-rámcích v `test_compute.c`.
+The original design (see `implementation-plan.md`, §5) wanted to hook into the
+cluster's trip reset and had two variants behind an `#ifdef`.
+`06_trip_reset.txt` was recorded to settle that choice and **has not been
+analysed yet**.
+
+Tying the reset to refuelling is better in that it needs no sniff, no licence
+and no decision — it runs on data we already have reliably. If
+`06_trip_reset.txt` turns out to show trip kilometres on the bus, the CLUSTER
+variant can be added as a second trigger rather than as a replacement.
+
+---
+
+## Watch out when implementing
+
+In the current data the tank reports **0 litres with the reserve lamp on**
+(b2 = 0x80) throughout the first session. The rule therefore cannot be tested
+against these logs — a recording taken while refuelling is needed. Until then
+it has to run on synthetic frames in `test_compute.c`.

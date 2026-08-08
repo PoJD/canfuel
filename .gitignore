@@ -1,4 +1,4 @@
-# build hostových testů
+# host test build
 test/build/
 *.o
 *.a
@@ -33,7 +33,7 @@ __pycache__/
 .venv/
 venv/
 
-# editory a OS
+# editors and OS
 .vscode/
 .idea/
 *.swp

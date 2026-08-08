@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Testy referencniho dekoderu replay.py.
+"""Tests for the reference decoder in replay.py.
 
-Az bude hotove ceckove jadro, tenhle soubor je sablona pro test_compute.c --
-stejne fixtures, stejna ocekavana cisla.
+Once the C core exists, this file is the template for test_compute.c --
+same fixtures, same expected numbers.
 """
 
 from __future__ import annotations
@@ -26,7 +26,7 @@ class TestDecode(unittest.TestCase):
         self.st = Decoded()
 
     def test_rpm(self):
-        # b2-b3 = 90 0c -> 0x0C90 = 3216 -> 804 ot/min
+        # b2-b3 = 90 0c -> 0x0C90 = 3216 -> 804 rpm
         decode(frame(0x280, "0123900c25261725"), self.st)
         self.assertAlmostEqual(self.st.rpm, 804.0, places=1)
 
@@ -53,7 +53,8 @@ class TestDecode(unittest.TestCase):
         self.assertTrue(self.st.counter_wrapped)
 
     def test_counter_wrap_flag_clear(self):
-        # b3 = 0x7C, takze bit 15 je nula -- citac jeste od zapalovani nepretekl
+        # b3 = 0x7C, so bit 15 is zero -- the counter has not wrapped yet
+        # in this ignition cycle
         decode(frame(0x480, "f2085c7c00000000"), self.st)
         self.assertEqual(self.st.fuel_counter, 0x7C5C)
         self.assertFalse(self.st.counter_wrapped)
@@ -72,14 +73,14 @@ class TestSpeedGate(unittest.TestCase):
 
     def test_accepted_states(self):
         for b1 in (0x40, 0x48, 0x50, 0x58):
-            self.assertTrue(self.gate(b1), f"0x{b1:02X} mel projit")
+            self.assertTrue(self.gate(b1), f"0x{b1:02X} should have passed")
 
     def test_rejected_states(self):
         for b1 in (0x00, 0x42, 0x43, 0x03):
-            self.assertFalse(self.gate(b1), f"0x{b1:02X} mel byt zahozen")
+            self.assertFalse(self.gate(b1), f"0x{b1:02X} should have been rejected")
 
     def test_stale_speed_is_kept_but_flagged(self):
-        """Pri neplatne brane se hodnota neaktualizuje a priznak spadne."""
+        """On an invalid gate the value is not updated and the flag drops."""
         st = Decoded()
         decode(frame(0x1A0, "00405b13fefe0013"), st)
         self.assertTrue(st.speed_valid)
@@ -94,7 +95,7 @@ class TestSpeedGate(unittest.TestCase):
 
 
 class TestCounterRestart(unittest.TestCase):
-    """Past cislo jedna: po vypnuti zapalovani se citac resetuje na nulu."""
+    """Trap number one: the counter resets to zero when the ignition goes off."""
 
     def running(self, counter: int, rpm: float = 800.0) -> Decoded:
         st = Decoded()
@@ -116,15 +117,15 @@ class TestCounterRestart(unittest.TestCase):
         self.assertEqual(cp.total_ul, 77)
 
     def test_ignition_off_does_not_produce_a_jump(self):
-        """Bez detekce restartu by tady pribylo 12 000 ul z niceho."""
+        """Without restart detection 12,000 ul would appear out of nowhere here."""
         cp = Compute()
         cp.on_counter(self.running(12000), 0.0)
         cp.on_counter(self.running(12100), 49.5)
         self.assertEqual(cp.total_ul, 100)
-        cp.on_counter(self.running(0, rpm=0.0), 99.0)   # zapalovani vypnuto
-        cp.on_counter(self.running(30, rpm=800.0), 148.5)  # a zase zapnuto
-        # Zapocita se jen 30 ul skutecne spotrebovanych po restartu.
-        # Bez detekce by tady delta byla (0 - 12100) mod 32768 = 20 668.
+        cp.on_counter(self.running(0, rpm=0.0), 99.0)      # ignition off
+        cp.on_counter(self.running(30, rpm=800.0), 148.5)  # and back on
+        # Only the 30 ul actually burned after the restart is counted.
+        # Without detection the delta would be (0 - 12100) mod 32768 = 20,668.
         self.assertEqual(cp.total_ul, 130)
         self.assertEqual(cp.restarts, 1)
 
@@ -155,7 +156,7 @@ class TestFuelNow(unittest.TestCase):
         self.assertEqual(unit, "l/100km")
 
     def test_no_hysteresis(self):
-        """Jediny prah. Skok pri prepnuti je zamer, ne chyba."""
+        """A single threshold. The jump when it switches is deliberate, not a bug."""
         self.assertEqual(self.now(3.999, 500)[1], "l/h")
         self.assertEqual(self.now(4.000, 500)[1], "l/100km")
 
@@ -173,7 +174,7 @@ class TestFuelNow(unittest.TestCase):
         self.assertEqual(val, 0.0)
 
     def test_documented_table(self):
-        """Tabulka z implementacniho planu, sekce 3.1."""
+        """The table from the implementation plan, section 3.1."""
         for speed, flow_lh, expect in ((4, 1.5, 37.5), (6, 1.5, 25.0), (10, 1.5, 15.0),
                                        (6, 3.0, 50.0), (20, 3.0, 15.0), (10, 6.0, 60.0)):
             val, unit = self.now(speed, flow_lh * 1000 / 3.6)
@@ -183,7 +184,7 @@ class TestFuelNow(unittest.TestCase):
 
 class TestAverage(unittest.TestCase):
     def test_below_minimum_distance_is_zero(self):
-        """Deleni skoro nulovou drahou davalo na 06_trip_reset 21 395 l/100 km."""
+        """Dividing by an almost-zero distance gave 21,395 l/100 km on 06_trip_reset."""
         cp = Compute()
         cp.total_ul = 17544
         cp.total_mm = (AVG_MIN_M - 1) * 1000
@@ -191,22 +192,22 @@ class TestAverage(unittest.TestCase):
 
     def test_ratio_of_accumulators(self):
         cp = Compute()
-        cp.total_ul = 700_000           # 0,7 l
+        cp.total_ul = 700_000           # 0.7 l
         cp.total_mm = 10_000_000        # 10 km
         self.assertAlmostEqual(cp.avg_l100, 7.0, places=3)
 
     def test_idling_does_not_ruin_the_average(self):
-        """Prumer je podil akumulatoru, takze stani prida palivo, ne nekonecno."""
+        """The average is a ratio of accumulators, so idling adds fuel, not infinity."""
         cp = Compute()
         cp.total_ul = 700_000
         cp.total_mm = 10_000_000
         before = cp.avg_l100
-        cp.total_ul += 18_652           # minuta volnobehu
+        cp.total_ul += 18_652           # one minute of idling
         self.assertLess(cp.avg_l100 - before, 3.0)
 
 
 class TestAgainstFixtures(unittest.TestCase):
-    """Cisla, ktera musi po prepsani do C vyjit stejne."""
+    """Numbers that must come out the same once this is rewritten in C."""
 
     def run_log(self, name, fix_doubled=True):
         frames = parse_file(FIXTURES / name, fix_doubled=fix_doubled)
@@ -240,21 +241,22 @@ class TestAgainstFixtures(unittest.TestCase):
         self.assertEqual(cp.total_mm, 0)
 
     def test_trip_reset_distance_matches_the_checklist(self):
-        """Checklist rikal 'popojet aspon 0,1 km'. Vyslo 125 m."""
+        """The checklist said "drive at least 0.1 km". It came out as 125 m."""
         _, cp = self.run_log("06_trip_reset.txt")
         self.assertEqual(cp.total_ul, 51992)
         self.assertGreater(cp.total_mm, 100_000)
         self.assertLess(cp.total_mm, 200_000)
 
     def test_accel_distance_needs_the_corrected_gate(self):
-        """S rovnosti b1 == 0x40 by vyslo 14 m misto 27 m."""
+        """With b1 == 0x40 as an equality this would be 14 m instead of 27 m."""
         _, cp = self.run_log("07_accel.txt")
         self.assertEqual(cp.total_ul, 9752)
         self.assertGreater(cp.total_mm, 20_000)
 
     def test_restart_detection_covers_engine_off_prefix(self):
-        """06 zacina zapalovanim bez motoru, takze restartu je hodne -- a je
-        to spravne. Vsechny padnou do uvodniho useku, ne doprostred jizdy."""
+        """06 opens with ignition on but the engine off, so there are many
+        restarts -- and that is correct. They all fall in the opening stretch,
+        not in the middle of driving."""
         _, cp = self.run_log("06_trip_reset.txt")
         self.assertGreater(cp.restarts, 300)
         _, cp7 = self.run_log("07_accel.txt")

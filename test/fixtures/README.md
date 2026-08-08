@@ -1,56 +1,59 @@
-# Fixtures — logy z USBtinu
+# Fixtures — logs from the USBtin
 
-Reálné záznamy z hnacího CANu Beetlu. **Needitovat.** Testy v `tools/` se na
-ně odkazují přesnými čísly, takže jakákoliv úprava se hned projeví.
+Real recordings from the Beetle's powertrain CAN bus. **Do not edit.** The
+tests in `tools/` reference exact numbers from them, so any change shows up
+immediately.
 
-## Přehled
+## Overview
 
-| Soubor | Formát | Řádků | Co to je | CLT |
+| File | Format | Lines | What it is | CLT |
 |---|---|---|---|---|
-| `01_ign_only.txt` | slcan | 3 402 | zapalování bez motoru, čítač celý 0 | 100,5 °C |
-| `02_idle_60s.txt` | slcan | 89 882 | zahřátý volnoběh 797 ot/min, 60 s | 94,5–99 °C |
-| `03_drive.txt` | slcan | 18 018 | jízda na jedničku do 19,4 km/h | 99 °C |
-| `05_rev3000.txt` | slcan | 1 522 | 2940 ot/min v neutrálu | 90 °C |
-| `06_trip_reset.txt` | viewer | 99 103 | stání, trip reset, popojetí 125 m | 53–64 °C |
-| `07_accel.txt` | viewer | 11 192 | svižný rozjezd na 24,8 km/h | 76 °C |
-| `idle.txt` | slcan | 1 136 | krátký volnoběh, studenější | 68,25 °C |
+| `01_ign_only.txt` | slcan | 3,402 | ignition on, engine off, counter all zero | 100.5 °C |
+| `02_idle_60s.txt` | slcan | 89,882 | warm idle at 797 rpm, 60 s | 94.5–99 °C |
+| `03_drive.txt` | slcan | 18,018 | driving in first gear up to 19.4 km/h | 99 °C |
+| `05_rev3000.txt` | slcan | 1,522 | 2940 rpm in neutral | 90 °C |
+| `06_trip_reset.txt` | viewer | 99,103 | standing, trip reset, a 125 m crawl | 53–64 °C |
+| `07_accel.txt` | viewer | 11,192 | brisk acceleration to 24.8 km/h | 76 °C |
+| `idle.txt` | slcan | 1,136 | short idle, colder engine | 68.25 °C |
 
-## Dva formáty
+## Two formats
 
-**slcan** — syrový proud z USBtinu, bez časových značek:
+**slcan** — the raw stream from the USBtin, no timestamps:
 
 ```
 t1a0800400100fefe001d
 ^ ^  ^^
-| |  +- data, 2 hex znaky na bajt
-| +---- DLC, jeden hex znak
-+------ 11bit ID, tři hex znaky
+| |  +- payload, two hex chars per byte
+| +---- DLC, one hex char
++------ 11-bit ID, three hex chars
 ```
 
-**viewer** — export z USBtinVieweru, pět sloupců oddělených tabulátorem:
+**viewer** — export from USBtinViewer, five tab-separated columns:
 
 ```
 2078 <TAB> jar:file:/...receive.png <TAB> 320h <TAB> 8 <TAB> 05 00 86 00 00 00 00 00
-ts (ms)    ikona řádku               ID+h    DLC    bajty po mezerách
+ts (ms)    row icon                   ID+h    DLC    space-separated bytes
 ```
 
-Řádky s ikonou `info.png` jsou hlášky vieweru („Connected to USBtin",
-„Disconnected") — mají prázdné ID i DLC a parser je přeskakuje.
+Rows with the `info.png` icon are viewer messages ("Connected to USBtin",
+"Disconnected") — their ID and DLC columns are empty and the parser skips them.
 
-`tools/canlog.py` pozná formát podle tabulátoru; slcan ho nikdy neobsahuje.
+`tools/canlog.py` tells the formats apart by the tab character; slcan never
+contains one.
 
 ---
 
-## ⚠ `02_idle_60s.txt` obsahuje záznam dvakrát
+## ⚠ `02_idle_60s.txt` contains the recording twice
 
-Obě poloviny souboru jsou **řádek po řádku shodné** — 44 941 + 44 941 řádků.
-Není to teorie, je to ověřené testem `test_02_is_doubled`.
+Both halves of the file are **identical line for line** — 44,941 + 44,941
+lines. This is not a theory, it is pinned down by `test_02_is_doubled`.
 
-**Důsledek:** bez opravy vychází volnoběžný průtok dvojnásobný (620 místo
-310 µl/s) a celý výpočet spotřeby by byl mimo o 100 %.
+**Consequence:** without the correction the idle flow comes out doubled
+(620 instead of 310 µl/s) and the whole fuel calculation would be off by 100 %.
 
-**Jak se to řeší:** soubor zůstává v repu tak, jak přišel z USBtinu — původní
-naměřená data se nepřepisují. Opravuje se až při čtení:
+**How it is handled:** the file stays in the repo exactly as it came out of the
+USBtin — the original measurement is never rewritten. The correction happens at
+read time:
 
 ```python
 frames = canlog.parse_file(path, fix_doubled=True)
@@ -60,33 +63,33 @@ frames = canlog.parse_file(path, fix_doubled=True)
 python tools/canlog.py --fix-doubled test/fixtures/02_idle_60s.txt
 ```
 
-`tools/replay.py` to má zapnuté implicitně.
+`tools/replay.py` has it on by default.
 
-Po opravě vychází 18 652 µl za 60,1 s = **310,1 µl/s = 1,12 l/h**, což je
-přesně hodnota ze zadání. To je zároveň nejsilnější nepřímý důkaz, že perioda
-rámce 0x480 je opravdu 49,5 ms.
+After the correction the numbers are 18,652 µl over 60.1 s = **310.1 µl/s =
+1.12 l/h**, which is exactly the figure in the specification. That is also the
+strongest indirect evidence that the period of frame 0x480 really is 49.5 ms.
 
-Žádný jiný fixture zdvojený není (`test_no_other_fixture_is_doubled`).
-
----
-
-## Pojmenování
-
-`02_idle_60s.txt` se původně jmenoval `02_idle_60sec_170ms.txt`
-a `05_rev3000.txt` byl `rev3000.txt`. Přejmenováno podle zadání
-(BOOTSTRAP sekce 5), obsah je nedotčený.
-
-`idle.txt` v zadání očíslovaný nebyl a nechává se pod původním názvem.
-Podle teploty kapaliny (68,25 °C) je chronologicky **první** ze session,
-tedy před `05_rev3000` — číslo 04 by pořadí naznačovalo špatně.
+No other fixture is doubled (`test_no_other_fixture_is_doubled`).
 
 ---
 
-## Duplicitní rámce
+## Naming
 
-39–51 % řádků v každém logu je bezprostředním duplikátem předchozího rámce
-se stejným ID i stejnými daty. Je to artefakt záznamu, ne sběrnice.
+`02_idle_60s.txt` was originally called `02_idle_60sec_170ms.txt` and
+`05_rev3000.txt` was `rev3000.txt`. Renamed to match the specification
+(BOOTSTRAP section 5); the contents are untouched.
 
-Na výpočet delty čítače to vliv nemá (delta je nula), ale **měřenou periodu
-rámců to zdvojnásobuje** — proto se z těchto logů periody odvodit nedají.
-Podrobně v `docs/can-decoding.md`.
+`idle.txt` was not numbered in the specification and keeps its original name.
+By coolant temperature (68.25 °C) it is chronologically the **first** of the
+session, ahead of `05_rev3000`, so numbering it 04 would imply the wrong order.
+
+---
+
+## Duplicate frames
+
+In every log, 39–51 % of the lines are an immediate duplicate of the preceding
+frame — same ID, same payload. It is an artefact of the recording, not of the bus.
+
+It has no effect on counter delta arithmetic (the delta is zero), but it
+**doubles any measured frame period**, which is why periods cannot be derived
+from these logs. Details in `docs/can-decoding.md`.

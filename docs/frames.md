@@ -1,123 +1,127 @@
-# Rámce, které převodník vysílá
+# Frames transmitted by the converter
 
-Tři vlastní rámce na volných ID. Ve všech logách je ověřeno, že 0x600–0x602
-nikdo jiný nepoužívá (`test_target_ids_are_free`).
+Three frames of our own on free IDs. Every log confirms that nobody else uses
+0x600–0x602 (`test_target_ids_are_free`).
 
-**Vše unsigned big endian.** Little endian používá auto, big endian používáme
-my — je to schválně, ať se to nedá splést, a MFD15 to umí obojí (sloupec
-Format v TRI, 0 = big endian).
+**Everything is unsigned big endian.** The car uses little endian, we use big
+endian — deliberately, so the two cannot be confused, and the MFD15 handles
+both (the Format column in the TRI file, 0 = big endian).
 
 ---
 
-## 0x600 @ 100 ms — spotřeba
+## 0x600 @ 100 ms — fuel
 
-| Bajty | Hodnota | Krok | Rozsah |
+| Bytes | Value | Step | Range |
 |---|---|---|---|
-| 0–1 | FuelNow | 0,1 | dvojí jednotka, viz níže |
-| 2–3 | FuelAvg | 0,1 l/100 km | 0–999 |
-| 4–5 | FuelTank | 0,1 l | tlumeno 60 s |
+| 0–1 | FuelNow | 0.1 | dual unit, see below |
+| 2–3 | FuelAvg | 0.1 l/100 km | 0–999 |
+| 4–5 | FuelTank | 0.1 l | damped over 60 s |
 | 6–7 | Range | 1 km | |
 
-## 0x601 @ 100 ms — motor a diagnostika
+## 0x601 @ 100 ms — engine and diagnostics
 
-| Bajty | Hodnota | Krok |
+| Bytes | Value | Step |
 |---|---|---|
-| 0–1 | Power | 0,1 kW |
-| 2–3 | Torque | 0,1 Nm |
-| 4–5 | Průtok | 0,01 l/h |
-| 6–7 | VddConv | 0,01 V |
+| 0–1 | Power | 0.1 kW |
+| 2–3 | Torque | 0.1 Nm |
+| 4–5 | Flow | 0.01 l/h |
+| 6–7 | VddConv | 0.01 V |
 
-Průtok je v 0x601 samostatně i v případě, že FuelNow zrovna posílá l/100 km.
-Díky tomu jde na displej přidat dedikovaný senzor, aniž by se cokoliv měnilo.
+Flow is carried separately in 0x601 even when FuelNow is currently sending
+l/100 km. That way a dedicated sensor can be added on the display without
+changing anything.
 
-VddConv je napájecí napětí, které si PIC změří sám přes vestavěnou referenci
-FVR 1,024 V: `VDD = 1,024 × 1023 / ADC`. Nula externích součástek.
+VddConv is the supply voltage the PIC measures on itself through the built-in
+1.024 V fixed voltage reference: `VDD = 1.024 × 1023 / ADC`. Zero external parts.
 
-## 0x602 @ 1 s — dráha a palivo od resetu
+## 0x602 @ 1 s — distance and fuel since reset
 
-Pomalý rámec, slouží k diagnostice a k ověření, že se akumulátory chovají.
+A slow frame, used for diagnostics and to confirm the accumulators behave.
 
 ---
 
-## FuelNow — dvojí jednotka
+## FuelNow — dual unit
 
 ```
-v <  4,0 km/h  →  posílá se okamžitý průtok v l/h
-v >= 4,0 km/h  →  posílá se spotřeba v l/100 km
+v <  4.0 km/h  ->  instantaneous flow in l/h
+v >= 4.0 km/h  ->  consumption in l/100 km
 ```
 
-**Jediný práh, žádná hystereze.** Skok při přepnutí je záměrný vizuální
-signál, že se přepnulo. Pásmo 0,5 km/h se dá přidat později, kdyby číslo
-poblikávalo při popojíždění přesně kolem prahu.
+**A single threshold, no hysteresis.** The jump when it switches is a
+deliberate visual cue that it switched. A 0.5 km/h band can be added later if
+the number flickers while crawling right around the threshold.
 
-**Ořezat na 999** (99,9 na displeji). Ručička v TRI má max 99.90 a vyšší
-hodnota by se chovala neurčitě.
+**Clamp at 999** (99.9 on the display). The TRI gauge tops out at 99.90 and a
+higher value would behave unpredictably.
 
-**Proč 4 a ne 3 km/h:** při 3 km/h stačí průtok nad 3 l/h a hodnota přeleze
-99,9, takže by při každém normálním rozjezdu byla useknutá. Při 4 km/h je
-ta hranice až u 4 l/h.
+**Why 4 and not 3 km/h:** at 3 km/h a flow above 3 l/h already pushes the value
+past 99.9, so it would be clipped on every normal pull-away. At 4 km/h that
+boundary only arrives at 4 l/h.
 
-Konstanty `FUELNOW_LH_BELOW_KMH` a `FUELNOW_CLAMP` patří do `config.h`.
+The constants `FUELNOW_LH_BELOW_KMH` and `FUELNOW_CLAMP` belong in `config.h`.
 
-Když je rychlost neplatná (brána v 0x1A0 b1, viz `can-decoding.md`), posílá
-se l/h — bez důvěryhodné rychlosti nemá l/100 km smysl.
+When speed is invalid (the gate in 0x1A0 b1, see `can-decoding.md`), l/h is
+sent — without a trustworthy speed, l/100 km is meaningless.
 
 ---
 
 ## FuelAvg
 
-Vždy l/100 km. Počítá se jako **podíl akumulovaných mikrolitrů a metrů**,
-ne integrací okamžité hodnoty — stání na semaforu tak průměr nezničí.
+Always l/100 km. Computed as a **ratio of accumulated microlitres and metres**,
+not by integrating the instantaneous value — that way idling at a red light
+does not ruin the average.
 
-Pod 100 m ujeté dráhy vracet nulu. Bez té pojistky vychází dělení skoro
-nulovou dráhou; na `06_trip_reset.txt` to dávalo 21 395 l/100 km.
+Below 100 m of distance it returns zero. Without that guard the division is by
+an almost-zero distance; on `06_trip_reset.txt` it produced 21,395 l/100 km.
 
-Akumulátory se ukládají do EEPROM 1× za 60 s, kruhový buffer, 64 slotů.
+The accumulators are written to EEPROM once every 60 s, into a circular buffer
+of 64 slots.
 
 ---
 
 ## Range
 
 ```
-zbylé litry ÷ (klouzavá spotřeba za posledních 30 km) × 100
+litres remaining / (rolling consumption over the last 30 km) × 100
 ```
 
-Klouzavý průměr po segmentech 1 km, tedy 30 slotů. Chová se pak jako
-v moderních autech — po sešlápnutí plynu na dálnici postupně klesá,
-neskočí okamžitě.
+The rolling average runs over 1 km segments, so 30 slots. It then behaves the
+way modern cars do — after flooring it on the motorway the estimate falls
+gradually rather than jumping.
 
-Dokud není najeto aspoň 5 km od startu, použije se konzervativní default
-9 l/100 km, aby odhad nebyl při studeném startu nesmysl.
+Until 5 km have been driven since startup, a conservative default of 9 l/100 km
+is used so the estimate is not nonsense on a cold start.
 
 ---
 
-## Torque a Power
+## Torque and Power
 
-Od indikovaného momentu (0x280 b7) se odečte **ztrátový moment** — tření,
-čerpadla, alternátor. Není konstantní, roste s otáčkami, modeluje se
-lineárně podle otáček.
+**Drag torque** — friction, pumps, alternator — is subtracted from the
+indicated torque (0x280 b7). It is not constant; it rises with engine speed and
+is modelled linearly against rpm.
 
-Kalibrace ve dvou bodech, oba už jsou v logách:
+Two calibration points, both already in the logs:
 
-- volnoběh (`02_idle_60s`, 797 ot/min)
-- 2940 ot/min v neutrálu (`05_rev3000`) — moment na kolech je nulový,
-  takže indikovaný moment = ztrátový
+- idle (`02_idle_60s`, 797 rpm)
+- 2940 rpm in neutral (`05_rev3000`) — torque at the wheels is zero there, so
+  indicated torque equals drag torque
 
 ```
-výkon [kW] = moment [Nm] × otáčky [1/min] ÷ 9550
+power [kW] = torque [Nm] × rpm ÷ 9550
 ```
 
-MFD15 to spočítat neumí — math kanály jsou podle manuálu jen pro MFD28/32.
+The MFD15 cannot compute this itself — per the manual, math channels exist only
+on the MFD28/32.
 
 ---
 
 ## Corner cases
 
-| Situace | Chování |
+| Situation | Behaviour |
 |---|---|
-| průtok 0 | FuelNow 0,0 |
-| výpadek zdroje dat > 500 ms | všechny hodnoty nuly |
-| dráha < 100 m | FuelAvg 0,0 |
-| dráha < 5 km | Range počítá s 9 l/100 km |
-| rychlost neplatná | FuelNow v l/h |
-| hodnota nad rozsah | ořez na 999 |
+| flow is 0 | FuelNow 0.0 |
+| data source lost for > 500 ms | all values zero |
+| distance < 100 m | FuelAvg 0.0 |
+| distance < 5 km | Range uses 9 l/100 km |
+| speed invalid | FuelNow in l/h |
+| value over range | clamped to 999 |
