@@ -1,0 +1,11 @@
+# Normalise line endings so Windows checkouts stop warning about CRLF.
+# LF in the repository and in the working tree; CI runs on Linux either way.
+* text=auto eol=lf
+
+# Recipes need real tabs and LF.
+test/Makefile text eol=lf
+
+# Binary, never touch.
+*.pdf binary
+*.hex binary
+*.elf binary

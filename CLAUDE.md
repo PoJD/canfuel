@@ -41,8 +41,29 @@ can be diffed directly.
 
 ### Local toolchain
 
-gcc and make are installed. XC8 is not — the `firmware` CI job and any real
-device build still need it.
+gcc, make, git and Python 3.11 are installed. XC8 is not — the `firmware` CI
+job and any real device build still need it.
+
+---
+
+## The one coupling to another repo
+
+This repo sits next to two siblings, `kicad` (the board) and `mfd15` (the
+display config). They have separate toolchains and separate GitHub remotes
+under `PoJD/`, and the directory above them is deliberately not a git repo.
+
+The only thing that ties them together is **the layout of frames 0x600–0x602**,
+defined in `docs/frames.md` and consumed by `mfd15/tri/S-AQY.TRI`.
+
+That file has already been uploaded to a real display and verified, so it is
+final until this firmware starts transmitting. When the layout changes here, it
+must change there in the same breath. Getting it wrong does not produce an
+error — the display shows plausible but wrong numbers, which is worse.
+
+The useful check once the converter is live: compare FuelNow against
+FuelCntRaw on the display. FuelCntRaw is the raw ECU counter with no
+conversion, so if it rises while FuelNow shows nonsense, the fault is in this
+firmware's arithmetic rather than in its input.
 
 ---
 
