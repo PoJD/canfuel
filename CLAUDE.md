@@ -113,11 +113,11 @@ reasoning is in the HAL section below.
 
 ## Current state — read this first
 
-**Phase 1 is code-complete. Every file the plan called for now exists: the
-pure core, the two HAL modules, `main.c`, the MPLAB project and an XC8 job in
-CI.** What it has never been is *compiled by XC8* or *run on a board* — see the
-warning at the end of this section, which is the single most important thing on
-this page.
+**Phase 1 is code-complete and, since 2026-08-09, it builds: `make -C mplab`
+produces `mplab/build/canfuel.hex` under XC8 v4.00, 11,454 bytes of program
+memory and 563 of RAM, no warnings.** What it has never been is *run on a
+board* — see the warning at the end of this section, which is still the most
+important thing on this page.
 
 What exists and works:
 
@@ -143,26 +143,33 @@ of the two is wrong, they are at least wrong identically, and both were checked
 against the numbers measured in the car.
 
 All three CI jobs do real work now. `core` runs `make check-pure`, `make test`,
-the new `make check-hal` and the `--host-build` diff; `firmware` installs a
-pinned XC8, builds the hex and uploads it as an artifact.
+`make check-hal` and the `--host-build` diff; `firmware` installs a pinned XC8
+**and a pinned Device Family Pack**, builds the hex and uploads it as an
+artifact.
 
 ### What has and has not been verified — read before trusting any of it
 
 The core is checked against seven real logs. The hardware half is checked
-against the datasheet and against `gcc -fsyntax-only`, and that is all:
+against the datasheet, against `gcc -fsyntax-only`, and — since **2026-08-09** —
+against XC8 v4.00 itself. What that last one does and does not settle:
 
-- **XC8 is not installed on the development machine.** Nothing in `src/hal_*.c`
-  or `src/main.c` has been through the real compiler. `make -C test check-hal`
-  compiles those three files with gcc against `test/xc8stub/xc.h`, a stub that
-  declares exactly the registers the code happens to name — so it agrees with
-  the code by construction and proves nothing about the silicon. What it does
-  prove is that the C is valid and that `main.c` calls the core with the
-  arguments the core actually has, which is the one thing in those files a
-  datasheet cannot check.
-- **A wrong register or bit name will only surface under XC8.** So will a
-  wrong `#pragma config` keyword. Both fail loudly at compile time rather than
-  silently, which is why guessing a keyword was refused rather than risked —
-  see the `T3CKMX` note in `pic_config.h`.
+- **It compiles and links clean, with no warnings, for the real part.** Which
+  retires the two failure classes this section used to warn about: every
+  register and bit name in `hal_can.c` and `hal_sys.c` exists on the
+  PIC18F25K80, and every `#pragma config` keyword in `pic_config.h` is spelled
+  the way the device data spells it. `test/xc8stub/xc.h` could never have shown
+  either, since it agrees with the code by construction.
+- **The configuration words were read back out of the hex, not assumed.**
+  `CONFIG3H` at 300005h comes out `0x89`, so bit 0 `CANMX` is **set** — CANTX
+  and CANRX on RB2 and RB3, which is what the board is wired to and what
+  DS39977C Register 28-5 says that bit means. The single most expensive bit in
+  the project, confirmed against the artefact that will actually be flashed.
+  `CONFIG2H = 0x26` likewise reads back as `WDTPS<3:0> = 1001` = 512.
+- **It fits, with room.** 11,454 bytes of 32,768 (35 %) of program space and
+  563 bytes of 3,649 (15 %) of RAM, at `-O2`.
+- **It still proves nothing about the silicon.** Compiling is not running. A
+  register that exists but is written in the wrong order, at the wrong time, or
+  with the wrong value compiles exactly as cleanly as one that does not.
 - **500 kbps has been run by nobody.** The bit timing is datasheet arithmetic
   and nothing more; `CanSwitch.X` runs at 50 kbps, so `BRP = 0` and this whole
   path is untested. Check `hal_can_rx_errors()` / `hal_can_tx_errors()` and the
@@ -170,55 +177,48 @@ against the datasheet and against `gcc -fsyntax-only`, and that is all:
 - **The A/D reading is uncalibrated by construction.** The 1.024 V reference
   has no tolerance anywhere in the datasheet.
 
-### Next session starts here: the first real compile
+### The first real compile happened, and what it cost
 
-As of **2026-08-09** the maintainer is installing MPLAB X and XC8 v4.00. The
-very first thing to do in the next session, before anything else is planned or
-written:
+`make -C mplab` builds `mplab/build/canfuel.hex` on this desk with no
+arguments. It took four rounds to get there and **not one of them was the
+firmware's fault** — three of the four predicted failure classes (a wrong
+`#pragma config` keyword, a wrong register name, the `const` address-space
+warning on `hal_eeprom_backend`) simply did not happen, and the fourth,
+address-of on an SFR, compiled as expected. Everything that went wrong was the
+toolchain, and all of it is now encoded in `mplab/Makefile` so it cannot go
+wrong again. The long version is in `mplab/README.md`; the short version:
 
-```
-make -C mplab
-```
+1. **XC8 v4.00 ships no device data whatsoever.** No `pic/dat`, no
+   `pic/include/proc`, no `docs/chips`. Everything about the part comes from a
+   Device Family Pack passed with `-mdfp`, and without one the build stops at
+   `error: (2103)`. This also retires an instruction that used to be in this
+   file: `<xc8>/docs/chips/18f25k80.html` does not exist, and the per-device
+   HTML now lives in the pack.
+2. **`-mdfp` names the `xc8` subdirectory inside the pack**, not the pack root.
+   The root gives `error: (2104)`, which reads like the pack is missing.
+3. **The pack version must match the compiler.** MPLAB X v6.00 bundles
+   `PIC18F-K_DFP 1.5.114`; v4.00 will not read it. v4.00's readme names
+   **1.13.292**, which is what is installed here and what CI downloads.
+4. **The path to the pack must be pure ASCII.** Under
+   `C:\Users\Luboš\.mchp_packs` the device data resolved but the pack's include
+   directories were silently dropped, and the build died two steps later on
+   `'pic18.h' file not found`. The pack therefore lives at **`C:\mchp_packs`**,
+   which is the makefile's default.
+5. **MSYS make gives xc8-cc no usable `TMP`**, and clang dies with an LLVM
+   stack dump rather than a message. The makefile now derives one from
+   `cygpath -m /tmp`, which is why plain `make -C mplab` works.
 
-**Expect it to fail, and treat that as the job rather than as a setback.** Six
-hundred lines of hardware C have never met a compiler that knows this part.
-Fix what it says, commit each fix with what it was, and only then move on.
+One real code change came out of it, and it was cosmetic: `decode_rpm()` was a
+`static inline` in `decode.h`, which XC8 emits into every translation unit that
+includes the header and then warns about three times (2053, "never called").
+It is an ordinary function in `decode.c` now. The hex is byte-for-byte the same
+size, so the compiler was inlining it anyway.
 
-The plausible failure classes, roughly in order:
+CI does the same build on every push with the same pinned XC8 **and the same
+pinned pack**, so a green `firmware` job and a working `make -C mplab` should
+agree. If they disagree, the difference is the machine, not the code.
 
-1. **A `#pragma config` keyword XC8 does not recognise.** The authoritative
-   list for this part is in the XC8 install itself, at
-   `<xc8>/docs/chips/18f25k80.html` — it names every setting and every legal
-   value. `RETEN = OFF`, `BORV = 0`, `WDTEN = ON` and `WDTPS = 512` are the
-   four most likely to be spelled differently there; the *meanings* are argued
-   in `src/pic_config.h` and are not in doubt, only the spellings.
-2. **A register or bit name typo.** `test/xc8stub/xc.h` cannot catch these by
-   construction. Check against the real device header,
-   `<xc8>/pic/include/proc/pic18f25k80.h`. The likeliest are the mode-1/2
-   ECAN names, since several registers have different bit names per functional
-   mode — `hal_can.c` already avoids the worst of that by writing `COMSTAT`
-   and `ECANCON` by number rather than by bit name.
-3. **A warning about pointer address spaces around `hal_eeprom_backend`.** It
-   is `const`, so XC8 puts it in program memory, and `persist.c` reaches it
-   through a `const persist_backend_t *`. If that produces a diagnostic, the
-   one-line fix is to drop the `const` in `hal_sys.c` and let the twelve bytes
-   live in RAM — of which there are 3,648 and about 450 in use. This is a
-   watch item, not a known defect: nothing in the datasheet or the XC8
-   documentation was consulted for it, so do not pre-emptively "fix" it.
-4. **`&RXB0D0` and `&TXB0D0`-style address-of on an SFR.** `hal_can.c` walks
-   the eight data registers through a pointer. `piclib/can.c` does the same
-   thing and compiled, so this should be fine.
-
-When it builds, **read the memory summary rather than skipping it.** The core
-is deliberately fat in RAM — `compute_t` alone is a 32-slot flow window, a
-30-slot range window and a 25-slot tank history — and it is worth knowing how
-much headroom is actually left before anything else is added.
-
-CI does the same build on every push with the same pinned XC8, so a green
-`firmware` job and a working `make -C mplab` should agree. If they disagree,
-the difference is the machine, not the code.
-
-### Then a board
+### Next session starts here: a board
 
 1. **Programme it** and watch `LED_CAN` with JP1 fitted. Off means the car is
    not talking; a 5 Hz blink means `hal_can_init()` never got the module into
@@ -233,10 +233,19 @@ the difference is the machine, not the code.
 
 ### Local toolchain
 
-gcc, make, git and Python 3.11 are installed. XC8 v4.00 and MPLAB X were being
-installed on 2026-08-09 — if `xc8-cc` is on the PATH, that finished. Note that
+gcc, make, git and Python 3.11 are installed, and as of **2026-08-09** so are
+MPLAB X v6.00 and XC8 v4.00 — the latter at
+`C:\Program Files\Microchip\xc8\v4.00\bin\xc8-cc`, **not on the PATH**, which
+`mplab/Makefile` handles by falling back to that path.
+
+`PIC18F-K_DFP 1.13.292` is unpacked at **`C:\mchp_packs`**, deliberately
+outside the home directory — see point 4 above. It is 380 MB and not in any
+backup; if it goes missing, re-download the `.atpack` and unzip it there.
+
 MPLAB X finds its own toolchain regardless of PATH, so the IDE building is not
-evidence that `make -C mplab` will.
+evidence that `make -C mplab` will. Nor, on this machine, the reverse: the IDE
+manages its own packs and has not been made to build this project. `make` is
+the build.
 
 **A local quirk, not a repo problem:** in this shell `make` hands its recipes
 an empty `TMP`, and the MSYS2 gcc then tries to write its temporary files into
@@ -246,7 +255,9 @@ an empty `TMP`, and the MSYS2 gcc then tries to write its temporary files into
 make -C test TMP="$TEMP" test
 ```
 
-Plain `make` works everywhere else, including CI.
+`mplab/Makefile` fixes this for itself — that is the `cygpath -m /tmp` above —
+so only `make -C test` needs the workaround. Plain `make` works everywhere
+else, including CI.
 
 ---
 
@@ -877,7 +888,7 @@ make -C test check-pure                                    # no <xc.h> in the co
 make -C test check-hal                                     # the HAL still compiles
 python tools/replay.py --host-build test/fixtures/*.txt    # Python vs C
 
-make -C mplab                                              # needs XC8 installed
+make -C mplab                                              # -> build/canfuel.hex
 ```
 
 `tools/replay.py` is the reference decoder in Python, written against the same
@@ -947,12 +958,11 @@ where the load changes.
 
 ## What comes next
 
-Phase 1 is written. Everything left is a toolchain and a board, and the step
-list lives at the top of this file under **Next session starts here** — it is
-not repeated here, because two copies of a plan diverge.
+Phase 1 is written and it builds. Everything left is a board, and the step list
+lives at the top of this file under **Next session starts here** — it is not
+repeated here, because two copies of a plan diverge.
 
-In one line: `make -C mplab`, fix what XC8 says, programme a board, listen
-before transmitting.
+In one line: programme a board, watch `LED_CAN`, listen before transmitting.
 
 After that, phase 6 — calibration. Drag torque under load (the current model is
 a straight line through two idling measurements and says nothing about pulling)

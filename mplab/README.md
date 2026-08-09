@@ -7,25 +7,60 @@ Two ways in, and they compile the same seven files.
 ```
 make -C mplab                    # -> mplab/build/canfuel.hex
 make -C mplab XC8="/c/Program Files/Microchip/xc8/v4.00/bin/xc8-cc"
+make -C mplab DFP=/somewhere/PIC18F-K_DFP/1.13.292/xc8
 ```
 
-This is the authoritative recipe and it is what CI runs. It needs nothing but
-`xc8-cc` on the PATH. Everything the compiler has to know about the part is in
-`src/pic_config.h`, so the makefile only carries the device name, the standard
-and the optimisation level.
+This is the authoritative recipe and it is what CI runs. Everything the
+compiler has to know about the part is in `src/pic_config.h` and in the Device
+Family Pack, so the makefile only carries the device name, the pack, the
+standard and the optimisation level.
+
+**The plain form works on this desk with no arguments.** If `xc8-cc` is not on
+the PATH the makefile falls back to the Windows default install path, and the
+pack defaults to `C:\mchp_packs`. Both are overridable as above; the `XC8=`
+form is quoted for a reason, since the default Windows path has a space in it.
 
 **PATH is only this makefile's problem.** MPLAB X finds its own toolchains by
 scanning the standard install locations — it does not care about PATH, and a
 project that builds in the IDE says nothing about whether `make` will find the
-compiler. The XC8 installer offers to add itself to PATH during installation;
-if that box went unticked, either add
-`C:\Program Files\Microchip\xc8\v4.00\bin` by hand or pass `XC8=` as above.
-The second form is quoted for a reason: the default Windows path has a space
-in it.
+compiler.
 
-**XC8 is not installed on the machine this was written on.** The flags are the
-documented ones, but the first person to run it should expect to fix
-something, and should say what in a commit message.
+### The Device Family Pack, which is where the first build went wrong
+
+**XC8 v4.00 ships no device data of its own.** There is no `pic/dat`, no
+`pic/include/proc` and no `docs/chips` under the compiler install: the register
+headers, the `#pragma config` keywords and the linker script for the
+PIC18F25K80 all live in a Device Family Pack, passed with `-mdfp`. Without one
+the build stops immediately:
+
+```
+::: error: (2103) no device-support files specified; use the -mdfp option
+```
+
+Three things about that, each of which cost a round on 2026-08-09, and each of
+which reports as the same unhelpful `error: (2104) no device-support files
+found`:
+
+1. **`-mdfp` points at the `xc8` subdirectory inside the pack, not at the pack
+   root.** The user's guide is explicit — "path is the relevant path to the
+   xc8 directory within the DFP" — and pointing at the root fails in a way
+   that reads like the pack is missing rather than misaddressed.
+2. **The pack version has to match the compiler.** MPLAB X v6.00 bundles
+   `PIC18F-K_DFP 1.5.114` and XC8 v4.00 refuses it. v4.00's readme names
+   **1.13.292** as the version it ships with, and that is what both this desk
+   and CI use. Download it from
+   `https://packs.download.microchip.com/Microchip.PIC18F-K_DFP.1.13.292.atpack`
+   — it is a zip whatever the extension says.
+3. **The path to it must be pure ASCII.** Unpacked under a home directory
+   whose name carries a caron, device support resolves but the pack's include
+   directories are silently left off the search path, and the build dies much
+   later on `xc.h:33: 'pic18.h' file not found`. That is why the pack lives in
+   `C:\mchp_packs` here rather than in the conventional
+   `%USERPROFILE%\.mchp_packs`.
+
+CI downloads and unpacks the same version itself rather than trusting the
+compiler installer to have placed it, because on this desk the installer did
+not place it.
 
 ### Which XC8
 
@@ -60,6 +95,14 @@ two answers to the question of what gets compiled.
 
 It targets the PIC18F25K80 with XC8 and a PICkit 3, and pulls all seven sources
 out of `../../src`.
+
+**The IDE build has not been made to work on this desk, and is not the
+priority.** MPLAB X v6.00 manages packs itself: it bundles `PIC18F-K_DFP
+1.5.114`, which XC8 v4.00 rejects, and the Pack manager unpacks anything newer
+into `%USERPROFILE%\.mchp_packs`, which is the accented path XC8 v4.00 cannot
+read. Either of those can presumably be pointed elsewhere, but neither is worth
+solving to build something `make -C mplab` already builds. Use the IDE as an
+editor and as the PICkit front end; take the hex from `mplab/build`.
 
 `nbproject/Makefile-*.mk` are **not committed**. MPLAB X generates them from
 `configurations.xml` on the first build; they carry absolute paths to whichever

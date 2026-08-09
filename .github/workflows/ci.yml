@@ -83,6 +83,16 @@ jobs:
       # through 2.50, 3.00, 3.10 all resolve — but pinning CI to a compiler
       # nobody has installed would only test a compiler nobody uses.
       XC8_VERSION: '4.00'
+      # The Device Family Pack, pinned for the same reason and to the version
+      # XC8 v4.00's own readme says it ships with. v4.00 carries no device data
+      # at all -- no register headers, no #pragma config keywords, no linker
+      # script for this part -- so without a DFP the build stops at error 2103.
+      #
+      # It is downloaded rather than taken from the compiler install even
+      # though the installer is supposed to place it, because "supposed to" is
+      # not a thing CI should depend on: on the desk it did not, and MPLAB X
+      # v6.00's bundled 1.5.114 is too old for v4.00 to read.
+      DFP_VERSION: '1.13.292'
     steps:
       - uses: actions/checkout@v4
 
@@ -107,6 +117,23 @@ jobs:
           chmod +x /tmp/xc8.run
           sudo /tmp/xc8.run --mode unattended --unattendedmodeui none --netservername ''
 
+      - name: cache the device family pack
+        id: dfp-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/packs
+          key: dfp-pic18f-k-${{ env.DFP_VERSION }}
+
+      # ~34 MB, and an ordinary zip despite the extension.
+      - name: install the device family pack
+        if: steps.dfp-cache.outputs.cache-hit != 'true'
+        run: |
+          set -euo pipefail
+          url="https://packs.download.microchip.com/Microchip.PIC18F-K_DFP.${DFP_VERSION}.atpack"
+          curl -fSL --retry 3 -o /tmp/dfp.atpack "$url"
+          mkdir -p "$HOME/packs/PIC18F-K_DFP/${DFP_VERSION}"
+          unzip -q /tmp/dfp.atpack -d "$HOME/packs/PIC18F-K_DFP/${DFP_VERSION}"
+
       - name: xc8-cc reports for duty
         run: |
           echo "/opt/microchip/xc8/v${XC8_VERSION}/bin" >> "$GITHUB_PATH"
@@ -114,8 +141,11 @@ jobs:
       # The real build, at the real optimisation level. If a Free-mode licence
       # ever does object to -O2 again, `make -C mplab OPT=-O0` is the fallback
       # and the hex is still a valid one to flash.
+      #
+      # DFP points at the xc8 subdirectory *inside* the pack, not at the pack
+      # root -- see mplab/Makefile, where that is argued at length.
       - name: build the firmware
-        run: make -C mplab
+        run: make -C mplab DFP="$HOME/packs/PIC18F-K_DFP/${DFP_VERSION}/xc8"
 
       - name: the hex file exists and is not empty
         run: |
