@@ -170,21 +170,73 @@ against the datasheet and against `gcc -fsyntax-only`, and that is all:
 - **The A/D reading is uncalibrated by construction.** The 1.024 V reference
   has no tolerance anywhere in the datasheet.
 
-### Next step: a compiler and a board
+### Next session starts here: the first real compile
 
-1. Install XC8 and run `make -C mplab`. Expect to fix something; say what in
-   the commit message.
-2. Programme a board and watch `LED_CAN` — off means the car is not talking,
-   fast blink means we are not listening. The distinction was built in for
-   exactly this morning.
-3. Listen-only in the car first, then transmit, per
-   `docs/implementation-plan.md` §6 steps 3 and 4.
-4. Compare `FuelNow` against `FuelCntRaw` on the display.
+As of **2026-08-09** the maintainer is installing MPLAB X and XC8 v4.00. The
+very first thing to do in the next session, before anything else is planned or
+written:
+
+```
+make -C mplab
+```
+
+**Expect it to fail, and treat that as the job rather than as a setback.** Six
+hundred lines of hardware C have never met a compiler that knows this part.
+Fix what it says, commit each fix with what it was, and only then move on.
+
+The plausible failure classes, roughly in order:
+
+1. **A `#pragma config` keyword XC8 does not recognise.** The authoritative
+   list for this part is in the XC8 install itself, at
+   `<xc8>/docs/chips/18f25k80.html` — it names every setting and every legal
+   value. `RETEN = OFF`, `BORV = 0`, `WDTEN = ON` and `WDTPS = 512` are the
+   four most likely to be spelled differently there; the *meanings* are argued
+   in `src/pic_config.h` and are not in doubt, only the spellings.
+2. **A register or bit name typo.** `test/xc8stub/xc.h` cannot catch these by
+   construction. Check against the real device header,
+   `<xc8>/pic/include/proc/pic18f25k80.h`. The likeliest are the mode-1/2
+   ECAN names, since several registers have different bit names per functional
+   mode — `hal_can.c` already avoids the worst of that by writing `COMSTAT`
+   and `ECANCON` by number rather than by bit name.
+3. **A warning about pointer address spaces around `hal_eeprom_backend`.** It
+   is `const`, so XC8 puts it in program memory, and `persist.c` reaches it
+   through a `const persist_backend_t *`. If that produces a diagnostic, the
+   one-line fix is to drop the `const` in `hal_sys.c` and let the twelve bytes
+   live in RAM — of which there are 3,648 and about 450 in use. This is a
+   watch item, not a known defect: nothing in the datasheet or the XC8
+   documentation was consulted for it, so do not pre-emptively "fix" it.
+4. **`&RXB0D0` and `&TXB0D0`-style address-of on an SFR.** `hal_can.c` walks
+   the eight data registers through a pointer. `piclib/can.c` does the same
+   thing and compiled, so this should be fine.
+
+When it builds, **read the memory summary rather than skipping it.** The core
+is deliberately fat in RAM — `compute_t` alone is a 32-slot flow window, a
+30-slot range window and a 25-slot tank history — and it is worth knowing how
+much headroom is actually left before anything else is added.
+
+CI does the same build on every push with the same pinned XC8, so a green
+`firmware` job and a working `make -C mplab` should agree. If they disagree,
+the difference is the machine, not the code.
+
+### Then a board
+
+1. **Programme it** and watch `LED_CAN` with JP1 fitted. Off means the car is
+   not talking; a 5 Hz blink means `hal_can_init()` never got the module into
+   the mode it asked for. That distinction was built in for exactly this
+   morning. JP2 comes off before programming and goes back afterwards.
+2. **Listen-only in the car, then transmit** — `docs/implementation-plan.md`
+   §6 steps 3 and 4. Check `TXERRCNT`/`RXERRCNT` early: the 500 kbps bit
+   timing is arithmetic no hardware has ever run.
+3. **Compare FuelNow against FuelCntRaw** on the display. FuelCntRaw is the raw
+   ECU counter with no conversion, so if it rises while FuelNow shows nonsense,
+   the fault is this firmware's arithmetic rather than its input.
 
 ### Local toolchain
 
-gcc, make, git and Python 3.11 are installed. XC8 is not — the `firmware` CI
-job and any real device build still need it.
+gcc, make, git and Python 3.11 are installed. XC8 v4.00 and MPLAB X were being
+installed on 2026-08-09 — if `xc8-cc` is on the PATH, that finished. Note that
+MPLAB X finds its own toolchain regardless of PATH, so the IDE building is not
+evidence that `make -C mplab` will.
 
 **A local quirk, not a repo problem:** in this shell `make` hands its recipes
 an empty `TMP`, and the MSYS2 gcc then tries to write its temporary files into
@@ -895,24 +947,16 @@ where the load changes.
 
 ## What comes next
 
-Phase 1 is written. Everything left is a toolchain and a board:
+Phase 1 is written. Everything left is a toolchain and a board, and the step
+list lives at the top of this file under **Next session starts here** — it is
+not repeated here, because two copies of a plan diverge.
 
-1. **Install XC8 v4.00 and run `make -C mplab`.** Nothing in `src/hal_*.c`,
-   `src/main.c` or `src/pic_config.h` has been through the real compiler.
-   Expect a wrong register name or a wrong `#pragma config` keyword; both fail
-   loudly. Say what you fixed in the commit message — it is the first real
-   check any of that code has had. `mplab/README.md` covers which version and
-   why; CI is pinned to the same one, and no licence is needed.
-2. **Programme a board** and watch `LED_CAN` with JP1 fitted. Off means the
-   car is not talking; a 5 Hz blink means `hal_can_init()` never got the module
-   into the mode it asked for.
-3. **Listen-only in the car, then transmit** — `docs/implementation-plan.md`
-   §6 steps 3 and 4. Check `TXERRCNT`/`RXERRCNT` early: the 500 kbps bit
-   timing is arithmetic that no hardware has ever run.
-4. **Compare FuelNow against FuelCntRaw on the display.** FuelCntRaw is the raw
-   ECU counter with no conversion, so if it rises while FuelNow shows nonsense,
-   the fault is in this firmware's arithmetic rather than in its input.
-5. **Phase 6, calibration** — drag torque under load, and the tank.
+In one line: `make -C mplab`, fix what XC8 says, programme a board, listen
+before transmitting.
+
+After that, phase 6 — calibration. Drag torque under load (the current model is
+a straight line through two idling measurements and says nothing about pulling)
+and the tank, which needs a known quantity from a jerrycan.
 
 The breadboard phase is skipped — Micro-Fit has a 3.0 mm pitch and does not
 fit a breadboard. The boards themselves arrive during the week of 2026-08-17.
