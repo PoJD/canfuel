@@ -6,11 +6,15 @@
  * thousand write cycles on a PC in a fraction of a second and check that the
  * wear really is spread.
  *
- * Why a circular buffer at all: the K80's EEPROM is specified for 100,000
- * erase/write cycles per byte. Writing one fixed location once a minute would
- * use that up in about 70 days of driving. Sixty-four slots turn that into
- * twelve years, and the sequence number makes a torn write recoverable
- * instead of fatal.
+ * Why a circular buffer at all: the K80's data EEPROM is specified for a
+ * minimum of 100 K erase/write cycles per byte (DS39977C Table 31-1, D120;
+ * 1000 K typical). Writing one fixed location once a minute would reach that
+ * minimum in about 70 days of driving. Sixty-four slots turn it into twelve
+ * years, and the sequence number makes a torn write recoverable instead of
+ * fatal.
+ *
+ * A byte write takes 4 ms typical (D122) and blocks, so it must not be done
+ * from an interrupt. Once a minute that costs nothing.
  *
  * Record, 12 bytes, little endian:
  *

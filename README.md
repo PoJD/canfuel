@@ -43,6 +43,11 @@ two, so the reference and the code that gets flashed cannot drift apart.
 | `docs/implementation-plan.md` | overall plan for all phases |
 | `test/fixtures/README.md` | description of the logs and known data defects |
 
+Every hardware fact in the firmware comes from the manufacturer's datasheet
+for the exact part and cites its section. Both datasheets live in `docs/`:
+`pic18f25k80-datasheet.pdf` (Microchip DS39977C) and `mcp2562-datasheet.pdf`
+(DS20005167C). The reasoning is in `CLAUDE.md`.
+
 ## Layout
 
 ```

@@ -9,6 +9,51 @@ MCU: PIC18F25K80, 16 MHz, XC8. The board lives in the `kicad` repo.
 
 ---
 
+## Sourcing hardware facts — manufacturer datasheets only
+
+The same rule as in the `kicad` repo, and for the same reason. It applies here
+to firmware: **every register name, configuration bit, timing, endurance
+figure and electrical limit comes from the manufacturer's datasheet for the
+exact part, and from nothing else.** Not forum posts, not application notes
+recalled from memory, not "this is how it is always done", not code from a
+previous project, and not the recollection of whoever is at the keyboard —
+**including the model's.**
+
+When the datasheet does not settle a question, **ask the maintainer**. Do not
+fill the gap with a plausible number. A guess that looks like a specification
+is worse than an open question, because the next person cannot tell them apart.
+
+In practice:
+
+- **Quote the source.** Every hardware constant in the code or the docs names
+  its document and section — `DS39977C §2.7`, `DS39977C Table 31-1 D122`. A
+  number without a citation is a number nobody can re-check.
+- **The datasheets are in `docs/`.** `pic18f25k80-datasheet.pdf` (Microchip
+  DS39977C, PIC18F66K80 family) and `mcp2562-datasheet.pdf` (DS20005167C,
+  MCP2561/2). They are duplicated from the `kicad` repo on purpose: firmware
+  work should not depend on a sibling checkout being present.
+- **Register tables outrank prose.** The chapters are summaries and they do
+  get it wrong — see the CANMX finding below, where the ECAN chapter's opening
+  paragraph contradicts the configuration register table.
+- **Absolute Maximum Ratings outrank the DC characteristics tables**, and both
+  outrank what a part is observed to tolerate.
+- **Where the datasheet is deliberately not followed**, say so and say why,
+  next to the citation. An unexplained deviation is indistinguishable from an
+  oversight six months later.
+- **Typical is not guaranteed.** A figure given only as *typ* with no min/max
+  cannot be designed against. Say what it is and what that costs — the FVR
+  below is exactly this case.
+
+Facts about the *car* — the signal table, the frame periods, that the bus is
+already terminated — are not datasheet questions. They were settled by
+measurement and are marked as measured where they appear, in
+`docs/can-decoding.md`. The rule above is about parts.
+
+`pdftotext -layout docs/pic18f25k80-datasheet.pdf -` makes the PDF greppable,
+which is the fastest way to find a parameter number.
+
+---
+
 ## Current state — read this first
 
 **The pure C core is done and verified against every fixture. What is missing
@@ -286,18 +331,54 @@ unsigned differences everywhere and handles the wrap correctly, so it must
 
 ## Decisions already taken for the HAL
 
-Settled, so they do not need rediscussing. What is genuinely open is marked.
+Everything below that carries a citation was read out of
+`docs/pic18f25k80-datasheet.pdf` (DS39977C) or `docs/mcp2562-datasheet.pdf`
+(DS20005167C). Everything without one is **not yet sourced** and is marked. Do
+not promote an unsourced line to a settled one without opening the PDF.
 
-**The millisecond clock.** One free-running `uint32_t` incremented by a timer
-interrupt, exposed as `uint32_t hal_sys_millis(void)`. The crystal is 16 MHz
-with **no PLL**, so Fcyc is 4 MHz and Tcy is 250 ns. Read it once at the top of
-the scheduler loop and pass that one value to every core call in the pass —
-reading it repeatedly can straddle a millisecond and produce a tick of zero
-where the code expects one. It must be read atomically against the interrupt
-that writes it.
+**`CANMX` is 1, and the chapter text says the opposite.** DS39977C Register
+28-5 (CONFIG3H, byte address 300005h) defines bit 0:
 
-**EEPROM.** `persist.c` wants exactly two functions, and they already have
-their shape:
+> `1` = CANTX and CANRX pins are located on RB2 and RB3, respectively
+> `0` = CANTX and CANRX pins are located on RC6 and RC7, respectively
+
+The board is wired to RB2/RB3, so the bit is **set**, which is also the reset
+default. But §22.0's opening paragraph says the pins "can be placed on
+alternate I/O pins by *setting* the CANMX Configuration bit" — which is
+backwards. The register table and the pin-table footnote ("Default pin
+assignment for CANRX and CANTX when the CANMX Configuration bit is set") agree
+with each other against the prose, so the table wins.
+
+This is exactly why the rule above exists, and why obligation 2 in the board
+section is worth taking seriously: with the escape header gone, getting this
+wrong means soldering to the underside of the PDIP socket. Take the `#pragma
+config` keyword from the XC8 device header rather than guessing its spelling.
+
+**Unused pins — the datasheet gives two options and the board only allows one.**
+DS39977C §2.7: *"Unused I/O pins should be configured as outputs and driven to
+a logic low state. Alternatively, connect a 1 kΩ to 10 kΩ resistor to VSS on
+unused pins and drive the output to logic low."* There are no such resistors on
+the board, so the first option is the only one available: TRIS to output, LAT
+to zero, for RA1, RA2, RA3, RA5, RC2–RC7, RB0, RB1, RB4, RB5.
+
+**EEPROM.** 1,024 bytes on the PIC18F25K80 (DS39977C Table 1, device summary).
+The circular buffer occupies 0..767 and leaves the top 256 free. From
+Table 31-1, Memory Programming Requirements:
+
+| Param | What | Value |
+|---|---|---|
+| D120 | Byte endurance | **100 K min**, 1000 K typ, −40 to +125 °C |
+| D122 | TDEW, erase/write cycle time | 4 ms typ |
+| D124 | TREF, total erase/write cycles | 1 M min, 10 M typ |
+| D121 | VDD for read/write via EECON | 1.8 to 5.5 V |
+
+D120 is the number `persist.c`'s header comment argues from and it is a
+*minimum*, which is the right way round to design. The 4 ms of D122 is why the
+write must not be attempted from an interrupt; once a minute it is otherwise
+irrelevant. D124 is worth knowing about — it is a budget for the whole array,
+not per byte, and 100,000 writes spread over 64 slots spends 100 K of the 1 M.
+
+`persist.c` wants exactly two functions and their shape is already fixed:
 
 ```c
 uint8_t hal_eeprom_read(uint16_t addr, void *ctx);
@@ -305,45 +386,62 @@ void    hal_eeprom_write(uint16_t addr, uint8_t value, void *ctx);
 ```
 
 wrapped in a `persist_backend_t`. `ctx` is unused on the PIC — pass `NULL`.
-The buffer occupies addresses 0..767 of the 1024 bytes available. A byte write
-takes about 4 ms and blocks; at once a minute that is irrelevant, but it must
-not be attempted from an interrupt.
 
-**VddConv.** `VDD = 1.024 × 1023 / ADC`, measuring the internal 1.024 V fixed
-voltage reference against VDD as the ADC's reference. Returned as
-`uint16_t hal_sys_vdd_c(void)` in 0.01 V, which is what `txframes_gather()`
-takes. Zero external parts.
+**VddConv, and what it is honestly worth.** The plan is `VDD = 1.024 × 1023 /
+ADC`, reading the band gap on ADC channel 31 (DS39977C: *"11111 = Channel 31
+(1.024V band gap)"*) against VDD as the converter's reference. Two things the
+datasheet says about that:
 
-**LEDs.** `LED_PWR` on RC0 and `LED_CAN` on RC1, active high through 1 kΩ.
-They may only light when `DBG_EN` (RA0) is high, i.e. when JP1 is fitted.
-Nothing lights up in the car. **RA0 is AN0, so it has to be switched to
-digital before it is read** — an analogue pin reads as zero and the LEDs would
-simply never work, which is a bug that looks exactly like a wiring fault.
+- the reference is specified as **1.024 V typical with no tolerance given**.
+  So VddConv is a trend and a sanity check, not a calibrated voltmeter. If an
+  absolute reading is ever wanted, it needs a per-unit calibration constant.
+- Table 31-11 parameter 36, TIVRST: the internal reference takes **25 µs typ**
+  to become stable. Enable it and wait before the first conversion.
 
-**Unused pins.** RA1, RA2, RA3, RA5, RC2–RC7, RB0, RB1, RB4, RB5 are driven
-low at start-up: TRIS to output, LAT to zero. There are no pull-down resistors
-on the board and the pins go nowhere at all, so this is the only thing between
-them and floating inputs. See obligation 1 in the board section.
+Returned as `uint16_t hal_sys_vdd_c(void)` in 0.01 V, which is what
+`txframes_gather()` takes.
+
+**MCP2562.** DS20005167C: the `STBY` pin is the standby control (§1.7.9) and on
+this board it is hard-wired to ground, so there is no line to drive and no
+standby mode to write. `VIO` exists only on the MCP2562, not the MCP2561, and
+here it is tied to VDD — so the digital levels are plain 5 V and no level
+shifting is involved.
+
+**LEDs.** `LED_PWR` on RC0 and `LED_CAN` on RC1, active high through 1 kΩ, and
+only when `DBG_EN` (RA0) is high. Nothing lights up in the car. **RA0 is AN0,
+so it has to be switched to digital before it is read** — left analogue it
+reads zero and the LEDs simply never work, a bug that looks exactly like a
+wiring fault. The pin assignment itself comes from the board section below,
+which is sourced from `kicad`.
 
 **Which frames to receive.** The seven `CAN_ID_*` identifiers in `config.h`.
-Everything else on the bus is noise for us, and there are fourteen periodic
-identifiers in total — filtering in hardware rather than in `decode_frame()`
-is worth it at 500 kbps.
+Fourteen identifiers are broadcast periodically, so hardware filtering rather
+than filtering inside `decode_frame()` is worth it at 500 kbps.
 
-**Open, decide when writing the code:**
+### Not yet sourced — open the datasheet before relying on these
 
-- *Which timer.* Any of them can make 1 ms out of 4 MHz. Timer2 with its
-  postscaler is the tidiest, but check it against whatever else wants a timer.
-- *The `CANMX` configuration bit.* The ECAN module can sit on RB2/RB3 or on
-  RC6/RC7 and the board is wired for **RB2/RB3**. Read the polarity out of
-  DS39977C rather than guessing — obligation 2 says why getting it wrong the
-  first time is expensive now that the escape header is gone.
-- *`piclib` as a submodule.* github.com/PoJD/piclib provides
-  `can_setupBaudRate(baudRate, cpuSpeed)`, good for 500 kbps at 16 TQ. Not
-  added yet.
+- *The instruction cycle.* The core runs at Fosc/4 on this family, so 16 MHz
+  with no PLL gives 4 MHz and Tcy = 250 ns. **Confirm against §2 and §5
+  before sizing any timer from it.**
+- *Which timer makes the millisecond.* Timer2's postscaler looks like the
+  tidiest fit, but the divider chain has not been worked out against the
+  datasheet and nothing has been checked for a conflict with the ECAN module.
+- *The ECAN bit timing.* `piclib` (github.com/PoJD/piclib) offers
+  `can_setupBaudRate(baudRate, cpuSpeed)` and is said to reach 500 kbps at
+  16 TQ; that claim is from this repo's own notes, not from DS39977C §22. It
+  is not added as a submodule yet, and the segment values it produces have to
+  be checked against the ECAN chapter regardless.
 - *Interrupt or polling for receive.* At 500 kbps with fourteen periodic
-  identifiers the bus is busy; the 10 ms slot may not be enough to drain it
-  without a receive interrupt and a small ring buffer.
+  identifiers the 10 ms slot may not drain the buffers in time. Needs the
+  receive-buffer and overflow behaviour in §22 before it can be decided.
+
+**The millisecond clock, independent of which timer provides it.** One
+free-running `uint32_t`, exposed as `uint32_t hal_sys_millis(void)`. Read it
+once at the top of each scheduler pass and hand that one value to every core
+call in the pass — reading it repeatedly can straddle a millisecond and hand
+the core a tick of zero where it expects one. It must be read atomically
+against the interrupt that writes it. This is a software decision, not a
+datasheet one.
 
 ---
 
