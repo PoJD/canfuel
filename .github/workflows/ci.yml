@@ -104,10 +104,21 @@ jobs:
           key: xc8-${{ env.XC8_VERSION }}-linux-x64
 
       # ~93 MB from Microchip, so it only happens on a cache miss. The
-      # installer is a self-extracting shell script and takes --mode
-      # unattended. No licence is activated or needed — v4 dropped the Free
-      # mode restriction on the optimiser, which is why the build below is the
-      # real -O2 one rather than -O0.
+      # installer is an InstallBuilder binary and takes --mode unattended.
+      # No licence is activated or needed — v4 dropped the Free mode
+      # restriction on the optimiser, which is why the build below is the real
+      # -O2 one rather than -O0.
+      #
+      # There used to be a `--netservername ""' here as well, carried over from
+      # the v2.50 pin. v4.00's installer does not have that option any more and
+      # refuses to start at all rather than ignoring it:
+      #
+      #   Error: There has been an error.
+      #   Unknown option: --netservername
+      #
+      # It was passing an empty value, so it never did anything even when it
+      # was accepted; the network licence server it configured belongs to a
+      # licensing scheme this build does not use.
       - name: install XC8
         if: steps.xc8-cache.outputs.cache-hit != 'true'
         run: |
@@ -115,7 +126,7 @@ jobs:
           url="https://ww1.microchip.com/downloads/aemDocuments/documents/DEV/ProductDocuments/SoftwareTools/xc8-v${XC8_VERSION}-full-install-linux-x64-installer.run"
           curl -fSL --retry 3 -o /tmp/xc8.run "$url"
           chmod +x /tmp/xc8.run
-          sudo /tmp/xc8.run --mode unattended --unattendedmodeui none --netservername ''
+          sudo /tmp/xc8.run --mode unattended --unattendedmodeui none
 
       - name: cache the device family pack
         id: dfp-cache
