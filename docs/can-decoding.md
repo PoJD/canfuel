@@ -196,5 +196,8 @@ strong agreement.
 6. **Source of the trip reset** — candidate 0x5D8 b0. `06_trip_reset` was
    recorded for this and has not been analysed yet.
 
-7. **Drag torque calibration** — both points are in the logs (idle and 2940 rpm
-   in neutral); they just need to be substituted in.
+7. ~~**Drag torque calibration**~~ — **settled.** Both points were substituted
+   in during phase 1: `drag [Nm] = 17.44 + 0.0002501 × rpm`, which reproduces
+   19.43 Nm at 797 rpm and 24.79 Nm at 2940 rpm exactly. It is still a straight
+   line through two idling measurements and says nothing about drag under load;
+   that is phase 6. See `frames.md` and `config.h`.

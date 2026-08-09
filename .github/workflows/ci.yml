@@ -50,6 +50,17 @@ jobs:
         working-directory: test
         run: make test
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # The reference decoder in Python and the C core that will actually be
+      # flashed must not drift apart. This replays every fixture through both
+      # and diffs the totals; the fuel counter and the restart count have to
+      # agree exactly, distance to within a tenth of a percent.
+      - name: python reference and the C core agree
+        run: python tools/replay.py --host-build test/fixtures/*.txt
+
   firmware:
     name: XC8 build
     runs-on: ubuntu-latest

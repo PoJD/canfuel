@@ -331,3 +331,17 @@ on the desktop.
 
 **Uncertain:** source of the trip reset (§5), whether 0x420 b3 really is oil,
 the meaning of 0x288 b5/b6, the `info;` line in the TRI file.
+
+> **Superseded.** Phase 0 is complete, phase 2 shipped as an order to Gatema
+> on 2026-08-09, and steps 1 to 6 of §3 are done: `config.h`, `decode.c`,
+> `compute.c`, `txframes.c` and `persist.c` all exist, are compiled by gcc and
+> are checked against every fixture. Step 7, `main.c`, waits on the two HAL
+> modules, which are the only things left in phase 1.
+>
+> Two open questions from §7 closed along the way. Drag torque is calibrated —
+> `drag [Nm] = 17.44 + 0.0002501 × rpm`, reproducing both logged points
+> exactly. The 0x602 layout was chosen freely because `S-AQY.TRI` turns out not
+> to read that frame at all; only 0x600 and 0x601 are coupled to the display.
+>
+> The current state of play lives in `CLAUDE.md`, not here. This file is the
+> original plan and is kept as one.

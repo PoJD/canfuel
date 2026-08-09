@@ -12,18 +12,26 @@ straight from the display.
 
 ## Status
 
-Phase 0 — repository set up, bus decoding documented and verified against real
-logs. The firmware itself is not written yet.
+The pure C core is written and tested: frame decoding, the fuel arithmetic,
+the transmitted frames and the EEPROM buffer, all compiled with gcc and
+checked against seven real logs from the car without any hardware involved.
+
+Still to come: the hardware half — the CAN peripheral, the timers and the
+scheduler — and the MPLAB project. The boards were ordered on 2026-08-09.
 
 ## Quick start
 
 ```
-python -m unittest discover -s tools -p "test_*.py"
+make -C test test                                       # the C core, 238 checks
+python -m unittest discover -s tools -p "test_*.py"     # the Python tools
 python tools/replay.py --every 100 test/fixtures/07_accel.txt
+python tools/replay.py --host-build test/fixtures/*.txt
 ```
 
 `replay.py` is the reference decoder in Python. It runs a log through the same
-formulas the firmware will use and prints a consumption column to check by eye.
+formulas the firmware uses and prints a consumption column to check by eye.
+With `--host-build` it runs the actual C core over the same log and diffs the
+two, so the reference and the code that gets flashed cannot drift apart.
 
 ## Documentation
 

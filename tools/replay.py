@@ -1,26 +1,32 @@
 #!/usr/bin/env python3
 """Run a log through the decoder and print what the converter would transmit.
 
-In phase 0 this is the reference implementation, written in Python. It follows
-the same table as the future src/decode.c and src/compute.c on purpose, so the
-two can be compared line by line -- once the host build exists, a --host-build
-switch lands here and the diff between the two outputs becomes a hard test.
+This is the reference implementation, written in Python. It follows the same
+table as src/decode.c and src/compute.c on purpose, so the two can be compared
+directly:
 
-Until then it serves two purposes: eyeballing the formulas against real data,
-and having something to check the first C core against.
+    python tools/replay.py --host-build test/fixtures/02_idle_60s.txt
+
+builds nothing itself but runs test/build/replay_host over the same log and
+diffs the numbers. Any drift between the reference and the code that will
+actually be flashed then shows up here rather than on the display.
 
 Usage:
     python tools/replay.py test/fixtures/03_drive.txt
     python tools/replay.py --csv test/fixtures/07_accel.txt > out.csv
     python tools/replay.py --every 20 test/fixtures/06_trip_reset.txt
+    python tools/replay.py --host-build test/fixtures/*.txt
 """
 
 from __future__ import annotations
 
 import argparse
+import os
+import subprocess
 import sys
 from dataclasses import dataclass, field
-from typing import Optional
+from pathlib import Path
+from typing import Iterator, Optional
 
 from canlog import Frame, parse_file
 
@@ -193,25 +199,23 @@ class Compute:
 
 # --- replaying ------------------------------------------------------------
 
-def replay(path: str, *, csv: bool = False, every: int = 1, fix_doubled: bool = True):
-    frames = parse_file(path, fix_doubled=fix_doubled)
+def walk(frames: list) -> Iterator[tuple]:
+    """Fold a whole log, yielding (now_ms, st, cp) at every 0x480 frame.
+
+    0x480 is the clock of the device: it is the only periodic input whose
+    period we trust (49.5 ms, argued in docs/can-decoding.md). Logs in the
+    viewer format carry real timestamps and those win.
+
+    The order inside the loop -- decode, then distance, then the counter --
+    is the same one test/replay_core.h uses on the C side. Swapping the last
+    two would integrate the previous speed over the current interval.
+    """
     st = Decoded()
     cp = Compute()
-
     synthetic = all(f.ts_ms is None for f in frames)
     n480 = 0
-    rows = 0
-
-    header = ["t_s", "rpm", "km/h", "clt", "ul_s", "l/h", "FuelNow", "unit",
-              "FuelAvg", "tank_l", "range_km", "total_ul", "total_m"]
-    if csv:
-        print(",".join(header))
-    else:
-        print(f"# {path}")
-        print(f"# time {'estimated from the 0x480 period' if synthetic else 'from log timestamps'}")
-        print("  " + "".join(h.rjust(10) for h in header))
-
     prev_ms = None
+
     for f in frames:
         if f.can_id == 0x480:
             now_ms = n480 * PERIOD_0X480_MS if synthetic else float(f.ts_ms)
@@ -229,7 +233,54 @@ def replay(path: str, *, csv: bool = False, every: int = 1, fix_doubled: bool = 
         prev_ms = now_ms
 
         cp.on_counter(st, now_ms)
+        yield now_ms, st, cp
 
+
+def summarise(path: str, *, fix_doubled: bool = True) -> dict:
+    """The same numbers test/build/replay_host prints, for comparing against."""
+    frames = parse_file(path, fix_doubled=fix_doubled)
+    first_ms = last_ms = 0.0
+    rows = 0
+    st = cp = None
+
+    for now_ms, st, cp in walk(frames):
+        if rows == 0:
+            first_ms = now_ms
+        last_ms = now_ms
+        rows += 1
+
+    if cp is None:
+        return {"fuel_frames": 0, "total_ul": 0, "total_mm": 0,
+                "restarts": 0, "flow_ul_s": 0, "span_ms": 0}
+
+    return {
+        "fuel_frames": rows,
+        "total_ul": cp.total_ul,
+        "total_mm": cp.total_mm,
+        "restarts": cp.restarts,
+        "flow_ul_s": round(cp.flow_ul_s),
+        "span_ms": round(last_ms - first_ms),
+    }
+
+
+def replay(path: str, *, csv: bool = False, every: int = 1, fix_doubled: bool = True):
+    frames = parse_file(path, fix_doubled=fix_doubled)
+    synthetic = all(f.ts_ms is None for f in frames)
+    n480 = 0
+    rows = 0
+    cp = None
+
+    header = ["t_s", "rpm", "km/h", "clt", "ul_s", "l/h", "FuelNow", "unit",
+              "FuelAvg", "tank_l", "range_km", "total_ul", "total_m"]
+    if csv:
+        print(",".join(header))
+    else:
+        print(f"# {path}")
+        print(f"# time {'estimated from the 0x480 period' if synthetic else 'from log timestamps'}")
+        print("  " + "".join(h.rjust(10) for h in header))
+
+    for now_ms, st, cp in walk(frames):
+        n480 += 1
         rows += 1
         if rows % every:
             continue
@@ -244,7 +295,7 @@ def replay(path: str, *, csv: bool = False, every: int = 1, fix_doubled: bool = 
         ]
         print(",".join(vals) if csv else "  " + "".join(v.rjust(10) for v in vals))
 
-    if not csv:
+    if not csv and cp is not None:
         span_s = (n480 - 1) * (PERIOD_0X480_MS / 1000 if synthetic else 0)
         if not synthetic:
             stamped = [f.ts_ms for f in frames if f.can_id == 0x480]
@@ -255,6 +306,92 @@ def replay(path: str, *, csv: bool = False, every: int = 1, fix_doubled: bool = 
               f"restarts detected: {cp.restarts}")
 
 
+# --- comparing against the C core -----------------------------------------
+
+# How far the C core may differ from this file, per field.
+#
+# The counter arithmetic is pure integer on both sides, so the fuel total and
+# the restart count have to agree exactly -- a difference there is a bug, not
+# a rounding artefact.
+#
+# Distance is the one place the two genuinely do different arithmetic: this
+# file integrates in floating point over a 49.5 ms step, while the firmware
+# works in whole milliseconds because that is what its timer gives it. Over a
+# 54 m log that is worth about 7 mm.
+TOLERANCE = {
+    "total_ul":  (0, 0.0),      # (absolute, relative)
+    "restarts":  (0, 0.0),
+    "fuel_frames": (0, 0.0),
+    "total_mm":  (100, 0.001),
+    "flow_ul_s": (2, 0.01),
+    "span_ms":   (100, 0.001),
+}
+
+
+def find_host_build(explicit: Optional[str] = None) -> Optional[Path]:
+    """Locate the binary built by 'make -C test replay-host'."""
+    if explicit:
+        return Path(explicit)
+    root = Path(__file__).resolve().parent.parent
+    for name in ("replay_host", "replay_host.exe"):
+        candidate = root / "test" / "build" / name
+        if candidate.exists():
+            return candidate
+    return None
+
+
+def run_host_build(exe: Path, path: str) -> dict:
+    out = subprocess.run([str(exe), path], capture_output=True, text=True,
+                         check=True).stdout
+    result = {}
+    for line in out.splitlines():
+        if "=" not in line:
+            continue
+        key, _, value = line.partition("=")
+        try:
+            result[key] = int(value)
+        except ValueError:
+            result[key] = value
+    return result
+
+
+def compare_with_host(paths, exe: Optional[str] = None) -> int:
+    """Diff this decoder against the C core over the same logs.
+
+    Returns a process exit code: zero when every field is inside tolerance.
+    """
+    binary = find_host_build(exe)
+    if binary is None:
+        print("no host build found -- run:  make -C test replay-host", file=sys.stderr)
+        return 2
+
+    print(f"# host build: {binary}")
+    bad = 0
+
+    for path in paths:
+        mine = summarise(path)
+        theirs = run_host_build(binary, path)
+
+        print(f"\n{path}")
+        print(f"  {'field':<14}{'python':>12}{'C':>12}{'diff':>10}")
+        for key in TOLERANCE:
+            if key not in theirs:
+                continue
+            a, b = mine[key], theirs[key]
+            abs_tol, rel_tol = TOLERANCE[key]
+            limit = max(abs_tol, abs(a) * rel_tol)
+            ok = abs(a - b) <= limit
+            bad += 0 if ok else 1
+            print(f"  {key:<14}{a:>12}{b:>12}{b - a:>10}  {'' if ok else '<-- MISMATCH'}")
+
+    print()
+    if bad:
+        print(f"{bad} field(s) outside tolerance", file=sys.stderr)
+        return 1
+    print("python and the C core agree on every field")
+    return 0
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description="Replay a log through the reference decoder.")
     ap.add_argument("files", nargs="+")
@@ -262,7 +399,14 @@ def main(argv=None) -> int:
     ap.add_argument("--every", type=int, default=1, help="print only every Nth row")
     ap.add_argument("--no-fix-doubled", action="store_true",
                     help="leave a doubled file as it is (see fixtures/README.md)")
+    ap.add_argument("--host-build", action="store_true",
+                    help="diff this decoder against the C core in test/build/replay_host")
+    ap.add_argument("--host-build-exe", metavar="PATH",
+                    help="use this binary instead of looking for it")
     args = ap.parse_args(argv)
+
+    if args.host_build or args.host_build_exe:
+        return compare_with_host(args.files, args.host_build_exe)
 
     for path in args.files:
         replay(path, csv=args.csv, every=max(1, args.every),

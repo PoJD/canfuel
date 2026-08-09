@@ -38,6 +38,19 @@ VddConv is the supply voltage the PIC measures on itself through the built-in
 
 A slow frame, used for diagnostics and to confirm the accumulators behave.
 
+| Bytes | Value | Step |
+|---|---|---|
+| 0–3 | TripFuel | 0.001 l |
+| 4–7 | TripDist | 1 m |
+
+Two 32-bit values rather than four 16-bit ones, because a tankful is around
+600 km and 55 l — both overflow 16 bits long before the trip is reset.
+
+**S-AQY.TRI does not read this frame.** It is the only one of the three with
+no consumer on the display, so its layout is ours to change; the coupling
+described in `CLAUDE.md` applies to 0x600 and 0x601. It exists to be watched
+on a USBtin while the accumulators are being trusted for the first time.
+
 ---
 
 ## FuelNow — dual unit
@@ -106,6 +119,20 @@ Two calibration points, both already in the logs:
 - 2940 rpm in neutral (`05_rev3000`) — torque at the wheels is zero there, so
   indicated torque equals drag torque
 
+Both points have now been substituted in. The model is
+
+```
+drag [Nm] = 17.44 + 0.0002501 × rpm
+```
+
+and it reproduces both measurements exactly: 19.43 Nm at 797 rpm and 24.79 Nm
+at 2940 rpm, which are the raw values 29 and 37 of 0x280 b7. The constants live
+in `config.h` as `DRAG_TORQUE_BASE_CNM` and `DRAG_TORQUE_SLOPE_E4`.
+
+It is a two-point straight line through two idling measurements, so it says
+nothing about drag under load — that is what phase 6 is for. Torque is clamped
+at zero rather than going negative on the overrun.
+
 ```
 power [kW] = torque [Nm] × rpm ÷ 9550
 ```
@@ -120,8 +147,20 @@ on the MFD28/32.
 | Situation | Behaviour |
 |---|---|
 | flow is 0 | FuelNow 0.0 |
-| data source lost for > 500 ms | all values zero |
+| data source lost for > 500 ms | every bus-derived value zero, VddConv unchanged |
+| engine stopped (rpm 0 or counter 0) | flow zero, not frozen at its last reading |
 | distance < 100 m | FuelAvg 0.0 |
 | distance < 5 km | Range uses 9 l/100 km |
 | speed invalid | FuelNow in l/h |
 | value over range | clamped to 999 |
+
+**Why VddConv is the exception.** It is the one value here that does not come
+off the bus — the PIC measures it on itself. A quiet bus is exactly the moment
+somebody wants to know whether the converter is still being fed, so zeroing it
+would throw away the only diagnosis available. Everything else goes to zero,
+because a frozen last reading is a plausible number that is no longer true.
+
+**Why the flow goes to zero when the engine stops.** The counter stops moving
+and the restart rule takes over, so nothing new arrives to average. Left
+alone, the sliding window would keep reporting whatever was burning at the
+moment the ignition was switched off.

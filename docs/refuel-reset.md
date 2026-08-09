@@ -20,6 +20,24 @@ tankStableL = median of (0x320 b2 & 0x7F) over the last 20-30 s of standing (v <
   (written once every 60 s) so it survives the ignition being switched off.
 - On the very first start with an empty EEPROM, initialise only — do not reset.
 
+## The window has to be usable before it is full
+
+Implemented in `compute.c` as a 25-slot ring sampled once a second while
+stationary, which is the 20–30 s the rule asks for. But the median is trusted
+from **five** samples on, not from twenty-five (`TANK_MEDIAN_MIN`).
+
+The reason is the sequence that actually happens at a filling station: the
+engine is off while refuelling, so on the next start the ring is empty and the
+driver may pull away within a few seconds. Waiting for a full window would
+mean the refuelling is never noticed at all — the one case the whole rule
+exists for. Five samples are enough because the value at rest barely moves:
+1584 of 1622 measured samples were the same litre.
+
+The ring is not cleared when the car starts moving, so shortly after a stop it
+still holds samples from before the drive. That is intended — it is the same
+tank — and it means a refuelling seen mid-window flips the median after about
+thirteen seconds rather than instantly.
+
 ---
 
 ## Why a 3 L threshold and why a median
