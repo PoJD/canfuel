@@ -32,7 +32,30 @@ l/100 km. That way a dedicated sensor can be added on the display without
 changing anything.
 
 VddConv is the supply voltage the PIC measures on itself through the built-in
-1.024 V fixed voltage reference: `VDD = 1.024 × 1023 / ADC`. Zero external parts.
+1.024 V fixed voltage reference, with no external parts at all. The converter's
+reference is VDD and the measured input is the band gap, so the reading is
+inverted:
+
+```
+VDD = 1.024 × 4096 / code
+```
+
+**4096, not 1024.** The A/D on this part is twelve bits, not ten — DS39977C
+Table 31-25 parameter A01, `NR Resolution ... 12 bit`. An earlier revision of
+this file had `1.024 × 1023 / ADC`, which is the ten-bit formula from a
+different PIC and would have reported four times the real supply.
+
+Two things it is worth being honest about, both of them the datasheet's:
+
+- **1.024 V is quoted with no tolerance.** The figure appears in DS39977C only
+  in the channel list of Register 23-1; there is no min, typ or max for it
+  anywhere in Section 31.0. So VddConv is a trend and a sanity check, not a
+  calibrated voltmeter. An absolute reading needs a per-unit calibration
+  constant.
+- **Below 3 V the number stops meaning anything.** Table 31-25 specifies the
+  twelve-bit resolution only for VREF ≥ 3.0 V, and VREF here is VDD itself.
+  That is also why the brown-out trip point in `src/pic_config.h` is 3.0 V
+  rather than the 1.8 V the sibling projects use.
 
 ## 0x602 @ 1 s — distance and fuel since reset
 

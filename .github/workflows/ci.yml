@@ -50,6 +50,15 @@ jobs:
         working-directory: test
         run: make test
 
+      # The other half of check-pure. XC8 is not installed here, so without
+      # this the hardware half of the firmware would be six hundred lines that
+      # nothing ever compiles. It is a syntax check against a stub xc.h and
+      # proves nothing about the silicon — but it does prove that main.c still
+      # calls the core with the arguments the core actually has.
+      - name: the HAL and main.c still compile
+        working-directory: test
+        run: make check-hal
+
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
@@ -64,15 +73,53 @@ jobs:
   firmware:
     name: XC8 build
     runs-on: ubuntu-latest
+    env:
+      # Pinned on purpose, and pinned to whatever is installed on the desk. A
+      # compiler that changes under the firmware without anyone deciding to
+      # change it is not a compiler, it is weather.
+      #
+      # 2.50 is the last of the v2 line. v3 exists (3.00, 3.10) and may well be
+      # fine, but the first XC8 build this firmware has ever had should not
+      # also be the first test of a new compiler major version. Move the pin
+      # once there is a known-good build to compare against.
+      XC8_VERSION: '2.50'
     steps:
       - uses: actions/checkout@v4
 
-      # Skeleton. XC8 needs a licensed install, so this gets filled in during
-      # phase 1 when there is something to compile.
-      - name: nothing to build yet
+      - name: cache the XC8 install
+        id: xc8-cache
+        uses: actions/cache@v4
+        with:
+          path: /opt/microchip/xc8
+          key: xc8-${{ env.XC8_VERSION }}-linux-x64
+
+      # 86 MB from Microchip, so it only happens on a cache miss. The installer
+      # is a self-extracting shell script and takes --mode unattended.
+      # No licence is activated: XC8 falls back to Free mode, which compiles
+      # everything and only restricts the optimiser — hence OPT=-O0 below.
+      - name: install XC8
+        if: steps.xc8-cache.outputs.cache-hit != 'true'
         run: |
-          if [ -d mplab ] && find mplab -name '*.X' -type d | grep -q .; then
-            echo "MPLAB project exists — add the XC8 install here"
-            exit 1
-          fi
-          echo "mplab/ is still empty, skipping"
+          set -euo pipefail
+          url="https://ww1.microchip.com/downloads/aemDocuments/documents/DEV/ProductDocuments/SoftwareTools/xc8-v${XC8_VERSION}-full-install-linux-x64-installer.run"
+          curl -fSL --retry 3 -o /tmp/xc8.run "$url"
+          chmod +x /tmp/xc8.run
+          sudo /tmp/xc8.run --mode unattended --unattendedmodeui none --netservername ''
+
+      - name: xc8-cc reports for duty
+        run: |
+          echo "/opt/microchip/xc8/v${XC8_VERSION}/bin" >> "$GITHUB_PATH"
+
+      - name: build the firmware
+        run: make -C mplab OPT=-O0
+
+      - name: the hex file exists and is not empty
+        run: |
+          test -s mplab/build/canfuel.hex
+          ls -l mplab/build/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: canfuel-hex
+          path: mplab/build/canfuel.hex
+          if-no-files-found: error

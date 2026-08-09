@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="65">
+  <logicalFolder name="root" displayName="root" projectFiles="true">
+    <logicalFolder name="HeaderFiles" displayName="Header Files" projectFiles="true">
+      <itemPath>../../src/compute.h</itemPath>
+      <itemPath>../../src/config.h</itemPath>
+      <itemPath>../../src/decode.h</itemPath>
+      <itemPath>../../src/hal_can.h</itemPath>
+      <itemPath>../../src/hal_sys.h</itemPath>
+      <itemPath>../../src/persist.h</itemPath>
+      <itemPath>../../src/pic_config.h</itemPath>
+      <itemPath>../../src/txframes.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="LinkerScript" displayName="Linker Files" projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles" displayName="Source Files" projectFiles="true">
+      <itemPath>../../src/main.c</itemPath>
+      <itemPath>../../src/hal_can.c</itemPath>
+      <itemPath>../../src/hal_sys.c</itemPath>
+      <itemPath>../../src/decode.c</itemPath>
+      <itemPath>../../src/compute.c</itemPath>
+      <itemPath>../../src/txframes.c</itemPath>
+      <itemPath>../../src/persist.c</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles" displayName="Important Files" projectFiles="false">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>../../src</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="default" type="2">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <targetDevice>PIC18F25K80</targetDevice>
+        <targetHeader></targetHeader>
+        <targetPluginBoard></targetPluginBoard>
+        <platformTool>PICkit3PlatformTool</platformTool>
+        <languageToolchain>XC8</languageToolchain>
+        <languageToolchainVersion></languageToolchainVersion>
+        <platform>2</platform>
+      </toolsSet>
+      <compileType>
+        <linkerTool>
+          <linkerLibItems>
+          </linkerLibItems>
+        </linkerTool>
+        <archiverTool>
+        </archiverTool>
+        <loading>
+          <useAlternateLoadableFile>false</useAlternateLoadableFile>
+          <parseOnProdLoad>false</parseOnProdLoad>
+          <alternateLoadableFile></alternateLoadableFile>
+        </loading>
+        <subordinates>
+        </subordinates>
+      </compileType>
+      <XC8-config-global>
+        <property key="stack-type" value="compiled"/>
+        <property key="gcc-opt-std" value="-std=c99"/>
+      </XC8-config-global>
+      <XC8_COMPILER>
+        <property key="extra-include-directories" value="../../src"/>
+        <property key="optimization-level" value="-O2"/>
+        <property key="warning-level" value="-3"/>
+      </XC8_COMPILER>
+      <XC8_LINKER>
+        <property key="display-overall-usage" value="true"/>
+      </XC8_LINKER>
+      <PICkit3PlatformTool>
+        <property key="poweroptions.powerenable" value="false"/>
+        <property key="programoptions.preserveeeprom" value="true"/>
+      </PICkit3PlatformTool>
+    </conf>
+  </confs>
+</configurationDescriptor>

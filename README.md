@@ -12,20 +12,30 @@ straight from the display.
 
 ## Status
 
-The pure C core is written and tested: frame decoding, the fuel arithmetic,
-the transmitted frames and the EEPROM buffer, all compiled with gcc and
-checked against seven real logs from the car without any hardware involved.
+**Written in full, run on nothing.**
 
-Still to come: the hardware half — the CAN peripheral, the timers and the
-scheduler — and the MPLAB project. The boards were ordered on 2026-08-09.
+The pure C core — frame decoding, the fuel arithmetic, the transmitted frames
+and the EEPROM buffer — is compiled with gcc and checked against seven real
+logs from the car, with no hardware involved. Those numbers can be trusted as
+far as the logs go.
+
+The hardware half — the ECAN driver, the millisecond timer, the A/D, the
+EEPROM and the scheduler — is written against the datasheet and syntax-checked
+with gcc, and that is all. **XC8 has never compiled it and no board has ever
+run it.** The boards were ordered on 2026-08-09 and arrive during the week of
+2026-08-17.
 
 ## Quick start
 
 ```
 make -C test test                                       # the C core, 238 checks
+make -C test check-pure                                 # no <xc.h> in the core
+make -C test check-hal                                  # the HAL still compiles
 python -m unittest discover -s tools -p "test_*.py"     # the Python tools
 python tools/replay.py --every 100 test/fixtures/07_accel.txt
 python tools/replay.py --host-build test/fixtures/*.txt
+
+make -C mplab                                           # the device build, needs XC8
 ```
 
 `replay.py` is the reference decoder in Python. It runs a log through the same
@@ -42,6 +52,7 @@ two, so the reference and the code that gets flashed cannot drift apart.
 | `docs/refuel-reset.md` | resetting the average on refuelling |
 | `docs/implementation-plan.md` | overall plan for all phases |
 | `test/fixtures/README.md` | description of the logs and known data defects |
+| `mplab/README.md` | how to build the firmware, and what JP2 is for |
 
 Every hardware fact in the firmware comes from the manufacturer's datasheet
 for the exact part and cites its section. Both datasheets live in `docs/`:
@@ -51,10 +62,10 @@ for the exact part and cites its section. Both datasheets live in `docs/`:
 ## Layout
 
 ```
-src/     firmware (pure C core, HAL kept separate)
-test/    host tests through gcc, plus fixtures
+src/     firmware — pure C core, HAL kept strictly separate
+test/    host tests through gcc, plus fixtures and a stub xc.h
 tools/   canlog.py, replay.py and their tests
-mplab/   MPLAB X project (XC8)
+mplab/   the device build: a plain Makefile and an MPLAB X project
 ```
 
 ## Related repositories

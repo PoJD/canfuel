@@ -7,6 +7,7 @@
 #   make test        the same
 #   make replay-host build only the tool tools/replay.py --host-build drives
 #   make check-pure  verify that no hardware crept into the core
+#   make check-hal   syntax-check the HAL and main.c against a stub xc.h
 #   make clean
 #
 # While src/ has no sources, the targets pass doing nothing. That is
@@ -34,7 +35,7 @@ TESTS    := $(patsubst %.c,$(BUILD)/%,$(TEST_SRC))
 # converter would transmit, so tools/replay.py can diff Python against C.
 HOST_TOOL := $(BUILD)/replay_host
 
-.PHONY: all test replay-host check-pure clean
+.PHONY: all test replay-host check-pure check-hal clean
 
 all: test
 
@@ -82,6 +83,30 @@ check-pure:
 	    exit 1; \
 	fi; \
 	echo "  ok"
+
+# The other half of the same idea. check-pure keeps hardware out of the core;
+# this keeps the hardware half from rotting, because XC8 is not installed here
+# and is not installed in CI either.
+#
+# It is a syntax check and nothing more -- test/xc8stub/xc.h declares exactly
+# the registers hal_*.c happens to name, so it agrees with the code by
+# construction and says nothing whatever about the silicon. What it does catch
+# is main.c calling the core with the wrong arguments, which is the one thing
+# in these three files that a datasheet cannot tell you about.
+HAL_SRC := $(SRCDIR)/hal_can.c $(SRCDIR)/hal_sys.c $(SRCDIR)/main.c
+
+# -Wno-unknown-pragmas: pic_config.h is a wall of #pragma config, which is the
+# whole point of it and which gcc has never heard of.
+HAL_CFLAGS := -std=c11 -Wall -Wextra -Werror -Wno-unknown-pragmas \
+              -I../src -Ixc8stub
+
+check-hal:
+	@echo "check: the HAL and main.c still compile (gcc, stub xc.h)"
+	@for f in $(HAL_SRC); do \
+	    echo "  $$f"; \
+	    $(CC) $(HAL_CFLAGS) -fsyntax-only $$f || exit 1; \
+	done
+	@echo "  ok"
 
 clean:
 	rm -rf $(BUILD)

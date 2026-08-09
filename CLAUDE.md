@@ -19,9 +19,18 @@ recalled from memory, not "this is how it is always done", not code from a
 previous project, and not the recollection of whoever is at the keyboard —
 **including the model's.**
 
-When the datasheet does not settle a question, **ask the maintainer**. Do not
-fill the gap with a plausible number. A guess that looks like a specification
-is worse than an open question, because the next person cannot tell them apart.
+When the datasheet does not settle a question, **decide it and write the
+decision down as a decision** — what was chosen, what it was chosen over, and
+what the reasoning was. Do not fill the gap with a plausible number presented
+as a fact, and do not stop and ask. A guess dressed up as a specification is
+worse than an open question, because the next person cannot tell them apart; a
+decision that says it is a decision is neither.
+
+**Do not queue up questions for the maintainer.** Judgement calls belong in the
+work, next to the code they produce. If something is genuinely undecidable
+without information nobody has yet — a measurement off the car, a part that has
+not arrived — say so in the same place, in one line, and carry on with
+everything that does not depend on it.
 
 In practice:
 
@@ -81,26 +90,47 @@ Three cases, all real:
   **wrong here** — this board is wired to RB2/RB3. Copying the file wholesale
   is the single most expensive mistake available.
 - `piclib/can_initRcPortsForCan()` is hard-wired to the same wrong pin pair.
-- `piclib/dao.c` omits the `GIE` bracket the datasheet's required sequence
-  puts around the EEPROM unlock. It is harmless in a switch that sleeps most
-  of the time and is not harmless here.
+- `piclib/can.c` never writes `CIOCON`'s `CLKSEL`, so the CAN system clock is
+  left on its reset value, which selects the PLL (DS39977C Register 27-55).
+  With `PLLCFG = OFF` there is no PLL and the datasheet does not say what the
+  mux then delivers. It evidently works at 50 kbps; the bit rate is not
+  something to leave to inference at 500 kbps.
+
+**One claim that used to be in this section was wrong, and it is worth knowing
+why.** It said `piclib/dao.c` omits the `GIE` bracket the datasheet's Required
+Sequence puts around the EEPROM unlock. It does not — `dao_saveDataItem()`
+opens with `di()` and closes with `ei()`, which is exactly that bracket, around
+a superset of the sequence. The claim came from reading the inner
+`dao_writeByte()` in isolation. Check the caller before writing down that a
+sibling repo got something wrong.
 
 So: read them first, then check what you took against the PDF, then cite the
 PDF. Neither repo is a submodule of this one; clone them beside it when
-needed.
+needed. **`piclib` was evaluated for this firmware and not used** — the
+reasoning is in the HAL section below.
 
 ---
 
 ## Current state — read this first
 
-**The pure C core is done and verified against every fixture. What is missing
-is the hardware half: `main.c`, `hal_can.c`, `hal_sys.c` and the MPLAB
-project.** `mplab/` is still empty.
+**Phase 1 is code-complete. Every file the plan called for now exists: the
+pure core, the two HAL modules, `main.c`, the MPLAB project and an XC8 job in
+CI.** What it has never been is *compiled by XC8* or *run on a board* — see the
+warning at the end of this section, which is the single most important thing on
+this page.
 
 What exists and works:
 
 - `src/config.h`, `decode.c`, `compute.c`, `txframes.c`, `persist.c` — the
   whole brain of the device, no `<xc.h>` anywhere, all scaled integers
+- `src/pic_config.h` — the `#pragma config` bits, every one of them cited
+- `src/hal_sys.c` — Timer2 millisecond clock, the 12-bit A/D on the band gap,
+  the two LEDs, the `DBG_EN` jumper, EEPROM behind `persist_backend_t`
+- `src/hal_can.c` — ECAN on RB2/RB3 at 500 kbps, Mode 2 with an eight-deep
+  receive FIFO, seven hardware filters, three transmit buffers
+- `src/main.c` — the cooperative scheduler, and nothing else
+- `mplab/` — `canfuel.X` for the IDE and a plain `Makefile` driving `xc8-cc`,
+  which is the authoritative recipe and what CI runs
 - `test/` — 238 checks across four test binaries, plus `replay_host.c`
 - `tools/canlog.py`, `tools/replay.py` — 77 Python tests green, and
   `replay.py --host-build` now diffs Python against the C core
@@ -112,28 +142,44 @@ restart counts agree **exactly**, distance to within 7 mm over 54 m. Whichever
 of the two is wrong, they are at least wrong identically, and both were checked
 against the numbers measured in the car.
 
-All three CI jobs do real work now except `firmware`, which is still a
-placeholder until there is an MPLAB project to build. `core` runs
-`make check-pure`, `make test` and the `--host-build` diff.
+All three CI jobs do real work now. `core` runs `make check-pure`, `make test`,
+the new `make check-hal` and the `--host-build` diff; `firmware` installs a
+pinned XC8, builds the hex and uploads it as an artifact.
 
-### Next step: the hardware half
+### What has and has not been verified — read before trusting any of it
 
-1. `hal_sys.c` — timer for the millisecond clock, ADC/FVR for VddConv, the two
-   LEDs, the `DBG_EN` jumper, EEPROM read/write behind `persist_backend_t`
-2. `hal_can.c` — ECAN on **RB2/RB3**, 500 kbps, receive filters for the seven
-   identifiers in `config.h`, transmit for 0x600–0x602
-3. `main.c` — the cooperative scheduler from `implementation-plan.md` §3.7:
-   10 ms drain CAN, 100 ms send 0x600/0x601, 1 s send 0x602 and
-   `persist_save()`
-4. the MPLAB X project and the XC8 half of CI
+The core is checked against seven real logs. The hardware half is checked
+against the datasheet and against `gcc -fsyntax-only`, and that is all:
 
-Everything those four need from the core already exists and is tested. The
-seven board obligations in the next section are firmware work and all of them
-land in `hal_sys.c` — in particular driving the fourteen unused pins low.
+- **XC8 is not installed on the development machine.** Nothing in `src/hal_*.c`
+  or `src/main.c` has been through the real compiler. `make -C test check-hal`
+  compiles those three files with gcc against `test/xc8stub/xc.h`, a stub that
+  declares exactly the registers the code happens to name — so it agrees with
+  the code by construction and proves nothing about the silicon. What it does
+  prove is that the C is valid and that `main.c` calls the core with the
+  arguments the core actually has, which is the one thing in those files a
+  datasheet cannot check.
+- **A wrong register or bit name will only surface under XC8.** So will a
+  wrong `#pragma config` keyword. Both fail loudly at compile time rather than
+  silently, which is why guessing a keyword was refused rather than risked —
+  see the `T3CKMX` note in `pic_config.h`.
+- **500 kbps has been run by nobody.** The bit timing is datasheet arithmetic
+  and nothing more; `CanSwitch.X` runs at 50 kbps, so `BRP = 0` and this whole
+  path is untested. Check `hal_can_rx_errors()` / `hal_can_tx_errors()` and the
+  `LED_CAN` blink pattern the first time it listens to the car.
+- **The A/D reading is uncalibrated by construction.** The 1.024 V reference
+  has no tolerance anywhere in the datasheet.
 
-The core's API and the decisions already taken for the HAL are two sections of
-their own below. Read those before writing any of the four; between them they
-should mean no design work is needed, only PIC work.
+### Next step: a compiler and a board
+
+1. Install XC8 and run `make -C mplab`. Expect to fix something; say what in
+   the commit message.
+2. Programme a board and watch `LED_CAN` — off means the car is not talking,
+   fast blink means we are not listening. The distinction was built in for
+   exactly this morning.
+3. Listen-only in the car first, then transmit, per
+   `docs/implementation-plan.md` §6 steps 3 and 4.
+4. Compare `FuelNow` against `FuelCntRaw` on the display.
 
 ### Local toolchain
 
@@ -366,12 +412,17 @@ unsigned differences everywhere and handles the wrap correctly, so it must
 
 ---
 
-## Decisions already taken for the HAL
+## The decisions behind the HAL
+
+All of these are now implemented in `src/hal_can.c`, `src/hal_sys.c` and
+`src/pic_config.h`, and each of them appears again as a comment next to the
+code it produced. This section is the index; the code is the detail.
 
 Everything below that carries a citation was read out of
 `docs/pic18f25k80-datasheet.pdf` (DS39977C) or `docs/mcp2562-datasheet.pdf`
-(DS20005167C). Everything without one is **not yet sourced** and is marked. Do
-not promote an unsourced line to a settled one without opening the PDF.
+(DS20005167C). Everything without one is a **decision**, not a specification,
+and says so. Do not promote a decision to a specification without opening the
+PDF.
 
 **`CANMX` is 1, and the chapter text says the opposite.** DS39977C Register
 28-5 (CONFIG3H, byte address 300005h) defines bit 0:
@@ -380,11 +431,17 @@ not promote an unsourced line to a settled one without opening the PDF.
 > `0` = CANTX and CANRX pins are located on RC6 and RC7, respectively
 
 The board is wired to RB2/RB3, so the bit is **set**, which is also the reset
-default. But §22.0's opening paragraph says the pins "can be placed on
+default. But §27.1's opening paragraph says the pins "can be placed on
 alternate I/O pins by *setting* the CANMX Configuration bit" — which is
 backwards. The register table and the pin-table footnote ("Default pin
 assignment for CANRX and CANTX when the CANMX Configuration bit is set") agree
 with each other against the prose, so the table wins.
+
+**The ECAN chapter is §27, not §22.** Earlier revisions of this file said §22
+throughout; that is the chapter number from an older PIC18 CAN datasheet and it
+does not carry over. In DS39977C: §27.1 module overview and the six-step
+initialisation sequence, §27.3 modes, §27.4 functional Mode 0/1/2, §27.5
+buffers, §27.9 baud rate, §27.15 interrupts.
 
 This is exactly why the rule above exists, and why obligation 2 in the board
 section is worth taking seriously: with the escape header gone, getting this
@@ -424,16 +481,41 @@ void    hal_eeprom_write(uint16_t addr, uint8_t value, void *ctx);
 
 wrapped in a `persist_backend_t`. `ctx` is unused on the PIC — pass `NULL`.
 
-**VddConv, and what it is honestly worth.** The plan is `VDD = 1.024 × 1023 /
-ADC`, reading the band gap on ADC channel 31 (DS39977C: *"11111 = Channel 31
-(1.024V band gap)"*) against VDD as the converter's reference. Two things the
-datasheet says about that:
+**VddConv, and what it is honestly worth.** Read the band gap on ADC channel 31
+(DS39977C Register 23-1: *"11111 = Channel 31 (1.024V band gap)"*) against VDD
+as the converter's reference, and invert:
 
-- the reference is specified as **1.024 V typical with no tolerance given**.
-  So VddConv is a trend and a sanity check, not a calibrated voltmeter. If an
-  absolute reading is ever wanted, it needs a per-unit calibration constant.
+```
+VDD = 1.024 × 4096 / code
+```
+
+**4096, not 1023.** Earlier revisions of this file and of `docs/frames.md`
+carried `1.024 × 1023 / ADC`, which is the ten-bit formula from a different
+PIC. This A/D is twelve bits — DS39977C Table 31-25 parameter A01,
+`NR Resolution ... 12 bit` — and §23.5 confirms it: *"The A/D conversion
+requires 14 TAD per 12-bit conversion."* The ten-bit formula would have
+reported four times the real supply, and 20 V on the display is exactly the
+kind of wrong that gets blamed on the wiring.
+
+Three things the datasheet says about it, and none of them are flattering:
+
+- the reference is **1.024 V with no tolerance given at all** — the figure
+  appears only in the channel list of Register 23-1, and Section 31.0 has no
+  min, typ or max for it. So VddConv is a trend and a sanity check, not a
+  calibrated voltmeter. An absolute reading needs a per-unit constant.
+- Table 31-25 parameters A01 and A50 specify the twelve-bit resolution **only
+  for VREF ≥ 3.0 V**, and VREF here is VDD. Below 3 V the number stops meaning
+  anything, which is why `BORV` is now 3.0 V rather than the sibling projects'
+  1.8 V.
 - Table 31-11 parameter 36, TIVRST: the internal reference takes **25 µs typ**
-  to become stable. Enable it and wait before the first conversion.
+  to become stable. `adc_init()` waits 50 µs once, rather than before every
+  conversion.
+
+Clock and acquisition, from Table 23-1 and Table 31-26: `ADCS<2:0> = 101`
+(FOSC/16) gives TAD = 1 µs at 16 MHz, inside parameter 130's 0.8–12.5 µs and
+inside the 20 MHz that Table 23-1 allows for 16 TOSC; `ACQT<2:0> = 100`
+(8 TAD) is 8 µs against the 2.45 µs Equation 23-3 works out and the 1.4 µs of
+parameter 135.
 
 Returned as `uint16_t hal_sys_vdd_c(void)` in 0.01 V, which is what
 `txframes_gather()` takes.
@@ -451,26 +533,79 @@ reads zero and the LEDs simply never work, a bug that looks exactly like a
 wiring fault. The pin assignment itself comes from the board section below,
 which is sourced from `kicad`.
 
-**Which frames to receive.** The seven `CAN_ID_*` identifiers in `config.h`.
-Fourteen identifiers are broadcast periodically, so hardware filtering rather
-than filtering inside `decode_frame()` is worth it at 500 kbps.
+**Which frames to receive, and in which functional mode.** The seven
+`CAN_ID_*` identifiers in `config.h`. Fourteen are broadcast periodically, so
+hardware filtering rather than filtering inside `decode_frame()` is worth it at
+500 kbps — half the bus reads and half the buffer pressure thrown away before
+it costs anything.
 
-**Configuration bits — start from `CanSwitch.X/config.h`, change exactly one.**
-That file is a working PIC18F25K80 configuration at a 16 MHz crystal, and
-almost all of it transfers unchanged: `PLLCFG = OFF`, `XINST = OFF` (XC8
-requires it), `MCLRE = ON`, `STVREN = ON`, `IESO = OFF`, `FCMEN = OFF`, all
+Seven filters is what settles the functional mode. DS39977C §27.4.1: Mode 0
+offers "Six acceptance filters, 2 for RXB0 and 4 for RXB1", which is one short.
+Widening a mask to cover 0x280 and 0x288 together would fit, and would also let
+in whatever else happens to match. **Mode 2** (§27.4.3) gives sixteen filters,
+two masks, and — the second reason — a receive FIFO up to eight buffers deep
+instead of Mode 0's two.
+
+The FIFO is read through `FP<3:0>` in `CANCON` and the access-bank window in
+`ECANCON`, per §27.15.1. **That window is a loaded gun**: in Mode 1 and 2,
+`ECANCON<4:0>` decides which buffer the addresses the header calls
+`RXB0CON..RXB0D7` actually refer to. Every function in `hal_can.c` that touches
+an `RXB0*` name sets `EWIN` first, in the same breath. Forget it once and you
+read a message out of an acceptance filter, or write a transmit frame into one.
+`EWIN` resets to `10000` (Receive Buffer 0), which is why `ECANCON` is set to
+`0x90` and not `0x80`.
+
+**Configuration bits — `src/pic_config.h`, started from `CanSwitch.X/config.h`.**
+That file is a working PIC18F25K80 configuration at a 16 MHz crystal, and most
+of it transfers unchanged: `PLLCFG = OFF`, `XINST = OFF` (XC8 requires it),
+`MCLRE = ON`, `STVREN = ON`, `IESO = OFF`, `FCMEN = OFF`, `PWRTEN = ON`, all
 the code and table protection off.
+
+Four bits differ, and one that does not differ is load-bearing here in a way it
+was not there:
 
 | Bit | CanSwitch | canfuel | Why |
 |---|---|---|---|
 | `CANMX` | `PORTC` | **`PORTB`** | this board is wired RB2/RB3 |
-| `FOSC` | `HS1` | `HS1` | see below |
-| `WDTEN` | `OFF` | undecided | a car is a better argument for a watchdog than a light switch is |
+| `WDTEN` | `OFF` | **`ON`** | see below |
+| `WDTPS` | `1048576` | **`512`** | 4 ms × 512 = 2.048 s |
+| `BORV` | `3` (1.8 V) | **`0`** (3.0 V) | the A/D is only specified above 3.0 V |
+| `BOREN` | `NOSLP` | **`ON`** | we never sleep, so the distinction is empty |
+| `RETEN` | `ON` | **`OFF`** | likewise — it only controls the sleep regulator |
+| `SOSCSEL` | `DIG` | `DIG` | **unchanged and critical**, see below |
+| `FOSC` | `HS1` | `HS1` | 16 MHz is the top of HS1 and the bottom of HS2 |
+
+**`SOSCSEL = DIG` is the quiet one.** DS39977C Register 28-1:
+`10 = Digital (SCLKI) mode; I/O port functionality of RC0 and RC1 is enabled`.
+Pins 11 and 12 of the 28-pin part are `RC0/SOSCO/SCLKI` and `RC1/SOSCI` — which
+are exactly the two LED pins. Without `DIG` the LEDs belong to the secondary
+oscillator and simply never light, and the symptom is indistinguishable from a
+dry joint. It is inherited rather than chosen, but it must not be lost.
+
+**`WDTEN = ON`, decided rather than inherited.** Both siblings run with the
+watchdog off, which is reasonable for a light switch: a wedged one gets noticed
+and power-cycled. A converter behind an air vent does not, and it is feeding a
+display the driver is reading. The longest the main loop can go without a
+`CLRWDT()` is one EEPROM record — twelve bytes at the 4 ms typ of Table 31-1
+D122, about 48 ms, once a minute. `WDTPS = 512` gives 2.048 s, forty times
+that, so only a real hang can trip it.
+
+**`BORV = 0`, likewise decided.** Table 31-25 parameters A01 and A50 specify
+the A/D's twelve-bit resolution only for VREF ≥ 3.0 V, and VREF is VDD. Below
+3 V the converter would keep running and keep transmitting numbers that are no
+longer specified. Resetting is the better failure.
 
 `CANMX = PORTB` / `PORTC` is also the answer to the pragma spelling. Their
 comment on `PORTC` reads "ECAN TX and RX pins are located on RC6 and RC7",
-which agrees with Register 28-5 and against the §22.0 prose — a third
+which agrees with Register 28-5 and against the §27.1 prose — a third
 independent confirmation of the reading above.
+
+**`T3CKMX` and `T0CKMX` are deliberately absent.** DS39977C Register 28-5 note
+1: they are "implemented only on the 64-pin devices ... Maintain as `0' on
+28-pin, 40-pin and 44-pin devices", and both default to `1`. On this part they
+do nothing, and the XC8 keyword for the `0` state could not be verified against
+a device header from a machine without XC8 — so the documented default was kept
+rather than a keyword guessed. Neither sibling sets them either.
 
 **`FOSC = HS1` at 16 MHz, and Table 3-1 cannot be used to check it.** DS39977C
 Register 28-2 gives `0011 = HS1, HS oscillator (medium power, 4 MHz-16 MHz)`
@@ -492,8 +627,8 @@ which is muddled — the conclusion is right, the reasoning is not. Worth
 noticing, since a right value on a wrong reason stops being right the moment
 anything moves.)
 
-**500 kbps works out to BRP = 0 and needs no cleverness.** DS39977C §22 gives
-`TQ (µs) = (2 × (BRP + 1))/FOSC (MHz)` and Register 22-x allows
+**500 kbps works out to BRP = 0 and needs no cleverness.** DS39977C Equation
+27-3 gives `TQ (µs) = (2 × (BRP + 1))/FOSC (MHz)` and Register 27-52 allows
 `BRP<5:0> = 000000 → TQ = (2 × 1)/FOSC`. At 16 MHz that is TQ = 0.125 µs, and
 piclib's fixed 16 TQ bit time gives 2 µs — exactly 500 kbps.
 
@@ -507,49 +642,107 @@ and the whole 500 kbps path have been exercised by nobody — the first real
 test of it is a converter listening to the car. Expect to check the ECAN
 error counters early rather than assuming the sums carried.
 
-**`piclib` needs one addition before it can be used here.**
-`can_initRcPortsForCan()` sets `TRISC6`/`TRISC7` and nothing else — it is
-hard-wired to the RC pin pair. This board needs RB2 as output and RB3 as
-input. Either add a `can_initRbPortsForCan()` upstream or do those two lines
-in `hal_can.c`; do not call the RC one. The library is consumed by adding its
-sources to the project rather than by linking a binary, so a submodule works.
+**`piclib` was read closely and then not used. That reverses what this file
+used to say**, which was that it would be added as a submodule.
 
-**`piclib`'s EEPROM layer is otherwise exactly the right shape** — `dao.c`
-does `EEADRH:EEADR` addressing over the full 10-bit range, the `0x55`/`0xAA`
-unlock, `WREN`, and polls `WR` until the hardware clears it. It maps onto
-`hal_eeprom_read`/`hal_eeprom_write` almost line for line.
+It was the right place to start and it settled the register sequences. But
+consuming it turned out to cost more than writing the twenty lines it would
+have saved:
 
-**It is missing the interrupt bracket, and here that matters.** DS39977C §8.5
-marks `BCF INTCON, GIE` … `BSF INTCON, GIE` as part of the **Required
-Sequence** around the unlock and the `WR` set. `dao.c` never touches `GIE`.
-That is survivable in a switch that idles asleep; canfuel will have a
-millisecond timer interrupt and possibly a CAN receive interrupt running, and
-an interrupt landing between the `0x55` and the `0xAA` aborts the unlock and
-the write fails **silently**. Add the bracket in `hal_sys.c`.
+- `can.c` is **Mode 0 only** — one transmit buffer, two receive buffers, six
+  filters. We need seven filters and an eight-deep FIFO, so Mode 2, which
+  `can.c` has no notion of.
+- Its API is not "send this identifier": it is a `CanHeader` of
+  `messageType`/`nodeID` that `can_headerToId()` packs into the eleven bits in
+  a scheme belonging to the house lighting protocol. Our identifiers are
+  numbers off a VW bus.
+- `can_initRcPortsForCan()` is hard-wired to the wrong pin pair for this board.
+- `can.h` **defines** `MessageStatus messageStatus;` and `byte filterCount = 0;`
+  in the header rather than declaring them — one translation unit only by
+  luck.
+- `dao.c` is shaped around 16-bit values in numbered buckets; `persist.c` wants
+  arbitrary byte addresses.
 
-### Not yet sourced — open the datasheet before relying on these
+So `hal_can.c` and `hal_sys.c` are written directly against DS39977C, and
+**this repository has no submodules**. `piclib`'s EEPROM layer is still exactly
+the right shape to have copied the *sequence* from — `EEADRH:EEADR` addressing
+over the full ten-bit range, the `0x55`/`0xAA` unlock, `WREN`, polling `WR` —
+and `hal_eeprom_write()` follows the same steps with the datasheet's Example
+8-2 open beside it.
 
-- *Which timer makes the millisecond.* `CanSwitch.X` uses Timer0 in 16-bit
-  mode with a 1:16 prescaler, but only for a coarse debug heartbeat, not a
-  millisecond tick. The divider chain for 1 ms out of 4 MHz has not been
-  worked out here and nothing has been checked for a clash with the ECAN
-  module.
-- *Interrupt or polling for receive.* At 500 kbps with fourteen periodic
-  identifiers the 10 ms slot may not drain the buffers in time. Needs the
-  receive-buffer and overflow behaviour in §22 before it can be decided.
-  Neither sibling project settles it: a light switch at 50 kbps sees a tiny
-  fraction of this traffic.
-- *Whether the watchdog goes on.* Both siblings run with `WDTEN = OFF`. A
-  converter wedged in a car is a worse outcome than a light switch wedged in a
-  wall, so this deserves its own decision rather than an inherited one.
+### The three questions this file used to leave open, and how they were decided
 
-**The millisecond clock, independent of which timer provides it.** One
-free-running `uint32_t`, exposed as `uint32_t hal_sys_millis(void)`. Read it
-once at the top of each scheduler pass and hand that one value to every core
-call in the pass — reading it repeatedly can straddle a millisecond and hand
-the core a tick of zero where it expects one. It must be read atomically
-against the interrupt that writes it. This is a software decision, not a
-datasheet one.
+**Which timer makes the millisecond: Timer2.** `CanSwitch.X` uses Timer0 in
+16-bit mode with a 1:16 prescaler, but only for a coarse debug heartbeat.
+Timer0 would need a software reload every interrupt and would drift by the
+latency of each one. Timer2 has a period register and reloads itself
+(DS39977C §15.0, Register 15-1), and the chain divides exactly:
+
+```
+FOSC/4 = 4 MHz          250 ns per timer clock
+prescale 1:4            1 µs per count      T2CKPS<1:0> = 01
+PR2 = 249, so 250       250 µs per match
+postscale 1:4           1000 µs per interrupt   T2OUTPS<3:0> = 0011
+```
+
+No remainder and nothing to drift. Timer2 clashes with nothing here — the CCP
+and MSSP modules that could claim it are unused.
+
+**Interrupt or polling for receive: polling, and it is not close.** Functional
+Mode 2 turns all eight receive buffers into one FIFO (§27.4.3), and the seven
+identifiers we accept arrive at roughly four frames per 10 ms. `main.c` drains
+the FIFO **every loop pass**, not on a 10 ms slot, which leaves something like
+a twenty-fold margin. An interrupt would buy nothing and would cost the one
+thing that is genuinely awkward: the receive path and the transmit path both
+steer the `ECANCON` access-bank window, and there is no lock available between
+an ISR and the main loop.
+
+The one place frames really are lost is the once-a-minute EEPROM write, which
+blocks for about 48 ms. That was checked rather than waved away — the fuel
+counter delta is `(new − old) mod 32768` so a gap costs nothing, distance is
+integrated against the clock rather than against frame arrivals, and the clock
+keeps running because `hal_eeprom_write()` re-enables interrupts the instant
+the unlock sequence is over. `main.c` clears the resulting overflow flag so the
+LED keeps meaning something.
+
+**Whether the watchdog goes on: yes.** Argued in the configuration-bit table
+above.
+
+### One deliberate deviation from the datasheet, in `hal_eeprom_write()`
+
+DS39977C Example 8-2 marks `BCF INTCON, GIE` … `BSF INTCON, GIE` as part of the
+**Required Sequence**, with `GIE` staying clear across the `WR` poll as well as
+across the unlock. **We restore `GIE` the instant `WR` is set**, and poll with
+interrupts on.
+
+Why: the poll is 4 ms typ per byte (Table 31-1, D122) and a record is twelve
+bytes, so following the example literally would hold interrupts off for ~48 ms
+once a minute. The only interrupt in this firmware is the millisecond clock,
+and that clock is what every accumulator in the core is integrated against —
+losing 48 ms of it per minute is a silent 0.08 % error in distance and in the
+trip average.
+
+Why it is safe: the sequence the datasheet actually requires is "write 55h to
+EECON2, write 0AAh to EECON2, then set WR bit" (§8.4), and that is fully
+bracketed. §8.4 also states that "after a write sequence has been initiated,
+EECON1, EEADRH:EEADR and EEDATA cannot be modified", so nothing an interrupt
+could do disturbs a cycle in flight.
+
+The watchdog is deliberately **not** cleared inside that poll. If `WR` never
+clears the hardware is broken and a reset is the right outcome; a `CLRWDT()`
+there would turn it into a permanent hang.
+
+**The millisecond clock itself, whatever timer feeds it.** One free-running
+`uint32_t`, exposed as `uint32_t hal_sys_millis(void)`. Read it once at the top
+of each scheduler pass and hand that one value to every core call in the pass —
+reading it repeatedly can straddle a millisecond and hand the core a tick of
+zero where it expects one. `main.c` does exactly that and should keep doing it.
+
+It must be read atomically against the interrupt that writes it, and four bytes
+on an eight-bit machine are not one instruction: `hal_sys_millis()` clears
+`GIE` around the read and **restores** it rather than forcing it on, because it
+is also reachable from inside the EEPROM write path. This is a software
+decision, not a datasheet one.
 
 ---
 
@@ -574,22 +767,34 @@ It documents four traps that are easy to run aground on quietly. In short:
 
 ```
 src/
-  main.c        scheduler and glue — the only place it all meets   TO DO
-  decode.c/.h   frame parsing          PURE C                      done
-  compute.c/.h  maths                  PURE C                      done
-  txframes.c/.h frame assembly         PURE C                      done
-  persist.c/.h  EEPROM circular buffer PURE C                      done
-  hal_can.c/.h  ECAN + MCP2562                                     TO DO
-  hal_sys.c/.h  timers, ADC/FVR, LEDs, jumper                      TO DO
-  config.h      every constant and switch                          done
+  main.c        scheduler and glue — the only place it all meets
+  decode.c/.h   frame parsing          PURE C
+  compute.c/.h  maths                  PURE C
+  txframes.c/.h frame assembly         PURE C
+  persist.c/.h  EEPROM circular buffer PURE C
+  hal_can.c/.h  ECAN + MCP2562
+  hal_sys.c/.h  timer, ADC, LEDs, jumper, EEPROM
+  pic_config.h  the #pragma config bits, and only those
+  config.h      every constant and switch
 test/
   tt.h          the test framework, small enough to read at a sitting
   logread.h     the fixture parser in C, the counterpart of canlog.py
   replay_core.h one log through decode + compute, mirrors replay.py's loop
   replay_host.c the binary behind replay.py --host-build
   test_*.c      decode, compute, txframes, persist
+  xc8stub/xc.h  a fake device header, for `make check-hal` and nothing else
+mplab/
+  Makefile      the authoritative device build, drives xc8-cc — CI runs this
+  canfuel.X/    the MPLAB X project, for editing and for driving a PICkit
+  README.md     how to build, and what JP2 is for
 tools/          canlog.py, replay.py — Python, runs anywhere
 ```
+
+**The two `config` headers must not be confused.** `src/config.h` is the pure
+core's constants and must never see `<xc.h>`. `src/pic_config.h` is the
+`#pragma config` block, includes `<xc.h>` itself, and is included only by
+`main.c`, `hal_can.c` and `hal_sys.c`. `make check-pure` enforces the first
+half of that mechanically.
 
 `tt.h`, `logread.h` and `replay_core.h` are header-only on purpose: the
 Makefile builds one `test_*.c` against the core and nothing else, so a helper
@@ -599,11 +804,11 @@ Constants belong in `config.h`, not in the code. In particular
 `FUELNOW_LH_BELOW_MMH`, `FUELNOW_CLAMP_D`, `REFUEL_RISE_L` and the frame
 periods.
 
-The `piclib` library (github.com/PoJD/piclib) will be added as a submodule — it
-provides `can_setupBaudRate(baudRate, cpuSpeed)` and the EEPROM layer behind
-`persist_backend_t`. It is consumed by adding its sources to the MPLAB project,
-not by linking a binary. Two things it needs first are in the HAL section: an
-RB2/RB3 port init, and the `GIE` bracket around the EEPROM unlock.
+**This repository has no submodules.** An earlier revision of this file planned
+to add `github.com/PoJD/piclib` as one; that was reconsidered while `hal_can.c`
+was being written and the reasoning is in the HAL section. Clone `piclib` and
+`can` beside this repo when you want to read them — they are still the best
+reference there is for these registers on this silicon.
 
 ---
 
@@ -617,7 +822,10 @@ python -m unittest discover -s tools -p "test_*.py"        # 77 tests
 
 make -C test test                                          # 238 checks
 make -C test check-pure                                    # no <xc.h> in the core
+make -C test check-hal                                     # the HAL still compiles
 python tools/replay.py --host-build test/fixtures/*.txt    # Python vs C
+
+make -C mplab                                              # needs XC8 installed
 ```
 
 `tools/replay.py` is the reference decoder in Python, written against the same
@@ -630,11 +838,20 @@ a percent. It is a CI step, so the two cannot drift apart quietly.
 fixtures, same expected numbers, one in floats and one in scaled integers.
 **A change to the maths belongs in both.**
 
+`make -C test check-hal` is the counterpart of `check-pure`, pointing the other
+way: it compiles `hal_can.c`, `hal_sys.c` and `main.c` with gcc against
+`test/xc8stub/xc.h`. **That stub is not a device header and proves nothing
+about the hardware** — it declares exactly the registers the code happens to
+name, so it agrees with the code by construction. What it does prove is that
+the C is valid and that `main.c` calls the core correctly, which is worth
+having on a machine with no XC8.
+
 ### Before committing anything that touches the core
 
-The four commands above, in that order. All of it runs in under fifteen
-seconds and it is exactly what CI does, so a green run here means a green run
-there. On this machine, remember the `TMP="$TEMP"` workaround for `make`.
+The five commands above, in that order. All of it runs in under fifteen
+seconds and it is exactly what the `tools` and `core` CI jobs do, so a green
+run here means a green run there — the `firmware` job needs XC8 and only runs
+on GitHub. On this machine, remember the `TMP="$TEMP"` workaround for `make`.
 
 Adding a `test_*.c` needs no Makefile change — the glob picks it up, builds it
 against all four core sources and runs it.
@@ -678,10 +895,23 @@ where the load changes.
 
 ## What comes next
 
-The C core is finished. What remains of phase 1 is the hardware half —
-`hal_sys.c`, `hal_can.c`, `main.c` and the MPLAB project — listed in order
-under *Current state*. Reasoning for the ordering is in
-`docs/implementation-plan.md` §3.
+Phase 1 is written. Everything left is a toolchain and a board:
+
+1. **Install XC8 and run `make -C mplab`.** Nothing in `src/hal_*.c`,
+   `src/main.c` or `src/pic_config.h` has been through the real compiler.
+   Expect a wrong register name or a wrong `#pragma config` keyword; both fail
+   loudly. Say what you fixed in the commit message — it is the first real
+   check any of that code has had.
+2. **Programme a board** and watch `LED_CAN` with JP1 fitted. Off means the
+   car is not talking; a 5 Hz blink means `hal_can_init()` never got the module
+   into the mode it asked for.
+3. **Listen-only in the car, then transmit** — `docs/implementation-plan.md`
+   §6 steps 3 and 4. Check `TXERRCNT`/`RXERRCNT` early: the 500 kbps bit
+   timing is arithmetic that no hardware has ever run.
+4. **Compare FuelNow against FuelCntRaw on the display.** FuelCntRaw is the raw
+   ECU counter with no conversion, so if it rises while FuelNow shows nonsense,
+   the fault is in this firmware's arithmetic rather than in its input.
+5. **Phase 6, calibration** — drag torque under load, and the tank.
 
 The breadboard phase is skipped — Micro-Fit has a 3.0 mm pitch and does not
 fit a breadboard. The boards themselves arrive during the week of 2026-08-17.
