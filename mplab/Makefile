@@ -7,7 +7,13 @@
 #
 #   make            build build/canfuel.hex
 #   make clean
-#   make XC8=/opt/microchip/xc8/v2.46/bin/xc8-cc
+#
+# It looks for xc8-cc on the PATH. If it is not there, point at it instead of
+# editing anything -- and mind that the Windows default has a space in it, so
+# the quotes are not optional on the command line either:
+#
+#   make XC8=/opt/microchip/xc8/v4.00/bin/xc8-cc
+#   make XC8="/c/Program Files/Microchip/xc8/v4.00/bin/xc8-cc"
 #
 # XC8 is not installed on the development machine this was written on, so the
 # first person to run this should expect to fix something. Everything the
@@ -45,8 +51,11 @@ XC8FLAGS ?= -mcpu=$(DEVICE) -std=c99 $(OPT) -mstack=compiled -I$(SRCDIR)
 
 all: $(TARGET).hex
 
+# "$(XC8)" is quoted because the default install path on Windows is
+# C:\Program Files\Microchip\xc8\..., and an unquoted space there would make
+# the recipe try to run a program called "C:/Program".
 $(TARGET).hex: $(SRC) | $(BUILD)
-	$(XC8) $(XC8FLAGS) -o $@ $(SRC)
+	"$(XC8)" $(XC8FLAGS) -o $@ $(SRC)
 
 $(BUILD):
 	mkdir -p $(BUILD)

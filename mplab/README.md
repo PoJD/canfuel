@@ -6,13 +6,22 @@ Two ways in, and they compile the same seven files.
 
 ```
 make -C mplab                    # -> mplab/build/canfuel.hex
-make -C mplab XC8=/path/to/xc8-cc
+make -C mplab XC8="/c/Program Files/Microchip/xc8/v4.00/bin/xc8-cc"
 ```
 
 This is the authoritative recipe and it is what CI runs. It needs nothing but
-`xc8-cc` on the path. Everything the compiler has to know about the part is in
+`xc8-cc` on the PATH. Everything the compiler has to know about the part is in
 `src/pic_config.h`, so the makefile only carries the device name, the standard
 and the optimisation level.
+
+**PATH is only this makefile's problem.** MPLAB X finds its own toolchains by
+scanning the standard install locations — it does not care about PATH, and a
+project that builds in the IDE says nothing about whether `make` will find the
+compiler. The XC8 installer offers to add itself to PATH during installation;
+if that box went unticked, either add
+`C:\Program Files\Microchip\xc8\v4.00\bin` by hand or pass `XC8=` as above.
+The second form is quoted for a reason: the default Windows path has a space
+in it.
 
 **XC8 is not installed on the machine this was written on.** The flags are the
 documented ones, but the first person to run it should expect to fix
@@ -44,8 +53,13 @@ nobody uses.
 
 ## With MPLAB X — `mplab/canfuel.X`
 
-Open the project. It targets the PIC18F25K80 with XC8 and a PICkit 3, and
-pulls all seven sources out of `../../src`.
+**The project already exists. Do not create a new one** — File → Open Project
+→ `mplab/canfuel.X`. Creating one from the wizard would put a fresh `.X`
+somewhere else, with its own copy of the source list, and there would then be
+two answers to the question of what gets compiled.
+
+It targets the PIC18F25K80 with XC8 and a PICkit 3, and pulls all seven sources
+out of `../../src`.
 
 `nbproject/Makefile-*.mk` are **not committed**. MPLAB X generates them from
 `configurations.xml` on the first build; they carry absolute paths to whichever
