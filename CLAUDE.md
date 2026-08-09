@@ -55,20 +55,32 @@ which is the fastest way to find a parameter number.
 ### Working code from the other repos is evidence, not a source
 
 `github.com/PoJD/can` holds `CanSwitch.X` and `CanRelay.X`, and
-`github.com/PoJD/piclib` holds the CAN and EEPROM layer they share. **Both run
-the same PIC18F25K80 at the same 16 MHz crystal**, in a house, in production.
-That makes them the right place to start every one of the questions below — it
-is a known-good register-level setup on identical silicon, which no datasheet
-can give you.
+`github.com/PoJD/piclib` holds the CAN and EEPROM layer they share. **Both are
+built on the same PIC18F25K80 at the same 16 MHz crystal**, which makes them
+the right place to start every question below: a known-good register-level
+setup on identical silicon, which no datasheet can give you.
 
-What it does not do is replace the citation. Working code proves that a
-configuration works *in that application*; it does not prove the value is
-right for this one, and it does not stop a deviation from the datasheet
-propagating. Two cases from this repo, both real:
+**Be precise about what was actually proven.** They were never installed in
+the house. They were bench-tested over a 200 m run of LAN cable and everything
+worked — a serious test of the wiring and the transceivers, and better
+evidence than a desk full of jumper wires. But it is a bench test, and
+`CanSwitch.X/main.c` runs `#define BAUD_RATE 50`.
+
+Which matters here, because **canfuel runs at 500 kbps — ten times faster.**
+Bus length and bit timing both scale against bit rate, so their 200 m result
+says nothing about ours, and their bit timing was never exercised anywhere
+near our rate. What transfers is the *plumbing*: the configuration bits, the
+register sequences, the shape of the driver. The 500 kbps numbers in the HAL
+section below stand on the datasheet arithmetic alone and have been run on
+no hardware at all yet.
+
+Working code also does not stop a deviation from the datasheet propagating.
+Three cases, all real:
 
 - `CanSwitch.X/config.h` sets `CANMX = PORTC`, which is correct there and
   **wrong here** — this board is wired to RB2/RB3. Copying the file wholesale
   is the single most expensive mistake available.
+- `piclib/can_initRcPortsForCan()` is hard-wired to the same wrong pin pair.
 - `piclib/dao.c` omits the `GIE` bracket the datasheet's required sequence
   puts around the EEPROM unlock. It is harmless in a switch that sleeps most
   of the time and is not harmless here.
@@ -490,6 +502,11 @@ piclib's fixed 16 TQ bit time gives 2 µs — exactly 500 kbps.
 wants the **oscillator** frequency, not the instruction rate. Its segment
 split is SYNC 1 + PROP 4 + PS1 8 + PS2 3 = 16 TQ, sampling at 81.25 %.
 
+All of which is arithmetic. `CanSwitch.X` passes `BAUD_RATE 50`, so BRP = 0
+and the whole 500 kbps path have been exercised by nobody — the first real
+test of it is a converter listening to the car. Expect to check the ECAN
+error counters early rather than assuming the sums carried.
+
 **`piclib` needs one addition before it can be used here.**
 `can_initRcPortsForCan()` sets `TRISC6`/`TRISC7` and nothing else — it is
 hard-wired to the RC pin pair. This board needs RB2 as output and RB3 as
@@ -520,8 +537,8 @@ the write fails **silently**. Add the bracket in `hal_sys.c`.
 - *Interrupt or polling for receive.* At 500 kbps with fourteen periodic
   identifiers the 10 ms slot may not drain the buffers in time. Needs the
   receive-buffer and overflow behaviour in §22 before it can be decided.
-  Neither sibling project settles it — a light switch sees a fraction of this
-  traffic.
+  Neither sibling project settles it: a light switch at 50 kbps sees a tiny
+  fraction of this traffic.
 - *Whether the watchdog goes on.* Both siblings run with `WDTEN = OFF`. A
   converter wedged in a car is a worse outcome than a light switch wedged in a
   wall, so this deserves its own decision rather than an inherited one.
