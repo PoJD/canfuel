@@ -229,13 +229,23 @@ empty value, so it had never configured anything anyway.
 
 ### Next session starts here: a board
 
+0. **`make -C mplab CAN_MODE=LOOPBACK` first**, and it needs no bus, no USBtin
+   and no transceiver — DS39977C §27.3.5 hands the transmit buffers straight to
+   the receive buffers. Bit timing, filters, FIFO, `txframes` and `decode`, all
+   on a desk. There is no reason to spend a live bus on a fault this would have
+   caught.
 1. **Programme it** and watch `LED_CAN` with JP1 fitted. Off means the car is
    not talking; a 5 Hz blink means `hal_can_init()` never got the module into
    the mode it asked for. That distinction was built in for exactly this
-   morning. JP2 comes off before programming and goes back afterwards.
-2. **Listen-only in the car, then transmit** — `docs/implementation-plan.md`
-   §6 steps 3 and 4. Check `TXERRCNT`/`RXERRCNT` early: the 500 kbps bit
-   timing is arithmetic no hardware has ever run.
+   morning. JP2 comes off before programming and goes back afterwards. `LED_PWR`
+   blinking slowly means the hex is a silent build — which is correct for steps
+   0 and 2, and a mistake in step 3.
+2. **`CAN_MODE=LISTEN_ONLY` in the car, then a normal build** —
+   `docs/implementation-plan.md` §6 steps 3 and 4. Check `TXERRCNT`/`RXERRCNT`
+   early: the 500 kbps bit timing is arithmetic no hardware has ever run, and a
+   Normal-mode node whose timing is wrong does not merely fail to read the bus,
+   it fills it with error frames. Listen Only is silent by the module's own
+   guarantee (§27.3.4) and is what should touch the car first.
 3. **Compare FuelNow against FuelCntRaw** on the display. FuelCntRaw is the raw
    ECU counter with no conversion, so if it rises while FuelNow shows nonsense,
    the fault is this firmware's arithmetic rather than its input.
@@ -598,12 +608,62 @@ standby mode to write. `VIO` exists only on the MCP2562, not the MCP2561, and
 here it is tied to VDD — so the digital levels are plain 5 V and no level
 shifting is involved.
 
+**RB2 idles high, and it is not cosmetic.** RB2/CANTX drives the MCP2562's
+`TXD`, which is **active low**: a driven-low TXD is a request to hold the bus
+dominant. `ports_init()` used to write `LATB = 0x00`, so from power-up until
+`hal_can_init()` ran — several milliseconds later, `persist_load()` scans the
+whole EEPROM ring in between — the transceiver was being asked to jam the bus.
+DS20005167C §1.5 is the backstop rather than the excuse: it detects a
+"Permanent dominant condition on TXD" and disables the CANH and CANL drivers
+"in order to prevent the corruption of data on the CAN bus", but only after
+tPDT, 1.25 ms typical (Table 1-4 parameter 11), which at 500 kbps is over six
+hundred bit times. `LATB` is `0x04` now, and `hal_can_init()` sets the bit
+again before it touches the module.
+
+It matters a third time in Loopback, where §27.3.5 says "The TXCAN pin will
+revert to port I/O while the device is in this mode" — so there `LATB2` is the
+only thing keeping a fitted transceiver off the bus.
+
+**Three ECAN modes, chosen at build time.** `HAL_CAN_MODE_NORMAL` is the
+converter; the other two exist so that the first contact between this firmware
+and a real 500 kbps bus is not a node that has already started acknowledging
+frames. The values of `hal_can_mode_t` *are* the `REQOP<2:0>` codes of Register
+27-1, so there is one table and not two that can drift.
+
+- **`LISTEN_ONLY`** (`011`) — §27.3.4: "a silent mode, meaning no messages will
+  be transmitted while in this state, including error flags or Acknowledge
+  signals". Receives and filters exactly as normal. This is the point: a
+  Normal-mode node with wrong bit timing does not merely fail to read the bus,
+  it corrupts it, and our bit timing is arithmetic no hardware has run.
+- **`LOOPBACK`** (`010`) — §27.3.5: the transmit buffers are delivered to the
+  receive buffers "without actually transmitting messages on the CAN bus", so
+  the whole path can be exercised with no bus and no transceiver at all.
+
+Selected with `make -C mplab CAN_MODE=LISTEN_ONLY` (or `LOOPBACK`), which
+defines `CAN_START_MODE` over the default in `config.h`. A build flag rather
+than an edit, so a diagnostic hex leaves nothing in the tree to commit by
+accident; a misspelled mode is a compile error rather than a silent normal
+build. **It is deliberately not the `DBG_EN` jumper** — JP1 means "the LEDs may
+light", which is as useful while transmitting as while listening, so the two
+have no reason to move together.
+
+`hal_can_send()` refuses up front in Listen Only rather than setting `TXREQ` on
+a frame that can never complete and leaving all three buffers busy for ever.
+Loopback does queue, because delivery to our own FIFO is the whole point of it.
+
 **LEDs.** `LED_PWR` on RC0 and `LED_CAN` on RC1, active high through 1 kΩ, and
 only when `DBG_EN` (RA0) is high. Nothing lights up in the car. **RA0 is AN0,
 so it has to be switched to digital before it is read** — left analogue it
 reads zero and the LEDs simply never work, a bug that looks exactly like a
 wiring fault. The pin assignment itself comes from the board section below,
 which is sourced from `kicad`.
+
+`LED_CAN` carries the bus state (steady = healthy, 2.5 Hz = errors or an
+overflow, 5 Hz = the module never reached its mode, dark = quiet bus).
+`LED_PWR` is steady in a normal build and **blinks slowly in either silent
+mode** — without that, a listen-only hex left in the device by accident is
+indistinguishable from a transmitter that has quietly stopped working: frames
+arrive, `LED_CAN` is steady, and the display just shows nothing.
 
 **Which frames to receive, and in which functional mode.** The seven
 `CAN_ID_*` identifiers in `config.h`. Fourteen are broadcast periodically, so
@@ -898,6 +958,8 @@ make -C test check-hal                                     # the HAL still compi
 python tools/replay.py --host-build test/fixtures/*.txt    # Python vs C
 
 make -C mplab                                              # -> build/canfuel.hex
+make -C mplab CAN_MODE=LOOPBACK                            # talks to itself
+make -C mplab CAN_MODE=LISTEN_ONLY                         # never ACKs
 ```
 
 `tools/replay.py` is the reference decoder in Python, written against the same
@@ -971,7 +1033,8 @@ Phase 1 is written and it builds. Everything left is a board, and the step list
 lives at the top of this file under **Next session starts here** — it is not
 repeated here, because two copies of a plan diverge.
 
-In one line: programme a board, watch `LED_CAN`, listen before transmitting.
+In one line: loopback on a desk, programme a board, watch `LED_CAN`, listen
+before transmitting.
 
 After that, phase 6 — calibration. Drag torque under load (the current model is
 a straight line through two idling measurements and says nothing about pulling)

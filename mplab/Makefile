@@ -74,7 +74,21 @@ OPT ?= -O2
 
 # -mstack=compiled: the PIC18 hardware stack is 31 levels of return addresses
 # and nothing else, so locals live in a compiled stack. Nothing here recurses.
-XC8FLAGS ?= -mcpu=$(DEVICE) -mdfp=$(DFP) -std=c99 $(OPT) -mstack=compiled -I$(SRCDIR)
+# Which ECAN mode the firmware starts in. Empty means the default in
+# src/config.h, which is normal operation -- the converter. The other two are
+# diagnostic builds that put nothing on the wire and are documented in
+# src/hal_can.h:
+#
+#   make -C mplab CAN_MODE=LISTEN_ONLY     receives and decodes, never ACKs
+#   make -C mplab CAN_MODE=LOOPBACK        talks to itself, no bus needed
+#
+# It is a build flag rather than an edit so that a diagnostic hex leaves no
+# trace in the tree to be committed by accident. LED_PWR blinks slowly in
+# either silent mode, so a stray one is visible rather than merely silent.
+CAN_MODE ?=
+CAN_MODE_FLAG := $(if $(CAN_MODE),-DCAN_START_MODE=HAL_CAN_MODE_$(CAN_MODE))
+
+XC8FLAGS ?= -mcpu=$(DEVICE) -mdfp=$(DFP) -std=c99 $(OPT) -mstack=compiled -I$(SRCDIR) $(CAN_MODE_FLAG)
 
 # xc8-cc is a native Windows program even under MSYS, and it needs a temporary
 # directory it can parse. MSYS make has neither TMP nor TEMP in its

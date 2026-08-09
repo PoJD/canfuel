@@ -31,6 +31,27 @@
 #define CAN_ID_TX_ENGINE        0x601u  /* 100 ms */
 #define CAN_ID_TX_TRIP          0x602u  /*   1 s  */
 
+/* --- which ECAN mode the firmware starts in ----------------------------- */
+
+/* One of the HAL_CAN_MODE_* names from hal_can.h, which is where the three
+ * modes and the reasons for them are documented. Normal is the converter;
+ * the other two are diagnostic builds that put nothing on the wire.
+ *
+ * It is deliberately a compile-time choice and not a jumper. The obvious
+ * jumper is JP1/DBG_EN, and overloading it would be a trap: DBG_EN means "the
+ * LEDs may light", which is exactly as useful while transmitting as while
+ * listening, so the two have no reason to move together.
+ *
+ * Overridable from the build, so that a diagnostic hex needs no edit here and
+ * leaves no chance of one being committed by accident:
+ *
+ *     make -C mplab CAN_MODE=LISTEN_ONLY
+ *     make -C mplab CAN_MODE=LOOPBACK
+ */
+#ifndef CAN_START_MODE
+#define CAN_START_MODE          HAL_CAN_MODE_NORMAL
+#endif
+
 /* --- timing ------------------------------------------------------------- */
 
 #define PERIOD_FUEL_MS          49      /* nominal period of 0x480, see below */

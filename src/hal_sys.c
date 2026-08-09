@@ -122,10 +122,20 @@ static volatile uint32_t g_millis = 0;
 
 static void ports_init(void)
 {
-    /* Latches before direction registers, so nothing is driven high for the
-     * instruction between the two. */
+    /* Latches before direction registers, so no pin is driven to the wrong
+     * level for the instruction between the two.
+     *
+     * LATB IS NOT ZERO. Bit 2 is RB2/CANTX, which drives the MCP2562's TXD,
+     * and TXD is active low: holding it low asks the transceiver to hold the
+     * bus dominant. DS20005167C §1.5 covers what the transceiver then does --
+     * disable the CANH and CANL drivers after tPDT, 1.25 ms typical (Table 1-4
+     * parameter 11), "in order to prevent the corruption of data on the CAN
+     * bus" -- which is a backstop and not a licence. At 500 kbps 1.25 ms is
+     * over six hundred bit times, and this runs at every power-up, several
+     * milliseconds before hal_can_init() gets to the module. Recessive is
+     * idle. */
     LATA = 0x00u;
-    LATB = 0x00u;
+    LATB = 0x04u;   /* RB2/CANTX recessive; everything else low */
     LATC = 0x00u;
 
     /* DS39977C §23.6: "As a rule, I/O pins that are multiplexed with analog

@@ -38,7 +38,9 @@ static tx_values_t    tx;
 /* Both are dark unless the DBG_EN jumper is fitted -- hal_sys enforces that,
  * not this file -- so nothing lights up in the car.
  *
- *   LED_PWR   on, steady. The loop is running.
+ *   LED_PWR   steady        the loop is running and we are on the bus
+ *             slow blink    the loop is running but the module is in one of
+ *                           the silent modes, so nothing is being transmitted
  *   LED_CAN   steady        frames are arriving and the module is healthy
  *             2.5 Hz blink  arriving, but the error counters are not zero or
  *                           the FIFO has overflowed
@@ -47,7 +49,12 @@ static tx_values_t    tx;
  *             off           the bus has been quiet for DATA_TIMEOUT_MS
  *
  * The distinction that matters on a bench is the last two: dark means the car
- * is not talking, fast blink means we are not listening. */
+ * is not talking, fast blink means we are not listening.
+ *
+ * LED_PWR carries the silent modes because a listen-only build is otherwise
+ * indistinguishable from a broken transmitter -- frames arrive, LED_CAN is
+ * steady, the display shows nothing, and there is no way to tell from the
+ * outside that it is doing exactly what it was built to do. */
 static void leds_update(bool can_ok, bool live, bool unhealthy, uint8_t phase)
 {
     bool on;
@@ -62,7 +69,8 @@ static void leds_update(bool can_ok, bool live, bool unhealthy, uint8_t phase)
         on = true;
     }
 
-    hal_sys_led_pwr(true);
+    /* phase advances every TX_FAST_MS, so 0x07 is a 0.8 s half-period. */
+    hal_sys_led_pwr(hal_can_silent() ? ((phase & 0x07u) < 4u) : true);
     hal_sys_led_can(on);
 }
 
@@ -93,7 +101,10 @@ int main(void)
                         rec.tank_stable_l, rec.tank_stable_valid);
     }
 
-    can_ok = hal_can_init();
+    /* CAN_START_MODE is HAL_CAN_MODE_NORMAL unless the build said otherwise;
+     * see config.h. A silent build still receives, still decodes and still
+     * computes -- the only thing it does not do is put anything on the wire. */
+    can_ok = hal_can_init(CAN_START_MODE);
 
     vdd_c = hal_sys_vdd_c();
 

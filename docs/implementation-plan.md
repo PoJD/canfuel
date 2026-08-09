@@ -284,20 +284,42 @@ Neither variant involves a physical button.
 
 The procedure is built so that every step can fail harmlessly.
 
-1. **Bench, listen-only.** Breadboard and USBtin on the desk, the USBtin
-   replaying frames from a log, the converter only listening. Verifies hal_can
-   and ID filtering.
-2. **Bench, transmitting.** The converter sends 0x600–0x602 and the USBtin
-   reads them. Verifies that the bytes on the wire match what the host build
-   computes.
-3. **Car, listen-only.** Breadboard wired into the Y-splitter but with the
-   transceiver TX pin disconnected. Record what the converter decodes and
-   compare against a parallel log from the USBtin. Zero risk to the bus.
-4. **Car, transmitting.** Only now is TX connected. First check that
+0. **Bench, no bus at all.** `make -C mplab CAN_MODE=LOOPBACK`. DS39977C
+   §27.3.5 delivers the transmit buffers straight to the receive buffers
+   "without actually transmitting messages on the CAN bus", so this exercises
+   the bit timing, the filters, the FIFO, `txframes` and `decode` with nothing
+   attached — no USBtin, no bus, not even a transceiver. The cheapest step
+   there is and it comes first.
+1. **Bench, listen-only.** `make -C mplab CAN_MODE=LISTEN_ONLY`, USBtin on the
+   desk replaying frames from a log, the converter only listening. Verifies
+   hal_can and ID filtering against traffic somebody else generated.
+2. **Bench, transmitting.** A normal build. The converter sends 0x600–0x602 and
+   the USBtin reads them. Verifies that the bytes on the wire match what the
+   host build computes. Off the car this needs an external 120 Ω terminator —
+   R5 is `DNF` because the car is already terminated at both ends.
+3. **Car, listen-only.** `CAN_MODE=LISTEN_ONLY` again, wired into the
+   Y-splitter. Record what the converter decodes and compare against a parallel
+   log from the USBtin.
+
+   **The mechanism is the firmware mode, not a disconnected wire.** An earlier
+   revision of this step called for pulling the transceiver's TX pin, which is
+   both fiddlier and weaker: DS39977C §27.3.4 makes Listen Only "a silent mode,
+   meaning no messages will be transmitted while in this state, including error
+   flags or Acknowledge signals", so the module itself is what guarantees the
+   silence, and it keeps guaranteeing it if a jumper is knocked loose. Bear in
+   mind what a *Normal*-mode node with wrong bit timing does on a live
+   powertrain bus: it does not merely fail to read it, it fills it with error
+   frames. That is the risk this step exists to retire, and it is why the first
+   contact is never a normal build.
+4. **Car, transmitting.** A normal build, and only now. First check that
    0x600–0x602 really are free (confirmed in the logs), then watch the ECAN
    error counters.
 5. **MFD shows numbers.** Upload S-AQY.TRI via oDSS, activate, compare FuelNow
    against FuelCntRaw. Also verify the unit switch around 4 km/h.
+
+LED_PWR blinks slowly whenever the build is one of the silent ones, so a
+listen-only hex left in the device by accident announces itself instead of
+looking like a transmitter that has quietly stopped working.
 
 > **Superseded in phase 0.** The breadboard phase is skipped — Micro-Fit has a
 > 3.0 mm pitch and does not fit a breadboard. Everything is socketed and the

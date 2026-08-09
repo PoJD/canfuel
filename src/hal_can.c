@@ -25,9 +25,21 @@
 
 /* --- module modes -------------------------------------------------------- */
 
-/* DS39977C Register 27-1, REQOP<2:0>, and Register 27-2, OPMODE<2:0>. */
+/* DS39977C Register 27-1, REQOP<2:0>, and Register 27-2, OPMODE<2:0>:
+ *
+ *   1xx = Configuration    011 = Listen Only    010 = Loopback
+ *   001 = Disabled/Sleep   000 = Normal
+ *
+ * Listen Only and Loopback are not named here because hal_can.h names them:
+ * HAL_CAN_MODE_* carry the same codes, so there is one table rather than two
+ * that can drift. */
 #define MODE_NORMAL         0x00u
 #define MODE_CONFIG         0x04u
+
+/* The mode hal_can_init() actually reached, for hal_can_mode(). Not a cache of
+ * OPMODE -- it is what the caller asked for and got, which is what an LED
+ * should report. */
+static hal_can_mode_t g_mode = HAL_CAN_MODE_NORMAL;
 
 /* DS39977C §27.3: "When changing modes, the mode will not actually change
  * until all pending message transmissions are complete. Because of this, the
@@ -208,7 +220,7 @@ static void can_set_filter(uint8_t index, uint16_t id)
 
 /* --- initialisation -------------------------------------------------------- */
 
-bool hal_can_init(void)
+bool hal_can_init(hal_can_mode_t mode)
 {
     uint8_t i;
 
@@ -220,8 +232,25 @@ bool hal_can_init(void)
      *    TRIS bit for CANTX. The user must ensure that the appropriate TRIS
      *    bit for CANRX is set." So TRISB3 is the one that matters; TRISB2 is
      *    set for the sake of being explicit. hal_sys_init() has already
-     *    written both as part of the whole-register TRISB write. */
-    LATBbits.LATB2 = 0;
+     *    written both as part of the whole-register TRISB write.
+     *
+     *    LATB2 IS HIGH, NOT LOW, AND THAT IS THE WHOLE POINT. RB2 drives the
+     *    MCP2562's TXD, and TXD is active low: DS20005167C §1.5 describes what
+     *    the transceiver does about "Permanent dominant condition on TXD",
+     *    which is to disable the CANH and CANL drivers after tPDT -- 1.25 ms
+     *    typical, Table 1-4 parameter 11 -- "in order to prevent the
+     *    corruption of data on the CAN bus". A driven-low TXD is a request to
+     *    hold the bus dominant, and at 500 kbps 1.25 ms is over six hundred
+     *    bit times of it. Recessive is idle; recessive is what an
+     *    uninitialised pin must be.
+     *
+     *    It matters in three places. At power-up, because hal_sys_init() runs
+     *    well before this function does. Here, because Configuration mode is
+     *    entered next and the pin is ours throughout it. And permanently in
+     *    Loopback, where §27.3.5 says "The TXCAN pin will revert to port I/O
+     *    while the device is in this mode" -- so in loopback LATB2 is the only
+     *    thing keeping a fitted transceiver off the bus. */
+    LATBbits.LATB2 = 1;     /* recessive */
     TRISBbits.TRISB2 = 0;   /* CANTX */
     TRISBbits.TRISB3 = 1;   /* CANRX */
 
@@ -298,7 +327,11 @@ bool hal_can_init(void)
      * again before leaving. */
     can_window(EWIN_FIFO_BASE);
 
-    /* 6. "Set the ECAN module to normal mode."
+    /* 6. "Set the ECAN module to normal mode." Or to one of the two silent
+     * modes -- everything above is identical for all three, which is the
+     * reason this is one function and not three: a listen-only build must
+     * exercise the same filters, the same masks and the same bit timing as
+     * the build that will follow it, or it has tested nothing that transfers.
      *
      * POLLING RATHER THAN INTERRUPTS. Nothing above enables a CAN interrupt
      * and nothing is going to. With an eight-deep FIFO and about four accepted
@@ -307,7 +340,17 @@ bool hal_can_init(void)
      * alternative costs the one thing this design is short of: an interrupt
      * handler that would have to touch the same ECANCON window as the main
      * loop, with no lock available between them. */
-    return can_set_mode(MODE_NORMAL);
+    if (!can_set_mode((uint8_t)mode)) {
+        return false;
+    }
+
+    g_mode = mode;
+    return true;
+}
+
+bool hal_can_silent(void)
+{
+    return g_mode != HAL_CAN_MODE_NORMAL;
 }
 
 /* --- receive --------------------------------------------------------------- */
@@ -398,6 +441,19 @@ bool hal_can_send(uint16_t id, const uint8_t *data, uint8_t dlc)
 {
     if (dlc > 8u) {
         dlc = 8u;
+    }
+
+    /* Listen Only transmits nothing (§27.3.4), so a queued frame would never
+     * complete and TXREQ would never clear: the first three calls would fill
+     * all three buffers and every call after that would return false anyway,
+     * having left the module holding three stale frames for ever. Refusing up
+     * front says the same thing without the wreckage.
+     *
+     * Loopback deliberately falls through to the real path. It is silent on
+     * the wire too, but internally the frame is delivered to our own receive
+     * FIFO, which is what makes it a test of anything. */
+    if (g_mode == HAL_CAN_MODE_LISTEN_ONLY) {
+        return false;
     }
 
     /* Three dedicated buffers and three frames per 100 ms, each about 230 us
