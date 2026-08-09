@@ -215,8 +215,17 @@ It is an ordinary function in `decode.c` now. The hex is byte-for-byte the same
 size, so the compiler was inlining it anyway.
 
 CI does the same build on every push with the same pinned XC8 **and the same
-pinned pack**, so a green `firmware` job and a working `make -C mplab` should
-agree. If they disagree, the difference is the machine, not the code.
+pinned pack**, and the two were checked against each other rather than assumed
+to agree: the `canfuel-hex` artefact from the first green run is byte-for-byte
+the desk's `mplab/build/canfuel.hex`, once the CRLF the Windows build writes is
+normalised away. If they ever disagree by more than that, the difference is the
+machine, not the code.
+
+Getting that green run also took one fix on CI's side alone. The `install XC8`
+step carried `--netservername ''` from the v2.50 pin; v4.00's installer has no
+such option and, being InstallBuilder, treats an unknown one as fatal rather
+than ignoring it — three runs failed before compiling a line. It was passing an
+empty value, so it had never configured anything anyway.
 
 ### Next session starts here: a board
 
