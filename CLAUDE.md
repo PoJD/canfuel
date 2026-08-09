@@ -49,6 +49,10 @@ Everything those four need from the core already exists and is tested. The
 seven board obligations in the next section are firmware work and all of them
 land in `hal_sys.c` — in particular driving the fourteen unused pins low.
 
+The core's API and the decisions already taken for the HAL are two sections of
+their own below. Read those before writing any of the four; between them they
+should mean no design work is needed, only PIC work.
+
 ### Local toolchain
 
 gcc, make, git and Python 3.11 are installed. XC8 is not — the `firmware` CI
@@ -133,15 +137,23 @@ This repo sits next to two siblings, `kicad` (the board) and `mfd15` (the
 display config). They have separate toolchains and separate GitHub remotes
 under `PoJD/`, and the directory above them is deliberately not a git repo.
 
-The coupling to **`mfd15`** is **the layout of frames 0x600–0x602**, defined in
-`docs/frames.md` and consumed by `mfd15/tri/S-AQY.TRI`. The coupling to
-**`kicad`** is the pin assignment in the section above — one-way, and already
-frozen by an order that has been placed.
+The coupling to **`mfd15`** is **the layout of frames 0x600 and 0x601**,
+defined in `docs/frames.md` and consumed by `mfd15/tri/S-AQY.TRI`. The coupling
+to **`kicad`** is the pin assignment in the section above — one-way, and
+already frozen by an order that has been placed.
 
 That file has already been uploaded to a real display and verified, so it is
 final until this firmware starts transmitting. When the layout changes here, it
 must change there in the same breath. Getting it wrong does not produce an
 error — the display shows plausible but wrong numbers, which is worse.
+`test/test_txframes.c` pins every offset against the TRI file, with the
+relevant TRI lines quoted in its header comment.
+
+**0x602 is not coupled to anything.** S-AQY.TRI does not read it — it was
+checked, sensor by sensor, while phase 1 was being written. It is ours to
+change freely and exists to be watched on a USBtin. Likewise `Flow` in
+0x601 b4–5 is transmitted but has no sensor on the display; that one is
+deliberate, so a dedicated gauge can be added later without touching firmware.
 
 The useful check once the converter is live: compare FuelNow against
 FuelCntRaw on the display. FuelCntRaw is the raw ECU counter with no
@@ -188,6 +200,150 @@ identities do most of the work and are worth knowing:
   single division of the two accumulators
 - **v [0.001 km/h] × t [ms] ÷ 3600 = s [mm]**, so distance never needs a
   conversion factor either
+
+---
+
+## The core's API — what `main.c` has to call
+
+The whole core is four headers and no globals. Every function takes the state
+it works on, so there is nothing to initialise in a particular order beyond
+what is shown here. Written out in full because it is the one thing a new
+session would otherwise reconstruct by reading five files.
+
+```c
+decode_state_t  st;   /* last known bus state          */
+compute_t       cp;   /* accumulators and windows      */
+persist_t       ps;   /* which EEPROM slot comes next  */
+tx_values_t     tx;   /* one gather, three frames      */
+```
+
+**At start-up**
+
+```c
+decode_init(&st);
+compute_init(&cp);
+
+persist_record_t rec;
+if (persist_load(&ps, &hal_eeprom_backend, &rec)) {
+    compute_restore(&cp, rec.total_ul, rec.total_mm,
+                    rec.tank_stable_l, rec.tank_stable_valid);
+}
+/* A virgin EEPROM returns false and zeroed accumulators. That is correct,
+ * not an error -- do not treat it as one. */
+```
+
+**Every received frame**, from the 10 ms slot:
+
+```c
+decode_frame(&st, id, data, dlc);          /* returns false for ids we ignore */
+if (id == CAN_ID_FUEL) {
+    compute_on_fuel(&cp, &st, now_ms);     /* 0x480 is the heartbeat */
+}
+```
+
+**Every scheduler tick** — integrates distance, samples the tank once a second,
+and is safe to call as often as you like:
+
+```c
+compute_tick(&cp, &st, now_ms);
+```
+
+**Every 100 ms**
+
+```c
+txframes_gather(&tx, &cp, &st, hal_sys_vdd_c(), now_ms);
+txframes_fuel(&tx, buf);    hal_can_send(CAN_ID_TX_FUEL,   buf, TXFRAME_DLC);
+txframes_engine(&tx, buf);  hal_can_send(CAN_ID_TX_ENGINE, buf, TXFRAME_DLC);
+```
+
+**Every second**
+
+```c
+txframes_trip(&tx, buf);    hal_can_send(CAN_ID_TX_TRIP, buf, TXFRAME_DLC);
+
+persist_record_t rec = { cp.total_ul, cp.total_mm,
+                         cp.tank_stable_l, cp.tank_stable_valid };
+persist_save(&ps, &rec, now_ms);   /* itself decides whether to write */
+```
+
+`persist_save()` already carries the once-a-minute rule and the only-on-change
+rule. Call it every second and let it say no — do not build a second timer for
+it in `main.c`.
+
+Three things `main.c` must **not** do, because the core already does them:
+
+- clear the trip on refuelling — `compute_tick()` does it and bumps
+  `cp.refuels`
+- zero the transmitted values when the bus goes quiet — `txframes_gather()`
+  does it, and deliberately leaves `VddConv` alone
+- clamp anything to the display's range — every getter clamps
+
+`now_ms` is a free-running millisecond counter. It may wrap; the core uses
+unsigned differences everywhere and handles the wrap correctly, so it must
+**not** be reset or clamped by `hal_sys`.
+
+---
+
+## Decisions already taken for the HAL
+
+Settled, so they do not need rediscussing. What is genuinely open is marked.
+
+**The millisecond clock.** One free-running `uint32_t` incremented by a timer
+interrupt, exposed as `uint32_t hal_sys_millis(void)`. The crystal is 16 MHz
+with **no PLL**, so Fcyc is 4 MHz and Tcy is 250 ns. Read it once at the top of
+the scheduler loop and pass that one value to every core call in the pass —
+reading it repeatedly can straddle a millisecond and produce a tick of zero
+where the code expects one. It must be read atomically against the interrupt
+that writes it.
+
+**EEPROM.** `persist.c` wants exactly two functions, and they already have
+their shape:
+
+```c
+uint8_t hal_eeprom_read(uint16_t addr, void *ctx);
+void    hal_eeprom_write(uint16_t addr, uint8_t value, void *ctx);
+```
+
+wrapped in a `persist_backend_t`. `ctx` is unused on the PIC — pass `NULL`.
+The buffer occupies addresses 0..767 of the 1024 bytes available. A byte write
+takes about 4 ms and blocks; at once a minute that is irrelevant, but it must
+not be attempted from an interrupt.
+
+**VddConv.** `VDD = 1.024 × 1023 / ADC`, measuring the internal 1.024 V fixed
+voltage reference against VDD as the ADC's reference. Returned as
+`uint16_t hal_sys_vdd_c(void)` in 0.01 V, which is what `txframes_gather()`
+takes. Zero external parts.
+
+**LEDs.** `LED_PWR` on RC0 and `LED_CAN` on RC1, active high through 1 kΩ.
+They may only light when `DBG_EN` (RA0) is high, i.e. when JP1 is fitted.
+Nothing lights up in the car. **RA0 is AN0, so it has to be switched to
+digital before it is read** — an analogue pin reads as zero and the LEDs would
+simply never work, which is a bug that looks exactly like a wiring fault.
+
+**Unused pins.** RA1, RA2, RA3, RA5, RC2–RC7, RB0, RB1, RB4, RB5 are driven
+low at start-up: TRIS to output, LAT to zero. There are no pull-down resistors
+on the board and the pins go nowhere at all, so this is the only thing between
+them and floating inputs. See obligation 1 in the board section.
+
+**Which frames to receive.** The seven `CAN_ID_*` identifiers in `config.h`.
+Everything else on the bus is noise for us, and there are fourteen periodic
+identifiers in total — filtering in hardware rather than in `decode_frame()`
+is worth it at 500 kbps.
+
+**Open, decide when writing the code:**
+
+- *Which timer.* Any of them can make 1 ms out of 4 MHz. Timer2 with its
+  postscaler is the tidiest, but check it against whatever else wants a timer.
+- *The `CANMX` configuration bit.* The ECAN module can sit on RB2/RB3 or on
+  RC6/RC7 and the board is wired for **RB2/RB3**. Read the polarity out of
+  DS39977C rather than guessing — obligation 2 says why getting it wrong the
+  first time is expensive now that the escape header is gone.
+- *`piclib` as a submodule.* github.com/PoJD/piclib provides
+  `can_setupBaudRate(baudRate, cpuSpeed)`, good for 500 kbps at 16 TQ. Not
+  added yet.
+- *Interrupt or polling for receive.* At 500 kbps with fourteen periodic
+  identifiers the bus is busy; the 10 ms slot may not be enough to drain it
+  without a receive interrupt and a small ring buffer.
 
 ---
 
@@ -264,6 +420,15 @@ a percent. It is a CI step, so the two cannot drift apart quietly.
 `tools/test_replay.py` and `test/test_compute.c` are deliberately twins — same
 fixtures, same expected numbers, one in floats and one in scaled integers.
 **A change to the maths belongs in both.**
+
+### Before committing anything that touches the core
+
+The four commands above, in that order. All of it runs in under fifteen
+seconds and it is exactly what CI does, so a green run here means a green run
+there. On this machine, remember the `TMP="$TEMP"` workaround for `make`.
+
+Adding a `test_*.c` needs no Makefile change — the glob picks it up, builds it
+against all four core sources and runs it.
 
 ---
 
