@@ -46,14 +46,77 @@ job and any real device build still need it.
 
 ---
 
+## The board exists now, and it fixes the pin assignment
+
+**Three boards were ordered from Gatema PCB on 2026-08-09** and are expected
+during the week of 2026-08-17. The design is finished, checked and frozen: what
+is being manufactured is commit `c06e710` of the sibling `kicad` repo. Nothing
+here is blocked by them — phase 1 is a pure C core with host tests and needs no
+hardware — but the pinout below is no longer provisional, and `hal_can.c` and
+`hal_sys.c` must be written against it.
+
+Only two of the three can be populated at first; the third is a bare spare
+waiting on two more Micro-Fit headers, deliberately not yet bought.
+
+**Everything in this section comes from `kicad/canfuel/docs/implementation-plan.md`
+§4.2. If it ever disagrees with that file, that file wins.**
+
+| Signal | Pin | Notes |
+| --- | --- | --- |
+| `CAN_TX` | **RB2** (23) | to MCP2562 pin 1 |
+| `CAN_RX` | **RB3** (24) | to MCP2562 pin 4 |
+| `LED_PWR` | **RC0** (11) | via 1 kΩ to an LED to ground, active high |
+| `LED_CAN` | **RC1** (12) | via 1 kΩ to an LED to ground, active high |
+| `DBG_EN` | **RA0** (2) | JP1 to +5 V, 10 kΩ pull-down |
+| `PGC` / `PGD` | RB6 / RB7 (27/28) | ICSP header J3 |
+| MCLR | 1 | R6 470 Ω, C8 100 nF behind jumper JP2 |
+| OSC1 / OSC2 | 9 / 10 | 16 MHz crystal, HS, **no PLL** |
+
+Seven things follow from the board and are firmware obligations, not
+suggestions:
+
+1. **The fourteen unused pins must be driven low at start-up** — RA1, RA2, RA3,
+   RA5, RC2–RC7, RB0, RB1, RB4, RB5. DS39977C §2.7 wants unused I/O either
+   driven low or pulled to VSS through 1–10 kΩ, and **there are no resistors on
+   the board for this**; fourteen of them would have cost more area than they
+   were worth. The pins go nowhere at all — the escape header that used to
+   break them out was removed because it made both LEDs and the whole ICSP
+   connector unroutable. So this is the only thing standing between them and
+   floating inputs.
+2. **CANTX/CANRX are on RB2/RB3, so the config bit must say so.** The ECAN
+   module can also sit on RC6/RC7 and both were once brought out; with the
+   escape header gone, moving it now means soldering onto the PDIP socket pins
+   from underneath. Get the config bit right the first time.
+3. **The LEDs only light when `DBG_EN` is high**, i.e. when JP1 is fitted.
+   Nothing may light up in the car. The 10 kΩ pull-down means an absent jumper
+   is a defined low, not a floating input — but RA0 is AN0, so **it has to be
+   switched to digital** before it is read.
+4. **The MCP2562's STBY pin is hard-wired to ground.** There is no standby
+   control line and no pin to drive; do not write one. Its VIO is tied to VDD.
+5. **The 120 Ω termination is deliberately not fitted** (R5, silkscreened
+   `120R DNF`). The car's bus is already terminated at both ends. Bench testing
+   off the car needs an external terminator.
+6. **JP2 must come off before programming and go back afterwards.** It puts the
+   100 nF MCLR capacitor in circuit, which is what DS39977C Figure 2-2 asks for
+   and also what interferes with ICSP.
+7. **Pin 6 is VDDCORE/VCAP, not a port pin.** The 28-pin K80 has no RA4 and no
+   ENVREG: the core regulator is always on. Nothing to configure, but do not go
+   looking for an ENVREG bit.
+
+Port A can only sink or source 2 mA against port B and C's 25 mA, which is why
+the LEDs are on port C. If anything ever needs a spare pin that drives current,
+it does not come from port A.
+
 ## The one coupling to another repo
 
 This repo sits next to two siblings, `kicad` (the board) and `mfd15` (the
 display config). They have separate toolchains and separate GitHub remotes
 under `PoJD/`, and the directory above them is deliberately not a git repo.
 
-The only thing that ties them together is **the layout of frames 0x600–0x602**,
-defined in `docs/frames.md` and consumed by `mfd15/tri/S-AQY.TRI`.
+The coupling to **`mfd15`** is **the layout of frames 0x600–0x602**, defined in
+`docs/frames.md` and consumed by `mfd15/tri/S-AQY.TRI`. The coupling to
+**`kicad`** is the pin assignment in the section above — one-way, and already
+frozen by an order that has been placed.
 
 That file has already been uploaded to a real display and verified, so it is
 final until this firmware starts transmitting. When the layout changes here, it
