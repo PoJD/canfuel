@@ -114,8 +114,8 @@ reasoning is in the HAL section below.
 ## Current state — read this first
 
 **Phase 1 is code-complete and, since 2026-08-09, it builds: `make -C mplab`
-produces `mplab/build/canfuel.hex` under XC8 v4.00, 11,454 bytes of program
-memory and 563 of RAM, no warnings.** What it has never been is *run on a
+produces `mplab/build/canfuel.hex` under XC8 v4.00, 11,552 bytes of program
+memory and 564 of RAM, no warnings.** What it has never been is *run on a
 board* — see the warning at the end of this section, which is still the most
 important thing on this page.
 
@@ -127,7 +127,8 @@ What exists and works:
 - `src/hal_sys.c` — Timer2 millisecond clock, the 12-bit A/D on the band gap,
   the two LEDs, the `DBG_EN` jumper, EEPROM behind `persist_backend_t`
 - `src/hal_can.c` — ECAN on RB2/RB3 at 500 kbps, Mode 2 with an eight-deep
-  receive FIFO, seven hardware filters, three transmit buffers
+  receive FIFO, seven hardware filters, three transmit buffers, and a
+  build-time choice of Normal, Listen Only or Loopback
 - `src/main.c` — the cooperative scheduler, and nothing else
 - `mplab/` — `canfuel.X` for the IDE and a plain `Makefile` driving `xc8-cc`,
   which is the authoritative recipe and what CI runs
