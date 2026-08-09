@@ -52,6 +52,31 @@ measurement and are marked as measured where they appear, in
 `pdftotext -layout docs/pic18f25k80-datasheet.pdf -` makes the PDF greppable,
 which is the fastest way to find a parameter number.
 
+### Working code from the other repos is evidence, not a source
+
+`github.com/PoJD/can` holds `CanSwitch.X` and `CanRelay.X`, and
+`github.com/PoJD/piclib` holds the CAN and EEPROM layer they share. **Both run
+the same PIC18F25K80 at the same 16 MHz crystal**, in a house, in production.
+That makes them the right place to start every one of the questions below — it
+is a known-good register-level setup on identical silicon, which no datasheet
+can give you.
+
+What it does not do is replace the citation. Working code proves that a
+configuration works *in that application*; it does not prove the value is
+right for this one, and it does not stop a deviation from the datasheet
+propagating. Two cases from this repo, both real:
+
+- `CanSwitch.X/config.h` sets `CANMX = PORTC`, which is correct there and
+  **wrong here** — this board is wired to RB2/RB3. Copying the file wholesale
+  is the single most expensive mistake available.
+- `piclib/dao.c` omits the `GIE` bracket the datasheet's required sequence
+  puts around the EEPROM unlock. It is harmless in a switch that sleeps most
+  of the time and is not harmless here.
+
+So: read them first, then check what you took against the PDF, then cite the
+PDF. Neither repo is a submodule of this one; clone them beside it when
+needed.
+
 ---
 
 ## Current state — read this first
@@ -418,22 +443,88 @@ which is sourced from `kicad`.
 Fourteen identifiers are broadcast periodically, so hardware filtering rather
 than filtering inside `decode_frame()` is worth it at 500 kbps.
 
+**Configuration bits — start from `CanSwitch.X/config.h`, change exactly one.**
+That file is a working PIC18F25K80 configuration at a 16 MHz crystal, and
+almost all of it transfers unchanged: `PLLCFG = OFF`, `XINST = OFF` (XC8
+requires it), `MCLRE = ON`, `STVREN = ON`, `IESO = OFF`, `FCMEN = OFF`, all
+the code and table protection off.
+
+| Bit | CanSwitch | canfuel | Why |
+|---|---|---|---|
+| `CANMX` | `PORTC` | **`PORTB`** | this board is wired RB2/RB3 |
+| `FOSC` | `HS1` | `HS1` | see below |
+| `WDTEN` | `OFF` | undecided | a car is a better argument for a watchdog than a light switch is |
+
+`CANMX = PORTB` / `PORTC` is also the answer to the pragma spelling. Their
+comment on `PORTC` reads "ECAN TX and RX pins are located on RC6 and RC7",
+which agrees with Register 28-5 and against the §22.0 prose — a third
+independent confirmation of the reading above.
+
+**`FOSC = HS1` at 16 MHz, and Table 3-1 cannot be used to check it.** DS39977C
+Register 28-2 gives `0011 = HS1, HS oscillator (medium power, 4 MHz-16 MHz)`
+and `0010 = HS2, HS oscillator (high power, 16 MHz-25 MHz)`, so 16 MHz is the
+top of one range and the bottom of the other and either is defensible. HS1 is
+what the sibling projects run at this crystal, so HS1 it is.
+
+Table 3-1 appears to say the opposite — its frequency column is misaligned
+against its mode column by one row from HS1 downwards. **Use Register 28-2.**
+
+**The instruction cycle is Fosc/4**, so 16 MHz gives 4 MHz and Tcy = 250 ns.
+DS39977C, CLKOUT in the pin table: *"OSC2 pin outputs CLKO, which has 1/4 the
+frequency of OSC1 and denotes the instruction cycle rate"*, and T0CON's T0CS
+bit selects *"0 = Internal instruction cycle clock (CLKO)"*. `CanSwitch.X`
+confirms it empirically: Timer0 in 16-bit mode with a 1:16 prescaler off that
+clock rolls over at 4 MHz/16/65536 ≈ 3.8 Hz, which is the "roughly 4 times a
+second" its comment claims. (Its arithmetic calls 4 MHz the *oscillator* rate,
+which is muddled — the conclusion is right, the reasoning is not. Worth
+noticing, since a right value on a wrong reason stops being right the moment
+anything moves.)
+
+**500 kbps works out to BRP = 0 and needs no cleverness.** DS39977C §22 gives
+`TQ (µs) = (2 × (BRP + 1))/FOSC (MHz)` and Register 22-x allows
+`BRP<5:0> = 000000 → TQ = (2 × 1)/FOSC`. At 16 MHz that is TQ = 0.125 µs, and
+piclib's fixed 16 TQ bit time gives 2 µs — exactly 500 kbps.
+
+`piclib`'s own formula, `BRP = (1000 × cpuSpeed)/(32 × baudRate) − 1`, returns
+0 for `can_setupBaudRate(500, 16)`, so the call is simply correct. Note it
+wants the **oscillator** frequency, not the instruction rate. Its segment
+split is SYNC 1 + PROP 4 + PS1 8 + PS2 3 = 16 TQ, sampling at 81.25 %.
+
+**`piclib` needs one addition before it can be used here.**
+`can_initRcPortsForCan()` sets `TRISC6`/`TRISC7` and nothing else — it is
+hard-wired to the RC pin pair. This board needs RB2 as output and RB3 as
+input. Either add a `can_initRbPortsForCan()` upstream or do those two lines
+in `hal_can.c`; do not call the RC one. The library is consumed by adding its
+sources to the project rather than by linking a binary, so a submodule works.
+
+**`piclib`'s EEPROM layer is otherwise exactly the right shape** — `dao.c`
+does `EEADRH:EEADR` addressing over the full 10-bit range, the `0x55`/`0xAA`
+unlock, `WREN`, and polls `WR` until the hardware clears it. It maps onto
+`hal_eeprom_read`/`hal_eeprom_write` almost line for line.
+
+**It is missing the interrupt bracket, and here that matters.** DS39977C §8.5
+marks `BCF INTCON, GIE` … `BSF INTCON, GIE` as part of the **Required
+Sequence** around the unlock and the `WR` set. `dao.c` never touches `GIE`.
+That is survivable in a switch that idles asleep; canfuel will have a
+millisecond timer interrupt and possibly a CAN receive interrupt running, and
+an interrupt landing between the `0x55` and the `0xAA` aborts the unlock and
+the write fails **silently**. Add the bracket in `hal_sys.c`.
+
 ### Not yet sourced — open the datasheet before relying on these
 
-- *The instruction cycle.* The core runs at Fosc/4 on this family, so 16 MHz
-  with no PLL gives 4 MHz and Tcy = 250 ns. **Confirm against §2 and §5
-  before sizing any timer from it.**
-- *Which timer makes the millisecond.* Timer2's postscaler looks like the
-  tidiest fit, but the divider chain has not been worked out against the
-  datasheet and nothing has been checked for a conflict with the ECAN module.
-- *The ECAN bit timing.* `piclib` (github.com/PoJD/piclib) offers
-  `can_setupBaudRate(baudRate, cpuSpeed)` and is said to reach 500 kbps at
-  16 TQ; that claim is from this repo's own notes, not from DS39977C §22. It
-  is not added as a submodule yet, and the segment values it produces have to
-  be checked against the ECAN chapter regardless.
+- *Which timer makes the millisecond.* `CanSwitch.X` uses Timer0 in 16-bit
+  mode with a 1:16 prescaler, but only for a coarse debug heartbeat, not a
+  millisecond tick. The divider chain for 1 ms out of 4 MHz has not been
+  worked out here and nothing has been checked for a clash with the ECAN
+  module.
 - *Interrupt or polling for receive.* At 500 kbps with fourteen periodic
   identifiers the 10 ms slot may not drain the buffers in time. Needs the
   receive-buffer and overflow behaviour in §22 before it can be decided.
+  Neither sibling project settles it — a light switch sees a fraction of this
+  traffic.
+- *Whether the watchdog goes on.* Both siblings run with `WDTEN = OFF`. A
+  converter wedged in a car is a worse outcome than a light switch wedged in a
+  wall, so this deserves its own decision rather than an inherited one.
 
 **The millisecond clock, independent of which timer provides it.** One
 free-running `uint32_t`, exposed as `uint32_t hal_sys_millis(void)`. Read it
@@ -492,7 +583,10 @@ Constants belong in `config.h`, not in the code. In particular
 periods.
 
 The `piclib` library (github.com/PoJD/piclib) will be added as a submodule — it
-provides `can_setupBaudRate(baudRate, cpuSpeed)`, max 500 kbps at 16 TQ.
+provides `can_setupBaudRate(baudRate, cpuSpeed)` and the EEPROM layer behind
+`persist_backend_t`. It is consumed by adding its sources to the MPLAB project,
+not by linking a binary. Two things it needs first are in the HAL section: an
+RB2/RB3 port init, and the `GIE` bracket around the EEPROM unlock.
 
 ---
 
