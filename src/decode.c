@@ -47,6 +47,11 @@ void decode_init(decode_state_t *st)
     st->counter_wrapped = false;
 }
 
+uint16_t decode_rpm(const decode_state_t *st)
+{
+    return (uint16_t)(st->rpm_q4 >> 2);
+}
+
 bool decode_frame(decode_state_t *st, uint16_t can_id,
                   const uint8_t *data, uint8_t dlc)
 {

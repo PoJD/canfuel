@@ -62,10 +62,14 @@ void decode_init(decode_state_t *st);
 bool decode_frame(decode_state_t *st, uint16_t can_id,
                   const uint8_t *data, uint8_t dlc);
 
-/* Whole rpm, for the places that want a human number rather than quarters. */
-static inline uint16_t decode_rpm(const decode_state_t *st)
-{
-    return (uint16_t)(st->rpm_q4 >> 2);
-}
+/* Whole rpm, for the places that want a human number rather than quarters.
+ *
+ * This was a `static inline' in the header until the first XC8 build, which
+ * emits an out-of-line copy of it into every translation unit that includes
+ * decode.h and then warns (2053) about the copies nobody calls -- three
+ * warnings on every build, which is exactly enough noise to hide a real one.
+ * As an ordinary function it is one call for one shift, on a path that runs
+ * twice per 0x480 frame, i.e. twice per 10 ms. */
+uint16_t decode_rpm(const decode_state_t *st);
 
 #endif /* DECODE_H */
