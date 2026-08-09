@@ -203,16 +203,25 @@ void hal_sys_init(void)
  * short enough that a 1 ms period is not a burden at 4 MIPS.
  *
  * XC8 spelled this `void interrupt f(void)' up to v1.4x and
- * `void __interrupt() f(void)' from v2 on. The sibling projects were built
- * with 1.45; this one is expected to be built with a current XC8. The third
- * branch is for `make check-hal', where gcc compiles this file against
- * test/xc8stub/xc.h and no such qualifier exists. */
-#if defined(__XC8_VERSION) && (__XC8_VERSION >= 2000)
+ * `void __interrupt() f(void)' from v2 on, which is what v4 still uses. The
+ * sibling projects were built with 1.45; this one is built with v4.
+ *
+ * The first branch is `make check-hal', where gcc compiles this file against
+ * test/xc8stub/xc.h and no such qualifier exists at all.
+ *
+ * The last branch is deliberately an error rather than a bare function.
+ * Getting this qualifier silently dropped on a real build would compile
+ * cleanly and produce a device whose millisecond clock never advances --
+ * every accumulator frozen, and nothing to point at. Fail at the compiler
+ * instead. */
+#if defined(CANFUEL_XC8_STUB)
+void hal_sys_isr(void)
+#elif defined(__XC8_VERSION) && (__XC8_VERSION >= 2000)
 void __interrupt() hal_sys_isr(void)
 #elif defined(__XC8) || defined(__PICC18__) || defined(HI_TECH_C)
 void interrupt hal_sys_isr(void)
 #else
-void hal_sys_isr(void)
+#error "Unrecognised compiler: the interrupt qualifier is not optional here."
 #endif
 {
     if (PIE1bits.TMR2IE && PIR1bits.TMR2IF) {

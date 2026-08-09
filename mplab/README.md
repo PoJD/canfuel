@@ -21,24 +21,26 @@ something, and should say what in a commit message.
 ### Which XC8
 
 **MPLAB X IDE and XC8 are two separate downloads.** Installing the IDE does not
-install a compiler; it offers the links at the end and that is all.
+install a compiler; it offers the links at the end and that is all. Take the
+newest IDE — it is an editor and a PICkit front end, it has no opinion about
+this code, and it will drive any XC8.
 
-- **MPLAB X IDE — take the newest.** It is an editor and a PICkit front end,
-  it has no opinion about this code, and it will drive any XC8.
-- **XC8 — v2.50**, which is the last of the v2 line. `.github/workflows/ci.yml`
-  is pinned to the same version, so a build that works on the desk is a build
-  that works in CI.
+**XC8 v4.00.** It is the current release and the only one Microchip's download
+page still offers, and `.github/workflows/ci.yml` is pinned to the same
+version, so a build that works on the desk is a build that works in CI.
 
-XC8 v3.00 and v3.10 exist and may be perfectly fine. They are a major version
-bump, and the first XC8 build this firmware has ever had should not also be the
-first test of a new major version — when something breaks there would be two
-candidates instead of one. Once v2.50 produces a clean hex, trying v3 is a
-five-minute experiment with a known-good baseline to diff against, and moving
-the pin is one line.
+**No licence is needed and none should be installed.** v4 dropped the Free
+mode restriction on the optimiser, which is why both the desk build and CI use
+the real `-O2` rather than working around a crippled compiler. If that ever
+turns out to be wrong on some machine, `make OPT=-O0` is the fallback and the
+hex it produces is still perfectly good to flash.
 
-A licence is not needed. Unlicensed, XC8 runs in Free mode, which compiles
-everything and only restricts the optimiser — hence the `OPT` variable above,
-and `make OPT=-O0` in CI.
+Older versions are still reachable by direct URL even though the page no
+longer lists them — 2.36 through 2.50, 3.00 and 3.10 all resolve under
+`https://ww1.microchip.com/downloads/aemDocuments/documents/DEV/ProductDocuments/SoftwareTools/xc8-vX.YY-full-install-linux-x64-installer.run`.
+Worth knowing if v4 ever has to be bisected against, and not worth using
+otherwise: pinning to a compiler nobody has installed only tests a compiler
+nobody uses.
 
 ## With MPLAB X — `mplab/canfuel.X`
 

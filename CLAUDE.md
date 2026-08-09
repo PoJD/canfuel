@@ -897,11 +897,12 @@ where the load changes.
 
 Phase 1 is written. Everything left is a toolchain and a board:
 
-1. **Install XC8 and run `make -C mplab`.** Nothing in `src/hal_*.c`,
+1. **Install XC8 v4.00 and run `make -C mplab`.** Nothing in `src/hal_*.c`,
    `src/main.c` or `src/pic_config.h` has been through the real compiler.
    Expect a wrong register name or a wrong `#pragma config` keyword; both fail
    loudly. Say what you fixed in the commit message — it is the first real
-   check any of that code has had.
+   check any of that code has had. `mplab/README.md` covers which version and
+   why; CI is pinned to the same one, and no licence is needed.
 2. **Programme a board** and watch `LED_CAN` with JP1 fitted. Off means the
    car is not talking; a 5 Hz blink means `hal_can_init()` never got the module
    into the mode it asked for.

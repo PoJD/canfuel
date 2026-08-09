@@ -78,11 +78,11 @@ jobs:
       # compiler that changes under the firmware without anyone deciding to
       # change it is not a compiler, it is weather.
       #
-      # 2.50 is the last of the v2 line. v3 exists (3.00, 3.10) and may well be
-      # fine, but the first XC8 build this firmware has ever had should not
-      # also be the first test of a new compiler major version. Move the pin
-      # once there is a known-good build to compare against.
-      XC8_VERSION: '2.50'
+      # v4.00 is the current release and the only one Microchip's download page
+      # still offers. Older versions are still reachable by direct URL — 2.36
+      # through 2.50, 3.00, 3.10 all resolve — but pinning CI to a compiler
+      # nobody has installed would only test a compiler nobody uses.
+      XC8_VERSION: '4.00'
     steps:
       - uses: actions/checkout@v4
 
@@ -93,10 +93,11 @@ jobs:
           path: /opt/microchip/xc8
           key: xc8-${{ env.XC8_VERSION }}-linux-x64
 
-      # 86 MB from Microchip, so it only happens on a cache miss. The installer
-      # is a self-extracting shell script and takes --mode unattended.
-      # No licence is activated: XC8 falls back to Free mode, which compiles
-      # everything and only restricts the optimiser — hence OPT=-O0 below.
+      # ~93 MB from Microchip, so it only happens on a cache miss. The
+      # installer is a self-extracting shell script and takes --mode
+      # unattended. No licence is activated or needed — v4 dropped the Free
+      # mode restriction on the optimiser, which is why the build below is the
+      # real -O2 one rather than -O0.
       - name: install XC8
         if: steps.xc8-cache.outputs.cache-hit != 'true'
         run: |
@@ -110,8 +111,11 @@ jobs:
         run: |
           echo "/opt/microchip/xc8/v${XC8_VERSION}/bin" >> "$GITHUB_PATH"
 
+      # The real build, at the real optimisation level. If a Free-mode licence
+      # ever does object to -O2 again, `make -C mplab OPT=-O0` is the fallback
+      # and the hex is still a valid one to flash.
       - name: build the firmware
-        run: make -C mplab OPT=-O0
+        run: make -C mplab
 
       - name: the hex file exists and is not empty
         run: |
