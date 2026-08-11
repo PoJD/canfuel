@@ -3,6 +3,16 @@
 State as of 2 August 2026, revision 2. Written to be picked up on the desktop
 with Claude Code.
 
+> ⚠ **This is the original plan and it is kept as a historical record, not as a
+> reference.** Phase 1 is written and builds, phase 2 shipped as an order to
+> Gatema on 2026-08-09, and several decisions here were later reversed. Where
+> that happened there is a `> Superseded` note in place; the original text is
+> deliberately not deleted, so that a decision can be told from an oversight.
+>
+> **For what is true now**, go to `CLAUDE.md` for the state of play,
+> `docs/install.md` for how to build one, `docs/can-decoding.md` for the open
+> questions, and `docs/refuted.md` for what was believed and turned out wrong.
+
 Working name of the device: **canfuel** (renaming it is trivial — it only
 appears in the README and in repository names).
 
@@ -218,7 +228,10 @@ A recap of the requirements, to have them at hand during design:
   the number used everywhere, deliberately the pessimistic end. That stub is
   what the firmware's 7 TQ propagation segment is sized for; see the bit-timing
   comment in `src/hal_can.c`.
-- **Connector:** 4-pin, to be picked at GME. Y-splitter only on connector C.
+- **Connector:** 4-pin, Y-splitter only on connector C. *Picked since: Molex
+  Micro-Fit 3.0, housing 43025-0400 with 43030 sockets. `kicad`'s
+  `canfuel/docs/harness.md` has the cavity assignment, and getting it wrong
+  puts 5 V on a CAN wire.*
 - **LEDs:** two (power, CAN status), active only when the debug jumper on RA0
   is fitted. Nothing lights up in the car.
 - **Programming:** 5-pin ICSP header for a PICkit.
