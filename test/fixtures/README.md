@@ -36,7 +36,14 @@ stands. It is duration, average flow and distance that need a clock.
 | `08_ign_only_z1.txt` | slcan+Z1 | 14,656 | ✅ adapter | ignition on, engine off, 20 s | — |
 | `09_idle_60s_z1.txt` | slcan+Z1 | 40,976 | ✅ adapter | warm idle at 796 rpm, 60 s, **A/C off** | 96.75–100.5 °C |
 | `10_rev2600_z1.txt` | slcan+Z1 | 14,548 | ✅ adapter | 2586 rpm held in neutral, 20 s, **A/C on** | — |
+| `11_idle_noac_z1.txt` | slcan+Z1 | 17,939 | ✅ adapter | VCDS hold 1 — idle 798 rpm, **A/C off** | 100.5–99.0 °C |
+| `12_idle_ac_z1.txt` | slcan+Z1 | 18,051 | ✅ adapter | VCDS hold 2 — idle 796 rpm, **A/C on** | ~99 °C |
+| `13_rev1500_z1.txt` | slcan+Z1 | 17,976 | ✅ adapter | VCDS hold 3 — 1536 rpm held, neutral | ~99 °C |
+| `14_rev1850_z1.txt` | slcan+Z1 | 18,070 | ✅ adapter | VCDS hold 4 — 1838 rpm held, neutral | ~99 °C |
+| `15_rev2372_z1.txt` | slcan+Z1 | 18,077 | ✅ adapter | VCDS hold 5 — 2372 rpm held, neutral | ~99 °C |
+| `16_rev2926_z1.txt` | slcan+Z1 | 18,198 | ✅ adapter | VCDS hold 6 — 2926 rpm held, neutral | ~99 °C |
 | `idle.txt` | slcan | 1,136 | none | short idle, colder engine | 68.25 °C |
+| `vcds/vcds-01-002-003.csv` | VCDS log | 1,019 | own clock | the diagnostic side of holds 1–6 | — |
 
 ## The three `_z1` logs
 
@@ -101,6 +108,78 @@ air conditioning, which raises load and fuel flow and would push the rate up.
 **Using this log to compare fuel flow against `09` or against `05_rev3000` is
 wrong** — different load, different engine speed, and one has the compressor
 running. It answers a question about broadcast rate, and that is all.
+
+## The six VCDS holds — `11` to `16`, and `vcds/vcds-01-002-003.csv`
+
+Recorded 2026-08-11 in one session, stationary, in neutral, engine warm, with
+**VCDS logging measuring groups 002 and 003 continuously** while each CAN
+capture was taken. The procedure is `docs/vcds-session.md`.
+
+| Hold | rpm (CAN) | sd | 0x280 b7 | 0x288 b5 | 0x288 b6 |
+|---|---|---|---|---|---|
+| `11` idle, A/C off | 798 | 6 | 24.96 | 78.0 | 40.97 |
+| `12` idle, A/C on | 796 | 6 | **41.84** | 78.0 | **55.65** |
+| `13` | 1536 | 20 | 18.81 | 139.5 | 30.81 |
+| `14` | 1838 | 24 | 20.66 | 152.0 | 30.67 |
+| `15` | 2372 | 10 | 26.32 | 152.0 | 32.30 |
+| `16` | 2926 | 11 | 27.23 | 152.0 | 33.00 |
+
+**`11` and `12` are the pair the session was built around** and they are worth
+more than the other four: the same engine speed at two different loads is the
+only way to separate a byte that follows load from one that follows speed. The
+A/C compressor changes 0x280 b7 by two thirds and 0x288 b6 by a third while
+0x288 b5 does not move by a single bit.
+
+### Matching the two recordings
+
+**On engine speed, never on time.** The two tools have unrelated clocks and
+VCDS samples about 1.7 times a second against seven hundred frames a second on
+the bus. Engine speed is in both, so each diagnostic reading finds its own
+stretch of capture.
+
+The two idle holds share an engine speed and cannot be told apart that way. Use
+**engine load**: at idle the VCDS log is cleanly bimodal, 26–28 % with the
+compressor off and 34–42 % with it on, with almost nothing between. Do **not**
+split them by time — the log also covers the idling *between* holds, when the
+compressor was off, so the two sets interleave.
+
+### The CSV
+
+VCDS's own export, **cp1250**, comma separated, with a metadata preamble; the
+data starts at row 7. Group A is 002 and group B is 003, **each with its own
+time column**, because the two groups are polled at different instants.
+
+```
+A (002): time, rpm, engine load %, injection time ms, mass air flow g/s
+B (003): time, rpm, mass air flow g/s, throttle angle deg, ignition advance degBTDC
+```
+
+The advance column is labelled `°BTDC` in the CSV and `°ATDC` on screen. The
+CSV is taken as authoritative here; nothing depends on the sign.
+
+### What the pairing produced
+
+- **0x288 b6 is injection time.** `b6 = 12.51 x inj_ms - 0.63`, r = 0.9954
+  across all six holds, intercept effectively zero, so roughly **0.08 ms per
+  bit**. Residuals stay inside ±2 counts.
+- **0x288 b5 tracks ignition advance and then stops.** Below about 16° it fits
+  `b5 = 4.22 x advance + 82`, and from hold `14` upwards it sits on exactly
+  152 while the advance keeps climbing 18.1 → 22.5 → 23.3°. Only two distinct
+  advance levels exist below the ceiling, so this is suggestive rather than
+  settled.
+- **0x280 b7 is not the ECU's engine load.** Holds `14`, `15` and `16` have
+  load constant at 17.0–17.3 % while b7 rises 20.7 → 26.3 → 27.2. It grows
+  with engine speed at constant load, which is what a torque does and a load
+  percentage does not.
+- **No measuring group on this ECU reports torque in Nm** — 001, 002, 003 and
+  020 were all examined. Open question 8 cannot be closed by diagnostics here.
+
+⚠ **The A/C compressor cycles**, and hold `12` shows it: b7 spans 39–47 and b6
+spans 53–59 across the 25 s. It never falls back to hold `11`'s 25 and 41, so
+the compressor was engaged throughout and the hold is usable — but its means
+are an average over a varying load, not a single operating point. The driver
+also reported the radiator fan starting and stopping during this hold, which is
+an alternator load and part of the same spread.
 
 ---
 

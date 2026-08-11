@@ -204,7 +204,22 @@
  * These are the same two fixture points as ever; only TORQUE_CNM_PER_BIT
  * moved under them, so the line was refitted in the new units. The calibration
  * is in bytes, not Nm -- change the scale and these must be refitted with it,
- * or the model stops passing through its own measurements. */
+ * or the model stops passing through its own measurements.
+ *
+ * KNOWN WRONG, and left in place deliberately until there is something better
+ * to put here. Both fixture points were recorded on COLD OIL -- 60.8 C at idle
+ * and 39.0 C at 2940 rpm, read off 0x420 b3. Repeating the same two operating
+ * points on 2026-08-11 with the oil at 73-77 C gives b7 = 25 and 27 against the
+ * fixtures' 29 and 37. Ten counts at 2930 rpm is 7.5 Nm, and the error grows
+ * with engine speed because viscous friction does.
+ *
+ * This line is SUBTRACTED from indicated torque, so an overstated drag makes
+ * the display understate torque and power, worst at high revs. Refitting is
+ * phase 6 and needs a sweep taken after a drive, with the oil genuinely hot;
+ * the idle point must be fitted separately or dropped, because idle is a
+ * controlled state rather than a free-revving one and does not sit on the same
+ * line -- b7 is 25.0 at 798 rpm and 18.8 at 1536, which is not monotonic.
+ * See docs/can-decoding.md question 7. */
 #define DRAG_TORQUE_BASE_CNM    1952l       /* 19.52 Nm at 0 rpm            */
 #define DRAG_TORQUE_SLOPE_E4    2800l       /* 0.2800 cNm per rpm           */
 

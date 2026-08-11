@@ -183,6 +183,15 @@ in `config.h` as `DRAG_TORQUE_BASE_CNM` and `DRAG_TORQUE_SLOPE_E4`. **The
 calibration is in bytes, not Nm** — change the scale above and this line has to
 be refitted with it.
 
+⚠ **Both of those points were taken on cold oil — 60.8 °C at idle and 39.0 °C
+at 2940 rpm — and that is now known to matter.** Repeating the same two
+operating points on 2026-08-11 with the oil at 73–77 °C gives b7 of 25 and 27
+where the fixtures gave 29 and 37. Ten counts at 2930 rpm is 7.5 Nm, and since
+this line is *subtracted* from indicated torque, the display currently
+understates torque and power, most at high revs. The full argument, the
+measurements and what would fix it are in `can-decoding.md` question 7, which
+is reopened.
+
 It is a two-point straight line through two idling measurements, so it says
 nothing about drag under load — that is what phase 6 is for. Torque is clamped
 at zero rather than going negative on the overrun, and is zero below 500 rpm,
