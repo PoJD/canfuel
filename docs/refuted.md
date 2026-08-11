@@ -93,6 +93,42 @@ it wrong.
 
 ## B. Decoding the car
 
+### B0. "The car has a fuel consumption signal on a wire"
+
+**The first hypothesis in the project, and its refutation is why the project
+exists.** Numbered B0 rather than appended at the end so that it sits where it
+belongs chronologically, and so the entries other repositories already cite
+keep their numbers.
+
+**Believed:** that the ECU feeds the instrument cluster a consumption signal
+over a dedicated wire — an injector-duty or pulse output — the way older VWs
+with the MFA trip computer do. If so, the whole job would have been tapping
+that wire and scaling it: no CAN decoding, no seven acceptance filters, no
+converter firmware worth the name.
+
+**Refuted in two steps, and the second one is what mattered.**
+
+1. **From the web** — wiring documentation for this car. On the New Beetle with
+   the AQY (PQ34) there is no consumption wire. The powertrain is fully CAN and
+   the figure the cluster displays is computed, not carried.
+2. **Then confirmed on the bus.** A CAN sniff showed the ECU emitting
+   consumption after all, just not the way the hypothesis expected: frame
+   **0x480, bytes 2–3, little endian, masked with 0x7FFF, is a free-running
+   fuel counter in microlitres**, and it is there in every recording.
+
+That second step turned a dead end into a design. Everything downstream — the
+accumulators, FuelAvg as a ratio of microlitres to metres, the whole reason the
+core is integer-only and never needs a conversion factor — follows from that
+one signal existing and being exact.
+
+**Cost:** none. It cost the afternoon that found the answer, and it settled the
+architecture: the device had to be a CAN node, which is what made the board, the
+transceiver, the filters and the ECAN driver necessary at all.
+
+**Worth knowing if it comes back:** the fact that older VWs really do have that
+wire is exactly what makes this hypothesis plausible. It is not a silly idea —
+it is a correct idea about a different car.
+
 ### B1. "The speed validity gate is `b1 == 0x40`"
 
 **Believed:** and written into the implementation plan as step 3 of phase 1.
