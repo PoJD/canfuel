@@ -1031,6 +1031,11 @@ reference there is for these registers on this silicon.
 
 ## Tools
 
+**`pyserial` is the project's only third-party dependency**, and only
+`usbtin_capture.py` uses it (`pip install pyserial`). Everything else — the
+tests, the replay, the cycle budgets — is standard library, which is why there
+is no `requirements.txt` and should not be one for a single package.
+
 ```
 python tools/usbtin_capture.py --seconds 60 --out idle_z1.txt   # record, Z1 on
 python tools/canlog.py test/fixtures/03_drive.txt          # per-ID summary

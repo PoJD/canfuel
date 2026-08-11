@@ -42,6 +42,38 @@ The car does not know it is there. Nothing lights up unless a jumper is fitted.
 
 ---
 
+## What you need
+
+**Software is listed in each repository's own README** — `canfuel` for the
+toolchain, `kicad` for KiCad, `mfd15` for oDSS — because what you need depends
+on which half you are working on, and the versions belong next to the thing
+they build. This section is the **physical** side, which no single repository
+owns.
+
+| Thing | For step | Notes |
+|---|---|---|
+| **CANchecked MFD15 Gen2** display | 2, and everything after | the whole point of the device; it also supplies the converter's 5 V |
+| **A phone or laptop with Wi-Fi** | 2 | to reach oDSS, which the display serves itself — nothing is installed for this |
+| **The converter board** | 4 onwards | `kicad/canfuel/fab/` are the files a fab house needs; ours came from Gatema, 3 pieces |
+| **The parts to populate it** | 4 | 24 of them, mostly through-hole — `kicad/canfuel/fab/canfuel-bom.csv` |
+| **Soldering iron** | 4 | through-hole, nothing fine-pitch |
+| **PICkit 3** | 4 | through the 5-pin ICSP header J3, driven from **MPLAB X IDE**. Other programmers supporting the PIC18F25K80 should work; none has been tried |
+| **USBtin** ([fischl.de](https://www.fischl.de/usbtin/)) | 7, and any recording | the CAN adapter every fixture in `test/fixtures/` was recorded with. `tools/usbtin_capture.py` drives it and needs `pyserial` |
+| **Multimeter** | 3, 4 | ringing out the loom, and confirming 5 V before the board is ever plugged in |
+| **Crimping tools and loom parts** | 3 | listed in `kicad/canfuel/docs/harness.md`, which is where that list belongs |
+| **VCDS** | calibration only | **optional.** Not needed to build or run anything; it is diagnostics for the calibration work at the end |
+| **The car** | 5, 6, 7 | a VW New Beetle with the AQY engine. Other PQ34 cars share much of the bus but nothing here is verified against them |
+
+**A 120 Ω terminator** is worth knowing about: the board deliberately does not
+fit R5, because the car's bus is already terminated at both ends. Bench testing
+off the car needs an external one — but step 4, loopback, does not, which is
+another reason to do it.
+
+**Nothing above is needed for step 1.** The whole core builds and its tests run
+on a PC with gcc, make and Python and no hardware whatsoever.
+
+---
+
 ## Order of operations
 
 The order is chosen so that each step can fail cheaply and be understood on its
@@ -51,7 +83,7 @@ one that tests the CAN driver without a car attached.
 | # | Step | Needs | Repository | This car |
 |---|---|---|---|---|
 | 1 | Build and test on a PC | gcc, make, Python | `canfuel` | done |
-| 2 | Upload the display configuration | the display, a PC, oDSS | `mfd15` | done |
+| 2 | Upload the display configuration | the display and any Wi-Fi device with a browser | `mfd15` | done |
 | 3 | Make up the harness | crimping tools, the loom parts | `kicad` | done |
 | 4 | Populate and programme a board, loopback on the desk | PICkit, XC8 | `canfuel` | **next** |
 | 5 | Listen only, in the car | the car | `canfuel` | |
@@ -101,17 +133,28 @@ about the hardware.
 
 ## 2. Upload the display configuration
 
-In `mfd15`. Full instructions are in that repository's README; the short form:
+**Follow `mfd15/README.md`, *Uploading the file*** — it is the step-by-step and
+it is not repeated here, because a procedure kept in two places diverges. What
+this section carries is what you need to know to plan around it:
 
-1. Connect the display to a PC and start oDSS.
-2. Open `tri/S-AQY.TRI`, upload it, activate it.
-3. **Confirm it worked by looking at `DisplayVolt`** — it must show a realistic
-   12–14 V. That is an internal sensor of the display, so it is live even with
-   no car attached, which makes it the one channel that proves the upload
-   rather than the wiring.
+**Nothing is installed.** oDSS is served by the display itself and opened in a
+browser (`mfd15/docs/manual-mfd15-gen2.pdf` §4). A phone is enough; there is no
+cable, no driver and no desktop application. The one trap is that the display's
+Wi-Fi hotspot is **off by default** and is turned on by holding both buttons
+until a QR code appears — that is what sends people looking for a USB port.
 
-If the file will not load, or a sensor named "0" appears, delete the first
-`info;1.0;...` line and upload it again.
+**This step does not need the car.** The display wants 12 V on plug B and
+nothing else; the CAN pair matters only when you want to see live values. So it
+can be done on a bench, and it can be done before the harness exists.
+
+**Download the TRI file before you start.** Once the phone is on the display's
+hotspot it has no internet.
+
+**How you know it worked:** `DisplayVolt` shows a realistic 12–14 V. It is an
+internal sensor of the display, live without a bus, which makes it the one
+channel that proves the *upload* rather than the wiring. With the car's bus
+connected, the CAN icon also goes green and the nine bus-fed channels come
+alive.
 
 **Expect seven channels to read zero**: FuelNow, FuelAvg, FuelTank, Range,
 Torque, Power and VddConv. Those are the converter's, and they stay at zero
@@ -177,9 +220,22 @@ cd canfuel
 make -C mplab CAN_MODE=LOOPBACK
 ```
 
-That writes `mplab/build/canfuel.hex`. Flash it with a PICkit through J3.
-Building is documented in `mplab/README.md`, including which XC8 and which
-Device Family Pack — the pack is not optional and the version has to match.
+That writes `mplab/build/canfuel.hex`. Building is documented in
+`mplab/README.md`, including which XC8 and which Device Family Pack — the pack
+is not optional and the version has to match.
+
+**Then flash that hex file with a PICkit 3 on J3, from MPLAB X IDE.** The
+makefile builds; it does not programme. Open `mplab/canfuel.X` in the IDE, or
+just point the IDE's programmer at the hex `make` produced — the second is the
+honest description of what happens, since the authoritative build is the
+makefile and the IDE is being used as a PICkit front end. Other programmers
+that support the PIC18F25K80 should work and none has been tried here.
+
+⚠ **This has not been done on this project yet.** The same MCU was flashed this
+way on an earlier one, which is where the confidence comes from and is not the
+same as having done it here. If the IDE and the makefile disagree about
+anything, the makefile is right — it is what CI runs and what produced the hex
+that was checked byte for byte against CI's own artefact.
 
 ⚠ **JP2 comes off before programming and goes back on afterwards.** It puts the
 100 nF MCLR capacitor in circuit, which is what the datasheet asks for in
