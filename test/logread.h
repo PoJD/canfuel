@@ -26,8 +26,20 @@
 #define FIXTURE_DIR "fixtures/"
 #endif
 
+/* The USBtin's Z1 timestamp reaches 60000 and the next frame reads 0, so it
+ * takes 60001 distinct values. Measured off 08_ign_only_z1.txt, which happens
+ * to straddle the restart; the same constant lives in tools/canlog.py as
+ * TIMESTAMP_WRAP_MS and the two must not drift apart.
+ *
+ * Deliberately outside the FIXTURE_DIR guard above: replay_host.c defines
+ * FIXTURE_DIR for itself, so anything put inside that block is invisible to
+ * exactly the translation unit that needs this most. */
+#define LR_TIMESTAMP_WRAP_MS 60001L
+
 typedef struct {
-    long     ts_ms;             /* -1 when the format carries no timestamp */
+    long     ts_ms;             /* -1 when the format carries no timestamp.
+                                 * Unwrapped by log_read(), so it is monotonic
+                                 * across the adapter's 60 s restart. */
     uint16_t can_id;
     uint8_t  dlc;
     uint8_t  data[8];
@@ -78,7 +90,26 @@ static inline bool lr_parse_slcan(const char *line, log_frame_t *f)
         if (b < 0) { return false; }
         f->data[i] = (uint8_t)b;
     }
-    f->ts_ms = -1;
+    /* Opened with Z1 the adapter appends four hex digits of millisecond
+     * timestamp after the payload. This parser ignored them until 2026-08-11,
+     * when the first Z1 fixtures arrived and log_read() went on synthesising
+     * time from an assumed 49.5 ms period instead -- 1583 frames x 49.5 ms is
+     * the 78,359 ms it reported for a recording that really ran 60,027.
+     *
+     * Anything other than exactly four hex digits is treated as no timestamp
+     * rather than as a damaged line: the USBtin truncates the final line when
+     * the port closes, and losing one frame is better than losing the file. */
+    {
+        const char *tail = line + 5 + 2 * (size_t)dlc;
+        long ts = 0;
+        size_t n;
+        for (n = 0; n < 4; n++) {
+            int v = lr_hex1(tail[n]);
+            if (v < 0) { break; }
+            ts = ts << 4 | v;
+        }
+        f->ts_ms = (n == 4 && tail[4] == '\0') ? ts : -1;
+    }
     f->can_id = id;
     f->dlc = (uint8_t)dlc;
     return true;
@@ -214,6 +245,27 @@ static inline bool log_load(const char *name, log_file_t *out, bool fix_doubled)
 
     out->count = used;
     out->timestamped = used > 0 && out->frames[0].ts_ms >= 0;
+
+    /* Unwrap the adapter's millisecond counter, which runs 0..60000 and then
+     * restarts -- measured 2026-08-11, see tools/canlog.py TIMESTAMP_WRAP_MS
+     * and the note in fixtures/README.md. The counterpart on the Python side
+     * is canlog.parse_file(); the two must agree or --host-build diverges on
+     * span_ms, which is exactly how this was found.
+     *
+     * Only a value that goes backwards triggers it, so this is a no-op on
+     * USBtinViewer's host timestamps, which pass 60000 without restarting. */
+    if (out->timestamped) {
+        long offset = 0;
+        long previous = -1;
+        for (i = 0; i < used; i++) {
+            long v = out->frames[i].ts_ms;
+            if (v < 0) { continue; }
+            if (previous >= 0 && v < previous) { offset += LR_TIMESTAMP_WRAP_MS; }
+            previous = v;
+            out->frames[i].ts_ms = v + offset;
+        }
+    }
+
     free(lines);
     free(buf);
     return used > 0;

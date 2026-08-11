@@ -479,12 +479,62 @@ class TestFuelRates(unittest.TestCase):
             self.assertAlmostEqual((ts[-1] - ts[0]) / 1000, expect_s, places=3)
 
 
+class TestTimestampWrap(unittest.TestCase):
+    """The USBtin's Z1 counter restarts; the host's timestamps do not.
+
+    The wrap value was measured off a real capture on 2026-08-11 -- the
+    counter reaches 60000 and the next frame reads 0. See TIMESTAMP_WRAP_MS.
+    """
+
+    def test_monotonic_input_is_untouched(self):
+        values = [10, 20, 30, 59999, 60000]
+        self.assertEqual(canlog.unwrap_timestamps(values), values)
+
+    def test_host_timestamps_past_60000_do_not_trigger_a_wrap(self):
+        """07_accel runs 48399 -> 64314 without wrapping. Format B counts on.
+
+        This is the case that made unwrapping worth a function rather than a
+        modulo: a blind `% 60001` would fold this recording in half.
+        """
+        values = [48399, 59000, 60000, 61000, 64314]
+        self.assertEqual(canlog.unwrap_timestamps(values), values)
+
+    def test_a_wrap_is_carried_forward(self):
+        wrapped = [59996, 60000, 0, 1, 2]
+        self.assertEqual(canlog.unwrap_timestamps(wrapped),
+                         [59996, 60000, 60001, 60002, 60003])
+
+    def test_two_wraps_accumulate(self):
+        values = [60000, 0, 60000, 0]
+        got = canlog.unwrap_timestamps(values)
+        self.assertEqual(got, [60000, 60001, 120001, 120002])
+
+    def test_gap_across_the_wrap_is_one_millisecond(self):
+        """60000 -> 0 is one tick, not a 60-second jump backwards."""
+        run = canlog.unwrap_timestamps([60000, 0])
+        self.assertEqual(run[1] - run[0], 1)
+
+    def test_real_capture_spans_the_right_wall_clock(self):
+        """07_accel's own numbers, as an end-to-end check of the helper."""
+        frames = canlog.parse_file(str(FIXTURES / "07_accel.txt"))
+        stamped = [f.ts_ms for f in frames if f.ts_ms is not None]
+        run = canlog.unwrap_timestamps(stamped)
+        self.assertAlmostEqual((run[-1] - run[0]) / 1000, 15.915, places=3)
+
+
 class TestCli(unittest.TestCase):
     def test_summary_runs(self):
         self.assertEqual(canlog.main([str(FIXTURES / "idle.txt")]), 0)
 
     def test_filtered_dump_runs(self):
         self.assertEqual(canlog.main(["--dump", "--id", "0x480", str(FIXTURES / "idle.txt")]), 0)
+
+    def test_gaps_runs_on_a_timestamped_log(self):
+        self.assertEqual(
+            canlog.main(["--gaps", "--id", "0x480", str(FIXTURES / "07_accel.txt")]), 0)
+
+    def test_gaps_on_an_unstamped_log_says_so_rather_than_inventing_times(self):
+        self.assertEqual(canlog.main(["--gaps", str(FIXTURES / "idle.txt")]), 0)
 
 
 if __name__ == "__main__":

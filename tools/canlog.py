@@ -49,11 +49,53 @@ from dataclasses import dataclass
 from typing import Iterator, Optional
 
 __all__ = ["Frame", "parse_line", "parse_file", "iter_frames", "undouble",
+           "unwrap_timestamps", "frame_gaps", "TIMESTAMP_WRAP_MS",
            "LogFormatError"]
 
 
 class LogFormatError(ValueError):
     """The line looks like a frame but cannot be taken apart."""
+
+
+# The USBtin's Z1 timestamp counts milliseconds and restarts. **Measured on
+# 2026-08-11**, off a 20 s capture of the car's bus that happened to straddle
+# the wrap -- which is what the comment here used to ask somebody to do:
+#
+#     before: 59993 59994 59995 59996 59996 60000
+#     after :     0     0     1     2     4     8
+#
+# So the counter reaches 60000 and the next value is 0, i.e. it takes 60001
+# distinct values and the wrap period is 60001 ms, not the round 60000 that
+# Lawicel's 0x0000-0xEA5F range would imply. Frames arrive about 1.4 ms apart
+# on this bus, so 60000 being the true maximum rather than a value that merely
+# happened to be sampled is as tight as one capture can make it; the residual
+# doubt is one millisecond per minute, which nothing here is sensitive to.
+#
+# This applies to format A only. Format B's times come from the host and do
+# not wrap at all.
+TIMESTAMP_WRAP_MS = 60001
+
+
+def unwrap_timestamps(values: list[int]) -> list[int]:
+    """Make a wrapping millisecond counter monotonic.
+
+    Every time the value goes backwards, one wrap period is added to
+    everything that follows. Returns a new list; the input is untouched.
+
+    This has to be applied to the whole recording before any subtraction --
+    computing gaps first and patching up the negative one afterwards gives the
+    same answer only by accident, and not at all once a recording is longer
+    than two minutes.
+    """
+    out: list[int] = []
+    offset = 0
+    previous: Optional[int] = None
+    for v in values:
+        if previous is not None and v < previous:
+            offset += TIMESTAMP_WRAP_MS
+        out.append(v + offset)
+        previous = v
+    return out
 
 
 @dataclass(frozen=True)
@@ -122,10 +164,7 @@ def _parse_slcan(line: str) -> Optional[Frame]:
     # rest of the fixtures by roughly a factor of two.
     #
     # The counter wraps, and the wrap value is not stated in USBtin's
-    # documentation. Callers must not assume one: take differences modulo
-    # nothing and let a negative difference tell you the wrap happened, or
-    # read the wrap out of the first minute of a recording, which is a minute
-    # of work and settles it for good.
+    # documentation. It is measured now -- see TIMESTAMP_WRAP_MS below.
     tail = line[head + 2 * dlc:].strip()
     ts_ms = None
     if tail:
@@ -231,9 +270,29 @@ def parse_file(path, *, strict: bool = False, fix_doubled: bool = False) -> list
     """
     with open(path, "r", encoding="utf-8", errors="replace") as fh:
         if not fix_doubled:
-            return list(iter_frames(fh, strict=strict))
-        lines = undouble(fh.read().splitlines())
-    return list(iter_frames(lines, strict=strict))
+            frames = list(iter_frames(fh, strict=strict))
+        else:
+            lines = undouble(fh.read().splitlines())
+            frames = list(iter_frames(lines, strict=strict))
+
+    # Unwrap here, at the one place that sees a whole file, so that no consumer
+    # has to know the adapter's counter restarts. Doing it in parse_line is not
+    # possible -- a single line carries no context -- and leaving it to callers
+    # is how tools/replay.py and test/logread.h ended up reporting a 60-second
+    # recording as 26 ms and as 78 s respectively.
+    #
+    # Applied to every format, not just slcan+Z1, because it is a no-op on a
+    # monotonic input by construction: only a value that goes *backwards*
+    # triggers it. USBtinViewer's host timestamps run past 60000 without
+    # restarting and are left exactly as they are -- pinned by
+    # test_host_timestamps_past_60000_do_not_trigger_a_wrap.
+    stamped = [f.ts_ms for f in frames if f.ts_ms is not None]
+    if len(stamped) > 1 and any(b < a for a, b in zip(stamped, stamped[1:])):
+        run = iter(unwrap_timestamps(stamped))
+        frames = [f if f.ts_ms is None
+                  else Frame(next(run), f.can_id, f.data)
+                  for f in frames]
+    return frames
 
 
 # --------------------------------------------------------------------------
@@ -246,13 +305,25 @@ def _summary(path: str, frames: list[Frame]) -> None:
         return
 
     stamped = [f.ts_ms for f in frames if f.ts_ms is not None]
-    fmt = "USBtinViewer (timestamped)" if stamped else "slcan (no timestamps)"
+    # Do not label a timestamped slcan file "USBtinViewer" -- this whole
+    # investigation is about not trusting the viewer's times, so saying a
+    # capture came from it when it did not is worse than saying nothing.
+    if not stamped:
+        fmt = "slcan (no timestamps)"
+    elif _looks_like_viewer(path):
+        fmt = "USBtinViewer export (host timestamps -- see open question 9)"
+    else:
+        fmt = "slcan with Z1 (adapter timestamps)"
 
     print(f"{path}")
     print(f"  format : {fmt}")
     print(f"  frames : {len(frames)}")
     if stamped:
-        print(f"  span   : {stamped[0]} .. {stamped[-1]} ms ({(stamped[-1] - stamped[0]) / 1000:.2f} s)")
+        run = unwrap_timestamps(stamped)
+        wraps = (run[-1] - stamped[-1]) // TIMESTAMP_WRAP_MS
+        note = f", {wraps} wrap(s) unwrapped" if wraps else ""
+        print(f"  span   : {stamped[0]} .. {stamped[-1]} ms "
+              f"({(run[-1] - run[0]) / 1000:.2f} s{note})")
 
     per_id: dict[int, int] = {}
     dlcs: dict[int, set[int]] = {}
@@ -266,12 +337,77 @@ def _summary(path: str, frames: list[Frame]) -> None:
         print(f"  0x{can_id:03X}  {per_id[can_id]:8d}   {seen}")
 
 
+def _looks_like_viewer(path: str) -> bool:
+    """True if the file is a USBtinViewer table rather than a raw stream."""
+    try:
+        with open(path, "r", encoding="utf-8", errors="replace") as fh:
+            for line in fh:
+                if line.strip():
+                    return "\t" in line
+    except OSError:
+        pass
+    return False
+
+
+def frame_gaps(frames: list[Frame], can_id: int) -> list[int]:
+    """Milliseconds between consecutive frames of one identifier.
+
+    Timestamps are unwrapped first. **The statistic to read off this is the
+    mode, not the mean**: a dropped frame -- and the adapter does drop them on
+    a busy bus, which its status flags report -- turns one period into two,
+    so losses add counts at integer multiples and never below the true period.
+    The mean and the frame count are corrupted by exactly the losses the mode
+    shrugs off.
+    """
+    stamped = [f.ts_ms for f in frames if f.ts_ms is not None]
+    if len(stamped) < 2:
+        return []
+    run = unwrap_timestamps(stamped)
+    picked = [t for t, f in zip(run, (f for f in frames if f.ts_ms is not None))
+              if f.can_id == can_id]
+    return [b - a for a, b in zip(picked, picked[1:])]
+
+
+def _gaps_report(path: str, frames: list[Frame], wanted: Optional[set]) -> None:
+    from collections import Counter
+
+    stamped = [f for f in frames if f.ts_ms is not None]
+    if len(stamped) < 2:
+        print(f"{path}: no timestamps -- record with tools/usbtin_capture.py")
+        return
+
+    ids = sorted(wanted) if wanted else sorted({f.can_id for f in frames})
+    print(f"{path}")
+    print(f"  {'ID':>6} {'n':>6} {'mode':>6} {'2nd':>6} {'median':>7}")
+    for can_id in ids:
+        gaps = frame_gaps(frames, can_id)
+        if not gaps:
+            continue
+        common = Counter(gaps).most_common(2)
+        second = common[1][0] if len(common) > 1 else -1
+        median = sorted(gaps)[len(gaps) // 2]
+        print(f"  0x{can_id:03X} {len(gaps) + 1:6d} {common[0][0]:6d} "
+              f"{second:6d} {median:7d}")
+
+    if wanted and len(wanted) == 1:
+        only = next(iter(wanted))
+        gaps = frame_gaps(frames, only)
+        if gaps:
+            print(f"\n  histogram for 0x{only:03X}, ms : count")
+            for gap, n in sorted(Counter(gaps).items()):
+                print(f"  {gap:6d} : {n:5d}  {'#' * min(50, n)}")
+
+
 def main(argv: Optional[list[str]] = None) -> int:
     ap = argparse.ArgumentParser(description="Parser for USBtin logs (both formats).")
     ap.add_argument("files", nargs="+")
     ap.add_argument("--dump", action="store_true", help="print frames instead of a summary")
     ap.add_argument("--id", type=lambda s: int(s, 0), action="append",
                     help="restrict to this ID, repeatable (e.g. --id 0x480)")
+    ap.add_argument("--gaps", action="store_true",
+                    help="report the interval between frames of each ID -- the "
+                         "measurement open question 9 wants. Needs a log with "
+                         "timestamps; add --id for a histogram of one ID.")
     ap.add_argument("--strict", action="store_true", help="fail on the first damaged line")
     ap.add_argument("--fix-doubled", action="store_true",
                     help="drop the second copy when the file holds the recording twice")
@@ -281,6 +417,12 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     for path in args.files:
         frames = parse_file(path, strict=args.strict, fix_doubled=args.fix_doubled)
+        if args.gaps:
+            # Deliberately before the --id filter: gaps are computed per ID
+            # anyway, and dropping other IDs first would throw away nothing
+            # but would make --id mean two different things.
+            _gaps_report(path, frames, wanted)
+            continue
         if wanted is not None:
             frames = [f for f in frames if f.can_id in wanted]
         if args.dump:

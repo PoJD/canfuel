@@ -60,7 +60,16 @@ test: $(TESTS) $(HOST_TOOL)
 
 replay-host: $(HOST_TOOL)
 
-$(BUILD)/%: %.c $(CORE_SRC) | $(BUILD)
+# Headers are dependencies too. tt.h, logread.h and replay_core.h are
+# header-only on purpose, so a change to one of them changes the behaviour of
+# every binary here while leaving no .o file to go stale -- and make would
+# happily report "Nothing to be done". That is not hypothetical: on
+# 2026-08-11 a fix to logread.h's timestamp parsing was silently not built,
+# and the stale replay_host went on disagreeing with Python for three rounds
+# of debugging.
+HEADERS := $(wildcard *.h) $(wildcard $(SRCDIR)/*.h)
+
+$(BUILD)/%: %.c $(CORE_SRC) $(HEADERS) | $(BUILD)
 	$(CC) $(CFLAGS) -o $@ $< $(CORE_SRC) $(LDFLAGS)
 
 $(BUILD):
