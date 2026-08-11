@@ -138,12 +138,17 @@ static hal_can_mode_t g_mode = HAL_CAN_MODE_NORMAL;
  *    and does not fit in 500.
  *
  * 2. THE STUB. This board hangs off the bus on an unterminated stub: about
- *    1.4 m of CANH/CANL from the instrument cluster to the air vent (measured
- *    as 1.3-1.4 m; 1.4 is carried everywhere as the conservative figure), and
- *    both 120 R terminators are elsewhere in the car -- 60.1 R measured across
- *    CANH and CANL, which is what says they are both still there and that R5
- *    on this board must stay unfitted. onsemi AND8376/D gives the usual limit
- *    for one unterminated stub as
+ *    1.4 m of CANH/CANL from the instrument cluster to the air vent, and both
+ *    120 R terminators are elsewhere in the car -- 60.1 R measured across CANH
+ *    and CANL, which is what says they are both still there and that R5 on
+ *    this board must stay unfitted.
+ *
+ *    1.4 m is an ESTIMATE AND STAYS ONE, deliberately. It was measured as
+ *    1.3-1.4 m and the pessimistic end is carried everywhere; pinning it down
+ *    would mean taking the dashboard apart again, which is not worth doing for
+ *    a number the margin below swallows whole. Do not propose re-measuring it.
+ *
+ *    onsemi AND8376/D gives the usual limit for one unterminated stub as
  *
  *      L_STUB_MAX <= T_PROP_SEG / (50 * T_PROP(BUS))
  *

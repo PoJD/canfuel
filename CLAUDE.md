@@ -793,7 +793,9 @@ signal's round trip and for reflections off an unterminated stub:
 - **Stub.** The board hangs on an unterminated stub of **about 1.4 m of
   CANH/CANL from the instrument cluster** to the air vent — measured as
   1.3–1.4 m, and 1.4 m is the figure carried everywhere, deliberately the
-  pessimistic end. Both 120 Ω terminators are elsewhere in the car; **60.1 Ω
+  pessimistic end. **It stays an estimate on purpose**: refining it means
+  taking the dashboard apart again, and at 3.5 m allowed the margin swallows
+  the difference. Both 120 Ω terminators are elsewhere in the car; **60.1 Ω
   measured** across CANH/CANL says so, and is also why R5 stays unfitted.
   onsemi AND8376/D's `L_STUB_MAX ≤ T_PROP_SEG/(50 × T_PROP(BUS))` gives 2.0 m
   at the old split and 3.5 m at this one, so the margin goes from 1.4× to

@@ -227,7 +227,9 @@ A recap of the requirements, to have them at hand during design:
   instrument cluster** to the air vent — measured as 1.3–1.4 m, and 1.4 m is
   the number used everywhere, deliberately the pessimistic end. That stub is
   what the firmware's 7 TQ propagation segment is sized for; see the bit-timing
-  comment in `src/hal_can.c`.
+  comment in `src/hal_can.c`. **It stays an estimate**: measuring it properly
+  means taking the dashboard apart again, and the propagation segment allows
+  3.5 m, so a tenth of a metre either way changes nothing.
 - **Connector:** 4-pin, Y-splitter only on connector C. *Picked since: Molex
   Micro-Fit 3.0, housing 43025-0400 with 43030 sockets. `kicad`'s
   `canfuel/docs/harness.md` has the cavity assignment, and getting it wrong
