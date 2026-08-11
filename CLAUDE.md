@@ -956,6 +956,7 @@ mplab/
   canfuel.X/    the MPLAB X project, for editing and for driving a PICkit
   README.md     how to build, and what JP2 is for
 tools/          canlog.py, replay.py — Python, runs anywhere
+                cycles.py — cycle budgets out of the XC8 listing, a CI gate
 ```
 
 **The two `config` headers must not be confused.** `src/config.h` is the pure
@@ -992,6 +993,8 @@ make -C test test                                          # 250 checks
 make -C test check-pure                                    # no <xc.h> in the core
 make -C test check-hal                                     # the HAL still compiles
 python tools/replay.py --host-build test/fixtures/*.txt    # Python vs C
+python tools/cycles.py                                     # cycle budgets
+python tools/cycles.py --check                             # ...and fail if over
 
 make -C mplab                                              # -> build/canfuel.hex
 make -C mplab CAN_MODE=LOOPBACK                            # talks to itself

@@ -10,17 +10,25 @@ assembly listing of the hex that gets flashed.
 
 ---
 
-## Method
+## Method — and how to re-run it
 
 ```
-xc8-cc -mcpu=18F25K80 -mdfp=... -std=c99 -O2 -mstack=compiled -Isrc \
-       -Wa,-a -Wl,-Map=canfuel.map -o canfuel.hex src/*.c
+make -C mplab            # writes build/canfuel.lst as well as the hex
+python tools/cycles.py   # the table below, re-derived
+python tools/cycles.py --check    # what CI runs
 ```
 
-`-Wa,-a` makes pic-as write `canfuel.lst`, which carries every generated
-instruction with its address and its encoding. Instructions were counted per
-function out of that listing, and loops were costed by finding the backward
-branches and multiplying the body by the trip count the C source allows.
+`mplab/Makefile` passes `-Wa,-a`, so pic-as writes `build/canfuel.lst` with
+every generated instruction, its address and its encoding. `tools/cycles.py`
+counts program words per function out of that listing and costs the loops by
+finding the backward branches and multiplying the body by the trip count the C
+source allows.
+
+**The script is the executable half of this document.** This file explains and
+argues; the script re-derives the numbers from whatever the compiler produced
+today, so the two cannot drift. It also runs in the `firmware` CI job with
+`--check`, which fails the build if a scheduler slot goes over a ceiling — see
+the guard rail section at the end.
 
 **The cycle model.** On the PIC18, at `FOSC/4` (DS39977C, CLKOUT in the pin
 table), one instruction cycle is `Tcy = 250 ns` at 16 MHz — 4 MIPS. Single-word
@@ -166,6 +174,62 @@ in `main.c` before this analysis existed.
 
 ---
 
+## What actually happens to the bus during a long pass
+
+Worth being precise about, because "the MCU is busy for 48 ms" sounds like it
+should be much worse than it is.
+
+**The CPU is not what receives frames.** The ECAN module has its own protocol
+engine: it clocks bits off the wire, matches them against the seven hardware
+filters, acknowledges what it accepts and writes it into the FIFO, all with no
+software involved at all. While `hal_eeprom_write()` sits polling `WR`, the
+module carries on doing exactly that. Nothing about a busy CPU is visible on
+the bus.
+
+So the sequence is:
+
+1. **The first eight accepted frames are buffered.** The FIFO is eight deep
+   (Mode 2, §27.4.3), and our seven identifiers arrive at roughly one every
+   2.6 ms — 0x1A0 every 7.5 ms, 0x280 every 10.5, 0x288 every 11.8, plus four
+   slower ones. Eight buffers is therefore about **21 ms of storage**.
+2. **After that, further frames are dropped.** Not queued anywhere: each buffer
+   has an `RXFUL` bit, and DS39977C is explicit — *"As long as RXFUL is set, no
+   new message will be loaded and the buffer will be considered full."* The
+   module sets `RXBnOVFL` in `COMSTAT` and the message is simply lost.
+3. **The bus does not notice.** A full receive buffer is not one of the five
+   error conditions in §27.14 — bit, acknowledge, form, CRC and stuff — so no
+   error frame is generated, and the frame is still acknowledged. The overflow
+   is a local status bit and nothing more. **We lose data; the car does not.**
+4. **The FIFO refills from empty** the moment the loop comes round again and
+   `hal_can_receive()` drains it, which takes 59 µs a frame.
+
+For the once-a-minute write that means roughly 21 ms buffered and 27 ms
+dropped, or about ten lost frames: three or four of 0x1A0, a couple each of
+0x280 and 0x288, and — at one every 49.5 ms — a coin toss on whether a single
+0x480 is among them.
+
+None of that costs anything, which is the analysis already written out in
+`main.c` and is worth repeating here because this is where the numbers are:
+
+- **the fuel counter** delta is `(new − old) mod 32768`, so a gap costs
+  *nothing at all* — the next 0x480 accounts for every microlitre burned during
+  the write, including any frames that never arrived;
+- **distance** is integrated from speed against the millisecond clock in
+  `compute_tick()`, not against frame arrivals, and that clock keeps running
+  because `hal_eeprom_write()` restores `GIE` the instant the unlock sequence
+  is over;
+- **everything else** — rpm, tank, temperatures — is a last-known-value that is
+  48 ms stale, against a tank float that sloshes by nine litres and a coolant
+  temperature that moves in minutes.
+
+`main.c` then clears the overflow flag, because an overflow we caused
+deliberately, once a minute, is not a fault worth putting on an LED.
+
+The **ordinary** worst pass, 12.8 ms, is inside the 21 ms the FIFO holds, so
+outside the EEPROM write nothing is dropped at all.
+
+---
+
 ## The one number that is not bounded
 
 The 48 ms above is **twelve bytes at the 4 ms of DS39977C Table 31-1, D122**,
@@ -180,6 +244,38 @@ tolerable is that nothing downstream of it is a deadline: the watchdog is
 harmless; and a late frame is invisible to the display. If a part ever wrote
 slowly enough to trip the watchdog, the record would have to take sixteen times
 its typical time.
+
+---
+
+## The guard rail
+
+`python tools/cycles.py --check` runs in the `firmware` CI job, which is the
+only one with XC8 and therefore the only one that can. It fails the build if
+any of these goes over its ceiling:
+
+| Budget | Now | Ceiling |
+|---|---|---|
+| one received frame, decoded and accumulated | 0.92 ms | 5 ms |
+| `compute_tick`, worst case | 4.82 ms | 20 ms |
+| the 100 ms slot | 5.32 ms | 25 ms |
+| the 1 s slot, excluding the EEPROM write | 0.25 ms | 5 ms |
+
+**The ceilings are deliberately wide** — every budget currently sits at about a
+fifth of its limit. This is not there to police a few per cent; it is there so
+that adding something with a millisecond in it to a hundred-microsecond slot
+fails in the pull request rather than on a bench six months later. A ceiling
+that fires on noise would be turned off within a month, and then it would be
+worth nothing.
+
+If a cost is intended, raise the ceiling in `tools/cycles.py` and say why here.
+That is the whole protocol.
+
+**What the script cannot do**, and it says so in its own header: it is not a
+sound WCET analyser. It cannot see how often a branch is really taken, and the
+loop trip counts in `TRIPS` are read off the C source by hand — if a loop bound
+changes and that table does not, the script will confidently report the old
+number. Anything that adds or changes a loop in the core needs a look at
+`TRIPS`.
 
 ---
 

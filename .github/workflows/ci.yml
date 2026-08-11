@@ -163,6 +163,16 @@ jobs:
           test -s mplab/build/canfuel.hex
           ls -l mplab/build/
 
+      # The guard rail described in docs/timing.md. It counts instructions out
+      # of the assembly listing the build just wrote and fails if any scheduler
+      # slot goes over its ceiling. The ceilings are wide -- currently every
+      # budget sits at a fifth of its limit -- because the point is to catch
+      # somebody adding a millisecond-scale operation to a 100 ms slot, not to
+      # police a few per cent. This is the only job with XC8, so it is the only
+      # job that can do this.
+      - name: cycle budgets
+        run: python tools/cycles.py --check
+
       - uses: actions/upload-artifact@v4
         with:
           name: canfuel-hex

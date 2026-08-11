@@ -88,7 +88,12 @@ OPT ?= -O2
 CAN_MODE ?=
 CAN_MODE_FLAG := $(if $(CAN_MODE),-DCAN_START_MODE=HAL_CAN_MODE_$(CAN_MODE))
 
-XC8FLAGS ?= -mcpu=$(DEVICE) -mdfp=$(DFP) -std=c99 $(OPT) -mstack=compiled -I$(SRCDIR) $(CAN_MODE_FLAG)
+# -Wa,-a makes pic-as write the assembly listing next to the hex. It is what
+# tools/cycles.py counts instructions out of, and it is the only way to know
+# what the code actually costs on the part -- see docs/timing.md. It changes
+# nothing about the hex and costs a second, so it is always on rather than
+# being a separate target somebody would forget to run.
+XC8FLAGS ?= -mcpu=$(DEVICE) -mdfp=$(DFP) -std=c99 $(OPT) -mstack=compiled -I$(SRCDIR) $(CAN_MODE_FLAG) -Wa,-a
 
 # xc8-cc is a native Windows program even under MSYS, and it needs a temporary
 # directory it can parse. MSYS make has neither TMP nor TEMP in its
