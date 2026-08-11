@@ -147,6 +147,62 @@ static void test_mulhi_against_a_64_bit_product(void)
     TT_EQ(mulhi_u32(0x80000000ul, 0x80000000ul), 0x40000000ul);
 }
 
+/* mul_u32_u16 -- the other hand-assembled product, and the one that replaced
+ * ___lmul. Same argument as mulhi_u32: the arithmetic is trivial, so what has
+ * to be proved is that seven byte products actually add up to it.
+ *
+ * There is no magic number here and nothing to derive, but there IS a
+ * precondition -- the multiplier must fit 16 bits -- and the type enforces it.
+ * What can still go wrong is a carry dropped between columns, which is what
+ * values with high bytes set are here to expose. */
+static void test_mul_u32_u16_against_the_real_product(void)
+{
+    static const uint16_t MULTIPLIERS[] = {
+        0u, 1u, 10u, 36u, 74u, 1000u, 3600u, 4820u,
+        255u, 256u, 257u, 0x7FFFu, 0x8000u, 0xFFFFu,
+    };
+    static const uint32_t XS[] = {
+        0ul, 1ul, 2ul, 255ul, 256ul, 65535ul, 65536ul,
+        0x00FFFFFFul, 0x01000000ul, 0x7FFFFFFFul, 0x80000000ul,
+        0xFFFFFFFFul, 0xFFFFFFFEul, 0x01010101ul, 0xFEDCBA98ul,
+    };
+    size_t i, j;
+    uint32_t seed = 0xC0FFEEul;
+    uint32_t n;
+
+    for (i = 0; i < sizeof MULTIPLIERS / sizeof MULTIPLIERS[0]; i++) {
+        for (j = 0; j < sizeof XS / sizeof XS[0]; j++) {
+            TT_EQ(mul_u32_u16(XS[j], MULTIPLIERS[i]),
+                  (uint32_t)(XS[j] * (uint32_t)MULTIPLIERS[i]));
+        }
+    }
+
+    for (n = 0; n < 120000u; n++) {
+        uint32_t x;
+        uint16_t m;
+        seed ^= seed << 13; seed ^= seed >> 17; seed ^= seed << 5;
+        x = seed;
+        seed ^= seed << 13; seed ^= seed >> 17; seed ^= seed << 5;
+        m = (uint16_t)seed;
+        TT_EQ(mul_u32_u16(x, m), (uint32_t)(x * (uint32_t)m));
+    }
+}
+
+/* Every multiplier the core actually passes, walked densely rather than
+ * sampled. Cheap, and it is the set that matters. */
+static void test_the_multipliers_the_core_uses(void)
+{
+    static const uint16_t USED[] = { 10u, 36u, 1000u, 3600u, 4820u, 16383u };
+    size_t i;
+    uint32_t x;
+
+    for (i = 0; i < sizeof USED / sizeof USED[0]; i++) {
+        for (x = 0; x < 300000ul; x += 7u) {
+            TT_EQ(mul_u32_u16(x, USED[i]), (uint32_t)(x * (uint32_t)USED[i]));
+        }
+    }
+}
+
 #ifdef EXHAUSTIVE
 /* Every 32-bit value against every divisor. Minutes, not seconds, which is why
  * it is behind a flag -- but it leaves nothing to argue about. */
@@ -175,6 +231,8 @@ static void test_every_value_there_is(void)
 int main(void)
 {
     TT_RUN(test_mulhi_against_a_64_bit_product);
+    TT_RUN(test_mul_u32_u16_against_the_real_product);
+    TT_RUN(test_the_multipliers_the_core_uses);
     TT_RUN(test_boundaries_around_every_multiple);
     TT_RUN(test_a_spread_of_ordinary_values);
     TT_RUN(test_the_rounding_form);

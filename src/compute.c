@@ -78,7 +78,7 @@ static void flow_push(compute_t *c, uint16_t ul, uint16_t ms)
         flow_drop_oldest(c);
     }
 
-    c->flow_ul_s = div_round(c->flow_sum_ul * 1000u, c->flow_sum_ms);
+    c->flow_ul_s = div_round(mul_u32_u16(c->flow_sum_ul, 1000u), c->flow_sum_ms);
 }
 
 /* --- the tank median ---------------------------------------------------- */
@@ -137,7 +137,7 @@ static uint8_t tank_median(const compute_t *c)
 
 static void tank_sample(compute_t *c, const decode_state_t *st)
 {
-    uint32_t target_ml = (uint32_t)st->tank_l * 1000u;
+    uint32_t target_ml = mul_u32_u16(st->tank_l, 1000u);
 
     /* The displayed level is damped whether we are moving or not -- that is
      * what the damping is for. First order, one sample a second, so the time
@@ -202,7 +202,7 @@ static void tank_sample(compute_t *c, const decode_state_t *st)
              * there is nothing to gain by approaching it slowly. Without this
              * the level and the range would both read minutes-old for minutes
              * after filling up. */
-            c->tank_damped_ml = (uint32_t)median * 1000u;
+            c->tank_damped_ml = mul_u32_u16(median, 1000u);
         }
         c->tank_stable_l = median;
     }
@@ -313,7 +313,11 @@ void compute_tick(compute_t *c, const decode_state_t *st, uint32_t now_ms)
      * means we were not watching, and guessing across it would invent
      * distance the car may never have covered. */
     if (st->speed_valid && st->speed_mmh > 0u && dt_ms > 0u && dt_ms <= 1000u) {
-        uint32_t mm = div_const(st->speed_mmh * dt_ms, DIVC_3600);
+        /* dt_ms is gated to 1000 by the condition above, so it fits the
+         * uint16 mul_u32_u16 takes -- which is why that gate is load-bearing
+         * for more than just the distance it guards. */
+        uint32_t mm = div_const(mul_u32_u16(st->speed_mmh, (uint16_t)dt_ms),
+                                DIVC_3600);
         c->total_mm += mm;
         c->seg_cur_mm += mm;
 
@@ -347,7 +351,8 @@ bool compute_data_live(const compute_t *c, uint32_t now_ms)
 uint16_t compute_flow_lh_c(const compute_t *c)
 {
     /* l/h = ul/s * 3.6 / 1000, so in 0.01 l/h it is ul/s * 0.36. */
-    return clamp_u16(div_const_round(c->flow_ul_s * 36u, 50u, DIVC_100), 0xFFFFu);
+    return clamp_u16(div_const_round(mul_u32_u16(c->flow_ul_s, 36u), 50u,
+                                     DIVC_100), 0xFFFFu);
 }
 
 uint16_t compute_fuel_now_d(const compute_t *c, const decode_state_t *st)
@@ -357,11 +362,11 @@ uint16_t compute_fuel_now_d(const compute_t *c, const decode_state_t *st)
      * speed, l/100 km is meaningless, so l/h is sent. */
     if (!st->speed_valid || st->speed_mmh < FUELNOW_LH_BELOW_MMH) {
         /* l/h at 0.1 = ul/s * 3.6 / 100 */
-        return clamp_u16(div_const_round(c->flow_ul_s * 36u, 500u, DIVC_1000),
-                         FUELNOW_CLAMP_D);
+        return clamp_u16(div_const_round(mul_u32_u16(c->flow_ul_s, 36u), 500u,
+                                         DIVC_1000), FUELNOW_CLAMP_D);
     }
     /* l/100 km at 0.1 = ul/s * 3600 / v[0.001 km/h] */
-    return clamp_u16(div_round(c->flow_ul_s * 3600u, st->speed_mmh),
+    return clamp_u16(div_round(mul_u32_u16(c->flow_ul_s, 3600u), st->speed_mmh),
                      FUELNOW_CLAMP_D);
 }
 
@@ -399,7 +404,7 @@ uint16_t compute_range_km(const compute_t *c)
         }
         /* Again microlitres per metre: seg_count kilometres is seg_count*1000
          * metres. */
-        basis_d = div_round(sum, (uint32_t)c->seg_count * 1000u);
+        basis_d = div_round(sum, mul_u32_u16(c->seg_count, 1000u));
         if (basis_d == 0u) {
             basis_d = RANGE_DEFAULT_L100_D;
         }
@@ -458,7 +463,8 @@ uint16_t compute_torque_d(const decode_state_t *st)
     }
 
     drag_cnm = (uint32_t)DRAG_TORQUE_BASE_CNM +
-               div_const(rpm * (uint32_t)DRAG_TORQUE_SLOPE_E4, DIVC_10000);
+               div_const(mul_u32_u16(rpm, (uint16_t)DRAG_TORQUE_SLOPE_E4),
+                         DIVC_10000);
 
     if (st->torque_ind_cnm <= drag_cnm) {
         return 0;               /* on the overrun the engine is being driven */
@@ -474,6 +480,9 @@ uint16_t compute_power_d(const decode_state_t *st)
      * MFD28 and MFD32. */
     uint32_t rpm = decode_rpm(st);
     uint32_t torque_d = compute_torque_d(st);
-    return clamp_u16(div_const_round(torque_d * 10u * rpm, POWER_DIVISOR / 2u,
-                                     DIVC_95500), 0xFFFFu);
+    /* rpm comes from a uint16 quarter-count shifted down by two, so it is
+     * under 16384 and fits the uint16 mul_u32_u16 takes. */
+    return clamp_u16(div_const_round(mul_u32_u16(mul_u32_u16(torque_d, 10u),
+                                                 (uint16_t)rpm),
+                                     POWER_DIVISOR / 2u, DIVC_95500), 0xFFFFu);
 }

@@ -78,7 +78,9 @@ BRANCHES = {"bra", "bz", "bnz", "bc", "bnc", "bn", "bnn", "bov", "bnov", "goto"}
 # it as a single loop would understate it eightfold.
 LOOPS = {
     "___lldiv":          [(None, 32,                  "one per bit of a 32-bit divisor")],
-    "___lmul":           [(None, 32,                  "one per bit of a 32-bit multiplier")],
+    # ___lmul was here until 2026-08-12 and is gone from the build entirely:
+    # every multiply in the core now goes through fastmul.h. If it comes back,
+    # something reintroduced a plain 32-bit product.
     "_tank_median":      [("TANK_HIST_BINS", None,    "histogram sweep, one per bucket")],
     "_compute_range_km": [("RANGE_SEGMENTS", None,    "")],
     "_flow_push":        [("FLOW_WINDOW_SLOTS", None, "")],
@@ -147,9 +149,9 @@ NOT_LOOPS = {
 # enough to hide a millisecond arriving by accident. The real hardware limits
 # are in docs/timing.md; these are a regression alarm, not a deadline.
 BUDGETS = {
-    "rx_frame": ("one received frame, decoded and accumulated", 2000.0),
-    "compute_tick": ("compute_tick, worst case (tank median)", 2500.0),
-    "fast_slot": ("the 100 ms slot, everything in it", 7000.0),
+    "rx_frame": ("one received frame, decoded and accumulated", 1400.0),
+    "compute_tick": ("compute_tick, worst case (tank median)", 1700.0),
+    "fast_slot": ("the 100 ms slot, everything in it", 5200.0),
     "slow_slot": ("the 1 s slot, excluding the EEPROM write", 1500.0),
 }
 

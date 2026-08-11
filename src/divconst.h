@@ -3,10 +3,16 @@
  * PURE C, no hardware. Read docs/optimisation.md before changing anything in
  * here, and never change it without running test_divconst.
  *
+ * WHAT IS IN HERE. Two things XC8 v4.00 compiles badly enough to be worth
+ * doing by hand: division by a constant, and multiplication. Both come down to
+ * the same fact -- the compiler reaches for a per-bit loop where the part has a
+ * single-cycle 8x8 multiplier sitting unused.
+ *
  * WHY THIS EXISTS. A 32-bit division costs 1,026 cycles on this part -- 257 us
  * -- because XC8 calls ___lldiv, which is a loop of one iteration per bit of
  * the divisor. The core divides by a constant in ten places, and
- * txframes_gather is nine of them in a row.
+ * txframes_gather is nine of them in a row. A 32-bit multiply costs 849 for
+ * the same reason.
  *
  * THE TRICK, AND WHY IT IS NOT THE USUAL ONE. Dividing by a constant d is
  * normally replaced by multiplying by a fixed-point reciprocal and shifting.
@@ -31,6 +37,8 @@
 #define DIVCONST_H
 
 #include <stdint.h>
+
+#include "fastmul.h"
 
 /* The high 32 bits of x * m. Straight-line, sixteen byte products.
  *

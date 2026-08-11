@@ -235,13 +235,75 @@ is the check that matters: the arithmetic did not move.
 
 ---
 
+## 5. Multiplication, the same trick again — 2026-08-12
+
+Once the divisions were gone, **`___lmul` was the largest single item left**:
+twelve calls at 849 cycles, 10,188 cycles, **2.55 ms**. It is the same per-bit
+loop as `___lldiv`, for the same reason, and by then it had produced an absurd
+state of affairs — `mulhi_u32` costs 300 cycles, so a *reciprocal division* had
+become nearly three times cheaper than an ordinary multiply sitting next to it.
+
+`mul_u32_u16()` in `src/fastmul.h` is the same idea as `mulhi_u32` and cheaper,
+because only the low half of the product is wanted and the multiplier fits 16
+bits: the product `x_i * m_j` is only needed where `i + j <= 3`, which is
+**seven byte products instead of sixteen**. 137 instructions, no branches, no
+calls, against 849.
+
+**Every multiply in the core is a wide value times a small one**, which is why
+this fits so well: 10, 36, 74, 1000, 3600, 4820, plus `rpm` (a uint16
+quarter-count shifted down, so under 16384) and `dt_ms` (gated to 1000 by
+`compute_tick`). The type is `uint16_t`, so the compiler enforces the
+precondition rather than the comment.
+
+Two of the twelve took a second look:
+
+- **`torque_d * 10u * rpm`** left an inner `torque_d * 10u` that was still a
+  32-bit product. It is two nested `mul_u32_u16` calls now.
+- **`data[7] * TORQUE_CNM_PER_BIT`** in `decode.c` is an 8x8 product that the
+  hardware does in one cycle, and XC8 was promoting it to 32 bits and calling
+  `___lmul` anyway. Casting both operands to `uint16_t` explicitly is all it
+  took.
+
+**`___lmul` is now absent from the build entirely** — `cycles.py` said so by
+refusing to run, because a `LOOPS` entry whose loop has vanished stops the
+tool. That is the audit doing precisely what it was built for.
+
+`fastmul.h` is a separate header from `divconst.h` so that `decode.c`, which
+needs the multiply and not the division, does not pull in an unused static
+function — `-Werror=unused-function` turns that into a build failure.
+
+### What it bought
+
+| | before | after |
+|---|---|---|
+| `txframes_gather` | 4.35 ms | **2.97 ms** |
+| `compute_tick` | 1.73 ms | 1.21 ms |
+| the 100 ms slot | 5.07 ms | **3.69 ms** |
+| worst pass through the loop | 11.67 ms | **8.21 ms** |
+| program memory | 12,218 bytes | 12,682 bytes |
+
+**The worst pass is now inside `RX_POLL_MS`**, which it had never been — 18.72,
+then 11.67, now 8.21 against a 10 ms intent. That was always survivable because
+the FIFO's 22 ms is the real limit, but it is one fewer thing to explain.
+
+Three `___lldiv` calls remain and they are not going anywhere: they divide by
+`flow_sum_ms`, `speed_mmh` and `seg_count * 1000`, which are variables. A
+reciprocal would have to be derived at run time, which costs more than the
+division it replaces.
+
+---
+
 ## What is left
 
-**`txframes_gather` is still the largest item at 4.35 ms**, but what remains in
-it is not division any more — it is the nine getters themselves and the
-`mulhi_u32` calls inside them. The next honest saving there is arranging the
-arithmetic so a division disappears entirely rather than getting cheaper, which
-is a change to what the code computes and needs a reason beyond speed.
+**`txframes_gather` is still the largest item at 2.97 ms**, but what remains in
+it is not division or multiplication any more — it is the nine getters
+themselves. The next honest saving there is arranging the arithmetic so an
+operation disappears entirely rather than getting cheaper, which is a change to
+what the code computes and needs a reason beyond speed.
+
+For scale: the whole worst pass is 8.21 ms against a 100 ms transmit slot and a
+22 ms FIFO. **There is no performance problem left to solve here**, and the
+remaining items are small enough that the risk of touching them outweighs it.
 
 Two ideas that are *not* worth it, recorded so they are not rediscovered:
 

@@ -184,7 +184,7 @@ against XC8 v4.00 itself. What that last one does and does not settle:
   function out of the assembly listing XC8 generates. Summary: a typical pass
   is 113 µs so the loop runs ~8,800 times a second; the 100 ms slot uses
   **5.3 ms of its 100**; the worst pass that can happen without an EEPROM write
-  is **10.0 ms**, against a FIFO that tolerates 22 ms of blindness. The
+  is **8.2 ms**, against a FIFO that tolerates 22 ms of blindness. The
   arithmetic is nowhere near being the constraint. The one figure the datasheet
   declines to bound is the EEPROM write — D122's 4 ms is a *typ* with no
   maximum — and nothing downstream of it is a deadline.
@@ -196,16 +196,20 @@ against XC8 v4.00 itself. What that last one does and does not settle:
   change they accompanied.
 - **`tank_median` is a histogram sweep, not a sort**, since 2026-08-11 — 4.97 ms
   down to 613 µs, and its bound stopped depending on the data.
-- **Division by a constant does not divide.** `src/divconst.h` multiplies by a
-  proved reciprocal, because `___lldiv` costs 1,026 cycles a call. The catch,
-  and it is why the obvious version fails: **XC8 calls `___lmul` for any
-  multiply wider than 8 bits**, so the reciprocal is assembled from sixteen
-  `uint8 x uint8` products, which are the only shape that reaches `MULWF`.
-  `div_const` is a macro so the shift is a literal, and a shift of 8/16/24 is
-  free while any other is a rotate loop. `txframes_gather` fell 6.40 -> 4.35 ms.
-  Never add a divisor there by hand: `tools/divconst.py` derives and proves it,
-  `test/test_divconst.c` proves the C, and `EXHAUSTIVE=1` walks every 32-bit
-  value.
+- **Neither division nor multiplication uses the compiler's helpers.** XC8
+  v4.00 reaches for a per-bit loop for both — `___lldiv` 1,026 cycles,
+  `___lmul` 849 — while the part has a single-cycle 8x8 multiplier it will only
+  use for `uint8 x uint8` and `uint16 x uint8`. So both are assembled from byte
+  products by hand: `src/fastmul.h` for multiplication (seven products, 137
+  instructions) and `src/divconst.h` for division by a constant, which
+  multiplies by a proved reciprocal instead. **`___lmul` is now absent from the
+  build entirely** and the three remaining `___lldiv` calls all divide by a
+  *variable*, where a reciprocal cannot help.
+  Two details that are easy to undo by accident: `div_const` is a macro so the
+  shift stays a literal, and a shift of 8/16/24 is free while any other is a
+  rotate loop. Never add a divisor by hand — `tools/divconst.py` derives and
+  proves it, `test/test_divconst.c` proves the C, and the exhaustive build
+  walked 26.8 billion values.
 - **`tools/cycles.py` measures loop bodies out of the listing** and requires
   every backward branch in the build to be declared in one of its three tables.
   It stops rather than guessing, so a change of algorithm cannot pass silently
@@ -1011,6 +1015,8 @@ src/
   compute.c/.h  maths                  PURE C
   txframes.c/.h frame assembly         PURE C
   persist.c/.h  EEPROM circular buffer PURE C
+  divconst.h    division by a constant  PURE C -- read docs/optimisation.md
+  fastmul.h     wide multiplication     PURE C -- read docs/optimisation.md
   hal_can.c/.h  ECAN + MCP2562
   hal_sys.c/.h  timer, ADC, LEDs, jumper, EEPROM
   pic_config.h  the #pragma config bits, and only those

@@ -5,6 +5,7 @@
  */
 
 #include "decode.h"
+#include "fastmul.h"
 #include "config.h"
 
 /* Little endian on the wire. The car is little endian throughout; only the
@@ -58,7 +59,11 @@ bool decode_frame(decode_state_t *st, uint16_t can_id,
         }
         st->rpm_q4 = u16le(data, 2);
         st->throttle = data[5];
-        st->torque_ind_cnm = (uint16_t)(data[7] * TORQUE_CNM_PER_BIT);
+        /* Both operands cast to uint16 explicitly: written as a plain
+         * data[7] * CONST, XC8 promotes to 32 bits and calls ___lmul for what
+         * is an 8x8 product the hardware multiplier does in one cycle. */
+        st->torque_ind_cnm = (uint16_t)((uint16_t)data[7] *
+                                        (uint16_t)TORQUE_CNM_PER_BIT);
         return true;
 
     case CAN_ID_SPEED:
@@ -74,7 +79,9 @@ bool decode_frame(decode_state_t *st, uint16_t can_id,
         st->speed_valid = (data[1] & SPEED_GATE_REQUIRED) != 0u &&
                           (data[1] & SPEED_GATE_FORBIDDEN) == 0u;
         if (st->speed_valid) {
-            st->speed_mmh = (uint32_t)u16le(data, 2) * 5u;  /* raw * 0.005 km/h */
+            /* raw * 0.005 km/h. mul_u32_u16 rather than a plain multiply for
+             * the same reason as everywhere else: XC8 would call ___lmul. */
+            st->speed_mmh = mul_u32_u16(u16le(data, 2), 5u);
         }
         return true;
 
