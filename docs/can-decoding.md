@@ -97,6 +97,22 @@ In `06_trip_reset.txt` this triggers 324 times — and that is correct. Every
 detection falls inside the contiguous opening stretch where the ignition is on
 but the engine is not running. In `07_accel.txt` it never triggers.
 
+**A wrap can land exactly on zero, and then this misfires.** Found in
+`09_idle_60s_z1.txt`, where the counter runs `32756 → 0 → 0 → 24`: a step of
+12 µl happened to carry it to exactly 32768. `counter == 0` reads that as an
+ignition restart and reinitialises `prev`, discarding that one step —
+**19,561 µl accounted for against 19,573 actually burnt**, which is why that
+log reports 2 restarts on a recording where the engine never stopped.
+
+**The rule stays exactly as it is, and that is a decision.** At idle the counter
+steps about 12 µl and wraps every 32,768 µl, so roughly one wrap in twelve lands
+on zero — about once per twenty minutes of idling — and each one costs a single
+step. Tightening it to `counter == 0 && rpm == 0` would trade that against the
+risk of missing a real ignition restart, and a missed restart injects up to
+32,768 µl of fuel that was never burnt. Twelve microlitres against thirty-two
+thousand is not a close call, and the conservative direction is the one that
+under-reports.
+
 ## Trap 3: bit 15 of the counter is not constant
 
 `docs/sensors.md` in the `mfd15` repo claims bit 15 is constantly 1. **It is not.**
@@ -188,16 +204,80 @@ Two of them — 3 and 8 — want the same VCDS session and should be done togeth
 
 ---
 
-### 1. What is the real period of 0x480? **Open, and question 9 makes it worse**
+### 1. ~~What is the real period of 0x480?~~ — **closed 2026-08-11: there isn't one**
 
-The specification quotes 958 µl/s for `05_rev3000`; the data gives 1005 µl/s
-on the assumed 49.5 ms period, and 51.9 ms would produce exactly 958. Five
-per cent.
+The question was wrong, not just unanswered. **0x480 has no fixed period**, so
+every attempt to pin one down was bound to produce a different number depending
+on which recording it was measured from — which is exactly what happened for a
+year.
 
-That was the whole question until question 9 below, which found that the two
-timestamped fixtures imply a fuel flow roughly *half* what the assumed period
-gives. Whatever settles one settles the other, so do question 9 first and this
-becomes arithmetic.
+Measured with adapter timestamps, stationary, engine warm
+(`09_idle_60s_z1.txt` and `10_rev2600_z1.txt`):
+
+| | 797 rpm | 2586 rpm |
+|---|---|---|
+| 0x480 frames/s | 26.4 | **18.0** |
+| mean gap | 37.9 ms | **55.5 ms** |
+
+Engine speed rose 3.25× and the frame rate **fell**. Whatever schedules this
+frame, it is neither a fixed timer nor the injection rate — the per-injection
+hypothesis was tested for exactly this reason and is refuted below. Both
+recordings are irregular, on a 10 ms grid, with a long tail.
+
+Dropped frames do not explain it: total throughput was *higher* in the revs
+recording (727/s against 683/s), so the adapter was losing less, not more.
+
+**The consequence, and it is the expensive one.** `tools/replay.py` synthesises
+time for the five untimestamped fixtures by multiplying the 0x480 frame count
+by an assumed 49.5 ms. That is not merely imprecise, it is **invalid**: it
+applies a constant that does not exist, and its error varies with engine speed.
+Every duration, average flow and distance derived from those five logs rests on
+it. The fuel totals do not, because the counter is absolute — which is why the
+core was built to accumulate the counter rather than integrate a flow, and that
+decision has now paid for itself.
+
+The original symptom is explained too: the specification quotes 958 µl/s for
+`05_rev3000` where the data gives 1005 µl/s on the assumed period. That is a
+fixed period applied to a log recorded at 2940 rpm, where the real gap is
+longer than at idle. Nothing was ever wrong with the data.
+
+**What would close it properly:** nothing needs to. The firmware runs off its
+own crystal and never cared. If the five old fixtures ever need a real clock,
+they need re-recording with `Z1`, not more arithmetic.
+
+**The evidence that got there, in the order it arrived.** A 20 s
+capture with `Z1` on — ignition on, engine not running — puts **every** gap
+between consecutive 0x480 frames on a **10 ms grid**: 10, 20, 30, 40, 50, 60,
+70 … and nothing in between. The engine ECU's other identifiers agree, all
+with a modal gap of exactly 10 ms: 0x0C2, 0x280, 0x288, 0x488.
+
+The reasoning is not sensitive to what the recording could not do. The adapter
+reported `data overrun`, but **a lost frame can only merge two intervals into
+one and so can only add counts at integer multiples** — it can never produce a
+gap shorter than the truth. Observing gaps of 10 and 20 ms is therefore hard
+evidence that the scheduler's tick is 10 ms, whatever else was dropped. And a
+scheduler's tick does not change when the engine starts.
+
+That retired 49.5 ms and 99 ms together — neither is a whole number of ticks —
+and for one afternoon the answer looked like a choice between 50 and 100 ms.
+It was not; the grid is real but there is no single multiple of it.
+
+**The per-injection hypothesis, and why it was worth testing.** At warm idle
+the numbers lined up almost too well: 26.4 frames/s against 26.6 injections/s
+for a four-cylinder four-stroke at 797 rpm, a ratio of 0.994, and
+326.1 µl/s ÷ 26.4 = 12.3 µl per frame against a modal counter step of 12–13 µl.
+Three independent quantities agreeing. It would have explained why no fixed
+period was ever found.
+
+**Refuted by `10_rev2600_z1.txt`.** At 2586 rpm the injection rate is 86.2/s
+and the ratio collapses to **0.209**. Had the frame been tied to injection the
+ratio would have held at one. The idle agreement was a coincidence, and a
+three-way one — which is worth remembering next time three numbers agree.
+
+One observation left over, offered as an observation and not an explanation:
+at idle **31 %** of 0x480 frames carry an unchanged counter (484 of 1583), at
+2586 rpm almost none (3 of 355). Transmission has something to do with how
+fast the counter is moving. What, is unknown, and nothing here depends on it.
 
 **Procedure — and it does not need the converter board.** See question 9: the
 USBtin has a hardware timestamp of its own, and `USBtinViewer` simply does not
@@ -260,29 +340,84 @@ already treats it as such, so nothing changes; it is now a finding rather than
 an assumption. VCDS group 003 would confirm it in one minute if anyone cares
 enough, and nobody should.
 
-### 5. AccelG — longitudinal or lateral? **Open, narrowed to two**
+### 5. ~~AccelG — longitudinal or lateral?~~ — **closed 2026-08-11: it is lateral**
 
-What the fixtures did settle: standing still with the engine running
-(`02_idle_60s`) the byte reads 127–128, i.e. **0.00 G**, which confirms both
-the 127 offset and that the axis is **horizontal** — a vertical axis would read
-+1 G at rest. That removes one of the three possibilities.
+**Measured in the car**, on the MFD15 reading 0x5A0 straight off the bus with
+no converter in the loop. Full lock, several laps at 15–20 km/h:
 
-What they did not settle is which horizontal axis. Correlating the byte against
+| Test | Reading |
+|---|---|
+| Circling **left**, full lock | **+0.2 to +0.5 G**, steady, rising with speed |
+| Circling **right**, full lock | the same magnitudes, **negative** |
+| Pulling away and braking | small by comparison, a few hundredths |
+
+Three things settle it, and they are independent of each other:
+
+- **The sign inverts with the direction of the turn.** Neither a standing bias
+  nor the camber of the road does that. Only a quantity that has a direction in
+  a corner does.
+- **The magnitude tracks cornering force**, which a longitudinal axis knows
+  nothing about.
+- **Braking is the small number.** On a longitudinal sensor it would be the
+  largest reading available.
+
+**The scale came out of the same test, which was not the point of it.** A
+Beetle turns in about 10.9 m, so full lock is a radius of roughly 5.5 m, and
+v²/r gives 0.20 G at 12 km/h, 0.32 at 15 and 0.51 at 19 — the measured range,
+in the speeds a yard allows. So `(raw − 127)/100 = G` is right in magnitude and
+not merely in shape; a wrong scale would have produced plausible-looking
+numbers of the wrong size.
+
+**Positive is a left turn**, which is consistent with ISO 8855 vehicle axes
+(y points left, and the centripetal acceleration of a left-hand corner points
+left). Nothing needs inverting anywhere.
+
+The few hundredths seen under braking are road camber, a little steering off
+centre and imperfect sensor alignment. They are an order of magnitude down and
+they do not sign-reverse, so they change nothing.
+
+What the fixtures had already settled, and what still stands: standing still
+with the engine running (`02_idle_60s`) the byte reads 127–128, i.e. **0.00 G**,
+confirming the 127 offset and that the axis is horizontal.
+
+**Why the fixtures could never have closed this.** Correlating the byte against
 the derivative of road speed gives r = +0.05 on `07_accel` and r = +0.25 on
 `03_drive`, with a slope of 0.29 where a clean longitudinal sensor would give
-1.0. That is not an answer: both logs were recorded crawling across an uneven
-lawn, where the tilt of the car under each wheel swamps an acceleration of
-0.04 G.
+1.0 — inconclusive, and now explained: there is no longitudinal component to
+find. Both logs were also recorded crawling across an uneven lawn, where the
+tilt of the car under each wheel swamps an acceleration of 0.04 G.
 
-**Procedure**, either of these, both a minute long:
+**The procedure that closed it, kept because it generalises.** Two tests on
+flat ground, neither needing the converter board: the display reads 0x5A0 b0
+straight off the bus (`mfd15/tri/S-AQY.TRI` line 13), so this wants the MFD15
+and nothing else. Each test moves exactly one axis, so the question is only
+whether the number moved. The first one is what was run.
 
-- **Park across a slope**, engine running, wheels straight, and read the byte.
-  A lateral sensor shows a steady offset proportional to the cross-slope; a
-  longitudinal one shows nothing. Then park facing up the same slope: the
-  answers swap. This needs no instruments and no driving.
-- **Accelerate firmly in a straight line on flat tarmac**, second gear, and
-  correlate against speed as above. On tarmac at 0.3 G the signal is an order
-  of magnitude above the noise that ruined the garden logs.
+- **A steady circle.** Full lock, constant 15–20 km/h, several laps, no
+  braking or accelerating. A **lateral** sensor settles at **0.30–0.50 G** and
+  holds it for as long as the wheel is turned; a longitudinal one stays at
+  0.00. Then circle the other way: on a lateral sensor the sign inverts, which
+  is what separates a real response from the permanent bias `sensors.md` #12
+  suspects. Do this one first — a steady reading is far easier to take off a
+  display than a peak.
+- **Firm braking**, straight line, 40 km/h to a stop. A **longitudinal**
+  sensor dips to **−0.30 to −0.60 G**; a lateral one does not move. Harder to
+  read, because the peak lasts about two seconds.
+
+Both are around 0.3 G, i.e. **thirty times the 0.01 G resolution**, so "it did
+not move" is a result and not a sensitivity problem.
+
+**Parking across a slope also works in principle and is not worth doing.** A
+stationary accelerometer reads the component of gravity along its axis, so the
+deflection is sin(tilt): a 6 % driveway is 3.4° and gives **0.06 G**, six counts
+against a one-count resolution. It needs a genuine hill — 20 % for 0.20 G — to
+beat the two tests above, and it was the first thing suggested here for a year
+on the strength of needing no driving. It needs terrain instead, which is
+harder to come by.
+
+The earlier suggestion to *accelerate* in second gear and correlate against
+speed is superseded: braking is the same axis at twice the magnitude and needs
+no correlation, just a glance at the display.
 
 The channel is transmitted to the display and used for nothing else, so a wrong
 label costs a wrong caption.
@@ -340,10 +475,45 @@ factory figures out of reach unnoticed.
 Do it in the same session as question 3 — that one wants measuring blocks too,
 and the same log of 0x280 and 0x288 serves both.
 
-### 9. Two fixtures carry timestamps and disagree with the other five about time, by about a factor of two — **open, and it is the one that matters**
+### 9. ~~Two fixtures carry timestamps and disagree with the other five about time~~ — **closed 2026-08-11: the timestamps are wrong**
 
-Found while reviewing question 1, and it had gone unnoticed since the fixtures
-were recorded.
+**Measured, at the operating point the argument was about.**
+`09_idle_60s_z1.txt`: 60 s of warm idle at 796 rpm, air conditioning off,
+recorded with the adapter's own timestamps.
+
+```
+19,561 ul over 60.027 s  =  325.9 ul/s  =  1.17 l/h
+```
+
+Nothing in that is derived. The counter is absolute in microlitres and the
+clock is stamped in the USBtin when the frame arrives, so no period is assumed
+and no host scheduler is involved.
+
+| base | idle flow | verdict |
+|---|---|---|
+| assumed 49.5 ms period | 310 µl/s = 1.12 l/h | within 5 % |
+| USBtinViewer timestamps | 157 µl/s = 0.57 l/h | **out by a factor of 2.1** |
+
+So the recorded timestamps lose, exactly as the tool's own documentation said
+they would, and the physical-plausibility argument below was right: a warm 2.0
+8V does not idle at 0.57 l/h.
+
+**What this changes.** `06_trip_reset.txt` and `07_accel.txt` have a wrong time
+base, so their durations, average flows and distances — the 135.0 s, the 15.9 s,
+the 613 µl/s, the 124.6 m, the 27.3 m — are overstated by roughly two. Their
+fuel totals stand. The five untimestamped logs are no better off, but for the
+different reason in question 1: the period they are reconstructed from does not
+exist.
+
+**Three fixtures with adapter timestamps now exist** — `08`, `09`, `10` — and
+they are the only logs here whose time can be trusted. See
+`test/fixtures/README.md`.
+
+---
+
+The original write-up follows, because the diagnosis is the useful part and it
+was right. Found while reviewing question 1, and it had gone unnoticed since
+the fixtures were recorded.
 
 **All seven were recorded with USBtinViewer**, but saved two different ways:
 five as the raw serial lines, with no time information at all, and two —
@@ -429,9 +599,24 @@ the adapter over its serial port directly — the commands are on
 |---|---|
 | `S6` | 500 kbit/s |
 | `Z1` | **timestamping on** — this is the whole point |
-| `m00000000` `MFFFFFFFF` | acceptance mask and code, set to pass 0x480 only |
 | `L` | open **listen-only**. Silent on the bus by the adapter's own guarantee, exactly like the firmware's Listen Only |
 | `O` | (open normally — *not* this one) |
+| `F` | read the status flags afterwards — they say whether frames were dropped |
+
+**`tools/usbtin_capture.py` does exactly this** and writes the raw slcan
+stream, which `canlog.py` already parses including the four hex digits `Z1`
+appends. Written 2026-08-11; it has been run on a desk with no adapter
+attached, so its argument handling works and its serial conversation has never
+met a USBtin.
+
+**The acceptance filter was deliberately dropped from this procedure.** It used
+to read `m00000000` / `MFFFFFFFF`, "set to pass 0x480 only". Which polarity of
+the mask means *don't care* is not stated in any document we hold, and the two
+conventions in circulation are opposites — under one of them that pair passes
+everything, under the other it passes nothing. A capture that silently records
+zero frames is indistinguishable from a dead bus, and this is a trip to the
+car. Record the whole bus and filter afterwards with `canlog.py --id 0x480`;
+the throughput is affordable and `F` reports it if it is not.
 | `C` | close |
 
 Engine at warm idle, sixty seconds, capture the raw lines to a file.

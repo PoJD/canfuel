@@ -1001,6 +1001,7 @@ reference there is for these registers on this silicon.
 ## Tools
 
 ```
+python tools/usbtin_capture.py --seconds 60 --out idle_z1.txt   # record, Z1 on
 python tools/canlog.py test/fixtures/03_drive.txt          # per-ID summary
 python tools/canlog.py --dump --id 0x480 FILE              # print frames
 python tools/replay.py --every 100 test/fixtures/07_accel.txt
@@ -1053,6 +1054,14 @@ against all four core sources and runs it.
 Real logs from the car. **Do not edit them.** The tests reference exact numbers
 from them.
 
+⚠ **Only the three `_z1` logs have trustworthy time**, recorded 2026-08-11 with
+`tools/usbtin_capture.py`. `06_trip_reset` and `07_accel` carry USBtinViewer's
+host timestamps and are **wrong by about a factor of two**; the other five carry
+no time at all, and the 49.5 ms period that used to be used to synthesise one
+**does not exist** — see open questions 1 and 9. Fuel totals are unaffected
+everywhere, because the counter is absolute; it is durations, flows and
+distances that need a clock.
+
 ⚠ `02_idle_60s.txt` contains the recording **twice** — both halves are
 identical. It is corrected at read time (`parse_file(..., fix_doubled=True)`)
 and the file itself stays original. Without that, the idle flow comes out doubled.
@@ -1080,6 +1089,18 @@ under *Current state*.
 The flow column is the average over the whole log; the sliding window inside
 `compute.c` reports the last second, which is why the two differ on the logs
 where the load changes.
+
+⚠ **The counter column is measured. The other three are not.** Duration, flow
+and distance for these seven all rest on a clock that was either the host's
+(`06`, `07`) or synthesised from a 49.5 ms period that turns out not to exist
+(the rest). They still pin the two implementations against each other, which is
+what the tests use them for, but they are not facts about the car. The
+measured warm idle, taken with adapter timestamps on 2026-08-11, is:
+
+| Log | Counter | Duration | Flow | Conditions |
+|---|---|---|---|---|
+| `09_idle_60s_z1` | 19,561 µl | **60.03 s** | **326 µl/s = 1.17 l/h** | 796 rpm, A/C off |
+| `10_rev2600_z1` | 17,544 µl | 19.76 s | 888 µl/s | 2586 rpm, **A/C on** |
 
 ---
 
