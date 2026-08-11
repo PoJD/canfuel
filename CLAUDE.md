@@ -914,6 +914,19 @@ decision, not a datasheet one.
 
 ---
 
+## `docs/refuted.md` — read it before reintroducing a good idea
+
+Everything this project believed and got wrong, across all three
+repositories, with what refuted it. It exists because a refuted idea is a
+*plausible* idea, and several of the entries are things anyone reasoning from
+first principles would propose again: an escape header for the unused pins, an
+enclosure, a submodule for `piclib`, reading the tank level straight off the
+bus, resetting the trip from the instrument cluster.
+
+Two rules for it. **Only settled-against things go in** — open questions live in
+`can-decoding.md`. And **nothing is ever deleted from it**; if new evidence
+un-refutes an entry, say so inside the entry.
+
 ## Read `docs/can-decoding.md` before touching the maths
 
 It documents four traps that are easy to run aground on quietly. In short:
