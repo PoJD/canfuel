@@ -146,7 +146,7 @@ static void test_zero_flow(void)
 
 static void test_documented_table(void)
 {
-    /* The table from docs/implementation-plan.md section 3.1. Flow is given
+    /* The table from docs/frames.md, FuelNow. Flow is given
      * in l/h there, so it is converted to ul/s first: l/h * 1000 / 3.6. */
     struct { uint32_t kmh; uint32_t flow_lh_c; uint16_t expect; } cases[] = {
         {  4, 150, 375 }, {  6, 150, 250 }, { 10, 150, 150 },

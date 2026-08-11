@@ -29,7 +29,6 @@ void decode_init(decode_state_t *st)
     st->rpm_q4 = 0;
     st->torque_ind_cnm = 0;
     st->throttle = 0;
-    st->load = 0;
 
     st->speed_mmh = 0;
     st->speed_valid = false;
@@ -63,7 +62,6 @@ bool decode_frame(decode_state_t *st, uint16_t can_id,
         }
         st->rpm_q4 = u16le(data, 2);
         st->throttle = data[5];
-        st->load = data[6];
         st->torque_ind_cnm = (uint16_t)(data[7] * TORQUE_CNM_PER_BIT);
         return true;
 

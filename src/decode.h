@@ -22,7 +22,6 @@ typedef struct {
     uint16_t rpm_q4;            /* 0.25 rpm                                 */
     uint16_t torque_ind_cnm;    /* 0.01 Nm, indicated, drag not yet removed */
     uint8_t  throttle;          /* raw, 38 = rest position                  */
-    uint8_t  load;              /* raw, 0 with the engine off               */
 
     /* Road speed, from 0x1A0. The value is only updated while the gate in
      * byte 1 passes, so a stale reading survives the init ramp instead of

@@ -113,11 +113,12 @@ reasoning is in the HAL section below.
 
 ## Current state — read this first
 
-**Phase 1 is code-complete and, since 2026-08-09, it builds: `make -C mplab`
-produces `mplab/build/canfuel.hex` under XC8 v4.00, 11,594 bytes of program
-memory and 564 of RAM, no warnings.** What it has never been is *run on a
-board* — see the warning at the end of this section, which is still the most
-important thing on this page.
+**The firmware is complete and it builds: `make -C mplab` produces
+`mplab/build/canfuel.hex` under XC8 v4.00 with no warnings, using about a third
+of the program memory and a sixth of the RAM.** What it has never been is *run
+on a board* — see the warning at the end of this section, which is still the
+most important thing on this page. (Exact byte counts are deliberately not
+quoted here; `make -C mplab` prints them and this file would only go stale.)
 
 What exists and works:
 
@@ -132,13 +133,15 @@ What exists and works:
 - `src/main.c` — the cooperative scheduler, and nothing else
 - `mplab/` — `canfuel.X` for the IDE and a plain `Makefile` driving `xc8-cc`,
   which is the authoritative recipe and what CI runs
-- `test/` — 250 checks across four test binaries, plus `replay_host.c`
-- `tools/canlog.py`, `tools/replay.py` — 77 Python tests green, and
+- `test/` — 250+ checks across four test binaries, plus `replay_host.c`
+- `tools/canlog.py`, `tools/replay.py` — 80+ Python tests green, and
   `replay.py --host-build` now diffs Python against the C core
-- `test/fixtures/` — seven real logs from the car, documented
-- `docs/` — decoding, frame layout, refuelling reset, timing, the overall plan
+- `test/fixtures/` — seventeen real logs from the car, documented, of which
+  the `_z1` ones are the only ones with trustworthy time
+- `docs/` — **`install.md` is the plan**, plus decoding, frame layout,
+  refuelling reset and timing
 
-The C core reproduces the Python oracle on all seven logs: the fuel totals and
+The C core reproduces the Python oracle on every fixture: the fuel totals and
 restart counts agree **exactly**, distance to within 7 mm over 54 m. Whichever
 of the two is wrong, they are at least wrong identically, and both were checked
 against the numbers measured in the car.
@@ -150,7 +153,7 @@ artifact.
 
 ### What has and has not been verified — read before trusting any of it
 
-The core is checked against seven real logs. The hardware half is checked
+The core is checked against every fixture. The hardware half is checked
 against the datasheet, against `gcc -fsyntax-only`, and — since **2026-08-09** —
 against XC8 v4.00 itself. What that last one does and does not settle:
 
@@ -236,26 +239,31 @@ such option and, being InstallBuilder, treats an unknown one as fatal rather
 than ignoring it — three runs failed before compiling a line. It was passing an
 empty value, so it had never configured anything anyway.
 
-### Next session starts here: a board
+### What to do next — `docs/install.md`, and only there
 
-**The step-by-step is `docs/install.md`** and it is not repeated here, because
-two copies of a procedure diverge and the copy nobody is reading is the one
-that stays wrong. That document is written for a person with a board in one
-hand; this section is the one-paragraph version and the reasoning.
+**The next action is step 4 of `docs/install.md`.** That document is the plan
+now, and it carries its own progress column; steps 1 to 3 are done and step 4
+is waiting on the boards, expected in the week of 2026-08-17.
 
-Loopback on a desk, then listen only in the car, then transmit. In order, and
-**step 4 of `install.md` — loopback — is the one that gets skipped and should
-not be.** It costs ten minutes, needs no bus and no transceiver at all
-(DS39977C §27.3.5 hands the transmit buffers straight to the receive buffers),
-and it exercises the bit timing, all seven filters, the FIFO, the access-bank
-window, `txframes` and `decode`. A fault caught there costs a reflash; the same
-fault in Normal mode puts error frames on the car's bus.
+**Do not restate the plan here, and do not add a "next session" section
+anywhere else.** Two copies of a procedure diverge, and the copy nobody reads
+is the one that stays wrong. When something is finished, tick it in
+`install.md`. What belongs in this file is *why* the order is what it is —
+which the procedure itself cannot carry:
 
-Why Listen Only touches the car first: the 500 kbps bit timing is arithmetic no
-hardware has run, and a Normal-mode node with wrong timing does not merely fail
-to read the bus, it **corrupts** it. Listen Only is silent by the module's own
-guarantee (§27.3.4). Check `hal_can_rx_errors()` / `hal_can_tx_errors()` before
-anything else — a timing fault shows there long before it shows anywhere else.
+**Loopback is the step that gets skipped and must not be.** It costs ten
+minutes, needs no bus and no transceiver at all (DS39977C §27.3.5 hands the
+transmit buffers straight to the receive buffers), and it exercises the bit
+timing, all seven filters, the FIFO, the access-bank window, `txframes` and
+`decode`. A fault caught there costs a reflash; the same fault in Normal mode
+puts error frames on the car's bus.
+
+**Why Listen Only touches the car before Normal:** the 500 kbps bit timing is
+arithmetic no hardware has run, and a Normal-mode node with wrong timing does
+not merely fail to read the bus, it **corrupts** it. Listen Only is silent by
+the module's own guarantee (§27.3.4). Check `hal_can_rx_errors()` /
+`hal_can_tx_errors()` before anything else — a timing fault shows there long
+before it shows anywhere else.
 
 JP2 off before programming and back on afterwards; JP1 fitted or the LEDs stay
 dark by design. `LED_PWR` blinking slowly means a silent build, which is
@@ -295,10 +303,11 @@ else, including CI.
 
 **Three boards were ordered from Gatema PCB on 2026-08-09** and are expected
 during the week of 2026-08-17. The design is finished, checked and frozen: what
-is being manufactured is commit `c06e710` of the sibling `kicad` repo. Nothing
-here is blocked by them — phase 1 is a pure C core with host tests and needs no
-hardware — but the pinout below is no longer provisional, and `hal_can.c` and
-`hal_sys.c` must be written against it.
+is being manufactured is commit `c06e710` of the sibling `kicad` repo. **They
+are now the only thing the project is waiting on** — the firmware, the display
+configuration and the harness are all done, so the boards arriving is what
+unblocks step 4 of `docs/install.md`. The pinout below is not provisional and
+`hal_can.c` and `hal_sys.c` are written against it.
 
 Only two of the three can be populated at first; the third is a bare spare
 waiting on two more Micro-Fit headers, deliberately not yet bought.
@@ -1015,9 +1024,9 @@ python tools/usbtin_capture.py --seconds 60 --out idle_z1.txt   # record, Z1 on
 python tools/canlog.py test/fixtures/03_drive.txt          # per-ID summary
 python tools/canlog.py --dump --id 0x480 FILE              # print frames
 python tools/replay.py --every 100 test/fixtures/07_accel.txt
-python -m unittest discover -s tools -p "test_*.py"        # 77 tests
+python -m unittest discover -s tools -p "test_*.py"        # 80+ tests
 
-make -C test test                                          # 250 checks
+make -C test test                                          # 250+ checks
 make -C test check-pure                                    # no <xc.h> in the core
 make -C test check-hal                                     # the HAL still compiles
 python tools/replay.py --host-build test/fixtures/*.txt    # Python vs C
@@ -1114,17 +1123,26 @@ measured warm idle, taken with adapter timestamps on 2026-08-11, is:
 
 ---
 
-## What comes next
+## The torque calibration, and what is still soft about it
 
-Phase 1 is written and it builds. Everything left is a board, and the step list
-lives at the top of this file under **Next session starts here** — it is not
-repeated here, because two copies of a plan diverge.
+**For what to do next, see `docs/install.md`** — it is the plan and it tracks
+its own progress. Nothing here restates it.
 
-In one line: loopback on a desk, programme a board, watch `LED_CAN`, listen
-before transmitting.
+Two calibrations are approximate and both need the car: **the tank**, which
+wants a known quantity from a jerrycan, and **the drag line on hot oil**, which
+is the one open question in `docs/can-decoding.md`. Both are refinements to a
+working device rather than blockers, and both live in `install.md` under
+*Then: calibration*.
 
-After that, phase 6 — calibration. The tank, which needs a known quantity from
-a jerrycan, and the drag line again on **hot** oil.
+The rest of this section is why the drag line and the torque scale are what
+they are, because that reasoning has nowhere else to live.
+
+**The drag line was refitted on 2026-08-11 and the torque scale moved with
+it.** It used to be a two-point line through `02_idle_60s` and `05_rev3000`,
+both of which turned out to have been recorded on cold oil — 60.8 °C and
+**39.0 °C**. It is now a least-squares fit through the four warm free-revving
+holds `13`–`16` (72.8–76.6 °C, stationary in neutral, so net torque is zero and
+b7 *is* the drag):
 
 **The drag line was refitted on 2026-08-11 and the torque scale moved with
 it.** It used to be a two-point line through `02_idle_60s` and `05_rev3000`,

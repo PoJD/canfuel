@@ -54,9 +54,10 @@ static void flow_push(compute_t *c, uint16_t ul, uint16_t ms)
     uint8_t tail;
 
     if (c->flow_count == FLOW_WINDOW_SLOTS) {
-        /* Only reachable when 0x480 arrives far faster than its 49.5 ms --
-         * duplicate frames in a log do exactly that. Dropping the oldest is
-         * what the window would have done a moment later anyway. */
+        /* Only reachable when 0x480 bunches up far tighter than the ~38 ms
+         * it averages at idle -- duplicate frames in a log do exactly that,
+         * and the frame has no fixed period to begin with. Dropping the
+         * oldest is what the window would have done a moment later anyway. */
         flow_drop_oldest(c);
     }
 
@@ -251,7 +252,6 @@ void compute_tick(compute_t *c, const decode_state_t *st, uint32_t now_ms)
         c->have_tick = true;
         c->last_tick_ms = now_ms;
         c->last_tank_ms = now_ms;
-        c->have_tank_ms = true;
         return;
     }
 

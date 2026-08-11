@@ -205,8 +205,8 @@ So the sequence is:
 
 For the once-a-minute write that means roughly 21 ms buffered and 27 ms
 dropped, or about ten lost frames: three or four of 0x1A0, a couple each of
-0x280 and 0x288, and — at one every 49.5 ms — a coin toss on whether a single
-0x480 is among them.
+0x280 and 0x288, and — at roughly 26 a second at idle — one or two 0x480
+among them.
 
 None of that costs anything, which is the analysis already written out in
 `main.c` and is worth repeating here because this is where the numbers are:

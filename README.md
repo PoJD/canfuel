@@ -34,13 +34,20 @@ executed. The boards were ordered on 2026-08-09 and arrive during the week of
 2026-08-17. `docs/timing.md` is the same caveat for the scheduler — the timing
 budget is counted out of the assembly listing, not measured.
 
+**Everything around the board is ready.** The display's configuration is
+uploaded and verified, and the harness is built, fitted in the car and measured
+at 5.01 V where the board will plug in. **[`docs/install.md`](docs/install.md)
+is the plan** — the whole path from three clones to a working device, with a
+column showing where this particular car has got to. The next action is its
+step 4.
+
 ## Quick start
 
 ```
-make -C test test                                       # the C core, 250 checks
+make -C test test                                       # the C core, 250+ checks
 make -C test check-pure                                 # no <xc.h> in the core
 make -C test check-hal                                  # the HAL still compiles
-python -m unittest discover -s tools -p "test_*.py"     # the Python tools, 77
+python -m unittest discover -s tools -p "test_*.py"     # the Python tools
 python tools/replay.py --every 100 test/fixtures/07_accel.txt
 python tools/replay.py --host-build test/fixtures/*.txt
 
@@ -63,7 +70,6 @@ two, so the reference and the code that gets flashed cannot drift apart.
 | `docs/refuel-reset.md` | resetting the average on refuelling, and the tank audit |
 | `docs/timing.md` | what every part costs in cycles, and the margins |
 | `docs/refuted.md` | ideas that were believed and turned out wrong — **all three repositories** |
-| `docs/implementation-plan.md` | the original plan, kept as a historical record |
 | `test/fixtures/README.md` | description of the logs and known data defects |
 | `mplab/README.md` | how to build the firmware, and what JP2 is for |
 

@@ -60,7 +60,7 @@ value, it would fire on every pull-away.
 
 ## Why not the trip reset from the instrument cluster
 
-The original design (see `implementation-plan.md`, §5) wanted to hook into the
+The original design wanted to hook into the
 cluster's trip reset and had two variants behind an `#ifdef`.
 `06_trip_reset.txt` was recorded to settle that choice and **has not been
 analysed yet**.

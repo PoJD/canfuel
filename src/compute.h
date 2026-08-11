@@ -8,7 +8,10 @@
  * Two entry points drive it:
  *
  *   compute_on_fuel()  called for every 0x480, which is the heartbeat of the
- *                      whole device at 49.5 ms
+ *                      whole device. 0x480 HAS NO FIXED PERIOD -- it arrives
+ *                      on a 10 ms grid, 26/s at idle and 18/s at 2600 rpm, so
+ *                      nothing here may assume a rate. See can-decoding.md
+ *                      question 1.
  *   compute_tick()     called on the scheduler tick: integrates distance and
  *                      samples the tank
  *
@@ -69,7 +72,6 @@ typedef struct {
     uint32_t tank_damped_ml;    /* 0.001 l, first order, TANK_DAMP_SAMPLES  */
     bool     tank_damped_valid;
     uint32_t last_tank_ms;
-    bool     have_tank_ms;
     uint32_t refuels;           /* how often the trip was cleared           */
 
     /* --- liveness ------------------------------------------------------- */

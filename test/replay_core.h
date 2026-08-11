@@ -24,8 +24,18 @@ typedef struct {
     bool           timestamped;
 } replay_result_t;
 
-/* Synthetic clock for the slcan fixtures: n * 49.5 ms, rounded to whole
- * milliseconds because that is the resolution the firmware's timer has. */
+/* Synthetic clock for the five oldest fixtures, which carry no timestamps at
+ * all: n * 49.5 ms, rounded to whole milliseconds because that is the
+ * resolution the firmware's timer has.
+ *
+ * THE PERIOD IS FICTIONAL AND IS KNOWN TO BE. 0x480 has no fixed period --
+ * measured with adapter timestamps it is 26.4 frames/s at idle and 18.0 at
+ * 2586 rpm (can-decoding.md question 1). This exists so the two
+ * implementations can be diffed against each other on those five logs, which
+ * needs *a* clock rather than a correct one; every duration, flow and distance
+ * derived from them is invalid as a fact about the car. The fuel totals are
+ * not, because the counter is absolute. Use a _z1 fixture for anything that
+ * has to be true. */
 static inline uint32_t replay_synthetic_ms(uint32_t n)
 {
     return (n * 99u + 1u) / 2u;

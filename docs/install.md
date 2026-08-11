@@ -3,11 +3,21 @@
 The whole path, in the order it has to happen, across all three repositories.
 Every step says what it needs, what it proves, and how you know it worked.
 
-**Nothing below has been done yet.** The firmware builds, the board is
-manufactured and the display's configuration is verified in the car — but no
-board has been populated, programmed or wired in. Steps 4 onwards are written
-from the datasheets and the design, not from experience, and they say so where
-it matters. Correct this document as you go; that is what it is for.
+**Steps 1 to 3 are written from experience. Steps 4 onwards are not** — they
+come from the datasheets and the design, and they say so where it matters.
+Correct this document as you go; that is what it is for, and it is the one
+document that is meant to outlive the project's own notes.
+
+> **Where this car is, 2026-08-11.** Steps 1, 2 and 3 are done: the firmware
+> builds and its tests pass, `S-AQY.TRI` is uploaded and verified on the
+> display, and the harness is built, fitted and measured — **5.01 V at the
+> 4-pin the board will plug into**, with the display since run on that loom
+> using DuPont jumpers in place of the board.
+>
+> **The next action is step 4**, and it is waiting on the boards, which were
+> ordered on 2026-08-09 and are expected in the week of 2026-08-17. Nothing
+> else is outstanding: one calibration question remains open and it is a
+> refinement, not a blocker — see *Then: calibration*.
 
 ```
 git clone git@github.com:PoJD/canfuel.git
@@ -38,32 +48,36 @@ The order is chosen so that each step can fail cheaply and be understood on its
 own. **Do not skip step 4**: it costs ten minutes on a desk and it is the only
 one that tests the CAN driver without a car attached.
 
-| # | Step | Needs | Repository |
-|---|---|---|---|
-| 1 | Build and test on a PC | gcc, make, Python | `canfuel` |
-| 2 | Upload the display configuration | the display, a PC, oDSS | `mfd15` |
-| 3 | Make up the harness | crimping tools, the loom parts | `kicad` |
-| 4 | Populate and programme a board, loopback on the desk | PICkit, XC8 | `canfuel` |
-| 5 | Listen only, in the car | the car | `canfuel` |
-| 6 | Transmit, in the car | the car | `canfuel` |
-| 7 | Check it against the raw counter | a drive | — |
+| # | Step | Needs | Repository | This car |
+|---|---|---|---|---|
+| 1 | Build and test on a PC | gcc, make, Python | `canfuel` | done |
+| 2 | Upload the display configuration | the display, a PC, oDSS | `mfd15` | done |
+| 3 | Make up the harness | crimping tools, the loom parts | `kicad` | done |
+| 4 | Populate and programme a board, loopback on the desk | PICkit, XC8 | `canfuel` | **next** |
+| 5 | Listen only, in the car | the car | `canfuel` | |
+| 6 | Transmit, in the car | the car | `canfuel` | |
+| 7 | Check it against the raw counter | a drive | — | |
 
 Steps 1 to 3 are independent of each other and can be done in any order or in
 parallel. From 4 on, the order is the point.
+
+The last column is where this particular car has got to; it is the only
+progress tracker the project keeps, and every other document that wants to say
+"what next" points here instead of answering it.
 
 ---
 
 ## 1. Build and test on a PC
 
-No hardware at all. This proves the arithmetic against seven real recordings
-from the car before anything is soldered.
+No hardware at all. This proves the arithmetic against real recordings from the
+car before anything is soldered.
 
 ```
 cd canfuel
-make -C test test            # 250 checks
+make -C test test            # 250+ checks
 make -C test check-pure      # no <xc.h> anywhere in the core
 make -C test check-hal       # the HAL still compiles
-python -m unittest discover -s tools -p "test_*.py"        # 77 tests
+python -m unittest discover -s tools -p "test_*.py"        # 80+ tests
 python tools/replay.py --host-build test/fixtures/*.txt    # Python vs C
 ```
 
@@ -78,8 +92,8 @@ python tools/replay.py --every 100 test/fixtures/07_accel.txt
 reason is in `CLAUDE.md` under *Local toolchain* and it is a quirk of the shell,
 not of the repository.
 
-**What it proves.** The core reproduces the Python reference on all seven logs —
-fuel totals and restart counts exactly, distance to within 7 mm over 54 m — and
+**What it proves.** The core reproduces the Python reference on every recorded
+log — fuel totals and restart counts exactly, distance to within 7 mm over 54 m — and
 both were checked against figures measured in the car. It proves nothing at all
 about the hardware.
 

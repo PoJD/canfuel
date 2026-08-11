@@ -23,7 +23,7 @@
 #define CAN_ID_COOLANT          0x288u  /* coolant temperature              */
 #define CAN_ID_TANK             0x320u  /* fuel level, reserve lamp, doors  */
 #define CAN_ID_OIL              0x420u  /* oil temperature                  */
-#define CAN_ID_FUEL             0x480u  /* the fuel counter, 49.5 ms        */
+#define CAN_ID_FUEL             0x480u  /* the fuel counter; no fixed period */
 #define CAN_ID_ACCEL            0x5A0u  /* acceleration                     */
 
 /* Outgoing, ours. Free on this bus -- see docs/frames.md. */
@@ -54,7 +54,6 @@
 
 /* --- timing ------------------------------------------------------------- */
 
-#define PERIOD_FUEL_MS          49      /* nominal period of 0x480, see below */
 #define TX_FAST_MS              100     /* 0x600 and 0x601                    */
 #define TX_SLOW_MS              1000    /* 0x602 and the EEPROM slot          */
 #define RX_POLL_MS              10      /* scheduler slot that drains the CAN */
@@ -64,9 +63,13 @@
  * reading, which would look plausible and be wrong. */
 #define DATA_TIMEOUT_MS         500u
 
-/* Sliding window the instantaneous flow is averaged over. At the 49.5 ms
- * period of 0x480 that is roughly twenty samples; the slot count carries
- * headroom for the duplicate frames that make up 39-51 % of every log. */
+/* Sliding window the instantaneous flow is averaged over. 0x480 has NO fixed
+ * period -- measured with adapter timestamps it is 26.4 frames/s at idle and
+ * 18.0 at 2586 rpm, on a 10 ms grid (can-decoding.md question 1) -- so the
+ * window is defined in milliseconds and the slot count simply has to be large
+ * enough for the fastest arrival plus the duplicate frames that make up
+ * 39-51 % of the older logs. Thirty-two slots against roughly twenty-six
+ * frames in a second at idle. */
 #define FLOW_WINDOW_MS          1000u
 #define FLOW_WINDOW_SLOTS       32
 

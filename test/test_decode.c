@@ -34,13 +34,12 @@ static void test_rpm(void)
     TT_EQ(decode_rpm(&st), 804);
 }
 
-static void test_torque_throttle_load(void)
+static void test_torque_and_throttle(void)
 {
     decode_state_t st;
     decode_init(&st);
     feed(&st, CAN_ID_ENGINE, "0123900c25261725");
     TT_EQ(st.throttle, 0x26);
-    TT_EQ(st.load, 0x17);
     TT_EQ(st.torque_ind_cnm, 0x25 * TORQUE_CNM_PER_BIT);
 }
 
@@ -248,7 +247,7 @@ int main(void)
 {
     printf("test_decode\n");
     TT_RUN(test_rpm);
-    TT_RUN(test_torque_throttle_load);
+    TT_RUN(test_torque_and_throttle);
     TT_RUN(test_clt);
     TT_RUN(test_clt_error_value);
     TT_RUN(test_oil_error_value);
