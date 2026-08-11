@@ -9,3 +9,10 @@ test/Makefile text eol=lf
 *.pdf binary
 *.hex binary
 *.elf binary
+
+# Fixtures are measurements and are never rewritten -- test/fixtures/README.md
+# says "do not edit", and silently converting their line endings is an edit.
+# The VCDS export in particular is CRLF and cp1250 as the tool wrote it, and
+# it is quoted byte-for-byte in the analysis. The slcan captures are already
+# LF, so this pins what is true rather than changing anything.
+test/fixtures/** -text
