@@ -91,7 +91,7 @@ purpose — those are powers of two and the compiler emits a mask.
 |---|---|---|---|
 | `tank_median` | 19,870 cycles, 4.97 ms | 2,453 cycles, 613 µs | **8.1x** |
 | `compute_tick` | 26,944 cycles, 6.74 ms | 9,048 cycles, 2.26 ms | **3.0x** |
-| worst pass through the loop | 18.22 ms | 13.75 ms | 1.3x |
+| `main`, one pass, all worst cases | 18.22 ms | 13.75 ms | 1.3x |
 | program memory | 11,424 bytes | 11,300 bytes | smaller |
 | RAM | 558 bytes | 686 bytes | +128 |
 
@@ -166,8 +166,12 @@ still has to be honest — and the audit is what forces the human to look.
 
 `txframes_gather` was the largest single item at 6.40 ms and it is nine 32-bit
 divisions. `___lldiv` costs 1,026 cycles — 257 µs — every time. It is now
-4.35 ms, a **32 % cut**, and the worst pass through the loop went 13.75 → 11.17
-ms.
+4.35 ms, a **32 % cut**, and `main` went 13.75 → 11.17 ms.
+
+(That is the `main` figure `cycles.py` prints. The worst *pass* in
+`docs/timing.md` is a larger number — 11.67 ms — because it stacks a full
+eight-frame FIFO drain on top, which one call to `main` does not represent.
+The two are consistent; they measure different things.)
 
 **The usual trick does not work on this compiler, and finding that out first
 saved building the wrong thing.** Dividing by a constant is normally replaced

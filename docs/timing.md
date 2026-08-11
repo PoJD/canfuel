@@ -75,7 +75,7 @@ every time a 32-bit division is written in the core.
 | `persist_crc16` (10 bytes x 8 bits) | 2,119 | 530 µs |
 | `hal_sys_vdd_c` (plus 22 µs of A/D) | 1,112 | 300 µs |
 | `___lldiv`, one 32-bit division | 1,026 | 257 µs |
-| `decode_frame` | 507 | 127 µs |
+| `decode_frame` | 1,235 | 309 µs |
 | `hal_can_send` | 286 | 72 µs |
 | `hal_can_receive` | 234 | 59 µs |
 | `hal_sys_millis` | 25 | 6 µs |
@@ -126,7 +126,7 @@ table changes with it, or this whole document quietly measures the past.
 | | Cycles | Time |
 |---|---|---|
 | `hal_sys_watchdog_clear` + `hal_sys_millis` | 26 | 7 µs |
-| FIFO drain, 8 frames, one of them 0x480 | 8,856 | 2.21 ms |
+| FIFO drain, 8 frames, one of them 0x480 | 15,489 | 3.87 ms |
 | `compute_tick`, moving, no tank sample | 1,534 | 384 µs |
 | `compute_tick`, standing, tank median worst case | 6,900 | 1.73 ms |
 
@@ -169,37 +169,38 @@ FIFO.
 Stacking every worst case that can genuinely land in the same pass:
 
 ```
-FIFO drain (8 frames)            2.21 ms
+FIFO drain (8 frames)            3.87 ms
 compute_tick, tank median        1.73 ms
 the 100 ms slot                  5.07 ms
 the 1 s slot, not writing        0.98 ms
                                 --------
-worst pass without an EEPROM write      10.0 ms
-plus the once-a-minute EEPROM write     ~58.0 ms
+worst pass without an EEPROM write     11.67 ms
+plus the once-a-minute EEPROM write    ~59.7 ms
 ```
 
-Every figure here comes from `tools/cycles.py` against a real build. The same
-pass measured 18.2 ms before the tank median stopped sorting and 13.7 ms before
-constant division stopped using `___lldiv`, both on 2026-08-11. What changed
-and why is `docs/optimisation.md`.
+Every figure here comes from `tools/cycles.py` against a real build. **The same
+pass measured 18.72 ms before the optimisation work of 2026-08-11** — 5.01 ms
+of the difference is the tank median, 2.05 ms is constant division. Both
+figures are from this tool, so they compare like with like; what changed and
+why is `docs/optimisation.md`.
 
 Against the two deadlines:
 
-- **The 100 ms transmit cadence.** A 12.6 ms pass leaves an **8× margin**. The
-  once-a-minute pass leaves 1.65×, so 0x600 and 0x601 arrive up to 60 ms late
-  once a minute and the display sees a gap of about 160 ms instead of 100 ms.
-  Nothing reads a period, so this is invisible.
+- **The 100 ms transmit cadence.** An 11.67 ms pass leaves an **8.6× margin**,
+  where before the optimisation it left 5.3×. The once-a-minute pass leaves
+  1.7×, so 0x600 and 0x601 arrive up to 60 ms late once a minute and the
+  display sees a gap of about 160 ms instead of 100 ms. Nothing reads a period,
+  so this is invisible.
 - **`RX_POLL_MS`, the 10 ms the FIFO must not fall behind by.** The worst
-  non-EEPROM pass is 12.6 ms, which is over that number — but the number is
-  conservative, and what actually matters is the FIFO's depth. Eight buffers
-  against 3.58 frames per 10 ms is **22 ms of blindness before anything is
-  lost**, so a 12.6 ms pass loses nothing. The EEPROM write does overflow the
-  FIFO, which is analysed in `main.c` and is harmless: the fuel delta is
-  modulo-32768 so a gap costs nothing, and distance is integrated against the
-  clock rather than against frame arrivals. The EEPROM write does overflow
-  the FIFO, which is analysed in `main.c` and is harmless: the fuel delta is
-  modulo-32768 so a gap costs nothing, and distance is integrated against the
-  clock rather than against frame arrivals.
+  non-EEPROM pass is 11.67 ms, which is over that number — as it was before, at
+  18.72 ms. The constant is a conservative statement of intent rather than the
+  real limit; what actually decides whether a frame survives is the FIFO's
+  depth. Eight buffers against 3.58 frames per 10 ms is **22 ms of blindness
+  before anything is lost**, so an 11.67 ms pass loses nothing and the headroom
+  went from 3.3 ms to 10.3 ms. The EEPROM write does overflow the FIFO, which
+  is analysed in `main.c` and is harmless: the fuel delta is modulo-32768 so a
+  gap costs nothing, and distance is integrated against the clock rather than
+  against frame arrivals.
 
 The millisecond ISR is 3.5 µs every 1 ms — **0.35 % of the CPU** — and it is
 the only interrupt in the firmware.
@@ -240,10 +241,41 @@ So the sequence is:
 4. **The FIFO refills from empty** the moment the loop comes round again and
    `hal_can_receive()` drains it, which takes 59 µs a frame.
 
-For the once-a-minute write that means roughly 21 ms buffered and 27 ms
-dropped, or about ten lost frames: three or four of 0x1A0, a couple each of
-0x280 and 0x288, and — at roughly 26 a second at idle — one or two 0x480
-among them.
+### What is actually lost, and when
+
+Two cases, and only one of them loses anything. Both are the current code;
+the columns beside them are the same arithmetic against the code as it stood
+before the optimisation work of 2026-08-11, measured with this same tool so
+the two are comparable.
+
+| | before | now | the FIFO holds |
+|---|---|---|---|
+| worst pass, no EEPROM write | 18.72 ms | **11.67 ms** | 22 ms |
+| headroom before anything is dropped | 3.3 ms | **10.3 ms** | |
+| worst pass **with** the write | 66.72 ms | **59.67 ms** | |
+
+**Outside the EEPROM write, nothing is dropped in either version** — that is
+what the 22 ms buys. What changed is the margin: it was 3.3 ms and is now
+10.3 ms, three times as much. That matters more than the milliseconds, because
+the old worst case needed an unlucky tank ring to reach and would have been
+within one bad coincidence of the limit.
+
+**During the write, both versions drop frames**, because the ~48 ms of D122
+dominates everything the CPU does. At the measured idle rate of 357 frames a
+second:
+
+| Frame | per second | lost before | lost now |
+|---|---|---|---|
+| 0x1A0 speed | 129.8 | 5.8 | **4.9** |
+| 0x280 engine | 93.9 | 4.2 | **3.5** |
+| 0x288 coolant | 76.2 | 3.4 | **2.9** |
+| 0x320 tank | 27.0 | 1.2 | **1.0** |
+| 0x480 fuel counter | 26.4 | 1.2 | **1.0** |
+| 0x420 oil | 4.1 | 0.2 | **0.2** |
+| **total** | **357** | **~16** | **~13.5** |
+
+Eleven per cent fewer, which is the least interesting number on this page: the
+loss is dominated by the EEPROM and no amount of arithmetic will change that.
 
 None of that costs anything, which is the analysis already written out in
 `main.c` and is worth repeating here because this is where the numbers are:
@@ -262,8 +294,15 @@ None of that costs anything, which is the analysis already written out in
 `main.c` then clears the overflow flag, because an overflow we caused
 deliberately, once a minute, is not a fault worth putting on an LED.
 
-The **ordinary** worst pass, 12.8 ms, is inside the 21 ms the FIFO holds, so
+The **ordinary** worst pass, 11.67 ms, is inside the 22 ms the FIFO holds, so
 outside the EEPROM write nothing is dropped at all.
+
+⚠ **`RX_POLL_MS` is 10 ms and the worst pass is 11.67 ms, so it is still
+exceeded** — as it was before, at 18.72 ms. That constant is a conservative
+statement of intent rather than the real limit; what actually decides whether a
+frame survives is the FIFO's depth, and 22 ms of it against a 11.67 ms pass is
+a factor of nearly two. Tightening the pass below 10 ms would buy nothing that
+the eight buffers do not already provide.
 
 ---
 
