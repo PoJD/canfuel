@@ -75,4 +75,14 @@ mplab/   the device build: a plain Makefile and an MPLAB X project
 
 ## Licence
 
-Not decided yet.
+[Apache License 2.0](LICENSE). Use it, change it, build one, sell one — the
+only obligations are to keep the copyright and licence notices and to say what
+you changed.
+
+**`NOTICE` lists what is not ours.** The two manufacturer datasheets in `docs/`
+are Microchip's and are redistributed for reference only; the licence above
+does not cover them and does not claim to. Everything else in this repository
+is covered.
+
+Questions, corrections and pull requests are welcome as issues on any of the
+three repositories.

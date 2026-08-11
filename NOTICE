@@ -1,0 +1,27 @@
+canfuel — fuel consumption converter firmware
+Copyright 2026 PoJD (https://github.com/PoJD)
+
+Licensed under the Apache License, Version 2.0. See the LICENSE file.
+
+================================================================================
+Third-party material redistributed in this repository
+================================================================================
+
+The files listed below are NOT covered by the Apache License 2.0. They remain
+the copyright of their respective owners and are included here only for
+reference, so that firmware work does not depend on a sibling checkout or on a
+working internet connection. No licence to them is granted by this repository,
+and nothing in the LICENSE file should be read as claiming any right in them.
+
+  docs/pic18f25k80-datasheet.pdf
+      Microchip Technology Inc. — PIC18F66K80 family data sheet, DS39977C.
+      Copyright (c) 2011 Microchip Technology Inc.
+
+  docs/mcp2562-datasheet.pdf
+      Microchip Technology Inc. — MCP2561/2 data sheet, DS20005167C.
+      Copyright (c) 2013-2014 Microchip Technology Inc.
+
+Both are cited throughout the firmware and the documentation by document number
+and section, so removing them costs traceability but breaks nothing: every
+citation still names the document it came from and both are published by
+Microchip.
