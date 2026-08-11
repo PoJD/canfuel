@@ -159,9 +159,9 @@ def _parse_slcan(line: str) -> Optional[Frame]:
     # digits of milliseconds, present only when the adapter was opened with
     # Z1. THIS IS THE GOOD KIND OF TIMESTAMP: it is stamped in the adapter
     # when the frame arrives, not by the host when it gets round to the line.
-    # docs/can-decoding.md open question 9 is about exactly that difference --
-    # the two logs in viewer format carry host times and disagree with the
-    # rest of the fixtures by roughly a factor of two.
+    # docs/can-decoding.md question 9 was about exactly that difference and is
+    # resolved: the two logs in viewer format carry host times and are wrong by
+    # roughly a factor of two. Adapter timestamps are the only ones to trust.
     #
     # The counter wraps, and the wrap value is not stated in USBtin's
     # documentation. It is measured now -- see TIMESTAMP_WRAP_MS below.
@@ -311,7 +311,7 @@ def _summary(path: str, frames: list[Frame]) -> None:
     if not stamped:
         fmt = "slcan (no timestamps)"
     elif _looks_like_viewer(path):
-        fmt = "USBtinViewer export (host timestamps -- see open question 9)"
+        fmt = "USBtinViewer export (host timestamps -- wrong by ~2x, question 9)"
     else:
         fmt = "slcan with Z1 (adapter timestamps)"
 
@@ -406,8 +406,8 @@ def main(argv: Optional[list[str]] = None) -> int:
                     help="restrict to this ID, repeatable (e.g. --id 0x480)")
     ap.add_argument("--gaps", action="store_true",
                     help="report the interval between frames of each ID -- the "
-                         "measurement open question 9 wants. Needs a log with "
-                         "timestamps; add --id for a histogram of one ID.")
+                         "measurement that resolved questions 1 and 9. Needs a "
+                         "log with timestamps; add --id for a histogram of one ID.")
     ap.add_argument("--strict", action="store_true", help="fail on the first damaged line")
     ap.add_argument("--fix-doubled", action="store_true",
                     help="drop the second copy when the file holds the recording twice")

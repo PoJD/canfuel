@@ -38,8 +38,8 @@ typedef struct {
     uint8_t  tank_l;
     bool     tank_reserve;
 
-    /* Longitudinal or lateral acceleration, from 0x5A0 b0. Which one is
-     * still an open question in docs/can-decoding.md. */
+    /* Lateral acceleration, from 0x5A0 b0. Positive is a left-hand turn,
+     * measured in the car on 2026-08-11 -- docs/can-decoding.md question 5. */
     int16_t  accel_mg;          /* 0.001 g                                  */
 
     /* The fuel counter, from 0x480 b2-b3. Already masked to 15 bits;

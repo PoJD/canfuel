@@ -275,18 +275,30 @@ Two more worth doing on the first drive:
 
 Two things are known to be approximate and both need the car:
 
-- **The torque scale**, 0.75 Nm/bit, is a decision inside a bracket the factory
-  ratings imply rather than a measurement. A VCDS measuring block settles it in
-  one session — `docs/can-decoding.md` open question 8 has the procedure, and
-  question 3 wants the same session.
-- **Drag torque under load.** The current model is a straight line through two
-  idling measurements and says nothing about pulling.
+- **Drag torque on hot oil**, and it is the one worth the trip. The line was
+  refitted on 2026-08-11 on four free-revving holds at 72–77 °C, replacing one
+  fitted on cold oil, and the torque scale moved 0.75 → 0.74 Nm/bit with it.
+  But 72–77 °C is warm, not the 95–110 °C of real driving, so it probably still
+  overstates drag a little. Same sweep, hotter oil, in neutral.
+  `docs/can-decoding.md` question 7 has the reasoning and the procedure.
 
-And one that needs a jerrycan: **the tank**, which wants a known quantity put in
-to check the level against.
+  **At a standstill with the throttle shut the display must read zero torque
+  and zero power** — cold or warm. That is the idle gate (`frames.md`), a fixed
+  requirement rather than a side effect of the drag fit, and it is worth
+  checking on the first drive: if a stationary car shows a number, something is
+  wrong with the speed or throttle decoding, not with the calibration.
+- **The tank**, which needs a jerrycan: a known quantity put in, to check the
+  level against.
 
-`docs/can-decoding.md` lists every open question with what would close it. Two
-of them fall out of a single sixty-second recording on a live bus.
+**The torque scale, 0.75 Nm/bit, is deliberately not on that list.** It is a
+decision inside the narrow bracket the factory ratings imply rather than a
+measurement, and the VCDS session that was supposed to settle it found that
+this ECU has no torque measuring block at all. It is parked under *Never
+resolved but not required* in `docs/can-decoding.md` — **do not plan that
+session again.**
+
+`docs/can-decoding.md` now has exactly one open question, and it is the drag
+line above.
 
 ---
 

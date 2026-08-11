@@ -177,51 +177,130 @@
  *
  * The AQY is rated 85 kW at 5200 rpm and 170 Nm at 2400 rpm (115 PS is the
  * horsepower figure, not a torque one). Requiring b7 = 255 to reproduce each
- * rating in turn brackets the scale:
+ * rating in turn brackets the scale -- and the bracket MOVES WITH THE DRAG
+ * LINE, because what b7 = 255 has to cover is the rated crank figure plus the
+ * drag at that speed. On the cold-oil drag line the bracket was 0.745 to
+ * 0.773 and 0.75 was chosen inside it. On the warm line below it is
  *
- *   85 kW at 5200 rpm   -> 0.745 Nm/bit
- *   170 Nm at 2400 rpm  -> 0.773 Nm/bit
+ *   85 kW at 5200 rpm   -> 0.736 Nm/bit
+ *   170 Nm at 2400 rpm  -> 0.738 Nm/bit
  *
- * 0.75 sits inside that bracket, reproduces both ratings to within 3 % (165 Nm
- * and 85.6 kW), is the same round step VW uses for the two temperature
- * channels in this very frame set, and errs low on torque, which is the
- * conservative direction for a number on a dashboard.
+ * which is a bracket 0.3 % wide rather than 3.7 %, so the two factory ratings
+ * now agree with each other about the scale instead of arguing. 0.74 sits
+ * inside it and reproduces both to better than 0.5 %: 85.4 kW at 5200 rpm and
+ * 170.4 Nm at 2400 rpm, against 85 and 170.
  *
- * What would settle it: a VCDS measuring block against b7, or a full-throttle
- * sniff. Neither exists. test_compute.c pins the ceiling so that a future
- * change cannot quietly put the factory figures out of reach again. */
-#define TORQUE_CNM_PER_BIT      75u         /* 0.75 Nm -- see above */
+ * Do not read that agreement as proof. The constraint is dominated by the
+ * SLOPE of the drag line; the intercept moves the two endpoints together, so
+ * a wrong intercept can still look consistent here. It is a check that passed,
+ * not a measurement.
+ *
+ * What would settle it: nothing available. The VCDS session was done on
+ * 2026-08-11 and this ECU (06A 906 018 EJ) has no torque measuring block --
+ * groups 001, 002, 003 and 020 offer engine load in per cent and nothing in
+ * Nm. The only remaining route is a full-throttle pull, which is deliberately
+ * not planned. The question is therefore parked, not open: see
+ * docs/can-decoding.md, chapter "Never resolved but not required", question 8.
+ * test_compute.c pins the ceiling so that a future change cannot quietly put
+ * the factory figures out of reach again. */
+#define TORQUE_CNM_PER_BIT      74u         /* 0.74 Nm -- see above */
 
-/* Drag torque -- friction, pumps, alternator -- rises with engine speed and
- * is modelled linearly. Both points come out of the fixtures and both are
- * reproduced exactly by the model:
- *
- *   02_idle_60s   797 rpm, b7 = 29 -> 21.75 Nm  (engine driving itself only)
- *   05_rev3000   2940 rpm, b7 = 37 -> 27.75 Nm  (neutral, so no wheel torque)
+/* Drag torque -- friction, pumping, alternator -- rises with engine speed and
+ * is modelled linearly:
  *
  *   drag_cnm = BASE + rpm * SLOPE / 10000
  *
- * These are the same two fixture points as ever; only TORQUE_CNM_PER_BIT
- * moved under them, so the line was refitted in the new units. The calibration
- * is in bytes, not Nm -- change the scale and these must be refitted with it,
- * or the model stops passing through its own measurements.
+ * REFITTED 2026-08-11 on the four warm free-revving holds, replacing a line
+ * through two COLD-OIL fixture points. Stationary, in neutral, oil 72.8-76.6 C
+ * off 0x420 b3, ~2,375 frames of 0x280 averaged per hold:
  *
- * KNOWN WRONG, and left in place deliberately until there is something better
- * to put here. Both fixture points were recorded on COLD OIL -- 60.8 C at idle
- * and 39.0 C at 2940 rpm, read off 0x420 b3. Repeating the same two operating
- * points on 2026-08-11 with the oil at 73-77 C gives b7 = 25 and 27 against the
- * fixtures' 29 and 37. Ten counts at 2930 rpm is 7.5 Nm, and the error grows
- * with engine speed because viscous friction does.
+ *   13_rev1500_z1   1536 rpm, b7 = 18.81, oil 72.8 C, throttle 48
+ *   14_rev1850_z1   1850 rpm, b7 = 20.66, oil 74.2 C, throttle 51
+ *   15_rev2372_z1   2372 rpm, b7 = 26.32, oil 75.3 C, throttle 56
+ *   16_rev2926_z1   2926 rpm, b7 = 27.23, oil 76.6 C, throttle 61
  *
- * This line is SUBTRACTED from indicated torque, so an overstated drag makes
- * the display understate torque and power, worst at high revs. Refitting is
- * phase 6 and needs a sweep taken after a drive, with the oil genuinely hot;
- * the idle point must be fitted separately or dropped, because idle is a
- * controlled state rather than a free-revving one and does not sit on the same
- * line -- b7 is 25.0 at 798 rpm and 18.8 at 1536, which is not monotonic.
- * See docs/can-decoding.md question 7. */
-#define DRAG_TORQUE_BASE_CNM    1952l       /* 19.52 Nm at 0 rpm            */
-#define DRAG_TORQUE_SLOPE_E4    2800l       /* 0.2800 cNm per rpm           */
+ * In neutral the crank drives nothing, so net torque is zero at every one of
+ * them and b7 IS the drag there. Least squares gives, in bytes,
+ *
+ *   drag_b7 = 9.11 + 0.006514 * rpm     residuals -0.9 to +1.8 counts
+ *
+ * and BASE/SLOPE below are that line times TORQUE_CNM_PER_BIT. The calibration
+ * is in BYTES, not Nm -- change the scale and this must be refitted with it.
+ *
+ * What it replaces and why. The old line was fitted on 02_idle_60s (60.8 C)
+ * and 05_rev3000 (39.0 C), and cold oil overstates drag most exactly where the
+ * fit is most sensitive to it. Since this is SUBTRACTED from indicated torque,
+ * an overstated drag understates torque and power on the display: the old line
+ * showed zero for 51 % of 17_drive_property_z1, where the new one shows a
+ * number for 78 % of it. Peak torque over that drive barely moves (105.8 ->
+ * 107.0 Nm) because at high load the drag is a small term; the whole
+ * difference is at part throttle, which is where a driver spends the time.
+ *
+ * THE IDLE POINT IS DELIBERATELY EXCLUDED, AND THE IDLE GATE COVERS IT.
+ * 11_idle_noac_z1 is 798 rpm at b7 = 24.96 on the same warm oil, which is ABOVE
+ * the line the other four make -- b7 falls 24.96 -> 18.81 between idle and
+ * 1536 rpm and only then starts rising. Idle is a different state: the
+ * throttle is at its rest position 38 against 48-61 for the holds, so the
+ * pumping loss against a nearly closed throttle is large, and the ECU is
+ * regulating speed rather than letting the engine free-rev. A straight line in
+ * rpm cannot pass through both, so idle is ASSERTED rather than fitted -- see
+ * IDLE_GATE_SPEED_MMH below, which returns zero outright for a standing car
+ * with the throttle shut. Do not "fix" the residual by raising BASE: that puts
+ * the line back above all four measured points and restores the
+ * understatement the refit removed, and the gate has already dealt with the
+ * only place it showed.
+ *
+ * STILL NOT HOT. 72-77 C is warm, not the 95-110 C of real driving, so this
+ * line very likely still overstates drag a little -- which is the conservative
+ * direction. Question 7 in docs/can-decoding.md stays open for exactly that,
+ * and is the only open question left. */
+#define DRAG_TORQUE_BASE_CNM    674l        /* 6.74 Nm at 0 rpm  (9.11 b7)  */
+#define DRAG_TORQUE_SLOPE_E4    4820l       /* 0.4820 cNm per rpm           */
+
+/* THE IDLE GATE. A car that is standing still with the throttle shut is
+ * putting out no net torque and no power, and the display says zero. This is
+ * A FIXED REQUIREMENT, NOT A CALIBRATION: it holds on cold oil and on hot, at
+ * any idle speed the ECU chooses, and it is not to be relaxed or made
+ * conditional by any future refit of the drag line. Modern cars behave this
+ * way and so does this one. test_compute.c asserts it directly, on every
+ * stationary fixture, and test_txframes.c asserts it on the assembled frame.
+ *
+ * Why it cannot come out of the drag line instead. In neutral the crank drives
+ * nothing, so net torque is zero at idle AND at every free-revving hold -- but
+ * b7 falls 24.96 -> 18.81 between 798 and 1536 rpm and only then starts
+ * rising, because at idle the throttle is nearly shut and the pumping loss is
+ * large. No straight line in rpm passes through both, so one of the two has to
+ * be asserted rather than fitted. Fitting idle is what the old cold-oil line
+ * effectively did, and it understated torque everywhere the car is driven.
+ *
+ * The construction is not ours. SAE J1979 carries actual engine percent torque
+ * (PID 0x62) and engine friction percent torque (PID 0x8E) as separate
+ * standard PIDs, which is exactly indicated-minus-friction, and PID 0x64
+ * "engine percent torque data" gives five reference points of which the FIRST
+ * IS IDLE -- i.e. the standard also treats the idle value as its own datum
+ * rather than a point on a curve. Read off the OBD-II PID tables at
+ * en.wikipedia.org/wiki/OBD-II_PIDs and csselectronics.com, which agree; the
+ * J1979 document itself is paywalled and has not been read. EVIDENCE, NOT A
+ * SPECIFICATION -- the rule above is a decision and stands on its own.
+ *
+ * Both thresholds are measured off the fixtures:
+ *
+ * SPEED. A stationary car does not send zero. 0x1A0 raw speed is 1 -- i.e.
+ * 0.005 km/h -- in every log while standing: 7953 frames in 06_trip_reset,
+ * 8002 in 02_idle_60s, 4859 in 17_drive_property_z1. The next value that ever
+ * appears is above 40 (0.2 km/h); nothing in between exists in any log. So the
+ * gate is a threshold rather than an equality, and 0.1 km/h sits an order of
+ * magnitude above the standing value and half an order below the slowest
+ * movement ever recorded.
+ *
+ * THROTTLE. 0x280 b5 reads exactly 38 at rest and 48-61 across the four
+ * free-revving holds; 18,060 of 34,495 frames in 17_drive_property_z1 are at
+ * 38. It is the pedal, not the load: b7 reaches 133 at throttle 38 while
+ * driving, which is why the throttle ALONE is not a gate and must be paired
+ * with the car standing still. Pulling away is throttle > 38 with the car
+ * still reading 1, so the gate lets go before the car moves. */
+#define IDLE_GATE_SPEED_MMH     100u        /* 0.1 km/h; standing sends 5   */
+#define THROTTLE_REST           38u         /* 0x280 b5 at rest             */
 
 /* Below this the engine is not running, it is being turned by the starter,
  * and b7 stops meaning anything: 06_trip_reset holds b7 = 191-192 through the

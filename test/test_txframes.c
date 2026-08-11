@@ -117,6 +117,10 @@ static void test_gather_zeroes_when_the_bus_is_quiet(void)
     decode_init(&st);
     st.rpm_q4 = 3000u * 4u;
     st.torque_ind_cnm = 15000;
+    /* Moving with the throttle open, so the idle gate is not what this test
+     * is measuring -- it is the bus-quiet timeout below. */
+    st.speed_mmh = 60000u;
+    st.throttle = 90u;
     st.tank_l = 40;
     st.fuel_counter_valid = true;
     st.fuel_counter = 1000;
@@ -174,8 +178,8 @@ static void test_gather_fills_a_full_frame(void)
     TT_EQ(be16(f + 6), 444);            /* 40 l at the 9.0 default */
 
     txframes_engine(&v, f);
-    TT_NEAR(be16(f + 0), 384, 2);       /* 38.4 kW  */
-    TT_NEAR(be16(f + 2), 1221, 2);      /* 122.1 Nm */
+    TT_NEAR(be16(f + 0), 405, 2);       /* 40.5 kW  */
+    TT_NEAR(be16(f + 2), 1288, 2);      /* 128.8 Nm */
     TT_EQ(be16(f + 6), 503);            /* 5.03 V   */
 }
 
@@ -201,7 +205,41 @@ static void test_idle_produces_sane_frames(void)
 
     txframes_engine(&v, f);
     TT_NEAR(be16(f + 4), 112, 15);      /* 1.12 l/h */
-    TT_EQ(be16(f + 2), 0);              /* idling produces no net torque */
+
+    /* IDLING PRODUCES NO NET TORQUE AND THE DISPLAY MUST SAY SO -- end to end,
+     * off a real log, through decode, compute and the assembled frame. This is
+     * the idle gate (config.h) and it is a fixed requirement, not a tolerance
+     * on the drag fit: 02_idle_60s is the worst case for it, b7 = 29 on 60.8 C
+     * oil, which the drag line alone would show as 10.9 Nm. Zero here, and
+     * zero at the two warm idle logs below.
+     *
+     * IF THIS GOES RED, FIX THE CODE, NOT THE TEST. */
+    TT_EQ(be16(f + 2), 0);              /* torque */
+    TT_EQ(be16(f + 0), 0);              /* power  */
+}
+
+/* The same end to end on the two warm idle recordings, one with the air
+ * conditioning running -- a real load on the engine that raises b7 from 25 to
+ * 42 and still must not put a number on the display, because the car is not
+ * going anywhere. */
+static void test_warm_idle_logs_also_show_zero_torque(void)
+{
+    static const char *const logs[] = { "11_idle_noac_z1.txt",
+                                        "12_idle_ac_z1.txt",
+                                        "09_idle_60s_z1.txt" };
+    size_t i;
+
+    for (i = 0; i < sizeof logs / sizeof logs[0]; i++) {
+        replay_result_t r;
+        tx_values_t v;
+        uint8_t f[TXFRAME_DLC];
+
+        TT_TRUE(replay_log(logs[i], &r));
+        txframes_gather(&v, &r.cp, &r.st, 500, r.cp.last_data_ms);
+        txframes_engine(&v, f);
+        TT_EQ(be16(f + 2), 0);          /* torque */
+        TT_EQ(be16(f + 0), 0);          /* power  */
+    }
 }
 
 static void test_every_log_stays_inside_the_gauges(void)
@@ -234,6 +272,7 @@ int main(void)
     TT_RUN(test_gather_zeroes_when_the_bus_is_quiet);
     TT_RUN(test_gather_fills_a_full_frame);
     TT_RUN(test_idle_produces_sane_frames);
+    TT_RUN(test_warm_idle_logs_also_show_zero_torque);
     TT_RUN(test_every_log_stays_inside_the_gauges);
     return TT_SUMMARY();
 }

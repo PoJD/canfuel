@@ -379,9 +379,9 @@ uint32_t compute_trip_m(const compute_t *c)
 
 uint16_t compute_torque_d(const decode_state_t *st)
 {
-    /* Drag torque -- friction, pumps, alternator -- is not constant; it rises
-     * with engine speed and is modelled linearly. Both calibration points come
-     * out of the fixtures, see config.h. */
+    /* Drag torque -- friction, pumping, alternator -- is not constant; it
+     * rises with engine speed and is modelled linearly. The four calibration
+     * points come out of the warm free-revving holds, see config.h. */
     uint32_t rpm = decode_rpm(st);
     uint32_t drag_cnm;
     uint32_t net_cnm;
@@ -390,6 +390,15 @@ uint16_t compute_torque_d(const decode_state_t *st)
      * the engine -- see TORQUE_MIN_RPM. This also covers the engine being off,
      * where rpm is zero. */
     if (rpm < TORQUE_MIN_RPM) {
+        return 0;
+    }
+
+    /* A STANDING CAR WITH THE THROTTLE SHUT MAKES NO NET TORQUE. THIS RULE IS
+     * FIXED AND IS NOT TO BE RELAXED, WHATEVER A FUTURE DRAG REFIT SAYS.
+     * The drag line cannot deliver this on its own -- idle sits above it by
+     * construction (config.h) -- so it is asserted here instead of fitted.
+     * IDLE_GATE_* in config.h holds the two thresholds and the evidence. */
+    if (st->speed_mmh <= IDLE_GATE_SPEED_MMH && st->throttle <= THROTTLE_REST) {
         return 0;
     }
 

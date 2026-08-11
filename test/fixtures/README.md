@@ -132,6 +132,15 @@ only way to separate a byte that follows load from one that follows speed. The
 A/C compressor changes 0x280 b7 by two thirds and 0x288 b6 by a third while
 0x288 b5 does not move by a single bit.
 
+**`13` to `16` became the drag-torque calibration**, which was not what the
+session was for. All four are stationary in neutral, so the crank drives
+nothing and 0x280 b7 *is* the drag there; least squares through them gives
+`drag_b7 = 9.11 + 0.006514 × rpm` and replaced a line fitted on two cold-oil
+fixtures. Oil was 72.8, 74.2, 75.3 and 76.6 °C, throttle 48, 51, 56 and 61.
+**`11` is deliberately not on that line** — 798 rpm at b7 = 24.96 sits above
+it, because idle is a regulated state with the throttle at its rest position
+38. See `docs/can-decoding.md` question 7 and the comment in `config.h`.
+
 ### Matching the two recordings
 
 **On engine speed, never on time.** The two tools have unrelated clocks and
@@ -174,7 +183,9 @@ CSV is taken as authoritative here; nothing depends on the sign.
   with engine speed at constant load, which is what a torque does and a load
   percentage does not.
 - **No measuring group on this ECU reports torque in Nm** — 001, 002, 003 and
-  020 were all examined. Open question 8 cannot be closed by diagnostics here.
+  020 were all examined. Question 8 cannot be closed by diagnostics here, and
+  is now parked under *Never resolved but not required* in
+  `docs/can-decoding.md`. Do not plan this session again.
 
 ⚠ **The A/C compressor cycles**, and hold `12` shows it: b7 spans 39–47 and b6
 spans 53–59 across the 25 s. It never falls back to hold `11`'s 25 and 41, so
@@ -205,8 +216,9 @@ ever moves; use the holds for anything that needs a number.
 
 **What it settled:** 0x288 b5 is not ignition advance. Above 1900 rpm the
 advance ranges over 19.5° while b5 is 152 in all 2,161 samples — a comparison
-of two ranges over the same six minutes, needing no clock alignment. See open
-question 3.
+of two ranges over the same six minutes, needing no clock alignment. See
+question 3, now parked under *Never resolved but not required* in
+`docs/can-decoding.md`.
 
 **Why its pairing is weak.** The two clocks align by cross-correlating engine
 speed at a lag of 44.0 s with r = 0.9896, but that is a single offset across
@@ -218,8 +230,25 @@ this file are therefore not comparable with the holds' and should not be
 quoted against them.
 
 **The oil barely warmed**, 75.0 → 77.2 °C over the whole drive, with coolant
-already at 100 °C. Low-speed pottering does not heat a sump; the drag-torque
-refit that open question 7 wants still has no data.
+already at 100 °C. Low-speed pottering does not heat a sump, so the **hot**-oil
+refit question 7 wants still has no data — and question 7 is now the only open
+question left in `docs/can-decoding.md`.
+
+What this log did settle is what the warm refit was worth. Replayed through
+each version, counting samples that display zero torque:
+
+| | zero | peak |
+|---|---|---|
+| old cold-oil drag line, 0.75 Nm/bit | 51.2 % | 105.8 Nm, 55.0 kW |
+| warm drag line, 0.74 Nm/bit | 22.0 % | 107.0 Nm, 55.4 kW |
+| warm line **plus the idle gate** (shipped) | 28.4 % | 107.0 Nm, 55.4 kW |
+
+Peak barely moves, because at high load the drag is a small term — the whole
+difference is at part throttle. The gate adds back 6.4 points of zero, and
+every one of them is a sample where the car was stationary with the throttle
+shut. This log is also the source of the gate's throttle evidence: 18,060 of
+its 34,495 0x280 frames sit at throttle 38, and b7 reaches **133** at that
+throttle while driving, which is why the throttle alone cannot gate anything.
 
 ---
 

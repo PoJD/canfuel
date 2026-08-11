@@ -927,9 +927,19 @@ first principles would propose again: an escape header for the unused pins, an
 enclosure, a submodule for `piclib`, reading the tank level straight off the
 bus, resetting the trip from the instrument cluster.
 
-Two rules for it. **Only settled-against things go in** — open questions live in
+Two rules for it. **Only settled-against things go in** — questions live in
 `can-decoding.md`. And **nothing is ever deleted from it**; if new evidence
 un-refutes an entry, say so inside the entry.
+
+`can-decoding.md` sorts its questions three ways and the distinction is worth
+keeping straight, because all three look similar from a distance:
+
+| Where | What it means |
+|---|---|
+| `refuted.md` | believed, then **settled against**. An answer exists and it is "no" |
+| `can-decoding.md` → *Resolved questions* | asked and **answered**, with the evidence kept |
+| `can-decoding.md` → *Never resolved but not required* | **no answer, and none wanted.** Do not work on these |
+| `can-decoding.md` → *Open questions* | genuinely open **and worth the effort**. There is one |
 
 ## Read `docs/can-decoding.md` before touching the maths
 
@@ -1058,7 +1068,7 @@ from them.
 `tools/usbtin_capture.py`. `06_trip_reset` and `07_accel` carry USBtinViewer's
 host timestamps and are **wrong by about a factor of two**; the other five carry
 no time at all, and the 49.5 ms period that used to be used to synthesise one
-**does not exist** — see open questions 1 and 9. Fuel totals are unaffected
+**does not exist** — see questions 1 and 9, both resolved. Fuel totals are unaffected
 everywhere, because the counter is absolute; it is durations, flows and
 distances that need a clock.
 
@@ -1113,11 +1123,82 @@ repeated here, because two copies of a plan diverge.
 In one line: loopback on a desk, programme a board, watch `LED_CAN`, listen
 before transmitting.
 
-After that, phase 6 — calibration. Drag torque under load (the current model is
-a straight line through two idling measurements and says nothing about pulling)
-and the tank, which needs a known quantity from a jerrycan.
+After that, phase 6 — calibration. The tank, which needs a known quantity from
+a jerrycan, and the drag line again on **hot** oil.
 
-**Also in phase 6: the torque byte's scale.** 0x280 b7 is a percentage of a
+**The drag line was refitted on 2026-08-11 and the torque scale moved with
+it.** It used to be a two-point line through `02_idle_60s` and `05_rev3000`,
+both of which turned out to have been recorded on cold oil — 60.8 °C and
+**39.0 °C**. It is now a least-squares fit through the four warm free-revving
+holds `13`–`16` (72.8–76.6 °C, stationary in neutral, so net torque is zero and
+b7 *is* the drag):
+
+```
+drag [Nm] = 6.74 + 0.00482 x rpm     was 19.52 + 0.0028 x rpm
+```
+
+Since the line is *subtracted* from indicated torque, the old one understated
+torque and power: over `17_drive_property_z1` it displayed zero through 51 % of
+the drive where this one displays a number through 78 %. Peak torque hardly
+moves (105.8 → 107.0 Nm) — the whole difference is at part throttle.
+
+**`TORQUE_CNM_PER_BIT` went 75 → 74 in the same breath, and had to.** Full
+scale b7 = 255 must cover the rated crank torque *plus* the drag at that speed,
+so the bracket the two factory ratings imply moves with the drag line: it was
+0.745–0.773 Nm/bit and is now 0.736–0.738. At 0.74 the display reaches 85.4 kW
+and 170.4 Nm against ratings of 85 and 170, where both used to land 3 % under.
+**These two constants are one calibration — never move one alone.**
+
+**The idle point is excluded from the fit, and the idle gate covers it.** b7
+falls 24.96 → 18.81 between idle and 1536 rpm before it starts rising, because
+idle is a regulated state with the throttle nearly shut, so no straight line in
+rpm fits both. Idle is therefore *asserted*, not fitted. Raising the intercept
+to compensate puts the line back above all four measured points and restores
+the understatement — do not do it.
+
+### The idle gate — fixed, and not to be relaxed
+
+**A car standing still with the throttle shut shows zero torque and zero power.
+This is a requirement, not a calibration.** Cold oil or hot, at whatever idle
+speed the ECU picks, whatever a future drag refit does. It lives in
+`compute_torque_d()` as
+
+```c
+if (speed_mmh <= IDLE_GATE_SPEED_MMH && throttle <= THROTTLE_REST) return 0;
+```
+
+and **six tests in `test_compute.c` plus two in `test_txframes.c` exist to stop
+it being relaxed by accident** — the latter end to end off the real idle logs,
+including `12_idle_ac_z1` where the air conditioning raises b7 from 25 to 42
+and the display must still read zero. If one of them goes red, the fix is the
+code, not the test.
+
+Both thresholds are measured, and neither is an equality:
+
+- **A standing car does not send zero.** 0x1A0 raw speed is **1** — 0.005 km/h
+  — in every log while stationary (7953 frames of it in `06_trip_reset`), and
+  the next value that ever appears is above 40. The gate is 0.1 km/h.
+- **0x280 b5 is 38 at rest** and never lower in any log. It is the pedal, not
+  the load — while driving, b7 reaches 133 with the throttle still at 38 —
+  which is why the throttle **alone** cannot be a gate and is paired with
+  standing still. Pulling away is throttle above rest while the car still reads
+  1, so the gate releases before the car moves.
+
+Supporting evidence, not a specification: SAE J1979 carries actual engine
+percent torque (PID 0x62) and engine friction percent torque (PID 0x8E) as
+separate standard PIDs — exactly indicated-minus-friction — and PID 0x64 gives
+five reference points of which **the first is idle**, so the standard also
+treats idle as its own datum rather than a point on a curve. `docs/frames.md`
+has the citations.
+
+The drag line is the **only open question left** in `docs/can-decoding.md` —
+72–77 °C is warm, not the 95–110 °C of real driving, so it still probably
+overstates drag slightly, which is the conservative direction. The questions
+register was sorted on 2026-08-11 into what changes this firmware and what does
+not; everything else is either resolved or parked.
+
+**Why the scale is a decision at all, and why it is now parked.** 0x280
+b7 is a percentage of a
 reference torque inside the ECU, not Nm, and turning it into Nm needs a number
 nobody here has. It was read at 0.67 Nm/bit — from "the AQY's maximum is
 172 Nm, so 172/256" — until 2026-08-11, when that premise turned out to
@@ -1129,11 +1210,16 @@ firmware could never have shown the 85 kW the car is sold with — it topped out
 at 76.5 kW at 5200 rpm, at any throttle opening. **Nothing tested that**, which
 is the part worth remembering.
 
-It is now 0.75 Nm/bit, a decision inside the 0.745–0.773 bracket that the two
-factory ratings imply, with the drag line refitted in the new units and the
-ceiling pinned by two tests in `test_compute.c`. A VCDS measuring block against
-b7 settles it properly; a full-throttle sniff would too and is not planned. See
-`docs/frames.md` and the comment in `config.h`.
+It is now **0.74 Nm/bit**, a decision inside the bracket the two factory
+ratings imply, with the ceiling pinned by two tests in `test_compute.c`. **The
+measurement that was
+supposed to settle it does not exist**: the VCDS session was run on 2026-08-11
+and this ECU has no torque measuring block, only engine load in per cent, and a
+full-throttle pull is deliberately not planned. The remaining uncertainty is
+under 4 % and there is nothing to run, so the question is parked under *Never
+resolved but not required* in `docs/can-decoding.md` rather than left open —
+**do not plan that session again.** See `docs/frames.md` and the comment in
+`config.h`.
 
 The breadboard phase is skipped — Micro-Fit has a 3.0 mm pitch and does not
 fit a breadboard. The boards themselves arrive during the week of 2026-08-17.

@@ -79,8 +79,10 @@ def decode(frame: Frame, st: Decoded) -> None:
         st.rpm = u16le(d, 2) * 0.25
         st.throttle = d[5]
         st.load = d[6]
-        # 0.75 Nm/bit, and the scale is a decision -- src/config.h argues it.
-        st.torque_ind_nm = d[7] * 0.75
+        # 0.74 Nm/bit, and the scale is a decision -- src/config.h argues it.
+        # It moved from 0.75 on 2026-08-11 when the drag line was refitted on
+        # warm oil; the two are calibrated together and must move together.
+        st.torque_ind_nm = d[7] * 0.74
 
     elif cid == 0x1A0 and len(d) >= 4:
         # Byte 1 is a bit field, not a single value. Bit 0x40 means "speed is

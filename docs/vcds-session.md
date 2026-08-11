@@ -1,4 +1,18 @@
-# The VCDS session — open questions 3 and 8
+# The VCDS session — questions 3 and 8
+
+⚠ **This session was run on 2026-08-11 and it is not to be run again.** It
+answered less than was hoped — b6 is injection time, b5 is not any of the three
+candidates, and this ECU has no torque measuring block at all — and on the
+strength of that both questions were parked under *Never resolved but not
+required* in `can-decoding.md`. What came out of it, including the drag-torque
+finding that turned out to be worth more than either question, is recorded
+there and in `test/fixtures/README.md`.
+
+**The document below is kept as the record of what was planned and how**, not
+as an invitation. The rig — VCDS and the USBtin on the bus together, matched on
+engine speed — is reusable and is the reason to keep it; the questions are not.
+
+---
 
 One session in the car settles both, because both want the same thing: the
 ECU's own idea of a quantity, read through diagnostics, next to the raw bytes

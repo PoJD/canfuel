@@ -145,7 +145,7 @@ damped level tracks consumption, which is the entire point of a range gauge.
 
 ## Torque and Power
 
-**The byte scale, 0.75 Nm/bit, is a decision.** 0x280 b7 is not Nm — it is a
+**The byte scale, 0.74 Nm/bit, is a decision.** 0x280 b7 is not Nm — it is a
 percentage of a reference torque held in the ECU's calibration. It used to be
 read at 0.67 Nm/bit, from "the AQY's maximum is 172 Nm, so 172/256". That
 premise is wrong on the fixtures' own evidence: at 2940 rpm in neutral
@@ -155,47 +155,123 @@ the rated crank figure plus the drag at that speed. Scaling to the crank
 maximum and then subtracting drag counts the friction twice.
 
 Requiring b7 = 255 to reproduce each factory rating in turn brackets the scale
-between **0.745** (85 kW at 5200 rpm) and **0.773** Nm/bit (170 Nm at
-2400 rpm). 0.75 sits inside the bracket, reproduces both to within 3 %, and
-errs low on torque. A VCDS measuring block or a full-throttle sniff would
-settle it; neither exists yet. `test_compute.c` pins the ceiling so the
-factory figures cannot silently go out of reach again.
+— and **the bracket moves with the drag line**, because what full scale has to
+cover is the rated crank figure *plus* the drag at that speed. On the old
+cold-oil line the two ratings disagreed, 0.745 (85 kW at 5200 rpm) against
+0.773 Nm/bit (170 Nm at 2400 rpm). On the warm line below they nearly agree:
+
+| | bracket | at the chosen scale |
+|---|---|---|
+| cold-oil drag line, 0.75 Nm/bit | 0.745 – 0.773 (3.7 % wide) | 85.6 kW, **165 Nm** — 3 % under the rating |
+| warm drag line, **0.74 Nm/bit** | **0.736 – 0.738** (0.3 % wide) | **85.4 kW, 170.4 Nm** — both within 0.5 % |
+
+That the two independent ratings now agree about the scale is a check that
+passed, not a measurement: the constraint is dominated by the drag line's
+*slope*, so a wrong intercept can still look consistent. **Nothing available
+settles it, and it is no longer an open question.** The VCDS session was run on
+2026-08-11 and this ECU has no torque measuring block at all; a full-throttle
+pull would settle it and is deliberately not planned. It is parked under *Never
+resolved but not required* in `can-decoding.md` — do not plan that session
+again. `test_compute.c` pins the ceiling so the factory figures cannot silently
+go out of reach.
 
 **Drag torque** — friction, pumps, alternator — is subtracted from the
 indicated torque. It is not constant; it rises with engine speed and is
 modelled linearly against rpm.
 
-Two calibration points, both already in the logs:
+**Refitted on 2026-08-11 on warm oil.** Four calibration points, the
+free-revving holds `13` to `16`, all stationary in neutral so the crank drives
+nothing and b7 *is* the drag:
 
-- idle (`02_idle_60s`, 797 rpm)
-- 2940 rpm in neutral (`05_rev3000`) — torque at the wheels is zero there, so
-  indicated torque equals drag torque
+| Hold | rpm | b7 | oil | throttle |
+|---|---|---|---|---|
+| `13_rev1500_z1` | 1536 | 18.81 | 72.8 °C | 48 |
+| `14_rev1850_z1` | 1850 | 20.66 | 74.2 °C | 51 |
+| `15_rev2372_z1` | 2372 | 26.32 | 75.3 °C | 56 |
+| `16_rev2926_z1` | 2926 | 27.23 | 76.6 °C | 61 |
 
-Both points have now been substituted in. The model is
+Least squares through them, in bytes, gives `drag_b7 = 9.11 + 0.006514 × rpm`
+with residuals of −0.9 to +1.8 counts, and at 0.74 Nm/bit that is
 
 ```
-drag [Nm] = 19.52 + 0.00028 × rpm
+drag [Nm] = 6.74 + 0.00482 × rpm
 ```
 
-and it reproduces both measurements exactly: 21.75 Nm at 797 rpm and 27.75 Nm
-at 2940 rpm, which are the raw values 29 and 37 of 0x280 b7. The constants live
-in `config.h` as `DRAG_TORQUE_BASE_CNM` and `DRAG_TORQUE_SLOPE_E4`. **The
-calibration is in bytes, not Nm** — change the scale above and this line has to
-be refitted with it.
+The constants live in `config.h` as `DRAG_TORQUE_BASE_CNM` and
+`DRAG_TORQUE_SLOPE_E4`. **The calibration is in bytes, not Nm** — change the
+scale above and this line has to be refitted with it, which is exactly what
+happened here: the scale moved 0.75 → 0.74 in the same breath.
 
-⚠ **Both of those points were taken on cold oil — 60.8 °C at idle and 39.0 °C
-at 2940 rpm — and that is now known to matter.** Repeating the same two
-operating points on 2026-08-11 with the oil at 73–77 °C gives b7 of 25 and 27
-where the fixtures gave 29 and 37. Ten counts at 2930 rpm is 7.5 Nm, and since
-this line is *subtracted* from indicated torque, the display currently
-understates torque and power, most at high revs. The full argument, the
-measurements and what would fix it are in `can-decoding.md` question 7, which
-is reopened.
+**What it replaces.** A two-point line, `drag = 19.52 + 0.0028 × rpm`, fitted
+on `02_idle_60s` (oil 60.8 °C) and `05_rev3000` (oil **39.0 °C**). Cold oil
+overstates drag, and since this line is *subtracted*, the display understated
+torque and power — it read zero through 51 % of `17_drive_property_z1` where
+the new line reads a number through 78 % of it. Peak torque over that same
+drive barely moves, 105.8 → 107.0 Nm, because at high load the drag is a small
+term. The whole of the difference is at part throttle.
 
-It is a two-point straight line through two idling measurements, so it says
-nothing about drag under load — that is what phase 6 is for. Torque is clamped
-at zero rather than going negative on the overrun, and is zero below 500 rpm,
-where the starter is turning the engine and b7 reads a constant 191–192.
+**The idle point is excluded on purpose, and the idle gate below covers it.**
+`11_idle_noac_z1` is 798 rpm at b7 = 24.96 on the same warm oil, which is
+*above* the line the other four make — b7 actually falls 24.96 → 18.81 between
+idle and 1536 rpm before it starts rising. Idle is a different state: the
+throttle sits at its rest position 38 against 48–61 for the holds, so the
+pumping loss against a nearly closed throttle is large, and the ECU is
+regulating speed rather than letting the engine free-rev. No straight line in
+rpm passes through both, so idle is **asserted rather than fitted**. Raising
+the intercept to hide the residual instead puts the line back above all four
+measured points and brings the understatement straight back.
+
+### The idle gate — a standing car shows zero
+
+**A car standing still with the throttle shut displays zero torque and zero
+power. This is a fixed requirement, not a calibration**, and it is not to be
+relaxed or made conditional by any future refit of the drag line. It holds on
+cold oil and hot, at whatever idle speed the ECU picks.
+
+```c
+if (speed_mmh <= IDLE_GATE_SPEED_MMH && throttle <= THROTTLE_REST) return 0;
+```
+
+Both thresholds are measured, and neither is an equality:
+
+- **Speed.** A stationary car does not send zero — 0x1A0 raw speed is **1**
+  (0.005 km/h) in every log while standing, 7953 frames of it in
+  `06_trip_reset` alone. The next value that ever appears is above 40
+  (0.2 km/h); nothing in between exists anywhere. The gate is 0.1 km/h.
+- **Throttle.** 0x280 b5 is exactly **38** at rest and never lower in any log,
+  against 48–61 across the four holds. It is the pedal, not the load: while
+  driving, b7 reaches 133 with the throttle still at 38, which is why the
+  throttle **alone** cannot be a gate and must be paired with standing still.
+
+Pulling away is throttle above rest while the car still reads 1, so the gate
+releases *before* the car moves and the clutch biting is not swallowed.
+Coasting downhill off the throttle is not a standstill either, so the gate does
+not apply there and the drag line answers, as it should.
+
+**The construction is not ours.** SAE J1979 carries *actual engine percent
+torque* (PID 0x62) and *engine friction percent torque* (PID 0x8E) as separate
+standard PIDs — precisely indicated-minus-friction — and PID 0x64, *engine
+percent torque data*, gives five reference points of which **the first is
+idle**, so the standard also treats the idle value as its own datum rather than
+a point on a curve. Read off the [OBD-II PID
+tables](https://en.wikipedia.org/wiki/OBD-II_PIDs) and [CSS
+Electronics](https://www.csselectronics.com/pages/obd2-pid-table-on-board-diagnostics-j1979),
+which agree with each other; J1979 itself is paywalled and has not been read.
+That is **evidence, not a specification** — the rule stands on its own.
+Sports-mode power displays in production cars behave the same way, reading zero
+at idle and rising with load ([BMW i4
+forum](https://www.i4talk.com/threads/power-torque-instrument-cluster.7190/)).
+
+Six tests in `test_compute.c` and two in `test_txframes.c` assert it, the
+latter end to end off the real idle logs including the one with the air
+conditioning running. If one goes red, the fix is the code.
+
+The line still says nothing about drag under load, and 72–77 °C is warm rather
+than the 95–110 °C of real driving, so it very likely still overstates drag a
+little — the conservative direction. `can-decoding.md` question 7 stays open
+for that and is the only open question left. Torque is clamped at zero rather
+than going negative on the overrun, and is zero below 500 rpm, where the
+starter is turning the engine and b7 reads a constant 191–192.
 
 ```
 power [kW] = torque [Nm] × rpm ÷ 9550

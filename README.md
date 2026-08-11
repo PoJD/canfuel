@@ -58,7 +58,7 @@ two, so the reference and the code that gets flashed cannot drift apart.
 | File | Contents |
 |---|---|
 | **`docs/install.md`** | **from three clones to a working device — start here if you are building one** |
-| `docs/can-decoding.md` | signal table, four traps, verified values, open questions |
+| `docs/can-decoding.md` | signal table, four traps, verified values, the questions register — one open, six resolved, two parked |
 | `docs/frames.md` | layout of frames 0x600–0x602, FuelNow, Range, torque |
 | `docs/refuel-reset.md` | resetting the average on refuelling, and the tank audit |
 | `docs/timing.md` | what every part costs in cycles, and the margins |

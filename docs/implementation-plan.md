@@ -386,7 +386,7 @@ the meaning of 0x288 b5/b6, the `info;` line in the TRI file.
 > modules, which are the only things left in phase 1.
 >
 > Two open questions from §7 closed along the way. Drag torque is calibrated —
-> `drag [Nm] = 19.52 + 0.00028 × rpm`, reproducing both logged points
+> `drag [Nm] = 19.52 + 0.0028 × rpm`, reproducing both logged points
 > exactly. The 0x602 layout was chosen freely because `S-AQY.TRI` turns out not
 > to read that frame at all; only 0x600 and 0x601 are coupled to the display.
 >

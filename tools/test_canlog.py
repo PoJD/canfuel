@@ -48,9 +48,9 @@ class TestParseLineSlcan(unittest.TestCase):
     def test_adapter_timestamp(self):
         """Opened with Z1 the USBtin appends four hex digits of milliseconds.
 
-        None of the fixtures has one -- they were recorded with timestamping
-        off -- but the recording that closes open questions 1 and 9 will, and
-        it is the adapter's own clock rather than the host's.
+        The five oldest fixtures have none -- they were recorded with
+        timestamping off -- but the `_z1` recordings that resolved questions 1
+        and 9 do, and it is the adapter's own clock rather than the host's.
         """
         f = parse_line("t1a0800400100fefe001d2a3f")
         self.assertEqual(f.can_id, 0x1A0)
@@ -314,7 +314,7 @@ class TestFixtureContent(unittest.TestCase):
         The specification (BOOTSTRAP section 3) quotes 13247 -> 22622 over
         15.9 s. The end matches, the start does not -- the first sample in the
         file is 12870. The difference of 377 ul is a handful of early frames.
-        See docs/can-decoding.md, open questions.
+        See docs/can-decoding.md, question 2 -- resolved, and confirmed exactly.
         """
         vals = self.counter("07_accel.txt")
         self.assertEqual(vals[0], 12870)

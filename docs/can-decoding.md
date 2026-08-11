@@ -6,7 +6,15 @@ the car; the logs live in `test/fixtures/`.
 Two levels of confidence are distinguished:
 
 - **Confirmed** — holds across every log and is pinned down by a test in `tools/`.
-- **Open** — written down but not yet proven. See the end of this file.
+- **Open** — written down but not yet proven. See the questions register below.
+
+The register is in three parts and the last one has a rule attached: *Open
+questions* holds the single question still worth working on, *Resolved
+questions* holds the six that were answered, and **Never resolved but not
+required** — the last chapter — holds two that were never answered and are
+**not to be worked on again**. The numbering runs 1 to 9 across all three and
+is deliberately not contiguous within any of them, because code and other
+documents cite the numbers.
 
 ---
 
@@ -216,15 +224,127 @@ sixty-second recording on a live bus.
 
 ## Open questions
 
-Reviewed in full on 2026-08-11. Three were closed by going back to the
-fixtures, which nobody had done since they were written down; one candidate was
-eliminated; one new question came out of the review and it is the most
-important thing on this page. What remains open carries the procedure that
-would close it, because a question without one is a wish.
+Reviewed in full on 2026-08-11, and then sorted the same day against a question
+the register had never been asked: **which of these actually changes this
+firmware?** Most of them never did. They were written down because the bus is
+interesting, and a list of nine questions of which one matters is a list nobody
+reads to the end.
 
-Two of them — 3 and 8 — want the same VCDS session and should be done together.
+So the questions now live in three places, and the numbers are unchanged
+because code and other documents cite them:
+
+- **Open — one question, number 7, immediately below.** It changes numbers the
+  driver reads off the display and there is a procedure that would close it.
+- **Resolved**, further down: 1, 2, 4, 5, 6 and 9, kept in full because the
+  evidence is the useful part and a closed question that does not say how it
+  was closed reopens itself.
+- **Never resolved but not required** — the last chapter of this file, holding
+  3 and 8. Never answered, and **not to be worked on again**.
+
+*Resolved* and *never resolved but not required* are two different things and
+are kept apart on purpose: the first says what the answer is, the second says
+there is no answer and none is wanted.
+
+The numbering is therefore not contiguous in any one section. That is
+deliberate: renumbering would silently break every `question 7` in the source
+tree.
 
 ---
+
+### 7. Drag torque calibration — **refitted on warm oil 2026-08-11; still open for hot oil**
+
+**The one open question, and the only one that pays for itself.** The firmware
+subtracts this line from indicated torque on every frame it sends, so an error
+in it lands directly on two of the numbers on the display.
+
+**The cold-oil line was replaced the same day it was found.** It was closed in
+phase 1 as `drag [Nm] = 19.52 + 0.0028 × rpm`, reproducing 21.75 Nm at 797 rpm
+and 27.75 Nm at 2940 rpm exactly — raw b7 of 29 and 37. Both points came from
+fixtures and **neither was at operating temperature**: 60.8 °C at idle and
+**39.0 °C** at 2940 rpm, read off 0x420 b3.
+
+| | fixture | b7 | oil | 2026-08-11 | b7 | oil |
+|---|---|---|---|---|---|---|
+| idle | `02_idle_60s` | 29 | **60.8 °C** | `11_idle_noac_z1` | 25 | 72.8 °C |
+| ~2930 rpm | `05_rev3000` | 37 | **39.0 °C** | `16_rev2926_z1` | 27 | 76.6 °C |
+
+The gap is four counts at idle against ten at high speed, which is the
+signature of viscous friction rather than of a measurement error: viscosity
+falls steeply with oil temperature and viscous drag rises with speed, so a
+cold-oil point overstates drag most exactly where the fit is most sensitive to
+it. And since the line is *subtracted*, an overstated drag **understates the
+torque and the power on the display**, worst at high revs.
+
+**What it is now.** A least-squares line through the four warm free-revving
+holds, all stationary in neutral, where the crank drives nothing and b7 is
+therefore the drag itself:
+
+| Hold | rpm | b7 | oil | throttle |
+|---|---|---|---|---|
+| `13_rev1500_z1` | 1536 | 18.81 | 72.8 °C | 48 |
+| `14_rev1850_z1` | 1850 | 20.66 | 74.2 °C | 51 |
+| `15_rev2372_z1` | 2372 | 26.32 | 75.3 °C | 56 |
+| `16_rev2926_z1` | 2926 | 27.23 | 76.6 °C | 61 |
+
+```
+drag_b7 = 9.11 + 0.006514 x rpm        residuals -0.9 to +1.8 counts
+drag [Nm] = 6.74 + 0.00482 x rpm       at 0.74 Nm/bit
+```
+
+**The scale moved with it, from 0.75 to 0.74 Nm/bit, and had to.** Full scale
+b7 = 255 has to cover the rated crank torque *plus* the drag at that speed, so
+the bracket the two factory ratings imply depends on the drag line. On the old
+line they disagreed (0.745 against 0.773); on this one they agree to 0.3 %, and
+0.74 delivers 85.4 kW at 5200 rpm and 170.4 Nm at 2400 against ratings of 85
+and 170. Both figures used to land 3 % *under*. Details in `frames.md` and
+`config.h`; the agreement is a check that passed, not a measurement, because
+the constraint is dominated by the slope.
+
+**What it bought, measured on the one drive we have.** Over
+`17_drive_property_z1` the old line displayed zero torque through 51 % of the
+samples and the new one displays a number through 78 %. Peak torque barely
+moves — 105.8 → 107.0 Nm — because at high load the drag is a small term. The
+whole difference is at part throttle, which is where the driving happens.
+
+**The idle point is excluded, deliberately, and the idle gate handles it.**
+`11_idle_noac_z1` is 798 rpm at b7 = 24.96 on the same warm oil, which is
+*above* the line the other four make: b7 falls 24.96 → 18.81 between idle and
+1536 rpm before it starts rising. Idle is a different state — the throttle is
+at its rest position 38 against 48–61 for the holds, so the pumping loss
+against a nearly closed throttle is large, and the ECU is regulating speed
+rather than letting the engine free-rev. No straight line in rpm passes through
+both, so idle is **asserted rather than fitted**: a standing car with the
+throttle shut returns zero outright, which is a fixed requirement of this
+firmware and is documented in `frames.md` and `config.h`. **Do not raise the
+intercept to compensate** — that puts the line back above all four measured
+points and brings the understatement straight back, and the gate has already
+dealt with the only place the residual showed.
+
+**Why it is still open.** 72–77 °C is warm, not the 95–110 °C of real driving,
+so this line very likely still overstates drag a little. That is the
+conservative direction, which is why it was worth shipping.
+
+**What would close it properly:** the rpm sweep repeated with the oil genuinely
+hot, and enough points below 1500 rpm to see whether the fall from idle to
+1536 rpm is a curve worth modelling rather than a line.
+
+**The obstacle is the car, not the method.** The car is deregistered and only
+moves on short stretches of private land, so oil at 95–110 °C is not something
+a drive to the end of the road produces — `17_drive_property_z1` is six minutes
+of it and the oil went 75.0 → 77.2 °C. Whatever gets the oil hot, the sweep
+itself is unchanged: hold each speed until 0x420 b3 stops climbing, record the
+oil temperature with every point, and stay in neutral so net torque really is
+zero.
+
+---
+
+## Resolved questions
+
+Six that were settled, moved out of *Open questions* on 2026-08-11 so that
+section holds only questions that are genuinely still open. They stay here in
+full rather than being deleted: the reasoning is what stops each of them being
+reopened by somebody arguing from first principles, which is the same case
+`docs/refuted.md` makes for itself.
 
 ### 1. ~~What is the real period of 0x480?~~ — **closed 2026-08-11: there isn't one**
 
@@ -312,92 +432,6 @@ difference of 377 µl. **Confirmed exactly**: the counter reaches 13247 at
 0x480 frame #23 of 290, 1.14 s into the recording, and the fuel burnt between
 the first frame and that one is 377 µl to the microlitre. The specification
 was computed from 1.14 s in. No discrepancy exists.
-
-### 3. 0x288 b5 and b6 — **b6 closed 2026-08-11, b5 narrowed**
-
-The session happened. `docs/vcds-session.md` is the procedure,
-`test/fixtures/11`–`16` and `test/fixtures/vcds/` are the data.
-
-**b6 is injection time.** Across six holds:
-
-```
-b6 = 12.51 x injection_time_ms - 0.63      r = 0.9954
-```
-
-The intercept is effectively zero, so the scale is about **0.08 ms per bit**
-and residuals stay inside ±2 counts. Nothing in the firmware wants it, but it
-is decoded now rather than a candidate.
-
-**b5 follows ignition advance and then stops following it.** Below roughly 16°
-it fits `b5 = 4.22 x advance + 82`; from 1838 rpm upwards it sits on exactly
-**152** while the advance keeps climbing 18.1 → 22.5 → 23.3°. Two things are
-true at once and only one of them is explained.
-
-**That hypothesis was tested the same afternoon and is refuted.**
-`17_drive_property_z1.txt` and `vcds/vcds-ride-002-003.csv` are six minutes of
-driving on private land, engine speed 537–4986, b7 from 7 to 185, throttle from
-closed to 85°. Above 1900 rpm:
-
-| | over the drive, rpm > 1900 |
-|---|---|
-| ignition advance, VCDS | **+3.0 to +22.5 °BTDC** — a spread of 19.5° |
-| throttle angle | 3.5° to 85.1° |
-| **0x288 b5, CAN** | **152 in all 2,161 samples. One distinct value.** |
-
-The advance moved through nineteen and a half degrees and b5 did not move by a
-bit. **b5 is not ignition advance.**
-
-**This comparison needs no clock alignment**, which is why it is the one to
-trust: it is two ranges over the same six minutes, not a sample-by-sample
-pairing. That matters because the pairing was attempted and is unreliable —
-see below.
-
-**All three original candidates are now exhausted.** Mass air flow was
-eliminated by the stationary sweep, injection time is b6, and advance is
-refuted. b5 is something nobody has guessed yet.
-
-What is known about it, and it is not much:
-
-- it rises with engine speed to about 1900 rpm and then **pins at exactly 152**
-- it is bounded below at **78**, which is its idle value in every recording
-- below the ceiling it does vary at constant engine speed — 78 to 126 within
-  the 900–1100 rpm band — so it is not a pure function of speed either
-
-**Why the drive could not settle more than that.** VCDS samples about 1.7 times
-a second, polls its two groups at different instants, and injection time swings
-between 1.6 and 11.9 ms while driving. Cross-correlating the two engine-speed
-traces aligns them at a lag of 44.0 s with r = 0.9896, but that is one number
-for six minutes and it cannot track drift. Filtering down to samples where the
-engine speed is locally steady leaves **27 of 902**, nearly all of them idle,
-because a short piece of private land has no steady state above idle. The
-stationary holds are the trustworthy dataset and the drive is the wide one; for
-anything that changes fast, only the holds can be paired.
-
-The same caution applies to **b6's scale**: the six holds give 0.08 ms/bit at
-r = 0.9954, the drive pairing gives 0.147, and the holds win for the reason
-above. Comparing the two ranges instead does not help either — VCDS took 902
-samples where the adapter took 29,658, so the extremes it never sampled are not
-evidence of anything.
-
-**One candidate is eliminated outright and it cost nothing.** Mass air flow
-rises 4.44 → 5.13 → 6.72 → 8.19 g/s across holds 3–6 while b5 sits on 152 and
-b6 barely moves, and at the two idle holds the compressor raises the air mass
-while b5 does not shift a bit. Neither byte is the air mass.
-
----
-
-The original write-up follows.
-
-**Procedure.** VCDS, engine electronics (address 01), measuring blocks. Group
-003 carries mass air flow and load; group 020 or 021 carries ignition advance;
-injection time is in group 002 or 004 depending on the ECU version. Log 0x288
-with the USBtin at the same time, at warm idle and at a couple of steady
-throttle openings, and regress each byte against each block value. Two bytes,
-three candidates, three or four operating points is enough to tell them apart.
-
-Nothing in the firmware wants these bytes. This is curiosity with a use — an
-air mass would let a proper torque model replace the two-point drag line — but
-it blocks nothing.
 
 ### 4. ~~Is 0x420 b3 oil or IAT?~~ — **closed 2026-08-11: it is oil**
 
@@ -535,91 +569,6 @@ trip reset as a *second* trigger, the procedure is a fifteen-minute drive with
 the USBtin running, at least 3 km so a 0.1 km counter moves thirty times, with
 the reset pressed in the middle — and then the same scan, which is now written
 down and took a minute to run.
-
-### 7. Drag torque calibration — **reopened 2026-08-11: it was fitted on cold oil**
-
-Closed in phase 1 as `drag [Nm] = 19.52 + 0.00028 × rpm`, reproducing 21.75 Nm
-at 797 rpm and 27.75 Nm at 2940 rpm exactly — raw b7 of 29 and 37. Both points
-came from fixtures. **Neither was at operating temperature.**
-
-| | fixture | b7 | oil (0x420 b3) | 2026-08-11 | b7 | oil |
-|---|---|---|---|---|---|---|
-| idle | `02_idle_60s` | 29 | **60.8 °C** | `11_idle_noac_z1` | 25 | 72.8 °C |
-| ~2930 rpm | `05_rev3000` | 37 | **39.0 °C** | `16_rev2926_z1` | 27 | 77.2 °C |
-
-**Ten counts at 2930 rpm is 7.5 Nm at the current scale**, and the gap is four
-counts at idle against ten at high speed — which is the signature of viscous
-friction, not of a measurement error. Viscosity falls steeply with oil
-temperature and viscous drag rises with speed, so a cold-oil point overstates
-drag most exactly where the fit is most sensitive to it.
-
-`05_rev3000` was recorded with the **oil at 39 °C**. That is barely warm.
-
-**What it costs.** The firmware subtracts this line from indicated torque, so
-an overstated drag **understates the torque and the power on the display**, and
-by more at high revs — the part of the range a driver actually looks at.
-
-**Why this is not simply refitted today.** The five new points are at 72–77 °C
-oil, better but still short of the 95–110 °C of real driving, and the idle
-point does not belong on the same line as the others: b7 is 25.0 at 798 rpm and
-18.8 at 1536, which is not monotonic. Idle is a *controlled* state — the ECU
-holds the speed against accessory load and keeps a torque reserve — while the
-points above are a free-revving engine against its own friction. They are two
-different quantities and a straight line through both was always going to
-mislead.
-
-**What would close it properly:** the rpm sweep repeated after a drive, with
-the oil genuinely hot, and the idle point either excluded or fitted separately.
-That is phase 6 work and it now has a procedure and a reason.
-
-### 8. The torque byte's scale — **still open; the VCDS session could not close it**
-
-**The session was done on 2026-08-11 and this ECU does not report torque in
-Nm.** Measuring groups 001, 002, 003 and 020 were all examined on
-`06A 906 018 EJ` and the closest thing on offer is `Motor zatizeni` — engine
-load, in per cent. Writing that down is the point: without it the next person
-plans exactly this session again.
-
-The trip was not wasted, because b7 was measured against that load and **is not
-the same quantity**. Holds `14`, `15` and `16` sit at a constant 17.0–17.3 %
-load while b7 climbs 20.7 → 26.3 → 27.2. A load percentage does not rise with
-engine speed at constant load; a torque does, because the friction and pumping
-torque a free-revving engine must produce grows with speed. That is independent
-support for the 2026-08-11 reading that b7 is *indicated torque*, arrived at
-from a different direction than the argument that produced it.
-
-So 0.75 Nm/bit remains a decision inside the bracket the factory ratings imply.
-What is left that would settle it: a full-throttle pull, which is deliberately
-not planned, or a factory document nobody has.
-
-⚠ **A second finding came out of this and it is more expensive than the
-question was** — see the drag-torque note below.
-
----
-
-The original procedure follows, for the record.
-
-0x280 b7 is a percentage of a reference torque inside the ECU, not Nm. The two
-factory ratings bracket the scale between 0.745 Nm/bit (85 kW at 5200 rpm) and
-0.773 (170 Nm at 2400 rpm); 0.75 was chosen inside that bracket on 2026-08-11,
-and the reasoning — including why the old 0.67 was wrong — is in `frames.md`
-and in `config.h`.
-
-**Procedure.** VCDS, engine electronics, a measuring block reporting engine
-torque — group 001 or 002 on ME7, depending on the version — logged alongside
-0x280 with the USBtin. Warm idle, then three or four steady throttle openings
-held for ten seconds each, in neutral so the load is repeatable. Plot the
-block's Nm against b7: the slope is the scale and the intercept should be
-zero. Four points across the range are plenty, because the only question is a
-straight line through the origin.
-
-Full throttle would settle it too and is deliberately not planned. Until then
-the display is right in shape and to roughly ±5 % in magnitude, and two tests
-in `test_compute.c` guard the ceiling so a wrong scale can no longer put the
-factory figures out of reach unnoticed.
-
-Do it in the same session as question 3 — that one wants measuring blocks too,
-and the same log of 0x280 and 0x288 serves both.
 
 ### 9. ~~Two fixtures carry timestamps and disagree with the other five about time~~ — **closed 2026-08-11: the timestamps are wrong**
 
@@ -791,3 +740,200 @@ changed in the fixtures, the tests or `replay.py` on the strength of this,
 because changing seven logs' worth of documented numbers on an argument about
 what an engine plausibly burns is exactly the sort of thing that should wait
 for the sixty seconds of measurement that settles it.
+
+---
+
+## Never resolved but not required
+
+Two questions in this file were never answered, and as of 2026-08-11 neither of
+them is going to be. **Do not come back to them.** Not "while the car is on the
+ramp anyway", not "it is only ten minutes with VCDS running". Both have already
+cost a trip to the car, both came back with less than was hoped, and neither
+blocks a single line of firmware.
+
+They are kept in full rather than deleted for the same reason `docs/refuted.md`
+exists: a question that leaves no trace gets asked again by the next person, who
+then repeats the session that did not answer it. The difference between that
+file and this chapter is that `refuted.md` holds ideas that were settled
+*against*, while these were never settled at all.
+
+**What would reopen one.** The maintainer saying so — this chapter is a
+decision about where to spend effort, not a discovery about the bus, and a
+decision can be changed the same way it was made. If that happens, write it
+inside the entry rather than quietly starting work, so the next reader can see
+which rule is in force.
+
+---
+
+### 3. 0x288 b5 and b6 — **b6 decoded, b5 unexplained, parked 2026-08-11**
+
+**Why it is here.** Nothing in the firmware reads either byte. `decode.c`'s
+`CAN_ID_COOLANT` case takes b1 and stops there, no transmitted frame carries
+b5 or b6, and no test asserts anything about them. (Do not confuse them with
+0x280 b5 and b6, which *are* decoded — those are throttle and load.) This was
+curiosity with a use — an air mass would have let
+a proper torque model replace the two-point drag line — and the air-mass
+candidate is precisely the one that was eliminated. So the use is gone and the
+curiosity is what remains.
+
+b6 came out of it decoded, which is a genuine result. b5 is exhausted in the
+sense that matters: all three candidates anyone had are refuted, and there is
+no fourth to test. Another session would be a fishing trip, not an experiment.
+
+The findings, in full:
+
+The session happened. `docs/vcds-session.md` is the procedure,
+`test/fixtures/11`–`16` and `test/fixtures/vcds/` are the data.
+
+**b6 is injection time.** Across six holds:
+
+```
+b6 = 12.51 x injection_time_ms - 0.63      r = 0.9954
+```
+
+The intercept is effectively zero, so the scale is about **0.08 ms per bit**
+and residuals stay inside ±2 counts. Nothing in the firmware wants it, but it
+is decoded now rather than a candidate.
+
+**b5 follows ignition advance and then stops following it.** Below roughly 16°
+it fits `b5 = 4.22 x advance + 82`; from 1838 rpm upwards it sits on exactly
+**152** while the advance keeps climbing 18.1 → 22.5 → 23.3°. Two things are
+true at once and only one of them is explained.
+
+**That hypothesis was tested the same afternoon and is refuted.**
+`17_drive_property_z1.txt` and `vcds/vcds-ride-002-003.csv` are six minutes of
+driving on private land, engine speed 537–4986, b7 from 7 to 185, throttle from
+closed to 85°. Above 1900 rpm:
+
+| | over the drive, rpm > 1900 |
+|---|---|
+| ignition advance, VCDS | **+3.0 to +22.5 °BTDC** — a spread of 19.5° |
+| throttle angle | 3.5° to 85.1° |
+| **0x288 b5, CAN** | **152 in all 2,161 samples. One distinct value.** |
+
+The advance moved through nineteen and a half degrees and b5 did not move by a
+bit. **b5 is not ignition advance.**
+
+**This comparison needs no clock alignment**, which is why it is the one to
+trust: it is two ranges over the same six minutes, not a sample-by-sample
+pairing. That matters because the pairing was attempted and is unreliable —
+see below.
+
+**All three original candidates are now exhausted.** Mass air flow was
+eliminated by the stationary sweep, injection time is b6, and advance is
+refuted. b5 is something nobody has guessed yet.
+
+What is known about it, and it is not much:
+
+- it rises with engine speed to about 1900 rpm and then **pins at exactly 152**
+- it is bounded below at **78**, which is its idle value in every recording
+- below the ceiling it does vary at constant engine speed — 78 to 126 within
+  the 900–1100 rpm band — so it is not a pure function of speed either
+
+**Why the drive could not settle more than that.** VCDS samples about 1.7 times
+a second, polls its two groups at different instants, and injection time swings
+between 1.6 and 11.9 ms while driving. Cross-correlating the two engine-speed
+traces aligns them at a lag of 44.0 s with r = 0.9896, but that is one number
+for six minutes and it cannot track drift. Filtering down to samples where the
+engine speed is locally steady leaves **27 of 902**, nearly all of them idle,
+because a short piece of private land has no steady state above idle. The
+stationary holds are the trustworthy dataset and the drive is the wide one; for
+anything that changes fast, only the holds can be paired.
+
+The same caution applies to **b6's scale**: the six holds give 0.08 ms/bit at
+r = 0.9954, the drive pairing gives 0.147, and the holds win for the reason
+above. Comparing the two ranges instead does not help either — VCDS took 902
+samples where the adapter took 29,658, so the extremes it never sampled are not
+evidence of anything.
+
+**One candidate is eliminated outright and it cost nothing.** Mass air flow
+rises 4.44 → 5.13 → 6.72 → 8.19 g/s across holds 3–6 while b5 sits on 152 and
+b6 barely moves, and at the two idle holds the compressor raises the air mass
+while b5 does not shift a bit. Neither byte is the air mass.
+
+---
+
+The original write-up follows.
+
+**Procedure.** VCDS, engine electronics (address 01), measuring blocks. Group
+003 carries mass air flow and load; group 020 or 021 carries ignition advance;
+injection time is in group 002 or 004 depending on the ECU version. Log 0x288
+with the USBtin at the same time, at warm idle and at a couple of steady
+throttle openings, and regress each byte against each block value. Two bytes,
+three candidates, three or four operating points is enough to tell them apart.
+
+Nothing in the firmware wants these bytes. This is curiosity with a use — an
+air mass would let a proper torque model replace the two-point drag line — but
+it blocks nothing.
+
+### 8. The torque byte's scale — **decided rather than measured, parked 2026-08-11**
+
+**Why it is here, and it is the harder of the two calls.** Unlike b5, this one
+*does* touch what the firmware transmits: 0.75 Nm/bit scales every torque and
+power figure on the display. It is here anyway, because there is nothing left
+to run.
+
+- The bracket is narrow, and got narrower. On the warm drag line the two
+  factory ratings imply **0.736 to 0.738 Nm/bit** — 0.3 % — where the old
+  cold-oil line made them argue between 0.745 and 0.773. The scale in the
+  firmware moved 0.75 → 0.74 with the refit of 2026-08-11, which is not a new
+  answer to this question but the arithmetic consequence of question 7's, since
+  full scale must cover the rated torque plus the drag.
+- The measurement does not exist. VCDS was tried and this ECU has no torque
+  block; a full-throttle pull would settle it and is deliberately not planned,
+  and the car is deregistered, so there is no road to do it on either.
+- Nothing degrades while it stays undecided. A decision is in the code, the
+  reasoning is written down in `frames.md` and `config.h`, and two tests in
+  `test_compute.c` pin the ceiling so a future edit cannot quietly put the
+  factory figures out of reach again.
+
+An open question implies work that would close it. There is none, so calling
+this open was misleading.
+
+The findings, in full:
+
+**The session was done on 2026-08-11 and this ECU does not report torque in
+Nm.** Measuring groups 001, 002, 003 and 020 were all examined on
+`06A 906 018 EJ` and the closest thing on offer is `Motor zatizeni` — engine
+load, in per cent. Writing that down is the point: without it the next person
+plans exactly this session again.
+
+The trip was not wasted, because b7 was measured against that load and **is not
+the same quantity**. Holds `14`, `15` and `16` sit at a constant 17.0–17.3 %
+load while b7 climbs 20.7 → 26.3 → 27.2. A load percentage does not rise with
+engine speed at constant load; a torque does, because the friction and pumping
+torque a free-revving engine must produce grows with speed. That is independent
+support for the 2026-08-11 reading that b7 is *indicated torque*, arrived at
+from a different direction than the argument that produced it.
+
+So the scale remains a decision inside the bracket the factory ratings imply —
+0.74 Nm/bit since the drag refit, 0.75 before it. What is left that would
+settle it: a full-throttle pull, which is deliberately not planned, or a
+factory document nobody has.
+
+⚠ **A second finding came out of this session and it is more expensive than the
+question was** — the drag torque was fitted on cold oil. That is question 7,
+and it is the one question still open.
+
+---
+
+The original procedure follows, for the record.
+
+0x280 b7 is a percentage of a reference torque inside the ECU, not Nm. The two
+factory ratings bracket the scale between 0.745 Nm/bit (85 kW at 5200 rpm) and
+0.773 (170 Nm at 2400 rpm); 0.75 was chosen inside that bracket on 2026-08-11,
+and the reasoning — including why the old 0.67 was wrong — is in `frames.md`
+and in `config.h`.
+
+**Procedure.** VCDS, engine electronics, a measuring block reporting engine
+torque — group 001 or 002 on ME7, depending on the version — logged alongside
+0x280 with the USBtin. Warm idle, then three or four steady throttle openings
+held for ten seconds each, in neutral so the load is repeatable. Plot the
+block's Nm against b7: the slope is the scale and the intercept should be
+zero. Four points across the range are plenty, because the only question is a
+straight line through the origin.
+
+Full throttle would settle it too and is deliberately not planned. Until then
+the display is right in shape and to roughly ±5 % in magnitude, and two tests
+in `test_compute.c` guard the ceiling so a wrong scale can no longer put the
+factory figures out of reach unnoticed.

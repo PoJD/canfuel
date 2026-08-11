@@ -227,21 +227,160 @@ static void test_range_uses_the_rolling_window_after_five_km(void)
 
 /* --- torque and power --------------------------------------------------- */
 
-static void test_drag_model_reproduces_both_calibration_points(void)
+/* The drag line is fitted on the four warm free-revving holds, 13 to 16. All
+ * four are stationary in neutral, so the crank drives nothing and the net
+ * torque is zero at each -- which is what makes them a calibration and not
+ * just data. The line is a least-squares fit rather than a two-point
+ * interpolation, so the residuals are real: up to 1.8 counts of b7, about
+ * 1.3 Nm. The test asserts that, rather than an exact zero it cannot have. */
+static void test_drag_model_sits_on_the_warm_free_rev_holds(void)
 {
     decode_state_t st;
     decode_init(&st);
 
-    /* 02_idle_60s: 797 rpm, 0x280 b7 = 29. The engine is only driving
-     * itself, so the net torque at the wheels is zero. */
-    st.rpm_q4 = 797u * 4u;
-    st.torque_ind_cnm = 29u * TORQUE_CNM_PER_BIT;
+    /* Each hold was stationary but with the throttle held open, 48 to 61, so
+     * the idle gate does NOT apply here and the drag line answers on its own.
+     * That is the point of running these four through it. */
+    st.speed_mmh = 5u;
+
+    /* 13_rev1500_z1, oil 72.8 C. Model is above the point, so it clamps. */
+    st.rpm_q4 = 1536u * 4u;
+    st.torque_ind_cnm = 19u * TORQUE_CNM_PER_BIT;
+    st.throttle = 48u;
     TT_EQ(compute_torque_d(&st), 0);
 
-    /* 05_rev3000: 2940 rpm in neutral, b7 = 37. Also zero at the wheels. */
-    st.rpm_q4 = 2940u * 4u;
-    st.torque_ind_cnm = 37u * TORQUE_CNM_PER_BIT;
+    /* 14_rev1850_z1, oil 74.2 C. */
+    st.rpm_q4 = 1850u * 4u;
+    st.torque_ind_cnm = 21u * TORQUE_CNM_PER_BIT;
+    st.throttle = 51u;
     TT_EQ(compute_torque_d(&st), 0);
+
+    /* 15_rev2372_z1, oil 75.3 C. The one point the line falls below, by the
+     * fit's largest residual. 1.3 Nm of phantom torque, and no more. */
+    st.rpm_q4 = 2372u * 4u;
+    st.torque_ind_cnm = 26u * TORQUE_CNM_PER_BIT;
+    st.throttle = 56u;
+    TT_TRUE(compute_torque_d(&st) <= 15u);
+
+    /* 16_rev2926_z1, oil 76.6 C. */
+    st.rpm_q4 = 2926u * 4u;
+    st.torque_ind_cnm = 27u * TORQUE_CNM_PER_BIT;
+    st.throttle = 61u;
+    TT_EQ(compute_torque_d(&st), 0);
+}
+
+/* ===================================================================== *
+ *  THE IDLE GATE -- A FIXED REQUIREMENT, NOT A CALIBRATION.
+ *
+ *  A car standing still with the throttle shut displays ZERO torque and
+ *  ZERO power. Cold or hot, whatever idle speed the ECU picks, whatever a
+ *  future refit does to the drag line. These tests exist so that the rule
+ *  cannot be relaxed by accident: if one of them goes red, the fix is the
+ *  code, NOT the test.
+ *
+ *  The drag line cannot deliver this on its own. In neutral net torque is
+ *  zero at idle and at every free-revving hold, but b7 falls 24.96 -> 18.81
+ *  between 798 and 1536 rpm, so no straight line in rpm passes through both.
+ *  One of the two has to be asserted. See config.h.
+ * ===================================================================== */
+
+static void test_idle_gate_zero_at_a_standstill_warm(void)
+{
+    decode_state_t st;
+    decode_init(&st);
+
+    /* 11_idle_noac_z1: 798 rpm, b7 = 25, oil 72.8 C, A/C off, standing. */
+    st.rpm_q4 = 798u * 4u;
+    st.torque_ind_cnm = 25u * TORQUE_CNM_PER_BIT;
+    st.speed_mmh = 5u;                  /* raw 1 -- what standing really sends */
+    st.throttle = THROTTLE_REST;
+    TT_EQ(compute_torque_d(&st), 0);
+    TT_EQ(compute_power_d(&st), 0);
+}
+
+static void test_idle_gate_zero_at_a_standstill_cold(void)
+{
+    decode_state_t st;
+    decode_init(&st);
+
+    /* 02_idle_60s: b7 = 29 on 60.8 C oil. Without the gate the cold engine is
+     * the worse case -- 10.9 Nm -- which is exactly why the gate is not a
+     * tolerance on the drag fit. */
+    st.rpm_q4 = 797u * 4u;
+    st.torque_ind_cnm = 29u * TORQUE_CNM_PER_BIT;
+    st.speed_mmh = 5u;
+    st.throttle = THROTTLE_REST;
+    TT_EQ(compute_torque_d(&st), 0);
+    TT_EQ(compute_power_d(&st), 0);
+}
+
+/* A cold engine idles fast. 06_trip_reset reaches 1310 rpm standing still with
+ * the throttle at rest, so the gate must not be a narrow window around 800. */
+static void test_idle_gate_covers_a_fast_cold_idle(void)
+{
+    decode_state_t st;
+    decode_init(&st);
+    st.speed_mmh = 5u;
+    st.throttle = THROTTLE_REST;
+
+    st.rpm_q4 = 1310u * 4u;
+    st.torque_ind_cnm = 60u * TORQUE_CNM_PER_BIT;
+    TT_EQ(compute_torque_d(&st), 0);
+
+    /* 17_drive_property_z1 reaches 1449 rpm standing with the throttle shut,
+     * coming down off a blip. Still zero. */
+    st.rpm_q4 = 1449u * 4u;
+    st.torque_ind_cnm = 47u * TORQUE_CNM_PER_BIT;
+    TT_EQ(compute_torque_d(&st), 0);
+}
+
+/* The gate must let go the moment the driver asks for anything, or pulling
+ * away would read zero. Throttle above rest with the car still stationary is
+ * exactly the clutch biting, and that is real torque. */
+static void test_idle_gate_releases_on_throttle_while_still_stationary(void)
+{
+    decode_state_t st;
+    decode_init(&st);
+    st.rpm_q4 = 1338u * 4u;             /* 03_drive, pulling away */
+    st.torque_ind_cnm = 57u * TORQUE_CNM_PER_BIT;
+    st.speed_mmh = 5u;                  /* still reading 1 on the bus */
+    st.throttle = 48u;                  /* but the pedal has moved */
+    TT_TRUE(compute_torque_d(&st) > 0u);
+}
+
+/* ...and it must let go once the car moves, even with the throttle shut.
+ * Coasting downhill off the throttle is not a standstill. Whether the torque
+ * is then zero is the drag line's business, not the gate's -- what this pins
+ * is that the gate itself is no longer the reason. */
+static void test_idle_gate_releases_once_the_car_moves(void)
+{
+    decode_state_t st;
+    decode_init(&st);
+    st.rpm_q4 = 2500u * 4u;
+    st.torque_ind_cnm = 120u * TORQUE_CNM_PER_BIT;
+    st.speed_mmh = 40000u;              /* 40 km/h */
+    st.throttle = THROTTLE_REST;
+    TT_TRUE(compute_torque_d(&st) > 0u);
+}
+
+/* The threshold is not an equality, because a standing car does not send zero:
+ * 0x1A0 raw speed is 1 in every log while stationary. Both must gate. */
+static void test_idle_gate_thresholds_are_not_equalities(void)
+{
+    decode_state_t st;
+    decode_init(&st);
+    st.rpm_q4 = 798u * 4u;
+    st.torque_ind_cnm = 29u * TORQUE_CNM_PER_BIT;
+    st.throttle = THROTTLE_REST;
+
+    st.speed_mmh = 0u;                  /* engine off / no reading yet */
+    TT_EQ(compute_torque_d(&st), 0);
+    st.speed_mmh = 5u;                  /* raw 1, the real standing value */
+    TT_EQ(compute_torque_d(&st), 0);
+    st.speed_mmh = IDLE_GATE_SPEED_MMH; /* the boundary itself gates */
+    TT_EQ(compute_torque_d(&st), 0);
+    st.speed_mmh = IDLE_GATE_SPEED_MMH + 1u;
+    TT_TRUE(compute_torque_d(&st) > 0u);
 }
 
 static void test_torque_above_drag(void)
@@ -250,8 +389,10 @@ static void test_torque_above_drag(void)
     decode_init(&st);
     st.rpm_q4 = 3000u * 4u;
     st.torque_ind_cnm = 15000;              /* 150.00 Nm indicated */
-    /* drag at 3000 rpm = 19.52 + 8.40 = 27.92 Nm, so 122.08 net */
-    TT_NEAR(compute_torque_d(&st), 1221, 2);
+    st.speed_mmh = 60000u;                  /* moving, so the idle gate is out */
+    st.throttle = 90u;
+    /* drag at 3000 rpm = 6.74 + 14.46 = 21.20 Nm, so 128.80 net */
+    TT_NEAR(compute_torque_d(&st), 1288, 2);
 }
 
 static void test_power(void)
@@ -260,8 +401,10 @@ static void test_power(void)
     decode_init(&st);
     st.rpm_q4 = 3000u * 4u;
     st.torque_ind_cnm = 15000;
-    /* 122.08 Nm at 3000 rpm = 38.4 kW */
-    TT_NEAR(compute_power_d(&st), 384, 2);
+    st.speed_mmh = 60000u;
+    st.throttle = 90u;
+    /* 128.80 Nm at 3000 rpm = 40.5 kW */
+    TT_NEAR(compute_power_d(&st), 405, 2);
 }
 
 static void test_engine_off_makes_no_torque(void)
@@ -281,14 +424,19 @@ static void test_engine_off_makes_no_torque(void)
  * again without a red test.
  *
  * The AQY is rated 85 kW at 5200 rpm and 170 Nm at 2400 rpm. The tolerance is
- * 5 %: the scale is a decision inside a 0.745-0.773 bracket (see config.h),
- * not a measurement, so pinning it exactly would only pin the guess. */
+ * 5 %: the scale is a decision, not a measurement, so pinning it exactly would
+ * only pin the guess. On the warm drag line the two ratings agree on a 0.736
+ * to 0.738 Nm/bit bracket and 0.74 delivers 85.4 kW and 170.4 Nm -- both now
+ * land just ABOVE the ratings rather than 3 % below, which is what the refit
+ * was for. See config.h. */
 static void test_full_scale_reaches_the_rated_power(void)
 {
     decode_state_t st;
     decode_init(&st);
     st.rpm_q4 = 5200u * 4u;
     st.torque_ind_cnm = 255u * TORQUE_CNM_PER_BIT;
+    st.speed_mmh = 120000u;                 /* full scale means moving fast */
+    st.throttle = 211u;                     /* and the pedal on the floor    */
     TT_TRUE(compute_power_d(&st) >= 850u - 43u);       /* 85.0 kW, -5 % */
 }
 
@@ -298,6 +446,8 @@ static void test_full_scale_reaches_the_rated_torque(void)
     decode_init(&st);
     st.rpm_q4 = 2400u * 4u;
     st.torque_ind_cnm = 255u * TORQUE_CNM_PER_BIT;
+    st.speed_mmh = 80000u;
+    st.throttle = 211u;
     TT_TRUE(compute_torque_d(&st) >= 1700u - 85u);     /* 170.0 Nm, -5 % */
 }
 
@@ -310,11 +460,17 @@ static void test_cranking_is_not_torque(void)
     decode_init(&st);
     st.torque_ind_cnm = 192u * TORQUE_CNM_PER_BIT;
 
+    /* Throttle open and the car rolling, so that what is under test here is
+     * the CRANKING gate alone and not the idle gate, which would otherwise
+     * hide it by returning zero for its own reasons. */
+    st.speed_mmh = 20000u;
+    st.throttle = 60u;
+
     st.rpm_q4 = 288u * 4u;                  /* starter turning it over */
     TT_EQ(compute_torque_d(&st), 0);
     TT_EQ(compute_power_d(&st), 0);
 
-    st.rpm_q4 = 797u * 4u;                  /* idle -- the gate is clear of it */
+    st.rpm_q4 = 797u * 4u;                  /* running -- the gate is clear */
     TT_TRUE(compute_torque_d(&st) > 0u);
 }
 
@@ -619,7 +775,13 @@ int main(void)
     TT_RUN(test_range_uses_the_default_until_five_km);
     TT_RUN(test_range_uses_the_rolling_window_after_five_km);
 
-    TT_RUN(test_drag_model_reproduces_both_calibration_points);
+    TT_RUN(test_drag_model_sits_on_the_warm_free_rev_holds);
+    TT_RUN(test_idle_gate_zero_at_a_standstill_warm);
+    TT_RUN(test_idle_gate_zero_at_a_standstill_cold);
+    TT_RUN(test_idle_gate_covers_a_fast_cold_idle);
+    TT_RUN(test_idle_gate_releases_on_throttle_while_still_stationary);
+    TT_RUN(test_idle_gate_releases_once_the_car_moves);
+    TT_RUN(test_idle_gate_thresholds_are_not_equalities);
     TT_RUN(test_torque_above_drag);
     TT_RUN(test_power);
     TT_RUN(test_engine_off_makes_no_torque);
