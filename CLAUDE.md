@@ -238,26 +238,28 @@ empty value, so it had never configured anything anyway.
 
 ### Next session starts here: a board
 
-0. **`make -C mplab CAN_MODE=LOOPBACK` first**, and it needs no bus, no USBtin
-   and no transceiver — DS39977C §27.3.5 hands the transmit buffers straight to
-   the receive buffers. Bit timing, filters, FIFO, `txframes` and `decode`, all
-   on a desk. There is no reason to spend a live bus on a fault this would have
-   caught.
-1. **Programme it** and watch `LED_CAN` with JP1 fitted. Off means the car is
-   not talking; a 5 Hz blink means `hal_can_init()` never got the module into
-   the mode it asked for. That distinction was built in for exactly this
-   morning. JP2 comes off before programming and goes back afterwards. `LED_PWR`
-   blinking slowly means the hex is a silent build — which is correct for steps
-   0 and 2, and a mistake in step 3.
-2. **`CAN_MODE=LISTEN_ONLY` in the car, then a normal build** —
-   `docs/implementation-plan.md` §6 steps 3 and 4. Check `TXERRCNT`/`RXERRCNT`
-   early: the 500 kbps bit timing is arithmetic no hardware has ever run, and a
-   Normal-mode node whose timing is wrong does not merely fail to read the bus,
-   it fills it with error frames. Listen Only is silent by the module's own
-   guarantee (§27.3.4) and is what should touch the car first.
-3. **Compare FuelNow against FuelCntRaw** on the display. FuelCntRaw is the raw
-   ECU counter with no conversion, so if it rises while FuelNow shows nonsense,
-   the fault is this firmware's arithmetic rather than its input.
+**The step-by-step is `docs/install.md`** and it is not repeated here, because
+two copies of a procedure diverge and the copy nobody is reading is the one
+that stays wrong. That document is written for a person with a board in one
+hand; this section is the one-paragraph version and the reasoning.
+
+Loopback on a desk, then listen only in the car, then transmit. In order, and
+**step 4 of `install.md` — loopback — is the one that gets skipped and should
+not be.** It costs ten minutes, needs no bus and no transceiver at all
+(DS39977C §27.3.5 hands the transmit buffers straight to the receive buffers),
+and it exercises the bit timing, all seven filters, the FIFO, the access-bank
+window, `txframes` and `decode`. A fault caught there costs a reflash; the same
+fault in Normal mode puts error frames on the car's bus.
+
+Why Listen Only touches the car first: the 500 kbps bit timing is arithmetic no
+hardware has run, and a Normal-mode node with wrong timing does not merely fail
+to read the bus, it **corrupts** it. Listen Only is silent by the module's own
+guarantee (§27.3.4). Check `hal_can_rx_errors()` / `hal_can_tx_errors()` before
+anything else — a timing fault shows there long before it shows anywhere else.
+
+JP2 off before programming and back on afterwards; JP1 fitted or the LEDs stay
+dark by design. `LED_PWR` blinking slowly means a silent build, which is
+correct for loopback and listen-only and a mistake in a normal one.
 
 ### Local toolchain
 
