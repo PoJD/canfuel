@@ -361,9 +361,18 @@ uint16_t compute_torque_d(const decode_state_t *st)
      * with engine speed and is modelled linearly. Both calibration points come
      * out of the fixtures, see config.h. */
     uint32_t rpm = decode_rpm(st);
-    uint32_t drag_cnm = (uint32_t)DRAG_TORQUE_BASE_CNM +
-                        rpm * (uint32_t)DRAG_TORQUE_SLOPE_E4 / 10000u;
+    uint32_t drag_cnm;
     uint32_t net_cnm;
+
+    /* Cranking is not running, and b7 is not torque while the starter turns
+     * the engine -- see TORQUE_MIN_RPM. This also covers the engine being off,
+     * where rpm is zero. */
+    if (rpm < TORQUE_MIN_RPM) {
+        return 0;
+    }
+
+    drag_cnm = (uint32_t)DRAG_TORQUE_BASE_CNM +
+               rpm * (uint32_t)DRAG_TORQUE_SLOPE_E4 / 10000u;
 
     if (st->torque_ind_cnm <= drag_cnm) {
         return 0;               /* on the overrun the engine is being driven */

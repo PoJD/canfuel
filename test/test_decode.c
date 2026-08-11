@@ -41,7 +41,7 @@ static void test_torque_throttle_load(void)
     feed(&st, CAN_ID_ENGINE, "0123900c25261725");
     TT_EQ(st.throttle, 0x26);
     TT_EQ(st.load, 0x17);
-    TT_EQ(st.torque_ind_cnm, 0x25 * 67);
+    TT_EQ(st.torque_ind_cnm, 0x25 * TORQUE_CNM_PER_BIT);
 }
 
 static void test_clt(void)

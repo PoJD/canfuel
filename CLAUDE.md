@@ -132,7 +132,7 @@ What exists and works:
 - `src/main.c` — the cooperative scheduler, and nothing else
 - `mplab/` — `canfuel.X` for the IDE and a plain `Makefile` driving `xc8-cc`,
   which is the authoritative recipe and what CI runs
-- `test/` — 238 checks across four test binaries, plus `replay_host.c`
+- `test/` — 243 checks across four test binaries, plus `replay_host.c`
 - `tools/canlog.py`, `tools/replay.py` — 77 Python tests green, and
   `replay.py --host-build` now diffs Python against the C core
 - `test/fixtures/` — seven real logs from the car, documented
@@ -980,7 +980,7 @@ python tools/canlog.py --dump --id 0x480 FILE              # print frames
 python tools/replay.py --every 100 test/fixtures/07_accel.txt
 python -m unittest discover -s tools -p "test_*.py"        # 77 tests
 
-make -C test test                                          # 238 checks
+make -C test test                                          # 243 checks
 make -C test check-pure                                    # no <xc.h> in the core
 make -C test check-hal                                     # the HAL still compiles
 python tools/replay.py --host-build test/fixtures/*.txt    # Python vs C
@@ -1067,6 +1067,24 @@ before transmitting.
 After that, phase 6 — calibration. Drag torque under load (the current model is
 a straight line through two idling measurements and says nothing about pulling)
 and the tank, which needs a known quantity from a jerrycan.
+
+**Also in phase 6: the torque byte's scale.** 0x280 b7 is a percentage of a
+reference torque inside the ECU, not Nm, and turning it into Nm needs a number
+nobody here has. It was read at 0.67 Nm/bit — from "the AQY's maximum is
+172 Nm, so 172/256" — until 2026-08-11, when that premise turned out to
+contradict the fixtures it sits next to: at 2940 rpm in neutral the crank makes
+nothing and b7 still reads 37, so b7 is *indicated* torque and its full scale
+is the maximum *indicated* torque, not the maximum crank torque. Scaling to the
+crank maximum and then subtracting drag counted the friction twice, and the
+firmware could never have shown the 85 kW the car is sold with — it topped out
+at 76.5 kW at 5200 rpm, at any throttle opening. **Nothing tested that**, which
+is the part worth remembering.
+
+It is now 0.75 Nm/bit, a decision inside the 0.745–0.773 bracket that the two
+factory ratings imply, with the drag line refitted in the new units and the
+ceiling pinned by two tests in `test_compute.c`. A VCDS measuring block against
+b7 settles it properly; a full-throttle sniff would too and is not planned. See
+`docs/frames.md` and the comment in `config.h`.
 
 The breadboard phase is skipped — Micro-Fit has a 3.0 mm pitch and does not
 fit a breadboard. The boards themselves arrive during the week of 2026-08-17.

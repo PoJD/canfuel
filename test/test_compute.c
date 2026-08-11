@@ -248,8 +248,8 @@ static void test_torque_above_drag(void)
     decode_init(&st);
     st.rpm_q4 = 3000u * 4u;
     st.torque_ind_cnm = 15000;              /* 150.00 Nm indicated */
-    /* drag at 3000 rpm = 17.44 + 0.75 = 25.0 Nm, so 125.0 net */
-    TT_NEAR(compute_torque_d(&st), 1250, 2);
+    /* drag at 3000 rpm = 19.52 + 8.40 = 27.92 Nm, so 122.08 net */
+    TT_NEAR(compute_torque_d(&st), 1221, 2);
 }
 
 static void test_power(void)
@@ -258,8 +258,8 @@ static void test_power(void)
     decode_init(&st);
     st.rpm_q4 = 3000u * 4u;
     st.torque_ind_cnm = 15000;
-    /* 125 Nm at 3000 rpm = 39.3 kW */
-    TT_NEAR(compute_power_d(&st), 393, 2);
+    /* 122.08 Nm at 3000 rpm = 38.4 kW */
+    TT_NEAR(compute_power_d(&st), 384, 2);
 }
 
 static void test_engine_off_makes_no_torque(void)
@@ -268,6 +268,52 @@ static void test_engine_off_makes_no_torque(void)
     decode_init(&st);
     TT_EQ(compute_torque_d(&st), 0);
     TT_EQ(compute_power_d(&st), 0);
+}
+
+/* THE CEILING. b7 is one byte, so the model has a hard maximum whatever the
+ * engine does, and nothing in the firmware used to check that the maximum was
+ * high enough to show what the car is sold as. It was not: at 0.67 Nm/bit the
+ * display topped out at 76.5 kW and 147 Nm, so the factory 85 kW could not
+ * appear at any throttle opening. These two tests exist so that a change to
+ * TORQUE_CNM_PER_BIT or to the drag line cannot put the ratings out of reach
+ * again without a red test.
+ *
+ * The AQY is rated 85 kW at 5200 rpm and 170 Nm at 2400 rpm. The tolerance is
+ * 5 %: the scale is a decision inside a 0.745-0.773 bracket (see config.h),
+ * not a measurement, so pinning it exactly would only pin the guess. */
+static void test_full_scale_reaches_the_rated_power(void)
+{
+    decode_state_t st;
+    decode_init(&st);
+    st.rpm_q4 = 5200u * 4u;
+    st.torque_ind_cnm = 255u * TORQUE_CNM_PER_BIT;
+    TT_TRUE(compute_power_d(&st) >= 850u - 43u);       /* 85.0 kW, -5 % */
+}
+
+static void test_full_scale_reaches_the_rated_torque(void)
+{
+    decode_state_t st;
+    decode_init(&st);
+    st.rpm_q4 = 2400u * 4u;
+    st.torque_ind_cnm = 255u * TORQUE_CNM_PER_BIT;
+    TT_TRUE(compute_torque_d(&st) >= 1700u - 85u);     /* 170.0 Nm, -5 % */
+}
+
+/* 06_trip_reset holds b7 = 191-192 through the whole start, while rpm climbs
+ * from 187 to 881. Without the cranking gate that is ~125 Nm and ~9 kW on the
+ * display at every start. */
+static void test_cranking_is_not_torque(void)
+{
+    decode_state_t st;
+    decode_init(&st);
+    st.torque_ind_cnm = 192u * TORQUE_CNM_PER_BIT;
+
+    st.rpm_q4 = 288u * 4u;                  /* starter turning it over */
+    TT_EQ(compute_torque_d(&st), 0);
+    TT_EQ(compute_power_d(&st), 0);
+
+    st.rpm_q4 = 797u * 4u;                  /* idle -- the gate is clear of it */
+    TT_TRUE(compute_torque_d(&st) > 0u);
 }
 
 /* --- tank, median and the refuelling reset ------------------------------ */
@@ -505,6 +551,9 @@ int main(void)
     TT_RUN(test_torque_above_drag);
     TT_RUN(test_power);
     TT_RUN(test_engine_off_makes_no_torque);
+    TT_RUN(test_full_scale_reaches_the_rated_power);
+    TT_RUN(test_full_scale_reaches_the_rated_torque);
+    TT_RUN(test_cranking_is_not_torque);
 
     TT_RUN(test_first_stable_reading_only_initialises);
     TT_RUN(test_refuelling_clears_the_average);

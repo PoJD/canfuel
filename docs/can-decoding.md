@@ -43,7 +43,7 @@ quiet because of it.
 | Coolant temperature | 0x288 | 1 | × 0.75 − 48 °C | 0xFF = fault |
 | Oil temperature | 0x420 | 3 | × 0.75 − 48 °C | 0xFF with the engine off |
 | Fuel in tank | 0x320 | 2, mask 0x7F | litres | bit 0x80 = reserve lamp |
-| Torque (indicated) | 0x280 | 7 | ~0.67 Nm/bit | 172 Nm max on the AQY |
+| Torque (indicated) | 0x280 | 7 | 0.75 Nm/bit | a decision, see `frames.md` |
 | Throttle position | 0x280 | 5 | 38 = rest position | |
 | Engine load | 0x280 | 6 | | 0 with the engine off |
 | Wheel speeds | 0x4A0 | 4× 16-bit LE | (raw >> 1) × 0.01 km/h | bit 0 = direction |
@@ -197,7 +197,7 @@ strong agreement.
    recorded for this and has not been analysed yet.
 
 7. ~~**Drag torque calibration**~~ — **settled.** Both points were substituted
-   in during phase 1: `drag [Nm] = 17.44 + 0.0002501 × rpm`, which reproduces
-   19.43 Nm at 797 rpm and 24.79 Nm at 2940 rpm exactly. It is still a straight
+   in during phase 1: `drag [Nm] = 19.52 + 0.00028 × rpm`, which reproduces
+   21.75 Nm at 797 rpm and 27.75 Nm at 2940 rpm exactly. It is still a straight
    line through two idling measurements and says nothing about drag under load;
    that is phase 6. See `frames.md` and `config.h`.

@@ -140,20 +140,63 @@
 
 /* --- torque and power --------------------------------------------------- */
 
-/* Indicated torque is 0x280 b7 at 0.67 Nm per bit. */
-#define TORQUE_CNM_PER_BIT      67u         /* 0.67 Nm */
+/* Indicated torque is 0x280 b7, one byte, full scale 255.
+ *
+ * THE SCALE IS A DECISION, NOT A MEASUREMENT. The ME7 does not send Nm: b7 is
+ * a percentage of a reference torque that lives in the ECU's calibration, at
+ * ~0.39 % per bit (mfd15/docs/sensors.md §8). Turning that into Nm needs to
+ * know what 100 % refers to, and nobody here has that number.
+ *
+ * This used to be 0.67 Nm/bit, from "the AQY's maximum is 172 Nm, so
+ * 172/256 = 0.67". That premise contradicts the rest of the model, and
+ * 05_rev3000 is what proves it: at 2940 rpm in neutral the crank is putting
+ * out nothing at all, and b7 still reads 37. A signal scaled to crank torque
+ * would read zero there. So b7 is indicated torque -- what the combustion
+ * makes, before friction -- and its full scale is the maximum INDICATED
+ * torque, which is the rated crank figure plus the drag at that speed.
+ * Scaling to 172 Nm and then subtracting drag on top counts the friction
+ * twice, and the firmware could never display what the engine is sold as.
+ *
+ * The AQY is rated 85 kW at 5200 rpm and 170 Nm at 2400 rpm (115 PS is the
+ * horsepower figure, not a torque one). Requiring b7 = 255 to reproduce each
+ * rating in turn brackets the scale:
+ *
+ *   85 kW at 5200 rpm   -> 0.745 Nm/bit
+ *   170 Nm at 2400 rpm  -> 0.773 Nm/bit
+ *
+ * 0.75 sits inside that bracket, reproduces both ratings to within 3 % (165 Nm
+ * and 85.6 kW), is the same round step VW uses for the two temperature
+ * channels in this very frame set, and errs low on torque, which is the
+ * conservative direction for a number on a dashboard.
+ *
+ * What would settle it: a VCDS measuring block against b7, or a full-throttle
+ * sniff. Neither exists. test_compute.c pins the ceiling so that a future
+ * change cannot quietly put the factory figures out of reach again. */
+#define TORQUE_CNM_PER_BIT      75u         /* 0.75 Nm -- see above */
 
 /* Drag torque -- friction, pumps, alternator -- rises with engine speed and
  * is modelled linearly. Both points come out of the fixtures and both are
  * reproduced exactly by the model:
  *
- *   02_idle_60s   797 rpm, b7 = 29 -> 19.43 Nm  (engine driving itself only)
- *   05_rev3000   2940 rpm, b7 = 37 -> 24.79 Nm  (neutral, so no wheel torque)
+ *   02_idle_60s   797 rpm, b7 = 29 -> 21.75 Nm  (engine driving itself only)
+ *   05_rev3000   2940 rpm, b7 = 37 -> 27.75 Nm  (neutral, so no wheel torque)
  *
  *   drag_cnm = BASE + rpm * SLOPE / 10000
- */
-#define DRAG_TORQUE_BASE_CNM    1744l       /* 17.44 Nm at 0 rpm            */
-#define DRAG_TORQUE_SLOPE_E4    2501l       /* 0.2501 cNm per rpm           */
+ *
+ * These are the same two fixture points as ever; only TORQUE_CNM_PER_BIT
+ * moved under them, so the line was refitted in the new units. The calibration
+ * is in bytes, not Nm -- change the scale and these must be refitted with it,
+ * or the model stops passing through its own measurements. */
+#define DRAG_TORQUE_BASE_CNM    1952l       /* 19.52 Nm at 0 rpm            */
+#define DRAG_TORQUE_SLOPE_E4    2800l       /* 0.2800 cNm per rpm           */
+
+/* Below this the engine is not running, it is being turned by the starter,
+ * and b7 stops meaning anything: 06_trip_reset holds b7 = 191-192 through the
+ * whole crank, which the model would otherwise show as ~125 Nm and ~9 kW for
+ * about half a second at every start. Idle is 797-826 rpm in every fixture, so
+ * 500 is clear of anything the running engine does. A DECISION -- no datasheet
+ * says where cranking ends. */
+#define TORQUE_MIN_RPM          500u
 
 /* power [kW] = torque [Nm] * rpm / 9550, rearranged for the scaled units:
  * power_d [0.1 kW] = torque_cnm * rpm / 95500 */

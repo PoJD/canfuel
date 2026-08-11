@@ -132,9 +132,25 @@ is used so the estimate is not nonsense on a cold start.
 
 ## Torque and Power
 
+**The byte scale, 0.75 Nm/bit, is a decision.** 0x280 b7 is not Nm — it is a
+percentage of a reference torque held in the ECU's calibration. It used to be
+read at 0.67 Nm/bit, from "the AQY's maximum is 172 Nm, so 172/256". That
+premise is wrong on the fixtures' own evidence: at 2940 rpm in neutral
+(`05_rev3000`) the crank puts out nothing and b7 still reads 37, so b7 is
+**indicated** torque and its full scale is the maximum *indicated* torque —
+the rated crank figure plus the drag at that speed. Scaling to the crank
+maximum and then subtracting drag counts the friction twice.
+
+Requiring b7 = 255 to reproduce each factory rating in turn brackets the scale
+between **0.745** (85 kW at 5200 rpm) and **0.773** Nm/bit (170 Nm at
+2400 rpm). 0.75 sits inside the bracket, reproduces both to within 3 %, and
+errs low on torque. A VCDS measuring block or a full-throttle sniff would
+settle it; neither exists yet. `test_compute.c` pins the ceiling so the
+factory figures cannot silently go out of reach again.
+
 **Drag torque** — friction, pumps, alternator — is subtracted from the
-indicated torque (0x280 b7). It is not constant; it rises with engine speed and
-is modelled linearly against rpm.
+indicated torque. It is not constant; it rises with engine speed and is
+modelled linearly against rpm.
 
 Two calibration points, both already in the logs:
 
@@ -145,16 +161,19 @@ Two calibration points, both already in the logs:
 Both points have now been substituted in. The model is
 
 ```
-drag [Nm] = 17.44 + 0.0002501 × rpm
+drag [Nm] = 19.52 + 0.00028 × rpm
 ```
 
-and it reproduces both measurements exactly: 19.43 Nm at 797 rpm and 24.79 Nm
+and it reproduces both measurements exactly: 21.75 Nm at 797 rpm and 27.75 Nm
 at 2940 rpm, which are the raw values 29 and 37 of 0x280 b7. The constants live
-in `config.h` as `DRAG_TORQUE_BASE_CNM` and `DRAG_TORQUE_SLOPE_E4`.
+in `config.h` as `DRAG_TORQUE_BASE_CNM` and `DRAG_TORQUE_SLOPE_E4`. **The
+calibration is in bytes, not Nm** — change the scale above and this line has to
+be refitted with it.
 
 It is a two-point straight line through two idling measurements, so it says
 nothing about drag under load — that is what phase 6 is for. Torque is clamped
-at zero rather than going negative on the overrun.
+at zero rather than going negative on the overrun, and is zero below 500 rpm,
+where the starter is turning the engine and b7 reads a constant 191–192.
 
 ```
 power [kW] = torque [Nm] × rpm ÷ 9550
