@@ -201,3 +201,20 @@ strong agreement.
    21.75 Nm at 797 rpm and 27.75 Nm at 2940 rpm exactly. It is still a straight
    line through two idling measurements and says nothing about drag under load;
    that is phase 6. See `frames.md` and `config.h`.
+
+8. **The torque byte's scale — 0.75 Nm/bit is a decision, and VCDS settles
+   it.** 0x280 b7 is a percentage of a reference torque inside the ECU, not Nm.
+   The two factory ratings bracket the scale between 0.745 (85 kW at 5200 rpm)
+   and 0.773 Nm/bit (170 Nm at 2400 rpm); 0.75 was chosen inside that bracket
+   on 2026-08-11, and the reasoning — including why the old 0.67 was wrong — is
+   in `frames.md` and in `config.h`.
+
+   **What to do:** open a measuring block that reports engine torque while
+   logging 0x280, at idle and at a few steady throttle openings, and fit b7
+   against it. A full-throttle sniff would also settle it and is not planned.
+   Until then the display is trustworthy in shape and to roughly ±5 % in
+   magnitude. Two tests in `test_compute.c` guard the ceiling, so a wrong scale
+   can no longer put the factory figures out of reach unnoticed.
+
+   Worth doing in the same VCDS session as question 3 — that one wants
+   measuring blocks too.
