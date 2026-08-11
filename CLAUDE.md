@@ -136,7 +136,7 @@ What exists and works:
 - `tools/canlog.py`, `tools/replay.py` — 77 Python tests green, and
   `replay.py --host-build` now diffs Python against the C core
 - `test/fixtures/` — seven real logs from the car, documented
-- `docs/` — decoding, frame layout, refuelling reset, the overall plan
+- `docs/` — decoding, frame layout, refuelling reset, timing, the overall plan
 
 The C core reproduces the Python oracle on all seven logs: the fuel totals and
 restart counts agree **exactly**, distance to within 7 mm over 54 m. Whichever
@@ -177,6 +177,14 @@ against XC8 v4.00 itself. What that last one does and does not settle:
   `LED_CAN` blink pattern the first time it listens to the car.
 - **The A/D reading is uncalibrated by construction.** The 1.024 V reference
   has no tolerance anywhere in the datasheet.
+- **The timing budget is counted, not measured.** `docs/timing.md` costs every
+  function out of the assembly listing XC8 generates. Summary: a typical pass
+  is 113 µs so the loop runs ~8,800 times a second; the 100 ms slot uses
+  **5.3 ms of its 100**; the worst pass that can happen without an EEPROM write
+  is 12.6 ms, against a FIFO that tolerates 20 ms of blindness. The arithmetic
+  is nowhere near being the constraint. The one figure the datasheet declines
+  to bound is the EEPROM write — D122's 4 ms is a *typ* with no maximum — and
+  nothing downstream of it is a deadline.
 
 ### The first real compile happened, and what it cost
 
