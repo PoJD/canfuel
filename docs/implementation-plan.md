@@ -206,8 +206,14 @@ A recap of the requirements, to have them at hand during design:
   dropped from the design. Current draw must stay far below the 0.5 A limit
   (realistically ~30 mA).
 - **CAN:** C7 = CAN-H, C8 = CAN-L. **Do not fit the termination** — the bus is
-  already terminated in the car and a third 120 Ω would overload it. A solder
-  jumper for bench testing is sensible though.
+  already terminated in the car and a third 120 Ω would overload it (**60.1 Ω
+  measured** across CANH/CANL, which is what says both 120 Ω are still there).
+  A solder jumper for bench testing is sensible though. The board therefore
+  hangs on an **unterminated stub of about 1.4 m of CANH/CANL from the
+  instrument cluster** to the air vent — measured as 1.3–1.4 m, and 1.4 m is
+  the number used everywhere, deliberately the pessimistic end. That stub is
+  what the firmware's 7 TQ propagation segment is sized for; see the bit-timing
+  comment in `src/hal_can.c`.
 - **Connector:** 4-pin, to be picked at GME. Y-splitter only on connector C.
 - **LEDs:** two (power, CAN status), active only when the debug jumper on RA0
   is fitted. Nothing lights up in the car.

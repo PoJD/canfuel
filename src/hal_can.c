@@ -87,41 +87,99 @@ static hal_can_mode_t g_mode = HAL_CAN_MODE_NORMAL;
 
 /* --- bit timing: 500 kbps out of a 16 MHz crystal ------------------------ */
 
-/* DS39977C Equation 27-3: TQ (us) = (2 * (BRP + 1)) / FOSC (MHz).
+/* DS39977C Example 27-6: TQ (us) = (2 * (BRP + 1)) / FOSC (MHz).
  * Register 27-52 allows BRP<5:0> = 000000, giving TQ = (2 * 1) / 16 =
  * 0.125 us. Sixteen of those is a 2 us bit time, which is 500 kbps exactly --
  * no remainder and nothing to round.
  *
  *   Sync_Seg   1 TQ   fixed (§27.9.3)
- *   Prop_Seg   4 TQ   PRSEG<2:0>   = 011
- *   Phase_Seg1 8 TQ   SEG1PH<2:0>  = 111
+ *   Prop_Seg   7 TQ   PRSEG<2:0>   = 110      875 ns
+ *   Phase_Seg1 5 TQ   SEG1PH<2:0>  = 100
  *   Phase_Seg2 3 TQ   SEG2PH<2:0>  = 010
  *              -----
- *             16 TQ   sample point at 13/16 = 81.25 %
+ *             16 TQ   sample point at 13/16 = 81.25 %, SJW = 2 TQ
  *
  * Against the rules in §27.11 and §27.9.7:
  *   Prop_Seg + Phase_Seg1 (12) >= Phase_Seg2 (3)   ok
- *   Phase_Seg2 (3) >= SJW (1)                      ok
- *   Phase_Seg2 >= IPT, which this family fixes at 2 TQ   ok
+ *   Phase_Seg2 (3) >= SJW (2)                      ok
+ *   Phase_Seg2 >= IPT, which §27.9.7 fixes at 2 TQ for this family   ok
  *   bit time >= 8 TQ (§27.9.2, "the usable minimum is 8 TQ")   ok
  * and §27.9.6 asks for a sample point "as late as possible or approximately
  * 80 % of the bit time".
  *
- * This split is piclib's, and the arithmetic is the datasheet's. What none of
- * it is, is tested: CanSwitch.X runs at 50 kbps, so BRP = 0 and this whole
- * timing has been exercised on no hardware at all. Watch the error counters
- * the first time this listens to the car.
+ * WHY 7 TQ OF PROP_SEG AND NOT PICLIB'S 4. Three TQ move out of Phase_Seg1
+ * into Prop_Seg. The bit rate does not change, the sample point does not move
+ * -- it is (1 + 7 + 5)/16, the same 13/16 as (1 + 4 + 8)/16 -- and no other
+ * register is touched. What it buys is margin on the two things Prop_Seg
+ * actually pays for, and this board is unusual in both.
  *
- * BRGCON1 = 00 000000: SJW<1:0> = 00 (1 TQ -- §27.11, "Typically, an SJW of 1
- *                      is enough"), BRP<5:0> = 000000.
- * BRGCON2 = 1 0 111 011: SEG2PHTS = 1 (Phase_Seg2 freely programmable, which
+ * 1. THE ROUND TRIP. §27.9.4: the propagation segment "compensate[s] for
+ *    physical delay times within the network ... the signal propagation time
+ *    on the bus line and the internal delay time of the nodes". Arbitration
+ *    requires a bit to reach the far node and its answer to arrive back before
+ *    the sample point, so the requirement is a round trip:
+ *
+ *      Prop_Seg >= 2 * (t_transmitter + t_cable + t_receiver)
+ *
+ *    DS20005167C §2.3, AC Characteristics: parameter 4, tTXD-BUSOFF = 125 ns
+ *    max, and parameter 6, tBUSOFF-RXD = 110 ns max -- 235 ns through one
+ *    node, which is exactly parameter 8's tTXD-RXD of 235 ns max, so the two
+ *    ways of counting agree. Cable at 5 ns/m is a DECISION, not a datasheet
+ *    number: it is the usual figure for twisted pair and nothing in this car
+ *    has been measured. With L the one-way separation of the two nodes:
+ *
+ *      4 TQ = 500 ns:  500 >= 2 * (235 + 5*L)  ->  L <= 3.0 m
+ *      7 TQ = 875 ns:  875 >= 2 * (235 + 5*L)  ->  L <= 40.5 m
+ *
+ *    Three metres is not a comfortable budget for a bus that runs from the
+ *    engine bay to the dashboard, and the far node is not an MCP2562 -- it is
+ *    whatever VW fitted, whose delays we do not have. Allowing 150 ns each way
+ *    for it instead of 125/110 still fits in 875 ns (2 * (300 + 57) = 714 ns)
+ *    and does not fit in 500.
+ *
+ * 2. THE STUB. This board hangs off the bus on an unterminated stub: about
+ *    1.4 m of CANH/CANL from the instrument cluster to the air vent (measured
+ *    as 1.3-1.4 m; 1.4 is carried everywhere as the conservative figure), and
+ *    both 120 R terminators are elsewhere in the car -- 60.1 R measured across
+ *    CANH and CANL, which is what says they are both still there and that R5
+ *    on this board must stay unfitted. onsemi AND8376/D gives the usual limit
+ *    for one unterminated stub as
+ *
+ *      L_STUB_MAX <= T_PROP_SEG / (50 * T_PROP(BUS))
+ *
+ *    which at 5 ns/m is 500/(50*5) = 2.0 m for the old split and
+ *    875/(50*5) = 3.5 m for this one: the real stub goes from 1.4x margin to
+ *    2.5x. That note is an application note about somebody else's
+ *    transceivers, so by this repo's rules it is evidence and not a
+ *    specification -- but it points the same way as the round trip above,
+ *    which is the datasheet's.
+ *
+ * SJW = 2 TQ, and it costs nothing. §27.11 says "Typically, an SJW of 1 is
+ * enough", which is advice for a bus whose oscillators you control. We are one
+ * node on a car bus full of nodes we did not build and cannot measure, and SJW
+ * is the bound on how much a resynchronisation may stretch Phase_Seg1 or
+ * shorten Phase_Seg2 (§27.10.2) -- i.e. how much oscillator mismatch the node
+ * can absorb. The standard bound is df <= SJW / (2 * 10 * NBT), which at
+ * NBT = 16 TQ is 0.31 % at SJW = 1 and 0.63 % at SJW = 2. (That formula is
+ * ISO 11898-1's, not DS39977C's; §27.12 only refers the reader there.) The
+ * price is that Phase_Seg2 must be at least SJW, and 3 >= 2 with room.
+ *
+ * All of the above is arithmetic. What none of it is, is tested: CanSwitch.X
+ * runs at 50 kbps, so BRP = 0 and this whole timing has been exercised on no
+ * hardware at all. Watch the error counters the first time this listens to
+ * the car.
+ *
+ * BRGCON1 = 01 000000: SJW<1:0> = 01 (2 TQ, Register 27-52), BRP<5:0> =
+ *                      000000.
+ * BRGCON2 = 1 0 100 110: SEG2PHTS = 1 (Phase_Seg2 freely programmable, which
  *                      it has to be to set 3 TQ), SAM = 0 (sampled once),
- *                      SEG1PH = 111 (8 TQ), PRSEG = 011 (4 TQ).
+ *                      SEG1PH = 100 (5 TQ), PRSEG = 110 (7 TQ).
  * BRGCON3 = 1 0 000 010: WAKDIS = 1 (bus-activity wake-up disabled; this
  *                      device never sleeps), WAKFIL = 0, SEG2PH = 010 (3 TQ).
+ *                      Unchanged -- Phase_Seg2 stays at 3 TQ.
  */
-#define BRGCON1_500K        0x00u
-#define BRGCON2_500K        0xBBu
+#define BRGCON1_500K        0x40u
+#define BRGCON2_500K        0xA6u
 #define BRGCON3_500K        0x82u
 
 /* CIOCON, DS39977C Register 27-55.

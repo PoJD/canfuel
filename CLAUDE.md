@@ -114,7 +114,7 @@ reasoning is in the HAL section below.
 ## Current state — read this first
 
 **Phase 1 is code-complete and, since 2026-08-09, it builds: `make -C mplab`
-produces `mplab/build/canfuel.hex` under XC8 v4.00, 11,552 bytes of program
+produces `mplab/build/canfuel.hex` under XC8 v4.00, 11,554 bytes of program
 memory and 564 of RAM, no warnings.** What it has never been is *run on a
 board* — see the warning at the end of this section, which is still the most
 important thing on this page.
@@ -166,8 +166,8 @@ against XC8 v4.00 itself. What that last one does and does not settle:
   DS39977C Register 28-5 says that bit means. The single most expensive bit in
   the project, confirmed against the artefact that will actually be flashed.
   `CONFIG2H = 0x26` likewise reads back as `WDTPS<3:0> = 1001` = 512.
-- **It fits, with room.** 11,454 bytes of 32,768 (35 %) of program space and
-  563 bytes of 3,649 (15 %) of RAM, at `-O2`.
+- **It fits, with room.** 11,554 bytes of 32,768 (35.3 %) of program space and
+  564 bytes of 3,649 (15.5 %) of RAM, at `-O2`.
 - **It still proves nothing about the silicon.** Compiling is not running. A
   register that exists but is written in the wrong order, at the wrong time, or
   with the wrong value compiles exactly as cleanly as one that does not.
@@ -767,8 +767,35 @@ piclib's fixed 16 TQ bit time gives 2 µs — exactly 500 kbps.
 
 `piclib`'s own formula, `BRP = (1000 × cpuSpeed)/(32 × baudRate) − 1`, returns
 0 for `can_setupBaudRate(500, 16)`, so the call is simply correct. Note it
-wants the **oscillator** frequency, not the instruction rate. Its segment
-split is SYNC 1 + PROP 4 + PS1 8 + PS2 3 = 16 TQ, sampling at 81.25 %.
+wants the **oscillator** frequency, not the instruction rate.
+
+**The segment split is not piclib's, though.** piclib uses SYNC 1 + PROP 4 +
+PS1 8 + PS2 3, and so did this firmware until the round trip was worked out.
+It is now **SYNC 1 + PROP 7 + PS1 5 + PS2 3 = 16 TQ, SJW 2** — the same 16 TQ,
+the same 81.25 % sample point, `BRGCON1/2/3 = 0x40 / 0xA6 / 0x82`. Three TQ
+moved from Phase_Seg1 into Prop_Seg, which is the segment that pays for the
+signal's round trip and for reflections off an unterminated stub:
+
+- **Round trip.** DS39977C §27.9.4, with DS20005167C §2.3 parameters 4
+  (125 ns) and 6 (110 ns): `Prop_Seg ≥ 2 × (235 ns + 5 ns/m × L)` allows
+  **L ≤ 3.0 m** at 500 ns and **L ≤ 40.5 m** at 875 ns. Three metres is not a
+  comfortable budget for a bus running from the engine bay to the dashboard.
+- **Stub.** The board hangs on an unterminated stub of **about 1.4 m of
+  CANH/CANL from the instrument cluster** to the air vent — measured as
+  1.3–1.4 m, and 1.4 m is the figure carried everywhere, deliberately the
+  pessimistic end. Both 120 Ω terminators are elsewhere in the car; **60.1 Ω
+  measured** across CANH/CANL says so, and is also why R5 stays unfitted.
+  onsemi AND8376/D's `L_STUB_MAX ≤ T_PROP_SEG/(50 × T_PROP(BUS))` gives 2.0 m
+  at the old split and 3.5 m at this one, so the margin goes from 1.4× to
+  2.5×. An application note about somebody else's transceivers is evidence,
+  not a specification — but it points the same way the datasheet arithmetic
+  above does.
+
+SJW = 2 rather than §27.11's "typically 1": we are one node among many whose
+oscillators we neither built nor can measure, the ISO 11898-1 bound
+`df ≤ SJW/(2 × 10 × NBT)` doubles from 0.31 % to 0.63 %, and the only price is
+`Phase_Seg2 ≥ SJW`, which 3 ≥ 2 pays with room. The full derivation, with
+every citation, is the comment block above `BRGCON1_500K` in `hal_can.c`.
 
 All of which is arithmetic. `CanSwitch.X` passes `BAUD_RATE 50`, so BRP = 0
 and the whole 500 kbps path have been exercised by nobody — the first real
