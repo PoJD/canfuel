@@ -33,20 +33,13 @@ typedef struct {
     int16_t  clt_c100;          /* 0.01 C, from 0x288 b1                    */
     int16_t  oil_c100;          /* 0.01 C, from 0x420 b3                    */
 
-    /* Tank, from 0x320 b2. Seven bits of litres plus the reserve lamp. */
+    /* Tank, from 0x320 b2, seven bits of litres. The reserve lamp in bit 7
+     * is deliberately not decoded -- see decode.c. */
     uint8_t  tank_l;
-    bool     tank_reserve;
 
-    /* Lateral acceleration, from 0x5A0 b0. Positive is a left-hand turn,
-     * measured in the car on 2026-08-11 -- docs/can-decoding.md question 5. */
-    int16_t  accel_mg;          /* 0.001 g                                  */
-
-    /* The fuel counter, from 0x480 b2-b3. Already masked to 15 bits;
-     * counter_wrapped carries bit 15, which is a "this ignition cycle has
-     * wrapped at least once" flag and not part of the number. */
+    /* The fuel counter, from 0x480 b2-b3, already masked to 15 bits. */
     uint16_t fuel_counter;
     bool     fuel_counter_valid; /* false until the first 0x480 arrives     */
-    bool     counter_wrapped;
 } decode_state_t;
 
 /* Zero state: no readings yet, speed invalid, temperatures invalid. */

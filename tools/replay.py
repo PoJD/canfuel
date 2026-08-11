@@ -30,9 +30,17 @@ from typing import Iterator, Optional
 
 from canlog import Frame, parse_file
 
-# --- constants that will end up in config.h ------------------------------
+# --- constants, mirroring src/config.h ------------------------------------
 
-PERIOD_0X480_MS = 49.5      # fuel counter period, used when a log has no timestamps
+# THIS PERIOD IS FICTIONAL AND IS KNOWN TO BE. 0x480 has no fixed period at
+# all: measured with adapter timestamps it is 26.4 frames/s at idle and 18.0 at
+# 2586 rpm, on a 10 ms grid (docs/can-decoding.md question 1). It survives here
+# only to give the five oldest fixtures -- the ones recorded with no timestamps
+# -- *a* clock, so the Python and C implementations can be diffed over them.
+# Every duration, flow and distance derived from those five is invalid as a
+# fact about the car; the fuel totals are not, because the counter is absolute.
+# There is deliberately no counterpart in config.h.
+PERIOD_0X480_MS = 49.5
 FUELNOW_LH_BELOW_KMH = 4.0  # below this we send l/h, above it l/100 km
 FUELNOW_CLAMP = 999         # 99.9 on the display
 RANGE_DEFAULT_L100 = 9.0    # used for range until we have driven 5 km
@@ -57,13 +65,9 @@ class Decoded:
     clt_c: Optional[float] = None
     oil_c: Optional[float] = None
     tank_l: int = 0
-    tank_reserve: bool = False
     torque_ind_nm: float = 0.0
     throttle: int = 0
-    load: int = 0
-    accel_g: float = 0.0
     fuel_counter: Optional[int] = None
-    counter_wrapped: bool = False
 
 
 def u16le(d: bytes, i: int) -> int:
@@ -78,7 +82,6 @@ def decode(frame: Frame, st: Decoded) -> None:
     if cid == 0x280 and len(d) >= 8:
         st.rpm = u16le(d, 2) * 0.25
         st.throttle = d[5]
-        st.load = d[6]
         # 0.74 Nm/bit, and the scale is a decision -- src/config.h argues it.
         # It moved from 0.75 on 2026-08-11 when the drag line was refitted on
         # warm oil; the two are calibrated together and must move together.
@@ -100,16 +103,14 @@ def decode(frame: Frame, st: Decoded) -> None:
         st.oil_c = None if d[3] == 0xFF else d[3] * 0.75 - 48.0
 
     elif cid == 0x320 and len(d) >= 3:
+        # Bit 7 is the reserve lamp and is deliberately not decoded, here or
+        # in decode.c -- nothing consumes it.
         st.tank_l = d[2] & 0x7F
-        st.tank_reserve = bool(d[2] & 0x80)
-
-    elif cid == 0x5A0 and len(d) >= 1:
-        st.accel_g = (d[0] - 127) / 100.0
 
     elif cid == 0x480 and len(d) >= 4:
-        raw = u16le(d, 2)
-        st.fuel_counter = raw & 0x7FFF
-        st.counter_wrapped = bool(raw & 0x8000)
+        # Bit 15 is a wrap flag, not data. The mask drops it; trap 3 in
+        # docs/can-decoding.md is where that behaviour is recorded.
+        st.fuel_counter = u16le(d, 2) & 0x7FFF
 
 
 # --- computation ----------------------------------------------------------

@@ -24,7 +24,6 @@
 #define CAN_ID_TANK             0x320u  /* fuel level, reserve lamp, doors  */
 #define CAN_ID_OIL              0x420u  /* oil temperature                  */
 #define CAN_ID_FUEL             0x480u  /* the fuel counter; no fixed period */
-#define CAN_ID_ACCEL            0x5A0u  /* acceleration                     */
 
 /* Outgoing, ours. Free on this bus -- see docs/frames.md. */
 #define CAN_ID_TX_FUEL          0x600u  /* 100 ms */
@@ -75,10 +74,12 @@
 
 /* --- fuel counter ------------------------------------------------------- */
 
-/* The counter in 0x480 b2-b3 is 15 bits; bit 15 is a wrap flag, not data. */
+/* The counter in 0x480 b2-b3 is 15 bits; bit 15 is a wrap flag, not data, and
+ * the mask simply drops it. Trap 3 in docs/can-decoding.md records what that
+ * bit does -- it is zero from ignition on until the first wrap and then
+ * permanently one -- but nothing here reads it. */
 #define COUNTER_MODULO          32768u
 #define COUNTER_MASK            0x7FFFu
-#define COUNTER_WRAP_BIT        0x8000u
 
 /* --- speed validity gate ------------------------------------------------ */
 

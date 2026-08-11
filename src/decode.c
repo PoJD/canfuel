@@ -37,13 +37,9 @@ void decode_init(decode_state_t *st)
     st->oil_c100 = DECODE_TEMP_INVALID;
 
     st->tank_l = 0;
-    st->tank_reserve = false;
-
-    st->accel_mg = 0;
 
     st->fuel_counter = 0;
     st->fuel_counter_valid = false;
-    st->counter_wrapped = false;
 }
 
 uint16_t decode_rpm(const decode_state_t *st)
@@ -100,15 +96,10 @@ bool decode_frame(decode_state_t *st, uint16_t can_id,
         if (dlc < 3) {
             return false;
         }
+        /* Bit 7 is the reserve lamp. It is not decoded: nothing in the
+         * firmware or on the display uses it, and the display reads 0x320
+         * itself with a 0x7F mask anyway. */
         st->tank_l = (uint8_t)(data[2] & 0x7Fu);
-        st->tank_reserve = (data[2] & 0x80u) != 0u;
-        return true;
-
-    case CAN_ID_ACCEL:
-        if (dlc < 1) {
-            return false;
-        }
-        st->accel_mg = (int16_t)(((int16_t)data[0] - 127) * 10);
         return true;
 
     case CAN_ID_FUEL: {
@@ -119,9 +110,9 @@ bool decode_frame(decode_state_t *st, uint16_t can_id,
         raw = u16le(data, 2);
         /* Bit 15 is not part of the number and it is not constant either --
          * it is zero from ignition on until the first wrap, then permanently
-         * one. The mask drops it; we keep it as a flag. Trap 3. */
+         * one. The mask drops it and nothing needs it as a flag; trap 3 in
+         * docs/can-decoding.md is where that behaviour is recorded. */
         st->fuel_counter = (uint16_t)(raw & COUNTER_MASK);
-        st->counter_wrapped = (raw & COUNTER_WRAP_BIT) != 0u;
         st->fuel_counter_valid = true;
         return true;
     }

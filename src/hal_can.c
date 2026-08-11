@@ -54,21 +54,31 @@ static hal_can_mode_t g_mode = HAL_CAN_MODE_NORMAL;
 
 /* --- functional mode and the FIFO ---------------------------------------- */
 
-/* MODE 2 RATHER THAN MODE 0, for two independent reasons.
+/* MODE 2 RATHER THAN MODE 0, AND THE REASON IS DEPTH, NOT FILTER COUNT.
  *
- * Filters. DS39977C §27.4.1: Mode 0 offers "Six acceptance filters, 2 for
- * RXB0 and 4 for RXB1". We need seven identifiers. Mode 1 and 2 offer
- * "Sixteen acceptance filters" that can be pointed at any buffer (§27.4.2,
- * §27.4.3), so each identifier gets its own filter and an exact mask. Squeezing
- * seven identifiers into six Mode 0 filters would mean widening a mask to
- * cover 0x280 and 0x288 together, which lets in whatever else matches.
+ * This used to rest on two arguments. The filter one has since gone away and
+ * the decision has not, which is worth writing down rather than leaving the
+ * old reasoning in place to be discovered as false later.
  *
- * Depth. Mode 0 has two receive buffers. Mode 2 forms a FIFO out of all eight
- * (§27.4.3: "If none of the programmable buffers are configured as a transmit
- * buffer, the FIFO will be 8 buffers deep"). The frames we accept arrive at,
- * per docs/can-decoding.md, 7.5 ms (0x1A0), 10.5 ms (0x280) and 11.8 ms
- * (0x288) for the fast three, plus four slower ones -- call it four frames per
- * 10 ms. Two buffers would be a coin toss; eight is not.
+ * WHAT CHANGED. We used to accept seven identifiers, and DS39977C §27.4.1 gives
+ * Mode 0 only "Six acceptance filters, 2 for RXB0 and 4 for RXB1" -- one short,
+ * so Mode 2's "Sixteen acceptance filters" (§27.4.2, §27.4.3) settled it on
+ * their own. 0x5A0 was dropped on 2026-08-11 because nothing consumed it, so
+ * there are six identifiers now and Mode 0 could hold them all.
+ *
+ * WHY IT IS STILL MODE 2. Mode 0 has two receive buffers. Mode 2 forms a FIFO
+ * out of all eight (§27.4.3: "If none of the programmable buffers are
+ * configured as a transmit buffer, the FIFO will be 8 buffers deep"). Measured
+ * off the _z1 fixtures with adapter timestamps, the six identifiers we keep
+ * arrive at 357 frames a second -- 3.58 per 10 ms -- and that figure is the
+ * same at idle, at 2586 rpm and over six minutes of driving. Dropping 0x5A0
+ * removed 17 to 35 frames a second and did not change it materially.
+ *
+ * Two buffers against 3.58 frames per 10 ms is a coin toss on every scheduler
+ * pass, and it collapses completely during the once-a-minute EEPROM write,
+ * which blocks for about 48 ms -- see docs/timing.md. Eight buffers is what
+ * makes that write cost nothing. So the FIFO is the argument, and the extra
+ * filters are now a convenience rather than a requirement.
  *
  * ECANCON = 1 0 0 10000: MDSEL<1:0> = 10 (Mode 2), FIFOWM = 0 (unused, we do
  * not take the FIFO interrupt), EWIN<4:0> = 10000 (Receive Buffer 0, which is
@@ -206,23 +216,28 @@ static hal_can_mode_t g_mode = HAL_CAN_MODE_NORMAL;
 
 /* --- receive filters ------------------------------------------------------ */
 
-/* The seven identifiers from config.h, in filter order. */
+/* The six identifiers from config.h, in filter order. Every one of them is
+ * consumed by decode.c; an identifier that is merely interesting does not
+ * belong here, because a filter is a hardware resource and a decoded field
+ * nobody reads is dead weight. 0x5A0 (lateral acceleration) was here until
+ * 2026-08-11 and was removed for exactly that reason -- the display reads it
+ * straight off the bus itself. */
 static const uint16_t k_rx_ids[] = {
     CAN_ID_SPEED,       /* 0x1A0 */
     CAN_ID_ENGINE,      /* 0x280 */
     CAN_ID_COOLANT,     /* 0x288 */
     CAN_ID_TANK,        /* 0x320 */
     CAN_ID_OIL,         /* 0x420 */
-    CAN_ID_FUEL,        /* 0x480 */
-    CAN_ID_ACCEL        /* 0x5A0 */
+    CAN_ID_FUEL         /* 0x480 */
 };
 
 #define RX_FILTER_COUNT     (sizeof(k_rx_ids) / sizeof(k_rx_ids[0]))
 
-/* Fourteen identifiers are broadcast periodically on this bus and we want
- * seven of them, so the filtering is worth doing in hardware rather than in
- * decode_frame(): at 500 kbps the half we throw away is half the interrupts,
- * half the FIFO pressure and half the bus reads.
+/* Fourteen identifiers are broadcast periodically on this bus and we want six
+ * of them, so the filtering is worth doing in hardware rather than in
+ * decode_frame(): measured on the _z1 fixtures the bus carries 682-727 frames
+ * a second and the six we keep are 357 of them, so the hardware throws away
+ * slightly more than half the FIFO pressure and half the bus reads.
  *
  * Mask: every one of the eleven identifier bits must match, and only standard
  * frames are accepted.
@@ -437,7 +452,7 @@ bool hal_can_receive(hal_can_frame_t *frame)
 
     /* Standard identifiers only. The mask forbids extended frames from ever
      * matching, so this cannot fire -- but an extended frame decoded as an
-     * 11-bit identifier could collide with one of the seven we act on, and
+     * 11-bit identifier could collide with one of the six we act on, and
      * that is not a failure worth leaving to a mask being right. */
     if (RXB0SIDL & 0x08u) {
         RXB0CONbits.RXFUL = 0;

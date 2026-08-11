@@ -103,7 +103,7 @@ keep their numbers.
 **Believed:** that the ECU feeds the instrument cluster a consumption signal
 over a dedicated wire — an injector-duty or pulse output — the way older VWs
 with the MFA trip computer do. If so, the whole job would have been tapping
-that wire and scaling it: no CAN decoding, no seven acceptance filters, no
+that wire and scaling it: no CAN decoding, no acceptance filters, no
 converter firmware worth the name.
 
 **Refuted in two steps, and the second one is what mattered.**
@@ -223,8 +223,10 @@ correction beside it.
 
 **Believed:** and written into `CLAUDE.md` as a plan.
 **Refuted by:** reading it while writing `hal_can.c`. `can.c` is Mode 0 only —
-one transmit buffer, two receive buffers, six filters — and this needs seven
-filters and an eight-deep FIFO, so Mode 2, which it has no notion of. Its API
+one transmit buffer, two receive buffers, six filters — and this needs an
+eight-deep FIFO, so Mode 2, which it has no notion of. (At the time it also
+needed a seventh filter; 0x5A0 was dropped on 2026-08-11 and six now fit, but
+two receive buffers still do not hold 3.58 frames per 10 ms.) Its API
 is a `CanHeader` of message type and node ID belonging to a house lighting
 protocol, not "send this identifier". `can_initRcPortsForCan()` is hard-wired
 to the wrong pin pair for this board. `can.h` *defines* two variables in the

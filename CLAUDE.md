@@ -128,7 +128,7 @@ What exists and works:
 - `src/hal_sys.c` — Timer2 millisecond clock, the 12-bit A/D on the band gap,
   the two LEDs, the `DBG_EN` jumper, EEPROM behind `persist_backend_t`
 - `src/hal_can.c` — ECAN on RB2/RB3 at 500 kbps, Mode 2 with an eight-deep
-  receive FIFO, seven hardware filters, three transmit buffers, and a
+  receive FIFO, six hardware filters, three transmit buffers, and a
   build-time choice of Normal, Listen Only or Loopback
 - `src/main.c` — the cooperative scheduler, and nothing else
 - `mplab/` — `canfuel.X` for the IDE and a plain `Makefile` driving `xc8-cc`,
@@ -254,7 +254,7 @@ which the procedure itself cannot carry:
 **Loopback is the step that gets skipped and must not be.** It costs ten
 minutes, needs no bus and no transceiver at all (DS39977C §27.3.5 hands the
 transmit buffers straight to the receive buffers), and it exercises the bit
-timing, all seven filters, the FIFO, the access-bank window, `txframes` and
+timing, all six filters, the FIFO, the access-bank window, `txframes` and
 `decode`. A fault caught there costs a reflash; the same fault in Normal mode
 puts error frames on the car's bus.
 
@@ -685,18 +685,29 @@ mode** — without that, a listen-only hex left in the device by accident is
 indistinguishable from a transmitter that has quietly stopped working: frames
 arrive, `LED_CAN` is steady, and the display just shows nothing.
 
-**Which frames to receive, and in which functional mode.** The seven
-`CAN_ID_*` identifiers in `config.h`. Fourteen are broadcast periodically, so
-hardware filtering rather than filtering inside `decode_frame()` is worth it at
-500 kbps — half the bus reads and half the buffer pressure thrown away before
-it costs anything.
+**Which frames to receive, and in which functional mode.** The six
+`CAN_ID_*` identifiers in `config.h`, and **only identifiers something
+consumes** — a filter is a hardware resource and a decoded field nobody reads
+is dead weight. 0x5A0 was accepted until 2026-08-11 and was dropped for exactly
+that reason: nothing in the firmware read the acceleration, and the display
+takes 0x5A0 off the bus itself. Fourteen identifiers are broadcast
+periodically and the bus carries 682–727 frames a second; the six we keep are
+357 of them, so hardware filtering throws away slightly more than half the bus
+reads and half the FIFO pressure before they cost anything.
 
-Seven filters is what settles the functional mode. DS39977C §27.4.1: Mode 0
-offers "Six acceptance filters, 2 for RXB0 and 4 for RXB1", which is one short.
-Widening a mask to cover 0x280 and 0x288 together would fit, and would also let
-in whatever else happens to match. **Mode 2** (§27.4.3) gives sixteen filters,
-two masks, and — the second reason — a receive FIFO up to eight buffers deep
-instead of Mode 0's two.
+**Mode 2 rather than Mode 0, and the reason is depth, not filter count.** That
+used to rest on two arguments and one of them has since gone away, which is
+worth saying rather than leaving the stale reasoning to be found later. With
+seven identifiers, Mode 0's "Six acceptance filters, 2 for RXB0 and 4 for RXB1"
+(DS39977C §27.4.1) was one short and settled it on its own. Six fit.
+
+What still settles it is that **Mode 0 has two receive buffers and Mode 2 forms
+a FIFO out of all eight** (§27.4.3). The six identifiers arrive at **3.58 per
+10 ms**, measured off the `_z1` fixtures and near-identical at idle, at 2586 rpm
+and over six minutes of driving. Two buffers against that is a coin toss on
+every pass, and it collapses entirely during the once-a-minute EEPROM write
+that blocks for ~48 ms. The sixteen filters are now a convenience; the FIFO is
+the requirement.
 
 The FIFO is read through `FP<3:0>` in `CANCON` and the access-bank window in
 `ECANCON`, per §27.15.1. **That window is a loaded gun**: in Mode 1 and 2,
@@ -831,8 +842,9 @@ consuming it turned out to cost more than writing the twenty lines it would
 have saved:
 
 - `can.c` is **Mode 0 only** — one transmit buffer, two receive buffers, six
-  filters. We need seven filters and an eight-deep FIFO, so Mode 2, which
-  `can.c` has no notion of.
+  filters. We need an eight-deep FIFO, so Mode 2, which `can.c` has no notion
+  of. (Its six filters would now hold our six identifiers, but its two receive
+  buffers still would not hold the traffic.)
 - Its API is not "send this identifier": it is a `CanHeader` of
   `messageType`/`nodeID` that `can_headerToId()` packs into the eleven bits in
   a scheme belonging to the house lighting protocol. Our identifiers are

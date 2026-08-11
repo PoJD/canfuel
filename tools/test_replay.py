@@ -42,27 +42,27 @@ class TestDecode(unittest.TestCase):
         decode(frame(0x420, "030000ffb800ff00"), self.st)
         self.assertIsNone(self.st.oil_c)
 
-    def test_tank_reserve_bit(self):
+    def test_reserve_lamp_does_not_leak_into_the_litres(self):
+        # Bit 7 is the reserve lamp and is not decoded. 0x80 is an empty tank
+        # with the lamp on, not 128 litres.
         decode(frame(0x320, "0400800000000000"), self.st)
         self.assertEqual(self.st.tank_l, 0)
-        self.assertTrue(self.st.tank_reserve)
+        decode(frame(0x320, "04008a0000000000"), self.st)
+        self.assertEqual(self.st.tank_l, 10)
 
     def test_counter_masking(self):
         decode(frame(0x480, "f208ffff00000000"), self.st)
         self.assertEqual(self.st.fuel_counter, 0x7FFF)
-        self.assertTrue(self.st.counter_wrapped)
 
-    def test_counter_wrap_flag_clear(self):
-        # b3 = 0x7C, so bit 15 is zero -- the counter has not wrapped yet
-        # in this ignition cycle
+    def test_bit_15_never_reaches_the_counter(self):
+        # TRAP 3. Bit 15 is zero from ignition on until the first wrap and
+        # permanently one after, and it is not part of the number. The same
+        # counter must come out whichever way it sits -- a leak here is worth
+        # up to 32,768 ul on every total.
         decode(frame(0x480, "f2085c7c00000000"), self.st)
         self.assertEqual(self.st.fuel_counter, 0x7C5C)
-        self.assertFalse(self.st.counter_wrapped)
-
-    def test_counter_wrap_flag_set(self):
         decode(frame(0x480, "f2085cfc00000000"), self.st)
         self.assertEqual(self.st.fuel_counter, 0x7C5C)
-        self.assertTrue(self.st.counter_wrapped)
 
 
 class TestSpeedGate(unittest.TestCase):

@@ -67,23 +67,17 @@ static void test_oil_error_value(void)
     TT_EQ(st.oil_c100, DECODE_TEMP_INVALID);
 }
 
-static void test_tank_reserve_bit(void)
+/* Bit 7 of 0x320 b2 is the reserve lamp and is not decoded. What must still
+ * hold is that it never leaks into the litres: 0x80 is an empty tank with the
+ * lamp on, not 128 litres. */
+static void test_reserve_lamp_does_not_leak_into_the_litres(void)
 {
     decode_state_t st;
     decode_init(&st);
     feed(&st, CAN_ID_TANK, "0400800000000000");
     TT_EQ(st.tank_l, 0);
-    TT_TRUE(st.tank_reserve);
-}
-
-static void test_accel(void)
-{
-    decode_state_t st;
-    decode_init(&st);
-    feed(&st, CAN_ID_ACCEL, "7f00000000000000");
-    TT_EQ(st.accel_mg, 0);                      /* 127 is the resting value */
-    feed(&st, CAN_ID_ACCEL, "8900000000000000");
-    TT_EQ(st.accel_mg, 100);                    /* 0.100 g */
+    feed(&st, CAN_ID_TANK, "04008a0000000000");
+    TT_EQ(st.tank_l, 10);                       /* 0x8A = 10 l, lamp on */
 }
 
 /* --- the fuel counter, traps 3 and the masking -------------------------- */
@@ -94,27 +88,24 @@ static void test_counter_masking(void)
     decode_init(&st);
     feed(&st, CAN_ID_FUEL, "f208ffff00000000");
     TT_EQ(st.fuel_counter, 0x7FFF);
-    TT_TRUE(st.counter_wrapped);
     TT_TRUE(st.fuel_counter_valid);
 }
 
-static void test_counter_wrap_flag_clear(void)
+/* TRAP 3. Bit 15 is not part of the number and it is not constant either: it
+ * is zero from ignition on until the first wrap and permanently one after. It
+ * is no longer decoded as a flag, so what has to be proved is that the mask
+ * drops it -- the SAME counter value must come out whichever way that bit
+ * sits. If this ever fails, every fuel total is out by up to 32,768 ul. */
+static void test_bit_15_never_reaches_the_counter(void)
 {
     decode_state_t st;
     decode_init(&st);
-    /* b3 = 0x7C, so bit 15 is zero -- this ignition cycle has not wrapped */
-    feed(&st, CAN_ID_FUEL, "f2085c7c00000000");
-    TT_EQ(st.fuel_counter, 0x7C5C);
-    TT_FALSE(st.counter_wrapped);
-}
 
-static void test_counter_wrap_flag_set(void)
-{
-    decode_state_t st;
-    decode_init(&st);
-    feed(&st, CAN_ID_FUEL, "f2085cfc00000000");
+    feed(&st, CAN_ID_FUEL, "f2085c7c00000000");     /* bit 15 clear */
     TT_EQ(st.fuel_counter, 0x7C5C);
-    TT_TRUE(st.counter_wrapped);
+
+    feed(&st, CAN_ID_FUEL, "f2085cfc00000000");     /* bit 15 set   */
+    TT_EQ(st.fuel_counter, 0x7C5C);
 }
 
 /* --- trap 1: the speed gate is a bit mask, not an equality -------------- */
@@ -251,11 +242,9 @@ int main(void)
     TT_RUN(test_clt);
     TT_RUN(test_clt_error_value);
     TT_RUN(test_oil_error_value);
-    TT_RUN(test_tank_reserve_bit);
-    TT_RUN(test_accel);
+    TT_RUN(test_reserve_lamp_does_not_leak_into_the_litres);
     TT_RUN(test_counter_masking);
-    TT_RUN(test_counter_wrap_flag_clear);
-    TT_RUN(test_counter_wrap_flag_set);
+    TT_RUN(test_bit_15_never_reaches_the_counter);
     TT_RUN(test_gate_accepted_states);
     TT_RUN(test_gate_rejected_states);
     TT_RUN(test_stale_speed_is_kept_but_flagged);

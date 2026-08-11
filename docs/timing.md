@@ -180,7 +180,7 @@ Worth being precise about, because "the MCU is busy for 48 ms" sounds like it
 should be much worse than it is.
 
 **The CPU is not what receives frames.** The ECAN module has its own protocol
-engine: it clocks bits off the wire, matches them against the seven hardware
+engine: it clocks bits off the wire, matches them against the six hardware
 filters, acknowledges what it accepts and writes it into the FIFO, all with no
 software involved at all. While `hal_eeprom_write()` sits polling `WR`, the
 module carries on doing exactly that. Nothing about a busy CPU is visible on
@@ -189,9 +189,9 @@ the bus.
 So the sequence is:
 
 1. **The first eight accepted frames are buffered.** The FIFO is eight deep
-   (Mode 2, §27.4.3), and our seven identifiers arrive at roughly one every
-   2.6 ms — 0x1A0 every 7.5 ms, 0x280 every 10.5, 0x288 every 11.8, plus four
-   slower ones. Eight buffers is therefore about **21 ms of storage**.
+   (Mode 2, §27.4.3), and our six identifiers arrive at **357 a second**,
+   measured off the `_z1` fixtures — 3.58 per 10 ms, or one every 2.8 ms.
+   Eight buffers is therefore about **22 ms of storage**.
 2. **After that, further frames are dropped.** Not queued anywhere: each buffer
    has an `RXFUL` bit, and DS39977C is explicit — *"As long as RXFUL is set, no
    new message will be loaded and the buffer will be considered full."* The

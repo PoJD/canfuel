@@ -51,11 +51,11 @@ quiet because of it.
 | Coolant temperature | 0x288 | 1 | × 0.75 − 48 °C | 0xFF = fault |
 | Oil temperature | 0x420 | 3 | × 0.75 − 48 °C | 0xFF with the engine off |
 | Fuel in tank | 0x320 | 2, mask 0x7F | litres | bit 0x80 = reserve lamp |
-| Torque (indicated) | 0x280 | 7 | 0.75 Nm/bit | a decision, see `frames.md` |
+| Torque (indicated) | 0x280 | 7 | 0.74 Nm/bit | a decision, see `frames.md` |
 | Throttle position | 0x280 | 5 | 38 = rest position | |
-| Engine load | 0x280 | 6 | | 0 with the engine off |
+| Engine load | 0x280 | 6 | | 0 with the engine off; **not decoded by the firmware** |
 | Wheel speeds | 0x4A0 | 4× 16-bit LE | (raw >> 1) × 0.01 km/h | bit 0 = direction |
-| Acceleration | 0x5A0 | 0 | (val − 127) / 100 G | |
+| Acceleration | 0x5A0 | 0 | (val − 127) / 100 G | lateral; **not decoded by the firmware** |
 | Doors | 0x320 | 0 | bit mask | |
 
 DLC is constant per ID: 0x050 carries 4 bytes, 0x5D0 carries 6, everything
@@ -155,8 +155,11 @@ It is visible in `06_trip_reset.txt`, where the sequence runs `32767 → 15` and
 bit 15 flips from 0 to 1 at the same sample. In `01_ign_only.txt` the bit is
 zero because the engine is not running and the counter is all zeros.
 
-It makes no difference to the arithmetic — the 0x7FFF mask drops it. It is
-usable as a "this ignition cycle is still young" flag.
+It makes no difference to the arithmetic — the 0x7FFF mask drops it, and that
+dropping is asserted by a test in both implementations, because a leak here is
+worth up to 32,768 µl on every total. **It is not decoded as a flag**: it would
+make a usable "this ignition cycle is still young" indicator and nothing wanted
+one, so the field was removed on 2026-08-11.
 
 ## Trap 4: FuelAvg divides by an almost-zero distance
 
@@ -467,6 +470,12 @@ an assumption. VCDS group 003 would confirm it in one minute if anyone cares
 enough, and nobody should.
 
 ### 5. ~~AccelG — longitudinal or lateral?~~ — **closed 2026-08-11: it is lateral**
+
+> **The firmware does not decode this and no longer accepts 0x5A0 at all.** The
+> display reads the frame straight off the bus, so a decoded field here would
+> have had no consumer; it was removed on 2026-08-11 along with its acceptance
+> filter. This entry stands as a fact about the car, which is what this document
+> is for.
 
 **Measured in the car**, on the MFD15 reading 0x5A0 straight off the bus with
 no converter in the loop. Full lock, several laps at 15–20 km/h:
@@ -869,7 +878,7 @@ it blocks nothing.
 ### 8. The torque byte's scale — **decided rather than measured, parked 2026-08-11**
 
 **Why it is here, and it is the harder of the two calls.** Unlike b5, this one
-*does* touch what the firmware transmits: 0.75 Nm/bit scales every torque and
+*does* touch what the firmware transmits: 0.74 Nm/bit scales every torque and
 power figure on the display. It is here anyway, because there is nothing left
 to run.
 

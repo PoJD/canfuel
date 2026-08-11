@@ -34,7 +34,7 @@ git repository, so run git inside one of the three.
 
 A PIC18F25K80 on a 55 × 45 mm board, in the air vent behind a CANchecked MFD15
 Gen2 display, taking 5 V from the display's own plug and hanging off the car's
-powertrain CAN at 500 kbps. It reads seven frames from the ECU, computes
+powertrain CAN at 500 kbps. It reads six frames from the ECU, computes
 consumption, range, torque and power, and sends them back on frames 0x600–0x602
 for the display to render.
 
@@ -192,7 +192,7 @@ need them.
 
 DS39977C §27.3.5 hands the transmit buffers straight to the receive buffers, so
 the module talks to itself. **No bus, no USBtin, no transceiver needed.** It
-exercises the bit timing, all seven acceptance filters, the eight-deep FIFO,
+exercises the bit timing, all six acceptance filters, the eight-deep FIFO,
 the access-bank window, `txframes` and `decode` — everything except the wire
 itself.
 
@@ -304,7 +304,7 @@ Two things are known to be approximate and both need the car:
 - **The tank**, which needs a jerrycan: a known quantity put in, to check the
   level against.
 
-**The torque scale, 0.75 Nm/bit, is deliberately not on that list.** It is a
+**The torque scale, 0.74 Nm/bit, is deliberately not on that list.** It is a
 decision inside the narrow bracket the factory ratings imply rather than a
 measurement, and the VCDS session that was supposed to settle it found that
 this ECU has no torque measuring block at all. It is parked under *Never
