@@ -14,7 +14,7 @@
  *   make -C test test
  *       the sampled run: 1.17 million checks, part of the normal suite.
  *
- *   gcc -O2 -DEXHAUSTIVE -I../src -I. -o exh test_divconst.c ../src/*.c && ./exh
+ *   gcc -O2 -DEXHAUSTIVE -I../src -I. -o exh test_divconst.c ../src/decode.c \n *       ../src/compute.c ../src/txframes.c ../src/persist.c && ./exh
  *       every 32-bit value against every divisor. Tens of minutes, so it is
  *       not wired into `make test` -- it is what you run once when a magic
  *       number changes, and it was run when these were introduced.
