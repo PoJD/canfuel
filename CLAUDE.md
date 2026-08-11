@@ -114,7 +114,7 @@ reasoning is in the HAL section below.
 ## Current state — read this first
 
 **Phase 1 is code-complete and, since 2026-08-09, it builds: `make -C mplab`
-produces `mplab/build/canfuel.hex` under XC8 v4.00, 11,554 bytes of program
+produces `mplab/build/canfuel.hex` under XC8 v4.00, 11,594 bytes of program
 memory and 564 of RAM, no warnings.** What it has never been is *run on a
 board* — see the warning at the end of this section, which is still the most
 important thing on this page.
@@ -132,7 +132,7 @@ What exists and works:
 - `src/main.c` — the cooperative scheduler, and nothing else
 - `mplab/` — `canfuel.X` for the IDE and a plain `Makefile` driving `xc8-cc`,
   which is the authoritative recipe and what CI runs
-- `test/` — 243 checks across four test binaries, plus `replay_host.c`
+- `test/` — 250 checks across four test binaries, plus `replay_host.c`
 - `tools/canlog.py`, `tools/replay.py` — 77 Python tests green, and
   `replay.py --host-build` now diffs Python against the C core
 - `test/fixtures/` — seven real logs from the car, documented
@@ -166,7 +166,7 @@ against XC8 v4.00 itself. What that last one does and does not settle:
   DS39977C Register 28-5 says that bit means. The single most expensive bit in
   the project, confirmed against the artefact that will actually be flashed.
   `CONFIG2H = 0x26` likewise reads back as `WDTPS<3:0> = 1001` = 512.
-- **It fits, with room.** 11,554 bytes of 32,768 (35.3 %) of program space and
+- **It fits, with room.** 11,594 bytes of 32,768 (35.4 %) of program space and
   564 bytes of 3,649 (15.5 %) of RAM, at `-O2`.
 - **It still proves nothing about the silicon.** Compiling is not running. A
   register that exists but is written in the wrong order, at the wrong time, or
@@ -980,7 +980,7 @@ python tools/canlog.py --dump --id 0x480 FILE              # print frames
 python tools/replay.py --every 100 test/fixtures/07_accel.txt
 python -m unittest discover -s tools -p "test_*.py"        # 77 tests
 
-make -C test test                                          # 243 checks
+make -C test test                                          # 250 checks
 make -C test check-pure                                    # no <xc.h> in the core
 make -C test check-hal                                     # the HAL still compiles
 python tools/replay.py --host-build test/fixtures/*.txt    # Python vs C

@@ -191,7 +191,8 @@ available on its own in 0x601 b4-5 (step 0.01 l/h) should a dedicated sensor
 ever be wanted.
 
 Other corner cases: flow 0 → 0.0; data source lost for > 500 ms → zeros; range
-from a rolling average over 30 segments of 1 km; tank damped over 60 s.
+from a rolling average over 30 segments of 1 km, applied to the damped tank
+level; tank damped with a 120 s time constant.
 
 ---
 

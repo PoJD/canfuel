@@ -41,7 +41,7 @@ void txframes_gather(tx_values_t *v, const compute_t *c,
     v->fuel_now_d  = compute_fuel_now_d(c, st);
     v->fuel_avg_d  = compute_avg_l100_d(c);
     v->fuel_tank_d = compute_tank_d(c);
-    v->range_km    = compute_range_km(c, st);
+    v->range_km    = compute_range_km(c);
 
     v->power_d  = compute_power_d(st);
     v->torque_d = compute_torque_d(st);

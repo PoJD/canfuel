@@ -135,8 +135,26 @@
 #define REFUEL_RISE_L           3u
 
 /* First-order damping of the transmitted tank level, in samples at
- * TANK_SAMPLE_MS. Sixty of them is the 60 s in docs/frames.md. */
-#define TANK_DAMP_SAMPLES       60u
+ * TANK_SAMPLE_MS -- so this is the time constant in seconds. It feeds both the
+ * displayed level and, since 2026-08-11, the range.
+ *
+ * It was 60. Measured against the fixtures, the filter turns the float's slosh
+ * into this much residual ripple:
+ *
+ *   07_accel (driving, raw spread 10 L)   60 s -> 0.44 L    120 s -> 0.18 L
+ *   06_trip_reset (near empty, spread 8)  60 s -> 3.45 L    120 s -> 2.67 L
+ *
+ * In range that is 5 km of swing against 2 on the first and 38 against 29 on
+ * the second. A DECISION, not a measurement: 120 s halves the ripple, and what
+ * it costs -- 90 % of any step in about 4.6 minutes instead of 2.3 -- costs
+ * nothing here, because the only fast change a tank ever makes is refuelling
+ * and compute.c now snaps straight to the median when it detects one. Fuel
+ * being burnt moves the level over hours.
+ *
+ * 06_trip_reset is the honest caveat: it was recorded with the reserve lamp on
+ * and the sender at the bottom of its travel, where it is at its worst, and no
+ * amount of damping makes that reading good. */
+#define TANK_DAMP_SAMPLES       120u
 
 /* --- torque and power --------------------------------------------------- */
 

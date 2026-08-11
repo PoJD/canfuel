@@ -142,6 +142,15 @@ static void tank_sample(compute_t *c, const decode_state_t *st)
                    (uint8_t)(median - c->tank_stable_l) > REFUEL_RISE_L) {
             compute_reset_trip(c);
             c->refuels++;
+            /* Snap the damped level to the median rather than letting the
+             * filter crawl up to it. A refuelling is the one change in tank
+             * level that is both large and instantaneous, and it is the one
+             * moment the driver is certain to look at the gauge. The median at
+             * rest is the most trustworthy number we have about the tank, so
+             * there is nothing to gain by approaching it slowly. Without this
+             * the level and the range would both read minutes-old for minutes
+             * after filling up. */
+            c->tank_damped_ml = (uint32_t)median * 1000u;
         }
         c->tank_stable_l = median;
     }
@@ -320,7 +329,7 @@ uint16_t compute_tank_d(const compute_t *c)
     return clamp_u16(div_round(c->tank_damped_ml, 100u), 0xFFFFu);
 }
 
-uint16_t compute_range_km(const compute_t *c, const decode_state_t *st)
+uint16_t compute_range_km(const compute_t *c)
 {
     uint32_t basis_d = RANGE_DEFAULT_L100_D;
 
@@ -341,8 +350,21 @@ uint16_t compute_range_km(const compute_t *c, const decode_state_t *st)
         }
     }
 
-    /* km = litres / (l/100 km) * 100, and basis is in tenths. */
-    return clamp_u16((uint32_t)st->tank_l * 1000u / basis_d, 0xFFFFu);
+    /* THE DAMPED LEVEL, NOT THE INSTANTANEOUS ONE. This used to read
+     * st->tank_l, which is the raw float position and slosh and all: on
+     * 07_accel the raw value swings over 10 L during a pull-away, which is
+     * 111 km of range appearing and disappearing several times a second while
+     * the level shown right next to it sat still. The damping that
+     * compute_tank_d already had is worth exactly as much here, and the two
+     * gauges have no business disagreeing about how much fuel is in the tank.
+     *
+     * The stable median would be steadier still, but it only updates at rest,
+     * so it would leave the range frozen for a whole motorway drive. The
+     * damped value tracks consumption; that is the point of it.
+     *
+     * km = litres / (l/100 km) * 100, and basis is in tenths. Litres here are
+     * millilitres, so the 1000 of the old line is gone. */
+    return clamp_u16(c->tank_damped_ml / basis_d, 0xFFFFu);
 }
 
 uint32_t compute_trip_ml(const compute_t *c)

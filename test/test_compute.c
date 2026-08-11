@@ -199,29 +199,31 @@ static void test_idling_does_not_ruin_the_average(void)
 static void test_range_uses_the_default_until_five_km(void)
 {
     compute_t c;
-    decode_state_t st;
     compute_init(&c);
-    decode_init(&st);
-    st.tank_l = 40;
+    c.tank_damped_ml = 40000;               /* 40 l */
+    c.tank_damped_valid = true;
     c.total_mm = 1000000;                   /* 1 km */
-    TT_EQ(compute_range_km(&c, &st), 444);  /* 40 l at 9.0 l/100 km */
+    TT_EQ(compute_range_km(&c), 444);       /* 40 l at 9.0 l/100 km */
 }
 
 static void test_range_uses_the_rolling_window_after_five_km(void)
 {
     compute_t c;
-    decode_state_t st;
     uint8_t i;
     compute_init(&c);
-    decode_init(&st);
-    st.tank_l = 40;
+    c.tank_damped_ml = 40000;
+    c.tank_damped_valid = true;
     c.total_mm = 10000000;                  /* 10 km */
     for (i = 0; i < 10; i++) {
         c.seg_ul[i] = 60000;                /* 60 ml/km = 6.0 l/100 km */
     }
     c.seg_count = 10;
-    TT_EQ(compute_range_km(&c, &st), 666);  /* 40 l at 6.0 l/100 km */
+    TT_EQ(compute_range_km(&c), 666);       /* 40 l at 6.0 l/100 km */
 }
+
+/* Two more range tests live in the tank section below, where the helper that
+ * drives the damping filter is defined: test_range_ignores_the_slosh and
+ * test_range_falls_as_fuel_is_burnt. */
 
 /* --- torque and power --------------------------------------------------- */
 
@@ -332,6 +334,54 @@ static void tank_seconds(compute_t *c, decode_state_t *st, uint32_t *now,
     }
 }
 
+/* The bug this replaced: range read the raw float position, so on 07_accel it
+ * swung over 111 km several times a second during a pull-away, while the level
+ * gauge beside it -- damped all along -- sat still. */
+static void test_range_ignores_the_slosh(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 0;
+    uint16_t first, last;
+    int i;
+
+    compute_init(&c);
+    decode_init(&st);
+    c.total_mm = 1000000;                   /* 1 km, so the 9.0 default */
+
+    tank_seconds(&c, &st, &now, 30, 0, 400);        /* settle at 30 l, standing */
+    first = compute_range_km(&c);
+    TT_EQ(first, 333);                              /* 30 l at 9.0 l/100 km */
+
+    for (i = 0; i < 60; i++) {                      /* a minute of +/- 5 l */
+        tank_seconds(&c, &st, &now, (uint8_t)(i & 1 ? 35 : 25), 50000, 1);
+    }
+    last = compute_range_km(&c);
+    /* Reading st->tank_l would have alternated between 277 and 388 km. */
+    TT_TRUE(last + 12u > first && last < first + 12u);
+}
+
+/* Range has to follow the tank down over a long drive. The stable median would
+ * not -- it only updates at rest, so a motorway run would freeze it. */
+static void test_range_falls_as_fuel_is_burnt(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 0;
+    uint16_t before, after;
+
+    compute_init(&c);
+    decode_init(&st);
+    c.total_mm = 1000000;
+
+    tank_seconds(&c, &st, &now, 30, 0, 400);
+    before = compute_range_km(&c);
+    tank_seconds(&c, &st, &now, 20, 50000, 1200);   /* 20 min at 50 km/h */
+    after = compute_range_km(&c);
+    TT_TRUE(after < before);
+    TT_NEAR(after, 222, 20);                        /* 20 l at 9.0 l/100 km */
+}
+
 static void test_first_stable_reading_only_initialises(void)
 {
     compute_t c;
@@ -367,6 +417,27 @@ static void test_refuelling_clears_the_average(void)
     TT_EQ(c.total_ul, 0);
     TT_EQ(c.total_mm, 0);
     TT_EQ(c.tank_stable_l, 45);
+}
+
+/* A refuelling is the one tank change that is both large and instantaneous,
+ * and the one moment the driver certainly looks at the gauge. Crawling up to
+ * it with a time constant of minutes would show a stale level and a stale
+ * range for minutes after filling up. */
+static void test_refuelling_snaps_the_damped_level(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 0;
+    compute_init(&c);
+    decode_init(&st);
+    compute_tick(&c, &st, now);
+    tank_seconds(&c, &st, &now, 10, 0, 30);
+    TT_NEAR(compute_tank_d(&c), 100, 2);
+
+    tank_seconds(&c, &st, &now, 45, 0, 15);     /* fill up, still standing */
+    TT_EQ(c.refuels, 1);
+    /* Not 10 l plus a fortnight of filter. */
+    TT_NEAR(compute_tank_d(&c), 450, 20);
 }
 
 static void test_a_small_rise_is_not_refuelling(void)
@@ -417,9 +488,10 @@ static void test_tank_is_damped(void)
     TT_EQ(compute_tank_d(&c), 400);             /* first sample seeds it */
 
     tank_seconds(&c, &st, &now, 20, 0, 5);
-    /* Five seconds into a 60 s time constant it has barely moved. */
-    TT_RANGE(compute_tank_d(&c), 370, 400);
-    tank_seconds(&c, &st, &now, 20, 0, 300);
+    /* Five seconds into a TANK_DAMP_SAMPLES time constant it has barely
+     * moved. A fall is not a refuelling, so nothing snaps it. */
+    TT_RANGE(compute_tank_d(&c), 380, 400);
+    tank_seconds(&c, &st, &now, 20, 0, 900);
     TT_NEAR(compute_tank_d(&c), 200, 2);
 }
 
@@ -555,8 +627,12 @@ int main(void)
     TT_RUN(test_full_scale_reaches_the_rated_torque);
     TT_RUN(test_cranking_is_not_torque);
 
+    TT_RUN(test_range_ignores_the_slosh);
+    TT_RUN(test_range_falls_as_fuel_is_burnt);
+
     TT_RUN(test_first_stable_reading_only_initialises);
     TT_RUN(test_refuelling_clears_the_average);
+    TT_RUN(test_refuelling_snaps_the_damped_level);
     TT_RUN(test_a_small_rise_is_not_refuelling);
     TT_RUN(test_sloshing_while_driving_is_ignored);
     TT_RUN(test_tank_is_damped);

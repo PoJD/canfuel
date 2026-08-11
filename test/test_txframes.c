@@ -120,6 +120,9 @@ static void test_gather_zeroes_when_the_bus_is_quiet(void)
     st.tank_l = 40;
     st.fuel_counter_valid = true;
     st.fuel_counter = 1000;
+    /* Range reads the damped level, which compute_tick fills in. */
+    c.tank_damped_ml = 40000;
+    c.tank_damped_valid = true;
 
     compute_on_fuel(&c, &st, 1000);
     txframes_gather(&v, &c, &st, 503, 1000);
@@ -150,6 +153,8 @@ static void test_gather_fills_a_full_frame(void)
     compute_init(&c);
     decode_init(&st);
     st.tank_l = 40;
+    c.tank_damped_ml = 40000;           /* range reads the damped level */
+    c.tank_damped_valid = true;
     st.speed_valid = true;
     st.speed_mmh = 50000;               /* 50 km/h */
     st.rpm_q4 = 3000u * 4u;

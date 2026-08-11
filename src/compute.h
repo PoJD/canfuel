@@ -66,7 +66,7 @@ typedef struct {
     uint8_t  tank_hist_next;
     uint8_t  tank_stable_l;     /* median at rest; survives in EEPROM       */
     bool     tank_stable_valid;
-    uint32_t tank_damped_ml;    /* 0.001 l, first order over 60 s           */
+    uint32_t tank_damped_ml;    /* 0.001 l, first order, TANK_DAMP_SAMPLES  */
     bool     tank_damped_valid;
     uint32_t last_tank_ms;
     bool     have_tank_ms;
@@ -109,7 +109,9 @@ uint16_t compute_fuel_now_d(const compute_t *c,
                             const decode_state_t *st); /* 0.1, dual unit   */
 uint16_t compute_avg_l100_d(const compute_t *c);    /* 0.1 l/100 km        */
 uint16_t compute_tank_d(const compute_t *c);        /* 0.1 l, damped       */
-uint16_t compute_range_km(const compute_t *c, const decode_state_t *st);
+/* Range from the damped tank level, never the instantaneous one -- see the
+ * comment on the definition. Takes no decode_state_t for that reason. */
+uint16_t compute_range_km(const compute_t *c);
 
 /* Trip totals for the slow diagnostic frame. */
 uint32_t compute_trip_ml(const compute_t *c);       /* 0.001 l             */

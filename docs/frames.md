@@ -15,7 +15,7 @@ both (the Format column in the TRI file, 0 = big endian).
 |---|---|---|---|
 | 0–1 | FuelNow | 0.1 | dual unit, see below |
 | 2–3 | FuelAvg | 0.1 l/100 km | 0–999 |
-| 4–5 | FuelTank | 0.1 l | damped over 60 s |
+| 4–5 | FuelTank | 0.1 l | damped, 120 s time constant |
 | 6–7 | Range | 1 km | |
 
 ## 0x601 @ 100 ms — engine and diagnostics
@@ -127,6 +127,19 @@ gradually rather than jumping.
 
 Until 5 km have been driven since startup, a conservative default of 9 l/100 km
 is used so the estimate is not nonsense on a cold start.
+
+**"Litres remaining" is the damped level, not the raw one.** Until 2026-08-11
+it was the raw `0x320` b2, i.e. the float position with the slosh still in it.
+Measured on `07_accel`, where the raw value swings across 10 L during a
+pull-away, that is a range swinging over **111 km several times a second**,
+while FuelTank — damped all along — sat still beside it. The two gauges read
+the same tank and now agree about it. `compute_range_km()` takes no
+`decode_state_t` at all any more, so it cannot regress to the raw value by
+accident.
+
+The stable median would be steadier still, but it only updates while the car is
+stationary, so it would leave the range frozen for a whole motorway drive. The
+damped level tracks consumption, which is the entire point of a range gauge.
 
 ---
 
