@@ -158,6 +158,12 @@ Indirect evidence for 49.5 ms on 0x480: at that period the idle flow from
 and the recording length to 60.1 s, which matches the file name. That is a
 strong agreement.
 
+⚠ **It is not the whole story.** The two logs that *do* carry timestamps imply
+an idle flow about half that, and therefore a period about twice as long. Both
+answers have corroboration and they cannot both be right — **open question 9**,
+which is the most consequential thing on this page and is settled by one
+sixty-second recording on a live bus.
+
 ---
 
 ## What is NOT on the bus
@@ -172,49 +178,254 @@ strong agreement.
 
 ## Open questions
 
-1. **The flow in `05_rev3000` does not match the specification.** It quotes
-   958 µl/s, the data gives 1005 µl/s. The 5 % gap is not in the data but in
-   the assumed 0x480 period — at 51.9 ms it would come out at exactly 958. The
-   log has no timestamps, so only measuring the period on a live bus can settle it.
+Reviewed in full on 2026-08-11. Three were closed by going back to the
+fixtures, which nobody had done since they were written down; one candidate was
+eliminated; one new question came out of the review and it is the most
+important thing on this page. What remains open carries the procedure that
+would close it, because a question without one is a wish.
 
-2. **The starting counter value in `07_accel`.** The specification quotes
-   13247 → 22622; the first sample in the file is 12870. The end matches, the
-   start does not. The 377 µl difference is a handful of early frames — the
-   specification was probably computed from a later point in the log.
+Two of them — 3 and 8 — want the same VCDS session and should be done together.
 
-3. **0x288 b5 and b6** — load-dependent and undecoded. Candidates are MAF,
-   ignition advance and injection time. Fastest route is comparing against
-   measuring blocks in VCDS.
+---
 
-4. **Is 0x420 b3 oil or IAT?** `07_accel` was recorded to answer exactly this.
-   Temperature holds at 75.75 → 76.5 °C during the acceleration, so it does
-   **not** fall. IAT would drop when accelerating. That argues for oil, but the
-   run was short (16 s), so it is not conclusive.
+### 1. What is the real period of 0x480? **Open, and question 9 makes it worse**
 
-5. **AccelG: longitudinal or lateral?** Parking across a slope settles it.
+The specification quotes 958 µl/s for `05_rev3000`; the data gives 1005 µl/s
+on the assumed 49.5 ms period, and 51.9 ms would produce exactly 958. Five
+per cent.
 
-6. **Source of the trip reset** — candidate 0x5D8 b0. `06_trip_reset` was
-   recorded for this and has not been analysed yet.
+That was the whole question until question 9 below, which found that the two
+timestamped fixtures imply a fuel flow roughly *half* what the assumed period
+gives. Whatever settles one settles the other, so do question 9 first and this
+becomes arithmetic.
 
-7. ~~**Drag torque calibration**~~ — **settled.** Both points were substituted
-   in during phase 1: `drag [Nm] = 19.52 + 0.00028 × rpm`, which reproduces
-   21.75 Nm at 797 rpm and 27.75 Nm at 2940 rpm exactly. It is still a straight
-   line through two idling measurements and says nothing about drag under load;
-   that is phase 6. See `frames.md` and `config.h`.
+**Procedure.** With the converter in `CAN_MODE=LISTEN_ONLY` and the engine at
+warm idle, log the arrival time of every 0x480 for 60 s using
+`hal_sys_millis()` — the device's own clock, which is a crystal and answers to
+nobody. Frames per second and microlitres per second both fall out, and the
+period is one division. Nothing else on the car can do this as well, which is
+why this has waited: a USB adapter timestamps when the host gets round to it,
+and the device timestamps when the frame arrives.
 
-8. **The torque byte's scale — 0.75 Nm/bit is a decision, and VCDS settles
-   it.** 0x280 b7 is a percentage of a reference torque inside the ECU, not Nm.
-   The two factory ratings bracket the scale between 0.745 (85 kW at 5200 rpm)
-   and 0.773 Nm/bit (170 Nm at 2400 rpm); 0.75 was chosen inside that bracket
-   on 2026-08-11, and the reasoning — including why the old 0.67 was wrong — is
-   in `frames.md` and in `config.h`.
+### 2. ~~The starting counter value in `07_accel`~~ — **closed 2026-08-11**
 
-   **What to do:** open a measuring block that reports engine torque while
-   logging 0x280, at idle and at a few steady throttle openings, and fit b7
-   against it. A full-throttle sniff would also settle it and is not planned.
-   Until then the display is trustworthy in shape and to roughly ±5 % in
-   magnitude. Two tests in `test_compute.c` guard the ceiling, so a wrong scale
-   can no longer put the factory figures out of reach unnoticed.
+The specification quotes 13247 → 22622 while the file starts at 12870, a
+difference of 377 µl. **Confirmed exactly**: the counter reaches 13247 at
+0x480 frame #23 of 290, 1.14 s into the recording, and the fuel burnt between
+the first frame and that one is 377 µl to the microlitre. The specification
+was computed from 1.14 s in. No discrepancy exists.
 
-   Worth doing in the same VCDS session as question 3 — that one wants
-   measuring blocks too.
+### 3. 0x288 b5 and b6 — **open, one VCDS session**
+
+Load-dependent and undecoded. Candidates are mass air flow, ignition advance
+and injection time.
+
+**Procedure.** VCDS, engine electronics (address 01), measuring blocks. Group
+003 carries mass air flow and load; group 020 or 021 carries ignition advance;
+injection time is in group 002 or 004 depending on the ECU version. Log 0x288
+with the USBtin at the same time, at warm idle and at a couple of steady
+throttle openings, and regress each byte against each block value. Two bytes,
+three candidates, three or four operating points is enough to tell them apart.
+
+Nothing in the firmware wants these bytes. This is curiosity with a use — an
+air mass would let a proper torque model replace the two-point drag line — but
+it blocks nothing.
+
+### 4. ~~Is 0x420 b3 oil or IAT?~~ — **closed 2026-08-11: it is oil**
+
+`07_accel` alone was inconclusive. Reading all seven fixtures in the order the
+coolant says they were recorded settles it:
+
+| Log | Coolant | 0x420 b3 |
+|---|---|---|
+| `06_trip_reset` (cold start) | 54.0 °C | 255, then 20.3 °C |
+| `idle` | 68.25 °C | 21.0 °C |
+| `07_accel` | 75.75 °C | 32.3 °C |
+| `05_rev3000` | 90.0 °C | 39.0 °C |
+| `02_idle_60s` | 96.75 °C | 61.5 °C |
+| `03_drive` | 99.0 °C | 65.3 °C |
+| `01_ign_only` (engine off) | 100.5 °C | 255 |
+
+Three things follow, and they agree:
+
+- **It is a warm-up curve that lags the coolant**, rising 21 → 65 °C while the
+  coolant goes 68 → 99 °C. Intake air does not climb forty degrees over a
+  session and stay there.
+- **It is highest in `03_drive`**, the one log with air actually moving through
+  the engine. An intake temperature falls when you drive; oil does not.
+- **It reads 255 with the ignition on and the engine off** (`01_ign_only`, and
+  the first seconds of `06_trip_reset` before the engine fires). An intake air
+  sensor is a thermistor the ECU can read whenever it is awake, and it would
+  give a number. A quantity that only exists once the engine is running behaves
+  exactly like this.
+
+The decoding table above already called it oil temperature and the firmware
+already treats it as such, so nothing changes; it is now a finding rather than
+an assumption. VCDS group 003 would confirm it in one minute if anyone cares
+enough, and nobody should.
+
+### 5. AccelG — longitudinal or lateral? **Open, narrowed to two**
+
+What the fixtures did settle: standing still with the engine running
+(`02_idle_60s`) the byte reads 127–128, i.e. **0.00 G**, which confirms both
+the 127 offset and that the axis is **horizontal** — a vertical axis would read
++1 G at rest. That removes one of the three possibilities.
+
+What they did not settle is which horizontal axis. Correlating the byte against
+the derivative of road speed gives r = +0.05 on `07_accel` and r = +0.25 on
+`03_drive`, with a slope of 0.29 where a clean longitudinal sensor would give
+1.0. That is not an answer: both logs were recorded crawling across an uneven
+lawn, where the tilt of the car under each wheel swamps an acceleration of
+0.04 G.
+
+**Procedure**, either of these, both a minute long:
+
+- **Park across a slope**, engine running, wheels straight, and read the byte.
+  A lateral sensor shows a steady offset proportional to the cross-slope; a
+  longitudinal one shows nothing. Then park facing up the same slope: the
+  answers swap. This needs no instruments and no driving.
+- **Accelerate firmly in a straight line on flat tarmac**, second gear, and
+  correlate against speed as above. On tarmac at 0.3 G the signal is an order
+  of magnitude above the noise that ruined the garden logs.
+
+The channel is transmitted to the display and used for nothing else, so a wrong
+label costs a wrong caption.
+
+### 6. ~~Source of the trip reset — candidate 0x5D8 b0~~ — **candidate eliminated, question retired**
+
+`06_trip_reset.txt` was recorded for this and had never been analysed. It has
+been now, and the candidate is dead: **all eight bytes of 0x5D8 are constant
+for the entire 135 s recording** — `21 05 00 00 00 00 00 00`, not one bit
+moves. 0x5D0 is constant too. Sweeping every byte of all fourteen broadcast
+identifiers for anything that grows and then falls turns up only the fuel
+counter itself and the oil temperature climbing as the engine warms.
+
+**One honest caveat.** The recording covers 124.6 m. A trip odometer in units
+of 0.1 km would tick exactly once across it, and a single increment is not
+something a scan can distinguish from noise. So this eliminates the specific
+candidate and does not prove the trip odometer is absent from the bus.
+
+**It no longer matters, which is why the question is retired rather than
+open.** The average is reset on refuelling instead (`refuel-reset.md`), which
+needs no sniff, no licence and no byte. If somebody ever wants the cluster's
+trip reset as a *second* trigger, the procedure is a fifteen-minute drive with
+the USBtin running, at least 3 km so a 0.1 km counter moves thirty times, with
+the reset pressed in the middle — and then the same scan, which is now written
+down and took a minute to run.
+
+### 7. ~~Drag torque calibration~~ — **closed in phase 1**
+
+`drag [Nm] = 19.52 + 0.00028 × rpm`, reproducing 21.75 Nm at 797 rpm and
+27.75 Nm at 2940 rpm exactly. It is still a straight line through two idling
+measurements and says nothing about drag under load; that is phase 6. See
+`frames.md` and `config.h`.
+
+### 8. The torque byte's scale — **open, the same VCDS session as question 3**
+
+0x280 b7 is a percentage of a reference torque inside the ECU, not Nm. The two
+factory ratings bracket the scale between 0.745 Nm/bit (85 kW at 5200 rpm) and
+0.773 (170 Nm at 2400 rpm); 0.75 was chosen inside that bracket on 2026-08-11,
+and the reasoning — including why the old 0.67 was wrong — is in `frames.md`
+and in `config.h`.
+
+**Procedure.** VCDS, engine electronics, a measuring block reporting engine
+torque — group 001 or 002 on ME7, depending on the version — logged alongside
+0x280 with the USBtin. Warm idle, then three or four steady throttle openings
+held for ten seconds each, in neutral so the load is repeatable. Plot the
+block's Nm against b7: the slope is the scale and the intercept should be
+zero. Four points across the range are plenty, because the only question is a
+straight line through the origin.
+
+Full throttle would settle it too and is deliberately not planned. Until then
+the display is right in shape and to roughly ±5 % in magnitude, and two tests
+in `test_compute.c` guard the ceiling so a wrong scale can no longer put the
+factory figures out of reach unnoticed.
+
+Do it in the same session as question 3 — that one wants measuring blocks too,
+and the same log of 0x280 and 0x288 serves both.
+
+### 9. Two fixtures carry timestamps and disagree with the other five about time, by about a factor of two — **open, and it is the one that matters**
+
+Found while reviewing question 1, and it had gone unnoticed since the fixtures
+were recorded.
+
+**The fixtures are in two formats**, which `test/fixtures/README.md` has said
+all along: five are plain slcan with no time information, and two —
+`06_trip_reset.txt` and `07_accel.txt` — are USBtinViewer's table format with a
+**millisecond timestamp on every line**. What nobody had noticed is the
+consequence. `tools/replay.py` uses the timestamps where they exist and
+synthesises time from the assumed 49.5 ms 0x480 period where they do not, so
+**two of the seven logs are measured on a different clock from the other
+five** — and the two clocks do not agree.
+
+The two clocks do not agree. Taking the 120 s of warm idle inside
+`06_trip_reset` — engine running, stationary — and dividing the fuel the
+counter accumulated by the elapsed time its own timestamps report:
+
+```
+18,810 ul over 119.6 s  =  157 ul/s  =  0.57 l/h     recorded timestamps
+                           310 ul/s  =  1.12 l/h     assumed 49.5 ms period
+```
+
+**A warm 2.0 8V does not idle at 0.57 l/h.** 1.1 l/h is what an engine of this
+size burns standing still, and 0.57 is not a number it can produce. On that
+alone the assumed period wins and the recorded timestamps are wrong.
+
+Except that each base has independent corroboration, which is why this is an
+open question rather than a finding:
+
+| | For | Against |
+|---|---|---|
+| **Assumed 49.5 ms** | gives `02_idle_60s` a duration of 60.1 s, which is its file name, and exactly the 310 µl/s the specification quotes; gives a credible idle | gives `05_rev3000` 1005 µl/s where the specification says 958 (question 1) |
+| **Recorded timestamps** | gives `06_trip_reset` a distance of 124.6 m, matching the "drive at least 0.1 km" step of the recording checklist | gives an idle flow no engine of this size produces |
+
+What the recording itself says about its own timestamps is not flattering.
+USBtinViewer was handling **around 700 lines a second** in both logs. Between
+39 % and 51 % of all lines are an immediate duplicate of the line before, and
+per-identifier gaps cluster on multiples of about 15.6 ms — the Windows timer
+tick. So the times are stamped host-side, in batches, by a program that was
+struggling. On top of that the recorder is *missing* frames: at warm idle the
+counter steps cluster at 14–16 µl with clear harmonics at 28–31 and 44,
+i.e. one, two and three periods' worth.
+
+That modal step is worth one line of arithmetic, because it is the one solid
+number here: **one 0x480 carries about 15 µl at warm idle.** That pins
+`flow × period ≈ 15 µl` and nothing more — 310 µl/s at 49.5 ms and 157 µl/s at
+99 ms both satisfy it. It is the physical plausibility of the flow, not the
+data, that chooses.
+
+**What is and is not affected.**
+
+- **Fuel totals are untouched.** The counter is absolute and in microlitres, so
+  every total in the table above, every figure the C core and the Python
+  reference agree on, and every accumulator test stands whatever the clock did.
+  This is exactly why the core accumulates the counter rather than integrating
+  a flow.
+- **Everything per-second is suspect on two logs.** Duration, average flow and
+  distance for `06_trip_reset` and `07_accel` — the 15.9 s, the 613 µl/s, the
+  27.3 m — rest on timestamps that may be twice too long. The figures for the
+  other five rest on an assumed period instead, which is a different way of
+  being unverified.
+- **The firmware does not care either way.** On the car it uses its own
+  crystal-derived millisecond clock. This is a question about the fixtures and
+  about what the tests are asserting, not about the device.
+
+**Procedure**, and it closes questions 1 and 9 together in one sixty-second
+recording. With a board programmed `CAN_MODE=LISTEN_ONLY` and the engine at
+warm idle:
+
+1. Count 0x480 arrivals for exactly 60 s of `hal_sys_millis()` and report the
+   count and the counter's start and end values over 0x602 or a spare frame.
+2. `frames / 60 s` is the period, to a fraction of a per cent, from a crystal
+   rather than from a GUI. `(end − start) / 60 s` is the idle flow in µl/s,
+   with no assumption in it anywhere.
+3. Compare against 49.5 ms and 310 µl/s. If they hold, the recorded timestamps
+   are wrong, `replay.py` should stop preferring them, and the documented
+   figures for two logs need correcting. If they do not, five logs need
+   correcting instead.
+
+Until then: **trust the totals, distrust every duration.** Nothing has been
+changed in the fixtures, the tests or `replay.py` on the strength of this,
+because changing seven logs' worth of documented numbers on an argument about
+what an engine plausibly burns is exactly the sort of thing that should wait
+for the sixty seconds of measurement that settles it.
