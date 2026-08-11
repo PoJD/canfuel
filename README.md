@@ -81,8 +81,24 @@ mplab/   the device build: a plain Makefile and an MPLAB X project
 
 ## Related repositories
 
-- `kicad` — the converter board
-- `mfd15` — the TRI file for the display
+This is one of three repositories and it is the firmware half. A working device
+needs all three, and they are separate because they have separate toolchains,
+separate CI and separate lifetimes. Clone them side by side.
+
+| Repository | What it holds | Go there for |
+|---|---|---|
+| **`canfuel`** (this one) | the converter firmware | decoding the car's frames, the arithmetic, the frames we send, the build |
+| [`kicad`](https://github.com/PoJD/kicad) | the converter board | `canfuel/docs/harness.md` — **how to make the loom and wire it into the car**, step by step. `canfuel/docs/pinout.md` is the one-page connector reference, and `canfuel/docs/implementation-plan.md` is how the board was designed |
+| [`mfd15`](https://github.com/PoJD/mfd15) | the display configuration | `tri/S-AQY.TRI` and how to upload it, plus `docs/sensors.md` — what every gauge reads and where it comes from |
+
+**The one coupling that can bite** is the layout of frames 0x600 and 0x601:
+`docs/frames.md` defines it and `mfd15/tri/S-AQY.TRI` consumes it. Change it
+here and it must change there in the same breath — getting it wrong produces no
+error at all, just plausible wrong numbers on the display.
+`test/test_txframes.c` pins every offset against the TRI file.
+
+The `kicad` coupling is the pin assignment, and it is one-way and frozen: the
+boards being manufactured are commit `c06e710` of that repository.
 
 ## Licence
 
