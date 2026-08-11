@@ -61,16 +61,17 @@ every time a 32-bit division is written in the core.
 
 | Function | Cycles | Time |
 |---|---|---|
-| `txframes_gather` (all seven getters) | 25,617 | **6.40 ms** |
-| `compute_tick` (with the tank median) | 9,048 | 2.26 ms |
-| `tank_sample` | 6,757 | 1.69 ms |
-| `persist_load` (start-up only) | 6,199 | 1.55 ms |
-| `compute_power_d` | 6,191 | 1.55 ms |
-| `compute_range_km` | 4,156 | 1.04 ms |
-| `compute_on_fuel` | 3,734 | 934 µs |
-| `flow_push` | 3,359 | 840 µs |
-| `compute_torque_d` | 3,225 | 806 µs |
+| `txframes_gather` (all seven getters) | 17,418 | **4.35 ms** |
+| `compute_tick` (with the tank median) | 6,900 | 1.73 ms |
+| `persist_load` (start-up only) | 6,207 | 1.55 ms |
+| `tank_sample` | 5,323 | 1.33 ms |
+| `compute_range_km` | 4,158 | 1.04 ms |
+| `compute_power_d` | 3,914 | 979 µs |
+| `compute_on_fuel` | 3,737 | 934 µs |
+| `flow_push` | 3,361 | 840 µs |
+| `compute_fuel_now_d` | 3,348 | 837 µs |
 | `tank_median` alone | 2,453 | 613 µs |
+| `mulhi_u32`, one reciprocal multiply | ~530 | 133 µs |
 | `persist_crc16` (10 bytes x 8 bits) | 2,119 | 530 µs |
 | `hal_sys_vdd_c` (plus 22 µs of A/D) | 1,112 | 300 µs |
 | `___lldiv`, one 32-bit division | 1,026 | 257 µs |
@@ -127,7 +128,7 @@ table changes with it, or this whole document quietly measures the past.
 | `hal_sys_watchdog_clear` + `hal_sys_millis` | 26 | 7 µs |
 | FIFO drain, 8 frames, one of them 0x480 | 8,856 | 2.21 ms |
 | `compute_tick`, moving, no tank sample | 1,534 | 384 µs |
-| `compute_tick`, standing, tank median worst case | 9,048 | 2.26 ms |
+| `compute_tick`, standing, tank median worst case | 6,900 | 1.73 ms |
 
 A **typical** pass is none of that: the FIFO is empty, `dt_ms` is zero and
 `compute_tick` returns almost immediately — about 450 cycles, **113 µs**, so
@@ -145,12 +146,12 @@ self-limiting.
 | | Cycles | Time |
 |---|---|---|
 | `hal_sys_vdd_c` incl. the A/D conversion | ~1,200 | 300 µs |
-| `txframes_gather` | 25,617 | 6.40 ms |
+| `txframes_gather` | 17,418 | 4.35 ms |
 | two frames assembled and queued | 818 | 205 µs |
 | error counters, overflow flag, LEDs | ~200 | 50 µs |
-| **total** | | **7.12 ms** |
+| **total** | | **5.07 ms** |
 
-**7.1 % of the 100 ms it has.** The remaining 94.7 % is spent draining an empty
+**5.1 % of the 100 ms it has.** The remaining 94.7 % is spent draining an empty
 FIFO.
 
 ### Every 1 s
@@ -169,17 +170,18 @@ Stacking every worst case that can genuinely land in the same pass:
 
 ```
 FIFO drain (8 frames)            2.21 ms
-compute_tick, tank median        2.26 ms
-the 100 ms slot                  7.12 ms
+compute_tick, tank median        1.73 ms
+the 100 ms slot                  5.07 ms
 the 1 s slot, not writing        0.98 ms
                                 --------
-worst pass without an EEPROM write      12.6 ms
-plus the once-a-minute EEPROM write     ~60.6 ms
+worst pass without an EEPROM write      10.0 ms
+plus the once-a-minute EEPROM write     ~58.0 ms
 ```
 
-Every figure here comes from `tools/cycles.py` against a real build, and the
-same pass measured 18.2 ms before the tank median stopped sorting on
-2026-08-11. What changed and why is `docs/optimisation.md`.
+Every figure here comes from `tools/cycles.py` against a real build. The same
+pass measured 18.2 ms before the tank median stopped sorting and 13.7 ms before
+constant division stopped using `___lldiv`, both on 2026-08-11. What changed
+and why is `docs/optimisation.md`.
 
 Against the two deadlines:
 
@@ -291,8 +293,8 @@ any of these goes over its ceiling:
 | Budget | Now | Ceiling |
 |---|---|---|
 | one received frame, decoded and accumulated | 1.30 ms | 2.0 ms |
-| `compute_tick`, worst case | 2.26 ms | 3.2 ms |
-| the 100 ms slot | 7.12 ms | 10.0 ms |
+| `compute_tick`, worst case | 1.73 ms | 2.5 ms |
+| the 100 ms slot | 5.07 ms | 7.0 ms |
 | the 1 s slot, excluding the EEPROM write | 0.98 ms | 1.5 ms |
 
 **The ceilings sit about 1.4x above what the code costs today**, which is a

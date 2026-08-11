@@ -89,6 +89,13 @@ LOOPS = {
     "_slot_write":       [("PERSIST_RECORD_BYTES", None, "")],
     "_persist_crc16":    [(None, 10,                  "CRC_OFFSET bytes"),
                           (None, 8,                   "bits per byte")],
+    # The shift inside div_const(). XC8 emits single-bit rotates with a counter
+    # even for a constant shift, so any shift that is not a multiple of eight is
+    # a loop. divconst.py picks a free shift wherever it can; these two divide
+    # by 100, where 2**8 > 100 makes that impossible, so they keep a 5-iteration
+    # rotate. If either stops appearing here, divconst.h changed shift.
+    "_compute_tank_d":    [(None, 5,                  "DIVC_100 shift")],
+    "_compute_flow_lh_c": [(None, 5,                  "DIVC_100 shift")],
 }
 
 # Loops that spin waiting for a peripheral, not for the CPU. Their duration is
@@ -120,6 +127,12 @@ NOT_LOOPS = {
     "_ports_init",
     "_leds_update",
     "_compute_on_fuel",
+    # Has DIVC_10 (shift 3) and DIVC_10000 (shift 13) inline, so its widest
+    # backward branch is a rotate loop rather than control flow. Costed as a
+    # loop below would need two entries and the spans are not reliably ordered
+    # against its switch; the two rotates together are under 80 cycles against
+    # 530 for the two mulhi calls, so this is listed here and the shortfall is
+    # named rather than hidden.
     "_compute_torque_d",
     "_can_set_filter",
     "_memset",
@@ -135,8 +148,8 @@ NOT_LOOPS = {
 # are in docs/timing.md; these are a regression alarm, not a deadline.
 BUDGETS = {
     "rx_frame": ("one received frame, decoded and accumulated", 2000.0),
-    "compute_tick": ("compute_tick, worst case (tank median)", 3200.0),
-    "fast_slot": ("the 100 ms slot, everything in it", 10000.0),
+    "compute_tick": ("compute_tick, worst case (tank median)", 2500.0),
+    "fast_slot": ("the 100 ms slot, everything in it", 7000.0),
     "slow_slot": ("the 1 s slot, excluding the EEPROM write", 1500.0),
 }
 

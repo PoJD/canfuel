@@ -99,7 +99,7 @@ two, so the reference and the code that gets flashed cannot drift apart.
 | `docs/frames.md` | layout of frames 0x600–0x602, FuelNow, Range, torque |
 | `docs/refuel-reset.md` | resetting the average on refuelling, and the tank audit |
 | `docs/timing.md` | what every part costs in cycles, and the margins |
-| `docs/optimisation.md` | **read before changing any loop** — what was optimised, why, and what is deliberately left alone |
+| `docs/optimisation.md` | **read before changing any loop or any arithmetic** — what was optimised, why, and what is deliberately left alone |
 | `docs/refuted.md` | ideas that were believed and turned out wrong — **all three repositories** |
 | `test/fixtures/README.md` | description of the logs and known data defects |
 | `mplab/README.md` | how to build the firmware, and what JP2 is for |

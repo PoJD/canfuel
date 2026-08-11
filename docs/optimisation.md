@@ -162,19 +162,87 @@ still has to be honest — and the audit is what forces the human to look.
   executed. Confirmed rather than assumed, because a sibling project of this
   maintainer's did run in a low-power mode.
 
-## What is left, and it is the big one
+## 4. Division by a constant, without dividing — 2026-08-11
 
-**`txframes_gather` is 25,617 cycles, 6.40 ms — now the largest single item in
-the firmware — and it is nine 32-bit divisions.** `___lldiv` costs 1,026 cycles — 257 µs — every time, and it is
-called from ten places.
+`txframes_gather` was the largest single item at 6.40 ms and it is nine 32-bit
+divisions. `___lldiv` costs 1,026 cycles — 257 µs — every time. It is now
+4.35 ms, a **32 % cut**, and the worst pass through the loop went 13.75 → 11.17
+ms.
 
-The divisors are **constants**: 1000, 3600, 10000. The standard replacement is
-a multiply by a precomputed reciprocal and a shift, which turns 32 iterations
-into a multiply and a couple of instructions, and should be worth **5× per
-call**.
+**The usual trick does not work on this compiler, and finding that out first
+saved building the wrong thing.** Dividing by a constant is normally replaced
+by multiplying by a fixed-point reciprocal — but XC8 v4.00 calls `___lmul` for
+any multiply wider than 8 bits, and `___lmul` is *also* a per-bit loop. The
+obvious rewrite would have been no faster than the division.
 
-**The risk is real and it is precision.** The result has to be bit-for-bit
-identical to `/` across the whole input range that can occur. The condition for
-doing this at all is an exhaustive host test that compares the two over that
-range — without it, the failure mode is a display that is subtly wrong in a way
-no fixture catches.
+What XC8 does compile to the hardware multiplier is **`uint8 × uint8` and
+`uint16 × uint8` — one `MULWF`, no call**. So `mulhi_u32()` in `src/divconst.h`
+builds the 64-bit product out of sixteen byte products: 265 instructions of
+straight-line code, no branches, no calls, against ~1,050 cycles for the
+division.
+
+Two things had to be got right, and both were found by reading the listing
+rather than by thinking:
+
+- **`div_const` is a macro, not a function.** As a function taking the shift as
+  a parameter, XC8 cannot know it at compile time and emits a *loop* of
+  single-bit rotates, which puts back most of the saving. As a macro the shift
+  is a literal at the call site.
+- **A shift of 8, 16 or 24 is free; any other shift is still a loop**, even
+  with a literal count. `tools/divconst.py` therefore prefers a multiple of
+  eight, which needs `2**s < d` — so 1000 and 95500 get one, and 10, 100 and
+  120 keep short rotates that are costed rather than ignored.
+
+### How the magic numbers are trusted
+
+Three independent things, because a reciprocal that is one out on a value no
+fixture produces would show a wrong number on the display and break nothing
+else:
+
+1. **A proof, not a sample.** `tools/divconst.py` decides exactness with the
+   Granlund–Montgomery condition (PLDI 1994, §4): with `m = ceil(2**(32+s)/d)`
+   the overshoot `e = m*d - 2**(32+s)` must satisfy `(limit-1) * e < 2**(32+s)`.
+   One O(1) test covers the entire declared range.
+2. **Brute force disagreeing is a failure.** The same script spot-checks tens
+   of thousands of real values against real division, because a transcription
+   slip in the proof would otherwise be invisible.
+3. **The C is tested separately from the arithmetic.** `test_divconst.c` proves
+   that sixteen hand-assembled byte products actually compute that product.
+   1.17 million checks run as part of `make test`; the `-DEXHAUSTIVE` build
+   walks **every value in every declared range — 26,843,545,600 of them** — and
+   was run when these magics were introduced. It came back clean.
+
+   That run was also checked for having actually happened rather than exited
+   early: the framework's check counter is an `int` and wraps, and the reported
+   total matches the expected count modulo 2³² exactly.
+
+**The range is part of the proof.** 95500 needs a 33-bit magic over the full
+32-bit range and would not fit; it is exact for `x < 2**30`, which holds
+because `torque_d * 10 * rpm < 1900 * 10 * 16384`. Understating a range there
+is a silent wrong answer, so every bound in `divconst.py` is justified in
+place.
+
+### What it cost
+
+918 bytes of program memory, which is the trade this project is happy to make
+— 37.3 % of flash used against 34.5 %. `python tools/replay.py --host-build`
+still agrees with the Python reference on every field of every fixture, which
+is the check that matters: the arithmetic did not move.
+
+---
+
+## What is left
+
+**`txframes_gather` is still the largest item at 4.35 ms**, but what remains in
+it is not division any more — it is the nine getters themselves and the
+`mulhi_u32` calls inside them. The next honest saving there is arranging the
+arithmetic so a division disappears entirely rather than getting cheaper, which
+is a change to what the code computes and needs a reason beyond speed.
+
+Two ideas that are *not* worth it, recorded so they are not rediscovered:
+
+- **Caching slow-moving values** — covered above; it changes behaviour.
+- **A second reciprocal for the runtime divisors** (`flow_sum_ms`,
+  `speed_mmh`, `seg_count`). Those denominators are not constants, so the magic
+  would have to be computed at run time, which costs more than the division it
+  replaces.

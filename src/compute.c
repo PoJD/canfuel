@@ -8,6 +8,7 @@
 #include <string.h>
 
 #include "compute.h"
+#include "divconst.h"
 
 /* --- helpers ------------------------------------------------------------ */
 
@@ -145,9 +146,9 @@ static void tank_sample(compute_t *c, const decode_state_t *st)
         c->tank_damped_ml = target_ml;
         c->tank_damped_valid = true;
     } else if (target_ml > c->tank_damped_ml) {
-        c->tank_damped_ml += (target_ml - c->tank_damped_ml) / TANK_DAMP_SAMPLES;
+        c->tank_damped_ml += div_const(target_ml - c->tank_damped_ml, DIVC_120);
     } else {
-        c->tank_damped_ml -= (c->tank_damped_ml - target_ml) / TANK_DAMP_SAMPLES;
+        c->tank_damped_ml -= div_const(c->tank_damped_ml - target_ml, DIVC_120);
     }
 
     /* The median that the refuelling rule watches is only fed while standing.
@@ -312,7 +313,7 @@ void compute_tick(compute_t *c, const decode_state_t *st, uint32_t now_ms)
      * means we were not watching, and guessing across it would invent
      * distance the car may never have covered. */
     if (st->speed_valid && st->speed_mmh > 0u && dt_ms > 0u && dt_ms <= 1000u) {
-        uint32_t mm = st->speed_mmh * dt_ms / 3600u;
+        uint32_t mm = div_const(st->speed_mmh * dt_ms, DIVC_3600);
         c->total_mm += mm;
         c->seg_cur_mm += mm;
 
@@ -346,7 +347,7 @@ bool compute_data_live(const compute_t *c, uint32_t now_ms)
 uint16_t compute_flow_lh_c(const compute_t *c)
 {
     /* l/h = ul/s * 3.6 / 1000, so in 0.01 l/h it is ul/s * 0.36. */
-    return clamp_u16(div_round(c->flow_ul_s * 36u, 100u), 0xFFFFu);
+    return clamp_u16(div_const_round(c->flow_ul_s * 36u, 50u, DIVC_100), 0xFFFFu);
 }
 
 uint16_t compute_fuel_now_d(const compute_t *c, const decode_state_t *st)
@@ -356,7 +357,8 @@ uint16_t compute_fuel_now_d(const compute_t *c, const decode_state_t *st)
      * speed, l/100 km is meaningless, so l/h is sent. */
     if (!st->speed_valid || st->speed_mmh < FUELNOW_LH_BELOW_MMH) {
         /* l/h at 0.1 = ul/s * 3.6 / 100 */
-        return clamp_u16(div_round(c->flow_ul_s * 36u, 1000u), FUELNOW_CLAMP_D);
+        return clamp_u16(div_const_round(c->flow_ul_s * 36u, 500u, DIVC_1000),
+                         FUELNOW_CLAMP_D);
     }
     /* l/100 km at 0.1 = ul/s * 3600 / v[0.001 km/h] */
     return clamp_u16(div_round(c->flow_ul_s * 3600u, st->speed_mmh),
@@ -373,13 +375,13 @@ uint16_t compute_avg_l100_d(const compute_t *c)
     }
     /* One microlitre per metre is exactly 0.1 l/100 km, which is the unit the
      * frame wants, so the whole conversion is one division. */
-    return clamp_u16(div_round(c->total_ul, c->total_mm / 1000u),
+    return clamp_u16(div_round(c->total_ul, div_const(c->total_mm, DIVC_1000)),
                      FUELNOW_CLAMP_D);
 }
 
 uint16_t compute_tank_d(const compute_t *c)
 {
-    return clamp_u16(div_round(c->tank_damped_ml, 100u), 0xFFFFu);
+    return clamp_u16(div_const_round(c->tank_damped_ml, 50u, DIVC_100), 0xFFFFu);
 }
 
 uint16_t compute_range_km(const compute_t *c)
@@ -422,12 +424,12 @@ uint16_t compute_range_km(const compute_t *c)
 
 uint32_t compute_trip_ml(const compute_t *c)
 {
-    return c->total_ul / 1000u;
+    return div_const(c->total_ul, DIVC_1000);
 }
 
 uint32_t compute_trip_m(const compute_t *c)
 {
-    return c->total_mm / 1000u;
+    return div_const(c->total_mm, DIVC_1000);
 }
 
 uint16_t compute_torque_d(const decode_state_t *st)
@@ -456,13 +458,13 @@ uint16_t compute_torque_d(const decode_state_t *st)
     }
 
     drag_cnm = (uint32_t)DRAG_TORQUE_BASE_CNM +
-               rpm * (uint32_t)DRAG_TORQUE_SLOPE_E4 / 10000u;
+               div_const(rpm * (uint32_t)DRAG_TORQUE_SLOPE_E4, DIVC_10000);
 
     if (st->torque_ind_cnm <= drag_cnm) {
         return 0;               /* on the overrun the engine is being driven */
     }
     net_cnm = st->torque_ind_cnm - drag_cnm;
-    return clamp_u16(div_round(net_cnm, 10u), 0xFFFFu);
+    return clamp_u16(div_const_round(net_cnm, 5u, DIVC_10), 0xFFFFu);
 }
 
 uint16_t compute_power_d(const decode_state_t *st)
@@ -472,5 +474,6 @@ uint16_t compute_power_d(const decode_state_t *st)
      * MFD28 and MFD32. */
     uint32_t rpm = decode_rpm(st);
     uint32_t torque_d = compute_torque_d(st);
-    return clamp_u16(div_round(torque_d * 10u * rpm, POWER_DIVISOR), 0xFFFFu);
+    return clamp_u16(div_const_round(torque_d * 10u * rpm, POWER_DIVISOR / 2u,
+                                     DIVC_95500), 0xFFFFu);
 }

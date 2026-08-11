@@ -70,6 +70,15 @@ jobs:
       - name: python reference and the C core agree
         run: python tools/replay.py --host-build test/fixtures/*.txt
 
+      # src/divconst.h replaces every constant division with a multiply by a
+      # magic number. A magic that is one out on a value no fixture happens to
+      # produce would put a wrong number on the display and break nothing else,
+      # so the magics are proved rather than sampled: divconst.py decides
+      # exactness with the Granlund-Montgomery condition over each declared
+      # range, and cross-checks it against real division.
+      - name: the division magic numbers are exact
+        run: python tools/divconst.py --check
+
   firmware:
     name: XC8 build
     runs-on: ubuntu-latest
