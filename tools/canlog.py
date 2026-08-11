@@ -10,9 +10,20 @@ line and as the older recordings stored it without post-processing:
     | +---- DLC, one hex char
     +------ 11-bit ID, three hex chars
 
-It carries no timestamps. Frames come back with ts_ms=None and it is up to
-the caller to derive time from frame periods (see docs/can-decoding.md,
-the section on periods -- it is not reliable).
+The fixtures in this repository carry no timestamps, because they were
+recorded with the adapter's timestamping off: frames come back with
+ts_ms=None and it is up to the caller to derive time from frame periods
+(see docs/can-decoding.md, the section on periods -- it is not reliable).
+
+Opened with Z1, the USBtin appends four hex digits of milliseconds:
+
+    t1a0800400100fefe001d2a3f
+                          ^^^^ timestamp, stamped by the adapter
+
+which is parsed here into ts_ms. **That is the timestamp worth having** --
+it is taken in the adapter when the frame arrives, where format B's is taken
+by the host when it gets round to the line. Open question 9 in
+docs/can-decoding.md is that difference, and one recording with Z1 closes it.
 
 Format B -- USBtinViewer export, five tab-separated columns:
 
@@ -102,7 +113,32 @@ def _parse_slcan(line: str) -> Optional[Frame]:
     except ValueError as exc:
         raise LogFormatError(f"unreadable payload: {line!r}") from exc
 
-    return Frame(None, can_id, data)
+    # Anything after the payload is the USBtin's own timestamp, four hex
+    # digits of milliseconds, present only when the adapter was opened with
+    # Z1. THIS IS THE GOOD KIND OF TIMESTAMP: it is stamped in the adapter
+    # when the frame arrives, not by the host when it gets round to the line.
+    # docs/can-decoding.md open question 9 is about exactly that difference --
+    # the two logs in viewer format carry host times and disagree with the
+    # rest of the fixtures by roughly a factor of two.
+    #
+    # The counter wraps, and the wrap value is not stated in USBtin's
+    # documentation. Callers must not assume one: take differences modulo
+    # nothing and let a negative difference tell you the wrap happened, or
+    # read the wrap out of the first minute of a recording, which is a minute
+    # of work and settles it for good.
+    tail = line[head + 2 * dlc:].strip()
+    ts_ms = None
+    if tail:
+        if len(tail) != 4:
+            raise LogFormatError(
+                f"trailing {len(tail)} chars after the payload, expected a "
+                f"4-digit timestamp or nothing: {line!r}")
+        try:
+            ts_ms = int(tail, 16)
+        except ValueError as exc:
+            raise LogFormatError(f"unreadable timestamp: {line!r}") from exc
+
+    return Frame(ts_ms, can_id, data)
 
 
 def _parse_viewer(line: str) -> Optional[Frame]:

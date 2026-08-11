@@ -199,13 +199,9 @@ timestamped fixtures imply a fuel flow roughly *half* what the assumed period
 gives. Whatever settles one settles the other, so do question 9 first and this
 becomes arithmetic.
 
-**Procedure.** With the converter in `CAN_MODE=LISTEN_ONLY` and the engine at
-warm idle, log the arrival time of every 0x480 for 60 s using
-`hal_sys_millis()` — the device's own clock, which is a crystal and answers to
-nobody. Frames per second and microlitres per second both fall out, and the
-period is one division. Nothing else on the car can do this as well, which is
-why this has waited: a USB adapter timestamps when the host gets round to it,
-and the device timestamps when the frame arrives.
+**Procedure — and it does not need the converter board.** See question 9: the
+USBtin has a hardware timestamp of its own, and `USBtinViewer` simply does not
+use it. Talk to the adapter directly instead. That is the whole fix.
 
 ### 2. ~~The starting counter value in `07_accel`~~ — **closed 2026-08-11**
 
@@ -349,14 +345,17 @@ and the same log of 0x280 and 0x288 serves both.
 Found while reviewing question 1, and it had gone unnoticed since the fixtures
 were recorded.
 
-**The fixtures are in two formats**, which `test/fixtures/README.md` has said
-all along: five are plain slcan with no time information, and two —
-`06_trip_reset.txt` and `07_accel.txt` — are USBtinViewer's table format with a
-**millisecond timestamp on every line**. What nobody had noticed is the
-consequence. `tools/replay.py` uses the timestamps where they exist and
-synthesises time from the assumed 49.5 ms 0x480 period where they do not, so
-**two of the seven logs are measured on a different clock from the other
-five** — and the two clocks do not agree.
+**All seven were recorded with USBtinViewer**, but saved two different ways:
+five as the raw serial lines, with no time information at all, and two —
+`06_trip_reset.txt` and `07_accel.txt` — as the viewer's table, which carries a
+**millisecond timestamp on every line**. Why the two differ is not recorded and
+is most likely a setting that got changed at some point; it does not matter,
+because neither is the timestamp we want (see below).
+
+What nobody had noticed is the consequence. `tools/replay.py` uses the
+timestamps where they exist and synthesises time from the assumed 49.5 ms 0x480
+period where they do not, so **two of the seven logs are measured on a
+different clock from the other five** — and the two clocks do not agree.
 
 The two clocks do not agree. Taking the 120 s of warm idle inside
 `06_trip_reset` — engine running, stationary — and dividing the fuel the
@@ -379,14 +378,23 @@ open question rather than a finding:
 | **Assumed 49.5 ms** | gives `02_idle_60s` a duration of 60.1 s, which is its file name, and exactly the 310 µl/s the specification quotes; gives a credible idle | gives `05_rev3000` 1005 µl/s where the specification says 958 (question 1) |
 | **Recorded timestamps** | gives `06_trip_reset` a distance of 124.6 m, matching the "drive at least 0.1 km" step of the recording checklist | gives an idle flow no engine of this size produces |
 
-What the recording itself says about its own timestamps is not flattering.
-USBtinViewer was handling **around 700 lines a second** in both logs. Between
-39 % and 51 % of all lines are an immediate duplicate of the line before, and
-per-identifier gaps cluster on multiples of about 15.6 ms — the Windows timer
-tick. So the times are stamped host-side, in batches, by a program that was
-struggling. On top of that the recorder is *missing* frames: at warm idle the
-counter steps cluster at 14–16 µl with clear harmonics at 28–31 and 44,
-i.e. one, two and three periods' worth.
+**The tool's own documentation settles which one to distrust.** USBtinViewer
+says of itself: *"the timestamp is generated in the application on the host,
+the hardware timestamping is currently not used"*
+([EmbedME/USBtinViewer](https://github.com/EmbedME/USBtinViewer)). So the times
+in those two logs are not arrival times at all — they are the times at which a
+Java GUI got round to the line, and it was handling **around 700 lines a
+second** while doing it.
+
+Everything else the recordings say agrees with that. Between 39 % and 51 % of
+all lines are an immediate duplicate of the line before, and per-identifier
+gaps cluster on multiples of about 15.6 ms — the Windows timer tick, i.e.
+batching. On top of that the recorder is *missing* frames: at warm idle the
+counter steps cluster at 14–16 µl with clear harmonics at 28–31 and 44, one,
+two and three periods' worth.
+
+That is the diagnosis half of this question closed. What is still open is the
+number: which period, and therefore which of the two flows, is right.
 
 That modal step is worth one line of arithmetic, because it is the one solid
 number here: **one 0x480 carries about 15 µl at warm idle.** That pins
@@ -410,19 +418,42 @@ data, that chooses.
   crystal-derived millisecond clock. This is a question about the fixtures and
   about what the tests are asserting, not about the device.
 
-**Procedure**, and it closes questions 1 and 9 together in one sixty-second
-recording. With a board programmed `CAN_MODE=LISTEN_ONLY` and the engine at
-warm idle:
+**Procedure — no board, no firmware, one sixty-second recording.** This was
+written as needing the converter in `CAN_MODE=LISTEN_ONLY`, on the reasoning
+that only the device could timestamp a frame when it arrived. That was wrong:
+**the USBtin does it in hardware, and only the viewer does not use it.** Drive
+the adapter over its serial port directly — the commands are on
+[fischl.de/usbtin](https://www.fischl.de/usbtin/):
 
-1. Count 0x480 arrivals for exactly 60 s of `hal_sys_millis()` and report the
-   count and the counter's start and end values over 0x602 or a spare frame.
-2. `frames / 60 s` is the period, to a fraction of a per cent, from a crystal
-   rather than from a GUI. `(end − start) / 60 s` is the idle flow in µl/s,
-   with no assumption in it anywhere.
-3. Compare against 49.5 ms and 310 µl/s. If they hold, the recorded timestamps
-   are wrong, `replay.py` should stop preferring them, and the documented
-   figures for two logs need correcting. If they do not, five logs need
-   correcting instead.
+| | |
+|---|---|
+| `S6` | 500 kbit/s |
+| `Z1` | **timestamping on** — this is the whole point |
+| `m00000000` `MFFFFFFFF` | acceptance mask and code, set to pass 0x480 only |
+| `L` | open **listen-only**. Silent on the bus by the adapter's own guarantee, exactly like the firmware's Listen Only |
+| `O` | (open normally — *not* this one) |
+| `C` | close |
+
+Engine at warm idle, sixty seconds, capture the raw lines to a file.
+`tools/canlog.py` parses the timestamp since 2026-08-11.
+
+Filtering to 0x480 alone is not an optimisation, it is part of the fix: it
+takes the line rate from about 700 a second to about 20, so the duplication and
+the dropped frames that spoiled the fixtures cannot happen.
+
+Then:
+
+1. `frames / elapsed` is the period, from the adapter's clock.
+2. `(counter_end − counter_start) / elapsed` is the idle flow in µl/s, with no
+   assumption in it anywhere.
+3. Compare against 49.5 ms and 310 µl/s. If they hold, `replay.py` should stop
+   preferring the viewer's timestamps and the documented figures for two logs
+   need correcting. If they do not, five logs need correcting instead.
+
+**One thing to check in the first minute rather than assume:** the timestamp is
+four hex digits of milliseconds and USBtin's documentation does not say what it
+wraps at. Read the wrap out of the data — it costs one minute and settles it
+permanently.
 
 Until then: **trust the totals, distrust every duration.** Nothing has been
 changed in the fixtures, the tests or `replay.py` on the strength of this,

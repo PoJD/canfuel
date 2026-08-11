@@ -45,6 +45,30 @@ class TestParseLineSlcan(unittest.TestCase):
         self.assertEqual(f.data, bytes.fromhex("00400100fefe001d"))
         self.assertIsNone(f.ts_ms)
 
+    def test_adapter_timestamp(self):
+        """Opened with Z1 the USBtin appends four hex digits of milliseconds.
+
+        None of the fixtures has one -- they were recorded with timestamping
+        off -- but the recording that closes open questions 1 and 9 will, and
+        it is the adapter's own clock rather than the host's.
+        """
+        f = parse_line("t1a0800400100fefe001d2a3f")
+        self.assertEqual(f.can_id, 0x1A0)
+        self.assertEqual(f.data, bytes.fromhex("00400100fefe001d"))
+        self.assertEqual(f.ts_ms, 0x2A3F)
+
+    def test_adapter_timestamp_on_a_short_frame(self):
+        f = parse_line("t5d060003490900321234")
+        self.assertEqual(f.can_id, 0x5D0)
+        self.assertEqual(f.dlc, 6)
+        self.assertEqual(f.ts_ms, 0x1234)
+
+    def test_a_truncated_timestamp_is_an_error(self):
+        # Silently ignoring a partial tail would hand the caller a frame with
+        # no time on a recording made specifically to have one.
+        with self.assertRaises(LogFormatError):
+            parse_line("t1a0800400100fefe001d2a3")
+
     def test_short_dlc(self):
         # 0x5D0 arrives with DLC 6, not 8 -- the classic trap for a parser
         # that assumes a fixed length.
