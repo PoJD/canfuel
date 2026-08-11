@@ -52,17 +52,26 @@ running both causes a problem.
 
 ## Division of labour
 
-- **The USBtin runs from the laptop, continuously, for the whole session.** One
-  long capture rather than one per hold point — segmenting by rpm afterwards is
-  free, and a capture that was not running when something interesting happened
-  is not.
+- **The USBtin runs from the laptop: one short capture per hold point**, about
+  25 s, started when the driver says the speed is steady.
 
   ```
-  python tools/usbtin_capture.py --port COM5 --seconds 420 --out vcds_z1.txt
+  python tools/usbtin_capture.py --port COM5 --seconds 25 --out p1_idle_noac.txt
   ```
 
-- **VCDS is driven by hand** on the same or a second laptop, screen photographed
-  at each hold.
+- **VCDS is driven by hand** on the same or a second laptop, screen
+  photographed **during** each capture window so the two genuinely overlap.
+
+**One capture per point rather than one long one, and the reason is not
+tidiness.** A short capture can be checked immediately — engine speed, how
+steady it was, whether the adapter dropped frames — and a bad hold can be
+repeated *while the car is still sitting at that speed*. Finding it at a desk
+twenty minutes later costs another trip to the car. Each file also carries its
+own condition in its name, so nothing has to be segmented by rpm afterwards;
+the rpm in the data then merely confirms what the filename already says, which
+is the right way round.
+
+Nothing happens between hold points, so continuity buys nothing here.
 
 ---
 
