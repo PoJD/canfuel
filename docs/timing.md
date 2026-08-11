@@ -44,7 +44,7 @@ Trip counts used, all from the source and all worst case:
 | Loop | Trips | Why |
 |---|---|---|
 | `___lldiv` | 32 | one per bit of a 32-bit divisor |
-| `tank_median` inner | 300 | insertion sort, n(n−1)/2 at n = 25 |
+| `tank_median` sweep | 128 | one per bucket, `TANK_HIST_BINS` |
 | `compute_range_km` | 30 | `RANGE_SEGMENTS` |
 | `flow_push` | 32 | `FLOW_WINDOW_SLOTS` |
 | `persist_load` | 64 | `PERSIST_SLOTS`, start-up only |
@@ -61,14 +61,17 @@ every time a 32-bit division is written in the core.
 
 | Function | Cycles | Time |
 |---|---|---|
-| `compute_tick` (with the tank median) | 19,282 | **4.82 ms** |
-| `txframes_gather` (all seven getters) | 19,115 | **4.78 ms** |
-| `tank_median` alone | 15,068 | 3.77 ms |
-| `persist_load` (start-up only) | 3,670 | 917 µs |
-| `compute_power_d` | 3,746 | 937 µs |
-| `compute_range_km` | 3,350 | 838 µs |
-| `compute_on_fuel` | 2,928 | 732 µs |
-| `compute_torque_d` | 2,392 | 598 µs |
+| `txframes_gather` (all seven getters) | 25,617 | **6.40 ms** |
+| `compute_tick` (with the tank median) | 9,048 | 2.26 ms |
+| `tank_sample` | 6,757 | 1.69 ms |
+| `persist_load` (start-up only) | 6,199 | 1.55 ms |
+| `compute_power_d` | 6,191 | 1.55 ms |
+| `compute_range_km` | 4,156 | 1.04 ms |
+| `compute_on_fuel` | 3,734 | 934 µs |
+| `flow_push` | 3,359 | 840 µs |
+| `compute_torque_d` | 3,225 | 806 µs |
+| `tank_median` alone | 2,453 | 613 µs |
+| `persist_crc16` (10 bytes x 8 bits) | 2,119 | 530 µs |
 | `hal_sys_vdd_c` (plus 22 µs of A/D) | 1,112 | 300 µs |
 | `___lldiv`, one 32-bit division | 1,026 | 257 µs |
 | `decode_frame` | 507 | 127 µs |
@@ -77,16 +80,41 @@ every time a 32-bit division is written in the core.
 | `hal_sys_millis` | 25 | 6 µs |
 | `hal_sys_isr` (the millisecond tick) | 14 | 3.5 µs |
 
-Two of these deserve a note, because both are dominated by one thing:
+**`txframes_gather` is nine divisions in a trench coat.** Nothing in it is
+slow; there are simply ten `___lldiv` call sites in the core and this is where
+most of them get exercised. It is now the largest single item by a wide margin,
+and division is where any further work belongs.
 
-- **`tank_median` is an insertion sort**, so its worst case is a reversed
-  25-slot ring, 300 comparisons, 3.77 ms. Real data never comes close — 1584 of
-  1622 measured samples at rest were the same litre, which is the sorted case
-  and costs 25 comparisons — but the bound is the bound. It runs at most once a
-  second, and only while the car is standing still.
-- **`txframes_gather` is nine divisions in a trench coat.** Nothing in it is
-  slow; there are simply ten `___lldiv` call sites in the core and this is
-  where most of them get exercised.
+### `tank_median` used to be the largest, and it is worth saying why it is not
+
+It was an insertion sort over the 25-slot ring: 15,068 cycles, **3.77 ms**,
+worst case a reversed ring at 300 comparisons and moves. It is a histogram
+sweep now — 2,453 cycles, 613 µs, **6.1× less** — and `compute_tick` fell from
+4.82 ms to 1.66 ms with it.
+
+Three things made that possible, and the first is the only interesting one:
+
+- **We never wanted the sorted array, only the middle element**, and the key is
+  a tank level masked to seven bits. A small fixed key space means counting
+  beats comparing. `tank_sample()` maintains 128 buckets as samples enter and
+  leave the ring, so the median is one sweep.
+- **`cum` and `target` are `uint8_t`.** The ring holds at most 25 samples, so
+  neither can overflow a byte, and a 16-bit compare cost six extra instructions
+  per bucket.
+- **A walking pointer instead of `tank_bins[v]`.** Indexing made XC8 rebuild
+  the address from the struct base every iteration — twelve instructions of
+  `lfsr` and `addwf` against one `infsnz`. The loop body went from 33 words to
+  19.
+
+**The bound is now a property of the code rather than of the data**, which
+matters more than the number. The old worst case needed an unlucky ring and
+was twelve times the typical case; this one is 128 buckets whatever the car
+does. It costs 128 bytes of RAM.
+
+⚠ **`tools/cycles.py` carries the loop model by hand**, and it said `(50, 299)`
+for an algorithm that no longer existed — it reported no improvement at all
+until the entry was corrected to `(19, 127)`. If a loop changes shape, that
+table changes with it, or this whole document quietly measures the past.
 
 ---
 
@@ -99,7 +127,7 @@ Two of these deserve a note, because both are dominated by one thing:
 | `hal_sys_watchdog_clear` + `hal_sys_millis` | 26 | 7 µs |
 | FIFO drain, 8 frames, one of them 0x480 | 8,856 | 2.21 ms |
 | `compute_tick`, moving, no tank sample | 1,534 | 384 µs |
-| `compute_tick`, standing, tank median worst case | 19,282 | 4.82 ms |
+| `compute_tick`, standing, tank median worst case | 9,048 | 2.26 ms |
 
 A **typical** pass is none of that: the FIFO is empty, `dt_ms` is zero and
 `compute_tick` returns almost immediately — about 450 cycles, **113 µs**, so
@@ -117,12 +145,12 @@ self-limiting.
 | | Cycles | Time |
 |---|---|---|
 | `hal_sys_vdd_c` incl. the A/D conversion | ~1,200 | 300 µs |
-| `txframes_gather` | 19,115 | 4.78 ms |
+| `txframes_gather` | 25,617 | 6.40 ms |
 | two frames assembled and queued | 818 | 205 µs |
 | error counters, overflow flag, LEDs | ~200 | 50 µs |
-| **total** | | **5.33 ms** |
+| **total** | | **7.12 ms** |
 
-**5.3 % of the 100 ms it has.** The remaining 94.7 % is spent draining an empty
+**7.1 % of the 100 ms it has.** The remaining 94.7 % is spent draining an empty
 FIFO.
 
 ### Every 1 s
@@ -141,25 +169,32 @@ Stacking every worst case that can genuinely land in the same pass:
 
 ```
 FIFO drain (8 frames)            2.21 ms
-compute_tick, tank median        4.82 ms
-the 100 ms slot                  5.33 ms
-the 1 s slot, not writing        0.25 ms
+compute_tick, tank median        2.26 ms
+the 100 ms slot                  7.12 ms
+the 1 s slot, not writing        0.98 ms
                                 --------
 worst pass without an EEPROM write      12.6 ms
 plus the once-a-minute EEPROM write     ~60.6 ms
 ```
 
+Every figure here comes from `tools/cycles.py` against a real build, and the
+same pass measured 18.2 ms before the tank median stopped sorting on
+2026-08-11. What changed and why is `docs/optimisation.md`.
+
 Against the two deadlines:
 
 - **The 100 ms transmit cadence.** A 12.6 ms pass leaves an **8× margin**. The
   once-a-minute pass leaves 1.65×, so 0x600 and 0x601 arrive up to 60 ms late
-  once a minute and the display sees a 160 ms gap instead of 100 ms. Nothing
-  reads a period, so this is invisible.
+  once a minute and the display sees a gap of about 160 ms instead of 100 ms.
+  Nothing reads a period, so this is invisible.
 - **`RX_POLL_MS`, the 10 ms the FIFO must not fall behind by.** The worst
   non-EEPROM pass is 12.6 ms, which is over that number — but the number is
   conservative, and what actually matters is the FIFO's depth. Eight buffers
-  against roughly four frames per 10 ms is **20 ms of blindness before anything
-  is lost**, so a 12.6 ms pass loses nothing. The EEPROM write does overflow
+  against 3.58 frames per 10 ms is **22 ms of blindness before anything is
+  lost**, so a 12.6 ms pass loses nothing. The EEPROM write does overflow the
+  FIFO, which is analysed in `main.c` and is harmless: the fuel delta is
+  modulo-32768 so a gap costs nothing, and distance is integrated against the
+  clock rather than against frame arrivals. The EEPROM write does overflow
   the FIFO, which is analysed in `main.c` and is harmless: the fuel delta is
   modulo-32768 so a gap costs nothing, and distance is integrated against the
   clock rather than against frame arrivals.
@@ -255,27 +290,34 @@ any of these goes over its ceiling:
 
 | Budget | Now | Ceiling |
 |---|---|---|
-| one received frame, decoded and accumulated | 0.92 ms | 5 ms |
-| `compute_tick`, worst case | 4.82 ms | 20 ms |
-| the 100 ms slot | 5.32 ms | 25 ms |
-| the 1 s slot, excluding the EEPROM write | 0.25 ms | 5 ms |
+| one received frame, decoded and accumulated | 1.30 ms | 2.0 ms |
+| `compute_tick`, worst case | 2.26 ms | 3.2 ms |
+| the 100 ms slot | 7.12 ms | 10.0 ms |
+| the 1 s slot, excluding the EEPROM write | 0.98 ms | 1.5 ms |
 
-**The ceilings are deliberately wide** — every budget currently sits at about a
-fifth of its limit. This is not there to police a few per cent; it is there so
-that adding something with a millisecond in it to a hundred-microsecond slot
-fails in the pull request rather than on a bench six months later. A ceiling
-that fires on noise would be turned off within a month, and then it would be
-worth nothing.
+**The ceilings sit about 1.4x above what the code costs today**, which is a
+deliberate tightening: they used to be four or five times the cost, and a
+ceiling that can never be hit is not a gate. The hardware has far more headroom
+than this — the numbers above in *The answer: where the margin is* are the real
+limits — but these are a regression alarm, and an alarm set beyond anything
+that can happen is decoration.
 
-If a cost is intended, raise the ceiling in `tools/cycles.py` and say why here.
-That is the whole protocol.
+There is enough room for an honest change and not enough to hide a millisecond
+arriving by accident. If a cost is intended, raise the ceiling in
+`tools/cycles.py` and say why here. That is the whole protocol.
 
 **What the script cannot do**, and it says so in its own header: it is not a
-sound WCET analyser. It cannot see how often a branch is really taken, and the
-loop trip counts in `TRIPS` are read off the C source by hand — if a loop bound
-changes and that table does not, the script will confidently report the old
-number. Anything that adds or changes a loop in the core needs a look at
-`TRIPS`.
+sound WCET analyser, and it has never been checked against a stopwatch. It
+cannot see how often a branch is really taken, and it costs a nested loop as
+outer x inner, which overstates a triangular one.
+
+**What it will not do any more is measure the past.** Loop bodies come out of
+the listing, trip counts name a `config.h` constant, and every backward branch
+in the build has to appear in one of its three tables — `LOOPS`,
+`HARDWARE_WAITS` or `NOT_LOOPS` — or the tool stops instead of guessing. A
+change of algorithm therefore cannot pass silently. `docs/optimisation.md` is
+where that mechanism is explained, and it is required reading before changing
+any loop in the core.
 
 ---
 

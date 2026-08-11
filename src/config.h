@@ -124,6 +124,13 @@
  * solid. docs/refuel-reset.md has the measurements. */
 #define TANK_SAMPLE_MS          1000u       /* one sample per second        */
 #define TANK_MEDIAN_SLOTS       25          /* so a full median spans 25 s  */
+
+/* The median is taken from a histogram rather than by sorting, and this is how
+ * many buckets it needs: 0x320 b2 is masked to seven bits, so the tank level
+ * is 0..127 litres and every possible value gets a bucket. Costs 128 bytes of
+ * RAM and removes the only data-dependent cost in the core -- see the comment
+ * above tank_median() in compute.c. */
+#define TANK_HIST_BINS          128u
 #define TANK_STATIONARY_MMH     1000u       /* "at rest" is below 1 km/h    */
 
 /* The median is trusted from this many samples on, not only from a full

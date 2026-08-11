@@ -20,6 +20,10 @@ static void put_be32(uint8_t *p, uint32_t v)
     p[3] = (uint8_t)(v & 0xFFu);
 }
 
+/* ! THE MOST EXPENSIVE FUNCTION IN THE FIRMWARE: 6.4 ms, almost all of it nine
+ * ! 32-bit divisions at 1,026 cycles each. Read docs/optimisation.md before
+ * ! adding a getter here, and prefer arranging the arithmetic so a division
+ * ! disappears over making the division faster. */
 void txframes_gather(tx_values_t *v, const compute_t *c,
                      const decode_state_t *st, uint16_t vdd_c, uint32_t now_ms)
 {

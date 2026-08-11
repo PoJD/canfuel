@@ -65,6 +65,10 @@ typedef struct {
 
     /* --- tank level, its median and the refuelling trigger -------------- */
     uint8_t  tank_hist[TANK_MEDIAN_SLOTS];
+    /* Bucket counts over the same samples, maintained incrementally so the
+     * median never has to sort. tank_hist above is still the ring, and it is
+     * what says which bucket to decrement when a slot is reused. */
+    uint8_t  tank_bins[TANK_HIST_BINS];
     uint8_t  tank_hist_count;
     uint8_t  tank_hist_next;
     uint8_t  tank_stable_l;     /* median at rest; survives in EEPROM       */

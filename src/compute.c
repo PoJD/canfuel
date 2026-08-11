@@ -49,6 +49,9 @@ static void flow_drop_oldest(compute_t *c)
     c->flow_count--;
 }
 
+/* ! HOT PATH. Runs on every 0x480, which is ~26 times a second. Read
+ * ! docs/optimisation.md before adding anything to it -- especially a
+ * ! division, which costs 1,026 cycles on this part. */
 static void flow_push(compute_t *c, uint16_t ul, uint16_t ms)
 {
     uint8_t tail;
@@ -79,23 +82,56 @@ static void flow_push(compute_t *c, uint16_t ul, uint16_t ms)
 
 /* --- the tank median ---------------------------------------------------- */
 
+/* The median of the ring, read out of a bucket histogram instead of by
+ * sorting it.
+ *
+ * ! HOT LOOP. READ docs/optimisation.md BEFORE CHANGING THIS. Cycles are
+ * ! expensive on a 4 MIPS part with no cache and no hardware divide, and this
+ * ! function was the most expensive thing in the core until 2026-08-11. The
+ * ! types and the walking pointer below are load-bearing, not style.
+ *
+ * WHY NOT A SORT. This used to be an insertion sort over the 25 slots, and it
+ * was the single most expensive thing in the core: 300 comparisons and moves
+ * in the worst case, plus a 25-byte memcpy, 15,068 cycles or 3.77 ms. It was
+ * also the only cost in the whole firmware that depended on the *data* rather
+ * than on the code -- a reversed ring cost twelve times a sorted one -- and
+ * a bound you can only reach on unlucky input is a bound that gets forgotten.
+ *
+ * WHY A HISTOGRAM WORKS HERE. We never want the sorted array, only the middle
+ * element, and the value being sorted is 0x320 b2 masked to seven bits: a
+ * tank level of 0..127. That is a small, fixed, known key space, so counting
+ * beats comparing. tank_sample() keeps the buckets up to date as samples go
+ * in and out of the ring, which leaves this function a single sweep with no
+ * branches worth the name and no worst case worth quoting.
+ *
+ * WHY IT IS THE SAME ANSWER. The sort returned sorted[n/2] -- for an even n
+ * that is the upper of the two middle elements, which is what the running sum
+ * below also lands on. The first bucket whose cumulative count exceeds n/2 is
+ * by definition the bucket that index n/2 falls in. test_compute.c pins this
+ * against the fixtures. */
 static uint8_t tank_median(const compute_t *c)
 {
-    uint8_t sorted[TANK_MEDIAN_SLOTS];
-    uint8_t n = c->tank_hist_count;
-    uint8_t i, j;
+    /* Both of these types are load-bearing on an 8-bit part, and both are
+     * safe: the ring holds at most TANK_MEDIAN_SLOTS = 25 samples, so neither
+     * the running total nor the target can leave a byte. Written as uint16_t
+     * the comparison alone costs six extra instructions per bucket.
+     *
+     * The walking pointer is the other half of it. Indexing tank_bins[v]
+     * makes XC8 rebuild the address from the struct base on every iteration --
+     * twelve instructions of lfsr and add -- where a pointer it can simply
+     * increment costs one. */
+    const uint8_t *bin = c->tank_bins;
+    uint8_t target = (uint8_t)(c->tank_hist_count / 2u);
+    uint8_t cum = 0;
+    uint8_t v;
 
-    memcpy(sorted, c->tank_hist, n);
-    for (i = 1; i < n; i++) {          /* insertion sort, n is at most 25 */
-        uint8_t key = sorted[i];
-        j = i;
-        while (j > 0u && sorted[j - 1u] > key) {
-            sorted[j] = sorted[j - 1u];
-            j--;
+    for (v = 0; v < (uint8_t)TANK_HIST_BINS; v++) {
+        cum = (uint8_t)(cum + *bin++);
+        if (cum > target) {
+            return v;
         }
-        sorted[j] = key;
     }
-    return sorted[n / 2u];
+    return 0;   /* only reachable with an empty ring, which the caller gates */
 }
 
 static void tank_sample(compute_t *c, const decode_state_t *st)
@@ -122,8 +158,22 @@ static void tank_sample(compute_t *c, const decode_state_t *st)
         return;
     }
 
+    /* Keep the histogram in step with the ring. Once the ring is full the slot
+     * about to be overwritten still holds a sample that is counted, so it has
+     * to come out of its bucket first; until then the slot is untouched and
+     * there is nothing to remove. tank_l is masked to seven bits by decode.c,
+     * so it can never index outside tank_bins. */
+    if (c->tank_hist_count == TANK_MEDIAN_SLOTS) {
+        c->tank_bins[c->tank_hist[c->tank_hist_next]]--;
+    }
     c->tank_hist[c->tank_hist_next] = st->tank_l;
-    c->tank_hist_next = (uint8_t)((c->tank_hist_next + 1u) % TANK_MEDIAN_SLOTS);
+    c->tank_bins[st->tank_l]++;
+
+    /* A compare rather than a modulo: TANK_MEDIAN_SLOTS is 25, so % is a real
+     * division on this part rather than a mask. */
+    if (++c->tank_hist_next >= (uint8_t)TANK_MEDIAN_SLOTS) {
+        c->tank_hist_next = 0;
+    }
     if (c->tank_hist_count < TANK_MEDIAN_SLOTS) {
         c->tank_hist_count++;
     }
@@ -268,7 +318,10 @@ void compute_tick(compute_t *c, const decode_state_t *st, uint32_t now_ms)
 
         while (c->seg_cur_mm >= RANGE_SEGMENT_MM) {
             c->seg_ul[c->seg_next] = c->seg_cur_ul;
-            c->seg_next = (uint8_t)((c->seg_next + 1u) % RANGE_SEGMENTS);
+            /* Compare, not modulo -- RANGE_SEGMENTS is 30. */
+            if (++c->seg_next >= (uint8_t)RANGE_SEGMENTS) {
+                c->seg_next = 0;
+            }
             if (c->seg_count < RANGE_SEGMENTS) {
                 c->seg_count++;
             }
