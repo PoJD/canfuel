@@ -39,9 +39,12 @@ kicad/
 └── .github/workflows/kicad.yml  # ERC + DRC + gerber export via kicad-cli
 ```
 
-KiCad 8 uses text formats, so diffs are readable and `kicad-cli` can run ERC
-and DRC in CI without a GUI. That is the main reason for moving off Eagle — a
-design error fails in the pull request, not on a finished board.
+KiCad uses text formats, so diffs are readable and `kicad-cli` can run ERC and
+DRC in CI without a GUI. That is the main reason for moving off Eagle — a
+design error fails in the pull request, not on a finished board. (This said
+"KiCad 8" when it was written; the board was drawn in **KiCad 10**, and the CI
+container image tracks the installed major version because KiCad will not open
+files written by a newer one.)
 
 ### `canfuel` — firmware and decoding
 

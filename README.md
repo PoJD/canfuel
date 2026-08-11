@@ -12,7 +12,7 @@ straight from the display.
 
 ## Status
 
-**Written in full, run on nothing.**
+**It builds. It has never run.**
 
 The pure C core — frame decoding, the fuel arithmetic, the transmitted frames
 and the EEPROM buffer — is compiled with gcc and checked against seven real
@@ -20,22 +20,32 @@ logs from the car, with no hardware involved. Those numbers can be trusted as
 far as the logs go.
 
 The hardware half — the ECAN driver, the millisecond timer, the A/D, the
-EEPROM and the scheduler — is written against the datasheet and syntax-checked
-with gcc, and that is all. **XC8 has never compiled it and no board has ever
-run it.** The boards were ordered on 2026-08-09 and arrive during the week of
-2026-08-17.
+EEPROM and the scheduler — is written against the datasheet and, since
+2026-08-09, **compiled for the real part by XC8 v4.00 with no warnings**. CI
+builds the hex on every push and uploads it. That retires a whole class of
+doubt: every register and configuration bit exists and is spelled the way the
+device data spells it, and the configuration words were read back out of the
+hex rather than assumed.
+
+**No board has ever run it.** Compiling is not running: a register written in
+the wrong order at the wrong time compiles exactly as cleanly as one that is
+not, and the 500 kbps bit timing is datasheet arithmetic that no hardware has
+executed. The boards were ordered on 2026-08-09 and arrive during the week of
+2026-08-17. `docs/timing.md` is the same caveat for the scheduler — the timing
+budget is counted out of the assembly listing, not measured.
 
 ## Quick start
 
 ```
-make -C test test                                       # the C core, 238 checks
+make -C test test                                       # the C core, 250 checks
 make -C test check-pure                                 # no <xc.h> in the core
 make -C test check-hal                                  # the HAL still compiles
-python -m unittest discover -s tools -p "test_*.py"     # the Python tools
+python -m unittest discover -s tools -p "test_*.py"     # the Python tools, 77
 python tools/replay.py --every 100 test/fixtures/07_accel.txt
 python tools/replay.py --host-build test/fixtures/*.txt
 
 make -C mplab                                           # the device build, needs XC8
+python tools/cycles.py                                  # cycle budgets from the build
 ```
 
 `replay.py` is the reference decoder in Python. It runs a log through the same
@@ -47,10 +57,11 @@ two, so the reference and the code that gets flashed cannot drift apart.
 
 | File | Contents |
 |---|---|
-| `docs/can-decoding.md` | signal table, four traps, verified values |
+| `docs/can-decoding.md` | signal table, four traps, verified values, open questions |
 | `docs/frames.md` | layout of frames 0x600–0x602, FuelNow, Range, torque |
-| `docs/refuel-reset.md` | resetting the average on refuelling |
-| `docs/implementation-plan.md` | overall plan for all phases |
+| `docs/refuel-reset.md` | resetting the average on refuelling, and the tank audit |
+| `docs/timing.md` | what every part costs in cycles, and the margins |
+| `docs/implementation-plan.md` | the original plan, kept as a historical record |
 | `test/fixtures/README.md` | description of the logs and known data defects |
 | `mplab/README.md` | how to build the firmware, and what JP2 is for |
 
