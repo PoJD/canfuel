@@ -83,6 +83,28 @@ The 0x43 ramp only shows up in logs that start with the ignition being switched
 on (`01_ign_only`, `06_trip_reset`). It lasts ~0.4 s and the raw value falls
 464 → 0 during it. Pinned down by `test_init_ramp_only_after_ignition_on`.
 
+**0x42 is not part of that story, and `17_drive_property_z1.txt` showed it.**
+It occurs 134 times mid-drive at 26 km/h, nowhere near an ignition event, and
+what it marks is the speed word **freezing** — the value stops updating and
+repeats the last one until the state clears. The gate rejects it for the same
+reason it rejects the ramp, so nothing downstream ever saw a wrong number; the
+claim that was too narrow was the test's, about when the state can occur, not
+the decoder's about what to do with it.
+
+`test_the_gate_rejects_every_state_that_freezes_the_value` now asserts the
+property rather than the list, so a state nobody has seen yet is caught instead
+of quietly accepted.
+
+**A warning to whoever reads b1 next, learned the hard way on 2026-08-11.**
+Bits 0x08 and 0x10 are flags and **not** part of the speed. Reading b1's low
+six bits as the value's high byte — which is an easy thing to write in a
+throwaway analysis script, and was written — makes 0x48 look like a jump to
+21 km/h and 0x50 like a jump to 41 km/h from a standstill, and both look
+exactly like a decoder bug worth chasing. The speed is `u16le(data, 2) * 0.005`
+and nothing else; `decode.c` has always done this and `S-AQY.TRI` agrees. Four
+transitions were checked frame by frame at 7 ms spacing after the correct
+formula was restored, and every one is continuous.
+
 ## Trap 2: the fuel counter resets when the ignition goes off
 
 The delta is `(new − old) mod 32768`. Without restart detection, the first
@@ -311,15 +333,51 @@ it fits `b5 = 4.22 x advance + 82`; from 1838 rpm upwards it sits on exactly
 **152** while the advance keeps climbing 18.1 → 22.5 → 23.3°. Two things are
 true at once and only one of them is explained.
 
-**Why this stays open.** Only two distinct advance levels exist below the
-ceiling — idle and 1536 rpm — so the fit rests on two clusters, not on a
-spread. And 152 is an odd place to clip: not 255, not a power of two.
+**That hypothesis was tested the same afternoon and is refuted.**
+`17_drive_property_z1.txt` and `vcds/vcds-ride-002-003.csv` are six minutes of
+driving on private land, engine speed 537–4986, b7 from 7 to 185, throttle from
+closed to 85°. Above 1900 rpm:
 
-**What would close it:** the same two loggers running **during a drive**.
-Under load the advance varies at constant engine speed, which is exactly the
-axis a stationary sweep in neutral cannot produce — every point above idle here
-was free-revving at the same throttle opening. A ten-minute drive gives more
-distinct advance values than an hour of holding revs in a driveway.
+| | over the drive, rpm > 1900 |
+|---|---|
+| ignition advance, VCDS | **+3.0 to +22.5 °BTDC** — a spread of 19.5° |
+| throttle angle | 3.5° to 85.1° |
+| **0x288 b5, CAN** | **152 in all 2,161 samples. One distinct value.** |
+
+The advance moved through nineteen and a half degrees and b5 did not move by a
+bit. **b5 is not ignition advance.**
+
+**This comparison needs no clock alignment**, which is why it is the one to
+trust: it is two ranges over the same six minutes, not a sample-by-sample
+pairing. That matters because the pairing was attempted and is unreliable —
+see below.
+
+**All three original candidates are now exhausted.** Mass air flow was
+eliminated by the stationary sweep, injection time is b6, and advance is
+refuted. b5 is something nobody has guessed yet.
+
+What is known about it, and it is not much:
+
+- it rises with engine speed to about 1900 rpm and then **pins at exactly 152**
+- it is bounded below at **78**, which is its idle value in every recording
+- below the ceiling it does vary at constant engine speed — 78 to 126 within
+  the 900–1100 rpm band — so it is not a pure function of speed either
+
+**Why the drive could not settle more than that.** VCDS samples about 1.7 times
+a second, polls its two groups at different instants, and injection time swings
+between 1.6 and 11.9 ms while driving. Cross-correlating the two engine-speed
+traces aligns them at a lag of 44.0 s with r = 0.9896, but that is one number
+for six minutes and it cannot track drift. Filtering down to samples where the
+engine speed is locally steady leaves **27 of 902**, nearly all of them idle,
+because a short piece of private land has no steady state above idle. The
+stationary holds are the trustworthy dataset and the drive is the wide one; for
+anything that changes fast, only the holds can be paired.
+
+The same caution applies to **b6's scale**: the six holds give 0.08 ms/bit at
+r = 0.9954, the drive pairing gives 0.147, and the holds win for the reason
+above. Comparing the two ranges instead does not help either — VCDS took 902
+samples where the adapter took 29,658, so the extremes it never sampled are not
+evidence of anything.
 
 **One candidate is eliminated outright and it cost nothing.** Mass air flow
 rises 4.44 → 5.13 → 6.72 → 8.19 g/s across holds 3–6 while b5 sits on 152 and

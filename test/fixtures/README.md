@@ -42,8 +42,10 @@ stands. It is duration, average flow and distance that need a clock.
 | `14_rev1850_z1.txt` | slcan+Z1 | 18,070 | ✅ adapter | VCDS hold 4 — 1838 rpm held, neutral | ~99 °C |
 | `15_rev2372_z1.txt` | slcan+Z1 | 18,077 | ✅ adapter | VCDS hold 5 — 2372 rpm held, neutral | ~99 °C |
 | `16_rev2926_z1.txt` | slcan+Z1 | 18,198 | ✅ adapter | VCDS hold 6 — 2926 rpm held, neutral | ~99 °C |
+| `17_drive_property_z1.txt` | slcan+Z1 | 261,594 | ✅ adapter | 6 min driving on private land, 1st gear | ~100 °C |
 | `idle.txt` | slcan | 1,136 | none | short idle, colder engine | 68.25 °C |
 | `vcds/vcds-01-002-003.csv` | VCDS log | 1,019 | own clock | the diagnostic side of holds 1–6 | — |
+| `vcds/vcds-ride-002-003.csv` | VCDS log | 902 | own clock | the diagnostic side of the drive | — |
 
 ## The three `_z1` logs
 
@@ -180,6 +182,44 @@ the compressor was engaged throughout and the hold is usable — but its means
 are an average over a varying load, not a single operating point. The driver
 also reported the radiator fan starting and stopping during this hold, which is
 an alternator load and part of the same spread.
+
+## `17_drive_property_z1.txt` — the wide one
+
+Six minutes on private land, 2026-08-11, VCDS logging throughout
+(`vcds/vcds-ride-002-003.csv`). First gear only — the land is too short for
+second — so it is repeated hard pull-aways alternating with **coasting in gear
+off the throttle**, which is where the low-load half of the range comes from.
+
+| | range |
+|---|---|
+| engine speed | 537 – 4986 rpm |
+| 0x280 b7 | 7 – 185 |
+| road speed | up to 43.5 km/h |
+| VCDS engine load | 8.6 – 88.1 % |
+| VCDS ignition advance | −12.0 – +22.5 °BTDC |
+
+Against the stationary holds, where load only moved between 17 and 36 %, this
+is the whole operating envelope. **It is the wide dataset; the holds are the
+accurate one.** Use it for anything about ranges, bounds and whether a byte
+ever moves; use the holds for anything that needs a number.
+
+**What it settled:** 0x288 b5 is not ignition advance. Above 1900 rpm the
+advance ranges over 19.5° while b5 is 152 in all 2,161 samples — a comparison
+of two ranges over the same six minutes, needing no clock alignment. See open
+question 3.
+
+**Why its pairing is weak.** The two clocks align by cross-correlating engine
+speed at a lag of 44.0 s with r = 0.9896, but that is a single offset across
+six minutes and VCDS samples only 1.7 times a second. Injection time swings
+1.6 → 11.9 ms while driving, so a small timing error is a large value error.
+Restricting to locally steady engine speed leaves 27 samples of 902, nearly all
+idle: a short piece of land has no steady state above idle. Regressions off
+this file are therefore not comparable with the holds' and should not be
+quoted against them.
+
+**The oil barely warmed**, 75.0 → 77.2 °C over the whole drive, with coolant
+already at 100 °C. Low-speed pottering does not heat a sump; the drag-torque
+refit that open question 7 wants still has no data.
 
 ---
 

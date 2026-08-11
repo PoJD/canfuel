@@ -358,14 +358,40 @@ class TestFixtureContent(unittest.TestCase):
         self.assertAlmostEqual(max(speeds(0x40)), 24.78, places=2)
 
     def test_init_ramp_only_after_ignition_on(self):
-        """0x43 and 0x42 appear only in logs that start with ignition on."""
+        """0x43 appears only after ignition on. 0x42 also happens while driving.
+
+        The original claim covered both values and 17_drive_property_z1.txt
+        disproved half of it: 0x42 turns up 134 times mid-drive, at 26 km/h,
+        with nothing resembling an ignition event anywhere near it. What it
+        marks there is the speed value freezing -- the raw word stops updating
+        and repeats the last one -- which the low-bit gate rejects exactly as
+        it rejects the ramp. So the decoder was always right and only this
+        test's story about *when* the state can occur was too narrow.
+
+        0x43 does still look specific to the ignition ramp: it appears in the
+        two logs that start with the key being turned and in no other, across
+        seventeen recordings and some 112,000 frames of 0x1A0.
+        """
+        ignition_on = ("01_ign_only.txt", "06_trip_reset.txt")
         for name, frames in self.frames.items():
             gates = {f.data[1] for f in frames if f.can_id == 0x1A0}
-            ramp = gates & {0x42, 0x43}
-            if name in ("01_ign_only.txt", "06_trip_reset.txt"):
-                self.assertEqual(ramp, {0x42, 0x43}, name)
+            if name in ignition_on:
+                self.assertEqual(gates & {0x42, 0x43}, {0x42, 0x43}, name)
             else:
-                self.assertEqual(ramp, set(), f"{name}: unexpected ramp {ramp}")
+                self.assertNotIn(0x43, gates, f"{name}: unexpected ramp 0x43")
+
+    def test_the_gate_rejects_every_state_that_freezes_the_value(self):
+        """Every b1 state with a low bit set is one the gate must throw away.
+
+        This is trap 1 from the other side: rather than listing the states seen
+        so far, it asserts the property they share, so a new one arriving in a
+        future recording is caught rather than silently accepted.
+        """
+        for name, frames in self.frames.items():
+            for f in (f for f in frames if f.can_id == 0x1A0):
+                valid = (f.data[1] & 0x40) != 0 and (f.data[1] & 0x03) == 0
+                self.assertEqual(valid, f.data[1] in (0x40, 0x48, 0x50),
+                                 f"{name}: unhandled 0x1A0 state {f.data[1]:#04x}")
 
     def test_valid_speed_is_in_range(self):
         for name, frames in self.frames.items():
