@@ -85,4 +85,4 @@ does not cover them and does not claim to. Everything else in this repository
 is covered.
 
 Questions, corrections and pull requests are welcome as issues on any of the
-three repositories.
+three repositories, or by email to Lubos Housa <luboshousa@gmail.com>.
