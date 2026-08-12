@@ -71,8 +71,8 @@ opened for it. Other programmers that support the PIC18F25K80 should work and
 none has been tried. **No board has been flashed on this project yet** — the
 same MCU was flashed from the IDE on an earlier project, which is where the
 confidence comes from, and it is not the same thing as having done it here. The
-commands are in [`docs/install.md`](docs/install.md) steps 4 and 5, and ours is
-**an unknown cheaper clone**, which step 4 exists to shake out.
+commands are in [`docs/install.md`](docs/install.md) steps 4 and 5, and step 4
+proves the programmer on its own before a board depends on it.
 
 ## Quick start
 

@@ -423,16 +423,21 @@ be forced to agree. IPECMD resolves `PIC18F-K_DFP 1.5.114`, the one v6.00
 bundles; `mplab/Makefile` pins 1.13.292 because XC8 v4.00 refuses 1.5.114. One
 describes the part to a compiler, the other to a programmer.
 
-**The programmer is an unknown cheaper PICkit 3 clone.** It worked under
-MPLAB X about ten years ago, which is a recollection about a different version
-and evidence of nothing — no Microchip document covers clones. The unavoidable
-risk is the firmware update: §12, *"Upgrading the operating system of the
-programming tool happens automatically when the first operation using the tool
-is performed"*, and v6.00 carries suite v01.56.07. That happens identically
-from the IDE, so the command line neither adds nor removes it. **This is the
-entire reason step 4 exists and comes before the boards arrive**: if the clone
-does not survive, the answer is to buy a programmer, and that is a far cheaper
-thing to discover while the boards are still in the post.
+**No programmer has ever been used with this project**, and whichever one is
+used has to be proved before a board depends on it. The unavoidable part is the
+firmware update: §12, *"Upgrading the operating system of the programming tool
+happens automatically when the first operation using the tool is performed"*,
+and v6.00 carries PICkit 3 suite v01.56.07. That happens identically from the
+IDE, so the command line neither adds nor removes it. **This is the entire
+reason step 4 exists and comes before the boards arrive**: whatever it turns
+up, it is far cheaper to turn up while they are still in the post.
+
+**The escape route is checked.** If the programmer has to be replaced, it does
+not have to be another PICkit 3: the tool packs bundled with v6.00 list
+`PIC18F25K80` for MPLAB Snap, PICkit 4 and ICD 4 — read out of each pack's
+`device_support.xml`, not assumed — and IPECMD drives all of them, so only the
+`-TP` short name changes (§14.1). Pack support is not electrical fit, though;
+the versions and that caveat are in `docs/install.md` step 4.
 
 **`tools/flash.py` is planned and deliberately not written yet.** It would wrap
 the four commands, check `CONFIG3H` at 300005h for `CANMX` before flashing

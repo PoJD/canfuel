@@ -332,7 +332,7 @@ IPECMDBoost: *"If there are any connection issues with the tools, please ensure
 the firewall is not blocking the port numbers 2012 and 2013."* Same failure
 mode, different ports. If the PICkit is plugged in, enumerates in Device
 Manager, and IPECMD still insists `Programmer not found`, check the firewall
-rule before suspecting the clone.
+rule before suspecting the programmer.
 
 ### The firmware update, which happens whether you want it or not
 
@@ -361,28 +361,42 @@ steps 5 to 7 will start from.
 
 | Run 1 | Run 2 | What it means |
 |---|---|---|
-| update, then past `Programmer not found` | same, no update, quick | **the pass.** The clone took the firmware and works with it |
+| update, then past `Programmer not found` | same, no update, quick | **the pass.** The tool took the firmware and works with it |
 | update, then past `Programmer not found` | `Programmer not found` | **the failure this step exists to catch.** It accepted the update and then stopped enumerating — a single run would have called this a success |
-| `Programmer not found` | `Programmer not found` | never opened at all. Firewall, HID handle, or the PICkit is dead — none of it is about the update |
-| update appears again | update appears again | the update is not sticking. The clone's firmware area is not being written, or is not being read back as written |
+| `Programmer not found` | `Programmer not found` | never opened at all. Firewall, HID handle, or the tool is dead — none of it is about the update |
+| update appears again | update appears again | the update is not sticking. The firmware area is not being written, or is not being read back as written |
 
 The last two rows are the ones worth being precise about, because they look
 alike from across the room and mean opposite things. **An update that repeats
 on every invocation is not a working programmer**, even if the operations after
 it appear to succeed.
 
-Record both runs' output verbatim in this document when it happens. It is the
-only picture anyone will have of what this particular clone does, and there is
-no manufacturer document that covers it.
+Record both runs' output verbatim in this document when it happens. Whichever
+programmer is in use, that is the only picture anyone will have of how it
+behaves here.
 
-⚠ **The PICkit here is an unknown cheaper clone**, not a Microchip unit. It
-worked under MPLAB X about ten years ago, which says nothing about v6.00 and is
-not evidence of anything — no Microchip document covers clones and none ever
-will. **That is
-precisely why this step exists and why it comes before the boards arrive.** If
-the clone turns out not to survive the firmware update, the answer is to buy a
-programmer, and it is very much better to learn that in the week the boards are
-still in the post than on the evening they arrive.
+### If the programmer has to be replaced
+
+Worth knowing before it is needed, and checked here rather than assumed: the
+tool packs bundled with MPLAB X v6.00 each list this exact part in their
+`device_support.xml`.
+
+| Tool | Pack | `PIC18F25K80` |
+|---|---|---|
+| MPLAB Snap | `Snap_TP 1.9.685` | listed |
+| MPLAB PICkit 4 | `PICkit4_TP 1.10.1305` | listed |
+| MPLAB ICD 4 | `ICD4_TP 1.9.1287` | listed |
+
+So a replacement does not have to be another PICkit 3, and Snap is the
+inexpensive end of that list. IPECMD drives all of them — the tool short names
+are in *Readme for IPECMD.htm* §14.1, so only `-TPPK3` changes.
+
+⚠ **Being listed in a pack is not the same as fitting this board.** It says the
+software knows the part; it says nothing about MCLR and VPP handling, target
+power, or the 5-pin ICSP header on J3. **Read the replacement's own user's
+guide on those points before buying one** — particularly how it drives MCLR,
+since `pic_config.h` sets `MCLRE = ON` and JP2 exists precisely because that
+pin is fussy during programming.
 
 ### What it does not prove
 
@@ -610,7 +624,7 @@ line above.
 
 | Symptom | Look at |
 |---|---|
-| `ipecmd` says `Programmer not found` with the PICkit plugged in | in this order: **MPLAB X or IPE open** and holding the tool (*Readme for IPECMD.htm* §20.1); the **firewall rule** on localhost port 30000 (step 4); something else owning the HID handle (*Readme for PICkit 3.htm* §8.2); then the clone |
+| `ipecmd` says `Programmer not found` with the PICkit plugged in | in this order: **MPLAB X or IPE open** and holding the tool (*Readme for IPECMD.htm* §20.1); the **firewall rule** on localhost port 30000 (step 4); something else owning the HID handle (*Readme for PICkit 3.htm* §8.2); then the programmer itself |
 | `ipecmd` finds the tool but cannot read a device ID | JP2 still fitted, ICSP wiring, or the board is not powered — `-W` is deliberately not used, so the board needs its own 5 V |
 | Programming succeeds and nothing runs | `-OL` missing. The IPECMD default is *hold in reset*, so the part is programmed and then parked |
 | The trip accumulators vanished after a reflash | expected: `-OH` erases everything by default. `-Z0-3FF` is what preserves them, and `-E` overrides it |
