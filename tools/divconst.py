@@ -37,15 +37,11 @@ DIVISORS = {
          "compute_torque_d, cNm to tenths -- full range, costs nothing"),
     100: (1 << 32,
           "compute_flow_lh_c and compute_tank_d -- full range"),
-    120: (1 << 32,
-          "TANK_DAMP_SAMPLES, the tank filter -- full range"),
     1000: (1 << 32,
            "microlitres to millilitres and millimetres to metres; the trip "
            "accumulators are unbounded 32-bit, so this must be the full range"),
     3600: (1 << 32,
            "v[0.001 km/h] * t[ms] -> mm -- full range"),
-    10000: (1 << 32,
-            "DRAG_TORQUE_SLOPE_E4 -- full range"),
     # torque_d is at most 255 * TORQUE_CNM_PER_BIT / 10, i.e. under 1900 tenths
     # of an Nm, and rpm comes from a uint16 quarter-rpm counter so it is under
     # 16384. torque_d * 10 * rpm is therefore under 1900 * 10 * 16384 = 3.1e8.

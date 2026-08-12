@@ -142,12 +142,13 @@ NOT_LOOPS = {
     "_ports_init",
     "_leds_update",
     "_compute_on_fuel",
-    # Has DIVC_10 (shift 3) and DIVC_10000 (shift 13) inline, so its widest
-    # backward branch is a rotate loop rather than control flow. Costed as a
-    # loop below would need two entries and the spans are not reliably ordered
-    # against its switch; the two rotates together are under 80 cycles against
-    # 530 for the two mulhi calls, so this is listed here and the shortfall is
-    # named rather than hidden.
+    # Two functions here contain a rotate loop rather than only control flow,
+    # and the shortfall is named rather than hidden. compute_torque_d has
+    # DIVC_10 (shift 3) inline, about 15 cycles; tank_sample has
+    # TANK_DAMP_SHIFT (7) and TANK_REST_SHIFT (4), together under 60. Costing
+    # them as loops would need one entry per rotate, and the spans are not
+    # reliably ordered against the surrounding control flow -- which is the
+    # trade this table exists to make explicit.
     "_compute_torque_d",
     "_can_set_filter",
     "_memset",

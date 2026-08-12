@@ -265,8 +265,18 @@
  *
  * 06_trip_reset is the honest caveat: it was recorded with the reserve lamp on
  * and the sender at the bottom of its travel, where it is at its worst, and no
- * amount of damping makes that reading good. */
-#define TANK_DAMP_SAMPLES       120u
+ * amount of damping makes that reading good.
+ *
+ * 128 AND NOT 120, since 2026-08-12, and the eight seconds are not the point.
+ * A divisor that is not a power of two is a reciprocal multiply on this part --
+ * mulhi_u32 plus a rotate, about 360 cycles -- where a power of two is the
+ * rotate alone, about 70. The time constant was a decision inside a range
+ * where 60 and 120 were both defensible, so moving it 7 % to buy that is free;
+ * what it also buys is one fewer magic number in divconst.h to derive and
+ * prove. The dead zone the integer step leaves grows from 0.120 l to 0.128,
+ * which is still one digit of the display. */
+#define TANK_DAMP_SAMPLES       128u
+#define TANK_DAMP_SHIFT         7u          /* 2**7 = TANK_DAMP_SAMPLES */
 
 /* --- torque and power --------------------------------------------------- */
 
@@ -365,9 +375,17 @@
  * STILL NOT HOT. 72-77 C is warm, not the 95-110 C of real driving, so this
  * line very likely still overstates drag a little -- which is the conservative
  * direction. Question 7 in docs/can-decoding.md stays open for exactly that,
- * and is the only open question left. */
+ * and is the only open question left.
+ *
+ * THE SLOPE IS SCALED BY 2**16, NOT BY 10,000, since 2026-08-12. It is our own
+ * fixed-point choice and nothing outside this file reads it, so a power of two
+ * makes the division a free byte shift instead of a reciprocal multiply and a
+ * 13-bit rotate -- and takes another magic number out of divconst.h. The line
+ * did not move: 31589/65536 = 0.4820023 against 0.4820, which is 5 parts per
+ * million of a slope whose measurement uncertainty is percent. To refit, work
+ * in bytes as above and multiply the b7 slope by TORQUE_CNM_PER_BIT * 65536. */
 #define DRAG_TORQUE_BASE_CNM    674l        /* 6.74 Nm at 0 rpm  (9.11 b7)  */
-#define DRAG_TORQUE_SLOPE_E4    4820l       /* 0.4820 cNm per rpm           */
+#define DRAG_TORQUE_SLOPE_Q16   31589l      /* 0.4820 cNm per rpm, x 2**16  */
 
 /* THE IDLE GATE. A car that is standing still with the throttle shut is
  * putting out no net torque and no power, and the display says zero. This is

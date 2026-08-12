@@ -88,15 +88,19 @@ static uint32_t mulhi_u32(uint32_t x, uint32_t m)
  * A SHIFT OF 8, 16 OR 24 IS FREE and any other shift is a loop -- XC8 emits
  * single-bit rotates with a counter even when the count is a constant. So
  * divconst.py prefers a multiple of eight, which needs 2**s < d and is
- * therefore available to 1000 and 95500 but not to 10, 100 or 120. Their
- * shifts are 3, 5 and 6, so their loops are short; 3600 and 10000 keep 11 and
- * 13 because no multiple of eight is exact for them inside 32 bits. */
+ * therefore available to 1000 and 95500 but not to 10 or 100. Their shifts are
+ * 3 and 5, so their loops are short; 3600 keeps 11 because no multiple of
+ * eight is exact for it inside 32 bits.
+ *
+ * TWO DIVISORS LEFT ON 2026-08-12 and neither was replaced by a cheaper magic:
+ * 120 (the tank filter) and 10000 (the drag slope) were both OUR OWN scaling
+ * choices, so they became 128 and 2**16 and the divisions became shifts. A
+ * divisor here should be one the physics forces -- 1000 and 3600 and 95500
+ * are; a constant we picked is a constant we can pick again. */
 #define DIVC_10         0xCCCCCCCDul, 3u
 #define DIVC_100        0x51EB851Ful, 5u
-#define DIVC_120        0x88888889ul, 6u
 #define DIVC_1000       0x4189374Cul, 8u
 #define DIVC_3600       0x91A2B3C5ul, 11u
-#define DIVC_10000      0xD1B71759ul, 13u
 /* 95500 is the one with a declared range: over the full 32 bits its magic
  * needs 33 bits and would not fit. torque_d * 10 * rpm stays under 2**30 --
  * tools/divconst.py carries the arithmetic. */

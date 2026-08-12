@@ -522,9 +522,41 @@ so a refuelling puts Range back on the conservative default until
 kilometre rollover now folds the basis instead of storing a number in an array.
 That is the trade and it is a good one: it happens once a kilometre.
 
+## 11. Two divisors were ours, so they became shifts — 2026-08-12
+
+`divconst.h` earns its keep on divisors the physics forces: 1000 for microlitres
+into millilitres, 3600 for the speed integration, 95500 for the power formula.
+**Two of the seven were neither** — they were scaling factors this project chose
+and could choose again:
+
+- **`TANK_DAMP_SAMPLES` 120 → 128.** The time constant was a decision inside a
+  range where 60 and 120 were both defensible, so moving it 7 % costs nothing
+  and turns a reciprocal multiply plus a rotate (~360 cycles) into a rotate
+  (~70). The integer dead zone grows from 0.120 l to 0.128, still one digit of
+  the display.
+- **The drag slope scaled by 2**16 instead of by 10,000.** Nothing outside
+  `config.h` reads the scaling, and a shift of 16 is *free* — three byte moves.
+  31589/65536 = 0.4820023 against 0.4820, five parts per million of a slope
+  whose measurement uncertainty is percent.
+
+`DIVC_120` and `DIVC_10000` are gone from `divconst.h`, from `divconst.py` and
+from `test_divconst.c`, which is 340,000 fewer checks in `make test` and two
+fewer magic numbers anybody has to trust. **The rule that falls out of this is
+worth keeping**: a divisor in `divconst.h` should be one the physics forces. A
+constant we picked is a constant we can pick to be a power of two.
+
+| | before | after |
+|---|---|---|
+| `tank_sample` | 1,516 cycles, 379 µs | **886 cycles, 222 µs** |
+| `compute_torque_d` | 1,042 cycles | **720 cycles** |
+| `compute_tick` worst case | 0.78 ms | **0.62 ms** |
+| the 100 ms slot | 2.68 ms | **2.60 ms** |
+| worst pass through the loop | 6.73 ms | **6.50 ms** |
+| program memory | 12,996 B | 12,916 B |
+
 ## What is left
 
-**`txframes_gather` is still the largest item at 1.96 ms**, and what is in it
+**`txframes_gather` is still the largest item at 1.88 ms**, and what is in it
 now is neither division-by-constant nor multiplication — it is the getters
 themselves, and three `___lldiv` calls that all divide by a *variable*: the A/D
 code in `hal_sys_vdd_c`, the basis in `compute_range_km`, and the shared
@@ -532,7 +564,7 @@ code in `hal_sys_vdd_c`, the basis in `compute_range_km`, and the shared
 would have to be derived at run time, which costs more than the division it
 replaces.
 
-For scale: the whole worst pass is 6.73 ms against a 100 ms transmit slot and a
+For scale: the whole worst pass is 6.50 ms against a 100 ms transmit slot and a
 22 ms FIFO, and RAM is 339 bytes of 3,649. **There is no performance problem
 left to solve here** — there was not one before either. What the second pass
 bought was 347 bytes of RAM, three data structures, two loops and one real

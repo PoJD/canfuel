@@ -127,9 +127,9 @@ static void tank_sample(compute_t *c, const decode_state_t *st)
         c->tank_damped_ml = target_ml;
         c->tank_damped_valid = true;
     } else if (target_ml > c->tank_damped_ml) {
-        c->tank_damped_ml += div_const(target_ml - c->tank_damped_ml, DIVC_120);
+        c->tank_damped_ml += (target_ml - c->tank_damped_ml) >> TANK_DAMP_SHIFT;
     } else {
-        c->tank_damped_ml -= div_const(c->tank_damped_ml - target_ml, DIVC_120);
+        c->tank_damped_ml -= (c->tank_damped_ml - target_ml) >> TANK_DAMP_SHIFT;
     }
 
     /* The baseline the refuelling rule watches is only fed while standing.
@@ -470,9 +470,11 @@ uint16_t compute_torque_d(const decode_state_t *st)
         return 0;
     }
 
+    /* A shift of 16 is three byte moves and no loop at all, which is why the
+     * slope is scaled by 2**16 rather than by 10,000. rpm is under 16384, so
+     * the product cannot leave 32 bits. */
     drag_cnm = (uint32_t)DRAG_TORQUE_BASE_CNM +
-               div_const(mul_u32_u16(rpm, (uint16_t)DRAG_TORQUE_SLOPE_E4),
-                         DIVC_10000);
+               (mul_u32_u16(rpm, (uint16_t)DRAG_TORQUE_SLOPE_Q16) >> 16);
 
     if (st->torque_ind_cnm <= drag_cnm) {
         return 0;               /* on the overrun the engine is being driven */

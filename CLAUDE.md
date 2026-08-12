@@ -183,8 +183,8 @@ against XC8 v4.00 itself. What that last one does and does not settle:
 - **The timing budget is counted, not measured.** `docs/timing.md` costs every
   function out of the assembly listing XC8 generates. Summary: a typical pass
   is 113 µs so the loop runs ~8,800 times a second; the 100 ms slot uses
-  **3.2 ms of its 100**; the worst pass that can happen without an EEPROM write
-  is **8.0 ms**, against a FIFO that tolerates 22 ms of blindness. The
+  **2.6 ms of its 100**; the worst pass that can happen without an EEPROM write
+  is **6.5 ms**, against a FIFO that tolerates 22 ms of blindness. The
   arithmetic is nowhere near being the constraint. The one figure the datasheet
   declines to bound is the EEPROM write — D122's 4 ms is a *typ* with no
   maximum — and nothing downstream of it is a deadline.
@@ -225,6 +225,11 @@ against XC8 v4.00 itself. What that last one does and does not settle:
   rotate loop. Never add a divisor by hand — `tools/divconst.py` derives and
   proves it, `test/test_divconst.c` proves the C, and the exhaustive build
   walked 26.8 billion values.
+  **A divisor here should be one the physics forces.** 1000, 3600 and 95500
+  are; 120 (the tank filter) and 10000 (the drag slope) were our own scaling
+  choices and became 128 and 2**16 on 2026-08-12, so both divisions are now
+  shifts and both magics are gone. A constant we picked is a constant we can
+  pick to be a power of two — `docs/optimisation.md` §11.
 - **`tools/cycles.py` measures loop bodies out of the listing** and requires
   every backward branch in the build to be declared in one of its three tables.
   It stops rather than guessing, so a change of algorithm cannot pass silently

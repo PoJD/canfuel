@@ -39,10 +39,8 @@ struct divisor {
 static const struct divisor DIVISORS[] = {
     { "10",    10u,    DIVC_10,    0u },
     { "100",   100u,   DIVC_100,   0u },
-    { "120",   120u,   DIVC_120,   0u },
     { "1000",  1000u,  DIVC_1000,  0u },
     { "3600",  3600u,  DIVC_3600,  0u },
-    { "10000", 10000u, DIVC_10000, 0u },
     { "95500", 95500u, DIVC_95500, 1073741824ul },   /* 2**30, see divconst.py */
 };
 

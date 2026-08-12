@@ -15,7 +15,7 @@ both (the Format column in the TRI file, 0 = big endian).
 |---|---|---|---|
 | 0–1 | FuelNow | 0.1 | dual unit, see below |
 | 2–3 | FuelAvg | 0.1 l/100 km | 0–999 |
-| 4–5 | FuelTank | 0.1 l | damped, 120 s time constant |
+| 4–5 | FuelTank | 0.1 l | damped, 128 s time constant |
 | 6–7 | Range | 1 km | |
 
 ## 0x601 @ 100 ms — engine and diagnostics
@@ -118,12 +118,20 @@ of 64 slots.
 ## Range
 
 ```
-litres remaining / (rolling consumption over the last 30 km) × 100
+litres remaining / (rolling consumption over the last kilometres) × 100
 ```
 
-The rolling average runs over 1 km segments, so 30 slots. It then behaves the
-way modern cars do — after flooring it on the motorway the estimate falls
-gradually rather than jumping.
+The rolling figure is a first-order filter over completed kilometres, one step
+per kilometre with a time constant of sixteen. It behaves the way modern cars
+do — after flooring it on the motorway the estimate falls gradually rather than
+jumping.
+
+**It was a flat average over thirty 1 km slots until 2026-08-12**, which is
+120 bytes of RAM summed ten times a second for a number that can only change
+once a kilometre. The filter has a mean age of 16 km against the window's 15,
+so the estimate is very nearly as steady; `docs/optimisation.md` §10 has the
+arithmetic and the one detail that is not obvious, which is that the filter
+carries four fractional bits so it cannot stall a long way from the truth.
 
 Until 5 km have been driven since startup, a conservative default of 9 l/100 km
 is used so the estimate is not nonsense on a cold start.
@@ -137,9 +145,10 @@ the same tank and now agree about it. `compute_range_km()` takes no
 `decode_state_t` at all any more, so it cannot regress to the raw value by
 accident.
 
-The stable median would be steadier still, but it only updates while the car is
-stationary, so it would leave the range frozen for a whole motorway drive. The
-damped level tracks consumption, which is the entire point of a range gauge.
+The settled at-rest level the refuelling rule watches would be steadier still,
+but it only updates while the car is stationary, so it would leave the range
+frozen for a whole motorway drive. The damped level tracks consumption, which
+is the entire point of a range gauge.
 
 ---
 
@@ -198,7 +207,10 @@ drag [Nm] = 6.74 + 0.00482 × rpm
 ```
 
 The constants live in `config.h` as `DRAG_TORQUE_BASE_CNM` and
-`DRAG_TORQUE_SLOPE_E4`. **The calibration is in bytes, not Nm** — change the
+`DRAG_TORQUE_SLOPE_Q16` — the slope scaled by 2**16 rather than by 10,000
+since 2026-08-12, so that dividing it out is a free byte shift on the PIC
+rather than a reciprocal multiply. The line is unchanged to five parts per
+million. **The calibration is in bytes, not Nm** — change the
 scale above and this line has to be refitted with it, which is exactly what
 happened here: the scale moved 0.75 → 0.74 in the same breath.
 
