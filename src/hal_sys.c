@@ -415,6 +415,22 @@ void hal_eeprom_write(uint16_t addr, uint8_t value, void *ctx)
     /* §8.4: "The WREN bit should be kept clear at all times, except when
      * updating the EEPROM. The WREN bit is not cleared by hardware." */
     EECON1bits.WREN = 0;
+
+    /* WRERR IS DELIBERATELY NOT READ, and this is a decision rather than an
+     * oversight. Register 8-1 defines it as "a write operation is prematurely
+     * terminated (any Reset during self-timed programming...)", and §7.5.3
+     * says such a location "should be verified and reprogrammed if needed".
+     *
+     * We do neither, because persist.c already covers it and covers it better.
+     * The failure this guards against is losing power mid-write -- the
+     * ignition going off during the 48 ms once a minute, which is about one
+     * switch-off in a thousand. When it happens the CPU is not running to read
+     * WRERR anyway; on the next start persist_load() finds that slot's CRC
+     * does not match and skips it, and the ring means the record it skips is
+     * the OLDEST of sixty-four rather than the newest. Reprogramming the
+     * location would be pointless as well: the next write goes to the next
+     * slot regardless. So the bit would tell us only what the CRC already
+     * does, one boot later, and nothing would be done differently. */
 }
 
 const persist_backend_t hal_eeprom_backend = {
