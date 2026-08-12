@@ -27,6 +27,27 @@ doubt: every register and configuration bit exists and is spelled the way the
 device data spells it, and the configuration words were read back out of the
 hex rather than assumed.
 
+**What it costs the part**, straight out of the last build:
+
+<!-- checkdocs:begin build-size -->
+
+| Space | Used | Of | Share | What it holds |
+|---|---|---|---|---|
+| Program space | 12,986 B | 32,768 B | 39.6 % | the firmware itself |
+| Data space | 339 B | 3,649 B | 9.3 % | RAM |
+| EEPROM space | 0 B | 1,024 B | 0.0 % | the trip accumulators, written at run time |
+
+Written by `python tools/checkdocs.py --write` out of XC8's own memory
+summary, and checked in CI. Do not edit by hand.
+
+<!-- checkdocs:end build-size -->
+
+The CPU side is in [`docs/timing.md`](docs/timing.md), which costs every
+function out of the assembly listing: a typical scheduler pass is 49–134 µs,
+the worst pass without an EEPROM write is 6.5 ms against a 10 ms slot, and the
+whole firmware uses about a sixth of the CPU. `python tools/cycles.py` prints
+it and CI fails if a budget is blown.
+
 **No board has ever run it.** Compiling is not running: a register written in
 the wrong order at the wrong time compiles exactly as cleanly as one that is
 not, and the 500 kbps bit timing is datasheet arithmetic that no hardware has
@@ -77,7 +98,7 @@ proves the programmer on its own before a board depends on it.
 ## Quick start
 
 ```
-make -C test test                                       # the C core, 350+ checks
+make -C test test                                       # the C core
 make -C test check-pure                                 # no <xc.h> in the core
 make -C test check-hal                                  # the HAL still compiles
 python -m unittest discover -s tools -p "test_*.py"     # the Python tools
@@ -86,6 +107,7 @@ python tools/replay.py --host-build test/fixtures/*.txt
 
 make -C mplab                                           # the device build, needs XC8
 python tools/cycles.py                                  # cycle budgets from the build
+python tools/checkdocs.py --check                       # the prose still matches config.h
 ```
 
 `replay.py` is the reference decoder in Python. It runs a log through the same

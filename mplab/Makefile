@@ -118,8 +118,20 @@ all: $(TARGET).hex
 # "$(XC8)" is quoted because the default install path on Windows is
 # C:\Program Files\Microchip\xc8\..., and an unquoted space there would make
 # the recipe try to run a program called "C:/Program".
+#
+# The output is captured to build/memory.txt and then printed, rather than
+# streamed straight out. XC8 ends the link with its own memory summary, and
+# that summary is the only authoritative accounting of how much of the part is
+# used -- deriving it from the hex would be inventing a second opinion. It is
+# kept so tools/checkdocs.py can write the real figures into README.md instead
+# of anybody typing them in and them going stale, which they twice did.
+#
+# The exit status is the compiler's, not the pipeline's: piping into tee would
+# report a failed build as a success. Hence the temporary, the saved $$?, and
+# the explicit exit -- all POSIX sh, since make does not give us bash.
 $(TARGET).hex: $(SRC) | $(BUILD)
-	"$(XC8)" $(XC8FLAGS) -o $@ $(SRC)
+	@"$(XC8)" $(XC8FLAGS) -o $@ $(SRC) > $(BUILD)/memory.txt 2>&1; \
+	 status=$$?; cat $(BUILD)/memory.txt; exit $$status
 
 $(BUILD):
 	mkdir -p $(BUILD)

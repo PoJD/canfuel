@@ -111,10 +111,10 @@ car before anything is soldered.
 
 ```
 cd canfuel
-make -C test test            # 350+ checks, plus 1.6 M brute-forced
+make -C test test            # the whole C suite
 make -C test check-pure      # no <xc.h> anywhere in the core
 make -C test check-hal       # the HAL still compiles
-python -m unittest discover -s tools -p "test_*.py"        # 80+ tests
+python -m unittest discover -s tools -p "test_*.py"        # the Python tools
 python tools/replay.py --host-build test/fixtures/*.txt    # Python vs C
 ```
 

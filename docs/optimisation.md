@@ -565,7 +565,8 @@ would have to be derived at run time, which costs more than the division it
 replaces.
 
 For scale: the whole worst pass is 6.50 ms against a 100 ms transmit slot and a
-22 ms FIFO, and RAM is 339 bytes of 3,649. **There is no performance problem
+22 ms FIFO, and RAM is a small fraction of what the part has. **There is no
+performance problem
 left to solve here** — there was not one before either. What the second pass
 bought was 347 bytes of RAM, three data structures, two loops and one real
 fault in the distance.

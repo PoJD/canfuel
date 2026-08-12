@@ -20,6 +20,14 @@ jobs:
         working-directory: tools
         run: python -m unittest discover -p 'test_*.py' -v
 
+      # Every documentation fix on 2026-08-12 was a number rather than an
+      # argument: one constant moved in config.h and eleven sentences elsewhere
+      # did not follow, in files that grep by constant name cannot find. This
+      # reads config.h and refuses prose that has drifted away from it, and
+      # forbids quoting numbers a command already prints.
+      - name: the prose agrees with the code
+        run: python tools/checkdocs.py --check
+
       - name: summary of every fixture
         run: |
           for f in test/fixtures/*.txt; do
@@ -190,6 +198,14 @@ jobs:
       # job that can do this.
       - name: cycle budgets
         run: python tools/cycles.py --check
+
+      # README.md quotes what the firmware costs the part, and those figures
+      # are generated rather than typed -- `--write` fills them from the memory
+      # summary the build just wrote. This job is the only one with XC8, so it
+      # is the only one that can tell whether they are still true. The `tools`
+      # job runs the same command without a build and skips this one check.
+      - name: the size figures in README.md are current
+        run: python tools/checkdocs.py --check
 
       - uses: actions/upload-artifact@v4
         with:

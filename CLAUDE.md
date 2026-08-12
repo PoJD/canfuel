@@ -133,9 +133,9 @@ What exists and works:
 - `src/main.c` — the cooperative scheduler, and nothing else
 - `mplab/` — `canfuel.X` for the IDE and a plain `Makefile` driving `xc8-cc`,
   which is the authoritative recipe and what CI runs
-- `test/` — 350+ hand-written checks across seven test binaries, plus the 1.6 M
-  brute-forced by `test_divconst.c` and `test_props.c`, plus `replay_host.c`
-- `tools/canlog.py`, `tools/replay.py` — 80+ Python tests green, and
+- `test/` — the whole core against the fixtures, the scheduler and the
+  arithmetic properties, plus `replay_host.c`
+- `tools/canlog.py`, `tools/replay.py` — the Python tests green, and
   `replay.py --host-build` now diffs Python against the C core
 - `test/fixtures/` — seventeen real logs from the car, documented, of which
   the `_z1` ones are the only ones with trustworthy time
@@ -170,8 +170,9 @@ against XC8 v4.00 itself. What that last one does and does not settle:
   DS39977C Register 28-5 says that bit means. The single most expensive bit in
   the project, confirmed against the artefact that will actually be flashed.
   `CONFIG2H = 0x26` likewise reads back as `WDTPS<3:0> = 1001` = 512.
-- **It fits, with room.** 11,594 bytes of 32,768 (35.4 %) of program space and
-  564 bytes of 3,649 (15.5 %) of RAM, at `-O2`.
+- **It fits, with room to spare**, in both program space and RAM at `-O2`.
+  `make -C mplab` prints both; quoting them here would only go stale, and once
+  already did.
 - **It still proves nothing about the silicon.** Compiling is not running. A
   register that exists but is written in the wrong order, at the wrong time, or
   with the wrong value compiles exactly as cleanly as one that does not.
@@ -1182,6 +1183,7 @@ mplab/
   README.md     how to build, and what JP2 is for
 tools/          canlog.py, replay.py — Python, runs anywhere
                 cycles.py — cycle budgets out of the XC8 listing, a CI gate
+                checkdocs.py — prose vs config.h, a CI gate
 ```
 
 **The two `config` headers must not be confused.** `src/config.h` is the pure
@@ -1218,15 +1220,17 @@ python tools/usbtin_capture.py --seconds 60 --out idle_z1.txt   # record, Z1 on
 python tools/canlog.py test/fixtures/03_drive.txt          # per-ID summary
 python tools/canlog.py --dump --id 0x480 FILE              # print frames
 python tools/replay.py --every 100 test/fixtures/07_accel.txt
-python -m unittest discover -s tools -p "test_*.py"        # 80+ tests
+python -m unittest discover -s tools -p "test_*.py"        # the Python tools
 
-make -C test test                                          # 350+ checks, 1.6 M brute-forced
+make -C test test                                          # the whole C suite
 make -C test check-pure                                    # no <xc.h> in the core
 make -C test check-hal                                     # the HAL still compiles
 make -C test sanitize                                      # ASan + UBSan, CI only
 python tools/replay.py --host-build test/fixtures/*.txt    # Python vs C
 python tools/cycles.py                                     # cycle budgets
 python tools/cycles.py --check                             # ...and fail if over
+python tools/checkdocs.py --check                          # prose vs config.h
+python tools/checkdocs.py --write                          # ...after make -C mplab
 
 make -C mplab                                              # -> build/canfuel.hex
 make -C mplab CAN_MODE=LOOPBACK                            # talks to itself
@@ -1251,12 +1255,59 @@ name, so it agrees with the code by construction. What it does prove is that
 the C is valid and that `main.c` calls the core correctly, which is worth
 having on a machine with no XC8.
 
+### Numbers in prose — two rules, and `checkdocs.py` enforces both
+
+On 2026-08-12 a sweep found nineteen wrong statements across the documents and
+the comments. **Not one of them was a wrong argument. All nineteen were
+numbers**, in paragraphs that still reasoned correctly around them. That is
+what actually rots here, and it rots because one constant moves and a dozen
+sentences elsewhere do not. `grep PERSIST_INTERVAL_MS` finds none of them —
+"half a millisecond a minute" does not contain the name of the constant it was
+derived from.
+
+So, in order of how much they are worth:
+
+1. **A number that a command prints is either generated or not written down.**
+   Test counts and check counts are not worth having, so they are gone. What
+   the firmware costs the part *is* worth having — and asking a reader to
+   install XC8 to find out is a poor answer — so **`README.md` carries one
+   generated block** between `<!-- checkdocs:begin build-size -->` markers.
+   `checkdocs.py --write` fills it from XC8's own memory summary, which
+   `mplab/Makefile` captures to `build/memory.txt`; nobody types those figures,
+   so nobody can mistype them. The `firmware` CI job is the only one with a
+   compiler, so it is the one that fails when the block is stale.
+
+   Typing them by hand is what went wrong before: this file declared exactly
+   this rule for the hex size and then quoted the byte counts four lines below,
+   and by 2026-08-12 they disagreed with `docs/optimisation.md` about the RAM
+   — 564 bytes against 339, both correct on the day they were written.
+2. **A number derived from a constant is derived in one place**, and everywhere
+   else says what it means rather than what it is. `persist.h` owns the EEPROM
+   write arithmetic; other files say "an EEPROM write" and cite it.
+3. **Repeat the reasoning as much as you like.** Arguments do not go stale, and
+   an argument next to the code it produced is the thing this repository is
+   for. It is only the figures that need one home.
+4. **Cross-reference by name, never by line number** — a symbol
+   (`compute_torque_d()`), a heading (`docs/optimisation.md` §8), a register
+   (DS39977C Register 28-5). Those survive an edit; `file.c:40-60` does not.
+
+Datasheet numbers are the exception to all of it and can be repeated freely:
+the PDF is frozen, so D122's 4 ms cannot move.
+
+`tools/checkdocs.py` mechanises 1 and 2 and runs in the `tools` CI job. It
+reads `src/config.h`, flattens each file so a fact split across a line wrap is
+still found — that mattered, the first version scanned line by line and missed
+ten of the fourteen places that state the write frequency — and fails on prose
+that disagrees. A fixture-count check was written and deleted for firing on
+five correct sentences; the reasoning is in the file, and it is the same reason
+`test_props.c` fuzzes reachable states only.
+
 ### Before committing anything that touches the core
 
-The five commands above, in that order. All of it runs in under fifteen
-seconds and it is exactly what the `tools` and `core` CI jobs do, so a green
-run here means a green run there — the `firmware` job needs XC8 and only runs
-on GitHub. No `TMP=` prefix is needed any more; see the toolchain section.
+The commands above, in that order. All of it runs in under fifteen seconds and
+it is exactly what the `tools` and `core` CI jobs do, so a green run here means
+a green run there — the `firmware` job needs XC8 and only runs on GitHub. No
+`TMP=` prefix is needed any more; see the toolchain section.
 
 Adding a `test_*.c` needs no Makefile change — the glob picks it up, builds it
 against all four core sources and runs it.
