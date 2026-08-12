@@ -440,6 +440,48 @@ a false positive silently destroys an average the driver has watched for
 `compute_tick`'s ceiling in `cycles.py` came down from 1.7 ms to 0.9 ms with
 it. A ceiling that can never be hit is not a gate.
 
+## 9. The flow window: 32 slots became 4 buckets — 2026-08-12
+
+The instantaneous flow was a 32-slot ring of (microlitres, milliseconds), one
+slot per 0x480 frame, with the oldest dropped one at a time until the window
+fitted inside a second — and **the answer recomputed on every frame**, which
+means a 32-bit division by a variable, 1,026 cycles, **twenty-six times a
+second**, for a number that is transmitted ten times a second.
+
+It is four quarter-second buckets now. A frame adds into the open bucket and
+nothing else happens; when that bucket has held `FLOW_BUCKET_MS` the four are
+averaged and the oldest is emptied to take its place. **The division runs four
+times a second.**
+
+What it costs, stated plainly: the flow steps four times a second rather than
+on every frame, and the window is 0.75–1.0 s of history at the moment it is
+read rather than exactly 1.0 s. Neither is visible on a gauge that shows
+0.1 l/h, and the display only refreshes ten times a second anyway.
+
+One gate moved with it. `compute_on_fuel` used to accept a sample up to
+65,535 ms long; it now clears the window for anything longer than
+`FLOW_WINDOW_MS`. That is both a tighter statement of what the window means — a
+gap longer than the window describes a different situation, and the bus is
+declared dead at half of it — and what keeps a bucket inside the `uint16`
+fields it is made of.
+
+**`tools/replay.py` grew the same buckets**, because it is the reference
+implementation and not an independent opinion: with a per-frame ring on one
+side and buckets on the other the two would have disagreed about `flow_ul_s`
+by a quarter of a second's worth of history on every fixture. They agree on
+every field again.
+
+| | before | after |
+|---|---|---|
+| `flow_push` | 2,669 cycles, 667 µs | **1,676 cycles, 419 µs** (the pass that closes a bucket) |
+| `compute_on_fuel` | 3,045 | **2,073** |
+| one received frame | 0.96 ms | **0.71 ms** |
+| FIFO drain, 8 frames | 2.33 ms | **2.09 ms** |
+| worst pass through the loop | 7.43 ms | **7.18 ms** |
+| RAM | 574 B | **453 B** |
+
+The `rx_frame` ceiling came down from 1.4 ms to 1.0 with it.
+
 ## What is left
 
 **`txframes_gather` is still the largest item at 2.52 ms**, but what remains in

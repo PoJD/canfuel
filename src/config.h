@@ -108,15 +108,36 @@
  * reading, which would look plausible and be wrong. */
 #define DATA_TIMEOUT_MS         500u
 
-/* Sliding window the instantaneous flow is averaged over. 0x480 has NO fixed
- * period -- measured with adapter timestamps it is 26.4 frames/s at idle and
- * 18.0 at 2586 rpm, on a 10 ms grid (can-decoding.md question 1) -- so the
- * window is defined in milliseconds and the slot count simply has to be large
- * enough for the fastest arrival plus the duplicate frames that make up
- * 39-51 % of the older logs. Thirty-two slots against roughly twenty-six
- * frames in a second at idle. */
+/* Sliding window the instantaneous flow is averaged over, as four quarter
+ * second buckets rather than one slot per frame.
+ *
+ * 0x480 has NO fixed period -- measured with adapter timestamps it is 26.4
+ * frames/s at idle and 18.0 at 2586 rpm, on a 10 ms grid (can-decoding.md
+ * question 1) -- so nothing here may assume a rate. The window is a whole
+ * number of buckets: each frame is added into the open bucket, and the bucket
+ * closes as soon as it holds FLOW_BUCKET_MS, so the four together span 1.00 to
+ * 1.03 s in practice.
+ *
+ * IT USED TO BE A 32-SLOT RING of (microlitres, milliseconds) with the oldest
+ * samples dropped one at a time until the window fitted a second. That is 128
+ * bytes of RAM, a drop loop, and -- because the answer was recomputed on every
+ * frame -- **a 32-bit division by a variable twenty-six times a second**, at
+ * 1,026 cycles each, for a number transmitted ten times a second. The buckets
+ * divide four times a second instead, which is still more often than the
+ * display can show a change.
+ *
+ * What it costs: the flow steps four times a second rather than continuously,
+ * and the window is 0.75-1.0 s of history at the moment it is read rather than
+ * exactly 1.0. Neither is visible on a gauge reading 0.1 l/h.
+ *
+ * FLOW_WINDOW_MS is now the gap that invalidates the window rather than its
+ * length: a frame further than this from the last one describes a different
+ * situation entirely, and the bus is declared dead at half of it anyway
+ * (DATA_TIMEOUT_MS). It also bounds what a single bucket can hold, which is
+ * what keeps the uint16 fields in flow_sample_t from overflowing. */
 #define FLOW_WINDOW_MS          1000u
-#define FLOW_WINDOW_SLOTS       32
+#define FLOW_BUCKET_MS          250u
+#define FLOW_BUCKETS            4
 
 /* --- fuel counter ------------------------------------------------------- */
 

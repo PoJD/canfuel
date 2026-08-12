@@ -45,6 +45,11 @@ FUELNOW_LH_BELOW_KMH = 4.0  # below this we send l/h, above it l/100 km
 FUELNOW_CLAMP = 999         # 99.9 on the display
 RANGE_DEFAULT_L100 = 9.0    # used for range until we have driven 5 km
 AVG_MIN_M = 100             # below this the average divides by nearly zero
+# The flow window, four quarter-second buckets. See src/config.h: a gap longer
+# than FLOW_WINDOW_MS throws the window away rather than averaging across it.
+FLOW_WINDOW_MS = 1000.0
+FLOW_BUCKET_MS = 250.0
+FLOW_BUCKETS = 4
 COUNTER_MODULO = 32768
 # DIST_MIN_MMH in src/config.h. A standing car sends 0.005 km/h, not zero, and
 # an integration exact enough to notice turns that into 83 mm a minute.
@@ -131,7 +136,9 @@ class Compute:
     last_ms: Optional[float] = None
     flow_ul_s: float = 0.0
     restarts: int = 0
-    _flow_window: list = field(default_factory=list)
+    _flow: list = field(
+        default_factory=lambda: [[0.0, 0.0] for _ in range(FLOW_BUCKETS)])
+    _flow_open: int = 0
 
     def on_counter(self, st: Decoded, now_ms: float) -> None:
         """A new counter reading. The result lands in self.total_ul.
@@ -161,14 +168,33 @@ class Compute:
         self.last_ms = now_ms
 
         self.total_ul += delta_ul
-        if dt_s:
-            self._flow_window.append((delta_ul, dt_s))
-            # ~1 s sliding window, otherwise the number on the display dances
-            while sum(w[1] for w in self._flow_window) > 1.0 and len(self._flow_window) > 1:
-                self._flow_window.pop(0)
-            win_ul = sum(w[0] for w in self._flow_window)
-            win_s = sum(w[1] for w in self._flow_window)
-            self.flow_ul_s = win_ul / win_s if win_s else 0.0
+        if dt_s is None:
+            return
+        if dt_s * 1000.0 > FLOW_WINDOW_MS:
+            # A gap longer than the whole window: what the buckets hold
+            # describes a different situation entirely.
+            self._flow = [[0.0, 0.0] for _ in range(FLOW_BUCKETS)]
+            self._flow_open = 0
+            self.flow_ul_s = 0.0
+            return
+
+        # Four quarter-second buckets, exactly as compute.c does it: the frame
+        # goes into the open bucket, and when that bucket holds FLOW_BUCKET_MS
+        # the four are averaged and the oldest is emptied to take its place.
+        # This mirrors the firmware rather than the other way round -- the ring
+        # of one slot per frame that used to be here divided twenty-six times a
+        # second on a part where that costs 1,026 cycles a time.
+        open_bucket = self._flow[self._flow_open]
+        open_bucket[0] += delta_ul
+        open_bucket[1] += dt_s * 1000.0
+        if open_bucket[1] < FLOW_BUCKET_MS:
+            return
+
+        win_ul = sum(b[0] for b in self._flow)
+        win_ms = sum(b[1] for b in self._flow)
+        self.flow_ul_s = win_ul * 1000.0 / win_ms if win_ms else 0.0
+        self._flow_open = (self._flow_open + 1) % FLOW_BUCKETS
+        self._flow[self._flow_open] = [0.0, 0.0]
 
     def on_distance(self, st: Decoded, dt_s: float) -> None:
         """Accumulate first, truncate once.

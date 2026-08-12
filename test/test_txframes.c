@@ -232,14 +232,17 @@ static void test_idle_produces_sane_frames(void)
     txframes_gather(&v, &r.cp, &r.st, 500, now);
     txframes_fuel(&v, f);
 
-    /* Standing still, so FuelNow is in l/h: 1.1 or so, never l/100 km. */
-    TT_NEAR(be16(f + 0), 11, 2);
+    /* Standing still, so FuelNow is in l/h: an idle flow, never l/100 km.
+     * The window is four quarter-second buckets read wherever the last one
+     * closed, so the exact digit depends on where in the log that fell --
+     * test_compute.c says the same thing at more length. */
+    TT_RANGE(be16(f + 0), 9, 16);
     /* The car never moved, so the average must be exactly zero and not a
      * division by an almost-zero distance. */
     TT_EQ(be16(f + 2), 0);
 
     txframes_engine(&v, f);
-    TT_NEAR(be16(f + 4), 112, 15);      /* 1.12 l/h */
+    TT_RANGE(be16(f + 4), 90, 162);     /* 0.90 to 1.62 l/h at idle */
 
     /* IDLING PRODUCES NO NET TORQUE AND THE DISPLAY MUST SAY SO -- end to end,
      * off a real log, through decode, compute and the assembled frame. This is

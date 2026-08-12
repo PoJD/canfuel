@@ -28,10 +28,14 @@
 #include "config.h"
 #include "decode.h"
 
+/* One bucket of the flow window: everything burned in a quarter of a second,
+ * and how long that quarter second really was. Both fit a uint16 because a
+ * bucket closes at FLOW_BUCKET_MS and compute_on_fuel refuses to add a sample
+ * more than FLOW_WINDOW_MS long. */
 typedef struct {
-    uint16_t ul;                /* fuel burned in this sample */
-    uint16_t ms;                /* how long it took           */
-} flow_sample_t;
+    uint16_t ul;                /* fuel burned in this bucket */
+    uint16_t ms;                /* over this long             */
+} flow_bucket_t;
 
 typedef struct {
     /* --- the trip accumulators, cleared on refuelling and persisted ----- */
@@ -45,11 +49,8 @@ typedef struct {
     uint32_t restarts;          /* how often the engine-off rule fired      */
 
     /* --- sliding window the instantaneous flow is averaged over --------- */
-    flow_sample_t flow[FLOW_WINDOW_SLOTS];
-    uint8_t  flow_head;         /* index of the oldest sample               */
-    uint8_t  flow_count;
-    uint32_t flow_sum_ul;
-    uint32_t flow_sum_ms;
+    flow_bucket_t flow[FLOW_BUCKETS];
+    uint8_t  flow_open;         /* the bucket still being filled            */
     uint32_t flow_ul_s;         /* the answer, microlitres per second       */
 
     /* --- distance ------------------------------------------------------- */

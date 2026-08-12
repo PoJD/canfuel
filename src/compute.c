@@ -34,51 +34,51 @@ static uint16_t clamp_u16(uint32_t v, uint32_t limit)
 
 static void flow_clear(compute_t *c)
 {
-    c->flow_head = 0;
-    c->flow_count = 0;
-    c->flow_sum_ul = 0;
-    c->flow_sum_ms = 0;
+    memset(c->flow, 0, sizeof c->flow);
+    c->flow_open = 0;
     c->flow_ul_s = 0;
-}
-
-static void flow_drop_oldest(compute_t *c)
-{
-    flow_sample_t *s = &c->flow[c->flow_head];
-    c->flow_sum_ul -= s->ul;
-    c->flow_sum_ms -= s->ms;
-    c->flow_head = (uint8_t)((c->flow_head + 1u) % FLOW_WINDOW_SLOTS);
-    c->flow_count--;
 }
 
 /* ! HOT PATH. Runs on every 0x480, which is ~26 times a second. Read
  * ! docs/optimisation.md before adding anything to it -- especially a
- * ! division, which costs 1,026 cycles on this part. */
+ * ! division, which costs 1,026 cycles on this part.
+ *
+ * A frame adds to the open bucket and nothing else. When that bucket has held
+ * FLOW_BUCKET_MS it closes, the four buckets are averaged, and the oldest is
+ * emptied to become the new open one -- so the division happens four times a
+ * second rather than twenty-six, and the window is always a whole number of
+ * buckets rather than a queue to be trimmed one sample at a time.
+ *
+ * The previous shape, a 32-slot ring with a drop loop, is described in
+ * config.h next to FLOW_BUCKET_MS along with what this trades for it. */
 static void flow_push(compute_t *c, uint16_t ul, uint16_t ms)
 {
-    uint8_t tail;
+    flow_bucket_t *open = &c->flow[c->flow_open];
+    uint32_t sum_ul = 0;
+    uint16_t sum_ms = 0;
+    uint8_t i;
 
-    if (c->flow_count == FLOW_WINDOW_SLOTS) {
-        /* Only reachable when 0x480 bunches up far tighter than the ~38 ms
-         * it averages at idle -- duplicate frames in a log do exactly that,
-         * and the frame has no fixed period to begin with. Dropping the
-         * oldest is what the window would have done a moment later anyway. */
-        flow_drop_oldest(c);
+    open->ul = (uint16_t)(open->ul + ul);
+    open->ms = (uint16_t)(open->ms + ms);
+
+    if (open->ms < (uint16_t)FLOW_BUCKET_MS) {
+        return;                 /* still filling, and that is the whole cost */
     }
 
-    tail = (uint8_t)((c->flow_head + c->flow_count) % FLOW_WINDOW_SLOTS);
-    c->flow[tail].ul = ul;
-    c->flow[tail].ms = ms;
-    c->flow_count++;
-    c->flow_sum_ul += ul;
-    c->flow_sum_ms += ms;
-
-    /* Keep roughly one second in the window. Without it the number on the
-     * display dances at the frame rate; with a longer one it lags the pedal. */
-    while (c->flow_sum_ms > FLOW_WINDOW_MS && c->flow_count > 1u) {
-        flow_drop_oldest(c);
+    for (i = 0; i < (uint8_t)FLOW_BUCKETS; i++) {
+        sum_ul += c->flow[i].ul;
+        sum_ms = (uint16_t)(sum_ms + c->flow[i].ms);
     }
+    c->flow_ul_s = div_round(mul_u32_u16(sum_ul, 1000u), sum_ms);
 
-    c->flow_ul_s = div_round(mul_u32_u16(c->flow_sum_ul, 1000u), c->flow_sum_ms);
+    /* Compare rather than a modulo, as everywhere else here. The bucket we
+     * move to is the oldest of the four and has to be emptied to become the
+     * new open one. */
+    if (++c->flow_open >= (uint8_t)FLOW_BUCKETS) {
+        c->flow_open = 0;
+    }
+    c->flow[c->flow_open].ul = 0;
+    c->flow[c->flow_open].ms = 0;
 }
 
 /* --- the tank, and the refuelling trigger -------------------------------- */
@@ -247,11 +247,13 @@ void compute_on_fuel(compute_t *c, const decode_state_t *st, uint32_t now_ms)
     c->total_ul += delta_ul;
     c->seg_cur_ul += delta_ul;
 
-    if (dt_ms > 0u && dt_ms <= 0xFFFFu) {
+    if (dt_ms > 0u && dt_ms <= (uint32_t)FLOW_WINDOW_MS) {
         flow_push(c, delta_ul, (uint16_t)dt_ms);
-    } else if (dt_ms > 0xFFFFu) {
-        /* Over a minute without a frame. Whatever the window held describes a
-         * different situation entirely. */
+    } else if (dt_ms > (uint32_t)FLOW_WINDOW_MS) {
+        /* A gap longer than the whole window. Whatever the buckets held
+         * describes a different situation entirely -- and the bus is declared
+         * dead at half this, so the display is already showing zeros. The
+         * bound is also what keeps a bucket inside its uint16 fields. */
         flow_clear(c);
     }
 }

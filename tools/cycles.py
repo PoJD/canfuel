@@ -68,7 +68,7 @@ BRANCHES = {"bra", "bz", "bnz", "bc", "bnc", "bn", "bnn", "bov", "bnov", "goto"}
 # What still cannot be measured is how many times a loop runs -- that is
 # semantics, not instructions. So each entry names the config.h constant that
 # bounds it, and the value is read from config.h at run time. Change
-# TANK_HIST_BINS and this follows on its own.
+# FLOW_BUCKETS and this follows on its own.
 #
 # ("CONSTANT", None)  -> iterations = that constant from src/config.h
 # (None, n)           -> iterations = n, for bounds that are not ours to name
@@ -86,7 +86,7 @@ LOOPS = {
     # median at all -- see docs/optimisation.md -- so the function is gone and
     # with it the last data structure the core walked once a second.
     "_compute_range_km": [("RANGE_SEGMENTS", None,    "")],
-    "_flow_push":        [("FLOW_WINDOW_SLOTS", None, "")],
+    "_flow_push":        [("FLOW_BUCKETS", None,     "the four buckets, summed when one closes")],
     "_persist_load":     [("PERSIST_SLOTS", None,     "start-up only")],
     "_hal_can_receive":  [(None, 8,                   "bytes in a frame")],
     "_tx_load":          [(None, 8,                   "dlc, and ours is always 8")],
@@ -152,7 +152,7 @@ NOT_LOOPS = {
 # enough to hide a millisecond arriving by accident. The real hardware limits
 # are in docs/timing.md; these are a regression alarm, not a deadline.
 BUDGETS = {
-    "rx_frame": ("one received frame, decoded and accumulated", 1400.0),
+    "rx_frame": ("one received frame, decoded and accumulated", 1000.0),
     "compute_tick": ("compute_tick, worst case (with the tank sample)", 900.0),
     "fast_slot": ("the 100 ms slot, everything in it", 5200.0),
     "slow_slot": ("the 1 s slot, excluding the EEPROM write", 1500.0),

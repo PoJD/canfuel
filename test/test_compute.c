@@ -77,19 +77,62 @@ static void test_engine_stopped_resets_reference(void)
     TT_EQ(c.total_ul, 100);
 }
 
+/* Feed n frames of `ul` microlitres every `step_ms`, starting one step after
+ * *now, and leave *now and the counter where they ended up. */
+static void fuel_frames(compute_t *c, decode_state_t *st, uint32_t *now,
+                        uint16_t ul, uint32_t step_ms, int n)
+{
+    int i;
+    for (i = 0; i < n; i++) {
+        *now += step_ms;
+        st->fuel_counter = (uint16_t)((st->fuel_counter + ul) % COUNTER_MODULO);
+        compute_on_fuel(c, st, *now);
+    }
+}
+
 static void test_engine_stopped_zeroes_the_flow(void)
 {
     compute_t c;
-    decode_state_t a = running(1000, 800), b = running(1050, 800);
-    decode_state_t stopped = running(1050, 0);
+    decode_state_t st = running(1000, 800);
+    decode_state_t stopped;
+    uint32_t now = 0;
+
     compute_init(&c);
-    compute_on_fuel(&c, &a, 0);
-    compute_on_fuel(&c, &b, 50);
-    TT_TRUE(c.flow_ul_s > 0);
-    compute_on_fuel(&c, &stopped, 100);
+    compute_on_fuel(&c, &st, now);
+    /* 50 ul every 50 ms is 1000 ul/s, and the first bucket closes at 250. */
+    fuel_frames(&c, &st, &now, 50, 50, 6);
+    TT_NEAR(c.flow_ul_s, 1000, 10);
+
+    stopped = running(st.fuel_counter, 0);
+    compute_on_fuel(&c, &stopped, now + 50u);
     /* Freezing at the last flow would show a plausible, wrong number on a
      * parked car. */
     TT_EQ(c.flow_ul_s, 0);
+}
+
+/* The window is four quarter-second buckets, not one slot per frame: nothing
+ * is published until the open bucket has held FLOW_BUCKET_MS, and what is
+ * published then is the average over all four. That is what buys the division
+ * four times a second instead of twenty-six -- see config.h. */
+static void test_the_flow_window_is_bucketed(void)
+{
+    compute_t c;
+    decode_state_t st = running(1000, 800);
+    uint32_t now = 0;
+
+    compute_init(&c);
+    compute_on_fuel(&c, &st, now);
+
+    fuel_frames(&c, &st, &now, 50, 50, 4);      /* 200 ms of it */
+    TT_EQ(c.flow_ul_s, 0);                      /* the bucket has not closed */
+    fuel_frames(&c, &st, &now, 50, 50, 1);      /* 250 ms -- now it has */
+    TT_NEAR(c.flow_ul_s, 1000, 10);
+
+    /* Four times the flow for a whole second: the window has turned over
+     * completely by the end of it and reads the new rate, not the average of
+     * the two. */
+    fuel_frames(&c, &st, &now, 200, 50, 20);
+    TT_NEAR(c.flow_ul_s, 4000, 40);
 }
 
 /* --- FuelNow, the dual unit --------------------------------------------- */
@@ -854,10 +897,16 @@ static void test_idle_instantaneous_flow(void)
 {
     replay_result_t r;
     TT_TRUE(replay_log("02_idle_60s.txt", &r));
-    /* The sliding window at the end of a minute of steady idling must agree
-     * with the average over the whole minute. */
-    TT_NEAR(r.cp.flow_ul_s, 310, 40);
-    TT_NEAR(compute_flow_lh_c(&r.cp), 112, 15);     /* 1.12 l/h */
+    /* The window at the end of a minute of steady idling has to agree with the
+     * average over the whole minute -- but only to the width of the window.
+     * It is four quarter-second buckets and it is read wherever the last of
+     * them happened to close, and idle is not perfectly steady: over the last
+     * second and a half of this log the same window reads anywhere between 310
+     * and 402 ul/s against an average of 310. So this checks that the number
+     * is an idle flow, not that it is one particular value; the value itself
+     * is pinned against the Python reference by replay.py --host-build. */
+    TT_RANGE(r.cp.flow_ul_s, 250, 450);
+    TT_RANGE(compute_flow_lh_c(&r.cp), 90, 162);    /* 0.90 to 1.62 l/h */
 }
 
 static void test_ign_only_burns_nothing_and_moves_nothing(void)
@@ -930,6 +979,7 @@ int main(void)
     TT_RUN(test_ignition_off_does_not_produce_a_jump);
     TT_RUN(test_engine_stopped_resets_reference);
     TT_RUN(test_engine_stopped_zeroes_the_flow);
+    TT_RUN(test_the_flow_window_is_bucketed);
 
     TT_RUN(test_below_threshold_is_litres_per_hour);
     TT_RUN(test_at_threshold_switches_unit);
