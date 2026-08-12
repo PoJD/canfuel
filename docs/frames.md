@@ -74,6 +74,17 @@ no consumer on the display, so its layout is ours to change; the coupling
 described in `CLAUDE.md` applies to 0x600 and 0x601. It exists to be watched
 on a USBtin while the accumulators are being trusted for the first time.
 
+⚠ **Both values read systematically LOW against a real odometer, and by
+design.** The accumulators live in RAM and reach the EEPROM once a minute, so
+every ignition-off discards 0 to 60 s of them — thirty seconds on average, and
+in one direction every time. Over a tankful of twenty to sixty journeys that is
+roughly **half a per cent short**, cumulatively, until the next refuelling
+clears the trip. FuelAvg is unaffected because it is a ratio and both halves
+shrink together; these two are absolutes and nothing cancels. If you are
+comparing TripDist against the cluster or a GPS during bring-up, expect the
+shortfall rather than hunting an arithmetic bug. `src/persist.h` has the full
+arithmetic and why it is not fixed.
+
 ---
 
 ## FuelNow — dual unit

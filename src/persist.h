@@ -16,6 +16,54 @@
  * A byte write takes 4 ms typical (D122) and blocks, so it must not be done
  * from an interrupt. Once a minute that costs nothing.
  *
+ * WHAT EVERY IGNITION-OFF COSTS, AND WHY THE TORN WRITE IS NOT THE
+ * INTERESTING CASE.
+ *
+ * The accumulators live in RAM and reach the EEPROM once a minute, so at any
+ * instant the stored record is 0 to 60 s out of date. When the ignition goes
+ * off the RAM goes with it, and everything since the last write is gone --
+ * uniformly 0 to 60 s, thirty on average. That is not a fault, it is the
+ * design; but it is worth stating the right way round, because the obvious
+ * reading of the CRC-and-ring machinery above is that losing a minute is the
+ * rare bad case. It is not. **Losing a minute is the ordinary case at its
+ * maximum**, and a torn write simply pins it there: an unlucky switch-off
+ * (about one in 1,250, the 48 ms of writing against the 60 s between) loses
+ * 60 s instead of the 30 it would have lost anyway. The lucky switch-off, the
+ * one right after a completed write, is the only one that loses nothing.
+ *
+ * The two accumulators do not lose equally:
+ *
+ *   fuel      almost always lost. The engine was running, so it was burning:
+ *             ~310 ul/s at idle, so 9 ml on an average shutdown.
+ *   distance  usually not. The last seconds before a key turn are parking and
+ *             idling, so there is often no distance in them at all -- but
+ *             switch off the instant the car stops and it can be a kilometre.
+ *
+ * WHAT IT DOES TO THE NUMBERS. FuelAvg is a ratio and both halves shrink, so
+ * it survives: the lost segment does have a higher consumption than the trip
+ * average (idling burns fuel and covers no ground), which biases the displayed
+ * average LOW -- the gauge flatters the car -- but over a tankful of 20 to 60
+ * journeys that is 0.4 to 1.3 % of the fuel against 0.3 to 1 % of the
+ * distance, and the ratio moves by **0.1 to 0.3 %**. One digit of the display
+ * is 1.4 %. It is invisible.
+ *
+ * THE ABSOLUTES ARE NOT SO LUCKY. TripFuel and TripDist in 0x602 lose the same
+ * fraction with nothing to cancel it, and they lose it in one direction, every
+ * shutdown, cumulatively until the next refuelling. They read about half a per
+ * cent short of the truth per tankful. Nothing on the display consumes them,
+ * but they are exactly what gets compared against a real odometer during
+ * bring-up -- so anybody doing that comparison should expect the shortfall and
+ * not go looking for an arithmetic bug. docs/frames.md says so too.
+ *
+ * WHY IT IS NOT FIXED. Writing more often is affordable -- see the endurance
+ * arithmetic above; even one write every ten seconds is decades of calendar
+ * life -- but it buys nothing anybody can see, because the only consumer that
+ * matters is a ratio. Detecting the shutdown in advance would fix it properly
+ * and cannot be done: the board is on switched 12 V, so it loses power in the
+ * same instant the ECU does, and nothing on the bus arrives early enough to
+ * warn us. A hold-up capacitor big enough to finish a record after the rail
+ * drops would be a hardware answer to a problem the arithmetic does not have.
+ *
  * Record, 12 bytes, little endian:
  *
  *   0-3   total_ul        microlitres since the last reset

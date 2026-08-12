@@ -622,14 +622,35 @@ Table 31-1, Memory Programming Requirements:
 |---|---|---|
 | D120 | Byte endurance | **100 K min**, 1000 K typ, −40 to +125 °C |
 | D122 | TDEW, erase/write cycle time | 4 ms typ |
-| D124 | TREF, total erase/write cycles | 1 M min, 10 M typ |
+| D124 | TREF, total E/W cycles **before refresh** | 1 M min, 10 M typ |
 | D121 | VDD for read/write via EECON | 1.8 to 5.5 V |
 
-D120 is the number `persist.c`'s header comment argues from and it is a
+D120 is the number `persist.h`'s header comment argues from and it is a
 *minimum*, which is the right way round to design. The 4 ms of D122 is why the
 write must not be attempted from an interrupt; once a minute it is otherwise
-irrelevant. D124 is worth knowing about — it is a budget for the whole array,
-not per byte, and 100,000 writes spread over 64 slots spends 100 K of the 1 M.
+irrelevant.
+
+**D124 was read backwards here until 2026-08-12 and the correction matters.**
+This file used to call it "a budget for the whole array" that our writes
+*spend* — as if 1 M array writes were a ceiling. It is the opposite. §8.8:
+*"Frequently changing values will typically be updated more often than
+specification D124. If this is not the case, an array refresh must be
+performed."* D124 is about **disturb**: a byte that is never written degrades
+as its neighbours are, and after a million array cycles it needs reading and
+rewriting to survive. The note beneath it is explicit — *"If data EEPROM is
+only used to store constants and/or data that changes often, an array refresh
+is likely not required."*
+
+Our ring rewrites every one of its 768 bytes once per 64 writes, which is four
+orders of magnitude more often than D124 asks, so **no refresh is ever needed
+and D124 is not a ceiling we approach.** The only limit is D120: 64 slots ×
+100 K = **6.4 M writes**, which at one a minute is 12 years of engine-on time,
+or roughly 290 calendar years at an hour of driving a day.
+
+That headroom is worth knowing, because it means "write more often" is a
+cheap option and not the trade the old reading implied — one write every ten
+seconds would still be ~49 calendar years. `persist.h` explains why it is
+nonetheless not done.
 
 `persist.c` wants exactly two functions and their shape is already fixed:
 
