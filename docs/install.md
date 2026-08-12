@@ -288,7 +288,7 @@ that point means the CLI opened the tool.
 |---|---|
 | something other than `Programmer not found`, complaining about the target or the device ID | **this is the pass.** The CLI found the PICkit and got as far as ICSP |
 | `Programmer not found` again | the PICkit is not enumerating, or something else has the HID handle — see below |
-| a firmware download, then one of the above | also a pass, and expected once. See the note on firmware below |
+| a firmware download, then one of the above | expected, and expected **once** — see *Run it twice* below, which is where a single run stops being enough to judge by |
 
 `ipecmd.exe -T` lists connected tools with their serial numbers and is the
 shortest "is it alive" there is.
@@ -348,6 +348,32 @@ So the first command flashes the PICkit itself. **This is the one irreversible
 thing in the step**, and it is unavoidable: it would happen identically from
 the IDE. Doing it here, deliberately, on a step whose only job is to find out,
 is better than having it happen underneath the first real programming attempt.
+
+### Run it twice, and the second run is the one that counts
+
+**The first run measures two things at once and cannot separate them**: whether
+the tool works, and whether it survives being reflashed. Its output is
+confounded by the update — slow, chatty, possibly carrying warnings that belong
+to the download rather than to the tool. So run the identical command a second
+time. By then the PICkit is already at v01.56.07, nothing is downloaded, and
+what comes back is the steady state: what every subsequent programming run in
+steps 5 to 7 will start from.
+
+| Run 1 | Run 2 | What it means |
+|---|---|---|
+| update, then past `Programmer not found` | same, no update, quick | **the pass.** The clone took the firmware and works with it |
+| update, then past `Programmer not found` | `Programmer not found` | **the failure this step exists to catch.** It accepted the update and then stopped enumerating — a single run would have called this a success |
+| `Programmer not found` | `Programmer not found` | never opened at all. Firewall, HID handle, or the PICkit is dead — none of it is about the update |
+| update appears again | update appears again | the update is not sticking. The clone's firmware area is not being written, or is not being read back as written |
+
+The last two rows are the ones worth being precise about, because they look
+alike from across the room and mean opposite things. **An update that repeats
+on every invocation is not a working programmer**, even if the operations after
+it appear to succeed.
+
+Record both runs' output verbatim in this document when it happens. It is the
+only picture anyone will have of what this particular clone does, and there is
+no manufacturer document that covers it.
 
 ⚠ **The PICkit here is an unknown cheaper clone**, not a Microchip unit. It
 worked under MPLAB X about ten years ago, which says nothing about v6.00 and is
