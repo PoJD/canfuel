@@ -133,6 +133,118 @@ static void test_no_state_can_break_a_getter(void)
     }
 }
 
+/* ===================================================================== *
+ *  NO FRAME CAN BREAK THE DECODER.
+ *
+ *  decode.c guards every identifier with a length check -- `if (dlc < 4)
+ *  return false` and its four siblings -- and until now those guards were
+ *  believed rather than exercised: every fixture carries well-formed
+ *  frames, because they were recorded off a working car. The bus is not
+ *  obliged to be so polite. A transmission error inside the CAN CRC window
+ *  is unlikely, but a frame from a module we have never seen, on an
+ *  identifier that collides with one of ours, is not.
+ *
+ *  Two things are asserted. Nothing the decoder can be handed may put the
+ *  state outside the range every consumer downstream assumes -- the tank
+ *  masked to seven bits, the counter to fifteen -- and a frame too short
+ *  for its identifier must change NOTHING, not merely return false.
+ *
+ *  DLC IS FUZZED 0..8 AND NOT BEYOND, deliberately. hal_can_receive() reads
+ *  the length out of RXBnDLC and masks it to four bits, and the buffer it
+ *  fills is eight bytes; a dlc above 8 is not something the hardware can
+ *  hand to decode_frame(), so fuzzing it would test a caller that does not
+ *  exist while the real bug -- reading data[7] on a two-byte frame -- is
+ *  the one the guards are for.
+ * ===================================================================== */
+static void test_no_frame_can_break_the_decoder(void)
+{
+    static const uint16_t ours[] = { CAN_ID_SPEED, CAN_ID_ENGINE,
+                                     CAN_ID_COOLANT, CAN_ID_TANK,
+                                     CAN_ID_OIL, CAN_ID_FUEL };
+    decode_state_t st;
+    int i;
+
+    decode_init(&st);
+    for (i = 0; i < 50000; i++) {
+        uint8_t data[8];
+        uint16_t id;
+        uint8_t dlc, b;
+
+        for (b = 0; b < 8u; b++) {
+            data[b] = (uint8_t)rnd();
+        }
+        /* Half the frames land on an identifier we accept, so the guards are
+         * reached rather than skipped by the switch's default. */
+        id = (rnd() & 1u) ? ours[rnd() % (sizeof ours / sizeof ours[0])]
+                          : (uint16_t)(rnd() & 0x7FFu);
+        dlc = (uint8_t)rnd_upto(8u);
+
+        (void)decode_frame(&st, id, data, dlc);
+
+        /* Invariants every consumer downstream relies on. tank_l indexes
+         * nothing any more, but compute.c still shifts it into a q8 filter
+         * and persist.c packs it into seven bits with the valid flag in the
+         * eighth -- a 0xFF here would set that flag on a level of 127. */
+        TT_TRUE(st.tank_l <= 0x7Fu);
+        TT_TRUE(st.fuel_counter <= COUNTER_MASK);
+        TT_TRUE(st.speed_mmh <= 65535u * 5u);
+        TT_TRUE(st.torque_ind_cnm <= 255u * TORQUE_CNM_PER_BIT);
+        TT_TRUE(st.clt_c100 == DECODE_TEMP_INVALID ||
+                (st.clt_c100 >= -4800 && st.clt_c100 <= 14325));
+        TT_TRUE(st.oil_c100 == DECODE_TEMP_INVALID ||
+                (st.oil_c100 >= -4800 && st.oil_c100 <= 14325));
+    }
+}
+
+/* A frame too short for its identifier must leave the state exactly as it
+ * was. Returning false is not enough: decode.c reads data[7] for torque and
+ * data[3] for the oil temperature, so a guard that returned false *after*
+ * writing one field would pass every existing test and put a byte of
+ * somebody else's frame on the display. */
+static void test_a_short_frame_changes_nothing(void)
+{
+    static const struct { uint16_t id; uint8_t needs; } ids[] = {
+        { CAN_ID_ENGINE,  8 }, { CAN_ID_SPEED,   4 },
+        { CAN_ID_COOLANT, 2 }, { CAN_ID_OIL,     4 },
+        { CAN_ID_TANK,    3 }, { CAN_ID_FUEL,    4 },
+    };
+    size_t k;
+    uint8_t data[8];
+    uint8_t b;
+
+    for (b = 0; b < 8u; b++) {
+        data[b] = 0xA5u;
+    }
+
+    for (k = 0; k < sizeof ids / sizeof ids[0]; k++) {
+        decode_state_t st, before;
+        uint8_t dlc;
+
+        /* Start from a state that is not all zeroes, so a field quietly
+         * cleared shows up as loudly as a field quietly set. */
+        decode_init(&st);
+        st.rpm_q4 = 3000u * 4u;
+        st.torque_ind_cnm = 5000;
+        st.throttle = 60;
+        st.speed_mmh = 50000;
+        st.speed_valid = true;
+        st.tank_l = 40;
+        st.clt_c100 = 9000;
+        st.oil_c100 = 8000;
+        st.fuel_counter = 1234;
+        st.fuel_counter_valid = true;
+
+        for (dlc = 0; dlc < ids[k].needs; dlc++) {
+            before = st;
+            TT_FALSE(decode_frame(&st, ids[k].id, data, dlc));
+            TT_EQ(memcmp(&st, &before, sizeof st), 0);
+        }
+        /* And at the length it does need, it accepts -- or the loop above
+         * would pass for a decoder that rejects everything. */
+        TT_TRUE(decode_frame(&st, ids[k].id, data, ids[k].needs));
+    }
+}
+
 /* A trip total is a sum of non-negative deltas, so it can only ever grow --
  * unless something cleared it, and then it must be exactly zero. There are
  * exactly two things allowed to do that, the refuelling rule and the runaway
@@ -281,6 +393,8 @@ int main(void)
 {
     printf("test_props\n");
     TT_RUN(test_no_state_can_break_a_getter);
+    TT_RUN(test_no_frame_can_break_the_decoder);
+    TT_RUN(test_a_short_frame_changes_nothing);
     TT_RUN(test_totals_only_move_forward);
     TT_RUN(test_a_repeated_frame_adds_nothing);
     TT_RUN(test_an_invalid_speed_never_invents_distance);

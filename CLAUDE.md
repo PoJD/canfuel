@@ -1104,6 +1104,7 @@ python -m unittest discover -s tools -p "test_*.py"        # 80+ tests
 make -C test test                                          # 400+ checks
 make -C test check-pure                                    # no <xc.h> in the core
 make -C test check-hal                                     # the HAL still compiles
+make -C test sanitize                                      # ASan + UBSan, CI only
 python tools/replay.py --host-build test/fixtures/*.txt    # Python vs C
 python tools/cycles.py                                     # cycle budgets
 python tools/cycles.py --check                             # ...and fail if over
@@ -1173,7 +1174,18 @@ invisible by construction.
 `TORQUE_CNM_PER_BIT` rather than an arbitrary `uint16`, a tank level masked to
 seven bits, a quarter-rpm count `decode.c` could really have written. Going
 beyond that manufactures failures nobody can reach and teaches the next reader
-to ignore the test.
+to ignore the test. The same rule fixes the DLC fuzz at 0..8: `hal_can_receive`
+masks the length to four bits into an eight-byte buffer, so a longer one is not
+something the hardware can hand to `decode_frame()`.
+
+**`make -C test sanitize` runs the whole suite again under ASan and UBSan**, so
+those 50,000 malformed frames and 10,000 fabricated states go through a checker
+rather than only through assertions somebody remembered to write. It is
+insurance against the next change and is expected to stay silent — the two
+arrays that could plausibly have been indexed out of range were deleted on
+2026-08-12. **It does not run on the maintainer's desk**: the MSYS2 gcc ships
+neither `libasan` nor `libubsan`, so it is a CI step and `test/Makefile` says
+so where somebody hitting the link error will find it.
 
 ---
 

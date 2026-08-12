@@ -50,6 +50,15 @@ jobs:
         working-directory: test
         run: make test
 
+      # The same tests again under the address and undefined-behaviour
+      # sanitizers, which is insurance against the next change rather than a
+      # hunt for a bug we have today -- test/Makefile argues that at length.
+      # It lives here and not on the maintainer's desk because the MSYS2 gcc
+      # on Windows ships neither libasan nor libubsan.
+      - name: host tests, sanitized
+        working-directory: test
+        run: make sanitize
+
       # The other half of check-pure. XC8 is not installed here, so without
       # this the hardware half of the firmware would be six hundred lines that
       # nothing ever compiles. It is a syntax check against a stub xc.h and

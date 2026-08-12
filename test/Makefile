@@ -5,6 +5,7 @@
 #
 #   make             build and run everything
 #   make test        the same
+#   make sanitize    the same tests under ASan and UBSan (Linux/CI only)
 #   make replay-host build only the tool tools/replay.py --host-build drives
 #   make check-pure  verify that no hardware crept into the core
 #   make check-hal   syntax-check the HAL and main.c against a stub xc.h
@@ -50,7 +51,7 @@ TESTS    := $(patsubst %.c,$(BUILD)/%,$(TEST_SRC))
 # converter would transmit, so tools/replay.py can diff Python against C.
 HOST_TOOL := $(BUILD)/replay_host
 
-.PHONY: all test replay-host check-pure check-hal clean
+.PHONY: all test sanitize replay-host check-pure check-hal clean
 
 all: test
 
@@ -58,6 +59,9 @@ ifeq ($(strip $(TEST_SRC)),)
 
 test:
 	@echo "test/: no test_*.c yet — phase 1 has not started, skipping"
+
+sanitize:
+	@echo "test/: no test_*.c yet, nothing to sanitize"
 
 replay-host:
 	@echo "test/: no core yet, nothing to build"
@@ -89,6 +93,50 @@ $(BUILD)/%: %.c $(CORE_SRC) $(HEADERS) | $(BUILD)
 
 $(BUILD):
 	mkdir -p $(BUILD)
+
+# The same tests again, under the address and undefined-behaviour sanitizers.
+#
+# WHAT THIS IS FOR, AND WHAT IT IS NOT. It is insurance against the next
+# change, not a hunt for a bug we have today: the arrays that could plausibly
+# have been indexed out of range -- a 128-bucket histogram indexed by a byte
+# straight off the bus, and a 30-slot ring -- were both deleted on 2026-08-12,
+# and what is left is indexed by counters bounded two lines above their use.
+# Signed overflow is the other half and the core is unsigned almost throughout.
+#
+# So it is expected to be silent. The value is that the fuzzing in
+# test_props.c -- 50,000 malformed frames and 10,000 fabricated states -- runs
+# through a checker rather than only through assertions somebody remembered to
+# write. -fno-sanitize-recover makes the first finding fatal instead of a line
+# of output nobody reads.
+#
+# Not part of `make test`: it roughly triples the run time, mostly in
+# test_divconst's 1.2 million checks. CI runs it as its own step.
+#
+# IT DOES NOT RUN ON THIS DESK, and that is the toolchain rather than a fault
+# here: the MSYS2 gcc on Windows ships neither libasan nor libubsan, so both
+# `-fsanitize=address` and `-fsanitize=undefined` fail at the link with
+# `collect2.exe: ld returned 1 exit status` and nothing more helpful. Tried
+# 2026-08-12, both separately. So this target is Linux and CI only. If you
+# want it locally, WSL or a container is the way; overriding SAN_CFLAGS will
+# not conjure a library that is not installed.
+SAN_CFLAGS ?= -fsanitize=undefined,address -fno-sanitize-recover=all \
+              -fno-omit-frame-pointer
+SAN_TESTS  := $(patsubst %.c,$(BUILD)/san/%,$(TEST_SRC))
+
+sanitize: $(SAN_TESTS)
+	@echo
+	@for t in $(SAN_TESTS); do \
+	    echo "--- $$t"; \
+	    ./$$t || exit 1; \
+	done
+	@echo
+	@echo "all sanitized tests passed"
+
+$(BUILD)/san/%: %.c $(CORE_SRC) $(HEADERS) | $(BUILD)/san
+	$(CC) $(CFLAGS) $(SAN_CFLAGS) -o $@ $< $(CORE_SRC) $(LDFLAGS)
+
+$(BUILD)/san:
+	mkdir -p $(BUILD)/san
 
 endif
 
