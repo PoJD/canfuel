@@ -180,6 +180,11 @@ trustworthy number the tank produces, and the trigger stays on it.
 
 - The refuelling comparison cannot underflow: `st->tank_l > tank_stable_l`
   guards the `uint8_t` subtraction that follows it.
+- **A refuelling is no longer the only thing that clears the trip.** Since
+  2026-08-12 `compute_tick()` also resets it past `TRIP_MAX_MM` (2,000 km) or
+  `TRIP_MAX_UL` (400 l), because otherwise a sender that never rises leaves the
+  accumulators growing until `total_mm` wraps at 4,295 km. That path does NOT
+  increment `refuels`, which keeps meaning "the tank was seen to rise".
 - A *fall* in the level never triggers anything, so consumption, a leak and a
   sender fault all behave the same way — the level simply follows down.
 - The first at-rest sample after an empty EEPROM initialises without resetting,

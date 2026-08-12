@@ -63,16 +63,18 @@ static decode_state_t rnd_bus(void)
     return st;
 }
 
-/* Accumulators the core could have reached: a trip of up to 4,000 km and
- * 400 litres, a tank anywhere in its travel, any point of the filters. */
+/* Accumulators the core could have reached. The trip bounds are the caps from
+ * config.h and not round numbers: past them compute_tick() resets, so a larger
+ * value is not a state this core can be in -- and fuzzing states it cannot
+ * reach is the habit this file's header argues against. */
 static compute_t rnd_state_struct(void)
 {
     compute_t c;
     uint8_t i;
 
     compute_init(&c);
-    c.total_ul = rnd_upto(400000000ul);
-    c.total_mm = rnd_upto(4000000000ul);
+    c.total_ul = rnd_upto(TRIP_MAX_UL);
+    c.total_mm = rnd_upto(TRIP_MAX_MM);
     c.flow_ul_s = rnd_upto(5000u);
     c.tank_damped_ml = rnd_upto(127000u);
     c.tank_damped_valid = true;
@@ -132,9 +134,14 @@ static void test_no_state_can_break_a_getter(void)
 }
 
 /* A trip total is a sum of non-negative deltas, so it can only ever grow --
- * unless the refuelling rule cleared it, and then it must be exactly zero and
- * refuels must have gone up. Anything else means an accumulator moved for a
- * reason nobody wrote down. */
+ * unless something cleared it, and then it must be exactly zero. There are
+ * exactly two things allowed to do that, the refuelling rule and the runaway
+ * cap in config.h, and the test knows about both by name. Anything else means
+ * an accumulator moved for a reason nobody wrote down.
+ *
+ * The stream below stays far from the cap, so in practice only the first can
+ * fire here; the cap is spelled out anyway, because an invariant that lists
+ * its exceptions incompletely is how the next one gets missed. */
 static void test_totals_only_move_forward(void)
 {
     compute_t c;
@@ -163,7 +170,8 @@ static void test_totals_only_move_forward(void)
         compute_tick(&c, &st, now);
         compute_on_fuel(&c, &st, now);
 
-        if (c.refuels != prev_refuels) {
+        if (c.refuels != prev_refuels ||
+            (prev_ul >= TRIP_MAX_UL || prev_mm >= TRIP_MAX_MM)) {
             /* The only event allowed to move a total downwards, and it must
              * take both of them to zero together. */
             TT_EQ(c.total_ul, 0);

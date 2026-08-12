@@ -324,6 +324,71 @@ static void test_a_standing_car_covers_no_distance(void)
     TT_EQ(c.total_mm, 0);
 }
 
+/* ===================================================================== *
+ *  THE TRIP CANNOT RUN AWAY.
+ *
+ *  Nothing clears the accumulators except a detected refuelling, so a tank
+ *  sender that fails, or reads plausibly and never rises, leaves them
+ *  growing for ever -- and total_mm is millimetres in a uint32_t, which
+ *  wraps at 4,295 km. Silently: the distance restarts near zero while the
+ *  fuel total does not, and the average becomes whatever that ratio is.
+ *
+ *  TRIP_MAX_MM is 2,000 km, which is 47 % of where the arithmetic breaks.
+ *  config.h argues the number and why the cap resets rather than saturates.
+ * ===================================================================== */
+static void test_the_trip_cannot_run_away(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 0;
+    int i;
+
+    compute_init(&c);
+    decode_init(&st);
+    st.speed_valid = true;
+    st.speed_mmh = 100000u;                 /* 100 km/h */
+    st.tank_l = 40;                         /* a sender that never rises */
+
+    /* Ten kilometres short of the cap, driven at a hundred. */
+    c.total_mm = TRIP_MAX_MM - 10000000ul;
+    c.total_ul = 700000000ul / 1000ul;
+    compute_tick(&c, &st, now);
+    for (i = 0; i < 400; i++) {             /* 400 s = 11 km */
+        now += 1000u;
+        compute_tick(&c, &st, now);
+    }
+
+    /* It reset rather than wrapped: the distance is back near zero and the
+     * fuel went with it, so the average stays a ratio of the same journey. */
+    TT_TRUE(c.total_mm < 10000000ul);
+    TT_EQ(c.total_ul, 0);
+    /* And it is not recorded as a refuelling, because nobody refuelled. */
+    TT_EQ(c.refuels, 0);
+    /* Range falls back to the conservative default, as it does after a fill. */
+    TT_EQ(c.basis_q4, 0);
+}
+
+/* The litre cap is the other half: idling burns fuel and covers no ground, so
+ * distance alone cannot bound the accumulators. */
+static void test_the_trip_cap_also_watches_the_litres(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 0;
+
+    compute_init(&c);
+    decode_init(&st);
+    c.total_ul = TRIP_MAX_UL;
+    c.total_mm = 50000000ul;                /* 50 km, nowhere near the cap */
+
+    compute_tick(&c, &st, now);
+    now += 1000u;
+    compute_tick(&c, &st, now);
+
+    TT_EQ(c.total_ul, 0);
+    TT_EQ(c.total_mm, 0);
+}
+
 /* --- range -------------------------------------------------------------- */
 
 static void test_range_uses_the_default_until_five_km(void)
@@ -1048,6 +1113,9 @@ int main(void)
     TT_RUN(test_a_standing_car_covers_no_distance);
 
     TT_RUN(test_range_uses_the_default_until_five_km);
+    TT_RUN(test_the_trip_cannot_run_away);
+    TT_RUN(test_the_trip_cap_also_watches_the_litres);
+
     TT_RUN(test_range_uses_the_rolling_basis_after_five_km);
     TT_RUN(test_range_basis_is_built_from_kilometres_and_filtered);
 

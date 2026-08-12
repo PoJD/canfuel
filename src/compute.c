@@ -354,6 +354,17 @@ void compute_tick(compute_t *c, const decode_state_t *st, uint32_t now_ms)
         c->last_tank_ms = now_ms;
         tank_sample(c, st);
     }
+
+    /* The last line of defence, and it is checked here rather than where the
+     * accumulators grow so that there is exactly one of it. Nothing else ever
+     * clears them but a detected refuelling, and total_mm wraps at 4,295 km --
+     * config.h argues the caps and why this resets rather than saturates.
+     * Two 32-bit compares a hundred times a second; it costs nothing and it
+     * is the only thing standing between a failed tank sender and a trip
+     * meter that silently starts counting again from zero. */
+    if (c->total_mm >= TRIP_MAX_MM || c->total_ul >= TRIP_MAX_UL) {
+        compute_reset_trip(c);
+    }
 }
 
 bool compute_data_live(const compute_t *c, uint32_t now_ms)

@@ -110,6 +110,15 @@ does not ruin the average.
 Below 100 m of distance it returns zero. Without that guard the division is by
 an almost-zero distance; on `06_trip_reset.txt` it produced 21,395 l/100 km.
 
+**And there is a cap at the other end**, added 2026-08-12. Nothing clears the
+accumulators except a detected refuelling, so a tank sender that fails — or
+reads plausibly and never rises — leaves them growing until `total_mm` wraps at
+4,295 km, silently, taking the average with it. Past **2,000 km or 400 l** the
+trip resets itself. It is a safety net for a fault, not a feature: 2,000 km is
+more than three tankfuls and an average over that distance means nothing
+anyway. `TRIP_MAX_MM` in `config.h` argues the numbers and why it resets rather
+than saturating.
+
 The accumulators are written to EEPROM once every 60 s, into a circular buffer
 of 64 slots.
 

@@ -172,6 +172,39 @@
  * that produced 21,395 l/100 km before the car had moved at all. */
 #define AVG_MIN_MM              100000ul    /* 100 m */
 
+/* THE OTHER END OF THE SAME PROBLEM: the trip is capped, and this is a safety
+ * net rather than a feature.
+ *
+ * Nothing clears the accumulators except a detected refuelling. If the tank
+ * sender fails, or reads plausibly but never rises -- or the rule simply never
+ * fires -- they grow without bound, and total_mm is millimetres in a uint32_t,
+ * so at 4,295 km it WRAPS. Silently: the distance restarts near zero while the
+ * fuel total does not, and FuelAvg becomes whatever that ratio is. A tank is
+ * about 600 km, so reaching this needs a fault -- and a fault is exactly what
+ * a safety net is for.
+ *
+ * 2,000 km IS A DECISION, and the maintainer's: it is more than three
+ * tankfuls, an average taken over such a distance means nothing to him, and it
+ * sits at 47 % of the point where the arithmetic breaks. Nothing of value is
+ * lost by starting again there.
+ *
+ * The litre cap is the same rule for the other accumulator. Distance alone
+ * cannot bound it, because idling burns fuel and covers no ground: 400 l is
+ * what 2,000 km costs at 20 l/100 km, and reaching it any other way takes
+ * months of continuous idling.
+ *
+ * WHY IT RESETS RATHER THAN SATURATES. Saturating would freeze a number that
+ * is already meaningless -- an average across three tankfuls and a broken
+ * sender -- and freeze it for ever, because only a refuelling would ever
+ * release it. Resetting says what actually happened: we lost track, here is a
+ * fresh average that means something. It goes through compute_reset_trip(),
+ * the same path a refuelling takes, so Range falls back to its conservative
+ * default for the first 5 km exactly as it does after filling up. It does NOT
+ * count as a refuelling -- `refuels` keeps meaning "the tank was seen to
+ * rise", and a diagnostic that lies about why is worse than no diagnostic. */
+#define TRIP_MAX_MM             2000000000ul    /* 2 000 km */
+#define TRIP_MAX_UL             400000000ul     /*   400 l  */
+
 /* --- Range -------------------------------------------------------------- */
 
 /* The basis Range divides by: a rolling consumption figure updated once per
