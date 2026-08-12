@@ -54,6 +54,10 @@ typedef struct {
 
     /* --- distance ------------------------------------------------------- */
     uint32_t last_tick_ms;
+    /* What the last division by 3600 left over, carried into the next step so
+     * the integration has no bias at all. Always under 3600, i.e. under one
+     * millimetre of distance. See DIST_TICK_MS in config.h. */
+    uint16_t dist_rem;
     bool     have_tick;
 
     /* --- rolling window behind Range, one slot per kilometre ------------ */
@@ -123,8 +127,15 @@ uint16_t compute_range_km(const compute_t *c);
 uint32_t compute_trip_ml(const compute_t *c);       /* 0.001 l             */
 uint32_t compute_trip_m(const compute_t *c);        /* metres              */
 
-/* These two only need the bus state, so they carry no accumulator. */
+/* These two only need the bus state, so they carry no accumulator.
+ *
+ * Power takes the torque the caller has already computed rather than computing
+ * it again. It is the same number both times, and txframes_gather transmits
+ * both, so working it out twice cost 1,042 cycles -- 9 % of the 100 ms slot --
+ * for nothing. Passing zero is not a way to disable it: the gates live in
+ * compute_torque_d(), and a zero torque is exactly what makes power zero. */
 uint16_t compute_torque_d(const decode_state_t *st);  /* 0.1 Nm, net       */
-uint16_t compute_power_d(const decode_state_t *st);   /* 0.1 kW            */
+uint16_t compute_power_d(const decode_state_t *st,
+                         uint16_t torque_d);          /* 0.1 kW            */
 
 #endif /* COMPUTE_H */

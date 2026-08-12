@@ -194,6 +194,93 @@ static void test_idling_does_not_ruin_the_average(void)
     TT_TRUE(compute_avg_l100_d(&c) - before < 30);
 }
 
+/* --- distance integration ------------------------------------------------ *
+ *
+ * THE FAULT THESE EXIST FOR, because no fixture could ever show it. main.c
+ * calls compute_tick() on every pass of the scheduler and a pass is about
+ * 113 us on the real part, so the delta it sees in the car is ONE
+ * MILLISECOND -- while replay_core.h ticks on the 0x480 frames, ~38 ms apart.
+ * v * 1 ms / 3600 truncated to whole millimetres throws away 0.89 mm of every
+ * 13.89 at 50 km/h (6.4 % of the trip, the average and the range) and
+ * everything at all below 3.6 km/h.
+ *
+ * So the property under test is that the answer does not depend on how often
+ * the core is asked -- which is what DIST_TICK_MS and the carried remainder
+ * are for. */
+
+static void distance_ticks(compute_t *c, decode_state_t *st, uint32_t *now,
+                           uint32_t step_ms, uint32_t total_ms)
+{
+    uint32_t t;
+    for (t = 0; t < total_ms; t += step_ms) {
+        *now += step_ms;
+        compute_tick(c, st, *now);
+    }
+}
+
+static void test_distance_does_not_depend_on_the_tick_rate(void)
+{
+    compute_t fast, slow;
+    decode_state_t st;
+    uint32_t now_f = 0, now_s = 0;
+
+    decode_init(&st);
+    st.speed_valid = true;
+    st.speed_mmh = 50000u;                  /* 50 km/h = 13.889 mm/ms */
+
+    compute_init(&fast);
+    compute_tick(&fast, &st, 0);            /* the first call only starts it */
+    distance_ticks(&fast, &st, &now_f, 1u, 10000u);
+
+    compute_init(&slow);
+    compute_tick(&slow, &st, 0);
+    distance_ticks(&slow, &st, &now_s, 1000u, 10000u);
+
+    /* Ten seconds at 50 km/h is 138,888.9 mm. The millisecond loop used to
+     * report 130,000 of it. */
+    TT_NEAR(fast.total_mm, 138888u, 20u);
+    TT_NEAR(slow.total_mm, 138888u, 20u);
+}
+
+static void test_walking_pace_still_covers_ground(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 0;
+
+    compute_init(&c);
+    decode_init(&st);
+    st.speed_valid = true;
+    st.speed_mmh = 3000u;                   /* 3 km/h, a car park */
+
+    compute_tick(&c, &st, 0);
+    distance_ticks(&c, &st, &now, 1u, 60000u);
+
+    /* Under 3.6 km/h the old one-millisecond quotient was zero every single
+     * time, so a minute of manoeuvring covered nothing whatsoever. It is
+     * 50 m. */
+    TT_NEAR(c.total_mm, 50000u, 20u);
+}
+
+static void test_a_standing_car_covers_no_distance(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 0;
+
+    compute_init(&c);
+    decode_init(&st);
+    st.speed_valid = true;
+    st.speed_mmh = 5u;                      /* raw 1 -- what standing sends */
+
+    compute_tick(&c, &st, 0);
+    distance_ticks(&c, &st, &now, 1u, 60000u);
+
+    /* Integrated exactly, 0.005 km/h is 83 mm a minute of pure fiction.
+     * DIST_MIN_MMH is what stops it, and the truncation used to by luck. */
+    TT_EQ(c.total_mm, 0);
+}
+
 /* --- range -------------------------------------------------------------- */
 
 static void test_range_uses_the_default_until_five_km(void)
@@ -269,6 +356,15 @@ static void test_drag_model_sits_on_the_warm_free_rev_holds(void)
     TT_EQ(compute_torque_d(&st), 0);
 }
 
+/* compute_power_d() takes the torque the caller already has, because
+ * txframes_gather transmits both and used to work it out twice. Every test
+ * below wants "the power for this bus state", so the pairing lives here once
+ * rather than at nineteen call sites. */
+static uint16_t power_d(const decode_state_t *st)
+{
+    return compute_power_d(st, compute_torque_d(st));
+}
+
 /* ===================================================================== *
  *  THE IDLE GATE -- A FIXED REQUIREMENT, NOT A CALIBRATION.
  *
@@ -295,7 +391,7 @@ static void test_idle_gate_zero_at_a_standstill_warm(void)
     st.speed_mmh = 5u;                  /* raw 1 -- what standing really sends */
     st.throttle = THROTTLE_REST;
     TT_EQ(compute_torque_d(&st), 0);
-    TT_EQ(compute_power_d(&st), 0);
+    TT_EQ(power_d(&st), 0);
 }
 
 static void test_idle_gate_zero_at_a_standstill_cold(void)
@@ -311,7 +407,7 @@ static void test_idle_gate_zero_at_a_standstill_cold(void)
     st.speed_mmh = 5u;
     st.throttle = THROTTLE_REST;
     TT_EQ(compute_torque_d(&st), 0);
-    TT_EQ(compute_power_d(&st), 0);
+    TT_EQ(power_d(&st), 0);
 }
 
 /* A cold engine idles fast. 06_trip_reset reaches 1310 rpm standing still with
@@ -404,7 +500,7 @@ static void test_power(void)
     st.speed_mmh = 60000u;
     st.throttle = 90u;
     /* 128.80 Nm at 3000 rpm = 40.5 kW */
-    TT_NEAR(compute_power_d(&st), 405, 2);
+    TT_NEAR(power_d(&st), 405, 2);
 }
 
 static void test_engine_off_makes_no_torque(void)
@@ -412,7 +508,7 @@ static void test_engine_off_makes_no_torque(void)
     decode_state_t st;
     decode_init(&st);
     TT_EQ(compute_torque_d(&st), 0);
-    TT_EQ(compute_power_d(&st), 0);
+    TT_EQ(power_d(&st), 0);
 }
 
 /* THE CEILING. b7 is one byte, so the model has a hard maximum whatever the
@@ -437,7 +533,7 @@ static void test_full_scale_reaches_the_rated_power(void)
     st.torque_ind_cnm = 255u * TORQUE_CNM_PER_BIT;
     st.speed_mmh = 120000u;                 /* full scale means moving fast */
     st.throttle = 211u;                     /* and the pedal on the floor    */
-    TT_TRUE(compute_power_d(&st) >= 850u - 43u);       /* 85.0 kW, -5 % */
+    TT_TRUE(power_d(&st) >= 850u - 43u);       /* 85.0 kW, -5 % */
 }
 
 static void test_full_scale_reaches_the_rated_torque(void)
@@ -468,7 +564,7 @@ static void test_cranking_is_not_torque(void)
 
     st.rpm_q4 = 288u * 4u;                  /* starter turning it over */
     TT_EQ(compute_torque_d(&st), 0);
-    TT_EQ(compute_power_d(&st), 0);
+    TT_EQ(power_d(&st), 0);
 
     st.rpm_q4 = 797u * 4u;                  /* running -- the gate is clear */
     TT_TRUE(compute_torque_d(&st) > 0u);
@@ -771,6 +867,10 @@ int main(void)
     TT_RUN(test_average_below_minimum_distance_is_zero);
     TT_RUN(test_average_is_a_ratio_of_accumulators);
     TT_RUN(test_idling_does_not_ruin_the_average);
+
+    TT_RUN(test_distance_does_not_depend_on_the_tick_rate);
+    TT_RUN(test_walking_pace_still_covers_ground);
+    TT_RUN(test_a_standing_car_covers_no_distance);
 
     TT_RUN(test_range_uses_the_default_until_five_km);
     TT_RUN(test_range_uses_the_rolling_window_after_five_km);

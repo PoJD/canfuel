@@ -183,8 +183,8 @@ against XC8 v4.00 itself. What that last one does and does not settle:
 - **The timing budget is counted, not measured.** `docs/timing.md` costs every
   function out of the assembly listing XC8 generates. Summary: a typical pass
   is 113 µs so the loop runs ~8,800 times a second; the 100 ms slot uses
-  **5.3 ms of its 100**; the worst pass that can happen without an EEPROM write
-  is **8.2 ms**, against a FIFO that tolerates 22 ms of blindness. The
+  **3.2 ms of its 100**; the worst pass that can happen without an EEPROM write
+  is **8.0 ms**, against a FIFO that tolerates 22 ms of blindness. The
   arithmetic is nowhere near being the constraint. The one figure the datasheet
   declines to bound is the EEPROM write — D122's 4 ms is a *typ* with no
   maximum — and nothing downstream of it is a deadline.
@@ -196,6 +196,16 @@ against XC8 v4.00 itself. What that last one does and does not settle:
   change they accompanied.
 - **`tank_median` is a histogram sweep, not a sort**, since 2026-08-11 — 4.97 ms
   down to 613 µs, and its bound stopped depending on the data.
+- **Distance is integrated on `DIST_TICK_MS` = 10 ms with the remainder
+  carried, and that is a correctness rule, not a budget.** `main.c` calls
+  `compute_tick()` every pass, so before 2026-08-12 the delta was one
+  millisecond and `v × 1 ms / 3600` truncated **6.4 % of the distance away at
+  50 km/h and all of it below 3.6 km/h** — straight into FuelAvg, Range and the
+  trip. No fixture could show it: the tests tick on 0x480, ~38 ms apart, where
+  the same fault is 0.8 %, and the Python oracle had it too, so **the twins
+  agreed with each other about a wrong number**. `DIST_MIN_MMH` is the other
+  half: a standing car sends 0.005 km/h, which an exact integrator turns into
+  83 mm a minute. `docs/optimisation.md` §6.
 - **Neither division nor multiplication uses the compiler's helpers.** XC8
   v4.00 reaches for a per-bit loop for both — `___lldiv` 1,026 cycles,
   `___lmul` 849 — while the part has a single-cycle 8x8 multiplier it will only

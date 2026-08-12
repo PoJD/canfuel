@@ -47,9 +47,30 @@ void txframes_gather(tx_values_t *v, const compute_t *c,
     v->fuel_tank_d = compute_tank_d(c);
     v->range_km    = compute_range_km(c);
 
-    v->power_d  = compute_power_d(st);
+    /* Torque first and then power from it: they are the same number and both
+     * go on the wire, so power no longer computes it again. */
     v->torque_d = compute_torque_d(st);
+    v->power_d  = compute_power_d(st, v->torque_d);
     v->flow_c   = compute_flow_lh_c(c);
+}
+
+/* The trip totals live here rather than in the gather because 0x602 is
+ * transmitted once a second while the gather runs ten times a second: two
+ * divisions by 1000, 686 cycles, were being computed nine times out of ten for
+ * nobody to read.
+ *
+ * main.c calls this immediately before txframes_trip(), which is the only
+ * arrangement that works -- txframes_gather() clears the whole struct, so a
+ * value put here does not survive the next fast slot and is not meant to. */
+void txframes_gather_trip(tx_values_t *v, const compute_t *c, uint32_t now_ms)
+{
+    if (!compute_data_live(c, now_ms)) {
+        /* The same rule as the gather, for the same reason: a quiet bus
+         * transmits zero rather than a stale number that looks plausible. */
+        v->trip_ml = 0;
+        v->trip_m = 0;
+        return;
+    }
 
     v->trip_ml = compute_trip_ml(c);
     v->trip_m  = compute_trip_m(c);

@@ -147,6 +147,41 @@ static void test_gather_zeroes_when_the_bus_is_quiet(void)
     TT_EQ(v.vdd_c, 503);
 }
 
+/* The trip totals are gathered in the slow slot, not in the fast one -- 0x602
+ * goes out once a second and computing them ten times a second was two
+ * divisions by 1000 for nobody to read. They obey the same quiet-bus rule as
+ * everything else, which is the half of it that is easy to lose in the move. */
+static void test_trip_totals_are_gathered_for_the_slow_frame(void)
+{
+    compute_t c;
+    decode_state_t st;
+    tx_values_t v;
+
+    compute_init(&c);
+    decode_init(&st);
+    st.fuel_counter_valid = true;
+    st.fuel_counter = 1000;
+    st.rpm_q4 = 800u * 4u;
+    compute_on_fuel(&c, &st, 1000);
+    c.total_ul = 7654321u;              /* 7654.321 ml */
+    c.total_mm = 12345678u;             /* 12345.678 m */
+
+    /* The fast gather does not touch them any more. */
+    txframes_gather(&v, &c, &st, 503, 1000);
+    TT_EQ(v.trip_ml, 0);
+    TT_EQ(v.trip_m, 0);
+
+    txframes_gather_trip(&v, &c, 1000);
+    TT_EQ(v.trip_ml, 7654u);
+    TT_EQ(v.trip_m, 12345u);
+
+    /* And a bus that has gone quiet zeroes them, exactly as the gather does
+     * with everything else derived from it. */
+    txframes_gather_trip(&v, &c, 1000 + DATA_TIMEOUT_MS + 1u);
+    TT_EQ(v.trip_ml, 0);
+    TT_EQ(v.trip_m, 0);
+}
+
 static void test_gather_fills_a_full_frame(void)
 {
     compute_t c;
@@ -270,6 +305,7 @@ int main(void)
     TT_RUN(test_engine_frame_offsets);
     TT_RUN(test_trip_frame_offsets);
     TT_RUN(test_gather_zeroes_when_the_bus_is_quiet);
+    TT_RUN(test_trip_totals_are_gathered_for_the_slow_frame);
     TT_RUN(test_gather_fills_a_full_frame);
     TT_RUN(test_idle_produces_sane_frames);
     TT_RUN(test_warm_idle_logs_also_show_zero_torque);

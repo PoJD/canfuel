@@ -48,6 +48,12 @@ typedef struct {
 void txframes_gather(tx_values_t *v, const compute_t *c,
                      const decode_state_t *st, uint16_t vdd_c, uint32_t now_ms);
 
+/* The two trip totals of 0x602, which is transmitted once a second while the
+ * gather above runs ten times a second. Call it immediately before
+ * txframes_trip(): the gather clears the whole struct, so these do not
+ * survive the next fast slot. Obeys the same quiet-bus rule as the gather. */
+void txframes_gather_trip(tx_values_t *v, const compute_t *c, uint32_t now_ms);
+
 /* Each writes exactly TXFRAME_DLC bytes. */
 void txframes_fuel(const tx_values_t *v, uint8_t *out);     /* 0x600, 100 ms */
 void txframes_engine(const tx_values_t *v, uint8_t *out);   /* 0x601, 100 ms */

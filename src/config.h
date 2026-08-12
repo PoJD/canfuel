@@ -57,6 +57,52 @@
 #define TX_SLOW_MS              1000    /* 0x602 and the EEPROM slot          */
 #define RX_POLL_MS              10      /* scheduler slot that drains the CAN */
 
+/* The step distance is integrated on. NOT every pass of the scheduler, and the
+ * difference is worth several per cent of every distance this device reports.
+ *
+ * A pass of the main loop takes about 113 us, so integrating on every one of
+ * them hands compute_tick() a delta of a single millisecond -- and
+ * v [0.001 km/h] * 1 ms / 3600 is then truncated to a whole millimetre, a
+ * thousand times a second. At 100 km/h that throws away 0.78 mm of every
+ * 27.78 (-2.8 %), at 50 km/h 0.89 of every 13.89 (-6.4 %), and BELOW 3.6 km/h
+ * the quotient is zero, so the car covers no distance at all. It goes straight
+ * into total_mm, and from there into FuelAvg, Range and the trip.
+ *
+ * Ten milliseconds makes each truncation ten times smaller and the remainder
+ * carried in compute_t (dist_rem) removes what is left, so the integration is
+ * exact and cannot drift. The division count falls from ~1000/s to 100/s with
+ * it, which is the largest single saving in the firmware -- but the reason for
+ * the change is the arithmetic, not the cycles.
+ *
+ * Why 10 and not 100: 0x1A0 arrives at 130 Hz, so a 10 ms step still samples
+ * the speed faster than the car sends it, while a 100 ms one would integrate
+ * an acceleration from its end point and overstate it. Why not 1: that is what
+ * the paragraph above is about.
+ *
+ * NOTHING IN THE FIXTURES EVER SAW THIS. test/replay_core.h drives
+ * compute_tick() from the 0x480 frames, which are ~38 ms apart, so the tests
+ * integrate with a delta at which the truncation is 0.8 % and invisible under
+ * the tolerance replay.py compares on. It is a hardware-only fault, found by
+ * reading rather than by running. */
+#define DIST_TICK_MS            10u
+
+/* Below this the car is standing still and the distance integrator must see
+ * nothing at all.
+ *
+ * A STANDING CAR DOES NOT SEND ZERO. 0x1A0 reads raw 1 -- 0.005 km/h, or
+ * 1.39 mm/s -- in every log while stationary, and the next value that ever
+ * appears is above raw 40 (0.2 km/h); nothing in between exists in any
+ * fixture. It is the same measurement IDLE_GATE_SPEED_MMH rests on and the
+ * same number, kept as a separate name because the two guard different things
+ * and have no reason to move together.
+ *
+ * THIS USED TO BE HIDDEN RATHER THAN DECIDED. With a one-millisecond step the
+ * quotient of anything under 3.6 km/h was zero, so the standing value
+ * integrated to nothing by accident. Making the integration exact turned that
+ * accident into 83 mm over a minute of idling -- which 02_idle_60s and
+ * 01_ign_only caught the moment the remainder was carried. */
+#define DIST_MIN_MMH            100u        /* 0.1 km/h */
+
 /* The bus is declared dead after this long without a fuel frame; every
  * transmitted value then goes to zero rather than freezing at its last
  * reading, which would look plausible and be wrong. */

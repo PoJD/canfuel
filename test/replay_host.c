@@ -45,6 +45,9 @@ int main(int argc, char **argv)
         txframes_gather(&v, &r.cp, &r.st, 500, r.cp.last_data_ms);
         txframes_fuel(&v, f600);
         txframes_engine(&v, f601);
+        /* The trip totals are gathered separately, exactly as main.c does it
+         * in the slow slot -- without this, 0x602 would come out as zeros. */
+        txframes_gather_trip(&v, &r.cp, r.cp.last_data_ms);
         txframes_trip(&v, f602);
 
         printf("log=%s\n", argv[i]);

@@ -13,13 +13,29 @@ what was tried, and what is deliberately left alone.
 
 ## The rule
 
-**Correctness first, and it is not negotiable.** Every optimisation here left
-the numbers bit-for-bit identical, and that was checked rather than assumed:
+**Correctness first, and it is not negotiable.** Every optimisation in sections
+1 to 5 left the numbers bit-for-bit identical, and that was checked rather than
+assumed:
 `make -C test test`, the Python suite, and above all
 `python tools/replay.py --host-build test/fixtures/*.txt`, which replays every
 recording through both the C core and the Python reference and diffs the
 totals. An optimisation that changes a displayed value is a bug, however fast
 it is.
+
+**From section 6 on, that rule is narrower than it looks and deliberately so.**
+The first round was done under an explicit instruction — *optimise, change
+nothing functionally* — and the day after it was finished the maintainer
+withdrew it, on the grounds that several of the algorithms were never forced in
+the first place. The tank median, the shape of the flow window and the 30 km
+range window are all **our choices**, made once and never compared against a
+cheaper one. So the later sections are allowed to change what the code
+computes.
+
+What does not change is the standard of evidence. A section below either
+produces the same number and says so, or it produces a different number and
+argues for it against the fixtures — and the two implementations still have to
+agree with each other afterwards, which is what `replay.py --host-build`
+enforces on every push.
 
 **Bytes are cheap, cycles are not.** The part has 32 KB of program memory and
 uses about a third. Trading size for speed is nearly always right here — the
@@ -293,9 +309,85 @@ division it replaces.
 
 ---
 
+## 6. The distance integrator was throwing away several per cent — 2026-08-12
+
+**This one is a fault, not an optimisation, and it was found by reading the
+code with the "do not change behaviour" constraint lifted.** It is written up
+here rather than only in the commit because the *reason* it survived this long
+is the interesting part.
+
+`main.c` calls `compute_tick()` on every pass of the scheduler, and a pass is
+about 113 µs, so in the car the delta it sees is **one millisecond**. The
+integration is `v [0.001 km/h] × t [ms] / 3600` in integer millimetres, and at
+one millisecond the truncation is not a rounding detail:
+
+| speed | mm per ms | stored | error |
+|---|---|---|---|
+| 100 km/h | 27.78 | 27 | −2.8 % |
+| 50 km/h | 13.89 | 13 | **−6.4 %** |
+| 7 km/h | 1.94 | 1 | −49 % |
+| **under 3.6 km/h** | <1 | **0** | **no distance at all** |
+
+It lands in `total_mm`, and from there in FuelAvg, Range and the trip.
+
+**Why no test could see it.** `test/replay_core.h` drives `compute_tick()` from
+the 0x480 frames, which are ~38 ms apart, and at 38 ms the same truncation is
+0.8 % — inside the tolerance `replay.py --host-build` compares on. The Python
+reference had the identical fault (`total_mm += int(...)` per interval), so the
+two agreed with each other about a wrong number. **Twin implementations do not
+catch a fault they share, and this is what that looks like.**
+
+The fix is two things, and the second one is the one that was not obvious:
+
+- **`DIST_TICK_MS = 10` and a carried remainder.** The step is ten times
+  longer and what the division leaves over goes into the next step instead of
+  the bin, so the integration is exact and cannot drift. Division count falls
+  from ~1000/s to 100/s with it — about 14 % of the CPU, the largest single
+  saving in the firmware, and entirely a side effect.
+- **`DIST_MIN_MMH = 100`.** A standing car sends 0.005 km/h, not zero. Exactly
+  integrated that is 1.39 mm/s, **83 mm over a minute of idling**, and two
+  fixtures went red the moment the remainder was carried. The old code
+  discarded it by accident, because everything under 3.6 km/h truncated to
+  nothing; now it is discarded on purpose, on the same measurement the idle
+  gate rests on.
+
+Three tests pin it: the same distance whether the core is ticked every
+millisecond or every second, 50 m for a minute at walking pace, and exactly
+zero for a minute of standing still. `tools/replay.py` carries the remainder
+too, so the oracle stays comparable rather than staying wrong in company.
+
+## 7. Two things computed for nobody — 2026-08-12
+
+Both behaviour-neutral, both found by reading the call graph `cycles.py` prints
+rather than the code.
+
+- **`compute_torque_d()` ran twice per gather**, once for the frame and once
+  inside `compute_power_d()`, which needs the same number. `compute_power_d()`
+  takes it as an argument now: **−1,042 cycles, 9 % of the 100 ms slot.** The
+  gates all live in `compute_torque_d()` and each returns zero, so a zero
+  torque still makes zero power — the idle gate did not move.
+- **`trip_ml` and `trip_m` were gathered ten times a second** for a frame that
+  goes out once a second: two divisions by 1000, 686 cycles, nine tenths of
+  them wasted. `txframes_gather_trip()` is called from the slow slot instead,
+  immediately before `txframes_trip()`, and obeys the same quiet-bus rule.
+
+| | before | after |
+|---|---|---|
+| `txframes_gather` | 2.97 ms | **2.52 ms** |
+| the 100 ms slot | 3.69 ms | **3.24 ms** |
+| the 1 s slot | 0.98 ms | 1.19 ms |
+| `compute_tick` worst case | 1.21 ms | 1.26 ms |
+| program memory | 12,682 B | 12,824 B |
+
+Two of those went **up**, and both are honest: the 1 s slot gained the trip
+divisions the fast slot gave away, and `compute_tick`'s worst case gained the
+multiply that computes the remainder. What the table cannot show is the change
+that matters — the distance path now runs 100 times a second instead of a
+thousand.
+
 ## What is left
 
-**`txframes_gather` is still the largest item at 2.97 ms**, but what remains in
+**`txframes_gather` is still the largest item at 2.52 ms**, but what remains in
 it is not division or multiplication any more — it is the nine getters
 themselves. The next honest saving there is arranging the arithmetic so an
 operation disappears entirely rather than getting cheaper, which is a change to

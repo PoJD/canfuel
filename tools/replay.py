@@ -46,6 +46,9 @@ FUELNOW_CLAMP = 999         # 99.9 on the display
 RANGE_DEFAULT_L100 = 9.0    # used for range until we have driven 5 km
 AVG_MIN_M = 100             # below this the average divides by nearly zero
 COUNTER_MODULO = 32768
+# DIST_MIN_MMH in src/config.h. A standing car sends 0.005 km/h, not zero, and
+# an integration exact enough to notice turns that into 83 mm a minute.
+DIST_MIN_KMH = 0.1
 
 # Speed validity gate in 0x1A0 byte 1. It is not an equality, it is a bit
 # mask -- the reasoning is spelled out in docs/can-decoding.md.
@@ -122,6 +125,9 @@ class Compute:
     prev_counter: Optional[int] = None
     total_ul: int = 0
     total_mm: int = 0
+    # The exact distance behind total_mm. compute.c gets the same effect by
+    # carrying the remainder of its division by 3600 from one step to the next.
+    _dist_mm: float = 0.0
     last_ms: Optional[float] = None
     flow_ul_s: float = 0.0
     restarts: int = 0
@@ -165,8 +171,22 @@ class Compute:
             self.flow_ul_s = win_ul / win_s if win_s else 0.0
 
     def on_distance(self, st: Decoded, dt_s: float) -> None:
-        if st.speed_valid and st.speed_kmh > 0 and dt_s > 0:
-            self.total_mm += int(st.speed_kmh / 3.6 * dt_s * 1000.0)
+        """Accumulate first, truncate once.
+
+        This used to be `total_mm += int(...)`, which throws away up to a
+        millimetre on every interval -- the same fault the firmware had, where
+        it was far worse: compute_tick() is called every millisecond in the
+        car, so v * 1 ms / 3600 lost 6.4 % of the distance at 50 km/h and
+        everything below 3.6 km/h. compute.c carries the remainder of its
+        integer division into the next step; accumulating in floating point
+        and truncating on read is the same thing done the easy way, and it is
+        what keeps this reference comparable with the C.
+
+        The speed gate is DIST_MIN_MMH: a stationary car sends 0.005 km/h.
+        """
+        if st.speed_valid and st.speed_kmh > DIST_MIN_KMH and dt_s > 0:
+            self._dist_mm += st.speed_kmh / 3.6 * dt_s * 1000.0
+            self.total_mm = int(self._dist_mm)
 
     # -- derived quantities ------------------------------------------------
 

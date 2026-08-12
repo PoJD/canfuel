@@ -9,7 +9,8 @@
  * A cooperative scheduler on one free-running millisecond clock. No RTOS, no
  * priorities, nothing that can deadlock.
  *
- *    every pass   drain the CAN receive FIFO, integrate distance
+ *    every pass   drain the CAN receive FIFO, offer the clock to the core
+ *                 (which integrates distance on its own DIST_TICK_MS step)
  *    100 ms       transmit 0x600 and 0x601, sample VDD, update the LEDs
  *    1 s          transmit 0x602, offer the accumulators to the EEPROM
  */
@@ -142,8 +143,11 @@ int main(void)
         }
 
         /* Integrates distance and samples the tank once a second. Safe to call
-         * as often as we like, so it goes in the fast path where it gets the
-         * finest time resolution available. */
+         * as often as we like, and it is called on every pass so that neither
+         * step depends on a scheduler slot -- but the distance step itself is
+         * DIST_TICK_MS, decided inside compute_tick() rather than here.
+         * config.h says why, and it is not a cycle count: a one-millisecond
+         * step truncates several per cent of the trip away. */
         compute_tick(&cp, &st, now);
 
         if ((uint32_t)(now - last_fast) >= (uint32_t)TX_FAST_MS) {
@@ -152,9 +156,9 @@ int main(void)
 
             vdd_c = hal_sys_vdd_c();
 
-            /* One gather, three frames -- 0x602 uses the values from the
-             * previous fast slot, which is at most 100 ms old and carries
-             * accumulators that move in seconds. */
+            /* One gather, three frames. 0x602 adds its own two totals in the
+             * slow slot below and takes the rest from here, at most 100 ms
+             * old and made of accumulators that move in seconds. */
             txframes_gather(&tx, &cp, &st, vdd_c, now);
 
             txframes_fuel(&tx, buf);
@@ -174,6 +178,12 @@ int main(void)
         if ((uint32_t)(now - last_slow) >= (uint32_t)TX_SLOW_MS) {
             last_slow = now;
 
+            /* The trip totals are gathered here and not in the fast slot:
+             * 0x602 goes out once a second, so computing them ten times a
+             * second was two divisions by 1000 for nobody. Everything else in
+             * tx still comes from the previous fast slot, which is at most
+             * 100 ms old and carries accumulators that move in seconds. */
+            txframes_gather_trip(&tx, &cp, now);
             txframes_trip(&tx, buf);
             (void)hal_can_send(CAN_ID_TX_TRIP, buf, TXFRAME_DLC);
 

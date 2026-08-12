@@ -306,32 +306,55 @@ void compute_tick(compute_t *c, const decode_state_t *st, uint32_t now_ms)
         return;
     }
 
+    /* DIST_TICK_MS AND NOT EVERY CALL, and config.h argues that at length: on
+     * the real part a pass is 113 us, so integrating on every one of them
+     * means a delta of one millisecond, and a millisecond of distance
+     * truncated to whole millimetres loses several per cent of the trip --
+     * everything, below 3.6 km/h. Time that has not been integrated yet stays
+     * in last_tick_ms, so nothing is lost by waiting for the step. */
     dt_ms = elapsed(now_ms, c->last_tick_ms);
-    c->last_tick_ms = now_ms;
+    if (dt_ms >= (uint32_t)DIST_TICK_MS) {
+        c->last_tick_ms = now_ms;
 
-    /* v [0.001 km/h] * t [ms] / 3600 = s [mm]. A gap longer than a second
-     * means we were not watching, and guessing across it would invent
-     * distance the car may never have covered. */
-    if (st->speed_valid && st->speed_mmh > 0u && dt_ms > 0u && dt_ms <= 1000u) {
-        /* dt_ms is gated to 1000 by the condition above, so it fits the
-         * uint16 mul_u32_u16 takes -- which is why that gate is load-bearing
-         * for more than just the distance it guards. */
-        uint32_t mm = div_const(mul_u32_u16(st->speed_mmh, (uint16_t)dt_ms),
-                                DIVC_3600);
-        c->total_mm += mm;
-        c->seg_cur_mm += mm;
+        /* v [0.001 km/h] * t [ms] / 3600 = s [mm]. A gap longer than a second
+         * means we were not watching, and guessing across it would invent
+         * distance the car may never have covered.
+         *
+         * DIST_MIN_MMH and not > 0: a standing car sends 0.005 km/h, not
+         * zero, and with the remainder carried below that would creep 83 mm
+         * per minute of idling. config.h has the measurement. */
+        if (st->speed_valid && st->speed_mmh > (uint32_t)DIST_MIN_MMH &&
+            dt_ms <= 1000u) {
+            /* The remainder of the division is carried into the next step
+             * rather than discarded, which is what makes the integration
+             * exact instead of biased low by up to one millimetre per step.
+             * It is under 3600 by construction -- under one millimetre of
+             * distance -- so one left behind by the gap above is meaningless
+             * and is deliberately not cleared.
+             *
+             * dt_ms is gated to 1000 by the condition above, so it fits the
+             * uint16 mul_u32_u16 takes -- which is why that gate is
+             * load-bearing for more than just the distance it guards. */
+            uint32_t num = mul_u32_u16(st->speed_mmh, (uint16_t)dt_ms)
+                         + c->dist_rem;
+            uint32_t mm = div_const(num, DIVC_3600);
 
-        while (c->seg_cur_mm >= RANGE_SEGMENT_MM) {
-            c->seg_ul[c->seg_next] = c->seg_cur_ul;
-            /* Compare, not modulo -- RANGE_SEGMENTS is 30. */
-            if (++c->seg_next >= (uint8_t)RANGE_SEGMENTS) {
-                c->seg_next = 0;
+            c->dist_rem = (uint16_t)(num - mul_u32_u16(mm, 3600u));
+            c->total_mm += mm;
+            c->seg_cur_mm += mm;
+
+            while (c->seg_cur_mm >= RANGE_SEGMENT_MM) {
+                c->seg_ul[c->seg_next] = c->seg_cur_ul;
+                /* Compare, not modulo -- RANGE_SEGMENTS is 30. */
+                if (++c->seg_next >= (uint8_t)RANGE_SEGMENTS) {
+                    c->seg_next = 0;
+                }
+                if (c->seg_count < RANGE_SEGMENTS) {
+                    c->seg_count++;
+                }
+                c->seg_cur_ul = 0;
+                c->seg_cur_mm -= RANGE_SEGMENT_MM;
             }
-            if (c->seg_count < RANGE_SEGMENTS) {
-                c->seg_count++;
-            }
-            c->seg_cur_ul = 0;
-            c->seg_cur_mm -= RANGE_SEGMENT_MM;
         }
     }
 
@@ -473,13 +496,18 @@ uint16_t compute_torque_d(const decode_state_t *st)
     return clamp_u16(div_const_round(net_cnm, 5u, DIVC_10), 0xFFFFu);
 }
 
-uint16_t compute_power_d(const decode_state_t *st)
+uint16_t compute_power_d(const decode_state_t *st, uint16_t torque_d)
 {
     /* power [kW] = torque [Nm] * rpm / 9550, rearranged for the scaled units.
      * The MFD15 cannot do this itself -- math channels only exist on the
-     * MFD28 and MFD32. */
+     * MFD28 and MFD32.
+     *
+     * The torque comes in from the caller because it is transmitted as well,
+     * so computing it here too was 1,042 cycles of the 100 ms slot spent
+     * getting the same answer a second time. Every gate -- cranking, idle,
+     * overrun -- is inside compute_torque_d(), and each of them returns zero,
+     * which is exactly what makes this return zero. */
     uint32_t rpm = decode_rpm(st);
-    uint32_t torque_d = compute_torque_d(st);
     /* rpm comes from a uint16 quarter-count shifted down by two, so it is
      * under 16384 and fits the uint16 mul_u32_u16 takes. */
     return clamp_u16(div_const_round(mul_u32_u16(mul_u32_u16(torque_d, 10u),

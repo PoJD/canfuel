@@ -322,7 +322,11 @@ def budgets(words, calls, loops, constants):
         + cost("_leds_update")
     )
 
-    slow_slot = cost("_txframes_trip") + cost("_hal_can_send") + cost("_persist_save")
+    # txframes_gather_trip is the two divisions by 1000 that used to sit in the
+    # fast slot, where nine out of ten of them were computed for nobody. They
+    # are part of this budget now, not that one.
+    slow_slot = (cost("_txframes_gather_trip") + cost("_txframes_trip")
+                 + cost("_hal_can_send") + cost("_persist_save"))
 
     return {
         "rx_frame": rx_frame,
