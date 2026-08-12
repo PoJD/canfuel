@@ -85,7 +85,9 @@ LOOPS = {
     # then as a 128-bucket histogram sweep. The refuelling rule does not need a
     # median at all -- see docs/optimisation.md -- so the function is gone and
     # with it the last data structure the core walked once a second.
-    "_compute_range_km": [("RANGE_SEGMENTS", None,    "")],
+    # _compute_range_km was here until 2026-08-12, summing a 30-slot ring of
+    # microlitre totals ten times a second for a number that can only change
+    # once a kilometre. The basis is a filter now and the sweep is gone.
     "_flow_push":        [("FLOW_BUCKETS", None,     "the four buckets, summed when one closes")],
     "_persist_load":     [("PERSIST_SLOTS", None,     "start-up only")],
     "_hal_can_receive":  [(None, 8,                   "bytes in a frame")],
@@ -101,6 +103,14 @@ LOOPS = {
     # rotate. If either stops appearing here, divconst.h changed shift.
     "_compute_tank_d":    [(None, 5,                  "DIVC_100 shift")],
     "_compute_flow_lh_c": [(None, 5,                  "DIVC_100 shift")],
+    # The same thing again, and for the same reason: RANGE_BASIS_Q4 and
+    # RANGE_BASIS_SHIFT are both 4, and a shift that is not a multiple of eight
+    # is a rotate loop with a counter even when the count is a literal. Four
+    # iterations of two bytes each, so a few dozen cycles -- costed rather than
+    # waved away, because a shift that quietly became a divide would look
+    # exactly like this and cost thirty times as much.
+    "_compute_range_km":     [("RANGE_BASIS_Q4", None,    "rotate, basis back to tenths")],
+    "_range_basis_update":   [("RANGE_BASIS_SHIFT", None, "rotate, the filter step")],
 }
 
 # Loops that spin waiting for a peripheral, not for the CPU. Their duration is
@@ -153,8 +163,8 @@ NOT_LOOPS = {
 # are in docs/timing.md; these are a regression alarm, not a deadline.
 BUDGETS = {
     "rx_frame": ("one received frame, decoded and accumulated", 1000.0),
-    "compute_tick": ("compute_tick, worst case (with the tank sample)", 900.0),
-    "fast_slot": ("the 100 ms slot, everything in it", 5200.0),
+    "compute_tick": ("compute_tick, worst case (with the tank sample)", 1000.0),
+    "fast_slot": ("the 100 ms slot, everything in it", 3600.0),
     "slow_slot": ("the 1 s slot, excluding the EEPROM write", 1500.0),
 }
 

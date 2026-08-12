@@ -44,7 +44,7 @@ Trip counts used, all from the source and all worst case:
 | Loop | Trips | Why |
 |---|---|---|
 | `___lldiv` | 32 | one per bit of a 32-bit divisor |
-| `compute_range_km` | 30 | `RANGE_SEGMENTS` |
+| `compute_range_km` rotate | 4 | `RANGE_BASIS_Q4`, back to whole tenths |
 | `flow_push` | 4 | `FLOW_BUCKETS`, summed when one closes |
 | `persist_load` | 64 | `PERSIST_SLOTS`, start-up only |
 | `hal_can_receive` | 8 | bytes in a frame |
@@ -60,15 +60,15 @@ every time a 32-bit division is written in the core.
 
 | Function | Cycles | Time |
 |---|---|---|
-| `txframes_gather` (seven getters; the trip totals moved to the 1 s slot) | 10,098 | **2.52 ms** |
+| `txframes_gather` (seven getters; the trip totals moved to the 1 s slot) | 7,833 | **1.96 ms** |
 | `persist_load` (start-up only) | 6,199 | **1.55 ms** |
-| `compute_range_km` (the 30-segment sweep) | 3,466 | 866 µs |
+| `compute_range_km` | 1,201 | 300 µs |
 | `persist_save` | 3,165 | 791 µs |
 | `compute_on_fuel` | 2,073 | 518 µs |
-| `compute_tick` (with the tank sample) | 2,674 | 668 µs |
+| `compute_tick` (with the tank sample and a kilometre rollover) | 3,118 | 780 µs |
 | `flow_push` (worst case: the pass that closes a bucket) | 1,676 | 419 µs |
 | `persist_crc16` (10 bytes x 8 bits) | 2,119 | 530 µs |
-| `tank_sample` | 1,562 | 390 µs |
+| `tank_sample` | 1,516 | 379 µs |
 | `hal_sys_vdd_c` (plus 22 us of A/D) | 1,112 | 278 µs |
 | `___lldiv`, one 32-bit division by a *variable* | 1,026 | 256 µs |
 | `hal_can_send` | 644 | 161 µs |
@@ -81,9 +81,11 @@ every time a 32-bit division is written in the core.
 
 **`txframes_gather` is seven divisions in a trench coat.** Nothing in it is
 slow; the core simply divides in a lot of places and this is where most of them
-get exercised. It is the largest single item by a wide margin, and the three
-`___lldiv` calls left in the build — by `flow_sum_ms`, by `speed_mmh` and by
-`seg_count * 1000` — are all reached from here.
+get exercised. It is the largest single item by a wide margin. Three
+places in the build still call `___lldiv` and every one of them divides by a
+*variable*, where a reciprocal cannot help: `compute_range_km` (by the basis),
+`hal_sys_vdd_c` (by the A/D code) and the shared `div_round`, reached from
+FuelNow, FuelAvg and the flow window.
 
 ### The tank sample stopped being a sweep of anything
 
@@ -112,8 +114,8 @@ is the same answer.
 |---|---|---|
 | `hal_sys_watchdog_clear` + `hal_sys_millis` | 26 | 7 µs |
 | FIFO drain, 8 frames, one of them 0x480 | 8,345 | 2.09 ms |
-| `compute_tick`, moving, no tank sample | 1,108 | 277 µs |
-| `compute_tick`, standing, with the tank sample | 2,674 | 0.67 ms |
+| `compute_tick`, moving, no tank sample | 1,598 | 400 µs |
+| `compute_tick`, standing, with the tank sample | 3,118 | 0.78 ms |
 
 A **typical** pass is none of that: the FIFO is empty, the distance step has
 not elapsed and `compute_tick` returns almost immediately — about 450 cycles,
@@ -147,10 +149,10 @@ changed here is how often the call does anything.
 | | Cycles | Time |
 |---|---|---|
 | `hal_sys_vdd_c` incl. the A/D conversion | ~1,200 | 300 µs |
-| `txframes_gather` | 10,098 | 2.52 ms |
+| `txframes_gather` | 7,833 | 1.96 ms |
 | two frames assembled and queued | 818 | 205 µs |
 | error counters, overflow flag, LEDs | ~200 | 50 µs |
-| **total** | | **3.24 ms** |
+| **total** | | **2.68 ms** |
 
 **3.7 % of the 100 ms it has.** The remaining 94.7 % is spent draining an empty
 FIFO.
@@ -178,12 +180,12 @@ Stacking every worst case that can genuinely land in the same pass:
 
 ```
 FIFO drain (8 frames)            2.09 ms
-compute_tick, with the tank      0.67 ms
-the 100 ms slot                  3.24 ms
+compute_tick, with the tank      0.78 ms
+the 100 ms slot                  2.68 ms
 the 1 s slot, not writing        1.19 ms
                                 --------
-worst pass without an EEPROM write      7.18 ms
-plus the once-a-minute EEPROM write    ~55.2 ms
+worst pass without an EEPROM write      6.73 ms
+plus the once-a-minute EEPROM write    ~54.7 ms
 ```
 
 Every figure here comes from `tools/cycles.py` against a real build. **The same
@@ -199,19 +201,20 @@ like:
 | multiplication: `___lmul` -> byte products | 8.21 ms |
 | the distance step, and two gathers moved | 8.02 ms |
 | the tank median -> a filter and a counter | 7.43 ms |
-| the flow ring -> four buckets | **7.18 ms** |
+| the flow ring -> four buckets | 7.18 ms |
+| the 30 km range window -> a filter | **6.73 ms** |
 
 What changed and why is `docs/optimisation.md`.
 
 Against the two deadlines:
 
-- **The 100 ms transmit cadence.** A 7.18 ms pass leaves a **13× margin**,
+- **The 100 ms transmit cadence.** A 6.73 ms pass leaves a **14× margin**,
   where before the optimisation it left 5.3×. The once-a-minute pass leaves
   1.8×, so 0x600 and 0x601 arrive up to 56 ms late once a minute and the
   display sees a gap of about 156 ms instead of 100 ms. Nothing reads a period,
   so this is invisible.
 - **`RX_POLL_MS`, the 10 ms the FIFO must not fall behind by.** The worst
-  non-EEPROM pass is **7.18 ms and fits inside it**, which it never did
+  non-EEPROM pass is **6.73 ms and fits inside it**, which it never did
   before — it was 18.72 ms, then 11.67, then 8.21. That was always survivable, because
   the constant is a conservative statement of intent and the FIFO's depth is
   the real limit: eight buffers against 3.58 frames per 10 ms is **22 ms of
@@ -269,13 +272,13 @@ the two are comparable.
 
 | | before | now | the FIFO holds |
 |---|---|---|---|
-| worst pass, no EEPROM write | 18.72 ms | **7.18 ms** | 22 ms |
-| headroom before anything is dropped | 3.3 ms | **14.8 ms** | |
-| worst pass **with** the write | 66.72 ms | **55.18 ms** | |
+| worst pass, no EEPROM write | 18.72 ms | **6.73 ms** | 22 ms |
+| headroom before anything is dropped | 3.3 ms | **15.3 ms** | |
+| worst pass **with** the write | 66.72 ms | **54.73 ms** | |
 
 **Outside the EEPROM write, nothing is dropped in either version** — that is
 what the 22 ms buys. What changed is the margin: it was 3.3 ms and is now
-14.8 ms, four times as much. That matters more than the milliseconds, because
+15.3 ms, four and a half times as much. That matters more than the milliseconds, because
 the old worst case needed an unlucky tank ring to reach and would have been
 within one bad coincidence of the limit.
 
@@ -313,7 +316,7 @@ None of that costs anything, which is the analysis already written out in
 `main.c` then clears the overflow flag, because an overflow we caused
 deliberately, once a minute, is not a fault worth putting on an LED.
 
-The **ordinary** worst pass, 7.18 ms, is inside the 22 ms the FIFO holds, so
+The **ordinary** worst pass, 6.73 ms, is inside the 22 ms the FIFO holds, so
 outside the EEPROM write nothing is dropped at all — and since 2026-08-12 it is
 also inside `RX_POLL_MS`, which it had never been.
 
@@ -345,13 +348,14 @@ any of these goes over its ceiling:
 | Budget | Now | Ceiling |
 |---|---|---|
 | one received frame, decoded and accumulated | 0.71 ms | 1.0 ms |
-| `compute_tick`, worst case | 0.67 ms | 0.9 ms |
-| the 100 ms slot | 3.24 ms | 5.2 ms |
+| `compute_tick`, worst case | 0.78 ms | 1.0 ms |
+| the 100 ms slot | 2.68 ms | 3.6 ms |
 | the 1 s slot, excluding the EEPROM write | 1.19 ms | 1.5 ms |
 
-**The ceilings sit about 1.4x above what the code costs today**, which is a
-deliberate tightening: they used to be four or five times the cost, and a
-ceiling that can never be hit is not a gate. The hardware has far more headroom
+**The ceilings sit about 1.3x above what the code costs today**, and all four
+came down again on 2026-08-12 as the algorithms underneath them got cheaper:
+1.4 -> 1.0, 1.7 -> 1.0, 5.2 -> 3.6 and 1.5 unchanged. A ceiling that can never
+be hit is not a gate, so they follow the code down. The hardware has far more headroom
 than this — the numbers above in *The answer: where the margin is* are the real
 limits — but these are a regression alarm, and an alarm set beyond anything
 that can happen is decoration.

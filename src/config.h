@@ -174,10 +174,26 @@
 
 /* --- Range -------------------------------------------------------------- */
 
-/* A rolling average over the last 30 km in 1 km segments, so the estimate
- * falls gradually after a hard pull rather than jumping. */
+/* The basis Range divides by: a rolling consumption figure updated once per
+ * kilometre, so the estimate falls gradually after a hard pull rather than
+ * jumping.
+ *
+ * IT USED TO BE A FLAT AVERAGE OVER THE LAST 30 KILOMETRES, held as 30
+ * microlitre totals -- 120 bytes of RAM that were summed on every gather, ten
+ * times a second, to produce a number that can only change once a kilometre.
+ * It is a first-order filter now, one shift per completed kilometre, which is
+ * the same idea with none of the storage: mean age 16 km against the flat
+ * window's 15, so the estimate is very nearly as steady and reaches a new
+ * consumption level at much the same rate.
+ *
+ * The filter carries four extra bits (RANGE_BASIS_Q4) and that is not
+ * decoration. In whole tenths of l/100 km a shift of four cannot move a value
+ * below 1.6 l/100 km of difference at all, so the filter would stall a long
+ * way from the truth; with the extra bits it stalls within 0.1 l/100 km, which
+ * is one digit of the average shown beside it. */
 #define RANGE_SEGMENT_MM        1000000ul   /* 1 km */
-#define RANGE_SEGMENTS          30
+#define RANGE_BASIS_SHIFT       4u          /* tau = 16 km                  */
+#define RANGE_BASIS_Q4          4u          /* the basis is in 1/16 tenths  */
 
 /* Until this much has been driven the rolling window is too short to trust,
  * so a conservative fixed figure is used instead. */

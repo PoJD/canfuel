@@ -38,8 +38,11 @@ agree with each other afterwards, which is what `replay.py --host-build`
 enforces on every push.
 
 **Bytes are cheap, cycles are not.** The part has 32 KB of program memory and
-uses about a third. Trading size for speed is nearly always right here — the
-histogram below spends 128 bytes of RAM to remove 12,600 cycles.
+uses about a third. Trading size for speed is nearly always right here — §1
+spends 128 bytes of RAM to remove 12,600 cycles, and §4 and §5 spend 1,400
+bytes of program memory to remove the compiler's division and multiplication
+helpers. RAM is the one that eventually bites, and §8 to §10 gave 347 bytes of
+it back.
 
 **Measure, do not reason.** `python tools/cycles.py` costs every function out
 of the real assembly listing. Twice now the intuition was wrong and the tool
@@ -146,7 +149,7 @@ It measures the listing now. Every figure in this repository, including the
   is earlier in the same function is a loop; the words between are the body.
   Change the code and this follows with no edit.
 - **Trip counts name a `config.h` constant** where one exists, and the value is
-  read from `config.h` at run time. Change `TANK_HIST_BINS` and the model
+  read from `config.h` at run time. Change `FLOW_BUCKETS` and the model
   follows.
 - **Nesting is worked out from the addresses**, so an inner loop is multiplied
   by everything that encloses it.
@@ -482,22 +485,74 @@ every field again.
 
 The `rx_frame` ceiling came down from 1.4 ms to 1.0 with it.
 
+## 10. Range: a 30 km window became a filter — 2026-08-12
+
+The basis Range divides by was a flat average over the last thirty kilometres,
+held as **thirty microlitre totals, 120 bytes**, and summed on every gather —
+ten times a second, to produce a number that can only change **once a
+kilometre**. Then divided by `seg_count * 1000`, a variable, so it could not
+even use a reciprocal.
+
+It is a first-order filter over completed kilometres now, one shift per
+kilometre. Mean age 16 km against the flat window's 15, so the estimate is very
+nearly as steady and reaches a new consumption level at much the same rate —
+and `compute_range_km` is one division by the basis and nothing else.
+
+The one detail that is not obvious: **the basis carries four extra bits.** In
+whole tenths of l/100 km a shift of four cannot move a value at all until the
+difference reaches 1.6 l/100 km, so the filter would stall a long way from the
+truth and Range would sit at a wrong number indefinitely. In sixteenths it
+stalls within 0.1 l/100 km, which is one digit of the average shown beside it.
+An integer filter needs the headroom its own step size implies, and that is the
+generalisable half of this section.
+
+`compute_reset_trip()` clears the basis, exactly as it used to clear the ring,
+so a refuelling puts Range back on the conservative default until
+`RANGE_MIN_MM` of the new trip is driven.
+
+| | before | after |
+|---|---|---|
+| `compute_range_km` | 3,466 cycles, 866 µs | **1,201 cycles, 300 µs** |
+| `txframes_gather` | 2.52 ms | **1.96 ms** |
+| the 100 ms slot | 3.24 ms | **2.68 ms** |
+| worst pass through the loop | 7.18 ms | **6.73 ms** |
+| RAM | 453 B | **339 B** |
+
+`compute_tick`'s worst case went the other way, 0.67 → 0.78 ms, because the
+kilometre rollover now folds the basis instead of storing a number in an array.
+That is the trade and it is a good one: it happens once a kilometre.
+
 ## What is left
 
-**`txframes_gather` is still the largest item at 2.52 ms**, but what remains in
-it is not division or multiplication any more — it is the nine getters
-themselves. The next honest saving there is arranging the arithmetic so an
-operation disappears entirely rather than getting cheaper, which is a change to
-what the code computes and needs a reason beyond speed.
+**`txframes_gather` is still the largest item at 1.96 ms**, and what is in it
+now is neither division-by-constant nor multiplication — it is the getters
+themselves, and three `___lldiv` calls that all divide by a *variable*: the A/D
+code in `hal_sys_vdd_c`, the basis in `compute_range_km`, and the shared
+`div_round` reached from FuelNow, FuelAvg and the flow window. A reciprocal
+would have to be derived at run time, which costs more than the division it
+replaces.
 
-For scale: the whole worst pass is 8.21 ms against a 100 ms transmit slot and a
-22 ms FIFO. **There is no performance problem left to solve here**, and the
-remaining items are small enough that the risk of touching them outweighs it.
+For scale: the whole worst pass is 6.73 ms against a 100 ms transmit slot and a
+22 ms FIFO, and RAM is 339 bytes of 3,649. **There is no performance problem
+left to solve here** — there was not one before either. What the second pass
+bought was 347 bytes of RAM, three data structures, two loops and one real
+fault in the distance.
 
-Two ideas that are *not* worth it, recorded so they are not rediscovered:
+Ideas that are *not* worth it, recorded so they are not rediscovered:
 
-- **Caching slow-moving values** — covered above; it changes behaviour.
-- **A second reciprocal for the runtime divisors** (`flow_sum_ms`,
-  `speed_mmh`, `seg_count`). Those denominators are not constants, so the magic
-  would have to be computed at run time, which costs more than the division it
-  replaces.
+- **Caching slow-moving values with a staleness.** Still refused. Note that
+  *memoisation* — recomputing only when an input changes, which is exact — is
+  a different proposal and was simply never needed once the getters got cheap.
+- **A second reciprocal for the runtime divisors.** Those denominators are not
+  constants, so the magic would have to be computed at run time.
+- **A quotient-bounded restoring division** to replace `___lldiv` where the
+  answer is known to be small (FuelNow clamps at 999, so eleven iterations
+  would do rather than thirty-two). It would save perhaps 700 cycles three
+  times over, and it is another hand-written arithmetic helper to prove and
+  maintain — against a budget that is already fourteen times inside its
+  deadline. The trade that made `divconst.h` and `fastmul.h` worth it does not
+  hold here.
+- **A cheaper checksum in `persist`.** `persist_crc16` is 2,119 cycles, but it
+  runs once a minute and 64 times at start-up. Weakening the integrity check on
+  the one thing that survives a power cycle, to save half a millisecond a
+  minute, is a bad trade in both directions.

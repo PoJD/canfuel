@@ -61,12 +61,13 @@ typedef struct {
     uint16_t dist_rem;
     bool     have_tick;
 
-    /* --- rolling window behind Range, one slot per kilometre ------------ */
-    uint32_t seg_ul[RANGE_SEGMENTS];
-    uint8_t  seg_next;
-    uint8_t  seg_count;
-    uint32_t seg_cur_ul;
-    uint32_t seg_cur_mm;
+    /* --- the rolling basis behind Range, updated once per kilometre ------ */
+    uint32_t seg_cur_ul;        /* burned so far in the kilometre in progress */
+    uint32_t seg_cur_mm;        /* and how far into it we are                 */
+    /* Consumption in 0.1 l/100 km shifted up by RANGE_BASIS_Q4, so the filter
+     * can move in steps smaller than a display digit. Zero means no kilometre
+     * has completed yet and the conservative default is used instead. */
+    uint16_t basis_q4;
 
     /* --- tank level, the settled baseline and the refuelling trigger ----- */
     /* The settled at-rest level in 1/256 litre, so the filter needs no

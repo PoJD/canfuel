@@ -336,19 +336,69 @@ static void test_range_uses_the_default_until_five_km(void)
     TT_EQ(compute_range_km(&c), 444);       /* 40 l at 9.0 l/100 km */
 }
 
-static void test_range_uses_the_rolling_window_after_five_km(void)
+static void test_range_uses_the_rolling_basis_after_five_km(void)
 {
     compute_t c;
-    uint8_t i;
     compute_init(&c);
     c.tank_damped_ml = 40000;
     c.tank_damped_valid = true;
     c.total_mm = 10000000;                  /* 10 km */
-    for (i = 0; i < 10; i++) {
-        c.seg_ul[i] = 60000;                /* 60 ml/km = 6.0 l/100 km */
-    }
-    c.seg_count = 10;
+    c.basis_q4 = (uint16_t)(60u << RANGE_BASIS_Q4);     /* 6.0 l/100 km */
     TT_EQ(compute_range_km(&c), 666);       /* 40 l at 6.0 l/100 km */
+}
+
+/* A kilometre at 100 km/h is 36 seconds, and 2000 ul a second is 72,000 ul a
+ * kilometre -- 7.2 l/100 km. Everything below goes through the real path:
+ * fuel frames carry the microlitres, ticks integrate the distance, and the
+ * basis is folded in wherever the kilometre happens to complete. */
+static void drive_seconds(compute_t *c, decode_state_t *st, uint32_t *now,
+                          uint16_t ul_per_s, int seconds)
+{
+    int i;
+    st->speed_valid = true;
+    st->speed_mmh = 100000u;                /* 100 km/h */
+    st->tank_l = 40;                        /* so the damping has somewhere to sit */
+    for (i = 0; i < seconds; i++) {
+        *now += 1000u;
+        st->fuel_counter = (uint16_t)((st->fuel_counter + ul_per_s) %
+                                      COUNTER_MODULO);
+        compute_on_fuel(c, st, *now);
+        compute_tick(c, st, *now);
+    }
+}
+
+/* The basis is built out of completed kilometres and it is a filter, not a
+ * step: it seeds on the first kilometre and then approaches a new consumption
+ * level over roughly RANGE_BASIS_SHIFT of them. That is what stops Range
+ * jumping after one hard pull, which is the whole reason it is averaged at
+ * all. */
+static void test_range_basis_is_built_from_kilometres_and_filtered(void)
+{
+    compute_t c;
+    decode_state_t st = running(1000, 2500);
+    uint32_t now = 0;
+
+    compute_init(&c);
+    c.tank_damped_ml = 40000;
+    c.tank_damped_valid = true;
+    compute_tick(&c, &st, now);
+    /* The first frame only establishes the counter reference -- without this
+     * the first kilometre would be short by one second of fuel and the filter
+     * would seed 2 % low, which is real behaviour at every engine start and
+     * simply not what this test is about. */
+    compute_on_fuel(&c, &st, now);
+
+    drive_seconds(&c, &st, &now, 2000, 36 * 6);         /* 6 km at 7.2 */
+    TT_TRUE(c.total_mm > RANGE_MIN_MM);
+    TT_NEAR(c.basis_q4 >> RANGE_BASIS_Q4, 72, 2);
+    TT_NEAR(compute_range_km(&c), 555, 15);             /* 40 l at 7.2 */
+
+    /* Twice the consumption for sixteen kilometres: one time constant, so the
+     * basis covers about 63 % of the way from 7.2 to 14.4 l/100 km and Range
+     * follows it down without ever having jumped. */
+    drive_seconds(&c, &st, &now, 4000, 36 * 16);
+    TT_RANGE(c.basis_q4 >> RANGE_BASIS_Q4, 100, 130);
+    TT_TRUE(compute_range_km(&c) < 400);
 }
 
 /* Two more range tests live in the tank section below, where the helper that
@@ -998,7 +1048,8 @@ int main(void)
     TT_RUN(test_a_standing_car_covers_no_distance);
 
     TT_RUN(test_range_uses_the_default_until_five_km);
-    TT_RUN(test_range_uses_the_rolling_window_after_five_km);
+    TT_RUN(test_range_uses_the_rolling_basis_after_five_km);
+    TT_RUN(test_range_basis_is_built_from_kilometres_and_filtered);
 
     TT_RUN(test_drag_model_sits_on_the_warm_free_rev_holds);
     TT_RUN(test_idle_gate_zero_at_a_standstill_warm);

@@ -81,6 +81,38 @@ static void flow_push(compute_t *c, uint16_t ul, uint16_t ms)
     c->flow[c->flow_open].ms = 0;
 }
 
+/* --- the rolling basis behind Range -------------------------------------- */
+
+/* One completed kilometre folded into the basis. Called from compute_tick, so
+ * at most once per 10 ms step and in practice once every 45 seconds of
+ * motorway driving -- there is nothing hot about this path.
+ *
+ * ONE MICROLITRE PER METRE IS EXACTLY 0.1 l/100 km, and a segment is exactly
+ * one kilometre, so the whole conversion is a division by 1000 -- and 1000 is
+ * one of the divisors with a free shift in divconst.h. */
+static void range_basis_update(compute_t *c)
+{
+    uint16_t km_q4 = (uint16_t)(clamp_u16(div_const(c->seg_cur_ul, DIVC_1000),
+                                          FUELNOW_CLAMP_D) << RANGE_BASIS_Q4);
+
+    if (c->basis_q4 == 0u) {
+        /* The first kilometre of a trip has nothing to average against, so it
+         * is the whole estimate. A kilometre that burned nothing at all --
+         * possible on a long descent, where the ECU cuts the injectors --
+         * leaves the basis at zero and Range keeps the conservative default,
+         * which is the right way to be wrong about it. */
+        c->basis_q4 = km_q4;
+        return;
+    }
+    if (km_q4 > c->basis_q4) {
+        c->basis_q4 = (uint16_t)(c->basis_q4 +
+                      ((km_q4 - c->basis_q4) >> RANGE_BASIS_SHIFT));
+    } else {
+        c->basis_q4 = (uint16_t)(c->basis_q4 -
+                      ((c->basis_q4 - km_q4) >> RANGE_BASIS_SHIFT));
+    }
+}
+
 /* --- the tank, and the refuelling trigger -------------------------------- */
 
 static void tank_sample(compute_t *c, const decode_state_t *st)
@@ -176,11 +208,13 @@ void compute_reset_trip(compute_t *c)
 {
     c->total_ul = 0;
     c->total_mm = 0;
-    memset(c->seg_ul, 0, sizeof c->seg_ul);
-    c->seg_next = 0;
-    c->seg_count = 0;
     c->seg_cur_ul = 0;
     c->seg_cur_mm = 0;
+    /* The basis goes with the trip. It is a property of the driving that was
+     * just discarded, and Range falls back to the conservative default until
+     * RANGE_MIN_MM of the new trip has been driven -- which is what the old
+     * segment ring did when it was cleared here. */
+    c->basis_q4 = 0;
 }
 
 void compute_restore(compute_t *c, uint32_t total_ul, uint32_t total_mm,
@@ -309,14 +343,7 @@ void compute_tick(compute_t *c, const decode_state_t *st, uint32_t now_ms)
             c->seg_cur_mm += mm;
 
             while (c->seg_cur_mm >= RANGE_SEGMENT_MM) {
-                c->seg_ul[c->seg_next] = c->seg_cur_ul;
-                /* Compare, not modulo -- RANGE_SEGMENTS is 30. */
-                if (++c->seg_next >= (uint8_t)RANGE_SEGMENTS) {
-                    c->seg_next = 0;
-                }
-                if (c->seg_count < RANGE_SEGMENTS) {
-                    c->seg_count++;
-                }
+                range_basis_update(c);
                 c->seg_cur_ul = 0;
                 c->seg_cur_mm -= RANGE_SEGMENT_MM;
             }
@@ -381,18 +408,11 @@ uint16_t compute_range_km(const compute_t *c)
 {
     uint32_t basis_d = RANGE_DEFAULT_L100_D;
 
-    /* The rolling window is over whole kilometres, so below RANGE_MIN_MM it
-     * has too few slots to mean anything and a conservative fixed figure is
-     * used instead. */
-    if (c->total_mm >= RANGE_MIN_MM && c->seg_count > 0u) {
-        uint32_t sum = 0;
-        uint8_t i;
-        for (i = 0; i < c->seg_count; i++) {
-            sum += c->seg_ul[i];
-        }
-        /* Again microlitres per metre: seg_count kilometres is seg_count*1000
-         * metres. */
-        basis_d = div_round(sum, mul_u32_u16(c->seg_count, 1000u));
+    /* The basis is built a kilometre at a time, so below RANGE_MIN_MM it rests
+     * on too few of them to mean anything and a conservative fixed figure is
+     * used instead. Zero means no kilometre has completed at all. */
+    if (c->total_mm >= RANGE_MIN_MM && c->basis_q4 > 0u) {
+        basis_d = (uint32_t)(c->basis_q4 >> RANGE_BASIS_Q4);
         if (basis_d == 0u) {
             basis_d = RANGE_DEFAULT_L100_D;
         }
