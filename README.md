@@ -35,10 +35,15 @@ hex rather than assumed.
 |---|---|---|---|---|
 | Program space | 12,986 B | 32,768 B | 39.6 % | the firmware itself |
 | Data space | 339 B | 3,649 B | 9.3 % | RAM |
-| EEPROM space | 0 B | 1,024 B | 0.0 % | the trip accumulators, written at run time |
 
-Written by `python tools/checkdocs.py --write` out of XC8's own memory
-summary, and checked in CI. Do not edit by hand.
+The **data EEPROM is not in that table**, because the compiler
+would report it as empty: the hex initialises none of it. It is written
+at run time, and `persist.c` uses **768 of 1,024 bytes** —
+64 slots of 12, rewritten in turn so the wear is spread. The rest is
+deliberately left free. See [`src/persist.h`](src/persist.h).
+
+Written by `python tools/checkdocs.py --write` from XC8's memory summary
+and `src/config.h`, and checked in CI. Do not edit by hand.
 
 <!-- checkdocs:end build-size -->
 

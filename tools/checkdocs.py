@@ -221,11 +221,19 @@ def build_stats():
 
 
 def render_block(stats):
-    """The markdown that goes between the markers."""
+    """The markdown that goes between the markers.
+
+    The EEPROM is deliberately NOT a row in the table. XC8 reports what the
+    hex file initialises, and the hex initialises none of it, so the compiler
+    says 0 % for ever -- while `persist.c` in fact uses three quarters of it,
+    every twenty seconds, at run time. A row reading "0 B / 0.0 %" would be
+    accurate about the build and badly wrong about the device. So the space is
+    described from config.h instead, below the table and clearly separated
+    from what the compiler measured.
+    """
     rows = [
         ("Program space", "the firmware itself"),
         ("Data space", "RAM"),
-        ("EEPROM space", "the trip accumulators, written at run time"),
     ]
     out = [
         BLOCK_BEGIN,
@@ -238,10 +246,23 @@ def render_block(stats):
             continue
         used, total, pct = stats[key]
         out.append(f"| {key} | {used:,} B | {total:,} B | {pct:.1f} % | {what} |")
+
+    slots = CFG["PERSIST_SLOTS"]
+    record = CFG["PERSIST_RECORD_BYTES"]
+    ring = slots * record
+    eeprom_total = stats["EEPROM space"][1] if "EEPROM space" in stats else None
+
+    out += ["", "The **data EEPROM is not in that table**, because the compiler"]
+    out.append("would report it as empty: the hex initialises none of it. It is written")
+    out.append(f"at run time, and `persist.c` uses **{ring:,} of "
+               + (f"{eeprom_total:,}" if eeprom_total else "the") + " bytes** —")
+    out.append(f"{slots} slots of {record}, rewritten in turn so the wear is spread. The"
+               " rest is")
+    out.append("deliberately left free. See [`src/persist.h`](src/persist.h).")
     out += [
         "",
-        "Written by `python tools/checkdocs.py --write` out of XC8's own memory",
-        "summary, and checked in CI. Do not edit by hand.",
+        "Written by `python tools/checkdocs.py --write` from XC8's memory summary",
+        "and `src/config.h`, and checked in CI. Do not edit by hand.",
         "",
         BLOCK_END,
     ]

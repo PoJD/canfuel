@@ -195,6 +195,30 @@ class GeneratedBlock(unittest.TestCase):
         self.assertIn("12,986 B", block)
         self.assertIn("39.6 %", block)
 
+    def test_eeprom_is_not_a_row_in_the_table(self):
+        """The compiler reports what the hex initialises, which is none of it.
+
+        A row would read 0 B / 0.0 % for ever and be honest about the build
+        while being badly wrong about the device, which writes three quarters
+        of the EEPROM every twenty seconds.
+        """
+        block = checkdocs.render_block(self.parse(SUMMARY))
+        table = [l for l in block.splitlines() if l.startswith("| ")]
+        self.assertFalse([l for l in table if "EEPROM" in l], table)
+        self.assertFalse([l for l in table if "0.0 %" in l], table)
+
+    def test_eeprom_usage_is_derived_from_config(self):
+        block = checkdocs.render_block(self.parse(SUMMARY))
+        ring = (checkdocs.CFG["PERSIST_SLOTS"]
+                * checkdocs.CFG["PERSIST_RECORD_BYTES"])
+        self.assertIn(f"{ring:,} of 1,024 bytes", block)
+        self.assertIn(f"{checkdocs.CFG['PERSIST_SLOTS']} slots of "
+                      f"{checkdocs.CFG['PERSIST_RECORD_BYTES']}", block)
+
+    def test_eeprom_total_comes_from_the_build_not_a_guess(self):
+        """1,024 is XC8's figure for this part, not a number typed in here."""
+        self.assertEqual(self.parse(SUMMARY)["EEPROM space"][1], 1024)
+
     def test_replacing_the_block_leaves_the_rest_alone(self):
         doc = (f"before\n{checkdocs.BLOCK_BEGIN}\nstale\n"
                f"{checkdocs.BLOCK_END}\nafter\n")
