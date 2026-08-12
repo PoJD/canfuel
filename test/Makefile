@@ -23,6 +23,21 @@ CFLAGS  ?= -std=c11 -Wall -Wextra -Werror -O1 -g
 CFLAGS  += -I../src -I.
 LDFLAGS ?=
 
+# MSYS make hands its recipes an empty TMP, and the MSYS2 gcc then tries to
+# write its temporary files into C:\WINDOWS and is refused. That used to be a
+# documented papercut -- every invocation here had to be spelled
+# `make TMP="$TEMP" test' -- which is both easy to forget and, being a shell
+# variable, impossible for anything to allow-list.
+#
+# mplab/Makefile has solved this for itself since 2026-08-09 and the same two
+# lines work here: `cygpath -m /tmp' is the Windows temporary directory in
+# forward-slash form. cygpath exists only on MSYS and Cygwin, so this is
+# self-guarding and leaves Linux, macOS and CI alone.
+CYGPATH := $(shell command -v cygpath 2>/dev/null)
+ifneq ($(CYGPATH),)
+export TMP := $(shell cygpath -m /tmp)
+endif
+
 BUILD := build
 SRCDIR := ../src
 

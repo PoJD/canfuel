@@ -332,17 +332,23 @@ evidence that `make -C mplab` will. Nor, on this machine, the reverse: the IDE
 manages its own packs and has not been made to build this project. `make` is
 the build.
 
-**A local quirk, not a repo problem:** in this shell `make` hands its recipes
-an empty `TMP`, and the MSYS2 gcc then tries to write its temporary files into
-`C:\WINDOWS` and is refused. Working around it is one word on the command line:
+**The `TMP` quirk is fixed and no longer needs a workaround.** In this shell
+`make` hands its recipes an empty `TMP` and the MSYS2 gcc then tries to write
+its temporary files into `C:\WINDOWS` and is refused. Every invocation used to
+have to be spelled `make -C test TMP="$TEMP" test`, which was easy to forget
+and — being a shell variable — impossible for any tool to allow-list. Since
+2026-08-12 `test/Makefile` derives it itself with the same two lines
+`mplab/Makefile` has used since 2026-08-09:
 
-```
-make -C test TMP="$TEMP" test
+```make
+CYGPATH := $(shell command -v cygpath 2>/dev/null)
+ifneq ($(CYGPATH),)
+export TMP := $(shell cygpath -m /tmp)
+endif
 ```
 
-`mplab/Makefile` fixes this for itself — that is the `cygpath -m /tmp` above —
-so only `make -C test` needs the workaround. Plain `make` works everywhere
-else, including CI.
+`cygpath` exists only on MSYS and Cygwin, so it is self-guarding and leaves
+Linux, macOS and CI alone. **Plain `make -C test test` now works.**
 
 ---
 
@@ -1045,8 +1051,11 @@ test/
   tt.h          the test framework, small enough to read at a sitting
   logread.h     the fixture parser in C, the counterpart of canlog.py
   replay_core.h one log through decode + compute, mirrors replay.py's loop
+  sched.h       one log through the core AS main.c DRIVES IT -- a clock, the
+                slots, and the EEPROM write as a blocking gap that loses frames
   replay_host.c the binary behind replay.py --host-build
-  test_*.c      decode, compute, txframes, persist
+  test_*.c      decode, compute, txframes, persist, divconst,
+                scheduler (rate and jitter invariance), props (fuzz + invariants)
   xc8stub/xc.h  a fake device header, for `make check-hal` and nothing else
 mplab/
   Makefile      the authoritative device build, drives xc8-cc — CI runs this
@@ -1092,7 +1101,7 @@ python tools/canlog.py --dump --id 0x480 FILE              # print frames
 python tools/replay.py --every 100 test/fixtures/07_accel.txt
 python -m unittest discover -s tools -p "test_*.py"        # 80+ tests
 
-make -C test test                                          # 250+ checks
+make -C test test                                          # 400+ checks
 make -C test check-pure                                    # no <xc.h> in the core
 make -C test check-hal                                     # the HAL still compiles
 python tools/replay.py --host-build test/fixtures/*.txt    # Python vs C
@@ -1127,10 +1136,44 @@ having on a machine with no XC8.
 The five commands above, in that order. All of it runs in under fifteen
 seconds and it is exactly what the `tools` and `core` CI jobs do, so a green
 run here means a green run there — the `firmware` job needs XC8 and only runs
-on GitHub. On this machine, remember the `TMP="$TEMP"` workaround for `make`.
+on GitHub. No `TMP=` prefix is needed any more; see the toolchain section.
 
 Adding a `test_*.c` needs no Makefile change — the glob picks it up, builds it
 against all four core sources and runs it.
+
+### Two test files that exist because the others share a blind spot
+
+`test_compute.c`, `test_txframes.c` and `tools/test_replay.py` all compare the
+C core against the Python reference over the same seventeen recordings. That is
+a strong check with one hole in it, and the hole cost a **6.4 % error in every
+distance the device would have reported**: the two implementations were written
+from the same table by the same reasoning, so a mistake in the reasoning is a
+mistake in both and the diff stays clean. **Twin implementations do not catch a
+fault they share.** Worse, all of them drive the core off the 0x480 frames, one
+`compute_tick()` per fuel frame ~38 ms apart, while `main.c` calls it every
+~100 µs — so anything that depends on *how often* the core is called was
+invisible by construction.
+
+- **`test_scheduler.c`** (with `sched.h`) drives the core the way `main.c`
+  does: a millisecond clock, the 100 ms and 1 s slots, and the once-a-minute
+  EEPROM write simulated as a 48 ms blocking gap that really loses frames. Its
+  properties are the ones an oracle cannot express — the answers must not
+  depend on the tick rate or on its jitter, `total_ul` must equal an
+  independently computed sum of deltas, and the EEPROM blindness must cost
+  exactly zero microlitres, which `main.c` had asserted in a comment and
+  nothing had ever tested.
+- **`test_props.c`** states things that must be true of the arithmetic itself
+  and attacks them with inputs no fixture contains: ten thousand fuzzed states
+  through every getter (a getter that divides by something reachable-zero does
+  not return a wrong number here, it takes SIGFPE and the test dies), totals
+  that may only move forward unless a refuelling zeroed them, a repeated frame
+  that must add nothing, an invalid speed that must invent no metres.
+
+**Fuzz reachable states only.** The generator builds a torque byte times
+`TORQUE_CNM_PER_BIT` rather than an arbitrary `uint16`, a tank level masked to
+seven bits, a quarter-rpm count `decode.c` could really have written. Going
+beyond that manufactures failures nobody can reach and teaches the next reader
+to ignore the test.
 
 ---
 
