@@ -21,7 +21,7 @@ refuelling   = REFUEL_CONFIRM_S consecutive at-rest samples more than
 - The rule also applies within a single session, so it covers refuelling with
   the engine running.
 - `tankStableL` is stored in EEPROM as part of the existing 12-byte record
-  (written once every 60 s) so it survives the ignition being switched off, and
+  (written every 20 s) so it survives the ignition being switched off, and
   the filter is re-seeded from it on the next start rather than from the first
   sample -- seeding from the sample would swallow exactly the change the rule
   exists to notice.

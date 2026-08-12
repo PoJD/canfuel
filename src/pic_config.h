@@ -95,8 +95,9 @@
  * DS39977C §28.2: the WDT period is 4 ms nominal, multiplied by the
  * postscaler; `01001 = 1:512 (2.048s)'. The longest the main loop can go
  * without clearing the watchdog is one EEPROM record -- 12 bytes at 4 ms
- * typical each (Table 31-1 D122), about 48 ms, once a minute. Two seconds is
- * forty times that, so a real hang is the only thing that can trip it. */
+ * typical each (Table 31-1 D122), about 48 ms, three times a minute. Two
+ * seconds is forty times that, so a real hang is the only thing that can
+ * trip it. */
 #pragma config WDTEN = ON
 #pragma config WDTPS = 512
 

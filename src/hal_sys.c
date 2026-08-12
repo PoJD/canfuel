@@ -381,7 +381,7 @@ void hal_eeprom_write(uint16_t addr, uint8_t value, void *ctx)
      *
      * Why: a byte write takes 4 ms typical (Table 31-1, D122) and persist.c
      * writes a 12-byte record, so following the example literally would hold
-     * interrupts off for about 48 ms once a minute. The only interrupt in this
+     * interrupts off for about 48 ms three times a minute. The only interrupt in
      * firmware is the millisecond clock, and that clock is what every
      * accumulator in the core is integrated against -- losing 48 ms of it per
      * minute is an 0.08 % error in distance and in the trip average, silently.
@@ -423,8 +423,8 @@ void hal_eeprom_write(uint16_t addr, uint8_t value, void *ctx)
      *
      * We do neither, because persist.c already covers it and covers it better.
      * The failure this guards against is losing power mid-write -- the
-     * ignition going off during the 48 ms once a minute, which is about one
-     * switch-off in a thousand. When it happens the CPU is not running to read
+     * ignition going off during the 48 ms every twenty seconds, which is
+     * about one switch-off in four hundred. When it happens the CPU is not running to read
      * WRERR anyway; on the next start persist_load() finds that slot's CRC
      * does not match and skips it, and the ring means the record it skips is
      * the OLDEST of sixty-four rather than the newest. Reprogramming the

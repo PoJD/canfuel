@@ -198,7 +198,8 @@ int main(void)
              * wrong.
              *
              * When it does write, it blocks for about 48 ms -- twelve bytes at
-             * the 4 ms typical of DS39977C Table 31-1, D122 -- and the FIFO
+             * the 4 ms typical of DS39977C Table 31-1, D122, three times a
+             * minute since PERSIST_INTERVAL_MS came down -- and the FIFO
              * will overflow behind it. That is survivable and was checked
              * rather than assumed:
              *

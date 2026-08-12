@@ -483,6 +483,46 @@
  * and spreads the wear sixty-four ways. */
 #define PERSIST_RECORD_BYTES    12
 #define PERSIST_SLOTS           64
-#define PERSIST_INTERVAL_MS     60000u      /* write at most once a minute  */
+
+/* TWENTY SECONDS, NOT SIXTY, since 2026-08-12. What the interval really sets
+ * is how much is thrown away at every ignition-off: the accumulators live in
+ * RAM and the stored record is 0 to PERSIST_INTERVAL_MS old, so a switch-off
+ * discards half of it on average. persist.h has the full argument; the short
+ * version is that the loss is systematic, one-directional, and larger in fuel
+ * than in distance, so it biases FuelAvg low.
+ *
+ * The four intervals costed, on a 600 km / 55 l tankful of sixty journeys
+ * (city driving, the pessimistic end) against D120's 100 K writes per byte
+ * over 64 slots:
+ *
+ *   interval   FuelAvg error   endurance, engine-on   at 1 h of driving a day
+ *      60 s       -0.51 %            12.2 years              292 years
+ *      30 s       -0.26 %             6.1 years              146 years
+ *   >> 20 s       -0.17 %             4.1 years               97 years
+ *      10 s       -0.09 %             2.0 years               49 years
+ *
+ * Endurance is not the constraint in any of those rows and never was -- see
+ * the D124 correction in CLAUDE.md, which used to make it look tighter than it
+ * is. 20 s cuts the error to a sixth of one display digit and still outlasts
+ * the car by a factor of five. Below that the returns are deep into what
+ * nothing can show.
+ *
+ * WHAT IT COSTS. Three writes a minute instead of one, so 0.24 % of the time
+ * is spent blind behind a 48 ms write instead of 0.08 %, and about 51 frames a
+ * minute are dropped instead of 17. All of them are harmless: the fuel counter
+ * is absolute so a gap costs nothing, and distance is integrated against the
+ * clock rather than against frame arrivals. It also triples the chance that a
+ * given switch-off tears a write -- one in 417 rather than one in 1,250 --
+ * while cutting what a torn write loses from 60 s to 20, which is a better
+ * trade than it first looks.
+ *
+ * WHAT WAS REJECTED. Writing when the car comes to rest, which sounds like the
+ * targeted fix and is not: it would take the distance loss to zero and leave
+ * the fuel loss alone, and since FuelAvg is a RATIO whose error is the
+ * DIFFERENCE between the two losses, removing one of them makes the displayed
+ * average slightly worse (-0.55 % against -0.51 %). It would also be hundreds
+ * of writes in a traffic jam. Shortening the interval shrinks both losses
+ * together, which is why it is the answer and stopping is not. */
+#define PERSIST_INTERVAL_MS     20000u      /* at most three times a minute */
 
 #endif /* CONFIG_H */

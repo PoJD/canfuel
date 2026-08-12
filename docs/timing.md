@@ -142,10 +142,10 @@ of which 26.4 are 0x480); the rest are the scheduler's own constants.
 | 0x480 on top of the frame: counter, totals, flow bucket | 2,077 | 26.4 | 54,832 | 1.37 % |
 | the millisecond ISR | 34 | 1,000 | 34,000 | 0.85 % |
 | the 1 s slot, not writing | 4,765 | 1 | 4,765 | 0.12 % |
-| the EEPROM write, amortised over its minute | 192,000 | 1 per 60 s | 3,200 | 0.08 % |
+| the EEPROM write, amortised over its interval | 192,000 | 1 per 20 s | 9,600 | 0.24 % |
 | the tank sample | 890 | 1 | 890 | 0.02 % |
 | the range basis, one completed km at 100 km/h | 553 | 1 per 36 s | 15 | 0.00 % |
-| **total** | | | **649,811** | **16.2 %** |
+| **total** | | | **656,211** | **16.4 %** |
 
 **Five sixths of the machine is idle**, and the shape of what is left is worth
 reading twice:
@@ -164,7 +164,7 @@ reading twice:
   divide by a variable. That is the only large item left with an obvious
   shape, and it is deliberately not being chased: `docs/optimisation.md`
   explains why a run-time reciprocal costs more than the division.
-- **The EEPROM write is 0.08 % of the CPU** and half of this document. That is
+- **The EEPROM write is 0.24 % of the CPU** and half of this document. That is
   the right ratio for something that blocks for 48 ms: it is not a load
   problem, it is a latency problem, and latency is what the rest of the page
   is about.
@@ -175,7 +175,7 @@ The passes-per-second figure follows from the table rather than being measured:
 whatever the work above does not consume is spent going round doing nothing, so
 
 ```
-passes/s = (4,000,000 - 649,811) / (cycles per idle pass)
+passes/s = (4,000,000 - 656,211) / (cycles per idle pass)
 ```
 
 The idle pass is the floor of the loop — `hal_sys_watchdog_clear` (2),
@@ -207,7 +207,7 @@ rather than a late frame.
 | **flow bucket** (`uint16` µl and ms) | 65,535 each | ≤ 1,250 ms and ~3,750 µl | 17× |
 | **`total_mm`** | wraps at 4,295 km | reset at `TRIP_MAX_MM` = 2,000 km | 2.1× |
 | **`total_ul`** | wraps at 4,295 l | reset at `TRIP_MAX_UL` = 400 l | 10.7× |
-| **EEPROM endurance** (D120, 100 K min) | 64 slots × 100 K writes | 1 write/min | **12 years of engine-on time** |
+| **EEPROM endurance** (D120, 100 K min) | 64 slots × 100 K = 6.4 M writes | 3 writes/min | **4.1 years of engine-on time**, ~97 calendar at 1 h/day |
 | **transmit buffers** | 3 | 2 frames per 100 ms, ~230 µs each | 200× |
 | **program memory** | 32,768 B | 12,986 B | 39.6 % used |
 | **RAM** | 3,649 B | 339 B | 9.3 % used |
@@ -280,7 +280,7 @@ FIFO.
 | `txframes_gather_trip` (the two divisions by 1000) | 837 | 209 µs |
 | `txframes_trip` + `hal_can_send` | 384 | 96 µs |
 | `persist_save` deciding not to write | 625 | 156 µs |
-| `persist_save` **writing**, once a minute | — | **~48 ms** |
+| `persist_save` **writing**, three times a minute | — | **~48 ms** |
 
 The first line arrived here from the 100 ms slot, where it was being computed
 ten times a second for a frame that goes out once a second. That is a straight
@@ -328,7 +328,7 @@ Against the two deadlines:
 
 - **The 100 ms transmit cadence.** A 6.52 ms pass leaves a **15× margin**,
   where before the optimisation it left 5.3×. The once-a-minute pass leaves
-  1.8×, so 0x600 and 0x601 arrive up to 56 ms late once a minute and the
+  1.8×, so 0x600 and 0x601 arrive up to 56 ms late three times a minute and the
   display sees a gap of about 156 ms instead of 100 ms. Nothing reads a period,
   so this is invisible.
 - **`RX_POLL_MS`, the 10 ms the FIFO must not fall behind by.** The worst
@@ -432,7 +432,7 @@ None of that costs anything, which is the analysis already written out in
   temperature that moves in minutes.
 
 `main.c` then clears the overflow flag, because an overflow we caused
-deliberately, once a minute, is not a fault worth putting on an LED.
+deliberately, three times a minute, is not a fault worth putting on an LED.
 
 The **ordinary** worst pass, 6.52 ms, is inside the 22 ms the FIFO holds, so
 outside the EEPROM write nothing is dropped at all — and since 2026-08-12 it is

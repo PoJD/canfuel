@@ -627,8 +627,8 @@ Table 31-1, Memory Programming Requirements:
 
 D120 is the number `persist.h`'s header comment argues from and it is a
 *minimum*, which is the right way round to design. The 4 ms of D122 is why the
-write must not be attempted from an interrupt; once a minute it is otherwise
-irrelevant.
+write must not be attempted from an interrupt; three times a minute it is
+otherwise irrelevant.
 
 **D124 was read backwards here until 2026-08-12 and the correction matters.**
 This file used to call it "a budget for the whole array" that our writes
@@ -644,13 +644,13 @@ is likely not required."*
 Our ring rewrites every one of its 768 bytes once per 64 writes, which is four
 orders of magnitude more often than D124 asks, so **no refresh is ever needed
 and D124 is not a ceiling we approach.** The only limit is D120: 64 slots ×
-100 K = **6.4 M writes**, which at one a minute is 12 years of engine-on time,
-or roughly 290 calendar years at an hour of driving a day.
+100 K = **6.4 M writes**, which at `PERSIST_INTERVAL_MS` = 20 s is 4.1 years
+of engine-on time, or roughly 97 calendar years at an hour of driving a day.
 
-That headroom is worth knowing, because it means "write more often" is a
-cheap option and not the trade the old reading implied — one write every ten
-seconds would still be ~49 calendar years. `persist.h` explains why it is
-nonetheless not done.
+That headroom is what paid for the interval coming down from 60 s to 20 s on
+2026-08-12, which cut the accumulator loss at every ignition-off by two thirds.
+`config.h` costs all four candidates and `persist.h` explains what the loss is
+and why writing at every stop would have made the displayed average *worse*.
 
 `persist.c` wants exactly two functions and their shape is already fixed:
 
@@ -828,7 +828,7 @@ watchdog off, which is reasonable for a light switch: a wedged one gets noticed
 and power-cycled. A converter behind an air vent does not, and it is feeding a
 display the driver is reading. The longest the main loop can go without a
 `CLRWDT()` is one EEPROM record — twelve bytes at the 4 ms typ of Table 31-1
-D122, about 48 ms, once a minute. `WDTPS = 512` gives 2.048 s, forty times
+D122, about 48 ms, three times a minute. `WDTPS = 512` gives 2.048 s, forty times
 that, so only a real hang can trip it.
 
 **`BORV = 0`, likewise decided.** Table 31-25 parameters A01 and A50 specify
@@ -988,9 +988,9 @@ interrupts on.
 
 Why: the poll is 4 ms typ per byte (Table 31-1, D122) and a record is twelve
 bytes, so following the example literally would hold interrupts off for ~48 ms
-once a minute. The only interrupt in this firmware is the millisecond clock,
+three times a minute. The only interrupt in this firmware is the millisecond clock,
 and that clock is what every accumulator in the core is integrated against —
-losing 48 ms of it per minute is a silent 0.08 % error in distance and in the
+losing 144 ms of it per minute would be a silent 0.24 % error in distance and in the
 trip average.
 
 Why it is safe: the sequence the datasheet actually requires is "write 55h to

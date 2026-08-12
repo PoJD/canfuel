@@ -8,33 +8,34 @@
  *
  * Why a circular buffer at all: the K80's data EEPROM is specified for a
  * minimum of 100 K erase/write cycles per byte (DS39977C Table 31-1, D120;
- * 1000 K typical). Writing one fixed location once a minute would reach that
- * minimum in about 70 days of driving. Sixty-four slots turn it into twelve
- * years, and the sequence number makes a torn write recoverable instead of
- * fatal.
+ * 1000 K typical). Writing one fixed location every PERSIST_INTERVAL_MS would
+ * reach that minimum in about 23 days of driving. Sixty-four slots turn it
+ * into four years of engine-on time -- close to a century at an hour of
+ * driving a day -- and the sequence number makes a torn write recoverable
+ * instead of fatal.
  *
  * A byte write takes 4 ms typical (D122) and blocks, so it must not be done
- * from an interrupt. Once a minute that costs nothing.
+ * from an interrupt. Three times a minute that is 0.24 % of the time.
  *
  * WHAT EVERY IGNITION-OFF COSTS, AND WHY THE TORN WRITE IS NOT THE
  * INTERESTING CASE.
  *
- * The accumulators live in RAM and reach the EEPROM once a minute, so at any
- * instant the stored record is 0 to 60 s out of date. When the ignition goes
- * off the RAM goes with it, and everything since the last write is gone --
- * uniformly 0 to 60 s, thirty on average. That is not a fault, it is the
+ * The accumulators live in RAM and reach the EEPROM every PERSIST_INTERVAL_MS,
+ * so at any instant the stored record is 0 to 20 s out of date. When the
+ * ignition goes off the RAM goes with it, and everything since the last write
+ * is gone -- uniformly 0 to 20 s, ten on average. That is not a fault, it is the
  * design; but it is worth stating the right way round, because the obvious
  * reading of the CRC-and-ring machinery above is that losing a minute is the
- * rare bad case. It is not. **Losing a minute is the ordinary case at its
- * maximum**, and a torn write simply pins it there: an unlucky switch-off
- * (about one in 1,250, the 48 ms of writing against the 60 s between) loses
- * 60 s instead of the 30 it would have lost anyway. The lucky switch-off, the
- * one right after a completed write, is the only one that loses nothing.
+ * rare bad case. It is not. **Losing a whole interval is the ordinary case at
+ * its maximum**, and a torn write simply pins it there: an unlucky switch-off
+ * (about one in 417, the 48 ms of writing against the 20 s between) loses 20 s
+ * instead of the 10 it would have lost anyway. The lucky switch-off, the one
+ * right after a completed write, is the only one that loses nothing.
  *
  * The two accumulators do not lose equally:
  *
  *   fuel      almost always lost. The engine was running, so it was burning:
- *             ~310 ul/s at idle, so 9 ml on an average shutdown.
+ *             ~310 ul/s at idle, so 3 ml on an average shutdown.
  *   distance  usually not. The last seconds before a key turn are parking and
  *             idling, so there is often no distance in them at all -- but
  *             switch off the instant the car stops and it can be a kilometre.
@@ -43,26 +44,36 @@
  * it survives: the lost segment does have a higher consumption than the trip
  * average (idling burns fuel and covers no ground), which biases the displayed
  * average LOW -- the gauge flatters the car -- but over a tankful of 20 to 60
- * journeys that is 0.4 to 1.3 % of the fuel against 0.3 to 1 % of the
- * distance, and the ratio moves by **0.1 to 0.3 %**. One digit of the display
- * is 1.4 %. It is invisible.
+ * journeys that is 0.11 to 0.34 % of the fuel against 0.06 to 0.17 % of the
+ * distance, and the ratio moves by **0.06 to 0.17 %**. One digit of the
+ * display is 1.4 %. It is invisible.
  *
  * THE ABSOLUTES ARE NOT SO LUCKY. TripFuel and TripDist in 0x602 lose the same
  * fraction with nothing to cancel it, and they lose it in one direction, every
- * shutdown, cumulatively until the next refuelling. They read about half a per
+ * shutdown, cumulatively until the next refuelling. They read about two tenths of a per
  * cent short of the truth per tankful. Nothing on the display consumes them,
  * but they are exactly what gets compared against a real odometer during
  * bring-up -- so anybody doing that comparison should expect the shortfall and
  * not go looking for an arithmetic bug. docs/frames.md says so too.
  *
- * WHY IT IS NOT FIXED. Writing more often is affordable -- see the endurance
- * arithmetic above; even one write every ten seconds is decades of calendar
- * life -- but it buys nothing anybody can see, because the only consumer that
- * matters is a ratio. Detecting the shutdown in advance would fix it properly
- * and cannot be done: the board is on switched 12 V, so it loses power in the
- * same instant the ECU does, and nothing on the bus arrives early enough to
- * warn us. A hold-up capacitor big enough to finish a record after the rail
- * drops would be a hardware answer to a problem the arithmetic does not have.
+ * WHY IT IS NOT FIXED FURTHER. The interval came down from 60 s to 20 s on
+ * 2026-08-12, which is where the numbers above come from; config.h costs the
+ * four candidates. Ten seconds would halve the error again and still leave
+ * decades of calendar life, and it is not done because the error is already
+ * a sixth of a display digit.
+ *
+ * Writing when the car comes to rest was considered and rejected, and the
+ * reason is worth keeping because it is the opposite of the intuition: it
+ * would take the distance loss to zero and leave the fuel loss alone, and
+ * FuelAvg's error is the DIFFERENCE between the two, so removing one of them
+ * makes the displayed average slightly WORSE. It would also be hundreds of
+ * writes in a traffic jam.
+ *
+ * Detecting the shutdown in advance is the only thing that would remove the
+ * loss entirely, and it cannot be done in firmware alone: the board would have
+ * to sense its own supply falling and hold itself up long enough to finish a
+ * record. That is a hardware answer and it is written up as a possible
+ * revision B in the kicad repository, not here.
  *
  * Record, 12 bytes, little endian:
  *
