@@ -15,7 +15,7 @@
  *
  *   - the answer must not depend on how often the core is called
  *   - total_ul must be the sum of the deltas, computed a second way
- *   - the once-a-minute EEPROM blindness must cost no fuel at all, which
+ *   - the EEPROM blindness must cost no fuel at all, which
  *     main.c asserts in a comment and nothing has ever tested
  *
  * sched.h is the harness. Only the timestamped fixtures can be used: a clock
@@ -120,7 +120,7 @@ static void test_the_total_is_the_sum_of_the_deltas(void)
 }
 
 /* ===================================================================== *
- *  main.c claims the once-a-minute EEPROM write is free, and until now
+ *  main.c claims the EEPROM write is free, and until now
  *  that claim was a comment:
  *
  *    "the counter delta is (new - old) mod 32768, so a gap in the frames

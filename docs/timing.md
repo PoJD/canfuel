@@ -301,7 +301,7 @@ the 100 ms slot                  2.60 ms
 the 1 s slot, not writing        1.19 ms
                                 --------
 worst pass without an EEPROM write      6.52 ms
-plus the once-a-minute EEPROM write    ~54.5 ms
+plus an EEPROM write, 3x a minute      ~54.5 ms
 ```
 
 Every figure here comes from `tools/cycles.py` against a real build. **The same
@@ -327,7 +327,7 @@ What changed and why is `docs/optimisation.md`.
 Against the two deadlines:
 
 - **The 100 ms transmit cadence.** A 6.52 ms pass leaves a **15× margin**,
-  where before the optimisation it left 5.3×. The once-a-minute pass leaves
+  where before the optimisation it left 5.3×. The EEPROM pass leaves
   1.8×, so 0x600 and 0x601 arrive up to 56 ms late three times a minute and the
   display sees a gap of about 156 ms instead of 100 ms. Nothing reads a period,
   so this is invisible.

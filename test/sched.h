@@ -19,8 +19,8 @@
  *
  *   every tick_ms      deliver whatever frames have arrived, compute_tick()
  *   every TX_FAST_MS   txframes_gather() -- the getters, at their real rate
- *   every TX_SLOW_MS   txframes_gather_trip(), and the once-a-minute EEPROM
- *                      write simulated as a blocking gap that loses frames
+ *   every TX_SLOW_MS   txframes_gather_trip(), and the EEPROM write simulated
+ *                      as a blocking gap that loses frames
  *
  * The tick is a parameter on purpose: the property that matters is that the
  * answers do not depend on it. test_scheduler.c is where that is asserted.
@@ -177,7 +177,8 @@ static inline bool sched_run(const char *name, sched_opts_t o,
             last_slow = now;
             txframes_gather_trip(&r->tx, &r->cp, now);
 
-            /* persist_save() decides for itself once a minute. Here only its
+            /* persist_save() decides for itself, every PERSIST_INTERVAL_MS.
+             * Here only its
              * cost is modelled: the clock keeps running through the write --
              * hal_eeprom_write() restores GIE as soon as the unlock sequence
              * is over -- but nothing is received.

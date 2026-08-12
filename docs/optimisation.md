@@ -585,6 +585,6 @@ Ideas that are *not* worth it, recorded so they are not rediscovered:
   deadline. The trade that made `divconst.h` and `fastmul.h` worth it does not
   hold here.
 - **A cheaper checksum in `persist`.** `persist_crc16` is 2,119 cycles, but it
-  runs once a minute and 64 times at start-up. Weakening the integrity check on
-  the one thing that survives a power cycle, to save half a millisecond a
-  minute, is a bad trade in both directions.
+  runs three times a minute and 64 times at start-up. Weakening the integrity
+  check on the one thing that survives a power cycle, to save 1.6 ms a minute,
+  is a bad trade in both directions.

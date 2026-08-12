@@ -192,7 +192,7 @@ int main(void)
             rec.tank_stable_l     = cp.tank_stable_l;
             rec.tank_stable_valid = cp.tank_stable_valid;
 
-            /* persist_save() carries the once-a-minute rule and the
+            /* persist_save() carries the PERSIST_INTERVAL_MS rule and the
              * only-on-change rule itself. Call it every second and let it say
              * no; a second timer here would just be a second thing to get
              * wrong.

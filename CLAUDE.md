@@ -133,7 +133,8 @@ What exists and works:
 - `src/main.c` — the cooperative scheduler, and nothing else
 - `mplab/` — `canfuel.X` for the IDE and a plain `Makefile` driving `xc8-cc`,
   which is the authoritative recipe and what CI runs
-- `test/` — 250+ checks across four test binaries, plus `replay_host.c`
+- `test/` — 350+ hand-written checks across seven test binaries, plus the 1.6 M
+  brute-forced by `test_divconst.c` and `test_props.c`, plus `replay_host.c`
 - `tools/canlog.py`, `tools/replay.py` — 80+ Python tests green, and
   `replay.py --host-build` now diffs Python against the C core
 - `test/fixtures/` — seventeen real logs from the car, documented, of which
@@ -646,9 +647,9 @@ persist_record_t rec = { cp.total_ul, cp.total_mm,
 persist_save(&ps, &rec, now_ms);   /* itself decides whether to write */
 ```
 
-`persist_save()` already carries the once-a-minute rule and the only-on-change
-rule. Call it every second and let it say no — do not build a second timer for
-it in `main.c`.
+`persist_save()` already carries the `PERSIST_INTERVAL_MS` rule — 20 s, so at
+most three times a minute — and the only-on-change rule. Call it every second
+and let it say no; do not build a second timer for it in `main.c`.
 
 Three things `main.c` must **not** do, because the core already does them:
 
@@ -876,9 +877,9 @@ What still settles it is that **Mode 0 has two receive buffers and Mode 2 forms
 a FIFO out of all eight** (§27.4.3). The six identifiers arrive at **3.58 per
 10 ms**, measured off the `_z1` fixtures and near-identical at idle, at 2586 rpm
 and over six minutes of driving. Two buffers against that is a coin toss on
-every pass, and it collapses entirely during the once-a-minute EEPROM write
-that blocks for ~48 ms. The sixteen filters are now a convenience; the FIFO is
-the requirement.
+every pass, and it collapses entirely during an EEPROM write, which blocks for
+~48 ms and happens three times a minute. The sixteen filters are now a
+convenience; the FIFO is the requirement.
 
 The FIFO is read through `FP<3:0>` in `CANCON` and the access-bank window in
 `ECANCON`, per §27.15.1. **That window is a loaded gun**: in Mode 1 and 2,
@@ -1053,7 +1054,7 @@ No remainder and nothing to drift. Timer2 clashes with nothing here — the CCP
 and MSSP modules that could claim it are unused.
 
 **Interrupt or polling for receive: polling, and it is not close.** Functional
-Mode 2 turns all eight receive buffers into one FIFO (§27.4.3), and the seven
+Mode 2 turns all eight receive buffers into one FIFO (§27.4.3), and the six
 identifiers we accept arrive at roughly four frames per 10 ms. `main.c` drains
 the FIFO **every loop pass**, not on a 10 ms slot, which leaves something like
 a twenty-fold margin. An interrupt would buy nothing and would cost the one
@@ -1061,8 +1062,8 @@ thing that is genuinely awkward: the receive path and the transmit path both
 steer the `ECANCON` access-bank window, and there is no lock available between
 an ISR and the main loop.
 
-The one place frames really are lost is the once-a-minute EEPROM write, which
-blocks for about 48 ms. That was checked rather than waved away — the fuel
+The one place frames really are lost is the EEPROM write, three times a minute,
+which blocks for about 48 ms. That was checked rather than waved away — the fuel
 counter delta is `(new − old) mod 32768` so a gap costs nothing, distance is
 integrated against the clock rather than against frame arrivals, and the clock
 keeps running because `hal_eeprom_write()` re-enables interrupts the instant
@@ -1219,7 +1220,7 @@ python tools/canlog.py --dump --id 0x480 FILE              # print frames
 python tools/replay.py --every 100 test/fixtures/07_accel.txt
 python -m unittest discover -s tools -p "test_*.py"        # 80+ tests
 
-make -C test test                                          # 400+ checks
+make -C test test                                          # 350+ checks, 1.6 M brute-forced
 make -C test check-pure                                    # no <xc.h> in the core
 make -C test check-hal                                     # the HAL still compiles
 make -C test sanitize                                      # ASan + UBSan, CI only
@@ -1274,8 +1275,8 @@ fault they share.** Worse, all of them drive the core off the 0x480 frames, one
 invisible by construction.
 
 - **`test_scheduler.c`** (with `sched.h`) drives the core the way `main.c`
-  does: a millisecond clock, the 100 ms and 1 s slots, and the once-a-minute
-  EEPROM write simulated as a 48 ms blocking gap that really loses frames. Its
+  does: a millisecond clock, the 100 ms and 1 s slots, and the EEPROM write
+  simulated as a 48 ms blocking gap that really loses frames. Its
   properties are the ones an oracle cannot express — the answers must not
   depend on the tick rate or on its jitter, `total_ul` must equal an
   independently computed sum of deltas, and the EEPROM blindness must cost

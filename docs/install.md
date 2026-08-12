@@ -111,7 +111,7 @@ car before anything is soldered.
 
 ```
 cd canfuel
-make -C test test            # 250+ checks
+make -C test test            # 350+ checks, plus 1.6 M brute-forced
 make -C test check-pure      # no <xc.h> anywhere in the core
 make -C test check-hal       # the HAL still compiles
 python -m unittest discover -s tools -p "test_*.py"        # 80+ tests
@@ -124,10 +124,6 @@ consumption column you can read by eye:
 ```
 python tools/replay.py --every 100 test/fixtures/07_accel.txt
 ```
-
-**On this machine** `make -C test` needs `TMP="$TEMP"` on the command line; the
-reason is in `CLAUDE.md` under *Local toolchain* and it is a quirk of the shell,
-not of the repository.
 
 **What it proves.** The core reproduces the Python reference on every recorded
 log — fuel totals and restart counts exactly, distance to within 7 mm over 54 m — and
@@ -582,10 +578,10 @@ Two more worth doing on the first drive:
 - **Range and FuelTank should agree with each other.** They read the same damped
   tank level; if one moves and the other does not, something is wrong in
   `compute.c`.
-- **Refuel and watch the trip average clear.** The reset fires on a rise of more
-  than 3 L in the at-rest median, which takes about five seconds of standing
-  still after the fill. `docs/refuel-reset.md` has the rules and the corner
-  cases.
+- **Refuel and watch the trip average clear.** The reset fires on five
+  consecutive at-rest samples more than 3 L above the settled tank level, so
+  about five seconds of standing still after the fill. `docs/refuel-reset.md`
+  has the rules and the corner cases.
 
 ---
 

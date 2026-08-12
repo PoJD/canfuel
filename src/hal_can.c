@@ -75,8 +75,8 @@ static hal_can_mode_t g_mode = HAL_CAN_MODE_NORMAL;
  * removed 17 to 35 frames a second and did not change it materially.
  *
  * Two buffers against 3.58 frames per 10 ms is a coin toss on every scheduler
- * pass, and it collapses completely during the once-a-minute EEPROM write,
- * which blocks for about 48 ms -- see docs/timing.md. Eight buffers is what
+ * pass, and it collapses completely during an EEPROM write, which blocks for
+ * about 48 ms three times a minute -- see docs/timing.md. Eight buffers is what
  * makes that write cost nothing. So the FIFO is the argument, and the extra
  * filters are now a convenience rather than a requirement.
  *

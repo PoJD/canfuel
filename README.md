@@ -77,7 +77,7 @@ proves the programmer on its own before a board depends on it.
 ## Quick start
 
 ```
-make -C test test                                       # the C core, 250+ checks
+make -C test test                                       # the C core, 350+ checks
 make -C test check-pure                                 # no <xc.h> in the core
 make -C test check-hal                                  # the HAL still compiles
 python -m unittest discover -s tools -p "test_*.py"     # the Python tools
