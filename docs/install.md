@@ -8,16 +8,19 @@ come from the datasheets and the design, and they say so where it matters.
 Correct this document as you go; that is what it is for, and it is the one
 document that is meant to outlive the project's own notes.
 
-> **Where this car is, 2026-08-11.** Steps 1, 2 and 3 are done: the firmware
+> **Where this car is, 2026-08-12.** Steps 1, 2 and 3 are done: the firmware
 > builds and its tests pass, `S-AQY.TRI` is uploaded and verified on the
 > display, and the harness is built, fitted and measured — **5.01 V at the
 > 4-pin the board will plug into**, with the display since run on that loom
 > using DuPont jumpers in place of the board.
 >
-> **The next action is step 4**, and it is waiting on the boards, which were
-> ordered on 2026-08-09 and are expected in the week of 2026-08-17. Nothing
-> else is outstanding: one calibration question remains open and it is a
-> refinement, not a blocker — see *Then: calibration*.
+> **The next action is step 4, and it needs no board.** It proves the
+> programmer end of the toolchain with nothing but a PICkit 3 and a USB port,
+> which is the one piece of ground that can be taken while the boards are in
+> the post. **Step 5 onwards is what waits on them**; they were ordered on
+> 2026-08-09 and are expected in the week of 2026-08-17. Nothing else is
+> outstanding: one calibration question remains open and it is a refinement,
+> not a blocker — see *Then: calibration*.
 
 ```
 git clone git@github.com:PoJD/canfuel.git
@@ -54,19 +57,19 @@ owns.
 |---|---|---|
 | **CANchecked MFD15 Gen2** display | 2, and everything after | the whole point of the device; it also supplies the converter's 5 V |
 | **A phone or laptop with Wi-Fi** | 2 | to reach oDSS, which the display serves itself — nothing is installed for this |
-| **The converter board** | 4 onwards | `kicad/canfuel/fab/` are the files a fab house needs; ours came from Gatema, 3 pieces |
-| **The parts to populate it** | 4 | 24 of them, mostly through-hole — `kicad/canfuel/fab/canfuel-bom.csv` |
-| **Soldering iron** | 4 | through-hole, nothing fine-pitch |
-| **PICkit 3** | 4 | through the 5-pin ICSP header J3, driven from **MPLAB X IDE**. Other programmers supporting the PIC18F25K80 should work; none has been tried |
-| **USBtin** ([fischl.de](https://www.fischl.de/usbtin/)) | 7, and any recording | the CAN adapter every fixture in `test/fixtures/` was recorded with. `tools/usbtin_capture.py` drives it and needs `pyserial` |
-| **Multimeter** | 3, 4 | ringing out the loom, and confirming 5 V before the board is ever plugged in |
+| **The converter board** | 5 onwards | `kicad/canfuel/fab/` are the files a fab house needs; ours came from Gatema, 3 pieces |
+| **The parts to populate it** | 5 | 24 of them, mostly through-hole — `kicad/canfuel/fab/canfuel-bom.csv` |
+| **Soldering iron** | 5 | through-hole, nothing fine-pitch |
+| **PICkit 3** | 4, 5 | through the 5-pin ICSP header J3, driven from the command line with **IPECMD** — see step 4. MPLAB X has to be installed for that, because IPECMD is part of it, but the IDE is never opened. Other programmers supporting the PIC18F25K80 should work; none has been tried |
+| **USBtin** ([fischl.de](https://www.fischl.de/usbtin/)) | 8, and any recording | the CAN adapter every fixture in `test/fixtures/` was recorded with. `tools/usbtin_capture.py` drives it and needs `pyserial` |
+| **Multimeter** | 3, 5 | ringing out the loom, and confirming 5 V before the board is ever plugged in |
 | **Crimping tools and loom parts** | 3 | listed in `kicad/canfuel/docs/harness.md`, which is where that list belongs |
 | **VCDS** | calibration only | **optional.** Not needed to build or run anything; it is diagnostics for the calibration work at the end |
-| **The car** | 5, 6, 7 | a VW New Beetle with the AQY engine. Other PQ34 cars share much of the bus but nothing here is verified against them |
+| **The car** | 6, 7, 8 | a VW New Beetle with the AQY engine. Other PQ34 cars share much of the bus but nothing here is verified against them |
 
 **A 120 Ω terminator** is worth knowing about: the board deliberately does not
 fit R5, because the car's bus is already terminated at both ends. Bench testing
-off the car needs an external one — but step 4, loopback, does not, which is
+off the car needs an external one — but step 5, loopback, does not, which is
 another reason to do it.
 
 **Nothing above is needed for step 1.** The whole core builds and its tests run
@@ -77,7 +80,7 @@ on a PC with gcc, make and Python and no hardware whatsoever.
 ## Order of operations
 
 The order is chosen so that each step can fail cheaply and be understood on its
-own. **Do not skip step 4**: it costs ten minutes on a desk and it is the only
+own. **Do not skip step 5**: it costs ten minutes on a desk and it is the only
 one that tests the CAN driver without a car attached.
 
 | # | Step | Needs | Repository | This car |
@@ -85,13 +88,15 @@ one that tests the CAN driver without a car attached.
 | 1 | Build and test on a PC | gcc, make, Python | `canfuel` | done |
 | 2 | Upload the display configuration | the display and any Wi-Fi device with a browser | `mfd15` | done |
 | 3 | Make up the harness | crimping tools, the loom parts | `kicad` | done |
-| 4 | Populate and programme a board, loopback on the desk | PICkit, XC8 | `canfuel` | **next** |
-| 5 | Listen only, in the car | the car | `canfuel` | |
-| 6 | Transmit, in the car | the car | `canfuel` | |
-| 7 | Check it against the raw counter | a drive | — | |
+| 4 | Prove the programmer, with no board | a PICkit 3, a USB port, MPLAB X | `canfuel` | **next** |
+| 5 | Populate and programme a board, loopback on the desk | PICkit, XC8 | `canfuel` | |
+| 6 | Listen only, in the car | the car | `canfuel` | |
+| 7 | Transmit, in the car | the car | `canfuel` | |
+| 8 | Check it against the raw counter | a drive | — | |
 
-Steps 1 to 3 are independent of each other and can be done in any order or in
-parallel. From 4 on, the order is the point.
+Steps 1 to 4 are independent of each other and can be done in any order or in
+parallel — **none of them needs a board**, which is why step 4 sits where it
+does rather than inside step 5. From 5 on, the order is the point.
 
 The last column is where this particular car has got to; it is the only
 progress tracker the project keeps, and every other document that wants to say
@@ -158,7 +163,7 @@ alive.
 
 **Expect seven channels to read zero**: FuelNow, FuelAvg, FuelTank, Range,
 Torque, Power and VddConv. Those are the converter's, and they stay at zero
-until step 6. The other nine read the car's bus directly and should be live as
+until step 7. The other nine read the car's bus directly and should be live as
 soon as the display is in the car.
 
 **Do not reorder the rows** of the TRI file. It is addressed by position.
@@ -203,7 +208,166 @@ instead.
 
 ---
 
-## 4. Populate, programme, and loopback on the desk
+## 4. Prove the programmer, with no board
+
+**This is the only step in the second half that needs no board**, which is the
+whole reason it is a step of its own. It costs five minutes and it retires the
+questions that would otherwise all land at once the first time a populated
+board is plugged in: whether the PICkit is alive, whether it is a PICkit MPLAB
+X still recognises, whether the firmware update it forces goes through, and
+whether the command line can drive it at all.
+
+### The tool is IPECMD, and it is already installed
+
+Programming is driven from the command line, not from the IDE. The utility is
+`ipecmd.exe`, part of MPLAB X:
+
+```
+C:\Program Files\Microchip\MPLABX\v6.00\mplab_platform\mplab_ipe\ipecmd.exe
+```
+
+so **MPLAB X has to be installed, but is never opened.** `make` builds the hex
+and `ipecmd` writes it to the part; neither needs the IDE running, and both are
+repeatable and diffable in a way that clicking is not.
+
+Two other command-line programmers ship in the same directory and neither is
+the right one. `pk3cmd.exe` describes itself as legacy — *"provided for legacy
+users (MPLAB IDE v8.xx) for backward script compatibility. It will not be
+enhanced with new features. Please use the IPECMD going forward"*
+(*Readme for PK3CMD.htm* §1). `mdb.bat` has a documented defect that is exactly
+wrong for us — *Readme for MDB.htm* §9, **MDB-44**: *"MDB holds device in reset
+after programming with PK3."* The reasoning is in `CLAUDE.md`.
+
+### With nothing plugged in
+
+Run this first, before the PICkit is anywhere near the USB port, so that you
+know what failure looks like:
+
+```
+"/c/Program Files/Microchip/MPLABX/v6.00/mplab_platform/mplab_ipe/ipecmd.exe" \
+    -P18F25K80 -TPPK3 -I
+```
+
+Recorded on this desk on 2026-08-12:
+
+```
+DFP Version Used : PIC18F-K_DFP,1.5.114,Microchip
+Programmer not found.
+```
+
+exit code **9**. That already proves three things worth having: `18F25K80` is a
+device name IPECMD accepts, it resolves a Device Family Pack for it without
+being told where one is, and it fails by returning rather than by opening a
+window or hanging. `-I` is *Display Device ID* and reads nothing else — there
+is no way for it to write to anything.
+
+⚠ **Read the exit code, but do not look it up.** *Readme for IPECMD.htm* §10.2
+promises only that *"the program will return an exit code upon completion which
+will indicate either successful completion or describe the reason for
+failure"*, and never enumerates them. The one table it does carry, §15, is
+headed *List of MPLAB PM3 Specific Error Codes* — and it does not fit what we
+observed: it calls 9 `INVALID_PROGRAMMER` and reserves 10 for `NO_PROGRAMMER`,
+while the run above printed `Programmer not found` and returned 9. So treat
+non-zero as failure, quote the message rather than the number, and build up a
+mapping from runs rather than from that table.
+
+⚠ **The pack IPECMD uses is not the pack the compiler uses.** It picks
+`PIC18F-K_DFP 1.5.114`, the one MPLAB X v6.00 bundles, while `mplab/Makefile`
+pins **1.13.292** because XC8 v4.00 refuses 1.5.114. That is not a conflict:
+one pack describes the part to a compiler and the other describes it to a
+programmer. Do not "fix" it by forcing them to match.
+
+### With the PICkit plugged in
+
+Same command. **What is being looked for is a different error, not a success**
+— there is no target attached, so it cannot read a device ID and it must not
+claim to. What it must no longer say is `Programmer not found`: anything past
+that point means the CLI opened the tool.
+
+| What it says | What it means |
+|---|---|
+| something other than `Programmer not found`, complaining about the target or the device ID | **this is the pass.** The CLI found the PICkit and got as far as ICSP |
+| `Programmer not found` again | the PICkit is not enumerating, or something else has the HID handle — see below |
+| a firmware download, then one of the above | also a pass, and expected once. See the note on firmware below |
+
+`ipecmd.exe -T` lists connected tools with their serial numbers and is the
+shortest "is it alive" there is.
+
+**The PICkit 3 is a USB HID device, not a virtual COM port.** There is no
+serial port to look for and no driver to install — *Readme for PICkit 3.htm*
+§8.2 refers to *"the system provided HID USB driver"*, and the same section is
+where the failure mode lives: *"Some applications, plug-ins or widgets may take
+control of, or interfere with"* it. If the tool is not found, the first thing
+to check is that nothing else has it — in particular **that MPLAB X or MPLAB
+IPE is not open**, since *Readme for IPECMD.htm* §20.1 is explicit that a tool
+already loaded in the IPE will fail to communicate with anything else.
+
+### Windows Defender will ask, on the first run, and it is not spurious
+
+**Expect a Windows Defender Firewall prompt the first time `ipecmd` is run**,
+and do not dismiss it. It was allowed for **private networks** on this desk on
+2026-08-12, which is enough.
+
+It looks alarming for a program that only talks to a USB device, and there is a
+documented reason for it: **IPECMD talks to its own USB layer over a TCP socket
+on localhost.** *Readme for IPECMD.htm* §14.5.1 describes the `mchpdefport`
+file as providing *"the information necessary for tool hot-plug use to both the
+IPECMD and to the low-level USB library"*, and its contents are a host name and
+a list of port numbers — *"the port or socket numbers through which the
+low-level library communicates with the upper-level IPECMD"*. On this machine
+the file is `C:\Windows\System32\mchpdefport` and it holds exactly two lines:
+
+```
+localhost
+30000
+```
+
+So one instance, one port, loopback only. Nothing leaves the machine, and the
+prompt is Windows noticing a listening socket rather than anything reaching out.
+
+**A blocked port shows up as a tool communication failure, not as a firewall
+error**, which is why this is written down here rather than left to be
+rediscovered. Microchip say so themselves for the sibling utility — §19.3, on
+IPECMDBoost: *"If there are any connection issues with the tools, please ensure
+the firewall is not blocking the port numbers 2012 and 2013."* Same failure
+mode, different ports. If the PICkit is plugged in, enumerates in Device
+Manager, and IPECMD still insists `Programmer not found`, check the firewall
+rule before suspecting the clone.
+
+### The firmware update, which happens whether you want it or not
+
+*Readme for IPECMD.htm* §12: *"Upgrading the operating system of the
+programming tool happens automatically when the first operation using the tool
+is performed."* MPLAB X v6.00 carries PICkit 3 suite **v01.56.07**
+(*Readme for PICkit 3.htm*), and the images are in
+`mplab_platform\mplablibs\modules\ext\PICKIT3.jar` — which is also the evidence
+that v6.00 still supports the PICkit 3 at all, rather than having dropped it
+the way the tool-pack directory's missing `PK3_TP` might suggest.
+
+So the first command flashes the PICkit itself. **This is the one irreversible
+thing in the step**, and it is unavoidable: it would happen identically from
+the IDE. Doing it here, deliberately, on a step whose only job is to find out,
+is better than having it happen underneath the first real programming attempt.
+
+⚠ **The PICkit here is an unknown cheaper clone**, not a Microchip unit. It
+worked under MPLAB X about ten years ago, which says nothing about v6.00 and is
+not evidence of anything — no Microchip document covers clones and none ever
+will. **That is
+precisely why this step exists and why it comes before the boards arrive.** If
+the clone turns out not to survive the firmware update, the answer is to buy a
+programmer, and it is very much better to learn that in the week the boards are
+still in the post than on the evening they arrive.
+
+### What it does not prove
+
+Nothing about the board, nothing about ICSP wiring, nothing about the hex. A
+PICkit that enumerates and updates its firmware can still fail to program a
+target for a dozen reasons that only appear once there is a target. Step 5 is
+where that gets tested.
+
+---
+
+## 5. Populate, programme, and loopback on the desk
 
 This is the step that is easy to skip and should not be.
 
@@ -224,18 +388,59 @@ That writes `mplab/build/canfuel.hex`. Building is documented in
 `mplab/README.md`, including which XC8 and which Device Family Pack — the pack
 is not optional and the version has to match.
 
-**Then flash that hex file with a PICkit 3 on J3, from MPLAB X IDE.** The
-makefile builds; it does not programme. Open `mplab/canfuel.X` in the IDE, or
-just point the IDE's programmer at the hex `make` produced — the second is the
-honest description of what happens, since the authoritative build is the
-makefile and the IDE is being used as a PICkit front end. Other programmers
-that support the PIC18F25K80 should work and none has been tried here.
+**Then flash it with the PICkit on J3, from the command line.** The makefile
+builds; it does not programme. Do the whole thing in four commands, in this
+order, and read each one's output before running the next:
 
-⚠ **This has not been done on this project yet.** The same MCU was flashed this
-way on an earlier one, which is where the confidence comes from and is not the
-same as having done it here. If the IDE and the makefile disagree about
-anything, the makefile is right — it is what CI runs and what produced the hex
-that was checked byte for byte against CI's own artefact.
+```
+IPE="/c/Program Files/Microchip/MPLABX/v6.00/mplab_platform/mplab_ipe/ipecmd.exe"
+
+"$IPE" -P18F25K80 -TPPK3 -I                                  # 1. device ID
+"$IPE" -P18F25K80 -TPPK3 -C                                  # 2. blank check
+"$IPE" -P18F25K80 -TPPK3 -F"$PWD/mplab/build/canfuel.hex" -M -OL   # 3. program
+"$IPE" -P18F25K80 -TPPK3 -F"$PWD/mplab/build/canfuel.hex" -Y       # 4. verify
+```
+
+Command 1 is the one that matters most and it is read-only: **a device ID that
+comes back correct means the ICSP wiring, the MCLR jumper and the part are all
+good, before anything has been written.** If it fails, nothing after it can
+succeed and there is no point trying.
+
+Four details in that command line, each of which is a way to get it wrong:
+
+- **`-OL` is not optional.** It is *Release From Reset*, and the default in
+  *Readme for IPECMD.htm* §13 is the opposite — `Hold in reset`. Leave it off
+  and the board is programmed correctly and then simply sits there, which looks
+  exactly like a firmware that does not run.
+- **`-M` programmes and implicitly verifies.** §17.6: *"The Verify with (/M)
+  operation implicitly performs a Verify when it completes the programming
+  portion."* Command 4 is therefore a second verify and is there because it is
+  free, not because it is required.
+- **`-W` is deliberately not used.** It powers the target from the PICkit. The
+  board takes its 5 V from the display or a bench supply, and *Readme for
+  PICkit 3.htm* §8.3.2 records a silicon issue on another family that only
+  appears with *"power from programmer"*. Power the board, then attach ICSP.
+- **The EEPROM is erased, on purpose.** `-OH` (*Erase All Before Program*) is
+  on by default, so a plain `-M` takes the trip accumulators with it. That is
+  the right default here: `persist_load()` returns false on a virgin EEPROM and
+  the core starts from zero, which is correct rather than an error, and during
+  bring-up a known-empty ring is worth more than a preserved one. When that
+  stops being true — reflashing in the car with a real trip stored —
+  **`-Z0-3FF` preserves it**, and mind §17.8: `-E` overrides `-Z`.
+
+⚠ **The `.X` project disagrees with that last one, and the disagreement is
+deliberate.** `mplab/canfuel.X` sets `programoptions.preserveeeprom = true`, so
+if the IDE is ever used as the programmer it will keep the EEPROM where the
+command line above discards it. Neither is wrong; know which one you are
+holding.
+
+⚠ **This has not been done on this project yet, and the commands above have
+never been run against a target.** They are assembled from *Readme for
+IPECMD.htm* §13, §17 and §18, and only the `-I` form has actually been executed
+here — against no programmer, where it printed `Programmer not found` and
+returned 9. The same MCU was flashed from the IDE on an earlier project, which
+is where the confidence comes from and is not the same as having done it here.
+**Correct this block the first time it runs.**
 
 ⚠ **JP2 comes off before programming and goes back on afterwards.** It puts the
 100 nF MCLR capacitor in circuit, which is what the datasheet asks for in
@@ -261,18 +466,21 @@ Watch the LEDs:
 | slow blink | dark | nothing is arriving — the transmit path or the FIFO is not working |
 | steady | any | **wrong hex.** A steady LED_PWR means a normal build; you flashed the wrong one |
 
-A fault caught here costs a reflash. The same fault caught in step 5 costs a
-trip to the car, and in step 6 it puts error frames on the car's bus.
+A fault caught here costs a reflash. The same fault caught in step 6 costs a
+trip to the car, and in step 7 it puts error frames on the car's bus.
 
 ---
 
-## 5. Listen only, in the car
+## 6. Listen only, in the car
 
 ```
 make -C mplab CAN_MODE=LISTEN_ONLY
 ```
 
-Flash it, fit JP1, wire the board in through the Y-splitter, and switch on.
+Flash it with the same four commands as step 5, fit JP1, wire the board in
+through the Y-splitter, and switch on. **This is the first reflash where
+`-Z0-3FF` is worth thinking about** — see step 5; there is nothing in the
+EEPROM yet worth keeping, but from here on there will be.
 
 **Why this mode first, and it is not caution for its own sake.** The 500 kbps
 bit timing is datasheet arithmetic that no hardware has ever executed. A
@@ -301,7 +509,7 @@ recording. Nothing is on the wire from us yet, so there is nothing to break.
 
 ---
 
-## 6. Transmit
+## 7. Transmit
 
 ```
 make -C mplab
@@ -319,7 +527,7 @@ time the device acknowledges frames and arbitrates for the bus.
 
 ---
 
-## 7. Check it against the raw counter
+## 8. Check it against the raw counter
 
 The useful check once it is live, and it needs no instruments:
 
@@ -376,6 +584,10 @@ line above.
 
 | Symptom | Look at |
 |---|---|
+| `ipecmd` says `Programmer not found` with the PICkit plugged in | in this order: **MPLAB X or IPE open** and holding the tool (*Readme for IPECMD.htm* §20.1); the **firewall rule** on localhost port 30000 (step 4); something else owning the HID handle (*Readme for PICkit 3.htm* §8.2); then the clone |
+| `ipecmd` finds the tool but cannot read a device ID | JP2 still fitted, ICSP wiring, or the board is not powered — `-W` is deliberately not used, so the board needs its own 5 V |
+| Programming succeeds and nothing runs | `-OL` missing. The IPECMD default is *hold in reset*, so the part is programmed and then parked |
+| The trip accumulators vanished after a reflash | expected: `-OH` erases everything by default. `-Z0-3FF` is what preserves them, and `-E` overrides it |
 | Both LEDs dark | JP1 not fitted — that is by design, nothing lights up in the car without it |
 | LED_CAN 5 Hz | `hal_can_init()` failed. Bit timing, `CANMX`, or a configuration bit |
 | LED_CAN dark, car running | wiring: CANH/CANL swapped, or the stub not connected. Ring it out |

@@ -39,7 +39,8 @@ uploaded and verified, and the harness is built, fitted in the car and measured
 at 5.01 V where the board will plug in. **[`docs/install.md`](docs/install.md)
 is the plan** — the whole path from three clones to a working device, with a
 column showing where this particular car has got to. The next action is its
-step 4.
+step 4, which proves the programmer and **needs no board** — step 5 is the one
+waiting on the post.
 
 ## Prerequisites
 
@@ -50,7 +51,7 @@ required to run the tests, and none of it is required to read the code.
 |---|---|---|
 | the core and its tests | **gcc**, **make**, **Python 3.11+** | no third-party packages — everything is standard library |
 | building for the chip | **XC8 v4.00** and **PIC18F-K_DFP 1.13.292** | the two versions must match each other; `mplab/README.md` has the whole story and the traps |
-| flashing a board | **MPLAB X IDE** and a **PICkit 3** | not needed to build — `make -C mplab` produces the hex on its own |
+| flashing a board | **MPLAB X** and a **PICkit 3** | not needed to build — `make -C mplab` produces the hex on its own. MPLAB X is installed for `ipecmd.exe`, not for the IDE, which is never opened for this |
 | recording from the car | **`pyserial`**, and a **USBtin** adapter | `pip install pyserial`; only `tools/usbtin_capture.py` uses it |
 
 **The check that separates your setup from ours:** `make -C test test` must pass
@@ -64,12 +65,14 @@ v6.00 bundles a pack that v4.00 refuses. The pack's path must also be pure
 ASCII. Both are documented, with the exact failure messages, in
 [`mplab/README.md`](mplab/README.md); CI pins the same two versions.
 
-**On the PICkit.** A PICkit 3 through the 5-pin ICSP header J3, driven from
-MPLAB X IDE. Other programmers that support the PIC18F25K80 should work and
+**On the PICkit.** A PICkit 3 through the 5-pin ICSP header J3, driven from the
+command line with `ipecmd.exe` out of the MPLAB X install — the IDE is not
+opened for it. Other programmers that support the PIC18F25K80 should work and
 none has been tried. **No board has been flashed on this project yet** — the
-same combination was used on an earlier project with the same MCU, which is
-where the confidence comes from, and it is not the same thing as having done it
-here.
+same MCU was flashed from the IDE on an earlier project, which is where the
+confidence comes from, and it is not the same thing as having done it here. The
+commands are in [`docs/install.md`](docs/install.md) steps 4 and 5, and ours is
+**an unknown cheaper clone**, which step 4 exists to shake out.
 
 ## Quick start
 

@@ -102,7 +102,7 @@ priority.** MPLAB X v6.00 manages packs itself: it bundles `PIC18F-K_DFP
 into `%USERPROFILE%\.mchp_packs`, which is the accented path XC8 v4.00 cannot
 read. Either of those can presumably be pointed elsewhere, but neither is worth
 solving to build something `make -C mplab` already builds. Use the IDE as an
-editor and as the PICkit front end; take the hex from `mplab/build`.
+editor; take the hex from `mplab/build` and flash it with `ipecmd` as below.
 
 `nbproject/Makefile-*.mk` are **not committed**. MPLAB X generates them from
 `configurations.xml` on the first build; they carry absolute paths to whichever
@@ -114,7 +114,18 @@ One setting is deliberate rather than default:
 EEPROM, and reprogramming the device should not throw away the tank level and
 the litres since the last refuelling.
 
+**That setting is the IDE's alone, and the command line does the opposite.**
+`ipecmd`'s `-OH` (*Erase All Before Program*) is on by default, so a plain
+programming run discards the persist ring unless `-Z0-3FF` is given. Both
+behaviours are wanted somewhere — an empty ring is the right start during
+bring-up — but they are not the same, so know which tool you are holding.
+
 ## Programming the board
+
+**The procedure is `docs/install.md`, steps 4 and 5**, and it is not repeated
+here: the programmer is driven from the command line with `ipecmd.exe` out of
+the MPLAB X install, the IDE is never opened for it, and the reasoning for that
+choice is in `CLAUDE.md` under *Flashing is a command line too*.
 
 Two things from the board's own list of obligations, both easy to forget:
 

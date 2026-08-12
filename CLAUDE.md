@@ -293,8 +293,11 @@ empty value, so it had never configured anything anyway.
 ### What to do next — `docs/install.md`, and only there
 
 **The next action is step 4 of `docs/install.md`.** That document is the plan
-now, and it carries its own progress column; steps 1 to 3 are done and step 4
-is waiting on the boards, expected in the week of 2026-08-17.
+now, and it carries its own progress column; steps 1 to 3 are done. **Step 4
+needs no board** — it proves the programmer half of the toolchain with nothing
+but a PICkit and a USB port, and was made a step of its own on 2026-08-12
+precisely so that there is something to do while the boards are in the post.
+**Step 5 onwards is what waits on them**, expected in the week of 2026-08-17.
 
 **Do not restate the plan here, and do not add a "next session" section
 anywhere else.** Two copies of a procedure diverge, and the copy nobody reads
@@ -354,6 +357,91 @@ endif
 `cygpath` exists only on MSYS and Cygwin, so it is self-guarding and leaves
 Linux, macOS and CI alone. **Plain `make -C test test` now works.**
 
+### Flashing is a command line too, and the tool is IPECMD
+
+**The device is programmed with `ipecmd.exe`, not from the IDE.** The procedure
+is step 4 and step 5 of `docs/install.md` and is not repeated here; what
+belongs here is why that tool and not one of the other two, all three of which
+ship in the same MPLAB X v6.00 install:
+
+- **`pk3cmd.exe`** — *Readme for PK3CMD.htm* §1 disqualifies itself: *"provided
+  for legacy users (MPLAB IDE v8.xx) for backward script compatibility. It will
+  not be enhanced with new features. Please use the IPECMD going forward."* Its
+  readme is still stamped v5.35 where IPECMD's is v6.00, which says the same
+  thing more quietly. It does have one thing IPECMD lacks — a documented exit
+  code table, §9: 0 success, 7 operation failed, 36 bad argument.
+- **`mdb.bat`** — *Readme for MDB.htm* §9 lists **MDB-44**: *"MDB holds device
+  in reset after programming with PK3."* Exactly the wrong behaviour for a
+  converter that has to start running.
+- **`ipecmd.exe`** — the survivor, and the one Microchip point at.
+
+Four decisions around it, none of which the datasheets have an opinion on:
+
+- **`-OL` on every programming command.** *Readme for IPECMD.htm* §13 gives the
+  default for *Release From Reset* as `Hold in reset`. Forgetting it produces a
+  correctly programmed board that does nothing, which reads as a firmware fault.
+- **`-W` never.** It powers the target from the PICkit; the board has its own
+  5 V, and *Readme for PICkit 3.htm* §8.3.2 records a silicon issue on the
+  PIC18F45K20/46K20 family that appears only with *"power from programmer"*.
+  Not our part, but there is no reason to take the risk for no benefit.
+- **The EEPROM is erased by default, and that is left alone.** `-OH` (*Erase
+  All Before Program*) is on unless disabled, so a plain `-M` discards the
+  persist ring. `persist_load()` returning false on a virgin EEPROM is a
+  correct start, not an error, so during bring-up that is the better default;
+  `-Z0-3FF` is the opt-in, and §17.8 warns that `-E` overrides it. **Note that
+  `mplab/canfuel.X` sets `programoptions.preserveeeprom = true`**, so the IDE
+  and the command line deliberately differ. Know which one is in your hand.
+- **Exit codes are mapped from runs, not from the readme.** §10.2 promises only
+  that an exit code is returned and never enumerates them; the one table there
+  is, §15, is headed *MPLAB PM3 Specific* and does not fit — it calls 9
+  `INVALID_PROGRAMMER` and 10 `NO_PROGRAMMER`, while `ipecmd -P18F25K80 -TPPK3
+  -I` with no programmer attached prints `Programmer not found` and returns
+  **9**. Quote the message, treat non-zero as failure, and do not write that
+  table into any script.
+
+**Two facts that correct plausible assumptions.** The PICkit 3 is a **USB HID
+device, not a virtual COM port** (*Readme for PICkit 3.htm* §8.2, *"the system
+provided HID USB driver"*) — so there is no serial protocol to write against,
+the way `usbtin_capture.py` does for the CAN adapter. And **IPECMD talks to its
+own USB layer over a localhost TCP socket**, which is why Windows Defender
+prompts on the first run: §14.5.1, and `C:\Windows\System32\mchpdefport` on
+this desk holds `localhost` / `30000`. Allowed for private networks on
+2026-08-12. A blocked port presents as a tool-communication failure rather than
+as anything mentioning a firewall — §19.3 says so outright for the sibling
+IPECMDBoost utility and its ports 2012 and 2013.
+
+**MPLAB X therefore stays installed** — `ipecmd.exe` and the PICkit 3 firmware
+images in `mplab_platform\mplablibs\modules\ext\PICKIT3.jar` are both parts of
+it. What goes away is the clicking, not the dependency. Those firmware images
+are also the evidence that v6.00 still supports the PICkit 3, which is not
+obvious: there is no `PK3_TP` in `packs\Microchip\` beside `PICkit4_TP` and
+`Snap_TP`, because the PICkit 3 predates tool packs rather than having been
+dropped.
+
+**The pack IPECMD uses is not the pack the compiler uses**, and they must not
+be forced to agree. IPECMD resolves `PIC18F-K_DFP 1.5.114`, the one v6.00
+bundles; `mplab/Makefile` pins 1.13.292 because XC8 v4.00 refuses 1.5.114. One
+describes the part to a compiler, the other to a programmer.
+
+**The programmer is an unknown cheaper PICkit 3 clone.** It worked under
+MPLAB X about ten years ago, which is a recollection about a different version
+and evidence of nothing — no Microchip document covers clones. The unavoidable
+risk is the firmware update: §12, *"Upgrading the operating system of the
+programming tool happens automatically when the first operation using the tool
+is performed"*, and v6.00 carries suite v01.56.07. That happens identically
+from the IDE, so the command line neither adds nor removes it. **This is the
+entire reason step 4 exists and comes before the boards arrive**: if the clone
+does not survive, the answer is to buy a programmer, and that is a far cheaper
+thing to discover while the boards are still in the post.
+
+**`tools/flash.py` is planned and deliberately not written yet.** It would wrap
+the four commands, check `CONFIG3H` at 300005h for `CANMX` before flashing
+anything, tie the build mode and the flash into one step so a `LOOPBACK` hex
+cannot be flashed while you believe it is a normal one, and read the persist
+ring back off the part for the bring-up in the car. All of that is worth
+having; none of it is worth writing around commands that have never been run
+against a target. Write it after step 5 succeeds, not before.
+
 ---
 
 ## The board exists now, and it fixes the pin assignment
@@ -363,7 +451,7 @@ during the week of 2026-08-17. The design is finished, checked and frozen: what
 is being manufactured is commit `c06e710` of the sibling `kicad` repo. **They
 are now the only thing the project is waiting on** — the firmware, the display
 configuration and the harness are all done, so the boards arriving is what
-unblocks step 4 of `docs/install.md`. The pinout below is not provisional and
+unblocks step 5 of `docs/install.md`. The pinout below is not provisional and
 `hal_can.c` and `hal_sys.c` are written against it.
 
 Only two of the three can be populated at first; the third is a bare spare
