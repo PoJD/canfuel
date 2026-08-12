@@ -182,9 +182,13 @@ against XC8 v4.00 itself. What that last one does and does not settle:
   has no tolerance anywhere in the datasheet.
 - **The timing budget is counted, not measured.** `docs/timing.md` costs every
   function out of the assembly listing XC8 generates. Summary: a typical pass
-  is 113 µs so the loop runs ~8,800 times a second; the 100 ms slot uses
-  **2.6 ms of its 100**; the worst pass that can happen without an EEPROM write
-  is **6.5 ms**, against a FIFO that tolerates 22 ms of blindness. The
+  is 49-134 µs so the loop runs 7,400-20,000 times a second; the 100 ms slot
+  uses **2.6 ms of its 100**; the worst pass that can happen without an EEPROM
+  write is **6.5 ms**, against a FIFO that tolerates 22 ms of blindness. **The
+  whole firmware uses 16 % of the CPU**, and the largest single item in that is
+  receiving frames rather than any arithmetic. `docs/timing.md` carries both
+  halves — worst case per call, and load per second — plus every non-time
+  ceiling in one table. The
   arithmetic is nowhere near being the constraint. The one figure the datasheet
   declines to bound is the EEPROM write — D122's 4 ms is a *typ* with no
   maximum — and nothing downstream of it is a deadline.

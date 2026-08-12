@@ -1,12 +1,28 @@
 # How long everything takes
 
 A worst-case budget for the scheduler, against the rates the device has to
-hold. Written 2026-08-11, before any of it had run on a board.
+hold. Written 2026-08-11, before any of it had run on a board; extended
+2026-08-12 with the second half described below.
 
 **This is static analysis of the code XC8 actually generated, not a
 measurement.** That is a real limitation and the last section says how to close
 it. What it is not is guesswork: every number below is counted out of the
 assembly listing of the hex that gets flashed.
+
+**The page answers two different questions and they are easy to confuse.**
+
+- *Can one pass miss a deadline?* — worst case per call, stacked into the
+  longest pass that can physically happen. That is *What each piece costs*,
+  *The three budgets* and *The answer: where the margin is*, and it is what
+  the FIFO and the transmit cadence care about.
+- *How much of the machine is this using?* — the same costs multiplied by how
+  often each thing really happens. That is *How often each of them runs*, and
+  it is the question you ask before deciding something is too slow.
+
+They point in opposite directions often enough to be worth separating: the
+most expensive function here runs ten times a second, the cheapest runs a
+thousand, and the change that mattered most to the CPU load in this project
+did not make anything faster — it made it happen ten times less often.
 
 ---
 
@@ -65,7 +81,7 @@ every time a 32-bit division is written in the core.
 | `compute_range_km` | 1,201 | 300 µs |
 | `persist_save` | 3,165 | 791 µs |
 | `compute_on_fuel` | 2,073 | 518 µs |
-| `compute_tick` (with the tank sample and a kilometre rollover) | 2,488 | 622 µs |
+| `compute_tick` (with the tank sample, a kilometre rollover and the trip caps) | 2,574 | 644 µs |
 | `flow_push` (worst case: the pass that closes a bucket) | 1,676 | 419 µs |
 | `persist_crc16` (10 bytes x 8 bits) | 2,119 | 530 µs |
 | `tank_sample` | 886 | 222 µs |
@@ -106,6 +122,104 @@ is the same answer.
 
 ---
 
+## How often each of them runs — the other half of the budget
+
+Everything above is worst case *per call*. That answers "can a single pass
+miss a deadline", which is the question the scheduler cares about. It does not
+answer "how much of the machine is this using", and the two can point in
+opposite directions: the most expensive function in the table runs ten times a
+second, while the cheapest runs a thousand.
+
+So: the same costs, multiplied by the rate each thing really happens at. The
+frame rates are measured off the `_z1` fixtures (357 accepted frames a second,
+of which 26.4 are 0x480); the rest are the scheduler's own constants.
+
+| Work | cycles each | per second | cycles/s | % of 4 MIPS |
+|---|---|---|---|---|
+| a CAN frame accepted: `hal_can_receive` + `decode_frame` | 784 | 357 | 279,888 | 7.00 % |
+| the distance step, `DIST_TICK_MS` | 1,684 | 100 | 168,400 | 4.21 % |
+| the 100 ms slot, everything in it | 10,382 | 10 | 103,820 | 2.60 % |
+| 0x480 on top of the frame: counter, totals, flow bucket | 2,077 | 26.4 | 54,832 | 1.37 % |
+| the millisecond ISR | 34 | 1,000 | 34,000 | 0.85 % |
+| the 1 s slot, not writing | 4,765 | 1 | 4,765 | 0.12 % |
+| the EEPROM write, amortised over its minute | 192,000 | 1 per 60 s | 3,200 | 0.08 % |
+| the tank sample | 890 | 1 | 890 | 0.02 % |
+| the range basis, one completed km at 100 km/h | 553 | 1 per 36 s | 15 | 0.00 % |
+| **total** | | | **649,811** | **16.2 %** |
+
+**Five sixths of the machine is idle**, and the shape of what is left is worth
+reading twice:
+
+- **The most expensive thing in the firmware is receiving frames**, not
+  arithmetic. Seven per cent of the CPU is `hal_can_receive` and
+  `decode_frame`, and most of `hal_can_receive` is the `ECANCON` access-bank
+  window — a hardware protocol to be followed, not a calculation to be
+  improved. That is a healthy place to have ended up: what is left is what
+  cannot be optimised away.
+- **The distance step is second at 4.2 %**, and it used to be **fourteen**.
+  Not because the arithmetic changed but because it now runs a hundred times a
+  second instead of a thousand — `DIST_TICK_MS`, which exists for correctness
+  and bought this as a side effect.
+- **The 100 ms slot is third**, and 41 % of it is three `___lldiv` calls that
+  divide by a variable. That is the only large item left with an obvious
+  shape, and it is deliberately not being chased: `docs/optimisation.md`
+  explains why a run-time reciprocal costs more than the division.
+- **The EEPROM write is 0.08 % of the CPU** and half of this document. That is
+  the right ratio for something that blocks for 48 ms: it is not a load
+  problem, it is a latency problem, and latency is what the rest of the page
+  is about.
+
+### How fast the loop actually goes
+
+The passes-per-second figure follows from the table rather than being measured:
+whatever the work above does not consume is spent going round doing nothing, so
+
+```
+passes/s = (4,000,000 - 649,811) / (cycles per idle pass)
+```
+
+The idle pass is the floor of the loop — `hal_sys_watchdog_clear` (2),
+`hal_sys_millis` (29), `hal_can_receive` returning on an empty FIFO (13,
+measured as nine words to its first `return`), `compute_tick` finding neither
+step elapsed (~100), and the two 32-bit slot comparisons (~20). About **165
+cycles**, which gives **20,000 passes a second, one every 49 µs**.
+
+`timing.md` used to quote 450 cycles and ~8,800 passes for the same thing, and
+that figure is kept as the conservative end rather than deleted: it is what the
+loop costs if every pass finds a frame waiting. **The truth is between 7,400
+and 20,000 passes a second depending on the traffic**, and nothing in the
+design depends on which — the FIFO is drained every pass either way, against
+frames arriving at 357 a second.
+
+---
+
+## Every ceiling in one place
+
+The budgets below are about time. These are the other limits — the ones that
+are not deadlines but walls, where the failure is a wrong number or lost data
+rather than a late frame.
+
+| What | Limit | Where we are | Margin |
+|---|---|---|---|
+| **ECAN receive FIFO** | 8 buffers = 22.4 ms of traffic | worst pass 6.52 ms = 2.3 frames | **3.4×** |
+| **watchdog** (`WDTPS` 512) | 2.048 s | longest possible pass 54.5 ms | 37× |
+| **fuel counter**, mod 32768 µl | 0.68 l/s during any blind gap | ~0.003 l/s at full throttle | 200× |
+| **flow bucket** (`uint16` µl and ms) | 65,535 each | ≤ 1,250 ms and ~3,750 µl | 17× |
+| **`total_mm`** | wraps at 4,295 km | reset at `TRIP_MAX_MM` = 2,000 km | 2.1× |
+| **`total_ul`** | wraps at 4,295 l | reset at `TRIP_MAX_UL` = 400 l | 10.7× |
+| **EEPROM endurance** (D120, 100 K min) | 64 slots × 100 K writes | 1 write/min | **12 years of engine-on time** |
+| **transmit buffers** | 3 | 2 frames per 100 ms, ~230 µs each | 200× |
+| **program memory** | 32,768 B | 12,986 B | 39.6 % used |
+| **RAM** | 3,649 B | 339 B | 9.3 % used |
+| **`now_ms`** | wraps after 49.7 days | unreachable: the board is on switched 12 V | — |
+
+Two of those rows are not margins but decisions, and both were taken on
+2026-08-12: the trip caps exist because nothing else clears the accumulators
+but a detected refuelling, and a failed tank sender would otherwise walk
+`total_mm` into its wrap. `config.h` argues them.
+
+---
+
 ## The three budgets
 
 ### Every pass of the loop
@@ -114,12 +228,14 @@ is the same answer.
 |---|---|---|
 | `hal_sys_watchdog_clear` + `hal_sys_millis` | 26 | 7 µs |
 | FIFO drain, 8 frames, one of them 0x480 | 8,345 | 2.09 ms |
-| `compute_tick`, moving, no tank sample | 1,598 | 400 µs |
-| `compute_tick`, standing, with the tank sample | 2,488 | 0.62 ms |
+| `compute_tick`, moving, no tank sample | 1,684 | 421 µs |
+| `compute_tick`, standing, with the tank sample | 2,574 | 0.64 ms |
 
 A **typical** pass is none of that: the FIFO is empty, the distance step has
-not elapsed and `compute_tick` returns almost immediately — about 450 cycles,
-**113 µs**, so the loop runs roughly 8,800 times a second.
+not elapsed and `compute_tick` returns almost immediately. **How fast the loop
+actually goes is worked out above**, in *How often each of them runs* — between
+7,400 and 20,000 passes a second depending on how much traffic each pass finds,
+which is one every 49 to 134 µs.
 
 That number matters twice. The FIFO is drained 8,800 times a second against
 frames arriving at about 400 a second, which is the twenty-fold margin
@@ -180,11 +296,11 @@ Stacking every worst case that can genuinely land in the same pass:
 
 ```
 FIFO drain (8 frames)            2.09 ms
-compute_tick, with the tank      0.62 ms
+compute_tick, with the tank      0.64 ms
 the 100 ms slot                  2.60 ms
 the 1 s slot, not writing        1.19 ms
                                 --------
-worst pass without an EEPROM write      6.50 ms
+worst pass without an EEPROM write      6.52 ms
 plus the once-a-minute EEPROM write    ~54.5 ms
 ```
 
@@ -203,19 +319,20 @@ like:
 | the tank median -> a filter and a counter | 7.43 ms |
 | the flow ring -> four buckets | 7.18 ms |
 | the 30 km range window -> a filter | 6.73 ms |
-| two of our own divisors -> shifts | **6.50 ms** |
+| two of our own divisors -> shifts | 6.50 ms |
+| the trip caps, two compares per step | **6.52 ms** |
 
 What changed and why is `docs/optimisation.md`.
 
 Against the two deadlines:
 
-- **The 100 ms transmit cadence.** A 6.50 ms pass leaves a **15× margin**,
+- **The 100 ms transmit cadence.** A 6.52 ms pass leaves a **15× margin**,
   where before the optimisation it left 5.3×. The once-a-minute pass leaves
   1.8×, so 0x600 and 0x601 arrive up to 56 ms late once a minute and the
   display sees a gap of about 156 ms instead of 100 ms. Nothing reads a period,
   so this is invisible.
 - **`RX_POLL_MS`, the 10 ms the FIFO must not fall behind by.** The worst
-  non-EEPROM pass is **6.50 ms and fits inside it**, which it never did
+  non-EEPROM pass is **6.52 ms and fits inside it**, which it never did
   before — it was 18.72 ms, then 11.67, then 8.21. That was always survivable, because
   the constant is a conservative statement of intent and the FIFO's depth is
   the real limit: eight buffers against 3.58 frames per 10 ms is **22 ms of
@@ -273,9 +390,9 @@ the two are comparable.
 
 | | before | now | the FIFO holds |
 |---|---|---|---|
-| worst pass, no EEPROM write | 18.72 ms | **6.50 ms** | 22 ms |
+| worst pass, no EEPROM write | 18.72 ms | **6.52 ms** | 22 ms |
 | headroom before anything is dropped | 3.3 ms | **15.5 ms** | |
-| worst pass **with** the write | 66.72 ms | **54.50 ms** | |
+| worst pass **with** the write | 66.72 ms | **54.52 ms** | |
 
 **Outside the EEPROM write, nothing is dropped in either version** — that is
 what the 22 ms buys. What changed is the margin: it was 3.3 ms and is now
@@ -317,7 +434,7 @@ None of that costs anything, which is the analysis already written out in
 `main.c` then clears the overflow flag, because an overflow we caused
 deliberately, once a minute, is not a fault worth putting on an LED.
 
-The **ordinary** worst pass, 6.50 ms, is inside the 22 ms the FIFO holds, so
+The **ordinary** worst pass, 6.52 ms, is inside the 22 ms the FIFO holds, so
 outside the EEPROM write nothing is dropped at all — and since 2026-08-12 it is
 also inside `RX_POLL_MS`, which it had never been.
 
@@ -349,7 +466,7 @@ any of these goes over its ceiling:
 | Budget | Now | Ceiling |
 |---|---|---|
 | one received frame, decoded and accumulated | 0.71 ms | 1.0 ms |
-| `compute_tick`, worst case | 0.62 ms | 1.0 ms |
+| `compute_tick`, worst case | 0.64 ms | 1.0 ms |
 | the 100 ms slot | 2.60 ms | 3.6 ms |
 | the 1 s slot, excluding the EEPROM write | 1.19 ms | 1.5 ms |
 

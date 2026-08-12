@@ -69,6 +69,12 @@ typedef struct {
     size_t         frames_seen;
     size_t         frames_lost; /* dropped behind an EEPROM write */
     size_t         gathers;
+    /* The extremes over EVERY gather, not just the last one. A test that says
+     * it checked three thousand frames and checked the one left in the struct
+     * at the end is worse than no test: it reads as coverage and is not. */
+    uint16_t       max_fuel_now_d;
+    uint16_t       max_fuel_avg_d;
+    uint16_t       max_range_km;
     uint32_t       counter_sum_ul;  /* every delta, added up independently */
 } sched_result_t;
 
@@ -156,6 +162,15 @@ static inline bool sched_run(const char *name, sched_opts_t o,
             last_fast = now;
             txframes_gather(&r->tx, &r->cp, &r->st, 503, now);
             r->gathers++;
+            if (r->tx.fuel_now_d > r->max_fuel_now_d) {
+                r->max_fuel_now_d = r->tx.fuel_now_d;
+            }
+            if (r->tx.fuel_avg_d > r->max_fuel_avg_d) {
+                r->max_fuel_avg_d = r->tx.fuel_avg_d;
+            }
+            if (r->tx.range_km > r->max_range_km) {
+                r->max_range_km = r->tx.range_km;
+            }
         }
 
         if ((uint32_t)(now - last_slow) >= (uint32_t)TX_SLOW_MS) {

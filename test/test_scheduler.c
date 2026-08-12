@@ -152,34 +152,39 @@ static void test_eeprom_blindness_costs_no_fuel(void)
 }
 
 /* The refuelling rule under the real scheduler, where the tank is sampled by
- * elapsed time rather than by frame arrival. A false positive wipes an
- * average the driver has watched for 600 km, so it is worth asserting twice. */
+ * elapsed time rather than by frame arrival and the EEPROM write puts a 48 ms
+ * hole in the samples. A false positive wipes an average the driver has
+ * watched for 600 km.
+ *
+ * ONE LOG, not five. The sweep over all seventeen fixtures lives in
+ * test_compute.c and is the broader check; what this adds is the driver, and
+ * the driver does not become more convincing by being run five times. */
 static void test_no_refuelling_under_the_scheduler(void)
 {
-    static const char *logs[] = { DRIVE, "09_idle_60s_z1.txt",
-                                  "11_idle_noac_z1.txt", "12_idle_ac_z1.txt",
-                                  "16_rev2926_z1.txt" };
-    size_t i;
-    for (i = 0; i < sizeof logs / sizeof logs[0]; i++) {
-        sched_result_t r = run(logs[i], 1, true);
-        TT_EQ(r.cp.refuels, 0);
-    }
+    sched_result_t r = run(DRIVE, 1, true);
+    TT_EQ(r.cp.refuels, 0);
 }
 
 /* Every value that reached a frame during six minutes of driving, checked
- * against the range its gauge can show. The existing txframes test does this
- * for ONE gather at the end of a log; this does it for all 3,600 of them, at
- * the rate the display really sees. */
+ * against the range its gauge can show. test_txframes.c does this for ONE
+ * gather at the end of each log; this does it for all 3,600 of them, at the
+ * rate the display really sees -- the harness carries the extremes so the
+ * claim in the name is the claim the code makes. */
 static void test_every_gather_stays_inside_the_gauges(void)
 {
     sched_result_t r = run(DRIVE, 10, false);
+
     TT_TRUE(r.gathers > 3000);
-    /* The last one, plus the running check the harness cannot do for us: the
-     * getters clamp, so what this really pins is that the clamp is reached
-     * through the scheduler and not only through replay_core. */
-    TT_TRUE(r.tx.fuel_now_d <= FUELNOW_CLAMP_D);
-    TT_TRUE(r.tx.fuel_avg_d <= FUELNOW_CLAMP_D);
-    TT_TRUE(r.tx.vdd_c == 503);
+    TT_TRUE(r.max_fuel_now_d <= FUELNOW_CLAMP_D);
+    TT_TRUE(r.max_fuel_avg_d <= FUELNOW_CLAMP_D);
+    /* Range is a uint16 on the wire and the tank is under 60 l, so anything
+     * above a few thousand kilometres means the basis collapsed towards zero
+     * rather than that the car became efficient. */
+    TT_TRUE(r.max_range_km < 3000u);
+    /* And the extremes were actually reached, or the three lines above are
+     * checking that zero is small. */
+    TT_TRUE(r.max_fuel_now_d > 0);
+    TT_TRUE(r.max_range_km > 0);
 }
 
 /* A pass that does nothing must change nothing. main.c calls compute_tick()

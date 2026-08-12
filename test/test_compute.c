@@ -239,6 +239,14 @@ static void test_idling_does_not_ruin_the_average(void)
 
 /* --- distance integration ------------------------------------------------ *
  *
+ * THE RATE-INVARIANCE PROPERTY LIVES IN test_scheduler.c, not here. A
+ * synthetic version of it used to sit in this file -- the same distance at a
+ * 1 ms tick and at a 1000 ms one -- and it was deleted on 2026-08-12 because
+ * the scheduler harness checks the same thing on a real recording at three
+ * rates and with jitter, which is strictly more. What stays here is the
+ * arithmetic at the two speeds that matter: one below the old truncation
+ * threshold, and one where the car is not moving at all.
+ *
  * THE FAULT THESE EXIST FOR, because no fixture could ever show it. main.c
  * calls compute_tick() on every pass of the scheduler and a pass is about
  * 113 us on the real part, so the delta it sees in the car is ONE
@@ -259,30 +267,6 @@ static void distance_ticks(compute_t *c, decode_state_t *st, uint32_t *now,
         *now += step_ms;
         compute_tick(c, st, *now);
     }
-}
-
-static void test_distance_does_not_depend_on_the_tick_rate(void)
-{
-    compute_t fast, slow;
-    decode_state_t st;
-    uint32_t now_f = 0, now_s = 0;
-
-    decode_init(&st);
-    st.speed_valid = true;
-    st.speed_mmh = 50000u;                  /* 50 km/h = 13.889 mm/ms */
-
-    compute_init(&fast);
-    compute_tick(&fast, &st, 0);            /* the first call only starts it */
-    distance_ticks(&fast, &st, &now_f, 1u, 10000u);
-
-    compute_init(&slow);
-    compute_tick(&slow, &st, 0);
-    distance_ticks(&slow, &st, &now_s, 1000u, 10000u);
-
-    /* Ten seconds at 50 km/h is 138,888.9 mm. The millisecond loop used to
-     * report 130,000 of it. */
-    TT_NEAR(fast.total_mm, 138888u, 20u);
-    TT_NEAR(slow.total_mm, 138888u, 20u);
 }
 
 static void test_walking_pace_still_covers_ground(void)
@@ -1071,21 +1055,6 @@ static void test_restart_detection_covers_the_engine_off_prefix(void)
     TT_TRUE(r.cp.restarts > 300);
 }
 
-static void test_average_stays_sane_on_every_log(void)
-{
-    /* Trap 4 in one line: no log may produce a runaway average. */
-    static const char *logs[] = { "01_ign_only.txt", "02_idle_60s.txt",
-                                  "03_drive.txt", "05_rev3000.txt",
-                                  "06_trip_reset.txt", "07_accel.txt",
-                                  "idle.txt" };
-    size_t i;
-    for (i = 0; i < sizeof logs / sizeof logs[0]; i++) {
-        replay_result_t r;
-        TT_TRUE(replay_log(logs[i], &r));
-        TT_TRUE(compute_avg_l100_d(&r.cp) < FUELNOW_CLAMP_D);
-    }
-}
-
 int main(void)
 {
     printf("test_compute\n");
@@ -1108,7 +1077,6 @@ int main(void)
     TT_RUN(test_average_is_a_ratio_of_accumulators);
     TT_RUN(test_idling_does_not_ruin_the_average);
 
-    TT_RUN(test_distance_does_not_depend_on_the_tick_rate);
     TT_RUN(test_walking_pace_still_covers_ground);
     TT_RUN(test_a_standing_car_covers_no_distance);
 
@@ -1155,6 +1123,5 @@ int main(void)
     TT_RUN(test_trip_reset_distance_matches_the_checklist);
     TT_RUN(test_accel_distance_needs_the_corrected_gate);
     TT_RUN(test_restart_detection_covers_the_engine_off_prefix);
-    TT_RUN(test_average_stays_sane_on_every_log);
     return TT_SUMMARY();
 }

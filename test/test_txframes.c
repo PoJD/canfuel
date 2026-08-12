@@ -284,7 +284,14 @@ static void test_every_log_stays_inside_the_gauges(void)
 {
     /* The TRI gauges top out at 99.90 for FuelNow and FuelAvg. Anything
      * above behaves unpredictably on the display, so nothing may leave here
-     * above the clamp. */
+     * above the clamp.
+     *
+     * This is the only all-logs sweep of the clamp left. test_compute.c had a
+     * second one that asserted the average alone over the same seven logs --
+     * a strict subset of these two lines -- and it was deleted on 2026-08-12.
+     * Trap 4 itself is pinned precisely by
+     * test_average_below_minimum_distance_is_zero, and the clamp over a state
+     * space no fixture reaches by test_props.c. */
     static const char *logs[] = { "01_ign_only.txt", "02_idle_60s.txt",
                                   "03_drive.txt", "05_rev3000.txt",
                                   "06_trip_reset.txt", "07_accel.txt",
