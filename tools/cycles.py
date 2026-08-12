@@ -81,7 +81,10 @@ LOOPS = {
     # ___lmul was here until 2026-08-12 and is gone from the build entirely:
     # every multiply in the core now goes through fastmul.h. If it comes back,
     # something reintroduced a plain 32-bit product.
-    "_tank_median":      [("TANK_HIST_BINS", None,    "histogram sweep, one per bucket")],
+    # _tank_median was here until 2026-08-12, first as an insertion sort and
+    # then as a 128-bucket histogram sweep. The refuelling rule does not need a
+    # median at all -- see docs/optimisation.md -- so the function is gone and
+    # with it the last data structure the core walked once a second.
     "_compute_range_km": [("RANGE_SEGMENTS", None,    "")],
     "_flow_push":        [("FLOW_WINDOW_SLOTS", None, "")],
     "_persist_load":     [("PERSIST_SLOTS", None,     "start-up only")],
@@ -150,7 +153,7 @@ NOT_LOOPS = {
 # are in docs/timing.md; these are a regression alarm, not a deadline.
 BUDGETS = {
     "rx_frame": ("one received frame, decoded and accumulated", 1400.0),
-    "compute_tick": ("compute_tick, worst case (tank median)", 1700.0),
+    "compute_tick": ("compute_tick, worst case (with the tank sample)", 900.0),
     "fast_slot": ("the 100 ms slot, everything in it", 5200.0),
     "slow_slot": ("the 1 s slot, excluding the EEPROM write", 1500.0),
 }

@@ -166,30 +166,48 @@
 /* --- tank level and the refuelling reset -------------------------------- */
 
 /* The instantaneous level is unusable: standing it varies by 2-3 L, driving
- * by 9-10 L because the float sloshes. The median taken at rest is rock
- * solid. docs/refuel-reset.md has the measurements. */
+ * by 9-10 L because the float sloshes. The value taken at rest is rock solid.
+ * docs/refuel-reset.md has the measurements. */
 #define TANK_SAMPLE_MS          1000u       /* one sample per second        */
-#define TANK_MEDIAN_SLOTS       25          /* so a full median spans 25 s  */
-
-/* The median is taken from a histogram rather than by sorting, and this is how
- * many buckets it needs: 0x320 b2 is masked to seven bits, so the tank level
- * is 0..127 litres and every possible value gets a bucket. Costs 128 bytes of
- * RAM and removes the only data-dependent cost in the core -- see the comment
- * above tank_median() in compute.c. */
-#define TANK_HIST_BINS          128u
 #define TANK_STATIONARY_MMH     1000u       /* "at rest" is below 1 km/h    */
 
-/* The median is trusted from this many samples on, not only from a full
- * window. Refuelling happens with the ignition off, so on the next start the
- * window is empty and the driver may pull away within a few seconds -- with a
- * full window required, the refuelling would never be noticed. Five samples
- * are enough here because the value at rest barely moves: 1584 of 1622
- * measured samples were the same litre. */
-#define TANK_MEDIAN_MIN         5
+/* The settled level -- the baseline a refuelling is judged against -- is a
+ * first-order filter over the at-rest samples, one shift per sample, so this
+ * is a time constant of 16 seconds at TANK_SAMPLE_MS.
+ *
+ * IT USED TO BE A MEDIAN of a 25-slot ring, read out of a 128-bucket
+ * histogram. That was replaced on 2026-08-12 and the reasoning is in
+ * docs/optimisation.md: the median was our choice rather than a requirement,
+ * it cost 2,453 cycles and 153 bytes of RAM, and what it was actually being
+ * asked for -- "is the level suddenly and persistently higher than it was" --
+ * is answered by the counter below without sorting or counting anything.
+ *
+ * A shift and not a divisor: on this part a division by a non-power of two is
+ * a reciprocal multiply, and the whole filter is two bytes of state and one
+ * rotate this way. 16 s is long enough to sit still through the 2-3 L the
+ * sender wanders at rest and short enough to have settled by the time anybody
+ * has finished refuelling. */
+#define TANK_REST_SHIFT         4u          /* 1/16 per sample, tau = 16 s  */
 
-/* A rise of more than this in the stable level means somebody refuelled, and
- * the trip accumulators are cleared. */
+/* A rise of more than this above the settled level means somebody refuelled,
+ * and the trip accumulators are cleared -- but only after this many
+ * CONSECUTIVE at-rest samples say so.
+ *
+ * WHY A COUNTER RATHER THAN A MEDIAN. The asymmetry in docs/refuel-reset.md
+ * governs: a missed refuelling costs one late reset, a false one silently
+ * destroys an average the driver has watched for 600 km. A median rejected a
+ * single outlier by construction; five consecutive seconds rejects it by
+ * evidence, and rejects a sustained one that a median of 25 would have let
+ * through once it reached the thirteenth sample. Five is also what the median
+ * needed before it was trusted at all (TANK_MEDIAN_MIN, gone with it), so the
+ * sequence at a filling station -- ignition off, ring empty on the next start,
+ * driver pulls away within seconds -- is no worse off than before.
+ *
+ * The baseline is deliberately FROZEN while the counter is running, or the
+ * filter above would chase the new level and disqualify a rise it was in the
+ * middle of confirming. compute.c does that in one branch. */
 #define REFUEL_RISE_L           3u
+#define REFUEL_CONFIRM_S        5u
 
 /* First-order damping of the transmitted tank level, in samples at
  * TANK_SAMPLE_MS -- so this is the time constant in seconds. It feeds both the

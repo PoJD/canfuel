@@ -44,7 +44,6 @@ Trip counts used, all from the source and all worst case:
 | Loop | Trips | Why |
 |---|---|---|
 | `___lldiv` | 32 | one per bit of a 32-bit divisor |
-| `tank_median` sweep | 128 | one per bucket, `TANK_HIST_BINS` |
 | `compute_range_km` | 30 | `RANGE_SEGMENTS` |
 | `flow_push` | 32 | `FLOW_WINDOW_SLOTS` |
 | `persist_load` | 64 | `PERSIST_SLOTS`, start-up only |
@@ -61,62 +60,47 @@ every time a 32-bit division is written in the core.
 
 | Function | Cycles | Time |
 |---|---|---|
-| `txframes_gather` (seven getters, trip totals now elsewhere) | 10,098 | **2.52 ms** |
-| `persist_load` (start-up only) | 6,207 | 1.55 ms |
-| `compute_tick` (with the tank median) | 5,054 | 1.26 ms |
-| `tank_sample` | 3,942 | 986 µs |
-| `compute_range_km` | 3,466 | 867 µs |
-| `persist_save` | 3,186 | 797 µs |
+| `txframes_gather` (seven getters; the trip totals moved to the 1 s slot) | 10,098 | **2.52 ms** |
+| `persist_load` (start-up only) | 6,199 | **1.55 ms** |
+| `compute_range_km` (the 30-segment sweep) | 3,466 | 866 µs |
+| `persist_save` | 3,165 | 791 µs |
 | `compute_on_fuel` | 3,045 | 761 µs |
+| `compute_tick` (with the tank sample) | 2,674 | 668 µs |
 | `flow_push` | 2,669 | 667 µs |
-| `tank_median` alone | 2,453 | 613 µs |
 | `persist_crc16` (10 bytes x 8 bits) | 2,119 | 530 µs |
-| `___lldiv`, one 32-bit division by a *variable* | 1,026 | 257 µs |
-| `mulhi_u32`, one reciprocal multiply | ~300 | 75 µs |
-| `mul_u32_u16`, one wide multiply | ~145 | 36 µs |
-| `hal_sys_vdd_c` (plus 22 µs of A/D) | 1,112 | 300 µs |
-| `___lldiv`, one 32-bit division | 1,026 | 257 µs |
-| `decode_frame` | 1,235 | 309 µs |
-| `hal_can_send` | 286 | 72 µs |
-| `hal_can_receive` | 234 | 59 µs |
+| `tank_sample` | 1,562 | 390 µs |
+| `hal_sys_vdd_c` (plus 22 us of A/D) | 1,112 | 278 µs |
+| `___lldiv`, one 32-bit division by a *variable* | 1,026 | 256 µs |
+| `hal_can_send` | 644 | 161 µs |
+| `decode_frame` | 542 | 136 µs |
+| `mulhi_u32`, one reciprocal multiply | 300 | 75 µs |
+| `hal_can_receive` | 234 | 58 µs |
+| `mul_u32_u16`, one wide multiply | 161 | 40 µs |
 | `hal_sys_millis` | 25 | 6 µs |
-| `hal_sys_isr` (the millisecond tick) | 14 | 3.5 µs |
+| `hal_sys_isr` (the millisecond tick) | 14 | 4 µs |
 
-**`txframes_gather` is nine divisions in a trench coat.** Nothing in it is
-slow; there are simply ten `___lldiv` call sites in the core and this is where
-most of them get exercised. It is now the largest single item by a wide margin,
-and division is where any further work belongs.
+**`txframes_gather` is seven divisions in a trench coat.** Nothing in it is
+slow; the core simply divides in a lot of places and this is where most of them
+get exercised. It is the largest single item by a wide margin, and the three
+`___lldiv` calls left in the build — by `flow_sum_ms`, by `speed_mmh` and by
+`seg_count * 1000` — are all reached from here.
 
-### `tank_median` used to be the largest, and it is worth saying why it is not
+### The tank sample stopped being a sweep of anything
 
-It was an insertion sort over the 25-slot ring: 15,068 cycles, **3.77 ms**,
-worst case a reversed ring at 300 comparisons and moves. It is a histogram
-sweep now — 2,453 cycles, 613 µs, **6.1× less** — and `compute_tick` fell from
-4.82 ms to 1.66 ms with it.
+It was an insertion sort over a 25-slot ring — 15,068 cycles, **3.77 ms** — then
+a sweep of a 128-bucket histogram, 2,453 cycles. Since 2026-08-12 there is no
+median at all: the refuelling rule is a first-order filter and a counter of
+consecutive samples, so `tank_sample` is 1,562 cycles with no loop in it and
+`compute_tick`'s worst case fell 1.26 → 0.67 ms. **The 153 bytes of RAM the ring
+and the buckets held came back too.**
 
-Three things made that possible, and the first is the only interesting one:
-
-- **We never wanted the sorted array, only the middle element**, and the key is
-  a tank level masked to seven bits. A small fixed key space means counting
-  beats comparing. `tank_sample()` maintains 128 buckets as samples enter and
-  leave the ring, so the median is one sweep.
-- **`cum` and `target` are `uint8_t`.** The ring holds at most 25 samples, so
-  neither can overflow a byte, and a 16-bit compare cost six extra instructions
-  per bucket.
-- **A walking pointer instead of `tank_bins[v]`.** Indexing made XC8 rebuild
-  the address from the struct base every iteration — twelve instructions of
-  `lfsr` and `addwf` against one `infsnz`. The loop body went from 33 words to
-  19.
-
-**The bound is now a property of the code rather than of the data**, which
-matters more than the number. The old worst case needed an unlucky ring and
-was twelve times the typical case; this one is 128 buckets whatever the car
-does. It costs 128 bytes of RAM.
-
-⚠ **`tools/cycles.py` carries the loop model by hand**, and it said `(50, 299)`
-for an algorithm that no longer existed — it reported no improvement at all
-until the entry was corrected to `(19, 127)`. If a loop changes shape, that
-table changes with it, or this whole document quietly measures the past.
+What the three have in common is worth stating, because it is the only
+generalisable thing here: each time, the win came from asking what the number
+was actually *for*. The sort produced an ordering nobody wanted, only its middle
+element. The histogram produced a median nobody wanted either — the rule only
+ever asks whether the level is persistently higher than it was.
+`docs/optimisation.md` §8 and `docs/refuel-reset.md` carry the argument that it
+is the same answer.
 
 ---
 
@@ -129,7 +113,7 @@ table changes with it, or this whole document quietly measures the past.
 | `hal_sys_watchdog_clear` + `hal_sys_millis` | 26 | 7 µs |
 | FIFO drain, 8 frames, one of them 0x480 | 9,317 | 2.33 ms |
 | `compute_tick`, moving, no tank sample | 1,108 | 277 µs |
-| `compute_tick`, standing, tank median worst case | 5,054 | 1.26 ms |
+| `compute_tick`, standing, with the tank sample | 2,674 | 0.67 ms |
 
 A **typical** pass is none of that: the FIFO is empty, the distance step has
 not elapsed and `compute_tick` returns almost immediately — about 450 cycles,
@@ -152,10 +136,11 @@ below are a side effect of a fix, not the reason for it.
 
 The side effect is still the largest single one in the firmware. The path used
 to run about 1,000 times a second at ~550 cycles — **14 % of the CPU** — and
-now runs 100 times a second at ~700, which is 1.8 %. `compute_tick`'s *worst
-case* went slightly **up** (1.21 → 1.26 ms) because computing the remainder
-costs a multiply, and that is the honest way round: the table above is per
-call, and what changed is how often the call does anything.
+now runs 100 times a second at ~700, which is 1.8 %. Computing the remainder
+costs a multiply, so `compute_tick`'s *worst case* went **up** on its own
+account (1.21 → 1.26 ms) and only came down again when the tank median went;
+that is the honest way round, because the table above is per call and what
+changed here is how often the call does anything.
 
 ### Every 100 ms
 
@@ -193,12 +178,12 @@ Stacking every worst case that can genuinely land in the same pass:
 
 ```
 FIFO drain (8 frames)            2.31 ms
-compute_tick, tank median        1.26 ms
+compute_tick, with the tank      0.67 ms
 the 100 ms slot                  3.24 ms
 the 1 s slot, not writing        1.19 ms
                                 --------
-worst pass without an EEPROM write      8.02 ms
-plus the once-a-minute EEPROM write    ~56.0 ms
+worst pass without an EEPROM write      7.43 ms
+plus the once-a-minute EEPROM write    ~55.4 ms
 ```
 
 Every figure here comes from `tools/cycles.py` against a real build. **The same
@@ -212,19 +197,20 @@ like:
 | tank median: sort -> histogram | 13.72 ms |
 | constant division: `___lldiv` -> reciprocal | 11.67 ms |
 | multiplication: `___lmul` -> byte products | 8.21 ms |
-| the distance step, and two gathers moved | **8.02 ms** |
+| the distance step, and two gathers moved | 8.02 ms |
+| the tank median -> a filter and a counter | **7.43 ms** |
 
 What changed and why is `docs/optimisation.md`.
 
 Against the two deadlines:
 
-- **The 100 ms transmit cadence.** An 8.02 ms pass leaves a **12× margin**,
+- **The 100 ms transmit cadence.** A 7.43 ms pass leaves a **13× margin**,
   where before the optimisation it left 5.3×. The once-a-minute pass leaves
   1.8×, so 0x600 and 0x601 arrive up to 56 ms late once a minute and the
   display sees a gap of about 156 ms instead of 100 ms. Nothing reads a period,
   so this is invisible.
 - **`RX_POLL_MS`, the 10 ms the FIFO must not fall behind by.** The worst
-  non-EEPROM pass is **8.02 ms and fits inside it**, which it never did
+  non-EEPROM pass is **7.43 ms and fits inside it**, which it never did
   before — it was 18.72 ms, then 11.67, then 8.21. That was always survivable, because
   the constant is a conservative statement of intent and the FIFO's depth is
   the real limit: eight buffers against 3.58 frames per 10 ms is **22 ms of
@@ -282,13 +268,13 @@ the two are comparable.
 
 | | before | now | the FIFO holds |
 |---|---|---|---|
-| worst pass, no EEPROM write | 18.72 ms | **8.02 ms** | 22 ms |
-| headroom before anything is dropped | 3.3 ms | **14.0 ms** | |
-| worst pass **with** the write | 66.72 ms | **56.02 ms** | |
+| worst pass, no EEPROM write | 18.72 ms | **7.43 ms** | 22 ms |
+| headroom before anything is dropped | 3.3 ms | **14.6 ms** | |
+| worst pass **with** the write | 66.72 ms | **55.43 ms** | |
 
 **Outside the EEPROM write, nothing is dropped in either version** — that is
 what the 22 ms buys. What changed is the margin: it was 3.3 ms and is now
-14.0 ms, four times as much. That matters more than the milliseconds, because
+14.6 ms, four times as much. That matters more than the milliseconds, because
 the old worst case needed an unlucky tank ring to reach and would have been
 within one bad coincidence of the limit.
 
@@ -326,7 +312,7 @@ None of that costs anything, which is the analysis already written out in
 `main.c` then clears the overflow flag, because an overflow we caused
 deliberately, once a minute, is not a fault worth putting on an LED.
 
-The **ordinary** worst pass, 8.02 ms, is inside the 22 ms the FIFO holds, so
+The **ordinary** worst pass, 7.43 ms, is inside the 22 ms the FIFO holds, so
 outside the EEPROM write nothing is dropped at all — and since 2026-08-12 it is
 also inside `RX_POLL_MS`, which it had never been.
 
@@ -358,7 +344,7 @@ any of these goes over its ceiling:
 | Budget | Now | Ceiling |
 |---|---|---|
 | one received frame, decoded and accumulated | 0.96 ms | 1.4 ms |
-| `compute_tick`, worst case | 1.26 ms | 1.7 ms |
+| `compute_tick`, worst case | 0.67 ms | 0.9 ms |
 | the 100 ms slot | 3.24 ms | 5.2 ms |
 | the 1 s slot, excluding the EEPROM write | 1.19 ms | 1.5 ms |
 

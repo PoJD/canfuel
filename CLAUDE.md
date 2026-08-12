@@ -194,8 +194,13 @@ against XC8 v4.00 itself. What that last one does and does not settle:
   narrowest integer type that provably holds the value, and prefer a walking
   pointer to an index in a hot loop. Both were worth as much as the algorithm
   change they accompanied.
-- **`tank_median` is a histogram sweep, not a sort**, since 2026-08-11 — 4.97 ms
-  down to 613 µs, and its bound stopped depending on the data.
+- **There is no tank median any more**, since 2026-08-12. It was an insertion
+  sort, then a 128-bucket histogram sweep, and then it turned out the
+  refuelling rule never wanted a median: it wants "is the level persistently
+  higher than it was", which is a first-order filter and a counter of
+  consecutive at-rest samples. No loop, no division, 153 bytes of RAM back.
+  `docs/refuel-reset.md` is the rule and `docs/optimisation.md` §8 the
+  argument that it is the same answer.
 - **Distance is integrated on `DIST_TICK_MS` = 10 ms with the remainder
   carried, and that is a correctness rule, not a budget.** `main.c` calls
   `compute_tick()` every pass, so before 2026-08-12 the delta was one

@@ -67,15 +67,13 @@ typedef struct {
     uint32_t seg_cur_ul;
     uint32_t seg_cur_mm;
 
-    /* --- tank level, its median and the refuelling trigger -------------- */
-    uint8_t  tank_hist[TANK_MEDIAN_SLOTS];
-    /* Bucket counts over the same samples, maintained incrementally so the
-     * median never has to sort. tank_hist above is still the ring, and it is
-     * what says which bucket to decrement when a slot is reused. */
-    uint8_t  tank_bins[TANK_HIST_BINS];
-    uint8_t  tank_hist_count;
-    uint8_t  tank_hist_next;
-    uint8_t  tank_stable_l;     /* median at rest; survives in EEPROM       */
+    /* --- tank level, the settled baseline and the refuelling trigger ----- */
+    /* The settled at-rest level in 1/256 litre, so the filter needs no
+     * division: a uint16 holds 127 l comfortably. tank_stable_l is its whole
+     * part and the only piece that reaches the EEPROM. */
+    uint16_t tank_rest_q8;
+    uint8_t  refuel_high;       /* consecutive at-rest samples above the rise */
+    uint8_t  tank_stable_l;     /* settled level at rest; survives in EEPROM */
     bool     tank_stable_valid;
     uint32_t tank_damped_ml;    /* 0.001 l, first order, TANK_DAMP_SAMPLES  */
     bool     tank_damped_valid;

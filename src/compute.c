@@ -81,63 +81,12 @@ static void flow_push(compute_t *c, uint16_t ul, uint16_t ms)
     c->flow_ul_s = div_round(mul_u32_u16(c->flow_sum_ul, 1000u), c->flow_sum_ms);
 }
 
-/* --- the tank median ---------------------------------------------------- */
-
-/* The median of the ring, read out of a bucket histogram instead of by
- * sorting it.
- *
- * ! HOT LOOP. READ docs/optimisation.md BEFORE CHANGING THIS. Cycles are
- * ! expensive on a 4 MIPS part with no cache and no hardware divide, and this
- * ! function was the most expensive thing in the core until 2026-08-11. The
- * ! types and the walking pointer below are load-bearing, not style.
- *
- * WHY NOT A SORT. This used to be an insertion sort over the 25 slots, and it
- * was the single most expensive thing in the core: 300 comparisons and moves
- * in the worst case, plus a 25-byte memcpy, 15,068 cycles or 3.77 ms. It was
- * also the only cost in the whole firmware that depended on the *data* rather
- * than on the code -- a reversed ring cost twelve times a sorted one -- and
- * a bound you can only reach on unlucky input is a bound that gets forgotten.
- *
- * WHY A HISTOGRAM WORKS HERE. We never want the sorted array, only the middle
- * element, and the value being sorted is 0x320 b2 masked to seven bits: a
- * tank level of 0..127. That is a small, fixed, known key space, so counting
- * beats comparing. tank_sample() keeps the buckets up to date as samples go
- * in and out of the ring, which leaves this function a single sweep with no
- * branches worth the name and no worst case worth quoting.
- *
- * WHY IT IS THE SAME ANSWER. The sort returned sorted[n/2] -- for an even n
- * that is the upper of the two middle elements, which is what the running sum
- * below also lands on. The first bucket whose cumulative count exceeds n/2 is
- * by definition the bucket that index n/2 falls in. test_compute.c pins this
- * against the fixtures. */
-static uint8_t tank_median(const compute_t *c)
-{
-    /* Both of these types are load-bearing on an 8-bit part, and both are
-     * safe: the ring holds at most TANK_MEDIAN_SLOTS = 25 samples, so neither
-     * the running total nor the target can leave a byte. Written as uint16_t
-     * the comparison alone costs six extra instructions per bucket.
-     *
-     * The walking pointer is the other half of it. Indexing tank_bins[v]
-     * makes XC8 rebuild the address from the struct base on every iteration --
-     * twelve instructions of lfsr and add -- where a pointer it can simply
-     * increment costs one. */
-    const uint8_t *bin = c->tank_bins;
-    uint8_t target = (uint8_t)(c->tank_hist_count / 2u);
-    uint8_t cum = 0;
-    uint8_t v;
-
-    for (v = 0; v < (uint8_t)TANK_HIST_BINS; v++) {
-        cum = (uint8_t)(cum + *bin++);
-        if (cum > target) {
-            return v;
-        }
-    }
-    return 0;   /* only reachable with an empty ring, which the caller gates */
-}
+/* --- the tank, and the refuelling trigger -------------------------------- */
 
 static void tank_sample(compute_t *c, const decode_state_t *st)
 {
     uint32_t target_ml = mul_u32_u16(st->tank_l, 1000u);
+    uint16_t target_q8;
 
     /* The displayed level is damped whether we are moving or not -- that is
      * what the damping is for. First order, one sample a second, so the time
@@ -151,61 +100,69 @@ static void tank_sample(compute_t *c, const decode_state_t *st)
         c->tank_damped_ml -= div_const(c->tank_damped_ml - target_ml, DIVC_120);
     }
 
-    /* The median that the refuelling rule watches is only fed while standing.
+    /* The baseline the refuelling rule watches is only fed while standing.
      * While driving the float sloshes over a 9-10 L spread on every corner,
-     * so the reading is worthless; at rest one litre dominates completely.
+     * so the reading is worthless; at rest one litre dominates completely --
+     * 1584 of 1622 measured samples were the same litre.
      * docs/refuel-reset.md has the measurement. */
     if (st->speed_mmh >= TANK_STATIONARY_MMH) {
         return;
     }
 
-    /* Keep the histogram in step with the ring. Once the ring is full the slot
-     * about to be overwritten still holds a sample that is counted, so it has
-     * to come out of its bucket first; until then the slot is untouched and
-     * there is nothing to remove. tank_l is masked to seven bits by decode.c,
-     * so it can never index outside tank_bins. */
-    if (c->tank_hist_count == TANK_MEDIAN_SLOTS) {
-        c->tank_bins[c->tank_hist[c->tank_hist_next]]--;
-    }
-    c->tank_hist[c->tank_hist_next] = st->tank_l;
-    c->tank_bins[st->tank_l]++;
+    target_q8 = (uint16_t)((uint16_t)st->tank_l << 8);
 
-    /* A compare rather than a modulo: TANK_MEDIAN_SLOTS is 25, so % is a real
-     * division on this part rather than a mask. */
-    if (++c->tank_hist_next >= (uint8_t)TANK_MEDIAN_SLOTS) {
-        c->tank_hist_next = 0;
-    }
-    if (c->tank_hist_count < TANK_MEDIAN_SLOTS) {
-        c->tank_hist_count++;
-    }
-    if (c->tank_hist_count < TANK_MEDIAN_MIN) {
+    if (!c->tank_stable_valid) {
+        /* First at-rest reading ever, or the first after an empty EEPROM.
+         * Initialise only -- resetting here would clear the average every
+         * time the device is powered up. */
+        c->tank_rest_q8 = target_q8;
+        c->tank_stable_l = st->tank_l;
+        c->tank_stable_valid = true;
         return;
     }
 
-    {
-        uint8_t median = tank_median(c);
-
-        if (!c->tank_stable_valid) {
-            /* First ever stable reading, or the first after an empty EEPROM.
-             * Initialise only -- resetting here would clear the average every
-             * time the device is powered up. */
-            c->tank_stable_valid = true;
-        } else if (median > c->tank_stable_l &&
-                   (uint8_t)(median - c->tank_stable_l) > REFUEL_RISE_L) {
+    /* Persistently higher than the settled level means somebody refuelled.
+     *
+     * THE BASELINE IS FROZEN WHILE THE COUNTER RUNS, and that is the whole
+     * trick: if the filter below were allowed to chase the new level it would
+     * raise tank_stable_l under the comparison and disqualify the very rise it
+     * is in the middle of confirming -- a 4 l fill would be detected or not
+     * depending on how fast the filter happened to move. Held still, the rule
+     * is exactly what it says: REFUEL_CONFIRM_S consecutive at-rest samples
+     * more than REFUEL_RISE_L above the settled level.
+     *
+     * The subtraction cannot underflow: the > guards it. */
+    if (st->tank_l > c->tank_stable_l &&
+        (uint8_t)(st->tank_l - c->tank_stable_l) > REFUEL_RISE_L) {
+        if (++c->refuel_high >= (uint8_t)REFUEL_CONFIRM_S) {
             compute_reset_trip(c);
             c->refuels++;
-            /* Snap the damped level to the median rather than letting the
-             * filter crawl up to it. A refuelling is the one change in tank
-             * level that is both large and instantaneous, and it is the one
-             * moment the driver is certain to look at the gauge. The median at
-             * rest is the most trustworthy number we have about the tank, so
-             * there is nothing to gain by approaching it slowly. Without this
-             * the level and the range would both read minutes-old for minutes
+            c->refuel_high = 0;
+            /* Snap everything to the new level rather than letting the filters
+             * crawl up to it. A refuelling is the one change in tank level
+             * that is both large and instantaneous, and it is the one moment
+             * the driver is certain to look at the gauge. Without this the
+             * level and the range would both read minutes-old for minutes
              * after filling up. */
-            c->tank_damped_ml = mul_u32_u16(median, 1000u);
+            c->tank_rest_q8 = target_q8;
+            c->tank_stable_l = st->tank_l;
+            c->tank_damped_ml = mul_u32_u16(st->tank_l, 1000u);
         }
-        c->tank_stable_l = median;
+        return;
     }
+    c->refuel_high = 0;
+
+    /* The settled level: first order over the at-rest samples, in 1/256 l so
+     * the step is a shift and not a division. TANK_REST_SHIFT is the time
+     * constant in samples, i.e. in seconds. */
+    if (target_q8 > c->tank_rest_q8) {
+        c->tank_rest_q8 = (uint16_t)(c->tank_rest_q8 +
+                          ((target_q8 - c->tank_rest_q8) >> TANK_REST_SHIFT));
+    } else {
+        c->tank_rest_q8 = (uint16_t)(c->tank_rest_q8 -
+                          ((c->tank_rest_q8 - target_q8) >> TANK_REST_SHIFT));
+    }
+    c->tank_stable_l = (uint8_t)(c->tank_rest_q8 >> 8);
 }
 
 /* --- lifecycle ---------------------------------------------------------- */
@@ -233,6 +190,12 @@ void compute_restore(compute_t *c, uint32_t total_ul, uint32_t total_mm,
     c->total_mm = total_mm;
     c->tank_stable_l = tank_stable_l;
     c->tank_stable_valid = tank_stable_valid;
+    /* Seed the filter from what came out of the EEPROM rather than from the
+     * first sample after the restart. Seeding it from the sample would let a
+     * single reading move the baseline by however much the tank had changed
+     * while the ignition was off -- which is precisely the change the
+     * refuelling rule exists to notice. */
+    c->tank_rest_q8 = (uint16_t)((uint16_t)tank_stable_l << 8);
 }
 
 /* --- the fuel counter --------------------------------------------------- */

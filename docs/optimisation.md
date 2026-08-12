@@ -385,6 +385,61 @@ multiply that computes the remainder. What the table cannot show is the change
 that matters — the distance path now runs 100 times a second instead of a
 thousand.
 
+## 8. The tank median was never a requirement — 2026-08-12
+
+**This is the first change here that computes something different, and it is
+the clearest case of the constraint that was lifted.** The median was our
+choice: a rule was needed for "somebody refuelled", a median at rest was
+proposed, it worked, and nothing ever asked whether it was the cheapest shape
+of that rule. It cost 2,453 cycles once a second, 153 bytes of RAM (a 25-slot
+ring plus 128 buckets), and it was the reason `tank_sample` had a loop at all.
+
+**What the rule actually asks is not "what is the middle value" but "is the
+level suddenly and persistently higher than it was".** That needs no ordering
+and no counting of buckets:
+
+```c
+if (raw > stable + REFUEL_RISE_L)  { if (++high >= REFUEL_CONFIRM_S) refuel(); }
+else                               { high = 0; filter(stable, raw); }
+```
+
+`tank_stable_l` is now the whole part of a 16-bit first-order filter in 1/256
+litre, `TANK_REST_SHIFT` = 4, so the whole thing is one shift and a compare —
+**no division and no multiplication anywhere in it**, which was the other half
+of what this pass was asked for.
+
+Two details are load-bearing and both are in the code as comments:
+
+- **The baseline is frozen while the counter runs.** Let the filter chase the
+  new level and it raises `tank_stable_l` under the comparison, disqualifying
+  the rise it is in the middle of confirming — a 4 l fill would then be
+  detected or not depending on how fast the filter happened to move.
+- **`compute_restore()` seeds the filter from the EEPROM**, not from the first
+  sample after the restart. Seeding from the sample would swallow exactly the
+  change the rule exists to notice, since the normal refuelling happens with
+  the ignition off.
+
+**Is it the same answer?** Not identically, and `docs/refuel-reset.md` has the
+table. It is quicker on a real fill (5 s rather than ~13 s at rest), equally
+deaf to a single wild reading, and the one case the median covered better — a
+burst of noise longer than five seconds but shorter than thirteen — is not a
+shape the sender produces at rest, where 1584 of 1622 measured samples were the
+same litre. Three new tests hold the line, and one of them replays **all
+seventeen fixtures and requires that not one of them fires the rule**, because
+a false positive silently destroys an average the driver has watched for
+600 km.
+
+| | before | after |
+|---|---|---|
+| `tank_sample` | 3,942 cycles, 986 µs | **1,562 cycles, 390 µs** |
+| `compute_tick` worst case | 1.26 ms | **0.67 ms** |
+| worst pass through the loop | 8.02 ms | **7.43 ms** |
+| RAM | 726 B | **574 B** |
+| program memory | 12,824 B | 12,924 B |
+
+`compute_tick`'s ceiling in `cycles.py` came down from 1.7 ms to 0.9 ms with
+it. A ceiling that can never be hit is not a gate.
+
 ## What is left
 
 **`txframes_gather` is still the largest item at 2.52 ms**, but what remains in

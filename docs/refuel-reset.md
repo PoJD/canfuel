@@ -8,39 +8,62 @@ refuelling" average in modern cars.
 ## The rule
 
 ```
-tankStableL = median of (0x320 b2 & 0x7F) over the last 20-30 s of standing (v < 1 km/h)
+tankStableL  = first-order filter of (0x320 b2 & 0x7F) over the samples taken
+               while standing (v < 1 km/h), one a second, tau = 16 s
+
+refuelling   = REFUEL_CONFIRM_S consecutive at-rest samples more than
+               REFUEL_RISE_L above tankStableL
 ```
 
 - Update **only while stationary**. Ignore the value entirely while driving.
-- A rise in `tankStableL` of **more than 3 L** means refuelling → clear the
-  average accumulators.
+- Five consecutive at-rest seconds more than **3 L** above the settled level
+  means refuelling -> clear the average accumulators.
 - The rule also applies within a single session, so it covers refuelling with
   the engine running.
 - `tankStableL` is stored in EEPROM as part of the existing 12-byte record
-  (written once every 60 s) so it survives the ignition being switched off.
+  (written once every 60 s) so it survives the ignition being switched off, and
+  the filter is re-seeded from it on the next start rather than from the first
+  sample -- seeding from the sample would swallow exactly the change the rule
+  exists to notice.
 - On the very first start with an empty EEPROM, initialise only — do not reset.
 
-## The window has to be usable before it is full
+**The baseline is frozen while the counter is running.** If the filter were
+allowed to chase the new level it would raise `tankStableL` under the
+comparison and disqualify the rise it is in the middle of confirming, so
+whether a 4 L fill was detected would depend on how fast the filter happened to
+move. Held still, the rule means what it says.
 
-Implemented in `compute.c` as a 25-slot ring sampled once a second while
-stationary, which is the 20–30 s the rule asks for. But the median is trusted
-from **five** samples on, not from twenty-five (`TANK_MEDIAN_MIN`).
+### This used to be a median, and why it is not any more
 
-The reason is the sequence that actually happens at a filling station: the
-engine is off while refuelling, so on the next start the ring is empty and the
-driver may pull away within a few seconds. Waiting for a full window would
-mean the refuelling is never noticed at all — the one case the whole rule
-exists for. Five samples are enough because the value at rest barely moves:
-1584 of 1622 measured samples were the same litre.
+Until 2026-08-12 `tankStableL` was the **median of a 25-slot ring**, read out
+of a 128-bucket histogram, trusted from five samples on. It worked. It was
+replaced because the median was never a requirement — it was a choice made
+once, and nothing had ever compared it against a cheaper one. It cost 2,453
+cycles once a second and 153 bytes of RAM, and what it was being asked is not
+"what is the middle value" but **"is the level suddenly and persistently higher
+than it was"**, which a counter answers directly.
 
-The ring is not cleared when the car starts moving, so shortly after a stop it
-still holds samples from before the drive. That is intended — it is the same
-tank — and it means a refuelling seen mid-window flips the median after about
-thirteen seconds rather than instantly.
+What the two do differently, honestly stated:
+
+| | median of 25 | five in a row |
+|---|---|---|
+| a single wild reading | rejected by construction | rejected, counter restarts |
+| a reading high for 4 s | rejected | rejected |
+| a reading high for 13 s | **accepted** — the ring has flipped | accepted after 5 s |
+| a real fill, at rest | seen after ~13 s | seen after 5 s |
+| a real fill, engine off | seen ~5 s after the next start | unchanged |
+| cost | 2,453 cycles, 153 B | ~40 cycles, 3 B |
+
+So the counter is *quicker* to believe a real fill and no more willing to
+believe a spurious one — the case the median genuinely covered better, a burst
+of noise longer than five seconds but shorter than thirteen, is not a shape the
+sender produces at rest. **1584 of 1622 measured at-rest samples were the same
+litre**, and `test_no_fixture_triggers_a_refuelling` replays all seventeen
+recordings and requires that none of them fires the rule.
 
 ---
 
-## Why a 3 L threshold and why a median
+## Why a 3 L threshold, and why only at rest
 
 Both were measured on real data.
 
@@ -49,8 +72,9 @@ overwhelmingly — 1584 of 1622 samples were exactly 6 L. While driving the
 spread is 9–10 L and evenly distributed, because the float in the tank sloshes
 on every corner and every brake application.
 
-So the instantaneous value is unusable, while the median taken at rest is rock
-solid.
+So the instantaneous value is unusable while driving, and at rest it barely
+moves at all -- which is what lets a plain filter and a counter stand in for a
+median.
 
 `07_accel.txt` confirms this is real: during a short pull-away, b2 jumps
 between 1, 5, 7 and 9 litres. If the reset were tied to the instantaneous
@@ -120,17 +144,20 @@ indicative.
 The damped value is good enough to *display* while driving. It is not good
 enough to *reset the trip average* on, and the asymmetry is the point: a missed
 refuelling costs one late reset, a false one silently destroys an average the
-driver has been watching for 600 km. The median at rest is the most trustworthy
-number the tank produces, and the trigger stays on it.
+driver has been watching for 600 km. The at-rest reading is the most
+trustworthy number the tank produces, and the trigger stays on it.
 
 ### Known limitations, accepted
 
 - **Refuelling with the engine running, then driving off within ~5 s.** The
-  median needs `TANK_MEDIAN_MIN` samples at rest, and the ring is not fed while
-  moving, so the rise is only noticed at the next stop — possibly a long drive
-  later, and the reset then discards that drive. Refuelling with the ignition
-  off, which is the normal case, is unaffected: the ring lives in RAM, so it
-  starts empty and reaches the five-sample minimum a few seconds after start-up.
+  rule needs `REFUEL_CONFIRM_S` consecutive samples at rest and nothing is
+  sampled while moving, so the rise is only noticed at the next stop — possibly
+  a long drive later, and the reset then discards that drive. Refuelling with
+  the ignition off, which is the normal case, is unaffected: the counter starts
+  from zero on every start and five seconds of standing still is all it needs.
+  The partial count is deliberately not persisted; five seconds is short enough
+  that carrying it across a power cycle would buy nothing and would need a
+  thirteenth byte in the record.
 - **A sender fault that reads 0 L and then recovers** is indistinguishable from
   filling up from empty, and will reset the average. There is nothing in the
   frame to tell the two apart.
@@ -143,17 +170,21 @@ number the tank produces, and the trigger stays on it.
   correct — no ramp from zero — but means it briefly carries the slosh of that
   one sample. Only `tank_stable_l` survives, because only the trigger needs
   history.
-- **The filter stalls within 0.12 L of its target**, since the step is an
-  integer division by `TANK_DAMP_SAMPLES`. That is one digit of the display's
-  0.1 L resolution and nothing else.
+- **The displayed filter stalls within 0.12 L of its target**, since the step
+  is an integer division by `TANK_DAMP_SAMPLES`. That is one digit of the
+  display's 0.1 L resolution and nothing else. The settled level behind the
+  refuelling rule stalls within 1/16 L for the same reason, which is a
+  sixteenth of the threshold it feeds.
 
 ### Checked and sound
 
-- The refuelling comparison cannot underflow: `median > tank_stable_l` guards
-  the `uint8_t` subtraction that follows it.
+- The refuelling comparison cannot underflow: `st->tank_l > tank_stable_l`
+  guards the `uint8_t` subtraction that follows it.
 - A *fall* in the level never triggers anything, so consumption, a leak and a
   sender fault all behave the same way — the level simply follows down.
-- The first stable median after an empty EEPROM initialises without resetting,
-  so a power cycle does not clear the average.
+- The first at-rest sample after an empty EEPROM initialises without resetting,
+  so a power cycle does not clear the average. After a *non-empty* EEPROM the
+  filter is seeded from the stored litre instead, which is what makes a
+  refuelling done with the ignition off visible at all.
 - Sampling is driven by `compute_tick()` at `TANK_SAMPLE_MS` and is independent
   of frame arrival, so a gap in 0x320 costs samples but never time.

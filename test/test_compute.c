@@ -728,6 +728,81 @@ static void test_sloshing_while_driving_is_ignored(void)
     TT_EQ(c.total_ul, 500000);
 }
 
+/* The counter is what replaced the median's rejection of outliers, so this is
+ * the test that says it actually rejects them: four seconds of a high reading
+ * with one ordinary sample in the middle is not a refuelling, however high the
+ * reading is. A median of 25 would have needed thirteen such samples; this
+ * needs five in a row. */
+static void test_a_single_high_reading_is_not_refuelling(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 0;
+    int i;
+
+    compute_init(&c);
+    decode_init(&st);
+    compute_tick(&c, &st, now);
+    tank_seconds(&c, &st, &now, 10, 0, 30);
+    c.total_ul = 500000;
+
+    for (i = 0; i < 20; i++) {
+        tank_seconds(&c, &st, &now, 40, 0, 4);      /* four high ...        */
+        tank_seconds(&c, &st, &now, 10, 0, 1);      /* ... and one sane     */
+    }
+    TT_EQ(c.refuels, 0);
+    TT_EQ(c.total_ul, 500000);
+
+    /* And the baseline did not creep upwards while all that was going on --
+     * it is frozen for as long as the counter is running. */
+    TT_EQ(c.tank_stable_l, 10);
+}
+
+/* The normal case: refuelling happens with the ignition off, so the rise is
+ * seen against what came out of the EEPROM on the next start. */
+static void test_refuelling_is_detected_across_an_ignition_cycle(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 0;
+
+    compute_init(&c);
+    decode_init(&st);
+    /* What persist.c read back: 8 l in the tank, half a trip driven. */
+    compute_restore(&c, 500000, 8000000, 8, true);
+    compute_tick(&c, &st, now);
+
+    /* Ignition on at the pump, tank now full. Five seconds at rest. */
+    tank_seconds(&c, &st, &now, 45, 0, (int)REFUEL_CONFIRM_S);
+    TT_EQ(c.refuels, 1);
+    TT_EQ(c.total_ul, 0);
+    TT_EQ(c.total_mm, 0);
+    TT_EQ(c.tank_stable_l, 45);
+}
+
+/* No fixture contains a refuelling -- the tank reads 0 l with the reserve lamp
+ * on through most of them -- so none of them may produce one either. A false
+ * positive silently destroys an average the driver has watched for 600 km,
+ * which is the asymmetry docs/refuel-reset.md is built around, and the sender
+ * jumping between 1, 5, 7 and 9 l during a pull-away is exactly the shape of
+ * input that could cause one. */
+static void test_no_fixture_triggers_a_refuelling(void)
+{
+    static const char *logs[] = {
+        "01_ign_only.txt", "02_idle_60s.txt", "03_drive.txt",
+        "05_rev3000.txt", "06_trip_reset.txt", "07_accel.txt",
+        "08_ign_only_z1.txt", "09_idle_60s_z1.txt", "10_rev2600_z1.txt",
+        "11_idle_noac_z1.txt", "12_idle_ac_z1.txt", "13_rev1500_z1.txt",
+        "14_rev1850_z1.txt", "15_rev2372_z1.txt", "16_rev2926_z1.txt",
+        "17_drive_property_z1.txt", "idle.txt" };
+    size_t i;
+    for (i = 0; i < sizeof logs / sizeof logs[0]; i++) {
+        replay_result_t r;
+        TT_TRUE(replay_log(logs[i], &r));
+        TT_EQ(r.cp.refuels, 0);
+    }
+}
+
 static void test_tank_is_damped(void)
 {
     compute_t c;
@@ -897,6 +972,9 @@ int main(void)
     TT_RUN(test_refuelling_snaps_the_damped_level);
     TT_RUN(test_a_small_rise_is_not_refuelling);
     TT_RUN(test_sloshing_while_driving_is_ignored);
+    TT_RUN(test_a_single_high_reading_is_not_refuelling);
+    TT_RUN(test_refuelling_is_detected_across_an_ignition_cycle);
+    TT_RUN(test_no_fixture_triggers_a_refuelling);
     TT_RUN(test_tank_is_damped);
 
     TT_RUN(test_data_timeout);
