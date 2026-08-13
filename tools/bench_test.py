@@ -250,14 +250,23 @@ def pump_until(deadline: float, adapters) -> None:
 
 
 def feed(stream: bs.Stream, sender: Adapter, listeners, seconds: float,
-         *, flood: int = 0) -> None:
-    """Drive one condition onto the bus for `seconds`, pumping throughout."""
+         *, flood: int = 0) -> float:
+    """Drive one condition onto the bus for `seconds`, pumping throughout.
+
+    Returns the fraction of the intended ticks that actually went out. Worth
+    returning rather than assuming: six frames every 10 ms is 600 a second,
+    and at 22 bytes of slcan text each that is 132 kbit/s against a link
+    nominally running at 115200. The USBtin is a USB CDC device, so the
+    configured baud rate is not the real limit -- but if the write buffer ever
+    does back up, the schedule below slips, a scenario runs at less than the
+    condition it claims, and nothing would say so. Hence the number.
+    """
     started = time.monotonic()
     tick = 0
     while True:
         now = time.monotonic()
         if now - started >= seconds:
-            return
+            break
         due = started + tick * bs.Stream.TICK_MS / 1000.0
         if now >= due:
             for can_id, data in stream.tick():
@@ -268,6 +277,17 @@ def feed(stream: bs.Stream, sender: Adapter, listeners, seconds: float,
         for a in listeners:
             a.pump()
         time.sleep(0)
+    intended = max(1, round(seconds * 1000 / bs.Stream.TICK_MS))
+    return tick / intended
+
+
+def listen(listeners, seconds: float) -> None:
+    """Pump without transmitting anything at all."""
+    deadline = time.monotonic() + seconds
+    while time.monotonic() < deadline:
+        for a in listeners:
+            a.pump()
+        time.sleep(0.001)
 
 
 def latest_diag(listener: Adapter):
@@ -457,11 +477,16 @@ def mode_traffic(sender: Adapter, listener: Adapter, log, seconds: float,
 # 7c -- scenarios A to D
 # --------------------------------------------------------------------------
 
-def settle(stream, sender, listeners, seconds, *, flood=0):
+def settle(stream, sender, listeners, seconds, *, flood=0, rep=None):
     for a in listeners:
         a.forget()
-    feed(stream, sender, listeners, seconds, flood=flood)
+    kept = feed(stream, sender, listeners, seconds, flood=flood)
     pump_until(time.monotonic() + 0.3, listeners)
+    if kept < 0.9 and rep is not None:
+        rep.note(f"⚠ the host kept only {kept:.0%} of the intended frame rate "
+                 "-- the serial link is the bottleneck, not the converter. "
+                 "Results below are for a slower stream than asked for.")
+    return kept
 
 
 def mode_scenarios(sender: Adapter, listener: Adapter, log) -> Report:
@@ -477,7 +502,7 @@ def mode_scenarios(sender: Adapter, listener: Adapter, log) -> Report:
     print("\n  A  the bus goes quiet, then returns after an ignition cycle")
     cruise = bs.Condition(speed_kmh=50, rpm=2200, throttle=70, flow_ul_s=900)
     stream = bs.Stream(tpl, cruise)
-    settle(stream, sender, both, 6)
+    settle(stream, sender, both, 6, rep=rep)
     rep.check("values are live while traffic flows",
               be16(listener.last.get(TX_FUEL, bytes(8)), 0) > 0)
 
@@ -497,7 +522,7 @@ def mode_scenarios(sender: Adapter, listener: Adapter, log) -> Report:
                   not diag["flags"] & 0x08)
 
     stream.restart()          # what an ignition-off really does to the counter
-    settle(stream, sender, both, 4)
+    settle(stream, sender, both, 4, rep=rep)
     rep.check("it recovers when traffic returns",
               be16(listener.last.get(TX_FUEL, bytes(8)), 0) > 0)
     rep.check("a counter restart invents no fuel",
@@ -516,7 +541,7 @@ def mode_scenarios(sender: Adapter, listener: Adapter, log) -> Report:
              bs.Condition(speed_kmh=5, rpm=3000, throttle=90,
                           flow_ul_s=3000))):
         stream = bs.Stream(tpl, cond)
-        settle(stream, sender, both, 5)
+        settle(stream, sender, both, 5, rep=rep)
         got = be16(listener.last.get(TX_FUEL, bytes(8)), 0)
         want = cond.fuel_now_d()
         rep.check(f"FuelNow at {label}", abs(got - want) <= max(2, want // 10),
@@ -539,10 +564,10 @@ def mode_scenarios(sender: Adapter, listener: Adapter, log) -> Report:
     # -- D: the hardware acceptance filters ---------------------------------
     print("\n  D  an identifier we do not accept, flooded alongside real traffic")
     stream = bs.Stream(tpl, cruise)
-    settle(stream, sender, both, 5)
+    settle(stream, sender, both, 5, rep=rep)
     clean_rate = listener.count(TX_FUEL) / 5.0
 
-    settle(stream, sender, both, 6, flood=4)
+    settle(stream, sender, both, 6, flood=4, rep=rep)
     flooded_rate = listener.count(TX_FUEL) / 6.0
     rep.note(f"0x600 arrived at {clean_rate:.1f} Hz clean, "
              f"{flooded_rate:.1f} Hz under flood")
@@ -577,7 +602,7 @@ def mode_fault(sender: Adapter, acker: Adapter, log) -> Report:
 
     sender.open()
     acker.open()
-    settle(stream, sender, both, 5)
+    settle(stream, sender, both, 5, rep=rep)
     baseline = latest_diag(acker)
     rep.check("healthy before the fault",
               baseline is not None and baseline["comstat"] == 0
@@ -585,11 +610,16 @@ def mode_fault(sender: Adapter, acker: Adapter, log) -> Report:
 
     # -- E1: nobody acknowledges -------------------------------------------
     print("\n  E1  starve the converter of acknowledgements")
-    rep.note("both adapters go listen-only: the bus is alive and nothing "
-             "drives the ACK slot, so the converter's TEC climbs by 8 a try")
+    rep.note("both adapters go listen-only, so nothing on the bus drives the "
+             "ACK slot and the converter's TEC climbs by 8 per failed try")
+    rep.note("no stimulus is sent during this window, and cannot be: an "
+             "adapter in listen-only refuses to transmit. The only thing on "
+             "the wire is the converter's own frames, which is all this needs")
     sender.open(listen_only=True)
     acker.open(listen_only=True)
-    settle(stream, sender, both, 6)
+    for a in both:
+        a.forget()
+    listen(both, 6)
     during = {i: acker.count(i) for i in TX_IDS}
     rep.check("the converter fell silent while bus-off",
               sum(during.values()) == 0,
@@ -598,7 +628,7 @@ def mode_fault(sender: Adapter, acker: Adapter, log) -> Report:
     print("\n  E1  restore the acknowledgements")
     sender.open()
     acker.open()
-    settle(stream, sender, both, 6)
+    settle(stream, sender, both, 6, rep=rep)
     after = latest_diag(acker)
     rep.check("the converter came back on its own", after is not None,
               "DS39977C 27.11: recovery is 128 x 11 recessive bits, about "
@@ -622,7 +652,7 @@ def mode_fault(sender: Adapter, acker: Adapter, log) -> Report:
         acker.send(0x123, bytes(8))
         time.sleep(0.005)
     acker.open()                       # back to 500 kbit/s and acknowledging
-    settle(stream, sender, both, 6)
+    settle(stream, sender, both, 6, rep=rep)
     recovered = latest_diag(acker)
     rep.check("the converter is transmitting again after the corruption",
               recovered is not None)

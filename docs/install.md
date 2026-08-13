@@ -752,6 +752,15 @@ Being honest about its limit: two adapters over a serial link push maybe twice
 the car's bus load, not a saturated 500 kbps bus. It is a load test against
 reality, not against the worst case.
 
+⚠ **The host is the bottleneck long before the converter is.** Six frames every
+10 ms is 600 a second, and at 22 bytes of slcan text each that is 132 kbit/s
+against a link nominally configured at 115200. The USBtin is a USB CDC device,
+so the configured baud rate is not the real limit — but if the write buffer
+does back up, the schedule slips and a scenario silently runs at less than the
+condition it claims. **Every run reports the fraction of the intended rate it
+achieved and says so when it falls below 90 %**, so a slow host reads as a slow
+host rather than as a converter that failed to keep up.
+
 ### 7e — break the bus, then prove it recovers
 
 ```
@@ -761,13 +770,15 @@ python tools/bench_test.py --fault --port COM5 --port2 COM6
 Intermittent CAN faults are the ones that are hard to chase in a car. Both
 injections here are pure adapter commands — nothing is unplugged:
 
-- **E1, no acknowledgements.** Both adapters switch to listen-only, so the bus
-  is alive and nothing drives the ACK slot. The converter's transmit error
-  counter climbs by 8 a try and it goes bus-off — at which point **it falls
-  silent, which is itself the observation**. Then the adapters go back to
-  normal and it must come back on its own. DS39977C §27.11: recovery is 128 ×
-  11 recessive bits, about 2.8 ms at 500 kbps, with no MCU intervention. This
-  is where that claim gets tested on your silicon.
+- **E1, no acknowledgements.** Both adapters switch to listen-only, so nothing
+  on the bus drives the ACK slot. **No stimulus is sent during this window, and
+  none can be** — an adapter in listen-only refuses to transmit — so the only
+  thing on the wire is the converter's own frames, which is all this needs. Its
+  transmit error counter climbs by 8 per failed try and it goes bus-off, at
+  which point **it falls silent, and that silence is the observation**. Then
+  the adapters go back to normal and it must return on its own. DS39977C
+  §27.11: recovery is 128 × 11 recessive bits, about 2.8 ms at 500 kbps, with
+  no MCU intervention. This is where that claim gets tested on your silicon.
 - **E2, a node at the wrong bit rate.** One adapter transmits at 250 kbit/s
   into a 500 kbit/s bus, which produces real error frames and drives the
   *receive* counter up. Then it stops and the counters must come down.
