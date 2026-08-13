@@ -745,7 +745,7 @@ down there, that pad is awkward to reach.
 | 15 | J3 | 1×5 header, 2.54 mm | ICSP | no |
 | 16 | JP1 | 1×2 header | debug enable | no |
 | 17 | JP2 | 1×2 header | isolates C8 for programming | no |
-| 18 | **D1** | LED, **green** | power / heartbeat, on RC0 | **yes — long leg is +** |
+| 18 | **D1** | LED, **red** | power / heartbeat, on RC0 | **yes — long leg is +** |
 | 19 | **D2** | LED, **yellow** | CAN status, on RC1 | **yes — long leg is +** |
 | 20 | **C6** | 10 µF 16 V electrolytic | supply input tank | **yes — long leg is +, stripe is −** |
 | 21 | J1, J2 | Micro-Fit 43045-0400, right-angle | the two 4-pin connectors, in parallel | **yes — keyed, cannot be got wrong** |
@@ -758,12 +758,17 @@ down there, that pad is awkward to reach.
 checked.** They are the two parts a soldering mistake elsewhere can destroy,
 and they are the only two that come out again without a desoldering braid.
 
-**LED colour is free** — any colour works. At 1 kΩ a green or yellow LED draws
-about 2.3 mA and a blue or white one about 1.1 mA, both far under the 25 mA the
-port pin allows, so only the brightness changes. Green and yellow are what the
-design carries. **If you fit something else, change it in the schematic's Value
-field** in `kicad` — the BOM is generated from the schematic, so a wrong colour
-there becomes a wrong colour in `fab/`.
+**LED colour is free** — any colour works. Through 1 kΩ the whole span lands
+between about 3.2 mA at Vf ≈ 1.8 V (red, yellow) and 1.1 mA at Vf ≈ 3.2 V
+(blue, white, true green), all far under the 25 mA the port pin allows, so only
+the brightness changes. **The design carries red for D1 and yellow for D2**,
+both measured at Vf ≈ 1.8 V before fitting.
+
+**If you fit something else, change it in the schematic's Value field** in
+`kicad` and regenerate the BOM with the `kicad-cli` command in that repository's
+plan §7 — `fab/` is generated from the schematic, so a wrong colour there
+becomes a wrong colour in the file a supplier reads. D1 went green → red on
+2026-08-13 exactly that way.
 
 ### The five that can go in backwards
 
@@ -830,11 +835,12 @@ Two things that make the difference between this working and looking broken:
 
 - **Do it in shade.** Diode mode drives well under a milliamp, so the LED is
   dim. In daylight it looks dead either way round.
-- **Green and yellow light; blue and white may not.** A meter's diode source is
-  only a few volts, which clears the ~2 V a green or yellow LED needs and can
-  fall short of the ~3.2 V a blue or white one wants. If a blue LED stays dark
-  both ways, it is the meter, not the LED — fall back to the long leg and the
-  flat on the rim. The design's own two are green and yellow, so both light.
+- **Red, yellow and green light; blue and white may not.** A meter's diode
+  source is only a few volts, which clears the 1.8–2 V those need and can fall
+  short of the ~3.2 V a blue or white one wants. If a blue LED stays dark both
+  ways, it is the meter, not the LED — fall back to the long leg and the flat
+  on the rim. **The board's own two are red and yellow, and both were confirmed
+  this way**, reading Vf ≈ 1.8 V.
 
 **So trim the legs after soldering, never before.** Once both are cut level the
 only marking left on an LED is the flat on the rim, and on C6 only the stripe.
@@ -850,6 +856,70 @@ specifies ratings and dimensions and says nothing about the stripe, and no LED
 datasheet is held — see the sourcing rule in `kicad/CLAUDE.md`, which exempts
 both. The board side of the table is verified; the meter is what makes the part
 side certain.)*
+
+**And Y1 really is symmetric**, since it is the part people expect to be
+polarised and it is not. `Crystal:Crystal_HC49-U_Vertical` has exactly two
+pads — no case-ground pin — and a quartz resonator is a two-terminal device
+with no anode or cathode. Fit it either way.
+
+### The other way to get it wrong: right part, wrong slot
+
+Orientation is one axis and the five parts above are all of it. **The second
+axis is value**, and nothing on the board stops you putting the right kind of
+component in the wrong place. Two pairs are worth a moment each, because both
+fail quietly.
+
+- **The resistors.** Three values in an identical body: 10 kΩ (R1, R2), 1 kΩ
+  (R3, R4) and 470 Ω (R6). Colour bands are the classic misread. Swapping R6
+  and an LED resistor is the one that matters — DS39977C Figure 2-2 note 2 puts
+  a **≤ 470 Ω** ceiling on the MCLR series resistor, so a 1 kΩ there is outside
+  what the datasheet asks for, while 470 Ω in an LED's place only makes it
+  brighter and is harmless.
+- **The ceramic capacitors, and this is the expensive one.** 33 pF (C1, C2) and
+  100 nF (C3, C4, C5, C8) come in the same 5 mm disc. **100 nF on the crystal
+  pins stops the oscillator starting at all** — the board is then completely
+  dead in a way that looks exactly like a bad chip, a bad programming run or a
+  firmware fault, and you would go looking in all three before suspecting a
+  capacitor. The reverse swap leaves a supply pin undecoupled, which is subtler
+  and worse to chase.
+
+### Measure every part that has a value, before it goes in
+
+**The general rule, and it is worth more than any of the specific warnings
+above: if a part has a value you can measure, measure it before you solder
+it.** Not because the markings are usually wrong — they are usually right — but
+because reading a marking and measuring a part fail in different ways, and only
+one of them is caught after the part is in the board.
+
+It is thirteen of the twenty-three parts and one dial position on the meter.
+`Select` cycles that position between resistance, capacitance, diode and
+continuity:
+
+| Mode | Parts | What you are confirming |
+|---|---|---|
+| **Ω** | R1, R2 (10 kΩ), R3, R4 (1 kΩ), R6 (470 Ω) | the value, against a colour code that is easy to misread |
+| **capacitance** | C1, C2 (33 pF), C3, C4, C5, C8 (100 nF), C6, C7 (10 µF) | the value — and on C6, that an electrolytic which has been in a drawer is still alive |
+| **diode** | D1, D2 | which leg is the anode, and that the LED lights at all |
+
+**The ten with nothing to measure** are U1, U2, both sockets, Y1, J1, J2, J3,
+JP1 and JP2. A quartz crystal is not measurable with a multimeter at all — an
+ohmmeter reads open and a capacitance range reads only the holder's few pF —
+but there is exactly one crystal in the box, so there is nothing to confuse it
+with.
+
+Everything is out of circuit at this point, which is the condition every one of
+those ranges wants, so this is the easiest it will ever be. Once a part is
+soldered, measuring it means measuring whatever else shares the net.
+
+Resistance is unambiguous. So is capacitance here: 33 pF against 100 nF is a
+factor of three thousand, so no accuracy at the small end is needed to tell
+them apart.
+
+⚠ **The marking that catches people out** is the three-digit code on the discs.
+`104` is 10 followed by four zeros in picofarads — **100 nF**. And **33 pF is
+often printed `330`**, meaning 33 followed by no zeros, *not* 330 pF. The two
+codes look like near neighbours and are three orders of magnitude apart. This
+is convention rather than anything cited; the meter settles it.
 
 ### Programme
 
