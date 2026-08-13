@@ -51,7 +51,7 @@ owns.
 | **The parts to populate it** | 5 | 23 fitted parts plus two sockets, mostly through-hole — `kicad/canfuel/fab/canfuel-bom.csv`, which lists neither the sockets nor R5. See step 5 |
 | **Soldering iron** | 5 | through-hole, nothing fine-pitch |
 | **A programmer IPECMD supports for the PIC18F25K80** | 4, 5 | through the 5-pin ICSP header J3, driven from the command line with **IPECMD** — see step 4. MPLAB X must be installed, because IPECMD is part of it, but the IDE is never opened. IPECMD also drives MPLAB Snap, PICkit 4 and ICD 4; only the `-TP` name changes. *(Tested on a PICkit 3 with MPLAB X v6.00.)* |
-| **A CAN interface the host can drive** — a second one unlocks 7a and 7e | 7, 8, and any recording | for watching the bus and recording logs. Any adapter that reaches 500 kbps will do; only the capture script is adapter-specific. *(Tested on a [USBtin](https://www.fischl.de/usbtin/); `tools/usbtin_capture.py` drives it over its serial protocol and needs `pyserial`. Every fixture in `test/fixtures/` was recorded with it.)* |
+| **A CAN interface the host can drive** — a second one unlocks 7.3 and 7.4 | 7, 8, and any recording | for watching the bus and recording logs. Any adapter that reaches 500 kbps will do; only the capture script is adapter-specific. *(Tested on a [USBtin](https://www.fischl.de/usbtin/); `tools/usbtin_capture.py` drives it over its serial protocol and needs `pyserial`. Every fixture in `test/fixtures/` was recorded with it.)* |
 | **Multimeter** | 3, 5, 7 | ringing out the loom, and confirming 5 V before the board is ever plugged in |
 | **Crimping tools and loom parts** | 3 | listed in `kicad/canfuel/docs/harness.md`, which is where that list belongs |
 | **A breadboard** | 7 only | to build a short bench bus. No resistors needed if the adapters have switchable termination — two terminators give 60 Ω, the middle of the transceiver's specified 50–65 Ω range |
@@ -83,7 +83,7 @@ cheapest test of the CAN driver there is.
 | 4 | Prove the programmer, with no board | a programmer, a USB port, MPLAB X | `canfuel` |
 | 5 | Populate and programme a board | programmer, XC8, an iron | `canfuel` |
 | 6 | Loopback on the desk | nothing but 5 V | `canfuel` |
-| 7 | *(recommended)* A bench bus, with a verdict | breadboard, 1 CAN adapter — 2 for 7a and 7e | `canfuel` |
+| 7 | *(recommended)* A bench bus, with a verdict | breadboard, 1 CAN adapter — 2 for 7.3 and 7.4 | `canfuel` |
 | 8 | Listen only, in the vehicle | the vehicle | `canfuel` |
 | 9 | Transmit, in the vehicle | the vehicle | `canfuel` |
 | 10 | Check it against the raw counter | a drive | — |
@@ -105,8 +105,8 @@ the eight-deep FIFO and `decode` run at all is in the car** — where a failure
 costs a trip, and the only instrument is a blinking LED.
 
 **Its four parts are not equally worth it and step 7 grades them**, so "I only
-have one adapter" is not a reason to skip the lot: **7b and 7c need one**, and
-they are the two that cover what step 6 cannot.
+have one adapter" is not a reason to skip the lot: **7.1 and 7.2 need one**,
+and they are the two that cover what step 6 cannot.
 
 ---
 
@@ -681,13 +681,18 @@ car** — where a failure costs a trip and the only instrument is a blinking LED
 
 | | Needs | Worth |
 |---|---|---|
-| **7b** traffic | 1 adapter | **do it.** The first proof the receive path works at all |
-| **7c** scenarios | 1 adapter | **do it.** The only test of the six acceptance filters anywhere |
-| **7a** listen only | 2 adapters | **do it if you have two.** The only check that the listen-only hex really is silent before it meets the car's bus |
-| **7e** fault injection | 2 adapters | genuinely optional. Answers "does it recover" early rather than never |
+| **7.1** traffic | 1 adapter | **do it.** The first proof the receive path works at all |
+| **7.2** scenarios | 1 adapter | **do it.** The only test of the six acceptance filters anywhere |
+| **7.3** fault injection | 2 adapters | the optional one. Answers "does it recover" early rather than never |
+| **7.4** listen only | 2 adapters | **do it if you have two.** The only check that the listen-only hex is really silent before it meets the car's bus |
 
-**With one adapter, do 7b and 7c.** Those are the cheap half and they are
-exactly what step 6 cannot reach.
+**With one adapter, run `--all-one-device`**, which is 7.1 and 7.2 — the cheap
+half, and exactly what step 6 cannot reach. The order is a prefix rather than a
+different set, so nothing is skipped in the middle.
+
+**7.4 is last on purpose.** It is the only part wanting a different hex;
+anywhere earlier it would cost a third flash, and at the end it leaves the
+device holding exactly what step 8 asks for next.
 
 **Termination is the adapters' own jumper**, so there are no loose resistors to
 find — see the measurement below.
@@ -708,57 +713,14 @@ settles in five seconds what no datasheet can, because it is your hardware.
 python tools/bench_test.py --all --port COM5 --port2 COM6
 ```
 
-runs all four in the order below and prints one verdict. Each also runs alone
-(`--listen-only`, `--traffic`, `--scenarios`, `--fault`).
+runs all four in the order below and prints one verdict; `--all-one-device`
+runs just 7.1 and 7.2. Each also runs alone (`--traffic`, `--scenarios`,
+`--fault`, `--listen-only`).
 
-### 7a — listen only, and the one thing a human must confirm
-
-```
-make -C mplab CAN_MODE=LISTEN_ONLY      # flash this first
-python tools/bench_test.py --listen-only --port COM5 --port2 COM6
-```
-
-**Why the second adapter is not optional here.** CAN requires a receiver to
-drive the acknowledge slot dominant, and a listen-only converter never will —
-DS39977C §27.3.4 promises exactly that, "no messages will be transmitted while
-in this state, including error flags or Acknowledge signals". With one adapter
-the transmitter is alone on the bus: nothing acknowledges, every frame is
-retransmitted, and it reaches the bus-off limit of 256 within milliseconds. The
-second adapter is opened normally and transmits nothing at all; acknowledging
-is its entire job.
-
-Two things the script checks itself, and they are not nothing:
-
-- **the converter transmits absolutely nothing** — zero frames on 0x600–0x603
-  over the whole run. A listen-only build that transmits is a bug, and this is
-  the only place it would be caught.
-- **neither adapter reports a bus error**, which is also the proof that the
-  second adapter really is acknowledging.
-
-Then comes the one question no frame can answer, because in this mode the
-converter cannot speak: **is LED_CAN steady, and is LED_PWR blinking slowly?**
-
-**The LEDs only mean anything while traffic is flowing**, so the run does not
-ask afterwards — it holds the bus alive for `--observe` seconds (30 by default)
-and prints a banner saying to look now. Somebody looks; the answer is recorded
-on a second, short invocation:
+### 7.1 — traffic, and the answers read back
 
 ```
-python tools/bench_test.py --listen-only --observe 30 --port COM5 --port2 COM6
-python tools/bench_test.py --listen-only --observe 0 --port COM5 --port2 COM6 \
-       --led-can steady --led-pwr slow
-```
-
-**Nothing in this tool prompts.** It is built to be driven by somebody — or
-something — that cannot see the board, with a person nearby to ask, so every
-question is a flag rather than a `y/n`. An unreported LED state is reported as
-**unconfirmed**, never as a pass: 7a is incomplete without it, and saying so is
-the point.
-
-### 7b — traffic, and the answers read back
-
-```
-make -C mplab                            # the normal build from here on
+make -C mplab                            # normal build, and it stays for 7.1-7.3
 python tools/bench_test.py --traffic --port COM5
 ```
 
@@ -768,7 +730,7 @@ that the converter did not restart mid-run. One adapter is enough. With
 `--port2` the second one listens, which makes the frame counts an independent
 measurement instead of the transmitter's own account of itself.
 
-### 7c — four behaviours, end to end over the wire
+### 7.2 — four behaviours, end to end over the wire
 
 ```
 python tools/bench_test.py --scenarios --port COM5
@@ -805,7 +767,7 @@ condition it claims. **Every run reports the fraction of the intended rate it
 achieved and says so when it falls below 90 %**, so a slow host reads as a slow
 host rather than as a converter that failed to keep up.
 
-### 7e — break the bus, then prove it recovers
+### 7.3 — break the bus, then prove it recovers
 
 ```
 python tools/bench_test.py --fault --port COM5 --port2 COM6
@@ -814,7 +776,7 @@ python tools/bench_test.py --fault --port COM5 --port2 COM6
 Intermittent CAN faults are the ones that are hard to chase in a car. Both
 injections here are pure adapter commands — nothing is unplugged:
 
-- **E1, no acknowledgements.** Both adapters switch to listen-only, so nothing
+- **No acknowledgements.** Both adapters switch to listen-only, so nothing
   on the bus drives the ACK slot. **No stimulus is sent during this window, and
   none can be** — an adapter in listen-only refuses to transmit — so the only
   thing on the wire is the converter's own frames, which is all this needs. Its
@@ -823,7 +785,7 @@ injections here are pure adapter commands — nothing is unplugged:
   the adapters go back to normal and it must return on its own. DS39977C
   §27.11: recovery is 128 × 11 recessive bits, about 2.8 ms at 500 kbps, with
   no MCU intervention. This is where that claim gets tested on your silicon.
-- **E2, a node at the wrong bit rate.** One adapter transmits at 250 kbit/s
+- **A node at the wrong bit rate.** One adapter transmits at 250 kbit/s
   into a 500 kbit/s bus, which produces real error frames and drives the
   *receive* counter up. Then it stops and the counters must come down.
 
@@ -834,6 +796,54 @@ happened. This test is the only proof that latch works.
 
 If it does **not** recover, power-cycle the board and say so: that is a real
 finding, and far better found here than in the car.
+
+### 7.4 — listen only, and the one thing a human must confirm
+
+```
+make -C mplab CAN_MODE=LISTEN_ONLY      # the one reflash in step 7
+python tools/bench_test.py --listen-only --port COM5 --port2 COM6
+```
+
+**Last on purpose.** This is the only part of step 7 wanting a different hex,
+so running it anywhere earlier would cost a third flash — and finishing here
+leaves the device holding exactly the build step 8 asks for next.
+
+**Why the second adapter is not optional here.** CAN requires a receiver to
+drive the acknowledge slot dominant, and a listen-only converter never will —
+DS39977C §27.3.4 promises exactly that, "no messages will be transmitted while
+in this state, including error flags or Acknowledge signals". With one adapter
+the transmitter is alone on the bus: nothing acknowledges, every frame is
+retransmitted, and it reaches the bus-off limit of 256 within milliseconds. The
+second adapter is opened normally and transmits nothing at all; acknowledging
+is its entire job.
+
+Two things the script checks itself, and they are not nothing:
+
+- **the converter transmits absolutely nothing** — zero frames on 0x600–0x603
+  over the whole run. A listen-only build that transmits is a bug, and this is
+  the only place it would be caught.
+- **neither adapter reports a bus error**, which is also the proof that the
+  second adapter really is acknowledging.
+
+Then comes the one question no frame can answer, because in this mode the
+converter cannot speak: **is LED_CAN steady, and is LED_PWR blinking slowly?**
+
+**The LEDs only mean anything while traffic is flowing**, so the run does not
+ask afterwards — it holds the bus alive for `--observe` seconds (30 by default)
+and prints a banner saying to look now. Somebody looks; the answer is recorded
+on a second, short invocation:
+
+```
+python tools/bench_test.py --listen-only --observe 30 --port COM5 --port2 COM6
+python tools/bench_test.py --listen-only --observe 0 --port COM5 --port2 COM6 \
+       --led-can steady --led-pwr slow
+```
+
+**Nothing in this tool prompts.** It is built to be driven by somebody — or
+something — that cannot see the board, with a person nearby to ask, so every
+question is a flag rather than a `y/n`. An unreported LED state is reported as
+**unconfirmed**, never as a pass: 7.4 is incomplete without it, and saying so is
+the point.
 
 ### Afterwards: the EEPROM holds bench data
 

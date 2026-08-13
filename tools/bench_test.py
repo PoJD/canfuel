@@ -7,13 +7,19 @@ worth doing whatever else is skipped: loopback in step 6 cannot exercise the
 receive path, the acceptance filters or decode, so without these the first run
 of any of that is in the car.
 
-    python tools/bench_test.py --list           # find the adapters
-    python tools/bench_test.py --traffic        # one adapter
-    python tools/bench_test.py --listen-only    # two adapters
-    python tools/bench_test.py --scenarios      # one adapter
-    python tools/bench_test.py --fault          # two adapters
-    python tools/bench_test.py --all            # all four, in order
-    python tools/bench_test.py --dry-run        # no hardware at all
+    python tools/bench_test.py --list             # find the adapters
+    python tools/bench_test.py --all-one-device   # traffic + scenarios
+    python tools/bench_test.py --all              # all four, needs two
+    python tools/bench_test.py --scenarios        # or one at a time
+    python tools/bench_test.py --dry-run          # no hardware at all
+
+The tests run in a fixed order, and it is a prefix: **traffic, scenarios**
+(one adapter), then **fault, listen only** (two). So `--all-one-device` is the
+front of `--all` rather than a different set of things.
+
+Listen only runs last because it is the only part wanting a different hex.
+Anywhere else in the sequence it would cost a third flash; at the end it leaves
+the device holding exactly what step 8 asks for next.
 
 **Nothing here prompts, and that is deliberate.** This is meant to be driven
 from a session that cannot see the board -- an agent at a terminal, with a
@@ -698,16 +704,31 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--traffic", action="store_true")
     ap.add_argument("--scenarios", action="store_true")
     ap.add_argument("--fault", action="store_true")
-    ap.add_argument("--all", action="store_true")
+    ap.add_argument("--all", action="store_true",
+                    help="every test, in order; needs two adapters")
+    ap.add_argument("--all-one-device", action="store_true",
+                    help="only what a single adapter can run -- traffic and "
+                         "scenarios, which are the two that cover what "
+                         "loopback in step 6 cannot")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args(argv)
 
-    wanted = [n for n, on in (("listen-only", args.listen_only),
-                              ("traffic", args.traffic),
+    # The order is deliberate on two counts. The one-adapter tests come first,
+    # so --all-one-device is a prefix of --all rather than a different subset.
+    # And listen only comes last, because it is the only part wanting a
+    # different hex: anywhere else it would cost a third flash, and at the end
+    # it leaves the device holding exactly what step 8 asks for next.
+    one_device = ["traffic", "scenarios"]
+    two_device = ["fault", "listen-only"]
+
+    wanted = [n for n, on in (("traffic", args.traffic),
                               ("scenarios", args.scenarios),
-                              ("fault", args.fault)) if on]
-    if args.all or not wanted:
-        wanted = ["listen-only", "traffic", "scenarios", "fault"]
+                              ("fault", args.fault),
+                              ("listen-only", args.listen_only)) if on]
+    if args.all_one_device:
+        wanted = list(one_device)
+    elif args.all or not wanted:
+        wanted = one_device + two_device
 
     if args.list:
         from serial.tools import list_ports
@@ -743,13 +764,9 @@ def main(argv: list[str] | None = None) -> int:
         # Nothing here asks whether the right hex is flashed. This is driven
         # from a session that cannot see the board, so a prompt would read EOF
         # and answer itself -- and the checks catch the wrong build anyway: a
-        # normal build in 7a shows up as frames where there must be none, and a
-        # silent build in 7b as no frames at all.
-        if "listen-only" in wanted:
-            print("\n>>> 7a needs CAN_MODE=LISTEN_ONLY flashed <<<")
-            reports.append(mode_listen_only(sender, acker, args.log,
-                                            args.seconds, args.observe,
-                                            args.led_can, args.led_pwr))
+        # silent build in the first three shows up as no frames at all, and a
+        # normal build in the listen-only test as frames where there must be
+        # none.
         if {"traffic", "scenarios", "fault"} & set(wanted):
             print("\n>>> the tests below need the NORMAL build flashed <<<")
         if "traffic" in wanted:
@@ -760,6 +777,11 @@ def main(argv: list[str] | None = None) -> int:
             reports.append(mode_scenarios(sender, listener, args.log))
         if "fault" in wanted:
             reports.append(mode_fault(sender, acker, args.log))
+        if "listen-only" in wanted:
+            print("\n>>> reflash CAN_MODE=LISTEN_ONLY before this last one <<<")
+            reports.append(mode_listen_only(sender, acker, args.log,
+                                            args.seconds, args.observe,
+                                            args.led_can, args.led_pwr))
     finally:
         sender.release()
         if acker:
