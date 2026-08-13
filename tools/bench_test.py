@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 """Bench tests for a converter on a desk, with a verdict instead of a blink rate.
 
-docs/install.md step 7, which is optional and is the last chance to find a
-fault while the board is still on a table.
+docs/install.md step 7, and the last chance to find a fault while the board is
+still on a table. --traffic and --scenarios need one adapter and are the two
+worth doing whatever else is skipped: loopback in step 6 cannot exercise the
+receive path, the acceptance filters or decode, so without these the first run
+of any of that is in the car.
 
     python tools/bench_test.py --list           # find the adapters
     python tools/bench_test.py --traffic        # one adapter

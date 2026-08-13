@@ -51,10 +51,10 @@ owns.
 | **The parts to populate it** | 5 | 23 fitted parts plus two sockets, mostly through-hole — `kicad/canfuel/fab/canfuel-bom.csv`, which lists neither the sockets nor R5. See step 5 |
 | **Soldering iron** | 5 | through-hole, nothing fine-pitch |
 | **A programmer IPECMD supports for the PIC18F25K80** | 4, 5 | through the 5-pin ICSP header J3, driven from the command line with **IPECMD** — see step 4. MPLAB X must be installed, because IPECMD is part of it, but the IDE is never opened. IPECMD also drives MPLAB Snap, PICkit 4 and ICD 4; only the `-TP` name changes. *(Tested on a PICkit 3 with MPLAB X v6.00.)* |
-| **A CAN interface the host can drive** — **two of them for step 7** | 7, 8, and any recording | for watching the bus and recording logs. Any adapter that reaches 500 kbps will do; only the capture script is adapter-specific. *(Tested on a [USBtin](https://www.fischl.de/usbtin/); `tools/usbtin_capture.py` drives it over its serial protocol and needs `pyserial`. Every fixture in `test/fixtures/` was recorded with it.)* |
+| **A CAN interface the host can drive** — a second one unlocks 7a and 7e | 7, 8, and any recording | for watching the bus and recording logs. Any adapter that reaches 500 kbps will do; only the capture script is adapter-specific. *(Tested on a [USBtin](https://www.fischl.de/usbtin/); `tools/usbtin_capture.py` drives it over its serial protocol and needs `pyserial`. Every fixture in `test/fixtures/` was recorded with it.)* |
 | **Multimeter** | 3, 5, 7 | ringing out the loom, and confirming 5 V before the board is ever plugged in |
 | **Crimping tools and loom parts** | 3 | listed in `kicad/canfuel/docs/harness.md`, which is where that list belongs |
-| **A breadboard** | 7 only | to build a short bench bus. No resistors needed if the adapters have switchable termination — two terminators give 60 Ω, the middle of the transceiver's specified 50–65 Ω load range |
+| **A breadboard** | 7 only | to build a short bench bus. No resistors needed if the adapters have switchable termination — two terminators give 60 Ω, the middle of the transceiver's specified 50–65 Ω range |
 | **A diagnostic tool for the vehicle** | calibration only | **optional.** Not needed to build or run anything. *(Tested with VCDS.)* |
 | **The vehicle** | 8, 9, 10 | a VW PQ34 car with the AQY engine. Other PQ34 cars share much of the bus but nothing here is verified against them |
 
@@ -83,7 +83,7 @@ cheapest test of the CAN driver there is.
 | 4 | Prove the programmer, with no board | a programmer, a USB port, MPLAB X | `canfuel` |
 | 5 | Populate and programme a board | programmer, XC8, an iron | `canfuel` |
 | 6 | Loopback on the desk | nothing but 5 V | `canfuel` |
-| 7 | *(optional)* A bench bus, with a verdict | breadboard, **two** CAN adapters | `canfuel` |
+| 7 | *(recommended)* A bench bus, with a verdict | breadboard, 1 CAN adapter — 2 for 7a and 7e | `canfuel` |
 | 8 | Listen only, in the vehicle | the vehicle | `canfuel` |
 | 9 | Transmit, in the vehicle | the vehicle | `canfuel` |
 | 10 | Check it against the raw counter | a drive | — |
@@ -93,9 +93,20 @@ Steps 1 to 4 are independent of each other and can be done in any order or in
 parallel — **none of them needs a board**, which is why step 4 sits where it
 does rather than inside step 5. From 5 on, the order is the point.
 
-**Step 7 is the only optional one.** Everything else is load-bearing; that one
-buys confidence and a numeric answer where step 8 gives you a blinking LED, and
-skipping it breaks nothing later.
+**Step 7 is the only one you can leave out**, and it is still the one to do.
+Nothing later breaks without it — but be clear about what is being skipped,
+because step 6 covers less than its name suggests.
+
+Loopback proves the CAN module accepted its configuration and reached its mode.
+It cannot prove anything about receiving, because in that mode the only frames
+arriving are our own and the acceptance filters reject them (see step 6). So
+**without step 7, the first time the receive path, the six hardware filters,
+the eight-deep FIFO and `decode` run at all is in the car** — where a failure
+costs a trip, and the only instrument is a blinking LED.
+
+**Its four parts are not equally worth it and step 7 grades them**, so "I only
+have one adapter" is not a reason to skip the lot: **7b and 7c need one**, and
+they are the two that cover what step 6 cannot.
 
 ---
 
@@ -656,16 +667,30 @@ trip to the car, and in step 9 it puts error frames on the car's bus.
 
 ---
 
-## 7. *(optional)* A bench bus, with a verdict instead of a blink rate
+## 7. *(recommended)* A bench bus, with a verdict instead of a blink rate
 
-**Skip this and nothing later breaks.** Step 6 has already proved the CAN
-module talks; step 8 is the real bus. What this buys is the one thing neither
-of them gives you: **the converter's own error counters, as numbers, and its
-behaviour under faults you choose — before you are lying under a dashboard.**
+**Nothing later breaks without it — and it is still the step to do**, because
+step 6 covers less than its name suggests. Loopback proves the module accepted
+its configuration and reached its mode, and it cannot prove anything about
+receiving: the only frames arriving there are our own, and the acceptance
+filters reject them. **So without this step, the first time the receive path,
+the six hardware filters, the eight-deep FIFO and `decode` run at all is in the
+car** — where a failure costs a trip and the only instrument is a blinking LED.
 
-**Two USBtins, both with their termination jumper fitted.** That is the whole
-bill of materials: the jumper is the terminator, so there are no loose
-resistors to find. One adapter is enough for 7b, but 7a and 7e need both.
+**The four parts are not equally worth it:**
+
+| | Needs | Worth |
+|---|---|---|
+| **7b** traffic | 1 adapter | **do it.** The first proof the receive path works at all |
+| **7c** scenarios | 1 adapter | **do it.** The only test of the six acceptance filters anywhere |
+| **7a** listen only | 2 adapters | **do it if you have two.** The only check that the listen-only hex really is silent before it meets the car's bus |
+| **7e** fault injection | 2 adapters | genuinely optional. Answers "does it recover" early rather than never |
+
+**With one adapter, do 7b and 7c.** Those are the cheap half and they are
+exactly what step 6 cannot reach.
+
+**Termination is the adapters' own jumper**, so there are no loose resistors to
+find — see the measurement below.
 
 ### Build the bus
 
