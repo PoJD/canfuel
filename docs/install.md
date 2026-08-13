@@ -691,9 +691,25 @@ Two things the script checks itself, and they are not nothing:
 - **neither adapter reports a bus error**, which is also the proof that the
   second adapter really is acknowledging.
 
-Then it asks you the one question no frame can answer, because in this mode the
+Then comes the one question no frame can answer, because in this mode the
 converter cannot speak: **is LED_CAN steady, and is LED_PWR blinking slowly?**
-The answers go into the verdict rather than into somebody's memory.
+
+**The LEDs only mean anything while traffic is flowing**, so the run does not
+ask afterwards — it holds the bus alive for `--observe` seconds (30 by default)
+and prints a banner saying to look now. Somebody looks; the answer is recorded
+on a second, short invocation:
+
+```
+python tools/bench_test.py --listen-only --observe 30 --port COM5 --port2 COM6
+python tools/bench_test.py --listen-only --observe 0 --port COM5 --port2 COM6 \
+       --led-can steady --led-pwr slow
+```
+
+**Nothing in this tool prompts.** It is built to be driven by somebody — or
+something — that cannot see the board, with a person nearby to ask, so every
+question is a flag rather than a `y/n`. An unreported LED state is reported as
+**unconfirmed**, never as a pass: 7a is incomplete without it, and saying so is
+the point.
 
 ### 7b — traffic, and the answers read back
 

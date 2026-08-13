@@ -4,12 +4,24 @@
 docs/install.md step 7, which is optional and is the last chance to find a
 fault while the board is still on a table.
 
+    python tools/bench_test.py --list           # find the adapters
     python tools/bench_test.py --traffic        # one adapter
     python tools/bench_test.py --listen-only    # two adapters
     python tools/bench_test.py --scenarios      # one adapter
     python tools/bench_test.py --fault          # two adapters
     python tools/bench_test.py --all            # all four, in order
     python tools/bench_test.py --dry-run        # no hardware at all
+
+**Nothing here prompts, and that is deliberate.** This is meant to be driven
+from a session that cannot see the board -- an agent at a terminal, with a
+person nearby who can be asked. A prompt would read EOF and answer itself, so
+every question is a flag instead. The one thing no frame can report is what the
+LEDs were doing in listen only, and that arrives as `--led-can` / `--led-pwr`
+on a later invocation; unreported is treated as *unconfirmed*, never as a pass.
+
+Because the LEDs only mean anything while traffic is flowing, 7a holds the bus
+alive for `--observe` seconds after its machine checks and says so, rather than
+asking once the run has finished and the state is gone.
 
 **Why this beats watching the LED.** LED_CAN encodes the CAN health as a blink
 rate, which asks a human to tell 2.5 Hz from 5 Hz correctly, once. The 0x603
@@ -289,7 +301,7 @@ def show_diag(diag: dict, rep: Report, *, expect_clean: bool = True) -> None:
 # --------------------------------------------------------------------------
 
 def mode_listen_only(sender: Adapter, acker: Adapter, log, seconds: float,
-                     assume_yes: bool) -> Report:
+                     observe: float, led_can: str, led_pwr: str) -> Report:
     print("\n7a  LISTEN ONLY -- the converter must receive and stay silent")
     rep = Report()
     tpl = bs.templates(log)
@@ -320,27 +332,46 @@ def mode_listen_only(sender: Adapter, acker: Adapter, log, seconds: float,
              "acknowledging -- check it opened with O, not L")
 
     # The only channel left. In listen only the converter cannot tell us
-    # anything, so this one answer has to come from a person -- and it is
-    # recorded in the verdict rather than remembered.
-    print()
-    if assume_yes:
-        rep.check("LED_CAN steady (assumed, --yes)", True)
-        rep.check("LED_PWR slow blink (assumed, --yes)", True)
-    else:
-        rep.check("LED_CAN is steady, not blinking",
-                  ask("Is LED_CAN steady (not blinking)?"))
-        rep.check("LED_PWR is blinking slowly",
-                  ask("Is LED_PWR blinking slowly?"))
-        rep.note("steady LED_PWR would mean a normal build is flashed")
+    # anything at all, so this one answer has to come from somebody looking at
+    # the board -- and the LEDs only mean anything WHILE traffic is flowing,
+    # which is why the window below keeps the bus alive rather than asking
+    # after the run has ended and the state is gone.
+    if observe > 0:
+        print()
+        print("    " + "-" * 68)
+        print("    LOOK AT THE BOARD NOW -- traffic is live for "
+              f"{observe:.0f} more seconds.")
+        print("    Expected: LED_CAN steady, LED_PWR blinking slowly.")
+        print("      LED_CAN blinking   errors, or it never reached the mode")
+        print("      LED_CAN dark       nothing is arriving at all")
+        print("      LED_PWR steady     a normal build is flashed, not this one")
+        print("    " + "-" * 68)
+        sys.stdout.flush()
+        deadline = time.monotonic() + observe
+        while time.monotonic() < deadline:
+            feed(stream, sender, (sender, acker), 1.0)
+    record_leds(rep, led_can, led_pwr)
     return rep
 
 
-def ask(question: str) -> bool:
-    try:
-        return input(f"    {question} [y/N] ").strip().lower().startswith("y")
-    except EOFError:
-        print("    (no console -- treating as no; use --yes to skip)")
-        return False
+def record_leds(rep: Report, led_can: str, led_pwr: str) -> None:
+    """Fold an observed LED state into the verdict.
+
+    Flags rather than a prompt, because this is driven from a session that
+    cannot see the board: the observation arrives on a later invocation, or it
+    does not arrive. "unknown" is reported as unconfirmed and never as a pass
+    -- an unanswered question is not a green light.
+    """
+    if led_can == "unknown" and led_pwr == "unknown":
+        rep.note("LED state not reported. 7a is INCOMPLETE without it -- "
+                 "re-run with --led-can/--led-pwr once somebody has looked.")
+        return
+    rep.check("LED_CAN was steady", led_can == "steady",
+              f"reported {led_can}")
+    rep.check("LED_PWR was blinking slowly", led_pwr == "slow",
+              f"reported {led_pwr}"
+              + ("; steady means a normal build is flashed"
+                 if led_pwr == "steady" else ""))
 
 
 # --------------------------------------------------------------------------
@@ -619,8 +650,17 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--all-ids", action="store_true")
     ap.add_argument("--port", help="the transmitting adapter")
     ap.add_argument("--port2", help="the second adapter, for 7a and 7e")
-    ap.add_argument("--yes", action="store_true",
-                    help="assume yes for the LED questions in 7a")
+    ap.add_argument("--observe", type=float, default=30.0,
+                    help="seconds 7a keeps traffic live so the LEDs can be "
+                         "looked at; 0 to skip the window")
+    ap.add_argument("--led-can", default="unknown",
+                    choices=["steady", "slow", "fast", "dark", "unknown"],
+                    help="what LED_CAN was observed doing during 7a")
+    ap.add_argument("--led-pwr", default="unknown",
+                    choices=["steady", "slow", "dark", "unknown"],
+                    help="what LED_PWR was observed doing during 7a")
+    ap.add_argument("--list", action="store_true",
+                    help="list serial ports and exit")
     ap.add_argument("--listen-only", action="store_true")
     ap.add_argument("--traffic", action="store_true")
     ap.add_argument("--scenarios", action="store_true")
@@ -635,6 +675,12 @@ def main(argv: list[str] | None = None) -> int:
                               ("fault", args.fault)) if on]
     if args.all or not wanted:
         wanted = ["listen-only", "traffic", "scenarios", "fault"]
+
+    if args.list:
+        from serial.tools import list_ports
+        for port in list_ports.comports():
+            print(f"{port.device}  {port.description}")
+        return 0
 
     if args.dry_run:
         tpl = bs.templates(args.log)
@@ -661,16 +707,18 @@ def main(argv: list[str] | None = None) -> int:
 
     reports = []
     try:
+        # Nothing here asks whether the right hex is flashed. This is driven
+        # from a session that cannot see the board, so a prompt would read EOF
+        # and answer itself -- and the checks catch the wrong build anyway: a
+        # normal build in 7a shows up as frames where there must be none, and a
+        # silent build in 7b as no frames at all.
         if "listen-only" in wanted:
-            print("\n>>> flash CAN_MODE=LISTEN_ONLY before this test <<<")
-            if not args.yes and not ask("Is a LISTEN_ONLY build flashed?"):
-                sys.exit("stopping: 7a needs the listen-only hex")
+            print("\n>>> 7a needs CAN_MODE=LISTEN_ONLY flashed <<<")
             reports.append(mode_listen_only(sender, acker, args.log,
-                                            args.seconds, args.yes))
+                                            args.seconds, args.observe,
+                                            args.led_can, args.led_pwr))
         if {"traffic", "scenarios", "fault"} & set(wanted):
-            print("\n>>> flash the NORMAL build before the tests below <<<")
-            if not args.yes and not ask("Is the normal build flashed?"):
-                sys.exit("stopping: these need the normal hex")
+            print("\n>>> the tests below need the NORMAL build flashed <<<")
         if "traffic" in wanted:
             reports.append(mode_traffic(sender, listener, args.log,
                                         args.seconds, args.speed,
