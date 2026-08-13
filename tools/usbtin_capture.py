@@ -44,11 +44,23 @@ import argparse
 import sys
 import time
 
+# pyserial is this project's only third-party dependency and only the two
+# adapter scripts need it, which is why CI installs nothing and there is no
+# requirements.txt. So a missing import is recorded rather than fatal: the
+# module must stay importable so its pure helpers can be unit tested on a
+# machine -- or a CI runner -- with no pyserial and no hardware. The scripts
+# that actually open a port call require_serial() first.
 try:
     import serial
     from serial.tools import list_ports
 except ImportError:  # pragma: no cover - depends on the machine
-    sys.exit("pyserial is not installed:  python -m pip install pyserial")
+    serial = None
+    list_ports = None
+
+
+def require_serial() -> None:
+    if serial is None:
+        sys.exit("pyserial is not installed:  python -m pip install pyserial")
 
 
 CR = b"\r"
@@ -78,6 +90,7 @@ ACCEPTANCE_FILTER = None
 
 def find_port() -> str:
     """Guess the USBtin's port. Raises if it is not obvious."""
+    require_serial()
     named, generic = [], []
     for p in list_ports.comports():
         text = f"{p.description} {p.manufacturer or ''} {p.product or ''}".lower()
@@ -140,6 +153,7 @@ def command(ser: "serial.Serial", cmd: bytes, *, expect_payload: bool = False) -
 
 
 def capture(port: str, seconds: float, out_path: str, *, normal: bool) -> int:
+    require_serial()
     with serial.Serial(port, baudrate=115200, timeout=0.1) as ser:
         # The channel may have been left open by a previous run or by a viewer
         # that exited badly. Closing an already-closed channel answers BEL on

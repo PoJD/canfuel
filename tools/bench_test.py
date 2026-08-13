@@ -59,12 +59,17 @@ from pathlib import Path
 import bench_scenarios as bs
 import canlog
 
+# Deferred, not fatal -- see usbtin_capture.require_serial(). Everything in
+# this file that decodes a frame, builds a command or grades a result is pure
+# Python, and tools/test_bench_test.py exercises exactly that on a runner with
+# no pyserial and no adapter. Only Adapter needs the real thing.
 try:
     import serial
 except ImportError:  # pragma: no cover - depends on the machine
-    sys.exit("pyserial is not installed:  python -m pip install pyserial")
+    serial = None
 
-from usbtin_capture import BEL, BITRATE_CMD, CR, find_port, read_flags
+from usbtin_capture import (BEL, BITRATE_CMD, CR, find_port, read_flags,
+                            require_serial)
 
 REPO = Path(__file__).resolve().parents[1]
 DEFAULT_LOG = REPO / "test" / "fixtures" / "09_idle_60s_z1.txt"
@@ -158,6 +163,7 @@ class Adapter:
     """
 
     def __init__(self, port: str, label: str):
+        require_serial()
         self.port = port
         self.label = label
         self.ser = serial.Serial(port, baudrate=115200, timeout=0)
@@ -920,6 +926,7 @@ def main(argv: list[str] | None = None) -> int:
         return summarise([rep])
 
     if args.list:
+        require_serial()
         from serial.tools import list_ports
         for port in list_ports.comports():
             print(f"{port.device}  {port.description}")
