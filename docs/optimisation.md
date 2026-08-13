@@ -50,8 +50,7 @@ was right.
 
 ---
 
-## What was done, 2026-08-11
-
+## What was done
 ### 1. The tank median stopped sorting — 19,870 → 2,453 cycles, 8.1x
 
 `tank_median()` was an insertion sort over the 25-slot ring: worst case a
@@ -181,8 +180,7 @@ still has to be honest — and the audit is what forces the human to look.
   executed. Confirmed rather than assumed, because a sibling project of this
   maintainer's did run in a low-power mode.
 
-## 4. Division by a constant, without dividing — 2026-08-11
-
+## 4. Division by a constant, without dividing
 `txframes_gather` was the largest single item at 6.40 ms and it is nine 32-bit
 divisions. `___lldiv` costs 1,026 cycles — 257 µs — every time. It is now
 4.35 ms, a **32 % cut**, and `main` went 13.75 → 11.17 ms.
@@ -254,8 +252,7 @@ is the check that matters: the arithmetic did not move.
 
 ---
 
-## 5. Multiplication, the same trick again — 2026-08-12
-
+## 5. Multiplication, the same trick again
 Once the divisions were gone, **`___lmul` was the largest single item left**:
 twelve calls at 849 cycles, 10,188 cycles, **2.55 ms**. It is the same per-bit
 loop as `___lldiv`, for the same reason, and by then it had produced an absurd
@@ -312,8 +309,7 @@ division it replaces.
 
 ---
 
-## 6. The distance integrator was throwing away several per cent — 2026-08-12
-
+## 6. The distance integrator was throwing away several per cent
 **This one is a fault, not an optimisation, and it was found by reading the
 code with the "do not change behaviour" constraint lifted.** It is written up
 here rather than only in the commit because the *reason* it survived this long
@@ -359,8 +355,7 @@ millisecond or every second, 50 m for a minute at walking pace, and exactly
 zero for a minute of standing still. `tools/replay.py` carries the remainder
 too, so the oracle stays comparable rather than staying wrong in company.
 
-## 7. Two things computed for nobody — 2026-08-12
-
+## 7. Two things computed for nobody
 Both behaviour-neutral, both found by reading the call graph `cycles.py` prints
 rather than the code.
 
@@ -388,8 +383,7 @@ multiply that computes the remainder. What the table cannot show is the change
 that matters — the distance path now runs 100 times a second instead of a
 thousand.
 
-## 8. The tank median was never a requirement — 2026-08-12
-
+## 8. The tank median was never a requirement
 **This is the first change here that computes something different, and it is
 the clearest case of the constraint that was lifted.** The median was our
 choice: a rule was needed for "somebody refuelled", a median at rest was
@@ -443,8 +437,7 @@ a false positive silently destroys an average the driver has watched for
 `compute_tick`'s ceiling in `cycles.py` came down from 1.7 ms to 0.9 ms with
 it. A ceiling that can never be hit is not a gate.
 
-## 9. The flow window: 32 slots became 4 buckets — 2026-08-12
-
+## 9. The flow window: 32 slots became 4 buckets
 The instantaneous flow was a 32-slot ring of (microlitres, milliseconds), one
 slot per 0x480 frame, with the oldest dropped one at a time until the window
 fitted inside a second — and **the answer recomputed on every frame**, which
@@ -485,8 +478,7 @@ every field again.
 
 The `rx_frame` ceiling came down from 1.4 ms to 1.0 with it.
 
-## 10. Range: a 30 km window became a filter — 2026-08-12
-
+## 10. Range: a 30 km window became a filter
 The basis Range divides by was a flat average over the last thirty kilometres,
 held as **thirty microlitre totals, 120 bytes**, and summed on every gather —
 ten times a second, to produce a number that can only change **once a
@@ -522,8 +514,7 @@ so a refuelling puts Range back on the conservative default until
 kilometre rollover now folds the basis instead of storing a number in an array.
 That is the trade and it is a good one: it happens once a kilometre.
 
-## 11. Two divisors were ours, so they became shifts — 2026-08-12
-
+## 11. Two divisors were ours, so they became shifts
 `divconst.h` earns its keep on divisors the physics forces: 1000 for microlitres
 into millilitres, 3600 for the speed integration, 95500 for the power formula.
 **Two of the seven were neither** — they were scaling factors this project chose

@@ -19,7 +19,7 @@ LOOPS ARE MEASURED, NOT REMEMBERED. A branch whose target label appears earlier
 in the same function is a backward branch, so the words between the two are the
 body -- read out of the listing rather than written down here. Only the trip
 count is declared, in LOOPS below, and it names the config.h constant that
-bounds it wherever one exists. This matters: the bodies used to be written down
+bounds it wherever one exists. This matters: a body written down
 by hand, and when tank_median stopped being an insertion sort the table went on
 describing the sort, so the tool reported a new algorithm as costing exactly
 what the old one had.
@@ -58,7 +58,7 @@ BRANCHES = {"bra", "bz", "bnz", "bc", "bnc", "bn", "bnn", "bov", "bnov", "goto"}
 
 # Loops. ONLY the trip count lives here; the body is measured from the listing.
 #
-# This used to carry the body size by hand as well, and that was a trap rather
+# Carrying the body size by hand as well is a trap rather
 # than a shortcut: when tank_median stopped being an insertion sort the entry
 # still said (50, 299), so the tool reported the new algorithm as costing
 # exactly what the old one had. It measured a model of code that no longer
@@ -78,14 +78,14 @@ BRANCHES = {"bra", "bz", "bnz", "bc", "bnc", "bn", "bnn", "bov", "bnov", "goto"}
 # it as a single loop would understate it eightfold.
 LOOPS = {
     "___lldiv":          [(None, 32,                  "one per bit of a 32-bit divisor")],
-    # ___lmul was here until 2026-08-12 and is gone from the build entirely:
+    # ___lmul is gone from the build entirely:
     # every multiply in the core now goes through fastmul.h. If it comes back,
     # something reintroduced a plain 32-bit product.
-    # _tank_median was here until 2026-08-12, first as an insertion sort and
+    # _tank_median is gone -- first an insertion sort and
     # then as a 128-bucket histogram sweep. The refuelling rule does not need a
     # median at all -- see docs/optimisation.md -- so the function is gone and
     # with it the last data structure the core walked once a second.
-    # _compute_range_km was here until 2026-08-12, summing a 30-slot ring of
+    # _compute_range_km is gone -- it summed a 30-slot ring of
     # microlitre totals ten times a second for a number that can only change
     # once a kilometre. The basis is a filter now and the sweep is gone.
     "_flow_push":        [("FLOW_BUCKETS", None,     "the four buckets, summed when one closes")],
@@ -336,7 +336,7 @@ def budgets(words, calls, loops, constants):
         + cost("_leds_update")
     )
 
-    # txframes_gather_trip is the two divisions by 1000 that used to sit in the
+    # txframes_gather_trip is the two divisions by 1000 that would otherwise sit in the
     # fast slot, where nine out of ten of them were computed for nobody. They
     # are part of this budget now, not that one.
     slow_slot = (cost("_txframes_gather_trip") + cost("_txframes_trip")

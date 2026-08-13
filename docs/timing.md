@@ -1,8 +1,7 @@
 # How long everything takes
 
 A worst-case budget for the scheduler, against the rates the device has to
-hold. Written 2026-08-11, before any of it had run on a board; extended
-2026-08-12 with the second half described below.
+hold. **None of it has run on a board.**
 
 **This is static analysis of the code XC8 actually generated, not a
 measurement.** That is a real limitation and the last section says how to close
@@ -106,7 +105,7 @@ FuelNow, FuelAvg and the flow window.
 ### The tank sample stopped being a sweep of anything
 
 It was an insertion sort over a 25-slot ring — 15,068 cycles, **3.77 ms** — then
-a sweep of a 128-bucket histogram, 2,453 cycles. Since 2026-08-12 there is no
+a sweep of a 128-bucket histogram, 2,453 cycles. There is no
 median at all: the refuelling rule is a first-order filter and a counter of
 consecutive samples, so `tank_sample` is 1,562 cycles with no loop in it and
 `compute_tick`'s worst case fell 1.26 → 0.67 ms. **The 153 bytes of RAM the ring
@@ -214,7 +213,7 @@ rather than a late frame.
 | **`now_ms`** | wraps after 49.7 days | unreachable: the board is on switched 12 V | — |
 
 Two of those rows are not margins but decisions, and both were taken on
-2026-08-12: the trip caps exist because nothing else clears the accumulators
+The trip caps exist because nothing else clears the accumulators
 but a detected refuelling, and a failed tank sender would otherwise walk
 `total_mm` into its wrap. `config.h` argues them.
 
@@ -306,7 +305,7 @@ plus an EEPROM write, 3x a minute      ~54.5 ms
 
 Every figure here comes from `tools/cycles.py` against a real build. **The same
 pass measured 18.72 ms before the optimisation work**, all of it on
-2026-08-11/12 and all measured with this tool, so the two compare like with
+all measured with this tool, so the two compare like with
 like:
 
 | | worst pass |
@@ -385,7 +384,7 @@ So the sequence is:
 
 Two cases, and only one of them loses anything. Both are the current code;
 the columns beside them are the same arithmetic against the code as it stood
-before the optimisation work of 2026-08-11, measured with this same tool so
+before the optimisation work, measured with this same tool so
 the two are comparable.
 
 | | before | now | the FIFO holds |
@@ -435,7 +434,7 @@ None of that costs anything, which is the analysis already written out in
 deliberately, three times a minute, is not a fault worth putting on an LED.
 
 The **ordinary** worst pass, 6.52 ms, is inside the 22 ms the FIFO holds, so
-outside the EEPROM write nothing is dropped at all — and since 2026-08-12 it is
+outside the EEPROM write nothing is dropped at all — and it is
 also inside `RX_POLL_MS`, which it had never been.
 
 ---
@@ -471,7 +470,7 @@ any of these goes over its ceiling:
 | the 1 s slot, excluding the EEPROM write | 1.19 ms | 1.5 ms |
 
 **The ceilings sit about 1.3x above what the code costs today**, and all four
-came down again on 2026-08-12 as the algorithms underneath them got cheaper:
+came down again as the algorithms underneath them got cheaper:
 1.4 -> 1.0, 1.7 -> 1.0, 5.2 -> 3.6 and 1.5 unchanged. A ceiling that can never
 be hit is not a gate, so they follow the code down. The hardware has far more headroom
 than this — the numbers above in *The answer: where the margin is* are the real

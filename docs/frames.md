@@ -121,7 +121,7 @@ does not ruin the average.
 Below 100 m of distance it returns zero. Without that guard the division is by
 an almost-zero distance; on `06_trip_reset.txt` it produced 21,395 l/100 km.
 
-**And there is a cap at the other end**, added 2026-08-12. Nothing clears the
+**And there is a cap at the other end.** Nothing clears the
 accumulators except a detected refuelling, so a tank sender that fails — or
 reads plausibly and never rises — leaves them growing until `total_mm` wraps at
 4,295 km, silently, taking the average with it. Past **2,000 km or 400 l** the
@@ -146,7 +146,7 @@ per kilometre with a time constant of sixteen. It behaves the way modern cars
 do — after flooring it on the motorway the estimate falls gradually rather than
 jumping.
 
-**It was a flat average over thirty 1 km slots until 2026-08-12**, which is
+**A flat average over thirty 1 km slots would be simpler**, which is
 120 bytes of RAM summed ten times a second for a number that can only change
 once a kilometre. The filter has a mean age of 16 km against the window's 15,
 so the estimate is very nearly as steady; `docs/optimisation.md` §10 has the
@@ -156,7 +156,7 @@ carries four fractional bits so it cannot stall a long way from the truth.
 Until 5 km have been driven since startup, a conservative default of 9 l/100 km
 is used so the estimate is not nonsense on a cold start.
 
-**"Litres remaining" is the damped level, not the raw one.** Until 2026-08-11
+**"Litres remaining" is the damped level, not the raw one.**
 it was the raw `0x320` b2, i.e. the float position with the slosh still in it.
 Measured on `07_accel`, where the raw value swings across 10 L during a
 pull-away, that is a range swinging over **111 km several times a second**,
@@ -198,7 +198,7 @@ That the two independent ratings now agree about the scale is a check that
 passed, not a measurement: the constraint is dominated by the drag line's
 *slope*, so a wrong intercept can still look consistent. **Nothing available
 settles it, and it is no longer an open question.** The VCDS session was run on
-2026-08-11 and this ECU has no torque measuring block at all; a full-throttle
+This ECU has no torque measuring block at all; a full-throttle
 pull would settle it and is deliberately not planned. It is parked under *Never
 resolved but not required* in `can-decoding.md` — do not plan that session
 again. `test_compute.c` pins the ceiling so the factory figures cannot silently
@@ -208,7 +208,7 @@ go out of reach.
 indicated torque. It is not constant; it rises with engine speed and is
 modelled linearly against rpm.
 
-**Refitted on 2026-08-11 on warm oil.** Four calibration points, the
+**Fitted on warm oil.** Four calibration points, the
 free-revving holds `13` to `16`, all stationary in neutral so the crank drives
 nothing and b7 *is* the drag:
 
@@ -228,7 +228,7 @@ drag [Nm] = 6.74 + 0.00482 × rpm
 
 The constants live in `config.h` as `DRAG_TORQUE_BASE_CNM` and
 `DRAG_TORQUE_SLOPE_Q16` — the slope scaled by 2**16 rather than by 10,000
-since 2026-08-12, so that dividing it out is a free byte shift on the PIC
+so that dividing it out is a free byte shift on the PIC
 rather than a reciprocal multiply. The line is unchanged to five parts per
 million. **The calibration is in bytes, not Nm** — change the
 scale above and this line has to be refitted with it, which is exactly what

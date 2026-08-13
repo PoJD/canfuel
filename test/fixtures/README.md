@@ -7,7 +7,7 @@ immediately.
 ## ⚠ Read this before using any timestamp
 
 **Only the three `_z1` logs have trustworthy time.** They were recorded on
-2026-08-11 with `tools/usbtin_capture.py`, which drives the adapter directly
+with `tools/usbtin_capture.py`, which drives the adapter directly
 with `Z1` on, so each millisecond timestamp is stamped **in the USBtin when the
 frame arrives**. Nothing else in this directory has a defensible time base:
 
@@ -49,7 +49,7 @@ stands. It is duration, average flow and distance that need a clock.
 
 ## The three `_z1` logs
 
-Recorded in one session on 2026-08-11, engine warm, car stationary, MFD15
+Recorded in one session, engine warm, vehicle stationary, display
 unplugged from the bus, adapter in listen-only mode. Conditions are recorded
 here because they are not recoverable from the files and they change what the
 numbers mean.
@@ -113,7 +113,7 @@ running. It answers a question about broadcast rate, and that is all.
 
 ## The six VCDS holds — `11` to `16`, and `vcds/vcds-01-002-003.csv`
 
-Recorded 2026-08-11 in one session, stationary, in neutral, engine warm, with
+Recorded in one session, stationary, in neutral, engine warm, with
 **VCDS logging measuring groups 002 and 003 continuously** while each CAN
 capture was taken. The procedure is `docs/vcds-session.md`.
 
@@ -196,7 +196,7 @@ an alternator load and part of the same spread.
 
 ## `17_drive_property_z1.txt` — the wide one
 
-Six minutes on private land, 2026-08-11, VCDS logging throughout
+Six minutes on private land, with diagnostic logging throughout
 (`vcds/vcds-ride-002-003.csv`). First gear only — the land is too short for
 second — so it is repeated hard pull-aways alternating with **coasting in gear
 off the throttle**, which is where the low-load half of the range comes from.
@@ -353,7 +353,7 @@ last one, and the clearest example is in `09_idle_60s_z1.txt`: 31 % of 0x480
 frames carry an unchanged fuel counter, because at idle the counter steps about
 12 µl at a time and the frame goes out more often than that.
 
-**Measured across both recording chains on 2026-08-11**, which is what settles
+**Measured across both recording chains**, which is what settles
 it — the `_z1` logs share no software with the viewer exports beyond the
 adapter itself:
 

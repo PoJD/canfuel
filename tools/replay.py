@@ -91,7 +91,7 @@ def decode(frame: Frame, st: Decoded) -> None:
         st.rpm = u16le(d, 2) * 0.25
         st.throttle = d[5]
         # 0.74 Nm/bit, and the scale is a decision -- src/config.h argues it.
-        # It moved from 0.75 on 2026-08-11 when the drag line was refitted on
+        # It is 0.74 rather than 0.75 because the drag line is fitted on
         # warm oil; the two are calibrated together and must move together.
         st.torque_ind_nm = d[7] * 0.74
 
@@ -182,7 +182,7 @@ class Compute:
         # goes into the open bucket, and when that bucket holds FLOW_BUCKET_MS
         # the four are averaged and the oldest is emptied to take its place.
         # This mirrors the firmware rather than the other way round -- the ring
-        # of one slot per frame that used to be here divided twenty-six times a
+        # of one slot per frame would divide twenty-six times a
         # second on a part where that costs 1,026 cycles a time.
         open_bucket = self._flow[self._flow_open]
         open_bucket[0] += delta_ul
@@ -199,7 +199,7 @@ class Compute:
     def on_distance(self, st: Decoded, dt_s: float) -> None:
         """Accumulate first, truncate once.
 
-        This used to be `total_mm += int(...)`, which throws away up to a
+        `total_mm += int(...)` is WRONG here: it throws away up to a
         millimetre on every interval -- the same fault the firmware had, where
         it was far worse: compute_tick() is called every millisecond in the
         car, so v * 1 ms / 3600 lost 6.4 % of the distance at 50 km/h and

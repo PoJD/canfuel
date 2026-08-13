@@ -1,6 +1,6 @@
 # The VCDS session — questions 3 and 8
 
-⚠ **This session was run on 2026-08-11 and it is not to be run again.** It
+⚠ **This session has been run and is not to be run again.** It
 answered less than was hoped — b6 is injection time, b5 is not any of the three
 candidates, and this ECU has no torque measuring block at all — and on the
 strength of that both questions were parked under *Never resolved but not
@@ -170,7 +170,7 @@ worth having:
 - **Load % against b7 still identifies what b7 is.** If they are proportional,
   b7 is the same internal quantity the ECU calls load, which is a real finding
   even without units — and it would confirm the reading that b7 is *indicated*
-  torque rather than crank torque, which is the correction made on 2026-08-11.
+  torque rather than crank torque.
 - **Question 3 is unaffected** and closes on the same data.
 - The remaining route to the scale is then a full-throttle pull, which is
   deliberately not planned, or a factory document nobody has.

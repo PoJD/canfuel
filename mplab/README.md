@@ -37,7 +37,7 @@ the build stops immediately:
 ::: error: (2103) no device-support files specified; use the -mdfp option
 ```
 
-Three things about that, each of which cost a round on 2026-08-09, and each of
+Three things about that, each of which costs a build round, and each of
 which reports as the same unhelpful `error: (2104) no device-support files
 found`:
 

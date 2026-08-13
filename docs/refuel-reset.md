@@ -35,7 +35,7 @@ move. Held still, the rule means what it says.
 
 ### This used to be a median, and why it is not any more
 
-Until 2026-08-12 `tankStableL` was the **median of a 25-slot ring**, read out
+`tankStableL` is deliberately **not** the median of a ring, read out
 of a 128-bucket histogram, trusted from five samples on. It worked. It was
 replaced because the median was never a requirement — it was a choice made
 once, and nothing had ever compared it against a cheaper one. It cost 2,453
@@ -105,7 +105,7 @@ it has to run on synthetic frames in `test_compute.c`.
 
 ---
 
-## Corner cases — audited 2026-08-11
+## Corner cases
 
 Every path that touches the tank was walked. One was a real defect; the rest
 are listed so that the next person does not have to re-derive them.
@@ -181,7 +181,7 @@ trustworthy number the tank produces, and the trigger stays on it.
 - The refuelling comparison cannot underflow: `st->tank_l > tank_stable_l`
   guards the `uint8_t` subtraction that follows it.
 - **A refuelling is no longer the only thing that clears the trip.** Since
-  2026-08-12 `compute_tick()` also resets it past `TRIP_MAX_MM` (2,000 km) or
+  `compute_tick()` also resets it past `TRIP_MAX_MM` (2,000 km) or
   `TRIP_MAX_UL` (400 l), because otherwise a sender that never rises leaves the
   accumulators growing until `total_mm` wraps at 4,295 km. That path does NOT
   increment `refuels`, which keeps meaning "the tank was seen to rise".

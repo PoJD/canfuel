@@ -508,7 +508,7 @@ class TestFuelRates(unittest.TestCase):
 class TestTimestampWrap(unittest.TestCase):
     """The USBtin's Z1 counter restarts; the host's timestamps do not.
 
-    The wrap value was measured off a real capture on 2026-08-11 -- the
+    The wrap value was measured off a real capture -- the
     counter reaches 60000 and the next frame reads 0. See TIMESTAMP_WRAP_MS.
     """
 

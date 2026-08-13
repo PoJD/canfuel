@@ -103,7 +103,7 @@ the decoder's about what to do with it.
 property rather than the list, so a state nobody has seen yet is caught instead
 of quietly accepted.
 
-**A warning to whoever reads b1 next, learned the hard way on 2026-08-11.**
+**A warning to whoever reads b1 next, learned the hard way.**
 Bits 0x08 and 0x10 are flags and **not** part of the speed. Reading b1's low
 six bits as the value's high byte — which is an easy thing to write in a
 throwaway analysis script, and was written — makes 0x48 look like a jump to
@@ -159,7 +159,7 @@ It makes no difference to the arithmetic — the 0x7FFF mask drops it, and that
 dropping is asserted by a test in both implementations, because a leak here is
 worth up to 32,768 µl on every total. **It is not decoded as a flag**: it would
 make a usable "this ignition cycle is still young" indicator and nothing wanted
-one, so the field was removed on 2026-08-11.
+one, so the field was removed.
 
 ## Trap 4: FuelAvg divides by an almost-zero distance
 
@@ -227,7 +227,7 @@ sixty-second recording on a live bus.
 
 ## Open questions
 
-Reviewed in full on 2026-08-11, and then sorted the same day against a question
+Reviewed in full, and then sorted against a question
 the register had never been asked: **which of these actually changes this
 firmware?** Most of them never did. They were written down because the bus is
 interesting, and a list of nine questions of which one matters is a list nobody
@@ -254,7 +254,7 @@ tree.
 
 ---
 
-### 7. Drag torque calibration — **refitted on warm oil 2026-08-11; still open for hot oil**
+### 7. Drag torque calibration — **refitted on warm oil; still open for hot oil**
 
 **The one open question, and the only one that pays for itself.** The firmware
 subtracts this line from indicated torque on every frame it sends, so an error
@@ -266,7 +266,7 @@ and 27.75 Nm at 2940 rpm exactly — raw b7 of 29 and 37. Both points came from
 fixtures and **neither was at operating temperature**: 60.8 °C at idle and
 **39.0 °C** at 2940 rpm, read off 0x420 b3.
 
-| | fixture | b7 | oil | 2026-08-11 | b7 | oil |
+| | fixture | b7 | oil | refit | b7 | oil |
 |---|---|---|---|---|---|---|
 | idle | `02_idle_60s` | 29 | **60.8 °C** | `11_idle_noac_z1` | 25 | 72.8 °C |
 | ~2930 rpm | `05_rev3000` | 37 | **39.0 °C** | `16_rev2926_z1` | 27 | 76.6 °C |
@@ -343,13 +343,13 @@ zero.
 
 ## Resolved questions
 
-Six that were settled, moved out of *Open questions* on 2026-08-11 so that
+Six that were settled, moved out of *Open questions* so that
 section holds only questions that are genuinely still open. They stay here in
 full rather than being deleted: the reasoning is what stops each of them being
 reopened by somebody arguing from first principles, which is the same case
 `docs/refuted.md` makes for itself.
 
-### 1. ~~What is the real period of 0x480?~~ — **closed 2026-08-11: there isn't one**
+### 1. ~~What is the real period of 0x480?~~ — **closed: there isn't one**
 
 The question was wrong, not just unanswered. **0x480 has no fixed period**, so
 every attempt to pin one down was bound to produce a different number depending
@@ -428,7 +428,7 @@ fast the counter is moving. What, is unknown, and nothing here depends on it.
 USBtin has a hardware timestamp of its own, and `USBtinViewer` simply does not
 use it. Talk to the adapter directly instead. That is the whole fix.
 
-### 2. ~~The starting counter value in `07_accel`~~ — **closed 2026-08-11**
+### 2. ~~The starting counter value in `07_accel`~~ — **closed**
 
 The specification quotes 13247 → 22622 while the file starts at 12870, a
 difference of 377 µl. **Confirmed exactly**: the counter reaches 13247 at
@@ -436,7 +436,7 @@ difference of 377 µl. **Confirmed exactly**: the counter reaches 13247 at
 the first frame and that one is 377 µl to the microlitre. The specification
 was computed from 1.14 s in. No discrepancy exists.
 
-### 4. ~~Is 0x420 b3 oil or IAT?~~ — **closed 2026-08-11: it is oil**
+### 4. ~~Is 0x420 b3 oil or IAT?~~ — **closed: it is oil**
 
 `07_accel` alone was inconclusive. Reading all seven fixtures in the order the
 coolant says they were recorded settles it:
@@ -469,11 +469,11 @@ already treats it as such, so nothing changes; it is now a finding rather than
 an assumption. VCDS group 003 would confirm it in one minute if anyone cares
 enough, and nobody should.
 
-### 5. ~~AccelG — longitudinal or lateral?~~ — **closed 2026-08-11: it is lateral**
+### 5. ~~AccelG — longitudinal or lateral?~~ — **closed: it is lateral**
 
 > **The firmware does not decode this and no longer accepts 0x5A0 at all.** The
 > display reads the frame straight off the bus, so a decoded field here would
-> have had no consumer; it was removed on 2026-08-11 along with its acceptance
+> have had no consumer; it was removed along with its acceptance
 > filter. This entry stands as a fact about the car, which is what this document
 > is for.
 
@@ -579,7 +579,7 @@ the USBtin running, at least 3 km so a 0.1 km counter moves thirty times, with
 the reset pressed in the middle — and then the same scan, which is now written
 down and took a minute to run.
 
-### 9. ~~Two fixtures carry timestamps and disagree with the other five about time~~ — **closed 2026-08-11: the timestamps are wrong**
+### 9. ~~Two fixtures carry timestamps and disagree with the other five about time~~ — **closed: the timestamps are wrong**
 
 **Measured, at the operating point the argument was about.**
 `09_idle_60s_z1.txt`: 60 s of warm idle at 796 rpm, air conditioning off,
@@ -709,7 +709,7 @@ the adapter over its serial port directly — the commands are on
 
 **`tools/usbtin_capture.py` does exactly this** and writes the raw slcan
 stream, which `canlog.py` already parses including the four hex digits `Z1`
-appends. Written 2026-08-11; it has been run on a desk with no adapter
+appends. It has been run on a desk with no adapter
 attached, so its argument handling works and its serial conversation has never
 met a USBtin.
 
@@ -724,7 +724,7 @@ the throughput is affordable and `F` reports it if it is not.
 | `C` | close |
 
 Engine at warm idle, sixty seconds, capture the raw lines to a file.
-`tools/canlog.py` parses the timestamp since 2026-08-11.
+`tools/canlog.py` parses the timestamp.
 
 Filtering to 0x480 alone is not an optimisation, it is part of the fix: it
 takes the line rate from about 700 a second to about 20, so the duplication and
@@ -754,7 +754,7 @@ for the sixty seconds of measurement that settles it.
 
 ## Never resolved but not required
 
-Two questions in this file were never answered, and as of 2026-08-11 neither of
+Two questions in this file were never answered, and neither of
 them is going to be. **Do not come back to them.** Not "while the car is on the
 ramp anyway", not "it is only ten minutes with VCDS running". Both have already
 cost a trip to the car, both came back with less than was hoped, and neither
@@ -774,7 +774,7 @@ which rule is in force.
 
 ---
 
-### 3. 0x288 b5 and b6 — **b6 decoded, b5 unexplained, parked 2026-08-11**
+### 3. 0x288 b5 and b6 — **b6 decoded, b5 unexplained, parked**
 
 **Why it is here.** Nothing in the firmware reads either byte. `decode.c`'s
 `CAN_ID_COOLANT` case takes b1 and stops there, no transmitted frame carries
@@ -875,7 +875,7 @@ Nothing in the firmware wants these bytes. This is curiosity with a use — an
 air mass would let a proper torque model replace the two-point drag line — but
 it blocks nothing.
 
-### 8. The torque byte's scale — **decided rather than measured, parked 2026-08-11**
+### 8. The torque byte's scale — **decided rather than measured, parked**
 
 **Why it is here, and it is the harder of the two calls.** Unlike b5, this one
 *does* touch what the firmware transmits: 0.74 Nm/bit scales every torque and
@@ -885,7 +885,7 @@ to run.
 - The bracket is narrow, and got narrower. On the warm drag line the two
   factory ratings imply **0.736 to 0.738 Nm/bit** — 0.3 % — where the old
   cold-oil line made them argue between 0.745 and 0.773. The scale in the
-  firmware moved 0.75 → 0.74 with the refit of 2026-08-11, which is not a new
+  firmware moved 0.75 → 0.74 with the refit, which is not a new
   answer to this question but the arithmetic consequence of question 7's, since
   full scale must cover the rated torque plus the drag.
 - The measurement does not exist. VCDS was tried and this ECU has no torque
@@ -901,7 +901,7 @@ this open was misleading.
 
 The findings, in full:
 
-**The session was done on 2026-08-11 and this ECU does not report torque in
+**This ECU does not report torque in
 Nm.** Measuring groups 001, 002, 003 and 020 were all examined on
 `06A 906 018 EJ` and the closest thing on offer is `Motor zatizeni` — engine
 load, in per cent. Writing that down is the point: without it the next person
@@ -912,7 +912,7 @@ the same quantity**. Holds `14`, `15` and `16` sit at a constant 17.0–17.3 %
 load while b7 climbs 20.7 → 26.3 → 27.2. A load percentage does not rise with
 engine speed at constant load; a torque does, because the friction and pumping
 torque a free-revving engine must produce grows with speed. That is independent
-support for the 2026-08-11 reading that b7 is *indicated torque*, arrived at
+support for the reading that b7 is *indicated torque*, arrived at
 from a different direction than the argument that produced it.
 
 So the scale remains a decision inside the bracket the factory ratings imply —
@@ -930,7 +930,7 @@ The original procedure follows, for the record.
 
 0x280 b7 is a percentage of a reference torque inside the ECU, not Nm. The two
 factory ratings bracket the scale between 0.745 Nm/bit (85 kW at 5200 rpm) and
-0.773 (170 Nm at 2400 rpm); 0.75 was chosen inside that bracket on 2026-08-11,
+0.773 (170 Nm at 2400 rpm); 0.75 was chosen inside that bracket,
 and the reasoning — including why the old 0.67 was wrong — is in `frames.md`
 and in `config.h`.
 

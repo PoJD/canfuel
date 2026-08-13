@@ -4,7 +4,7 @@
     python tools/checkdocs.py            # report
     python tools/checkdocs.py --check    # ...and exit non-zero if anything is wrong
 
-Every documentation fix on 2026-08-12 was a NUMBER, not an argument. The
+Every documentation fix in one sweep was a NUMBER, not an argument. The
 paragraphs around them still reasoned correctly; only the figures had moved,
 because one constant changed in config.h and eleven sentences elsewhere did
 not. Grep does not find them: "half a millisecond a minute" contains no
@@ -25,9 +25,10 @@ Datasheet numbers are a third kind and are deliberately not checked: the PDF
 is frozen, so D122's 4 ms cannot go stale. Cite those freely.
 
 ADDING A CHECK. Put it in DERIVED or FORBIDDEN and give it a `why`. If a line
-legitimately states an old value -- docs/refuted.md and docs/optimisation.md
-record what things used to be, in the past tense -- add it to ALLOW with the
-reason, rather than weakening the pattern for everybody.
+legitimately states a rejected value -- docs/refuted.md and
+docs/optimisation.md name the alternatives that were considered and turned
+down -- add it to ALLOW with the reason, rather than weakening the pattern for
+everybody.
 """
 
 import argparse
@@ -38,8 +39,8 @@ import sys
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 
 # Files whose prose is checked. Sources are in here too: a stale comment beside
-# the code is worth exactly as much as a stale sentence in a document, and on
-# 2026-08-12 four of the nineteen fixes were comments.
+# the code is worth exactly as much as a stale sentence in a document, and four
+# of the nineteen fixes in one sweep were comments.
 SCAN = [
     "*.md",
     "docs/*.md",
@@ -109,7 +110,7 @@ def fixture_count():
 DERIVED = [
     dict(
         name="eeprom-writes-per-minute",
-        why="PERSIST_INTERVAL_MS went 60 s -> 20 s on 2026-08-12 and eleven "
+        why="PERSIST_INTERVAL_MS went 60 s -> 20 s and eleven "
             "places still said 'once a minute'",
         pattern=re.compile(
             r"\b(once|twice|three times|four times|\d+ times)\s+a\s+minute\b", re.I),
@@ -120,7 +121,7 @@ DERIVED = [
     ),
     dict(
         name="accepted-identifiers",
-        why="0x5A0 was dropped on 2026-08-11; CLAUDE.md still said seven",
+        why="0x5A0 was dropped; CLAUDE.md still said seven",
         pattern=re.compile(r"\bthe\s+(\w+)\s+identifiers\s+we\s+accept\b", re.I),
         needs=("identifier",),
         expected=accepted_can_ids,

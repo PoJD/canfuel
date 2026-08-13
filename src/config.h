@@ -96,7 +96,7 @@
  * same number, kept as a separate name because the two guard different things
  * and have no reason to move together.
  *
- * THIS USED TO BE HIDDEN RATHER THAN DECIDED. With a one-millisecond step the
+ * THIS IS DECIDED, NOT HIDDEN. With a one-millisecond step the
  * quotient of anything under 3.6 km/h was zero, so the standing value
  * integrated to nothing by accident. Making the integration exact turned that
  * accident into 83 mm over a minute of idling -- which 02_idle_60s and
@@ -118,7 +118,7 @@
  * closes as soon as it holds FLOW_BUCKET_MS, so the four together span 1.00 to
  * 1.03 s in practice.
  *
- * IT USED TO BE A 32-SLOT RING of (microlitres, milliseconds) with the oldest
+ * A 32-SLOT RING of (microlitres, milliseconds) was rejected, with the oldest
  * samples dropped one at a time until the window fitted a second. That is 128
  * bytes of RAM, a drop loop, and -- because the answer was recomputed on every
  * frame -- **a 32-bit division by a variable twenty-six times a second**, at
@@ -211,7 +211,7 @@
  * kilometre, so the estimate falls gradually after a hard pull rather than
  * jumping.
  *
- * IT USED TO BE A FLAT AVERAGE OVER THE LAST 30 KILOMETRES, held as 30
+ * A FLAT AVERAGE OVER THE LAST 30 KILOMETRES was rejected, held as 30
  * microlitre totals -- 120 bytes of RAM that were summed on every gather, ten
  * times a second, to produce a number that can only change once a kilometre.
  * It is a first-order filter now, one shift per completed kilometre, which is
@@ -245,9 +245,8 @@
  * first-order filter over the at-rest samples, one shift per sample, so this
  * is a time constant of 16 seconds at TANK_SAMPLE_MS.
  *
- * IT USED TO BE A MEDIAN of a 25-slot ring, read out of a 128-bucket
- * histogram. That was replaced on 2026-08-12 and the reasoning is in
- * docs/optimisation.md: the median was our choice rather than a requirement,
+ * A MEDIAN of a 25-slot ring read out of a 128-bucket histogram was
+ * rejected. The reasoning is in docs/optimisation.md: the median was our choice rather than a requirement,
  * it cost 2,453 cycles and 153 bytes of RAM, and what it was actually being
  * asked for -- "is the level suddenly and persistently higher than it was" --
  * is answered by the counter below without sorting or counting anything.
@@ -281,7 +280,7 @@
 
 /* First-order damping of the transmitted tank level, in samples at
  * TANK_SAMPLE_MS -- so this is the time constant in seconds. It feeds both the
- * displayed level and, since 2026-08-11, the range.
+ * displayed level and the range.
  *
  * It was 60. Measured against the fixtures, the filter turns the float's slosh
  * into this much residual ripple:
@@ -300,7 +299,7 @@
  * and the sender at the bottom of its travel, where it is at its worst, and no
  * amount of damping makes that reading good.
  *
- * 128 AND NOT 120, since 2026-08-12, and the eight seconds are not the point.
+ * 128 AND NOT 120, and the eight seconds are not the point.
  * A divisor that is not a power of two is a reciprocal multiply on this part --
  * mulhi_u32 plus a rotate, about 360 cycles -- where a power of two is the
  * rotate alone, about 70. The time constant was a decision inside a range
@@ -320,7 +319,7 @@
  * ~0.39 % per bit (mfd15/docs/sensors.md §8). Turning that into Nm needs to
  * know what 100 % refers to, and nobody here has that number.
  *
- * This used to be 0.67 Nm/bit, from "the AQY's maximum is 172 Nm, so
+ * 0.67 Nm/bit is WRONG here, and comes from "the maximum is 172 Nm, so
  * 172/256 = 0.67". That premise contradicts the rest of the model, and
  * 05_rev3000 is what proves it: at 2940 rpm in neutral the crank is putting
  * out nothing at all, and b7 still reads 37. A signal scaled to crank torque
@@ -351,7 +350,7 @@
  * not a measurement.
  *
  * What would settle it: nothing available. The VCDS session was done on
- * 2026-08-11 and this ECU (06A 906 018 EJ) has no torque measuring block --
+ * This ECU has no torque measuring block --
  * groups 001, 002, 003 and 020 offer engine load in per cent and nothing in
  * Nm. The only remaining route is a full-throttle pull, which is deliberately
  * not planned. The question is therefore parked, not open: see
@@ -365,7 +364,7 @@
  *
  *   drag_cnm = BASE + rpm * SLOPE / 10000
  *
- * REFITTED 2026-08-11 on the four warm free-revving holds, replacing a line
+ * FITTED on the four warm free-revving holds, rather than a line
  * through two COLD-OIL fixture points. Stationary, in neutral, oil 72.8-76.6 C
  * off 0x420 b3, ~2,375 frames of 0x280 averaged per hold:
  *
@@ -410,7 +409,7 @@
  * direction. Question 7 in docs/can-decoding.md stays open for exactly that,
  * and is the only open question left.
  *
- * THE SLOPE IS SCALED BY 2**16, NOT BY 10,000, since 2026-08-12. It is our own
+ * THE SLOPE IS SCALED BY 2**16, NOT BY 10,000. It is our own
  * fixed-point choice and nothing outside this file reads it, so a power of two
  * makes the division a free byte shift instead of a reciprocal multiply and a
  * 13-bit rotate -- and takes another magic number out of divconst.h. The line
@@ -484,7 +483,7 @@
 #define PERSIST_RECORD_BYTES    12
 #define PERSIST_SLOTS           64
 
-/* TWENTY SECONDS, NOT SIXTY, since 2026-08-12. What the interval really sets
+/* TWENTY SECONDS, NOT SIXTY. What the interval really sets
  * is how much is thrown away at every ignition-off: the accumulators live in
  * RAM and the stored record is 0 to PERSIST_INTERVAL_MS old, so a switch-off
  * discards half of it on average. persist.h has the full argument; the short
@@ -502,7 +501,7 @@
  *      10 s       -0.09 %             2.0 years               49 years
  *
  * Endurance is not the constraint in any of those rows and never was -- see
- * the D124 correction in CLAUDE.md, which used to make it look tighter than it
+ * the D124 note in CLAUDE.md, which is easy to read as tighter than it
  * is. 20 s cuts the error to a sixth of one display digit and still outlasts
  * the car by a factor of five. Below that the returns are deep into what
  * nothing can show.

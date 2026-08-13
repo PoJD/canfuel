@@ -57,7 +57,7 @@
  * not go looking for an arithmetic bug. docs/frames.md says so too.
  *
  * WHY IT IS NOT FIXED FURTHER. The interval came down from 60 s to 20 s on
- * 2026-08-12, which is where the numbers above come from; config.h costs the
+ * which is where the numbers above come from; config.h costs the
  * four candidates. Ten seconds would halve the error again and still leave
  * decades of calendar life, and it is not done because the error is already
  * a sixth of a display digit.

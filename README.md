@@ -1,14 +1,16 @@
 # canfuel
 
-A fuel consumption converter for the VW New Beetle with the AQY engine
-(2.0 l / 85 kW, PQ34).
+A fuel consumption converter for VW PQ34 cars with the AQY engine
+(2.0 l / 85 kW).
 
 It reads the powertrain CAN bus, computes instantaneous and average
 consumption, range, torque and power, and sends them back onto the bus in
-frames of its own. A CANchecked MFD15 Gen2 display shows them as ordinary sensors.
+frames of its own, which an aftermarket multi-function display shows as
+ordinary sensors. *(Developed and verified on a 2.0 AQY with a CANchecked
+MFD15 Gen2 display; the signal decoding is specific to that powertrain bus,
+the rest is not.)*
 
-Physically it sits in the air vent behind the display, powered by 5 V taken
-straight from the display.
+Physically it sits behind the display, powered by 5 V taken straight from it.
 
 ## Status
 
@@ -16,12 +18,12 @@ straight from the display.
 
 The pure C core — frame decoding, the fuel arithmetic, the transmitted frames
 and the EEPROM buffer — is compiled with gcc and checked against seven real
-logs from the car, with no hardware involved. Those numbers can be trusted as
+logs from a vehicle, with no hardware involved. Those numbers can be trusted as
 far as the logs go.
 
 The hardware half — the ECAN driver, the millisecond timer, the A/D, the
-EEPROM and the scheduler — is written against the datasheet and, since
-2026-08-09, **compiled for the real part by XC8 v4.00 with no warnings**. CI
+EEPROM and the scheduler — is written against the datasheet and **compiled for
+the real part by XC8 v4.00 with no warnings**. CI
 builds the hex on every push and uploads it. That retires a whole class of
 doubt: every register and configuration bit exists and is spelled the way the
 device data spells it, and the configuration words were read back out of the
@@ -53,21 +55,15 @@ the worst pass without an EEPROM write is 6.5 ms against a 10 ms slot, and the
 whole firmware uses about a sixth of the CPU. `python tools/cycles.py` prints
 it and CI fails if a budget is blown.
 
-**No board has ever run it.** Compiling is not running: a register written in
-the wrong order at the wrong time compiles exactly as cleanly as one that is
+⚠ **No board has ever run it.** Compiling is not running: a register written
+in the wrong order at the wrong time compiles exactly as cleanly as one that is
 not, and the 500 kbps bit timing is datasheet arithmetic that no hardware has
-executed. The boards were ordered on 2026-08-09 and arrive during the week of
-2026-08-17. `docs/timing.md` is the same caveat for the scheduler — the timing
+executed. `docs/timing.md` is the same caveat for the scheduler — the timing
 budget is counted out of the assembly listing, not measured.
 
-**Everything around the board is ready.** The display's configuration is
-uploaded and verified, and the harness is built, fitted in the car and measured
-at 5.01 V where the board will plug in. **[`docs/install.md`](docs/install.md)
-is the plan** — the whole path from three clones to a working device, with a
-column showing where this particular car has got to. Its step 4 is done too:
-the PICkit 3 has been driven from the command line, has taken its firmware
-update and has been shown to survive it. **Everything that can be done without
-a board now has been**, and step 5 is waiting on the post.
+**[`docs/install.md`](docs/install.md) is the procedure** — the whole path from
+three clones to a working device, in the order it has to happen, with each step
+saying what it needs, what it proves and how you know it worked.
 
 ## Prerequisites
 
@@ -78,11 +74,11 @@ required to run the tests, and none of it is required to read the code.
 |---|---|---|
 | the core and its tests | **gcc**, **make**, **Python 3.11+** | no third-party packages — everything is standard library |
 | building for the chip | **XC8 v4.00** and **PIC18F-K_DFP 1.13.292** | the two versions must match each other; `mplab/README.md` has the whole story and the traps |
-| flashing a board | **MPLAB X** and a **PICkit 3** | not needed to build — `make -C mplab` produces the hex on its own. MPLAB X is installed for `ipecmd.exe`, not for the IDE, which is never opened for this |
-| recording from the car | **`pyserial`**, and a **USBtin** adapter | `pip install pyserial`; only `tools/usbtin_capture.py` uses it |
+| flashing a board | **MPLAB X** and a programmer IPECMD supports | not needed to build — `make -C mplab` produces the hex on its own. MPLAB X is installed for `ipecmd.exe`, not for the IDE, which is never opened for this. *(Tested on a PICkit 3.)* |
+| recording from the bus | a **CAN interface** the host can drive | *(Tested on a USBtin; `tools/usbtin_capture.py` drives it and needs `pip install pyserial`.)* |
 
-**The check that separates your setup from ours:** `make -C test test` must pass
-**without XC8 installed at all**. The core is deliberately pure C with no
+**The check that separates a toolchain problem from a code problem:**
+`make -C test test` must pass **without XC8 installed at all**. The core is deliberately pure C with no
 hardware headers, so if that fails, the problem is gcc or make, not the
 Microchip toolchain.
 
@@ -92,16 +88,13 @@ v6.00 bundles a pack that v4.00 refuses. The pack's path must also be pure
 ASCII. Both are documented, with the exact failure messages, in
 [`mplab/README.md`](mplab/README.md); CI pins the same two versions.
 
-**On the PICkit.** A PICkit 3 through the 5-pin ICSP header J3, driven from the
+**On the programmer.** Through the 5-pin ICSP header J3, driven from the
 command line with `ipecmd.exe` out of the MPLAB X install — the IDE is not
-opened for it. Other programmers that support the PIC18F25K80 should work and
-none has been tried. The tool itself is proved: on 2026-08-13 it was driven
-from the command line, updated its own firmware to v01.56.09 and came back
-clean on a second run. **No board has been flashed on this project yet**, and
-that is a different question — the same MCU was flashed from the IDE on an
-earlier project, which is where the confidence comes from, and it is not the
-same thing as having done it here. The commands are in
-[`docs/install.md`](docs/install.md) steps 4 and 5.
+opened for it. IPECMD supports MPLAB Snap, PICkit 3 and 4 and ICD 4 for this
+part; only the `-TP` name changes. *(Tested on a PICkit 3, which was driven
+from the command line and took its own firmware update.)* **No board has been
+flashed on this project yet**, which is a different question. The commands are
+in [`docs/install.md`](docs/install.md) steps 4 and 5.
 
 One thing that transfers to any script: **IPECMD's exit code cannot be branched
 on.** A `-I` that never found the target still exits 0, and `-T`, which works,

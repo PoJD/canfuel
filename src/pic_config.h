@@ -116,7 +116,7 @@
  * agree against it.
  *
  * CanSwitch.X sets PORTC. Copying that file wholesale is the single most
- * expensive mistake available here: the escape header that used to break out
+ * expensive mistake available here: the escape header that would have broken out
  * RC6/RC7 was removed from the board, so fixing it afterwards means soldering
  * to the underside of the PDIP socket. */
 #pragma config CANMX = PORTB

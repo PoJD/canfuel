@@ -148,7 +148,7 @@ b2, masked with 0x7F.
 
 ### B3. "0x420 b3 might be intake air temperature"
 
-**Believed:** genuinely open until 2026-08-11, with `07_accel` recorded
+**Believed:** genuinely open, with `07_accel` recorded
 specifically to settle it and coming out inconclusive.
 **Refuted by:** reading all seven fixtures in the order the coolant says they
 were recorded. It is a warm-up curve lagging the coolant, 21 → 65 °C while the
@@ -225,7 +225,7 @@ correction beside it.
 **Refuted by:** reading it while writing `hal_can.c`. `can.c` is Mode 0 only —
 one transmit buffer, two receive buffers, six filters — and this needs an
 eight-deep FIFO, so Mode 2, which it has no notion of. (At the time it also
-needed a seventh filter; 0x5A0 was dropped on 2026-08-11 and six now fit, but
+needed a seventh filter; 0x5A0 was dropped and six now fit, but
 two receive buffers still do not hold 3.58 frames per 10 ms.) Its API
 is a `CanHeader` of message type and node ID belonging to a house lighting
 protocol, not "send this identifier". `can_initRcPortsForCan()` is hard-wired
@@ -311,7 +311,7 @@ placement, same order:
 **Five of the eight failures were not escape signals** — both status LEDs and
 the whole ICSP header. A header that existed to rescue a design error was
 stopping the chip from being programmed.
-**Cost:** paid in full and recovered. Removed 2026-08-09; patching now goes
+**Cost:** paid in full and recovered. Patching now goes
 onto the PDIP socket pins from underneath, which are through-hole and
 reachable, so the escape route survives without the header. The freed column
 was inside the 6 mm keep-out circle of DS39977C §2.3, so the MCLR cluster moved
@@ -351,7 +351,7 @@ the transmit path on a desk with no bus and no transceiver at all.
 
 ## E. The toolchain
 
-E1 to E4 landed in one afternoon, 2026-08-09, and **none of them was the
+E1 to E4 landed in one afternoon, and **none of them was the
 firmware's fault**. All four are now encoded in `mplab/Makefile` so they cannot
 recur. E5 is CI's; E6 is the programmer's, and is the only one in this file
 whose refutation is a piece of school physics.
@@ -395,8 +395,7 @@ it. It was passing an empty value, so it had never configured anything anyway.
 
 ### E6. "The PICkit 3 cannot power a target — it only manages 4.6 V of the 5.0 V it asks for"
 
-**Believed** on 2026-08-13, and written into `CLAUDE.md` and `docs/install.md`
-the same day as a *measurement* that had finally replaced a piece of borrowed
+**Believed** briefly, and written into `CLAUDE.md` and `docs/install.md` as a *measurement* that had finally replaced a piece of borrowed
 errata. `ipecmd -I -W` against a bare ICSP header reports *"trying to supply
 5,000000 volts ... but the target VDD is measured to be 4,625000 volts"*, and
 that was read as the supply sagging: 0.375 V lost with no load at all, so

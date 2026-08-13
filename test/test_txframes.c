@@ -288,7 +288,7 @@ static void test_every_log_stays_inside_the_gauges(void)
      *
      * This is the only all-logs sweep of the clamp left. test_compute.c had a
      * second one that asserted the average alone over the same seven logs --
-     * a strict subset of these two lines -- and it was deleted on 2026-08-12.
+     * a strict subset of these two lines, so it does not belong here.
      * Trap 4 itself is pinned precisely by
      * test_average_below_minimum_distance_is_zero, and the clamp over a state
      * space no fixture reaches by test_props.c. */

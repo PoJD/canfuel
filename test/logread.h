@@ -91,7 +91,7 @@ static inline bool lr_parse_slcan(const char *line, log_frame_t *f)
         f->data[i] = (uint8_t)b;
     }
     /* Opened with Z1 the adapter appends four hex digits of millisecond
-     * timestamp after the payload. This parser ignored them until 2026-08-11,
+     * timestamp after the payload. This parser reads them,
      * when the first Z1 fixtures arrived and log_read() went on synthesising
      * time from an assumed 49.5 ms period instead -- 1583 frames x 49.5 ms is
      * the 78,359 ms it reported for a recording that really ran 60,027.
@@ -247,7 +247,7 @@ static inline bool log_load(const char *name, log_file_t *out, bool fix_doubled)
     out->timestamped = used > 0 && out->frames[0].ts_ms >= 0;
 
     /* Unwrap the adapter's millisecond counter, which runs 0..60000 and then
-     * restarts -- measured 2026-08-11, see tools/canlog.py TIMESTAMP_WRAP_MS
+     * restarts -- measured, see tools/canlog.py TIMESTAMP_WRAP_MS
      * and the note in fixtures/README.md. The counterpart on the Python side
      * is canlog.parse_file(); the two must agree or --host-build diverges on
      * span_ms, which is exactly how this was found.

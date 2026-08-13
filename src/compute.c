@@ -429,7 +429,7 @@ uint16_t compute_range_km(const compute_t *c)
         }
     }
 
-    /* THE DAMPED LEVEL, NOT THE INSTANTANEOUS ONE. This used to read
+    /* THE DAMPED LEVEL, NOT THE INSTANTANEOUS ONE. Reading
      * st->tank_l, which is the raw float position and slosh and all: on
      * 07_accel the raw value swings over 10 L during a pull-away, which is
      * 111 km of range appearing and disappearing several times a second while

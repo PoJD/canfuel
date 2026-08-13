@@ -57,9 +57,8 @@ class LogFormatError(ValueError):
     """The line looks like a frame but cannot be taken apart."""
 
 
-# The USBtin's Z1 timestamp counts milliseconds and restarts. **Measured on
-# 2026-08-11**, off a 20 s capture of the car's bus that happened to straddle
-# the wrap -- which is what the comment here used to ask somebody to do:
+# The adapter's Z1 timestamp counts milliseconds and restarts. **Measured**,
+# off a 20 s capture of a live bus that happened to straddle the wrap:
 #
 #     before: 59993 59994 59995 59996 59996 60000
 #     after :     0     0     1     2     4     8

@@ -56,14 +56,14 @@ static hal_can_mode_t g_mode = HAL_CAN_MODE_NORMAL;
 
 /* MODE 2 RATHER THAN MODE 0, AND THE REASON IS DEPTH, NOT FILTER COUNT.
  *
- * This used to rest on two arguments. The filter one has since gone away and
+ * The filter count is not the reason, and
  * the decision has not, which is worth writing down rather than leaving the
  * old reasoning in place to be discovered as false later.
  *
- * WHAT CHANGED. We used to accept seven identifiers, and DS39977C §27.4.1 gives
+ * FILTERS ARE NOT THE CONSTRAINT. DS39977C §27.4.1 gives
  * Mode 0 only "Six acceptance filters, 2 for RXB0 and 4 for RXB1" -- one short,
  * so Mode 2's "Sixteen acceptance filters" (§27.4.2, §27.4.3) settled it on
- * their own. 0x5A0 was dropped on 2026-08-11 because nothing consumed it, so
+ * their own. 0x5A0 is not accepted because nothing consumes it, so
  * there are six identifiers now and Mode 0 could hold them all.
  *
  * WHY IT IS STILL MODE 2. Mode 0 has two receive buffers. Mode 2 forms a FIFO
@@ -220,7 +220,7 @@ static hal_can_mode_t g_mode = HAL_CAN_MODE_NORMAL;
  * consumed by decode.c; an identifier that is merely interesting does not
  * belong here, because a filter is a hardware resource and a decoded field
  * nobody reads is dead weight. 0x5A0 (lateral acceleration) was here until
- * 2026-08-11 and was removed for exactly that reason -- the display reads it
+ * is not accepted for exactly that reason -- the display reads it
  * straight off the bus itself. */
 static const uint16_t k_rx_ids[] = {
     CAN_ID_SPEED,       /* 0x1A0 */

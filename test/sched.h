@@ -10,7 +10,7 @@
  * It is NOT how the firmware runs. main.c calls compute_tick() on every pass
  * of the scheduler, which on the real part is every ~100 us, and drains the
  * CAN FIFO on every pass as well. Everything that depends on HOW OFTEN the
- * core is called is therefore invisible to replay_core.h -- and on 2026-08-12
+ * core is called is therefore invisible to replay_core.h -- and that
  * exactly that hid a 6.4 % under-reading of every distance the device would
  * have reported, because v * 1 ms / 3600 truncates to whole millimetres.
  * The fixtures agreed with Python about a wrong number for weeks.

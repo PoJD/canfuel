@@ -4,8 +4,8 @@
  * WHY THIS FILE EXISTS. Every other test here, and tools/replay.py with it,
  * feeds the core off the 0x480 frames: one compute_tick() per fuel frame,
  * ~38 ms apart. The firmware does not. It calls compute_tick() on every pass
- * of a scheduler that comes round every ~100 us, and on 2026-08-12 that
- * difference turned out to be hiding a 6.4 % under-reading of every distance
+ * of a scheduler that comes round every ~100 us, and that difference can
+ * hide a 6.4 % under-reading of every distance
  * the device would have reported -- while the C and the Python agreed with
  * each other exactly, because they shared the fault.
  *
@@ -55,7 +55,7 @@ static sched_result_t run(const char *log, uint32_t tick_ms, bool eeprom)
  *  same recording. The fuel total is absolute, so it must come out
  *  IDENTICAL; the distance is integrated, so it may differ only by how
  *  finely the speed was sampled -- never by the millimetre the division
- *  used to throw away on every single call.
+ *  would throw away on every single call.
  *
  *  Before DIST_TICK_MS and the carried remainder, the 1 ms run reported
  *  about 6 % less distance than the 100 ms one on this fixture. Nothing in

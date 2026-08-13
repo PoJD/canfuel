@@ -240,8 +240,8 @@ static void test_idling_does_not_ruin_the_average(void)
 /* --- distance integration ------------------------------------------------ *
  *
  * THE RATE-INVARIANCE PROPERTY LIVES IN test_scheduler.c, not here. A
- * synthetic version of it used to sit in this file -- the same distance at a
- * 1 ms tick and at a 1000 ms one -- and it was deleted on 2026-08-12 because
+ * synthetic version of it -- the same distance at a 1 ms tick and at a
+ * 1000 ms one -- does not belong in this file, because
  * the scheduler harness checks the same thing on a real recording at three
  * rates and with jitter, which is strictly more. What stays here is the
  * arithmetic at the two speeds that matter: one below the old truncation
@@ -304,7 +304,7 @@ static void test_a_standing_car_covers_no_distance(void)
     distance_ticks(&c, &st, &now, 1u, 60000u);
 
     /* Integrated exactly, 0.005 km/h is 83 mm a minute of pure fiction.
-     * DIST_MIN_MMH is what stops it, and the truncation used to by luck. */
+     * DIST_MIN_MMH is what stops it; truncation would only do so by luck. */
     TT_EQ(c.total_mm, 0);
 }
 
@@ -499,7 +499,7 @@ static void test_drag_model_sits_on_the_warm_free_rev_holds(void)
 }
 
 /* compute_power_d() takes the torque the caller already has, because
- * txframes_gather transmits both and used to work it out twice. Every test
+ * txframes_gather transmits both and must not work it out twice. Every test
  * below wants "the power for this bus state", so the pairing lives here once
  * rather than at nineteen call sites. */
 static uint16_t power_d(const decode_state_t *st)
@@ -654,7 +654,7 @@ static void test_engine_off_makes_no_torque(void)
 }
 
 /* THE CEILING. b7 is one byte, so the model has a hard maximum whatever the
- * engine does, and nothing in the firmware used to check that the maximum was
+ * engine does, and nothing else in the firmware checks that the maximum is
  * high enough to show what the car is sold as. It was not: at 0.67 Nm/bit the
  * display topped out at 76.5 kW and 147 Nm, so the factory 85 kW could not
  * appear at any throttle opening. These two tests exist so that a change to

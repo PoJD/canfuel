@@ -92,7 +92,7 @@ static uint32_t mulhi_u32(uint32_t x, uint32_t m)
  * 3 and 5, so their loops are short; 3600 keeps 11 because no multiple of
  * eight is exact for it inside 32 bits.
  *
- * TWO DIVISORS LEFT ON 2026-08-12 and neither was replaced by a cheaper magic:
+ * TWO DIVISORS ARE LEFT and neither can be replaced by a cheaper magic:
  * 120 (the tank filter) and 10000 (the drag slope) were both OUR OWN scaling
  * choices, so they became 128 and 2**16 and the divisions became shifts. A
  * divisor here should be one the physics forces -- 1000 and 3600 and 95500

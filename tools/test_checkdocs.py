@@ -11,7 +11,7 @@ months -- which is exactly the kind of silent drift the tool exists to stop.
 So these tests do not check that the repository is clean today. They break the
 inputs on purpose and require the tool to complain.
 
-The two cases below are the two real bugs from 2026-08-12, reproduced:
+The two cases below are two real bugs, reproduced:
 PERSIST_INTERVAL_MS moving without the prose following it, and a measurable
 count written into a document.
 """
