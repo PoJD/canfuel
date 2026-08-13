@@ -58,7 +58,7 @@ owns.
 | **CANchecked MFD15 Gen2** display | 2, and everything after | the whole point of the device; it also supplies the converter's 5 V |
 | **A phone or laptop with Wi-Fi** | 2 | to reach oDSS, which the display serves itself — nothing is installed for this |
 | **The converter board** | 5 onwards | `kicad/canfuel/fab/` are the files a fab house needs; ours came from Gatema, 3 pieces |
-| **The parts to populate it** | 5 | 24 of them, mostly through-hole — `kicad/canfuel/fab/canfuel-bom.csv` |
+| **The parts to populate it** | 5 | 23 fitted parts plus two sockets, mostly through-hole — `kicad/canfuel/fab/canfuel-bom.csv`, which lists neither the sockets nor R5. See step 5 |
 | **Soldering iron** | 5 | through-hole, nothing fine-pitch |
 | **PICkit 3** | 4, 5 | through the 5-pin ICSP header J3, driven from the command line with **IPECMD** — see step 4. MPLAB X has to be installed for that, because IPECMD is part of it, but the IDE is never opened. Other programmers supporting the PIC18F25K80 should work; none has been tried |
 | **USBtin** ([fischl.de](https://www.fischl.de/usbtin/)) | 8, and any recording | the CAN adapter every fixture in `test/fixtures/` was recorded with. `tools/usbtin_capture.py` drives it and needs `pyserial` |
@@ -604,37 +604,43 @@ would have measured its own supply and said something else. And **decay is
 ruled out** by the very first observation, where the 4.6 V was watched sitting
 there with no command running, for longer than the gaps in the sequence above.
 
-### The header pinout, and the fact that nothing here specifies it
+### The header pinout, measured first and cited afterwards
 
 | Pin | Signal |
 |---|---|
 | 1 | ~MCLR / VPP |
-| 2 | +5 V |
-| 3 | SGND |
-| 4 | PGD (RB7) |
-| 5 | PGC (RB6) |
+| 2 | +5 V (VDD Target) |
+| 3 | SGND (VSS) |
+| 4 | PGD (ICSPDAT, RB7) |
+| 5 | PGC (ICSPCLK, RB6) |
 
-**No document in either repository specifies this.** `kicad`'s
-`canfuel/docs/implementation-plan.md` §4.3 states the same table under the words
-"PICkit pin order" and cites nothing for it; the citation it does carry, to
-DS39977C §2.5, covers the rules about pull-ups, series diodes and capacitors on
-PGC/PGD — verified, and quoted accurately — but §2.5 gives no connector pinout
-and defers to §30.0. There is no PICkit 3 user's guide in `kicad/canfuel/docs/`,
-none in `canfuel/docs/`, and MPLAB X's `Readme for PICkit 3.htm` does not
-contain the string `VPP` at all.
+**The source is DS51795B Figure 1-2**, *PICkit™ 3 Programmer Connector Pinout*,
+held at `kicad/canfuel/docs/pickit3-users-guide.pdf`. Their connector is
+**six** pins; pin 6 is `PGM (LVP)`, low-voltage programming, which this project
+does not use, so J3 stops at five. **Align the plug on the pin 1 marker, not on
+the end of the header** (§1.2.3) — a 6-pin plug on a 5-pin header overhangs by
+one position, and it is only harmless because the overhang is at the far end.
 
-So the table above is held here **because it was measured on this desk on
-2026-08-13**, not because it was read out of a specification:
+⚠ **That citation was found on 2026-08-13, after three boards had been made.**
+Until that day the pinout rested on `kicad`'s
+`canfuel/docs/implementation-plan.md` §4.3, which states it under the words
+"PICkit pin order" and cited nothing; the citation it does carry, to DS39977C
+§2.5, covers pull-ups, series diodes and capacitors on PGC/PGD — accurate, and
+a different question — and §2.5 has no connector pinout at all.
+
+**So it was settled by measurement before the document turned up**, and the
+procedure is worth keeping because it needs no document and transfers to any
+replacement programmer:
 
 - **Pin 3 is ground: 0 Ω to the USB connector shell**, with nothing powered and
-  the PICkit unplugged. That identifies it outright and is the check to reach
-  for first, because it is free and carries no risk.
-- **Pin 2 is the supply: 4.6 V against pin 3** during a `-W` run, which also
-  agrees with the figure the tool prints about itself.
+  the PICkit unplugged. Free, no risk, and it identifies the pin outright.
+- **Pin 2 is the supply: 4.6 V against pin 3** during a `-W` run into an open
+  header.
+- **Confirmed a third time** by the tool itself: an external 5 V across pins 2
+  and 3 produces `Target voltage detected` — see the next section.
 
-**That procedure transfers to any replacement programmer** — ring the ground
-out against the USB shell, then confirm the supply pin under `-W` into an open
-header before trusting a pinout from anywhere.
+The datasheet then agreed with all three. **It agreeing is luck, not process** —
+the boards were already made.
 
 **The step passes. Nothing about the board, the ICSP header or the hex is
 touched by it** — see *What it does not prove* below, which is unchanged.
@@ -677,9 +683,65 @@ This is the step that is easy to skip and should not be.
 
 ### Populate
 
-24 parts, mostly through-hole, on a 55 × 45 mm board. The BOM is in
-`kicad/canfuel/fab/canfuel-bom.csv`. Two of the three boards can be populated
-today; the third is a spare waiting on two more Micro-Fit headers.
+**23 fitted parts plus two sockets**, mostly through-hole, on a 55 × 45 mm
+board. The BOM is in `kicad/canfuel/fab/canfuel-bom.csv`. Two of the three
+boards can be populated today; the third is a spare waiting on two more
+Micro-Fit headers.
+
+⚠ **Two things that file does not tell you.**
+
+- **The two DIP sockets** — narrow 7.62 mm DIP-28 for U1, DIP-8 for U2. They
+  have no schematic symbol, so KiCad cannot emit them into a generated BOM;
+  they are in the parts table of `kicad/canfuel/docs/implementation-plan.md` §2
+  as rows with no reference. **Fit the sockets, and do not solder either chip
+  straight into the board** — the socket is the escape hatch the design leans
+  on, and it is what lets U1 come out if a pin assignment ever has to change.
+- **R5 is absent on purpose**, and this document used to say "24 parts" by
+  counting it. It is the 120 Ω termination, it must not be fitted, and
+  `120R DNF` is on the silkscreen.
+
+### Which parts can go in backwards — and it is only these five
+
+Written out for somebody holding a soldering iron for the first time, because
+"check the polarity" is not an instruction unless it says how.
+
+**Everything else on this board is symmetric and cannot be fitted the wrong way
+round**: all six resistors, every ceramic capacitor (C1–C5, C7, C8), the
+crystal Y1, and all three pin headers (J3, JP1, JP2). Fit those either way and
+they work.
+
+⚠ **Do not invent a rule from the pad numbers.** On C6 pad 1 is the **positive**
+lead; on D1 and D2 pad 1 is the **cathode**, the negative one. They are
+opposite. This is not a guess — `kicad/tools/check-netlist.py` pins `C6.1` to
+`+5V` and `D1.1`/`D2.1` to `SGND`, and CI fails if the board ever disagrees.
+
+| Part | Which end is positive | How the board says so |
+|---|---|---|
+| **D1, D2** — the LEDs | **long leg = anode = +**; the plastic rim is flattened on the *other* side, beside the short leg | the silk outline carries the same flat on the cathode side. The anode is the pad wired to its resistor (R3 for D1, R4 for D2) |
+| **C6** — the electrolytic | **long leg = +**; the can has a printed stripe down the **negative** side | pad 1 is `+5V` |
+| **U1, U2** and their sockets | notch or dot at the pin 1 end | matching notch on the silk outline. **Fit the socket the right way round too** — then the chip goes into the socket the same way |
+
+**The check that needs no memory, and the multimeter is already on the list
+above.** Set it to diode mode, touch the red probe to one LED leg and the black
+to the other: one way round **the LED lights faintly**, the other way it stays
+dark. The leg touching the red probe when it lights is the anode. Five seconds,
+and it settles the question on the part actually in your hand — which matters,
+because leg length is the marking most easily destroyed.
+
+**So trim the legs after soldering, never before.** Once both are cut level the
+only marking left on an LED is the flat on the rim, and on C6 only the stripe.
+
+**C6 is the one worth slowing down for.** An aluminium electrolytic fitted
+backwards heats, can vent, and does it with the car's 5 V behind it. A backwards
+LED simply never lights — annoying, and harmless. If you only double-check one
+part, check that one.
+
+*(The polarity markings on the parts themselves are the ordinary industry
+convention rather than something quoted from a datasheet: `hitano-exr-datasheet.pdf`
+specifies ratings and dimensions and says nothing about the stripe, and no LED
+datasheet is held — see the sourcing rule in `kicad/CLAUDE.md`, which exempts
+both. The board side of the table is verified; the meter is what makes the part
+side certain.)*
 
 ### Programme
 

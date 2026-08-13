@@ -444,19 +444,25 @@ this desk holds `localhost` / `30000`. Allowed for private networks on
 as anything mentioning a firewall — §19.3 says so outright for the sibling
 IPECMDBoost utility and its ports 2012 and 2013.
 
-**The ICSP header pinout is measured here, not specified anywhere we hold, and
-that is worth knowing before quoting it.** `kicad`'s
-`canfuel/docs/implementation-plan.md` §4.3 gives the five pins under the words
-"PICkit pin order" and cites nothing; its neighbouring citation to DS39977C
-§2.5 is accurate but covers the PGC/PGD component rules, not a connector, and
-§2.5 defers to §30.0. **Neither repository holds a PICkit 3 user's guide**, and
-MPLAB X's `Readme for PICkit 3.htm` does not contain `VPP` at all. So on
-2026-08-13 it was settled the way this repository settles things when the paper
-is missing: by measurement — pin 3 rings out at 0 Ω to the USB shell, pin 2
-carries 4.6 V under `-W`. `docs/install.md` step 4 has the table and the
-procedure, which transfers to any replacement programmer. **A sibling repo
-asserting something is not a citation**, and this one was passed along as
-though it were.
+**The ICSP header pinout is DS51795B Figure 1-2**, *PICkit™ 3 Programmer
+Connector Pinout*, in `kicad/canfuel/docs/pickit3-users-guide.pdf`. Their
+connector is six pins and J3 is five, because pin 6 is `PGM (LVP)` and this
+project does not use low-voltage programming.
+
+**That document was found on 2026-08-13, after the boards were made**, and the
+sequence is the point. Until that day the pinout rested on `kicad`'s
+`canfuel/docs/implementation-plan.md` §4.3, which gives the five pins under the
+words "PICkit pin order" and cited nothing — its neighbouring citation to
+DS39977C §2.5 is accurate but covers the PGC/PGD component rules, not a
+connector. It was quoted from here as though the sibling repo were a source.
+**A sibling repo asserting something is not a citation.** It was then settled
+the way this repository settles things when the paper is missing — by
+measurement: pin 3 rings out at 0 Ω to the USB shell, pin 2 carries 4.6 V under
+`-W`, and an external supply across the two produces `Target voltage detected`.
+The datasheet agreed with all three afterwards, **which is luck rather than
+process**. `docs/install.md` step 4 keeps the measurement procedure as well as
+the citation, because it needs no document and works on any replacement
+programmer.
 
 **MPLAB X therefore stays installed** — `ipecmd.exe` and the PICkit 3 firmware
 images in `mplab_platform\mplablibs\modules\ext\PICKIT3.jar` are both parts of
