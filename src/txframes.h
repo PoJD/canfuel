@@ -37,6 +37,14 @@ typedef struct {
     /* 0x602 */
     uint32_t trip_ml;           /* 0.001 l since the last reset            */
     uint32_t trip_m;            /* metres since the last reset             */
+    /* 0x603 -- diagnostics, and nothing here comes off the bus            */
+    uint8_t  diag_rx_err;       /* ECAN receive error counter              */
+    uint8_t  diag_tx_err;       /* ECAN transmit error counter             */
+    uint8_t  diag_can_status;   /* COMSTAT 5-0, DS39977C Register 27-4     */
+    uint8_t  diag_flags;        /* DIAG_FLAG_* in config.h                 */
+    uint8_t  diag_reset_cause;  /* RESET_CAUSE_* in config.h               */
+    uint8_t  diag_tx_fail;      /* hal_can_send() refusals, saturating     */
+    uint16_t diag_uptime_s;     /* seconds since power-up, saturating      */
 } tx_values_t;
 
 /* Read everything out of the core into transmit units.
@@ -54,9 +62,24 @@ void txframes_gather(tx_values_t *v, const compute_t *c,
  * survive the next fast slot. Obeys the same quiet-bus rule as the gather. */
 void txframes_gather_trip(tx_values_t *v, const compute_t *c, uint32_t now_ms);
 
+/* The diagnostic frame's contents, which come from the HAL and from main.c
+ * rather than from the core -- passed in as scalars so this file stays pure.
+ * Call it immediately before txframes_diag(), for the same reason as the trip
+ * gather above: txframes_gather() clears the whole struct.
+ *
+ * ⚠ **This one does not zero on a quiet bus**, and that is the point of it.
+ * The other two frames go to zero rather than show a stale number to a driver;
+ * a diagnostic frame that went silent exactly when the bus went wrong would be
+ * useless at the only moment anybody reads it. */
+void txframes_gather_diag(tx_values_t *v, uint8_t rx_err, uint8_t tx_err,
+                          uint8_t can_status, uint8_t flags,
+                          uint8_t reset_cause, uint8_t tx_fail,
+                          uint16_t uptime_s);
+
 /* Each writes exactly TXFRAME_DLC bytes. */
 void txframes_fuel(const tx_values_t *v, uint8_t *out);     /* 0x600, 100 ms */
 void txframes_engine(const tx_values_t *v, uint8_t *out);   /* 0x601, 100 ms */
 void txframes_trip(const tx_values_t *v, uint8_t *out);     /* 0x602, 1 s    */
+void txframes_diag(const tx_values_t *v, uint8_t *out);     /* 0x603, 1 s    */
 
 #endif /* TXFRAMES_H */

@@ -81,7 +81,13 @@ SFR8(RXERRCNT); SFR8(TXERRCNT);
     extern volatile name##bits_t name##bits
 
 SFRBITS(INTCON, { unsigned PEIE : 1; unsigned GIE : 1; });
-SFRBITS(RCON,   { unsigned IPEN : 1; });
+/* RCON's reset flags are all active low and are read by hal_sys.c to say why
+ * the part started. The bit order here is NOT the device's -- see the header
+ * comment: this file names what the code names and nothing else. DS39977C
+ * Register 5-1 is the real layout. */
+SFRBITS(RCON,   { unsigned IPEN : 1; unsigned POR : 1; unsigned BOR : 1;
+                  unsigned TO : 1; unsigned RI : 1; });
+SFRBITS(STKPTR, { unsigned STKFUL : 1; unsigned STKUNF : 1; });
 SFRBITS(PIR1,   { unsigned TMR2IF : 1; });
 SFRBITS(PIE1,   { unsigned TMR2IE : 1; });
 SFRBITS(PIR4,   { unsigned EEIF : 1; });

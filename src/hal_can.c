@@ -566,6 +566,21 @@ uint8_t hal_can_tx_errors(void)
     return TXERRCNT;
 }
 
+uint8_t hal_can_status(void)
+{
+    /* COMSTAT with the two bits that are not error states masked off: bit 7 is
+     * FIFOEMPTY and bit 6 is RXBnOVFL, which hal_can_overflow() owns because
+     * reading it there clears it. What is left is DS39977C Register 27-4 bits
+     * 5-0 -- TXBO, TXBP, RXBP, TXWARN, RXWARN, EWARN -- all read-only, all
+     * derived by the module from the two error counters, and all of them
+     * things no amount of staring at an LED will tell you apart.
+     *
+     * Passed through raw rather than translated into flags of our own. It is a
+     * hardware register with a datasheet; re-encoding it would only add a
+     * table that can disagree with the silicon. */
+    return (uint8_t)(COMSTAT & 0x3Fu);
+}
+
 bool hal_can_overflow(void)
 {
     /* DS39977C Register 27-4: in Mode 1 and 2 the overflow flag is COMSTAT

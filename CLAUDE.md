@@ -2,7 +2,7 @@
 
 A fuel consumption converter for VW PQ34 cars with the AQY engine
 (2.0 l / 85 kW). *(Developed and verified on a 2.0 AQY.)* It reads the powertrain CAN bus (500 kbps), computes consumption, range,
-torque and power, and sends them back onto the bus in frames 0x600–0x602. A
+torque and power, and sends them back onto the bus in frames 0x600–0x603. A
 CANchecked MFD15 Gen2 display renders them from its own TRI file (repo `mfd15`).
 
 MCU: PIC18F25K80, 16 MHz, XC8. The board lives in the `kicad` repo.
@@ -347,10 +347,16 @@ suggestions:
    module can also sit on RC6/RC7 and both were once brought out; with the
    escape header gone, moving it now means soldering onto the PDIP socket pins
    from underneath. Get the config bit right the first time.
-3. **The LEDs only light when `DBG_EN` is high**, i.e. when JP1 is fitted.
-   Nothing may light up in the car. The 10 kΩ pull-down means an absent jumper
-   is a defined low, not a floating input — but RA0 is AN0, so **it has to be
-   switched to digital** before it is read.
+3. **`DBG_EN` (JP1) gates two things, not one.** The LEDs only light when it
+   is high — nothing may light up in the car — and **the 0x603 diagnostic frame
+   is only transmitted while it is high** either, so a closed dashboard also
+   carries no traffic for a frame nobody is reading. The 10 kΩ pull-down means
+   an absent jumper is a defined low, not a floating input — but RA0 is AN0, so
+   **it has to be switched to digital** before it is read.
+
+   This is a widening of what the jumper means and it is deliberate: JP1 says
+   "somebody is looking at this device". It is still **not** the CAN mode
+   switch — that stays a build flag, for the reasons in the HAL section.
 4. **The MCP2562's STBY pin is hard-wired to ground.** There is no standby
    control line and no pin to drive; do not write one. Its VIO is tied to VDD.
 5. **The 120 Ω termination is deliberately not fitted** (R5, silkscreened
@@ -385,9 +391,12 @@ error — the display shows plausible but wrong numbers, which is worse.
 `test/test_txframes.c` pins every offset against the TRI file, with the
 relevant TRI lines quoted in its header comment.
 
-**0x602 is not coupled to anything.** S-AQY.TRI does not read it — it was
-checked, sensor by sensor, while phase 1 was being written. It is ours to
-change freely and exists to be watched on a USBtin. Likewise `Flow` in
+**0x602 and 0x603 are not coupled to anything.** S-AQY.TRI does not read
+either — 0x602 was checked sensor by sensor while phase 1 was being written,
+and 0x603 was added afterwards for the bench. Both are ours to change freely
+and exist to be watched on a USBtin. **0x603 is the one that answers "is the
+CAN side healthy" in numbers** rather than in an LED blink rate; its layout is
+in `docs/frames.md` and `tools/bench_test.py` decodes it. Likewise `Flow` in
 0x601 b4–5 is transmitted but has no sensor on the display; that one is
 deliberate, so a dedicated gauge can be added later without touching firmware.
 
@@ -450,7 +459,7 @@ session would otherwise reconstruct by reading five files.
 decode_state_t  st;   /* last known bus state          */
 compute_t       cp;   /* accumulators and windows      */
 persist_t       ps;   /* which EEPROM slot comes next  */
-tx_values_t     tx;   /* one gather, three frames      */
+tx_values_t     tx;   /* one gather, four frames       */
 ```
 
 **At start-up**
@@ -495,7 +504,18 @@ txframes_engine(&tx, buf);  hal_can_send(CAN_ID_TX_ENGINE, buf, TXFRAME_DLC);
 **Every second**
 
 ```c
+txframes_gather_trip(&tx, &cp, now_ms);
 txframes_trip(&tx, buf);    hal_can_send(CAN_ID_TX_TRIP, buf, TXFRAME_DLC);
+
+/* 0x603 only while somebody is looking -- see docs/frames.md. Everything in
+ * it comes from the HAL rather than the core, which is why the gather takes
+ * scalars: txframes.c stays pure. */
+if (hal_sys_debug_enabled()) {
+    txframes_gather_diag(&tx, hal_can_rx_errors(), hal_can_tx_errors(),
+                         hal_can_status(), flags, hal_sys_reset_cause(),
+                         tx_fail, uptime_s);
+    txframes_diag(&tx, buf);  hal_can_send(CAN_ID_TX_DIAG, buf, TXFRAME_DLC);
+}
 
 persist_record_t rec = { cp.total_ul, cp.total_mm,
                          cp.tank_stable_l, cp.tank_stable_valid };
@@ -1026,6 +1046,9 @@ mplab/
   canfuel.X/    the MPLAB X project, for editing and for driving a PICkit
   README.md     how to build, and what JP2 is for
 tools/          canlog.py, replay.py — Python, runs anywhere
+                bench_test.py — replays a fixture onto a bench bus through a
+                CAN adapter, reads 0x603 back, prints PASS or FAIL. install.md
+                step 7. Needs pyserial and hardware
                 cycles.py — cycle budgets out of the XC8 listing, a CI gate
                 checkdocs.py — prose vs config.h, a CI gate
 ```

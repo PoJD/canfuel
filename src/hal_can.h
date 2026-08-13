@@ -94,4 +94,20 @@ uint8_t hal_can_tx_errors(void);
  * Reading it clears the flag. */
 bool hal_can_overflow(void);
 
+/* COMSTAT bits 5-0 exactly as DS39977C Register 27-4 defines them: TXBO,
+ * TXBP, RXBP, TXWARN, RXWARN, EWARN. Reading changes nothing.
+ *
+ * Worth having beside the two counters rather than derived from them, for two
+ * reasons. It is the module's own classification against the 96, 128 and 256
+ * thresholds of §27.11, so nothing here has to re-implement them and then
+ * disagree. And it separates a transmit problem from a receive one -- TXBP
+ * against RXBP -- which on a bench is the difference between "nobody is
+ * acknowledging us" and "we cannot read what is on the wire".
+ *
+ * ⚠ **None of it is latched**, and neither are the counters: bus-off recovery
+ * resets the transmit counter, so a converter that went bus-off and came back
+ * reads clean here. DIAG_FLAG_UNHEALTHY in the 0x603 frame is the latched
+ * half, and the two are meant to be read together. */
+uint8_t hal_can_status(void);
+
 #endif /* HAL_CAN_H */

@@ -36,7 +36,7 @@ It is a one-shot diagnostic response captured as the USBtin connected. The
 firmware ignores it, but the 0x7xx range can no longer be called completely
 quiet because of it.
 
-**Free for the converter:** 0x600–0x602 appear in none of the logs
+**Free for the converter:** 0x600–0x603 appear in none of the logs
 (`test_target_ids_are_free`).
 
 ---

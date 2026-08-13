@@ -92,8 +92,35 @@ void txframes_engine(const tx_values_t *v, uint8_t *out)
     put_be16(out + 6, v->vdd_c);
 }
 
+void txframes_gather_diag(tx_values_t *v, uint8_t rx_err, uint8_t tx_err,
+                          uint8_t can_status, uint8_t flags,
+                          uint8_t reset_cause, uint8_t tx_fail,
+                          uint16_t uptime_s)
+{
+    /* No compute_data_live() gate here, deliberately -- see txframes.h. */
+    v->diag_rx_err      = rx_err;
+    v->diag_tx_err      = tx_err;
+    v->diag_can_status  = can_status;
+    v->diag_flags       = flags;
+    v->diag_reset_cause = reset_cause;
+    v->diag_tx_fail     = tx_fail;
+    v->diag_uptime_s    = uptime_s;
+}
+
 void txframes_trip(const tx_values_t *v, uint8_t *out)
 {
     put_be32(out + 0, v->trip_ml);
     put_be32(out + 4, v->trip_m);
+}
+
+void txframes_diag(const tx_values_t *v, uint8_t *out)
+{
+    out[0] = v->diag_rx_err;
+    out[1] = v->diag_tx_err;
+    out[2] = v->diag_can_status;
+    out[3] = v->diag_flags;
+    out[4] = (uint8_t)((v->diag_reset_cause & DIAG_RESET_CAUSE_MASK) |
+                       (DIAG_LAYOUT_VERSION << DIAG_VERSION_SHIFT));
+    out[5] = v->diag_tx_fail;
+    put_be16(out + 6, v->diag_uptime_s);
 }

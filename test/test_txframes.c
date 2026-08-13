@@ -307,6 +307,103 @@ static void test_every_log_stays_inside_the_gauges(void)
     }
 }
 
+/* 0x603 is ours alone -- S-AQY.TRI does not read it -- so these offsets are
+ * pinned against docs/frames.md and against tools/bench_test.py, which decodes
+ * them on the bench. Nothing on the display breaks if they move; the bench
+ * test silently starts lying, which is worse. */
+static void test_diag_frame_offsets(void)
+{
+    tx_values_t v;
+    uint8_t out[TXFRAME_DLC];
+
+    memset(&v, 0, sizeof v);
+    txframes_gather_diag(&v, 0x11u, 0x22u, 0x33u, 0x1Fu,
+                         RESET_CAUSE_WATCHDOG, 0x44u, 0x5566u);
+    txframes_diag(&v, out);
+
+    TT_EQ(out[0], 0x11u);               /* rx error counter        */
+    TT_EQ(out[1], 0x22u);               /* tx error counter        */
+    TT_EQ(out[2], 0x33u);               /* COMSTAT                 */
+    TT_EQ(out[3], 0x1Fu);               /* our flags               */
+    TT_EQ(out[5], 0x44u);               /* send refusals           */
+    TT_EQ(be16(out + 6), 0x5566u);      /* uptime, seconds         */
+
+    /* b4 is shared: reset cause in the low five bits, layout version in the
+     * top three. Both halves are checked, because a shift that moved would
+     * still leave one of them looking right. */
+    TT_EQ(out[4] & DIAG_RESET_CAUSE_MASK, RESET_CAUSE_WATCHDOG);
+    TT_EQ(out[4] >> DIAG_VERSION_SHIFT, DIAG_LAYOUT_VERSION);
+}
+
+/* Five causes have to survive the mask that shares their byte with the
+ * version. RESET_CAUSE_STACK is bit 4 and is the one that would be silently
+ * eaten if the split ever moved back to a nibble. */
+static void test_every_reset_cause_survives_the_shared_byte(void)
+{
+    static const uint8_t causes[] = {
+        RESET_CAUSE_POWER_ON, RESET_CAUSE_BROWN_OUT, RESET_CAUSE_WATCHDOG,
+        RESET_CAUSE_RESET_INSTR, RESET_CAUSE_STACK
+    };
+    size_t i;
+
+    for (i = 0; i < sizeof causes / sizeof causes[0]; i++) {
+        tx_values_t v;
+        uint8_t out[TXFRAME_DLC];
+
+        memset(&v, 0, sizeof v);
+        txframes_gather_diag(&v, 0u, 0u, 0u, 0u, causes[i], 0u, 0u);
+        txframes_diag(&v, out);
+
+        TT_EQ(out[4] & DIAG_RESET_CAUSE_MASK, causes[i]);
+        TT_EQ(out[4] >> DIAG_VERSION_SHIFT, DIAG_LAYOUT_VERSION);
+    }
+}
+
+/* The other two gathers zero everything when the bus goes quiet, so that a
+ * driver never reads a stale number. The diagnostic frame must not: it is the
+ * one frame whose whole job is to keep reporting when things have gone wrong,
+ * and a quiet bus is one of the things that can be wrong. */
+static void test_diag_does_not_zero_on_a_quiet_bus(void)
+{
+    compute_t c;
+    tx_values_t v;
+    uint8_t out[TXFRAME_DLC];
+
+    compute_init(&c);
+    memset(&v, 0, sizeof v);
+
+    /* Same call order main.c uses in the slow slot, with a clock far past
+     * DATA_TIMEOUT_MS so compute_data_live() is false. */
+    txframes_gather_trip(&v, &c, 10u * DATA_TIMEOUT_MS);
+    txframes_gather_diag(&v, 7u, 9u, 0x20u, DIAG_FLAG_CAN_OK, 0u, 3u, 42u);
+    txframes_diag(&v, out);
+
+    TT_EQ(out[0], 7u);
+    TT_EQ(out[1], 9u);
+    TT_EQ(out[2], 0x20u);               /* COMSTAT TXBO, still reported  */
+    TT_EQ(out[3], DIAG_FLAG_CAN_OK);
+    TT_EQ(out[5], 3u);
+    TT_EQ(be16(out + 6), 42u);
+}
+
+/* The five flags must stay one bit each and must not overlap: the whole point
+ * of the byte is that a reader can test one bit without masking the rest. */
+static void test_diag_flags_are_distinct_bits(void)
+{
+    uint8_t all = (uint8_t)(DIAG_FLAG_CAN_OK | DIAG_FLAG_SILENT |
+                            DIAG_FLAG_UNHEALTHY | DIAG_FLAG_DATA_LIVE |
+                            DIAG_FLAG_PERSIST_OK);
+    unsigned bits = 0u;
+    unsigned i;
+
+    for (i = 0u; i < 8u; i++) {
+        if (all & (1u << i)) {
+            bits++;
+        }
+    }
+    TT_EQ(bits, 5u);
+}
+
 int main(void)
 {
     printf("test_txframes\n");
@@ -320,5 +417,9 @@ int main(void)
     TT_RUN(test_idle_produces_sane_frames);
     TT_RUN(test_warm_idle_logs_also_show_zero_torque);
     TT_RUN(test_every_log_stays_inside_the_gauges);
+    TT_RUN(test_diag_frame_offsets);
+    TT_RUN(test_every_reset_cause_survives_the_shared_byte);
+    TT_RUN(test_diag_does_not_zero_on_a_quiet_bus);
+    TT_RUN(test_diag_flags_are_distinct_bits);
     return TT_SUMMARY();
 }

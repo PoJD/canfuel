@@ -1,7 +1,7 @@
 # Frames transmitted by the converter
 
-Three frames of our own on free IDs. Every log confirms that nobody else uses
-0x600–0x602 (`test_target_ids_are_free`).
+Four frames of our own on free IDs. Every log confirms that nobody else uses
+0x600–0x603 (`test_target_ids_are_free`).
 
 **Everything is unsigned big endian.** The car uses little endian, we use big
 endian — deliberately, so the two cannot be confused, and the MFD15 handles
@@ -84,6 +84,81 @@ shrink together; these two are absolutes and nothing cancels. If you are
 comparing TripDist against the cluster or a GPS during bring-up, expect the
 shortfall rather than hunting an arithmetic bug. `src/persist.h` has the full
 arithmetic and why it is not fixed.
+
+## 0x603 @ 1 s — diagnostics, and only with JP1 fitted
+
+| Byte | Value | Notes |
+|---|---|---|
+| 0 | RXERRCNT | the ECAN receive error counter, raw |
+| 1 | TXERRCNT | the ECAN transmit error counter, raw |
+| 2 | COMSTAT bits 5–0 | DS39977C Register 27-4: TXBO, TXBP, RXBP, TXWARN, RXWARN, EWARN |
+| 3 | flags | `DIAG_FLAG_*`, below |
+| 4 | bits 4–0 reset cause, bits 7–5 layout version | `RESET_CAUSE_*`, below |
+| 5 | send refusals | `hal_can_send()` returned false this many times, saturating at 255 |
+| 6–7 | uptime | seconds since power-up, saturating at 65535 (18 h) |
+
+**Why it exists.** The ECAN error counters were readable only by code running
+on the part. Nothing transmitted them, IPECMD reads flash and EEPROM but not
+RAM, and a live read means a debugger and the IDE this project does not use.
+That left `LED_CAN`'s blink rate as the only instrument — which asks somebody
+to tell 2.5 Hz from 5 Hz correctly, once, in a car, at an angle. This frame is
+the same information as numbers.
+
+⚠ **It is transmitted only while the DBG_EN jumper (JP1) is fitted.** Nobody is
+reading it in a closed dashboard, so the gather and the frame are skipped
+entirely — no bus traffic and no CPU spent on nobody. **A converter that sends
+0x600 and 0x601 but no 0x603 is almost always a missing jumper, not a fault.**
+JP1 already meant "the LEDs may light"; it now also means "diagnostics on".
+
+⚠ **It cannot exist in `HAL_CAN_MODE_LISTEN_ONLY`, and no frame could** — that
+mode transmits nothing at all (DS39977C §27.3.4). During `install.md` step 8
+the LED is still the only channel there is.
+
+⚠ **Nothing here is latched except `UNHEALTHY`.** Both counters and every
+COMSTAT bit are live state, and bus-off recovery resets the transmit counter —
+so a converter that went bus-off and recovered reads clean on bytes 0–2.
+`DIAG_FLAG_UNHEALTHY` is the memory, and the two are meant to be read together.
+
+`tools/bench_test.py` decodes this frame and turns it into a verdict;
+`test/test_txframes.c` pins the byte offsets from the firmware side and
+`tools/test_bench_test.py` from the reader's side. **The two decoders are twins
+and a layout change belongs in both.**
+
+### Byte 3 — flags
+
+| Bit | Name | Meaning |
+|---|---|---|
+| 0x01 | `CAN_OK` | `hal_can_init()` reached the mode it asked for |
+| 0x02 | `SILENT` | a silent build. Only loopback can set this *and* be seen |
+| 0x04 | `UNHEALTHY` | latched: an error counter was non-zero, or the FIFO overflowed, at any point since power-up |
+| 0x08 | `DATA_LIVE` | frames from the car are arriving right now |
+| 0x10 | `PERSIST_OK` | `persist_load()` found a stored record at start-up |
+
+`PERSIST_OK` clear is **not** an error on a freshly programmed board: `-OH`
+erases the EEPROM by default, and a virgin ring is a correct start.
+
+### Byte 4 — reset cause
+
+Out of RCON and STKPTR, latched by `hal_sys_init()` before anything can
+disturb them (DS39977C Register 5-1, whose flags are all active low).
+
+| Bit | Name | Meaning |
+|---|---|---|
+| 0x01 | power-on | POR |
+| 0x02 | brown-out | BOR — the supply sagged past `BORV` = 3.0 V |
+| 0x04 | **watchdog** | the firmware hung. A bug, not an environment |
+| 0x08 | RESET instruction | never executed by this firmware |
+| 0x10 | stack | STKFUL or STKUNF, with `STVREN = ON` |
+
+**Zero is a legitimate answer** and means none of these — an MCLR reset, which
+is what a programmer leaves behind.
+
+**This byte is worth more than the rest of the frame put together.** A
+converter that quietly restarts every few minutes looks, from the display,
+exactly like one that works: the accumulators come back out of the EEPROM and
+the numbers stay plausible. The uptime beside it makes the restart visible and
+this byte says whether it was the watchdog or the car's supply — different
+faults with different fixes.
 
 ---
 

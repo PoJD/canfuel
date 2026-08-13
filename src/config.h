@@ -29,6 +29,64 @@
 #define CAN_ID_TX_FUEL          0x600u  /* 100 ms */
 #define CAN_ID_TX_ENGINE        0x601u  /* 100 ms */
 #define CAN_ID_TX_TRIP          0x602u  /*   1 s  */
+#define CAN_ID_TX_DIAG          0x603u  /*   1 s  */
+
+/* --- the diagnostic frame, 0x603 ---------------------------------------- */
+
+/* 0x603 exists so that "is this thing healthy" can be answered from the bus
+ * instead of from a blink pattern somebody has to interpret. The ECAN error
+ * counters are otherwise readable only by code running on the part: nothing
+ * transmits them, IPECMD reads flash and EEPROM but not RAM, and a live read
+ * would mean a debugger and the IDE this project does not use. So the LED was
+ * the only instrument, and an LED asks a human to tell 2.5 Hz from 5 Hz
+ * correctly, once, in a car, from an awkward angle.
+ *
+ * ⚠ **It is only transmitted while the DBG_EN jumper is fitted.** Nobody is
+ * reading it in a closed dashboard, and a frame a second for nobody is bus
+ * traffic and CPU we can decline to spend. JP1 already means "somebody is
+ * looking at this device"; this is the second thing that means.
+ *
+ * ⚠ It cannot help in HAL_CAN_MODE_LISTEN_ONLY, and no frame could: that mode
+ * transmits nothing at all (DS39977C §27.3.4). There the LED is still the only
+ * channel there is. tools/bench_test.py reads this frame; docs/install.md
+ * steps 7 and 9 are where it is used, and docs/frames.md is the layout.
+ *
+ * Nothing on the display reads it.
+ *
+ *   b0  ECAN receive error counter, RXERRCNT
+ *   b1  ECAN transmit error counter, TXERRCNT
+ *   b2  COMSTAT bits 5-0, the module's own error state (Register 27-4)
+ *   b3  DIAG_FLAG_*, ours
+ *   b4  bits 4-0 RESET_CAUSE_*, bits 7-5 DIAG_LAYOUT_VERSION
+ *   b5  hal_can_send() refusals since power-up, saturating
+ *   b6  uptime, seconds, high byte  } saturating at 0xFFFF, which is
+ *   b7  uptime, seconds, low byte   } 18 hours
+ *
+ * The version shares a byte with the reset cause because all eight bytes are
+ * spoken for and neither needs a whole one: five reset causes exist and three
+ * bits of version is seven revisions of a frame that lives in one repository
+ * and is pinned by test_txframes.c.
+ */
+#define DIAG_LAYOUT_VERSION     1u
+#define DIAG_VERSION_SHIFT      5u
+#define DIAG_RESET_CAUSE_MASK   0x1Fu
+
+#define DIAG_FLAG_CAN_OK        0x01u   /* hal_can_init() reached its mode   */
+#define DIAG_FLAG_SILENT        0x02u   /* a silent build -- loopback, since
+                                         * listen only cannot transmit this  */
+#define DIAG_FLAG_UNHEALTHY     0x04u   /* latched: an error or an overflow,
+                                         * ever, since power-up             */
+#define DIAG_FLAG_DATA_LIVE     0x08u   /* frames are arriving right now     */
+#define DIAG_FLAG_PERSIST_OK    0x10u   /* persist_load() found a record     */
+
+/* Why the part last started, out of RCON and STKPTR -- see hal_sys.h. Zero is
+ * a legitimate answer: an MCLR reset is none of these, and that is what a
+ * programmer leaves behind. */
+#define RESET_CAUSE_POWER_ON    0x01u
+#define RESET_CAUSE_BROWN_OUT   0x02u   /* the car's supply sagged past BORV */
+#define RESET_CAUSE_WATCHDOG    0x04u   /* a hang; the one that means a bug  */
+#define RESET_CAUSE_RESET_INSTR 0x08u
+#define RESET_CAUSE_STACK       0x10u   /* STKFUL/STKUNF, with STVREN on     */
 
 /* --- which ECAN mode the firmware starts in ----------------------------- */
 

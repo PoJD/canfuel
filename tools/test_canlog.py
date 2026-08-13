@@ -198,9 +198,14 @@ class TestFixtureContent(unittest.TestCase):
         self.assertEqual(frame.data, bytes.fromhex("3cfe"))
 
     def test_target_ids_are_free(self):
-        """0x600-0x602 must not be on the bus -- the converter wants them."""
+        """0x600-0x603 must not be on the bus -- the converter wants them.
+
+        0x603 joined the range when the diagnostic frame was added, and it has
+        to be checked for the same reason as the other three: transmitting on
+        an identifier the car already uses does not fail, it corrupts.
+        """
         for name, frames in self.frames.items():
-            collisions = {f.can_id for f in frames if 0x600 <= f.can_id <= 0x602}
+            collisions = {f.can_id for f in frames if 0x600 <= f.can_id <= 0x603}
             self.assertEqual(collisions, set(), f"{name}: IDs already taken")
 
     def test_dlc_is_stable_per_id(self):

@@ -35,8 +35,8 @@ hex rather than assumed.
 
 | Space | Used | Of | Share | What it holds |
 |---|---|---|---|---|
-| Program space | 12,986 B | 32,768 B | 39.6 % | the firmware itself |
-| Data space | 339 B | 3,649 B | 9.3 % | RAM |
+| Program space | 13,574 B | 32,768 B | 41.4 % | the firmware itself |
+| Data space | 352 B | 3,649 B | 9.6 % | RAM |
 
 The **data EEPROM is not in that table**, because the compiler
 would report it as empty: the hex initialises none of it. It is written
@@ -133,7 +133,7 @@ two, so the reference and the code that gets flashed cannot drift apart.
 |---|---|
 | **`docs/install.md`** | **from three clones to a working device — start here if you are building one** |
 | `docs/can-decoding.md` | signal table, four traps, verified values, the questions register — one open, six resolved, two parked |
-| `docs/frames.md` | layout of frames 0x600–0x602, FuelNow, Range, torque |
+| `docs/frames.md` | layout of frames 0x600–0x603, FuelNow, Range, torque, the diagnostic frame |
 | `docs/refuel-reset.md` | resetting the average on refuelling, and the tank audit |
 | `docs/timing.md` | what every part costs in cycles, and the margins |
 | `docs/optimisation.md` | **read before changing any loop or any arithmetic** — what was optimised, why, and what is deliberately left alone |

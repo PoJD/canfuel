@@ -35,6 +35,14 @@ uint32_t hal_sys_millis(void);
  * voltmeter -- see hal_sys.c for exactly how much it is worth. */
 uint16_t hal_sys_vdd_c(void);
 
+/* Why the part last started: RESET_CAUSE_* from config.h, latched out of RCON
+ * and STKPTR by hal_sys_init() before anything else can disturb them, and
+ * cleared there so the next reset reports itself rather than this one.
+ *
+ * Zero is a legitimate answer and means none of the causes we test for -- an
+ * MCLR reset, for instance, which is what a programmer leaves behind. */
+uint8_t hal_sys_reset_cause(void);
+
 /* Is the DBG_EN jumper (JP1, RA0) fitted? The two LEDs are only allowed to
  * light when it is: nothing lights up in the car. Read live, so fitting the
  * jumper takes effect without a reset. */

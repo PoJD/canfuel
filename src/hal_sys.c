@@ -198,8 +198,66 @@ static void adc_init(void)
     __delay_us(50);
 }
 
+/* Latched by reset_cause_init() before anything can disturb it, and handed to
+ * the 0x603 diagnostic frame. */
+static uint8_t g_reset_cause = 0u;
+
+/* Why did the part start? DS39977C Register 5-1, and every flag in it is
+ * **active low** -- a zero means the event happened, which is the opposite of
+ * the way it reads.
+ *
+ *   POR  bit 1   0 = a Power-on Reset occurred
+ *   BOR  bit 0   0 = a Brown-out Reset occurred
+ *   TO   bit 3   0 = a WDT time-out occurred          (read-only)
+ *   RI   bit 4   0 = a RESET instruction was executed
+ *
+ * The stack bits are elsewhere: STKPTR's STKFUL and STKOVF, which are active
+ * high and which STVREN = ON turns into a reset (pic_config.h).
+ *
+ * This is worth more than everything else in the frame put together on a
+ * device behind a dashboard. A converter that quietly restarts every few
+ * minutes looks, from the display, exactly like one that is working -- the
+ * accumulators come back out of the EEPROM and the numbers are plausible. The
+ * uptime beside this byte is what makes it visible, and this byte is what says
+ * whether it was the watchdog (a hang) or the brown-out detector (the car's
+ * supply), which are different faults with different fixes.
+ *
+ * Each flag is written back to its inactive state afterwards, or every reset
+ * from here on would still be reporting the power-on that started the day. */
+static void reset_cause_init(void)
+{
+    if (!RCONbits.POR) {
+        g_reset_cause |= RESET_CAUSE_POWER_ON;
+        RCONbits.POR = 1;
+    }
+    if (!RCONbits.BOR) {
+        g_reset_cause |= RESET_CAUSE_BROWN_OUT;
+        RCONbits.BOR = 1;
+    }
+    if (!RCONbits.TO) {
+        /* TO is read-only and is set again by CLRWDT, which the main loop
+         * executes on its first pass -- so there is nothing to write back. */
+        g_reset_cause |= RESET_CAUSE_WATCHDOG;
+    }
+    if (!RCONbits.RI) {
+        g_reset_cause |= RESET_CAUSE_RESET_INSTR;
+        RCONbits.RI = 1;
+    }
+    if (STKPTRbits.STKFUL || STKPTRbits.STKUNF) {
+        g_reset_cause |= RESET_CAUSE_STACK;
+        STKPTRbits.STKFUL = 0;
+        STKPTRbits.STKUNF = 0;
+    }
+}
+
+uint8_t hal_sys_reset_cause(void)
+{
+    return g_reset_cause;
+}
+
 void hal_sys_init(void)
 {
+    reset_cause_init();
     clock_init();
     ports_init();
     adc_init();

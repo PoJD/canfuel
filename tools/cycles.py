@@ -151,6 +151,15 @@ NOT_LOOPS = {
     # trade this table exists to make explicit.
     "_compute_torque_d",
     "_can_set_filter",
+    # hal_can_send searches three transmit buffers and the search is three
+    # explicit ifs, not a loop. Its backward branches are XC8 merging the
+    # several `return' paths onto one epilogue placed above them.
+    #
+    # It only appears here at all because main.c now tests the result: with
+    # every call `(void)'-cast the compiler could drop the returns and inline
+    # the whole thing, and the function did not exist in the listing. Counting
+    # the refusals into the 0x603 diagnostic frame is what made it a real call.
+    "_hal_can_send",
     "_memset",
     "__initialization",
 }

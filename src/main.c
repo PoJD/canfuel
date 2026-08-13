@@ -75,6 +75,48 @@ static void leds_update(bool can_ok, bool live, bool unhealthy, uint8_t phase)
     hal_sys_led_can(on);
 }
 
+/* --- the diagnostic frame ------------------------------------------------ */
+
+/* Every refusal by hal_can_send() since power-up, saturating. It counts rather
+ * than latches because the number distinguishes two different faults: a
+ * handful means the three transmit buffers were briefly all busy, which is
+ * survivable and expected under arbitration, while a count that tracks the
+ * uptime means nothing is getting out at all. */
+static uint8_t tx_fail = 0u;
+
+static void tx_fail_count(void)
+{
+    if (tx_fail < 0xFFu) {
+        tx_fail++;
+    }
+}
+
+static uint8_t diag_flags(bool can_ok, bool unhealthy, bool persist_ok,
+                          bool live)
+{
+    uint8_t f = 0u;
+
+    if (can_ok) {
+        f |= DIAG_FLAG_CAN_OK;
+    }
+    /* Only loopback can reach this line while silent: listen only transmits
+     * nothing, so a 0x603 that arrives with this bit set came from a loopback
+     * build talking to itself. */
+    if (hal_can_silent()) {
+        f |= DIAG_FLAG_SILENT;
+    }
+    if (unhealthy) {
+        f |= DIAG_FLAG_UNHEALTHY;
+    }
+    if (live) {
+        f |= DIAG_FLAG_DATA_LIVE;
+    }
+    if (persist_ok) {
+        f |= DIAG_FLAG_PERSIST_OK;
+    }
+    return f;
+}
+
 /* --- main ---------------------------------------------------------------- */
 
 int main(void)
@@ -85,8 +127,10 @@ int main(void)
     uint32_t last_fast;
     uint32_t last_slow;
     uint16_t vdd_c;
+    uint16_t uptime_s = 0u;
     uint8_t  phase = 0u;
     bool     can_ok;
+    bool     persist_ok;
     bool     unhealthy = false;
 
     hal_sys_init();
@@ -97,7 +141,8 @@ int main(void)
     /* A virgin EEPROM returns false and a zeroed record. That is the correct
      * state for a device that has never run, not an error -- there is nothing
      * to report and nothing to retry. */
-    if (persist_load(&ps, &hal_eeprom_backend, &rec)) {
+    persist_ok = persist_load(&ps, &hal_eeprom_backend, &rec);
+    if (persist_ok) {
         compute_restore(&cp, rec.total_ul, rec.total_mm,
                         rec.tank_stable_l, rec.tank_stable_valid);
     }
@@ -162,10 +207,14 @@ int main(void)
             txframes_gather(&tx, &cp, &st, vdd_c, now);
 
             txframes_fuel(&tx, buf);
-            (void)hal_can_send(CAN_ID_TX_FUEL, buf, TXFRAME_DLC);
+            if (!hal_can_send(CAN_ID_TX_FUEL, buf, TXFRAME_DLC)) {
+                tx_fail_count();
+            }
 
             txframes_engine(&tx, buf);
-            (void)hal_can_send(CAN_ID_TX_ENGINE, buf, TXFRAME_DLC);
+            if (!hal_can_send(CAN_ID_TX_ENGINE, buf, TXFRAME_DLC)) {
+                tx_fail_count();
+            }
 
             if (hal_can_overflow() ||
                 hal_can_rx_errors() != 0u || hal_can_tx_errors() != 0u) {
@@ -185,7 +234,45 @@ int main(void)
              * 100 ms old and carries accumulators that move in seconds. */
             txframes_gather_trip(&tx, &cp, now);
             txframes_trip(&tx, buf);
-            (void)hal_can_send(CAN_ID_TX_TRIP, buf, TXFRAME_DLC);
+            if (!hal_can_send(CAN_ID_TX_TRIP, buf, TXFRAME_DLC)) {
+                tx_fail_count();
+            }
+
+            /* One slow slot is one second by construction, so the uptime is a
+             * counter here rather than now/1000 -- which would be a 32-bit
+             * division by a constant every second for a number that advances
+             * by exactly one. It saturates: 0xFFFF is 18 hours and the point
+             * of the field is "did this thing reset behind my back", which a
+             * stuck ceiling answers as well as a wrapping counter answers it
+             * badly. */
+            if (uptime_s < 0xFFFFu) {
+                uptime_s++;
+            }
+
+            /* 0x603 goes out only while the DBG_EN jumper is fitted. In a
+             * closed dashboard nobody is reading it, so a frame a second and
+             * the gather behind it would be bus traffic and CPU spent on
+             * nobody. JP1 already means "somebody is looking at this device",
+             * and this is the second thing it now means -- config.h has the
+             * reasoning and docs/frames.md says it where a reader of the frame
+             * layout will find it.
+             *
+             * Note which side of the jumper test the counting sits on:
+             * tx_fail is incremented by the frames above whether or not
+             * anybody is watching, so it is a total since power-up rather than
+             * a total since the jumper went on. */
+            if (hal_sys_debug_enabled()) {
+                txframes_gather_diag(&tx,
+                                     hal_can_rx_errors(), hal_can_tx_errors(),
+                                     hal_can_status(),
+                                     diag_flags(can_ok, unhealthy, persist_ok,
+                                                compute_data_live(&cp, now)),
+                                     hal_sys_reset_cause(), tx_fail, uptime_s);
+                txframes_diag(&tx, buf);
+                if (!hal_can_send(CAN_ID_TX_DIAG, buf, TXFRAME_DLC)) {
+                    tx_fail_count();
+                }
+            }
 
             rec.total_ul          = cp.total_ul;
             rec.total_mm          = cp.total_mm;
