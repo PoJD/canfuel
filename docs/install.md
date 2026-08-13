@@ -279,6 +279,7 @@ utility ran" than to "the operation you asked for happened", in both directions.
 |---|---|---|---|
 | `-P18F25K80 -TPPK3 -I` | no programmer | `Programmer not found` | 9 |
 | `-P18F25K80 -TPPK3 -I` | programmer, no target | `Target device was not found`, then `Operation Succeeded` | **0** |
+| `-P18F25K80 -TPPK3 -I -W` | programmer, no target | `Connection Failed.`, then `Operation Succeeded` | **0** |
 | `-T` | programmer attached | the tool list | **50** |
 
 **The consequence is for step 5 and for `tools/flash.py` when it is written:
@@ -475,6 +476,35 @@ Five things to take from it:
   written above, and still not the 1.13.292 the compiler wants.
 - **No firewall prompt appeared**, because the rule was already allowed on
   2026-08-12. On a fresh machine, expect it here.
+
+**One extra run, and it is the measurement that pays for the `-W` rule.** The
+same command with `-W` added — power the target from the programmer — was run
+once out of curiosity, which is safe only because there was nothing on the ICSP
+header to power:
+
+```
+PICkit 3 is trying to supply 5,000000 volts from the USB port, but the target VDD is measured to be 4,625000 volts. This could be due to the USB port power capabilities or the target circuitry affecting the measured VDD.
+The target circuit may require more power than the debug tool can provide. An external power supply might be necessary.
+Connection Failed.
+Operation Succeeded
+```
+
+**4.625 V into an open circuit.** No board, no transceiver, no load at all, and
+it still cannot hold the 5.000 V it set out to supply. `-W` was already ruled
+out on borrowed evidence — a silicon issue *Readme for PICkit 3.htm* §8.3.2
+records on the PIC18F45K20/46K20 family, not ours — and this replaces it with a
+number measured on this desk: a supply that sags 0.375 V unloaded has nothing
+left for a board that draws current. **Power the board, then attach ICSP.**
+
+It also fails a step earlier than the runs above, which is worth knowing when
+reading step 5's output: the VDD check comes *before* ICSP, so `Connection
+Failed.` here means the tool never reached PGC/PGD at all. A missing
+acknowledgement on those two pins is a different message, and one this project
+has not seen yet — it needs a target.
+
+And it is the third and clearest entry in the exit-code table: a run that
+prints `Connection Failed.` and `Operation Succeeded` one line apart, and
+returns 0.
 
 **The step passes. Nothing about the board, the ICSP header or the hex is
 touched by it** — see *What it does not prove* below, which is unchanged.

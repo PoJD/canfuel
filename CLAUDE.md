@@ -385,7 +385,13 @@ Four decisions around it, none of which the datasheets have an opinion on:
 - **`-W` never.** It powers the target from the PICkit; the board has its own
   5 V, and *Readme for PICkit 3.htm* §8.3.2 records a silicon issue on the
   PIC18F45K20/46K20 family that appears only with *"power from programmer"*.
-  Not our part, but there is no reason to take the risk for no benefit.
+  Not our part, but there is no reason to take the risk for no benefit — and
+  since 2026-08-13 the rule rests on a measurement from this desk rather than
+  on somebody else's errata. `-W` with **nothing at all on the ICSP header**
+  reports 4.625 V against the 5.000 V it set out to supply, then
+  `Connection Failed.` A supply that sags 0.375 V into an open circuit has
+  nothing left for a board with a transceiver on it. `docs/install.md` step 4
+  has the transcript.
 - **The EEPROM is erased by default, and that is left alone.** `-OH` (*Erase
   All Before Program*) is on unless disabled, so a plain `-M` discards the
   persist ring. `persist_load()` returning false on a virgin EEPROM is a
