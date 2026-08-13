@@ -898,7 +898,7 @@ continuity:
 | Mode | Parts | What you are confirming |
 |---|---|---|
 | **Ω** | R1, R2 (10 kΩ), R3, R4 (1 kΩ), R6 (470 Ω) | the value, against a colour code that is easy to misread |
-| **capacitance** | C1, C2 (33 pF), C3, C4, C5, C8 (100 nF), C6, C7 (10 µF) | the value — and on C6, that an electrolytic which has been in a drawer is still alive |
+| **capacitance** | C1, C2 (33 pF), C3, C4, C5, C8 (100 nF), C6, C7 (10 µF) | the value, and that the part is not open or shorted |
 | **diode** | D1, D2 | which leg is the anode, and that the LED lights at all |
 
 **The ten with nothing to measure** are U1, U2, both sockets, Y1, J1, J2, J3,
