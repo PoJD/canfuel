@@ -700,15 +700,79 @@ Micro-Fit headers.
   counting it. It is the 120 Ω termination, it must not be fitted, and
   `120R DNF` is on the silkscreen.
 
-### Which parts can go in backwards — and it is only these five
+### The whole board, in the order to solder it
+
+Every part, once, in build order. **The last column is the one to read, and it
+is a trigger: `yes` means stop and check which way round it goes before the
+iron touches it.** `no` means both ways are the same part and nothing you do
+with it can be wrong — pick it up and solder it.
+
+Seven parts say yes. **Two of them — J1 and J2 — are keyed**, so the connector
+body physically refuses the wrong orientation; the check there takes a second
+and cannot fail. **The remaining five are the real ones**: both LEDs, C6, and
+the two chips. The section after the table is how to tell, one part at a time.
+
+**The two sockets are the exception that the trigger cannot express**, which is
+why they carry a note instead. Soldering a socket the wrong way round does
+nothing at all — it is two rows of holes onto the same pads either way. But the
+board's pin 1 marking ends up **underneath** it, and the moment orientation
+really matters is later, when the chips go in. Read the next section before
+soldering either socket, not after.
+
+The order is lowest-first, for the ordinary reason: a tall part soldered early
+holds the board off the bench and every part after it goes in crooked. The one
+non-obvious entry is C7, which is first because it is the only surface-mount
+part and it lives on the **bottom** — once through-hole legs are sticking out
+down there, that pad is awkward to reach.
+
+| # | Ref | Part | Where / what it does | Orientation matters |
+|---|---|---|---|---|
+| 1 | **C7** | 10 µF X7R 1210 **SMD** | **bottom side**, under U1 pin 6 — VDDCORE/VCAP | no |
+| 2 | R1 | 10 kΩ | MCLR pull-up | no |
+| 3 | R2 | 10 kΩ | RA0 pull-down, the JP1 debug jumper | no |
+| 4 | R3 | 1 kΩ | in series with D1 | no |
+| 5 | R4 | 1 kΩ | in series with D2 | no |
+| 6 | R6 | 470 Ω | MCLR series resistor | no |
+| — | ~~R5~~ | ~~120 Ω~~ | **DO NOT FIT.** Silk reads `120R DNF` | — |
+| 7 | — | **DIP-28 socket**, narrow 7.62 mm | for U1. Not in the BOM | no — **but record pin 1 first, see below** |
+| 8 | — | **DIP-8 socket** | for U2. Not in the BOM | no — **but record pin 1 first, see below** |
+| 9 | C1, C2 | 33 pF C0G | crystal load capacitors | no |
+| 10 | C3 | 100 nF | decoupling, U1 VDD (pin 20) | no |
+| 11 | C4 | 100 nF | decoupling, U2 VDD (pin 3) | no |
+| 12 | C5 | 100 nF | decoupling, U2 VIO (pin 5) | no |
+| 13 | C8 | 100 nF | MCLR hold-up, behind JP2 | no |
+| 14 | Y1 | 16 MHz HC-49/S crystal | two pins, symmetric | no |
+| 15 | J3 | 1×5 header, 2.54 mm | ICSP | no |
+| 16 | JP1 | 1×2 header | debug enable | no |
+| 17 | JP2 | 1×2 header | isolates C8 for programming | no |
+| 18 | **D1** | LED, **green** | power / heartbeat, on RC0 | **yes — long leg is +** |
+| 19 | **D2** | LED, **yellow** | CAN status, on RC1 | **yes — long leg is +** |
+| 20 | **C6** | 10 µF 16 V electrolytic | supply input tank | **yes — long leg is +, stripe is −** |
+| 21 | J1, J2 | Micro-Fit 43045-0400, right-angle | the two 4-pin connectors, in parallel | **yes — keyed, cannot be got wrong** |
+| 22 | **U1** | PIC18F25K80 | **into its socket, last** | **yes — notch** |
+| 23 | **U2** | MCP2562-E/P | **into its socket, last** | **yes — notch** |
+
+**23 fitted parts and two sockets**, which is the count in the paragraph above.
+
+**Do not press the chips into their sockets until everything else is done and
+checked.** They are the two parts a soldering mistake elsewhere can destroy,
+and they are the only two that come out again without a desoldering braid.
+
+**LED colour is free** — any colour works. At 1 kΩ a green or yellow LED draws
+about 2.3 mA and a blue or white one about 1.1 mA, both far under the 25 mA the
+port pin allows, so only the brightness changes. Green and yellow are what the
+design carries. **If you fit something else, change it in the schematic's Value
+field** in `kicad` — the BOM is generated from the schematic, so a wrong colour
+there becomes a wrong colour in `fab/`.
+
+### The five that can go in backwards
 
 Written out for somebody holding a soldering iron for the first time, because
 "check the polarity" is not an instruction unless it says how.
 
-**Everything else on this board is symmetric and cannot be fitted the wrong way
-round**: all six resistors, every ceramic capacitor (C1–C5, C7, C8), the
-crystal Y1, and all three pin headers (J3, JP1, JP2). Fit those either way and
-they work.
+**Everything not in this section is symmetric** — every resistor, every ceramic
+capacitor, the crystal and all three headers. Fit those either way and they
+work.
 
 ⚠ **Do not invent a rule from the pad numbers.** On C6 pad 1 is the **positive**
 lead; on D1 and D2 pad 1 is the **cathode**, the negative one. They are
@@ -719,14 +783,58 @@ opposite. This is not a guess — `kicad/tools/check-netlist.py` pins `C6.1` to
 |---|---|---|
 | **D1, D2** — the LEDs | **long leg = anode = +**; the plastic rim is flattened on the *other* side, beside the short leg | the silk outline carries the same flat on the cathode side. The anode is the pad wired to its resistor (R3 for D1, R4 for D2) |
 | **C6** — the electrolytic | **long leg = +**; the can has a printed stripe down the **negative** side | pad 1 is `+5V` |
-| **U1, U2** and their sockets | notch or dot at the pin 1 end | matching notch on the silk outline. **Fit the socket the right way round too** — then the chip goes into the socket the same way |
+| **U1, U2** — the chips | notch or dot at the pin 1 end | matching notch on the silk outline — **but see the socket note directly below, because by then the silk is covered** |
+
+#### The sockets hide the marking they are aligned to — record it first
+
+**The order of events is the trap, not the parts.** Soldering a socket the
+wrong way round does nothing: 28 holes onto 28 pads, symmetric either way.
+Orientation only matters when the chip goes into the socket — and that happens
+last, by which time the socket body is sitting on top of the board's pin 1
+notch.
+
+**So do one of these before the socket is soldered, while the silk is still
+visible:**
+
+- **Photograph the bare board**, close, with the pin 1 end of both DIP outlines
+  in frame. Thirty seconds, and it survives being put in a drawer for a week.
+- **Or transfer the mark** — a dot of permanent marker on the board *outside*
+  the silk outline, where the socket will not cover it.
+- **Or align a notched socket.** Many DIP sockets have a bevel or notch at one
+  end; if yours do, line it up with the silk notch and the socket carries the
+  information from then on. **Do not assume yours are notched** — plenty are
+  plain, and a plain socket destroys the marking without replacing it.
+
+**And the recovery, if all of that is missed** — it needs no photograph and
+works after everything is soldered, with the same multimeter in continuity
+mode:
+
+- **U1 pin 1 rings out to J3 pin 1.** Both are the `~MCLR` net, so touch one
+  probe to the ICSP header's pin 1 and find the socket hole that beeps. That
+  is pin 1 of U1, whatever the socket looks like.
+- **U2 pin 2 rings out to SGND** and pin 3 to +5 V. Pin 1 is the corner pin on
+  the same side, immediately next to the ground one.
+
+Both come from `kicad/tools/check-netlist.py`, which CI checks against the
+schematic, so they cannot quietly stop being true.
 
 **The check that needs no memory, and the multimeter is already on the list
-above.** Set it to diode mode, touch the red probe to one LED leg and the black
-to the other: one way round **the LED lights faintly**, the other way it stays
-dark. The leg touching the red probe when it lights is the anode. Five seconds,
-and it settles the question on the part actually in your hand — which matters,
+above.** Set it to diode mode, red probe in the `VΩ` jack and black in `COM`,
+and touch the probes to the two legs: one way round **the LED lights faintly**
+and the display reads its forward voltage in volts, the other way it stays dark
+and reads open. **The leg on the red probe when it lights is the anode.** Five
+seconds, and it settles the question on the part in your hand — which matters,
 because leg length is the marking most easily destroyed.
+
+Two things that make the difference between this working and looking broken:
+
+- **Do it in shade.** Diode mode drives well under a milliamp, so the LED is
+  dim. In daylight it looks dead either way round.
+- **Green and yellow light; blue and white may not.** A meter's diode source is
+  only a few volts, which clears the ~2 V a green or yellow LED needs and can
+  fall short of the ~3.2 V a blue or white one wants. If a blue LED stays dark
+  both ways, it is the meter, not the LED — fall back to the long leg and the
+  flat on the rim. The design's own two are green and yellow, so both light.
 
 **So trim the legs after soldering, never before.** Once both are cut level the
 only marking left on an LED is the flat on the rim, and on C6 only the stripe.
