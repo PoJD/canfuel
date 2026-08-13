@@ -1,11 +1,16 @@
-# Notes for `tools/flash.py`, which does not exist yet
+# IPECMD in detail, and notes for `tools/flash.py`
 
-**Delete this file when the tool is written.** It is a holding place, not
-documentation: everything here was learned by running IPECMD against a
-programmer with no target attached, and it is collected in one place so that
-whoever writes the tool does not have to rediscover it.
+**`docs/install.md` is the procedure and needs none of this.** Steps 4 and 5
+there are what somebody with a programmer in one hand actually follows. This
+file is everything underneath: what each flag does, what the tool returns, how
+it behaves on this machine, and what a `tools/flash.py` would have to know.
 
-`tools/flash.py` is deliberately not written yet. The commands below have been
+Two audiences, then — whoever debugs a programming session that went wrong, and
+whoever writes the tool. **If the tool is ever written, the specification half
+of this file goes with it; the observations do not.** They are the only record
+of behaviour that no Microchip document states.
+
+`tools/flash.py` is deliberately not written yet. The commands here have been
 run only in the forms marked as observed; `-C`, `-M`, `-Y`, `-OL` and `-Z` have
 never been run against a real target. Write the tool after a board has been
 programmed by hand, not before.
@@ -97,6 +102,22 @@ mistakes there is.
 **So the tool must decide on the printed output.** Never branch on the exit
 code alone, and do not encode §15's table.
 
+**Row three was produced deliberately, and it is the useful one.** A bench 5 V
+supply across header pins 2 and 3, with MCLR, PGC and PGD left unconnected and
+no `-W`, gives:
+
+```
+Target voltage detected
+Target Device ID (0x0) is an Invalid Device ID. Please check your connections to the Target Device.
+Operation Failed
+```
+
+`Target voltage detected` says VDD sensing works and sees an external supply.
+`Device ID (0x0)` says the programmer ran the ICSP sequence and read back zeros
+because nothing answered. **That is exactly what a dead ICSP link on a powered
+board looks like**, which is the failure `install.md` step 5's first command
+exists to catch — and it is now known rather than guessed at.
+
 ---
 
 ## Hazard: `-W` leaves the rail live after the command exits
@@ -119,12 +140,28 @@ self-powered board.
 - **The programmer is a USB HID device, not a virtual COM port**
   (*Readme for PICkit 3.htm* §8.2). There is no serial protocol to write
   against, the way `usbtin_capture.py` does for the CAN adapter. IPECMD is the
-  only interface.
+  only interface. There is no driver to install and no COM port to look for;
+  the operating system's own view of it, under Microchip's vendor ID `04D8`, is
+
+  ```
+  Get-PnpDevice -PresentOnly | Where-Object { $_.InstanceId -match 'VID_04D8' }
+  ```
+
+- **Something else can hold the interface, and then IPECMD reports the
+  programmer as absent.** §8.2 of the same readme: *"Some applications,
+  plug-ins or widgets may take control of, or interfere with"* it, and
+  *Readme for IPECMD.htm* §20.1 is explicit that a tool loaded in the MPLAB IPE
+  will fail to communicate with anything else. **MPLAB X or IPE being open is
+  the first thing to rule out** on a `Programmer not found` with the hardware
+  visibly enumerated.
 - **IPECMD talks to its own USB layer over a localhost TCP socket**, §14.5.1.
-  `C:\Windows\System32\mchpdefport` holds the host and port. A blocked port
-  presents as a tool-communication failure with no mention of a firewall —
-  §19.3 says so outright for the sibling IPECMDBoost utility and its ports 2012
-  and 2013. Worth detecting and reporting explicitly.
+  `C:\Windows\System32\mchpdefport` holds the host and port, two lines — on
+  this machine `localhost` and **30000**, read out of the file. Loopback only;
+  nothing leaves the machine. A blocked port presents as a tool-communication
+  failure with no mention of a firewall — §19.3 says so outright for the
+  sibling IPECMDBoost utility and its ports 2012 and 2013. Worth detecting and
+  reporting explicitly, and worth reading the file rather than assuming 30000:
+  the readme describes it as configuration, not as a constant.
 - **IPECMD appends an `MPLABXLog.xml` to whatever directory it runs from.**
   Run it from a scratch directory, or expect one in the working tree. The ones
   observed are empty.
@@ -145,9 +182,31 @@ self-powered board.
 ## If the programmer is replaced
 
 IPECMD drives MPLAB Snap, PICkit 4 and ICD 4 as well; only the `-TP` short name
-changes (§14.1), and each tool pack's `device_support.xml` lists the part. Pack
-support is not electrical fit — check how a candidate drives MCLR, since
-`pic_config.h` sets `MCLRE = ON`.
+changes (§14.1). The tool packs bundled with MPLAB X v6.00 each list this part
+in their `device_support.xml`:
+
+| Tool | Pack | `PIC18F25K80` |
+|---|---|---|
+| MPLAB Snap | `Snap_TP 1.9.685` | listed |
+| MPLAB PICkit 4 | `PICkit4_TP 1.10.1305` | listed |
+| MPLAB ICD 4 | `ICD4_TP 1.9.1287` | listed |
+
+⚠ **Being listed in a pack is not the same as fitting this board.** It says the
+software knows the part; it says nothing about MCLR and VPP handling, target
+power, or the 5-pin ICSP header on J3. Read the replacement's own user's guide
+on those points, particularly how it drives MCLR, since `pic_config.h` sets
+`MCLRE = ON` and JP2 exists precisely because that pin is fussy during
+programming.
+
+**An unknown header can be established by measurement**, with no document and
+on any programmer:
+
+- **Ground rings out at 0 Ω to the USB connector shell**, with nothing powered.
+  Free, no risk, and it identifies that pin outright.
+- **The supply pin carries the programmer's own voltage under `-W`** into an
+  open header — mind the hazard above.
+- **An external supply across those two produces `Target voltage detected`**,
+  which is the tool confirming the pair.
 
 The tool should therefore take the `-TP` name as a parameter rather than
 hard-coding one.

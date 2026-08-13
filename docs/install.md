@@ -22,7 +22,7 @@ git repository, so run git inside one of the three.
 A PIC18F25K80 on a 55 × 45 mm board, mounted behind an aftermarket multi-function
 display, taking 5 V from the display's own plug and hanging off the vehicle's
 powertrain CAN at 500 kbps. It reads six frames from the ECU, computes
-consumption, range, torque and power, and sends them back on frames 0x600–0x602
+consumption, range, torque and power, and sends them back on frames 0x600–0x603
 for the display to render.
 
 **Scope.** The frame layout and the signal decoding are specific to the VW PQ34
@@ -51,16 +51,17 @@ owns.
 | **The parts to populate it** | 5 | 23 fitted parts plus two sockets, mostly through-hole — `kicad/canfuel/fab/canfuel-bom.csv`, which lists neither the sockets nor R5. See step 5 |
 | **Soldering iron** | 5 | through-hole, nothing fine-pitch |
 | **A programmer IPECMD supports for the PIC18F25K80** | 4, 5 | through the 5-pin ICSP header J3, driven from the command line with **IPECMD** — see step 4. MPLAB X must be installed, because IPECMD is part of it, but the IDE is never opened. IPECMD also drives MPLAB Snap, PICkit 4 and ICD 4; only the `-TP` name changes. *(Tested on a PICkit 3 with MPLAB X v6.00.)* |
-| **A CAN interface the host can drive** | 8, and any recording | for watching the bus and recording logs. Any adapter that reaches 500 kbps will do; only the capture script is adapter-specific. *(Tested on a [USBtin](https://www.fischl.de/usbtin/); `tools/usbtin_capture.py` drives it over its serial protocol and needs `pyserial`. Every fixture in `test/fixtures/` was recorded with it.)* |
-| **Multimeter** | 3, 5 | ringing out the loom, and confirming 5 V before the board is ever plugged in |
+| **A CAN interface the host can drive** | 7, 8, and any recording | for watching the bus and recording logs. Any adapter that reaches 500 kbps will do; only the capture script is adapter-specific. *(Tested on a [USBtin](https://www.fischl.de/usbtin/); `tools/usbtin_capture.py` drives it over its serial protocol and needs `pyserial`. Every fixture in `test/fixtures/` was recorded with it.)* |
+| **Multimeter** | 3, 5, 7 | ringing out the loom, and confirming 5 V before the board is ever plugged in |
 | **Crimping tools and loom parts** | 3 | listed in `kicad/canfuel/docs/harness.md`, which is where that list belongs |
+| **A breadboard and two resistors** | 7 only | to build a short bench bus. Any pair that puts 50–65 Ω across CANH/CANL: 2 × 120 Ω, or 2 × 100 Ω, which is the bottom of the transceiver's specified load range and still in it |
 | **A diagnostic tool for the vehicle** | calibration only | **optional.** Not needed to build or run anything. *(Tested with VCDS.)* |
-| **The vehicle** | 6, 7, 8 | a VW PQ34 car with the AQY engine. Other PQ34 cars share much of the bus but nothing here is verified against them |
+| **The vehicle** | 8, 9, 10 | a VW PQ34 car with the AQY engine. Other PQ34 cars share much of the bus but nothing here is verified against them |
 
 **A 120 Ω terminator** is worth knowing about: the board deliberately does not
 fit R5, because the vehicle's bus is already terminated at both ends. Bench
-testing off the vehicle needs an external one — but step 5, loopback, does not, which is
-another reason to do it.
+testing off the vehicle needs an external one, and step 7 says what to fit —
+but step 6, loopback, needs none, which is another reason to do it.
 
 **Nothing above is needed for step 1.** The whole core builds and its tests run
 on a PC with gcc, make and Python and no hardware whatsoever.
@@ -70,8 +71,8 @@ on a PC with gcc, make and Python and no hardware whatsoever.
 ## Order of operations
 
 The order is chosen so that each step can fail cheaply and be understood on its
-own. **Do not skip step 5**: it costs ten minutes on a desk and it is the only
-one that tests the CAN driver without a car attached.
+own. **Do not skip step 6**: it costs ten minutes on a desk and it is the
+cheapest test of the CAN driver there is.
 
 | # | Step | Needs | Repository |
 |---|---|---|---|
@@ -79,14 +80,21 @@ one that tests the CAN driver without a car attached.
 | 2 | Upload the display configuration | the display and its configuration tool | `mfd15` |
 | 3 | Make up the harness | crimping tools, the loom parts | `kicad` |
 | 4 | Prove the programmer, with no board | a programmer, a USB port, MPLAB X | `canfuel` |
-| 5 | Populate and programme a board, loopback on the desk | programmer, XC8 | `canfuel` |
-| 6 | Listen only, in the vehicle | the vehicle | `canfuel` |
-| 7 | Transmit, in the vehicle | the vehicle | `canfuel` |
-| 8 | Check it against the raw counter | a drive | — |
+| 5 | Populate and programme a board | programmer, XC8, an iron | `canfuel` |
+| 6 | Loopback on the desk | nothing but 5 V | `canfuel` |
+| 7 | *(optional)* A bench bus, with a verdict | breadboard, 2 resistors, a CAN adapter | `canfuel` |
+| 8 | Listen only, in the vehicle | the vehicle | `canfuel` |
+| 9 | Transmit, in the vehicle | the vehicle | `canfuel` |
+| 10 | Check it against the raw counter | a drive | — |
+| 11 | Close it up | standoffs, tape | — |
 
 Steps 1 to 4 are independent of each other and can be done in any order or in
 parallel — **none of them needs a board**, which is why step 4 sits where it
 does rather than inside step 5. From 5 on, the order is the point.
+
+**Step 7 is the only optional one.** Everything else is load-bearing; that one
+buys confidence and a numeric answer where step 8 gives you a blinking LED, and
+skipping it breaks nothing later.
 
 ---
 
@@ -145,7 +153,7 @@ alive.
 
 **Expect seven channels to read zero**: FuelNow, FuelAvg, FuelTank, Range,
 Torque, Power and VddConv. Those are the converter's, and they stay at zero
-until step 7. The other nine read the car's bus directly and should be live as
+until step 9. The other nine read the car's bus directly and should be live as
 soon as the display is in the car.
 
 **Do not reorder the rows** of the TRI file. It is addressed by position.
@@ -192,157 +200,69 @@ instead.
 
 ## 4. Prove the programmer, with no board
 
-**This is the only step in the second half that needs no board**, which is the
-whole reason it is a step of its own. It retires the questions that would
-otherwise all land at once the first time a populated board is plugged in:
-whether the programmer is alive, whether the toolchain still recognises it,
-whether the firmware update it forces goes through, and whether the command
-line can drive it at all.
+**The only step in the second half that needs no board.** It answers one
+question — can this machine drive this programmer from the command line — while
+the answer is still simple, rather than mixed in with a freshly soldered board
+the first time something goes wrong.
 
 ### The tool is IPECMD
 
-Programming is driven from the command line, not from the IDE. **Every command
-below calls `ipecmd` by bare name and expects it on `PATH`** — it is not put
-there by the installer, and it lives in `mplab_platform/mplab_ipe` under the
-MPLAB X install directory.
+Programming is driven from the command line, not from the IDE. **`ipecmd` is
+called by bare name and has to be on `PATH`**; the installer does not put it
+there, and it lives in `mplab_platform/mplab_ipe` under the MPLAB X install
+directory. MPLAB X therefore has to be installed, and is never opened.
 
-**MPLAB X has to be installed, but is never opened.** `make` builds the hex and
-`ipecmd` writes it to the part. Two other command-line programmers ship in the
-same MPLAB X install and both disqualify themselves; that reasoning, and the full
-argument for every flag, is in [`flash-tool-notes.md`](flash-tool-notes.md).
+Everything else about the tool — why it rather than the two other command-line
+programmers in the same install, what each flag does, the exit codes it returns
+and the environment traps — is in
+[`flash-tool-notes.md`](flash-tool-notes.md). None of it is needed to do this
+step.
 
-### Run it with nothing attached first
+### Plug the programmer in and run one command
 
 ```
 ipecmd -P18F25K80 -TPPK3 -I
 ```
 
-`-I` is *Display Device ID*. It reads and cannot write. Running it before the
-programmer is plugged in establishes what failure looks like: it prints
-`Programmer not found`. That already proves the device name is accepted, that a
-Device Family Pack resolves without being told where one is, and that the tool
-fails by returning rather than by opening a window.
-
-Then plug the programmer in and run the identical command.
+`-I` is *Display Device ID*. It reads and cannot write, so there is nothing it
+can damage, and there is deliberately no target attached yet.
 
 | What it prints | What it means |
 |---|---|
-| anything past `Programmer not found`, complaining about the target | **the pass.** The command line opened the tool and reached ICSP |
-| `Programmer not found` again | not enumerating, or something else holds the interface — see below |
-| a firmware download, then one of the above | expected, and expected **once** — see *Run it twice* |
+| a complaint about the **target** — no target voltage, or an invalid device ID | **the pass.** There is no target, so a complaint about one is the tool working: the command line opened it and it got as far as ICSP |
+| `Programmer not found` | it never opened at all — see below |
+| a firmware download first, then one of the above | see *If it downloads firmware* |
 
-`ipecmd -T` lists connected tools with their serial numbers and is the
-shortest "is it alive" there is.
+⚠ **Read what it prints, not the exit code.** IPECMD's exit codes do not mean
+what they look like; `flash-tool-notes.md` has the observed values and is the
+place that matters when somebody writes a script.
 
-**Confirm the operating system sees it** before blaming the tool. The tested
-programmer enumerates as a USB HID device under Microchip's vendor ID `04D8`:
+**If it says `Programmer not found` with the programmer plugged in**, check in
+this order: **MPLAB X or MPLAB IPE open** and holding the tool, the **firewall**
+on IPECMD's localhost socket, then the programmer itself. `ipecmd -T` lists
+connected tools and is the shortest "is it alive" there is.
+`flash-tool-notes.md` has the citations for all three.
 
-```
-Get-PnpDevice -PresentOnly | Where-Object { $_.InstanceId -match 'VID_04D8' }
-```
+### If it downloads firmware
 
-**It is an HID device, not a virtual COM port** — *Readme for PICkit 3.htm*
-§8.2 refers to *"the system provided HID USB driver"*. There is no serial port
-to look for and no driver to install, and the same section carries the failure
-mode: *"Some applications, plug-ins or widgets may take control of, or
-interfere with"* it. **Check that MPLAB X or MPLAB IPE is not open**, since
-*Readme for IPECMD.htm* §20.1 is explicit that a tool loaded in the IPE will
-fail to communicate with anything else.
+*Readme for IPECMD.htm* §12: the programmer's own firmware is upgraded
+automatically on the first operation. It is not a fault, and it is not
+skippable — it would happen identically from the IDE.
 
-**IPECMD appends an `MPLABXLog.xml` to whatever directory it runs from.** Run
-it from a scratch directory or expect one in the working tree.
+⚠ **It is also not to be expected.** It happened here because the programmer had
+been in a drawer for years; one that has been driven by a current MPLAB X will
+simply not do it. If nothing is downloaded, nothing is wrong.
 
-### Expect a firewall prompt, and do not dismiss it
+If it does happen, **run the identical command again**, because the first run
+cannot separate "the tool works" from "the tool survived being reflashed":
 
-**IPECMD talks to its own USB layer over a TCP socket on localhost.**
-*Readme for IPECMD.htm* §14.5.1 describes the `mchpdefport` file as carrying
-*"the port or socket numbers through which the low-level library communicates
-with the upper-level IPECMD"*; on Windows it is
-`C:\Windows\System32\mchpdefport` and holds a host name and one port. Loopback
-only — nothing leaves the machine.
+- **nothing downloads the second time and it is quick** — done. That is the
+  steady state every run in steps 5 to 9 starts from.
+- **the download appears again, on every invocation** — the update is not
+  sticking, and that is a broken programmer however successful the operations
+  after it look.
 
-**A blocked port shows up as a tool communication failure, not as a firewall
-error.** Microchip say so for the sibling IPECMDBoost utility, §19.3: *"If there
-are any connection issues with the tools, please ensure the firewall is not
-blocking the port numbers 2012 and 2013."* Same failure mode, different ports.
-If the programmer enumerates and IPECMD still insists `Programmer not found`,
-check the firewall rule before suspecting the hardware.
-
-### The firmware update happens whether you want it or not
-
-*Readme for IPECMD.htm* §12: *"Upgrading the operating system of the
-programming tool happens automatically when the first operation using the tool
-is performed."* So the first command flashes the programmer itself. **This is
-the one irreversible thing in the step**, and it is unavoidable — it would
-happen identically from the IDE. Doing it deliberately, on a step whose only
-job is to find out, is better than having it happen underneath the first real
-programming attempt.
-
-**Read the loaded version out of the tool, not out of the readme.** On the
-tested combination the two did not agree.
-
-### Run it twice, and the second run is the one that counts
-
-**The first run measures two things at once and cannot separate them**: whether
-the tool works, and whether it survives being reflashed. Its output is
-confounded by the update. So run the identical command again: by then nothing
-is downloaded, and what comes back is the steady state that every programming
-run in steps 5 to 7 starts from.
-
-| Run 1 | Run 2 | What it means |
-|---|---|---|
-| update, then past `Programmer not found` | same, no update, quick | **the pass.** The tool took the firmware and works with it |
-| update, then past `Programmer not found` | `Programmer not found` | **the failure this step exists to catch.** It accepted the update and then stopped enumerating — a single run would have called this a success |
-| `Programmer not found` | `Programmer not found` | never opened at all. Firewall, interface handle, or the tool is dead |
-| update appears again | update appears again | the update is not sticking |
-
-The last two rows look alike from across the room and mean opposite things.
-**An update that repeats on every invocation is not a working programmer**,
-even if the operations after it appear to succeed.
-
-### ⚠ Exit codes cannot carry the decision, in either direction
-
-*Readme for IPECMD.htm* §10.2 promises only that an exit code is returned and
-never enumerates them. The one table it does carry, §15, is headed *MPLAB PM3
-Specific* and does not fit what the tool actually does.
-
-Observed with `-P18F25K80 -TPPK3`:
-
-| Situation | Prints | Exit |
-|---|---|---|
-| no programmer | `Programmer not found` | 9 |
-| **programmer, target not powered** | `Target device was not found (could not detect target voltage VDD)`, then `Operation Succeeded` | **0** |
-| programmer, target powered, ICSP silent | `Target Device ID (0x0) is an Invalid Device ID`, `Operation Failed` | 1 |
-| `-I -W` into an open header | `Connection Failed.`, then `Operation Succeeded` | 0 |
-| `-T` | the tool list | 50 |
-
-**The one case the code gets wrong is the worst one to get wrong: a target
-nobody powered exits 0 and prints `Operation Succeeded`.** Bad ICSP wiring
-fails honestly with 1. Since `-W` is deliberately not used here, an unpowered
-board is among the likeliest bench mistakes there is, and it is exactly the one
-a script checking the exit status would sail past.
-
-**Parse the output. Never branch on the exit code alone.**
-
-### ⚠ `-W` leaves the rail live after the command exits
-
-`-W` powers the target from the programmer and **is not used** in this project:
-the board has its own 5 V, so the flag buys nothing, and *Readme for PICkit 3.htm*
-§8.3.2 records a silicon issue on the PIC18F45K20/46K20 family that appears only
-with *"power from programmer"* — a different part, but a risk with no upside.
-
-It matters anyway, because the hazard outlives the command. On the tested
-programmer the ~4.6 V that `-W` applies **is still present after the command has
-exited**. From step 5 on the board powers itself, so a header left live by an
-earlier `-W` puts two supplies onto one rail with no command running and nothing
-on screen to blame.
-
-**If `-W` is ever used: run the plain command once afterwards — that is what
-clears the rail — then measure zero across the supply pins before connecting a
-self-powered board.** The meter is the gate; the next programmer need not behave
-like this one.
-
-### The header pinout, and how to confirm it without a document
+### The ICSP header pinout
 
 | Pin | Signal |
 |---|---|
@@ -359,69 +279,26 @@ use, so J3 stops at five. **Align the plug on the pin 1 marker, not on the end
 of the header** (§1.2.3) — a 6-pin plug on a 5-pin header overhangs by one
 position, and it is only harmless because the overhang is at the far end.
 
-**A different programmer needs its own pinout, and this procedure finds it
-without one:**
-
-- **Ground rings out at 0 Ω to the USB connector shell**, with nothing powered.
-  Free, no risk, and it identifies that pin outright.
-- **The supply pin carries the programmer's own voltage under `-W`** into an
-  open header.
-- **An external supply across the two produces `Target voltage detected`**,
-  which is the tool confirming the pair.
-
-### Powered header, nothing to talk to
-
-The last thing this step can establish without a board: put a bench 5 V supply
-across header pins 2 and 3, leave MCLR, PGC and PGD unconnected, and run the
-ordinary command — **no `-W`**, because the supply is external.
-
-```
-Target voltage detected
-Target Device ID (0x0) is an Invalid Device ID. Please check your connections to the Target Device.
-Operation Failed
-```
-
-- **`Target voltage detected`** — VDD sensing works and an external supply is
-  seen.
-- **`Device ID (0x0)`** — the programmer ran the ICSP sequence on PGC/PGD and
-  read back zeros, because nothing answered. **This is what a dead ICSP link
-  looks like on a powered board**, and it is the failure step 5's command 1
-  exists to catch.
-
-### If the programmer has to be replaced
-
-The tool packs bundled with MPLAB X v6.00 each list this part in their
-`device_support.xml`:
-
-| Tool | Pack | `PIC18F25K80` |
-|---|---|---|
-| MPLAB Snap | `Snap_TP 1.9.685` | listed |
-| MPLAB PICkit 4 | `PICkit4_TP 1.10.1305` | listed |
-| MPLAB ICD 4 | `ICD4_TP 1.9.1287` | listed |
-
-IPECMD drives all of them — the tool short names are in *Readme for IPECMD.htm*
-§14.1, so only `-TPPK3` changes.
-
-⚠ **Being listed in a pack is not the same as fitting this board.** It says the
-software knows the part; it says nothing about MCLR and VPP handling, target
-power, or the 5-pin ICSP header on J3. **Read the replacement's own user's guide
-on those points**, particularly how it drives MCLR, since `pic_config.h` sets
-`MCLRE = ON` and JP2 exists precisely because that pin is fussy during
-programming.
+**A different programmer needs its own pinout and its own user's guide.** Only
+the `-TP` short name changes in the command above, but how a tool drives MCLR
+and target power is not something a device listing tells you, and `MCLRE = ON`
+here makes that pin fussy. `flash-tool-notes.md` lists the tools IPECMD supports
+for this part, and how to establish an unknown header by measurement.
 
 ### What it does not prove
 
-Nothing about the board, nothing about ICSP wiring, nothing about the hex. A
-programmer that enumerates and updates its firmware can still fail to program a
-target for a dozen reasons that only appear once there is a target. Step 5 is
-where that gets tested.
+Nothing about the board, nothing about the ICSP wiring, nothing about the hex. A
+programmer that opens and reports its own firmware can still fail to program a
+target for a dozen reasons that only exist once there is a target. Step 5 is
+where those get tested.
 
 ---
 
+## 5. Populate and programme a board
 
-## 5. Populate, programme, and loopback on the desk
-
-This is the step that is easy to skip and should not be.
+Everything that turns a bare PCB and a bag of parts into a device that has been
+written to. Testing it is step 6, deliberately separate: this step ends when
+`ipecmd` says it verified, and nothing here proves the firmware runs.
 
 ### Populate
 
@@ -691,10 +568,20 @@ ipecmd -P18F25K80 -TPPK3 -F"$PWD/mplab/build/canfuel.hex" -Y       # 4. verify
 Command 1 is the one that matters most and it is read-only: **a device ID that
 comes back correct means the ICSP wiring, the MCLR jumper and the part are all
 good, before anything has been written.** If it fails, nothing after it can
-succeed and there is no point trying. ⚠ **Read its output, not its exit code** —
-step 4 provoked both failures without a board and its table says which is which.
-The short version is that an unpowered board still exits 0, so a script checking
-`$?` sails straight past the likeliest bench mistake there is.
+succeed and there is no point trying.
+
+⚠ **Read its output, not its exit code**, and know which of the two failures you
+are looking at:
+
+| What it prints | What it means |
+|---|---|
+| `Target device was not found (could not detect target voltage VDD)` | **the board has no power.** Nothing reached the part, so JP2 and the ICSP wiring are not the suspects. `-W` is not used here, so the board needs its own 5 V |
+| `Target Device ID (0x0) is an Invalid Device ID` | **power is fine, ICSP is not.** JP2 still fitted, wiring on MCLR/PGC/PGD, or a dead part |
+
+The first one still exits 0, so a script checking `$?` would sail straight past
+an unpowered board — the likeliest bench mistake there is. Both were provoked
+without a board and the observed codes are in
+[`flash-tool-notes.md`](flash-tool-notes.md).
 
 Command 4 is free rather than required: `-M` verifies implicitly when it
 finishes programming.
@@ -719,18 +606,23 @@ with no target attached. `-C`, `-M`, `-Y`, `-OL` and `-Z` are assembled from
 *Readme for IPECMD.htm* and are unproven, as is anything downstream of the ICSP
 header. **Correct this block the first time it runs against a part.**
 
-**Fit JP1** — without it both LEDs stay dark by design, and you are about to
-need them.
+**Fit JP1.** Without it both LEDs stay dark by design and the diagnostic frame
+is not transmitted, and you are about to need both.
 
-### What loopback proves
+---
+
+## 6. Loopback on the desk
+
+**This is the step that is easy to skip and should not be.** It costs ten
+minutes and it is the only test of the CAN driver that needs no bus, no
+adapter, no transceiver and no car.
 
 DS39977C §27.3.5 hands the transmit buffers straight to the receive buffers, so
-the module talks to itself. **No bus, no USBtin, no transceiver needed.** It
-exercises the bit timing, all six acceptance filters, the eight-deep FIFO,
-the access-bank window, `txframes` and `decode` — everything except the wire
-itself.
+the module talks to itself. That exercises the bit timing, all six acceptance
+filters, the eight-deep FIFO, the access-bank window, `txframes` and `decode` —
+everything except the wire itself.
 
-Watch the LEDs:
+The board needs 5 V and JP1 fitted, and nothing else.
 
 | LED_PWR | LED_CAN | Means |
 |---|---|---|
@@ -739,12 +631,114 @@ Watch the LEDs:
 | slow blink | dark | nothing is arriving — the transmit path or the FIFO is not working |
 | steady | any | **wrong hex.** A steady LED_PWR means a normal build; you flashed the wrong one |
 
-A fault caught here costs a reflash. The same fault caught in step 6 costs a
-trip to the car, and in step 7 it puts error frames on the car's bus.
+A fault caught here costs a reflash. The same fault caught in step 8 costs a
+trip to the car, and in step 9 it puts error frames on the car's bus.
 
 ---
 
-## 6. Listen only, in the car
+## 7. *(optional)* A bench bus, with a verdict instead of a blink rate
+
+**Skip this and nothing later breaks.** Step 6 has already proved the CAN
+module talks; step 8 is the real bus. What this buys is the one thing neither
+of them gives you: **the converter's own error counters, as numbers, before you
+are lying under a dashboard.**
+
+It needs a breadboard, two resistors and a USBtin.
+
+### Build the bus
+
+```
+      converter J1/J2                USBtin
+        CANH ──┬────────────────────── CANH
+               R                        
+        CANL ──┴────────────────────── CANL
+```
+
+with a resistor across CANH/CANL at **each end** — that is what a CAN bus is.
+The board's own R5 is deliberately not fitted (the car's bus is terminated
+elsewhere), so both terminators are external here.
+
+⚠ **The target is 50–65 Ω measured across CANH and CANL, with everything
+powered down.** That is DS20005167C's own specified load range for `VO(D)`, the
+dominant output voltage. Two 100 Ω resistors, one at each end, give **50 Ω** —
+the bottom of the range and perfectly in specification. Two 120 Ω give 60 Ω,
+the middle of it.
+
+**Measure rather than count resistors.** If the adapter has a terminator of its
+own fitted, two 100 Ω on top of it give 37.5 Ω, which is *below* what the
+transceiver is specified to drive. The meter settles it in five seconds and no
+datasheet can, because it is your adapter.
+
+### Flash the normal build, not listen-only
+
+```
+make -C mplab
+```
+
+⚠ **and this is not a preference.** CAN requires a receiver to drive the
+acknowledge slot dominant. A listen-only converter never does — DS39977C
+§27.3.4 promises exactly that, "no messages will be transmitted while in this
+state, including error flags or Acknowledge signals". So with a `LISTEN_ONLY`
+hex, the USBtin is alone on the bus: every frame it sends goes unacknowledged,
+is retransmitted, and its transmit error counter reaches the bus-off limit of
+256 within milliseconds. The traffic stops before you have looked up.
+
+**Testing a listen-only build on a bench needs a second adapter** to do the
+acknowledging. With one adapter, test the normal build — which is the better
+test anyway, because it exercises the transmit path too.
+
+**Fit JP1**, or there is no 0x603 and the whole point of the step is missing.
+
+### Run it
+
+```
+python tools/bench_test.py
+```
+
+One command. It replays a real recording from the vehicle onto the bench bus,
+listens to what the converter sends back, reads the diagnostic frame, and says
+PASS or FAIL:
+
+```
+Bench test
+  log                   09_idle_60s_z1.txt
+  frames per pass       21463 (adapter timestamps)
+  test length           20 s
+
+Traffic sent            13802 frames in 20.0 s
+Adapter status          0x00 clean
+
+What the converter transmitted
+  0x600 fuel   (FuelNow, FuelAvg, FuelTank, Range)   199   10.0 Hz  ok
+  0x601 engine (Power, Torque, Flow, VddConv)        199   10.0 Hz  ok
+  0x602 trip   (litres, metres)                       20    1.0 Hz  ok
+  0x603 diag   (errors, reset cause, uptime)          20    1.0 Hz  ok
+
+Converter diagnostics, out of 0x603
+  CAN error counters      rx 0, tx 0
+  Module error state      none
+  Flags                   CAN_OK DATA_LIVE PERSIST_OK
+  Send refusals           0
+  Reset cause             none
+  Uptime                  47 s
+
+Synthetic bench test finished. Traffic sent, the converter answered on all four
+frames, and its CAN error counters are zero. PASS.
+```
+
+**Nothing there asks a human to interpret a blink rate**, which is the whole
+reason it exists. `--seconds`, `--log` and `--speed` are the knobs;
+`--dry-run` shows what it would replay and touches no hardware.
+
+The failures it names rather than leaving you to work out: a missing JP1 (no
+0x603 at all), a listen-only hex (nothing acknowledges, the adapter reports
+errors), a watchdog or brown-out reset since power-up, a converter that
+restarted mid-test, and an adapter that cannot keep up — which is the host's
+problem and is reported as such.
+
+---
+
+## 8. Listen only, in the car
 
 ```
 make -C mplab CAN_MODE=LISTEN_ONLY
@@ -755,6 +749,10 @@ through the Y-splitter, and switch on. **This is the first reflash where
 `-Z0-3FF` is worth thinking about** — see step 5; there is nothing in the
 EEPROM yet worth keeping, but from here on there will be.
 
+⚠ **Put the board where you can see both LEDs**, and leave the dashboard open
+until step 11. In this step and this step alone, the LEDs are the *only*
+instrument there is — see below.
+
 **Why this mode first, and it is not caution for its own sake.** The 500 kbps
 bit timing is datasheet arithmetic that no hardware has ever executed. A
 Normal-mode node whose timing is wrong does not merely fail to read the bus —
@@ -762,45 +760,79 @@ Normal-mode node whose timing is wrong does not merely fail to read the bus —
 it. Listen Only is silent by the module's own guarantee (§27.3.4): no
 transmissions, no error flags, not even acknowledgements.
 
-**Check first, before anything else:** `hal_can_rx_errors()` and
-`hal_can_tx_errors()`. They are the ECAN error counters, and a bit-timing fault
-shows there long before it shows anywhere else. `LED_CAN` blinking at 2.5 Hz is
-the same news from across the room.
+⚠ **In this step the LEDs are the only instrument, and that is a property of
+the mode rather than a gap in the tooling.** The diagnostic frame 0x603 carries
+the ECAN error counters as numbers everywhere else — but a listen-only node
+transmits *nothing*, so there is no frame to read. Nor can they be read over
+ICSP: IPECMD reaches flash and EEPROM, not RAM. A debugger would do it, and
+that means the IDE this project does not use.
+
+So: **this is what to look for, and there is nothing else to look at.**
 
 | LED_PWR | LED_CAN | Means |
 |---|---|---|
-| slow blink | steady | frames arriving, module healthy — **this is what you want** |
-| slow blink | 2.5 Hz blink | arriving, but the error counters are not zero or the FIFO overflowed |
+| slow blink | **steady** | frames arriving, error counters zero — **this is the pass** |
+| slow blink | 2.5 Hz blink | arriving, but an error counter is non-zero or the FIFO overflowed |
 | slow blink | 5 Hz blink | the module never reached Listen Only |
 | slow blink | dark | the bus has been quiet for 500 ms — the car is not talking, or the wiring is wrong |
+| **steady** | any | **wrong hex** — that is a normal build, and it is transmitting |
 
-Dark and fast-blink are the two to tell apart: **dark means the car is not
-talking, fast blink means we are not listening.**
+Two pairs are worth separating deliberately:
+
+- **Dark against 5 Hz.** Dark means the car is not talking; fast blink means we
+  are not listening. Opposite faults, and they look alike from across a car.
+- **Steady against slow blink on LED_PWR.** Slow is correct here. A steady
+  LED_PWR in this step means the listen-only hex is not the one in the device.
+
+**A bit-timing fault shows up as 2.5 Hz within seconds of switching on**, so
+watch LED_CAN before anything else. If it settles steady, the 500 kbps
+arithmetic carried onto real silicon — which nothing before this step could
+prove.
 
 Log what the converter decodes and compare it against a parallel USBtin
 recording. Nothing is on the wire from us yet, so there is nothing to break.
 
 ---
 
-## 7. Transmit
+## 9. Transmit
 
 ```
 make -C mplab
 ```
 
-A plain build with no `CAN_MODE`, which is Normal mode. `LED_PWR` now goes
-**steady** — that change is the point of it: a listen-only hex left in the
-device by accident is otherwise indistinguishable from a transmitter that has
-quietly stopped working.
+A plain build with no `CAN_MODE`, which is Normal mode. Keep JP1 fitted and the
+dashboard open for this step too.
 
-The display's seven converter channels should come alive within a second.
+**How you know it is transmitting — both LEDs on, steady.**
 
-Watch the error counters again for the first few minutes. This is the first
-time the device acknowledges frames and arbitrates for the bus.
+| LED_PWR | LED_CAN | Means |
+|---|---|---|
+| **steady** | **steady** | **the pass.** A normal build, frames arriving, counters zero |
+| steady | 2.5 Hz blink | transmitting, but an error counter is non-zero — see below |
+| slow blink | any | still a silent build. You flashed the wrong hex |
+
+`LED_PWR` going from slow blink to steady is the whole point of that indicator:
+a listen-only hex left in the device by accident is otherwise indistinguishable
+from a transmitter that has quietly stopped working.
+
+**Two LEDs steady is necessary and not sufficient**, because LED_CAN means
+"frames are arriving", which was true in step 8 as well. The confirmations that
+we are actually on the wire:
+
+- **the display's seven converter channels come alive within a second.** That
+  is the real proof and it needs no instruments.
+- **0x603 is now readable**, because a normal build transmits. With a USBtin on
+  the bus, `python tools/canlog.py --dump --id 0x603 FILE` over a short capture
+  gives the error counters, the reset cause and the uptime as numbers —
+  `docs/frames.md` decodes the bytes. This is the first time in the car that
+  the counters can be read rather than inferred.
+
+This is the first time the device acknowledges frames and arbitrates for the
+bus, so watch it for a few minutes rather than a few seconds.
 
 ---
 
-## 8. Check it against the raw counter
+## 10. Check it against the raw counter
 
 The useful check once it is live, and it needs no instruments:
 
@@ -819,6 +851,37 @@ Two more worth doing on the first drive:
   consecutive at-rest samples more than 3 L above the settled tank level, so
   about five seconds of standing still after the fill. `docs/refuel-reset.md`
   has the rules and the corner cases.
+
+---
+
+## 11. Close it up
+
+The last step, and the only one that is undone by doing it.
+
+1. **Take JP1 off.** Both LEDs go dark and 0x603 stops being transmitted. That
+   is the shipping configuration: nothing lights up in the car, and the bus
+   carries one frame a second less than it did.
+2. **Fit JP2**, if it is not already on. It puts the 100 nF capacitor back on
+   MCLR, which is what DS39977C Figure 2-2 asks for in normal operation and
+   what had to come off to programme the board.
+3. **Check the display still reads.** Removing JP1 must change nothing except
+   the LEDs — if the converter's channels go dead, the jumper was doing
+   something it should not have been.
+4. **Mount the board.** Four nylon M3 standoffs into H1–H4, feet on the floor
+   of the vent with automotive-grade double-sided tape. **Not PVC or fabric
+   tape wrapped round the board** — a dashboard reaches 50–60 °C and the
+   adhesive creeps into the sockets. The reasoning is in `kicad`.
+5. **Close the dashboard and drive.**
+
+**What you give up by closing it**, and it is worth knowing before you do:
+LED_CAN was the only live health indicator, and 0x603 the only numeric one.
+Both are behind that jumper now. To read the counters again — after a fault, or
+just out of curiosity — the dashboard comes apart, JP1 goes back on, and a
+USBtin reads 0x603. That is deliberate: nothing in the car should light up or
+add traffic for a device that is working.
+
+The calibration below can be done later, on a working car, and does not need
+any of this reopened.
 
 ---
 
@@ -858,13 +921,19 @@ line above.
 
 | Symptom | Look at |
 |---|---|
-| `ipecmd` says `Programmer not found` with the PICkit plugged in | in this order: **MPLAB X or IPE open** and holding the tool (*Readme for IPECMD.htm* §20.1); the **firewall rule** on localhost port 30000 (step 4); something else owning the HID handle (*Readme for PICkit 3.htm* §8.2); then the programmer itself |
+| `ipecmd` says `Programmer not found` with the PICkit plugged in | in this order: **MPLAB X or IPE open** and holding the tool; the **firewall rule** on IPECMD's localhost socket; something else owning the HID handle; then the programmer itself. `flash-tool-notes.md` has the citation and the port for each |
 | `ipecmd` says `Target device was not found (could not detect target voltage VDD)` | **the board is not powered.** `-W` is deliberately not used, so it needs its own 5 V. Nothing reached the part, so JP2 and the ICSP wiring are not the suspects. **This run still exits 0**, so it is the message that tells you, not the code |
-| `ipecmd` says `Target Device ID (0x0) is an Invalid Device ID` | power is fine and ICSP is not: JP2 still fitted, MCLR/PGC/PGD wiring, or a dead part. Verified in step 4 against a powered header with those three pins left unconnected. This one does exit 1 |
-| A board misbehaves or dies the first time it is plugged onto the PICkit | **had `-W` been used on that PICkit beforehand?** It leaves ~4.6 V on header pin 2 after the command exits, which then fights the board's own supply. Measure pins 2 and 3 for zero before connecting a self-powered board — step 4 |
+| `ipecmd` says `Target Device ID (0x0) is an Invalid Device ID` | power is fine and ICSP is not: JP2 still fitted, MCLR/PGC/PGD wiring, or a dead part. Reproduced against a powered header with those three pins left unconnected — `flash-tool-notes.md` |
+| A board misbehaves or dies the first time it is plugged onto the PICkit | **had `-W` been used on that PICkit beforehand?** It leaves ~4.6 V on header pin 2 after the command exits, which then fights the board's own supply. Measure pins 2 and 3 for zero before connecting a self-powered board — `flash-tool-notes.md` |
 | Programming succeeds and nothing runs | `-OL` missing. The IPECMD default is *hold in reset*, so the part is programmed and then parked |
 | The trip accumulators vanished after a reflash | expected: `-OH` erases everything by default. `-Z0-3FF` is what preserves them, and `-E` overrides it |
 | Both LEDs dark | JP1 not fitted — that is by design, nothing lights up in the car without it |
+| No 0x603 on the bus, but 0x600 and 0x601 are there | JP1 not fitted. The diagnostic frame is only transmitted while the debug jumper is on — `docs/frames.md` |
+| No 0x603 and a listen-only build | expected and unfixable: that mode transmits nothing at all. The LED is the only instrument in step 8 |
+| `bench_test.py` reports adapter errors and nothing acknowledged | a `LISTEN_ONLY` hex on the bench, so nothing drives the ACK slot. Flash the normal build, or add a second adapter — step 7 |
+| `bench_test.py` says the transmit FIFO filled | the host, not the converter. `--speed 0.5` |
+| 0x603 says the reset cause was WATCHDOG | the firmware hung. A bug, and the uptime beside it says how often |
+| 0x603 says BROWN-OUT | the supply sagged past `BORV` = 3.0 V. Suspect the feed, the fuse or the bench supply before the code |
 | LED_CAN 5 Hz | `hal_can_init()` failed. Bit timing, `CANMX`, or a configuration bit |
 | LED_CAN dark, car running | wiring: CANH/CANL swapped, or the stub not connected. Ring it out |
 | Display channels stay at 0 | a silent build (LED_PWR blinking), or the frame layout drifted from `S-AQY.TRI` |
