@@ -1,4 +1,4 @@
-# Decoding the powertrain CAN bus — VW New Beetle, AQY engine
+# Decoding the powertrain CAN bus — VW PQ34, AQY engine
 
 500 kbps bus, PQ34 platform. Every value below was verified by measurement on
 the car; the logs live in `test/fixtures/`.

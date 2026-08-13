@@ -1,7 +1,7 @@
 # canfuel — converter firmware
 
-A fuel consumption converter for the VW New Beetle, AQY engine (2.0 l / 85 kW,
-PQ34). It reads the powertrain CAN bus (500 kbps), computes consumption, range,
+A fuel consumption converter for VW PQ34 cars with the AQY engine
+(2.0 l / 85 kW). *(Developed and verified on a 2.0 AQY.)* It reads the powertrain CAN bus (500 kbps), computes consumption, range,
 torque and power, and sends them back onto the bus in frames 0x600–0x602. A
 CANchecked MFD15 Gen2 display renders them from its own TRI file (repo `mfd15`).
 

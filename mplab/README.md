@@ -15,7 +15,7 @@ compiler has to know about the part is in `src/pic_config.h` and in the Device
 Family Pack, so the makefile only carries the device name, the pack, the
 standard and the optimisation level.
 
-**The plain form works on this desk with no arguments.** If `xc8-cc` is not on
+**The plain form takes no arguments.** If `xc8-cc` is not on
 the PATH the makefile falls back to the Windows default install path, and the
 pack defaults to `C:\mchp_packs`. Both are overridable as above; the `XC8=`
 form is quoted for a reason, since the default Windows path has a space in it.
@@ -47,7 +47,7 @@ found`:
    that reads like the pack is missing rather than misaddressed.
 2. **The pack version has to match the compiler.** MPLAB X v6.00 bundles
    `PIC18F-K_DFP 1.5.114` and XC8 v4.00 refuses it. v4.00's readme names
-   **1.13.292** as the version it ships with, and that is what both this desk
+   **1.13.292** as the version it ships with, and that is what both the
    and CI use. Download it from
    `https://packs.download.microchip.com/Microchip.PIC18F-K_DFP.1.13.292.atpack`
    — it is a zip whatever the extension says.
@@ -59,7 +59,7 @@ found`:
    `%USERPROFILE%\.mchp_packs`.
 
 CI downloads and unpacks the same version itself rather than trusting the
-compiler installer to have placed it, because on this desk the installer did
+compiler installer to have placed it, because the installer did
 not place it.
 
 ### Which XC8
@@ -96,7 +96,7 @@ two answers to the question of what gets compiled.
 It targets the PIC18F25K80 with XC8 and a PICkit 3, and pulls all seven sources
 out of `../../src`.
 
-**The IDE build has not been made to work on this desk, and is not the
+**The IDE build is not maintained, and is not the
 priority.** MPLAB X v6.00 manages packs itself: it bundles `PIC18F-K_DFP
 1.5.114`, which XC8 v4.00 rejects, and the Pack manager unpacks anything newer
 into `%USERPROFILE%\.mchp_packs`, which is the accented path XC8 v4.00 cannot

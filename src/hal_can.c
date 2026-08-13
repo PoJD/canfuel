@@ -135,7 +135,7 @@ static hal_can_mode_t g_mode = HAL_CAN_MODE_NORMAL;
  *    max, and parameter 6, tBUSOFF-RXD = 110 ns max -- 235 ns through one
  *    node, which is exactly parameter 8's tTXD-RXD of 235 ns max, so the two
  *    ways of counting agree. Cable at 5 ns/m is a DECISION, not a datasheet
- *    number: it is the usual figure for twisted pair and nothing in this car
+ *    number: it is the usual figure for twisted pair and nothing in the car
  *    has been measured. With L the one-way separation of the two nodes:
  *
  *      4 TQ = 500 ns:  500 >= 2 * (235 + 5*L)  ->  L <= 3.0 m

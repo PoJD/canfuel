@@ -108,8 +108,8 @@ converter firmware worth the name.
 
 **Refuted in two steps, and the second one is what mattered.**
 
-1. **From the web** — wiring documentation for this car. On the New Beetle with
-   the AQY (PQ34) there is no consumption wire. The powertrain is fully CAN and
+1. **From the web** — wiring documentation for the platform. On PQ34 with the
+   AQY there is no consumption wire. The powertrain is fully CAN and
    the figure the cluster displays is computed, not carried.
 2. **Then confirmed on the bus.** A CAN sniff showed the ECU emitting
    consumption after all, just not the way the hypothesis expected: frame
@@ -418,7 +418,7 @@ written:**
   a set point and a readback** with its own tolerance. It is not a complaint
   about capability.
 - **It has been done.** The same flag was used successfully on an earlier
-  project on this MCU, on this desk.
+  project on this MCU.
 
 **Cost:** one commit (`8203082`) whose central claim was exactly this, and a
 paragraph in two documents that presented an interpretation as a measurement.

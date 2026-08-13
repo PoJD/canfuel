@@ -60,7 +60,7 @@ is on the CAN pair tapped at the instrument cluster. On this generation engine
 diagnostics runs over K-line rather than CAN, so VCDS traffic does not appear
 on the powertrain bus at all.
 
-And if that is wrong and this car does diagnose over CAN, it still does not
+And if that is wrong and the vehicle does diagnose over CAN, it still does not
 matter: the extra frames would simply show up in the capture, and the USBtin is
 in listen-only mode where it cannot answer anything. There is no case where
 running both causes a problem.
