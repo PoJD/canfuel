@@ -42,9 +42,10 @@ disqualified by their own documentation:
   to start running.
 - **`ipecmd.exe`** — the survivor, and the one Microchip point at.
 
-```
-C:\Program Files\Microchip\MPLABX\v6.00\mplab_platform\mplab_ipe\ipecmd.exe
-```
+`ipecmd.exe` and `pk3cmd.exe` are in `mplab_platform/mplab_ipe` under the
+MPLAB X install directory, `mdb.bat` in `mplab_platform/bin`. **The tool should
+invoke `ipecmd` by bare name and let `PATH` resolve it**, as `docs/install.md`
+does, rather than hard-coding an install path with a version number in it.
 
 ---
 

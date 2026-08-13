@@ -201,21 +201,20 @@ line can drive it at all.
 
 ### The tool is IPECMD
 
-Programming is driven from the command line, not from the IDE:
-
-```
-C:\Program Files\Microchip\MPLABX\v6.00\mplab_platform\mplab_ipe\ipecmd.exe
-```
+Programming is driven from the command line, not from the IDE. **Every command
+below calls `ipecmd` by bare name and expects it on `PATH`** — it is not put
+there by the installer, and it lives in `mplab_platform/mplab_ipe` under the
+MPLAB X install directory.
 
 **MPLAB X has to be installed, but is never opened.** `make` builds the hex and
 `ipecmd` writes it to the part. Two other command-line programmers ship in the
-same directory and both disqualify themselves; that reasoning, and the full
+same MPLAB X install and both disqualify themselves; that reasoning, and the full
 argument for every flag, is in [`flash-tool-notes.md`](flash-tool-notes.md).
 
 ### Run it with nothing attached first
 
 ```
-"$IPE" -P18F25K80 -TPPK3 -I
+ipecmd -P18F25K80 -TPPK3 -I
 ```
 
 `-I` is *Display Device ID*. It reads and cannot write. Running it before the
@@ -232,7 +231,7 @@ Then plug the programmer in and run the identical command.
 | `Programmer not found` again | not enumerating, or something else holds the interface — see below |
 | a firmware download, then one of the above | expected, and expected **once** — see *Run it twice* |
 
-`ipecmd.exe -T` lists connected tools with their serial numbers and is the
+`ipecmd -T` lists connected tools with their serial numbers and is the
 shortest "is it alive" there is.
 
 **Confirm the operating system sees it** before blaming the tool. The tested
@@ -674,73 +673,51 @@ That writes `mplab/build/canfuel.hex`. Building is documented in
 `mplab/README.md`, including which XC8 and which Device Family Pack — the pack
 is not optional and the version has to match.
 
-**Then flash it with the PICkit on J3, from the command line.** The makefile
-builds; it does not programme. Do the whole thing in four commands, in this
-order, and read each one's output before running the next:
+⚠ **JP2 comes off before programming and goes back on afterwards.** It puts the
+100 nF MCLR capacitor in circuit, which is what the datasheet asks for in
+normal operation and what interferes with ICSP.
+
+**Then flash it with the PICkit on J3**, from the repository root. The makefile
+builds; it does not programme. Four commands, in this order, reading each one's
+output before running the next:
 
 ```
-IPE="/c/Program Files/Microchip/MPLABX/v6.00/mplab_platform/mplab_ipe/ipecmd.exe"
-
-"$IPE" -P18F25K80 -TPPK3 -I                                  # 1. device ID
-"$IPE" -P18F25K80 -TPPK3 -C                                  # 2. blank check
-"$IPE" -P18F25K80 -TPPK3 -F"$PWD/mplab/build/canfuel.hex" -M -OL   # 3. program
-"$IPE" -P18F25K80 -TPPK3 -F"$PWD/mplab/build/canfuel.hex" -Y       # 4. verify
+ipecmd -P18F25K80 -TPPK3 -I                                  # 1. device ID
+ipecmd -P18F25K80 -TPPK3 -C                                  # 2. blank check
+ipecmd -P18F25K80 -TPPK3 -F"$PWD/mplab/build/canfuel.hex" -M -OL   # 3. program
+ipecmd -P18F25K80 -TPPK3 -F"$PWD/mplab/build/canfuel.hex" -Y       # 4. verify
 ```
 
 Command 1 is the one that matters most and it is read-only: **a device ID that
 comes back correct means the ICSP wiring, the MCLR jumper and the part are all
 good, before anything has been written.** If it fails, nothing after it can
-succeed and there is no point trying.
+succeed and there is no point trying. ⚠ **Read its output, not its exit code** —
+step 4 provoked both failures without a board and its table says which is which.
+The short version is that an unpowered board still exits 0, so a script checking
+`$?` sails straight past the likeliest bench mistake there is.
 
-⚠ **Read command 1's output, not its exit code**, and know which failure you
-are looking at. Step 4 provoked both of them without a board:
+Command 4 is free rather than required: `-M` verifies implicitly when it
+finishes programming.
 
-| What it prints | What it means | Exit |
-|---|---|---|
-| `Target device was not found (could not detect target voltage VDD)` | **the board has no power.** JP2 is irrelevant here; nothing reached the part at all. `-W` is not used, so the board needs its own 5 V | **0** |
-| `Target Device ID (0x0) is an Invalid Device ID` | **power is fine, ICSP is not.** JP2 still fitted, wiring on MCLR/PGC/PGD, or a dead part | 1 |
+Three things in that command line are ways to get it wrong. The full argument
+for each is in [`flash-tool-notes.md`](flash-tool-notes.md):
 
-The first is the dangerous one: a script checking `$?` sails straight past an
-unpowered board. What you actually want is a device ID that comes back.
+- **`-OL` is not optional.** It is *Release From Reset* and the IPECMD default
+  is the opposite, so leaving it off produces a board that is programmed
+  correctly and then simply sits there — which looks exactly like a firmware
+  that does not run.
+- **`-W` is deliberately not used.** Power the board from the display or a bench
+  supply first, then attach ICSP.
+- **The EEPROM is erased, on purpose**, and that is the right default during
+  bring-up: `persist_load()` returns false on a virgin EEPROM, which is a
+  correct start rather than an error. `-Z0-3FF` is what preserves the ring once
+  there is a real trip in it. **`mplab/canfuel.X` deliberately does the
+  opposite** — know which tool you are holding.
 
-Four details in that command line, each of which is a way to get it wrong:
-
-- **`-OL` is not optional.** It is *Release From Reset*, and the default in
-  *Readme for IPECMD.htm* §13 is the opposite — `Hold in reset`. Leave it off
-  and the board is programmed correctly and then simply sits there, which looks
-  exactly like a firmware that does not run.
-- **`-M` programmes and implicitly verifies.** §17.6: *"The Verify with (/M)
-  operation implicitly performs a Verify when it completes the programming
-  portion."* Command 4 is therefore a second verify and is there because it is
-  free, not because it is required.
-- **`-W` is deliberately not used.** It powers the target from the PICkit. The
-  board takes its 5 V from the display or a bench supply, and *Readme for
-  PICkit 3.htm* §8.3.2 records a silicon issue on another family that only
-  appears with *"power from programmer"*. Power the board, then attach ICSP.
-- **The EEPROM is erased, on purpose.** `-OH` (*Erase All Before Program*) is
-  on by default, so a plain `-M` takes the trip accumulators with it. That is
-  the right default here: `persist_load()` returns false on a virgin EEPROM and
-  the core starts from zero, which is correct rather than an error, and during
-  bring-up a known-empty ring is worth more than a preserved one. When that
-  stops being true — reflashing in the car with a real trip stored —
-  **`-Z0-3FF` preserves it**, and mind §17.8: `-E` overrides `-Z`.
-
-⚠ **The `.X` project disagrees with that last one, and the disagreement is
-deliberate.** `mplab/canfuel.X` sets `programoptions.preserveeeprom = true`, so
-if the IDE is ever used as the programmer it will keep the EEPROM where the
-command line above discards it. Neither is wrong; know which one you are
-holding.
-
-⚠ **Only the `-I` form of these commands has been run against real
-hardware**, and only as step 4, with no target attached. The rest are assembled
-from *Readme for IPECMD.htm* §13, §17 and §18. So the tool, the transport and
-the argument spelling are proved; **`-C`, `-M`, `-Y`, `-OL` and `-Z` are not**,
-and neither is anything downstream of the ICSP header. **Correct this block the
-first time it runs against a part.**
-
-⚠ **JP2 comes off before programming and goes back on afterwards.** It puts the
-100 nF MCLR capacitor in circuit, which is what the datasheet asks for in
-normal operation and what interferes with ICSP.
+⚠ **Only the `-I` form has been run against real hardware**, and only as step 4,
+with no target attached. `-C`, `-M`, `-Y`, `-OL` and `-Z` are assembled from
+*Readme for IPECMD.htm* and are unproven, as is anything downstream of the ICSP
+header. **Correct this block the first time it runs against a part.**
 
 **Fit JP1** — without it both LEDs stay dark by design, and you are about to
 need them.

@@ -239,10 +239,16 @@ produces. CI runs the same makefile with the same pinned versions.
 
 gcc, make, git and Python 3.11 build and test the core. Building for the device
 additionally needs **XC8 v4.00** and **`PIC18F-K_DFP 1.13.292`**; `mplab/Makefile`
-falls back to XC8's default install path when it is not on `PATH`, and takes the
-pack location from `MCHP_PACKS` (default `C:\mchp_packs`). **Keep that path pure
-ASCII** — an accented directory silently drops the pack's include directories
-and the build dies two steps later on `'pic18.h' file not found`.
+looks for `xc8-cc` on `PATH` and falls back to XC8's default install path, and
+takes the pack from `DFP=` (default `C:/mchp_packs/...`, which is what CI
+overrides). **Keep that path pure ASCII** — an accented directory silently drops
+the pack's include directories and the build dies two steps later on
+`'pic18.h' file not found`.
+
+**`ipecmd` is invoked by bare name and has to be on `PATH`**, which the MPLAB X
+installer does not do for you; it lives in `mplab_platform/mplab_ipe` under the
+install directory. That is the only tool this repository requires on `PATH`
+without a fallback.
 
 MPLAB X finds its own toolchain regardless of `PATH`, so the IDE building is
 not evidence that `make -C mplab` will, and the IDE manages its own packs.
@@ -264,7 +270,7 @@ Linux, macOS and CI alone.
 
 ### Flashing is a command line, and the tool is IPECMD
 
-**The device is programmed with `ipecmd.exe`, not from the IDE.** The procedure
+**The device is programmed with `ipecmd`, not from the IDE.** The procedure
 is steps 4 and 5 of `docs/install.md`; the full argument for every flag, the
 observed exit codes and the environment traps are in
 [`docs/flash-tool-notes.md`](docs/flash-tool-notes.md), which is also the

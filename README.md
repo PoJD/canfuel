@@ -77,6 +77,13 @@ required to run the tests, and none of it is required to read the code.
 | flashing a board | **MPLAB X** and a programmer IPECMD supports | not needed to build — `make -C mplab` produces the hex on its own. MPLAB X is installed for `ipecmd.exe`, not for the IDE, which is never opened for this. *(Tested on a PICkit 3.)* |
 | recording from the bus | a **CAN interface** the host can drive | *(Tested on a USBtin; `tools/usbtin_capture.py` drives it and needs `pip install pyserial`.)* |
 
+**What has to be on `PATH`.** `gcc`, `make`, `python` — and **`ipecmd.exe`**, which
+every command in `docs/install.md` invokes by bare name. It is not put there by
+the MPLAB X installer; it lives in `mplab_platform/mplab_ipe` under the install
+directory. **`xc8-cc` is the exception**: `mplab/Makefile` looks for it on
+`PATH` and falls back to the default Windows install path, so `make -C mplab`
+works either way.
+
 **The check that separates a toolchain problem from a code problem:**
 `make -C test test` must pass **without XC8 installed at all**. The core is deliberately pure C with no
 hardware headers, so if that fails, the problem is gcc or make, not the

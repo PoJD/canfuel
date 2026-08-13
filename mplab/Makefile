@@ -29,7 +29,7 @@ DEVICE ?= 18F25K80
 # linker script for this part lives in a DFP, and without -mdfp the compiler
 # stops at "error: (2103) no device-support files specified".
 #
-# Three things about that path, all learned the hard way on 2026-08-09:
+# Three things about that path, each of which costs a build round:
 #
 #  1. It points at the *xc8 subdirectory inside* the pack, not at the pack
 #     root. The user's guide is explicit ("path is the relevant path to the
