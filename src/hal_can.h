@@ -41,9 +41,21 @@ typedef struct {
  *                receive buffers "without actually transmitting messages on
  *                the CAN bus ... the device will allow incoming messages from
  *                itself, just as if they were coming from another node", and
- *                it too is silent. The whole transmit and receive path can
- *                therefore be exercised on a bench with no bus attached at
- *                all, and with no transceiver fitted.
+ *                it too is silent. It brings the module up with no bus, no
+ *                adapter and no transceiver, which is what makes it the
+ *                cheapest test there is.
+ *
+ *                ⚠ It proves LESS than it appears to, and the difference has
+ *                bitten this document once already. The frames we send
+ *                ourselves are 0x600-0x603, and those match none of the six
+ *                acceptance filters, so they are rejected before reaching the
+ *                FIFO. Nothing is ever decoded, no 0x480 arrives, and
+ *                compute_data_live() therefore stays false -- so LED_CAN is
+ *                DARK in this mode and cannot be anything else. What loopback
+ *                proves is that the module accepted its configuration and
+ *                reached the requested mode. The receive path, the FIFO and
+ *                the filters need frames from outside; docs/install.md step 7
+ *                is where they are tested.
  */
 typedef enum {
     HAL_CAN_MODE_NORMAL      = 0u,

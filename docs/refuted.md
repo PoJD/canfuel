@@ -291,6 +291,34 @@ the header and then warns three times that it is never called.
 in `decode.c` now, and the hex is byte-for-byte the same size — the compiler
 was inlining it anyway.
 
+### C7. "Loopback exercises everything except the wire"
+
+**Believed:** written into `hal_can.h` and into `docs/install.md`, which
+claimed the loopback step tests "the bit timing, all six acceptance filters,
+the eight-deep FIFO, the access-bank window, `txframes` and `decode`" — and
+gave **steady `LED_CAN`** as the pass, with dark meaning "the transmit path or
+the FIFO is not working".
+
+**Refuted by:** reading the code before running the step for the first time.
+Loopback delivers only the frames we send ourselves, which are 0x600–0x603.
+Those match **none** of the six acceptance filters — the filters hold the
+car's identifiers — so they are rejected before reaching the FIFO. Nothing is
+decoded, no 0x480 arrives, `compute_data_live()` stays false, and `LED_CAN` is
+therefore **dark**. Steady is not merely unlikely in that mode; it is
+unreachable.
+
+**Cost:** none yet, and it was close. The step had never been run. The
+documented pass condition was impossible and the documented failure condition
+was the pass, so the first run would have reported a working board as a broken
+transmit path — and the obvious next move, suspecting `hal_can_send()` or the
+FIFO, would have been an afternoon in the wrong place.
+
+**What loopback does prove** is that the module accepted its configuration and
+reached the requested mode, which is worth having and is what the 5 Hz blink
+denies. The receive path, the FIFO and the filters need frames from outside;
+`install.md` step 7 is where they are tested, and this is a large part of why
+that step exists.
+
 ---
 
 ## D. The board

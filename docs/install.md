@@ -619,18 +619,37 @@ minutes and it is the only test of the CAN driver that needs no bus, no
 adapter, no transceiver and no car.
 
 DS39977C §27.3.5 hands the transmit buffers straight to the receive buffers, so
-the module talks to itself. That exercises the bit timing, all six acceptance
-filters, the eight-deep FIFO, the access-bank window, `txframes` and `decode` —
-everything except the wire itself.
+the module talks to itself, with no bus, no adapter and no transceiver needed.
 
 The board needs 5 V and JP1 fitted, and nothing else.
 
 | LED_PWR | LED_CAN | Means |
 |---|---|---|
-| slow blink | steady | **working** — loopback is a silent mode, so the slow blink is correct here |
-| slow blink | 5 Hz blink | `hal_can_init()` never got the module into the mode it asked for. The bit timing or a configuration register is wrong. Stop here. |
-| slow blink | dark | nothing is arriving — the transmit path or the FIFO is not working |
+| slow blink | **dark** | **the pass.** See below — dark is the expected state here, not a fault |
+| slow blink | 5 Hz blink | `hal_can_init()` never got the module into the mode it asked for. A configuration register or the bit timing is wrong. **Stop here** |
 | steady | any | **wrong hex.** A steady LED_PWR means a normal build; you flashed the wrong one |
+| dark | dark | JP1 is not fitted, or the board is not running at all |
+
+⚠ **Dark LED_CAN is the pass, and this is worth understanding rather than
+memorising**, because it is the opposite of every other step.
+
+`LED_CAN` follows `compute_data_live()`, which is set only by a **0x480** frame
+— the fuel counter is the heartbeat. In loopback the module receives only the
+frames it sent itself, which are 0x600–0x603, and those do not match any of the
+six hardware acceptance filters, so they are rejected before reaching the FIFO.
+No 0x480 can ever arrive. **LED_CAN steady is not merely unlikely in this step;
+it is unreachable.**
+
+**So be honest about what this step proves**, which is less than it looks:
+
+- the scheduler runs and the part is alive — `LED_PWR` is blinking
+- `hal_can_init()` reached the mode it asked for, which means the configuration
+  registers were accepted and `CANMX` put the pins where the board has them —
+  that is what the 5 Hz blink would deny
+
+and **not** the receive path, the FIFO depth, the acceptance filters or
+`decode`. Those need frames from outside, and **step 7 is where they are
+tested** — which is a large part of why step 7 is worth doing.
 
 A fault caught here costs a reflash. The same fault caught in step 8 costs a
 trip to the car, and in step 9 it puts error frames on the car's bus.
