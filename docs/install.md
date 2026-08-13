@@ -280,13 +280,16 @@ utility ran" than to "the operation you asked for happened", in both directions.
 | `-P18F25K80 -TPPK3 -I` | no programmer | `Programmer not found` | 9 |
 | `-P18F25K80 -TPPK3 -I` | programmer, no target | `Target device was not found`, then `Operation Succeeded` | **0** |
 | `-P18F25K80 -TPPK3 -I -W` | programmer, no target | `Connection Failed.`, then `Operation Succeeded` | **0** |
+| `-P18F25K80 -TPPK3 -I` | **target powered, ICSP silent** | `Device ID (0x0)`, `Operation Failed` | **1** |
 | `-T` | programmer attached | the tool list | **50** |
 
 **The consequence is for step 5 and for `tools/flash.py` when it is written:
 the output must be parsed, and an exit code must never be the only thing
-checked.** Step 5's command 1 is there to prove the ICSP wiring before anything
-is written, and the run above is exactly what a dead ICSP link looks like — with
-a zero exit code on it.
+checked.** The fourth row is the encouraging one — a real failure that says so
+and exits 1. **The second row is the trap**: a target nobody powered returns
+zero and calls it `Operation Succeeded`. Since `-W` is deliberately not used
+here, forgetting the board's own 5 V is among the likeliest bench mistakes
+there is, and it is precisely the one the exit code hides.
 
 ⚠ **The pack IPECMD uses is not the pack the compiler uses.** It picks
 `PIC18F-K_DFP 1.5.114`, the one MPLAB X v6.00 bundles, while `mplab/Makefile`
@@ -511,8 +514,51 @@ programmer"*. Declining a risk with no upside is enough of a reason on its own.
 It also fails a step earlier than the runs above, which is worth knowing when
 reading step 5's output: the VDD check comes *before* ICSP, so `Connection
 Failed.` here means the tool never reached PGC/PGD at all. A missing
-acknowledgement on those two pins is a different message, and one this project
-has not seen yet — it needs a target.
+acknowledgement on those two pins is a different message — see the next
+section, which is where it was finally provoked.
+
+### The third configuration: power, but nothing to talk to
+
+**Still no board.** A bench 5 V supply was put across header pins 2 and 3 — the
+two identified by measurement above — with MCLR, PGC and PGD left unconnected,
+and the ordinary command run against it. **No `-W`**, because the supply is now
+external and that is the whole point:
+
+```
+Target voltage detected
+Target Device ID (0x0) is an Invalid Device ID. Please check your connections to the Target Device.
+Operation Failed
+```
+
+exit code **1**.
+
+This is the last piece of step 4 and it fills the hole the section above left:
+
+- **`Target voltage detected`** — VDD sensing works and an external supply is
+  seen. It also confirms pin 2 a third time, now positively and under the
+  tool's own judgement rather than a meter's.
+- **`Device ID (0x0)`** — the PICkit ran the ICSP sequence on PGC/PGD and read
+  back zeros, because nothing was there to answer. **This is what a dead ICSP
+  link looks like on a powered board**, and it is the failure step 5's command
+  1 exists to catch.
+- **`Operation Failed`, exit 1** — the first run in this whole step where the
+  exit code says what actually happened.
+
+**Which turns the exit-code mess into something usable.** It is not that the
+code is meaningless; it is that **the no-power case is the one that lies**:
+
+| Situation | Message | Exit |
+|---|---|---|
+| no programmer | `Programmer not found` | 9 |
+| **programmer, target not powered** | `could not detect target voltage VDD` | **0** |
+| programmer, powered, ICSP silent | `Device ID (0x0)`, `Operation Failed` | **1** |
+| `-W` into an open header | `Connection Failed.` | 0 |
+| `-T` | the tool list | 50 |
+
+So a script that trusts the exit code catches bad ICSP wiring and misses **a
+board nobody powered** — and since `-W` is deliberately not used here, an
+unpowered board is one of the likeliest mistakes on the bench. That is the
+concrete reason `tools/flash.py` must read the output.
 
 And it is the third and clearest entry in the exit-code table: a run that
 prints `Connection Failed.` and `Operation Succeeded` one line apart, and
@@ -664,12 +710,16 @@ comes back correct means the ICSP wiring, the MCLR jumper and the part are all
 good, before anything has been written.** If it fails, nothing after it can
 succeed and there is no point trying.
 
-⚠ **Read command 1's output, not its exit code.** Step 4 ran exactly this
-command with no target at all: it printed `Target device was not found (could
-not detect target voltage VDD)` and returned **0**. So the failure this command
-exists to catch is one that a script checking `$?` would sail straight past.
-What you are looking for is a device ID, and the message above is what a dead
-ICSP link, an unpowered board or a fitted JP2 will look like.
+⚠ **Read command 1's output, not its exit code**, and know which failure you
+are looking at. Step 4 provoked both of them without a board:
+
+| What it prints | What it means | Exit |
+|---|---|---|
+| `Target device was not found (could not detect target voltage VDD)` | **the board has no power.** JP2 is irrelevant here; nothing reached the part at all. `-W` is not used, so the board needs its own 5 V | **0** |
+| `Target Device ID (0x0) is an Invalid Device ID` | **power is fine, ICSP is not.** JP2 still fitted, wiring on MCLR/PGC/PGD, or a dead part | 1 |
+
+The first is the dangerous one: a script checking `$?` sails straight past an
+unpowered board. What you actually want is a device ID that comes back.
 
 Four details in that command line, each of which is a way to get it wrong:
 
@@ -853,7 +903,8 @@ line above.
 | Symptom | Look at |
 |---|---|
 | `ipecmd` says `Programmer not found` with the PICkit plugged in | in this order: **MPLAB X or IPE open** and holding the tool (*Readme for IPECMD.htm* §20.1); the **firewall rule** on localhost port 30000 (step 4); something else owning the HID handle (*Readme for PICkit 3.htm* §8.2); then the programmer itself |
-| `ipecmd` says `Target device was not found (could not detect target voltage VDD)` | it never saw target power: JP2 still fitted, ICSP wiring, or the board is not powered — `-W` is deliberately not used, so the board needs its own 5 V. **This run still exits 0**, so it is the message that tells you, not the code |
+| `ipecmd` says `Target device was not found (could not detect target voltage VDD)` | **the board is not powered.** `-W` is deliberately not used, so it needs its own 5 V. Nothing reached the part, so JP2 and the ICSP wiring are not the suspects. **This run still exits 0**, so it is the message that tells you, not the code |
+| `ipecmd` says `Target Device ID (0x0) is an Invalid Device ID` | power is fine and ICSP is not: JP2 still fitted, MCLR/PGC/PGD wiring, or a dead part. Verified in step 4 against a powered header with those three pins left unconnected. This one does exit 1 |
 | A board misbehaves or dies the first time it is plugged onto the PICkit | **had `-W` been used on that PICkit beforehand?** It leaves ~4.6 V on header pin 2 after the command exits, which then fights the board's own supply. Measure pins 2 and 3 for zero before connecting a self-powered board — step 4 |
 | Programming succeeds and nothing runs | `-OL` missing. The IPECMD default is *hold in reset*, so the part is programmed and then parked |
 | The trip accumulators vanished after a reflash | expected: `-OH` erases everything by default. `-Z0-3FF` is what preserves them, and `-E` overrides it |

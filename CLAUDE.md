@@ -423,10 +423,15 @@ Four decisions around it, none of which the datasheets have an opinion on:
   the other half on 2026-08-13: the *same command* with the PICkit attached and
   **no target** prints `Target device was not found (could not detect target
   voltage VDD)`, then `Operation Succeeded`, and returns **0** — while `-T`,
-  which listed the tool correctly, returns **50**. So non-zero is not failure
-  and zero is not success; the code tracks "the utility ran" rather than "what
-  you asked for happened". **Parse the output. Never branch on the exit code
-  alone**, and do not write §15's table into any script.
+  which listed the tool correctly, returns **50**. Feed the header 5 V from a
+  bench supply and leave MCLR/PGC/PGD unconnected and it prints
+  `Target Device ID (0x0) is an Invalid Device ID`, `Operation Failed`, and
+  returns **1**. So the code is not noise, but **the one case it gets wrong is
+  the worst one to get wrong: an unpowered target exits 0.** Bad ICSP wiring
+  fails honestly; a board nobody plugged in passes. Since `-W` is deliberately
+  not used here, that is among the likeliest bench mistakes available.
+  **Parse the output. Never branch on the exit code alone**, and do not write
+  §15's table into any script.
 
 **Two facts that correct plausible assumptions.** The PICkit 3 is a **USB HID
 device, not a virtual COM port** (*Readme for PICkit 3.htm* §8.2, *"the system
