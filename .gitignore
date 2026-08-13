@@ -32,6 +32,10 @@ mplab/**/nbproject/Package-*.bash
 *.elf
 *.map
 
+# IPECMD appends one of these to the current working directory on every run,
+# wherever it is invoked from. Ours come out empty. See docs/install.md step 4.
+MPLABXLog.xml
+
 # Python
 __pycache__/
 *.pyc

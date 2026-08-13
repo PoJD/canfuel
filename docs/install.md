@@ -8,19 +8,19 @@ come from the datasheets and the design, and they say so where it matters.
 Correct this document as you go; that is what it is for, and it is the one
 document that is meant to outlive the project's own notes.
 
-> **Where this car is, 2026-08-12.** Steps 1, 2 and 3 are done: the firmware
+> **Where this car is, 2026-08-13.** Steps 1 to 4 are done: the firmware
 > builds and its tests pass, `S-AQY.TRI` is uploaded and verified on the
-> display, and the harness is built, fitted and measured — **5.01 V at the
+> display, the harness is built, fitted and measured — **5.01 V at the
 > 4-pin the board will plug into**, with the display since run on that loom
-> using DuPont jumpers in place of the board.
+> using DuPont jumpers in place of the board — and the PICkit 3 has been
+> driven from the command line, taken its firmware update and been shown to
+> survive it.
 >
-> **The next action is step 4, and it needs no board.** It proves the
-> programmer end of the toolchain with nothing but a PICkit 3 and a USB port,
-> which is the one piece of ground that can be taken while the boards are in
-> the post. **Step 5 onwards is what waits on them**; they were ordered on
-> 2026-08-09 and are expected in the week of 2026-08-17. Nothing else is
-> outstanding: one calibration question remains open and it is a refinement,
-> not a blocker — see *Then: calibration*.
+> **Everything that can be done without a board has now been done.** The next
+> action is step 5, and it waits on the boards; they were ordered on 2026-08-09
+> and are expected in the week of 2026-08-17. Nothing else is outstanding: one
+> calibration question remains open and it is a refinement, not a blocker —
+> see *Then: calibration*.
 
 ```
 git clone git@github.com:PoJD/canfuel.git
@@ -88,8 +88,8 @@ one that tests the CAN driver without a car attached.
 | 1 | Build and test on a PC | gcc, make, Python | `canfuel` | done |
 | 2 | Upload the display configuration | the display and any Wi-Fi device with a browser | `mfd15` | done |
 | 3 | Make up the harness | crimping tools, the loom parts | `kicad` | done |
-| 4 | Prove the programmer, with no board | a PICkit 3, a USB port, MPLAB X | `canfuel` | **next** |
-| 5 | Populate and programme a board, loopback on the desk | PICkit, XC8 | `canfuel` | |
+| 4 | Prove the programmer, with no board | a PICkit 3, a USB port, MPLAB X | `canfuel` | done |
+| 5 | Populate and programme a board, loopback on the desk | PICkit, XC8 | `canfuel` | **next**, waits on the boards |
 | 6 | Listen only, in the car | the car | `canfuel` | |
 | 7 | Transmit, in the car | the car | `canfuel` | |
 | 8 | Check it against the raw counter | a drive | — | |
@@ -263,9 +263,29 @@ will indicate either successful completion or describe the reason for
 failure"*, and never enumerates them. The one table it does carry, §15, is
 headed *List of MPLAB PM3 Specific Error Codes* — and it does not fit what we
 observed: it calls 9 `INVALID_PROGRAMMER` and reserves 10 for `NO_PROGRAMMER`,
-while the run above printed `Programmer not found` and returned 9. So treat
-non-zero as failure, quote the message rather than the number, and build up a
-mapping from runs rather than from that table.
+while the run above printed `Programmer not found` and returned 9. So quote the
+message rather than the number, and build up a mapping from runs rather than
+from that table.
+
+⚠ **And do not treat zero as success either.** That is the sharpest thing step 4
+turned up, and this document said the opposite until it was run. With the PICkit
+attached and **no target on the ICSP header**, `-I` printed
+`Target device was not found (could not detect target voltage VDD)` and then
+`Operation Succeeded`, and returned **0**. Meanwhile `-T`, which listed the tool
+perfectly, returned **50**. The exit code tracks something closer to "the
+utility ran" than to "the operation you asked for happened", in both directions.
+
+| Command | Situation | Prints | Exit |
+|---|---|---|---|
+| `-P18F25K80 -TPPK3 -I` | no programmer | `Programmer not found` | 9 |
+| `-P18F25K80 -TPPK3 -I` | programmer, no target | `Target device was not found`, then `Operation Succeeded` | **0** |
+| `-T` | programmer attached | the tool list | **50** |
+
+**The consequence is for step 5 and for `tools/flash.py` when it is written:
+the output must be parsed, and an exit code must never be the only thing
+checked.** Step 5's command 1 is there to prove the ICSP wiring before anything
+is written, and the run above is exactly what a dead ICSP link looks like — with
+a zero exit code on it.
 
 ⚠ **The pack IPECMD uses is not the pack the compiler uses.** It picks
 `PIC18F-K_DFP 1.5.114`, the one MPLAB X v6.00 bundles, while `mplab/Makefile`
@@ -286,8 +306,31 @@ that point means the CLI opened the tool.
 | `Programmer not found` again | the PICkit is not enumerating, or something else has the HID handle — see below |
 | a firmware download, then one of the above | expected, and expected **once** — see *Run it twice* below, which is where a single run stops being enough to judge by |
 
+Before running anything, it is worth confirming Windows sees the tool at all.
+It enumerates as a Microchip HID device, **VID_04D8 / PID_900A**, and a PICkit 3
+that has never been given a unit ID reports its serial as `DEFAULT_PK3`:
+
+```
+Get-PnpDevice -PresentOnly | Where-Object { $_.InstanceId -match 'VID_04D8' }
+```
+
 `ipecmd.exe -T` lists connected tools with their serial numbers and is the
-shortest "is it alive" there is.
+shortest "is it alive" there is. Observed here on 2026-08-13:
+
+```
+Available Tool List
+-------------------
+1  PICkit3 S.No : DEFAULT_PK3
+```
+
+exit code **50** — on a run that did exactly what was asked. See the exit-code
+warning below; `-T` is the clearest case of a number that must not be read as
+a failure.
+
+**IPECMD appends an `MPLABXLog.xml` to whatever directory it is run from**, so
+run it from a scratch directory or expect one in the repository root. Ours come
+back empty (`<log></log>`, one per run) and carry nothing worth keeping, which
+is why the file is in `.gitignore` rather than collected.
 
 **The PICkit 3 is a USB HID device, not a virtual COM port.** There is no
 serial port to look for and no driver to install — *Readme for PICkit 3.htm*
@@ -334,11 +377,18 @@ rule before suspecting the programmer.
 
 *Readme for IPECMD.htm* §12: *"Upgrading the operating system of the
 programming tool happens automatically when the first operation using the tool
-is performed."* MPLAB X v6.00 carries PICkit 3 suite **v01.56.07**
-(*Readme for PICkit 3.htm*), and the images are in
-`mplab_platform\mplablibs\modules\ext\PICKIT3.jar` — which is also the evidence
-that v6.00 still supports the PICkit 3 at all, rather than having dropped it
-the way the tool-pack directory's missing `PK3_TP` might suggest.
+is performed."* MPLAB X v6.00's readme names PICkit 3 suite **v01.56.07**, and
+the images are in `mplab_platform\mplablibs\modules\ext\PICKIT3.jar` — which is
+also the evidence that v6.00 still supports the PICkit 3 at all, rather than
+having dropped it the way the tool-pack directory's missing `PK3_TP` might
+suggest.
+
+**What was actually loaded is v01.56.09, not the v01.56.07 the readme names.**
+The tool arrived carrying v01.54.00 and came out of the first run at 01.56.09.
+Two nines rather than two sevens is a small thing, but it is the difference
+between a version check that passes and one that fails, so **read the version
+out of the tool rather than out of the readme** — the readme is one revision
+behind the images beside it.
 
 So the first command flashes the PICkit itself. **This is the one irreversible
 thing in the step**, and it is unavoidable: it would happen identically from
@@ -351,7 +401,7 @@ is better than having it happen underneath the first real programming attempt.
 the tool works, and whether it survives being reflashed. Its output is
 confounded by the update — slow, chatty, possibly carrying warnings that belong
 to the download rather than to the tool. So run the identical command a second
-time. By then the PICkit is already at v01.56.07, nothing is downloaded, and
+time. By then the PICkit is already at v01.56.09, nothing is downloaded, and
 what comes back is the steady state: what every subsequent programming run in
 steps 5 to 7 will start from.
 
@@ -367,9 +417,67 @@ alike from across the room and mean opposite things. **An update that repeats
 on every invocation is not a working programmer**, even if the operations after
 it appear to succeed.
 
-Record both runs' output verbatim in this document when it happens. Whichever
-programmer is in use, that is the only picture anyone will have of how it
-behaves here.
+### What happened here, 2026-08-13
+
+**Row 1 of that table: the pass.** Both runs verbatim, no target attached.
+
+Run 1 — `-P18F25K80 -TPPK3 -I`, exit code **0**:
+
+```
+DFP Version Used : PIC18F-K_DFP,1.5.114,Microchip
+*****************************************************
+Connecting to MPLAB PICkit 3...
+Currently loaded firmware on PICkit 3
+Firmware Suite Version.....01.54.00 *
+Firmware type..............PIC18F
+Now Downloading new Firmware for target device: PIC18F25K80
+Downloading bootloader
+Bootloader download complete
+Programming download...
+Downloading RS...
+RS download complete
+Programming download...
+Downloading AP...
+AP download complete
+Programming download...
+Currently loaded firmware on PICkit 3
+Firmware Suite Version.....01.56.09
+Firmware type..............PIC18F
+Target device was not found (could not detect target voltage VDD). You must connect to a target device to use PICkit 3.
+Operation Succeeded
+```
+
+Run 2 — identical command, exit code **0**:
+
+```
+DFP Version Used : PIC18F-K_DFP,1.5.114,Microchip
+*****************************************************
+Connecting to MPLAB PICkit 3...
+Currently loaded firmware on PICkit 3
+Firmware Suite Version.....01.56.09
+Firmware type..............PIC18F
+Target device was not found (could not detect target voltage VDD). You must connect to a target device to use PICkit 3.
+Operation Succeeded
+```
+
+Five things to take from it:
+
+- **The update happened once and stuck.** 01.54.00 → 01.56.09 on run 1, no
+  download at all on run 2. That is the row this step exists to distinguish
+  from the two that look like it.
+- **`Target device was not found (could not detect target voltage VDD)` is the
+  pass**, and it is the correct message: the PICkit senses target VDD before it
+  attempts ICSP, and there was no board. It is also the exact message step 5
+  must not produce.
+- **`Operation Succeeded` on the same run.** It refers to the firmware
+  operation, not to finding a part. Do not read it as one.
+- **The DFP is 1.5.114**, resolved without being told where one is — exactly as
+  written above, and still not the 1.13.292 the compiler wants.
+- **No firewall prompt appeared**, because the rule was already allowed on
+  2026-08-12. On a fresh machine, expect it here.
+
+**The step passes. Nothing about the board, the ICSP header or the hex is
+touched by it** — see *What it does not prove* below, which is unchanged.
 
 ### If the programmer has to be replaced
 
@@ -442,6 +550,13 @@ comes back correct means the ICSP wiring, the MCLR jumper and the part are all
 good, before anything has been written.** If it fails, nothing after it can
 succeed and there is no point trying.
 
+⚠ **Read command 1's output, not its exit code.** Step 4 ran exactly this
+command with no target at all: it printed `Target device was not found (could
+not detect target voltage VDD)` and returned **0**. So the failure this command
+exists to catch is one that a script checking `$?` would sail straight past.
+What you are looking for is a device ID, and the message above is what a dead
+ICSP link, an unpowered board or a fitted JP2 will look like.
+
 Four details in that command line, each of which is a way to get it wrong:
 
 - **`-OL` is not optional.** It is *Release From Reset*, and the default in
@@ -470,13 +585,16 @@ if the IDE is ever used as the programmer it will keep the EEPROM where the
 command line above discards it. Neither is wrong; know which one you are
 holding.
 
-⚠ **This has not been done on this project yet, and the commands above have
-never been run against a target.** They are assembled from *Readme for
-IPECMD.htm* §13, §17 and §18, and only the `-I` form has actually been executed
-here — against no programmer, where it printed `Programmer not found` and
-returned 9. The same MCU was flashed from the IDE on an earlier project, which
-is where the confidence comes from and is not the same as having done it here.
-**Correct this block the first time it runs.**
+⚠ **The commands above have never been run against a target.** They are
+assembled from *Readme for IPECMD.htm* §13, §17 and §18. What has been run here
+is the `-I` form twice — once against no programmer (`Programmer not found`,
+exit 9) and, on 2026-08-13, twice against a PICkit 3 with no target, which is
+step 4 and is written up there. So the tool, the transport and the argument
+spelling are proved; **`-C`, `-M`, `-Y`, `-OL` and `-Z` are not**, and neither
+is anything downstream of the PICkit's ICSP header. The same MCU was flashed
+from the IDE on an earlier project, which is where the confidence comes from
+and is not the same as having done it here. **Correct this block the first time
+it runs.**
 
 ⚠ **JP2 comes off before programming and goes back on afterwards.** It puts the
 100 nF MCLR capacitor in circuit, which is what the datasheet asks for in
@@ -621,7 +739,7 @@ line above.
 | Symptom | Look at |
 |---|---|
 | `ipecmd` says `Programmer not found` with the PICkit plugged in | in this order: **MPLAB X or IPE open** and holding the tool (*Readme for IPECMD.htm* §20.1); the **firewall rule** on localhost port 30000 (step 4); something else owning the HID handle (*Readme for PICkit 3.htm* §8.2); then the programmer itself |
-| `ipecmd` finds the tool but cannot read a device ID | JP2 still fitted, ICSP wiring, or the board is not powered — `-W` is deliberately not used, so the board needs its own 5 V |
+| `ipecmd` says `Target device was not found (could not detect target voltage VDD)` | it never saw target power: JP2 still fitted, ICSP wiring, or the board is not powered — `-W` is deliberately not used, so the board needs its own 5 V. **This run still exits 0**, so it is the message that tells you, not the code |
 | Programming succeeds and nothing runs | `-OL` missing. The IPECMD default is *hold in reset*, so the part is programmed and then parked |
 | The trip accumulators vanished after a reflash | expected: `-OH` erases everything by default. `-Z0-3FF` is what preserves them, and `-E` overrides it |
 | Both LEDs dark | JP1 not fitted — that is by design, nothing lights up in the car without it |

@@ -294,12 +294,12 @@ empty value, so it had never configured anything anyway.
 
 ### What to do next — `docs/install.md`, and only there
 
-**The next action is step 4 of `docs/install.md`.** That document is the plan
-now, and it carries its own progress column; steps 1 to 3 are done. **Step 4
-needs no board** — it proves the programmer half of the toolchain with nothing
-but a PICkit and a USB port, and was made a step of its own on 2026-08-12
-precisely so that there is something to do while the boards are in the post.
-**Step 5 onwards is what waits on them**, expected in the week of 2026-08-17.
+**The next action is step 5 of `docs/install.md`.** That document is the plan
+now, and it carries its own progress column; steps 1 to 4 are done as of
+2026-08-13. **Everything that can be done without a board has been done** —
+step 4 was made a step of its own on 2026-08-12 precisely so that there was
+something to take while the boards were in the post, and it has now been taken.
+**Step 5 onwards waits on the boards**, expected in the week of 2026-08-17.
 
 **Do not restate the plan here, and do not add a "next session" section
 anywhere else.** Two copies of a procedure diverge, and the copy nobody reads
@@ -393,13 +393,19 @@ Four decisions around it, none of which the datasheets have an opinion on:
   `-Z0-3FF` is the opt-in, and §17.8 warns that `-E` overrides it. **Note that
   `mplab/canfuel.X` sets `programoptions.preserveeeprom = true`**, so the IDE
   and the command line deliberately differ. Know which one is in your hand.
-- **Exit codes are mapped from runs, not from the readme.** §10.2 promises only
-  that an exit code is returned and never enumerates them; the one table there
-  is, §15, is headed *MPLAB PM3 Specific* and does not fit — it calls 9
-  `INVALID_PROGRAMMER` and 10 `NO_PROGRAMMER`, while `ipecmd -P18F25K80 -TPPK3
-  -I` with no programmer attached prints `Programmer not found` and returns
-  **9**. Quote the message, treat non-zero as failure, and do not write that
-  table into any script.
+- **Exit codes are mapped from runs, not from the readme — and they cannot
+  carry the decision either way.** §10.2 promises only that an exit code is
+  returned and never enumerates them; the one table there is, §15, is headed
+  *MPLAB PM3 Specific* and does not fit — it calls 9 `INVALID_PROGRAMMER` and
+  10 `NO_PROGRAMMER`, while `ipecmd -P18F25K80 -TPPK3 -I` with no programmer
+  attached prints `Programmer not found` and returns **9**. Step 4 then found
+  the other half on 2026-08-13: the *same command* with the PICkit attached and
+  **no target** prints `Target device was not found (could not detect target
+  voltage VDD)`, then `Operation Succeeded`, and returns **0** — while `-T`,
+  which listed the tool correctly, returns **50**. So non-zero is not failure
+  and zero is not success; the code tracks "the utility ran" rather than "what
+  you asked for happened". **Parse the output. Never branch on the exit code
+  alone**, and do not write §15's table into any script.
 
 **Two facts that correct plausible assumptions.** The PICkit 3 is a **USB HID
 device, not a virtual COM port** (*Readme for PICkit 3.htm* §8.2, *"the system
@@ -425,14 +431,22 @@ be forced to agree. IPECMD resolves `PIC18F-K_DFP 1.5.114`, the one v6.00
 bundles; `mplab/Makefile` pins 1.13.292 because XC8 v4.00 refuses 1.5.114. One
 describes the part to a compiler, the other to a programmer.
 
-**No programmer has ever been used with this project**, and whichever one is
-used has to be proved before a board depends on it. The unavoidable part is the
-firmware update: §12, *"Upgrading the operating system of the programming tool
-happens automatically when the first operation using the tool is performed"*,
-and v6.00 carries PICkit 3 suite v01.56.07. That happens identically from the
-IDE, so the command line neither adds nor removes it. **This is the entire
-reason step 4 exists and comes before the boards arrive**: whatever it turns
-up, it is far cheaper to turn up while they are still in the post.
+**The programmer has now been proved, on 2026-08-13, and it is a PICkit 3.**
+The unavoidable part was the firmware update: §12, *"Upgrading the operating
+system of the programming tool happens automatically when the first operation
+using the tool is performed"*. It arrived on v01.54.00, came out of the first
+run on **v01.56.09**, and the second run downloaded nothing — which is the
+outcome step 4 exists to tell apart from the two failures that look like it.
+That update happens identically from the IDE, so the command line neither added
+nor removed it; doing it deliberately, on a step whose only job was to find
+out, is what made it cheap. **This is the entire reason step 4 existed and came
+before the boards arrived.**
+
+Note that **v01.56.09 is not the v01.56.07 the v6.00 readme names.** Read the
+version out of the tool, not out of the readme. The full transcript of both
+runs is in `docs/install.md` step 4; it is the only picture anyone will have of
+how this programmer behaves here, and nothing about the board, the ICSP header
+or the hex is touched by it.
 
 **The escape route is checked.** If the programmer has to be replaced, it does
 not have to be another PICkit 3: the tool packs bundled with v6.00 list
@@ -447,7 +461,10 @@ anything, tie the build mode and the flash into one step so a `LOOPBACK` hex
 cannot be flashed while you believe it is a normal one, and read the persist
 ring back off the part for the bring-up in the car. All of that is worth
 having; none of it is worth writing around commands that have never been run
-against a target. Write it after step 5 succeeds, not before.
+against a target. Write it after step 5 succeeds, not before — and when it is
+written, **it must decide on IPECMD's printed output, not on its exit code**,
+for the reason in the bullet above: a `-I` that never saw the target still
+exits 0.
 
 ---
 

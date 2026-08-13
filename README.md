@@ -64,9 +64,10 @@ budget is counted out of the assembly listing, not measured.
 uploaded and verified, and the harness is built, fitted in the car and measured
 at 5.01 V where the board will plug in. **[`docs/install.md`](docs/install.md)
 is the plan** — the whole path from three clones to a working device, with a
-column showing where this particular car has got to. The next action is its
-step 4, which proves the programmer and **needs no board** — step 5 is the one
-waiting on the post.
+column showing where this particular car has got to. Its step 4 is done too:
+the PICkit 3 has been driven from the command line, has taken its firmware
+update and has been shown to survive it. **Everything that can be done without
+a board now has been**, and step 5 is waiting on the post.
 
 ## Prerequisites
 
@@ -94,11 +95,17 @@ ASCII. Both are documented, with the exact failure messages, in
 **On the PICkit.** A PICkit 3 through the 5-pin ICSP header J3, driven from the
 command line with `ipecmd.exe` out of the MPLAB X install — the IDE is not
 opened for it. Other programmers that support the PIC18F25K80 should work and
-none has been tried. **No board has been flashed on this project yet** — the
-same MCU was flashed from the IDE on an earlier project, which is where the
-confidence comes from, and it is not the same thing as having done it here. The
-commands are in [`docs/install.md`](docs/install.md) steps 4 and 5, and step 4
-proves the programmer on its own before a board depends on it.
+none has been tried. The tool itself is proved: on 2026-08-13 it was driven
+from the command line, updated its own firmware to v01.56.09 and came back
+clean on a second run. **No board has been flashed on this project yet**, and
+that is a different question — the same MCU was flashed from the IDE on an
+earlier project, which is where the confidence comes from, and it is not the
+same thing as having done it here. The commands are in
+[`docs/install.md`](docs/install.md) steps 4 and 5.
+
+One thing that transfers to any script: **IPECMD's exit code cannot be branched
+on.** A `-I` that never found the target still exits 0, and `-T`, which works,
+exits 50. Parse the output.
 
 ## Quick start
 
