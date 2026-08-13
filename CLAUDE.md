@@ -392,6 +392,17 @@ Four decisions around it, none of which the datasheets have an opinion on:
   `Connection Failed.` A supply that sags 0.375 V into an open circuit has
   nothing left for a board with a transceiver on it. `docs/install.md` step 4
   has the transcript.
+
+  **And `-W` does not switch itself off.** Measured with a voltmeter on the
+  header: the 4.6 V is still there after the command has exited and the prompt
+  is back. From step 5 on the board powers itself, so a header left hot by an
+  earlier `-W` puts two supplies onto one rail with no command running and
+  nothing on screen to blame. **A plain run — the same command without `-W` —
+  is what clears it**, established by alternating the two with the meter
+  watched throughout (4.6 → 0 → 4.6 → 0) rather than inferred from a single
+  reading afterwards, which could not have told the difference between the
+  command acting and the rail decaying. Measure zero anyway before connecting
+  anything; the next programmer need not behave like this one.
 - **The EEPROM is erased by default, and that is left alone.** `-OH` (*Erase
   All Before Program*) is on unless disabled, so a plain `-M` discards the
   persist ring. `persist_load()` returning false on a virgin EEPROM is a
@@ -423,6 +434,20 @@ this desk holds `localhost` / `30000`. Allowed for private networks on
 2026-08-12. A blocked port presents as a tool-communication failure rather than
 as anything mentioning a firewall — §19.3 says so outright for the sibling
 IPECMDBoost utility and its ports 2012 and 2013.
+
+**The ICSP header pinout is measured here, not specified anywhere we hold, and
+that is worth knowing before quoting it.** `kicad`'s
+`canfuel/docs/implementation-plan.md` §4.3 gives the five pins under the words
+"PICkit pin order" and cites nothing; its neighbouring citation to DS39977C
+§2.5 is accurate but covers the PGC/PGD component rules, not a connector, and
+§2.5 defers to §30.0. **Neither repository holds a PICkit 3 user's guide**, and
+MPLAB X's `Readme for PICkit 3.htm` does not contain `VPP` at all. So on
+2026-08-13 it was settled the way this repository settles things when the paper
+is missing: by measurement — pin 3 rings out at 0 Ω to the USB shell, pin 2
+carries 4.6 V under `-W`. `docs/install.md` step 4 has the table and the
+procedure, which transfers to any replacement programmer. **A sibling repo
+asserting something is not a citation**, and this one was passed along as
+though it were.
 
 **MPLAB X therefore stays installed** — `ipecmd.exe` and the PICkit 3 firmware
 images in `mplab_platform\mplablibs\modules\ext\PICKIT3.jar` are both parts of

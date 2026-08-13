@@ -506,6 +506,78 @@ And it is the third and clearest entry in the exit-code table: a run that
 prints `Connection Failed.` and `Operation Succeeded` one line apart, and
 returns 0.
 
+### ⚠ `-W` leaves the rail live after the command has exited
+
+**This is the most useful thing step 4 turned up, and it was not what the step
+was looking for.** With a voltmeter across pins 2 and 3 of the PICkit's own
+header, the 4.6 V from a `-W` run **does not fall back to zero when the command
+finishes.** It stays up. No command is running, the prompt is back, and the
+header is still energised.
+
+Why that is a hazard rather than a curiosity: from step 5 onwards, **the board
+powers itself** — `-W` is never used, the 5 V comes from the display or a bench
+supply. Plug a self-powered board onto a header that a previous `-W` left hot
+and two supplies are driving the same rail against each other, with nothing on
+screen to suggest it and no command in flight to blame.
+
+**The rule:**
+
+1. After any `-W` run, run the ordinary command once — the same `-I` without
+   `-W`. **That is what clears the rail.**
+2. Measure pins 2 and 3 and see zero before connecting anything. It costs
+   nothing and it is the one that catches a tool behaving differently from
+   this one.
+
+**The command is what does it, and that was established rather than assumed.**
+The first observation only showed the rail cold *after* a plain run, with the
+meter reconnected afterwards — which does not separate "the command pulled it
+down" from "it decayed on its own". So the alternation was run deliberately,
+`-W` → plain → `-W` → plain, with the meter watched continuously through all
+four:
+
+```
+4.6 V  ->  0 V  ->  4.6 V  ->  0 V
+```
+
+Two things close it. **The tool corroborates its own behaviour**: every `-W`
+run measures 4.625 V, and every plain run that follows one reports
+`could not detect target voltage VDD` — if the rail were still hot the PICkit
+would have measured its own supply and said something else. And **decay is
+ruled out** by the very first observation, where the 4.6 V was watched sitting
+there with no command running, for longer than the gaps in the sequence above.
+
+### The header pinout, and the fact that nothing here specifies it
+
+| Pin | Signal |
+|---|---|
+| 1 | ~MCLR / VPP |
+| 2 | +5 V |
+| 3 | SGND |
+| 4 | PGD (RB7) |
+| 5 | PGC (RB6) |
+
+**No document in either repository specifies this.** `kicad`'s
+`canfuel/docs/implementation-plan.md` §4.3 states the same table under the words
+"PICkit pin order" and cites nothing for it; the citation it does carry, to
+DS39977C §2.5, covers the rules about pull-ups, series diodes and capacitors on
+PGC/PGD — verified, and quoted accurately — but §2.5 gives no connector pinout
+and defers to §30.0. There is no PICkit 3 user's guide in `kicad/canfuel/docs/`,
+none in `canfuel/docs/`, and MPLAB X's `Readme for PICkit 3.htm` does not
+contain the string `VPP` at all.
+
+So the table above is held here **because it was measured on this desk on
+2026-08-13**, not because it was read out of a specification:
+
+- **Pin 3 is ground: 0 Ω to the USB connector shell**, with nothing powered and
+  the PICkit unplugged. That identifies it outright and is the check to reach
+  for first, because it is free and carries no risk.
+- **Pin 2 is the supply: 4.6 V against pin 3** during a `-W` run, which also
+  agrees with the figure the tool prints about itself.
+
+**That procedure transfers to any replacement programmer** — ring the ground
+out against the USB shell, then confirm the supply pin under `-W` into an open
+header before trusting a pinout from anywhere.
+
 **The step passes. Nothing about the board, the ICSP header or the hex is
 touched by it** — see *What it does not prove* below, which is unchanged.
 
@@ -770,6 +842,7 @@ line above.
 |---|---|
 | `ipecmd` says `Programmer not found` with the PICkit plugged in | in this order: **MPLAB X or IPE open** and holding the tool (*Readme for IPECMD.htm* §20.1); the **firewall rule** on localhost port 30000 (step 4); something else owning the HID handle (*Readme for PICkit 3.htm* §8.2); then the programmer itself |
 | `ipecmd` says `Target device was not found (could not detect target voltage VDD)` | it never saw target power: JP2 still fitted, ICSP wiring, or the board is not powered — `-W` is deliberately not used, so the board needs its own 5 V. **This run still exits 0**, so it is the message that tells you, not the code |
+| A board misbehaves or dies the first time it is plugged onto the PICkit | **had `-W` been used on that PICkit beforehand?** It leaves ~4.6 V on header pin 2 after the command exits, which then fights the board's own supply. Measure pins 2 and 3 for zero before connecting a self-powered board — step 4 |
 | Programming succeeds and nothing runs | `-OL` missing. The IPECMD default is *hold in reset*, so the part is programmed and then parked |
 | The trip accumulators vanished after a reflash | expected: `-OH` erases everything by default. `-Z0-3FF` is what preserves them, and `-E` overrides it |
 | Both LEDs dark | JP1 not fitted — that is by design, nothing lights up in the car without it |
