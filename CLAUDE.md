@@ -96,13 +96,12 @@ Three cases, all real:
   mux then delivers. It evidently works at 50 kbps; the bit rate is not
   something to leave to inference at 500 kbps.
 
-**One claim that used to be in this section was wrong, and it is worth knowing
-why.** It said `piclib/dao.c` omits the `GIE` bracket the datasheet's Required
-Sequence puts around the EEPROM unlock. It does not — `dao_saveDataItem()`
-opens with `di()` and closes with `ei()`, which is exactly that bracket, around
-a superset of the sequence. The claim came from reading the inner
-`dao_writeByte()` in isolation. Check the caller before writing down that a
-sibling repo got something wrong.
+⚠ **Check the caller before concluding that a sibling repository got
+something wrong.** `piclib/dao.c` looks as though it omits the `GIE` bracket
+the datasheet's Required Sequence puts around the EEPROM unlock, and it does
+not: the bracket is in `dao_saveDataItem()`, which opens with `di()` and closes
+with `ei()` around a superset of the sequence. Reading the inner
+`dao_writeByte()` in isolation produces the opposite answer.
 
 So: read them first, then check what you took against the PDF, then cite the
 PDF. Neither repo is a submodule of this one; clone them beside it when
@@ -111,16 +110,12 @@ reasoning is in the HAL section below.
 
 ---
 
-## Current state — read this first
+## What this is
 
-**The firmware is complete and it builds: `make -C mplab` produces
-`mplab/build/canfuel.hex` under XC8 v4.00 with no warnings, using about a third
-of the program memory and a sixth of the RAM.** What it has never been is *run
-on a board* — see the warning at the end of this section, which is still the
-most important thing on this page. (Exact byte counts are deliberately not
-quoted here; `make -C mplab` prints them and this file would only go stale.)
-
-What exists and works:
+**A complete firmware that builds: `make -C mplab` produces
+`mplab/build/canfuel.hex` under XC8 v4.00 with no warnings.** Exact byte counts
+are deliberately not quoted here — `make -C mplab` prints them, and `README.md`
+carries a generated block; a figure typed into prose only goes stale.
 
 - `src/config.h`, `decode.c`, `compute.c`, `txframes.c`, `persist.c` — the
   whole brain of the device, no `<xc.h>` anywhere, all scaled integers
@@ -135,219 +130,127 @@ What exists and works:
   which is the authoritative recipe and what CI runs
 - `test/` — the whole core against the fixtures, the scheduler and the
   arithmetic properties, plus `replay_host.c`
-- `tools/canlog.py`, `tools/replay.py` — the Python tests green, and
-  `replay.py --host-build` now diffs Python against the C core
-- `test/fixtures/` — seventeen real logs from the car, documented, of which
-  the `_z1` ones are the only ones with trustworthy time
-- `docs/` — **`install.md` is the plan**, plus decoding, frame layout,
-  refuelling reset and timing
+- `tools/` — `canlog.py`, `replay.py` (which `--host-build` diffs against the C
+  core), `cycles.py`, `checkdocs.py`, `divconst.py`
+- `test/fixtures/` — seventeen recordings from the vehicle, documented, of
+  which the `_z1` ones are the only ones with trustworthy time
+- `docs/` — **`install.md` is the procedure**, plus decoding, frame layout,
+  refuelling reset, timing and optimisation
 
-The C core reproduces the Python oracle on every fixture: the fuel totals and
-restart counts agree **exactly**, distance to within 7 mm over 54 m. Whichever
-of the two is wrong, they are at least wrong identically, and both were checked
-against the numbers measured in the car.
+The C core reproduces the Python oracle on every fixture: fuel totals and
+restart counts agree **exactly**, distance to within 7 mm over 54 m. Both were
+checked against figures measured in the vehicle.
 
-All three CI jobs do real work now. `core` runs `make check-pure`, `make test`,
-`make check-hal` and the `--host-build` diff; `firmware` installs a pinned XC8
-**and a pinned Device Family Pack**, builds the hex and uploads it as an
+All three CI jobs do real work. `core` runs `make check-pure`, `make test`,
+`make check-hal` and the `--host-build` diff; `tools` runs the Python tests,
+`cycles.py --check` and `checkdocs.py --check`; `firmware` installs a pinned
+XC8 **and a pinned Device Family Pack**, builds the hex and uploads it as an
 artifact.
 
-### What has and has not been verified — read before trusting any of it
+### What is verified, and what is not — read before trusting any of it
 
-The core is checked against every fixture. The hardware half is checked
-against the datasheet, against `gcc -fsyntax-only`, and — since **2026-08-09** —
-against XC8 v4.00 itself. What that last one does and does not settle:
+The core is checked against every fixture. The hardware half is checked against
+the datasheet, against `gcc -fsyntax-only`, and against XC8 itself.
 
-- **It compiles and links clean, with no warnings, for the real part.** Which
-  retires the two failure classes this section used to warn about: every
-  register and bit name in `hal_can.c` and `hal_sys.c` exists on the
-  PIC18F25K80, and every `#pragma config` keyword in `pic_config.h` is spelled
-  the way the device data spells it. `test/xc8stub/xc.h` could never have shown
-  either, since it agrees with the code by construction.
-- **The configuration words were read back out of the hex, not assumed.**
+- **It compiles and links clean, with no warnings, for the real part**, so
+  every register and bit name in `hal_can.c` and `hal_sys.c` exists on the
+  PIC18F25K80 and every `#pragma config` keyword is spelled the way the device
+  data spells it. `test/xc8stub/xc.h` cannot show either, since it agrees with
+  the code by construction.
+- **The configuration words are read back out of the hex, not assumed.**
   `CONFIG3H` at 300005h comes out `0x89`, so bit 0 `CANMX` is **set** — CANTX
   and CANRX on RB2 and RB3, which is what the board is wired to and what
   DS39977C Register 28-5 says that bit means. The single most expensive bit in
   the project, confirmed against the artefact that will actually be flashed.
   `CONFIG2H = 0x26` likewise reads back as `WDTPS<3:0> = 1001` = 512.
 - **It fits, with room to spare**, in both program space and RAM at `-O2`.
-  `make -C mplab` prints both; quoting them here would only go stale, and once
-  already did.
-- **It still proves nothing about the silicon.** Compiling is not running. A
-  register that exists but is written in the wrong order, at the wrong time, or
-  with the wrong value compiles exactly as cleanly as one that does not.
+- **Compiling proves nothing about the silicon.** A register that exists but is
+  written in the wrong order, at the wrong time, or with the wrong value
+  compiles exactly as cleanly as one that does not.
 - **500 kbps has been run by nobody.** The bit timing is datasheet arithmetic
-  and nothing more; `CanSwitch.X` runs at 50 kbps, so `BRP = 0` and this whole
-  path is untested. Check `hal_can_rx_errors()` / `hal_can_tx_errors()` and the
-  `LED_CAN` blink pattern the first time it listens to the car.
+  and nothing more. Check `hal_can_rx_errors()` / `hal_can_tx_errors()` and the
+  `LED_CAN` blink pattern the first time it listens to a live bus.
 - **The A/D reading is uncalibrated by construction.** The 1.024 V reference
   has no tolerance anywhere in the datasheet.
 - **The timing budget is counted, not measured.** `docs/timing.md` costs every
-  function out of the assembly listing XC8 generates. Summary: a typical pass
-  is 49-134 µs so the loop runs 7,400-20,000 times a second; the 100 ms slot
-  uses **2.6 ms of its 100**; the worst pass that can happen without an EEPROM
-  write is **6.5 ms**, against a FIFO that tolerates 22 ms of blindness. **The
-  whole firmware uses 16 % of the CPU**, and the largest single item in that is
-  receiving frames rather than any arithmetic. `docs/timing.md` carries both
-  halves — worst case per call, and load per second — plus every non-time
-  ceiling in one table. The
-  arithmetic is nowhere near being the constraint. The one figure the datasheet
-  declines to bound is the EEPROM write — D122's 4 ms is a *typ* with no
-  maximum — and nothing downstream of it is a deadline.
+  function out of the assembly listing XC8 generates. A typical pass is
+  49–134 µs, so the loop runs 7,400–20,000 times a second; the 100 ms slot uses
+  **2.6 ms of its 100**; the worst pass without an EEPROM write is **6.5 ms**,
+  against a FIFO that tolerates 22 ms of blindness. **The whole firmware uses
+  16 % of the CPU**, and the largest single item is receiving frames rather
+  than any arithmetic. The one figure the datasheet declines to bound is the
+  EEPROM write — D122's 4 ms is a *typ* with no maximum — and nothing
+  downstream of it is a deadline.
 - **`docs/optimisation.md` is required reading before changing any loop or any
   arithmetic in `src/`.** It carries what was optimised and why, what was tried
   and rejected, and the two things that generalise on this part: use the
   narrowest integer type that provably holds the value, and prefer a walking
-  pointer to an index in a hot loop. Both were worth as much as the algorithm
-  change they accompanied.
-- **There is no tank median any more**, since 2026-08-12. It was an insertion
-  sort, then a 128-bucket histogram sweep, and then it turned out the
-  refuelling rule never wanted a median: it wants "is the level persistently
-  higher than it was", which is a first-order filter and a counter of
-  consecutive at-rest samples. No loop, no division, 153 bytes of RAM back.
-  `docs/refuel-reset.md` is the rule and `docs/optimisation.md` §8 the
-  argument that it is the same answer.
+  pointer to an index in a hot loop.
+- **The refuelling rule is a first-order filter and a counter of consecutive
+  at-rest samples, not a median.** "Is the level persistently higher than it
+  was" needs no sort, no histogram and no division. `docs/refuel-reset.md` is
+  the rule, `docs/optimisation.md` §8 the argument that it is the same answer.
 - **Distance is integrated on `DIST_TICK_MS` = 10 ms with the remainder
   carried, and that is a correctness rule, not a budget.** `main.c` calls
-  `compute_tick()` every pass, so before 2026-08-12 the delta was one
-  millisecond and `v × 1 ms / 3600` truncated **6.4 % of the distance away at
-  50 km/h and all of it below 3.6 km/h** — straight into FuelAvg, Range and the
-  trip. No fixture could show it: the tests tick on 0x480, ~38 ms apart, where
-  the same fault is 0.8 %, and the Python oracle had it too, so **the twins
-  agreed with each other about a wrong number**. `DIST_MIN_MMH` is the other
-  half: a standing car sends 0.005 km/h, which an exact integrator turns into
-  83 mm a minute. `docs/optimisation.md` §6.
+  `compute_tick()` every pass; integrating on a 1 ms delta truncates **6.4 % of
+  the distance at 50 km/h and all of it below 3.6 km/h**, straight into
+  FuelAvg, Range and the trip. **No fixture can show it** — the tests tick on
+  0x480, ~38 ms apart, where the same fault is 0.8 %, and the Python oracle
+  shares the reasoning, so the twins would agree with each other about a wrong
+  number. `DIST_MIN_MMH` is the other half: a standing vehicle reports
+  0.005 km/h, which an exact integrator turns into 83 mm a minute.
+  `docs/optimisation.md` §6.
 - **Neither division nor multiplication uses the compiler's helpers.** XC8
   v4.00 reaches for a per-bit loop for both — `___lldiv` 1,026 cycles,
-  `___lmul` 849 — while the part has a single-cycle 8x8 multiplier it will only
-  use for `uint8 x uint8` and `uint16 x uint8`. So both are assembled from byte
+  `___lmul` 849 — while the part has a single-cycle 8×8 multiplier it will only
+  use for `uint8 × uint8` and `uint16 × uint8`. Both are assembled from byte
   products by hand: `src/fastmul.h` for multiplication (seven products, 137
   instructions) and `src/divconst.h` for division by a constant, which
-  multiplies by a proved reciprocal instead. **`___lmul` is now absent from the
+  multiplies by a proved reciprocal instead. **`___lmul` is absent from the
   build entirely** and the three remaining `___lldiv` calls all divide by a
   *variable*, where a reciprocal cannot help.
+
   Two details that are easy to undo by accident: `div_const` is a macro so the
   shift stays a literal, and a shift of 8/16/24 is free while any other is a
-  rotate loop. Never add a divisor by hand — `tools/divconst.py` derives and
+  rotate loop. **Never add a divisor by hand** — `tools/divconst.py` derives and
   proves it, `test/test_divconst.c` proves the C, and the exhaustive build
   walked 26.8 billion values.
+
   **A divisor here should be one the physics forces.** 1000, 3600 and 95500
-  are; 120 (the tank filter) and 10000 (the drag slope) were our own scaling
-  choices and became 128 and 2**16 on 2026-08-12, so both divisions are now
-  shifts and both magics are gone. A constant we picked is a constant we can
-  pick to be a power of two — `docs/optimisation.md` §11.
+  are; a scaling factor chosen by us is one we can choose to be a power of two,
+  so the tank filter and the drag slope use 128 and 2\*\*16 and both divisions
+  are shifts. `docs/optimisation.md` §11.
 - **`tools/cycles.py` measures loop bodies out of the listing** and requires
   every backward branch in the build to be declared in one of its three tables.
-  It stops rather than guessing, so a change of algorithm cannot pass silently
-  — which it once did, reporting a new algorithm as costing exactly what the
-  old one had.
+  It stops rather than guessing, so a change of algorithm cannot pass silently.
 
-### The first real compile happened, and what it cost
+### Building for the device
 
-`make -C mplab` builds `mplab/build/canfuel.hex` on this desk with no
-arguments. It took four rounds to get there and **not one of them was the
-firmware's fault** — three of the four predicted failure classes (a wrong
-`#pragma config` keyword, a wrong register name, the `const` address-space
-warning on `hal_eeprom_backend`) simply did not happen, and the fourth,
-address-of on an SFR, compiled as expected. Everything that went wrong was the
-toolchain, and all of it is now encoded in `mplab/Makefile` so it cannot go
-wrong again. The long version is in `mplab/README.md`; the short version:
+`make -C mplab` needs no arguments. Everything the toolchain requires — that
+XC8 v4.00 ships no device data at all, that `-mdfp` names the `xc8`
+subdirectory *inside* a Device Family Pack, that the pack version must match
+the compiler, that the path to it must be pure ASCII, and the `TMP` handling
+under MSYS — is encoded in `mplab/Makefile` and explained in
+[`mplab/README.md`](mplab/README.md), with the exact error messages each one
+produces. CI runs the same makefile with the same pinned versions.
 
-1. **XC8 v4.00 ships no device data whatsoever.** No `pic/dat`, no
-   `pic/include/proc`, no `docs/chips`. Everything about the part comes from a
-   Device Family Pack passed with `-mdfp`, and without one the build stops at
-   `error: (2103)`. This also retires an instruction that used to be in this
-   file: `<xc8>/docs/chips/18f25k80.html` does not exist, and the per-device
-   HTML now lives in the pack.
-2. **`-mdfp` names the `xc8` subdirectory inside the pack**, not the pack root.
-   The root gives `error: (2104)`, which reads like the pack is missing.
-3. **The pack version must match the compiler.** MPLAB X v6.00 bundles
-   `PIC18F-K_DFP 1.5.114`; v4.00 will not read it. v4.00's readme names
-   **1.13.292**, which is what is installed here and what CI downloads.
-4. **The path to the pack must be pure ASCII.** Under
-   `C:\Users\Luboš\.mchp_packs` the device data resolved but the pack's include
-   directories were silently dropped, and the build died two steps later on
-   `'pic18.h' file not found`. The pack therefore lives at **`C:\mchp_packs`**,
-   which is the makefile's default.
-5. **MSYS make gives xc8-cc no usable `TMP`**, and clang dies with an LLVM
-   stack dump rather than a message. The makefile now derives one from
-   `cygpath -m /tmp`, which is why plain `make -C mplab` works.
 
-One real code change came out of it, and it was cosmetic: `decode_rpm()` was a
-`static inline` in `decode.h`, which XC8 emits into every translation unit that
-includes the header and then warns about three times (2053, "never called").
-It is an ordinary function in `decode.c` now. The hex is byte-for-byte the same
-size, so the compiler was inlining it anyway.
+### Toolchain
 
-CI does the same build on every push with the same pinned XC8 **and the same
-pinned pack**, and the two were checked against each other rather than assumed
-to agree: the `canfuel-hex` artefact from the first green run is byte-for-byte
-the desk's `mplab/build/canfuel.hex`, once the CRLF the Windows build writes is
-normalised away. If they ever disagree by more than that, the difference is the
-machine, not the code.
+gcc, make, git and Python 3.11 build and test the core. Building for the device
+additionally needs **XC8 v4.00** and **`PIC18F-K_DFP 1.13.292`**; `mplab/Makefile`
+falls back to XC8's default install path when it is not on `PATH`, and takes the
+pack location from `MCHP_PACKS` (default `C:\mchp_packs`). **Keep that path pure
+ASCII** — an accented directory silently drops the pack's include directories
+and the build dies two steps later on `'pic18.h' file not found`.
 
-Getting that green run also took one fix on CI's side alone. The `install XC8`
-step carried `--netservername ''` from the v2.50 pin; v4.00's installer has no
-such option and, being InstallBuilder, treats an unknown one as fatal rather
-than ignoring it — three runs failed before compiling a line. It was passing an
-empty value, so it had never configured anything anyway.
+MPLAB X finds its own toolchain regardless of `PATH`, so the IDE building is
+not evidence that `make -C mplab` will, and the IDE manages its own packs.
+**`make` is the build.**
 
-### What to do next — `docs/install.md`, and only there
-
-**The next action is step 5 of `docs/install.md`.** That document is the plan
-now, and it carries its own progress column; steps 1 to 4 are done as of
-2026-08-13. **Everything that can be done without a board has been done** —
-step 4 was made a step of its own on 2026-08-12 precisely so that there was
-something to take while the boards were in the post, and it has now been taken.
-**Step 5 onwards waits on the boards**, expected in the week of 2026-08-17.
-
-**Do not restate the plan here, and do not add a "next session" section
-anywhere else.** Two copies of a procedure diverge, and the copy nobody reads
-is the one that stays wrong. When something is finished, tick it in
-`install.md`. What belongs in this file is *why* the order is what it is —
-which the procedure itself cannot carry:
-
-**Loopback is the step that gets skipped and must not be.** It costs ten
-minutes, needs no bus and no transceiver at all (DS39977C §27.3.5 hands the
-transmit buffers straight to the receive buffers), and it exercises the bit
-timing, all six filters, the FIFO, the access-bank window, `txframes` and
-`decode`. A fault caught there costs a reflash; the same fault in Normal mode
-puts error frames on the car's bus.
-
-**Why Listen Only touches the car before Normal:** the 500 kbps bit timing is
-arithmetic no hardware has run, and a Normal-mode node with wrong timing does
-not merely fail to read the bus, it **corrupts** it. Listen Only is silent by
-the module's own guarantee (§27.3.4). Check `hal_can_rx_errors()` /
-`hal_can_tx_errors()` before anything else — a timing fault shows there long
-before it shows anywhere else.
-
-JP2 off before programming and back on afterwards; JP1 fitted or the LEDs stay
-dark by design. `LED_PWR` blinking slowly means a silent build, which is
-correct for loopback and listen-only and a mistake in a normal one.
-
-### Local toolchain
-
-gcc, make, git and Python 3.11 are installed, and as of **2026-08-09** so are
-MPLAB X v6.00 and XC8 v4.00 — the latter at
-`C:\Program Files\Microchip\xc8\v4.00\bin\xc8-cc`, **not on the PATH**, which
-`mplab/Makefile` handles by falling back to that path.
-
-`PIC18F-K_DFP 1.13.292` is unpacked at **`C:\mchp_packs`**, deliberately
-outside the home directory — see point 4 above. It is 380 MB and not in any
-backup; if it goes missing, re-download the `.atpack` and unzip it there.
-
-MPLAB X finds its own toolchain regardless of PATH, so the IDE building is not
-evidence that `make -C mplab` will. Nor, on this machine, the reverse: the IDE
-manages its own packs and has not been made to build this project. `make` is
-the build.
-
-**The `TMP` quirk is fixed and no longer needs a workaround.** In this shell
-`make` hands its recipes an empty `TMP` and the MSYS2 gcc then tries to write
-its temporary files into `C:\WINDOWS` and is refused. Every invocation used to
-have to be spelled `make -C test TMP="$TEMP" test`, which was easy to forget
-and — being a shell variable — impossible for any tool to allow-list. Since
-2026-08-12 `test/Makefile` derives it itself with the same two lines
-`mplab/Makefile` has used since 2026-08-09:
+**Under MSYS, `make` can hand its recipes an empty `TMP`**, after which gcc
+tries to write temporary files into a directory it cannot write and fails. Both
+makefiles derive one themselves:
 
 ```make
 CYGPATH := $(shell command -v cygpath 2>/dev/null)
@@ -357,175 +260,57 @@ endif
 ```
 
 `cygpath` exists only on MSYS and Cygwin, so it is self-guarding and leaves
-Linux, macOS and CI alone. **Plain `make -C test test` now works.**
+Linux, macOS and CI alone.
 
-### Flashing is a command line too, and the tool is IPECMD
+### Flashing is a command line, and the tool is IPECMD
 
 **The device is programmed with `ipecmd.exe`, not from the IDE.** The procedure
-is step 4 and step 5 of `docs/install.md` and is not repeated here; what
-belongs here is why that tool and not one of the other two, all three of which
-ship in the same MPLAB X v6.00 install:
+is steps 4 and 5 of `docs/install.md`; the full argument for every flag, the
+observed exit codes and the environment traps are in
+[`docs/flash-tool-notes.md`](docs/flash-tool-notes.md), which is also the
+specification for a `tools/flash.py` that does not exist yet.
 
-- **`pk3cmd.exe`** — *Readme for PK3CMD.htm* §1 disqualifies itself: *"provided
-  for legacy users (MPLAB IDE v8.xx) for backward script compatibility. It will
-  not be enhanced with new features. Please use the IPECMD going forward."* Its
-  readme is still stamped v5.35 where IPECMD's is v6.00, which says the same
-  thing more quietly. It does have one thing IPECMD lacks — a documented exit
-  code table, §9: 0 success, 7 operation failed, 36 bad argument.
-- **`mdb.bat`** — *Readme for MDB.htm* §9 lists **MDB-44**: *"MDB holds device
-  in reset after programming with PK3."* Exactly the wrong behaviour for a
-  converter that has to start running.
-- **`ipecmd.exe`** — the survivor, and the one Microchip point at.
+Four things belong here because they are decisions rather than procedure:
 
-Four decisions around it, none of which the datasheets have an opinion on:
-
-- **`-OL` on every programming command.** *Readme for IPECMD.htm* §13 gives the
-  default for *Release From Reset* as `Hold in reset`. Forgetting it produces a
-  correctly programmed board that does nothing, which reads as a firmware fault.
-- **`-W` never.** It powers the target from the PICkit; the board has its own
-  5 V, and *Readme for PICkit 3.htm* §8.3.2 records a silicon issue on the
-  PIC18F45K20/46K20 family that appears only with *"power from programmer"*.
-  Not our part, but there is no reason to take the risk for no benefit. **That
-  is the whole argument, and it is a decision rather than a limitation of the
-  tool.** For one day on 2026-08-13 this bullet also claimed the PICkit cannot
-  hold 5 V — read off the `4,625000 volts` its own message reports into a bare
-  header. That was wrong and is refuted in `docs/refuted.md` E6: an open header
-  draws no current, so nothing can sag; the rail actually rises to ~5.5 V and
-  settles to 4.6 V, which is regulation; `-W` takes a commanded voltage
-  (`-W2.5`, §17.36) with `-A`/`-N`/`-X` behind it (§17.38), so the message
-  compares a set point against a readback; and the flag has been used
-  successfully on this MCU on an earlier project. **Do not re-derive that
-  argument** — the reason to leave `-W` alone is that it buys nothing here.
-
-  **And `-W` does not switch itself off.** Measured with a voltmeter on the
-  header: the 4.6 V is still there after the command has exited and the prompt
-  is back. From step 5 on the board powers itself, so a header left hot by an
-  earlier `-W` puts two supplies onto one rail with no command running and
-  nothing on screen to blame. **A plain run — the same command without `-W` —
-  is what clears it**, established by alternating the two with the meter
-  watched throughout (4.6 → 0 → 4.6 → 0) rather than inferred from a single
-  reading afterwards, which could not have told the difference between the
-  command acting and the rail decaying. Measure zero anyway before connecting
-  anything; the next programmer need not behave like this one.
+- **`-OL` on every programming command.** The IPECMD default for *Release From
+  Reset* is `Hold in reset`. Forgetting it produces a correctly programmed
+  board that does nothing, which reads as a firmware fault.
+- **`-W` never.** It powers the target from the programmer; the board has its
+  own 5 V, so the flag buys nothing, and *Readme for PICkit 3.htm* §8.3.2
+  records a silicon issue on the PIC18F45K20/46K20 family that appears only
+  with *"power from programmer"*. A different part, but a risk with no upside.
+  **It is a decision, not a limitation of the tool** — see `docs/refuted.md` E6
+  before re-deriving it from the voltage the tool reports.
 - **The EEPROM is erased by default, and that is left alone.** `-OH` (*Erase
   All Before Program*) is on unless disabled, so a plain `-M` discards the
   persist ring. `persist_load()` returning false on a virgin EEPROM is a
   correct start, not an error, so during bring-up that is the better default;
-  `-Z0-3FF` is the opt-in, and §17.8 warns that `-E` overrides it. **Note that
-  `mplab/canfuel.X` sets `programoptions.preserveeeprom = true`**, so the IDE
-  and the command line deliberately differ. Know which one is in your hand.
-- **Exit codes are mapped from runs, not from the readme — and they cannot
-  carry the decision either way.** §10.2 promises only that an exit code is
-  returned and never enumerates them; the one table there is, §15, is headed
-  *MPLAB PM3 Specific* and does not fit — it calls 9 `INVALID_PROGRAMMER` and
-  10 `NO_PROGRAMMER`, while `ipecmd -P18F25K80 -TPPK3 -I` with no programmer
-  attached prints `Programmer not found` and returns **9**. Step 4 then found
-  the other half on 2026-08-13: the *same command* with the PICkit attached and
-  **no target** prints `Target device was not found (could not detect target
-  voltage VDD)`, then `Operation Succeeded`, and returns **0** — while `-T`,
-  which listed the tool correctly, returns **50**. Feed the header 5 V from a
-  bench supply and leave MCLR/PGC/PGD unconnected and it prints
-  `Target Device ID (0x0) is an Invalid Device ID`, `Operation Failed`, and
-  returns **1**. So the code is not noise, but **the one case it gets wrong is
-  the worst one to get wrong: an unpowered target exits 0.** Bad ICSP wiring
-  fails honestly; a board nobody plugged in passes. Since `-W` is deliberately
-  not used here, that is among the likeliest bench mistakes available.
-  **Parse the output. Never branch on the exit code alone**, and do not write
-  §15's table into any script.
+  `-Z0-3FF` is the opt-in. **`mplab/canfuel.X` sets
+  `programoptions.preserveeeprom = true`**, so the IDE and the command line
+  deliberately differ. Know which one is in your hand.
+- **Never branch on IPECMD's exit code.** A target that is not powered prints
+  `Operation Succeeded` and returns 0, while bad ICSP wiring returns 1. Parse
+  the output.
 
-**Two facts that correct plausible assumptions.** The PICkit 3 is a **USB HID
-device, not a virtual COM port** (*Readme for PICkit 3.htm* §8.2, *"the system
-provided HID USB driver"*) — so there is no serial protocol to write against,
-the way `usbtin_capture.py` does for the CAN adapter. And **IPECMD talks to its
-own USB layer over a localhost TCP socket**, which is why Windows Defender
-prompts on the first run: §14.5.1, and `C:\Windows\System32\mchpdefport` on
-this desk holds `localhost` / `30000`. Allowed for private networks on
-2026-08-12. A blocked port presents as a tool-communication failure rather than
-as anything mentioning a firewall — §19.3 says so outright for the sibling
-IPECMDBoost utility and its ports 2012 and 2013.
+**MPLAB X therefore stays installed** — `ipecmd.exe` and the programmer firmware
+images are both parts of it. What goes away is the clicking, not the dependency.
 
-**The ICSP header pinout is DS51795B Figure 1-2**, *PICkit™ 3 Programmer
-Connector Pinout*, in `kicad/canfuel/docs/pickit3-users-guide.pdf`. Their
-connector is six pins and J3 is five, because pin 6 is `PGM (LVP)` and this
-project does not use low-voltage programming.
+**The pack IPECMD uses is not the pack the compiler uses**, and they must not be
+forced to agree: IPECMD resolves the pack bundled with MPLAB X, while
+`mplab/Makefile` pins one the compiler will accept. One describes the part to a
+compiler, the other to a programmer.
 
-**That document was found on 2026-08-13, after the boards were made**, and the
-sequence is the point. Until that day the pinout rested on `kicad`'s
-`canfuel/docs/implementation-plan.md` §4.3, which gives the five pins under the
-words "PICkit pin order" and cited nothing — its neighbouring citation to
-DS39977C §2.5 is accurate but covers the PGC/PGD component rules, not a
-connector. It was quoted from here as though the sibling repo were a source.
-**A sibling repo asserting something is not a citation.** It was then settled
-the way this repository settles things when the paper is missing — by
-measurement: pin 3 rings out at 0 Ω to the USB shell, pin 2 carries 4.6 V under
-`-W`, and an external supply across the two produces `Target voltage detected`.
-The datasheet agreed with all three afterwards, **which is luck rather than
-process**. `docs/install.md` step 4 keeps the measurement procedure as well as
-the citation, because it needs no document and works on any replacement
-programmer.
+**The ICSP header pinout is DS51795B Figure 1-2** — held at
+`kicad/canfuel/docs/pickit3-users-guide.pdf`. That connector is six pins and J3
+is five, because pin 6 is `PGM (LVP)` and this project does not use low-voltage
+programming. `docs/install.md` step 4 also keeps a procedure for establishing a
+pinout by measurement, which needs no document and works on any programmer.
 
-**MPLAB X therefore stays installed** — `ipecmd.exe` and the PICkit 3 firmware
-images in `mplab_platform\mplablibs\modules\ext\PICKIT3.jar` are both parts of
-it. What goes away is the clicking, not the dependency. Those firmware images
-are also the evidence that v6.00 still supports the PICkit 3, which is not
-obvious: there is no `PK3_TP` in `packs\Microchip\` beside `PICkit4_TP` and
-`Snap_TP`, because the PICkit 3 predates tool packs rather than having been
-dropped.
 
-**The pack IPECMD uses is not the pack the compiler uses**, and they must not
-be forced to agree. IPECMD resolves `PIC18F-K_DFP 1.5.114`, the one v6.00
-bundles; `mplab/Makefile` pins 1.13.292 because XC8 v4.00 refuses 1.5.114. One
-describes the part to a compiler, the other to a programmer.
+## The pin assignment
 
-**The programmer has now been proved, on 2026-08-13, and it is a PICkit 3.**
-The unavoidable part was the firmware update: §12, *"Upgrading the operating
-system of the programming tool happens automatically when the first operation
-using the tool is performed"*. It arrived on v01.54.00, came out of the first
-run on **v01.56.09**, and the second run downloaded nothing — which is the
-outcome step 4 exists to tell apart from the two failures that look like it.
-That update happens identically from the IDE, so the command line neither added
-nor removed it; doing it deliberately, on a step whose only job was to find
-out, is what made it cheap. **This is the entire reason step 4 existed and came
-before the boards arrived.**
-
-Note that **v01.56.09 is not the v01.56.07 the v6.00 readme names.** Read the
-version out of the tool, not out of the readme. The full transcript of both
-runs is in `docs/install.md` step 4; it is the only picture anyone will have of
-how this programmer behaves here, and nothing about the board, the ICSP header
-or the hex is touched by it.
-
-**The escape route is checked.** If the programmer has to be replaced, it does
-not have to be another PICkit 3: the tool packs bundled with v6.00 list
-`PIC18F25K80` for MPLAB Snap, PICkit 4 and ICD 4 — read out of each pack's
-`device_support.xml`, not assumed — and IPECMD drives all of them, so only the
-`-TP` short name changes (§14.1). Pack support is not electrical fit, though;
-the versions and that caveat are in `docs/install.md` step 4.
-
-**`tools/flash.py` is planned and deliberately not written yet.** It would wrap
-the four commands, check `CONFIG3H` at 300005h for `CANMX` before flashing
-anything, tie the build mode and the flash into one step so a `LOOPBACK` hex
-cannot be flashed while you believe it is a normal one, and read the persist
-ring back off the part for the bring-up in the car. All of that is worth
-having; none of it is worth writing around commands that have never been run
-against a target. Write it after step 5 succeeds, not before — and when it is
-written, **it must decide on IPECMD's printed output, not on its exit code**,
-for the reason in the bullet above: a `-I` that never saw the target still
-exits 0.
-
----
-
-## The board exists now, and it fixes the pin assignment
-
-**Three boards were ordered from Gatema PCB on 2026-08-09** and are expected
-during the week of 2026-08-17. The design is finished, checked and frozen: what
-is being manufactured is commit `c06e710` of the sibling `kicad` repo. **They
-are now the only thing the project is waiting on** — the firmware, the display
-configuration and the harness are all done, so the boards arriving is what
-unblocks step 5 of `docs/install.md`. The pinout below is not provisional and
+**The board design is frozen and this pinout is not provisional** —
 `hal_can.c` and `hal_sys.c` are written against it.
-
-Only two of the three can be populated at first; the third is a bare spare
-waiting on two more Micro-Fit headers, deliberately not yet bought.
 
 **Everything in this section comes from `kicad/canfuel/docs/implementation-plan.md`
 §4.2. If it ever disagrees with that file, that file wins.**
@@ -754,9 +539,8 @@ backwards. The register table and the pin-table footnote ("Default pin
 assignment for CANRX and CANTX when the CANMX Configuration bit is set") agree
 with each other against the prose, so the table wins.
 
-**The ECAN chapter is §27, not §22.** Earlier revisions of this file said §22
-throughout; that is the chapter number from an older PIC18 CAN datasheet and it
-does not carry over. In DS39977C: §27.1 module overview and the six-step
+**The ECAN chapter is §27, not §22.** §22 is the chapter number from an older
+PIC18 CAN datasheet and does not carry over; citing it is a standing trap. In DS39977C: §27.1 module overview and the six-step
 initialisation sequence, §27.3 modes, §27.4 functional Mode 0/1/2, §27.5
 buffers, §27.9 baud rate, §27.15 interrupts.
 
@@ -788,9 +572,8 @@ D120 is the number `persist.h`'s header comment argues from and it is a
 write must not be attempted from an interrupt; three times a minute it is
 otherwise irrelevant.
 
-**D124 was read backwards here until 2026-08-12 and the correction matters.**
-This file used to call it "a budget for the whole array" that our writes
-*spend* — as if 1 M array writes were a ceiling. It is the opposite. §8.8:
+**D124 is not a ceiling, and it is easy to read as one.** It is not a budget
+for the whole array that our writes *spend*. It is the opposite. §8.8:
 *"Frequently changing values will typically be updated more often than
 specification D124. If this is not the case, an array refresh must be
 performed."* D124 is about **disturb**: a byte that is never written degrades
@@ -805,8 +588,8 @@ and D124 is not a ceiling we approach.** The only limit is D120: 64 slots ×
 100 K = **6.4 M writes**, which at `PERSIST_INTERVAL_MS` = 20 s is 4.1 years
 of engine-on time, or roughly 97 calendar years at an hour of driving a day.
 
-That headroom is what paid for the interval coming down from 60 s to 20 s on
-2026-08-12, which cut the accumulator loss at every ignition-off by two thirds.
+That headroom is what pays for `PERSIST_INTERVAL_MS` being as short as it is:
+the shorter the interval, the less accumulator is lost at each ignition-off.
 `config.h` costs all four candidates and `persist.h` explains what the loss is
 and why writing at every stop would have made the displayed average *worse*.
 
@@ -827,9 +610,8 @@ as the converter's reference, and invert:
 VDD = 1.024 × 4096 / code
 ```
 
-**4096, not 1023.** Earlier revisions of this file and of `docs/frames.md`
-carried `1.024 × 1023 / ADC`, which is the ten-bit formula from a different
-PIC. This A/D is twelve bits — DS39977C Table 31-25 parameter A01,
+**4096, not 1023.** `1.024 × 1023 / ADC` is the ten-bit formula from a
+different PIC and is a standing trap here. This A/D is twelve bits — DS39977C Table 31-25 parameter A01,
 `NR Resolution ... 12 bit` — and §23.5 confirms it: *"The A/D conversion
 requires 14 TAD per 12-bit conversion."* The ten-bit formula would have
 reported four times the real supply, and 20 V on the display is exactly the
@@ -924,21 +706,17 @@ arrive, `LED_CAN` is steady, and the display just shows nothing.
 **Which frames to receive, and in which functional mode.** The six
 `CAN_ID_*` identifiers in `config.h`, and **only identifiers something
 consumes** — a filter is a hardware resource and a decoded field nobody reads
-is dead weight. 0x5A0 was accepted until 2026-08-11 and was dropped for exactly
-that reason: nothing in the firmware read the acceleration, and the display
-takes 0x5A0 off the bus itself. Fourteen identifiers are broadcast
+is dead weight. 0x5A0 is deliberately **not** accepted for exactly that
+reason: nothing in the firmware reads the acceleration, and the display takes
+0x5A0 off the bus itself. Fourteen identifiers are broadcast
 periodically and the bus carries 682–727 frames a second; the six we keep are
 357 of them, so hardware filtering throws away slightly more than half the bus
 reads and half the FIFO pressure before they cost anything.
 
-**Mode 2 rather than Mode 0, and the reason is depth, not filter count.** That
-used to rest on two arguments and one of them has since gone away, which is
-worth saying rather than leaving the stale reasoning to be found later. With
-seven identifiers, Mode 0's "Six acceptance filters, 2 for RXB0 and 4 for RXB1"
-(DS39977C §27.4.1) was one short and settled it on its own. Six fit.
-
-What still settles it is that **Mode 0 has two receive buffers and Mode 2 forms
-a FIFO out of all eight** (§27.4.3). The six identifiers arrive at **3.58 per
+**Mode 2 rather than Mode 0, and the reason is depth, not filter count.**
+Mode 0's six acceptance filters (DS39977C §27.4.1) would hold the six
+identifiers we accept, so filters are not what decides it. **Mode 0 has two
+receive buffers and Mode 2 forms a FIFO out of all eight** (§27.4.3). The six identifiers arrive at **3.58 per
 10 ms**, measured off the `_z1` fixtures and near-identical at idle, at 2586 rpm
 and over six minutes of driving. Two buffers against that is a coin toss on
 every pass, and it collapses entirely during an EEPROM write, which blocks for
@@ -1070,12 +848,9 @@ and the whole 500 kbps path have been exercised by nobody — the first real
 test of it is a converter listening to the car. Expect to check the ECAN
 error counters early rather than assuming the sums carried.
 
-**`piclib` was read closely and then not used. That reverses what this file
-used to say**, which was that it would be added as a submodule.
-
-It was the right place to start and it settled the register sequences. But
-consuming it turned out to cost more than writing the twenty lines it would
-have saved:
+**`piclib` was read closely and then not used.** It was the right place to
+start and it settled the register sequences, but consuming it costs more than
+writing the twenty lines it would save:
 
 - `can.c` is **Mode 0 only** — one transmit buffer, two receive buffers, six
   filters. We need an eight-deep FIFO, so Mode 2, which `can.c` has no notion
@@ -1099,7 +874,7 @@ over the full ten-bit range, the `0x55`/`0xAA` unlock, `WREN`, polling `WR` —
 and `hal_eeprom_write()` follows the same steps with the datasheet's Example
 8-2 open beside it.
 
-### The three questions this file used to leave open, and how they were decided
+### Three choices the datasheet does not make for you
 
 **Which timer makes the millisecond: Timer2.** `CanSwitch.X` uses Timer0 in
 16-bit mode with a 1:16 prescaler, but only for a coarse debug heartbeat.
@@ -1263,9 +1038,8 @@ Constants belong in `config.h`, not in the code. In particular
 `FUELNOW_LH_BELOW_MMH`, `FUELNOW_CLAMP_D`, `REFUEL_RISE_L` and the frame
 periods.
 
-**This repository has no submodules.** An earlier revision of this file planned
-to add `github.com/PoJD/piclib` as one; that was reconsidered while `hal_can.c`
-was being written and the reasoning is in the HAL section. Clone `piclib` and
+**This repository has no submodules**, and the reasoning for not making
+`piclib` one is in the HAL section. Clone `piclib` and
 `can` beside this repo when you want to read them — they are still the best
 reference there is for these registers on this silicon.
 
@@ -1320,13 +1094,13 @@ having on a machine with no XC8.
 
 ### Numbers in prose — two rules, and `checkdocs.py` enforces both
 
-On 2026-08-12 a sweep found nineteen wrong statements across the documents and
-the comments. **Not one of them was a wrong argument. All nineteen were
-numbers**, in paragraphs that still reasoned correctly around them. That is
-what actually rots here, and it rots because one constant moves and a dozen
-sentences elsewhere do not. `grep PERSIST_INTERVAL_MS` finds none of them —
-"half a millisecond a minute" does not contain the name of the constant it was
-derived from.
+**What rots in this repository is numbers, not arguments.** A sweep of the
+documents and comments once found nineteen wrong statements and every one of
+them was a figure sitting inside a paragraph that still reasoned correctly
+around it. It rots because one constant moves and a dozen sentences elsewhere
+do not, and it is invisible to search: `grep PERSIST_INTERVAL_MS` finds none of
+them, because "half a millisecond a minute" does not contain the name of the
+constant it was derived from.
 
 So, in order of how much they are worth:
 
@@ -1340,10 +1114,10 @@ So, in order of how much they are worth:
    so nobody can mistype them. The `firmware` CI job is the only one with a
    compiler, so it is the one that fails when the block is stale.
 
-   Typing them by hand is what went wrong before: this file declared exactly
-   this rule for the hex size and then quoted the byte counts four lines below,
-   and by 2026-08-12 they disagreed with `docs/optimisation.md` about the RAM
-   — 564 bytes against 339, both correct on the day they were written.
+   Typing them by hand is what fails: this file once declared exactly this
+   rule for the hex size and quoted the byte counts four lines below it, and
+   those figures went on to disagree with `docs/optimisation.md` about the RAM
+   by more than 200 bytes — both correct on the day they were written.
 2. **A number derived from a constant is derived in one place**, and everywhere
    else says what it means rather than what it is. `persist.h` owns the EEPROM
    write arithmetic; other files say "an EEPROM write" and cite it.
@@ -1416,9 +1190,9 @@ those 50,000 malformed frames and 10,000 fabricated states go through a checker
 rather than only through assertions somebody remembered to write. It is
 insurance against the next change and is expected to stay silent — the two
 arrays that could plausibly have been indexed out of range were deleted on
-2026-08-12. **It does not run on the maintainer's desk**: the MSYS2 gcc ships
-neither `libasan` nor `libubsan`, so it is a CI step and `test/Makefile` says
-so where somebody hitting the link error will find it.
+**It does not run under MSYS2**, whose gcc ships neither `libasan` nor
+`libubsan`, so it is a CI step and `test/Makefile` says so where somebody
+hitting the link error will find it.
 
 ---
 
@@ -1427,11 +1201,12 @@ so where somebody hitting the link error will find it.
 Real logs from the car. **Do not edit them.** The tests reference exact numbers
 from them.
 
-⚠ **Only the three `_z1` logs have trustworthy time**, recorded 2026-08-11 with
-`tools/usbtin_capture.py`. `06_trip_reset` and `07_accel` carry USBtinViewer's
-host timestamps and are **wrong by about a factor of two**; the other five carry
-no time at all, and the 49.5 ms period that used to be used to synthesise one
-**does not exist** — see questions 1 and 9, both resolved. Fuel totals are unaffected
+⚠ **Only the three `_z1` logs have trustworthy time**, recorded with
+`tools/usbtin_capture.py` and the adapter's own timestamps. `06_trip_reset` and
+`07_accel` carry a host application's timestamps and are **wrong by about a
+factor of two**; the other five carry no time at all, and there is no fixed
+frame period from which one could be synthesised — see questions 1 and 9, both
+resolved. Fuel totals are unaffected
 everywhere, because the counter is absolute; it is durations, flows and
 distances that need a clock.
 
@@ -1468,7 +1243,7 @@ and distance for these seven all rest on a clock that was either the host's
 (`06`, `07`) or synthesised from a 49.5 ms period that turns out not to exist
 (the rest). They still pin the two implementations against each other, which is
 what the tests use them for, but they are not facts about the car. The
-measured warm idle, taken with adapter timestamps on 2026-08-11, is:
+measured warm idle, taken with adapter timestamps, is:
 
 | Log | Counter | Duration | Flow | Conditions |
 |---|---|---|---|---|
@@ -1491,35 +1266,24 @@ working device rather than blockers, and both live in `install.md` under
 The rest of this section is why the drag line and the torque scale are what
 they are, because that reasoning has nowhere else to live.
 
-**The drag line was refitted on 2026-08-11 and the torque scale moved with
-it.** It used to be a two-point line through `02_idle_60s` and `05_rev3000`,
-both of which turned out to have been recorded on cold oil — 60.8 °C and
-**39.0 °C**. It is now a least-squares fit through the four warm free-revving
-holds `13`–`16` (72.8–76.6 °C, stationary in neutral, so net torque is zero and
-b7 *is* the drag):
-
-**The drag line was refitted on 2026-08-11 and the torque scale moved with
-it.** It used to be a two-point line through `02_idle_60s` and `05_rev3000`,
-both of which turned out to have been recorded on cold oil — 60.8 °C and
-**39.0 °C**. It is now a least-squares fit through the four warm free-revving
-holds `13`–`16` (72.8–76.6 °C, stationary in neutral, so net torque is zero and
-b7 *is* the drag):
+**The drag line is a least-squares fit through the four warm free-revving
+holds `13`–`16`** (72.8–76.6 °C, stationary in neutral, so net torque is zero
+and b7 *is* the drag):
 
 ```
-drag [Nm] = 6.74 + 0.00482 x rpm     was 19.52 + 0.0028 x rpm
+drag [Nm] = 6.74 + 0.00482 x rpm
 ```
 
-Since the line is *subtracted* from indicated torque, the old one understated
-torque and power: over `17_drive_property_z1` it displayed zero through 51 % of
-the drive where this one displays a number through 78 %. Peak torque hardly
-moves (105.8 → 107.0 Nm) — the whole difference is at part throttle.
+**Fit it on warm oil.** A line fitted on cold oil sits far above this one, and
+since the line is *subtracted* from indicated torque, too high a line
+understates torque and power — mostly at part throttle, where it can display
+zero through half a drive that should show a number.
 
-**`TORQUE_CNM_PER_BIT` went 75 → 74 in the same breath, and had to.** Full
-scale b7 = 255 must cover the rated crank torque *plus* the drag at that speed,
-so the bracket the two factory ratings imply moves with the drag line: it was
-0.745–0.773 Nm/bit and is now 0.736–0.738. At 0.74 the display reaches 85.4 kW
-and 170.4 Nm against ratings of 85 and 170, where both used to land 3 % under.
-**These two constants are one calibration — never move one alone.**
+**`TORQUE_CNM_PER_BIT` = 0.74 and the drag line are one calibration — never
+move one alone.** Full scale b7 = 255 must cover the rated crank torque *plus*
+the drag at that speed, so the bracket the two factory ratings imply moves with
+the drag line: at this line it is 0.736–0.738 Nm/bit. At 0.74 the display
+reaches 85.4 kW and 170.4 Nm against ratings of 85 and 170.
 
 **The idle point is excluded from the fit, and the idle gate covers it.** b7
 falls 24.96 → 18.81 between idle and 1536 rpm before it starts rising, because
@@ -1566,32 +1330,30 @@ has the citations.
 The drag line is the **only open question left** in `docs/can-decoding.md` —
 72–77 °C is warm, not the 95–110 °C of real driving, so it still probably
 overstates drag slightly, which is the conservative direction. The questions
-register was sorted on 2026-08-11 into what changes this firmware and what does
+register in that file is sorted into what changes this firmware and what does
 not; everything else is either resolved or parked.
 
-**Why the scale is a decision at all, and why it is now parked.** 0x280
-b7 is a percentage of a
-reference torque inside the ECU, not Nm, and turning it into Nm needs a number
-nobody here has. It was read at 0.67 Nm/bit — from "the AQY's maximum is
-172 Nm, so 172/256" — until 2026-08-11, when that premise turned out to
-contradict the fixtures it sits next to: at 2940 rpm in neutral the crank makes
-nothing and b7 still reads 37, so b7 is *indicated* torque and its full scale
-is the maximum *indicated* torque, not the maximum crank torque. Scaling to the
-crank maximum and then subtracting drag counted the friction twice, and the
-firmware could never have shown the 85 kW the car is sold with — it topped out
-at 76.5 kW at 5200 rpm, at any throttle opening. **Nothing tested that**, which
-is the part worth remembering.
+**Why the scale is a decision at all, and why it is parked.** 0x280 b7 is a
+percentage of a reference torque inside the ECU, not Nm, and turning it into Nm
+needs a number nobody has.
 
-It is now **0.74 Nm/bit**, a decision inside the bracket the two factory
-ratings imply, with the ceiling pinned by two tests in `test_compute.c`. **The
-measurement that was
-supposed to settle it does not exist**: the VCDS session was run on 2026-08-11
-and this ECU has no torque measuring block, only engine load in per cent, and a
-full-throttle pull is deliberately not planned. The remaining uncertainty is
+⚠ **b7 is *indicated* torque, so its full scale is the maximum *indicated*
+torque, not the maximum crank torque.** Scaling to the crank maximum —
+"maximum is 172 Nm, so 172/256" — and then subtracting drag counts the friction
+twice, and caps the firmware below the power the engine is rated for at any
+throttle opening. The fixtures refute the premise directly: at 2940 rpm in
+neutral the crank makes nothing and b7 still reads 37. **Nothing in the test
+suite catches this**, which is the part worth remembering.
+
+It is **0.74 Nm/bit**, a decision inside the bracket the two factory ratings
+imply, with the ceiling pinned by two tests in `test_compute.c`. **The
+measurement that would settle it does not exist**: this ECU has no torque
+measuring block, only engine load in per cent, and a full-throttle pull is
+deliberately not planned. The remaining uncertainty is
 under 4 % and there is nothing to run, so the question is parked under *Never
 resolved but not required* in `docs/can-decoding.md` rather than left open —
 **do not plan that session again.** See `docs/frames.md` and the comment in
 `config.h`.
 
 The breadboard phase is skipped — Micro-Fit has a 3.0 mm pitch and does not
-fit a breadboard. The boards themselves arrive during the week of 2026-08-17.
+fit a breadboard.
