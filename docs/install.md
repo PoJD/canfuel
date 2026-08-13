@@ -489,12 +489,24 @@ Connection Failed.
 Operation Succeeded
 ```
 
-**4.625 V into an open circuit.** No board, no transceiver, no load at all, and
-it still cannot hold the 5.000 V it set out to supply. `-W` was already ruled
-out on borrowed evidence — a silicon issue *Readme for PICkit 3.htm* §8.3.2
-records on the PIC18F45K20/46K20 family, not ours — and this replaces it with a
-number measured on this desk: a supply that sags 0.375 V unloaded has nothing
-left for a board that draws current. **Power the board, then attach ICSP.**
+⚠ **That message is not evidence of a weak supply, and this document said it
+was for one day.** The correction is worth carrying because the wrong reading is
+the tempting one. With the meter watched through the run, the rail **rises to
+about 5.5 V and settles back to 4.6 V after roughly a second** — a set point
+being regulated to, not a supply collapsing. It cannot be droop in any case:
+the header is open, no current flows, and nothing sags into an open circuit.
+And the tool has a commanded voltage to compare against, which is what the
+message is doing: §17.36 gives `-W` *"at default VDD voltage"* with `-W2.5` to
+*"power the target to 2.5 volts"*, and §17.38 adds `-A`, `-N` and `-X` for
+VDDAPP, VDD Nominal and VDD Max. The full entry is `docs/refuted.md` E6, and
+the flag has been used successfully on this MCU on an earlier project.
+
+**`-W` is still not used here, on its original grounds:** the board takes its
+5 V from the display or a bench supply, so the flag buys nothing, and
+*Readme for PICkit 3.htm* §8.3.2 records a silicon issue on the
+PIC18F45K20/46K20 family — not our part — that appears only with *"power from
+programmer"*. Declining a risk with no upside is enough of a reason on its own.
+**Power the board, then attach ICSP.**
 
 It also fails a step earlier than the runs above, which is worth knowing when
 reading step 5's output: the VDD check comes *before* ICSP, so `Connection

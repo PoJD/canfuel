@@ -351,9 +351,10 @@ the transmit path on a desk with no bus and no transceiver at all.
 
 ## E. The toolchain
 
-Four of these in one afternoon, 2026-08-09, and **none of them was the
-firmware's fault**. All are now encoded in `mplab/Makefile` so they cannot
-recur.
+E1 to E4 landed in one afternoon, 2026-08-09, and **none of them was the
+firmware's fault**. All four are now encoded in `mplab/Makefile` so they cannot
+recur. E5 is CI's; E6 is the programmer's, and is the only one in this file
+whose refutation is a piece of school physics.
 
 ### E1. "XC8 ships the device data"
 
@@ -391,3 +392,55 @@ steps away from its cause and blames the wrong file.
 **Refuted by:** three failed CI runs. v4.00's installer has no such option and,
 being InstallBuilder, treats an unknown one as **fatal** rather than ignoring
 it. It was passing an empty value, so it had never configured anything anyway.
+
+### E6. "The PICkit 3 cannot power a target — it only manages 4.6 V of the 5.0 V it asks for"
+
+**Believed** on 2026-08-13, and written into `CLAUDE.md` and `docs/install.md`
+the same day as a *measurement* that had finally replaced a piece of borrowed
+errata. `ipecmd -I -W` against a bare ICSP header reports *"trying to supply
+5,000000 volts ... but the target VDD is measured to be 4,625000 volts"*, and
+that was read as the supply sagging: 0.375 V lost with no load at all, so
+nothing left for a real board.
+
+**Refuted by four things, the first of which should have stopped it being
+written:**
+
+- **There is no load.** The header was open — nothing connected to any pin. No
+  current flows, and a supply cannot sag into an open circuit. Whatever 4.625 V
+  is, it cannot be droop, and the argument was self-refuting on the evidence it
+  was standing on.
+- **Watching the rail.** It does not step to 4.6 V. It rises to roughly
+  **5.5 V and settles back to 4.6 V after about a second** — the profile of
+  something regulating to a set point, not of something failing to reach one.
+- **The readme.** §17.36: `-W` powers the target *"at default VDD voltage"* and
+  takes an argument — `-W2.5` *"powers the target to 2.5 volts"*. §17.38 adds
+  `-A`, `-N` and `-X` for VDDAPP, VDD Nominal and VDD Max. So the tool has a
+  commanded voltage and a measured one, and the message is a **mismatch between
+  a set point and a readback** with its own tolerance. It is not a complaint
+  about capability.
+- **It has been done.** The same flag was used successfully on an earlier
+  project on this MCU, on this desk.
+
+**Cost:** one commit (`8203082`) whose central claim was exactly this, and a
+paragraph in two documents that presented an interpretation as a measurement.
+The observation itself — 4.625 V — was real and is retained; only the reading
+of it was wrong.
+
+**What survives.** `-W` is still not used, and none of the reasoning above ever
+argued that it should be. The grounds are unchanged from before the false
+measurement was added: the board takes 5 V from the display or a bench supply,
+so the flag **buys nothing**, and *Readme for PICkit 3.htm* §8.3.2 records a
+silicon issue on the PIC18F45K20/46K20 family that appears only with *"power
+from programmer"* — not our part, cited honestly as somebody else's errata,
+and reason enough to decline a risk that has no upside. **`-W never` is a
+decision, not a limitation of the tool.**
+
+**Not affected:** the separate finding that `-W` leaves the rail live after the
+command exits, and that a plain run clears it. That was tested by alternation
+with the meter watched throughout, and it is the reason the header must read
+zero before a self-powered board is connected. See `docs/install.md` step 4.
+
+**Lesson.** The project's rule is that a decision must not be dressed up as a
+specification. This is the same failure one step further on: an *interpretation*
+dressed up as a measurement. The number was measured; "therefore it cannot drive
+a load" was not, and the two sat in one sentence.

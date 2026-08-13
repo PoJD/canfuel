@@ -385,13 +385,17 @@ Four decisions around it, none of which the datasheets have an opinion on:
 - **`-W` never.** It powers the target from the PICkit; the board has its own
   5 V, and *Readme for PICkit 3.htm* §8.3.2 records a silicon issue on the
   PIC18F45K20/46K20 family that appears only with *"power from programmer"*.
-  Not our part, but there is no reason to take the risk for no benefit — and
-  since 2026-08-13 the rule rests on a measurement from this desk rather than
-  on somebody else's errata. `-W` with **nothing at all on the ICSP header**
-  reports 4.625 V against the 5.000 V it set out to supply, then
-  `Connection Failed.` A supply that sags 0.375 V into an open circuit has
-  nothing left for a board with a transceiver on it. `docs/install.md` step 4
-  has the transcript.
+  Not our part, but there is no reason to take the risk for no benefit. **That
+  is the whole argument, and it is a decision rather than a limitation of the
+  tool.** For one day on 2026-08-13 this bullet also claimed the PICkit cannot
+  hold 5 V — read off the `4,625000 volts` its own message reports into a bare
+  header. That was wrong and is refuted in `docs/refuted.md` E6: an open header
+  draws no current, so nothing can sag; the rail actually rises to ~5.5 V and
+  settles to 4.6 V, which is regulation; `-W` takes a commanded voltage
+  (`-W2.5`, §17.36) with `-A`/`-N`/`-X` behind it (§17.38), so the message
+  compares a set point against a readback; and the flag has been used
+  successfully on this MCU on an earlier project. **Do not re-derive that
+  argument** — the reason to leave `-W` alone is that it buys nothing here.
 
   **And `-W` does not switch itself off.** Measured with a voltmeter on the
   header: the 4.6 V is still there after the command has exited and the prompt
