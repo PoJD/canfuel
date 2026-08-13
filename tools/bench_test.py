@@ -163,6 +163,7 @@ class Adapter:
         self.ser = serial.Serial(port, baudrate=115200, timeout=0)
         self._pending = bytearray()
         self.rx: dict[int, list[float]] = {}
+        self.first: dict[int, bytes] = {}
         self.last: dict[int, bytes] = {}
         self._close_channel()
 
@@ -213,10 +214,12 @@ class Adapter:
             frame = canlog.parse_line(text.decode(errors="replace"))
             if frame is not None:
                 self.rx.setdefault(frame.can_id, []).append(now)
+                self.first.setdefault(frame.can_id, frame.data)
                 self.last[frame.can_id] = frame.data
 
     def forget(self) -> None:
         self.rx.clear()
+        self.first.clear()
         self.last.clear()
 
     def flags(self) -> int | None:
@@ -297,6 +300,46 @@ def listen(listeners, seconds: float) -> None:
         for a in listeners:
             a.pump()
         time.sleep(0.001)
+
+
+def check_clock(rep: Report, listener: Adapter, elapsed: float) -> None:
+    """Does the converter's own second agree with the host's?
+
+    Everything the device reports is integrated against its millisecond clock:
+    16 MHz / 4, prescale 4, PR2 = 249, postscale 4. Get any link in that chain
+    wrong and it still runs, still transmits, and every distance, flow and
+    average is scaled by the error -- with nothing on the display to suggest
+    it, because a wrong clock produces plausible numbers.
+
+    Nothing else in this project can catch that. The host tests feed the core a
+    clock of their own, and the fixtures cannot check a clock they were
+    recorded with. Two 0x603 frames and a wall clock can.
+    """
+    stamps = listener.rx.get(TX_DIAG, [])
+    if len(stamps) < 2 or TX_DIAG not in listener.first:
+        rep.note("too few 0x603 frames to check the clock")
+        return
+
+    first = decode_diag(listener.first[TX_DIAG])
+    last = decode_diag(listener.last[TX_DIAG])
+    device_s = last["uptime_s"] - first["uptime_s"]
+    host_s = stamps[-1] - stamps[0]
+    if device_s <= 0 or host_s <= 0:
+        rep.note("the uptime did not advance; cannot check the clock")
+        return
+
+    error = (device_s - host_s) / host_s
+    # The device counts whole seconds, so one count of quantisation over a
+    # 20 s window is already 5 %. The tolerance has to sit outside that or it
+    # measures the rounding rather than the crystal: at 20 s it allows 2 %
+    # plus a second, which a real divider mistake (a factor, not a percent)
+    # blows through immediately.
+    allowed = 0.02 + 1.0 / host_s
+    rep.check("the converter's clock agrees with the host's",
+              abs(error) <= allowed,
+              f"device counted {device_s} s while the host saw {host_s:.1f} s "
+              f"({error:+.1%}); a divider mistake scales every distance and "
+              f"flow by the same factor")
 
 
 def latest_diag(listener: Adapter):
@@ -466,6 +509,7 @@ def mode_traffic(sender: Adapter, listener: Adapter, log, seconds: float,
         rep.check("the converter did not restart during the run",
                   diag["uptime_s"] >= elapsed - 2,
                   f"uptime {diag['uptime_s']} s over a {elapsed:.0f} s run")
+        check_clock(rep, listener, elapsed)
     else:
         rep.check("0x603 was received", False, "none seen")
 
@@ -594,6 +638,125 @@ def mode_scenarios(sender: Adapter, listener: Adapter, log) -> Report:
                   f"flags {names(diag['flags'], DIAG_FLAGS)}")
     rep.note("this is the only test of the six acceptance filters anywhere -- "
              "they exist only in silicon")
+
+    # -- E: refuelling resets the trip --------------------------------------
+    print("\n  E  a refuelling, which resets the trip average")
+    rep.note("the rule is REFUEL_CONFIRM_S consecutive at-rest samples more "
+             "than REFUEL_RISE_L above the settled level, and the settled "
+             "level is a 16 s filter -- so this scenario is slow by nature")
+    rest = bs.Condition(speed_kmh=0.005, rpm=800, throttle=bs.THROTTLE_REST,
+                        tank_l=20, flow_ul_s=330)
+    stream = bs.Stream(tpl, rest)
+    settle(stream, sender, both, 75, rep=rep)     # ~5 tau for the rest filter
+    before = listener.last.get(TX_TRIP)
+    rep.check("the trip accumulated while standing",
+              before is not None and int.from_bytes(before[0:4], "big") > 0,
+              "fuel burns at idle even though distance does not")
+
+    stream.cond = bs.Condition(speed_kmh=0.005, rpm=800,
+                               throttle=bs.THROTTLE_REST,
+                               tank_l=32, flow_ul_s=330)   # a 12 litre fill
+    settle(stream, sender, both, 12, rep=rep)
+    after = listener.last.get(TX_TRIP, bytes(8))
+    rep.check("the trip reset when the tank rose while at rest",
+              int.from_bytes(after[0:4], "big") <
+              int.from_bytes((before or bytes(8))[0:4], "big"),
+              "0x602 TripFuel must drop, not keep climbing")
+    rep.note("otherwise this is only testable at a petrol station, and "
+             "getting it wrong means the average never clears -- or clears "
+             "on its own halfway through a drive")
+    return rep
+
+
+# --------------------------------------------------------------------------
+# 7.5 -- the accumulators survive a power cycle
+# --------------------------------------------------------------------------
+
+# The one path in this firmware that nothing has ever executed. test_persist.c
+# simulates 100,000 write cycles against a RAM array, which proves the ring
+# arithmetic and the wear levelling and says nothing at all about
+# hal_eeprom_write(): the 0x55/0xAA unlock, WREN, polling WR, and the decision
+# to restore GIE while that poll runs. All of it is datasheet reading, and the
+# consequence of getting it wrong is invisible -- the device works perfectly
+# until the ignition goes off, and then loses every trip.
+
+def mode_persist_arm(sender: Adapter, listener: Adapter, log) -> Report:
+    print("\n7.5  PERSISTENCE, part 1 -- put something in the EEPROM")
+    rep = Report()
+    tpl = bs.templates(log)
+    both = {sender, listener}
+    sender.open()
+    if listener is not sender:
+        listener.open()
+
+    stream = bs.Stream(tpl, bs.Condition(speed_kmh=60, rpm=2200, throttle=70,
+                                         flow_ul_s=1200))
+    # PERSIST_INTERVAL_MS is 20 s and persist_save() also refuses when nothing
+    # changed, so 30 s of moving traffic guarantees at least one real write.
+    settle(stream, sender, both, 30, rep=rep)
+
+    trip = listener.last.get(TX_TRIP)
+    rep.check("the trip accumulated", trip is not None and
+              int.from_bytes(trip[0:4], "big") > 0)
+    if trip is None:
+        return rep
+
+    trip_ml = int.from_bytes(trip[0:4], "big")
+    trip_m = int.from_bytes(trip[4:8], "big")
+    diag = latest_diag(listener)
+    if diag:
+        show_diag(diag, rep)
+
+    print()
+    print("    " + "-" * 68)
+    print(f"    Trip is now {trip_ml} ml over {trip_m} m.")
+    print("    POWER-CYCLE THE BOARD NOW -- pull the 5 V and put it back.")
+    print("    Then run:")
+    print(f"      python tools/bench_test.py --persist-check "
+          f"--expect-trip-ml {trip_ml} --port ...")
+    print("    " + "-" * 68)
+    return rep
+
+
+def mode_persist_check(sender: Adapter, listener: Adapter, log,
+                       expect_ml: int) -> Report:
+    print("\n7.5  PERSISTENCE, part 2 -- did it come back?")
+    rep = Report()
+    tpl = bs.templates(log)
+    both = {sender, listener}
+    sender.open()
+    if listener is not sender:
+        listener.open()
+
+    stream = bs.Stream(tpl, bs.Condition(speed_kmh=60, rpm=2200, throttle=70,
+                                         flow_ul_s=1200))
+    settle(stream, sender, both, 6, rep=rep)
+
+    diag = latest_diag(listener)
+    if diag is None:
+        rep.check("0x603 was received", False, "none seen")
+        return rep
+    show_diag(diag, rep)
+
+    rep.check("the board really was power-cycled",
+              bool(diag["reset_cause"] & 0x01),
+              f"reset cause reads {names(diag['reset_cause'], RESET_CAUSES)}; "
+              "without a power-on this test proves nothing")
+    rep.check("PERSIST_OK is set, so a stored record was found",
+              bool(diag["flags"] & 0x10),
+              "clear means persist_load() found nothing -- either the write "
+              "never happened or the ring cannot be read back")
+
+    trip = listener.last.get(TX_TRIP, bytes(8))
+    got_ml = int.from_bytes(trip[0:4], "big")
+    # Up to PERSIST_INTERVAL_MS of accumulator is lost at every power-off by
+    # design, and six seconds of fresh traffic is added on top, so this is a
+    # band rather than an equality. src/persist.h has the arithmetic.
+    floor = int(expect_ml * 0.5)
+    rep.check("the trip came back rather than starting from zero",
+              got_ml >= floor,
+              f"read {got_ml} ml, expected at least {floor} of the "
+              f"{expect_ml} ml stored -- up to 20 s of it is lost by design")
     return rep
 
 
@@ -706,6 +869,13 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--fault", action="store_true")
     ap.add_argument("--all", action="store_true",
                     help="every test, in order; needs two adapters")
+    ap.add_argument("--persist-arm", action="store_true",
+                    help="7.5 part 1: accumulate a trip and write it to the "
+                         "EEPROM, then tell you to power-cycle")
+    ap.add_argument("--persist-check", action="store_true",
+                    help="7.5 part 2: after the power cycle, did it come back")
+    ap.add_argument("--expect-trip-ml", type=int, default=0,
+                    help="the trip --persist-arm reported, in ml")
     ap.add_argument("--all-one-device", action="store_true",
                     help="only what a single adapter can run -- traffic and "
                          "scenarios, which are the two that cover what "
@@ -729,6 +899,25 @@ def main(argv: list[str] | None = None) -> int:
         wanted = list(one_device)
     elif args.all or not wanted:
         wanted = one_device + two_device
+
+    # The persistence pair is its own thing: it spans a power cycle, so it can
+    # never be part of a sequence that runs straight through.
+    if args.persist_arm or args.persist_check:
+        port = args.port or find_port()
+        sender = Adapter(port, "sender")
+        acker = Adapter(args.port2, "acker") if args.port2 else None
+        listener = acker or sender
+        try:
+            if args.persist_arm:
+                rep = mode_persist_arm(sender, listener, args.log)
+            else:
+                rep = mode_persist_check(sender, listener, args.log,
+                                         args.expect_trip_ml)
+        finally:
+            sender.release()
+            if acker:
+                acker.release()
+        return summarise([rep])
 
     if args.list:
         from serial.tools import list_ports
@@ -787,6 +976,10 @@ def main(argv: list[str] | None = None) -> int:
         if acker:
             acker.release()
 
+    return summarise(reports)
+
+
+def summarise(reports) -> int:
     failed = [f for r in reports for f in r.failed]
     print()
     if failed:

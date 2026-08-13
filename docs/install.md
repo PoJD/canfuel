@@ -52,7 +52,7 @@ owns.
 | **Soldering iron** | 5 | through-hole, nothing fine-pitch |
 | **A programmer IPECMD supports for the PIC18F25K80** | 4, 5 | through the 5-pin ICSP header J3, driven from the command line with **IPECMD** — see step 4. MPLAB X must be installed, because IPECMD is part of it, but the IDE is never opened. IPECMD also drives MPLAB Snap, PICkit 4 and ICD 4; only the `-TP` name changes. *(Tested on a PICkit 3 with MPLAB X v6.00.)* |
 | **A CAN interface the host can drive** — a second one unlocks 7.3 and 7.4 | 7, 8, and any recording | for watching the bus and recording logs. Any adapter that reaches 500 kbps will do; only the capture script is adapter-specific. *(Tested on a [USBtin](https://www.fischl.de/usbtin/); `tools/usbtin_capture.py` drives it over its serial protocol and needs `pyserial`. Every fixture in `test/fixtures/` was recorded with it.)* |
-| **Multimeter** | 3, 5, 7 | ringing out the loom, and confirming 5 V before the board is ever plugged in |
+| **Multimeter** | 3, 5, 7 | ringing out the loom, confirming 5 V before the board is ever plugged in, and measuring the bench bus termination in step 7 |
 | **Crimping tools and loom parts** | 3 | listed in `kicad/canfuel/docs/harness.md`, which is where that list belongs |
 | **A breadboard** | 7 only | to build a short bench bus. No resistors needed if the adapters have switchable termination — two terminators give 60 Ω, the middle of the transceiver's specified 50–65 Ω range |
 | **A diagnostic tool for the vehicle** | calibration only | **optional.** Not needed to build or run anything. *(Tested with VCDS.)* |
@@ -625,14 +625,14 @@ is not transmitted, and you are about to need both.
 
 ## 6. Loopback on the desk
 
-**This is the step that is easy to skip and should not be.** It costs ten
-minutes and it is the only test of the CAN driver that needs no bus, no
-adapter, no transceiver and no car.
+**The loopback hex from step 5 is already in the device**, so this costs ten
+minutes and needs nothing further: no bus, no adapter, no transceiver, no car.
+Just 5 V and JP1 fitted.
 
 DS39977C §27.3.5 hands the transmit buffers straight to the receive buffers, so
-the module talks to itself, with no bus, no adapter and no transceiver needed.
-
-The board needs 5 V and JP1 fitted, and nothing else.
+the module talks to itself. That is all it does, and the section below is
+honest about how little it therefore proves — but it is the cheapest check
+there is, and the one fault it does catch is fatal.
 
 | LED_PWR | LED_CAN | Means |
 |---|---|---|
@@ -685,6 +685,7 @@ car** — where a failure costs a trip and the only instrument is a blinking LED
 | **7.2** scenarios | 1 adapter | **do it.** The only test of the six acceptance filters anywhere |
 | **7.3** fault injection | 2 adapters | the optional one. Answers "does it recover" early rather than never |
 | **7.4** listen only | 2 adapters | **do it if you have two.** The only check that the listen-only hex is really silent before it meets the car's bus |
+| **7.5** persistence | 1 adapter, and a hand to pull the power | **do it.** The only test of the real EEPROM write path anywhere |
 
 **With one adapter, run `--all-one-device`**, which is 7.1 and 7.2 — the cheap
 half, and exactly what step 6 cannot reach. The order is a prefix rather than a
@@ -730,6 +731,21 @@ that the converter did not restart mid-run. One adapter is enough. With
 `--port2` the second one listens, which makes the frame counts an independent
 measurement instead of the transmitter's own account of itself.
 
+**It also checks the converter's clock against the host's**, from two 0x603
+frames and their uptimes. Everything the device reports is integrated against
+that millisecond clock — 16 MHz / 4, prescale 4, `PR2` = 249, postscale 4 — and
+a mistake anywhere in that chain still runs, still transmits, and scales every
+distance, flow and average by the error, with nothing on the display to suggest
+it. **No host test can catch it**: they feed the core a clock of their own, and
+a recording cannot check the clock it was made with.
+
+**And VddConv is worth one meter reading here.** 0x601 carries the supply the
+PIC measures on itself, and the 1.024 V band gap it measures against has *no
+tolerance given anywhere in the datasheet* — so it is a trend, not a voltmeter.
+Comparing it once against a multimeter at the board gives this unit's offset,
+which is the only calibration it will ever get and takes ten seconds while the
+bus is already running.
+
 ### 7.2 — four behaviours, end to end over the wire
 
 ```
@@ -747,6 +763,7 @@ from, and `CLAUDE.md` is explicit that twins do not catch a shared fault.
 | B | 2 km/h, then 60 km/h, then a wild flow at 5 km/h | FuelNow switches unit at 4 km/h and stops at **99.9**, rather than wrapping |
 | C | standing still, throttle at rest, b7 raised to 42 | Torque and Power read **exactly zero** — the idle gate, with the value the air conditioning produces |
 | D | an unaccepted identifier flooded **alongside** real traffic | the six hardware acceptance filters hold |
+| E | standing still, then the tank rises 12 L | **the refuelling reset fires** and the trip clears — otherwise only testable at a petrol station |
 
 **D is the one worth the trip.** The filters exist only in silicon and nothing
 in the host suite can reach them. The check is not "nothing changed" — it is
@@ -754,9 +771,9 @@ that **0x600 keeps arriving at full rate with correct values, no overflow, and
 `UNHEALTHY` clear**. If a filter leaked, the FIFO would fill with junk and real
 frames would be dropped, which shows up as a rate that sags.
 
-Being honest about its limit: two adapters over a serial link push maybe twice
-the car's bus load, not a saturated 500 kbps bus. It is a load test against
-reality, not against the worst case.
+Being honest about its limit: one adapter over a serial link pushes something
+like the car's own bus load, not a saturated 500 kbps bus. It is a load test
+against reality, not against the worst case.
 
 ⚠ **The host is the bottleneck long before the converter is.** Six frames every
 10 ms is 600 a second, and at 22 bytes of slcan text each that is 132 kbit/s
@@ -831,11 +848,12 @@ converter cannot speak: **is LED_CAN steady, and is LED_PWR blinking slowly?**
 **The LEDs only mean anything while traffic is flowing**, so the run does not
 ask afterwards — it holds the bus alive for `--observe` seconds (30 by default)
 and prints a banner saying to look now. Somebody looks; the answer is recorded
-on a second, short invocation:
+on a second invocation, which re-runs the machine checks too — so give it
+`--seconds 5` unless you want the whole run twice:
 
 ```
 python tools/bench_test.py --listen-only --observe 30 --port COM5 --port2 COM6
-python tools/bench_test.py --listen-only --observe 0 --port COM5 --port2 COM6 \
+python tools/bench_test.py --listen-only --observe 0 --seconds 5 --port COM5 --port2 COM6 \
        --led-can steady --led-pwr slow
 ```
 
@@ -844,6 +862,44 @@ something — that cannot see the board, with a person nearby to ask, so every
 question is a flag rather than a `y/n`. An unreported LED state is reported as
 **unconfirmed**, never as a pass: 7.4 is incomplete without it, and saying so is
 the point.
+
+### 7.5 — the accumulators survive a power cycle
+
+```
+python tools/bench_test.py --persist-arm --port COM5
+#   ... power-cycle the board when it says to ...
+python tools/bench_test.py --persist-check --expect-trip-ml 1234 --port COM5
+```
+
+**This is the only test of the real EEPROM there is.** `test_persist.c`
+simulates 100,000 write cycles against a RAM array, which proves the ring
+arithmetic and the wear levelling and says nothing whatever about
+`hal_eeprom_write()` — the `0x55`/`0xAA` unlock, `WREN`, polling `WR`, and the
+deliberate decision to restore `GIE` while that poll runs. All of it is
+datasheet reading that no hardware has executed.
+
+**And the failure is invisible until it is expensive**: the device works
+perfectly, the display is right, and then the ignition goes off and every trip
+is gone. In the car that reads as "it forgot", months later, with nothing to
+point at.
+
+Part 1 drives 30 s of moving traffic — comfortably more than the 20 s
+`PERSIST_INTERVAL_MS`, so at least one real write happens — and prints the
+trip. Part 2, after the power cycle, checks three things: that the reset cause
+really is **power-on** (without which the test proves nothing), that
+`PERSIST_OK` is set so a record was found, and that the trip came back rather
+than starting from zero.
+
+⚠ **Up to 20 s of accumulator is lost at every power-off by design**, so part 2
+allows a band rather than an equality. `src/persist.h` has that arithmetic and
+why it is not a bug.
+
+**It costs the EEPROM nothing worth counting.** Writes happen at
+`PERSIST_INTERVAL_MS` and only on change, so a full `--all` run plus this pair
+is about **13 writes**. The ring spreads them over 64 slots against D120's
+100,000-cycle minimum, which is 6.4 M writes — 4.1 years of engine-on time, or
+20 seconds of driving per write. **A whole bench session costs about four
+minutes of driving.** A thousand of them would spend 0.2 % of the budget.
 
 ### Afterwards: the EEPROM holds bench data
 
