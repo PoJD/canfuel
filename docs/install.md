@@ -51,17 +51,18 @@ owns.
 | **The parts to populate it** | 5 | 23 fitted parts plus two sockets, mostly through-hole — `kicad/canfuel/fab/canfuel-bom.csv`, which lists neither the sockets nor R5. See step 5 |
 | **Soldering iron** | 5 | through-hole, nothing fine-pitch |
 | **A programmer IPECMD supports for the PIC18F25K80** | 4, 5 | through the 5-pin ICSP header J3, driven from the command line with **IPECMD** — see step 4. MPLAB X must be installed, because IPECMD is part of it, but the IDE is never opened. IPECMD also drives MPLAB Snap, PICkit 4 and ICD 4; only the `-TP` name changes. *(Tested on a PICkit 3 with MPLAB X v6.00.)* |
-| **A CAN interface the host can drive** | 7, 8, and any recording | for watching the bus and recording logs. Any adapter that reaches 500 kbps will do; only the capture script is adapter-specific. *(Tested on a [USBtin](https://www.fischl.de/usbtin/); `tools/usbtin_capture.py` drives it over its serial protocol and needs `pyserial`. Every fixture in `test/fixtures/` was recorded with it.)* |
+| **A CAN interface the host can drive** — **two of them for step 7** | 7, 8, and any recording | for watching the bus and recording logs. Any adapter that reaches 500 kbps will do; only the capture script is adapter-specific. *(Tested on a [USBtin](https://www.fischl.de/usbtin/); `tools/usbtin_capture.py` drives it over its serial protocol and needs `pyserial`. Every fixture in `test/fixtures/` was recorded with it.)* |
 | **Multimeter** | 3, 5, 7 | ringing out the loom, and confirming 5 V before the board is ever plugged in |
 | **Crimping tools and loom parts** | 3 | listed in `kicad/canfuel/docs/harness.md`, which is where that list belongs |
-| **A breadboard and two resistors** | 7 only | to build a short bench bus. Any pair that puts 50–65 Ω across CANH/CANL: 2 × 120 Ω, or 2 × 100 Ω, which is the bottom of the transceiver's specified load range and still in it |
+| **A breadboard** | 7 only | to build a short bench bus. No resistors needed if the adapters have switchable termination — two terminators give 60 Ω, the middle of the transceiver's specified 50–65 Ω load range |
 | **A diagnostic tool for the vehicle** | calibration only | **optional.** Not needed to build or run anything. *(Tested with VCDS.)* |
 | **The vehicle** | 8, 9, 10 | a VW PQ34 car with the AQY engine. Other PQ34 cars share much of the bus but nothing here is verified against them |
 
-**A 120 Ω terminator** is worth knowing about: the board deliberately does not
-fit R5, because the vehicle's bus is already terminated at both ends. Bench
-testing off the vehicle needs an external one, and step 7 says what to fit —
-but step 6, loopback, needs none, which is another reason to do it.
+**Termination** is worth knowing about: the board deliberately does not fit R5,
+because the vehicle's bus is already terminated at both ends. A bench bus
+therefore needs its own — step 7 uses the adapters' own switchable terminators
+rather than loose resistors — but step 6, loopback, needs none at all, which is
+another reason to do it.
 
 **Nothing above is needed for step 1.** The whole core builds and its tests run
 on a PC with gcc, make and Python and no hardware whatsoever.
@@ -82,7 +83,7 @@ cheapest test of the CAN driver there is.
 | 4 | Prove the programmer, with no board | a programmer, a USB port, MPLAB X | `canfuel` |
 | 5 | Populate and programme a board | programmer, XC8, an iron | `canfuel` |
 | 6 | Loopback on the desk | nothing but 5 V | `canfuel` |
-| 7 | *(optional)* A bench bus, with a verdict | breadboard, 2 resistors, a CAN adapter | `canfuel` |
+| 7 | *(optional)* A bench bus, with a verdict | breadboard, **two** CAN adapters | `canfuel` |
 | 8 | Listen only, in the vehicle | the vehicle | `canfuel` |
 | 9 | Transmit, in the vehicle | the vehicle | `canfuel` |
 | 10 | Check it against the raw counter | a drive | — |
@@ -640,101 +641,141 @@ trip to the car, and in step 9 it puts error frames on the car's bus.
 
 **Skip this and nothing later breaks.** Step 6 has already proved the CAN
 module talks; step 8 is the real bus. What this buys is the one thing neither
-of them gives you: **the converter's own error counters, as numbers, before you
-are lying under a dashboard.**
+of them gives you: **the converter's own error counters, as numbers, and its
+behaviour under faults you choose — before you are lying under a dashboard.**
 
-It needs a breadboard, two resistors and a USBtin.
+**Two USBtins, both with their termination jumper fitted.** That is the whole
+bill of materials: the jumper is the terminator, so there are no loose
+resistors to find. One adapter is enough for 7b, but 7a and 7e need both.
 
 ### Build the bus
 
-```
-      converter J1/J2                USBtin
-        CANH ──┬────────────────────── CANH
-               R                        
-        CANL ──┴────────────────────── CANL
-```
+CANH to CANH, CANL to CANL, converter to adapters, on a breadboard. The board's
+own R5 is deliberately not fitted, so both terminators are the adapters'.
 
-with a resistor across CANH/CANL at **each end** — that is what a CAN bus is.
-The board's own R5 is deliberately not fitted (the car's bus is terminated
-elsewhere), so both terminators are external here.
-
-⚠ **The target is 50–65 Ω measured across CANH and CANL, with everything
-powered down.** That is DS20005167C's own specified load range for `VO(D)`, the
-dominant output voltage. Two 100 Ω resistors, one at each end, give **50 Ω** —
-the bottom of the range and perfectly in specification. Two 120 Ω give 60 Ω,
-the middle of it.
-
-**Measure rather than count resistors.** If the adapter has a terminator of its
-own fitted, two 100 Ω on top of it give 37.5 Ω, which is *below* what the
-transceiver is specified to drive. The meter settles it in five seconds and no
-datasheet can, because it is your adapter.
-
-### Flash the normal build, not listen-only
+⚠ **Measure across CANH and CANL with everything powered down and expect
+50–65 Ω.** That is DS20005167C's own specified load range for `VO(D)`, the
+dominant output voltage. Two terminators of 120 Ω give 60 Ω, in the middle of
+it. **Measure rather than count jumpers** — three terminators on the bus give
+40 Ω, which is below what the transceiver is specified to drive, and the meter
+settles in five seconds what no datasheet can, because it is your hardware.
 
 ```
-make -C mplab
+python tools/bench_test.py --all --port COM5 --port2 COM6
 ```
 
-⚠ **and this is not a preference.** CAN requires a receiver to drive the
-acknowledge slot dominant. A listen-only converter never does — DS39977C
-§27.3.4 promises exactly that, "no messages will be transmitted while in this
-state, including error flags or Acknowledge signals". So with a `LISTEN_ONLY`
-hex, the USBtin is alone on the bus: every frame it sends goes unacknowledged,
-is retransmitted, and its transmit error counter reaches the bus-off limit of
-256 within milliseconds. The traffic stops before you have looked up.
+runs all four in the order below and prints one verdict. Each also runs alone
+(`--listen-only`, `--traffic`, `--scenarios`, `--fault`).
 
-**Testing a listen-only build on a bench needs a second adapter** to do the
-acknowledging. With one adapter, test the normal build — which is the better
-test anyway, because it exercises the transmit path too.
-
-**Fit JP1**, or there is no 0x603 and the whole point of the step is missing.
-
-### Run it
+### 7a — listen only, and the one thing a human must confirm
 
 ```
-python tools/bench_test.py
+make -C mplab CAN_MODE=LISTEN_ONLY      # flash this first
+python tools/bench_test.py --listen-only --port COM5 --port2 COM6
 ```
 
-One command. It replays a real recording from the vehicle onto the bench bus,
-listens to what the converter sends back, reads the diagnostic frame, and says
-PASS or FAIL:
+**Why the second adapter is not optional here.** CAN requires a receiver to
+drive the acknowledge slot dominant, and a listen-only converter never will —
+DS39977C §27.3.4 promises exactly that, "no messages will be transmitted while
+in this state, including error flags or Acknowledge signals". With one adapter
+the transmitter is alone on the bus: nothing acknowledges, every frame is
+retransmitted, and it reaches the bus-off limit of 256 within milliseconds. The
+second adapter is opened normally and transmits nothing at all; acknowledging
+is its entire job.
+
+Two things the script checks itself, and they are not nothing:
+
+- **the converter transmits absolutely nothing** — zero frames on 0x600–0x603
+  over the whole run. A listen-only build that transmits is a bug, and this is
+  the only place it would be caught.
+- **neither adapter reports a bus error**, which is also the proof that the
+  second adapter really is acknowledging.
+
+Then it asks you the one question no frame can answer, because in this mode the
+converter cannot speak: **is LED_CAN steady, and is LED_PWR blinking slowly?**
+The answers go into the verdict rather than into somebody's memory.
+
+### 7b — traffic, and the answers read back
 
 ```
-Bench test
-  log                   09_idle_60s_z1.txt
-  frames per pass       21463 (adapter timestamps)
-  test length           20 s
-
-Traffic sent            13802 frames in 20.0 s
-Adapter status          0x00 clean
-
-What the converter transmitted
-  0x600 fuel   (FuelNow, FuelAvg, FuelTank, Range)   199   10.0 Hz  ok
-  0x601 engine (Power, Torque, Flow, VddConv)        199   10.0 Hz  ok
-  0x602 trip   (litres, metres)                       20    1.0 Hz  ok
-  0x603 diag   (errors, reset cause, uptime)          20    1.0 Hz  ok
-
-Converter diagnostics, out of 0x603
-  CAN error counters      rx 0, tx 0
-  Module error state      none
-  Flags                   CAN_OK DATA_LIVE PERSIST_OK
-  Send refusals           0
-  Reset cause             none
-  Uptime                  47 s
-
-Synthetic bench test finished. Traffic sent, the converter answered on all four
-frames, and its CAN error counters are zero. PASS.
+make -C mplab                            # the normal build from here on
+python tools/bench_test.py --traffic --port COM5
 ```
 
-**Nothing there asks a human to interpret a blink rate**, which is the whole
-reason it exists. `--seconds`, `--log` and `--speed` are the knobs;
-`--dry-run` shows what it would replay and touches no hardware.
+Replays a real recording from the vehicle and checks that 0x600 and 0x601 come
+back at 10 Hz, 0x602 and 0x603 at 1 Hz, that the error counters are zero and
+that the converter did not restart mid-run. One adapter is enough. With
+`--port2` the second one listens, which makes the frame counts an independent
+measurement instead of the transmitter's own account of itself.
 
-The failures it names rather than leaving you to work out: a missing JP1 (no
-0x603 at all), a listen-only hex (nothing acknowledges, the adapter reports
-errors), a watchdog or brown-out reset since power-up, a converter that
-restarted mid-test, and an adapter that cannot keep up — which is the host's
-problem and is reported as such.
+### 7c — four behaviours, end to end over the wire
+
+```
+python tools/bench_test.py --scenarios --port COM5
+```
+
+The frames are **real ones with one field overwritten** — the speed bytes of a
+recorded 0x1A0, the counter of a recorded 0x480. Building them from scratch
+would mean writing the inverse of `decode.c` from the table `decode.c` came
+from, and `CLAUDE.md` is explicit that twins do not catch a shared fault.
+
+| | Scenario | What it proves |
+|---|---|---|
+| A | traffic stops for 2 s, then returns with the counter from zero | everything derived from the bus goes to 0 and **VddConv does not**; it recovers within a second; an ECU counter restart invents no fuel (trap 2) |
+| B | 2 km/h, then 60 km/h, then a wild flow at 5 km/h | FuelNow switches unit at 4 km/h and stops at **99.9**, rather than wrapping |
+| C | standing still, throttle at rest, b7 raised to 42 | Torque and Power read **exactly zero** — the idle gate, with the value the air conditioning produces |
+| D | an unaccepted identifier flooded **alongside** real traffic | the six hardware acceptance filters hold |
+
+**D is the one worth the trip.** The filters exist only in silicon and nothing
+in the host suite can reach them. The check is not "nothing changed" — it is
+that **0x600 keeps arriving at full rate with correct values, no overflow, and
+`UNHEALTHY` clear**. If a filter leaked, the FIFO would fill with junk and real
+frames would be dropped, which shows up as a rate that sags.
+
+Being honest about its limit: two adapters over a serial link push maybe twice
+the car's bus load, not a saturated 500 kbps bus. It is a load test against
+reality, not against the worst case.
+
+### 7e — break the bus, then prove it recovers
+
+```
+python tools/bench_test.py --fault --port COM5 --port2 COM6
+```
+
+Intermittent CAN faults are the ones that are hard to chase in a car. Both
+injections here are pure adapter commands — nothing is unplugged:
+
+- **E1, no acknowledgements.** Both adapters switch to listen-only, so the bus
+  is alive and nothing drives the ACK slot. The converter's transmit error
+  counter climbs by 8 a try and it goes bus-off — at which point **it falls
+  silent, which is itself the observation**. Then the adapters go back to
+  normal and it must come back on its own. DS39977C §27.11: recovery is 128 ×
+  11 recessive bits, about 2.8 ms at 500 kbps, with no MCU intervention. This
+  is where that claim gets tested on your silicon.
+- **E2, a node at the wrong bit rate.** One adapter transmits at 250 kbit/s
+  into a 500 kbit/s bus, which produces real error frames and drives the
+  *receive* counter up. Then it stops and the counters must come down.
+
+**The check that matters is `UNHEALTHY` after recovery.** Both error counters
+reset when the module recovers, so a converter that went bus-off and came back
+reads perfectly clean — and the latched flag is the only trace that anything
+happened. This test is the only proof that latch works.
+
+If it does **not** recover, power-cycle the board and say so: that is a real
+finding, and far better found here than in the car.
+
+### Afterwards: the EEPROM holds bench data
+
+These scenarios drive synthetic tank levels and fuel totals into the persist
+ring. In the car that reads as a wrong trip and a wrong Range, and the
+refuelling detector would be comparing against a level that never existed.
+
+**The reflash at the start of step 8 clears it** — `-OH` erases the EEPROM by
+default, so simply do not pass `-Z0-3FF` there. Nothing extra to run.
+
+**And you can prove it was cleared**: on the next run, 0x603's `PERSIST_OK`
+flag comes back **clear**, because `persist_load()` returns false on a virgin
+ring. That is a correct start, not an error.
 
 ---
 
@@ -745,9 +786,15 @@ make -C mplab CAN_MODE=LISTEN_ONLY
 ```
 
 Flash it with the same four commands as step 5, fit JP1, wire the board in
-through the Y-splitter, and switch on. **This is the first reflash where
-`-Z0-3FF` is worth thinking about** — see step 5; there is nothing in the
-EEPROM yet worth keeping, but from here on there will be.
+through the Y-splitter, and switch on.
+
+⚠ **Do not pass `-Z0-3FF` on this reflash, and if you did step 7 that is not
+optional.** The default erase is what clears the synthetic tank level and trip
+totals the bench scenarios left in the EEPROM; carried into the car they would
+read as a wrong Range and a wrong average, and the refuelling detector would be
+comparing against a level that never existed. **From the next reflash onwards
+`-Z0-3FF` is the one worth thinking about** — by then the ring holds a real
+trip.
 
 ⚠ **Put the board where you can see both LEDs**, and leave the dashboard open
 until step 11. In this step and this step alone, the LEDs are the *only*

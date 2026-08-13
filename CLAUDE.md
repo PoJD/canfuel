@@ -1046,9 +1046,13 @@ mplab/
   canfuel.X/    the MPLAB X project, for editing and for driving a PICkit
   README.md     how to build, and what JP2 is for
 tools/          canlog.py, replay.py — Python, runs anywhere
-                bench_test.py — replays a fixture onto a bench bus through a
-                CAN adapter, reads 0x603 back, prints PASS or FAIL. install.md
-                step 7. Needs pyserial and hardware
+                bench_test.py — the bench tests of install.md step 7:
+                listen-only, traffic, four scenarios and fault injection, each
+                ending in a verdict rather than a blink rate. Needs pyserial,
+                one CAN adapter, and two for the listen-only and fault tests
+                bench_scenarios.py — the synthetic streams behind it. Frames are
+                REAL ones with one field patched, never built from scratch: a
+                builder written from decode.c's table would be its twin
                 cycles.py — cycle budgets out of the XC8 listing, a CI gate
                 checkdocs.py — prose vs config.h, a CI gate
 ```
