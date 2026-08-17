@@ -559,6 +559,54 @@ often printed `330`**, meaning 33 followed by no zeros, *not* 330 pF. The two
 codes look like near neighbours and are three orders of magnitude apart. This
 is convention rather than anything cited; the meter settles it.
 
+### And measure again after it is soldered
+
+The section above catches a misread colour code and nothing else. **A joint
+fails in two directions and neither one is visible**, so each pad gets two
+readings rather than one:
+
+- **open** — the iron never wetted the pad, or the lead moved as it cooled.
+  Continuity to the other end of the net proves it did not happen.
+- **bridged** — solder reached the nearest copper, **which is hardly ever the
+  next pad along**. SGND is poured on both layers, so for most pads the nearest
+  copper is ground, three tenths of a millimetre away, on every side.
+
+**Both readings, for every pad on the board, are in
+`kicad/canfuel/docs/solder-check.md`.** It is generated from the board by
+`kicad/tools/render-solder-check.py` — the nets out of the netlist, the
+distances out of the filled copper — so there is nothing in it anybody typed
+and nothing in it that can go stale. Look up the part you have just soldered
+and it names where the meter must show zero and what it must stay open to,
+with the gap in millimetres and a hole you can find by eye for each one.
+
+Three things that make the difference between that table working and being
+ignored:
+
+- **Do it part by part, as you go.** That is the whole reason the solder order
+  exists: while a part is the newest thing on the board, every reading is of
+  that part. Once its neighbours are in, you are measuring the net.
+- **Resistance, not the beeper, for anything with a capacitor across it.** The
+  part charges through the meter, so the beeper chirps once and goes quiet —
+  that chirp is the capacitor, not a bridge. Watch the number climb and settle
+  in megohms or `OL`. A steady near-zero that never moves is a bridge.
+- **The distances are copper edge to copper edge, as designed.** Solder mask
+  sits between most of them, which makes a bridge less likely and not
+  impossible.
+
+**C7 is the worked example, and it is the one that needs the table most**,
+because its second pad has no track at all — it *is* the ground pour, which is
+why nothing appears to leave it. Measured on the first board:
+
+| Reading | Between | Result |
+|---|---|---|
+| capacitance | U1 pin 6 hole and U1 pin 8 hole | **10 µF** — both joints and the track to pin 6 |
+| resistance | U1 pin 6 hole and ground | **megohms** — no bridge to the pour, 0.30 mm away |
+| resistance | U1 pin 6 hole and JP1 pin 2 | open — `DBG_EN` passes 0.37 mm below that pad |
+| resistance | ground and J3 pin 5 | open — `PGC` passes 0.38 mm above the other pad |
+
+Both of those tracks run **under the body of the capacitor**, across the
+1.8 mm gap between its pads, which is not something the eye finds afterwards.
+
 ### Programme
 
 ```
