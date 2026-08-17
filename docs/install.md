@@ -405,6 +405,14 @@ becomes a wrong colour in the file a supplier reads.
 Written out for somebody holding a soldering iron for the first time, because
 "check the polarity" is not an instruction unless it says how.
 
+**Have `kicad/canfuel/docs/assembly-orientation.svg` open while you do it.** It
+draws both sides of the board out of `canfuel.kicad_pcb` — the copper, the
+silkscreen, every designator and the values — and puts a `+` and a `−` on the
+two pads of each part below, so the answer is a picture rather than a paragraph.
+Its polarity comes from the netlist rather than from a table somebody typed, so
+it cannot disagree with the board. What it cannot tell you is which leg of the
+part in your hand is which, which is what the rest of this section is for.
+
 **Everything not in this section is symmetric** — every resistor, every ceramic
 capacitor, the crystal and all three headers. Fit those either way and they
 work.
