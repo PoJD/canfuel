@@ -356,6 +356,11 @@ non-obvious entry is C7, which is first because it is the only surface-mount
 part and it lives on the **bottom** — once through-hole legs are sticking out
 down there, that pad is awkward to reach.
 
+**Read *The joints that need more heat than they look like*, below the table,
+before the iron is hot.** It is one technique note, it applies to roughly half
+the joints on this board, and the joint where it matters most fails two steps
+later in a way that reads as an unpowered board.
+
 | # | Ref | Part | Where / what it does | Orientation matters |
 |---|---|---|---|---|
 | 1 | **C7** | 10 µF X7R 1210 **SMD** | **bottom side**, under U1 pin 6 — VDDCORE/VCAP | no |
@@ -399,6 +404,37 @@ both measured at Vf ≈ 1.8 V before fitting.
 `kicad` and regenerate the BOM with the `kicad-cli` command in that repository's
 plan §7 — `fab/` is generated from the schematic, so a wrong colour there
 becomes a wrong colour in the file a supplier reads.
+
+### The joints that need more heat than they look like
+
+**Every ground pad on this board hangs on a pour that is filled on both
+layers** — `kicad/canfuel/docs/solder-check.md` says so, which is also why it
+uses "any ground — J3 pin 3" as the place to put the black probe. A pour
+that size carries heat away from a joint about as fast as a small iron delivers
+it, and the failure that produces is not a bridge and not a joint that looks
+dry: **the solder melts, balls up against the iron and never wets the pin at
+all**, while the pad beside it on a signal net takes solder normally. It looks
+like a finished joint from above.
+
+**Heat the pin and the pad together for three to four seconds before the solder
+touches either**, then feed the solder into the joint rather than onto the
+iron. That applies to every ground pad here, and there are more of them than
+you would guess: **the second pad of all eight capacitors**, both LED cathodes,
+R2 pad 2, pin 2 of J1 and J2, U2 pin 2, and the VSS pins of the PIC socket.
+
+**J3 pin 3 is the one that bites**, because it is a ground pad on the one
+connector that gets plugged and unplugged. A pin held only by friction in the
+plastic slides when the plug is pushed on, and what that produces is an ICSP
+link that comes and goes: IPECMD prints `Target device was not found (could not
+detect target voltage VDD)` and **exits 0**, which step 4 reads as an unpowered
+board. Two joints on the same header behaving differently is the tell.
+
+**Strain relief on J3 is worth the two minutes** whatever the joints look like,
+since every programming run pushes on it. A fillet of neutral-cure adhesive
+around the base of the header does it, kept low enough that the plug still
+seats fully — Pattex ONE FOR ALL Crystal is an MS polymer, so it releases
+methanol rather than acetic acid and does not corrode copper or solder, and a
+scalpel takes it off again if the header ever has to come out.
 
 ### The five that can go in backwards
 
@@ -649,7 +685,7 @@ are looking at:
 
 | What it prints | What it means |
 |---|---|
-| `Target device was not found (could not detect target voltage VDD)` | **the board has no power.** Nothing reached the part, so JP2 and the ICSP wiring are not the suspects. `-W` is not used here, so the board needs its own 5 V |
+| `Target device was not found (could not detect target voltage VDD)` | **the board has no power** — or J3 pin 3 is not actually soldered to the ground pour, which behaves the same way and comes and goes as the plug moves; see step 5. Otherwise nothing reached the part, so JP2 and the ICSP wiring are not the suspects. `-W` is not used here, so the board needs its own 5 V |
 | `Target Device ID (0x0) is an Invalid Device ID` | **power is fine, ICSP is not.** JP2 still fitted, wiring on MCLR/PGC/PGD, or a dead part |
 
 The first one still exits 0, so a script checking `$?` would sail straight past
