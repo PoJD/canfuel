@@ -168,6 +168,36 @@ distance is nearly zero and the ratio runs away — on `06_trip_reset.txt` it
 produced **21,395 l/100 km** before the car had moved. Below 100 m of distance
 it must return zero.
 
+## Trap 5: a frame that never arrived is not a reading of zero
+
+`decode_init()` zeroes the whole state, so every field starts at a value that
+is also a legal reading. For most of them that costs nothing — the
+temperatures have `DECODE_TEMP_INVALID`, speed has `speed_valid`, the fuel
+counter has `fuel_counter_valid` — but **the tank had neither a sentinel nor a
+flag**, and zero litres is a perfectly ordinary tank level. Several fixtures
+contain it: `17_drive_property_z1` sloshes between 0 and 3 on a nearly empty
+tank. So there is no value that could have meant "nothing said so".
+
+Why it matters more for the tank than for the rest: it is the only decoded
+field that feeds state which **latches and is then stored**. The first at-rest
+sample initialises the baseline the refuelling rule compares against for the
+whole trip, and `persist.c` writes that baseline to the EEPROM, where the next
+start restores it. A fabricated zero does not stay a display glitch; it
+becomes stored state, and a normal tank then reads as a refuelling.
+
+`tank_valid` is the fix, and the general rule behind it is worth more than the
+one field: **a value is data only if a frame carried it.** Anything else is
+`decode_init()` wearing the same type.
+
+**No fixture can catch this and neither can the Python reference**, which is
+the part to remember. Every recording is of a car whose gauge was talking, so
+absence cannot appear in one, and `tools/replay.py` replays the same
+recordings. It needs a test that constructs the silence on purpose —
+`test_a_silent_bus_invents_no_tank_level` in `test_compute.c` and
+`test_a_silent_bus_reaches_the_eeprom_not_at_all` in `test_scheduler.c`.
+In the car the gate never fires: 0x320 is periodic and arrives long before the
+first sample, which is exactly why only a bench could have shown it.
+
 ---
 
 ## Verified values for tests

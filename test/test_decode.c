@@ -80,6 +80,32 @@ static void test_reserve_lamp_does_not_leak_into_the_litres(void)
     TT_EQ(st.tank_l, 10);                       /* 0x8A = 10 l, lamp on */
 }
 
+/* Zero litres is a real reading -- 17_drive_property_z1 sloshes between 0 and
+ * 3 on a nearly empty tank -- so there is no sentinel available and the flag
+ * is the only thing separating "empty" from "never heard from". compute.c
+ * latches the first at-rest reading into a baseline that reaches the EEPROM,
+ * so getting this wrong stores a level nobody sent. */
+static void test_the_tank_is_invalid_until_a_frame_carries_it(void)
+{
+    decode_state_t st;
+    decode_init(&st);
+    TT_FALSE(st.tank_valid);
+    TT_EQ(st.tank_l, 0);
+
+    feed(&st, CAN_ID_TANK, "0400800000000000");     /* empty, lamp on */
+    TT_TRUE(st.tank_valid);
+    TT_EQ(st.tank_l, 0);                            /* and still zero litres */
+}
+
+/* A frame too short to carry the level must not validate it either. */
+static void test_a_short_tank_frame_validates_nothing(void)
+{
+    decode_state_t st;
+    decode_init(&st);
+    feed(&st, CAN_ID_TANK, "0400");                 /* dlc 2, needs 3 */
+    TT_FALSE(st.tank_valid);
+}
+
 /* --- the fuel counter, traps 3 and the masking -------------------------- */
 
 static void test_counter_masking(void)
@@ -243,6 +269,8 @@ int main(void)
     TT_RUN(test_clt_error_value);
     TT_RUN(test_oil_error_value);
     TT_RUN(test_reserve_lamp_does_not_leak_into_the_litres);
+    TT_RUN(test_the_tank_is_invalid_until_a_frame_carries_it);
+    TT_RUN(test_a_short_tank_frame_validates_nothing);
     TT_RUN(test_counter_masking);
     TT_RUN(test_bit_15_never_reaches_the_counter);
     TT_RUN(test_gate_accepted_states);

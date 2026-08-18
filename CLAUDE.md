@@ -1016,6 +1016,11 @@ It documents four traps that are easy to run aground on quietly. In short:
    the first wrap, then permanently one. The 0x7FFF mask drops it anyway.
 4. **FuelAvg must return zero below 100 m of distance.** Otherwise it divides
    by nearly zero.
+5. **A frame that never arrived is not a reading of zero.** `decode_init()`
+   zeroes everything, and zero litres is a legal tank level, so the tank needs
+   `tank_valid` the way speed needs `speed_valid` — it is the one decoded field
+   feeding state that latches and then reaches the EEPROM. No fixture and no
+   Python replay can show this; both replay a car that was talking.
 
 ---
 

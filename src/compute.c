@@ -117,8 +117,24 @@ static void range_basis_update(compute_t *c)
 
 static void tank_sample(compute_t *c, const decode_state_t *st)
 {
-    uint32_t target_ml = mul_u32_u16(st->tank_l, 1000u);
+    uint32_t target_ml;
     uint16_t target_q8;
+
+    /* Nothing has told us the level yet, so there is nothing to sample. A
+     * zero here is not a reading, it is decode_init(), and the difference
+     * cannot be recovered later: the first at-rest sample LATCHES the
+     * baseline the refuelling rule compares against for the rest of the
+     * trip, and persist.c writes it to the EEPROM. On a bench with no 0x320
+     * on the bus that fabricated "0 litres, trustworthy" survives the power
+     * cycle and then reads a normal tank as a refuelling. In the car 0x320 is
+     * periodic and arrives long before the first sample, so this gate never
+     * fires there -- which is exactly why nothing on the car would have
+     * caught it. */
+    if (!st->tank_valid) {
+        return;
+    }
+
+    target_ml = mul_u32_u16(st->tank_l, 1000u);
 
     /* The displayed level is damped whether we are moving or not -- that is
      * what the damping is for. First order, one sample a second, so the time

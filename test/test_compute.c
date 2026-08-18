@@ -332,6 +332,7 @@ static void test_the_trip_cannot_run_away(void)
     st.speed_valid = true;
     st.speed_mmh = 100000u;                 /* 100 km/h */
     st.tank_l = 40;                         /* a sender that never rises */
+    st.tank_valid = true;
 
     /* Ten kilometres short of the cap, driven at a hundred. */
     c.total_mm = TRIP_MAX_MM - 10000000ul;
@@ -407,6 +408,7 @@ static void drive_seconds(compute_t *c, decode_state_t *st, uint32_t *now,
     st->speed_valid = true;
     st->speed_mmh = 100000u;                /* 100 km/h */
     st->tank_l = 40;                        /* so the damping has somewhere to sit */
+    st->tank_valid = true;
     for (i = 0; i < seconds; i++) {
         *now += 1000u;
         st->fuel_counter = (uint16_t)((st->fuel_counter + ul_per_s) %
@@ -714,12 +716,69 @@ static void test_cranking_is_not_torque(void)
 
 /* --- tank, median and the refuelling reset ------------------------------ */
 
+/* A bus that has never mentioned the tank must not produce a tank reading.
+ *
+ * This is the shape of fault no fixture can show, in either language: every
+ * recording is of a car whose gauge was talking, so a frame that is never
+ * sent cannot appear in one. It has to be constructed on purpose.
+ *
+ * What made it expensive rather than cosmetic is that the tank is the only
+ * decoded field feeding state that LATCHES and is then written to the EEPROM.
+ * A fabricated zero is restored on the next start and read as a baseline. */
+static void test_a_silent_bus_invents_no_tank_level(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 0;
+    int i;
+
+    compute_init(&c);
+    decode_init(&st);           /* nothing has ever arrived: tank_valid false */
+
+    /* A minute of ticks, standing still -- which is what the at-rest gate
+     * wants, so the only thing left holding the baseline back is the flag. */
+    for (i = 0; i < 60; i++) {
+        now += TANK_SAMPLE_MS;
+        compute_tick(&c, &st, now);
+    }
+
+    TT_FALSE(c.tank_stable_valid);
+    TT_EQ(c.tank_stable_l, 0);
+    TT_FALSE(c.tank_damped_valid);
+    TT_EQ(c.refuels, 0);
+}
+
+/* And the flag must not be mistaken for "the tank is not empty": nought
+ * litres from a real frame is a real reading, and the fixtures contain it --
+ * 17_drive_property_z1 sloshes between 0 and 3. */
+static void test_a_real_zero_is_still_a_reading(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 0;
+    int i;
+
+    compute_init(&c);
+    decode_init(&st);
+    st.tank_l = 0;
+    st.tank_valid = true;       /* 0x320 arrived and said empty */
+
+    for (i = 0; i < 5; i++) {
+        now += TANK_SAMPLE_MS;
+        compute_tick(&c, &st, now);
+    }
+
+    TT_TRUE(c.tank_stable_valid);
+    TT_EQ(c.tank_stable_l, 0);
+}
+
 /* Feed n seconds of ticks with a fixed tank reading and speed. */
 static void tank_seconds(compute_t *c, decode_state_t *st, uint32_t *now,
                          uint8_t litres, uint32_t speed_mmh, int seconds)
 {
     int i;
     st->tank_l = litres;
+    st->tank_valid = true;
     st->speed_mmh = speed_mmh;
     st->speed_valid = true;
     for (i = 0; i < seconds; i++) {
@@ -1104,6 +1163,8 @@ int main(void)
     TT_RUN(test_range_ignores_the_slosh);
     TT_RUN(test_range_falls_as_fuel_is_burnt);
 
+    TT_RUN(test_a_silent_bus_invents_no_tank_level);
+    TT_RUN(test_a_real_zero_is_still_a_reading);
     TT_RUN(test_first_stable_reading_only_initialises);
     TT_RUN(test_refuelling_clears_the_average);
     TT_RUN(test_refuelling_snaps_the_damped_level);

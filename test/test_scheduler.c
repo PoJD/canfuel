@@ -25,6 +25,7 @@
 #include "compute.h"
 #include "config.h"
 #include "decode.h"
+#include "persist.h"
 #include "sched.h"
 #include "tt.h"
 
@@ -203,6 +204,7 @@ static void test_a_pass_with_no_time_in_it_changes_nothing(void)
     st.speed_valid = true;
     st.speed_mmh = 50000;
     st.tank_l = 30;
+    st.tank_valid = true;
 
     compute_tick(&a, &st, now);         /* the first call only starts the clock */
     now += 1000;
@@ -215,6 +217,80 @@ static void test_a_pass_with_no_time_in_it_changes_nothing(void)
     TT_EQ(memcmp(&a, &b, sizeof a), 0);
 }
 
+/* --- a bus that says nothing at all -------------------------------------- */
+
+/* Loopback on a desk: the module receives only the frames it sent itself,
+ * which match none of the six acceptance filters, so decode_frame() is never
+ * called. Every accumulator must stay exactly where compute_init() left it,
+ * and NOTHING may reach the EEPROM.
+ *
+ * The two halves of that are separately easy to get wrong and were: the core
+ * latched a tank baseline out of decode_init()'s zeroes, which made the
+ * record non-empty, which sent a fabricated level into the ring on a bench
+ * where nobody had said anything about a tank. Neither the fixtures nor the
+ * Python reference can express this -- both replay a car that was talking. */
+
+#define SILENT_EEPROM_BYTES (PERSIST_SLOTS * PERSIST_RECORD_BYTES)
+static uint8_t  silent_cell[SILENT_EEPROM_BYTES];
+static unsigned silent_writes;
+
+static uint8_t silent_read(uint16_t addr, void *ctx)
+{
+    (void)ctx;
+    return addr < SILENT_EEPROM_BYTES ? silent_cell[addr] : 0xFFu;
+}
+
+static void silent_write(uint16_t addr, uint8_t value, void *ctx)
+{
+    (void)ctx;
+    if (addr < SILENT_EEPROM_BYTES) {
+        silent_cell[addr] = value;
+        silent_writes++;
+    }
+}
+
+static void test_a_silent_bus_reaches_the_eeprom_not_at_all(void)
+{
+    persist_backend_t be;
+    persist_t      ps;
+    persist_record_t rec;
+    decode_state_t st;
+    compute_t      cp;
+    uint32_t now, last_slow = 0;
+
+    memset(silent_cell, 0xFF, sizeof silent_cell);
+    silent_writes = 0;
+    be.read = silent_read;
+    be.write = silent_write;
+    be.ctx = NULL;
+
+    decode_init(&st);
+    compute_init(&cp);
+    TT_FALSE(persist_load(&ps, &be, &rec));     /* virgin part */
+
+    /* main.c's loop, with no frames ever delivered. Five minutes of it, which
+     * is fifteen chances at PERSIST_INTERVAL_MS. */
+    for (now = 0; now <= 300000u; now += 1u) {
+        compute_tick(&cp, &st, now);
+
+        if ((uint32_t)(now - last_slow) >= (uint32_t)TX_SLOW_MS) {
+            last_slow = now;
+            rec.total_ul          = cp.total_ul;
+            rec.total_mm          = cp.total_mm;
+            rec.tank_stable_l     = cp.tank_stable_l;
+            rec.tank_stable_valid = cp.tank_stable_valid;
+            TT_FALSE(persist_save(&ps, &rec, now));
+        }
+    }
+
+    TT_EQ(cp.total_ul, 0);
+    TT_EQ(cp.total_mm, 0);
+    TT_FALSE(cp.tank_stable_valid);
+    TT_EQ(silent_writes, 0u);
+    TT_EQ(silent_cell[0], 0xFFu);               /* the ring is still erased */
+    TT_FALSE(persist_load(&ps, &be, &rec));     /* and still reads as virgin */
+}
+
 int main(void)
 {
     printf("test_scheduler\n");
@@ -225,5 +301,6 @@ int main(void)
     TT_RUN(test_no_refuelling_under_the_scheduler);
     TT_RUN(test_every_gather_stays_inside_the_gauges);
     TT_RUN(test_a_pass_with_no_time_in_it_changes_nothing);
+    TT_RUN(test_a_silent_bus_reaches_the_eeprom_not_at_all);
     return TT_SUMMARY();
 }

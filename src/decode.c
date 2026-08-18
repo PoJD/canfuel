@@ -38,6 +38,7 @@ void decode_init(decode_state_t *st)
     st->oil_c100 = DECODE_TEMP_INVALID;
 
     st->tank_l = 0;
+    st->tank_valid = false;
 
     st->fuel_counter = 0;
     st->fuel_counter_valid = false;
@@ -107,6 +108,7 @@ bool decode_frame(decode_state_t *st, uint16_t can_id,
          * firmware or on the display uses it, and the display reads 0x320
          * itself with a 0x7F mask anyway. */
         st->tank_l = (uint8_t)(data[2] & 0x7Fu);
+        st->tank_valid = true;
         return true;
 
     case CAN_ID_FUEL: {

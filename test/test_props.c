@@ -58,6 +58,7 @@ static decode_state_t rnd_bus(void)
     st.speed_valid = (rnd() & 1u) != 0u;
     st.speed_mmh = rnd_upto(300000u);           /* 300 km/h */
     st.tank_l = (uint8_t)rnd_upto(127u);        /* decode.c masks to seven bits */
+    st.tank_valid = true;
     st.fuel_counter = (uint16_t)rnd_upto(COUNTER_MASK);
     st.fuel_counter_valid = true;
     return st;
@@ -229,6 +230,7 @@ static void test_a_short_frame_changes_nothing(void)
         st.speed_mmh = 50000;
         st.speed_valid = true;
         st.tank_l = 40;
+        st.tank_valid = true;
         st.clt_c100 = 9000;
         st.oil_c100 = 8000;
         st.fuel_counter = 1234;
@@ -275,6 +277,7 @@ static void test_totals_only_move_forward(void)
         st.speed_mmh = rnd_upto(200000u);
         st.rpm_q4 = (uint16_t)((rnd_upto(20u) == 0u) ? 0u : rnd_upto(6000u * 4u));
         st.tank_l = (uint8_t)rnd_upto(60u);
+        st.tank_valid = true;
         counter = (uint16_t)((counter + rnd_upto(200u)) % COUNTER_MODULO);
         st.fuel_counter = counter;
         st.fuel_counter_valid = true;

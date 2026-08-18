@@ -34,8 +34,18 @@ typedef struct {
     int16_t  oil_c100;          /* 0.01 C, from 0x420 b3                    */
 
     /* Tank, from 0x320 b2, seven bits of litres. The reserve lamp in bit 7
-     * is deliberately not decoded -- see decode.c. */
+     * is deliberately not decoded -- see decode.c.
+     *
+     * tank_valid exists for the same reason fuel_counter_valid does, and it
+     * is load-bearing in a way the others are not: zero is a PERFECTLY VALID
+     * tank level, so there is no sentinel available the way there is for the
+     * temperatures. Without the flag, a bus that has never sent 0x320 is
+     * indistinguishable from an empty tank -- and compute.c latches the first
+     * at-rest reading it sees into a baseline that is then written to the
+     * EEPROM and restored on the next start. A fabricated zero does not stay
+     * a display glitch; it becomes stored state. */
     uint8_t  tank_l;
+    bool     tank_valid;        /* false until the first 0x320 arrives      */
 
     /* The fuel counter, from 0x480 b2-b3, already masked to 15 bits. */
     uint16_t fuel_counter;
