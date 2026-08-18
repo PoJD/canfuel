@@ -1240,6 +1240,39 @@ to ignore the test. The same rule fixes the DLC fuzz at 0..8: `hal_can_receive`
 masks the length to four bits into an eight-byte buffer, so a longer one is not
 something the hardware can hand to `decode_frame()`.
 
+### A verification is only as wide as the call chain it ran
+
+The unit tests take one module and feed it inputs. That is what makes them fast
+and what makes them honest **about that module**, and it is also the whole of
+what they prove. So the moment a conclusion is phrased as *"the device will…"*
+rather than *"this function will…"*, it needs the device's own call chain
+underneath it, and if it does not have one, the sentence has to say so.
+
+The worked example, kept because it reached the maintainer as a wrong answer.
+`persist_save()` was checked against a hand-built `persist_record_t` of zeros,
+it refused to write, and that was reported as **"on a quiet bus the firmware
+writes nothing"**. It writes. On a quiet bus `compute.c` hands `main.c` a
+record with `tank_stable_valid` set, because it had latched a tank baseline out
+of `decode_init()`'s zeroes — trap 5 above. **The input was fabricated at
+exactly the seam the fault lived in**, so no amount of care inside `persist.c`
+could have found it.
+
+- **Do not hand-build a struct another module produces** when the question is
+  what the device does. Drive it `decode_frame()` → `compute_*()` → the
+  consumer. `test/sched.h` and `test_scheduler.c` exist for this, and
+  `test_a_silent_bus_reaches_the_eeprom_not_at_all` is the shape to copy: no
+  frames at all, `main.c`'s slots, and the EEPROM checked at the end.
+- **Report the scope that actually ran.** "`persist_save()` refuses an empty
+  record" and "the firmware writes nothing on a quiet bus" are different
+  claims. The first was cheap; the second needed three modules and was worth
+  the extra ten minutes.
+- **A green isolated test is evidence about a module and a hypothesis about the
+  device.** Say which one you are holding.
+
+It is the same blind spot as the two files above, one level up: those say a
+shared oracle cannot see a shared fault, this says an **assumed input cannot see
+a fault upstream of it**.
+
 **`make -C test sanitize` runs the whole suite again under ASan and UBSan**, so
 those 50,000 malformed frames and 10,000 fabricated states go through a checker
 rather than only through assertions somebody remembered to write. It is
