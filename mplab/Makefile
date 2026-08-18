@@ -66,6 +66,14 @@ SRC := \
 	$(SRCDIR)/txframes.c \
 	$(SRCDIR)/persist.c
 
+# Headers are prerequisites too. A wildcard rather than a list, because
+# every header in there is included by something in SRC, so the directory
+# is the honest answer and a hand-written list would go stale the first
+# time a header was added. Same defect as $(MODE_STAMP) below: a build
+# that does not depend on everything that changes it will hand you a stale
+# hex and call it success.
+HDR := $(wildcard $(SRCDIR)/*.h)
+
 # -O2: the loop is nowhere near tight, but the core does 32-bit arithmetic on
 # an 8-bit machine and there is no reason to make it worse. Overridable
 # because XC8's free licence restricts the higher levels -- `make OPT=-O0'
@@ -87,6 +95,26 @@ OPT ?= -O2
 # either silent mode, so a stray one is visible rather than merely silent.
 CAN_MODE ?=
 CAN_MODE_FLAG := $(if $(CAN_MODE),-DCAN_START_MODE=HAL_CAN_MODE_$(CAN_MODE))
+
+# THE MODE HAS TO BE A FILE, OR MAKE CANNOT SEE IT CHANGE.
+#
+# make decides by timestamps against the prerequisites, and CAN_MODE is not
+# a file, so it took no part in that decision: `make CAN_MODE=LOOPBACK'
+# after a normal build printed "Nothing to be done for 'all'" and left the
+# normal hex in build/. Flashing that is not a build error -- it is a
+# correctly programmed board running the wrong firmware, and the only
+# symptom is an LED_PWR that does not blink. `make clean' first was the
+# workaround, and it relied on somebody remembering.
+#
+# So the mode is written to a file and the hex depends on it. `force' is
+# phony, so the recipe runs on every invocation; cmp is what keeps the file
+# from being rewritten when the mode has not changed, so its timestamp moves
+# on a real mode change and on nothing else. Without the cmp, every build
+# would be a rebuild.
+#
+# build/can_mode is also what tools/flash.py reads back, to confirm that the
+# hex it is about to send is the mode it was asked to build.
+MODE_STAMP := $(BUILD)/can_mode
 
 # -Wa,-a makes pic-as write the assembly listing next to the hex. It is what
 # tools/cycles.py counts instructions out of, and it is the only way to know
@@ -111,7 +139,7 @@ ifneq ($(CYGPATH),)
 export TMP := $(shell cygpath -m /tmp)
 endif
 
-.PHONY: all clean
+.PHONY: all clean force
 
 all: $(TARGET).hex
 
@@ -129,9 +157,16 @@ all: $(TARGET).hex
 # The exit status is the compiler's, not the pipeline's: piping into tee would
 # report a failed build as a success. Hence the temporary, the saved $$?, and
 # the explicit exit -- all POSIX sh, since make does not give us bash.
-$(TARGET).hex: $(SRC) | $(BUILD)
+$(TARGET).hex: $(SRC) $(HDR) $(MODE_STAMP) | $(BUILD)
 	@"$(XC8)" $(XC8FLAGS) -o $@ $(SRC) > $(BUILD)/memory.txt 2>&1; \
 	 status=$$?; cat $(BUILD)/memory.txt; exit $$status
+
+# force is an empty phony rule, and it must not come before `all' or it
+# becomes the default goal.
+force:
+
+$(MODE_STAMP): force | $(BUILD)
+	@echo '$(CAN_MODE)' | cmp -s - $@ 2>/dev/null || echo '$(CAN_MODE)' > $@
 
 $(BUILD):
 	mkdir -p $(BUILD)
