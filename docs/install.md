@@ -651,8 +651,24 @@ an unpowered board — the likeliest bench mistake there is. Both were provoked
 without a board and the observed codes are in
 [`flash-tool-notes.md`](flash-tool-notes.md).
 
-Command 4 is free rather than required: `-M` verifies implicitly when it
-finishes programming.
+**Command 4 fails on a correctly programmed board, and that is not a fault.**
+`-Y` verifies EEData as well as program memory and configuration, against a hex
+that carries no EEPROM section, so it expects an erased `0xFF` at address 0. By
+the time it runs, the firmware has already written its first persist record:
+`persist_load()` finds nothing on a virgin EEPROM, so the first
+`persist_save()` is held by neither the interval gate nor the only-on-change
+rule, and slot 0 is written within a second of `-OL` releasing the part from
+reset. Address 0 is the low byte of `total_ul`, which is zero. The run prints
+
+```
+EEData memory
+Address: 0 Expected Value: ff Received Value: 0
+Verify failed
+```
+
+and **exits 7**, while `-M` above it printed `Program Succeeded`. So command 4
+is free rather than required in a second sense: `-M` verifies implicitly when
+it finishes programming, and that implicit verify is the one that counts.
 
 Three things in that command line are ways to get it wrong. The full argument
 for each is in [`flash-tool-notes.md`](flash-tool-notes.md):
@@ -669,10 +685,12 @@ for each is in [`flash-tool-notes.md`](flash-tool-notes.md):
   there is a real trip in it. **`mplab/canfuel.X` deliberately does the
   opposite** — know which tool you are holding.
 
-⚠ **Only the `-I` form has been run against real hardware**, and only as step 4,
-with no target attached. `-C`, `-M`, `-Y`, `-OL` and `-Z` are assembled from
-*Readme for IPECMD.htm* and are unproven, as is anything downstream of the ICSP
-header. **Correct this block the first time it runs against a part.**
+⚠ **What has been run against a real part, and what has not.** `-I`, `-C`,
+`-M -OL` and `-Y` have all run against a powered PIC18F25K80 on J3, from Git
+Bash, with the `$PWD` form of `-F` resolving correctly. Their observed output
+and exit codes are in [`flash-tool-notes.md`](flash-tool-notes.md). **`-Z` has
+not been run, and neither has reading memory back off the part** — a tool that
+wants either has to establish it first.
 
 **Fit JP1.** Without it both LEDs stay dark by design and the diagnostic frame
 is not transmitted, and you are about to need both.

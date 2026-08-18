@@ -10,10 +10,11 @@ whoever writes the tool. **If the tool is ever written, the specification half
 of this file goes with it; the observations do not.** They are the only record
 of behaviour that no Microchip document states.
 
-`tools/flash.py` is deliberately not written yet. The commands here have been
-run only in the forms marked as observed; `-C`, `-M`, `-Y`, `-OL` and `-Z` have
-never been run against a real target. Write the tool after a board has been
-programmed by hand, not before.
+`tools/flash.py` is deliberately not written yet. `-I`, `-C`, `-M -OL` and `-Y`
+have since been run against a real powered part and their output is recorded
+below; **`-Z` has not, and neither has reading memory back off the part**, so a
+tool that wants either has to establish it first. Write the tool after a board
+has been programmed by hand, not before.
 
 ---
 
@@ -93,6 +94,9 @@ Observed, with `-P18F25K80 -TPPK3`:
 | programmer, target powered, ICSP silent | `Target Device ID (0x0) is an Invalid Device ID`, `Operation Failed` | 1 |
 | `-I -W` into an open header | `Connection Failed.`, then `Operation Succeeded` | 0 |
 | `-T` (list tools) | the tool list | 50 |
+| `-C` on a blank part | `Blank check complete, device is blank.` | 0 |
+| `-M -OL` on a blank part | `Device Erased...`, the areas to be programmed, `Programming/Verify complete`, `Program Succeeded` | 0 |
+| `-Y` against a hex with no EEPROM section | `Address: 0 Expected Value: ff Received Value: 0`, `Verify failed` | **7** |
 
 **The one case the code gets wrong is the worst one:** a target nobody powered
 returns 0 and prints `Operation Succeeded`. Bad ICSP wiring fails honestly with
@@ -101,6 +105,20 @@ mistakes there is.
 
 **So the tool must decide on the printed output.** Never branch on the exit
 code alone, and do not encode §15's table.
+
+**The `-Y` row is the one that will be misread**, so it is worth having the
+whole reason in one place. `-M` programmes program memory and configuration
+memory, and verifies what it wrote. `-Y` verifies **EEData as well**, against
+the same hex — which carries no EEPROM section, so the expectation is the
+erased `0xFF`. Meanwhile `-OL` has released the part from reset and the
+firmware has written its first persist record into slot 0, whose first byte is
+the low byte of a zero `total_ul`. Hence `Expected ff, Received 0` at address
+0, on a board that is programmed perfectly. Two consequences for the tool:
+**run `-Y` only with `-Z0-3FF`-style expectations in hand, or not at all**, and
+**never program with `-OL` and then verify** if the verify is to include
+EEData. Exit 7 also happens to match *Readme for PK3CMD.htm* §9's
+`7 operation failed`, which is the closest thing to a documented code IPECMD
+has.
 
 **Row three was produced deliberately, and it is the useful one.** A bench 5 V
 supply across header pins 2 and 3, with MCLR, PGC and PGD left unconnected and
