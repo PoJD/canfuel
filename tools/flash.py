@@ -37,8 +37,11 @@ first.
 
 `-Y` is not run either, and that is a finding rather than an omission: it
 verifies EEData against a hex with no EEPROM section, so on a perfectly
-programmed board it reports `Expected ff, Received 0` at address 0 and exits 7.
-`-M` verifies implicitly, and that is the verify that counts.
+programmed board that has stored a persist record it reports
+`Expected ff, Received 0` at address 0 and exits 7. Whether it does depends on
+what the firmware has had to store since `-OL` released the part, which is not
+a thing a verify should depend on. `-M` verifies implicitly, and that is the
+verify that counts.
 
 WARNING: **JP2 comes off before programming and goes back on afterwards**, and
 no software can check that. IPECMD also drops an `MPLABXLog.xml` into whatever

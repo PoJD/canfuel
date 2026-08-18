@@ -158,11 +158,38 @@ bool persist_save_now(persist_t *p, const persist_record_t *rec)
     return true;
 }
 
+/* True for the record a virgin EEPROM produces: all four fields as
+ * persist_load() zeroes them when it finds nothing. Restoring it puts the
+ * core in exactly the state it is in with no record at all, so storing it
+ * carries no information. */
+static bool is_empty(const persist_record_t *rec)
+{
+    return rec->total_ul == 0u && rec->total_mm == 0u &&
+           rec->tank_stable_l == 0u && !rec->tank_stable_valid;
+}
+
 bool persist_save(persist_t *p, const persist_record_t *rec, uint32_t now_ms)
 {
     bool changed;
 
     if (p->have_write_ms && (uint32_t)(now_ms - p->last_write_ms) < PERSIST_INTERVAL_MS) {
+        return false;
+    }
+
+    /* Nothing stored and nothing to store. Both gates below are open on the
+     * first call after a power-up -- no last write to compare a time against,
+     * no last record to compare a value against -- so without this the first
+     * slow slot writes a record of zeros onto a virgin part within a second
+     * of release from reset, whether or not the engine has ever run. That
+     * record is well formed and harmless to read back, but it says exactly
+     * what an empty EEPROM already says, and it costs a slot, a write cycle
+     * and two kinds of confusion at the bench: an EEData verify against a hex
+     * with no EEPROM section fails at address 0, and DIAG_FLAG_PERSIST_OK
+     * reads true on a board that has never accumulated anything.
+     *
+     * The moment either accumulator moves off zero the record stops being
+     * empty and the write happens as before, so nothing real is delayed. */
+    if (!p->have_last && is_empty(rec)) {
         return false;
     }
 

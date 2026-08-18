@@ -524,8 +524,10 @@ persist_save(&ps, &rec, now_ms);   /* itself decides whether to write */
 ```
 
 `persist_save()` already carries the `PERSIST_INTERVAL_MS` rule — 20 s, so at
-most three times a minute — and the only-on-change rule. Call it every second
-and let it say no; do not build a second timer for it in `main.c`.
+most three times a minute — the only-on-change rule, and the refusal to store
+a record that says nothing onto an EEPROM that already says nothing. Call it
+every second and let it say no; do not build a second timer for it in
+`main.c`.
 
 Three things `main.c` must **not** do, because the core already does them:
 

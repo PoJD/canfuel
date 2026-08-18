@@ -113,7 +113,7 @@ Observed, with `-P18F25K80 -TPPK3`:
 | `-T` (list tools) | the tool list | 50 |
 | `-C` on a blank part | `Blank check complete, device is blank.` | 0 |
 | `-M -OL` on a blank part | `Device Erased...`, the areas to be programmed, `Programming/Verify complete`, `Program Succeeded` | 0 |
-| `-Y` against a hex with no EEPROM section | `Address: 0 Expected Value: ff Received Value: 0`, `Verify failed` | **7** |
+| `-Y` against a hex with no EEPROM section, with a persist record on the part | `Address: 0 Expected Value: ff Received Value: 0`, `Verify failed` | **7** |
 
 **The one case the code gets wrong is the worst one:** a target nobody powered
 returns 0 and prints `Operation Succeeded`. Bad ICSP wiring fails honestly with
@@ -127,10 +127,17 @@ code alone, and do not encode §15's table.
 whole reason in one place. `-M` programmes program memory and configuration
 memory, and verifies what it wrote. `-Y` verifies **EEData as well**, against
 the same hex — which carries no EEPROM section, so the expectation is the
-erased `0xFF`. Meanwhile `-OL` has released the part from reset and the
-firmware has written its first persist record into slot 0, whose first byte is
-the low byte of a zero `total_ul`. Hence `Expected ff, Received 0` at address
-0, on a board that is programmed perfectly. Two consequences for the tool:
+erased `0xFF`. Meanwhile `-OL` has released the part from reset, so anything
+the running firmware puts into the persist ring before the verify reaches it
+is a difference the verify reports. Hence `Expected ff, Received 0` at address
+0 — the low byte of `total_ul` — on a board that is programmed perfectly.
+
+**Whether it fails therefore depends on what the firmware has had to store**,
+which is not a thing a verify should be made to depend on. `persist_save()`
+refuses to write a record that says nothing, so a part erased by `-OH` and
+released onto a quiet bench bus stays erased and `-Y` passes; give the same
+board a live bus for a second and the first record lands, after which it
+fails. Two consequences for the tool, and neither of them is "it depends":
 **run `-Y` only with `-Z0-3FF`-style expectations in hand, or not at all**, and
 **never program with `-OL` and then verify** if the verify is to include
 EEData. Exit 7 also happens to match *Readme for PK3CMD.htm* §9's

@@ -124,8 +124,11 @@ typedef struct {
 bool persist_load(persist_t *p, const persist_backend_t *be,
                   persist_record_t *out);
 
-/* Write, but only if PERSIST_INTERVAL_MS has passed and something actually
- * changed. Returns true when it wrote. This is the one main.c calls. */
+/* Write, but only if PERSIST_INTERVAL_MS has passed, something actually
+ * changed, and there is something worth storing -- a record of nothing onto
+ * an EEPROM that already holds nothing is refused, so a device that has never
+ * run leaves the ring erased. Returns true when it wrote. This is the one
+ * main.c calls. */
 bool persist_save(persist_t *p, const persist_record_t *rec, uint32_t now_ms);
 
 /* Write unconditionally. Useful at shutdown and in tests. */

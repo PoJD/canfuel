@@ -657,14 +657,20 @@ an unpowered board — the likeliest bench mistake there is. Both were provoked
 without a board and the observed codes are in
 [`flash-tool-notes.md`](flash-tool-notes.md).
 
-**Command 4 fails on a correctly programmed board, and that is not a fault.**
-`-Y` verifies EEData as well as program memory and configuration, against a hex
-that carries no EEPROM section, so it expects an erased `0xFF` at address 0. By
-the time it runs, the firmware has already written its first persist record:
-`persist_load()` finds nothing on a virgin EEPROM, so the first
-`persist_save()` is held by neither the interval gate nor the only-on-change
-rule, and slot 0 is written within a second of `-OL` releasing the part from
-reset. Address 0 is the low byte of `total_ul`, which is zero. The run prints
+**Command 4 can fail on a correctly programmed board, and that is not a
+fault.** `-Y` verifies EEData as well as program memory and configuration,
+against a hex that carries no EEPROM section, so it expects an erased `0xFF`
+at address 0 — which is the low byte of `total_ul` in slot 0 of the persist
+ring. Whether the part still holds `0xFF` there depends on what the firmware
+has had to store since `-OL` released it from reset, and `-OL` runs before the
+verify does.
+
+On a bench with nothing on the bus it stays erased and the verify passes:
+`persist_load()` finds nothing on a virgin EEPROM, and `persist_save()`
+refuses to write a record that says nothing, so the ring is not touched until
+an accumulator moves. Attach a live bus, or reflash a part that has already
+driven with `-Z0-3FF`, and the first record lands within a second. The run
+then prints
 
 ```
 EEData memory
@@ -674,7 +680,9 @@ Verify failed
 
 and **exits 7**, while `-M` above it printed `Program Succeeded`. So command 4
 is free rather than required in a second sense: `-M` verifies implicitly when
-it finishes programming, and that implicit verify is the one that counts.
+it finishes programming, and that implicit verify is the one that counts — and
+it is the one that does not depend on what the firmware has been doing in the
+meantime.
 
 Three things in that command line are ways to get it wrong. The full argument
 for each is in [`flash-tool-notes.md`](flash-tool-notes.md):

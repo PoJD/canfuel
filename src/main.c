@@ -279,10 +279,10 @@ int main(void)
             rec.tank_stable_l     = cp.tank_stable_l;
             rec.tank_stable_valid = cp.tank_stable_valid;
 
-            /* persist_save() carries the PERSIST_INTERVAL_MS rule and the
-             * only-on-change rule itself. Call it every second and let it say
-             * no; a second timer here would just be a second thing to get
-             * wrong.
+            /* persist_save() carries the PERSIST_INTERVAL_MS rule, the
+             * only-on-change rule and the refusal to store an empty record
+             * itself. Call it every second and let it say no; a second timer
+             * here would just be a second thing to get wrong.
              *
              * When it does write, it blocks for about 48 ms -- twelve bytes at
              * the 4 ms typical of DS39977C Table 31-1, D122, three times a

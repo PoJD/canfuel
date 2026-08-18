@@ -35,7 +35,7 @@ hex rather than assumed.
 
 | Space | Used | Of | Share | What it holds |
 |---|---|---|---|---|
-| Program space | 13,574 B | 32,768 B | 41.4 % | the firmware itself |
+| Program space | 13,688 B | 32,768 B | 41.8 % | the firmware itself |
 | Data space | 352 B | 3,649 B | 9.6 % | RAM |
 
 The **data EEPROM is not in that table**, because the compiler

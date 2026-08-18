@@ -271,6 +271,84 @@ static void test_save_skips_when_nothing_changed(void)
     TT_TRUE(persist_save(&p, &rec, 10u * PERSIST_INTERVAL_MS));
 }
 
+static void test_save_writes_nothing_onto_a_virgin_part(void)
+{
+    persist_t p, q;
+    persist_record_t out;
+    persist_record_t empty = { 0u, 0u, 0u, false };
+    uint32_t now;
+
+    /* main.c on a bench: released from reset, nothing on the bus, the slow
+     * slot offering the accumulators once a second. Both of persist_save()'s
+     * gates are open on the first call -- no last write, no last record -- so
+     * without the empty check slot 0 gets a record of zeros within a second,
+     * which is well formed, useless, and looks like corruption on a readback.
+     */
+    eeprom_erase();
+    TT_FALSE(persist_load(&p, &backend, &out));
+
+    for (now = 1000u; now <= 5u * PERSIST_INTERVAL_MS; now += 1000u) {
+        TT_FALSE(persist_save(&p, &empty, now));
+    }
+    TT_EQ(eeprom.writes[0], 0u);
+    TT_EQ(eeprom.cell[0], 0xFFu);           /* still erased */
+
+    /* And a later load still says there is nothing, rather than restoring a
+     * record that only ever said "nothing". */
+    TT_FALSE(persist_load(&q, &backend, &out));
+}
+
+static void test_the_first_real_value_is_not_delayed(void)
+{
+    persist_t p;
+    persist_record_t out;
+    persist_record_t rec = { 0u, 0u, 0u, false };
+
+    /* The empty check must not become an interval: the moment an accumulator
+     * moves off zero the write happens on that same slow slot. */
+    eeprom_erase();
+    persist_load(&p, &backend, &out);
+
+    TT_FALSE(persist_save(&p, &rec, 1000u));
+    rec.total_ul = 1u;                      /* one microlitre is enough */
+    TT_TRUE(persist_save(&p, &rec, 2000u));
+
+    TT_TRUE(persist_load(&p, &backend, &out));
+    TT_EQ(out.total_ul, 1u);
+}
+
+static void test_distance_alone_is_enough_to_be_saved(void)
+{
+    persist_t p;
+    persist_record_t out;
+    persist_record_t rec = { 0u, 500u, 0u, false };
+
+    /* Coasting with the injectors shut moves millimetres and no microlitres,
+     * so the check must not be "has any fuel been burned". */
+    eeprom_erase();
+    persist_load(&p, &backend, &out);
+    TT_TRUE(persist_save(&p, &rec, 1000u));
+    TT_TRUE(persist_load(&p, &backend, &out));
+    TT_EQ(out.total_mm, 500u);
+}
+
+static void test_a_known_tank_level_is_enough_to_be_saved(void)
+{
+    persist_t p;
+    persist_record_t out;
+    persist_record_t rec = { 0u, 0u, 0u, true };
+
+    /* Both accumulators still zero, but the tank baseline is now trustworthy
+     * and it is what the refuelling rule compares against across a power
+     * cycle. Losing it would let the next start adopt whatever the float
+     * happened to read -- the very change the rule exists to notice. */
+    eeprom_erase();
+    persist_load(&p, &backend, &out);
+    TT_TRUE(persist_save(&p, &rec, 1000u));
+    TT_TRUE(persist_load(&p, &backend, &out));
+    TT_TRUE(out.tank_stable_valid);
+}
+
 int main(void)
 {
     printf("test_persist\n");
@@ -285,5 +363,9 @@ int main(void)
     TT_RUN(test_wear_is_spread_evenly_over_100000_cycles);
     TT_RUN(test_save_respects_the_interval);
     TT_RUN(test_save_skips_when_nothing_changed);
+    TT_RUN(test_save_writes_nothing_onto_a_virgin_part);
+    TT_RUN(test_the_first_real_value_is_not_delayed);
+    TT_RUN(test_distance_alone_is_enough_to_be_saved);
+    TT_RUN(test_a_known_tank_level_is_enough_to_be_saved);
     return TT_SUMMARY();
 }

@@ -55,9 +55,9 @@ Program Succeeded.
 Operation Succeeded
 """
 
-# -Y on a board that was just programmed and released from reset. It verifies
-# EEData against a hex with no EEPROM section, and by then the firmware has
-# written its first persist record. A perfect board fails this.
+# -Y on a board that was just programmed, released from reset, and has stored a
+# persist record. It verifies EEData against a hex with no EEPROM section, so
+# slot 0 is a mismatch. A perfect board fails this.
 VERIFY_EEDATA_FAILS = """Target voltage detected
 Target device PIC18F25K80 found.
 Device Revision ID = 6
