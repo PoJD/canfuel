@@ -609,28 +609,34 @@ Both of those tracks run **under the body of the capacitor**, across the
 
 ### Programme
 
-```
-cd canfuel
-make -C mplab CAN_MODE=LOOPBACK
-```
-
-That writes `mplab/build/canfuel.hex`. Building is documented in
-`mplab/README.md`, including which XC8 and which Device Family Pack — the pack
-is not optional and the version has to match.
-
 ⚠ **JP2 comes off before programming and goes back on afterwards.** It puts the
 100 nF MCLR capacitor in circuit, which is what the datasheet asks for in
-normal operation and what interferes with ICSP.
+normal operation and what interferes with ICSP. No tool can check this for you.
 
-**Then flash it with the PICkit on J3**, from the repository root. The makefile
-builds; it does not programme. Four commands, in this order, reading each one's
-output before running the next:
+**With the PICkit on J3, one command builds and flashes:**
+
+```
+cd canfuel
+python tools/flash.py --mode loopback
+```
+
+`tools/flash.py` builds the mode you asked for, checks that the hex really is
+that mode and that `CANMX` in it is set, then runs the commands below and reads
+their **output** rather than their exit code. It stops at the first thing that
+did not happen, and says which of the known failures it was.
+
+Building on its own is `make -C mplab CAN_MODE=LOOPBACK`, and it is documented
+in `mplab/README.md` — which XC8 and which Device Family Pack, neither
+optional. The makefile builds; it does not programme.
+
+**What the tool runs, and what to run by hand if it is ever in doubt** — from
+the repository root, in this order, reading each one's output before the next:
 
 ```
 ipecmd -P18F25K80 -TPPK3 -I                                  # 1. device ID
 ipecmd -P18F25K80 -TPPK3 -C                                  # 2. blank check
 ipecmd -P18F25K80 -TPPK3 -F"$PWD/mplab/build/canfuel.hex" -M -OL   # 3. program
-ipecmd -P18F25K80 -TPPK3 -F"$PWD/mplab/build/canfuel.hex" -Y       # 4. verify
+ipecmd -P18F25K80 -TPPK3 -F"$PWD/mplab/build/canfuel.hex" -Y       # 4. fails, see below
 ```
 
 Command 1 is the one that matters most and it is read-only: **a device ID that

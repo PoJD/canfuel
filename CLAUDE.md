@@ -273,8 +273,9 @@ Linux, macOS and CI alone.
 **The device is programmed with `ipecmd`, not from the IDE.** The procedure
 is steps 4 and 5 of `docs/install.md`; the full argument for every flag, the
 observed exit codes and the environment traps are in
-[`docs/flash-tool-notes.md`](docs/flash-tool-notes.md), which is also the
-specification for a `tools/flash.py` that does not exist yet.
+[`docs/flash-tool-notes.md`](docs/flash-tool-notes.md), which is also where
+`tools/flash.py` gets its rules and where the two gaps it does not cover yet
+are listed.
 
 Four things belong here because they are decisions rather than procedure:
 
@@ -1045,7 +1046,10 @@ mplab/
   Makefile      the authoritative device build, drives xc8-cc — CI runs this
   canfuel.X/    the MPLAB X project, for editing and for driving a PICkit
   README.md     how to build, and what JP2 is for
-tools/          canlog.py, replay.py — Python, runs anywhere
+tools/          flash.py — builds a mode and flashes it in one command, and
+                decides every step on IPECMD's output rather than its exit
+                code. Checks CANMX in the hex before writing anything
+                canlog.py, replay.py — Python, runs anywhere
                 bench_test.py — the bench tests of install.md step 7:
                 listen-only, traffic, four scenarios and fault injection, each
                 ending in a verdict rather than a blink rate. Needs pyserial,
@@ -1105,7 +1109,18 @@ python tools/checkdocs.py --write                          # ...after make -C mp
 make -C mplab                                              # -> build/canfuel.hex
 make -C mplab CAN_MODE=LOOPBACK                            # talks to itself
 make -C mplab CAN_MODE=LISTEN_ONLY                         # never ACKs
+
+python tools/flash.py --mode loopback                      # build AND flash it
+python tools/flash.py --identify                           # read-only
+python tools/flash.py --dry-run                            # print, run nothing
 ```
+
+**`make -C mplab CAN_MODE=X` and the flash are one step in `flash.py` on
+purpose.** The three hexes differ by one `-D` and nothing else, so a hex
+flashed in the belief that it is a different mode is a correctly programmed
+board doing the wrong thing. The makefile writes the mode to `build/can_mode`
+and depends on that file, so a mode change forces a rebuild and the tool can
+check afterwards that it flashed what it asked for.
 
 `tools/replay.py` is the reference decoder in Python, written against the same
 table as `decode.c` and `compute.c`. `--host-build` runs

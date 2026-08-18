@@ -3,33 +3,50 @@
 **`docs/install.md` is the procedure and needs none of this.** Steps 4 and 5
 there are what somebody with a programmer in one hand actually follows. This
 file is everything underneath: what each flag does, what the tool returns, how
-it behaves on this machine, and what a `tools/flash.py` would have to know.
+it behaves on this machine, and what `tools/flash.py` had to know.
 
 Two audiences, then — whoever debugs a programming session that went wrong, and
 whoever writes the tool. **If the tool is ever written, the specification half
 of this file goes with it; the observations do not.** They are the only record
 of behaviour that no Microchip document states.
 
-`tools/flash.py` is deliberately not written yet. `-I`, `-C`, `-M -OL` and `-Y`
-have since been run against a real powered part and their output is recorded
-below; **`-Z` has not, and neither has reading memory back off the part**, so a
-tool that wants either has to establish it first. Write the tool after a board
-has been programmed by hand, not before.
+`tools/flash.py` exists and covers what has been run against a real part:
+`-I`, `-C` and `-M -OL`, whose output is recorded below. **`-Z` has not been
+run, and neither has reading memory back off the part**, so both are absent
+from the tool rather than written from the readme and hoped for. Closing either
+gap starts with establishing the switch against a part, not with code.
 
 ---
 
-## What the tool should do
+## What the tool does, and what it still does not
 
-- Wrap the four commands of `install.md` step 5 in one invocation.
-- **Read `CONFIG3H` at byte address 300005h out of the hex and check `CANMX`
-  before flashing anything.** Bit 0 set means CANTX/CANRX on RB2/RB3, which is
-  what the board is wired to. This is the single most expensive bit in the
-  project and it is checkable statically.
-- **Tie the build mode and the flash into one step**, so a `LOOPBACK` hex
+Done, and each one is a fault it exists to make impossible:
+
+- **Wraps step 5 in one invocation**, and decides every step on the printed
+  output rather than the exit code.
+- **Reads `CONFIG3H` at byte address 300005h out of the hex and checks
+  `CANMX` before flashing anything.** Bit 0 set means CANTX/CANRX on RB2/RB3,
+  which is what the board is wired to. The single most expensive bit in the
+  project, and checkable statically.
+- **Ties the build mode and the flash into one step**, so a `LOOPBACK` hex
   cannot be flashed while the operator believes it is a normal one. The three
-  modes differ only in a `#define`, and the resulting hex is otherwise
-  indistinguishable.
-- **Read the persist ring back off the part**, for bring-up in the vehicle.
+  modes differ only by one `-D` and the hexes are otherwise
+  indistinguishable. `mplab/Makefile` writes the mode to `build/can_mode` and
+  the tool reads it back, so the belief is checked rather than trusted.
+- **Skips `-Y`**, for the reason below: it fails on a perfectly programmed
+  board.
+
+Not done, and both for the same reason -- the switch has never been run
+against a part, and this repository does not guess switches on a live board:
+
+- **Reading the persist ring back off the part**, which is what bring-up in
+  the vehicle will want.
+- **`-Z0-3FF`**, preserving the EEPROM through a reflash. Step 7.5 is the
+  first place there will be a record in EEPROM worth preserving, which makes
+  it the natural place to establish this.
+
+`tools/test_flash.py` holds IPECMD's real output for every case the tool
+parses, including the three failures, and needs no programmer to run.
 
 ---
 
