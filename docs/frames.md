@@ -47,11 +47,19 @@ different PIC and would have reported four times the real supply.
 
 Two things it is worth being honest about, both of them the datasheet's:
 
-- **1.024 V is quoted with no tolerance.** The figure appears in DS39977C only
-  in the channel list of Register 23-1; there is no min, typ or max for it
-  anywhere in Section 31.0. So VddConv is a trend and a sanity check, not a
-  calibrated voltmeter. An absolute reading needs a per-unit calibration
-  constant.
+- **1.024 V is quoted with no tolerance**, so the nominal arithmetic cannot be
+  an absolute reading. The figure appears in DS39977C only in the channel list
+  of Register 23-1; there is no min, typ or max for it anywhere in Section
+  31.0. On the board this was measured on it was out by 4.1 %, which is 0.20 V
+  on a 5 V rail. **`VDD_NUMERATOR_C` in `src/config.h` is the per-unit
+  calibration that closes that**, measured against a meter, with the recipe for
+  redoing it beside it — every board wants its own.
+- **Even calibrated, read a mean rather than a frame.** 299 consecutive samples
+  off one board spanned 4.86 to 4.91 V, so the A/D's own scatter is about
+  ±0.025 V — five times what an LSB is worth here. A single reading is
+  therefore good to a couple of hundredths and no better, which is plenty for
+  the question this field exists to answer and not enough to calibrate
+  against.
 - **Below 3 V the number stops meaning anything.** Table 31-25 specifies the
   twelve-bit resolution only for VREF ≥ 3.0 V, and VREF here is VDD itself.
   That is also why the brown-out trip point in `src/pic_config.h` is 3.0 V

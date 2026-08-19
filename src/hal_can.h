@@ -98,7 +98,8 @@ bool hal_can_receive(hal_can_frame_t *frame);
 bool hal_can_send(uint16_t id, const uint8_t *data, uint8_t dlc);
 
 /* The two error counters, straight off the module. Worth watching early: the
- * 500 kbps path has been exercised by nobody. */
+ * 500 kbps path has run on a bench bus with both of these at zero, but not on
+ * the car's, which is longer and hangs this board off an unterminated stub. */
 uint8_t hal_can_rx_errors(void);
 uint8_t hal_can_tx_errors(void);
 

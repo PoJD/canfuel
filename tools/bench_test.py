@@ -208,8 +208,42 @@ class Adapter:
         self.ser.reset_input_buffer()
         self._pending.clear()
 
+    def firmware(self, timeout: float = 1.0) -> str | None:
+        """The adapter's own version string, and proof it is answering at all.
+
+        A USBtin can stop responding while its serial port stays enumerated and
+        writable -- unplug and replug is the cure. Until this check existed, a
+        run against a wedged adapter reported `sent 8931 frames` and then four
+        rate failures, which reads exactly like a converter that has stopped
+        transmitting. It cost an afternoon, and the converter was fine
+        throughout: a second adapter heard every frame at its nominal rate.
+        """
+        self.ser.reset_input_buffer()
+        self._pending.clear()
+        self.ser.write(b"V" + CR)
+        self.ser.flush()
+        deadline = time.monotonic() + timeout
+        buf = bytearray()
+        while time.monotonic() < deadline:
+            buf += self.ser.read(64)
+            while CR in buf:
+                raw, _, rest = bytes(buf).partition(CR)
+                buf = bytearray(rest)
+                text = raw.strip(BEL).strip()
+                if text.startswith(b"V"):
+                    return text.decode(errors="replace")
+        return None
+
     def open(self, *, listen_only: bool = False, bitrate: bytes = BITRATE_CMD):
         self._close_channel()
+        if self.firmware() is None:
+            sys.exit(
+                f"\n{self.label} on {self.port} is not answering.\n"
+                "The port is open and writable, so this is the adapter itself "
+                "rather than the cable or the converter:\n"
+                "  unplug its USB, plug it back in, and run this again.\n"
+                "Nothing was measured -- frames written to a wedged adapter go "
+                "nowhere and would have read as a silent converter.")
         self._cmd(bitrate)
         self._cmd(b"Z1")        # timestamps, for check_frame_spacing()
         self._cmd(b"L" if listen_only else b"O")
@@ -635,7 +669,10 @@ def mode_traffic(sender: Adapter, listener: Adapter, log, seconds: float,
     elapsed = time.monotonic() - started
     pump_until(time.monotonic() + 0.5, {sender, listener})
 
-    rep.note(f"sent {sent} frames in {elapsed:.1f} s "
+    # What the host wrote to the adapter, which is not the same as what
+    # reached the wire -- see Adapter.firmware(). The counts below are the
+    # measurement; this line is only the stimulus we asked for.
+    rep.note(f"wrote {sent} frames to the adapter in {elapsed:.1f} s "
              f"({sent / elapsed:.0f}/s)")
     for can_id in TX_IDS:
         n = listener.count(can_id)
@@ -881,13 +918,16 @@ def mode_scenarios(sender: Adapter, listener: Adapter, log) -> Report:
 # 7.5 -- the accumulators survive a power cycle
 # --------------------------------------------------------------------------
 
-# The one path in this firmware that nothing has ever executed. test_persist.c
+# The one path in this firmware that nothing else can execute. test_persist.c
 # simulates 100,000 write cycles against a RAM array, which proves the ring
 # arithmetic and the wear levelling and says nothing at all about
 # hal_eeprom_write(): the 0x55/0xAA unlock, WREN, polling WR, and the decision
-# to restore GIE while that poll runs. All of it is datasheet reading, and the
-# consequence of getting it wrong is invisible -- the device works perfectly
-# until the ignition goes off, and then loses every trip.
+# to restore GIE while that poll runs. That was datasheet reading with no
+# silicon behind it until this test was first run, and it is still the only
+# thing that puts silicon behind it -- so it is worth running again after
+# anything touches persist.c or the write. The consequence of getting it wrong
+# is invisible: the device works perfectly until the ignition goes off, and
+# then loses every trip.
 
 def mode_persist_arm(sender: Adapter, listener: Adapter, log) -> Report:
     print("\n7.5  PERSISTENCE, part 1 -- put something in the EEPROM")

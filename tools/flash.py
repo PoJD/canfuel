@@ -8,7 +8,7 @@ what IPECMD actually prints. Read that file before changing anything here.
     python tools/flash.py                      # normal build, then flash it
     python tools/flash.py --mode loopback      # step 6
     python tools/flash.py --mode listen-only   # steps 7.4 and 8
-    python tools/flash.py --identify           # read-only, changes nothing
+    python tools/flash.py --identify           # asks, writes nothing, keeps it running
     python tools/flash.py --dry-run            # print the commands, run none
 
 WHY THIS EXISTS, WHICH IS NOT "TO SAVE TYPING".
@@ -23,6 +23,14 @@ Three of the ways to get step 5 wrong are invisible at the time:
   * **CANMX is one bit and the most expensive one in the project.** Clear, and
     the CAN pins are on RC6/RC7 while this board is wired to RB2/RB3. It is
     checkable in the hex before anything is written, so it is checked.
+  * **A read-only check is not a harmless one.** `-I` on its own leaves the
+    part **held in reset**, because that is IPECMD's default and `-OL` is what
+    releases it -- so asking a running converter what it is stops it dead, and
+    it stays stopped until something programs it again. Measured both ways on
+    a live board: with `-OL` it kept transmitting at its nominal 22 frames a
+    second through the identify; without, it went to zero and stayed there.
+    That cost an afternoon once, diagnosed as a wedged CAN module. Every
+    invocation here passes `-OL`, including this one.
   * **IPECMD's exit code cannot carry the decision.** A target nobody powered
     prints `Operation Succeeded` and returns 0, while bad ICSP wiring returns
     1. Every verdict here comes from the printed text; the return code is
@@ -293,8 +301,8 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.identify:
         print()
-        print("identify -- read-only")
-        out = ipecmd(["-I"], args.dry_run, args.device, args.tool)
+        print("identify -- writes nothing, and releases the part afterwards")
+        out = ipecmd(["-I", "-OL"], args.dry_run, args.device, args.tool)
         if args.dry_run:
             return 0
         ok, detail = parse_identify(out, args.device)
@@ -322,7 +330,7 @@ def main(argv: list[str] | None = None) -> int:
 
     print()
     print("identify")
-    out = ipecmd(["-I"], args.dry_run, args.device, args.tool)
+    out = ipecmd(["-I", "-OL"], args.dry_run, args.device, args.tool)
     if not args.dry_run:
         ok, detail = parse_identify(out, args.device)
         rep.check("device answers on the ICSP header", ok, detail)

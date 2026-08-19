@@ -109,6 +109,8 @@ Observed, with `-P18F25K80 -TPPK3`:
 | no programmer | `Programmer not found` | 9 |
 | programmer, target not powered | `Target device was not found (could not detect target voltage VDD)`, then `Operation Succeeded` | **0** |
 | programmer, target powered, ICSP silent | `Target Device ID (0x0) is an Invalid Device ID`, `Operation Failed` | 1 |
+| `-I` alone against a running board | the device ID, `Operation Succeeded` -- **and the board stops**, held in reset | 0 |
+| `-I -OL` against a running board | the same, and it goes on running | 0 |
 | `-I -W` into an open header | `Connection Failed.`, then `Operation Succeeded` | 0 |
 | the programmer itself wedged | `Connection Failed.`, then `Operation Succeeded`, and **no `Connecting to MPLAB PICkit 3...` banner at all** | 0 |
 | `-T` (list tools) | the tool list | 50 |
@@ -120,6 +122,17 @@ Observed, with `-P18F25K80 -TPPK3`:
 returns 0 and prints `Operation Succeeded`. Bad ICSP wiring fails honestly with
 1. Since `-W` is not used, an unpowered board is among the likeliest bench
 mistakes there is.
+
+**`-OL` belongs on the read-only commands too, and this is not obvious.**
+*Release From Reset* is not about programming; it is about what state the part
+is left in when IPECMD lets go, and the default is to hold it. So `-I` -- which
+writes nothing and reads one register -- **stops a running converter**, and
+leaves it stopped until something programs it again. Measured on a live board
+both ways: with `-OL` it transmitted its nominal 22 frames a second straight
+through the identify; without it, zero, and zero for as long as anybody
+watched. The symptom is a board that answers the programmer perfectly and does
+nothing at all, which reads as dead firmware or a wedged CAN module.
+`tools/flash.py` passes `-OL` on every invocation for that reason.
 
 **`Connection Failed.` has two meanings and the banner tells them apart.** With
 `-W` into an open header it is about the target. On its own, with no

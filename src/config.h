@@ -109,6 +109,60 @@
 #define CAN_START_MODE          HAL_CAN_MODE_NORMAL
 #endif
 
+/* --- the supply reading, and the one calibration it can have ------------- */
+
+/* VddConv IS CALIBRATED PER UNIT, AND HAS TO BE.
+ *
+ * The firmware measures the internal 1.024 V band gap against VDD and inverts
+ * it, so the whole reading rests on that 1.024 V -- and DS39977C gives it **no
+ * tolerance anywhere**. The figure appears only in the channel list of
+ * Register 23-1; Section 31.0 has no min, typ or max for it. On the one board
+ * measured, the nominal arithmetic was out by 4.1 %, which is 0.20 V on a 5 V
+ * rail and quite enough to send somebody chasing a supply fault.
+ *
+ * THE VALUE BELOW IS BOARD 1's. If you are building from install.md it is
+ * somebody else's part and somebody else's band gap. Recalibrate, or accept a
+ * few per cent -- nothing downstream of VddConv is a decision, so an
+ * uncalibrated reading is untidy rather than dangerous.
+ *
+ * HOW TO CALIBRATE, from any starting point including this one:
+ *
+ *   1. Put a meter on U1 pin 20 against pin 19 with the converter running and
+ *      transmitting, and read VddConv out of 0x601 at the same moment. The
+ *      rail sags a little under bus traffic, so a pair taken seconds apart is
+ *      not a pair.
+ *   2. VDD_NUMERATOR_C = VDD_NUMERATOR_C x meter / shown, both in 0.01 V.
+ *   3. Rebuild, reflash, and check the two agree.
+ *
+ * It is written as the numerator rather than as the pair of readings on
+ * purpose: the pair only means anything alongside the numerator that was in
+ * force when it was taken, and a constant that cannot be re-derived from its
+ * own comment is a trap. Starting from scratch means starting at
+ * VDD_NOMINAL_C.
+ *
+ * TAKE THE SHOWN VALUE AS A MEAN, NOT AS ONE READING. 299 consecutive samples
+ * off board 1 spanned 4.86 to 4.91 V with a mean of 4.876 -- so the A/D's own
+ * scatter is about +/-0.025 V, which is five times the 0.005 V an LSB is worth
+ * at this code. Calibrating against a single frame chases that scatter: the
+ * first two passes here landed 0.03 V high and then 0.03 V low while the rail
+ * and the meter both sat still. `canlog.py --dump --id 0x601` over half a
+ * minute is the reading to use.
+ *
+ * Board 1: mean 4.876 shown against 4.89-4.90 on the meter, both with the bus
+ * running. The reading is not more precise than the scatter, and there is no
+ * point pretending otherwise -- what this buys is the 4.1 % systematic error
+ * gone, not a third decimal place. */
+#define VDD_NUMERATOR_C         436344UL
+
+/* The uncalibrated numerator, and where to start from:
+ *
+ *   VDD = 1.024 x 4096 / code, and in 0.01 V that is 100 x 4194.304 / code
+ *
+ * 4096 and not 1023: this A/D is twelve bits (DS39977C Table 31-25, parameter
+ * A01) and the ten-bit formula from a different PIC would report four times
+ * the real supply. */
+#define VDD_NOMINAL_C           419430UL
+
 /* --- timing ------------------------------------------------------------- */
 
 /* ONE FRAME PER SLOT, AND IT IS A CORRECTNESS RULE RATHER THAN TIDINESS.

@@ -80,8 +80,10 @@ Bus length and bit timing both scale against bit rate, so their 200 m result
 says nothing about ours, and their bit timing was never exercised anywhere
 near our rate. What transfers is the *plumbing*: the configuration bits, the
 register sequences, the shape of the driver. The 500 kbps numbers in the HAL
-section below stand on the datasheet arithmetic alone and have been run on
-no hardware at all yet.
+section below were derived from the datasheet and have since **run on a bench
+bus** -- hours of traffic at 357 frames a second with both error counters
+sitting at zero, plus deliberate fault injection. What has not been tested is
+the car's bus and its 1.4 m unterminated stub.
 
 Working code also does not stop a deviation from the datasheet propagating.
 Three cases, all real:
@@ -167,11 +169,20 @@ the datasheet, against `gcc -fsyntax-only`, and against XC8 itself.
 - **Compiling proves nothing about the silicon.** A register that exists but is
   written in the wrong order, at the wrong time, or with the wrong value
   compiles exactly as cleanly as one that does not.
-- **500 kbps has been run by nobody.** The bit timing is datasheet arithmetic
-  and nothing more. Check `hal_can_rx_errors()` / `hal_can_tx_errors()` and the
-  `LED_CAN` blink pattern the first time it listens to a live bus.
-- **The A/D reading is uncalibrated by construction.** The 1.024 V reference
-  has no tolerance anywhere in the datasheet.
+- **500 kbps has run on a bench bus and not in the car.** The bit timing was
+  datasheet arithmetic and is now also a measurement: hours of traffic at 357
+  frames a second with `hal_can_rx_errors()` and `hal_can_tx_errors()` both at
+  zero, the six hardware filters holding under a flood, and recovery from
+  deliberate starvation and from a node at half the bit rate. **The car's bus
+  is still untested** and differs in the thing bit timing is most sensitive to
+  -- length, and a 1.4 m unterminated stub. Check the counters early there too.
+- **The A/D reading is calibrated per unit, against a meter.** `VDD_CAL_*` in
+  `config.h`, and the recipe for redoing it is beside them. The 1.024 V
+  reference has no tolerance anywhere in the datasheet, so the nominal
+  arithmetic was 4.1 % out on the board it was measured on; calibrated, it
+  agrees with a meter to under a hundredth of a volt. **The residual is the
+  A/D's own scatter**, about ±0.025 V sample to sample, which is five times an
+  LSB -- so read a mean, never one frame, and never calibrate against one.
 - **The timing budget is counted, not measured.** `docs/timing.md` costs every
   function out of the assembly listing XC8 generates. A typical pass is
   49–134 µs, so the loop runs 7,400–20,000 times a second; the busiest transmit
@@ -887,10 +898,12 @@ oscillators we neither built nor can measure, the ISO 11898-1 bound
 `Phase_Seg2 ≥ SJW`, which 3 ≥ 2 pays with room. The full derivation, with
 every citation, is the comment block above `BRGCON1_500K` in `hal_can.c`.
 
-All of which is arithmetic. `CanSwitch.X` passes `BAUD_RATE 50`, so BRP = 0
-and the whole 500 kbps path have been exercised by nobody — the first real
-test of it is a converter listening to the car. Expect to check the ECAN
-error counters early rather than assuming the sums carried.
+All of which was arithmetic, and the arithmetic held: `CanSwitch.X` passes
+`BAUD_RATE 50`, so BRP = 0 and this whole path was exercised by nobody until
+the bench. It now has hours on it at 357 frames a second with both error
+counters at zero. **That is a two-node bus of about a metre**; the car's is
+longer, has a 1.4 m unterminated stub off it, and is the thing the Prop_Seg
+budget above was widened for. Check the counters there before assuming.
 
 **`piclib` was read closely and then not used.** It was the right place to
 start and it settled the register sequences, but consuming it costs more than

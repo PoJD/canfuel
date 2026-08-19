@@ -1004,8 +1004,10 @@ python tools/bench_test.py --persist-check --expect-trip-ml 1234 --port COM5
 simulates 100,000 write cycles against a RAM array, which proves the ring
 arithmetic and the wear levelling and says nothing whatever about
 `hal_eeprom_write()` — the `0x55`/`0xAA` unlock, `WREN`, polling `WR`, and the
-deliberate decision to restore `GIE` while that poll runs. All of it is
-datasheet reading that no hardware has executed.
+deliberate decision to restore `GIE` while that poll runs. All of it was
+datasheet reading that no hardware had executed until this step was run for the
+first time; run it again after anything touches `persist.c` or the write, since
+nothing else can.
 
 **And the failure is invisible until it is expensive**: the device works
 perfectly, the display is right, and then the ignition goes off and every trip
