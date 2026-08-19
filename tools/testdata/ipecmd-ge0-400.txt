@@ -1,0 +1,82 @@
+DFP Version Used : PIC18F-K_DFP,1.5.114,Microchip
+*****************************************************
+Connecting to MPLAB PICkit 3...
+Currently loaded firmware on PICkit 3
+Firmware Suite Version.....01.56.09
+Firmware type..............PIC18F
+Target voltage detected
+Target device PIC18F25K80 found.
+Device Revision ID = 6
+The following memory area(s) will be read:
+program memory: start address = 0x0, end address = 0x7fff
+configuration memory
+EEData memory
+User Id Memory
+Read complete
+Read successfully.
+EEPROM Memory
+000000  00  00  00  00  00  00  00  00  80  00  A1  FA  45  00  00  00   . . . . . . . . . . . . E . . .
+000010  00  00  00  00  80  01  EA  5A  FB  36  00  00  00  00  00  00   . . . . . . . Z . 6 . . . . . .
+000020  80  02  58  B4  F1  64  00  00  00  00  00  00  80  03  F8  FA   . . X . . d . . . . . . . . . .
+000030  43  85  00  00  00  00  00  00  80  04  8E  B1  F7  A3  00  00   C . . . . . . . . . . . . . . .
+000040  00  00  00  00  80  05  41  B8  07  C8  00  00  4A  1B  00  00   . . . . . . A . . . . . J . . .
+000050  80  06  BE  4B  26  F3  00  00  91  72  00  00  80  07  D8  2B   . . . K & . . . . r . . . . . +
+000060  BC  17  01  00  17  AA  00  00  80  08  F1  CE  B5  3E  01  00   . . . . . . . . . . . . . > . .
+000070  38  FF  00  00  80  09  90  58  39  61  01  00  D5  3A  01  00   8 . . . . . . X 9 a . . . : . .
+000080  80  0A  EA  5C  E0  80  01  00  82  5D  01  00  80  0B  14  01   . . . \ . . . . . ] . . . . . .
+000090  65  A4  01  00  5A  A3  01  00  80  0C  AC  35  2A  C6  01  00   e . . . Z . . . . . . 5 * . . .
+0000A0  68  12  02  00  80  0D  1B  84  4E  E8  01  00  C9  52  02  00   h . . . . . . . N . . . . R . .
+0000B0  80  0E  31  33  3C  03  02  00  C9  52  02  00  80  0F  42  A9   . . 1 3 < . . . . R . . . . B .
+0000C0  A3  1E  02  00  C9  52  02  00  80  10  42  61  8F  3A  02  00   . . . . . R . . . . B a . : . .
+0000D0  C9  52  02  00  80  11  03  94  95  55  02  00  C9  52  02  00   . R . . . . . . . U . . . R . .
+0000E0  80  12  46  C4  80  70  02  00  C9  52  02  00  80  13  B1  52   . . F . . p . . . R . . . . . R
+0000F0  D8  8E  02  00  B3  6D  02  00  80  14  06  43  0B  B2  02  00   . . . . . m . . . . . C . . . .
+000100  FB  C4  02  00  80  15  08  44  41  DB  02  00  12  4A  03  00   . . . . . . . D A . . . . J . .
+000110  80  16  5F  F0  F5  F3  02  00  12  4A  03  00  80  17  E7  8A   . . _ . . . . . . J . . . . . .
+000120  74  0D  03  00  12  4A  03  00  80  18  B4  D0  BE  2A  03  00   t . . . . J . . . . . . . * . .
+000130  28  6D  03  00  80  19  C3  12  00  00  00  00  00  00  00  00   ( m . . . . . . . . . . . . . .
+000140  84  1A  1E  85  56  00  00  00  00  00  00  00  84  1B  0C  00   . . . . V . . . . . . . . . . .
+000150  53  1E  00  00  97  05  00  00  84  1C  A0  B7  72  45  00  00   S . . . . . . . . . . . r E . .
+000160  19  BA  00  00  84  1D  11  E6  48  68  00  00  67  6E  01  00   . . . . . . . . H h . . g n . .
+000170  84  1E  88  1B  F4  86  00  00  AD  CF  01  00  84  1F  9F  29   . . . . . . . . . . . . . . . )
+000180  CB  1B  00  00  08  18  00  00  88  20  B0  66  E3  3D  00  00   . . . . . . . . .   . f . = . .
+000190  79  8A  00  00  88  21  96  9A  2B  64  00  00  1B  1B  01  00   y . . . . ! . . + d . . . . . .
+0001A0  88  22  5C  96  B7  87  00  00  B7  8A  01  00  88  23  62  1D   . " \ . . . . . . . . . . # b .
+0001B0  1B  A7  00  00  D9  F5  01  00  88  24  FA  57  22  C3  00  00   . . . . . . . . . $ . W " . . .
+0001C0  6F  48  02  00  88  25  51  49  FF  FF  FF  FF  FF  FF  FF  FF   o H . . . % Q I . . . . . . . .
+0001D0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+0001E0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+0001F0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000200  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000210  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000220  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000230  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000240  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000250  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000260  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000270  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000280  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000290  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+0002A0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+0002B0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+0002C0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+0002D0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+0002E0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+0002F0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000300  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000310  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000320  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000330  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000340  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000350  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000360  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000370  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000380  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+000390  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+0003A0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+0003B0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+0003C0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+0003D0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+0003E0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+0003F0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+Operation Succeeded

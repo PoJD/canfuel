@@ -50,14 +50,11 @@ Done, and each one is a fault it exists to make impossible:
 
 Not done: nothing, of the two gaps this file used to list.
 
-⚠ **One thing here is still untested against hardware and is labelled
-everywhere it appears:** the *layout* IPECMD prints a `-GE` dump in.
-`parse_eeprom_dump()` accepts any address-then-hex-bytes format and refuses to
-answer unless the bytes it recovered cover the whole array exactly once, so a
-layout it does not understand produces "not verified" rather than a wrong
-verdict — but it has not seen the real one. `flash.py` writes every raw dump
-into `mplab/build/`. **Paste the first real one into `tools/test_flash.py` and
-record the format here**, and the label comes off.
+Both have since run against a real part holding a real trip, and the format is
+recorded below. `tools/testdata/ipecmd-ge0-400.txt` is the whole capture,
+verbatim — 1,024 bytes of EEData off a converter that had been driven, with 38
+persist records in it — and `tools/test_flash.py` parses that file rather than a
+string somebody typed.
 
 `tools/test_flash.py` holds IPECMD's real output for every case the tool
 parses, including the three failures, and needs no programmer to run.
@@ -224,6 +221,61 @@ exists to catch — and it is now known rather than guessed at.
 
 ---
 
+## What a `-GE` dump looks like, and the one thing no readme says
+
+```
+DFP Version Used : PIC18F-K_DFP,1.5.114,Microchip
+...
+The following memory area(s) will be read:
+program memory: start address = 0x0, end address = 0x7fff
+configuration memory
+EEData memory
+User Id Memory
+Read complete
+Read successfully.
+EEPROM Memory
+000000  00  00  00  00  00  00  00  00  80  00  A1  FA  45  00  00  00   . . . . . . . . . . . . E . . .
+000010  00  00  00  00  80  01  EA  5A  FB  36  00  00  00  00  00  00   . . . . . . . Z . 6 . . . . . .
+...
+0003F0  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF  FF   . . . . . . . . . . . . . . . .
+Operation Succeeded
+```
+
+A six-digit address, sixteen bytes separated by **two** spaces, then an ASCII
+column. Two things follow for anyone parsing it:
+
+- **The ASCII column is what a line-anchored regex dies on**, and it cannot be
+  cut positionally either without assuming the row width. Every cell of it
+  renders one byte as one character, so reading tokens after the address and
+  stopping at the first one that is not a hex pair always stops in the right
+  place. `parse_eeprom_dump()` does that and then checks the *result* — the
+  bytes must cover the whole array exactly once — so a layout it does not
+  understand yields nothing rather than a scrambled image.
+- **It reads more than it prints.** The header says program memory,
+  configuration memory, EEData and User Id; only EEData appears. That is
+  IPECMD's business, but it explains why a `-GE` is not instant.
+
+⚠ **`-G`'s end address is EXCLUSIVE, and nothing in the readme says so.**
+Measured both ways on the part:
+
+| Command | Bytes returned | Last cell |
+|---|---|---|
+| `-GE0-3FF` | **1,023**, 0x000–0x3FE | printed as `--` |
+| `-GE0-400` | **1,024**, 0x000–0x3FF | `FF` |
+
+So a dump asks for `0-400`. This is the kind of off-by-one that would not have
+announced itself: a parser that padded the missing byte would have compared an
+image it never read and called the ring preserved.
+
+**`-Z` is left at `0-3FF`, the readme's own form, and the asymmetry is
+deliberate.** Whether its end is exclusive too has *not* been established, and
+the way to find out is not to try `0-400` on a board holding a real trip: if
+IPECMD rejected the argument and carried on programming, the erase would take
+the ring with it. The only byte in question is 0x3FF, and `persist.c` uses
+0..767, so both readings cover everything that matters.
+
+---
+
 ## Preserving EEData: why it is three commands and not one flag
 
 `--preserve-eeprom` runs
@@ -256,6 +308,11 @@ that command, and it is the same `-I -OL`.
 the ring's 768 bytes. If `-Z` were ignored the array comes back all `0xFF`,
 which the dump summary reports in as many words; anything else that differs is
 worth seeing rather than hashing away.
+
+**Observed, on a board holding 38 records:** `Device Erased...` appears in the
+programming output exactly as it does without `-Z`, and the EEData comes back
+identical anyway — 455 of 1,024 bytes written, before and after. So the erase
+message is not the thing to read; the comparison is.
 
 ---
 

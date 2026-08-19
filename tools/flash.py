@@ -42,10 +42,11 @@ PRESERVING THE EEPROM, AND WHY IT IS THREE COMMANDS RATHER THAN ONE FLAG.
 
 `--preserve-eeprom` passes `-Z0-3FF`, which *Readme for IPECMD.htm* §13 defines
 as `Z<range>  Preserve EEData on Program`, default `Do Not Preserve`, with the
-worked example in §17.7. `-E` overrides it (§17.8) and is not passed here. The
-range is `0-3FF` because IPECMD addresses this part's EEData from zero -- not
-inferred from the readme but observed, in the `-Y` failure that prints
-`Address: 0 Expected Value: ff Received Value: 0` against a stored record.
+worked example in §17.7. `-E` overrides it (§17.8) and is not passed here.
+IPECMD addresses this part's EEData from zero -- not inferred from the readme
+but observed, in the `-Y` failure that prints `Address: 0 Expected Value: ff
+Received Value: 0` against a stored record. On the two ranges, and why they
+differ, see EEPROM_DUMP_RANGE below.
 
 **The switch had never been run when this was written**, so it is not trusted;
 it is checked. The run reads EEData with `-GE0-3FF` before programming and
@@ -61,10 +62,13 @@ when an earlier step has failed, and its own failure is reported loudly.
 
 If either dump cannot be parsed the run does not invent a verdict: it says the
 preserve was requested and not verified, and writes both raw outputs into
-`mplab/build/` so the format can be recorded in `flash-tool-notes.md`.
+`mplab/build/`. The format is recorded in `flash-tool-notes.md` and the capture
+itself is `tools/testdata/ipecmd-ge0-400.txt`.
 
 STILL NOT HERE: nothing. Both gaps that file listed are closed -- the other was
-reading memory back off the part, which is `--read-eeprom`.
+reading memory back off the part, which is `--read-eeprom`. All of it has run
+against a real part holding a real trip: 38 records in, 38 records out, byte
+for byte.
 
 `-Y` is not run either, and that is a finding rather than an omission: it
 verifies EEData against a hex with no EEPROM section, so on a perfectly
@@ -111,8 +115,22 @@ CANMX_BIT = 0x01
 # 0..767 of it and leaves the top 256 alone; the range here is the whole array
 # because preserving half of it would be a stranger thing to explain than
 # preserving all of it.
-EEPROM_RANGE = "0-3FF"
 EEPROM_BYTES = 1024
+
+# TWO RANGES, AND THEY LOOK INCONSISTENT ON PURPOSE.
+#
+# `-G`'s end address is EXCLUSIVE, which no readme says and which was measured:
+# `-GE0-3FF` returns 1,023 bytes, 0x000..0x3FE, and prints the last cell as
+# `--`; `-GE0-400` returns all 1,024. So a dump asks for 0-400.
+#
+# `-Z` is left at the readme's own form. Whether its end is exclusive too has
+# NOT been established, and the way to find out is not to try `0-400` on a
+# board holding a real trip: if IPECMD rejected the argument and carried on
+# programming, the erase would take the ring with it. The only byte in question
+# is 0x3FF, and persist.c uses 0..767 (PERSIST_SLOTS * PERSIST_RECORD_BYTES),
+# so both forms cover everything that matters either way.
+EEPROM_DUMP_RANGE = "0-400"
+EEPROM_PRESERVE_RANGE = "0-3FF"
 
 # What a failed run says, and what it means. A table rather than a chain of
 # ifs, because these strings are the whole diagnosis and belong where they can
@@ -183,33 +201,39 @@ def parse_blank_check(text: str) -> tuple[bool, str]:
 
 
 def parse_eeprom_dump(text: str, want: int = EEPROM_BYTES) -> bytes | None:
-    """The EEData bytes out of a `-GE0-3FF` screen dump, or None.
+    """The EEData bytes out of a `-GE` screen dump, or None.
 
-    THE OUTPUT FORMAT IS NOT PINNED HERE, deliberately. Every other parser in
-    this file matches a string IPECMD was seen to print, recorded in
-    flash-tool-notes.md; this switch had never been run when it was written, so
-    matching an exact layout would be guessing dressed up as a parser. Instead
-    it takes any line that begins with an address and continues in hex byte
-    pairs, and then refuses the result unless the bytes cover exactly 0..want-1
-    with none missing and none repeated. A format it does not understand
-    therefore returns None rather than a short or scrambled image, and the
-    caller reports "not verified" instead of a verdict.
+    What IPECMD really prints, and every part of it matters:
 
-    Once a real dump exists, paste it into tools/test_flash.py and this comment
-    stops being true of it.
+        000000  00  00  00  00  ...  A1  FA  45  00  00  00   . . . . . E . .
+
+    a six-digit address, sixteen bytes separated by two spaces, and then an
+    ASCII column. The ASCII column is what a naive line-anchored regex dies on,
+    and it cannot be matched positionally either -- so this reads tokens after
+    the address and stops at the first one that is not a hex pair. Every cell
+    of the ASCII column renders one byte as one character, so it always stops
+    in the right place, and an unread cell prints `--`, which stops it too.
+
+    Nothing else is assumed: not the row width, not the address width, not the
+    separator. What is checked instead is the RESULT -- the bytes must cover
+    0..want-1 with none missing and none repeated -- so a layout this does not
+    understand yields None rather than a short or scrambled image, and the
+    caller reports "not verified" instead of inventing a verdict.
     """
     if diagnose(text):
         return None
 
     seen: dict[int, int] = {}
-    row = re.compile(r"\s*(?:0x)?([0-9A-Fa-f]{2,8})\s*:?\s+"
-                     r"((?:[0-9A-Fa-f]{2}[ \t]+)*[0-9A-Fa-f]{2})\s*$")
+    head = re.compile(r"\s*(?:0x)?([0-9A-Fa-f]{4,8})\s*:?[ 	]+(.*)$")
+    byte = re.compile(r"[0-9A-Fa-f]{2}$")
     for line in text.splitlines():
-        m = row.match(line)
+        m = head.match(line)
         if not m:
             continue
         addr = int(m.group(1), 16)
         for i, tok in enumerate(m.group(2).split()):
+            if not byte.match(tok):
+                break
             if addr + i in seen:
                 return None
             seen[addr + i] = int(tok, 16)
@@ -341,7 +365,7 @@ def read_eeprom(dry: bool, device: str, tool: str, release: bool,
     the docstring at the top -- so it is on for a standalone read and off
     while a preserve check wants the part held still.
     """
-    args = ["-GE" + EEPROM_RANGE]
+    args = ["-GE" + EEPROM_DUMP_RANGE]
     if release:
         args.append("-OL")
     out = ipecmd(args, dry, device, tool)
@@ -489,9 +513,10 @@ def main(argv: list[str] | None = None) -> int:
 
     print()
     if args.preserve_eeprom:
-        print("program -- -M -Z0-3FF, and NOT -OL: the part stays in reset so")
+        print("program -- -M -Z%s, and NOT -OL: the part stays in reset so"
+              % EEPROM_PRESERVE_RANGE)
         print("           it cannot write to EEData before the check below")
-        cmd = ["-F" + str(hex_path), "-M", "-Z" + EEPROM_RANGE]
+        cmd = ["-F" + str(hex_path), "-M", "-Z" + EEPROM_PRESERVE_RANGE]
     else:
         print("program -- -M -OL, which erases the EEPROM with it")
         cmd = ["-F" + str(hex_path), "-M", "-OL"]
