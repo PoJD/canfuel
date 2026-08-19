@@ -169,13 +169,16 @@ the datasheet, against `gcc -fsyntax-only`, and against XC8 itself.
 - **Compiling proves nothing about the silicon.** A register that exists but is
   written in the wrong order, at the wrong time, or with the wrong value
   compiles exactly as cleanly as one that does not.
-- **500 kbps has run on a bench bus and not in the car.** The bit timing was
+- **500 kbps has run on a bench bus and in the car.** The bit timing was
   datasheet arithmetic and is now also a measurement: hours of traffic at 357
   frames a second with `hal_can_rx_errors()` and `hal_can_tx_errors()` both at
   zero, the six hardware filters holding under a flood, and recovery from
   deliberate starvation and from a node at half the bit rate. **The car's bus
-  is still untested** and differs in the thing bit timing is most sensitive to
-  -- length, and a 1.4 m unterminated stub. Check the counters early there too.
+  -- the longer one, with the 1.4 m unterminated stub the Prop_Seg budget was
+  widened for -- then read the same**: both counters zero, `COMSTAT` zero,
+  `UNHEALTHY` clear, read off 0x603 on the display rather than off a blink
+  rate. The one thing that has ever disturbed it is the MFD15 itself, and only
+  while somebody is operating it; see `docs/frames.md`.
 - **The A/D reading is calibrated per unit, against a meter.** `VDD_CAL_*` in
   `config.h`, and the recipe for redoing it is beside them. The 1.024 V
   reference has no tolerance anywhere in the datasheet, so the nominal

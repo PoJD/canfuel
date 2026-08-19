@@ -174,6 +174,32 @@ The 1.5 s hold exists because an overflow is an instant rather than a state —
 `hal_can_overflow()` clears it as it reports it — and a 100 ms blink is not
 something anybody can see. `DIAG_UNHEALTHY_HOLD` in `src/config.h`.
 
+### What has actually set it, in the car: the display
+
+⚠ **Operating the MFD15 through oDSS disturbs the bus.** Observed in the
+vehicle: uploading a TRI file, and changing the display's configuration, each
+produced a burst of CAN errors — `LED_CAN` blinked for a few seconds,
+`UNHEALTHY` latched, and it stayed latched until the next power-up. The error
+counters walked back to zero on their own straight afterwards, and no frame the
+converter cares about was lost.
+
+**So `UNHEALTHY` set with the counters at zero, after somebody has been in the
+display's setup, is very probably not the converter.** Check that before
+hunting a bit-timing problem. It is also exactly the case the `UNHEALTHY` /
+`UNHEALTHY_NOW` pair was built for: the latch remembered an event the counters
+no longer showed, and `LED_CAN` went steady again the moment the trouble
+stopped. The design worked — the fault was somebody else's.
+
+**What is NOT established is what the display does** — whether it transmits
+malformed frames, resets its own CAN controller, or floods the bus while it
+reads or writes its configuration. All that is known is the correlation, taken
+by watching 0x603 while operating oDSS, and that distinction is worth keeping
+if it is ever reported to CANchecked. `tools/usbtin_capture.py` during an
+upload would say more, and nobody has run it.
+
+**It cannot happen while driving**, which is the only time it would matter:
+oDSS needs the display's Wi-Fi hotspot, and the hotspot is off by default.
+
 ### Byte 4 — reset cause
 
 Out of RCON and STKPTR, latched by `hal_sys_init()` before anything can

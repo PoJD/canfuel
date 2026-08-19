@@ -1201,6 +1201,13 @@ So if it rises while `FuelNow` shows nonsense, the fault is in **this
 firmware's arithmetic** rather than in its input. If neither moves, the fault is
 upstream of us.
 
+⚠ **`UNHEALTHY` after a TRI upload is the display, not the converter.**
+Operating the MFD15 through oDSS — uploading a file, changing its
+configuration — produces a burst of CAN errors that latches the flag until the
+next power-up, with the counters back at zero straight afterwards.
+`docs/frames.md` has what was observed and what is still unexplained about it.
+Power-cycle before reading that flag as a verdict on this board.
+
 Two more worth doing on the first drive:
 
 - **Range and FuelTank should agree with each other.** They read the same damped
