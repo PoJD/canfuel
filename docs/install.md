@@ -1317,6 +1317,7 @@ line above.
 | LED_CAN 5 Hz | `hal_can_init()` failed. Bit timing, `CANMX`, or a configuration bit |
 | LED_CAN dark, car running | wiring: CANH/CANL swapped, or the stub not connected. Ring it out |
 | Display channels stay at 0 | a silent build (LED_PWR blinking), or the frame layout drifted from `S-AQY.TRI` |
+| Display channels stay at 0 **and RPM has vanished too** | not this device. The MFD15 loses its sensor definitions when a page's contents are changed, and RPM going with them is the tell — it reads the car's bus directly, so the converter cannot be the reason. Upload the TRI file again; `mfd15/CLAUDE.md` |
 | Display shows plausible but wrong numbers | the frame layout **did** drift. `docs/frames.md` and `S-AQY.TRI` must agree; `test/test_txframes.c` pins every offset |
 | The fuse blew | a short on the converter board. Fit one new fuse; if the second goes, stop and find the short |
 | Nothing at all after wiring | ring circuit 1 of the Micro-Fit out to the board's +5 V pad. If CANH is in circuit 1, the transceiver has had 5 V on it |
