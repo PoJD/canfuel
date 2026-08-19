@@ -28,8 +28,8 @@ both (the Format column in the TRI file, 0 = big endian).
 | 6–7 | VddConv | 0.01 V |
 
 Flow is carried separately in 0x601 even when FuelNow is currently sending
-l/100 km. That way a dedicated sensor can be added on the display without
-changing anything.
+l/100 km, so the display can show the instantaneous flow whatever unit FuelNow
+happens to be in. S-AQY.TRI has a `Flow` sensor on it.
 
 VddConv is the supply voltage the PIC measures on itself through the built-in
 1.024 V fixed voltage reference, with no external parts at all. The converter's
@@ -85,10 +85,11 @@ A slow frame, used for diagnostics and to confirm the accumulators behave.
 Two 32-bit values rather than four 16-bit ones, because a tankful is around
 600 km and 55 l — both overflow 16 bits long before the trip is reset.
 
-**S-AQY.TRI does not read this frame.** It is the only one of the three with
-no consumer on the display, so its layout is ours to change; the coupling
-described in `CLAUDE.md` applies to 0x600 and 0x601. It exists to be watched
-on a USBtin while the accumulators are being trusted for the first time.
+**S-AQY.TRI reads this frame** — `TripFuel` and `TripDist`, the two 32-bit
+values below — so its layout is no longer ours to change alone. The coupling
+described in `CLAUDE.md` covers all four frames. It is also still worth
+watching on a USBtin while the accumulators are being trusted for the first
+time.
 
 ⚠ **Both values read systematically LOW against a real odometer, and by
 design.** The accumulators live in RAM and reach the EEPROM every 20 s, so
@@ -139,6 +140,13 @@ so a converter that went bus-off and recovered reads clean on bytes 0–2.
 `test/test_txframes.c` pins the byte offsets from the firmware side and
 `tools/test_bench_test.py` from the reader's side. **The two decoders are twins
 and a layout change belongs in both.**
+
+**There is a third decoder now: the display.** `mfd15/tri/S-AQY.TRI` carries a
+row per field, with the six flag bits split out under their own names rather
+than shown as one number — so "is the CAN side healthy" can be read off the
+dashboard with the jumper in, and no laptop. Single bits are written there as
+`shift = n`, `mask = 1 << n`; `mfd15/docs/tri-format.md` has the evidence for
+that ordering, which is the opposite of the obvious one.
 
 ### Byte 3 — flags
 

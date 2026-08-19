@@ -406,10 +406,10 @@ This repo sits next to two siblings, `kicad` (the board) and `mfd15` (the
 display config). They have separate toolchains and separate GitHub remotes
 under `PoJD/`, and the directory above them is deliberately not a git repo.
 
-The coupling to **`mfd15`** is **the layout of frames 0x600 and 0x601**,
-defined in `docs/frames.md` and consumed by `mfd15/tri/S-AQY.TRI`. The coupling
-to **`kicad`** is the pin assignment in the section above — one-way, and
-already frozen by an order that has been placed.
+The coupling to **`mfd15`** is **the layout of all four frames, 0x600 to
+0x603**, defined in `docs/frames.md` and consumed by `mfd15/tri/S-AQY.TRI`. The
+coupling to **`kicad`** is the pin assignment in the section above — one-way,
+and already frozen by an order that has been placed.
 
 That file has already been uploaded to a real display and verified, so it is
 final until this firmware starts transmitting. When the layout changes here, it
@@ -418,17 +418,21 @@ error — the display shows plausible but wrong numbers, which is worse.
 `test/test_txframes.c` pins every offset against the TRI file, with the
 relevant TRI lines quoted in its header comment.
 
-**0x602 and 0x603 are not coupled to anything.** S-AQY.TRI does not read
-either — 0x602 was checked sensor by sensor while phase 1 was being written,
-and 0x603 was added afterwards for the bench. Both are ours to change freely
-and exist to be watched on a USBtin. **0x603 is the one that answers "is the
-CAN side healthy" in numbers** rather than in an LED blink rate; its layout is
-in `docs/frames.md` and `tools/bench_test.py` decodes it. Likewise `Flow` in
-0x601 b4–5 is transmitted but has no sensor on the display; that one is
-deliberate, so a dedicated gauge can be added later without touching firmware.
+**0x602 and 0x603 used to be uncoupled, and are not any more.** They were
+ours to change freely for as long as S-AQY.TRI did not read them, and it reads
+them now — along with `Flow` in 0x601 b4–5, which was transmitted with no
+sensor pointed at it. So the rule above applies to every field this
+firmware puts on the wire, with no exceptions to remember.
 
-The useful check once the converter is live: compare FuelNow against
-FuelCntRaw on the display. FuelCntRaw is the raw ECU counter with no
+**0x603 is the one that answers "is the CAN side healthy" in numbers** rather
+than in an LED blink rate; its layout is in `docs/frames.md`,
+`tools/bench_test.py` decodes it, and the display now decodes it too — bit by
+bit, under names rather than as a hex byte. It is still transmitted only with
+JP1 fitted, so those twelve channels read zero in a closed dashboard **by
+design**; that is the first thing to check before calling one of them a fault.
+
+The useful check on the display: compare FuelNow against
+FuelCntRaw. FuelCntRaw is the raw ECU counter with no
 conversion, so if it rises while FuelNow shows nonsense, the fault is in this
 firmware's arithmetic rather than in its input.
 

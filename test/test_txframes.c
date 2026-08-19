@@ -1,4 +1,4 @@
-/* test_txframes.c -- the byte layout of 0x600, 0x601 and 0x602.
+/* test_txframes.c -- the byte layout of 0x600, 0x601, 0x602 and 0x603.
  *
  * These offsets are not an internal detail: mfd15/tri/S-AQY.TRI has already
  * been uploaded to a real display and reads exactly these bytes. Getting one
@@ -8,10 +8,20 @@
  *
  *   0600;0;0;2 FuelNow   0600;0;2;2 FuelAvg
  *   0600;0;4;2 FuelTank  0600;0;6;2 Range
- *   0601;0;0;2 Power     0601;0;2;2 Torque      0601;0;6;2 VddConv
+ *   0601;0;0;2 Power     0601;0;2;2 Torque      0601;0;4;2 Flow
+ *   0601;0;6;2 VddConv
+ *   0602;0;0;4 TripFuel  0602;0;4;4 TripDist
+ *   0603;0;0;1 CanRxErr  0603;0;1;1 CanTxErr    0603;0;2;1 ComStat
+ *   0603;0;3;1 the six flag bits, shift = n and mask = 1 << n
+ *   0603;0;4;1 ResetCause (mask 001F)           0603;0;5;1 TxRefused
+ *   0603;0;6;2 Uptime
  *
  * The third column is the format: 0 is big endian, and every one of our own
  * sensors carries a 0 while the car's carry a 1.
+ *
+ * ALL FOUR FRAMES ARE READ BY THE DISPLAY NOW. 0x602 and 0x603 used to be
+ * ours to change freely because nothing consumed them; they have rows in the
+ * TRI file, so a layout change here is a change there in the same breath.
  */
 
 #include <string.h>
