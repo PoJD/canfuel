@@ -14,7 +14,12 @@ Physically it sits behind the display, powered by 5 V taken straight from it.
 
 ## Status
 
-**It builds. It has never run.**
+**It is installed in a car and working.**
+
+It sits behind the display in the air vent, reads the vehicle's bus and feeds
+the MFD15 ten channels of its own. What that took is
+[`docs/install.md`](docs/install.md), in order, from three clones to a closed
+dashboard.
 
 The pure C core — frame decoding, the fuel arithmetic, the transmitted frames
 and the EEPROM buffer — is compiled with gcc and checked against seven real
@@ -55,11 +60,22 @@ the worst pass without an EEPROM write is 6.5 ms against a 10 ms slot, and the
 whole firmware uses about a sixth of the CPU. `python tools/cycles.py` prints
 it and CI fails if a budget is blown.
 
-⚠ **No board has ever run it.** Compiling is not running: a register written
-in the wrong order at the wrong time compiles exactly as cleanly as one that is
-not, and the 500 kbps bit timing is datasheet arithmetic that no hardware has
-executed. `docs/timing.md` is the same caveat for the scheduler — the timing
-budget is counted out of the assembly listing, not measured.
+**What has actually run, and what is still only counted.** The 500 kbps bit
+timing was datasheet arithmetic; it now has hours on a bench bus at 357 frames
+a second and a vehicle's own bus behind it — the longer one, with a 1.4 m
+unterminated stub — with both CAN error counters at zero on each. The fuel
+arithmetic agrees with the display's raw ECU counter in the car. The refuelling
+reset has fired on real fuel from a jerrycan.
+
+⚠ **The timing budget is still counted rather than measured.**
+[`docs/timing.md`](docs/timing.md) costs every function out of the assembly
+listing XC8 generates; nothing has put a scope on it. The margins are large
+enough that this is a stated limitation rather than a worry — the busiest
+transmit slot uses 2.4 ms of its 25 — but it is not a measurement.
+
+⚠ **One calibration is open**: the engine's drag torque is fitted on 72–77 °C
+oil rather than the 95–110 °C of real driving, which biases torque and power
+slightly low. `docs/can-decoding.md` question 7.
 
 **[`docs/install.md`](docs/install.md) is the procedure** — the whole path from
 three clones to a working device, in the order it has to happen, with each step
@@ -99,9 +115,11 @@ ASCII. Both are documented, with the exact failure messages, in
 command line with `ipecmd.exe` out of the MPLAB X install — the IDE is not
 opened for it. IPECMD supports MPLAB Snap, PICkit 3 and 4 and ICD 4 for this
 part; only the `-TP` name changes. *(Tested on a PICkit 3, which was driven
-from the command line and took its own firmware update.)* **No board has been
-flashed on this project yet**, which is a different question. The commands are
-in [`docs/install.md`](docs/install.md) steps 4 and 5.
+from the command line and took its own firmware update.)* The commands are in
+[`docs/install.md`](docs/install.md) steps 4 and 5, and
+`python tools/flash.py` wraps them — including `--preserve-eeprom`, which keeps
+the trip accumulators across a reflash and then proves it did by reading the
+EEPROM back either side of the write.
 
 One thing that transfers to any script: **IPECMD's exit code cannot be branched
 on.** A `-I` that never found the target still exits 0, and `-T`, which works,

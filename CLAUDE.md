@@ -81,9 +81,9 @@ says nothing about ours, and their bit timing was never exercised anywhere
 near our rate. What transfers is the *plumbing*: the configuration bits, the
 register sequences, the shape of the driver. The 500 kbps numbers in the HAL
 section below were derived from the datasheet and have since **run on a bench
-bus** -- hours of traffic at 357 frames a second with both error counters
-sitting at zero, plus deliberate fault injection. What has not been tested is
-the car's bus and its 1.4 m unterminated stub.
+bus and in the car** -- hours of traffic at 357 frames a second with both error
+counters sitting at zero, plus deliberate fault injection, and then the same
+counters at zero on the vehicle's own bus with its 1.4 m unterminated stub.
 
 Working code also does not stop a deviation from the datasheet propagating.
 Three cases, all real:
