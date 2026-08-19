@@ -154,6 +154,22 @@
  * gone, not a third decimal place. */
 #define VDD_NUMERATOR_C         436344UL
 
+/* VddConv IS FILTERED, because the A/D's scatter is bigger than its LSB.
+ *
+ * One conversion is good to about +/-0.025 V on the board measured -- five
+ * times what an LSB is worth at this code -- so an unfiltered reading walks
+ * the last digit of the display around at ten changes a second for no reason.
+ * Nothing in the car changes the supply that fast except cranking, and that is
+ * the brown-out detector's job rather than this field's.
+ *
+ * First order, in the same shape as the tank filter in compute.c: the value is
+ * carried at 1/32 of a hundredth of a volt -- which keeps it inside a uint16,
+ * and the 32-bit version of the same filter cost 518 bytes -- and each new
+ * sample moves it by 1/16 of the difference. At the ten samples a second slot 0 gives, that is a
+ * time constant of about 1.6 s and it divides the scatter by about four. A
+ * shift keeps it a shift; do not make this a divisor. */
+#define VDD_FILTER_SHIFT        4
+
 /* The uncalibrated numerator, and where to start from:
  *
  *   VDD = 1.024 x 4096 / code, and in 0.01 V that is 100 x 4194.304 / code

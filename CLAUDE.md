@@ -1092,6 +1092,12 @@ tools/          flash.py — builds a mode and flashes it in one command, and
                 bench_scenarios.py — the synthetic streams behind it. Frames are
                 REAL ones with one field patched, never built from scratch: a
                 builder written from decode.c's table would be its twin
+                acker.py — holds one adapter open in NORMAL mode so somebody
+                acknowledges the converter. Start it before the board and leave
+                it up: an unacknowledged converter latches UNHEALTHY and
+                saturates the refusal counter within a second, which reads as a
+                fault and is not one. Stop it for 7.3 and 7.4, which want two
+                adapters of their own
                 cycles.py — cycle budgets out of the XC8 listing, a CI gate
                 checkdocs.py — prose vs config.h, a CI gate
 ```

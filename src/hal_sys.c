@@ -327,8 +327,13 @@ uint32_t hal_sys_millis(void)
 
 /* --- supply voltage ------------------------------------------------------ */
 
+/* The filtered supply, at 1/32 of a hundredth of a volt. Zero means nothing
+ * has been converted yet, which is why the first sample seeds it outright. */
+static uint16_t g_vdd_q5 = 0u;
+
 uint16_t hal_sys_vdd_c(void)
 {
+    uint16_t target_q5;
     uint16_t code;
     uint32_t vdd_c;
 
@@ -354,7 +359,32 @@ uint16_t hal_sys_vdd_c(void)
         vdd_c = VDD_MAX_C;
     }
 
-    return (uint16_t)vdd_c;
+    /* Filtered, and config.h says why: one conversion carries several times an
+     * LSB of scatter, so the raw value would walk the display's last digit
+     * around ten times a second. Seeded from the first conversion rather than
+     * ramped up from zero -- the very first frame after a reset should carry a
+     * supply voltage, not a fifth of one.
+     *
+     * SIXTEEN BITS AND NOT THIRTY-TWO. vdd_c is clamped to VDD_MAX_C = 2000
+     * just above, so the value at 1/32 of a hundredth of a volt has a ceiling
+     * of 64,000 and a uint16 holds it with room. The 32-bit version of exactly
+     * this cost 518 bytes of program memory, because a shift of four is a
+     * rotate loop and doing it over four bytes is four times the loop --
+     * docs/optimisation.md, the narrowest type that provably holds the value.
+     * What Q5 costs is a dead band: a difference under 16/32 of a hundredth of
+     * a volt moves nothing, which is half the resolution of the field. */
+    target_q5 = (uint16_t)(vdd_c << 5);
+    if (g_vdd_q5 == 0u) {
+        g_vdd_q5 = target_q5;
+    } else if (target_q5 > g_vdd_q5) {
+        g_vdd_q5 = (uint16_t)(g_vdd_q5
+                              + ((target_q5 - g_vdd_q5) >> VDD_FILTER_SHIFT));
+    } else {
+        g_vdd_q5 = (uint16_t)(g_vdd_q5
+                              - ((g_vdd_q5 - target_q5) >> VDD_FILTER_SHIFT));
+    }
+
+    return (uint16_t)((g_vdd_q5 + 16u) >> 5);
 }
 
 /* --- jumper and LEDs ----------------------------------------------------- */

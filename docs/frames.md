@@ -54,12 +54,20 @@ Two things it is worth being honest about, both of them the datasheet's:
   on a 5 V rail. **`VDD_NUMERATOR_C` in `src/config.h` is the per-unit
   calibration that closes that**, measured against a meter, with the recipe for
   redoing it beside it — every board wants its own.
-- **Even calibrated, read a mean rather than a frame.** 299 consecutive samples
-  off one board spanned 4.86 to 4.91 V, so the A/D's own scatter is about
-  ±0.025 V — five times what an LSB is worth here. A single reading is
-  therefore good to a couple of hundredths and no better, which is plenty for
-  the question this field exists to answer and not enough to calibrate
-  against.
+- **The A/D scatters more than an LSB, so the field is filtered.** 299
+  consecutive *unfiltered* samples off one board spanned 4.86 to 4.91 V — about
+  ±0.025 V, five times what an LSB is worth here — which would walk the
+  display's last digit around ten times a second for no reason.
+  `VDD_FILTER_SHIFT` in `src/config.h` puts a first-order filter on it with a
+  time constant of about 1.6 s; the same board then sat on two adjacent values,
+  4.90 for 228 samples out of 240 and 4.89 for the other twelve, with the mean
+  unmoved. **So what 0x601 carries is already an average**, and the accuracy is
+  a couple of hundredths of a volt — plenty for the question this field exists
+  to answer.
+
+  ⚠ **The filter is why the field cannot see a fast dip**, and that is
+  deliberate: cranking is the brown-out detector's job, and it reports through
+  the reset cause in 0x603 rather than here.
 - **Below 3 V the number stops meaning anything.** Table 31-25 specifies the
   twelve-bit resolution only for VREF ≥ 3.0 V, and VREF here is VDD itself.
   That is also why the brown-out trip point in `src/pic_config.h` is 3.0 V

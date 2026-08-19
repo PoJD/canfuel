@@ -834,6 +834,38 @@ it. **Measure rather than count jumpers** — three terminators on the bus give
 40 Ω, which is below what the transceiver is specified to drive, and the meter
 settles in five seconds what no datasheet can, because it is your hardware.
 
+### Leave an acknowledger running, and the bench stops lying to you
+
+```
+python tools/acker.py --port COM6        # in its own window, until Ctrl-C
+```
+
+**Start this before the converter and leave it up.** A CAN transmitter needs
+one other node to pull the acknowledge slot dominant, and on a bench the
+converter is regularly the only node with its channel open — every gap between
+a flash and the next test is one. In that gap nothing acknowledges it, so every
+frame is retransmitted, the transmit error counter climbs to the error-passive
+limit and stays there, and:
+
+- **`UNHEALTHY` latches**, so `LED_CAN` blinks for the rest of the session and
+  the flag in 0x603 says nothing until the next reset
+- **the refusal counter saturates at 255**, because all three transmit buffers
+  are permanently busy
+- both read exactly like a converter with a real fault, and cost an hour each
+  time
+
+With the acknowledger up, a board flashed underneath it boots onto a live bus
+and comes up clean: `flags CAN_OK DATA_LIVE`, refusals 0, LED steady. It
+transmits nothing itself — acknowledging is a hardware function of the CAN
+controller rather than a frame — so it cannot disturb a measurement.
+
+⚠ **Normal mode, not listen only.** An adapter in listen-only is silent in the
+acknowledge slot too. That is exactly what 7.4 needs and exactly what is
+useless here.
+
+⚠ **It holds a serial port**, so stop it before 7.3 and 7.4, which want two
+adapters of their own. 7.1, 7.2 and 7.5 need one and leave the other free.
+
 ```
 python tools/bench_test.py --all --port COM5 --port2 COM6
 ```
