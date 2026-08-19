@@ -145,13 +145,28 @@ disturb them (DS39977C Register 5-1, whose flags are all active low).
 | Bit | Name | Meaning |
 |---|---|---|
 | 0x01 | power-on | POR |
-| 0x02 | brown-out | BOR — the supply sagged past `BORV` = 3.0 V |
+| 0x02 | brown-out | BOR — **only meaningful with 0x01 clear**, see below |
 | 0x04 | **watchdog** | the firmware hung. A bug, not an environment |
 | 0x08 | RESET instruction | never executed by this firmware |
 | 0x10 | stack | STKFUL or STKUNF, with `STVREN = ON` |
 
 **Zero is a legitimate answer** and means none of these — an MCLR reset, which
 is what a programmer leaves behind.
+
+⚠ **Brown-out on its own says nothing, and a cold start always reports it.**
+DS39977C §5.4.2: *"the BOR bit always resets to `0' on any Brown-out Reset or
+Power-on Reset event. This makes it difficult to determine if a Brown-out Reset
+event has occurred just by reading the state of BOR alone. A more reliable
+method is to simultaneously check the state of both POR and BOR ... IF BOR is
+`0' while POR is `1', it can be reliably assumed that a Brown-out Reset event
+has occurred."* So **brown-out matters only when power-on is clear** — the two
+bits together are the reading, never `0x02` by itself. Every plain power-up of
+this board reports `power-on brown-out`, and that is the hardware working.
+
+The other half of that method is already done: `reset_cause_init()` writes each
+flag back to its inactive state after latching it, because nothing in hardware
+ever does. Without that, every reset from here to the end of time would still
+be reporting the power-on that started the day.
 
 **This byte is worth more than the rest of the frame put together.** A
 converter that quietly restarts every few minutes looks, from the display,

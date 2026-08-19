@@ -471,3 +471,49 @@ zero before a self-powered board is connected. See `docs/install.md` step 4.
 specification. This is the same failure one step further on: an *interpretation*
 dressed up as a measurement. The number was measured; "therefore it cannot drive
 a load" was not, and the two sat in one sentence.
+
+
+### E7. "A node nobody acknowledges climbs to 256, goes bus-off and falls silent"
+
+**Believed** because it is what the counting rule looks like from one end:
+DS39977C §27.14.7 says the devices "go to bus-off if the transmit error counter
+equals or exceeds the bus-off limit of 256", an acknowledge error makes the
+transmitter send an error flag, and an error flag costs 8. Thirty-two failed
+tries is a fraction of a second, so a converter alone on a bench bus should be
+silent almost immediately. `docs/install.md` step 7.3 said so, and
+`tools/bench_test.py` **checked for that silence** and treated frames as the
+failure.
+
+**Refuted by the bench, twice, and one of them by accident.** Between every
+flash and the start of a test, nothing on the bench bus acknowledges anything.
+The converter transmits into that silence for as long as it lasts — and it
+never stops. A capture of one such window has **3629 frames of 0x600 in two
+seconds**, going on for tens of seconds; the deliberate version in 7.3 measures
+**1812 frames a second against 22 nominal**. When acknowledgements came back,
+0x603 reported `TXERRCNT` at **116** and `COMSTAT` showing `TXWARN|EWARN`, not
+`TXBO`. It had never been anywhere near 256.
+
+**Why.** The same sentence in §27.14.7 that gives the limits also says the
+counters are incremented "in accordance with the CAN bus specification", and
+the specification's fault-confinement rules carry an exception the datasheet
+does not spell out: a transmitter that is **already error-passive**, detects an
+acknowledge error, and sees no dominant bit while sending its passive error
+flag, **does not increase TEC**. So TEC climbs 8 at a time to 128, the node
+becomes error-passive, and there it stays — retransmitting for ever. Bus-off
+needs somebody else on the bus generating errors, which is exactly what a lone
+node does not have.
+
+**What this cost.** Nothing on the car, and half a day on the bench: the
+retransmission storm is also why `UNHEALTHY` and the refusal counter are set on
+almost every bench run before a single test has started, which read as a fault
+in the converter for most of a morning. `tools/bench_test.py` now explains that
+state where it prints it.
+
+**What survives.** The recovery claim, which was never about this path.
+DS39977C §27.11's 128 × 11 recessive bits is how a module that really did go
+bus-off comes back, with no MCU intervention. This firmware has still never
+been observed in bus-off, so **that path remains untested on this silicon** —
+say so rather than assuming 7.3 covered it.
+
+**Lesson.** A limit in a register description is not the whole counting rule.
+The datasheet said where it delegates, and the delegated document was not read.

@@ -921,19 +921,24 @@ injections here are pure adapter commands — nothing is unplugged:
   on the bus drives the ACK slot. **No stimulus is sent during this window, and
   none can be** — an adapter in listen-only refuses to transmit — so the only
   thing on the wire is the converter's own frames, which is all this needs. Its
-  transmit error counter climbs by 8 per failed try and it goes bus-off, at
-  which point **it falls silent, and that silence is the observation**. Then
-  the adapters go back to normal and it must return on its own. DS39977C
-  §27.11: recovery is 128 × 11 recessive bits, about 2.8 ms at 500 kbps, with
-  no MCU intervention. This is where that claim gets tested on your silicon.
+  transmit error counter climbs by 8 per failed try to the error-passive limit
+  of 128 — **and stops there. It does not go bus-off and it does not fall
+  silent**: it retransmits for as long as the starvation lasts, measured at
+  **1812 frames a second against 22 nominal**, and that flood is the
+  observation. `docs/refuted.md` E7 carries what this used to claim and
+  what refuted it. Then the adapters go back to normal, the counter walks
+  back down and the module returns to error-active on its own. DS39977C
+  §27.11: recovery from bus-off is 128 × 11 recessive bits with no MCU
+  intervention — which is the path this test does *not* take.
 - **A node at the wrong bit rate.** One adapter transmits at 250 kbit/s
   into a 500 kbit/s bus, which produces real error frames and drives the
   *receive* counter up. Then it stops and the counters must come down.
 
 **The check that matters is `UNHEALTHY` after recovery.** Both error counters
-reset when the module recovers, so a converter that went bus-off and came back
-reads perfectly clean — and the latched flag is the only trace that anything
-happened. This test is the only proof that latch works.
+walk back to zero as normal traffic resumes, so a converter that spent six
+seconds unacknowledged reads perfectly clean afterwards — and the latched flag
+is the only trace that anything happened. This test is the only proof that
+latch works.
 
 If it does **not** recover, power-cycle the board and say so: that is a real
 finding, and far better found here than in the car.
@@ -953,10 +958,10 @@ leaves the device holding exactly the build step 8 asks for next.
 drive the acknowledge slot dominant, and a listen-only converter never will —
 DS39977C §27.3.4 promises exactly that, "no messages will be transmitted while
 in this state, including error flags or Acknowledge signals". With one adapter
-the transmitter is alone on the bus: nothing acknowledges, every frame is
-retransmitted, and it reaches the bus-off limit of 256 within milliseconds. The
-second adapter is opened normally and transmits nothing at all; acknowledging
-is its entire job.
+the transmitter is alone on the bus: nothing acknowledges and every frame is
+retransmitted for ever, at eighty times the intended rate — see 7.3, where that
+is deliberate. The second adapter is opened normally and transmits nothing at
+all; acknowledging is its entire job.
 
 Two things the script checks itself, and they are not nothing:
 

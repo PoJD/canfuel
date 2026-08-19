@@ -102,6 +102,17 @@ COMSTAT_BITS = [(0x20, "TXBO bus-off"), (0x10, "TXBP transmit passive"),
                 (0x08, "RXBP receive passive"), (0x04, "TXWARN"),
                 (0x02, "RXWARN"), (0x01, "EWARN")]
 
+# The USBtin status byte, from the `F` command. Only the top three bits are
+# the CAN bus; the rest are the adapter's own queues, and reading a full queue
+# as a bus fault is a mistake this file has already made once -- 0x08 is what
+# an adapter gets for being handed 610 frames a second while its host is busy,
+# and it says nothing whatever about the converter.
+ADAPTER_FLAGS = [(0x01, "rx queue full"), (0x02, "tx queue full"),
+                 (0x04, "error warning"), (0x08, "DATA OVERRUN"),
+                 (0x20, "ERROR PASSIVE"), (0x40, "ARBITRATION LOST"),
+                 (0x80, "BUS ERROR")]
+ADAPTER_BUS_ERROR = 0x80 | 0x40 | 0x20
+
 ACCEPTED_IDS = {0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480}
 # Broadcast by the car, deliberately not accepted by the firmware: nothing
 # reads the acceleration and the display takes 0x5A0 off the bus itself.
@@ -392,7 +403,11 @@ def explain_unhealthy(diag: dict, rep: Report) -> None:
     unhealthy = diag["flags"] & 0x04
     if not unhealthy:
         return
-    if diag["rx_err"] == 0 and diag["tx_err"] == 0 and diag["tx_fail"] > 0:
+    # The refusal count is the fingerprint, not the counters. Refusals happen
+    # only when all three transmit buffers are busy at once, which is what
+    # starvation looks like and nothing else here does; the counters may still
+    # be walking down from it while this runs, one per frame acknowledged.
+    if diag["tx_fail"] > 0 and (diag["comstat"] & 0x38) == 0:
         rep.note("UNHEALTHY is latched but both counters are zero and there "
                  f"are {diag['tx_fail']} refusals: that is the converter "
                  "having transmitted into a bus nobody was acknowledging, "
@@ -418,8 +433,16 @@ def show_diag(diag: dict, rep: Report, *, expect_clean: bool = True) -> None:
                   names(diag["comstat"], COMSTAT_BITS))
     rep.check("the last reset was not the watchdog",
               not diag["reset_cause"] & 0x04)
+    # DS39977C 5.4.2: BOR resets to 0 on a power-on as well as on a brown-out,
+    # so the pair is the reading and 0x02 alone is not. Every cold start of
+    # this board reports both, which is the hardware working -- and this check
+    # used to call it a fault in the one test whose whole method is pulling the
+    # power.
     rep.check("the last reset was not a brown-out",
-              not diag["reset_cause"] & 0x02)
+              not (diag["reset_cause"] & 0x02
+                   and not diag["reset_cause"] & 0x01),
+              "power-on sets BOR too; only BOR without POR is a sagging supply"
+              if diag["reset_cause"] & 0x02 else "")
     rep.check("0x603 layout is the one this script speaks",
               diag["version"] == DIAG_LAYOUT_VERSION,
               f"frame says {diag['version']}")
@@ -457,7 +480,9 @@ def mode_listen_only(sender: Adapter, acker: Adapter, log, seconds: float,
     for label, a in (("sender", sender), ("acker", acker)):
         f = a.flags()
         rep.check(f"the {label} adapter saw no bus errors",
-                  f == 0, "no answer" if f is None else f"flags {f:#04x}")
+                  f is not None and (f & ADAPTER_BUS_ERROR) == 0,
+                  "no answer" if f is None else
+                  f"flags {f:#04x} -- {names(f, ADAPTER_FLAGS)}")
     rep.note("bus errors here would mean the second adapter is not "
              "acknowledging -- check it opened with O, not L")
 
@@ -656,6 +681,54 @@ def mode_traffic(sender: Adapter, listener: Adapter, log, seconds: float,
 # 7c -- scenarios A to D
 # --------------------------------------------------------------------------
 
+class HealthWatch:
+    """Which scenario latched UNHEALTHY, rather than merely that one did.
+
+    UNHEALTHY is latched since power-up and never clears by itself, so reading
+    it once at the end of a run says only that something, somewhere, saw an
+    overflow or an error counter move. That is what made the LED useless as
+    evidence -- it starts blinking and stays blinking, and the only witness to
+    WHEN is a person watching it. Sampled between scenarios it names the one
+    that did it, which is the whole difference between a lead and a shrug.
+
+    A latch that was already set before the scenarios began cannot be improved
+    on: there is no transition left to see, so say so once and stop asking.
+    """
+
+    def __init__(self, listener: "Adapter", rep: "Report"):
+        self.listener = listener
+        self.rep = rep
+        self.set = False
+
+    def _read(self):
+        diag = latest_diag(self.listener)
+        return None if diag is None else bool(diag["flags"] & 0x04)
+
+    def start(self) -> None:
+        self.set = bool(self._read())
+        if self.set:
+            self.rep.note("UNHEALTHY is latched before the scenarios even "
+                          "start, so none of them can be blamed for it. "
+                          "Reflash or power-cycle the board with the bus "
+                          "already alive and run this again if you need to "
+                          "know which one is at fault.")
+
+    def check(self, label: str) -> None:
+        now = self._read()
+        if now is None:
+            self.rep.note(f"{label}: no 0x603 to read the health from")
+            return
+        if self.set:
+            return
+        # The detail is printed whether the check passed or failed, so it has
+        # to read as a fact rather than as an explanation of a failure.
+        self.rep.check(f"{label} left the converter healthy", not now,
+                       "UNHEALTHY is set and was clear before this scenario, "
+                       "so an overflow or an error counter moved inside this "
+                       "one" if now else "UNHEALTHY still clear")
+        self.set = now
+
+
 def settle(stream, sender, listeners, seconds, *, flood=0, rep=None):
     for a in listeners:
         a.forget()
@@ -682,6 +755,8 @@ def mode_scenarios(sender: Adapter, listener: Adapter, log) -> Report:
     cruise = bs.Condition(speed_kmh=50, rpm=2200, throttle=70, flow_ul_s=900)
     stream = bs.Stream(tpl, cruise)
     settle(stream, sender, both, 6, rep=rep)
+    health = HealthWatch(listener, rep)
+    health.start()
     rep.check("values are live while traffic flows",
               be16(listener.last.get(TX_FUEL, bytes(8)), 0) > 0)
 
@@ -707,6 +782,7 @@ def mode_scenarios(sender: Adapter, listener: Adapter, log) -> Report:
     rep.check("a counter restart invents no fuel",
               be16(listener.last.get(TX_FUEL, bytes(8)), 0) <= 999,
               "trap 2: the delta must not jump when the ECU counter resets")
+    health.check("A")
 
     # -- B: FuelNow units and the clamp ------------------------------------
     print("\n  B  FuelNow switches unit at 4 km/h, and stops at 99.9")
@@ -726,6 +802,7 @@ def mode_scenarios(sender: Adapter, listener: Adapter, log) -> Report:
         rep.check(f"FuelNow at {label}", abs(got - want) <= max(2, want // 10),
                   f"read {got / 10:.1f}, expected about {want / 10:.1f}")
     rep.check("FuelNow never exceeds the gauge", got <= 999, f"read {got}")
+    health.check("B")
 
     # -- C: the idle gate ---------------------------------------------------
     print("\n  C  standing still with the throttle shut shows zero torque")
@@ -739,6 +816,7 @@ def mode_scenarios(sender: Adapter, listener: Adapter, log) -> Report:
               f"read {be16(eng, 0) / 10:.1f} kW")
     rep.note("b7 is 42 here, the value the air conditioning raises it to -- "
              "the gate must still hold")
+    health.check("C")
 
     # -- D: the hardware acceptance filters ---------------------------------
     print("\n  D  an identifier we do not accept, flooded alongside real traffic")
@@ -758,10 +836,14 @@ def mode_scenarios(sender: Adapter, listener: Adapter, log) -> Report:
               be16(listener.last.get(TX_FUEL, bytes(8)), 0) > 0)
     diag = latest_diag(listener)
     if diag:
-        rep.check("no receive overflow and nothing latched UNHEALTHY",
-                  not diag["flags"] & 0x04 and diag["rx_err"] == 0,
+        # UNHEALTHY belongs to HealthWatch, which can tell a latch this
+        # scenario caused from one it inherited. What is D's own to check is
+        # that the flood did not push the receive error counter up.
+        rep.check("the flood left the receive error counter at zero",
+                  diag["rx_err"] == 0,
                   f"rx err {diag['rx_err']}, "
                   f"flags {names(diag['flags'], DIAG_FLAGS)}")
+    health.check("D")
     rep.note("this is the only test of the six acceptance filters anywhere -- "
              "they exist only in silicon")
 
@@ -791,6 +873,7 @@ def mode_scenarios(sender: Adapter, listener: Adapter, log) -> Report:
     rep.note("otherwise this is only testable at a petrol station, and "
              "getting it wrong means the average never clears -- or clears "
              "on its own halfway through a drive")
+    health.check("E")
     return rep
 
 
@@ -862,7 +945,12 @@ def mode_persist_check(sender: Adapter, listener: Adapter, log,
     if diag is None:
         rep.check("0x603 was received", False, "none seen")
         return rep
-    show_diag(diag, rep)
+    # Not expect_clean: the board has just been power-cycled onto a bench bus
+    # that nothing acknowledged until this run opened its adapter, so its
+    # transmit error counter is still walking down from the starvation that
+    # caused. That is the bench, not the converter, and it is exactly the
+    # state this test has to be able to run in.
+    show_diag(diag, rep, expect_clean=False)
 
     rep.check("the board really was power-cycled",
               bool(diag["reset_cause"] & 0x01),
@@ -902,9 +990,17 @@ def mode_fault(sender: Adapter, acker: Adapter, log) -> Report:
     acker.open()
     settle(stream, sender, both, 5, rep=rep)
     baseline = latest_diag(acker)
-    rep.check("healthy before the fault",
-              baseline is not None and baseline["comstat"] == 0
-              and baseline["tx_err"] == 0)
+    # No ERROR STATE, rather than no error count. TEC decrements by one per
+    # successful transmission, so a converter that has just come off a bench
+    # bus nobody was acknowledging is still walking a three-figure counter down
+    # while this runs, and that is not a reason to refuse to start. TXBO, TXBP
+    # and RXBP are the states; TXWARN, RXWARN and EWARN are only the warning
+    # threshold at 96 (DS39977C Register 27-4).
+    rep.check("no error state before the fault",
+              baseline is not None and (baseline["comstat"] & 0x38) == 0,
+              "" if baseline is None else
+              f"COMSTAT {names(baseline['comstat'], COMSTAT_BITS)}, "
+              f"tx err {baseline['tx_err']}")
 
     # -- E1: nobody acknowledges -------------------------------------------
     print("\n  E1  starve the converter of acknowledgements")
@@ -913,15 +1009,26 @@ def mode_fault(sender: Adapter, acker: Adapter, log) -> Report:
     rep.note("no stimulus is sent during this window, and cannot be: an "
              "adapter in listen-only refuses to transmit. The only thing on "
              "the wire is the converter's own frames, which is all this needs")
+    rep.note("IT DOES NOT GO BUS-OFF, and this test used to expect that it "
+             "would. TEC stops at the error-passive limit of 128 and stays "
+             "there: DS39977C 27.14.7 counts 'in accordance with the CAN bus "
+             "specification', and the specification does not increase TEC when "
+             "an already error-passive transmitter sees an acknowledge error "
+             "and no dominant bit during its passive error flag. So a lone "
+             "node retransmits for ever instead of falling silent -- measured "
+             "here, and again in the storm every bench flash produces")
     sender.open(listen_only=True)
     acker.open(listen_only=True)
     for a in both:
         a.forget()
     listen(both, 6)
     during = {i: acker.count(i) for i in TX_IDS}
-    rep.check("the converter fell silent while bus-off",
-              sum(during.values()) == 0,
-              "a node at the bus-off limit of 256 transmits nothing")
+    rate = sum(during.values()) / 6.0
+    rep.check("the converter kept trying rather than falling silent",
+              rate > 2 * sum(EXPECTED_HZ.values()),
+              f"{rate:.0f} frames a second against {sum(EXPECTED_HZ.values()):.0f} "
+              f"nominal -- the excess is the same frame being retransmitted, "
+              f"which is what an unacknowledged bus looks like")
 
     print("\n  E1  restore the acknowledgements")
     sender.open()

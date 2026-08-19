@@ -84,6 +84,15 @@ static void leds_update(bool can_ok, bool live, bool unhealthy, uint8_t phase)
  * uptime means nothing is getting out at all. */
 static uint8_t tx_fail = 0u;
 
+/* An overflow this firmware caused itself, by blocking on an EEPROM write, is
+ * not a fault to report -- see the write slot. It cannot be forgiven where it
+ * happens, though: clearing the flag while the FIFO is still full only lasts
+ * until the next frame arrives into it, which at the bench's frame rate is a
+ * millisecond away. So the write raises this, and the forgiveness happens on
+ * the next pass, AFTER the drain has emptied the FIFO. An arriving frame
+ * cannot overflow an empty FIFO, so there is no window left. */
+static bool pardon_overflow = false;
+
 static void tx_fail_count(void)
 {
     if (tx_fail < 0xFFu) {
@@ -184,6 +193,14 @@ int main(void)
                     }
                 }
             }
+        }
+
+        /* The FIFO is empty now, so this is the one moment an overflow the
+         * EEPROM write caused can be cleared without the next frame setting it
+         * straight back. */
+        if (pardon_overflow) {
+            (void)hal_can_overflow();
+            pardon_overflow = false;
         }
 
         /* Integrates distance and samples the tank once a second. Safe to call
@@ -317,11 +334,16 @@ int main(void)
                  *             said; 48 ms of staleness is nothing against a float
                  *             that sloshes by nine litres
                  *
-                 * The overflow flag is cleared afterwards so that the LED goes on
-                 * meaning something. An overflow we caused on purpose, once a
-                 * minute, is not a fault to report. */
+                 * The overflow behind it is forgiven so that the LED and
+                 * UNHEALTHY go on meaning something -- an overflow we caused on
+                 * purpose, three times a minute, is not a fault to report. Not
+                 * here, though: the FIFO is still full at this point and the
+                 * next frame would set the flag again within a millisecond.
+                 * pardon_overflow defers it to just after the next drain, and
+                 * the bench found the difference -- at 610 frames a second the
+                 * latch fired anyway. */
                 if (persist_save(&ps, &rec, now)) {
-                    (void)hal_can_overflow();
+                    pardon_overflow = true;
                 }
             }
 
