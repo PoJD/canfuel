@@ -371,7 +371,7 @@ rather than the code.
   inside `compute_power_d()`, which needs the same number. `compute_power_d()`
   takes it as an argument now: **−1,042 cycles, 9 % of the 100 ms slot.** The
   gates all live in `compute_torque_d()` and each returns zero, so a zero
-  torque still makes zero power — the idle gate did not move.
+  torque still makes zero power — the driving gate did not move.
 - **`trip_ml` and `trip_m` were gathered ten times a second** for a frame that
   goes out once a second: two divisions by 1000, 686 cycles, nine tenths of
   them wasted. `txframes_gather_trip()` is called from the slow slot instead,

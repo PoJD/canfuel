@@ -127,8 +127,8 @@ static void test_gather_zeroes_when_the_bus_is_quiet(void)
     decode_init(&st);
     st.rpm_q4 = 3000u * 4u;
     st.torque_ind_cnm = 15000;
-    /* Moving with the throttle open, so the idle gate is not what this test
-     * is measuring -- it is the bus-quiet timeout below. */
+    /* Moving with the throttle open, so the driving gate is not what this
+     * test is measuring -- it is the bus-quiet timeout below. */
     st.speed_mmh = 60000u;
     st.throttle = 90u;
     st.tank_l = 40;
@@ -210,6 +210,7 @@ static void test_gather_fills_a_full_frame(void)
     st.speed_mmh = 50000;               /* 50 km/h */
     st.rpm_q4 = 3000u * 4u;
     st.torque_ind_cnm = 15000;
+    st.throttle = 90u;                  /* moving AND asking: the gate is open */
     st.fuel_counter_valid = true;
 
     st.fuel_counter = 1000;
@@ -258,8 +259,8 @@ static void test_idle_produces_sane_frames(void)
 
     /* IDLING PRODUCES NO NET TORQUE AND THE DISPLAY MUST SAY SO -- end to end,
      * off a real log, through decode, compute and the assembled frame. This is
-     * the idle gate (config.h) and it is a fixed requirement, not a tolerance
-     * on the drag fit: 02_idle_60s is the worst case for it, b7 = 29 on 60.8 C
+     * the driving gate (config.h) and it is a fixed requirement, not a
+     * tolerance on the drag fit: 02_idle_60s is the worst case, b7 = 29 on 60.8 C
      * oil, which the drag line alone would show as 10.9 Nm. Zero here, and
      * zero at the two warm idle logs below.
      *

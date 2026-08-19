@@ -1432,40 +1432,67 @@ the drag at that speed, so the bracket the two factory ratings imply moves with
 the drag line: at this line it is 0.736–0.738 Nm/bit. At 0.74 the display
 reaches 85.4 kW and 170.4 Nm against ratings of 85 and 170.
 
-**The idle point is excluded from the fit, and the idle gate covers it.** b7
+**The idle point is excluded from the fit, and the driving gate covers it.** b7
 falls 24.96 → 18.81 between idle and 1536 rpm before it starts rising, because
 idle is a regulated state with the throttle nearly shut, so no straight line in
 rpm fits both. Idle is therefore *asserted*, not fitted. Raising the intercept
 to compensate puts the line back above all four measured points and restores
 the understatement — do not do it.
 
-### The idle gate — fixed, and not to be relaxed
+### The driving gate — fixed, and not to be relaxed
 
-**A car standing still with the throttle shut shows zero torque and zero power.
-This is a requirement, not a calibration.** Cold oil or hot, at whatever idle
-speed the ECU picks, whatever a future drag refit does. It lives in
-`compute_torque_d()` as
+**Torque and power are shown only while the car is moving *and* the driver is
+asking for torque. Standing still shows zero whatever the pedal does; a
+released pedal shows zero whatever the speed is. This is a requirement, not a
+calibration.** Cold oil or hot, at whatever idle speed the ECU picks, whatever
+a future drag refit does. It lives in `compute_torque_d()` as
 
 ```c
-if (speed_mmh <= IDLE_GATE_SPEED_MMH && throttle <= THROTTLE_REST) return 0;
+if (speed_mmh <= STANDSTILL_MMH || throttle <= THROTTLE_REST) return 0;
 ```
 
-and **six tests in `test_compute.c` plus two in `test_txframes.c` exist to stop
-it being relaxed by accident** — the latter end to end off the real idle logs,
-including `12_idle_ac_z1` where the air conditioning raises b7 from 25 to 42
-and the display must still read zero. If one of them goes red, the fix is the
-code, not the test.
+and **eight tests in `test_compute.c` plus two in `test_txframes.c` exist to
+stop it being relaxed by accident** — the latter end to end off the real idle
+logs, including `12_idle_ac_z1` where the air conditioning raises b7 from 25 to
+42 and the display must still read zero. If one of them goes red, the fix is
+the code, not the test.
+
+**It is an OR and it used to be an AND**, and the difference is two states that
+showed a number the car was not in: revving in neutral at a standstill, and the
+last few seconds of every roll to a stop, where the idle governor lifts b7 back
+above the drag line while the pedal never moves. Both are the same fault — the
+drag line is systematically low at idle, 14 against a measured 25 in b7 at
+800 rpm — so idle is asserted rather than fitted, and the assertion has to cover
+**every** state the engine idles in rather than only the parked one. On the
+roll-down the apparent threshold is engine speed returning to idle, not road
+speed; in first gear the two coincide near 4–8 km/h, which makes it look like a
+speed threshold and is a coincidence of gearing.
+
+**It is not free, and the price was accepted rather than overlooked.** Over
+`17_drive_property_z1` the share of samples displaying zero goes 28.4 % →
+58.0 % (peak unmoved at 107.0 Nm) — worst case, since that log is six minutes
+of first-gear pottering with a great deal of coasting. And **pulling away reads
+zero until the car moves**, a median of 0.7 s after the pedal leaves rest, so
+real torque against a slipping clutch is not shown for that time.
 
 Both thresholds are measured, and neither is an equality:
 
 - **A standing car does not send zero.** 0x1A0 raw speed is **1** — 0.005 km/h
   — in every log while stationary (7953 frames of it in `06_trip_reset`), and
   the next value that ever appears is above 40. The gate is 0.1 km/h.
-- **0x280 b5 is 38 at rest** and never lower in any log. It is the pedal, not
-  the load — while driving, b7 reaches 133 with the throttle still at 38 —
-  which is why the throttle **alone** cannot be a gate and is paired with
-  standing still. Pulling away is throttle above rest while the car still reads
-  1, so the gate releases before the car moves.
+- **0x280 b5 is 38 at rest** and never lower in any log; across every fixture
+  the next value above 38 that ever appears is **44**, so nothing occupies
+  39–43. It is the pedal and not the load, which is what lets it gate on its
+  own: a released pedal is a statement about the driver, and what b7 does
+  afterwards is the engine looking after itself.
+
+⚠ **The b7 = 133 spike is not a counter-example, and reading it as one is what
+made the gate an AND in the first place.** b7 does reach 133 at throttle 38 —
+at 4522 rpm, during a gearchange, in a frame where 0x1A0 was not reporting a
+valid speed at all. Bucketed by engine speed, mean b7 at throttle 38 is 14–17
+everywhere above 1000 rpm, which is *below* the drag line; only the idle bucket
+sits above it, at 27.6. **A maximum over a log is not a state the car sits in**
+— that is the general lesson, and it cost a wrong rule.
 
 Supporting evidence, not a specification: SAE J1979 carries actual engine
 percent torque (PID 0x62) and engine friction percent torque (PID 0x8E) as

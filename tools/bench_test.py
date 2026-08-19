@@ -845,7 +845,7 @@ def mode_scenarios(sender: Adapter, listener: Adapter, log) -> Report:
     rep.check("FuelNow never exceeds the gauge", got <= 999, f"read {got}")
     health.check("B")
 
-    # -- C: the idle gate ---------------------------------------------------
+    # -- C: the driving gate ------------------------------------------------
     print("\n  C  standing still with the throttle shut shows zero torque")
     idle = bs.Condition(speed_kmh=0.005, rpm=800, throttle=bs.THROTTLE_REST,
                         torque_b7=42, flow_ul_s=330)

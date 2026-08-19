@@ -339,15 +339,16 @@ samples and the new one displays a number through 78 %. Peak torque barely
 moves — 105.8 → 107.0 Nm — because at high load the drag is a small term. The
 whole difference is at part throttle, which is where the driving happens.
 
-**The idle point is excluded, deliberately, and the idle gate handles it.**
+**The idle point is excluded, deliberately, and the driving gate handles it.**
 `11_idle_noac_z1` is 798 rpm at b7 = 24.96 on the same warm oil, which is
 *above* the line the other four make: b7 falls 24.96 → 18.81 between idle and
 1536 rpm before it starts rising. Idle is a different state — the throttle is
 at its rest position 38 against 48–61 for the holds, so the pumping loss
 against a nearly closed throttle is large, and the ECU is regulating speed
 rather than letting the engine free-rev. No straight line in rpm passes through
-both, so idle is **asserted rather than fitted**: a standing car with the
-throttle shut returns zero outright, which is a fixed requirement of this
+both, so idle is **asserted rather than fitted**: a car that is standing still
+or has the pedal released returns zero outright, which is a fixed requirement of
+this
 firmware and is documented in `frames.md` and `config.h`. **Do not raise the
 intercept to compensate** — that puts the line back above all four measured
 points and brings the understatement straight back, and the gate has already

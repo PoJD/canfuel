@@ -488,12 +488,20 @@ uint16_t compute_torque_d(const decode_state_t *st)
         return 0;
     }
 
-    /* A STANDING CAR WITH THE THROTTLE SHUT MAKES NO NET TORQUE. THIS RULE IS
-     * FIXED AND IS NOT TO BE RELAXED, WHATEVER A FUTURE DRAG REFIT SAYS.
-     * The drag line cannot deliver this on its own -- idle sits above it by
-     * construction (config.h) -- so it is asserted here instead of fitted.
-     * IDLE_GATE_* in config.h holds the two thresholds and the evidence. */
-    if (st->speed_mmh <= IDLE_GATE_SPEED_MMH && st->throttle <= THROTTLE_REST) {
+    /* TORQUE AND POWER ARE SHOWN ONLY WHILE THE CAR IS MOVING AND THE DRIVER
+     * IS ASKING FOR TORQUE. THIS RULE IS FIXED AND IS NOT TO BE RELAXED,
+     * WHATEVER A FUTURE DRAG REFIT SAYS.
+     *
+     * IT IS AN OR AND NOT AN AND, and the difference is two states the car is
+     * not in: revving in neutral at a standstill, and the last few seconds of
+     * every roll to a stop, where the idle governor lifts b7 back above the
+     * drag line while the pedal never moves. Both are the same fault -- the
+     * drag line is systematically low at idle, because no straight line in rpm
+     * passes through both idle and the free-revving holds -- so idle is
+     * asserted here rather than fitted, for every state the engine idles in.
+     * config.h holds the two thresholds, the measurement behind each, the
+     * worked stop, and what the rule costs on a pull-away. */
+    if (st->speed_mmh <= STANDSTILL_MMH || st->throttle <= THROTTLE_REST) {
         return 0;
     }
 

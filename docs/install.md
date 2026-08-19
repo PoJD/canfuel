@@ -917,7 +917,7 @@ from, and `CLAUDE.md` is explicit that twins do not catch a shared fault.
 |---|---|---|
 | A | traffic stops for 2 s, then returns with the counter from zero | everything derived from the bus goes to 0 and **VddConv does not**; it recovers within a second; an ECU counter restart invents no fuel (trap 2) |
 | B | 2 km/h, then 60 km/h, then a wild flow at 5 km/h | FuelNow switches unit at 4 km/h and stops at **99.9**, rather than wrapping |
-| C | standing still, throttle at rest, b7 raised to 42 | Torque and Power read **exactly zero** — the idle gate, with the value the air conditioning produces |
+| C | standing still, throttle at rest, b7 raised to 42 | Torque and Power read **exactly zero** — the driving gate, with the value the air conditioning produces |
 | D | an unaccepted identifier flooded **alongside** real traffic | the six hardware acceptance filters hold |
 | E | standing still, then the tank rises 12 L | **the refuelling reset fires** and the trip clears — otherwise only testable at a petrol station |
 
@@ -1244,13 +1244,26 @@ Two things are known to be approximate and both need the car:
   direction. Repeat the same sweep on hotter oil, in neutral.
   `docs/can-decoding.md` question 7 has the reasoning and the procedure.
 
-  **At a standstill with the throttle shut the display must read zero torque
-  and zero power** — cold or warm. That is the idle gate (`frames.md`), a fixed
-  requirement rather than a side effect of the drag fit, and it is worth
-  checking on the first drive: if a stationary car shows a number, something is
-  wrong with the speed or throttle decoding, not with the calibration.
+  ⚠ **The holds themselves will display zero**, because they are taken
+  standing still and the driving gate returns zero for a standing car whatever
+  the pedal is doing (`frames.md`). That is correct and not a fault to chase:
+  the refit is done off the raw log and b7, not off the display.
+
+  **Torque and power must read zero whenever the car is standing still, and
+  whenever the pedal is released at any speed** — cold or warm. That is the
+  driving gate (`frames.md`), a fixed requirement rather than a side effect of
+  the drag fit, and it is worth checking on the first drive: if a stationary
+  car shows a number, or a number survives lifting off, something is wrong with
+  the speed or throttle decoding, not with the calibration.
 - **The tank**, which needs a jerrycan: a known quantity put in, to check the
-  level against.
+  level against. **One point exists: 6 L into a nearly empty tank settled at
+  5 L on `FuelTank`** — measured. The converter applies no calibration to that
+  number at all; `compute_tank_d()` is the damped 0x320 b2 and nothing else, so
+  a discrepancy at the bottom of the tank is the sender's own nonlinearity
+  rather than arithmetic here. Check `TankL` beside `FuelTank` on the display
+  to confirm that: `TankL` is the raw byte, so if the two agree, nothing in
+  this firmware is involved. Whether a correction is worth applying needs more
+  than one point, and points near empty are the least useful ones to have.
 
 **The torque scale, 0.74 Nm/bit, is deliberately not on that list.** It is a
 decision inside the narrow bracket the factory ratings imply rather than a

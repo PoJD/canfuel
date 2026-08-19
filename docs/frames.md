@@ -409,7 +409,7 @@ the new line reads a number through 78 % of it. Peak torque over that same
 drive barely moves, 105.8 → 107.0 Nm, because at high load the drag is a small
 term. The whole of the difference is at part throttle.
 
-**The idle point is excluded on purpose, and the idle gate below covers it.**
+**The idle point is excluded on purpose, and the driving gate below covers it.**
 `11_idle_noac_z1` is 798 rpm at b7 = 24.96 on the same warm oil, which is
 *above* the line the other four make — b7 actually falls 24.96 → 18.81 between
 idle and 1536 rpm before it starts rising. Idle is a different state: the
@@ -420,16 +420,59 @@ rpm passes through both, so idle is **asserted rather than fitted**. Raising
 the intercept to hide the residual instead puts the line back above all four
 measured points and brings the understatement straight back.
 
-### The idle gate — a standing car shows zero
+### The driving gate — torque is shown only while the car is being driven
 
-**A car standing still with the throttle shut displays zero torque and zero
-power. This is a fixed requirement, not a calibration**, and it is not to be
-relaxed or made conditional by any future refit of the drag line. It holds on
-cold oil and hot, at whatever idle speed the ECU picks.
+**Torque and power are displayed only while the car is moving *and* the driver
+is asking for torque. Standing still shows zero whatever the pedal is doing,
+and a released pedal shows zero whatever the speed is. This is a fixed
+requirement, not a calibration**, and it is not to be relaxed or made
+conditional by any future refit of the drag line. It holds on cold oil and hot,
+at whatever idle speed the ECU picks.
 
 ```c
-if (speed_mmh <= IDLE_GATE_SPEED_MMH && throttle <= THROTTLE_REST) return 0;
+if (speed_mmh <= STANDSTILL_MMH || throttle <= THROTTLE_REST) return 0;
 ```
+
+**It is an OR, and it used to be an AND.** Gating on "standing *and* released"
+left two states showing a number that the car is not in:
+
+- **Revving in neutral at a standstill.** The crank drives nothing there —
+  which is exactly what makes the four free-revving holds a *calibration*
+  rather than data — so the honest answer is zero. 1,528 samples of
+  `17_drive_property_z1` are this state.
+- **The last few seconds of every roll to a stop.** High in the deceleration
+  the ECU cuts fuel, b7 falls below the drag line and the answer is zero;
+  once engine speed drops back onto the idle governor, b7 climbs while the
+  pedal never moves. One real stop out of `17_drive_property_z1`, throttle at
+  38 throughout:
+
+  | speed | rpm | b7 | old gate |
+  |---|---|---|---|
+  | 19.6 km/h | 1358 | 7 | 0.0 Nm |
+  | 13.5 km/h | 898 | 17 | 1.5 Nm |
+  | 8.0 km/h | 792 | 25 | 8.0 Nm |
+  | 3.8 km/h | 783 | 27 | 9.5 Nm |
+  | standing | 776 | 27 | 0.0 Nm |
+
+  **The apparent threshold is engine speed returning to idle, not road speed.**
+  In first gear the two coincide near 4–8 km/h, which makes it look like a
+  speed threshold and is a coincidence of gearing — worth knowing before
+  hunting for one.
+
+Both are the same fault: **the drag line is systematically low at idle**, 14
+against a measured 25 in b7 at 800 rpm, because no straight line in rpm passes
+through both idle and the free-revving holds. Idle is asserted rather than
+fitted, and the assertion has to cover every state the engine idles in, not
+only the parked one.
+
+**What it costs**, because it is not free. Over `17_drive_property_z1` the
+share of samples displaying zero goes **28.4 % → 58.0 %**, with the peak
+unmoved at 107.0 Nm — but that log is six minutes of first-gear pottering with
+a great deal of coasting, so it is the worst case rather than a typical drive.
+And **pulling away reads zero until the car moves**: a median of 0.7 s after
+the pedal leaves rest across the 14 pull-aways in that log, 1.75 s at worst, so
+real torque against a slipping clutch is not shown for that time. Accepted
+deliberately — a stationary car showing a number is the thing being fixed.
 
 Both thresholds are measured, and neither is an equality:
 
@@ -438,14 +481,20 @@ Both thresholds are measured, and neither is an equality:
   `06_trip_reset` alone. The next value that ever appears is above 40
   (0.2 km/h); nothing in between exists anywhere. The gate is 0.1 km/h.
 - **Throttle.** 0x280 b5 is exactly **38** at rest and never lower in any log,
-  against 48–61 across the four holds. It is the pedal, not the load: while
-  driving, b7 reaches 133 with the throttle still at 38, which is why the
-  throttle **alone** cannot be a gate and must be paired with standing still.
+  against 48–61 across the four holds; across every fixture the next value
+  above 38 that ever appears is **44**, so nothing occupies 39–43. It is the
+  pedal and not the load, which is what lets it gate on its own: a released
+  pedal is a statement about the driver, and what b7 does afterwards is the
+  engine looking after itself.
 
-Pulling away is throttle above rest while the car still reads 1, so the gate
-releases *before* the car moves and the clutch biting is not swallowed.
-Coasting downhill off the throttle is not a standstill either, so the gate does
-not apply there and the drag line answers, as it should.
+⚠ **The b7 = 133 spike is not a counter-example**, though it was read as one
+here and that reading is what made the gate an AND. b7 does reach 133 at
+throttle 38 in `17_drive_property_z1` — at 4522 rpm, during a gearchange, in a
+frame where 0x1A0 was not reporting a valid speed at all. It is the pedal and
+the load byte disagreeing for a few frames, not a state the car sits in.
+Bucketed by engine speed, mean b7 at throttle 38 is 14–17 everywhere above
+1000 rpm, which is *below* the drag line; only the idle bucket sits above it,
+at 27.6. Gating those spikes away is a second thing this rule buys.
 
 **The construction is not ours.** SAE J1979 carries *actual engine percent
 torque* (PID 0x62) and *engine friction percent torque* (PID 0x8E) as separate
@@ -461,9 +510,12 @@ Sports-mode power displays in production cars behave the same way, reading zero
 at idle and rising with load ([BMW i4
 forum](https://www.i4talk.com/threads/power-torque-instrument-cluster.7190/)).
 
-Six tests in `test_compute.c` and two in `test_txframes.c` assert it, the
+Eight tests in `test_compute.c` and two in `test_txframes.c` assert it, the
 latter end to end off the real idle logs including the one with the air
-conditioning running. If one goes red, the fix is the code.
+conditioning running. One of the eight replays the stop above frame by frame,
+and one asserts that the gate does *open* — without that, the rest would pass
+on a `compute_torque_d()` that returned zero unconditionally. If one goes red,
+the fix is the code.
 
 The line still says nothing about drag under load, and 72–77 °C is warm rather
 than the 95–110 °C of real driving, so it very likely still overstates drag a
@@ -471,6 +523,11 @@ little — the conservative direction. `can-decoding.md` question 7 stays open
 for that and is the only open question left. Torque is clamped at zero rather
 than going negative on the overrun, and is zero below 500 rpm, where the
 starter is turning the engine and b7 reads a constant 191–192.
+
+One consequence of the gate for that refit: **the holds it needs will display
+zero**, because they are taken standing still in neutral. That is correct and
+not a fault to chase — the refit is done off the raw log and b7, not off the
+display.
 
 ```
 power [kW] = torque [Nm] × rpm ÷ 9550

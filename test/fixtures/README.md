@@ -241,14 +241,26 @@ each version, counting samples that display zero torque:
 |---|---|---|
 | old cold-oil drag line, 0.75 Nm/bit | 51.2 % | 105.8 Nm, 55.0 kW |
 | warm drag line, 0.74 Nm/bit | 22.0 % | 107.0 Nm, 55.4 kW |
-| warm line **plus the idle gate** (shipped) | 28.4 % | 107.0 Nm, 55.4 kW |
+| warm line plus a gate on standing **and** released | 28.4 % | 107.0 Nm, 55.4 kW |
+| warm line **plus the driving gate** (shipped) | 58.0 % | 107.0 Nm, 55.4 kW |
 
-Peak barely moves, because at high load the drag is a small term — the whole
-difference is at part throttle. The gate adds back 6.4 points of zero, and
-every one of them is a sample where the car was stationary with the throttle
-shut. This log is also the source of the gate's throttle evidence: 18,060 of
-its 34,495 0x280 frames sit at throttle 38, and b7 reaches **133** at that
-throttle while driving, which is why the throttle alone cannot gate anything.
+Peak does not move at all across the last three, because at high load the drag
+is a small term and the gate only ever answers at low load — the whole
+difference is at part throttle.
+
+**The last two rows are the AND and the OR**, and the 30 points between them
+are the measure of how much of this particular log is coasting: first-gear
+pottering on a short piece of land, where the pedal spends 18,060 of the
+34,495 0x280 frames at rest. On a road it is a much smaller share.
+`docs/frames.md` has the rule, what each half of it buys and what it costs.
+
+⚠ **This log is also where b7 = 133 at throttle 38 comes from, and that figure
+was once read as proof that the throttle cannot gate on its own.** It cannot
+carry that: the frame is at 4522 rpm, mid-gearchange, and 0x1A0 was not even
+reporting a valid speed in it. Bucketed by engine speed, mean b7 at throttle 38
+is 14–17 everywhere above 1000 rpm — *below* the drag line — and only the idle
+bucket sits above it, at 27.6. A maximum over a log is not a state the car sits
+in.
 
 ---
 

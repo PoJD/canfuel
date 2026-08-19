@@ -206,6 +206,30 @@ Anyone using it as a validity flag, which "constantly 1" invites, would have
 been wrong for the first few minutes of every drive. It is trap 3 in
 `can-decoding.md`.
 
+### B9. "b7 reaches 133 at throttle 38 while driving, so the throttle cannot gate on its own"
+
+**Believed:** written into `config.h`, `docs/frames.md`, `CLAUDE.md` and
+`test/fixtures/README.md`, and it is the whole reason the torque gate was an
+AND — zero only when the car was standing still *and* the pedal was released.
+
+**Refuted by:** looking at the frame the maximum came from. It is one frame of
+`17_drive_property_z1`, at 4522 rpm, during a gearchange, and 0x1A0 was not
+reporting a valid speed in it. Bucketed by engine speed, mean b7 at throttle 38
+is 14–17 everywhere above 1000 rpm, which is *below* the drag line and displays
+zero anyway; only the idle bucket sits above it, at 27.6. **A maximum over a
+log is not a state the car sits in** — that is the general lesson and it is
+cheap to repeat.
+
+**Cost:** two wrong states on the display, both reported off the car rather
+than caught here. Revving in neutral at a standstill showed a number, and so
+did the last few seconds of every roll to a stop, where the idle governor lifts
+b7 back above the drag line while the pedal never moves. `docs/frames.md` has
+the worked stop and the fix, which is one character: the AND is an OR.
+
+**Un-refuting it would take** a state where the pedal is at rest, the car is
+moving, and the engine is genuinely driving the wheels — sustained, not a
+transient. Cruise control would be one; this car has none.
+
 ### B8. "The fuel counter wraps at 32767"
 
 **Believed:** in the same place.
@@ -318,6 +342,39 @@ reached the requested mode, which is worth having and is what the 5 Hz blink
 denies. The receive path, the FIFO and the filters need frames from outside;
 `install.md` step 7 is where they are tested, and this is a large part of why
 that step exists.
+
+### C8. "A standing car with the throttle shut is the only state that must show zero torque"
+
+**Believed:** as a fixed requirement, in capitals, in five files — and the
+requirement was right as far as it went. What was wrong is *only*.
+
+**Refuted by:** the car, on the first drive with the converter live. Two states
+the AND left showing a number:
+
+- **revving in neutral at a standstill.** The crank drives nothing there, which
+  is exactly what makes the four free-revving holds a calibration rather than
+  data.
+- **the last few seconds of every roll to a stop.** High in the deceleration
+  the ECU cuts fuel, b7 falls below the drag line and the answer is zero; once
+  engine speed drops back onto the idle governor, b7 climbs 7 → 27 with the
+  pedal untouched and up to 9.5 Nm reached the display, then snapped to zero at
+  the standstill.
+
+Both are the same fault — **the drag line is systematically low at idle**, 14
+against a measured 25 in b7 at 800 rpm — and the fix is to assert idle for
+every state the engine idles in rather than only the parked one.
+
+**Cost:** nothing permanent, and it was visible from the driver's seat within a
+minute. Worth noting is what did *not* catch it: `test_compute.c` had six tests
+guarding the gate, `test_txframes.c` two more end to end off real idle logs,
+and all eight were about a *parked* car, because that was the belief. **A test
+suite guards the rule it was written from.**
+
+**What it does cost, deliberately:** pulling away reads zero until the car
+moves, a median of 0.7 s after the pedal leaves rest, so real torque against a
+slipping clutch is not shown for that time. The alternative — gating on the
+throttle alone — leaves a revving parked car showing a number, which is the
+more visible wrong.
 
 ---
 

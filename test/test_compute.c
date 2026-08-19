@@ -469,10 +469,15 @@ static void test_drag_model_sits_on_the_warm_free_rev_holds(void)
     decode_state_t st;
     decode_init(&st);
 
-    /* Each hold was stationary but with the throttle held open, 48 to 61, so
-     * the idle gate does NOT apply here and the drag line answers on its own.
-     * That is the point of running these four through it. */
-    st.speed_mmh = 5u;
+    /* THE HOLDS ARE FED AS IF THE CAR WERE MOVING, and it was not: all four
+     * were stationary in neutral. The gate returns zero for a standing car
+     * whatever the pedal is doing, so replaying them at their real speed would
+     * make every assertion below pass on the gate and test nothing. The drag
+     * line is a function of engine speed alone, so feeding the hold's rpm and
+     * b7 with the gate held open is exactly the drag line under test -- which
+     * is the point of running these four through it. The throttle is each
+     * hold's own value, 48 to 61, so only the speed is fictional. */
+    st.speed_mmh = 20000u;              /* 20 km/h -- the gate is open */
 
     /* 13_rev1500_z1, oil 72.8 C. Model is above the point, so it clamps. */
     st.rpm_q4 = 1536u * 4u;
@@ -510,21 +515,23 @@ static uint16_t power_d(const decode_state_t *st)
 }
 
 /* ===================================================================== *
- *  THE IDLE GATE -- A FIXED REQUIREMENT, NOT A CALIBRATION.
+ *  THE DRIVING GATE -- A FIXED REQUIREMENT, NOT A CALIBRATION.
  *
- *  A car standing still with the throttle shut displays ZERO torque and
- *  ZERO power. Cold or hot, whatever idle speed the ECU picks, whatever a
- *  future refit does to the drag line. These tests exist so that the rule
- *  cannot be relaxed by accident: if one of them goes red, the fix is the
- *  code, NOT the test.
+ *  Torque and power are displayed only while the car is MOVING and the
+ *  driver is ASKING FOR TORQUE. Standing still shows zero whatever the
+ *  pedal does; a released pedal shows zero whatever the speed is. Cold or
+ *  hot, at whatever idle speed the ECU picks, whatever a future refit does
+ *  to the drag line. These tests exist so that the rule cannot be relaxed
+ *  by accident: if one of them goes red, the fix is the code, NOT the test.
  *
- *  The drag line cannot deliver this on its own. In neutral net torque is
- *  zero at idle and at every free-revving hold, but b7 falls 24.96 -> 18.81
- *  between 798 and 1536 rpm, so no straight line in rpm passes through both.
- *  One of the two has to be asserted. See config.h.
+ *  It is an OR and not an AND, and both halves are load-bearing. The drag
+ *  line cannot deliver either on its own: in neutral net torque is zero at
+ *  idle and at every free-revving hold, but b7 falls 24.96 -> 18.81 between
+ *  798 and 1536 rpm, so no straight line in rpm passes through both and one
+ *  of the two has to be asserted. See config.h.
  * ===================================================================== */
 
-static void test_idle_gate_zero_at_a_standstill_warm(void)
+static void test_the_gate_zero_at_a_standstill_warm(void)
 {
     decode_state_t st;
     decode_init(&st);
@@ -538,7 +545,7 @@ static void test_idle_gate_zero_at_a_standstill_warm(void)
     TT_EQ(power_d(&st), 0);
 }
 
-static void test_idle_gate_zero_at_a_standstill_cold(void)
+static void test_the_gate_zero_at_a_standstill_cold(void)
 {
     decode_state_t st;
     decode_init(&st);
@@ -556,7 +563,7 @@ static void test_idle_gate_zero_at_a_standstill_cold(void)
 
 /* A cold engine idles fast. 06_trip_reset reaches 1310 rpm standing still with
  * the throttle at rest, so the gate must not be a narrow window around 800. */
-static void test_idle_gate_covers_a_fast_cold_idle(void)
+static void test_the_gate_covers_a_fast_cold_idle(void)
 {
     decode_state_t st;
     decode_init(&st);
@@ -574,52 +581,131 @@ static void test_idle_gate_covers_a_fast_cold_idle(void)
     TT_EQ(compute_torque_d(&st), 0);
 }
 
-/* The gate must let go the moment the driver asks for anything, or pulling
- * away would read zero. Throttle above rest with the car still stationary is
- * exactly the clutch biting, and that is real torque. */
-static void test_idle_gate_releases_on_throttle_while_still_stationary(void)
+/* STANDING STILL WITH THE PEDAL DOWN IS STILL ZERO. In neutral the crank
+ * drives nothing -- which is exactly what makes the four free-revving holds a
+ * calibration rather than data -- so a revving parked car has no net output to
+ * show. 1,528 samples of 17_drive_property_z1 are this state and every one of
+ * them used to display a number.
+ *
+ * This is the half that costs something: pulling away reads zero until the car
+ * moves, a median of 0.7 s after the pedal leaves rest. Accepted deliberately,
+ * see config.h. */
+static void test_the_gate_holds_while_the_car_is_still_stationary(void)
 {
     decode_state_t st;
     decode_init(&st);
     st.rpm_q4 = 1338u * 4u;             /* 03_drive, pulling away */
     st.torque_ind_cnm = 57u * TORQUE_CNM_PER_BIT;
     st.speed_mmh = 5u;                  /* still reading 1 on the bus */
-    st.throttle = 48u;                  /* but the pedal has moved */
-    TT_TRUE(compute_torque_d(&st) > 0u);
+    st.throttle = 48u;                  /* the pedal has moved, the car has not */
+    TT_EQ(compute_torque_d(&st), 0);
+    TT_EQ(power_d(&st), 0);
+
+    /* 16_rev2926_z1, a free-revving hold: parked, 2926 rpm, pedal well down. */
+    st.rpm_q4 = 2926u * 4u;
+    st.torque_ind_cnm = 27u * TORQUE_CNM_PER_BIT;
+    st.throttle = 61u;
+    TT_EQ(compute_torque_d(&st), 0);
+    TT_EQ(power_d(&st), 0);
 }
 
-/* ...and it must let go once the car moves, even with the throttle shut.
- * Coasting downhill off the throttle is not a standstill. Whether the torque
- * is then zero is the drag line's business, not the gate's -- what this pins
- * is that the gate itself is no longer the reason. */
-static void test_idle_gate_releases_once_the_car_moves(void)
+/* A RELEASED PEDAL IS ZERO AT ANY SPEED. b7 does reach 133 at throttle 38 in
+ * 17_drive_property_z1 -- at 4522 rpm, mid-gearchange, in a frame where 0x1A0
+ * was not reporting a valid speed at all. It is the pedal and the load byte
+ * disagreeing for a few frames, not a state the car sits in, and the gate is
+ * what stops it reaching the display. */
+static void test_the_gate_holds_off_the_throttle_however_fast(void)
+{
+    decode_state_t st;
+    decode_init(&st);
+    st.speed_mmh = 40000u;              /* 40 km/h */
+    st.throttle = THROTTLE_REST;
+
+    st.rpm_q4 = 2500u * 4u;
+    st.torque_ind_cnm = 120u * TORQUE_CNM_PER_BIT;
+    TT_EQ(compute_torque_d(&st), 0);
+    TT_EQ(power_d(&st), 0);
+
+    /* the spike itself */
+    st.rpm_q4 = 4522u * 4u;
+    st.torque_ind_cnm = 133u * TORQUE_CNM_PER_BIT;
+    TT_EQ(compute_torque_d(&st), 0);
+    TT_EQ(power_d(&st), 0);
+}
+
+/* THE ROLL TO A STOP, WHICH IS WHAT THE OR WAS FOR. Real frames out of one
+ * stop in 17_drive_property_z1, throttle at 38 throughout. High in the
+ * deceleration the ECU cuts fuel and b7 sits below the drag line, so the old
+ * AND gate answered zero too; once engine speed drops onto the idle governor
+ * b7 climbs 7 -> 27 with the pedal still untouched, and the old gate showed up
+ * to 9.5 Nm for the last few seconds of every stop before snapping to zero at
+ * the standstill. */
+static void test_rolling_to_a_stop_off_the_throttle_shows_zero(void)
+{
+    static const struct { uint16_t rpm; uint8_t b7; uint32_t mmh; } roll[] = {
+        { 1358u,   7u, 19550u },        /* fuel cut, b7 far below the line   */
+        {  898u,  17u, 13530u },        /* back on the governor, was 1.5 Nm  */
+        {  792u,  25u,  7970u },        /* was 8.0 Nm                        */
+        {  783u,  27u,  3750u },        /* was 9.5 Nm                        */
+        {  776u,  27u,     5u },        /* standing at last -- always zero   */
+    };
+    decode_state_t st;
+    uint8_t i;
+
+    decode_init(&st);
+    st.throttle = THROTTLE_REST;
+    for (i = 0; i < (uint8_t)(sizeof roll / sizeof roll[0]); i++) {
+        st.rpm_q4 = (uint16_t)(roll[i].rpm * 4u);
+        st.torque_ind_cnm = (uint16_t)(roll[i].b7 * TORQUE_CNM_PER_BIT);
+        st.speed_mmh = roll[i].mmh;
+        TT_EQ(compute_torque_d(&st), 0);
+        TT_EQ(power_d(&st), 0);
+    }
+}
+
+/* ...and the gate does open. Moving with the pedal down is the one state that
+ * shows a number, and without this the five tests above would all pass on a
+ * compute_torque_d() that returned zero unconditionally. */
+static void test_the_gate_opens_when_moving_with_the_pedal_down(void)
 {
     decode_state_t st;
     decode_init(&st);
     st.rpm_q4 = 2500u * 4u;
     st.torque_ind_cnm = 120u * TORQUE_CNM_PER_BIT;
-    st.speed_mmh = 40000u;              /* 40 km/h */
-    st.throttle = THROTTLE_REST;
+    st.speed_mmh = 40000u;
+    st.throttle = 90u;
     TT_TRUE(compute_torque_d(&st) > 0u);
+    TT_TRUE(power_d(&st) > 0u);
 }
 
-/* The threshold is not an equality, because a standing car does not send zero:
- * 0x1A0 raw speed is 1 in every log while stationary. Both must gate. */
-static void test_idle_gate_thresholds_are_not_equalities(void)
+/* Neither threshold is an equality. A standing car does not send zero -- 0x1A0
+ * raw speed is 1 in every log while stationary -- and the pedal at rest reads
+ * exactly 38, with 44 the next value that appears anywhere in the fixtures. */
+static void test_gate_thresholds_are_not_equalities(void)
 {
     decode_state_t st;
     decode_init(&st);
     st.rpm_q4 = 798u * 4u;
     st.torque_ind_cnm = 29u * TORQUE_CNM_PER_BIT;
-    st.throttle = THROTTLE_REST;
 
+    /* the speed threshold, with the pedal down so only speed can gate */
+    st.throttle = 90u;
     st.speed_mmh = 0u;                  /* engine off / no reading yet */
     TT_EQ(compute_torque_d(&st), 0);
     st.speed_mmh = 5u;                  /* raw 1, the real standing value */
     TT_EQ(compute_torque_d(&st), 0);
-    st.speed_mmh = IDLE_GATE_SPEED_MMH; /* the boundary itself gates */
+    st.speed_mmh = STANDSTILL_MMH;      /* the boundary itself gates */
     TT_EQ(compute_torque_d(&st), 0);
-    st.speed_mmh = IDLE_GATE_SPEED_MMH + 1u;
+    st.speed_mmh = STANDSTILL_MMH + 1u;
+    TT_TRUE(compute_torque_d(&st) > 0u);
+
+    /* the throttle threshold, with the car moving so only the pedal can gate */
+    st.speed_mmh = 40000u;
+    st.throttle = 0u;                   /* no frame seen yet */
+    TT_EQ(compute_torque_d(&st), 0);
+    st.throttle = THROTTLE_REST;        /* the boundary itself gates */
+    TT_EQ(compute_torque_d(&st), 0);
+    st.throttle = THROTTLE_REST + 1u;
     TT_TRUE(compute_torque_d(&st) > 0u);
 }
 
@@ -629,7 +715,7 @@ static void test_torque_above_drag(void)
     decode_init(&st);
     st.rpm_q4 = 3000u * 4u;
     st.torque_ind_cnm = 15000;              /* 150.00 Nm indicated */
-    st.speed_mmh = 60000u;                  /* moving, so the idle gate is out */
+    st.speed_mmh = 60000u;                  /* moving, and the pedal is down,  */
     st.throttle = 90u;
     /* drag at 3000 rpm = 6.74 + 14.46 = 21.20 Nm, so 128.80 net */
     TT_NEAR(compute_torque_d(&st), 1288, 2);
@@ -701,7 +787,7 @@ static void test_cranking_is_not_torque(void)
     st.torque_ind_cnm = 192u * TORQUE_CNM_PER_BIT;
 
     /* Throttle open and the car rolling, so that what is under test here is
-     * the CRANKING gate alone and not the idle gate, which would otherwise
+     * the CRANKING gate alone and not the driving gate, which would otherwise
      * hide it by returning zero for its own reasons. */
     st.speed_mmh = 20000u;
     st.throttle = 60u;
@@ -1147,12 +1233,14 @@ int main(void)
     TT_RUN(test_range_basis_is_built_from_kilometres_and_filtered);
 
     TT_RUN(test_drag_model_sits_on_the_warm_free_rev_holds);
-    TT_RUN(test_idle_gate_zero_at_a_standstill_warm);
-    TT_RUN(test_idle_gate_zero_at_a_standstill_cold);
-    TT_RUN(test_idle_gate_covers_a_fast_cold_idle);
-    TT_RUN(test_idle_gate_releases_on_throttle_while_still_stationary);
-    TT_RUN(test_idle_gate_releases_once_the_car_moves);
-    TT_RUN(test_idle_gate_thresholds_are_not_equalities);
+    TT_RUN(test_the_gate_zero_at_a_standstill_warm);
+    TT_RUN(test_the_gate_zero_at_a_standstill_cold);
+    TT_RUN(test_the_gate_covers_a_fast_cold_idle);
+    TT_RUN(test_the_gate_holds_while_the_car_is_still_stationary);
+    TT_RUN(test_the_gate_holds_off_the_throttle_however_fast);
+    TT_RUN(test_rolling_to_a_stop_off_the_throttle_shows_zero);
+    TT_RUN(test_the_gate_opens_when_moving_with_the_pedal_down);
+    TT_RUN(test_gate_thresholds_are_not_equalities);
     TT_RUN(test_torque_above_drag);
     TT_RUN(test_power);
     TT_RUN(test_engine_off_makes_no_torque);

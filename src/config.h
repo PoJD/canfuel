@@ -286,7 +286,7 @@
  * A STANDING CAR DOES NOT SEND ZERO. 0x1A0 reads raw 1 -- 0.005 km/h, or
  * 1.39 mm/s -- in every log while stationary, and the next value that ever
  * appears is above raw 40 (0.2 km/h); nothing in between exists in any
- * fixture. It is the same measurement IDLE_GATE_SPEED_MMH rests on and the
+ * fixture. It is the same measurement STANDSTILL_MMH rests on and the
  * same number, kept as a separate name because the two guard different things
  * and have no reason to move together.
  *
@@ -584,7 +584,7 @@
  * 107.0 Nm) because at high load the drag is a small term; the whole
  * difference is at part throttle, which is where a driver spends the time.
  *
- * THE IDLE POINT IS DELIBERATELY EXCLUDED, AND THE IDLE GATE COVERS IT.
+ * THE IDLE POINT IS DELIBERATELY EXCLUDED, AND THE DRIVING GATE COVERS IT.
  * 11_idle_noac_z1 is 798 rpm at b7 = 24.96 on the same warm oil, which is ABOVE
  * the line the other four make -- b7 falls 24.96 -> 18.81 between idle and
  * 1536 rpm and only then starts rising. Idle is a different state: the
@@ -592,11 +592,12 @@
  * pumping loss against a nearly closed throttle is large, and the ECU is
  * regulating speed rather than letting the engine free-rev. A straight line in
  * rpm cannot pass through both, so idle is ASSERTED rather than fitted -- see
- * IDLE_GATE_SPEED_MMH below, which returns zero outright for a standing car
- * with the throttle shut. Do not "fix" the residual by raising BASE: that puts
- * the line back above all four measured points and restores the
- * understatement the refit removed, and the gate has already dealt with the
- * only place it showed.
+ * STANDSTILL_MMH and THROTTLE_REST below, which return zero outright whenever
+ * the car is not moving or the pedal is not pressed, which is every state the
+ * engine idles in. Do not "fix" the residual by raising BASE: that puts the
+ * line back above all four measured points and restores the understatement the
+ * refit removed, and the gate has already dealt with the only places it
+ * showed.
  *
  * STILL NOT HOT. 72-77 C is warm, not the 95-110 C of real driving, so this
  * line very likely still overstates drag a little -- which is the conservative
@@ -613,21 +614,59 @@
 #define DRAG_TORQUE_BASE_CNM    674l        /* 6.74 Nm at 0 rpm  (9.11 b7)  */
 #define DRAG_TORQUE_SLOPE_Q16   31589l      /* 0.4820 cNm per rpm, x 2**16  */
 
-/* THE IDLE GATE. A car that is standing still with the throttle shut is
- * putting out no net torque and no power, and the display says zero. This is
- * A FIXED REQUIREMENT, NOT A CALIBRATION: it holds on cold oil and on hot, at
- * any idle speed the ECU chooses, and it is not to be relaxed or made
- * conditional by any future refit of the drag line. Modern cars behave this
- * way and so does this one. test_compute.c asserts it directly, on every
- * stationary fixture, and test_txframes.c asserts it on the assembled frame.
+/* THE DRIVING GATE. Torque and power are displayed only while the car is
+ * MOVING and the driver is ASKING FOR TORQUE. Standing still shows zero
+ * whatever the pedal is doing, and a released pedal shows zero whatever the
+ * speed is. This is A FIXED REQUIREMENT, NOT A CALIBRATION: it holds on cold
+ * oil and on hot, at any idle speed the ECU chooses, and it is not to be
+ * relaxed or made conditional by any future refit of the drag line.
+ * test_compute.c asserts both halves directly and test_txframes.c asserts
+ * them on the assembled frame.
  *
- * Why it cannot come out of the drag line instead. In neutral the crank drives
- * nothing, so net torque is zero at idle AND at every free-revving hold -- but
- * b7 falls 24.96 -> 18.81 between 798 and 1536 rpm and only then starts
- * rising, because at idle the throttle is nearly shut and the pumping loss is
- * large. No straight line in rpm passes through both, so one of the two has to
- * be asserted rather than fitted. Fitting idle is what the old cold-oil line
- * effectively did, and it understated torque everywhere the car is driven.
+ * IT USED TO BE AN AND AND IT IS NOW AN OR, and that is the whole change.
+ * Gating on "standing AND released" left two states on the display that the
+ * car is not in:
+ *
+ *   REVVING IN NEUTRAL AT A STANDSTILL showed a number. The crank drives
+ *   nothing there -- that is exactly what makes the four free-revving holds a
+ *   calibration rather than data -- so the honest answer is zero. 1,528
+ *   samples of 17_drive_property_z1 are this state.
+ *
+ *   ROLLING TO A STOP OFF THE THROTTLE showed a number for the last few
+ *   seconds of every stop, after showing zero for the part before it. High in
+ *   the deceleration the ECU cuts fuel, b7 falls below the drag line and the
+ *   answer is zero; once engine speed drops back onto the idle governor b7
+ *   climbs 7 -> 27 while the pedal never moves, and 27 is well above what the
+ *   drag line claims at 800 rpm. Off one real stop in 17_drive_property_z1,
+ *   with the throttle at 38 throughout:
+ *
+ *       19.6 km/h  1358 rpm  b7 7    ->  0.0 Nm
+ *       13.5 km/h   898 rpm  b7 17   ->  1.5 Nm
+ *        8.0 km/h   792 rpm  b7 25   ->  8.0 Nm
+ *        3.8 km/h   783 rpm  b7 27   ->  9.5 Nm
+ *        standing   776 rpm  b7 27   ->  0.0 Nm   (the old gate, at last)
+ *
+ *   The apparent threshold is engine speed returning to idle, not road speed;
+ *   in first gear the two coincide near 4-8 km/h, which makes it look like a
+ *   speed threshold and is a coincidence of gearing.
+ *
+ * BOTH ARE THE SAME FAULT: the drag line is systematically LOW at idle. b7 is
+ * 25 there against the 14 the line predicts at 800 rpm, and no straight line
+ * in rpm can pass through both idle and the free-revving holds, because at
+ * idle the throttle is nearly shut and the pumping loss is large while the ECU
+ * regulates speed. So idle is ASSERTED rather than fitted -- and the assertion
+ * has to cover every state the engine idles in, not only the parked one.
+ * Fitting idle instead is what the old cold-oil line effectively did, and it
+ * understated torque everywhere the car is actually driven.
+ *
+ * WHAT IT COSTS, because it is not free. Over 17_drive_property_z1 the share
+ * of samples displaying zero goes 28.4 % -> 58.0 % (the peak does not move:
+ * 107.0 Nm). That log is six minutes of first-gear pottering with a great deal
+ * of coasting, so it is the worst case rather than a typical drive. And
+ * PULLING AWAY NOW READS ZERO UNTIL THE CAR MOVES -- a median of 0.7 s after
+ * the pedal leaves rest across the 14 pull-aways in that log, 1.75 s at worst.
+ * Real torque against a slipping clutch is not shown for that time. Accepted
+ * deliberately: a stationary car showing a number is the thing being fixed.
  *
  * The construction is not ours. SAE J1979 carries actual engine percent torque
  * (PID 0x62) and engine friction percent torque (PID 0x8E) as separate
@@ -639,7 +678,7 @@
  * J1979 document itself is paywalled and has not been read. EVIDENCE, NOT A
  * SPECIFICATION -- the rule above is a decision and stands on its own.
  *
- * Both thresholds are measured off the fixtures:
+ * Both thresholds are measured off the fixtures, and neither is an equality:
  *
  * SPEED. A stationary car does not send zero. 0x1A0 raw speed is 1 -- i.e.
  * 0.005 km/h -- in every log while standing: 7953 frames in 06_trip_reset,
@@ -651,11 +690,21 @@
  *
  * THROTTLE. 0x280 b5 reads exactly 38 at rest and 48-61 across the four
  * free-revving holds; 18,060 of 34,495 frames in 17_drive_property_z1 are at
- * 38. It is the pedal, not the load: b7 reaches 133 at throttle 38 while
- * driving, which is why the throttle ALONE is not a gate and must be paired
- * with the car standing still. Pulling away is throttle > 38 with the car
- * still reading 1, so the gate lets go before the car moves. */
-#define IDLE_GATE_SPEED_MMH     100u        /* 0.1 km/h; standing sends 5   */
+ * 38, and across every fixture in the directory the next value above 38 that
+ * ever appears is 44 -- nothing occupies 39 to 43. It is the pedal and not the
+ * load, which is why it can gate on its own now: a released pedal is a
+ * statement about the driver, and what b7 does afterwards is the engine
+ * looking after itself.
+ *
+ * THE b7 = 133 SPIKE IS NOT A COUNTER-EXAMPLE, though it was once read as one.
+ * b7 does reach 133 at throttle 38 in 17_drive_property_z1 -- at 4522 rpm,
+ * during a gearchange, in a frame where 0x1A0 was not even reporting a valid
+ * speed. It is a transient of the pedal and the load byte disagreeing for a
+ * few frames, not a state the car sits in: bucketed by engine speed, mean b7
+ * at throttle 38 is 14-17 everywhere above 1000 rpm, which is BELOW the drag
+ * line, and only the idle bucket sits above it at 27.6. Gating those spikes
+ * away is a second thing this rule buys. */
+#define STANDSTILL_MMH          100u        /* 0.1 km/h; standing sends 5   */
 #define THROTTLE_REST           38u         /* 0x280 b5 at rest             */
 
 /* Below this the engine is not running, it is being turned by the starter,
