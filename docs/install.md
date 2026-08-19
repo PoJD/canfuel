@@ -163,12 +163,34 @@ channel that proves the *upload* rather than the wiring. With the car's bus
 connected, the CAN icon also goes green and the nine bus-fed channels come
 alive.
 
-**Expect seven channels to read zero**: FuelNow, FuelAvg, FuelTank, Range,
-Torque, Power and VddConv. Those are the converter's, and they stay at zero
-until step 9. The other nine read the car's bus directly and should be live as
-soon as the display is in the car.
+**Expect twenty-two channels to read zero**, in two groups. Ten are the
+converter's — FuelNow, FuelAvg, FuelTank, Range, Torque, Power, Flow, VddConv,
+TripFuel and TripDist — and they stay at zero until step 9. Twelve more are fed
+by the 0x603 diagnostic frame, which is transmitted only while `DBG_EN` (JP1)
+is fitted, so they read zero in the shipping configuration **by design**. The
+other nine read the car's bus directly and should be live as soon as the
+display is in the car.
 
-**Do not reorder the rows** of the TRI file. It is addressed by position.
+**Do not reorder the rows** of the TRI file. It is addressed by position; new
+sensors are appended.
+
+⚠ **Two things the MFD15 does that will otherwise be blamed on this device.**
+Both are the display's, both were reproduced without the converter fitted, and
+`mfd15/CLAUDE.md` has the detail and says plainly what is not understood about
+either:
+
+- **Operating oDSS puts a burst of errors on the CAN bus.** Uploading a file
+  or changing the configuration blinks `LED_CAN` for a few seconds and latches
+  `UNHEALTHY` until the next power-up, with the error counters back at zero
+  straight afterwards. Power-cycle before reading that flag as a verdict here.
+  It cannot happen while driving: oDSS needs the display's hotspot and the
+  hotspot is off by default.
+- **Changing what a page shows can lose the sensor definitions**, scrambling
+  the other pages with them. **RPM disappearing is the tell**, and it is the
+  cleanest possible one: RPM comes off the car's bus directly, so a display
+  with no RPM cannot be blaming anything this firmware did. Uploading the TRI
+  file again fixes it every time, so upload it again as a matter of course
+  after any page change rather than waiting to notice.
 
 ---
 
@@ -1253,10 +1275,10 @@ any of this reopened.
 
 ## Then: calibration
 
-Two things are known to be approximate and both need the car:
+**One thing is left, and it needs the car:**
 
-- **Drag torque on hot oil**, and it is the one worth the trip. The line in
-  `config.h` is a least-squares fit through four free-revving holds at
+- **Drag torque on hot oil**, the only open question left in the project. The
+  line in `config.h` is a least-squares fit through four free-revving holds at
   72–77 °C, stationary in neutral, where net torque is zero and the raw byte
   is the drag itself. **72–77 °C is warm, not the 95–110 °C of real driving**,
   so it probably still overstates drag slightly, which is the conservative
@@ -1274,15 +1296,20 @@ Two things are known to be approximate and both need the car:
   the drag fit, and it is worth checking on the first drive: if a stationary
   car shows a number, or a number survives lifting off, something is wrong with
   the speed or throttle decoding, not with the calibration.
-- **The tank**, which needs a jerrycan: a known quantity put in, to check the
-  level against. **One point exists: 6 L into a nearly empty tank settled at
-  5 L on `FuelTank`** — measured. The converter applies no calibration to that
-  number at all; `compute_tank_d()` is the damped 0x320 b2 and nothing else, so
-  a discrepancy at the bottom of the tank is the sender's own nonlinearity
-  rather than arithmetic here. Check `TankL` beside `FuelTank` on the display
-  to confirm that: `TankL` is the raw byte, so if the two agree, nothing in
-  this firmware is involved. Whether a correction is worth applying needs more
-  than one point, and points near empty are the least useful ones to have.
+
+**The tank was the other one, and it is closed — as a decision, not as a
+measurement.** 6 L from a jerrycan into a nearly empty tank settled at 5 L on
+`FuelTank`. That is the sender and not this firmware: `compute_tank_d()` is the
+damped 0x320 b2 and nothing else, no calibration of any kind, which `TankL`
+beside `FuelTank` on the display confirms in one glance because `TankL` is the
+raw byte. **Correcting a float's nonlinearity from one point taken near empty —
+the least informative place on the curve — would be fitting noise.** So there
+is nothing to run here and nothing to plan; if a correction is ever wanted it
+needs a spread of known quantities across the range, which is a different and
+much larger job than a jerrycan.
+
+⚠ **Do not reopen this as "the tank calibration is outstanding".** It was
+considered, measured once, and set aside deliberately.
 
 **The torque scale, 0.74 Nm/bit, is deliberately not on that list.** It is a
 decision inside the narrow bracket the factory ratings imply rather than a

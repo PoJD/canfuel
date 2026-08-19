@@ -1414,11 +1414,16 @@ build is**: a procedure that carries its own progress becomes a diary, and a
 diary in a repository goes stale the moment somebody works without updating it.
 Where the build has actually got to is asked, not read.
 
-Two calibrations are approximate and both need the car: **the tank**, which
-wants a known quantity from a jerrycan, and **the drag line on hot oil**, which
-is the one open question in `docs/can-decoding.md`. Both are refinements to a
-working device rather than blockers, and both live in `install.md` under
-*Then: calibration*.
+**One calibration is left: the drag line on hot oil**, which is the one open
+question in `docs/can-decoding.md`. It is a refinement to a working device
+rather than a blocker, and it lives in `install.md` under *Then: calibration*.
+
+**The tank was the other one and it is closed, as a decision.** 6 L into a
+nearly empty tank settled at 5 L, which is the sender's own nonlinearity and
+not arithmetic here -- `compute_tank_d()` applies no calibration at all.
+Correcting a float from one point taken near empty would be fitting noise, so
+there is nothing to run. `install.md` has it. **Do not reopen it as
+outstanding work.**
 
 The rest of this section is why the drag line and the torque scale are what
 they are, because that reasoning has nowhere else to live.
