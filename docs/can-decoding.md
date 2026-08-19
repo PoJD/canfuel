@@ -358,6 +358,44 @@ dealt with the only place the residual showed.
 so this line very likely still overstates drag a little. That is the
 conservative direction, which is why it was worth shipping.
 
+**What that costs while it stays open, bounded rather than guessed.** The two
+fixture pairs above give a temperature sensitivity of **0.27 counts of b7 per
+°C at ~2930 rpm** (37 → 27 counts over 39.0 → 76.6 °C). Extrapolated linearly
+from 76.6 °C to 100 °C that is 6.2 counts, about **4.6 Nm of drag overstated**.
+
+⚠ **Read that as an upper bound and not as a figure.** Viscosity falls
+exponentially with temperature, so a rate measured across 39–77 °C overstates
+what happens across 77–100 °C; and drag is not all viscous — pumping loss and
+accessory load do not care how hot the oil is. Both push the real number down.
+
+Where it lands is the useful part, and it is not where it looks:
+
+| | now | with a hot refit | |
+|---|---|---|---|
+| the 107.0 Nm peak of `17_drive_property_z1` (b7 = 185, 4799 rpm) | 107.0 Nm, 53.8 kW | 107.8 Nm, 54.2 kW | **+0.7 %** |
+| b7 = 100 at the same speed | 44.1 Nm | 46.6 Nm | +6 % |
+| b7 = 80 | 29.3 Nm | 32.2 Nm | +10 % |
+| b7 = 60 | 14.5 Nm | 17.8 Nm | +23 % |
+| b7 = 40 | **zero** | 3.4 Nm | — |
+
+**The maxima are the part that is least wrong, and that is structural rather
+than luck.** `TORQUE_CNM_PER_BIT` is *derived from* this line — full scale must
+cover the rated crank torque plus the drag at that speed — so a lower drag line
+forces a lower scale, and at high b7 the two changes very nearly cancel. The
+scale would go from 0.74 to about 0.72 Nm/bit on the numbers above.
+
+So the error behaves like **a roughly constant offset of a couple of Nm**:
+invisible at full throttle, dominant at part throttle, and always in the
+direction of showing *less* than the truth. Which is also why the sweep wants
+points at **low** rpm and low load rather than another full-scale figure — the
+top of the range is pinned by the factory ratings whatever the oil is doing.
+
+⚠ **One thing the table above assumes and the sweep will settle:** that hot oil
+takes the same amount off the drag at every engine speed. It will not — viscous
+drag rises with speed, so the refit should change the *slope* as well as the
+intercept, and how much of each is exactly what more points below 1500 rpm are
+for.
+
 **What would close it properly:** the rpm sweep repeated with the oil genuinely
 hot, and enough points below 1500 rpm to see whether the fall from idle to
 1536 rpm is a curve worth modelling rather than a line.
