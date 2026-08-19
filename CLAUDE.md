@@ -1375,8 +1375,11 @@ measured warm idle, taken with adapter timestamps, is:
 
 ## The torque calibration, and what is still soft about it
 
-**For what to do next, see `docs/install.md`** — it is the plan and it tracks
-its own progress. Nothing here restates it.
+**For what to do next, see `docs/install.md`** — it is the plan, in order, and
+nothing here restates it. **It deliberately does not say how far along the
+build is**: a procedure that carries its own progress becomes a diary, and a
+diary in a repository goes stale the moment somebody works without updating it.
+Where the build has actually got to is asked, not read.
 
 Two calibrations are approximate and both need the car: **the tank**, which
 wants a known quantity from a jerrycan, and **the drag line on hot oil**, which
