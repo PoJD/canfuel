@@ -326,6 +326,26 @@ than saturating.
 The accumulators are written to EEPROM every 20 s, into a circular buffer
 of 64 slots.
 
+### ⚠ On a car that idles more than it moves, FuelAvg is enormous and correct
+
+Read off the display in the vehicle, with the engine idling and 0.6 km on the
+trip: **FuelAvg 51.0 l/100 km**, highlighted by the display because it is past
+the 30.00 that `S-AQY.TRI` sets as that gauge's top of scale.
+
+Nothing is wrong. l/100 km is litres divided by distance, and a car that spends
+a quarter of an hour idling for every few hundred metres it covers really does
+consume that much per 100 km — the guard at the other end is the 100 m floor,
+which is about dividing by nearly zero, not about the answer being large. The
+same drive read 33.4 l/100 km out of the EEPROM ring earlier in its life, on
+150 m.
+
+**So a huge FuelAvg on a car being shunted around a yard is arithmetic, not a
+fault, and the yellow is a gauge scale rather than a warning.** Leave the
+30.00: it is the right top of scale for a car that drives, and a display
+configured for the yard would be wrong on the road. `install.md` step 10's
+check — FuelNow against FuelCntRaw — is the one that separates a wrong number
+from an unusual one.
+
 ---
 
 ## Range
@@ -348,6 +368,14 @@ carries four fractional bits so it cannot stall a long way from the truth.
 
 Until 5 km have been driven since startup, a conservative default of 9 l/100 km
 is used so the estimate is not nonsense on a cold start.
+
+That default is visible for longer than it sounds on a car that is not driven
+far. From the same display: **7.6 l in the tank and Range 84 km**, which is
+7.6 / 9.0 x 100 = 84.4 — the default basis exactly, because 0.6 km is nowhere
+near `RANGE_MIN_MM`. **Range agreeing with the default to a kilometre is
+therefore a check that the arithmetic works, not evidence that the rolling
+figure has started.** Until 5 km are on the trip, Range says what a 9 l/100 km
+car would do, and it says nothing at all about this one.
 
 **"Litres remaining" is the damped level, not the raw one.**
 it was the raw `0x320` b2, i.e. the float position with the slosh still in it.
