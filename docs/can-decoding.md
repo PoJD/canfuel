@@ -324,6 +324,36 @@ drag_b7 = 9.11 + 0.006514 x rpm        residuals -0.9 to +1.8 counts
 drag [Nm] = 6.74 + 0.00482 x rpm       at 0.74 Nm/bit
 ```
 
+### What the display can show at the top, and what that is worth
+
+**The ceiling is 170.4 Nm at 2400 rpm and 85.4 kW at 5200 rpm**, reached at
+b7 = 255, against factory ratings of 170 Nm and 85 kW.
+`test_full_scale_reaches_the_rated_power` and
+`test_full_scale_reaches_the_rated_torque` hold it there to within 5 %, and
+they exist because at the old 0.67 Nm/bit the display topped out at 76.5 kW and
+could not have shown the power the car is sold with at any throttle opening.
+
+⚠ **That is verified against the ratings and not against the engine**, and the
+difference matters. The scale was *derived* from the two ratings, so the
+display agreeing with them is arithmetic closing on itself, not a measurement.
+Nothing has ever compared either number against a dyno, and nothing is planned
+to: this ECU has no torque measuring block and the car is deregistered.
+
+⚠ **It is calibrated for a stock AQY, so a remap would not read correctly.**
+Which way it fails depends on something nobody has established — whether the
+ECU scales its internal reference torque with the map. If it does, b7 stays in
+the same range for more real torque and the display **under-reads** a tuned
+engine while looking perfectly plausible. If it does not, b7 climbs and the
+display follows until it **clips at 255 counts**, which is the 170.4 Nm above.
+Either way the numbers stay believable and stop being right, which is the worst
+shape a fault can have. A remap means recalibrating both the scale and the drag
+line together.
+
+**For reference, the highest the car has actually produced on record** is
+**107.0 Nm and 53.8 kW** — b7 = 185 at 4799 rpm, full throttle, first gear, on
+private land. That is 63 % of the ceiling, and it is what a short piece of land
+allows rather than what the engine can do.
+
 **The scale moved with it, from 0.75 to 0.74 Nm/bit, and had to.** Full scale
 b7 = 255 has to cover the rated crank torque *plus* the drag at that speed, so
 the bracket the two factory ratings imply depends on the drag line. On the old
@@ -395,6 +425,29 @@ takes the same amount off the drag at every engine speed. It will not — viscou
 drag rises with speed, so the refit should change the *slope* as well as the
 intercept, and how much of each is exactly what more points below 1500 rpm are
 for.
+
+### ⚠ This may never be worth doing, and that is a maintainer's decision
+
+**It stays open rather than being closed, but do not treat it as work that is
+owed.** The reasoning, and it is sound:
+
+- **Where the numbers are read, the correction is worth under 1 %.** The table
+  above: +0.7 % on the real peak. The interest here is in the maxima, and the
+  maxima are pinned by the factory ratings, not by the drag line.
+- **The input is a fabricated number to begin with.** 0x280 b7 is the ECU's own
+  *indicated* torque as a percentage of an internal reference torque nobody has
+  read, and `TORQUE_CNM_PER_BIT` is a decision inside a 0.3 % bracket rather
+  than a measurement — see the *Never resolved but not required* section. A
+  couple of Nm of drag is below the noise of the premise it sits on.
+- **The cost is a dismantled dashboard and a drive on a registered car**, which
+  is the expensive half. `install.md` step 11.
+
+**Where the argument does not hold, stated fairly:** at part throttle the drag
+error is the *dominant* term, up to +23 % at b7 = 60, which is far larger than
+the scale's own uncertainty. So this is a decision that the top of the range is
+what matters on this car, not a demonstration that the correction is
+negligible everywhere. **If a part-throttle number ever starts mattering, the
+argument above expires.**
 
 **What would close it properly:** the rpm sweep repeated with the oil genuinely
 hot, and enough points below 1500 rpm to see whether the fall from idle to
