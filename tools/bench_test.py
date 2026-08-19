@@ -93,8 +93,12 @@ DIAG_LAYOUT_VERSION = 1
 DIAG_VERSION_SHIFT = 5
 DIAG_RESET_CAUSE_MASK = 0x1F
 
+# 0x04 is the latch and 0x20 is the same fault right now -- docs/frames.md.
+# LED_CAN follows the second; the first is what says something happened while
+# nobody was watching.
 DIAG_FLAGS = [(0x01, "CAN_OK"), (0x02, "SILENT"), (0x04, "UNHEALTHY"),
-              (0x08, "DATA_LIVE"), (0x10, "PERSIST_OK")]
+              (0x08, "DATA_LIVE"), (0x10, "PERSIST_OK"),
+              (0x20, "UNHEALTHY_NOW")]
 RESET_CAUSES = [(0x01, "power-on"), (0x02, "brown-out"), (0x04, "WATCHDOG"),
                 (0x08, "RESET instruction"), (0x10, "STACK")]
 # DS39977C Register 27-4, COMSTAT bits 5-0.
@@ -1079,7 +1083,18 @@ def mode_fault(sender: Adapter, acker: Adapter, log) -> Report:
               "DS39977C 27.11: recovery is 128 x 11 recessive bits, about "
               "2.8 ms at 500 kbps, with no MCU intervention")
     if after:
-        show_diag(after, rep)
+        # Not expect_clean, for the same reason as E2 below: this test has just
+        # driven the transmit error counter to the error-passive limit on
+        # purpose, and TEC comes down by one per frame acknowledged. At the
+        # converter's 22 frames a second, six seconds of settling walks 128
+        # most of the way to zero and not reliably all of it -- a run that
+        # ended on 2 was failing a check on whether the counter had finished
+        # counting rather than on whether the module had recovered.
+        show_diag(after, rep, expect_clean=False)
+        rep.check("the error counter is on its way back down",
+                  after["tx_err"] < 96 and after["rx_err"] < 96,
+                  f"tx {after['tx_err']}, rx {after['rx_err']}; 96 is the "
+                  f"module's own warning threshold, and it was at 128")
         rep.check("UNHEALTHY stayed latched through the recovery",
                   bool(after["flags"] & 0x04),
                   "this is the whole reason that latch exists -- the counters "

@@ -11,8 +11,9 @@
  *
  *    every pass   drain the CAN receive FIFO, offer the clock to the core
  *                 (which integrates distance on its own DIST_TICK_MS step)
- *    100 ms       transmit 0x600 and 0x601, sample VDD, update the LEDs
- *    1 s          transmit 0x602, offer the accumulators to the EEPROM
+ *    every 25 ms  one transmit slot, and AT MOST ONE FRAME in it -- 0x600,
+ *                 0x601, 0x602, 0x603, and the EEPROM in a slot that sends
+ *                 nothing. config.h has the measurement that forced that.
  */
 #include "pic_config.h"     /* #pragma config ... and then <xc.h> */
 
@@ -43,14 +44,22 @@ static tx_values_t    tx;
  *             slow blink    the loop is running but the module is in one of
  *                           the silent modes, so nothing is being transmitted
  *   LED_CAN   steady        frames are arriving and the module is healthy
- *             2.5 Hz blink  arriving, but the error counters are not zero or
- *                           the FIFO has overflowed
+ *             2.5 Hz blink  arriving, but an error counter is not zero or the
+ *                           FIFO has just overflowed
  *             5 Hz blink    hal_can_init() never got the module into the mode
  *                           it asked for; there is no CAN at all
  *             off           the bus has been quiet for DATA_TIMEOUT_MS
  *
  * The distinction that matters on a bench is the last two: dark means the car
  * is not talking, fast blink means we are not listening.
+ *
+ * THE 2.5 Hz BLINK IS THE LIVE FAULT AND NOT THE LATCHED ONE. The module's
+ * error counters come back to zero on their own once the bus behaves, so this
+ * light goes out again when the trouble stops -- config.h argues why that is
+ * the right half to show. What it does NOT do is remember, and that is the
+ * other flag's job: DIAG_FLAG_UNHEALTHY in 0x603 stays set for the rest of the
+ * session and is the only thing that can say something happened while nobody
+ * was watching.
  *
  * LED_PWR carries the silent modes because a listen-only build is otherwise
  * indistinguishable from a broken transmitter -- frames arrive, LED_CAN is
@@ -100,8 +109,8 @@ static void tx_fail_count(void)
     }
 }
 
-static uint8_t diag_flags(bool can_ok, bool unhealthy, bool persist_ok,
-                          bool live)
+static uint8_t diag_flags(bool can_ok, bool unhealthy, bool unhealthy_now,
+                          bool persist_ok, bool live)
 {
     uint8_t f = 0u;
 
@@ -116,6 +125,12 @@ static uint8_t diag_flags(bool can_ok, bool unhealthy, bool persist_ok,
     }
     if (unhealthy) {
         f |= DIAG_FLAG_UNHEALTHY;
+    }
+    /* The live half, which is what LED_CAN follows. Both are here on purpose:
+     * one says a fault is happening, the other that one ever did, and telling
+     * those apart is the difference between a lead and a shrug. */
+    if (unhealthy_now) {
+        f |= DIAG_FLAG_UNHEALTHY_NOW;
     }
     if (live) {
         f |= DIAG_FLAG_DATA_LIVE;
@@ -141,6 +156,9 @@ int main(void)
     bool     can_ok;
     bool     persist_ok;
     bool     unhealthy = false;
+    /* How many more fast slots LED_CAN should go on reporting a fault. See
+     * DIAG_UNHEALTHY_HOLD in config.h. */
+    uint8_t  unhealthy_hold = 0u;
 
     hal_sys_init();
 
@@ -239,13 +257,21 @@ int main(void)
                     tx_fail_count();
                 }
 
+                /* Both halves of the same reading, and config.h says why there
+                 * are two. An overflow is an instant rather than a state --
+                 * hal_can_overflow() clears it as it reports it -- so it is
+                 * stretched by the hold below into something a person can
+                 * actually see on an LED. */
                 if (hal_can_overflow() ||
                     hal_can_rx_errors() != 0u || hal_can_tx_errors() != 0u) {
                     unhealthy = true;
+                    unhealthy_hold = DIAG_UNHEALTHY_HOLD;
+                } else if (unhealthy_hold > 0u) {
+                    unhealthy_hold--;
                 }
 
-                leds_update(can_ok, compute_data_live(&cp, now), unhealthy,
-                            phase);
+                leds_update(can_ok, compute_data_live(&cp, now),
+                            unhealthy_hold > 0u, phase);
             } else if ((slot & 0x03u) == 1u) {
                 txframes_engine(&tx, buf);
                 if (!hal_can_send(CAN_ID_TX_ENGINE, buf, TXFRAME_DLC)) {
@@ -290,6 +316,7 @@ int main(void)
                                          hal_can_tx_errors(),
                                          hal_can_status(),
                                          diag_flags(can_ok, unhealthy,
+                                                    unhealthy_hold > 0u,
                                                     persist_ok,
                                                     compute_data_live(&cp,
                                                                       now)),

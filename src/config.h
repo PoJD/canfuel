@@ -78,6 +78,28 @@
                                          * ever, since power-up             */
 #define DIAG_FLAG_DATA_LIVE     0x08u   /* frames are arriving right now     */
 #define DIAG_FLAG_PERSIST_OK    0x10u   /* persist_load() found a record     */
+#define DIAG_FLAG_UNHEALTHY_NOW 0x20u   /* the same fault, but current       */
+
+/* TWO FLAGS FOR ONE FAULT, AND THE LED FOLLOWS THE SECOND.
+ *
+ * The module's error counters walk back to zero on their own once the bus
+ * behaves -- measured, from 128 to 0 -- so a fault that came and went leaves
+ * no trace at all. That is what DIAG_FLAG_UNHEALTHY is for, and why it never
+ * clears: it is the only thing that can say "something happened while nobody
+ * was looking".
+ *
+ * The cost of driving LED_CAN from it is that one transient blinks the LED
+ * until the next reset, and after that the light says nothing about now.
+ * DIAG_FLAG_UNHEALTHY_NOW is the live half: set while an error counter is
+ * non-zero or an overflow has just been seen, and held for a moment
+ * afterwards, because an overflow is an instant and a 100 ms blink is not
+ * something anybody can see. The LED follows this one, so it goes out when the
+ * bus recovers; the frame keeps both, so the history is not lost.
+ *
+ * The hold counts down once per TX_FAST_MS, in the slot that reads the
+ * counters, so fifteen of them is 1.5 s: long enough that a single overflow is
+ * unmistakable, short enough that the light stays honest about the present. */
+#define DIAG_UNHEALTHY_HOLD     15u
 
 /* Why the part last started, out of RCON and STKPTR -- see hal_sys.h. Zero is
  * a legitimate answer: an MCLR reset is none of these, and that is what a

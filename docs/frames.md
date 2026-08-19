@@ -149,9 +149,22 @@ and a layout change belongs in both.**
 | 0x04 | `UNHEALTHY` | latched: an error counter was non-zero, or the FIFO overflowed, at any point since power-up |
 | 0x08 | `DATA_LIVE` | frames from the car are arriving right now |
 | 0x10 | `PERSIST_OK` | `persist_load()` found a stored record at start-up |
+| 0x20 | `UNHEALTHY_NOW` | the same fault as 0x04, but **current**: an error counter is non-zero or the FIFO overflowed in the last 1.5 s |
 
 `PERSIST_OK` clear is **not** an error on a freshly programmed board: `-OH`
 erases the EEPROM by default, and a virgin ring is a correct start.
+
+**`UNHEALTHY` and `UNHEALTHY_NOW` are the same reading twice, and both are
+worth having.** The module's error counters walk back to zero on their own once
+the bus behaves, so a fault that came and went leaves no trace in bytes 0–2 —
+that is what the latch is for, and why it never clears. But a latch is useless
+as a light: one transient and `LED_CAN` blinks until the next reset, saying
+nothing about now. **`LED_CAN` therefore follows `UNHEALTHY_NOW`**, which goes
+out again when the trouble stops, while the frame keeps the memory.
+
+The 1.5 s hold exists because an overflow is an instant rather than a state —
+`hal_can_overflow()` clears it as it reports it — and a 100 ms blink is not
+something anybody can see. `DIAG_UNHEALTHY_HOLD` in `src/config.h`.
 
 ### Byte 4 — reset cause
 

@@ -388,13 +388,17 @@ static void test_diag_does_not_zero_on_a_quiet_bus(void)
     TT_EQ(be16(out + 6), 42u);
 }
 
-/* The five flags must stay one bit each and must not overlap: the whole point
- * of the byte is that a reader can test one bit without masking the rest. */
+/* The six flags must stay one bit each and must not overlap: the whole point
+ * of the byte is that a reader can test one bit without masking the rest.
+ *
+ * UNHEALTHY and UNHEALTHY_NOW are the same fault seen two ways -- ever, and
+ * now -- and they are separate bits precisely so that a reader can have both
+ * without arithmetic. */
 static void test_diag_flags_are_distinct_bits(void)
 {
     uint8_t all = (uint8_t)(DIAG_FLAG_CAN_OK | DIAG_FLAG_SILENT |
                             DIAG_FLAG_UNHEALTHY | DIAG_FLAG_DATA_LIVE |
-                            DIAG_FLAG_PERSIST_OK);
+                            DIAG_FLAG_PERSIST_OK | DIAG_FLAG_UNHEALTHY_NOW);
     unsigned bits = 0u;
     unsigned i;
 
@@ -403,7 +407,7 @@ static void test_diag_flags_are_distinct_bits(void)
             bits++;
         }
     }
-    TT_EQ(bits, 5u);
+    TT_EQ(bits, 6u);
 }
 
 int main(void)
