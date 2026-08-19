@@ -290,6 +290,14 @@ function — `-Werror=unused-function` turns that into a build failure.
 
 ### What it bought
 
+⚠ **The budget tables in this file name the scheduler that existed when each
+measurement was taken**, and "the 100 ms slot" and "the 1 s slot" are two of
+those names. The scheduler now runs five slots of 25 ms with one frame in each
+-- `docs/timing.md` has the current shape and `src/config.h` says why it
+changed. The before/after pairs below are left as they were measured: a record
+of what one change bought is not improved by being rewritten against a later
+structure.
+
 | | before | after |
 |---|---|---|
 | `txframes_gather` | 4.35 ms | **2.97 ms** |

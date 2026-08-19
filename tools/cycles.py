@@ -116,8 +116,9 @@ LOOPS = {
 # Loops that spin waiting for a peripheral, not for the CPU. Their duration is
 # set by hardware -- an A/D conversion, an EEPROM write -- so counting their
 # instructions would say nothing useful, and the budgets account for the wait
-# itself where it matters (fast_slot adds the A/D time as a constant, and the
-# EEPROM write is excluded from slow_slot by name and analysed in timing.md).
+# itself where it matters (slot_fuel adds the A/D time as a constant, and the
+# EEPROM write is excluded from slot_persist by name and analysed in
+# timing.md).
 HARDWARE_WAITS = {
     "_hal_sys_vdd_c":    "waits for ADCON0bits.GO",
     "_adc_init":         "50 us for the band gap, start-up only",
@@ -174,8 +175,16 @@ NOT_LOOPS = {
 BUDGETS = {
     "rx_frame": ("one received frame, decoded and accumulated", 1000.0),
     "compute_tick": ("compute_tick, worst case (with the tank sample)", 1000.0),
-    "fast_slot": ("the 100 ms slot, everything in it", 3600.0),
-    "slow_slot": ("the 1 s slot, excluding the EEPROM write", 1500.0),
+    # The transmit slots. Each is TX_SLOT_MS = 25 ms wide and holds one frame,
+    # so the ceilings are about what the work costs rather than about the slot:
+    # the binding constraint is the receive FIFO, not the slot, and timing.md
+    # says why. A budget that suddenly needs raising means a slot grew a second
+    # job, which is the thing the whole arrangement forbids.
+    "slot_fuel":    ("slot 0: the A/D, the gather and 0x600", 3600.0),
+    "slot_engine":  ("slot 1: 0x601", 500.0),
+    "slot_trip":    ("slot 2: the trip totals and 0x602", 1200.0),
+    "slot_diag":    ("slot 3: 0x603", 600.0),
+    "slot_persist": ("slot 22: persist_save, excluding the EEPROM write", 1200.0),
 }
 
 
@@ -335,27 +344,38 @@ def budgets(words, calls, loops, constants):
 
     rx_frame = cost("_hal_can_receive") + cost("_decode_frame") + cost("_compute_on_fuel")
 
-    fast_slot = (
+    # ONE SLOT, ONE FRAME -- see src/config.h. Every slot is TX_SLOT_MS apart
+    # and sends at most one frame, so these are four separate budgets rather
+    # than one lump, and each is measured against the same 25 ms.
+    slot_fuel = (
         cost("_hal_sys_vdd_c")
         + 88                                    # 22 us of A/D conversion, DS39977C 23.5
         + cost("_txframes_gather")
         + cost("_txframes_fuel")
-        + cost("_txframes_engine")
-        + 2 * cost("_hal_can_send")
+        + cost("_hal_can_send")
         + cost("_leds_update")
     )
 
-    # txframes_gather_trip is the two divisions by 1000 that would otherwise sit in the
-    # fast slot, where nine out of ten of them were computed for nobody. They
-    # are part of this budget now, not that one.
-    slow_slot = (cost("_txframes_gather_trip") + cost("_txframes_trip")
-                 + cost("_hal_can_send") + cost("_persist_save"))
+    slot_engine = cost("_txframes_engine") + cost("_hal_can_send")
+
+    # txframes_gather_trip is the two divisions by 1000 that would otherwise sit
+    # in the fuel slot, where nine out of ten of them were computed for nobody.
+    slot_trip = (cost("_txframes_gather_trip") + cost("_txframes_trip")
+                 + cost("_hal_can_send"))
+
+    slot_diag = (cost("_txframes_gather_diag") + cost("_txframes_diag")
+                 + cost("_hal_can_send"))
+
+    slot_persist = cost("_persist_save")
 
     return {
         "rx_frame": rx_frame,
         "compute_tick": cost("_compute_tick"),
-        "fast_slot": fast_slot,
-        "slow_slot": slow_slot,
+        "slot_fuel": slot_fuel,
+        "slot_engine": slot_engine,
+        "slot_trip": slot_trip,
+        "slot_diag": slot_diag,
+        "slot_persist": slot_persist,
     }
 
 

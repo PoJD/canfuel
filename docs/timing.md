@@ -75,7 +75,7 @@ every time a 32-bit division is written in the core.
 
 | Function | Cycles | Time |
 |---|---|---|
-| `txframes_gather` (seven getters; the trip totals moved to the 1 s slot) | 7,511 | **1.88 ms** |
+| `txframes_gather` (seven getters; the trip totals moved to slot 2) | 7,511 | **1.88 ms** |
 | `persist_load` (start-up only) | 6,199 | **1.55 ms** |
 | `compute_range_km` | 1,201 | 300 µs |
 | `persist_save` | 3,165 | 791 µs |
@@ -137,14 +137,17 @@ of which 26.4 are 0x480); the rest are the scheduler's own constants.
 |---|---|---|---|---|
 | a CAN frame accepted: `hal_can_receive` + `decode_frame` | 784 | 357 | 279,888 | 7.00 % |
 | the distance step, `DIST_TICK_MS` | 1,684 | 100 | 168,400 | 4.21 % |
-| the 100 ms slot, everything in it | 10,382 | 10 | 103,820 | 2.60 % |
+| slot 0: the A/D, the gather and 0x600 | 9,617 | 10 | 96,170 | 2.40 % |
+| slot 1: 0x601 | 771 | 10 | 7,710 | 0.19 % |
 | 0x480 on top of the frame: counter, totals, flow bucket | 2,077 | 26.4 | 54,832 | 1.37 % |
 | the millisecond ISR | 34 | 1,000 | 34,000 | 0.85 % |
-| the 1 s slot, not writing | 4,765 | 1 | 4,765 | 0.12 % |
+| slot 2: the trip totals and 0x602 | 1,582 | 1 | 1,582 | 0.04 % |
+| slot 3: 0x603 | 803 | 1 | 803 | 0.02 % |
+| slot 22: `persist_save` deciding not to write | 625 | 1 | 625 | 0.02 % |
 | the EEPROM write, amortised over its interval | 192,000 | 1 per 20 s | 9,600 | 0.24 % |
 | the tank sample | 890 | 1 | 890 | 0.02 % |
 | the range basis, one completed km at 100 km/h | 553 | 1 per 36 s | 15 | 0.00 % |
-| **total** | | | **656,211** | **16.4 %** |
+| **total** | | | **654,516** | **16.4 %** |
 
 **Five sixths of the machine is idle**, and the shape of what is left is worth
 reading twice:
@@ -159,7 +162,7 @@ reading twice:
   Not because the arithmetic changed but because it now runs a hundred times a
   second instead of a thousand — `DIST_TICK_MS`, which exists for correctness
   and bought this as a side effect.
-- **The 100 ms slot is third**, and 41 % of it is three `___lldiv` calls that
+- **Slot 0 is third**, and 41 % of it is three `___lldiv` calls that
   divide by a variable. That is the only large item left with an obvious
   shape, and it is deliberately not being chased: `docs/optimisation.md`
   explains why a run-time reciprocal costs more than the division.
@@ -259,33 +262,45 @@ account (1.21 → 1.26 ms) and only came down again when the tank median went;
 that is the honest way round, because the table above is per call and what
 changed here is how often the call does anything.
 
-### Every 100 ms
+### The transmit slots
+
+One frame leaves every `TX_SLOT_MS` = 25 ms and never two together, for the
+reason `src/config.h` gives: a receiver with two buffers loses whichever of
+ours lands third on the wire. So there are five slots to cost rather than two,
+and **each is measured against the same 25 ms**.
+
+**Slot 0 — the A/D, the gather and 0x600**, ten times a second:
 
 | | Cycles | Time |
 |---|---|---|
 | `hal_sys_vdd_c` incl. the A/D conversion | ~1,200 | 300 µs |
 | `txframes_gather` | 7,511 | 1.88 ms |
-| two frames assembled and queued | 818 | 205 µs |
+| `txframes_fuel` + `hal_can_send` | ~700 | 175 µs |
 | error counters, overflow flag, LEDs | ~200 | 50 µs |
-| **total** | | **2.60 ms** |
+| **total** | **9,617** | **2.40 ms** |
 
-**3.7 % of the 100 ms it has.** The remaining 94.7 % is spent draining an empty
-FIFO.
+**9.6 % of the 25 ms it has**, and it is the worst of the five by a factor of
+three.
 
-### Every 1 s
+**The other four**, and none of them is close to anything:
 
-| | Cycles | Time |
-|---|---|---|
-| `txframes_gather_trip` (the two divisions by 1000) | 837 | 209 µs |
-| `txframes_trip` + `hal_can_send` | 384 | 96 µs |
-| `persist_save` deciding not to write | 625 | 156 µs |
-| `persist_save` **writing**, three times a minute | — | **~48 ms** |
+| Slot | What | Cycles | Time |
+|---|---|---|---|
+| 1 | `txframes_engine` + `hal_can_send` | 771 | 193 µs |
+| 2 | `txframes_gather_trip` (the two divisions by 1000), `txframes_trip`, `hal_can_send` | 1,582 | 396 µs |
+| 3 | `txframes_gather_diag`, `txframes_diag`, `hal_can_send` | 803 | 201 µs |
+| 22 | `persist_save` deciding not to write | 625 | 156 µs |
+| 22 | `persist_save` **writing**, three times a minute | — | **~48 ms** |
 
-The first line arrived here from the 100 ms slot, where it was being computed
-ten times a second for a frame that goes out once a second. That is a straight
-transfer of 686 cycles from a budget with a 3.24 ms load to one with 1.19 ms,
-and it leaves the slow slot at **1.26× under its ceiling** — the tightest
-margin of the four, and worth watching if anything else moves in here.
+Two things follow from the arrangement rather than from the arithmetic:
+
+- **The trip divisions are in slot 2 and not slot 0.** They are computed once
+  a second for a frame that goes out once a second, rather than ten times for
+  nine throwings-away.
+- **The EEPROM write is in a slot that transmits nothing**, which is slot 22
+  at 550 ms. Wherever it sat it would block for 48 ms; in a slot that had just
+  queued a frame it would also push the next one onto the heels of the one
+  after, which is the whole thing this schedule exists to prevent.
 
 ---
 
@@ -296,12 +311,17 @@ Stacking every worst case that can genuinely land in the same pass:
 ```
 FIFO drain (8 frames)            2.09 ms
 compute_tick, with the tank      0.64 ms
-the 100 ms slot                  2.60 ms
-the 1 s slot, not writing        1.19 ms
+the worst single slot (slot 0)   2.40 ms
                                 --------
-worst pass without an EEPROM write      6.52 ms
-plus an EEPROM write, 3x a minute      ~54.5 ms
+worst pass without an EEPROM write      5.13 ms
+plus an EEPROM write, 3x a minute      ~51.4 ms
 ```
+
+**Only one slot can land in a pass, and that is why this got shorter rather
+than longer.** The fast and slow slots used to coincide once a second and
+their costs stacked; now the scheduler runs at most one of five branches per
+pass. Spacing the frames out for the receiver's sake took the worst pass from
+6.52 ms to 5.13 ms as a side effect.
 
 Every figure here comes from `tools/cycles.py` against a real build. **The same
 pass measured 18.72 ms before the optimisation work**, all of it on
@@ -466,13 +486,18 @@ any of these goes over its ceiling:
 |---|---|---|
 | one received frame, decoded and accumulated | 0.71 ms | 1.0 ms |
 | `compute_tick`, worst case | 0.64 ms | 1.0 ms |
-| the 100 ms slot | 2.60 ms | 3.6 ms |
-| the 1 s slot, excluding the EEPROM write | 1.19 ms | 1.5 ms |
+| slot 0: the A/D, the gather and 0x600 | 2.40 ms | 3.6 ms |
+| slot 1: 0x601 | 0.19 ms | 0.5 ms |
+| slot 2: the trip totals and 0x602 | 0.40 ms | 1.2 ms |
+| slot 3: 0x603 | 0.20 ms | 0.6 ms |
+| slot 22: `persist_save`, excluding the EEPROM write | 0.81 ms | 1.2 ms |
 
-**The ceilings sit about 1.3x above what the code costs today**, and all four
-came down again as the algorithms underneath them got cheaper:
-1.4 -> 1.0, 1.7 -> 1.0, 5.2 -> 3.6 and 1.5 unchanged. A ceiling that can never
-be hit is not a gate, so they follow the code down. The hardware has far more headroom
+**The ceilings sit about 1.5x above what the code costs today**, and they have
+come down as the algorithms underneath them got cheaper: 1.4 -> 1.0, 1.7 -> 1.0
+and 5.2 -> 3.6. A ceiling that can never be hit is not a gate, so they follow
+the code down. **The four slot budgets are also a check on the schedule and not
+only on the cost**: a slot that suddenly needs a bigger ceiling has usually
+grown a second job, which is exactly what one frame per slot forbids. The hardware has far more headroom
 than this — the numbers above in *The answer: where the margin is* are the real
 limits — but these are a regression alarm, and an alarm set beyond anything
 that can happen is decoration.

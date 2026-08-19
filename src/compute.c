@@ -517,7 +517,7 @@ uint16_t compute_power_d(const decode_state_t *st, uint16_t torque_d)
      * MFD28 and MFD32.
      *
      * The torque comes in from the caller because it is transmitted as well,
-     * so computing it here too was 1,042 cycles of the 100 ms slot spent
+     * so computing it here too was 1,042 cycles of the gather slot spent
      * getting the same answer a second time. Every gate -- cranking, idle,
      * overrun -- is inside compute_torque_d(), and each of them returns zero,
      * which is exactly what makes this return zero. */

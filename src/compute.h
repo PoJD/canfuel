@@ -131,7 +131,8 @@ uint32_t compute_trip_m(const compute_t *c);        /* metres              */
  *
  * Power takes the torque the caller has already computed rather than computing
  * it again. It is the same number both times, and txframes_gather transmits
- * both, so working it out twice cost 1,042 cycles -- 9 % of the 100 ms slot --
+ * both, so working it out twice cost 1,042 cycles -- 11 % of the slot the
+ * gather runs in --
  * for nothing. Passing zero is not a way to disable it: the gates live in
  * compute_torque_d(), and a zero torque is exactly what makes power zero. */
 uint16_t compute_torque_d(const decode_state_t *st);  /* 0.1 Nm, net       */

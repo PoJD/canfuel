@@ -174,13 +174,28 @@ the datasheet, against `gcc -fsyntax-only`, and against XC8 itself.
   has no tolerance anywhere in the datasheet.
 - **The timing budget is counted, not measured.** `docs/timing.md` costs every
   function out of the assembly listing XC8 generates. A typical pass is
-  49–134 µs, so the loop runs 7,400–20,000 times a second; the 100 ms slot uses
-  **2.6 ms of its 100**; the worst pass without an EEPROM write is **6.5 ms**,
-  against a FIFO that tolerates 22 ms of blindness. **The whole firmware uses
+  49–134 µs, so the loop runs 7,400–20,000 times a second; the busiest transmit
+  slot uses **2.4 ms of its 25**; the worst pass without an EEPROM write is
+  **5.1 ms**, against a FIFO that tolerates 22 ms of blindness. **The whole firmware uses
   16 % of the CPU**, and the largest single item is receiving frames rather
   than any arithmetic. The one figure the datasheet declines to bound is the
   EEPROM write — D122's 4 ms is a *typ* with no maximum — and nothing
   downstream of it is a deadline.
+- **One frame leaves every 25 ms and never two together, and that is a
+  correctness rule rather than tidiness.** The four frames used to go out in
+  two bursts, and on the bench **both USBtin adapters silently dropped
+  whichever of ours came third on the wire** — no overrun flag, on an empty
+  bus, so not throughput. Moving a frame out of the burst restored it to its
+  nominal rate and moving another in broke that one instead. The converter was
+  never at fault: the module reported every frame as successfully transmitted,
+  which in CAN needs somebody else's acknowledgement, so this is insurance for
+  the MFD15 rather than a repair. **Which frame is third on the wire is not
+  which send is third in the code** — DS39977C §27.6.3 sends equal-priority
+  buffers highest number first, so the symptom moves as the surrounding code
+  changes. `src/config.h` has the argument, `test_never_two_frames_in_one_pass`
+  holds it on the host, `tools/bench_test.py` measures the real gap on the
+  adapter's own clock, and it is why the EEPROM write sits in a slot that
+  transmits nothing and why a missed slot is dropped rather than caught up.
 - **`docs/optimisation.md` is required reading before changing any loop or any
   arithmetic in `src/`.** It carries what was optimised and why, what was tried
   and rejected, and the two things that generalise on this part: use the
@@ -1193,6 +1208,24 @@ ten of the fourteen places that state the write frequency — and fails on prose
 that disagrees. A fixture-count check was written and deleted for firing on
 five correct sentences; the reasoning is in the file, and it is the same reason
 `test_props.c` fuzzes reachable states only.
+
+### Commit granularity — consistency outranks a tidy history
+
+**One commit per problem, and commit as you finish each one.** Working on
+several things at once in a dirty tree is what to avoid in the first place.
+
+**But when it has happened anyway, do not split the commit.** A change here
+almost always lands in code, a test, a tool and two documents at once — that is
+what this repository asks for, not a failure of discipline — and the same file
+routinely carries edits belonging to two different problems. Teasing those
+apart means either an interactive stage or writing throwaway intermediate
+states, and both produce commits that never existed as a working tree.
+
+So: **never invent changes, reorder edits or stage hunks by hand just to make
+the history look isolated.** A tree where the code, its tests and its
+documentation agree is worth more than a log where every commit has one
+subject. Split only where it is free — a change that happens to touch a
+disjoint set of files — and merge the rest without apology.
 
 ### Before committing anything that touches the core
 

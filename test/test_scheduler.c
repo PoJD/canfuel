@@ -173,7 +173,12 @@ static void test_no_refuelling_under_the_scheduler(void)
  * claim in the name is the claim the code makes. */
 static void test_every_gather_stays_inside_the_gauges(void)
 {
-    sched_result_t r = run(DRIVE, 10, false);
+    /* A one millisecond tick rather than ten, because the transmit slot is
+     * 25 ms and a missed slot is dropped rather than caught up: a ten
+     * millisecond tick lands the slot every thirty and quietly costs a fifth
+     * of the gathers. The device passes every ~100 us, so one is the honest
+     * end of the range to check the gauges at. */
+    sched_result_t r = run(DRIVE, 1, false);
 
     TT_TRUE(r.gathers > 3000);
     TT_TRUE(r.max_fuel_now_d <= FUELNOW_CLAMP_D);
@@ -291,6 +296,36 @@ static void test_a_silent_bus_reaches_the_eeprom_not_at_all(void)
     TT_FALSE(persist_load(&ps, &be, &rec));     /* and still reads as virgin */
 }
 
+/* NO TWO OF OUR FRAMES MAY LEAVE IN ONE PASS, and this is the only place that
+ * can hold it. The unit tests take one module and feed it inputs; this is a
+ * property of the schedule itself, and it was bought with a bench measurement
+ * rather than reasoning: a receiver with two buffers loses whichever of our
+ * frames lands third on the wire, silently and on an empty bus. config.h
+ * carries the measurement and DS39977C 27.6.3 carries why the wire order is
+ * not the order of the send calls.
+ *
+ * Rates are checked alongside it because the cheap way to pass the first half
+ * is to stop sending things. */
+static void test_never_two_frames_in_one_pass(void)
+{
+    sched_result_t r = run(DRIVE, 1, true);
+    uint32_t seconds = r.span_ms / 1000u;
+
+    TT_EQ(r.two_in_one_pass, 0u);
+
+    /* Every frame the schedule owes, within the slack a 25 ms slot and a
+     * blocking EEPROM write leave. Ten a second for the two fast ones, one a
+     * second for the two slow ones. */
+    TT_TRUE(r.sends_by[SCHED_TX_FUEL]   > seconds * 9u);
+    TT_TRUE(r.sends_by[SCHED_TX_ENGINE] > seconds * 9u);
+    TT_TRUE(r.sends_by[SCHED_TX_TRIP]   > seconds - 2u);
+    TT_TRUE(r.sends_by[SCHED_TX_DIAG]   > seconds - 2u);
+
+    /* And the gap that the whole arrangement exists to create. One slot, less
+     * whatever the tick quantises away. */
+    TT_TRUE(r.min_send_gap_ms >= (uint32_t)TX_SLOT_MS - 1u);
+}
+
 int main(void)
 {
     printf("test_scheduler\n");
@@ -301,6 +336,7 @@ int main(void)
     TT_RUN(test_no_refuelling_under_the_scheduler);
     TT_RUN(test_every_gather_stays_inside_the_gauges);
     TT_RUN(test_a_pass_with_no_time_in_it_changes_nothing);
+    TT_RUN(test_never_two_frames_in_one_pass);
     TT_RUN(test_a_silent_bus_reaches_the_eeprom_not_at_all);
     return TT_SUMMARY();
 }

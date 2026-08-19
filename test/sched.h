@@ -18,9 +18,17 @@
  * So this harness runs a millisecond clock and reproduces main.c's structure:
  *
  *   every tick_ms      deliver whatever frames have arrived, compute_tick()
- *   every TX_FAST_MS   txframes_gather() -- the getters, at their real rate
- *   every TX_SLOW_MS   txframes_gather_trip(), and the EEPROM write simulated
- *                      as a blocking gap that loses frames
+ *   every TX_SLOT_MS   one transmit slot, which sends at most one frame --
+ *                      the gathers happen at their real rate inside it, and
+ *                      the EEPROM write is simulated as a blocking gap that
+ *                      loses frames
+ *
+ * The slots matter as much as the gathers. main.c may emit AT MOST ONE FRAME
+ * PER PASS, because a receiver with two buffers loses whichever of ours lands
+ * third on the wire -- measured, config.h has it. That is a property of the
+ * schedule and of nothing else, so this is the only harness that can hold it:
+ * every simulated send is recorded here and
+ * sched_never_sends_two_frames_in_one_pass() is the assertion.
  *
  * The tick is a parameter on purpose: the property that matters is that the
  * answers do not depend on it. test_scheduler.c is where that is asserted.
@@ -76,7 +84,39 @@ typedef struct {
     uint16_t       max_fuel_avg_d;
     uint16_t       max_range_km;
     uint32_t       counter_sum_ul;  /* every delta, added up independently */
+    /* The transmit schedule, which is a correctness property of its own --
+     * see the header comment and config.h. */
+    size_t         sends;           /* frames the schedule would have sent   */
+    size_t         sends_by[4];     /* 0x600, 0x601, 0x602, 0x603            */
+    size_t         two_in_one_pass; /* MUST stay zero                        */
+    uint32_t       min_send_gap_ms; /* the closest two frames ever came      */
+    uint32_t       last_send_ms;
 } sched_result_t;
+
+enum { SCHED_TX_FUEL = 0, SCHED_TX_ENGINE, SCHED_TX_TRIP, SCHED_TX_DIAG };
+
+/* One frame leaves the scheduler. `in_pass' counts the frames this pass has
+ * already emitted, so the second one is the finding rather than the gap that
+ * follows it. */
+static inline void sched_sent(sched_result_t *r, int which, uint32_t now,
+                              unsigned *in_pass)
+{
+    if (*in_pass != 0u) {
+        r->two_in_one_pass++;
+    }
+    (*in_pass)++;
+
+    if (r->sends != 0u) {
+        uint32_t gap = (uint32_t)(now - r->last_send_ms);
+
+        if (gap < r->min_send_gap_ms) {
+            r->min_send_gap_ms = gap;
+        }
+    }
+    r->last_send_ms = now;
+    r->sends++;
+    r->sends_by[which]++;
+}
 
 /* The independent fuel total. compute_on_fuel() has the restart rule inside
  * it, so this repeats the rule rather than the arithmetic: what it checks is
@@ -108,7 +148,8 @@ static inline bool sched_run(const char *name, sched_opts_t o,
     log_file_t lf;
     size_t next = 0;
     uint32_t now, first, last;
-    uint32_t last_fast, last_slow, last_write;
+    uint32_t last_slot, last_write;
+    uint8_t  slot = 0u;
     uint32_t blocked_until = 0;
     uint32_t jseed = 0x2545F491u;
     bool     shadow_have = false;
@@ -129,9 +170,9 @@ static inline bool sched_run(const char *name, sched_opts_t o,
     first = (uint32_t)lf.frames[0].ts_ms;
     last  = (uint32_t)lf.frames[lf.count - 1].ts_ms;
     now = first;
-    last_fast = now;
-    last_slow = now;
+    last_slot = now;
     last_write = now;
+    r->min_send_gap_ms = 0xFFFFFFFFu;
 
     for (;;) {
         /* Deliver every frame that has arrived since the previous pass. The
@@ -158,24 +199,37 @@ static inline bool sched_run(const char *name, sched_opts_t o,
 
         compute_tick(&r->cp, &r->st, now);
 
-        if ((uint32_t)(now - last_fast) >= (uint32_t)TX_FAST_MS) {
-            last_fast = now;
-            txframes_gather(&r->tx, &r->cp, &r->st, 503, now);
-            r->gathers++;
-            if (r->tx.fuel_now_d > r->max_fuel_now_d) {
-                r->max_fuel_now_d = r->tx.fuel_now_d;
-            }
-            if (r->tx.fuel_avg_d > r->max_fuel_avg_d) {
-                r->max_fuel_avg_d = r->tx.fuel_avg_d;
-            }
-            if (r->tx.range_km > r->max_range_km) {
-                r->max_range_km = r->tx.range_km;
-            }
-        }
+        if ((uint32_t)(now - last_slot) >= (uint32_t)TX_SLOT_MS) {
+            unsigned in_pass = 0u;
 
-        if ((uint32_t)(now - last_slow) >= (uint32_t)TX_SLOW_MS) {
-            last_slow = now;
-            txframes_gather_trip(&r->tx, &r->cp, now);
+            last_slot = now;
+
+            if ((slot & 0x03u) == 0u) {
+                txframes_gather(&r->tx, &r->cp, &r->st, 503, now);
+                r->gathers++;
+                if (r->tx.fuel_now_d > r->max_fuel_now_d) {
+                    r->max_fuel_now_d = r->tx.fuel_now_d;
+                }
+                if (r->tx.fuel_avg_d > r->max_fuel_avg_d) {
+                    r->max_fuel_avg_d = r->tx.fuel_avg_d;
+                }
+                if (r->tx.range_km > r->max_range_km) {
+                    r->max_range_km = r->tx.range_km;
+                }
+                sched_sent(r, SCHED_TX_FUEL, now, &in_pass);
+            } else if ((slot & 0x03u) == 1u) {
+                sched_sent(r, SCHED_TX_ENGINE, now, &in_pass);
+            } else if (slot == (uint8_t)TX_SLOT_TRIP) {
+                txframes_gather_trip(&r->tx, &r->cp, now);
+                sched_sent(r, SCHED_TX_TRIP, now, &in_pass);
+            } else if (slot == (uint8_t)TX_SLOT_DIAG) {
+                sched_sent(r, SCHED_TX_DIAG, now, &in_pass);
+            }
+
+            slot++;
+            if (slot >= (uint8_t)TX_SLOTS_PER_SEC) {
+                slot = 0u;
+            }
 
             /* persist_save() decides for itself, every PERSIST_INTERVAL_MS.
              * Here only its
@@ -193,7 +247,7 @@ static inline bool sched_run(const char *name, sched_opts_t o,
              * does. Without this guard the harness manufactures that case at
              * the end of every log and the test measures the fixture's
              * length rather than the firmware. */
-            if (o.eeprom_writes &&
+            if (slot == (uint8_t)TX_SLOT_PERSIST + 1u && o.eeprom_writes &&
                 (uint32_t)(last - now) > (uint32_t)SCHED_EEPROM_BLOCK_MS + 1000u &&
                 (uint32_t)(now - last_write) >= (uint32_t)PERSIST_INTERVAL_MS) {
                 last_write = now;

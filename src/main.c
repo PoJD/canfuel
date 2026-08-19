@@ -124,8 +124,8 @@ int main(void)
     persist_record_t rec;
     uint8_t  buf[TXFRAME_DLC];
     uint32_t now;
-    uint32_t last_fast;
-    uint32_t last_slow;
+    uint32_t last_slot;
+    uint8_t  slot = 0u;
     uint16_t vdd_c;
     uint16_t uptime_s = 0u;
     uint8_t  phase = 0u;
@@ -155,8 +155,7 @@ int main(void)
     vdd_c = hal_sys_vdd_c();
 
     now = hal_sys_millis();
-    last_fast = now;
-    last_slow = now;
+    last_slot = now;
 
     for (;;) {
         hal_sys_watchdog_clear();
@@ -195,118 +194,140 @@ int main(void)
          * step truncates several per cent of the trip away. */
         compute_tick(&cp, &st, now);
 
-        if ((uint32_t)(now - last_fast) >= (uint32_t)TX_FAST_MS) {
-            last_fast = now;
-            phase++;
+        /* ONE SLOT, AT MOST ONE FRAME. config.h carries the measurement this
+         * comes from: a receiver with two buffers loses whichever of our
+         * frames lands third on the wire, so no two of them may leave inside
+         * one pass. Every branch below sends nothing or sends one thing.
+         *
+         * The slot is missed rather than caught up -- last_slot takes the
+         * clock rather than advancing by TX_SLOT_MS -- because catching up
+         * after the EEPROM write would fire two slots back to back and
+         * rebuild the burst this whole arrangement exists to prevent. */
+        if ((uint32_t)(now - last_slot) >= (uint32_t)TX_SLOT_MS) {
+            last_slot = now;
 
-            vdd_c = hal_sys_vdd_c();
+            if ((slot & 0x03u) == 0u) {
+                phase++;
 
-            /* One gather, three frames. 0x602 adds its own two totals in the
-             * slow slot below and takes the rest from here, at most 100 ms
-             * old and made of accumulators that move in seconds. */
-            txframes_gather(&tx, &cp, &st, vdd_c, now);
+                vdd_c = hal_sys_vdd_c();
 
-            txframes_fuel(&tx, buf);
-            if (!hal_can_send(CAN_ID_TX_FUEL, buf, TXFRAME_DLC)) {
-                tx_fail_count();
-            }
+                /* One gather feeds all four frames. 0x601 goes out one slot
+                 * later and 0x602 two, so the oldest thing on the wire is
+                 * 75 ms behind this -- made of accumulators that move in
+                 * seconds. */
+                txframes_gather(&tx, &cp, &st, vdd_c, now);
 
-            txframes_engine(&tx, buf);
-            if (!hal_can_send(CAN_ID_TX_ENGINE, buf, TXFRAME_DLC)) {
-                tx_fail_count();
-            }
-
-            if (hal_can_overflow() ||
-                hal_can_rx_errors() != 0u || hal_can_tx_errors() != 0u) {
-                unhealthy = true;
-            }
-
-            leds_update(can_ok, compute_data_live(&cp, now), unhealthy, phase);
-        }
-
-        if ((uint32_t)(now - last_slow) >= (uint32_t)TX_SLOW_MS) {
-            last_slow = now;
-
-            /* The trip totals are gathered here and not in the fast slot:
-             * 0x602 goes out once a second, so computing them ten times a
-             * second was two divisions by 1000 for nobody. Everything else in
-             * tx still comes from the previous fast slot, which is at most
-             * 100 ms old and carries accumulators that move in seconds. */
-            txframes_gather_trip(&tx, &cp, now);
-            txframes_trip(&tx, buf);
-            if (!hal_can_send(CAN_ID_TX_TRIP, buf, TXFRAME_DLC)) {
-                tx_fail_count();
-            }
-
-            /* One slow slot is one second by construction, so the uptime is a
-             * counter here rather than now/1000 -- which would be a 32-bit
-             * division by a constant every second for a number that advances
-             * by exactly one. It saturates: 0xFFFF is 18 hours and the point
-             * of the field is "did this thing reset behind my back", which a
-             * stuck ceiling answers as well as a wrapping counter answers it
-             * badly. */
-            if (uptime_s < 0xFFFFu) {
-                uptime_s++;
-            }
-
-            /* 0x603 goes out only while the DBG_EN jumper is fitted. In a
-             * closed dashboard nobody is reading it, so a frame a second and
-             * the gather behind it would be bus traffic and CPU spent on
-             * nobody. JP1 already means "somebody is looking at this device",
-             * and this is the second thing it now means -- config.h has the
-             * reasoning and docs/frames.md says it where a reader of the frame
-             * layout will find it.
-             *
-             * Note which side of the jumper test the counting sits on:
-             * tx_fail is incremented by the frames above whether or not
-             * anybody is watching, so it is a total since power-up rather than
-             * a total since the jumper went on. */
-            if (hal_sys_debug_enabled()) {
-                txframes_gather_diag(&tx,
-                                     hal_can_rx_errors(), hal_can_tx_errors(),
-                                     hal_can_status(),
-                                     diag_flags(can_ok, unhealthy, persist_ok,
-                                                compute_data_live(&cp, now)),
-                                     hal_sys_reset_cause(), tx_fail, uptime_s);
-                txframes_diag(&tx, buf);
-                if (!hal_can_send(CAN_ID_TX_DIAG, buf, TXFRAME_DLC)) {
+                txframes_fuel(&tx, buf);
+                if (!hal_can_send(CAN_ID_TX_FUEL, buf, TXFRAME_DLC)) {
                     tx_fail_count();
+                }
+
+                if (hal_can_overflow() ||
+                    hal_can_rx_errors() != 0u || hal_can_tx_errors() != 0u) {
+                    unhealthy = true;
+                }
+
+                leds_update(can_ok, compute_data_live(&cp, now), unhealthy,
+                            phase);
+            } else if ((slot & 0x03u) == 1u) {
+                txframes_engine(&tx, buf);
+                if (!hal_can_send(CAN_ID_TX_ENGINE, buf, TXFRAME_DLC)) {
+                    tx_fail_count();
+                }
+            } else if (slot == (uint8_t)TX_SLOT_TRIP) {
+                /* The trip totals are gathered here and not with the rest:
+                 * 0x602 goes out once a second, so computing them ten times a
+                 * second was two divisions by 1000 for nobody. */
+                txframes_gather_trip(&tx, &cp, now);
+                txframes_trip(&tx, buf);
+                if (!hal_can_send(CAN_ID_TX_TRIP, buf, TXFRAME_DLC)) {
+                    tx_fail_count();
+                }
+            } else if (slot == (uint8_t)TX_SLOT_DIAG) {
+                /* This slot comes round once per TX_SLOTS_PER_SEC slots, so
+                 * the uptime is a counter here rather than now/1000 -- which
+                 * would be a 32-bit division by a constant every second for a
+                 * number that advances by exactly one. It saturates: 0xFFFF is
+                 * 18 hours and the point of the field is "did this thing reset
+                 * behind my back", which a stuck ceiling answers as well as a
+                 * wrapping counter answers it badly. */
+                if (uptime_s < 0xFFFFu) {
+                    uptime_s++;
+                }
+
+                /* 0x603 goes out only while the DBG_EN jumper is fitted. In
+                 * a closed dashboard nobody is reading it, so a frame a second
+                 * and the gather behind it would be bus traffic and CPU spent
+                 * on nobody. JP1 already means "somebody is looking at this
+                 * device", and this is the second thing it now means --
+                 * config.h has the reasoning and docs/frames.md says it where
+                 * a reader of the frame layout will find it.
+                 *
+                 * Note which side of the jumper test the counting sits on:
+                 * tx_fail is incremented by the frames above whether or not
+                 * anybody is watching, so it is a total since power-up rather
+                 * than a total since the jumper went on. */
+                if (hal_sys_debug_enabled()) {
+                    txframes_gather_diag(&tx,
+                                         hal_can_rx_errors(),
+                                         hal_can_tx_errors(),
+                                         hal_can_status(),
+                                         diag_flags(can_ok, unhealthy,
+                                                    persist_ok,
+                                                    compute_data_live(&cp,
+                                                                      now)),
+                                         hal_sys_reset_cause(), tx_fail,
+                                         uptime_s);
+                    txframes_diag(&tx, buf);
+                    if (!hal_can_send(CAN_ID_TX_DIAG, buf, TXFRAME_DLC)) {
+                        tx_fail_count();
+                    }
+                }
+            } else if (slot == (uint8_t)TX_SLOT_PERSIST) {
+                rec.total_ul          = cp.total_ul;
+                rec.total_mm          = cp.total_mm;
+                rec.tank_stable_l     = cp.tank_stable_l;
+                rec.tank_stable_valid = cp.tank_stable_valid;
+
+                /* This slot sends nothing, which is why the EEPROM write is
+                 * in it: the write blocks for about 48 ms, and in a slot that
+                 * had just transmitted it would push the next frame onto the
+                 * heels of the one after.
+                 *
+                 * persist_save() carries the PERSIST_INTERVAL_MS rule, the
+                 * only-on-change rule and the refusal to store an empty record
+                 * itself. It is called once a second and allowed to say no; a
+                 * second timer here would just be a second thing to get wrong.
+                 *
+                 * When it does write, it blocks for about 48 ms -- twelve bytes at
+                 * the 4 ms typical of DS39977C Table 31-1, D122, three times a
+                 * minute since PERSIST_INTERVAL_MS came down -- and the FIFO
+                 * will overflow behind it. That is survivable and was checked
+                 * rather than assumed:
+                 *
+                 *   fuel      the counter delta is (new - old) mod 32768, so a gap
+                 *             in the frames costs nothing at all; the next 0x480
+                 *             accounts for everything burned during the write
+                 *   distance  integrated from speed against the clock in
+                 *             compute_tick(), not from frame arrivals, and the
+                 *             clock keeps running through the write because
+                 *             hal_eeprom_write() re-enables interrupts as soon as
+                 *             the unlock sequence is over
+                 *   tank      sampled once a second from whatever the last frame
+                 *             said; 48 ms of staleness is nothing against a float
+                 *             that sloshes by nine litres
+                 *
+                 * The overflow flag is cleared afterwards so that the LED goes on
+                 * meaning something. An overflow we caused on purpose, once a
+                 * minute, is not a fault to report. */
+                if (persist_save(&ps, &rec, now)) {
+                    (void)hal_can_overflow();
                 }
             }
 
-            rec.total_ul          = cp.total_ul;
-            rec.total_mm          = cp.total_mm;
-            rec.tank_stable_l     = cp.tank_stable_l;
-            rec.tank_stable_valid = cp.tank_stable_valid;
-
-            /* persist_save() carries the PERSIST_INTERVAL_MS rule, the
-             * only-on-change rule and the refusal to store an empty record
-             * itself. Call it every second and let it say no; a second timer
-             * here would just be a second thing to get wrong.
-             *
-             * When it does write, it blocks for about 48 ms -- twelve bytes at
-             * the 4 ms typical of DS39977C Table 31-1, D122, three times a
-             * minute since PERSIST_INTERVAL_MS came down -- and the FIFO
-             * will overflow behind it. That is survivable and was checked
-             * rather than assumed:
-             *
-             *   fuel      the counter delta is (new - old) mod 32768, so a gap
-             *             in the frames costs nothing at all; the next 0x480
-             *             accounts for everything burned during the write
-             *   distance  integrated from speed against the clock in
-             *             compute_tick(), not from frame arrivals, and the
-             *             clock keeps running through the write because
-             *             hal_eeprom_write() re-enables interrupts as soon as
-             *             the unlock sequence is over
-             *   tank      sampled once a second from whatever the last frame
-             *             said; 48 ms of staleness is nothing against a float
-             *             that sloshes by nine litres
-             *
-             * The overflow flag is cleared afterwards so that the LED goes on
-             * meaning something. An overflow we caused on purpose, once a
-             * minute, is not a fault to report. */
-            if (persist_save(&ps, &rec, now)) {
-                (void)hal_can_overflow();
+            slot++;
+            if (slot >= (uint8_t)TX_SLOTS_PER_SEC) {
+                slot = 0u;
             }
         }
     }

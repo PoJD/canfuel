@@ -76,6 +76,9 @@ DEFAULT_LOG = REPO / "test" / "fixtures" / "09_idle_60s_z1.txt"
 
 TX_FUEL, TX_ENGINE, TX_TRIP, TX_DIAG = 0x600, 0x601, 0x602, 0x603
 TX_IDS = (TX_FUEL, TX_ENGINE, TX_TRIP, TX_DIAG)
+# src/config.h TX_SLOT_MS: one frame per slot, and never two.
+SLOT_MS = 25
+
 EXPECTED_HZ = {TX_FUEL: 10.0, TX_ENGINE: 10.0, TX_TRIP: 1.0, TX_DIAG: 1.0}
 FRAME_NAME = {
     TX_FUEL:   "0x600 fuel   (FuelNow, FuelAvg, FuelTank, Range)",
@@ -169,6 +172,15 @@ class Adapter:
         self.ser = serial.Serial(port, baudrate=115200, timeout=0)
         self._pending = bytearray()
         self.rx: dict[int, list[float]] = {}
+        # THE ADAPTER'S OWN CLOCK, kept separately from the host's. rx above is
+        # taken when pump() got round to reading the port, which is fine for a
+        # rate over thirty seconds and useless below about fifty milliseconds:
+        # while the host is replaying 357 frames a second it reads several
+        # frames in one go and stamps them all alike. The USBtin's Z1
+        # timestamp is applied when the frame arrived, so it is the only one
+        # that can answer how far apart two frames really were. It wraps at
+        # 60000 ms -- see adapter_gaps_ms().
+        self.ts: dict[int, list[int]] = {}
         self.first: dict[int, bytes] = {}
         self.last: dict[int, bytes] = {}
         self._close_channel()
@@ -188,6 +200,7 @@ class Adapter:
     def open(self, *, listen_only: bool = False, bitrate: bytes = BITRATE_CMD):
         self._close_channel()
         self._cmd(bitrate)
+        self._cmd(b"Z1")        # timestamps, for check_frame_spacing()
         self._cmd(b"L" if listen_only else b"O")
         self.ser.reset_input_buffer()
         self._pending.clear()
@@ -220,11 +233,14 @@ class Adapter:
             frame = canlog.parse_line(text.decode(errors="replace"))
             if frame is not None:
                 self.rx.setdefault(frame.can_id, []).append(now)
+                if frame.ts_ms is not None:
+                    self.ts.setdefault(frame.can_id, []).append(frame.ts_ms)
                 self.first.setdefault(frame.can_id, frame.data)
                 self.last[frame.can_id] = frame.data
 
     def forget(self) -> None:
         self.rx.clear()
+        self.ts.clear()
         self.first.clear()
         self.last.clear()
 
@@ -353,6 +369,41 @@ def latest_diag(listener: Adapter):
     return decode_diag(raw) if raw else None
 
 
+def explain_unhealthy(diag: dict, rep: Report) -> None:
+    """UNHEALTHY with clean counters is a bench artefact, and it looks awful.
+
+    It cost most of a day once, so it is explained here rather than left to be
+    rediscovered. Between a flash and the moment this script opens its adapter,
+    nothing on the bench bus acknowledges anything -- the converter is the only
+    node with its channel open. So every frame it transmits goes unacknowledged
+    and is retransmitted for as long as that lasts, its transmit error counter
+    climbs, all three transmit buffers stay busy and hal_can_send() starts
+    refusing. The latch remembers all of it.
+
+    Then the adapter opens, the very next frame is acknowledged, the module
+    recovers on its own within a few bit times and both counters reset -- which
+    is exactly what makes the latch worth having and exactly what makes it
+    unreadable here. In the car this cannot happen: the bus is alive before the
+    converter is.
+
+    The signature is specific, so say so only when it fits: UNHEALTHY set, both
+    error counters zero now, and refusals greater than zero.
+    """
+    unhealthy = diag["flags"] & 0x04
+    if not unhealthy:
+        return
+    if diag["rx_err"] == 0 and diag["tx_err"] == 0 and diag["tx_fail"] > 0:
+        rep.note("UNHEALTHY is latched but both counters are zero and there "
+                 f"are {diag['tx_fail']} refusals: that is the converter "
+                 "having transmitted into a bus nobody was acknowledging, "
+                 "between the flash and this run. Normal on the bench, "
+                 "impossible in the car. Power-cycle the board with the bus "
+                 "already alive to see it clear.")
+    else:
+        rep.note("UNHEALTHY is latched and the counters do NOT fit the "
+                 "bench's own start-up storm -- this one is worth chasing.")
+
+
 def show_diag(diag: dict, rep: Report, *, expect_clean: bool = True) -> None:
     rep.note(f"rx err {diag['rx_err']}, tx err {diag['tx_err']}, "
              f"COMSTAT {names(diag['comstat'], COMSTAT_BITS)}")
@@ -372,6 +423,7 @@ def show_diag(diag: dict, rep: Report, *, expect_clean: bool = True) -> None:
     rep.check("0x603 layout is the one this script speaks",
               diag["version"] == DIAG_LAYOUT_VERSION,
               f"frame says {diag['version']}")
+    explain_unhealthy(diag, rep)
 
 
 # --------------------------------------------------------------------------
@@ -456,6 +508,72 @@ def record_leds(rep: Report, led_can: str, led_pwr: str) -> None:
 # 7b -- traffic
 # --------------------------------------------------------------------------
 
+def adapter_gaps_ms(listener: "Adapter") -> list[int]:
+    """Gaps between consecutive frames of ours, on the adapter's clock.
+
+    The Z1 timestamp counts milliseconds and wraps at 60000, so a decrease is
+    a wrap rather than time running backwards. Anything still negative after
+    that correction is a reordering the adapter should not produce, and it is
+    dropped rather than reported as a suspiciously small gap -- this check
+    exists to catch two frames leaving together, and inventing one out of a
+    parsing artefact would be worse than missing one.
+    """
+    stamps = sorted(t for can_id in TX_IDS for t in listener.ts.get(can_id, ()))
+    gaps = []
+    for a, b in zip(stamps, stamps[1:]):
+        gap = b - a
+        if gap < 0:
+            gap += 60000
+        if 0 <= gap < 60000:
+            gaps.append(gap)
+    return gaps
+
+
+def check_frame_spacing(rep: "Report", listener: "Adapter") -> None:
+    """No two of the converter's frames may arrive back to back.
+
+    THIS CHECK EXISTS BECAUSE A BENCH RUN FOUND THE FAULT IT LOOKS FOR, and it
+    cost most of a day to understand. The firmware used to send 0x600 and
+    0x601 together every 100 ms and 0x602 and 0x603 behind them once a second
+    -- three or four frames inside one millisecond at 500 kbps. Both USBtins
+    dropped whichever of ours came third on the wire, silently, without
+    setting their own overrun flag, on an otherwise empty bus. The converter
+    was never at fault: the ECAN module reported every one of those frames as
+    successfully transmitted, which in CAN requires somebody else's
+    acknowledgement.
+
+    So the converter now spaces its frames one per TX_SLOT_MS, and this is
+    what proves it still does. A regression would look exactly like the
+    original symptom: one frame's rate collapses and nothing else changes.
+
+    IT IS MEASURED ON THE ADAPTER'S CLOCK AND IT HAS TO BE. The first version
+    of this check used the host's arrival times and reported 0.0 ms on a
+    converter that was in fact spacing its frames perfectly: while the host is
+    replaying 357 frames a second it reads several at once and stamps them
+    alike. The Z1 timestamp is applied when the frame arrived. Measured
+    against a good build it gives 23-27 ms between neighbouring slots and
+    75-77 ms across the three empty ones.
+
+    THE LONGEST GAP IS WORTH READING TOO. The EEPROM write blocks for about
+    48 ms, and main.c drops the slot it lands in rather than catching up --
+    so a write shows up here as one stretched gap and never as two frames
+    arriving together. A build that caught up instead would pass every rate
+    check in this file and fail this one.
+    """
+    gaps = adapter_gaps_ms(listener)
+    if len(gaps) < 10:
+        rep.check("the converter spaces its frames out", False,
+                  f"only {len(gaps) + 1} timestamped frames to measure -- the "
+                  f"adapter has to be opened with Z1 for this")
+        return
+
+    smallest = min(gaps)
+    rep.check("the converter spaces its frames out", smallest >= SLOT_MS - 5,
+              f"closest two frames were {smallest} ms apart and one slot is "
+              f"{SLOT_MS} ms; the longest gap was {max(gaps)} ms, which is the "
+              f"EEPROM write and must stretch a gap rather than shorten one")
+
+
 def mode_traffic(sender: Adapter, listener: Adapter, log, seconds: float,
                  speed: float, every_id: bool) -> Report:
     print("\n7b  TRAFFIC -- a real recording, replayed, and the answers read back")
@@ -504,6 +622,8 @@ def mode_traffic(sender: Adapter, listener: Adapter, log, seconds: float,
         if n == 0 and can_id == TX_DIAG:
             rep.note("no 0x603 at all -- is JP1 fitted?")
 
+    check_frame_spacing(rep, listener)
+
     f = sender.flags()
     if f is not None and f & 0x02:
         rep.note("the adapter's transmit FIFO filled: that is the host, "
@@ -542,7 +662,7 @@ def settle(stream, sender, listeners, seconds, *, flood=0, rep=None):
     kept = feed(stream, sender, listeners, seconds, flood=flood)
     pump_until(time.monotonic() + 0.3, listeners)
     if kept < 0.9 and rep is not None:
-        rep.note(f"⚠ the host kept only {kept:.0%} of the intended frame rate "
+        rep.note(f"WARNING: the host kept only {kept:.0%} of the intended frame rate "
                  "-- the serial link is the bottleneck, not the converter. "
                  "Results below are for a slower stream than asked for.")
     return kept
@@ -998,7 +1118,12 @@ def summarise(reports) -> int:
     print("Bench test finished. Traffic sent, the converter answered, its CAN")
     print("error counters are zero and it recovered from every fault injected.")
     print()
-    print("⚠ The EEPROM now holds synthetic trip and tank data. The reflash at")
+    # Printed output stays ASCII. The docstrings and docs/ use a warning sign
+    # freely because those are UTF-8 files; a console is whatever the machine
+    # set it to, and on this one it is cp1250, where printing that character
+    # raises UnicodeEncodeError and takes the whole run down AT THE END, after
+    # every test has already passed.
+    print("WARNING: the EEPROM now holds synthetic trip and tank data. The reflash at")
     print("  the start of step 8 clears it -- do NOT pass -Z0-3FF there. The")
     print("  next 0x603 proves it: PERSIST_OK comes back clear.")
     return 0

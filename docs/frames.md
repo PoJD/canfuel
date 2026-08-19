@@ -162,6 +162,46 @@ faults with different fixes.
 
 ---
 
+## The four frames are spaced out, and it is not tidiness
+
+**One frame leaves every 25 ms and never two together.** 0x600 at 0 ms, 0x601
+at 25, 0x602 at 50 and 0x603 at 75, with the EEPROM write in the slot at
+550 ms because that one sends nothing. Rates on the wire are unchanged — both
+fast frames are still 10 Hz and both slow ones 1 Hz — so nothing here concerns
+`S-AQY.TRI`.
+
+**It is bought with a bench measurement, not with reasoning.** The frames used
+to go out in two bursts, 0x600 and 0x601 back to back and 0x602 and 0x603
+behind them once a second. At 500 kbps a frame is about 230 µs, so that is
+three or four frames inside one millisecond from a single node. **Both USBtin
+adapters lost whichever of ours came third on the wire** — silently, without
+setting their own overrun flag, and on an otherwise empty bus, so it was not
+throughput. Moving a frame out of the burst restored it to exactly its nominal
+rate and moving a different one in broke that one instead: two directions, same
+hardware.
+
+⚠ **The converter was never at fault, and that is the part worth keeping.** The
+ECAN module reported every one of those frames as successfully transmitted, and
+DS39977C Register 27-5 is explicit that `TXREQ` is *"automatically cleared when
+the message is successfully sent"* — which in CAN requires an acknowledgement
+from another node. The frames were on the wire and something else dropped them.
+So the spacing is insurance rather than a repair, and it is bought because the
+MFD15 is a small device too and nothing can be instrumented once the dashboard
+is closed.
+
+⚠ **Which frame is third on the wire is not which send is third in the code.**
+DS39977C §27.6.3: buffers of equal priority are transmitted **highest buffer
+number first**, and all four of ours are priority 0, so the order depends on
+which of TXB0–TXB2 happened to be free when each was queued. That is why the
+symptom moved between 0x601, 0x602 and 0x603 as the surrounding code changed,
+and why it cannot be predicted by reading the order of the `hal_can_send()`
+calls. `src/config.h` carries the full argument next to the constants.
+
+`test_never_two_frames_in_one_pass` in `test/test_scheduler.c` holds the rule
+on the host; `tools/bench_test.py` measures the smallest gap between two of our
+frames on real hardware. A regression looks exactly like the original symptom —
+one frame's rate collapses and nothing else changes.
+
 ## FuelNow — dual unit
 
 ```

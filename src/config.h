@@ -111,8 +111,52 @@
 
 /* --- timing ------------------------------------------------------------- */
 
-#define TX_FAST_MS              100     /* 0x600 and 0x601                    */
-#define TX_SLOW_MS              1000    /* 0x602 and the EEPROM slot          */
+/* ONE FRAME PER SLOT, AND IT IS A CORRECTNESS RULE RATHER THAN TIDINESS.
+ *
+ * The four transmitted frames used to be sent in two bursts -- 0x600 and 0x601
+ * back to back every 100 ms, 0x602 and 0x603 behind them once a second. At
+ * 500 kbps a frame is about 230 us on the wire, so that is three or four
+ * frames inside a millisecond, from one node, with no gap between them.
+ *
+ * MEASURED ON THE BENCH: A RECEIVER WITH TWO BUFFERS LOSES THE THIRD ONE.
+ * Both USBtin adapters (MCP2515) dropped whichever of our frames came third on
+ * the wire, silently, without setting their own overrun flag, and on an
+ * otherwise empty bus -- so it is not throughput. Moving a frame out of the
+ * burst restored it to exactly its nominal rate; moving a different frame into
+ * the burst broke that one instead. Two directions, same hardware.
+ *
+ * WHICH FRAME IS THIRD IS NOT WHICH SEND IS THIRD. DS39977C 27.6.3: buffers of
+ * equal priority go out highest buffer number first, and all of ours are
+ * priority 0, so the wire order depends on which of TXB0..TXB2 happened to be
+ * free. That is why the symptom moved between 0x601, 0x602 and 0x603 as the
+ * code around it changed, and why it cannot be reasoned about from the order
+ * of the hal_can_send() calls.
+ *
+ * The converter was never at fault: the module reported every one of those
+ * frames as successfully transmitted, which in CAN requires an acknowledgement
+ * from another node. So this is insurance, not a repair. It is bought because
+ * the MFD15 is a small device too, because nothing can be instrumented once
+ * the dashboard is closed, and because every future bench measurement would
+ * otherwise carry a hole exactly where one of our frames lands third.
+ *
+ * So the scheduler emits AT MOST ONE FRAME PER SLOT and the slot is 25 ms:
+ *
+ *   slot & 3 == 0   0x600, ten times a second
+ *   slot & 3 == 1   0x601, ten times a second, 25 ms behind it
+ *   slot == 2       0x602, once a second
+ *   slot == 3       0x603, once a second (with JP1 fitted)
+ *   slot == 22      the EEPROM slot, 550 ms, in a slot that sends nothing
+ *
+ * Nothing on the wire changes rate: both fast frames are still 10 Hz and both
+ * slow ones still 1 Hz, so S-AQY.TRI is untouched. */
+#define TX_SLOT_MS              25      /* one frame per slot, never two      */
+#define TX_SLOTS_PER_SEC        40      /* 40 x 25 ms = one second            */
+#define TX_SLOT_TRIP            2       /* 0x602 at 50 ms                     */
+#define TX_SLOT_DIAG            3       /* 0x603 at 75 ms                     */
+#define TX_SLOT_PERSIST         22      /* 550 ms, and sends nothing          */
+
+#define TX_FAST_MS              100     /* 0x600 and 0x601, four slots apart  */
+#define TX_SLOW_MS              1000    /* 0x602, 0x603 and the EEPROM slot   */
 #define RX_POLL_MS              10      /* scheduler slot that drains the CAN */
 
 /* The step distance is integrated on. NOT every pass of the scheduler, and the

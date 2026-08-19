@@ -110,6 +110,7 @@ Observed, with `-P18F25K80 -TPPK3`:
 | programmer, target not powered | `Target device was not found (could not detect target voltage VDD)`, then `Operation Succeeded` | **0** |
 | programmer, target powered, ICSP silent | `Target Device ID (0x0) is an Invalid Device ID`, `Operation Failed` | 1 |
 | `-I -W` into an open header | `Connection Failed.`, then `Operation Succeeded` | 0 |
+| the programmer itself wedged | `Connection Failed.`, then `Operation Succeeded`, and **no `Connecting to MPLAB PICkit 3...` banner at all** | 0 |
 | `-T` (list tools) | the tool list | 50 |
 | `-C` on a blank part | `Blank check complete, device is blank.` | 0 |
 | `-M -OL` on a blank part | `Device Erased...`, the areas to be programmed, `Programming/Verify complete`, `Program Succeeded` | 0 |
@@ -119,6 +120,28 @@ Observed, with `-P18F25K80 -TPPK3`:
 returns 0 and prints `Operation Succeeded`. Bad ICSP wiring fails honestly with
 1. Since `-W` is not used, an unpowered board is among the likeliest bench
 mistakes there is.
+
+**`Connection Failed.` has two meanings and the banner tells them apart.** With
+`-W` into an open header it is about the target. On its own, with no
+`Connecting to MPLAB PICkit 3...` line above it and no firmware version, it is
+about the **programmer**: IPECMD found a tool and could not talk to it. Three
+things distinguish it from a dead cable, and all three were observed together:
+
+- `ipecmd -T` still lists the unit — `1  PICkit3 S.No : DEFAULT_PK3`
+- Windows still reports the device healthy (`VID_04D8&PID_900A`, status OK)
+- there is no `Programmer not found`, which is what a genuinely absent tool
+  prints, with exit 9
+
+**Unplugging the PICkit and plugging it back in clears it**, and moving it to a
+port on a different controller cleared it when replugging into the same one did
+not. It recurred several times in one session after a handful of successful
+operations, so expect it rather than treating it as a fault in the board: the
+board answers again immediately afterwards with nothing changed.
+
+⚠ **It can strike between the identify and the program**, which leaves a part
+that has been erased and not written — silent, no frames, and looking exactly
+like dead firmware. `flash.py` stops at the first step that did not happen and
+says which, so the recovery is to replug and run it again.
 
 **So the tool must decide on the printed output.** Never branch on the exit
 code alone, and do not encode §15's table.
