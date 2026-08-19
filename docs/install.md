@@ -1268,8 +1268,34 @@ just out of curiosity — the dashboard comes apart, JP1 goes back on, and a
 USBtin reads 0x603. That is deliberate: nothing in the car should light up or
 add traffic for a device that is working.
 
-The calibration below can be done later, on a working car, and does not need
-any of this reopened.
+### Everything that needs the board again needs the dashboard open
+
+The converter is mounted **behind the display**, in the vent, so its ICSP
+header and its jumpers are behind the display too. And the CAN pair is reached
+at the display's own connector, which is the same place. So all of this is one
+job rather than four:
+
+| To do this | You need |
+|---|---|
+| flash a new firmware | the ICSP header, behind the display |
+| read 0x603, or see the LEDs | JP1, behind the display |
+| capture the bus with a USBtin | the display's connector, behind the display |
+| measure or rework anything on the board | the board |
+
+**So batch them.** Opening the dashboard is the expensive part and it is the
+same trip every time: if it is coming apart to take a capture, flash whatever
+firmware is current while it is open, whether or not anything is wrong with the
+one on it.
+
+⚠ **And for anything that needs hot oil, dismantle FIRST and drive second.**
+The oil has to be at temperature *while the holds are recorded*, and it cools
+while trim is being undone. Get the USBtin connected and the dashboard apart,
+then drive to heat the oil, then do the sweep. The obvious order — drive it hot
+and then start unclipping panels — wastes the heat it just took a drive to
+make.
+
+The calibration below can be done later, on a working car, but it does need
+this reopened: the capture comes off the display's connector.
 
 ---
 

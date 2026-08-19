@@ -370,6 +370,18 @@ itself is unchanged: hold each speed until 0x420 b3 stops climbing, record the
 oil temperature with every point, and stay in neutral so net torque really is
 zero.
 
+⚠ **Take the dashboard apart before the drive, not after.** The capture comes
+off the display's connector, which means the display out and the trim off —
+and the oil cools while that is happening. Connect the USBtin first, then drive
+to heat the oil, then hold. `install.md` step 11 has the rest of what is behind
+the display, and why a trip that opens it should flash the current firmware
+while it is open.
+
+⚠ **The holds will display zero torque**, because they are taken standing
+still and the driving gate returns zero for a standing car whatever the pedal
+is doing. Correct, and not a fault to chase: the refit is done off the raw log
+and b7.
+
 ---
 
 ## Resolved questions
