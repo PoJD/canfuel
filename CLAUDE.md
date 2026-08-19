@@ -300,8 +300,7 @@ Linux, macOS and CI alone.
 is steps 4 and 5 of `docs/install.md`; the full argument for every flag, the
 observed exit codes and the environment traps are in
 [`docs/flash-tool-notes.md`](docs/flash-tool-notes.md), which is also where
-`tools/flash.py` gets its rules and where the two gaps it does not cover yet
-are listed.
+`tools/flash.py` gets its rules.
 
 Four things belong here because they are decisions rather than procedure:
 
@@ -314,13 +313,17 @@ Four things belong here because they are decisions rather than procedure:
   with *"power from programmer"*. A different part, but a risk with no upside.
   **It is a decision, not a limitation of the tool** — see `docs/refuted.md` E6
   before re-deriving it from the voltage the tool reports.
-- **The EEPROM is erased by default, and that is left alone.** `-OH` (*Erase
-  All Before Program*) is on unless disabled, so a plain `-M` discards the
+- **The EEPROM is erased by default, and that is left alone.** *Erase All
+  Before Program* is on unless `-OH` turns it off, so a plain `-M` discards the
   persist ring. `persist_load()` returning false on a virgin EEPROM is a
   correct start, not an error, so during bring-up that is the better default;
-  `-Z0-3FF` is the opt-in. **`mplab/canfuel.X` sets
-  `programoptions.preserveeeprom = true`**, so the IDE and the command line
-  deliberately differ. Know which one is in your hand.
+  **`flash.py --preserve-eeprom` is the opt-in**, and it passes `-Z0-3FF` *and
+  proves it worked* — EEData dumped before and after and compared byte for
+  byte, with the programming step deliberately not releasing the part so that
+  the firmware cannot write between the two. A preserve that silently did not
+  happen is indistinguishable from one that did until the trip is gone.
+  **`mplab/canfuel.X` sets `programoptions.preserveeeprom = true`**, so the IDE
+  and the command line deliberately differ. Know which one is in your hand.
 - **Never branch on IPECMD's exit code.** A target that is not powered prints
   `Operation Succeeded` and returns 0, while bad ICSP wiring returns 1. Parse
   the output.
@@ -1087,7 +1090,9 @@ mplab/
   README.md     how to build, and what JP2 is for
 tools/          flash.py — builds a mode and flashes it in one command, and
                 decides every step on IPECMD's output rather than its exit
-                code. Checks CANMX in the hex before writing anything
+                code. Checks CANMX in the hex before writing anything, and
+                --preserve-eeprom keeps the persist ring AND checks that it
+                did, by dumping EEData either side of the write
                 canlog.py, replay.py — Python, runs anywhere
                 bench_test.py — the bench tests of install.md step 7:
                 listen-only, traffic, four scenarios and fault injection, each
@@ -1156,7 +1161,9 @@ make -C mplab CAN_MODE=LOOPBACK                            # talks to itself
 make -C mplab CAN_MODE=LISTEN_ONLY                         # never ACKs
 
 python tools/flash.py --mode loopback                      # build AND flash it
+python tools/flash.py --preserve-eeprom                    # ...keeping the ring
 python tools/flash.py --identify                           # read-only
+python tools/flash.py --read-eeprom ring.bin               # read-only
 python tools/flash.py --dry-run                            # print, run nothing
 ```
 

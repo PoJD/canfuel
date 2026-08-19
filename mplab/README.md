@@ -115,10 +115,13 @@ EEPROM, and reprogramming the device should not throw away the tank level and
 the litres since the last refuelling.
 
 **That setting is the IDE's alone, and the command line does the opposite.**
-`ipecmd`'s `-OH` (*Erase All Before Program*) is on by default, so a plain
-programming run discards the persist ring unless `-Z0-3FF` is given. Both
-behaviours are wanted somewhere — an empty ring is the right start during
-bring-up — but they are not the same, so know which tool you are holding.
+`ipecmd`'s *Erase All Before Program* is on by default, so a plain programming
+run discards the persist ring unless `-Z0-3FF` is given. Both behaviours are
+wanted somewhere — an empty ring is the right start during bring-up — but they
+are not the same, so know which tool you are holding.
+`python tools/flash.py --preserve-eeprom` is the command-line side of it, and
+unlike the checkbox it verifies the result: EEData is dumped before and after
+the write and compared byte for byte.
 
 ## Programming the board
 

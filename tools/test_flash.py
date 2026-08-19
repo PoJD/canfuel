@@ -11,6 +11,7 @@ run.
 Nothing here touches a device.
 """
 
+import re
 import unittest
 from pathlib import Path
 
@@ -146,7 +147,7 @@ class TestProgram(unittest.TestCase):
     def test_real_success(self):
         ok, detail = flash.parse_program(PROGRAM_OK)
         self.assertTrue(ok)
-        self.assertIn("released from reset", detail)
+        self.assertIn("implicitly verified", detail)
 
     def test_verify_failed_is_a_failure(self):
         ok, detail = flash.parse_program(VERIFY_EEDATA_FAILS)
@@ -157,6 +158,100 @@ class TestProgram(unittest.TestCase):
         ok, detail = flash.parse_program(UNPOWERED)
         self.assertFalse(ok)
         self.assertIn("not powered", detail)
+
+
+# --- NOT observed: synthetic, and labelled as such --------------------------
+#
+# Everything above this line is text IPECMD really printed. These two are not.
+# `-GE0-3FF` had never been run against a part when parse_eeprom_dump() was
+# written, so there is no real capture to test it on, and inventing one and
+# filing it with the others would make the file lie about the one thing it is
+# for. What is tested here is therefore the parser's TOLERANCE and its refusal
+# to answer when it does not understand -- not IPECMD's layout.
+#
+# ⚠ REPLACE THESE WITH A REAL DUMP the first time --preserve-eeprom or
+# --read-eeprom runs. flash.py writes the raw output to mplab/build/ for
+# exactly that, docs/flash-tool-notes.md is where the format belongs, and this
+# comment stops being true the moment both are done.
+
+def _dump(values, per_line=16, sep="  ", addr_width=4):
+    """A plausible address-then-hex-bytes dump of `values`."""
+    out = ["Target voltage detected", "Target device PIC18F25K80 found."]
+    for base in range(0, len(values), per_line):
+        row = values[base:base + per_line]
+        out.append("%0*X%s%s" % (addr_width, base, sep,
+                                 " ".join("%02X" % v for v in row)))
+    out.append("Operation Succeeded")
+    return "\n".join(out) + "\n"
+
+
+BLANK_RING = [0xFF] * flash.EEPROM_BYTES
+USED_RING = [0x2A] * 12 + [0xFF] * (flash.EEPROM_BYTES - 12)
+
+
+class TestEepromDump(unittest.TestCase):
+    def test_a_full_image_parses(self):
+        got = flash.parse_eeprom_dump(_dump(USED_RING))
+        self.assertEqual(got, bytes(USED_RING))
+
+    def test_the_layout_may_vary(self):
+        """Row width, separator and address width are all free."""
+        for kwargs in ({"per_line": 8}, {"per_line": 32},
+                       {"sep": ": "}, {"addr_width": 8},
+                       {"per_line": 16, "sep": "\t", "addr_width": 6}):
+            with self.subTest(**kwargs):
+                self.assertEqual(
+                    flash.parse_eeprom_dump(_dump(BLANK_RING, **kwargs)),
+                    bytes(BLANK_RING))
+
+    def test_a_short_image_is_refused_rather_than_padded(self):
+        """The whole point: a half-read must not read as a preserved ring."""
+        text = _dump(USED_RING)
+        text = "\n".join(text.splitlines()[:20]) + "\n"
+        self.assertIsNone(flash.parse_eeprom_dump(text))
+
+    def test_a_repeated_address_is_refused(self):
+        text = _dump(BLANK_RING)
+        lines = text.splitlines()
+        self.assertIsNone(flash.parse_eeprom_dump(
+            "\n".join(lines + [lines[3]]) + "\n"))
+
+    def test_a_format_it_cannot_read_is_refused(self):
+        """No addresses at all -- None, never a scrambled image."""
+        rows = [" ".join("FF" for _ in range(16))
+                for _ in range(flash.EEPROM_BYTES // 16)]
+        self.assertIsNone(flash.parse_eeprom_dump("\n".join(rows) + "\n"))
+
+    def test_a_failed_read_is_refused_before_parsing(self):
+        """An unpowered board prints Operation Succeeded and exits 0."""
+        self.assertIsNone(flash.parse_eeprom_dump(UNPOWERED))
+
+    def test_prose_alone_never_yields_an_image(self):
+        self.assertIsNone(flash.parse_eeprom_dump(IDENTIFY_OK))
+
+
+class TestDescribeEeprom(unittest.TestCase):
+    def test_blank_says_so_and_is_not_an_error(self):
+        self.assertIn("blank", flash.describe_eeprom(bytes(BLANK_RING)))
+
+    def test_a_written_ring_counts_its_bytes(self):
+        self.assertIn("12 of 1024", flash.describe_eeprom(bytes(USED_RING)))
+
+
+class TestEepromRange(unittest.TestCase):
+    def test_the_range_covers_the_whole_array(self):
+        """DS39977C Table 1: 1,024 bytes of data EEPROM on this part."""
+        lo, hi = flash.EEPROM_RANGE.split("-")
+        self.assertEqual(int(lo, 16), 0)
+        self.assertEqual(int(hi, 16), flash.EEPROM_BYTES - 1)
+
+    def test_the_ring_fits_inside_it(self):
+        cfg = (Path(__file__).resolve().parent.parent / "src" / "config.h")
+        text = cfg.read_text(encoding="utf-8")
+        slots = int(re.search(r"#define PERSIST_SLOTS\s+(\d+)", text).group(1))
+        size = int(re.search(r"#define PERSIST_RECORD_BYTES\s+(\d+)",
+                             text).group(1))
+        self.assertLessEqual(slots * size, flash.EEPROM_BYTES)
 
 
 class TestHex(unittest.TestCase):

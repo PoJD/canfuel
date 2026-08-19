@@ -10,11 +10,14 @@ whoever writes the tool. **If the tool is ever written, the specification half
 of this file goes with it; the observations do not.** They are the only record
 of behaviour that no Microchip document states.
 
-`tools/flash.py` exists and covers what has been run against a real part:
-`-I`, `-C` and `-M -OL`, whose output is recorded below. **`-Z` has not been
-run, and neither has reading memory back off the part**, so both are absent
-from the tool rather than written from the readme and hoped for. Closing either
-gap starts with establishing the switch against a part, not with code.
+`tools/flash.py` covers `-I`, `-C`, `-M -OL`, `-M -Z0-3FF` and `-GE0-3FF`. The
+output of the first three is recorded below and is what `tools/test_flash.py`
+parses. **`-Z` and `-GE` are the two that used to be missing, and what closed
+them is not a decision to trust the readme: `--preserve-eeprom` reads EEData
+before and after and compares the two byte for byte, so the switch proves
+itself on every run rather than once.** Until a real dump has been pasted into
+`test_flash.py`, the dump parser is tested only against synthetic text and says
+so in both files.
 
 ---
 
@@ -36,14 +39,25 @@ Done, and each one is a fault it exists to make impossible:
 - **Skips `-Y`**, for the reason below: it fails on a perfectly programmed
   board.
 
-Not done, and both for the same reason -- the switch has never been run
-against a part, and this repository does not guess switches on a live board:
+- **Preserves the persist ring on request, and checks that it did.**
+  `--preserve-eeprom` passes `-Z0-3FF`, and because that switch had never been
+  run against a part when it was added, the run does not take its word for it:
+  `-GE0-3FF` before, `-GE0-3FF` after, compared byte for byte. See the section
+  below for why that costs an extra command.
+- **Reads EEData off the part.** `--read-eeprom FILE` writes the 1,024 bytes
+  out and changes nothing, which is what looking at a persist ring during
+  bring-up wants.
 
-- **Reading the persist ring back off the part**, which is what bring-up in
-  the vehicle will want.
-- **`-Z0-3FF`**, preserving the EEPROM through a reflash. Step 7.5 is the
-  first place there will be a record in EEPROM worth preserving, which makes
-  it the natural place to establish this.
+Not done: nothing, of the two gaps this file used to list.
+
+⚠ **One thing here is still untested against hardware and is labelled
+everywhere it appears:** the *layout* IPECMD prints a `-GE` dump in.
+`parse_eeprom_dump()` accepts any address-then-hex-bytes format and refuses to
+answer unless the bytes it recovered cover the whole array exactly once, so a
+layout it does not understand produces "not verified" rather than a wrong
+verdict — but it has not seen the real one. `flash.py` writes every raw dump
+into `mplab/build/`. **Paste the first real one into `tools/test_flash.py` and
+record the format here**, and the label comes off.
 
 `tools/test_flash.py` holds IPECMD's real output for every case the tool
 parses, including the three failures, and needs no programmer to run.
@@ -86,11 +100,23 @@ does, rather than hard-coding an install path with a version number in it.
   §8.3.2 records a silicon issue on the PIC18F45K20/46K20 family that appears
   only with *"power from programmer"* — a different part, but a risk with no
   upside. See the hazard below.
-- **The EEPROM is erased by default.** `-OH` (*Erase All Before Program*) is on
-  unless disabled, so a plain `-M` discards the persist ring. That is the right
-  default during bring-up: `persist_load()` returning false on a virgin EEPROM
-  is a correct start, not an error. `-Z0-3FF` preserves it, and §17.8 warns
-  that `-E` overrides `-Z`.
+- **The EEPROM is erased by default.** *Erase All Before Program* is
+  **Selected** unless the `-OH` switch turns it off (§13, and §17.48 uses it
+  that way: *"The device is not erased before programming (-OH command)"*) —
+  so a plain `-M` discards the persist ring. That is the right default during
+  bring-up: `persist_load()` returning false on a virgin EEPROM is a correct
+  start, not an error.
+- **`-Z<range>` is what preserves it**, and it is `Z<range>  Preserve EEData
+  on Program`, default `Do Not Preserve`, in §13's switch table; §17.7 is the
+  worked example, `/Z1400-147F /M`. §17.8 warns that `-E` overrides it, and
+  `-E` is not passed here. **The range is `0-3FF`**, the whole 1,024-byte array
+  (DS39977C Table 1). That IPECMD addresses this part's EEData from zero is not
+  read out of the readme — it is observed, in the `-Y` failure recorded below,
+  which reports `Address: 0` for the low byte of `total_ul`.
+- **`-G<Type><range>` reads memory to the screen**, §13: *"Types P, E, I, C, B,
+  A = output read of Program, EEPROM, ID, Configuration, Boot and Auxiliary
+  Memory to the screen. P and E must be followed by an address range in the
+  form of x-y."* So `-GE0-3FF` is the EEData dump, and it writes nothing.
 - **`mplab/canfuel.X` sets `programoptions.preserveeeprom = true`**, so the IDE
   and the command line deliberately differ on that point.
 
@@ -195,6 +221,41 @@ Operation Failed
 because nothing answered. **That is exactly what a dead ICSP link on a powered
 board looks like**, which is the failure `install.md` step 5's first command
 exists to catch — and it is now known rather than guessed at.
+
+---
+
+## Preserving EEData: why it is three commands and not one flag
+
+`--preserve-eeprom` runs
+
+```
+ipecmd -P18F25K80 -TPPK3 -GE0-3FF -OL              # before
+ipecmd -P18F25K80 -TPPK3 -Fcanfuel.hex -M -Z0-3FF  # note: no -OL
+ipecmd -P18F25K80 -TPPK3 -GE0-3FF                  # still held in reset
+ipecmd -P18F25K80 -TPPK3 -I -OL                    # release
+```
+
+**The programming step deliberately omits `-OL`**, which is the opposite of the
+rule everywhere else in this file, and the reason is the check rather than the
+programming. Released immediately, the firmware starts running and can append a
+persist record between the program and the read — after which a difference
+between the two dumps says nothing about whether `-Z` worked. `persist_save()`
+would not usually write that fast: `PERSIST_INTERVAL_MS` does not gate the
+first call after a power-up, but the record has to have *changed*, and on a
+quiet bench bus a restored one has not. **"Usually" is not a verification**,
+and holding the part still costs one extra command.
+
+⚠ **Which makes the release step load-bearing.** A part left in reset answers
+the programmer perfectly and does nothing at all — the exact symptom this
+file's `-OL` section describes, and the one that cost an afternoon. So the
+release runs even when an earlier step has failed, and if it fails too the tool
+says outright that the part may still be held and what to run. `--identify` is
+that command, and it is the same `-I -OL`.
+
+**The comparison is byte for byte and the whole array**, not a checksum and not
+the ring's 768 bytes. If `-Z` were ignored the array comes back all `0xFF`,
+which the dump summary reports in as many words; anything else that differs is
+worth seeing rather than hashing away.
 
 ---
 

@@ -8,7 +8,9 @@ what IPECMD actually prints. Read that file before changing anything here.
     python tools/flash.py                      # normal build, then flash it
     python tools/flash.py --mode loopback      # step 6
     python tools/flash.py --mode listen-only   # steps 7.4 and 8
+    python tools/flash.py --preserve-eeprom    # ...and keep the persist ring
     python tools/flash.py --identify           # asks, writes nothing, keeps it running
+    python tools/flash.py --read-eeprom FILE   # dump the ring, change nothing
     python tools/flash.py --dry-run            # print the commands, run none
 
 WHY THIS EXISTS, WHICH IS NOT "TO SAVE TYPING".
@@ -36,12 +38,33 @@ Three of the ways to get step 5 wrong are invisible at the time:
     1. Every verdict here comes from the printed text; the return code is
     reported and never branched on.
 
-WHAT IS DELIBERATELY NOT HERE YET. Reading memory back off the part -- the
-persist ring, for bring-up in the vehicle -- and `-Z0-3FF`, which preserves the
-EEPROM through a reflash. Neither has ever been run against a part, and
-guessing an undocumented switch on a live board is exactly what this repository
-does not do. The gap list at the end of `flash-tool-notes.md` is what to close
-first.
+PRESERVING THE EEPROM, AND WHY IT IS THREE COMMANDS RATHER THAN ONE FLAG.
+
+`--preserve-eeprom` passes `-Z0-3FF`, which *Readme for IPECMD.htm* §13 defines
+as `Z<range>  Preserve EEData on Program`, default `Do Not Preserve`, with the
+worked example in §17.7. `-E` overrides it (§17.8) and is not passed here. The
+range is `0-3FF` because IPECMD addresses this part's EEData from zero -- not
+inferred from the readme but observed, in the `-Y` failure that prints
+`Address: 0 Expected Value: ff Received Value: 0` against a stored record.
+
+**The switch had never been run when this was written**, so it is not trusted;
+it is checked. The run reads EEData with `-GE0-3FF` before programming and
+again afterwards, and compares the two byte for byte. **The programming step
+therefore omits `-OL` and a separate `-I -OL` releases the part at the end**,
+which is the only way the comparison means anything: released immediately, the
+firmware can append a record between the program and the read, and then a
+difference says nothing about whether `-Z` worked. `persist_save()` would not
+usually write that fast, but "usually" is not a verification.
+
+A part left in reset looks exactly like dead firmware, so the release runs even
+when an earlier step has failed, and its own failure is reported loudly.
+
+If either dump cannot be parsed the run does not invent a verdict: it says the
+preserve was requested and not verified, and writes both raw outputs into
+`mplab/build/` so the format can be recorded in `flash-tool-notes.md`.
+
+STILL NOT HERE: nothing. Both gaps that file listed are closed -- the other was
+reading memory back off the part, which is `--read-eeprom`.
 
 `-Y` is not run either, and that is a finding rather than an omission: it
 verifies EEData against a hex with no EEPROM section, so on a perfectly
@@ -59,6 +82,7 @@ directory it is run from.
 from __future__ import annotations
 
 import argparse
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -81,6 +105,14 @@ MODES = {
 # RB2 and RB3, which is what this board is wired to (DS39977C Register 28-5).
 CONFIG3H_ADDR = 0x300005
 CANMX_BIT = 0x01
+
+# The whole data EEPROM of the PIC18F25K80: 1,024 bytes (DS39977C Table 1),
+# addressed from zero by IPECMD -- observed, see the docstring. persist.c uses
+# 0..767 of it and leaves the top 256 alone; the range here is the whole array
+# because preserving half of it would be a stranger thing to explain than
+# preserving all of it.
+EEPROM_RANGE = "0-3FF"
+EEPROM_BYTES = 1024
 
 # What a failed run says, and what it means. A table rather than a chain of
 # ifs, because these strings are the whole diagnosis and belong where they can
@@ -150,8 +182,53 @@ def parse_blank_check(text: str) -> tuple[bool, str]:
     return False, "no blank check verdict in the output"
 
 
+def parse_eeprom_dump(text: str, want: int = EEPROM_BYTES) -> bytes | None:
+    """The EEData bytes out of a `-GE0-3FF` screen dump, or None.
+
+    THE OUTPUT FORMAT IS NOT PINNED HERE, deliberately. Every other parser in
+    this file matches a string IPECMD was seen to print, recorded in
+    flash-tool-notes.md; this switch had never been run when it was written, so
+    matching an exact layout would be guessing dressed up as a parser. Instead
+    it takes any line that begins with an address and continues in hex byte
+    pairs, and then refuses the result unless the bytes cover exactly 0..want-1
+    with none missing and none repeated. A format it does not understand
+    therefore returns None rather than a short or scrambled image, and the
+    caller reports "not verified" instead of a verdict.
+
+    Once a real dump exists, paste it into tools/test_flash.py and this comment
+    stops being true of it.
+    """
+    if diagnose(text):
+        return None
+
+    seen: dict[int, int] = {}
+    row = re.compile(r"\s*(?:0x)?([0-9A-Fa-f]{2,8})\s*:?\s+"
+                     r"((?:[0-9A-Fa-f]{2}[ \t]+)*[0-9A-Fa-f]{2})\s*$")
+    for line in text.splitlines():
+        m = row.match(line)
+        if not m:
+            continue
+        addr = int(m.group(1), 16)
+        for i, tok in enumerate(m.group(2).split()):
+            if addr + i in seen:
+                return None
+            seen[addr + i] = int(tok, 16)
+
+    if len(seen) != want or min(seen) != 0 or max(seen) != want - 1:
+        return None
+    return bytes(seen[i] for i in range(want))
+
+
+def describe_eeprom(image: bytes) -> str:
+    """One line about what is in an EEData image."""
+    used = sum(1 for b in image if b != 0xFF)
+    if used == 0:
+        return "blank (all 0xFF), which is a virgin ring and a correct start"
+    return "%d of %d bytes written" % (used, len(image))
+
+
 def parse_program(text: str) -> tuple[bool, str]:
-    """Did -M -OL programme and implicitly verify?"""
+    """Did -M programme and implicitly verify?"""
     bad = diagnose(text)
     if bad:
         return False, bad
@@ -162,7 +239,7 @@ def parse_program(text: str) -> tuple[bool, str]:
         return False, "no 'Program Succeeded' in the output"
     if "Operation Succeeded" not in text:
         return False, "the operation did not report success"
-    return True, "programmed and implicitly verified, released from reset"
+    return True, "programmed and implicitly verified"
 
 
 # --------------------------------------------------------------- the hex
@@ -256,6 +333,32 @@ def ipecmd(args: list[str], dry: bool, device: str, tool: str) -> str:
     return run(["ipecmd", "-P" + device, "-T" + tool] + args, dry)
 
 
+def read_eeprom(dry: bool, device: str, tool: str, release: bool,
+                save_to: Path | None) -> tuple[bytes | None, str]:
+    """`-GE0-3FF`, parsed. Reads only; writes nothing to the part.
+
+    `release` adds `-OL`. A read is not a harmless command without it -- see
+    the docstring at the top -- so it is on for a standalone read and off
+    while a preserve check wants the part held still.
+    """
+    args = ["-GE" + EEPROM_RANGE]
+    if release:
+        args.append("-OL")
+    out = ipecmd(args, dry, device, tool)
+    if dry:
+        return None, "dry run"
+    if save_to is not None:
+        try:
+            save_to.write_text(out, encoding="utf-8")
+        except OSError as exc:                      # a full disk, a read-only tree
+            print("      [note] could not save the raw dump: %s" % exc)
+    image = parse_eeprom_dump(out)
+    if image is None:
+        bad = diagnose(out)
+        return None, bad or "the dump did not parse; the raw output is saved"
+    return image, describe_eeprom(image)
+
+
 def build(mode: str, dry: bool) -> bool:
     cmd = ["make", "-C", "mplab"]
     if MODES[mode]:
@@ -284,6 +387,12 @@ def main(argv: list[str] | None = None) -> int:
                     help="which build to make and flash (default: normal)")
     ap.add_argument("--identify", action="store_true",
                     help="only ask what is on the header, and change nothing")
+    ap.add_argument("--preserve-eeprom", action="store_true",
+                    help="pass -Z0-3FF so the persist ring survives, and "
+                         "check afterwards that it did")
+    ap.add_argument("--read-eeprom", metavar="FILE", nargs="?", const="-",
+                    help="dump the persist ring and change nothing; FILE takes "
+                         "the raw bytes, '-' or no argument prints a summary")
     ap.add_argument("--blank-check", action="store_true",
                     help="also run -C first; a programmed part is not an error")
     ap.add_argument("--no-build", action="store_true",
@@ -307,6 +416,23 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         ok, detail = parse_identify(out, args.device)
         rep.check("device answers on the ICSP header", ok, detail)
+        return fail(rep, "") if rep.failed else 0
+
+    if args.read_eeprom:
+        print()
+        print("read EEData -- writes nothing, and releases the part afterwards")
+        raw = REPO / "mplab" / "build" / "eeprom-read.txt"
+        image, detail = read_eeprom(args.dry_run, args.device, args.tool,
+                                    release=True, save_to=raw)
+        if args.dry_run:
+            return 0
+        rep.check("EEData read back", image is not None, detail)
+        if image is not None:
+            print("  [note] raw output in " + str(raw))
+            if args.read_eeprom != "-":
+                Path(args.read_eeprom).write_bytes(image)
+                print("  [note] %d bytes written to %s"
+                      % (len(image), args.read_eeprom))
         return fail(rep, "") if rep.failed else 0
 
     print()
@@ -347,13 +473,70 @@ def main(argv: list[str] | None = None) -> int:
             if diagnose(out):
                 rep.check("blank check ran", False, detail)
 
+    build_dir = REPO / "mplab" / "build"
+    before = None
+    if args.preserve_eeprom:
+        print()
+        print("read EEData before -- the image the preserve has to bring back")
+        before, detail = read_eeprom(args.dry_run, args.device, args.tool,
+                                     release=True,
+                                     save_to=build_dir / "eeprom-before.txt")
+        if not args.dry_run:
+            print("  [note] " + detail)
+            if before is not None and all(b == 0xFF for b in before):
+                print("  [note] nothing to preserve; -Z0-3FF will be passed "
+                      "anyway and the check still runs")
+
     print()
-    print("program -- -M -OL, which erases the EEPROM with it")
-    out = ipecmd(["-F" + str(hex_path), "-M", "-OL"],
-                 args.dry_run, args.device, args.tool)
+    if args.preserve_eeprom:
+        print("program -- -M -Z0-3FF, and NOT -OL: the part stays in reset so")
+        print("           it cannot write to EEData before the check below")
+        cmd = ["-F" + str(hex_path), "-M", "-Z" + EEPROM_RANGE]
+    else:
+        print("program -- -M -OL, which erases the EEPROM with it")
+        cmd = ["-F" + str(hex_path), "-M", "-OL"]
+    out = ipecmd(cmd, args.dry_run, args.device, args.tool)
     if not args.dry_run:
         ok, detail = parse_program(out)
         rep.check("programmed", ok, detail)
+
+    if args.preserve_eeprom:
+        print()
+        print("read EEData after -- still held in reset, so nothing can have")
+        print("                     been written since")
+        after, detail = read_eeprom(args.dry_run, args.device, args.tool,
+                                    release=False,
+                                    save_to=build_dir / "eeprom-after.txt")
+        if not args.dry_run:
+            if before is None or after is None:
+                print("  [note] " + detail)
+                print("  [note] -Z0-3FF was passed and NOT verified: a dump "
+                      "did not parse.")
+                print("         Both raw outputs are in mplab/build/. Put the "
+                      "real format into")
+                print("         tools/test_flash.py and docs/flash-tool-notes."
+                      "md, and this stops")
+                print("         being a gap.")
+            else:
+                same = before == after
+                differ = sum(1 for a, b in zip(before, after) if a != b)
+                rep.check("EEData survived the reflash", same,
+                          "identical, %s" % describe_eeprom(after) if same
+                          else "%d of %d bytes changed -- -Z0-3FF did not "
+                               "preserve it" % (differ, len(after)))
+
+        print()
+        print("release -- -I -OL, because the program step did not")
+        out = ipecmd(["-I", "-OL"], args.dry_run, args.device, args.tool)
+        if not args.dry_run:
+            ok, detail = parse_identify(out, args.device)
+            rep.check("released from reset", ok, detail)
+            if not ok:
+                print()
+                print("  !! THE PART MAY STILL BE HELD IN RESET, which looks")
+                print("     exactly like dead firmware: no frames, no LEDs.")
+                print("     Run  python tools/flash.py --identify  to release")
+                print("     it. Replug the programmer first if that fails too.")
 
     print()
     if args.dry_run:

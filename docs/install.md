@@ -732,8 +732,11 @@ for each is in [`flash-tool-notes.md`](flash-tool-notes.md):
 - **The EEPROM is erased, on purpose**, and that is the right default during
   bring-up: `persist_load()` returns false on a virgin EEPROM, which is a
   correct start rather than an error. `-Z0-3FF` is what preserves the ring once
-  there is a real trip in it. **`mplab/canfuel.X` deliberately does the
-  opposite** — know which tool you are holding.
+  there is a real trip in it, and `python tools/flash.py --preserve-eeprom` is
+  that switch with the check attached — it reads EEData before and after and
+  compares them, because a preserve that silently did not happen is
+  indistinguishable from one that did until the trip is gone. **`mplab/canfuel.X`
+  deliberately does the opposite** — know which tool you are holding.
 
 ⚠ **What has been run against a real part, and what has not.** `-I`, `-C`,
 `-M -OL` and `-Y` have all run against a powered PIC18F25K80 on J3, from Git
@@ -1070,8 +1073,9 @@ These scenarios drive synthetic tank levels and fuel totals into the persist
 ring. In the car that reads as a wrong trip and a wrong Range, and the
 refuelling detector would be comparing against a level that never existed.
 
-**The reflash at the start of step 8 clears it** — `-OH` erases the EEPROM by
-default, so simply do not pass `-Z0-3FF` there. Nothing extra to run.
+**The reflash at the start of step 8 clears it** — the erase is on by default,
+so simply do not pass `-Z0-3FF`, and do not run `flash.py --preserve-eeprom`
+there. Nothing extra to run.
 
 **And you can prove it was cleared**: on the next run, 0x603's `PERSIST_OK`
 flag comes back **clear**, because `persist_load()` returns false on a virgin
@@ -1093,8 +1097,16 @@ optional.** The default erase is what clears the synthetic tank level and trip
 totals the bench scenarios left in the EEPROM; carried into the car they would
 read as a wrong Range and a wrong average, and the refuelling detector would be
 comparing against a level that never existed. **From the next reflash onwards
-`-Z0-3FF` is the one worth thinking about** — by then the ring holds a real
-trip.
+it is the other way round** — by then the ring holds a real trip, and the
+command is
+
+```
+python tools/flash.py --preserve-eeprom
+```
+
+which passes `-Z0-3FF` and then proves it worked rather than assuming: it dumps
+EEData before and after and compares them byte for byte. Erasing a real trip
+is not undoable, so the check is not optional either.
 
 ⚠ **Put the board where you can see both LEDs**, and leave the dashboard open
 until step 11. In this step and this step alone, the LEDs are the *only*
@@ -1286,7 +1298,8 @@ line above.
 | `ipecmd` says `Target Device ID (0x0) is an Invalid Device ID` | power is fine and ICSP is not: JP2 still fitted, MCLR/PGC/PGD wiring, or a dead part. Reproduced against a powered header with those three pins left unconnected — `flash-tool-notes.md` |
 | A board misbehaves or dies the first time it is plugged onto the PICkit | **had `-W` been used on that PICkit beforehand?** It leaves ~4.6 V on header pin 2 after the command exits, which then fights the board's own supply. Measure pins 2 and 3 for zero before connecting a self-powered board — `flash-tool-notes.md` |
 | Programming succeeds and nothing runs | `-OL` missing. The IPECMD default is *hold in reset*, so the part is programmed and then parked |
-| The trip accumulators vanished after a reflash | expected: `-OH` erases everything by default. `-Z0-3FF` is what preserves them, and `-E` overrides it |
+| The trip accumulators vanished after a reflash | expected: the erase is on by default. `flash.py --preserve-eeprom` passes `-Z0-3FF` and checks it took; `-E` would override it and is never passed |
+| The board is silent right after a `--preserve-eeprom` run | that flow programs without `-OL` and releases in a separate step. If the release failed, the part is **held in reset** — run `python tools/flash.py --identify` |
 | Both LEDs dark | JP1 not fitted — that is by design, nothing lights up in the car without it |
 | No 0x603 on the bus, but 0x600 and 0x601 are there | JP1 not fitted. The diagnostic frame is only transmitted while the debug jumper is on — `docs/frames.md` |
 | No 0x603 and a listen-only build | expected and unfixable: that mode transmits nothing at all. The LED is the only instrument in step 8 |
