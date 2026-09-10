@@ -777,6 +777,65 @@ static void test_full_scale_reaches_the_rated_torque(void)
     TT_TRUE(compute_torque_d(&st) >= 1700u - 85u);     /* 170.0 Nm, -5 % */
 }
 
+/* The owner's optional gain on torque and power. These exist because
+ * TORQUE_TRIM_PCT is a COMPILE-TIME constant: a test that could only observe
+ * the value this build was compiled with would be no test of the arithmetic,
+ * so compute_trim_apply() takes the trim as an argument and is driven here
+ * with trims the firmware is not carrying. */
+static void test_the_torque_trim_is_off_by_default(void)
+{
+    /* The shipped default must reproduce the factory figures and claim
+     * nothing else. If somebody commits their own car's gain, this fails. */
+    TT_EQ(TORQUE_TRIM_PCT, 0);
+    TT_EQ(TORQUE_TRIM_Q8, 0);
+
+    TT_EQ(compute_trim_apply(0u, 0), 0u);
+    TT_EQ(compute_trim_apply(1u, 0), 1u);
+    TT_EQ(compute_trim_apply(18870u, 0), 18870u);   /* b7 = 255 in cNm */
+}
+
+static void test_the_trim_percent_converts_to_256ths(void)
+{
+    /* Rounded to nearest, and the sign must not bias a negative trim toward
+     * zero -- C truncates toward zero, which is why config.h carries the sign
+     * into the rounding term. */
+    TT_EQ(TORQUE_TRIM_Q8_OF(0), 0);
+    TT_EQ(TORQUE_TRIM_Q8_OF(3), 8);       /* 3.13 % */
+    TT_EQ(TORQUE_TRIM_Q8_OF(5), 13);      /* 5.08 % */
+    TT_EQ(TORQUE_TRIM_Q8_OF(10), 26);     /* 10.16 % */
+    TT_EQ(TORQUE_TRIM_Q8_OF(100), 256);
+
+    /* The sign is asserted rather than the magnitude: -8 and not -7, which is
+     * what C's truncation toward zero would give without the signed rounding
+     * term, and which would make every negative trim shallower than asked. */
+    TT_EQ(TORQUE_TRIM_Q8_OF(-3), -8);
+    TT_EQ(TORQUE_TRIM_Q8_OF(-5), -13);
+    TT_EQ(TORQUE_TRIM_Q8_OF(-50), -128);
+}
+
+static void test_the_trim_moves_the_value_both_ways(void)
+{
+    /* 10,000 x 8/256 = 312.5, truncated to 312 by the shift. */
+    TT_EQ(compute_trim_apply(10000u, 8), 10312u);
+    TT_EQ(compute_trim_apply(10000u, -8), 9688u);
+
+    /* Symmetric about the input to within the truncation, which is what makes
+     * a trim and its negative cancel to the eye on the display. */
+    TT_EQ(compute_trim_apply(25600u, 26), 28200u);   /* +10.16 % */
+    TT_EQ(compute_trim_apply(25600u, -26), 23000u);
+}
+
+static void test_the_trim_saturates_at_zero_rather_than_wrapping(void)
+{
+    /* config.h refuses a trim past -50 %, so this is unreachable in a real
+     * build. It is here because an unsigned subtraction that CAN go negative
+     * is the kind of thing a later edit reintroduces, and the failure mode is
+     * a 4-billion-count torque rather than an obviously wrong small one. */
+    TT_EQ(compute_trim_apply(100u, -256), 0u);
+    TT_EQ(compute_trim_apply(0u, -26), 0u);
+    TT_EQ(compute_trim_apply(0u, 26), 0u);
+}
+
 /* 06_trip_reset holds b7 = 191-192 through the whole start, while rpm climbs
  * from 187 to 881. Without the cranking gate that is ~125 Nm and ~9 kW on the
  * display at every start. */
@@ -1247,6 +1306,10 @@ int main(void)
     TT_RUN(test_full_scale_reaches_the_rated_power);
     TT_RUN(test_full_scale_reaches_the_rated_torque);
     TT_RUN(test_cranking_is_not_torque);
+    TT_RUN(test_the_torque_trim_is_off_by_default);
+    TT_RUN(test_the_trim_percent_converts_to_256ths);
+    TT_RUN(test_the_trim_moves_the_value_both_ways);
+    TT_RUN(test_the_trim_saturates_at_zero_rather_than_wrapping);
 
     TT_RUN(test_range_ignores_the_slosh);
     TT_RUN(test_range_falls_as_fuel_is_burnt);

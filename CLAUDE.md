@@ -147,10 +147,12 @@ restart counts agree **exactly**, distance to within 7 mm over 54 m. Both were
 checked against figures measured in the vehicle.
 
 All three CI jobs do real work. `core` runs `make check-pure`, `make test`,
-`make check-hal` and the `--host-build` diff; `tools` runs the Python tests,
-`cycles.py --check` and `checkdocs.py --check`; `firmware` installs a pinned
-XC8 **and a pinned Device Family Pack**, builds the hex and uploads it as an
-artifact.
+`make check-hal` and the `--host-build` diff; `tools` runs the Python tests and
+`checkdocs.py --check`; `firmware` installs a pinned XC8 **and a pinned Device
+Family Pack**, builds the hex, uploads it as an artifact, and — because it is
+the only job with a compiler — is also the one that runs `cycles.py --check`
+and the `checkdocs.py` size check, both of which need the listing and the
+memory summary that build writes.
 
 ### What is verified, and what is not — read before trusting any of it
 

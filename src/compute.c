@@ -515,7 +515,36 @@ uint16_t compute_torque_d(const decode_state_t *st)
         return 0;               /* on the overrun the engine is being driven */
     }
     net_cnm = st->torque_ind_cnm - drag_cnm;
+
+    /* The owner's own gain, zero unless somebody set it -- config.h argues
+     * why it exists and why it is a fixed constant rather than a live
+     * correction factor. It goes on NET torque, where a dynamometer measures,
+     * and power inherits it because compute_power_d() is handed this result.
+     * It is applied before the division to tenths so the trim keeps the
+     * hundredth the drag subtraction was carried in. */
+    net_cnm = compute_trim_apply(net_cnm, TORQUE_TRIM_Q8);
+
     return clamp_u16(div_const_round(net_cnm, 5u, DIVC_10), 0xFFFFu);
+}
+
+uint32_t compute_trim_apply(uint32_t value, int16_t trim_q8)
+{
+    uint32_t delta;
+
+    /* The default is one comparison and a return, so a build nobody has
+     * trimmed pays essentially nothing for the feature existing. */
+    if (trim_q8 == 0) {
+        return value;
+    }
+
+    if (trim_q8 > 0) {
+        /* value is a net torque in 0.01 Nm, so at the full scale b7 can reach
+         * it is under 19,000; times a trim under 256 it cannot leave 32 bits. */
+        return value + (mul_u32_u16(value, (uint16_t)trim_q8) >> 8);
+    }
+
+    delta = mul_u32_u16(value, (uint16_t)(-trim_q8)) >> 8;
+    return (delta >= value) ? 0u : value - delta;
 }
 
 uint16_t compute_power_d(const decode_state_t *st, uint16_t torque_d)

@@ -580,6 +580,68 @@
  * ceiling tests in test_compute.c are rewritten with them. */
 #define TORQUE_CNM_PER_BIT      74u         /* 0.74 Nm -- see above */
 
+/* Optional gain on the displayed torque and power, in whole per cent.
+ *
+ * ZERO BY DEFAULT, AND THAT DEFAULT IS THE POINT. Out of the box this firmware
+ * reproduces the FACTORY figures for a stock AQY and claims nothing else. This
+ * constant exists so that somebody who has a real measurement -- their own car
+ * on a dynamometer, a remap with a known gain -- can make the display agree
+ * with it, without touching the scale above or the drag line below and without
+ * re-deriving either.
+ *
+ * IT IS A PRESENTATION KNOB, NOT A CALIBRATION. Everything above is an
+ * argument about what the ECU's byte MEANS. This is an argument about what the
+ * owner of a particular car wants their gauge to read, and the two must not be
+ * confused: setting this does not make the scale better founded, and a scale
+ * that is genuinely wrong is fixed above rather than papered over here.
+ *
+ * WHY A KNOB IS LEGITIMATE AND NOT A FUDGE. A factory rating is itself a
+ * NORMALISED number, quoted at a standard air condition rather than measured
+ * on the day. A dynamometer does the same: it measures what the engine made in
+ * the cell and its software corrects that to the same standard before anyone
+ * is shown a figure. So every gauge and every printout in this field reports a
+ * corrected number, and one more correction with its reasoning written down is
+ * in keeping with the practice rather than a departure from it.
+ *
+ * WHAT WE CANNOT DO, AND WHY IT IS A FIXED CONSTANT RATHER THAN A LIVE
+ * CORRECTION. A real correction factor needs the intake air temperature and
+ * pressure, and INTAKE AIR TEMPERATURE IS NOT ON THIS BUS -- 0x420 bytes 1-2
+ * are documented as ambient temperature and read zero on this car, there is no
+ * sensor behind them, and b3 is the oil (can-decoding.md question 4). The only
+ * air-related quantity available is the ECU's own load, which is already
+ * normalised and is not a temperature. So a live per-frame correction is out
+ * of reach and this is a constant somebody sets once, knowingly.
+ *
+ * APPLIED TO NET TORQUE, after the drag line is subtracted, which is where a
+ * dynamometer measures. Power follows it because compute_power_d() is handed
+ * the trimmed torque; nothing else moves, and in particular the FUEL figures
+ * are untouched -- this is not a fuel trim and must never become one.
+ *
+ * GRANULARITY IS 0.39 %, and that is deliberate rather than a limitation. The
+ * gain is carried as 1/256 so that dividing it out is a shift of 8, which is
+ * three byte moves on this part rather than a rotate loop
+ * (docs/optimisation.md §11 is the general rule). One step is therefore worth
+ * exactly one count of b7, which is the finest the input itself resolves --
+ * asking for more precision than the signal carries would be false precision.
+ *
+ * A value outside -50..+100 is a compile error rather than a silent clamp. */
+#define TORQUE_TRIM_PCT         0
+
+/* Percent to 1/256, rounded to nearest, at compile time so the runtime never
+ * sees the division. The sign carried into the rounding term keeps C's
+ * truncation-toward-zero from biasing negative trims away from zero.
+ * Exposed as a macro OF its argument so test_compute.c can check the
+ * derivation itself rather than only the one value this build uses. */
+#define TORQUE_TRIM_Q8_OF(pct)  ((int16_t)(((int32_t)(pct) * 256 + \
+                                            ((pct) >= 0 ? 50 : -50)) / 100))
+#define TORQUE_TRIM_Q8          TORQUE_TRIM_Q8_OF(TORQUE_TRIM_PCT)
+
+#if TORQUE_TRIM_PCT < -50 || TORQUE_TRIM_PCT > 100
+#error "TORQUE_TRIM_PCT is outside -50..+100. Past that the displayed torque \
+stops being a description of this engine, and the scale above is what wants \
+changing instead."
+#endif
+
 /* Drag torque -- friction, pumping, alternator -- rises with engine speed and
  * is modelled linearly:
  *

@@ -459,6 +459,41 @@ this vehicle, and holds the measurements: the display's peak against the
 measured airflow of the same drive, and the two readings of the gap between
 them. It is a holding document and will be folded back in or deleted.
 
+### The owner's gain — `TORQUE_TRIM_PCT`, zero by default
+
+**Out of the box this firmware reports the factory figures for a stock AQY and
+claims nothing else.** `TORQUE_TRIM_PCT` in `config.h` is a whole-per-cent gain
+on the displayed torque and power, shipped at zero, for somebody who has a real
+measurement of their own car — a dynamometer run, a remap with a known gain —
+and wants the gauge to agree with it.
+
+**It is a presentation knob and not a calibration**, and the distinction is
+load-bearing. Everything else in this section is an argument about what the
+ECU's byte *means*; the trim is an argument about what one car's owner wants
+their gauge to read. Setting it does not make the scale better founded, and a
+scale that is genuinely wrong is fixed by changing the scale rather than by
+papering over it here — `docs/next-drive.md` has that decision tree.
+
+**It is legitimate rather than a fudge, and the reason is worth stating.** A
+factory rating is itself a *normalised* number, quoted at a standard air
+condition rather than measured on the day; a dynamometer does the same, and its
+software corrects the cell measurement to that standard before anyone sees a
+figure. Every gauge and every printout in this field therefore reports a
+corrected number. One more correction, with its reasoning written beside it, is
+in keeping with the practice.
+
+⚠ **It has to be a constant somebody sets once, because a live correction is
+out of reach.** A real correction factor needs the intake air temperature, and
+**that is not on this bus** — `0x420` bytes 1–2 are documented as ambient
+temperature and read zero on this car, with no sensor behind them, and b3 is
+the oil (`can-decoding.md` question 4).
+
+It applies to **net** torque, after the drag line is subtracted, which is where
+a dynamometer measures; power follows because `compute_power_d()` is handed the
+trimmed torque. **The fuel figures are untouched and this must never become a
+fuel trim.** One step is 0.39 %, which is exactly one count of b7 — asking for
+finer would be precision the input does not carry.
+
 **Drag torque** — friction, pumps, alternator — is subtracted from the
 indicated torque. It is not constant; it rises with engine speed and is
 modelled linearly against rpm.

@@ -138,6 +138,74 @@ maxima jump instead.
 
 ---
 
+## What happens after the reading — the decision tree
+
+**Step 1 is the engine, because otherwise you are calibrating against a sick
+one.** Does it pull better with the new injectors? If not, today's numbers were
+already its best and you go to step 2 with them; if it does, re-measure and go
+to step 2 with the new ones.
+
+**Step 2 is `TorqRaw`'s maximum at full throttle**, with the ECU's load from
+the same engine speed beside it:
+
+```
+b7max >= 235
+  -> The scale is right and the engine is well. The display reaches
+     near the factory figures. NOTHING CHANGES.
+
+b7max 200-235
+  -> The scale is roughly right; the display reads 5-15 % under.
+     TORQUE_TRIM_PCT closes that if the owner wants it closed.
+
+b7max <= 200   (what this car reads now)
+  |
+  +- load also unchanged, near 78 %
+  |    -> Same air, same modelled torque. Either the engine is still
+  |       unwell, or THE SCALE IS WRONG. What separates them is how the
+  |       car drives: if it pulls properly, it is the scale.
+  |
+  +- load jumped, near 85 %
+       -> The engine breathes better and b7 did not follow, so b7 is not
+          what this firmware thinks it is and the derivation is rebuilt
+          from the beginning rather than rescaled.
+```
+
+### What the last branch actually changes
+
+**The formula does not move. One premise does.** Today it reads *b7 = 255
+corresponds to the rated crank torque plus the drag at that speed*. It would
+become *b7 = the observed maximum at full throttle corresponds to the rated
+figure*.
+
+1. **`TORQUE_CNM_PER_BIT` rises.** Sketched against b7 extrapolated from
+   `17_drive_property_z1`'s wide-open samples, the 85 kW rating asks for about
+   1.08 Nm/bit and the 170 Nm rating for about 1.26.
+2. **And that bracket is the finding, not the number.** It is roughly **15 %
+   wide, against the 0.3 % the current derivation reports.** The 0.3 % was
+   never a precision: substituting 255 into both rating equations pins them to
+   the same nail, so of course they agree. Pull the nail out and the two
+   factory figures start arguing, which is an honest picture of how well this
+   is known. **Whatever replaces the scale should quote the bracket its own
+   assumption produces, not inherit this one.**
+3. **The drag line is rescaled, not refitted.** `drag_b7 = 9.11 + 0.006514 x
+   rpm` is in bytes and does not move; `DRAG_TORQUE_BASE_CNM` and
+   `DRAG_TORQUE_SLOPE_Q16` are that line times the scale, so they follow it.
+   This is what `config.h` means by the two being one calibration.
+4. **Both ceiling tests are rewritten.** `test_full_scale_reaches_the_rated_power`
+   and `..._torque` asserts what b7 = 255 produces. They would assert what the
+   OBSERVED maximum produces — which is the first version of that test with a
+   measurement behind it.
+5. **`TORQUE_TRIM_PCT` is not the tool for this** and must not be used as one.
+   A scale that is wrong is wrong for everybody who builds this firmware; the
+   trim is one owner's gain on a correct scale. Fixing the first with the
+   second leaves the next person a number that no longer means what its
+   comment says.
+
+The display needs no change either way: `Torque` tops out at 200.00 in
+`S-AQY.TRI` and `Power` at 100.00, so the larger figures still fit.
+
+---
+
 ## What this drive does not do
 
 - **It does not refit the drag line.** That wants steady holds in neutral on

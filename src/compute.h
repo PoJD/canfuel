@@ -136,6 +136,14 @@ uint32_t compute_trip_m(const compute_t *c);        /* metres              */
  * for nothing. Passing zero is not a way to disable it: the gates live in
  * compute_torque_d(), and a zero torque is exactly what makes power zero. */
 uint16_t compute_torque_d(const decode_state_t *st);  /* 0.1 Nm, net       */
+
+/* Apply TORQUE_TRIM_PCT, carried as 1/256, to a scaled value. Public only so
+ * that a test can drive it with trims this build was not compiled with: the
+ * constant is a compile-time one, so a test that could only see the default
+ * would be no test of the arithmetic at all. Saturates at zero rather than
+ * wrapping, which only a trim past -100 % could ask for and the range check in
+ * config.h already refuses. */
+uint32_t compute_trim_apply(uint32_t value, int16_t trim_q8);
 uint16_t compute_power_d(const decode_state_t *st,
                          uint16_t torque_d);          /* 0.1 kW            */
 
