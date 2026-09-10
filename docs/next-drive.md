@@ -132,9 +132,19 @@ the ceiling**, and both numbers now come off instruments already in the car:
 **The prediction, written before the drive so it can be wrong.** If the
 injectors were the fault: the car pulls better, first-gear misfires go to zero
 and the idle adaptation moves toward zero — while **load stays near 78 % and
-`Torque` on the display stays near 117 Nm**, because none of the model's inputs
-moved. `docs/engine-health.md` argues why, and what it means if the displayed
-maxima jump instead.
+`Torque` on the display stays near 117 Nm**.
+
+⚠ **The last clause rests on an unsourced premise and is the weakest thing in
+this document.** It assumes the ECU's torque model cannot see a fuelling fault,
+which needs the lambda entering that model to be the *commanded* value — and
+nothing this project holds says so. `frames.md` sorts what is founded from what
+is recalled. **Misfire detection is per-cylinder and does run on this car**, so
+the ECU is not without a combustion signal; whether it reaches the torque model
+is simply unknown.
+
+Which makes this the most informative line on the page rather than the least:
+**if the displayed figures rise while load and airflow stay put, the premise is
+wrong and we learn something we could not have got any other way.**
 
 ---
 

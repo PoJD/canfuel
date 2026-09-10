@@ -425,34 +425,61 @@ resolved but not required* in `can-decoding.md` — do not plan that session
 again. `test_compute.c` pins the ceiling so the factory figures cannot silently
 go out of reach.
 
-### ⚠ b7 is a model output, so these two channels cannot see a sick engine
+### b7 is modelled rather than measured, and how much it can see is NOT established
 
-**The ECU has no torque sensor.** b7 is computed, from the measured charge, the
-*commanded* lambda and the ignition angle — so what it reports is the torque a
-**correctly burning** engine would make with that much air and that much
-advance.
+**The ECU has no torque sensor** — the VCDS session went looking and there is
+no torque measuring block on this one at all. So b7 is computed from other
+readings, and the question that matters here is *which* readings.
 
-Three consequences, and the middle one is counter-intuitive enough to have been
-got backwards once already:
+⚠ **That question is open, and an earlier version of this section answered it
+with more confidence than anything supports.** What follows is sorted by how
+well founded it is, because the difference decides how much weight the
+`Torque` and `Power` channels can carry as a diagnostic.
 
-- **An air problem shows up.** Less charge, less modelled torque. So does
-  ignition retard, through the efficiency term. Both of these the display
-  reports honestly.
-- **A combustion problem does not.** Leaking injectors, a weak spark, poor
-  mixture distribution — none of it is an input. The lambda that enters the
-  model is the one the ECU *asked for*, and the single pre-catalyst oxygen
-  sensor measures the average of four cylinders, so one rich cylinder against
-  three lean ones averages to a value the ECU is satisfied with. The fuel
-  trims are the ECU **correcting** that average, not **reporting** a fault, and
-  it has nothing left to infer the loss from.
-- **So on an unhealthy engine these channels OVER-read**, showing what the air
-  should have produced while the engine produces less. They are closer to an
-  air meter dressed as a torque gauge than to a dynamometer.
+**Founded, and it rests on where a sensor sits rather than on any model:**
 
-**None of which makes the displayed number wrong on a healthy engine** — it is
-the same quantity the ECU steers the car with. It means the number answers
-"what should this air be worth", and only answers "what is the engine making"
-when the engine is well.
+- **The single pre-catalyst oxygen sensor is in the common exhaust stream**, so
+  it measures the four cylinders averaged. One rich cylinder against three lean
+  ones can average to a value the ECU is content with, and no amount of
+  cleverness downstream recovers the split from that one signal.
+- **The fuel trims are the ECU correcting that average, not reporting a
+  fault.** A trim is an output of the controller, not a diagnosis.
+- **An air-path problem does move b7**, because charge is measured and is
+  unambiguously an input.
+
+**Recalled and NOT sourced — treat as a hypothesis:**
+
+- that the model is charge times an efficiency term for lambda and one for
+  ignition angle, and in particular **that the lambda entering it is the
+  COMMANDED value rather than a measured one**. `mfd15/docs/sensors.md` §8 says
+  only that the ME7 "models it from air mass per stroke with corrections for
+  ignition advance and lambda" — which is itself unsourced, sits in a sibling
+  repository, and says nothing about commanded versus measured. **No Bosch
+  document for this ECU is held by this project.** The commanded-lambda step is
+  the load-bearing one for "combustion is invisible", and it is exactly the
+  step nothing supports.
+
+**Evidence pointing the other way, which the earlier version ignored:**
+
+- **Misfire detection is per-cylinder and works off crankshaft speed
+  fluctuation, and it demonstrably runs on this car** — the counter in
+  measuring group 014 shows non-zero values in first gear
+  (`docs/engine-health.md`). So the ECU is *not* without a per-cylinder
+  combustion signal. Whether that signal reaches the torque model is unknown.
+- **A badly burning engine does not leave the air path untouched either** —
+  residual gas, thermal state and, near the limit, the idle governor all move.
+  "None of the model's inputs changed" is an assumption, not a certainty.
+
+**What survives as a working conclusion**, stated at the strength the evidence
+allows: these two channels are much closer to an air meter dressed as a torque
+gauge than to a dynamometer, and on an unhealthy engine they most likely
+**over-read** — reporting what that air should have been worth. But *cannot see
+combustion at all* is stronger than anything here establishes, and if the
+displayed figures move after a fuelling repair with the air unchanged, that is
+the hypothesis above failing rather than an anomaly.
+
+**None of which makes the number wrong on a healthy engine.** It is the
+quantity the ECU steers the car with.
 
 ⚠ **`docs/engine-health.md` is an open investigation into exactly this**, on
 this vehicle, and holds the measurements: the display's peak against the

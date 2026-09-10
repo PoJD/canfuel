@@ -152,11 +152,19 @@ firmware; next week's drive speaks to the first and is silent on the second.
 
 ## What the display can and cannot mean
 
-The full argument is in `frames.md` under *Torque and Power*. In one line:
-**0x280 b7 is a model output, not a measurement**, computed from charge,
-commanded lambda and ignition angle, so it reports the torque a *correctly
-burning* engine would make with that air. It therefore **over-reads on an
-unhealthy engine** and cannot diagnose combustion at all.
+**0x280 b7 is a model output and not a measurement** — this ECU has no torque
+measuring block. What that model can and cannot see is set out in `frames.md`
+under *Torque and Power*, sorted by how well founded each part is, because an
+earlier version of this file stated it far more confidently than the evidence
+allows.
+
+The short of it: these channels most likely **over-read on an unhealthy
+engine**, reporting what the measured air should have been worth. But the step
+that would make them blind to combustion outright — that the model uses the
+*commanded* lambda — is **recalled rather than sourced**, and the per-cylinder
+misfire detection below is evidence that the ECU has a combustion signal of
+some kind. Treat "it cannot see combustion" as a hypothesis this drive can
+falsify, not as a property of the device.
 
 ---
 
@@ -242,10 +250,13 @@ go to zero and the idle adaptation moves toward zero — while **load stays near
 78 % and the display keeps showing about 117 Nm and 58 kW**. The model's
 inputs will not have moved, so its output should not either.
 
-Confidence in that last row is moderate, not high. Charge will not move and the
-commanded lambda will not move; **ignition advance could**, if the knock control
-had been retarding a cylinder that the new injectors settle, which would lift
-the modelled torque by a few per cent.
+⚠ **Confidence in that last row is low, and lower than this file first
+claimed.** It needs the torque model to be blind to fuelling, which is the
+unsourced step above. Charge should not move; **ignition advance could**, if the
+knock control had been retarding a cylinder the new injectors settle; and if
+the per-cylinder misfire signal feeds the model at all, the row is simply
+wrong. **A displayed figure that rises is therefore a result and not a
+surprise.**
 
 **If the displayed maxima move substantially, the fault was not the injectors** —
 something changed in the air path or in the ignition, and that is a different
