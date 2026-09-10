@@ -193,6 +193,46 @@ average of four cylinders, so one rich cylinder and three lean ones average to
 something the ECU is content with while every one of them makes less torque
 than a correct one.
 
+### The old converter was shown to the owner, and it is the one hard fact here
+
+Cracked on the outside, blocked inside, and **one chamber burned right
+through**.
+
+**That is not what a slightly rich mixture does.** A fuel trim of a few per
+cent does not melt a substrate; a converter is built to take exhaust gas, not
+to burn as a combustion chamber itself. Burning through takes **raw unburnt
+fuel igniting inside it**, which means misfire rather than enrichment.
+
+So the misfire pathway stops being an inference from a counter on a screen and
+becomes the leading explanation, on physical evidence. Everything else in this
+file is reasoning; this is a piece of metal somebody looked at.
+
+Two readings of the detail, both **hypotheses and not mechanisms**:
+
+- **One chamber rather than the whole substrate** fits one cylinder better than
+  four, which is what a single leaking injector would do. Flows mix in the
+  manifold, so this is not an identification of which cylinder.
+- **The external crack is probably the same thermal event**, not a separate
+  fault — it is simply the part of the damage that is visible from outside,
+  which is why it was what the garage first saw.
+
+⚠ **The new converter is exposed to exactly the same fault.** Driving it while
+a cylinder still dumps raw fuel cooks it the same way, which is why the car is
+standing until the injectors are done.
+
+**Whatever the rich running fouled is still fouled**, and the spark plugs are
+the item that matters: they are downstream casualties that survive the repair,
+and a fouled plug misfires at low load and high vacuum exactly as observed
+here. New injectors do not fix one. If the ignition work did not already
+include them, they belong in the same visit rather than in a later round.
+
+**A third observation lines up with the other two**, recorded here because it
+was made months earlier and its significance was not obvious at the time: when
+the fuel pressure regulator was changed, the system held **no residual
+pressure** and the fuel simply ran out. A system that bleeds down overnight is
+losing fuel somewhere, and injectors that do not seal are one of the few paths
+— the same ones that would explain the poor cold starts.
+
 **Which points at long idling rather than hard driving as what destroyed the
 catalytic converter** — that is where the misfires are, and that is where the
 engine spends most of its time.
