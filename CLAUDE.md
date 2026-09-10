@@ -137,7 +137,10 @@ carries a generated block; a figure typed into prose only goes stale.
 - `test/fixtures/` — seventeen recordings from the vehicle, documented, of
   which the `_z1` ones are the only ones with trustworthy time
 - `docs/` — **`install.md` is the procedure**, plus decoding, frame layout,
-  refuelling reset, timing and optimisation
+  refuelling reset, timing and optimisation. **`next-drive.md` is the
+  procedure for the next measurement in the car**, and `engine-health.md` is a
+  holding document for one open investigation into the engine itself, with an
+  end date rather than a permanent home
 
 The C core reproduces the Python oracle on every fixture: fuel totals and
 restart counts agree **exactly**, distance to within 7 mm over 54 m. Both were
@@ -1241,6 +1244,17 @@ ten of the fourteen places that state the write frequency — and fails on prose
 that disagrees. A fixture-count check was written and deleted for firing on
 five correct sentences; the reasoning is in the file, and it is the same reason
 `test_props.c` fuzzes reachable states only.
+
+### Work directly on `main`
+
+**There is no branching workflow here and no pull requests.** Commit to `main`
+and push there. If a harness or a task description hands you a feature branch
+anyway, merge it into `main` and push `main` — the branch is an artefact of how
+the session was started, not a decision anyone made about this repository.
+
+This is a single-maintainer repository with CI on every push, and the CI is the
+review. A branch that is never reviewed by anybody buys nothing and costs the
+next session a merge it has to work out for itself.
 
 ### Commit granularity — consistency outranks a tidy history
 

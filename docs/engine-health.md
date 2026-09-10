@@ -275,6 +275,13 @@ no torque measuring block, so there is nothing to read there. What is new is a
 different measurement — torque inferred from air and fuel — which needs no such
 block.
 
+**Most of it needs no capture at all any more.** `S-AQY.TRI` now carries
+`TorqRaw`, the raw 0x280 b7 beside the torque computed from it, so b7 can be
+read off the display and set against the load percentage VCDS logs at the same
+engine speed. **`docs/next-drive.md` is that procedure, in order.** Only the
+fuel counter still wants a bus capture, and only to remove the air-fuel
+assumption.
+
 `install.md` step 11 covers everything else a trip behind the display should
 pick up while it is open, and `can-decoding.md` question 7 wants a hot-oil
 sweep from the same trip. **Batch them.**
