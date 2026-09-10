@@ -543,14 +543,41 @@
  * a wrong intercept can still look consistent here. It is a check that passed,
  * not a measurement.
  *
- * What would settle it: nothing available. The VCDS session was done on
- * This ECU has no torque measuring block --
+ * What would settle it: nothing available then. The VCDS session was run and
+ * is recorded in docs/vcds-session.md: this ECU has no torque measuring block --
  * groups 001, 002, 003 and 020 offer engine load in per cent and nothing in
  * Nm. The only remaining route is a full-throttle pull, which is deliberately
  * not planned. The question is therefore parked, not open: see
  * docs/can-decoding.md, chapter "Never resolved but not required", question 8.
  * test_compute.c pins the ceiling so that a future change cannot quietly put
- * the factory figures out of reach again. */
+ * the factory figures out of reach again.
+ *
+ * THE CEILING HAS NEVER BEEN OBSERVED, AND THAT IS THE WEAK JOINT. Everything
+ * above rests on b7 = 255 meaning the rated crank torque plus the drag at that
+ * speed. Nothing has ever seen b7 near it: the highest value in a valid
+ * driving state across every fixture is 185 (17_drive_property_z1, 4802 rpm,
+ * full throttle), and a road drive at full throttle to 5720 rpm implied about
+ * 199. Both are around three quarters of a full scale nothing has touched.
+ *
+ * A specific doubt, and it is a hypothesis rather than a finding. At full
+ * throttle b7 as a percentage (199 x 0.39 %, mfd15/docs/sensors.md §8) and the
+ * ECU's own relative load coincide -- 77.7 % against 78.1 % -- while at idle
+ * they diverge, 9.8 % against 23.2 %. That pattern is what NET indicated
+ * torque does, since pumping loss is near zero at full throttle and large
+ * behind a shut throttle, so it does not contradict b7 being torque. But if
+ * b7 tracks charge at full throttle, it may inherit the reference that charge
+ * is normalised to, which docs/engine-health.md measures as 0 C and 1013 hPa.
+ * On that reading 255 is a normalisation nobody can reach with real air, real
+ * maximum b7 is nearer 225-230, and the two factory figures are permanently
+ * out of reach at any oil temperature on any engine.
+ *
+ * What settles it is one simultaneous reading of b7 and relative load at full
+ * throttle -- see docs/engine-health.md, which also has the cheap way to get
+ * b7 without dismantling anything. Until then this constant stands.
+ *
+ * IF IT DOES MOVE, IT DOES NOT MOVE ALONE. The drag line below is fitted in
+ * BYTES and multiplied by this scale, so the two are one calibration, and both
+ * ceiling tests in test_compute.c are rewritten with them. */
 #define TORQUE_CNM_PER_BIT      74u         /* 0.74 Nm -- see above */
 
 /* Drag torque -- friction, pumping, alternator -- rises with engine speed and

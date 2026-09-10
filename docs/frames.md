@@ -418,9 +418,9 @@ cold-oil line the two ratings disagreed, 0.745 (85 kW at 5200 rpm) against
 That the two independent ratings now agree about the scale is a check that
 passed, not a measurement: the constraint is dominated by the drag line's
 *slope*, so a wrong intercept can still look consistent. **Nothing available
-settles it, and it is no longer an open question.** The VCDS session was run on
-This ECU has no torque measuring block at all; a full-throttle
-pull would settle it and is deliberately not planned. It is parked under *Never
+settles it, and it is no longer an open question.** The VCDS session was run
+and is recorded in `docs/vcds-session.md`: this ECU has no torque measuring
+block at all, so there is nothing there to read a scale against. It is parked under *Never
 resolved but not required* in `can-decoding.md` — do not plan that session
 again. `test_compute.c` pins the ceiling so the factory figures cannot silently
 go out of reach.
