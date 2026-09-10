@@ -425,6 +425,40 @@ resolved but not required* in `can-decoding.md` — do not plan that session
 again. `test_compute.c` pins the ceiling so the factory figures cannot silently
 go out of reach.
 
+### ⚠ b7 is a model output, so these two channels cannot see a sick engine
+
+**The ECU has no torque sensor.** b7 is computed, from the measured charge, the
+*commanded* lambda and the ignition angle — so what it reports is the torque a
+**correctly burning** engine would make with that much air and that much
+advance.
+
+Three consequences, and the middle one is counter-intuitive enough to have been
+got backwards once already:
+
+- **An air problem shows up.** Less charge, less modelled torque. So does
+  ignition retard, through the efficiency term. Both of these the display
+  reports honestly.
+- **A combustion problem does not.** Leaking injectors, a weak spark, poor
+  mixture distribution — none of it is an input. The lambda that enters the
+  model is the one the ECU *asked for*, and the single pre-catalyst oxygen
+  sensor measures the average of four cylinders, so one rich cylinder against
+  three lean ones averages to a value the ECU is satisfied with. The fuel
+  trims are the ECU **correcting** that average, not **reporting** a fault, and
+  it has nothing left to infer the loss from.
+- **So on an unhealthy engine these channels OVER-read**, showing what the air
+  should have produced while the engine produces less. They are closer to an
+  air meter dressed as a torque gauge than to a dynamometer.
+
+**None of which makes the displayed number wrong on a healthy engine** — it is
+the same quantity the ECU steers the car with. It means the number answers
+"what should this air be worth", and only answers "what is the engine making"
+when the engine is well.
+
+⚠ **`docs/engine-health.md` is an open investigation into exactly this**, on
+this vehicle, and holds the measurements: the display's peak against the
+measured airflow of the same drive, and the two readings of the gap between
+them. It is a holding document and will be folded back in or deleted.
+
 **Drag torque** — friction, pumps, alternator — is subtracted from the
 indicated torque. It is not constant; it rises with engine speed and is
 modelled linearly against rpm.

@@ -278,6 +278,13 @@ because code and other documents cite them:
 are kept apart on purpose: the first says what the answer is, the second says
 there is no answer and none is wanted.
 
+**This register is about decoding the bus, and one live investigation is not in
+it.** `docs/engine-health.md` holds an open question about the *vehicle* —
+whether the engine is down on power, and whether `TORQUE_CNM_PER_BIT`
+under-reads — which bears on question 8 above and is noted inside it. It is a
+holding document with an end date, not a tenth question, and the count above
+is unchanged.
+
 The numbering is therefore not contiguous in any one section. That is
 deliberate: renumbering would silently break every `question 7` in the source
 tree.
@@ -337,9 +344,15 @@ could not have shown the power the car is sold with at any throttle opening.
 difference matters. The scale was *derived* from the two ratings, so the
 display agreeing with them is arithmetic closing on itself, not a measurement.
 Nothing has ever compared either number against a dyno, and nothing is planned
-to: this ECU has no torque measuring block and the car is deregistered.
+to: this ECU has no torque measuring block, so there is nothing to read it
+against without one.
 
-⚠ **It is calibrated for a stock AQY, so a remap would not read correctly.**
+⚠ **It is calibrated for a stock AQY, and this car is not one.** The remap
+below is a fact about this vehicle rather than a caution about somebody else's:
+the ECU was chipped years ago, it is not going back to standard, and
+`docs/engine-health.md` holds what is and is not known about it.
+
+**A remap therefore does not read correctly.**
 Which way it fails depends on something nobody has established — whether the
 ECU scales its internal reference torque with the map. If it does, b7 stays in
 the same range for more real torque and the display **under-reads** a tuned
@@ -348,6 +361,17 @@ display follows until it **clips at 255 counts**, which is the 170.4 Nm above.
 Either way the numbers stay believable and stop being right, which is the worst
 shape a fault can have. A remap means recalibrating both the scale and the drag
 line together.
+
+**What it costs here, as far as it can be bounded.** A remap on a naturally
+aspirated engine normally moves ignition advance and the full-load enrichment
+and is worth a few per cent. The scale is derived by requiring b7 = 255 to
+reproduce the two ratings **of a stock engine**, so if the remap gained
+anything, full scale should map to more Nm than it does and the display
+under-reads by roughly what the remap gained. A few per cent, in a known
+direction — small against the 0.3 % bracket's own false precision, and one more
+reason that bracket is arithmetic closing on itself rather than a measurement.
+**The drag line is unaffected in kind**, because it was fitted on this car as
+it is.
 
 **For reference, the highest the car has actually produced on record** is
 **107.0 Nm and 53.8 kW** — b7 = 185 at 4799 rpm, full throttle, first gear, on
@@ -453,10 +477,17 @@ argument above expires.**
 hot, and enough points below 1500 rpm to see whether the fall from idle to
 1536 rpm is a curve worth modelling rather than a line.
 
-**The obstacle is the car, not the method.** The car is deregistered and only
-moves on short stretches of private land, so oil at 95–110 °C is not something
-a drive to the end of the road produces — `17_drive_property_z1` is six minutes
-of it and the oil went 75.0 → 77.2 °C. Whatever gets the oil hot, the sweep
+**The obstacle is the car, not the method — and half of it has lifted.** The
+car has passed inspection and is back on public roads, so the stretch of
+private land is no longer the limit it was; `17_drive_property_z1` is six
+minutes of that land and the oil went 75.0 → 77.2 °C.
+
+⚠ **Being on the road is not the same as getting the oil hot, and the first
+proper drive proved it.** Several minutes of ordinary road driving including
+full-throttle pulls peaked at **72–74 °C** — below the holds this line is
+already fitted to. So the sweep still needs a run long and hard enough to put
+95–110 °C into the sump, and that has to be planned rather than assumed.
+`docs/engine-health.md` has the drive. Whatever gets the oil hot, the sweep
 itself is unchanged: hold each speed until 0x420 b3 stops climbing, record the
 oil temperature with every point, and stay in neutral so net torque really is
 zero.
@@ -1023,8 +1054,8 @@ to run.
   answer to this question but the arithmetic consequence of question 7's, since
   full scale must cover the rated torque plus the drag.
 - The measurement does not exist. VCDS was tried and this ECU has no torque
-  block; a full-throttle pull would settle it and is deliberately not planned,
-  and the car is deregistered, so there is no road to do it on either.
+  block. A full-throttle pull has since happened — see the note below — and it
+  did not settle it either.
 - Nothing degrades while it stays undecided. A decision is in the code, the
   reasoning is written down in `frames.md` and `config.h`, and two tests in
   `test_compute.c` pin the ceiling so a future edit cannot quietly put the
@@ -1050,9 +1081,34 @@ support for the reading that b7 is *indicated torque*, arrived at
 from a different direction than the argument that produced it.
 
 So the scale remains a decision inside the bracket the factory ratings imply —
-0.74 Nm/bit since the drag refit, 0.75 before it. What is left that would
-settle it: a full-throttle pull, which is deliberately not planned, or a
-factory document nobody has.
+0.74 Nm/bit since the drag refit, 0.75 before it.
+
+### ⚠ New evidence, and the question stays parked anyway
+
+**The full-throttle pull this section said would settle it has happened**, on a
+public road, logged on the ECU's own measuring blocks. It did not settle it,
+and the reason is worth keeping.
+
+- **b7 did not clip.** The display peaked at 117 Nm and 58 kW, which is b7
+  around 199 of 255, at engine speeds past 5700 rpm with the pedal on the
+  floor. So the remap has not pushed b7 into the ceiling, which was one of the
+  two ways `frames.md` said a remap could fail.
+- **But the airflow of that same pull implies more torque than the display
+  showed** — enough that either the engine is burning badly or the scale
+  under-reads, and the measurement supports both. `docs/engine-health.md` has
+  the numbers and the argument.
+- **The car is chipped**, which makes the derivation worse in a known
+  direction: the bracket comes from *stock* ratings and this engine is not
+  stock.
+
+**None of that is a reason to re-plan the cancelled VCDS session.** There is
+still no torque block on this ECU and there never will be. What is new is a
+different route to the same number — torque inferred from measured air and
+measured fuel — which needs no block and no dynamometer, and which
+`engine-health.md` sets out. **Until that capture exists this stays parked**,
+and it stays here rather than moving to the open register, because there is
+still no work owed: the decision in the code is defensible, and the engine has
+to be repaired before any measurement of it means anything.
 
 ⚠ **A second finding came out of this session and it is more expensive than the
 question was** — the drag torque was fitted on cold oil. That is question 7,
