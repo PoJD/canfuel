@@ -93,6 +93,58 @@ in first, and downshifting to first while braking almost to a stop.
 
 ---
 
+## The idle test — two thermal states, and it is the other half of the drive
+
+**This one is not about the drive at all**, and it is easy to skip because
+nothing exciting happens during it. It is the test with a prediction already
+attached: `docs/engine-health.md` measures the stumbling idle out of the
+fixtures and finds it present at 61 °C of oil and absent at 73 °C, with the
+coolant at 99 °C in both. If the injectors were the cause, **both states should
+now be clean.**
+
+**The gauge on the dashboard cannot see this.** It reads the coolant, which is
+already at the top in both states. Use `OilTemp` on the display.
+
+**Two sittings, each about two minutes:**
+
+| when | oil | what to do |
+|---|---|---|
+| after the coolant has settled but the engine is not yet soaked | around **60 °C** | idle, count the stumbles, watch group 014 |
+| after another twenty minutes of running or driving | **73 °C or more** | the same again |
+
+**At each one, keep group 014 on the screen with `Rozpoznani` showing
+`aktiv.`** The question it answers is the one nothing else can:
+
+- **stumble and the counter increments** → it is a combustion event, so the
+  air path and the evaporative system are out
+- **stumble and the counter stays at zero** → it is not a misfire but a
+  disturbance of the charge, which points at purge or idle air control and
+  **away from the injectors**
+
+**Log group 010 on its own for each sitting**, not two groups. One group
+samples at about 3.3 per second against 1.7 for two, and a stumble lasts a few
+hundred milliseconds, so the rate is the whole game here. ⚠ **Even at 3.3 per
+second this undercounts** — many events will fall between samples. That is
+acceptable because both sittings undercount equally, so the *comparison*
+between the two thermal states survives even though the absolute count does
+not.
+
+⚠ **Only a bus capture is directly comparable with the fixtures.** The numbers
+in `engine-health.md` come from 0x280 at about 94 frames a second; nothing VCDS
+can do approaches that. So if a USBtin is ever on this bus again, **take a
+60 s idle capture at each of the two thermal states** — that, and only that,
+can be run through the same analysis and set beside `09`, `11` and `12`. It
+needs the dashboard open, so it belongs with the hot-oil sweep and everything
+else in `install.md` step 11 rather than on its own trip.
+
+**What the three long-standing symptoms have in common** is worth keeping in
+view while testing: the exhaust destroying itself progressively, the stumbling
+idle, and poor cold starts have all been present for years. One cause that
+produces all three is worth more than three separate explanations, and a
+leaking injector is currently the only candidate that does.
+
+---
+
 ## Straight after, with the engine still idling
 
 **10. Read `TorqRaw`'s maximum off the display** and write it down with the

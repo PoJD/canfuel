@@ -193,6 +193,66 @@ average of four cylinders, so one rich cylinder and three lean ones average to
 something the ECU is content with while every one of them makes less torque
 than a correct one.
 
+### The rough idle is in the fixtures, and it has a thermal lever
+
+**The symptom, as the owner describes it:** idle is not uniformly rough. It
+runs reasonably and then, every few seconds, stumbles slightly. **It has been
+like this for years**, alongside the exhaust system progressively destroying
+itself and poor cold starts — three long-standing symptoms rather than one
+recent one.
+
+**It is in the recordings**, which means it can be measured rather than only
+felt. Counting transient dips of engine speed against its own one-second
+median, over the three warm idle fixtures:
+
+| fixture | oil | coolant | dips ≥ 20 rpm | dips ≥ 15 rpm |
+|---|---|---|---|---|
+| `09_idle_60s_z1` | **61.0 °C** | 99.2 °C | **13 in 60 s** | 35 |
+| `11_idle_noac_z1` | 72.8 °C | 99.6 °C | **0 in 25 s** | 4 |
+| `12_idle_ac_z1` | 73.5 °C | 99.5 °C | **0 in 25 s** | 1 |
+
+⚠ **An earlier pass at this reported the fixtures as smooth and was wrong.** It
+looked for the single deepest dip, which is a different question: the deepest
+excursion in `09` is only 37.5 rpm, while what the owner describes is a small
+event *repeating*. Asking for the maximum answers "is there one big stumble"
+and says nothing about thirteen small ones.
+
+**The lever is how heat-soaked the engine is, and the coolant hides it.**
+Coolant sits at 99 °C in all three, so the ECU's own warm-up state is identical
+and cannot be what differs. The only thing that separates them is the real
+temperature of the engine, for which the oil is the available proxy: the
+stumbles are there at 61 °C and gone at 73 °C.
+
+**That fits a leaking injector and argues against the evaporative system.** A
+dribble onto a port that is not yet hot puddles instead of vaporising and goes
+in as a slug; once everything is heat-soaked the same dribble evaporates and
+disturbs nothing. Purge, by contrast, is normally enabled only once warm, so it
+would disturb *more* in the hotter state rather than less.
+
+**The intervals are irregular**, which points the same way: 3.3, 3.9, 3.1, 3.7,
+10.1, 1.5, 1.7, 3.4, 4.9, 0.9, 5.8 and 1.2 seconds — a mean of 3.6 s with a
+standard deviation of 2.4. **A valve on a duty cycle produces a period.** This
+is sporadic, which is how an accumulating drip behaves and how a duty-cycled
+anything does not.
+
+**A third observation, and it is weak on purpose.** b7 does not move at any of
+the thirteen dips: engine speed falls 20–37 rpm while the ECU's modelled torque
+stays exactly on its own baseline. That is the blindness described under *What
+the display can and cannot mean* showing up in this car's own data — but one
+count of b7 is 0.39 %, so the resolution is coarse enough that a brief event
+might not register regardless. **Suggestive, not evidence.**
+
+⚠ **The whole thing is a correlation across three recordings, one of which is
+positive.** They differ in more than the data holds — different days, fuel and
+ambient conditions — and `09` is two and a half times longer than the others,
+which the per-second rates account for but which still gives it more chances.
+**Treat the thermal lever as the most testable idea here, not as a finding.**
+
+**What costs nothing to check:** if this is right, the stumbling should be worst
+in the twenty minutes *after* the temperature gauge has already settled, and
+should ease as the engine soaks through. The gauge reads the coolant and is
+therefore useless for it; `OilTemp` on the display is not.
+
 ### The old converter was shown to the owner, and it is the one hard fact here
 
 Cracked on the outside, blocked inside, and **one chamber burned right
@@ -278,11 +338,21 @@ be reasoned around rather than removed.
 
 ## What the next drive settles, and what it does not
 
-New injectors and silencers are fitted the following week.
+New injectors, spark plugs, ignition leads and silencers are fitted the
+following week. **The plugs and leads were last changed in 2022**, so they have
+spent four years downstream of whatever has been happening; the coil is a month
+old and the misfires outlived it, which is what took the ignition side off the
+list of causes and left it on the list of casualties.
 
 | the next drive settles | it does not settle |
 |---|---|
-| whether the engine was unhealthy — feel, first-gear misfires, the idle adaptation, cold starts | whether `TORQUE_CNM_PER_BIT` is right |
+| whether the engine was unhealthy — feel, first-gear misfires, the stumbling idle at both thermal states, the idle adaptation, cold starts | whether `TORQUE_CNM_PER_BIT` is right |
+
+**Three symptoms have run together for years** — the exhaust destroying itself,
+the stumbling idle, and poor cold starts, the last of these for a period nobody
+has pinned down. A single cause for all three is worth more than three
+explanations, and a leaking injector is the only candidate on the table that
+produces all of them.
 
 **The prediction worth writing down before it happens**, so it can be wrong:
 if the injectors were the fault, the car pulls better, the first-gear misfires
