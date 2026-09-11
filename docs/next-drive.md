@@ -240,7 +240,33 @@ value read off the screen and photographed, not a log.
    worth a minute: every warm log ever recorded puts the oil twenty-odd degrees
    *below* the coolant and never above 77 °C, and the drag line question 7 is
    still open about is fitted against that number.
-9. **Then start the capture again and settle 0x200, which costs two minutes.**
+9. **Blocks 046 and 034 — the ECU's own verdict on the new converter and on
+   the sensor in front of it.** ⚠ **Both are *basic setting* blocks**, the same
+   class as 070: they run a test rather than report a state, and each has gates
+   that must be met before its answer means anything.
+
+   | block | tests | hold | the answer |
+   |---|---|---|---|
+   | **046** | catalytic converter conversion | **2800–3200 rpm**, cat ≥ 352 °C | `CatConvB1 OK` / `not OK` |
+   | **034** | pre-cat oxygen sensor ageing | **2200–2800 rpm**, cat ≥ 352 °C | `B1-S1 OK` / `not OK` |
+
+   **The engine must be hot and just driven**, because the converter
+   temperature is a gate and it is the block's own second field — watch it come
+   up rather than guessing. **There is no need to know what a healthy
+   converter temperature is**; the number is a precondition and the test gives
+   the judgement.
+
+   ⚠ **There is no before-reading and there will not be one.** These were never
+   run on the old converter and the car is not being started to get one — the
+   whole reason it stands is to keep raw fuel away from the new one. So this is
+   an absolute check rather than a comparison, which is what makes the pass/fail
+   wording valuable: it needs no baseline.
+
+   **Worth doing even though readiness already read `00000000` today**, which
+   says the catalyst monitor has *completed*. Completed is not passed, and
+   `CatConvB1 OK` is the explicit version of the same question.
+
+10. **Then start the capture again and settle 0x200, which costs two minutes.**
    With the engine still idling and a capture running, **disconnect VCDS from
    the ECU and reconnect it.** `18_coldstart_z1.txt` is the only log carrying
    identifier 0x200, twice, and both times it fell in the window where VCDS had

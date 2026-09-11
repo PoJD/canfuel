@@ -306,11 +306,26 @@ and **every temperature field in any of them is one of three things**: coolant
 046). **`OilTemp` cannot be cross-checked against this ECU**, which is why
 question 10 below has a thermometer in it rather than a screen.
 
-**Two specifications that came out of the same read and are worth keeping:**
-intake air is specified **−45.0 to +108.5 °C**, and **catalytic converter
-temperature, blocks 034 and 046, is specified min. 352 °C** — a light-off
-figure, and the only direct instrument on the new converter this project has
-found.
+⚠ **The catalytic converter temperature is a precondition, not a reading**, and
+calling it "the one instrument on the new converter" — as an earlier version of
+this paragraph did — gets it backwards. Blocks **034** and **046** are *basic
+setting* tests, the same class as 070, and the temperature is one of the gates
+that has to be satisfied before the verdict means anything:
+
+| block | what it tests | the gates | the answer |
+|---|---|---|---|
+| **034** | **the pre-cat oxygen sensor's ageing** | 2200–2800 rpm, cat ≥ 352 °C, sensor period ≤ 2.2 s | `B1-S1 OK` / `not OK` |
+| **046** | **catalytic converter conversion** | 2800–3200 rpm, cat ≥ 352 °C, amplitude 0.00–0.55 | `CatConvB1 OK` / `not OK` |
+| **036 / 037** | the post-cat sensor, availability and response | 037 wants 15–35 % load | `B1-S2 OK`, `Sys. OK` |
+
+**046 is the ECU's own verdict on whether the converter converts**, which is
+worth more than any temperature: there is no need to work out what a healthy
+catalyst temperature is, because the number is a gate and the test supplies the
+judgement. **034 matters for a different reason** — the pre-cat sensor has
+lived through everything that destroyed the old converter, so it is a plausible
+casualty and nothing has ever looked at it.
+
+Intake air, from the same read, is specified **−45.0 to +108.5 °C**.
 
 ⚠ **070 is a *basic setting* block**, so expect it to run an actuator test
 rather than report a state passively.
