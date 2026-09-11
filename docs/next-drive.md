@@ -128,6 +128,17 @@ ECU during cranking and the start has no diagnostic data beside it.
 - **Several stationary idles of three to five minutes each**, spread through
   the warm-up — one early, one in the middle, one when thoroughly hot. These
   are the stumble data, and they are what makes the oil-temperature curve.
+
+  ⚠ **Spread through the warm-up is the whole point, and a hot idle alone
+  would waste the trip.** A hot idle counted **zero before the repair** —
+  `11_idle_noac_z1` and `12_idle_ac_z1`, on the old injectors, at 73 °C — so
+  zero afterwards says nothing whatever. The reading that carries information
+  is from cold and at around **61 °C of oil**, where the before-count is 12.1
+  and 11.6 a minute. **One minute at a matched temperature settles "gone or
+  not gone"; three minutes also settles "how much better".**
+  `docs/engine-health.md` has the prediction and the arithmetic, and
+  `python tools/idledips.py CAPTURE` is the whole analysis — **no firmware
+  change and no display channel is involved.**
 - **Two or three full-throttle pulls in a HIGH gear from about 2400 rpm** —
   fourth or fifth, or up a hill, anywhere the engine *sits* near peak torque
   instead of flashing through it. **This is what the last drive got wrong**:

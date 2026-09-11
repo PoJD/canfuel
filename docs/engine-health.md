@@ -466,6 +466,56 @@ else, and this recording cannot say which. And the ECU's counter is a windowed
 quantity read at 1.7 Hz, so the lag is an upper bound on the true one and the
 two negative lags are within that.
 
+### The idle counter, frozen before the repair so the after-reading means something
+
+**The question this answers: after the injectors, does the stumble go?** It is
+worth setting up carefully because it is cheap to get wrong in a way that
+looks like a result.
+
+⚠ **A warm reading after the repair proves nothing, because a warm reading
+already read zero before it.** `11_idle_noac_z1` and `12_idle_ac_z1` were
+taken at 72.8 and 73.5 °C **on the old injectors** and both count zero. So the
+after-measurement has to be taken in the states where the before-measurement
+was not zero — **from cold, and at around 61 °C of oil.** `docs/next-drive.md`
+already asks for idles spread through the warm-up; this is why.
+
+**`tools/idledips.py` carries a second detector for it**, `dips_cheap()`,
+shaped the way firmware would have to do it: a first-order baseline, a latch,
+and the standstill-and-closed-throttle gate the torque rule already uses. Its
+constants are **frozen**, and `test_idledips.py` has a test whose only job is
+to fail if somebody changes them.
+
+**Why frozen matters more than the constants themselves.** If the injectors
+cure the idle, there will never again be a rough engine to fit a detector
+against — and at that point *any* threshold reads zero. A detector tuned after
+the repair to read zero measures nothing. So the numbers below are a
+prediction, written while it can still be wrong:
+
+| state | oil | before, `dips_cheap()` | predicted after |
+|---|---|---|---|
+| cold idle | 13–17 °C | **12.1/min** | ~0 |
+| warm-ish idle | 61.5 °C | **11.6/min** | ~0 |
+| hot idle | 72.8–73.5 °C | 0.0/min | 0, and it says nothing |
+| a drive | — | 0.0/min | 0, and it says nothing |
+
+**One minute of matched idle settles it.** At 11.6 a minute, seeing none in
+sixty seconds has a probability of 7×10⁻⁵ if nothing changed. Three minutes
+also resolves a *partial* improvement — halving rather than curing — at
+p = 0.002. `next-drive.md` asks for three to five minutes, which is enough for
+both questions.
+
+**And it needs no firmware.** The next session records a bus capture anyway,
+and the detector runs over the capture afterwards. **Nothing in `src/` is
+involved, no frame layout changes and `S-AQY.TRI` is untouched** — putting the
+count on the bus and onto the display is a separate want with a separate cost,
+and it waits until the count has been shown to mean something.
+
+⚠ **This is not a misfire counter and must not be called one.** Seven of the
+44 dips had a misfire increment beside them; the other 37 may be unreported
+misfires or may be something else, and no data here separates those. It counts
+dips of engine speed at idle. Naming it after what it is thought to indicate
+would be the same error as the label file's `(celkovy)`.
+
 ### Cold enrichment, measured
 
 The fuel counter is absolute and in microlitres, so this needs no assumption:

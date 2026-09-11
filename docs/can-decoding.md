@@ -54,6 +54,25 @@ and both exceptions sit 81 and 89 ms after a 0x200:
 Two for two, on a byte that is otherwise constant across every recording this
 project has. **Whatever 0x200 announces, 0x5D0 b0 reports it.**
 
+**It is not the ECU announcing a misfire, and that was worth testing.** The
+attractive reading of a rare frame on an engine with a misfire problem is that
+the engine is reporting one. It is refuted by the same overlap that tied the
+stumbles to the misfire counter: **in the 231 s where the ECU registered seven
+misfire increments, 0x200 appears zero times.** If it were emitted on each,
+seven would be expected, and `e⁻⁷ = 0.0009`. All three frames are in the 87 s
+where there is no diagnostic data at all.
+
+**What that test also established, and it outlives the question:** every byte
+of every identifier was checked against its own ±2 s median at all 44 dips of
+engine speed, and **nothing on this bus responds to a misfire except engine
+speed itself.** The engine load byte (0x280 b6) and the indicated torque byte
+(b7) do not move at all — mean deviation 0.09 and 0.14 counts, against
+standard deviations of 12.0 and 17.3 for the bytes themselves. Everything that
+appeared to move is a rolling counter or a checksum, recognisable because the
+scatter of its deviation equals the scatter of the byte. **Anything this
+project ever builds to watch combustion from the bus has engine speed and
+nothing else to work with.**
+
 ⚠ **Both events fall in the window where VCDS had dropped the ECU and was
 being reconnected by hand** — 42.4 to 129.3 s, see `test/fixtures/README.md`.
 That is suggestive and it is not a finding: the window is 27 % of the running
