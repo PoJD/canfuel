@@ -91,11 +91,25 @@ recovered afterwards.
 **Mass air flow and engine load are the point of the second instrument** —
 neither is on the CAN bus, so the capture cannot get them and only VCDS can.
 
-**Write down two more numbers at each idle stop, from group 006**: the intake
-air temperature and the altitude correction factor. Neither moves quickly
-enough to need logging, and together they turn the volumetric-efficiency
-estimate in `engine-health.md` from a range into a figure. **Two numbers on
-paper, three times.**
+⚠ **Nothing else may be read on the VCDS screen until the log is stopped, and
+this is the rule that decides every "could I also look at…" below.** Changing
+the group selection is what the log samples; switching to another block to
+read something ends the recording. There is no way to read a third block and
+keep the rate, which is why *"two groups, never three"* is not only about
+sampling rate — it is also about not touching the screen for the next hour.
+
+**Group 006 — intake air temperature and the altitude correction factor —
+is therefore read twice, and neither time is during the drive:** once **before
+the key**, while nothing is logging yet, and once **at the end**, with the log
+already stopped. Two numbers on paper, twice.
+
+That is not the same as reading it during the pulls, and it is better than it
+sounds. The cold reading is essentially ambient and the hot standing one is
+ambient plus the engine bay — today's cold start gave **22.5 °C standing after
+five minutes with the oil starting at 12.75 °C** — so the pair **brackets**
+what the engine was breathing during a pull, which is moving air somewhere
+between the two. The volumetric-efficiency table in `engine-health.md` wants a
+bound and gets a narrower one.
 
 ⚠ **A log of zeroes is evidence and not proof.** The misfire counter is a
 *current* count rather than a total — values of 5 to 17 were watched rising and
@@ -176,8 +190,9 @@ holds are read off the raw log and b7, which is what they always were.
 
 ## Straight after, with the engine still idling
 
-**Stop the capture first**, then read these on the VCDS screen and photograph
-them. They are single values, not logs.
+**Stop the capture and the VCDS log first** — in that order, and both of them.
+Only then may the group selection be touched. Everything below is a single
+value read off the screen and photographed, not a log.
 
 1. **Group 014 — misfires.** `Rozpoznani` must read **`aktivováno`** — that is
    the word the label file produces, not `aktiv.`; if it says `deaktiv.` the
@@ -190,11 +205,16 @@ them. They are single values, not logs.
 2. **Group 032 — the lambda adaptations.** They were **−4.7 % at idle against
    +1.6 % at part load** before the work. Moving toward zero at idle is the
    single cleanest sign that the injectors were the fault.
-3. **Groups 022 and 023 — knock retard, per cylinder.** Specified 0.0 to
-   15.0 °CA each. **This is the only per-cylinder signal this ECU offers** —
+3. **Groups 022 and 023 — knock retard, per cylinder. Not this session, and
+   it is worth knowing why rather than finding out in the car.** Specified 0.0
+   to 15.0 °CA each, and **the only per-cylinder signal this ECU offers** —
    there is no per-cylinder misfire counter — so a cylinder retarded further
-   than its neighbours names itself. Worth a look after the pulls rather than
-   at idle, where nothing knocks.
+   than its neighbours would name itself. But it is a *live* value under load:
+   at idle after the drive nothing is knocking and it reads what a quiet engine
+   reads, which is nothing. Catching it needs it on the screen **during a
+   full-throttle pull**, and that is either a third logged group, which costs
+   the sampling rate, or a broken log, or a second person holding the laptop.
+   **Its own session, with a passenger.** Do not spend this one on it.
 4. **Group 055 — the idle regulator**, specified −2.00 to +2.00 g/s, with its
    own adaptation beside it at −1.50 to +0.150 g/s, and group 056 for the
    target idle speed of 780 rpm. **Both now have a before-reading**, taken over
@@ -228,15 +248,31 @@ them. They are single values, not logs.
 
 | | |
 |---|---|
-| the capture | filtered to `0x280`, `0x420` and `0x1A0` before sending — about a fifth of the size and nothing this analysis needs is outside those three |
+| the capture | filtered to `0x280`, `0x1A0`, `0x420` and **`0x480`** before sending — see below |
 | the VCDS log | as it comes — groups 003 and 014 |
 | groups 014 and 032 | photographs are fine |
 | how it drives | not a soft measure here, see the prediction below |
 
-**Size.** The whole bus runs about **one megabyte a minute**, so an hour is
-roughly 60 MB — fine to write, awkward to hand over, which is what the filter
-is for. `tools/usbtin_capture.py` writes line by line as it goes, so a capture
-that is interrupted keeps everything up to the interruption.
+**Size, measured on `18_coldstart_z1.txt` rather than estimated.** The whole
+bus is **65 MB an hour** — fine to write, awkward to hand over, which is what
+the filter is for. The four identifiers above are **36 % of the bytes, about
+24 MB an hour.** `tools/usbtin_capture.py` writes line by line as it goes, so a
+capture that is interrupted keeps everything up to the interruption.
+
+⚠ **`0x480` is in that list and an earlier version of this file left it out**,
+which would have thrown away the one thing the capture is still needed for.
+Everything else this session asks of the bus can now be read off the display or
+the VCDS log; the **fuel counter cannot**, and it is what removes the air-fuel
+assumption from the efficiency argument in `engine-health.md` — measured air
+from group 003 over the same full-throttle pulls, divided by measured fuel.
+**Filter it out and the pulls have to be driven again.**
+
+**`0x288` is deliberately not in the list**, and it is the only close call. It
+is the coolant, which would take the filtered capture from 36 % to 48 % — nine
+more megabytes to carry for a channel that, across the three warm idle
+fixtures, **sat at 99 °C in all of them while the thing being measured moved**.
+The oil in `0x420` is the temperature this investigation runs on. If the
+warm-up state itself ever becomes the question, take the unfiltered capture.
 
 ---
 

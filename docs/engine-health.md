@@ -124,13 +124,20 @@ cylinders comes out as:
 Intake air temperature was not logged, so that spread is the honest bound
 rather than a figure. **Every value in it is a normally breathing engine.**
 
-⚠ **That bound can be replaced by a calculation next time, and this file said
-otherwise.** Intake air temperature is genuinely **not on the CAN bus** — which
-is what matters for the firmware, and why `config.h` rules out a live
-correction factor — but **VCDS has it**: groups **004** and **006** both carry
-`teplota nasav. vzduchu`, and 006 adds an **altitude correction factor**. Two
-numbers noted at each stop are enough, since neither moves quickly, and they
-turn the table above from a range into a figure.
+⚠ **That bound can be narrowed next time, and this file first claimed it could
+be replaced by a figure.** Intake air temperature is genuinely **not on the CAN
+bus** — which is what matters for the firmware, and why `config.h` rules out a
+live correction factor — but **VCDS has it**: groups **004** and **006** both
+carry `teplota nasav. vzduchu`, and 006 adds an **altitude correction factor**.
+
+**What cannot be had is the reading that would settle it**, which is the intake
+temperature *during a full-throttle pull*. Reading any block means changing the
+group selection, and that ends the VCDS log the rest of the session depends on;
+`next-drive.md` carries the rule. So 006 is read cold before the key and hot at
+the end, and the two **bracket** the pulls rather than measuring them: the
+altitude factor is a constant either way, and the first cold start recorded put
+the standing intake at **22.5 °C with the oil at 12.75** — about ten degrees of
+engine bay over ambient, against which a moving car is somewhere in between.
 
 **A badly failing air-mass sensor is therefore ruled out; a slightly lazy one is
 not.** The calculation uses the sensor's own reading, so a sensor under-reading
@@ -679,13 +686,13 @@ no torque measuring block, so there is nothing to read there. What is new is a
 different measurement — torque inferred from air and fuel — which needs no such
 block.
 
-**And one capture now answers three questions at once**, which is why
-`next-drive.md` splits the work into two configurations rather than one: a
-continuous recording through the warm-up gives the stumble rate against oil
-temperature as a curve instead of two points, holds b7 at ninety-four samples a
-second beside the ECU's own load, and finds out whether this engine's oil ever
-passes about 75 °C — which would close `can-decoding.md` question 7 rather than
-leave it open.
+**And one capture answers three questions at once**, which is why
+`next-drive.md` settled on a single configuration rather than splitting the
+work: a continuous recording through the warm-up gives the stumble rate against
+oil temperature as a curve instead of two points, holds b7 at ninety-four
+samples a second beside the ECU's own load, and finds out whether this engine's
+oil ever passes about 75 °C — which would close `can-decoding.md` question 7
+rather than leave it open.
 
 **Most of it needs no capture at all any more.** `S-AQY.TRI` now carries
 `TorqRaw`, the raw 0x280 b7 beside the torque computed from it, so b7 can be
