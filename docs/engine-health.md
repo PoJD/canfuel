@@ -37,6 +37,36 @@ silencers are due the following week.
 converter fitted and the display reading its ten channels. What follows is what
 came off it.
 
+### The history before any of that, and why it changes how the evidence reads
+
+**The car was bought with an oxygen sensor already faulty, and that sensor was
+one of the first things replaced.** It was found only after something else was:
+**the engine warning lamp had been masked inside the instrument cluster**, so
+it had been lit the whole time and could not be seen. Whatever the fault
+history is before that point, nobody has it.
+
+Three things follow, and none of them are sentiment.
+
+- **A lambda sensor has already been replaced once on this car.** So if block
+  034 comes back `B1-S1 not OK`, that is a **second** sensor failing, which
+  argues for something that keeps killing them — running rich, or raw fuel
+  reaching them — rather than for a worn-out part. ⚠ **Which sensor it was,
+  pre- or post-catalyst, is not recorded here**; block 034 covers the pre-cat
+  one and 036/037 the post-cat one, so the answer changes which block's verdict
+  is the interesting one.
+- **The parts have been replaced in the order the symptoms surfaced**, which is
+  not the same as the order of cause: sensor, then coil, then most of the
+  exhaust, and only now the injectors. A single upstream cause producing
+  symptoms one at a time looks exactly like this from inside it, which is the
+  argument for the diagnosis-before-parts position the rest of this file takes.
+- **The masked lamp means the "for years" in every symptom description is a
+  lower bound.** It cannot be turned into a date and should not be.
+
+**Nothing further is bought before 034 and 046 report.** That is the owner's
+position and it is the right one — `next-drive.md` step 9 is what produces
+those two verdicts, and both are absolute rather than comparative, so they need
+no baseline this car can no longer provide.
+
 ---
 
 ## What the vehicle reported

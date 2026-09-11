@@ -256,6 +256,27 @@ value read off the screen and photographed, not a log.
    converter temperature is**; the number is a precondition and the test gives
    the judgement.
 
+   **How to start one, because it is not where it is usually looked for.**
+   *Basic settings* is **not** *Akční členy* — that is the other function, the
+   one that steps through actuators with START/DALŠÍ and is run with the engine
+   stopped, which is why it does not look familiar. The Czech VAG-COM manual
+   (`C:\Auto-diagnostika\VAG-COM.pdf`, §5.2 and §5.3) gives two ways in:
+
+   - from the controller window, **`ZÁKLADNÍ NASTAVENÍ`**, or
+   - from **`Měřené hodnoty`**, the **`Přepnout na základní nastavení`** button
+     — the greyed-out one at the bottom left of the screen the log runs in
+
+   Then enter the group number and press **START**. §5.3 also says to read the
+   vehicle's service manual first, which is worth repeating rather than
+   paraphrasing away.
+
+   ⚠ **These two need the engine running, hot, and held at speed** — every
+   basic setting previously run on this car was a throttle-body adaptation with
+   the engine stopped or idling, and that is not this. **Stationary, in neutral,
+   handbrake on**, and hold the revs steady while watching the screen, which is
+   the same rig `docs/vcds-session.md` describes for the free-revving holds and
+   works alone: the throttle is a foot, so both hands are free for the laptop.
+
    ⚠ **There is no before-reading and there will not be one.** These were never
    run on the old converter and the car is not being started to get one — the
    whole reason it stands is to keep raw fuel away from the new one. So this is

@@ -328,7 +328,17 @@ casualty and nothing has ever looked at it.
 Intake air, from the same read, is specified **−45.0 to +108.5 °C**.
 
 ⚠ **070 is a *basic setting* block**, so expect it to run an actuator test
-rather than report a state passively.
+rather than report a state passively. So are **034**, **046**, **060**, **098**
+and **099** — the label file names them all `Basic Setting`.
+
+**Basic settings is not the output-test function**, and the two are easy to
+confuse because the memorable one is the other. `Akční členy` steps through
+actuators with START/DALŠÍ and is run with the engine stopped; *basic settings*
+is reached either from the controller window or with the **`Přepnout na
+základní nastavení`** button inside `Měřené hodnoty`, takes a group number, and
+then runs whatever routine that group defines (VAG-COM manual §5.2 and §5.3).
+**Some of those routines need the engine running and held at a speed** — 034
+and 046 both do — which no throttle-body adaptation ever did.
 
 ---
 
