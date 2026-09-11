@@ -145,10 +145,12 @@ carries a generated block; a figure typed into prose only goes stale.
 - `test/fixtures/` — seventeen recordings from the vehicle, documented, of
   which the `_z1` ones are the only ones with trustworthy time
 - `docs/` — **`install.md` is the procedure**, plus decoding, frame layout,
-  refuelling reset, timing and optimisation. **`next-drive.md` is the
-  procedure for the next measurement in the car**, and `engine-health.md` is a
-  holding document for one open investigation into the engine itself, with an
-  end date rather than a permanent home
+  refuelling reset, timing and optimisation. **`cold-start-test.md` is the
+  next thing to be done in the car** — a one-shot recording before the parts
+  are changed, written to be followed from a cold session — and
+  `next-drive.md` is the procedure for after them. `engine-health.md` is a
+  holding document for one open investigation into the engine itself. All three
+  have an end date rather than a permanent home
 
 The C core reproduces the Python oracle on every fixture: fuel totals and
 restart counts agree **exactly**, distance to within 7 mm over 54 m. Both were

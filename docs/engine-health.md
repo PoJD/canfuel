@@ -14,6 +14,10 @@ correct — see *What the display can and cannot mean*, below.
 
 ---
 
+**Two procedures hang off this file.** `docs/cold-start-test.md` is the
+one-shot recording to be taken **before** the parts are changed, and
+`docs/next-drive.md` the session **after** them. Results from both land here.
+
 ## The occasion
 
 The car had been off the road. It came back with a **completely blocked
