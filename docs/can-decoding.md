@@ -298,6 +298,20 @@ findings:**
 is the only misfire block; looking for a cumulative total was a reasonable
 guess and the answer is that it does not exist here.
 
+⚠ **There is no oil temperature either, and this is now looked up rather than
+unknown.** The label file defines 29 blocks — 001–006, 010, 014, 022, 023,
+030, 032–034, 036, 037, 041, 046, 050, 054–056, 060, 066, 070, 077, 098–100 —
+and **every temperature field in any of them is one of three things**: coolant
+(001, 004, 077, 099, 100), intake air (004, 006) or catalytic converter (034,
+046). **`OilTemp` cannot be cross-checked against this ECU**, which is why
+question 10 below has a thermometer in it rather than a screen.
+
+**Two specifications that came out of the same read and are worth keeping:**
+intake air is specified **−45.0 to +108.5 °C**, and **catalytic converter
+temperature, blocks 034 and 046, is specified min. 352 °C** — a light-off
+figure, and the only direct instrument on the new converter this project has
+found.
+
 ⚠ **070 is a *basic setting* block**, so expect it to run an actuator test
 rather than report a state passively.
 
@@ -369,8 +383,10 @@ reads to the end.
 So the questions now live in three places, and the numbers are unchanged
 because code and other documents cite them:
 
-- **Open — one question, number 7, immediately below.** It changes numbers the
-  driver reads off the display and there is a procedure that would close it.
+- **Open — two questions, 7 and 10, immediately below.** Both change numbers
+  the driver reads off the display, and each has a procedure that would close
+  it. **10 is underneath 7**: the drag line is fitted against oil temperature,
+  so if that channel is offset, 7 is being answered in the wrong units.
 - **Resolved**, further down: 1, 2, 4, 5, 6 and 9, kept in full because the
   evidence is the useful part and a closed question that does not say how it
   was closed reopens itself.
@@ -616,6 +632,65 @@ and b7.
 
 ---
 
+### 10. Is the oil temperature *right*, and not merely oil? — **open, and it undermines question 7 if it is not**
+
+Question 4 settled **what** 0x420 b3 is. **Nothing has ever checked what it is
+worth.** The formula `× 0.75 − 48` was taken from the coolant on 0x288, which
+reads 99–100 °C on a warmed engine and is therefore credible — but that is an
+argument from analogy between two different frames, not a measurement.
+
+**What makes it worth asking.** The channel never gets hot, and never closes
+on the coolant:
+
+| state | oil | coolant | gap |
+|---|---|---|---|
+| `11`, `12` — warm idle | 72.8, 73.5 °C | 99.0 °C | −26 |
+| `16` — 2926 rpm held | 77.25 °C | 99.0 °C | −22 |
+| `17` — six minutes driving | 77.25 °C | 100.5 °C | −23 |
+| the drive of 2026-09-10 | **72–74 °C peak after about an hour** | — | — |
+
+**A warmed engine under load normally runs its oil at 90–110 °C and above the
+coolant, not twenty-odd degrees below it in every state ever recorded.** That
+is the whole of the suspicion, and it is not nothing: an hour of driving that
+peaks at 74 °C is the observation, and "this car is only driven gently" and
+"the channel is offset" both explain it.
+
+**What is not wrong with it.** It is a real measurement and not a stuck or
+derived number — in the four free-revving holds `13`–`16` it climbs
+72.75 → 77.25 °C while the coolant sits flat at 99, so it has dynamics the
+coolant cannot supply; and it is not the intake air, which question 4 now
+settles by direct comparison.
+
+**Why it matters beyond tidiness.** Question 7 and the drag line are fitted
+against oil temperature, and `next-drive.md` rests on the sentence *"72–77 °C
+is warm, not the 95–110 °C of real driving"* being false for this engine. If
+this channel is offset low, that sentence is false for a different reason than
+anybody thinks, and the drag line is fitted against a temperature that does
+not exist.
+
+**There is one way to close it, and the obvious one is already closed off.**
+
+⚠ **VCDS cannot cross-check this, because `01-Motor` has no oil temperature at
+all.** The label file for this ECU defines 29 blocks and **every temperature in
+any of them is coolant, intake air or catalytic converter** — the full list is
+in the block summary above. This is not "nobody has looked"; it has now been
+looked up and the answer is that the engine ECU does not carry the signal.
+**Do not spend a session hunting for the block.**
+
+That also says something about where 0x420 b3 comes from: not from the engine
+ECU's own measuring blocks. Reading it from whatever does send it would in any
+case only prove that two readers agree about one sender, which is not the
+question.
+
+**So the test is a thermometer down the dipstick tube, immediately after a
+drive**, against `OilTemp` on the display at the same moment. No electronics,
+no licence, no label file, and it settles the **absolute value** rather than
+the decode — which is the half that matters. It needs a drive long enough to
+have heated the oil and somebody willing to open the bonnet within a minute of
+stopping.
+
+---
+
 ## Resolved questions
 
 Six that were settled, moved out of *Open questions* so that
@@ -733,16 +808,28 @@ Three things follow, and they agree:
   session and stay there.
 - **It is highest in `03_drive`**, the one log with air actually moving through
   the engine. An intake temperature falls when you drive; oil does not.
-- **It reads 255 with the ignition on and the engine off** (`01_ign_only`, and
-  the first seconds of `06_trip_reset` before the engine fires). An intake air
-  sensor is a thermistor the ECU can read whenever it is awake, and it would
-  give a number. A quantity that only exists once the engine is running behaves
-  exactly like this.
+- ⚠ **The third argument used to be "it reads 255 with the ignition on and the
+  engine off", and that is not general.** It is true of `01_ign_only` and of
+  the first three frames of `06_trip_reset`, and false of the other two
+  recordings taken in that state: `08_ign_only_z1` holds a steady 51.75 °C for
+  its whole twenty seconds, and `18_coldstart_z1` reads 12.75 °C throughout the
+  41 s before the engine fires. **255 is the fault or not-yet-available value**
+  — it decodes to 143.25 °C, which `mfd15` records the display latching as an
+  oil maximum — and it is not a reliable signature of the engine being stopped.
+  The first two arguments do not need it.
+
+**And it is now measured directly rather than inferred.** `18_coldstart_z1`
+ends with 0x420 b3 at 17.25 °C rising 0.75 °C a minute, and a photograph of
+VCDS block 006 taken 95 s later reads the intake air at **22.5 °C** against the
+**18.4 °C** this channel extrapolates to. Two different numbers at one moment,
+from one session, on an engine that had been running five minutes from cold.
+**It is not the intake air.**
 
 The decoding table above already called it oil temperature and the firmware
-already treats it as such, so nothing changes; it is now a finding rather than
-an assumption. VCDS group 003 would confirm it in one minute if anyone cares
-enough, and nobody should.
+already treats it as such, so nothing changes.
+
+⚠ **What this does not establish is that the number is *right*** — only what it
+is a number of. That is question 10.
 
 ### 5. ~~AccelG — longitudinal or lateral?~~ — **closed: it is lateral**
 

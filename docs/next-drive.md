@@ -230,7 +230,17 @@ value read off the screen and photographed, not a log.
 6. **Group 100 — readiness and OBD status**, which is what says whether the
    new converter has finished its monitors and emissions can be measured.
 7. **The fault memory.** Do not clear it, before or after.
-8. **Then start the capture again and settle 0x200, which costs two minutes.**
+8. ⚠ **A thermometer down the dipstick tube, within a minute of stopping**, set
+   against `OilTemp` — except the display is out for this session, so read the
+   raw `0x420` b3 out of the capture at the matching moment instead, and note
+   the clock time the thermometer was read. **This is the only test there is.**
+   `01-Motor` has no oil temperature block at all — every temperature it
+   defines is coolant, intake air or catalytic converter — so no screen can
+   settle it. `can-decoding.md` question 10 has the argument for why it is
+   worth a minute: every warm log ever recorded puts the oil twenty-odd degrees
+   *below* the coolant and never above 77 °C, and the drag line question 7 is
+   still open about is fitted against that number.
+9. **Then start the capture again and settle 0x200, which costs two minutes.**
    With the engine still idling and a capture running, **disconnect VCDS from
    the ECU and reconnect it.** `18_coldstart_z1.txt` is the only log carrying
    identifier 0x200, twice, and both times it fell in the window where VCDS had
