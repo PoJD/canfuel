@@ -123,21 +123,30 @@ photograph the result.
 
 **24. Read group 036** — an ordinary read, not a basic setting.
 
-**25. Switch off. Open the bonnet and put a thermometer down the dipstick
-tube.** Note the reading and the clock time. Within a minute of stopping.
+## The last capture — one recording covers the last two steps
 
-**26. Start the engine again and run a two-minute capture**, and while it runs,
-**disconnect VCDS from the ECU and reconnect it.**
+**25. Engine still idling, VCDS still connected. Start a capture:**
 
 ```
-python tools/usbtin_capture.py --seconds 120 --out reconnect_z1.txt
+python tools/usbtin_capture.py --seconds 420 --out final_z1.txt
 ```
 
-**27. Switch off. Do not clear the fault memory.**
+**26. While it runs, disconnect VCDS from the ECU and reconnect it.** Engine
+running, bonnet shut, nothing else touched.
+
+**27. Switch the engine off but LEAVE THE IGNITION ON**, and **leave the
+capture running.** The bus stays alive with the ignition on, which is the whole
+point of this step.
+
+**28. Put a thermometer down the dipstick tube.** Note the reading and the
+clock time to the second. Take your time — the capture is recording the car's
+own oil channel while you do it, and the two are compared afterwards.
+
+**29. Stop the capture. Ignition off. Do not clear the fault memory.**
 
 ## Some hundreds of kilometres later
 
-**28. Read group 032 again** and photograph it. One screen, no session, no
+**30. Read group 032 again** and photograph it. One screen, no session, no
 instruments. This one matters and is easy to forget.
 
 ## What comes back
@@ -145,7 +154,7 @@ instruments. This one matters and is easy to forget.
 | | |
 |---|---|
 | the capture | filtered to `0x280`, `0x1A0`, `0x420` and `0x480` before sending |
-| `reconnect_z1.txt` | whole, it is tiny |
+| `final_z1.txt` | whole, it is small — it carries the 0x200 test and the oil reading |
 | the VCDS log | as it comes, groups 003 and 014 |
 | the photographs | every screen from steps 18 and 20–24 |
 | two paper numbers, twice | group 006, before and after |
@@ -174,7 +183,7 @@ body adaptation and the readiness bits with it.
 was asserted in conversation once as "weeks" and never written down or sourced,
 so it is treated as unknown. **The procedure is built not to depend on it**:
 nothing is cleared, the session is not delayed waiting for adaptation, and
-`032` is simply read a second time later (step 28). The *movement* between the
+`032` is simply read a second time later (step 30). The *movement* between the
 two readings is the evidence, and that works whatever the time constant is.
 
 **Why the day off, and why the drive home is wanted rather than tolerated
@@ -213,7 +222,7 @@ rich by far more than 4.7 %:
 mixture.** So the drive home is worth having and is not worth engineering:
 taking a longer route buys an unknown amount of an unknown quantity, while the
 design already does not depend on convergence — that is what the second `032`
-reading in step 28 is for.
+reading in step 30 is for.
 
 **Why ten hours and not longer (step 3).** The before-recording,
 `18_coldstart_z1.txt`, was taken about ten hours after the previous start.
@@ -366,7 +375,7 @@ read what a quiet engine reads. Catching them needs a third logged group, a
 broken log, or a passenger. **Their own session, with somebody else holding the
 laptop.**
 
-## Step 25 — the thermometer
+## Steps 27–28 — the thermometer, and why the ignition stays on
 
 **`can-decoding.md` question 10 is whether the oil temperature is *right*, not
 merely oil.** The channel never exceeds 77 °C and sits twenty-odd degrees
@@ -379,9 +388,28 @@ all — every temperature it defines is coolant, intake air or catalytic
 converter. The thermometer is the only test there is, and it matters because
 the drag line question 7 is still open about is fitted against that number.
 
-Read `0x420` b3 out of the capture at the matching clock time afterwards.
+**The ignition stays on because that is what keeps the bus alive**, and the
+oil channel with it: `08_ign_only_z1` holds a steady 51.75 °C for twenty
+seconds with the engine stopped, and `18_coldstart_z1` reads 12.75 °C for the
+whole 41 s before the engine fires. So `0x420` b3 is being recorded while the
+thermometer is being read, and the two are compared on the clock afterwards.
 
-## Step 26 — the two-minute 0x200 test
+⚠ **An earlier version of this file had the engine switched off before the
+0x200 test and the thermometer reading taken then** — which killed the ignition
+and with it both the bus and the VCDS connection, so the capture the
+thermometer was supposed to be compared against had already stopped, and VCDS
+had to be reconnected to do a test about reconnecting VCDS. One capture over
+both steps, engine off but ignition on, costs nothing and works.
+
+**The reading does not have to be taken at peak oil temperature**, which is
+just as well, because by this point the engine has idled through all the
+static reads. The question is whether the channel and a thermometer agree at
+*one moment*, not what the highest number of the day was.
+
+⚠ **Hot oil and an open bonnet.** The dipstick tube is not the exhaust, but
+take the time the step allows rather than hurrying.
+
+## Steps 25–26 — the 0x200 test
 
 `18_coldstart_z1.txt` is the only log carrying identifier **0x200**, twice, and
 both times it fell in the window where VCDS had dropped the ECU and was being
@@ -390,8 +418,10 @@ reconnected by hand — while `11`–`17` hold half an hour of bus with VCDS mer
 car**, and the same goes for the only two frames in the whole corpus where
 `0x5D0` byte 0 is not zero, each of which follows a 0x200 within 90 ms.
 
-Nothing depends on the answer. It is two minutes, and the alternative is
-leaving a fifteenth identifier on the bus unexplained.
+**With the engine running and VCDS already connected**, which is the state the
+session ends in anyway — so this costs the seven minutes the capture runs and
+no setting up at all. Nothing depends on the answer; the alternative is leaving
+a fifteenth identifier on the bus unexplained.
 
 ## The capture filter
 
