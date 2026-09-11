@@ -39,7 +39,15 @@ In practice:
   number without a citation is a number nobody can re-check.
 - **The datasheets are in `docs/`.** `pic18f25k80-datasheet.pdf` (Microchip
   DS39977C, PIC18F66K80 family) and `mcp2562-datasheet.pdf` (DS20005167C,
-  MCP2561/2). They are duplicated from the `kicad` repo on purpose: firmware
+  MCP2561/2).
+
+  ⚠ **The VCDS label file for this ECU is deliberately NOT kept here.** It is
+  Ross-Tech's, part of a commercial product rather than a freely redistributed
+  manufacturer document, so it does not belong in a repository under Apache 2.0
+  even in the third-party section of `NOTICE` — which exists for material whose
+  owners publish it openly. What this project keeps instead is **its own summary
+  of the handful of blocks it actually uses**, in `docs/can-decoding.md`. The
+  maintainer has the file; anyone else with VCDS for this ECU has it too. They are duplicated from the `kicad` repo on purpose: firmware
   work should not depend on a sibling checkout being present.
 - **Register tables outrank prose.** The chapters are summaries and they do
   get it wrong — see the CANMX finding below, where the ECAN chapter's opening

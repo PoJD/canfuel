@@ -114,6 +114,14 @@ cylinders comes out as:
 Intake air temperature was not logged, so that spread is the honest bound
 rather than a figure. **Every value in it is a normally breathing engine.**
 
+⚠ **That bound can be replaced by a calculation next time, and this file said
+otherwise.** Intake air temperature is genuinely **not on the CAN bus** — which
+is what matters for the firmware, and why `config.h` rules out a live
+correction factor — but **VCDS has it**: groups **004** and **006** both carry
+`teplota nasav. vzduchu`, and 006 adds an **altitude correction factor**. Two
+numbers noted at each stop are enough, since neither moves quickly, and they
+turn the table above from a range into a figure.
+
 **A badly failing air-mass sensor is therefore ruled out; a slightly lazy one is
 not.** The calculation uses the sensor's own reading, so a sensor under-reading
 by 10 % would put the true efficiency near 97 %, which is still physically
@@ -178,6 +186,29 @@ The pattern, watched rather than logged, is **first gear at low speed** — a sl
 pull-away, or downshifting to first while braking almost to a stop — with
 values between 5 and 17 that then fall back. A full-throttle pull with the
 screen open showed **a hard zero**.
+
+**The VCDS label file for this ECU settles what this counter is, and what it
+is not.** Its entry for block 014 names the third field as the misfire count
+and **specifies it as 0 to 5**. (The file is Ross-Tech's and is deliberately
+not kept in this repository; `can-decoding.md` carries our own summary of the
+blocks this project uses.)
+
+Three things follow:
+
+- **The values watched were out of specification.** 5 to 17 against a stated
+  0 to 5. That is a harder claim than "there were misfires".
+- ⚠ **A specification of 0 to 5 is not the range of a lifetime total**, whatever
+  `(celkovy)` suggests. It is consistent with the current count the screen
+  actually showed, and with the label being misleading rather than the ECU.
+- **There is no absolute counter and no per-cylinder counter to find.** Group
+  014 is the only misfire block in the file; looking for a cumulative one was
+  a reasonable guess and the answer is that it does not exist here.
+
+**Per-cylinder information does exist, for knock rather than misfires** —
+groups **022** (cylinders 1 and 2) and **023** (3 and 4), ignition retard angle
+per cylinder, specified 0.0 to 15.0 °CA. **A cylinder being retarded further
+than its neighbours names itself**, which is the identification wanted here
+arrived at from a different direction.
 
 ⚠ **The counter reads zero and the detection reports `deaktiv.` whenever the
 engine is not running**, so a reading taken with the ignition on and the engine

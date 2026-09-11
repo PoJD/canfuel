@@ -200,6 +200,50 @@ first sample, which is exactly why only a bench could have shown it.
 
 ---
 
+## VCDS measuring blocks worth knowing — our own summary
+
+**Only the blocks this project actually uses**, written down here so that no
+session has to go hunting through a label file again.
+
+⚠ **The label file itself is not kept in this repository and should not be.**
+It is Ross-Tech's, part of a commercial product rather than something its owner
+publishes openly, so it does not belong in a repository under Apache 2.0 — not
+even in `NOTICE`, which is for material whose owners do publish it. **This table
+is our own note of what we looked up**, not a copy of theirs. Anyone with VCDS
+for this ECU has the file.
+
+The ECU is `06A 906 018`, labels `06A-906-018-AQY.LBL`.
+
+| block | what it carries | why we care |
+|---|---|---|
+| **003** | engine speed · **mass air flow** · throttle angle · ignition advance | mass air flow is not on the CAN bus and only this can give it |
+| **014** | engine speed · engine load · **misfire count** · detection state | the misfire question; also carries load, which is why it replaces 010 |
+| **022 / 023** | ignition retard **per cylinder**, 1–2 and 3–4 | **the only per-cylinder signal this ECU offers** |
+| **055 / 056** | idle regulator, its adaptation, and the target idle speed | the stumbling idle, and nothing has ever looked at them |
+| **070** | evaporative valve duty and flow | the alternative explanation for the stumbling idle |
+| **004 / 006** | **intake air temperature**, and in 006 an **altitude correction factor** | turns a bounded volumetric-efficiency estimate into a figure |
+| **100** | readiness bits and OBD status | whether the new converter has finished its monitors |
+| **032** | the lambda adaptations, idle and part load | a constant fuel excess shows here first |
+
+**Two specifications worth quoting, because they turn observations into
+findings:**
+
+- **Misfires, block 014, are specified `0...5`.** Values of **5 to 17** were
+  watched on this car, which is out of the manufacturer's tolerance rather than
+  merely non-zero. It also argues that the counter is a *current* count despite
+  its label calling it a total: 0 to 5 is not the range of a lifetime figure.
+- **The idle regulator, block 055, is specified −2.00 to +2.00 g/s**, with its
+  adaptation at −1.50 to +0.150 g/s and a target idle of 780 rpm in 056.
+
+⚠ **There is no absolute misfire counter and no per-cylinder one.** Block 014
+is the only misfire block; looking for a cumulative total was a reasonable
+guess and the answer is that it does not exist here.
+
+⚠ **070 is a *basic setting* block**, so expect it to run an actuator test
+rather than report a state passively.
+
+---
+
 ## Verified values for tests
 
 | Log | What it is | Counter total | Duration | Flow |

@@ -91,6 +91,12 @@ recovered afterwards.
 **Mass air flow and engine load are the point of the second instrument** —
 neither is on the CAN bus, so the capture cannot get them and only VCDS can.
 
+**Write down two more numbers at each idle stop, from group 006**: the intake
+air temperature and the altitude correction factor. Neither moves quickly
+enough to need logging, and together they turn the volumetric-efficiency
+estimate in `engine-health.md` from a range into a figure. **Two numbers on
+paper, three times.**
+
 ⚠ **A log of zeroes is evidence and not proof.** The misfire counter is a
 *current* count rather than a total — values of 5 to 17 were watched rising and
 falling — so at 1.7 samples a second a brief event falls between samples. An
@@ -146,7 +152,22 @@ them. They are single values, not logs.
 2. **Group 032 — the lambda adaptations.** They were **−4.7 % at idle against
    +1.6 % at part load** before the work. Moving toward zero at idle is the
    single cleanest sign that the injectors were the fault.
-3. **The fault memory.** Do not clear it, before or after.
+3. **Groups 022 and 023 — knock retard, per cylinder.** Specified 0.0 to
+   15.0 °CA each. **This is the only per-cylinder signal this ECU offers** —
+   there is no per-cylinder misfire counter — so a cylinder retarded further
+   than its neighbours names itself. Worth a look after the pulls rather than
+   at idle, where nothing knocks.
+4. **Group 055 — the idle regulator**, specified −2.00 to +2.00 g/s, with its
+   own adaptation beside it at −1.50 to +0.150 g/s, and group 056 for the
+   target idle speed of 780 rpm. Nobody has ever looked at these on this car
+   and both have tolerances to be held against.
+5. **Group 070 — the evaporative valve**, duty 0 to 100 % and flow 0.00 to
+   0.33 g/s. ⚠ It is a *basic setting* block rather than a passive read, so
+   expect it to run a test rather than report a state. If the purge is shut
+   while the engine stumbles, the alternative explanation for the idle is out.
+6. **Group 100 — readiness and OBD status**, which is what says whether the
+   new converter has finished its monitors and emissions can be measured.
+7. **The fault memory.** Do not clear it, before or after.
 
 ---
 
