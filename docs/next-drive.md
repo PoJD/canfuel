@@ -134,15 +134,14 @@ python tools/usbtin_capture.py --seconds 420 --out final_z1.txt
 **26. While it runs, disconnect VCDS from the ECU and reconnect it.** Engine
 running, bonnet shut, nothing else touched.
 
-**27. Switch the engine off but LEAVE THE IGNITION ON**, and **leave the
-capture running.** The bus stays alive with the ignition on, which is the whole
-point of this step.
+**27. Leave the capture running. Unplug VCDS, switch the engine off** and go
+straight to the bonnet. The bus dies with the ignition, and that is fine — the
+last `0x420` frames it recorded are the reference.
 
 **28. Put a thermometer down the dipstick tube.** Note the reading and the
-clock time to the second. Take your time — the capture is recording the car's
-own oil channel while you do it, and the two are compared afterwards.
+clock time. A minute or two after switching off is close enough.
 
-**29. Stop the capture. Ignition off. Do not clear the fault memory.**
+**29. Stop the capture. Do not clear the fault memory.**
 
 ## Some hundreds of kilometres later
 
@@ -375,7 +374,7 @@ read what a quiet engine reads. Catching them needs a third logged group, a
 broken log, or a passenger. **Their own session, with somebody else holding the
 laptop.**
 
-## Steps 27–28 — the thermometer, and why the ignition stays on
+## Steps 27–28 — the thermometer
 
 **`can-decoding.md` question 10 is whether the oil temperature is *right*, not
 merely oil.** The channel never exceeds 77 °C and sits twenty-odd degrees
@@ -388,26 +387,27 @@ all — every temperature it defines is coolant, intake air or catalytic
 converter. The thermometer is the only test there is, and it matters because
 the drag line question 7 is still open about is fitted against that number.
 
-**The ignition stays on because that is what keeps the bus alive**, and the
-oil channel with it: `08_ign_only_z1` holds a steady 51.75 °C for twenty
-seconds with the engine stopped, and `18_coldstart_z1` reads 12.75 °C for the
-whole 41 s before the engine fires. So `0x420` b3 is being recorded while the
-thermometer is being read, and the two are compared on the clock afterwards.
+**There is a gap between the last bus frame and the thermometer, and it does
+not matter.** Switching the engine off takes the ignition with it, so the bus
+stops; the reference is the last `0x420` b3 the capture recorded before that.
+A minute or two of standing does not move sump oil measurably — over the whole
+cold-start run it climbed at 0.75 °C a minute *while being heated*, and the
+channel's resolution is 0.75 °C a count. **The question is whether the channel
+and a thermometer agree to within a few degrees, not to within a tenth.**
 
-⚠ **An earlier version of this file had the engine switched off before the
-0x200 test and the thermometer reading taken then** — which killed the ignition
-and with it both the bus and the VCDS connection, so the capture the
-thermometer was supposed to be compared against had already stopped, and VCDS
-had to be reconnected to do a test about reconnecting VCDS. One capture over
-both steps, engine off but ignition on, costs nothing and works.
+⚠ **An earlier version of this file had the thermometer taken before the 0x200
+test, with the engine restarted afterwards** — two switch-offs, one restart,
+and VCDS reconnected in order to run a test about reconnecting VCDS. Worse, the
+capture had stopped at step 17, so the reading it was to be compared against
+had nothing recording. One capture across both steps fixes both.
 
-**The reading does not have to be taken at peak oil temperature**, which is
-just as well, because by this point the engine has idled through all the
-static reads. The question is whether the channel and a thermometer agree at
-*one moment*, not what the highest number of the day was.
+**The reading does not have to be at peak oil temperature**, which is just as
+well: by this point the engine has idled through every static read. The
+question is whether the channel and a thermometer agree at one moment, not what
+the highest number of the day was.
 
 ⚠ **Hot oil and an open bonnet.** The dipstick tube is not the exhaust, but
-take the time the step allows rather than hurrying.
+there is no hurry here — take the minute.
 
 ## Steps 25–26 — the 0x200 test
 
@@ -422,6 +422,51 @@ car**, and the same goes for the only two frames in the whole corpus where
 session ends in anyway — so this costs the seven minutes the capture runs and
 no setting up at all. Nothing depends on the answer; the alternative is leaving
 a fifteenth identifier on the bus unexplained.
+
+## Which measurement settles the torque scale — steps 13 and 14, and nothing else
+
+**No VCDS block answers this.** Every block in this session is about the
+engine's health; **the scale question is settled by the capture**, and
+specifically by the two or three **full-throttle pulls in a high gear**:
+
+| what is needed | where it comes from |
+|---|---|
+| **b7's real maximum at full throttle** | `0x280` byte 7, out of the capture, at 94 samples a second |
+| the ECU's **load** at the same engine speed | the VCDS log, group 014 |
+| the **air** at the same engine speed | the VCDS log, group 003 |
+| the **fuel** at the same engine speed | `0x480`, out of the capture |
+
+**That is the whole of it, and it is why the pulls have to be in a high gear.**
+The scale rests on the premise *b7 = 255 corresponds to the rated crank torque
+plus the drag at that speed* — a premise nothing has ever tested, because
+**this engine has never been observed anywhere near b7 = 255.** The pulls are
+the attempt to find out what b7 actually reaches when the engine is given every
+chance: full throttle, near peak torque, held rather than swept. **The last
+drive got this wrong** — every pull was a low-gear sweep that crossed 2400 rpm
+in a moment, so there was essentially no full-throttle data below 3000 rpm, and
+b7's maximum came from the wrong part of the curve.
+
+**The health verdicts are what licence you to believe b7max.** They are not a
+parallel investigation that happens to share a session:
+
+> **A low b7 maximum on a sick engine says nothing about the scale.** It says
+> the engine did not make the torque. Only once 046, 034, 036, 037, the misfire
+> count and the idle dips agree that the engine is well does a low b7 maximum
+> become evidence that **the scale is wrong**.
+
+That is exactly what step 1 of *the decision tree* below means by *"otherwise
+you are calibrating against a sick one"*, and it is the reason this is one
+session rather than two.
+
+**The fourth row is the second, independent route.** Measured air divided by
+measured fuel over the same pulls gives the real air-fuel ratio, which removes
+the largest assumption from the efficiency argument in `engine-health.md` —
+and that argument is what says the engine should be making about 150 Nm where
+the display shows 117. ⚠ **It is weaker than it looks in one direction:** the
+fuel counter measures what the ECU *commanded*, not what left the injector, so
+a leaking injector would deliver more than the counter reports. **A high
+reading would prove something; a normal one proves less.** Which is precisely
+why it is taken *after* the injectors are replaced rather than before.
 
 ## The capture filter
 
@@ -575,7 +620,7 @@ figure*.
 | **is the engine well now** | first-gear misfires, the stumbling idle against oil temperature, the idle adaptation, how it pulls |
 | **is the new converter converting** | block 046, and it needs no baseline |
 | **are either of the replaced oxygen sensors gone again** | blocks 034, 036, 037 |
-| **can the display ever show the factory maxima** | b7 at full throttle against the ECU's load at the same engine speed |
+| **can the display ever show the factory maxima** | **the high-gear pulls, steps 13–14** — b7 out of the capture against the ECU's load at the same engine speed. See *Which measurement settles the torque scale*; no VCDS block answers this |
 | **does the oil ever get hot enough to matter** | the oil temperature a long drive actually reaches, and the thermometer beside it |
 
 **The last one is close to answered already.** The drive of 2026-09-10 peaked
