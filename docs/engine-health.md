@@ -396,6 +396,14 @@ no torque measuring block, so there is nothing to read there. What is new is a
 different measurement — torque inferred from air and fuel — which needs no such
 block.
 
+**And one capture now answers three questions at once**, which is why
+`next-drive.md` splits the work into two configurations rather than one: a
+continuous recording through the warm-up gives the stumble rate against oil
+temperature as a curve instead of two points, holds b7 at ninety-four samples a
+second beside the ECU's own load, and finds out whether this engine's oil ever
+passes about 75 °C — which would close `can-decoding.md` question 7 rather than
+leave it open.
+
 **Most of it needs no capture at all any more.** `S-AQY.TRI` now carries
 `TorqRaw`, the raw 0x280 b7 beside the torque computed from it, so b7 can be
 read off the display and set against the load percentage VCDS logs at the same

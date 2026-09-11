@@ -93,7 +93,83 @@ in first, and downshifting to first while braking almost to a stop.
 
 ---
 
-## The idle test — two thermal states, and it is the other half of the drive
+## Two configurations, and they answer different questions
+
+**Three instruments want one connector and they cannot all have it.** The
+converter is powered by 5 V from the display, so unplugging the display
+unpowers the converter too, and a USBtin on that pair means neither is there.
+
+**That is not the problem it looks like, because the two questions want
+different configurations anyway.**
+
+| | **A — display and converter fitted** | **B — USBtin, display and converter out** |
+|---|---|---|
+| runs alongside | VCDS | VCDS |
+| gives | everything the converter computes, plus `TorqRaw` and `OilTemp` as max-hold and live readings | **the car's whole bus at ~94 frames a second per identifier**, so b7, engine speed, oil temperature, throttle and the fuel counter, each with the others beside it in time |
+| answers | is the converter's arithmetic right — `FuelNow` against `FuelCntRaw`, `Torque` against `TorqRaw` | is the *car* right — the stumbling idle, the drag line, how hot the oil actually gets, and b7 against the ECU's load |
+| cannot | sample fast enough to count a stumble | say anything about the converter, which is unpowered |
+
+⚠ **`OilTemp` is not ours.** The TRI row reads `0x420` byte 3 — the car's own
+frame — so it survives the converter being unplugged but not the display being
+unplugged. In configuration B it does not need to be read at all, **because it
+is in the capture**: every frame of 0x420 carries it, next to everything else.
+
+**Which makes B the measurement configuration and A the verification one.** A
+capture holds b7 at ninety-four samples a second with engine speed and oil
+temperature beside each one; `TorqRaw` on the display is the same byte as a
+single held maximum. Use A to check the converter, B to measure the engine.
+
+---
+
+## Configuration B — one continuous capture, and it answers three questions
+
+**Do not take two sittings at two guessed temperatures. Take one capture
+through the whole warm-up** and sort it by temperature afterwards.
+
+What that buys over the two-sitting version below:
+
+- **Two points become a curve.** The fixtures give 61 °C and 73 °C; a
+  continuous record gives the stumble rate against temperature throughout, and
+  that is a different quality of evidence.
+- **Nothing has to be judged in the car.** No deciding when 60 °C has arrived.
+- **The transition cannot be missed**, because the whole of it is recorded.
+- **It is directly comparable with `09`, `11` and `12`** — same identifier,
+  same rate, same analysis.
+
+**The order, in one sitting:**
+
+1. Start the capture at a cold start, or at the latest once the coolant gauge
+   has settled — the interesting window is entirely *after* that.
+2. **Idle, undisturbed, for several minutes.** This is the stumble data at the
+   lower oil temperature and it is the part that is easy to cut short.
+3. Drive until the oil temperature stops climbing. **Keep capturing.**
+4. **Idle again for several minutes**, now fully soaked.
+5. If the oil is as hot as it is going to get, add the free-revving holds in
+   neutral from `can-decoding.md` question 7 while it is still running.
+
+**It tests question 7's premise as a side effect, and may close it.** That
+question rests on "72–77 °C is warm, not the 95–110 °C of real driving". **If
+this engine's oil does not pass about 75 °C, that sentence is false for this
+car** — the drag line is already fitted at the temperature the engine actually
+runs at, and the question closes as *no refit needed* rather than staying open
+indefinitely. Yesterday's drive peaked at 72–74 °C over about seven minutes of
+logging, which is nowhere near long enough to have found the ceiling.
+
+**Practicalities.** The whole bus is roughly **one megabyte per minute**, so
+twenty-five minutes is about 25 MB — fine to write, awkward to hand over.
+Filter to `0x280`, `0x420` and `0x1A0` before sending it anywhere; nothing this
+analysis needs is outside those three. `tools/usbtin_capture.py` writes line by
+line as it goes and its own header explains why filtering belongs afterwards
+rather than in the adapter.
+
+⚠ **VCDS runs at the same time** — different connection, and
+`docs/vcds-session.md` establishes that the two do not interfere. So this
+configuration gives the raw bus *and* mass air flow, load and the misfire
+counter together, which is the richest combination available on this car.
+
+---
+
+## Configuration A — the idle test without opening anything
 
 **This one is not about the drive at all**, and it is easy to skip because
 nothing exciting happens during it. It is the test with a prediction already
@@ -129,13 +205,13 @@ acceptable because both sittings undercount equally, so the *comparison*
 between the two thermal states survives even though the absolute count does
 not.
 
-⚠ **Only a bus capture is directly comparable with the fixtures.** The numbers
-in `engine-health.md` come from 0x280 at about 94 frames a second; nothing VCDS
-can do approaches that. So if a USBtin is ever on this bus again, **take a
-60 s idle capture at each of the two thermal states** — that, and only that,
-can be run through the same analysis and set beside `09`, `11` and `12`. It
-needs the dashboard open, so it belongs with the hot-oil sweep and everything
-else in `install.md` step 11 rather than on its own trip.
+⚠ **This configuration cannot produce a number comparable with the fixtures.**
+Those come from 0x280 at about ninety-four frames a second and nothing VCDS
+does approaches it, so what configuration A gives here is a yes/no on whether
+the stumbles are misfires — which is worth having on its own, and is all it is.
+**Configuration B above is the one that measures them**, and it batches with
+the hot-oil sweep and everything else in `install.md` step 11, since all of it
+needs the dashboard open once.
 
 **What the three long-standing symptoms have in common** is worth keeping in
 view while testing: the exhaust destroying itself progressively, the stumbling
