@@ -120,10 +120,25 @@ normally for **forty-five minutes to an hour**, and deliberately include:
 ⚠ **The start itself now has a before-picture, so do not miss the after.**
 `18_coldstart_z1.txt` holds one cold start on the old injectors, with VCDS
 groups 014 and 055 beside it; the numbers to be beaten are in
-`docs/engine-health.md`, *The cold start*. Start the bus capture and the
-diagnostic log **before the key**, and **check the diagnostic log is still
-running once the engine catches** — on the recording that exists, VCDS lost the
-ECU during cranking and the start has no diagnostic data beside it.
+`docs/engine-health.md`, *The cold start*. Three things make the after
+comparable, and all three are easy to lose:
+
+- **Start the bus capture and the diagnostic log before the key.** The
+  interesting part is over 1.6 s after the crankshaft first moves.
+- **Check the diagnostic log is still running once the engine catches**, and
+  keep checking. On the recording that exists, VCDS lost the ECU during
+  cranking and the start has no diagnostic data beside it at all.
+- ⚠ **Do not cycle the key to prime the pump first.** A prime masks exactly
+  the symptom being measured. **If that is the normal habit, then do it** — the
+  start has to be the usual one, and the before-recording was taken with
+  whatever the usual one is. What must not happen is priming *because* this is
+  a measurement.
+
+**The before-start, to be set against:** 1.24 s of cranking at about 235 rpm,
+first firing at 451 rpm, a fall back to 311 rpm that nearly stalled it, then
+running at 43.00 s and a flare to 1446 rpm. The previous start had been about
+ten hours earlier, which is the condition the symptom is worst in; a start
+taken twenty minutes after the last one is not the same measurement.
 
 - **Several stationary idles of three to five minutes each**, spread through
   the warm-up — one early, one in the middle, one when thoroughly hot. These

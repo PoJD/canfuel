@@ -14,9 +14,15 @@ correct — see *What the display can and cannot mean*, below.
 
 ---
 
-**Two procedures hang off this file.** `docs/cold-start-test.md` is the
-one-shot recording to be taken **before** the parts are changed, and
-`docs/next-drive.md` the session **after** them. Results from both land here.
+**One procedure hangs off this file:** `docs/next-drive.md`, the session
+after the injectors, plugs and leads are changed. Its results land here.
+
+**The before-recording has no procedure in the tree and is not missing one.**
+It was a one-shot, it was followed, and a spent procedure kept around becomes
+a diary. What it produced is `test/fixtures/18_coldstart_z1.txt` and the two
+VCDS logs beside it, read in *The cold start* below; everything it taught
+about running the after-session is in `next-drive.md`. `git log` has the steps
+themselves if the wording of one is ever wanted.
 
 ## The occasion
 
@@ -362,9 +368,10 @@ evidence about the coil, not a clearance.
 ## The cold start, recorded once, before the parts were changed
 
 **One cold start and five minutes of idle, on the car as it was** — old
-injectors, plugs and leads, new exhaust. `docs/cold-start-test.md` is the
-procedure; this is what came back. It happened once and cannot be repeated:
-after the injectors there is no bad cold start left to record.
+injectors, plugs and leads, new exhaust. It happened once and cannot be
+repeated: after the injectors there is no bad cold start left to record.
+The procedure it was taken by is in `git log` and not in the tree, having been
+followed.
 
 | | |
 |---|---|
