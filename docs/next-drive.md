@@ -48,10 +48,12 @@ car's own frame, so it is one of the channels the display takes off the bus
 directly. In this configuration it does not need to be watched at all, because
 **every capture carries it**.
 
-**The converter's own arithmetic is not checked on this trip.** `FuelNow`
-against `FuelCntRaw`, `Torque` against `TorqRaw` — that wants the display
-fitted, takes five minutes, needs nothing dismantled, and can happen any time
-afterwards.
+**The converter's own arithmetic is not checked on this trip, and does not
+need a trip of its own either.** `FuelNow` against `FuelCntRaw` was the
+bring-up check in `install.md` step 10; it passed, both move together, and
+repeating it proves nothing new. What is left is covered under *After the
+reflash* at the end of this document — for free, as part of something that has
+to happen anyway.
 
 ---
 
@@ -190,6 +192,37 @@ present at 61 °C of oil and absent at 73 °C, with the coolant at 99 °C in bot
 
 ---
 
+## After the reflash — the one check that costs nothing
+
+**The loop this drive starts ends with a reflash**: the capture gives the
+numbers, `TORQUE_CNM_PER_BIT` and the drag line move together if the tree below
+says they should, the hex is rebuilt and programmed, and then the display is
+looked at to see whether it now reaches the factory figures.
+
+**Put `TorqRaw` on the same page as `Torque` and `RPM` for that look, and
+photograph one steady moment.** That is the whole of it. No session, no
+instruments, nothing dismantled — both channels are already on the display in
+the normal fitted configuration, one from `0x601` and one straight off the
+car's `0x280`.
+
+**It is worth the one photograph because it closes a gap nothing else can.**
+The host tests check the core under gcc; the device runs XC8 over the
+hand-written wide arithmetic in `fastmul.h` and `divconst.h`. *Compiling proves
+nothing about the silicon*, and a green host test is evidence about the code
+and a **hypothesis about the device** — which is this repository's own rule,
+one level up. A single frame showing b7, engine speed and the torque computed
+from them is the only thing that has ever tested the arithmetic **as the part
+actually executes it**.
+
+⚠ **Set the scale before reaching for `TORQUE_TRIM_PCT`, not at the same
+time.** The remap gain belongs inside the scale's derivation with its
+assumption written down; adding a few per cent on top of a scale that is itself
+being changed leaves two unknown corrections on one number and no way to tell
+which is doing what. Get the scale from the measurement, look at where it
+lands, and only then decide whether a trim is wanted at all.
+
+---
+
 ## What happens after the reading — the decision tree
 
 **Step 1 is the engine, because otherwise you are calibrating against a sick
@@ -269,5 +302,5 @@ The display needs no change either way: `Torque` tops out at 200.00 in
   the ECU's own byte and how close that byte gets to its ceiling.
 - **It does not need the converter reflashed.** Nothing in `src/` changed.
   `TORQUE_TRIM_PCT` stays at zero until there is a measurement to set it from.
-- **It does not check the converter.** That wants the display fitted and is a
-  five-minute job with nothing dismantled, any time afterwards.
+- **It does not check the converter**, and nothing separate needs to: see
+  *After the reflash*.
