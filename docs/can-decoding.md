@@ -321,9 +321,11 @@ that has to be satisfied before the verdict means anything:
 **046 is the ECU's own verdict on whether the converter converts**, which is
 worth more than any temperature: there is no need to work out what a healthy
 catalyst temperature is, because the number is a gate and the test supplies the
-judgement. **034 matters for a different reason** — the pre-cat sensor has
-lived through everything that destroyed the old converter, so it is a plausible
-casualty and nothing has ever looked at it.
+judgement. **The three sensor blocks matter for a different reason** — both
+oxygen sensors on this car have already been replaced once and both have since
+sat in the exhaust of a converter that was burning through, so any `not OK` is
+a second failure rather than a worn part. `engine-health.md` has what that
+does to the lambda adaptation figures.
 
 Intake air, from the same read, is specified **−45.0 to +108.5 °C**.
 

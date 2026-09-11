@@ -47,13 +47,23 @@ history is before that point, nobody has it.
 
 Three things follow, and none of them are sentiment.
 
-- **A lambda sensor has already been replaced once on this car.** So if block
-  034 comes back `B1-S1 not OK`, that is a **second** sensor failing, which
-  argues for something that keeps killing them — running rich, or raw fuel
-  reaching them — rather than for a worn-out part. ⚠ **Which sensor it was,
-  pre- or post-catalyst, is not recorded here**; block 034 covers the pre-cat
-  one and 036/037 the post-cat one, so the answer changes which block's verdict
-  is the interesting one.
+- **Both oxygen sensors have already been replaced on this car**, pre- and
+  post-catalyst. So **any** `not OK` from the blocks that check them — 034 for
+  the one in front, 036 and 037 for the one behind — is a **second** failure of
+  that sensor, which argues for something that keeps killing them rather than
+  for a worn-out part. Both have also sat in the exhaust of a converter that
+  was burning through.
+- **That is what makes the lambda adaptations mean something.** The **−4.7 % at
+  idle against +1.6 % at part load** recorded in *Misfire counting* below were
+  read during this investigation, which is to say **with both replaced sensors
+  fitted**. A rich adaptation measured through a faulty sensor says nothing;
+  measured through a sound one it is a real excess of fuel. So the two verdicts
+  fork cleanly:
+
+  | 034 / 036 / 037 | what −4.7 % at idle then means |
+  |---|---|
+  | both `OK` | the ECU is correcting a **real** fuel excess — the injectors |
+  | either `not OK` | a second sensor has failed and the adaptation may be an artefact of it; re-read 032 after it is replaced |
 - **The parts have been replaced in the order the symptoms surfaced**, which is
   not the same as the order of cause: sensor, then coil, then most of the
   exhaust, and only now the injectors. A single upstream cause producing

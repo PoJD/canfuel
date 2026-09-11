@@ -240,15 +240,27 @@ value read off the screen and photographed, not a log.
    worth a minute: every warm log ever recorded puts the oil twenty-odd degrees
    *below* the coolant and never above 77 °C, and the drag line question 7 is
    still open about is fitted against that number.
-9. **Blocks 046 and 034 — the ECU's own verdict on the new converter and on
-   the sensor in front of it.** ⚠ **Both are *basic setting* blocks**, the same
-   class as 070: they run a test rather than report a state, and each has gates
-   that must be met before its answer means anything.
+9. **Blocks 046, 034, 037 and 036 — the ECU's own verdict on the new converter
+   and on both oxygen sensors.** ⚠ **The first three are *basic setting*
+   blocks**, the same class as 070: they run a test rather than report a state,
+   and each has a gate that must be met before its answer means anything. 036
+   is an ordinary read.
 
-   | block | tests | hold | the answer |
+   | block | checks | gate | the answer |
    |---|---|---|---|
    | **046** | catalytic converter conversion | **2800–3200 rpm**, cat ≥ 352 °C | `CatConvB1 OK` / `not OK` |
    | **034** | pre-cat oxygen sensor ageing | **2200–2800 rpm**, cat ≥ 352 °C | `B1-S1 OK` / `not OK` |
+   | **037** | post-cat sensor, basic setting | **15–35 % load** | `Sys. OK` / `not OK` |
+   | **036** | post-cat sensor availability — **a passive read, not a basic setting** | — | `B1-S2 OK` / `not OK` |
+
+   **All four matter and none is optional**, because **both oxygen sensors on
+   this car have already been replaced once** — so any `not OK` here is a
+   second failure of that sensor rather than a worn part, and it decides how
+   the **−4.7 % idle lambda adaptation** in step 2 is read. `engine-health.md`,
+   *The history before any of that*, has the fork: both sensors sound makes
+   that adaptation a real fuel excess and points at the injectors; either one
+   failed makes it a possible artefact and the adaptation has to be re-read
+   afterwards.
 
    **The engine must be hot and just driven**, because the converter
    temperature is a gate and it is the block's own second field — watch it come
