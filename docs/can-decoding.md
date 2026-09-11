@@ -36,6 +36,46 @@ It is a one-shot diagnostic response captured as the USBtin connected. The
 firmware ignores it, but the 0x7xx range can no longer be called completely
 quiet because of it.
 
+**0x200 is not periodic either, and it is new.** Three frames in the whole of
+`18_coldstart_z1.txt` and in no other log — DLC 3, payload `01 c0 80` every
+time, at 53.077, 53.133 and 90.031 s. The first two are 56 ms apart, so it is
+**two events, not three.** The firmware's six hardware filters do not accept it
+and nothing needs it.
+
+**It does not travel alone, and that is the part worth keeping.** `0x5D0`
+byte 0 is `0x00` in **all 8,893 frames of all eighteen logs** — except twice,
+and both exceptions sit 81 and 89 ms after a 0x200:
+
+| 0x200 | 0x5D0 b0 `00 → 02` | back to `00` | held |
+|---|---|---|---|
+| 53.077, 53.133 s | 53.158 s | 53.350 s | 192 ms |
+| 90.031 s | 90.120 s | 90.216 s | 96 ms |
+
+Two for two, on a byte that is otherwise constant across every recording this
+project has. **Whatever 0x200 announces, 0x5D0 b0 reports it.**
+
+⚠ **Both events fall in the window where VCDS had dropped the ECU and was
+being reconnected by hand** — 42.4 to 129.3 s, see `test/fixtures/README.md`.
+That is suggestive and it is not a finding: the window is 27 % of the running
+log, so two events landing in it is a **7.5 %** coincidence, and `11`–`17`
+carry half an hour of bus with VCDS attached and logging without a single
+0x200. Attached is not the same as reconnecting, and nothing here separates
+them.
+
+**What would settle it costs two minutes** and the next session has both tools
+connected anyway: with the engine idling and a capture running, disconnect
+VCDS from the ECU and reconnect it. If 0x200 appears, it is the tester and not
+the car.
+
+**A third unexplained event, kept apart from those two on purpose.** At
+97.107 s `0x0C2` byte 0 goes `ce → f0` and **never goes back**, while bytes 2
+and 3 carry `57 81` for exactly 100 ms and then return to `00 00`. A latching
+byte plus a brief pulse is a different shape from the pair above and should not
+be lumped in with it. 0x0C2 carries a rolling counter in byte 5 and what
+behaves like a checksum in byte 7; nothing in this project decodes it, and
+**none of this is being worked on** — it is written down so the next person
+finds it rather than rediscovers it.
+
 **Free for the converter:** 0x600–0x603 appear in none of the logs
 (`test_target_ids_are_free`).
 

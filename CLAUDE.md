@@ -142,7 +142,7 @@ carries a generated block; a figure typed into prose only goes stale.
   arithmetic properties, plus `replay_host.c`
 - `tools/` — `canlog.py`, `replay.py` (which `--host-build` diffs against the C
   core), `cycles.py`, `checkdocs.py`, `divconst.py`
-- `test/fixtures/` — seventeen recordings from the vehicle, documented, of
+- `test/fixtures/` — eighteen recordings from the vehicle, documented, of
   which the `_z1` ones are the only ones with trustworthy time
 - `docs/` — **`install.md` is the procedure**, plus decoding, frame layout,
   refuelling reset, timing and optimisation. **`cold-start-test.md` is the
@@ -1345,7 +1345,7 @@ against all four core sources and runs it.
 ### Two test files that exist because the others share a blind spot
 
 `test_compute.c`, `test_txframes.c` and `tools/test_replay.py` all compare the
-C core against the Python reference over the same seventeen recordings. That is
+C core against the Python reference over the same recordings. That is
 a strong check with one hole in it, and the hole cost a **6.4 % error in every
 distance the device would have reported**: the two implementations were written
 from the same table by the same reasoning, so a mistake in the reasoning is a

@@ -63,10 +63,17 @@ and is about 4 MB.
 **Two groups, never three** — three drops the rate from about 1.7 samples a
 second to 1.1.
 
-⚠ **Expect `014` to read `deaktiv.` while the engine is cold.** Misfire
-detection is usually disabled below a temperature threshold. **That is not a
-wasted run**: the fourth field records *when* it switches on, which nothing here
-knows yet.
+⚠ **`014` reads `deaktiv.` only while the engine is not running.** It was
+expected to stay deactivated through the cold phase and it does not: on the
+one run taken, detection was already `aktivováno` at 920 rpm with the coolant
+near 30 °C. The counter is worth watching from the first second it runs.
+
+⚠ **Check the log is still running once the engine catches, and keep checking.**
+On the run taken, VCDS lost the ECU 4.2 s in — during cranking, with a
+disconnection error — and did not recover by itself. Restarting it by hand cost
+**the whole start and the first 86 seconds of running**, which is where the
+interesting data was. Watch the sample counter; if it stops, restart it
+immediately rather than at the end.
 
 **3. Start the engine exactly the way it is normally started.**
 
@@ -128,9 +135,14 @@ difference will be legible without any analysis.
 | the three notes above | in plain words |
 
 **The capture is analysed the same way as the fixtures** — transient dips of
-engine speed against a one-second median, counted and bucketed by the oil
-temperature carried in the same recording. `docs/engine-health.md` holds the
-existing numbers it will be set beside.
+engine speed against a one-second median, which is `python tools/idledips.py`.
+`docs/engine-health.md` holds the existing numbers it will be set beside.
+
+⚠ **Bucketing by oil temperature was the plan and it does not work at idle.**
+Five minutes of standing moved the oil 12.75 → 17.25 °C — four and a half
+degrees — while the coolant went from 16.5 to 63.75 °C. **The cold run gives
+one temperature point, not a curve.** The curve needs the engine driven, which
+is `docs/next-drive.md`.
 
 ---
 

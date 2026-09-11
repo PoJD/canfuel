@@ -171,17 +171,60 @@ class TestFixtureContent(unittest.TestCase):
     REGULAR_IDS = {0x050, 0x0C2, 0x1A0, 0x280, 0x288, 0x320,
                    0x420, 0x480, 0x488, 0x4A0, 0x520, 0x5A0, 0x5D0, 0x5D8}
 
+    #: Seen, not periodic, and excluded from the set above rather than added
+    #: to it. Each has its own test below saying exactly where it appears.
+    ONE_SHOT_IDS = {0x767, 0x200}
+
     def test_regular_id_set(self):
         """Exactly 14 IDs are broadcast periodically -- see docs/can-decoding.md.
 
-        Exception: 0x520 is slow enough that it misses short logs.
+        Exceptions: 0x520 is slow enough that it misses short logs, and the
+        one-shot IDs are not periodic frames at all.
         """
         for name, frames in self.frames.items():
             seen = {f.can_id for f in frames}
-            unexpected = seen - self.REGULAR_IDS - {0x767}
+            unexpected = seen - self.REGULAR_IDS - self.ONE_SHOT_IDS
             self.assertEqual(unexpected, set(), f"{name}: unknown IDs")
             self.assertTrue(seen >= self.REGULAR_IDS - {0x520},
                             f"{name}: missing IDs {self.REGULAR_IDS - seen}")
+
+    def test_0x200_is_a_one_off_too(self):
+        """0x200: three frames, all in 18, all DLC 3 and all `01 c0 80`.
+
+        Ten and forty-seven seconds after the engine started, in the only cold
+        start ever recorded. Nothing here decodes it and nothing is meant to --
+        this pins that it is three frames and not a periodic identifier
+        somebody missed, which is the only claim docs/can-decoding.md makes
+        about it.
+        """
+        hits = [(n, f) for n, fr in self.frames.items() for f in fr
+                if f.can_id == 0x200]
+        self.assertEqual(len(hits), 3)
+        self.assertEqual({n for n, _ in hits}, {"18_coldstart_z1.txt"})
+        for _, frame in hits:
+            self.assertEqual(frame.data, bytes.fromhex("01c080"))
+
+    def test_0x5D0_byte0_moves_only_beside_0x200(self):
+        """0x5D0 b0 is zero everywhere in the corpus except twice, and both
+
+        exceptions sit within 90 ms of a 0x200 frame. That pairing is the only
+        claim docs/can-decoding.md makes about either identifier, and it is
+        worth pinning because it rests on a byte being constant across every
+        recording -- which is exactly the kind of statement a new fixture can
+        quietly falsify.
+        """
+        odd = [(n, f) for n, fr in self.frames.items() for f in fr
+               if f.can_id == 0x5D0 and f.data[0] != 0x00]
+        self.assertEqual(len(odd), 2)
+        self.assertEqual({n for n, _ in odd}, {"18_coldstart_z1.txt"})
+        self.assertEqual({f.data[0] for _, f in odd}, {0x02})
+
+        cold = self.frames["18_coldstart_z1.txt"]
+        marks = [f.ts_ms for f in cold if f.can_id == 0x200]
+        for _, frame in odd:
+            self.assertTrue(
+                any(0 < frame.ts_ms - m <= 90 for m in marks),
+                f"0x5D0 b0=02 at {frame.ts_ms} ms has no 0x200 before it")
 
     def test_0x767_is_a_one_off(self):
         """0x767 appears exactly once, in 06, on the first timestamp, DLC 2.

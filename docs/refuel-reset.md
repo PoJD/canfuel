@@ -58,7 +58,7 @@ So the counter is *quicker* to believe a real fill and no more willing to
 believe a spurious one — the case the median genuinely covered better, a burst
 of noise longer than five seconds but shorter than thirteen, is not a shape the
 sender produces at rest. **1584 of 1622 measured at-rest samples were the same
-litre**, and `test_no_fixture_triggers_a_refuelling` replays all seventeen
+litre**, and `test_no_fixture_triggers_a_refuelling` replays all eighteen
 recordings and requires that none of them fires the rule.
 
 ---

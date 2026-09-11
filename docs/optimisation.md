@@ -430,7 +430,7 @@ deaf to a single wild reading, and the one case the median covered better — a
 burst of noise longer than five seconds but shorter than thirteen — is not a
 shape the sender produces at rest, where 1584 of 1622 measured samples were the
 same litre. Three new tests hold the line, and one of them replays **all
-seventeen fixtures and requires that not one of them fires the rule**, because
+eighteen fixtures and requires that not one of them fires the rule**, because
 a false positive silently destroys an average the driver has watched for
 600 km.
 

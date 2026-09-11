@@ -6,7 +6,7 @@ immediately.
 
 ## ⚠ Read this before using any timestamp
 
-**Only the three `_z1` logs have trustworthy time.** They were recorded on
+**Only the `_z1` logs have trustworthy time.** They were recorded
 with `tools/usbtin_capture.py`, which drives the adapter directly
 with `Z1` on, so each millisecond timestamp is stamped **in the USBtin when the
 frame arrives**. Nothing else in this directory has a defensible time base:
@@ -43,9 +43,12 @@ stands. It is duration, average flow and distance that need a clock.
 | `15_rev2372_z1.txt` | slcan+Z1 | 18,077 | ✅ adapter | VCDS hold 5 — 2372 rpm held, neutral | ~99 °C |
 | `16_rev2926_z1.txt` | slcan+Z1 | 18,198 | ✅ adapter | VCDS hold 6 — 2926 rpm held, neutral | ~99 °C |
 | `17_drive_property_z1.txt` | slcan+Z1 | 261,594 | ✅ adapter | 6 min driving on private land, 1st gear | ~100 °C |
+| `18_coldstart_z1.txt` | slcan+Z1 | 255,628 | ✅ adapter | **a cold start and 5 min of idle**, engine off at the start | 16.5–63.75 °C |
 | `idle.txt` | slcan | 1,136 | none | short idle, colder engine | 68.25 °C |
 | `vcds/vcds-01-002-003.csv` | VCDS log | 1,019 | own clock | the diagnostic side of holds 1–6 | — |
 | `vcds/vcds-ride-002-003.csv` | VCDS log | 902 | own clock | the diagnostic side of the drive | — |
+| `vcds/vcds-coldstart-014-055.csv` | VCDS log | 497 | own clock | the diagnostic side of the cold start | — |
+| `vcds/vcds-coldstart-aborted-014-055.csv` | VCDS log | 7 | own clock | the same, aborted during cranking | — |
 
 ## The three `_z1` logs
 
@@ -339,6 +342,50 @@ file has no timestamps to check it against.
 No other fixture is doubled (`test_no_other_fixture_is_doubled`).
 
 ---
+
+## `18_coldstart_z1.txt` — the cold one, and the only one
+
+**The recording starts before the engine does.** Six minutes with the ignition
+already on: 41.4 s of nothing, the start, and then five and a quarter minutes
+of undisturbed idle. The converter was not on the bus — the MFD15 was unplugged
+so the USBtin could take its place, and the converter is powered from the
+display — so **there are no 0x600–0x603 frames in it and that is correct.**
+
+| | |
+|---|---|
+| oil (0x420 b3) | **12.75 → 17.25 °C** |
+| coolant (0x288 b1) | 16.50 → 63.75 °C |
+| engine speed at idle | 930 rpm, stepping down to 803 |
+| fuel counter over the log | 162,510 µl |
+
+**It is the only recording of this car below 61 °C of oil**, and it cannot be
+made again — it was taken the week the injectors, plugs and leads were
+replaced, precisely because a bad cold start stops existing afterwards. What it
+was for and what came out of it is `docs/engine-health.md`, *The cold start,
+recorded once, before the parts were changed*.
+
+**It is also the first fixture that exercises trap 2 for real.** Every other log
+starts with the engine already running. This one has **41 seconds of ignition
+on and engine stopped**, during which `compute_on_fuel()` takes the restart
+branch — `counter == 0 || rpm == 0` — on all 852 fuel frames, and then not once
+in the five minutes afterwards. The fuel total still agrees with the Python
+reference exactly, which is the thing that path exists to guarantee.
+
+**Two things in it are not in any other log.**
+
+- **`0x200`, three frames of three bytes**, `01 c0 80` each time, at 53.077,
+  53.133 and 90.031 s — two events, since the first two are 56 ms apart. It is
+  not one of the fourteen identifiers this bus was thought to carry, and
+  nothing in the firmware accepts it. **Each is followed within 90 ms by the
+  only two frames in the whole corpus where `0x5D0` byte 0 is not zero**, and
+  there is a third unexplained event at 97.107 s in `0x0C2`. All of it is in
+  `docs/can-decoding.md`; none of it is being worked on.
+- **A diagnostic session that fell over.** `vcds/vcds-coldstart-aborted-014-055.csv`
+  is 4.2 s long and ends during cranking, with VCDS reporting that the ECU had
+  disconnected. `vcds/vcds-coldstart-014-055.csv` is the restart, and it begins
+  **129.3 s into this log** — so the start itself has no diagnostic data beside
+  it. The offset was found by fitting engine speed between the two recordings,
+  to 19.1 rpm rms against the VCDS log's own 10 rpm quantisation.
 
 ## Naming
 

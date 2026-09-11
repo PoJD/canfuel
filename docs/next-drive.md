@@ -117,6 +117,14 @@ keeps that rig described. Nothing has to line up in time.
 **Start the capture at a cold or cool start** and leave it running. Drive
 normally for **forty-five minutes to an hour**, and deliberately include:
 
+⚠ **The start itself now has a before-picture, so do not miss the after.**
+`18_coldstart_z1.txt` holds one cold start on the old injectors, with VCDS
+groups 014 and 055 beside it; the numbers to be beaten are in
+`docs/engine-health.md`, *The cold start*. Start the bus capture and the
+diagnostic log **before the key**, and **check the diagnostic log is still
+running once the engine catches** — on the recording that exists, VCDS lost the
+ECU during cranking and the start has no diagnostic data beside it.
+
 - **Several stationary idles of three to five minutes each**, spread through
   the warm-up — one early, one in the middle, one when thoroughly hot. These
   are the stumble data, and they are what makes the oil-temperature curve.

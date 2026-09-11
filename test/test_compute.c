@@ -1140,7 +1140,7 @@ static void test_no_fixture_triggers_a_refuelling(void)
         "08_ign_only_z1.txt", "09_idle_60s_z1.txt", "10_rev2600_z1.txt",
         "11_idle_noac_z1.txt", "12_idle_ac_z1.txt", "13_rev1500_z1.txt",
         "14_rev1850_z1.txt", "15_rev2372_z1.txt", "16_rev2926_z1.txt",
-        "17_drive_property_z1.txt", "idle.txt" };
+        "17_drive_property_z1.txt", "18_coldstart_z1.txt", "idle.txt" };
     size_t i;
     for (i = 0; i < sizeof logs / sizeof logs[0]; i++) {
         replay_result_t r;

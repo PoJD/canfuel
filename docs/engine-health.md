@@ -238,25 +238,45 @@ recent one.
 
 **It is in the recordings**, which means it can be measured rather than only
 felt. Counting transient dips of engine speed against its own one-second
-median, over the three warm idle fixtures:
+median — `python tools/idledips.py`, which prints exactly this table:
 
 | fixture | oil | coolant | dips ≥ 20 rpm | dips ≥ 15 rpm |
 |---|---|---|---|---|
-| `09_idle_60s_z1` | **61.0 °C** | 99.2 °C | **13 in 60 s** | 35 |
-| `11_idle_noac_z1` | 72.8 °C | 99.6 °C | **0 in 25 s** | 4 |
-| `12_idle_ac_z1` | 73.5 °C | 99.5 °C | **0 in 25 s** | 1 |
+| `09_idle_60s_z1` | **61.5 °C** | 100.5 °C | **15 in 60 s** | 39 |
+| `11_idle_noac_z1` | 72.8 °C | 99.0 °C | **0 in 25 s** | 3 |
+| `12_idle_ac_z1` | 73.5 °C | 99.0 °C | **0 in 25 s** | 1 |
+| `18_coldstart_z1` | **17.3 °C** | 63.8 °C | **44 in 310 s** = 8.5/min | 165 |
+
+⚠ **The counts moved when the measurement became a tool, and the movement is
+the reason it became one.** The first pass at this was a script that was not
+kept; reconstructing it later gave 15/39 against a published 13/35, with the
+two zeros reproducing exactly. Nobody could say which reconstruction was
+right, so `tools/idledips.py` now owns the definition — one dip is one event
+however many samples it spans, the baseline is a ±0.5 s median so it rides the
+warm-up ramp, and `tools/test_idledips.py` holds those properties. **The two
+zeros are the load-bearing part of the table and they never moved.**
 
 ⚠ **An earlier pass at this reported the fixtures as smooth and was wrong.** It
 looked for the single deepest dip, which is a different question: the deepest
 excursion in `09` is only 37.5 rpm, while what the owner describes is a small
 event *repeating*. Asking for the maximum answers "is there one big stumble"
-and says nothing about thirteen small ones.
+and says nothing about fifteen small ones.
 
 **The lever is how heat-soaked the engine is, and the coolant hides it.**
-Coolant sits at 99 °C in all three, so the ECU's own warm-up state is identical
-and cannot be what differs. The only thing that separates them is the real
-temperature of the engine, for which the oil is the available proxy: the
+Coolant sits at 99 °C in all three warm logs, so the ECU's own warm-up state is
+identical and cannot be what differs. The only thing that separates them is the
+real temperature of the engine, for which the oil is the available proxy: the
 stumbles are there at 61 °C and gone at 73 °C.
+
+⚠ **The cold row does not extend that line, and it was expected to.** At 13–17
+°C of oil the rate is 8.5 a minute — real, but *half* of the 15 a minute at
+61 °C. **The relationship is not monotonic in temperature**: it peaks somewhere
+in the middle and is gone at the top. Three readings and a peak in the middle
+is not a curve, so what this actually does is weaken the lever rather than
+extend it. **A single continuous warm-up recording would settle it**, which is
+what `docs/next-drive.md` already asks for and what `18_coldstart_z1` is half
+of — it holds 13 °C to 17 °C of oil and stops, because five minutes of idling
+moves the oil almost not at all.
 
 **That fits a leaking injector and argues against the evaporative system.** A
 dribble onto a port that is not yet hot puddles instead of vaporising and goes
@@ -271,7 +291,7 @@ is sporadic, which is how an accumulating drip behaves and how a duty-cycled
 anything does not.
 
 **A third observation, and it is weak on purpose.** b7 does not move at any of
-the thirteen dips: engine speed falls 20–37 rpm while the ECU's modelled torque
+the dips in `09`: engine speed falls 20–37 rpm while the ECU's modelled torque
 stays exactly on its own baseline. That is the blindness described under *What
 the display can and cannot mean* showing up in this car's own data — but one
 count of b7 is 0.39 %, so the resolution is coarse enough that a brief event
@@ -336,6 +356,177 @@ engine spends most of its time.
 used to appear only after minutes above ~4500 rpm in top gear on a motorway,
 which a short drive cannot recreate. No lamp on this drive is therefore weak
 evidence about the coil, not a clearance.
+
+---
+
+## The cold start, recorded once, before the parts were changed
+
+**One cold start and five minutes of idle, on the car as it was** — old
+injectors, plugs and leads, new exhaust. `docs/cold-start-test.md` is the
+procedure; this is what came back. It happened once and cannot be repeated:
+after the injectors there is no bad cold start left to record.
+
+| | |
+|---|---|
+| `test/fixtures/18_coldstart_z1.txt` | 255,628 frames, 360.01 s, adapter timestamps |
+| `test/fixtures/vcds/vcds-coldstart-014-055.csv` | groups 014 and 055, 497 samples, 297.2 s |
+| `test/fixtures/vcds/vcds-coldstart-aborted-014-055.csv` | the first attempt, 7 samples — see the gap, below |
+
+**The coldest state this car has ever been recorded in.** Oil 12.75 °C rising
+only to 17.25 °C; coolant 16.50 °C rising to 63.75 °C. Every previous fixture
+starts at 61 °C of oil or above.
+
+### The start itself, at ninety-four samples a second
+
+| CAN time | engine speed | what it is |
+|---|---|---|
+| 41.40 s | 15 rpm | the crankshaft first moves |
+| 41.65–42.57 s | ~235 rpm | **cranking, 1.24 s of it** |
+| 42.64 s | **451 rpm** | first firing |
+| 42.72–42.88 s | **383 → 311 rpm** | **it falls back, and nearly dies** |
+| 42.96 s | 583 rpm | catches for the second time |
+| 43.00 s | 747 rpm | running |
+| 43.67 s | 1446 rpm | the cold-idle flare, its peak |
+
+**The near-stall is the symptom, in numbers.** The owner's account, given
+before this trace was shown to him, is that this is the familiar moment: it
+judders for a few seconds and then either dies or clears. Here it cleared. The
+previous start had been **about ten hours earlier**, so the rail had had a
+long time to bleed down — which is the condition under which the symptom is
+worst and the condition this recording therefore caught.
+
+⚠ **Nothing here distinguishes a leaking injector from a failing check valve
+in the pump, and both bleed the rail down overnight.** The new injectors will
+answer it by elimination and not by argument.
+
+### The misfire counter, logged rather than watched
+
+**`docs/can-decoding.md`'s expectation was that detection would read
+`deaktiv.` while the engine was cold. It does not.** It reads `aktivováno`
+from the first sample of the surviving log, at 920 rpm with the coolant near
+30 °C. What holds is the narrower statement already in *Misfire counting*: the
+counter reads zero and detection reports `deaktiv.` **whenever the engine is
+not running** — the aborted log shows exactly that, through the cranking.
+
+**The counter takes five values across 497 samples, and only five:**
+
+| value | samples |
+|---|---|
+| 0 | 397 |
+| 12 | 59 |
+| 13 | 5 |
+| 24 | 24 |
+| 36 | 12 |
+
+Two things follow, and the second is new.
+
+- **It is out of the label file's stated 0 to 5 by a factor of seven.** The
+  earlier observation was values of 5 to 17 watched on a screen; 36 is logged.
+- ⚠ **It moves in steps of twelve.** 12, 24, 36 — with a single 13. A counter
+  that only ever advances by twelve is not counting individual misfires as it
+  reports them, and **no mechanism for that is offered here**, because none is
+  sourced. It is an observation about the ECU, recorded so the next person does
+  not read a step of 12 as twelve separate events.
+- **It holds a value for about three seconds and returns to zero**, which
+  confirms from a log what *Misfire counting* had from a watched screen: it is
+  a current count, not a total.
+
+### The stumbles and the misfires are the same events
+
+**This is the result the recording was for.** The CAN capture and the VCDS log
+were aligned on engine speed — best fit at `CAN = VCDS + 129.3 s`, root mean
+square 19.1 rpm against a 10 rpm quantisation — giving **231 s of overlap**. In
+that window there are **34 dips of ≥ 20 rpm and 7 increments of the misfire
+counter**, and every one of the seven sits beside a dip:
+
+| increment | at | nearest dip | lag |
+|---|---|---|---|
+| 0 → 13 | 163.48 s | 20.8 rpm | +0.67 s |
+| 0 → 12 | 289.89 s | 30.2 rpm | −3.01 s |
+| 0 → 12 | 335.45 s | 27.5 rpm | +0.23 s |
+| 12 → 24 | 340.25 s | 36.0 rpm | +0.26 s |
+| 0 → 12 | 350.44 s | 23.5 rpm | +1.34 s |
+| 12 → 24 | 351.64 s | 20.5 rpm | −2.10 s |
+| 24 → 36 | 354.04 s | 20.5 rpm | +0.30 s |
+
+Median |lag| is **0.67 s against 2.30 s** for the same number of instants
+placed at random in the same window, and a permutation test over 20,000 draws
+gives **p = 0.023**. The dips are dense — one every 6.8 s — so coincidence is
+cheap; the permutation test is what prices it.
+
+**Read it as: the stumble is misfire.** That had been an inference from a
+burned-through converter and a rich idle adaptation; it is now the two signals
+moving together in one recording.
+
+⚠ **Three limits, and the first is the real one.** Seven increments is a small
+number and one recording is one recording. **The converse does not hold** —
+only 7 of the 34 dips have an increment beside them, so either the counter's
+step of twelve means single events go unreported, or most dips are something
+else, and this recording cannot say which. And the ECU's counter is a windowed
+quantity read at 1.7 Hz, so the lag is an upper bound on the true one and the
+two negative lags are within that.
+
+### Cold enrichment, measured
+
+The fuel counter is absolute and in microlitres, so this needs no assumption:
+
+| | flow | |
+|---|---|---|
+| first 30 s running | **927 µl/s** | 3.34 l/h |
+| cold idle, ~928 rpm | 750 µl/s | 2.70 l/h |
+| after the idle step-down, ~815 rpm | 383 µl/s | 1.38 l/h |
+| last 60 s, ~803 rpm | 355 µl/s | 1.28 l/h |
+| warm idle, `09_idle_60s_z1` at 796 rpm | 326 µl/s | 1.17 l/h |
+
+**162 ml for five and a quarter minutes of standing still.** The idle speed
+steps down from ~930 to ~815 rpm between 140 and 170 s, which is the ECU and
+not the driver — the throttle byte never leaves 38.
+
+### Two screens, and what they say
+
+Photographed with the engine running, 411.6 s after the start:
+
+| group 006 | |
+|---|---|
+| intake air temperature | **22.5 °C** |
+| altitude correction factor | **0.0 %** |
+| engine speed / load | 760 rpm / 24.2 % |
+
+**That turns the volumetric-efficiency bound above into a figure.** The table
+under *What "load" is a percentage of* spans 84–93 % because intake air was
+unknown; 22.5 °C at no altitude correction picks the top row. ⚠ **It is not the
+same reading** — 22.5 °C is the intake at idle after five minutes of standing,
+and what that table needs is the intake during a full-throttle pull, which is
+hotter. It bounds the answer from the cool end; it does not supply it.
+
+| group 100 | |
+|---|---|
+| readiness bits | **00000000** |
+| OBD status | 11000000 |
+| coolant | 70.5 °C |
+| time since engine start | 411.6 s |
+
+**All eight readiness positions read zero**, which in VCDS's own convention
+means every monitor has completed — so the new converter has been through its
+tests and an emissions measurement would be accepted. ⚠ **That convention is
+taken from the tool, not measured here**, and the OBD status byte is recorded
+raw because nothing in this project decodes it.
+
+### What the gap cost
+
+**VCDS lost the ECU 4.2 s into the first log, during cranking, and did not
+recover on its own.** The second log was started by hand and begins 129 s after
+the capture did — so there is **no diagnostic data at all from the start
+itself, or from the first 86 s of running.**
+
+What that lost, specifically: **when misfire detection switches on.** The
+cold-start procedure asked for exactly that and it is gone — detection was
+already active by the time the second log begins. All that can be said is that
+it was on by 30 °C of coolant.
+
+**Next time, check the log is still running after the engine catches.** The
+crash happened at the noisiest electrical moment there is, which is not a
+coincidence worth relying on not repeating.
 
 ---
 
