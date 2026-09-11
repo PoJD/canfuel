@@ -153,10 +153,14 @@ holds are read off the raw log and b7, which is what they always were.
 **Stop the capture first**, then read these on the VCDS screen and photograph
 them. They are single values, not logs.
 
-1. **Group 014 — misfires.** `Rozpoznani` must read **`aktiv.`**; if it says
-   `deaktiv.` the engine is not running and the number beside it is
-   meaningless. **The counter is a current count and not a total**, whatever
-   the label says, so read it while idling rather than expecting a sum.
+1. **Group 014 — misfires.** `Rozpoznani` must read **`aktivováno`** — that is
+   the word the label file produces, not `aktiv.`; if it says `deaktiv.` the
+   engine is not running and the number beside it is meaningless. **The counter
+   is a current count and not a total**, whatever the label says, so read it
+   while idling rather than expecting a sum. Before the work it took the values
+   **0, 12, 13, 24 and 36 and nothing else**, held each for about three seconds
+   and returned to zero, on an engine idling from cold — against a label file
+   that specifies 0 to 5.
 2. **Group 032 — the lambda adaptations.** They were **−4.7 % at idle against
    +1.6 % at part load** before the work. Moving toward zero at idle is the
    single cleanest sign that the injectors were the fault.
@@ -167,8 +171,12 @@ them. They are single values, not logs.
    at idle, where nothing knocks.
 4. **Group 055 — the idle regulator**, specified −2.00 to +2.00 g/s, with its
    own adaptation beside it at −1.50 to +0.150 g/s, and group 056 for the
-   target idle speed of 780 rpm. Nobody has ever looked at these on this car
-   and both have tolerances to be held against.
+   target idle speed of 780 rpm. **Both now have a before-reading**, taken over
+   five minutes of cold idle in `vcds/vcds-coldstart-014-055.csv`: the
+   regulator worked between **−0.63 and +0.01 g/s**, mean −0.31, and the
+   adaptation sat at **−0.73 g/s and never moved** — an adaptation is stored,
+   so a single run cannot shift it and only the next reading can show whether
+   it has. Both are inside tolerance; what matters is which way they go.
 5. **Group 070 — the evaporative valve**, duty 0 to 100 % and flow 0.00 to
    0.33 g/s. ⚠ It is a *basic setting* block rather than a passive read, so
    expect it to run a test rather than report a state. If the purge is shut
@@ -176,6 +184,17 @@ them. They are single values, not logs.
 6. **Group 100 — readiness and OBD status**, which is what says whether the
    new converter has finished its monitors and emissions can be measured.
 7. **The fault memory.** Do not clear it, before or after.
+8. **Then start the capture again and settle 0x200, which costs two minutes.**
+   With the engine still idling and a capture running, **disconnect VCDS from
+   the ECU and reconnect it.** `18_coldstart_z1.txt` is the only log carrying
+   identifier 0x200, twice, and both times it fell in the window where VCDS had
+   dropped the ECU and was being reconnected by hand — while `11`–`17` hold
+   half an hour of bus with VCDS merely *attached* and never show it. **If
+   0x200 appears, it is the tester and not the car**, and the same goes for the
+   only two frames in the whole corpus where `0x5D0` byte 0 is not zero, each
+   of which follows a 0x200 within 90 ms. `docs/can-decoding.md` has the
+   argument. Nothing depends on the answer — it is cheap and the alternative is
+   leaving a fifteenth identifier on the bus unexplained.
 
 ---
 
