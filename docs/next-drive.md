@@ -39,9 +39,9 @@ one removes both.
 
 **That loses nothing this session needs.** A capture carries b7, engine speed,
 oil temperature, road speed, throttle and the fuel counter at about ninety-four
-frames a second each, every one of them with the others beside it in time. The
-`TorqRaw` channel added to `S-AQY.TRI` is that same byte reduced to a single
-held maximum — useful when the dashboard is closed, and simply outclassed here.
+frames a second each, every one of them with the others beside it in time. A
+display channel showing the same byte would be that reduced to a single held
+maximum, and is simply outclassed here.
 
 ⚠ **`OilTemp` is not the converter's.** Its TRI row reads `0x420` byte 3, the
 car's own frame, so it is one of the channels the display takes off the bus
@@ -309,11 +309,23 @@ numbers, `TORQUE_CNM_PER_BIT` and the drag line move together if the tree below
 says they should, the hex is rebuilt and programmed, and then the display is
 looked at to see whether it now reaches the factory figures.
 
-**Put `TorqRaw` on the same page as `Torque` and `RPM` for that look, and
+**Put `Torque`, `Power` and `RPM` on the same page for that look, and
 photograph one steady moment.** That is the whole of it. No session, no
-instruments, nothing dismantled — both channels are already on the display in
-the normal fitted configuration, one from `0x601` and one straight off the
-car's `0x280`.
+instruments, nothing dismantled — all three are already on the display in the
+normal fitted configuration, two from `0x601` and one straight off the car's
+`0x280`.
+
+⚠ **This used to say `TorqRaw`, a channel showing the raw 0x280 b7, and no
+such channel exists.** `S-AQY.TRI` carries 31 sensors and that is not one of
+them; it never was, in any commit of the `mfd15` repository. **It is also not
+worth adding**, for two reasons. The raw byte is already in the capture this
+drive records, at ninety-four samples a second rather than as one number on a
+screen. And the display's sensor list is verified, uploaded and working, while
+`mfd15/README.md` records that **the display sometimes loses its sensor
+definitions when a page's contents are changed** and that rows may only be
+appended, never inserted. Editing a configuration that works, to add a
+convenience for a measurement that is taken another way, is a poor trade. If
+the raw byte is ever genuinely wanted on the screen it can be appended then.
 
 **It is worth the one photograph because it closes a gap nothing else can.**
 The host tests check the core under gcc; the device runs XC8 over the
@@ -341,9 +353,9 @@ already its best and you go to step 2 with them; if it does, re-measure and go
 to step 2 with the new ones.
 
 **Step 2 is b7's maximum at full throttle**, taken out of the capture, with
-the ECU's load from the same engine speed beside it. (With the dashboard
-closed, `TorqRaw` on the display is the same byte as a held maximum and the
-same tree applies.)
+the ECU's load from the same engine speed beside it. There is no display
+channel for the raw byte and none is wanted — see the note above — so this
+step needs the capture and nothing else does it.
 
 ```
 b7max >= 235

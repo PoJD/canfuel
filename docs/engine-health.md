@@ -694,10 +694,11 @@ samples a second beside the ECU's own load, and finds out whether this engine's
 oil ever passes about 75 °C — which would close `can-decoding.md` question 7
 rather than leave it open.
 
-**Most of it needs no capture at all any more.** `S-AQY.TRI` now carries
-`TorqRaw`, the raw 0x280 b7 beside the torque computed from it, so b7 can be
-read off the display and set against the load percentage VCDS logs at the same
-engine speed. **`docs/next-drive.md` is that procedure, in order.** Only the
+**The raw byte comes off the capture, not off the display.** `S-AQY.TRI`
+carries `Torque` and `Power`, which are computed from 0x280 b7, but no channel
+showing b7 itself — a claim to the contrary stood here and was wrong, and
+`next-drive.md` says why adding one is not worth the risk to a working display
+configuration. **`docs/next-drive.md` is the procedure, in order.** The
 fuel counter still wants a bus capture, and only to remove the air-fuel
 assumption.
 
