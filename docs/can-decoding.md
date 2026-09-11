@@ -482,12 +482,19 @@ car has passed inspection and is back on public roads, so the stretch of
 private land is no longer the limit it was; `17_drive_property_z1` is six
 minutes of that land and the oil went 75.0 → 77.2 °C.
 
-⚠ **Being on the road is not the same as getting the oil hot, and the first
-proper drive proved it.** Several minutes of ordinary road driving including
-full-throttle pulls peaked at **72–74 °C** — below the holds this line is
-already fitted to. So the sweep still needs a run long and hard enough to put
-95–110 °C into the sump, and that has to be planned rather than assumed.
-`docs/engine-health.md` has the drive. Whatever gets the oil hot, the sweep
+⚠ **The premise of this question may simply be false for this engine, and
+that would close it.** The first proper drive back on the road peaked at
+**72–74 °C of oil after about an hour of driving** — not a short hop, and the
+same range as the 72.8–76.6 °C holds this line is already fitted to. If this
+engine's oil does not go to 95–110 °C, the line is fitted where it actually
+runs and **there is nothing to refit.**
+
+**One capture settles it and costs nothing extra**, because oil temperature is
+in every recording: a long continuous log will show the ceiling or show it
+being passed. `docs/next-drive.md` takes one as part of a session planned for
+other reasons. Until then this stays open rather than closed, on one reading of
+a display rather than a log — but **do not plan a session around heating the
+oil** before that capture says heating it is even possible. Whatever gets the oil hot, the sweep
 itself is unchanged: hold each speed until 0x420 b3 stops climbing, record the
 oil temperature with every point, and stay in neutral so net torque really is
 zero.

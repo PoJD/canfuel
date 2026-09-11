@@ -1,268 +1,156 @@
-# The next drive — what to do, in order
+# The next drive — one session, in order
 
-**One drive, two questions, no USBtin and no dismantling.** This is the
-procedure for the run after the injectors are fitted. It exists because the
-last drive answered less than it could have, purely for want of one channel
-that takes five minutes to add.
+**This is the procedure for the first drive after the injectors, spark plugs,
+ignition leads and silencers are fitted.** One session, one configuration, one
+capture. It is written to be followed in the car without deciding anything.
 
-The two questions, and they are independent of each other:
-
-1. **Is the engine well now?** Feel, first-gear misfires, the idle adaptation,
-   cold starts.
-2. **Does b7 ever approach 255?** Which decides whether the display can ever
-   show the factory maxima at all — `src/config.h` above
-   `TORQUE_CNM_PER_BIT`, and `docs/engine-health.md` for why it is in doubt.
-
-⚠ **The oil temperature is not on this list, and that is deliberate.** The
-hot-oil refit is worth **+0.7 % at the peak** (`can-decoding.md` question 7),
-so it does nothing for the maxima. Take the reading if the drive happens to be
-long enough — if the oil genuinely never passes ~75 °C, question 7 closes for
-free — but do not plan the drive around it.
-
-⚠ **The USBtin is not needed either.** It would settle the drag line and
-nothing here, and it needs the dashboard open. Leave it.
+**Nothing happens before then.** The car stands until the parts are on, because
+a new catalytic converter behind a cylinder still dumping raw fuel is the same
+converter that was cut open — and that is a four-figure risk taken to buy a
+before-and-after comparison nobody needs. **There will be no clean before/after
+and that is accepted**; the fixtures already hold the "before" for the one
+measurement that matters, the stumbling idle.
 
 ---
 
-## Before the car moves
+## What this session answers
 
-**1. Upload the display configuration.** `S-AQY.TRI` in the `mfd15` repo has
-one new row appended, `TorqRaw` — **0x280 byte 7, raw, 0 to 255**. It is the
-same trick as `FuelCntRaw` and `TankL`: the untouched byte beside the number
-this firmware computes from it, so the two can be compared in one glance.
+| question | what settles it |
+|---|---|
+| **is the engine well now** | first-gear misfires, the stumbling idle against oil temperature, the idle adaptation, how it pulls |
+| **can the display ever show the factory maxima** | b7 at full throttle against the ECU's load at the same engine speed |
+| **does the oil ever get hot enough to matter** | the oil temperature that a long drive actually reaches |
 
-Follow `mfd15/README.md`, *Uploading the file*. The display's Wi-Fi hotspot is
-off by default and is turned on by holding both buttons. **Do not reorder the
-rows** — the file is addressed by position and the new row is appended, not
-inserted.
+**The third one is close to answered already and this only confirms it.** The
+drive of 2026-09-10 peaked at **72–74 °C of oil after about an hour of
+driving** — and the warm holds the drag line is fitted to are 72.8–76.6 °C, the
+same range. `can-decoding.md` question 7 rests on "72–77 °C is warm, not the
+95–110 °C of real driving", and that sentence appears to be false for this
+engine. If a long capture confirms the ceiling, **the question closes as *no
+refit needed*** rather than staying open indefinitely.
 
-⚠ **Upload the file again after any page change**, even one that looks
-harmless. The MFD15 can lose its sensor definitions when a page's contents are
-edited, and **RPM disappearing is the tell** (`install.md` step 2).
+---
 
-**2. Put `TorqRaw` on a page where it can be read at a glance**, next to
-`Torque` and `RPM`.
+## The configuration — and why there is only one
 
-**3. Set VCDS up but do not start logging yet.** Group **003** — engine speed,
-mass air flow g/s, throttle angle, ignition advance — and group **010** —
-engine speed, load %, throttle angle, advance. Both, and nothing else: a third
-group drops the sampling rate to about one sample a second, which is too slow
-for a pull that lasts five to eight seconds.
+**The display and the converter come out; the USBtin goes on that pair.** They
+cannot share it: the converter is powered by 5 V from the display, so removing
+one removes both.
 
-**Group 014 is deliberately not logged.** Its counter is cumulative-looking but
-is in fact a current count, so it is read on the screen afterwards rather than
-sampled. See below.
+**That loses nothing this session needs.** A capture carries b7, engine speed,
+oil temperature, road speed, throttle and the fuel counter at about ninety-four
+frames a second each, every one of them with the others beside it in time. The
+`TorqRaw` channel added to `S-AQY.TRI` is that same byte reduced to a single
+held maximum — useful when the dashboard is closed, and simply outclassed here.
 
-**4. Do not clear the fault memory**, before or after.
+⚠ **`OilTemp` is not the converter's.** Its TRI row reads `0x420` byte 3, the
+car's own frame, so it is one of the channels the display takes off the bus
+directly. In this configuration it does not need to be watched at all, because
+**every capture carries it**.
+
+**The converter's own arithmetic is not checked on this trip.** `FuelNow`
+against `FuelCntRaw`, `Torque` against `TorqRaw` — that wants the display
+fitted, takes five minutes, needs nothing dismantled, and can happen any time
+afterwards.
+
+---
+
+## What to run
+
+**On the laptop, two things at once. They do not interfere** — the USBtin is on
+the CAN pair and VCDS is on the OBD socket, over K-line
+(`docs/vcds-session.md`).
+
+**1. The capture**, listen-only, for the whole session:
+
+```
+python tools/usbtin_capture.py --seconds 3600 --out postfix_z1.txt
+```
+
+**2. VCDS logging, groups 003 and 010, running throughout.** Between them:
+engine speed, **mass air flow**, **engine load**, throttle angle and ignition
+advance. Those first two are the point — **neither is on the CAN bus**, so the
+capture cannot get them and only VCDS can.
+
+⚠ **Two groups, not three.** Three drops the sampling rate to about one per
+second. Two gives about 1.7, which is plenty here for the reason below.
+
+**The two recordings do not need to be synchronised.** Engine speed appears in
+both, so every VCDS sample can be matched to the right stretch of capture by
+its rpm alone — the method `docs/vcds-session.md` established and the reason it
+keeps that rig described. Nothing has to line up in time.
 
 ---
 
 ## The drive
 
-**5. Warm it up properly first.** Everything below wants a warm engine, and the
-holds are worthless cold.
+**Start the capture at a cold or cool start** and leave it running. Drive
+normally for **forty-five minutes to an hour**, and deliberately include:
 
-**6. ⚠ Reset the display's min/max once the engine is running, and before the
-first pull. This step is not optional and the whole `TorqRaw` reading depends
-on it.**
+- **Several stationary idles of three to five minutes each**, spread through
+  the warm-up — one early, one in the middle, one when thoroughly hot. These
+  are the stumble data, and they are what makes the oil-temperature curve.
+- **Two or three full-throttle pulls in a HIGH gear from about 2400 rpm** —
+  fourth or fifth, or up a hill, anywhere the engine *sits* near peak torque
+  instead of flashing through it. **This is what the last drive got wrong**:
+  every pull was a low-gear sweep that crossed 2400 in a moment, so there was
+  essentially no full-throttle data below 3000 rpm.
+- **One low-gear pull to high revs**, as before, for the power end.
 
-**b7 reads 191 while the starter is turning.** `06_trip_reset` carries 70
-frames of it — b7 = 191 at 187 rpm with the throttle at its rest position — so
-a max that was armed before the engine fired records a cranking artefact and
-nothing else. The firmware itself is immune, because `compute_torque_d()` gates
-on `TORQUE_MIN_RPM`; **the raw display channel has no such gate**, and the TRI
-format has no validity gate to give it one. `mfd15/docs/sensors.md` §10 has the
-same problem on `OilTemp` and the same answer.
+**Nothing needs marking and no times need noting.** The capture carries road
+speed, engine speed and throttle, so the idles and the pulls can be found in it
+afterwards. Drive; the analysis does the sorting.
 
-**7. The pull that matters is in a HIGH gear from about 2400 rpm.** Fourth or
-fifth, or up a hill — anywhere the engine *sits* near peak torque instead of
-flashing through it. Start the VCDS log, floor it, hold it to about 5500 rpm,
-lift.
+**If the oil temperature stops climbing and you want question 7 closed
+outright**, add the free-revving holds in neutral from `can-decoding.md`
+question 7 at the end, while it is still hot.
 
-**This is the step the last drive got wrong**, and it is worth being blunt
-about: peak torque is at 2400 rpm and the previous log had essentially no
-full-throttle data below 3000, because every pull was a first- or second-gear
-sweep that crossed 2400 in a moment. **Two or three pulls in a high gear are
-worth more than ten in a low one.**
-
-**8. Do a low-gear pull to high revs as well**, as before, for the power end.
-The last one reached 5720 rpm and that part of the data was fine.
-
-**9. Watch for misfires in the states that produced them** — a slow pull-away
-in first, and downshifting to first while braking almost to a stop.
-
----
-
-## Two configurations, and they answer different questions
-
-**Three instruments want one connector and they cannot all have it.** The
-converter is powered by 5 V from the display, so unplugging the display
-unpowers the converter too, and a USBtin on that pair means neither is there.
-
-**That is not the problem it looks like, because the two questions want
-different configurations anyway.**
-
-| | **A — display and converter fitted** | **B — USBtin, display and converter out** |
-|---|---|---|
-| runs alongside | VCDS | VCDS |
-| gives | everything the converter computes, plus `TorqRaw` and `OilTemp` as max-hold and live readings | **the car's whole bus at ~94 frames a second per identifier**, so b7, engine speed, oil temperature, throttle and the fuel counter, each with the others beside it in time |
-| answers | is the converter's arithmetic right — `FuelNow` against `FuelCntRaw`, `Torque` against `TorqRaw` | is the *car* right — the stumbling idle, the drag line, how hot the oil actually gets, and b7 against the ECU's load |
-| cannot | sample fast enough to count a stumble | say anything about the converter, which is unpowered |
-
-⚠ **`OilTemp` is not ours.** The TRI row reads `0x420` byte 3 — the car's own
-frame — so it survives the converter being unplugged but not the display being
-unplugged. In configuration B it does not need to be read at all, **because it
-is in the capture**: every frame of 0x420 carries it, next to everything else.
-
-**Which makes B the measurement configuration and A the verification one.** A
-capture holds b7 at ninety-four samples a second with engine speed and oil
-temperature beside each one; `TorqRaw` on the display is the same byte as a
-single held maximum. Use A to check the converter, B to measure the engine.
-
----
-
-## Configuration B — one continuous capture, and it answers three questions
-
-**Do not take two sittings at two guessed temperatures. Take one capture
-through the whole warm-up** and sort it by temperature afterwards.
-
-What that buys over the two-sitting version below:
-
-- **Two points become a curve.** The fixtures give 61 °C and 73 °C; a
-  continuous record gives the stumble rate against temperature throughout, and
-  that is a different quality of evidence.
-- **Nothing has to be judged in the car.** No deciding when 60 °C has arrived.
-- **The transition cannot be missed**, because the whole of it is recorded.
-- **It is directly comparable with `09`, `11` and `12`** — same identifier,
-  same rate, same analysis.
-
-**The order, in one sitting:**
-
-1. Start the capture at a cold start, or at the latest once the coolant gauge
-   has settled — the interesting window is entirely *after* that.
-2. **Idle, undisturbed, for several minutes.** This is the stumble data at the
-   lower oil temperature and it is the part that is easy to cut short.
-3. Drive until the oil temperature stops climbing. **Keep capturing.**
-4. **Idle again for several minutes**, now fully soaked.
-5. If the oil is as hot as it is going to get, add the free-revving holds in
-   neutral from `can-decoding.md` question 7 while it is still running.
-
-**It tests question 7's premise as a side effect, and may close it.** That
-question rests on "72–77 °C is warm, not the 95–110 °C of real driving". **If
-this engine's oil does not pass about 75 °C, that sentence is false for this
-car** — the drag line is already fitted at the temperature the engine actually
-runs at, and the question closes as *no refit needed* rather than staying open
-indefinitely. Yesterday's drive peaked at 72–74 °C over about seven minutes of
-logging, which is nowhere near long enough to have found the ceiling.
-
-**Practicalities.** The whole bus is roughly **one megabyte per minute**, so
-twenty-five minutes is about 25 MB — fine to write, awkward to hand over.
-Filter to `0x280`, `0x420` and `0x1A0` before sending it anywhere; nothing this
-analysis needs is outside those three. `tools/usbtin_capture.py` writes line by
-line as it goes and its own header explains why filtering belongs afterwards
-rather than in the adapter.
-
-⚠ **VCDS runs at the same time** — different connection, and
-`docs/vcds-session.md` establishes that the two do not interfere. So this
-configuration gives the raw bus *and* mass air flow, load and the misfire
-counter together, which is the richest combination available on this car.
-
----
-
-## Configuration A — the idle test without opening anything
-
-**This one is not about the drive at all**, and it is easy to skip because
-nothing exciting happens during it. It is the test with a prediction already
-attached: `docs/engine-health.md` measures the stumbling idle out of the
-fixtures and finds it present at 61 °C of oil and absent at 73 °C, with the
-coolant at 99 °C in both. If the injectors were the cause, **both states should
-now be clean.**
-
-**The gauge on the dashboard cannot see this.** It reads the coolant, which is
-already at the top in both states. Use `OilTemp` on the display.
-
-**Two sittings, each about two minutes:**
-
-| when | oil | what to do |
-|---|---|---|
-| after the coolant has settled but the engine is not yet soaked | around **60 °C** | idle, count the stumbles, watch group 014 |
-| after another twenty minutes of running or driving | **73 °C or more** | the same again |
-
-**At each one, keep group 014 on the screen with `Rozpoznani` showing
-`aktiv.`** The question it answers is the one nothing else can:
-
-- **stumble and the counter increments** → it is a combustion event, so the
-  air path and the evaporative system are out
-- **stumble and the counter stays at zero** → it is not a misfire but a
-  disturbance of the charge, which points at purge or idle air control and
-  **away from the injectors**
-
-**Log group 010 on its own for each sitting**, not two groups. One group
-samples at about 3.3 per second against 1.7 for two, and a stumble lasts a few
-hundred milliseconds, so the rate is the whole game here. ⚠ **Even at 3.3 per
-second this undercounts** — many events will fall between samples. That is
-acceptable because both sittings undercount equally, so the *comparison*
-between the two thermal states survives even though the absolute count does
-not.
-
-⚠ **This configuration cannot produce a number comparable with the fixtures.**
-Those come from 0x280 at about ninety-four frames a second and nothing VCDS
-does approaches it, so what configuration A gives here is a yes/no on whether
-the stumbles are misfires — which is worth having on its own, and is all it is.
-**Configuration B above is the one that measures them**, and it batches with
-the hot-oil sweep and everything else in `install.md` step 11, since all of it
-needs the dashboard open once.
-
-**What the three long-standing symptoms have in common** is worth keeping in
-view while testing: the exhaust destroying itself progressively, the stumbling
-idle, and poor cold starts have all been present for years. One cause that
-produces all three is worth more than three separate explanations, and a
-leaking injector is currently the only candidate that does.
+⚠ **They will display nothing, and there is no display fitted anyway.** The
+holds are read off the raw log and b7, which is what they always were.
 
 ---
 
 ## Straight after, with the engine still idling
 
-**10. Read `TorqRaw`'s maximum off the display** and write it down with the
-gear and roughly where in the rev range it happened.
+**Stop the capture first**, then read these on the VCDS screen and photograph
+them. They are single values, not logs.
 
-**11. Read group 014 on the screen.** `Rozpoznani` must say **`aktiv.`** — if
-it says `deaktiv.` the engine is not running and the number below it is
-meaningless. Note the misfire count.
-
-**12. Read group 032**, the lambda adaptations, and note both values. They were
-−4.7 % at idle and +1.6 % at part load before the injectors.
-
-**13. Note the oil temperature maximum** off the display, if the drive was long
-enough to be worth anything.
+1. **Group 014 — misfires.** `Rozpoznani` must read **`aktiv.`**; if it says
+   `deaktiv.` the engine is not running and the number beside it is
+   meaningless. **The counter is a current count and not a total**, whatever
+   the label says, so read it while idling rather than expecting a sum.
+2. **Group 032 — the lambda adaptations.** They were **−4.7 % at idle against
+   +1.6 % at part load** before the work. Moving toward zero at idle is the
+   single cleanest sign that the injectors were the fault.
+3. **The fault memory.** Do not clear it, before or after.
 
 ---
 
 ## What comes back here
 
-Four things, and the second one is the point of the whole exercise:
-
 | | |
 |---|---|
-| the VCDS log file | as before |
-| **`TorqRaw` max**, with the gear and rev range | **the new one** |
-| group 014 with `aktiv.` showing, and group 032 | |
-| how the car felt | not a soft measure here — see the prediction below |
+| the capture | filtered to `0x280`, `0x420` and `0x1A0` before sending — about a fifth of the size and nothing this analysis needs is outside those three |
+| the VCDS log | as it comes |
+| groups 014 and 032 | photographs are fine |
+| how it drives | not a soft measure here, see the prediction below |
 
-**`TorqRaw` max against the load percentage from the same rpm is what settles
-the ceiling**, and both numbers now come off instruments already in the car:
+**Size.** The whole bus runs about **one megabyte a minute**, so an hour is
+roughly 60 MB — fine to write, awkward to hand over, which is what the filter
+is for. `tools/usbtin_capture.py` writes line by line as it goes, so a capture
+that is interrupted keeps everything up to the interruption.
 
-| if | then |
-|---|---|
-| `TorqRaw` / 255 ≈ the ECU's load % | b7 carries the reference charge is normalised to, 255 is unreachable with real air, and **the factory maxima can never be displayed** — the scale needs redefining |
-| `TorqRaw` / 255 clearly above load % | the current derivation stands, and a healthy engine near 2400 rpm should push toward it |
+---
 
-**The prediction, written before the drive so it can be wrong.** If the
-injectors were the fault: the car pulls better, first-gear misfires go to zero
-and the idle adaptation moves toward zero — while **load stays near 78 % and
-`Torque` on the display stays near 117 Nm**.
+## The prediction, written before the drive so it can be wrong
 
-⚠ **The last clause rests on an unsourced premise and is the weakest thing in
+**If the injectors were the fault:** the car pulls better, the first-gear
+misfires go to zero, the idle stumbling disappears **at every oil temperature
+rather than only when hot**, and the idle adaptation moves toward zero — while
+**load stays near 78 % and the torque the display would compute stays near
+117 Nm**.
+
+⚠ **That last clause rests on an unsourced premise and is the weakest thing in
 this document.** It assumes the ECU's torque model cannot see a fuelling fault,
 which needs the lambda entering that model to be the *commanded* value — and
 nothing this project holds says so. `frames.md` sorts what is founded from what
@@ -270,9 +158,13 @@ is recalled. **Misfire detection is per-cylinder and does run on this car**, so
 the ECU is not without a combustion signal; whether it reaches the torque model
 is simply unknown.
 
-Which makes this the most informative line on the page rather than the least:
-**if the displayed figures rise while load and airflow stay put, the premise is
-wrong and we learn something we could not have got any other way.**
+Which makes it the most informative line here rather than the least: **if b7
+rises while load and airflow stay put, the premise is wrong and we learn
+something no other measurement on this drive can give.**
+
+**On the idle specifically**, `engine-health.md` measures the stumbles as
+present at 61 °C of oil and absent at 73 °C, with the coolant at 99 °C in both.
+**A repair that removes them only in the hot state has not removed the cause.**
 
 ---
 
@@ -283,8 +175,10 @@ one.** Does it pull better with the new injectors? If not, today's numbers were
 already its best and you go to step 2 with them; if it does, re-measure and go
 to step 2 with the new ones.
 
-**Step 2 is `TorqRaw`'s maximum at full throttle**, with the ECU's load from
-the same engine speed beside it:
+**Step 2 is b7's maximum at full throttle**, taken out of the capture, with
+the ECU's load from the same engine speed beside it. (With the dashboard
+closed, `TorqRaw` on the display is the same byte as a held maximum and the
+same tree applies.)
 
 ```
 b7max >= 235
@@ -346,9 +240,12 @@ The display needs no change either way: `Torque` tops out at 200.00 in
 
 ## What this drive does not do
 
-- **It does not refit the drag line.** That wants steady holds in neutral on
-  95–110 °C oil and a bus capture, which means the dashboard open.
-  `can-decoding.md` question 7.
+- **It does not refit the drag line, and may make that unnecessary.** The
+  refit was wanted for 95–110 °C oil; this engine appears not to go there. See
+  question 7 above and `can-decoding.md`.
 - **It does not measure torque.** Nothing here is a dynamometer. It measures
   the ECU's own byte and how close that byte gets to its ceiling.
 - **It does not need the converter reflashed.** Nothing in `src/` changed.
+  `TORQUE_TRIM_PCT` stays at zero until there is a measurement to set it from.
+- **It does not check the converter.** That wants the display fitted and is a
+  five-minute job with nothing dismantled, any time afterwards.
