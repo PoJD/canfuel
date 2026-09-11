@@ -177,17 +177,43 @@ nothing is cleared, the session is not delayed waiting for adaptation, and
 `032` is simply read a second time later (step 28). The *movement* between the
 two readings is the evidence, and that works whatever the time constant is.
 
-**Why the drive home matters (step 2).** From a cold start the ECU runs open
-loop until the oxygen sensor lights off, and in open loop it uses the *stored*
-adaptation. With new injectors and a stale −4.7 % still in memory, the warm-up
-could be lean for reasons that have nothing to do with the parts — which would
-land on exactly the cold-start measurement this session is for. A drive home
-lets some of that adaptation move before the measured start. Whether it is
-enough is the unknown above; it is strictly better than not driving.
+**Why the day off, and why the drive home is wanted rather than tolerated
+(step 2).** Two separate reasons, and the second is the stronger one.
 
-**Once warm this confound largely disappears**, because closed-loop control
-corrects the mixture within seconds regardless of what the stored adaptation
-says. It is the cold start and the early idle that are exposed.
+**The first start after the injectors are fitted is not comparable to
+anything.** The fuel rail was opened to change them, so it has air in it and
+that start will crank long for a reason that is not the engine's health. **The
+garage does that start**, and by the time the measured one happens it is the
+third or fourth — which is what makes it a measurement rather than an artefact.
+
+**The second is the stored adaptation.** From a cold start the ECU runs open
+loop until the oxygen sensor lights off, and in open loop it uses the *stored*
+adaptation rather than a live one. New injectors with a stale −4.7 % in memory
+therefore carry that error straight into the warm-up.
+
+⚠ **Closed-loop control does not protect the measured cold start**, and this is
+the point worth being clear about: it corrects the mixture within seconds once
+the sensor is live, which covers the warm idles and the pulls and covers
+nothing at all about the first minute from cold. **The drive home, plus
+whatever running the garage does, is the only thing that moves that stored
+number before the measurement.** Seven kilometres is roughly ten minutes of
+closed-loop running.
+
+**But the confound is bounded, and smaller than an earlier version of this file
+implied.** The adaptation is multiplicative, and cold start is *deliberately*
+rich by far more than 4.7 %:
+
+| | µl/s | against warm idle |
+|---|---|---|
+| measured, first 30 s from cold | **927** | **2.84×** |
+| the same with a stale −4.7 % still applied | 883 | 2.71× |
+| warm idle, `09_idle_60s_z1` | 326 | 1× |
+
+**A mixture that was meant to be 2.84× and comes out 2.71× is still a cold-start
+mixture.** So the drive home is worth having and is not worth engineering:
+taking a longer route buys an unknown amount of an unknown quantity, while the
+design already does not depend on convergence — that is what the second `032`
+reading in step 28 is for.
 
 **Why ten hours and not longer (step 3).** The before-recording,
 `18_coldstart_z1.txt`, was taken about ten hours after the previous start.
