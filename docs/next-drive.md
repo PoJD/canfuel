@@ -2,346 +2,391 @@
 
 **This is the procedure for the first drive after the injectors, spark plugs,
 ignition leads and silencers are fitted.** One session, one configuration, one
-capture. It is written to be followed in the car without deciding anything.
+capture. Allow **an hour and a half**.
 
-**Nothing happens before then.** The car stands until the parts are on, because
+**The document is in two halves and they are meant to be used differently.**
+
+- **[Part 1](#part-1--the-session-step-by-step) is the procedure.** Follow it
+  in the car without deciding anything. It says what to do and in what order,
+  and nothing else.
+- **[Part 2](#part-2--why-each-step-is-there-and-how-to-read-what-comes-back)
+  is why**, and how to read what comes back. Read it before, or afterwards
+  with the results in hand. **Nothing in it is needed while driving.**
+
+**Nothing happens before the parts are on.** The car stands until then, because
 a new catalytic converter behind a cylinder still dumping raw fuel is the same
-converter that was cut open — and that is a four-figure risk taken to buy a
-before-and-after comparison nobody needs. **There will be no clean before/after
-and that is accepted**; the fixtures already hold the "before" for the one
-measurement that matters, the stumbling idle.
+converter that was cut open. There will be no clean before/after for most of
+this and that is accepted; the fixtures already hold the "before" for the
+measurements that matter.
 
 ---
 
-## What this session answers
+# Part 1 — the session, step by step
 
-| question | what settles it |
-|---|---|
-| **is the engine well now** | first-gear misfires, the stumbling idle against oil temperature, the idle adaptation, how it pulls |
-| **can the display ever show the factory maxima** | b7 at full throttle against the ECU's load at the same engine speed |
-| **does the oil ever get hot enough to matter** | the oil temperature that a long drive actually reaches |
+## Before the day
 
-**The third one is close to answered already and this only confirms it.** The
-drive of 2026-09-10 peaked at **72–74 °C of oil after about an hour of
-driving** — and the warm holds the drag line is fitted to are 72.8–76.6 °C, the
-same range. `can-decoding.md` question 7 rests on "72–77 °C is warm, not the
-95–110 °C of real driving", and that sentence appears to be false for this
-engine. If a long capture confirms the ceiling, **the question closes as *no
-refit needed*** rather than staying open indefinitely.
+**1. Do not clear the fault memory. Do not disconnect the battery. Do not reset
+adaptations.** Not before, not after, not at the garage. If the garage offers,
+decline.
 
----
+**2. Do not do this the day the car comes back.** Drive it home and leave it.
+The drive home is wanted; see Part 2.
 
-## The configuration — and why there is only one
+**3. Plan the start for about ten hours after the engine last ran.** Overnight
+is right. **Do not deliberately make it longer.**
 
-**The display and the converter come out; the USBtin goes on that pair.** They
-cannot share it: the converter is powered by 5 V from the display, so removing
+**4. Take the display and the converter out**, and put the USBtin on that pair.
+They cannot share it — the converter is powered from the display, so removing
 one removes both.
 
-**That loses nothing this session needs.** A capture carries b7, engine speed,
-oil temperature, road speed, throttle and the fuel counter at about ninety-four
-frames a second each, every one of them with the others beside it in time. A
-display channel showing the same byte would be that reduced to a single held
-maximum, and is simply outclassed here.
+## In the car, before the key
 
-⚠ **`OilTemp` is not the converter's.** Its TRI row reads `0x420` byte 3, the
-car's own frame, so it is one of the channels the display takes off the bus
-directly. In this configuration it does not need to be watched at all, because
-**every capture carries it**.
+**5. Connect VCDS to the OBD socket and the USBtin to the display's pair.**
+Both at once is fine.
 
-**The converter's own arithmetic is not checked on this trip, and does not
-need a trip of its own either.** `FuelNow` against `FuelCntRaw` was the
-bring-up check in `install.md` step 10; it passed, both move together, and
-repeating it proves nothing new. What is left is covered under *After the
-reflash* at the end of this document — for free, as part of something that has
-to happen anyway.
+**6. Read group 006 and write two numbers on paper:** intake air temperature
+and the altitude correction factor.
 
----
-
-## What to run
-
-**On the laptop, two things at once. They do not interfere** — the USBtin is on
-the CAN pair and VCDS is on the OBD socket, over K-line
-(`docs/vcds-session.md`).
-
-**1. The capture**, listen-only, for the whole session:
+**7. Start the capture:**
 
 ```
 python tools/usbtin_capture.py --seconds 3600 --out postfix_z1.txt
 ```
 
-**2. VCDS logging, groups 003 and 014, running throughout.**
+**8. Start VCDS logging, groups 003 and 014. Two groups, never three.**
 
-**Not 010, and the reason is worth knowing**, because the obvious pairing is
-the wrong one:
+**9. From here until step 17, do not touch the VCDS screen.** Changing the
+group selection is what the log records; switching to another block ends the
+recording.
 
-| group | fields |
+## The start
+
+**10. Start the engine the way you normally start it.** Do not cycle the key to
+prime the pump — unless that is your normal habit, in which case do it.
+
+**11. As soon as it catches, check the VCDS log is still counting samples.** If
+it has stopped, restart it immediately. Keep glancing at it.
+
+## The drive — 45 to 60 minutes
+
+**12. Three stationary idles of three to five minutes each**, spread through
+the warm-up: **one early, one in the middle, one when thoroughly hot.** Engine
+running, in neutral, nothing touched, air conditioning off.
+
+**13. Two or three full-throttle pulls in a HIGH gear from about 2400 rpm** —
+fourth or fifth, or up a hill. Somewhere the engine *sits* near peak torque
+rather than flashing through it.
+
+**14. One low-gear pull to high revs.**
+
+**15. Nothing needs marking and no times need noting.** Drive; the analysis
+finds the idles and the pulls by itself.
+
+**16. Finish at a standstill with the engine idling and hot.** Do not switch
+off.
+
+## Straight after — engine idling, hot
+
+**17. Stop the capture, then stop the VCDS log.** Both. Only now may the group
+selection be touched.
+
+**18. Read these and photograph each screen:**
+
+| group | what to read |
 |---|---|
-| **003** | engine speed · **mass air flow** · throttle angle · ignition advance |
-| 010 | engine speed · engine load · throttle angle · ignition advance |
-| **014** | engine speed · **engine load** · **misfire count** · detection state |
+| **014** | the misfire count — watch it for a minute rather than glancing |
+| **032** | both lambda adaptations |
+| **055** and **056** | idle regulator, its adaptation, target idle speed |
+| **100** | readiness bits and OBD status |
+| **006** | intake air temperature and altitude factor, the second time |
 
-**Group 014 already carries the load**, so `003 + 014` is a superset of
-`003 + 010` with the misfire counter added and nothing given up. Logging the
-misfires therefore costs **no** sampling rate at all, where adding 014 as a
-third group would have dropped it from about 1.7 samples a second to 1.1.
+**19. Now the basic settings. This is how one is run** — it is not *Akční
+členy*, which is the other function:
 
-⚠ **Two groups, never three.** The rate is the one thing that cannot be
-recovered afterwards.
+- in **`Měřené hodnoty`**, press **`Přepnout na základní nastavení`**
+  (bottom left), **or** use `ZÁKLADNÍ NASTAVENÍ` from the controller window
+- enter the group number, press **START**
+- **each block shows its own entry conditions as its first fields.** Hold the
+  engine where those fields ask, watch them come into range, then read the
+  result field
+- stationary, **in neutral, handbrake on**; the throttle is a foot, so both
+  hands stay free
 
-**Mass air flow and engine load are the point of the second instrument** —
-neither is on the CAN bus, so the capture cannot get them and only VCDS can.
+**20. Run group 046.** Hold the engine speed its own field asks for. Read and
+photograph the result.
 
-⚠ **Nothing else may be read on the VCDS screen until the log is stopped, and
-this is the rule that decides every "could I also look at…" below.** Changing
-the group selection is what the log samples; switching to another block to
-read something ends the recording. There is no way to read a third block and
-keep the rate, which is why *"two groups, never three"* is not only about
-sampling rate — it is also about not touching the screen for the next hour.
+**21. The same for group 034.**
 
-**Group 006 — intake air temperature and the altitude correction factor —
-is therefore read twice, and neither time is during the drive:** once **before
-the key**, while nothing is logging yet, and once **at the end**, with the log
-already stopped. Two numbers on paper, twice.
+**22. The same for group 037.**
 
-That is not the same as reading it during the pulls, and it is better than it
-sounds. The cold reading is essentially ambient and the hot standing one is
-ambient plus the engine bay — today's cold start gave **22.5 °C standing after
-five minutes with the oil starting at 12.75 °C** — so the pair **brackets**
-what the engine was breathing during a pull, which is moving air somewhere
-between the two. The volumetric-efficiency table in `engine-health.md` wants a
-bound and gets a narrower one.
+**23. The same for group 070.** Expect this one to operate a valve.
 
-⚠ **A log of zeroes is evidence and not proof.** The misfire counter is a
-*current* count rather than a total — values of 5 to 17 were watched rising and
-falling — so at 1.7 samples a second a brief event falls between samples. An
-hour is about six thousand samples, which is a strong statistical argument and
-still not the same thing as none having happened. **The static read below is
-the one where the screen is watched continuously**, and it is not replaced by
-the log.
+**24. Read group 036** — an ordinary read, not a basic setting.
 
-**The two recordings do not need to be synchronised.** Engine speed appears in
-both, so every VCDS sample can be matched to the right stretch of capture by
-its rpm alone — the method `docs/vcds-session.md` established and the reason it
-keeps that rig described. Nothing has to line up in time.
+**25. Switch off. Open the bonnet and put a thermometer down the dipstick
+tube.** Note the reading and the clock time. Within a minute of stopping.
 
----
+**26. Start the engine again and run a two-minute capture**, and while it runs,
+**disconnect VCDS from the ECU and reconnect it.**
 
-## The drive
+```
+python tools/usbtin_capture.py --seconds 120 --out reconnect_z1.txt
+```
 
-**Start the capture at a cold or cool start** and leave it running. Drive
-normally for **forty-five minutes to an hour**, and deliberately include:
+**27. Switch off. Do not clear the fault memory.**
 
-⚠ **The start itself now has a before-picture, so do not miss the after.**
-`18_coldstart_z1.txt` holds one cold start on the old injectors, with VCDS
-groups 014 and 055 beside it; the numbers to be beaten are in
-`docs/engine-health.md`, *The cold start*. Three things make the after
-comparable, and all three are easy to lose:
+## Some hundreds of kilometres later
 
-- **Start the bus capture and the diagnostic log before the key.** The
-  interesting part is over 1.6 s after the crankshaft first moves.
-- **Check the diagnostic log is still running once the engine catches**, and
-  keep checking. On the recording that exists, VCDS lost the ECU during
-  cranking and the start has no diagnostic data beside it at all.
-- ⚠ **Do not cycle the key to prime the pump first.** A prime masks exactly
-  the symptom being measured. **If that is the normal habit, then do it** — the
-  start has to be the usual one, and the before-recording was taken with
-  whatever the usual one is. What must not happen is priming *because* this is
-  a measurement.
+**28. Read group 032 again** and photograph it. One screen, no session, no
+instruments. This one matters and is easy to forget.
 
-**The before-start, to be set against:** 1.24 s of cranking at about 235 rpm,
-first firing at 451 rpm, a fall back to 311 rpm that nearly stalled it, then
-running at 43.00 s and a flare to 1446 rpm. The previous start had been about
-ten hours earlier, which is the condition the symptom is worst in; a start
-taken twenty minutes after the last one is not the same measurement.
-
-- **Several stationary idles of three to five minutes each**, spread through
-  the warm-up — one early, one in the middle, one when thoroughly hot. These
-  are the stumble data, and they are what makes the oil-temperature curve.
-
-  ⚠ **Spread through the warm-up is the whole point, and a hot idle alone
-  would waste the trip.** A hot idle counted **zero before the repair** —
-  `11_idle_noac_z1` and `12_idle_ac_z1`, on the old injectors, at 73 °C — so
-  zero afterwards says nothing whatever. The reading that carries information
-  is from cold and at around **61 °C of oil**, where the before-count is 12.1
-  and 11.6 a minute. **One minute at a matched temperature settles "gone or
-  not gone"; three minutes also settles "how much better".**
-  `docs/engine-health.md` has the prediction and the arithmetic, and
-  `python tools/idledips.py CAPTURE` is the whole analysis — **no firmware
-  change and no display channel is involved.**
-- **Two or three full-throttle pulls in a HIGH gear from about 2400 rpm** —
-  fourth or fifth, or up a hill, anywhere the engine *sits* near peak torque
-  instead of flashing through it. **This is what the last drive got wrong**:
-  every pull was a low-gear sweep that crossed 2400 in a moment, so there was
-  essentially no full-throttle data below 3000 rpm.
-- **One low-gear pull to high revs**, as before, for the power end.
-
-**Nothing needs marking and no times need noting.** The capture carries road
-speed, engine speed and throttle, so the idles and the pulls can be found in it
-afterwards. Drive; the analysis does the sorting.
-
-**If the oil temperature stops climbing and you want question 7 closed
-outright**, add the free-revving holds in neutral from `can-decoding.md`
-question 7 at the end, while it is still hot.
-
-⚠ **They will display nothing, and there is no display fitted anyway.** The
-holds are read off the raw log and b7, which is what they always were.
-
----
-
-## Straight after, with the engine still idling
-
-**Stop the capture and the VCDS log first** — in that order, and both of them.
-Only then may the group selection be touched. Everything below is a single
-value read off the screen and photographed, not a log.
-
-1. **Group 014 — misfires.** `Rozpoznani` must read **`aktivováno`** — that is
-   the word the label file produces, not `aktiv.`; if it says `deaktiv.` the
-   engine is not running and the number beside it is meaningless. **The counter
-   is a current count and not a total**, whatever the label says, so read it
-   while idling rather than expecting a sum. Before the work it took the values
-   **0, 12, 13, 24 and 36 and nothing else**, held each for about three seconds
-   and returned to zero, on an engine idling from cold — against a label file
-   that specifies 0 to 5.
-2. **Group 032 — the lambda adaptations.** They were **−4.7 % at idle against
-   +1.6 % at part load** before the work. Moving toward zero at idle is the
-   single cleanest sign that the injectors were the fault.
-3. **Groups 022 and 023 — knock retard, per cylinder. Not this session, and
-   it is worth knowing why rather than finding out in the car.** Specified 0.0
-   to 15.0 °CA each, and **the only per-cylinder signal this ECU offers** —
-   there is no per-cylinder misfire counter — so a cylinder retarded further
-   than its neighbours would name itself. But it is a *live* value under load:
-   at idle after the drive nothing is knocking and it reads what a quiet engine
-   reads, which is nothing. Catching it needs it on the screen **during a
-   full-throttle pull**, and that is either a third logged group, which costs
-   the sampling rate, or a broken log, or a second person holding the laptop.
-   **Its own session, with a passenger.** Do not spend this one on it.
-4. **Group 055 — the idle regulator**, specified −2.00 to +2.00 g/s, with its
-   own adaptation beside it at −1.50 to +0.150 g/s, and group 056 for the
-   target idle speed of 780 rpm. **Both now have a before-reading**, taken over
-   five minutes of cold idle in `vcds/vcds-coldstart-014-055.csv`: the
-   regulator worked between **−0.63 and +0.01 g/s**, mean −0.31, and the
-   adaptation sat at **−0.73 g/s and never moved** — an adaptation is stored,
-   so a single run cannot shift it and only the next reading can show whether
-   it has. Both are inside tolerance; what matters is which way they go.
-5. **Group 070 — the evaporative valve**, duty 0 to 100 % and flow 0.00 to
-   0.33 g/s. ⚠ It is a *basic setting* block rather than a passive read, so
-   expect it to run a test rather than report a state. If the purge is shut
-   while the engine stumbles, the alternative explanation for the idle is out.
-6. **Group 100 — readiness and OBD status**, which is what says whether the
-   new converter has finished its monitors and emissions can be measured.
-7. **The fault memory.** Do not clear it, before or after.
-8. ⚠ **A thermometer down the dipstick tube, within a minute of stopping**, set
-   against `OilTemp` — except the display is out for this session, so read the
-   raw `0x420` b3 out of the capture at the matching moment instead, and note
-   the clock time the thermometer was read. **This is the only test there is.**
-   `01-Motor` has no oil temperature block at all — every temperature it
-   defines is coolant, intake air or catalytic converter — so no screen can
-   settle it. `can-decoding.md` question 10 has the argument for why it is
-   worth a minute: every warm log ever recorded puts the oil twenty-odd degrees
-   *below* the coolant and never above 77 °C, and the drag line question 7 is
-   still open about is fitted against that number.
-9. **Blocks 046, 034, 037 and 036 — the ECU's own verdict on the new converter
-   and on both oxygen sensors.** ⚠ **The first three are *basic setting*
-   blocks**, the same class as 070: they run a test rather than report a state,
-   and each has a gate that must be met before its answer means anything. 036
-   is an ordinary read.
-
-   | block | checks | gate | the answer |
-   |---|---|---|---|
-   | **046** | catalytic converter conversion | **2800–3200 rpm**, cat ≥ 352 °C | `CatConvB1 OK` / `not OK` |
-   | **034** | pre-cat oxygen sensor ageing | **2200–2800 rpm**, cat ≥ 352 °C | `B1-S1 OK` / `not OK` |
-   | **037** | post-cat sensor, basic setting | **15–35 % load** | `Sys. OK` / `not OK` |
-   | **036** | post-cat sensor availability — **a passive read, not a basic setting** | — | `B1-S2 OK` / `not OK` |
-
-   **All four matter and none is optional**, because **both oxygen sensors on
-   this car have already been replaced once** — so any `not OK` here is a
-   second failure of that sensor rather than a worn part, and it decides how
-   the **−4.7 % idle lambda adaptation** in step 2 is read. `engine-health.md`,
-   *The history before any of that*, has the fork: both sensors sound makes
-   that adaptation a real fuel excess and points at the injectors; either one
-   failed makes it a possible artefact and the adaptation has to be re-read
-   afterwards.
-
-   **The engine must be hot and just driven**, because the converter
-   temperature is a gate and it is the block's own second field — watch it come
-   up rather than guessing. **There is no need to know what a healthy
-   converter temperature is**; the number is a precondition and the test gives
-   the judgement.
-
-   **How to start one, because it is not where it is usually looked for.**
-   *Basic settings* is **not** *Akční členy* — that is the other function, the
-   one that steps through actuators with START/DALŠÍ and is run with the engine
-   stopped, which is why it does not look familiar. The Czech VAG-COM manual
-   (`C:\Auto-diagnostika\VAG-COM.pdf`, §5.2 and §5.3) gives two ways in:
-
-   - from the controller window, **`ZÁKLADNÍ NASTAVENÍ`**, or
-   - from **`Měřené hodnoty`**, the **`Přepnout na základní nastavení`** button
-     — the greyed-out one at the bottom left of the screen the log runs in
-
-   Then enter the group number and press **START**. §5.3 also says to read the
-   vehicle's service manual first, which is worth repeating rather than
-   paraphrasing away.
-
-   ⚠ **These two need the engine running, hot, and held at speed** — every
-   basic setting previously run on this car was a throttle-body adaptation with
-   the engine stopped or idling, and that is not this. **Stationary, in neutral,
-   handbrake on**, and hold the revs steady while watching the screen, which is
-   the same rig `docs/vcds-session.md` describes for the free-revving holds and
-   works alone: the throttle is a foot, so both hands are free for the laptop.
-
-   ⚠ **There is no before-reading and there will not be one.** These were never
-   run on the old converter and the car is not being started to get one — the
-   whole reason it stands is to keep raw fuel away from the new one. So this is
-   an absolute check rather than a comparison, which is what makes the pass/fail
-   wording valuable: it needs no baseline.
-
-   **Worth doing even though readiness already read `00000000` today**, which
-   says the catalyst monitor has *completed*. Completed is not passed, and
-   `CatConvB1 OK` is the explicit version of the same question.
-
-10. **Then start the capture again and settle 0x200, which costs two minutes.**
-   With the engine still idling and a capture running, **disconnect VCDS from
-   the ECU and reconnect it.** `18_coldstart_z1.txt` is the only log carrying
-   identifier 0x200, twice, and both times it fell in the window where VCDS had
-   dropped the ECU and was being reconnected by hand — while `11`–`17` hold
-   half an hour of bus with VCDS merely *attached* and never show it. **If
-   0x200 appears, it is the tester and not the car**, and the same goes for the
-   only two frames in the whole corpus where `0x5D0` byte 0 is not zero, each
-   of which follows a 0x200 within 90 ms. `docs/can-decoding.md` has the
-   argument. Nothing depends on the answer — it is cheap and the alternative is
-   leaving a fifteenth identifier on the bus unexplained.
-
----
-
-## What comes back here
+## What comes back
 
 | | |
 |---|---|
-| the capture | filtered to `0x280`, `0x1A0`, `0x420` and **`0x480`** before sending — see below |
-| the VCDS log | as it comes — groups 003 and 014 |
-| groups 014 and 032 | photographs are fine |
-| how it drives | not a soft measure here, see the prediction below |
+| the capture | filtered to `0x280`, `0x1A0`, `0x420` and `0x480` before sending |
+| `reconnect_z1.txt` | whole, it is tiny |
+| the VCDS log | as it comes, groups 003 and 014 |
+| the photographs | every screen from steps 18 and 20–24 |
+| two paper numbers, twice | group 006, before and after |
+| the dipstick reading | with the clock time |
+| how it drives | in plain words |
+| later | the second group 032 photograph |
 
-**Size, measured on `18_coldstart_z1.txt` rather than estimated.** The whole
-bus is **65 MB an hour** — fine to write, awkward to hand over, which is what
-the filter is for. The four identifiers above are **36 % of the bytes, about
-24 MB an hour.** `tools/usbtin_capture.py` writes line by line as it goes, so a
-capture that is interrupted keeps everything up to the interruption.
+---
+
+# Part 2 — why each step is there, and how to read what comes back
+
+## Steps 1–3 — why nothing is cleared, and why not on day one
+
+**The lambda adaptations are the measurement, so clearing them destroys it.**
+`032` reads **−4.7 % at idle against +1.6 % at part load**, and *moving toward
+zero at idle* is the single cleanest sign that the injectors were the fault.
+Clear the adaptations and the after-value starts at zero because it was forced
+there, not because anything was repaired. The same argument covers the battery:
+disconnecting it takes the idle adaptation (`055`, **−0.73 g/s**), the throttle
+body adaptation and the readiness bits with it.
+
+**The fault memory is evidence** and a cleared one also resets readiness, so
+`100` would read "not complete" and say nothing about the new converter.
+
+⚠ **How long the ECU needs to re-adapt to new injectors is not known here.** It
+was asserted in conversation once as "weeks" and never written down or sourced,
+so it is treated as unknown. **The procedure is built not to depend on it**:
+nothing is cleared, the session is not delayed waiting for adaptation, and
+`032` is simply read a second time later (step 28). The *movement* between the
+two readings is the evidence, and that works whatever the time constant is.
+
+**Why the drive home matters (step 2).** From a cold start the ECU runs open
+loop until the oxygen sensor lights off, and in open loop it uses the *stored*
+adaptation. With new injectors and a stale −4.7 % still in memory, the warm-up
+could be lean for reasons that have nothing to do with the parts — which would
+land on exactly the cold-start measurement this session is for. A drive home
+lets some of that adaptation move before the measured start. Whether it is
+enough is the unknown above; it is strictly better than not driving.
+
+**Once warm this confound largely disappears**, because closed-loop control
+corrects the mixture within seconds regardless of what the stored adaptation
+says. It is the cold start and the early idle that are exposed.
+
+**Why ten hours and not longer (step 3).** The before-recording,
+`18_coldstart_z1.txt`, was taken about ten hours after the previous start.
+**Matching it is worth more than making the test harsher.** A harsher after-run
+that passes is nice; a harsher one that fails cannot be told apart from a
+longer stand, and the clean before/after is the whole value.
+
+## Steps 4–9 — the configuration, and the one screen rule
+
+**The display and converter come out** because a capture carries b7, engine
+speed, oil temperature, road speed, throttle and the fuel counter at about
+ninety-four frames a second each, every one with the others beside it in time.
+A display channel would be the same byte reduced to a held maximum.
+
+⚠ **`OilTemp` is not the converter's.** Its TRI row reads `0x420` byte 3, the
+car's own frame, so every capture already carries it.
+
+**Groups 003 and 014, and not 010.** `014` already carries the load, so
+`003 + 014` is a superset of `003 + 010` with the misfire counter added and
+nothing given up — logging misfires costs no sampling rate at all. A third
+group would drop the rate from about 1.7 samples a second to 1.1, and **the
+rate is the one thing that cannot be recovered afterwards.**
+
+**Mass air flow and engine load are the point of the second instrument** —
+neither is on the CAN bus, so only VCDS can give them.
+
+**Group 006 is read twice and never during the drive**, because reading it
+means changing the group selection and that ends the log. The cold reading is
+essentially ambient, the hot standing one is ambient plus engine bay — today's
+cold start gave 22.5 °C standing with the oil starting at 12.75 °C — so the
+pair **brackets** what the engine breathed during a pull. The
+volumetric-efficiency table in `engine-health.md` wants a bound and gets a
+narrower one.
+
+**The two recordings do not need to be synchronised.** Engine speed appears in
+both, so every VCDS sample matches to the right stretch of capture by its rpm
+alone.
+
+## Steps 10–11 — the start
+
+**There is a before-picture and it is the one thing that cannot be repeated.**
+`18_coldstart_z1.txt` holds one cold start on the old injectors:
+
+| | |
+|---|---|
+| cranking | **1.24 s** at about 235 rpm |
+| first firing | 451 rpm |
+| then | **falls back to 311 rpm and nearly stalls** |
+| running | 43.00 s, then a flare to 1446 rpm |
+
+**A prime masks exactly that symptom**, which is why step 10 says not to — with
+the qualification that the before-recording was taken with whatever the usual
+start is, so "usual" wins over "clean".
+
+**Step 11 exists because VCDS lost the ECU during cranking last time** and did
+not recover by itself, which cost the whole start and the first 86 seconds of
+running — the one thing the session was asked for.
+
+## Steps 12–14 — why the idles are spread out
+
+⚠ **A hot idle alone would waste the trip.** A hot idle counted **zero before
+the repair** — `11_idle_noac_z1` and `12_idle_ac_z1`, old injectors, 73 °C — so
+zero afterwards says nothing whatever.
+
+| state | oil | before, `dips_cheap()` | predicted after |
+|---|---|---|---|
+| cold idle | 13–17 °C | **12.1/min** | ~0 |
+| warm-ish idle | 61.5 °C | **11.6/min** | ~0 |
+| hot idle | 72.8–73.5 °C | 0.0/min | 0, and it says nothing |
+
+**One minute at a matched temperature settles "gone or not gone"** — at 11.6 a
+minute, seeing none in sixty seconds has a probability of 7×10⁻⁵ if nothing
+changed. **Three minutes also settles "how much better"**, at p = 0.002 for a
+halving. The whole analysis is `python tools/idledips.py CAPTURE`; no firmware
+change and no display channel is involved.
+
+**High gear for the pulls** because the last drive got this wrong: every pull
+was a low-gear sweep that crossed 2400 rpm in a moment, so there was
+essentially no full-throttle data below 3000 rpm.
+
+**If the oil stops climbing and you want `can-decoding.md` question 7 closed
+outright**, add the free-revving holds from that question at the end while it
+is hot. They will display nothing, and there is no display fitted anyway — the
+holds are read off the raw log and b7.
+
+## Step 18 — what each screen is for
+
+**`014` — misfires.** `Rozpoznani` must read **`aktivováno`**; `deaktiv.` means
+the engine is not running and the number beside it is meaningless. **It is a
+current count, not a total.** Before the work it took the values **0, 12, 13,
+24 and 36 and nothing else**, held each about three seconds and returned to
+zero — against a label file that specifies 0 to 5.
+
+⚠ **A log of zeroes is evidence and not proof.** At 1.7 samples a second a
+brief event falls between samples. An hour is about six thousand samples, which
+is a strong statistical argument and still not the same as none having
+happened. **This screen is the one where it is watched continuously**, which is
+why a minute of watching is asked for rather than a glance.
+
+**`032` — the lambda adaptations**, and see steps 19–24 below for the fork that
+decides what they mean.
+
+**`055`/`056` — the idle regulator.** Specified −2.00 to +2.00 g/s, its
+adaptation −1.50 to +0.150 g/s, target idle 780 rpm. The before-reading, over
+five minutes of cold idle: the regulator worked between **−0.63 and +0.01 g/s**,
+mean −0.31, and the adaptation sat at **−0.73 g/s and never moved**. An
+adaptation is stored, so one run cannot shift it; only the next reading shows
+whether it has.
+
+**`100` — readiness and OBD status.** Reading `00000000` says every monitor has
+completed. **Completed is not passed**, which is why step 20 exists.
+
+## Steps 19–24 — the four blocks that give verdicts
+
+**These are the only measurements here that need no baseline**, which is what
+makes them valuable on a car whose "before" can no longer be produced.
+
+| block | checks | the answer |
+|---|---|---|
+| **046** | catalytic converter conversion | `CatConvB1 OK` / `not OK` |
+| **034** | pre-cat oxygen sensor ageing | `B1-S1 OK` / `not OK` |
+| **037** | post-cat sensor, basic setting | `Sys. OK` / `not OK` |
+| **036** | post-cat sensor availability | `B1-S2 OK` / `not OK` |
+
+**Both oxygen sensors on this car have already been replaced once**, so **any**
+`not OK` is a second failure of that sensor — which argues for something that
+keeps killing them rather than for a worn part. Both have also sat in the
+exhaust of a converter that was burning through.
+
+**That is what makes `032` mean something**, and the fork is clean:
+
+| 034 / 036 / 037 | what −4.7 % at idle then means |
+|---|---|
+| all `OK` | the ECU is correcting a **real** fuel excess — the injectors |
+| any `not OK` | a second sensor has failed; the adaptation may be its artefact, and `032` is re-read after it is replaced |
+
+**The converter temperature these blocks display is a gate, not a reading.**
+There is no need to know what a healthy catalyst temperature is: the number is
+an entry condition and the ECU supplies the judgement. That is also why step 19
+says to watch the block's own fields rather than quoting rpm ranges here — the
+block knows them.
+
+**`070` operates the evaporative valve.** If the purge is shut while the engine
+stumbles, the alternative explanation for the idle is out.
+
+⚠ **`022` and `023` — knock retard per cylinder — are deliberately not in this
+session.** They are the only per-cylinder signal this ECU offers, but they are
+a live value under load: at idle after a drive nothing is knocking and they
+read what a quiet engine reads. Catching them needs a third logged group, a
+broken log, or a passenger. **Their own session, with somebody else holding the
+laptop.**
+
+## Step 25 — the thermometer
+
+**`can-decoding.md` question 10 is whether the oil temperature is *right*, not
+merely oil.** The channel never exceeds 77 °C and sits twenty-odd degrees
+*below* the coolant in every state ever recorded, including an hour of driving
+that peaked at 72–74 °C. A warmed engine under load normally runs its oil at
+90–110 °C and above the coolant.
+
+⚠ **No screen can settle this.** `01-Motor` has no oil temperature block at
+all — every temperature it defines is coolant, intake air or catalytic
+converter. The thermometer is the only test there is, and it matters because
+the drag line question 7 is still open about is fitted against that number.
+
+Read `0x420` b3 out of the capture at the matching clock time afterwards.
+
+## Step 26 — the two-minute 0x200 test
+
+`18_coldstart_z1.txt` is the only log carrying identifier **0x200**, twice, and
+both times it fell in the window where VCDS had dropped the ECU and was being
+reconnected by hand — while `11`–`17` hold half an hour of bus with VCDS merely
+*attached* and never show it. **If 0x200 appears, it is the tester and not the
+car**, and the same goes for the only two frames in the whole corpus where
+`0x5D0` byte 0 is not zero, each of which follows a 0x200 within 90 ms.
+
+Nothing depends on the answer. It is two minutes, and the alternative is
+leaving a fifteenth identifier on the bus unexplained.
+
+## The capture filter
+
+**Sizes measured on `18_coldstart_z1.txt` rather than estimated.** The whole
+bus is **65 MB an hour**; the four identifiers kept are **36 % of the bytes,
+about 24 MB an hour.** `usbtin_capture.py` writes line by line, so an
+interrupted capture keeps everything up to the interruption.
 
 ⚠ **`0x480` is in that list and an earlier version of this file left it out**,
 which would have thrown away the one thing the capture is still needed for.
-Everything else this session asks of the bus can now be read off the display or
-the VCDS log; the **fuel counter cannot**, and it is what removes the air-fuel
-assumption from the efficiency argument in `engine-health.md` — measured air
-from group 003 over the same full-throttle pulls, divided by measured fuel.
-**Filter it out and the pulls have to be driven again.**
+Everything else can now be read off the display or the VCDS log; the **fuel
+counter cannot**, and it is what removes the air-fuel assumption from the
+efficiency argument in `engine-health.md` — measured air from group 003 over
+the same pulls, divided by measured fuel. **Filter it out and the pulls have to
+be driven again.**
 
-**`0x288` is deliberately not in the list**, and it is the only close call. It
-is the coolant, which would take the filtered capture from 36 % to 48 % — nine
-more megabytes to carry for a channel that, across the three warm idle
-fixtures, **sat at 99 °C in all of them while the thing being measured moved**.
-The oil in `0x420` is the temperature this investigation runs on. If the
-warm-up state itself ever becomes the question, take the unfiltered capture.
+**`0x288` is deliberately out**, and it is the only close call: the coolant
+would take the filtered capture from 36 % to 48 %, nine more megabytes for a
+channel that sat at 99 °C in all three warm idle fixtures while the thing being
+measured moved. If the warm-up state itself ever becomes the question, take the
+unfiltered capture.
 
 ---
 
@@ -356,18 +401,16 @@ rather than only when hot**, and the idle adaptation moves toward zero — while
 ⚠ **That last clause rests on an unsourced premise and is the weakest thing in
 this document.** It assumes the ECU's torque model cannot see a fuelling fault,
 which needs the lambda entering that model to be the *commanded* value — and
-nothing this project holds says so. `frames.md` sorts what is founded from what
-is recalled. **Misfire detection is per-cylinder and does run on this car**, so
-the ECU is not without a combustion signal; whether it reaches the torque model
-is simply unknown.
+nothing this project holds says so. **Misfire detection is per-cylinder and
+does run on this car**, so the ECU is not without a combustion signal; whether
+it reaches the torque model is simply unknown.
 
 Which makes it the most informative line here rather than the least: **if b7
 rises while load and airflow stay put, the premise is wrong and we learn
 something no other measurement on this drive can give.**
 
-**On the idle specifically**, `engine-health.md` measures the stumbles as
-present at 61 °C of oil and absent at 73 °C, with the coolant at 99 °C in both.
-**A repair that removes them only in the hot state has not removed the cause.**
+**On the idle specifically**, a repair that removes the stumbles only in the
+hot state has not removed the cause.
 
 ---
 
@@ -376,41 +419,32 @@ present at 61 °C of oil and absent at 73 °C, with the coolant at 99 °C in bot
 **The loop this drive starts ends with a reflash**: the capture gives the
 numbers, `TORQUE_CNM_PER_BIT` and the drag line move together if the tree below
 says they should, the hex is rebuilt and programmed, and then the display is
-looked at to see whether it now reaches the factory figures.
+looked at.
 
-**Put `Torque`, `Power` and `RPM` on the same page for that look, and
-photograph one steady moment.** That is the whole of it. No session, no
-instruments, nothing dismantled — all three are already on the display in the
-normal fitted configuration, two from `0x601` and one straight off the car's
-`0x280`.
+**Put `Torque`, `Power` and `RPM` on the same page and photograph one steady
+moment.** All three are already on the display in the normal fitted
+configuration, two from `0x601` and one straight off the car's `0x280`.
 
-⚠ **This used to say `TorqRaw`, a channel showing the raw 0x280 b7, and no
-such channel exists.** `S-AQY.TRI` carries 31 sensors and that is not one of
-them; it never was, in any commit of the `mfd15` repository. **It is also not
-worth adding**, for two reasons. The raw byte is already in the capture this
-drive records, at ninety-four samples a second rather than as one number on a
-screen. And the display's sensor list is verified, uploaded and working, while
-`mfd15/README.md` records that **the display sometimes loses its sensor
-definitions when a page's contents are changed** and that rows may only be
-appended, never inserted. Editing a configuration that works, to add a
-convenience for a measurement that is taken another way, is a poor trade. If
-the raw byte is ever genuinely wanted on the screen it can be appended then.
+⚠ **There is no `TorqRaw` channel and none is wanted.** `S-AQY.TRI` carries 31
+sensors and that is not one of them; it never was, in any commit of `mfd15`.
+The raw byte is already in the capture at ninety-four samples a second, and
+`mfd15/README.md` records that the display sometimes loses its sensor
+definitions when a page's contents are changed. Editing a working configuration
+for a convenience is a poor trade. If it is ever genuinely wanted it can be
+appended then.
 
 **It is worth the one photograph because it closes a gap nothing else can.**
 The host tests check the core under gcc; the device runs XC8 over the
 hand-written wide arithmetic in `fastmul.h` and `divconst.h`. *Compiling proves
 nothing about the silicon*, and a green host test is evidence about the code
-and a **hypothesis about the device** — which is this repository's own rule,
-one level up. A single frame showing b7, engine speed and the torque computed
-from them is the only thing that has ever tested the arithmetic **as the part
-actually executes it**.
+and a **hypothesis about the device**. A single frame showing b7, engine speed
+and the torque computed from them is the only thing that has ever tested the
+arithmetic **as the part actually executes it**.
 
 ⚠ **Set the scale before reaching for `TORQUE_TRIM_PCT`, not at the same
-time.** The remap gain belongs inside the scale's derivation with its
-assumption written down; adding a few per cent on top of a scale that is itself
-being changed leaves two unknown corrections on one number and no way to tell
-which is doing what. Get the scale from the measurement, look at where it
-lands, and only then decide whether a trim is wanted at all.
+time.** Adding a few per cent on top of a scale that is itself being changed
+leaves two unknown corrections on one number and no way to tell which is doing
+what.
 
 ---
 
@@ -418,13 +452,10 @@ lands, and only then decide whether a trim is wanted at all.
 
 **Step 1 is the engine, because otherwise you are calibrating against a sick
 one.** Does it pull better with the new injectors? If not, today's numbers were
-already its best and you go to step 2 with them; if it does, re-measure and go
-to step 2 with the new ones.
+already its best and you go to step 2 with them; if it does, re-measure first.
 
-**Step 2 is b7's maximum at full throttle**, taken out of the capture, with
-the ECU's load from the same engine speed beside it. There is no display
-channel for the raw byte and none is wanted — see the note above — so this
-step needs the capture and nothing else does it.
+**Step 2 is b7's maximum at full throttle**, taken out of the capture, with the
+ECU's load from the same engine speed beside it.
 
 ```
 b7max >= 235
@@ -470,7 +501,7 @@ figure*.
    `DRAG_TORQUE_SLOPE_Q16` are that line times the scale, so they follow it.
    This is what `config.h` means by the two being one calibration.
 4. **Both ceiling tests are rewritten.** `test_full_scale_reaches_the_rated_power`
-   and `..._torque` asserts what b7 = 255 produces. They would assert what the
+   and `..._torque` assert what b7 = 255 produces. They would assert what the
    OBSERVED maximum produces — which is the first version of that test with a
    measurement behind it.
 5. **`TORQUE_TRIM_PCT` is not the tool for this** and must not be used as one.
@@ -479,19 +510,21 @@ figure*.
    second leaves the next person a number that no longer means what its
    comment says.
 
-The display needs no change either way: `Torque` tops out at 200.00 in
-`S-AQY.TRI` and `Power` at 100.00, so the larger figures still fit.
-
 ---
 
-## What this drive does not do
+## What this session answers
 
-- **It does not refit the drag line, and may make that unnecessary.** The
-  refit was wanted for 95–110 °C oil; this engine appears not to go there. See
-  question 7 above and `can-decoding.md`.
-- **It does not measure torque.** Nothing here is a dynamometer. It measures
-  the ECU's own byte and how close that byte gets to its ceiling.
-- **It does not need the converter reflashed.** Nothing in `src/` changed.
-  `TORQUE_TRIM_PCT` stays at zero until there is a measurement to set it from.
-- **It does not check the converter**, and nothing separate needs to: see
-  *After the reflash*.
+| question | what settles it |
+|---|---|
+| **is the engine well now** | first-gear misfires, the stumbling idle against oil temperature, the idle adaptation, how it pulls |
+| **is the new converter converting** | block 046, and it needs no baseline |
+| **are either of the replaced oxygen sensors gone again** | blocks 034, 036, 037 |
+| **can the display ever show the factory maxima** | b7 at full throttle against the ECU's load at the same engine speed |
+| **does the oil ever get hot enough to matter** | the oil temperature a long drive actually reaches, and the thermometer beside it |
+
+**The last one is close to answered already.** The drive of 2026-09-10 peaked
+at **72–74 °C of oil after about an hour**, and the warm holds the drag line is
+fitted to are 72.8–76.6 °C — the same range. `can-decoding.md` question 7 rests
+on "72–77 °C is warm, not the 95–110 °C of real driving", and that sentence
+appears to be false for this engine. **Unless question 10 is the reason it
+appears false**, which the thermometer settles.

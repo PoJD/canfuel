@@ -73,9 +73,9 @@ Three things follow, and none of them are sentiment.
   lower bound.** It cannot be turned into a date and should not be.
 
 **Nothing further is bought before 034 and 046 report.** That is the owner's
-position and it is the right one — `next-drive.md` step 9 is what produces
-those two verdicts, and both are absolute rather than comparative, so they need
-no baseline this car can no longer provide.
+position and it is the right one — `next-drive.md`, *The four blocks that give
+verdicts*, is what produces them, and they are absolute rather than
+comparative, so they need no baseline this car can no longer provide.
 
 ---
 
