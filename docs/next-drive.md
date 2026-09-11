@@ -67,13 +67,35 @@ the CAN pair and VCDS is on the OBD socket, over K-line
 python tools/usbtin_capture.py --seconds 3600 --out postfix_z1.txt
 ```
 
-**2. VCDS logging, groups 003 and 010, running throughout.** Between them:
-engine speed, **mass air flow**, **engine load**, throttle angle and ignition
-advance. Those first two are the point — **neither is on the CAN bus**, so the
-capture cannot get them and only VCDS can.
+**2. VCDS logging, groups 003 and 014, running throughout.**
 
-⚠ **Two groups, not three.** Three drops the sampling rate to about one per
-second. Two gives about 1.7, which is plenty here for the reason below.
+**Not 010, and the reason is worth knowing**, because the obvious pairing is
+the wrong one:
+
+| group | fields |
+|---|---|
+| **003** | engine speed · **mass air flow** · throttle angle · ignition advance |
+| 010 | engine speed · engine load · throttle angle · ignition advance |
+| **014** | engine speed · **engine load** · **misfire count** · detection state |
+
+**Group 014 already carries the load**, so `003 + 014` is a superset of
+`003 + 010` with the misfire counter added and nothing given up. Logging the
+misfires therefore costs **no** sampling rate at all, where adding 014 as a
+third group would have dropped it from about 1.7 samples a second to 1.1.
+
+⚠ **Two groups, never three.** The rate is the one thing that cannot be
+recovered afterwards.
+
+**Mass air flow and engine load are the point of the second instrument** —
+neither is on the CAN bus, so the capture cannot get them and only VCDS can.
+
+⚠ **A log of zeroes is evidence and not proof.** The misfire counter is a
+*current* count rather than a total — values of 5 to 17 were watched rising and
+falling — so at 1.7 samples a second a brief event falls between samples. An
+hour is about six thousand samples, which is a strong statistical argument and
+still not the same thing as none having happened. **The static read below is
+the one where the screen is watched continuously**, and it is not replaced by
+the log.
 
 **The two recordings do not need to be synchronised.** Engine speed appears in
 both, so every VCDS sample can be matched to the right stretch of capture by
@@ -131,7 +153,7 @@ them. They are single values, not logs.
 | | |
 |---|---|
 | the capture | filtered to `0x280`, `0x420` and `0x1A0` before sending — about a fifth of the size and nothing this analysis needs is outside those three |
-| the VCDS log | as it comes |
+| the VCDS log | as it comes — groups 003 and 014 |
 | groups 014 and 032 | photographs are fine |
 | how it drives | not a soft measure here, see the prediction below |
 
