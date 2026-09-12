@@ -38,6 +38,25 @@ Usage
     python oilwatch.py postfix_z1.txt            # a refreshing status line
     python oilwatch.py postfix_z1.txt --once     # one line and exit
     python oilwatch.py postfix_z1.txt --lead 120 # more warning
+    python oilwatch.py postfix_z1.txt --until band --timeout 570
+
+Who watches it
+--------------
+
+**Nobody in the car can watch a terminal**, which is the thing to design
+around: the driver is driving and the laptop is on the passenger seat. So
+there are three ways to use this and they are not equivalent.
+
+* `--watch` (the default) prints a line whenever the verdict changes and rings
+  the terminal bell when it becomes actionable. This is the only mode that
+  needs nobody in the loop, and it is the fallback whatever else is running.
+* `--once` prints one line. This is what another program polls.
+* `--until` **blocks until there is something to say**, then prints it and
+  exits -- 0 if the state arrived, 2 if it timed out with nothing to report.
+  This is the mode for an assistant driving the session from the same laptop:
+  a tool call that returns exactly when the driver needs telling, rather than
+  a poll that has to be remembered. `--timeout` exists because the caller's
+  own command timeout does; time out, report nothing, and call again.
 """
 
 from __future__ import annotations
@@ -246,6 +265,37 @@ def verdict(tail, lead_s=LEAD_S):
     return "KEEP DRIVING", f"band in about {eta/60:.0f} min"
 
 
+#: What --until can wait for, as the verdict headlines that satisfy each.
+UNTIL = {
+    "band": ("STOP WITHIN A MINUTE", "STOP NOW"),
+    "idle-done": ("IDLING, DONE",),
+    "hot": ("PAST THE BAND",),
+}
+
+BELL_ON = frozenset(("STOP WITHIN A MINUTE", "STOP NOW", "IDLING, DONE"))
+
+
+def wait_for(tail, want, timeout_s, poll_s, lead_s, out=None):
+    """Poll until one of `want`'s headlines shows, or the timeout. 0 or 2.
+
+    Returns the exit code the CLI uses: 0 means the state arrived and the line
+    printed is about it; 2 means nothing happened in the time allowed, which is
+    not a failure -- the caller simply calls again.
+    """
+    heads = UNTIL[want]
+    deadline = time.monotonic() + timeout_s
+    while True:
+        tail.poll()
+        head, _ = verdict(tail, lead_s)
+        if head in heads:
+            print(line(tail, lead_s), file=out)
+            return 0
+        if time.monotonic() >= deadline:
+            print(line(tail, lead_s), file=out)
+            return 2
+        time.sleep(poll_s)
+
+
 def line(tail, lead_s=LEAD_S):
     oil = tail.now.get("oil")
     clt = tail.now.get("coolant")
@@ -266,6 +316,14 @@ def main(argv=None):
     ap.add_argument("--lead", type=float, default=LEAD_S,
                     help="seconds of warning before the band (default %d)" % LEAD_S)
     ap.add_argument("--every", type=float, default=5.0, help="seconds between polls")
+    ap.add_argument("--until", choices=sorted(UNTIL),
+                    help="block until this state, then print one line and exit "
+                         "(0 reached, 2 timed out)")
+    ap.add_argument("--timeout", type=float, default=570.0,
+                    help="seconds --until will wait (default 570, which fits "
+                         "inside a ten-minute command timeout)")
+    ap.add_argument("--no-bell", action="store_true",
+                    help="do not ring the terminal bell in --watch")
     args = ap.parse_args(argv)
 
     tail = Tail(args.capture)
@@ -273,6 +331,9 @@ def main(argv=None):
     if args.once:
         print(line(tail, args.lead))
         return 0
+
+    if args.until:
+        return wait_for(tail, args.until, args.timeout, args.every, args.lead)
 
     print("target %.1f C, band %.1f-%.1f C, %.0f s of warning. Ctrl-C to stop."
           % (TARGET_C, BAND_LO_C, BAND_HI_C, args.lead))
@@ -282,7 +343,11 @@ def main(argv=None):
             tail.poll()
             now = line(tail, args.lead)
             if now != last:
-                print(now)
+                head, _ = verdict(tail, args.lead)
+                # The driver is driving; a quiet line on a laptop on the
+                # passenger seat is not an interface. The bell is.
+                bell = "\a" if head in BELL_ON and not args.no_bell else ""
+                print(bell + now, flush=True)
                 last = now
             time.sleep(args.every)
     except KeyboardInterrupt:

@@ -10,13 +10,14 @@ against 18_coldstart_z1.
 
 from __future__ import annotations
 
+import io
 import os
 import tempfile
 import unittest
 
 import canlog
-from oilwatch import (BAND_HI_C, BAND_LO_C, IDLE_S, STANDSTILL_MMH,
-                      THROTTLE_REST, Tail, oil_c, verdict)
+from oilwatch import (BAND_HI_C, BAND_LO_C, BELL_ON, IDLE_S, STANDSTILL_MMH,
+                      THROTTLE_REST, UNTIL, Tail, oil_c, verdict, wait_for)
 
 FIXTURES = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                         os.pardir, "test", "fixtures")
@@ -138,6 +139,59 @@ class Verdicts(unittest.TestCase):
         t = self.tail_for(capture(300, lambda s: 30.0))
         self.assertIsNone(t.seconds_to(BAND_LO_C))
         self.assertEqual(verdict(t)[0], "KEEP DRIVING")
+
+
+class Until(unittest.TestCase):
+    """--until is the mode an assistant on the same laptop drives this with."""
+
+    def setUp(self):
+        self.dir = tempfile.TemporaryDirectory()
+        self.path = os.path.join(self.dir.name, "grow.txt")
+        self.addCleanup(self.dir.cleanup)
+
+    def write(self, text, mode="w"):
+        with open(self.path, mode, encoding="ascii") as fh:
+            fh.write(text)
+
+    def test_a_state_already_reached_returns_at_once(self):
+        self.write(capture(300, lambda s: BAND_LO_C + 2.0 + s / 600))
+        tail = Tail(self.path)
+        out = io.StringIO()
+        self.assertEqual(wait_for(tail, "band", 5.0, 0.01, 90.0, out), 0)
+        self.assertIn("STOP NOW", out.getvalue())
+
+    def test_nothing_to_report_times_out_with_2_and_is_not_a_failure(self):
+        self.write(capture(300, lambda s: 20.0 + s * 0.1 / 60))
+        tail = Tail(self.path)
+        out = io.StringIO()
+        self.assertEqual(wait_for(tail, "band", 0.2, 0.01, 90.0, out), 2)
+        self.assertIn("KEEP DRIVING", out.getvalue())
+
+    def test_it_sees_the_state_arrive_in_a_file_that_is_still_growing(self):
+        cold = capture(300, lambda s: 20.0 + s / 60)
+        hot = capture(60, lambda s: BAND_LO_C + 1.0)
+        self.write(cold)
+        tail = Tail(self.path)
+        out = io.StringIO()
+        self.assertEqual(wait_for(tail, "band", 0.05, 0.01, 90.0, out), 2)
+        self.write(cold + hot)
+        self.assertEqual(wait_for(tail, "band", 5.0, 0.01, 90.0, out), 0)
+
+    def test_every_until_target_is_a_headline_verdict_can_produce(self):
+        produced = set()
+        for oil, moving in ((BAND_LO_C + 2, True), (BAND_HI_C + 3, True),
+                            (61.5, False)):
+            self.write(capture(IDLE_S + 60, lambda s, o=oil: o, moving=moving))
+            t = Tail(self.path)
+            t.poll()
+            produced.add(verdict(t)[0])
+        for heads in UNTIL.values():
+            self.assertTrue(produced & set(heads),
+                            f"no state produces {heads}")
+
+    def test_the_bell_states_are_the_actionable_ones(self):
+        self.assertEqual(BELL_ON & {"KEEP DRIVING", "WAITING"}, set())
+        self.assertIn("STOP NOW", BELL_ON)
 
 
 class AgainstTheColdStart(unittest.TestCase):

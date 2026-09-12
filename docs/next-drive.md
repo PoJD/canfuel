@@ -87,7 +87,7 @@ at all, and *Steps 12–14* below is why.
 driver's seat**, the display and the converter being out. Two routes, and the
 first is much better:
 
-**12a. With somebody watching the laptop**, run this beside the capture:
+**12a. With `tools/oilwatch.py` running beside the capture:**
 
 ```
 python tools/oilwatch.py postfix_z1.txt
@@ -96,9 +96,22 @@ python tools/oilwatch.py postfix_z1.txt
 It reads the capture **while `usbtin_capture.py` is still writing it**, never
 touches the serial port, measures how fast the oil is actually climbing and
 says how long there is before the band arrives — ninety seconds of warning by
-default, which is enough to notice the screen and then find somewhere to stop.
-It also says when the idle has been long enough. **Take the three idles as
-written and let it place the middle one.**
+default, which is enough to notice and then find somewhere to stop. It also
+says when the idle has been long enough. **Take the three idles as written and
+let it place the middle one.**
+
+⚠ **Whoever is driving cannot watch a terminal**, so decide before the key who
+or what is going to notice. Three arrangements, and the first works with
+nobody paying attention:
+
+| | how it tells you |
+|---|---|
+| `oilwatch.py CAPTURE` in a visible window | prints on every change and **rings the bell** when it turns actionable |
+| an assistant on the same laptop | `oilwatch.py CAPTURE --until band` blocks and returns the moment there is something to say; it does the same for `idle-done` and `hot` |
+| a passenger | `--once`, on request |
+
+**Run the first one regardless.** It costs nothing and it is the only one that
+does not depend on somebody remembering to look.
 
 **12b. With nobody watching**, hedge instead: **several idles through the first
 half of the drive** — roughly ten, twenty and thirty minutes in — and keep
