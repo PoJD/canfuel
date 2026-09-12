@@ -17,10 +17,20 @@ driver to find somewhere to stop rather than being told to stop now.
 
 It never opens the serial port and never writes to the capture. It only reads.
 
-⚠ **The capture is block-buffered, so this lags it by up to a second or so.**
-usbtin_capture.py is deliberately not changed for this: at ninety-four frames a
-second a flush per line is a real cost to the instrument, and a second of lag
-against a decision horizon of a minute is nothing.
+⚠ **The capture is block-buffered, so this lags it by about half a second.**
+Measured rather than assumed, and it is worth having the number because it is
+the one thing that could make a "stop now" late. Python's text file becomes
+visible to another reader in **8216-byte blocks** -- 8 KB plus the line that
+overshot -- and this bus writes **17.0-18.1 kB/s** across every _z1 fixture,
+idle and driving alike, because the frames are periodic and the rate barely
+moves. That is **0.44-0.47 s**, against a decision horizon of ninety seconds.
+
+**usbtin_capture.py is deliberately not changed for it.** A flush per line at
+seven hundred frames a second is a real cost to the instrument, and buys half
+a second of something nobody is waiting on. What *was* changed is Ctrl-C: it
+now ends a capture cleanly rather than by traceback, because ending the
+recording by hand is how the drive actually finishes. A hard kill still loses
+whatever is in that 8 KB buffer.
 
 Usage
 -----

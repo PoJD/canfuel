@@ -114,7 +114,15 @@ rather than flashing through it.
 finds the idles and the pulls by itself.
 
 **16. Finish at a standstill with the engine idling and hot.** Do not switch
-off.
+off. **This idle wants its three to five minutes before step 17**, because
+step 17 is what stops recording it.
+
+⚠ **`--seconds 4500` is a ceiling, not a plan.** When the drive is over, end
+the capture with **Ctrl-C** — it closes the file cleanly, reports the frame
+count and the status flags, and says it was stopped by hand. **Do not kill the
+process:** the file is block-buffered and a hard kill loses about half a second
+off the end (`tools/oilwatch.py` has the measurement). Waiting out the
+remaining minutes costs nothing either, if the engine is happy idling.
 
 ## Straight after — engine idling, hot
 

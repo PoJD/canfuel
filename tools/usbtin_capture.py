@@ -152,6 +152,47 @@ def command(ser: "serial.Serial", cmd: bytes, *, expect_payload: bool = False) -
     return bytes(answer)
 
 
+def record(ser, fh, deadline, progress=None):
+    """Read slcan lines into `fh` until the deadline, or until Ctrl-C.
+
+    Returns (lines written, stopped by hand).
+
+    **Ctrl-C is a supported way to end a capture, not an abort**, and that is
+    why it is caught here rather than left to propagate. The recording this
+    script exists for runs beside a drive whose length nobody knows in advance,
+    so `--seconds` is a ceiling and the real end is somebody deciding the drive
+    is over -- see docs/next-drive.md step 12. Left uncaught, that ends the run
+    with a traceback and skips the summary and the status flags, which are the
+    only report of whether frames were dropped.
+
+    ⚠ **A hard kill is a different matter.** The file is block-buffered, so up
+    to about 8 kB -- half a second of this bus -- is still in the buffer at any
+    moment and is written out when the file closes. Ctrl-C closes it; `kill -9`
+    and a dead battery do not, and lose that much off the end.
+    """
+    lines = 0
+    pending = bytearray()
+    stopped_by_hand = False
+    try:
+        while time.monotonic() < deadline:
+            chunk = ser.read(4096)
+            if not chunk:
+                continue
+            pending += chunk
+            while CR in pending:
+                raw, _, pending = pending.partition(CR)
+                line = raw.decode("ascii", errors="replace").strip()
+                if not line or line == "\x07":
+                    continue
+                fh.write(line + "\n")
+                lines += 1
+            if progress is not None:
+                progress(lines, deadline - time.monotonic())
+    except KeyboardInterrupt:
+        stopped_by_hand = True
+    return lines, stopped_by_hand
+
+
 def capture(port: str, seconds: float, out_path: str, *, normal: bool) -> int:
     require_serial()
     with serial.Serial(port, baudrate=115200, timeout=0.1) as ser:
@@ -180,28 +221,15 @@ def capture(port: str, seconds: float, out_path: str, *, normal: bool) -> int:
                else "LISTEN ONLY -- silent on the bus")
         )
 
-        lines = 0
-        pending = bytearray()
         started = time.monotonic()
         deadline = started + seconds
 
+        def progress(lines, left):
+            print(f"\r{lines} frames, {left:5.1f} s left ", end="", flush=True)
+
         try:
             with open(out_path, "w", newline="\n", encoding="ascii") as fh:
-                while time.monotonic() < deadline:
-                    chunk = ser.read(4096)
-                    if not chunk:
-                        continue
-                    pending += chunk
-                    while CR in pending:
-                        raw, _, pending = pending.partition(CR)
-                        line = raw.decode("ascii", errors="replace").strip()
-                        if not line or line == "\x07":
-                            continue
-                        fh.write(line + "\n")
-                        lines += 1
-                    left = deadline - time.monotonic()
-                    print(f"\r{lines} frames, {left:5.1f} s left ", end="",
-                          flush=True)
+                lines, stopped_by_hand = record(ser, fh, deadline, progress)
         finally:
             print()
             elapsed = time.monotonic() - started
@@ -216,7 +244,8 @@ def capture(port: str, seconds: float, out_path: str, *, normal: bool) -> int:
             flags = read_flags(ser)
 
         print(f"{lines} frames in {elapsed:.1f} s = {lines / elapsed:.0f}/s"
-              f"  ->  {out_path}")
+              f"  ->  {out_path}"
+              + ("  (stopped by hand)" if stopped_by_hand else ""))
         report_flags(flags)
         return lines
 
