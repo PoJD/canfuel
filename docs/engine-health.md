@@ -520,6 +520,103 @@ else, and this recording cannot say which. And the ECU's counter is a windowed
 quantity read at 1.7 Hz, so the lag is an upper bound on the true one and the
 two negative lags are within that.
 
+### Why a misfire shows as a dip and not as a surge
+
+**The question is a fair one and the intuition behind it is wrong in an
+instructive way:** if the fault is an injector letting extra fuel into a
+cylinder, why does engine speed *fall*? More fuel should be more torque, and
+the fall should then be the ECU taking the fuel back away.
+
+**It is not the correction. The fall is the failed combustion itself**, and
+three measurements say so.
+
+**Extra fuel is not extra energy.** Torque against mixture strength peaks
+slightly rich of stoichiometric and falls away on both sides of that; past
+roughly half again as much fuel as there is air to burn it, a flame will not
+propagate at all. A dribble from a leaking injector is not a few per cent
+richer, it is a slug — and a slug that has puddled on a port wall goes in as
+liquid, which does not burn, because only the vapour does. It wets the plug,
+it cools the charge as it evaporates, and it displaces air that would
+otherwise have carried oxygen. **Every one of those pushes the same way: less
+work out of that power stroke, not more.** The burned-through converter is the
+same fuel arriving in the exhaust unburnt and finding its oxygen there
+instead, which is already in *The old converter* above.
+
+⚠ **That paragraph is combustion textbook, not a document about this ECU**, and
+it is why the ordering of the flammability limit is given rather than a
+number. What follows is this car's own data.
+
+**One lost power stroke is worth the dip that is measured, and the arithmetic
+closes.** At the warm idle of `09_idle_60s_z1` — 796 rpm, 326 µl/s, both from
+the table under *Verified values* in `CLAUDE.md` — the engine is burning about
+10.5 kW of fuel and turning it into the roughly 18.5 Nm of indicated torque
+that 0x280 b7 reports there, which is a net indicated efficiency of 15 % and
+**about 58 J of work per power stroke.** A four-stroke four fires every 37.5 ms
+at that speed, so a cylinder that produces nothing takes those 58 J out of the
+kinetic energy of the rotating assembly and nothing else:
+
+| assumed crank + flywheel + clutch inertia | predicted dip from one lost power stroke |
+|---|---|
+| 0.12 kg·m² | 57 rpm |
+| 0.15 kg·m² | 45 rpm |
+| 0.20 kg·m² | 33 rpm |
+
+⚠ **The inertia is an estimate and nothing here measures it** — it is the
+order a two-litre four of this kind carries, and it is the one input to the
+table that is not off this car. So the table is a bracket, not a prediction.
+
+Against it, `python tools/idledips.py --depths` gives a deepest dip of
+**37.5 rpm** in `09` and **46.0 rpm** in `18_coldstart_z1`, and the deepest
+excursion in `09` read sample to sample rather than against the rolling median
+is 806.75 → 761.00 rpm, **45.75 rpm**. **The measured depths sit inside the
+bracket.** One entirely failed combustion event explains the largest stumbles
+in these recordings without needing the ECU to do anything at all.
+
+**The typical dip is 20–22 rpm, which is about half of that** — consistent with
+a partial burn rather than a complete failure, and consistent with only 7 of
+the 34 dips in the aligned window carrying a counter increment. ⚠ **It is only
+consistent with it.** The CAN speed field is at best one value per firing event
+(below), so a measured depth is a lower bound on the instantaneous excursion,
+and nothing here separates "a partial burn" from "a complete misfire the
+sampling rounded off".
+
+**And the ECU is what ends the dip rather than what causes it.** The fall in
+`09`'s deepest event takes about 50 ms — one to two firing intervals — and the
+recovery to baseline takes some 250 ms after it. **No fuelling loop is that
+fast.** The pre-catalyst sensor is at the end of an exhaust port and answers
+with a transport delay plus its own response time; the −4.7 % of block 032 is
+a *stored adaptation*, which moves over minutes and not between two power
+strokes. What the idle governor does on a timescale of 250 ms is add torque to
+bring engine speed back up, which is the recovery, in the opposite direction to
+the event.
+
+### Engine speed on 0x280 is recomputed once per firing event
+
+**Measured, over the fixtures, by `python tools/idledips.py --segments`.** The
+frame goes out every 10 ms but its speed field holds a value for several
+frames, and how long it holds tracks the firing interval rather than the frame
+period — 39 ms held against 37.5 ms of firing at 800 rpm, 30 against 28.6 at
+1050, 20 against 20.0 at 1500, 13 against 13.6 at 2200, and then it saturates
+at the 10 ms frame period above about 3000 rpm where the engine fires faster
+than the bus reports.
+
+**So each sample is close to "how fast did the crank turn through one
+cylinder's power stroke"**, which is what makes the depth of a dip a per-cylinder
+quantity worth putting into an energy budget at all rather than a smoothed
+average of four.
+
+⚠ **It also qualifies the p = 0.023 above, and in the honest direction.**
+Crankshaft speed irregularity is the standard way an OBD engine management
+detects misfire — so the ECU's counter and `idledips.py` are most likely two
+readings of the same physical signal at different resolutions, and their
+agreeing is less independent than a permutation test over two arbitrary event
+series assumes. **That does not make the result worthless**: it identifies the
+stumbles as the events the ECU itself calls misfires, which is what it was for.
+It does mean the correlation is not a second, independent witness to the
+misfire diagnosis, and this file should not be read as though it were.
+⚠ **That detection mechanism is general practice, not sourced for this ECU**,
+and no document in `docs/` establishes it.
+
 ### The idle counter, frozen before the repair so the after-reading means something
 
 **The question this answers: after the injectors, does the stumble go?** It is

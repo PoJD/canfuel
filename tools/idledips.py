@@ -48,6 +48,8 @@ Usage
     python idledips.py FILE [FILE ...]       # one line per log
     python idledips.py --from 50 --to 360 FILE
     python idledips.py --thresholds 15,20,25 FILE
+    python idledips.py --depths FILE          # how deep each dip was
+    python idledips.py --segments             # the update rate of 0x280's rpm
 """
 
 from __future__ import annotations
@@ -145,6 +147,50 @@ def dips(rpm, threshold, t_from=None, t_to=None):
         events.append((at, deepest))
     span = (seg[-1][0] - seg[0][0]) if len(seg) > 1 else 0.0
     return events, span
+
+
+def depths(rpm, threshold, t_from=None, t_to=None):
+    """The depth of every dip, deepest first. The counts say how often the
+    engine stumbles; this says how hard, which is what the energy argument in
+    docs/engine-health.md is written against."""
+    ev, span = dips(rpm, threshold, t_from, t_to)
+    return sorted((d for _, d in ev), reverse=True), span
+
+
+#: Engine speed on 0x280 does not change every frame. These are the bands the
+#: interval between changes is reported over, against the firing interval of a
+#: four-stroke four at the middle of each -- see segments() below.
+SEGMENT_BANDS = ((700, 900), (900, 1200), (1200, 1800), (1800, 2600), (2600, 4000))
+
+CYLINDERS = 4  # firing events per two revolutions
+
+
+def firing_interval_s(rpm_value):
+    """Seconds between power strokes of a four-stroke four at this speed."""
+    return 120.0 / (rpm_value * CYLINDERS)
+
+
+def segments(rpm, bands=SEGMENT_BANDS, cap_s=0.5):
+    """How often the engine-speed field actually changes, per rpm band.
+
+    0x280 goes out every 10 ms but its speed field holds a value for several
+    frames, and how long it holds tracks the firing interval rather than the
+    frame period. Returns (band, n, median gap, firing interval at the band
+    centre) so the two can be read side by side.
+
+    Gaps longer than cap_s are dropped: they are the engine stopping or the
+    log ending, not an update interval.
+    """
+    changes = [(t, r) for i, (t, r) in enumerate(rpm) if i and r != rpm[i - 1][1]]
+    gaps = [(changes[i + 1][0] - changes[i][0], changes[i][1])
+            for i in range(len(changes) - 1)]
+    out = []
+    for lo, hi in bands:
+        g = sorted(d for d, r in gaps if lo <= r < hi and d < cap_s)
+        if g:
+            out.append((lo, hi, len(g), statistics.median(g),
+                        firing_interval_s((lo + hi) / 2.0)))
+    return out
 
 
 # --- the cheap detector -----------------------------------------------------
@@ -247,7 +293,7 @@ def _last(seq, t):
     return vals[-1] if vals else float("nan")
 
 
-def report(path, thresholds, t_from, t_to, label=None):
+def report(path, thresholds, t_from, t_to, label=None, depths_too=False):
     rpm, oil, clt, gated = series(path)
     counts, span = [], 0.0
     for thr in thresholds:
@@ -277,6 +323,11 @@ def report(path, thresholds, t_from, t_to, label=None):
             _last(clt, end),
         )
     )
+    if depths_too:
+        for thr, ev in zip(thresholds, counts):
+            print("    >=%d rpm: %s" % (
+                thr, " ".join("%.1f" % d for d in
+                              sorted((d for _, d in ev), reverse=True))))
     return counts
 
 
@@ -286,7 +337,22 @@ def main(argv=None):
     ap.add_argument("--thresholds", default="20,15", help="rpm, comma separated")
     ap.add_argument("--from", dest="t_from", type=float, default=None)
     ap.add_argument("--to", dest="t_to", type=float, default=None)
+    ap.add_argument("--depths", action="store_true",
+                    help="print the depth of every dip instead of counting them")
+    ap.add_argument("--segments", action="store_true",
+                    help="print how often 0x280's engine-speed field changes")
     args = ap.parse_args(argv)
+
+    paths = args.files or [os.path.join(FIXTURES, n) for n, _, _ in TABLE]
+
+    if args.segments:
+        print("%-26s %11s %6s %10s %10s" % (
+            "log", "rpm band", "n", "update", "one firing"))
+        for path in paths:
+            for lo, hi, n, gap, firing in segments(series(path)[0]):
+                print("%-26s %5d-%-5d %6d %8.1f ms %7.1f ms" % (
+                    os.path.basename(path), lo, hi, n, gap * 1000, firing * 1000))
+        return 0
 
     thresholds = [int(x) for x in args.thresholds.split(",")]
     header = "  ".join("%15s" % ("dips >=%d rpm" % t) for t in thresholds)
@@ -295,10 +361,11 @@ def main(argv=None):
 
     if args.files:
         for path in args.files:
-            report(path, thresholds, args.t_from, args.t_to)
+            report(path, thresholds, args.t_from, args.t_to, depths_too=args.depths)
     else:
         for name, lo, hi in TABLE:
-            report(os.path.join(FIXTURES, name), thresholds, lo, hi)
+            report(os.path.join(FIXTURES, name), thresholds, lo, hi,
+                   depths_too=args.depths)
     return 0
 
 

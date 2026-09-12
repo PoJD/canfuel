@@ -29,7 +29,8 @@ import os
 import unittest
 
 from idledips import (EWMA_SHIFT, FIXTURES, GATE_THROTTLE, REARM_RPM,
-                      SETTLE_S, TRIP_RPM, dips, dips_cheap)
+                      SETTLE_S, TRIP_RPM, depths, dips, dips_cheap,
+                      firing_interval_s, segments)
 from idledips import series as read_log   # the local series() below is synthetic
 
 RATE_HZ = 94.0  # what 0x280 actually arrives at; see docs/can-decoding.md
@@ -188,6 +189,48 @@ class CheapDetector(unittest.TestCase):
                 found, idle_s = dips_cheap(run_down)
                 self.assertEqual(found, [])
                 self.assertGreater(idle_s, 15.0)   # and it still counts as idle
+
+
+class Depths(unittest.TestCase):
+    def test_depths_are_the_same_events_deepest_first(self):
+        log = series(30.0, events=((5.0, 0.1, 40.0), (12.0, 0.1, 22.0)))
+        got, span = depths(log, 20)
+        self.assertEqual([round(d) for d in got], [40, 22])
+        self.assertEqual(len(got), len(dips(log, 20)[0]))
+
+
+class SegmentRate(unittest.TestCase):
+    """0x280's engine-speed field is recomputed once per firing event.
+
+    That is what makes a dip in it a per-cylinder quantity rather than a
+    smoothed one, and it is the measurement docs/engine-health.md argues the
+    energy budget of one lost power stroke from. It is asserted as a band
+    rather than a figure: what has to survive is that the interval tracks the
+    firing rate and not the 10 ms frame period.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.rpm = read_log(os.path.join(FIXTURES,
+                           "17_drive_property_z1.txt"))[0]
+
+    def test_the_firing_interval_is_two_revolutions_over_four(self):
+        self.assertAlmostEqual(firing_interval_s(800.0), 0.0375)
+        self.assertAlmostEqual(firing_interval_s(1600.0), 0.01875)
+
+    def test_the_update_interval_tracks_firing_and_not_the_frame_period(self):
+        rows = segments(self.rpm)
+        self.assertGreater(len(rows), 3)
+        for lo, hi, n, gap, firing in rows:
+            if firing < 0.010:
+                continue        # below the frame period there is nothing to track
+            self.assertLess(abs(gap - firing), 0.005,
+                            f"{lo}-{hi} rpm: {gap*1000:.1f} ms update against "
+                            f"{firing*1000:.1f} ms firing")
+
+    def test_it_never_updates_faster_than_the_frames_arrive(self):
+        for lo, hi, n, gap, firing in segments(self.rpm):
+            self.assertGreaterEqual(gap, 0.009)
 
 
 class CheapDetectorAgainstTheFixtures(unittest.TestCase):
