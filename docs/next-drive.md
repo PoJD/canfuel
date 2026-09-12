@@ -50,8 +50,16 @@ and the altitude correction factor.
 **7. Start the capture:**
 
 ```
-python tools/usbtin_capture.py --seconds 3600 --out postfix_z1.txt
+python tools/usbtin_capture.py --seconds 4500 --out postfix_z1.txt
 ```
+
+⚠ **Seventy-five minutes, not sixty, and the margin is the point.** The drive
+is 45 to 60 minutes *plus* three idles of three to five minutes *plus* however
+long it takes to find somewhere to stop for each of them, and step 16's hot
+idle is at the end of all of it. An hour has no margin at all: the capture
+would stop mid-drive and take the hot idle, the pulls or both with it. At the
+unfiltered 65 MB an hour (*The capture filter*) the extra quarter of an hour
+costs about sixteen megabytes.
 
 **8. Start VCDS logging, groups 003 and 014. Two groups, never three.**
 
@@ -71,11 +79,30 @@ it has stopped, restart it immediately. Keep glancing at it.
 
 **12. Stationary idles of three to five minutes each**, engine running, in
 neutral, nothing touched, air conditioning off. **One right after the start,
-one at the end when thoroughly hot, and — this is the part that is easy to get
-wrong — several through the first half of the drive rather than one in the
-middle of it.** Roughly ten, twenty and thirty minutes in. **Take more of them
-than seem necessary; the reason is under *Steps 12–14* and it is that you
-cannot see the oil temperature from the driver's seat.**
+one at the end when thoroughly hot, and one in the middle that has to land near
+61.5 °C of oil** — that middle one is the whole reason the trip has idles in it
+at all, and *Steps 12–14* below is why.
+
+**Which leaves the problem that you cannot see the oil temperature from the
+driver's seat**, the display and the converter being out. Two routes, and the
+first is much better:
+
+**12a. With somebody watching the laptop**, run this beside the capture:
+
+```
+python tools/oilwatch.py postfix_z1.txt
+```
+
+It reads the capture **while `usbtin_capture.py` is still writing it**, never
+touches the serial port, measures how fast the oil is actually climbing and
+says how long there is before the band arrives — ninety seconds of warning by
+default, which is enough to notice the screen and then find somewhere to stop.
+It also says when the idle has been long enough. **Take the three idles as
+written and let it place the middle one.**
+
+**12b. With nobody watching**, hedge instead: **several idles through the first
+half of the drive** — roughly ten, twenty and thirty minutes in — and keep
+whichever one landed in the band. They are free; *Steps 12–14* says why.
 
 **13. Two or three full-throttle pulls in a HIGH gear from about 2400 rpm** —
 fourth or fifth, or up a hill. Somewhere the engine *sits* near peak torque
@@ -317,15 +344,31 @@ records a warm-up under driving — `17_drive_property_z1` opens at 75 °C with 
 note of how long the car had been running — so "the middle of the drive" is a
 guess at the one measurement the trip is for.
 
-**So hedge, because extra idles are free.** Step 15 already says nothing needs
-marking and the analysis finds the idles by itself, and `idledips.py` prints
-the oil and coolant beside every count, so afterwards you keep whichever stop
-landed near 61 °C and the others are extra points on exactly the continuous
-warm-up curve `engine-health.md` says would settle whether the thermal lever is
-real. **The oil is slow enough for this to work**: it climbs about 0.75 °C a
-minute while idling (the figure is under *Steps 27–28*, and `09_idle_60s_z1`
-shows the same rate at 61 °C), so a five-minute stop drifts some four degrees.
-**You cannot idle past the band — only start outside it.**
+**`oilwatch.py` is the answer to all of that** (step 12a), and it is worth
+being clear about what it does and does not do. It does not measure anything
+new: the capture has carried `0x420` byte 3 all along, and the tool only reads
+the file as it grows. What it adds is that **the number reaches the driver in
+time to act on** — it fits a slope over the last few minutes and converts it
+into "the band arrives in about N minutes", which neither a fixture nor a
+gauge can give. ⚠ **Its band is a decision, not a specification**, and the
+header of the file says so: there are two before-readings with a non-zero rate
+and one zero, and no measured width to take. It is centred on 61.5 °C and stops
+well short of the 72.8 °C that already counted zero on the old injectors.
+
+⚠ **It has to run on the machine holding the USBtin**, which is the one the
+capture is being written on. A Claude Code session in the cloud cannot see that
+file; a local one can, and can watch it for you.
+
+**Without it, hedge, because extra idles are free** (step 12b). Step 15 already
+says nothing needs marking and the analysis finds the idles by itself, and
+`idledips.py` prints the oil and coolant beside every count, so afterwards you
+keep whichever stop landed near 61 °C and the others are extra points on
+exactly the continuous warm-up curve `engine-health.md` says would settle
+whether the thermal lever is real. **The oil is slow enough for either route to
+work**: it climbs about 0.75 °C a minute while idling (the figure is under
+*Steps 27–28*, and `09_idle_60s_z1` shows the same rate at 61 °C), so a
+five-minute stop drifts some four degrees. **You cannot idle past the band —
+only start outside it.**
 
 **High gear for the pulls** because the last drive got this wrong: every pull
 was a low-gear sweep that crossed 2400 rpm in a moment, so there was
