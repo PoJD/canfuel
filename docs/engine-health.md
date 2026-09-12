@@ -346,9 +346,13 @@ anything does not.
 **A third observation, and it is weak on purpose.** b7 does not move at any of
 the dips in `09`: engine speed falls 20–37 rpm while the ECU's modelled torque
 stays exactly on its own baseline. That is the blindness described under *What
-the display can and cannot mean* showing up in this car's own data — but one
-count of b7 is 0.39 %, so the resolution is coarse enough that a brief event
-might not register regardless. **Suggestive, not evidence.**
+the display can and cannot mean* showing up in this car's own data — but the
+resolution is coarse enough that a brief event might not register regardless.
+**Twice as coarse as this passage used to claim**: one count of b7 is 0.39 %,
+but b7 has never been seen to change by a single count, only by two, so the
+smallest movement available to it is about 1.5 Nm. `python tools/b7scan.py
+--ladder` prints the value set; `docs/frames.md` has it under *What b7 has
+actually been observed to reach*. **Suggestive, not evidence.**
 
 ⚠ **The whole thing is a correlation across three recordings, one of which is
 positive.** They differ in more than the data holds — different days, fuel and

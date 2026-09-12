@@ -486,6 +486,84 @@ this vehicle, and holds the measurements: the display's peak against the
 measured airflow of the same drive, and the two readings of the gap between
 them. It is a holding document and will be folded back in or deleted.
 
+### What b7 has actually been observed to reach
+
+**`python tools/b7scan.py` prints this and nothing here is typed by hand.** It
+matters because the scale rests on *b7 = 255 is the rated crank torque plus the
+drag at that speed*, and `docs/next-drive.md` already says that premise has
+never been tested. How close it has ever been seen **is** answerable, and the
+answer separates three things a bare maximum runs together.
+
+**192 is the largest value in the fixtures and the engine did not make it.**
+Every sample of it is below 900 rpm with the throttle at rest, in the seconds
+after the key, in `06_trip_reset` and `18_coldstart_z1` — the ECU asking for
+torque to start the engine. Behind the same standstill-and-closed-throttle gate
+`compute_torque_d()` already applies, the largest b7 this engine has been seen
+to **make** is **185, at 4802 rpm in `17_drive_property_z1`** — 72.5 % of full
+scale.
+
+**And 185 is where the pull ended, not where the engine ran out.** All three
+wide-open bursts in that log have their maximum in the last quarter of the
+burst: the deepest goes 159 at 2609 rpm to 185 at 4921 rpm, monotonically, with
+the load byte climbing 25 → 37 → 43 alongside it, and then the throttle closes.
+**The engine never reached a steady filling at any speed in any of them.** That
+is exactly the flaw `next-drive.md` names as *"every pull was a low-gear
+sweep"*, with a number on it, and it has a consequence that document now
+carries: **b7max before the repair and b7max after it are not a comparison.**
+
+**b7 tracks the ECU's own relative load, which is what a charge-dominated model
+looks like.** The drive of 2026-09-10 showed a peak of 117 Nm on the display,
+which back through the drag line is b7 ≈ 189–201 depending on where in the
+range it fell — **74–79 % of full scale against the 78.1 % relative load VCDS
+logged over the same pulls** (`engine-health.md`). ⚠ **Those are a display
+maximum and a mean over wide-open samples, not one measurement**, so this is
+arithmetic pointing somewhere rather than a result. Where it points: **the gap
+from 185 to 255 is the same size as the gap between the measured air and the
+ECU's reference air.** Reaching 255 needs the engine to fill to 100 % of a
+reference normalised to 0 °C and 1013 hPa — and that is the reference,
+measured, in *What "load" is a percentage of*. **No fuelling repair changes what
+the air-mass sensor reads.**
+
+**b7 is not eight bits of resolution.** Across every fixture it takes 95
+distinct values between 0 and 192, and 88 of the 92 gaps between consecutive
+values are **2**, with a single-count step at each multiple of 64. **One
+*count* is still 0.39 % and `config.h` is right to say so** — that is the unit
+the byte is transmitted in, and what `TORQUE_TRIM_PCT` steps by. What this adds
+is that the ECU does not use every count: **the smallest change b7 has ever
+been seen to make is two of them, about 0.8 % of full scale and near 1.5 Nm.**
+That strengthens rather than weakens the "b7 did not move at the idle dips"
+observation in `engine-health.md` — the resolution available to that argument
+is twice as coarse as it assumed.
+
+### At full load the lambda in the model cannot be a measured one
+
+**The load-bearing hypothesis above is that the lambda entering the torque
+model is the commanded value rather than a measured one, and nothing this
+project holds says so.** At **full load specifically** it is close to forced,
+by what the instrument can do rather than by what the model does:
+
+- full-load enrichment is mapped and open-loop, at a commanded lambda well
+  below 1;
+- **the pre-catalyst sensor is a switching one**, which `can-decoding.md`'s own
+  summary of block 034 says without meaning to: the ageing test it runs is a
+  **sensor period ≤ 2.2 s**. A period is a property of a sensor that switches.
+  A broadband sensor does not switch and has no period to measure.
+- a switching sensor carries no information away from stoichiometric. At the
+  enrichment of a full-throttle pull it is simply hard over.
+
+**So at wide-open throttle the ECU has no instrument that could tell it the
+actual lambda**, and whatever its torque model multiplies by there, it is not a
+measurement. ⚠ **That argument does not extend below full load**, where the
+sensor works, closed loop runs and block 032's adaptations are exactly the ECU
+acting on a measured lambda. It says the *scale* question is safe from the
+fuelling repair. It says nothing about b7 at idle or part load, and the general
+"b7 cannot see combustion" remains what the section above calls it — a
+hypothesis, and one misfire detection argues against.
+
+⚠ **The sensor-type step is an inference from the ageing check in block 034**,
+not a part number read off the car and not a Bosch document. VCDS would settle
+it in one screen.
+
 ### The owner's gain — `TORQUE_TRIM_PCT`, zero by default
 
 **Out of the box this firmware reports the factory figures for a stock AQY and

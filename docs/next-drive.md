@@ -510,6 +510,22 @@ Which makes it the most informative line here rather than the least: **if b7
 rises while load and airflow stay put, the premise is wrong and we learn
 something no other measurement on this drive can give.**
 
+⚠ **"b7 rises" has to mean against load, never against last time.** `python
+tools/b7scan.py` says why: the largest b7 this engine has been seen to make is
+**185**, and all three wide-open bursts it comes from were **still climbing
+when the throttle closed** — low-gear sweeps that ended before the engine
+reached a steady filling at any speed. **This drive's pulls are deliberately
+better ones**, in a high gear and held, so b7max is expected to come out higher
+whatever the injectors did. **A higher b7max is therefore not evidence of
+anything**, and reading it as the premise failing is the easiest false positive
+available on this drive.
+
+What is comparable is **b7 against the ECU's load at the same engine speed**,
+both of which this session logs anyway — b7 from the capture, load from group
+014. If that ratio is where `docs/frames.md` puts it, near the relative load
+itself, the model is charge-dominated and the repair did not move it. If b7
+has risen *relative to load*, the premise is wrong and that is the result.
+
 **On the idle specifically**, a repair that removes the stumbles only in the
 hot state has not removed the cause.
 
