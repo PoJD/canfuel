@@ -69,9 +69,13 @@ it has stopped, restart it immediately. Keep glancing at it.
 
 ## The drive — 45 to 60 minutes
 
-**12. Three stationary idles of three to five minutes each**, spread through
-the warm-up: **one early, one in the middle, one when thoroughly hot.** Engine
-running, in neutral, nothing touched, air conditioning off.
+**12. Stationary idles of three to five minutes each**, engine running, in
+neutral, nothing touched, air conditioning off. **One right after the start,
+one at the end when thoroughly hot, and — this is the part that is easy to get
+wrong — several through the first half of the drive rather than one in the
+middle of it.** Roughly ten, twenty and thirty minutes in. **Take more of them
+than seem necessary; the reason is under *Steps 12–14* and it is that you
+cannot see the oil temperature from the driver's seat.**
 
 **13. Two or three full-throttle pulls in a HIGH gear from about 2400 rpm** —
 fourth or fifth, or up a hill. Somewhere the engine *sits* near peak torque
@@ -297,6 +301,31 @@ minute, seeing none in sixty seconds has a probability of 7×10⁻⁵ if nothing
 changed. **Three minutes also settles "how much better"**, at p = 0.002 for a
 halving. The whole analysis is `python tools/idledips.py CAPTURE`; no firmware
 change and no display channel is involved.
+
+⚠ **The middle idle is at a temperature, not at a time, and nothing in the car
+tells you which you have.** The two rows above with a before-reading are cold
+and **61.5 °C**; an idle at 40 °C is a fine measurement with nothing to compare
+it to. And by step 12 the display and the converter are out (step 4) and the
+VCDS screen is locked to groups 003 and 014 (step 9), **neither of which
+carries oil temperature** — so the driver has no thermometer at all. **The
+coolant gauge is not one**: the coolant was already 96.8–100.5 °C in
+`09_idle_60s_z1` while the oil was 60.8, so the needle settles long before the
+oil arrives.
+
+**Nobody knows when the oil passes 61 °C on this car, either.** No fixture
+records a warm-up under driving — `17_drive_property_z1` opens at 75 °C with no
+note of how long the car had been running — so "the middle of the drive" is a
+guess at the one measurement the trip is for.
+
+**So hedge, because extra idles are free.** Step 15 already says nothing needs
+marking and the analysis finds the idles by itself, and `idledips.py` prints
+the oil and coolant beside every count, so afterwards you keep whichever stop
+landed near 61 °C and the others are extra points on exactly the continuous
+warm-up curve `engine-health.md` says would settle whether the thermal lever is
+real. **The oil is slow enough for this to work**: it climbs about 0.75 °C a
+minute while idling (the figure is under *Steps 27–28*, and `09_idle_60s_z1`
+shows the same rate at 61 °C), so a five-minute stop drifts some four degrees.
+**You cannot idle past the band — only start outside it.**
 
 **High gear for the pulls** because the last drive got this wrong: every pull
 was a low-gear sweep that crossed 2400 rpm in a moment, so there was
