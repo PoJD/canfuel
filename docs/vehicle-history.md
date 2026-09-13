@@ -16,9 +16,8 @@ arguing against is still the history.
 The distances and the service dates are the **owner's records**, not
 measurements made by this project. The consumption table is measured, but by
 the pump rather than by any instrument on the car: litres delivered against
-odometer kilometres. The one thing here that was measured by this project is
-the engine displacement argument in the next section, and it says so. Where a
-figure is derived rather than recorded, it is marked.
+odometer kilometres. Where a figure is derived by this project rather than
+recorded, it is marked.
 
 ---
 
@@ -38,39 +37,6 @@ is where New Beetles were built. Positions 4–6 and 9 are VW's filler `Z`s.
 That decoding is ISO 3779 structure applied to a VW VIN, so it is a reading
 rather than a document — but it agrees with everything else here and nothing
 in the project depends on it.
-
-### The displacement is 2.0 l, and the repository's own data proves it
-
-**This is recorded as a decision because the car was described as a 1.6 when
-this file was commissioned, and it is not one.** Rather than leave two
-displacements in the tree, it was settled against evidence already in `docs/`.
-
-`AQY` is itself the answer — it is the 2.0 l engine code, and it is the code
-VCDS read off this ECU (`docs/engine-health.md`, *What the vehicle reported*).
-But the ECU's label file is a sticker, and a stronger argument was available
-for free. `engine-health.md` derives the reference air density the ECU
-normalises its load figure to, by dividing logged grams of air per second by
-litres of air per second computed from engine speed and **displacement**. The
-answer has to come out at the density of air at some plausible reference
-condition, and the measured median is **1.292 g/l** — air at 0 °C and
-1013 hPa.
-
-Recompute that from the same six wide-open-throttle rpm bands at each
-displacement:
-
-| assumed displacement | implied reference density |
-|---|---|
-| **1.984 l** (AQY) | 1.16–1.31 g/l, **median 1.29 g/l** |
-| 1.595 l (a 1.6) | 1.45–1.63 g/l, median 1.60 g/l |
-
-The first is air. **The second is not a density any gas in the intake
-reaches**, at any temperature or pressure a car meets. The 1.6 reading is
-refuted by the car's own logged airflow, and the whole repository — `README.md`,
-`CLAUDE.md`, `S-AQY.TRI`, `TORQUE_CNM_PER_BIT`'s derivation from the 85 kW /
-170 Nm factory ratings — is consistent at 2.0 l.
-
-**Nothing was changed anywhere else as a result.** There was nothing to
-change.
 
 ---
 
@@ -307,5 +273,4 @@ Two rules, both borrowed from elsewhere in the project:
   mode `CLAUDE.md` mechanises `checkdocs.py` against.
 - **Mark what is measured.** Pump figures are measured, service dates are
   recorded, and anything this project computes from them is derived. The three
-  are not interchangeable, and the displacement section above is what it costs
-  to sort them out afterwards.
+  are not interchangeable.
