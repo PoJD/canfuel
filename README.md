@@ -156,6 +156,7 @@ two, so the reference and the code that gets flashed cannot drift apart.
 | `docs/timing.md` | what every part costs in cycles, and the margins |
 | `docs/optimisation.md` | **read before changing any loop or any arithmetic** — what was optimised, why, and what is deliberately left alone |
 | `docs/refuted.md` | ideas that were believed and turned out wrong — **all three repositories** |
+| `docs/vehicle-history.md` | **the car itself** — distance, the measured consumption history, and what has been replaced. Read it before trusting a consumption figure against the vehicle |
 | `test/fixtures/README.md` | description of the logs and known data defects |
 | `mplab/README.md` | how to build the firmware, and what JP2 is for |
 
