@@ -41,9 +41,15 @@ came off it.
 
 **The car was bought with an oxygen sensor already faulty, and that sensor was
 one of the first things replaced.** It was found only after something else was:
-**the engine warning lamp had been masked inside the instrument cluster**, so
-it had been lit the whole time and could not be seen. Whatever the fault
-history is before that point, nobody has it.
+**the engine warning lamp had been masked inside the instrument cluster by the
+previous owner**, so it had been lit the whole time and could not be seen.
+
+⚠ **That is history and not a current condition.** The mask was found and
+removed within days of the purchase of 25 September 2017 and **the lamp has
+worked normally ever since** — so everything in this file, and every symptom
+description anywhere in `docs/`, was observed with a functioning lamp.
+`vehicle-history.md`, *The masked warning lamp*, is the record. What nobody has
+is the fault history from **before** September 2017.
 
 Three things follow, and none of them are sentiment.
 
@@ -69,8 +75,13 @@ Three things follow, and none of them are sentiment.
   exhaust, and only now the injectors. A single upstream cause producing
   symptoms one at a time looks exactly like this from inside it, which is the
   argument for the diagnosis-before-parts position the rest of this file takes.
-- **The masked lamp means the "for years" in every symptom description is a
-  lower bound.** It cannot be turned into a date and should not be.
+- **The masked lamp means "for years" is a lower bound only where it reaches
+  back past September 2017.** Inside the ownership the lamp has been working
+  and the symptom dates are the owner's own; it is the period before the
+  purchase that has no record, cannot be turned into a date, and should not be.
+  ⚠ **The two must not be run together** — an unbounded "nobody knows how long"
+  applied to the whole history is a stronger claim than the evidence supports,
+  and this file made it in an earlier revision.
 
 **Nothing further is bought before 034 and 046 report.** That is the owner's
 position and it is the right one — `next-drive.md`, *The four blocks that give
@@ -412,7 +423,10 @@ engine spends most of its time.
 ⚠ **The historical fault is not reproduced and stays open.** The warning lamp
 used to appear only after minutes above ~4500 rpm in top gear on a motorway,
 which a short drive cannot recreate. No lamp on this drive is therefore weak
-evidence about the coil, not a clearance.
+evidence about the coil, not a clearance. **It is weak because the conditions
+were not recreated and for no other reason** — the lamp itself has been
+uncovered and working since 2017, so both that historical observation and this
+drive's silence are readings of an instrument that reports.
 
 ---
 
@@ -784,6 +798,18 @@ the stumbling idle, and poor cold starts, the last of these for a period nobody
 has pinned down. A single cause for all three is worth more than three
 explanations, and a leaking injector is the only candidate on the table that
 produces all of them.
+
+⚠ **The owner's reading extends that back past the purchase, and it is a
+hypothesis rather than a finding.** If the injectors are the single cause, the
+fault is older than this ownership — which would also explain why the car
+arrived with its warning lamp taped over and a dead oxygen sensor behind it
+rather than with either of them fixed. **Nothing here establishes it**, and by
+construction nothing can: the pre-2017 record does not exist
+(`vehicle-history.md`, *The masked warning lamp*). It is written down because it
+is testable in one direction only — **if the new injectors cure all three
+symptoms, the hypothesis survives; if they cure none, it is dead** — and because
+an unstated assumption that the history began in 2017 is the more expensive
+mistake.
 
 **The prediction worth writing down before it happens**, so it can be wrong:
 if the injectors were the fault, the car pulls better, the first-gear misfires

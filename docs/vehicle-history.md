@@ -38,6 +38,29 @@ That decoding is ISO 3779 structure applied to a VW VIN, so it is a reading
 rather than a document — but it agrees with everything else here and nothing
 in the project depends on it.
 
+### The masked warning lamp, and the date it stopped mattering
+
+**The car was bought with the engine warning lamp masked inside the instrument
+cluster by the previous owner.** The current owner found it and uncovered it
+within days of the purchase of 25 September 2017, and **the lamp has worked
+normally from that point to the present.** What it had been hiding was a faulty
+pre-catalyst oxygen sensor — lit the whole time and impossible to see — which is
+the 10/2017 entry in the work table below and the first thing replaced on the
+car.
+
+⚠ **The mask bounds the record in one direction only, and running the two
+periods together is the error to avoid.** Nothing is known about what the lamp
+was reporting **before September 2017**, or for how long, and that gap cannot
+be closed retrospectively. **After September 2017 there is no gap**: every
+symptom described anywhere in `docs/` is dated inside the ownership and was
+observed with a functioning lamp. So "for years" in a symptom description is a
+lower bound only where it reaches back past the purchase.
+
+**It is also the strongest argument for the diagnose-before-buying-parts
+position `engine-health.md` takes.** A previous owner who covered the lamp
+rather than read it means the car arrived carrying an unresolved fault of
+unknown age, not a clean sheet.
+
 ---
 
 ## Distance and use
