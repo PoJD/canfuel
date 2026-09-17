@@ -155,8 +155,10 @@ cylinders 1 and 4, one visibly worse than the rest. `docs/engine-health.md`,
 version is that this is the **second** consumable on this car to be destroyed by
 distance it never covered, after the converter directly above.
 
-⚠ **They were replaced separately from the injectors and a week ahead of them**,
-because the injectors were still in transit. That splits a repair the rest of
+⚠ **They were replaced separately from the injectors and ahead of them**,
+because the injectors were still in transit on the day. How long the gap turned
+out to be is not recorded here — add the injectors' own fitting date to the
+table above when it happens, and the gap reads off the two dates. That splits a repair the rest of
 `docs/` had assumed would be one event, and `engine-health.md` carries what it
 costs.
 
