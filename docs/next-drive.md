@@ -1,8 +1,14 @@
 # The next drive — one session, in order
 
-**This is the procedure for the first drive after the injectors, spark plugs,
-ignition leads and silencers are fitted.** One session, one configuration, one
-capture. Allow **an hour and a half**.
+**This is the procedure for the first drive after the injectors are fitted.**
+One session, one configuration, one capture. Allow **an hour and a half**.
+
+⚠ **The repair happened in two visits, not one, and this document was written
+for one.** Spark plugs and ignition leads went on **17 September 2026**; the
+injectors were still in transit and follow separately. So every "if the
+injectors were the fault" below is really "if the repair was the fault" —
+`docs/engine-health.md`, *What the split costs, and the one thing it buys*, has
+the argument and the one capture that would separate them.
 
 **The document is in two halves and they are meant to be used differently.**
 
@@ -13,11 +19,18 @@ capture. Allow **an hour and a half**.
   is why**, and how to read what comes back. Read it before, or afterwards
   with the results in hand. **Nothing in it is needed while driving.**
 
-**Nothing happens before the parts are on.** The car stands until then, because
-a new catalytic converter behind a cylinder still dumping raw fuel is the same
-converter that was cut open. There will be no clean before/after for most of
-this and that is accepted; the fixtures already hold the "before" for the
-measurements that matter.
+**Nothing in this procedure happens before the injectors are on.** There will be
+no clean before/after for most of this and that is accepted; the fixtures
+already hold the "before" for the measurements that matter.
+
+⚠ **The car standing until then was the plan and it is not what happened.** The
+injectors were late, and the car has been driven in the interval — the garage
+run, and a weekend away. The reasoning that wanted it parked has not changed:
+a new converter behind a cylinder still dumping raw fuel is the same converter
+that was cut open. What changed is the parts arriving after the calendar did.
+`engine-health.md` records where the damage actually concentrates — **long
+idling and low-speed pottering, not distance** — which is what made driving it
+the lesser risk rather than a safe one.
 
 ---
 
@@ -28,6 +41,17 @@ measurements that matter.
 **1. Do not clear the fault memory. Do not disconnect the battery. Do not reset
 adaptations.** Not before, not after, not at the garage. If the garage offers,
 decline.
+
+⚠ **If the battery has already been off, this step is advice about the future
+and not a description of the past.** A garage doing plugs has no need to
+disconnect it and an injector change is a reason to; either way nobody wrote it
+down. **Settle it by measurement rather than by asking**: read group `032`
+before the injectors go anywhere near the car and compare against the
+**−4.7 % idle / +1.6 % part load** this project recorded. Zeros mean it was
+wiped; anything near those figures means the adaptation survives a disconnect on
+this ECU, which no document here establishes either way. A small drift is normal
+learning and not a reset. **Whatever it reads becomes the baseline**, and the
+procedure works from it unchanged.
 
 **2. Do not do this the day the car comes back.** Drive it home and leave it.
 The drive home is wanted; see Part 2.
@@ -591,6 +615,22 @@ misfires go to zero, the idle stumbling disappears **at every oil temperature
 rather than only when hot**, and the idle adaptation moves toward zero — while
 **load stays near 78 % and the torque the display would compute stays near
 117 Nm**.
+
+⚠ **Read that as "if the repair was the fault".** The plugs that came out on
+17 September were eroded and carbon-coated at about 1,500 km, so they are not a
+null change, and fouled plugs misfire at low load and high vacuum — the same
+signature. **Nothing measured on this drive can separate the two**, unless a
+cold capture was taken in the window between the two visits. It is worth
+knowing which claim the result supports before the result is in hand: "the
+engine was unhealthy and is now well" survives either way, and "it was the
+injectors" does not.
+
+**Compression was measured at that visit and came out even at 13 bar across all
+four**, which removes a burnt valve, a broken ring pack and a head gasket
+between cylinders from every row above. Those were the explanations that would
+have survived a full set of new parts and kept the stumble; they are gone, so a
+stumble that persists after the injectors points at fuelling, air or control and
+not at the bottom end.
 
 ⚠ **That last clause rests on an unsourced premise and is the weakest thing in
 this document.** It assumes the ECU's torque model cannot see a fuelling fault,

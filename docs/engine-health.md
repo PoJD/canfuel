@@ -781,13 +781,202 @@ be reasoned around rather than removed.
 
 ---
 
+## The service of 17 September 2026 — compression, and the plugs that came out
+
+**The repair was split in two, and not by choice.** Spark plugs and ignition
+leads went on at this visit; the injectors were still in transit from the UK
+and follow separately. `next-drive.md` was written assuming one visit and now
+has a two-step experiment to read instead — what that costs, and the one thing
+it buys, are below.
+
+Rear shock absorbers, an air-conditioning recharge and several small items were
+done at the same visit. None of them touch anything this file measures.
+
+### Compression: 13 bar on all four, and the evenness is the result
+
+**Measured by the garage, recorded here.** All four cylinders read the same.
+
+⚠ **The absolute figure is the weaker half of this.** A cranking compression
+number moves with the gauge, the cranking speed, the battery, the engine's
+temperature and whether the throttle was held open, and none of those were
+recorded. **The spread across the four is what survives all of that**, because
+every cylinder saw the same gauge and the same crank in the same ten minutes.
+It needs no factory specification to be worth something, which is just as well,
+because no document in `docs/` holds one.
+
+**What an even four rules out**, and this is the first time anything has:
+
+- a burnt or badly seating valve on one cylinder
+- a broken or collapsed ring pack on one cylinder
+- a head gasket leaking between two cylinders
+
+**All three were live candidates for "one cylinder behaves differently from its
+neighbours", and all three are now off the list.** That matters more than it
+looks: the misfire pathway in this file has rested on a leaking injector
+throughout, and a mechanical fault would have produced the same burned-through
+chamber, the same first-gear stumble and the same one-cylinder story. It no
+longer can.
+
+⚠ **It does not rule out everything, and three of the gaps matter here.**
+Compression is a cranking-speed test: it says nothing about the injectors, it
+does not resolve valve *timing*, and an even four is entirely compatible with a
+small intake leak feeding every cylinder alike. **It removes per-cylinder
+mechanical causes and nothing else.**
+
+**It also corroborates the breathing argument from a completely different
+direction.** *What "load" is a percentage of* puts this engine's real
+volumetric efficiency at full throttle somewhere in 84–93 % and concludes that
+"every value in it is a normally breathing engine" — a figure derived from mass
+air flow, engine speed and the ECU's own load percentage. Compression is none
+of those things and agrees with it. **Two independent measurements now say the
+engine fills and seals its cylinders normally**, which leaves the gap under
+*The gap that is left* squarely between combustion quality and the torque
+scale, with the air path eliminated from both ends.
+
+### The plugs: four years by date, under 1,500 km by wear
+
+**The old plugs came out worn, with cylinders 1 and 4 further along than 2 and
+3, and one of the four visibly worse than the rest.** Photographed in the
+garage; the photograph is not kept here, on the same principle as every other
+screen in this file — what a photograph is worth is written down, and the
+picture itself goes stale in a drawer.
+
+What is visible in it: dry, dark, sooty deposits on all four — carbon rather
+than the wet sheen of oil — with the ground straps and centre electrodes
+rounded off rather than square.
+
+⚠ **A photograph cannot grade fouling and must not be used to.** Lighting,
+angle and which way a plug happens to be turned move the apparent severity more
+than a real difference between two cylinders would. **The owner handled them
+and the ranking is his, not the picture's.**
+
+**The distance is the finding, and it comes out of `vehicle-history.md` rather
+than out of the plugs.** Those plugs were fitted in 12/2022 and the car has
+covered about 1,500 km since — the figure that file derives from the per-year
+table, and the reason it flags them as "old by date, nearly new by wear".
+
+**Eroded electrodes and a carbon coating at that distance is not wear.** Plugs
+are consumables measured in tens of thousands of kilometres, and these did not
+get a tenth of that. **This is the same shape as the converter**: a part
+replaced in 10/2017, found destroyed in 9/2026 against under 28,000 km. Two
+different consumables, both killed by distance they never covered. **The engine
+has been writing the fault onto every part downstream of it**, and the plugs are
+the second piece of physical evidence in this file after the cut-open converter.
+
+⚠ **"Sooty rather than oily" is worth one sentence and no more.** Dry carbon is
+what a rich mixture or a weak spark leaves and wet oil is what a ring or a valve
+stem seal leaves, so the observation points the same way as everything else
+here — but plug-reading is a craft with a large subjective component, the
+compression result already rules out the ring-and-valve half of it far more
+firmly, and nothing is gained by leaning on the colour.
+
+### The worst plug names a cylinder, and that datum is perishable
+
+**This is the most actionable thing in this section.** *The old converter was
+shown to the owner* says one burned-through chamber "fits one cylinder better
+than four" and then, correctly, refuses to name which: exhaust flows mix in the
+manifold, so the converter cannot identify anything.
+
+**A plug does not mix.** It sits in one cylinder and records only that cylinder.
+So the worst of the four is the first candidate identification of the suspect
+cylinder this investigation has ever had — **provided anybody can still say
+which cylinder it came out of.**
+
+- **Ask the garage while they still remember**, and write the answer down here.
+  Plugs come out in a rush and end up loose in a cap; the position is lost
+  within days and cannot be reconstructed afterwards.
+- **Keep the four plugs, bagged and labelled by cylinder.** They are physical
+  evidence of exactly the kind this file has been short of. If the new injectors
+  cure everything, the worst plug should have come from the cylinder that was
+  being fed the extra fuel, and that is a prediction this set of parts can still
+  be held against.
+
+⚠ **1 and 4 being the worse pair may be mundane, and the innocent explanation
+has to be ruled out before the interesting one is entertained.** They are the
+**end cylinders**, which on many engines simply run cooler and carbon up faster
+than the middle two for reasons that have nothing to do with any fault.
+
+**And there is a second reading that is not mundane, which this project cannot
+currently settle.** On a four-cylinder, 1 and 4 are companion cylinders — they
+reach top dead centre together — and a wasted-spark ignition fires them from one
+coil output, with 2 and 3 on the other. **If this engine's ignition is wired
+that way, "1 and 4 worse" is a signature of one coil output or its pair of
+leads, not of one injector.**
+
+⚠ **Whether the AQY is wasted-spark is not established by any document in
+`docs/` and is not asserted here.** The coil was replaced in 6/2026 and the
+misfires outlived it, which is what moved ignition from cause to casualty in
+this file — but the *leads* dated from 12/2022 and have only now been changed,
+so the pairing question is live in a way it was not a month ago. **It is cheap
+to settle**: the topology is visible on the car, or in the parts catalogue for
+the ignition components. Settle it before reading anything into the pair.
+
+### The calmer idle is not evidence, and the reason is in this file's own table
+
+**The owner's impression after the visit is that idle is a little calmer.**
+Recorded because impressions are what prompted every measurement here, and
+discarded as evidence because it cannot survive the table under *The rough idle
+is in the fixtures*.
+
+**A warm idle already counted zero dips before anything was changed.**
+`11_idle_noac_z1` and `12_idle_ac_z1` were taken at 72.8 and 73.5 °C **on the
+old injectors and the old plugs** and both read 0.0 a minute. So a warm engine
+is precisely the state where the before-measurement was already null, and an
+impression formed in it has nothing to be calmer *than*. The states that were
+not zero are **from cold, and around 61 °C of oil** — which is where any real
+improvement has to show up and where nothing has been recorded since the visit.
+
+### What the split costs, and the one thing it buys
+
+**Cost: the next drive no longer has one variable.** `next-drive.md`'s
+prediction — misfires to zero, stumbling gone at every oil temperature, the idle
+adaptation moving toward zero — was written against a single change. If all of
+that comes true after the injectors, **the plugs are now an equally good
+explanation for any of it**, and no measurement taken afterwards can separate
+them. Four-year-old fouled plugs misfire at low load and high vacuum, which is
+the same signature the injectors are accused of.
+
+**What it buys: a middle point exists, and only until the injectors go in.**
+A cold start and a few minutes of idle recorded *now* — new plugs and leads, old
+injectors — turns a two-point comparison into a three-point one and makes the
+split an advantage instead of a confound:
+
+| state | recorded on | what it would say |
+|---|---|---|
+| `18_coldstart_z1` | old plugs, old injectors | the baseline, already held |
+| **a capture now** | **new plugs, old injectors** | **splits plugs from injectors** |
+| the next drive | new plugs, new injectors | the result |
+
+**It needs no driving and no hard running** — `tools/usbtin_capture.py`, one
+cold start, five minutes, engine idling on the drive. `tools/idledips.py` reads
+it afterwards with `dips_cheap()`'s frozen constants, against the 12.1 and 11.6
+a minute in the prediction table under *The idle counter, frozen before the
+repair*.
+
+⚠ **It is perishable in exactly the way `18_coldstart_z1` was.** Once the
+injectors are in there is no "new plugs, old injectors" car left to record, and
+the question of which repair did what becomes permanently unanswerable. **The
+owner has declined to measure for now and that is a legitimate call** — the
+middle point is a nice-to-have and the verdict does not depend on it. It is
+written down so that the choice is a choice rather than an oversight.
+
+---
+
 ## What the next drive settles, and what it does not
 
-New injectors, spark plugs, ignition leads and silencers are fitted the
-following week. **The plugs and leads were last changed in 2022**, so they have
-spent four years downstream of whatever has been happening; the coil is a month
-old and the misfires outlived it, which is what took the ignition side off the
-list of causes and left it on the list of casualties.
+**The plugs and ignition leads went on 17 September 2026 and the injectors
+follow separately** — see *The service of 17 September 2026*, above, for why
+that split matters and what it costs this comparison. The plugs and leads had
+last been changed in 2022, so they had spent four years downstream of whatever
+has been happening; the coil is a month old and the misfires outlived it, which
+is what took the ignition side off the list of causes and left it on the list of
+casualties.
+
+⚠ **The table below was written for one visit and now covers two.** Everything
+in the left column is still what the *injectors* would settle **if the plugs had
+changed nothing** — and the plugs are no longer a null change, because they came
+out eroded and carboned at under 1,500 km. Read every row below as "the repair",
+not "the injectors", unless the middle capture in the section above was taken.
 
 | the next drive settles | it does not settle |
 |---|---|

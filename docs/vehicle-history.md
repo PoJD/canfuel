@@ -131,19 +131,42 @@ here is owner-supplied from service records.
 | MAF sensor | 7/2018 *(connector cleaned 7/2026)* | not recoverable — see *Distance and use* |
 | Chiptuning | 6/2018 | — |
 | Fuel pump, Bosch | 10/2022 | ~1,500 km |
-| Spark plugs and leads | 12/2022 | **~1,500 km** |
+| Spark plugs and leads | 12/2022 *(replaced 9/2026)* | **~1,500 km — see below** |
 | Ignition coil | 6/2026 | ~0 |
 | Throttle body `028 129 748` | 6/2026 — cleaned, new gasket, adaptation run | ~0 |
 | Fuel pressure regulator `037 133 035 C` | 7/2026 | ~0 |
 | Catalytic converter, silencer, exhaust gaskets | **9/2026** *(previously 10/2017)* | ~0 |
 | Injectors `06A 906 031 C`, new from the UK | **9/2026** | ~0 |
+| **Spark plugs and ignition leads** | **17/9/2026** | ~0 |
+| Rear shock absorbers, air-conditioning recharge, minor items | 17/9/2026 | ~0 |
 
-Two entries carry more than a date.
+Three entries carry more than a date.
 
 **The catalytic converter fitted in 10/2017 was replaced in 9/2026 having been
 found completely blocked**, against a service life of nine years and under
 28,000 km. `docs/engine-health.md`, *The old converter was shown to the owner*,
 is the account of it and treats it as the one hard fact in that investigation.
+
+**The plugs and leads of 12/2022 came out destroyed at about 1,500 km**, which
+is the derived distance in the table above and a fiftieth of what a set of plugs
+is normally good for. Eroded electrodes and dry carbon on all four, worse on
+cylinders 1 and 4, one visibly worse than the rest. `docs/engine-health.md`,
+*The plugs: four years by date, under 1,500 km by wear*, reads them; the short
+version is that this is the **second** consumable on this car to be destroyed by
+distance it never covered, after the converter directly above.
+
+⚠ **They were replaced separately from the injectors and a week ahead of them**,
+because the injectors were still in transit. That splits a repair the rest of
+`docs/` had assumed would be one event, and `engine-health.md` carries what it
+costs.
+
+**Compression, measured at the 17/9/2026 visit: 13 bar on all four cylinders**,
+even across the engine. *Recorded from the garage, not measured by this
+project.* The evenness is the load-bearing part and it eliminates every
+per-cylinder mechanical explanation this project had been carrying — a burnt
+valve, a broken ring pack, a head gasket leaking between cylinders. It also
+agrees, from a completely different measurement, with the volumetric efficiency
+`engine-health.md` derives from mass air flow and the ECU's load channel.
 
 **The chiptuning of 6/2018 is the standing unknown.** `engine-health.md`, *The
 remap is a standing unknown*, and the warnings in `can-decoding.md` and
