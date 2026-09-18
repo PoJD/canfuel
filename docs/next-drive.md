@@ -729,6 +729,38 @@ b7max <= 200   (what this car reads now)
           from the beginning rather than rescaled.
 ```
 
+### What the air already says about these branches
+
+**The top branch is not a live outcome, and the tree reads as though it is.**
+`frames.md`, *What that gap is worth in Nm*, turns each b7 into the cylinder
+filling it would require: **b7max ≥ 235 needs 99–109 % of true filling and
+b7 = 255 needs 107–119 %**. This engine manages 84–93 %, which is normal, and a
+naturally aspirated one does not go past 100 %. So *the scale is right and
+nothing changes* cannot happen here at any oil temperature, in any gear, with
+any injectors. **What the pulls decide is where inside the second branch it
+lands**, and the same section brackets that at **0.90–0.95 Nm/bit** by two
+independent routes against the 0.74 shipped.
+
+⚠ **"Load stays near 78 %" is the healthy prediction, not a symptom.** The
+lower branch offers *either the engine is still unwell, or THE SCALE IS WRONG*
+as though the load were silent between them, and it is not: corrected for real
+intake air, 78 % is 84–93 % of true filling, which `engine-health.md` calls a
+normally breathing engine. **That rules out a breathing fault and only a
+breathing fault** — b7 may yet see combustion, which is the open hypothesis
+above, so a well-breathing engine burning badly could still hold b7 down. The
+branch stands; what it no longer gets to assume is that low load is itself
+evidence of a sick engine.
+
+⚠ **And item 1 below is superseded in its numbers.** Its 1.08–1.26 Nm/bit comes
+from extrapolating `17_drive_property_z1`, whose wide-open bursts were low-gear
+sweeps still climbing when the throttle shut — the flaw this document names two
+sections up. The relative load VCDS logged is **flat at 78.1 % from 3000 to
+6000 rpm**, and indicated torque at the two rating points is flat too (188.3 Nm
+at 2400 against 187.9 at 5200), so the plateau b7 should be looked for near
+**200 rather than 149–174**. The bracket that replaces the scale is still the
+finding rather than the number — but it should be built on the plateau these
+pulls measure, not on that extrapolation.
+
 ### What the last branch actually changes
 
 **The formula does not move. One premise does.** Today it reads *b7 = 255

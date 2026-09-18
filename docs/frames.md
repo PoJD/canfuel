@@ -524,6 +524,53 @@ reference normalised to 0 °C and 1013 hPa — and that is the reference,
 measured, in *What "load" is a percentage of*. **No fuelling repair changes what
 the air-mass sensor reads.**
 
+#### What that gap is worth in Nm, if the reading is right
+
+**Turn the normalisation round and every b7 is a volumetric efficiency in
+disguise.** `engine-health.md` measured the reference off this car — air at 0 °C
+and 1013 hPa, 1.293 g/l — and measured the intake correction that goes with it,
+so a b7 can be stated as the filling it would require:
+
+| b7 | relative load it is | true filling that needs, over the intake bracket 40 °C/980 hPa … 20 °C/1013 hPa |
+|---|---|---|
+| 185 — the largest this engine has been **seen** to make | 72.5 % | 78–86 % |
+| ~199 — what the 2026-09-10 display peak inverts to | 78.0 % | 84–93 % |
+| 235 | 92.2 % | **99–109 %** |
+| **255 — what the scale assumes** | **100 %** | **107–119 %** |
+
+**A naturally aspirated engine of this kind does not fill past 100 %, so the
+bottom two rows are not states this car has failed to reach — they are states
+it cannot reach.** The absolute ceiling is b7 ≈ 215–238, and that is for an
+engine filling perfectly; at the 84–93 % this one actually manages it is
+**b7 ≈ 200–215**, which is where it already reads.
+
+**Two independent routes then bracket the scale, and they overlap.** Full scale
+has to cover the rated crank figure plus the drag at that speed — 188 Nm, and
+notably the same 188 Nm at both rating points, 188.3 at 2400 rpm against 187.9
+at 5200 — so the scale is simply 188 Nm divided by whatever b7 really plateaus
+at:
+
+- **from the air ceiling**, b7max 200–238 gives **0.79–0.94 Nm/bit**;
+- **from brake thermal efficiency**, the 28–32 % that `engine-health.md` calls
+  normal for this engine puts the same drive's peak at 150–171 Nm rather than
+  117, which is **0.90–1.01 Nm/bit**.
+
+The overlap is **0.90–0.95 Nm/bit**, and the shipped 0.74 sits 20–25 % below
+both. ⚠ **Neither route measures the scale.** Both are arithmetic on readings
+taken for other purposes, one of them a display maximum against a log mean; and
+the whole of it rests on b7 inheriting the charge normalisation, which is a
+hypothesis with one coincidence behind it and a counter-observation at idle,
+where b7 and relative load diverge 9.8 % against 23.2 %. **What settles it is
+b7 and relative load logged together across a held full-throttle pull** —
+`next-drive.md` steps 13 and 14 — because that tests the proportionality over a
+range instead of at one point.
+
+**The consequence worth carrying into that drive:** the branch of its decision
+tree that reads *the scale is right and nothing changes* needs a filling this
+engine cannot produce, so it is not a live outcome. The question the pulls
+answer is not whether the scale moves but where inside the second branch it
+lands.
+
 **b7 is not eight bits of resolution.** Across every fixture it takes 95
 distinct values between 0 and 192, and 88 of the 92 gaps between consecutive
 values are **2**, with a single-count step at each multiple of 64. **One
