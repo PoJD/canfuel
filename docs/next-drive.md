@@ -731,21 +731,35 @@ b7max <= 200   (what this car reads now)
 
 ### What the air already says about these branches
 
-**The top branch is not a live outcome, and the tree reads as though it is.**
-`frames.md`, *What that gap is worth in Nm*, turns each b7 into the cylinder
-filling it would require: **b7max ≥ 235 needs 99–109 % of true filling and
-b7 = 255 needs 107–119 %**. This engine manages 84–93 %, which is normal, and a
-naturally aspirated one does not go past 100 %. So *the scale is right and
-nothing changes* cannot happen here at any oil temperature, in any gear, with
-any injectors. **What the pulls decide is where inside the second branch it
-lands**, and the same section brackets that at **0.90–0.95 Nm/bit** by two
-independent routes against the 0.74 shipped.
+**The tree has no thermometer in it, and it needs one.** `frames.md`, *What
+that gap is worth in Nm*, turns each b7 into the intake air it would require,
+because relative load is the engine's filling times the density of the air it
+breathes: **the same healthy engine reads b7 ≈ 196–217 at a September intake of
+25 °C and 214–237 at 0 °C.** That is a tenth of full scale from the weather
+alone, and it **straddles the 200 boundary below**. So b7max off one drive is
+not a number that can be compared with a threshold until the intake temperature
+is beside it — which is what makes step 6's reading of group 006 part of this
+measurement rather than a formality.
+
+**What survives the correction, and is the finding:** **b7 = 255 needs intake
+air between −44 and −19 °C.** The scale's premise — that full scale is the rated
+crank torque plus the drag at that speed — asks for a condition this car is
+never driven in, so **the two factory figures are unreachable rather than
+merely unobserved**, and *the scale is right and nothing changes* is not a live
+outcome of this session. `frames.md` brackets what replaces it at **0.90–0.96
+Nm/bit** against the 0.74 shipped, by two independent routes.
+
+⚠ **`b7max >= 235` is not impossible, and a first version of this section said
+it was.** It needs a hard frost — −24 to +2.5 °C of intake — which rules it out
+on this drive and not in principle. **On a September drive, expect b7max near
+196–217**, which is why the branch this lands in has to be read with the
+thermometer and not off the number.
 
 ⚠ **"Load stays near 78 %" is the healthy prediction, not a symptom.** The
 lower branch offers *either the engine is still unwell, or THE SCALE IS WRONG*
-as though the load were silent between them, and it is not: corrected for real
-intake air, 78 % is 84–93 % of true filling, which `engine-health.md` calls a
-normally breathing engine. **That rules out a breathing fault and only a
+as though the load were silent between them, and it is not: at the intake
+temperatures of that drive, 78 % is a normally breathing engine —
+`engine-health.md` says so. **That rules out a breathing fault and only a
 breathing fault** — b7 may yet see combustion, which is the open hypothesis
 above, so a well-breathing engine burning badly could still hold b7 down. The
 branch stands; what it no longer gets to assume is that low load is itself
@@ -755,11 +769,10 @@ evidence of a sick engine.
 from extrapolating `17_drive_property_z1`, whose wide-open bursts were low-gear
 sweeps still climbing when the throttle shut — the flaw this document names two
 sections up. The relative load VCDS logged is **flat at 78.1 % from 3000 to
-6000 rpm**, and indicated torque at the two rating points is flat too (188.3 Nm
-at 2400 against 187.9 at 5200), so the plateau b7 should be looked for near
-**200 rather than 149–174**. The bracket that replaces the scale is still the
-finding rather than the number — but it should be built on the plateau these
-pulls measure, not on that extrapolation.
+6000 rpm**, so the plateau b7 should be looked for near **200 rather than
+149–174**. The bracket that replaces the scale is still the finding rather than
+the number — but it should be built on the plateau these pulls measure, at the
+intake temperature they measure it at.
 
 ### What the last branch actually changes
 

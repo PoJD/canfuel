@@ -526,50 +526,86 @@ the air-mass sensor reads.**
 
 #### What that gap is worth in Nm, if the reading is right
 
-**Turn the normalisation round and every b7 is a volumetric efficiency in
-disguise.** `engine-health.md` measured the reference off this car — air at 0 °C
-and 1013 hPa, 1.293 g/l — and measured the intake correction that goes with it,
-so a b7 can be stated as the filling it would require:
+**Turn the normalisation round and every b7 becomes a statement about air.**
+`engine-health.md` measured the reference off this car — 0 °C and 1013 hPa,
+1.293 g/l — so relative load is **the engine's filling times the density of the
+air it is breathing, divided by the density of that reference**:
 
-| b7 | relative load it is | true filling that needs, over the intake bracket 40 °C/980 hPa … 20 °C/1013 hPa |
+```
+rl  =  VE  x  rho(intake) / 1.293 g/l
+```
+
+⚠ **That is one identity with two unknowns in it, and they were never separated.**
+The measurement is the product: **rl = 78.1 % at full throttle**, taken at an
+intake temperature nobody logged. `engine-health.md` brackets it by assuming
+the intake was somewhere in 20–40 °C, which is what makes its filling figure a
+range — **20 °C pairs with VE 84 %, 40 °C with VE 93 %**, and those rows are
+not independent readings of the engine. **The honest content of that drive is
+the 78.1 %, and everything below inherits its width from the temperature nobody
+wrote down.**
+
+**So the ceiling is a function of the weather, which is the part that is easy
+to miss.** Carrying the same measurement to other intake temperatures:
+
+| intake air | relative load a full-throttle pull would show | b7 with it |
 |---|---|---|
-| 185 — the largest this engine has been **seen** to make | 72.5 % | 78–86 % |
-| ~199 — what the 2026-09-10 display peak inverts to | 78.0 % | 84–93 % |
-| 235 | 92.2 % | **99–109 %** |
-| **255 — what the scale assumes** | **100 %** | **107–119 %** |
+| +35 °C | 74.5 – 82.4 % | 190 – 210 |
+| **+25 °C** — plausible for a September drive | **77.0 – 85.2 %** | **196 – 217** |
+| +10 °C | 81.0 – 89.7 % | 207 – 229 |
+| 0 °C | 84.0 – 93.0 % | 214 – 237 |
+| −20 °C | 90.6 – 100.3 % | 231 – 256 |
 
-**A naturally aspirated engine of this kind does not fill past 100 %, so the
-bottom two rows are not states this car has failed to reach — they are states
-it cannot reach.** The absolute ceiling is b7 ≈ 215–238, and that is for an
-engine filling perfectly; at the 84–93 % this one actually manages it is
-**b7 ≈ 200–215**, which is where it already reads.
+Read the other way, what each b7 asks of the air:
+
+| b7 | relative load | intake air it needs |
+|---|---|---|
+| ~199 — what the 2026-09-10 display peak inverts to | 78.0 % | **+21 to +52 °C — the drive that produced it** |
+| 235 | 92.2 % | **−24 to +2.5 °C** |
+| **255 — what the scale assumes** | **100 %** | **−44 to −19 °C** |
+
+**b7 = 255 is therefore out of reach in any condition this car is driven in**,
+and that is the load-bearing conclusion: the scale's premise asks for air
+colder than −19 °C even at the most generous end of the bracket, and the intake
+draws from the engine bay, which sits about ten degrees above ambient (the
+first cold start recorded 22.5 °C of intake with the oil at 12.75). **The two
+factory figures are not merely unobserved. They are unreachable.**
+
+⚠ **b7 ≥ 235 is a different matter and an earlier version of this section got
+it wrong**, by reading the filling bracket as a property of the engine rather
+than as one drive's air. It needs a hard frost — −24 to +2.5 °C of intake — so
+it is out of reach on a warm drive and **not** out of reach in principle. Say
+"not on this drive", not "not ever".
 
 **Two independent routes then bracket the scale, and they overlap.** Full scale
 has to cover the rated crank figure plus the drag at that speed — 188 Nm, and
 notably the same 188 Nm at both rating points, 188.3 at 2400 rpm against 187.9
-at 5200 — so the scale is simply 188 Nm divided by whatever b7 really plateaus
-at:
+at 5200 — so the scale is 188 Nm divided by whatever b7 really plateaus at:
 
-- **from the air ceiling**, b7max 200–238 gives **0.79–0.94 Nm/bit**;
+- **from the air**, a plateau of 196–217 at a September intake gives
+  **0.87–0.96 Nm/bit**;
 - **from brake thermal efficiency**, the 28–32 % that `engine-health.md` calls
   normal for this engine puts the same drive's peak at 150–171 Nm rather than
   117, which is **0.90–1.01 Nm/bit**.
 
-The overlap is **0.90–0.95 Nm/bit**, and the shipped 0.74 sits 20–25 % below
-both. ⚠ **Neither route measures the scale.** Both are arithmetic on readings
-taken for other purposes, one of them a display maximum against a log mean; and
-the whole of it rests on b7 inheriting the charge normalisation, which is a
+The overlap is **0.90–0.96 Nm/bit**, and the shipped 0.74 sits 20–25 % below
+both.
+
+⚠ **A factory rating is quoted at a standard air condition, not at the day's
+weather**, so the anchor wanted is the plateau corrected to that condition
+rather than the raw maximum off any one drive. **Which standard the AQY's 85 kW
+and 170 Nm are corrected to is not held by this project** — it is near 20 °C
+either way, which is why the September row above is the right one to reason
+from and a January one would not be.
+
+⚠ **Neither route measures the scale.** Both are arithmetic on readings taken
+for other purposes, one of them a display maximum against a log mean; and the
+whole of it rests on b7 inheriting the charge normalisation, which is a
 hypothesis with one coincidence behind it and a counter-observation at idle,
 where b7 and relative load diverge 9.8 % against 23.2 %. **What settles it is
 b7 and relative load logged together across a held full-throttle pull** —
 `next-drive.md` steps 13 and 14 — because that tests the proportionality over a
-range instead of at one point.
-
-**The consequence worth carrying into that drive:** the branch of its decision
-tree that reads *the scale is right and nothing changes* needs a filling this
-engine cannot produce, so it is not a live outcome. The question the pulls
-answer is not whether the scale moves but where inside the second branch it
-lands.
+range instead of at one point, **and because it reads the intake temperature
+that collapses the width of every bracket above.**
 
 **b7 is not eight bits of resolution.** Across every fixture it takes 95
 distinct values between 0 and 192, and 88 of the 92 gaps between consecutive
