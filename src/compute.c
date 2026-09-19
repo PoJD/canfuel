@@ -567,7 +567,7 @@ uint16_t compute_range_km(const compute_t *c)
      * compute_tank_d already had is worth exactly as much here, and the two
      * gauges have no business disagreeing about how much fuel is in the tank.
      *
-     * The stable median would be steadier still, but it only updates at rest,
+     * The settled level would be steadier still, but it only updates at rest,
      * so it would leave the range frozen for a whole motorway drive. The
      * damped value tracks consumption; that is the point of it.
      *

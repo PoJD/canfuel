@@ -492,8 +492,9 @@
  * is a time constant of 16 seconds at TANK_SAMPLE_MS.
  *
  * A MEDIAN of a 25-slot ring read out of a 128-bucket histogram was
- * rejected. The reasoning is in docs/optimisation.md: the median was our choice rather than a requirement,
- * it cost 2,453 cycles and 153 bytes of RAM, and what it was actually being
+ * rejected. The reasoning is in docs/optimisation.md: the median was our
+ * choice rather than a requirement, it cost 2,453 cycles and 153 bytes of
+ * RAM, and what it was actually being
  * asked for -- "is the level suddenly and persistently higher than it was" --
  * is answered by the counter below without sorting or counting anything.
  *
@@ -586,8 +587,8 @@
  * the second. A DECISION, not a measurement: 120 s halves the ripple, and what
  * it costs -- 90 % of any step in about 4.6 minutes instead of 2.3 -- costs
  * nothing here, because the only fast change a tank ever makes is refuelling
- * and compute.c now snaps straight to the median when it detects one. Fuel
- * being burnt moves the level over hours.
+ * and compute.c now snaps straight to the level the sender is reporting when
+ * it detects one. Fuel being burnt moves the level over hours.
  *
  * 06_trip_reset is the honest caveat: it was recorded with the reserve lamp on
  * and the sender at the bottom of its travel, where it is at its worst, and no
