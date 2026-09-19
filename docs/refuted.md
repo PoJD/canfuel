@@ -230,6 +230,58 @@ the worked stop and the fix, which is one character: the AND is an OR.
 moving, and the engine is genuinely driving the wheels — sustained, not a
 transient. Cruise control would be one; this car has none.
 
+### B10. "0x420 b3 might be oil pressure, not oil temperature"
+
+**Believed:** never, which is the interesting part — **it was never
+considered.** Question 4 asked *"is 0x420 b3 oil or IAT?"*, answered it, and
+closed. A binary question gets a binary answer and the third option is not
+wrong, it is absent. Raised by the maintainer on finding that this engine is
+said to carry an oil *pressure* switch and no oil temperature sender at all,
+which makes a pressure channel the obvious reading.
+
+**Refuted by:** `18_coldstart_z1` and the four free-revving holds, three ways,
+all measured and none needing a decode to be right first — direction of travel
+survives any monotonic scale.
+
+1. **It does not move when the engine starts.** Oil pressure goes from zero to
+   several bar within one revolution. Across the start the raw byte is 81
+   before cranking, 81 at 451 rpm, 81 at 1439 rpm, and **still 81 eighty
+   seconds later**. It first moves at about 160 s.
+2. **It is not zero with the engine stopped.** It holds a steady 81 for the
+   41 s of ignition-on before the engine fires, and `08_ign_only_z1` holds a
+   steady 133 for its whole twenty seconds. A stopped engine has no oil
+   pressure.
+3. **It ratchets instead of tracking.** Across holds at 1492, 1792, 2342 and
+   2892 rpm it goes 161 → 162 → 163 → 165 → 167, one count per 25 s hold,
+   monotonically, **and never comes back down between holds** — where the
+   revs did come down. Pressure roughly doubles over that rpm range and is
+   reversible; this moved 3.7 % and is not.
+
+**It is also not a number computed from the coolant**, which is the other
+thing a car with no sender might broadcast. In hold `15_rev2372_z1` the
+coolant **fell five counts while this channel rose two**. A value derived from
+the coolant cannot move against it.
+
+**What survives:** something with real thermal mass, heated by the engine,
+responding to load rather than to engine speed, and slow enough to take
+minutes. That is oil temperature, whatever supplies it.
+
+⚠ **What is NOT settled, and is a question about the car rather than about the
+bus:** whether that comes from a dedicated sender or from a value the ECU or
+the cluster computes. **This project does not take car facts off the web** —
+they are settled by measurement here, and the cheap decisive test is to unplug
+the candidate connector and watch for the channel to go to 255, which is
+already known to be its fault value. If there is no sender, then "the sensor
+is faulty" leaves the table entirely and question 10 is purely about this
+firmware's decode.
+
+**Cost:** none. The conclusion question 4 reached is unchanged and the
+firmware needed no edit. What it cost before it was asked is a closed question
+that had only ever been tested against one alternative — **a question guards
+the answers it was written from**, which is the same lesson as C8.
+
+---
+
 ### B8. "The fuel counter wraps at 32767"
 
 **Believed:** in the same place.

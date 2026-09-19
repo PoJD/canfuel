@@ -971,8 +971,39 @@ from one session, on an engine that had been running five minutes from cold.
 The decoding table above already called it oil temperature and the firmware
 already treats it as such, so nothing changes.
 
+⚠ **THE QUESTION AS POSED WAS BINARY, AND A THIRD ANSWER WAS NEVER TESTED.**
+*"Oil or IAT?"* gets an answer about oil and IAT. **Oil *pressure* is the
+obvious third reading** — this engine is said to carry an oil pressure switch
+and no oil temperature sender — and it has since been tested rather than
+assumed away. It is refuted three ways, all in `refuted.md` B10 and none of
+them needing the decode to be right first:
+
+- **it does not move when the engine starts.** Raw 81 before cranking, 81 at
+  1439 rpm, still 81 eighty seconds later. Pressure goes zero to several bar
+  in one revolution.
+- **it is not zero with the engine stopped** — steady 81 for the 41 s before
+  the engine fires, steady 133 through all of `08_ign_only_z1`.
+- **it ratchets rather than tracking.** 161 → 167 across holds at 1492 to
+  2892 rpm, one count per 25 s hold, never falling back between holds where
+  the revs did. Pressure over that range roughly doubles and is reversible.
+
+**Nor is it a figure computed from the coolant**, which is what a car with no
+sender might otherwise broadcast: in `15_rev2372_z1` the coolant fell five
+counts while this channel rose two, and a value derived from the coolant
+cannot move against it.
+
+So it is a real thermal quantity with mass, responding to load rather than to
+engine speed. **Whether a dedicated sender supplies it or the ECU or cluster
+computes it is a question about the car and is open** — and it is settled by
+unplugging the candidate connector and watching for 255, not from the web.
+Either way the signal behaves as oil temperature and the firmware's treatment
+of it stands.
+
 ⚠ **What this does not establish is that the number is *right*** — only what it
-is a number of. That is question 10.
+is a number of. That is question 10. **If there is no physical sender the
+answer there gets simpler, not harder**: "the sensor is faulty" leaves the
+table and what remains is this firmware's decode, which the cold-soak
+calibration point already says has the wrong slope.
 
 ### 5. ~~AccelG — longitudinal or lateral?~~ — **closed: it is lateral**
 
