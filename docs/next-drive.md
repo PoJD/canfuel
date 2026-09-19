@@ -103,6 +103,41 @@ The capture starts at step 7 and the engine not until step 10, so its opening
 minutes cover the same soak — nothing changes in between. **Once the engine
 fires this point is gone until the next overnight stand.**
 
+⚠ **WHAT THIS ONE READING DOES AND DOES NOT SETTLE**, because it is tempting
+to think VCDS here ends the argument and it does not.
+
+**It does not give a scale.** One point fixes an *offset*. Any slope
+whatsoever fits a single point once you are free to choose the offset with
+it, so the cold soak alone cannot tell 0.75 from 1.0 for either channel.
+**That is the entire reason step 26a exists** — two points at different
+temperatures, and only then is there a line.
+
+**It does give three things that are worth the one screen:**
+
+- **a falsification test, before the engine has even started.** Our coolant
+  formula says raw 86 is 16.5 °C. If VCDS says 22, the formula is wrong and
+  we know it in the car rather than three weeks later.
+- **truth for both offsets at once.** Whatever number VCDS reports IS the
+  temperature, so both raw bytes can be checked against it rather than
+  against each other — which is the weakness of the 3.75 °C argument in
+  `can-decoding.md` question 10, where two unverified channels are compared.
+- ⚠ **a result that can flip the whole suspicion.** If VCDS reads near
+  **13 °C**, then at the soak it is the *oil* decode that is right and the
+  *coolant* decode that is three degrees out — and every argument built on
+  the coolant being the reliable one has to be re-read. Write the number down
+  before forming an opinion about it.
+
+**VCDS never gives the oil, at any temperature** — `01-Motor` has no oil
+block, which question 4 in `can-decoding.md` settled by looking rather than
+by guessing. So the oil *slope* has exactly two routes: the filter reading at
+step 28, or the two-cold-soak pair on a genuinely cold morning.
+
+⚠ **If group 001 will not display with the engine stopped**, do not chase it —
+note that it would not and move on. **Group 006's intake air is the fallback
+and it is already being read at step 6**: on a car that has stood overnight
+that is ambient too, from VCDS, in real degrees, which is all this point
+needs.
+
 **7. Start the capture:**
 
 ```
@@ -915,6 +950,13 @@ runs them and only leaves out the HAL. Nothing needs flashing beforehand.
 each against the `0x288` b1 raw byte at the same clock time in the capture.
 Two points, two unknowns, so the slope and the offset both come out —
 **measured rather than bracketed for the first time.**
+
+⚠ **BOTH readings are needed and the cold one is not the important half.** A
+single point fixes an offset and says nothing about a slope, so the cold soak
+on its own cannot tell 0.75 from 1.0. What makes it worth taking anyway is
+that it is a free falsification test and that it gives *truth* rather than
+another channel to compare against — step 6a has the three things it buys,
+including the one that would flip the suspicion.
 
 **Why it is first:** questions 2 and 3 use the coolant as their reference.
 Today it is only known to be *plausible*: physics brackets its slope at
