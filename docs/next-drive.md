@@ -63,46 +63,6 @@ is right. **Do not deliberately make it longer.**
 They cannot share it — the converter is powered from the display, so removing
 one removes both.
 
-## An independent test — the oil sender, cold, five minutes, no drive
-
-**Steps O1–O5, lettered on purpose: this is not part of the numbered session
-and nothing renumbers if it is skipped.** It needs a cold car, the ignition
-on and the engine never started, so it can be done on any day — including the
-morning of the session, before step 5, or a week earlier. Best done on its own
-day; see Part 2 for the one interaction to keep clear of.
-
-**What it answers:** whether `0x420` b3 comes from a physical sender at all, or
-from a value the cluster computes. `refuted.md` B10 establishes what the signal
-*behaves* like; this establishes what produces it.
-
-**O1. Ignition on, engine not started. Record the channel first.** Either
-`python tools/usbtin_capture.py --seconds 20 --out unplug_before_z1.txt`, or
-read `OilTemp` off the display and write it down. **A before value is the whole
-test** — without it there is nothing to compare against. It should be roughly
-ambient on a cold car.
-
-**O2. Unplug the connector at the sender.** ⚠ **The sender is in the sump,
-underneath the car, on three wires** — so this means getting under it. **Ramps
-or axle stands, never a jack alone.** That is the real cost of this test and it
-is the reason to decide it is worth doing before starting. ⚠ **The location is
-from parts catalogues, not from measurement** (`can-decoding.md` question 4),
-so expect to look for it rather than to find it where this file says.
-
-**O3. Ignition still on, record again.** **The prediction is 255**, which is
-this channel's known fault-or-unavailable value. On the display that is an
-absurd number rather than a blank — about 143 °C on today's formula. **Anything
-other than 255 refutes the sender hypothesis** and says the number is computed
-somewhere.
-
-**O4. Plug it back in and record once more.** It should return to the O1 value,
-possibly after a few seconds. This is the control: it separates "unplugging
-changed it" from "it happened to change".
-
-**O5. Read the fault memory of BOTH `01-Motor` and `17-Instruments`, and clear
-neither.** Which module logged it is a second result for free — see Part 2.
-Expect an oil warning on the dash while it is unplugged, and expect the oil
-*level* monitoring to be out for that time too, since the sender does both.
-
 ## In the car, before the key
 
 **5. Connect VCDS to the OBD socket and the USBtin to the display's pair.**
@@ -274,59 +234,12 @@ instruments. This one matters and is easy to forget.
 | the photographs | every screen from steps 18 and 20–24 |
 | two paper numbers, twice | group 006, before and after |
 | the dipstick reading | with the clock time |
-| the oil sender test | the three readings from O1/O3/O4, and which module logged the fault — if it was done at all |
 | how it drives | in plain words |
 | later | the second group 032 photograph |
 
 ---
 
 # Part 2 — why each step is there, and how to read what comes back
-
-## Steps O1–O5 — the oil sender, and the collision to keep clear of
-
-**What it is for.** `can-decoding.md` question 10 has two live answers and this
-test kills one of them outright. If unplugging a connector makes the channel
-read 255, there is a physical sender and "the sensor might be faulty" stays on
-the table. If nothing happens, the number is computed and a faulty sender is
-not a thing that exists — leaving only this firmware's decode, which the
-cold-soak arithmetic already says has the wrong slope.
-
-⚠ **It is the LOWER-VALUE of the two oil tests, and it is the one that needs
-you under a car.** The thermometer at steps 27–28 settles the *scaling*, which
-is the number the display shows and the temperature the drag line is labelled
-with. This settles the *source*, which changes what may be blamed but no
-figure. **If only one gets done, do the thermometer.**
-
-**THE COLLISION, AND WHY IT DISSOLVES.** Unplugging a sender logs a fault, and
-step 1 of this session says clear nothing — the fault memory is evidence and
-clearing it resets the readiness bits, which is how `100` says anything about
-the new converter. So deliberately provoking a fault looks like sabotage of the
-main session.
-
-It is not, for a reason that is itself unproven: **the sender wires to the
-instrument cluster, not to the engine ECU**, so the fault lands in
-`17-Instruments` while every piece of evidence this session rests on —
-adaptations `032` and `055`, readiness `100`, the fault memory that matters —
-lives in `01-Motor`. Two different modules, and clearing one does not touch the
-other.
-
-⚠ **But that is the very thing the test is trying to establish, so the argument
-is circular and must not be leaned on.** Hence O5: **clear nothing at all.** A
-stored oil-level fault in the cluster is harmless and can sit there
-indefinitely; step 29 says the same thing about everything else. If it ever
-does need clearing, clear `17-Instruments` alone and only after the session.
-
-**Which module logged it is a second result for free.** `17-Instruments` and
-not `01-Motor` confirms the wiring independently of any parts catalogue, which
-is exactly the measurement question 4 says it is missing. The reverse would be
-more interesting still, because it would mean the engine ECU does see the
-sender after all — against 29 measuring blocks that carry no oil temperature
-between them.
-
-**Why the before and after readings both matter.** O1 without O3 proves
-nothing and O3 without O4 proves little: a channel that reads 255 after
-unplugging and *stays* at 255 after plugging back in has told you about a
-broken connector, not about a sender. The control is the cheap part.
 
 ## Steps 1–3 — why nothing is cleared, and why not on day one
 
