@@ -92,22 +92,31 @@ CUT_MIN_S = 0.3
 
 
 def samples(path):
-    """(t, rpm, throttle, speed_mmh, d_ul) per 0x480 frame, with the bus state.
+    """(t, rpm, throttle, speed_mmh, d_ul, coolant_c) per 0x480 frame.
 
     d_ul is the fuel the ECU commanded since the previous 0x480, per
     docs/can-decoding.md trap 2: the delta is (new - old) mod 32768 and a
     counter of zero is a restart rather than a reading.
+
+    coolant_c is carried because it is very likely what gates the cut. A
+    warm-up is a ladder of coolant temperatures, so a drive with coasts spread
+    through it says at WHICH temperature the injectors start being shut --
+    which is a better answer than a cold yes or no, and costs nothing but
+    printing a column. None until 0x288 has been seen.
     """
     frames = canlog.parse_file(
         path, fix_doubled=os.path.basename(path).startswith("02"))
     t0 = None
     rpm = throttle = speed_mmh = 0
+    coolant_c = None
     prev = None
     out = []
     for f in frames:
         if f.ts_ms is not None and t0 is None:
             t0 = f.ts_ms
-        if f.can_id == 0x1A0 and len(f.data) >= 4:
+        if f.can_id == 0x288 and len(f.data) >= 2 and f.data[1] != 0xFF:
+            coolant_c = f.data[1] * 0.75 - 48.0
+        elif f.can_id == 0x1A0 and len(f.data) >= 4:
             # trap 1: the validity gate is not an equality.
             if (f.data[1] & 0x40) != 0 and (f.data[1] & 0x03) == 0:
                 speed_mmh = (f.data[2] | (f.data[3] << 8)) * 5
@@ -122,7 +131,7 @@ def samples(path):
             prev = raw
             if f.ts_ms is not None:
                 out.append(((f.ts_ms - t0) / 1000.0, rpm, throttle,
-                            speed_mmh, d))
+                            speed_mmh, d, coolant_c))
     return out
 
 
@@ -192,10 +201,18 @@ def ratio_drift(win):
     return abs(b - a) / max(a, b)
 
 
+def coolant(win):
+    """The coolant at the start of the window, or None if 0x288 is filtered out."""
+    return win[0][5]
+
+
 def describe(win):
-    line = ("%5.2f s  rpm %5.0f->%5.0f  %4.1f->%4.1f km/h  ratio %4.1f %%"
+    c = coolant(win)
+    line = ("%5.2f s  rpm %5.0f->%5.0f  %4.1f->%4.1f km/h  coolant %s"
+            "  ratio %4.1f %%"
             % (win[-1][0] - win[0][0], win[0][1], win[-1][1],
-               win[0][3] / 1000.0, win[-1][3] / 1000.0, ratio_drift(win) * 100))
+               win[0][3] / 1000.0, win[-1][3] / 1000.0,
+               "  n/a" if c is None else "%5.1f C" % c, ratio_drift(win) * 100))
     c = cut(win)
     if c is None:
         return line + "  ||  no cut"
@@ -224,6 +241,15 @@ def report(path, show_all=False):
         print("        fuel cut CONFIRMED: shuts %.2f-%.2f s after the pedal "
               "comes up, fuel back at %.0f-%.0f rpm"
               % (min(delay), max(delay), min(back), max(back)))
+        hot = [coolant(w) for w in withcut if coolant(w) is not None]
+        cold = [coolant(w) for w in wins
+                if cut(w) is None and coolant(w) is not None]
+        if hot and cold and min(hot) > min(cold):
+            print("        and the coldest coast that cut was at %.1f C of "
+                  "coolant, against %.1f C for the coldest that did not"
+                  % (min(hot), min(cold)))
+        elif hot:
+            print("        coldest coast that cut: %.1f C of coolant" % min(hot))
 
 
 def main(argv=None):

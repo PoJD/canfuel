@@ -21,21 +21,22 @@ import os
 import unittest
 
 from coastscan import (COAST_MIN_MMH, COAST_MIN_RPM, CUT_UL_PER_REV, FIXTURES,
-                       IDLE_UL_PER_REV, THROTTLE_REST, charges, coasting, cut,
-                       ratio_drift, samples, windows)
+                       IDLE_UL_PER_REV, THROTTLE_REST, charges, coasting,
+                       coolant, cut, ratio_drift, samples, windows)
 
 
-def row(t, rpm, speed_mmh, d_ul=0, throttle=THROTTLE_REST):
-    return (t, rpm, throttle, speed_mmh, d_ul)
+def row(t, rpm, speed_mmh, d_ul=0, throttle=THROTTLE_REST, coolant_c=90.0):
+    return (t, rpm, throttle, speed_mmh, d_ul, coolant_c)
 
 
-def ramp(n, rpm0, rpm1, ratio, ul_per_rev=0.0, t0=0.0, dt=0.05):
+def ramp(n, rpm0, rpm1, ratio, ul_per_rev=0.0, t0=0.0, dt=0.05, coolant_c=90.0):
     """n samples sweeping rpm at a fixed rpm-per-km/h ratio and a fixed charge."""
     out = []
     for i in range(n):
         rpm = rpm0 + (rpm1 - rpm0) * i / max(n - 1, 1)
         d = ul_per_rev * (rpm / 60.0) * dt
-        out.append(row(t0 + i * dt, rpm, int(rpm / ratio * 1000), d))
+        out.append(row(t0 + i * dt, rpm, int(rpm / ratio * 1000), d,
+                       coolant_c=coolant_c))
     return out
 
 
@@ -96,6 +97,21 @@ class PerRevolution(unittest.TestCase):
 
     def test_idle_is_well_clear_of_the_cut_threshold(self):
         self.assertGreater(IDLE_UL_PER_REV, CUT_UL_PER_REV * 10)
+
+
+class Coolant(unittest.TestCase):
+    def test_a_window_reports_the_coolant_it_started_at(self):
+        self.assertEqual(coolant(ramp(20, 4000, 3000, 160, coolant_c=42.0)), 42.0)
+
+    def test_a_capture_without_0x288_says_so_rather_than_guessing(self):
+        win = [row(i * 0.05, 3000, 30000, coolant_c=None) for i in range(20)]
+        self.assertIsNone(coolant(win))
+
+    def test_the_fixture_coasts_are_all_on_a_fully_warm_engine(self):
+        """Which is why the cold coast has to be driven for -- next-drive.md 13."""
+        rows = samples(os.path.join(FIXTURES, "17_drive_property_z1.txt"))
+        temps = [coolant(w) for w in windows(rows) if cut(w) is not None]
+        self.assertTrue(temps and min(temps) > 95.0)
 
 
 class Ratio(unittest.TestCase):

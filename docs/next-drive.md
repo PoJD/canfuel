@@ -324,11 +324,32 @@ it has stopped, restart it immediately. Keep glancing at it.
 
 ## The drive — 45 to 60 minutes
 
-**12. Stationary idles of three to five minutes each**, engine running, in
-neutral, nothing touched, air conditioning off. **One right after the start,
-one at the end when thoroughly hot, and one in the middle that has to land near
-61.5 °C of oil** — that middle one is the whole reason the trip has idles in it
-at all, and *Steps 12–14a* below is why.
+**12. Stationary idles**, engine running, in neutral, nothing touched, air
+conditioning off. **One right after the start, one at the end when thoroughly
+hot, and one in the middle that has to land near 61.5 °C of oil** — that
+middle one is the whole reason the trip has idles in it at all, and
+*Steps 12–14a* below is why.
+
+⚠ **The first one is TWO MINUTES. The other two are three to five.** The first
+idle is the only part of this drive that spends a budget something else needs:
+**idling from cold raises the coolant about 8 °C a minute** (measured off
+`18_coldstart_z1`), and the coolant is what step 13 needs low. Two minutes
+costs 16 °C of it against the 40 °C a five-minute idle would.
+
+**Two minutes is not a compromise on what the idle is for.** At the cold
+before-reading's **8.5 dips a minute**, two minutes expects 17 of them:
+
+| | seeing none, if nothing changed | seeing a halving or better |
+|---|---|---|
+| 1 min | p = 2×10⁻⁴ | p = 0.07 |
+| **2 min** | **p = 4×10⁻⁸** | **p = 0.012** |
+| 3 min | p = 8×10⁻¹² | p = 0.002 |
+| 5 min | p = 3×10⁻¹⁹ | p = 0.0002 |
+
+**Gone-or-not-gone is settled many times over by two minutes**, and the third
+minute buys a factor of five on the harder question while costing 8 °C. If the
+route to the road happens to take longer anyway, no harm done — but do not
+add idling on purpose.
 
 **Which leaves the problem that you cannot see the oil temperature from the
 driver's seat**, the display and the converter being out. Two routes, and the
@@ -364,25 +385,37 @@ does not depend on somebody remembering to look.
 half of the drive** — roughly ten, twenty and thirty minutes in — and keep
 whichever one landed in the band. They are free; *Steps 12–14a* says why.
 
-**13. Coasts on the engine — SEVERAL while cold, early, and one more when
-hot.** Pedal fully released, **clutch up**, stay in a HIGH gear, **at least
-five seconds** each — a downhill stretch if the route has one, otherwise the
-far side of any acceleration.
+**13. Coasts on the engine — as MANY as you like, starting as early as you
+can, and one more when hot.** Rev to **at least 3,800 rpm**, lift the pedal
+fully, **keep the clutch up and stay in the gear you are in**, and hold it
+until the engine is back near idle.
 
 ⚠ **This comes before the pulls because the two want opposite engines.** The
 pulls below need a hot one and will happen late whatever the numbering says;
-**the cold coasts exist for a state that is gone twenty minutes in**, so they
-are the one thing on this drive that cannot be caught up later. Take several
-in the first few minutes, not one — they cost nothing and a coast that ends
-too early records nothing at all.
+**the cold coasts exist for a state that is gone in minutes**, so they are the
+one thing on this drive that cannot be caught up later.
 
-⚠ **Five seconds and a high gear, and neither is arbitrary.** The ECU takes
-**1.2–1.3 s from the pedal coming up before it shuts the injectors**, and it
-gives them back at **1,700–1,750 rpm** — both measured off the last capture,
-`engine-health.md`, *The oldest symptom is on the overrun*. A short coast, or
-one in a low gear that falls past 1,700 rpm in a moment, spends its whole
-length inside the delay and records nothing. **In fifth from 130 km/h there is
-as much time as you want.**
+⚠ **A high gear is NOT required, and an earlier version of this step said it
+was.** That was wrong and it mattered, because it made the cold coast sound
+like something needing a motorway. **All four cuts in the last capture were in
+first gear at 20–30 km/h.** What the coast actually needs is only that the
+engine is still turning when the cut would engage: the ECU takes **1.2–1.3 s
+from the pedal coming up before it shuts the injectors**, and gives them back
+at **1,700–1,750 rpm**. First gear decays at about **1,320 rpm/s** (measured),
+so lifting from 3,800 leaves the engine above 1,800 rpm a second and a half
+later, which is the whole requirement. A higher gear decays more slowly and
+gives longer — it is easier, not necessary.
+
+**So the first one can happen on the way out of the gate**, in first or
+second, before the car has been anywhere. That is the point: **it is the
+coolant that is running out, not the road.**
+
+⚠ **Take a LADDER of them rather than one cold one.** The cut is almost
+certainly gated on coolant, and a warm-up is a ladder of coolant temperatures
+for free — so coasts spread through the first ten or fifteen minutes say **at
+which temperature the injectors start being shut**, which is a better answer
+than a cold yes or no and costs nothing but lifting off a few more times.
+`coastscan.py` prints the coolant beside every coast for exactly this.
 
 **And listen for whether it goes QUIET, not for whether it burbles.** Both
 states make a noise: warm, it stops a second or so after the lift; cold, the
@@ -393,9 +426,9 @@ accurate enough for it. It is the one observation on this drive that no
 analysis can recover afterwards.
 
 **The other half comes out of the capture by itself:** `python
-tools/coastscan.py CAPTURE` finds every coast and prints, for each, whether
-the injectors shut, at what engine speed, how long after the lift and where
-fuel came back.
+tools/coastscan.py CAPTURE` finds every coast and prints, for each, the
+coolant it happened at and whether the injectors shut — at what engine speed,
+how long after the lift, and where fuel came back.
 
 **14. Two or three full-throttle pulls in FOURTH, from about 2,200 rpm and as
 far up as the road allows.** **Hot, so late in the drive** — this is the half
@@ -719,6 +752,28 @@ work**: it climbs about 0.75 °C a minute while idling (the figure is under
 *Steps 27–28a*, and `09_idle_60s_z1` shows the same rate at 61 °C), so a
 five-minute stop drifts some four degrees. **You cannot idle past the band —
 only start outside it.**
+
+### The first idle and the cold coasts compete, and the coolant is the budget
+
+**Nothing else on this drive is a zero-sum choice and this is**, so it is
+worth stating once. The first idle and the cold coasts both want a cold
+engine, and idling is the most efficient way there is to stop having one:
+**about 8 °C of coolant a minute**, measured off `18_coldstart_z1`, where six
+minutes took it from 16.5 °C to 63.75 while the oil moved 4.5 °C.
+
+**The two are indexed by different channels, which is what makes the conflict
+soluble.** The idle dips are argued against oil temperature, and the oil is
+nearly frozen on this timescale — it does not begin to move for the first
+200 s, so a two-minute idle and a five-minute one are the same measurement.
+**The cut is gated on coolant**, which is spent at 8 °C a minute. So the idle
+gives up the minutes it does not need, and the coasts take the temperature
+they cannot get back.
+
+⚠ **Do not resolve it the other way round by putting the coasts first.** The
+before-reading is 310 s of idling from the key, and an idle that follows two
+minutes of driving is a different state — the oil would still match, but the
+warm-up enrichment would not, and enrichment is what the puddling hypothesis
+is about.
 
 **High gear for the pulls, and the objection is to the RATE rather than to
 sweeping.** The last drive got this wrong: every pull was a low-gear sweep
