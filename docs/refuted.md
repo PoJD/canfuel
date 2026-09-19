@@ -376,6 +376,63 @@ slipping clutch is not shown for that time. The alternative — gating on the
 throttle alone — leaves a revving parked car showing a number, which is the
 more visible wrong.
 
+### C9. "The rolling Range basis is a property of the trip, so a reset clears it"
+
+**Believed:** written down in as many words in `compute_reset_trip()`, and
+inherited from the segment ring that came before the filter — clearing the
+ring was the only thing that *could* be done with thirty slots of a journey
+that no longer existed. The filter kept the habit without re-deriving it. The
+ignition cycle was the same belief by omission: `basis_q4` was never added to
+`persist_record_t`, while `total_mm` was.
+
+**Refuted by:** the car, on a long drive. Range read about 400 km on the road,
+halved on pulling away from a filling station, and climbed back over the next
+fifty kilometres of ordinary driving.
+
+The mechanism needs all three of these and no more:
+
+1. **a zero basis meant "no history", and the filter took the next completed
+   kilometre as its whole value** — no damping, one kilometre defining the
+   number;
+2. **both things that zeroed it happen at a filling station** — a refuelling,
+   and an ignition cycle restoring a long `total_mm` beside an empty filter;
+3. **the first kilometre off a forecourt is the worst kilometre there is.**
+   `17_drive_property_z1` is 880 m of that driving at **23.2 l/100 km**
+   against 11-ish on the road, because fuel burned standing still accumulates
+   into the segment while the segment's distance does not move.
+
+With ~46 l aboard and a road basis of 11.5, the arithmetic gives 400 km → 198
+km → 323 km after twenty further kilometres → 396 km after forty. That is the
+report, with the tank level as the only free parameter.
+
+**The refutation is of the premise, not of the number.** The trip counter is a
+property of the trip. The rolling basis is a property of *how the car is being
+driven*, and neither filling the tank nor turning the key changes that. The
+same car with the same driver on the same road burns the same fuel a minute
+after a fill-up as a minute before.
+
+**Cost:** four drives' worth of a gauge that was wrong by a factor of two for
+an hour after every fill-up, and nothing else — no hardware, no wire. The
+basis now opens at the conservative default, is seeded from the persisted trip
+average at start-up, and survives a reset; the undamped seeding branch and the
+`RANGE_MIN_MM` display gate are both gone, which makes `compute_range_km()`
+smaller than it was.
+
+⚠ **The tempting fix is the wrong one and is refuted with it: "make the window
+shorter, say five kilometres".** The time constant is sixteen kilometres and
+was never the problem — the restart was. Shortening it would have *tripled*
+the weight of the very kilometre that caused this. The complaint was
+sensitivity and the cause was a filter being restarted from a single sample;
+those look identical from the driver's seat.
+
+**What did not catch it:** every module was individually correct.
+`test_persist.c` round-trips the record faithfully, `test_compute.c` had four
+tests on the basis, and none of them crossed the seam where the record meets
+`compute_restore()`. The same lesson as the `persist_save()` entry in
+`CLAUDE.md` — **an assumed input cannot see a fault upstream of it** — and the
+replacement test now runs compute → persist → compute rather than checking
+`compute_restore()` against a record it built itself.
+
 ---
 
 ## D. The board

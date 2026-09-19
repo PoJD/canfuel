@@ -366,16 +366,39 @@ so the estimate is very nearly as steady; `docs/optimisation.md` §10 has the
 arithmetic and the one detail that is not obvious, which is that the filter
 carries four fractional bits so it cannot stall a long way from the truth.
 
-Until 5 km have been driven since startup, a conservative default of 9 l/100 km
-is used so the estimate is not nonsense on a cold start.
+**The basis is never zero and it has no special cases.** It opens at a
+conservative 9 l/100 km on a device that has never driven, it is seeded from
+the persisted trip average when the ignition comes on, it survives a
+refuelling, and nothing else moves it by more than a sixteenth per kilometre.
 
-That default is visible for longer than it sounds on a car that is not driven
-far. From the same display: **7.6 l in the tank and Range 84 km**, which is
-7.6 / 9.0 x 100 = 84.4 — the default basis exactly, because 0.6 km is nowhere
-near `RANGE_MIN_MM`. **Range agreeing with the default to a kilometre is
-therefore a check that the arithmetic works, not evidence that the rolling
-figure has started.** Until 5 km are on the trip, Range says what a 9 l/100 km
-car would do, and it says nothing at all about this one.
+⚠ **It used to be zeroed at both a refuelling and an ignition cycle, and a
+zero basis meant the next completed kilometre became the whole estimate.**
+That is the one fault this gauge has had in the car. Range read about 400 km
+on the road, halved on pulling away from a filling station and crawled back
+over the next fifty kilometres. The cause is a seam rather than a module:
+`basis_q4` is not in `persist_record_t` and `total_mm` is, so every restart
+restored a long trip beside an empty filter — and the kilometre that then
+defined the number was the worst one available. `17_drive_property_z1` is
+880 m of exactly that driving at **23.2 l/100 km**, because fuel burned
+standing still goes into the segment while the segment's distance does not
+move. `src/config.h` under `RANGE_SEGMENT_MM` has the reconstruction.
+
+**The fix was not a shorter window**, which is the obvious thing to reach for
+and would have tripled the weight of the offending kilometre.
+
+**There is no longer a distance gate.** `RANGE_MIN_MM` used to be one, and
+crossing it stepped Range from the default to whatever the first kilometres
+had built — jumping, in the gauge whose whole purpose is not to. It now only
+decides whether the persisted trip average is long enough to seed the filter
+from at start-up.
+
+An early display reading is kept because it is a good arithmetic check and it
+predates the change: **7.6 l in the tank and Range 84 km**, which is
+7.6 / 9.0 x 100 = 84.4 — the default basis exactly, on a device 0.6 km into
+its life. **Range agreeing with the default to a kilometre is a check that the
+arithmetic works, not evidence that the rolling figure has started.** On the
+current firmware the same reading means the filter has not yet had a kilometre
+to move, rather than that it is being ignored.
 
 **"Litres remaining" is the damped level, not the raw one.**
 it was the raw `0x320` b2, i.e. the float position with the slosh still in it.
@@ -857,7 +880,7 @@ on the MFD28/32.
 | data source lost for > 500 ms | every bus-derived value zero, VddConv unchanged |
 | engine stopped (rpm 0 or counter 0) | flow zero, not frozen at its last reading |
 | distance < 100 m | FuelAvg 0.0 |
-| distance < 5 km | Range uses 9 l/100 km |
+| no kilometre completed yet | Range uses the 9 l/100 km the basis opens at |
 | speed invalid | FuelNow in l/h |
 | value over range | clamped to 999 |
 

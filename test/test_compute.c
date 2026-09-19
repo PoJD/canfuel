@@ -9,6 +9,7 @@
 #include "compute.h"
 #include "config.h"
 #include "decode.h"
+#include "persist.h"
 #include "replay_core.h"
 #include "tt.h"
 
@@ -349,8 +350,13 @@ static void test_the_trip_cannot_run_away(void)
     TT_EQ(c.total_ul, 0);
     /* And it is not recorded as a refuelling, because nobody refuelled. */
     TT_EQ(c.refuels, 0);
-    /* Range falls back to the conservative default, as it does after a fill. */
-    TT_EQ(c.basis_q4, 0);
+    /* THE ROLLING BASIS IS NOT PART OF WHAT A TRIP RESET CLEARS, and this
+     * assertion used to read TT_EQ(c.basis_q4, 0). What a failed tank sender
+     * invalidates is the accumulators, not how the car is being driven, so
+     * Range keeps the figure it had rather than rebuilding it out of the next
+     * kilometre. test_a_refuelling_keeps_the_rolling_basis states the same
+     * property where it can be measured either side of the event. */
+    TT_TRUE(c.basis_q4 > 0);
 }
 
 /* The litre cap is the other half: idling burns fuel and covers no ground, so
@@ -376,7 +382,12 @@ static void test_the_trip_cap_also_watches_the_litres(void)
 
 /* --- range -------------------------------------------------------------- */
 
-static void test_range_uses_the_default_until_five_km(void)
+/* A device that has never driven still has to divide by something. This used
+ * to be test_range_uses_the_default_until_five_km, and the difference is that
+ * the default is now where the filter OPENS rather than a gate it hides
+ * behind: there is no distance below which compute_range_km() ignores the
+ * basis, so there is no step when the trip crosses five kilometres either. */
+static void test_range_opens_at_the_conservative_default(void)
 {
     compute_t c;
     compute_init(&c);
@@ -386,13 +397,15 @@ static void test_range_uses_the_default_until_five_km(void)
     TT_EQ(compute_range_km(&c), 444);       /* 40 l at 9.0 l/100 km */
 }
 
-static void test_range_uses_the_rolling_basis_after_five_km(void)
+/* And it uses the basis whatever the distance says -- the second half of the
+ * same removal. One kilometre on the trip, not five. */
+static void test_range_uses_the_rolling_basis_whatever_the_distance(void)
 {
     compute_t c;
     compute_init(&c);
     c.tank_damped_ml = 40000;
     c.tank_damped_valid = true;
-    c.total_mm = 10000000;                  /* 10 km */
+    c.total_mm = 1000000;                   /* 1 km */
     c.basis_q4 = (uint16_t)(60u << RANGE_BASIS_Q4);     /* 6.0 l/100 km */
     TT_EQ(compute_range_km(&c), 666);       /* 40 l at 6.0 l/100 km */
 }
@@ -418,11 +431,17 @@ static void drive_seconds(compute_t *c, decode_state_t *st, uint32_t *now,
     }
 }
 
-/* The basis is built out of completed kilometres and it is a filter, not a
- * step: it seeds on the first kilometre and then approaches a new consumption
- * level over roughly RANGE_BASIS_SHIFT of them. That is what stops Range
- * jumping after one hard pull, which is the whole reason it is averaged at
- * all. */
+/* The basis is built out of completed kilometres and it is a filter with no
+ * special cases: it opens at the default and approaches the real consumption
+ * over roughly RANGE_BASIS_SHIFT kilometres, from whichever side it starts.
+ *
+ * THE FIRST KILOMETRE IS NOT SPECIAL AND THAT IS THE POINT. It used to be --
+ * `if (basis_q4 == 0) basis_q4 = km_q4` made it the entire estimate, so this
+ * test could assert 7.2 l/100 km after six kilometres of driving at 7.2.
+ * Now six kilometres only get 60 % of the way there, which is the same
+ * damping that stops Range jumping after one hard pull, applied to the first
+ * kilometre as well as the hundredth. config.h says what the exception cost
+ * in the car. */
 static void test_range_basis_is_built_from_kilometres_and_filtered(void)
 {
     compute_t c;
@@ -435,21 +454,191 @@ static void test_range_basis_is_built_from_kilometres_and_filtered(void)
     compute_tick(&c, &st, now);
     /* The first frame only establishes the counter reference -- without this
      * the first kilometre would be short by one second of fuel and the filter
-     * would seed 2 % low, which is real behaviour at every engine start and
-     * simply not what this test is about. */
+     * would move 2 % less than it should, which is real behaviour at every
+     * engine start and simply not what this test is about. */
     compute_on_fuel(&c, &st, now);
 
+    /* Six kilometres at 7.2 against a default of 9.0: (15/16)^6 of the gap is
+     * still there, so 8.4 and not 7.2, and Range has walked from 444 km
+     * towards 555 rather than arriving at it. */
     drive_seconds(&c, &st, &now, 2000, 36 * 6);         /* 6 km at 7.2 */
     TT_TRUE(c.total_mm > RANGE_MIN_MM);
-    TT_NEAR(c.basis_q4 >> RANGE_BASIS_Q4, 72, 2);
-    TT_NEAR(compute_range_km(&c), 555, 15);             /* 40 l at 7.2 */
+    TT_NEAR(c.basis_q4 >> RANGE_BASIS_Q4, 84, 2);
+    TT_RANGE(compute_range_km(&c), 445, 554);
+
+    /* Thirty-two more of them -- two time constants -- and it has arrived. */
+    drive_seconds(&c, &st, &now, 2000, 36 * 32);
+    TT_NEAR(c.basis_q4 >> RANGE_BASIS_Q4, 74, 3);
+    TT_NEAR(compute_range_km(&c), 545, 20);             /* 40 l at ~7.4 */
 
     /* Twice the consumption for sixteen kilometres: one time constant, so the
-     * basis covers about 63 % of the way from 7.2 to 14.4 l/100 km and Range
+     * basis covers about 63 % of the way from 7.4 to 14.4 l/100 km and Range
      * follows it down without ever having jumped. */
     drive_seconds(&c, &st, &now, 4000, 36 * 16);
     TT_RANGE(c.basis_q4 >> RANGE_BASIS_Q4, 100, 130);
     TT_TRUE(compute_range_km(&c) < 400);
+}
+
+/* --- the basis across an ignition cycle and a refuelling ----------------- */
+
+/* A RAM EEPROM, so the test below can cross the seam the fault lived in
+ * rather than hand-building the record that crosses it. test_persist.c has
+ * the same shape and uses it to count wear; here it exists only so that
+ * "switch the ignition off and on" can be written down honestly. */
+static uint8_t  ee_cell[PERSIST_SLOTS * PERSIST_RECORD_BYTES];
+
+static uint8_t ee_read(uint16_t addr, void *ctx)
+{
+    (void)ctx;
+    return addr < sizeof ee_cell ? ee_cell[addr] : 0xFFu;
+}
+
+static void ee_write(uint16_t addr, uint8_t value, void *ctx)
+{
+    (void)ctx;
+    if (addr < sizeof ee_cell) {
+        ee_cell[addr] = value;
+    }
+}
+
+static const persist_backend_t ee_backend = { ee_read, ee_write, NULL };
+
+/* Everything main.c does at an ignition-off and the following ignition-on:
+ * build the record out of the accumulators, write it, then start from a
+ * cleared compute_t and restore. */
+static void ignition_cycle(compute_t *c)
+{
+    persist_t       ps;
+    persist_record_t rec;
+
+    rec.total_ul = c->total_ul;
+    rec.total_mm = c->total_mm;
+    rec.tank_stable_l = c->tank_stable_l;
+    rec.tank_stable_valid = c->tank_stable_valid;
+
+    memset(ee_cell, 0xFF, sizeof ee_cell);
+    TT_TRUE(persist_load(&ps, &ee_backend, &rec) == false);
+    rec.total_ul = c->total_ul;
+    rec.total_mm = c->total_mm;
+    rec.tank_stable_l = c->tank_stable_l;
+    rec.tank_stable_valid = c->tank_stable_valid;
+    TT_TRUE(persist_save_now(&ps, &rec));
+
+    compute_init(c);
+    {
+        persist_t        ps2;
+        persist_record_t back;
+        TT_TRUE(persist_load(&ps2, &ee_backend, &back));
+        compute_restore(c, back.total_ul, back.total_mm,
+                        back.tank_stable_l, back.tank_stable_valid);
+    }
+}
+
+/* THE ONE THE CAR REPORTED. Range read about 400 km on the road, and on
+ * pulling away from a filling station it halved and then crawled back over
+ * the next fifty kilometres.
+ *
+ * The cause was a seam and not a module: basis_q4 is not in
+ * persist_record_t, total_mm is, so every ignition cycle restored a long trip
+ * beside an empty filter -- and the empty filter took the next completed
+ * kilometre as its whole value. That kilometre is the one leaving a
+ * forecourt, and it is the worst kilometre there is: 17_drive_property_z1 is
+ * 880 m of exactly that at 23.2 l/100 km, because fuel burned standing still
+ * goes into seg_cur_ul while seg_cur_mm does not move.
+ *
+ * Which is why this test runs the real chain -- compute, persist, compute --
+ * instead of checking compute_restore() against a record it built itself.
+ * Every module was individually correct. */
+static void test_the_range_basis_survives_an_ignition_cycle(void)
+{
+    compute_t c;
+    decode_state_t st = running(1000, 2500);
+    uint32_t now = 0;
+    uint16_t on_the_road, after_the_stop;
+
+    compute_init(&c);
+    compute_tick(&c, &st, now);
+    compute_on_fuel(&c, &st, now);
+
+    /* Forty kilometres at 7.2 l/100 km: long enough for the filter to have
+     * arrived and for the persisted average to mean something. drive_seconds
+     * reports a 40 l tank, which the damping picks up on the first sample. */
+    drive_seconds(&c, &st, &now, 2000, 36 * 40);
+    on_the_road = compute_range_km(&c);
+    TT_NEAR(on_the_road, 545, 30);          /* 40 l at about 7.3 */
+
+    ignition_cycle(&c);
+
+    /* The damped tank level is deliberately NOT restored -- 0x320 is periodic
+     * and re-establishes it within a second of the ignition coming on, which
+     * is this one tick. The basis is the thing that could not be rebuilt from
+     * the bus, which is why it is the thing that had to be carried. */
+    compute_tick(&c, &st, now);         /* establishes the clock, as main.c */
+    now += TANK_SAMPLE_MS;
+    compute_tick(&c, &st, now);         /* and the next pass samples 0x320   */
+
+    /* The filter came back from the EEPROM by way of the trip average, so the
+     * gauge reads what it read before the key turn rather than the 9.0
+     * default. */
+    TT_NEAR(compute_range_km(&c), on_the_road, 30);
+
+    /* And now the kilometre off the forecourt, at three times the
+     * consumption. It moves the basis by a sixteenth rather than becoming it:
+     * Range gives up about a tenth. Before this change that one kilometre WAS
+     * the basis, and 40 l at 21.6 l/100 km is 185 km -- a third of what the
+     * gauge had been reading a minute earlier. */
+    drive_seconds(&c, &st, &now, 6000, 36);             /* 1 km at 21.6 */
+    after_the_stop = compute_range_km(&c);
+    TT_TRUE(after_the_stop < on_the_road);
+    TT_TRUE(after_the_stop > (uint16_t)((uint32_t)on_the_road * 4u / 5u));
+}
+
+/* The same property at the other event that used to zero the basis. A tankful
+ * of fuel changes the tank, not how the car is being driven, so the rolling
+ * figure is exactly as good a minute after a fill as a minute before. */
+static void test_a_refuelling_keeps_the_rolling_basis(void)
+{
+    compute_t c;
+    decode_state_t st = running(1000, 2500);
+    uint32_t now = 0;
+    uint16_t before;
+
+    compute_init(&c);
+    c.tank_damped_ml = 20000;
+    c.tank_damped_valid = true;
+    compute_tick(&c, &st, now);
+    compute_on_fuel(&c, &st, now);
+    drive_seconds(&c, &st, &now, 2000, 36 * 40);        /* 40 km at 7.2 */
+    before = c.basis_q4;
+    TT_TRUE(before > 0);
+
+    compute_reset_trip(&c);
+
+    /* The trip went, the basis stayed, and the segment in progress went with
+     * the trip -- it is half a kilometre of a journey that no longer exists. */
+    TT_EQ(c.basis_q4, before);
+    TT_EQ(c.total_ul, 0);
+    TT_EQ(c.total_mm, 0);
+    TT_EQ(c.seg_cur_ul, 0);
+    TT_EQ(c.seg_cur_mm, 0);
+}
+
+/* Restoring a trip too short to have a consumption figure must not seed the
+ * filter from it: five city blocks are not a l/100 km. The conservative
+ * default stands, which is what compute_init() already left there. */
+static void test_a_short_trip_does_not_seed_the_basis(void)
+{
+    compute_t c;
+
+    compute_init(&c);
+    compute_restore(&c, 300000ul, RANGE_MIN_MM - 1ul, 40, true);
+    TT_EQ(c.basis_q4, (uint16_t)(RANGE_DEFAULT_L100_D << RANGE_BASIS_Q4));
+
+    /* One millimetre further and the average is worth having. 300,000 ul over
+     * 5,000,000 mm is 6.0 l/100 km. */
+    compute_init(&c);
+    compute_restore(&c, 300000ul, RANGE_MIN_MM, 40, true);
+    TT_EQ(c.basis_q4 >> RANGE_BASIS_Q4, 60);
 }
 
 /* Two more range tests live in the tank section below, where the helper that
@@ -932,6 +1121,30 @@ static void tank_seconds(compute_t *c, decode_state_t *st, uint32_t *now,
     }
 }
 
+/* The same, with an engine running. tank_seconds() covers ground without
+ * burning anything, which is fine while standing and a physical impossibility
+ * once the wheels turn: every completed kilometre would fold a true zero into
+ * the Range basis and walk it towards nothing. */
+static void tank_drive_seconds(compute_t *c, decode_state_t *st, uint32_t *now,
+                               uint8_t litres, uint32_t speed_mmh,
+                               uint16_t ul_per_s, int seconds)
+{
+    int i;
+    st->tank_l = litres;
+    st->tank_valid = true;
+    st->speed_mmh = speed_mmh;
+    st->speed_valid = true;
+    st->rpm_q4 = 2500u * 4u;
+    st->fuel_counter_valid = true;
+    for (i = 0; i < seconds; i++) {
+        *now += TANK_SAMPLE_MS;
+        st->fuel_counter = (uint16_t)((st->fuel_counter + ul_per_s) %
+                                      COUNTER_MODULO);
+        compute_on_fuel(c, st, *now);
+        compute_tick(c, st, *now);
+    }
+}
+
 /* The bug this replaced: range read the raw float position, so on 07_accel it
  * swung over 111 km several times a second during a pull-away, while the level
  * gauge beside it -- damped all along -- sat still. */
@@ -974,10 +1187,15 @@ static void test_range_falls_as_fuel_is_burnt(void)
 
     tank_seconds(&c, &st, &now, 30, 0, 400);
     before = compute_range_km(&c);
-    tank_seconds(&c, &st, &now, 20, 50000, 1200);   /* 20 min at 50 km/h */
+    /* 16.7 km at 1000 ul/s is 16.7 km on 1.2 l, which is 7.2 l/100 km -- so
+     * the basis moves from the 9.0 default towards 7.2 and the drop below is
+     * the TANK falling, which is what this test is about. Driving it on no
+     * fuel at all, as it used to, left the basis walking towards zero and the
+     * range rising instead. */
+    tank_drive_seconds(&c, &st, &now, 20, 50000, 1000, 1200);
     after = compute_range_km(&c);
     TT_TRUE(after < before);
-    TT_NEAR(after, 222, 20);                        /* 20 l at 9.0 l/100 km */
+    TT_NEAR(after, 240, 25);                        /* 20 l at about 8.4 */
 }
 
 static void test_first_stable_reading_only_initialises(void)
@@ -1284,12 +1502,15 @@ int main(void)
     TT_RUN(test_walking_pace_still_covers_ground);
     TT_RUN(test_a_standing_car_covers_no_distance);
 
-    TT_RUN(test_range_uses_the_default_until_five_km);
+    TT_RUN(test_range_opens_at_the_conservative_default);
     TT_RUN(test_the_trip_cannot_run_away);
     TT_RUN(test_the_trip_cap_also_watches_the_litres);
 
-    TT_RUN(test_range_uses_the_rolling_basis_after_five_km);
+    TT_RUN(test_range_uses_the_rolling_basis_whatever_the_distance);
     TT_RUN(test_range_basis_is_built_from_kilometres_and_filtered);
+    TT_RUN(test_the_range_basis_survives_an_ignition_cycle);
+    TT_RUN(test_a_refuelling_keeps_the_rolling_basis);
+    TT_RUN(test_a_short_trip_does_not_seed_the_basis);
 
     TT_RUN(test_drag_model_sits_on_the_warm_free_rev_holds);
     TT_RUN(test_the_gate_zero_at_a_standstill_warm);

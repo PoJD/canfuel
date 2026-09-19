@@ -43,7 +43,7 @@ from canlog import Frame, parse_file
 PERIOD_0X480_MS = 49.5
 FUELNOW_LH_BELOW_KMH = 4.0  # below this we send l/h, above it l/100 km
 FUELNOW_CLAMP = 999         # 99.9 on the display
-RANGE_DEFAULT_L100 = 9.0    # used for range until we have driven 5 km
+RANGE_DEFAULT_L100 = 9.0    # where the firmware's range basis opens
 AVG_MIN_M = 100             # below this the average divides by nearly zero
 # The flow window, four quarter-second buckets. See src/config.h: a gap longer
 # than FLOW_WINDOW_MS throws the window away rather than averaging across it.
@@ -242,8 +242,21 @@ class Compute:
         return min(l100, FUELNOW_CLAMP / 10.0), "l/100km"
 
     def range_km(self, st: Decoded) -> float:
-        driven_km = self.total_mm / 1_000_000.0
-        basis = self.avg_l100 if driven_km >= 5.0 and self.avg_l100 > 0 else RANGE_DEFAULT_L100
+        """A reference, and deliberately not a twin of compute_range_km().
+
+        The firmware divides the DAMPED tank level by a first-order filter
+        over completed kilometres; this divides the raw level by the trip
+        average.  Neither difference has ever been modelled here and neither
+        is in the --host-build diff, which compares the fuel counter, the
+        restart count and the distance.  What is modelled is the rule the two
+        do share: there is one basis, it is never zero, and the conservative
+        default stands until the trip is long enough to have produced a
+        consumption figure of its own -- which is also the rule
+        compute_restore() seeds the filter by.
+        """
+        driven_mm = self.total_mm
+        basis = self.avg_l100 if driven_mm >= 5_000_000 and self.avg_l100 > 0 \
+            else RANGE_DEFAULT_L100
         return st.tank_l / basis * 100.0
 
 

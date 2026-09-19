@@ -422,8 +422,46 @@
 #define RANGE_BASIS_SHIFT       4u          /* tau = 16 km                  */
 #define RANGE_BASIS_Q4          4u          /* the basis is in 1/16 tenths  */
 
-/* Until this much has been driven the rolling window is too short to trust,
- * so a conservative fixed figure is used instead. */
+/* THE BASIS IS NEVER ZERO, AND THAT IS A CORRECTNESS RULE RATHER THAN
+ * TIDINESS. It starts at RANGE_DEFAULT_L100_D in compute_init(), is seeded
+ * from the persisted trip average in compute_restore(), and survives
+ * compute_reset_trip(). Nothing else writes it but the filter, which moves it
+ * by at most a sixteenth per kilometre.
+ *
+ * WHAT IT COST WHEN IT COULD BE ZERO. The filter used to take a zero basis as
+ * "no history" and let the next completed kilometre become the whole
+ * estimate, undamped. Two things zeroed it and both happen at a filling
+ * station: a refuelling, and an ignition cycle -- basis_q4 is not in
+ * persist_record_t while total_mm is, so every restart restored a long trip
+ * beside an empty filter. The kilometre that then defined the number was the
+ * one pulling off the forecourt, and fuel burned standing still goes into
+ * seg_cur_ul while seg_cur_mm does not move, so the minutes spent filling up
+ * land in that same kilometre.
+ *
+ * Reported from the car, and the arithmetic reproduces it with the tank level
+ * as the only free parameter. 17_drive_property_z1 is 880 m of forecourt-
+ * grade pottering at 23.2 l/100 km; against a road basis of 11.5 and ~46 l in
+ * the tank:
+ *
+ *   before the stop, basis 11.5                     400 km
+ *   first kilometre after it BECOMES the basis      198 km
+ *   ...after 20 km of normal driving                323 km
+ *   ...after 40 km                                  396 km
+ *
+ * which is the halving and the fifty-kilometre crawl back that were seen.
+ * With the basis carried across, the same kilometre moves it 11.5 -> 12.2 and
+ * Range reads 377 km instead of 198.
+ *
+ * THE FIX IS NOT A SHORTER WINDOW, and that is worth writing down because it
+ * is the obvious thing to reach for. tau is sixteen kilometres; shortening it
+ * to five would triple the weight of exactly the kilometre that caused this.
+ * The window was never the problem -- the restart was. */
+
+/* Below this the persisted trip average is a handful of city blocks rather
+ * than a consumption figure, so compute_restore() keeps the conservative
+ * default instead of seeding from it. It is NOT a display gate: it used to be
+ * one in compute_range_km() and produced a step the moment the trip crossed
+ * it. */
 #define RANGE_MIN_MM            5000000ul   /* 5 km */
 #define RANGE_DEFAULT_L100_D    90u         /* 9.0 l/100 km */
 

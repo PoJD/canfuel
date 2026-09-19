@@ -89,21 +89,33 @@ static void flow_push(compute_t *c, uint16_t ul, uint16_t ms)
  *
  * ONE MICROLITRE PER METRE IS EXACTLY 0.1 l/100 km, and a segment is exactly
  * one kilometre, so the whole conversion is a division by 1000 -- and 1000 is
- * one of the divisors with a free shift in divconst.h. */
+ * one of the divisors with a free shift in divconst.h.
+ *
+ * THERE IS NO SEEDING CASE HERE ANY MORE, AND ITS ABSENCE IS THE POINT.
+ * This used to open with `if (basis_q4 == 0) { basis_q4 = km_q4; return; }` --
+ * one kilometre became the whole estimate, undamped. Every consumer of that
+ * branch was a moment when the basis had just been zeroed: an ignition cycle
+ * (basis_q4 did not reach the EEPROM, total_mm did) or a refuelling. Both put
+ * the car at a filling station, so the kilometre that seeded the number was
+ * the worst kilometre available -- forecourt manoeuvring, a cold-ish engine,
+ * and minutes of idling whose microlitres all land in one segment because
+ * seg_cur_ul grows while the car stands still and seg_cur_mm does not.
+ * Measured, not assumed: 17_drive_property_z1 is 880 m of exactly that and
+ * runs at 23.2 l/100 km, against 11-ish on the road. Range therefore halved
+ * on leaving a filling station and crawled back over the next fifty
+ * kilometres at one time constant of sixteen. config.h has the numbers.
+ *
+ * The basis is never zero now -- compute_init, compute_restore and
+ * compute_reset_trip between them guarantee it -- so every kilometre goes
+ * through the filter below and no single one can move the estimate by more
+ * than a sixteenth. A kilometre that burned nothing at all, possible on a
+ * long descent where the ECU cuts the injectors, is one such kilometre and
+ * needs no special case either. */
 static void range_basis_update(compute_t *c)
 {
     uint16_t km_q4 = (uint16_t)(clamp_u16(div_const(c->seg_cur_ul, DIVC_1000),
                                           FUELNOW_CLAMP_D) << RANGE_BASIS_Q4);
 
-    if (c->basis_q4 == 0u) {
-        /* The first kilometre of a trip has nothing to average against, so it
-         * is the whole estimate. A kilometre that burned nothing at all --
-         * possible on a long descent, where the ECU cuts the injectors --
-         * leaves the basis at zero and Range keeps the conservative default,
-         * which is the right way to be wrong about it. */
-        c->basis_q4 = km_q4;
-        return;
-    }
     if (km_q4 > c->basis_q4) {
         c->basis_q4 = (uint16_t)(c->basis_q4 +
                       ((km_q4 - c->basis_q4) >> RANGE_BASIS_SHIFT));
@@ -218,6 +230,11 @@ static void tank_sample(compute_t *c, const decode_state_t *st)
 void compute_init(compute_t *c)
 {
     memset(c, 0, sizeof *c);
+    /* A device that has never driven a kilometre still has to divide by
+     * something, and the conservative default is that something. Starting the
+     * filter here rather than at zero is what removes the undamped seeding
+     * case from range_basis_update() -- see the comment there. */
+    c->basis_q4 = (uint16_t)(RANGE_DEFAULT_L100_D << RANGE_BASIS_Q4);
 }
 
 void compute_reset_trip(compute_t *c)
@@ -226,11 +243,18 @@ void compute_reset_trip(compute_t *c)
     c->total_mm = 0;
     c->seg_cur_ul = 0;
     c->seg_cur_mm = 0;
-    /* The basis goes with the trip. It is a property of the driving that was
-     * just discarded, and Range falls back to the conservative default until
-     * RANGE_MIN_MM of the new trip has been driven -- which is what the old
-     * segment ring did when it was cleared here. */
-    c->basis_q4 = 0;
+    /* THE BASIS DELIBERATELY SURVIVES THIS, and it used to be zeroed here.
+     * The old reasoning was that the basis is a property of the trip that was
+     * just discarded. It is not: the trip counter is a property of the
+     * counter, the rolling basis is a property of how the car is being
+     * driven, and filling the tank changes the first and nothing at all about
+     * the second. The same car with the same driver on the same road burns
+     * the same fuel a minute after a refuelling as it did a minute before.
+     *
+     * Zeroing it here is half of the fault described in range_basis_update():
+     * it handed the next kilometre -- the one pulling off a forecourt -- the
+     * whole estimate. The other half was the ignition cycle, and
+     * compute_restore() closes that one. */
 }
 
 void compute_restore(compute_t *c, uint32_t total_ul, uint32_t total_mm,
@@ -246,6 +270,36 @@ void compute_restore(compute_t *c, uint32_t total_ul, uint32_t total_mm,
      * while the ignition was off -- which is precisely the change the
      * refuelling rule exists to notice. */
     c->tank_rest_q8 = (uint16_t)((uint16_t)tank_stable_l << 8);
+
+    /* AND THE RANGE FILTER GETS THE SAME TREATMENT, for the same reason and
+     * one line lower. It did not, and that was the other half of the fault in
+     * range_basis_update(): the record carries the totals but not basis_q4,
+     * so every ignition cycle restored a large total_mm beside a basis of
+     * zero, and the first kilometre after the key turn became the whole
+     * estimate.
+     *
+     * THE SEED IS THE TRIP AVERAGE, WHICH COSTS NOTHING TO STORE BECAUSE IT
+     * IS ALREADY STORED. total_ul over total_mm is this car's own consumption
+     * over everything since the last fill-up -- a far better opening guess
+     * than RANGE_DEFAULT_L100_D and a far better one than any single
+     * kilometre. Adding basis_q4 to persist_record_t would be the obvious
+     * alternative and it is not worth a byte of EEPROM: the record is packed
+     * to twelve with a full CRC-16, a thirteenth byte drops the ring from 64
+     * slots to 59, and the number it would store is one the ring can already
+     * reconstruct.
+     *
+     * RANGE_MIN_MM and not AVG_MIN_MM: below five kilometres the ratio is a
+     * handful of city blocks and the conservative default is the better
+     * guess. compute_avg_l100_d() clamps to FUELNOW_CLAMP_D, so the shift
+     * cannot overflow the uint16; it returns zero below AVG_MIN_MM, which
+     * RANGE_MIN_MM already excludes, and the test costs one compare against
+     * the alternative of dividing by it. */
+    if (c->total_mm >= RANGE_MIN_MM) {
+        uint16_t avg_d = compute_avg_l100_d(c);
+        if (avg_d > 0u) {
+            c->basis_q4 = (uint16_t)(avg_d << RANGE_BASIS_Q4);
+        }
+    }
 }
 
 /* --- the fuel counter --------------------------------------------------- */
@@ -433,16 +487,28 @@ uint16_t compute_tank_d(const compute_t *c)
 
 uint16_t compute_range_km(const compute_t *c)
 {
-    uint32_t basis_d = RANGE_DEFAULT_L100_D;
+    /* THERE IS NO DISTANCE GATE HERE ANY MORE. It used to read
+     * `if (total_mm >= RANGE_MIN_MM && basis_q4 > 0)`, falling back to the
+     * default otherwise, and both halves have gone for the same reason: the
+     * basis now always holds a usable number. It starts at the default in
+     * compute_init(), is seeded from the persisted trip average in
+     * compute_restore(), survives compute_reset_trip(), and moves by at most
+     * a sixteenth per kilometre after that. The gate also produced a step --
+     * Range jumped the instant the trip crossed five kilometres, from the
+     * default to whatever the first few kilometres had built -- which is the
+     * jumping this whole filter exists to avoid.
+     *
+     * The floor below is not the old gate in disguise and it must stay. With
+     * RANGE_BASIS_SHIFT = 4 a difference under sixteen shifts to zero, so a
+     * basis below 1.0 l/100 km cannot walk down any further but can sit at
+     * 15/16 of a tenth, which truncates to zero tenths. Reachable only on a
+     * kilometre that burned nothing -- and reachable is the whole test:
+     * test_props.c fuzzes every getter precisely because a division by a
+     * reachable zero here is SIGFPE, not a wrong number. */
+    uint32_t basis_d = (uint32_t)(c->basis_q4 >> RANGE_BASIS_Q4);
 
-    /* The basis is built a kilometre at a time, so below RANGE_MIN_MM it rests
-     * on too few of them to mean anything and a conservative fixed figure is
-     * used instead. Zero means no kilometre has completed at all. */
-    if (c->total_mm >= RANGE_MIN_MM && c->basis_q4 > 0u) {
-        basis_d = (uint32_t)(c->basis_q4 >> RANGE_BASIS_Q4);
-        if (basis_d == 0u) {
-            basis_d = RANGE_DEFAULT_L100_D;
-        }
+    if (basis_d == 0u) {
+        basis_d = RANGE_DEFAULT_L100_D;
     }
 
     /* THE DAMPED LEVEL, NOT THE INSTANTANEOUS ONE. Reading

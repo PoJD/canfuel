@@ -65,8 +65,10 @@ typedef struct {
     uint32_t seg_cur_ul;        /* burned so far in the kilometre in progress */
     uint32_t seg_cur_mm;        /* and how far into it we are                 */
     /* Consumption in 0.1 l/100 km shifted up by RANGE_BASIS_Q4, so the filter
-     * can move in steps smaller than a display digit. Zero means no kilometre
-     * has completed yet and the conservative default is used instead. */
+     * can move in steps smaller than a display digit. IT IS NEVER ZERO --
+     * compute_init() opens it at the default, compute_restore() seeds it from
+     * the persisted trip average and compute_reset_trip() leaves it alone.
+     * config.h says what it cost when it could be. */
     uint16_t basis_q4;
 
     /* --- tank level, the settled baseline and the refuelling trigger ----- */
@@ -90,12 +92,16 @@ typedef struct {
 /* Empty accumulators, nothing known yet. */
 void compute_init(compute_t *c);
 
-/* Clear only what the average is made of. The tank state and the flow window
- * survive -- they describe the present, not the trip. */
+/* Clear only what the average is made of. The tank state, the flow window and
+ * the rolling Range basis survive -- they describe the present, not the trip,
+ * and a tankful of fuel does not change how the car is being driven. */
 void compute_reset_trip(compute_t *c);
 
 /* Restore what persist.c read back out of the EEPROM. Called once at start-up
- * and never again; it does not touch the derived state. */
+ * and never again, AFTER compute_init(), whose defaults it overwrites where
+ * the record has something better. It seeds both filters -- the tank baseline
+ * and the Range basis -- rather than leaving either to be established by the
+ * first sample or the first kilometre after the key turn. */
 void compute_restore(compute_t *c, uint32_t total_ul, uint32_t total_mm,
                      uint8_t tank_stable_l, bool tank_stable_valid);
 

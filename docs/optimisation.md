@@ -506,9 +506,15 @@ stalls within 0.1 l/100 km, which is one digit of the average shown beside it.
 An integer filter needs the headroom its own step size implies, and that is the
 generalisable half of this section.
 
-`compute_reset_trip()` clears the basis, exactly as it used to clear the ring,
-so a refuelling puts Range back on the conservative default until
-`RANGE_MIN_MM` of the new trip is driven.
+`compute_reset_trip()` **used to** clear the basis, exactly as it used to clear
+the ring, so a refuelling put Range back on the conservative default until
+`RANGE_MIN_MM` of the new trip was driven. It does not any more, and the
+reason is nothing to do with cycles: clearing it meant the next completed
+kilometre became the whole estimate with no damping at all, and the kilometre
+in question was the one pulling off a filling-station forecourt. `config.h`
+under `RANGE_SEGMENT_MM` has the measurement and the arithmetic; the cost side
+is unchanged, because a filter that is never seeded from zero is the same
+shift it always was.
 
 | | before | after |
 |---|---|---|

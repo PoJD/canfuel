@@ -253,15 +253,22 @@ static void test_a_short_frame_changes_nothing(void)
  * cap in config.h, and the test knows about both by name. Anything else means
  * an accumulator moved for a reason nobody wrote down.
  *
- * The stream below stays far from the cap, so in practice only the first can
- * fire here; the cap is spelled out anyway, because an invariant that lists
- * its exceptions incompletely is how the next one gets missed. */
+ * ⚠ NEITHER ACTUALLY FIRES IN THIS STREAM, and saying so is worth more than
+ * the branch is. A refuelling needs REFUEL_CONFIRM_S consecutive at-rest
+ * samples and the speed here is uniform over 0-200 km/h, so five in a row
+ * below TANK_STATIONARY_MMH never happen; the totals finish three orders of
+ * magnitude short of the cap. The branch is therefore a written-down
+ * invariant rather than a check that ran -- the events themselves are
+ * measured in test_compute.c, where they can be staged. It is kept because an
+ * invariant that lists its exceptions incompletely is how the next one gets
+ * missed. */
 static void test_totals_only_move_forward(void)
 {
     compute_t c;
     decode_state_t st;
     uint32_t now = 0;
     uint32_t prev_ul = 0, prev_mm = 0, prev_refuels = 0;
+    uint16_t prev_basis;
     uint16_t counter = 1234;
     int i;
 
@@ -282,6 +289,7 @@ static void test_totals_only_move_forward(void)
         st.fuel_counter = counter;
         st.fuel_counter_valid = true;
 
+        prev_basis = c.basis_q4;
         compute_tick(&c, &st, now);
         compute_on_fuel(&c, &st, now);
 
@@ -291,7 +299,10 @@ static void test_totals_only_move_forward(void)
              * take both of them to zero together. */
             TT_EQ(c.total_ul, 0);
             TT_EQ(c.total_mm, 0);
-            TT_EQ(c.basis_q4, 0);
+            /* And it must NOT take the rolling Range basis with them. This
+             * read TT_EQ(c.basis_q4, 0) while a reset cleared the basis, and
+             * clearing it handed the next kilometre the whole estimate. */
+            TT_EQ(c.basis_q4, prev_basis);
             prev_refuels = c.refuels;
         } else {
             TT_TRUE(c.total_ul >= prev_ul);
