@@ -683,17 +683,47 @@ is the whole of the suspicion, and it is not nothing: an hour of driving that
 peaks at 74 °C is the observation, and "this car is only driven gently" and
 "the channel is offset" both explain it.
 
-**The 2026-09-19 drive weakens the first explanation without settling the
-question.** A run to the Šumava and back is two hours including sustained
-higher-speed driving, and the channel finished it at the same 74 °C an hour of
-driving had already reached. Gentle use explains an engine that never gets
-hot; it does not explain a channel that stops at exactly the same number
-whatever the drive is, and stopping at the same number is what an offset does.
-⚠ **It is still not proof**, because nothing on that drive measured the oil
-independently, and a thermostat stuck open would produce the same plateau from
-a real temperature — which is a fault in the engine rather than in the
-decoding, and `engine-health.md` is where that belongs. **Read off the display
-from the driver's seat and not logged**, so it is a reported figure.
+**The 2026-09-19 drive weakens the first explanation and nothing else.** A run
+to the Šumava and back is two hours including sustained higher-speed driving,
+and the channel finished it at the same 74 °C an hour of driving had already
+reached. Gentle use explains an engine that never gets hot; it explains a
+channel that stops at exactly the same number whatever the drive is much less
+well. **Read off the display from the driver's seat and not logged**, so it is
+a reported figure.
+
+⚠ **A plateau does not choose between the other two explanations, and saying
+it did was an overstatement.** Stopping at the same number is what an offset
+channel does *and* what a thermal equilibrium does — an engine whose oil
+really settles at 74 °C settles there after one hour and after three. All the
+second drive removes is the idea that more driving would have got it hotter.
+
+**A THERMOSTAT STUCK OPEN IS RULED OUT, and the evidence is already in
+question 4 above.** It is the obvious third mechanism — a real oil
+temperature held low by an engine running cold — and the coolant refutes it
+directly: across the fixtures, ordered by warmth, 0x288 reads
+**54.0 → 68.25 → 75.75 → 90.0 → 96.75 → 99.0 → 100.5 °C**. That is a complete,
+ordinary warm-up ending where a healthy engine ends, and it is the one curve a
+stuck-open thermostat cannot produce, least of all at idle. The coolant is
+also on the ECU's own frame rather than a separate gauge sender, so it is what
+the ECU believes and not only what the needle shows.
+
+**Which leaves two, and the second is new.**
+
+1. **The channel is offset low**, the original suspicion.
+2. **The oil really does run 25 °C below the coolant, and the premise of this
+   question is what is wrong.** The suspicion rests on *"a warmed engine under
+   load normally runs its oil at 90–110 °C and above the coolant"*, and that
+   is a property of engines whose oil is tied to the coolant by an oil-to-
+   water heat exchanger. A plain wet sump with no such exchanger is cooled by
+   airflow under the car and can legitimately sit far below the coolant,
+   especially with the sender in the pan, which is the coolest oil in the
+   engine. ⚠ **Whether this engine has an exchanger, and where the sender
+   sits, are facts about the car that nobody here has checked** — they are
+   settled by opening the bonnet, not by reasoning, and they are cheap.
+
+Neither of those needs a drive, and the dipstick test below separates them in
+one reading: an offset channel disagrees with a thermometer, a cool-running
+sump agrees with it.
 
 **What is not wrong with it.** It is a real measurement and not a stuck or
 derived number — in the four free-revving holds `13`–`16` it climbs

@@ -143,6 +143,17 @@ mixture**: the ECU's warm-up enrichment runs off the coolant sensor, not off
 this one, which feeds the instrument cluster. A cold-running *coolant* sensor
 or a thermostat stuck open would be a mechanism; this channel is not.
 
+**Both of those are now ruled out as well, so the rich mixture has to be
+explained some other way.** Enrichment needs the ECU to believe the engine is
+cold, and the coolant curve in `can-decoding.md` question 4 says it does not:
+0x288 runs **54.0 → 68.25 → 75.75 → 90.0 → 96.75 → 99.0 → 100.5 °C** across
+the fixtures in warmth order — an ordinary warm-up finishing where a healthy
+engine finishes. A thermostat stuck open cannot produce that curve, and a
+coolant sensor reading low cannot produce its top end. 0x288 is on the ECU's
+own frame rather than a separate gauge sender, so that is what the ECU
+believes and not merely what the needle shows. **Do not re-propose either as a
+candidate**; the airflow and fuelling argument below is where this goes.
+
 **From VCDS**, `01-Motor`, measuring blocks logged to file during the drive.
 The engine is `06A 906 018`, labels `06A-906-018-AQY.LBL`. Group **003** turns
 out to carry engine speed, **mass air flow in g/s**, throttle angle and
