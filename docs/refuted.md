@@ -428,6 +428,62 @@ slipping clutch is not shown for that time. The alternative — gating on the
 throttle alone — leaves a revving parked car showing a number, which is the
 more visible wrong.
 
+### C10. "A level persistently higher than the baseline means somebody refuelled"
+
+**Believed:** as the whole of the refuelling rule, and written into
+`refuel-reset.md` as *"is the level suddenly and persistently higher than it
+was"*. Five consecutive at-rest seconds more than 3 L up, at-rest meaning
+under 1 km/h.
+
+**Refuted by:** the car, at a Beetle meet. Parked on grass, and a **250 km
+trip was cleared on the way out** — noticed an hour later only because the
+average moved faster than the mileage could explain.
+
+**The rule tested a STATE where it had to test an EVENT.** "Higher than some
+older figure" is true of a refuelling and equally true of a car standing at an
+angle, or one whose float is still swinging from the ground it just crossed.
+Three measurements, all from fixtures that were already in the repository:
+
+- **the at-rest gate admitted a moving car.** A standing car sends
+  0.005 km/h and the next value that appears anywhere is 0.2 km/h, so the band
+  up to 1 km/h is a car creeping. `17_drive_property_z1` spends **2,755 of its
+  47,093 speed samples** in it — 5.9 % of the log.
+- **the amplitude was always there.** In that same log the raw level spans
+  **5 L with the car fully stopped**, against a threshold of 3.
+- **nothing required the float to have settled.** The displayed level is
+  damped over TANK_DAMP_SAMPLES because the raw reading is unusable; the
+  refuelling rule read it raw.
+
+**What was actually holding the rule up** was the consecutive-sample counter
+and nothing else. Replayed over all eighteen fixtures it never fires, and the
+longest run above the threshold is **1 of the 5** required. That is not a
+margin, it is a coincidence of how long tarmac stops last.
+
+**Cost:** one destroyed 250 km trip and its average. Nothing persistent, and
+nothing that a bench could have caught — see below.
+
+**Fixed by** arming the rule only after `REFUEL_ARM_S` at rest, during which
+the reference takes up whatever level is found at this stop, so an arrival
+cannot fire it; tightening the gate to the measured 0.1 km/h; and 3 L to 4 L.
+
+⚠ **ONE CASE REMAINS AND IT IS NOT A TUNING PROBLEM.** A car parked on a slope
+and then key-cycled is *indistinguishable* from one that had fuel added while
+it stood there: both are "the level is higher than the last stored reference,
+at rest, at power-up", and there is no third fact available. The firmware
+resolves it in favour of detecting the fill, because refuelling with the
+ignition off is how refuelling normally happens. Do not re-derive this as a
+bug.
+
+**What did not catch it, and it is a new blind spot rather than the old
+one:** every fixture containing a moving car has **0–10 L in the tank**, and
+the only one with a real level never moves. The float has never been recorded
+in motion anywhere but the bottom of its travel, on a sender known to be
+nonlinear. **A measurement taken in one corner of the state space is a
+measurement about that corner**, which is the same lesson as B10 and C8
+arriving by a third road.
+
+---
+
 ### C9. "The rolling Range basis is a property of the trip, so a reset clears it"
 
 **Believed:** written down in as many words in `compute_reset_trip()`, and

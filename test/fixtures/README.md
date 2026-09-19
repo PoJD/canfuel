@@ -343,6 +343,22 @@ No other fixture is doubled (`test_no_other_fixture_is_doubled`).
 
 ---
 
+## ⚠ Every moving fixture has a nearly empty tank
+
+**The tank level across the whole set: 0–10 L in every log that contains a
+moving car, and 50 L in `18_coldstart_z1`, which never moves.** So the float
+has only ever been recorded in motion at the bottom of its travel, on a sender
+that is known to be nonlinear — 6 L into a nearly empty tank settled at 5 L.
+
+That is not a curiosity. `docs/refuel-reset.md` sets its thresholds from the
+spread the level shows at rest and while driving, and those spreads are
+measurements about one corner of the state space. `refuted.md` C10 is what it
+cost: a 250 km trip cleared by a false refuelling that no fixture could have
+predicted and none can reproduce.
+
+**A capture on an ordinary drive with a half-full tank would close it**, and
+nothing else will. `docs/next-drive.md` step 4a asks for one.
+
 ## `18_coldstart_z1.txt` — the cold one, and the only one
 
 **The recording starts before the engine does.** Six minutes with the ignition

@@ -9,15 +9,22 @@ refuelling" average in modern cars.
 
 ```
 tankStableL  = first-order filter of (0x320 b2 & 0x7F) over the samples taken
-               while standing (v < 1 km/h), one a second, tau = 16 s
+               while standing (v < 0.1 km/h), one a second, tau = 16 s
 
-refuelling   = REFUEL_CONFIRM_S consecutive at-rest samples more than
-               REFUEL_RISE_L above tankStableL
+armed        = REFUEL_ARM_S consecutive at-rest samples since the car last
+               moved.  Below it the rule cannot fire at all.
+
+refuelling   = REFUEL_CONFIRM_S consecutive at-rest samples, while armed,
+               more than REFUEL_RISE_L above tankStableL
 ```
 
 - Update **only while stationary**. Ignore the value entirely while driving.
-- Five consecutive at-rest seconds more than **3 L** above the settled level
+- Five consecutive at-rest seconds more than **4 L** above the settled level
   means refuelling -> clear the average accumulators.
+- **But not for the first REFUEL_ARM_S of any stop.** The rule asks whether
+  the level ROSE while the car was parked here, not whether it is higher than
+  some older figure, and a float that has just stopped moving cannot answer
+  either question yet.
 - The rule also applies within a single session, so it covers refuelling with
   the engine running.
 - `tankStableL` is stored in EEPROM as part of the existing 12-byte record
@@ -63,7 +70,7 @@ recordings and requires that none of them fires the rule.
 
 ---
 
-## Why a 3 L threshold, and why only at rest
+## Why a 4 L threshold, and why only at rest
 
 Both were measured on real data.
 
@@ -71,6 +78,31 @@ While standing, the value varies by only 2–3 L and one reading dominates
 overwhelmingly — 1584 of 1622 samples were exactly 6 L. While driving the
 spread is 9–10 L and evenly distributed, because the float in the tank sloshes
 on every corner and every brake application.
+
+⚠ **THAT MEASUREMENT WAS TAKEN ON A CAR THAT HAD BEEN STANDING**, and "has
+been standing" is not the same claim as "its speed has just reached zero".
+On `17_drive_property_z1`, a log of repeated short stops, the raw level spans
+**five litres while the car is fully stopped** — 0 L ×473, 1 L ×399, 3 L ×58,
+4 L ×27 — because the float has not finished swinging from the last piece of
+driving. The threshold was three litres. The whole margin was the
+consecutive-sample counter, and replaying the rule over every fixture shows
+the longest run above the threshold reaching **1 of the 5** it needed. One
+barrier, nothing behind it.
+
+**The threshold is four litres now and not five**, which was offered on the
+grounds that nothing under 5 L has ever gone into this car. It is refused
+because the comparison is a `>` on an *indicated* rise and this sender
+under-reads — 6 L into a nearly empty tank settled at 5 L — so at five a real
+6 L fill showing as +5 would be missed. Four keeps a litre of margin either
+side.
+
+⚠ **AND THE FIXTURES CANNOT SHOW ANY OF THIS PROPERLY, WHICH IS WORTH
+KNOWING BEFORE TRUSTING THE NUMBERS ABOVE.** Every fixture that contains a
+moving car has **0–10 L in the tank**; the only one with a real level,
+`18_coldstart_z1` at 50 L, never moves. The float therefore has never been
+recorded in motion anywhere but the bottom of its travel, and the sender is
+nonlinear. A capture on an ordinary drive with a half-full tank would close
+this and nothing else will.
 
 So the instantaneous value is unusable while driving, and at rest it barely
 moves at all -- which is what lets a plain filter and a counter stand in for a

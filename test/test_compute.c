@@ -1336,12 +1336,86 @@ static void test_refuelling_is_detected_across_an_ignition_cycle(void)
     compute_restore(&c, 500000, 8000000, 8, true);
     compute_tick(&c, &st, now);
 
-    /* Ignition on at the pump, tank now full. Five seconds at rest. */
+    /* Ignition on at the pump, tank now full. The rule is not armed for the
+     * first REFUEL_ARM_S of any stop, so five seconds is no longer enough --
+     * and on this path the reference is deliberately NOT chased while it
+     * waits, because the car has not been seen to move and the EEPROM figure
+     * is the only record of what the tank held before the fill. */
     tank_seconds(&c, &st, &now, 45, 0, (int)REFUEL_CONFIRM_S);
+    TT_EQ(c.refuels, 0);
+    TT_EQ(c.tank_stable_l, 8);          /* frozen, not creeping towards 45 */
+
+    tank_seconds(&c, &st, &now, 45, 0, (int)REFUEL_ARM_S);
     TT_EQ(c.refuels, 1);
     TT_EQ(c.total_ul, 0);
     TT_EQ(c.total_mm, 0);
     TT_EQ(c.tank_stable_l, 45);
+}
+
+/* THE ONE THE CAR REPORTED: a Beetle meet, parked on grass, and a 250 km trip
+ * cleared on the way out. A car that arrives at a stop and reads persistently
+ * higher there has not been refuelled -- it is standing at an angle, or its
+ * float has not finished swinging from the ground it just crossed. The
+ * reference takes that up during REFUEL_ARM_S, before the rule is armed
+ * against it. */
+static void test_a_level_found_on_arrival_is_not_a_refuelling(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 0;
+
+    compute_init(&c);
+    decode_init(&st);
+    tank_seconds(&c, &st, &now, 10, 50000, 40);     /* driving, 10 l */
+    tank_seconds(&c, &st, &now, 15, 0, 300);        /* parked on a slope */
+
+    TT_EQ(c.refuels, 0);
+    /* The forty seconds of driving are still on the trip -- which is the
+     * point, and is what the real car lost 250 km of. */
+    TT_TRUE(c.total_mm > 500000);
+    /* The reference moved to the level found here, which is the mechanism. */
+    TT_NEAR(c.tank_stable_l, 15, 1);
+}
+
+/* And the tilt does not cost the real thing: a rise that happens WHILE parked,
+ * after the float has settled, still fires. That is the whole distinction --
+ * an event rather than a state. */
+static void test_a_rise_after_arriving_is_still_a_refuelling(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 0;
+
+    compute_init(&c);
+    decode_init(&st);
+    tank_seconds(&c, &st, &now, 10, 50000, 40);     /* drive there        */
+    tank_seconds(&c, &st, &now, 10, 0, 60);         /* stop, settle, arm  */
+    TT_EQ(c.refuels, 0);
+
+    tank_seconds(&c, &st, &now, 45, 0, (int)REFUEL_CONFIRM_S);  /* fill up */
+    TT_EQ(c.refuels, 1);
+    TT_EQ(c.total_mm, 0);
+}
+
+/* A car creeping across a field is not a car at rest, and the gate used to say
+ * it was: 0.1 km/h and not the old 1 km/h. config.h has the 2,755 samples of
+ * 17_drive_property_z1 that sat in the band between. */
+static void test_a_creeping_car_is_not_at_rest(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 0;
+
+    compute_init(&c);
+    decode_init(&st);
+    compute_restore(&c, 500000, 8000000, 8, true);
+    compute_tick(&c, &st, now);
+
+    /* 0.5 km/h, which the old gate called stationary, with the float thrown
+     * well above the stored level. Minutes of it must do nothing at all. */
+    tank_seconds(&c, &st, &now, 45, 500, 300);
+    TT_EQ(c.refuels, 0);
+    TT_EQ(c.tank_stable_l, 8);
 }
 
 /* No fixture contains a refuelling -- the tank reads 0 l with the reserve lamp
@@ -1544,6 +1618,9 @@ int main(void)
     TT_RUN(test_sloshing_while_driving_is_ignored);
     TT_RUN(test_a_single_high_reading_is_not_refuelling);
     TT_RUN(test_refuelling_is_detected_across_an_ignition_cycle);
+    TT_RUN(test_a_level_found_on_arrival_is_not_a_refuelling);
+    TT_RUN(test_a_rise_after_arriving_is_still_a_refuelling);
+    TT_RUN(test_a_creeping_car_is_not_at_rest);
     TT_RUN(test_no_fixture_triggers_a_refuelling);
     TT_RUN(test_tank_is_damped);
 

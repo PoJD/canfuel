@@ -127,6 +127,22 @@ static void range_basis_update(compute_t *c)
 
 /* --- the tank, and the refuelling trigger -------------------------------- */
 
+/* The settled level: first order over the at-rest samples, in 1/256 l so the
+ * step is a shift and not a division. TANK_REST_SHIFT is the time constant in
+ * samples, i.e. in seconds. Pulled out of tank_sample() so the settling
+ * window and the armed path can share it without either drifting. */
+static void tank_rest_filter(compute_t *c, uint16_t target_q8)
+{
+    if (target_q8 > c->tank_rest_q8) {
+        c->tank_rest_q8 = (uint16_t)(c->tank_rest_q8 +
+                          ((target_q8 - c->tank_rest_q8) >> TANK_REST_SHIFT));
+    } else {
+        c->tank_rest_q8 = (uint16_t)(c->tank_rest_q8 -
+                          ((c->tank_rest_q8 - target_q8) >> TANK_REST_SHIFT));
+    }
+    c->tank_stable_l = (uint8_t)(c->tank_rest_q8 >> 8);
+}
+
 static void tank_sample(compute_t *c, const decode_state_t *st)
 {
     uint32_t target_ml;
@@ -164,8 +180,15 @@ static void tank_sample(compute_t *c, const decode_state_t *st)
      * While driving the float sloshes over a 9-10 L spread on every corner,
      * so the reading is worthless; at rest one litre dominates completely --
      * 1584 of 1622 measured samples were the same litre.
-     * docs/refuel-reset.md has the measurement. */
+     * docs/refuel-reset.md has the measurement.
+     *
+     * THAT MEASUREMENT WAS TAKEN ON A CAR THAT HAD BEEN STANDING, which is
+     * not the same claim as "a car whose speed has just reached zero", and
+     * the difference is the settling window below. */
     if (st->speed_mmh >= TANK_STATIONARY_MMH) {
+        c->rest_s = 0;
+        c->refuel_high = 0;
+        c->have_moved = true;
         return;
     }
 
@@ -178,6 +201,41 @@ static void tank_sample(compute_t *c, const decode_state_t *st)
         c->tank_rest_q8 = target_q8;
         c->tank_stable_l = st->tank_l;
         c->tank_stable_valid = true;
+        return;
+    }
+
+    /* THE FLOAT IS STILL MOVING FOR THE FIRST REFUEL_ARM_S OF ANY STOP, so
+     * the rule is not armed yet. config.h has what that cost: the raw level
+     * spans five litres on a fully stopped car in a log of repeated short
+     * stops, and only the consecutive-sample counter stood between that and a
+     * cleared trip.
+     *
+     * WHAT HAPPENS TO THE REFERENCE IN THAT WINDOW IS THE WHOLE DESIGN, and
+     * the two cases want opposite things:
+     *
+     *   ARRIVED HERE (have_moved). The filter runs, so the reference takes up
+     *   whatever the level reads at this spot -- including a tilt, which is
+     *   what stops a car parked on a slope reading as a refuelling. The rule
+     *   then arms against the level HERE, so only a rise that happens while
+     *   we are parked can fire it. Absorbing a genuine fill this way needs
+     *   somebody to stop, get out, open the cap and be pumping inside twenty
+     *   seconds.
+     *
+     *   STARTED HERE (!have_moved). The filter is frozen and the EEPROM
+     *   reference stands, because a refuelling with the ignition off leaves
+     *   no arrival to observe and that stored figure is the only record of
+     *   what the tank held beforehand. Chasing the level here would lose the
+     *   ordinary way of refuelling altogether.
+     *
+     * ⚠ The price of the second case is in config.h and it is not a tuning
+     * problem: parked on a slope and key-cycled is indistinguishable from
+     * fuel added while parked, and this firmware resolves it in favour of
+     * detecting the fill. */
+    if (c->rest_s < (uint8_t)REFUEL_ARM_S) {
+        c->rest_s++;
+        if (c->have_moved) {
+            tank_rest_filter(c, target_q8);
+        }
         return;
     }
 
@@ -212,17 +270,7 @@ static void tank_sample(compute_t *c, const decode_state_t *st)
     }
     c->refuel_high = 0;
 
-    /* The settled level: first order over the at-rest samples, in 1/256 l so
-     * the step is a shift and not a division. TANK_REST_SHIFT is the time
-     * constant in samples, i.e. in seconds. */
-    if (target_q8 > c->tank_rest_q8) {
-        c->tank_rest_q8 = (uint16_t)(c->tank_rest_q8 +
-                          ((target_q8 - c->tank_rest_q8) >> TANK_REST_SHIFT));
-    } else {
-        c->tank_rest_q8 = (uint16_t)(c->tank_rest_q8 -
-                          ((c->tank_rest_q8 - target_q8) >> TANK_REST_SHIFT));
-    }
-    c->tank_stable_l = (uint8_t)(c->tank_rest_q8 >> 8);
+    tank_rest_filter(c, target_q8);
 }
 
 /* --- lifecycle ---------------------------------------------------------- */

@@ -471,7 +471,21 @@
  * by 9-10 L because the float sloshes. The value taken at rest is rock solid.
  * docs/refuel-reset.md has the measurements. */
 #define TANK_SAMPLE_MS          1000u       /* one sample per second        */
-#define TANK_STATIONARY_MMH     1000u       /* "at rest" is below 1 km/h    */
+
+/* "AT REST" IS 0.1 km/h, AND IT USED TO BE 1 km/h WITH NOTHING BEHIND IT.
+ * A standing car sends 0.005 km/h and the next value that ever appears in any
+ * fixture is 0.2 km/h, so everything from there to 1 km/h is a car that is
+ * genuinely creeping -- and the refuelling rule was sampling the float
+ * through all of it. Measured on 17_drive_property_z1: 2,755 of its 47,093
+ * speed samples sit in that band, 5.9 % of the log, every one of them a
+ * moving car the rule called stationary.
+ *
+ * 0.1 km/h is the same figure STANDSTILL_MMH uses for the torque gate and it
+ * rests on the same measurement. They are deliberately two constants and not
+ * one: they are independent rules that happen to share an observation about
+ * the speed signal, and coupling them would let a change to either move the
+ * other silently. */
+#define TANK_STATIONARY_MMH     100u        /* 0.1 km/h; standing sends 5   */
 
 /* The settled level -- the baseline a refuelling is judged against -- is a
  * first-order filter over the at-rest samples, one shift per sample, so this
@@ -490,6 +504,44 @@
  * has finished refuelling. */
 #define TANK_REST_SHIFT         4u          /* 1/16 per sample, tau = 16 s  */
 
+/* THE RULE ARMS ONLY AFTER THIS MANY CONSECUTIVE AT-REST SAMPLES, and its
+ * absence is what let a Beetle meet clear a 250 km trip.
+ *
+ * WHAT WENT WRONG. The rule tested a STATE -- "is the level higher than the
+ * long-run baseline" -- where it should test an EVENT: "did the level rise
+ * while we were parked here". Nothing required the float to have stopped
+ * moving first. The displayed level is damped with a time constant of
+ * TANK_DAMP_SAMPLES precisely because the raw reading is unusable, and the
+ * refuelling rule read it raw with five seconds of confirmation and no
+ * settling at all.
+ *
+ * The amplitude to clear the threshold is routinely there. On
+ * 17_drive_property_z1 the raw level spans 5 L while the car is FULLY
+ * STOPPED -- 0 L x473, 1 L x399, 3 L x58, 4 L x27 -- because the log is
+ * repeated short stops and the float is still swinging from the last one.
+ * Only the consecutive-sample counter held it: replayed over every fixture
+ * the rule never fires, and the longest run above the threshold is 1 of 5.
+ * One barrier, no margin behind it, and a field exit is exactly what removes
+ * it.
+ *
+ * TWENTY SECONDS. TANK_REST_SHIFT is a time constant of 16 s, so this is
+ * about 1.25 of them -- long enough for the settling filter to have taken up
+ * most of whatever the level is at this stop, and far shorter than anybody
+ * has ever taken to stop, get out, open a filler cap and start pumping.
+ *
+ * ⚠ WHAT IT CANNOT FIX, AND THIS IS NOT A TUNING PROBLEM. A car parked on a
+ * slope reads persistently high, and across an ignition cycle that is
+ * INDISTINGUISHABLE from fuel having been added while it stood there. Both
+ * are "the level is higher than the last stored reference, at rest, at
+ * power-up", and the firmware has no third fact to separate them. The choice
+ * made is to keep trusting the EEPROM reference on a power-up, because
+ * refuelling with the ignition off is how refuelling normally happens and
+ * chasing the level there would lose the feature altogether. The tilt case
+ * that IS fixed is the one where the car drove in and stayed powered: the
+ * settling window below lets the reference take up the tilt before the rule
+ * can fire on it. docs/refuel-reset.md carries the rest. */
+#define REFUEL_ARM_S            20u         /* at-rest samples before arming */
+
 /* A rise of more than this above the settled level means somebody refuelled,
  * and the trip accumulators are cleared -- but only after this many
  * CONSECUTIVE at-rest samples say so.
@@ -506,8 +558,18 @@
  *
  * The baseline is deliberately FROZEN while the counter is running, or the
  * filter above would chase the new level and disqualify a rise it was in the
- * middle of confirming. compute.c does that in one branch. */
-#define REFUEL_RISE_L           3u
+ * middle of confirming. compute.c does that in one branch.
+ *
+ * FOUR LITRES AND NOT THREE, AND NOT FIVE EITHER. Three sat inside the 2-3 L
+ * the sender wanders at rest, which is no margin at all. Five is what the
+ * maintainer offered -- nothing under 5 L has ever gone into this car -- and
+ * it is refused, because the threshold is a `>` on an INDICATED rise and this
+ * sender under-reads: 6 L into a nearly empty tank settled at 5 L. At five, a
+ * real 6 L fill showing as +5 would be missed, and the asymmetry above says a
+ * missed refuelling is the cheaper error only when it is rare. Four keeps a
+ * litre of margin on both sides, and with the arming window above the
+ * threshold is no longer what is holding the rule up. */
+#define REFUEL_RISE_L           4u
 #define REFUEL_CONFIRM_S        5u
 
 /* First-order damping of the transmitted tank level, in samples at

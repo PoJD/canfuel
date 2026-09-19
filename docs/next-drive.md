@@ -63,6 +63,19 @@ is right. **Do not deliberately make it longer.**
 They cannot share it — the converter is powered from the display, so removing
 one removes both.
 
+⚠ **4a. Do this drive with fuel in the tank, and write down roughly how much.**
+A quarter is enough and a half is better; **do not top up specially and do not
+run it down**, because what is wanted is an ordinary level rather than a
+particular one. It costs nothing and it closes a blind spot nothing else can:
+**every fixture in this repository that contains a moving car has 0–10 L in
+the tank**, and the only one with a real level, `18_coldstart_z1` at 50 L,
+never moves. The float has therefore never been recorded in motion anywhere
+but the bottom of its travel, on a sender known to be nonlinear — which is
+why the refuelling rule's thresholds rest on measurements from one corner of
+the state space. `refuted.md` C10 is what that cost. The capture is being
+taken anyway; the only thing this step adds is the note of the level, and not
+deliberately arriving nearly empty.
+
 ## In the car, before the key
 
 **5. Connect VCDS to the OBD socket and the USBtin to the display's pair.**
@@ -233,6 +246,7 @@ instruments. This one matters and is easy to forget.
 | the VCDS log | as it comes, groups 003 and 014 |
 | the photographs | every screen from steps 18 and 20–24 |
 | two paper numbers, twice | group 006, before and after |
+| the tank level | roughly, in litres or quarters — see step 4a |
 | the dipstick reading | with the clock time |
 | how it drives | in plain words |
 | later | the second group 032 photograph |

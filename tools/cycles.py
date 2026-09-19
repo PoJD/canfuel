@@ -143,13 +143,17 @@ NOT_LOOPS = {
     "_ports_init",
     "_leds_update",
     "_compute_on_fuel",
-    # Two functions here contain a rotate loop rather than only control flow,
+    # Three functions here contain a rotate loop rather than only control flow,
     # and the shortfall is named rather than hidden. compute_torque_d has
     # DIVC_10 (shift 3) inline, about 15 cycles; tank_sample has
-    # TANK_DAMP_SHIFT (7) and TANK_REST_SHIFT (4), together under 60. Costing
-    # them as loops would need one entry per rotate, and the spans are not
-    # reliably ordered against the surrounding control flow -- which is the
-    # trade this table exists to make explicit.
+    # TANK_DAMP_SHIFT (7) and tank_rest_filter has TANK_REST_SHIFT (4),
+    # together under 60. The two used to sit in tank_sample together; the
+    # settled-level filter was pulled out so the refuelling rule's settling
+    # window could share it, which split the rotates across two names without
+    # adding one. Costing them as loops would need one entry per rotate, and
+    # the spans are not reliably ordered against the surrounding control flow
+    # -- which is the trade this table exists to make explicit.
+    "_tank_rest_filter",
     "_compute_torque_d",
     "_can_set_filter",
     # hal_can_send searches three transmit buffers and the search is three

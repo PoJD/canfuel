@@ -77,6 +77,16 @@ typedef struct {
      * part and the only piece that reaches the EEPROM. */
     uint16_t tank_rest_q8;
     uint8_t  refuel_high;       /* consecutive at-rest samples above the rise */
+    uint8_t  rest_s;            /* consecutive at-rest samples, saturating at
+                                 * REFUEL_ARM_S. Below it the refuelling rule
+                                 * is not armed: the float is still settling
+                                 * from whatever the car was just doing.      */
+    bool     have_moved;        /* the car has been seen moving since the
+                                 * ignition came on. It separates ARRIVING at
+                                 * a stop, where the reference may take up the
+                                 * level found there, from STARTING at one,
+                                 * where the EEPROM reference is the only
+                                 * truth there is. config.h says why.         */
     uint8_t  tank_stable_l;     /* settled level at rest; survives in EEPROM */
     bool     tank_stable_valid;
     uint32_t tank_damped_ml;    /* 0.001 l, first order, TANK_DAMP_SAMPLES  */
