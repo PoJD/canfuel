@@ -114,7 +114,7 @@ value, it would fire on every pull-away.
 
 ---
 
-## The first real refuelling — 2026-09-19, and what it measured
+## The 2026-09-19 fill, and what it measured
 
 **Owner-reported off the display, not a capture.** The converter and the
 MFD15 were fitted and the tank was filled on the way back from a 450 km trip;
@@ -128,20 +128,37 @@ a log, and everything below is bounded by that.
 | indicated after | **50.9 L** |
 | the reset | **fired** — the average zeroed |
 
-### The rule fired on a real refuelling, which nothing had ever shown
+### The rule has fired in the car at least three times, and none of them is recorded
 
-Every previous statement about this rule came from replaying eighteen
-recordings **in which nobody ever refuelled**, and from synthetic frames in
-`test_compute.c`. *Watch out when implementing* below still asks for a
-recording taken while refuelling and it still should — but the rule has now
-been run once by a car, at a pump, against a real sender, and it did what it
-is for.
+⚠ **An earlier version of this section called this the first, and it was
+not.** Owner-recalled, so the count is approximate and the dates are not
+held:
 
-⚠ **What was observed is the average zeroing, and `refuels` was not read.**
-0x603 is transmitted only with JP1 fitted and the dashboard was shut, so the
-count that would have confirmed it is the one channel that was not available.
-`vehicle-history.md` asks for `refuels` to be checked rather than assumed for
-exactly this reason, and this is the case that could not honour it.
+| | fill | outcome |
+|---|---|---|
+| earlier | **from a jerrycan, at the garden** | fired |
+| earlier | **a full tank**, the one `18_coldstart_z1` was recorded on | fired |
+| 2026-09-19 | the 44.17 L above | fired |
+
+**So the rule works in the car and has for some time.** What is still missing
+is not a demonstration, it is a *recording*: every one of these happened with
+nothing logging, and `18_coldstart_z1` opens at 50 L already filled rather
+than filling. *Watch out when implementing* below therefore stands unchanged,
+and so does the fixture suite's position — `test_no_fixture_triggers_a_refuelling`
+replays eighteen logs in which nobody ever refuels.
+
+⚠ **The jerrycan is the one worth having and the one nobody wrote down.** A
+jerrycan is a small fill and `REFUEL_RISE_L` is a threshold about small
+fills — a 44 L fill clears it by an order of magnitude and says nothing about
+where the edge is. **If the quantity is remembered, it belongs in this
+table.**
+
+⚠ **What was observed each time is the average zeroing, and `refuels` was
+never read.** 0x603 is transmitted only with JP1 fitted and the dashboard has
+been shut for all three, so the count that would have confirmed them is the
+one channel that was not available. `vehicle-history.md` asks for `refuels` to
+be checked rather than assumed for exactly this reason, and these are the
+cases that could not honour it.
 
 **There is a second symptom at the pump and it costs nothing.** `compute.c`
 snaps the damped display level straight to the raw reading when it detects a
@@ -236,10 +253,10 @@ In the current data the tank reports **0 litres with the reserve lamp on**
 against these logs — a recording taken while refuelling is needed. Until then
 it has to run on synthetic frames in `test_compute.c`.
 
-⚠ **The rule has since fired once in the car** — *The first real refuelling*
-above. That is an observation off a display and not a recording, so this
-paragraph stands unchanged: what is still missing is a capture spanning a
-fill, and nothing in the corpus is one.
+⚠ **The rule has since fired in the car at least three times** — *The
+2026-09-19 fill* above. Those are observations off a display and not
+recordings, so this paragraph stands unchanged: what is still missing is a
+capture spanning a fill, and nothing in the corpus is one.
 
 ---
 

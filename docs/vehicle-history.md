@@ -85,8 +85,8 @@ was not spread anything like evenly:
 Šumava and back, ending 19 September 2026 — two long runs plus about an hour
 of touring. **That is an owner-reported distance and not an odometer reading**,
 which is why the table above is left alone — and it is also the reason the
-fill that ended the trip is not a consumption figure. See *The first fill
-after the overhaul* below.
+fill that ended the trip is not a consumption figure. See *The fill of
+2026-09-19* below.
 
 So the tail end of the record is a car that was barely driven and then not
 driven at all. **Per-year distance is recorded only for 2023 onwards**; the
@@ -124,12 +124,13 @@ file exists.
 from the table)*. What that scatter is worth, and what it is not worth, is the
 next section.
 
-### The first fill after the overhaul — 2026-09-19
+### The fill of 2026-09-19
 
 **44.17 litres, off the pump, at the end of the Šumava trip.** It is recorded
-here because it is the first pump figure since the converter, plugs, leads and
-everything else, and because a litre count is worth keeping even when it
-cannot yet be divided by anything.
+here because it is the first fill since the work of 9/2026 whose litres
+anybody wrote down — **earlier fills happened and were not counted**
+(`docs/refuel-reset.md`) — and because a litre count is worth keeping even
+when it cannot yet be divided by anything.
 
 ⚠ **It is not a consumption figure and must not be turned into one.** Neither
 the odometer at this fill nor the state of the tank at the previous one was
@@ -139,7 +140,7 @@ measurement**, and it sits in the upper half of a table whose own spread is
 45 %. Do not add it as a row.
 
 **What the same fill did measure is the sender**, not the engine:
-`docs/refuel-reset.md`, *The first real refuelling*, has the three numbers and
+`docs/refuel-reset.md`, *The 2026-09-19 fill*, has the three numbers and
 what they say about the tank scale. That is a different quantity from anything
 in this file.
 

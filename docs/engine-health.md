@@ -179,7 +179,7 @@ so that is the expected result rather than a disappointing one.
 **The car is now parked until the injectors arrive**, which restores the one
 condition `next-drive.md` needs and had lost: an overnight stand with nothing
 disturbing it. It also means the tank stays as it was filled — see
-`refuel-reset.md`, *The first real refuelling*, and `next-drive.md` step 4a.
+`refuel-reset.md`, *The 2026-09-19 fill*, and `next-drive.md` step 4a.
 
 #### What the two torque readings imply about b7 — derived, not measured
 

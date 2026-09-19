@@ -69,7 +69,7 @@ one removes both.
 ⚠ **4a. The tank is full, and that is settled rather than chosen.** It was
 filled on **19 September 2026** — 44.17 L at the pump, 10.9 L indicated before
 and 50.9 L after — and the car is not started again before the injectors, so
-it is still full at the key. `refuel-reset.md`, *The first real refuelling*,
+it is still full at the key. `refuel-reset.md`, *The 2026-09-19 fill*,
 is that fill and what it measured. **This step is now a record of the state
 the drive starts in rather than an instruction about it**, and the level
 needs no noting because it is written down here.
@@ -207,6 +207,24 @@ The car has stood overnight, so filter, sump and tarmac are all at ambient.
 span four degrees cold, nothing at step 28 is worth better than ±2 °C. Three
 spots is a thinner error bar than six would give and it is enough for a
 question whose answer is 26 °C wide.
+
+⚠ **The coolant is deliberately not on this list, and "there is no metal to
+aim at" is not why.** Two corrections, because both are easy to get backwards.
+**Bare or shiny metal is the WORST infrared target there is** — it emits
+poorly and reflects the engine bay, so it reads low. Paint, rubber and plastic
+are all good emitters and are what an infrared thermometer is calibrated for,
+so a car with plastic pipework is not a problem for this instrument. **And
+the expansion tank is a poor target for a different reason**: part of it is
+air by design, it is not where the sender sits, and from outside there is no
+way to tell whether the spot is aimed at coolant or at the air above it.
+
+**If a coolant number is wanted anyway, the upper radiator hose is the
+target** — rubber, a good emitter, and carrying coolant on its way out of the
+engine. It lags by a few degrees through the thickness of the rubber, which
+matters not at all here. **It is still optional**: VCDS reads the coolant
+truthfully cold at step 6a and hot at step 26a, each against `0x288` in the
+capture, and that pair *is* question 1. Two real sensors cannot be improved on
+by pointing a thermometer at a hose.
 
 ⚠ **Three and not six, and the two that came off are worth a line.** An
 earlier version of this step also had the rocker cover and the dipstick tube
