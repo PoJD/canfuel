@@ -626,7 +626,7 @@ whole of it rests on b7 inheriting the charge normalisation, which is a
 hypothesis with one coincidence behind it and a counter-observation at idle,
 where b7 and relative load diverge 9.8 % against 23.2 %. **What settles it is
 b7 and relative load logged together across a held full-throttle pull** —
-`next-drive.md` steps 13 and 14 — because that tests the proportionality over a
+`next-drive.md` steps 14 and 14a — because that tests the proportionality over a
 range instead of at one point, **and because it reads the intake temperature
 that collapses the width of every bracket above.**
 

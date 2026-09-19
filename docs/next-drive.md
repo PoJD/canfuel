@@ -277,7 +277,7 @@ it has stopped, restart it immediately. Keep glancing at it.
 neutral, nothing touched, air conditioning off. **One right after the start,
 one at the end when thoroughly hot, and one in the middle that has to land near
 61.5 °C of oil** — that middle one is the whole reason the trip has idles in it
-at all, and *Steps 12–14* below is why.
+at all, and *Steps 12–14a* below is why.
 
 **Which leaves the problem that you cannot see the oil temperature from the
 driver's seat**, the display and the converter being out. Two routes, and the
@@ -311,35 +311,21 @@ does not depend on somebody remembering to look.
 
 **12b. With nobody watching**, hedge instead: **several idles through the first
 half of the drive** — roughly ten, twenty and thirty minutes in — and keep
-whichever one landed in the band. They are free; *Steps 12–14* says why.
+whichever one landed in the band. They are free; *Steps 12–14a* says why.
 
-**13. Two or three full-throttle pulls in FOURTH, from about 2,200 rpm and as
-far up as the road allows.** Pedal on the floor, clutch up, no change of gear
-part way through. **5,000 rpm is enough and 6,000 is better**; stop wherever
-the limit and the traffic say, and do not go looking for somewhere to do
-otherwise.
+**13. Coasts on the engine — SEVERAL while cold, early, and one more when
+hot.** Pedal fully released, **clutch up**, stay in a HIGH gear, **at least
+five seconds** each — a downhill stretch if the route has one, otherwise the
+far side of any acceleration.
 
-⚠ **Fourth and not fifth, and the arithmetic is the owner's own.** The Šumava
-trip was run at 4,000–5,000 rpm in top at about 130 km/h, so 6,000 rpm in top
-is somewhere between 155 and 195 km/h and is not on under either reading of
-that. Fourth reaches the same engine speeds at a speed a motorway can hold.
+⚠ **This comes before the pulls because the two want opposite engines.** The
+pulls below need a hot one and will happen late whatever the numbering says;
+**the cold coasts exist for a state that is gone twenty minutes in**, so they
+are the one thing on this drive that cannot be caught up later. Take several
+in the first few minutes, not one — they cost nothing and a coast that ends
+too early records nothing at all.
 
-⚠ **That is a sweep, and an earlier version of this file said not to sweep.**
-The objection was never to the sweep, it was to the **rate** — *Steps 12–14*
-in Part 2 has the measurement and what changed.
-
-**Do not assume the maximum sits where the factory put it.** The car has been
-chipped since 6/2018 and what that did to the shape of the curve is not known
-here, which is exactly why the pull covers a range instead of aiming at an
-engine speed.
-
-**13a. One long coast while COLD, and one more when hot.** Pedal fully
-released, **clutch up**, stay in a HIGH gear, **at least five seconds** — a
-downhill stretch if the route has one, otherwise the far side of any
-acceleration. **Take the cold one in the first few minutes**, because the cold
-state is the whole question.
-
-⚠ **Five seconds, a high gear, and neither is arbitrary.** The ECU takes
+⚠ **Five seconds and a high gear, and neither is arbitrary.** The ECU takes
 **1.2–1.3 s from the pedal coming up before it shuts the injectors**, and it
 gives them back at **1,700–1,750 rpm** — both measured off the last capture,
 `engine-health.md`, *The oldest symptom is on the overrun*. A short coast, or
@@ -356,15 +342,36 @@ accurate enough for it. It is the one observation on this drive that no
 analysis can recover afterwards.
 
 **The other half comes out of the capture by itself:** `python
-tools/coastscan.py CAPTURE` finds the coasts and prints, for each, whether the
-injectors shut, at what engine speed, how long after the lift and where fuel
-came back.
+tools/coastscan.py CAPTURE` finds every coast and prints, for each, whether
+the injectors shut, at what engine speed, how long after the lift and where
+fuel came back.
 
-**14. One low-gear pull to high revs**, as before. It costs one squirt of fuel
+**14. Two or three full-throttle pulls in FOURTH, from about 2,200 rpm and as
+far up as the road allows.** **Hot, so late in the drive** — this is the half
+of the pair step 13 defers to. Pedal on the floor, clutch up, no change of
+gear part way through. **5,000 rpm is enough and 6,000 is better**; stop
+wherever the limit and the traffic say, and do not go looking for somewhere
+to do otherwise.
+
+⚠ **Fourth and not fifth, and the arithmetic is the owner's own.** The Šumava
+trip was run at 4,000–5,000 rpm in top at about 130 km/h, so 6,000 rpm in top
+is somewhere between 155 and 195 km/h and is not on under either reading of
+that. Fourth reaches the same engine speeds at a speed a motorway can hold.
+
+⚠ **That is a sweep, and an earlier version of this file said not to sweep.**
+The objection was never to the sweep, it was to the **rate** — *Steps 12–14a*
+in Part 2 has the measurement and what changed.
+
+**Do not assume the maximum sits where the factory put it.** The car has been
+chipped since 6/2018 and what that did to the shape of the curve is not known
+here, which is exactly why the pull covers a range instead of aiming at an
+engine speed.
+
+**14a. One low-gear pull to high revs**, as before. It costs one squirt of fuel
 and it is the only thing that reaches the top of the range if fourth cannot.
 
 **15. Nothing needs marking and no times need noting** — except the one line
-step 13a asks for. Drive; the analysis finds the idles, the pulls and the
+step 13 asks for. Drive; the analysis finds the idles, the pulls and the
 coasts by itself.
 
 **16. Finish at a standstill with the engine idling and hot.** Do not switch
@@ -478,7 +485,7 @@ instruments. This one matters and is easy to forget.
 | the photographs | every screen from steps 18 and 20–24 |
 | two paper numbers, twice | group 006, before and after |
 | the infrared readings | three spots cold (step 6b) and the same three hot (steps 28–28a), three readings each, with clock times |
-| the overrun | *heard it* / *did not hear it*, cold and hot — step 13a |
+| the overrun | *went quiet after about N seconds* / *never went quiet*, cold and hot — step 13 |
 | the coolant, twice from VCDS | group 001 cold (step 6a) and hot (step 26a), each with its clock time |
 | the mirror console reading | at the cold soak, before a door is opened |
 | how it drives | in plain words |
@@ -603,7 +610,7 @@ start is, so "usual" wins over "clean".
 not recover by itself, which cost the whole start and the first 86 seconds of
 running — the one thing the session was asked for.
 
-## Steps 12–14 — why the idles are spread out
+## Steps 12–14a — why the idles are spread out, and why the coasts come first
 
 ⚠ **A hot idle alone would waste the trip.** A hot idle counted **zero before
 the repair** — `11_idle_noac_z1` and `12_idle_ac_z1`, old injectors, 73 °C — so
@@ -675,7 +682,7 @@ while the filling is still catching up.
 measurement — the gearing enters roughly squared and nobody here has the
 ratios from a document)*, so a 400-rpm band gets seconds rather than
 fractions of one, and **a slow sweep is a series of holds**. That is what
-makes step 13's 2,200-to-as-high-as-it-goes better than a hold at one engine
+makes step 14's 2,200-to-as-high-as-it-goes better than a hold at one engine
 speed rather than a retreat from it: it covers the whole range at a rate where
 b7 can settle, and it does not require guessing in advance where the maximum
 is on an engine that has been remapped.
@@ -844,7 +851,7 @@ session ends in anyway — so this costs the seven minutes the capture runs and
 no setting up at all. Nothing depends on the answer; the alternative is leaving
 a fifteenth identifier on the bus unexplained.
 
-## Which measurement settles the torque scale — steps 13 and 14, and nothing else
+## Which measurement settles the torque scale — steps 14 and 14a, and nothing else
 
 **No VCDS block answers this.** Every block in this session is about the
 engine's health; **the scale question is settled by the capture**, and
@@ -1149,9 +1156,9 @@ figure*.
 | **is the engine well now** | first-gear misfires, the stumbling idle against oil temperature, the idle adaptation, how it pulls |
 | **is the new converter converting** | block 046, and it needs no baseline |
 | **are either of the replaced oxygen sensors gone again** | blocks 034, 036, 037 |
-| **can the display ever show the factory maxima** | **the high-gear pulls, steps 13–14** — b7 out of the capture against the ECU's load at the same engine speed. See *Which measurement settles the torque scale*; no VCDS block answers this |
+| **can the display ever show the factory maxima** | **the high-gear pulls, steps 14 and 14a** — b7 out of the capture against the ECU's load at the same engine speed. See *Which measurement settles the torque scale*; no VCDS block answers this |
 | **does the oil ever get hot enough to matter** | the oil temperature a long drive actually reaches, and the thermometer beside it |
-| **does the ECU cut fuel on a COLD overrun** | step 13a's cold coast through `tools/coastscan.py`. Warm it does, four times over in the last capture; cold decides whether the owner's oldest symptom means anything — `engine-health.md`, *The oldest symptom is on the overrun* |
+| **does the ECU cut fuel on a COLD overrun** | step 13's cold coasts through `tools/coastscan.py`. Warm it does, four times over in the last capture; cold decides whether the owner's oldest symptom means anything — `engine-health.md`, *The oldest symptom is on the overrun* |
 
 **The last one is close to answered already.** The drive of 2026-09-10 peaked
 at **72–74 °C of oil after about an hour**, and the warm holds the drag line is
@@ -1230,7 +1237,7 @@ seconds of ignition-on, engine not started, no driving.
 
 ## 3. The torque and power scale — `TORQUE_CNM_PER_BIT`
 
-**Measured by:** steps 13 and 14 and nothing else. *Which measurement settles
+**Measured by:** steps 14 and 14a and nothing else. *Which measurement settles
 the torque scale* above is the whole argument and is unchanged by today.
 
 **Changes:** `TORQUE_CNM_PER_BIT` in `src/config.h`, and the drag line with it

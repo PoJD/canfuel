@@ -197,7 +197,7 @@ reading, with the engine speed estimated from the driver's description.**
 `b7 = (Nm + 6.74 + 0.004820 × rpm) / 0.74`, from `TORQUE_CNM_PER_BIT` and the
 drag line in `config.h`, with `TORQUE_TRIM_PCT` at zero. **The rpm band is the
 whole of the uncertainty**; everything else is arithmetic. This is not a
-substitute for the capture and `next-drive.md` steps 13–14 are unchanged by
+substitute for the capture and `next-drive.md` steps 14 and 14a are unchanged by
 it.
 
 **What it is worth anyway.** `tools/b7scan.py` puts the largest b7 this engine
@@ -575,7 +575,7 @@ it did not miss it. The cut is in that file four times over; nobody had
 looked, because until now nothing asked the question.
 
 **One coast on the next drive settles it and costs nothing**, because the
-drive happens anyway: `next-drive.md` step 13a is the coast — cold, high gear,
+drive happens anyway: `next-drive.md` step 13 is the coast — cold, high gear,
 clutch up, long enough to get past the 1.2 s delay — and `coastscan.py` is the
 analysis.
 
