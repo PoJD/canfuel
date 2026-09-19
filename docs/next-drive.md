@@ -62,6 +62,57 @@ The drive home is wanted; see Part 2.
 **3. Plan the start for about ten hours after the engine last ran.** Overnight
 is right. **Do not deliberately make it longer.**
 
+### 3a. If the injectors go on the same day — what the leak check costs
+
+**The leak check is not negotiable and is not the problem.** The rail is empty
+after the injectors are changed, so it gets primed, started, run briefly,
+looked over for weeping seals and read for faults. That has to happen and it
+has to happen first.
+
+**What it costs is decided by one channel, and `18_coldstart_z1` measures it.**
+Six minutes of idling from a genuinely cold engine moved:
+
+| | start | after 6 min |
+|---|---|---|
+| coolant, `0x288` | 16.5 °C | **63.75 °C** |
+| oil, `0x420` b3 | 12.75 °C | **17.25 °C** |
+
+**The oil barely notices and the coolant is transformed** — +4.5 against
++47.25, and the oil does not begin to move at all until about 200 s in. **The
+coolant is also what the ECU uses to decide whether the engine is cold**, so
+that one column is the whole of what a same-day session loses.
+
+⚠ **Two measurements go, and one of them is the most valuable thing on this
+drive.** The cold start (steps 10–11) is the obvious one. **The cold coast of
+step 13 is the other**, and it is less obvious: if the fuel cut is inhibited
+on a cold engine — the open question the coast exists to settle — the ECU
+decides that off the coolant, so it would hand back the warm answer and the
+question would stay open. The cold idle of step 12 is confounded rather than
+lost: its oil would still be near the before-reading's 13–17 °C, but the
+warm-up enrichment would not be a cold one.
+
+**Everything else survives**, which is worth saying plainly rather than
+leaving to be inferred: all four VCDS verdict blocks, `032`, `014`, the hot
+idle, the pulls, the hot oil filter reading, and the whole tank and refuelling
+replay. A same-day session keeps most of the value.
+
+**So the split is by temperature, not by session.** The cold half is about
+fifteen minutes of a later morning — ignition, start, idle, a short drive with
+a coast in it — and needs no VCDS blocks, no basic settings and no thermometer
+work. **It does not mean repeating the ninety minutes.**
+
+⚠ **And the go/no-go is a number rather than a feeling.** Keep the leak check
+as short as it can be, let the car stand, and **read group 001 against the
+mirror console's ambient before committing to the cold half.** Within a few
+degrees and the soak is intact; anything more and this is a warm session with
+a cold one owed. *(A DECISION, not a measurement: the before-recording started
+at 16.5 °C of coolant, and nothing establishes how much drift that comparison
+tolerates.)*
+
+⚠ **Step 1 is easy to lose in the rush of a same-day fitting.** Group `032`
+is read **before the injectors go anywhere near the car**, and after they are
+in there is no way back to it.
+
 **4. Take the display and the converter out**, and put the USBtin on that pair.
 They cannot share it — the converter is powered from the display, so removing
 one removes both.
