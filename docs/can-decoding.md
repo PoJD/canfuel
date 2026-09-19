@@ -554,6 +554,15 @@ intercept to compensate** — that puts the line back above all four measured
 points and brings the understatement straight back, and the gate has already
 dealt with the only place the residual showed.
 
+⚠ **Question 10 may have answered this one, and in the direction nobody
+expected.** The cold-soak calibration point in `18_coldstart_z1` says this
+firmware's oil formula has the wrong *slope*, and on the corrected one the
+four holds below were at **98–103 °C** rather than 72–77 — real operating
+temperature, so the line would already be fitted where it is used. Read
+question 10 before spending anything on this one. The paragraph that follows
+is the case as it stood before that, and it stands or falls with a
+thermometer.
+
 **Why it is still open.** 72–77 °C is warm, not the 95–110 °C of real driving,
 so this line very likely still overstates drag a little. That is the
 conservative direction, which is why it was worth shipping.
@@ -659,7 +668,7 @@ and b7.
 
 ---
 
-### 10. Is the oil temperature *right*, and not merely oil? — **open, and it undermines question 7 if it is not**
+### 10. Is the oil temperature *right*, and not merely oil? — **open, and it now looks like OUR decode rather than the sensor — which would ANSWER question 7**
 
 Question 4 settled **what** 0x420 b3 is. **Nothing has ever checked what it is
 worth.** The formula `× 0.75 − 48` was taken from the coolant on 0x288, which
@@ -707,23 +716,87 @@ stuck-open thermostat cannot produce, least of all at idle. The coolant is
 also on the ECU's own frame rather than a separate gauge sender, so it is what
 the ECU believes and not only what the needle shows.
 
-**Which leaves two, and the second is new.**
+### The leading answer is now that OUR DECODE IS WRONG, not the sensor
 
-1. **The channel is offset low**, the original suspicion.
-2. **The oil really does run 25 °C below the coolant, and the premise of this
-   question is what is wrong.** The suspicion rests on *"a warmed engine under
-   load normally runs its oil at 90–110 °C and above the coolant"*, and that
-   is a property of engines whose oil is tied to the coolant by an oil-to-
-   water heat exchanger. A plain wet sump with no such exchanger is cooled by
-   airflow under the car and can legitimately sit far below the coolant,
-   especially with the sender in the pan, which is the coolest oil in the
-   engine. ⚠ **Whether this engine has an exchanger, and where the sender
-   sits, are facts about the car that nobody here has checked** — they are
-   settled by opening the bonnet, not by reasoning, and they are cheap.
+**`18_coldstart_z1` carries the measurement that discriminates, and nobody had
+looked at it this way.** The recording opens with 41.4 s of ignition-on before
+the engine fires, on a car that had stood overnight. **Every fluid in a
+cold-soaked car is at ambient**, so in those 41 s the coolant and the oil are
+reading the same physical temperature, whatever it is. That is a calibration
+point that costs nothing and needs no thermometer:
 
-Neither of those needs a drive, and the dipstick test below separates them in
-one reading: an offset channel disagrees with a thermometer, a cool-running
-sump agrees with it.
+| | raw byte | `× 0.75 − 48` |
+|---|---|---|
+| 0x288 b1, coolant | 86 | **16.50 °C** |
+| 0x420 b3, oil | 81 | **12.75 °C** |
+
+**They disagree by 3.75 °C where they must agree.** And that is the small
+half of it — the same two channels disagree by 20–26 °C when the engine is
+fully warm. **An error that grows with temperature is a slope error, not an
+offset**, and the arithmetic says so flatly: re-anchoring the offset on the
+cold soak while keeping the 0.75 slope leaves the warm end 21.0 °C low.
+
+Fit both physical anchors instead — oil = coolant at cold soak, oil ≈ coolant
+fully warm — and the two-point fit comes out at **slope 1.006, offset 65.0**.
+Those are round numbers rather than a fitted curiosity: the candidate is
+**`°C = raw − 64`** (or 65; the quantisation of both channels cannot separate
+them).
+
+**Against every fixture, warmest last:**
+
+| fixture | coolant | oil raw | today's `× 0.75 − 48` | `raw − 64` |
+|---|---|---|---|---|
+| `11_idle_noac_z1` | 99.0 | 161 | 72.75 (−26.2) | **97.0 (−2.0)** |
+| `12_idle_ac_z1` | 99.0 | 162 | 73.50 (−25.5) | **98.0 (−1.0)** |
+| `13_rev1500_z1` | 97.5 | 162 | 73.50 (−24.0) | **98.0 (+0.5)** |
+| `14_rev1850_z1` | 99.0 | 163 | 74.25 (−24.8) | **99.0 (0.0)** |
+| `15_rev2372_z1` | 95.25 | 165 | 75.75 (−19.5) | **101.0 (+5.8)** |
+| `16_rev2926_z1` | 99.0 | 167 | 77.25 (−21.8) | **103.0 (+4.0)** |
+| `17_drive_property_z1` | 100.5 | 167 | 77.25 (−23.2) | **103.0 (+2.5)** |
+
+Under `raw − 64` every fully warmed fixture sits **within ±6 °C of the
+coolant**, a shade below it at idle and above it under load, and the four
+free-revving holds climb 98 → 99 → 101 → 103 °C across rising load while the
+coolant stays flat at 99. That is what a healthy engine does and it is four
+consistent points, not one. Under today's formula all seven sit 20–26 °C below
+with no mechanism that has ever been named.
+
+**Where the wrong slope came from is not a mystery, and this document said so
+before the evidence existed:** *"the formula `× 0.75 − 48` was taken from the
+coolant on 0x288 ... that is an argument from analogy between two different
+frames, not a measurement."* The analogy is the fault.
+
+⚠ **This is a strong hypothesis and it is still not a measurement.** All of it
+argues from what the coolant does, and the coolant is a different sensor on a
+different frame. **The dipstick test below settles it and now has a sharp
+prediction to be wrong about: fully warm, the oil should read about 100 °C and
+not 74.** A thermometer that says 74 means the decode is right and this engine
+genuinely runs its oil cool; one that says ~100 means the decode is wrong.
+
+**Nothing has been changed in the firmware on the strength of it**, and that
+is a decision rather than an oversight. `decode.c` would be replacing one
+unproven analogy with a better-supported one, the display's own `OilTemp`
+comes off 0x420 rather than through this firmware, so the change would have to
+land in `mfd15` in the same breath, and the reading that settles it is one
+drive and one thermometer away. `st.oil_c100` is decoded and **consumed by
+nothing**, so being wrong currently costs this firmware nothing at all.
+
+**If it is confirmed, question 7 is answered rather than deepened.** That
+question rests on *"72–77 °C is warm, not the 95–110 °C of real driving"*. The
+four holds the drag line is fitted to would have been at **98–103 °C** — real
+operating temperature — so the line would already be fitted where it is used,
+and the one open question in this project closes. Note which way that runs:
+the suspicion was that a cool-reading channel made the drag line worse, and
+the arithmetic says it would make it correct.
+
+**The old candidate list is superseded but kept.** It was (1) the channel is
+offset low, which the cold soak now refutes as *offset* while supporting it as
+*slope*, and (2) the oil really runs 25 °C below the coolant because nothing
+ties the two together — no oil-to-water heat exchanger, and a sender in the
+pan reading the coolest oil in the engine. ⚠ **Whether this engine has such an
+exchanger and where the sender sits are facts about the car nobody here has
+checked**, settled by opening the bonnet rather than by reasoning. They matter
+only if the thermometer says 74.
 
 **What is not wrong with it.** It is a real measurement and not a stuck or
 derived number — in the four free-revving holds `13`–`16` it climbs
