@@ -266,14 +266,19 @@ the coolant cannot move against it.
 responding to load rather than to engine speed, and slow enough to take
 minutes. That is oil temperature, whatever supplies it.
 
+**And it is a sensor rather than a computed number**, which was open when this
+entry was written and is now measured: every step the byte ever takes is ±1
+count, 85 up and 58 down, including twelve downward steps during a warm-up it
+was unambiguously climbing through. That is one-LSB dither around a moving
+value — an analogue sensor and its converter — and not arithmetic, which does
+not rattle in both directions while its inputs move one way. `can-decoding.md`
+question 4 has it.
+
 ⚠ **What is NOT settled, and is a question about the car rather than about the
-bus:** whether that comes from a dedicated sender or from a value the ECU or
-the cluster computes. **This project does not take car facts off the web** —
-they are settled by measurement here, and the cheap decisive test is to unplug
-the candidate connector and watch for the channel to go to 255, which is
-already known to be its fault value. If there is no sender, then "the sensor
-is faulty" leaves the table entirely and question 10 is purely about this
-firmware's decode.
+bus:** whether that sensor is the sump's own G266 or something else. **This
+project does not take car facts off the web** — they are settled by
+measurement here. It matters less than it did, because "there is no sensor,
+so the number is modelled" is now excluded either way.
 
 **Cost:** none. The conclusion question 4 reached is unchanged and the
 firmware needed no edit. What it cost before it was asked is a closed question

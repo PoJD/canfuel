@@ -1079,8 +1079,28 @@ counts while this channel rose two, and a value derived from the coolant
 cannot move against it.
 
 So it is a real thermal quantity with mass, responding to load rather than to
-engine speed. Either way the signal behaves as oil temperature and the
-firmware's treatment of it stands.
+engine speed, and measured by a sensor rather than computed. The signal
+behaves as oil temperature and the firmware's treatment of it stands.
+
+**IT IS A SENSOR AND NOT A COMPUTED NUMBER — measured, and it closes the one
+part of this that was still open.** A value the ECU or the cluster *models*
+from coolant, load and time would climb smoothly while the engine heats. This
+one does not: across every fixture the byte takes **85 steps up and 58 steps
+down, and every single step is exactly ±1 count** (one +4 aside, across a gap
+in a log). During the `18_coldstart_z1` warm-up alone it steps *down* twelve
+times while unambiguously heating, and in `15_rev2372_z1` it wobbles 6 up and
+5 down through a 25 s hold at constant speed on a fully warm engine.
+
+**That is one-LSB dither around a slowly moving true value, which is what an
+analogue sensor and its converter do and what arithmetic does not.** No model
+built to be sluggish enough to match a sump's thermal mass would also be built
+to rattle by a count in both directions while its inputs move one way.
+
+**It also fits the frame it arrives on.** `0x420` b1 and b2 are ambient
+temperature — zero here because the car has no ambient sensor — and ambient
+air is a signal the *cluster* displays and the engine management has no use
+for. So `0x420` looks like a frame of cluster-side temperature channels, which
+is where a sump sender's signal would end up.
 
 **What supplies it — looked up, and marked as looked up.** ⚠ **The sources
 below are parts catalogues, workshop pages and forums, which is NOT how this
