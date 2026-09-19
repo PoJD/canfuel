@@ -764,7 +764,12 @@ with no mechanism that has ever been named.
 **Where the wrong slope came from is not a mystery, and this document said so
 before the evidence existed:** *"the formula `× 0.75 − 48` was taken from the
 coolant on 0x288 ... that is an argument from analogy between two different
-frames, not a measurement."* The analogy is the fault.
+frames, not a measurement."* The analogy is the fault — and question 4 now
+names why it was never going to hold. **The coolant byte is the engine ECU's
+and the oil byte is the instrument cluster's**, because the sender wires to
+the cluster and not to the engine management. Two modules, two scalings, no
+reason to agree. That argument and the cold-soak arithmetic above were arrived
+at independently and agree.
 
 ⚠ **This is a strong hypothesis and it is still not a measurement.** All of it
 argues from what the coolant does, and the coolant is a different sensor on a
@@ -993,11 +998,40 @@ counts while this channel rose two, and a value derived from the coolant
 cannot move against it.
 
 So it is a real thermal quantity with mass, responding to load rather than to
-engine speed. **Whether a dedicated sender supplies it or the ECU or cluster
-computes it is a question about the car and is open** — and it is settled by
-unplugging the candidate connector and watching for 255, not from the web.
-Either way the signal behaves as oil temperature and the firmware's treatment
-of it stands.
+engine speed. Either way the signal behaves as oil temperature and the
+firmware's treatment of it stands.
+
+**What supplies it — looked up, and marked as looked up.** ⚠ **The sources
+below are parts catalogues, workshop pages and forums, which is NOT how this
+document settles facts about the car.** They are recorded because they are
+consistent, because they name a mechanism, and because the mechanism has a
+consequence for question 10. They are an indication. The measurement that
+settles it is still to unplug the connector and watch for 255.
+
+- The part is the **oil level and oil temperature sender G266**, threaded into
+  the **sump** from below, three wires, fitted across the Golf/Bora range of
+  this era.
+- **Its signal goes to the instrument cluster, not to the engine ECU** — a PWM
+  level-and-temperature line to J285, which is what displays the oil
+  temperature.
+
+**That resolves the objection that raised all this.** "This engine has no oil
+temperature sensor" is very likely right *as a statement about the engine*:
+the sender belongs to the sump and the dashboard, not to the engine
+management, and an engine-side parts list has no reason to carry it. It is
+also exactly why `01-Motor` has no oil temperature block — **not because
+nobody looked, but because the signal never reaches that ECU.** The question
+of whether this particular car has it fitted is answered by the car: a number
+is on the bus and it behaves thermally, so something produces it.
+
+⚠ **AND IT UNDERMINES THE DECODE, WHICH IS THE PART THAT MATTERS.** If the oil
+byte is the cluster's and the coolant byte on 0x288 is the ECU's, then they
+are **two different modules choosing two different scalings**, and this
+firmware took the second and applied it to the first. The formula
+`× 0.75 − 48` was already flagged here as an argument from analogy; the
+analogy now turns out to be between modules that had no reason to agree.
+Question 10's cold-soak arithmetic and this point are independent of each
+other and say the same thing.
 
 ⚠ **What this does not establish is that the number is *right*** — only what it
 is a number of. That is question 10. **If there is no physical sender the
