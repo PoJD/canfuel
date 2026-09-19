@@ -81,6 +81,13 @@ was not spread anything like evenly:
 | 2025 | **0 km** — laid up, and **deregistered** |
 | 2026 | re-registered September |
 
+⚠ **Since the 13 September odometer reading, about 450 km**: a trip to the
+Šumava and back, ending 19 September 2026 — two long runs plus about an hour
+of touring. **That is an owner-reported distance and not an odometer reading**,
+which is why the table above is left alone — and it is also the reason the
+fill that ended the trip is not a consumption figure. See *The first fill
+after the overhaul* below.
+
 So the tail end of the record is a car that was barely driven and then not
 driven at all. **Per-year distance is recorded only for 2023 onwards**; the
 26,300 km covered between September 2017 and December 2022 is a single lump
@@ -116,6 +123,32 @@ file exists.
 **Range 7.0 to 10.9, mean 8.8, and the spread is 45 % of the mean** *(derived
 from the table)*. What that scatter is worth, and what it is not worth, is the
 next section.
+
+### The first fill after the overhaul — 2026-09-19
+
+**44.17 litres, off the pump, at the end of the Šumava trip.** It is recorded
+here because it is the first pump figure since the converter, plugs, leads and
+everything else, and because a litre count is worth keeping even when it
+cannot yet be divided by anything.
+
+⚠ **It is not a consumption figure and must not be turned into one.** Neither
+the odometer at this fill nor the state of the tank at the previous one was
+noted, so the two things the ratio needs are both missing. The ~450 km above
+is owner-reported and would give 9.8 l/100 km — **which is arithmetic, not a
+measurement**, and it sits in the upper half of a table whose own spread is
+45 %. Do not add it as a row.
+
+**What the same fill did measure is the sender**, not the engine:
+`docs/refuel-reset.md`, *The first real refuelling*, has the three numbers and
+what they say about the tank scale. That is a different quantity from anything
+in this file.
+
+**Next time, the odometer.** The brim-to-brim procedure at the end of this
+file is five steps and step 1 is the one that half-happened: the tank was
+filled, the reading was not written down. A fill with the odometer beside it,
+twice, is the whole of what stands between this project and a real check on
+the fuel channel — and the car is now in the state where that check is finally
+worth taking.
 
 ---
 

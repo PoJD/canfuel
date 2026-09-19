@@ -154,6 +154,65 @@ own frame rather than a separate gauge sender, so that is what the ECU
 believes and not merely what the needle shows. **Do not re-propose either as a
 candidate**; the airflow and fuelling argument below is where this goes.
 
+#### The trip itself, as the owner reports it
+
+**About 450 km**, two long runs there and back plus roughly an hour of
+touring, on new plugs, leads and exhaust and on the **old** injectors — they
+were still in transit. **No faults**: the lamp stayed out and nothing was
+reported.
+
+**The smell is recorded above and 450 km did not bring it back**, which is
+the part worth adding: neither the converter nor the exhaust smells unhealthy
+after a long run, and it now survives two long runs rather than one warm-up.
+
+**The motorway was deliberately gentle.** Held at about 4,000 rpm and no more
+than 5,000, which the owner puts at about 130 km/h in top — the figure is not
+tied to which of the two engine speeds it goes with — with brief excursions
+higher when joining. So nothing on this trip is a measurement of the top end,
+and the b7 figures below are not one either.
+
+⚠ **And the owner still reports the car as not right.** A long run leaves it
+feeling livelier, which is the observation this file already carries; the
+residual has not gone. Nothing on the fuel side was changed before this trip,
+so that is the expected result rather than a disappointing one.
+
+**The car is now parked until the injectors arrive**, which restores the one
+condition `next-drive.md` needs and had lost: an overnight stand with nothing
+disturbing it. It also means the tank stays as it was filled — see
+`refuel-reset.md`, *The first real refuelling*, and `next-drive.md` step 4a.
+
+#### What the two torque readings imply about b7 — derived, not measured
+
+Two figures came off the display, and they are worth inverting because they
+are the first full-throttle readings this project holds that are **not** from
+a low-gear sweep:
+
+| what the driver did | display | rpm | **b7 this implies** |
+|---|---|---|---|
+| a pull from about 2,000 to 3,000 rpm, maximum over the pull | **114 Nm** | 2,000–3,000 | **176–183** |
+| full throttle, held above 4,000 rpm | **117 Nm**, steady | 4,000–5,500 | **193–203** |
+
+⚠ **Derived by inverting this firmware's own arithmetic against a display
+reading, with the engine speed estimated from the driver's description.**
+`b7 = (Nm + 6.74 + 0.004820 × rpm) / 0.74`, from `TORQUE_CNM_PER_BIT` and the
+drag line in `config.h`, with `TORQUE_TRIM_PCT` at zero. **The rpm band is the
+whole of the uncertainty**; everything else is arithmetic. This is not a
+substitute for the capture and `next-drive.md` steps 13–14 are unchanged by
+it.
+
+**What it is worth anyway.** `tools/b7scan.py` puts the largest b7 this engine
+has ever been *seen* to make at **185**, out of three wide-open bursts that
+were every one of them still climbing when the throttle shut. A steady 117 Nm
+above 4,000 rpm implies b7 near **196** — higher than anything recorded, and
+for the first time **not still rising when it was read**. `next-drive.md`
+predicts b7max near 196–217 for a healthy engine at a September intake
+temperature, so this lands on the bottom edge of the predicted band.
+
+⚠ **A display reading with a wide band under it settles nothing**, and
+reading it as the prediction confirmed is the mistake available here. What it
+does is point where the prediction pointed, before the drive rather than
+after it.
+
 **From VCDS**, `01-Motor`, measuring blocks logged to file during the drive.
 The engine is `06A 906 018`, labels `06A-906-018-AQY.LBL`. Group **003** turns
 out to carry engine speed, **mass air flow in g/s**, throttle angle and
@@ -420,6 +479,76 @@ which the per-second rates account for but which still gives it more chances.
 in the twenty minutes *after* the temperature gauge has already settled, and
 should ease as the engine soaks through. The gauge reads the coolant and is
 therefore useless for it; `OilTemp` on the display is not.
+
+### The oldest symptom is on the overrun, and it is the sharpest statement of the lever
+
+**The owner's recollection, offered after the Šumava trip and describing
+something that predates all of this work:** on a **cold** engine, braking on
+the engine down a hill, **fuel could be heard going into the exhaust and
+burning there** — a burbling from the back of the car. **On a warm engine it
+does not happen.**
+
+**That is the same thermal lever as the idle stumbles, stated far more
+cleanly.** The idle argument has to work through counting dips and comparing
+three recordings that differ in more than temperature. This one is an event
+the driver can hear, present in one thermal state and absent in the other,
+with no instrument involved at all.
+
+⚠ **It is a recollection, it is undated, and nothing in this repository
+corroborates it.** It is written down because it is a testable claim and the
+test is nearly free, not because it is evidence yet.
+
+**Why the overrun is the sharp part.** Coasting in gear with the pedal fully
+released is the condition in which the ECU has the least reason to be
+delivering fuel at all — the engine is being turned by the car rather than
+asked for torque. Unburnt fuel reaching a hot exhaust *there* is fuel arriving
+while the driver asks for none. **A dribble that puddles on a cold port and
+evaporates on a hot one produces exactly the temperature dependence
+described**, and it is the same mechanism this file already proposes for the
+idle stumbles, observed in the state where it is loudest.
+
+⚠ **The argument rests on one fact this project does not hold: whether this
+ECU cuts the injectors on the overrun at all.** If it does, fuel in the
+exhaust there is uncommanded and the paragraph above stands. If it does not,
+the burble is commanded fuel and says nothing whatever. **It is not asserted
+here.** The AQY's fuelling strategy is not something this repository has a
+document for, and `CLAUDE.md`'s rule about sources applies to a car's ECU as
+much as to a datasheet.
+
+⚠ **And the corpus very nearly cannot settle it.** `python
+tools/coastscan.py` looks for the windows where the car is driving the engine
+— moving, pedal at rest, engine well above the governor, **and the
+engine-speed-to-road-speed ratio holding**, which is what separates an in-gear
+overrun from the gearchange or clutch-in coast that looks identical on every
+other channel. Across all eighteen fixtures it finds **one**, in
+`17_drive_property_z1`:
+
+| | |
+|---|---|
+| duration | **1.30 s** |
+| engine speed | 4962 → 3204 rpm |
+| road speed | 30.8 → 20.3 km/h |
+| ratio drift | 2.2 % |
+| fuel | 769 µl/s = **11.4 µl per revolution**, against **24.6 µl/rev at warm idle** |
+
+**So no clean fuel cut appears in the one window there is.** The charge per
+revolution falls to a little under half of idle's and does not go near zero —
+reduced, which is not the same thing as cut. ⚠ **Per revolution and not per
+second**, because a coast is also a deceleration: µl/s falls with the engine
+speed whatever the ECU is doing, and comparing it against idle's 326 µl/s
+would answer a different question.
+
+⚠ **That is evidence and not an answer, for three reasons.** It is **1.3 s**,
+short enough for a strategy with an entry delay to sit inside it untouched. It
+is a hard deceleration ending near 3,200 rpm, so a cut that resumed on the way
+down would look exactly like this. And `17_drive_property_z1` opens at 75 °C
+of oil — **the warm state, which is the one the owner says the burble does not
+happen in.** A cold in-gear coast, which is the whole question, exists nowhere
+in this repository.
+
+**One window on the next drive settles it and costs nothing**, because the
+drive happens anyway: `next-drive.md` step 13a is the coast — five seconds,
+cold, clutch up — and `coastscan.py` is the analysis.
 
 ### The old converter was shown to the owner, and it is the one hard fact here
 

@@ -109,7 +109,7 @@ finds it rather than rediscovers it.
 | Engine speed | 0x280 | 2–3 LE | × 0.25 rpm | |
 | Coolant temperature | 0x288 | 1 | × 0.75 − 48 °C | 0xFF = fault |
 | Oil temperature | 0x420 | 3 | × 0.75 − 48 °C | 0xFF with the engine off |
-| Fuel in tank | 0x320 | 2, mask 0x7F | litres | bit 0x80 = reserve lamp |
+| Fuel in tank | 0x320 | 2, mask 0x7F | indicated litres | bit 0x80 = reserve lamp; the scale reads low, `refuel-reset.md` |
 | Torque (indicated) | 0x280 | 7 | 0.74 Nm/bit | a decision, see `frames.md` |
 | Throttle position | 0x280 | 5 | 38 = rest position | |
 | Engine load | 0x280 | 6 | | 0 with the engine off; **not decoded by the firmware** |

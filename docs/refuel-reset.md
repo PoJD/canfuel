@@ -114,6 +114,107 @@ value, it would fire on every pull-away.
 
 ---
 
+## The first real refuelling — 2026-09-19, and what it measured
+
+**Owner-reported off the display, not a capture.** The converter and the
+MFD15 were fitted and the tank was filled on the way back from a 450 km trip;
+nothing was recording. So this is three numbers and an observation rather than
+a log, and everything below is bounded by that.
+
+| | |
+|---|---|
+| indicated before, `FuelTank` on the display | **10.9 L** |
+| delivered, off the pump | **44.17 L** |
+| indicated after | **50.9 L** |
+| the reset | **fired** — the average zeroed |
+
+### The rule fired on a real refuelling, which nothing had ever shown
+
+Every previous statement about this rule came from replaying eighteen
+recordings **in which nobody ever refuelled**, and from synthetic frames in
+`test_compute.c`. *Watch out when implementing* below still asks for a
+recording taken while refuelling and it still should — but the rule has now
+been run once by a car, at a pump, against a real sender, and it did what it
+is for.
+
+⚠ **What was observed is the average zeroing, and `refuels` was not read.**
+0x603 is transmitted only with JP1 fitted and the dashboard was shut, so the
+count that would have confirmed it is the one channel that was not available.
+`vehicle-history.md` asks for `refuels` to be checked rather than assumed for
+exactly this reason, and this is the case that could not honour it.
+
+**There is a second symptom at the pump and it costs nothing.** `compute.c`
+snaps the damped display level straight to the raw reading when it detects a
+refuelling, so on a detection the gauge **jumps**. Without one it creeps:
+`TANK_DAMP_SAMPLES` is a 128 s time constant, so a 40 L step is only about
+three-quarters of the way there two minutes later. **A gauge showing the new
+level within seconds of the nozzle is the rule having fired**; one that walks
+up over the following five minutes is the filter alone. Worth knowing next
+time, because it needs no jumper, no bench and no capture.
+
+### The sum does not add up, and the shortfall is the sender's own scale
+
+10.9 + 44.17 = 55.07 L and the gauge settled at 50.9. **That is neither an
+arithmetic fault nor this firmware** — `compute_tank_d()` applies no
+calibration at all, so what the display shows is the sender's own number,
+damped.
+
+What a fill measures is the sender's **gain**: how much indicated litre it
+returns per litre actually delivered.
+
+| span | delivered | indicated rise | gain |
+|---|---|---|---|
+| near empty, an earlier fill | 6 L | 5 L | **0.83** |
+| 11 → 51 indicated, this fill | 44.17 L | **40.0 L** | **0.905** |
+
+**Both are under one, and the second is forty litres wide rather than five**,
+so the scale is compressed over most of the travel and not only at the bottom
+where the sender was already known to be poor.
+
+⚠ **Saying that the compression "explains" the 4.17 L is circular, and it is
+worth being explicit about that.** The gain was derived from the rise, so the
+rise agreeing with the gain is arithmetic and not evidence. **The one
+non-circular check is what a zero-offset scale of 0.905 says the tank held at
+the brim: about 56 L against a 55 L nominal**, which is a filler neck and is
+plausible. Plausible is the whole of what it is.
+
+⚠ **The sender's own step is a whole litre.** The tenths on the display come
+from the damping filter, not from resolution, so ±0.5 L of quantisation sits
+under each end of that 40.0 and the gain is 0.905 ± 0.023.
+
+⚠ **Neither row is an absolute calibration**, and reading them as one is the
+error available here. A gain says what a *rise* is worth and says nothing
+about where the scale sits, so "the tank really held 55.07 L" does not follow
+from "10.9 was indicated beforehand". Whether the fill was a brim is not
+recorded either — nobody watched the nozzle click.
+
+**It points the same way as `REFUEL_RISE_L` = 4 without being what decides
+it.** `config.h` refuses five because the threshold is a `>` on an *indicated*
+rise and this sender under-reads; that argument rested on the 6 L fill alone,
+at the one corner where the sender is known to be worst. ⚠ **This point could
+not have refused five on its own**: at a gain of 0.905 a 6 L fill still shows
+5.4 and would have been caught. **It is the near-empty gain of 0.83 that does
+the work**, and what the wide point adds is that the compression is not a
+quirk of the bottom of the travel.
+
+### What it changes in `src/`, which is nothing, and that is a decision
+
+**`compute_tank_d()` stays uncalibrated.** `CLAUDE.md` closed the tank as a
+decision on one point taken near empty; this is a second point and it does not
+reopen it. Two chords are not a curve on a sender that is nonlinear at both
+ends, and a 9 % gain fitted to them would be asserting the middle of the
+travel, which nothing has measured at all.
+
+**And the direction is the safe one.** `compute_range_km()` reads the damped
+level, so a scale 9 % low makes Range about 9 % pessimistic. A range that
+under-promises is the error to have.
+
+**What would change it** is the middle of the travel, which only a tank driven
+down from full supplies — so the next drive and the ones after it, not another
+fill.
+
+---
+
 ## Why not the trip reset from the instrument cluster
 
 The original design wanted to hook into the
@@ -134,6 +235,11 @@ In the current data the tank reports **0 litres with the reserve lamp on**
 (b2 = 0x80) throughout the first session. The rule therefore cannot be tested
 against these logs — a recording taken while refuelling is needed. Until then
 it has to run on synthetic frames in `test_compute.c`.
+
+⚠ **The rule has since fired once in the car** — *The first real refuelling*
+above. That is an observation off a display and not a recording, so this
+paragraph stands unchanged: what is still missing is a capture spanning a
+fill, and nothing in the corpus is one.
 
 ---
 

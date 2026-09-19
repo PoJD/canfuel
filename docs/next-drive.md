@@ -25,7 +25,10 @@ already hold the "before" for the measurements that matter.
 
 ⚠ **The car standing until then was the plan and it is not what happened.** The
 injectors were late, and the car has been driven in the interval — the garage
-run, and a weekend away. The reasoning that wanted it parked has not changed:
+run, and **about 450 km to the Šumava and back, ending 19 September 2026**.
+**It is parked from that day until the injectors go on**, which puts the
+overnight stand of step 3 back within reach and leaves the tank as it was
+filled. The reasoning that wanted it parked has not changed:
 a new converter behind a cylinder still dumping raw fuel is the same converter
 that was cut open. What changed is the parts arriving after the calendar did.
 `engine-health.md` records where the damage actually concentrates — **long
@@ -63,18 +66,38 @@ is right. **Do not deliberately make it longer.**
 They cannot share it — the converter is powered from the display, so removing
 one removes both.
 
-⚠ **4a. Do this drive with fuel in the tank, and write down roughly how much.**
-A quarter is enough and a half is better; **do not top up specially and do not
-run it down**, because what is wanted is an ordinary level rather than a
-particular one. It costs nothing and it closes a blind spot nothing else can:
-**every fixture in this repository that contains a moving car has 0–10 L in
-the tank**, and the only one with a real level, `18_coldstart_z1` at 50 L,
-never moves. The float has therefore never been recorded in motion anywhere
-but the bottom of its travel, on a sender known to be nonlinear — which is
-why the refuelling rule's thresholds rest on measurements from one corner of
-the state space. `refuted.md` C10 is what that cost. The capture is being
-taken anyway; the only thing this step adds is the note of the level, and not
-deliberately arriving nearly empty.
+⚠ **4a. The tank is full, and that is settled rather than chosen.** It was
+filled on **19 September 2026** — 44.17 L at the pump, 10.9 L indicated before
+and 50.9 L after — and the car is not started again before the injectors, so
+it is still full at the key. `refuel-reset.md`, *The first real refuelling*,
+is that fill and what it measured. **This step is now a record of the state
+the drive starts in rather than an instruction about it**, and the level
+needs no noting because it is written down here.
+
+**Which is the opposite corner of the state space from every fixture**, and
+that is what it buys. Every fixture in this repository that contains a moving
+car has **0–10 L in the tank**; the only one with a real level,
+`18_coldstart_z1` at 50 L, never moves. The float has therefore never been
+recorded in motion anywhere but the bottom of its travel, on a sender known to
+be nonlinear, which is why the refuelling rule's thresholds rest on
+measurements from one corner. `refuted.md` C10 is what that cost. **This drive
+records the top of the travel in motion for the first time** — the slosh at
+full, which is what was asked for.
+
+⚠ **But a full tank is the LENIENT test for a false reset, not the harsh
+one**, and question 4 below has to be read knowing it. The rule fires on a
+**rise** above the settled level, and a brimmed float sits against its top
+stop: it can swing down as the fuel moves and it cannot swing up past the
+stop. So *it never fired on a full tank* is a weaker result than the same
+sentence about a half-full one.
+
+**That applies to the start of the drive and not to all of it**, which is the
+one thing making it better than it sounds: an hour of this kind of driving
+burns a few litres, so the float leaves its stop partway through and the later
+part of the capture is an ordinary high level rather than a clipped one.
+**The middle of the travel is still unsampled** — a sender nonlinear at both
+ends does not interpolate between two ends that behaved — and only the drives
+after this one reach it.
 
 ## In the car, before the key
 
@@ -90,7 +113,7 @@ extra screen, and it is the first half of settling the coolant scale — see
 
 ⚠ **THE COLD SOAK IS A CALIBRATION POINT AND IT ONLY EXISTS FOR THESE FEW
 MINUTES.** The car has stood overnight, so **every fluid in it is at ambient**
-and four channels are all reading one temperature at once:
+and six readings are all of one temperature at once:
 
 | | where it comes from |
 |---|---|
@@ -99,17 +122,27 @@ and four channels are all reading one temperature at once:
 | coolant | VCDS 001, here |
 | coolant | `0x288` b1, out of the capture |
 | oil | `0x420` b3, out of the capture |
+| **oil, directly** | **the infrared thermometer at step 6b** — the filter and the sump |
 
-⚠ **The mirror display is the best of the five and it was missed until now**,
-because this repository spent months asserting the car had no ambient sensor
-on the strength of two zero bytes (`refuted.md` B11). It is worth the most
-because it shares **nothing** with the others: not the sensor, not the wiring,
-not VCDS, not this bus. Every other row can be wrong together; that one
-cannot join them.
+⚠ **Two of those six share nothing with the rest**, which is what makes them
+worth more than the count suggests: the mirror console and the infrared
+thermometer. Not the sensor, not the wiring, not VCDS, not this bus. The other
+four can be wrong together; those two cannot join them.
 
-**Read it before opening a door**, while the car is still as it stood. These
-displays heat-soak — standing in sun, or with the cabin warm, they read high —
-which after an overnight stand in the morning is exactly when they do not.
+**The mirror display was missed until now**, because this repository spent
+months asserting the car had no ambient sensor on the strength of two zero
+bytes (`refuted.md` B11).
+
+**And the last row is the only one that reads the oil rather than inferring
+it.** Every other row at this soak is coolant, intake air or ambient, and the
+oil's cold value is taken on the argument that everything has stood overnight.
+The filter and the sump are the oil's own container, so step 6b turns that
+argument into a reading.
+
+**Read the mirror console before opening a door**, while the car is still as
+it stood. These displays heat-soak — standing in sun, or with the cabin warm,
+they read high — which after an overnight stand in the morning is exactly when
+they do not.
 
 The capture starts at step 7 and the engine not until step 10, so its opening
 minutes cover the same soak — nothing changes in between. **Once the engine
@@ -144,13 +177,45 @@ temperatures, and only then is there a line.
 **VCDS never gives the oil, at any temperature** — `01-Motor` has no oil
 block, which question 4 in `can-decoding.md` settled by looking rather than
 by guessing. So the oil *slope* has exactly two routes: the filter reading at
-step 28, or the two-cold-soak pair on a genuinely cold morning.
+step 28, or the two-cold-soak pair on a genuinely cold morning. **Step 6b
+gives the first of those a reference at the cold end**, though not the one it
+looks like — *The cold readings at step 6b* in Part 2 is what it is and is not
+worth.
 
 ⚠ **If group 001 will not display with the engine stopped**, do not chase it —
 note that it would not and move on. **Group 006's intake air is the fallback
 and it is already being read at step 6**: on a car that has stood overnight
 that is ambient too, from VCDS, in real degrees, which is all this point
 needs.
+
+**6b. Now the infrared thermometer, bonnet open, engine still cold.** Six
+spots, in this order, **three readings each**, written down with the clock
+time:
+
+| | where | why it is on the list |
+|---|---|---|
+| 1 | **the oil filter**, on the painted can | the step 28 target — this is the pair that matters |
+| 2 | **the sump pan**, as far round as reaches without going under the car | where the sender actually sits |
+| 3 | **the thermostat housing**, or the upper radiator hose | the coolant's own metal, against `0x288` |
+| 4 | **the rocker cover** by the filler cap | a known-bad target, measured on purpose |
+| 5 | **the dipstick tube** | the other known-bad target, same reason |
+| 6 | **a shaded body panel, or the ground beside the car** | ambient, from this instrument rather than another |
+
+**Same spots, same order, same distance, again hot at step 28.** That is the
+whole discipline: a pair of readings of one spot is worth far more than either
+reading alone, and only if the aim was the same both times.
+
+⚠ **All six must read one number, and that is the point of taking them.** The
+car has stood overnight, so filter, sump, housing, tube and tarmac are all at
+ambient. **The spread across the six is the noise floor of the whole method** —
+if they span four degrees cold, nothing at step 28 is worth better than
+±2 °C.
+
+⚠ **It does NOT give an offset to subtract at step 28**, which is the obvious
+reading of it and the wrong one. *Steps 27–28a* in Part 2 has the argument in
+three lines; the short version is that the error this instrument makes is
+proportional to how far the target is from its surroundings, and at a cold
+soak that distance is zero.
 
 **7. Start the capture:**
 
@@ -222,14 +287,50 @@ does not depend on somebody remembering to look.
 half of the drive** — roughly ten, twenty and thirty minutes in — and keep
 whichever one landed in the band. They are free; *Steps 12–14* says why.
 
-**13. Two or three full-throttle pulls in a HIGH gear from about 2400 rpm** —
-fourth or fifth, or up a hill. Somewhere the engine *sits* near peak torque
-rather than flashing through it.
+**13. Two or three full-throttle pulls in FOURTH, from about 2,200 rpm and as
+far up as the road allows.** Pedal on the floor, clutch up, no change of gear
+part way through. **5,000 rpm is enough and 6,000 is better**; stop wherever
+the limit and the traffic say, and do not go looking for somewhere to do
+otherwise.
 
-**14. One low-gear pull to high revs.**
+⚠ **Fourth and not fifth, and the arithmetic is the owner's own.** The Šumava
+trip was run at 4,000–5,000 rpm in top at about 130 km/h, so 6,000 rpm in top
+is somewhere between 155 and 195 km/h and is not on under either reading of
+that. Fourth reaches the same engine speeds at a speed a motorway can hold.
 
-**15. Nothing needs marking and no times need noting.** Drive; the analysis
-finds the idles and the pulls by itself.
+⚠ **That is a sweep, and an earlier version of this file said not to sweep.**
+The objection was never to the sweep, it was to the **rate** — *Steps 12–14*
+in Part 2 has the measurement and what changed.
+
+**Do not assume the maximum sits where the factory put it.** The car has been
+chipped since 6/2018 and what that did to the shape of the curve is not known
+here, which is exactly why the pull covers a range instead of aiming at an
+engine speed.
+
+**13a. One long coast in gear while COLD, and one more when hot.** Pedal fully
+released, **clutch up**, stay in gear, at least five seconds — a downhill
+stretch if the route has one, otherwise the far side of any acceleration.
+**Take the cold one in the first few minutes**, because that is the state the
+symptom belongs to.
+
+**And listen.** Whether the exhaust burbles is the one observation on this
+drive that no analysis can recover afterwards. Write down *heard it* or *did
+not hear it*, cold and hot, and nothing else. `engine-health.md`, *The oldest
+symptom is on the overrun*, is what it is for.
+
+**The other half comes out of the capture by itself** — `python
+tools/coastscan.py CAPTURE` finds the coast, checks it really was in gear and
+prints the fuel the ECU commanded through it, per revolution. **Five seconds
+is the number that matters**: the whole corpus holds one in-gear coast and it
+lasts 1.3 s, which is short enough that a fuel cut with an entry delay could
+hide inside it.
+
+**14. One low-gear pull to high revs**, as before. It costs one squirt of fuel
+and it is the only thing that reaches the top of the range if fourth cannot.
+
+**15. Nothing needs marking and no times need noting** — except the one line
+step 13a asks for. Drive; the analysis finds the idles, the pulls and the
+coasts by itself.
 
 **16. Finish at a standstill with the engine idling and hot.** Do not switch
 off. **This idle wants its three to five minutes before step 17**, because
@@ -314,6 +415,18 @@ filter is full of oil and stays full** — the anti-drainback valve sees to that
 one. Bare or shiny metal reads low on an infrared thermometer; a painted
 filter body does not.
 
+**28a. Then the other five spots from step 6b — same order, same distance,
+three readings each, with the clock time.** The filter is the one that answers
+question 2; the rest are what say how much the filter reading is worth.
+
+**Two of the pairs earn their place on their own.** *Filter against sump* is
+the one caveat Part 2 raises against the filter reading and never measures:
+cold they must agree, and hot their difference is the gallery-to-pan gap, with
+both surfaces at a similar distance from ambient so the instrument's error
+largely divides out of the difference. *Rocker cover and dipstick tube* are on
+the list because Part 2 tells the next person not to use them and has never
+shown what they cost — two numbers retire that as an assertion.
+
 **29. Stop the capture. Do not clear the fault memory.**
 
 ## Some hundreds of kilometres later
@@ -330,8 +443,8 @@ instruments. This one matters and is easy to forget.
 | the VCDS log | as it comes, groups 003 and 014 |
 | the photographs | every screen from steps 18 and 20–24 |
 | two paper numbers, twice | group 006, before and after |
-| the tank level | roughly, in litres or quarters — see step 4a |
-| the oil filter reading | infrared, three of them, with the clock time |
+| the infrared readings | six spots cold (step 6b) and the same six hot (steps 28–28a), three each, with clock times |
+| the overrun | *heard it* / *did not hear it*, cold and hot — step 13a |
 | the coolant, twice from VCDS | group 001 cold (step 6a) and hot (step 26a), each with its clock time |
 | the mirror console reading | at the cold soak, before a door is opened |
 | how it drives | in plain words |
@@ -511,13 +624,27 @@ keep whichever stop landed near 61 °C and the others are extra points on
 exactly the continuous warm-up curve `engine-health.md` says would settle
 whether the thermal lever is real. **The oil is slow enough for either route to
 work**: it climbs about 0.75 °C a minute while idling (the figure is under
-*Steps 27–28*, and `09_idle_60s_z1` shows the same rate at 61 °C), so a
+*Steps 27–28a*, and `09_idle_60s_z1` shows the same rate at 61 °C), so a
 five-minute stop drifts some four degrees. **You cannot idle past the band —
 only start outside it.**
 
-**High gear for the pulls** because the last drive got this wrong: every pull
-was a low-gear sweep that crossed 2400 rpm in a moment, so there was
-essentially no full-throttle data below 3000 rpm.
+**High gear for the pulls, and the objection is to the RATE rather than to
+sweeping.** The last drive got this wrong: every pull was a low-gear sweep
+that crossed 2400 rpm in a moment, so there was essentially no full-throttle
+data below 3000 rpm. **The three wide-open bursts in `17_drive_property_z1`
+sweep at 1,900–2,100 rpm/s** — measured, and it is why all three were still
+climbing when the throttle shut. A 400-rpm band gets about a fifth of a
+second, which at ninety-four samples a second is a handful of frames taken
+while the filling is still catching up.
+
+**Fourth is roughly an order of magnitude slower** *(an estimate, not a
+measurement — the gearing enters roughly squared and nobody here has the
+ratios from a document)*, so a 400-rpm band gets seconds rather than
+fractions of one, and **a slow sweep is a series of holds**. That is what
+makes step 13's 2,200-to-as-high-as-it-goes better than a hold at one engine
+speed rather than a retreat from it: it covers the whole range at a rate where
+b7 can settle, and it does not require guessing in advance where the maximum
+is on an engine that has been remapped.
 
 **If the oil stops climbing and you want `can-decoding.md` question 7 closed
 outright**, add the free-revving holds from that question at the end while it
@@ -591,7 +718,7 @@ read what a quiet engine reads. Catching them needs a third logged group, a
 broken log, or a passenger. **Their own session, with somebody else holding the
 laptop.**
 
-## Steps 27–28 — the thermometer
+## Steps 27–28a — the thermometer
 
 **`can-decoding.md` question 10 is whether the oil temperature is *right*, not
 merely oil.** The channel never exceeds 77 °C and sits twenty-odd degrees
@@ -622,6 +749,48 @@ had nothing recording. One capture across both steps fixes both.
 well: by this point the engine has idled through every static read. The
 question is whether the channel and a thermometer agree at one moment, not what
 the highest number of the day was.
+
+### The cold readings at step 6b — what the pair does, and the one thing it does not
+
+**The proposal was the maintainer's and it is a good one**: read the same
+spots at the cold soak, so the hot readings have a reference rather than
+standing alone. Three of the four things it buys are real. The fourth is the
+one everybody expects and it is not available.
+
+**What it buys:**
+
+- **Aim, which is not trivial and is invisible afterwards.** A hot reading
+  three degrees out because the spot was half tarmac looks exactly like a hot
+  reading. A cold one does not: it has to come out at ambient, and if it does
+  not, the aim is wrong while there is still time to fix it.
+- **The instrument against two others.** VCDS group 001 and the mirror console
+  are already being read at the same soak for the same reason, so a
+  thermometer that reads 3 °C high against both of them has a **constant
+  offset**, and that one *is* subtractable.
+- **The noise floor of the method.** Six spots that must all be at one
+  temperature, and what they actually span, is the honest error bar on every
+  reading at step 28. Nothing else here produces one.
+- **A sixth row for step 6a's table**, and the only one that reads the *oil*.
+  Every other row at that soak is coolant, intake air or ambient; the filter
+  and the sump are the oil's own container, so the cold soak stops being an
+  inference about the oil and becomes a reading of it.
+
+⚠ **What it does NOT buy is an emissivity correction to subtract from the hot
+reading**, and this is worth being exact about because the assumption behind
+the proposal was that the error would be the same cold and hot. It is not.
+**An infrared thermometer with the wrong emissivity reads a blend of the
+target and of whatever the target is reflecting** — its surroundings. At a
+cold soak the target *is* its surroundings, so the blend is exact and **the
+reading comes out right whatever the emissivity is**. The error is
+proportional to how far the target sits from its background, which is zero
+cold and sixty-odd degrees hot. So the cold reading cannot see the very error
+it looks as though it measures.
+
+**Which costs nothing here**, and that is why the step stays. Question 2 is
+*77 °C against 103 °C* — a 26 °C fork, not a calibration — and the error an
+emissivity of 0.85 taken for 0.95 makes on a painted can at 100 °C is a few
+degrees. **Take the cold readings for the four things above and do not
+subtract them from anything.**
 
 ⚠ **Hot oil and an open bonnet.** The dipstick tube is not the exhaust, but
 there is no hurry here — take the minute.
@@ -662,6 +831,17 @@ chance: full throttle, near peak torque, held rather than swept. **The last
 drive got this wrong** — every pull was a low-gear sweep that crossed 2400 rpm
 in a moment, so there was essentially no full-throttle data below 3000 rpm, and
 b7's maximum came from the wrong part of the curve.
+
+⚠ **There is now a number to expect, and it did not come from a capture.**
+The Šumava drive of 2026-09-19 showed a steady 117 Nm at full throttle above
+4,000 rpm, which inverted through this firmware's own arithmetic implies **b7
+near 196** — higher than the 185 `b7scan.py` finds anywhere in the fixtures,
+and the first such reading that was not still rising when it was taken.
+`engine-health.md`, *What the two torque readings imply about b7*, has the
+derivation and its error bars. **It is a display reading with an estimated
+engine speed under it and it replaces nothing here**; what it does is say that
+the pulls are expected to land near the bottom of the 196–217 band below
+rather than to surprise anybody.
 
 **The health verdicts are what licence you to believe b7max.** They are not a
 parallel investigation that happens to share a session:
@@ -936,6 +1116,7 @@ figure*.
 | **are either of the replaced oxygen sensors gone again** | blocks 034, 036, 037 |
 | **can the display ever show the factory maxima** | **the high-gear pulls, steps 13–14** — b7 out of the capture against the ECU's load at the same engine speed. See *Which measurement settles the torque scale*; no VCDS block answers this |
 | **does the oil ever get hot enough to matter** | the oil temperature a long drive actually reaches, and the thermometer beside it |
+| **does the ECU cut fuel on the overrun** | step 13a's coast through `tools/coastscan.py`. It decides whether the owner's oldest symptom means anything — `engine-health.md`, *The oldest symptom is on the overrun* |
 
 **The last one is close to answered already.** The drive of 2026-09-10 peaked
 at **72–74 °C of oil after about an hour**, and the warm holds the drag line is
@@ -1036,6 +1217,16 @@ the filter for this and nothing else.
 - **what the at-rest samples actually look like** with fuel aboard. Every
   fixture in the repository has 0–10 L in a moving car, and `refuted.md` C10
   is what that cost.
+- **what the float does at the top stop.** The tank is brimmed (step 4a), so
+  this is the first recording of the sender at the top of its travel in
+  motion. Whether the slosh is clipped, whether the reserve bit behaves, and
+  what the raw spread is up there are all new.
+
+⚠ **Read the first bullet against step 4a's caveat.** A brimmed float cannot
+swing upward past its stop and the rule fires only on a rise, so a full tank
+is the state in which a false reset is *least* likely. **A clean result here
+is a floor and not a proof**, and the middle of the travel — which only the
+drives after this one reach — is where the rule is actually at risk.
 
 **Changes if it fires or comes close:** `REFUEL_ARM_S`, `REFUEL_RISE_L` and
 `TANK_STATIONARY_MMH` in `src/config.h`, and a fixture from this drive added
