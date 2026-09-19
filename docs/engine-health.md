@@ -100,6 +100,40 @@ comparative, so they need no baseline this car can no longer provide.
 | `Power`, peak | **58 kW** |
 | oil temperature, peak (0x420 b3, the cluster's channel) | **72–74 °C** |
 
+### The same three numbers after the plugs, leads and exhaust — 2026-09-19
+
+A long drive to the Šumava and back, on new spark plugs, new leads and a new
+exhaust, with the engine reporting no faults and the catalytic converter no
+longer smelling once warm. **Read off the display from the driver's seat and
+not logged**, so these are reported figures rather than a capture — which is
+enough for the only question they answer, because the question is whether the
+parts moved the number at all:
+
+| | 2026-09-10 | 2026-09-19 | |
+|---|---|---|---|
+| `Torque`, peak, full throttle | 117 Nm | **115–117 Nm** | unchanged |
+| `Power`, peak | 58 kW | **~50 kW** | see below |
+| oil temperature, peak | 72–74 °C | **≤ 74 °C after two hours** | unchanged |
+
+**The torque did not move, and that is the finding.** New plugs, leads and
+exhaust reproduced the previous pull's peak exactly, so whatever holds b7 down
+at full throttle is not the ignition side and not the back pressure. The
+airflow argument below is untouched by this drive and remains the thing that
+needs a capture.
+
+**The lower peak power is not a second finding.** Peak power and peak torque
+need not occur together: 117 Nm at 4735 rpm is 58 kW and 115 Nm at 4150 rpm is
+50 kW, so a drive that changed up earlier reports a lower maximum with the
+same engine. Only a pull held to the same engine speed compares, and nothing
+here says this one was.
+
+⚠ **Two hours and still no more than 74 °C of oil is the entry that matters
+most**, and it belongs to question 10 in `can-decoding.md` rather than to this
+document. That question weighs *"this car is only driven gently"* against
+*"the channel is offset low"*, and the longest drive on record until now was
+about an hour. A run to the Šumava and back is not gentle pottering, so the
+first explanation is now carrying weight it did not have to carry before.
+
 Two notes on the oil figure, because it invites a wrong conclusion. It is
 **not** anomalous: the four warm free-revving holds this project's drag line is
 fitted to sit at 72.8–76.6 °C, and the fixture table under question 4 in

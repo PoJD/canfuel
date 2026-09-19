@@ -675,12 +675,25 @@ on the coolant:
 | `16` — 2926 rpm held | 77.25 °C | 99.0 °C | −22 |
 | `17` — six minutes driving | 77.25 °C | 100.5 °C | −23 |
 | the drive of 2026-09-10 | **72–74 °C peak after about an hour** | — | — |
+| the drive of 2026-09-19 | **no more than 74 °C after two hours** | — | — |
 
 **A warmed engine under load normally runs its oil at 90–110 °C and above the
 coolant, not twenty-odd degrees below it in every state ever recorded.** That
 is the whole of the suspicion, and it is not nothing: an hour of driving that
 peaks at 74 °C is the observation, and "this car is only driven gently" and
 "the channel is offset" both explain it.
+
+**The 2026-09-19 drive weakens the first explanation without settling the
+question.** A run to the Šumava and back is two hours including sustained
+higher-speed driving, and the channel finished it at the same 74 °C an hour of
+driving had already reached. Gentle use explains an engine that never gets
+hot; it does not explain a channel that stops at exactly the same number
+whatever the drive is, and stopping at the same number is what an offset does.
+⚠ **It is still not proof**, because nothing on that drive measured the oil
+independently, and a thermostat stuck open would produce the same plateau from
+a real temperature — which is a fault in the engine rather than in the
+decoding, and `engine-health.md` is where that belongs. **Read off the display
+from the driver's seat and not logged**, so it is a reported figure.
 
 **What is not wrong with it.** It is a real measurement and not a stuck or
 derived number — in the four free-revving holds `13`–`16` it climbs
