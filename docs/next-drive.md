@@ -84,6 +84,25 @@ Both at once is fine.
 **6. Read group 006 and write two numbers on paper:** intake air temperature
 and the altitude correction factor.
 
+**6a. Read group 001 as well and write down the coolant temperature.** One
+extra screen, and it is the first half of settling the coolant scale — see
+*The four questions* at the end.
+
+⚠ **THE COLD SOAK IS A CALIBRATION POINT AND IT ONLY EXISTS FOR THESE FEW
+MINUTES.** The car has stood overnight, so **every fluid in it is at ambient**
+and four channels are all reading one temperature at once:
+
+| | where it comes from |
+|---|---|
+| intake air | VCDS 006, step 6 |
+| coolant | VCDS 001, here |
+| coolant | `0x288` b1, out of the capture |
+| oil | `0x420` b3, out of the capture |
+
+The capture starts at step 7 and the engine not until step 10, so its opening
+minutes cover the same soak — nothing changes in between. **Once the engine
+fires this point is gone until the next overnight stand.**
+
 **7. Start the capture:**
 
 ```
@@ -188,6 +207,7 @@ selection be touched.
 | **055** and **056** | idle regulator, its adaptation, target idle speed |
 | **100** | readiness bits and OBD status |
 | **006** | intake air temperature and altitude factor, the second time |
+| **001** | coolant temperature, hot — **note the clock time with it** |
 
 **19. Now the basic settings. This is how one is run** — it is not *Akční
 členy*, which is the other function:
@@ -223,12 +243,27 @@ python tools/usbtin_capture.py --seconds 420 --out final_z1.txt
 **26. While it runs, disconnect VCDS from the ECU and reconnect it.** Engine
 running, bonnet shut, nothing else touched.
 
+**26a. Still idling, read group 001 once more and note the clock time.** The
+capture is running, so this pairs a VCDS coolant reading with the `0x288` raw
+in the same file — the second of the two points that settle the coolant scale.
+
 **27. Leave the capture running. Unplug VCDS, switch the engine off** and go
 straight to the bonnet. The bus dies with the ignition, and that is fine — the
 last `0x420` frames it recorded are the reference.
 
-**28. Put a thermometer down the dipstick tube.** Note the reading and the
-clock time. A minute or two after switching off is close enough.
+**28. Point an infrared thermometer at the OIL FILTER.** Note the reading and
+the clock time. A minute or two after switching off is close enough.
+
+⚠ **The filter and not the dipstick tube, and not the filler cap.** Down the
+tube an infrared thermometer mostly reads the tube wall; through the filler
+cap it reads the rocker cover and the valve gear, which is not the oil this
+channel is about and has drained away by the time the engine stops. **The
+filter is full of oil and stays full** — the anti-drainback valve sees to that
+— and it is reachable without going under the car.
+
+**Aim at the painted can, hold it close, and take three readings** rather than
+one. Bare or shiny metal reads low on an infrared thermometer; a painted
+filter body does not.
 
 **29. Stop the capture. Do not clear the fault memory.**
 
@@ -241,13 +276,14 @@ instruments. This one matters and is easy to forget.
 
 | | |
 |---|---|
-| the capture | filtered to `0x280`, `0x1A0`, `0x420` and `0x480` before sending |
+| the capture | filtered to `0x1A0`, `0x280`, `0x288`, `0x320`, `0x420` and `0x480` before sending |
 | `final_z1.txt` | whole, it is small — it carries the 0x200 test and the oil reading |
 | the VCDS log | as it comes, groups 003 and 014 |
 | the photographs | every screen from steps 18 and 20–24 |
 | two paper numbers, twice | group 006, before and after |
 | the tank level | roughly, in litres or quarters — see step 4a |
-| the dipstick reading | with the clock time |
+| the oil filter reading | infrared, three of them, with the clock time |
+| the coolant, twice from VCDS | group 001 cold (step 6a) and hot (step 26a), each with its clock time |
 | how it drives | in plain words |
 | later | the second group 032 photograph |
 
@@ -602,9 +638,18 @@ why it is taken *after* the injectors are replaced rather than before.
 ## The capture filter
 
 **Sizes measured on `18_coldstart_z1.txt` rather than estimated.** The whole
-bus is **65 MB an hour**; the four identifiers kept are **36 % of the bytes,
-about 24 MB an hour.** `usbtin_capture.py` writes line by line, so an
-interrupted capture keeps everything up to the interruption.
+bus is **65 MB an hour**; the six identifiers kept are **52 % of the bytes,
+about 34 MB an hour**, so about 42 MB over the seventy-five minutes.
+`usbtin_capture.py` writes line by line, so an interrupted capture keeps
+everything up to the interruption.
+
+**Keep `0x1A0`, `0x280`, `0x288`, `0x320`, `0x420` and `0x480`.**
+
+| | share of the bus | filter total |
+|---|---|---|
+| `0x1A0`, `0x280`, `0x420`, `0x480` — the old four | 36.4 % | 24 MB/h |
+| `0x288`, the coolant | +11.2 % | 31 MB/h |
+| `0x320`, the tank | +3.9 % | **34 MB/h** |
 
 ⚠ **`0x480` is in that list and an earlier version of this file left it out**,
 which would have thrown away the one thing the capture is still needed for.
@@ -614,11 +659,22 @@ efficiency argument in `engine-health.md` — measured air from group 003 over
 the same pulls, divided by measured fuel. **Filter it out and the pulls have to
 be driven again.**
 
-**`0x288` is deliberately out**, and it is the only close call: the coolant
-would take the filtered capture from 36 % to 48 %, nine more megabytes for a
-channel that sat at 99 °C in all three warm idle fixtures while the thing being
-measured moved. If the warm-up state itself ever becomes the question, take the
-unfiltered capture.
+⚠ **`0x288` USED TO BE DELIBERATELY OUT AND IS NOW DELIBERATELY IN**, and the
+reversal is worth reading rather than skipping. The old reasoning was that the
+coolant *"sat at 99 °C in all three warm idle fixtures while the thing being
+measured moved"* — nine megabytes for a channel that never does anything. That
+was correct about the coolant and wrong about what would be asked of it: **the
+coolant has since become the reference every temperature argument leans on**,
+and question 10 in `can-decoding.md` now turns on comparing it against `0x420`
+b3 at one moment on a cold-soaked car. A channel that sits still is exactly
+what makes a good reference. Nine megabytes for the two points that settle two
+scales is not a close call any more.
+
+⚠ **`0x320` is in for a different reason and it was never considered before.**
+The tank level is what the refuelling rule watches, and after `refuted.md` C10
+that rule needs a drive it has never had: every fixture with a moving car in
+it has 0–10 L aboard. Four more megabytes buys the whole of question 4 below,
+and without them it cannot be asked at all.
 
 ---
 
@@ -836,4 +892,117 @@ at **72–74 °C of oil after about an hour**, and the warm holds the drag line 
 fitted to are 72.8–76.6 °C — the same range. `can-decoding.md` question 7 rests
 on "72–77 °C is warm, not the 95–110 °C of real driving", and that sentence
 appears to be false for this engine. **Unless question 10 is the reason it
-appears false**, which the thermometer settles.
+appears false**, which the oil filter reading settles.
+
+---
+
+# The four questions, and what each one changes in `src/`
+
+**This is the list to work from in the session after the drive.** Everything
+above is how to collect; this is what to do with it. The questions are
+independent except that **question 1 comes first and the next two lean on it.**
+
+⚠ **THE CONVERTER IS OFF THE BUS FOR THIS WHOLE DRIVE** — step 4 takes the
+display out and the USBtin takes its place. So nothing here is answered by
+watching a gauge. Questions 1–3 are answered from the capture and the
+paperwork; **questions 4 and 5 are answered by replaying the capture through
+the core**, which exercises `decode.c` and `compute.c` exactly as the device
+runs them and only leaves out the HAL. Nothing needs flashing beforehand.
+
+## 1. The coolant scale — `× 0.75 − 48`, never verified
+
+**Measured by:** VCDS group 001 at the cold soak (step 6a) and hot (step 26a),
+each against the `0x288` b1 raw byte at the same clock time in the capture.
+Two points, two unknowns, so the slope and the offset both come out —
+**measured rather than bracketed for the first time.**
+
+**Why it is first:** questions 2 and 3 use the coolant as their reference.
+Today it is only known to be *plausible*: physics brackets its slope at
+0.573–0.891 and 0.75 sits inside, which is corroboration and not measurement.
+`can-decoding.md` question 10 has the arithmetic.
+
+**Changes if it is wrong:** `temp_c100()` in `src/decode.c`, the table in
+`docs/can-decoding.md`, and **every temperature conclusion in this repository
+gets re-read** — including the ones that closed question 4 and the
+thermostat entry in `engine-health.md`.
+
+## 2. The oil scale — the live suspicion
+
+**Measured by:** two points, as above.
+- **cold**: the oil raw at the soak, against the coolant at the same moment,
+  now on a verified scale. Step 6a's table is that point.
+- **hot**: the oil filter reading at step 28, against the last `0x420` b3 in
+  the capture.
+
+**The bar is low and worth knowing before worrying about accuracy: the
+question is 77 °C against 103 °C.** A 26 °C gap, not a calibration to a
+degree, so infrared with all its emissivity sins settles it.
+
+⚠ **The filter is not the sump, and the sender is in the sump.** The filter
+carries gallery oil, a few degrees off what the pan holds. Inside 26 °C by a
+wide margin, so it does not matter here — but it would matter if anybody ever
+tried to calibrate rather than to choose between two candidates.
+
+**Changes if the slope is wrong:** the oil line of `temp_c100()`, question 10
+closes, and **question 7 is re-read rather than answered** — the drag line is
+fitted against b7 at those holds and does not move, only the temperature
+written beside it does. A wrong label is not a wrong line.
+
+⚠ **The two-cold-soak experiment in `can-decoding.md` question 10 will NOT be
+satisfied by this drive.** It needs two soaks about 15 °C apart and
+`18_coldstart_z1` was 16.5 °C on a September morning; another September
+morning is within a couple of degrees and resolves nothing. It stays available
+as a free confirmation **on the first genuinely cold morning** — twenty
+seconds of ignition-on, engine not started, no driving.
+
+## 3. The torque and power scale — `TORQUE_CNM_PER_BIT`
+
+**Measured by:** steps 13 and 14 and nothing else. *Which measurement settles
+the torque scale* above is the whole argument and is unchanged by today.
+
+**Changes:** `TORQUE_CNM_PER_BIT` in `src/config.h`, and the drag line with it
+if the fit moves — **never one without the other**, per `CLAUDE.md`. The
+intake air from group 006 is part of the measurement rather than a formality,
+because b7 carries the charge normalisation.
+
+## 4. The refuelling rule — does the new logic hold on a real drive
+
+**Measured by:** replaying the capture through the core offline. `0x320` is in
+the filter for this and nothing else.
+
+**What to check, in order:**
+- **it must not fire.** Not once, anywhere in the drive.
+- **how close it came.** The longest run of consecutive at-rest samples above
+  `REFUEL_RISE_L`, against the 5 it needs. On the old fixtures that was 1 of
+  5, which is a coincidence rather than a margin; this drive says whether a
+  real tank level changes the answer.
+- **what the at-rest samples actually look like** with fuel aboard. Every
+  fixture in the repository has 0–10 L in a moving car, and `refuted.md` C10
+  is what that cost.
+
+**Changes if it fires or comes close:** `REFUEL_ARM_S`, `REFUEL_RISE_L` and
+`TANK_STATIONARY_MMH` in `src/config.h`, and a fixture from this drive added
+to `test/fixtures/` so it can never regress silently.
+
+## 5. Range — free from the same replay, and easy to forget
+
+**Not on the maintainer's list and it belongs there.** The rolling basis was
+rebuilt this week so that it survives a reset and an ignition cycle, and the
+only evidence for it is unit tests. This drive has stops, idles and restarts
+in it, so replaying it says whether the basis behaves across them — whether it
+stays in a sane band, and whether anything makes it collapse or run away.
+
+**Changes if it misbehaves:** `RANGE_BASIS_SHIFT`, `RANGE_DEFAULT_L100_D` or
+`RANGE_MIN_MM` in `src/config.h`, and the same fixture covers it.
+
+## What is deliberately NOT on this list
+
+- **the oil sender unplug test.** Dropped: somebody under a car for a result
+  that changes no number. `refuted.md` B10 and `can-decoding.md` question 4
+  keep the reasoning.
+- **`refuels` on the diagnostic frame.** Declined — it would be a change in
+  two repositories for a channel nobody would be watching in a closed
+  dashboard.
+- **a full-throttle pull to settle the torque scale by itself.** Still not
+  planned, and `can-decoding.md` parks it under *Never resolved but not
+  required*.
