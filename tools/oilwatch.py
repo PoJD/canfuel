@@ -80,12 +80,23 @@ import canlog
 # an idle above that proves nothing whichever way it comes out -- and is wide
 # enough that a driver can reach somewhere to stop. Widen it and the match
 # weakens; narrow it and the stop becomes unreachable.
+#
+# ⚠ THESE ARE OIL, 0x420 BYTE 3, AND NOT THE COOLANT. The target is really
+# raw byte 146; 61.5 C is what this project's decode calls it, and that decode
+# is the open question 10 in docs/can-decoding.md. It does not matter here,
+# because the before-reading went through the same decode -- matching the
+# label matches the byte either way. It would matter if anyone retuned these
+# numbers against a corrected scale without moving the before-reading with
+# them.
 TARGET_C = 61.5
 BAND_LO_C = 55.0
 BAND_HI_C = 68.0
 
-#: How long the idle itself wants to be. docs/next-drive.md step 12: one minute
-#: settles "gone or not gone", three settle "how much better".
+#: How long the idle itself wants to be. docs/next-drive.md step 12: one
+#: minute settles "gone or not gone", three settle "how much better". Only the
+#: FIRST idle is cut short there, and for a reason that does not apply here --
+#: it is spending coolant the cold coasts need, and by the middle idle that
+#: budget is long gone.
 IDLE_S = 3 * 60.0
 
 #: Seconds of warning asked for before the band arrives. A driver has to notice

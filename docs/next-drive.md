@@ -330,6 +330,26 @@ hot, and one in the middle that has to land near 61.5 °C of oil** — that
 middle one is the whole reason the trip has idles in it at all, and
 *Steps 12–14a* below is why.
 
+⚠ **61.5 °C IS THE OIL, `0x420` b3, AND NOT THE COOLANT.** The figure comes
+from `09_idle_60s_z1`, where the oil sat at raw 144–146 — 60.0 to 61.5 °C —
+**while the coolant beside it was raw 193–198, which is 96.75 to 100.50 °C.**
+Once the engine is warm the two are nowhere near each other, and the middle
+idle is indexed by the slow one.
+
+⚠ **The trap is that the coolant PASSES THROUGH 61.5 °C, and early.** In
+`18_coldstart_z1` it does so about five and a half minutes into a cold idle,
+with the oil at 17 °C. **Watching the wrong channel therefore puts the
+"middle" idle on top of the cold one** — two readings of the same state, and
+the middle idle, which is the whole reason this drive has idles in it, never
+happens at all. `tools/oilwatch.py` bands on `0x420` b3 and cannot make this
+mistake; a person reading a gauge can.
+
+**And a wrong oil scale does not break it.** What is really being matched is
+**raw byte 146**; 61.5 °C is what this project's decode calls it, and that
+decode is the open question 10. The before-reading went through the same
+decode, so if the label moves, it moves for both — matching the temperature is
+matching the byte either way.
+
 ⚠ **The first one is TWO MINUTES. The other two are three to five.** The first
 idle is the only part of this drive that spends a budget something else needs:
 **idling from cold raises the coolant about 8 °C a minute** (measured off
