@@ -94,10 +94,22 @@ and four channels are all reading one temperature at once:
 
 | | where it comes from |
 |---|---|
+| **outside air** | **the mirror console display — read it and write it down** |
 | intake air | VCDS 006, step 6 |
 | coolant | VCDS 001, here |
 | coolant | `0x288` b1, out of the capture |
 | oil | `0x420` b3, out of the capture |
+
+⚠ **The mirror display is the best of the five and it was missed until now**,
+because this repository spent months asserting the car had no ambient sensor
+on the strength of two zero bytes (`refuted.md` B11). It is worth the most
+because it shares **nothing** with the others: not the sensor, not the wiring,
+not VCDS, not this bus. Every other row can be wrong together; that one
+cannot join them.
+
+**Read it before opening a door**, while the car is still as it stood. These
+displays heat-soak — standing in sun, or with the cabin warm, they read high —
+which after an overnight stand in the morning is exactly when they do not.
 
 The capture starts at step 7 and the engine not until step 10, so its opening
 minutes cover the same soak — nothing changes in between. **Once the engine
@@ -116,7 +128,9 @@ temperatures, and only then is there a line.
 
 - **a falsification test, before the engine has even started.** Our coolant
   formula says raw 86 is 16.5 °C. If VCDS says 22, the formula is wrong and
-  we know it in the car rather than three weeks later.
+  we know it in the car rather than three weeks later. **The mirror console
+  gives the same test for nothing**, and from a sensor that has no connection
+  to any of the others.
 - **truth for both offsets at once.** Whatever number VCDS reports IS the
   temperature, so both raw bytes can be checked against it rather than
   against each other — which is the weakness of the 3.75 °C argument in
@@ -319,6 +333,7 @@ instruments. This one matters and is easy to forget.
 | the tank level | roughly, in litres or quarters — see step 4a |
 | the oil filter reading | infrared, three of them, with the clock time |
 | the coolant, twice from VCDS | group 001 cold (step 6a) and hot (step 26a), each with its clock time |
+| the mirror console reading | at the cold soak, before a door is opened |
 | how it drives | in plain words |
 | later | the second group 032 photograph |
 

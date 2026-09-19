@@ -287,6 +287,45 @@ the answers it was written from**, which is the same lesson as C8.
 
 ---
 
+### B11. "0x420 b1 and b2 are zero, so the car has no ambient temperature sensor"
+
+**Believed:** written as a flat statement of fact in `can-decoding.md`'s list
+of things that were searched for and not found, and repeated from there into
+`frames.md` and `src/config.h` — three places, one of them a code comment.
+
+**Refuted by:** a photograph. The car displays the outside temperature next to
+the clock in the rear-view mirror console, reading **20.5 °C** on a September
+afternoon. The maintainer adds that it tracks the real outside temperature
+reliably and has never shown anything like an oil temperature, so it is
+ambient and not some other channel misread.
+
+**The bytes were read correctly and the conclusion did not follow.** `0x420`
+b1 and b2 really are zero. What that establishes is that **the ambient
+temperature is not on those bytes** — nothing whatever about what is fitted to
+the car. It reaches that display by some other route: a different frame, or a
+wire that never touches this bus at all.
+
+⚠ **ABSENCE ON A BUS IS ABSENCE ON A BUS.** That is the reusable half and it
+is worth more than the entry. This repository decodes a vehicle by watching
+seven identifiers on one of its networks, and **every "the car does not have
+X" conclusion drawn that way is really "X is not on the frames we watch"**.
+The two are not the same sentence and this one was written as though they
+were.
+
+**Cost:** nothing functional — no firmware consumes an ambient temperature and
+none was ever going to. What it cost is a wrong fact repeated in three files
+for months, and the risk that somebody would have reasoned from it.
+
+**What it gains:** a fourth independent reading of the cold soak, free and in
+real degrees, from a sensor and a path that share nothing with VCDS or with
+either CAN channel. `next-drive.md` step 6 now asks for it.
+
+⚠ **Do not go hunting for the ambient channel on the bus.** Nothing in this
+firmware or on the MFD15 consumes one, so a decoded field would be dead
+weight — the same rule that keeps 0x5A0 out of the acceptance filters.
+
+---
+
 ### B8. "The fuel counter wraps at 32767"
 
 **Believed:** in the same place.

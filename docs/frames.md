@@ -696,8 +696,11 @@ in keeping with the practice.
 ⚠ **It has to be a constant somebody sets once, because a live correction is
 out of reach.** A real correction factor needs the intake air temperature, and
 **that is not on this bus** — `0x420` bytes 1–2 are documented as ambient
-temperature and read zero on this car, with no sensor behind them, and b3 is
-the oil (`can-decoding.md` question 4).
+temperature and read zero on this car, and b3 is the oil (`can-decoding.md`
+question 4). ⚠ **The car does have an outside-temperature display**, in the
+mirror console; it changes nothing here, because ambient is not intake air —
+the intake draws from the engine bay, about ten degrees above it — and a
+number a driver can read is not a number the converter can use.
 
 It applies to **net** torque, after the drag line is subtracted, which is where
 a dynamometer measures; power follows because `compute_power_d()` is handed the

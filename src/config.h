@@ -706,8 +706,11 @@
  * WHAT WE CANNOT DO, AND WHY IT IS A FIXED CONSTANT RATHER THAN A LIVE
  * CORRECTION. A real correction factor needs the intake air temperature and
  * pressure, and INTAKE AIR TEMPERATURE IS NOT ON THIS BUS -- 0x420 bytes 1-2
- * are documented as ambient temperature and read zero on this car, there is no
- * sensor behind them, and b3 is the oil (can-decoding.md question 4). The only
+ * are documented as ambient temperature and read zero on this car, and b3 is
+ * the oil (can-decoding.md question 4). The car does display an outside
+ * temperature in the mirror console, which changes nothing: ambient is not
+ * intake air -- the intake draws from the engine bay, about ten degrees above
+ * it -- and a number a driver reads is not one this firmware can use. The only
  * air-related quantity available is the ECU's own load, which is already
  * normalised and is not a temperature. So a live per-frame correction is out
  * of reach and this is a constant somebody sets once, knowingly.

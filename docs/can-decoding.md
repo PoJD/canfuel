@@ -394,7 +394,13 @@ sixty-second recording on a live bus.
 - **Lambda** — 0x488 is constant `ff ff ff 8d ff ff ff ff` in every log.
 - **Battery voltage** — searched systematically, nothing. Solved with the
   display's internal sensor instead.
-- **Ambient temperature** — 0x420 b1 and b2 are both zero; the car has no sensor.
+- **Ambient temperature** — 0x420 b1 and b2 are both zero, so it is not on
+  those bytes. ⚠ **This used to read "the car has no sensor" and that was
+  wrong**: the car displays the outside temperature next to the clock in the
+  rear-view mirror console, photographed reading 20.5 °C. Whether it reaches
+  that display on some other frame or on its own wire is unknown and **nobody
+  should go looking** — nothing in this firmware or on the MFD15 consumes an
+  ambient temperature. `refuted.md` B11.
 - **Trip odometer and trip reset** — see open questions.
 
 ---
@@ -1097,7 +1103,8 @@ built to be sluggish enough to match a sump's thermal mass would also be built
 to rattle by a count in both directions while its inputs move one way.
 
 **It also fits the frame it arrives on.** `0x420` b1 and b2 are ambient
-temperature — zero here because the car has no ambient sensor — and ambient
+temperature — zero here, though the car does display an outside temperature by
+some other route (`refuted.md` B11) — and ambient
 air is a signal the *cluster* displays and the engine management has no use
 for. So `0x420` looks like a frame of cluster-side temperature channels, which
 is where a sump sender's signal would end up.
