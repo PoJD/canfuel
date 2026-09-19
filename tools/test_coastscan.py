@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
 """Tests for coastscan.py.
 
-The gear test is what the tool is for, so it is what is tested hardest: a
-gearchange and a clutch-in coast look exactly like an in-gear overrun on every
-other channel, and counting them as one would answer the question wrongly in
-the reassuring direction.
+Three facts about the corpus are asserted hard, because
+docs/engine-health.md argues from them:
 
-Two facts about the corpus are asserted hard, because docs/engine-health.md
-argues from them:
+* the ECU does shut the injectors on the overrun -- four times in the one
+  fixture that contains real driving
+* it shuts them about 1.2 s after the pedal comes up, not immediately
+* fuel comes back near 1,700 rpm
 
-* eighteen recordings contain exactly ONE in-gear coast, and it lasts 1.3 s
-* the ECU is still injecting through it
+The bands are asserted as bands rather than as the exact figures. They are
+what the tool is for, so tightening them to the printed number would make
+re-running this against a new capture a test change.
 """
 
 from __future__ import annotations
@@ -20,20 +21,21 @@ import os
 import unittest
 
 from coastscan import (COAST_MIN_MMH, COAST_MIN_RPM, CUT_UL_PER_REV, FIXTURES,
-                       IDLE_UL_PER_REV, THROTTLE_REST, coasting, in_gear,
-                       ratio_drift, rate_ul_s, samples, ul_per_rev, windows)
+                       IDLE_UL_PER_REV, THROTTLE_REST, charges, coasting, cut,
+                       ratio_drift, samples, windows)
 
 
 def row(t, rpm, speed_mmh, d_ul=0, throttle=THROTTLE_REST):
     return (t, rpm, throttle, speed_mmh, d_ul)
 
 
-def ramp(n, rpm0, rpm1, ratio, d_ul=0, t0=0.0, dt=0.01):
-    """A window of n samples sweeping rpm at a FIXED rpm-per-km/h ratio."""
+def ramp(n, rpm0, rpm1, ratio, ul_per_rev=0.0, t0=0.0, dt=0.05):
+    """n samples sweeping rpm at a fixed rpm-per-km/h ratio and a fixed charge."""
     out = []
     for i in range(n):
         rpm = rpm0 + (rpm1 - rpm0) * i / max(n - 1, 1)
-        out.append(row(t0 + i * dt, rpm, int(rpm / ratio * 1000), d_ul))
+        d = ul_per_rev * (rpm / 60.0) * dt
+        out.append(row(t0 + i * dt, rpm, int(rpm / ratio * 1000), d))
     return out
 
 
@@ -41,82 +43,102 @@ class Gate(unittest.TestCase):
     def test_a_standing_car_is_not_coasting(self):
         self.assertFalse(coasting(row(0.0, 3000, 0)))
 
-    def test_a_crawl_is_not_coasting(self):
+    def test_walking_pace_is_not_coasting(self):
         self.assertFalse(coasting(row(0.0, 3000, COAST_MIN_MMH - 1)))
 
     def test_a_pressed_pedal_is_not_coasting(self):
         self.assertFalse(coasting(row(0.0, 3000, 30000, throttle=100)))
 
-    def test_an_engine_at_the_governor_is_not_coasting(self):
+    def test_an_engine_back_at_the_governor_is_not_coasting(self):
         self.assertFalse(coasting(row(0.0, COAST_MIN_RPM - 1, 30000)))
 
-    def test_moving_with_the_pedal_at_rest_is(self):
+    def test_rolling_with_the_pedal_at_rest_is(self):
         self.assertTrue(coasting(row(0.0, 3000, 30000)))
 
 
 class Windows(unittest.TestCase):
-    def test_a_break_in_the_pedal_splits_a_window(self):
-        rows = (ramp(200, 4000, 3000, 160)
+    def test_the_pedal_going_down_splits_a_window(self):
+        rows = (ramp(40, 4000, 3000, 160)
                 + [row(2.0, 3000, 30000, throttle=200)]
-                + ramp(200, 4000, 3000, 160, t0=3.0))
+                + ramp(40, 4000, 3000, 160, t0=3.0))
         self.assertEqual(len(windows(rows)), 2)
 
-    def test_a_window_too_short_to_mean_anything_is_dropped(self):
-        self.assertEqual(windows(ramp(20, 4000, 3900, 160, dt=0.01)), [])
+    def test_a_window_too_short_to_hold_a_cut_is_dropped(self):
+        self.assertEqual(windows(ramp(5, 4000, 3900, 160, dt=0.02)), [])
 
 
-class Gear(unittest.TestCase):
-    def test_a_held_ratio_is_one_gear(self):
-        win = ramp(200, 5000, 3000, 160)
-        self.assertLess(ratio_drift(win), 0.01)
-        self.assertTrue(in_gear(win))
+class Cut(unittest.TestCase):
+    def test_a_window_that_never_stops_fuelling_has_no_cut(self):
+        self.assertIsNone(cut(ramp(40, 4000, 3000, 160, ul_per_rev=11.0)))
 
-    def test_a_ratio_that_moves_is_a_gearchange_or_a_clutch(self):
-        win = ramp(100, 5000, 4000, 160) + ramp(100, 4000, 3000, 120, t0=1.0)
-        self.assertGreater(ratio_drift(win), 0.2)
-        self.assertFalse(in_gear(win))
+    def test_a_dry_stretch_is_found_and_bounded(self):
+        win = (ramp(20, 4000, 3500, 160, ul_per_rev=11.0)
+               + ramp(20, 3500, 2500, 160, ul_per_rev=0.0, t0=1.0))
+        c = cut(win)
+        self.assertIsNotNone(c)
+        self.assertAlmostEqual(c[0][1], 3500, delta=60)
+        self.assertAlmostEqual(c[-1][1], 2500, delta=60)
 
-    def test_the_fixtures_own_rejected_windows_are_rejected(self):
-        """Three of 17's four coasts move the ratio 12-17 %. None is an overrun."""
-        rows = samples(os.path.join(FIXTURES, "17_drive_property_z1.txt"))
-        rejected = [w for w in windows(rows) if not in_gear(w)]
-        self.assertEqual(len(rejected), 3)
-        for w in rejected:
-            self.assertGreater(ratio_drift(w), 0.1)
+    def test_a_dry_stretch_too_short_to_be_a_strategy_is_not_a_cut(self):
+        win = (ramp(30, 4000, 3500, 160, ul_per_rev=11.0)
+               + ramp(3, 3500, 3400, 160, ul_per_rev=0.0, t0=1.5)
+               + ramp(30, 3400, 2500, 160, ul_per_rev=11.0, t0=1.7))
+        self.assertIsNone(cut(win))
 
 
 class PerRevolution(unittest.TestCase):
     def test_the_same_charge_at_twice_the_speed_reads_the_same(self):
-        slow = ramp(200, 2000, 2000, 160, d_ul=10)
-        fast = ramp(200, 4000, 4000, 160, d_ul=10)
-        self.assertGreater(rate_ul_s(fast), rate_ul_s(slow) * 0.9)
-        self.assertAlmostEqual(ul_per_rev(fast), ul_per_rev(slow) / 2, places=3)
+        slow = charges(ramp(20, 2000, 2000, 160, ul_per_rev=8.0))[1:]
+        fast = charges(ramp(20, 4000, 4000, 160, ul_per_rev=8.0))[1:]
+        for a, b in zip(slow, fast):
+            self.assertAlmostEqual(a, b, places=6)
+            self.assertAlmostEqual(a, 8.0, places=6)
+
+    def test_idle_is_well_clear_of_the_cut_threshold(self):
+        self.assertGreater(IDLE_UL_PER_REV, CUT_UL_PER_REV * 10)
+
+
+class Ratio(unittest.TestCase):
+    def test_a_held_ratio_reads_near_zero(self):
+        self.assertLess(ratio_drift(ramp(40, 5000, 3000, 160)), 0.01)
+
+    def test_a_clutch_coming_in_shows_up(self):
+        win = ramp(20, 5000, 4000, 160) + ramp(20, 4000, 3000, 120, t0=1.0)
+        self.assertGreater(ratio_drift(win), 0.2)
 
 
 class AgainstTheFixtures(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.geared = []
+        cls.cuts = []
         for p in sorted(glob.glob(os.path.join(FIXTURES, "*.txt"))):
-            cls.geared += [w for w in windows(samples(p)) if in_gear(w)]
+            for w in windows(samples(p)):
+                c = cut(w)
+                if c is not None:
+                    cls.cuts.append((w, c))
 
     def test_a_log_without_timestamps_is_skipped_rather_than_guessed_at(self):
         self.assertEqual(samples(os.path.join(FIXTURES, "03_drive.txt")), [])
 
-    def test_the_corpus_holds_exactly_one_in_gear_coast(self):
-        """Eighteen recordings of idling, revving and pottering. One."""
-        self.assertEqual(len(self.geared), 1)
+    def test_the_corpus_holds_four_overrun_fuel_cuts(self):
+        """All four are in 17_drive_property_z1, the one log that drives."""
+        self.assertEqual(len(self.cuts), 4)
 
-    def test_and_it_is_over_in_under_two_seconds(self):
-        win = self.geared[0]
-        self.assertLess(win[-1][0] - win[0][0], 2.0)
+    def test_the_cut_does_not_engage_the_moment_the_pedal_comes_up(self):
+        delays = [c[0][0] - w[0][0] for w, c in self.cuts]
+        self.assertGreater(min(delays), 1.0, "a delay this long is why a "
+                                             "one-second coast shows nothing")
+        self.assertLess(max(delays), 1.6)
 
-    def test_the_ecu_is_still_injecting_through_it(self):
-        charge = ul_per_rev(self.geared[0])
-        self.assertGreater(charge, CUT_UL_PER_REV * 5,
-                           "no fuel cut is visible in the one window there is")
-        self.assertLess(charge, IDLE_UL_PER_REV,
-                        "it is reduced, which is not the same as cut")
+    def test_fuel_comes_back_well_above_idle(self):
+        back = [c[-1][1] for _, c in self.cuts]
+        self.assertGreater(min(back), 1600)
+        self.assertLess(max(back), 1850)
+
+    def test_a_log_where_the_car_never_moves_has_no_coasts_at_all(self):
+        cold = samples(os.path.join(FIXTURES, "18_coldstart_z1.txt"))
+        self.assertEqual(windows(cold), [],
+                         "the cold cut is the open question, not a fixture")
 
 
 if __name__ == "__main__":

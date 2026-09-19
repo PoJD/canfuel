@@ -113,7 +113,7 @@ extra screen, and it is the first half of settling the coolant scale — see
 
 ⚠ **THE COLD SOAK IS A CALIBRATION POINT AND IT ONLY EXISTS FOR THESE FEW
 MINUTES.** The car has stood overnight, so **every fluid in it is at ambient**
-and six readings are all of one temperature at once:
+and five readings are all of one temperature at once:
 
 | | where it comes from |
 |---|---|
@@ -124,10 +124,10 @@ and six readings are all of one temperature at once:
 | oil | `0x420` b3, out of the capture |
 | **oil, directly** | **the infrared thermometer at step 6b** — the filter and the sump |
 
-⚠ **Two of those six share nothing with the rest**, which is what makes them
+⚠ **Two of those five share nothing with the rest**, which is what makes them
 worth more than the count suggests: the mirror console and the infrared
 thermometer. Not the sensor, not the wiring, not VCDS, not this bus. The other
-four can be wrong together; those two cannot join them.
+three can be wrong together; those two cannot join them.
 
 **The mirror display was missed until now**, because this repository spent
 months asserting the car had no ambient sensor on the strength of two zero
@@ -188,28 +188,36 @@ and it is already being read at step 6**: on a car that has stood overnight
 that is ambient too, from VCDS, in real degrees, which is all this point
 needs.
 
-**6b. Now the infrared thermometer, bonnet open, engine still cold.** Six
-spots, in this order, **three readings each**, written down with the clock
-time:
+**6b. Now the infrared thermometer, bonnet open, engine still cold.** Three
+spots, **three readings each**, written down with the clock time:
 
-| | where | why it is on the list |
+| | where | what it is for |
 |---|---|---|
 | 1 | **the oil filter**, on the painted can | the step 28 target — this is the pair that matters |
-| 2 | **the sump pan**, as far round as reaches without going under the car | where the sender actually sits |
-| 3 | **the thermostat housing**, or the upper radiator hose | the coolant's own metal, against `0x288` |
-| 4 | **the rocker cover** by the filler cap | a known-bad target, measured on purpose |
-| 5 | **the dipstick tube** | the other known-bad target, same reason |
-| 6 | **a shaded body panel, or the ground beside the car** | ambient, from this instrument rather than another |
+| 2 | **the sump pan**, if it reaches without going under the car | where the sender actually sits |
+| 3 | **a shaded body panel, or the ground beside the car** | ambient, from this instrument rather than from another |
 
 **Same spots, same order, same distance, again hot at step 28.** That is the
 whole discipline: a pair of readings of one spot is worth far more than either
 reading alone, and only if the aim was the same both times.
 
-⚠ **All six must read one number, and that is the point of taking them.** The
-car has stood overnight, so filter, sump, housing, tube and tarmac are all at
-ambient. **The spread across the six is the noise floor of the whole method** —
-if they span four degrees cold, nothing at step 28 is worth better than
-±2 °C.
+⚠ **All three must read one number, and that is the point of taking them.**
+The car has stood overnight, so filter, sump and tarmac are all at ambient.
+**The spread across the three is the noise floor of the method** — if they
+span four degrees cold, nothing at step 28 is worth better than ±2 °C. Three
+spots is a thinner error bar than six would give and it is enough for a
+question whose answer is 26 °C wide.
+
+⚠ **Three and not six, and the two that came off are worth a line.** An
+earlier version of this step also had the rocker cover and the dipstick tube
+on it, because Part 2 tells the next person not to aim at either and has
+never shown what they cost — two readings would have retired that as an
+assertion. **That is a nice thing to know and it is not worth two more stops
+on a cold morning**, in a procedure that already runs ninety minutes. The
+thermostat housing came off for a different reason: VCDS gives the coolant
+truth at both ends already, at steps 6a and 26a, so an infrared reading of it
+adds nothing. **Take any of the three if you are curious; skip them without a
+second thought.**
 
 ⚠ **It does NOT give an offset to subtract at step 28**, which is the obvious
 reading of it and the wrong one. *Steps 27–28a* in Part 2 has the argument in
@@ -307,23 +315,28 @@ chipped since 6/2018 and what that did to the shape of the curve is not known
 here, which is exactly why the pull covers a range instead of aiming at an
 engine speed.
 
-**13a. One long coast in gear while COLD, and one more when hot.** Pedal fully
-released, **clutch up**, stay in gear, at least five seconds — a downhill
-stretch if the route has one, otherwise the far side of any acceleration.
-**Take the cold one in the first few minutes**, because that is the state the
-symptom belongs to.
+**13a. One long coast while COLD, and one more when hot.** Pedal fully
+released, **clutch up**, stay in a HIGH gear, **at least five seconds** — a
+downhill stretch if the route has one, otherwise the far side of any
+acceleration. **Take the cold one in the first few minutes**, because the cold
+state is the whole question.
+
+⚠ **Five seconds, a high gear, and neither is arbitrary.** The ECU takes
+**1.2–1.3 s from the pedal coming up before it shuts the injectors**, and it
+gives them back at **1,700–1,750 rpm** — both measured off the last capture,
+`engine-health.md`, *The oldest symptom is on the overrun*. A short coast, or
+one in a low gear that falls past 1,700 rpm in a moment, spends its whole
+length inside the delay and records nothing. **In fifth from 130 km/h there is
+as much time as you want.**
 
 **And listen.** Whether the exhaust burbles is the one observation on this
 drive that no analysis can recover afterwards. Write down *heard it* or *did
-not hear it*, cold and hot, and nothing else. `engine-health.md`, *The oldest
-symptom is on the overrun*, is what it is for.
+not hear it*, cold and hot, and nothing else.
 
-**The other half comes out of the capture by itself** — `python
-tools/coastscan.py CAPTURE` finds the coast, checks it really was in gear and
-prints the fuel the ECU commanded through it, per revolution. **Five seconds
-is the number that matters**: the whole corpus holds one in-gear coast and it
-lasts 1.3 s, which is short enough that a fuel cut with an entry delay could
-hide inside it.
+**The other half comes out of the capture by itself:** `python
+tools/coastscan.py CAPTURE` finds the coasts and prints, for each, whether the
+injectors shut, at what engine speed, how long after the lift and where fuel
+came back.
 
 **14. One low-gear pull to high revs**, as before. It costs one squirt of fuel
 and it is the only thing that reaches the top of the range if fourth cannot.
@@ -415,17 +428,16 @@ filter is full of oil and stays full** — the anti-drainback valve sees to that
 one. Bare or shiny metal reads low on an infrared thermometer; a painted
 filter body does not.
 
-**28a. Then the other five spots from step 6b — same order, same distance,
-three readings each, with the clock time.** The filter is the one that answers
-question 2; the rest are what say how much the filter reading is worth.
+**28a. Then the other two spots from step 6b — same order, same distance,
+three readings each, with the clock time.** The filter is what answers
+question 2; the other two say how much the filter reading is worth.
 
-**Two of the pairs earn their place on their own.** *Filter against sump* is
-the one caveat Part 2 raises against the filter reading and never measures:
-cold they must agree, and hot their difference is the gallery-to-pan gap, with
-both surfaces at a similar distance from ambient so the instrument's error
-largely divides out of the difference. *Rocker cover and dipstick tube* are on
-the list because Part 2 tells the next person not to use them and has never
-shown what they cost — two numbers retire that as an assertion.
+**The filter-against-sump pair earns its place on its own.** It is the one
+caveat Part 2 raises against reading the filter at all and has never measured:
+cold the two must agree, and hot their difference is the gallery-to-pan gap.
+Both surfaces are a similar distance from ambient when hot, so the
+instrument's error largely divides out of the *difference* even though it does
+not divide out of either reading.
 
 **29. Stop the capture. Do not clear the fault memory.**
 
@@ -443,7 +455,7 @@ instruments. This one matters and is easy to forget.
 | the VCDS log | as it comes, groups 003 and 014 |
 | the photographs | every screen from steps 18 and 20–24 |
 | two paper numbers, twice | group 006, before and after |
-| the infrared readings | six spots cold (step 6b) and the same six hot (steps 28–28a), three each, with clock times |
+| the infrared readings | three spots cold (step 6b) and the same three hot (steps 28–28a), three readings each, with clock times |
 | the overrun | *heard it* / *did not hear it*, cold and hot — step 13a |
 | the coolant, twice from VCDS | group 001 cold (step 6a) and hot (step 26a), each with its clock time |
 | the mirror console reading | at the cold soak, before a door is opened |
@@ -767,9 +779,10 @@ one everybody expects and it is not available.
   are already being read at the same soak for the same reason, so a
   thermometer that reads 3 °C high against both of them has a **constant
   offset**, and that one *is* subtractable.
-- **The noise floor of the method.** Six spots that must all be at one
+- **The noise floor of the method.** Three spots that must all be at one
   temperature, and what they actually span, is the honest error bar on every
-  reading at step 28. Nothing else here produces one.
+  reading at step 28. Three is a thin sample and it is still the only one
+  anything here produces.
 - **A sixth row for step 6a's table**, and the only one that reads the *oil*.
   Every other row at that soak is coolant, intake air or ambient; the filter
   and the sump are the oil's own container, so the cold soak stops being an
@@ -1116,7 +1129,7 @@ figure*.
 | **are either of the replaced oxygen sensors gone again** | blocks 034, 036, 037 |
 | **can the display ever show the factory maxima** | **the high-gear pulls, steps 13–14** — b7 out of the capture against the ECU's load at the same engine speed. See *Which measurement settles the torque scale*; no VCDS block answers this |
 | **does the oil ever get hot enough to matter** | the oil temperature a long drive actually reaches, and the thermometer beside it |
-| **does the ECU cut fuel on the overrun** | step 13a's coast through `tools/coastscan.py`. It decides whether the owner's oldest symptom means anything — `engine-health.md`, *The oldest symptom is on the overrun* |
+| **does the ECU cut fuel on a COLD overrun** | step 13a's cold coast through `tools/coastscan.py`. Warm it does, four times over in the last capture; cold decides whether the owner's oldest symptom means anything — `engine-health.md`, *The oldest symptom is on the overrun* |
 
 **The last one is close to answered already.** The drive of 2026-09-10 peaked
 at **72–74 °C of oil after about an hour**, and the warm holds the drag line is

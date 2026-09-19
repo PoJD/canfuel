@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Does this engine stop injecting when the car is driving it?
+"""Does this engine stop injecting when the car is driving it, and when?
 
 This is the analysis behind step 13a of docs/next-drive.md and behind *The
 oldest symptom is on the overrun* in docs/engine-health.md. It exists as a
@@ -13,36 +13,44 @@ What it answers
 The owner reports that on a COLD engine, braking on the engine down a hill,
 fuel could be heard going into the exhaust and burning there, and that on a
 warm engine it does not happen. Whether that means anything at all turns on
-one fact nobody here holds from a document: whether this ECU cuts the
-injectors on the overrun. If it does, fuel reaching the exhaust there is fuel
-arriving while the driver asks for none. If it does not, the burble is
-commanded fuel and says nothing.
+whether the ECU has the injectors shut at the time: if it does, fuel reaching
+a hot exhaust is fuel arriving while nobody asked for any, and the only place
+left for it to come from is an injector that is not sealing. If the ECU is
+fuelling normally, the burble is commanded fuel and says nothing.
 
-The bus answers it directly. Find the windows where the car is driving the
-engine, and read the fuel counter across them.
+The bus answers it directly, because 0x480 counts what the ECU commanded.
+Find the stretches where the car is rolling with the pedal released, and look
+for the counter stopping.
 
-What counts as a coast, and why the gear test is the whole difficulty
---------------------------------------------------------------------
+Why there is no gear test here, although an earlier version had one
+-------------------------------------------------------------------
 
-A released pedal is not enough. A gearchange and a clutch-in coast both look
-like "moving, pedal at rest, engine turning", and in both of them the engine
-is NOT being driven by the car -- so fuel at idle rates is exactly what should
-be there and proves nothing.
+A released pedal is not enough by itself: a gearchange and a clutch-in coast
+look the same on every other channel, and in neither of them is the car
+driving the engine. That looked like it needed the engine-speed-to-road-speed
+ratio checked for a constant, and it does not -- **the cut is its own
+evidence.** An ECU that shuts the injectors while the clutch is down has
+stalled the engine, so a counter that stops for a second while the car rolls
+is an overrun by construction. The ratio is still printed, because it says
+which windows ended with the clutch coming in, but nothing is gated on it.
 
-What separates them is that a car in gear holds a fixed ratio between engine
-speed and road speed. So a window is in gear only while that ratio stays put,
-which is checked here rather than assumed. Applied to the fixtures it rejects
-every window they contain, which is the honest answer: **the corpus holds no
-sustained in-gear overrun at all.** Eighteen recordings of idling, revving in
-neutral and first-gear pottering do not include one, and the next drive is
-what supplies it.
+What it found in the corpus
+---------------------------
+
+`17_drive_property_z1` -- warm, first gear, the only fixture with real
+driving in it -- holds four of them, and they agree with each other closely:
+the injectors shut about **1.2 to 1.3 seconds after the pedal comes up** and
+fuel returns at about **1,700 to 1,750 rpm**. So the premise the overrun
+argument needs is measured rather than assumed. ⚠ **It is measured WARM**,
+which is the state the owner says the burble does not happen in; whether the
+same ECU cuts fuel on a cold engine is exactly what step 13a is for.
 
 Usage
 -----
 
     python coastscan.py                    # the fixtures
     python coastscan.py CAPTURE [CAPTURE ...]
-    python coastscan.py --windows CAPTURE  # every window, in gear or not
+    python coastscan.py --all CAPTURE      # every coast, not only the cuts
 """
 
 from __future__ import annotations
@@ -59,28 +67,28 @@ FIXTURES = os.path.join(HERE, os.pardir, "test", "fixtures")
 #: From src/config.h. THROTTLE_REST is a released pedal and is not an equality
 #: -- docs/can-decoding.md says why 38 is the rest value and 39-43 are empty.
 THROTTLE_REST = 38
-#: Fast enough that the ratio below means something. 20 km/h in 0.001 km/h.
-COAST_MIN_MMH = 20000
-#: Above the idle governor, so the engine is being turned rather than held.
-COAST_MIN_RPM = 1500
-#: A window shorter than this says nothing about a fuel cut either way.
-COAST_MIN_S = 1.0
+#: Below walking pace the car is not driving anything. In 0.001 km/h.
+COAST_MIN_MMH = 4000
+#: Low enough that a whole cut fits inside one window: fuel came back at
+#: 1,700 rpm in every fixture case, and a floor above that would clip the end
+#: off the very thing being measured. An earlier version of this file used
+#: 1,500 rpm and a 20 km/h floor and threw away all four cuts.
+COAST_MIN_RPM = 1200
+#: A coast shorter than this cannot contain the delay below, let alone a cut.
+COAST_MIN_S = 0.5
 #: Warm idle, measured: 326 ul/s at 796 rpm in 09_idle_60s_z1, which is
 #: 24.6 ul per revolution. Injection quantity scales with engine speed, so
-#: ul/s across a coast that is also a deceleration cannot be compared with it
-#: and ul/rev can.
+#: ul/s across a coast that is also a deceleration cannot be compared against
+#: it and ul/rev can.
 IDLE_UL_PER_REV = 24.6
-#: Below this the ECU is not fuelling the engine in any meaningful sense. A
-#: DECISION, not a measurement: it is a twentieth of idle's charge, far below
-#: anything a running engine is given and far above the zero an exact cut
-#: would produce, so nothing lands near it by accident.
+#: At or below this the injectors are shut. A DECISION, not a measurement: it
+#: is a twentieth of idle's charge, far below anything a running engine is
+#: given and far above the zero an exact cut produces. The fixtures separate
+#: cleanly either side of it -- fuelling reads about 11 ul/rev and a cut reads
+#: 0 -- so nothing lands near it by accident.
 CUT_UL_PER_REV = 1.2
-#: How far the engine-speed-to-road-speed ratio may drift and still be one
-#: gear. A DECISION, not a measurement: a gearchange moves it by tens of per
-#: cent (the fixtures' five windows move 6-28 %), while in gear it should move
-#: only by what tyre slip and the two channels' sample skew contribute. Ten per
-#: cent sits between those and nothing in the corpus lies near it.
-GEAR_RATIO_TOL = 0.10
+#: A shorter dry run is a gap in the counter rather than a strategy.
+CUT_MIN_S = 0.3
 
 
 def samples(path):
@@ -119,7 +127,7 @@ def samples(path):
 
 
 def coasting(row):
-    """Moving, pedal released, engine turning well above the governor."""
+    """Rolling, pedal released, engine still turning above the governor."""
     return (row[3] >= COAST_MIN_MMH and row[2] <= THROTTLE_REST
             and row[1] >= COAST_MIN_RPM)
 
@@ -139,75 +147,94 @@ def windows(rows, min_s=COAST_MIN_S):
     return out
 
 
+def charges(win):
+    """Charge per revolution at each sample, from the gap to the one before.
+
+    0x480 has no period (docs/can-decoding.md question 1), so a delta means
+    nothing until it is divided by the gap it accumulated over.
+    """
+    out = []
+    for i, r in enumerate(win):
+        dt = r[0] - win[i - 1][0] if i else 0.0
+        if dt <= 0 or r[1] <= 0:
+            out.append(None)
+        else:
+            out.append((r[4] / dt) / (r[1] / 60.0))
+    return out
+
+
+def cut(win, min_s=CUT_MIN_S):
+    """The longest stretch of the window with the injectors shut, or None."""
+    best, cur = [], []
+    for r, c in zip(win, charges(win)):
+        if c is not None and c <= CUT_UL_PER_REV:
+            cur.append(r)
+        else:
+            if len(cur) > len(best):
+                best = cur
+            cur = []
+    if len(cur) > len(best):
+        best = cur
+    if len(best) < 3 or best[-1][0] - best[0][0] < min_s:
+        return None
+    return best
+
+
 def ratio_drift(win):
     """How much the engine-speed-to-road-speed ratio moved across a window.
 
-    As a fraction of the largest of the two. Near zero is one gear with the
-    clutch up; anything else is a change of gear or a clutch that is down.
+    Informational: near zero is one gear with the clutch up, and a large
+    number is a gearchange or a clutch that came down. Nothing is gated on it
+    -- see the module docstring.
     """
     a = win[0][1] / (win[0][3] / 1000.0)
     b = win[-1][1] / (win[-1][3] / 1000.0)
     return abs(b - a) / max(a, b)
 
 
-def in_gear(win):
-    return ratio_drift(win) <= GEAR_RATIO_TOL
-
-
-def rate_ul_s(win):
-    dur = win[-1][0] - win[0][0]
-    return sum(r[4] for r in win) / dur if dur > 0 else 0.0
-
-
-def ul_per_rev(win):
-    """The charge per revolution, which is what compares against idle.
-
-    A coast is also a deceleration, so ul/s falls with the engine speed
-    whatever the ECU is doing. Dividing it out is what makes the number mean
-    "is it fuelling" rather than "how fast is it turning".
-    """
-    revs_per_s = sum(r[1] for r in win) / len(win) / 60.0
-    return rate_ul_s(win) / revs_per_s if revs_per_s > 0 else 0.0
-
-
 def describe(win):
-    return ("%5.2f s  rpm %5.0f->%5.0f  %4.1f->%4.1f km/h  ratio drift %4.1f %%"
-            "  fuel %6.0f ul/s = %5.1f ul/rev (idle %.1f)  %s"
+    line = ("%5.2f s  rpm %5.0f->%5.0f  %4.1f->%4.1f km/h  ratio %4.1f %%"
             % (win[-1][0] - win[0][0], win[0][1], win[-1][1],
-               win[0][3] / 1000.0, win[-1][3] / 1000.0, ratio_drift(win) * 100,
-               rate_ul_s(win), ul_per_rev(win), IDLE_UL_PER_REV,
-               "IN GEAR" if in_gear(win) else "not in gear"))
+               win[0][3] / 1000.0, win[-1][3] / 1000.0, ratio_drift(win) * 100))
+    c = cut(win)
+    if c is None:
+        return line + "  ||  no cut"
+    return line + ("  ||  CUT %4.2f s, shut at %5.0f rpm %4.2f s after the "
+                   "lift, back at %5.0f"
+                   % (c[-1][0] - c[0][0], c[0][1], c[0][0] - win[0][0],
+                      c[-1][1]))
 
 
-def report(path, show_windows=False):
+def report(path, show_all=False):
     name = os.path.basename(path)
     rows = samples(path)
     if not rows:
         print("%-28s   no timestamps, skipped" % name)
         return
     wins = windows(rows)
-    geared = [w for w in wins if in_gear(w)]
-    print("%-28s   %2d coast window%s, %d in gear"
-          % (name, len(wins), "" if len(wins) == 1 else "s", len(geared)))
-    for w in (wins if show_windows else geared):
+    withcut = [w for w in wins if cut(w) is not None]
+    print("%-28s   %2d coast window%s, %d with the injectors shut"
+          % (name, len(wins), "" if len(wins) == 1 else "s", len(withcut)))
+    for w in (wins if show_all else withcut):
         print("        " + describe(w))
-    if geared:
-        most = max(ul_per_rev(w) for w in geared)
-        print("        verdict: the ECU %s injecting on the overrun -- "
-              "%.1f ul/rev at most, against %.1f at warm idle"
-              % ("KEEPS" if most > CUT_UL_PER_REV else "STOPS",
-                 most, IDLE_UL_PER_REV))
+    if withcut:
+        cuts = [cut(w) for w in withcut]
+        delay = [c[0][0] - w[0][0] for c, w in zip(cuts, withcut)]
+        back = [c[-1][1] for c in cuts]
+        print("        fuel cut CONFIRMED: shuts %.2f-%.2f s after the pedal "
+              "comes up, fuel back at %.0f-%.0f rpm"
+              % (min(delay), max(delay), min(back), max(back)))
 
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("files", nargs="*", help="logs to read (default: the fixtures)")
-    ap.add_argument("--windows", action="store_true",
-                    help="print every coast window, in gear or not")
+    ap.add_argument("--all", action="store_true",
+                    help="print every coast window, not only the ones with a cut")
     args = ap.parse_args(argv)
 
     for p in args.files or sorted(glob.glob(os.path.join(FIXTURES, "*.txt"))):
-        report(p, show_windows=args.windows)
+        report(p, show_all=args.all)
     return 0
 
 

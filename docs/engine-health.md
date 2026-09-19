@@ -494,9 +494,9 @@ three recordings that differ in more than temperature. This one is an event
 the driver can hear, present in one thermal state and absent in the other,
 with no instrument involved at all.
 
-⚠ **It is a recollection, it is undated, and nothing in this repository
-corroborates it.** It is written down because it is a testable claim and the
-test is nearly free, not because it is evidence yet.
+⚠ **It is a recollection and it is undated.** What the repository can now
+corroborate is the *mechanism it needs* rather than the symptom itself — see
+the fuel cut below. Nobody has recorded the burble.
 
 **Why the overrun is the sharp part.** Coasting in gear with the pedal fully
 released is the condition in which the ECU has the least reason to be
@@ -507,48 +507,59 @@ evaporates on a hot one produces exactly the temperature dependence
 described**, and it is the same mechanism this file already proposes for the
 idle stumbles, observed in the state where it is loudest.
 
-⚠ **The argument rests on one fact this project does not hold: whether this
-ECU cuts the injectors on the overrun at all.** If it does, fuel in the
-exhaust there is uncommanded and the paragraph above stands. If it does not,
-the burble is commanded fuel and says nothing whatever. **It is not asserted
-here.** The AQY's fuelling strategy is not something this repository has a
-document for, and `CLAUDE.md`'s rule about sources applies to a car's ECU as
-much as to a datasheet.
+**The one fact it rests on is now measured: this ECU does cut the
+injectors on the overrun.** `python tools/coastscan.py` finds four of them in
+`17_drive_property_z1`, and they agree with each other closely:
 
-⚠ **And the corpus very nearly cannot settle it.** `python
-tools/coastscan.py` looks for the windows where the car is driving the engine
-— moving, pedal at rest, engine well above the governor, **and the
-engine-speed-to-road-speed ratio holding**, which is what separates an in-gear
-overrun from the gearchange or clutch-in coast that looks identical on every
-other channel. Across all eighteen fixtures it finds **one**, in
-`17_drive_property_z1`:
+| | shut at | fuel back at | after the lift | for |
+|---|---|---|---|---|
+| | 2668 rpm | 1750 rpm | 1.23 s | 0.93 s |
+| | 2981 rpm | 1700 rpm | 1.24 s | 1.01 s |
+| | 3066 rpm | 1740 rpm | 1.19 s | 1.05 s |
+| | 3204 rpm | 1754 rpm | 1.30 s | 1.13 s |
 
-| | |
+**The counter does not slow down, it stops** — zero microlitres for a second
+at a time while the car rolls. Two numbers come out of it and both matter
+later: **the cut engages about 1.2–1.3 s after the pedal comes up**, not
+immediately, and **fuel returns at about 1,700–1,750 rpm**.
+
+**The owner sees the same thing on the display**, independently and at road
+speed rather than in first gear: `FuelNow` falls to zero on the overrun and
+comes back at around 1,200 rpm. ⚠ **That zero is a real cut and not the
+display rounding down.** `compute_fuel_now_d()` sends l/100 km in tenths, so a
+displayed 0.0 needs the flow below speed ÷ 7200 — **under 8 µl/s at 60 km/h**,
+against 326 at warm idle. Nothing short of the injectors being shut reads
+zero there.
+
+⚠ **The resume speed is the one place the two disagree**, and it is worth
+checking rather than averaging: 1,700–1,750 rpm in the log against about
+1,200 from the driver's seat. The log is first gear at under 30 km/h, where an
+ECU has every reason to give the engine back its fuel early; a high gear at
+road speed is a different case and is what the next drive records.
+
+⚠ **What is NOT settled is whether it cuts fuel when the engine is cold, and
+that is the whole of the question.** `17_drive_property_z1` opens at 75 °C of
+oil, so all four of those cuts are **warm** — the state the owner says the
+burble does not happen in. `18_coldstart_z1` is the only cold recording and the
+car never moves in it, so there is no cold coast anywhere in this repository.
+
+**Both answers are informative, which is what makes it worth driving for:**
+
+| if the cold coast | then |
 |---|---|
-| duration | **1.30 s** |
-| engine speed | 4962 → 3204 rpm |
-| road speed | 30.8 → 20.3 km/h |
-| ratio drift | 2.2 % |
-| fuel | 769 µl/s = **11.4 µl per revolution**, against **24.6 µl/rev at warm idle** |
+| **cuts fuel too** | fuel audible in the exhaust there is arriving with none commanded. An injector that is not sealing is what the rest of this file already points at, and purge is ruled out by the same cold-only argument as at idle — it is enabled once warm, so it would burble in the wrong state. The strongest single thing this investigation would have |
+| **does not cut** | the burble is commanded fuel, the symptom says nothing about the injectors, and the cold-only pattern is the strategy rather than a leak |
 
-**So no clean fuel cut appears in the one window there is.** The charge per
-revolution falls to a little under half of idle's and does not go near zero —
-reduced, which is not the same thing as cut. ⚠ **Per revolution and not per
-second**, because a coast is also a deceleration: µl/s falls with the engine
-speed whatever the ECU is doing, and comparing it against idle's 326 µl/s
-would answer a different question.
+**The owner's own suspicion is the second one** — that the cut may be a
+warm-engine behaviour — and the fixtures cannot argue with it either way.
+⚠ **It is also why the last capture "missing" it is not evidence of anything**:
+it did not miss it. The cut is in that file four times over; nobody had
+looked, because until now nothing asked the question.
 
-⚠ **That is evidence and not an answer, for three reasons.** It is **1.3 s**,
-short enough for a strategy with an entry delay to sit inside it untouched. It
-is a hard deceleration ending near 3,200 rpm, so a cut that resumed on the way
-down would look exactly like this. And `17_drive_property_z1` opens at 75 °C
-of oil — **the warm state, which is the one the owner says the burble does not
-happen in.** A cold in-gear coast, which is the whole question, exists nowhere
-in this repository.
-
-**One window on the next drive settles it and costs nothing**, because the
-drive happens anyway: `next-drive.md` step 13a is the coast — five seconds,
-cold, clutch up — and `coastscan.py` is the analysis.
+**One coast on the next drive settles it and costs nothing**, because the
+drive happens anyway: `next-drive.md` step 13a is the coast — cold, high gear,
+clutch up, long enough to get past the 1.2 s delay — and `coastscan.py` is the
+analysis.
 
 ### The old converter was shown to the owner, and it is the one hard fact here
 
