@@ -485,14 +485,20 @@ therefore useless for it; `OilTemp` on the display is not.
 **The owner's recollection, offered after the Šumava trip and describing
 something that predates all of this work:** on a **cold** engine, braking on
 the engine down a hill, **fuel could be heard going into the exhaust and
-burning there** — a burbling from the back of the car. **On a warm engine it
-does not happen.**
+burning there** — a burbling from the back of the car, **carrying on through
+the engine braking**. On a warm engine there is at most **a single event just
+after the pedal comes up, and then silence.**
+
+⚠ **The discriminator is whether it STOPS, not whether it burbles**, and an
+earlier version of this section had the symptom as warm-silent against
+cold-noisy, which is not what was described. Both states make a noise. Only
+one of them goes quiet.
 
 **That is the same thermal lever as the idle stumbles, stated far more
 cleanly.** The idle argument has to work through counting dips and comparing
 three recordings that differ in more than temperature. This one is an event
-the driver can hear, present in one thermal state and absent in the other,
-with no instrument involved at all.
+the driver can hear, behaving one way in one thermal state and another way in
+the other, with no instrument involved at all.
 
 ⚠ **It is a recollection and it is undated.** What the repository can now
 corroborate is the *mechanism it needs* rather than the symptom itself — see
@@ -522,6 +528,18 @@ injectors on the overrun.** `python tools/coastscan.py` finds four of them in
 at a time while the car rolls. Two numbers come out of it and both matter
 later: **the cut engages about 1.2–1.3 s after the pedal comes up**, not
 immediately, and **fuel returns at about 1,700–1,750 rpm**.
+
+**The delay is what explains the warm symptom, and it makes the warm state the
+control rather than a second puzzle.** For those 1.2–1.3 s the ECU is still
+fuelling normally — at the measured 769 µl/s that is about **a millilitre of
+fuel commanded after the driver stopped asking for any**. A single event just
+after the lift followed by silence is that millilitre finishing, on an engine
+doing exactly what it is built to do. **Nothing about the warm case needs a
+fault to explain it.**
+
+**The cold case is the one with something left over.** Burbling that carries
+on through the whole coast is fuel still arriving well past the point where,
+warm, there is none left to arrive.
 
 **The owner sees the same thing on the display**, independently and at road
 speed rather than in first gear: `FuelNow` falls to zero on the overrun and

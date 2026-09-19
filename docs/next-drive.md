@@ -347,9 +347,13 @@ one in a low gear that falls past 1,700 rpm in a moment, spends its whole
 length inside the delay and records nothing. **In fifth from 130 km/h there is
 as much time as you want.**
 
-**And listen.** Whether the exhaust burbles is the one observation on this
-drive that no analysis can recover afterwards. Write down *heard it* or *did
-not hear it*, cold and hot, and nothing else.
+**And listen for whether it goes QUIET, not for whether it burbles.** Both
+states make a noise: warm, it stops a second or so after the lift; cold, the
+owner reports it carrying on. So the line to write down is *went quiet after
+about N seconds* or *never went quiet*, cold and hot. **N against the 1.2–1.3 s
+the injectors take to shut is the whole comparison**, and counting out loud is
+accurate enough for it. It is the one observation on this drive that no
+analysis can recover afterwards.
 
 **The other half comes out of the capture by itself:** `python
 tools/coastscan.py CAPTURE` finds the coasts and prints, for each, whether the

@@ -1236,9 +1236,10 @@ Two more worth doing on the first drive:
   tank level; if one moves and the other does not, something is wrong in
   `compute.c`.
 - **Refuel and watch the trip average clear.** The reset fires on five
-  consecutive at-rest samples more than 3 L above the settled tank level, so
-  about five seconds of standing still after the fill. `docs/refuel-reset.md`
-  has the rules and the corner cases.
+  consecutive at-rest samples more than `REFUEL_RISE_L` above the settled tank
+  level, so about five seconds of standing still after the fill.
+  `docs/refuel-reset.md` has the rules, the corner cases, and what the rule has
+  actually done in the car.
 
 ---
 

@@ -136,9 +136,26 @@ held:
 
 | | fill | outcome |
 |---|---|---|
-| earlier | **from a jerrycan, at the garden** | fired |
+| earlier | **6 L from a jerrycan**, at the garden | fired |
 | earlier | **a full tank**, the one `18_coldstart_z1` was recorded on | fired |
 | 2026-09-19 | the 44.17 L above | fired |
+
+⚠ **All three fired on a threshold of THREE, not four.** The firmware in the
+car predates `REFUEL_RISE_L` becoming 4 (commit `e8d634c`), so every one of
+these is evidence about the rule **as flashed** rather than as it now stands
+in the tree — and a fill watched in the car stays a test of three until the
+device is reprogrammed.
+
+**The 6 L jerrycan would have fired at four as well**, which is the one that
+was in doubt: 6 L delivered showed **+5 indicated**, and 5 clears a `> 4`. It
+clears it by one litre instead of two, and **that 5-against-6 is very probably
+the same event `config.h` argues from** when it refuses a threshold of five.
+
+⚠ **Which puts a number on the smallest fill the current rule is sure of, and
+it is about six litres.** At the near-empty gain of 0.83 a 5 L fill indicates
+4.15, the sender reports whole litres, and `4 > 4` is false. Nothing under
+5 L has ever gone into this car — `config.h` says so — so this is a margin
+rather than a hole, but it is the margin, and it is one litre wide.
 
 **So the rule works in the car and has for some time.** What is still missing
 is not a demonstration, it is a *recording*: every one of these happened with
