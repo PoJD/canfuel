@@ -352,30 +352,43 @@ nothing else in the picture is it. Hoses and cables are routed past it and
 some of them carry legible markings; **they belong to other parts and say
 nothing about this one.** Read the can, the joint and what came out of it.
 
-**It had a symptom, and changing it cured one.** Before 12/2017 the car would
-**visibly run out of fuel under load** — it would stop pulling, then pick up
-again — which is what a restricted filter does. **It has not done that since**,
-in nine years and ~27,600 km. *Owner-observed, not measured.*
+**The car used to starve under load, and it stopped.** It would **visibly run
+out of fuel under load** — stop pulling, then pick up again. **It has not done
+that for years.** *Owner-observed, not measured.*
 
-**That is the second observable from the same part** and it is the more useful
-of the two: corrosion says the body had had enough, starvation says the
-element had. It is also what makes the five-year interval below an interval
-against something rather than against a number off the internet.
+⚠ **Which part cured it is NOT established, and an earlier version of this
+paragraph said it was the filter.** The owner's recollection is that it has
+never happened since **the pump and the filter were changed**, and he cannot
+say which of the two did it. A restricted filter and a failing pump produce
+the same symptom, and nothing distinguishes them after the fact.
 
-⚠ **And it bounds what the current filter can be doing**, which
-`next-drive.md` leans on: the failure mode has a symptom, the symptom is
-absent, and the drives that would show it have been driven. That rules out
-gross restriction and not a few per cent under full load.
+⚠ **The dates make that recollection interesting rather than tidy.** This
+table has the filter at 12/2017 and the Bosch pump at 10/2022 — **five years
+apart**, so "the pump and the filter" is not one event in the written record.
+It would be one event if the filter bought in 10/2022 was fitted alongside the
+pump, which is the second thing this file cannot settle about that purchase —
+and it cuts against the owner's other recollection, that the 10/2022 filter
+was the wrong type and never went on. **Two recollections of the same
+purchase, pointing opposite ways, and no record.** Both are written down; no
+attempt is made here to pick one.
+
+⚠ **What it bounds is unaffected by any of that**, which is the part
+`next-drive.md` leans on: the failure mode has a direct observable, the
+observable has been absent for years, and the drives that would show it have
+been driven. **That rules out gross restriction now**, whichever part was
+responsible then — and it does not rule out a few per cent under full load.
 
 ⚠ **Its age at that point is not known.** It came off in 12/2017, three months
 after the purchase, and nothing records when it had last been changed or
 whether it ever had. The service history before September 2017 is the gap this
 file's *masked warning lamp* section describes.
 
-**This is the precedent under yesterday's five-year interval**, and it turns
+**This is the precedent under the five-year interval below**, and it turns
 that decision from an argument into an argument with a datum behind it: the
 last time this car's fuel filter was left past its life, it corroded through
-and stopped holding back what it was there to hold back.
+and stopped holding back what it was there to hold back. ⚠ **That rests on the
+corrosion and the leak, which are photographed and are unambiguously the
+filter** — not on the starvation, which may have been the pump.
 
 ### The fuel tank was replaced, and the date is gone
 

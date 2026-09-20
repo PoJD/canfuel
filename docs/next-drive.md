@@ -1129,11 +1129,12 @@ a cold port, so the idle stumbles and the cold overrun of step 13 were never
 touched by it either way.
 
 ⚠ **But restriction on this car has an observable, and it has been absent for
-years.** The filter *before* the 12/2017 one produced visible fuel starvation
-under load — the car would stop pulling and then pick up again — and
-`vehicle-history.md` records that it has not done that since. **That symptom
-is the direct observable for exactly the failure mode the confound needs**,
-and the drives that would show it have been driven, including full throttle to
+years.** This car used to show visible fuel starvation under load — it would
+stop pulling and then pick up again — and `vehicle-history.md` records that it
+has not done so for years. ⚠ **Whether the filter or the fuel pump cured it is
+not established and does not matter here**: what the confound needs is
+restriction *now*, and **that symptom is the direct observable for it**. The
+drives that would show it have been driven, including full throttle to
 5,000 rpm.
 
 **So the confound is bounded near zero rather than argued away.** What survives
