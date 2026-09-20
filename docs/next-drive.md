@@ -1118,28 +1118,40 @@ null change, and fouled plugs misfire at low load and high vacuum — the same
 signature. **Nothing measured on this drive can separate the two**, unless a
 cold capture was taken in the window between the two visits.
 
-⚠ **And the fuel filter makes it three, but not evenly.** A filter 4 to 9
-years old goes on with the injectors (`vehicle-history.md`), so the disjunction
-widens — **and it widens for one half of this drive and not the other.** A
-restricted filter is a limit on *supply under demand*: it can hold down the
-pulls, b7max and the power, which is exactly the half *the decision tree*
-below reads. It cannot make an injector dribble into a cold port, so **the
-idle stumbles and the cold overrun of step 13 are untouched by it** — those
-stay a two-way question between the plugs and the injectors.
+**The fuel filter is the third part changed and it is very nearly not a
+confound at all**, which is worth the paragraph because an earlier version of
+this section made it one.
 
-⚠ **And it is not there as a suspect.** Nothing points at the filter; it is
-going in to protect the new injector nozzles from nine years of tank, and
-`vehicle-history.md` has the reasoning and the five-year interval that follows
-from it. **The confound above is a side effect of a decision taken for another
-reason**, which is worth knowing before reading it as evidence about anything.
+**The argument for calling it a confound:** a restricted filter limits supply
+under demand, so it could hold down the pulls, b7max and the power — the half
+*the decision tree* below reads. It could never make an injector dribble into
+a cold port, so the idle stumbles and the cold overrun of step 13 were never
+touched by it either way.
 
-**Fitting it before the drive rather than after is still the right way round**,
-and worth saying because the opposite is tempting. Holding it back would not
-separate anything: a starved rail and a leaking injector are both fuel
-delivery, and no measurement on this drive tells them apart. What it would do
-is leave a known 4-to-9-year-old restriction in the middle of the measurement
-chain **for the one session that is supposed to establish what this engine can
-make.** A low b7max with an old filter still in the car answers nothing. It is worth
+⚠ **But restriction on this car has an observable, and it has been absent for
+years.** The filter *before* the 12/2017 one produced visible fuel starvation
+under load — the car would stop pulling and then pick up again — and
+`vehicle-history.md` records that it has not done that since. **That symptom
+is the direct observable for exactly the failure mode the confound needs**,
+and the drives that would show it have been driven, including full throttle to
+5,000 rpm.
+
+**So the confound is bounded near zero rather than argued away.** What survives
+is the residual: absence of visible starvation rules out *gross* restriction,
+not a few per cent of rail pressure under full load that nobody could feel.
+`032` reads **+1.6 % at part load**, which is a small correction and points the
+same way — ⚠ **as far as part load goes, and no further**, since wide-open
+throttle runs open loop and the trims do not cover it.
+
+⚠ **It is not there as a suspect at all.** Nothing points at the filter; it is
+going in to protect the new injector nozzles, and `vehicle-history.md` has the
+reasoning and the five-year interval that follows from it.
+
+**Fitting it before the drive rather than after is still the right way round.**
+Holding it back would separate nothing — a starved rail and a leaking injector
+are both fuel delivery and no measurement here tells them apart — and it would
+leave a part of unestablished age in the measurement chain for the one session
+meant to establish what this engine can make. It is worth
 knowing which claim the result supports before the result is in hand: "the
 engine was unhealthy and is now well" survives either way, and "it was the
 injectors" does not.

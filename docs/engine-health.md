@@ -648,6 +648,12 @@ the filter was overwhelmed and eventually holed → whatever it stopped holding
 back went to the injectors → the injectors were damaged, and have been
 dribbling ever since.
 
+**The first link has an observation behind it rather than only an inference.**
+That filter was also *restricting* — the car visibly starved under load until
+it was changed (`vehicle-history.md`) — and a filter restricts because it is
+loaded. **Loaded with what it caught is the premise the chain needs**, and it
+is the one link that does not rest on the colour of a liquid in a tray.
+
 **The timeline survives the obvious objection, which is worth checking rather
 than assuming.** The filter was changed in 12/2017 and the injectors are
 coming out in 9/2026 — nine years later, all of them on a clean filter, so why

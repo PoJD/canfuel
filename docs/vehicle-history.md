@@ -352,6 +352,21 @@ nothing else in the picture is it. Hoses and cables are routed past it and
 some of them carry legible markings; **they belong to other parts and say
 nothing about this one.** Read the can, the joint and what came out of it.
 
+**It had a symptom, and changing it cured one.** Before 12/2017 the car would
+**visibly run out of fuel under load** — it would stop pulling, then pick up
+again — which is what a restricted filter does. **It has not done that since**,
+in nine years and ~27,600 km. *Owner-observed, not measured.*
+
+**That is the second observable from the same part** and it is the more useful
+of the two: corrosion says the body had had enough, starvation says the
+element had. It is also what makes the five-year interval below an interval
+against something rather than against a number off the internet.
+
+⚠ **And it bounds what the current filter can be doing**, which
+`next-drive.md` leans on: the failure mode has a symptom, the symptom is
+absent, and the drives that would show it have been driven. That rules out
+gross restriction and not a few per cent under full load.
+
 ⚠ **Its age at that point is not known.** It came off in 12/2017, three months
 after the purchase, and nothing records when it had last been changed or
 whether it ever had. The service history before September 2017 is the gap this
