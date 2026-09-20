@@ -293,11 +293,27 @@ Sorted by how directly they sit in the measurement chain:
 | **Plugs and leads, 12/2022** | **four calendar years but only ~1,500 km.** `engine-health.md` records them as "four years downstream of whatever has been happening", which is true of the dates; the distance is the other half of it and it is small. Old by date, nearly new by wear |
 | Pump 10/2022, coil 6/2026, throttle body 6/2026, FPR 7/2026, cat 9/2026, injectors 9/2026 | **effectively new.** Everything that sets rail pressure and injector flow — the two inputs 0x480 depends on — is now a 2026 part |
 
-**The asymmetry is the point.** The car's *delivery* side has been almost
-entirely renewed and its *measurement* side — the two lambda sensors and the
-MAF — has not been touched in eight or nine years. **With the filter that
-becomes complete**: after 9/2026 every part between the tank and the cylinder
-is a 2026 part, and nothing on the measurement side has moved at all.
+**The asymmetry is the point, and after next week it is as stark as it can
+get.** Two whole sides of this engine will have been renewed and a third has
+not been touched in eight or nine years.
+
+| | state after 9/2026 | exceptions |
+|---|---|---|
+| **fuel delivery** | pump, filter, regulator, injectors — **all new** | **the lines and pipes from the tank to the engine**, never changed; and the tank itself, replaced at an unrecorded date |
+| **ignition** | coil, leads, plugs — **all 2026** | none |
+| **measurement** | **untouched** | both lambda sensors 10/2017, the MAF 7/2018 |
+
+**Everything that decides how much fuel is delivered and whether it is lit is
+now current. Everything that tells the ECU what happened is eight or nine
+years old**, and has spent those years behind a converter that was burning
+through. That is where to look next, and `engine-health.md`'s fork table is
+what reads it: any `not OK` from VCDS blocks 034, 036 or 037 is a **second**
+failure of an already-replaced sensor.
+
+⚠ **The fuel lines are the one thing on the delivery row that stays old**, and
+they are named rather than passed over: they run the length of the car, they
+are original as far as anything here records, and they sit between a tank of
+unknown date and parts that will be a week old.
 
 ### The fuel filter's age is two answers and neither is provable
 
@@ -352,31 +368,16 @@ nothing else in the picture is it. Hoses and cables are routed past it and
 some of them carry legible markings; **they belong to other parts and say
 nothing about this one.** Read the can, the joint and what came out of it.
 
-**The car used to starve under load, and it stopped.** It would **visibly run
-out of fuel under load** — stop pulling, then pick up again. **It has not done
-that for years.** *Owner-observed, not measured.*
+**The car used to starve under load, and it stopped.** At some point in the
+ownership it would **visibly run out of fuel under load** — stop pulling, then
+pick up again. **It was the fuel system; which part is not established and is
+not worth establishing.** It has not happened for years. *Owner-observed, not
+measured, and not dated.*
 
-⚠ **Which part cured it is NOT established, and an earlier version of this
-paragraph said it was the filter.** The owner's recollection is that it has
-never happened since **the pump and the filter were changed**, and he cannot
-say which of the two did it. A restricted filter and a failing pump produce
-the same symptom, and nothing distinguishes them after the fact.
-
-⚠ **The dates make that recollection interesting rather than tidy.** This
-table has the filter at 12/2017 and the Bosch pump at 10/2022 — **five years
-apart**, so "the pump and the filter" is not one event in the written record.
-It would be one event if the filter bought in 10/2022 was fitted alongside the
-pump, which is the second thing this file cannot settle about that purchase —
-and it cuts against the owner's other recollection, that the 10/2022 filter
-was the wrong type and never went on. **Two recollections of the same
-purchase, pointing opposite ways, and no record.** Both are written down; no
-attempt is made here to pick one.
-
-⚠ **What it bounds is unaffected by any of that**, which is the part
-`next-drive.md` leans on: the failure mode has a direct observable, the
-observable has been absent for years, and the drives that would show it have
-been driven. **That rules out gross restriction now**, whichever part was
-responsible then — and it does not rule out a few per cent under full load.
+⚠ **What it bounds is what matters**, and it is the part `next-drive.md` leans
+on: the failure mode has a direct observable, the observable has been absent
+for years, and the drives that would show it have been driven. **That rules
+out gross restriction now** — and not a few per cent under full load.
 
 ⚠ **Its age at that point is not known.** It came off in 12/2017, three months
 after the purchase, and nothing records when it had last been changed or

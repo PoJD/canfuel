@@ -649,14 +649,10 @@ back went to the injectors → the injectors were damaged, and have been
 dribbling ever since.
 
 ⚠ **A paragraph here briefly claimed the first link had an observation behind
-it, and it has been withdrawn.** The argument was that the car starved under
-load before that filter was changed, that a filter restricts because it is
-loaded, and that loaded-with-what-it-caught is exactly the premise the chain
-needs. **It falls on the first step**: the owner cannot say whether the
-starvation was the filter or the fuel pump, and a failing pump produces the
-same symptom while implying nothing about contamination
-(`vehicle-history.md`). **So the first link rests on the sludge in the tray
-and on nothing else**, which is where it started.
+it — the car's old fuel starvation — and it has been withdrawn.** That symptom
+is not attributable to the filter rather than to the pump
+(`vehicle-history.md`), and a pump implies nothing about contamination. **The
+first link rests on the sludge in the tray and on nothing else.**
 
 **The timeline survives the obvious objection, which is worth checking rather
 than assuming.** The filter was changed in 12/2017 and the injectors are
