@@ -337,6 +337,7 @@ a later reader can see what was being judged.
 | | |
 |---|---|
 | [`fuel-filter-2017-in-situ.jpg`](photos/fuel-filter-2017-in-situ.jpg) | the filter on the car, 12/2017, before removal |
+| [`fuel-filter-2017-marking.jpg`](photos/fuel-filter-2017-marking.jpg) | the lettering on the cable beside it, enlarged — see the warning below |
 | [`fuel-filter-2017-removed.jpg`](photos/fuel-filter-2017-removed.jpg) | the can, off |
 | [`fuel-filter-2017-drained.jpg`](photos/fuel-filter-2017-drained.jpg) | what drained out of it |
 | [`plugs-2026-09-17-removed.jpg`](photos/plugs-2026-09-17-removed.jpg) | the four plugs out at 17/9/2026, after ~1,500 km |
@@ -349,9 +350,14 @@ petrol — the owner describes it as a black mixture.
 
 ⚠ **One thing in that photograph is a READING and not a fact, and an earlier
 version of this paragraph promoted it.** A sheathed cable running past the
-filter carries white lettering that reads `SK 1J0609721E 19/99`, and this file
-said the `19/99` was a date code and concluded that the hardware down there
-was original to the car's build. **None of that is established.** VW does
+filter carries white lettering that reads **`SK 1J0609721E 19/99`** — it is in
+the **lower left of the frame, running vertically up the black conduit**, and
+[`fuel-filter-2017-marking.jpg`](photos/fuel-filter-2017-marking.jpg) is that
+strip turned upright and enlarged, because it is small enough in the full
+frame to be missed entirely. *(The `1J` reads as a `U` at a glance — the
+digit and the letter almost touch. VW's own format, 1J0-609-721-E, is what
+settles the parse.)* This file said the `19/99` was a date code and concluded
+that the hardware down there was original to the car's build. **None of that is established.** VW does
 often stamp week/year on such parts, so 1999 is a plausible reading, but it is
 a reading; the number's main group is 6, which is chassis and brakes rather
 than anything fuel; and even taken at face value it says only that a 2000 car
