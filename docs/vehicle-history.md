@@ -316,6 +316,38 @@ it is asked. **What matters is that it was 4 to 9 years old and is not any
 more.** If the 10/2022 part turns up in a box unopened, add that here — it
 would settle the pair and cost nothing.
 
+**The reason it is being changed is protection, not suspicion.** Nothing
+points at the filter and no leak or restriction has been observed. It is
+going in because **the filter is the last barrier between nine years of tank
+and a set of brand new injector nozzles**, and new injectors behind an old
+filter is the one combination on this car where a cheap part can ruin an
+expensive one. That it also leaves the measurement chain — the entry above in
+*Which parts are old enough to bias the result* — is a consequence and was
+not the motive.
+
+### The filter interval is five years, and it is a decision
+
+**Chosen: five years, on the calendar, regardless of distance.** Chosen over
+six, which is the top of the 100,000 km / 5–6 year range the owner found
+online, and over any distance-based trigger at all.
+
+⚠ **That range is owner-sourced from the internet and is not a VW schedule**,
+so it is context rather than a specification. Nothing here rests on it, because
+the reasoning below would reach five years without it.
+
+**Why the calendar and not the odometer.** This car covers **600 to 900 km a
+year** (see *Distance and use*), so a 100,000 km trigger is roughly a century
+away and would never fire. And it **parks outside**, so the filter body takes
+winter from underneath — salt, slush and standing wet — which is a clock that
+runs on time and weather rather than on litres pumped through it.
+
+**This is the same argument the rest of this file keeps making**, which is why
+it belongs here rather than in a note somewhere. The converter managed nine
+years and under 28,000 km. The plugs managed four years and ~1,500 km. **On
+this car, consumables are destroyed by time and conditions and not by
+distance**, and an interval quoted in kilometres is an interval that never
+arrives.
+
 ### How to use this as a sanity check, and how not to
 
 **The check is tank to tank against the pump. No fixture can stand in for

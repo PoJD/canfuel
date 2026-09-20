@@ -1104,6 +1104,12 @@ below reads. It cannot make an injector dribble into a cold port, so **the
 idle stumbles and the cold overrun of step 13 are untouched by it** — those
 stay a two-way question between the plugs and the injectors.
 
+⚠ **And it is not there as a suspect.** Nothing points at the filter; it is
+going in to protect the new injector nozzles from nine years of tank, and
+`vehicle-history.md` has the reasoning and the five-year interval that follows
+from it. **The confound above is a side effect of a decision taken for another
+reason**, which is worth knowing before reading it as evidence about anything.
+
 **Fitting it before the drive rather than after is still the right way round**,
 and worth saying because the opposite is tempting. Holding it back would not
 separate anything: a starved rail and a leaking injector are both fuel
