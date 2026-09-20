@@ -60,14 +60,20 @@ procedure works from it unchanged.
 nozzles.** Four of each, laid out so it is clear which cylinder is which.
 They go in a bag, not in a bin.
 
+⚠ **Keeping the mapping is the whole of the discipline here**, and it is the
+part that failed last time: the plugs came out at the 17/9 visit and ended up
+loose in a cap, so which single one was worst is gone. Only the pair survived,
+because somebody said it out loud. **Lay the injectors out in order as they
+come off and photograph them that way.**
+
 ⚠ **This is the only physical evidence this investigation will ever have, and
 it expires the moment they are thrown away.** Everything else here measures a
 symptom; the injectors are the suspect itself. Contamination shows on the
-inlet screen, a poor spray pattern shows at the nozzle, and **cylinder 1 and 4
-are the ones to look at hardest** — they are where the worst plugs came from,
-and `engine-health.md`, *The worst plug names a cylinder*, says why that datum
-is perishable too. The candidate root cause in that file, *A candidate ROOT
-cause, from a photograph*, is what they would confirm or refute.
+inlet screen, a poor spray pattern shows at the nozzle, and **cylinders 1 and
+4 are the ones to look at hardest** — they are where the worst plugs came from
+(`engine-health.md`, *The worst plugs name two cylinders*). The candidate root
+cause in that file, *A candidate ROOT cause, from a photograph*, is what they
+would confirm or refute.
 
 **No conclusion depends on doing it**, and it costs a bag and five minutes.
 That is the whole argument for it: the cost of keeping them is nothing and the
