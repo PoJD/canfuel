@@ -165,6 +165,7 @@ here is owner-supplied from service records.
 | **Fuel filter, new** | **being fitted with the injectors, 9/2026** | ~0 |
 | MAF sensor | 7/2018 *(connector cleaned 7/2026)* | not recoverable — see *Distance and use* |
 | Chiptuning | 6/2018 | — |
+| **Fuel tank** | **replaced inside the ownership, date not recoverable** | unknown — see below |
 | Fuel pump, Bosch | 10/2022 | ~1,500 km |
 | Spark plugs and leads | 12/2022 *(replaced 9/2026)* | **~1,500 km — see below** |
 | Ignition coil | 6/2026 | ~0 |
@@ -327,15 +328,18 @@ not the motive.
 
 ### What the 2017 filter looked like coming off — photographed
 
-**Three photographs, kept in `docs/photos/`**, because this is the only part
-on the car whose end-of-life condition was recorded at the time and the
-project has repeatedly regretted not having others:
+**`docs/photos/` holds the parts this car has destroyed**, and it exists
+because the project has repeatedly regretted evidence that perished.
+`engine-health.md`, under *The plugs*, has the amended policy: **the written
+judgement is the record and a picture never grades anything** — it is kept so
+a later reader can see what was being judged.
 
 | | |
 |---|---|
-| [`fuel-filter-2017-in-situ.jpg`](photos/fuel-filter-2017-in-situ.jpg) | on the car, before removal |
+| [`fuel-filter-2017-in-situ.jpg`](photos/fuel-filter-2017-in-situ.jpg) | the filter on the car, 12/2017, before removal |
 | [`fuel-filter-2017-removed.jpg`](photos/fuel-filter-2017-removed.jpg) | the can, off |
 | [`fuel-filter-2017-drained.jpg`](photos/fuel-filter-2017-drained.jpg) | what drained out of it |
+| [`plugs-2026-09-17-removed.jpg`](photos/plugs-2026-09-17-removed.jpg) | the four plugs out at 17/9/2026, after ~1,500 km |
 
 **What they show, as description rather than interpretation.** The can carries
 heavy surface corrosion over most of its body, and the joint at the clamp is
@@ -354,6 +358,26 @@ file's *masked warning lamp* section describes.
 that decision from an argument into an argument with a datum behind it: the
 last time this car's fuel filter was left past its life, it corroded through
 and stopped holding back what it was there to hold back.
+
+### The fuel tank was replaced, and the date is gone
+
+**It was replaced inside the ownership — the owner is certain of that and
+cannot date it**, and no record has been found. So it is in the work table
+above with the date left open rather than guessed at.
+
+**One thing follows from the filter's own dates.** If the filter now in the
+car is the 12/2017 one, then it has run on **both** tanks — it was in place
+for however long the original one remained. If the 10/2022 purchase really was
+fitted, the overlap is shorter or nothing. **Neither the tank's date nor the
+filter's is established, so the order of the two is not either.**
+
+⚠ **This corrects `engine-health.md`, which until now said the tank was the
+one part in the chain that had never been touched.** It is not, and that
+matters both ways round: an upstream source of contamination may have been
+removed years ago, or last year, and the difference decides whether the
+candidate root cause in that file still has a source at the time it needs one.
+**A date nobody wrote down is what separates the two readings**, so neither is
+argued for.
 
 ### The filter interval is five years, and it is a decision
 

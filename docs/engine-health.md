@@ -669,13 +669,22 @@ root cause, not a finding**, and nothing in the plan changes because of it:
 the injectors and the filter are both being replaced anyway, for reasons
 decided before this was thought of.
 
-⚠ **It also points somewhere nobody has looked: the tank.** A filter full of
-black sludge is a filter that was doing its job until it could not, so **the
-source was upstream of it** — and the tank is the one thing in that chain that
-has never been touched. New injectors behind a new filter are still downstream
-of it. Nothing here proposes dropping a tank; it is written down because the
-chain above implies it and leaving that unsaid would be picking the
-comfortable half.
+⚠ **It points upstream, and the tank is NOT untouched — an earlier version of
+this passage said it was and that was wrong.** A filter full of black sludge is
+a filter that was doing its job until it could not, so **the source was above
+it**. But the tank has been replaced, inside the ownership, and
+`vehicle-history.md` records that **the date is not recoverable**.
+
+**Which is what stops this being either a worry or a relief.** If the tank went
+in before the injectors were spoiled, the source was gone early and the chain
+above needs another one. If it went in afterwards, the source is gone *now* and
+the new parts are behind a clean one. **The two readings differ only by a date
+nobody wrote down**, so neither can be argued for, and the lines between tank
+and filter have never been changed under either.
+
+**Nothing here proposes dropping a tank.** It is written down because the chain
+implies an upstream source and because the correction matters: this project
+does not get to keep a suspicion it has already been told is out of date.
 
 **There is exactly one test and it expires in a few days.** The old injectors
 come out when the new ones go in. **Their inlet screens and nozzles are the
@@ -1089,19 +1098,31 @@ scale, with the air path eliminated from both ends.
 ### The plugs: four years by date, under 1,500 km by wear
 
 **The old plugs came out worn, with cylinders 1 and 4 further along than 2 and
-3, and one of the four visibly worse than the rest.** Photographed in the
-garage; the photograph is not kept here, on the same principle as every other
-screen in this file — what a photograph is worth is written down, and the
-picture itself goes stale in a drawer.
+3, and one of the four visibly worse than the rest.**
+[`plugs-2026-09-17-removed.jpg`](photos/plugs-2026-09-17-removed.jpg) is the
+four of them in the garage, all four firing ends dry and dark with carbon
+rather than carrying the wet sheen of oil.
 
-What is visible in it: dry, dark, sooty deposits on all four — carbon rather
-than the wet sheen of oil — with the ground straps and centre electrodes
-rounded off rather than square.
+⚠ **THE POLICY ON PHOTOGRAPHS CHANGED HERE, AND IT IS WORTH TWO LINES BECAUSE
+THIS PASSAGE USED TO SAY THE OPPOSITE.** It read *"the photograph is not kept
+here … what a photograph is worth is written down, and the picture itself goes
+stale in a drawer"*, and photographs are now kept in `docs/photos/`. **What
+was right in that rule survives and is restated below**: a picture is not the
+evidence and does not grade anything. What was wrong was the conclusion — this
+file spends several sections lamenting evidence that perished, and a photograph
+is the cheapest thing there is that does not perish. **The written judgement
+remains the record; the picture is kept beside it so a later reader can see
+what was being judged.**
 
-⚠ **A photograph cannot grade fouling and must not be used to.** Lighting,
-angle and which way a plug happens to be turned move the apparent severity more
-than a real difference between two cylinders would. **The owner handled them
-and the ranking is his, not the picture's.**
+⚠ **A photograph cannot grade fouling and must not be used to**, and that goes
+for the one now linked above. Lighting, angle and which way a plug happens to
+be turned move the apparent severity more than a real difference between two
+cylinders would. **The owner handled them and the ranking is his, not the
+picture's** — do not re-rank them off the file.
+
+⚠ **And the picture does not carry the cylinder mapping.** It shows four plugs
+loose in a cap, which is exactly the state the next section warns about. It
+preserves their condition and nothing about their position.
 
 **The distance is the finding, and it comes out of `vehicle-history.md` rather
 than out of the plugs.** Those plugs were fitted in 12/2022 and the car has
