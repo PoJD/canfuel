@@ -69,6 +69,11 @@ after the injectors are changed, so it gets primed, started, run briefly,
 looked over for weeping seals and read for faults. That has to happen and it
 has to happen first.
 
+⚠ **The fuel filter is being changed in the same visit**, which opens the
+system a second time and in a second place — **under the car, on the pressure
+side, at a joint nobody can see from the engine bay.** One leak check covers
+both only if both are looked at, so look underneath as well as at the rail.
+
 **What it costs is decided by one channel, and `18_coldstart_z1` measures it.**
 Six minutes of idling from a genuinely cold engine moved:
 
@@ -1088,7 +1093,24 @@ rather than only when hot**, and the idle adaptation moves toward zero — while
 17 September were eroded and carbon-coated at about 1,500 km, so they are not a
 null change, and fouled plugs misfire at low load and high vacuum — the same
 signature. **Nothing measured on this drive can separate the two**, unless a
-cold capture was taken in the window between the two visits. It is worth
+cold capture was taken in the window between the two visits.
+
+⚠ **And the fuel filter makes it three, but not evenly.** A filter 4 to 9
+years old goes on with the injectors (`vehicle-history.md`), so the disjunction
+widens — **and it widens for one half of this drive and not the other.** A
+restricted filter is a limit on *supply under demand*: it can hold down the
+pulls, b7max and the power, which is exactly the half *the decision tree*
+below reads. It cannot make an injector dribble into a cold port, so **the
+idle stumbles and the cold overrun of step 13 are untouched by it** — those
+stay a two-way question between the plugs and the injectors.
+
+**Fitting it before the drive rather than after is still the right way round**,
+and worth saying because the opposite is tempting. Holding it back would not
+separate anything: a starved rail and a leaking injector are both fuel
+delivery, and no measurement on this drive tells them apart. What it would do
+is leave a known 4-to-9-year-old restriction in the middle of the measurement
+chain **for the one session that is supposed to establish what this engine can
+make.** A low b7max with an old filter still in the car answers nothing. It is worth
 knowing which claim the result supports before the result is in hand: "the
 engine was unhealthy and is now well" survives either way, and "it was the
 injectors" does not.

@@ -161,7 +161,8 @@ here is owner-supplied from service records.
 | Part | Fitted | Age in distance |
 |---|---|---|
 | Both oxygen sensors (pre- and post-cat) | **10/2017 — never changed since** | the whole ownership, ~27,600 km |
-| Fuel filter | **12/2017 — never changed since** | the whole ownership, ~27,000 km |
+| Fuel filter | **12/2017**, and possibly again 10/2022 — see below | 4 or 9 years, **not established** |
+| **Fuel filter, new** | **being fitted with the injectors, 9/2026** | ~0 |
 | MAF sensor | 7/2018 *(connector cleaned 7/2026)* | not recoverable — see *Distance and use* |
 | Chiptuning | 6/2018 | — |
 | Fuel pump, Bosch | 10/2022 | ~1,500 km |
@@ -286,14 +287,34 @@ Sorted by how directly they sit in the measurement chain:
 | Part | Why it matters here |
 |---|---|
 | **Oxygen sensors, 10/2017** | the largest risk on the list. They set the fuelling, so they move both figures together and are invisible to any comparison of the two. **9 years and the full ownership distance**, behind a failing cat |
-| **Fuel filter, 12/2017** | the oldest fuel-side part and never replaced in ownership. A restricted filter limits rail supply under demand; also by some distance the cheapest item here to eliminate |
+| **Fuel filter** | was the oldest fuel-side part on the car and is **being replaced with the injectors**, so it leaves this table on the day. A restricted filter limits rail supply under demand; it was always by some distance the cheapest item here to eliminate, and it is now eliminated |
 | **MAF, 7/2018** | `engine-health.md` rules out a *badly* failing sensor by arithmetic — the volumetric efficiency it implies stays physical — and explicitly **does not** rule out a slightly lazy one. 8 years |
 | **Plugs and leads, 12/2022** | **four calendar years but only ~1,500 km.** `engine-health.md` records them as "four years downstream of whatever has been happening", which is true of the dates; the distance is the other half of it and it is small. Old by date, nearly new by wear |
 | Pump 10/2022, coil 6/2026, throttle body 6/2026, FPR 7/2026, cat 9/2026, injectors 9/2026 | **effectively new.** Everything that sets rail pressure and injector flow — the two inputs 0x480 depends on — is now a 2026 part |
 
 **The asymmetry is the point.** The car's *delivery* side has been almost
 entirely renewed and its *measurement* side — the two lambda sensors and the
-MAF — has not been touched in eight or nine years.
+MAF — has not been touched in eight or nine years. **With the filter that
+becomes complete**: after 9/2026 every part between the tank and the cylinder
+is a 2026 part, and nothing on the measurement side has moved at all.
+
+### The fuel filter's age is two answers and neither is provable
+
+**The service record says 12/2017, right after the purchase.** An email then
+shows **another fuel filter bought in 10/2022**, the same month as the Bosch
+pump — but the owner believes it was the wrong type and was never fitted, and
+there is no record either way.
+
+**So the filter in the car is four years old or nine, and this file cannot
+say which.** It is written down as an open pair rather than resolved to the
+likelier one, because a service history that quietly rounds its uncertainties
+is the thing this file exists not to be.
+
+⚠ **It also stops being worth resolving**, which is the practical part: a new
+one goes on with the injectors, so the question becomes historical on the day
+it is asked. **What matters is that it was 4 to 9 years old and is not any
+more.** If the 10/2022 part turns up in a box unopened, add that here — it
+would settle the pair and cost nothing.
 
 ### How to use this as a sanity check, and how not to
 
