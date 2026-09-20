@@ -345,9 +345,20 @@ a later reader can see what was being judged.
 heavy surface corrosion over most of its body, and the joint at the clamp is
 wet and stained. **The owner records that it was leaking**, which the staining
 is consistent with. What drained out is dark and cloudy rather than clear
-petrol — the owner describes it as a black mixture. A part beside it is
-stamped with a **`19/99` date code**, so the hardware down there was original
-to the car's build.
+petrol — the owner describes it as a black mixture.
+
+⚠ **One thing in that photograph is a READING and not a fact, and an earlier
+version of this paragraph promoted it.** A sheathed cable running past the
+filter carries white lettering that reads `SK 1J0609721E 19/99`, and this file
+said the `19/99` was a date code and concluded that the hardware down there
+was original to the car's build. **None of that is established.** VW does
+often stamp week/year on such parts, so 1999 is a plausible reading, but it is
+a reading; the number's main group is 6, which is chassis and brakes rather
+than anything fuel; and even taken at face value it says only that a 2000 car
+had a 1999 part under it in 2017, which is unremarkable and tells us nothing
+whatever about the filter. **It is kept because the lettering is legible in
+the photograph and somebody will notice it again** — not because it supports
+anything.
 
 ⚠ **Its age at that point is not known.** It came off in 12/2017, three months
 after the purchase, and nothing records when it had last been changed or
