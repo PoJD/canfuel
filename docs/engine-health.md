@@ -1144,26 +1144,38 @@ here — but plug-reading is a craft with a large subjective component, the
 compression result already rules out the ring-and-valve half of it far more
 firmly, and nothing is gained by leaning on the colour.
 
-### The worst plug names a cylinder, and that datum is perishable
+### The worst plugs name two cylinders — 1 and 4, and the question is closed
 
 **This is the most actionable thing in this section.** *The old converter was
 shown to the owner* says one burned-through chamber "fits one cylinder better
 than four" and then, correctly, refuses to name which: exhaust flows mix in the
 manifold, so the converter cannot identify anything.
 
-**A plug does not mix.** It sits in one cylinder and records only that cylinder.
-So the worst of the four is the first candidate identification of the suspect
-cylinder this investigation has ever had — **provided anybody can still say
-which cylinder it came out of.**
+**A plug does not mix.** It sits in one cylinder and records only that
+cylinder. So the worst of the four is the first candidate identification of a
+suspect cylinder this investigation has ever had — and unlike most of what
+this file chases, **it was captured in time.**
 
-- **Ask the garage while they still remember**, and write the answer down here.
-  Plugs come out in a rush and end up loose in a cap; the position is lost
-  within days and cannot be reconstructed afterwards.
-- **Keep the four plugs, bagged and labelled by cylinder.** They are physical
-  evidence of exactly the kind this file has been short of. If the new injectors
-  cure everything, the worst plug should have come from the cylinder that was
-  being fed the extra fuel, and that is a prediction this set of parts can still
-  be held against.
+**The answer is cylinders 1 and 4.** The garage removed the plugs at the
+17/9/2026 visit and the owner has the ranking from them; it is the same pair
+the section above records, confirmed rather than reconstructed. *Owner-reported
+from the garage, not measured here.*
+
+⚠ **An earlier version of this section asked for it as an open question** —
+*"ask the garage while they still remember"* — while the section above already
+stated the answer. **It is closed.** Do not ask it again; that has now cost two
+sessions.
+
+⚠ **The pair survived and the individual mapping did not**, which costs
+nothing. `photos/plugs-2026-09-17-removed.jpg` shows the four loose in a cap,
+so which single plug was worst of all four is gone. **Every reading below works
+off the pair** — end cylinders, or companion cylinders on one coil output —
+and none of them needs a singleton. The datum that mattered is the one that
+survives.
+
+**The prediction the pair still has to answer:** if the new injectors cure
+everything, the extra fuel should have been going to 1 or 4. That is something
+this set of parts can be held against, and it needs no plug in a bag.
 
 ⚠ **1 and 4 being the worse pair may be mundane, and the innocent explanation
 has to be ruled out before the interesting one is entertained.** They are the
