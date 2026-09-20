@@ -56,6 +56,23 @@ this ECU, which no document here establishes either way. A small drift is normal
 learning and not a reset. **Whatever it reads becomes the baseline**, and the
 procedure works from it unchanged.
 
+**1b. KEEP THE OLD INJECTORS, and photograph the inlet screens and the
+nozzles.** Four of each, laid out so it is clear which cylinder is which.
+They go in a bag, not in a bin.
+
+⚠ **This is the only physical evidence this investigation will ever have, and
+it expires the moment they are thrown away.** Everything else here measures a
+symptom; the injectors are the suspect itself. Contamination shows on the
+inlet screen, a poor spray pattern shows at the nozzle, and **cylinder 1 and 4
+are the ones to look at hardest** — they are where the worst plugs came from,
+and `engine-health.md`, *The worst plug names a cylinder*, says why that datum
+is perishable too. The candidate root cause in that file, *A candidate ROOT
+cause, from a photograph*, is what they would confirm or refute.
+
+**No conclusion depends on doing it**, and it costs a bag and five minutes.
+That is the whole argument for it: the cost of keeping them is nothing and the
+cost of not keeping them is a question that can never be asked again.
+
 **2. Do not do this the day the car comes back.** Drive it home and leave it.
 The drive home is wanted; see Part 2.
 

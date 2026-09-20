@@ -633,6 +633,56 @@ drive's silence are readings of an instrument that reports.
 
 ---
 
+### A candidate ROOT cause, from a photograph — and it is a hypothesis
+
+**This file has a symptom and has never had a cause.** Everything above argues
+that an injector is delivering fuel nobody asked for; nothing anywhere says
+why an injector on a 2000 car would start doing that. **Three photographs of
+the fuel filter that came off in 12/2017 supply a candidate**, and
+`vehicle-history.md` has them: the can was corroded, the joint was wet, the
+owner records it as leaking, and what drained out was dark and cloudy rather
+than clear petrol.
+
+**The chain, stated so it can be attacked:** the tank and lines were dirty →
+the filter was overwhelmed and eventually holed → whatever it stopped holding
+back went to the injectors → the injectors were damaged, and have been
+dribbling ever since.
+
+**The timeline survives the obvious objection, which is worth checking rather
+than assuming.** The filter was changed in 12/2017 and the injectors are
+coming out in 9/2026 — nine years later, all of them on a clean filter, so why
+did anything keep dying? **Because the converter's whole life is inside that
+window.** The one fitted in 10/2017 was found completely blocked in 9/2026,
+and the plugs of 12/2022 were destroyed in ~1,500 km. Both are downstream of
+injectors that were already spoiled before the filter was changed and have
+been spoiling things since. **Contaminated fuel is not needed after 2017 for
+the rest of the record to look the way it does** — one set of ruined injectors
+is enough, and that is what makes the chain internally consistent rather than
+merely appealing.
+
+⚠ **Every link in it is unproven, and two of them are not even observations.**
+That the injectors are faulty at all is circumstantial — the stumbles, the
+cold overrun, the −4.7 % trim, the destroyed converter — and no one has
+examined an injector. That contamination caused it is an inference from a
+photograph of a different part taken nine years ago. **This is a candidate
+root cause, not a finding**, and nothing in the plan changes because of it:
+the injectors and the filter are both being replaced anyway, for reasons
+decided before this was thought of.
+
+⚠ **It also points somewhere nobody has looked: the tank.** A filter full of
+black sludge is a filter that was doing its job until it could not, so **the
+source was upstream of it** — and the tank is the one thing in that chain that
+has never been touched. New injectors behind a new filter are still downstream
+of it. Nothing here proposes dropping a tank; it is written down because the
+chain above implies it and leaving that unsaid would be picking the
+comfortable half.
+
+**There is exactly one test and it expires in a few days.** The old injectors
+come out when the new ones go in. **Their inlet screens and nozzles are the
+only physical evidence this hypothesis will ever get**, and once they are in a
+bin the question is closed by default rather than by answer.
+`next-drive.md` step 1b asks for them.
+
 ## The cold start, recorded once, before the parts were changed
 
 **One cold start and five minutes of idle, on the car as it was** — old

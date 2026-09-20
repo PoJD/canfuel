@@ -325,6 +325,36 @@ expensive one. That it also leaves the measurement chain — the entry above in
 *Which parts are old enough to bias the result* — is a consequence and was
 not the motive.
 
+### What the 2017 filter looked like coming off — photographed
+
+**Three photographs, kept in `docs/photos/`**, because this is the only part
+on the car whose end-of-life condition was recorded at the time and the
+project has repeatedly regretted not having others:
+
+| | |
+|---|---|
+| [`fuel-filter-2017-in-situ.jpg`](photos/fuel-filter-2017-in-situ.jpg) | on the car, before removal |
+| [`fuel-filter-2017-removed.jpg`](photos/fuel-filter-2017-removed.jpg) | the can, off |
+| [`fuel-filter-2017-drained.jpg`](photos/fuel-filter-2017-drained.jpg) | what drained out of it |
+
+**What they show, as description rather than interpretation.** The can carries
+heavy surface corrosion over most of its body, and the joint at the clamp is
+wet and stained. **The owner records that it was leaking**, which the staining
+is consistent with. What drained out is dark and cloudy rather than clear
+petrol — the owner describes it as a black mixture. A part beside it is
+stamped with a **`19/99` date code**, so the hardware down there was original
+to the car's build.
+
+⚠ **Its age at that point is not known.** It came off in 12/2017, three months
+after the purchase, and nothing records when it had last been changed or
+whether it ever had. The service history before September 2017 is the gap this
+file's *masked warning lamp* section describes.
+
+**This is the precedent under yesterday's five-year interval**, and it turns
+that decision from an argument into an argument with a datum behind it: the
+last time this car's fuel filter was left past its life, it corroded through
+and stopped holding back what it was there to hold back.
+
 ### The filter interval is five years, and it is a decision
 
 **Chosen: five years, on the calendar, regardless of distance.** Chosen over
