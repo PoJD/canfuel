@@ -329,24 +329,25 @@ a given window belongs to needs camshaft phase, and `What is NOT on the bus`
 is where that is. So **one badly misfiring cylinder and four mildly rough ones
 are the same statistic.**
 
-**That was tested rather than assumed, and the answer was no.** If one cylinder
-were the culprit, the step series would repeat every four updates — 720°, the
-same cylinder coming round — and show it as a positive autocorrelation at lag
-4. Over `09_idle_60s_z1` (rough) lag 4 is **−0.07** and over `11_idle_noac_z1`
-(smooth) **−0.03**; neither shows a per-cylinder period, and the two logs give
-the same shape at every lag from 1 to 8. **No single-cylinder signature is
-present in either**, which agrees with the compression test — 13 bar on all
-four — in `engine-health.md`.
+**But the STRUCTURE is testable without a name, and it is there.** Each
+cylinder comes round every four windows, so one that differs from its
+neighbours is a period-4 component in the sequence. `--cylinders` finds that
+line at **13–21× its local background in every recording**, against control
+frequencies at 0.1–1.5× and a shuffled null at about 1×.
 
-⚠ **Two limits on that negative.** The update sequence is about **98.5 %**
-faithful: holds run 3 or 4 frames, but 1.5 % run 7 or 8, which is two
-consecutive 180° windows quantising to the same 0.25 rpm value and therefore
-one update never observed. Each of those slips the cylinder phase by one, so a
-real lag-4 correlation would be attenuated rather than preserved — mean run
-between slips is around 65 events, long enough that a strong signature should
-still have shown. And it is two recordings of one engine, so it is evidence
-that *this* engine had no single bad cylinder, not that the method could never
-find one.
+⚠ **That is not a found fault, and reading it as one is the trap.** The
+smoothest recording this car has produced carries it as strongly as the
+roughest does, so it is **ordinary cylinder-to-cylinder variation**.
+`docs/engine-health.md`, *Is it one cylinder?*, has the tables, the conclusion
+that a single bad cylinder is ruled out, and the limit that matters most:
+**four equally bad cylinders leave no period at all**, so that hypothesis can
+be neither confirmed nor refuted this way.
+
+⚠ **An earlier version of this section said no per-cylinder signature was
+present**, from an autocorrelation of the *step* series at lag 4. Wrong series
+and wrong statistic: differencing between them hid a line a periodogram of the
+values finds immediately. The conclusion drawn from it — that this engine has
+no one bad cylinder — happens to survive, for entirely different reasons.
 
 ### The consequence for anything derived over time
 

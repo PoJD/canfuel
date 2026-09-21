@@ -70,6 +70,7 @@ Usage
     python idledips.py --segments             # the update rate of 0x280's rpm
     python idledips.py --degrees              # ...as crank angle. 180 deg
     python idledips.py --roughness            # grade the idle instead
+    python idledips.py --cylinders           # per-cylinder structure, or none
     python idledips.py --roughness --hist     # ...the raw material, as a shape
     python idledips.py --roughness --bands    # ...where the grade comes from
     python idledips.py --roughness --deadbands  # ...the contrast against it
@@ -80,6 +81,7 @@ from __future__ import annotations
 
 import argparse
 import bisect
+import math
 import os
 import statistics
 import sys
@@ -493,6 +495,125 @@ def idle_index(counts):
     return IDLE_INDEX_MAX if idx > IDLE_INDEX_MAX else idx
 
 
+# --- per-cylinder structure ------------------------------------------------
+#
+# Each update is one 180 deg window (can-decoding.md trap 6), and the cylinders
+# take turns, so a cylinder that differs from its neighbours repeats every FOUR
+# windows -- 720 deg, one full four-stroke cycle, the same cylinder coming
+# round. That is a PERIOD in the sequence, and a period is testable.
+#
+#   one cylinder differing            -> period 4  (f = 0.25 cycles/window)
+#   two differing, OPPOSITE in order  -> period 2  (f = 0.50)
+#   two differing, ADJACENT in order  -> period 4, with a period-2 component
+#   all four differing EQUALLY        -> NO period at all
+#
+# ⚠ THE LAST LINE IS THE IMPORTANT ONE. This method is blind by construction to
+# four cylinders that are equally bad: the governor holds the mean speed and
+# nothing periodic is left. "It is all four together" is the one hypothesis
+# that cannot be confirmed or refuted here.
+#
+# ⚠ AND IT NAMES NO CYLINDER. Which slot is which cylinder needs camshaft phase
+# (not on this bus) and the firing order (not sourced anywhere in this repo).
+# Worse, the ABSOLUTE PHASE IS LOST at every missed update, so slot 0 of one
+# run is not slot 0 of the next -- which is why every statistic below is
+# computed WITHIN a run and only then combined.
+
+CYL_BREAK_HOLD = 6   # a hold this long is a missed window: the phase slips
+CYL_DETREND = 21     # centred moving average, removing the governor's wander.
+                     # ⚠ NOT a multiple of 4: a length-4k moving average
+                     # annihilates period 4 exactly, which would delete the
+                     # signal being looked for. At 21 the attenuation is ~5 %.
+CYL_BLOCK = 64       # periodogram block. A power of two so that f = 0.25 and
+                     # f = 0.50 fall exactly on bins 16 and 32 rather than
+                     # leaking between two.
+
+
+def cylinder_runs(gated, t_from=None, t_to=None):
+    """Sequences of one engine-speed value per 180 deg window.
+
+    Broken wherever a hold of CYL_BREAK_HOLD frames or more says a window was
+    never observed -- two consecutive windows quantising to the same 0.25 rpm
+    value. Each break loses the cylinder phase, so the runs cannot be pooled.
+    """
+    out, cur, prev, hold = [], [], None, 0
+    for s in _settled_stream(gated, t_from, t_to):
+        if s is None:
+            if len(cur) > 40:
+                out.append(cur)
+            cur, prev, hold = [], None, 0
+            continue
+        if prev is None:
+            prev, hold = s, 1
+            continue
+        if s == prev:
+            hold += 1
+            continue
+        if hold >= CYL_BREAK_HOLD:
+            if len(cur) > 40:
+                out.append(cur)
+            cur = []
+        cur.append(prev / 4.0)
+        prev, hold = s, 1
+    if len(cur) > 40:
+        out.append(cur)
+    return out
+
+
+def _detrend(v, w=CYL_DETREND):
+    h = w // 2
+    return [v[i] - sum(v[i - h:i + h + 1]) / w for i in range(h, len(v) - h)]
+
+
+def slot_means(run):
+    """The four phase-slot means of one run, in rpm, deviation from its mean.
+
+    One slot is one cylinder. WHICH one is unknowable, and it differs between
+    runs, so these are a shape and never a name.
+    """
+    d = _detrend(run)
+    slots = [[] for _ in range(4)]
+    for i, x in enumerate(d):
+        slots[i % 4].append(x)
+    if min(len(x) for x in slots) < 8:
+        return None
+    means = [statistics.mean(x) for x in slots]
+    se = statistics.mean(statistics.stdev(x) / math.sqrt(len(x)) for x in slots)
+    return means, max(means) - min(means), se, len(d)
+
+
+def period_power(runs, freq, block=CYL_BLOCK, half=5):
+    """Power at `freq` against the MEDIAN of the neighbouring bins.
+
+    A ratio rather than an absolute, and against the local continuum rather
+    than the whole spectrum, because the idle governor puts a great deal of
+    power at low frequency and none of that is per-cylinder. Returns
+    (ratio, n_blocks); check it against a control frequency where nothing is
+    expected before believing any of it.
+    """
+    blocks = []
+    for r in runs:
+        d = _detrend(r)
+        for start in range(0, len(d) - block + 1, block // 2):
+            blocks.append(d[start:start + block])
+    if len(blocks) < 3:
+        return None, len(blocks)
+    acc = [0.0] * (block // 2)
+    for b in blocks:
+        m = sum(b) / block
+        x = [v - m for v in b]
+        for k in range(1, block // 2 + 1):
+            w = 2.0 * math.pi * k / block
+            re = sum(v * math.cos(w * i) for i, v in enumerate(x))
+            im = sum(v * math.sin(w * i) for i, v in enumerate(x))
+            acc[k - 1] += (re * re + im * im) / block
+    sp = [v / len(blocks) for v in acc]
+    c = int(round(freq * block)) - 1
+    near = [sp[i] for i in range(max(0, c - half), min(len(sp), c + half + 1))
+            if abs(i - c) > 1]
+    med = statistics.median(near)
+    return (sp[c] / med if med else 0.0), len(blocks)
+
+
 def step_hist(gated, t_from=None, t_to=None, edges=None):
     """How often each size of step between firing events happens.
 
@@ -509,6 +630,37 @@ def step_hist(gated, t_from=None, t_to=None, edges=None):
         return [0.0] * len(edges), 0
     return ([100.0 * sum(1 for d in steps if lo * 4 <= d < hi * 4) / n
              for lo, hi in edges], n)
+
+
+def _settled_stream(gated, t_from=None, t_to=None):
+    """The settled-idle samples in q4, with None marking a break in the gate.
+
+    One walk of dips_cheap()'s gate and settle rule, shared by everything that
+    needs those samples, so there is one definition of "settled idle" and not
+    three that can drift.
+    """
+    trip = int(TRIP_RPM * 4)
+    base = None
+    idle_since = None
+    for t, rpm_q4, throttle, speed_mmh in gated:
+        if (t_from is not None and t < t_from) or (t_to is not None and t >= t_to):
+            continue
+        if speed_mmh > GATE_SPEED_MMH or throttle > GATE_THROTTLE or rpm_q4 == 0:
+            base, idle_since = None, None
+            yield None
+            continue
+        if idle_since is None:
+            idle_since = t
+        if base is None:
+            base = rpm_q4 << EWMA_SHIFT
+        baseline = base >> EWMA_SHIFT
+        below = baseline - rpm_q4
+        settled = (t - idle_since) >= SETTLE_S
+        if not settled and below >= trip:
+            idle_since = t
+        if settled:
+            yield rpm_q4
+        base += rpm_q4 - baseline
 
 
 def _settled_steps(gated, t_from=None, t_to=None):
@@ -653,6 +805,45 @@ def _window(path, t_from, t_to):
     return t_from, t_to
 
 
+def _cylinders_main(paths, args):
+    print("Power at a frequency against the MEDIAN of its neighbouring bins.")
+    print("f=0.25 is period 4 = one cylinder; f=0.50 is period 2 = two opposite")
+    print("ones. 0.20 and 0.30 are controls: nothing should be there.\n")
+    print("%-26s %6s %8s %8s %8s %8s" % (
+        "log", "blocks", "f=0.25", "f=0.50", "f=0.20", "f=0.30"))
+    for path in paths:
+        lo, hi = _window(path, args.t_from, args.t_to)
+        runs = cylinder_runs(series(path)[3], lo, hi)
+        r25, n = period_power(runs, 0.25)
+        if r25 is None:
+            print("%-26s %6d  -- too little settled idle to test --"
+                  % (os.path.basename(path), n))
+            continue
+        print("%-26s %6d %7.1fx %7.1fx %7.1fx %7.1fx" % (
+            os.path.basename(path), n, r25,
+            period_power(runs, 0.50)[0],
+            period_power(runs, 0.20)[0],
+            period_power(runs, 0.30)[0]))
+
+    print("\nThe four phase slots of each long run, in rpm about its own mean.")
+    print("⚠ One slot is one cylinder, but WHICH is unknowable and it differs")
+    print("between runs -- a shape, never a name.\n")
+    print("%-26s %7s  %-30s %8s" % ("log", "windows", "slots (rpm)", "spread"))
+    for path in paths:
+        lo, hi = _window(path, args.t_from, args.t_to)
+        runs = sorted(cylinder_runs(series(path)[3], lo, hi),
+                      key=len, reverse=True)[:3]
+        for r in runs:
+            got = slot_means(r)
+            if got is None or got[3] < 80:
+                continue
+            means, spread, se, n = got
+            print("%-26s %7d  %-30s %6.2f  (+-%.2f)" % (
+                os.path.basename(path), n,
+                " ".join("%+6.2f" % v for v in means), spread, se))
+    return 0
+
+
 def _roughness_main(paths, args):
     if args.deadbands:
         print("deadband   rough %-18s smooth %-17s contrast"
@@ -753,6 +944,8 @@ def main(argv=None):
                     help="with --roughness: where the sum comes from, by step size")
     ap.add_argument("--deadbands", action="store_true",
                     help="with --roughness: the contrast against the deadband")
+    ap.add_argument("--cylinders", action="store_true",
+                    help="look for per-cylinder structure: period 4 = one, 2 = two")
     ap.add_argument("--hist", action="store_true",
                     help="with --roughness: how often each size of step happens")
     ap.add_argument("--windows", type=float, default=None, metavar="S",
@@ -778,6 +971,9 @@ def main(argv=None):
                 print("%-26s %5d-%-5d %6d %8.1f ms %7.1f ms" % (
                     os.path.basename(path), lo, hi, n, gap * 1000, firing * 1000))
         return 0
+
+    if args.cylinders:
+        return _cylinders_main(paths, args)
 
     if args.roughness:
         return _roughness_main(paths, args)

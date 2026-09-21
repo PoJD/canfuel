@@ -909,12 +909,14 @@ reading**, on nothing but the interval agreeing with the firing rate. The
 budget below is unaffected: it needs only that the window contains one power
 stroke.
 
-⚠ **And there is no cylinder identification**, which trap 6 also covers: one
-badly misfiring cylinder and four mildly rough ones are the same statistic
-here. Tested rather than assumed — a single bad cylinder would repeat every
-four updates and show as autocorrelation at lag 4, and over `09` it is −0.07
-against −0.03 over the smooth `11`. **No single-cylinder signature in either**,
-which agrees with the 13 bar on all four in *Compression*.
+⚠ **And there is no cylinder identification**, which trap 6 also covers. But
+the *structure* is testable even without a name, and **it is there** — see
+*Is it one cylinder?* below, which finds a strong period-4 line in every
+recording including the smoothest, and concludes from that that it is ordinary
+cylinder-to-cylinder variation rather than a fault. ⚠ **An earlier version of
+this paragraph said the opposite**, on an autocorrelation of the *step* series
+at lag 4; differencing and the wrong series between them hid a line that a
+periodogram of the values finds at 13–21× its local background.
 
 ⚠ **It also qualifies the p = 0.023 above, and in the honest direction.**
 Crankshaft speed irregularity is the standard way an OBD engine management
@@ -927,6 +929,94 @@ It does mean the correlation is not a second, independent witness to the
 misfire diagnosis, and this file should not be read as though it were.
 ⚠ **That detection mechanism is general practice, not sourced for this ECU**,
 and no document in `docs/` establishes it.
+
+### Is it one cylinder? — tested properly, and the answer is no
+
+**The question is whether the roughness is one bad cylinder or all four
+together**, because it decides where to look. It is testable: each update is
+one 180° window and the cylinders take turns, so a cylinder that differs from
+its neighbours **repeats every four windows** — 720°, one full cycle, the same
+cylinder coming round. That is a period, and a period shows in a spectrum.
+
+| pattern | period | frequency |
+|---|---|---|
+| one cylinder differing | 4 | f = 0.25 cycles/window |
+| two differing, **opposite** in the firing order | 2 | f = 0.50 |
+| two differing, **adjacent** in the order | 4, with a period-2 component | |
+| **all four differing equally** | **none** | — |
+
+⚠ **The last row is the one that matters most and it is a limit of the method,
+not a result.** Four equally bad cylinders leave nothing periodic: the governor
+holds the mean speed and every window is equally depressed. **"It is all four
+together" cannot be confirmed or refuted here.**
+
+**`python tools/idledips.py --cylinders`.** Power in the bin against the
+*median of its neighbours*, because the governor puts a great deal of power at
+low frequency and none of it is per-cylinder:
+
+| log | blocks | **f = 0.25** | **f = 0.50** | f = 0.20 | f = 0.30 |
+|---|---|---|---|---|---|
+| `09_idle_60s_z1` (rough, 61 °C) | 18 | **13.1×** | 0.8× | 0.2× | 0.5× |
+| `11_idle_noac_z1` (smooth, 73 °C) | 6 | **13.4×** | 1.1× | 0.1× | 1.5× |
+| `18_coldstart_z1` (rough, cold) | 76 | **20.6×** | **19.6×** | 0.3× | 0.8× |
+| `12_idle_ac_z1`, `17_drive_property_z1` | 1 | — | *too little settled idle* | | |
+
+**The line at f = 0.25 is real and it is not subtle.** The two control
+frequencies sit at 0.1–1.5× where the line is 13–21×, and shuffling the same
+values within each block — which destroys order and keeps everything else —
+brings it to about 1×.
+
+**And the same table is the reason it is not the fault.** `11`, the smooth
+recording, carries it **as strongly as `09` does**: 13.4 against 13.1. Read
+the four phase slots directly and the same thing shows as a spread of a few
+rpm between the strongest and the weakest cylinder, in every recording:
+
+| log | windows | slots, rpm about the run's mean | spread |
+|---|---|---|---|
+| `09` rough | 382 | +2.26, −0.03, −2.48, −0.05 | **4.74** |
+| `09` rough | 179 | +1.09, +2.60, −1.70, −2.99 | **5.59** |
+| `11` smooth | 190 | +1.12, −2.18, −0.98, +1.44 | **3.62** |
+| `11` smooth | 98 | −0.31, +1.75, +1.22, −1.72 | **3.47** |
+| `12` smooth | 85 | +1.20, −0.19, −2.19, +1.45 | **3.64** |
+| `18` cold | 306 | +1.82, +1.23, −2.32, −0.49 | **4.14** |
+
+⚠ **One slot is one cylinder, but which one is unknowable and it is not the
+same one between runs.** The absolute phase is lost at every missed window
+(1.5 % of them, above), so these are a *shape* and never a name. Naming a
+cylinder would need camshaft phase, which `What is NOT on the bus` covers, and
+the firing order, which nothing in this repository sources.
+
+**Three conclusions, in the order they are worth.**
+
+1. **It is not one bad cylinder.** A single failing cylinder would put one slot
+   far below the other three and would make the spread much larger on the
+   rough recordings than the smooth ones. Neither happens: the shape has no
+   consistent single outlier and the spread is **3.5–3.6 rpm smooth against
+   4.1–5.9 rough**, which overlaps. Against the energy budget above — one
+   entirely failed power stroke is 33–57 rpm — a spread of 4 rpm is **of the
+   order of a tenth of one stroke's work** between the best cylinder and the
+   worst. ⚠ Order of magnitude only: a sustained offset that the governor has
+   already equalised against is not the same quantity as a transient dip, and
+   nothing here converts one into the other properly.
+2. **So the per-cylinder structure is ordinary cylinder-to-cylinder variation,
+   not a fault signature.** It is present in the smoothest recording this car
+   has produced. Anyone reading a strong f = 0.25 line as "found the bad
+   cylinder" would be reading the engine's normal state.
+3. ⚠ **The one thing that does separate the recordings is period 2, and it is
+   cold, not rough.** f = 0.50 is **19.6× in `18` and 0.8× and 1.1× in the two
+   warm logs** — two cylinders opposite in the firing order behaving unlike the
+   other two, from cold only. **`09` is the rough engine at 61 °C and shows
+   nothing there**, so what this tracks is temperature and not roughness. It is
+   one recording of one cold start, it names no cylinder, and **it is not
+   evidence for a two-cylinder fault** — cold enrichment and uneven warming
+   would produce it in a healthy engine too. Worth one line in a future
+   cold-start recording; not worth a conclusion.
+
+**What this changes for the investigation: nothing points at a cylinder.** The
+plugs remain the better evidence about which injectors deserve a closer look,
+and this measurement neither supports nor contradicts them. What it does rule
+out is the thing that would have been easiest to find — one cylinder doing
+badly enough to explain the stumble on its own.
 
 ### The idle counter, frozen before the repair so the after-reading means something
 

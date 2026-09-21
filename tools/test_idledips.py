@@ -32,8 +32,9 @@ from idledips import (EWMA_SHIFT, FIXTURES, GATE_THROTTLE, IDLE_INDEX_MAX,
                       IDLE_ROUGH_100, REARM_RPM, ROUGH_DEADBAND_RPM,
                       ROUGH_OUT_SHIFT, ROUGH_SHIFT, SETTLE_S, TRIP_RPM,
                       depths, dips, dips_cheap, firing_interval_s,
-                      idle_index, rough_bands, roughness, segment_degrees,
-                      segments, step_hist)
+                      cylinder_runs, idle_index, period_power, rough_bands,
+                      roughness, segment_degrees, segments, slot_means,
+                      step_hist)
 from idledips import series as read_log   # the local series() below is synthetic
 
 RATE_HZ = 94.0  # what 0x280 actually arrives at; see docs/can-decoding.md
@@ -503,3 +504,76 @@ class SegmentDegrees(unittest.TestCase):
         degs = [r[4] for r in rows]
         self.assertGreater(max(gaps) / min(gaps), 2.0)
         self.assertLess(max(degs) / min(degs), 1.3)
+
+
+class PerCylinderStructure(unittest.TestCase):
+    """A cylinder comes round every four windows, so one that differs from its
+    neighbours is a period-4 component. What the tests hold is the METHOD --
+    that it finds a planted period and does not invent one -- plus the single
+    conclusion that matters, which is that the line is in the smooth recording
+    too and is therefore not a fault signature."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.cache = {}
+
+    def runs(self, name, t_from=None, t_to=None):
+        if name not in self.cache:
+            self.cache[name] = read_log(os.path.join(FIXTURES, name))
+        return cylinder_runs(self.cache[name][3], t_from, t_to)
+
+    def test_a_planted_weak_cylinder_is_found(self):
+        """Every fourth window 3 rpm low, on an otherwise steady idle."""
+        g = []
+        for i, (t, _) in enumerate(series(120.0)):
+            v = 800.0 + (0.5 if (i // 4) % 2 else 0.0)     # something to move
+            if (i // 4) % 4 == 0:
+                v -= 3.0
+            g.append((t, int(round(v * 4)), 38, 5))
+        runs = cylinder_runs(g)
+        self.assertTrue(runs)
+        ratio, n = period_power(runs, 0.25)
+        self.assertGreater(ratio, 5.0)
+
+    def test_a_steady_idle_invents_no_cylinder(self):
+        """The control the finding needs: no period where none was planted."""
+        g = [(t, int(round((800.0 + (i % 7) * 0.25) * 4)), 38, 5)
+             for i, (t, _) in enumerate(series(120.0))]
+        runs = cylinder_runs(g)
+        ratio, n = period_power(runs, 0.25)
+        if ratio is not None:
+            self.assertLess(ratio, 5.0)
+
+    def test_the_line_is_in_the_smooth_log_too(self):
+        """THE conclusion. If this ever fails one way, the line has become a
+        fault signature and engine-health.md is wrong; if it fails the other,
+        the method has stopped finding what it found."""
+        rough = period_power(self.runs("09_idle_60s_z1.txt"), 0.25)[0]
+        smooth = period_power(self.runs("11_idle_noac_z1.txt"), 0.25)[0]
+        self.assertGreater(rough, 5.0)
+        self.assertGreater(smooth, 5.0)
+        self.assertLess(abs(rough - smooth) / max(rough, smooth), 0.5)
+
+    def test_the_control_frequencies_carry_nothing(self):
+        for name in ("09_idle_60s_z1.txt", "11_idle_noac_z1.txt"):
+            for f in (0.20, 0.30):
+                self.assertLess(period_power(self.runs(name), f)[0], 3.0,
+                                f"{name} at f={f}")
+
+    def test_no_slot_is_a_consistent_outlier(self):
+        """A single failing cylinder would put one slot far below the other
+        three. The spread stays a few rpm and no slot runs away."""
+        for name in ("09_idle_60s_z1.txt", "11_idle_noac_z1.txt"):
+            for r in cylinder_runs(self.cache.setdefault(
+                    name, read_log(os.path.join(FIXTURES, name)))[3]):
+                got = slot_means(r)
+                if got is None or got[3] < 80:
+                    continue
+                means, spread, se, n = got
+                self.assertLess(spread, 12.0, name)
+
+    def test_the_phase_is_lost_between_runs_so_runs_are_not_pooled(self):
+        """Not decoration: pooling them would average four cylinders over a
+        random relabelling and delete the effect being looked for."""
+        runs = self.runs("18_coldstart_z1.txt", 50.0, 360.0)
+        self.assertGreater(len(runs), 5)
