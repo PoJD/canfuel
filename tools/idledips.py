@@ -25,14 +25,22 @@ five minutes, and the dips themselves. A median of roughly ninety samples does
 both, and needs no sort to be defensible -- unlike the firmware, this runs on
 a laptop.
 
-Two detectors, and why there are two
-------------------------------------
+Three instruments, and why there are three
+------------------------------------------
 
 `dips()` is the measurement. `dips_cheap()` asks the same question in a shape
 a PIC18F25K80 could answer live -- a first-order baseline, a latch, an idle
 gate -- and is the one whose numbers the prediction in docs/engine-health.md
-is written against. Its constants are frozen; the comment above them says why,
-and it is the only part of this file that must not be re-tuned.
+is written against.
+
+`roughness()` does not count at all. It GRADES the idle, because a count past
+a threshold has no resolution below the threshold and a repaired engine reads
+zero for ever -- `--roughness --bands` shows that the band carrying the
+contrast is 10-20 rpm, just under TRIP_RPM. It is the instrument
+docs/next-drive.md question 6 proposes putting on the bus.
+
+Both sets of constants are frozen; the comments above them say why, and they
+are the only parts of this file that must not be re-tuned.
 
 **Nothing in src/ uses either of them, and that is deliberate.** The question
 they answer is answered offline over a capture, which the next session records
@@ -60,6 +68,10 @@ Usage
     python idledips.py --thresholds 15,20,25 FILE
     python idledips.py --depths FILE          # how deep each dip was
     python idledips.py --segments             # the update rate of 0x280's rpm
+    python idledips.py --roughness            # grade the idle instead
+    python idledips.py --roughness --bands    # ...where the grade comes from
+    python idledips.py --roughness --deadbands  # ...the contrast against it
+    python idledips.py --roughness --windows 60 FILE
 """
 
 from __future__ import annotations
@@ -298,6 +310,192 @@ def dips_cheap(gated, t_from=None, t_to=None, shift=EWMA_SHIFT,
     return events, idle_s
 
 
+# --- the roughness measure --------------------------------------------------
+#
+# The cheap detector above COUNTS events past a threshold. This one grades the
+# idle instead, and it exists because the count has a floor it cannot see
+# under: TRIP_RPM is 20 rpm, and `--roughness --bands` shows that on the rough
+# fixtures only 2-3 % of the deviation lives at steps of 20 rpm or more while
+# 26-29 % of it sits in the 10-20 rpm band the count throws away. A healthy
+# engine that dips 5 rpm now and then reads exactly zero events for ever, and
+# a channel that reads zero for ever cannot say whether anything is improving.
+#
+# What it measures, and what it does NOT measure
+# ----------------------------------------------
+#
+# The step between one firing event and the next, dead-banded and averaged.
+# ⚠ **It is not a sub-threshold dip counter and must not be sold as one.** At
+# 26.5 firing events a second, one 5 rpm dip a minute contributes about 0.001
+# rpm to an average of 0.78 -- invisible. What the number responds to is the
+# ordinary cycle-to-cycle consistency of the whole idle, which is a different
+# quantity from "how many stumbles were there" and happens to separate this
+# engine's recorded states better.
+#
+# Why the step and not the deviation from a baseline
+# --------------------------------------------------
+#
+# A first-order baseline lags, so during the warm-up ramp -- idle falling from
+# about 930 to 800 rpm -- it sits permanently above the signal and manufactures
+# a one-sided deviation of about 1.2 rpm out of nothing. Against dips of 20 rpm
+# that is noise; against a healthy floor of a few rpm it is most of the answer.
+# The step between consecutive values is immune: the same ramp is 0.004 rpm per
+# 10 ms sample.
+#
+# ⚠ THE STEP IS TAKEN ONCE PER CHANGE OF THE FIELD, NOT ONCE PER FRAME, and
+# this is the opposite of what dips_cheap() does. The two are not inconsistent:
+# dips_cheap()'s EWMA is a TIME constant and has to be stepped on the clock,
+# while this one is an average PER FIRING EVENT and has to be stepped on the
+# event. 0x280 holds its speed field for three to four frames at idle (see
+# `--segments`), and the hold length moves with engine speed -- so stepping
+# this one per frame makes the answer depend on idle speed through the hold
+# ratio, which is an artefact and not combustion.
+#
+# ⚠ THESE CONSTANTS ARE FROZEN FOR THE SAME REASON THE ONES ABOVE ARE, and the
+# reason is stronger here, not weaker: the anchor of the scale is the engine
+# before the repair, and that engine no longer exists. test_idledips.py has a
+# test whose only job is to fail if somebody changes them.
+#
+# The deadband is 3 rpm because the contrast between the recorded rough and
+# smooth states climbs with it -- 1.58x at 0, 2.20x at 2, 2.72x at 3, 4.17x at
+# 5 -- while the smooth reading falls toward zero and takes the resolution with
+# it (0.05 rpm at a deadband of 8). 3 keeps 2.72x with the smooth state still
+# at 0.78 rpm, well clear of the floor. `--roughness --deadbands` prints it.
+
+ROUGH_DEADBAND_RPM = 3   # steps smaller than this are the idle's own noise
+ROUGH_SHIFT = 8          # EWMA over 256 firing events = 9.7 s at a warm idle
+ROUGH_OUT_SHIFT = 5      # accumulator >> 5 is the reported unit, 1/32 rpm
+
+#: The 100 point of the 0-100 index, in ROUGH_OUT_SHIFT counts.
+#:
+#: MEASURED: `09_idle_60s_z1` at 61 C and the whole warm-up of
+#: `18_coldstart_z1` both give 2.12 rpm -- two independent recordings of the
+#: engine before the repair, agreeing to three figures.
+#:
+#: DECIDED: the anchor is 64 counts = 2.00 rpm rather than the measured 68 =
+#: 2.12, because 100/64 is a multiply by 25 and a shift of 4 where 100/68 is a
+#: division, and because the 6 % that costs is inside the 13 % spread the
+#: anchor itself shows between 10 s windows of a steady idle. A scaling factor
+#: we choose is one we may choose to be convenient; see CLAUDE.md and
+#: docs/optimisation.md section 11.
+IDLE_ROUGH_100 = 64
+IDLE_INDEX_MAX = 200     # above 100 means worse than the engine was; clamp here
+
+
+def roughness(gated, t_from=None, t_to=None, deadband_rpm=ROUGH_DEADBAND_RPM,
+              shift=ROUGH_SHIFT, settle_s=SETTLE_S):
+    """Grade the idle. Returns (mean_rpm, ewma_counts, n_events, idle_s).
+
+    ``mean_rpm`` is the exact mean of the dead-banded step over the window and
+    is what the tables are quoted from. ``ewma_counts`` is the same quantity
+    the way firmware would carry it -- an integer accumulator, stepped by
+    shifts and adds only -- in units of 1/32 rpm, which is the byte that would
+    go on the bus. The two agree to a few per cent on a steady idle, and
+    test_idledips.py holds that.
+
+    The gate and the settle rule are dips_cheap()'s, deliberately: a
+    roughness measured over a different set of samples than the count would
+    not be comparable with it. ``idle_s`` is returned so that a test can prove
+    the two agree rather than assert that they do.
+    """
+    dead = deadband_rpm * 4          # samples are 0.25 rpm, as on the bus
+    trip = int(TRIP_RPM * 4)
+    base = None
+    idle_since = None
+    prev_rpm = None
+    prev_t = None
+    idle_s = 0.0
+    acc = 0
+    steps = []
+    for t, rpm_q4, throttle, speed_mmh in gated:
+        if (t_from is not None and t < t_from) or (t_to is not None and t >= t_to):
+            continue
+        if speed_mmh > GATE_SPEED_MMH or throttle > GATE_THROTTLE or rpm_q4 == 0:
+            base, idle_since, prev_rpm, prev_t = None, None, None, None
+            continue
+        if idle_since is None:
+            idle_since = t
+        if base is None:
+            base = rpm_q4 << EWMA_SHIFT
+        baseline = base >> EWMA_SHIFT
+        below = baseline - rpm_q4
+        settled = (t - idle_since) >= settle_s
+        if not settled and below >= trip:
+            idle_since = t
+        if settled:
+            if prev_t is not None:
+                idle_s += t - prev_t
+            if prev_rpm is not None and rpm_q4 != prev_rpm:
+                step = abs(rpm_q4 - prev_rpm) - dead
+                if step < 0:
+                    step = 0
+                steps.append(step)
+                acc += step - (acc >> shift)
+            prev_t = t
+        if prev_rpm is None or rpm_q4 != prev_rpm:
+            prev_rpm = rpm_q4
+        if not settled:
+            prev_t = t
+        base += rpm_q4 - baseline
+    mean_rpm = (sum(steps) / len(steps) / 4.0) if steps else 0.0
+    return mean_rpm, acc >> ROUGH_OUT_SHIFT, len(steps), idle_s
+
+
+def idle_index(counts):
+    """The 0-200 index from a roughness byte. 100 = the engine before the repair.
+
+    One multiply by 25 and a shift of 4 -- a uint8 x uint8 product, which is
+    the one multiplication this part does in a single cycle. No division.
+    """
+    idx = (counts * 25) >> 4
+    return IDLE_INDEX_MAX if idx > IDLE_INDEX_MAX else idx
+
+
+def rough_bands(gated, t_from=None, t_to=None, deadband_rpm=ROUGH_DEADBAND_RPM):
+    """What share of the dead-banded sum each size of step contributes.
+
+    This is the argument for grading rather than counting, in numbers: the
+    band that carries the discrimination is 10-20 rpm, and TRIP_RPM sits just
+    above it.
+    """
+    dead = deadband_rpm * 4
+    edges = ((3, 5), (5, 10), (10, 20), (20, 10 ** 9))
+    prev_rpm = None
+    base = None
+    idle_since = None
+    total = 0
+    parts = [0] * len(edges)
+    trip = int(TRIP_RPM * 4)
+    for t, rpm_q4, throttle, speed_mmh in gated:
+        if (t_from is not None and t < t_from) or (t_to is not None and t >= t_to):
+            continue
+        if speed_mmh > GATE_SPEED_MMH or throttle > GATE_THROTTLE or rpm_q4 == 0:
+            base, idle_since, prev_rpm = None, None, None
+            continue
+        if idle_since is None:
+            idle_since = t
+        if base is None:
+            base = rpm_q4 << EWMA_SHIFT
+        baseline = base >> EWMA_SHIFT
+        below = baseline - rpm_q4
+        settled = (t - idle_since) >= SETTLE_S
+        if not settled and below >= trip:
+            idle_since = t
+        if settled and prev_rpm is not None and rpm_q4 != prev_rpm:
+            d = abs(rpm_q4 - prev_rpm)
+            step = max(0, d - dead)
+            total += step
+            for i, (lo, hi) in enumerate(edges):
+                if lo * 4 <= d < hi * 4:
+                    parts[i] += step
+                    break
+        if prev_rpm is None or rpm_q4 != prev_rpm:
+            prev_rpm = rpm_q4
+        base += rpm_q4 - baseline
+    if not total:
+        return total, [0.0] * len(edges)
+    return total / 4.0, [100.0 * p / total for p in parts]
+
+
 def _last(seq, t):
     vals = [v for tt, v in seq if tt <= t]
     return vals[-1] if vals else float("nan")
@@ -341,6 +539,87 @@ def report(path, thresholds, t_from, t_to, label=None, depths_too=False):
     return counts
 
 
+#: The rough and the smooth recordings, as the contrast is quoted from them.
+#: Both rough logs are the engine BEFORE the injectors, plugs and leads; both
+#: smooth ones are the same engine, the same week, at 73 C. ⚠ So the contrast
+#: below is between temperature states of one engine and NOT between a sick
+#: engine and a well one -- no recording of a well one exists yet. What it
+#: establishes is the scale's 100 point; whether the index separates sick from
+#: well is what docs/next-drive.md question 6 asks the next drive for.
+ROUGH_LOGS = ("09_idle_60s_z1.txt", "18_coldstart_z1.txt")
+SMOOTH_LOGS = ("11_idle_noac_z1.txt", "12_idle_ac_z1.txt")
+
+
+def _window(path, t_from, t_to):
+    for name, lo, hi in TABLE:
+        if os.path.basename(path) == name:
+            return (lo if t_from is None else t_from,
+                    hi if t_to is None else t_to)
+    return t_from, t_to
+
+
+def _roughness_main(paths, args):
+    if args.deadbands:
+        print("deadband   rough %-18s smooth %-17s contrast"
+              % ("(" + ", ".join(n[:2] for n in ROUGH_LOGS) + ")",
+                 "(" + ", ".join(n[:2] for n in SMOOTH_LOGS) + ")"))
+        cache = {n: series(os.path.join(FIXTURES, n))[3]
+                 for n in ROUGH_LOGS + SMOOTH_LOGS}
+        for k in (0, 1, 2, 3, 5, 8):
+            def mean_of(names):
+                vals = []
+                for n in names:
+                    lo, hi = _window(n, None, None)
+                    vals.append(roughness(cache[n], lo, hi, deadband_rpm=k)[0])
+                return sum(vals) / len(vals)
+            r, c = mean_of(ROUGH_LOGS), mean_of(SMOOTH_LOGS)
+            print("  %2d rpm      %7.3f rpm              %7.3f rpm          %5.2fx"
+                  % (k, r, c, (r / c) if c else 0.0))
+        return 0
+
+    if args.bands:
+        print("%-26s %9s   %s" % ("log", "sum", "share of it by size of step"))
+        print("%-26s %9s   %7s %7s %7s %7s"
+              % ("", "", "3-5", "5-10", "10-20", ">=20"))
+        for path in paths:
+            lo, hi = _window(path, args.t_from, args.t_to)
+            total, parts = rough_bands(series(path)[3], lo, hi)
+            print("%-26s %7.0f rpm   %6.1f%% %6.1f%% %6.1f%% %6.1f%%"
+                  % (os.path.basename(path), total, *parts))
+        return 0
+
+    print("%-26s %8s %7s %8s %7s %6s  %s"
+          % ("log", "idle", "events", "mean", "byte", "index", "oil / clt"))
+    for path in paths:
+        lo, hi = _window(path, args.t_from, args.t_to)
+        rpm, oil, clt, gated = series(path)
+        spans = [(lo, hi)]
+        if args.windows:
+            t0 = gated[0][0] if gated else 0.0
+            start = lo if lo is not None else t0
+            end = hi if hi is not None else (gated[-1][0] if gated else 0.0)
+            spans = [(w, min(w + args.windows, end))
+                     for w in _frange(start, end, args.windows)]
+        for a, b in spans:
+            mean_rpm, counts, n, idle_s = roughness(gated, a, b)
+            if n < 50:
+                continue
+            print("%-26s %7.1fs %7d %6.3f rpm %7d %6d  oil %5.1f  clt %5.1f"
+                  % (os.path.basename(path) if len(spans) == 1
+                     else "  %.0f-%.0f s" % (a, b),
+                     idle_s, n, mean_rpm, counts, idle_index(counts),
+                     _last(oil, b if b is not None else 1e9),
+                     _last(clt, b if b is not None else 1e9)))
+    return 0
+
+
+def _frange(start, end, step):
+    t = start
+    while t < end:
+        yield t
+        t += step
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("files", nargs="*", help="logs to read (default: the table)")
@@ -351,6 +630,14 @@ def main(argv=None):
                     help="print the depth of every dip instead of counting them")
     ap.add_argument("--segments", action="store_true",
                     help="print how often 0x280's engine-speed field changes")
+    ap.add_argument("--roughness", action="store_true",
+                    help="grade the idle instead of counting events")
+    ap.add_argument("--bands", action="store_true",
+                    help="with --roughness: where the sum comes from, by step size")
+    ap.add_argument("--deadbands", action="store_true",
+                    help="with --roughness: the contrast against the deadband")
+    ap.add_argument("--windows", type=float, default=None, metavar="S",
+                    help="with --roughness: split each log into windows of S seconds")
     args = ap.parse_args(argv)
 
     paths = args.files or [os.path.join(FIXTURES, n) for n, _, _ in TABLE]
@@ -363,6 +650,9 @@ def main(argv=None):
                 print("%-26s %5d-%-5d %6d %8.1f ms %7.1f ms" % (
                     os.path.basename(path), lo, hi, n, gap * 1000, firing * 1000))
         return 0
+
+    if args.roughness:
+        return _roughness_main(paths, args)
 
     thresholds = [int(x) for x in args.thresholds.split(",")]
     header = "  ".join("%15s" % ("dips >=%d rpm" % t) for t in thresholds)

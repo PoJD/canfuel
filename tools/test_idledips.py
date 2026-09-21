@@ -28,9 +28,11 @@ from __future__ import annotations
 import os
 import unittest
 
-from idledips import (EWMA_SHIFT, FIXTURES, GATE_THROTTLE, REARM_RPM,
-                      SETTLE_S, TRIP_RPM, depths, dips, dips_cheap,
-                      firing_interval_s, segments)
+from idledips import (EWMA_SHIFT, FIXTURES, GATE_THROTTLE, IDLE_INDEX_MAX,
+                      IDLE_ROUGH_100, REARM_RPM, ROUGH_DEADBAND_RPM,
+                      ROUGH_OUT_SHIFT, ROUGH_SHIFT, SETTLE_S, TRIP_RPM,
+                      depths, dips, dips_cheap, firing_interval_s,
+                      idle_index, rough_bands, roughness, segments)
 from idledips import series as read_log   # the local series() below is synthetic
 
 RATE_HZ = 94.0  # what 0x280 actually arrives at; see docs/can-decoding.md
@@ -272,3 +274,151 @@ class CheapDetectorAgainstTheFixtures(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class Roughness(unittest.TestCase):
+    """Grading the idle rather than counting events past a threshold."""
+
+    def test_the_frozen_constants_are_the_frozen_constants(self):
+        """The same tripwire as for the cheap detector, and a stronger one.
+
+        The 100 point of the index IS the engine before the repair. That
+        engine is gone, so nothing can re-anchor the scale -- moving any of
+        these silently re-bases every reading ever taken against them.
+        """
+        self.assertEqual(
+            (ROUGH_DEADBAND_RPM, ROUGH_SHIFT, ROUGH_OUT_SHIFT,
+             IDLE_ROUGH_100, IDLE_INDEX_MAX),
+            (3, 8, 5, 64, 200))
+
+    def test_a_perfectly_steady_idle_grades_zero(self):
+        mean_rpm, counts, n, idle_s = roughness(gated(30.0))
+        self.assertEqual((mean_rpm, counts), (0.0, 0))
+        self.assertGreater(idle_s, 20.0)
+
+    def test_steps_under_the_deadband_contribute_nothing(self):
+        """A 2 rpm wobble is the idle's own noise, not combustion."""
+        wobble = [(t, int(round((800 + (2 if i % 2 else 0)) * 4)), 38, 5)
+                  for i, (t, _) in enumerate(series(30.0))]
+        mean_rpm, counts, n, _ = roughness(wobble)
+        self.assertGreater(n, 100)          # it did see the steps
+        self.assertEqual((mean_rpm, counts), (0.0, 0))   # and graded them zero
+
+    def test_a_repeated_value_is_not_a_step(self):
+        """0x280 holds its speed field for three or four frames at idle.
+
+        Stepping per frame instead of per change would make the answer depend
+        on idle speed through the hold ratio, which is an artefact. The two
+        series below are the same engine sampled at two hold lengths and must
+        grade the same.
+        """
+        def held(hold):
+            out, v = [], 800.0
+            for i, (t, _) in enumerate(series(60.0)):
+                if i % hold == 0:
+                    v = 800.0 + (10.0 if (i // hold) % 2 else 0.0)
+                out.append((t, int(round(v * 4)), 38, 5))
+            return out
+        three = roughness(held(3))[0]
+        five = roughness(held(5))[0]
+        self.assertAlmostEqual(three, five, delta=0.01)
+
+    def test_it_grades_a_ramp_at_zero_where_a_baseline_would_not(self):
+        """The whole reason the step is used instead of a deviation.
+
+        A lagging first-order baseline sits above a falling idle and reports a
+        permanent one-sided deviation out of nothing. The step does not.
+        """
+        mean_rpm, counts, _, _ = roughness(gated(60.0, ramp=-2.0))
+        self.assertEqual(counts, 0)
+        self.assertLess(mean_rpm, 0.01)
+
+    def test_deeper_events_grade_higher_with_no_threshold_to_cross(self):
+        """The property the count cannot have: it degrades gracefully.
+
+        Three series whose events are under, around and over TRIP_RPM. The
+        count would read zero, zero and three; the grade must rise throughout.
+        """
+        def graded(depth):
+            ev = [(5.0 + 4 * i, 0.1, depth) for i in range(6)]
+            return roughness(gated(40.0, events=ev))[0]
+        under, at, over = graded(8), graded(20), graded(40)
+        self.assertLess(under, at)
+        self.assertLess(at, over)
+        self.assertGreater(under, 0.0)      # and the small one is NOT zero
+
+    def test_the_index_puts_the_old_engine_at_a_hundred_and_clamps(self):
+        self.assertEqual(idle_index(IDLE_ROUGH_100), 100)
+        self.assertEqual(idle_index(0), 0)
+        self.assertEqual(idle_index(255), IDLE_INDEX_MAX)
+        self.assertLess(idle_index(IDLE_ROUGH_100 // 2), 100)
+
+
+class RoughnessAgainstTheFixtures(unittest.TestCase):
+    """The separation, and the scale's anchor, held against the real logs.
+
+    ⚠ These are all BEFORE-repair recordings, so the separation below is
+    between temperature states of one engine and not between a sick engine
+    and a well one. That is the whole of what is available today, and
+    docs/next-drive.md question 6 is what asks for the other half.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.cache = {}
+
+    def read(self, name, t_from=None, t_to=None):
+        if name not in self.cache:
+            self.cache[name] = read_log(os.path.join(FIXTURES, name))
+        return roughness(self.cache[name][3], t_from, t_to)
+
+    def test_the_gate_is_the_cheap_detectors_gate(self):
+        """Not decoration: a grade over a different set of samples than the
+        count would not be comparable with it, and the two are quoted side by
+        side. Proved rather than asserted."""
+        for name, lo, hi in (("09_idle_60s_z1.txt", None, None),
+                             ("18_coldstart_z1.txt", 50.0, 360.0)):
+            g = self.cache.setdefault(
+                name, read_log(os.path.join(FIXTURES, name)))[3]
+            self.assertAlmostEqual(roughness(g, lo, hi)[3],
+                                   dips_cheap(g, lo, hi)[1], delta=1e-9)
+
+    def test_the_rough_engine_is_the_anchor_of_the_scale(self):
+        """Two independent recordings of it, agreeing -- which is what makes
+        the 100 point worth pinning to them."""
+        for name, lo, hi in (("09_idle_60s_z1.txt", None, None),
+                             ("18_coldstart_z1.txt", 50.0, 360.0)):
+            self.assertAlmostEqual(self.read(name, lo, hi)[0], 2.12, delta=0.10)
+
+    def test_the_smooth_readings_sit_well_under_it(self):
+        for name in ("11_idle_noac_z1.txt", "12_idle_ac_z1.txt"):
+            self.assertLess(self.read(name)[0], 1.1)
+
+    def test_the_smooth_readings_are_not_at_the_floor(self):
+        """The reason the deadband is 3 and not 8. A grade that has already
+        reached zero on the smoothest thing ever recorded has nothing left to
+        say when the engine gets better."""
+        for name in ("11_idle_noac_z1.txt", "12_idle_ac_z1.txt"):
+            self.assertGreater(self.read(name)[1], 10)
+
+    def test_the_band_the_count_throws_away_is_where_the_contrast_lives(self):
+        """TRIP_RPM is 20 and sits just above the 10-20 rpm band. On the rough
+        logs that band carries about a third of the deviation while everything
+        at 20 rpm and over carries a few per cent; on the smooth ones the
+        latter is exactly nothing."""
+        g = self.cache.setdefault(
+            "09_idle_60s_z1.txt",
+            read_log(os.path.join(FIXTURES, "09_idle_60s_z1.txt")))[3]
+        _, parts = rough_bands(g)
+        self.assertGreater(parts[2], 20.0)      # 10-20 rpm
+        self.assertLess(parts[3], 10.0)         # >= 20 rpm
+        gs = self.cache.setdefault(
+            "11_idle_noac_z1.txt",
+            read_log(os.path.join(FIXTURES, "11_idle_noac_z1.txt")))[3]
+        self.assertEqual(rough_bands(gs)[1][3], 0.0)
+
+    def test_the_firmware_shaped_ewma_agrees_with_the_exact_mean(self):
+        """The byte that would go on the bus against the number the tables
+        quote, on a steady idle where the two have the same meaning."""
+        mean_rpm, counts, _, _ = self.read("09_idle_60s_z1.txt")
+        self.assertAlmostEqual(counts / 32.0, mean_rpm, delta=0.25)

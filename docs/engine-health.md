@@ -963,6 +963,74 @@ misfires or may be something else, and no data here separates those. It counts
 dips of engine speed at idle. Naming it after what it is thought to indicate
 would be the same error as the label file's `(celkovy)`.
 
+### Grading the idle instead of counting it — and the count's floor, measured
+
+**The counter above has a floor it cannot see under, and this is how far under
+it the information actually is.** `TRIP_RPM` is 20 rpm. Sorting the whole
+deviation of a settled idle by the size of the step it came from —
+`python tools/idledips.py --roughness --bands` — puts almost none of it there:
+
+| log | 3–5 rpm | 5–10 | 10–20 | **≥ 20** |
+|---|---|---|---|---|
+| `09_idle_60s_z1` (61 °C, rough) | 9.4 % | 56.3 % | **31.0 %** | **3.2 %** |
+| `18_coldstart_z1` (cold, rough) | 8.8 % | 55.0 % | **33.9 %** | **2.3 %** |
+| `11_idle_noac_z1` (73 °C) | 23.3 % | 60.3 % | 16.3 % | **0.0 %** |
+| `12_idle_ac_z1` (73 °C, A/C) | 29.4 % | 66.5 % | 4.1 % | **0.0 %** |
+
+**The band that separates the states is 10–20 rpm, and the threshold sits just
+above it.** Everything the counter can see is 2–3 % of what is happening on
+the rough engine, and on the smooth recordings it is exactly nothing — which
+is why those two read 0.0/min rather than reading *small*.
+
+**So the same samples were graded rather than counted.** The measure is the
+step between one firing event and the next, dead-banded and averaged:
+`mean(max(0, |Δrpm| − 3))` over settled idle, on the gate the counter already
+uses. `python tools/idledips.py --roughness`:
+
+| log | grade | oil |
+|---|---|---|
+| `09_idle_60s_z1` | **2.12 rpm** | 61.5 °C |
+| `18_coldstart_z1` | **2.12 rpm** | 12.8 → 17.2 °C |
+| `17_drive_property_z1` | 1.38 rpm | 77.2 °C |
+| `11_idle_noac_z1` | 0.96 rpm | 72.8 °C |
+| `12_idle_ac_z1` | 0.60 rpm | 73.5 °C |
+
+**The two rough recordings agree to three figures across a 45 °C spread of oil
+temperature**, which is what makes 2.12 worth using as the anchor of a scale.
+The contrast against the smooth pair is **2.71×**, and it is bought by the
+deadband — `--roughness --deadbands` gives 1.58× at 0 rpm, 2.20× at 2, 2.71×
+at 3, 4.16× at 5 and 8.52× at 8, while the smooth reading falls to 0.05 rpm at
+8 and takes its own resolution with it. **3 rpm is the decision**: the largest
+contrast that still leaves the smooth state well clear of the floor.
+
+⚠ **Three limits, and the first disqualifies the obvious reading of the
+table.**
+
+- **All five recordings are of ONE engine before the repair**, so what is
+  measured above is the contrast between its *temperature* states, **not
+  between a sick engine and a well one**. No recording of a well one exists.
+  The table establishes the scale and its 100 point; it does not establish
+  that the scale separates health. `docs/next-drive.md` question 6 is what
+  asks for the other half of it.
+- ⚠ **It is not a sub-threshold dip counter and must not be described as
+  one.** At 796 rpm a four-stroke four fires 26.5 times a second, so a healthy
+  engine dipping 5 rpm once a minute contributes about **0.001 rpm** to an
+  average of 0.78 — invisible. What the grade responds to is the ordinary
+  cycle-to-cycle consistency of the whole idle. That is a different quantity
+  from "how many stumbles were there", and the fact that it separates these
+  recordings better does not make it the same measurement.
+- **It is not monotonic in temperature**, so "compare at the same temperature"
+  is a requirement and not advice. Through `18`'s warm-up in 60 s windows
+  (`--roughness --windows 60`) it goes 2.74 rpm at 25 °C of coolant, **down to
+  1.36 at 37 °C**, and then climbs steadily to 2.45 by 63 °C. Nothing here
+  explains the shape and no mechanism is offered for it.
+
+**Repeatability, which is what decides whether a trend is readable:** on a
+steady idle the grade scatters about **13–15 % between 10 s windows and 3 %
+between 30 s windows** (`09`, `11`). Against a contrast of 171 %, a half-minute
+of matched idle is ample — which is the property the count does not have at
+all once it reads zero.
+
 ### Cold enrichment, measured
 
 The fuel counter is absolute and in microlitres, so this needs no assumption:
