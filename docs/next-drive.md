@@ -188,7 +188,7 @@ and the altitude correction factor.
 
 **6a. Read group 001 as well and write down the coolant temperature.** One
 extra screen, and it is the first half of settling the coolant scale — see
-*The four questions* at the end.
+*The questions* at the end.
 
 ⚠ **THE COLD SOAK IS A CALIBRATION POINT AND IT ONLY EXISTS FOR THESE FEW
 MINUTES.** The car has stood overnight, so **every fluid in it is at ambient**
@@ -1348,6 +1348,7 @@ figure*.
 | **are either of the replaced oxygen sensors gone again** | blocks 034, 036, 037 |
 | **can the display ever show the factory maxima** | **the high-gear pulls, steps 14 and 14a** — b7 out of the capture against the ECU's load at the same engine speed. See *Which measurement settles the torque scale*; no VCDS block answers this |
 | **does the oil ever get hot enough to matter** | the oil temperature a long drive actually reaches, and the thermometer beside it |
+| **what a healthy idle does to the dip counter** | the three-to-five-minute idles through `tools/idledips.py`, *with the constants frozen*. Not the same question as *is the engine well* — it is what a well engine's floor looks like, and it is what decides whether the count is worth putting on the bus. See question 6 |
 | **does the ECU cut fuel on a COLD overrun** | step 13's cold coasts through `tools/coastscan.py`. Warm it does, four times over in the last capture; cold decides whether the owner's oldest symptom means anything — `engine-health.md`, *The oldest symptom is on the overrun* |
 
 **The last one is close to answered already.** The drive of 2026-09-10 peaked
@@ -1359,16 +1360,20 @@ appears false**, which the oil filter reading settles.
 
 ---
 
-# The four questions, and what each one changes in `src/`
+# The questions, and what each one changes in `src/`
 
 **This is the list to work from in the session after the drive.** Everything
 above is how to collect; this is what to do with it. The questions are
 independent except that **question 1 comes first and the next two lean on it.**
 
+**Questions 1 to 5 change a number that already exists. Question 6 adds a
+channel that does not**, in this repository and in `mfd15` together, and it is
+the only one on the list that does.
+
 ⚠ **THE CONVERTER IS OFF THE BUS FOR THIS WHOLE DRIVE** — step 4 takes the
 display out and the USBtin takes its place. So nothing here is answered by
 watching a gauge. Questions 1–3 are answered from the capture and the
-paperwork; **questions 4 and 5 are answered by replaying the capture through
+paperwork; **questions 4, 5 and 6 are answered by replaying the capture through
 the core**, which exercises `decode.c` and `compute.c` exactly as the device
 runs them and only leaves out the HAL. Nothing needs flashing beforehand.
 
@@ -1474,6 +1479,237 @@ stays in a sane band, and whether anything makes it collapse or run away.
 
 **Changes if it misbehaves:** `RANGE_BASIS_SHIFT`, `RANGE_DEFAULT_L100_D` or
 `RANGE_MIN_MM` in `src/config.h`, and the same fixture covers it.
+
+## 6. Idle dips on the bus — the one change that ADDS a field rather than moving one
+
+**Not a calibration. A new channel**, and the only item on this list that
+changes `mfd15` as well as `src/`. It is here because the measurement that
+justifies it is taken by this drive and by no other, and because the decision
+would otherwise be taken with the rough engine already gone.
+
+**The want, in one line:** the converter counts how often engine speed dips
+away from its own idle baseline since the engine was started, and puts that
+count on the bus. A pseudo-diagnostic — something like a misfire count, out of
+engine speed alone, from a device that is already on the bus and already
+awake.
+
+### What this drive settles, and why the decision cannot be taken without it
+
+`docs/engine-health.md`, *The idle counter*, is a prediction written before the
+repair: `dips_cheap()` counts **12.1/min cold and 11.6/min at 61 °C on the old
+injectors**, and ~0 after, with the constants frozen so the after-reading is
+taken on the same instrument. This drive is that after-reading.
+
+**A healthy engine is the missing half of the threshold.** Everything the
+detector knows today comes from one rough engine and two hot idles that
+already read zero. `TRIP_RPM` = 20 was fitted against the rough state, so what
+is not known is what a *well* engine does: whether a healthy idle produces a
+steady trickle of small dips, an occasional one, or none at all for minutes on
+end. Without that, any count on the display is a number with no zero point,
+and the first non-zero reading a year from now cannot be told from normal.
+
+**So the reading to take from this drive is not only "is it cured".** Out of
+the three-to-five-minute idles the procedure already asks for, take:
+
+| | what it fixes |
+|---|---|
+| dips per settled idle minute, healthy, at each oil temperature | **the baseline** — what normal is |
+| the deepest dip seen over all the healthy idle | the **depth** a well engine reaches, which is what an alarm threshold would sit above |
+| the spread between the idles | whether the count is stable enough to be worth a display row at all |
+
+⚠ **If the healthy reading is not zero, that is a result and not a
+disappointment.** A floor of one or two a minute is what makes a later three
+or four mean something. **A reading of exactly zero across every idle is the
+weaker outcome**, because then the channel is a binary and its resolution is
+whatever the frozen 20 rpm happens to be.
+
+⚠ **It stays `dips_cheap()` with its constants untouched.** Re-tuning them
+against a healthy engine is fitting to the null: any threshold reads zero
+there, and a detector tuned to read zero measures nothing. The comment above
+them in `tools/idledips.py` says this, `test_idledips.py` enforces it, and
+neither is superseded by having new data — the new data is the *other* end of
+the same instrument's scale.
+
+### One count is not a datapoint — it needs its denominator and its depth
+
+**A dip count alone cannot be read.** Three dips in twenty seconds of idle and
+three in twenty minutes are opposite statements about an engine, and the
+driver has no way to know which idle he is looking at — the converter has been
+awake since the ignition and he has not. So **settled idle seconds go with the
+count or neither goes**, and that is a correctness rule, not a nicety. It is
+what `dips_cheap()` already returns as `idle_s`, and it is free: the detector
+computes it to know when the settle delay has expired.
+
+**Depth is the third field and it is nearly free.** The detector already has
+`below` at the instant it books an event; keeping the largest is one
+comparison. It earns its byte because it separates the two states this engine
+was shown to have: `docs/engine-health.md`, *Why a misfire shows as a dip*,
+brackets **one entirely failed power stroke at 33–57 rpm** against a **typical
+partial burn at 20–22 rpm**. A count of ten at 21 rpm and a count of ten at
+45 rpm are different faults, and without the depth the display cannot tell
+them apart.
+
+So the field is three fields:
+
+| | width | note |
+|---|---|---|
+| idle dips since engine start | 16 bit | saturating; at the worst rate ever recorded, 12.1/min, 16 bits is 90 hours of idle |
+| settled idle seconds since engine start | 16 bit | saturating at 65535 s = 18 h, the same rule as `uptime` on 0x603 |
+| deepest dip since engine start | 8 bit | rpm, saturating at 255 |
+
+**Since engine start, not since power-up and not persisted.** The engine-off
+rule `compute.c` already runs on 0x480 (`counter == 0 || rpm == 0`, and
+`c->restarts`) is the reset, so the three fields describe *this* start and
+nothing carries to the EEPROM. Two reasons and both matter: the question is
+"how is the engine today", which a lifetime total answers worse the longer it
+runs; and the persist record is the one thing in this firmware with a wear
+budget, which `src/persist.h` costs out and which a fourth accumulator would
+spend for a number nobody would read across ignition cycles.
+
+### Where it goes: a new frame, 0x604 at 1 Hz, and there is room
+
+**Decided, not forced.** Three reasons, in order:
+
+- **All four existing frames are full.** 0x600, 0x601 and 0x602 carry eight
+  bytes of eight, and 0x603 the same. There is no spare byte to take.
+- **0x603 is the one frame with room to reorganise and it is the wrong
+  frame.** It is transmitted only with JP1 fitted (`docs/frames.md`), and
+  this channel is for a closed dashboard — a health number nobody can see
+  without opening the dashboard and fitting a jumper is a number that will
+  never be looked at. That gating is deliberate for CAN diagnostics and
+  exactly wrong for engine diagnostics.
+- **The slot schedule has room and the 25 ms rule is not threatened.**
+  `TX_SLOTS_PER_SEC` is 40; slot 2 carries 0x602, slot 3 carries 0x603, slot
+  22 is the EEPROM write, and the slots where `(slot & 3)` is 0 or 1 belong to
+  the two 100 ms frames. **Slot 6 — 150 ms — is free**, and so are fourteen
+  others. One more 1 Hz frame is one more slot out of eighteen spare ones, it
+  keeps *one frame per slot and never two*, and `test_never_two_frames_in_one_pass`
+  goes on holding the rule unchanged.
+
+⚠ **0x604 is NOT JP1-gated.** It is an ordinary frame like 0x600–0x602. Say so
+where the layout is written down, because 0x603 sets the opposite precedent
+three lines above it.
+
+**The transmit cost is already budgeted.** `docs/timing.md` costs the busiest
+transmit slot at 2.4 ms of its 25; a fifth frame lands in a slot that is
+currently empty, so it adds a gather and a send to a pass that does neither.
+
+### What it must not be called
+
+⚠ **It is not a misfire count.** `docs/engine-health.md` is explicit: seven of
+the thirty-four dips in the aligned window had a counter increment beside them
+and nothing separates the other twenty-seven into unreported misfires or
+something else. Naming a display row `Misfires` would be the same error as the
+label file's `(celkovy)`, and worse, because this one would be ours.
+
+**It counts dips of engine speed at idle.** `IdleDips`, `IdleSec` and
+`DipMax` on the display, or names no better but no more committal. The TRI
+row is where the wrong name would live for years.
+
+### What changes, and where
+
+| file | change |
+|---|---|
+| `src/config.h` | `CAN_ID_TX_HEALTH 0x604`, `TX_SLOT_HEALTH 6`, and the five detector constants carried over from `tools/idledips.py` verbatim, with the freeze argument beside them |
+| `src/compute.h/.c` | the detector state, and `compute_on_engine()` — a new core entry point, pure C, no `<xc.h>` |
+| `src/main.c` | call `compute_on_engine()` on every `CAN_ID_ENGINE` frame, and the new slot |
+| `src/txframes.h/.c` | `txframes_gather_health()` and `txframes_health()` |
+| `docs/frames.md` | the 0x604 section, the slot table, and the not-JP1-gated note |
+| `test/test_compute.c` | the detector against the fixtures |
+| `test/test_txframes.c` | the byte offsets, pinned against the TRI file as every other frame is |
+| `test/test_scheduler.c` | the slot, under the one-frame-per-slot rule |
+| `tools/idledips.py` | its docstring says today that nothing in `src/` uses it; that stops being true |
+| `mfd15/tri/S-AQY.TRI` | three rows |
+| `mfd15/docs/sensors.md` | the channel documented |
+| `mfd15/README.md` | the frame list |
+
+⚠ **`S-AQY.TRI` and `docs/frames.md` change in the same breath**, per
+`CLAUDE.md`. A wrong offset there shows a plausible number rather than an
+error.
+
+### The acceptance test, and it can be written before the drive
+
+**`dips_cheap()` becomes the oracle, exactly as `replay.py` is for the core.**
+The C detector must reproduce its event count and its settled-idle seconds
+over `09`, `11`, `12`, `17` and `18` — the five logs of `idledips.py`'s own
+table — **exactly**, not to within a tolerance. Both are integer arithmetic
+over the same samples, so there is nothing to round.
+
+Three traps, all of which would pass a careless test:
+
+1. ⚠ **The detector steps once per 0x280 frame, including the frames that
+   repeat a value.** `docs/engine-health.md`, *Engine speed on 0x280 is
+   recomputed once per firing event*: the frame goes out every 10 ms but the
+   speed field holds for three or four of them at idle. `dips_cheap()`
+   iterates frames, not changes, and `EWMA_SHIFT` = 8 is a time constant only
+   under that reading — 2.7 s at the measured 94 Hz of frames, and something
+   else entirely if the firmware steps on change. **Step on arrival.**
+2. ⚠ **The gate constants are shared with the torque rule, and that is not a
+   coincidence to be tidied away.** `GATE_SPEED_MMH` is `STANDSTILL_MMH` and
+   `GATE_THROTTLE` is `THROTTLE_REST`. One definition in `config.h`, used by
+   both.
+3. ⚠ **The settle timer restarts on an excursion, it does not merely elapse.**
+   `dips_cheap()`'s docstring has the measurement behind that — a fixed three
+   seconds books a spurious event on a baseline still falling from driving
+   speed, and **the fixtures do not show it** because their stops are too
+   short to reach the delay. The idles this drive records are three to five
+   minutes long and every one of them would show it.
+
+**The capture from this drive becomes a fixture for it**, the same way question
+4's does, so the healthy count is pinned and cannot regress silently.
+
+### What else was considered from engine speed alone, and what happened to it
+
+The question was asked deliberately — *is there anything else worth reporting
+over the bus, purely from rpm* — and these are the answers, kept so the same
+ground is not covered twice.
+
+**Worth building, and the strongest of them is not the idle at all:**
+
+- **Start quality — crank duration and the near-stall.** Two more fields:
+  milliseconds from the crankshaft first moving to the first firing, and the
+  lowest engine speed in the first few seconds after it. `engine-health.md`,
+  *The start itself*, is this number measured once by hand — 1.24 s of
+  cranking, first firing at 451 rpm, then **383 → 311 rpm and it nearly
+  dies**. That near-stall is the owner's oldest and most repeatable symptom,
+  it is worst after a long stand, and **the idle-dip detector is blind to it
+  by construction**: `SETTLE_S` = 3 and the idle gate mean counting has not
+  begun yet. It is rpm only, it is two comparisons and a timer, and it turns a
+  symptom that currently needs a laptop in the car at the right moment into a
+  number that is there every morning. ⚠ **It is the one that needs no rough
+  engine to calibrate against** — a hard start either happens or does not —
+  which is exactly what the idle count cannot say about itself.
+- **A threshold-free roughness figure.** An EWMA of the absolute deviation
+  from the baseline, in 0.1 rpm, costs a shift and an add, no threshold and no
+  latch. It matters if the healthy idle reads a flat zero above: a count
+  against a frozen threshold has no resolution below that threshold, where a
+  mean deviation still moves. **Decide it from the healthy reading** — if the
+  count carries information, this is redundant; if it does not, this is the
+  channel that should have been built instead.
+
+**Declined, and why:**
+
+- **Anything instantaneous the display can take off the bus itself.** Engine
+  speed, the idle speed the governor has settled on, throttle. The MFD15
+  already reads 0x5A0 directly and needs no help with 0x280. **The converter's
+  only reason to transmit a number is that the number had to be computed over
+  time** — that is the rule, and it disposes of most of the obvious
+  candidates.
+- **Maximum engine speed since start / an over-rev latch.** Not engine health;
+  it is a souvenir. And the firmware has no sourced redline for this engine,
+  so the threshold would be invented.
+- **Stall detection.** A stall is not rpm alone (it needs road speed to be
+  distinguished from a normal switch-off), it is an event the driver
+  experiences directly at the moment it happens, and it has not occurred once
+  in the history in `docs/vehicle-history.md`. A channel for it would read
+  zero for years.
+- **Free-rev response — how fast engine speed rises off idle.** A genuinely
+  good health indicator and the wrong home for it: it needs a controlled
+  input, which makes it a test rather than a monitor. It belongs in a tool
+  over a capture, next to `idledips.py`, not on the bus.
+- **Anything using the fuel counter, load or torque.** Out of scope by
+  construction here; `b7 is modelled rather than measured` in
+  `docs/frames.md` is why the torque side cannot see combustion anyway.
 
 ## What is deliberately NOT on this list
 

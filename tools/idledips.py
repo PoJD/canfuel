@@ -41,6 +41,16 @@ whether the idle got better. Putting the count on the bus is a separate want
 with a separate cost, and it waits until the count has been shown to mean
 something.
 
+That want is written down as question 6 of docs/next-drive.md, and if it is
+built, `dips_cheap()` becomes the oracle the C detector is checked against --
+event for event over the logs in TABLE, exactly, the way tools/replay.py is
+the oracle for the rest of the core. Two things would have to hold and both
+are easy to get wrong: the firmware steps the detector once per 0x280 FRAME
+including the frames that repeat a value (EWMA_SHIFT is a time constant only
+under that reading), and the settle timer restarts on an excursion rather than
+merely elapsing. The docstring of `dips_cheap()` has the measurement behind
+the second.
+
 Usage
 -----
 

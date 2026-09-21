@@ -947,6 +947,16 @@ involved, no frame layout changes and `S-AQY.TRI` is untouched** — putting the
 count on the bus and onto the display is a separate want with a separate cost,
 and it waits until the count has been shown to mean something.
 
+**That want is now written down rather than remembered**, as question 6 of
+`docs/next-drive.md`, and this measurement is what decides it. ⚠ **The
+after-reading therefore has a second job the table above does not show.**
+*Is the idle cured* is answered by zero or near-zero. *Is the count worth a
+row on the dashboard* is answered by what a healthy engine's floor actually
+is — whether a well engine trickles one or two a minute or none at all for
+minutes on end — and that reading exists only while somebody is looking for
+it. Both come out of the same three to five minutes of idle, and only if the
+constants stay frozen through it.
+
 ⚠ **This is not a misfire counter and must not be called one.** Seven of the
 44 dips had a misfire increment beside them; the other 37 may be unreported
 misfires or may be something else, and no data here separates those. It counts
