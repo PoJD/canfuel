@@ -259,6 +259,80 @@ first sample, which is exactly why only a bench could have shown it.
 
 ---
 
+## Trap 6: 0x280's engine speed updates once per FIRING EVENT, not once per frame
+
+**The signal table above is complete as a conversion and incomplete as a
+statement about time.** `× 0.25 rpm` is right; what it does not say is that
+consecutive frames usually carry the *same* value, and that how long a value
+is held is a property of the engine rather than of the bus.
+
+**Measured, `python tools/idledips.py --segments`:**
+
+| engine speed | field updates every | one firing interval |
+|---|---|---|
+| 700–900 rpm | **39 ms** | 37.5 ms |
+| 900–1200 | 30–31 ms | 28.6 ms |
+| 1200–1800 | 20–21 ms | 20.0 ms |
+| 1800–2600 | 13 ms | 13.6 ms |
+| 2600–4000 | 10 ms | 9.1 ms |
+
+**The update interval tracks the firing interval and not the 10 ms frame
+period, until about 3000 rpm where the engine fires faster than the bus
+reports and it saturates at the frame period.** A four-stroke four fires twice
+per revolution, so the firing interval is 60/(rpm/2) seconds — and the two
+columns agree to a millisecond everywhere they can.
+
+**Two consequences, and the first catches people out immediately:**
+
+- **A repeated value is not a new measurement.** At idle each value arrives
+  three to four times. Anything that averages, differentiates or counts over
+  0x280 frames rather than over *changes* is weighting each real measurement
+  by however many frames happened to carry it — and since the hold length
+  moves with engine speed, the weighting moves with engine speed too. That is
+  an artefact and it looks exactly like a result.
+- **Each value is close to a single cylinder's contribution**, not a smoothed
+  average of four: it is roughly how fast the crank turned through one
+  power stroke. That is what makes the *step between consecutive values* a
+  per-cylinder quantity worth doing arithmetic on at all.
+
+⚠ **`decode.c` is unaffected and deliberately so.** It stores whatever the
+last frame carried, which is correct for a displayed engine speed and for the
+torque gate. The trap bites anything *derived over time* from the field —
+which today is `tools/idledips.py` and, if `docs/next-drive.md` question 6 is
+built, `compute.c`.
+
+### When the idle grade is built, the worked arithmetic lands here
+
+**A requirement on that work, not a suggestion.** `docs/frames.md` will say
+what the bytes of 0x604 mean and `docs/engine-health.md` says what the numbers
+were on this engine — but neither shows **the chain from a raw frame to the
+byte on the wire**, and that chain is four steps of integer arithmetic with a
+deadband, a shift and a scale factor in it. Without it the number is something
+to be trusted rather than checked, which is the opposite of what every other
+signal on this page is.
+
+So when the firmware side is written, this section gains:
+
+- **A worked example from a real capture** — a run of actual 0x280 payloads,
+  the engine speeds they decode to, which of them are repeats, the steps
+  between the changes, the same steps after the deadband, and the accumulator
+  and output byte they produce. Enough that somebody can re-derive the
+  published byte with a pencil and disagree with it if it is wrong.
+- **The step histogram of that capture**, as `--roughness --hist` prints it,
+  beside the histograms of the fixtures the scale was anchored on. The grade
+  is a one-number summary of that shape, and a summary quoted without the
+  shape it summarises is the kind of figure this repository keeps being burnt
+  by.
+- **The arithmetic of the index**, written out once: which constant is
+  measured, which is chosen, and what a reading of 100 means in rpm.
+
+⚠ **It is the capture's own numbers or nothing.** Not numbers reconstructed
+from the published byte, and not a synthetic example — `tools/bench_scenarios.py`
+carries the same rule for the same reason, and `CLAUDE.md`'s *A verification
+is only as wide as the call chain it ran* is the general form of it.
+
+---
+
 ## VCDS measuring blocks worth knowing — our own summary
 
 **Only the blocks this project actually uses**, written down here so that no

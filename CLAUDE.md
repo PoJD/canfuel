@@ -1057,7 +1057,7 @@ keeping straight, because all three look similar from a distance:
 
 ## Read `docs/can-decoding.md` before touching the maths
 
-It documents four traps that are easy to run aground on quietly. In short:
+It documents the traps that are easy to run aground on quietly. In short:
 
 1. **The speed validity gate is not an equality.** `b1 == 0x40` is wrong; the
    correct rule is `(b1 & 0x40) && !(b1 & 0x03)`. The equality throws away two
@@ -1069,7 +1069,13 @@ It documents four traps that are easy to run aground on quietly. In short:
    the first wrap, then permanently one. The 0x7FFF mask drops it anyway.
 4. **FuelAvg must return zero below 100 m of distance.** Otherwise it divides
    by nearly zero.
-5. **A frame that never arrived is not a reading of zero.** `decode_init()`
+5. **0x280's engine speed updates once per FIRING EVENT, not once per
+   frame.** At idle each value arrives three to four times and the hold length
+   moves with engine speed, so anything averaged, differentiated or counted
+   over *frames* rather than over *changes* is weighted by engine speed. That
+   is an artefact and it looks exactly like a result. `decode.c` is unaffected;
+   anything derived over time is not.
+6. **A frame that never arrived is not a reading of zero.** `decode_init()`
    zeroes everything, and zero litres is a legal tank level, so the tank needs
    `tank_valid` the way speed needs `speed_valid` — it is the one decoded field
    feeding state that latches and then reaches the EEPROM. No fixture and no

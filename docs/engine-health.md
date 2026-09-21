@@ -891,6 +891,11 @@ cylinder's power stroke"**, which is what makes the depth of a dip a per-cylinde
 quantity worth putting into an energy budget at all rather than a smoothed
 average of four.
 
+**It is a fact about the bus rather than about this engine, so it also lives
+in `docs/can-decoding.md` as trap 6**, with the measured table and the two
+consequences for anything derived over time. This section is why it was
+looked for; that one is where a decoder should find it.
+
 ⚠ **It also qualifies the p = 0.023 above, and in the honest direction.**
 Crankshaft speed irregularity is the standard way an OBD engine management
 detects misfire — so the ECU's counter and `idledips.py` are most likely two

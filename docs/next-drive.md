@@ -1751,6 +1751,7 @@ one wrong answer that will be believed.
 | `src/main.c` | call `compute_on_engine()` on every `CAN_ID_ENGINE` frame, and the new slot |
 | `src/txframes.h/.c` | `txframes_gather_health()` and `txframes_health()` |
 | `docs/frames.md` | the 0x604 section, the slot table, and the not-JP1-gated note |
+| `docs/can-decoding.md` | **the worked arithmetic**, under trap 6 — a real capture from raw frame to output byte, and its step histogram. The section already says what it has to contain; it is a requirement of this work and not a follow-up |
 | `test/test_compute.c` | the grade against the fixtures, against the Python |
 | `test/test_txframes.c` | the byte offsets, pinned against the TRI file as every other frame is |
 | `test/test_scheduler.c` | the slot, under the one-frame-per-slot rule |
@@ -1762,6 +1763,17 @@ one wrong answer that will be believed.
 ⚠ **`S-AQY.TRI` and `docs/frames.md` change in the same breath**, per
 `CLAUDE.md`. A wrong offset there shows a plausible number rather than an
 error.
+
+⚠ **The `can-decoding.md` row is not documentation tidying and it is not
+optional.** Every other signal on that page can be re-derived from a raw frame
+by somebody who distrusts it. The grade cannot: it is four steps of integer
+arithmetic — decode, step on change, deadband, scale — with a shift and a
+chosen constant inside, and nothing published shows the chain end to end. A
+number that can only be trusted rather than checked is the one kind this
+repository has been burnt by repeatedly, and this one is worse than most
+because it is a *statistic*: wrong arithmetic produces a plausible number
+rather than an obviously broken one. **The worked example and the histogram
+ship with the firmware, not after it.**
 
 ### The acceptance test, and it can be written before the drive
 

@@ -342,8 +342,9 @@ def dips_cheap(gated, t_from=None, t_to=None, shift=EWMA_SHIFT,
 # The step between consecutive values is immune: the same ramp is 0.004 rpm per
 # 10 ms sample.
 #
-# ⚠ THE STEP IS TAKEN ONCE PER CHANGE OF THE FIELD, NOT ONCE PER FRAME, and
-# this is the opposite of what dips_cheap() does. The two are not inconsistent:
+# ⚠ THE STEP IS TAKEN ONCE PER CHANGE OF THE FIELD, NOT ONCE PER FRAME
+# (docs/can-decoding.md trap 6), and this is the opposite of what
+# dips_cheap() does. The two are not inconsistent:
 # dips_cheap()'s EWMA is a TIME constant and has to be stepped on the clock,
 # while this one is an average PER FIRING EVENT and has to be stepped on the
 # event. 0x280 holds its speed field for three to four frames at idle (see
