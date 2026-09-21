@@ -1523,6 +1523,7 @@ three-to-five-minute idles the procedure already asks for:
 | the **count**, `dips_cheap()` with its constants untouched | whether the validated-against-the-ECU instrument still says anything at all, or has gone to zero |
 | the spread between idles at matched temperature | whether a trend is readable against the scatter |
 | the **cold start**, on the morning of the drive | the first recording of a start that is not the bad one. n goes from 1 to 2 |
+| `--cylinders`, the `sd_true` band over the healthy idles | the well-engine end of the per-cylinder spread. Three smooth runs exist today and two of them are one log; after the repair the sick end is gone for ever. Costs nothing — the capture is being made anyway |
 
 **None of that adds a step to Part 1.** The capture starts at step 7 and the
 engine not until step 10, so the cold start is already inside it — the
@@ -1852,6 +1853,32 @@ that got them there rather than the proposal:
   good health indicator and the wrong home for it: it needs a controlled
   input, which makes it a test rather than a monitor. It belongs in a tool
   over a capture, next to `idledips.py`, not on the bus.
+- **Per-cylinder structure on the bus.** Tested properly rather than waved
+  away, and declined on arithmetic. `docs/engine-health.md`, *Is it one
+  cylinder?*, finds a real period-4 line — 13–21× its local background — and
+  then finds it **just as strongly in the smoothest recording this car has
+  produced**, so the line itself separates nothing. The one statistic that
+  does separate, the noise-corrected slot spread, manages **1.80× where the
+  roughness grade manages 2.71× on the same recordings**. It costs a byte and
+  more state than the grade and buys a weaker answer, so the byte stays with
+  the grade.
+
+  **The firmware cost, recorded so nobody re-derives it and gives up for the
+  wrong reason.** The offline detrending is a 21-window moving average, which
+  wants a 42-byte ring buffer — but firmware would not need it: subtracting
+  the mean of each *consecutive group of four windows* removes the trend well
+  enough at idle, where the governor's ramp is 0.43 rpm/s and a group spans
+  150 ms, so 0.06 rpm. That is four accumulators and a mod-4 counter and no
+  buffer at all. **What actually makes it awkward is the phase**: it slips at
+  every missed window, 1.5 % of them, so the accumulation resets about every
+  2.5 s and the statistic has to be a spread-per-run averaged over runs rather
+  than one running figure.
+
+  ⚠ **What it would uniquely catch is a future single-cylinder failure** — an
+  injector silting up, a coil dying — where one slot runs away from the other
+  three while the grade merely rises. **That is a diagnosis, not a trend**, and
+  the division this frame is built on says diagnoses come out of a capture.
+  `--cylinders` is where it lives, and it needs no firmware to do it.
 - **Anything using the fuel counter, load or torque.** Out of scope by
   construction here; `b7 is modelled rather than measured` in
   `docs/frames.md` is why the torque side cannot see combustion anyway.

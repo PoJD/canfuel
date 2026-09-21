@@ -569,6 +569,21 @@ def slot_means(run):
 
     One slot is one cylinder. WHICH one is unknowable, and it differs between
     runs, so these are a shape and never a name.
+
+    Returns (means, spread, se, n, sd_true).
+
+    ⚠ ``spread`` -- the plain max minus min -- is BIASED UPWARD and must not be
+    compared between recordings of different length. Four means of pure noise
+    still have a range: about 2.06 standard errors for four draws, so a run
+    whose slot means carry +-1.4 rpm of noise shows nearly 3 rpm of "spread"
+    from an engine whose cylinders are identical. The shorter the run, the
+    bigger the bias, so comparing a short recording against a long one this way
+    manufactures a difference.
+
+    ``sd_true`` is the unbiased one and is the figure to quote: the variance
+    between the slot means minus the variance the noise puts there,
+    ``var(means) - mean(SE^2)``, floored at zero and square-rooted. It is what
+    the rough-against-smooth comparison in docs/engine-health.md rests on.
     """
     d = _detrend(run)
     slots = [[] for _ in range(4)]
@@ -578,7 +593,9 @@ def slot_means(run):
         return None
     means = [statistics.mean(x) for x in slots]
     se = statistics.mean(statistics.stdev(x) / math.sqrt(len(x)) for x in slots)
-    return means, max(means) - min(means), se, len(d)
+    se2 = statistics.mean((statistics.stdev(x) ** 2) / len(x) for x in slots)
+    sd_true = math.sqrt(max(0.0, statistics.pvariance(means) - se2))
+    return means, max(means) - min(means), se, len(d), sd_true
 
 
 def period_power(runs, freq, block=CYL_BLOCK, half=5):
@@ -828,19 +845,30 @@ def _cylinders_main(paths, args):
     print("\nThe four phase slots of each long run, in rpm about its own mean.")
     print("⚠ One slot is one cylinder, but WHICH is unknowable and it differs")
     print("between runs -- a shape, never a name.\n")
-    print("%-26s %7s  %-30s %8s" % ("log", "windows", "slots (rpm)", "spread"))
+    print("%-26s %7s  %-30s %8s %9s" % (
+        "log", "windows", "slots (rpm)", "spread", "sd_true"))
+    print("⚠ 'spread' is biased upward by noise and is NOT comparable between")
+    print("  recordings; 'sd_true' has that subtracted and is the one to use.\n")
+    summary = {}
     for path in paths:
         lo, hi = _window(path, args.t_from, args.t_to)
         runs = sorted(cylinder_runs(series(path)[3], lo, hi),
-                      key=len, reverse=True)[:3]
-        for r in runs:
+                      key=len, reverse=True)
+        for i, r in enumerate(runs):
             got = slot_means(r)
             if got is None or got[3] < 80:
                 continue
-            means, spread, se, n = got
-            print("%-26s %7d  %-30s %6.2f  (+-%.2f)" % (
-                os.path.basename(path), n,
-                " ".join("%+6.2f" % v for v in means), spread, se))
+            means, spread, se, n, sd_true = got
+            summary.setdefault(os.path.basename(path), []).append(sd_true)
+            if i < 3:
+                print("%-26s %7d  %-30s %6.2f %8.2f" % (
+                    os.path.basename(path), n,
+                    " ".join("%+6.2f" % v for v in means), spread, sd_true))
+    if summary:
+        print("\n%-26s %7s %9s   %s" % ("log", "runs", "mean sd_true", "range"))
+        for name, v in summary.items():
+            print("%-26s %7d %9.2f rpm   %.2f - %.2f" % (
+                name, len(v), statistics.mean(v), min(v), max(v)))
     return 0
 
 

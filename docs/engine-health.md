@@ -992,7 +992,9 @@ the firing order, which nothing in this repository sources.
    far below the other three and would make the spread much larger on the
    rough recordings than the smooth ones. Neither happens: the shape has no
    consistent single outlier and the spread is **3.5–3.6 rpm smooth against
-   4.1–5.9 rough**, which overlaps. Against the energy budget above — one
+   4.1–5.9 rough**, which overlaps. ⚠ Those are the *biased* spreads; the
+   unbiased comparison is below and it separates by 1.80×, not by nothing —
+   but still by less than the roughness grade does. Against the energy budget above — one
    entirely failed power stroke is 33–57 rpm — a spread of 4 rpm is **of the
    order of a tenth of one stroke's work** between the best cylinder and the
    worst. ⚠ Order of magnitude only: a sustained offset that the governor has
@@ -1011,6 +1013,62 @@ the firing order, which nothing in this repository sources.
    evidence for a two-cylinder fault** — cold enrichment and uneven warming
    would produce it in a healthy engine too. Worth one line in a future
    cold-start recording; not worth a conclusion.
+
+#### Could it tell a healthier engine? — partly, and worse than the grade does
+
+**The forward-looking question, because the answer decides whether this ever
+becomes a channel.** Two candidate statistics, and they behave very
+differently.
+
+⚠ **First, the trap that has to be cleared or the comparison is worthless.**
+The plain spread between the four slot means is **biased upward by noise**:
+four means of an engine whose cylinders are identical still have a range —
+about 2.06 standard errors for four draws — so a run carrying ±1.4 rpm of
+noise shows nearly 3 rpm of "spread" from nothing at all. **The bias is larger
+on shorter runs**, so comparing a short healthy recording against a long sick
+one this way *manufactures* a difference in exactly the direction that would
+be believed. The unbiased figure is `var(slot means) − mean(SE²)`, floored at
+zero, and `--cylinders` prints it as `sd_true`.
+
+| log | runs | **mean `sd_true`** | range |
+|---|---|---|---|
+| `09_idle_60s_z1` rough, 61 °C | 4 | **1.72 rpm** | 1.51 – 1.92 |
+| `18_coldstart_z1` rough, cold | 24 | **1.99 rpm** | 0.82 – 3.77 |
+| `11_idle_noac_z1` smooth, 73 °C | 2 | **1.08 rpm** | 0.88 – 1.28 |
+| `12_idle_ac_z1` smooth, 73 °C | 1 | **1.10 rpm** | — |
+
+- **The strength of the f = 0.25 line separates nothing at all** — 13.4×
+  smooth against 13.1× rough. As a health statistic it is dead.
+- **`sd_true` does separate: 1.95 rpm rough against 1.09 smooth, a factor of
+  1.80.** Real, but **worse than the roughness grade, which separates the same
+  recordings by 2.71×** (*Grading the idle*). And it rests on **three smooth
+  runs**, against twenty-eight rough ones.
+- ⚠ **It is confounded with temperature exactly as everything else here is.**
+  Both smooth recordings are at 73 °C; `09` is 61 °C and `18` is cold. `09`
+  alone against the smooth pair is 1.72 / 1.09 = **1.58×**, so part of even
+  that is the warm-up and not health.
+
+**So it is not going on 0x604, and the reason is arithmetic rather than
+taste**: it costs a byte and more state than the grade, and it buys a weaker
+separation of the same two states. The byte is better spent on the grade.
+`docs/next-drive.md` question 6 carries the decision with the firmware cost
+beside it.
+
+**What it uniquely could say, and why that still belongs in a capture.** The
+grade says *the idle got worse*; it cannot say *why*. A cylinder going off on
+its own later — an injector silting up, a coil failing — is precisely the
+case where one slot would run away from the other three while the grade merely
+rose. **That is a diagnosis and not a trend**, and this repository has already
+settled where each belongs: the bus carries the trend, a capture carries the
+diagnosis. `--cylinders` over a recording is the right home and no firmware is
+involved.
+
+**What the next drive is therefore asked for.** The healthy end of `sd_true`
+is as unrepeatable as the rough end was: once the engine is well, nobody can
+go back and record it sick. Three smooth runs is thin, and two of them are one
+log. **Run `--cylinders` over the healthy idles and record the `sd_true` band**
+— it costs nothing, the capture is being made anyway, and it is the only
+chance to widen the well-engine side of the one comparison that separates.
 
 **What this changes for the investigation: nothing points at a cylinder.** The
 plugs remain the better evidence about which injectors deserve a closer look,

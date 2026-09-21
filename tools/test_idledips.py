@@ -569,11 +569,73 @@ class PerCylinderStructure(unittest.TestCase):
                 got = slot_means(r)
                 if got is None or got[3] < 80:
                     continue
-                means, spread, se, n = got
+                means, spread, se, n, sd_true = got
                 self.assertLess(spread, 12.0, name)
+                self.assertLess(sd_true, spread, name)   # the bias is real
 
     def test_the_phase_is_lost_between_runs_so_runs_are_not_pooled(self):
         """Not decoration: pooling them would average four cylinders over a
         random relabelling and delete the effect being looked for."""
         runs = self.runs("18_coldstart_z1.txt", 50.0, 360.0)
         self.assertGreater(len(runs), 5)
+
+
+class SlotSpreadIsBiased(unittest.TestCase):
+    """The plain max-minus-min of four slot means is biased upward by noise.
+
+    This is the trap that would turn a short healthy recording into an
+    apparently worse engine than a long sick one, so it is held here rather
+    than only warned about in a docstring.
+    """
+
+    @staticmethod
+    def windowed(seconds, weak_slot=None, weak_rpm=0.0, sigma=3.0, seed=1,
+                 hold=4):
+        """A synthetic idle in the shape 0x280 really has.
+
+        ⚠ EACH VALUE IS HELD FOR `hold` FRAMES, because that is what the ECU
+        does (can-decoding.md trap 6) and because the window index is what a
+        planted per-cylinder effect has to be planted on. Drawing fresh noise
+        every FRAME instead makes every frame its own window, which silently
+        moves a planted period 4 to period 16 -- that is not hypothetical, it
+        is how the first version of this test failed.
+        """
+        import random
+        rnd = random.Random(seed)
+        out, w, v = [], -1, 800.0
+        for i, (t, _) in enumerate(series(seconds)):
+            if i // hold != w:
+                w = i // hold
+                v = 800.0 + rnd.gauss(0, sigma)
+                if weak_slot is not None and w % 4 == weak_slot:
+                    v -= weak_rpm
+            out.append((t, int(round(v * 4)), 38, 5))
+        return out
+
+    def longest(self, gated):
+        best = None
+        for r in cylinder_runs(gated):
+            got = slot_means(r)
+            if got is None or got[3] < 80:
+                continue
+            if best is None or got[3] > best[3]:
+                best = got
+        return best
+
+    def test_identical_cylinders_still_show_a_spread(self):
+        """An engine whose four cylinders are the same, with ordinary noise."""
+        got = self.longest(self.windowed(120.0, seed=11))
+        self.assertIsNotNone(got, "no run long enough to test")
+        means, spread, se, n, sd_true = got
+        self.assertGreater(spread, 0.3)      # noise alone makes a spread
+        self.assertLess(sd_true, spread)     # and sd_true removes most of it
+        self.assertLess(sd_true, 1.0)        # ...leaving nearly nothing
+
+    def test_a_planted_difference_survives_the_correction(self):
+        """The other direction: correcting must not delete a real effect."""
+        got = self.longest(
+            self.windowed(120.0, weak_slot=0, weak_rpm=4.0, seed=3))
+        self.assertIsNotNone(got)
+        means, spread, se, n, sd_true = got
+        self.assertGreater(sd_true, 1.0)
+        self.assertEqual(means.index(min(means)), 0)   # and it names the slot
