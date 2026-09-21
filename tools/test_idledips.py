@@ -32,8 +32,8 @@ from idledips import (EWMA_SHIFT, FIXTURES, GATE_THROTTLE, IDLE_INDEX_MAX,
                       IDLE_ROUGH_100, REARM_RPM, ROUGH_DEADBAND_RPM,
                       ROUGH_OUT_SHIFT, ROUGH_SHIFT, SETTLE_S, TRIP_RPM,
                       depths, dips, dips_cheap, firing_interval_s,
-                      idle_index, rough_bands, roughness, segments,
-                      step_hist)
+                      idle_index, rough_bands, roughness, segment_degrees,
+                      segments, step_hist)
 from idledips import series as read_log   # the local series() below is synthetic
 
 RATE_HZ = 94.0  # what 0x280 actually arrives at; see docs/can-decoding.md
@@ -203,13 +203,18 @@ class Depths(unittest.TestCase):
 
 
 class SegmentRate(unittest.TestCase):
-    """0x280's engine-speed field is recomputed once per firing event.
+    """0x280's engine-speed field is recomputed once per 180 deg of crank.
 
     That is what makes a dip in it a per-cylinder quantity rather than a
-    smoothed one, and it is the measurement docs/engine-health.md argues the
-    energy budget of one lost power stroke from. It is asserted as a band
-    rather than a figure: what has to survive is that the interval tracks the
-    firing rate and not the 10 ms frame period.
+    smoothed one -- 180 deg is one power stroke -- and it is the measurement
+    docs/engine-health.md argues the energy budget of one lost power stroke
+    from. Asserted as a band rather than a figure: what has to survive is that
+    the interval tracks the engine and not the 10 ms frame period.
+
+    ⚠ The crank-angle form below is the stronger statement and the one
+    can-decoding.md trap 6 is written from. An interval that sits near the
+    firing rate AT ONE SPEED is a coincidence; a constant angle across a
+    fivefold change of speed is not.
     """
 
     @classmethod
@@ -462,3 +467,39 @@ class StepDistribution(unittest.TestCase):
         self.assertGreater(rough[3], 2 * smooth[3])      # 6-10 rpm
         self.assertGreater(rough[4], 4 * smooth[4])      # 10-15 rpm
         self.assertLess(rough[0] + rough[1], smooth[0] + smooth[1])   # 0-4 rpm
+
+
+class SegmentDegrees(unittest.TestCase):
+    """The gap as crank ANGLE, which is what makes it a mechanism and not a
+    coincidence. A four-stroke four fires every 180 deg."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.rpm = read_log(os.path.join(FIXTURES,
+                           "17_drive_property_z1.txt"))[0]
+
+    def test_the_angle_is_180_degrees_until_the_frame_period_stops_it(self):
+        rows = segment_degrees(self.rpm)
+        self.assertGreater(len(rows), 5)
+        for lo, hi, n, gap, deg in rows:
+            if firing_interval_s((lo + hi) / 2.0) < 0.0104:
+                continue        # the bus cannot carry 180 deg this fast
+            self.assertLess(abs(deg - 180.0), 25.0,
+                            f"{lo}-{hi} rpm: {deg:.0f} deg")
+
+    def test_above_three_thousand_it_inflates_rather_than_holding(self):
+        """The confirmation, not an exception: a TIME-based mechanism would
+        have carried on unchanged where this one cannot."""
+        top = [r for r in segment_degrees(self.rpm) if r[0] >= 3200]
+        self.assertTrue(top)
+        self.assertGreater(top[-1][4], 205.0)
+
+    def test_it_is_a_constant_angle_and_not_a_constant_time(self):
+        """The whole argument in one assertion: across the bands the bus can
+        carry, the TIME changes several-fold and the ANGLE does not."""
+        rows = [r for r in segment_degrees(self.rpm)
+                if firing_interval_s((r[0] + r[1]) / 2.0) >= 0.0104]
+        gaps = [r[3] for r in rows]
+        degs = [r[4] for r in rows]
+        self.assertGreater(max(gaps) / min(gaps), 2.0)
+        self.assertLess(max(degs) / min(degs), 1.3)

@@ -876,7 +876,7 @@ strokes. What the idle governor does on a timescale of 250 ms is add torque to
 bring engine speed back up, which is the recovery, in the opposite direction to
 the event.
 
-### Engine speed on 0x280 is recomputed once per firing event
+### Engine speed on 0x280 is recomputed once per 180° of crank
 
 **Measured, over the fixtures, by `python tools/idledips.py --segments`.** The
 frame goes out every 10 ms but its speed field holds a value for several
@@ -886,15 +886,35 @@ period — 39 ms held against 37.5 ms of firing at 800 rpm, 30 against 28.6 at
 at the 10 ms frame period above about 3000 rpm where the engine fires faster
 than the bus reports.
 
-**So each sample is close to "how fast did the crank turn through one
-cylinder's power stroke"**, which is what makes the depth of a dip a per-cylinder
-quantity worth putting into an energy budget at all rather than a smoothed
-average of four.
+**The sharper form of the same measurement is in `docs/can-decoding.md` as
+trap 6**, and it is the one to cite: expressed as crank angle rather than as
+time, the gap is a **constant 180° from idle to 3200 rpm**, across a fivefold
+change of speed, before the frame period stops being able to carry it. A
+constant angle is a statement about the engine's geometry; an interval that
+merely sits near the firing rate at one speed is a coincidence waiting to be
+read as a mechanism.
 
-**It is a fact about the bus rather than about this engine, so it also lives
-in `docs/can-decoding.md` as trap 6**, with the measured table and the two
-consequences for anything derived over time. This section is why it was
-looked for; that one is where a decoder should find it.
+**So each sample is the crank's mean speed across one cylinder's power
+stroke** — a four-stroke four fires every 180°, so one such window contains
+exactly one power stroke — which is what makes the depth of a dip a
+per-cylinder quantity worth putting into an energy budget at all rather than a
+smoothed average of four.
+
+⚠ **That is geometry, and it is all the energy budget needs.** "Once per 180°"
+and "once per firing event" are the same interval on this engine and no data
+here separates them, so whether the ECU computes a fresh speed *for each
+combustion* or simply updates on a fixed crank-angle boundary is not
+established. ⚠ **An earlier version of this section claimed the combustion
+reading**, on nothing but the interval agreeing with the firing rate. The
+budget below is unaffected: it needs only that the window contains one power
+stroke.
+
+⚠ **And there is no cylinder identification**, which trap 6 also covers: one
+badly misfiring cylinder and four mildly rough ones are the same statistic
+here. Tested rather than assumed — a single bad cylinder would repeat every
+four updates and show as autocorrelation at lag 4, and over `09` it is −0.07
+against −0.03 over the smooth `11`. **No single-cylinder signature in either**,
+which agrees with the 13 bar on all four in *Compression*.
 
 ⚠ **It also qualifies the p = 0.023 above, and in the honest direction.**
 Crankshaft speed irregularity is the standard way an OBD engine management

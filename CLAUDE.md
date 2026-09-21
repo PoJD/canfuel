@@ -1069,12 +1069,15 @@ It documents the traps that are easy to run aground on quietly. In short:
    the first wrap, then permanently one. The 0x7FFF mask drops it anyway.
 4. **FuelAvg must return zero below 100 m of distance.** Otherwise it divides
    by nearly zero.
-5. **0x280's engine speed updates once per FIRING EVENT, not once per
-   frame.** At idle each value arrives three to four times and the hold length
-   moves with engine speed, so anything averaged, differentiated or counted
-   over *frames* rather than over *changes* is weighted by engine speed. That
-   is an artefact and it looks exactly like a result. `decode.c` is unaffected;
-   anything derived over time is not.
+5. **0x280's engine speed is recomputed once per 180° OF CRANK, not once per
+   frame.** Measured as a constant angle from idle to 3200 rpm, so at idle each
+   value arrives three to four times and the hold length moves with engine
+   speed — anything averaged, differentiated or counted over *frames* rather
+   than over *changes* is weighted by engine speed, which is an artefact that
+   looks exactly like a result. 180° is one power stroke, which is what makes
+   the step a per-cylinder quantity; **it is not cylinder identification and
+   there is none on this bus.** `decode.c` is unaffected; anything derived over
+   time is not.
 6. **A frame that never arrived is not a reading of zero.** `decode_init()`
    zeroes everything, and zero litres is a legal tank level, so the tank needs
    `tank_valid` the way speed needs `speed_valid` — it is the one decoded field

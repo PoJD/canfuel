@@ -259,47 +259,108 @@ first sample, which is exactly why only a bench could have shown it.
 
 ---
 
-## Trap 6: 0x280's engine speed updates once per FIRING EVENT, not once per frame
+## Trap 6: 0x280's engine speed is recomputed once per 180° of crank, not once per frame
 
 **The signal table above is complete as a conversion and incomplete as a
 statement about time.** `× 0.25 rpm` is right; what it does not say is that
 consecutive frames usually carry the *same* value, and that how long a value
 is held is a property of the engine rather than of the bus.
 
-**Measured, `python tools/idledips.py --segments`:**
+**First, it is not the logger.** `can-decoding.md`'s *Frame periods* records
+that 39–51 % of the lines in the older logs are an immediate duplicate, which
+would produce exactly this appearance for no reason at all. It is not that: in
+`09_idle_60s_z1` 0x280 arrives 5,639 times in 60.05 s — **93.9 Hz, a period of
+10.65 ms against the specification's 10.5** — so no line is doubled. 71.4 % of
+those frames are nonetheless byte-for-byte identical to the one before, and
+the engine-speed field changes in only 27.8 % of them. **The repetition is the
+ECU's, not the recording's.**
 
-| engine speed | field updates every | one firing interval |
-|---|---|---|
-| 700–900 rpm | **39 ms** | 37.5 ms |
-| 900–1200 | 30–31 ms | 28.6 ms |
-| 1200–1800 | 20–21 ms | 20.0 ms |
-| 1800–2600 | 13 ms | 13.6 ms |
-| 2600–4000 | 10 ms | 9.1 ms |
+**Second, and this is the measurement that says what is happening:** express
+the gap between changes as **crank angle** rather than as time, `degrees =
+gap[s] × rpm × 6`. `python tools/idledips.py --degrees`, over
+`17_drive_property_z1`:
 
-**The update interval tracks the firing interval and not the 10 ms frame
-period, until about 3000 rpm where the engine fires faster than the bus
-reports and it saturates at the frame period.** A four-stroke four fires twice
-per revolution, so the firing interval is 60/(rpm/2) seconds — and the two
-columns agree to a millisecond everywhere they can.
+| engine speed | n | update | **crank angle** |
+|---|---|---|---|
+| 600–900 rpm | 2836 | 39.0 ms | **186°** |
+| 900–1200 | 3976 | 30.0 ms | **182°** |
+| 1200–1500 | 3125 | 21.0 ms | **172°** |
+| 1500–1800 | 1815 | 20.0 ms | **189°** |
+| 1800–2200 | 980 | 18.0 ms | **200°** |
+| 2200–2600 | 387 | 11.0 ms | **163°** |
+| 2600–3200 | 443 | 10.0 ms | **183°** |
+| 3200–4500 | 496 | 10.0 ms | 232° — **saturated** |
 
-**Two consequences, and the first catches people out immediately:**
+**A constant 180° from idle to 3200 rpm, across a fivefold change of speed and
+a fourfold change of interval.** Above roughly 3000 rpm 180° takes less than
+the 10.4 ms frame period, so the bus cannot carry it and the angle inflates —
+which is itself confirmation, because that is where a *time*-based mechanism
+would have carried on unchanged.
+
+**The scatter of 163–200° is the frame grid, not the engine.** At 800 rpm 180°
+is 37.5 ms and only multiples of ~10.4 ms can be observed, so the median lands
+on 39. The bands are narrow enough to show this and not narrow enough to
+remove it.
+
+### What follows, and what does NOT
+
+**180° of crank is one power stroke.** A four-stroke completes its cycle in
+720° and a four-cylinder fires four times in it, so the cylinders take turns
+every 180° and each 180° window contains exactly one power stroke, start to
+finish. So each value the ECU publishes is the crank's mean speed **across one
+cylinder's contribution**, and the step to the next value is how much one
+cylinder's contribution differed from the one before it. That is what makes
+the step a per-cylinder quantity and what lets `docs/engine-health.md` put a
+dip depth into an energy budget at all.
+
+⚠ **"Once per 180°" and "once per firing event" are the same interval on this
+engine and the data cannot separate them.** An ECU computing a fresh speed for
+each combustion event and an ECU updating on a fixed crank-angle segment
+boundary produce byte-identical output here. **This section claims the
+geometric statement, which is measured; the combustion statement is an
+interpretation of it.** Nothing downstream needs the stronger reading — the
+energy budget needs only that the window *contains* one power stroke, which
+geometry gives for free. ⚠ An earlier version of this section claimed the
+stronger one, from nothing but the interval agreeing with the firing rate at
+one speed.
+
+⚠ **There is no cylinder identification and there cannot be.** Which cylinder
+a given window belongs to needs camshaft phase, and `What is NOT on the bus`
+is where that is. So **one badly misfiring cylinder and four mildly rough ones
+are the same statistic.**
+
+**That was tested rather than assumed, and the answer was no.** If one cylinder
+were the culprit, the step series would repeat every four updates — 720°, the
+same cylinder coming round — and show it as a positive autocorrelation at lag
+4. Over `09_idle_60s_z1` (rough) lag 4 is **−0.07** and over `11_idle_noac_z1`
+(smooth) **−0.03**; neither shows a per-cylinder period, and the two logs give
+the same shape at every lag from 1 to 8. **No single-cylinder signature is
+present in either**, which agrees with the compression test — 13 bar on all
+four — in `engine-health.md`.
+
+⚠ **Two limits on that negative.** The update sequence is about **98.5 %**
+faithful: holds run 3 or 4 frames, but 1.5 % run 7 or 8, which is two
+consecutive 180° windows quantising to the same 0.25 rpm value and therefore
+one update never observed. Each of those slips the cylinder phase by one, so a
+real lag-4 correlation would be attenuated rather than preserved — mean run
+between slips is around 65 events, long enough that a strong signature should
+still have shown. And it is two recordings of one engine, so it is evidence
+that *this* engine had no single bad cylinder, not that the method could never
+find one.
+
+### The consequence for anything derived over time
 
 - **A repeated value is not a new measurement.** At idle each value arrives
   three to four times. Anything that averages, differentiates or counts over
-  0x280 frames rather than over *changes* is weighting each real measurement
-  by however many frames happened to carry it — and since the hold length
-  moves with engine speed, the weighting moves with engine speed too. That is
-  an artefact and it looks exactly like a result.
-- **Each value is close to a single cylinder's contribution**, not a smoothed
-  average of four: it is roughly how fast the crank turned through one
-  power stroke. That is what makes the *step between consecutive values* a
-  per-cylinder quantity worth doing arithmetic on at all.
-
-⚠ **`decode.c` is unaffected and deliberately so.** It stores whatever the
-last frame carried, which is correct for a displayed engine speed and for the
-torque gate. The trap bites anything *derived over time* from the field —
-which today is `tools/idledips.py` and, if `docs/next-drive.md` question 6 is
-built, `compute.c`.
+  0x280 *frames* rather than over *changes* is weighting each real measurement
+  by however many frames happened to carry it — and since the hold length is a
+  fixed crank angle, that weighting moves with engine speed. That is an
+  artefact and it looks exactly like a result.
+- ⚠ **`decode.c` is unaffected and deliberately so.** It stores whatever the
+  last frame carried, which is correct for a displayed engine speed and for
+  the torque gate. The trap bites anything *derived over time* from the field
+  — which today is `tools/idledips.py` and, if `docs/next-drive.md` question 6
+  is built, `compute.c`.
 
 ### When the idle grade is built, the worked arithmetic lands here
 

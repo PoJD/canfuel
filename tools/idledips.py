@@ -68,6 +68,7 @@ Usage
     python idledips.py --thresholds 15,20,25 FILE
     python idledips.py --depths FILE          # how deep each dip was
     python idledips.py --segments             # the update rate of 0x280's rpm
+    python idledips.py --degrees              # ...as crank angle. 180 deg
     python idledips.py --roughness            # grade the idle instead
     python idledips.py --roughness --hist     # ...the raw material, as a shape
     python idledips.py --roughness --bands    # ...where the grade comes from
@@ -185,12 +186,52 @@ def depths(rpm, threshold, t_from=None, t_to=None):
 #: four-stroke four at the middle of each -- see segments() below.
 SEGMENT_BANDS = ((700, 900), (900, 1200), (1200, 1800), (1800, 2600), (2600, 4000))
 
+#: Narrower bands for the crank-angle reading, which is the sharper one and
+#: wants the resolution. The top band is above where the frame period stops
+#: being able to carry 180 deg, and is in the table to show it breaking.
+DEGREE_BANDS = ((600, 900), (900, 1200), (1200, 1500), (1500, 1800),
+                (1800, 2200), (2200, 2600), (2600, 3200), (3200, 4500))
+
 CYLINDERS = 4  # firing events per two revolutions
 
 
 def firing_interval_s(rpm_value):
     """Seconds between power strokes of a four-stroke four at this speed."""
     return 120.0 / (rpm_value * CYLINDERS)
+
+
+def segment_degrees(rpm, bands=DEGREE_BANDS, cap_s=0.5, min_rpm=400.0):
+    """The same gaps, expressed as CRANK ANGLE instead of as time.
+
+    This is the measurement that says what the ECU is really doing, and it is
+    stronger than comparing the gap against a firing interval. A gap that is
+    a constant number of crank DEGREES across the whole speed range is a
+    statement about the engine's geometry; a gap that merely happens to sit
+    near the firing interval at one speed is a coincidence waiting to be
+    read as a mechanism.
+
+    degrees = gap[s] x (rpm/60)[rev/s] x 360 = gap x rpm x 6.
+
+    Returns (band, n, median gap, median degrees) per band. The scatter is
+    the 10.4 ms frame grid quantising the gap, not the engine wandering: at
+    800 rpm 180 deg is 37.5 ms and only multiples of the frame period can be
+    observed, so the median lands on 39.
+    """
+    changes = [(t, r) for i, (t, r) in enumerate(rpm) if i and r != rpm[i - 1][1]]
+    rows = []
+    for i in range(len(changes) - 1):
+        dt = changes[i + 1][0] - changes[i][0]
+        r = changes[i][1]
+        if 0.0 < dt < cap_s and r >= min_rpm:
+            rows.append((r, dt, dt * r * 6.0))
+    out = []
+    for lo, hi in bands:
+        g = [x for x in rows if lo <= x[0] < hi]
+        if len(g) >= 30:
+            out.append((lo, hi, len(g),
+                        statistics.median(x[1] for x in g),
+                        statistics.median(x[2] for x in g)))
+    return out
 
 
 def segments(rpm, bands=SEGMENT_BANDS, cap_s=0.5):
@@ -704,6 +745,8 @@ def main(argv=None):
                     help="print the depth of every dip instead of counting them")
     ap.add_argument("--segments", action="store_true",
                     help="print how often 0x280's engine-speed field changes")
+    ap.add_argument("--degrees", action="store_true",
+                    help="...and the same gaps as crank angle, which is sharper")
     ap.add_argument("--roughness", action="store_true",
                     help="grade the idle instead of counting events")
     ap.add_argument("--bands", action="store_true",
@@ -717,6 +760,15 @@ def main(argv=None):
     args = ap.parse_args(argv)
 
     paths = args.files or [os.path.join(FIXTURES, n) for n, _, _ in TABLE]
+
+    if args.degrees:
+        print("%-26s %11s %6s %10s %11s" % (
+            "log", "rpm band", "n", "update", "crank angle"))
+        for path in paths:
+            for lo, hi, n, gap, deg in segment_degrees(series(path)[0]):
+                print("%-26s %5d-%-5d %6d %8.1f ms %8.0f deg" % (
+                    os.path.basename(path), lo, hi, n, gap * 1000, deg))
+        return 0
 
     if args.segments:
         print("%-26s %11s %6s %10s %10s" % (
