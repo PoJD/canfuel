@@ -32,7 +32,8 @@ from idledips import (EWMA_SHIFT, FIXTURES, GATE_THROTTLE, IDLE_INDEX_MAX,
                       IDLE_ROUGH_100, REARM_RPM, ROUGH_DEADBAND_RPM,
                       ROUGH_OUT_SHIFT, ROUGH_SHIFT, SETTLE_S, TRIP_RPM,
                       depths, dips, dips_cheap, firing_interval_s,
-                      idle_index, rough_bands, roughness, segments)
+                      idle_index, rough_bands, roughness, segments,
+                      step_hist)
 from idledips import series as read_log   # the local series() below is synthetic
 
 RATE_HZ = 94.0  # what 0x280 actually arrives at; see docs/can-decoding.md
@@ -422,3 +423,42 @@ class RoughnessAgainstTheFixtures(unittest.TestCase):
         quote, on a steady idle where the two have the same meaning."""
         mean_rpm, counts, _, _ = self.read("09_idle_60s_z1.txt")
         self.assertAlmostEqual(counts / 32.0, mean_rpm, delta=0.25)
+
+
+class StepDistribution(unittest.TestCase):
+    """The shape the grade is a summary of.
+
+    This is what `--roughness --hist` prints and what engine-health.md shows,
+    and it is the answer to "what is being measured" -- not an event and not a
+    threshold, but how often each size of step between firing events happens.
+    """
+
+    def test_a_steady_idle_has_no_steps_at_all(self):
+        hist, n = step_hist(gated(30.0))
+        self.assertEqual(n, 0)
+
+    def test_the_shares_are_shares(self):
+        g = read_log(os.path.join(FIXTURES, "09_idle_60s_z1.txt"))[3]
+        hist, n = step_hist(g)
+        self.assertGreater(n, 1000)
+        self.assertAlmostEqual(sum(hist), 100.0, delta=0.01)
+
+    def test_it_walks_the_same_events_roughness_does(self):
+        """Not decoration: the table and the grade are quoted side by side and
+        would be incomparable if they were built from different samples."""
+        for name, lo, hi in (("09_idle_60s_z1.txt", None, None),
+                             ("11_idle_noac_z1.txt", None, None)):
+            g = read_log(os.path.join(FIXTURES, name))[3]
+            self.assertEqual(step_hist(g, lo, hi)[1], roughness(g, lo, hi)[2])
+
+    def test_the_rough_engine_has_the_fatter_tail(self):
+        """The whole claim, held as a property rather than as a copy of the
+        published percentages: the pairs differ in the 6-15 rpm columns and
+        the smooth one piles up under 4 rpm."""
+        def hist(name, lo=None, hi=None):
+            return step_hist(read_log(os.path.join(FIXTURES, name))[3], lo, hi)[0]
+        rough = hist("09_idle_60s_z1.txt")
+        smooth = hist("12_idle_ac_z1.txt")
+        self.assertGreater(rough[3], 2 * smooth[3])      # 6-10 rpm
+        self.assertGreater(rough[4], 4 * smooth[4])      # 10-15 rpm
+        self.assertLess(rough[0] + rough[1], smooth[0] + smooth[1])   # 0-4 rpm

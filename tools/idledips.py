@@ -69,6 +69,7 @@ Usage
     python idledips.py --depths FILE          # how deep each dip was
     python idledips.py --segments             # the update rate of 0x280's rpm
     python idledips.py --roughness            # grade the idle instead
+    python idledips.py --roughness --hist     # ...the raw material, as a shape
     python idledips.py --roughness --bands    # ...where the grade comes from
     python idledips.py --roughness --deadbands  # ...the contrast against it
     python idledips.py --roughness --windows 60 FILE
@@ -450,6 +451,58 @@ def idle_index(counts):
     return IDLE_INDEX_MAX if idx > IDLE_INDEX_MAX else idx
 
 
+def step_hist(gated, t_from=None, t_to=None, edges=None):
+    """How often each size of step between firing events happens.
+
+    Returns (percentages, n). This is the distribution the grade summarises,
+    and it is the answer to "what is actually being measured": not an event,
+    not a threshold, but the SHAPE of this table compressed into one number.
+    """
+    if edges is None:
+        edges = ((0, 2), (2, 4), (4, 6), (6, 10), (10, 15), (15, 25),
+                 (25, 10 ** 9))
+    steps = _settled_steps(gated, t_from, t_to)
+    n = len(steps)
+    if not n:
+        return [0.0] * len(edges), 0
+    return ([100.0 * sum(1 for d in steps if lo * 4 <= d < hi * 4) / n
+             for lo, hi in edges], n)
+
+
+def _settled_steps(gated, t_from=None, t_to=None):
+    """|step| in q4 units, once per change of the field, over settled idle.
+
+    The gate and the settle rule are dips_cheap()'s; roughness() walks the
+    same samples and test_idledips.py proves the two agree.
+    """
+    trip = int(TRIP_RPM * 4)
+    base = None
+    idle_since = None
+    prev_rpm = None
+    out = []
+    for t, rpm_q4, throttle, speed_mmh in gated:
+        if (t_from is not None and t < t_from) or (t_to is not None and t >= t_to):
+            continue
+        if speed_mmh > GATE_SPEED_MMH or throttle > GATE_THROTTLE or rpm_q4 == 0:
+            base, idle_since, prev_rpm = None, None, None
+            continue
+        if idle_since is None:
+            idle_since = t
+        if base is None:
+            base = rpm_q4 << EWMA_SHIFT
+        baseline = base >> EWMA_SHIFT
+        below = baseline - rpm_q4
+        settled = (t - idle_since) >= SETTLE_S
+        if not settled and below >= trip:
+            idle_since = t
+        if settled and prev_rpm is not None and rpm_q4 != prev_rpm:
+            out.append(abs(rpm_q4 - prev_rpm))
+        if prev_rpm is None or rpm_q4 != prev_rpm:
+            prev_rpm = rpm_q4
+        base += rpm_q4 - baseline
+    return out
+
+
 def rough_bands(gated, t_from=None, t_to=None, deadband_rpm=ROUGH_DEADBAND_RPM):
     """What share of the dead-banded sum each size of step contributes.
 
@@ -577,6 +630,26 @@ def _roughness_main(paths, args):
                   % (k, r, c, (r / c) if c else 0.0))
         return 0
 
+    if args.hist:
+        # What the grade is a summary OF. --bands says where the SUM comes
+        # from; this says how often each size of step happens at all, which
+        # is the shape a reader can actually picture. The rough pair and the
+        # smooth pair each agree with themselves and differ from each other
+        # in the 6-15 rpm columns -- everything else is much the same.
+        edges = ((0, 2), (2, 4), (4, 6), (6, 10), (10, 15), (15, 25),
+                 (25, 10 ** 9))
+        print("%-26s %7s  %s" % ("log", "events",
+              "  ".join("%5s" % ("%d-%d" % e if e[1] < 10 ** 9 else ">%d" % e[0])
+                        for e in edges)))
+        for path in paths:
+            lo, hi = _window(path, args.t_from, args.t_to)
+            hist, n = step_hist(series(path)[3], lo, hi, edges)
+            if n < 50:
+                continue
+            print("%-26s %7d  %s" % (os.path.basename(path), n,
+                  "  ".join("%4.1f%%" % h for h in hist)))
+        return 0
+
     if args.bands:
         print("%-26s %9s   %s" % ("log", "sum", "share of it by size of step"))
         print("%-26s %9s   %7s %7s %7s %7s"
@@ -636,6 +709,8 @@ def main(argv=None):
                     help="with --roughness: where the sum comes from, by step size")
     ap.add_argument("--deadbands", action="store_true",
                     help="with --roughness: the contrast against the deadband")
+    ap.add_argument("--hist", action="store_true",
+                    help="with --roughness: how often each size of step happens")
     ap.add_argument("--windows", type=float, default=None, metavar="S",
                     help="with --roughness: split each log into windows of S seconds")
     args = ap.parse_args(argv)

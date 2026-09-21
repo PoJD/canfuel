@@ -982,7 +982,34 @@ above it.** Everything the counter can see is 2–3 % of what is happening on
 the rough engine, and on the smooth recordings it is exactly nothing — which
 is why those two read 0.0/min rather than reading *small*.
 
-**So the same samples were graded rather than counted.** The measure is the
+**What is actually being measured, before any arithmetic.** Engine speed on
+0x280 is recomputed once per firing event (above), so each new value is
+roughly *how fast the crank turned through one cylinder's power stroke*. The
+step to the next value is therefore **how much that cylinder differed from the
+one before it** — and at a settled idle, where nothing the driver does
+explains any of it, that difference is combustion. The distribution of those
+steps is the whole of the raw material (`--roughness --hist`):
+
+| log | 0–2 rpm | 2–4 | 4–6 | **6–10** | **10–15** | 15–25 | > 25 |
+|---|---|---|---|---|---|---|---|
+| `09` (61 °C, rough) | 25.1 % | 24.7 % | 21.2 % | **21.6 %** | **5.9 %** | 1.4 % | 0.1 % |
+| `18` (cold, rough) | 25.3 % | 26.1 % | 19.9 % | **20.9 %** | **6.2 %** | 1.5 % | 0.0 % |
+| `11` (73 °C) | 34.7 % | 35.3 % | 18.0 % | **10.3 %** | **1.6 %** | 0.2 % | 0.0 % |
+| `12` (73 °C, A/C) | 42.5 % | 35.2 % | 14.9 % | **7.1 %** | **0.4 %** | 0.0 % | 0.0 % |
+
+**The two rough recordings agree with each other column by column, the two
+smooth ones likewise, and they differ in the 6–15 rpm columns** — twice as
+many 6–10 rpm steps and four to fifteen times as many 10–15 rpm ones. The
+smooth engine piles up at 0–4 rpm where the rough one does not.
+
+⚠ **None of this is visible by eye in a short excerpt.** Thirty consecutive
+frames of `09` and of `11` look like the same engine; the rough log's excerpt
+happens to contain an 11.5 rpm step and the smooth log's a 12.25 rpm one. It
+is a difference of *distribution* over thousands of events, which is why it
+needs a statistic and why watching the number on a display for ten seconds
+will never show it.
+
+**The grade is that table compressed into one number.** The measure is the
 step between one firing event and the next, dead-banded and averaged:
 `mean(max(0, |Δrpm| − 3))` over settled idle, on the gate the counter already
 uses. `python tools/idledips.py --roughness`:
@@ -1002,6 +1029,12 @@ deadband — `--roughness --deadbands` gives 1.58× at 0 rpm, 2.20× at 2, 2.71�
 at 3, 4.16× at 5 and 8.52× at 8, while the smooth reading falls to 0.05 rpm at
 8 and takes its own resolution with it. **3 rpm is the decision**: the largest
 contrast that still leaves the smooth state well clear of the floor.
+
+**And the deadband is now obvious rather than arbitrary.** Steps of 0–4 rpm
+are half to three quarters of every event on every recording, rough and smooth
+alike — they are the idle's own noise and they drown the part that differs.
+Subtracting 3 rpm deletes them and leaves the 6–15 rpm tail, which is where
+the two pairs of recordings actually part company.
 
 ⚠ **Three limits, and the first disqualifies the obvious reading of the
 table.**
