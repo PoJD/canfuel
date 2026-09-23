@@ -10,6 +10,12 @@ injectors were the fault" below is really "if the repair was the fault" —
 `docs/engine-health.md`, *What the split costs, and the one thing it buys*, has
 the argument and the one capture that would separate them.
 
+**The injectors and fuel filter went on 23 September 2026**, with the battery
+disconnected. **`032` read −3.1 % / 0.0 % afterwards**, and step 1's baseline is
+that reading, not −4.7 / +1.6, until the drive shows whether part load was
+reset. `engine-health.md`, *The injectors and the fuel filter*, has the
+details.
+
 **The document is in two halves and they are meant to be used differently.**
 
 - **[Part 1](#part-1--the-session-step-by-step) is the procedure.** Follow it

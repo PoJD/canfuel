@@ -1538,6 +1538,110 @@ written down so that the choice is a choice rather than an oversight.
 
 ---
 
+## The injectors and the fuel filter — 23 September 2026
+
+**The second half of the repair, done by the owner at home.** Everything in
+this section is owner-observed unless it says otherwise; nothing here is a
+capture, and the capture it is waiting for is `next-drive.md`.
+
+### What went in
+
+- **Four Bosch injectors, original and unused** — three still boxed, all four
+  with their plastic caps on every end. **Their O-rings were replaced
+  regardless**: the originals felt stiff and dry when a cap was eased off, and
+  a seal that has aged on the shelf is not recovered by being new.
+- **Fuel filter, Bosch `0 450 905 318`**, the same part number as the one that
+  came off.
+
+⚠ **The O-rings could not have been the fault this file describes.** The upper
+ring seals fuel at rail pressure and a leak there puts petrol *outside* the
+engine, where it is seen and smelt; the lower ring seals the injector to the
+manifold, and a leak there admits **air**, which leans the mixture. Fuel
+delivered into a cylinder with none commanded can only come through the
+needle seat. Replacing the rings is insurance for the new parts, not a
+repair of the old ones.
+
+### The fuel lines were flushed, and ran clear
+
+**The line from the tank was flushed with the filter off**, the pump run by
+key cycles into a container under the car; then **through the new filter into
+a container in the engine bay** before anything was reconnected to the rail.
+**Clear petrol at every stage**, with no visible sediment and no separated
+water. The container had held garden dirt, so the sample was not clean enough
+to be conclusive — but nothing in it pointed at the tank.
+
+**This is the first observation of the one stretch this file had never seen**:
+the lines from the tank to the filter, never changed, which *A candidate ROOT
+cause* leaves as the only place an upstream source could still be. **They are
+clean now.** It says nothing about what passed through them before the tank was
+replaced.
+
+**The filter that came off was sound**: plastic housing, no corrosion, no wet
+joint — unlike the corroded, leaking metal can of 12/2017 in
+`vehicle-history.md`. It is the same type as the new one, which fits the
+10/2022 purchase having been fitted, but **does not prove it**: nothing records
+what type went on in 12/2017. The owner judged the question not worth pursuing.
+
+### The old injectors — kept and photographed, not tested
+
+**No leak test was run, on the old set or the new one.** A drip test on the
+rail was not practical — the rail has to come off its supply hoses with the
+regulator to be lifted out — and switching the ignition on with half the
+intake dismantled was judged not worth the risk. A hand-held air test on the
+bench was considered and not done either. **So there is still no direct
+evidence of which injector, if any, was leaking.**
+
+They were laid out in engine order and photographed; the owner has the
+pictures, and they are deliberately not in `docs/photos/`. **Cylinder 1 is the
+rightmost viewed over the bonnet.** By the owner's inspection **cylinder 1's
+nozzle is the dirtiest inside and cylinder 4's the cleanest**; the photographs
+independently confirm bright metal in the orifice of cylinders 3 and 4, where
+the background shows which injector was in hand. The inlet screens are too
+deep to judge from the pictures.
+
+⚠ **A dirty nozzle is not a leaking seat.** Deposits at the nozzle change the
+spray and the flow; whether the needle sealed cannot be seen. So of the two
+cylinders *The worst plugs name two cylinders* points at, **cylinder 1 agrees
+and cylinder 4 does not**, and neither is incriminated or cleared. The old
+injectors are kept, labelled by cylinder, in case a bench test is ever wanted
+— start with cylinder 1.
+
+### The battery was disconnected, and `032` has moved
+
+**The battery was off for the work**, deliberately: the fuel pump primes when
+the driver's door opens, and an open fuel system is not somewhere to risk
+that. **The owner reports that the adaptations have survived a disconnect
+before**, which no measurement here establishes.
+
+**`032` read afterwards: −3.1 % at idle, 0.0 % at part load**, against the
+**−4.7 % / +1.6 %** of the baseline. ⚠ **An exact 0.0 at part load after only
+idling reads more like a reset than a shift** — idle adaptation learns within
+minutes of idling, part load cannot learn at all without driving. Either
+reading fits. **The drive decides it: a part-load value that moves off 0.0
+during the drive means it was reset**, and then `−3.1 / 0.0` is a new baseline,
+not a result, and must not be compared with −4.7 / +1.6.
+
+### Afterwards, at a warm idle
+
+- **Started first time, no fault codes stored.**
+- **Group `014`: about two minutes of warm idle, no misfire counted.** A short
+  sample, and the warm idle already counted zero on the old parts — see *The
+  idle counter, frozen before the repair*. It is not the test.
+- **The idle feels not fundamentally different** — possibly less hunting, still
+  slightly unsettled, and **the exhaust still gives an occasional puff, as
+  before**. An impression, not a measurement: the display does not show it, the
+  capture will.
+
+⚠ **So the repair has not visibly cured the idle, and that is not yet a
+verdict.** The adaptations may be relearning from zero, the car was warm, and
+the symptom this file leans on hardest is the overnight cold start, which has
+not happened yet. If the cold start and the capture come back the same as
+before, the pump's check valve — see the note under *The start itself* — is
+where to look next — the new injectors will then have eliminated
+themselves, which is what they were bought to do.
+
+---
+
 ## What the next drive settles, and what it does not
 
 **The plugs and ignition leads went on 17 September 2026 and the injectors
