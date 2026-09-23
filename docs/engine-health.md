@@ -179,7 +179,8 @@ so that is the expected result rather than a disappointing one.
 **The car is now parked until the injectors arrive**, which restores the one
 condition `next-drive.md` needs and had lost: an overnight stand with nothing
 disturbing it. It also means the tank stays as it was filled — see
-`refuel-reset.md`, *The 2026-09-19 fill*, and `next-drive.md` step 4a.
+`refuel-reset.md`, *The 2026-09-19 fill*, and `next-drive.md`, *The tank the
+drive starts on*.
 
 #### What the two torque readings imply about b7 — derived, not measured
 
@@ -695,8 +696,8 @@ does not get to keep a suspicion it has already been told is out of date.
 **There is exactly one test and it expires in a few days.** The old injectors
 come out when the new ones go in. **Their inlet screens and nozzles are the
 only physical evidence this hypothesis will ever get**, and once they are in a
-bin the question is closed by default rather than by answer.
-`next-drive.md` step 1b asks for them.
+bin the question is closed by default rather than by answer. *The old
+injectors — kept and photographed, not tested* below is what happened to them.
 
 ## The cold start, recorded once, before the parts were changed
 
