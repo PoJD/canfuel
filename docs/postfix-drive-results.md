@@ -490,6 +490,80 @@ opposite direction.
 
 ---
 
+## The MAF swap, the same afternoon: the rich trim was the MAF
+
+**What was changed.** The car's MAF housing is an original Bosch
+`0 280 218 002` (VW `06A 906 461 A`). The sensing insert in it was a
+separately fitted `F 00C 2G2 032`, recorded as bought in 2018 with no invoice.
+The whole meter was replaced with a genuine VW `06A 906 461 A`, housing and
+insert together as supplied, and the old unit is kept. **Fitting it needed the
+battery disconnected, so 032 started again from 0.0 / 0.0.** Recordings:
+`pending/24_mafswap_drive_z1.txt` (filtered, about 30 min: a warm restart,
+10 min of driving, an idle at 52–60 °C of oil, more driving including some
+full-throttle pulls on a country road, and a hot idle) with
+`vcds-mafswap-002-032.csv` and `vcds-mafswap-002-014.csv`.
+
+**The adaptation learned small values and stopped there.** Read from the 032
+log as it happened:
+
+| | idle | part load |
+|---|---|---|
+| morning, old MAF, after one drive from 0.0 | −16.4 % | −13.3 % |
+| **new MAF, first 10 min of driving** | 0.0 | 0.0 → **+3.9** in steps, briefly +4.7 |
+| **new MAF, end of session (photo)** | **−3.1 %** | **+4.7 %** |
+
+**Air per commanded fuel at a warm idle is back where August had it.** At
+oil 55 °C: MAF 2.98–3.33 g/s against 310 µl/s commanded, a ratio of
+**9.6–10.7**, against 10.2 in August and 11.6 / 14.8 this morning. **Candidate
+5, the MAF, is confirmed**, and with it:
+
+- the jump between the readings is explained. The insert was fitted before
+  August, so it read the same fraction high throughout. Why the error grew
+  after the injector change is still open. A worn element drifting with heat
+  soak would do it, and the +45 % at this morning's hot idle points that way
+- **the fuel counter is right**, by the argument under *What this does to the
+  converter*. The MAF was reading high and the trim took the excess off, so
+  the fuel the ECU commanded was the fuel burned. Nothing belongs in
+  `config.h`
+- rail pressure (4) is no longer needed as an explanation
+
+**The misfire counter did NOT go away, and at hot idle it is now worse.**
+
+| idle | oil | samples non-zero | values | recognition `deaktiv.` |
+|---|---|---|---|---|
+| morning, hot | 70–72 °C | **0 %** | 0 | — |
+| afternoon, warm | 52–60 °C | 48 % | 12–96 | 4 % |
+| **afternoon, hot** | **70 °C** | **58 %** | **12–120** | **22 %** |
+
+⚠ **The owner noticed that recognition drops to `deaktiv.` while driving and
+engine braking, and also at idle.** The log confirms it at idle. What the ECU
+disables detection for is not held here, so how far to trust a counter that
+switches itself off is an open question. It stays in the record rather than
+being explained away.
+
+**The idle grade improved, but not to the August hot idle.**
+`idledips.py --roughness --windows 60`:
+
+| | oil | mean step | index |
+|---|---|---|---|
+| morning, warm | 50–65 °C | 1.4–2.5 rpm | 62–131 |
+| afternoon, warm | 52–60 °C | 1.4–1.9 rpm | 73–100 |
+| morning, hot | 70–72 °C | 2.0–2.7 rpm | 92–150 |
+| afternoon, hot | 69–71 °C | 1.4–2.3 rpm | 68–121 |
+| August, hot, before any of the work | 73 °C | 0.96 rpm | 48 |
+
+**The owner's account agrees: the idle is calmer and no longer hesitates, but
+the exhaust still gives an occasional puff.** That puff does not coincide with
+the counter going `deaktiv.`. Full-throttle pulls feel unchanged, as they
+should: at full load the ECU runs open loop and the trims hardly apply.
+
+**So the rich trim and the misfires/puffs are two faults, and only the first
+is solved.** Plugs, leads, injectors, fuel filter, regulator and now the MAF
+are all new, and compression is even. What is left for the second is not
+decided here. The cheap next reads are blocks 022/023 (knock retard per
+cylinder) at a warm idle, and the dip-against-counter correlation that
+`engine-health.md` ran on the cold start, repeated on `24`.
+
 ## For the spec: what changes, and what does not
 
 | item | status | change |
@@ -500,10 +574,11 @@ opposite direction.
 | Q4 refuelling rule | holds, floor only | none |
 | Q5 range | holds | none |
 | Q6 idle/start channel 0x604 | **not answerable yet**: no healthy idle recorded | none; revisit after the fuelling is fixed |
-| fuel counter vs pump | **new question** | none until a fill-up says whether it reads low |
+| fuel counter vs pump | **settled by the MAF swap**: the counter was right | none |
 | fixtures | recorded, pending | promote `pending/` into the corpus and update the seven tests it breaks, as a change of their own |
 | `next-drive.md` | followed | delete once the spec has taken what it needs; step 30 (032 again) moves into whatever replaces it |
 
-**Owed by the owner, none of it urgent:** the oil and both oxygen sensors
-changed at a garage (the owner's decision), then 032 after a few hundred km;
-litres at the next fill-up against `TripFuel`.
+**Owed by the owner, none of it urgent:** 032 again after a few hundred km on
+the new MAF, to see the adaptation settle; blocks 022/023 at a warm idle, for
+the misfire question. The oil change and the oxygen sensors were set aside by
+the owner once the MAF explained the trim.
