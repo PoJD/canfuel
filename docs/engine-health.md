@@ -1972,6 +1972,24 @@ ignition at light load, and how far a counter that switches itself off can be
 trusted, are no less likely. The owner will look at the old hoses anyway,
 directly rather than through a capture.
 
+**The trim argument is stronger than that paragraph gives it, and a smoke test
+is not worth arranging for it.** *The owner's point, and it holds.* Two things
+push the idle trim positive here, and it still reads −3.1 %:
+
+- **a leak.** One runner leaking dilutes to a quarter at the one sensor, but
+  a cylinder has to run a long way lean before it misfires. A quarter of a
+  long way is still several per cent of *positive* trim, and the idle cell is
+  where it would land.
+- **the misfires themselves.** A cylinder that does not burn sends its oxygen
+  down the exhaust, and the pre-cat sensor reads it as lean. At one to two
+  events a minute that is a small push, but it is in the positive direction.
+
+**A trim slightly negative against both of those says the mixture is, if
+anything, a little rich**, not lean in one cylinder. What fits a neutral trim
+is a fault that leaves the mixture alone: a valve not seating on a hot idle,
+the spark, or the knock control pulling timing on one cylinder. The hoses stay
+worth a look while the intake is open anyway; they are no longer a lead.
+
 **So the rich trim and the misfires/puffs are two faults, and only the first
 is solved.** Plugs, leads, injectors, fuel filter, regulator and now the MAF
 are all new, and compression is even. What is left for the second is not
@@ -2062,8 +2080,26 @@ two can both be true.
   has settled. The swap reset it to 0.0 / 0.0 and it had learned −3.1 % /
   +4.7 % by the end of the afternoon. Easy to forget, and it is the one reading
   that says whether the rich trim is really gone.
-- **Blocks 022/023, knock retard per cylinder, at a warm idle** — the cheapest
-  read on the idle misfires.
+- **Blocks 022/023, knock retard per cylinder** — the cheapest read on the
+  idle misfires. Log them together rather than photographing a screen, both
+  at a standstill idle at 50–60 °C of oil, where `24` had the most events, and
+  on a pull under load, where knock control does its real work, with a bus
+  capture running so the log can be aligned on engine speed. What each outcome
+  means:
+  - **all four at zero at idle and close together under load**: knock control
+    is not part of the idle fault. A clean result, and worth having. ⚠ Zero
+    at idle alone clears less than it seems, because knock control may simply
+    not act at idle. The pull is what makes it a clearance.
+  - **one cylinder retarding at idle, or persistently more than the others
+    under load**: that names a cylinder, the first name this investigation
+    would have that does not depend on a plug or on the manifold mixing. ⚠
+    It names either a cylinder that knocks or a noise the knock sensor hears
+    near that cylinder. A ticking hydraulic lifter is exactly such a noise,
+    so a retard confined to idle points at the valvetrain as readily as at
+    combustion.
+  - **retard that comes and goes with the dips**: timing pulled off at the
+    moment of the stumble would itself cost work in that power stroke.
+    Alignment with the capture is what shows it.
 - **The old intake hoses, looked at directly** rather than through a capture.
   The idle trim argues against a leak big enough to misfire, and a small one at
   a single runner is not excluded.

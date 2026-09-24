@@ -164,6 +164,7 @@ here is owner-supplied from service records.
 | Fuel filter | **12/2017**, and possibly again 10/2022 — see below | 4 or 9 years, **not established** |
 | **Fuel filter, new** | **being fitted with the injectors, 9/2026** | ~0 |
 | MAF sensor | 7/2018 *(connector cleaned 7/2026)* | not recoverable — see *Distance and use* |
+| **MAF sensor, new** | **24/9/2026**, genuine VW `06A 906 461 A`; the 2018 unit is kept | ~0 |
 | Chiptuning | 6/2018 | — |
 | **Fuel tank** | **replaced inside the ownership, date not recoverable** | unknown — see below |
 | Fuel pump, Bosch | 10/2022 | ~1,500 km |
@@ -302,7 +303,7 @@ not been touched in eight or nine years.
 |---|---|---|
 | **fuel delivery** | pump, filter, regulator, injectors — **all new** | **the lines and pipes from the tank to the engine**, never changed; and the tank itself, replaced at an unrecorded date |
 | **ignition** | coil, leads, plugs — **all 2026** | none |
-| **measurement** | **untouched** | both lambda sensors 10/2017, the MAF 7/2018 |
+| **measurement** | MAF new 24/9/2026 (a genuine VW `06A 906 461 A`, replacing the 2018 insert) | both lambda sensors 10/2017 |
 | **air path** | throttle body original, inspected clean 6/2026, new gasket | the intake manifold and its hoses, never changed |
 
 **Everything that decides how much fuel is delivered and whether it is lit is
