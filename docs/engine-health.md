@@ -2377,6 +2377,10 @@ temperature beside it. Against `frames.md`'s day-one table that is the bottom
 of the new-MAF hot band (68–121), still above August's hot idle at 48. One
 reading from the driver's seat, not logged.
 
+**Later the same evening: 57**, the lowest this display has shown, and
+close to August's 48 before any of the work. Owner-reported. The oil
+temperature was not given with it.
+
 ### What is owed, none of it urgent
 
 - **Group 032 again, a few hundred kilometres after the MAF swap**, one
