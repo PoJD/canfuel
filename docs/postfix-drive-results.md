@@ -557,6 +557,28 @@ the exhaust still gives an occasional puff.** That puff does not coincide with
 the counter going `deaktiv.`. Full-throttle pulls feel unchanged, as they
 should: at full load the ECU runs open loop and the trims hardly apply.
 
+**The misfires are an idle phenomenon, and the owner's "only in first and
+second" is the counter's hold.** Aligning each 014 log on engine speed with its
+capture (best offsets 207.5 s and 802.5 s, mean |Δrpm| 23 and 36) gives road
+speed and gear for every VCDS sample. Counting only the samples where the
+counter *rose*, i.e. new events:
+
+| | standing | 1st | 2nd | 3rd | 4th | 5th |
+|---|---|---|---|---|---|---|
+| morning, new events | **32** | 2 | 0 | 2 | 1 | 0 |
+| afternoon, new events | **90** | 0 | 0 | 1 | 0 | 1 |
+| afternoon, counter non-zero | 63 % | 5 % | 19 % | 2 % | 0 % | — |
+
+**122 of 129 new events began at a standstill idle.** The non-zero readings
+seen in 1st and 2nd are mostly the three-second hold of an event that began
+while standing, carried into the pull-away. The gear is inferred from road
+speed over engine speed, so a coast with the clutch down can be misfiled,
+which covers the odd one in a high gear. **That points the second fault at
+the idle regime**: low load, high manifold vacuum, little air. An intake leak,
+which matters most at high vacuum, fits that regime. So does a weak ignition
+at light load. The owner will check the old vacuum hoses directly rather than
+through a capture.
+
 **So the rich trim and the misfires/puffs are two faults, and only the first
 is solved.** Plugs, leads, injectors, fuel filter, regulator and now the MAF
 are all new, and compression is even. What is left for the second is not
