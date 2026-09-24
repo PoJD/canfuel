@@ -309,9 +309,11 @@ not been touched in eight or nine years.
 **Everything that decides how much fuel is delivered and whether it is lit is
 now current, and since 24/9/2026 so is the MAF. What is left that tells the
 ECU what happened is the two oxygen sensors, nine years old**, which have
-spent those years behind a converter that was burning through. That is where to look next, and `engine-health.md`'s fork table is
-what reads it: any `not OK` from VCDS blocks 034, 036 or 037 is a **second**
-failure of an already-replaced sensor.
+spent those years behind a converter that was burning through. That was where to look next, and `engine-health.md`'s fork table was
+what read it: any `not OK` from VCDS blocks 034, 036 or 037 would have been a
+**second** failure of an already-replaced sensor. **All three reported OK on
+24/9/2026**, and `engine-health.md` argues from them that the sensors are not
+what keeps the idle misfiring.
 
 ⚠ **The fuel lines are the one thing on the delivery row that stays old**, and
 they are named rather than passed over: they run the length of the car, they
