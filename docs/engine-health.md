@@ -1920,7 +1920,7 @@ oil 55 °C: MAF 2.98–3.33 g/s against 310 µl/s commanded, a ratio of
   `config.h`
 - rail pressure (4) is no longer needed as an explanation
 
-**The misfire counter did NOT go away, and at hot idle it now counts more.** ⚠ That is the counter and not the engine. Engine speed says the hot idle got *better*; see *The dip-against-counter correlation* below.
+**The misfire counter did NOT go away, and at hot idle it now counts more.** ⚠ That is the counter and not the engine. *Did the 20 % threshold mask the morning?* below quantifies it. Engine speed says the hot idle got *better*; see *The dip-against-counter correlation* below.
 
 | idle | oil | samples non-zero | values | recognition `deaktiv.` |
 |---|---|---|---|---|
@@ -2281,8 +2281,9 @@ the same group:
 | ≥ 25 % | 165 of 3,392 | 52 of 450 |
 
 **Below about 20 % load, detection is off, almost without exception.** That is
-all of the overrun, which is why the owner sees it while engine braking, and
-most of rolling with the pedal up. Above it, the few `deaktiv.` samples fall
+all of the overrun (every one of 516 fuel-cut samples in `19` and 77 in `24`),
+which is why the owner sees it while engine braking, and most of rolling with
+the pedal up. Above it, the few `deaktiv.` samples fall
 on transients.
 
 **At a standstill idle it only happens in `24`, and only because the new MAF
@@ -2304,6 +2305,70 @@ which is one more reason to judge the idle by `IdleHealth` and engine speed
 rather than by 014. ⚠ The threshold is read off two logs of this car; it is
 not from a document, and the exact figure may depend on engine speed or
 temperature.
+
+### Did the 20 % threshold mask the morning? Re-running `19` as if it had the new MAF
+
+**The owner's question:** the morning looked better by the counter and worse
+by engine speed. Could the new MAF have simply put the idle under the 20 %
+threshold, so that the afternoon is not comparable? The question was run as
+a simulation.
+
+**How.** The old MAF's over-reading is measurable sample by sample in `19`:
+air per commanded fuel at a standstill idle, MAF g/s from group 003 over the
+0x480 flow, against the new MAF's **10.45 g/ml**, which `24` holds at every
+oil temperature. That gives a factor *k* for each moment. The load `19`
+would have shown on the new MAF is its load divided by *k*. The gate is the
+one `24` measured: always off below 20 %, off 26 % of the time at 20.x %, and
+on above that. The script was a one-off; its inputs are the two fixtures and
+the two 014 logs.
+
+| oil | *k* in `19` | idle load, real → simulated | `deaktiv.`, simulated | counter rises/min, real → gated | `24`, real |
+|---|---|---|---|---|---|
+| 40–60 °C | 1.09 | 24.2 → 22.2 % | 3 % | 8.4 → 7.6 | 19.0 |
+| 60–66 °C | 1.10 | 24.2 → 22.3 % | 0 % | 1.9 → 1.9 | 3.6 |
+| 66–80 °C | **1.40** | 29.6 → 21.3 % | 9 % | 0.3 → 0.3 | 9.7 (10 % `deaktiv.`) |
+
+**The threshold explains almost nothing.** Even on the new MAF, the morning
+idle would have sat just above 20 % and lost at most a tenth of its detection
+time. The masking the owner suspected is real in kind but small in size,
+about the same tenth in both sessions.
+
+**What differs is how many counts the ECU gives per stumble**, the same
+events counted on engine speed:
+
+| | `18`, cold start, 11/9 | `19`, morning | `24`, afternoon |
+|---|---|---|---|
+| counter rises per dip ≥ 20 rpm, standstill idle | 0.21 | **0.02–0.38** | **0.71–1.74** |
+
+`18` and `19` agree with each other. `24` counts **five to fifty times more
+per dip**, so the afternoon's worse counter is detection sensitivity, and
+the gate is too small to account for it. What moved the sensitivity is not
+established: the load-mapped thresholds proposed earlier, or the battery
+disconnect for the MAF resetting whatever the ECU learns for misfire
+detection. That learning is general engine-management knowledge, not a
+documented property of this ECU.
+
+**What the old drives would read on the new MAF's counter.** If the
+afternoon's counts per dip are applied to the morning's dips, band by band,
+that is 38, 10 and 24 counter rises a minute against the afternoon's 19, 3.6 and
+9.7. ⚠ That is a model: it assumes a morning dip is the same kind of event as
+an afternoon one. The measurement underneath it needs no model and does not
+depend on the ECU:
+
+| oil | dips/min, `19` morning | dips/min, `24` afternoon | change |
+|---|---|---|---|
+| 40–60 °C | 22.1 | 10.9 | **−51 %** |
+| 60–66 °C | 14.5 | 5.1 | **−65 %** |
+| 66–80 °C | 21.4 | 8.7 | **−59 %** |
+
+**So on the one ruler that is the same in both sessions, the new MAF about
+halved the idle stumbles, and the counter's "worse" is the ruler changing.**
+The earlier conclusion that the repair and the MAF made the idle worse
+was read off the counter and is withdrawn. ⚠ It is one morning against
+one afternoon, and the afternoon also had more heat soak and a relearn
+behind it. The plausible mechanism is that an erratic, over-reading MAF
+signal at idle was itself causing some of the stumbles, which the swap
+removed. What is left in `24` is the residual fault.
 
 ### `IdleHealth` at a known temperature — 24 September, evening
 
