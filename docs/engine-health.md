@@ -2431,6 +2431,17 @@ revision listed is dropped. The pump does not run warm, so neither can hurt:
    valve. Put it back straight after; open, it only draws engine-bay air
    ahead of the MAF, as it did all of August.
 
+**SSP 233 disagrees with itself here, and the car decides it.** The p. 20
+function diagram of the AQY draws an **N112**, an electrically switched valve
+fed from a fuse and switched by J220, drawn with the same symbol as the N80
+purge valve. The p. 13 text says a secondary-air control valve exists only on
+the ATU, while p. 13's own picture shows such a valve (5) with vacuum
+lines to the combination valve (6). The legend that would name N112 is on
+p. 33, which the copy read here does not contain. **By the owner's
+recollection, the small hose is a plain, very narrow hose straight from the
+valve to the intake, with nothing in line**. That would make it a vent or
+reference line and not a control line; the owner will check it again.
+
 **Which part it is.** Retail catalogues list the combination valve for
 2.0 engines of this family as **`06A 131 351`**, with suffixes B, D, F, H
 and J across models and years, and one US catalogue gives `06A 131 351 D`
