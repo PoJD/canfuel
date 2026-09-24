@@ -169,7 +169,7 @@ here is owner-supplied from service records.
 | Fuel pump, Bosch | 10/2022 | ~1,500 km |
 | Spark plugs and leads | 12/2022 *(replaced 9/2026)* | **~1,500 km — see below** |
 | Ignition coil | 6/2026 | ~0 |
-| Throttle body `028 129 748` | 6/2026 — cleaned, new gasket, adaptation run | ~0 |
+| Throttle body `028 129 748` | **original, never replaced.** 6/2026: inspected, new gasket, adaptation run. It was already clean, with no carbon, so it had evidently been cleaned at some earlier date nobody recorded | the car's |
 | Fuel pressure regulator `037 133 035 C` | 7/2026 | ~0 |
 | Catalytic converter, silencer, exhaust gaskets | **9/2026** *(previously 10/2017)* | ~0 |
 | Injectors `06A 906 031 C`, new from the UK | **9/2026** | ~0 |
@@ -291,7 +291,8 @@ Sorted by how directly they sit in the measurement chain:
 | **Fuel filter** | was the oldest fuel-side part on the car and is **being replaced with the injectors**, so it leaves this table on the day. A restricted filter limits rail supply under demand; it was always by some distance the cheapest item here to eliminate, and it is now eliminated |
 | **MAF, 7/2018** | `engine-health.md` rules out a *badly* failing sensor by arithmetic — the volumetric efficiency it implies stays physical — and explicitly **does not** rule out a slightly lazy one. 8 years |
 | **Plugs and leads, 12/2022** | **four calendar years but only ~1,500 km.** `engine-health.md` records them as "four years downstream of whatever has been happening", which is true of the dates; the distance is the other half of it and it is small. Old by date, nearly new by wear |
-| Pump 10/2022, coil 6/2026, throttle body 6/2026, FPR 7/2026, cat 9/2026, injectors 9/2026 | **effectively new.** Everything that sets rail pressure and injector flow — the two inputs 0x480 depends on — is now a 2026 part |
+| Pump 10/2022, coil 6/2026, FPR 7/2026, cat 9/2026, injectors 9/2026 | **effectively new.** Everything that sets rail pressure and injector flow — the two inputs 0x480 depends on — is now a 2026 part |
+| Throttle body, original | **not new, but inspected and found clean in 6/2026.** It meters the idle air, so it is on the idle fault's side of the engine; its condition was seen rather than assumed. An earlier revision of this table listed it as effectively new, and that was wrong |
 
 **The asymmetry is the point, and after next week it is as stark as it can
 get.** Two whole sides of this engine will have been renewed and a third has
@@ -302,6 +303,7 @@ not been touched in eight or nine years.
 | **fuel delivery** | pump, filter, regulator, injectors — **all new** | **the lines and pipes from the tank to the engine**, never changed; and the tank itself, replaced at an unrecorded date |
 | **ignition** | coil, leads, plugs — **all 2026** | none |
 | **measurement** | **untouched** | both lambda sensors 10/2017, the MAF 7/2018 |
+| **air path** | throttle body original, inspected clean 6/2026, new gasket | the intake manifold and its hoses, never changed |
 
 **Everything that decides how much fuel is delivered and whether it is lit is
 now current. Everything that tells the ECU what happened is eight or nine
