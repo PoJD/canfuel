@@ -125,6 +125,21 @@ finds it rather than rediscovers it.
 DLC is constant per ID: 0x050 carries 4 bytes, 0x5D0 carries 6, everything
 else 8. A parser that assumes a fixed length of 8 would break on 0x050 and 0x5D0.
 
+**The coolant scale is confirmed against VCDS**, group 001, read off the same
+drive as `19_postfix_drive_z1`:
+
+| | VCDS group 001 | 0x288 b1 raw | `× 0.75 − 48` |
+|---|---|---|---|
+| cold soak | **12.0 °C** | 80 | **12.00 °C** |
+| hot, after the drive | 100.5 °C | 198 (fan cycle 193–198) | 96.75–100.5 °C |
+| hot, a few minutes later | 99.0 °C | 196 (same cycle) | 96.75–100.5 °C |
+
+Exact at the cold end and inside the fan cycle at the hot end, over 88 °C of
+span. All three VCDS values also land exactly on the 0.75 °C grid of the raw
+byte (12.0 = 80, 99.0 = 196, 100.5 = 198), which says VCDS reads the same
+quantity at the same resolution: **this decode is the ECU's own scale.** The
+oil on 0x420 b3 shares the formula by analogy only, and that is question 10.
+
 ---
 
 ## Trap 1: the speed validity gate is not an equality
@@ -875,7 +890,7 @@ and b7.
 
 ---
 
-### 10. Is the oil temperature *right*, and not merely oil? — **open. A wrong SLOPE in our decode is the leading suspect, and it is a suspect rather than a finding**
+### 10. Is the oil temperature *right*, and not merely oil? — **open. Three cool-down points favour the shipped slope; a thermometer on hot oil settles it**
 
 Question 4 settled **what** 0x420 b3 is. **Nothing has ever checked what it is
 worth.** The formula `× 0.75 − 48` was taken from the coolant on 0x288, which
@@ -922,6 +937,49 @@ ordinary warm-up ending where a healthy engine ends, and it is the one curve a
 stuck-open thermostat cannot produce, least of all at idle. The coolant is
 also on the ECU's own frame rather than a separate gauge sender, so it is what
 the ECU believes and not only what the needle shows.
+
+### The cool-down after the post-repair drive — the strongest evidence yet, and it favours `× 0.75 − 48`
+
+**Read this first; the hypothesis below is what it weighs against.**
+
+**The cold end.** Oil raw **77** against an oil filter at 10.7 °C, ambient 10.0
+and coolant 12.0 (VCDS) after a 19-hour soak. `× 0.75 − 48` gives 9.75 °C, so
+**the offset is right at the cold end to within about a degree**, whichever
+slope is true.
+
+**A decision that was taken and withdrawn within the hour.** After the drive,
+the highest oil readings ever seen (raw 165–167) were first taken to be
+105–110 °C, which with the cold point gives `raw × 1.1 − 74`. The three points
+below withdrew it; it is kept here so it is not re-proposed without them.
+
+**Three points during the cool-down**, bonnet open, in the rain, the ignition on
+for each reading and a capture taken while an IR thermometer read the oil
+filter (`21`–`23_oilcool_*`):
+
+| | filter | other spot | oil raw | `× 0.75 − 48` | `× 1.1 − 74` | coolant |
+|---|---|---|---|---|---|---|
+| 1 | 48.8 | — | 125 | **45.75** | 63.5 | 72.75–73.5 |
+| 2 | 47.3 | metal directly above the filter: 55.3 | 123–124 | **44.6** | 61.8 | 71.25–72.75 |
+| 3 | 44.0 | bottom of the sump pan: about 38 | 121–122 | **43.1** | 59.6 | 68.25–69.0 |
+
+- **The filter follows the shipped scale at all three points, within 1–3 °C**,
+  and falls alongside it. It is full of oil from the same circuit.
+- **The steeper slope needs the oil 15–20 °C hotter than both the filter and
+  the pan it sits in**, which thin steel does not do even in rain.
+- The one warm reading, 55.3 °C, was metal above the filter next to a block
+  whose coolant was at about 72 °C: heated by the block, not by the oil.
+- ⚠ **Surface readings are lower bounds** — rain, evaporation and emissivity
+  all pull an IR reading down — which cuts against the shipped scale, and
+  still leaves the steeper one needing a 15 °C error on every oil-wetted
+  surface.
+
+**What settles it, and why more cool-down points will not.** The two scales
+converge on the cold point they share, so every later reading discriminates
+less than the one before; they are furthest apart when the oil is hot. So what
+settles it is **the oil itself, hot**: a K-type thermocouple down the dipstick
+tube, or an IR thermometer rated past 100 °C (the one used stops at 60 °C) on
+the filter and the pan straight after a hard drive. **Nothing changes in
+`src/` or `S-AQY.TRI` until then.**
 
 ### A LIVE HYPOTHESIS: our decode has the wrong slope. It is not established
 
