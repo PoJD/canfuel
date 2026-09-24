@@ -1485,8 +1485,14 @@ coil output, with 2 and 3 on the other. **If this engine's ignition is wired
 that way, "1 and 4 worse" is a signature of one coil output or its pair of
 leads, not of one injector.**
 
-⚠ **Whether the AQY is wasted-spark is not established by any document in
-`docs/` and is not asserted here.** The coil was replaced in 6/2026 and the
+**It is wasted-spark: settled by VW Self-Study Programme 233**, p. 5, whose
+comparison table gives the AQY *"Static high-voltage distribution with 2 twin
+spark ignition coils"* (the ATU has a distributor). A twin-spark coil fires
+two cylinders together, one on compression and one on exhaust, so its pair
+has to be two cylinders that reach top dead centre together. On an in-line
+four those are 1 with 4 and 2 with 3. **So "1 and 4 worse" is one coil
+output and its two leads.** ⚠ *Earlier text, kept for the record:* whether the
+AQY is wasted-spark was not established by any document in `docs/`. The coil was replaced in 6/2026 and the
 misfires outlived it, which is what moved ignition from cause to casualty in
 this file — but the *leads* dated from 12/2022 and have only now been changed,
 so the pairing question is live in a way it was not a month ago. **It is cheap
@@ -2127,7 +2133,8 @@ with engine speed.
 
 ⚠ **How knock control works is general engine-management knowledge, not
 from a document this project holds.** This ECU's own documentation is not in
-`docs/`, and neither is how many knock sensors the AQY has or where they sit.
+`docs/`. How many knock sensors the AQY has is now settled from SSP 233 (two;
+see *What the web adds*), but where they sit is not.
 Everything below that describes the mechanism is marked as such; what is
 measured is the log.
 
@@ -2179,11 +2186,75 @@ could make it knock on a tip-in but would hardly make it misfire at idle.
 seconds is knock control doing its job. It costs a moment of torque on a
 tip-in, and nothing in the log is sustained. It is a lead, not an emergency.
 
-**Order, cheapest first:** a tank of higher-octane fuel with the same
-022/023 log, which is free apart from the fuel and splits real knock from noise;
+**Order, cheapest first** (the web section below adds to it: log 020 with
+026 instead of 022/023, look at the exhaust manifold, clean the earth straps):
+a tank of higher-octane fuel with the same log, which is free apart from the fuel and splits real knock from noise;
 the plug swap with a torque check; a look at the knock sensor's mounting
 and connector if it is reachable without the intake off; then, if it is
 noise, a stethoscope. Every repeat log wants a bus capture beside it.
+
+#### What the web adds — 25 September 2026
+
+A search for other people's cases. **Forum threads are evidence, not
+specifications**, and most of the English VW forums refuse automated
+reading, so what follows is what could actually be read and is labelled by
+where it came from.
+
+**From a VW document, VW Self-Study Programme 233** (*2.0-litre engine*,
+AQY/ATU), p. 5 and the system overview on p. 18:
+
+- **The AQY has two knock sensors, G61 and G66** (the ATU has one). Which
+  cylinders each one covers is not in the document. This corrects the
+  "one sensor that hears the whole engine" of the section above: each
+  sensor hears the whole engine, but the ECU can weigh two of them.
+- **Motronic 5.9.2**, with a Hall sender G40 on the camshaft for phase.
+  If G40 fails, *"the ignition advance angle is retarded as a safety
+  precaution"*, for all cylinders. One cylinder retarding is therefore not
+  a G40 fault.
+- **Fuel: RON 95.** So 98 is not required, and the octane test above is a
+  test, not a fix.
+- **Twin-spark coils.** See *The worst plugs name two cylinders*.
+
+**From Ross-Tech's list of VCDS measuring blocks** (groups 020–029): group
+**020 carries the retard of all four cylinders in one group**, and group
+**026 the knock sensor voltage per cylinder**. The 022/023 pair can
+therefore be replaced by 020, which frees a group for 026 in the same log.
+**026 is what separates noise from knock**: a cylinder 4 whose voltage sits
+above the others all the time points at a noise or at the sensor, while one
+that sits with the others and spikes on tip-in points at combustion.
+
+**From forums, and only as leads:**
+
+- **Knock sensor mounting torque is quoted as 20 Nm** on several VW threads,
+  with the note that a piezo sensor reads differently when it is under- or
+  over-torqued. That figure is from forum posts and not from a VW document.
+- **A long Polish thread on AQY idle vibration** (forum.vwgolf.pl,
+  t=522030, 166 posts) has the same picture as this car: a stumbling warm
+  idle that feels like missed sparks, smooth when driving, no fault codes,
+  and plugs, leads, coil, intake gasket, throttle clean and adaptation, MAF
+  check, thermostat and coolant sensor all already changed. **The original
+  poster's fix was a cracked exhaust manifold, five cracks, welded**, which
+  also cured the rough cold starts and high consumption. Other posters in
+  the thread fixed theirs with genuine leads instead of aftermarket ones, a
+  Bosch coil, a holed crankcase breather hose, or by cleaning the engine
+  earth straps. Several were never solved.
+
+**Why the manifold is worth a look on this car too.** A cracked exhaust
+manifold is the one candidate that could link both findings: an exhaust leak
+ticks once per cycle at a fixed crank angle, which knock control books to
+one cylinder's window, and it sits ahead of the pre-cat sensor. ⚠ The trim
+here reads −3.1 %, and air drawn in ahead of the sensor would normally push it
+positive. The link is a hypothesis. ⚠ **Whether the September exhaust job
+replaced the exhaust manifold itself is unclear in these documents.** *The
+occasion* says "the manifold", while `vehicle-history.md` lists the cat,
+silencer and gaskets. If the manifold is original, it is a 26-year-old part
+this repository has never looked at. Cracks show as soot tracks, and a leak
+ticks audibly on a cold start before the metal expands.
+
+**Earth straps** are the cheapest item on the forum list. The knock sensor
+signal is a few hundred millivolts measured against the ECU's ground, and a
+poor engine earth adds noise to it and weakens the spark. Cleaning them
+costs a wire brush.
 
 ### What `deaktiv.` in group 014 is: a load threshold
 
