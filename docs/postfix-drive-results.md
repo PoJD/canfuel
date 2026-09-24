@@ -412,7 +412,7 @@ factor is only right for a mismatch that is going to stay, and every
 candidate here is a fault to fix.
 
 **Could the sensors be lying anyway? Possible, and the rear sensor argues
-against it.** Block 034 checks only how fast the pre-cat sensor switches (a
+against it.** The ageing test in block 034 looks only at how fast the pre-cat sensor switches (a
 period of 0.53 s), not *where* it switches. A sensor whose switching point had
 drifted rich would pass 034 and would drive exactly these negative trims, with
 the ECU leaning out an engine that was already right. But the post-cat sensor
