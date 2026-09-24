@@ -318,39 +318,48 @@ excess of fuel and not a sensor artefact. 070 rules out the purge.** Part load
 moving off 0.0 confirms the earlier 0.0 was a reset. The adaptation learned
 −13 % from zero in one drive.
 
-**A near-uniform correction at idle and part load says the engine gets more
-fuel than the ECU expects for the air it measures.** The candidates, cheapest
-first:
+**The shape of the correction matters more than its size.** −16.4 % at idle
+against −13.3 % at part load is nearly the **same percentage** at flows about
+four times apart: roughly 300 µl/s at idle against 1,000–1,300 cruising. That
+is a *multiplicative* error, where every commanded millisecond delivers the
+same fraction too much, or the air is measured the same fraction too high. An
+*additive* source, a fixed trickle of fuel from somewhere, would be a large
+percentage at idle and a small one under load. That rules out two candidates
+on shape before anything is measured.
 
 1. ~~**the new injectors are a different flow class from the originals.**~~
    **Ruled out.** Old and new are the same part: VW `06A 906 031 C`, Bosch
    `0 280 155 791`, photographed on both sets.
-2. **fuel vapour from the oil, through the crankcase ventilation.** Years of
-   an injector dribbling into a cold port is a textbook way to thin the oil
-   with petrol. That petrol boils out as the oil warms and goes back into the
-   intake through the breather *after* the MAF, so it is fuel the ECU never
-   commanded, and the adaptation removes it. It fits three things nothing
-   else here fits together. It depends on oil temperature: misfires at 50–65 °C
-   of oil, none cold, none hot once the fuel has boiled off. It explains why
-   the trim grew on **the hardest, hottest drive the car has had**, which is
-   the owner's own suspicion stated as a mechanism. And it explains why new
-   injectors changed nothing. ⚠ **A hypothesis, not a finding.** Nothing here
-   has measured fuel in this oil. **The test is cheap and needs no
-   instrument**: smell the dipstick, then change the oil and read 032 again a
-   few hundred km later. If the trims come back towards zero, it was the oil
+2. ~~**fuel vapour from the oil, through the crankcase ventilation.**~~
+   **Ruled out, by the owner's arithmetic as much as by the shape.** It was
+   proposed because it depends on oil temperature, and the misfires do. But
+   the size does not work. Holding 13–16 % off *this* drive's commanded fuel
+   means about **0.5 l of uncommanded petrol in 56 minutes**: about 60 µl/s
+   at idle and 150 µl/s or more cruising. That would take oil diluted by a
+   good part of a litre, which a dipstick smells at once, and this one smelt
+   of nothing. The oil had also been changed only a few weeks earlier. And
+   a breather is an additive source, which the shape above excludes
+3. ~~one new injector leaking at the seat.~~ **Unlikely on the same shape
+   argument**: a leak adds a fixed quantity and would dominate at idle. It
+   stays possible only as a small contributor
+4. **rail pressure too high.** Multiplicative, because the vacuum-referenced
+   regulator holds a fixed pressure difference across the injectors and the
+   flow follows that difference at every load. The regulator
+   (`037 133 035 C`) and its vacuum hose are new since 7/2026
+   (`vehicle-history.md`), before the −4.7 / +1.6 baseline, so they did not
+   change between the readings. That makes it less likely, not impossible:
+   a new regulator can be faulty. **A gauge on the rail settles it in
+   minutes**
+5. **the MAF reading high.** Multiplicative too. The air matched the earlier
+   drive (load 78–81 %, 88 g/s), which rules out a *change*, not a unit that
+   has read high all along. A swap with a known-good unit is the test
 
-   **The dipstick was smelt about an hour after the drive, and no petrol
-   could be smelt.** That weakens the hypothesis and does not rule it out. A
-   hard, hot drive is exactly what boils the light fraction off, and a nose
-   picks up heavy dilution far more reliably than a few per cent. The oil
-   change and the 032 reading after it are still the test
-3. rail pressure raised by something disturbed while the rail was off.
-   **Weak.** The regulator (`037 133 035 C`) and its vacuum hose are new since
-   7/2026 (`vehicle-history.md`), which is before the −4.7 / +1.6 baseline was
-   read, so neither is a change between the two readings. The cracked hose in
-   the owner's photograph is not the regulator's; see below
-4. one new injector leaking at the seat. This is least likely with four unused
-   parts
+**Neither 4 nor 5 explains why the correction jumped between the readings**
+(−3.1 / 0.0 before the injectors, −16.4 / −13.3 after), since neither part
+changed. That jump is the open problem, and the numbers here do not solve it.
+Worth knowing when reading the next 032: the part-load cell had been reset to
+0.0 and learned −13 % in this single drive, the hardest the car has had.
+Whether it would have learned the same on an ordinary drive is not known.
 
 **The cracked hose feeds the injector air shrouds, and it is not a suspect.**
 VW Self-Study Programme 233 (*2.0-litre engine*, AQY/ATU, section *Fuel
@@ -398,13 +407,12 @@ is better than before the work but still twitches occasionally.
 **What this does to the converter depends on which candidate it is.** The
 fuel counter reports what the ECU *commanded*.
 
-- **Fuel from the oil (2):** the petrol left the tank earlier, through the old
-  injectors, and was counted then or dribbled uncounted. Today's commanded fuel
-  is what the tank loses today, so **the counter is right** and the display
-  with it.
-- **Raised rail pressure or a leaking injector (3, 4):** every commanded
-  millisecond delivers more than the ECU thinks, so **the counter, and every
-  consumption figure on the display, reads 13–16 % low.**
+- **Rail pressure too high (4):** every commanded millisecond delivers more
+  than the ECU thinks, so **the counter, and every consumption figure on the
+  display, reads 13–16 % low.**
+- **The MAF reading high (5):** the ECU commands for air that is not there,
+  then trims the excess off. What it commands after the trim is what the
+  engine burns, so **the counter is right**.
 
 **The next fill-up tells them apart**: litres at the pump against `TripFuel`
 since the last fill. Either way nothing belongs in `config.h` yet. A correction
