@@ -2395,17 +2395,28 @@ vacuum line that opens the valve, then as the pump's feed. The conclusions
 drawn from the first, a vacuum-opened valve, a valve certainly shut in
 August and an unmetered leak in the August fixtures, stay withdrawn.
 
-**What the layout adds: a path for exhaust into the intake.** If the valve
-no longer seals, exhaust pulses reach its body, and the small hose connects
-that body to the intake ahead of the MAF, which sits slightly below
-atmospheric at idle. **A leaking valve could therefore feed exhaust gas into
-the intake, an uncontrolled EGR at idle**, and exhaust gas diluting the charge
-at idle is a well-known cause of a rough idle. That is general knowledge, and
-whether this valve's internals allow it is not established. The MAF would
-count that gas as air, so it would not show as an unmetered leak either. It
-is the one mechanism on this side of the engine that could reach **inside**
-the cylinders and so explain the stumble itself, which the manifold crack could
-not. It is a hypothesis with a free test (test 2 below).
+**What the layout adds: a path between the intake and the exhaust.** The
+small hose joins the intake ahead of the MAF to a valve whose other side
+opens into the exhaust. A valve that no longer seals connects the two.
+**Which way the gas goes depends on which side is at the higher pressure at
+that instant**, and at idle both happen within every cycle:
+
+- **Intake air into the exhaust**, *the owner's reading of it*, during the
+  sub-atmospheric dips between exhaust pulses (point 1 above). The air is
+  drawn off ahead of the MAF, so it is never measured, and it enters the
+  exhaust **directly behind the exhaust valves**, ahead of the front probe.
+  That is the same signature as a manifold crack: idle only, the front probe
+  fooled lean, and the rear loop taking the fuel back so that 032 barely
+  moves (point 2). It does not reach inside the cylinders.
+- **Exhaust into the intake**, during the pressure peaks. That gas then passes
+  through the MAF, which counts it as air, into the cylinders: an
+  uncontrolled EGR at idle. In general, diluting the charge with exhaust at idle is a
+  well-known cause of a rough idle. This is the only direction that reaches
+  inside the cylinders and so could explain the stumble itself.
+
+Which one dominates at this engine's idle is not established, and nothing
+here measures it. General knowledge only: a check valve that has stopped
+sealing tends to pass both ways.
 
 **Two free tests at a warm idle, before buying anything.** The owner's
 description leaves no vacuum line on the valve, so the vacuum test an earlier
