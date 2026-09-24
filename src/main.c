@@ -208,6 +208,11 @@ int main(void)
                      * accumulator. */
                     if (frame.id == CAN_ID_FUEL) {
                         compute_on_fuel(&cp, &st, now);
+                    } else if (frame.id == CAN_ID_ENGINE) {
+                        /* The idle grade and the start, for 0x604. Every
+                         * frame, because the grade steps on a CHANGE of the
+                         * speed field and a skipped frame can hide one. */
+                        compute_on_engine(&cp, &st, now);
                     }
                 }
             }
@@ -326,6 +331,16 @@ int main(void)
                     if (!hal_can_send(CAN_ID_TX_DIAG, buf, TXFRAME_DLC)) {
                         tx_fail_count();
                     }
+                }
+            } else if (slot == (uint8_t)TX_SLOT_HEALTH) {
+                /* 0x604, the engine-health frame. NOT behind the jumper, the
+                 * opposite of 0x603 two slots up: it is for a closed
+                 * dashboard. Gathered here and not with the fast frames, for
+                 * the trip frame's reason -- once a second is its rate. */
+                txframes_gather_health(&tx, &cp, now);
+                txframes_health(&tx, buf);
+                if (!hal_can_send(CAN_ID_TX_HEALTH, buf, TXFRAME_DLC)) {
+                    tx_fail_count();
                 }
             } else if (slot == (uint8_t)TX_SLOT_PERSIST) {
                 rec.total_ul          = cp.total_ul;

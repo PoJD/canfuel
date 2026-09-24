@@ -67,6 +67,18 @@ int main(int argc, char **argv)
         printf("torque_d=%u\n", v.torque_d);
         printf("power_d=%u\n", v.power_d);
 
+        /* The health frame's inputs, unclamped where the oracle is: the
+         * grade as the accumulator carries it, the idle clock in ms. Only a
+         * timestamped log has them, as only such a log is graded. */
+        if (r.timestamped) {
+            printf("idle_rough=%lu\n",
+                   (unsigned long)(r.cp.health.rough_acc >> ROUGH_OUT_SHIFT));
+            printf("idle_ms=%lu\n", (unsigned long)r.cp.health.idle_ms);
+            printf("start_crank=%u\n", r.cp.health.start_crank);
+            printf("start_dip=%u\n", r.cp.health.start_dip);
+            printf("start_clt=%u\n", r.cp.health.start_clt);
+        }
+
         /* The bytes as they would leave the transceiver, so a mismatch in the
          * layout is visible without a bus analyser. */
         printf("frame_600=");

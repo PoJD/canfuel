@@ -64,6 +64,14 @@ static inline bool replay_log(const char *name, replay_result_t *r)
 
         decode_frame(&r->st, f->can_id, f->data, f->dlc);
 
+        /* The health frame's grade and start detector, on every 0x280, the
+         * way main.c calls them. Only on a log with real time: the settle
+         * delay and the crank clock are durations, and a synthesised clock
+         * would grade the synthesis. tools/idledips.py skips the same logs. */
+        if (f->can_id == CAN_ID_ENGINE && r->timestamped) {
+            compute_on_engine(&r->cp, &r->st, (uint32_t)f->ts_ms);
+        }
+
         if (f->can_id != CAN_ID_FUEL) {
             continue;
         }

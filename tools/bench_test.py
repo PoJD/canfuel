@@ -74,17 +74,19 @@ from usbtin_capture import (BEL, BITRATE_CMD, CR, find_port, read_flags,
 REPO = Path(__file__).resolve().parents[1]
 DEFAULT_LOG = REPO / "test" / "fixtures" / "09_idle_60s_z1.txt"
 
-TX_FUEL, TX_ENGINE, TX_TRIP, TX_DIAG = 0x600, 0x601, 0x602, 0x603
-TX_IDS = (TX_FUEL, TX_ENGINE, TX_TRIP, TX_DIAG)
+TX_FUEL, TX_ENGINE, TX_TRIP, TX_DIAG, TX_HEALTH = 0x600, 0x601, 0x602, 0x603, 0x604
+TX_IDS = (TX_FUEL, TX_ENGINE, TX_TRIP, TX_DIAG, TX_HEALTH)
 # src/config.h TX_SLOT_MS: one frame per slot, and never two.
 SLOT_MS = 25
 
-EXPECTED_HZ = {TX_FUEL: 10.0, TX_ENGINE: 10.0, TX_TRIP: 1.0, TX_DIAG: 1.0}
+EXPECTED_HZ = {TX_FUEL: 10.0, TX_ENGINE: 10.0, TX_TRIP: 1.0, TX_DIAG: 1.0,
+               TX_HEALTH: 1.0}
 FRAME_NAME = {
     TX_FUEL:   "0x600 fuel   (FuelNow, FuelAvg, FuelTank, Range)",
     TX_ENGINE: "0x601 engine (Power, Torque, Flow, VddConv)",
     TX_TRIP:   "0x602 trip   (litres, metres)",
     TX_DIAG:   "0x603 diag   (errors, reset cause, uptime)",
+    TX_HEALTH: "0x604 health (idle grade, start) -- not behind JP1",
 }
 
 # src/config.h. Copied rather than parsed, and pinned from both sides:
@@ -615,7 +617,8 @@ def check_frame_spacing(rep: "Report", listener: "Adapter") -> None:
     replaying 357 frames a second it reads several at once and stamps them
     alike. The Z1 timestamp is applied when the frame arrived. Measured
     against a good build it gives 23-27 ms between neighbouring slots and
-    75-77 ms across the three empty ones.
+    75-77 ms across the three empty ones. (Written before 0x604 took slot 6;
+    the smallest gap is what is checked, and it did not change.)
 
     THE LONGEST GAP IS WORTH READING TOO. The EEPROM write blocks for about
     48 ms, and main.c drops the slot it lands in rather than catching up --

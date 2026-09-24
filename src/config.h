@@ -30,6 +30,7 @@
 #define CAN_ID_TX_ENGINE        0x601u  /* 100 ms */
 #define CAN_ID_TX_TRIP          0x602u  /*   1 s  */
 #define CAN_ID_TX_DIAG          0x603u  /*   1 s  */
+#define CAN_ID_TX_HEALTH        0x604u  /*   1 s  */
 
 /* --- the diagnostic frame, 0x603 ---------------------------------------- */
 
@@ -51,7 +52,8 @@
  * channel there is. tools/bench_test.py reads this frame; docs/install.md
  * steps 7 and 9 are where it is used, and docs/frames.md is the layout.
  *
- * Nothing on the display reads it.
+ * S-AQY.TRI decodes it, bit by bit, so it can be read off the display with the
+ * jumper fitted.
  *
  *   b0  ECAN receive error counter, RXERRCNT
  *   b1  ECAN transmit error counter, TXERRCNT
@@ -109,6 +111,123 @@
 #define RESET_CAUSE_WATCHDOG    0x04u   /* a hang; the one that means a bug  */
 #define RESET_CAUSE_RESET_INSTR 0x08u
 #define RESET_CAUSE_STACK       0x10u   /* STKFUL/STKUNF, with STVREN on     */
+
+/* --- the engine-health frame, 0x604 ------------------------------------- */
+
+/* A trend instrument, not a fault detector. It grades how steadily the engine
+ * idles and records how it started, from engine speed and a clock alone, so
+ * that plugs or an injector going off can be SEEN on the display over months
+ * rather than inferred from how the car feels. docs/frames.md has the layout
+ * and the argument; docs/can-decoding.md, trap 6, has the worked arithmetic
+ * from a raw frame to the byte.
+ *
+ * ⚠ **NOT JP1-gated.** 0x603 sets the opposite precedent: CAN diagnostics are
+ * for somebody who has opened the dashboard. This is for a closed one, so it
+ * is an ordinary frame like 0x600-0x602.
+ *
+ * ⚠ **Built before a healthy idle was ever recorded, deliberately.** The
+ * design said nothing gets built until a healthy grade separates from a sick
+ * one, and the post-repair drive could not supply one because the idle was
+ * not healthy yet. The maintainer's decision was to build it anyway, BECAUSE
+ * the idle is about to be worked on and the effect is wanted on the display
+ * rather than by capture. So the index is anchored at the old engine (100)
+ * and has not been validated against a well one. The layout carries a
+ * version, so a later re-anchoring costs no layout change.
+ *
+ *   b0  IdleHealth   0-200, 100 = the engine before the repair.
+ *                    255 = not converged (IdleSec below IDLE_CONVERGE_S)
+ *   b1  IdleRough    the raw grade, 1/32 rpm, saturating at 254.
+ *                    255 = no settled idle yet this start
+ *   b2  IdleSec      settled idle this start, seconds, saturating at 255
+ *   b3  StartHealth  RESERVED, always 255 until a dozen good starts fit it
+ *   b4  StartCrank   first turn to first firing, 32 ms units, saturating 254
+ *   b5  StartDip     rpm lost after first firing, saturating 254
+ *   b6  StartClt     coolant at first firing, C + 50
+ *   b7  HEALTH_FLAG_* in bits 4-0, HEALTH_LAYOUT_VERSION in bits 7-5
+ *
+ *   b4-b6 read 255 when the start was not seen from a standstill, when it is
+ *   still being measured, or -- b6 only -- when no 0x288 had arrived.
+ *
+ * ⚠ **255 IS "NOT KNOWN" EVERYWHERE, AND ZERO NEVER IS.** A grade of zero is
+ * a perfectly smooth engine, the one wrong answer that will be believed, so
+ * every field that is not known yet publishes 255 rather than zero -- and so
+ * does the whole frame while the bus is quiet, where the other frames go to
+ * zero. The raw fields saturate at 254 to keep 255 unambiguous. */
+#define HEALTH_LAYOUT_VERSION   1u
+#define HEALTH_VERSION_SHIFT    5u
+#define HEALTH_UNKNOWN          255u
+#define HEALTH_SAT              254u
+
+#define HEALTH_FLAG_IDLING      0x01u   /* settled idle now: the grade steps  */
+#define HEALTH_FLAG_START_SEEN  0x02u   /* this start was watched from rest   */
+#define HEALTH_FLAG_DATA_LIVE   0x04u   /* frames are arriving right now      */
+
+/* THE GRADE. The constants are carried over from tools/idledips.py VERBATIM
+ * and are frozen there, with a test whose only job is to fail if they move:
+ * the 100 point of the index is the engine before the repair, and that engine
+ * no longer exists, so nothing can re-anchor the scale. test_idledips.py also
+ * reads this file and fails if the two disagree.
+ *
+ * The measure is the step between one firing event and the next,
+ * max(0, |delta rpm| - ROUGH_DEADBAND_RPM), averaged by a first-order filter
+ * over 2**ROUGH_SHIFT firing events -- about 9.7 s of warm idle. It is taken
+ * once per CHANGE of 0x280's speed field and not once per frame, because the
+ * field is held for three or four frames at idle and the hold length moves
+ * with engine speed (docs/can-decoding.md, trap 6). acc >> ROUGH_OUT_SHIFT is
+ * 1/32 rpm, a pure shift. */
+#define ROUGH_DEADBAND_RPM      3u
+#define ROUGH_SHIFT             8u
+#define ROUGH_OUT_SHIFT         5u
+#define IDLE_ROUGH_100          64u     /* 2.00 rpm; measured 2.12, see idledips */
+#define IDLE_INDEX_MAX          200u
+
+/* THE IDLE GATE AND THE SETTLE RULE, which decide which samples are graded at
+ * all -- dips_cheap()'s, verbatim, so that the grade and the count are taken
+ * over the same samples. Idle is STANDSTILL_MMH and THROTTLE_REST from the
+ * torque rule, the same two definitions and not copies of them.
+ *
+ * A first-order baseline follows engine speed from the moment the gate opens,
+ * over 2**IDLE_BASE_SHIFT frames (2.7 s). Grading starts after IDLE_SETTLE_MS
+ * of QUIET, not of elapsed time: any sample IDLE_TRIP_RPM or more below the
+ * baseline before then restarts the delay. A fixed delay books the tail of
+ * the descent from driving speed as roughness on every stop longer than the
+ * delay -- the fixtures' stops are too short to show it and a three-minute
+ * idle shows it every time. dips_cheap()'s docstring has the measurement. */
+#define IDLE_BASE_SHIFT         8u
+#define IDLE_TRIP_RPM           20u
+#define IDLE_SETTLE_MS          3000u
+
+/* IdleHealth reads 255 until this much settled idle has been graded since the
+ * engine started. A DECISION: the grade's filter spans 2**ROUGH_SHIFT firing
+ * events, about 9.7 s of warm idle, so it is 95 % converged after three of
+ * those, about 29 s. The alternative was one time constant, which publishes a
+ * grade still a third short of its value -- and an unconverged grade reads
+ * HEALTHY, because the filter starts from zero at every start. */
+#define IDLE_CONVERGE_S         30u
+
+/* THE START. First firing is the first 0x280 at or above START_FIRED_RPM. A
+ * DECISION: both recorded starts crank on a plateau of 200-270 rpm and fire
+ * at 450-451, so 400 has margin at both ends -- but cranking speed moves with
+ * the battery, the oil and the temperature, and two starts bracket none of
+ * that. The first few good starts will say whether it wants moving.
+ *
+ * StartDip is the first-firing speed minus the lowest in the START_DIP_MS
+ * after it: 451 -> 311 on the start that nearly died, 450 -> 331 after the
+ * repair.
+ *
+ * StartCrank is in units of 2**START_CRANK_SHIFT ms, 32 ms, where the design
+ * proposed 0.05 s. A unit we choose is one we may choose to be a shift
+ * (docs/optimisation.md §11); 32 ms resolves the 0.41 s between the two
+ * recorded starts thirteen times over, and 254 counts is 8.1 s of cranking,
+ * past which the answer is "a very bad start" whatever the digit.
+ *
+ * ⚠ A START IS MEASURED ONLY IF THE ENGINE WAS SEEN STOPPED FIRST -- stricter
+ * than the design's "first sample below START_FIRED_RPM". A converter that
+ * powers up with the starter already turning would start its clock late and
+ * report a short crank, which reads as a GOOD start. */
+#define START_FIRED_RPM         400u
+#define START_DIP_MS            2000u
+#define START_CRANK_SHIFT       5u
 
 /* --- which ECAN mode the firmware starts in ----------------------------- */
 
@@ -237,18 +356,20 @@
  *   slot & 3 == 1   0x601, ten times a second, 25 ms behind it
  *   slot == 2       0x602, once a second
  *   slot == 3       0x603, once a second (with JP1 fitted)
+ *   slot == 6       0x604, once a second
  *   slot == 22      the EEPROM slot, 550 ms, in a slot that sends nothing
  *
- * Nothing on the wire changes rate: both fast frames are still 10 Hz and both
- * slow ones still 1 Hz, so S-AQY.TRI is untouched. */
+ * Nothing on the wire changes rate: both fast frames are still 10 Hz and the
+ * slow ones 1 Hz. */
 #define TX_SLOT_MS              25      /* one frame per slot, never two      */
 #define TX_SLOTS_PER_SEC        40      /* 40 x 25 ms = one second            */
 #define TX_SLOT_TRIP            2       /* 0x602 at 50 ms                     */
 #define TX_SLOT_DIAG            3       /* 0x603 at 75 ms                     */
+#define TX_SLOT_HEALTH          6       /* 0x604 at 150 ms; (6 & 3) == 2      */
 #define TX_SLOT_PERSIST         22      /* 550 ms, and sends nothing          */
 
 #define TX_FAST_MS              100     /* 0x600 and 0x601, four slots apart  */
-#define TX_SLOW_MS              1000    /* 0x602, 0x603 and the EEPROM slot   */
+#define TX_SLOW_MS              1000    /* 0x602-0x604 and the EEPROM slot    */
 #define RX_POLL_MS              10      /* scheduler slot that drains the CAN */
 
 /* The step distance is integrated on. NOT every pass of the scheduler, and the

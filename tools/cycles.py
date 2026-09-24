@@ -111,6 +111,13 @@ LOOPS = {
     # exactly like this and cost thirty times as much.
     "_compute_range_km":     [("RANGE_BASIS_Q4", None,    "rotate, basis back to tenths")],
     "_range_basis_update":   [("RANGE_BASIS_SHIFT", None, "rotate, the filter step")],
+    # 0x604. ROUGH_OUT_SHIFT (5) takes the grade's accumulator to 1/32 rpm and
+    # START_CRANK_SHIFT (5) the crank time to 32 ms -- both a rotate loop on a
+    # 32-bit value, and both chosen as shifts precisely so that neither is a
+    # division. The index inlines the rough byte, so it carries the same loop.
+    "_compute_idle_rough":   [("ROUGH_OUT_SHIFT", None,   "rotate, grade to 1/32 rpm")],
+    "_compute_idle_health":  [("ROUGH_OUT_SHIFT", None,   "rotate, grade to 1/32 rpm")],
+    "_start_watch":          [("START_CRANK_SHIFT", None, "rotate, crank ms to 32 ms")],
 }
 
 # Loops that spin waiting for a peripheral, not for the CPU. Their duration is
@@ -188,6 +195,7 @@ BUDGETS = {
     "slot_engine":  ("slot 1: 0x601", 500.0),
     "slot_trip":    ("slot 2: the trip totals and 0x602", 1200.0),
     "slot_diag":    ("slot 3: 0x603", 600.0),
+    "slot_health":  ("slot 6: the health gather and 0x604", 1200.0),
     "slot_persist": ("slot 22: persist_save, excluding the EEPROM write", 1200.0),
 }
 
@@ -346,7 +354,9 @@ def budgets(words, calls, loops, constants):
     def cost(name):
         return total_cycles(name, words, calls, loops, constants)
 
-    rx_frame = cost("_hal_can_receive") + cost("_decode_frame") + cost("_compute_on_fuel")
+    # A frame is 0x480 or 0x280, never both, so the dearer of the two paths.
+    rx_frame = (cost("_hal_can_receive") + cost("_decode_frame")
+                + max(cost("_compute_on_fuel"), cost("_compute_on_engine")))
 
     # ONE SLOT, ONE FRAME -- see src/config.h. Every slot is TX_SLOT_MS apart
     # and sends at most one frame, so these are four separate budgets rather
@@ -370,6 +380,9 @@ def budgets(words, calls, loops, constants):
     slot_diag = (cost("_txframes_gather_diag") + cost("_txframes_diag")
                  + cost("_hal_can_send"))
 
+    slot_health = (cost("_txframes_gather_health") + cost("_txframes_health")
+                   + cost("_hal_can_send"))
+
     slot_persist = cost("_persist_save")
 
     return {
@@ -379,6 +392,7 @@ def budgets(words, calls, loops, constants):
         "slot_engine": slot_engine,
         "slot_trip": slot_trip,
         "slot_diag": slot_diag,
+        "slot_health": slot_health,
         "slot_persist": slot_persist,
     }
 

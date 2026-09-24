@@ -1,4 +1,4 @@
-/* txframes.h -- assembling the three frames we put on the bus. PURE C.
+/* txframes.h -- assembling the frames we put on the bus. PURE C.
  *
  * Everything is unsigned big endian. The car is little endian throughout and
  * we are deliberately not, so a byte order mistake shows up as an absurd
@@ -45,6 +45,14 @@ typedef struct {
     uint8_t  diag_reset_cause;  /* RESET_CAUSE_* in config.h               */
     uint8_t  diag_tx_fail;      /* hal_can_send() refusals, saturating     */
     uint16_t diag_uptime_s;     /* seconds since power-up, saturating      */
+    /* 0x604 -- engine health, HEALTH_UNKNOWN (255) wherever not known    */
+    uint8_t  health_idle;       /* IdleHealth, 0-200                       */
+    uint8_t  health_rough;      /* IdleRough, 1/32 rpm                     */
+    uint8_t  health_idle_s;     /* IdleSec                                 */
+    uint8_t  health_crank;      /* StartCrank, 32 ms                       */
+    uint8_t  health_dip;        /* StartDip, rpm                           */
+    uint8_t  health_clt;        /* StartClt, C + 50                        */
+    uint8_t  health_flags;      /* HEALTH_FLAG_* in config.h               */
 } tx_values_t;
 
 /* Read everything out of the core into transmit units.
@@ -76,10 +84,20 @@ void txframes_gather_diag(tx_values_t *v, uint8_t rx_err, uint8_t tx_err,
                           uint8_t reset_cause, uint8_t tx_fail,
                           uint16_t uptime_s);
 
+/* The health frame's contents, out of the core. Call it immediately before
+ * txframes_health(), for the same reason as the other slow gathers.
+ *
+ * ⚠ **A quiet bus publishes 255 in every field, not zero** -- the opposite of
+ * 0x600-0x602, and for the same reason they go to zero: each frame goes to
+ * the value that cannot be mistaken for a reading. Zero here is a perfectly
+ * smooth engine and a zero-second crank. */
+void txframes_gather_health(tx_values_t *v, const compute_t *c, uint32_t now_ms);
+
 /* Each writes exactly TXFRAME_DLC bytes. */
 void txframes_fuel(const tx_values_t *v, uint8_t *out);     /* 0x600, 100 ms */
 void txframes_engine(const tx_values_t *v, uint8_t *out);   /* 0x601, 100 ms */
 void txframes_trip(const tx_values_t *v, uint8_t *out);     /* 0x602, 1 s    */
 void txframes_diag(const tx_values_t *v, uint8_t *out);     /* 0x603, 1 s    */
+void txframes_health(const tx_values_t *v, uint8_t *out);   /* 0x604, 1 s    */
 
 #endif /* TXFRAMES_H */

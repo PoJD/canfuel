@@ -107,6 +107,38 @@ void txframes_gather_diag(tx_values_t *v, uint8_t rx_err, uint8_t tx_err,
     v->diag_uptime_s    = uptime_s;
 }
 
+void txframes_gather_health(tx_values_t *v, const compute_t *c, uint32_t now_ms)
+{
+    uint8_t flags = 0u;
+
+    if (!compute_data_live(c, now_ms)) {
+        v->health_idle   = HEALTH_UNKNOWN;
+        v->health_rough  = HEALTH_UNKNOWN;
+        v->health_idle_s = HEALTH_UNKNOWN;
+        v->health_crank  = HEALTH_UNKNOWN;
+        v->health_dip    = HEALTH_UNKNOWN;
+        v->health_clt    = HEALTH_UNKNOWN;
+        v->health_flags  = 0u;
+        return;
+    }
+
+    v->health_idle   = compute_idle_health(c);
+    v->health_rough  = compute_idle_rough(c);
+    v->health_idle_s = compute_idle_s(c);
+    v->health_crank  = c->health.start_crank;
+    v->health_dip    = c->health.start_dip;
+    v->health_clt    = c->health.start_clt;
+
+    if (c->health.idling) {
+        flags |= HEALTH_FLAG_IDLING;
+    }
+    if (c->health.start_seen) {
+        flags |= HEALTH_FLAG_START_SEEN;
+    }
+    flags |= HEALTH_FLAG_DATA_LIVE;
+    v->health_flags = flags;
+}
+
 void txframes_trip(const tx_values_t *v, uint8_t *out)
 {
     put_be32(out + 0, v->trip_ml);
@@ -123,4 +155,17 @@ void txframes_diag(const tx_values_t *v, uint8_t *out)
                        (DIAG_LAYOUT_VERSION << DIAG_VERSION_SHIFT));
     out[5] = v->diag_tx_fail;
     put_be16(out + 6, v->diag_uptime_s);
+}
+
+void txframes_health(const tx_values_t *v, uint8_t *out)
+{
+    out[0] = v->health_idle;
+    out[1] = v->health_rough;
+    out[2] = v->health_idle_s;
+    out[3] = (uint8_t)HEALTH_UNKNOWN;   /* StartHealth, reserved: see config.h */
+    out[4] = v->health_crank;
+    out[5] = v->health_dip;
+    out[6] = v->health_clt;
+    out[7] = (uint8_t)((v->health_flags & 0x1Fu) |
+                       (HEALTH_LAYOUT_VERSION << HEALTH_VERSION_SHIFT));
 }

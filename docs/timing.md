@@ -140,17 +140,27 @@ of which 26.4 are 0x480); the rest are the scheduler's own constants.
 | slot 0: the A/D, the gather and 0x600 | 9,617 | 10 | 96,170 | 2.40 % |
 | slot 1: 0x601 | 771 | 10 | 7,710 | 0.19 % |
 | 0x480 on top of the frame: counter, totals, flow bucket | 2,077 | 26.4 | 54,832 | 1.37 % |
+| 0x280 on top of the frame: the idle grade and the start watch, **upper bound** | 1,544 | 93.9 | 144,982 | 3.62 % |
 | the millisecond ISR | 34 | 1,000 | 34,000 | 0.85 % |
 | slot 2: the trip totals and 0x602 | 1,582 | 1 | 1,582 | 0.04 % |
 | slot 3: 0x603 | 803 | 1 | 803 | 0.02 % |
+| slot 6: the health gather and 0x604 | 1,652 | 1 | 1,652 | 0.04 % |
 | slot 22: `persist_save` deciding not to write | 625 | 1 | 625 | 0.02 % |
 | the EEPROM write, amortised over its interval | 192,000 | 1 per 20 s | 9,600 | 0.24 % |
 | the tank sample | 890 | 1 | 890 | 0.02 % |
 | the range basis, one completed km at 100 km/h | 553 | 1 per 36 s | 15 | 0.00 % |
-| **total** | | | **654,516** | **16.4 %** |
+| **total** | | | **801,150** | **20.0 %** |
 
-**Five sixths of the machine is idle**, and the shape of what is left is worth
+**Four fifths of the machine is idle**, and the shape of what is left is worth
 reading twice:
+
+- **The 0x280 row is an upper bound, and a loose one.** `cycles.py` sums every
+  branch of a function, and `compute_on_engine()` has two that run once per
+  engine start and never again: the coolant conversion, a reciprocal multiply,
+  and the crank time's rotate. The grade itself, `idle_grade()`, is 603 of the
+  1,544. It is costed at the bound anyway, because a bound is what this table
+  is for, and even there it is under four per cent -- the price of stepping
+  the grade on every change of the speed field rather than on a timer.
 
 - **The most expensive thing in the firmware is receiving frames**, not
   arithmetic. Seven per cent of the CPU is `hal_can_receive` and
@@ -266,7 +276,7 @@ changed here is how often the call does anything.
 
 One frame leaves every `TX_SLOT_MS` = 25 ms and never two together, for the
 reason `src/config.h` gives: a receiver with two buffers loses whichever of
-ours lands third on the wire. So there are five slots to cost rather than two,
+ours lands third on the wire. So there are six slots to cost rather than two,
 and **each is measured against the same 25 ms**.
 
 **Slot 0 — the A/D, the gather and 0x600**, ten times a second:
@@ -279,16 +289,17 @@ and **each is measured against the same 25 ms**.
 | error counters, overflow flag, LEDs | ~200 | 50 µs |
 | **total** | **9,617** | **2.40 ms** |
 
-**9.6 % of the 25 ms it has**, and it is the worst of the five by a factor of
+**9.6 % of the 25 ms it has**, and it is the worst of the six by a factor of
 three.
 
-**The other four**, and none of them is close to anything:
+**The other five**, and none of them is close to anything:
 
 | Slot | What | Cycles | Time |
 |---|---|---|---|
 | 1 | `txframes_engine` + `hal_can_send` | 771 | 193 µs |
 | 2 | `txframes_gather_trip` (the two divisions by 1000), `txframes_trip`, `hal_can_send` | 1,582 | 396 µs |
 | 3 | `txframes_gather_diag`, `txframes_diag`, `hal_can_send` | 803 | 201 µs |
+| 6 | `txframes_gather_health` (one division by 1000, for IdleSec), `txframes_health`, `hal_can_send` | 1,652 | 413 µs |
 | 22 | `persist_save` deciding not to write | 625 | 156 µs |
 | 22 | `persist_save` **writing**, three times a minute | — | **~48 ms** |
 

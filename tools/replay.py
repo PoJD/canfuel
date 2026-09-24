@@ -316,7 +316,7 @@ def summarise(path: str, *, fix_doubled: bool = True) -> dict:
         return {"fuel_frames": 0, "total_ul": 0, "total_mm": 0,
                 "restarts": 0, "flow_ul_s": 0, "span_ms": 0}
 
-    return {
+    result = {
         "fuel_frames": rows,
         "total_ul": cp.total_ul,
         "total_mm": cp.total_mm,
@@ -324,6 +324,11 @@ def summarise(path: str, *, fix_doubled: bool = True) -> dict:
         "flow_ul_s": round(cp.flow_ul_s),
         "span_ms": round(last_ms - first_ms),
     }
+    # Imported here rather than at the top: idledips imports canlog too, and
+    # nothing else in this file needs it.
+    import idledips
+    result.update(idledips.health_summary(path))
+    return result
 
 
 def replay(path: str, *, csv: bool = False, every: int = 1, fix_doubled: bool = True):
@@ -388,6 +393,14 @@ TOLERANCE = {
     "total_mm":  (100, 0.001),
     "flow_ul_s": (2, 0.01),
     "span_ms":   (100, 0.001),
+    # The health frame, 0x604. EXACT: both sides are integer arithmetic over
+    # the same samples on the same clock, so there is nothing to round.
+    # tools/idledips.py is the oracle here, not this file.
+    "idle_rough":  (0, 0.0),
+    "idle_ms":     (0, 0.0),
+    "start_crank": (0, 0.0),
+    "start_dip":   (0, 0.0),
+    "start_clt":   (0, 0.0),
 }
 
 

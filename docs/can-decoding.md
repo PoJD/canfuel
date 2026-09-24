@@ -368,35 +368,95 @@ no one bad cylinder — happens to survive, for entirely different reasons.
   — which today is `tools/idledips.py` and, if `docs/next-drive.md` question 6
   is built, `compute.c`.
 
-### When the idle grade is built, the worked arithmetic lands here
+### The idle grade on 0x604, from a raw frame to the byte
 
-**A requirement on that work, not a suggestion.** `docs/frames.md` will say
-what the bytes of 0x604 mean and `docs/engine-health.md` says what the numbers
-were on this engine — but neither shows **the chain from a raw frame to the
-byte on the wire**, and that chain is four steps of integer arithmetic with a
-deadband, a shift and a scale factor in it. Without it the number is something
-to be trusted rather than checked, which is the opposite of what every other
-signal on this page is.
+**So that the number can be checked rather than trusted.** `docs/frames.md`
+says what the bytes of 0x604 mean and `docs/engine-health.md` what they were on
+this engine; this is the chain between a raw 0x280 frame and the byte on the
+wire, on a real capture. Every figure below was printed by re-running
+`roughness()` in `tools/idledips.py` over `09_idle_60s_z1.txt` and recording
+each step — the capture's own numbers, not a synthetic example and not a
+reconstruction from the published byte. The firmware's `idle_grade()` in
+`src/compute.c` produces the same byte, and `replay.py --host-build` holds the
+two to it over every timestamped fixture.
 
-So when the firmware side is written, this section gains:
+**Four steps**, all integer, in quarter-rpm (the field's own unit):
 
-- **A worked example from a real capture** — a run of actual 0x280 payloads,
-  the engine speeds they decode to, which of them are repeats, the steps
-  between the changes, the same steps after the deadband, and the accumulator
-  and output byte they produce. Enough that somebody can re-derive the
-  published byte with a pencil and disagree with it if it is wrong.
-- **The step histogram of that capture**, as `--roughness --hist` prints it,
-  beside the histograms of the fixtures the scale was anchored on. The grade
-  is a one-number summary of that shape, and a summary quoted without the
-  shape it summarises is the kind of figure this repository keeps being burnt
-  by.
-- **The arithmetic of the index**, written out once: which constant is
-  measured, which is chosen, and what a reading of 100 means in rpm.
+1. **Decode** — bytes 2–3, little endian, are engine speed × 4.
+2. **Step on change** — a frame that repeats the previous value is the ECU
+   holding its last 180° window and is skipped; only a *change* is a firing
+   event. The difference is taken in quarter-rpm.
+3. **Deadband** — subtract `ROUGH_DEADBAND_RPM` × 4 = 12 and floor at zero.
+4. **Average** — `acc += step − (acc >> 8)`, a first-order filter over
+   2⁸ = 256 firing events whose steady state is 256 × the mean step. The byte
+   is `acc >> 5`: 256 × q4 ÷ 32 = 1/32 rpm.
 
-⚠ **It is the capture's own numbers or nothing.** Not numbers reconstructed
-from the published byte, and not a synthetic example — `tools/bench_scenarios.py`
-carries the same rule for the same reason, and `CLAUDE.md`'s *A verification
-is only as wide as the call chain it ran* is the general form of it.
+Sixteen consecutive frames of settled idle, 40.0 s into the log, with the
+accumulator as it stood when they arrived:
+
+| t (s) | b2 b3 | rpm_q4 | rpm | | \|Δ\| (q4) | − 12, floor 0 | acc before | acc after | acc >> 5 |
+|---|---|---|---|---|---|---|---|---|---|
+| 40.000 | `44 0c` | 3140 | 785.00 | change | 60 | 48 | 2566 | 2604 | 81 |
+| 40.009 | `44 0c` | 3140 | 785.00 | repeat | — | — | 2604 | 2604 | 81 |
+| 40.019 | `44 0c` | 3140 | 785.00 | repeat | — | — | 2604 | 2604 | 81 |
+| 40.026 | `44 0c` | 3140 | 785.00 | repeat | — | — | 2604 | 2604 | 81 |
+| 40.040 | `4f 0c` | 3151 | 787.75 | change | 11 | 0 | 2604 | 2594 | 81 |
+| 40.049 | `4f 0c` | 3151 | 787.75 | repeat | — | — | 2594 | 2594 | 81 |
+| 40.061 | `4f 0c` | 3151 | 787.75 | repeat | — | — | 2594 | 2594 | 81 |
+| 40.068 | `4f 0c` | 3151 | 787.75 | repeat | — | — | 2594 | 2594 | 81 |
+| 40.079 | `5f 0c` | 3167 | 791.75 | change | 16 | 4 | 2594 | 2588 | 80 |
+| 40.089 | `5f 0c` | 3167 | 791.75 | repeat | — | — | 2588 | 2588 | 80 |
+| 40.097 | `5f 0c` | 3167 | 791.75 | repeat | — | — | 2588 | 2588 | 80 |
+| 40.110 | `7a 0c` | 3194 | 798.50 | change | 27 | 15 | 2588 | 2593 | 81 |
+| 40.118 | `7a 0c` | 3194 | 798.50 | repeat | — | — | 2593 | 2593 | 81 |
+| 40.129 | `7a 0c` | 3194 | 798.50 | repeat | — | — | 2593 | 2593 | 81 |
+| 40.139 | `7a 0c` | 3194 | 798.50 | repeat | — | — | 2593 | 2593 | 81 |
+| 40.150 | `7e 0c` | 3198 | 799.50 | change | 4 | 0 | 2593 | 2583 | 80 |
+
+With a pencil: the first row is 2566 + 48 − (2566 >> 8 = 10) = 2604, and the
+second change, a step of 11 inside the deadband, is 2604 + 0 − 10 = 2594. A
+change of 2.75 rpm counts for nothing; one of 15 rpm counts for 12. **Of the
+sixteen frames, five are changes** — which is trap 6 in one table, and why a
+per-frame average would have diluted the grade by three.
+
+At the end of the log the accumulator is 2314, so **IdleRough = 2314 >> 5 = 72**,
+2.25 rpm, against an exact mean step of 2.117 rpm over the same 1,488 events.
+The two agree to within the filter's memory of the last ten seconds, which is
+what a first-order filter is.
+
+**The index.** `IdleHealth = min(200, IdleRough × 25 >> 4)`, so 72 is
+72 × 25 = 1800, >> 4 = **112**.
+
+- **100 is measured and then rounded to a shift.** The engine before the
+  repair graded 2.12 rpm on two recordings 45 °C apart (`09`, and `18` from
+  50 s to 360 s). `IDLE_ROUGH_100` is 64 counts = 2.00 rpm rather than 68 =
+  2.12, because 100/64 = 25/16 is a multiply and a shift where 100/68 is a
+  division; the 6 % that costs is inside the 13 % the anchor scatters between
+  10 s windows.
+- **0 is chosen**: no measurable step at all. No engine reaches it, so the
+  index always has room to show an improvement.
+- **So a reading of 100 means a mean step of 2.00 rpm beyond the 3 rpm
+  deadband**, averaged over the last ~256 firing events of settled idle.
+
+**The shape the grade summarises**, as `idledips.py --roughness --hist` prints
+it — the share of firing events by the size of the raw step, in rpm, before
+the deadband:
+
+| log | what it is | events | 0–2 | 2–4 | 4–6 | 6–10 | 10–15 | 15–25 | >25 | IdleRough |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `09_idle_60s_z1` | before the repair, oil 61 °C — **an anchor** | 1,488 | 25.1 % | 24.7 % | 21.2 % | 21.6 % | 5.9 % | 1.4 % | 0.1 % | 72 |
+| `18_coldstart_z1`, 50–360 s | before the repair, the warm-up — **an anchor** | 8,375 | 25.3 % | 26.1 % | 19.9 % | 20.9 % | 6.2 % | 1.5 % | 0.0 % | — |
+| `11_idle_noac_z1` | before the repair, oil 73 °C, A/C off | 573 | 34.7 % | 35.3 % | 18.0 % | 10.3 % | 1.6 % | 0.2 % | 0.0 % | 31 |
+| `12_idle_ac_z1` | the same, A/C on | 565 | 42.5 % | 35.2 % | 14.9 % | 7.1 % | 0.4 % | 0.0 % | 0.0 % | 19 |
+| `19_postfix_drive_z1` | after plugs, leads, injectors: every idle of the hour | 25,895 | 24.8 % | 24.9 % | 19.3 % | 22.4 % | 7.2 % | 1.4 % | 0.0 % | 94 |
+| `24_mafswap_drive_z1` | after the MAF as well | 22,833 | 27.8 % | 27.1 % | 19.5 % | 19.7 % | 4.8 % | 1.1 % | 0.1 % | 54 |
+
+**Read the shape, not the byte.** What moves the grade is the weight in the
+6–15 rpm columns — the steps the deadband lets through in full — and the
+smooth recordings differ from the rough ones there, not in the tail past
+25 rpm, which is nearly empty everywhere. The post-repair drive sits on the
+anchors, which is `docs/engine-health.md`'s finding in one row: the repair did
+not make the idle smooth.
 
 ---
 

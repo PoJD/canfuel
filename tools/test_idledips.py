@@ -37,6 +37,11 @@ from idledips import (EWMA_SHIFT, FIXTURES, GATE_THROTTLE, IDLE_INDEX_MAX,
                       roughness, segment_degrees, segments, slot_means,
                       step_hist)
 from idledips import series as read_log   # the local series() below is synthetic
+from idledips import (START_CRANK_SHIFT, START_DIP_MS, START_FIRED_RPM,
+                      START_INVALID, START_SAT, EWMA_SHIFT as BASE_SHIFT,
+                      SETTLE_S, TRIP_RPM, GATE_SPEED_MMH, health_summary,
+                      start_fields)
+from canlog import Frame
 
 RATE_HZ = 94.0  # what 0x280 actually arrives at; see docs/can-decoding.md
 STEP = 1.0 / RATE_HZ
@@ -640,3 +645,131 @@ class SlotSpreadIsBiased(unittest.TestCase):
         means, spread, se, n, sd_true = got
         self.assertGreater(sd_true, 1.0)
         self.assertEqual(means.index(min(means)), 0)   # and it names the slot
+
+
+
+# --- 0x604: what the firmware carries, and its twin in test/test_compute.c ----
+
+CONFIG_H = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                        os.pardir, "src", "config.h")
+
+
+def _config_defines():
+    out = {}
+    with open(CONFIG_H, encoding="utf-8") as fh:
+        for line in fh:
+            parts = line.split()
+            if len(parts) >= 3 and parts[0] == "#define":
+                out[parts[1]] = parts[2].rstrip("uUlL")
+    return out
+
+
+class TheFirmwareCarriesTheseConstants(unittest.TestCase):
+    """src/config.h must hold the frozen constants VERBATIM.
+
+    The frozen-constants tests above stop this file moving; this stops the
+    firmware drifting away from it, which would be the same re-basing of every
+    reading done from the other side.
+    """
+
+    def test_the_grade(self):
+        d = _config_defines()
+        self.assertEqual(
+            (int(d["ROUGH_DEADBAND_RPM"]), int(d["ROUGH_SHIFT"]),
+             int(d["ROUGH_OUT_SHIFT"]), int(d["IDLE_ROUGH_100"]),
+             int(d["IDLE_INDEX_MAX"])),
+            (ROUGH_DEADBAND_RPM, ROUGH_SHIFT, ROUGH_OUT_SHIFT,
+             IDLE_ROUGH_100, IDLE_INDEX_MAX))
+
+    def test_the_gate_and_the_settle_rule(self):
+        """Proved, not asserted: the gate is the torque rule's two constants."""
+        d = _config_defines()
+        self.assertEqual(int(d["IDLE_BASE_SHIFT"]), BASE_SHIFT)
+        self.assertEqual(int(d["IDLE_TRIP_RPM"]), TRIP_RPM)
+        self.assertEqual(int(d["IDLE_SETTLE_MS"]), round(SETTLE_S * 1000))
+        self.assertEqual(int(d["STANDSTILL_MMH"]), GATE_SPEED_MMH)
+        self.assertEqual(int(d["THROTTLE_REST"]), GATE_THROTTLE)
+
+    def test_the_start(self):
+        d = _config_defines()
+        self.assertEqual(int(d["START_FIRED_RPM"]), START_FIRED_RPM)
+        self.assertEqual(int(d["START_DIP_MS"]), START_DIP_MS)
+        self.assertEqual(int(d["START_CRANK_SHIFT"]), START_CRANK_SHIFT)
+        self.assertEqual(int(d["HEALTH_UNKNOWN"]), START_INVALID)
+        self.assertEqual(int(d["HEALTH_SAT"]), START_SAT)
+
+
+def _engine(t_ms, rpm):
+    q4 = int(rpm * 4)
+    return Frame(t_ms, 0x280, bytes([0, 0, q4 & 0xFF, q4 >> 8, 0, 38, 0, 0]))
+
+
+def _coolant(t_ms, raw):
+    return Frame(t_ms, 0x288, bytes([0, raw, 0, 0, 0, 0, 0, 0]))
+
+
+class TheStart(unittest.TestCase):
+    """start_fields(), the oracle for the start detector in src/compute.c."""
+
+    def a_start(self, crank_ms, low, stopped_first=True, clt_raw=80):
+        frames = [_coolant(0, clt_raw)]
+        t = 10
+        if stopped_first:
+            frames.append(_engine(t, 0))
+            t += 10
+        t0 = t
+        while t < t0 + crank_ms:
+            frames.append(_engine(t, 250))
+            t += 10
+        frames += [_engine(t, 450), _engine(t + 10, low)]
+        t += 20
+        for k in range(300):
+            frames.append(_engine(t + 10 * k, 900))
+        return start_fields(frames)
+
+    def test_a_start_seen_from_rest_is_measured(self):
+        crank, dip, clt = self.a_start(832, 331)
+        self.assertEqual(crank, 832 >> START_CRANK_SHIFT)
+        self.assertEqual(dip, 450 - 331)
+        self.assertEqual(clt, 12 + 50)          # raw 80 is 12.00 C
+
+    def test_a_start_not_seen_from_rest_is_not_published(self):
+        """The one wrong answer that would be believed: a late crank clock."""
+        self.assertEqual(self.a_start(832, 331, stopped_first=False),
+                         (START_INVALID, START_INVALID, START_INVALID))
+
+    def test_a_coolant_fault_is_not_a_temperature(self):
+        self.assertEqual(self.a_start(832, 331, clt_raw=0xFF)[2], START_INVALID)
+
+
+class HealthAgainstTheFixtures(unittest.TestCase):
+    """The twin of test_the_fixtures_grade_exactly_as_the_oracle in
+    test/test_compute.c: the same logs, the same numbers. The grade is
+    roughness() over the whole log, which is what the firmware computes;
+    `replay.py --host-build` checks every other timestamped fixture."""
+
+    WANT = {
+        "09_idle_60s_z1.txt":       (72, 255, 255, 255),
+        "11_idle_noac_z1.txt":      (31, 255, 255, 255),
+        "12_idle_ac_z1.txt":        (19, 255, 255, 255),
+        "17_drive_property_z1.txt": (21, 255, 255, 255),
+        "18_coldstart_z1.txt":      (85, 38, 141, 66),
+        "19_postfix_drive_z1.txt":  (94, 26, 118, 62),
+        "24_mafswap_drive_z1.txt":  (54, 27, 0, 77),
+    }
+
+    def test_every_log_grades_as_the_firmware_does(self):
+        for name, want in self.WANT.items():
+            h = health_summary(os.path.join(FIXTURES, name))
+            self.assertEqual((h["idle_rough"], h["start_crank"],
+                              h["start_dip"], h["start_clt"]), want, name)
+
+    def test_the_two_recorded_cold_starts_are_the_ones_in_the_docs(self):
+        """1.24 s against 0.83 s of cranking, 140 against 118 rpm lost: the
+        numbers docs/engine-health.md quotes, to the resolution of the byte."""
+        cold = health_summary(os.path.join(FIXTURES, "18_coldstart_z1.txt"))
+        fixed = health_summary(os.path.join(FIXTURES, "19_postfix_drive_z1.txt"))
+        self.assertAlmostEqual(cold["start_crank"] * 0.032, 1.24, delta=0.032)
+        self.assertAlmostEqual(fixed["start_crank"] * 0.032, 0.83, delta=0.032)
+        self.assertAlmostEqual(cold["start_dip"], 140, delta=1)
+        self.assertEqual(fixed["start_dip"], 118)

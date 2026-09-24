@@ -1,4 +1,4 @@
-/* test_txframes.c -- the byte layout of 0x600, 0x601, 0x602 and 0x603.
+/* test_txframes.c -- the byte layout of 0x600 to 0x604.
  *
  * These offsets are not an internal detail: mfd15/tri/S-AQY.TRI has already
  * been uploaded to a real display and reads exactly these bytes. Getting one
@@ -15,11 +15,16 @@
  *   0603;0;3;1 the six flag bits, shift = n and mask = 1 << n
  *   0603;0;4;1 ResetCause (mask 001F)           0603;0;5;1 TxRefused
  *   0603;0;6;2 Uptime
+ *   0604;0;0;1 IdleHealth  0604;0;1;1 IdleRough   0604;0;2;1 IdleSec
+ *   0604;0;3;1 StartHealth 0604;0;4;1 StartCrank  0604;0;5;1 StartDip
+ *   0604;0;6;1 StartClt
+ *   0604;0;7;1 IdleNow (mask 0001), StartSeen (shift 1, mask 0002),
+ *              HealthLive (shift 2, mask 0004)
  *
  * The third column is the format: 0 is big endian, and every one of our own
  * sensors carries a 0 while the car's carry a 1.
  *
- * ALL FOUR FRAMES ARE READ BY THE DISPLAY NOW. 0x602 and 0x603 used to be
+ * ALL FIVE FRAMES ARE READ BY THE DISPLAY NOW. 0x602 and 0x603 used to be
  * ours to change freely because nothing consumed them; they have rows in the
  * TRI file, so a layout change here is a change there in the same breath.
  */
@@ -421,6 +426,86 @@ static void test_diag_flags_are_distinct_bits(void)
     TT_EQ(bits, 6u);
 }
 
+/* 0x604, pinned against the TRI rows in the header above. */
+static void test_health_frame_offsets(void)
+{
+    tx_values_t v;
+    uint8_t out[TXFRAME_DLC];
+
+    memset(&v, 0, sizeof v);
+    v.health_idle   = 0x11u;
+    v.health_rough  = 0x22u;
+    v.health_idle_s = 0x33u;
+    v.health_crank  = 0x44u;
+    v.health_dip    = 0x55u;
+    v.health_clt    = 0x66u;
+    v.health_flags  = HEALTH_FLAG_IDLING | HEALTH_FLAG_START_SEEN |
+                      HEALTH_FLAG_DATA_LIVE;
+    txframes_health(&v, out);
+
+    TT_EQ(out[0], 0x11u);               /* IdleHealth              */
+    TT_EQ(out[1], 0x22u);               /* IdleRough               */
+    TT_EQ(out[2], 0x33u);               /* IdleSec                 */
+    TT_EQ(out[3], HEALTH_UNKNOWN);      /* StartHealth, reserved   */
+    TT_EQ(out[4], 0x44u);               /* StartCrank              */
+    TT_EQ(out[5], 0x55u);               /* StartDip                */
+    TT_EQ(out[6], 0x66u);               /* StartClt                */
+
+    /* The TRI rows read single bits as shift = n, mask = 1 << n. */
+    TT_EQ(out[7] & 0x01u, HEALTH_FLAG_IDLING);
+    TT_EQ((out[7] & 0x02u) >> 1, 1u);
+    TT_EQ((out[7] & 0x04u) >> 2, 1u);
+    TT_EQ(HEALTH_FLAG_IDLING, 0x01u);
+    TT_EQ(HEALTH_FLAG_START_SEEN, 0x02u);
+    TT_EQ(HEALTH_FLAG_DATA_LIVE, 0x04u);
+    TT_EQ(out[7] >> HEALTH_VERSION_SHIFT, HEALTH_LAYOUT_VERSION);
+}
+
+/* The opposite of 0x600-0x602, for the same reason they go to zero: every
+ * field goes to the value that cannot be mistaken for a reading, and on this
+ * frame zero is a perfectly smooth engine. */
+static void test_health_reads_unknown_on_a_quiet_bus(void)
+{
+    compute_t c;
+    tx_values_t v;
+    uint8_t out[TXFRAME_DLC];
+    size_t i;
+
+    compute_init(&c);
+    memset(&v, 0, sizeof v);
+    txframes_gather_health(&v, &c, 10u * DATA_TIMEOUT_MS);
+    txframes_health(&v, out);
+    for (i = 0; i < 7u; i++) {
+        TT_EQ(out[i], HEALTH_UNKNOWN);
+    }
+    TT_EQ(out[7] & 0x1Fu, 0u);          /* not even HealthLive       */
+    TT_EQ(out[7] >> HEALTH_VERSION_SHIFT, HEALTH_LAYOUT_VERSION);
+}
+
+/* End to end off the real cold start, as main.c would transmit it at the end
+ * of the log: the start the owner remembers as nearly dying, in the bytes the
+ * display will show. The oracle's numbers, through txframes. */
+static void test_the_cold_start_on_the_wire(void)
+{
+    replay_result_t r;
+    tx_values_t v;
+    uint8_t out[TXFRAME_DLC];
+
+    TT_TRUE(replay_log("18_coldstart_z1.txt", &r));
+    memset(&v, 0, sizeof v);
+    txframes_gather_health(&v, &r.cp, r.cp.last_data_ms);
+    txframes_health(&v, out);
+
+    TT_EQ(out[1], 85u);                 /* 2.66 rpm                */
+    TT_EQ(out[0], (85u * 25u) >> 4);    /* 132, the index          */
+    TT_EQ(out[4], 38u);                 /* 1.22 s of cranking      */
+    TT_EQ(out[5], 141u);                /* 451 -> 310 rpm          */
+    TT_EQ(out[6], 66u);                 /* 16 C                    */
+    TT_TRUE(out[7] & HEALTH_FLAG_START_SEEN);
+    TT_TRUE(out[7] & HEALTH_FLAG_DATA_LIVE);
+}
+
+
 int main(void)
 {
     printf("test_txframes\n");
@@ -438,5 +523,8 @@ int main(void)
     TT_RUN(test_every_reset_cause_survives_the_shared_byte);
     TT_RUN(test_diag_does_not_zero_on_a_quiet_bus);
     TT_RUN(test_diag_flags_are_distinct_bits);
+    TT_RUN(test_health_frame_offsets);
+    TT_RUN(test_health_reads_unknown_on_a_quiet_bus);
+    TT_RUN(test_the_cold_start_on_the_wire);
     return TT_SUMMARY();
 }

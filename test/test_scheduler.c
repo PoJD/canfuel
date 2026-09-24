@@ -315,11 +315,12 @@ static void test_never_two_frames_in_one_pass(void)
 
     /* Every frame the schedule owes, within the slack a 25 ms slot and a
      * blocking EEPROM write leave. Ten a second for the two fast ones, one a
-     * second for the two slow ones. */
+     * second for the three slow ones. */
     TT_TRUE(r.sends_by[SCHED_TX_FUEL]   > seconds * 9u);
     TT_TRUE(r.sends_by[SCHED_TX_ENGINE] > seconds * 9u);
     TT_TRUE(r.sends_by[SCHED_TX_TRIP]   > seconds - 2u);
     TT_TRUE(r.sends_by[SCHED_TX_DIAG]   > seconds - 2u);
+    TT_TRUE(r.sends_by[SCHED_TX_HEALTH] > seconds - 2u);
 
     /* And the gap that the whole arrangement exists to create. One slot, less
      * whatever the tick quantises away. */

@@ -403,6 +403,69 @@ static void test_an_empty_core_is_all_zeroes(void)
     TT_EQ(v.vdd_c, 503);                    /* ours, not the bus's */
 }
 
+/* 0x604. Every byte is either inside its range or exactly 255, "not known" --
+ * never anything else, for any accumulator a start could reach. And a random
+ * stream of engine frames, including engine-off and gate flapping, may take
+ * the detector through any order of phases without leaving that shape. */
+static void test_the_health_bytes_stay_in_shape(void)
+{
+    int i;
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 1000u;
+
+    for (i = 0; i < 10000; i++) {
+        tx_values_t v;
+        uint8_t f[TXFRAME_DLC];
+
+        compute_init(&c);
+        c.have_data = true;
+        c.last_data_ms = 1000u;
+        c.health.rough_acc = rnd_upto(1ul << 24);
+        c.health.idle_ms = rnd_upto(3600000ul);
+        txframes_gather_health(&v, &c, 1000u);
+        txframes_health(&v, f);
+        TT_TRUE(f[0] <= IDLE_INDEX_MAX || f[0] == HEALTH_UNKNOWN);
+        TT_TRUE(f[1] <= HEALTH_SAT || f[1] == HEALTH_UNKNOWN);
+        TT_EQ(f[3], HEALTH_UNKNOWN);
+    }
+
+    compute_init(&c);
+    decode_init(&st);
+    for (i = 0; i < 200000; i++) {
+        uint32_t pick = rnd_upto(99u);
+
+        /* Mostly an idle wobbling round 800, sometimes a stop, a crank, a
+         * blip or a roll -- so every phase of the detector is visited. */
+        st.rpm_q4 = (uint16_t)(pick < 2u ? 0u
+                  : pick < 5u ? rnd_upto(400u * 4u)
+                  : pick < 8u ? rnd_upto(6000u * 4u)
+                  : 780u * 4u + rnd_upto(160u));
+        st.speed_mmh = (rnd_upto(99u) < 3u) ? rnd_upto(50000u) : 5u;
+        st.throttle = (uint8_t)((rnd_upto(99u) < 3u) ? 90u : THROTTLE_REST);
+        now += 1u + rnd_upto(20u);
+        compute_on_engine(&c, &st, now);
+
+        TT_TRUE(compute_idle_health(&c) <= IDLE_INDEX_MAX ||
+                compute_idle_health(&c) == HEALTH_UNKNOWN);
+        TT_TRUE(c.health.start_dip <= HEALTH_SAT ||
+                c.health.start_dip == HEALTH_UNKNOWN);
+        TT_TRUE(c.health.start_crank <= HEALTH_SAT ||
+                c.health.start_crank == HEALTH_UNKNOWN);
+    }
+    c.have_data = true;
+    c.last_data_ms = now;
+    {
+        tx_values_t v;
+        uint8_t f[TXFRAME_DLC];
+
+        txframes_gather_health(&v, &c, now);
+        txframes_health(&v, f);
+        TT_TRUE(f[7] & HEALTH_FLAG_DATA_LIVE);
+    }
+}
+
+
 int main(void)
 {
     printf("test_props\n");
@@ -413,5 +476,6 @@ int main(void)
     TT_RUN(test_a_repeated_frame_adds_nothing);
     TT_RUN(test_an_invalid_speed_never_invents_distance);
     TT_RUN(test_an_empty_core_is_all_zeroes);
+    TT_RUN(test_the_health_bytes_stay_in_shape);
     return TT_SUMMARY();
 }

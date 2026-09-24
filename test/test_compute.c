@@ -1552,6 +1552,323 @@ static void test_restart_detection_covers_the_engine_off_prefix(void)
     TT_TRUE(r.cp.restarts > 300);
 }
 
+/* ===================================================================== *
+ *  ENGINE HEALTH, 0x604 -- the idle grade and the start.
+ *
+ *  tools/idledips.py is the oracle, and `replay.py --host-build` diffs the
+ *  two over every timestamped fixture, EXACTLY. What is here is the twin of
+ *  test_idledips.py's fixture numbers, and the three traps the design names
+ *  -- each of which a careless implementation passes the fixtures with.
+ * ===================================================================== */
+
+/* An idle, sampled the way 0x280 arrives: one frame every 10 ms, the speed
+ * field changing only every `hold' frames. The value alternates between
+ * `rpm' and `rpm + wobble', so each change is a step of `wobble'. */
+static void idle_for(compute_t *c, decode_state_t *st, uint32_t *now,
+                     uint32_t ms, uint16_t rpm, uint16_t wobble, uint8_t hold)
+{
+    uint32_t end = *now + ms;
+    uint32_t n = 0;
+
+    st->speed_mmh = 5u;                 /* what a standing car really sends */
+    st->throttle = THROTTLE_REST;
+    while (*now < end) {
+        st->rpm_q4 = (uint16_t)((rpm + (((n / hold) & 1u) ? wobble : 0u)) * 4u);
+        compute_on_engine(c, st, *now);
+        *now += 10u;
+        n++;
+    }
+}
+
+static void engine_off(compute_t *c, decode_state_t *st, uint32_t *now)
+{
+    st->rpm_q4 = 0u;
+    compute_on_engine(c, st, *now);
+    *now += 10u;
+}
+
+/* A known idle from a standstill start, so the grade has been reset. */
+static void fresh(compute_t *c, decode_state_t *st, uint32_t *now)
+{
+    compute_init(c);
+    decode_init(st);
+    *now = 1000u;
+    engine_off(c, st, now);
+}
+
+/* TRAP 1: step on CHANGE, not on arrival. 0x280 holds its speed field for
+ * three or four frames at idle; stepping per frame would count every repeat
+ * as a step of zero and dilute the grade by the hold ratio -- which moves with
+ * idle speed, so the answer would depend on the idle speed. */
+static void test_a_repeated_value_is_not_a_step(void)
+{
+    compute_t a, b;
+    decode_state_t sa, sb;
+    uint32_t ta, tb;
+
+    fresh(&a, &sa, &ta);
+    fresh(&b, &sb, &tb);
+    idle_for(&a, &sa, &ta, 60000u, 800u, 8u, 3u);
+    idle_for(&b, &sb, &tb, 60000u, 800u, 8u, 5u);
+
+    /* The same steps, held three frames or five: the same grade. 8 rpm less
+     * the 3 rpm deadband is 5 rpm, 160 in 1/32 rpm, once the filter has run
+     * for six of its time constants. */
+    TT_NEAR(compute_idle_rough(&a), 160u, 2u);
+    TT_NEAR(compute_idle_rough(&b), 160u, 2u);
+}
+
+static void test_steps_inside_the_deadband_grade_zero(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now;
+
+    fresh(&c, &st, &now);
+    idle_for(&c, &st, &now, 60000u, 800u, ROUGH_DEADBAND_RPM, 3u);
+    TT_EQ(compute_idle_rough(&c), 0u);
+    TT_EQ(compute_idle_health(&c), 0u);
+}
+
+/* TRAP 2: the gate is the torque rule's, the same two constants. Either half
+ * alone closes it. */
+static void test_the_gate_is_the_torque_rules_gate(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now, i;
+
+    fresh(&c, &st, &now);
+    st.rpm_q4 = 800u * 4u;
+    st.throttle = THROTTLE_REST;
+    st.speed_mmh = STANDSTILL_MMH + 1u;             /* rolling: not idle */
+    for (i = 0; i < 1000u; i++, now += 10u) {
+        compute_on_engine(&c, &st, now);
+    }
+    TT_EQ(c.health.idle_ms, 0u);
+
+    st.speed_mmh = STANDSTILL_MMH;
+    st.throttle = THROTTLE_REST + 1u;               /* pedal: not idle */
+    for (i = 0; i < 1000u; i++, now += 10u) {
+        compute_on_engine(&c, &st, now);
+    }
+    TT_EQ(c.health.idle_ms, 0u);
+
+    st.throttle = THROTTLE_REST;                    /* both at rest: idle */
+    for (i = 0; i < 1000u; i++, now += 10u) {
+        compute_on_engine(&c, &st, now);
+    }
+    TT_TRUE(c.health.idle_ms > 0u);
+}
+
+/* TRAP 3: the settle delay restarts on an excursion; it does not merely
+ * elapse. Coming to a stop, engine speed is still falling from driving speed
+ * when a fixed delay would expire, and every step of that descent would be
+ * graded as roughness. Here the gate opens at 1100 rpm and speed falls 6 rpm
+ * every 100 ms for five seconds -- longer than IDLE_SETTLE_MS, so a delay that
+ * merely elapsed would have expired half way down and graded every 6 rpm step
+ * after it. The baseline lags the ramp by about 150 rpm, far past
+ * IDLE_TRIP_RPM, so the delay keeps restarting and nothing is graded. */
+static void test_the_settle_delay_restarts_on_an_excursion(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now;
+    uint16_t rpm;
+
+    fresh(&c, &st, &now);
+    st.speed_mmh = 5u;
+    st.throttle = THROTTLE_REST;
+    for (rpm = 1100u; rpm > 800u; rpm = (uint16_t)(rpm - 6u)) {
+        uint8_t k;
+        for (k = 0; k < 10u; k++, now += 10u) {
+            st.rpm_q4 = (uint16_t)(rpm * 4u);
+            compute_on_engine(&c, &st, now);
+        }
+    }
+    TT_TRUE(now - 1010u > IDLE_SETTLE_MS);         /* long enough to matter */
+    TT_EQ(c.health.rough_acc, 0u);
+    TT_EQ(c.health.idle_ms, 0u);
+}
+
+/* An unconverged grade reads HEALTHY, because the filter starts from zero at
+ * every start -- so the index is withheld until IDLE_CONVERGE_S of settled
+ * idle, and the raw byte until anything at all has been graded. */
+static void test_an_unconverged_grade_is_not_published(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now;
+
+    fresh(&c, &st, &now);
+    TT_EQ(compute_idle_rough(&c), HEALTH_UNKNOWN);
+    TT_EQ(compute_idle_health(&c), HEALTH_UNKNOWN);
+    TT_EQ(compute_idle_s(&c), 0u);
+
+    /* IDLE_SETTLE_MS of settling, then just short of convergence. */
+    idle_for(&c, &st, &now, IDLE_SETTLE_MS + IDLE_CONVERGE_S * 1000u - 100u,
+             800u, 8u, 3u);
+    TT_TRUE(compute_idle_rough(&c) != HEALTH_UNKNOWN);
+    TT_EQ(compute_idle_health(&c), HEALTH_UNKNOWN);
+
+    idle_for(&c, &st, &now, 200u, 800u, 8u, 3u);
+    TT_TRUE(compute_idle_health(&c) != HEALTH_UNKNOWN);
+    TT_EQ(compute_idle_s(&c), IDLE_CONVERGE_S);
+}
+
+static void test_the_index_puts_the_old_engine_at_a_hundred(void)
+{
+    compute_t c;
+
+    compute_init(&c);
+    c.health.idle_ms = IDLE_CONVERGE_S * 1000u;
+    c.health.rough_acc = (uint32_t)IDLE_ROUGH_100 << ROUGH_OUT_SHIFT;
+    TT_EQ(compute_idle_health(&c), 100u);
+
+    c.health.rough_acc = 0u;
+    TT_EQ(compute_idle_health(&c), 0u);
+
+    /* Worse than the old engine is allowed and clamps at IDLE_INDEX_MAX; the
+     * raw byte saturates at 254 so that 255 keeps meaning "not known". */
+    c.health.rough_acc = 0xFFFFFFu;
+    TT_EQ(compute_idle_health(&c), IDLE_INDEX_MAX);
+    TT_EQ(compute_idle_rough(&c), HEALTH_SAT);
+}
+
+/* The grade belongs to one start. A drive between two idles is part of it; an
+ * engine start is the end of it. */
+static void test_a_new_start_clears_the_grade(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now;
+
+    fresh(&c, &st, &now);
+    idle_for(&c, &st, &now, 60000u, 800u, 8u, 3u);
+    TT_TRUE(compute_idle_health(&c) != HEALTH_UNKNOWN);
+
+    engine_off(&c, &st, &now);
+    st.rpm_q4 = 250u * 4u;                          /* cranking again */
+    compute_on_engine(&c, &st, now);
+    TT_EQ(compute_idle_rough(&c), HEALTH_UNKNOWN);
+    TT_EQ(compute_idle_health(&c), HEALTH_UNKNOWN);
+    TT_EQ(compute_idle_s(&c), 0u);
+}
+
+/* --- the start ------------------------------------------------------------ */
+
+/* Crank at 250 rpm for `crank_ms', fire at 450, fall to `low', recover. */
+static void a_start(compute_t *c, decode_state_t *st, uint32_t *now,
+                    uint32_t crank_ms, uint16_t low)
+{
+    uint32_t end = *now + crank_ms;
+
+    st->speed_mmh = 5u;
+    st->throttle = THROTTLE_REST;
+    while (*now < end) {
+        st->rpm_q4 = 250u * 4u;
+        compute_on_engine(c, st, *now);
+        *now += 10u;
+    }
+    st->rpm_q4 = 450u * 4u;
+    compute_on_engine(c, st, *now);
+    *now += 10u;
+    st->rpm_q4 = (uint16_t)(low * 4u);
+    compute_on_engine(c, st, *now);
+    *now += 10u;
+    idle_for(c, st, now, 3000u, 900u, 0u, 3u);
+}
+
+static void test_a_start_seen_from_rest_is_measured(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now;
+
+    fresh(&c, &st, &now);
+    st.clt_c100 = 1200;                             /* 12.00 C */
+    a_start(&c, &st, &now, 832u, 331u);
+
+    TT_EQ(c.health.start_crank, 832u >> START_CRANK_SHIFT);     /* 26 */
+    TT_EQ(c.health.start_dip, 450u - 331u);
+    TT_EQ(c.health.start_clt, 12u + 50u);
+    TT_TRUE(c.health.start_seen);
+}
+
+/* The one wrong answer that would be believed: a converter that wakes with the
+ * starter already turning would time a short crank. So a start is only
+ * measured if the engine was seen stopped first. */
+static void test_a_start_not_seen_from_rest_is_not_published(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now = 1000u;
+
+    compute_init(&c);
+    decode_init(&st);
+    a_start(&c, &st, &now, 832u, 331u);             /* no zero before it */
+
+    TT_EQ(c.health.start_crank, HEALTH_UNKNOWN);
+    TT_EQ(c.health.start_dip, HEALTH_UNKNOWN);
+    TT_EQ(c.health.start_clt, HEALTH_UNKNOWN);
+    TT_TRUE(!c.health.start_seen);
+}
+
+/* Coolant that never arrived is not 0 C, and a stall inside the dip window is
+ * the whole of the first-firing speed lost. */
+static void test_a_stall_and_a_missing_coolant(void)
+{
+    compute_t c;
+    decode_state_t st;
+    uint32_t now, i;
+
+    fresh(&c, &st, &now);                           /* clt_c100 invalid */
+    for (i = 0; i < 50u; i++, now += 10u) {
+        st.rpm_q4 = 250u * 4u;
+        compute_on_engine(&c, &st, now);
+    }
+    st.rpm_q4 = 451u * 4u;
+    compute_on_engine(&c, &st, now);
+    now += 10u;
+    TT_EQ(c.health.start_clt, HEALTH_UNKNOWN);
+    TT_EQ(c.health.start_dip, HEALTH_UNKNOWN);      /* still measuring */
+
+    engine_off(&c, &st, &now);                      /* died */
+    TT_EQ(c.health.start_dip, HEALTH_SAT);          /* 451 lost, saturated */
+}
+
+/* The fixtures, against the oracle. The same numbers as
+ * tools/test_idledips.py's HealthAgainstTheFixtures, which is the twin; the
+ * host diff checks every other timestamped log. 18 is the start that nearly
+ * died, 19 the one after the repair, and 09/11/12 the pre-repair idles the
+ * scale is anchored on. */
+static void test_the_fixtures_grade_exactly_as_the_oracle(void)
+{
+    static const struct {
+        const char *name;
+        uint32_t rough, crank, dip, clt;
+    } want[] = {
+        { "09_idle_60s_z1.txt",       72u, 255u, 255u, 255u },
+        { "11_idle_noac_z1.txt",      31u, 255u, 255u, 255u },
+        { "12_idle_ac_z1.txt",        19u, 255u, 255u, 255u },
+        { "17_drive_property_z1.txt", 21u, 255u, 255u, 255u },
+        { "18_coldstart_z1.txt",      85u,  38u, 141u,  66u },
+        { "19_postfix_drive_z1.txt",  94u,  26u, 118u,  62u },
+        { "24_mafswap_drive_z1.txt",  54u,  27u,   0u,  77u },
+    };
+    size_t i;
+
+    for (i = 0; i < sizeof want / sizeof want[0]; i++) {
+        replay_result_t r;
+
+        TT_TRUE(replay_log(want[i].name, &r));
+        TT_EQ(r.cp.health.rough_acc >> ROUGH_OUT_SHIFT, want[i].rough);
+        TT_EQ(r.cp.health.start_crank, want[i].crank);
+        TT_EQ(r.cp.health.start_dip, want[i].dip);
+        TT_EQ(r.cp.health.start_clt, want[i].clt);
+    }
+}
+
 int main(void)
 {
     printf("test_compute\n");
@@ -1601,6 +1918,17 @@ int main(void)
     TT_RUN(test_engine_off_makes_no_torque);
     TT_RUN(test_the_plateau_reproduces_the_rated_power);
     TT_RUN(test_the_plateau_reproduces_the_rated_torque);
+    TT_RUN(test_a_repeated_value_is_not_a_step);
+    TT_RUN(test_steps_inside_the_deadband_grade_zero);
+    TT_RUN(test_the_gate_is_the_torque_rules_gate);
+    TT_RUN(test_the_settle_delay_restarts_on_an_excursion);
+    TT_RUN(test_an_unconverged_grade_is_not_published);
+    TT_RUN(test_the_index_puts_the_old_engine_at_a_hundred);
+    TT_RUN(test_a_new_start_clears_the_grade);
+    TT_RUN(test_a_start_seen_from_rest_is_measured);
+    TT_RUN(test_a_start_not_seen_from_rest_is_not_published);
+    TT_RUN(test_a_stall_and_a_missing_coolant);
+    TT_RUN(test_the_fixtures_grade_exactly_as_the_oracle);
     TT_RUN(test_cranking_is_not_torque);
     TT_RUN(test_the_torque_trim_is_off_by_default);
     TT_RUN(test_the_trim_percent_converts_to_256ths);

@@ -2,7 +2,7 @@
 
 A fuel consumption converter for VW PQ34 cars with the AQY engine
 (2.0 l / 85 kW). *(Developed and verified on a 2.0 AQY.)* It reads the powertrain CAN bus (500 kbps), computes consumption, range,
-torque and power, and sends them back onto the bus in frames 0x600–0x603. A
+torque and power, and sends them back onto the bus in frames 0x600–0x604. A
 CANchecked MFD15 Gen2 display renders them from its own TRI file (repo `mfd15`).
 
 MCU: PIC18F25K80, 16 MHz, XC8. The board lives in the `kicad` repo.
@@ -206,8 +206,8 @@ the datasheet, against `gcc -fsyntax-only`, and against XC8 itself.
   49–134 µs, so the loop runs 7,400–20,000 times a second; the busiest transmit
   slot uses **2.4 ms of its 25**; the worst pass without an EEPROM write is
   **5.1 ms**, against a FIFO that tolerates 22 ms of blindness. **The whole firmware uses
-  16 % of the CPU**, and the largest single item is receiving frames rather
-  than any arithmetic. The one figure the datasheet declines to bound is the
+  20 % of the CPU** at an upper bound, and the largest single item is receiving
+  frames rather than any arithmetic. The one figure the datasheet declines to bound is the
   EEPROM write — D122's 4 ms is a *typ* with no maximum — and nothing
   downstream of it is a deadline.
 - **One frame leaves every 25 ms and never two together, and that is a
@@ -427,8 +427,8 @@ This repo sits next to two siblings, `kicad` (the board) and `mfd15` (the
 display config). They have separate toolchains and separate GitHub remotes
 under `PoJD/`, and the directory above them is deliberately not a git repo.
 
-The coupling to **`mfd15`** is **the layout of all four frames, 0x600 to
-0x603**, defined in `docs/frames.md` and consumed by `mfd15/tri/S-AQY.TRI`. The
+The coupling to **`mfd15`** is **the layout of all five frames, 0x600 to
+0x604**, defined in `docs/frames.md` and consumed by `mfd15/tri/S-AQY.TRI`. The
 coupling to **`kicad`** is the pin assignment in the section above — one-way,
 and already frozen by an order that has been placed.
 
@@ -451,6 +451,13 @@ than in an LED blink rate; its layout is in `docs/frames.md`,
 bit, under names rather than as a hex byte. It is still transmitted only with
 JP1 fitted, so those twelve channels read zero in a closed dashboard **by
 design**; that is the first thing to check before calling one of them a fault.
+
+**0x604 is the engine-health frame and it is NOT behind JP1** — the idle grade
+and the start, for a closed dashboard. Its "not known" is 255 in every byte,
+never zero, and the whole frame reads 255 on a quiet bus: a zero there would be
+a perfectly smooth engine. `docs/frames.md` has the layout, `tools/idledips.py`
+is the oracle the C is diffed against exactly, and `docs/can-decoding.md`
+trap 6 carries the arithmetic from a raw frame to the byte.
 
 The useful check on the display: compare FuelNow against
 FuelCntRaw. FuelCntRaw is the raw ECU counter with no
@@ -511,7 +518,7 @@ session would otherwise reconstruct by reading five files.
 decode_state_t  st;   /* last known bus state          */
 compute_t       cp;   /* accumulators and windows      */
 persist_t       ps;   /* which EEPROM slot comes next  */
-tx_values_t     tx;   /* one gather, four frames       */
+tx_values_t     tx;   /* one gather, five frames       */
 ```
 
 **At start-up**
@@ -535,6 +542,8 @@ if (persist_load(&ps, &hal_eeprom_backend, &rec)) {
 decode_frame(&st, id, data, dlc);          /* returns false for ids we ignore */
 if (id == CAN_ID_FUEL) {
     compute_on_fuel(&cp, &st, now_ms);     /* 0x480 is the heartbeat */
+} else if (id == CAN_ID_ENGINE) {
+    compute_on_engine(&cp, &st, now_ms);   /* idle grade and start, 0x604 */
 }
 ```
 
@@ -568,6 +577,10 @@ if (hal_sys_debug_enabled()) {
                          tx_fail, uptime_s);
     txframes_diag(&tx, buf);  hal_can_send(CAN_ID_TX_DIAG, buf, TXFRAME_DLC);
 }
+
+/* 0x604 always -- it is for a closed dashboard. */
+txframes_gather_health(&tx, &cp, now_ms);
+txframes_health(&tx, buf);  hal_can_send(CAN_ID_TX_HEALTH, buf, TXFRAME_DLC);
 
 persist_record_t rec = { cp.total_ul, cp.total_mm,
                          cp.tank_stable_l, cp.tank_stable_valid };

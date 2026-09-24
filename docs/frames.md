@@ -1,7 +1,7 @@
 # Frames transmitted by the converter
 
-Four frames of our own on free IDs. Every log confirms that nobody else uses
-0x600–0x603 (`test_target_ids_are_free`).
+Five frames of our own on free IDs. Every whole-bus log confirms that nobody
+else uses 0x600–0x604 (`test_target_ids_are_free`).
 
 **Everything is unsigned big endian.** The car uses little endian, we use big
 endian — deliberately, so the two cannot be confused, and the MFD15 handles
@@ -238,15 +238,150 @@ the numbers stay plausible. The uptime beside it makes the restart visible and
 this byte says whether it was the watchdog or the car's supply — different
 faults with different fixes.
 
+## 0x604 @ 1 s — engine health: the idle grade and the start
+
+**Not JP1-gated.** An ordinary frame like 0x600–0x602, transmitted whenever the
+converter is powered. 0x603 two sections up sets the opposite precedent, and
+deliberately: CAN diagnostics are for somebody who has opened the dashboard,
+while this is for a closed one.
+
+| Byte | Name | Unit | Notes |
+|---|---|---|---|
+| 0 | IdleHealth | 0–200 | 100 = the engine before the repair. **255 = not converged** |
+| 1 | IdleRough | 1/32 rpm | the raw grade, 0–7.94, saturating at 254. 255 = nothing graded yet this start |
+| 2 | IdleSec | s | settled idle graded this start, saturating at 255 |
+| 3 | StartHealth | 0–200 | **reserved: always 255** until the constants are fitted |
+| 4 | StartCrank | 32 ms | first turn of the crank to first firing, saturating at 254 (8.1 s) |
+| 5 | StartDip | rpm | first-firing speed minus the lowest in the 2 s after it, saturating at 254 |
+| 6 | StartClt | °C + 50 | coolant at first firing; 255 = no 0x288 had arrived |
+| 7 | flags, layout version | | bits 4–0 `HEALTH_FLAG_*`, bits 7–5 `HEALTH_LAYOUT_VERSION`, as 0x603 byte 4 does it |
+
+| Flag | Bit | Meaning |
+|---|---|---|
+| `IdleNow` | 0 | settled idle right now: the grade is being stepped |
+| `StartSeen` | 1 | this start was watched from a standstill, so bytes 4–6 describe it |
+| `HealthLive` | 2 | frames are arriving; with it clear, every other byte reads 255 |
+
+**A trend instrument, not a fault detector.** It needs to move when the engine
+moves and sit still when it does not, so that plugs or an injector going off
+can be *seen* over months. It will never say *what* is wrong: **the bus carries
+the trend, a capture carries the diagnosis.** `tools/idledips.py` is where the
+diagnosis lives.
+
+**255 means "not known" in every byte, and zero never does.** A grade of zero
+is a perfectly smooth engine and a crank of zero is a perfect start — the wrong
+answers that would be believed. So every field that is not known yet publishes
+255, the raw fields saturate at 254 to keep it unambiguous, and **on a quiet
+bus the whole frame goes to 255 where the other frames go to zero**: each goes
+to the value that cannot be mistaken for a reading.
+
+⚠ **Built before a healthy idle was ever recorded, and that was a decision.**
+The design said nothing would be built until a healthy grade separated from a
+sick one. The post-repair drive could not supply one, because the idle was not
+healthy yet. The maintainer's decision was to build the channel anyway,
+*because* the idle is about to be worked on — the intake hoses are next — and
+the effect is wanted on the display rather than by capture. So the index is
+anchored at the old engine (100) and **has not been validated against a well
+one**. The layout carries a version, so a later re-anchoring costs no layout
+change and `S-AQY.TRI` is touched once, not twice.
+
+What the display shows on day one, from the grade over the recordings so far:
+
+| state | IdleHealth |
+|---|---|
+| warm idle, oil 52–60 °C, new MAF | 73–100 |
+| hot idle, oil 69–71 °C, new MAF | 68–121 |
+| August's hot idle, before any work | 48 |
+
+⚠ **The index is comparable only at comparable temperature.** The grade is not
+monotonic through a warm-up — it falls and then climbs — so a before/after
+comparison that does not state the oil temperature says nothing. A driver
+reading it at the same point of the same commute does that for free.
+
+### The idle grade
+
+**The step between one firing event and the next, dead-banded and averaged**:
+`max(0, |Δrpm| − 3 rpm)`, filtered over 256 firing events (about 9.7 s of warm
+idle), over settled idle only. The index is `min(200, IdleRough × 25 >> 4)`,
+one `uint8 × uint8` product and a shift. `docs/can-decoding.md`, trap 6, carries
+the chain from a raw 0x280 frame to this byte, worked on a real capture.
+
+- **The step and not the deviation from a baseline.** A first-order baseline
+  lags through a warm-up and manufactures about 1.2 rpm of one-sided deviation
+  out of nothing. The step between consecutive values is immune to a ramp.
+- **Once per CHANGE of the field, not once per frame.** 0x280 holds its
+  speed field for three or four frames at idle, and the hold length moves with
+  engine speed; stepping per frame would make the grade depend on idle speed
+  through the hold ratio. The baseline that decides *whether* the idle has
+  settled is the opposite — a time constant, stepped on every frame. Both
+  live in `idle_grade()` and both are tested on both sides.
+- **Idle is the torque rule's gate**, `STANDSTILL_MMH` and `THROTTLE_REST`,
+  the same two definitions and not copies.
+- **Settled means quiet, not elapsed.** Grading starts after 3 s in which no
+  sample sat 20 rpm or more below the baseline; an excursion restarts the
+  delay. A fixed delay grades the tail of every descent from driving speed.
+- **The grade belongs to one engine start.** It is cleared when the next start
+  begins, not when the car drives off, so every idle of one journey feeds one
+  number — and it is withheld (255) until `IDLE_CONVERGE_S`, 30 s, of settled
+  idle has been graded, because a filter that starts at zero reads *healthy*
+  until it has converged.
+
+**100 is 2.00 rpm, and the old engine measured 2.12.** `IDLE_ROUGH_100` is 64
+counts because 100/64 is a multiply by 25 and a shift where 100/68 is a
+division; the 6 % that costs is inside the 13 % the anchor itself scatters
+between 10 s windows. **0 is "no measurable step at all"**, which no engine
+reaches, so the index never bottoms out and always has room to show an
+improvement.
+
+### The start
+
+| | `18_coldstart_z1`, before the repair | `19_postfix_drive_z1`, after |
+|---|---|---|
+| StartCrank | 38 = 1.22 s | 26 = 0.83 s |
+| StartDip | 141 (451 → 310) | 118 (450 → 332) |
+| StartClt | 66 = 16 °C | 62 = 12 °C |
+
+- **First firing is the first 0x280 at or above 400 rpm**, a decision:
+  both recorded starts crank on a plateau of 200–270 rpm and fire at 450–451.
+- **A start is measured only if the engine was seen stopped first.** A
+  converter that powers up with the starter already turning would start its
+  clock late and report a short crank — a *good* start, the one wrong answer
+  that is believed. That is stricter than the design's "first sample below
+  400 rpm", on purpose.
+- **StartCrank is in 32 ms units, not the design's 0.05 s.** A unit chosen here
+  is one that may be chosen to be a shift (`docs/optimisation.md` §11); 32 ms
+  resolves the 0.41 s between the two recorded starts thirteen times over.
+- **StartClt is not a nicety.** A hot restart is trivially easy and its numbers
+  mean nothing; a summer-afternoon restart and a February morning need the
+  temperature beside them to be two different columns. It is also the one
+  temperature the display *cannot* take off the bus itself, because it is the
+  value at a past instant.
+- **StartHealth ships empty.** Two starts anchor nothing, and an index embeds
+  constants that will be revised; a raw number survives the revision. Once a
+  dozen good starts have been recorded the constants are fitted, byte 3 starts
+  being published and the layout version goes up — **the layout does not
+  change**.
+
+⚠ **A stall is indistinguishable from a bad start inside the 2 s window**, and
+no frame this firmware accepts carries a clutch switch, so the converter cannot
+tell a clutch dump from the engine. It does not look outside the window, so a
+stall thirty seconds later is not a start at all. **A single reading is noise;
+the instrument is the distribution over many mornings.**
+
+**The oracle is `tools/idledips.py`** — `roughness()` for the grade,
+`start_fields()` for the start — and `replay.py --host-build` diffs the C
+against it over every timestamped fixture, **exactly**: integer arithmetic on
+both sides, the same samples, the same clock, nothing to round.
+
 ---
 
-## The four frames are spaced out, and it is not tidiness
+## The frames are spaced out, and it is not tidiness
 
 **One frame leaves every 25 ms and never two together.** 0x600 at 0 ms, 0x601
-at 25, 0x602 at 50 and 0x603 at 75, with the EEPROM write in the slot at
-550 ms because that one sends nothing. Rates on the wire are unchanged — both
-fast frames are still 10 Hz and both slow ones 1 Hz — so nothing here concerns
-`S-AQY.TRI`.
+at 25, 0x602 at 50, 0x603 at 75 and 0x604 at 150 — slot 6, the first one
+free of the two fast frames' pattern — with the EEPROM write in the slot at
+550 ms because that one sends nothing. Both fast frames are 10 Hz and the slow
+ones 1 Hz.
 
 **It is bought with a bench measurement, not with reasoning.** The frames used
 to go out in two bursts, 0x600 and 0x601 back to back and 0x602 and 0x603
@@ -917,7 +1052,7 @@ on the MFD28/32.
 | Situation | Behaviour |
 |---|---|
 | flow is 0 | FuelNow 0.0 |
-| data source lost for > 500 ms | every bus-derived value zero, VddConv unchanged |
+| data source lost for > 500 ms | every bus-derived value zero, VddConv unchanged; 0x604 all 255 |
 | engine stopped (rpm 0 or counter 0) | flow zero, not frozen at its last reading |
 | distance < 100 m | FuelAvg 0.0 |
 | no kilometre completed yet | Range uses the 9 l/100 km the basis opens at |

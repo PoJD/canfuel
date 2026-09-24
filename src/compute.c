@@ -12,6 +12,13 @@
 
 /* --- helpers ------------------------------------------------------------ */
 
+/* Where the start detector is. The order is not meaningful. */
+#define HEALTH_START_UNKNOWN    0u      /* since power-up, no 0x280 yet        */
+#define HEALTH_START_STOPPED    1u      /* engine speed zero                   */
+#define HEALTH_START_CRANKING   2u      /* turning, not yet START_FIRED_RPM    */
+#define HEALTH_START_DIPWIN     3u      /* fired, watching the fall-back       */
+#define HEALTH_START_RUNNING    4u      /* measured, or never seen from rest   */
+
 static uint32_t elapsed(uint32_t now, uint32_t then)
 {
     /* The millisecond clock is free running and wraps after 49 days. Unsigned
@@ -283,6 +290,14 @@ void compute_init(compute_t *c)
      * filter here rather than at zero is what removes the undamped seeding
      * case from range_basis_update() -- see the comment there. */
     c->basis_q4 = (uint16_t)(RANGE_DEFAULT_L100_D << RANGE_BASIS_Q4);
+
+    /* Nothing is known about the start until the engine has been seen
+     * stopped: a converter that wakes with the crank already turning must not
+     * publish a crank time it started timing late. */
+    c->health.start_phase = HEALTH_START_UNKNOWN;
+    c->health.start_crank = HEALTH_UNKNOWN;
+    c->health.start_dip   = HEALTH_UNKNOWN;
+    c->health.start_clt   = HEALTH_UNKNOWN;
 }
 
 void compute_reset_trip(compute_t *c)
@@ -678,4 +693,181 @@ uint16_t compute_power_d(const decode_state_t *st, uint16_t torque_d)
     return clamp_u16(div_const_round(mul_u32_u16(mul_u32_u16(torque_d, 10u),
                                                  (uint16_t)rpm),
                                      POWER_DIVISOR / 2u, DIVC_95500), 0xFFFFu);
+}
+
+/* --- engine health, 0x604 ----------------------------------------------- */
+
+static uint8_t sat_u8(uint32_t v)
+{
+    return (v > HEALTH_SAT) ? (uint8_t)HEALTH_SAT : (uint8_t)v;
+}
+
+/* THE IDLE GRADE. roughness() in tools/idledips.py, line for line, and the
+ * order of the lines matters as much as their content -- the host diff holds
+ * the two to the same byte over every timestamped fixture. config.h, 0x604,
+ * has the reasoning behind every constant; what is here is only the order. */
+static void idle_grade(health_t *h, const decode_state_t *st, uint32_t now_ms)
+{
+    uint16_t rpm_q4 = st->rpm_q4;
+    uint32_t baseline;
+    bool     settled;
+
+    /* The gate: standing, pedal released, engine turning. The same two
+     * thresholds as the torque rule, as a strict complement of it. Leaving it
+     * forgets the baseline and the settle clock, but NOT the grade: the grade
+     * belongs to the start, and a drive between two idles is part of one. */
+    if (st->speed_mmh > STANDSTILL_MMH || st->throttle > THROTTLE_REST ||
+        rpm_q4 == 0u) {
+        h->in_gate = false;
+        h->have_prev_ms = false;
+        h->have_prev_rpm = false;
+        h->idling = false;
+        return;
+    }
+
+    if (!h->in_gate) {
+        h->in_gate = true;
+        h->idle_since_ms = now_ms;
+        h->base = (uint32_t)rpm_q4 << IDLE_BASE_SHIFT;
+    }
+    baseline = h->base >> IDLE_BASE_SHIFT;          /* a shift of 8: free */
+    settled = elapsed(now_ms, h->idle_since_ms) >= (uint32_t)IDLE_SETTLE_MS;
+
+    /* Settling means QUIET, not elapsed time: an excursion restarts it.
+     * "baseline - rpm >= trip", written without a signed subtraction: all
+     * unsigned, so it is byte arithmetic on this part rather than a signed
+     * 32-bit compare. */
+    if (!settled && baseline >= (uint32_t)rpm_q4 + IDLE_TRIP_RPM * 4u) {
+        h->idle_since_ms = now_ms;
+    }
+
+    if (settled) {
+        if (h->have_prev_ms) {
+            h->idle_ms += elapsed(now_ms, h->prev_ms);
+        }
+        /* One step per CHANGE of the field: a repeated value is the ECU
+         * holding its last 180-degree window, not a firing event. */
+        if (h->have_prev_rpm && rpm_q4 != h->prev_rpm_q4) {
+            uint16_t diff = (rpm_q4 > h->prev_rpm_q4)
+                          ? (uint16_t)(rpm_q4 - h->prev_rpm_q4)
+                          : (uint16_t)(h->prev_rpm_q4 - rpm_q4);
+            uint16_t step = (diff > ROUGH_DEADBAND_RPM * 4u)
+                          ? (uint16_t)(diff - ROUGH_DEADBAND_RPM * 4u) : 0u;
+            h->rough_acc = h->rough_acc + step - (h->rough_acc >> ROUGH_SHIFT);
+        }
+    }
+    h->prev_ms = now_ms;
+    h->have_prev_ms = true;
+    if (!h->have_prev_rpm || rpm_q4 != h->prev_rpm_q4) {
+        h->prev_rpm_q4 = rpm_q4;
+        h->have_prev_rpm = true;
+    }
+    h->idling = settled;
+
+    /* The baseline steps on ARRIVAL, every frame, because it is a time
+     * constant -- the opposite of the grade above, and deliberately so.
+     * base + rpm - (base >> 8) never goes below zero, so the unsigned
+     * wrap-around of the intermediate is exact. */
+    h->base = h->base + rpm_q4 - baseline;
+}
+
+/* THE START. start_fields() in tools/idledips.py is the oracle. */
+static void start_watch(health_t *h, const decode_state_t *st, uint32_t now_ms)
+{
+    uint16_t rpm = (uint16_t)(st->rpm_q4 >> 2);
+
+    if (st->rpm_q4 == 0u) {
+        if (h->start_phase == HEALTH_START_DIPWIN) {
+            h->start_dip = sat_u8(h->fire_rpm);     /* stalled: all the way */
+        }
+        h->start_phase = HEALTH_START_STOPPED;
+        return;
+    }
+
+    if (h->start_phase == HEALTH_START_UNKNOWN) {
+        h->start_phase = HEALTH_START_RUNNING;      /* already turning */
+        return;
+    }
+
+    if (h->start_phase == HEALTH_START_STOPPED) {
+        /* A new start. Everything about the last one goes, including the
+         * grade: an unconverged grade reads healthy, and this is where the
+         * convergence clock has to start again from. */
+        h->start_phase = HEALTH_START_CRANKING;
+        h->start_seen = true;
+        h->start_ms = now_ms;
+        h->start_crank = HEALTH_UNKNOWN;
+        h->start_dip = HEALTH_UNKNOWN;
+        h->start_clt = HEALTH_UNKNOWN;
+        h->rough_acc = 0u;
+        h->idle_ms = 0u;
+    }
+
+    if (h->start_phase == HEALTH_START_CRANKING) {
+        if (rpm >= START_FIRED_RPM) {
+            h->start_crank = sat_u8(elapsed(now_ms, h->start_ms) >>
+                                    START_CRANK_SHIFT);
+            /* C + 50, from hundredths: raw * 0.75 - 48 + 50 is never
+             * negative, and this runs once per start. */
+            h->start_clt = (st->clt_c100 == DECODE_TEMP_INVALID)
+                ? (uint8_t)HEALTH_UNKNOWN
+                : (uint8_t)div_const((uint32_t)((int32_t)st->clt_c100 + 5000),
+                                     DIVC_100);
+            h->start_phase = HEALTH_START_DIPWIN;
+            h->start_ms = now_ms;
+            h->fire_rpm = rpm;
+            h->low_rpm = rpm;
+        }
+        return;
+    }
+
+    if (h->start_phase == HEALTH_START_DIPWIN) {
+        if (elapsed(now_ms, h->start_ms) >= (uint32_t)START_DIP_MS) {
+            h->start_dip = sat_u8((uint32_t)(h->fire_rpm - h->low_rpm));
+            h->start_phase = HEALTH_START_RUNNING;
+        } else if (rpm < h->low_rpm) {
+            h->low_rpm = rpm;
+        }
+    }
+}
+
+void compute_on_engine(compute_t *c, const decode_state_t *st, uint32_t now_ms)
+{
+    /* The start first: a new start clears the grade. The frame that began it
+     * cannot be graded against the previous start anyway -- the frame before
+     * it was a zero, which closed the gate -- so the order is belt and
+     * braces rather than a fix. */
+    start_watch(&c->health, st, now_ms);
+    idle_grade(&c->health, st, now_ms);
+}
+
+uint8_t compute_idle_rough(const compute_t *c)
+{
+    /* Nothing graded yet this start reads "not known", never zero: zero is a
+     * perfectly smooth engine, the one wrong answer that would be believed. */
+    if (c->health.idle_ms == 0u) {
+        return (uint8_t)HEALTH_UNKNOWN;
+    }
+    return sat_u8(c->health.rough_acc >> ROUGH_OUT_SHIFT);
+}
+
+uint8_t compute_idle_health(const compute_t *c)
+{
+    uint16_t idx;
+
+    if (c->health.idle_ms < (uint32_t)IDLE_CONVERGE_S * 1000u) {
+        return (uint8_t)HEALTH_UNKNOWN;
+    }
+    /* 100/64 is 25/16: a uint8 x uint8 product and a shift, no division.
+     * The rough byte saturates at 254, and 254 x 25 >> 4 is 396, so the
+     * product fits a uint16 and the clamp below is what bounds it. */
+    idx = (uint16_t)(((uint16_t)compute_idle_rough(c) * 25u) >> 4);
+    return (idx > IDLE_INDEX_MAX) ? (uint8_t)IDLE_INDEX_MAX : (uint8_t)idx;
+}
+
+uint8_t compute_idle_s(const compute_t *c)
+{
+    uint32_t s = div_const(c->health.idle_ms, DIVC_1000);
+
+    return (s > 255u) ? 255u : (uint8_t)s;
 }

@@ -42,22 +42,20 @@ docs/next-drive.md question 6 proposes putting on the bus.
 Both sets of constants are frozen; the comments above them say why, and they
 are the only parts of this file that must not be re-tuned.
 
-**Nothing in src/ uses either of them, and that is deliberate.** The question
-they answer is answered offline over a capture, which the next session records
-anyway, so no firmware changes and no display channel is needed to find out
-whether the idle got better. Putting the count on the bus is a separate want
-with a separate cost, and it waits until the count has been shown to mean
-something.
+**`roughness()` is in the firmware now**, as the idle grade on frame 0x604,
+and this file is its oracle the way tools/replay.py is the oracle for the rest
+of the core: `replay.py --host-build` diffs the C against it over every
+timestamped fixture, exactly. So is `start_fields()`, for the start fields of
+the same frame. The count, `dips_cheap()`, stays here and not on the bus: a
+threshold has no resolution below itself, and it is still the instrument that
+was correlated with the ECU's own misfire counter. The bus carries the trend;
+a capture carries the diagnosis.
 
-That want is written down as question 6 of docs/next-drive.md, and if it is
-built, `dips_cheap()` becomes the oracle the C detector is checked against --
-event for event over the logs in TABLE, exactly, the way tools/replay.py is
-the oracle for the rest of the core. Two things would have to hold and both
-are easy to get wrong: the firmware steps the detector once per 0x280 FRAME
-including the frames that repeat a value (EWMA_SHIFT is a time constant only
-under that reading), and the settle timer restarts on an excursion rather than
-merely elapsing. The docstring of `dips_cheap()` has the measurement behind
-the second.
+Two things the firmware has to get right and both are easy to get wrong, and
+both are tested on both sides: the grade steps once per CHANGE of the speed
+field while the baseline steps once per FRAME, and the settle timer restarts
+on an excursion rather than merely elapsing. The docstring of `dips_cheap()`
+has the measurement behind the second.
 
 Usage
 -----
@@ -493,6 +491,99 @@ def idle_index(counts):
     """
     idx = (counts * 25) >> 4
     return IDLE_INDEX_MAX if idx > IDLE_INDEX_MAX else idx
+
+
+# --- the start ----------------------------------------------------------------
+#
+# The oracle for the start detector in src/compute.c, the way roughness() is
+# the oracle for the grade: same integer arithmetic, same clock (the frames'
+# own millisecond timestamps), so the two must agree EXACTLY and
+# `replay.py --host-build` holds them to it over every timestamped fixture.
+#
+# Three raw components and no index -- docs/frames.md, 0x604, says why the
+# index ships empty. Each is 255 when it is not known.
+#
+# ⚠ A START IS ONLY MEASURED IF IT WAS SEEN FROM STANDSTILL. The crank clock
+# starts at the first 0x280 with engine speed above zero that FOLLOWS one at
+# exactly zero. A converter that powers up with the crank already turning --
+# the key turned straight through, or persist_load() still scanning -- would
+# otherwise start its clock late and report a crank shorter than the real one,
+# which reads as a GOOD start. That is the one wrong answer that is believed,
+# so the rule is stricter than "first sample below START_FIRED_RPM": it wants
+# to have seen the engine stopped.
+
+START_FIRED_RPM = 400      # first firing; a decision, see src/config.h
+START_DIP_MS = 2000        # the fall-back after first firing is looked for this long
+START_CRANK_SHIFT = 5      # StartCrank unit: 2**5 ms = 32 ms, a shift and not a /50
+START_INVALID = 255
+START_SAT = 254            # 255 is "not known", so the fields saturate below it
+
+_STOPPED, _CRANKING, _DIPWIN, _RUNNING, _UNKNOWN = range(5)
+
+
+def start_fields(frames):
+    """(crank, dip, clt) for the last start in a log, each 255 if not known.
+
+    crank  crank to first firing, in units of 2**START_CRANK_SHIFT ms
+    dip    first-firing rpm minus the lowest rpm in the START_DIP_MS after it
+    clt    coolant at first firing, in C + 50 -- 255 if no 0x288 had arrived
+
+    Engine speed in whole rpm is the quarter-rpm field shifted down by two,
+    truncating, exactly as src/decode.c's decode_rpm() does.
+    """
+    phase = _UNKNOWN
+    clt_raw = None
+    t0 = fire_t = fire_rpm = low = 0
+    crank = dip = clt = START_INVALID
+    for f in frames:
+        if f.can_id == 0x288 and len(f.data) >= 2:
+            clt_raw = None if f.data[1] == 0xFF else f.data[1]
+            continue
+        if f.can_id != 0x280 or len(f.data) < 8 or f.ts_ms is None:
+            continue
+        t = f.ts_ms
+        rpm_q4 = f.data[2] | (f.data[3] << 8)
+        rpm = rpm_q4 >> 2
+        if rpm_q4 == 0:
+            if phase == _DIPWIN:
+                dip = min(fire_rpm, START_SAT)      # stalled: fell all the way
+            phase = _STOPPED
+            continue
+        if phase == _UNKNOWN:
+            phase = _RUNNING                        # already turning: not seen
+            continue
+        if phase == _STOPPED:
+            phase, t0 = _CRANKING, t
+            crank = dip = clt = START_INVALID
+        if phase == _CRANKING:
+            if rpm >= START_FIRED_RPM:
+                crank = min((t - t0) >> START_CRANK_SHIFT, START_SAT)
+                clt = START_INVALID if clt_raw is None else (clt_raw * 75 + 200) // 100
+                phase, fire_t, fire_rpm, low = _DIPWIN, t, rpm, rpm
+            continue
+        if phase == _DIPWIN:
+            if t - fire_t >= START_DIP_MS:
+                dip = min(fire_rpm - low, START_SAT)
+                phase = _RUNNING
+            elif rpm < low:
+                low = rpm
+    return crank, dip, clt
+
+
+def health_summary(path):
+    """What `replay.py --host-build` compares against test/build/replay_host.
+
+    The grade is roughness() over the whole log with nothing windowed, which is
+    what the firmware computes; idle_ms is its settled idle rounded to the
+    millisecond the firmware counts in. Empty for a log with no timestamps.
+    """
+    frames = canlog.parse_file(path, fix_doubled=os.path.basename(path).startswith("02"))
+    if not frames or frames[0].ts_ms is None:
+        return {}
+    _, counts, _, idle_s = roughness(series(path)[3])
+    crank, dip, clt = start_fields(frames)
+    return {"idle_rough": counts, "idle_ms": round(idle_s * 1000.0),
+            "start_crank": crank, "start_dip": dip, "start_clt": clt}
 
 
 # --- per-cylinder structure ------------------------------------------------
