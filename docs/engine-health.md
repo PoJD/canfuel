@@ -638,6 +638,17 @@ were not recreated and for no other reason** — the lamp itself has been
 uncovered and working since 2017, so both that historical observation and this
 drive's silence are readings of an instrument that reports.
 
+**25 September 2026: the condition was recreated, near enough, and the lamp
+stayed out.** About 100 km, mostly steady motorway at 4000–4500 rpm in 5th,
+**once about five minutes continuously at 4500** and briefly at 5000, on the
+new coil, plugs, leads, injectors and MAF. No fault, no lamp, no hesitation.
+*Owner-reported, not logged.* That is the regime the old lamp needed, so the
+full-load fault this section records now reads as **cleared on the new parts**,
+not merely unreproduced. ⚠ One drive, and "minutes above 4500" was
+five of them at 4500 rather than longer above it. For scale, the owner gives
+**4000 rpm in 5th as about 135 km/h on the speedometer**; the gearing is
+long.
+
 ---
 
 ### A candidate ROOT cause, from a photograph — and it is a hypothesis
@@ -2381,6 +2392,15 @@ reading from the driver's seat, not logged.
 close to August's 48 before any of the work. Owner-reported, **at 72 °C of
 oil**, which is the same state as August's 48 (73 °C), so the two compare
 directly. The morning's hot idle on the old MAF graded 92–150 at 70–72 °C.
+
+### The first long drive on all the new parts — 25 September 2026
+
+**About 100 km, and the owner's verdict is that the car drives well and
+definitely better than before the repairs.** Mostly steady motorway at
+4000–4500 rpm, five minutes held at 4500, brief excursions to 5000, no
+fault codes and no hesitation. Not logged. It closes the old full-load
+lamp question as far as one drive can; see *The historical fault*, above.
+The idle fault is a separate question, and this drive says nothing about it.
 
 ### What is owed, none of it urgent
 
