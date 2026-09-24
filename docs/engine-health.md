@@ -2347,6 +2347,42 @@ bay rather than the exhaust, so it is for the ordinary garage rather than the
 exhaust specialist. It belongs on the same list because it produces the same
 signature.
 
+**The owner's history with it, and whether the ECU's test clears it.** A few
+weeks before this, an engine fault turned out to be **a small hose torn off
+between the intake and this valve**. Once it was refitted the fault cleared,
+and the ECU's own tests report everything OK; the pump is heard running on a
+cold start. *Owner-reported.* What that settles and what it does not:
+
+- **It settles that the system delivers air when it is told to.** In
+  general, a secondary-air check runs the pump and looks for the front
+  probe going lean. A valve that opens passes.
+- ⚠ **It does not settle that the valve seals when it should be shut**, and
+  a leak at idle needs exactly that. A valve held partly open by carbon
+  still passes the flow test. That this is how this ECU's test works is general
+  knowledge, not from a document held here.
+- **A hose from the intake to the valve suggests this car's valve is
+  vacuum-switched**, while SSP 233 p. 13 describes the AQY's as opened by pump
+  pressure against a spring. The AQY function diagram on p. 20 does carry an
+  N112, the component that switches vacuum on engines with such a valve.
+  Which design this car has is something to see on the car. **If it is
+  vacuum-switched, a solenoid that leaks vacuum to it holds the valve open
+  on every warm idle** — the fault point 1 describes, with nothing torn.
+
+**Two free tests with the display, at a warm idle, before buying anything.**
+The pump does not run warm, so neither can hurt:
+
+1. **Pull the hose between the pump and the combination valve off the valve.**
+   Exhaust pulsing out of the valve's port, or soot inside that hose, means it
+   does not seal.
+2. **If there is a vacuum line to the valve, pull it off and plug it.** Watch
+   `IdleHealth` for a minute or two before and after at the same oil
+   temperature. If the valve was being held open, the grade should drop.
+   Put everything back before the next cold start.
+
+A replacement valve is inexpensive next to a manifold repair, so fitting one
+on the strength of test 1 is a reasonable call. Fitting one untested buys
+nothing to learn from.
+
 **What to ask the exhaust specialists for:** a leak test of the manifold
 itself, pressure or smoke, not a visual check. Ask them to look at the welds of the four tubes and at
 the pairing joints, the head gasket of the manifold at the cylinder 4 end, the
