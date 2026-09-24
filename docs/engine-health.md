@@ -1986,6 +1986,12 @@ this file ran on the cold start, repeated on `24`.
 The oil change and the oxygen sensors were set aside once the MAF explained
 the trim.
 
+**Until the idle fault is found, the owner avoids long idles**: the misfires
+are an idle phenomenon, and the exhaust has already paid for one of them once.
+`IdleHealth` on the display (0x604) is the trend to watch while the hoses and
+the other reads are worked through -- at a comparable oil temperature, or the
+comparison says nothing.
+
 ---
 
 ## The torque scale — settled, and not by this file's route
