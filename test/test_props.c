@@ -2,7 +2,7 @@
  * nothing but themselves.
  *
  * WHY THESE ARE SHAPED LIKE THIS. The rest of the suite compares the C core
- * against the Python reference over seventeen recordings. That is a strong
+ * against the Python reference over the recorded corpus. That is a strong
  * check and it has one blind spot, which cost the project a 6.4 % error in
  * every distance: the two implementations were written from the same table by
  * the same reasoning, so a mistake in the reasoning is a mistake in both, and

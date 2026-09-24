@@ -499,7 +499,7 @@ Three measurements, all from fixtures that were already in the repository:
   refuelling rule read it raw.
 
 **What was actually holding the rule up** was the consecutive-sample counter
-and nothing else. Replayed over all eighteen fixtures it never fires, and the
+and nothing else. Replayed over every fixture it never fires, and the
 longest run above the threshold is **1 of the 5** required. That is not a
 margin, it is a coincidence of how long tarmac stops last.
 
@@ -525,6 +525,10 @@ in motion anywhere but the bottom of its travel, on a sender known to be
 nonlinear. **A measurement taken in one corner of the state space is a
 measurement about that corner**, which is the same lesson as B10 and C8
 arriving by a third road.
+
+*Later:* `19` and `24` added the opposite corner — a brimmed tank on the move,
+at the float's top stop — and the rule did not fire. The middle of the travel,
+where this entry's trip was lost, is still unrecorded.
 
 ---
 

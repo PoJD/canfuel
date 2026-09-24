@@ -544,22 +544,22 @@ plus the drag at that speed* — superseded above — and it still matters becau
 what the engine reaches is what the scale is now read off. The answer
 separates three things a bare maximum runs together.
 
-**192 is the largest value in the fixtures and the engine did not make it.**
-Every sample of it is below 900 rpm with the throttle at rest, in the seconds
-after the key, in `06_trip_reset` and `18_coldstart_z1` — the ECU asking for
-torque to start the engine. Behind the same standstill-and-closed-throttle gate
-`compute_torque_d()` already applies, the largest b7 this engine has been seen
-to **make** is **185, at 4802 rpm in `17_drive_property_z1`** — 72.5 % of full
-scale.
+**Cranking is not driving.** 192 appears in `06_trip_reset` and
+`18_coldstart_z1`, every sample below 900 rpm with the throttle at rest in the
+seconds after the key — the ECU asking for torque to start the engine. Behind
+the gate `compute_torque_d()` applies, the largest b7 this engine has been seen
+to **make** is **206, at 4402 rpm in `19_postfix_drive_z1`** — 80.8 % of full
+scale — and 198 in `24_mafswap_drive_z1`.
 
-**And 185 is where the pull ended, not where the engine ran out.** All three
-wide-open bursts in that log have their maximum in the last quarter of the
-burst: the deepest goes 159 at 2609 rpm to 185 at 4921 rpm, monotonically, with
-the load byte climbing 25 → 37 → 43 alongside it, and then the throttle closes.
-**The engine never reached a steady filling at any speed in any of them.** That
-is exactly the flaw `next-drive.md` names as *"every pull was a low-gear
-sweep"*, with a number on it, and it has a consequence that document now
-carries: **b7max before the repair and b7max after it are not a comparison.**
+**A maximum is not a plateau, and until `19` there was no plateau.** All three
+wide-open bursts in `17_drive_property_z1` had their maximum in the last
+quarter: the deepest goes 159 at 2609 rpm to 185 at 4921 rpm, monotonically,
+and then the throttle closes. Every pull before the repair was a low-gear
+sweep that ended before the engine filled, so **b7max before the repair and
+b7max after it are not a comparison.** `19` fixed that by design: held pulls in
+4th, 23 wide-open bursts of which 14 had stopped rising before the throttle
+closed. That is what the scale is now read off — the plateau medians in the
+table above, not the maximum here.
 
 **b7 tracks the ECU's own relative load, which is what a charge-dominated model
 looks like.** The drive of 2026-09-10 showed a peak of 117 Nm on the display,
@@ -568,8 +568,9 @@ range it fell — **74–79 % of full scale against the 78.1 % relative load VCD
 logged over the same pulls** (`engine-health.md`). ⚠ **Those are a display
 maximum and a mean over wide-open samples, not one measurement**, so this is
 arithmetic pointing somewhere rather than a result. Where it points: **the gap
-from 185 to 255 is the same size as the gap between the measured air and the
-ECU's reference air.** Reaching 255 needs the engine to fill to 100 % of a
+from the plateau to 255 is the same size as the gap between the measured air
+and the ECU's reference air** — and the held pulls in `19` then put relative
+load at 78–81 % across the whole plateau. Reaching 255 needs the engine to fill to 100 % of a
 reference normalised to 0 °C and 1013 hPa — and that is the reference,
 measured, in *What "load" is a percentage of*. **No fuelling repair changes what
 the air-mass sensor reads.**

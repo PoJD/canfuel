@@ -36,23 +36,31 @@ It is a one-shot diagnostic response captured as the USBtin connected. The
 firmware ignores it, but the 0x7xx range can no longer be called completely
 quiet because of it.
 
-**0x200 is not periodic either, and it is new.** Three frames in the whole of
-`18_coldstart_z1.txt` and in no other log — DLC 3, payload `01 c0 80` every
-time, at 53.077, 53.133 and 90.031 s. The first two are 56 ms apart, so it is
-**two events, not three.** The firmware's six hardware filters do not accept it
-and nothing needs it.
+**0x200 is not periodic either, and it is the tester — settled.** Five frames
+in the whole corpus, DLC 3, payload `01 c0 80` every time: three in
+`18_coldstart_z1.txt` at 53.077, 53.133 and 90.031 s, and two in
+`20_postfix_final_z1.txt`, 56 ms apart. **Every one of them falls where VCDS
+was being reconnected to the ECU**: in 18 by accident, after the session fell
+over, and in 20 on purpose, as the test proposed below. Every other log with
+VCDS attached and logging has none. So it is VCDS opening a session, not the
+car. The firmware's six hardware filters do not accept it and nothing needs
+it; `test_0x200_is_a_one_off_too` pins where it appears.
 
 **It does not travel alone, and that is the part worth keeping.** `0x5D0`
-byte 0 is `0x00` in **all 8,893 frames of all eighteen logs** — except twice,
-and both exceptions sit 81 and 89 ms after a 0x200:
+byte 0 is `0x00` in **all 11,251 frames of it in the corpus** — except twice,
+and both exceptions sit 81 and 89 ms after a 0x200 in 18:
 
 | 0x200 | 0x5D0 b0 `00 → 02` | back to `00` | held |
 |---|---|---|---|
 | 53.077, 53.133 s | 53.158 s | 53.350 s | 192 ms |
 | 90.031 s | 90.120 s | 90.216 s | 96 ms |
 
-Two for two, on a byte that is otherwise constant across every recording this
-project has. **Whatever 0x200 announces, 0x5D0 b0 reports it.**
+Two for two in 18, on a byte that is otherwise constant across every
+recording this project has. ⚠ **But not in 20**: the two 0x200 frames there are
+followed by nothing on 0x5D0 at all. Whatever b0 reports, it is something that
+happened in 18's reconnection and not in 20's — plausibly the ECU having
+dropped the session rather than VCDS closing it cleanly. Nothing here needs it
+answered.
 
 **It is not the ECU announcing a misfire, and that was worth testing.** The
 attractive reading of a rare frame on an engine with a misfire problem is that
@@ -73,18 +81,15 @@ scatter of its deviation equals the scatter of the byte. **Anything this
 project ever builds to watch combustion from the bus has engine speed and
 nothing else to work with.**
 
-⚠ **Both events fall in the window where VCDS had dropped the ECU and was
-being reconnected by hand** — 42.4 to 129.3 s, see `test/fixtures/README.md`.
-That is suggestive and it is not a finding: the window is 27 % of the running
-log, so two events landing in it is a **7.5 %** coincidence, and `11`–`17`
-carry half an hour of bus with VCDS attached and logging without a single
-0x200. Attached is not the same as reconnecting, and nothing here separates
-them.
-
-**What would settle it costs two minutes** and the next session has both tools
-connected anyway: with the engine idling and a capture running, disconnect
-VCDS from the ECU and reconnect it. If 0x200 appears, it is the tester and not
-the car.
+**How it was settled.** In 18 both events fall in the window where VCDS had
+dropped the ECU and was being reconnected by hand — 42.4 to 129.3 s, see
+`test/fixtures/README.md`. On its own that was suggestive and not a finding:
+the window is 27 % of the running log, so two events landing in it is a
+**7.5 %** coincidence. The test was two minutes in the next session: with the
+engine idling and a capture running, disconnect VCDS from the ECU and
+reconnect it. **0x200 appeared, twice, 56 ms apart, and at no other time in
+241 s of whole-bus capture.** Attached is not the same as reconnecting, and
+this is what separates them.
 
 **A third unexplained event, kept apart from those two on purpose.** At
 97.107 s `0x0C2` byte 0 goes `ce → f0` and **never goes back**, while bytes 2
@@ -659,10 +664,13 @@ under-reads by roughly what the remap gained. A few per cent, in a known
 direction. **The drag line is unaffected in kind**, because it was fitted on
 this car as it is.
 
-**For reference, the highest the car has actually produced on record** is b7 =
-206 at 4402 rpm, a held full-throttle pull in 4th in `19_postfix_drive_z1` —
-about **178 Nm and 82 kW** at 1.06 Nm/bit. A peak rather than a plateau, so a
-statement about one burst and not a rating.
+**For reference, the highest the display would have shown on record**, taking
+`19_postfix_drive_z1` through the firmware's own arithmetic frame by frame, is
+**180.1 Nm at 3841 rpm** (b7 = 204) and **88.2 kW at 5737 rpm**. Held for a
+second, 176.8 Nm and 86.8 kW. The largest b7 itself, 206 at 4402 rpm, is only
+178.3 Nm, because the drag subtracted there is larger — the peak torque is not
+where the peak byte is. Single frames rather than a plateau, so statements
+about one burst and not ratings.
 
 **The scale moves with the drag line, and has to.** A rating is what is left
 of b7 after the drag, so the scale is the rating divided by *b7 minus the drag

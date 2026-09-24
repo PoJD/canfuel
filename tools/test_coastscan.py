@@ -16,6 +16,7 @@ re-running this against a new capture a test change.
 
 from __future__ import annotations
 
+import fixturecache  # noqa: F401 -- before any canlog import; see its docstring
 import glob
 import os
 import unittest
@@ -127,29 +128,50 @@ class AgainstTheFixtures(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.cuts = []
+        cls.per_log = {}
         for p in sorted(glob.glob(os.path.join(FIXTURES, "*.txt"))):
             for w in windows(samples(p)):
                 c = cut(w)
                 if c is not None:
                     cls.cuts.append((w, c))
+                    name = os.path.basename(p)
+                    cls.per_log[name] = cls.per_log.get(name, 0) + 1
 
     def test_a_log_without_timestamps_is_skipped_rather_than_guessed_at(self):
         self.assertEqual(samples(os.path.join(FIXTURES, "03_drive.txt")), [])
 
-    def test_the_corpus_holds_four_overrun_fuel_cuts(self):
-        """All four are in 17_drive_property_z1, the one log that drives."""
-        self.assertEqual(len(self.cuts), 4)
+    def test_the_corpus_holds_109_overrun_fuel_cuts(self):
+        """Four in 17_drive_property_z1, 72 in the hour of 19, 33 in 24.
+
+        Counted per log, so a change to the detector shows where it moved
+        rather than only that the total did.
+        """
+        self.assertEqual(len(self.cuts), 109)
+        self.assertEqual(self.per_log, {"17_drive_property_z1.txt": 4,
+                                        "19_postfix_drive_z1.txt": 72,
+                                        "24_mafswap_drive_z1.txt": 33})
 
     def test_the_cut_does_not_engage_the_moment_the_pedal_comes_up(self):
+        """0.77-4.27 s after the lift across the corpus, never at once.
+
+        17's four sat at 1.2-1.3 s, which once read as a fixed delay; the
+        drives show it is not one, and the shortest is still most of a second.
+        That is why a one-second coast shows nothing.
+        """
         delays = [c[0][0] - w[0][0] for w, c in self.cuts]
-        self.assertGreater(min(delays), 1.0, "a delay this long is why a "
-                                             "one-second coast shows nothing")
-        self.assertLess(max(delays), 1.6)
+        self.assertGreater(min(delays), 0.7)
+        self.assertLess(max(delays), 4.5)
 
     def test_fuel_comes_back_well_above_idle(self):
+        """1,380-3,500 rpm across the corpus, and never near idle.
+
+        There is no single resume speed: it moves with gear and road speed, so
+        17's 1,700-1,754 in first gear was one corner of a range and not the
+        rule. The floor is still far above the ~800 rpm idle.
+        """
         back = [c[-1][1] for _, c in self.cuts]
-        self.assertGreater(min(back), 1600)
-        self.assertLess(max(back), 1850)
+        self.assertGreater(min(back), 1300)
+        self.assertLess(max(back), 3600)
 
     def test_a_log_where_the_car_never_moves_has_no_coasts_at_all(self):
         cold = samples(os.path.join(FIXTURES, "18_coldstart_z1.txt"))

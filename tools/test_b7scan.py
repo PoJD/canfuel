@@ -13,6 +13,7 @@ because docs/frames.md argues from them:
 
 from __future__ import annotations
 
+import fixturecache  # noqa: F401 -- before any canlog import; see its docstring
 import os
 import unittest
 

@@ -157,7 +157,7 @@ static void test_eeprom_blindness_costs_no_fuel(void)
  * hole in the samples. A false positive wipes an average the driver has
  * watched for 600 km.
  *
- * ONE LOG, not five. The sweep over all seventeen fixtures lives in
+ * ONE LOG, not five. The sweep over every fixture lives in
  * test_compute.c and is the broader check; what this adds is the driver, and
  * the driver does not become more convincing by being run five times. */
 static void test_no_refuelling_under_the_scheduler(void)

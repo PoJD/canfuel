@@ -142,7 +142,7 @@ carries a generated block; a figure typed into prose only goes stale.
   arithmetic properties, plus `replay_host.c`
 - `tools/` — `canlog.py`, `replay.py` (which `--host-build` diffs against the C
   core), `cycles.py`, `checkdocs.py`, `divconst.py`
-- `test/fixtures/` — eighteen recordings from the vehicle, documented, of
+- `test/fixtures/` — twenty-four recordings from the vehicle, documented, of
   which the `_z1` ones are the only ones with trustworthy time
 - `docs/` — **`install.md` is the procedure**, plus decoding, frame layout,
   refuelling reset, timing and optimisation. **`next-drive.md` is the next
@@ -1436,7 +1436,7 @@ hitting the link error will find it.
 Real logs from the car. **Do not edit them.** The tests reference exact numbers
 from them.
 
-⚠ **Only the three `_z1` logs have trustworthy time**, recorded with
+⚠ **Only the `_z1` logs have trustworthy time**, recorded with
 `tools/usbtin_capture.py` and the adapter's own timestamps. `06_trip_reset` and
 `07_accel` carry a host application's timestamps and are **wrong by about a
 factor of two**; the other five carry no time at all, and there is no fixed

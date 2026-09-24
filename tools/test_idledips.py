@@ -25,6 +25,7 @@ What is worth holding, and what each test is really about:
 
 from __future__ import annotations
 
+import fixturecache  # noqa: F401 -- before any canlog import; see its docstring
 import os
 import unittest
 

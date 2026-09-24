@@ -18,6 +18,7 @@ asks for 60 km/h and the converter is really being told 12 km/h, every
 assertion downstream is meaningless and nothing else here would notice.
 """
 
+import fixturecache  # noqa: F401 -- before any canlog import; see its docstring
 import unittest
 from pathlib import Path
 

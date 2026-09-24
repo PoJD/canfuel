@@ -9,24 +9,22 @@ a figure typed into prose cannot be re-checked against a new capture.
 What it answers
 ---------------
 
-The torque scale rests on the premise that b7 = 255 corresponds to the rated
-crank torque plus the drag at that speed, and docs/next-drive.md already says
-that premise has never been tested because this engine has never been seen
-near full scale. This says how near it has been seen, which is a different and
-answerable question, and it separates three things that a bare maximum runs
-together:
+The torque scale was once derived from b7 = 255, on the premise that full
+scale is the rated crank torque plus the drag. This tool is how that premise
+was first doubted -- the engine had never been seen near 255 -- and it is now
+read off the plateau the engine actually reaches (docs/can-decoding.md
+question 8). It separates three things that a bare maximum runs together:
 
-* **Cranking is not driving.** The largest b7 in the fixtures is 192, and every
-  sample of it is below 900 rpm with the throttle at rest, seconds after the
-  key -- the ECU asking for torque to start the engine. Excluded by the same
-  standstill-and-closed-throttle gate the torque rule in src/compute.c uses,
-  which leaves 185 as the largest value the engine has been seen to make.
-* **A maximum is not a plateau.** In every wide-open-throttle burst in the
-  fixtures b7 was still climbing when the throttle closed, so 185 is where the
-  pull ended and not where the engine ran out. That is the flaw
-  docs/next-drive.md names as "every pull was a low-gear sweep", with a number
-  on it, and it is why b7max before the repair and b7max after it are not a
-  comparison.
+* **Cranking is not driving.** 192 appears in 06 and 18, every sample below
+  900 rpm with the throttle at rest seconds after the key -- the ECU asking for
+  torque to start the engine. Excluded by the gate the torque rule in
+  src/compute.c uses; behind it the largest b7 the engine has been seen to make
+  is 206, in 19_postfix_drive_z1.
+* **A maximum is not a plateau.** Every wide-open burst before the repair was
+  still climbing when the throttle closed -- a low-gear sweep that ended before
+  the engine filled -- which is why b7max before the repair and after it are
+  not a comparison. The held pulls in 19 are the first bursts that stop rising,
+  and the count per log says how many did.
 * **The byte is not 8-bit resolution.** b7 moves in steps of two over almost
   all of its range, with a parity flip at each multiple of 64. One step is
   therefore about 0.8 % of full scale rather than 0.39 %.

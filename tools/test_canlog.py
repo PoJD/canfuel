@@ -17,6 +17,7 @@ at the test and in docs/can-decoding.md.
 
 from __future__ import annotations
 
+import fixturecache  # noqa: F401 -- before any canlog import; see its docstring
 import statistics
 import unittest
 from pathlib import Path
@@ -175,34 +176,89 @@ class TestFixtureContent(unittest.TestCase):
     #: to it. Each has its own test below saying exactly where it appears.
     ONE_SHOT_IDS = {0x767, 0x200}
 
+    #: Recorded through the adapter's filter rather than off the whole bus, to
+    #: keep an hour of driving to a size a repository can hold. They carry
+    #: exactly the six identifiers the firmware accepts and nothing else, so
+    #: they say nothing about what else is on the bus -- and must not be read
+    #: as evidence that the other eight have gone quiet.
+    FILTERED = {"19_postfix_drive_z1.txt", "24_mafswap_drive_z1.txt"}
+    ACCEPTED_IDS = {0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480}
+
+    #: The last few milliseconds of 20, as the ignition goes off and the bus
+    #: dies under the capture: 0x000, 0x058, 0x078 and a 29-bit 0x143B7BA, all
+    #: DLC 4 and all `00 50 c0 90`, inside 8 ms of the final frame. Those are
+    #: not frames anybody sent -- they are the adapter decoding a bus that is
+    #: collapsing -- so they are excluded by name, and the test below pins
+    #: exactly that shape. Widening REGULAR_IDS to admit them would teach this
+    #: test to accept a corrupted identifier anywhere.
+    SWITCH_OFF_LOG = "20_postfix_final_z1.txt"
+    SWITCH_OFF_IDS = {0x000, 0x058, 0x078, 0x143B7BA}
+
+    def _without_switch_off(self, name, frames):
+        if name != self.SWITCH_OFF_LOG:
+            return frames
+        return [f for f in frames if f.can_id not in self.SWITCH_OFF_IDS]
+
     def test_regular_id_set(self):
         """Exactly 14 IDs are broadcast periodically -- see docs/can-decoding.md.
 
-        Exceptions: 0x520 is slow enough that it misses short logs, and the
-        one-shot IDs are not periodic frames at all.
+        Exceptions: 0x520 is slow enough that it misses short logs, the
+        one-shot IDs are not periodic frames at all, the filtered logs carry
+        only what the filter let through, and the switch-off burst in 20 is
+        excluded for the reason given beside SWITCH_OFF_IDS.
         """
         for name, frames in self.frames.items():
-            seen = {f.can_id for f in frames}
+            seen = {f.can_id for f in self._without_switch_off(name, frames)}
+            if name in self.FILTERED:
+                self.assertEqual(seen, self.ACCEPTED_IDS, name)
+                continue
             unexpected = seen - self.REGULAR_IDS - self.ONE_SHOT_IDS
             self.assertEqual(unexpected, set(), f"{name}: unknown IDs")
             self.assertTrue(seen >= self.REGULAR_IDS - {0x520},
                             f"{name}: missing IDs {self.REGULAR_IDS - seen}")
 
-    def test_0x200_is_a_one_off_too(self):
-        """0x200: three frames, all in 18, all DLC 3 and all `01 c0 80`.
+    def test_the_switch_off_burst_is_the_bus_dying(self):
+        """The excluded identifiers are one burst at the very end of 20.
 
-        Ten and forty-seven seconds after the engine started, in the only cold
-        start ever recorded. Nothing here decodes it and nothing is meant to --
-        this pins that it is three frames and not a periodic identifier
-        somebody missed, which is the only claim docs/can-decoding.md makes
-        about it.
+        Pinned so that the exclusion above cannot quietly swallow a real frame:
+        if any of these identifiers ever turns up anywhere else, or away from
+        the end of the log, or with another payload, this fails.
+        """
+        for name, frames in self.frames.items():
+            odd = [f for f in frames if f.can_id in self.SWITCH_OFF_IDS]
+            if name != self.SWITCH_OFF_LOG:
+                self.assertEqual(odd, [], name)
+                continue
+            last = frames[-1].ts_ms
+            self.assertEqual({f.can_id for f in odd}, self.SWITCH_OFF_IDS)
+            for f in odd:
+                self.assertLessEqual(last - f.ts_ms, 10)
+                self.assertEqual(f.data, bytes.fromhex("0050c090"))
+
+    def test_0x200_is_a_one_off_too(self):
+        """0x200 is VCDS opening a session, and appears only where one was.
+
+        Five frames in the corpus, all DLC 3 and all `01 c0 80`: three in 18,
+        inside the 42.4-129.3 s window where VCDS had dropped the ECU and was
+        being reconnected by hand, and two in 20, 56 ms apart, when VCDS was
+        disconnected and reconnected on purpose to test exactly this. Every
+        other log with VCDS attached -- 11 to 17, 21 to 23 -- has none, so it
+        is the reconnection and not the attachment. docs/can-decoding.md has
+        the test and the reasoning.
         """
         hits = [(n, f) for n, fr in self.frames.items() for f in fr
                 if f.can_id == 0x200]
-        self.assertEqual(len(hits), 3)
-        self.assertEqual({n for n, _ in hits}, {"18_coldstart_z1.txt"})
+        by_log = {}
+        for n, f in hits:
+            by_log.setdefault(n, []).append(f)
+        self.assertEqual({n: len(v) for n, v in by_log.items()},
+                         {"18_coldstart_z1.txt": 3, "20_postfix_final_z1.txt": 2})
         for _, frame in hits:
             self.assertEqual(frame.data, bytes.fromhex("01c080"))
+        for f in by_log["18_coldstart_z1.txt"]:
+            self.assertTrue(42400 <= f.ts_ms <= 129300, f.ts_ms)
+        a, b = by_log["20_postfix_final_z1.txt"]
+        self.assertEqual(b.ts_ms - a.ts_ms, 56)
 
     def test_0x5D0_byte0_moves_only_beside_0x200(self):
         """0x5D0 b0 is zero everywhere in the corpus except twice, and both
@@ -252,16 +308,22 @@ class TestFixtureContent(unittest.TestCase):
             self.assertEqual(collisions, set(), f"{name}: IDs already taken")
 
     def test_dlc_is_stable_per_id(self):
-        """Each ID keeps one length throughout; 0x050 has 4, 0x5D0 has 6."""
+        """Each ID keeps one length throughout; 0x050 has 4, 0x5D0 has 6.
+
+        The filtered logs carry neither 0x050 nor 0x5D0, so only 0x480 is
+        pinned there; the switch-off burst in 20 is excluded as above.
+        """
         for name, frames in self.frames.items():
             per_id: dict[int, set[int]] = {}
-            for f in frames:
+            for f in self._without_switch_off(name, frames):
                 per_id.setdefault(f.can_id, set()).add(f.dlc)
             for can_id, dlcs in per_id.items():
                 self.assertEqual(len(dlcs), 1, f"{name}: 0x{can_id:03X} has DLC {dlcs}")
+            self.assertEqual(per_id[0x480], {8})
+            if name in self.FILTERED:
+                continue
             self.assertEqual(per_id[0x050], {4})
             self.assertEqual(per_id[0x5D0], {6})
-            self.assertEqual(per_id[0x480], {8})
 
     # -- format A vs B ------------------------------------------------------
 
@@ -417,8 +479,9 @@ class TestFixtureContent(unittest.TestCase):
         test's story about *when* the state can occur was too narrow.
 
         0x43 does still look specific to the ignition ramp: it appears in the
-        two logs that start with the key being turned and in no other, across
-        seventeen recordings and some 112,000 frames of 0x1A0.
+        two logs that start with the key being turned and in no other recording
+        in the corpus. 18 and 19 were both started with the ignition already
+        on, and read 0x40 from their first frame.
         """
         ignition_on = ("01_ign_only.txt", "06_trip_reset.txt")
         for name, frames in self.frames.items():
@@ -455,8 +518,17 @@ class TestFixtureContent(unittest.TestCase):
             self.assertEqual(vals, {0x80}, name)
 
     def test_no_lambda_on_0x488(self):
-        """0x488 is constant, there is no lambda on the bus."""
+        """0x488 is constant, there is no lambda on the bus.
+
+        Still true after the repair and after the MAF swap: 20, recorded off
+        the whole bus at a hot idle, carries the same payload in all 16,595 of
+        its 0x488 frames. The filtered logs do not carry 0x488 at all, which
+        is the filter and not the car, so they are skipped rather than read as
+        a 0x488 that went away.
+        """
         for name, frames in self.frames.items():
+            if name in self.FILTERED:
+                continue
             payloads = {f.data for f in frames if f.can_id == 0x488}
             self.assertEqual(payloads, {bytes.fromhex("ffffff8dffffffff")}, name)
 

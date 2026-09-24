@@ -7,6 +7,7 @@ same fixtures, same expected numbers.
 
 from __future__ import annotations
 
+import fixturecache  # noqa: F401 -- before any canlog import; see its docstring
 import unittest
 from pathlib import Path
 

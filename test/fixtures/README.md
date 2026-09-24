@@ -44,11 +44,20 @@ stands. It is duration, average flow and distance that need a clock.
 | `16_rev2926_z1.txt` | slcan+Z1 | 18,198 | ✅ adapter | VCDS hold 6 — 2926 rpm held, neutral | ~99 °C |
 | `17_drive_property_z1.txt` | slcan+Z1 | 261,594 | ✅ adapter | 6 min driving on private land, 1st gear | ~100 °C |
 | `18_coldstart_z1.txt` | slcan+Z1 | 255,628 | ✅ adapter | **a cold start and 5 min of idle**, engine off at the start | 16.5–63.75 °C |
+| `19_postfix_drive_z1.txt` | slcan+Z1, **filtered** | 1,291,377 | ✅ adapter | **the post-repair drive**: 10 °C cold soak, cold start, three idles, coasts, held 4th-gear full-throttle pulls, hot idle. 60 min | 12.0–100.5 °C |
+| `20_postfix_final_z1.txt` | slcan+Z1 | 171,015 | ✅ adapter | whole bus after it: hot idle, VCDS disconnected and reconnected (0x200), switch-off. 241 s | 96.75–100.5 °C |
+| `21_oilcool_p1_z1.txt` | slcan+Z1 | 21,829 | ✅ adapter | cool-down point 1: ignition on, engine off, oil filter read by IR. 30 s | 72.75–73.5 °C |
+| `22_oilcool_p2_z1.txt` | slcan+Z1 | 10,956 | ✅ adapter | cool-down point 2, as above. 15 s | 71.25–72.75 °C |
+| `23_oilcool_p3_z1.txt` | slcan+Z1 | 11,023 | ✅ adapter | cool-down point 3, as above. 15 s | 68.25–69.0 °C |
+| `24_mafswap_drive_z1.txt` | slcan+Z1, **filtered** | 643,763 | ✅ adapter | **after the MAF swap**: warm restart, driving, a 52–60 °C oil idle, more driving with pulls, hot idle. 30 min | 27.0–100.5 °C |
 | `idle.txt` | slcan | 1,136 | none | short idle, colder engine | 68.25 °C |
 | `vcds/vcds-01-002-003.csv` | VCDS log | 1,019 | own clock | the diagnostic side of holds 1–6 | — |
 | `vcds/vcds-ride-002-003.csv` | VCDS log | 902 | own clock | the diagnostic side of the drive | — |
 | `vcds/vcds-coldstart-014-055.csv` | VCDS log | 497 | own clock | the diagnostic side of the cold start | — |
 | `vcds/vcds-coldstart-aborted-014-055.csv` | VCDS log | 7 | own clock | the same, aborted during cranking | — |
+| `vcds/vcds-postfix-drive-003-014.csv` | VCDS log | 5,714 | own clock | groups 003 and 014 across the whole of `19`, from about 15 s before the start | — |
+| `vcds/vcds-mafswap-002-032.csv` | VCDS log | 1,353 | own clock | the first half of `24`: 002 with 032, the adaptation learning from zero | — |
+| `vcds/vcds-mafswap-002-014.csv` | VCDS log | 1,717 | own clock | the second half of `24`: 002 with 014 | — |
 
 ## The three `_z1` logs
 
@@ -343,12 +352,18 @@ No other fixture is doubled (`test_no_other_fixture_is_doubled`).
 
 ---
 
-## ⚠ Every moving fixture has a nearly empty tank
+## ⚠ The tank has been recorded moving at both ends, and never in the middle
 
-**The tank level across the whole set: 0–10 L in every log that contains a
-moving car, and 50 L in `18_coldstart_z1`, which never moves.** So the float
-has only ever been recorded in motion at the bottom of its travel, on a sender
-that is known to be nonlinear — 6 L into a nearly empty tank settled at 5 L.
+**Until `19` and `24`, every log that contains a moving car had 0–10 L in the
+tank**, and the only one with a real level, `18_coldstart_z1` at 50 L, never
+moved. `19` and `24` are a brimmed tank on the move: the raw level sits at
+49–51 L for almost all of both, with slosh dips to 29–34 L while driving. So
+the float has now been recorded in motion at the **bottom** of its travel and
+at the **top stop**, on a sender that is known to be nonlinear — 6 L into a
+nearly empty tank settled at 5 L — and still never in the middle.
+
+The top stop is the least informative place to have it: rises are clipped
+there, so a false refuelling is at its least likely (`docs/refuel-reset.md`).
 
 That is not a curiosity. `docs/refuel-reset.md` sets its thresholds from the
 spread the level shows at rest and while driving, and those spreads are
@@ -357,9 +372,11 @@ cost: a 250 km trip cleared by a false refuelling that no fixture could have
 predicted and none can reproduce.
 
 **A capture on an ordinary drive with a half-full tank would close it**, and
-nothing else will. `docs/next-drive.md` step 4a asks for one.
+nothing else will. The brimmed tank of `19` was the opposite corner, chosen
+deliberately; the middle is still owed, and any ordinary capture a few hundred
+kilometres into a tankful supplies it.
 
-## `18_coldstart_z1.txt` — the cold one, and the only one
+## `18_coldstart_z1.txt` — the first cold one
 
 **The recording starts before the engine does.** Six minutes with the ignition
 already on: 41.4 s of nothing, the start, and then five and a quarter minutes
@@ -374,8 +391,8 @@ display — so **there are no 0x600–0x603 frames in it and that is correct.**
 | engine speed at idle | 930 rpm, stepping down to 803 |
 | fuel counter over the log | 162,510 µl |
 
-**It is the only recording of this car below 61 °C of oil**, and it cannot be
-made again — it was taken the week the injectors, plugs and leads were
+**It is the only recording of the engine below 61 °C of oil before the
+repair** — `19` and `24` start cold too, after it — and it cannot be made again — it was taken the week the injectors, plugs and leads were
 replaced, precisely because a bad cold start stops existing afterwards. What it
 was for and what came out of it is `docs/engine-health.md`, *The cold start,
 recorded once, before the parts were changed*.
@@ -402,6 +419,46 @@ reference exactly, which is the thing that path exists to guarantee.
   **129.3 s into this log** — so the start itself has no diagnostic data beside
   it. The offset was found by fitting engine speed between the two recordings,
   to 19.1 rpm rms against the VCDS log's own 10 rpm quantisation.
+
+## `19` to `24` — the post-repair drive and the MAF swap, one day
+
+**The session `docs/install.md` and the engine-health work were building
+towards**, taken with new plugs, leads, injectors and fuel filter fitted, and
+then the same afternoon with a new MAF. The findings live in the permanent
+documents: the torque scale in `docs/can-decoding.md` question 8, 0x200 in
+*IDs present on the bus*, the engine in `docs/engine-health.md`.
+
+**`19` and `24` are filtered** to the six identifiers the firmware accepts —
+0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480 — to keep an hour of driving to a size
+a repository can hold. The unfiltered capture behind `19` (65 MB) is kept
+outside the repository. **They say nothing about what else is on the bus**, and
+the identifier tests in `tools/test_canlog.py` skip them on purpose.
+
+| | `19` | `24` |
+|---|---|---|
+| soak | about 19 h, mirror console 10.0 °C | warm restart |
+| start | one crank, 0.83 s to 450 rpm, fell back to 331, caught | — |
+| driving | 56 min running, 32.16 km, 3.375 l commanded | about 30 min |
+| pulls | held full throttle in **4th** from ~2000 to 5400–5760 rpm, several times; peak 6001 | some, on a country road |
+| overrun cuts (`coastscan.py`) | 72 | 33 |
+| VCDS beside it | `vcds-postfix-drive-003-014.csv` | `vcds-mafswap-002-032.csv`, then `-002-014.csv` |
+
+**The capture in `19` began with the ignition already on**, so it has none of
+the 0x1A0 init ramp (`0x43`) that `01` and `06` start with, and reads `0x40`
+from its first frame.
+
+**`20` is the whole bus** for the last four minutes of the session: a hot idle,
+VCDS disconnected from the ECU and reconnected on purpose — which is where the
+two 0x200 frames are — and the switch-off. The switch-off ends in a burst of
+corrupted identifiers (0x000, 0x058, 0x078 and a 29-bit 0x143B7BA, all
+`00 50 c0 90`) inside the last 8 ms, as the bus collapses under the adapter.
+**Those are not frames anybody sent**, and `test_the_switch_off_burst_is_the_bus_dying`
+pins exactly that shape so the exclusion cannot swallow a real one.
+
+**`21`–`23` are three cool-down points**, each a few seconds of whole bus with
+the ignition on and the engine off, taken while the oil filter was read with an
+IR thermometer in the rain. Oil raw 125, 123–124 and 121–122. The readings and
+what they say about the oil scale are `docs/can-decoding.md` question 10.
 
 ## Naming
 

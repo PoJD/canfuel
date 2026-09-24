@@ -65,7 +65,7 @@ So the counter is *quicker* to believe a real fill and no more willing to
 believe a spurious one — the case the median genuinely covered better, a burst
 of noise longer than five seconds but shorter than thirteen, is not a shape the
 sender produces at rest. **1584 of 1622 measured at-rest samples were the same
-litre**, and `test_no_fixture_triggers_a_refuelling` replays all eighteen
+litre**, and `test_no_fixture_triggers_a_refuelling` replays every
 recordings and requires that none of them fires the rule.
 
 ---
@@ -97,12 +97,14 @@ under-reads — 6 L into a nearly empty tank settled at 5 L — so at five a rea
 side.
 
 ⚠ **AND THE FIXTURES CANNOT SHOW ANY OF THIS PROPERLY, WHICH IS WORTH
-KNOWING BEFORE TRUSTING THE NUMBERS ABOVE.** Every fixture that contains a
-moving car has **0–10 L in the tank**; the only one with a real level,
-`18_coldstart_z1` at 50 L, never moves. The float therefore has never been
-recorded in motion anywhere but the bottom of its travel, and the sender is
-nonlinear. A capture on an ordinary drive with a half-full tank would close
-this and nothing else will.
+KNOWING BEFORE TRUSTING THE NUMBERS ABOVE.** The float has been recorded in
+motion at the bottom of its travel (0–10 L, every drive up to `18`) and at the
+top stop (a brimmed tank in `19` and `24`, 49–51 L with slosh dips), and never
+in the middle. The top stop clips rises, so it is where a false reset is least
+likely; neither end shows how the sender behaves where it is nonlinear
+mid-travel. A capture on an ordinary drive with a half-full tank would close
+this and nothing else will. Replayed through the core, the brimmed drive did
+not fire the rule and never came close.
 
 So the instantaneous value is unusable while driving, and at rest it barely
 moves at all -- which is what lets a plain filter and a counter stand in for a
@@ -162,7 +164,7 @@ is not a demonstration, it is a *recording*: every one of these happened with
 nothing logging, and `18_coldstart_z1` opens at 50 L already filled rather
 than filling. *Watch out when implementing* below therefore stands unchanged,
 and so does the fixture suite's position — `test_no_fixture_triggers_a_refuelling`
-replays eighteen logs in which nobody ever refuels.
+replays every log, and in none of them does anybody refuel.
 
 ⚠ **The jerrycan is the one worth having and the one nobody wrote down.** A
 jerrycan is a small fill and `REFUEL_RISE_L` is a threshold about small
