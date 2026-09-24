@@ -2073,6 +2073,101 @@ hesitate, and the owner reported that gone that afternoon, but `IdleHealth`
 grades one firing against the next and cannot see a slow hesitation. So the
 two can both be true.
 
+### Knock retard per cylinder: cylinder 4, and only cylinder 4 — 24 September, evening
+
+**Groups 022 and 023 logged over a drive of about nine minutes**
+(`vcds/vcds-knock-022-023.csv`; VCDS dropped at the start again, and the first
+file, `-aborted-`, is the engine standing still). No bus capture was running,
+so nothing here aligns with engine-speed dips.
+
+| cylinder | samples retarded | largest retard |
+|---|---|---|
+| 1 | 0 of 952 | 0.0 °CA |
+| 2 | 0 of 952 | 0.0 °CA |
+| 3 | 0 of 952 | 0.0 °CA |
+| **4** | **41 of 952, in 16 separate events** | **6.7 °CA** |
+
+**Every event has the same shape**: a step of 4.5–6.7 °CA, then a recovery
+of about 0.75 °CA per sample back to zero within a few seconds. That is knock
+control reacting to something and then giving the timing back, not a
+constant offset.
+
+**Where it happens:** 960–2000 rpm at 18–56 % load, which is pulling away and
+accelerating at low engine speed. **Never at idle** (0 of 443 idle samples),
+never above 2500 rpm, and none of the 54 samples above 50 % load at higher
+engine speed.
+
+**What it says, and what it does not:**
+
+- **It names a cylinder.** This is the first name the investigation has that
+  comes from the ECU and not from a plug or a mixed exhaust. Cylinder 4 is also
+  in the 1 and 4 pair whose plugs were worse.
+- ⚠ **Knock control names what the sensor hears, not what caused it.** Either
+  cylinder 4 really knocks at low speed and part load, for example running
+  leaner or hotter than the others or carrying deposits, or a mechanical noise
+  lands in cylinder 4's knock window, and a lifter or something loose near that
+  cylinder would do that. The log cannot separate the two.
+- ⚠ **It does not explain the idle misfires by itself.** The retard happens
+  off idle and the misfires at idle. One cylinder that is wrong in a way that
+  shows up in both regimes would link them; nothing here proves it is the same
+  cylinder.
+- The remap is relevant here. Whatever it did to part-load advance applies to
+  all four cylinders, so it cannot explain one cylinder alone. It can explain
+  why this engine sits close enough to the knock limit for one cylinder to
+  cross it.
+
+**Swapping parts tells cylinder from part.** Swap the plug from cylinder 4 with
+cylinder 2 and log 022/023 again on the same kind of drive. If the retard moves
+to cylinder 2, it was the plug; if it stays on 4, it is the cylinder or
+something near it. The same swap works for the injector, at more effort. A
+bus capture beside the next log costs nothing and lets the events be aligned
+with engine speed.
+
+### What `deaktiv.` in group 014 is: a load threshold
+
+**The owner asked whether detection switching itself off correlates with the
+misfire numbers. It correlates with the load, and cleanly.** Across both 014
+logs of 24 September, all running samples, by the ECU's own load figure from
+the same group:
+
+| load | `19`, deaktiv. | `24`, deaktiv. |
+|---|---|---|
+| < 20 % | **1,275 of 1,299** | **354 of 354** |
+| 20–25 % | 109 of 992 | 78 of 913 |
+| ≥ 25 % | 165 of 3,392 | 52 of 450 |
+
+**Below about 20 % load, detection is off, almost without exception.** That is
+all of the overrun, which is why the owner sees it while engine braking, and
+most of rolling with the pedal up. Above it, the few `deaktiv.` samples fall
+on transients.
+
+**At a standstill idle it only happens in `24`, and only because the new MAF
+put the idle load right on the line.** In `24`, 45 of 45 standstill idle
+samples at 19.x % load read `deaktiv.`, 30 of 117 at 20.x %, and 3 of 689
+at 21 % and above. Nearly all of them are one 30 s stretch at the end of the
+session, on a hot idle with the load at 19.5–20.3 %. In `19` the old MAF
+over-read the air, so the idle load sat mostly at 23–44 %, and none of its
+standstill idle samples read `deaktiv.` below 21 %.
+
+**The counter's values do not predict it.** Detection switched off at idle
+after a zero on 5 of 7 occasions, not after a run of counts. Once it is off
+the counter reads zero, so `deaktiv.` samples showing few counts is a
+consequence and not a correlation.
+
+**What this changes:** on a hot idle with the new MAF, **the ECU may simply not
+be looking** part of the time. A zero from 014 there does not clear anything,
+which is one more reason to judge the idle by `IdleHealth` and engine speed
+rather than by 014. ⚠ The threshold is read off two logs of this car; it is
+not from a document, and the exact figure may depend on engine speed or
+temperature.
+
+### `IdleHealth` at a known temperature — 24 September, evening
+
+**60–70 at 69 °C of oil, sometimes over 100.** The first reading with the
+temperature beside it. Against `frames.md`'s day-one table that is the bottom
+of the new-MAF hot band (68–121), still above August's hot idle at 48. One
+reading from the driver's seat, not logged.
+
 ### What is owed, none of it urgent
 
 - **Group 032 again, a few hundred kilometres after the MAF swap**, one
@@ -2080,8 +2175,10 @@ two can both be true.
   has settled. The swap reset it to 0.0 / 0.0 and it had learned −3.1 % /
   +4.7 % by the end of the afternoon. Easy to forget, and it is the one reading
   that says whether the rich trim is really gone.
-- **Blocks 022/023, knock retard per cylinder** — the cheapest read on the
-  idle misfires. Log them together rather than photographing a screen, both
+- **Blocks 022/023 again, after swapping cylinder 4's plug with cylinder
+  2's**, with a bus capture running. The first log is above: cylinder 4
+  retards and nothing else does. This read was originally planned as the cheapest
+  read on the idle misfires. Log them together rather than photographing a screen, both
   at a standstill idle at 50–60 °C of oil, where `24` had the most events, and
   on a pull under load, where knock control does its real work, with a bus
   capture running so the log can be aligned on engine speed. What each outcome

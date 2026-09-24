@@ -58,6 +58,8 @@ stands. It is duration, average flow and distance that need a clock.
 | `vcds/vcds-postfix-drive-003-014.csv` | VCDS log | 5,714 | own clock | groups 003 and 014 across the whole of `19`, from about 15 s before the start | — |
 | `vcds/vcds-mafswap-002-032.csv` | VCDS log | 1,353 | own clock | the first half of `24`: 002 with 032, the adaptation learning from zero | — |
 | `vcds/vcds-mafswap-002-014.csv` | VCDS log | 1,717 | own clock | the second half of `24`: 002 with 014 | — |
+| `vcds/vcds-knock-022-023.csv` | VCDS log | 952 | own clock | groups 022 and 023, knock retard per cylinder, over a drive on the evening of 24/9/2026. **No bus capture beside it** | — |
+| `vcds/vcds-knock-aborted-022-023.csv` | VCDS log | 55 | own clock | the same, VCDS dropped at the start; engine stopped throughout | — |
 
 ## The three `_z1` logs
 
