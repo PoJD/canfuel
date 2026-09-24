@@ -574,10 +574,16 @@ seen in 1st and 2nd are mostly the three-second hold of an event that began
 while standing, carried into the pull-away. The gear is inferred from road
 speed over engine speed, so a coast with the clutch down can be misfiled,
 which covers the odd one in a high gear. **That points the second fault at
-the idle regime**: low load, high manifold vacuum, little air. An intake leak,
-which matters most at high vacuum, fits that regime. So does a weak ignition
-at light load. The owner will check the old vacuum hoses directly rather than
-through a capture.
+the idle regime**: low load, high manifold vacuum, little air. ⚠ **An intake leak fits the
+regime and not the trims, as the owner pointed out.** Unmetered air leans the
+mixture most at idle, where the air flow is smallest, and the ECU would answer
+with a *positive* idle trim. The idle trim with the new MAF is **−3.1 %**. A
+leak big enough to misfire should show up there, so the trims argue against
+one. A small leak at a single runner is diluted four ways by the one oxygen
+sensor and is not excluded, but it is not what the numbers point at. Weak
+ignition at light load, and how far a counter that switches itself off can be
+trusted, are no less likely. The owner will look at the old hoses anyway,
+directly rather than through a capture.
 
 **So the rich trim and the misfires/puffs are two faults, and only the first
 is solved.** Plugs, leads, injectors, fuel filter, regulator and now the MAF
