@@ -2393,6 +2393,20 @@ close to August's 48 before any of the work. Owner-reported, **at 72 °C of
 oil**, which is the same state as August's 48 (73 °C), so the two compare
 directly. The morning's hot idle on the old MAF graded 92–150 at 70–72 °C.
 
+⚠ **How far that comparison goes, since the owner asked.** August's 48 is
+`11_idle_noac_z1`, **22 s of settled idle in a single VCDS hold**. That is
+shorter than the 30 s `IDLE_CONVERGE_S` the device waits before it publishes
+at all, and the grade scatters 13–15 % between 10 s windows. The A/C-on hold
+beside it graded 29. It was on the old MAF, but in August that MAF still read
+right: air per commanded fuel was 10.2 against the new one's 10.45, and the
+over-reading only appeared after the injector change. So on the MAF the
+two are comparable. On length they are not: **57 against two short holds of
+48 and 29 says the hot idle is back in August's neighbourhood, not better
+than it.** And it is not the healthy engine this index still lacks, because
+August's idle stumbled too, only less at that temperature. The owner's verdict
+that the engine is subjectively in its best state yet is not contradicted by
+any of this.
+
 ### The first long drive on all the new parts — 25 September 2026
 
 **About 100 km, and the owner's verdict is that the car drives well and

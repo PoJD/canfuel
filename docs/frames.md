@@ -291,7 +291,7 @@ What the display shows on day one, from the grade over the recordings so far:
 |---|---|
 | warm idle, oil 52–60 °C, new MAF | 73–100 |
 | hot idle, oil 69–71 °C, new MAF | 68–121 |
-| August's hot idle, before any work | 48 |
+| August's hot idle, before any work: one 22 s hold (`11`); 29 in the A/C-on hold beside it (`12`). The device itself would still read 255 after 22 s | 48 |
 
 ⚠ **The index is comparable only at comparable temperature.** The grade is not
 monotonic through a warm-up — it falls and then climbs — so a before/after
