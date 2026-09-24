@@ -254,6 +254,14 @@ cannot separate the two, and it matters to 0x604 whichever it is.
 this engine starts rather than a symptom, though two is still a small number.
 The crank was shorter today, from a colder soak.
 
+**The shorter crank fits a rail that held its pressure overnight.**
+`engine-health.md` records that when the regulator was changed the system held
+no residual pressure, and a rail that bleeds down has to be refilled by the
+pump before the engine can fire. Today it fired 0.41 s sooner after 19 hours
+standing rather than 10. That is consistent with the new injectors sealing. It
+is not a pressure measurement: n = 2, and cranking time also moves with the
+battery and the temperature.
+
 ## The overrun: cuts from the first coast that could
 
 `coastscan.py`: **157 coast windows, 72 with the injectors shut**. The coldest
@@ -403,12 +411,39 @@ since the last fill. Either way nothing belongs in `config.h` yet. A correction
 factor is only right for a mismatch that is going to stay, and every
 candidate here is a fault to fix.
 
-**On replacing both oxygen sensors preventively** (the owner's intention):
-both test OK. **Replace them after the second 032 reading, not before.** A new
-pre-cat sensor restarts the adaptation. If it goes in before 032 has been read
-again, two changes land between the readings and neither can be judged. If it
-goes in after, the sensors are a clean test of their own: trims that fall back
-towards zero on a new sensor say the old one was lying, however OK 034 read.
+**Could the sensors be lying anyway? Possible, and the rear sensor argues
+against it.** Block 034 checks only how fast the pre-cat sensor switches (a
+period of 0.53 s), not *where* it switches. A sensor whose switching point had
+drifted rich would pass 034 and would drive exactly these negative trims, with
+the ECU leaning out an engine that was already right. But the post-cat sensor
+is an independent witness, and at the hot idle it read **0.665–0.725 V**
+(037, 036). An engine leaned out by a lying front sensor would fill the
+catalyst with oxygen and pull the rear sensor down towards its lean end. It
+was not there. ⚠ Those voltage bands are the general behaviour of a switching
+sensor and are not from a document this project holds. For the sensors to be
+the cause, both would have to be wrong in the same direction.
+
+**The owner's decision: the oil and both oxygen sensors change together, at a
+garage, and the measuring happens after.** That gives up the separation the
+one-change-at-a-time order above would have bought: if the trims come back
+to zero, nobody will know whether it was the oil or a sensor. It is taken
+deliberately, because driving on a −16 % adaptation while the steps are
+separated costs more than knowing which step fixed it. **After it,
+everything in the fuel and combustion path except the lines from the tank
+will be new**, so a trim that is still large points outside those parts, at:
+
+1. **rail pressure**: a faulty or mis-specified regulator, even though it is
+   new. A pressure gauge on the rail settles it in minutes, at idle with the
+   vacuum hose on and off
+2. **the MAF over-reading**: the air side matched the earlier drive (load
+   78–81 %, 88 g/s), which rules out a *change*, not a unit that has read
+   high all along. A swap with a known-good one is the test
+3. **one of the new injectors leaking**: the owner's own remaining candidate
+
+Two things can be set aside already. The coolant sensor is verified against
+VCDS, so a wrong warm-up enrichment is out. The purge is out by block 070. An
+exhaust leak ahead of the front sensor would pull the trims positive, the
+opposite direction.
 
 ## The two screens nobody explained
 
@@ -436,7 +471,6 @@ towards zero on a new sensor say the old one was lying, however OK 034 read.
 | fixtures | recorded, pending | promote `pending/` into the corpus and update the seven tests it breaks, as a change of their own |
 | `next-drive.md` | followed | delete once the spec has taken what it needs; step 30 (032 again) moves into whatever replaces it |
 
-**Owed by the owner, none of it urgent:** an oil change before the next 032
-reading (the dipstick smelt of no petrol, which weakens but does not settle
-candidate 2); litres at the next fill-up against `TripFuel`; 032 again after a few
-hundred km, before any oxygen sensor is changed.
+**Owed by the owner, none of it urgent:** the oil and both oxygen sensors
+changed at a garage (the owner's decision), then 032 after a few hundred km;
+litres at the next fill-up against `TripFuel`.
