@@ -2367,39 +2367,61 @@ cold start. *Owner-reported.* What that settles and what it does not:
   it open at every warm idle. The hose that tore is not that line; see
   below.
 
-**When the hose was off, and what it was.** *Owner-reported:* it was torn off
-**during the heater replacement in August, before the first start of the
-August recordings**, and stayed off unnoticed. **The last photograph showing the engine fault is
-dated 11 August 2026**, the same day as every August recording (`09`–`17`
-and both August VCDS logs). The hose was refitted that day or a few days
-later; the exact date is not recorded. No lamp came on before that, and the weather was warm enough
-that the pump never ran on a cold start. **It joins the intake ahead of the
-MAF**: it is the pump's air feed from the filtered side. With it off, the
-pump could only have drawn unfiltered engine-bay air. It was not an
-unmetered leak into the engine, and it says nothing about how the valve is
-switched.
+**The fault, from the owner's photograph of VCDS, 11 August 2026 16:39.**
+`01-Motor`, `06A 906 018 EJ`: **16795 – secondary air system, P0411 – 35-00**,
+which VCDS's Czech translation renders as "průtok bez chyby" and which is
+the incorrect-flow fault. That is between the two August VCDS logs
+(16:27 and 16:57), on the day every August recording was made (`09`–`17`).
 
-⚠ **An earlier revision of this paragraph read the hose as a vacuum line to
-the valve**, and from that concluded that the valve was vacuum-opened, that it
-was certainly shut in August, and that the August recordings carried an
-unmetered air leak. **All three are withdrawn.** The valve is as SSP 233
-describes it, opened by pump pressure and closed by a spring. Whether it
-sealed in August is as unknown as whether it seals now. The test below is
-what answers it.
+**The hose, as the owner describes the layout.** The combination valve has
+three connections: the pipe to the exhaust, the hose from the secondary-air
+pump, and **a small hose to the intake ahead of the MAF**. The pump has two:
+its outlet to the valve, and its inlet drawing from the intake. **The hose that
+tore was the small one from the valve to the intake.** It came off during
+the heater replacement in August, before the first August start. The engine
+fault was last photographed on 11 August, and the hose was refitted that day
+or a few days later; the exact date is not recorded. No lamp came on before
+that, because the weather was warm enough that the pump did not run on a cold
+start.
 
-**Two free tests with the display, at a warm idle, before buying anything.**
-The pump does not run warm, so neither can hurt:
+**What that small hose is for is not in SSP 233**, which describes the valve
+only as opened by pump pressure and closed by a spring. That it is a vent
+or reference line for the valve is a hypothesis. **It ends ahead of the MAF,
+so with it off nothing unmetered reached the engine**, and the August
+recordings carry no air leak from it.
+
+⚠ **Two earlier revisions of this paragraph got the hose wrong**: first as a
+vacuum line that opens the valve, then as the pump's feed. The conclusions
+drawn from the first, a vacuum-opened valve, a valve certainly shut in
+August and an unmetered leak in the August fixtures, stay withdrawn.
+
+**What the layout adds: a path for exhaust into the intake.** If the valve
+no longer seals, exhaust pulses reach its body, and the small hose connects
+that body to the intake ahead of the MAF, which sits slightly below
+atmospheric at idle. **A leaking valve could therefore feed exhaust gas into
+the intake, an uncontrolled EGR at idle**, and exhaust gas diluting the charge
+at idle is a well-known cause of a rough idle. That is general knowledge, and
+whether this valve's internals allow it is not established. The MAF would
+count that gas as air, so it would not show as an unmetered leak either. It
+is the one mechanism on this side of the engine that could reach **inside**
+the cylinders and so explain the stumble itself, which the manifold crack could
+not. It is a hypothesis with a free test (test 2 below).
+
+**Two free tests at a warm idle, before buying anything.** The owner's
+description leaves no vacuum line on the valve, so the vacuum test an earlier
+revision listed is dropped. The pump does not run warm, so neither can hurt:
 
 1. **Pull the hose between the pump and the combination valve off the valve.**
    Exhaust pulsing out of the valve's port, or soot inside that hose, means it
    does not seal.
-2. **Only if there turns out to be a vacuum line to the valve: pull it off and plug it.** Watch
-   `IdleHealth` for a minute or two before and after at the same oil
-   temperature. If the valve was being held open, the grade should drop.
-   Put everything back before the next cold start.
+2. **Pull the small hose off at the intake end, the one that tore**, at a
+   warm idle. Pulsing, warm or smelly gas coming out of it, or soot or
+   condensation inside it, means exhaust is reaching the intake through the
+   valve. Put it back straight after; open, it only draws engine-bay air
+   ahead of the MAF, as it did all of August.
 
 A replacement valve is inexpensive next to a manifold repair, so fitting one
-on the strength of test 1 is a reasonable call. Fitting one untested buys
+on the strength of either test is a reasonable call. Fitting one untested buys
 nothing to learn from.
 
 **What to ask the exhaust specialists for:** a leak test of the manifold

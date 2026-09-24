@@ -173,7 +173,7 @@ here is owner-supplied from service records.
 | Throttle body `028 129 748` | **original, never replaced.** 6/2026: inspected, new gasket, adaptation run. It was already clean, with no carbon, so it had evidently been cleaned at some earlier date nobody recorded | the car's |
 | Fuel pressure regulator `037 133 035 C` | 7/2026 | ~0 |
 | Catalytic converter, silencer, exhaust gaskets: **everything from the flex pipe to the tail** | **9/2026** *(previously 10/2017)* | ~0 |
-| Secondary-air pump feed hose (joins the intake ahead of the MAF) | torn off during the August heater work; engine fault last photographed **11/8/2026**, refitted that day or a few days after | — |
+| Small hose from the secondary-air combination valve to the intake ahead of the MAF | torn off during the August heater work; fault **16795 / P0411** (secondary air, incorrect flow) photographed **11/8/2026 16:39**, hose refitted that day or a few days after | — |
 | **Exhaust manifold** (stainless, double-flow, SSP 233 p. 7) | **original, never replaced** *(owner nearly certain)* | the car's |
 | Injectors `06A 906 031 C`, new from the UK | **9/2026** | ~0 |
 | **Spark plugs and ignition leads** | **17/9/2026** | ~0 |
