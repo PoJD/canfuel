@@ -336,15 +336,27 @@ first:
    hard, hot drive is exactly what boils the light fraction off, and a nose
    picks up heavy dilution far more reliably than a few per cent. The oil
    change and the 032 reading after it are still the test
-3. rail pressure raised by something disturbed while the rail was off, such as
-   a vacuum reference hose to the pressure regulator, or one that has cracked.
-   The rubber on and around the rail is visibly cracked in the owner's
-   photograph from the injector change. Whether this engine's regulator is on
-   the rail and vacuum-referenced is not held here. A leak into the reference
-   line raises the pressure most at idle vacuum, which is the direction of
-   −16.4 against −13.3
+3. rail pressure raised by something disturbed while the rail was off.
+   **Weak.** The regulator (`037 133 035 C`) and its vacuum hose are new since
+   7/2026 (`vehicle-history.md`), which is before the −4.7 / +1.6 baseline was
+   read, so neither is a change between the two readings. The cracked hose in
+   the owner's photograph is not the regulator's; see below
 4. one new injector leaking at the seat. This is least likely with four unused
    parts
+
+**The cracked hose feeds the injector air shrouds, and it is not a suspect.**
+VW Self-Study Programme 233 (*2.0-litre engine*, AQY/ATU, section *Fuel
+injection*): on the AQY *"the injectors have an additional air shroud which
+improves mixture preparation. An air pipe is connected to the intake pipe. Each
+injector is, in turn, connected to the air pipe. The vacuum in the intake
+manifold draws air out of the intake pipe"*, the fuel is *"finely atomised"*,
+and the shroud *"is mainly effective in the part-throttle mode"*. (The ATU
+variant has no air shroud.) So that air is taken from the intake pipe
+downstream of the MAF and is **metered**. The hose runs from the intake pipe to
+the metal air pipe along the injectors, near intake-pipe pressure rather than
+manifold vacuum, so even a crack through it would leak little. **The owner
+reports the cracking is in the surface rubber only**, on a thick-walled hose.
+Nothing to do.
 
 A MAF that over-reads would richen the mixture as well. But the MAF is from
 2018, and the load and airflow match the earlier drive exactly (78–81 %,
