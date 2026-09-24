@@ -311,20 +311,40 @@ moving off 0.0 confirms the earlier 0.0 was a reset. The adaptation learned
 −13 % from zero in one drive.
 
 **A near-uniform correction at idle and part load says the engine gets more
-fuel per commanded millisecond than the ECU expects.** The injectors are the
-only part in the fuel path whose delivery changed. The candidates, cheapest
+fuel than the ECU expects for the air it measures.** The candidates, cheapest
 first:
 
-1. **the new injectors are a different flow class from the originals.** Same
-   look, different part number. **Compare the Bosch numbers on the old set and
-   the new one**; it costs nothing, and the old set is labelled
-2. rail pressure raised by something disturbed while the rail was off, such as
-   a vacuum reference hose to the pressure regulator. Whether this engine's
-   regulator is on the rail and vacuum-referenced is not held here. A higher
-   pressure difference at idle vacuum would richen idle more than part load,
-   which is the direction of −16.4 against −13.3
-3. one new injector leaking at the seat. This is least likely with four unused
-   parts. It would also be the old hypothesis all over again
+1. ~~**the new injectors are a different flow class from the originals.**~~
+   **Ruled out.** Old and new are the same part: VW `06A 906 031 C`, Bosch
+   `0 280 155 791`, photographed on both sets.
+2. **fuel vapour from the oil, through the crankcase ventilation.** Years of
+   an injector dribbling into a cold port is a textbook way to thin the oil
+   with petrol. That petrol boils out as the oil warms and goes back into the
+   intake through the breather *after* the MAF, so it is fuel the ECU never
+   commanded, and the adaptation removes it. It fits three things nothing
+   else here fits together. It depends on oil temperature: misfires at 50–65 °C
+   of oil, none cold, none hot once the fuel has boiled off. It explains why
+   the trim grew on **the hardest, hottest drive the car has had**, which is
+   the owner's own suspicion stated as a mechanism. And it explains why new
+   injectors changed nothing. ⚠ **A hypothesis, not a finding.** Nothing here
+   has measured fuel in this oil. **The test is cheap and needs no
+   instrument**: smell the dipstick, then change the oil and read 032 again a
+   few hundred km later. If the trims come back towards zero, it was the oil
+
+   **The dipstick was smelt about an hour after the drive, and no petrol
+   could be smelt.** That weakens the hypothesis and does not rule it out. A
+   hard, hot drive is exactly what boils the light fraction off, and a nose
+   picks up heavy dilution far more reliably than a few per cent. The oil
+   change and the 032 reading after it are still the test
+3. rail pressure raised by something disturbed while the rail was off, such as
+   a vacuum reference hose to the pressure regulator, or one that has cracked.
+   The rubber on and around the rail is visibly cracked in the owner's
+   photograph from the injector change. Whether this engine's regulator is on
+   the rail and vacuum-referenced is not held here. A leak into the reference
+   line raises the pressure most at idle vacuum, which is the direction of
+   −16.4 against −13.3
+4. one new injector leaking at the seat. This is least likely with four unused
+   parts
 
 A MAF that over-reads would richen the mixture as well. But the MAF is from
 2018, and the load and airflow match the earlier drive exactly (78–81 %,
@@ -355,15 +375,21 @@ it was planned.
 3rd, loses breath above 5,000 in 4th (the MAF flattening above), and the idle
 is better than before the work but still twitches occasionally.
 
-**Something this does to the converter, and it is not obvious.** The fuel
-counter reports what the ECU *commanded*. If the ECU trims 13–16 % off because
-each commanded millisecond delivers more fuel than it should, **the counter,
-and so every consumption figure on the display, reads 13–16 % low.** On the old
-injectors, with the trims near zero, the counter was right. **The cheapest
-check is the next fill-up**: litres at the pump against `TripFuel` since the
-last fill. If the injectors are the cause, fixing them fixes the display as
-well and nothing belongs in `config.h`. A correction factor would only be
-right if the mismatch were going to stay.
+**What this does to the converter depends on which candidate it is.** The
+fuel counter reports what the ECU *commanded*.
+
+- **Fuel from the oil (2):** the petrol left the tank earlier, through the old
+  injectors, and was counted then or dribbled uncounted. Today's commanded fuel
+  is what the tank loses today, so **the counter is right** and the display
+  with it.
+- **Raised rail pressure or a leaking injector (3, 4):** every commanded
+  millisecond delivers more than the ECU thinks, so **the counter, and every
+  consumption figure on the display, reads 13–16 % low.**
+
+**The next fill-up tells them apart**: litres at the pump against `TripFuel`
+since the last fill. Either way nothing belongs in `config.h` yet. A correction
+factor is only right for a mismatch that is going to stay, and every
+candidate here is a fault to fix.
 
 **On replacing both oxygen sensors preventively** (the owner's intention):
 both test OK. **Replace them after the second 032 reading, not before.** A new
@@ -398,6 +424,7 @@ towards zero on a new sensor say the old one was lying, however OK 034 read.
 | fixtures | recorded, pending | promote `pending/` into the corpus and update the seven tests it breaks, as a change of their own |
 | `next-drive.md` | followed | delete once the spec has taken what it needs; step 30 (032 again) moves into whatever replaces it |
 
-**Owed by the owner, none of it urgent:** the Bosch numbers on the old and new
-injectors; litres at the next fill-up against `TripFuel`; 032 again after a few
+**Owed by the owner, none of it urgent:** an oil change before the next 032
+reading (the dipstick smelt of no petrol, which weakens but does not settle
+candidate 2); litres at the next fill-up against `TripFuel`; 032 again after a few
 hundred km, before any oxygen sensor is changed.
