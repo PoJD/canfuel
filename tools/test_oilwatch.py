@@ -2,8 +2,8 @@
 """Tests for oilwatch.py.
 
 The capture is synthesised rather than taken from a fixture, because what has
-to be exercised is a warm-up under driving -- and docs/next-drive.md says
-plainly that no fixture holds one. That is the whole reason this tool exists.
+to be exercised is a warm-up under driving, which no fixture held when this
+was written (19 now does, filtered). That is the whole reason this tool exists.
 The one fixture case that is real is the cold idle, and it is asserted below
 against 18_coldstart_z1.
 """

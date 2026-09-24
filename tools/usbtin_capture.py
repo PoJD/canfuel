@@ -161,7 +161,7 @@ def record(ser, fh, deadline, progress=None):
     why it is caught here rather than left to propagate. The recording this
     script exists for runs beside a drive whose length nobody knows in advance,
     so `--seconds` is a ceiling and the real end is somebody deciding the drive
-    is over -- see docs/next-drive.md step 12. Left uncaught, that ends the run
+    is over. Left uncaught, that ends the run
     with a traceback and skips the summary and the status flags, which are the
     only report of whether frames were dropped.
 

@@ -795,11 +795,10 @@ from and a January one would not be.
 for other purposes, one of them a display maximum against a log mean; and the
 whole of it rests on b7 inheriting the charge normalisation, which is a
 hypothesis with one coincidence behind it and a counter-observation at idle,
-where b7 and relative load diverge 9.8 % against 23.2 %. **What settles it is
-b7 and relative load logged together across a held full-throttle pull** —
-`next-drive.md` steps 14 and 14a — because that tests the proportionality over a
-range instead of at one point, **and because it reads the intake temperature
-that collapses the width of every bracket above.**
+where b7 and relative load diverge 9.8 % against 23.2 %. **What settled the
+scale was b7 logged across held full-throttle pulls**, beside relative load —
+the table at the top of this section. It did not read the intake temperature,
+so the brackets above keep their width; the scale no longer depends on them.
 
 **b7 is not eight bits of resolution.** Across every fixture it takes 95
 distinct values between 0 and 192, and 88 of the 92 gaps between consecutive
@@ -854,7 +853,8 @@ load-bearing. Everything else in this section is an argument about what the
 ECU's byte *means*; the trim is an argument about what one car's owner wants
 their gauge to read. Setting it does not make the scale better founded, and a
 scale that is genuinely wrong is fixed by changing the scale rather than by
-papering over it here — `docs/next-drive.md` has that decision tree.
+papering over it here — which is what happened, 0.74 → 1.06, with the trim
+left at zero.
 
 **It is legitimate rather than a fudge, and the reason is worth stating.** A
 factory rating is itself a *normalised* number, quoted at a standard air

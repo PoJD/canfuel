@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Watch a capture as it is being written and say when to stop and idle.
 
-The problem this solves is in docs/next-drive.md under *Steps 12-14*: the
-middle idle has to land near 61.5 C of oil, because that is the only mid-range
+The problem it solved was the post-repair drive's: the
+middle idle had to land near 61.5 C of oil, because that is the only mid-range
 temperature with a before-reading to compare against -- and by that point in
 the session the display and the converter are out and VCDS is locked to groups
 003 and 014, so **the driver has no oil temperature at all**. The fallback is
@@ -92,7 +92,7 @@ TARGET_C = 61.5
 BAND_LO_C = 55.0
 BAND_HI_C = 68.0
 
-#: How long the idle itself wants to be. docs/next-drive.md step 12: one
+#: How long the idle itself wants to be. The post-repair drive's rule: one
 #: minute settles "gone or not gone", three settle "how much better". Only the
 #: FIRST idle is cut short there, and for a reason that does not apply here --
 #: it is spending coolant the cold coasts need, and by the middle idle that

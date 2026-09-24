@@ -14,15 +14,18 @@ correct — see *What the display can and cannot mean*, below.
 
 ---
 
-**One procedure hangs off this file:** `docs/next-drive.md`, the session
-after the injectors, plugs and leads are changed. Its results land here.
+**Where it stands now**, after the plugs, leads, injectors, fuel filter,
+regulator and MAF were all replaced (*The post-repair drive and the MAF swap*,
+at the end): the car pulls better; the rich lambda trim was the MAF and is
+gone; **the idle misfires and the occasional exhaust puff are not gone**, and
+122 of 129 new misfire events begin at a standstill idle. That second fault is
+open. The torque scale this file was opened for is settled elsewhere.
 
-**The before-recording has no procedure in the tree and is not missing one.**
-It was a one-shot, it was followed, and a spent procedure kept around becomes
-a diary. What it produced is `test/fixtures/18_coldstart_z1.txt` and the two
-VCDS logs beside it, read in *The cold start* below; everything it taught
-about running the after-session is in `next-drive.md`. `git log` has the steps
-themselves if the wording of one is ever wanted.
+**No procedure hangs off this file any more.** Both sessions it was built
+around, the cold start before the repair and the drive after it, were
+one-shots and were followed; what they produced is in the fixtures and read
+below, and `git log` has the procedures themselves if the wording of a step is
+ever wanted.
 
 ## The occasion
 
@@ -84,9 +87,10 @@ Three things follow, and none of them are sentiment.
   and this file made it in an earlier revision.
 
 **Nothing further is bought before 034 and 046 report.** That is the owner's
-position and it is the right one — `next-drive.md`, *The four blocks that give
-verdicts*, is what produces them, and they are absolute rather than
-comparative, so they need no baseline this car can no longer provide.
+position and it was the right one. They were read after the post-repair
+drive and all four reported OK (*The post-repair drive*, below); they are
+absolute rather than comparative, so they needed no baseline this car could no
+longer provide.
 
 ---
 
@@ -176,11 +180,10 @@ feeling livelier, which is the observation this file already carries; the
 residual has not gone. Nothing on the fuel side was changed before this trip,
 so that is the expected result rather than a disappointing one.
 
-**The car is now parked until the injectors arrive**, which restores the one
-condition `next-drive.md` needs and had lost: an overnight stand with nothing
-disturbing it. It also means the tank stays as it was filled — see
-`refuel-reset.md`, *The 2026-09-19 fill*, and `next-drive.md`, *The tank the
-drive starts on*.
+**The car was then parked until the injectors arrived**, which restored the
+one condition the post-repair drive needed: an overnight stand with nothing
+disturbing it. It also kept the tank as it was filled — see `refuel-reset.md`,
+*The 2026-09-19 fill*.
 
 #### What the two torque readings imply about b7 — derived, not measured
 
@@ -200,16 +203,16 @@ drag line `config.h` carried when that display was read, with
 `TORQUE_TRIM_PCT` at zero. The b7 column is what stands; the scale has since
 moved to 1.06. **The rpm band is the
 whole of the uncertainty**; everything else is arithmetic. This is not a
-substitute for the capture and `next-drive.md` steps 14 and 14a are unchanged by
-it.
+substitute for a capture, and the held pulls of the post-repair drive have
+since measured b7 directly — `can-decoding.md` question 8.
 
 **What it is worth anyway.** `tools/b7scan.py` puts the largest b7 this engine
 has ever been *seen* to make at **185**, out of three wide-open bursts that
 were every one of them still climbing when the throttle shut. A steady 117 Nm
 above 4,000 rpm implies b7 near **196** — higher than anything recorded, and
-for the first time **not still rising when it was read**. `next-drive.md`
-predicts b7max near 196–217 for a healthy engine at a September intake
-temperature, so this lands on the bottom edge of the predicted band.
+for the first time **not still rising when it was read**. The air argument in
+`frames.md` predicted b7max near 196–217 at a September intake temperature, so
+this landed on the bottom edge of that band; the held pulls later reached 206.
 
 ⚠ **A display reading with a wide band under it settles nothing**, and
 reading it as the prediction confirmed is the mistake available here. What it
@@ -290,8 +293,8 @@ carry `teplota nasav. vzduchu`, and 006 adds an **altitude correction factor**.
 
 **What cannot be had is the reading that would settle it**, which is the intake
 temperature *during a full-throttle pull*. Reading any block means changing the
-group selection, and that ends the VCDS log the rest of the session depends on;
-`next-drive.md` carries the rule. So 006 is read cold before the key and hot at
+group selection, and that ends the VCDS log the rest of the session depends on.
+So 006 is read cold before the key and hot at
 the end, and the two **bracket** the pulls rather than measuring them: the
 altitude factor is a constant either way, and the first cold start recorded put
 the standing intake at **22.5 °C with the oil at 12.75** — about ten degrees of
@@ -444,10 +447,10 @@ stumbles are there at 61 °C and gone at 73 °C.
 61 °C. **The relationship is not monotonic in temperature**: it peaks somewhere
 in the middle and is gone at the top. Three readings and a peak in the middle
 is not a curve, so what this actually does is weaken the lever rather than
-extend it. **A single continuous warm-up recording would settle it**, which is
-what `docs/next-drive.md` already asks for and what `18_coldstart_z1` is half
-of — it holds 13 °C to 17 °C of oil and stops, because five minutes of idling
-moves the oil almost not at all.
+extend it. **A single continuous warm-up recording would settle it**, which
+`19_postfix_drive_z1` now is and `18_coldstart_z1` is half of — it holds 13 °C
+to 17 °C of oil and stops, because five minutes of idling moves the oil almost
+not at all.
 
 **That fits a leaking injector and argues against the evaporative system.** A
 dribble onto a port that is not yet hot puddles instead of vaporising and goes
@@ -577,10 +580,11 @@ warm-engine behaviour — and the fixtures cannot argue with it either way.
 it did not miss it. The cut is in that file four times over; nobody had
 looked, because until now nothing asked the question.
 
-**One coast on the next drive settles it and costs nothing**, because the
-drive happens anyway: `next-drive.md` step 13 is the coast — cold, high gear,
-clutch up, long enough to get past the 1.2 s delay — and `coastscan.py` is the
-analysis.
+**One coast on the next drive would settle it**, and the post-repair drive
+took several: `coastscan.py` finds 72 cuts in `19`, the coldest at 63.8 °C of
+coolant, and the driver heard no burble at all, cold or hot. No coast happened
+below 61 °C of coolant, so the ECU's behaviour on a genuinely cold overrun is
+still not recorded.
 
 ### The old converter was shown to the owner, and it is the one hard fact here
 
@@ -1053,9 +1057,8 @@ zero, and `--cylinders` prints it as `sd_true`.
 
 **So it is not going on 0x604, and the reason is arithmetic rather than
 taste**: it costs a byte and more state than the grade, and it buys a weaker
-separation of the same two states. The byte is better spent on the grade.
-`docs/next-drive.md` question 6 carries the decision with the firmware cost
-beside it.
+separation of the same two states. The byte is better spent on the grade,
+which is what 0x604 carries — `frames.md`.
 
 **What it uniquely could say, and why that still belongs in a capture.** The
 grade says *the idle got worse*; it cannot say *why*. A cylinder going off on
@@ -1089,8 +1092,8 @@ looks like a result.
 already read zero before it.** `11_idle_noac_z1` and `12_idle_ac_z1` were
 taken at 72.8 and 73.5 °C **on the old injectors** and both count zero. So the
 after-measurement has to be taken in the states where the before-measurement
-was not zero — **from cold, and at around 61 °C of oil.** `docs/next-drive.md`
-already asks for idles spread through the warm-up; this is why.
+was not zero — **from cold, and at around 61 °C of oil.** That is why the
+post-repair drive spread its idles through the warm-up.
 
 **`tools/idledips.py` carries a second detector for it**, `dips_cheap()`,
 shaped the way firmware would have to do it: a first-order baseline, a latch,
@@ -1114,8 +1117,8 @@ prediction, written while it can still be wrong:
 **One minute of matched idle settles it.** At 11.6 a minute, seeing none in
 sixty seconds has a probability of 7×10⁻⁵ if nothing changed. Three minutes
 also resolves a *partial* improvement — halving rather than curing — at
-p = 0.002. `next-drive.md` asks for three to five minutes, which is enough for
-both questions.
+p = 0.002. Three to five minutes is enough for both questions, and the
+post-repair idles were that long.
 
 **And it needs no firmware.** The next session records a bus capture anyway,
 and the detector runs over the capture afterwards. **Nothing in `src/` is
@@ -1123,8 +1126,8 @@ involved, no frame layout changes and `S-AQY.TRI` is untouched** — putting the
 count on the bus and onto the display is a separate want with a separate cost,
 and it waits until the count has been shown to mean something.
 
-**That want is now written down rather than remembered**, as question 6 of
-`docs/next-drive.md`, and this measurement is what decides it. ⚠ **The
+**That want was built**, as the idle grade on 0x604 (`frames.md`), on the
+maintainer's decision and before a healthy idle had been recorded. ⚠ **The
 after-reading therefore has a second job the table above does not show.**
 *Is the idle cured* is answered by zero or near-zero. *Is the count worth a
 row on the dashboard* is answered by what a healthy engine's floor actually
@@ -1219,8 +1222,8 @@ table.**
   measured above is the contrast between its *temperature* states, **not
   between a sick engine and a well one**. No recording of a well one exists.
   The table establishes the scale and its 100 point; it does not establish
-  that the scale separates health. `docs/next-drive.md` question 6 is what
-  asks for the other half of it.
+  that the scale separates health, and the post-repair drive could not
+  supply the other half because its idle was not healthy either.
 - ⚠ **It is not a sub-threshold dip counter and must not be described as
   one.** At 796 rpm a four-stroke four fires 26.5 times a second, so a healthy
   engine dipping 5 rpm once a minute contributes about **0.001 rpm** to an
@@ -1340,9 +1343,9 @@ be reasoned around rather than removed.
 
 **The repair was split in two, and not by choice.** Spark plugs and ignition
 leads went on at this visit; the injectors were still in transit from the UK
-and follow separately. `next-drive.md` was written assuming one visit and now
-has a two-step experiment to read instead — what that costs, and the one thing
-it buys, are below.
+and followed separately. The post-repair drive was planned assuming one visit
+and had a two-step experiment to read instead — what that cost, and the one
+thing it bought, are below.
 
 Rear shock absorbers, an air-conditioning recharge and several small items were
 done at the same visit. None of them touch anything this file measures.
@@ -1507,7 +1510,7 @@ improvement has to show up and where nothing has been recorded since the visit.
 
 ### What the split costs, and the one thing it buys
 
-**Cost: the next drive no longer has one variable.** `next-drive.md`'s
+**Cost: the next drive no longer has one variable.** The drive's
 prediction — misfires to zero, stumbling gone at every oil temperature, the idle
 adaptation moving toward zero — was written against a single change. If all of
 that comes true after the injectors, **the plugs are now an equally good
@@ -1545,7 +1548,7 @@ written down so that the choice is a choice rather than an oversight.
 
 **The second half of the repair, done by the owner at home.** Everything in
 this section is owner-observed unless it says otherwise; nothing here is a
-capture, and the capture it is waiting for is `next-drive.md`.
+capture; the capture is *The post-repair drive*, at the end of this file.
 
 ### What went in
 
@@ -1645,103 +1648,358 @@ themselves, which is what they were bought to do.
 
 ---
 
-## What the next drive settles, and what it does not
+## The post-repair drive and the MAF swap — 24 September 2026
 
-**The plugs and ignition leads went on 17 September 2026 and the injectors
-follow separately** — see *The service of 17 September 2026*, above, for why
-that split matters and what it costs this comparison. The plugs and leads had
-last been changed in 2022, so they had spent four years downstream of whatever
-has been happening; the coil is a month old and the misfires outlived it, which
-is what took the ignition side off the list of causes and left it on the list of
-casualties.
+**Plugs, leads, injectors, fuel filter and regulator new; then, the same
+afternoon, the MAF.** The morning session is `19_postfix_drive_z1` (a 10 °C
+cold soak, a cold start, three idles, coasts, held full-throttle pulls in 4th,
+a hot idle) with `20`–`23` and `vcds/vcds-postfix-drive-003-014.csv`; the
+afternoon is `24_mafswap_drive_z1` with the two `vcds-mafswap-*` logs.
+`test/fixtures/README.md` has the session. What the drive settled for the
+firmware lives where it belongs: the torque scale in `can-decoding.md`
+question 8, the coolant scale beside the signal table there, the oil
+cool-down points in question 10, the start and the idle grade in
+`frames.md`, 0x604.
 
-⚠ **The table below was written for one visit and now covers two.** Everything
-in the left column is still what the *injectors* would settle **if the plugs had
-changed nothing** — and the plugs are no longer a null change, because they came
-out eroded and carboned at under 1,500 km. Read every row below as "the repair",
-not "the injectors", unless the middle capture in the section above was taken.
+**The prediction written before it, scored.** The car pulls better, as
+predicted. The mid-temperature misfires did **not** go to zero, and the idle
+adaptation moved a long way *away* from zero — the MAF, below. The displayed
+maxima were never the test they were meant to be, because the scale they are
+computed with has since been measured rather than assumed.
 
-| the next drive settles | it does not settle |
+### Engine health: better to drive, not cured, and one new finding
+
+**The verdict blocks, all at the hot idle:**
+
+| block | result |
 |---|---|
-| whether the engine was unhealthy — feel, first-gear misfires, the stumbling idle at both thermal states, the idle adaptation, cold starts | whether `TORQUE_CNM_PER_BIT` is right |
+| 046 catalyst | **katR1 OK** (376 °C) |
+| 034 pre-cat sensor ageing | **R1-S1 OK**, period 0.53 s |
+| 037 post-cat sensor | **R1-S2 OK** |
+| 036 post-cat availability | **R1-S2 OK** |
+| 070 evaporative valve | **TEV OK**, lambda deviation 0.0 % |
+| 100 readiness | `00000000`, all monitors complete |
 
-**Three symptoms have run together for years** — the exhaust destroying itself,
-the stumbling idle, and poor cold starts, the last of these for a period nobody
-has pinned down. A single cause for all three is worth more than three
-explanations, and a leaking injector is the only candidate on the table that
-produces all of them.
+Every block reported its result immediately with the engine idling hot. No rpm
+hold was asked for.
 
-⚠ **The owner's reading extends that back past the purchase, and it is a
-hypothesis rather than a finding.** If the injectors are the single cause, the
-fault is older than this ownership — which would also explain why the car
-arrived with its warning lamp taped over and a dead oxygen sensor behind it
-rather than with either of them fixed. **Nothing here establishes it**, and by
-construction nothing can: the pre-2017 record does not exist
-(`vehicle-history.md`, *The masked warning lamp*). It is written down because it
-is testable in one direction only — **if the new injectors cure all three
-symptoms, the hypothesis survives; if they cure none, it is dead** — and because
-an unstated assumption that the history began in 2017 is the more expensive
-mistake.
+**The lambda adaptations moved a long way, in the rich direction:**
 
-**The prediction worth writing down before it happens**, so it can be wrong:
-if the injectors were the fault, the car pulls better, the first-gear misfires
-go to zero and the idle adaptation moves toward zero — while **load stays near
-78 % and the display keeps showing about 117 Nm and 58 kW**. The model's
-inputs will not have moved, so its output should not either.
+| 032 | idle | part load |
+|---|---|---|
+| old injectors | −4.7 % | +1.6 % |
+| after plugs and battery disconnect | −3.1 % | 0.0 % |
+| **after this drive** | **−16.4 %** | **−13.3 %** |
 
-⚠ **Confidence in that last row is low, and lower than this file first
-claimed.** It needs the torque model to be blind to fuelling, which is the
-unsourced step above. Charge should not move; **ignition advance could**, if the
-knock control had been retarding a cylinder the new injectors settle; and if
-the per-cylinder misfire signal feeds the model at all, the row is simply
-wrong. **A displayed figure that rises is therefore a result and not a
-surprise.**
+**With 034/036/037 all OK, this is a real
+excess of fuel and not a sensor artefact. 070 rules out the purge.** Part load
+moving off 0.0 confirms the earlier 0.0 was a reset. The adaptation learned
+−13 % from zero in one drive.
 
-**If the displayed maxima move substantially, the fault was not the injectors** —
-something changed in the air path or in the ignition, and that is a different
-trail.
+**The shape of the correction matters more than its size.** −16.4 % at idle
+against −13.3 % at part load is nearly the **same percentage** at flows about
+four times apart: roughly 300 µl/s at idle against 1,000–1,300 cruising. That
+is a *multiplicative* error, where every commanded millisecond delivers the
+same fraction too much, or the air is measured the same fraction too high. An
+*additive* source, a fixed trickle of fuel from somewhere, would be a large
+percentage at idle and a small one under load. That rules out two candidates
+on shape before anything is measured.
+
+1. ~~**the new injectors are a different flow class from the originals.**~~
+   **Ruled out.** Old and new are the same part: VW `06A 906 031 C`, Bosch
+   `0 280 155 791`, photographed on both sets.
+2. ~~**fuel vapour from the oil, through the crankcase ventilation.**~~
+   **Ruled out, by the owner's arithmetic as much as by the shape.** It was
+   proposed because it depends on oil temperature, and the misfires do. But
+   the size does not work. Holding 13–16 % off *this* drive's commanded fuel
+   means about **0.5 l of uncommanded petrol in 56 minutes**: about 60 µl/s
+   at idle and 150 µl/s or more cruising. That would take oil diluted by a
+   good part of a litre, which a dipstick smells at once, and this one smelt
+   of nothing. The oil had also been changed only a few weeks earlier. And
+   a breather is an additive source, which the shape above excludes
+3. ~~one new injector leaking at the seat.~~ **Unlikely on the same shape
+   argument**: a leak adds a fixed quantity and would dominate at idle. It
+   stays possible only as a small contributor
+4. **rail pressure too high.** Multiplicative, because the vacuum-referenced
+   regulator holds a fixed pressure difference across the injectors and the
+   flow follows that difference at every load. The regulator
+   (`037 133 035 C`) and its vacuum hose are new since 7/2026
+   (`vehicle-history.md`), before the −4.7 / +1.6 baseline, so they did not
+   change between the readings. That makes it less likely, not impossible:
+   a new regulator can be faulty. **A gauge on the rail settles it in
+   minutes**
+5. **the MAF reading high.** Multiplicative too. The air matched the earlier
+   drive (load 78–81 %, 88 g/s), which rules out a *change*, not a unit that
+   has read high all along. A swap with a known-good unit is the test
+
+**Air per unit of commanded fuel at a warm idle, then and now.** Group 003
+logs the MAF and 0x480 logs the fuel the ECU commands, so their ratio can be
+compared across drives without knowing the fuel's density or the true
+stoichiometric ratio:
+
+| | MAF | commanded fuel | ratio | against August |
+|---|---|---|---|---|
+| August holds, old injectors (`vcds-01-002-003`, `09`/`11`) | 3.33 g/s | 326 µl/s | 10.2 | — |
+| today, middle idle | 3.54 g/s | ~305 µl/s | 11.6 | **+14 %** |
+| today, final hot idle after the hard drive | 4.44 g/s | ~300 µl/s | 14.8 | **+45 %** |
+
+**At the middle idle the ratio has moved by the size of the trim.** That is
+what candidates 4 and 5 predict, and it does not separate them: a MAF reading
+high and a fuel system delivering more per commanded millisecond both raise
+air per commanded fuel. **The jump within one drive, from +14 % to +45 %,
+points at the MAF**, because the MAF is the part that responds to heat soak
+while rail pressure does not. More electrical or fan load would raise the true
+air at the hot idle, but it would raise the fuel with it, and the fuel stayed
+at 300 µl/s. ⚠ Not every piece of this fits: a reading 25 % higher with the
+same fuel and only +1.6 % of short-term lambda correction in group 001 does
+not add up, and nothing here resolves it. **It is a pointer, not a
+diagnosis.** The owner is considering a new MAF, and this is the evidence most
+in favour of it. After the swap the same table is one capture and one 003 log
+away.
+
+**Neither 4 nor 5 explains why the correction jumped between the readings**
+(−3.1 / 0.0 before the injectors, −16.4 / −13.3 after), since neither part
+changed. That jump is the open problem, and the numbers here do not solve it.
+Worth knowing when reading the next 032: the part-load cell had been reset to
+0.0 and learned −13 % in this single drive, the hardest the car has had.
+Whether it would have learned the same on an ordinary drive is not known.
+
+**The cracked hose feeds the injector air shrouds, and it is not a suspect.**
+VW Self-Study Programme 233 (*2.0-litre engine*, AQY/ATU, section *Fuel
+injection*): on the AQY *"the injectors have an additional air shroud which
+improves mixture preparation. An air pipe is connected to the intake pipe. Each
+injector is, in turn, connected to the air pipe. The vacuum in the intake
+manifold draws air out of the intake pipe"*, the fuel is *"finely atomised"*,
+and the shroud *"is mainly effective in the part-throttle mode"*. (The ATU
+variant has no air shroud.) So that air is taken from the intake pipe
+downstream of the MAF and is **metered**. The hose runs from the intake pipe to
+the metal air pipe along the injectors, near intake-pipe pressure rather than
+manifold vacuum, so even a crack through it would leak little. **The owner
+reports the cracking is in the surface rubber only**, on a thick-walled hose.
+Nothing to do.
+
+A MAF that over-reads would richen the mixture as well. But the MAF is from
+2018, and the load and airflow match the earlier drive exactly (78–81 %,
+88 g/s), so nothing on the air side moved.
+
+**The misfire counter did not go away.** Group 014, at 1.7 Hz across the whole
+drive:
+
+| state | oil | counter |
+|---|---|---|
+| cold idle, first 2 min | 10 °C | **0** |
+| the extra idle | 50–53 °C | 12–36, one run to **108** |
+| middle idle, in band | 60–65 °C | 12 and 24, repeatedly for four minutes |
+| a stop at about 08:28 | 71 °C | 12, 24 |
+| during any pull | — | **0** |
+| hot idle and step 18 | 70–72 °C | **0** |
+
+**The thermal lever is still there**: worst at mid temperatures, zero cold at
+idle, zero hot. The values now reach 108, against a before-maximum of 36.
+**The prediction that the repair would take the mid-temperature misfires to
+zero has failed.** Taken with the rich adaptation, the mid-temperature
+misfiring is now at least as likely to be *rich* misfire on a mixture the ECU
+has not finished correcting. The adaptation is still converging, so the second
+032 reading, a few hundred km on, is worth more now than it was when it was
+planned.
+
+**The driver's account agrees with all of it**: the car pulls better in 1st to
+3rd, loses breath above 5,000 in 4th (the MAF flattening above), and the idle
+is better than before the work but still twitches occasionally.
+
+**What this does to the converter depends on which candidate it is.** The
+fuel counter reports what the ECU *commanded*.
+
+- **Rail pressure too high (4):** every commanded millisecond delivers more
+  than the ECU thinks, so **the counter, and every consumption figure on the
+  display, reads 13–16 % low.**
+- **The MAF reading high (5):** the ECU commands for air that is not there,
+  then trims the excess off. What it commands after the trim is what the
+  engine burns, so **the counter is right**.
+
+**The next fill-up tells them apart**: litres at the pump against `TripFuel`
+since the last fill. Either way nothing belongs in `config.h` yet. A correction
+factor is only right for a mismatch that is going to stay, and every
+candidate here is a fault to fix.
+
+**Could the sensors be lying anyway? Possible, and the rear sensor argues
+against it.** The ageing test in block 034 looks only at how fast the pre-cat sensor switches (a
+period of 0.53 s), not *where* it switches. A sensor whose switching point had
+drifted rich would pass 034 and would drive exactly these negative trims, with
+the ECU leaning out an engine that was already right. But the post-cat sensor
+is an independent witness, and at the hot idle it read **0.665–0.725 V**
+(037, 036). An engine leaned out by a lying front sensor would fill the
+catalyst with oxygen and pull the rear sensor down towards its lean end. It
+was not there. ⚠ Those voltage bands are the general behaviour of a switching
+sensor and are not from a document this project holds. For the sensors to be
+the cause, both would have to be wrong in the same direction.
+
+**The owner's decision: the oil and both oxygen sensors change together, at a
+garage, and the measuring happens after.** That gives up the separation the
+one-change-at-a-time order above would have bought: if the trims come back
+to zero, nobody will know whether it was the oil or a sensor. It is taken
+deliberately, because driving on a −16 % adaptation while the steps are
+separated costs more than knowing which step fixed it. **After it,
+everything in the fuel and combustion path except the lines from the tank
+will be new**, so a trim that is still large points outside those parts, at:
+
+1. **rail pressure**: a faulty or mis-specified regulator, even though it is
+   new. A pressure gauge on the rail settles it in minutes, at idle with the
+   vacuum hose on and off
+2. **the MAF over-reading**: the air side matched the earlier drive (load
+   78–81 %, 88 g/s), which rules out a *change*, not a unit that has read
+   high all along. A swap with a known-good one is the test
+3. **one of the new injectors leaking**: the owner's own remaining candidate
+
+Two things can be set aside already. The coolant sensor is verified against
+VCDS, so a wrong warm-up enrichment is out. The purge is out by block 070. An
+exhaust leak ahead of the front sensor would pull the trims positive, the
+opposite direction.
+
+### The two screens nobody explained
+
+- **Group 100 `Čas od Motor Start` read 1843.2 s at step 18.** The engine had
+  been running about 57 minutes without a stop, and the capture has no restart
+  in it. What the field counts is not known. Nothing depends on it.
+- **Group 006's altitude factor read −10.2 % with the engine off** and 3.1 %
+  hot at idle. The engine-off value has no meaning (load read 99.5 % at the
+  same moment). 3.1 % against the 0.0 % of the earlier session is small, and
+  nothing here explains it.
+
+### The MAF swap, the same afternoon: the rich trim was the MAF
+
+**What was changed.** The car's MAF housing is an original Bosch
+`0 280 218 002` (VW `06A 906 461 A`). The sensing insert in it was a
+separately fitted `F 00C 2G2 032`, recorded as bought in 2018 with no invoice.
+The whole meter was replaced with a genuine VW `06A 906 461 A`, housing and
+insert together as supplied, and the old unit is kept. **Fitting it needed the
+battery disconnected, so 032 started again from 0.0 / 0.0.** Recordings:
+`24_mafswap_drive_z1.txt` (filtered, about 30 min: a warm restart,
+10 min of driving, an idle at 52–60 °C of oil, more driving including some
+full-throttle pulls on a country road, and a hot idle) with
+`vcds-mafswap-002-032.csv` and `vcds-mafswap-002-014.csv`.
+
+**The adaptation learned small values and stopped there.** Read from the 032
+log as it happened:
+
+| | idle | part load |
+|---|---|---|
+| morning, old MAF, after one drive from 0.0 | −16.4 % | −13.3 % |
+| **new MAF, first 10 min of driving** | 0.0 | 0.0 → **+3.9** in steps, briefly +4.7 |
+| **new MAF, end of session (photo)** | **−3.1 %** | **+4.7 %** |
+
+**Air per commanded fuel at a warm idle is back where August had it.** At
+oil 55 °C: MAF 2.98–3.33 g/s against 310 µl/s commanded, a ratio of
+**9.6–10.7**, against 10.2 in August and 11.6 / 14.8 this morning. **Candidate
+5, the MAF, is confirmed**, and with it:
+
+- the jump between the readings is explained. The insert was fitted before
+  August, so it read the same fraction high throughout. Why the error grew
+  after the injector change is still open. A worn element drifting with heat
+  soak would do it, and the +45 % at this morning's hot idle points that way
+- **the fuel counter is right**, by the argument under *What this does to the
+  converter*. The MAF was reading high and the trim took the excess off, so
+  the fuel the ECU commanded was the fuel burned. Nothing belongs in
+  `config.h`
+- rail pressure (4) is no longer needed as an explanation
+
+**The misfire counter did NOT go away, and at hot idle it is now worse.**
+
+| idle | oil | samples non-zero | values | recognition `deaktiv.` |
+|---|---|---|---|---|
+| morning, hot | 70–72 °C | **0 %** | 0 | — |
+| afternoon, warm | 52–60 °C | 48 % | 12–96 | 4 % |
+| **afternoon, hot** | **70 °C** | **58 %** | **12–120** | **22 %** |
+
+⚠ **The owner noticed that recognition drops to `deaktiv.` while driving and
+engine braking, and also at idle.** The log confirms it at idle. What the ECU
+disables detection for is not held here, so how far to trust a counter that
+switches itself off is an open question. It stays in the record rather than
+being explained away.
+
+**The idle grade improved, but not to the August hot idle.**
+`idledips.py --roughness --windows 60`:
+
+| | oil | mean step | index |
+|---|---|---|---|
+| morning, warm | 50–65 °C | 1.4–2.5 rpm | 62–131 |
+| afternoon, warm | 52–60 °C | 1.4–1.9 rpm | 73–100 |
+| morning, hot | 70–72 °C | 2.0–2.7 rpm | 92–150 |
+| afternoon, hot | 69–71 °C | 1.4–2.3 rpm | 68–121 |
+| August, hot, before any of the work | 73 °C | 0.96 rpm | 48 |
+
+**The owner's account agrees: the idle is calmer and no longer hesitates, but
+the exhaust still gives an occasional puff.** That puff does not coincide with
+the counter going `deaktiv.`. Full-throttle pulls feel unchanged, as they
+should: at full load the ECU runs open loop and the trims hardly apply.
+
+**The misfires are an idle phenomenon, and the owner's "only in first and
+second" is the counter's hold.** Aligning each 014 log on engine speed with its
+capture (best offsets 207.5 s and 802.5 s, mean |Δrpm| 23 and 36) gives road
+speed and gear for every VCDS sample. Counting only the samples where the
+counter *rose*, i.e. new events:
+
+| | standing | 1st | 2nd | 3rd | 4th | 5th |
+|---|---|---|---|---|---|---|
+| morning, new events | **32** | 2 | 0 | 2 | 1 | 0 |
+| afternoon, new events | **90** | 0 | 0 | 1 | 0 | 1 |
+| afternoon, counter non-zero | 63 % | 5 % | 19 % | 2 % | 0 % | — |
+
+**122 of 129 new events began at a standstill idle.** The non-zero readings
+seen in 1st and 2nd are mostly the three-second hold of an event that began
+while standing, carried into the pull-away. The gear is inferred from road
+speed over engine speed, so a coast with the clutch down can be misfiled,
+which covers the odd one in a high gear. **That points the second fault at
+the idle regime**: low load, high manifold vacuum, little air. ⚠ **An intake leak fits the
+regime and not the trims, as the owner pointed out.** Unmetered air leans the
+mixture most at idle, where the air flow is smallest, and the ECU would answer
+with a *positive* idle trim. The idle trim with the new MAF is **−3.1 %**. A
+leak big enough to misfire should show up there, so the trims argue against
+one. A small leak at a single runner is diluted four ways by the one oxygen
+sensor and is not excluded, but it is not what the numbers point at. Weak
+ignition at light load, and how far a counter that switches itself off can be
+trusted, are no less likely. The owner will look at the old hoses anyway,
+directly rather than through a capture.
+
+**So the rich trim and the misfires/puffs are two faults, and only the first
+is solved.** Plugs, leads, injectors, fuel filter, regulator and now the MAF
+are all new, and compression is even. What is left for the second is not
+decided here. The cheap next reads are blocks 022/023 (knock retard per
+cylinder) at a warm idle, and the dip-against-counter correlation that
+this file ran on the cold start, repeated on `24`.
+
+### What is owed, none of it urgent
+
+- **Group 032 again, a few hundred kilometres after the MAF swap**, one
+  photographed screen, no session: it reads the new MAF's adaptation after it
+  has settled. The swap reset it to 0.0 / 0.0 and it had learned −3.1 % /
+  +4.7 % by the end of the afternoon. Easy to forget, and it is the one reading
+  that says whether the rich trim is really gone.
+- **Blocks 022/023, knock retard per cylinder, at a warm idle** — the cheapest
+  read on the idle misfires.
+- **The old intake hoses, looked at directly** rather than through a capture.
+  The idle trim argues against a leak big enough to misfire, and a small one at
+  a single runner is not excluded.
+- **The dip-against-counter correlation** this file ran on the cold start,
+  repeated on `24`.
+
+The oil change and the oxygen sensors were set aside once the MAF explained
+the trim.
 
 ---
 
-## What would settle the scale
+## The torque scale — settled, and not by this file's route
 
-**One capture, and it needs the dashboard open anyway.**
+**This section used to say what would settle `TORQUE_CNM_PER_BIT`**: a capture
+of b7 and the fuel counter beside a VCDS 003 log over held full-throttle pulls,
+with the air-fuel ratio taken out of the argument. The pulls happened on
+24 September, and the scale was settled more directly than that: b7 reached a
+plateau, 185 at 2400 rpm and 191 at 5200 in 4th, and with the drag held in
+bytes the two factory ratings agree on 1.055–1.061 Nm/bit. The firmware ships
+1.06. `can-decoding.md` question 8 has the numbers; the air-and-fuel route is
+not needed and nothing here is owed to it.
 
-A bus capture carrying **0x280 b7 and the 0x480 fuel counter**, taken
-simultaneously with a VCDS log of group 003, over the same full-throttle pulls.
-Measured air divided by measured fuel gives the real air-fuel ratio, which
-removes the largest assumption in the efficiency table above; b7 against that
-gives the scale.
-
-⚠ **The fuel counter measures what the ECU commanded, not what left the
-injector**, and full-load enrichment is mapped rather than closed-loop — so a
-leaking injector would deliver more than the counter reports and the ratio
-would look better than it is. **A high reading would prove something; a normal
-one proves much less.** Do this after the injectors are replaced, not before.
-
-⚠ **This does not revive the cancelled VCDS session.** Question 8 in
-`can-decoding.md` has since been closed by held full-throttle pulls, and that
-session stays cancelled: this ECU has no torque measuring block, so there is
-nothing to read there. What is new is a
-different measurement — torque inferred from air and fuel — which needs no such
-block.
-
-**And one capture answers three questions at once**, which is why
-`next-drive.md` settled on a single configuration rather than splitting the
-work: a continuous recording through the warm-up gives the stumble rate against
-oil temperature as a curve instead of two points, holds b7 at ninety-four
-samples a second beside the ECU's own load, and finds out whether this engine's
-oil ever passes about 75 °C — which would close `can-decoding.md` question 7
-rather than leave it open.
-
-**The raw byte comes off the capture, not off the display.** `S-AQY.TRI`
-carries `Torque` and `Power`, which are computed from 0x280 b7, but no channel
-showing b7 itself — a claim to the contrary stood here and was wrong, and
-`next-drive.md` says why adding one is not worth the risk to a working display
-configuration. **`docs/next-drive.md` is the procedure, in order.** The
-fuel counter still wants a bus capture, and only to remove the air-fuel
-assumption.
-
-`install.md` step 11 covers everything else a trip behind the display should
-pick up while it is open, and `can-decoding.md` question 7 wants a hot-oil
-sweep from the same trip. **Batch them.**
+What this file's efficiency argument still contributes is the direction: the
+earlier display peak of 117 Nm was implausibly low for the air the engine
+measured, and at 1.06 the same b7 reads about 30 % higher. The two routes point
+the same way.

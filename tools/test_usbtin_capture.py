@@ -66,7 +66,7 @@ class Record(unittest.TestCase):
         self.assertEqual(n, 1)
 
     def test_ctrl_c_ends_the_capture_and_keeps_what_was_read(self):
-        """docs/next-drive.md ends the capture by hand; that is not an abort."""
+        """A capture beside a drive ends by hand; that is not an abort."""
         ser = FakeSerial([frames("t1A08004001", "t4208010000")],
                          then=KeyboardInterrupt)
         fh = io.StringIO()

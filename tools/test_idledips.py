@@ -372,8 +372,8 @@ class RoughnessAgainstTheFixtures(unittest.TestCase):
 
     ⚠ These are all BEFORE-repair recordings, so the separation below is
     between temperature states of one engine and not between a sick engine
-    and a well one. That is the whole of what is available today, and
-    docs/next-drive.md question 6 is what asks for the other half.
+    and a well one. That is still the whole of what is available: the
+    post-repair idle was not healthy either.
     """
 
     @classmethod

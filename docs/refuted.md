@@ -318,7 +318,8 @@ for months, and the risk that somebody would have reasoned from it.
 
 **What it gains:** a fourth independent reading of the cold soak, free and in
 real degrees, from a sensor and a path that share nothing with VCDS or with
-either CAN channel. `next-drive.md` step 6 now asks for it.
+either CAN channel. The post-repair drive took it: 10.0 °C, beside 12.0 °C of
+coolant from VCDS after a 19-hour soak.
 
 ⚠ **Do not go hunting for the ambient channel on the bus.** Nothing in this
 firmware or on the MFD15 consumes one, so a decoded field would be dead

@@ -36,8 +36,8 @@ is written against.
 `roughness()` does not count at all. It GRADES the idle, because a count past
 a threshold has no resolution below the threshold and a repaired engine reads
 zero for ever -- `--roughness --bands` shows that the band carrying the
-contrast is 10-20 rpm, just under TRIP_RPM. It is the instrument
-docs/next-drive.md question 6 proposes putting on the bus.
+contrast is 10-20 rpm, just under TRIP_RPM. It is the instrument on the bus,
+as the idle grade of frame 0x604 (docs/frames.md).
 
 Both sets of constants are frozen; the comments above them say why, and they
 are the only parts of this file that must not be re-tuned.
@@ -310,8 +310,8 @@ def dips_cheap(gated, t_from=None, t_to=None, shift=EWMA_SHIFT,
     gate openings measured in 17_drive_property_z1, it is still 130 rpm high
     when the delay expires and books one spurious event. **17 does not show
     it only because its stops are too short to reach the delay at all** -- and
-    docs/next-drive.md asks for idles of three to five minutes, where every one
-    of them would contribute a false count against a prediction of zero. So the
+    the post-repair drive's idles were three to five minutes long, where every
+    one of them would contribute a false count against a prediction of zero. So the
     timer is *restarted* by any excursion past the trip threshold that happens
     before counting has begun: counting starts after SETTLE_S of quiet, not
     SETTLE_S of elapsed time. It costs one comparison that is already computed.
@@ -900,7 +900,7 @@ def report(path, thresholds, t_from, t_to, label=None, depths_too=False):
 #: below is between temperature states of one engine and NOT between a sick
 #: engine and a well one -- no recording of a well one exists yet. What it
 #: establishes is the scale's 100 point; whether the index separates sick from
-#: well is what docs/next-drive.md question 6 asks the next drive for.
+#: well is still open: the post-repair idle was not healthy either.
 ROUGH_LOGS = ("09_idle_60s_z1.txt", "18_coldstart_z1.txt")
 SMOOTH_LOGS = ("11_idle_noac_z1.txt", "12_idle_ac_z1.txt")
 

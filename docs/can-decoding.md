@@ -380,8 +380,7 @@ no one bad cylinder — happens to survive, for entirely different reasons.
 - ⚠ **`decode.c` is unaffected and deliberately so.** It stores whatever the
   last frame carried, which is correct for a displayed engine speed and for
   the torque gate. The trap bites anything *derived over time* from the field
-  — which today is `tools/idledips.py` and, if `docs/next-drive.md` question 6
-  is built, `compute.c`.
+  — which is `tools/idledips.py` and, since 0x604, `compute.c`'s idle grade.
 
 ### The idle grade on 0x604, from a raw frame to the byte
 
@@ -868,10 +867,12 @@ runs and **there is nothing to refit.**
 
 **One capture settles it and costs nothing extra**, because oil temperature is
 in every recording: a long continuous log will show the ceiling or show it
-being passed. `docs/next-drive.md` takes one as part of a session planned for
-other reasons. Until then this stays open rather than closed, on one reading of
-a display rather than a log — but **do not plan a session around heating the
-oil** before that capture says heating it is even possible. Whatever gets the oil hot, the sweep
+being passed. `19_postfix_drive_z1` is that log: 56 minutes of the hardest
+driving the car has had, and the oil peaked at **75.75 °C** on the shipped
+scale. So on this decode the oil does not go to 95–110 °C and the drag line is
+already fitted where the engine runs — **unless question 10 finds the scale
+wrong**, which is why this stays open rather than closed. **Do not plan a
+session around heating the oil** before question 10 is settled. Whatever gets the oil hot, the sweep
 itself is unchanged: hold each speed until 0x420 b3 stops climbing, record the
 oil temperature with every point, and stay in neutral so net torque really is
 zero.
@@ -1157,8 +1158,8 @@ coolant cannot supply; and it is not the intake air, which question 4 now
 settles by direct comparison.
 
 **Why it matters beyond tidiness.** Question 7 and the drag line are fitted
-against oil temperature, and `next-drive.md` rests on the sentence *"72–77 °C
-is warm, not the 95–110 °C of real driving"* being false for this engine. If
+against oil temperature, and question 7 rests on the sentence *"72–77 °C
+is warm, not the 95–110 °C of real driving"* being true for this engine. If
 this channel is offset low, that sentence is false for a different reason than
 anybody thinks, and the drag line is fitted against a temperature that does
 not exist.

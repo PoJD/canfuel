@@ -109,7 +109,7 @@ class Coolant(unittest.TestCase):
         self.assertIsNone(coolant(win))
 
     def test_the_fixture_coasts_are_all_on_a_fully_warm_engine(self):
-        """Which is why the cold coast has to be driven for -- next-drive.md 13."""
+        """Which is why the cold coasts had to be driven for, in 19 and 24."""
         rows = samples(os.path.join(FIXTURES, "17_drive_property_z1.txt"))
         temps = [coolant(w) for w in windows(rows) if cut(w) is not None]
         self.assertTrue(temps and min(temps) > 95.0)

@@ -7,8 +7,8 @@ elsewhere in `docs/` lean on facts that had, until now, no written home:
 that the car has been chipped, that the plugs are old, that both oxygen
 sensors date from the year it was bought.
 
-**It is a permanent document, unlike `engine-health.md` and `next-drive.md`.**
-Those two carry an end date and are deleted when their investigation closes.
+**It is a permanent document, unlike `engine-health.md`.** That one carries
+an end date and is deleted when its investigation closes.
 This one outlives them: when the investigation ends, the history it was
 arguing against is still the history.
 
@@ -374,8 +374,8 @@ pick up again. **It was the fuel system; which part is not established and is
 not worth establishing.** It has not happened for years. *Owner-observed, not
 measured, and not dated.*
 
-⚠ **What it bounds is what matters**, and it is the part `next-drive.md` leans
-on: the failure mode has a direct observable, the observable has been absent
+⚠ **What it bounds is what matters**, and it is the part the post-repair drive
+leaned on: the failure mode has a direct observable, the observable has been absent
 for years, and the drives that would show it have been driven. **That rules
 out gross restriction now** — and not a few per cent under full load.
 

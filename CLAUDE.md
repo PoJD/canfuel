@@ -145,10 +145,9 @@ carries a generated block; a figure typed into prose only goes stale.
 - `test/fixtures/` — twenty-four recordings from the vehicle, documented, of
   which the `_z1` ones are the only ones with trustworthy time
 - `docs/` — **`install.md` is the procedure**, plus decoding, frame layout,
-  refuelling reset, timing and optimisation. **`next-drive.md` is the next
-  thing to be done in the car** — the session after the injectors, plugs and
-  leads are changed — and `engine-health.md` is a holding document for one open
-  investigation into the engine itself. **Both have an end date rather than a
+  refuelling reset, timing and optimisation. `engine-health.md` is a holding
+  document for one open investigation into the engine itself — the idle
+  misfires that outlived the repair. **It has an end date rather than a
   permanent home.** A one-shot procedure that has been followed is deleted
   rather than kept; `git log` is where it lives afterwards
 
