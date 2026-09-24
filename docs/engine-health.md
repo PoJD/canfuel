@@ -2170,7 +2170,7 @@ The candidates, and what each predicts:
 
 | candidate | fits | against it | cheap test |
 |---|---|---|---|
-| **real knock in cylinder 4 at tip-in** | tip-in is the classic moment: fuel returns after a cut, the port wall film is not built up yet, so the mixture runs briefly lean at full part-load advance. One cylinder being a little leaner or hotter than the others is enough for it to cross first. In general, the end of the block furthest from the coolant inlet runs hottest, but which end that is on the AQY is not established here | several onsets at only 18–25 % load, where real knock is unusual | **fuel with a higher octane rating**: real knock drops, noise does not change |
+| **real knock in cylinder 4 at tip-in** | tip-in is the classic moment: fuel returns after a cut, the port wall film is not built up yet, so the mixture runs briefly lean at full part-load advance. One cylinder being a little leaner or hotter than the others is enough for it to cross first. In general, the end of the block furthest from the coolant inlet runs hottest, but which end that is on the AQY is not established here | several onsets at only 18–25 % load, where real knock is unusual | ~~fuel with a higher octane rating~~ **already the case: the owner has run 100-octane fuel for a long time**, five points above the RON 95 SSP 233 specifies, and the retard happens on it anyway. See below |
 | **a noise at a fixed crank angle** | a lifter ticking, a valve seating, or an injector closing. In general, the injector of the cylinder that fires just before 4 injects while 4 is in its power stroke. Every one of those repeats in the same window every cycle | nothing in the log points at one | a mechanic's stethoscope along the head on a tip-in; octane changes nothing |
 | **the knock sensor or its wiring** | the owner's own suspicion. A sensor that is loose or corroded at its face couples the block less well, and a damaged screen picks up interference | a dead or open sensor usually sets a fault code and retards **all** cylinders to be safe. No code is stored and three cylinders read zero, so the sensor is working. One mechanism would still pick out one cylinder: if 4's learned reference is the lowest, any extra noise crosses its threshold first | check the sensor's mounting torque and connector; no code means it is not dead |
 | **reference levels relearning** | the battery was disconnected twice this week, which in general also resets knock control's learned values | would fade over the next few hundred km | log 022/023 again later, on the same kind of drive |
@@ -2182,13 +2182,24 @@ apart again, and the trim argument above says a leak big enough to matter
 would show. One cylinder leaner by a few per cent would hide in the trim; that
 could make it knock on a tip-in but would hardly make it misfire at idle.
 
+**The octane test has in effect already been run, and it weakens real
+knock.** *The owner reports running 100-octane fuel for a long time*, so
+the log above was taken on fuel with five points more knock resistance than the
+engine is specified for. Real knock at 18–56 % load on that fuel would need
+something seriously wrong in cylinder 4: heavy deposits, a hot spot, or a
+cylinder far leaner than the others. That is not impossible, but **it moves the
+weight towards a noise or the sensor side**: the exhaust manifold, the knock
+sensors' mounting, the earth straps, a lifter. Group 026 is now the most
+useful single read. ⚠ The remap is the caveat. If it was calibrated to use
+the octane, its part-load advance may sit higher than stock, and then 100
+octane is the baseline rather than a margin.
+
 **Is it harmful?** 16 events of 4.5–6.7 °CA with the timing given back within
 seconds is knock control doing its job. It costs a moment of torque on a
 tip-in, and nothing in the log is sustained. It is a lead, not an emergency.
 
 **Order, cheapest first** (the web section below adds to it: log 020 with
 026 instead of 022/023, look at the exhaust manifold, clean the earth straps):
-a tank of higher-octane fuel with the same log, which is free apart from the fuel and splits real knock from noise;
 the plug swap with a torque check; a look at the knock sensor's mounting
 and connector if it is reachable without the intake off; then, if it is
 noise, a stethoscope. Every repeat log wants a bus capture beside it.
