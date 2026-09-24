@@ -2265,13 +2265,89 @@ that sits with the others and spikes on tip-in points at combustion.
 manifold is the one candidate that could link both findings: an exhaust leak
 ticks once per cycle at a fixed crank angle, which knock control books to
 one cylinder's window, and it sits ahead of the pre-cat sensor. ⚠ The trim
-here reads −3.1 %, and air drawn in ahead of the sensor would normally push it
-positive. The link is a hypothesis. ⚠ **Whether the September exhaust job
+here reads −3.1 %; why that does not rule it out is worked through below.
+The link is a hypothesis. ⚠ **Whether the September exhaust job
 replaced the exhaust manifold itself is unclear in these documents.** *The
 occasion* says "the manifold", while `vehicle-history.md` lists the cat,
 silencer and gaskets. If the manifold is original, it is a 26-year-old part
 this repository has never looked at. Cracks show as soot tracks, and a leak
 ticks audibly on a cold start before the metal expands.
+
+#### How an exhaust-side leak could produce these symptoms — worked through
+
+**The owner's question: how would a cracked manifold explain any of this?**
+The argument, with what is sourced and what is general knowledge kept
+apart.
+
+**What the manifold is, from SSP 233 p. 7:** *"The stainless steel exhaust
+manifold is a double-flow manifold. Each cylinder has its own exhaust pipe;
+these pipes are then paired up."* A welded tubular stainless part. Which
+cylinders are paired is not stated.
+
+**1. Why only at idle — general knowledge.** Exhaust pressure in a manifold
+pulses. Each cylinder's blow-down is a pressure peak, and the moving gas
+column behind it leaves a short dip below atmospheric. At idle the peaks are
+small and the dips reach below atmospheric, so a crack **draws air in** for
+part of every cycle. Under load the mean pressure is well above
+atmospheric and the same crack only **blows out**. An exhaust leak therefore
+adds air to the exhaust only at idle and light load, which is where every
+misfire event this file has counted began.
+
+**2. Why the trims would not show it: SSP 233 p. 16, and it corrects an
+argument this file made.** The AQY runs two lambda loops. The front probe
+sets the injection correction, and *"using a second closed control loop, the
+shift in the voltage curve [is] corrected within a defined window
+(adaption) ... The probe downstream of the catalytic converter has priority
+over the probe upstream."* Air drawn in ahead of the front probe makes it
+read lean. The first loop adds fuel, so the real mixture goes rich. The rear
+probe sees that, and the second loop shifts the front probe's setpoint to
+take the fuel back. **Within that window the error is absorbed by the
+setpoint and not by the injection correction group 032 shows.** So −3.1 %
+does not rule an exhaust-side leak out the way it rules out an intake leak,
+where the real mixture itself goes lean and both probes agree. What the
+exhaust-side case should leave behind is a **rear probe reading on the rich
+side at idle**. It read **0.665–0.725 V** at the hot idle of 24 September, which
+this file already noted as not lean. ⚠ That voltage band is general
+switching-sensor behaviour, not from a document held here; it is consistent
+with the idea, not proof of it.
+
+**3. Why cylinder 4's knock window.** A crack at one runner, or at the
+flange of one pipe, lets that cylinder's blow-down out as a sharp puff at the
+same crank angle on every cycle. Knock control books a noise at a fixed angle
+to one cylinder's window (see *Why cylinder 4*). **It would be loudest
+exactly on a tip-in**, when the blow-down pressure jumps, and quietest at idle,
+which is the measured pattern: 13 of 16 onsets on a tip-in and none at idle.
+Which window a given runner's noise lands in depends on the firing order and
+the window position, neither of which is sourced here, so this cannot say
+*which* runner.
+
+**4. The puff at idle** could be the leak itself, heard at the back.
+
+**What it does not explain well: the engine-speed dips.** A leak outside the
+cylinder does not stop a cylinder burning. A slightly rich idle, the state
+point 2 predicts, is not normally enough to misfire either. The link would
+have to be indirect. **So the manifold is the best candidate for the knock
+retard and the puff, and a weaker one for the stumble.** The idle fault
+predates the September exhaust work (`09`, August), so a new gasket alone
+cannot be the whole of it.
+
+**A second part on the same side: the secondary-air combination valve.**
+SSP 233 p. 13: on the AQY *"the secondary air pump blows additional air from
+the air filter directly behind the exhaust valves when the engine is
+started"*, and *"the combination valve is opened directly by the pressure
+exerted by the secondary air pump and closed off from the engine by a
+spring."* A valve that no longer seals, from carbon or a tired spring, is a
+path from the air filter to **directly behind the exhaust valves**. At idle it
+behaves like the crack in point 1. It is under the intake side of the engine
+bay rather than the exhaust, so it is for the ordinary garage rather than the
+exhaust specialist. It belongs on the same list because it produces the same
+signature.
+
+**What to ask the exhaust specialists for:** a leak test of the manifold
+itself, pressure or smoke, not a visual check. Ask them to look at the welds of the four tubes and at
+the pairing joints, the head gasket of the manifold at the cylinder 4 end, the
+flange to the downpipe, and the front probe's boss. If they find a crack,
+the knock log afterwards is the test: cylinder 4's retard should disappear.
 
 **Earth straps** are the cheapest item on the forum list. The knock sensor
 signal is a few hundred millivolts measured against the ECU's ground, and a
