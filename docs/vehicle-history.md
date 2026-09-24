@@ -307,9 +307,9 @@ not been touched in eight or nine years.
 | **air path** | throttle body original, inspected clean 6/2026, new gasket | the intake manifold and its hoses, never changed |
 
 **Everything that decides how much fuel is delivered and whether it is lit is
-now current. Everything that tells the ECU what happened is eight or nine
-years old**, and has spent those years behind a converter that was burning
-through. That is where to look next, and `engine-health.md`'s fork table is
+now current, and since 24/9/2026 so is the MAF. What is left that tells the
+ECU what happened is the two oxygen sensors, nine years old**, which have
+spent those years behind a converter that was burning through. That is where to look next, and `engine-health.md`'s fork table is
 what reads it: any `not OK` from VCDS blocks 034, 036 or 037 is a **second**
 failure of an already-replaced sensor.
 
