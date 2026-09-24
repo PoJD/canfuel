@@ -137,8 +137,9 @@ EEPROM_PRESERVE_RANGE = "0-3FF"
 # be read at a glance. The observed outputs are in flash-tool-notes.md.
 FAILURES = [
     ("could not detect target voltage VDD",
-     "the board is not powered. -W is deliberately not used, so it needs its "
-     "own 5 V. That run still exits 0"),
+     "the board is not powered. Give it its own 5 V, or, for a bare board on "
+     "the desk with nothing else attached, pass --power-from-programmer. That "
+     "run still exits 0"),
     ("is an Invalid Device ID",
      "power is fine and ICSP is not: JP2 still fitted, the MCLR/PGC/PGD "
      "wiring, or a dead part"),
@@ -353,8 +354,37 @@ def run(cmd: list[str], dry: bool, timeout: float = 300.0) -> str:
     return out
 
 
+#: Set by --power-from-programmer: `-W` on every call, so the PICkit supplies
+#: the target. docs/flash-tool-notes.md, *Powering a bare board from the
+#: programmer*, has when that is right and when it is not.
+POWER_ARGS: list[str] = []
+
+#: 4.5 V, not the default 5.0, and measured rather than chosen for comfort.
+#: A plain -W asks for 5.0 V, the PICkit 3 on USB delivers 4.625, and IPECMD
+#: then answers "Connection Failed" -- refuted.md E6 is the same 4.625 V read
+#: wrongly as droop. -W4.5 is regulated to, reported as "VDD = 4,500000
+#: volts", and the part answers. 4.5 V is inside DS39977C's VDD range for the
+#: PIC18F25K80 and at the bottom of the MCP2562's 4.5-5.5 V (DS20005167C), and
+#: well above BORV's 3.0 V.
+PROGRAMMER_VDD = "4.5"
+
+
 def ipecmd(args: list[str], dry: bool, device: str, tool: str) -> str:
-    return run(["ipecmd", "-P" + device, "-T" + tool] + args, dry)
+    return run(["ipecmd", "-P" + device, "-T" + tool] + args + POWER_ARGS, dry)
+
+
+def drop_programmer_power(dry: bool, device: str, tool: str) -> None:
+    """One plain call, without -W, to take the programmer's supply off the
+    header. `-W` leaves the rail live after the command exits and a plain run
+    clears it -- measured, docs/flash-tool-notes.md, *Hazard*. What it prints
+    is expected to be the not-powered message, and nothing is parsed from it:
+    whether the rail really dropped is a voltmeter's question."""
+    POWER_ARGS.clear()
+    print()
+    print("drop the programmer's supply -- a plain -I, no -W")
+    ipecmd(["-I"], dry, device, tool)
+    print("  [note] the header should now read 0 V. Measure it before the board")
+    print("         is connected to its own supply again.")
 
 
 def read_eeprom(dry: bool, device: str, tool: str, release: bool,
@@ -421,6 +451,12 @@ def main(argv: list[str] | None = None) -> int:
                     help="also run -C first; a programmed part is not an error")
     ap.add_argument("--no-build", action="store_true",
                     help="flash whatever is already in mplab/build")
+    ap.add_argument("--power-from-programmer", metavar="VOLTS", nargs="?",
+                    const=PROGRAMMER_VDD, default=None,
+                    help="-W<VOLTS> on every call (default %s): the PICkit "
+                         "powers the board. Only for a bare board with NO other "
+                         "supply and nothing else connected; the rail is "
+                         "dropped again at the end" % PROGRAMMER_VDD)
     ap.add_argument("--device", default=DEVICE)
     ap.add_argument("--tool", default=TOOL)
     ap.add_argument("--dry-run", action="store_true")
@@ -428,6 +464,16 @@ def main(argv: list[str] | None = None) -> int:
 
     hex_path = REPO / "mplab" / "build" / "canfuel.hex"
     rep = Report()
+    if args.power_from_programmer:
+        POWER_ARGS[:] = ["-W" + args.power_from_programmer]
+    try:
+        return _main(args, hex_path, rep)
+    finally:
+        if args.power_from_programmer:
+            drop_programmer_power(args.dry_run, args.device, args.tool)
+
+
+def _main(args: argparse.Namespace, hex_path: Path, rep: "Report") -> int:
 
     print()
     print("flash.py -- install.md step 5")
@@ -569,7 +615,12 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if rep.failed:
         return fail(rep, "")
-    print("PASS -- the %s build is in the part and running." % args.mode)
+    if args.power_from_programmer:
+        print("PASS -- the %s build is in the part. It ran on the programmer's"
+              % args.mode)
+        print("supply only until that is dropped below.")
+    else:
+        print("PASS -- the %s build is in the part and running." % args.mode)
     print("Put JP2 back on. JP1 decides whether the LEDs light and whether")
     print("0x603 is transmitted; steps 6 and 7 both want it fitted.")
     return 0

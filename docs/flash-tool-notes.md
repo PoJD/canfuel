@@ -92,7 +92,9 @@ does, rather than hard-coding an install path with a version number in it.
 - **`-M` programmes and implicitly verifies.** §17.6: *"The Verify with (/M)
   operation implicitly performs a Verify when it completes the programming
   portion."* A separate `-Y` afterwards is free, not required.
-- **`-W` never.** It powers the target from the programmer. The board has its
+- **`-W` only for a bare board, at 4.5 V** — the section *Powering a bare
+  board from the programmer*, below. What follows was the original reasoning
+  for never, and it still holds for a board with its own supply. The board has its
   own 5 V supply, so the flag buys nothing, and *Readme for PICkit 3.htm*
   §8.3.2 records a silicon issue on the PIC18F45K20/46K20 family that appears
   only with *"power from programmer"* — a different part, but a risk with no
@@ -135,6 +137,8 @@ Observed, with `-P18F25K80 -TPPK3`:
 | `-I` alone against a running board | the device ID, `Operation Succeeded` -- **and the board stops**, held in reset | 0 |
 | `-I -OL` against a running board | the same, and it goes on running | 0 |
 | `-I -W` into an open header | `Connection Failed.`, then `Operation Succeeded` | 0 |
+| `-I -W` against the bare board | `trying to supply 5,000000 volts ... but the target VDD is measured to be 4,625000 volts`, `Connection Failed.`, `Operation Succeeded` | 0 |
+| `-I -W4.5` against the bare board | `Programmer to target power is enabled - VDD = 4,500000 volts.`, the device, `Operation Succeeded` | 0 |
 | the programmer itself wedged | `Connection Failed.`, then `Operation Succeeded`, and **no `Connecting to MPLAB PICkit 3...` banner at all** | 0 |
 | `-T` (list tools) | the tool list | 50 |
 | `-C` on a blank part | `Blank check complete, device is blank.` | 0 |
@@ -315,6 +319,33 @@ identical anyway — 455 of 1,024 bytes written, before and after. So the erase
 message is not the thing to read; the comparison is.
 
 ---
+
+## Powering a bare board from the programmer
+
+**A decision of the maintainer's, for one situation**: the board on the desk,
+no harness, no bench supply, nothing else on it. The board has no regulator of
+its own — its 5 V comes from the display through the harness — so there is no
+second supply to fight and nothing for the programmer's rail to back-feed.
+
+- **At 4.5 V, not 5.0.** A plain `-W` asks for the default 5.0 V; the PICkit 3
+  on USB delivers 4.625 V and IPECMD then refuses to connect (the table
+  above). That is the same 4.625 V `refuted.md` E6 once misread as droop: it is
+  the PICkit's ceiling from a USB port, and IPECMD will not work against a
+  target that is not at the voltage it asked for. `-W4.5` is regulated to and
+  works. 4.5 V is inside the PIC18F25K80's VDD range (DS39977C), at the bottom
+  of the MCP2562's 4.5–5.5 V (DS20005167C) and far above `BORV`'s 3.0 V.
+- **The current is inside the limit.** DS51795B: the PICkit 3 supplies a target
+  *"up to 30 mA"*; the board draws under that (`kicad` implementation plan
+  §3.1), with the part held in reset for most of the session and the LEDs off
+  without JP1.
+- **`flash.py --power-from-programmer`** passes `-W4.5` on every call, the
+  preserve-EEPROM dumps included, and in a `finally` ends with one plain `-I`
+  that takes the rail off the header — the hazard below. It cannot verify
+  that the rail dropped; a voltmeter can.
+
+Measured on the first use: identify, the EEData dump before, `-M -Z0-3FF`, the
+dump after (identical, 766 bytes written), the release, and the plain `-I`
+reporting no target voltage.
 
 ## Hazard: `-W` leaves the rail live after the command exits
 

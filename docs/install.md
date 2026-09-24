@@ -749,8 +749,10 @@ for each is in [`flash-tool-notes.md`](flash-tool-notes.md):
   is the opposite, so leaving it off produces a board that is programmed
   correctly and then simply sits there — which looks exactly like a firmware
   that does not run.
-- **`-W` is deliberately not used.** Power the board from the display or a bench
-  supply first, then attach ICSP.
+- **`-W` only for a bare board.** Power the board from the display or a bench
+  supply first, then attach ICSP — or, with the board on the desk and nothing
+  else connected, `python tools/flash.py --power-from-programmer` powers it
+  from the PICkit at 4.5 V and drops the rail again at the end.
 - **The EEPROM is erased, on purpose**, and that is the right default during
   bring-up: `persist_load()` returns false on a virgin EEPROM, which is a
   correct start rather than an error. `-Z0-3FF` is what preserves the ring once
@@ -1355,7 +1357,7 @@ line above.
 | Symptom | Look at |
 |---|---|
 | `ipecmd` says `Programmer not found` with the PICkit plugged in | in this order: **MPLAB X or IPE open** and holding the tool; the **firewall rule** on IPECMD's localhost socket; something else owning the HID handle; then the programmer itself. `flash-tool-notes.md` has the citation and the port for each |
-| `ipecmd` says `Target device was not found (could not detect target voltage VDD)` | **the board is not powered.** `-W` is deliberately not used, so it needs its own 5 V. Nothing reached the part, so JP2 and the ICSP wiring are not the suspects. **This run still exits 0**, so it is the message that tells you, not the code |
+| `ipecmd` says `Target device was not found (could not detect target voltage VDD)` | **the board is not powered.** Give it its own 5 V, or on the desk use `flash.py --power-from-programmer`. Nothing reached the part, so JP2 and the ICSP wiring are not the suspects. **This run still exits 0**, so it is the message that tells you, not the code |
 | `ipecmd` says `Target Device ID (0x0) is an Invalid Device ID` | power is fine and ICSP is not: JP2 still fitted, MCLR/PGC/PGD wiring, or a dead part. Reproduced against a powered header with those three pins left unconnected — `flash-tool-notes.md` |
 | A board misbehaves or dies the first time it is plugged onto the PICkit | **had `-W` been used on that PICkit beforehand?** It leaves ~4.6 V on header pin 2 after the command exits, which then fights the board's own supply. Measure pins 2 and 3 for zero before connecting a self-powered board — `flash-tool-notes.md` |
 | Programming succeeds and nothing runs | `-OL` missing. The IPECMD default is *hold in reset*, so the part is programmed and then parked |

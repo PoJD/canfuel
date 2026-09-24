@@ -388,3 +388,32 @@ class TestModes(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class PowerFromProgrammer(unittest.TestCase):
+    """--power-from-programmer: -W4.5 on every IPECMD call, and one plain call
+    at the end that takes the rail off the header, even after a failure."""
+
+    def calls(self, argv):
+        seen = []
+        real = flash.run
+        flash.run = lambda cmd, dry, timeout=300.0: seen.append(cmd) or ""
+        try:
+            flash.main(argv)
+        finally:
+            flash.run = real
+        return [c for c in seen if c[0] == "ipecmd"]
+
+    def test_every_call_is_powered_and_the_last_drops_it(self):
+        calls = self.calls(["--preserve-eeprom", "--power-from-programmer",
+                            "--dry-run", "--no-build"])
+        self.assertGreater(len(calls), 2)
+        for cmd in calls[:-1]:
+            self.assertIn("-W4.5", cmd)
+        self.assertEqual(calls[-1][-1], "-I")
+        self.assertFalse(any(a.startswith("-W") for a in calls[-1]))
+        self.assertEqual(flash.POWER_ARGS, [])
+
+    def test_without_the_flag_nothing_is_powered(self):
+        calls = self.calls(["--dry-run", "--no-build"])
+        self.assertFalse(any(a.startswith("-W") for c in calls for a in c))

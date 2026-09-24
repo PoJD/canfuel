@@ -324,12 +324,17 @@ Four things belong here because they are decisions rather than procedure:
 - **`-OL` on every programming command.** The IPECMD default for *Release From
   Reset* is `Hold in reset`. Forgetting it produces a correctly programmed
   board that does nothing, which reads as a firmware fault.
-- **`-W` never.** It powers the target from the programmer; the board has its
-  own 5 V, so the flag buys nothing, and *Readme for PICkit 3.htm* §8.3.2
-  records a silicon issue on the PIC18F45K20/46K20 family that appears only
-  with *"power from programmer"*. A different part, but a risk with no upside.
-  **It is a decision, not a limitation of the tool** — see `docs/refuted.md` E6
-  before re-deriving it from the voltage the tool reports.
+- **`-W` only for a bare board on the desk, and at 4.5 V.** Power from the
+  programmer is the maintainer's decision for a board with **no other supply
+  and nothing else connected** — the board has no regulator of its own, so its
+  5 V comes from the display's harness or not at all. `flash.py
+  --power-from-programmer` passes `-W4.5` on every call and ends with a plain
+  call that drops the rail again, because `-W` leaves it live. **4.5 and not
+  5.0, measured**: a plain `-W` asks for 5.0 V, the PICkit 3 on USB delivers
+  4.625, and IPECMD refuses to connect; `-W4.5` is regulated to and the part
+  answers. The board draws under 30 mA, which is the PICkit 3's limit
+  (DS51795B). In the car, or with a bench supply on, never — two supplies on
+  one rail. `docs/refuted.md` E6 and `docs/flash-tool-notes.md` have the rest.
 - **The EEPROM is erased by default, and that is left alone.** *Erase All
   Before Program* is on unless `-OH` turns it off, so a plain `-M` discards the
   persist ring. `persist_load()` returning false on a virgin EEPROM is a

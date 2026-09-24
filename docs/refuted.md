@@ -733,6 +733,16 @@ from programmer"* — not our part, cited honestly as somebody else's errata,
 and reason enough to decline a risk that has no upside. **`-W never` is a
 decision, not a limitation of the tool.**
 
+*Later, and it changes the decision rather than the refutation.* The
+maintainer chose to power a bare board on the desk from the programmer, and
+against that real board a plain `-W` failed: *"trying to supply 5,000000 volts
+... measured to be 4,625000 volts"*, `Connection Failed.` So the 4.625 V is the
+PICkit's ceiling from USB, the same with a load as without, and IPECMD refuses
+a target that is not at the voltage it asked for. **`-W4.5` works.** Nothing
+above is un-refuted — it never was droop — but "`-W` never" is now "`-W4.5`
+for a bare board with no other supply", and `flash.py --power-from-programmer`
+is how.
+
 **Not affected:** the separate finding that `-W` leaves the rail live after the
 command exits, and that a plain run clears it. That was tested by alternation
 with the meter watched throughout, and it is the reason the header must read
