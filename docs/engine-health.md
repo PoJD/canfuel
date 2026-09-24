@@ -2431,6 +2431,16 @@ revision listed is dropped. The pump does not run warm, so neither can hurt:
    valve. Put it back straight after; open, it only draws engine-bay air
    ahead of the MAF, as it did all of August.
 
+**Which part it is.** Retail catalogues list the combination valve for
+2.0 engines of this family as **`06A 131 351`**, with suffixes B, D, F, H
+and J across models and years, and one US catalogue gives `06A 131 351 D`
+for the 2001–2005 New Beetle 2.0. This car is a model year 2000 (VIN
+position 10 `Y`, `vehicle-history.md`), so which suffix it carries is not
+settled from here. The number stamped on the valve, or a VW parts counter
+with the VIN, settles it. Catalogues describe it as a pneumatically operated
+diaphragm valve (Pierburg). ⚠ All of that is from shops and not from a VW
+document.
+
 A replacement valve is inexpensive next to a manifold repair, so fitting one
 on the strength of either test is a reasonable call. Fitting one untested buys
 nothing to learn from.
