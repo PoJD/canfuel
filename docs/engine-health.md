@@ -2368,6 +2368,27 @@ cold start. *Owner-reported.* What that settles and what it does not:
   vacuum-switched, a solenoid that leaks vacuum to it holds the valve open
   on every warm idle** — the fault point 1 describes, with nothing torn.
 
+**When the hose was off, and what that does to the evidence.** *Owner-reported:*
+it was torn off **during the heater replacement in August, before the
+first start of the August recordings**, and stayed off unnoticed until it was
+found and refitted a few weeks before 24 September; the exact date is not
+recorded. It went unnoticed because the weather was warm, so the pump never ran on a
+cold start, and no lamp came on. Three things follow:
+
+- **The valve on this car is vacuum-opened.** A torn line to it gave a fault
+  only once a cold start ran the pump against a valve that could not open.
+  So the vacuum-switched reading above is the right one for this car, and a
+  leaking N112 holding it open at a warm idle is a real failure mode here.
+- **In August the valve was certainly shut**, with no vacuum to open it, and
+  August's idle stumbled anyway (`09`, 61 °C). **So the valve cannot be the
+  cause of the stumble.** At most it is a contributor since the hose went
+  back on.
+- **The August recordings carry a small unmetered air leak**: an open line
+  into the intake, at idle, every one of `09`–`17`. And `18`, if the refit
+  came after 11 September. It stayed small enough that the August idle trim was
+  −4.7 %. It is one more way August and now differ, and it runs in the
+  direction of August being *worse* placed, not better.
+
 **Two free tests with the display, at a warm idle, before buying anything.**
 The pump does not run warm, so neither can hurt:
 
