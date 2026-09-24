@@ -1493,6 +1493,17 @@ so the pairing question is live in a way it was not a month ago. **It is cheap
 to settle**: the topology is visible on the car, or in the parts catalogue for
 the ignition components. Settle it before reading anything into the pair.
 
+**And the owner adds the dates that make the coil reading the stronger one.**
+The plugs that came out went in in 12/2022; the coil they ran on until 6/2026
+was **probably the original**. So those plugs spent about three and a half
+of their four years on an old coil, and only the last three months on the new
+one. If the ignition is wasted-spark, a weak output on the old coil wears its
+two plugs harder for exactly that long, with nothing on the fuel side involved.
+*Owner's recollection about the coil's age, not a record.* It does not
+identify anything either. What it changes is the weight: **1 and 4 are now
+weaker evidence against the injectors than this section first made them**,
+and the new injectors not curing the idle is consistent with that.
+
 ### The calmer idle is not evidence, and the reason is in this file's own table
 
 **The owner's impression after the visit is that idle is a little calmer.**
@@ -1903,7 +1914,7 @@ oil 55 °C: MAF 2.98–3.33 g/s against 310 µl/s commanded, a ratio of
   `config.h`
 - rail pressure (4) is no longer needed as an explanation
 
-**The misfire counter did NOT go away, and at hot idle it is now worse.**
+**The misfire counter did NOT go away, and at hot idle it now counts more.** ⚠ That is the counter and not the engine. Engine speed says the hot idle got *better*; see *The dip-against-counter correlation* below.
 
 | idle | oil | samples non-zero | values | recognition `deaktiv.` |
 |---|---|---|---|---|
@@ -1968,6 +1979,82 @@ decided here. The cheap next reads are blocks 022/023 (knock retard per
 cylinder) at a warm idle, and the dip-against-counter correlation that
 this file ran on the cold start, repeated on `24`.
 
+### The dip-against-counter correlation on `19` and `24`, and the counter moved more than the engine
+
+**Done, as owed.** The same test the cold start got, over both 24 September
+sessions: each 014 log aligned on engine speed with its capture (207.6 s and
+802.3 s, the offsets above to a tenth), dips of ≥ 20 rpm from
+`idledips.dips()` and counter increments both restricted to a standstill idle,
+and 20,000 random draws from the same standstill-idle time for the null. The
+script was a one-off and is not kept; everything it used is `idledips.py` and
+the two fixtures.
+
+| | `19`, old MAF | `24`, new MAF |
+|---|---|---|
+| standstill idle in the overlap | 1058 s | 483 s |
+| dips ≥ 20 rpm | 319, **18.1/min** | 70, **8.7/min** |
+| counter increments | 32 | 89 |
+| median lag, increment to nearest dip | 0.59 s, against 1.24 s random | 1.21 s, against 2.44 s random |
+| permutation p | 0.005 | < 5×10⁻⁵ |
+| dips with an increment within 3 s after | **37 of 319** | **38 of 70** |
+
+**The two signals still move together, on the new parts as on the old**:
+the stumble is the misfire, as the cold start found. Dips near an increment
+are no deeper than the rest (22–23 rpm either way), so depth does not tell a
+counted event from an uncounted one.
+
+**Split by oil temperature, the two sessions disagree, and not in the
+direction the counter alone suggests:**
+
+| oil | `19` dips/min | `19` counter rises/min | `24` dips/min | `24` counter rises/min |
+|---|---|---|---|---|
+| < 30 °C (cold idle) | 14.8 | **0.0** | — | — |
+| 50–60 °C | 20.9 | 8.0 | 11.0 | 19.1 |
+| 60–66 °C | 14.6 | 1.9 | 5.1 | 3.6 |
+| 66–80 °C (hot idle) | **20.0** | **0.3** | **8.1** | **9.4** |
+
+(A single event raises the counter over more than one VCDS sample, 12 → 24 →
+36, so "rises" over-counts events. That is the same in both columns.)
+
+- **Engine speed says the hot idle got better with the new MAF**: 20.0 dips a
+  minute down to 8.1, and the roughness grade in the table above agrees.
+  The earlier line *"at hot idle it is now worse"* was the counter's reading and
+  not the engine's.
+- **The counter went the other way**: close to nothing to about nine a minute,
+  on an engine that was stumbling less. So between the morning and the
+  afternoon, **the ECU's detection itself got more sensitive**. It also counted
+  nothing at all through the morning's cold idle, where the dips ran at 14.8 a
+  minute.
+- ⚠ **Why is not established.** The cause offered here is a hypothesis: on
+  this kind of ECU, misfire thresholds are commonly mapped against load, and the
+  old MAF over-read the idle air by 14–45 %, which puts the ECU in a different
+  load cell. Nothing in `docs/` sources that. What *is* measured is that
+  **the counter reads differently on the two MAFs at the same oil temperature,
+  and by more than the engine does**, so a before/after comparison across the
+  swap has to use engine speed rather than 014.
+- **Nor is every dip a misfire.** `24` has 32 of its 70 dips with no increment
+  after them, and nothing here can say whether the counter missed those or the
+  engine did something else.
+
+**What it means for the next steps:** the idle fault is real and still there
+after the MAF, at about half the rate of the morning. Every combustion part
+has now been changed, the lambda trims are near zero and the sensors pass
+their own tests. So what is left is outside the fuel and ignition parts:
+air getting in past the MAF, the valvetrain at a hot idle, or the ignition
+wiring pairs if the coil question above comes back wasted-spark.
+
+### The first drive with 0x604 on the display — 24 September 2026, evening
+
+**`IdleHealth` moved between 80 and 140 over the drive**, read from the
+driver's seat and not logged, **with no oil temperature noted beside it**.
+On the day-one table in `frames.md` that is the new-MAF band (68–121 hot,
+73–100 warm), which is the old engine's 100 and not August's 48. **The owner
+feels the idle is calmer in some way beyond the engine speed**, and offers it
+as possibly placebo. It need not be. The rich trim the MAF fixed made the idle
+hesitate, and the owner reported that gone that afternoon, but `IdleHealth`
+grades one firing against the next and cannot see a slow hesitation. So the
+two can both be true.
+
 ### What is owed, none of it urgent
 
 - **Group 032 again, a few hundred kilometres after the MAF swap**, one
@@ -1980,8 +2067,11 @@ this file ran on the cold start, repeated on `24`.
 - **The old intake hoses, looked at directly** rather than through a capture.
   The idle trim argues against a leak big enough to misfire, and a small one at
   a single runner is not excluded.
-- **The dip-against-counter correlation** this file ran on the cold start,
-  repeated on `24`.
+- ~~The dip-against-counter correlation, repeated on `24`.~~ **Done**, in the
+  section above: the signals still correlate, and the counter's sensitivity
+  changed with the MAF.
+- **`IdleHealth` with the oil temperature beside it.** A reading without it
+  cannot be compared with anything.
 
 The oil change and the oxygen sensors were set aside once the MAF explained
 the trim.
