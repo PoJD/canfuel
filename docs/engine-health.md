@@ -2369,8 +2369,10 @@ cold start. *Owner-reported.* What that settles and what it does not:
 
 **When the hose was off, and what it was.** *Owner-reported:* it was torn off
 **during the heater replacement in August, before the first start of the
-August recordings**, and stayed off unnoticed until it was refitted a few
-weeks before 24 September; no lamp came on, and the weather was warm enough
+August recordings**, and stayed off unnoticed. **The last photograph showing the engine fault is
+dated 11 August 2026**, the same day as every August recording (`09`–`17`
+and both August VCDS logs). The hose was refitted that day or a few days
+later; the exact date is not recorded. No lamp came on before that, and the weather was warm enough
 that the pump never ran on a cold start. **It joins the intake ahead of the
 MAF**: it is the pump's air feed from the filtered side. With it off, the
 pump could only have drawn unfiltered engine-bay air. It was not an
