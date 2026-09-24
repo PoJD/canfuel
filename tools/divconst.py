@@ -42,11 +42,13 @@ DIVISORS = {
            "accumulators are unbounded 32-bit, so this must be the full range"),
     3600: (1 << 32,
            "v[0.001 km/h] * t[ms] -> mm -- full range"),
-    # torque_d is at most 255 * TORQUE_CNM_PER_BIT / 10, i.e. under 1900 tenths
-    # of an Nm, and rpm comes from a uint16 quarter-rpm counter so it is under
-    # 16384. torque_d * 10 * rpm is therefore under 1900 * 10 * 16384 = 3.1e8.
-    # 2**30 is a round bound comfortably above that and comfortably below the
-    # 2**32 that would need a 33-bit magic.
+    # torque_d is at most (255 * TORQUE_CNM_PER_BIT - DRAG_TORQUE_BASE_CNM) / 10,
+    # i.e. under 2610 tenths of an Nm at 106 cNm/bit, and TORQUE_TRIM_PCT's
+    # ceiling of +100 % can double that to 5220. rpm comes from a uint16
+    # quarter-rpm counter so it is under 16384. torque_d * 10 * rpm is
+    # therefore under 5220 * 10 * 16384 = 8.6e8 even with the trim at its limit.
+    # 2**30 = 1.07e9 is a round bound above that and comfortably below the
+    # 2**32 that would need a 33-bit magic. A larger scale must re-check this.
     95500: (1 << 30,
             "POWER_DIVISOR; torque_d * 10 * rpm < 2**30, see the note above"),
 }

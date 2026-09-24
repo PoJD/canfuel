@@ -653,7 +653,7 @@ uint32_t compute_trim_apply(uint32_t value, int16_t trim_q8)
 
     if (trim_q8 > 0) {
         /* value is a net torque in 0.01 Nm, so at the full scale b7 can reach
-         * it is under 19,000; times a trim under 256 it cannot leave 32 bits. */
+         * it is under 26,100; times a trim under 256 it cannot leave 32 bits. */
         return value + (mul_u32_u16(value, (uint16_t)trim_q8) >> 8);
     }
 

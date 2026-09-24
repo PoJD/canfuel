@@ -652,7 +652,7 @@ static void test_a_short_trip_does_not_seed_the_basis(void)
  * torque is zero at each -- which is what makes them a calibration and not
  * just data. The line is a least-squares fit rather than a two-point
  * interpolation, so the residuals are real: up to 1.8 counts of b7, about
- * 1.3 Nm. The test asserts that, rather than an exact zero it cannot have. */
+ * 1.9 Nm. The test asserts that, rather than an exact zero it cannot have. */
 static void test_drag_model_sits_on_the_warm_free_rev_holds(void)
 {
     decode_state_t st;
@@ -680,12 +680,13 @@ static void test_drag_model_sits_on_the_warm_free_rev_holds(void)
     st.throttle = 51u;
     TT_EQ(compute_torque_d(&st), 0);
 
-    /* 15_rev2372_z1, oil 75.3 C. The one point the line falls below, by the
-     * fit's largest residual. 1.3 Nm of phantom torque, and no more. */
+    /* 15_rev2372_z1, oil 75.3 C. The one point the line falls below, by 1.4
+     * counts. Phantom torque, bounded by the fit's largest residual -- 1.8
+     * counts, written in counts so that it follows the scale. */
     st.rpm_q4 = 2372u * 4u;
     st.torque_ind_cnm = 26u * TORQUE_CNM_PER_BIT;
     st.throttle = 56u;
-    TT_TRUE(compute_torque_d(&st) <= 15u);
+    TT_TRUE(compute_torque_d(&st) <= 18u * TORQUE_CNM_PER_BIT / 100u);
 
     /* 16_rev2926_z1, oil 76.6 C. */
     st.rpm_q4 = 2926u * 4u;
@@ -906,8 +907,8 @@ static void test_torque_above_drag(void)
     st.torque_ind_cnm = 15000;              /* 150.00 Nm indicated */
     st.speed_mmh = 60000u;                  /* moving, and the pedal is down,  */
     st.throttle = 90u;
-    /* drag at 3000 rpm = 6.74 + 14.46 = 21.20 Nm, so 128.80 net */
-    TT_NEAR(compute_torque_d(&st), 1288, 2);
+    /* drag at 3000 rpm = 9.66 + 20.71 = 30.37 Nm, so 119.63 net */
+    TT_NEAR(compute_torque_d(&st), 1196, 2);
 }
 
 static void test_power(void)
@@ -918,8 +919,8 @@ static void test_power(void)
     st.torque_ind_cnm = 15000;
     st.speed_mmh = 60000u;
     st.throttle = 90u;
-    /* 128.80 Nm at 3000 rpm = 40.5 kW */
-    TT_NEAR(power_d(&st), 405, 2);
+    /* 119.63 Nm at 3000 rpm = 37.6 kW */
+    TT_NEAR(power_d(&st), 376, 2);
 }
 
 static void test_engine_off_makes_no_torque(void)
@@ -930,40 +931,40 @@ static void test_engine_off_makes_no_torque(void)
     TT_EQ(power_d(&st), 0);
 }
 
-/* THE CEILING. b7 is one byte, so the model has a hard maximum whatever the
- * engine does, and nothing else in the firmware checks that the maximum is
- * high enough to show what the car is sold as. It was not: at 0.67 Nm/bit the
- * display topped out at 76.5 kW and 147 Nm, so the factory 85 kW could not
- * appear at any throttle opening. These two tests exist so that a change to
- * TORQUE_CNM_PER_BIT or to the drag line cannot put the ratings out of reach
- * again without a red test.
+/* THE RATINGS, FROM THE PLATEAU THE ENGINE ACTUALLY REACHES. The scale is
+ * set by what b7 reads when the engine makes its factory figures -- held
+ * full-throttle pulls in 4th, 19_postfix_drive_z1, median b7 in a +-150 rpm
+ * window: 185 at 2400 rpm and 191 at 5200. The AQY is rated 170 Nm at 2400
+ * and 85 kW at 5200, so those two readings must reproduce those two figures.
+ * This is the first version of these tests with a measurement behind them;
+ * the one before asserted that b7 = 255 reaches the ratings, which the pulls
+ * refuted -- the plateau is 185-206 and 255 is never reached. See config.h.
  *
- * The AQY is rated 85 kW at 5200 rpm and 170 Nm at 2400 rpm. The tolerance is
- * 5 %: the scale is a decision, not a measurement, so pinning it exactly would
- * only pin the guess. On the warm drag line the two ratings agree on a 0.736
- * to 0.738 Nm/bit bracket and 0.74 delivers 85.4 kW and 170.4 Nm -- both now
- * land just ABOVE the ratings rather than 3 % below, which is what the refit
- * was for. See config.h. */
-static void test_full_scale_reaches_the_rated_power(void)
+ * The tolerance is 2 %: the two ratings agree on the scale to 0.6 %, and 1.06
+ * is a decision inside that bracket, so a scale or a drag line that moves
+ * either figure by more than the bracket is a change that has to explain
+ * itself. A change to TORQUE_CNM_PER_BIT or to the drag line cannot put the
+ * ratings out of reach -- or overshoot them -- without a red test. */
+static void test_the_plateau_reproduces_the_rated_power(void)
 {
     decode_state_t st;
     decode_init(&st);
     st.rpm_q4 = 5200u * 4u;
-    st.torque_ind_cnm = 255u * TORQUE_CNM_PER_BIT;
-    st.speed_mmh = 120000u;                 /* full scale means moving fast */
+    st.torque_ind_cnm = 191u * TORQUE_CNM_PER_BIT;
+    st.speed_mmh = 137000u;                 /* 4th gear at 5200 rpm          */
     st.throttle = 211u;                     /* and the pedal on the floor    */
-    TT_TRUE(power_d(&st) >= 850u - 43u);       /* 85.0 kW, -5 % */
+    TT_NEAR(power_d(&st), 850u, 17u);       /* 85.0 kW, +-2 % */
 }
 
-static void test_full_scale_reaches_the_rated_torque(void)
+static void test_the_plateau_reproduces_the_rated_torque(void)
 {
     decode_state_t st;
     decode_init(&st);
     st.rpm_q4 = 2400u * 4u;
-    st.torque_ind_cnm = 255u * TORQUE_CNM_PER_BIT;
-    st.speed_mmh = 80000u;
+    st.torque_ind_cnm = 185u * TORQUE_CNM_PER_BIT;
+    st.speed_mmh = 63400u;                  /* 4th gear at 2400 rpm          */
     st.throttle = 211u;
-    TT_TRUE(compute_torque_d(&st) >= 1700u - 85u);     /* 170.0 Nm, -5 % */
+    TT_NEAR(compute_torque_d(&st), 1700u, 34u);        /* 170.0 Nm, +-2 % */
 }
 
 /* The owner's optional gain on torque and power. These exist because
@@ -980,7 +981,7 @@ static void test_the_torque_trim_is_off_by_default(void)
 
     TT_EQ(compute_trim_apply(0u, 0), 0u);
     TT_EQ(compute_trim_apply(1u, 0), 1u);
-    TT_EQ(compute_trim_apply(18870u, 0), 18870u);   /* b7 = 255 in cNm */
+    TT_EQ(compute_trim_apply(27030u, 0), 27030u);   /* b7 = 255 in cNm */
 }
 
 static void test_the_trim_percent_converts_to_256ths(void)
@@ -1598,8 +1599,8 @@ int main(void)
     TT_RUN(test_torque_above_drag);
     TT_RUN(test_power);
     TT_RUN(test_engine_off_makes_no_torque);
-    TT_RUN(test_full_scale_reaches_the_rated_power);
-    TT_RUN(test_full_scale_reaches_the_rated_torque);
+    TT_RUN(test_the_plateau_reproduces_the_rated_power);
+    TT_RUN(test_the_plateau_reproduces_the_rated_torque);
     TT_RUN(test_cranking_is_not_torque);
     TT_RUN(test_the_torque_trim_is_off_by_default);
     TT_RUN(test_the_trim_percent_converts_to_256ths);

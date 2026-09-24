@@ -418,35 +418,62 @@ is the entire point of a range gauge.
 
 ## Torque and Power
 
-**The byte scale, 0.74 Nm/bit, is a decision.** 0x280 b7 is not Nm — it is a
-percentage of a reference torque held in the ECU's calibration. It used to be
-read at 0.67 Nm/bit, from "the AQY's maximum is 172 Nm, so 172/256". That
-premise is wrong on the fixtures' own evidence: at 2940 rpm in neutral
-(`05_rev3000`) the crank puts out nothing and b7 still reads 37, so b7 is
-**indicated** torque and its full scale is the maximum *indicated* torque —
-the rated crank figure plus the drag at that speed. Scaling to the crank
-maximum and then subtracting drag counts the friction twice.
+**The byte scale, 1.06 Nm/bit, is measured** — off the plateau the engine
+actually reaches, against both factory ratings. 0x280 b7 is not Nm; it is a
+percentage of a reference torque held in the ECU's calibration, and nobody here
+has the reference. What settles the scale is what b7 reads when the engine
+makes its rated figures.
 
-Requiring b7 = 255 to reproduce each factory rating in turn brackets the scale
-— and **the bracket moves with the drag line**, because what full scale has to
-cover is the rated crank figure *plus* the drag at that speed. On the old
-cold-oil line the two ratings disagreed, 0.745 (85 kW at 5200 rpm) against
-0.773 Nm/bit (170 Nm at 2400 rpm). On the warm line below they nearly agree:
+b7 is **indicated** torque: at 2940 rpm in neutral (`05_rev3000`) the crank
+puts out nothing and b7 still reads 37. So a rating is what is left of b7
+*after* the drag line below, and that line is held **in bytes**.
+
+**Held full-throttle pulls in 4th, `19_postfix_drive_z1`**, median b7 in a
+±150 rpm window:
+
+| rating | rpm | b7 plateau | drag, bytes | scale |
+|---|---|---|---|---|
+| 170 Nm | 2400 | **185** | 24.74 | 170 / 160.26 = **1.061 Nm/bit** |
+| 85 kW = 156.1 Nm | 5200 | **191** | 42.98 | 156.1 / 148.02 = **1.055 Nm/bit** |
+
+**Two independent ratings and two independent readings agree to 0.6 %.** 1.06
+is a decision inside that bracket; on a pull like that one it shows about
+170 Nm at 2400 and 85.4 kW at 5200. `test_compute.c` pins both, as the first
+version of those tests with a measurement behind them.
+
+The whole plateau, for the shape: b7 rises from 175 at 2000 rpm to a peak of
+198 (median) at 4500 and falls back to 175 at 6000, with the pedal on the floor
+throughout. Relative load from VCDS group 014 is flat at 78–81 % across it.
+**The plateau is not still climbing at the end of any burst** — that was the
+flaw of every earlier pull, which ended in a low-gear sweep.
+
+⚠ **Two caveats, stated rather than resolved.** The intake temperature was not
+logged during the pulls, and b7 carries the ECU's charge normalisation, so a
+hot day reads lower and a frosty one higher — physics, not an error in the
+scale, and **not** something to chase with `TORQUE_TRIM_PCT`. And the engine was
+not wholly well that day: every fault it had was a low-load one, no misfire
+was counted during any pull, and load and air matched the earlier drive. The
+scale was set from these pulls on that judgement.
+
+#### Superseded: the scale from b7 = 255
+
+**Kept because it is the obvious argument and it is wrong.** Until the pulls,
+the scale was derived by requiring b7 = 255 to reproduce each factory rating
+in turn, on the premise that full scale is the rated crank torque plus the
+drag at that speed. It gave 0.67 Nm/bit first ("the maximum is 172 Nm, so
+172/256", which also forgot the drag), then 0.75 on the cold-oil drag line,
+then 0.74 on the warm one:
 
 | | bracket | at the chosen scale |
 |---|---|---|
-| cold-oil drag line, 0.75 Nm/bit | 0.745 – 0.773 (3.7 % wide) | 85.6 kW, **165 Nm** — 3 % under the rating |
-| warm drag line, **0.74 Nm/bit** | **0.736 – 0.738** (0.3 % wide) | **85.4 kW, 170.4 Nm** — both within 0.5 % |
+| cold-oil drag line, 0.75 Nm/bit | 0.745 – 0.773 (3.7 % wide) | 85.6 kW, **165 Nm** |
+| warm drag line, 0.74 Nm/bit | 0.736 – 0.738 (0.3 % wide) | 85.4 kW, 170.4 Nm |
 
-That the two independent ratings now agree about the scale is a check that
-passed, not a measurement: the constraint is dominated by the drag line's
-*slope*, so a wrong intercept can still look consistent. **Nothing available
-settles it, and it is no longer an open question.** The VCDS session was run
-and is recorded in `docs/vcds-session.md`: this ECU has no torque measuring
-block at all, so there is nothing there to read a scale against. It is parked under *Never
-resolved but not required* in `can-decoding.md` — do not plan that session
-again. `test_compute.c` pins the ceiling so the factory figures cannot silently
-go out of reach.
+**The two ratings "agreed" there only because both were nailed to 255.** The
+premise was never observed and the pulls refute it: the engine plateaus at
+185–206 and falls away above 4500 rpm with the pedal on the floor, so 255 is a
+normalisation real air does not reach (see *What that gap is worth in Nm*
+below). The shipped 0.74 displayed torque and power **30 % low**.
 
 ### b7 is modelled rather than measured, and how much it can see is NOT established
 
@@ -512,10 +539,10 @@ them. It is a holding document and will be folded back in or deleted.
 ### What b7 has actually been observed to reach
 
 **`python tools/b7scan.py` prints this and nothing here is typed by hand.** It
-matters because the scale rests on *b7 = 255 is the rated crank torque plus the
-drag at that speed*, and `docs/next-drive.md` already says that premise has
-never been tested. How close it has ever been seen **is** answerable, and the
-answer separates three things a bare maximum runs together.
+mattered because the scale once rested on *b7 = 255 is the rated crank torque
+plus the drag at that speed* — superseded above — and it still matters because
+what the engine reaches is what the scale is now read off. The answer
+separates three things a bare maximum runs together.
 
 **192 is the largest value in the fixtures and the engine did not make it.**
 Every sample of it is below 900 rpm with the throttle at rest, in the seconds
@@ -599,6 +626,14 @@ than as one drive's air. It needs a hard frost — −24 to +2.5 °C of intake �
 it is out of reach on a warm drive and **not** out of reach in principle. Say
 "not on this drive", not "not ever".
 
+⚠ **SUPERSEDED — the bracket below was 10–15 % low, and the reason is
+arithmetic, not new data.** It divided **188 Nm**, which is the rating plus
+the drag *converted to Nm at 0.74 Nm/bit*, by the plateau. But the drag scales
+with the scale. Held in bytes, as `config.h` holds it, the same route lands
+where the pulls put it, 1.055–1.061. Kept because the direction it pointed —
+well above 0.74 — was right, and because the route is the natural one to
+re-derive.
+
 **Two independent routes then bracket the scale, and they overlap.** Full scale
 has to cover the rated crank figure plus the drag at that speed — 188 Nm, and
 notably the same 188 Nm at both rating points, 188.3 at 2400 rpm against 187.9
@@ -636,7 +671,7 @@ values are **2**, with a single-count step at each multiple of 64. **One
 *count* is still 0.39 % and `config.h` is right to say so** — that is the unit
 the byte is transmitted in, and what `TORQUE_TRIM_PCT` steps by. What this adds
 is that the ECU does not use every count: **the smallest change b7 has ever
-been seen to make is two of them, about 0.8 % of full scale and near 1.5 Nm.**
+been seen to make is two of them, about 0.8 % of full scale and near 2.1 Nm.**
 That strengthens rather than weakens the "b7 did not move at the idle dips"
 observation in `engine-health.md` — the resolution available to that argument
 is twice as coarse as it assumed.
@@ -724,27 +759,28 @@ nothing and b7 *is* the drag:
 | `16_rev2926_z1` | 2926 | 27.23 | 76.6 °C | 61 |
 
 Least squares through them, in bytes, gives `drag_b7 = 9.11 + 0.006514 × rpm`
-with residuals of −0.9 to +1.8 counts, and at 0.74 Nm/bit that is
+with residuals of −0.9 to +1.8 counts, and at 1.06 Nm/bit that is
 
 ```
-drag [Nm] = 6.74 + 0.00482 × rpm
+drag [Nm] = 9.66 + 0.00690 × rpm
 ```
 
 The constants live in `config.h` as `DRAG_TORQUE_BASE_CNM` and
 `DRAG_TORQUE_SLOPE_Q16` — the slope scaled by 2**16 rather than by 10,000
 so that dividing it out is a free byte shift on the PIC
-rather than a reciprocal multiply. The line is unchanged to five parts per
-million. **The calibration is in bytes, not Nm** — change the
-scale above and this line has to be refitted with it, which is exactly what
-happened here: the scale moved 0.75 → 0.74 in the same breath.
+rather than a reciprocal multiply. **The calibration is in bytes, not Nm** —
+both constants are the byte line times the scale, and they are recomputed from
+the byte line whenever the scale moves, never rescaled from their previous
+values. That has happened twice: 0.75 → 0.74 with the warm refit, and
+0.74 → 1.06 with the pulls, where the byte line stayed put.
 
 **What it replaces.** A two-point line, `drag = 19.52 + 0.0028 × rpm`, fitted
 on `02_idle_60s` (oil 60.8 °C) and `05_rev3000` (oil **39.0 °C**). Cold oil
 overstates drag, and since this line is *subtracted*, the display understated
 torque and power — it read zero through 51 % of `17_drive_property_z1` where
 the new line reads a number through 78 % of it. Peak torque over that same
-drive barely moves, 105.8 → 107.0 Nm, because at high load the drag is a small
-term. The whole of the difference is at part throttle.
+drive barely moved, 105.8 → 107.0 Nm at the 0.74 scale of the time, because
+at high load the drag is a small term. The whole of the difference is at part throttle.
 
 **The idle point is excluded on purpose, and the driving gate below covers it.**
 `11_idle_noac_z1` is 798 rpm at b7 = 24.96 on the same warm oil, which is
@@ -783,12 +819,12 @@ left two states showing a number that the car is not in:
   pedal never moves. One real stop out of `17_drive_property_z1`, throttle at
   38 throughout:
 
-  | speed | rpm | b7 | old gate |
+  | speed | rpm | b7 | old gate, at 1.06 Nm/bit |
   |---|---|---|---|
   | 19.6 km/h | 1358 | 7 | 0.0 Nm |
-  | 13.5 km/h | 898 | 17 | 1.5 Nm |
-  | 8.0 km/h | 792 | 25 | 8.0 Nm |
-  | 3.8 km/h | 783 | 27 | 9.5 Nm |
+  | 13.5 km/h | 898 | 17 | 2.2 Nm |
+  | 8.0 km/h | 792 | 25 | 11.4 Nm |
+  | 3.8 km/h | 783 | 27 | 13.6 Nm |
   | standing | 776 | 27 | 0.0 Nm |
 
   **The apparent threshold is engine speed returning to idle, not road speed.**
@@ -804,7 +840,7 @@ only the parked one.
 
 **What it costs**, because it is not free. Over `17_drive_property_z1` the
 share of samples displaying zero goes **28.4 % → 58.0 %**, with the peak
-unmoved at 107.0 Nm — but that log is six minutes of first-gear pottering with
+unmoved at 153.3 Nm — but that log is six minutes of first-gear pottering with
 a great deal of coasting, so it is the worst case rather than a typical drive.
 And **pulling away reads zero until the car moves**: a median of 0.7 s after
 the pedal leaves rest across the 14 pull-aways in that log, 1.75 s at worst, so

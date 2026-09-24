@@ -102,8 +102,9 @@ static uint32_t mulhi_u32(uint32_t x, uint32_t m)
 #define DIVC_1000       0x4189374Cul, 8u
 #define DIVC_3600       0x91A2B3C5ul, 11u
 /* 95500 is the one with a declared range: over the full 32 bits its magic
- * needs 33 bits and would not fit. torque_d * 10 * rpm stays under 2**30 --
- * tools/divconst.py carries the arithmetic. */
+ * needs 33 bits and would not fit. torque_d * 10 * rpm stays under 2**30, even
+ * at TORQUE_TRIM_PCT's +100 % ceiling -- tools/divconst.py carries the
+ * arithmetic. */
 #define DIVC_95500      0xAFAD7AC4ul, 16u
 
 /* x / d, for the divisors above only. Use as div_const(x, DIVC_1000).

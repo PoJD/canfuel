@@ -148,7 +148,7 @@ class TestPatching(unittest.TestCase):
         self.assertEqual(st.rpm, 2600)
         self.assertEqual(st.throttle, 91)
         # replay.py scales b7 by TORQUE_CNM_PER_BIT, so 133 comes back in Nm.
-        self.assertAlmostEqual(st.torque_ind_nm, 133 * 0.74, delta=0.01)
+        self.assertAlmostEqual(st.torque_ind_nm, 133 * 1.06, delta=0.01)
 
     def test_the_tank_level_survives_the_reserve_lamp_bit(self):
         for litres in (0, 7, 40, 63):

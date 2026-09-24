@@ -110,7 +110,7 @@ finds it rather than rediscovers it.
 | Coolant temperature | 0x288 | 1 | × 0.75 − 48 °C | 0xFF = fault |
 | Oil temperature | 0x420 | 3 | × 0.75 − 48 °C | 0xFF with the engine off |
 | Fuel in tank | 0x320 | 2, mask 0x7F | indicated litres | bit 0x80 = reserve lamp; the scale reads low, `refuel-reset.md` |
-| Torque (indicated) | 0x280 | 7 | 0.74 Nm/bit | a decision, see `frames.md` |
+| Torque (indicated) | 0x280 | 7 | 1.06 Nm/bit | measured off the full-throttle plateau, see `frames.md` |
 | Throttle position | 0x280 | 5 | 38 = rest position | |
 | Engine load | 0x280 | 6 | | 0 with the engine off; **not decoded by the firmware** |
 | Wheel speeds | 0x4A0 | 4× 16-bit LE | (raw >> 1) × 0.01 km/h | bit 0 = direction |
@@ -556,11 +556,11 @@ because code and other documents cite them:
   the driver reads off the display, and each has a procedure that would close
   it. **10 is underneath 7**: the drag line is fitted against oil temperature,
   so if that channel is offset, 7 is being answered in the wrong units.
-- **Resolved**, further down: 1, 2, 4, 5, 6 and 9, kept in full because the
+- **Resolved**, further down: 1, 2, 4, 5, 6, 8 and 9, kept in full because the
   evidence is the useful part and a closed question that does not say how it
   was closed reopens itself.
 - **Never resolved but not required** — the last chapter of this file, holding
-  3 and 8. Never answered, and **not to be worked on again**.
+  3. Never answered, and **not to be worked on again**.
 
 *Resolved* and *never resolved but not required* are two different things and
 are kept apart on purpose: the first says what the answer is, the second says
@@ -569,7 +569,7 @@ there is no answer and none is wanted.
 **This register is about decoding the bus, and one live investigation is not in
 it.** `docs/engine-health.md` holds an open question about the *vehicle* —
 whether the engine is down on power, and whether `TORQUE_CNM_PER_BIT`
-under-reads — which bears on question 8 above and is noted inside it. It is a
+under-read — which question 8 has since answered: it did, by 30 %. It is a
 holding document with an end date, not a tenth question, and the count above
 is unchanged.
 
@@ -616,69 +616,65 @@ therefore the drag itself:
 
 ```
 drag_b7 = 9.11 + 0.006514 x rpm        residuals -0.9 to +1.8 counts
-drag [Nm] = 6.74 + 0.00482 x rpm       at 0.74 Nm/bit
+drag [Nm] = 9.66 + 0.00690 x rpm       at 1.06 Nm/bit
 ```
 
 ### What the display can show at the top, and what that is worth
 
-**The ceiling is 170.4 Nm at 2400 rpm and 85.4 kW at 5200 rpm**, reached at
-b7 = 255, against factory ratings of 170 Nm and 85 kW.
-`test_full_scale_reaches_the_rated_power` and
-`test_full_scale_reaches_the_rated_torque` hold it there to within 5 %, and
-they exist because at the old 0.67 Nm/bit the display topped out at 76.5 kW and
-could not have shown the power the car is sold with at any throttle opening.
+**On the plateau this engine actually reaches, the display reproduces both
+factory ratings**: b7 = 185 at 2400 rpm shows about 170 Nm and b7 = 191 at
+5200 rpm about 85.4 kW, against 170 Nm and 85 kW.
+`test_the_plateau_reproduces_the_rated_torque` and `..._power` hold both to
+within 2 %. The byte's own ceiling, b7 = 255, is about 244 Nm at 2400 rpm and
+122 kW at 5200 — **and it is never reached**, which is why it no longer defines
+anything (question 8).
 
-⚠ **That is verified against the ratings and not against the engine**, and the
-difference matters. The scale was *derived* from the two ratings, so the
-display agreeing with them is arithmetic closing on itself, not a measurement.
-Nothing has ever compared either number against a dyno, and nothing is planned
-to: this ECU has no torque measuring block, so there is nothing to read it
-against without one.
+⚠ **That is verified against the ratings on this car's own plateau, not
+against a dynamometer.** The scale was *derived* from the two ratings, so the
+display agreeing with them at those two points is arithmetic closing on
+itself; what is a measurement is that the two ratings, read independently,
+agree with each other to 0.6 %.
 
-⚠ **It is calibrated for a stock AQY, and this car is not one.** The remap
-below is a fact about this vehicle rather than a caution about somebody else's:
-the ECU was chipped years ago, it is not going back to standard, and
-`docs/engine-health.md` holds what is and is not known about it.
+⚠ **It is calibrated against a stock AQY's ratings, and this car is not one.**
+The remap below is a fact about this vehicle rather than a caution about
+somebody else's: the ECU was chipped years ago, it is not going back to
+standard, and `docs/engine-health.md` holds what is and is not known about it.
 
 **A remap therefore does not read correctly.**
 Which way it fails depends on something nobody has established — whether the
 ECU scales its internal reference torque with the map. If it does, b7 stays in
 the same range for more real torque and the display **under-reads** a tuned
 engine while looking perfectly plausible. If it does not, b7 climbs and the
-display follows until it **clips at 255 counts**, which is the 170.4 Nm above.
-Either way the numbers stay believable and stop being right, which is the worst
-shape a fault can have. A remap means recalibrating both the scale and the drag
-line together.
+display follows until it **clips at 255 counts**, the 244 Nm above. Either way
+the numbers stay believable and stop being right, which is the worst shape a
+fault can have. A remap means recalibrating both the scale and the drag line
+together.
 
 **What it costs here, as far as it can be bounded.** A remap on a naturally
 aspirated engine normally moves ignition advance and the full-load enrichment
-and is worth a few per cent. The scale is derived by requiring b7 = 255 to
-reproduce the two ratings **of a stock engine**, so if the remap gained
-anything, full scale should map to more Nm than it does and the display
+and is worth a few per cent. The scale is set by requiring this car's plateau
+to reproduce the ratings **of a stock engine**, so if the remap gained
+anything, the plateau is worth more Nm than the scale says and the display
 under-reads by roughly what the remap gained. A few per cent, in a known
-direction — small against the 0.3 % bracket's own false precision, and one more
-reason that bracket is arithmetic closing on itself rather than a measurement.
-**The drag line is unaffected in kind**, because it was fitted on this car as
-it is.
+direction. **The drag line is unaffected in kind**, because it was fitted on
+this car as it is.
 
-**For reference, the highest the car has actually produced on record** is
-**107.0 Nm and 53.8 kW** — b7 = 185 at 4799 rpm, full throttle, first gear, on
-private land. That is 63 % of the ceiling, and it is what a short piece of land
-allows rather than what the engine can do.
+**For reference, the highest the car has actually produced on record** is b7 =
+206 at 4402 rpm, a held full-throttle pull in 4th in `19_postfix_drive_z1` —
+about **178 Nm and 82 kW** at 1.06 Nm/bit. A peak rather than a plateau, so a
+statement about one burst and not a rating.
 
-**The scale moved with it, from 0.75 to 0.74 Nm/bit, and had to.** Full scale
-b7 = 255 has to cover the rated crank torque *plus* the drag at that speed, so
-the bracket the two factory ratings imply depends on the drag line. On the old
-line they disagreed (0.745 against 0.773); on this one they agree to 0.3 %, and
-0.74 delivers 85.4 kW at 5200 rpm and 170.4 Nm at 2400 against ratings of 85
-and 170. Both figures used to land 3 % *under*. Details in `frames.md` and
-`config.h`; the agreement is a check that passed, not a measurement, because
-the constraint is dominated by the slope.
+**The scale moves with the drag line, and has to.** A rating is what is left
+of b7 after the drag, so the scale is the rating divided by *b7 minus the drag
+in bytes*, and a different drag line gives a different scale. It moved 0.75 →
+0.74 with the warm refit, under the old derivation from b7 = 255; under the
+measured one it would move again with a hot refit (below). `frames.md` and
+`config.h` have the details.
 
 **What it bought, measured on the one drive we have.** Over
 `17_drive_property_z1` the old line displayed zero torque through 51 % of the
 samples and the new one displays a number through 78 %. Peak torque barely
-moves — 105.8 → 107.0 Nm — because at high load the drag is a small term. The
+moved — 105.8 → 107.0 Nm at the 0.74 scale of the time — because at high load the drag is a small term. The
 whole difference is at part throttle, which is where the driving happens.
 
 **The idle point is excluded, deliberately, and the driving gate handles it.**
@@ -718,23 +714,25 @@ exponentially with temperature, so a rate measured across 39–77 °C overstates
 what happens across 77–100 °C; and drag is not all viscous — pumping loss and
 accessory load do not care how hot the oil is. Both push the real number down.
 
-Where it lands is the useful part, and it is not where it looks:
+Where it lands is the useful part, and it is not where it looks. Taking the
+6.2 counts as a uniform drop of the line — the upper bound, applied at every
+speed — at 4799 rpm:
 
-| | now | with a hot refit | |
+| | now, 1.06 Nm/bit | with a hot refit, ~1.02 Nm/bit | |
 |---|---|---|---|
-| the 107.0 Nm peak of `17_drive_property_z1` (b7 = 185, 4799 rpm) | 107.0 Nm, 53.8 kW | 107.8 Nm, 54.2 kW | **+0.7 %** |
-| b7 = 100 at the same speed | 44.1 Nm | 46.6 Nm | +6 % |
-| b7 = 80 | 29.3 Nm | 32.2 Nm | +10 % |
-| b7 = 60 | 14.5 Nm | 17.8 Nm | +23 % |
-| b7 = 40 | **zero** | 3.4 Nm | — |
+| the peak of `17_drive_property_z1` (b7 = 185, 4799 rpm) | 153.3 Nm, 77.0 kW | 153.4 Nm, 77.1 kW | **+0.1 %** |
+| b7 = 100 at the same speed | 63.2 Nm | 66.9 Nm | +6 % |
+| b7 = 80 | 42.0 Nm | 46.6 Nm | +11 % |
+| b7 = 60 | 20.8 Nm | 26.3 Nm | +26 % |
+| b7 = 40 | **zero** | 5.9 Nm | — |
 
 **The maxima are the part that is least wrong, and that is structural rather
-than luck.** `TORQUE_CNM_PER_BIT` is *derived from* this line — full scale must
-cover the rated crank torque plus the drag at that speed — so a lower drag line
-forces a lower scale, and at high b7 the two changes very nearly cancel. The
-scale would go from 0.74 to about 0.72 Nm/bit on the numbers above.
+than luck.** `TORQUE_CNM_PER_BIT` is *derived through* this line — the rating
+is what the plateau reads above the drag — so a lower drag line forces a lower
+scale, and at high b7 the two changes very nearly cancel. The scale would go
+from 1.06 to about 1.02 Nm/bit on the numbers above.
 
-So the error behaves like **a roughly constant offset of a couple of Nm**:
+So the error behaves like **a roughly constant offset of a few Nm**:
 invisible at full throttle, dominant at part throttle, and always in the
 direction of showing *less* than the truth. Which is also why the sweep wants
 points at **low** rpm and low load rather than another full-scale figure — the
@@ -752,18 +750,18 @@ for.
 owed.** The reasoning, and it is sound:
 
 - **Where the numbers are read, the correction is worth under 1 %.** The table
-  above: +0.7 % on the real peak. The interest here is in the maxima, and the
+  above: +0.1 % on the real peak. The interest here is in the maxima, and the
   maxima are pinned by the factory ratings, not by the drag line.
 - **The input is a fabricated number to begin with.** 0x280 b7 is the ECU's own
   *indicated* torque as a percentage of an internal reference torque nobody has
-  read, and `TORQUE_CNM_PER_BIT` is a decision inside a 0.3 % bracket rather
-  than a measurement — see the *Never resolved but not required* section. A
-  couple of Nm of drag is below the noise of the premise it sits on.
+  read, and `TORQUE_CNM_PER_BIT` is read off one day's plateau at an intake
+  temperature nobody logged — question 8. A few Nm of drag is below the
+  weather's effect on the premise it sits on.
 - **The cost is a dismantled dashboard and a drive on a registered car**, which
   is the expensive half. `install.md` step 11.
 
 **Where the argument does not hold, stated fairly:** at part throttle the drag
-error is the *dominant* term, up to +23 % at b7 = 60, which is far larger than
+error is the *dominant* term, up to +26 % at b7 = 60, which is far larger than
 the scale's own uncertainty. So this is a decision that the top of the range is
 what matters on this car, not a demonstration that the correction is
 negligible everywhere. **If a part-throttle number ever starts mattering, the
@@ -1064,7 +1062,7 @@ stopping.
 
 ## Resolved questions
 
-Six that were settled, moved out of *Open questions* so that
+Seven that were settled, moved out of *Open questions* so that
 section holds only questions that are genuinely still open. They stay here in
 full rather than being deleted: the reasoning is what stops each of them being
 reopened by somebody arguing from first principles, which is the same case
@@ -1393,6 +1391,141 @@ the USBtin running, at least 3 km so a 0.1 km counter moves thirty times, with
 the reset pressed in the middle — and then the same scan, which is now written
 down and took a minute to run.
 
+### 8. ~~The torque byte's scale~~ — **closed: 1.06 Nm/bit, measured off the full-throttle plateau**
+
+**Moved here from *Never resolved but not required*.** It was parked there
+because no measurement existed, and the parking said so; then a held
+full-throttle pull in 4th produced one.
+
+**The evidence**, `19_postfix_drive_z1`, median b7 in a ±150 rpm window, with
+the drag line held in bytes (`drag_b7 = 9.11 + 0.006514 × rpm`):
+
+```
+170 Nm @ 2400:   b7 185,  s = 170   / (185 - 24.74) = 1.061 Nm/bit
+ 85 kW @ 5200:   b7 191,  s = 156.1 / (191 - 42.98) = 1.055 Nm/bit
+```
+
+**Two independent ratings against two independent readings, 0.6 % apart.**
+`TORQUE_CNM_PER_BIT` is 106, a decision inside that bracket, and the drag
+constants follow it from the byte line. The plateau rises from 175 at
+2000 rpm to 198 at 4500 and falls back to 175 at 6000 with the pedal on the
+floor, and relative load (group 014) is flat at 78–81 % across it — so this is
+where the engine runs out of air, not where a burst happened to end.
+
+**What it refuted.** Everything below rested on *b7 = 255 is the rated crank
+torque plus the drag*. The plateau is 185–206 and 255 is never reached, so the
+old derivation had nailed both ratings to a value the engine cannot produce,
+and the shipped 0.74 read **30 % low**. The 0.90–0.96 bracket `frames.md` had
+derived from the air was nearer, and low for an arithmetic reason: it divided
+a drag figure already converted to Nm at 0.74, when the drag scales with the
+scale.
+
+⚠ **Two caveats, stated rather than resolved.** The intake temperature was not
+logged, and b7 carries the charge normalisation, so a hot day reads lower and a
+frosty one higher. And the engine was not wholly well — every fault was a
+low-load one, no misfire was counted during any pull, and load and air matched
+the earlier drive. The scale was set on that judgement. **Neither is a reason
+to reach for `TORQUE_TRIM_PCT`.**
+
+**What follows is the entry as it stood while parked**, kept because the
+premise it argues from is the obvious one and is wrong.
+
+
+**Why it was parked, and it was the harder of the two calls.** Unlike b5, this
+one *does* touch what the firmware transmits: the scale multiplies every torque
+and power figure on the display. It was parked anyway, because at the time
+there was nothing left to run.
+
+- The bracket is narrow, and got narrower. On the warm drag line the two
+  factory ratings imply **0.736 to 0.738 Nm/bit** — 0.3 % — where the old
+  cold-oil line made them argue between 0.745 and 0.773. The scale in the
+  firmware moved 0.75 → 0.74 with the refit, which is not a new
+  answer to this question but the arithmetic consequence of question 7's, since
+  full scale must cover the rated torque plus the drag.
+- The measurement does not exist. VCDS was tried and this ECU has no torque
+  block. A full-throttle pull has since happened — see the note below — and it
+  did not settle it either.
+- Nothing degrades while it stays undecided. A decision is in the code, the
+  reasoning is written down in `frames.md` and `config.h`, and two tests in
+  `test_compute.c` pin the ceiling so a future edit cannot quietly put the
+  factory figures out of reach again.
+
+An open question implies work that would close it. There is none, so calling
+this open was misleading.
+
+The findings, in full:
+
+**This ECU does not report torque in
+Nm.** Measuring groups 001, 002, 003 and 020 were all examined on
+`06A 906 018 EJ` and the closest thing on offer is `Motor zatizeni` — engine
+load, in per cent. Writing that down is the point: without it the next person
+plans exactly this session again.
+
+The trip was not wasted, because b7 was measured against that load and **is not
+the same quantity**. Holds `14`, `15` and `16` sit at a constant 17.0–17.3 %
+load while b7 climbs 20.7 → 26.3 → 27.2. A load percentage does not rise with
+engine speed at constant load; a torque does, because the friction and pumping
+torque a free-revving engine must produce grows with speed. That is independent
+support for the reading that b7 is *indicated torque*, arrived at
+from a different direction than the argument that produced it.
+
+So the scale remains a decision inside the bracket the factory ratings imply —
+0.74 Nm/bit since the drag refit, 0.75 before it.
+
+#### ⚠ New evidence, and the question stayed parked anyway
+
+**The full-throttle pull this section said would settle it has happened**, on a
+public road, logged on the ECU's own measuring blocks. It did not settle it,
+and the reason is worth keeping.
+
+- **b7 did not clip.** The display peaked at 117 Nm and 58 kW, which is b7
+  around 199 of 255, at engine speeds past 5700 rpm with the pedal on the
+  floor. So the remap has not pushed b7 into the ceiling, which was one of the
+  two ways `frames.md` said a remap could fail.
+- **But the airflow of that same pull implies more torque than the display
+  showed** — enough that either the engine is burning badly or the scale
+  under-reads, and the measurement supports both. `docs/engine-health.md` has
+  the numbers and the argument.
+- **The car is chipped**, which makes the derivation worse in a known
+  direction: the bracket comes from *stock* ratings and this engine is not
+  stock.
+
+**None of that is a reason to re-plan the cancelled VCDS session.** There is
+still no torque block on this ECU and there never will be. What is new is a
+different route to the same number — torque inferred from measured air and
+measured fuel — which needs no block and no dynamometer, and which
+`engine-health.md` sets out. **Until that capture exists this stays parked**,
+and it stays here rather than moving to the open register, because there is
+still no work owed: the decision in the code is defensible, and the engine has
+to be repaired before any measurement of it means anything.
+
+⚠ **A second finding came out of this session and it is more expensive than the
+question was** — the drag torque was fitted on cold oil. That is question 7,
+and it is the one question still open.
+
+---
+
+The original procedure follows, for the record.
+
+0x280 b7 is a percentage of a reference torque inside the ECU, not Nm. The two
+factory ratings bracket the scale between 0.745 Nm/bit (85 kW at 5200 rpm) and
+0.773 (170 Nm at 2400 rpm); 0.75 was chosen inside that bracket,
+and the reasoning — including why the old 0.67 was wrong — is in `frames.md`
+and in `config.h`.
+
+**Procedure.** VCDS, engine electronics, a measuring block reporting engine
+torque — group 001 or 002 on ME7, depending on the version — logged alongside
+0x280 with the USBtin. Warm idle, then three or four steady throttle openings
+held for ten seconds each, in neutral so the load is repeatable. Plot the
+block's Nm against b7: the slope is the scale and the intercept should be
+zero. Four points across the range are plenty, because the only question is a
+straight line through the origin.
+
+Full throttle would settle it too and is deliberately not planned. Until then
+the display is right in shape and to roughly ±5 % in magnitude, and two tests
+in `test_compute.c` guard the ceiling so a wrong scale can no longer put the
+factory figures out of reach unnoticed.
+
 ### 9. ~~Two fixtures carry timestamps and disagree with the other five about time~~ — **closed: the timestamps are wrong**
 
 **Measured, at the operating point the argument was about.**
@@ -1568,11 +1701,12 @@ for the sixty seconds of measurement that settles it.
 
 ## Never resolved but not required
 
-Two questions in this file were never answered, and neither of
-them is going to be. **Do not come back to them.** Not "while the car is on the
-ramp anyway", not "it is only ten minutes with VCDS running". Both have already
-cost a trip to the car, both came back with less than was hoped, and neither
-blocks a single line of firmware.
+One question in this file was never answered, and it is not going to be.
+**Do not come back to it.** Not "while the car is on the ramp anyway", not "it
+is only ten minutes with VCDS running". It has already cost a trip to the car,
+came back with less than was hoped, and blocks not a single line of firmware.
+(Question 8 used to sit here too; a measurement arrived and it moved to
+*Resolved*, which is how this chapter is supposed to be left.)
 
 They are kept in full rather than deleted for the same reason `docs/refuted.md`
 exists: a question that leaves no trace gets asked again by the next person, who
@@ -1688,100 +1822,3 @@ three candidates, three or four operating points is enough to tell them apart.
 Nothing in the firmware wants these bytes. This is curiosity with a use — an
 air mass would let a proper torque model replace the two-point drag line — but
 it blocks nothing.
-
-### 8. The torque byte's scale — **decided rather than measured, parked**
-
-**Why it is here, and it is the harder of the two calls.** Unlike b5, this one
-*does* touch what the firmware transmits: 0.74 Nm/bit scales every torque and
-power figure on the display. It is here anyway, because there is nothing left
-to run.
-
-- The bracket is narrow, and got narrower. On the warm drag line the two
-  factory ratings imply **0.736 to 0.738 Nm/bit** — 0.3 % — where the old
-  cold-oil line made them argue between 0.745 and 0.773. The scale in the
-  firmware moved 0.75 → 0.74 with the refit, which is not a new
-  answer to this question but the arithmetic consequence of question 7's, since
-  full scale must cover the rated torque plus the drag.
-- The measurement does not exist. VCDS was tried and this ECU has no torque
-  block. A full-throttle pull has since happened — see the note below — and it
-  did not settle it either.
-- Nothing degrades while it stays undecided. A decision is in the code, the
-  reasoning is written down in `frames.md` and `config.h`, and two tests in
-  `test_compute.c` pin the ceiling so a future edit cannot quietly put the
-  factory figures out of reach again.
-
-An open question implies work that would close it. There is none, so calling
-this open was misleading.
-
-The findings, in full:
-
-**This ECU does not report torque in
-Nm.** Measuring groups 001, 002, 003 and 020 were all examined on
-`06A 906 018 EJ` and the closest thing on offer is `Motor zatizeni` — engine
-load, in per cent. Writing that down is the point: without it the next person
-plans exactly this session again.
-
-The trip was not wasted, because b7 was measured against that load and **is not
-the same quantity**. Holds `14`, `15` and `16` sit at a constant 17.0–17.3 %
-load while b7 climbs 20.7 → 26.3 → 27.2. A load percentage does not rise with
-engine speed at constant load; a torque does, because the friction and pumping
-torque a free-revving engine must produce grows with speed. That is independent
-support for the reading that b7 is *indicated torque*, arrived at
-from a different direction than the argument that produced it.
-
-So the scale remains a decision inside the bracket the factory ratings imply —
-0.74 Nm/bit since the drag refit, 0.75 before it.
-
-### ⚠ New evidence, and the question stays parked anyway
-
-**The full-throttle pull this section said would settle it has happened**, on a
-public road, logged on the ECU's own measuring blocks. It did not settle it,
-and the reason is worth keeping.
-
-- **b7 did not clip.** The display peaked at 117 Nm and 58 kW, which is b7
-  around 199 of 255, at engine speeds past 5700 rpm with the pedal on the
-  floor. So the remap has not pushed b7 into the ceiling, which was one of the
-  two ways `frames.md` said a remap could fail.
-- **But the airflow of that same pull implies more torque than the display
-  showed** — enough that either the engine is burning badly or the scale
-  under-reads, and the measurement supports both. `docs/engine-health.md` has
-  the numbers and the argument.
-- **The car is chipped**, which makes the derivation worse in a known
-  direction: the bracket comes from *stock* ratings and this engine is not
-  stock.
-
-**None of that is a reason to re-plan the cancelled VCDS session.** There is
-still no torque block on this ECU and there never will be. What is new is a
-different route to the same number — torque inferred from measured air and
-measured fuel — which needs no block and no dynamometer, and which
-`engine-health.md` sets out. **Until that capture exists this stays parked**,
-and it stays here rather than moving to the open register, because there is
-still no work owed: the decision in the code is defensible, and the engine has
-to be repaired before any measurement of it means anything.
-
-⚠ **A second finding came out of this session and it is more expensive than the
-question was** — the drag torque was fitted on cold oil. That is question 7,
-and it is the one question still open.
-
----
-
-The original procedure follows, for the record.
-
-0x280 b7 is a percentage of a reference torque inside the ECU, not Nm. The two
-factory ratings bracket the scale between 0.745 Nm/bit (85 kW at 5200 rpm) and
-0.773 (170 Nm at 2400 rpm); 0.75 was chosen inside that bracket,
-and the reasoning — including why the old 0.67 was wrong — is in `frames.md`
-and in `config.h`.
-
-**Procedure.** VCDS, engine electronics, a measuring block reporting engine
-torque — group 001 or 002 on ME7, depending on the version — logged alongside
-0x280 with the USBtin. Warm idle, then three or four steady throttle openings
-held for ten seconds each, in neutral so the load is repeatable. Plot the
-block's Nm against b7: the slope is the scale and the intercept should be
-zero. Four points across the range are plenty, because the only question is a
-straight line through the origin.
-
-Full throttle would settle it too and is deliberately not planned. Until then
-the display is right in shape and to roughly ±5 % in magnitude, and two tests
-in `test_compute.c` guard the ceiling so a wrong scale can no longer put the
-factory figures out of reach unnoticed.

@@ -1514,7 +1514,8 @@ holds `13`–`16`** (72.8–76.6 °C, stationary in neutral, so net torque is ze
 and b7 *is* the drag):
 
 ```
-drag [Nm] = 6.74 + 0.00482 x rpm
+drag_b7   = 9.11 + 0.006514 x rpm        the calibration, in bytes
+drag [Nm] = 9.66 + 0.00690  x rpm        the same line at 1.06 Nm/bit
 ```
 
 **Fit it on warm oil.** A line fitted on cold oil sits far above this one, and
@@ -1522,11 +1523,12 @@ since the line is *subtracted* from indicated torque, too high a line
 understates torque and power — mostly at part throttle, where it can display
 zero through half a drive that should show a number.
 
-**`TORQUE_CNM_PER_BIT` = 0.74 and the drag line are one calibration — never
-move one alone.** Full scale b7 = 255 must cover the rated crank torque *plus*
-the drag at that speed, so the bracket the two factory ratings imply moves with
-the drag line: at this line it is 0.736–0.738 Nm/bit. At 0.74 the display
-reaches 85.4 kW and 170.4 Nm against ratings of 85 and 170.
+**`TORQUE_CNM_PER_BIT` = 1.06 and the drag line are one calibration — never
+move one alone.** A factory rating is what b7 reads above the drag, so the
+scale is the rating divided by *b7 minus the drag in bytes*, and a different
+drag line gives a different scale. `DRAG_TORQUE_BASE_CNM` and
+`DRAG_TORQUE_SLOPE_Q16` are the byte line times the scale, recomputed from the
+byte line whenever the scale moves — never rescaled from their old values.
 
 **The idle point is excluded from the fit, and the driving gate covers it.** b7
 falls 24.96 → 18.81 between idle and 1536 rpm before it starts rising, because
@@ -1566,7 +1568,7 @@ speed threshold and is a coincidence of gearing.
 
 **It is not free, and the price was accepted rather than overlooked.** Over
 `17_drive_property_z1` the share of samples displaying zero goes 28.4 % →
-58.0 % (peak unmoved at 107.0 Nm) — worst case, since that log is six minutes
+58.0 % (peak unmoved at 153.3 Nm) — worst case, since that log is six minutes
 of first-gear pottering with a great deal of coasting. And **pulling away reads
 zero until the car moves**, a median of 0.7 s after the pedal leaves rest, so
 real torque against a slipping clutch is not shown for that time.
@@ -1603,26 +1605,34 @@ overstates drag slightly, which is the conservative direction. The questions
 register in that file is sorted into what changes this firmware and what does
 not; everything else is either resolved or parked.
 
-**Why the scale is a decision at all, and why it is parked.** 0x280 b7 is a
-percentage of a reference torque inside the ECU, not Nm, and turning it into Nm
-needs a number nobody has.
+**The scale is measured, off the plateau the engine actually reaches.** 0x280
+b7 is a percentage of a reference torque inside the ECU, not Nm, and nobody
+has the reference. Held full-throttle pulls in 4th (`19_postfix_drive_z1`) put
+b7 at a median of **185 at 2400 rpm** and **191 at 5200**; with the drag held
+in bytes the two factory ratings then give 1.061 and 1.055 Nm/bit, **0.6 %
+apart**, and 1.06 is a decision inside that bracket. At it the display shows
+about 170 Nm and 85.4 kW on such a pull, and
+`test_the_plateau_reproduces_the_rated_torque` / `..._power` pin both to 2 %.
+`docs/can-decoding.md` question 8 is resolved with the numbers.
 
-⚠ **b7 is *indicated* torque, so its full scale is the maximum *indicated*
-torque, not the maximum crank torque.** Scaling to the crank maximum —
-"maximum is 172 Nm, so 172/256" — and then subtracting drag counts the friction
-twice, and caps the firmware below the power the engine is rated for at any
-throttle opening. The fixtures refute the premise directly: at 2940 rpm in
-neutral the crank makes nothing and b7 still reads 37. **Nothing in the test
-suite catches this**, which is the part worth remembering.
+⚠ **b7 = 255 is not full scale of anything the engine does, and deriving the
+scale from it read 30 % low.** The old premise — *b7 = 255 is the rated crank
+torque plus the drag* — produced 0.74 and made the two ratings "agree" only
+because both were nailed to 255. The plateau is 185–206, relative load is flat
+at 78–81 % across it, and b7 falls away above 4500 rpm with the pedal on the
+floor. **Nothing in the test suite caught it**; a measurement did.
 
-It is **0.74 Nm/bit**, a decision inside the bracket the two factory ratings
-imply, with the ceiling pinned by two tests in `test_compute.c`. **The
-measurement that would settle it does not exist**: this ECU has no torque
-measuring block, only engine load in per cent, and a full-throttle pull is
-deliberately not planned. The remaining uncertainty is
-under 4 % and there is nothing to run, so the question is parked under *Never
-resolved but not required* in `docs/can-decoding.md` rather than left open —
-**do not plan that session again.** See `docs/frames.md` and the comment in
+⚠ **b7 is *indicated* torque**, so a rating is what is left after the drag,
+never b7 itself. Scaling to the crank maximum — "maximum is 172 Nm, so
+172/256" — and then subtracting drag counts the friction twice. The fixtures
+refute that directly: at 2940 rpm in neutral the crank makes nothing and b7
+still reads 37.
+
+**Two caveats, stated rather than resolved**: the intake temperature during the
+pulls was not logged, and b7 carries the ECU's charge normalisation, so a hot
+day reads lower and a frosty one higher; and the engine was not wholly well
+that day, though every fault it had was a low-load one. **Neither is a job for
+`TORQUE_TRIM_PCT`**, which stays 0. See `docs/frames.md` and the comment in
 `config.h`.
 
 The breadboard phase is skipped — Micro-Fit has a 3.0 mm pitch and does not

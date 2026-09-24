@@ -21,9 +21,11 @@ of 0x280 and 0x288 read off the bus.
 - **Question 3** — 0x288 b5 and b6 are load-dependent and undecoded. Candidates
   are mass air flow, ignition advance and injection time.
 - **Question 8** — 0x280 b7 is a percentage of a reference torque inside the
-  ECU, not Nm. The firmware used 0.75 Nm/bit at the time of this session and
-  uses 0.74 since the drag line was refitted on warm oil; either way it is a
-  decision inside a bracket the factory ratings imply, not a measurement.
+  ECU, not Nm. The firmware used 0.75 Nm/bit at the time of this session, then
+  0.74 once the drag line was refitted on warm oil; both were decisions inside
+  a bracket derived from b7 = 255. **Since closed another way**: held
+  full-throttle pulls put the scale at 1.06 Nm/bit, and `can-decoding.md`
+  question 8 is now resolved. This session still found no torque block.
 
 **Expectation, set honestly before anyone drives anywhere.** Question 3 should
 close: all three candidates are ordinary ME7 measuring values. Question 8 may

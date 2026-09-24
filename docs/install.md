@@ -1338,12 +1338,12 @@ much larger job than a jerrycan.
 ⚠ **Do not reopen this as "the tank calibration is outstanding".** It was
 considered, measured once, and set aside deliberately.
 
-**The torque scale, 0.74 Nm/bit, is deliberately not on that list.** It is a
-decision inside the narrow bracket the factory ratings imply rather than a
-measurement, and the VCDS session that was supposed to settle it found that
-this ECU has no torque measuring block at all. It is parked under *Never
-resolved but not required* in `docs/can-decoding.md` — **do not plan that
-session again.**
+**The torque scale, 1.06 Nm/bit, is not on that list because it is done.**
+Held full-throttle pulls in 4th put b7 on a plateau that reproduces both
+factory ratings to 0.6 % of each other; `docs/can-decoding.md` question 8 has
+the numbers and is resolved. The VCDS session once planned for it found that
+this ECU has no torque measuring block at all — **do not plan that session
+again.**
 
 `docs/can-decoding.md` now has exactly one open question, and it is the drag
 line above.

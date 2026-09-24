@@ -90,10 +90,10 @@ def decode(frame: Frame, st: Decoded) -> None:
     if cid == 0x280 and len(d) >= 8:
         st.rpm = u16le(d, 2) * 0.25
         st.throttle = d[5]
-        # 0.74 Nm/bit, and the scale is a decision -- src/config.h argues it.
-        # It is 0.74 rather than 0.75 because the drag line is fitted on
-        # warm oil; the two are calibrated together and must move together.
-        st.torque_ind_nm = d[7] * 0.74
+        # 1.06 Nm/bit, measured off the full-throttle plateau against both
+        # factory ratings -- src/config.h has the pulls. The drag line is held
+        # in bytes and scaled by this, so the two must move together.
+        st.torque_ind_nm = d[7] * 1.06
 
     elif cid == 0x1A0 and len(d) >= 4:
         # Byte 1 is a bit field, not a single value. Bit 0x40 means "speed is

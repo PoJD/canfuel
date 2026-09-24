@@ -226,8 +226,8 @@ static void test_gather_fills_a_full_frame(void)
     TT_EQ(be16(f + 6), 444);            /* 40 l at the 9.0 default */
 
     txframes_engine(&v, f);
-    TT_NEAR(be16(f + 0), 405, 2);       /* 40.5 kW  */
-    TT_NEAR(be16(f + 2), 1288, 2);      /* 128.8 Nm */
+    TT_NEAR(be16(f + 0), 376, 2);       /* 37.6 kW  */
+    TT_NEAR(be16(f + 2), 1196, 2);      /* 119.6 Nm */
     TT_EQ(be16(f + 6), 503);            /* 5.03 V   */
 }
 

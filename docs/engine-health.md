@@ -195,8 +195,10 @@ a low-gear sweep:
 
 ⚠ **Derived by inverting this firmware's own arithmetic against a display
 reading, with the engine speed estimated from the driver's description.**
-`b7 = (Nm + 6.74 + 0.004820 × rpm) / 0.74`, from `TORQUE_CNM_PER_BIT` and the
-drag line in `config.h`, with `TORQUE_TRIM_PCT` at zero. **The rpm band is the
+`b7 = (Nm + 6.74 + 0.004820 × rpm) / 0.74`, from the `TORQUE_CNM_PER_BIT` and
+drag line `config.h` carried when that display was read, with
+`TORQUE_TRIM_PCT` at zero. The b7 column is what stands; the scale has since
+moved to 1.06. **The rpm band is the
 whole of the uncertainty**; everything else is arithmetic. This is not a
 substitute for the capture and `next-drive.md` steps 14 and 14a are unchanged by
 it.
@@ -1322,12 +1324,12 @@ the knock control pulling it back to less than it started with. The advance
 logged above does not look like that, but knock retard itself was not logged.
 
 **The consequence for this firmware is smaller but real.**
-`TORQUE_CNM_PER_BIT` is derived by requiring b7 = 255 to reproduce the two
-*factory* ratings — of a stock engine. This engine is not stock. If the remap
-gained anything, the true ratings are higher, full scale should map to more
-Nm, and the current scale under-reads by about as much as the remap gained.
-That is a named bias of a few per cent rather than an explanation of the gap
-above, and **it is one more reason the scale is arithmetic closing on itself.**
+`TORQUE_CNM_PER_BIT` is derived by requiring this car's full-throttle plateau
+to reproduce the two *factory* ratings — of a stock engine. This engine is not
+stock. If the remap gained anything, the true ratings are higher, the plateau
+is worth more Nm than the scale says, and the display under-reads by about as
+much as the remap gained. That is a named bias of a few per cent in a known
+direction.
 
 **Returning the ECU to standard is not planned**, so this stays an unknown to
 be reasoned around rather than removed.
@@ -1717,9 +1719,10 @@ leaking injector would deliver more than the counter reports and the ratio
 would look better than it is. **A high reading would prove something; a normal
 one proves much less.** Do this after the injectors are replaced, not before.
 
-⚠ **This does not revive the parked VCDS session.** Question 8 in
-`can-decoding.md` stays parked and that session stays cancelled: this ECU has
-no torque measuring block, so there is nothing to read there. What is new is a
+⚠ **This does not revive the cancelled VCDS session.** Question 8 in
+`can-decoding.md` has since been closed by held full-throttle pulls, and that
+session stays cancelled: this ECU has no torque measuring block, so there is
+nothing to read there. What is new is a
 different measurement — torque inferred from air and fuel — which needs no such
 block.
 
