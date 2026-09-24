@@ -30,8 +30,8 @@ ever wanted.
 ## The occasion
 
 The car had been off the road. It came back with a **completely blocked
-catalytic converter**, found at a garage, which replaced the cat, the silencer
-and the manifold — most of the exhaust — against a previous replacement about
+catalytic converter**, found at a garage, which replaced the exhaust **from the flex
+pipe to the tail**, cat and silencer included, against a previous replacement about
 five years and not many kilometres earlier. An ignition coil had been changed
 shortly before that, after misfires under full load. New injectors and
 silencers are due the following week.
@@ -2266,12 +2266,16 @@ manifold is the one candidate that could link both findings: an exhaust leak
 ticks once per cycle at a fixed crank angle, which knock control books to
 one cylinder's window, and it sits ahead of the pre-cat sensor. ⚠ The trim
 here reads −3.1 %; why that does not rule it out is worked through below.
-The link is a hypothesis. ⚠ **Whether the September exhaust job
-replaced the exhaust manifold itself is unclear in these documents.** *The
-occasion* says "the manifold", while `vehicle-history.md` lists the cat,
-silencer and gaskets. If the manifold is original, it is a 26-year-old part
-this repository has never looked at. Cracks show as soot tracks, and a leak
-ticks audibly on a cold start before the metal expands.
+The link is a hypothesis. **The exhaust manifold was not replaced in
+September**: *the owner is nearly certain the job ran from the flex pipe to
+the tail.* ⚠ An earlier revision of *The occasion* said "the manifold" and
+was wrong. So the manifold is **the original, about 26 years old**, and it has
+lived through years of misfires and a converter burning through downstream
+of it. **The joint between it and the new pipework is new**, with a gasket
+fitted in September, so that flange is a candidate of its own, one the idle
+fault cannot be blamed on because the stumbling is older than it. Cracks
+show as soot tracks, and a leak ticks audibly on a cold start before the metal
+expands.
 
 #### How an exhaust-side leak could produce these symptoms — worked through
 
