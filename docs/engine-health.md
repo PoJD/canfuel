@@ -2123,6 +2123,68 @@ something near it. The same swap works for the injector, at more effort. A
 bus capture beside the next log costs nothing and lets the events be aligned
 with engine speed.
 
+#### Why cylinder 4 — what knock control is, and what can fool it
+
+⚠ **How knock control works is general engine-management knowledge, not
+from a document this project holds.** This ECU's own documentation is not in
+`docs/`, and neither is how many knock sensors the AQY has or where they sit.
+Everything below that describes the mechanism is marked as such; what is
+measured is the log.
+
+**The mechanism, in general.** A knock sensor is a piezo accelerometer
+bolted to the block, and it hears the whole engine at once. The ECU gives
+each cylinder a *window* of crank angle after that cylinder's top dead centre,
+using the crank sensor for angle and the camshaft sensor for which of the two
+revolutions it is. Only what the sensor hears inside that window is scored,
+against a reference level learned per cylinder, because each cylinder sits at
+a different distance from the sensor and sounds different through the block.
+When the score exceeds the reference, that cylinder's timing is pulled back
+by a step and then returned a little at a time. That is exactly the shape the
+log shows.
+
+**So "cylinder 4" means "the cylinder 4 window", not "a noise from cylinder
+4".** Anything that makes a sound at the same crank angle on every cycle
+gets booked there, whichever part of the engine it comes from.
+
+**What the onsets have in common, measured.** 13 of the 16 begin on a sharp
+rise in load, mostly from 9–15 % (the overrun, fuel cut) to 30–53 % within
+one or two samples. Several also have engine speed falling fast just before,
+2200 → 1360 rpm, which is a gearchange. **So the typical event is pressing
+the pedal again after coasting or changing gear.** Such a rise happens in
+about 120 samples of this log between 900 and 2500 rpm, so it is followed
+by retard roughly one time in ten.
+
+**That all 16 land on one cylinder is not chance.** A noise at a random
+crank angle, a clunk from the engine rocking on its mounts, say, would
+fall in the four windows about equally. Sixteen out of sixteen on one
+cylinder by chance is about 1 in 10⁹.
+
+The candidates, and what each predicts:
+
+| candidate | fits | against it | cheap test |
+|---|---|---|---|
+| **real knock in cylinder 4 at tip-in** | tip-in is the classic moment: fuel returns after a cut, the port wall film is not built up yet, so the mixture runs briefly lean at full part-load advance. One cylinder being a little leaner or hotter than the others is enough for it to cross first. In general, the end of the block furthest from the coolant inlet runs hottest, but which end that is on the AQY is not established here | several onsets at only 18–25 % load, where real knock is unusual | **fuel with a higher octane rating**: real knock drops, noise does not change |
+| **a noise at a fixed crank angle** | a lifter ticking, a valve seating, or an injector closing. In general, the injector of the cylinder that fires just before 4 injects while 4 is in its power stroke. Every one of those repeats in the same window every cycle | nothing in the log points at one | a mechanic's stethoscope along the head on a tip-in; octane changes nothing |
+| **the knock sensor or its wiring** | the owner's own suspicion. A sensor that is loose or corroded at its face couples the block less well, and a damaged screen picks up interference | a dead or open sensor usually sets a fault code and retards **all** cylinders to be safe. No code is stored and three cylinders read zero, so the sensor is working. One mechanism would still pick out one cylinder: if 4's learned reference is the lowest, any extra noise crosses its threshold first | check the sensor's mounting torque and connector; no code means it is not dead |
+| **reference levels relearning** | the battery was disconnected twice this week, which in general also resets knock control's learned values | would fade over the next few hundred km | log 022/023 again later, on the same kind of drive |
+| **the new plugs** | a plug that is not fully torqued runs hot, and a hot plug can cause knock in its own cylinder | all four are new and the same type | **swap plugs 4 and 2**: if the retard follows the plug, it is the plug. At the same time check that plug 4 is at the correct torque |
+
+**What does not fit: intake air.** A leak at cylinder 4's runner would make
+it lean, and lean knocks more easily. But the owner is not taking the intake
+apart again, and the trim argument above says a leak big enough to matter
+would show. One cylinder leaner by a few per cent would hide in the trim; that
+could make it knock on a tip-in but would hardly make it misfire at idle.
+
+**Is it harmful?** 16 events of 4.5–6.7 °CA with the timing given back within
+seconds is knock control doing its job. It costs a moment of torque on a
+tip-in, and nothing in the log is sustained. It is a lead, not an emergency.
+
+**Order, cheapest first:** a tank of higher-octane fuel with the same
+022/023 log, which is free apart from the fuel and splits real knock from noise;
+the plug swap with a torque check; a look at the knock sensor's mounting
+and connector if it is reachable without the intake off; then, if it is
+noise, a stethoscope. Every repeat log wants a bus capture beside it.
+
 ### What `deaktiv.` in group 014 is: a load threshold
 
 **The owner asked whether detection switching itself off correlates with the
