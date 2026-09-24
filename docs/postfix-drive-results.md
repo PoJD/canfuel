@@ -354,6 +354,31 @@ on shape before anything is measured.
    drive (load 78–81 %, 88 g/s), which rules out a *change*, not a unit that
    has read high all along. A swap with a known-good unit is the test
 
+**Air per unit of commanded fuel at a warm idle, then and now.** Group 003
+logs the MAF and 0x480 logs the fuel the ECU commands, so their ratio can be
+compared across drives without knowing the fuel's density or the true
+stoichiometric ratio:
+
+| | MAF | commanded fuel | ratio | against August |
+|---|---|---|---|---|
+| August holds, old injectors (`vcds-01-002-003`, `09`/`11`) | 3.33 g/s | 326 µl/s | 10.2 | — |
+| today, middle idle | 3.54 g/s | ~305 µl/s | 11.6 | **+14 %** |
+| today, final hot idle after the hard drive | 4.44 g/s | ~300 µl/s | 14.8 | **+45 %** |
+
+**At the middle idle the ratio has moved by the size of the trim.** That is
+what candidates 4 and 5 predict, and it does not separate them: a MAF reading
+high and a fuel system delivering more per commanded millisecond both raise
+air per commanded fuel. **The jump within one drive, from +14 % to +45 %,
+points at the MAF**, because the MAF is the part that responds to heat soak
+while rail pressure does not. More electrical or fan load would raise the true
+air at the hot idle, but it would raise the fuel with it, and the fuel stayed
+at 300 µl/s. ⚠ Not every piece of this fits: a reading 25 % higher with the
+same fuel and only +1.6 % of short-term lambda correction in group 001 does
+not add up, and nothing here resolves it. **It is a pointer, not a
+diagnosis.** The owner is considering a new MAF, and this is the evidence most
+in favour of it. After the swap the same table is one capture and one 003 log
+away.
+
 **Neither 4 nor 5 explains why the correction jumped between the readings**
 (−3.1 / 0.0 before the injectors, −16.4 / −13.3 after), since neither part
 changed. That jump is the open problem, and the numbers here do not solve it.
