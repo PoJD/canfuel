@@ -2360,34 +2360,30 @@ cold start. *Owner-reported.* What that settles and what it does not:
   a leak at idle needs exactly that. A valve held partly open by carbon
   still passes the flow test. That this is how this ECU's test works is general
   knowledge, not from a document held here.
-- **A hose from the intake to the valve suggests this car's valve is
-  vacuum-switched**, while SSP 233 p. 13 describes the AQY's as opened by pump
-  pressure against a spring. The AQY function diagram on p. 20 does carry an
-  N112, the component that switches vacuum on engines with such a valve.
-  Which design this car has is something to see on the car. **If it is
-  vacuum-switched, a solenoid that leaks vacuum to it holds the valve open
-  on every warm idle** — the fault point 1 describes, with nothing torn.
+- SSP 233 p. 13 describes the AQY's valve as opened by pump pressure
+  against a spring. The p. 20 function diagram also carries an N112, which
+  on other engines switches vacuum to such a valve. If this car turns out
+  to have a vacuum line to the valve, a solenoid that leaks vacuum would hold
+  it open at every warm idle. The hose that tore is not that line; see
+  below.
 
-**When the hose was off, and what that does to the evidence.** *Owner-reported:*
-it was torn off **during the heater replacement in August, before the
-first start of the August recordings**, and stayed off unnoticed until it was
-found and refitted a few weeks before 24 September; the exact date is not
-recorded. It went unnoticed because the weather was warm, so the pump never ran on a
-cold start, and no lamp came on. Three things follow:
+**When the hose was off, and what it was.** *Owner-reported:* it was torn off
+**during the heater replacement in August, before the first start of the
+August recordings**, and stayed off unnoticed until it was refitted a few
+weeks before 24 September; no lamp came on, and the weather was warm enough
+that the pump never ran on a cold start. **It joins the intake ahead of the
+MAF**: it is the pump's air feed from the filtered side. With it off, the
+pump could only have drawn unfiltered engine-bay air. It was not an
+unmetered leak into the engine, and it says nothing about how the valve is
+switched.
 
-- **The valve on this car is vacuum-opened.** A torn line to it gave a fault
-  only once a cold start ran the pump against a valve that could not open.
-  So the vacuum-switched reading above is the right one for this car, and a
-  leaking N112 holding it open at a warm idle is a real failure mode here.
-- **In August the valve was certainly shut**, with no vacuum to open it, and
-  August's idle stumbled anyway (`09`, 61 °C). **So the valve cannot be the
-  cause of the stumble.** At most it is a contributor since the hose went
-  back on.
-- **The August recordings carry a small unmetered air leak**: an open line
-  into the intake, at idle, every one of `09`–`17`. And `18`, if the refit
-  came after 11 September. It stayed small enough that the August idle trim was
-  −4.7 %. It is one more way August and now differ, and it runs in the
-  direction of August being *worse* placed, not better.
+⚠ **An earlier revision of this paragraph read the hose as a vacuum line to
+the valve**, and from that concluded that the valve was vacuum-opened, that it
+was certainly shut in August, and that the August recordings carried an
+unmetered air leak. **All three are withdrawn.** The valve is as SSP 233
+describes it, opened by pump pressure and closed by a spring. Whether it
+sealed in August is as unknown as whether it seals now. The test below is
+what answers it.
 
 **Two free tests with the display, at a warm idle, before buying anything.**
 The pump does not run warm, so neither can hurt:
@@ -2395,7 +2391,7 @@ The pump does not run warm, so neither can hurt:
 1. **Pull the hose between the pump and the combination valve off the valve.**
    Exhaust pulsing out of the valve's port, or soot inside that hose, means it
    does not seal.
-2. **If there is a vacuum line to the valve, pull it off and plug it.** Watch
+2. **Only if there turns out to be a vacuum line to the valve: pull it off and plug it.** Watch
    `IdleHealth` for a minute or two before and after at the same oil
    temperature. If the valve was being held open, the grade should drop.
    Put everything back before the next cold start.
