@@ -3,7 +3,7 @@
 
 Every string in here was printed by IPECMD driving a PICkit 3 against the
 board, or -- for the two failures nobody wants to reproduce on purpose -- was
-provoked deliberately and recorded in docs/flash-tool-notes.md. That is the
+provoked deliberately and recorded in docs/firmware/flashing.md. That is the
 point of the file: the tool's whole verdict comes from parsing this text, so
 the text is what it has to be tested against, and it needs no programmer to
 run.
@@ -74,7 +74,7 @@ Address: 0 Expected Value: ff Received Value: 0
 Verify failed
 """
 
-# --- provoked deliberately, see flash-tool-notes.md ------------------------
+# --- provoked deliberately, see docs/firmware/flashing.md ------------------------
 
 UNPOWERED = """Connecting to MPLAB PICkit 3...
 Target device was not found (could not detect target voltage VDD).

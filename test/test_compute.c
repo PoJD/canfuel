@@ -190,7 +190,7 @@ static void test_zero_flow(void)
 
 static void test_documented_table(void)
 {
-    /* The table from docs/frames.md, FuelNow. Flow is given
+    /* The table from docs/firmware/frames.md, FuelNow. Flow is given
      * in l/h there, so it is converted to ul/s first: l/h * 1000 / 3.6. */
     struct { uint32_t kmh; uint32_t flow_lh_c; uint16_t expect; } cases[] = {
         {  4, 150, 375 }, {  6, 150, 250 }, { 10, 150, 150 },
@@ -1422,7 +1422,7 @@ static void test_a_creeping_car_is_not_at_rest(void)
 /* No fixture contains a refuelling -- the tank reads 0 l with the reserve lamp
  * on through most of them -- so none of them may produce one either. A false
  * positive silently destroys an average the driver has watched for 600 km,
- * which is the asymmetry docs/refuel-reset.md is built around, and the sender
+ * which is the asymmetry docs/firmware/refuel-reset.md is built around, and the sender
  * jumping between 1, 5, 7 and 9 l during a pull-away is exactly the shape of
  * input that could cause one. */
 static void test_no_fixture_triggers_a_refuelling(void)

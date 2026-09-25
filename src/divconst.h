@@ -1,6 +1,6 @@
 /* divconst.h -- division by a compile-time constant, without dividing.
  *
- * PURE C, no hardware. Read docs/optimisation.md before changing anything in
+ * PURE C, no hardware. Read docs/firmware/optimisation.md before changing anything in
  * here, and never change it without running test_divconst.
  *
  * WHAT IS IN HERE. Two things XC8 v4.00 compiles badly enough to be worth

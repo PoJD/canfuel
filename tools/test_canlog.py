@@ -12,7 +12,7 @@ firmware against them.
 
 Every number below was measured from these specific files, not copied from
 the specification. Where measurement and specification disagree it is noted
-at the test and in docs/can-decoding.md.
+at the test and in docs/firmware/can-decoding.md.
 """
 
 from __future__ import annotations
@@ -200,7 +200,7 @@ class TestFixtureContent(unittest.TestCase):
         return [f for f in frames if f.can_id not in self.SWITCH_OFF_IDS]
 
     def test_regular_id_set(self):
-        """Exactly 14 IDs are broadcast periodically -- see docs/can-decoding.md.
+        """Exactly 14 IDs are broadcast periodically -- see docs/firmware/can-decoding.md.
 
         Exceptions: 0x520 is slow enough that it misses short logs, the
         one-shot IDs are not periodic frames at all, the filtered logs carry
@@ -243,7 +243,7 @@ class TestFixtureContent(unittest.TestCase):
         being reconnected by hand, and two in 20, 56 ms apart, when VCDS was
         disconnected and reconnected on purpose to test exactly this. Every
         other log with VCDS attached -- 11 to 17, 21 to 23 -- has none, so it
-        is the reconnection and not the attachment. docs/can-decoding.md has
+        is the reconnection and not the attachment. docs/firmware/can-decoding.md has
         the test and the reasoning.
         """
         hits = [(n, f) for n, fr in self.frames.items() for f in fr
@@ -264,7 +264,7 @@ class TestFixtureContent(unittest.TestCase):
         """0x5D0 b0 is zero everywhere in the corpus except twice, and both
 
         exceptions sit within 90 ms of a 0x200 frame. That pairing is the only
-        claim docs/can-decoding.md makes about either identifier, and it is
+        claim docs/firmware/can-decoding.md makes about either identifier, and it is
         worth pinning because it rests on a byte being constant across every
         recording -- which is exactly the kind of statement a new fixture can
         quietly falsify.
@@ -426,7 +426,7 @@ class TestFixtureContent(unittest.TestCase):
         The specification (BOOTSTRAP section 3) quotes 13247 -> 22622 over
         15.9 s. The end matches, the start does not -- the first sample in the
         file is 12870. The difference of 377 ul is a handful of early frames.
-        See docs/can-decoding.md, question 2 -- resolved, and confirmed exactly.
+        See docs/firmware/can-decoding.md, question 2 -- resolved, and confirmed exactly.
         """
         vals = self.counter("07_accel.txt")
         self.assertEqual(vals[0], 12870)
@@ -606,7 +606,7 @@ class TestFuelRates(unittest.TestCase):
 
         The 5 % gap is not in the data but in the assumed 0x480 period -- at
         51.9 ms it would come out at exactly 958. The log has no timestamps, so
-        only a measurement on the live bus can settle it. See docs/can-decoding.md.
+        only a measurement on the live bus can settle it. See docs/firmware/can-decoding.md.
         """
         total, n, _ = self.counter_total("05_rev3000.txt")
         self.assertEqual(total, 1940)

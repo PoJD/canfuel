@@ -4,7 +4,7 @@
  * payload and a length, and folds them into a struct. That is what makes the
  * whole brain of the device testable against real logs on a PC.
  *
- * The signal table this implements is docs/can-decoding.md.
+ * The signal table this implements is docs/firmware/can-decoding.md.
  */
 #ifndef DECODE_H
 #define DECODE_H

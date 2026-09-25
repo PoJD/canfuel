@@ -4,7 +4,7 @@
  * we are deliberately not, so a byte order mistake shows up as an absurd
  * number rather than as a plausible one.
  *
- * The layout is docs/frames.md and it is consumed by mfd15/tri/S-AQY.TRI,
+ * The layout is docs/firmware/frames.md and it is consumed by mfd15/tri/S-AQY.TRI,
  * which is already uploaded to a real display. Changing the layout here means
  * changing it there in the same breath -- a mismatch produces no error at
  * all, just wrong numbers that look right.

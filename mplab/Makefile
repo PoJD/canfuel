@@ -118,7 +118,7 @@ MODE_STAMP := $(BUILD)/can_mode
 
 # -Wa,-a makes pic-as write the assembly listing next to the hex. It is what
 # tools/cycles.py counts instructions out of, and it is the only way to know
-# what the code actually costs on the part -- see docs/timing.md. It changes
+# what the code actually costs on the part -- see docs/firmware/timing.md. It changes
 # nothing about the hex and costs a second, so it is always on rather than
 # being a separate target somebody would forget to run.
 XC8FLAGS ?= -mcpu=$(DEVICE) -mdfp=$(DFP) -std=c99 $(OPT) -mstack=compiled -I$(SRCDIR) $(CAN_MODE_FLAG) -Wa,-a

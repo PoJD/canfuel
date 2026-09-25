@@ -11,7 +11,7 @@ On the bench the converter is often the only node with its channel open --
 between a flash and the moment a test opens an adapter, nothing acknowledges
 anything. So every frame it sends fails, is retransmitted, and its transmit
 error counter climbs to the error-passive limit of 128 and stays there: it does
-NOT go bus-off and it does NOT fall silent (docs/refuted.md E7). Measured at
+NOT go bus-off and it does NOT fall silent (docs/firmware/refuted.md E7). Measured at
 1812 frames a second against 22 nominal.
 
 Nothing is damaged by that, and it costs an hour of confusion every time:

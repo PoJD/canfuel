@@ -83,7 +83,7 @@ import canlog
 #
 # ⚠ THESE ARE OIL, 0x420 BYTE 3, AND NOT THE COOLANT. The target is really
 # raw byte 146; 61.5 C is what this project's decode calls it, and that decode
-# is the open question 10 in docs/can-decoding.md. It does not matter here,
+# is the open question 10 in docs/firmware/open.md. It does not matter here,
 # because the before-reading went through the same decode -- matching the
 # label matches the byte either way. It would matter if anyone retuned these
 # numbers against a corrected scale without moving the before-reading with
@@ -110,12 +110,12 @@ SLOPE_WINDOW_S = 240.0
 #: Below this the rate is noise, not a climb, and nothing is predicted from it.
 SLOPE_FLOOR_C_PER_MIN = 0.05
 
-STANDSTILL_MMH = 100   # src/config.h, and docs/can-decoding.md trap 1
+STANDSTILL_MMH = 100   # src/config.h, and docs/firmware/can-decoding.md trap 1
 THROTTLE_REST = 38     # src/config.h
 
 
 def oil_c(byte):
-    """0x420 byte 3. docs/can-decoding.md: x 0.75 - 48, 0xFF with the key off."""
+    """0x420 byte 3. docs/firmware/can-decoding.md: x 0.75 - 48, 0xFF with the key off."""
     return None if byte == 0xFF else byte * 0.75 - 48.0
 
 

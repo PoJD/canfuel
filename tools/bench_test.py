@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Bench tests for a converter on a desk, with a verdict instead of a blink rate.
 
-docs/install.md step 7, and the last chance to find a fault while the board is
+docs/firmware/install.md step 7, and the last chance to find a fault while the board is
 still on a table. --traffic and --scenarios need one adapter and are the two
 worth doing whatever else is skipped: loopback in step 6 cannot exercise the
 receive path, the acceptance filters or decode, so without these the first run
@@ -95,7 +95,7 @@ DIAG_LAYOUT_VERSION = 1
 DIAG_VERSION_SHIFT = 5
 DIAG_RESET_CAUSE_MASK = 0x1F
 
-# 0x04 is the latch and 0x20 is the same fault right now -- docs/frames.md.
+# 0x04 is the latch and 0x20 is the same fault right now -- docs/firmware/frames.md.
 # LED_CAN follows the second; the first is what says something happened while
 # nobody was watching.
 DIAG_FLAGS = [(0x01, "CAN_OK"), (0x02, "SILENT"), (0x04, "UNHEALTHY"),
@@ -139,7 +139,7 @@ def slcan_tx(can_id: int, data: bytes) -> bytes:
 
 
 def decode_diag(data: bytes) -> dict:
-    """0x603, laid out in src/config.h and docs/frames.md."""
+    """0x603, laid out in src/config.h and docs/firmware/frames.md."""
     if len(data) != 8:
         raise ValueError(f"0x603 should carry 8 bytes, not {len(data)}")
     return {

@@ -6,15 +6,14 @@ the car; the logs live in `test/fixtures/`.
 Two levels of confidence are distinguished:
 
 - **Confirmed** — holds across every log and is pinned down by a test in `tools/`.
-- **Open** — written down but not yet proven. See the questions register below.
+- **Open** — written down but not yet proven. The two open questions, 7 and
+  10, are in `open.md`.
 
-The register is in three parts and the last one has a rule attached: *Open
-questions* holds the single question still worth working on, *Resolved
-questions* holds the six that were answered, and **Never resolved but not
-required** — the last chapter — holds two that were never answered and are
-**not to be worked on again**. The numbering runs 1 to 9 across all three and
-is deliberately not contiguous within any of them, because code and other
-documents cite the numbers.
+The questions register at the end of this file holds the rest: *Resolved
+questions*, answered with the evidence kept, and **Never resolved but not
+required**, never answered and **not to be worked on again**. The numbering
+runs 1 to 10 across the register and `open.md` and is deliberately not
+contiguous within either, because code and other documents cite the numbers.
 
 ---
 
@@ -138,7 +137,7 @@ Exact at the cold end and inside the fan cycle at the hot end, over 88 °C of
 span. All three VCDS values also land exactly on the 0.75 °C grid of the raw
 byte (12.0 = 80, 99.0 = 196, 100.5 = 198), which says VCDS reads the same
 quantity at the same resolution: **this decode is the ECU's own scale.** The
-oil on 0x420 b3 shares the formula by analogy only, and that is question 10.
+oil on 0x420 b3 shares the formula by analogy only, and that is question 10 (`open.md`).
 
 ---
 
@@ -330,7 +329,7 @@ every 180° and each 180° window contains exactly one power stroke, start to
 finish. So each value the ECU publishes is the crank's mean speed **across one
 cylinder's contribution**, and the step to the next value is how much one
 cylinder's contribution differed from the one before it. That is what makes
-the step a per-cylinder quantity and what lets `docs/engine-health.md` (S1) put a
+the step a per-cylinder quantity and what lets `docs/engine-health/open.md` (S1) put a
 dip depth into an energy budget at all.
 
 ⚠ **"Once per 180°" and "once per firing event" are the same interval on this
@@ -358,7 +357,7 @@ frequencies at 0.1–1.5× and a shuffled null at about 1×.
 ⚠ **That is not a found fault, and reading it as one is the trap.** The
 smoothest recording this car has produced carries it as strongly as the
 roughest does, so it is **ordinary cylinder-to-cylinder variation**.
-`docs/engine-health-refuted.md` A5 has the numbers, the conclusion that a
+`docs/engine-health/refuted.md` A5 has the numbers, the conclusion that a
 single bad cylinder is ruled out, and the limit that matters most:
 **four equally bad cylinders leave no period at all**, so that hypothesis can
 be neither confirmed nor refuted this way.
@@ -384,8 +383,8 @@ no one bad cylinder — happens to survive, for entirely different reasons.
 
 ### The idle grade on 0x604, from a raw frame to the byte
 
-**So that the number can be checked rather than trusted.** `docs/frames.md`
-says what the bytes of 0x604 mean and `docs/engine-health.md` (S1) what they
+**So that the number can be checked rather than trusted.** `docs/firmware/frames.md`
+says what the bytes of 0x604 mean and `docs/engine-health/open.md` (S1) what they
 read on this engine now; this is the chain between a raw 0x280 frame and the byte on the
 wire, on a real capture. Every figure below was printed by re-running
 `roughness()` in `tools/idledips.py` over `09_idle_60s_z1.txt` and recording
@@ -474,88 +473,14 @@ not make the idle smooth.
 
 ---
 
-## VCDS measuring blocks worth knowing — our own summary
+## VCDS measuring blocks
 
-**Only the blocks this project actually uses**, written down here so that no
-session has to go hunting through a label file again.
-
-⚠ **The label file itself is not kept in this repository and should not be.**
-It is Ross-Tech's, part of a commercial product rather than something its owner
-publishes openly, so it does not belong in a repository under Apache 2.0 — not
-even in `NOTICE`, which is for material whose owners do publish it. **This table
-is our own note of what we looked up**, not a copy of theirs. Anyone with VCDS
-for this ECU has the file.
-
-The ECU is `06A 906 018`, labels `06A-906-018-AQY.LBL`.
-
-| block | what it carries | why we care |
-|---|---|---|
-| **003** | engine speed · **mass air flow** · throttle angle · ignition advance | mass air flow is not on the CAN bus and only this can give it |
-| **014** | engine speed · engine load · **misfire count** · detection state | the misfire question; also carries load, which is why it replaces 010 |
-| **022 / 023** | ignition retard **per cylinder**, 1–2 and 3–4 | **the only per-cylinder signal this ECU offers** |
-| **055 / 056** | idle regulator, its adaptation, and the target idle speed | the stumbling idle, and nothing has ever looked at them |
-| **070** | evaporative valve duty and flow | the alternative explanation for the stumbling idle |
-| **004 / 006** | **intake air temperature**, and in 006 an **altitude correction factor** | turns a bounded volumetric-efficiency estimate into a figure |
-| **100** | readiness bits and OBD status | whether the new converter has finished its monitors |
-| **032** | the lambda adaptations, idle and part load | a constant fuel excess shows here first |
-
-**Two specifications worth quoting, because they turn observations into
-findings:**
-
-- **Misfires, block 014, are specified `0...5`.** Values of **5 to 17** were
-  watched on this car, which is out of the manufacturer's tolerance rather than
-  merely non-zero. It also argues that the counter is a *current* count despite
-  its label calling it a total: 0 to 5 is not the range of a lifetime figure.
-- **The idle regulator, block 055, is specified −2.00 to +2.00 g/s**, with its
-  adaptation at −1.50 to +0.150 g/s and a target idle of 780 rpm in 056.
-
-⚠ **There is no absolute misfire counter and no per-cylinder one.** Block 014
-is the only misfire block; looking for a cumulative total was a reasonable
-guess and the answer is that it does not exist here.
-
-⚠ **There is no oil temperature either, and this is now looked up rather than
-unknown.** The label file defines 29 blocks — 001–006, 010, 014, 022, 023,
-030, 032–034, 036, 037, 041, 046, 050, 054–056, 060, 066, 070, 077, 098–100 —
-and **every temperature field in any of them is one of three things**: coolant
-(001, 004, 077, 099, 100), intake air (004, 006) or catalytic converter (034,
-046). **`OilTemp` cannot be cross-checked against this ECU**, which is why
-question 10 below has a thermometer in it rather than a screen.
-
-⚠ **The catalytic converter temperature is a precondition, not a reading**, and
-calling it "the one instrument on the new converter" — as an earlier version of
-this paragraph did — gets it backwards. Blocks **034** and **046** are *basic
-setting* tests, the same class as 070, and the temperature is one of the gates
-that has to be satisfied before the verdict means anything:
-
-| block | what it tests | the gates | the answer |
-|---|---|---|---|
-| **034** | **the pre-cat oxygen sensor's ageing** | 2200–2800 rpm, cat ≥ 352 °C, sensor period ≤ 2.2 s | `B1-S1 OK` / `not OK` |
-| **046** | **catalytic converter conversion** | 2800–3200 rpm, cat ≥ 352 °C, amplitude 0.00–0.55 | `CatConvB1 OK` / `not OK` |
-| **036 / 037** | the post-cat sensor, availability and response | 037 wants 15–35 % load | `B1-S2 OK`, `Sys. OK` |
-
-**046 is the ECU's own verdict on whether the converter converts**, which is
-worth more than any temperature: there is no need to work out what a healthy
-catalyst temperature is, because the number is a gate and the test supplies the
-judgement. **The three sensor blocks matter for a different reason** — both
-oxygen sensors on this car have already been replaced once and both have since
-sat in the exhaust of a converter that was burning through, so any `not OK` is
-a second failure rather than a worn part. All three read OK on 24/9/2026
-(`engine-health-refuted.md` C5).
-
-Intake air, from the same read, is specified **−45.0 to +108.5 °C**.
-
-⚠ **070 is a *basic setting* block**, so expect it to run an actuator test
-rather than report a state passively. So are **034**, **046**, **060**, **098**
-and **099** — the label file names them all `Basic Setting`.
-
-**Basic settings is not the output-test function**, and the two are easy to
-confuse because the memorable one is the other. `Akční členy` steps through
-actuators with START/DALŠÍ and is run with the engine stopped; *basic settings*
-is reached either from the controller window or with the **`Přepnout na
-základní nastavení`** button inside `Měřené hodnoty`, takes a group number, and
-then runs whatever routine that group defines (VAG-COM manual §5.2 and §5.3).
-**Some of those routines need the engine running and held at a speed** — 034
-and 046 both do — which no throttle-body adaptation ever did.
+The blocks this project reads through VCDS, their specifications, and how to
+record them beside a bus capture are in `docs/engine-health/vcds.md`. None of
+it is on the bus; the firmware uses none of it. What the decoding took from
+VCDS is recorded where it was used: injection time as 0x288 b6 (question 3),
+the load reference in `frames.md`, and the absence of any oil temperature in
+this ECU's blocks (`open.md`, the oil question).
 
 ---
 
@@ -622,568 +547,21 @@ sixty-second recording on a live bus.
 
 ## Open questions
 
-Reviewed in full, and then sorted against a question
-the register had never been asked: **which of these actually changes this
-firmware?** Most of them never did. They were written down because the bus is
-interesting, and a list of nine questions of which one matters is a list nobody
-reads to the end.
-
-So the questions now live in three places, and the numbers are unchanged
-because code and other documents cite them:
-
-- **Open — two questions, 7 and 10, immediately below.** Both change numbers
-  the driver reads off the display, and each has a procedure that would close
-  it. **10 is underneath 7**: the drag line is fitted against oil temperature,
-  so if that channel is offset, 7 is being answered in the wrong units.
-- **Resolved**, further down: 1, 2, 4, 5, 6, 8 and 9, kept in full because the
-  evidence is the useful part and a closed question that does not say how it
-  was closed reopens itself.
-- **Never resolved but not required** — the last chapter of this file, holding
-  3. Never answered, and **not to be worked on again**.
-
-*Resolved* and *never resolved but not required* are two different things and
-are kept apart on purpose: the first says what the answer is, the second says
-there is no answer and none is wanted.
-
-**This register is about decoding the bus, and one live investigation is not in
-it.** `docs/engine-health.md` holds an open investigation into the *vehicle*
-— its idle, its misfires and a noise in cylinder 4's knock window. Its other
-question, whether `TORQUE_CNM_PER_BIT` under-read, question 8 has answered: it
-did, by 30 %. It is a holding document with an end date, not a tenth question,
-and the count above is unchanged.
-
-The numbering is therefore not contiguous in any one section. That is
-deliberate: renumbering would silently break every `question 7` in the source
-tree.
-
----
-
-### 7. Drag torque calibration — **refitted on warm oil; still open for hot oil**
-
-**The one open question, and the only one that pays for itself.** The firmware
-subtracts this line from indicated torque on every frame it sends, so an error
-in it lands directly on two of the numbers on the display.
-
-**The cold-oil line was replaced the same day it was found.** It was closed in
-phase 1 as `drag [Nm] = 19.52 + 0.0028 × rpm`, reproducing 21.75 Nm at 797 rpm
-and 27.75 Nm at 2940 rpm exactly — raw b7 of 29 and 37. Both points came from
-fixtures and **neither was at operating temperature**: 60.8 °C at idle and
-**39.0 °C** at 2940 rpm, read off 0x420 b3.
-
-| | fixture | b7 | oil | refit | b7 | oil |
-|---|---|---|---|---|---|---|
-| idle | `02_idle_60s` | 29 | **60.8 °C** | `11_idle_noac_z1` | 25 | 72.8 °C |
-| ~2930 rpm | `05_rev3000` | 37 | **39.0 °C** | `16_rev2926_z1` | 27 | 76.6 °C |
-
-The gap is four counts at idle against ten at high speed, which is the
-signature of viscous friction rather than of a measurement error: viscosity
-falls steeply with oil temperature and viscous drag rises with speed, so a
-cold-oil point overstates drag most exactly where the fit is most sensitive to
-it. And since the line is *subtracted*, an overstated drag **understates the
-torque and the power on the display**, worst at high revs.
-
-**What it is now.** A least-squares line through the four warm free-revving
-holds, all stationary in neutral, where the crank drives nothing and b7 is
-therefore the drag itself:
-
-| Hold | rpm | b7 | oil | throttle |
-|---|---|---|---|---|
-| `13_rev1500_z1` | 1536 | 18.81 | 72.8 °C | 48 |
-| `14_rev1850_z1` | 1850 | 20.66 | 74.2 °C | 51 |
-| `15_rev2372_z1` | 2372 | 26.32 | 75.3 °C | 56 |
-| `16_rev2926_z1` | 2926 | 27.23 | 76.6 °C | 61 |
-
-```
-drag_b7 = 9.11 + 0.006514 x rpm        residuals -0.9 to +1.8 counts
-drag [Nm] = 9.66 + 0.00690 x rpm       at 1.06 Nm/bit
-```
-
-### What the display can show at the top, and what that is worth
-
-**On the plateau this engine actually reaches, the display reproduces both
-factory ratings**: b7 = 185 at 2400 rpm shows about 170 Nm and b7 = 191 at
-5200 rpm about 85.4 kW, against 170 Nm and 85 kW.
-`test_the_plateau_reproduces_the_rated_torque` and `..._power` hold both to
-within 2 %. The byte's own ceiling, b7 = 255, is about 244 Nm at 2400 rpm and
-122 kW at 5200 — **and it is never reached**, which is why it no longer defines
-anything (question 8).
-
-⚠ **That is verified against the ratings on this car's own plateau, not
-against a dynamometer.** The scale was *derived* from the two ratings, so the
-display agreeing with them at those two points is arithmetic closing on
-itself; what is a measurement is that the two ratings, read independently,
-agree with each other to 0.6 %.
-
-⚠ **It is calibrated against a stock AQY's ratings, and this car is not one.**
-The remap below is a fact about this vehicle rather than a caution about
-somebody else's: the ECU was chipped years ago, it is not going back to
-standard, and `docs/vehicle-history.md` holds what is and is not known about it.
-
-**A remap therefore does not read correctly.**
-Which way it fails depends on something nobody has established — whether the
-ECU scales its internal reference torque with the map. If it does, b7 stays in
-the same range for more real torque and the display **under-reads** a tuned
-engine while looking perfectly plausible. If it does not, b7 climbs and the
-display follows until it **clips at 255 counts**, the 244 Nm above. Either way
-the numbers stay believable and stop being right, which is the worst shape a
-fault can have. A remap means recalibrating both the scale and the drag line
-together.
-
-**What it costs here, as far as it can be bounded.** A remap on a naturally
-aspirated engine normally moves ignition advance and the full-load enrichment
-and is worth a few per cent. The scale is set by requiring this car's plateau
-to reproduce the ratings **of a stock engine**, so if the remap gained
-anything, the plateau is worth more Nm than the scale says and the display
-under-reads by roughly what the remap gained. A few per cent, in a known
-direction. **The drag line is unaffected in kind**, because it was fitted on
-this car as it is.
-
-**For reference, the highest the display would have shown on record**, taking
-`19_postfix_drive_z1` through the firmware's own arithmetic frame by frame, is
-**180.1 Nm at 3841 rpm** (b7 = 204) and **88.2 kW at 5737 rpm**. Held for a
-second, 176.8 Nm and 86.8 kW. The largest b7 itself, 206 at 4402 rpm, is only
-178.3 Nm, because the drag subtracted there is larger — the peak torque is not
-where the peak byte is. Single frames rather than a plateau, so statements
-about one burst and not ratings.
-
-**The scale moves with the drag line, and has to.** A rating is what is left
-of b7 after the drag, so the scale is the rating divided by *b7 minus the drag
-in bytes*, and a different drag line gives a different scale. It moved 0.75 →
-0.74 with the warm refit, under the old derivation from b7 = 255; under the
-measured one it would move again with a hot refit (below). `frames.md` and
-`config.h` have the details.
-
-**What it bought, measured on the one drive we have.** Over
-`17_drive_property_z1` the old line displayed zero torque through 51 % of the
-samples and the new one displays a number through 78 %. Peak torque barely
-moved — 105.8 → 107.0 Nm at the 0.74 scale of the time — because at high load the drag is a small term. The
-whole difference is at part throttle, which is where the driving happens.
-
-**The idle point is excluded, deliberately, and the driving gate handles it.**
-`11_idle_noac_z1` is 798 rpm at b7 = 24.96 on the same warm oil, which is
-*above* the line the other four make: b7 falls 24.96 → 18.81 between idle and
-1536 rpm before it starts rising. Idle is a different state — the throttle is
-at its rest position 38 against 48–61 for the holds, so the pumping loss
-against a nearly closed throttle is large, and the ECU is regulating speed
-rather than letting the engine free-rev. No straight line in rpm passes through
-both, so idle is **asserted rather than fitted**: a car that is standing still
-or has the pedal released returns zero outright, which is a fixed requirement of
-this
-firmware and is documented in `frames.md` and `config.h`. **Do not raise the
-intercept to compensate** — that puts the line back above all four measured
-points and brings the understatement straight back, and the gate has already
-dealt with the only place the residual showed.
-
-⚠ **Question 10 may answer this one, and in the direction nobody expected.**
-If this firmware's oil formula has the wrong slope — which is a live suspicion
-and not a finding — the four holds below were at **98–103 °C** rather than
-72–77, real operating temperature, and the line is already fitted where it is
-used. Read question 10 before spending anything on this one. The paragraph that follows
-is the case as it stood before that, and it stands or falls with a
-thermometer.
-
-**Why it is still open.** 72–77 °C is warm, not the 95–110 °C of real driving,
-so this line very likely still overstates drag a little. That is the
-conservative direction, which is why it was worth shipping.
-
-**What that costs while it stays open, bounded rather than guessed.** The two
-fixture pairs above give a temperature sensitivity of **0.27 counts of b7 per
-°C at ~2930 rpm** (37 → 27 counts over 39.0 → 76.6 °C). Extrapolated linearly
-from 76.6 °C to 100 °C that is 6.2 counts, about **4.6 Nm of drag overstated**.
-
-⚠ **Read that as an upper bound and not as a figure.** Viscosity falls
-exponentially with temperature, so a rate measured across 39–77 °C overstates
-what happens across 77–100 °C; and drag is not all viscous — pumping loss and
-accessory load do not care how hot the oil is. Both push the real number down.
-
-Where it lands is the useful part, and it is not where it looks. Taking the
-6.2 counts as a uniform drop of the line — the upper bound, applied at every
-speed — at 4799 rpm:
-
-| | now, 1.06 Nm/bit | with a hot refit, ~1.02 Nm/bit | |
-|---|---|---|---|
-| the peak of `17_drive_property_z1` (b7 = 185, 4799 rpm) | 153.3 Nm, 77.0 kW | 153.4 Nm, 77.1 kW | **+0.1 %** |
-| b7 = 100 at the same speed | 63.2 Nm | 66.9 Nm | +6 % |
-| b7 = 80 | 42.0 Nm | 46.6 Nm | +11 % |
-| b7 = 60 | 20.8 Nm | 26.3 Nm | +26 % |
-| b7 = 40 | **zero** | 5.9 Nm | — |
-
-**The maxima are the part that is least wrong, and that is structural rather
-than luck.** `TORQUE_CNM_PER_BIT` is *derived through* this line — the rating
-is what the plateau reads above the drag — so a lower drag line forces a lower
-scale, and at high b7 the two changes very nearly cancel. The scale would go
-from 1.06 to about 1.02 Nm/bit on the numbers above.
-
-So the error behaves like **a roughly constant offset of a few Nm**:
-invisible at full throttle, dominant at part throttle, and always in the
-direction of showing *less* than the truth. Which is also why the sweep wants
-points at **low** rpm and low load rather than another full-scale figure — the
-top of the range is pinned by the factory ratings whatever the oil is doing.
-
-⚠ **One thing the table above assumes and the sweep will settle:** that hot oil
-takes the same amount off the drag at every engine speed. It will not — viscous
-drag rises with speed, so the refit should change the *slope* as well as the
-intercept, and how much of each is exactly what more points below 1500 rpm are
-for.
-
-### ⚠ This may never be worth doing, and that is a maintainer's decision
-
-**It stays open rather than being closed, but do not treat it as work that is
-owed.** The reasoning, and it is sound:
-
-- **Where the numbers are read, the correction is worth under 1 %.** The table
-  above: +0.1 % on the real peak. The interest here is in the maxima, and the
-  maxima are pinned by the factory ratings, not by the drag line.
-- **The input is a fabricated number to begin with.** 0x280 b7 is the ECU's own
-  *indicated* torque as a percentage of an internal reference torque nobody has
-  read, and `TORQUE_CNM_PER_BIT` is read off one day's plateau at an intake
-  temperature nobody logged — question 8. A few Nm of drag is below the
-  weather's effect on the premise it sits on.
-- **The cost is a dismantled dashboard and a drive on a registered car**, which
-  is the expensive half. `install.md` step 11.
-
-**Where the argument does not hold, stated fairly:** at part throttle the drag
-error is the *dominant* term, up to +26 % at b7 = 60, which is far larger than
-the scale's own uncertainty. So this is a decision that the top of the range is
-what matters on this car, not a demonstration that the correction is
-negligible everywhere. **If a part-throttle number ever starts mattering, the
-argument above expires.**
-
-**What would close it properly:** the rpm sweep repeated with the oil genuinely
-hot, and enough points below 1500 rpm to see whether the fall from idle to
-1536 rpm is a curve worth modelling rather than a line.
-
-**The obstacle is the car, not the method — and half of it has lifted.** The
-car has passed inspection and is back on public roads, so the stretch of
-private land is no longer the limit it was; `17_drive_property_z1` is six
-minutes of that land and the oil went 75.0 → 77.2 °C.
-
-⚠ **The premise of this question may simply be false for this engine, and
-that would close it.** The first proper drive back on the road peaked at
-**72–74 °C of oil after about an hour of driving** — not a short hop, and the
-same range as the 72.8–76.6 °C holds this line is already fitted to. If this
-engine's oil does not go to 95–110 °C, the line is fitted where it actually
-runs and **there is nothing to refit.**
-
-**One capture settles it and costs nothing extra**, because oil temperature is
-in every recording: a long continuous log will show the ceiling or show it
-being passed. `19_postfix_drive_z1` is that log: 56 minutes of the hardest
-driving the car has had, and the oil peaked at **75.75 °C** on the shipped
-scale. So on this decode the oil does not go to 95–110 °C and the drag line is
-already fitted where the engine runs — **unless question 10 finds the scale
-wrong**, which is why this stays open rather than closed. **Do not plan a
-session around heating the oil** before question 10 is settled. Whatever gets the oil hot, the sweep
-itself is unchanged: hold each speed until 0x420 b3 stops climbing, record the
-oil temperature with every point, and stay in neutral so net torque really is
-zero.
-
-⚠ **Take the dashboard apart before the drive, not after.** The capture comes
-off the display's connector, which means the display out and the trim off —
-and the oil cools while that is happening. Connect the USBtin first, then drive
-to heat the oil, then hold. `install.md` step 11 has the rest of what is behind
-the display, and why a trip that opens it should flash the current firmware
-while it is open.
-
-⚠ **The holds will display zero torque**, because they are taken standing
-still and the driving gate returns zero for a standing car whatever the pedal
-is doing. Correct, and not a fault to chase: the refit is done off the raw log
-and b7.
-
----
-
-### 10. Is the oil temperature *right*, and not merely oil? — **open. Three cool-down points favour the shipped slope; a thermometer on hot oil settles it**
-
-Question 4 settled **what** 0x420 b3 is. **Nothing has ever checked what it is
-worth.** The formula `× 0.75 − 48` was taken from the coolant on 0x288, which
-reads 99–100 °C on a warmed engine and is therefore credible — but that is an
-argument from analogy between two different frames, not a measurement.
-
-**What makes it worth asking.** The channel never gets hot, and never closes
-on the coolant:
-
-| state | oil | coolant | gap |
-|---|---|---|---|
-| `11`, `12` — warm idle | 72.8, 73.5 °C | 99.0 °C | −26 |
-| `16` — 2926 rpm held | 77.25 °C | 99.0 °C | −22 |
-| `17` — six minutes driving | 77.25 °C | 100.5 °C | −23 |
-| the drive of 2026-09-10 | **72–74 °C peak after about an hour** | — | — |
-| the drive of 2026-09-19 | **no more than 74 °C after two hours** | — | — |
-
-**A warmed engine under load normally runs its oil at 90–110 °C and above the
-coolant, not twenty-odd degrees below it in every state ever recorded.** That
-is the whole of the suspicion, and it is not nothing: an hour of driving that
-peaks at 74 °C is the observation, and "this car is only driven gently" and
-"the channel is offset" both explain it.
-
-**The 2026-09-19 drive weakens the first explanation and nothing else.** A run
-to the Šumava and back is two hours including sustained higher-speed driving,
-and the channel finished it at the same 74 °C an hour of driving had already
-reached. Gentle use explains an engine that never gets hot; it explains a
-channel that stops at exactly the same number whatever the drive is much less
-well. **Read off the display from the driver's seat and not logged**, so it is
-a reported figure.
-
-⚠ **A plateau does not choose between the other two explanations, and saying
-it did was an overstatement.** Stopping at the same number is what an offset
-channel does *and* what a thermal equilibrium does — an engine whose oil
-really settles at 74 °C settles there after one hour and after three. All the
-second drive removes is the idea that more driving would have got it hotter.
-
-**A THERMOSTAT STUCK OPEN IS RULED OUT, and the evidence is already in
-question 4 above.** It is the obvious third mechanism — a real oil
-temperature held low by an engine running cold — and the coolant refutes it
-directly: across the fixtures, ordered by warmth, 0x288 reads
-**54.0 → 68.25 → 75.75 → 90.0 → 96.75 → 99.0 → 100.5 °C**. That is a complete,
-ordinary warm-up ending where a healthy engine ends, and it is the one curve a
-stuck-open thermostat cannot produce, least of all at idle. The coolant is
-also on the ECU's own frame rather than a separate gauge sender, so it is what
-the ECU believes and not only what the needle shows.
-
-### The cool-down after the post-repair drive — the strongest evidence yet, and it favours `× 0.75 − 48`
-
-**Read this first; the hypothesis below is what it weighs against.**
-
-**The cold end.** Oil raw **77** against an oil filter at 10.7 °C, ambient 10.0
-and coolant 12.0 (VCDS) after a 19-hour soak. `× 0.75 − 48` gives 9.75 °C, so
-**the offset is right at the cold end to within about a degree**, whichever
-slope is true.
-
-**A decision that was taken and withdrawn within the hour.** After the drive,
-the highest oil readings ever seen (raw 165–167) were first taken to be
-105–110 °C, which with the cold point gives `raw × 1.1 − 74`. The three points
-below withdrew it; it is kept here so it is not re-proposed without them.
-
-**Three points during the cool-down**, bonnet open, in the rain, the ignition on
-for each reading and a capture taken while an IR thermometer read the oil
-filter (`21`–`23_oilcool_*`):
-
-| | filter | other spot | oil raw | `× 0.75 − 48` | `× 1.1 − 74` | coolant |
-|---|---|---|---|---|---|---|
-| 1 | 48.8 | — | 125 | **45.75** | 63.5 | 72.75–73.5 |
-| 2 | 47.3 | metal directly above the filter: 55.3 | 123–124 | **44.6** | 61.8 | 71.25–72.75 |
-| 3 | 44.0 | bottom of the sump pan: about 38 | 121–122 | **43.1** | 59.6 | 68.25–69.0 |
-
-- **The filter follows the shipped scale at all three points, within 1–3 °C**,
-  and falls alongside it. It is full of oil from the same circuit.
-- **The steeper slope needs the oil 15–20 °C hotter than both the filter and
-  the pan it sits in**, which thin steel does not do even in rain.
-- The one warm reading, 55.3 °C, was metal above the filter next to a block
-  whose coolant was at about 72 °C: heated by the block, not by the oil.
-- ⚠ **Surface readings are lower bounds** — rain, evaporation and emissivity
-  all pull an IR reading down — which cuts against the shipped scale, and
-  still leaves the steeper one needing a 15 °C error on every oil-wetted
-  surface.
-
-**What settles it, and why more cool-down points will not.** The two scales
-converge on the cold point they share, so every later reading discriminates
-less than the one before; they are furthest apart when the oil is hot. So what
-settles it is **the oil itself, hot**: a K-type thermocouple down the dipstick
-tube, or an IR thermometer rated past 100 °C (the one used stops at 60 °C) on
-the filter and the pan straight after a hard drive. **Nothing changes in
-`src/` or `S-AQY.TRI` until then.**
-
-### A LIVE HYPOTHESIS: our decode has the wrong slope. It is not established
-
-⚠ **An earlier version of this section called this "the leading answer" and
-showed a two-point fit landing on `raw − 64` as though the arithmetic settled
-it. It does not, and the maintainer spotted why: WE DO NOT KNOW WHERE THE OIL
-ACTUALLY ENDS UP.** The fit has two anchors and only one of them is a
-measurement. What follows is the case, honestly bracketed.
-
-**`18_coldstart_z1` carries the measurement that discriminates, and nobody had
-looked at it this way.** The recording opens with 41.4 s of ignition-on before
-the engine fires, on a car that had stood overnight. **Every fluid in a
-cold-soaked car is at ambient**, so in those 41 s the coolant and the oil are
-reading the same physical temperature, whatever it is. That is a calibration
-point that costs nothing and needs no thermometer:
-
-| | raw byte | `× 0.75 − 48` |
-|---|---|---|
-| 0x288 b1, coolant | 86 | **16.50 °C** |
-| 0x420 b3, oil | 81 | **12.75 °C** |
-
-**They disagree by 3.75 °C where they ought to be close.** ⚠ **Not
-"identical" — and the difference matters.** The oil sender is in the sump,
-under the car; the coolant sensor is in the block, up in the bay. After a
-night out, those two can genuinely sit a few degrees apart, so 3.75 °C is
-*suggestive* and not a contradiction. It is the only calibration point this
-project has, and it is a soft one.
-
-The rest of the case is that the same two channels disagree by 20–26 °C when
-fully warm, and an error that grows with temperature is a slope error rather
-than an offset. That much is solid: re-anchoring the offset on the cold soak
-while keeping the 0.75 slope still leaves the warm end 21.0 °C low. **So if
-the channel is wrong, it is wrong in the slope.** Whether it is wrong at all
-is the open part.
-
-Fit both anchors — oil = coolant at cold soak, oil ≈ coolant fully warm — and
-the two-point fit gives **slope 1.006, offset 65.0**, i.e. `°C = raw − 64`.
-⚠ **The second anchor is an assumption about the engine, not a measurement**,
-and it is the same assumption this whole question exists to doubt.
-
-**Against every fixture, warmest last:**
-
-| fixture | coolant | oil raw | today's `× 0.75 − 48` | `raw − 64` |
-|---|---|---|---|---|
-| `11_idle_noac_z1` | 99.0 | 161 | 72.75 (−26.2) | **97.0 (−2.0)** |
-| `12_idle_ac_z1` | 99.0 | 162 | 73.50 (−25.5) | **98.0 (−1.0)** |
-| `13_rev1500_z1` | 97.5 | 162 | 73.50 (−24.0) | **98.0 (+0.5)** |
-| `14_rev1850_z1` | 99.0 | 163 | 74.25 (−24.8) | **99.0 (0.0)** |
-| `15_rev2372_z1` | 95.25 | 165 | 75.75 (−19.5) | **101.0 (+5.8)** |
-| `16_rev2926_z1` | 99.0 | 167 | 77.25 (−21.8) | **103.0 (+4.0)** |
-| `17_drive_property_z1` | 100.5 | 167 | 77.25 (−23.2) | **103.0 (+2.5)** |
-
-Under `raw − 64` every fully warmed fixture sits **within ±6 °C of the
-coolant**, a shade below it at idle and above it under load, and the four
-free-revving holds climb 98 → 99 → 101 → 103 °C across rising load while the
-coolant stays flat at 99. That is what a healthy engine does and it is four
-consistent points, not one. Under today's formula all seven sit 20–26 °C below
-with no mechanism that has ever been named.
-
-**Where the wrong slope came from is not a mystery, and this document said so
-before the evidence existed:** *"the formula `× 0.75 − 48` was taken from the
-coolant on 0x288 ... that is an argument from analogy between two different
-frames, not a measurement."* The analogy is the fault — and question 4 now
-names why it was never going to hold. **The coolant byte is the engine ECU's
-and the oil byte is the instrument cluster's**, because the sender wires to
-the cluster and not to the engine management. Two modules, two scalings, no
-reason to agree. That argument and the cold-soak arithmetic above were arrived
-at independently and agree.
-
-### What physics alone pins down, and what it leaves open
-
-Take only two facts that cannot be argued with — an overnight soak is at
-ambient, somewhere in 10–25 °C for the September morning `18_coldstart_z1` was
-recorded on, and a healthy engine's coolant ends up in 88–108 °C — and ask
-what slope each channel is allowed:
-
-| channel | raw span, soak → fully warm | slope the physics allows | shipped |
-|---|---|---|---|
-| coolant 0x288 b1 | 86 → 196 (110 counts) | **0.573 – 0.891** | 0.75 ✓ inside |
-| oil 0x420 b3 | 81 → 167 (86 counts) | **0.756 – 1.163**, assuming the oil ends up at 90–110 °C | 0.75, at the very edge |
-
-**The coolant slope is pinned and 0.75 sits comfortably in it.** Nothing else
-comes close: at `raw − 64` a warmed engine would read 132 °C, which is not a
-temperature a 1.2 bar cooling system reaches without emptying itself.
-
-**The oil slope is not pinned, and that is the whole answer to "we do not know
-the maximum".** We do not. The bracket above already assumes the answer — feed
-it "the oil ends up at 90–110 °C" and it returns a slope near 1.0, because
-that is what was put in. **0.75 and 1.00 both survive**, and only a
-measurement of where the oil really ends up separates them.
-
-⚠ **The coolant's own scale has never been checked against the ECU either.**
-The four groups ever logged — 002, 003, 014, 055 — carry no temperature at
-all. The label file does define coolant, in blocks **001, 004, 077, 099 and
-100**, so this is one VCDS screen with the engine warm and not a session. It
-is worth taking, because every argument above leans on the coolant being
-right.
-
-### The test that needs no thermometer and no assumption
-
-**Two cold soaks at different ambients.** On a cold-soaked car both channels
-read the same thing, whatever that thing is, so with two soaks the offsets
-cancel and so does any need for an absolute temperature:
-
-```
-k_oil / k_coolant = (coolant2 - coolant1) / (oil2 - oil1)      raw counts
-```
-
-25 °C between the two soaks moves the coolant 33 counts. It moves the oil
-**33 counts if the oil slope is 0.75, and 25 counts if it is 1.00** — an
-eight-count gap, far outside the ±1 either channel quantises to.
-
-**Half of it already exists**: `18_coldstart_z1` is soak one, coolant raw 86,
-oil raw 81. Soak two is twenty seconds of ignition-on, engine not started, on
-a morning meaningfully colder or warmer than that one — a winter start is
-ideal. No driving, no bonnet, no thermometer, and it settles the slope without
-ever assuming what a warm engine does.
-
-### If a thermometer is used anyway — the bar is lower than it looks
-
-**The question is 77 °C against 103 °C.** That is a 26 °C gap, not a
-calibration to a degree, so an infrared reading with all its emissivity sins
-is good enough to settle it.
-
-⚠ **But not pointed anywhere convenient.** Down the dipstick tube it mostly
-reads the tube wall; through the filler cap it reads the rocker cover and the
-valve gear, which is not sump oil and has drained by the time the engine
-stops. **The sump pan from underneath is the right target** — it is the oil in
-question, behind thin metal, and an old grimy pan has the emissivity a shiny
-one lacks. The oil filter housing and the drain plug are the same argument
-from above and below.
-
-**The right tool is not infrared at all.** A K-type thermocouple on thin wire,
-fed down the dipstick tube until it is in the oil, costs about as much as a
-litre of that oil, touches what it is measuring and has no emissivity to get
-wrong.
-
-⚠ **And it still only measures the sump**, which happens to be exactly where
-the sender is — so for once that is the right place rather than a compromise.
-
-**Nothing has been changed in the firmware on the strength of it**, and that
-is a decision rather than an oversight. `decode.c` would be replacing one
-unproven analogy with a better-supported one, the display's own `OilTemp`
-comes off 0x420 rather than through this firmware, so the change would have to
-land in `mfd15` in the same breath, and the reading that settles it is one
-drive and one thermometer away. `st.oil_c100` is decoded and **consumed by
-nothing**, so being wrong currently costs this firmware nothing at all.
-
-**If it is confirmed, question 7 is answered rather than deepened** — "if"
-doing real work in that sentence. Question 7 rests on *"72–77 °C is warm, not
-the 95–110 °C of real driving"*. On the `raw − 64` reading the four holds the
-drag line is fitted to were at **98–103 °C**, real operating temperature, so
-the line would already be fitted where it is used and the one open question in
-this project would close. Note which way that runs: the suspicion was that a
-cool-reading channel made the drag line worse, and it would make it correct.
-
-⚠ **Nothing may be decided on the strength of that until the slope is
-measured**, because the drag line is fitted against b7 at those holds and the
-fit does not change either way — only the temperature written beside it does.
-A wrong label is not a wrong line.
-
-**The old candidate list is superseded but kept.** It was (1) the channel is
-offset low, which the cold soak now refutes as *offset* while supporting it as
-*slope*, and (2) the oil really runs 25 °C below the coolant because nothing
-ties the two together — no oil-to-water heat exchanger, and a sender in the
-pan reading the coolest oil in the engine. ⚠ **Whether this engine has such an
-exchanger and where the sender sits are facts about the car nobody here has
-checked**, settled by opening the bonnet rather than by reasoning. They matter
-only if the thermometer says 74.
-
-**What is not wrong with it.** It is a real measurement and not a stuck or
-derived number — in the four free-revving holds `13`–`16` it climbs
-72.75 → 77.25 °C while the coolant sits flat at 99, so it has dynamics the
-coolant cannot supply; and it is not the intake air, which question 4 now
-settles by direct comparison.
-
-**Why it matters beyond tidiness.** Question 7 and the drag line are fitted
-against oil temperature, and question 7 rests on the sentence *"72–77 °C
-is warm, not the 95–110 °C of real driving"* being true for this engine. If
-this channel is offset low, that sentence is false for a different reason than
-anybody thinks, and the drag line is fitted against a temperature that does
-not exist.
-
-**There is one way to close it, and the obvious one is already closed off.**
-
-⚠ **VCDS cannot cross-check this, because `01-Motor` has no oil temperature at
-all.** The label file for this ECU defines 29 blocks and **every temperature in
-any of them is coolant, intake air or catalytic converter** — the full list is
-in the block summary above. This is not "nobody has looked"; it has now been
-looked up and the answer is that the engine ECU does not carry the signal.
-**Do not spend a session hunting for the block.**
-
-That also says something about where 0x420 b3 comes from: not from the engine
-ECU's own measuring blocks. Reading it from whatever does send it would in any
-case only prove that two readers agree about one sender, which is not the
-question.
-
-**So the test is a thermometer down the dipstick tube, immediately after a
-drive**, against `OilTemp` on the display at the same moment. No electronics,
-no licence, no label file, and it settles the **absolute value** rather than
-the decode — which is the half that matters. It needs a drive long enough to
-have heated the oil and somebody willing to open the bonnet within a minute of
-stopping.
+**Two are open, 7 (the drag line on hot oil) and 10 (whether the oil
+temperature is right), and they live in `open.md`** with what closing each
+takes. The numbering is unchanged across the register because code and
+documents cite it, so it is not contiguous in any one section: renumbering
+would silently break every `question 7` in the tree.
+
+The rest of the register is below: **Resolved** holds 1, 2, 4, 5, 6, 8 and 9,
+kept with their evidence because a closed question that does not say how it
+was closed reopens itself; **Never resolved but not required** holds 3, never
+answered and not to be worked on again. The two are kept apart on purpose: the
+first says what the answer is, the second says there is no answer and none is
+wanted.
+
+The engine's own faults are not in this register at all; they are
+`docs/engine-health/open.md`.
 
 ---
 
@@ -1193,7 +571,7 @@ Seven that were settled, moved out of *Open questions* so that
 section holds only questions that are genuinely still open. They stay here in
 full rather than being deleted: the reasoning is what stops each of them being
 reopened by somebody arguing from first principles, which is the same case
-`docs/refuted.md` makes for itself.
+`docs/firmware/refuted.md` makes for itself.
 
 ### 1. ~~What is the real period of 0x480?~~ — **closed: there isn't one**
 
@@ -1374,7 +752,7 @@ is where a sump sender's signal would end up.
 below are parts catalogues, workshop pages and forums, which is NOT how this
 document settles facts about the car.** They are recorded because they are
 consistent, because they name a mechanism, and because the mechanism has a
-consequence for question 10. They are an indication. The measurement that
+consequence for question 10 (`open.md`). They are an indication. The measurement that
 settles it is still to unplug the connector and watch for 255.
 
 - The part is the **oil level and oil temperature sender G266**, threaded into
@@ -1403,7 +781,7 @@ Question 10's cold-soak arithmetic and this point are independent of each
 other and say the same thing.
 
 ⚠ **What this does not establish is that the number is *right*** — only what it
-is a number of. That is question 10. **If there is no physical sender the
+is a number of. That is question 10 (`open.md`). **If there is no physical sender the
 answer there gets simpler, not harder**: "the sensor is faulty" leaves the
 table and what remains is this firmware's decode, which the cold-soak
 calibration point already says has the wrong slope.
@@ -1567,7 +945,7 @@ there was nothing left to run.
   factory ratings imply **0.736 to 0.738 Nm/bit** — 0.3 % — where the old
   cold-oil line made them argue between 0.745 and 0.773. The scale in the
   firmware moved 0.75 → 0.74 with the refit, which is not a new
-  answer to this question but the arithmetic consequence of question 7's, since
+  answer to this question but the arithmetic consequence of question 7's (`open.md`), since
   full scale must cover the rated torque plus the drag.
 - The measurement does not exist. VCDS was tried and this ECU has no torque
   block. A full-throttle pull has since happened — see the note below — and it
@@ -1627,7 +1005,7 @@ still no work owed: the decision in the code is defensible, and the engine has
 to be repaired before any measurement of it means anything.
 
 ⚠ **A second finding came out of this session and it is more expensive than the
-question was** — the drag torque was fitted on cold oil. That is question 7,
+question was** — the drag torque was fitted on cold oil. That is question 7 (`open.md`),
 and it is the one question still open.
 
 ---
@@ -1835,7 +1213,7 @@ came back with less than was hoped, and blocks not a single line of firmware.
 (Question 8 used to sit here too; a measurement arrived and it moved to
 *Resolved*, which is how this chapter is supposed to be left.)
 
-They are kept in full rather than deleted for the same reason `docs/refuted.md`
+They are kept in full rather than deleted for the same reason `docs/firmware/refuted.md`
 exists: a question that leaves no trace gets asked again by the next person, who
 then repeats the session that did not answer it. The difference between that
 file and this chapter is that `refuted.md` holds ideas that were settled
@@ -1866,7 +1244,7 @@ no fourth to test. Another session would be a fishing trip, not an experiment.
 
 The findings, in full:
 
-The session happened. `docs/vcds-session.md` is the procedure,
+The session happened, recorded as `docs/engine-health/vcds.md` describes;
 `test/fixtures/11`–`16` and `test/fixtures/vcds/` are the data.
 
 **b6 is injection time.** Across six holds:

@@ -18,7 +18,7 @@ Physically it sits behind the display, powered by 5 V taken straight from it.
 
 It sits behind the display in the air vent, reads the vehicle's bus and feeds
 the MFD15 ten channels of its own. What that took is
-[`docs/install.md`](docs/install.md), in order, from three clones to a closed
+[`docs/firmware/install.md`](docs/firmware/install.md), in order, from three clones to a closed
 dashboard.
 
 The pure C core — frame decoding, the fuel arithmetic, the transmitted frames
@@ -54,7 +54,7 @@ and `src/config.h`, and checked in CI. Do not edit by hand.
 
 <!-- checkdocs:end build-size -->
 
-The CPU side is in [`docs/timing.md`](docs/timing.md), which costs every
+The CPU side is in [`docs/firmware/timing.md`](docs/firmware/timing.md), which costs every
 function out of the assembly listing: a typical scheduler pass is 49–134 µs,
 the worst pass without an EEPROM write is 6.5 ms against a 10 ms slot, and the
 whole firmware uses about a sixth of the CPU. `python tools/cycles.py` prints
@@ -68,16 +68,16 @@ arithmetic agrees with the display's raw ECU counter in the car. The refuelling
 reset has fired on real fuel from a jerrycan.
 
 ⚠ **The timing budget is still counted rather than measured.**
-[`docs/timing.md`](docs/timing.md) costs every function out of the assembly
+[`docs/firmware/timing.md`](docs/firmware/timing.md) costs every function out of the assembly
 listing XC8 generates; nothing has put a scope on it. The margins are large
 enough that this is a stated limitation rather than a worry — the busiest
 transmit slot uses 2.4 ms of its 25 — but it is not a measurement.
 
 ⚠ **One calibration is open**: the engine's drag torque is fitted on 72–77 °C
 oil rather than the 95–110 °C of real driving, which biases torque and power
-slightly low. `docs/can-decoding.md` question 7.
+slightly low. `docs/firmware/open.md` question 7.
 
-**[`docs/install.md`](docs/install.md) is the procedure** — the whole path from
+**[`docs/firmware/install.md`](docs/firmware/install.md) is the procedure** — the whole path from
 three clones to a working device, in the order it has to happen, with each step
 saying what it needs, what it proves and how you know it worked.
 
@@ -94,7 +94,7 @@ required to run the tests, and none of it is required to read the code.
 | recording from the bus | a **CAN interface** the host can drive | *(Tested on a USBtin; `tools/usbtin_capture.py` drives it and needs `pip install pyserial`.)* |
 
 **What has to be on `PATH`.** `gcc`, `make`, `python` — and **`ipecmd.exe`**, which
-every command in `docs/install.md` invokes by bare name. It is not put there by
+every command in `docs/firmware/install.md` invokes by bare name. It is not put there by
 the MPLAB X installer; it lives in `mplab_platform/mplab_ipe` under the install
 directory. **`xc8-cc` is the exception**: `mplab/Makefile` looks for it on
 `PATH` and falls back to the default Windows install path, so `make -C mplab`
@@ -116,7 +116,7 @@ command line with `ipecmd.exe` out of the MPLAB X install — the IDE is not
 opened for it. IPECMD supports MPLAB Snap, PICkit 3 and 4 and ICD 4 for this
 part; only the `-TP` name changes. *(Tested on a PICkit 3, which was driven
 from the command line and took its own firmware update.)* The commands are in
-[`docs/install.md`](docs/install.md) steps 4 and 5, and
+[`docs/firmware/install.md`](docs/firmware/install.md) steps 4 and 5, and
 `python tools/flash.py` wraps them — including `--preserve-eeprom`, which keeps
 the trip accumulators across a reflash and then proves it did by reading the
 EEPROM back either side of the write.
@@ -147,23 +147,34 @@ two, so the reference and the code that gets flashed cannot drift apart.
 
 ## Documentation
 
+`docs/` has two folders and they answer different questions. **`firmware/`**
+is everything the converter needed or needs: how to build and install it, what
+it decodes and transmits, why the code is shaped the way it is.
+**`engine-health/`** is the car's own engine — what is still wrong with it
+and how it is being found — and has an end date.
+
 | File | Contents |
 |---|---|
-| **`docs/install.md`** | **from three clones to a working device — start here if you are building one** |
-| `docs/can-decoding.md` | signal table, four traps, verified values, the questions register — one open, six resolved, two parked |
-| `docs/frames.md` | layout of frames 0x600–0x603, FuelNow, Range, torque, the diagnostic frame |
-| `docs/refuel-reset.md` | resetting the average on refuelling, and the tank audit |
-| `docs/timing.md` | what every part costs in cycles, and the margins |
-| `docs/optimisation.md` | **read before changing any loop or any arithmetic** — what was optimised, why, and what is deliberately left alone |
-| `docs/refuted.md` | ideas that were believed and turned out wrong — **all three repositories** |
-| `docs/vehicle-history.md` | **the car itself** — distance, the measured consumption history, and what has been replaced. Read it before trusting a consumption figure against the vehicle |
+| **`docs/firmware/install.md`** | **from three clones to a working device — start here if you are building one** |
+| `docs/firmware/can-decoding.md` | signal table, the traps, verified values, and the answered and parked questions |
+| `docs/firmware/frames.md` | layout of frames 0x600–0x604, FuelNow, Range, torque, the diagnostic and engine-health frames |
+| `docs/firmware/refuel-reset.md` | resetting the average on refuelling, and the tank audit |
+| `docs/firmware/timing.md` | what every part costs in cycles, and the margins |
+| `docs/firmware/optimisation.md` | **read before changing any loop or any arithmetic** — what was optimised, why, and what is deliberately left alone |
+| `docs/firmware/flashing.md` | IPECMD in detail: every flag, the exit codes that lie, and what `tools/flash.py` had to know |
+| `docs/firmware/refuted.md` | ideas that were believed and turned out wrong — **all three repositories** |
+| `docs/firmware/datasheets/` | the two manufacturer datasheets every hardware constant cites |
+| **`docs/engine-health/open.md`** | **the engine's open faults** — symptoms, hypotheses, the test that settles each, the plan |
+| `docs/engine-health/refuted.md` | every engine hypothesis settled against, and what settled it |
+| `docs/engine-health/vcds.md` | the VCDS blocks this project reads, and how to record VCDS beside a CAN capture |
+| `docs/engine-health/vehicle-history.md` | **the car itself** — distance, the measured consumption history, and what has been replaced. Read it before trusting a consumption figure against the vehicle |
 | `test/fixtures/README.md` | description of the logs and known data defects |
 | `mplab/README.md` | how to build the firmware, and what JP2 is for |
 
 Every hardware fact in the firmware comes from the manufacturer's datasheet
-for the exact part and cites its section. Both datasheets live in `docs/`:
-`pic18f25k80-datasheet.pdf` (Microchip DS39977C) and `mcp2562-datasheet.pdf`
-(DS20005167C). The reasoning is in `CLAUDE.md`.
+for the exact part and cites its section. Both datasheets live in
+`docs/firmware/datasheets/`: `pic18f25k80-datasheet.pdf` (Microchip DS39977C)
+and `mcp2562-datasheet.pdf` (DS20005167C). The reasoning is in `CLAUDE.md`.
 
 ## Layout
 
@@ -187,7 +198,7 @@ separate CI and separate lifetimes. Clone them side by side.
 | [`mfd15`](https://github.com/PoJD/mfd15) | the display configuration | `tri/S-AQY.TRI` and how to upload it, plus `docs/sensors.md` — what every gauge reads and where it comes from |
 
 **The one coupling that can bite** is the layout of frames 0x600 and 0x601:
-`docs/frames.md` defines it and `mfd15/tri/S-AQY.TRI` consumes it. Change it
+`docs/firmware/frames.md` defines it and `mfd15/tri/S-AQY.TRI` consumes it. Change it
 here and it must change there in the same breath — getting it wrong produces no
 error at all, just plausible wrong numbers on the display.
 `test/test_txframes.c` pins every offset against the TRI file.
@@ -201,8 +212,8 @@ boards being manufactured are commit `c06e710` of that repository.
 only obligations are to keep the copyright and licence notices and to say what
 you changed.
 
-**`NOTICE` lists what is not ours.** The two manufacturer datasheets in `docs/`
-are Microchip's and are redistributed for reference only; the licence above
+**`NOTICE` lists what is not ours.** The two manufacturer datasheets in
+`docs/firmware/datasheets/` are Microchip's and are redistributed for reference only; the licence above
 does not cover them and does not claim to. Everything else in this repository
 is covered.
 

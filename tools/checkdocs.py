@@ -25,8 +25,8 @@ Datasheet numbers are a third kind and are deliberately not checked: the PDF
 is frozen, so D122's 4 ms cannot go stale. Cite those freely.
 
 ADDING A CHECK. Put it in DERIVED or FORBIDDEN and give it a `why`. If a line
-legitimately states a rejected value -- docs/refuted.md and
-docs/optimisation.md name the alternatives that were considered and turned
+legitimately states a rejected value -- docs/firmware/refuted.md and
+docs/firmware/optimisation.md name the alternatives that were considered and turned
 down -- add it to ALLOW with the reason, rather than weakening the pattern for
 everybody.
 """
@@ -43,7 +43,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 # of the nineteen fixes in one sweep were comments.
 SCAN = [
     "*.md",
-    "docs/*.md",
+    "docs/*/*.md",
     "mplab/*.md",
     "test/*.md",
     "test/fixtures/*.md",
@@ -171,9 +171,9 @@ FORBIDDEN = [
 
 # (path suffix, substring that must appear on the line, why it is allowed)
 ALLOW = [
-    ("docs/optimisation.md", "1.17 million checks run as part of",
+    ("docs/firmware/optimisation.md", "1.17 million checks run as part of",
      "a measurement of the exhaustive build, dated in its own section"),
-    ("docs/optimisation.md", "340,000 fewer checks",
+    ("docs/firmware/optimisation.md", "340,000 fewer checks",
      "a before/after figure in the optimisation record, past tense"),
     ("test/test_divconst.c", "1.17 million checks",
      "for the exhaustive proof the count IS the claim, not decoration"),

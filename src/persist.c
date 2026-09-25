@@ -11,7 +11,7 @@
 
 /* ! NESTED HOT LOOP -- len bytes of eight bits, so 80 iterations for a record.
  * ! It runs once a second inside persist_save() and is the second largest loop
- * ! in the firmware. Read docs/optimisation.md before touching it, and if the
+ * ! in the firmware. Read docs/firmware/optimisation.md before touching it, and if the
  * ! shape changes, tools/cycles.py has to be told: it costs the inner loop by
  * ! the outer one and will stop rather than guess. */
 uint16_t persist_crc16(const uint8_t *data, uint8_t len)

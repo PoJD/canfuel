@@ -116,7 +116,7 @@ generalisable thing here: each time, the win came from asking what the number
 was actually *for*. The sort produced an ordering nobody wanted, only its middle
 element. The histogram produced a median nobody wanted either — the rule only
 ever asks whether the level is persistently higher than it was.
-`docs/optimisation.md` §8 and `docs/refuel-reset.md` carry the argument that it
+`docs/firmware/optimisation.md` §8 and `docs/firmware/refuel-reset.md` carry the argument that it
 is the same answer.
 
 ---
@@ -174,7 +174,7 @@ reading twice:
   and bought this as a side effect.
 - **Slot 0 is third**, and 41 % of it is three `___lldiv` calls that
   divide by a variable. That is the only large item left with an obvious
-  shape, and it is deliberately not being chased: `docs/optimisation.md`
+  shape, and it is deliberately not being chased: `docs/firmware/optimisation.md`
   explains why a run-time reciprocal costs more than the division.
 - **The EEPROM write is 0.24 % of the CPU** and half of this document. That is
   the right ratio for something that blocks for 48 ms: it is not a load
@@ -261,7 +261,7 @@ and the two are easy to confuse from here. Integrating on every pass means a
 one-millisecond delta, and `v × 1 ms / 3600` truncated to whole millimetres
 loses 6.4 % of the distance at 50 km/h and all of it below 3.6 km/h. The
 remainder is carried across steps so nothing is lost at all. `config.h`
-carries the arithmetic and `docs/optimisation.md` §6 the story; the cycles
+carries the arithmetic and `docs/firmware/optimisation.md` §6 the story; the cycles
 below are a side effect of a fix, not the reason for it.
 
 The side effect is still the largest single one in the firmware. The path used
@@ -352,7 +352,7 @@ like:
 | two of our own divisors -> shifts | 6.50 ms |
 | the trip caps, two compares per step | **6.52 ms** |
 
-What changed and why is `docs/optimisation.md`.
+What changed and why is `docs/firmware/optimisation.md`.
 
 Against the two deadlines:
 
@@ -526,7 +526,7 @@ outer x inner, which overstates a triangular one.
 the listing, trip counts name a `config.h` constant, and every backward branch
 in the build has to appear in one of its three tables — `LOOPS`,
 `HARDWARE_WAITS` or `NOT_LOOPS` — or the tool stops instead of guessing. A
-change of algorithm therefore cannot pass silently. `docs/optimisation.md` is
+change of algorithm therefore cannot pass silently. `docs/firmware/optimisation.md` is
 where that mechanism is explained, and it is required reading before changing
 any loop in the core.
 

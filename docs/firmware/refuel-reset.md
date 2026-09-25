@@ -175,7 +175,7 @@ table.**
 ⚠ **What was observed each time is the average zeroing, and `refuels` was
 never read.** 0x603 is transmitted only with JP1 fitted and the dashboard has
 been shut for all three, so the count that would have confirmed them is the
-one channel that was not available. `vehicle-history.md` asks for `refuels` to
+one channel that was not available. `docs/engine-health/vehicle-history.md` asks for `refuels` to
 be checked rather than assumed for exactly this reason, and these are the
 cases that could not honour it.
 

@@ -5,7 +5,7 @@
  * test_txframes.c and replay_host.c.
  *
  * The frame 0x480 is the clock of the device: it is the only periodic input
- * whose period we trust (49.5 ms, argued in docs/can-decoding.md). Logs in
+ * whose period we trust (49.5 ms, argued in docs/firmware/can-decoding.md). Logs in
  * the viewer format carry real timestamps and those are used instead.
  */
 #ifndef REPLAY_CORE_H
@@ -30,7 +30,7 @@ typedef struct {
  *
  * THE PERIOD IS FICTIONAL AND IS KNOWN TO BE. 0x480 has no fixed period --
  * measured with adapter timestamps it is 26.4 frames/s at idle and 18.0 at
- * 2586 rpm (can-decoding.md question 1). This exists so the two
+ * 2586 rpm (docs/firmware/can-decoding.md question 1). This exists so the two
  * implementations can be diffed against each other on those five logs, which
  * needs *a* clock rather than a correct one; every duration, flow and distance
  * derived from them is invalid as a fact about the car. The fuel totals are

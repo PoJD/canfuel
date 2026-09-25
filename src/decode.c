@@ -1,6 +1,6 @@
 /* decode.c -- see decode.h. PURE C, no hardware.
  *
- * Every formula here is from the table in docs/can-decoding.md and every one
+ * Every formula here is from the table in docs/firmware/can-decoding.md and every one
  * of them was measured on the car, not taken from a database.
  */
 
@@ -76,7 +76,7 @@ bool decode_frame(decode_state_t *st, uint16_t can_id,
          * the raw value falls 464 -> 0 and means nothing. Bits 0x08 and 0x10
          * carry something else and do not affect validity -- in 07_accel the
          * majority state is in fact 0x48, so testing b1 == 0x40 would discard
-         * two thirds of the log. docs/can-decoding.md, trap 1. */
+         * two thirds of the log. docs/firmware/can-decoding.md, trap 1. */
         st->speed_valid = (data[1] & SPEED_GATE_REQUIRED) != 0u &&
                           (data[1] & SPEED_GATE_FORBIDDEN) == 0u;
         if (st->speed_valid) {
@@ -120,7 +120,7 @@ bool decode_frame(decode_state_t *st, uint16_t can_id,
         /* Bit 15 is not part of the number and it is not constant either --
          * it is zero from ignition on until the first wrap, then permanently
          * one. The mask drops it and nothing needs it as a flag; trap 3 in
-         * docs/can-decoding.md is where that behaviour is recorded. */
+         * docs/firmware/can-decoding.md is where that behaviour is recorded. */
         st->fuel_counter = (uint16_t)(raw & COUNTER_MASK);
         st->fuel_counter_valid = true;
         return true;

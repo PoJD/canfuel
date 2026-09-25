@@ -9,14 +9,16 @@ normal for this engine, the file is deleted.
 | file | what is in it |
 |---|---|
 | **this one** | symptoms → hypotheses → tests → plan. Short on purpose |
-| `engine-health-refuted.md` | every hypothesis **settled against**, with what settled it, plus the questions that were **answered**. Read it before proposing something: most obvious ideas are already there |
+| `refuted.md` | every hypothesis **settled against**, with what settled it, plus the questions that were **answered**. Read it before proposing something: most obvious ideas are already there |
+| `vcds.md` | the VCDS blocks read on this car, their specifications, and how to record VCDS beside a CAN capture |
+| `vehicle-history.md` | the car's permanent record: distance, consumption, every part replaced. **Stays when this investigation closes**; `open.md` and `refuted.md` go |
 
 The long version this replaced, a dated log of 10–25 September 2026 with every
 alignment and argument in full, is in git:
 `git show 7c69883:docs/engine-health.md`. Nothing in the tree depends on it.
 
 **Rules for this file.** A hypothesis that is refuted moves to
-`engine-health-refuted.md` in the same commit, with its evidence, and leaves
+`refuted.md` in the same commit, with its evidence, and leaves
 this file. A new measurement goes into the evidence line of the symptom and of
 every hypothesis it touches, not into a dated section. Owner reports are
 marked *owner-reported*; general engine knowledge is marked *general*, since
@@ -24,7 +26,7 @@ none of it comes from a document this project holds.
 
 ⚠ **Nothing here changes a constant in `src/`.** The firmware only reports;
 `IdleHealth` and the start bytes on 0x604 are one of the instruments used
-below (`frames.md`).
+below (`docs/firmware/frames.md`).
 
 ---
 
@@ -35,8 +37,9 @@ the converter (9/2026), plugs and leads (17/9), all four injectors, fuel
 filter (23/9), MAF (24/9). The regulator is from 7/2026. Compression is
 12 bar on all four.
 
-**Fixed by that:** the rich lambda trim (it was the MAF), the cold-overrun
-burble, the long cranking, the historical full-load lamp. The car pulls better
+**Fixed by that:** the rich lambda trim (it was the MAF; one confirming
+read owed, S9), the cold-overrun burble, the long cranking, the historical
+full-load lamp. The car pulls better
 and drives better than at any point on record.
 
 **Not fixed:** the idle. It still stumbles, the ECU still counts misfires at a
@@ -77,7 +80,7 @@ at all, and August's idle stumbled too. **So nobody knows what a well AQY
 grades.** That is hypothesis H0 below, and it is the first thing to fix.
 
 **What one dip is worth.** Engine speed on 0x280 is recomputed once per 180°
-of crank, one power stroke (`can-decoding.md` trap 6), so a dip is one
+of crank, one power stroke (`docs/firmware/can-decoding.md` trap 6), so a dip is one
 cylinder's stroke. At the warm idle of `09_idle_60s_z1` — 796 rpm, 326 µl/s,
 about 18.5 Nm indicated — one power stroke is worth about 58 J. A cylinder
 that produces nothing takes that out of the rotating assembly: **33–57 rpm for
@@ -117,7 +120,7 @@ and after it. Not recorded, not timed, never aligned with anything. It did
   set one.
 
 **Three properties of the counter that must be kept in mind**, all measured
-on the 24/9 logs (`engine-health-refuted.md` A11, A12): it moves in steps of 12; detection switches off below about 20 % load, which on
+on the 24/9 logs (`refuted.md` A11, A12): it moves in steps of 12; detection switches off below about 20 % load, which on
 the new MAF is right at the hot-idle load; and it counted **five to fifty times
 more per dip** after the MAF swap than before. **So 014 is a yes/no witness,
 not a ruler.** Compare across time with engine speed or `IdleHealth`, never
@@ -150,7 +153,7 @@ within seconds.
 - **At idle all four sit on the floor** (0.31 V). 026 sees nothing there.
 - Cylinders **1 and 4 read about twice 2 and 3 in every state, fired or not.**
   That pair is the crank-symmetric one and is explained without a fault (see
-  `engine-health-refuted.md`); only cylinder 4's excess over cylinder 1 is
+  `refuted.md`); only cylinder 4's excess over cylinder 1 is
   open.
 - ⚠ 026 is the voltage *with the ECU's amplifier factor included* (Ross-Tech's
   block list), and cylinders 1 and 4 are probably on different sensors (G61
@@ -192,22 +195,89 @@ two coldest starts.
 The same car, in 7/2026, **held no residual pressure** in the rail when the
 regulator was changed. Nobody has checked that on the new parts.
 
-### Other things around the engine, tracked elsewhere or not at all
+### S8. Top end — "loses breath above 5000 rpm"
 
-- **Oil temperature never above 74 °C**, even after two hours of motorway. Is
-  the channel right, or does the oil really run that cool? That is
-  `can-decoding.md` question 10, and it may matter here: S1 depends on oil
-  temperature, and a thermostat or oil-cooler question would move every
-  temperature in this file.
-- **Top-end breathing.** On the old MAF the car lost breath above 5000 rpm in
-  4th. After the swap, full-throttle pulls "feel unchanged" and no held pull
-  above 5000 has been logged. *Owner-reported*; open but not urgent.
-- **Rich trim** — fixed by the MAF, but the confirming reading is owed: group
-  032 after a few hundred km. It read −3.1 % / +4.7 % at the end of the first
-  afternoon.
-- **The remap.** The car was chipped in 2018. It is not going back to
-  standard, and it is the caveat on every ignition argument here: whatever it
-  did to part-load advance applies to all four cylinders.
+*Owner-reported* after the morning drive of 24/9, on the old MAF: the car
+pulls better in 1st to 3rd but runs out of breath above about 5000 rpm in
+4th. Full-throttle pulls after the MAF swap "feel unchanged".
+
+**What the recordings say — both MAFs, pulls to 5,840–6,030 rpm:**
+
+| full throttle | `19`, old MAF | `24`, new MAF |
+|---|---|---|
+| air, 5000–5500 rpm (VCDS) | 86.4 g/s | 85.3 g/s |
+| air, 5500–6000 rpm | 88.1 g/s | 88.5 g/s |
+| relative load above 5000 rpm | — | ~80 % |
+| b7 median, 4000–5000 / 5000–5500 / 5500–6000 rpm | 196 / 191 / 181 | 192 / 187 / 181 |
+| power this firmware computes from those medians | ~86 kW at 5250, ~86 at 5750 | ~84 kW at 5250, ~86 at 5750 |
+
+So **the air flattens above 5000 rpm on both MAFs, and power stays at
+84–86 kW from 5000 to nearly 6000 rpm** — the AQY's rating is 85 kW at
+5200 rpm. Torque falls past its peak while power holds flat, which is the
+normal shape of a naturally aspirated engine past peak torque (*general*).
+⚠ The power figures are this firmware's arithmetic on the ECU's modelled
+torque, not a dynamometer, and the scale was itself set by requiring the
+plateau to reproduce the ratings — so "it reaches 85 kW" is partly the
+calibration agreeing with itself. What is measured is that **nothing changed
+between the two MAFs and nothing collapses at the top.**
+
+**Probably not a fault.** How it closes:
+
+1. A held 4th-gear pull to 6000 rpm on the new MAF with the display's `Power`
+   and a capture running: a plateau near 85 kW around 5000–5500 rpm that
+   eases rather than drops off closes it as the engine's normal curve.
+2. The healthy-AQY recording of H0, if it includes a pull, is the only
+   comparison against another engine.
+3. If the owner's feel was only ever about the old MAF's morning, say so and
+   close it.
+
+### S9. The rich lambda trim — fixed by the MAF, one confirming read owed
+
+Group 032 went from −4.7 / +1.6 % (August) to **−16.4 / −13.3 %** after the
+injector change on the old MAF, and to **−3.1 / +4.7 %** by the end of the
+first afternoon on the new one, with air per commanded fuel back at August's
+value. The explanation is in `refuted.md` C2: the old MAF over-read.
+
+**How it closes:** one photographed 032 screen after a few hundred km with no
+battery disconnect in between. Closed if both cells have settled within a few
+per cent of zero — the proper bar is the specified range for 032 in the
+label file, which was not noted when the blocks were looked up; note it
+beside the reading. **An idle cell moving positive** would instead feed H3
+(an unmetered leak); a part-load cell moving strongly either way reopens the
+air metering.
+
+### Other — not symptoms, but they touch this file
+
+**Oil temperature.** Whether 0x420's `OilTemp` is right is a firmware
+question, `docs/firmware/open.md` question 10, and is settled by a
+thermometer in hot oil. It matters here because S1 depends on oil temperature
+and every `IdleHealth` comparison is made at a matched one. If the channel
+turns out to read 25 °C low, every oil temperature in this file shifts with
+it — the comparisons between readings still hold, the absolute figures do not.
+
+**The remap.** The ECU was chipped in 2018; the tuner's own remark was that
+there was nothing to be had at the top of the range. What a remap on a
+naturally aspirated engine normally changes is ignition advance and
+full-load enrichment (*general*), for all four cylinders alike.
+
+- **It cannot explain S4 or S5**, which are one cylinder's window, and the S5
+  excess is there with no load at all. It can at most explain why cylinder 4
+  sits close enough to the knock limit to be retarded on a tip-in.
+- **It is very unlikely to explain S1–S3.** *The owner's assessment*: the idle
+  probably not, the rest almost certainly not. The one route in would be an
+  altered idle ignition map, and idle is held by the ECU's own closed-loop
+  control.
+- **How it closes: return the ECU to standard**, which the owner is
+  considering. That needs the original map (whether the tuner kept it is not
+  recorded). If it happens:
+  1. `IdleHealth` at a matched oil temperature and a 020 + 026 neutral log,
+     before and after — that turns the remap's role in S1 and S4/S5 from an
+     assessment into a measurement;
+  2. **one held full-throttle pull in 4th with a capture**, because the
+     firmware's torque scale was derived by making this car's plateau
+     reproduce the *stock* ratings (`docs/firmware/can-decoding.md`
+     question 8). On a stock ECU that premise becomes true by construction;
+     if b7's plateau moves, the scale is recalibrated from the new pull.
 
 ---
 
@@ -216,7 +286,7 @@ regulator was changed. Nobody has checked that on the new parts.
 | pair | link | evidence |
 |---|---|---|
 | S1 ↔ S3 | **the same events** | aligned three times, p ≤ 0.023. Both are crank speed, so partly one signal read twice |
-| S1/S3 ↔ MAF | **strong** | the MAF swap halved the dips at every oil temperature (−51 to −65 %). An over-reading MAF was causing some of the stumbles; the rest is the residual fault |
+| S1/S3 ↔ S9 | **strong** | the MAF swap halved the dips at every oil temperature (−51 to −65 %). An over-reading MAF was causing some of the stumbles; the rest is the residual fault |
 | S1/S3 ↔ oil temperature | **strong, non-monotonic** | worst at ~50–61 °C of oil, less cold, least hot. On every drive |
 | S4 ↔ S5 | **very likely one thing** | same cylinder window, same engine speeds, and S5 needs no combustion. Knock control retards cylinder 4 because it hears S5's noise |
 | S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle, in any log. Only a common cause could link them |
@@ -224,10 +294,12 @@ regulator was changed. Nobody has checked that on the new parts.
 | S2 ↔ S6 | **possible** | if there is a leak ahead of the probes. The known leak is behind them |
 | S5 ↔ S6 | **no** | the clamp was tightened and cylinder 4's excess stayed exactly as it was |
 | S7 ↔ S1 | **none** | S7 improved with the injectors; S1 did not |
+| S8 ↔ anything | **none** | top-end air and b7 identical on both MAFs; the idle changed a lot |
 
 **So there are two separate clusters**, and they are worked separately below:
 **the idle** (S1, S2, S3) and **the cylinder 4 window** (S4, S5). S6 matters
-only if it leaks ahead of the front probe; S7 is on its way out.
+only if it leaks ahead of the front probe; S7, S8 and S9 each want one
+confirming reading and are probably closed.
 
 ---
 
@@ -341,7 +413,7 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
   tip-in (S4). Several of the forum cases were a breather hose.
 - **Against:** the idle trim is −3.1 %, slightly rich, and a leak big enough
   to misfire one cylinder would still pull the trim positive through one
-  sensor averaging four. **A large leak is refuted** (`engine-health-refuted.md`);
+  sensor averaging four. **A large leak is refuted** (`refuted.md`);
   only a small one at one runner survives. It cannot produce S5.
 
 **Tests:**
@@ -478,7 +550,7 @@ argues against it.
 **The idle fault has never been placed in a cylinder.** 014 on this ECU has no
 per-cylinder counter, the bus carries no cylinder identification, and the
 per-cylinder analysis of engine speed found ordinary cylinder-to-cylinder
-variation rather than one bad cylinder (`engine-health-refuted.md` A5). Knock
+variation rather than one bad cylinder (`refuted.md` A5). Knock
 control names cylinder 4, but for a noise off idle, not for the stumble.
 
 Naming it would split the hypotheses at once: one cylinder points at H1 or H3
@@ -506,9 +578,10 @@ Each step names the hypotheses it tests. Every step that can have a capture
 running beside it should have one, and every `IdleHealth` reading should have
 the oil temperature beside it.
 
-1. **032 read again** after a few hundred km — one photographed screen.
-   Confirms the rich trim is gone (closes a loop), and a positive idle cell
-   would feed H3.
+1. **The confirming readings, whenever the car is out anyway**: 032 after a
+   few hundred km (S9; a positive idle cell would feed H3), the next cold
+   overnight start off 0x604 (S7), and one held 4th-gear pull to 6000 rpm
+   with `Power` on the display and a capture running (S8).
 2. **Stethoscope and cold-start listening** — H1, H5. Free.
 3. **Earth straps cleaned, and the voltage drop measured** — H4, H5. A wire
    brush and a multimeter.
@@ -528,7 +601,7 @@ the oil temperature beside it.
 **After each step:** `IdleHealth` at 70–72 °C and at 50–61 °C of oil against
 the current band, and the neutral 026 + 003 holds if the step touched
 S4/S5. If a step changes nothing, say so in the hypothesis and leave it; if it
-kills a hypothesis, move it to `engine-health-refuted.md`.
+kills a hypothesis, move it to `refuted.md`.
 
 **Meanwhile:** the owner avoids long idles — the misfires are an idle
 phenomenon and the exhaust has already paid for them once. `IdleHealth` on

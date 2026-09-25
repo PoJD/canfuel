@@ -93,7 +93,7 @@ The counter actually advanced 19,573 µl. The tools report 19,561 and **2
 restarts** on a recording where the engine never stopped, because the counter
 wrapped straight onto zero — `32756 → 0 → 0 → 24` — and `counter == 0` is the
 ignition-restart test. One 12 µl step is discarded. It is understood, it is
-deliberate, and the reasoning is under trap 2 in `docs/can-decoding.md`.
+deliberate, and the reasoning is under trap 2 in `docs/firmware/can-decoding.md`.
 
 Measured, not derived: the counter is absolute and the clock is the adapter's.
 This is the number that settled open question 9 — against USBtinViewer's
@@ -132,7 +132,8 @@ running. It answers a question about broadcast rate, and that is all.
 
 Recorded in one session, stationary, in neutral, engine warm, with
 **VCDS logging measuring groups 002 and 003 continuously** while each CAN
-capture was taken. The procedure is `docs/vcds-session.md`.
+capture was taken, matched on engine speed as `docs/engine-health/vcds.md`
+describes.
 
 | Hold | rpm (CAN) | sd | 0x280 b7 | 0x288 b5 | 0x288 b6 |
 |---|---|---|---|---|---|
@@ -156,7 +157,7 @@ nothing and 0x280 b7 *is* the drag there; least squares through them gives
 fixtures. Oil was 72.8, 74.2, 75.3 and 76.6 °C, throttle 48, 51, 56 and 61.
 **`11` is deliberately not on that line** — 798 rpm at b7 = 24.96 sits above
 it, because idle is a regulated state with the throttle at its rest position
-38. See `docs/can-decoding.md` question 7 and the comment in `config.h`.
+38. See `docs/firmware/open.md` question 7 and the comment in `config.h`.
 
 ### Matching the two recordings
 
@@ -202,7 +203,7 @@ CSV is taken as authoritative here; nothing depends on the sign.
 - **No measuring group on this ECU reports torque in Nm** — 001, 002, 003 and
   020 were all examined. Question 8 cannot be closed by diagnostics here, and
   is now parked under *Never resolved but not required* in
-  `docs/can-decoding.md`. Do not plan this session again.
+  `docs/firmware/can-decoding.md`. Do not plan this session again.
 
 ⚠ **The A/C compressor cycles**, and hold `12` shows it: b7 spans 39–47 and b6
 spans 53–59 across the 25 s. It never falls back to hold `11`'s 25 and 41, so
@@ -235,7 +236,7 @@ ever moves; use the holds for anything that needs a number.
 advance ranges over 19.5° while b5 is 152 in all 2,161 samples — a comparison
 of two ranges over the same six minutes, needing no clock alignment. See
 question 3, now parked under *Never resolved but not required* in
-`docs/can-decoding.md`.
+`docs/firmware/can-decoding.md`.
 
 **Why its pairing is weak.** The two clocks align by cross-correlating engine
 speed at a lag of 44.0 s with r = 0.9896, but that is a single offset across
@@ -248,8 +249,7 @@ quoted against them.
 
 **The oil barely warmed**, 75.0 → 77.2 °C over the whole drive, with coolant
 already at 100 °C. Low-speed pottering does not heat a sump, so the **hot**-oil
-refit question 7 wants still has no data — and question 7 is now the only open
-question left in `docs/can-decoding.md`.
+refit question 7 wants still has no data (`docs/firmware/open.md`).
 
 What this log did settle is what the warm refit was worth. Replayed through
 each version, counting samples that display zero torque:
@@ -269,7 +269,7 @@ difference is at part throttle.
 are the measure of how much of this particular log is coasting: first-gear
 pottering on a short piece of land, where the pedal spends 18,060 of the
 34,495 0x280 frames at rest. On a road it is a much smaller share.
-`docs/frames.md` has the rule, what each half of it buys and what it costs.
+`docs/firmware/frames.md` has the rule, what each half of it buys and what it costs.
 
 ⚠ **This log is also where b7 = 133 at throttle 38 comes from, and that figure
 was once read as proof that the throttle cannot gate on its own.** It cannot
@@ -368,11 +368,11 @@ at the **top stop**, on a sender that is known to be nonlinear — 6 L into a
 nearly empty tank settled at 5 L — and still never in the middle.
 
 The top stop is the least informative place to have it: rises are clipped
-there, so a false refuelling is at its least likely (`docs/refuel-reset.md`).
+there, so a false refuelling is at its least likely (`docs/firmware/refuel-reset.md`).
 
-That is not a curiosity. `docs/refuel-reset.md` sets its thresholds from the
+That is not a curiosity. `docs/firmware/refuel-reset.md` sets its thresholds from the
 spread the level shows at rest and while driving, and those spreads are
-measurements about one corner of the state space. `refuted.md` C10 is what it
+measurements about one corner of the state space. `docs/firmware/refuted.md` C10 is what it
 cost: a 250 km trip cleared by a false refuelling that no fixture could have
 predicted and none can reproduce.
 
@@ -399,7 +399,7 @@ display — so **there are no 0x600–0x603 frames in it and that is correct.**
 **It is the only recording of the engine below 61 °C of oil before the
 repair** — `19` and `24` start cold too, after it — and it cannot be made again — it was taken the week the injectors, plugs and leads were
 replaced, precisely because a bad cold start stops existing afterwards. What it
-was for and what came out of it is `docs/engine-health.md`, S1, S3 and S7;
+was for and what came out of it is `docs/engine-health/open.md`, S1, S3 and S7;
 the full account is in `git show 7c69883:docs/engine-health.md`.
 
 **It is also the first fixture that exercises trap 2 for real.** Every other log
@@ -417,7 +417,7 @@ reference exactly, which is the thing that path exists to guarantee.
   nothing in the firmware accepts it. **Each is followed within 90 ms by the
   only two frames in the whole corpus where `0x5D0` byte 0 is not zero**, and
   there is a third unexplained event at 97.107 s in `0x0C2`. All of it is in
-  `docs/can-decoding.md`; none of it is being worked on.
+  `docs/firmware/can-decoding.md`; none of it is being worked on.
 - **A diagnostic session that fell over.** `vcds/vcds-coldstart-aborted-014-055.csv`
   is 4.2 s long and ends during cranking, with VCDS reporting that the ECU had
   disconnected. `vcds/vcds-coldstart-014-055.csv` is the restart, and it begins
@@ -427,12 +427,12 @@ reference exactly, which is the thing that path exists to guarantee.
 
 ## `19` to `24` — the post-repair drive and the MAF swap, one day
 
-**The session `docs/install.md` and the engine-health work were building
+**The session `docs/firmware/install.md` and the engine-health work were building
 towards**, taken with new plugs, leads, injectors and fuel filter fitted, and
 then the same afternoon with a new MAF. The findings live in the permanent
-documents: the torque scale in `docs/can-decoding.md` question 8, 0x200 in
-*IDs present on the bus*, the engine in `docs/engine-health.md` and
-`docs/engine-health-refuted.md`.
+documents: the torque scale in `docs/firmware/can-decoding.md` question 8, 0x200 in
+*IDs present on the bus*, the engine in `docs/engine-health/open.md` and
+`docs/engine-health/refuted.md`.
 
 **`19` and `24` are filtered** to the six identifiers the firmware accepts —
 0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480 — to keep an hour of driving to a size
@@ -464,7 +464,7 @@ pins exactly that shape so the exclusion cannot swallow a real one.
 **`21`–`23` are three cool-down points**, each a few seconds of whole bus with
 the ignition on and the engine off, taken while the oil filter was read with an
 IR thermometer in the rain. Oil raw 125, 123–124 and 121–122. The readings and
-what they say about the oil scale are `docs/can-decoding.md` question 10.
+what they say about the oil scale are `docs/firmware/open.md` question 10.
 
 ## Naming
 

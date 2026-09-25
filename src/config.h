@@ -17,7 +17,7 @@
 
 /* --- CAN identifiers ---------------------------------------------------- */
 
-/* Incoming, from the car. Documented in docs/can-decoding.md. */
+/* Incoming, from the car. Documented in docs/firmware/can-decoding.md. */
 #define CAN_ID_SPEED            0x1A0u  /* road speed + validity gate       */
 #define CAN_ID_ENGINE           0x280u  /* rpm, throttle, load, torque      */
 #define CAN_ID_COOLANT          0x288u  /* coolant temperature              */
@@ -25,7 +25,7 @@
 #define CAN_ID_OIL              0x420u  /* oil temperature                  */
 #define CAN_ID_FUEL             0x480u  /* the fuel counter; no fixed period */
 
-/* Outgoing, ours. Free on this bus -- see docs/frames.md. */
+/* Outgoing, ours. Free on this bus -- see docs/firmware/frames.md. */
 #define CAN_ID_TX_FUEL          0x600u  /* 100 ms */
 #define CAN_ID_TX_ENGINE        0x601u  /* 100 ms */
 #define CAN_ID_TX_TRIP          0x602u  /*   1 s  */
@@ -49,8 +49,8 @@
  *
  * ⚠ It cannot help in HAL_CAN_MODE_LISTEN_ONLY, and no frame could: that mode
  * transmits nothing at all (DS39977C §27.3.4). There the LED is still the only
- * channel there is. tools/bench_test.py reads this frame; docs/install.md
- * steps 7 and 9 are where it is used, and docs/frames.md is the layout.
+ * channel there is. tools/bench_test.py reads this frame; docs/firmware/install.md
+ * steps 7 and 9 are where it is used, and docs/firmware/frames.md is the layout.
  *
  * S-AQY.TRI decodes it, bit by bit, so it can be read off the display with the
  * jumper fitted.
@@ -117,8 +117,8 @@
 /* A trend instrument, not a fault detector. It grades how steadily the engine
  * idles and records how it started, from engine speed and a clock alone, so
  * that plugs or an injector going off can be SEEN on the display over months
- * rather than inferred from how the car feels. docs/frames.md has the layout
- * and the argument; docs/can-decoding.md, trap 6, has the worked arithmetic
+ * rather than inferred from how the car feels. docs/firmware/frames.md has the layout
+ * and the argument; docs/firmware/can-decoding.md, trap 6, has the worked arithmetic
  * from a raw frame to the byte.
  *
  * ⚠ **NOT JP1-gated.** 0x603 sets the opposite precedent: CAN diagnostics are
@@ -173,7 +173,7 @@
  * over 2**ROUGH_SHIFT firing events -- about 9.7 s of warm idle. It is taken
  * once per CHANGE of 0x280's speed field and not once per frame, because the
  * field is held for three or four frames at idle and the hold length moves
- * with engine speed (docs/can-decoding.md, trap 6). acc >> ROUGH_OUT_SHIFT is
+ * with engine speed (docs/firmware/can-decoding.md, trap 6). acc >> ROUGH_OUT_SHIFT is
  * 1/32 rpm, a pure shift. */
 #define ROUGH_DEADBAND_RPM      3u
 #define ROUGH_SHIFT             8u
@@ -217,7 +217,7 @@
  *
  * StartCrank is in units of 2**START_CRANK_SHIFT ms, 32 ms, where the design
  * proposed 0.05 s. A unit we choose is one we may choose to be a shift
- * (docs/optimisation.md §11); 32 ms resolves the 0.41 s between the two
+ * (docs/firmware/optimisation.md §11); 32 ms resolves the 0.41 s between the two
  * recorded starts thirteen times over, and 254 counts is 8.1 s of cranking,
  * past which the answer is "a very bad start" whatever the digit.
  *
@@ -261,7 +261,7 @@
  * measured, the nominal arithmetic was out by 4.1 %, which is 0.20 V on a 5 V
  * rail and quite enough to send somebody chasing a supply fault.
  *
- * THE VALUE BELOW IS BOARD 1's. If you are building from install.md it is
+ * THE VALUE BELOW IS BOARD 1's. If you are building from docs/firmware/install.md it is
  * somebody else's part and somebody else's band gap. Recalibrate, or accept a
  * few per cent -- nothing downstream of VddConv is a decision, so an
  * uncalibrated reading is untidy rather than dangerous.
@@ -427,7 +427,7 @@
  * second buckets rather than one slot per frame.
  *
  * 0x480 has NO fixed period -- measured with adapter timestamps it is 26.4
- * frames/s at idle and 18.0 at 2586 rpm, on a 10 ms grid (can-decoding.md
+ * frames/s at idle and 18.0 at 2586 rpm, on a 10 ms grid (docs/firmware/can-decoding.md
  * question 1) -- so nothing here may assume a rate. The window is a whole
  * number of buckets: each frame is added into the open bucket, and the bucket
  * closes as soon as it holds FLOW_BUCKET_MS, so the four together span 1.00 to
@@ -457,7 +457,7 @@
 /* --- fuel counter ------------------------------------------------------- */
 
 /* The counter in 0x480 b2-b3 is 15 bits; bit 15 is a wrap flag, not data, and
- * the mask simply drops it. Trap 3 in docs/can-decoding.md records what that
+ * the mask simply drops it. Trap 3 in docs/firmware/can-decoding.md records what that
  * bit does -- it is zero from ignition on until the first wrap and then
  * permanently one -- but nothing here reads it. */
 #define COUNTER_MODULO          32768u
@@ -466,7 +466,7 @@
 /* --- speed validity gate ------------------------------------------------ */
 
 /* Byte 1 of 0x1A0 is a bit field. It is NOT an equality test -- getting this
- * wrong throws away two thirds of the samples. docs/can-decoding.md, trap 1. */
+ * wrong throws away two thirds of the samples. docs/firmware/can-decoding.md, trap 1. */
 #define SPEED_GATE_REQUIRED     0x40u   /* this bit must be set              */
 #define SPEED_GATE_FORBIDDEN    0x03u   /* these mark the post-ignition ramp */
 
@@ -474,7 +474,7 @@
 
 /* Below this speed FuelNow carries l/h, at or above it l/100 km. A single
  * threshold, no hysteresis: the jump is the visual cue that it switched.
- * Why 4 and not 3 km/h is argued in docs/frames.md. */
+ * Why 4 and not 3 km/h is argued in docs/firmware/frames.md. */
 #define FUELNOW_LH_BELOW_MMH    4000u   /* 4.000 km/h */
 
 /* 99.9 on the display. The TRI gauge tops out there and behaves
@@ -590,7 +590,7 @@
 
 /* The instantaneous level is unusable: standing it varies by 2-3 L, driving
  * by 9-10 L because the float sloshes. The value taken at rest is rock solid.
- * docs/refuel-reset.md has the measurements. */
+ * docs/firmware/refuel-reset.md has the measurements. */
 #define TANK_SAMPLE_MS          1000u       /* one sample per second        */
 
 /* "AT REST" IS 0.1 km/h, AND IT USED TO BE 1 km/h WITH NOTHING BEHIND IT.
@@ -613,7 +613,7 @@
  * is a time constant of 16 seconds at TANK_SAMPLE_MS.
  *
  * A MEDIAN of a 25-slot ring read out of a 128-bucket histogram was
- * rejected. The reasoning is in docs/optimisation.md: the median was our
+ * rejected. The reasoning is in docs/firmware/optimisation.md: the median was our
  * choice rather than a requirement, it cost 2,453 cycles and 153 bytes of
  * RAM, and what it was actually being
  * asked for -- "is the level suddenly and persistently higher than it was" --
@@ -661,14 +661,14 @@
  * chasing the level there would lose the feature altogether. The tilt case
  * that IS fixed is the one where the car drove in and stayed powered: the
  * settling window below lets the reference take up the tilt before the rule
- * can fire on it. docs/refuel-reset.md carries the rest. */
+ * can fire on it. docs/firmware/refuel-reset.md carries the rest. */
 #define REFUEL_ARM_S            20u         /* at-rest samples before arming */
 
 /* A rise of more than this above the settled level means somebody refuelled,
  * and the trip accumulators are cleared -- but only after this many
  * CONSECUTIVE at-rest samples say so.
  *
- * WHY A COUNTER RATHER THAN A MEDIAN. The asymmetry in docs/refuel-reset.md
+ * WHY A COUNTER RATHER THAN A MEDIAN. The asymmetry in docs/firmware/refuel-reset.md
  * governs: a missed refuelling costs one late reset, a false one silently
  * destroys an average the driver has watched for 600 km. A median rejected a
  * single outlier by construction; five consecutive seconds rejects it by
@@ -761,7 +761,7 @@
  * 4500 rpm while the pedal stays on the floor. 255 is a normalisation real air
  * does not reach. Under the old premise the two ratings "agreed" only because
  * both were nailed to 255; here they are separate measurements. And the
- * 0.90-0.96 bracket docs/frames.md once derived from the same plateau divided
+ * 0.90-0.96 bracket docs/firmware/frames.md once derived from the same plateau divided
  * a drag figure that was itself in Nm at 0.74 -- the drag scales with the
  * scale, and held in bytes the bracket lands where the ratings do.
  *
@@ -812,7 +812,7 @@
  * CORRECTION. A real correction factor needs the intake air temperature and
  * pressure, and INTAKE AIR TEMPERATURE IS NOT ON THIS BUS -- 0x420 bytes 1-2
  * are documented as ambient temperature and read zero on this car, and b3 is
- * the oil (can-decoding.md question 4). The car does display an outside
+ * the oil (docs/firmware/can-decoding.md question 4). The car does display an outside
  * temperature in the mirror console, which changes nothing: ambient is not
  * intake air -- the intake draws from the engine bay, about ten degrees above
  * it -- and a number a driver reads is not one this firmware can use. The only
@@ -828,7 +828,7 @@
  * GRANULARITY IS 0.39 %, and that is deliberate rather than a limitation. The
  * gain is carried as 1/256 so that dividing it out is a shift of 8, which is
  * three byte moves on this part rather than a rotate loop
- * (docs/optimisation.md §11 is the general rule). One step is therefore worth
+ * (docs/firmware/optimisation.md §11 is the general rule). One step is therefore worth
  * exactly one count of b7, which is the finest the input itself resolves --
  * asking for more precision than the signal carries would be false precision.
  *
@@ -899,8 +899,8 @@ changing instead."
  *
  * STILL NOT HOT. 72-77 C is warm, not the 95-110 C of real driving, so this
  * line very likely still overstates drag a little -- which is the conservative
- * direction. Question 7 in docs/can-decoding.md stays open for exactly that,
- * and is the only open question left.
+ * direction. Question 7 in docs/firmware/open.md stays open for exactly that,
+ * with question 10 (whether the oil scale is right) underneath it.
  *
  * THE SLOPE IS SCALED BY 2**16, NOT BY 10,000. It is our own
  * fixed-point choice and nothing outside this file reads it, so a power of two

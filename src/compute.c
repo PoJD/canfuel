@@ -1,6 +1,6 @@
 /* compute.c -- see compute.h. PURE C, no hardware.
  *
- * The traps this file exists to avoid are written up in docs/can-decoding.md.
+ * The traps this file exists to avoid are written up in docs/firmware/can-decoding.md.
  * Three of the four live in here: the restart rule, the modulo delta and the
  * minimum distance under the average.
  */
@@ -47,7 +47,7 @@ static void flow_clear(compute_t *c)
 }
 
 /* ! HOT PATH. Runs on every 0x480, which is ~26 times a second. Read
- * ! docs/optimisation.md before adding anything to it -- especially a
+ * ! docs/firmware/optimisation.md before adding anything to it -- especially a
  * ! division, which costs 1,026 cycles on this part.
  *
  * A frame adds to the open bucket and nothing else. When that bucket has held
@@ -187,7 +187,7 @@ static void tank_sample(compute_t *c, const decode_state_t *st)
      * While driving the float sloshes over a 9-10 L spread on every corner,
      * so the reading is worthless; at rest one litre dominates completely --
      * 1584 of 1622 measured samples were the same litre.
-     * docs/refuel-reset.md has the measurement.
+     * docs/firmware/refuel-reset.md has the measurement.
      *
      * THAT MEASUREMENT WAS TAKEN ON A CAR THAT HAD BEEN STANDING, which is
      * not the same claim as "a car whose speed has just reached zero", and

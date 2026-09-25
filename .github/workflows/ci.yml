@@ -189,7 +189,7 @@ jobs:
           test -s mplab/build/canfuel.hex
           ls -l mplab/build/
 
-      # The guard rail described in docs/timing.md. It counts instructions out
+      # The guard rail described in docs/firmware/timing.md. It counts instructions out
       # of the assembly listing the build just wrote and fails if any scheduler
       # slot goes over its ceiling. The ceilings are wide -- currently every
       # budget sits at a fifth of its limit -- because the point is to catch

@@ -303,7 +303,7 @@ reading it at the same point of the same commute does that for free.
 **The step between one firing event and the next, dead-banded and averaged**:
 `max(0, |Δrpm| − 3 rpm)`, filtered over 256 firing events (about 9.7 s of warm
 idle), over settled idle only. The index is `min(200, IdleRough × 25 >> 4)`,
-one `uint8 × uint8` product and a shift. `docs/can-decoding.md`, trap 6, carries
+one `uint8 × uint8` product and a shift. `docs/firmware/can-decoding.md`, trap 6, carries
 the chain from a raw 0x280 frame to this byte, worked on a real capture.
 
 - **The step and not the deviation from a baseline.** A first-order baseline
@@ -349,7 +349,7 @@ improvement.
   that is believed. That is stricter than the design's "first sample below
   400 rpm", on purpose.
 - **StartCrank is in 32 ms units, not the design's 0.05 s.** A unit chosen here
-  is one that may be chosen to be a shift (`docs/optimisation.md` §11); 32 ms
+  is one that may be chosen to be a shift (`docs/firmware/optimisation.md` §11); 32 ms
   resolves the 0.41 s between the two recorded starts thirteen times over.
 - **StartClt is not a nicety.** A hot restart is trivially easy and its numbers
   mean nothing; a summer-afternoon restart and a February morning need the
@@ -497,7 +497,7 @@ jumping.
 **A flat average over thirty 1 km slots would be simpler**, which is
 120 bytes of RAM summed ten times a second for a number that can only change
 once a kilometre. The filter has a mean age of 16 km against the window's 15,
-so the estimate is very nearly as steady; `docs/optimisation.md` §10 has the
+so the estimate is very nearly as steady; `docs/firmware/optimisation.md` §10 has the
 arithmetic and the one detail that is not obvious, which is that the filter
 carries four fractional bits so it cannot stall a long way from the truth.
 
@@ -649,7 +649,7 @@ well founded it is, because the difference decides how much weight the
 - **Misfire detection is per-cylinder and works off crankshaft speed
   fluctuation, and it demonstrably runs on this car** — the counter in
   measuring group 014 shows non-zero values in first gear
-  (`docs/engine-health.md`, S3). So the ECU is *not* without a per-cylinder
+  (`docs/engine-health/open.md`, S3). So the ECU is *not* without a per-cylinder
   combustion signal. Whether that signal reaches the torque model is unknown.
 - **A badly burning engine does not leave the air path untouched either** —
   residual gas, thermal state and, near the limit, the idle governor all move.
@@ -669,7 +669,7 @@ quantity the ECU steers the car with.
 ⚠ **Whether this engine was down on power was investigated on this vehicle
 and is closed**: the display's old peak was the old scale, not the engine
 (`can-decoding.md` question 8). The engine's remaining faults are at idle and
-are in `docs/engine-health.md`.
+are in `docs/engine-health/open.md`.
 
 ### What b7 has actually been observed to reach
 
@@ -1045,8 +1045,8 @@ the fix is the code.
 
 The line still says nothing about drag under load, and 72–77 °C is warm rather
 than the 95–110 °C of real driving, so it very likely still overstates drag a
-little — the conservative direction. `can-decoding.md` question 7 stays open
-for that and is the only open question left. Torque is clamped at zero rather
+little — the conservative direction. `open.md` question 7 stays open
+for that, with question 10 (the oil scale) underneath it. Torque is clamped at zero rather
 than going negative on the overrun, and is zero below 500 rpm, where the
 starter is turning the engine and b7 reads a constant 191–192.
 

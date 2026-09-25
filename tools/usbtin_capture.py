@@ -5,7 +5,7 @@ This exists because **USBtinViewer must not be used for timing work**. It
 stamps a frame when the Java GUI gets round to the line, not when the frame
 arrived, and it says so of itself: "the timestamp is generated in the
 application on the host, the hardware timestamping is currently not used"
-(github.com/EmbedME/USBtinViewer). Open question 9 in docs/can-decoding.md is
+(github.com/EmbedME/USBtinViewer). Open question 9 in docs/firmware/can-decoding.md is
 the damage that did to two of the seven fixtures. This script talks to the
 adapter directly and turns the adapter's own timestamping on with `Z1`.
 
@@ -66,7 +66,7 @@ def require_serial() -> None:
 CR = b"\r"
 BEL = b"\x07"
 
-# 500 kbit/s. The powertrain bus, measured -- see docs/can-decoding.md.
+# 500 kbit/s. The powertrain bus, measured -- see docs/firmware/can-decoding.md.
 BITRATE_CMD = b"S6"
 
 # No acceptance filter is set, and that is a decision rather than an oversight.

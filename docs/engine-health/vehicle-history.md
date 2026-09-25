@@ -7,7 +7,7 @@ elsewhere in `docs/` lean on facts that had, until now, no written home:
 that the car has been chipped, that the plugs are old, that both oxygen
 sensors date from the year it was bought.
 
-**It is a permanent document, unlike `engine-health.md`.** That one carries
+**It is a permanent document, unlike `open.md`.** That one carries
 an end date and is deleted when its investigation closes.
 This one outlives them: when the investigation ends, the history it was
 arguing against is still the history.
@@ -57,7 +57,7 @@ observed with a functioning lamp. So "for years" in a symptom description is a
 lower bound only where it reaches back past the purchase.
 
 **It is also the strongest argument for the diagnose-before-buying-parts
-position `engine-health.md` takes.** A previous owner who covered the lamp
+position `open.md` takes.** A previous owner who covered the lamp
 rather than read it means the car arrived carrying an unresolved fault of
 unknown age, not a clean sheet.
 
@@ -129,7 +129,7 @@ next section.
 **44.17 litres, off the pump, at the end of the Šumava trip.** It is recorded
 here because it is the first fill since the work of 9/2026 whose litres
 anybody wrote down — **earlier fills happened and were not counted**
-(`docs/refuel-reset.md`) — and because a litre count is worth keeping even
+(`docs/firmware/refuel-reset.md`) — and because a litre count is worth keeping even
 when it cannot yet be divided by anything.
 
 ⚠ **It is not a consumption figure and must not be turned into one.** Neither
@@ -140,7 +140,7 @@ measurement**, and it sits in the upper half of a table whose own spread is
 45 %. Do not add it as a row.
 
 **What the same fill did measure is the sender**, not the engine:
-`docs/refuel-reset.md`, *The 2026-09-19 fill*, has the three numbers and
+`docs/firmware/refuel-reset.md`, *The 2026-09-19 fill*, has the three numbers and
 what they say about the tank scale. That is a different quantity from anything
 in this file.
 
@@ -210,12 +210,12 @@ project.* The evenness is the load-bearing part and it eliminates every
 per-cylinder mechanical explanation this project had been carrying — a burnt
 valve, a broken ring pack, a head gasket leaking between cylinders. It also
 agrees, from a completely different measurement, with the volumetric efficiency
-`frames.md` derives from mass air flow and the ECU's load channel (84–93 %).
+`docs/firmware/frames.md` derives from mass air flow and the ECU's load channel (84–93 %).
 
 **The chiptuning of 6/2018 is the standing unknown.** The tuner's own remark
 was that there was nothing to be had at the top of the range; the car is not
-going back to standard. The warnings in `can-decoding.md` and
-`frames.md` about what a remap does to the torque and load channels all
+going back to standard. The warnings in `docs/firmware/can-decoding.md` and
+`docs/firmware/frames.md` about what a remap does to the torque and load channels all
 describe this car rather than a hypothetical one. It sits between the 8.8 of
 2018 and the 9.9 of 2019 in the table above, which is suggestive and is not
 evidence — see below.
@@ -275,7 +275,7 @@ how much they are likely worth:
 
 **The pump measures litres delivered. canfuel measures what the ECU believes
 it injected** — 0x480 counts microlitres, one count per microlitre
-(`can-decoding.md`, the signal table), and the ECU derives that from injector
+(`docs/firmware/can-decoding.md`, the signal table), and the ECU derives that from injector
 open time against its own model of the injector.
 
 So the two disagree by exactly the error in the ECU's injector model, and
@@ -286,7 +286,7 @@ width until the mixture is right, and the counter follows the pulse width. The
 residual does not vanish, it moves into the **fuel trims** — which is why
 the adaptations of group 032 are the first place to look (**−4.7 % at idle
 against +1.6 % at part load** before the repair; the large rich trim after it
-turned out to be the MAF, `engine-health-refuted.md` C2) if a tank-to-tank check comes out with a
+turned out to be the MAF, `refuted.md` C2) if a tank-to-tank check comes out with a
 consistent offset rather than scatter.
 
 ### Which parts are old enough to bias the result
@@ -297,7 +297,7 @@ Sorted by how directly they sit in the measurement chain:
 |---|---|
 | **Oxygen sensors, 10/2017** | the largest risk on the list. They set the fuelling, so they move both figures together and are invisible to any comparison of the two. **9 years and the full ownership distance**, behind a failing cat |
 | **Fuel filter** | was the oldest fuel-side part on the car and is **being replaced with the injectors**, so it leaves this table on the day. A restricted filter limits rail supply under demand; it was always by some distance the cheapest item here to eliminate, and it is now eliminated |
-| **MAF, 7/2018** (replaced 24/9/2026) | `frames.md`'s volumetric-efficiency argument rules out a *badly* failing sensor by arithmetic — the volumetric efficiency it implies stays physical — and explicitly **does not** rule out a slightly lazy one. 8 years |
+| **MAF, 7/2018** (replaced 24/9/2026) | `docs/firmware/frames.md`'s volumetric-efficiency argument rules out a *badly* failing sensor by arithmetic — the volumetric efficiency it implies stays physical — and explicitly **does not** rule out a slightly lazy one. 8 years |
 | **Plugs and leads, 12/2022** | **four calendar years but only ~1,500 km.** An earlier record called them "four years downstream of whatever has been happening", which is true of the dates; the distance is the other half of it and it is small. Old by date, nearly new by wear |
 | Pump 10/2022, coil 6/2026, FPR 7/2026, cat 9/2026, injectors 9/2026 | **effectively new.** Everything that sets rail pressure and injector flow — the two inputs 0x480 depends on — is now a 2026 part |
 | Throttle body, original | **not new, but inspected and found clean in 6/2026.** It meters the idle air, so it is on the idle fault's side of the engine; its condition was seen rather than assumed. An earlier revision of this table listed it as effectively new, and that was wrong |
@@ -319,7 +319,7 @@ ECU what happened is the two oxygen sensors, nine years old**, which have
 spent those years behind a converter that was burning through. That was where to look next, and the fork was what read it: any `not OK` from VCDS blocks 034, 036 or 037 would have been a
 **second** failure of an already-replaced sensor. **All three reported OK on
 24/9/2026**, so the sensors are not what keeps the idle misfiring
-(`engine-health-refuted.md` C5).
+(`refuted.md` C5).
 
 ⚠ **The fuel lines are the one thing on the delivery row that stays old**, and
 they are named rather than passed over: they run the length of the car, they
@@ -355,7 +355,7 @@ not the motive.
 
 ### What the 2017 filter looked like coming off — photographed
 
-**`docs/photos/` holds the parts this car has destroyed**, and it exists
+**`docs/engine-health/photos/` holds the parts this car has destroyed**, and it exists
 because the project has repeatedly regretted evidence that perished.
 The policy: **the written
 judgement is the record and a picture never grades anything** — it is kept so
@@ -418,7 +418,7 @@ filter's is established, so the order of the two is not either.**
 the tank was the one part in the chain that had never been touched.** It is not, and that
 matters both ways round: an upstream source of contamination may have been
 removed years ago, or last year, and the difference decides whether the
-candidate root cause (`engine-health-refuted.md` A14) still has a source at the time it needs one.
+candidate root cause (`refuted.md` A14) still has a source at the time it needs one.
 **A date nobody wrote down is what separates the two readings**, so neither is
 argued for.
 
@@ -462,7 +462,7 @@ The procedure, once the car has some distance on the new parts:
 3. Brim again at the **same pump**, same click. Litres delivered over odometer
    kilometres is the reference figure.
 4. Compare against canfuel's `FuelAvg`, which the refuelling reset zeroes at
-   step 1 on its own (`docs/refuel-reset.md`) — so it measures the same tank,
+   step 1 on its own (`docs/firmware/refuel-reset.md`) — so it measures the same tank,
    provided the reset actually fired. Check `refuels` on 0x603 rather than
    assuming.
 5. **Repeat over more than one tank.** A brim is worth about a litre, which on
@@ -479,13 +479,13 @@ Three things to keep in mind while reading the answer:
   not be closed retrospectively.
 - **Do not fit anything to the yearly numbers.** They are averages over as
   little as one fill, they are not evenly weighted, and treating them as eight
-  data points invites exactly the error `refuted.md` B9 records with the
+  data points invites exactly the error `docs/firmware/refuted.md` B9 records with the
   b7 = 133 spike: a summary statistic over a log is not a state the car sits
   in.
 - **This bounds the fuel channel only.** It says nothing about
   `TORQUE_CNM_PER_BIT` or the drag line — those are a different quantity
-  measured a different way, and the one open question in
-  `docs/can-decoding.md` is not touched by anything in this file.
+  measured a different way, and the open firmware questions in
+  `docs/firmware/open.md` are not touched by anything in this file.
 
 ---
 

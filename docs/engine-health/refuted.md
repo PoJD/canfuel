@@ -1,18 +1,18 @@
 # Engine health — refuted hypotheses and answered questions
 
-The companion of `engine-health.md`. **Every idea about this engine that was
+The companion of `open.md`. **Every idea about this engine that was
 put forward and then settled against**, with what settled it, and the
 questions that were simply answered. It exists because each entry here was a
 plausible idea once, and plausible ideas come back: read this before
 proposing a cause.
 
-The same two rules as `refuted.md`, which covers the firmware, the board and
+The same two rules as `docs/firmware/refuted.md`, which covers the firmware, the board and
 the toolchain: **only settled things go in**, and **nothing is deleted**. If
 new evidence un-refutes an entry, say so inside the entry and move the
-hypothesis back to `engine-health.md`.
+hypothesis back to `open.md`.
 
 The entries are short on purpose. The full reasoning behind them was the
-long version of `engine-health.md`, which is in git:
+long version of `open.md`, which is in git:
 `git show 7c69883:docs/engine-health.md`.
 
 **Strength of each refutation**, because they are not all equal:
@@ -52,7 +52,7 @@ misfire it was changed for is gone — C4.)
 **Refuted by:** compression 12 bar, even on all four (garage, 17/9). The
 evenness is the result; the absolute figure is weak. **Does not cover** a valve
 that seats at cranking speed but not on a hot idle — that is H1 in
-`engine-health.md`, and a warm leak-down test is its test.
+`open.md`, and a warm leak-down test is its test.
 
 ### A5. "One bad cylinder dominates the idle roughness" — measured
 
@@ -77,7 +77,7 @@ leak big enough to misfire a cylinder, and the misfires themselves (oxygen
 through an unburnt cylinder), would both push it positive: one runner
 leaking dilutes to a quarter at the one sensor, but a cylinder has to run a
 long way lean before it misfires. **A small leak at one runner is not excluded** and is
-H3 in `engine-health.md`.
+H3 in `open.md`.
 
 ### A8. "The secondary-air combination valve or N112 open at idle — air or exhaust between intake and exhaust (an uncontrolled EGR)" — measured
 
@@ -151,7 +151,7 @@ the retard is within VW's 0–15 °CA either way.
 The pair is the crank-symmetric one: pistons 1 and 4 move together, so a noise
 once per crank revolution lands in both windows. The ratio is the same fired
 and unfired, at every speed. How this engine's sensors hear its crank, not a
-fault. Only 4's excess over 1 is open (`engine-health.md` S5).
+fault. Only 4's excess over 1 is open (`open.md` S5).
 
 ### B3. "An exhaust leak ticking at cylinder 4's runner is what knock control hears" — measured
 
@@ -204,7 +204,7 @@ needed to explain the trim. It survives for the cold start as H7.
 
 Listed here only to say where it is: the cold start improved a lot on the new
 injectors, which points at their seats, but the check valve is eliminated
-only once the next overnight cold starts read clean (`engine-health.md` S7).
+only once the next overnight cold starts read clean (`open.md` S7).
 
 ### C4. "The historical full-load misfire and warning lamp" — answered
 
@@ -247,7 +247,7 @@ specified 0 to 5. The label `(celkovy)` is wrong.
 ### C11. "The engine is down on power" / "the torque display under-reads" — answered
 
 The torque scale was measured off the full-throttle plateau and the firmware
-now ships it (`can-decoding.md` question 8). The low peak on the display was
+now ships it (`docs/firmware/can-decoding.md` question 8). The low peak on the display was
 the old scale, not the engine.
 
 ### C12. "A warm idle that feels calmer is evidence" — method

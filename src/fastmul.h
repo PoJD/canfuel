@@ -1,6 +1,6 @@
 /* fastmul.h -- 32-bit multiplication that uses the hardware multiplier.
  *
- * PURE C, no hardware. Read docs/optimisation.md before changing this.
+ * PURE C, no hardware. Read docs/firmware/optimisation.md before changing this.
  *
  * XC8 v4.00 calls ___lmul for any multiply wider than 8 bits, and ___lmul is a
  * loop of one iteration per bit: 849 cycles. The part has a single-cycle 8x8

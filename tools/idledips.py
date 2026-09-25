@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Count transient dips of engine speed against its own one-second median.
 
-This is the measurement behind S1 and S3 in docs/engine-health.md. It
+This is the measurement behind S1 and S3 in docs/engine-health/open.md. It
 exists as a tool rather than as a number typed into prose because the first
 pass at it was an ad-hoc script that was not kept, and a later reconstruction
 of it disagreed with the published counts by two events -- small, but nobody
@@ -32,13 +32,13 @@ Three instruments, and why there are three
 a PIC18F25K80 could answer live -- a first-order baseline, a latch, an idle
 gate -- and is the one whose numbers the before-repair prediction was written
 against (12.1 and 11.6 a minute cold and at 61 C of oil, predicted ~0 after;
-the repair did not reach it, docs/engine-health-refuted.md A1).
+the repair did not reach it, docs/engine-health/refuted.md A1).
 
 `roughness()` does not count at all. It GRADES the idle, because a count past
 a threshold has no resolution below the threshold and a repaired engine reads
 zero for ever -- `--roughness --bands` shows that the band carrying the
 contrast is 10-20 rpm, just under TRIP_RPM. It is the instrument on the bus,
-as the idle grade of frame 0x604 (docs/frames.md).
+as the idle grade of frame 0x604 (docs/firmware/frames.md).
 
 Both sets of constants are frozen; the comments above them say why, and they
 are the only parts of this file that must not be re-tuned.
@@ -131,7 +131,7 @@ def series(path: str):
     for f in frames:
         t = (f.ts_ms - t0) / 1000.0
         if f.can_id == 0x1A0 and len(f.data) >= 4:
-            # docs/can-decoding.md trap 1: the gate is not an equality.
+            # docs/firmware/can-decoding.md trap 1: the gate is not an equality.
             if (f.data[1] & 0x40) != 0 and (f.data[1] & 0x03) == 0:
                 speed_mmh = (f.data[2] | (f.data[3] << 8)) * 5
         elif f.can_id == 0x280 and len(f.data) >= 8:
@@ -177,7 +177,7 @@ def dips(rpm, threshold, t_from=None, t_to=None):
 def depths(rpm, threshold, t_from=None, t_to=None):
     """The depth of every dip, deepest first. The counts say how often the
     engine stumbles; this says how hard, which is what the energy argument in
-    docs/engine-health.md (S1) is written against."""
+    docs/engine-health/open.md (S1) is written against."""
     ev, span = dips(rpm, threshold, t_from, t_to)
     return sorted((d for _, d in ev), reverse=True), span
 
@@ -278,7 +278,7 @@ def segments(rpm, bands=SEGMENT_BANDS, cap_s=0.5):
 #
 # Every operation is one a PIC18 does cheaply: the shift is 8, which on this
 # part is byte selection and therefore free, where a shift of 5 is a rotate
-# loop (CLAUDE.md, and docs/optimisation.md). There is no division, no
+# loop (CLAUDE.md, and docs/firmware/optimisation.md). There is no division, no
 # multiplication and no loop -- which also means no backward branch for
 # tools/cycles.py to have to account for, if it ever does move into src/.
 
@@ -295,7 +295,7 @@ def dips_cheap(gated, t_from=None, t_to=None, shift=EWMA_SHIFT,
     """Dip events and settled idle seconds, the way firmware would count them.
 
     The baseline is a first-order filter rather than a median -- the same
-    substitution docs/optimisation.md section 8 made for the tank, and for the
+    substitution docs/firmware/optimisation.md section 8 made for the tank, and for the
     same reason: "is this sample well below where the signal has been" needs no
     sort. A filter can be dragged down by the dip itself, which a median
     cannot, so the excursion is latched and does not re-arm until engine speed
@@ -386,7 +386,7 @@ def dips_cheap(gated, t_from=None, t_to=None, shift=EWMA_SHIFT,
 # 10 ms sample.
 #
 # ⚠ THE STEP IS TAKEN ONCE PER CHANGE OF THE FIELD, NOT ONCE PER FRAME
-# (docs/can-decoding.md trap 6), and this is the opposite of what
+# (docs/firmware/can-decoding.md trap 6), and this is the opposite of what
 # dips_cheap() does. The two are not inconsistent:
 # dips_cheap()'s EWMA is a TIME constant and has to be stepped on the clock,
 # while this one is an average PER FIRING EVENT and has to be stepped on the
@@ -421,7 +421,7 @@ ROUGH_OUT_SHIFT = 5      # accumulator >> 5 is the reported unit, 1/32 rpm
 #: division, and because the 6 % that costs is inside the 13 % spread the
 #: anchor itself shows between 10 s windows of a steady idle. A scaling factor
 #: we choose is one we may choose to be convenient; see CLAUDE.md and
-#: docs/optimisation.md section 11.
+#: docs/firmware/optimisation.md section 11.
 IDLE_ROUGH_100 = 64
 IDLE_INDEX_MAX = 200     # above 100 means worse than the engine was; clamp here
 
@@ -502,7 +502,7 @@ def idle_index(counts):
 # own millisecond timestamps), so the two must agree EXACTLY and
 # `replay.py --host-build` holds them to it over every timestamped fixture.
 #
-# Three raw components and no index -- docs/frames.md, 0x604, says why the
+# Three raw components and no index -- docs/firmware/frames.md, 0x604, says why the
 # index ships empty. Each is 255 when it is not known.
 #
 # ⚠ A START IS ONLY MEASURED IF IT WAS SEEN FROM STANDSTILL. The crank clock
@@ -590,7 +590,7 @@ def health_summary(path):
 
 # --- per-cylinder structure ------------------------------------------------
 #
-# Each update is one 180 deg window (can-decoding.md trap 6), and the cylinders
+# Each update is one 180 deg window (docs/firmware/can-decoding.md trap 6), and the cylinders
 # take turns, so a cylinder that differs from its neighbours repeats every FOUR
 # windows -- 720 deg, one full four-stroke cycle, the same cylinder coming
 # round. That is a PERIOD in the sequence, and a period is testable.
@@ -676,7 +676,7 @@ def slot_means(run):
     ``sd_true`` is the unbiased one and is the figure to quote: the variance
     between the slot means minus the variance the noise puts there,
     ``var(means) - mean(SE^2)``, floored at zero and square-rooted. It is what
-    the rough-against-smooth comparison in docs/engine-health-refuted.md A5 rests on.
+    the rough-against-smooth comparison in docs/engine-health/refuted.md A5 rests on.
     """
     d = _detrend(run)
     slots = [[] for _ in range(4)]

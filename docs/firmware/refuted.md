@@ -21,8 +21,8 @@ rather than deleting it.
 
 **The engine itself has its own register**: hypotheses about the car's idle,
 misfires and knock control that were settled against are in
-`engine-health-refuted.md`, beside the open investigation in
-`engine-health.md`.
+`docs/engine-health/refuted.md`, beside the open investigation in
+`docs/engine-health/open.md`.
 
 ---
 
@@ -65,7 +65,7 @@ mapping: `0011` = HS1 (4–16 MHz), `0010` = HS2 (16–25 MHz).
 
 ### A4. "The A/D is ten bits, so VDD = 1.024 × 1023 / code"
 
-**Believed:** and written into both `CLAUDE.md` and `docs/frames.md`. It is the
+**Believed:** and written into both `CLAUDE.md` and `docs/firmware/frames.md`. It is the
 correct formula — for a different PIC.
 **Refuted by:** DS39977C Table 31-25 parameter A01, `NR Resolution ... 12 bit`,
 and §23.5, "The A/D conversion requires 14 TAD per 12-bit conversion".
@@ -80,7 +80,7 @@ with voltage and temperature, as well as from chip-to-chip. Please refer to
 Parameter D122 ... for **exact limits**".
 **Refuted by:** D122, which reads `-- 4 --` ms. A typical with no minimum and
 no maximum. The datasheet refers the reader to a bound it does not contain.
-**Cost:** none yet, and it is why `docs/timing.md` treats the 48 ms record
+**Cost:** none yet, and it is why `docs/firmware/timing.md` treats the 48 ms record
 write as what to expect rather than what to design against.
 
 ### A6. "`piclib/dao.c` omits the GIE bracket the datasheet's Required Sequence asks for"
@@ -213,7 +213,7 @@ been wrong for the first few minutes of every drive. It is trap 3 in
 
 ### B9. "b7 reaches 133 at throttle 38 while driving, so the throttle cannot gate on its own"
 
-**Believed:** written into `config.h`, `docs/frames.md`, `CLAUDE.md` and
+**Believed:** written into `config.h`, `docs/firmware/frames.md`, `CLAUDE.md` and
 `test/fixtures/README.md`, and it is the whole reason the torque gate was an
 AND — zero only when the car was standing still *and* the pedal was released.
 
@@ -228,7 +228,7 @@ cheap to repeat.
 **Cost:** two wrong states on the display, both reported off the car rather
 than caught here. Revving in neutral at a standstill showed a number, and so
 did the last few seconds of every roll to a stop, where the idle governor lifts
-b7 back above the drag line while the pedal never moves. `docs/frames.md` has
+b7 back above the drag line while the pedal never moves. `docs/firmware/frames.md` has
 the worked stop and the fix, which is one character: the AND is an OR.
 
 **Un-refuting it would take** a state where the pedal is at rest, the car is
@@ -419,7 +419,7 @@ was inlining it anyway.
 
 ### C7. "Loopback exercises everything except the wire"
 
-**Believed:** written into `hal_can.h` and into `docs/install.md`, which
+**Believed:** written into `hal_can.h` and into `docs/firmware/install.md`, which
 claimed the loopback step tests "the bit timing, all six acceptance filters,
 the eight-deep FIFO, the access-bank window, `txframes` and `decode`" — and
 gave **steady `LED_CAN`** as the pass, with dark meaning "the transmit path or
@@ -699,7 +699,7 @@ it. It was passing an empty value, so it had never configured anything anyway.
 
 ### E6. "The PICkit 3 cannot power a target — it only manages 4.6 V of the 5.0 V it asks for"
 
-**Believed** briefly, and written into `CLAUDE.md` and `docs/install.md` as a *measurement* that had finally replaced a piece of borrowed
+**Believed** briefly, and written into `CLAUDE.md` and `docs/firmware/install.md` as a *measurement* that had finally replaced a piece of borrowed
 errata. `ipecmd -I -W` against a bare ICSP header reports *"trying to supply
 5,000000 volts ... but the target VDD is measured to be 4,625000 volts"*, and
 that was read as the supply sagging: 0.375 V lost with no load at all, so
@@ -751,7 +751,7 @@ is how.
 **Not affected:** the separate finding that `-W` leaves the rail live after the
 command exits, and that a plain run clears it. That was tested by alternation
 with the meter watched throughout, and it is the reason the header must read
-zero before a self-powered board is connected. See `docs/install.md` step 4.
+zero before a self-powered board is connected. See `docs/firmware/install.md` step 4.
 
 **Lesson.** The project's rule is that a decision must not be dressed up as a
 specification. This is the same failure one step further on: an *interpretation*
@@ -766,7 +766,7 @@ DS39977C §27.14.7 says the devices "go to bus-off if the transmit error counter
 equals or exceeds the bus-off limit of 256", an acknowledge error makes the
 transmitter send an error flag, and an error flag costs 8. Thirty-two failed
 tries is a fraction of a second, so a converter alone on a bench bus should be
-silent almost immediately. `docs/install.md` step 7.3 said so, and
+silent almost immediately. `docs/firmware/install.md` step 7.3 said so, and
 `tools/bench_test.py` **checked for that silence** and treated frames as the
 failure.
 

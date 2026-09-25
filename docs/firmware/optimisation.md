@@ -5,7 +5,7 @@ expensive on this part in a way they are not on a desktop: 4 MIPS, no cache, no
 barrel shifter, no hardware divide. A line of C that looks free can cost a
 quarter of a millisecond.
 
-`docs/timing.md` is the budget — what each piece costs and how much room there
+`docs/firmware/timing.md` is the budget — what each piece costs and how much room there
 is. This document is the other half: *why* the code is shaped the way it is,
 what was tried, and what is deliberately left alone.
 
@@ -186,7 +186,7 @@ divisions. `___lldiv` costs 1,026 cycles — 257 µs — every time. It is now
 4.35 ms, a **32 % cut**, and `main` went 13.75 → 11.17 ms.
 
 (That is the `main` figure `cycles.py` prints. The worst *pass* in
-`docs/timing.md` is a larger number — 11.67 ms — because it stacks a full
+`docs/firmware/timing.md` is a larger number — 11.67 ms — because it stacks a full
 eight-frame FIFO drain on top, which one call to `main` does not represent.
 The two are consistent; they measure different things.)
 
@@ -293,7 +293,7 @@ function — `-Werror=unused-function` turns that into a build failure.
 ⚠ **The budget tables in this file name the scheduler that existed when each
 measurement was taken**, and "the 100 ms slot" and "the 1 s slot" are two of
 those names. The scheduler now runs five slots of 25 ms with one frame in each
--- `docs/timing.md` has the current shape and `src/config.h` says why it
+-- `docs/firmware/timing.md` has the current shape and `src/config.h` says why it
 changed. The before/after pairs below are left as they were measured: a record
 of what one change bought is not improved by being rewritten against a later
 structure.
@@ -424,7 +424,7 @@ Two details are load-bearing and both are in the code as comments:
   change the rule exists to notice, since the normal refuelling happens with
   the ignition off.
 
-**Is it the same answer?** Not identically, and `docs/refuel-reset.md` has the
+**Is it the same answer?** Not identically, and `docs/firmware/refuel-reset.md` has the
 table. It is quicker on a real fill (5 s rather than ~13 s at rest), equally
 deaf to a single wild reading, and the one case the median covered better — a
 burst of noise longer than five seconds but shorter than thirteen — is not a

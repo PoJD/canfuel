@@ -4,7 +4,7 @@
 The fixture assertions are deliberately loose where the exact figure is the
 thing the tool is for -- a band rather than a count, so that re-running this
 against a new capture is not a test change. Three things are asserted hard,
-because docs/frames.md argues from them:
+because docs/firmware/frames.md argues from them:
 
 * cranking is excluded from the driving maximum
 * every wide-open-throttle burst in the fixtures ended with b7 still rising

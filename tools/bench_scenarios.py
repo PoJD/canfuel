@@ -1,4 +1,4 @@
-"""Synthetic streams for the bench scenarios of docs/install.md step 7.
+"""Synthetic streams for the bench scenarios of docs/firmware/install.md step 7.
 
 **Frames are patched, not built.** Every frame here starts as a real one from
 `test/fixtures/` and has exactly the field under test overwritten. Building

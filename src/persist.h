@@ -54,7 +54,7 @@
  * cent short of the truth per tankful. Nothing on the display consumes them,
  * but they are exactly what gets compared against a real odometer during
  * bring-up -- so anybody doing that comparison should expect the shortfall and
- * not go looking for an arithmetic bug. docs/frames.md says so too.
+ * not go looking for an arithmetic bug. docs/firmware/frames.md says so too.
  *
  * WHY IT IS NOT FIXED FURTHER. The interval came down from 60 s to 20 s on
  * which is where the numbers above come from; config.h costs the

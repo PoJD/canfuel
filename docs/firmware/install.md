@@ -249,7 +249,7 @@ directory. MPLAB X therefore has to be installed, and is never opened.
 Everything else about the tool — why it rather than the two other command-line
 programmers in the same install, what each flag does, the exit codes it returns
 and the environment traps — is in
-[`flash-tool-notes.md`](flash-tool-notes.md). None of it is needed to do this
+[`flashing.md`](flashing.md). None of it is needed to do this
 step.
 
 ### Plug the programmer in and run one command
@@ -268,14 +268,14 @@ can damage, and there is deliberately no target attached yet.
 | a firmware download first, then one of the above | see *If it downloads firmware* |
 
 ⚠ **Read what it prints, not the exit code.** IPECMD's exit codes do not mean
-what they look like; `flash-tool-notes.md` has the observed values and is the
+what they look like; `flashing.md` has the observed values and is the
 place that matters when somebody writes a script.
 
 **If it says `Programmer not found` with the programmer plugged in**, check in
 this order: **MPLAB X or MPLAB IPE open** and holding the tool, the **firewall**
 on IPECMD's localhost socket, then the programmer itself. `ipecmd -T` lists
 connected tools and is the shortest "is it alive" there is.
-`flash-tool-notes.md` has the citations for all three.
+`flashing.md` has the citations for all three.
 
 ### If it downloads firmware
 
@@ -316,7 +316,7 @@ position, and it is only harmless because the overhang is at the far end.
 **A different programmer needs its own pinout and its own user's guide.** Only
 the `-TP` short name changes in the command above, but how a tool drives MCLR
 and target power is not something a device listing tells you, and `MCLRE = ON`
-here makes that pin fussy. `flash-tool-notes.md` lists the tools IPECMD supports
+here makes that pin fussy. `flashing.md` lists the tools IPECMD supports
 for this part, and how to establish an unknown header by measurement.
 
 ### What it does not prove
@@ -713,7 +713,7 @@ are looking at:
 The first one still exits 0, so a script checking `$?` would sail straight past
 an unpowered board — the likeliest bench mistake there is. Both were provoked
 without a board and the observed codes are in
-[`flash-tool-notes.md`](flash-tool-notes.md).
+[`flashing.md`](flashing.md).
 
 **Command 4 can fail on a correctly programmed board, and that is not a
 fault.** `-Y` verifies EEData as well as program memory and configuration,
@@ -743,7 +743,7 @@ it is the one that does not depend on what the firmware has been doing in the
 meantime.
 
 Three things in that command line are ways to get it wrong. The full argument
-for each is in [`flash-tool-notes.md`](flash-tool-notes.md):
+for each is in [`flashing.md`](flashing.md):
 
 - **`-OL` is not optional.** It is *Release From Reset* and the IPECMD default
   is the opposite, so leaving it off produces a board that is programmed
@@ -765,7 +765,7 @@ for each is in [`flash-tool-notes.md`](flash-tool-notes.md):
 ⚠ **What has been run against a real part, and what has not.** `-I`, `-C`,
 `-M -OL` and `-Y` have all run against a powered PIC18F25K80 on J3, from Git
 Bash, with the `$PWD` form of `-F` resolving correctly. Their observed output
-and exit codes are in [`flash-tool-notes.md`](flash-tool-notes.md). **`-Z` has
+and exit codes are in [`flashing.md`](flashing.md). **`-Z` has
 not been run, and neither has reading memory back off the part** — a tool that
 wants either has to establish it first.
 
@@ -984,7 +984,7 @@ injections here are pure adapter commands — nothing is unplugged:
   of 128 — **and stops there. It does not go bus-off and it does not fall
   silent**: it retransmits for as long as the starvation lasts, measured at
   **1812 frames a second against 22 nominal**, and that flood is the
-  observation. `docs/refuted.md` E7 carries what this used to claim and
+  observation. `docs/firmware/refuted.md` E7 carries what this used to claim and
   what refuted it. Then the adapters go back to normal, the counter walks
   back down and the module returns to error-active on its own. DS39977C
   §27.11: recovery from bus-off is 128 × 11 recessive bits with no MCU
@@ -1207,7 +1207,7 @@ we are actually on the wire:
 - **0x603 is now readable**, because a normal build transmits. With a USBtin on
   the bus, `python tools/canlog.py --dump --id 0x603 FILE` over a short capture
   gives the error counters, the reset cause and the uptime as numbers —
-  `docs/frames.md` decodes the bytes. This is the first time in the car that
+  `docs/firmware/frames.md` decodes the bytes. This is the first time in the car that
   the counters can be read rather than inferred.
 
 This is the first time the device acknowledges frames and arbitrates for the
@@ -1229,7 +1229,7 @@ upstream of us.
 Operating the MFD15 through oDSS — uploading a file, changing its
 configuration — produces a burst of CAN errors that latches the flag until the
 next power-up, with the counters back at zero straight afterwards.
-`docs/frames.md` has what was observed and what is still unexplained about it.
+`docs/firmware/frames.md` has what was observed and what is still unexplained about it.
 Power-cycle before reading that flag as a verdict on this board.
 
 Two more worth doing on the first drive:
@@ -1240,7 +1240,7 @@ Two more worth doing on the first drive:
 - **Refuel and watch the trip average clear.** The reset fires on five
   consecutive at-rest samples more than `REFUEL_RISE_L` above the settled tank
   level, so about five seconds of standing still after the fill.
-  `docs/refuel-reset.md` has the rules, the corner cases, and what the rule has
+  `docs/firmware/refuel-reset.md` has the rules, the corner cases, and what the rule has
   actually done in the car.
 
 ---
@@ -1306,13 +1306,14 @@ this reopened: the capture comes off the display's connector.
 
 **One thing is left, and it needs the car:**
 
-- **Drag torque on hot oil**, the only open question left in the project. The
+- **Drag torque on hot oil**, open question 7. The
   line in `config.h` is a least-squares fit through four free-revving holds at
   72–77 °C, stationary in neutral, where net torque is zero and the raw byte
   is the drag itself. **72–77 °C is warm, not the 95–110 °C of real driving**,
   so it probably still overstates drag slightly, which is the conservative
   direction. Repeat the same sweep on hotter oil, in neutral.
-  `docs/can-decoding.md` question 7 has the reasoning and the procedure.
+  `docs/firmware/open.md` question 7 has the reasoning and the procedure —
+  and why question 10, a thermometer in hot oil, should come first.
 
   ⚠ **The holds themselves will display zero**, because they are taken
   standing still and the driving gate returns zero for a standing car whatever
@@ -1342,12 +1343,12 @@ considered, measured once, and set aside deliberately.
 
 **The torque scale, 1.06 Nm/bit, is not on that list because it is done.**
 Held full-throttle pulls in 4th put b7 on a plateau that reproduces both
-factory ratings to 0.6 % of each other; `docs/can-decoding.md` question 8 has
+factory ratings to 0.6 % of each other; `docs/firmware/can-decoding.md` question 8 has
 the numbers and is resolved. The VCDS session once planned for it found that
 this ECU has no torque measuring block at all — **do not plan that session
 again.**
 
-`docs/can-decoding.md` now has exactly one open question, and it is the drag
+`docs/firmware/can-decoding.md` now has exactly one open question, and it is the drag
 line above.
 
 ---
@@ -1356,15 +1357,15 @@ line above.
 
 | Symptom | Look at |
 |---|---|
-| `ipecmd` says `Programmer not found` with the PICkit plugged in | in this order: **MPLAB X or IPE open** and holding the tool; the **firewall rule** on IPECMD's localhost socket; something else owning the HID handle; then the programmer itself. `flash-tool-notes.md` has the citation and the port for each |
+| `ipecmd` says `Programmer not found` with the PICkit plugged in | in this order: **MPLAB X or IPE open** and holding the tool; the **firewall rule** on IPECMD's localhost socket; something else owning the HID handle; then the programmer itself. `flashing.md` has the citation and the port for each |
 | `ipecmd` says `Target device was not found (could not detect target voltage VDD)` | **the board is not powered.** Give it its own 5 V, or on the desk use `flash.py --power-from-programmer`. Nothing reached the part, so JP2 and the ICSP wiring are not the suspects. **This run still exits 0**, so it is the message that tells you, not the code |
-| `ipecmd` says `Target Device ID (0x0) is an Invalid Device ID` | power is fine and ICSP is not: JP2 still fitted, MCLR/PGC/PGD wiring, or a dead part. Reproduced against a powered header with those three pins left unconnected — `flash-tool-notes.md` |
-| A board misbehaves or dies the first time it is plugged onto the PICkit | **had `-W` been used on that PICkit beforehand?** It leaves ~4.6 V on header pin 2 after the command exits, which then fights the board's own supply. Measure pins 2 and 3 for zero before connecting a self-powered board — `flash-tool-notes.md` |
+| `ipecmd` says `Target Device ID (0x0) is an Invalid Device ID` | power is fine and ICSP is not: JP2 still fitted, MCLR/PGC/PGD wiring, or a dead part. Reproduced against a powered header with those three pins left unconnected — `flashing.md` |
+| A board misbehaves or dies the first time it is plugged onto the PICkit | **had `-W` been used on that PICkit beforehand?** It leaves ~4.6 V on header pin 2 after the command exits, which then fights the board's own supply. Measure pins 2 and 3 for zero before connecting a self-powered board — `flashing.md` |
 | Programming succeeds and nothing runs | `-OL` missing. The IPECMD default is *hold in reset*, so the part is programmed and then parked |
 | The trip accumulators vanished after a reflash | expected: the erase is on by default. `flash.py --preserve-eeprom` passes `-Z0-3FF` and checks it took; `-E` would override it and is never passed |
 | The board is silent right after a `--preserve-eeprom` run | that flow programs without `-OL` and releases in a separate step. If the release failed, the part is **held in reset** — run `python tools/flash.py --identify` |
 | Both LEDs dark | JP1 not fitted — that is by design, nothing lights up in the car without it |
-| No 0x603 on the bus, but 0x600 and 0x601 are there | JP1 not fitted. The diagnostic frame is only transmitted while the debug jumper is on — `docs/frames.md` |
+| No 0x603 on the bus, but 0x600 and 0x601 are there | JP1 not fitted. The diagnostic frame is only transmitted while the debug jumper is on — `docs/firmware/frames.md` |
 | No 0x603 and a listen-only build | expected and unfixable: that mode transmits nothing at all. The LED is the only instrument in step 8 |
 | `bench_test.py` reports adapter errors and nothing acknowledged | a `LISTEN_ONLY` hex on the bench, so nothing drives the ACK slot. Flash the normal build, or add a second adapter — step 7 |
 | `bench_test.py` says the transmit FIFO filled | the host, not the converter. `--speed 0.5` |
@@ -1374,9 +1375,9 @@ line above.
 | LED_CAN dark, car running | wiring: CANH/CANL swapped, or the stub not connected. Ring it out |
 | Display channels stay at 0 | a silent build (LED_PWR blinking), or the frame layout drifted from `S-AQY.TRI` |
 | Display channels stay at 0 **and RPM has vanished too** | not this device. The MFD15 loses its sensor definitions when a page's contents are changed, and RPM going with them is the tell — it reads the car's bus directly, so the converter cannot be the reason. Upload the TRI file again; `mfd15/CLAUDE.md` |
-| Display shows plausible but wrong numbers | the frame layout **did** drift. `docs/frames.md` and `S-AQY.TRI` must agree; `test/test_txframes.c` pins every offset |
+| Display shows plausible but wrong numbers | the frame layout **did** drift. `docs/firmware/frames.md` and `S-AQY.TRI` must agree; `test/test_txframes.c` pins every offset |
 | The fuse blew | a short on the converter board. Fit one new fuse; if the second goes, stop and find the short |
 | Nothing at all after wiring | ring circuit 1 of the Micro-Fit out to the board's +5 V pad. If CANH is in circuit 1, the transceiver has had 5 V on it |
 
 `CLAUDE.md` in this repository is the long-form reasoning behind every decision
-above, and `docs/refuted.md` is what was tried and did not work.
+above, and `docs/firmware/refuted.md` is what was tried and did not work.

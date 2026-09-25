@@ -370,7 +370,7 @@ uint16_t hal_sys_vdd_c(void)
      * of 64,000 and a uint16 holds it with room. The 32-bit version of exactly
      * this cost 518 bytes of program memory, because a shift of four is a
      * rotate loop and doing it over four bytes is four times the loop --
-     * docs/optimisation.md, the narrowest type that provably holds the value.
+     * docs/firmware/optimisation.md, the narrowest type that provably holds the value.
      * What Q5 costs is a dead band: a difference under 16/32 of a hundredth of
      * a volt moves nothing, which is half the resolution of the field. */
     target_q5 = (uint16_t)(vdd_c << 5);

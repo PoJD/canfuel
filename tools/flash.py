@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Build the converter and flash it in one command, with a verdict.
 
-`docs/install.md` step 5 is the procedure this automates;
-`docs/flash-tool-notes.md` is the argument for every flag and the record of
+`docs/firmware/install.md` step 5 is the procedure this automates;
+`docs/firmware/flashing.md` is the argument for every flag and the record of
 what IPECMD actually prints. Read that file before changing anything here.
 
     python tools/flash.py                      # normal build, then flash it
@@ -62,7 +62,7 @@ when an earlier step has failed, and its own failure is reported loudly.
 
 If either dump cannot be parsed the run does not invent a verdict: it says the
 preserve was requested and not verified, and writes both raw outputs into
-`mplab/build/`. The format is recorded in `flash-tool-notes.md` and the capture
+`mplab/build/`. The format is recorded in `docs/firmware/flashing.md` and the capture
 itself is `tools/testdata/ipecmd-ge0-400.txt`.
 
 STILL NOT HERE: nothing. Both gaps that file listed are closed -- the other was
@@ -134,7 +134,7 @@ EEPROM_PRESERVE_RANGE = "0-3FF"
 
 # What a failed run says, and what it means. A table rather than a chain of
 # ifs, because these strings are the whole diagnosis and belong where they can
-# be read at a glance. The observed outputs are in flash-tool-notes.md.
+# be read at a glance. The observed outputs are in docs/firmware/flashing.md.
 FAILURES = [
     ("could not detect target voltage VDD",
      "the board is not powered. Give it its own 5 V, or, for a bare board on "
@@ -355,13 +355,13 @@ def run(cmd: list[str], dry: bool, timeout: float = 300.0) -> str:
 
 
 #: Set by --power-from-programmer: `-W` on every call, so the PICkit supplies
-#: the target. docs/flash-tool-notes.md, *Powering a bare board from the
+#: the target. docs/firmware/flashing.md, *Powering a bare board from the
 #: programmer*, has when that is right and when it is not.
 POWER_ARGS: list[str] = []
 
 #: 4.5 V, not the default 5.0, and measured rather than chosen for comfort.
 #: A plain -W asks for 5.0 V, the PICkit 3 on USB delivers 4.625, and IPECMD
-#: then answers "Connection Failed" -- refuted.md E6 is the same 4.625 V read
+#: then answers "Connection Failed" -- docs/firmware/refuted.md E6 is the same 4.625 V read
 #: wrongly as droop. -W4.5 is regulated to, reported as "VDD = 4,500000
 #: volts", and the part answers. 4.5 V is inside DS39977C's VDD range for the
 #: PIC18F25K80 and at the bottom of the MCP2562's 4.5-5.5 V (DS20005167C), and
@@ -376,7 +376,7 @@ def ipecmd(args: list[str], dry: bool, device: str, tool: str) -> str:
 def drop_programmer_power(dry: bool, device: str, tool: str) -> None:
     """One plain call, without -W, to take the programmer's supply off the
     header. `-W` leaves the rail live after the command exits and a plain run
-    clears it -- measured, docs/flash-tool-notes.md, *Hazard*. What it prints
+    clears it -- measured, docs/firmware/flashing.md, *Hazard*. What it prints
     is expected to be the not-powered message, and nothing is parsed from it:
     whether the rail really dropped is a voltmeter's question."""
     POWER_ARGS.clear()
@@ -476,7 +476,7 @@ def main(argv: list[str] | None = None) -> int:
 def _main(args: argparse.Namespace, hex_path: Path, rep: "Report") -> int:
 
     print()
-    print("flash.py -- install.md step 5")
+    print("flash.py -- docs/firmware/install.md step 5")
 
     if args.identify:
         print()

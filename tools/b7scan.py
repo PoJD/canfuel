@@ -2,7 +2,7 @@
 """What 0x280 byte 7 has actually been observed to reach, and under what.
 
 This is the measurement behind *What b7 has actually been observed to reach*
-in docs/frames.md. It exists as a tool for the same reason tools/idledips.py
+in docs/firmware/frames.md. It exists as a tool for the same reason tools/idledips.py
 does -- the figures it prints decide how the next drive's result is read, and
 a figure typed into prose cannot be re-checked against a new capture.
 
@@ -12,7 +12,7 @@ What it answers
 The torque scale was once derived from b7 = 255, on the premise that full
 scale is the rated crank torque plus the drag. This tool is how that premise
 was first doubted -- the engine had never been seen near 255 -- and it is now
-read off the plateau the engine actually reaches (docs/can-decoding.md
+read off the plateau the engine actually reaches (docs/firmware/can-decoding.md
 question 8). It separates three things that a bare maximum runs together:
 
 * **Cranking is not driving.** 192 appears in 06 and 18, every sample below
@@ -50,7 +50,7 @@ FIXTURES = os.path.join(HERE, os.pardir, "test", "fixtures")
 
 #: The gate src/compute.c applies before it will display torque at all, and the
 #: same one that keeps cranking out of the maximum below. Both come from
-#: src/config.h; see docs/can-decoding.md for why neither is an equality.
+#: src/config.h; see docs/firmware/can-decoding.md for why neither is an equality.
 GATE_SPEED_MMH = 100
 GATE_THROTTLE = 38
 
@@ -69,7 +69,7 @@ def samples(path):
     out, speed_mmh = [], 0
     for f in frames:
         if f.can_id == 0x1A0 and len(f.data) >= 4:
-            # docs/can-decoding.md trap 1: the gate is not an equality.
+            # docs/firmware/can-decoding.md trap 1: the gate is not an equality.
             if (f.data[1] & 0x40) != 0 and (f.data[1] & 0x03) == 0:
                 speed_mmh = (f.data[2] | (f.data[3] << 8)) * 5
         elif f.can_id == 0x280 and len(f.data) >= 8:

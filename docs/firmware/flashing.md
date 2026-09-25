@@ -1,6 +1,6 @@
 # IPECMD in detail, and notes for `tools/flash.py`
 
-**`docs/install.md` is the procedure and needs none of this.** Steps 4 and 5
+**`docs/firmware/install.md` is the procedure and needs none of this.** Steps 4 and 5
 there are what somebody with a programmer in one hand actually follows. This
 file is everything underneath: what each flag does, what the tool returns, how
 it behaves on this machine, and what `tools/flash.py` had to know.
@@ -78,7 +78,7 @@ disqualified by their own documentation:
 
 `ipecmd.exe` and `pk3cmd.exe` are in `mplab_platform/mplab_ipe` under the
 MPLAB X install directory, `mdb.bat` in `mplab_platform/bin`. **The tool should
-invoke `ipecmd` by bare name and let `PATH` resolve it**, as `docs/install.md`
+invoke `ipecmd` by bare name and let `PATH` resolve it**, as `docs/firmware/install.md`
 does, rather than hard-coding an install path with a version number in it.
 
 ---

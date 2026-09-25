@@ -54,7 +54,7 @@ typedef struct {
  *                DARK in this mode and cannot be anything else. What loopback
  *                proves is that the module accepted its configuration and
  *                reached the requested mode. The receive path, the FIFO and
- *                the filters need frames from outside; docs/install.md step 7
+ *                the filters need frames from outside; docs/firmware/install.md step 7
  *                is where they are tested.
  */
 typedef enum {

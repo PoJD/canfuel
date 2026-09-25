@@ -13,7 +13,7 @@ line and as the older recordings stored it without post-processing:
 The fixtures in this repository carry no timestamps, because they were
 recorded with the adapter's timestamping off: frames come back with
 ts_ms=None and it is up to the caller to derive time from frame periods
-(see docs/can-decoding.md, the section on periods -- it is not reliable).
+(see docs/firmware/can-decoding.md, the section on periods -- it is not reliable).
 
 Opened with Z1, the USBtin appends four hex digits of milliseconds:
 
@@ -23,7 +23,7 @@ Opened with Z1, the USBtin appends four hex digits of milliseconds:
 which is parsed here into ts_ms. **That is the timestamp worth having** --
 it is taken in the adapter when the frame arrives, where format B's is taken
 by the host when it gets round to the line. Open question 9 in
-docs/can-decoding.md is that difference, and one recording with Z1 closes it.
+docs/firmware/can-decoding.md is that difference, and one recording with Z1 closes it.
 
 Format B -- USBtinViewer export, five tab-separated columns:
 
@@ -158,7 +158,7 @@ def _parse_slcan(line: str) -> Optional[Frame]:
     # digits of milliseconds, present only when the adapter was opened with
     # Z1. THIS IS THE GOOD KIND OF TIMESTAMP: it is stamped in the adapter
     # when the frame arrives, not by the host when it gets round to the line.
-    # docs/can-decoding.md question 9 was about exactly that difference and is
+    # docs/firmware/can-decoding.md question 9 was about exactly that difference and is
     # resolved: the two logs in viewer format carry host times and are wrong by
     # roughly a factor of two. Adapter timestamps are the only ones to trust.
     #

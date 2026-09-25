@@ -125,7 +125,7 @@ the write and compared byte for byte.
 
 ## Programming the board
 
-**The procedure is `docs/install.md`, steps 4 and 5**, and it is not repeated
+**The procedure is `docs/firmware/install.md`, steps 4 and 5**, and it is not repeated
 here: the programmer is driven from the command line with `ipecmd` out of the
 MPLAB X install — which has to be on `PATH` — the IDE is never opened for it,
 and the reasoning for that choice is in `CLAUDE.md` under *Flashing is a command

@@ -34,7 +34,7 @@ from canlog import Frame, parse_file
 
 # THIS PERIOD IS FICTIONAL AND IS KNOWN TO BE. 0x480 has no fixed period at
 # all: measured with adapter timestamps it is 26.4 frames/s at idle and 18.0 at
-# 2586 rpm, on a 10 ms grid (docs/can-decoding.md question 1). It survives here
+# 2586 rpm, on a 10 ms grid (docs/firmware/can-decoding.md question 1). It survives here
 # only to give the five oldest fixtures -- the ones recorded with no timestamps
 # -- *a* clock, so the Python and C implementations can be diffed over them.
 # Every duration, flow and distance derived from those five is invalid as a
@@ -56,7 +56,7 @@ COUNTER_MODULO = 32768
 DIST_MIN_KMH = 0.1
 
 # Speed validity gate in 0x1A0 byte 1. It is not an equality, it is a bit
-# mask -- the reasoning is spelled out in docs/can-decoding.md.
+# mask -- the reasoning is spelled out in docs/firmware/can-decoding.md.
 SPEED_GATE_REQUIRED = 0x40   # this bit must be set
 SPEED_GATE_FORBIDDEN = 0x03  # these mark the post-ignition init ramp
 
@@ -117,7 +117,7 @@ def decode(frame: Frame, st: Decoded) -> None:
 
     elif cid == 0x480 and len(d) >= 4:
         # Bit 15 is a wrap flag, not data. The mask drops it; trap 3 in
-        # docs/can-decoding.md is where that behaviour is recorded.
+        # docs/firmware/can-decoding.md is where that behaviour is recorded.
         st.fuel_counter = u16le(d, 2) & 0x7FFF
 
 
@@ -266,7 +266,7 @@ def walk(frames: list) -> Iterator[tuple]:
     """Fold a whole log, yielding (now_ms, st, cp) at every 0x480 frame.
 
     0x480 is the clock of the device: it is the only periodic input whose
-    period we trust (49.5 ms, argued in docs/can-decoding.md). Logs in the
+    period we trust (49.5 ms, argued in docs/firmware/can-decoding.md). Logs in the
     viewer format carry real timestamps and those win.
 
     The order inside the loop -- decode, then distance, then the counter --

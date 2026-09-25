@@ -308,7 +308,7 @@ int main(void)
                  * and the gather behind it would be bus traffic and CPU spent
                  * on nobody. JP1 already means "somebody is looking at this
                  * device", and this is the second thing it now means --
-                 * config.h has the reasoning and docs/frames.md says it where
+                 * config.h has the reasoning and docs/firmware/frames.md says it where
                  * a reader of the frame layout will find it.
                  *
                  * Note which side of the jumper test the counting sits on:

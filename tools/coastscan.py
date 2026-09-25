@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Does this engine stop injecting when the car is driving it, and when?
 
-This is the analysis behind entry C1 of docs/engine-health-refuted.md (the
+This is the analysis behind entry C1 of docs/engine-health/refuted.md (the
 ECU cuts fuel on a cold overrun too), and behind the 72 cuts of the
 post-repair drive. It exists as a
 tool for the same reason tools/b7scan.py does: the figures it prints decide
@@ -66,7 +66,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 FIXTURES = os.path.join(HERE, os.pardir, "test", "fixtures")
 
 #: From src/config.h. THROTTLE_REST is a released pedal and is not an equality
-#: -- docs/can-decoding.md says why 38 is the rest value and 39-43 are empty.
+#: -- docs/firmware/can-decoding.md says why 38 is the rest value and 39-43 are empty.
 THROTTLE_REST = 38
 #: Below walking pace the car is not driving anything. In 0.001 km/h.
 COAST_MIN_MMH = 4000
@@ -96,7 +96,7 @@ def samples(path):
     """(t, rpm, throttle, speed_mmh, d_ul, coolant_c) per 0x480 frame.
 
     d_ul is the fuel the ECU commanded since the previous 0x480, per
-    docs/can-decoding.md trap 2: the delta is (new - old) mod 32768 and a
+    docs/firmware/can-decoding.md trap 2: the delta is (new - old) mod 32768 and a
     counter of zero is a restart rather than a reading.
 
     coolant_c is carried because it is very likely what gates the cut. A
@@ -160,7 +160,7 @@ def windows(rows, min_s=COAST_MIN_S):
 def charges(win):
     """Charge per revolution at each sample, from the gap to the one before.
 
-    0x480 has no period (docs/can-decoding.md question 1), so a delta means
+    0x480 has no period (docs/firmware/can-decoding.md question 1), so a delta means
     nothing until it is divided by the gap it accumulated over.
     """
     out = []

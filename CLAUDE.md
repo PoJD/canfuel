@@ -37,7 +37,7 @@ In practice:
 - **Quote the source.** Every hardware constant in the code or the docs names
   its document and section — `DS39977C §2.7`, `DS39977C Table 31-1 D122`. A
   number without a citation is a number nobody can re-check.
-- **The datasheets are in `docs/`.** `pic18f25k80-datasheet.pdf` (Microchip
+- **The datasheets are in `docs/firmware/datasheets/`.** `pic18f25k80-datasheet.pdf` (Microchip
   DS39977C, PIC18F66K80 family) and `mcp2562-datasheet.pdf` (DS20005167C,
   MCP2561/2).
 
@@ -46,8 +46,9 @@ In practice:
   manufacturer document, so it does not belong in a repository under Apache 2.0
   even in the third-party section of `NOTICE` — which exists for material whose
   owners publish it openly. What this project keeps instead is **its own summary
-  of the handful of blocks it actually uses**, in `docs/can-decoding.md`. The
-  maintainer has the file; anyone else with VCDS for this ECU has it too. They are duplicated from the `kicad` repo on purpose: firmware
+  of the handful of blocks it actually uses**, in `docs/engine-health/vcds.md`. The
+  maintainer has the file; anyone else with VCDS for this ECU has it too.
+  The datasheets are duplicated from the `kicad` repo on purpose: firmware
   work should not depend on a sibling checkout being present.
 - **Register tables outrank prose.** The chapters are summaries and they do
   get it wrong — see the CANMX finding below, where the ECAN chapter's opening
@@ -64,9 +65,9 @@ In practice:
 Facts about the *car* — the signal table, the frame periods, that the bus is
 already terminated — are not datasheet questions. They were settled by
 measurement and are marked as measured where they appear, in
-`docs/can-decoding.md`. The rule above is about parts.
+`docs/firmware/can-decoding.md`. The rule above is about parts.
 
-`pdftotext -layout docs/pic18f25k80-datasheet.pdf -` makes the PDF greppable,
+`pdftotext -layout docs/firmware/datasheets/pic18f25k80-datasheet.pdf -` makes the PDF greppable,
 which is the fastest way to find a parameter number.
 
 ### Working code from the other repos is evidence, not a source
@@ -144,15 +145,25 @@ carries a generated block; a figure typed into prose only goes stale.
   core), `cycles.py`, `checkdocs.py`, `divconst.py`
 - `test/fixtures/` — twenty-four recordings from the vehicle, documented, of
   which the `_z1` ones are the only ones with trustworthy time
-- `docs/` — **`install.md` is the procedure**, plus decoding, frame layout,
-  refuelling reset, timing and optimisation. `engine-health.md` is a holding
-  document for one open investigation into the engine itself — the idle
-  misfires that outlived the repair. **It has an end date rather than a
-  permanent home.** It holds only what is open: symptoms, hypotheses, tests.
-  What was settled against goes to `engine-health-refuted.md`. The long
-  dated log that preceded both lives only in git
-  (`git show 7c69883:docs/engine-health.md`), and nothing in the tree cites it. A one-shot procedure that has been followed is deleted
-  rather than kept; `git log` is where it lives afterwards
+- `docs/` — two folders that answer different questions, and **a document
+  belongs to exactly one of them**:
+  - **`docs/firmware/`** — everything the converter needed or needs.
+    **`install.md` is the procedure**, plus decoding, frame layout, refuelling
+    reset, timing, optimisation, flashing, `refuted.md`, `open.md` (the open
+    firmware questions, 7 and 10) and `datasheets/`
+  - **`docs/engine-health/`** — the car's own engine. `open.md` is a holding
+    document for one open investigation — the idle misfires that outlived the
+    repair — holding only what is open: symptoms, hypotheses, tests.
+    `refuted.md` takes whatever is settled against. **Both have an end date.**
+    `vcds.md` (the VCDS blocks and how to record them) and
+    `vehicle-history.md` (the car's record) are permanent. The long dated log
+    that preceded `open.md` lives only in git
+    (`git show 7c69883:docs/engine-health.md`), and nothing in the tree cites it
+
+  Firmware documents may point at engine-health for context, never for a fact
+  they need; engine-health points at firmware freely (0x604, `IdleHealth`).
+  A one-shot procedure that has been followed is deleted rather than kept;
+  `git log` is where it lives afterwards
 
 The C core reproduces the Python oracle on every fixture: fuel totals and
 restart counts agree **exactly**, distance to within 7 mm over 54 m. Both were
@@ -195,7 +206,7 @@ the datasheet, against `gcc -fsyntax-only`, and against XC8 itself.
   widened for -- then read the same**: both counters zero, `COMSTAT` zero,
   `UNHEALTHY` clear, read off 0x603 on the display rather than off a blink
   rate. The one thing that has ever disturbed it is the MFD15 itself, and only
-  while somebody is operating it; see `docs/frames.md`.
+  while somebody is operating it; see `docs/firmware/frames.md`.
 - **The A/D reading is calibrated per unit, against a meter.** `VDD_CAL_*` in
   `config.h`, and the recipe for redoing it is beside them. The 1.024 V
   reference has no tolerance anywhere in the datasheet, so the nominal
@@ -203,7 +214,7 @@ the datasheet, against `gcc -fsyntax-only`, and against XC8 itself.
   agrees with a meter to under a hundredth of a volt. **The residual is the
   A/D's own scatter**, about ±0.025 V sample to sample, which is five times an
   LSB -- so read a mean, never one frame, and never calibrate against one.
-- **The timing budget is counted, not measured.** `docs/timing.md` costs every
+- **The timing budget is counted, not measured.** `docs/firmware/timing.md` costs every
   function out of the assembly listing XC8 generates. A typical pass is
   49–134 µs, so the loop runs 7,400–20,000 times a second; the busiest transmit
   slot uses **2.4 ms of its 25**; the worst pass without an EEPROM write is
@@ -227,15 +238,15 @@ the datasheet, against `gcc -fsyntax-only`, and against XC8 itself.
   holds it on the host, `tools/bench_test.py` measures the real gap on the
   adapter's own clock, and it is why the EEPROM write sits in a slot that
   transmits nothing and why a missed slot is dropped rather than caught up.
-- **`docs/optimisation.md` is required reading before changing any loop or any
+- **`docs/firmware/optimisation.md` is required reading before changing any loop or any
   arithmetic in `src/`.** It carries what was optimised and why, what was tried
   and rejected, and the two things that generalise on this part: use the
   narrowest integer type that provably holds the value, and prefer a walking
   pointer to an index in a hot loop.
 - **The refuelling rule is a first-order filter and a counter of consecutive
   at-rest samples, not a median.** "Is the level persistently higher than it
-  was" needs no sort, no histogram and no division. `docs/refuel-reset.md` is
-  the rule, `docs/optimisation.md` §8 the argument that it is the same answer.
+  was" needs no sort, no histogram and no division. `docs/firmware/refuel-reset.md` is
+  the rule, `docs/firmware/optimisation.md` §8 the argument that it is the same answer.
 - **Distance is integrated on `DIST_TICK_MS` = 10 ms with the remainder
   carried, and that is a correctness rule, not a budget.** `main.c` calls
   `compute_tick()` every pass; integrating on a 1 ms delta truncates **6.4 % of
@@ -245,7 +256,7 @@ the datasheet, against `gcc -fsyntax-only`, and against XC8 itself.
   shares the reasoning, so the twins would agree with each other about a wrong
   number. `DIST_MIN_MMH` is the other half: a standing vehicle reports
   0.005 km/h, which an exact integrator turns into 83 mm a minute.
-  `docs/optimisation.md` §6.
+  `docs/firmware/optimisation.md` §6.
 - **Neither division nor multiplication uses the compiler's helpers.** XC8
   v4.00 reaches for a per-bit loop for both — `___lldiv` 1,026 cycles,
   `___lmul` 849 — while the part has a single-cycle 8×8 multiplier it will only
@@ -265,7 +276,7 @@ the datasheet, against `gcc -fsyntax-only`, and against XC8 itself.
   **A divisor here should be one the physics forces.** 1000, 3600 and 95500
   are; a scaling factor chosen by us is one we can choose to be a power of two,
   so the tank filter and the drag slope use 128 and 2\*\*16 and both divisions
-  are shifts. `docs/optimisation.md` §11.
+  are shifts. `docs/firmware/optimisation.md` §11.
 - **`tools/cycles.py` measures loop bodies out of the listing** and requires
   every backward branch in the build to be declared in one of its three tables.
   It stops rather than guessing, so a change of algorithm cannot pass silently.
@@ -317,9 +328,9 @@ Linux, macOS and CI alone.
 ### Flashing is a command line, and the tool is IPECMD
 
 **The device is programmed with `ipecmd`, not from the IDE.** The procedure
-is steps 4 and 5 of `docs/install.md`; the full argument for every flag, the
+is steps 4 and 5 of `docs/firmware/install.md`; the full argument for every flag, the
 observed exit codes and the environment traps are in
-[`docs/flash-tool-notes.md`](docs/flash-tool-notes.md), which is also where
+[`docs/firmware/flashing.md`](docs/firmware/flashing.md), which is also where
 `tools/flash.py` gets its rules.
 
 Four things belong here because they are decisions rather than procedure:
@@ -337,7 +348,7 @@ Four things belong here because they are decisions rather than procedure:
   4.625, and IPECMD refuses to connect; `-W4.5` is regulated to and the part
   answers. The board draws under 30 mA, which is the PICkit 3's limit
   (DS51795B). In the car, or with a bench supply on, never — two supplies on
-  one rail. `docs/refuted.md` E6 and `docs/flash-tool-notes.md` have the rest.
+  one rail. `docs/firmware/refuted.md` E6 and `docs/firmware/flashing.md` have the rest.
 - **The EEPROM is erased by default, and that is left alone.** *Erase All
   Before Program* is on unless `-OH` turns it off, so a plain `-M` discards the
   persist ring. `persist_load()` returning false on a virgin EEPROM is a
@@ -364,7 +375,7 @@ compiler, the other to a programmer.
 **The ICSP header pinout is DS51795B Figure 1-2** — held at
 `kicad/canfuel/docs/pickit3-users-guide.pdf`. That connector is six pins and J3
 is five, because pin 6 is `PGM (LVP)` and this project does not use low-voltage
-programming. `docs/install.md` step 4 also keeps a procedure for establishing a
+programming. `docs/firmware/install.md` step 4 also keeps a procedure for establishing a
 pinout by measurement, which needs no document and works on any programmer.
 
 
@@ -435,7 +446,7 @@ display config). They have separate toolchains and separate GitHub remotes
 under `PoJD/`, and the directory above them is deliberately not a git repo.
 
 The coupling to **`mfd15`** is **the layout of all five frames, 0x600 to
-0x604**, defined in `docs/frames.md` and consumed by `mfd15/tri/S-AQY.TRI`. The
+0x604**, defined in `docs/firmware/frames.md` and consumed by `mfd15/tri/S-AQY.TRI`. The
 coupling to **`kicad`** is the pin assignment in the section above — one-way,
 and already frozen by an order that has been placed.
 
@@ -453,7 +464,7 @@ sensor pointed at it. So the rule above applies to every field this
 firmware puts on the wire, with no exceptions to remember.
 
 **0x603 is the one that answers "is the CAN side healthy" in numbers** rather
-than in an LED blink rate; its layout is in `docs/frames.md`,
+than in an LED blink rate; its layout is in `docs/firmware/frames.md`,
 `tools/bench_test.py` decodes it, and the display now decodes it too — bit by
 bit, under names rather than as a hex byte. It is still transmitted only with
 JP1 fitted, so those twelve channels read zero in a closed dashboard **by
@@ -462,8 +473,8 @@ design**; that is the first thing to check before calling one of them a fault.
 **0x604 is the engine-health frame and it is NOT behind JP1** — the idle grade
 and the start, for a closed dashboard. Its "not known" is 255 in every byte,
 never zero, and the whole frame reads 255 on a quiet bus: a zero there would be
-a perfectly smooth engine. `docs/frames.md` has the layout, `tools/idledips.py`
-is the oracle the C is diffed against exactly, and `docs/can-decoding.md`
+a perfectly smooth engine. `docs/firmware/frames.md` has the layout, `tools/idledips.py`
+is the oracle the C is diffed against exactly, and `docs/firmware/can-decoding.md`
 trap 6 carries the arithmetic from a raw frame to the byte.
 
 The useful check on the display: compare FuelNow against
@@ -575,7 +586,7 @@ txframes_engine(&tx, buf);  hal_can_send(CAN_ID_TX_ENGINE, buf, TXFRAME_DLC);
 txframes_gather_trip(&tx, &cp, now_ms);
 txframes_trip(&tx, buf);    hal_can_send(CAN_ID_TX_TRIP, buf, TXFRAME_DLC);
 
-/* 0x603 only while somebody is looking -- see docs/frames.md. Everything in
+/* 0x603 only while somebody is looking -- see docs/firmware/frames.md. Everything in
  * it comes from the HAL rather than the core, which is why the gather takes
  * scalars: txframes.c stays pure. */
 if (hal_sys_debug_enabled()) {
@@ -621,7 +632,7 @@ All of these are now implemented in `src/hal_can.c`, `src/hal_sys.c` and
 code it produced. This section is the index; the code is the detail.
 
 Everything below that carries a citation was read out of
-`docs/pic18f25k80-datasheet.pdf` (DS39977C) or `docs/mcp2562-datasheet.pdf`
+`docs/firmware/datasheets/pic18f25k80-datasheet.pdf` (DS39977C) or `docs/firmware/datasheets/mcp2562-datasheet.pdf`
 (DS20005167C). Everything without one is a **decision**, not a specification,
 and says so. Do not promote a decision to a specification without opening the
 PDF.
@@ -1052,7 +1063,7 @@ decision, not a datasheet one.
 
 ---
 
-## `docs/refuted.md` — read it before reintroducing a good idea
+## `docs/firmware/refuted.md` — read it before reintroducing a good idea
 
 Everything this project believed and got wrong, across all three
 repositories, with what refuted it. It exists because a refuted idea is a
@@ -1062,20 +1073,21 @@ enclosure, a submodule for `piclib`, reading the tank level straight off the
 bus, resetting the trip from the instrument cluster.
 
 Two rules for it. **Only settled-against things go in** — questions live in
-`can-decoding.md`. And **nothing is ever deleted from it**; if new evidence
+`docs/firmware/open.md` and `docs/firmware/can-decoding.md`. The engine has
+its own register, `docs/engine-health/refuted.md`, under the same rules. And **nothing is ever deleted from it**; if new evidence
 un-refutes an entry, say so inside the entry.
 
-`can-decoding.md` sorts its questions three ways and the distinction is worth
-keeping straight, because all three look similar from a distance:
+The firmware's questions are sorted four ways and the distinction is worth
+keeping straight, because they look similar from a distance:
 
 | Where | What it means |
 |---|---|
-| `refuted.md` | believed, then **settled against**. An answer exists and it is "no" |
-| `can-decoding.md` → *Resolved questions* | asked and **answered**, with the evidence kept |
-| `can-decoding.md` → *Never resolved but not required* | **no answer, and none wanted.** Do not work on these |
-| `can-decoding.md` → *Open questions* | genuinely open **and worth the effort**. There is one |
+| `docs/firmware/refuted.md` | believed, then **settled against**. An answer exists and it is "no" |
+| `docs/firmware/can-decoding.md` → *Resolved questions* | asked and **answered**, with the evidence kept |
+| `docs/firmware/can-decoding.md` → *Never resolved but not required* | **no answer, and none wanted.** Do not work on these |
+| `docs/firmware/open.md` | genuinely open, with what closes each. There are two, 7 and 10, and both may stay open for good |
 
-## Read `docs/can-decoding.md` before touching the maths
+## Read `docs/firmware/can-decoding.md` before touching the maths
 
 It documents the traps that are easy to run aground on quietly. In short:
 
@@ -1115,8 +1127,8 @@ src/
   compute.c/.h  maths                  PURE C
   txframes.c/.h frame assembly         PURE C
   persist.c/.h  EEPROM circular buffer PURE C
-  divconst.h    division by a constant  PURE C -- read docs/optimisation.md
-  fastmul.h     wide multiplication     PURE C -- read docs/optimisation.md
+  divconst.h    division by a constant  PURE C -- read docs/firmware/optimisation.md
+  fastmul.h     wide multiplication     PURE C -- read docs/firmware/optimisation.md
   hal_can.c/.h  ECAN + MCP2562
   hal_sys.c/.h  timer, ADC, LEDs, jumper, EEPROM
   pic_config.h  the #pragma config bits, and only those
@@ -1141,7 +1153,7 @@ tools/          flash.py — builds a mode and flashes it in one command, and
                 --preserve-eeprom keeps the persist ring AND checks that it
                 did, by dumping EEData either side of the write
                 canlog.py, replay.py — Python, runs anywhere
-                bench_test.py — the bench tests of install.md step 7:
+                bench_test.py — the bench tests of docs/firmware/install.md step 7:
                 listen-only, traffic, four scenarios and fault injection, each
                 ending in a verdict rather than a blink rate. Needs pyserial,
                 one CAN adapter, and two for the listen-only and fault tests
@@ -1263,7 +1275,7 @@ So, in order of how much they are worth:
 
    Typing them by hand is what fails: this file once declared exactly this
    rule for the hex size and quoted the byte counts four lines below it, and
-   those figures went on to disagree with `docs/optimisation.md` about the RAM
+   those figures went on to disagree with `docs/firmware/optimisation.md` about the RAM
    by more than 200 bytes — both correct on the day they were written.
 2. **A number derived from a constant is derived in one place**, and everywhere
    else says what it means rather than what it is. `persist.h` owns the EEPROM
@@ -1272,7 +1284,7 @@ So, in order of how much they are worth:
    an argument next to the code it produced is the thing this repository is
    for. It is only the figures that need one home.
 4. **Cross-reference by name, never by line number** — a symbol
-   (`compute_torque_d()`), a heading (`docs/optimisation.md` §8), a register
+   (`compute_torque_d()`), a heading (`docs/firmware/optimisation.md` §8), a register
    (DS39977C Register 28-5). Those survive an edit; `file.c:40-60` does not.
 
 Datasheet numbers are the exception to all of it and can be repeated freely:
@@ -1509,21 +1521,21 @@ measured warm idle, taken with adapter timestamps, is:
 
 ## The torque calibration, and what is still soft about it
 
-**For what to do next, see `docs/install.md`** — it is the plan, in order, and
+**For what to do next, see `docs/firmware/install.md`** — it is the plan, in order, and
 nothing here restates it. **It deliberately does not say how far along the
 build is**: a procedure that carries its own progress becomes a diary, and a
 diary in a repository goes stale the moment somebody works without updating it.
 Where the build has actually got to is asked, not read.
 
-**One calibration is left: the drag line on hot oil**, which is the one open
-question in `docs/can-decoding.md`. It is a refinement to a working device
-rather than a blocker, and it lives in `install.md` under *Then: calibration*.
+**One calibration is left: the drag line on hot oil**, question 7 in
+`docs/firmware/open.md`. It is a refinement to a working device
+rather than a blocker, and it lives in `docs/firmware/install.md` under *Then: calibration*.
 
 **The tank was the other one and it is closed, as a decision.** 6 L into a
 nearly empty tank settled at 5 L, which is the sender's own nonlinearity and
 not arithmetic here -- `compute_tank_d()` applies no calibration at all.
 Correcting a float from one point taken near empty would be fitting noise, so
-there is nothing to run. `install.md` has it. **Do not reopen it as
+there is nothing to run. `docs/firmware/install.md` has it. **Do not reopen it as
 outstanding work.**
 
 The rest of this section is why the drag line and the torque scale are what
@@ -1616,14 +1628,14 @@ Supporting evidence, not a specification: SAE J1979 carries actual engine
 percent torque (PID 0x62) and engine friction percent torque (PID 0x8E) as
 separate standard PIDs — exactly indicated-minus-friction — and PID 0x64 gives
 five reference points of which **the first is idle**, so the standard also
-treats idle as its own datum rather than a point on a curve. `docs/frames.md`
+treats idle as its own datum rather than a point on a curve. `docs/firmware/frames.md`
 has the citations.
 
-The drag line is the **only open question left** in `docs/can-decoding.md` —
-72–77 °C is warm, not the 95–110 °C of real driving, so it still probably
-overstates drag slightly, which is the conservative direction. The questions
-register in that file is sorted into what changes this firmware and what does
-not; everything else is either resolved or parked.
+The drag line is question 7 in `docs/firmware/open.md` — 72–77 °C is warm,
+not the 95–110 °C of real driving, so it still probably overstates drag
+slightly, which is the conservative direction. **Question 10, whether the oil
+temperature channel is right at all, sits underneath it** and may close it
+outright.
 
 **The scale is measured, off the plateau the engine actually reaches.** 0x280
 b7 is a percentage of a reference torque inside the ECU, not Nm, and nobody
@@ -1633,7 +1645,7 @@ in bytes the two factory ratings then give 1.061 and 1.055 Nm/bit, **0.6 %
 apart**, and 1.06 is a decision inside that bracket. At it the display shows
 about 170 Nm and 85.4 kW on such a pull, and
 `test_the_plateau_reproduces_the_rated_torque` / `..._power` pin both to 2 %.
-`docs/can-decoding.md` question 8 is resolved with the numbers.
+`docs/firmware/can-decoding.md` question 8 is resolved with the numbers.
 
 ⚠ **b7 = 255 is not full scale of anything the engine does, and deriving the
 scale from it read 30 % low.** The old premise — *b7 = 255 is the rated crank
@@ -1652,7 +1664,7 @@ still reads 37.
 pulls was not logged, and b7 carries the ECU's charge normalisation, so a hot
 day reads lower and a frosty one higher; and the engine was not wholly well
 that day, though every fault it had was a low-load one. **Neither is a job for
-`TORQUE_TRIM_PCT`**, which stays 0. See `docs/frames.md` and the comment in
+`TORQUE_TRIM_PCT`**, which stays 0. See `docs/firmware/frames.md` and the comment in
 `config.h`.
 
 The breadboard phase is skipped — Micro-Fit has a 3.0 mm pitch and does not

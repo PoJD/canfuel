@@ -43,7 +43,7 @@ from idledips import (START_CRANK_SHIFT, START_DIP_MS, START_FIRED_RPM,
                       start_fields)
 from canlog import Frame
 
-RATE_HZ = 94.0  # what 0x280 actually arrives at; see docs/can-decoding.md
+RATE_HZ = 94.0  # what 0x280 actually arrives at; see docs/firmware/can-decoding.md
 STEP = 1.0 / RATE_HZ
 
 
@@ -119,7 +119,7 @@ def gated(seconds, baseline=800.0, events=(), ramp=0.0, throttle=38,
     """The same synthetic series in the shape dips_cheap() takes.
 
     speed_mmh defaults to 5 because that is what a standing car really sends:
-    0x1A0 raw speed is 1, never 0. docs/can-decoding.md has the measurement.
+    0x1A0 raw speed is 1, never 0. docs/firmware/can-decoding.md has the measurement.
     """
     return [(t, int(round(v * 4)), throttle, speed_mmh)
             for t, v in series(seconds, baseline, events, ramp)]
@@ -215,12 +215,12 @@ class SegmentRate(unittest.TestCase):
 
     That is what makes a dip in it a per-cylinder quantity rather than a
     smoothed one -- 180 deg is one power stroke -- and it is the measurement
-    docs/engine-health.md (S1) argues the energy budget of one lost power
+    docs/engine-health/open.md (S1) argues the energy budget of one lost power
     stroke from. Asserted as a band rather than a figure: what has to survive is that
     the interval tracks the engine and not the 10 ms frame period.
 
     ⚠ The crank-angle form below is the stronger statement and the one
-    can-decoding.md trap 6 is written from. An interval that sits near the
+    docs/firmware/can-decoding.md trap 6 is written from. An interval that sits near the
     firing rate AT ONE SPEED is a coincidence; a constant angle across a
     fivefold change of speed is not.
     """
@@ -441,7 +441,7 @@ class RoughnessAgainstTheFixtures(unittest.TestCase):
 class StepDistribution(unittest.TestCase):
     """The shape the grade is a summary of.
 
-    This is what `--roughness --hist` prints and what can-decoding.md shows,
+    This is what `--roughness --hist` prints and what docs/firmware/can-decoding.md shows,
     and it is the answer to "what is being measured" -- not an event and not a
     threshold, but how often each size of step between firing events happens.
     """
@@ -553,7 +553,7 @@ class PerCylinderStructure(unittest.TestCase):
 
     def test_the_line_is_in_the_smooth_log_too(self):
         """THE conclusion. If this ever fails one way, the line has become a
-        fault signature and engine-health-refuted.md A5 is wrong; if it fails the other,
+        fault signature and docs/engine-health/refuted.md A5 is wrong; if it fails the other,
         the method has stopped finding what it found."""
         rough = period_power(self.runs("09_idle_60s_z1.txt"), 0.25)[0]
         smooth = period_power(self.runs("11_idle_noac_z1.txt"), 0.25)[0]
@@ -601,7 +601,7 @@ class SlotSpreadIsBiased(unittest.TestCase):
         """A synthetic idle in the shape 0x280 really has.
 
         ⚠ EACH VALUE IS HELD FOR `hold` FRAMES, because that is what the ECU
-        does (can-decoding.md trap 6) and because the window index is what a
+        does (docs/firmware/can-decoding.md trap 6) and because the window index is what a
         planted per-cylinder effect has to be planted on. Drawing fresh noise
         every FRAME instead makes every frame its own window, which silently
         moves a planted period 4 to period 16 -- that is not hypothetical, it
@@ -767,7 +767,7 @@ class HealthAgainstTheFixtures(unittest.TestCase):
 
     def test_the_two_recorded_cold_starts_are_the_ones_in_the_docs(self):
         """1.24 s against 0.83 s of cranking, 140 against 118 rpm lost: the
-        numbers docs/engine-health.md (S7) quotes, to the resolution of the byte."""
+        numbers docs/engine-health/open.md (S7) quotes, to the resolution of the byte."""
         cold = health_summary(os.path.join(FIXTURES, "18_coldstart_z1.txt"))
         fixed = health_summary(os.path.join(FIXTURES, "19_postfix_drive_z1.txt"))
         self.assertAlmostEqual(cold["start_crank"] * 0.032, 1.24, delta=0.032)

@@ -326,7 +326,7 @@ static void test_every_log_stays_inside_the_gauges(void)
 }
 
 /* 0x603 is ours alone -- S-AQY.TRI does not read it -- so these offsets are
- * pinned against docs/frames.md and against tools/bench_test.py, which decodes
+ * pinned against docs/firmware/frames.md and against tools/bench_test.py, which decodes
  * them on the bench. Nothing on the display breaks if they move; the bench
  * test silently starts lying, which is worse. */
 static void test_diag_frame_offsets(void)

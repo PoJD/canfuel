@@ -21,7 +21,7 @@ static void put_be32(uint8_t *p, uint32_t v)
 }
 
 /* ! THE MOST EXPENSIVE FUNCTION IN THE FIRMWARE: 6.4 ms, almost all of it nine
- * ! 32-bit divisions at 1,026 cycles each. Read docs/optimisation.md before
+ * ! 32-bit divisions at 1,026 cycles each. Read docs/firmware/optimisation.md before
  * ! adding a getter here, and prefer arranging the arithmetic so a division
  * ! disappears over making the division faster. */
 void txframes_gather(tx_values_t *v, const compute_t *c,
@@ -33,7 +33,7 @@ void txframes_gather(tx_values_t *v, const compute_t *c,
      * bus -- the PIC measures it on itself through the internal 1.024 V
      * reference. It stays live when the bus goes quiet, deliberately: a dead
      * bus is exactly the moment you want to know whether the converter is
-     * still being fed. docs/frames.md says so too. */
+     * still being fed. docs/firmware/frames.md says so too. */
     v->vdd_c = vdd_c;
 
     if (!compute_data_live(c, now_ms)) {

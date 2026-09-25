@@ -6,7 +6,7 @@
     python tools/cycles.py --lst path/to.lst    # a listing from somewhere else
 
 The reasoning behind every number, and what the budgets mean, is in
-docs/timing.md. This script is the executable half of that document: the
+docs/firmware/timing.md. This script is the executable half of that document: the
 document explains, the script re-derives, and CI runs the script.
 
 HOW IT WORKS. `mplab/Makefile` passes -Wa,-a, so pic-as writes
@@ -36,7 +36,7 @@ costs a nested loop as outer x inner, which overstates a triangular one. Its
 job is to catch something expensive being added by accident, not to certify a
 deadline.
 
-docs/optimisation.md is required reading before changing any loop in the core.
+docs/firmware/optimisation.md is required reading before changing any loop in the core.
 """
 
 import argparse
@@ -83,7 +83,7 @@ LOOPS = {
     # something reintroduced a plain 32-bit product.
     # _tank_median is gone -- first an insertion sort and
     # then as a 128-bucket histogram sweep. The refuelling rule does not need a
-    # median at all -- see docs/optimisation.md -- so the function is gone and
+    # median at all -- see docs/firmware/optimisation.md -- so the function is gone and
     # with it the last data structure the core walked once a second.
     # _compute_range_km is gone -- it summed a 30-slot ring of
     # microlitre totals ten times a second for a number that can only change
@@ -125,7 +125,7 @@ LOOPS = {
 # instructions would say nothing useful, and the budgets account for the wait
 # itself where it matters (slot_fuel adds the A/D time as a constant, and the
 # EEPROM write is excluded from slot_persist by name and analysed in
-# timing.md).
+# docs/firmware/timing.md).
 HARDWARE_WAITS = {
     "_hal_sys_vdd_c":    "waits for ADCON0bits.GO",
     "_adc_init":         "50 us for the band gap, start-up only",
@@ -182,13 +182,13 @@ NOT_LOOPS = {
 # a ceiling that can never be hit is not a gate. They sit roughly 1.5x above
 # what the code costs today, which is enough room for an honest change and not
 # enough to hide a millisecond arriving by accident. The real hardware limits
-# are in docs/timing.md; these are a regression alarm, not a deadline.
+# are in docs/firmware/timing.md; these are a regression alarm, not a deadline.
 BUDGETS = {
     "rx_frame": ("one received frame, decoded and accumulated", 1000.0),
     "compute_tick": ("compute_tick, worst case (with the tank sample)", 1000.0),
     # The transmit slots. Each is TX_SLOT_MS = 25 ms wide and holds one frame,
     # so the ceilings are about what the work costs rather than about the slot:
-    # the binding constraint is the receive FIFO, not the slot, and timing.md
+    # the binding constraint is the receive FIFO, not the slot, and docs/firmware/timing.md
     # says why. A budget that suddenly needs raising means a slot grew a second
     # job, which is the thing the whole arrangement forbids.
     "slot_fuel":    ("slot 0: the A/D, the gather and 0x600", 3600.0),
@@ -297,7 +297,7 @@ def self_cycles(name, words, loops, constants):
     if len(ordered) < len(specs):
         raise SystemExit(
             "cycles.py: %s has %d loops in the listing but %d in the LOOPS "
-            "table. The code changed shape -- read docs/optimisation.md, then "
+            "table. The code changed shape -- read docs/firmware/optimisation.md, then "
             "fix the table." % (name, len(ordered), len(specs)))
 
     for i, (start, end) in enumerate(ordered):
@@ -426,7 +426,7 @@ def main():
         sys.stderr.write("the loop tables no longer match the code:\n")
         for problem in problems:
             sys.stderr.write("  - %s\n" % problem)
-        sys.stderr.write("\nRead docs/optimisation.md before touching either "
+        sys.stderr.write("\nRead docs/firmware/optimisation.md before touching either "
                          "table.\n")
         return 2
 
@@ -456,7 +456,7 @@ def main():
             print("FAIL: %s takes %.2f ms, ceiling is %.2f ms"
                   % (what, micros / 1000.0, ceiling / 1000.0))
         print("If the cost is intended, raise the ceiling in tools/cycles.py and "
-              "say why in docs/timing.md.")
+              "say why in docs/firmware/timing.md.")
         return 1
 
     return 0

@@ -10,7 +10,7 @@
  *   compute_on_fuel()  called for every 0x480, which is the heartbeat of the
  *                      whole device. 0x480 HAS NO FIXED PERIOD -- it arrives
  *                      on a 10 ms grid, 26/s at idle and 18/s at 2600 rpm, so
- *                      nothing here may assume a rate. See can-decoding.md
+ *                      nothing here may assume a rate. See docs/firmware/can-decoding.md
  *                      question 1.
  *   compute_tick()     called on the scheduler tick: integrates distance and
  *                      samples the tank
