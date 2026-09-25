@@ -2477,6 +2477,14 @@ The owner may skip the vacuum check, which is awkward to reach. That is
 reasonable: if the valve seals, what N112 does upstream of it cannot reach the
 engine.
 
+**Test 2 was done too, and it is also negative.** *Owner-reported,
+25 September:* the thin hose between N112 and the combination valve was pulled
+off, on a cold engine. **Neither the hose end from N112 nor the valve's nipple
+passed any air.** The engine was cold, so the pump ran, found no flow and set
+a secondary-air fault, which the owner then cleared. That is the system
+behaving as designed: with its control line off the valve cannot open, and
+the ECU notices. With this and test 1, **the secondary-air side is closed**.
+
 None of these expects a finding. **On the evidence of test 1, the secondary-air
 system is not what makes this idle stumble**, and the exhaust manifold and the
 cylinder 4 knock log remain the leads.
@@ -2505,6 +2513,134 @@ the knock log afterwards is the test: cylinder 4's retard should disappear.
 signal is a few hundred millivolts measured against the ECU's ground, and a
 poor engine earth adds noise to it and weakens the spark. Cleaning them
 costs a wire brush.
+
+#### Knock sensor voltage per cylinder: 020 + 026 + 003 — 25 September 2026
+
+**The "before" log for the exhaust visit**
+(`vcds/vcds-knock-020-026-003.csv`, 745 samples over 11 minutes, about 0.9 s
+apart): warm idle, tip-ins, coasting, and several full-throttle pulls to
+3000–4500 rpm. No bus capture; group 003 carries engine speed, air mass,
+throttle and advance instead. *Owner's reading:* cylinders 1 and 4 read
+clearly higher than 2 and 3, 4 the highest, nearly all the time. That is
+right, and the question is what it means.
+
+**The voltage scale is coarse.** 026 moves in steps of 0.157 V, and at idle
+all four sit on 0.314 V, two steps up, in 256 of 272 idle samples. **So 026
+sees nothing at idle.** Knock retard at idle is zero on all four, as in the
+022/023 log. Whatever makes the idle stumble, this group cannot look at it.
+
+**Cylinders 1 and 4 read about twice 2 and 3, and the ratio is the same
+whether the engine is firing or not.** Median of each against the mean of 2
+and 3, binned by engine speed. "Throttle shut" is throttle under 3 %, MAF
+about 3 g/s, which above 1500 rpm is the overrun:
+
+| rpm | state | n | 1 / (2,3) | 4 / (2,3) | 4 / 1 |
+|---|---|---|---|---|---|
+| 1000–1500 | firing | 45 | 1.33 | 1.50 | 1.00 |
+| 1000–1500 | throttle shut | 17 | 1.71 | 1.71 | 1.00 |
+| 1500–2000 | firing | 89 | 2.00 | 2.00 | 1.00 |
+| 1500–2000 | throttle shut | 41 | 2.00 | 1.89 | 1.00 |
+| 2000–2500 | firing | 145 | 2.00 | 2.27 | 1.11 |
+| 2000–2500 | throttle shut | 44 | 1.74 | 2.18 | 1.26 |
+| 2500–3000 | firing | 38 | 2.00 | 2.45 | 1.26 |
+| 3000–4600 | firing | 18 | 1.64 | 2.18 | 1.33 |
+
+The absolute level follows engine speed and not load. At 2000–2500 rpm the
+mean of 2 and 3 is 1.73 V with the throttle shut and 1.33 V firing.
+
+**Why 1 and 4 come as a pair.** In any inline four with a flat crank,
+pistons 1 and 4 move together and so do 2 and 3. Cylinder 1's firing top
+dead centre and cylinder 4's are 360° apart, the same crank position one
+revolution later. So anything that makes a sound once per crank revolution
+lands in the 1 and 4 windows equally, and 2 and 3 share the other position.
+That is geometry, not a document; how wide the windows are is not sourced
+here. Where the sensors sit relative to the cylinders also changes what each
+window hears. **A defect in both cylinder 1 and cylinder 4 would be the odd
+coincidence the owner suspected, and nothing needs one.** An engine with the
+1/4 pair louder than 2/3 in every state, fired or not, is most likely showing
+how its sensors hear the crank, and not a fault. There is no healthy engine
+of this type logged to compare with, so that cannot be proved here.
+
+**What is left: cylinder 4 above its twin, from about 2000 rpm up.** Below
+2000 rpm 4 and 1 are equal. Above it cylinder 4 reads 11–33 % more than
+cylinder 1 when firing, 46 % more at full throttle, **and 26 % more with the
+throttle shut**. That last one is the important reading. With the throttle
+shut the cylinders fill with very little air, so there is almost no
+combustion pressure and almost no exhaust blow-down. A noise that needs gas
+pressure, knock or a puff from a crack, should fall away there. It does not.
+**So the extra in cylinder 4's window is mechanical and rises with engine
+speed.** A noise once per cycle, at camshaft speed, lands in a single window,
+which fits. A lifter or a valve is the obvious candidate, as general
+knowledge; the log cannot say which part. ⚠ The three groups are read one
+after another, so each 026 sample sits about 0.3 s from the 003 sample that
+labels it. That blurs single samples on a transient, not the bins.
+
+**What this does to the exhaust-leak hypothesis.** A leak at one runner would
+tick once per cycle at a fixed crank angle, so the idea fitted the single
+cylinder of the 022/023 log. It does not fit this log well:
+
+- It would raise one window, not the 1 and 4 pair. The pair is explained
+  above without a leak.
+- It needs exhaust pressure. The extra in cylinder 4 is there with the
+  throttle shut, where exhaust pressure is low. A leak would be quiet then.
+
+So **the knock log is no longer a reason to expect a cracked manifold**. The
+leak test is still worth having for the puff at idle and the jingle, but
+finding nothing there would not leave the knock retard unexplained. The
+"after" log is now less useful as a test of the manifold.
+
+**The retard itself changed.** 022/023 the evening before: 16 events on
+cylinder 4, 4.5–6.7 °CA, at 960–2000 rpm on tip-ins. This log has tip-ins
+at the same engine speeds and shows **five events below 2500 rpm, 0.7–1.5 °CA,
+all cylinder 4**. The large ones now come only at **full throttle,
+3000–4000 rpm**: cylinder 4 steps to 5.2 °CA several times and recovers by
+0.7–1.5 °CA a sample, and cylinder 1 shows 0.7 °CA in five samples. Those are
+the moments where cylinder 4's window runs 46 % above cylinder 1's. ⚠ At one
+sample every 0.9 s, a short event can be missed, but a 5° step recovering at
+0.75° a sample would still show as several degrees. The difference is real.
+Between the two logs came about 100 km of driving. That fits **knock
+control relearning** its references after the two battery disconnects, the
+row in the table above that said it would fade; it is not proof.
+
+**Real knock at full throttle is not excluded.** 100-octane fuel and a
+13–19° advance make it unlikely, and the remap is the caveat, as before. A
+noise that gets louder with engine speed and a reference that has not yet
+learned it would produce the same retard. Both point at cylinder 4, and the
+evidence does not choose between them.
+
+**The idle, the same day.** *Owner-reported:* `IdleHealth` 100–160 and an
+idle that felt restless. **No oil temperature was noted with it**, and part of
+the session was a cold start for the hose test, so it cannot be put in the
+table in `frames.md`. It is higher than the 57–70 of the evening before. In
+this log the idle is 760–800 rpm, MAF 3.0–3.3 g/s, and the advance moves
+between 0 and 9 °CA. That is the idle speed control using the ignition, and
+it is normal (general knowledge). The log shows nothing unusual at idle, and
+it could not have shown knock there.
+
+**Conclusions:**
+
+1. **The 1 and 4 pair reading higher is not a finding about cylinders 1 and
+   4.** It is the crank-symmetric pair, present fired and unfired.
+2. **Cylinder 4 hears a mechanical noise above 2000 rpm that cylinder 1 does
+   not**, and it is there without combustion. That is the source that
+   remains for the retard.
+3. **Knock control has nothing to do with the idle fault.** No retard at
+   idle in either log, and 026 cannot resolve anything there.
+4. **The exhaust manifold is a weaker lead for the knock than it was.** It
+   stays a lead for the puff at idle.
+5. **The owner's hypothesis, a leak that ticks and makes the ECU pull
+   timing**, does not fit this log: that noise would need exhaust pressure,
+   and this one does not. Timing pulled back would not explain the idle in
+   any case, because nothing is pulled back at idle. The owner's point that
+   a leak would not change the burnt mixture much is right. Air drawn in
+   downstream of the valves reaches only the probe, not the cylinder.
+
+**The cheap next test separates noise from knock outright:** 026 alone, or
+with 003, standing in neutral, held at 2000, 2500, 3000 and 3500 rpm for
+about ten seconds each, warm. No load, so no knock is possible. If cylinder
+4 still reads above cylinder 1 from 2000 rpm up, it is mechanical, and a
+mechanic's stethoscope along the head around cylinder 4, at the engine
+speed where the gap is largest, is the way to find it.
 
 ### What `deaktiv.` in group 014 is: a load threshold
 
@@ -2739,30 +2875,20 @@ anyway, can listen to the rest of the system on the same visit.
 
 ### What is owed, none of it urgent
 
-- **Before the exhaust visit: a 020 + 026 log, the "before" of the
-  comparison.** 026, knock sensor voltage per cylinder, has never been
-  logged on this car. Start the log once the engine is running, because
-  VCDS has dropped at the start three times now. **With no bus capture
-  beside it, add group 003** (engine speed, MAF, throttle angle, advance).
-  Neither 020 nor 026 carries engine speed or load (Ross-Tech's block
-  list), so without 003 nothing would say which samples are tip-ins; its
-  throttle angle shows them directly. Three groups sample more slowly, and
-  that is the accepted price. With a capture running, 020 + 026 alone
-  would do. Drive the kind of
-  driving the first knock log caught: pull-aways, and pressing the pedal
-  again after coasting or a gearchange, at 1000–2000 rpm. Add a few
-  minutes of warm idle and some steady cruise, so that 026 has a baseline
-  in each.
-- **Next, decided by the owner: the exhaust specialists.** A leak test of the
+- **Next, and cheaper than anything else here: 026 standing in neutral at
+  2000–3500 rpm**, warm. No load means no knock, so cylinder 4 above
+  cylinder 1 there is mechanical. See the end of *Knock sensor voltage per
+  cylinder*.
+- **Then, decided by the owner: the exhaust specialists.** A leak test of the
   original manifold (see *How an exhaust-side leak could produce these
   symptoms* for what to ask), and the mounting and hangers of the new system
-  for the overrun jingle. If they find and fix a crack, a 020 + 026 log
-  afterwards is the test: cylinder 4's retard should be gone.
-- **The owner's own check before that: the thin hose between N112 and the
-  combination valve**, pulled off the valve's nipple at a warm idle. The
-  nipple should not pulse, since pulsing means a torn diaphragm passing
-  exhaust. The hose end should not suck, since suction means N112 passes
-  vacuum when switched off. Refit it before the next cold start.
+  for the overrun jingle. ⚠ Since the 020 + 026 log, the manifold is a lead
+  for the puff at idle rather than for the knock retard, so a 020 + 026 log
+  afterwards is no longer expected to change.
+- ~~A 020 + 026 log before the exhaust visit.~~ **Done**, with 003; see
+  *Knock sensor voltage per cylinder*.
+- ~~The thin hose between N112 and the combination valve.~~ **Done,
+  negative**; see *Test 2*.
 
 - **Group 032 again, a few hundred kilometres after the MAF swap**, one
   photographed screen, no session: it reads the new MAF's adaptation after it
