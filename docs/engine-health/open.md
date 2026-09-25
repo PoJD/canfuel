@@ -509,6 +509,21 @@ the ECM and bolted to the block (*general*). What matters for them is that the
 ECM's own ground and the engine block sit at the same potential — which is
 exactly what a poor ground 2 or 608 breaks.
 
+**Two things at the battery, owner-reported, 9/2026:** the main red positive
+cable is **chafed through right at the battery**, bare strands visible under
+the heat-shrink, condition unknown; and the **battery cover is broken**, so
+moisture can reach the terminals and the cable. A cable whose strands have
+corroded or broken carries everything — starter, alternator, ECM, coil — and
+only shows a drop under load (*general*). It heads the list below.
+
+**The ECM's own view of its supply is in VCDS.** One of the measuring groups
+001–006 carries a supply voltage (look for `napětí`; on many VW petrol ECUs of
+this era it is group 004 — *general*, not checked against this ECU's label
+file). Logged together with the battery posts on a multimeter at the same
+moment, the difference is the drop on the ECM's positive feed and ground —
+with no connector to back-probe — and logged beside 014 it shows whether a
+voltage dip lines up with a misfire.
+
 **Tests — measure first, clean what fails, instead of every earth in the car.**
 A voltage drop only shows while current flows through the joint, so **the
 load has to go through the path being measured** (*general*):
@@ -530,6 +545,10 @@ alternator bracket, the ground-strap bolt — not paint, not plastic.
 every single joint (lug to metal, clamp to post) should drop hundredths, not
 tenths.
 
+0. **Engine idling, all loads on: battery + post → the far end of the main
+   red cable** (the fuse holder on the battery, the starter terminal or the
+   alternator B+, whichever it runs to). Wiggle the chafed section while
+   watching the meter: a jump is broken strands.
 1. **Engine idling, all loads on: battery − post → engine block.** Ground 2
    and the clamp together. Then **post → clamp** and **strap lug → gearbox**
    one joint at a time, to find which one it is — the terminals already
