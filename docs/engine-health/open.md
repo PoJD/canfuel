@@ -560,9 +560,11 @@ with them is a joint that moves, which is exactly the fault being chased.
 
 Whatever reads high: clean to bright metal, refit at the manual's torque, and
 **then** compare `IdleHealth` at the same oil temperature and repeat the
-neutral 026 holds. Also: **what leads went on on 17/9** — genuine VW or
-aftermarket? The thread has one poster whose new aftermarket leads made it
-misfire.
+neutral 026 holds. **The leads fitted on 17/9 are NGK**, i.e. aftermarket
+and not VW's thick originals. In the thread, NGK leads did not help its
+original poster and one poster's new aftermarket (Beru) leads made his engine
+misfire until he went back to the originals — a lead, cheap to test by
+borrowing a genuine VW set.
 
 ### H5. Something in the cylinder 4 knock window that is not the engine's combustion (S4 + S5 only)
 

@@ -162,21 +162,22 @@ here is owner-supplied from service records.
 |---|---|---|
 | Both oxygen sensors (pre- and post-cat) | **10/2017 — never changed since** | the whole ownership, ~27,600 km |
 | Fuel filter | **12/2017**, and possibly again 10/2022 — see below | 4 or 9 years, **not established** |
-| **Fuel filter, new** | **23/9/2026**, with the injectors | ~0 |
+| **Fuel filter, new**, Bosch `0 450 905 318` | **23/9/2026**, with the injectors | ~0 |
 | MAF sensor | 7/2018 *(connector cleaned 7/2026)* | not recoverable — see *Distance and use* |
 | **MAF sensor, new** | **24/9/2026**, genuine VW `06A 906 461 A`; the 2018 unit is kept | ~0 |
-| Chiptuning | 6/2018 | — |
+| Chiptuning, described by the owner as mild | 6/2018 | — |
+| Timing belt and water pump | **10/2017** | the whole ownership, ~27,800 km |
 | **Fuel tank** | **replaced inside the ownership, date not recoverable** | unknown — see below |
 | Fuel pump, Bosch | 10/2022 | ~1,500 km |
 | Spark plugs and leads | 12/2022 *(replaced 9/2026)* | **~1,500 km — see below** |
 | Ignition coil | 6/2026 | ~0 |
-| Throttle body `028 129 748` | **original, never replaced.** 6/2026: inspected, new gasket, adaptation run. It was already clean, with no carbon, so it had evidently been cleaned at some earlier date nobody recorded | the car's |
+| Throttle body `028 129 748` | **original, never replaced.** 6/2026: inspected, new gasket, adaptation run. It was already clean, with no carbon — only wiped with a cloth — so it had evidently been cleaned at some earlier date nobody recorded | the car's |
 | Fuel pressure regulator `037 133 035 C` | 7/2026 | ~0 |
-| Catalytic converter, silencer, exhaust gaskets: **everything from the flex pipe to the tail** | **9/2026** *(previously 10/2017)* | ~0 |
+| Catalytic converter, **flex pipe**, silencer, exhaust gaskets: everything from the flex pipe (included) to the tail | **10/9/2026** *(previously 10/2017)* | ~0 |
 | Small hose from the secondary-air combination valve to the intake ahead of the MAF | torn off during the August heater work; fault **16795 / P0411** (secondary air, incorrect flow) photographed **11/8/2026 16:39**, hose refitted that day or a few days after | — |
 | **Exhaust manifold** (stainless, double-flow, SSP 233 p. 7) | **original, never replaced** *(owner nearly certain)* | the car's |
-| Injectors `06A 906 031 C`, new from the UK | **9/2026** | ~0 |
-| **Spark plugs and ignition leads** | **17/9/2026** | ~0 |
+| Injectors `06A 906 031 C` / Bosch `0 280 155 791`, new from the UK | delivered 22/9, **fitted 23/9/2026** by the owner | ~0 |
+| **Spark plugs and ignition leads**, NGK leads | **17/9/2026**, at the Dakuma garage | ~0 |
 | Rear shock absorbers, air-conditioning recharge, minor items | 17/9/2026 | ~0 |
 
 Three entries carry more than a date.
@@ -197,9 +198,8 @@ owner's, from handling them, and not the photograph's. This is the **second** co
 distance it never covered, after the converter directly above.
 
 ⚠ **They were replaced separately from the injectors and ahead of them**,
-because the injectors were still in transit on the day. How long the gap turned
-out to be is not recorded here — add the injectors' own fitting date to the
-table above when it happens, and the gap reads off the two dates. That splits a repair the rest of
+because the injectors were still in transit on the day: plugs and leads on
+17/9, injectors on 23/9/2026. That splits a repair the rest of
 `docs/` had assumed would be one event, and it cost the post-repair drive its
 single variable.
 
@@ -216,7 +216,8 @@ agrees, from a completely different measurement, with the volumetric efficiency
 was that there was nothing to be had at the top of the range; the car is not
 going back to standard. The warnings in `docs/firmware/can-decoding.md` and
 `docs/firmware/frames.md` about what a remap does to the torque and load channels all
-describe this car rather than a hypothetical one. It sits between the 8.8 of
+describe this car rather than a hypothetical one. The owner describes the remap
+as mild. It sits between the 8.8 of
 2018 and the 9.9 of 2019 in the table above, which is suggestive and is not
 evidence — see below.
 
@@ -297,6 +298,24 @@ how much they are likely worth:
    separable in a per-year figure and none of which are worth arguing about at
    this resolution.
 
+### Before and after — do not mix across the September 2026 work
+
+**There is no single "after".** The repair came in steps, several of them
+with the battery off, which also resets the ECU's adaptations:
+
+| date | change | recordings on this side of it |
+|---|---|---|
+| until 10/9/2026 | exhaust with the blocked converter, old plugs, old injectors, old MAF | fixtures `01`–`18` |
+| 10/9 | converter, flex pipe, silencer | — |
+| 17/9 | plugs and leads | — |
+| 23/9 | injectors and fuel filter; battery disconnected | `19`–`23` (old MAF) |
+| 24/9 | MAF; battery disconnected again, adaptations from zero | `24` onwards |
+
+**Rule: no fuel calibration and no tank-to-tank comparison spans one of these
+lines.** For consumption, only the state after 24/9/2026 counts, and the first
+few hundred kilometres after it are the adaptations settling (group 032,
+`open.md` S9). The pump history above is all from before the first line.
+
 ### The two figures measure different things, and the difference has a name
 
 **The pump measures litres delivered. canfuel measures what the ECU believes
@@ -322,14 +341,14 @@ Sorted by how directly they sit in the measurement chain:
 | Part | Why it matters here |
 |---|---|
 | **Oxygen sensors, 10/2017** | the largest risk on the list. They set the fuelling, so they move both figures together and are invisible to any comparison of the two. **9 years and the full ownership distance**, behind a failing cat |
-| **Fuel filter** | was the oldest fuel-side part on the car and is **being replaced with the injectors**, so it leaves this table on the day. A restricted filter limits rail supply under demand; it was always by some distance the cheapest item here to eliminate, and it is now eliminated |
+| **Fuel filter** | was the oldest fuel-side part on the car and **was replaced with the injectors on 23/9/2026**, so it has left this table. A restricted filter limits rail supply under demand; it was always by some distance the cheapest item here to eliminate, and it is now eliminated |
 | **MAF, 7/2018** (replaced 24/9/2026) | `docs/firmware/frames.md`'s volumetric-efficiency argument rules out a *badly* failing sensor by arithmetic — the volumetric efficiency it implies stays physical — and explicitly **does not** rule out a slightly lazy one. 8 years |
 | **Plugs and leads, 12/2022** | **four calendar years but only ~1,500 km.** An earlier record called them "four years downstream of whatever has been happening", which is true of the dates; the distance is the other half of it and it is small. Old by date, nearly new by wear |
 | Pump 10/2022, coil 6/2026, FPR 7/2026, cat 9/2026, injectors 9/2026 | **effectively new.** Everything that sets rail pressure and injector flow — the two inputs 0x480 depends on — is now a 2026 part |
 | Throttle body, original | **not new, but inspected and found clean in 6/2026.** It meters the idle air, so it is on the idle fault's side of the engine; its condition was seen rather than assumed. An earlier revision of this table listed it as effectively new, and that was wrong |
 
-**The asymmetry is the point, and after next week it is as stark as it can
-get.** Two whole sides of this engine will have been renewed and a third has
+**The asymmetry is the point, and after September 2026 it is as stark as it
+can get.** Two whole sides of this engine have been renewed and a third has
 not been touched in eight or nine years.
 
 | | state after 9/2026 | exceptions |
@@ -350,7 +369,7 @@ spent those years behind a converter that was burning through. That was where to
 ⚠ **The fuel lines are the one thing on the delivery row that stays old**, and
 they are named rather than passed over: they run the length of the car, they
 are original as far as anything here records, and they sit between a tank of
-unknown date and parts that will be a week old.
+unknown date and parts fitted in September 2026.
 
 ### The fuel filter's age is two answers and neither is provable
 
@@ -364,15 +383,14 @@ say which.** It is written down as an open pair rather than resolved to the
 likelier one, because a service history that quietly rounds its uncertainties
 is the thing this file exists not to be.
 
-⚠ **It also stops being worth resolving**, which is the practical part: a new
-one goes on with the injectors, so the question becomes historical on the day
-it is asked. **What matters is that it was 4 to 9 years old and is not any
+⚠ **It also stopped being worth resolving**, which is the practical part: a new
+one went on with the injectors on 23/9/2026, so the question is historical. **What matters is that it was 4 to 9 years old and is not any
 more.** If the 10/2022 part turns up in a box unopened, add that here — it
 would settle the pair and cost nothing.
 
-**The reason it is being changed is protection, not suspicion.** Nothing
+**The reason it was changed is protection, not suspicion.** Nothing
 points at the filter and no leak or restriction has been observed. It is
-going in because **the filter is the last barrier between nine years of tank
+went in because **the filter is the last barrier between nine years of tank
 and a set of brand new injector nozzles**, and new injectors behind an old
 filter is the one combination on this car where a cheap part can ruin an
 expensive one. That it also leaves the measurement chain — the entry above in
