@@ -491,6 +491,22 @@ someone else. What posters did report as fixed:
   confirmed an earth fix; one noted it idled smoother after new alternator
   brushes and regulator, and worse in wet weather.
 
+**VW had a service bulletin for exactly this, on the sister engines.** VW
+of America TSB **01-08-27**: intermittent misfires and ignition "open
+circuit" fault codes on the 2.0 8V (US codes AVH, AZG, BDC, BEV, BBW, BGD,
+2002–2004, Golf/Jetta/Bora and the Beetle), traced to **the ground wire of
+the ignition coil's harness**, which runs from the coil connector to a bolt
+on the cylinder head. The repair replaces that wire and takes the coil's
+ground on a new wire to the ground points **under the battery tray**
+(repair wires `000 979 225 1` and `000 979 230 1`, butt splice
+`111 971 939 B`, seal `357 972 741 B`). ⚠ **Not read from the bulletin
+itself** — it is quoted, consistently, on newbeetle.org, vwvortex and in a
+photographed repair on a 2002 Jetta; the part numbers come from those
+reports. **The AQY is the European sibling of those engines and is not on
+the bulletin's list**, and this car's coil is new but its harness is 26
+years old. It makes the coil's own ground — ground 15 below — the first
+earth to measure, not the last.
+
 **Where the earths are.** A Golf/Jetta IV ground list (web.mit.edu/dennis,
 from the US repair literature; **this car's own current-flow diagram in the
 owner's manual is the authority** — the New Beetle shares the platform but
@@ -588,7 +604,11 @@ tenths.
    next to ground 1.
 4. **Engine off, headlights on: battery − post → body** (ground 1) and
    **→ a headlight ground**. The body side under its own load.
-5. **Engine idling: coil ground (ground 15) → battery − post**, and **engine
+5. **Engine idling: coil ground → battery − post**, measured two ways: at
+   the ground eyelet on the head (ground 15), and **back-probed at the
+   coil connector's ground pin** — the wire TSB 01-08-27 replaces, so the
+   difference between the two readings is that wire. Moved up the order by
+   the bulletin: do it right after tests 0 and 1. Also **engine
    block → ECM ground pins** (back-probe the connector; pins from the
    manual's current-flow diagram for the AQY). Small currents, so here even a
    tenth is suspect.
