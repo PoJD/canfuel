@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Does this engine stop injecting when the car is driving it, and when?
 
-This is the analysis behind *The oldest symptom is on the overrun* in
-docs/engine-health-log.md, and behind the 72 cuts of the post-repair drive. It exists as a
+This is the analysis behind entry C1 of docs/engine-health-refuted.md (the
+ECU cuts fuel on a cold overrun too), and behind the 72 cuts of the
+post-repair drive. It exists as a
 tool for the same reason tools/b7scan.py does: the figures it prints decide
 how a symptom is read, and a figure typed into prose cannot be re-checked
 against a new capture.

@@ -10,7 +10,10 @@ normal for this engine, the file is deleted.
 |---|---|
 | **this one** | symptoms → hypotheses → tests → plan. Short on purpose |
 | `engine-health-refuted.md` | every hypothesis **settled against**, with what settled it, plus the questions that were **answered**. Read it before proposing something: most obvious ideas are already there |
-| `engine-health-log.md` | the full log of 10–25 September 2026, frozen. Every table, alignment and argument in detail. Cited below as *log, § …* |
+
+The long version this replaced, a dated log of 10–25 September 2026 with every
+alignment and argument in full, is in git:
+`git show 7c69883:docs/engine-health.md`. Nothing in the tree depends on it.
 
 **Rules for this file.** A hypothesis that is refuted moves to
 `engine-health-refuted.md` in the same commit, with its evidence, and leaves
@@ -73,6 +76,18 @@ but those are 22-second holds, shorter than the device waits before it grades
 at all, and August's idle stumbled too. **So nobody knows what a well AQY
 grades.** That is hypothesis H0 below, and it is the first thing to fix.
 
+**What one dip is worth.** Engine speed on 0x280 is recomputed once per 180°
+of crank, one power stroke (`can-decoding.md` trap 6), so a dip is one
+cylinder's stroke. At the warm idle of `09_idle_60s_z1` — 796 rpm, 326 µl/s,
+about 18.5 Nm indicated — one power stroke is worth about 58 J. A cylinder
+that produces nothing takes that out of the rotating assembly: **33–57 rpm for
+an assumed 0.20–0.12 kg·m² of crank, flywheel and clutch** (the inertia is an
+estimate, not measured). The deepest dips measured are 37.5–46 rpm, inside
+that bracket; the typical one is 20–22 rpm, about half — a partial burn, or a
+full misfire the sampling rounded off. The fall takes one or two firings and
+the recovery about 250 ms, which is the idle governor, not a fuelling loop:
+**the dip is the failed combustion itself, not the ECU correcting anything.**
+
 **Temperature matters and it is not monotonic.** Rough cold, worst at about
 50–61 °C of oil, least rough hot. A reading without the oil temperature beside
 it cannot be compared with anything.
@@ -101,9 +116,8 @@ and after it. Not recorded, not timed, never aligned with anything. It did
 - **No fault code is stored.** The rate stays below whatever the ECU needs to
   set one.
 
-**Three properties of the counter that must be kept in mind** (log, § *What
-`deaktiv.` in group 014 is* and § *Did the 20 % threshold mask the morning?*):
-it moves in steps of 12; detection switches off below about 20 % load, which on
+**Three properties of the counter that must be kept in mind**, all measured
+on the 24/9 logs (`engine-health-refuted.md` A11, A12): it moves in steps of 12; detection switches off below about 20 % load, which on
 the new MAF is right at the hot-idle load; and it counted **five to fifty times
 more per dip** after the MAF swap than before. **So 014 is a yes/no witness,
 not a ruler.** Compare across time with engine speed or `IdleHealth`, never
@@ -120,8 +134,10 @@ within seconds.
 - 25/9, about 100 km later: the small tip-in events had shrunk to 0.7–1.5 °CA;
   the large ones (up to 5.2 °CA) came only at full throttle, 3000–4000 rpm.
 - **Never at idle**, in either log.
-- **Within VW's specification** of 0–15 °CA per cylinder while driving (log,
-  § *What VW's workshop manual says*).
+- **Within VW's specification** of 0–15 °CA per cylinder while driving —
+  VW's repair manual for the Golf Mk4, *Motronic injection and ignition system
+  (2.0 ltr. engine)*, display groups 10–29, as transcribed on
+  workshop-manuals.com (a third-party transcription, not a PDF held here).
 
 ### S5. Cylinder 4 reads high in group 026 (knock sensor voltage)
 
@@ -158,10 +174,18 @@ that; the garage is going to.
 
 ### S7. The cold start — probably fixed, not yet proven
 
-On the old injectors, after an overnight stand: long cranking (1.24 s), first
-firing, then a fall to 311 rpm that nearly stalled it. On the new injectors:
-cranking 0.70–0.86 s, and the fall is gone on the 25/9 cold start but was
-still there, smaller, on 24/9 after a colder and longer stand (450 → 331 rpm).
+| | stand | injectors | crank to first firing | after first firing |
+|---|---|---|---|---|
+| `18_coldstart_z1`, 11/9 | ~10 h | old | 1.24 s | 451 → **311** rpm, nearly died |
+| `19_postfix_drive_z1`, 24/9 | ~19 h, 10 °C | new | 0.83 s | 450 → **331** rpm, caught |
+| `24_mafswap_drive_z1`, 24/9, 27 °C coolant | hours | new | 0.86 s | no fall |
+| 25/9 morning, display | ~12 h | new | 0.77 s | clean |
+| 25/9 warm, display | minutes | new | 0.70 s | no fall, `StartClt` 86 °C |
+
+The first three are measured through `idledips.health_summary()`, the oracle
+for 0x604; the 25/9 rows are *owner-reported* off the display. Cranking
+shortened by a third on the new injectors; the fall has appeared only in the
+two coldest starts.
 **The next overnight cold start at under ~15 °C of coolant decides it**:
 `StartCrank`, `StartDip` and `StartClt` on 0x604.
 
@@ -278,8 +302,6 @@ or late, intermittently, and gets worse as the oil thins. *General.*
 At idle the exhaust pulses dip below atmospheric and a crack draws air in;
 under load it only blows out. *General.* The front probe reads lean, the rear
 loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
-Worked through in the log, § *How an exhaust-side leak could produce these
-symptoms*, and scored in § *A leak ahead of the probes*.
 
 | S1 | S2 | S3 | S4 | S5 |
 |---|---|---|---|---|
@@ -335,8 +357,11 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
 
 All the ignition parts are new, so what is left is what feeds them. A poor
 engine earth weakens the spark and adds noise to the knock-sensor signal.
-*General*, and one of the fixes in the long Polish AQY thread (log, § *What the
-web adds*).
+*General*, and one of the fixes in a long Polish thread on exactly this
+symptom on an AQY (forum.vwgolf.pl, t=522030 — a forum, so a lead, not a
+source). The original poster's own fix there was a cracked exhaust manifold;
+others were genuine leads, a Bosch coil, a holed breather hose, and the earth
+straps.
 
 | S1 | S2 | S3 | S4 | S5 |
 |---|---|---|---|---|
@@ -453,7 +478,7 @@ argues against it.
 **The idle fault has never been placed in a cylinder.** 014 on this ECU has no
 per-cylinder counter, the bus carries no cylinder identification, and the
 per-cylinder analysis of engine speed found ordinary cylinder-to-cylinder
-variation rather than one bad cylinder (log, § *Is it one cylinder?*). Knock
+variation rather than one bad cylinder (`engine-health-refuted.md` A5). Knock
 control names cylinder 4, but for a noise off idle, not for the stumble.
 
 Naming it would split the hypotheses at once: one cylinder points at H1 or H3

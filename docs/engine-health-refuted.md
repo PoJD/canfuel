@@ -11,8 +11,9 @@ the toolchain: **only settled things go in**, and **nothing is deleted**. If
 new evidence un-refutes an entry, say so inside the entry and move the
 hypothesis back to `engine-health.md`.
 
-The detail behind every entry is in `engine-health-log.md`, cited as
-*log, § …*. The entries are short on purpose.
+The entries are short on purpose. The full reasoning behind them was the
+long version of `engine-health.md`, which is in git:
+`git show 7c69883:docs/engine-health.md`.
 
 **Strength of each refutation**, because they are not all equal:
 
@@ -30,7 +31,7 @@ The detail behind every entry is in `engine-health-log.md`, cited as
 **Believed:** for most of the investigation; the leading explanation after the
 burned-through converter, the −4.7 % idle trim and the cold overrun burble.
 **Refuted by:** four new Bosch injectors (23/9) and the stumble and the
-misfire counter both stayed (log, § *The post-repair drive*).
+misfire counter both stayed (post-repair drive, 24/9).
 **What survives:** the old injectors probably did cause the cold-overrun burble
 and part of the bad cold start (C1, C3). They were never bench-tested; they are
 kept, labelled by cylinder. By inspection cylinder 1's nozzle was the dirtiest
@@ -58,7 +59,9 @@ that seats at cranking speed but not on a hot idle — that is H1 in
 **Refuted by:** the per-cylinder periodogram of engine speed (`idledips.py
 --cylinders`). The period-4 line is just as strong in the smooth recordings as
 in the rough ones (13.4× against 13.1×), and the four phase slots differ by
-3.5–5.9 rpm with no consistent outlier (log, § *Is it one cylinder?*).
+3.5–5.9 rpm with no consistent outlier. The unbiased per-cylinder spread
+(`sd_true`) is 1.95 rpm rough against 1.09 smooth, a weaker separation than
+the idle grade gives, and confounded with temperature.
 **Limit:** four cylinders equally bad leave nothing periodic, so "all four
 together" is neither confirmed nor refuted.
 
@@ -71,8 +74,9 @@ stumble was worst mid-temperature and present cold.
 
 **Refuted by:** the idle trim reads −3.1 %, slightly rich, on the new MAF. A
 leak big enough to misfire a cylinder, and the misfires themselves (oxygen
-through an unburnt cylinder), would both push it positive (log, § *The trim
-argument is stronger*). **A small leak at one runner is not excluded** and is
+through an unburnt cylinder), would both push it positive: one runner
+leaking dilutes to a quarter at the one sensor, but a cylinder has to run a
+long way lean before it misfires. **A small leak at one runner is not excluded** and is
 H3 in `engine-health.md`.
 
 ### A8. "The secondary-air combination valve or N112 open at idle — air or exhaust between intake and exhaust (an uncontrolled EGR)" — measured
@@ -80,8 +84,10 @@ H3 in `engine-health.md`.
 **Refuted by:** two owner tests on 25/9. Test 1: pump hose pulled off the valve
 at a warm running idle, nothing pulsed out — the valve seals. Test 2: the thin
 hose between N112 and the valve pulled off, cold — neither end passed air, and
-the ECU set a secondary-air fault, which is the system behaving as designed
-(log, § *What is on the car* and after). The P0411 of 11 August was a hose that
+the ECU set a secondary-air fault, which is the system behaving as designed.
+From the owner's photographs the small hose on the valve runs to a second
+module with its own connector, read here as N112 (SSP 233 p. 20 diagram);
+its part number was not legible. The P0411 of 11 August was a hose that
 came off during the heater work, refitted since.
 
 ### A9. "Plugs 1 and 4 worse means injectors 1 and 4 were leaking" — argued
@@ -102,8 +108,9 @@ idle on account of the knock sensors, and misfire detection uses crank speed.
 It came from the 014 counter, which read more at the hot idle after the swap.
 **Refuted by:** engine speed. Dips at a standstill idle fell 51–65 % at every
 oil temperature band; the counter was counting five to fifty times more per
-dip. The ruler changed, not the engine (log, § *Did the 20 % threshold mask
-the morning?*).
+dip. The ruler changed, not the engine. Dips a minute at a standstill idle,
+morning (old MAF) → afternoon (new MAF): 22.1 → 10.9 at 40–60 °C of oil,
+14.5 → 5.1 at 60–66 °C, 21.4 → 8.7 at 66–80 °C.
 
 ### A12. "Misfire detection's 20 % load threshold masked the morning's misfires" — measured
 
@@ -156,8 +163,9 @@ unchanged.
 ### B4. "The rattling clamp under the driver's seat is the cylinder 4 noise" — measured
 
 Same engine speed, so worth testing. Clamp tightened, neutral 026 holds
-repeated: cylinder 4 still 25–60 % above cylinder 1 at the same speeds (log,
-§ *After the clamp*).
+repeated (`vcds/vcds-neutral-026-003-clamp.csv` against
+`vcds-neutral-026-003.csv`): cylinder 4 still 25–60 % above cylinder 1 at the
+same speeds.
 
 ### B5. "The camshaft sensor G40" — argued
 
@@ -177,7 +185,8 @@ three cylinders read zero retard.
 
 **Refuted by:** `coastscan.py` on `19_postfix_drive_z1`: the first coasts of the
 morning, on oil at 13–22 °C, cut the injectors 1.20–1.34 s after the lift
-exactly as warm. So the burble was fuel arriving with none commanded — the old
+exactly as warm: in `17_drive_property_z1` the four warm cuts shut
+1.19–1.30 s after the lift and gave fuel back at 1700–1754 rpm. So the burble was fuel arriving with none commanded — the old
 injectors — and it has not been heard since. Gap: coolant below ~60 °C, the
 first two minutes of driving, has no coast recorded.
 

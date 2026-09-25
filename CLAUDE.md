@@ -149,9 +149,9 @@ carries a generated block; a figure typed into prose only goes stale.
   document for one open investigation into the engine itself — the idle
   misfires that outlived the repair. **It has an end date rather than a
   permanent home.** It holds only what is open: symptoms, hypotheses, tests.
-  What was settled against goes to `engine-health-refuted.md`, and
-  `engine-health-log.md` is the frozen full log up to 25 September 2026,
-  kept because tools and tables cite it. A one-shot procedure that has been followed is deleted
+  What was settled against goes to `engine-health-refuted.md`. The long
+  dated log that preceded both lives only in git
+  (`git show 7c69883:docs/engine-health.md`), and nothing in the tree cites it. A one-shot procedure that has been followed is deleted
   rather than kept; `git log` is where it lives afterwards
 
 The C core reproduces the Python oracle on every fixture: fuel totals and

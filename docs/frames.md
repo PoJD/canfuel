@@ -649,7 +649,7 @@ well founded it is, because the difference decides how much weight the
 - **Misfire detection is per-cylinder and works off crankshaft speed
   fluctuation, and it demonstrably runs on this car** — the counter in
   measuring group 014 shows non-zero values in first gear
-  (`docs/engine-health-log.md`). So the ECU is *not* without a per-cylinder
+  (`docs/engine-health.md`, S3). So the ECU is *not* without a per-cylinder
   combustion signal. Whether that signal reaches the torque model is unknown.
 - **A badly burning engine does not leave the air path untouched either** —
   residual gas, thermal state and, near the limit, the idle governor all move.
@@ -666,10 +666,10 @@ the hypothesis above failing rather than an anomaly.
 **None of which makes the number wrong on a healthy engine.** It is the
 quantity the ECU steers the car with.
 
-⚠ **`docs/engine-health-log.md` is an open investigation into exactly this**, on
-this vehicle, and holds the measurements: the display's peak against the
-measured airflow of the same drive, and the two readings of the gap between
-them. It is a holding document and will be folded back in or deleted.
+⚠ **Whether this engine was down on power was investigated on this vehicle
+and is closed**: the display's old peak was the old scale, not the engine
+(`can-decoding.md` question 8). The engine's remaining faults are at idle and
+are in `docs/engine-health.md`.
 
 ### What b7 has actually been observed to reach
 
@@ -700,20 +700,36 @@ table above, not the maximum here.
 looks like.** The drive of 2026-09-10 showed a peak of 117 Nm on the display,
 which back through the drag line is b7 ≈ 189–201 depending on where in the
 range it fell — **74–79 % of full scale against the 78.1 % relative load VCDS
-logged over the same pulls** (`engine-health-log.md`). ⚠ **Those are a display
+logged over the same pulls** (VCDS groups 003 and 010, 2026-09-10). ⚠ **Those are a display
 maximum and a mean over wide-open samples, not one measurement**, so this is
 arithmetic pointing somewhere rather than a result. Where it points: **the gap
 from the plateau to 255 is the same size as the gap between the measured air
 and the ECU's reference air** — and the held pulls in `19` then put relative
 load at 78–81 % across the whole plateau. Reaching 255 needs the engine to fill to 100 % of a
 reference normalised to 0 °C and 1013 hPa — and that is the reference,
-measured, in *What "load" is a percentage of*. **No fuelling repair changes what
-the air-mass sensor reads.**
+measured, below. **No fuelling repair changes what the air-mass sensor reads.**
+
+#### What "load" is a percentage of — measured, not assumed
+
+**The ECU's relative load is the measured air mass normalised to 0 °C and
+1013 hPa**, where air weighs 1.293 g/l. Measured on 2026-09-10 rather than
+taken from anywhere: three quantities were logged at once — grams per second
+from the MAF (group 003), litres per second from engine speed and
+displacement, and the ECU's own percentage (group 010) — and grams over litres
+is the density the ECU normalises to. Over 51 steady samples above 70 % load
+the median is **1.292 g/l**. Below about 70 % load the relationship scatters,
+as expected: at part load the ECU's figure carries corrections a bare
+air-mass ratio does not.
+
+At full throttle that drive held **78.1 % mean, 75.3–81.9 %**, with the
+throttle at its mechanical stop (85.1–85.5°). **78 % is not "the engine
+manages 78 % of what it could"**: the engine breathes engine-bay air, not 0 °C
+air, and what that makes of its filling is the next section.
 
 #### What that gap is worth in Nm, if the reading is right
 
 **Turn the normalisation round and every b7 becomes a statement about air.**
-`engine-health-log.md` measured the reference off this car — 0 °C and 1013 hPa,
+The section above measured the reference off this car — 0 °C and 1013 hPa,
 1.293 g/l — so relative load is **the engine's filling times the density of the
 air it is breathing, divided by the density of that reference**:
 
@@ -723,7 +739,7 @@ rl  =  VE  x  rho(intake) / 1.293 g/l
 
 ⚠ **That is one identity with two unknowns in it, and they were never separated.**
 The measurement is the product: **rl = 78.1 % at full throttle**, taken at an
-intake temperature nobody logged. `engine-health-log.md` brackets it by assuming
+intake temperature nobody logged. It was bracketed by assuming
 the intake was somewhere in 20–40 °C, which is what makes its filling figure a
 range — **20 °C pairs with VE 84 %, 40 °C with VE 93 %**, and those rows are
 not independent readings of the engine. **The honest content of that drive is
@@ -777,8 +793,8 @@ at 5200 — so the scale is 188 Nm divided by whatever b7 really plateaus at:
 
 - **from the air**, a plateau of 196–217 at a September intake gives
   **0.87–0.96 Nm/bit**;
-- **from brake thermal efficiency**, the 28–32 % that `engine-health-log.md` calls
-  normal for this engine puts the same drive's peak at 150–171 Nm rather than
+- **from brake thermal efficiency**, the 28–32 % that is normal for an engine of
+  this type and age at full throttle (*general knowledge, not sourced*) puts the same drive's peak at 150–171 Nm rather than
   117, which is **0.90–1.01 Nm/bit**.
 
 The overlap is **0.90–0.96 Nm/bit**, and the shipped 0.74 sits 20–25 % below
@@ -807,8 +823,9 @@ values are **2**, with a single-count step at each multiple of 64. **One
 the byte is transmitted in, and what `TORQUE_TRIM_PCT` steps by. What this adds
 is that the ECU does not use every count: **the smallest change b7 has ever
 been seen to make is two of them, about 0.8 % of full scale and near 2.1 Nm.**
-That strengthens rather than weakens the "b7 did not move at the idle dips"
-observation in `engine-health-log.md` — the resolution available to that argument
+That strengthens rather than weakens the observation that b7 does not move
+at the idle dips of `09_idle_60s_z1`, where engine speed falls 20–37 rpm and b7
+stays on its baseline — the resolution available to that argument
 is twice as coarse as it assumed.
 
 ### At full load the lambda in the model cannot be a measured one
