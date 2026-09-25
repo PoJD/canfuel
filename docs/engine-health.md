@@ -2694,6 +2694,27 @@ is not what this one is getting.
   three that matters for the converter. A fist or a rubber mallet on the can
   settles it.
 
+**It happens on the overrun**, *owner-reported*, while engine braking. That
+points away from fuel. On the overrun this ECU cuts the injectors after about
+1.2 s (*The oldest symptom is on the overrun*, `coastscan.py`), so the engine
+pumps plain air and nothing burns in the converter. What does change on the
+overrun is the **direction of the torque**: the engine rocks the other way
+on its mounts, which on the AQY is a pendulum support (SSP 233 p. 6), and the
+exhaust moves with it. So the likely candidates are mechanical, and this is
+general knowledge rather than a diagnosis:
+
+- **the braided outer sleeve of the new flex pipe**, which can jingle when the
+  exhaust flexes;
+- **a heat shield or clamp** touching when the engine rocks back;
+- **the pipe or a hanger touching the body or subframe**, if the new exhaust
+  hangs slightly differently from the old one, or if the pendulum support
+  lets the engine rock further than it should.
+
+**Test on the drive, engine warm:** rev to about 3000 rpm in neutral and
+drop the throttle sharply, with somebody watching and listening under the
+car. The engine rocks the same way it does on the overrun, and the source
+usually shows itself.
+
 **What settles it without guessing:** block **046** read again after a few
 hundred km, which the owner can do from the seat. The knock test on the
 cold can. And the exhaust specialists, who are looking at the manifold
