@@ -489,23 +489,46 @@ ECM's own ground and the engine block sit at the same potential — which is
 exactly what a poor ground 2 or 608 breaks.
 
 **Tests — measure first, clean what fails, instead of every earth in the car.**
-A voltage-drop test under load: meter on 2 V DC, probes on the two ends of one
-earth path, with current flowing. *General guidance:* a good path reads a
-tenth or two of a volt while cranking; half a volt or more is a bad joint.
+A voltage drop only shows while current flows through the joint, so **the
+load has to go through the path being measured** (*general*):
 
-1. **Battery negative *post* (not the clamp) → engine block**, cranking. This
-   is ground 2 and the battery clamp together. Then post → clamp alone, to
-   split them — the terminals already showed a drop.
-2. **Battery negative post → body** next to ground 1, cranking and with the
-   headlights on.
-3. **Engine block → body**, engine idling with lights and fan on.
-4. **Coil ground (ground 15) → battery negative post**, engine idling.
-5. **Engine block → ECM ground pins** (back-probe the ECM connector; the pin
-   numbers are in the manual's current-flow diagram for the AQY), engine
-   idling.
-6. **Charging voltage** at the battery, idling with loads on, and the
-   battery's own condition (age, a load test). The one confirmed electrical
-   fix in the thread was a battery.
+- **engine running** is the load for the engine's earth: the alternator is
+  bolted to the engine and its charging current returns through the block,
+  ground 2 and the battery clamp. Headlights, rear window heater, blower on
+  full: tens of amps, and a one-person test;
+- **headlights with the engine off** load the *body* earths (ground 1 and the
+  lamp grounds), not the engine's — the engine path then carries almost
+  nothing and reads near zero even when it is bad;
+- **cranking** is the heaviest load of all and can be done alone with the
+  meter clipped on and filmed, or with its MIN/MAX function.
+
+Meter on DC volts, one probe on the **battery post itself** (the lead, not
+the clamp), the other on bare metal: a bolt head on the head or block, the
+alternator bracket, the ground-strap bolt — not paint, not plastic.
+*General guidance:* under a few tenths of a volt per path is healthy, and
+every single joint (lug to metal, clamp to post) should drop hundredths, not
+tenths.
+
+1. **Engine idling, all loads on: battery − post → engine block.** Ground 2
+   and the clamp together. Then **post → clamp** and **strap lug → gearbox**
+   one joint at a time, to find which one it is — the terminals already
+   showed a drop.
+2. **Same state: battery + post → alternator B+ terminal.** The charging
+   positive side, same idea.
+3. **Same state: engine block → body**, and **battery − post → body**
+   next to ground 1.
+4. **Engine off, headlights on: battery − post → body** (ground 1) and
+   **→ a headlight ground**. The body side under its own load.
+5. **Engine idling: coil ground (ground 15) → battery − post**, and **engine
+   block → ECM ground pins** (back-probe the connector; pins from the
+   manual's current-flow diagram for the AQY). Small currents, so here even a
+   tenth is suspect.
+6. **Battery voltage idling with the loads on** (a charging system holds
+   roughly 13.5–14.5 V, *general*), and the battery's age and a load test.
+   The one confirmed electrical fix in the thread was a battery.
+
+Watch the reading on test 1 through a few idle stumbles: a drop that jumps
+with them is a joint that moves, which is exactly the fault being chased.
 
 Whatever reads high: clean to bright metal, refit at the manual's torque, and
 **then** compare `IdleHealth` at the same oil temperature and repeat the
