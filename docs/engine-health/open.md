@@ -545,6 +545,19 @@ alternator bracket, the ground-strap bolt — not paint, not plastic.
 every single joint (lug to metal, clamp to post) should drop hundredths, not
 tenths.
 
+00. **No meter at all — VCDS against the display, a load step.** The MFD15's
+   `DisplayVolt` is the display's own supply, measured in the cabin; the ECM's
+   supply voltage is in VCDS. Neither is calibrated against the other, so read
+   the **change**, not the absolute: warm idle, log both with every load off,
+   then switch on headlights, rear window heater and blower full, then off
+   again. The ECM sees the charging current's path (main cable, engine earth,
+   its own feed); the display does not. **If the ECM's reading falls
+   noticeably more than `DisplayVolt` when the loads come on**, the extra drop
+   is on the engine side and tests 0–2 are where it is. Logged beside 014,
+   the same run shows whether voltage dips line up with misfires, at VCDS's
+   ~0.3 s resolution. *Already on record, off the display on 25/9: 13.9–14.2 V
+   at a warm idle, peaks 14.2–14.5 V — the charging system itself looks
+   normal.*
 0. **Engine idling, all loads on: battery + post → the far end of the main
    red cable** (the fuse holder on the battery, the starter terminal or the
    alternator B+, whichever it runs to). Wiggle the chafed section while
