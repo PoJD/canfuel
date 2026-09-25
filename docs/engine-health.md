@@ -2605,6 +2605,30 @@ fault codes and no hesitation. Not logged. It closes the old full-load
 lamp question as far as one drive can; see *The historical fault*, above.
 The idle fault is a separate question, and this drive says nothing about it.
 
+### Cold starts on the new parts, read off 0x604 — from 25 September 2026
+
+The symptom this file leaned on hardest was the overnight cold start: long
+cranking, first firing and then a fall almost to a stall. Three starts now
+compare on the same measure:
+
+| | stand | injectors | crank to first firing | after first firing |
+|---|---|---|---|---|
+| `18_coldstart_z1`, 11/9 | ~10 h | old | 1.24 s | 451 → **311** rpm, nearly died |
+| `19_postfix_drive_z1`, 24/9 | ~19 h, 10 °C | new | 0.83 s | 450 → **331** rpm, caught |
+| 25/9, `StartCrank` on the display | ~12 h | new | **0.77 s** | **clean**, no fall worth the name |
+
+*The 25/9 row is owner-reported off the display; the other two are
+measured.* Cranking has shortened by a third since the injectors and is
+steady across the two starts on them. ⚠ **The fall after first firing is not
+yet settled.** `19`, already on the new injectors, still dropped by
+119 rpm, and it had the longer and colder stand. So today's clean start is
+not yet a like-for-like comparison. `StartDip` (0x604 byte 5) and `StartClt`
+(byte 6) on the display put a number on the fall and on the coolant at
+first firing, and are the two to note next to `StartCrank`. **If the next
+overnight starts read the same, the rail bleed-down was the old injectors'
+seats**, and the pump's check valve, the other candidate under *The start
+itself*, is eliminated by the same evidence.
+
 ### What is owed, none of it urgent
 
 - **Group 032 again, a few hundred kilometres after the MAF swap**, one
