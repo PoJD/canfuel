@@ -2739,6 +2739,12 @@ anyway, can listen to the rest of the system on the same visit.
 
 ### What is owed, none of it urgent
 
+- **Next, decided by the owner: the exhaust specialists.** A leak test of the
+  original manifold (see *How an exhaust-side leak could produce these
+  symptoms* for what to ask), and the mounting and hangers of the new system
+  for the overrun jingle. If they find and fix a crack, a 020 + 026 log
+  afterwards is the test: cylinder 4's retard should be gone.
+
 - **Group 032 again, a few hundred kilometres after the MAF swap**, one
   photographed screen, no session: it reads the new MAF's adaptation after it
   has settled. The swap reset it to 0.0 / 0.0 and it had learned −3.1 % /
