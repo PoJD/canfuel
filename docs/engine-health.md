@@ -2443,6 +2443,11 @@ either would have let exhaust out there.
 
 **What is left to check on this side is cheap:**
 
+- **A finger over the valve's pump port** at a warm idle, with the pump hose
+  off, is a more sensitive version of test 1 than looking. A valve that
+  passes even a little exhaust pulses against the fingertip at the firing
+  frequency.
+
 - **Is there vacuum on the small hose at a warm idle?** Pull it off the
   combination valve's nipple and put a finger over it. At a warm idle,
   N112 should not be passing vacuum, so the finger should feel nothing.
@@ -2451,7 +2456,11 @@ either would have let exhaust out there.
 - **Soot or condensation inside the pump hose**, from the valve end. That is the
   longer-term record test 1 cannot give.
 
-Neither expects a finding. **On the evidence of test 1, the secondary-air
+The owner may skip the vacuum check, which is awkward to reach. That is
+reasonable: if the valve seals, what N112 does upstream of it cannot reach the
+engine.
+
+None of these expects a finding. **On the evidence of test 1, the secondary-air
 system is not what makes this idle stumble**, and the exhaust manifold and the
 cylinder 4 knock log remain the leads.
 
