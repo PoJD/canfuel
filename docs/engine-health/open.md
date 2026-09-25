@@ -516,10 +516,8 @@ moisture can reach the terminals and the cable. A cable whose strands have
 corroded or broken carries everything — starter, alternator, ECM, coil — and
 only shows a drop under load (*general*). It heads the list below.
 
-**The ECM's own view of its supply is in VCDS.** One of the measuring groups
-001–006 carries a supply voltage (look for `napětí`; on many VW petrol ECUs of
-this era it is group 004 — *general*, not checked against this ECU's label
-file). Logged together with the battery posts on a multimeter at the same
+**The ECM's own view of its supply is in VCDS: block 004, field 2**
+(`napájecí napětí`, specified 12.0–14.5 V in this ECU's label file). Logged together with the battery posts on a multimeter at the same
 moment, the difference is the drop on the ECM's positive feed and ground —
 with no connector to back-probe — and logged beside 014 it shows whether a
 voltage dip lines up with a misfire.

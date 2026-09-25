@@ -23,6 +23,7 @@ labels `06A-906-018-AQY.LBL`.
 |---|---|---|
 | **002** | engine speed · load · injection time · **mass air flow** | full-load air and load; b6 of 0x288 is injection time |
 | **003** | engine speed · **mass air flow** · throttle angle · ignition advance | mass air flow is not on the CAN bus; the idle advance shows the idle control working |
+| **004** | engine speed · **ECM supply voltage** (spec 12.0–14.5 V) · coolant · intake air temperature | the ECM's own view of its supply: the voltage-drop tests in `open.md` H4 |
 | **006** | **intake air temperature** · altitude correction factor | the volumetric-efficiency bracket in `docs/firmware/frames.md` |
 | **010** | engine speed · **relative load** · throttle · advance | the load reference (0 °C, 1013 hPa) |
 | **014** | engine speed · load · **misfire count** · detection state | the idle misfires (S3) |
@@ -47,6 +48,13 @@ finding:**
 - **The idle regulator, block 055, is −2.00 to +2.00 g/s**, its adaptation
   −1.50 to +0.150 g/s, and the target idle in 056 is 780 rpm.
 - **Intake air** is specified −45.0 to +108.5 °C.
+- **Idle speed**, every block that carries it: 740–820 rpm, target 780
+  (050/056).
+- **Supply voltage, block 004 field 2: 12.0–14.5 V.**
+- ⚠ **020 and 026 are not in this ECU's label file** — it defines 022/023 for
+  the retard. They are on Ross-Tech's general list and this ECU answers them
+  (both were logged in September 2026), so the fields are read without a
+  label and without a specification.
 
 **What is not there, looked up rather than assumed:**
 
