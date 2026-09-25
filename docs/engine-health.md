@@ -1902,7 +1902,7 @@ separately fitted `F 00C 2G2 032`, recorded as bought in 2018 with no invoice.
 The whole meter was replaced with a genuine VW `06A 906 461 A`, housing and
 insert together as supplied, and the old unit is kept. **Fitting it needed the
 battery disconnected, so 032 started again from 0.0 / 0.0.** Recordings:
-`24_mafswap_drive_z1.txt` (filtered, about 30 min: a warm restart,
+`24_mafswap_drive_z1.txt` (filtered, about 30 min: a start at 27 °C of coolant,
 10 min of driving, an idle at 52–60 °C of oil, more driving including some
 full-throttle pulls on a country road, and a hot idle) with
 `vcds-mafswap-002-032.csv` and `vcds-mafswap-002-014.csv`.
@@ -2615,10 +2615,24 @@ compare on the same measure:
 |---|---|---|---|---|
 | `18_coldstart_z1`, 11/9 | ~10 h | old | 1.24 s | 451 → **311** rpm, nearly died |
 | `19_postfix_drive_z1`, 24/9 | ~19 h, 10 °C | new | 0.83 s | 450 → **331** rpm, caught |
-| 25/9, `StartCrank` on the display | ~12 h | new | **0.77 s** | **clean**, no fall worth the name |
+| `24_mafswap_drive_z1`, 24/9 afternoon, 27 °C coolant | some hours | new | 0.86 s | **no fall** (`StartDip` 0) |
+| 25/9 morning, `StartCrank` on the display | ~12 h | new | **0.77 s** | **clean**, no fall worth the name |
+| 25/9, warm, off the display | minutes | new | 0.70 s | `StartDip` 0, `StartClt` 86 °C |
 
-*The 25/9 row is owner-reported off the display; the other two are
-measured.* Cranking has shortened by a third since the injectors and is
+*The 25/9 rows are owner-reported off the display; the others are
+measured, through `idledips.health_summary()`, which is the oracle for 0x604.*
+⚠ **`24` was not a warm restart, as this file and the fixtures README used to
+say.** Its capture opens at 27 °C of coolant and 19.5 °C of oil. No fixture
+holds a warm start at all: `18`, `19` and `24` are the only three with a
+start in them. The warm start of 25/9 is therefore the first reading of one,
+and it is the baseline a warm engine should give.
+
+**What the table already says about the fall**: it has appeared only in the
+two coldest starts, 16 °C and 12 °C of coolant, and was absent at 27 °C
+on the same new injectors. So it is at least partly a matter of
+temperature, and **the next start from a cold overnight stand is the test**.
+A fall there on new injectors would point at something that is not the
+injectors: the pump's check valve, or the cold-start enrichment itself. Cranking has shortened by a third since the injectors and is
 steady across the two starts on them. ⚠ **The fall after first firing is not
 yet settled.** `19`, already on the new injectors, still dropped by
 119 rpm, and it had the longer and colder stand. So today's clean start is

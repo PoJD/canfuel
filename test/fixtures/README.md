@@ -49,7 +49,7 @@ stands. It is duration, average flow and distance that need a clock.
 | `21_oilcool_p1_z1.txt` | slcan+Z1 | 21,829 | ✅ adapter | cool-down point 1: ignition on, engine off, oil filter read by IR. 30 s | 72.75–73.5 °C |
 | `22_oilcool_p2_z1.txt` | slcan+Z1 | 10,956 | ✅ adapter | cool-down point 2, as above. 15 s | 71.25–72.75 °C |
 | `23_oilcool_p3_z1.txt` | slcan+Z1 | 11,023 | ✅ adapter | cool-down point 3, as above. 15 s | 68.25–69.0 °C |
-| `24_mafswap_drive_z1.txt` | slcan+Z1, **filtered** | 643,763 | ✅ adapter | **after the MAF swap**: warm restart, driving, a 52–60 °C oil idle, more driving with pulls, hot idle. 30 min | 27.0–100.5 °C |
+| `24_mafswap_drive_z1.txt` | slcan+Z1, **filtered** | 643,763 | ✅ adapter | **after the MAF swap**: a start at 27 °C of coolant and 19.5 °C of oil, driving, a 52–60 °C oil idle, more driving with pulls, hot idle. 30 min | 27.0–100.5 °C |
 | `idle.txt` | slcan | 1,136 | none | short idle, colder engine | 68.25 °C |
 | `vcds/vcds-01-002-003.csv` | VCDS log | 1,019 | own clock | the diagnostic side of holds 1–6 | — |
 | `vcds/vcds-ride-002-003.csv` | VCDS log | 902 | own clock | the diagnostic side of the drive | — |
@@ -438,8 +438,8 @@ the identifier tests in `tools/test_canlog.py` skip them on purpose.
 
 | | `19` | `24` |
 |---|---|---|
-| soak | about 19 h, mirror console 10.0 °C | warm restart |
-| start | one crank, 0.83 s to 450 rpm, fell back to 331, caught | — |
+| soak | about 19 h, mirror console 10.0 °C | some hours, standing during the MAF swap: 27 °C coolant, 19.5 °C oil at the start |
+| start | one crank, 0.83 s to 450 rpm, fell back to 331, caught | 0.86 s, **no fall** (`StartDip` 0) |
 | driving | 56 min running, 32.16 km, 3.375 l commanded | about 30 min |
 | pulls | held full throttle in **4th** from ~2000 to 5400–5760 rpm, several times; peak 6001 | some, on a country road |
 | overrun cuts (`coastscan.py`) | 72 | 33 |
