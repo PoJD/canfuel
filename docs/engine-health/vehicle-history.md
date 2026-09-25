@@ -162,7 +162,7 @@ here is owner-supplied from service records.
 |---|---|---|
 | Both oxygen sensors (pre- and post-cat) | **10/2017 — never changed since** | the whole ownership, ~27,600 km |
 | Fuel filter | **12/2017**, and possibly again 10/2022 — see below | 4 or 9 years, **not established** |
-| **Fuel filter, new** | **being fitted with the injectors, 9/2026** | ~0 |
+| **Fuel filter, new** | **23/9/2026**, with the injectors | ~0 |
 | MAF sensor | 7/2018 *(connector cleaned 7/2026)* | not recoverable — see *Distance and use* |
 | **MAF sensor, new** | **24/9/2026**, genuine VW `06A 906 461 A`; the 2018 unit is kept | ~0 |
 | Chiptuning | 6/2018 | — |
@@ -178,6 +178,7 @@ here is owner-supplied from service records.
 | Injectors `06A 906 031 C`, new from the UK | **9/2026** | ~0 |
 | **Spark plugs and ignition leads** | **17/9/2026** | ~0 |
 | Rear shock absorbers, air-conditioning recharge, minor items | 17/9/2026 | ~0 |
+| **Battery, new** | **mid-September 2026**, one to two weeks before 25/9 *(owner; exact date not recorded)* | ~0 |
 
 Three entries carry more than a date.
 

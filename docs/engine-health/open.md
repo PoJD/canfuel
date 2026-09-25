@@ -436,7 +436,10 @@ engine earth weakens the spark and adds noise to the knock-sensor signal
 
 **On this car there is already a hint.** *Owner-reported:* a large voltage
 drop was found earlier on the lights, and directly on the battery terminals.
-Not measured on the engine's own earth paths yet.
+Not measured on the engine's own earth paths yet. **The battery itself is new**
+(mid-September 2026, `vehicle-history.md`), so the thread's one confirmed
+electrical fix — a new battery — has in effect already been tried here; what
+the terminals and earth joints do under load has not.
 
 | S1 | S2 | S3 | S4 | S5 |
 |---|---|---|---|---|
@@ -524,8 +527,8 @@ tenths.
    manual's current-flow diagram for the AQY). Small currents, so here even a
    tenth is suspect.
 6. **Battery voltage idling with the loads on** (a charging system holds
-   roughly 13.5–14.5 V, *general*), and the battery's age and a load test.
-   The one confirmed electrical fix in the thread was a battery.
+   roughly 13.5–14.5 V, *general*). The battery is new, so this checks the
+   alternator and its regulator rather than the battery.
 
 Watch the reading on test 1 through a few idle stumbles: a drop that jumps
 with them is a joint that moves, which is exactly the fault being chased.
