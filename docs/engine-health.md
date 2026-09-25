@@ -2665,6 +2665,40 @@ overnight starts read the same, the rail bleed-down was the old injectors'
 seats**, and the pump's check valve, the other candidate under *The start
 itself*, is eliminated by the same evidence.
 
+### A jingling from the exhaust on arrival — 25 September 2026
+
+*Owner-reported:* on arriving home after a drive, **a rattling, jingling
+sound from the exhaust**, and the worry that the two-week-old converter is
+already going the way of the old one.
+
+**Where the extra fuel would come from: nothing measured says there is
+any.** The trims are near zero on the new MAF (−3.1 % / +4.7 %). The
+fuel counter is right, as shown in *What this does to the converter*. Block
+046 read the converter OK on 24 September, and the rear probe sat where a
+working converter puts it. The one known source of unburnt fuel is the idle
+misfire, which **roughly halved with the MAF swap** (*Did the 20 % threshold
+mask the morning?*), and the owner already avoids long idles. The old
+converter's history, years of misfires and then weeks of a MAF over-reading,
+is not what this one is getting.
+
+**What the sound more likely is, general knowledge and not a diagnosis:**
+
+- **Ticking and pinging while the exhaust cools after the engine is off** is
+  the metal contracting. It is normal, loudest after a long, hot drive, and
+  usually loudest on a new system whose joints have not settled.
+- **A rattle with the engine running**, or one that comes when the pipe is
+  knocked, is usually a loose heat shield or clamp. A tin shield buzzing
+  against a pipe sounds exactly like jingling.
+- **A rattle from inside the converter body** when it is knocked, with the
+  exhaust cold, is a loose or broken substrate, and it is the only one of the
+  three that matters for the converter. A fist or a rubber mallet on the can
+  settles it.
+
+**What settles it without guessing:** block **046** read again after a few
+hundred km, which the owner can do from the seat. The knock test on the
+cold can. And the exhaust specialists, who are looking at the manifold
+anyway, can listen to the rest of the system on the same visit.
+
 ### What is owed, none of it urgent
 
 - **Group 032 again, a few hundred kilometres after the MAF swap**, one
