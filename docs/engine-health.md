@@ -1378,9 +1378,12 @@ thing it bought, are below.
 Rear shock absorbers, an air-conditioning recharge and several small items were
 done at the same visit. None of them touch anything this file measures.
 
-### Compression: 13 bar on all four, and the evenness is the result
+### Compression: 12 bar on all four, and the evenness is the result
 
 **Measured by the garage, recorded here.** All four cylinders read the same.
+⚠ Earlier revisions said 13 bar, from a misremembered figure; *the owner
+corrected it to 12*. The conclusion does not change, since it rests on the
+evenness.
 
 ⚠ **The absolute figure is the weaker half of this.** A cranking compression
 number moves with the gauge, the cranking speed, the battery, the engine's
@@ -2716,6 +2719,75 @@ nothing different points at the electrical side: the sensor wiring and the
 earth straps. ⚠ There is no healthy AQY logged to compare with, so how
 much of this is normal for the engine type is not known.
 
+#### What VW's workshop manual says — 25 September 2026
+
+**The source.** VW's repair manual for the Golf Mk4, *Motronic injection and
+ignition system (2.0 ltr. engine)*, as transcribed on workshop-manuals.com:
+*Evaluating measured value blocks, display groups 10...29 -Ignition-* and
+*Checking knock sensor*. ⚠ It is a third-party transcription of a VW
+document, not a VW PDF held in `docs/`. Its groups 22 and 23 match this
+ECU's label file field for field, so it is the right manual.
+
+**The specification: 0…15 °CA of retard per cylinder, while driving.** Both
+logs are inside it: the largest retard ever seen here is 6.7 °CA, and 5.2 in
+the latest. **By VW's own measure, cylinder 4's retard is within
+specification.**
+
+**VW's table for when one cylinder deviates greatly from the others**, in
+full:
+
+| possible cause | what VW says to do |
+|---|---|
+| connector corroded | check the knock sensors |
+| engine damaged | **check compression pressures** |
+| ancillary components on engine loose | tighten them |
+
+**The "engine damaged" row is already done.** The compression test is VW's
+own check for it, and it read 12 bar, even on all four (*Compression*,
+above). What remains are the other two rows, and neither is inside the
+cylinder.
+
+Notes from the same pages:
+
+- *"It is extremely important to keep to the tightening torque of 20 Nm to
+  ensure the knock sensors perform perfectly."* The forum figure is
+  confirmed.
+- *"Only gold-plated contacts may be used when servicing the knock sensor
+  connector contacts."*
+- Knock sensor diagnosis is active only **above 3000 rpm and a load greater
+  than 3 ms**.
+- For the same kind of engine, the A3 Mk1 1.8 manual on the same site gives
+  **G61 for cylinders 1 and 2, G66 for 3 and 4**. ⚠ That is a sister engine,
+  not the AQY page. If it holds here, cylinders 1 and 2 share a sensor and
+  still read two to one. That supports the crank-position reading of the 1
+  and 4 pair over the sensor-distance one. Cylinder 4 and cylinder 1 are
+  then on **different sensors**, which puts G66, its mounting and its
+  connector on the list for cylinder 4's excess.
+
+**From Ross-Tech's list of measuring blocks**, which the web section above
+already cites: 026 is *"knock sensor voltage (amplifier factor included)"*.
+⚠ So 026 is not the raw sensor signal. The ECU scales each cylinder, and
+whether that scaling depends on engine speed is not documented anywhere
+held here. **The 4-against-1 comparison across two sensors is therefore
+weaker than the tables above make it look**, and the switch-on near
+2700 rpm could be the ECU's own scaling. What the ECU acts on is the retard,
+and the retard is within specification.
+
+**What this changes:**
+
+1. **The manual's own test for a damaged cylinder has been run and passed.**
+   A compression test does not hear a noisy lifter, but VW does not list
+   one for this symptom either.
+2. **What is left is outside the cylinder**: G66's connector, G66's
+   torque, and anything bolted to the engine that has come loose. Much has
+   been off and back on in the last weeks: the injectors and fuel rail,
+   the MAF, the exhaust from the flex pipe back, the heater. A bracket, a
+   clip or a heat shield refitted loose fits "ancillary components loose"
+   exactly, and a loose part that buzzes only above some engine speed would
+   also explain the switch-on.
+3. **Nothing here is urgent.** Retard within specification is knock control
+   doing its job.
+
 ### What `deaktiv.` in group 014 is: a load threshold
 
 **The owner asked whether detection switching itself off correlates with the
@@ -2952,9 +3024,12 @@ anyway, can listen to the rest of the system on the same visit.
 - ~~026 standing in neutral at 2000–3500 rpm.~~ **Done**: cylinder 4 is
   above cylinder 1 with no load, so it is not knock. See *The test
   that separates noise from knock*.
-- **Next: a stethoscope at 2800–3200 rpm in neutral**, at injector 4 against
-  injector 1 and the head above cylinder 4 against cylinder 1. See the same
-  section.
+- **Next, in VW's own order** (*What VW's workshop manual says*): look over
+  everything refitted in the last weeks for a loose bracket, clip or heat
+  shield, ideally with the engine held at about 3000 rpm in neutral. Then
+  G66's connector (clean, gold contacts, no corrosion) and its torque of
+  20 Nm. A stethoscope at 2800–3200 rpm helps if one is to hand; a long
+  screwdriver to the ear does the same job.
 - **Then, decided by the owner: the exhaust specialists.** A leak test of the
   original manifold (see *How an exhaust-side leak could produce these
   symptoms* for what to ask), and the mounting and hangers of the new system

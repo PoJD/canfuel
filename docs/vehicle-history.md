@@ -201,7 +201,8 @@ table above when it happens, and the gap reads off the two dates. That splits a 
 `docs/` had assumed would be one event, and `engine-health.md` carries what it
 costs.
 
-**Compression, measured at the 17/9/2026 visit: 13 bar on all four cylinders**,
+**Compression, measured at the 17/9/2026 visit: 12 bar on all four cylinders**
+(earlier revisions said 13, which was misremembered),
 even across the engine. *Recorded from the garage, not measured by this
 project.* The evenness is the load-bearing part and it eliminates every
 per-cylinder mechanical explanation this project had been carrying — a burnt
