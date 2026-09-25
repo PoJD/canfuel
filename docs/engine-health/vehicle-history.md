@@ -224,20 +224,21 @@ evidence — see below.
 
 ## Electrical work, 2026
 
-*Owner-supplied; exact dates not recorded.*
+*Owner-supplied; days not recorded.*
 
 | Part | Fitted | Why |
 |---|---|---|
-| **Battery, new** | mid-September 2026, one to two weeks before 25/9 | — |
-| Headlights, complete: ALKAR `2741128` left / `2742128` right (H1 dipped, H1 main, W5W, levelling motor) | 2026 | the old reflectors had degraded and water was getting in |
-| Light switch, Herth+Buss Elparts, replacing the original `1C0 941 531 A` | 2026, after the headlights | 0.3–0.7 V was being lost across the old switch |
+| **Battery, new** | **end of August 2026**, with the headlights | the old one was found dead during the headlight work |
+| Headlights, complete: ALKAR `2741128` left / `2742128` right (H1 dipped, H1 main, W5W, levelling motor) | **end of August 2026** | the old reflectors had degraded and water was getting in |
+| Light switch, Herth+Buss Elparts, replacing the original `1C0 941 531 A` | **September 2026** | 0.3–0.7 V was being lost across the old switch |
 
 **The measurements that led to the switch**, differential and under load,
 are the only voltage-drop figures this project holds for the car, and
 `open.md` H4 reads them against the engine's earth. In short: 0.9 V lost at
 the dipped-beam bulb (1.6–1.9 V with main beam), **all on the positive side**;
 the lamp earth 0.1–0.2 V; the battery terminals **0.000 V (+) and
-0.002 V (−)**, recently cleaned. About half the loss sat before the fuse box
+0.002 V (−)**, recently cleaned — on the new battery, fitted during that same
+work. About half the loss sat before the fuse box
 (a steady ~0.09 Ω), mostly in the old switch. After the new switch the
 dipped beam loses 0.2 V across it (0.6 V with main beam, the same 0.04 Ω —
 so the rest is on the switch's shared input side, not its contacts), and

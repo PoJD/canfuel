@@ -455,7 +455,8 @@ carry over:
   as good a way to weaken the spark as a bad earth, and is measured the same
   way (tests 5a and 5b below).
 
-The battery itself is new (mid-September 2026), so the thread's one confirmed
+The battery itself is new (end of August 2026, the old one found dead during
+the headlight work), so the thread's one confirmed
 electrical fix — a new battery — has in effect already been tried here.
 
 | S1 | S2 | S3 | S4 | S5 |
