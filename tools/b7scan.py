@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """What 0x280 byte 7 has actually been observed to reach, and under what.
 
-This is the measurement behind *What b7 has actually been observed to reach*
+This is the measurement behind *What b7 is, and what it can see*
 in docs/firmware/frames.md. It exists as a tool for the same reason tools/idledips.py
 does -- the figures it prints decide how the next drive's result is read, and
 a figure typed into prose cannot be re-checked against a new capture.

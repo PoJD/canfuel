@@ -567,103 +567,55 @@ The engine's own faults are not in this register at all; they are
 
 ## Resolved questions
 
-Seven that were settled, moved out of *Open questions* so that
-section holds only questions that are genuinely still open. They stay here in
-full rather than being deleted: the reasoning is what stops each of them being
-reopened by somebody arguing from first principles, which is the same case
-`docs/firmware/refuted.md` makes for itself.
+Seven that were settled, each with its answer and the evidence that closed it
+— the evidence is what stops a question being reopened by somebody arguing from
+first principles, the same case `refuted.md` makes for itself. The long
+write-ups that led here are in `git log`.
 
 ### 1. ~~What is the real period of 0x480?~~ — **closed: there isn't one**
 
-The question was wrong, not just unanswered. **0x480 has no fixed period**, so
-every attempt to pin one down was bound to produce a different number depending
-on which recording it was measured from — which is exactly what happened for a
-year.
-
-Measured with adapter timestamps, stationary, engine warm
-(`09_idle_60s_z1.txt` and `10_rev2600_z1.txt`):
+The question was wrong, not unanswered. With adapter timestamps, stationary and
+warm (`09_idle_60s_z1`, `10_rev2600_z1`):
 
 | | 797 rpm | 2586 rpm |
 |---|---|---|
 | 0x480 frames/s | 26.4 | **18.0** |
 | mean gap | 37.9 ms | **55.5 ms** |
 
-Engine speed rose 3.25× and the frame rate **fell**. Whatever schedules this
-frame, it is neither a fixed timer nor the injection rate — the per-injection
-hypothesis was tested for exactly this reason and is refuted below. Both
-recordings are irregular, on a 10 ms grid, with a long tail.
+Engine speed rose 3.25× and the frame rate **fell**; dropped frames cannot
+explain it, since throughput was higher in the revs log. Every gap sits on a
+**10 ms grid** — the engine ECU's scheduler tick, which 0x0C2, 0x280, 0x288
+and 0x488 share — but there is no single multiple of it. A lost frame can only
+merge two intervals, never produce a shorter one, so the grid is hard evidence
+whatever was dropped.
 
-Dropped frames do not explain it: total throughput was *higher* in the revs
-recording (727/s against 683/s), so the adapter was losing less, not more.
+**The per-injection hypothesis was tested and refuted**: at idle 26.4 frames/s
+against 26.6 injections/s and 12.3 µl per frame against a modal counter step of
+12–13 µl — three quantities agreeing — but at 2586 rpm the ratio collapses to
+0.209. Worth remembering the next time three numbers agree. At idle 31 % of
+0x480 frames carry an unchanged counter, at 2586 rpm almost none; nothing
+depends on it.
 
-**The consequence, and it is the expensive one.** `tools/replay.py` synthesises
-time for the five untimestamped fixtures by multiplying the 0x480 frame count
-by an assumed 49.5 ms. That is not merely imprecise, it is **invalid**: it
-applies a constant that does not exist, and its error varies with engine speed.
-Every duration, average flow and distance derived from those five logs rests on
-it. The fuel totals do not, because the counter is absolute — which is why the
-core was built to accumulate the counter rather than integrate a flow, and that
-decision has now paid for itself.
-
-The original symptom is explained too: the specification quotes 958 µl/s for
-`05_rev3000` where the data gives 1005 µl/s on the assumed period. That is a
-fixed period applied to a log recorded at 2940 rpm, where the real gap is
-longer than at idle. Nothing was ever wrong with the data.
-
-**What would close it properly:** nothing needs to. The firmware runs off its
-own crystal and never cared. If the five old fixtures ever need a real clock,
-they need re-recording with `Z1`, not more arithmetic.
-
-**The evidence that got there, in the order it arrived.** A 20 s
-capture with `Z1` on — ignition on, engine not running — puts **every** gap
-between consecutive 0x480 frames on a **10 ms grid**: 10, 20, 30, 40, 50, 60,
-70 … and nothing in between. The engine ECU's other identifiers agree, all
-with a modal gap of exactly 10 ms: 0x0C2, 0x280, 0x288, 0x488.
-
-The reasoning is not sensitive to what the recording could not do. The adapter
-reported `data overrun`, but **a lost frame can only merge two intervals into
-one and so can only add counts at integer multiples** — it can never produce a
-gap shorter than the truth. Observing gaps of 10 and 20 ms is therefore hard
-evidence that the scheduler's tick is 10 ms, whatever else was dropped. And a
-scheduler's tick does not change when the engine starts.
-
-That retired 49.5 ms and 99 ms together — neither is a whole number of ticks —
-and for one afternoon the answer looked like a choice between 50 and 100 ms.
-It was not; the grid is real but there is no single multiple of it.
-
-**The per-injection hypothesis, and why it was worth testing.** At warm idle
-the numbers lined up almost too well: 26.4 frames/s against 26.6 injections/s
-for a four-cylinder four-stroke at 797 rpm, a ratio of 0.994, and
-326.1 µl/s ÷ 26.4 = 12.3 µl per frame against a modal counter step of 12–13 µl.
-Three independent quantities agreeing. It would have explained why no fixed
-period was ever found.
-
-**Refuted by `10_rev2600_z1.txt`.** At 2586 rpm the injection rate is 86.2/s
-and the ratio collapses to **0.209**. Had the frame been tied to injection the
-ratio would have held at one. The idle agreement was a coincidence, and a
-three-way one — which is worth remembering next time three numbers agree.
-
-One observation left over, offered as an observation and not an explanation:
-at idle **31 %** of 0x480 frames carry an unchanged counter (484 of 1583), at
-2586 rpm almost none (3 of 355). Transmission has something to do with how
-fast the counter is moving. What, is unknown, and nothing here depends on it.
-
-**Procedure — and it does not need the converter board.** See question 9: the
-USBtin has a hardware timestamp of its own, and `USBtinViewer` simply does not
-use it. Talk to the adapter directly instead. That is the whole fix.
+**The consequence.** `tools/replay.py`'s synthesised time for the five
+untimestamped fixtures (an assumed 49.5 ms per 0x480 frame) is **invalid**, not
+merely imprecise, so their durations, flows and distances are not facts about
+the car. Fuel totals are unaffected because the counter is absolute — which is
+why the core accumulates the counter rather than integrating a flow. The
+firmware runs off its own crystal and never cared. Old fixtures that ever need
+a clock are re-recorded with `Z1` (question 9).
 
 ### 2. ~~The starting counter value in `07_accel`~~ — **closed**
 
-The specification quotes 13247 → 22622 while the file starts at 12870, a
-difference of 377 µl. **Confirmed exactly**: the counter reaches 13247 at
-0x480 frame #23 of 290, 1.14 s into the recording, and the fuel burnt between
-the first frame and that one is 377 µl to the microlitre. The specification
+The specification quotes 13247 → 22622 while the file starts at 12870.
+**Confirmed exactly**: the counter reaches 13247 at 0x480 frame #23 of 290,
+1.14 s in, and the fuel between is 377 µl to the microlitre. The specification
 was computed from 1.14 s in. No discrepancy exists.
 
-### 4. ~~Is 0x420 b3 oil or IAT?~~ — **closed: it is oil**
+### 4. ~~Is 0x420 b3 oil or IAT?~~ — **closed: it is oil, from a real sensor**
 
-`07_accel` alone was inconclusive. Reading all seven fixtures in the order the
-coolant says they were recorded settles it:
+Ordered by coolant, the fixtures give a warm-up curve that lags it — 21 → 65 °C
+while the coolant goes 68 → 99 °C — highest in the one log with air moving
+through the engine, where an intake temperature would fall:
 
 | Log | Coolant | 0x420 b3 |
 |---|---|---|
@@ -673,534 +625,117 @@ coolant says they were recorded settles it:
 | `05_rev3000` | 90.0 °C | 39.0 °C |
 | `02_idle_60s` | 96.75 °C | 61.5 °C |
 | `03_drive` | 99.0 °C | 65.3 °C |
-| `01_ign_only` (engine off) | 100.5 °C | 255 |
 
-Three things follow, and they agree:
+**Measured directly as well**: at the end of `18_coldstart_z1` this channel
+extrapolates to 18.4 °C where VCDS block 006 read the intake at **22.5 °C**.
 
-- **It is a warm-up curve that lags the coolant**, rising 21 → 65 °C while the
-  coolant goes 68 → 99 °C. Intake air does not climb forty degrees over a
-  session and stay there.
-- **It is highest in `03_drive`**, the one log with air actually moving through
-  the engine. An intake temperature falls when you drive; oil does not.
-- ⚠ **The third argument used to be "it reads 255 with the ignition on and the
-  engine off", and that is not general.** It is true of `01_ign_only` and of
-  the first three frames of `06_trip_reset`, and false of the other two
-  recordings taken in that state: `08_ign_only_z1` holds a steady 51.75 °C for
-  its whole twenty seconds, and `18_coldstart_z1` reads 12.75 °C throughout the
-  41 s before the engine fires. **255 is the fault or not-yet-available value**
-  — it decodes to 143.25 °C, which `mfd15` records the display latching as an
-  oil maximum — and it is not a reliable signature of the engine being stopped.
-  The first two arguments do not need it.
+**Not oil pressure** (`refuted.md` B10): it does not move when the engine
+starts, is not zero with it stopped, and ratchets one count per hold rather
+than tracking engine speed. **Not computed from the coolant**: in `15` the
+coolant fell five counts while this rose two.
 
-**And it is now measured directly rather than inferred.** `18_coldstart_z1`
-ends with 0x420 b3 at 17.25 °C rising 0.75 °C a minute, and a photograph of
-VCDS block 006 taken 95 s later reads the intake air at **22.5 °C** against the
-**18.4 °C** this channel extrapolates to. Two different numbers at one moment,
-from one session, on an engine that had been running five minutes from cold.
-**It is not the intake air.**
+**A sensor, not a model**: across every fixture the byte takes 85 steps up and
+58 down, every one exactly ±1 count, and dithers both ways through a steady
+hold — what an analogue sensor does and arithmetic does not.
 
-The decoding table above already called it oil temperature and the firmware
-already treats it as such, so nothing changes.
+**255 is the fault / not-yet-available value** (it decodes to 143.25 °C, which
+the display latches as an oil maximum), not a signature of a stopped engine:
+`08_ign_only_z1` and the 41 s before `18` fires both read a real temperature.
 
-⚠ **THE QUESTION AS POSED WAS BINARY, AND A THIRD ANSWER WAS NEVER TESTED.**
-*"Oil or IAT?"* gets an answer about oil and IAT. **Oil *pressure* is the
-obvious third reading** — this engine is said to carry an oil pressure switch
-and no oil temperature sender — and it has since been tested rather than
-assumed away. It is refuted three ways, all in `refuted.md` B10 and none of
-them needing the decode to be right first:
-
-- **it does not move when the engine starts.** Raw 81 before cranking, 81 at
-  1439 rpm, still 81 eighty seconds later. Pressure goes zero to several bar
-  in one revolution.
-- **it is not zero with the engine stopped** — steady 81 for the 41 s before
-  the engine fires, steady 133 through all of `08_ign_only_z1`.
-- **it ratchets rather than tracking.** 161 → 167 across holds at 1492 to
-  2892 rpm, one count per 25 s hold, never falling back between holds where
-  the revs did. Pressure over that range roughly doubles and is reversible.
-
-**Nor is it a figure computed from the coolant**, which is what a car with no
-sender might otherwise broadcast: in `15_rev2372_z1` the coolant fell five
-counts while this channel rose two, and a value derived from the coolant
-cannot move against it.
-
-So it is a real thermal quantity with mass, responding to load rather than to
-engine speed, and measured by a sensor rather than computed. The signal
-behaves as oil temperature and the firmware's treatment of it stands.
-
-**IT IS A SENSOR AND NOT A COMPUTED NUMBER — measured, and it closes the one
-part of this that was still open.** A value the ECU or the cluster *models*
-from coolant, load and time would climb smoothly while the engine heats. This
-one does not: across every fixture the byte takes **85 steps up and 58 steps
-down, and every single step is exactly ±1 count** (one +4 aside, across a gap
-in a log). During the `18_coldstart_z1` warm-up alone it steps *down* twelve
-times while unambiguously heating, and in `15_rev2372_z1` it wobbles 6 up and
-5 down through a 25 s hold at constant speed on a fully warm engine.
-
-**That is one-LSB dither around a slowly moving true value, which is what an
-analogue sensor and its converter do and what arithmetic does not.** No model
-built to be sluggish enough to match a sump's thermal mass would also be built
-to rattle by a count in both directions while its inputs move one way.
-
-**It also fits the frame it arrives on.** `0x420` b1 and b2 are ambient
-temperature — zero here, though the car does display an outside temperature by
-some other route (`refuted.md` B11) — and ambient
-air is a signal the *cluster* displays and the engine management has no use
-for. So `0x420` looks like a frame of cluster-side temperature channels, which
-is where a sump sender's signal would end up.
-
-**What supplies it — looked up, and marked as looked up.** ⚠ **The sources
-below are parts catalogues, workshop pages and forums, which is NOT how this
-document settles facts about the car.** They are recorded because they are
-consistent, because they name a mechanism, and because the mechanism has a
-consequence for question 10 (`open.md`). They are an indication. The measurement that
-settles it is still to unplug the connector and watch for 255.
-
-- The part is the **oil level and oil temperature sender G266**, threaded into
-  the **sump** from below, three wires, fitted across the Golf/Bora range of
-  this era.
-- **Its signal goes to the instrument cluster, not to the engine ECU** — a PWM
-  level-and-temperature line to J285, which is what displays the oil
-  temperature.
-
-**That resolves the objection that raised all this.** "This engine has no oil
-temperature sensor" is very likely right *as a statement about the engine*:
-the sender belongs to the sump and the dashboard, not to the engine
-management, and an engine-side parts list has no reason to carry it. It is
-also exactly why `01-Motor` has no oil temperature block — **not because
-nobody looked, but because the signal never reaches that ECU.** The question
-of whether this particular car has it fitted is answered by the car: a number
-is on the bus and it behaves thermally, so something produces it.
-
-⚠ **AND IT UNDERMINES THE DECODE, WHICH IS THE PART THAT MATTERS.** If the oil
-byte is the cluster's and the coolant byte on 0x288 is the ECU's, then they
-are **two different modules choosing two different scalings**, and this
-firmware took the second and applied it to the first. The formula
-`× 0.75 − 48` was already flagged here as an argument from analogy; the
-analogy now turns out to be between modules that had no reason to agree.
-Question 10's cold-soak arithmetic and this point are independent of each
-other and say the same thing.
-
-⚠ **What this does not establish is that the number is *right*** — only what it
-is a number of. That is question 10 (`open.md`). **If there is no physical sender the
-answer there gets simpler, not harder**: "the sensor is faulty" leaves the
-table and what remains is this firmware's decode, which the cold-soak
-calibration point already says has the wrong slope.
+**What supplies it — looked up, not measured.** Parts catalogues, workshop
+pages and forums name the **oil level and temperature sender G266** in the
+sump, wired to the instrument cluster, not the engine ECU — which is why
+`01-Motor` has no oil temperature block. ⚠ That makes the oil byte the
+cluster's and the coolant byte the ECU's: **two modules with no reason to
+share a scaling**, and this firmware borrowed the coolant's `× 0.75 − 48`.
+Whether the number is *right* is question 10 in `open.md`.
 
 ### 5. ~~AccelG — longitudinal or lateral?~~ — **closed: it is lateral**
 
-> **The firmware does not decode this and no longer accepts 0x5A0 at all.** The
-> display reads the frame straight off the bus, so a decoded field here would
-> have had no consumer; it was removed along with its acceptance
-> filter. This entry stands as a fact about the car, which is what this document
-> is for.
+> The firmware no longer accepts 0x5A0; the display reads it straight off the
+> bus. This stands as a fact about the car.
 
-**Measured in the car**, on the MFD15 reading 0x5A0 straight off the bus with
-no converter in the loop. Full lock, several laps at 15–20 km/h:
+**Measured on the MFD15**, full lock, several laps at 15–20 km/h:
 
 | Test | Reading |
 |---|---|
-| Circling **left**, full lock | **+0.2 to +0.5 G**, steady, rising with speed |
-| Circling **right**, full lock | the same magnitudes, **negative** |
-| Pulling away and braking | small by comparison, a few hundredths |
+| circling **left** | **+0.2 to +0.5 G**, steady, rising with speed |
+| circling **right** | the same, **negative** |
+| pulling away and braking | a few hundredths |
 
-Three things settle it, and they are independent of each other:
-
-- **The sign inverts with the direction of the turn.** Neither a standing bias
-  nor the camber of the road does that. Only a quantity that has a direction in
-  a corner does.
-- **The magnitude tracks cornering force**, which a longitudinal axis knows
-  nothing about.
-- **Braking is the small number.** On a longitudinal sensor it would be the
-  largest reading available.
-
-**The scale came out of the same test, which was not the point of it.** A
-Beetle turns in about 10.9 m, so full lock is a radius of roughly 5.5 m, and
-v²/r gives 0.20 G at 12 km/h, 0.32 at 15 and 0.51 at 19 — the measured range,
-in the speeds a yard allows. So `(raw − 127)/100 = G` is right in magnitude and
-not merely in shape; a wrong scale would have produced plausible-looking
-numbers of the wrong size.
-
-**Positive is a left turn**, which is consistent with ISO 8855 vehicle axes
-(y points left, and the centripetal acceleration of a left-hand corner points
-left). Nothing needs inverting anywhere.
-
-The few hundredths seen under braking are road camber, a little steering off
-centre and imperfect sensor alignment. They are an order of magnitude down and
-they do not sign-reverse, so they change nothing.
-
-What the fixtures had already settled, and what still stands: standing still
-with the engine running (`02_idle_60s`) the byte reads 127–128, i.e. **0.00 G**,
-confirming the 127 offset and that the axis is horizontal.
-
-**Why the fixtures could never have closed this.** Correlating the byte against
-the derivative of road speed gives r = +0.05 on `07_accel` and r = +0.25 on
-`03_drive`, with a slope of 0.29 where a clean longitudinal sensor would give
-1.0 — inconclusive, and now explained: there is no longitudinal component to
-find. Both logs were also recorded crawling across an uneven lawn, where the
-tilt of the car under each wheel swamps an acceleration of 0.04 G.
-
-**The procedure that closed it, kept because it generalises.** Two tests on
-flat ground, neither needing the converter board: the display reads 0x5A0 b0
-straight off the bus (`mfd15/tri/S-AQY.TRI` line 13), so this wants the MFD15
-and nothing else. Each test moves exactly one axis, so the question is only
-whether the number moved. The first one is what was run.
-
-- **A steady circle.** Full lock, constant 15–20 km/h, several laps, no
-  braking or accelerating. A **lateral** sensor settles at **0.30–0.50 G** and
-  holds it for as long as the wheel is turned; a longitudinal one stays at
-  0.00. Then circle the other way: on a lateral sensor the sign inverts, which
-  is what separates a real response from the permanent bias `sensors.md` #12
-  suspects. Do this one first — a steady reading is far easier to take off a
-  display than a peak.
-- **Firm braking**, straight line, 40 km/h to a stop. A **longitudinal**
-  sensor dips to **−0.30 to −0.60 G**; a lateral one does not move. Harder to
-  read, because the peak lasts about two seconds.
-
-Both are around 0.3 G, i.e. **thirty times the 0.01 G resolution**, so "it did
-not move" is a result and not a sensitivity problem.
-
-**Parking across a slope also works in principle and is not worth doing.** A
-stationary accelerometer reads the component of gravity along its axis, so the
-deflection is sin(tilt): a 6 % driveway is 3.4° and gives **0.06 G**, six counts
-against a one-count resolution. It needs a genuine hill — 20 % for 0.20 G — to
-beat the two tests above, and it was the first thing suggested here for a year
-on the strength of needing no driving. It needs terrain instead, which is
-harder to come by.
-
-The earlier suggestion to *accelerate* in second gear and correlate against
-speed is superseded: braking is the same axis at twice the magnitude and needs
-no correlation, just a glance at the display.
-
-The channel is transmitted to the display and used for nothing else, so a wrong
-label costs a wrong caption.
+The sign inverts with the turn, the magnitude tracks cornering force, and
+braking is the small number. **The scale is right too**: at a turning radius of
+about 5.5 m, v²/r gives 0.20 G at 12 km/h, 0.32 at 15 and 0.51 at 19 — the
+measured range — so `(raw − 127)/100 = G`. Positive is a left turn, consistent
+with ISO 8855; nothing needs inverting. Standing still it reads 127–128,
+0.00 G. The fixtures could never have closed it: they were recorded crawling
+across an uneven lawn, where tilt swamps 0.04 G.
 
 ### 6. ~~Source of the trip reset — candidate 0x5D8 b0~~ — **candidate eliminated, question retired**
 
-`06_trip_reset.txt` was recorded for this and had never been analysed. It has
-been now, and the candidate is dead: **all eight bytes of 0x5D8 are constant
-for the entire 135 s recording** — `21 05 00 00 00 00 00 00`, not one bit
-moves. 0x5D0 is constant too. Sweeping every byte of all fourteen broadcast
-identifiers for anything that grows and then falls turns up only the fuel
-counter itself and the oil temperature climbing as the engine warms.
-
-**One honest caveat.** The recording covers 124.6 m. A trip odometer in units
-of 0.1 km would tick exactly once across it, and a single increment is not
-something a scan can distinguish from noise. So this eliminates the specific
-candidate and does not prove the trip odometer is absent from the bus.
-
-**It no longer matters, which is why the question is retired rather than
-open.** The average is reset on refuelling instead (`refuel-reset.md`), which
-needs no sniff, no licence and no byte. If somebody ever wants the cluster's
-trip reset as a *second* trigger, the procedure is a fifteen-minute drive with
-the USBtin running, at least 3 km so a 0.1 km counter moves thirty times, with
-the reset pressed in the middle — and then the same scan, which is now written
-down and took a minute to run.
+All eight bytes of 0x5D8 are constant through `06_trip_reset` (`21 05 00 00 00
+00 00 00`), and so is 0x5D0; a sweep of every byte of all fourteen identifiers
+for anything that grows and then falls finds only the fuel counter and the oil
+warming. Caveat: 124.6 m would tick a 0.1 km counter once, so this eliminates
+the candidate rather than proving the trip odometer absent. **Retired because
+it no longer matters**: the average resets on refuelling (`refuel-reset.md`).
+If a second trigger is ever wanted: a 3 km drive with the USBtin running and
+the reset pressed halfway, then the same scan.
 
 ### 8. ~~The torque byte's scale~~ — **closed: 1.06 Nm/bit, measured off the full-throttle plateau**
 
-**Moved here from *Never resolved but not required*.** It was parked there
-because no measurement existed, and the parking said so; then a held
-full-throttle pull in 4th produced one.
-
-**The evidence**, `19_postfix_drive_z1`, median b7 in a ±150 rpm window, with
-the drag line held in bytes (`drag_b7 = 9.11 + 0.006514 × rpm`):
+Held full-throttle pulls in 4th (`19_postfix_drive_z1`), median b7 in a
+±150 rpm window, drag held in bytes:
 
 ```
 170 Nm @ 2400:   b7 185,  s = 170   / (185 - 24.74) = 1.061 Nm/bit
  85 kW @ 5200:   b7 191,  s = 156.1 / (191 - 42.98) = 1.055 Nm/bit
 ```
 
-**Two independent ratings against two independent readings, 0.6 % apart.**
-`TORQUE_CNM_PER_BIT` is 106, a decision inside that bracket, and the drag
-constants follow it from the byte line. The plateau rises from 175 at
-2000 rpm to 198 at 4500 and falls back to 175 at 6000 with the pedal on the
-floor, and relative load (group 014) is flat at 78–81 % across it — so this is
-where the engine runs out of air, not where a burst happened to end.
+Two ratings against two readings, 0.6 % apart; `TORQUE_CNM_PER_BIT` is 106.
+The plateau is where the engine runs out of air (relative load flat at
+78–81 %), not where a burst ended. `frames.md` has the whole argument and the
+caveats (intake temperature not logged, a chipped ECU calibrated against stock
+ratings).
 
-**What it refuted.** Everything below rested on *b7 = 255 is the rated crank
-torque plus the drag*. The plateau is 185–206 and 255 is never reached, so the
-old derivation had nailed both ratings to a value the engine cannot produce,
-and the shipped 0.74 read **30 % low**. The 0.90–0.96 bracket `frames.md` had
-derived from the air was nearer, and low for an arithmetic reason: it divided
-a drag figure already converted to Nm at 0.74, when the drag scales with the
-scale.
-
-⚠ **Two caveats, stated rather than resolved.** The intake temperature was not
-logged, and b7 carries the charge normalisation, so a hot day reads lower and a
-frosty one higher. And the engine was not wholly well — every fault was a
-low-load one, no misfire was counted during any pull, and load and air matched
-the earlier drive. The scale was set on that judgement. **Neither is a reason
-to reach for `TORQUE_TRIM_PCT`.**
-
-**What follows is the entry as it stood while parked**, kept because the
-premise it argues from is the obvious one and is wrong.
-
-
-**Why it was parked, and it was the harder of the two calls.** Unlike b5, this
-one *does* touch what the firmware transmits: the scale multiplies every torque
-and power figure on the display. It was parked anyway, because at the time
-there was nothing left to run.
-
-- The bracket is narrow, and got narrower. On the warm drag line the two
-  factory ratings imply **0.736 to 0.738 Nm/bit** — 0.3 % — where the old
-  cold-oil line made them argue between 0.745 and 0.773. The scale in the
-  firmware moved 0.75 → 0.74 with the refit, which is not a new
-  answer to this question but the arithmetic consequence of question 7's (`open.md`), since
-  full scale must cover the rated torque plus the drag.
-- The measurement does not exist. VCDS was tried and this ECU has no torque
-  block. A full-throttle pull has since happened — see the note below — and it
-  did not settle it either.
-- Nothing degrades while it stays undecided. A decision is in the code, the
-  reasoning is written down in `frames.md` and `config.h`, and two tests in
-  `test_compute.c` pin the ceiling so a future edit cannot quietly put the
-  factory figures out of reach again.
-
-An open question implies work that would close it. There is none, so calling
-this open was misleading.
-
-The findings, in full:
-
-**This ECU does not report torque in
-Nm.** Measuring groups 001, 002, 003 and 020 were all examined on
-`06A 906 018 EJ` and the closest thing on offer is `Motor zatizeni` — engine
-load, in per cent. Writing that down is the point: without it the next person
-plans exactly this session again.
-
-The trip was not wasted, because b7 was measured against that load and **is not
-the same quantity**. Holds `14`, `15` and `16` sit at a constant 17.0–17.3 %
-load while b7 climbs 20.7 → 26.3 → 27.2. A load percentage does not rise with
-engine speed at constant load; a torque does, because the friction and pumping
-torque a free-revving engine must produce grows with speed. That is independent
-support for the reading that b7 is *indicated torque*, arrived at
-from a different direction than the argument that produced it.
-
-So the scale remains a decision inside the bracket the factory ratings imply —
-0.74 Nm/bit since the drag refit, 0.75 before it.
-
-#### ⚠ New evidence, and the question stayed parked anyway
-
-**The full-throttle pull this section said would settle it has happened**, on a
-public road, logged on the ECU's own measuring blocks. It did not settle it,
-and the reason is worth keeping.
-
-- **b7 did not clip.** The display peaked at 117 Nm and 58 kW, which is b7
-  around 199 of 255, at engine speeds past 5700 rpm with the pedal on the
-  floor. So the remap has not pushed b7 into the ceiling, which was one of the
-  two ways `frames.md` said a remap could fail.
-- **But the airflow of that same pull implies more torque than the display
-  showed** — enough that either the engine is burning badly or the scale
-  under-reads, and the measurement supports both. `frames.md`, *What that
-  gap is worth in Nm*, has the numbers and the argument.
-- **The car is chipped**, which makes the derivation worse in a known
-  direction: the bracket comes from *stock* ratings and this engine is not
-  stock.
-
-**None of that is a reason to re-plan the cancelled VCDS session.** There is
-still no torque block on this ECU and there never will be. What is new is a
-different route to the same number — torque inferred from measured air and
-measured fuel — which needs no block and no dynamometer, and which
-`frames.md` sets out. **Until that capture exists this stays parked**,
-and it stays here rather than moving to the open register, because there is
-still no work owed: the decision in the code is defensible, and the engine has
-to be repaired before any measurement of it means anything.
-
-⚠ **A second finding came out of this session and it is more expensive than the
-question was** — the drag torque was fitted on cold oil. That is question 7 (`open.md`),
-and it is the one question still open.
-
----
-
-The original procedure follows, for the record.
-
-0x280 b7 is a percentage of a reference torque inside the ECU, not Nm. The two
-factory ratings bracket the scale between 0.745 Nm/bit (85 kW at 5200 rpm) and
-0.773 (170 Nm at 2400 rpm); 0.75 was chosen inside that bracket,
-and the reasoning — including why the old 0.67 was wrong — is in `frames.md`
-and in `config.h`.
-
-**Procedure.** VCDS, engine electronics, a measuring block reporting engine
-torque — group 001 or 002 on ME7, depending on the version — logged alongside
-0x280 with the USBtin. Warm idle, then three or four steady throttle openings
-held for ten seconds each, in neutral so the load is repeatable. Plot the
-block's Nm against b7: the slope is the scale and the intercept should be
-zero. Four points across the range are plenty, because the only question is a
-straight line through the origin.
-
-Full throttle would settle it too and is deliberately not planned. Until then
-the display is right in shape and to roughly ±5 % in magnitude, and two tests
-in `test_compute.c` guard the ceiling so a wrong scale can no longer put the
-factory figures out of reach unnoticed.
+**It refuted the old derivation** from b7 = 255, which read 30 % low
+(`refuted.md` B12). **It also closed the VCDS route**: this ECU has no torque
+block in Nm — groups 001, 002, 003 and 020 offer only load in per cent — and
+b7 is not that load either: in holds `14`–`16` load sits at 17.0–17.3 % while
+b7 climbs 20.7 → 27.2, which is what an *indicated torque* does as friction
+rises with speed.
 
 ### 9. ~~Two fixtures carry timestamps and disagree with the other five about time~~ — **closed: the timestamps are wrong**
 
-**Measured, at the operating point the argument was about.**
-`09_idle_60s_z1.txt`: 60 s of warm idle at 796 rpm, air conditioning off,
-recorded with the adapter's own timestamps.
+`06_trip_reset` and `07_accel` carry USBtinViewer's timestamps, which its own
+documentation says are *"generated in the application on the host, the
+hardware timestamping is currently not used"*
+([EmbedME/USBtinViewer](https://github.com/EmbedME/USBtinViewer)) — a Java GUI
+stamping about 700 lines a second, with 39–51 % duplicate lines and gaps
+clustered on the 15.6 ms Windows timer tick.
+
+**Measured with the adapter's own clock** (`09_idle_60s_z1`, 796 rpm, A/C off):
 
 ```
 19,561 ul over 60.027 s  =  325.9 ul/s  =  1.17 l/h
 ```
-
-Nothing in that is derived. The counter is absolute in microlitres and the
-clock is stamped in the USBtin when the frame arrives, so no period is assumed
-and no host scheduler is involved.
 
 | base | idle flow | verdict |
 |---|---|---|
 | assumed 49.5 ms period | 310 µl/s = 1.12 l/h | within 5 % |
 | USBtinViewer timestamps | 157 µl/s = 0.57 l/h | **out by a factor of 2.1** |
 
-So the recorded timestamps lose, exactly as the tool's own documentation said
-they would, and the physical-plausibility argument below was right: a warm 2.0
-8V does not idle at 0.57 l/h.
+So the durations, flows and distances of `06` and `07` are overstated by about
+two; their fuel totals stand. **Only the `_z1` logs have trustworthy time.**
 
-**What this changes.** `06_trip_reset.txt` and `07_accel.txt` have a wrong time
-base, so their durations, average flows and distances — the 135.0 s, the 15.9 s,
-the 613 µl/s, the 124.6 m, the 27.3 m — are overstated by roughly two. Their
-fuel totals stand. The five untimestamped logs are no better off, but for the
-different reason in question 1: the period they are reconstructed from does not
-exist.
-
-**Three fixtures with adapter timestamps now exist** — `08`, `09`, `10` — and
-they are the only logs here whose time can be trusted. See
-`test/fixtures/README.md`.
-
----
-
-The original write-up follows, because the diagnosis is the useful part and it
-was right. Found while reviewing question 1, and it had gone unnoticed since
-the fixtures were recorded.
-
-**All seven were recorded with USBtinViewer**, but saved two different ways:
-five as the raw serial lines, with no time information at all, and two —
-`06_trip_reset.txt` and `07_accel.txt` — as the viewer's table, which carries a
-**millisecond timestamp on every line**. Why the two differ is not recorded and
-is most likely a setting that got changed at some point; it does not matter,
-because neither is the timestamp we want (see below).
-
-What nobody had noticed is the consequence. `tools/replay.py` uses the
-timestamps where they exist and synthesises time from the assumed 49.5 ms 0x480
-period where they do not, so **two of the seven logs are measured on a
-different clock from the other five** — and the two clocks do not agree.
-
-The two clocks do not agree. Taking the 120 s of warm idle inside
-`06_trip_reset` — engine running, stationary — and dividing the fuel the
-counter accumulated by the elapsed time its own timestamps report:
-
-```
-18,810 ul over 119.6 s  =  157 ul/s  =  0.57 l/h     recorded timestamps
-                           310 ul/s  =  1.12 l/h     assumed 49.5 ms period
-```
-
-**A warm 2.0 8V does not idle at 0.57 l/h.** 1.1 l/h is what an engine of this
-size burns standing still, and 0.57 is not a number it can produce. On that
-alone the assumed period wins and the recorded timestamps are wrong.
-
-Except that each base has independent corroboration, which is why this is an
-open question rather than a finding:
-
-| | For | Against |
-|---|---|---|
-| **Assumed 49.5 ms** | gives `02_idle_60s` a duration of 60.1 s, which is its file name, and exactly the 310 µl/s the specification quotes; gives a credible idle | gives `05_rev3000` 1005 µl/s where the specification says 958 (question 1) |
-| **Recorded timestamps** | gives `06_trip_reset` a distance of 124.6 m, matching the "drive at least 0.1 km" step of the recording checklist | gives an idle flow no engine of this size produces |
-
-**The tool's own documentation settles which one to distrust.** USBtinViewer
-says of itself: *"the timestamp is generated in the application on the host,
-the hardware timestamping is currently not used"*
-([EmbedME/USBtinViewer](https://github.com/EmbedME/USBtinViewer)). So the times
-in those two logs are not arrival times at all — they are the times at which a
-Java GUI got round to the line, and it was handling **around 700 lines a
-second** while doing it.
-
-Everything else the recordings say agrees with that. Between 39 % and 51 % of
-all lines are an immediate duplicate of the line before, and per-identifier
-gaps cluster on multiples of about 15.6 ms — the Windows timer tick, i.e.
-batching. On top of that the recorder is *missing* frames: at warm idle the
-counter steps cluster at 14–16 µl with clear harmonics at 28–31 and 44, one,
-two and three periods' worth.
-
-That is the diagnosis half of this question closed. What is still open is the
-number: which period, and therefore which of the two flows, is right.
-
-That modal step is worth one line of arithmetic, because it is the one solid
-number here: **one 0x480 carries about 15 µl at warm idle.** That pins
-`flow × period ≈ 15 µl` and nothing more — 310 µl/s at 49.5 ms and 157 µl/s at
-99 ms both satisfy it. It is the physical plausibility of the flow, not the
-data, that chooses.
-
-**What is and is not affected.**
-
-- **Fuel totals are untouched.** The counter is absolute and in microlitres, so
-  every total in the table above, every figure the C core and the Python
-  reference agree on, and every accumulator test stands whatever the clock did.
-  This is exactly why the core accumulates the counter rather than integrating
-  a flow.
-- **Everything per-second is suspect on two logs.** Duration, average flow and
-  distance for `06_trip_reset` and `07_accel` — the 15.9 s, the 613 µl/s, the
-  27.3 m — rest on timestamps that may be twice too long. The figures for the
-  other five rest on an assumed period instead, which is a different way of
-  being unverified.
-- **The firmware does not care either way.** On the car it uses its own
-  crystal-derived millisecond clock. This is a question about the fixtures and
-  about what the tests are asserting, not about the device.
-
-**Procedure — no board, no firmware, one sixty-second recording.** This was
-written as needing the converter in `CAN_MODE=LISTEN_ONLY`, on the reasoning
-that only the device could timestamp a frame when it arrived. That was wrong:
-**the USBtin does it in hardware, and only the viewer does not use it.** Drive
-the adapter over its serial port directly — the commands are on
-[fischl.de/usbtin](https://www.fischl.de/usbtin/):
-
-| | |
-|---|---|
-| `S6` | 500 kbit/s |
-| `Z1` | **timestamping on** — this is the whole point |
-| `L` | open **listen-only**. Silent on the bus by the adapter's own guarantee, exactly like the firmware's Listen Only |
-| `O` | (open normally — *not* this one) |
-| `F` | read the status flags afterwards — they say whether frames were dropped |
-
-**`tools/usbtin_capture.py` does exactly this** and writes the raw slcan
-stream, which `canlog.py` already parses including the four hex digits `Z1`
-appends. It has been run on a desk with no adapter
-attached, so its argument handling works and its serial conversation has never
-met a USBtin.
-
-**The acceptance filter was deliberately dropped from this procedure.** It used
-to read `m00000000` / `MFFFFFFFF`, "set to pass 0x480 only". Which polarity of
-the mask means *don't care* is not stated in any document we hold, and the two
-conventions in circulation are opposites — under one of them that pair passes
-everything, under the other it passes nothing. A capture that silently records
-zero frames is indistinguishable from a dead bus, and this is a trip to the
-car. Record the whole bus and filter afterwards with `canlog.py --id 0x480`;
-the throughput is affordable and `F` reports it if it is not.
-| `C` | close |
-
-Engine at warm idle, sixty seconds, capture the raw lines to a file.
-`tools/canlog.py` parses the timestamp.
-
-Filtering to 0x480 alone is not an optimisation, it is part of the fix: it
-takes the line rate from about 700 a second to about 20, so the duplication and
-the dropped frames that spoiled the fixtures cannot happen.
-
-Then:
-
-1. `frames / elapsed` is the period, from the adapter's clock.
-2. `(counter_end − counter_start) / elapsed` is the idle flow in µl/s, with no
-   assumption in it anywhere.
-3. Compare against 49.5 ms and 310 µl/s. If they hold, `replay.py` should stop
-   preferring the viewer's timestamps and the documented figures for two logs
-   need correcting. If they do not, five logs need correcting instead.
-
-**One thing to check in the first minute rather than assume:** the timestamp is
-four hex digits of milliseconds and USBtin's documentation does not say what it
-wraps at. Read the wrap out of the data — it costs one minute and settles it
-permanently.
-
-Until then: **trust the totals, distrust every duration.** Nothing has been
-changed in the fixtures, the tests or `replay.py` on the strength of this,
-because changing seven logs' worth of documented numbers on an argument about
-what an engine plausibly burns is exactly the sort of thing that should wait
-for the sixty seconds of measurement that settles it.
+**How to record with a real clock** — no board, no firmware:
+`tools/usbtin_capture.py` drives the adapter over its serial port with `S6`
+(500 kbit/s), **`Z1` (hardware timestamps on)** and `L` (listen-only), reads
+the status flags with `F` afterwards, and writes the raw slcan stream that
+`canlog.py` parses ([fischl.de/usbtin](https://www.fischl.de/usbtin/)). **Record
+the whole bus and filter afterwards**: no acceptance filter is set, because the
+mask polarity is documented nowhere we hold and a filter that passes nothing is
+indistinguishable from a dead bus.
 
 ---
 
@@ -1213,7 +748,7 @@ came back with less than was hoped, and blocks not a single line of firmware.
 (Question 8 used to sit here too; a measurement arrived and it moved to
 *Resolved*, which is how this chapter is supposed to be left.)
 
-They are kept in full rather than deleted for the same reason `docs/firmware/refuted.md`
+It is kept rather than deleted for the same reason `docs/firmware/refuted.md`
 exists: a question that leaves no trace gets asked again by the next person, who
 then repeats the session that did not answer it. The difference between that
 file and this chapter is that `refuted.md` holds ideas that were settled
@@ -1241,8 +776,6 @@ curiosity is what remains.
 b6 came out of it decoded, which is a genuine result. b5 is exhausted in the
 sense that matters: all three candidates anyone had are refuted, and there is
 no fourth to test. Another session would be a fishing trip, not an experiment.
-
-The findings, in full:
 
 The session happened, recorded as `docs/engine-health/vcds.md` describes;
 `test/fixtures/11`–`16` and `test/fixtures/vcds/` are the data.
@@ -1312,18 +845,3 @@ evidence of anything.
 rises 4.44 → 5.13 → 6.72 → 8.19 g/s across holds 3–6 while b5 sits on 152 and
 b6 barely moves, and at the two idle holds the compressor raises the air mass
 while b5 does not shift a bit. Neither byte is the air mass.
-
----
-
-The original write-up follows.
-
-**Procedure.** VCDS, engine electronics (address 01), measuring blocks. Group
-003 carries mass air flow and load; group 020 or 021 carries ignition advance;
-injection time is in group 002 or 004 depending on the ECU version. Log 0x288
-with the USBtin at the same time, at warm idle and at a couple of steady
-throttle openings, and regress each byte against each block value. Two bytes,
-three candidates, three or four operating points is enough to tell them apart.
-
-Nothing in the firmware wants these bytes. This is curiosity with a use — an
-air mass would let a proper torque model replace the two-point drag line — but
-it blocks nothing.

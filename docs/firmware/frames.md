@@ -553,11 +553,18 @@ is the entire point of a range gauge.
 
 ## Torque and Power
 
-**The byte scale, 1.06 Nm/bit, is measured** — off the plateau the engine
-actually reaches, against both factory ratings. 0x280 b7 is not Nm; it is a
-percentage of a reference torque held in the ECU's calibration, and nobody here
-has the reference. What settles the scale is what b7 reads when the engine
-makes its rated figures.
+```
+torque [Nm] = (b7 - drag_b7(rpm)) x 1.06, gated, trimmed      power [kW] = torque x rpm / 9550
+```
+
+The MFD15 cannot compute power itself — per the manual, math channels exist
+only on the MFD28/32.
+
+### The scale, 1.06 Nm/bit — measured off the plateau
+
+0x280 b7 is not Nm; it is a percentage of a reference torque held in the ECU's
+calibration, and nobody here has the reference. What settles the scale is what
+b7 reads when the engine makes its rated figures.
 
 b7 is **indicated** torque: at 2940 rpm in neutral (`05_rev3000`) the crank
 puts out nothing and b7 still reads 37. So a rating is what is left of b7
@@ -573,404 +580,159 @@ puts out nothing and b7 still reads 37. So a rating is what is left of b7
 
 **Two independent ratings and two independent readings agree to 0.6 %.** 1.06
 is a decision inside that bracket; on a pull like that one it shows about
-170 Nm at 2400 and 85.4 kW at 5200. `test_compute.c` pins both, as the first
-version of those tests with a measurement behind them.
-
-The whole plateau, for the shape: b7 rises from 175 at 2000 rpm to a peak of
-198 (median) at 4500 and falls back to 175 at 6000, with the pedal on the floor
-throughout. Relative load from VCDS group 014 is flat at 78–81 % across it.
-**The plateau is not still climbing at the end of any burst** — that was the
-flaw of every earlier pull, which ended in a low-gear sweep.
+170 Nm at 2400 and 85.4 kW at 5200. `test_compute.c` pins both. The plateau
+rises from 175 at 2000 rpm to a median peak of 198 at 4500 and falls back to
+175 at 6000 with the pedal on the floor, relative load flat at 78–81 %
+throughout. The afternoon's pulls on the new MAF (`24`) read 0–6 counts lower
+band by band; neither drive logged its intake temperature (caveat below).
 
 ⚠ **Two caveats, stated rather than resolved.** The intake temperature was not
 logged during the pulls, and b7 carries the ECU's charge normalisation, so a
 hot day reads lower and a frosty one higher — physics, not an error in the
-scale, and **not** something to chase with `TORQUE_TRIM_PCT`. And the engine was
-not wholly well that day: every fault it had was a low-load one, no misfire
-was counted during any pull, and load and air matched the earlier drive. The
-scale was set from these pulls on that judgement.
+scale, and **not** something to chase with `TORQUE_TRIM_PCT`. And the car is
+chipped, so its true ratings are not the stock ones this scale was set against;
+if the remap gained anything, the display under-reads by about that much.
+Returning the ECU to standard would make the premise true by construction, and
+then wants one held pull to check the plateau (`docs/engine-health/open.md`,
+*Other*).
 
-#### Superseded: the scale from b7 = 255
+**The obvious derivation is wrong**: b7 = 255 as the rated crank torque plus
+drag gave 0.74 and read **30 % low** (`refuted.md` B12). The engine plateaus
+at 185–206; 255 is a normalisation real air never reaches (below).
 
-**Kept because it is the obvious argument and it is wrong.** Until the pulls,
-the scale was derived by requiring b7 = 255 to reproduce each factory rating
-in turn, on the premise that full scale is the rated crank torque plus the
-drag at that speed. It gave 0.67 Nm/bit first ("the maximum is 172 Nm, so
-172/256", which also forgot the drag), then 0.75 on the cold-oil drag line,
-then 0.74 on the warm one:
+### What b7 is, and what it can see
 
-| | bracket | at the chosen scale |
-|---|---|---|
-| cold-oil drag line, 0.75 Nm/bit | 0.745 – 0.773 (3.7 % wide) | 85.6 kW, **165 Nm** |
-| warm drag line, 0.74 Nm/bit | 0.736 – 0.738 (0.3 % wide) | 85.4 kW, 170.4 Nm |
+**The ECU has no torque sensor and no torque measuring block**, so b7 is a
+model output. Founded: charge is measured and is an input, so an air-path
+problem moves b7; the single pre-catalyst sensor averages four cylinders, so
+one rich cylinder against three lean ones can look fine to it. **Not
+sourced**: that the model multiplies charge by lambda and ignition-angle
+efficiencies with the *commanded* lambda — `mfd15/docs/sensors.md` §8 says only
+"air mass per stroke with corrections for ignition advance and lambda", and no
+Bosch document for this ECU is held here. Against "it cannot see combustion":
+misfire detection works off crank speed per cylinder and demonstrably runs
+(`docs/engine-health/open.md`, S3).
 
-**The two ratings "agreed" there only because both were nailed to 255.** The
-premise was never observed and the pulls refute it: the engine plateaus at
-185–206 and falls away above 4500 rpm with the pedal on the floor, so 255 is a
-normalisation real air does not reach (see *What that gap is worth in Nm*
-below). The shipped 0.74 displayed torque and power **30 % low**.
+**Working conclusion, at the strength the evidence allows:** these channels are
+much closer to an air meter dressed as a torque gauge than to a dynamometer,
+and on an unhealthy engine they most likely over-read. That makes no difference
+on a healthy one — it is the quantity the ECU steers the car with.
 
-### b7 is modelled rather than measured, and how much it can see is NOT established
+At **full load** specifically the lambda in the model cannot be a measured
+one: enrichment there is open loop, and the pre-cat sensor is a switching one
+(block 034's ageing test is a *period*, which only a switching sensor has),
+which is hard over away from stoichiometric. That is an inference from block
+034, not a part number read off the car.
 
-**The ECU has no torque sensor** — the VCDS session went looking and there is
-no torque measuring block on this one at all. So b7 is computed from other
-readings, and the question that matters here is *which* readings.
+**What `python tools/b7scan.py` prints, and nothing here is typed by hand:**
 
-⚠ **That question is open, and an earlier version of this section answered it
-with more confidence than anything supports.** What follows is sorted by how
-well founded it is, because the difference decides how much weight the
-`Torque` and `Power` channels can carry as a diagnostic.
+- cranking asks for b7 = 192 below 900 rpm with the throttle at rest — the
+  driving gate keeps it off the display;
+- the largest b7 this engine has been seen to **make** is **206, at 4402 rpm
+  in `19`**, 80.8 % of full scale; 198 in `24`;
+- **a maximum is not a plateau**: every pull before `19` was a low-gear sweep
+  still climbing when the throttle closed, so earlier maxima compare with
+  nothing;
+- **b7 moves in steps of two counts**, not one — 88 of the 92 gaps between the
+  95 values it takes are 2 — so its smallest visible change is about 2.1 Nm.
+  One *count* is still 0.39 %, the unit `TORQUE_TRIM_PCT` steps by.
 
-**Founded, and it rests on where a sensor sits rather than on any model:**
-
-- **The single pre-catalyst oxygen sensor is in the common exhaust stream**, so
-  it measures the four cylinders averaged. One rich cylinder against three lean
-  ones can average to a value the ECU is content with, and no amount of
-  cleverness downstream recovers the split from that one signal.
-- **The fuel trims are the ECU correcting that average, not reporting a
-  fault.** A trim is an output of the controller, not a diagnosis.
-- **An air-path problem does move b7**, because charge is measured and is
-  unambiguously an input.
-
-**Recalled and NOT sourced — treat as a hypothesis:**
-
-- that the model is charge times an efficiency term for lambda and one for
-  ignition angle, and in particular **that the lambda entering it is the
-  COMMANDED value rather than a measured one**. `mfd15/docs/sensors.md` §8 says
-  only that the ME7 "models it from air mass per stroke with corrections for
-  ignition advance and lambda" — which is itself unsourced, sits in a sibling
-  repository, and says nothing about commanded versus measured. **No Bosch
-  document for this ECU is held by this project.** The commanded-lambda step is
-  the load-bearing one for "combustion is invisible", and it is exactly the
-  step nothing supports.
-
-**Evidence pointing the other way, which the earlier version ignored:**
-
-- **Misfire detection is per-cylinder and works off crankshaft speed
-  fluctuation, and it demonstrably runs on this car** — the counter in
-  measuring group 014 shows non-zero values in first gear
-  (`docs/engine-health/open.md`, S3). So the ECU is *not* without a per-cylinder
-  combustion signal. Whether that signal reaches the torque model is unknown.
-- **A badly burning engine does not leave the air path untouched either** —
-  residual gas, thermal state and, near the limit, the idle governor all move.
-  "None of the model's inputs changed" is an assumption, not a certainty.
-
-**What survives as a working conclusion**, stated at the strength the evidence
-allows: these two channels are much closer to an air meter dressed as a torque
-gauge than to a dynamometer, and on an unhealthy engine they most likely
-**over-read** — reporting what that air should have been worth. But *cannot see
-combustion at all* is stronger than anything here establishes, and if the
-displayed figures move after a fuelling repair with the air unchanged, that is
-the hypothesis above failing rather than an anomaly.
-
-**None of which makes the number wrong on a healthy engine.** It is the
-quantity the ECU steers the car with.
-
-⚠ **Whether this engine was down on power was investigated on this vehicle
-and is closed**: the display's old peak was the old scale, not the engine
-(`can-decoding.md` question 8). The engine's remaining faults are at idle and
-are in `docs/engine-health/open.md`.
-
-### What b7 has actually been observed to reach
-
-**`python tools/b7scan.py` prints this and nothing here is typed by hand.** It
-mattered because the scale once rested on *b7 = 255 is the rated crank torque
-plus the drag at that speed* — superseded above — and it still matters because
-what the engine reaches is what the scale is now read off. The answer
-separates three things a bare maximum runs together.
-
-**Cranking is not driving.** 192 appears in `06_trip_reset` and
-`18_coldstart_z1`, every sample below 900 rpm with the throttle at rest in the
-seconds after the key — the ECU asking for torque to start the engine. Behind
-the gate `compute_torque_d()` applies, the largest b7 this engine has been seen
-to **make** is **206, at 4402 rpm in `19_postfix_drive_z1`** — 80.8 % of full
-scale — and 198 in `24_mafswap_drive_z1`.
-
-**A maximum is not a plateau, and until `19` there was no plateau.** All three
-wide-open bursts in `17_drive_property_z1` had their maximum in the last
-quarter: the deepest goes 159 at 2609 rpm to 185 at 4921 rpm, monotonically,
-and then the throttle closes. Every pull before the repair was a low-gear
-sweep that ended before the engine filled, so **b7max before the repair and
-b7max after it are not a comparison.** `19` fixed that by design: held pulls in
-4th, 23 wide-open bursts of which 14 had stopped rising before the throttle
-closed. That is what the scale is now read off — the plateau medians in the
-table above, not the maximum here.
-
-**b7 tracks the ECU's own relative load, which is what a charge-dominated model
-looks like.** The drive of 2026-09-10 showed a peak of 117 Nm on the display,
-which back through the drag line is b7 ≈ 189–201 depending on where in the
-range it fell — **74–79 % of full scale against the 78.1 % relative load VCDS
-logged over the same pulls** (VCDS groups 003 and 010, 2026-09-10). ⚠ **Those are a display
-maximum and a mean over wide-open samples, not one measurement**, so this is
-arithmetic pointing somewhere rather than a result. Where it points: **the gap
-from the plateau to 255 is the same size as the gap between the measured air
-and the ECU's reference air** — and the held pulls in `19` then put relative
-load at 78–81 % across the whole plateau. Reaching 255 needs the engine to fill to 100 % of a
-reference normalised to 0 °C and 1013 hPa — and that is the reference,
-measured, below. **No fuelling repair changes what the air-mass sensor reads.**
-
-#### What "load" is a percentage of — measured, not assumed
+### What "load" is a percentage of — measured, not assumed
 
 **The ECU's relative load is the measured air mass normalised to 0 °C and
-1013 hPa**, where air weighs 1.293 g/l. Measured on 2026-09-10 rather than
-taken from anywhere: three quantities were logged at once — grams per second
-from the MAF (group 003), litres per second from engine speed and
-displacement, and the ECU's own percentage (group 010) — and grams over litres
-is the density the ECU normalises to. Over 51 steady samples above 70 % load
-the median is **1.292 g/l**. Below about 70 % load the relationship scatters,
-as expected: at part load the ECU's figure carries corrections a bare
-air-mass ratio does not.
+1013 hPa**, where air weighs 1.293 g/l. Measured on 2026-09-10: grams per
+second from the MAF (VCDS group 003), litres per second from engine speed and
+displacement, and the ECU's own percentage (group 010); grams over litres over
+51 steady samples above 70 % load has a median of **1.292 g/l**. Below about
+70 % the relationship scatters, as expected at part load.
 
-At full throttle that drive held **78.1 % mean, 75.3–81.9 %**, with the
-throttle at its mechanical stop (85.1–85.5°). **78 % is not "the engine
-manages 78 % of what it could"**: the engine breathes engine-bay air, not 0 °C
-air, and what that makes of its filling is the next section.
-
-#### What that gap is worth in Nm, if the reading is right
-
-**Turn the normalisation round and every b7 becomes a statement about air.**
-The section above measured the reference off this car — 0 °C and 1013 hPa,
-1.293 g/l — so relative load is **the engine's filling times the density of the
-air it is breathing, divided by the density of that reference**:
+At full throttle that drive held **78.1 %, 75.3–81.9 %**, with the throttle at
+its mechanical stop (85.1–85.5°). The engine breathes engine-bay air, not 0 °C
+air, so that is filling times the density of the air it breathes over the
+reference density:
 
 ```
 rl  =  VE  x  rho(intake) / 1.293 g/l
 ```
 
-⚠ **That is one identity with two unknowns in it, and they were never separated.**
-The measurement is the product: **rl = 78.1 % at full throttle**, taken at an
-intake temperature nobody logged. It was bracketed by assuming
-the intake was somewhere in 20–40 °C, which is what makes its filling figure a
-range — **20 °C pairs with VE 84 %, 40 °C with VE 93 %**, and those rows are
-not independent readings of the engine. **The honest content of that drive is
-the 78.1 %, and everything below inherits its width from the temperature nobody
-wrote down.**
-
-**So the ceiling is a function of the weather, which is the part that is easy
-to miss.** Carrying the same measurement to other intake temperatures:
-
-| intake air | relative load a full-throttle pull would show | b7 with it |
-|---|---|---|
-| +35 °C | 74.5 – 82.4 % | 190 – 210 |
-| **+25 °C** — plausible for a September drive | **77.0 – 85.2 %** | **196 – 217** |
-| +10 °C | 81.0 – 89.7 % | 207 – 229 |
-| 0 °C | 84.0 – 93.0 % | 214 – 237 |
-| −20 °C | 90.6 – 100.3 % | 231 – 256 |
-
-Read the other way, what each b7 asks of the air:
-
-| b7 | relative load | intake air it needs |
-|---|---|---|
-| ~199 — what the 2026-09-10 display peak inverts to | 78.0 % | **+21 to +52 °C — the drive that produced it** |
-| 235 | 92.2 % | **−24 to +2.5 °C** |
-| **255 — what the scale assumes** | **100 %** | **−44 to −19 °C** |
-
-**b7 = 255 is therefore out of reach in any condition this car is driven in**,
-and that is the load-bearing conclusion: the scale's premise asks for air
-colder than −19 °C even at the most generous end of the bracket, and the intake
-draws from the engine bay, which sits about ten degrees above ambient (the
-first cold start recorded 22.5 °C of intake with the oil at 12.75). **The two
-factory figures are not merely unobserved. They are unreachable.**
-
-⚠ **b7 ≥ 235 is a different matter and an earlier version of this section got
-it wrong**, by reading the filling bracket as a property of the engine rather
-than as one drive's air. It needs a hard frost — −24 to +2.5 °C of intake — so
-it is out of reach on a warm drive and **not** out of reach in principle. Say
-"not on this drive", not "not ever".
-
-⚠ **SUPERSEDED — the bracket below was 10–15 % low, and the reason is
-arithmetic, not new data.** It divided **188 Nm**, which is the rating plus
-the drag *converted to Nm at 0.74 Nm/bit*, by the plateau. But the drag scales
-with the scale. Held in bytes, as `config.h` holds it, the same route lands
-where the pulls put it, 1.055–1.061. Kept because the direction it pointed —
-well above 0.74 — was right, and because the route is the natural one to
-re-derive.
-
-**Two independent routes then bracket the scale, and they overlap.** Full scale
-has to cover the rated crank figure plus the drag at that speed — 188 Nm, and
-notably the same 188 Nm at both rating points, 188.3 at 2400 rpm against 187.9
-at 5200 — so the scale is 188 Nm divided by whatever b7 really plateaus at:
-
-- **from the air**, a plateau of 196–217 at a September intake gives
-  **0.87–0.96 Nm/bit**;
-- **from brake thermal efficiency**, the 28–32 % that is normal for an engine of
-  this type and age at full throttle (*general knowledge, not sourced*) puts the same drive's peak at 150–171 Nm rather than
-  117, which is **0.90–1.01 Nm/bit**.
-
-The overlap is **0.90–0.96 Nm/bit**, and the shipped 0.74 sits 20–25 % below
-both.
-
-⚠ **A factory rating is quoted at a standard air condition, not at the day's
-weather**, so the anchor wanted is the plateau corrected to that condition
-rather than the raw maximum off any one drive. **Which standard the AQY's 85 kW
-and 170 Nm are corrected to is not held by this project** — it is near 20 °C
-either way, which is why the September row above is the right one to reason
-from and a January one would not be.
-
-⚠ **Neither route measures the scale.** Both are arithmetic on readings taken
-for other purposes, one of them a display maximum against a log mean; and the
-whole of it rests on b7 inheriting the charge normalisation, which is a
-hypothesis with one coincidence behind it and a counter-observation at idle,
-where b7 and relative load diverge 9.8 % against 23.2 %. **What settled the
-scale was b7 logged across held full-throttle pulls**, beside relative load —
-the table at the top of this section. It did not read the intake temperature,
-so the brackets above keep their width; the scale no longer depends on them.
-
-**b7 is not eight bits of resolution.** Across every fixture it takes 95
-distinct values between 0 and 192, and 88 of the 92 gaps between consecutive
-values are **2**, with a single-count step at each multiple of 64. **One
-*count* is still 0.39 % and `config.h` is right to say so** — that is the unit
-the byte is transmitted in, and what `TORQUE_TRIM_PCT` steps by. What this adds
-is that the ECU does not use every count: **the smallest change b7 has ever
-been seen to make is two of them, about 0.8 % of full scale and near 2.1 Nm.**
-That strengthens rather than weakens the observation that b7 does not move
-at the idle dips of `09_idle_60s_z1`, where engine speed falls 20–37 rpm and b7
-stays on its baseline — the resolution available to that argument
-is twice as coarse as it assumed.
-
-### At full load the lambda in the model cannot be a measured one
-
-**The load-bearing hypothesis above is that the lambda entering the torque
-model is the commanded value rather than a measured one, and nothing this
-project holds says so.** At **full load specifically** it is close to forced,
-by what the instrument can do rather than by what the model does:
-
-- full-load enrichment is mapped and open-loop, at a commanded lambda well
-  below 1;
-- **the pre-catalyst sensor is a switching one**, which `can-decoding.md`'s own
-  summary of block 034 says without meaning to: the ageing test it runs is a
-  **sensor period ≤ 2.2 s**. A period is a property of a sensor that switches.
-  A broadband sensor does not switch and has no period to measure.
-- a switching sensor carries no information away from stoichiometric. At the
-  enrichment of a full-throttle pull it is simply hard over.
-
-**So at wide-open throttle the ECU has no instrument that could tell it the
-actual lambda**, and whatever its torque model multiplies by there, it is not a
-measurement. ⚠ **That argument does not extend below full load**, where the
-sensor works, closed loop runs and block 032's adaptations are exactly the ECU
-acting on a measured lambda. It says the *scale* question is safe from the
-fuelling repair. It says nothing about b7 at idle or part load, and the general
-"b7 cannot see combustion" remains what the section above calls it — a
-hypothesis, and one misfire detection argues against.
-
-⚠ **The sensor-type step is an inference from the ageing check in block 034**,
-not a part number read off the car and not a Bosch document. VCDS would settle
-it in one screen.
+The intake temperature during the pulls was not logged, so the filling is a
+bracket and not a figure: **VE 84 % at a 20 °C intake, 93 % at 40 °C** —
+every value in it a normally breathing engine. And **b7 = 255 would need
+relative load near 100 %, i.e. intake air colder than about −20 °C**: out of
+reach in any condition this car is driven in, which is why 255 cannot anchor
+the scale.
 
 ### The owner's gain — `TORQUE_TRIM_PCT`, zero by default
 
 **Out of the box this firmware reports the factory figures for a stock AQY and
 claims nothing else.** `TORQUE_TRIM_PCT` in `config.h` is a whole-per-cent gain
-on the displayed torque and power, shipped at zero, for somebody who has a real
-measurement of their own car — a dynamometer run, a remap with a known gain —
-and wants the gauge to agree with it.
+on the displayed torque and power, shipped at zero, for somebody with a real
+measurement of their own car — a dynamometer run, a remap with a known gain.
 
-**It is a presentation knob and not a calibration**, and the distinction is
-load-bearing. Everything else in this section is an argument about what the
-ECU's byte *means*; the trim is an argument about what one car's owner wants
-their gauge to read. Setting it does not make the scale better founded, and a
-scale that is genuinely wrong is fixed by changing the scale rather than by
-papering over it here — which is what happened, 0.74 → 1.06, with the trim
-left at zero.
+**It is a presentation knob and not a calibration.** A scale that is genuinely
+wrong is fixed by changing the scale, which is what happened, 0.74 → 1.06, with
+the trim left at zero. It is legitimate rather than a fudge because a factory
+rating and a dynamometer printout are both already corrected to a standard air
+condition; one more correction with its reasoning beside it is in keeping. It
+has to be a constant because a live correction needs the intake air
+temperature, which is **not on this bus** (0x420 b1–b2 read zero on this car;
+the mirror console's outside temperature is ambient, not intake).
 
-**It is legitimate rather than a fudge, and the reason is worth stating.** A
-factory rating is itself a *normalised* number, quoted at a standard air
-condition rather than measured on the day; a dynamometer does the same, and its
-software corrects the cell measurement to that standard before anyone sees a
-figure. Every gauge and every printout in this field therefore reports a
-corrected number. One more correction, with its reasoning written beside it, is
-in keeping with the practice.
+It applies to **net** torque, after the drag line, and power follows because
+`compute_power_d()` is handed the trimmed torque. **The fuel figures are
+untouched and this must never become a fuel trim.** One step is 0.39 %, one
+count of b7.
 
-⚠ **It has to be a constant somebody sets once, because a live correction is
-out of reach.** A real correction factor needs the intake air temperature, and
-**that is not on this bus** — `0x420` bytes 1–2 are documented as ambient
-temperature and read zero on this car, and b3 is the oil (`can-decoding.md`
-question 4). ⚠ **The car does have an outside-temperature display**, in the
-mirror console; it changes nothing here, because ambient is not intake air —
-the intake draws from the engine bay, about ten degrees above it — and a
-number a driver can read is not a number the converter can use.
+### The drag line
 
-It applies to **net** torque, after the drag line is subtracted, which is where
-a dynamometer measures; power follows because `compute_power_d()` is handed the
-trimmed torque. **The fuel figures are untouched and this must never become a
-fuel trim.** One step is 0.39 %, which is exactly one count of b7 — asking for
-finer would be precision the input does not carry.
-
-**Drag torque** — friction, pumps, alternator — is subtracted from the
-indicated torque. It is not constant; it rises with engine speed and is
-modelled linearly against rpm.
-
-**Fitted on warm oil.** Four calibration points, the
-free-revving holds `13` to `16`, all stationary in neutral so the crank drives
-nothing and b7 *is* the drag:
-
-| Hold | rpm | b7 | oil | throttle |
-|---|---|---|---|---|
-| `13_rev1500_z1` | 1536 | 18.81 | 72.8 °C | 48 |
-| `14_rev1850_z1` | 1850 | 20.66 | 74.2 °C | 51 |
-| `15_rev2372_z1` | 2372 | 26.32 | 75.3 °C | 56 |
-| `16_rev2926_z1` | 2926 | 27.23 | 76.6 °C | 61 |
-
-Least squares through them, in bytes, gives `drag_b7 = 9.11 + 0.006514 × rpm`
-with residuals of −0.9 to +1.8 counts, and at 1.06 Nm/bit that is
+**Drag torque** — friction, pumps, alternator — is subtracted from indicated
+torque and modelled linearly against rpm. Least squares through the four warm
+free-revving holds `13`–`16`, stationary in neutral so b7 *is* the drag:
 
 ```
-drag [Nm] = 9.66 + 0.00690 × rpm
+drag_b7   = 9.11 + 0.006514 x rpm        residuals -0.9 to +1.8 counts
+drag [Nm] = 9.66 + 0.00690  x rpm        at 1.06 Nm/bit
 ```
 
 The constants live in `config.h` as `DRAG_TORQUE_BASE_CNM` and
-`DRAG_TORQUE_SLOPE_Q16` — the slope scaled by 2**16 rather than by 10,000
-so that dividing it out is a free byte shift on the PIC
-rather than a reciprocal multiply. **The calibration is in bytes, not Nm** —
-both constants are the byte line times the scale, and they are recomputed from
-the byte line whenever the scale moves, never rescaled from their previous
-values. That has happened twice: 0.75 → 0.74 with the warm refit, and
-0.74 → 1.06 with the pulls, where the byte line stayed put.
+`DRAG_TORQUE_SLOPE_Q16` — the slope scaled by 2**16 so dividing it out is a
+free byte shift. **The calibration is in bytes, not Nm**: both constants are
+the byte line times the scale, recomputed from the byte line whenever the scale
+moves and never rescaled from their old values. It replaced a cold-oil line
+that understated torque at part throttle; whether it needs a hot-oil refit is
+`open.md` question 7, with question 10 (the oil scale) underneath it.
 
-**What it replaces.** A two-point line, `drag = 19.52 + 0.0028 × rpm`, fitted
-on `02_idle_60s` (oil 60.8 °C) and `05_rev3000` (oil **39.0 °C**). Cold oil
-overstates drag, and since this line is *subtracted*, the display understated
-torque and power — it read zero through 51 % of `17_drive_property_z1` where
-the new line reads a number through 78 % of it. Peak torque over that same
-drive barely moved, 105.8 → 107.0 Nm at the 0.74 scale of the time, because
-at high load the drag is a small term. The whole of the difference is at part throttle.
+**The idle point is excluded on purpose.** `11_idle_noac_z1` is b7 = 24.96 at
+798 rpm, *above* the line — b7 falls to 18.81 by 1536 rpm before it rises,
+because idle is a regulated state against a nearly shut throttle. No straight
+line passes through both, so idle is **asserted rather than fitted** by the
+gate below. Raising the intercept to hide the residual puts the line back
+above all four holds and brings the understatement back.
 
-**The idle point is excluded on purpose, and the driving gate below covers it.**
-`11_idle_noac_z1` is 798 rpm at b7 = 24.96 on the same warm oil, which is
-*above* the line the other four make — b7 actually falls 24.96 → 18.81 between
-idle and 1536 rpm before it starts rising. Idle is a different state: the
-throttle sits at its rest position 38 against 48–61 for the holds, so the
-pumping loss against a nearly closed throttle is large, and the ECU is
-regulating speed rather than letting the engine free-rev. No straight line in
-rpm passes through both, so idle is **asserted rather than fitted**. Raising
-the intercept to hide the residual instead puts the line back above all four
-measured points and brings the understatement straight back.
+Torque is clamped at zero rather than going negative on the overrun, and is
+zero below 500 rpm, where the starter turns the engine and b7 reads 191–192.
 
 ### The driving gate — torque is shown only while the car is being driven
 
 **Torque and power are displayed only while the car is moving *and* the driver
 is asking for torque. Standing still shows zero whatever the pedal is doing,
 and a released pedal shows zero whatever the speed is. This is a fixed
-requirement, not a calibration**, and it is not to be relaxed or made
-conditional by any future refit of the drag line. It holds on cold oil and hot,
-at whatever idle speed the ECU picks.
+requirement, not a calibration**, and no future refit of the drag line relaxes
+it. It holds on cold oil and hot, at whatever idle speed the ECU picks.
 
 ```c
 if (speed_mmh <= STANDSTILL_MMH || throttle <= THROTTLE_REST) return 0;
 ```
 
 **It is an OR, and it used to be an AND.** Gating on "standing *and* released"
-left two states showing a number that the car is not in:
+left two states showing a number the car is not in:
 
-- **Revving in neutral at a standstill.** The crank drives nothing there —
-  which is exactly what makes the four free-revving holds a *calibration*
-  rather than data — so the honest answer is zero. 1,528 samples of
-  `17_drive_property_z1` are this state.
-- **The last few seconds of every roll to a stop.** High in the deceleration
-  the ECU cuts fuel, b7 falls below the drag line and the answer is zero;
-  once engine speed drops back onto the idle governor, b7 climbs while the
-  pedal never moves. One real stop out of `17_drive_property_z1`, throttle at
-  38 throughout:
+- **Revving in neutral at a standstill.** The crank drives nothing — which is
+  what makes the free-revving holds a calibration — so the honest answer is
+  zero. 1,528 samples of `17_drive_property_z1` are this state.
+- **The last few seconds of every roll to a stop.** Once engine speed drops
+  onto the idle governor b7 climbs while the pedal never moves. One stop out
+  of `17`, throttle at 38 throughout:
 
   | speed | rpm | b7 | old gate, at 1.06 Nm/bit |
   |---|---|---|---|
@@ -980,87 +742,46 @@ left two states showing a number that the car is not in:
   | 3.8 km/h | 783 | 27 | 13.6 Nm |
   | standing | 776 | 27 | 0.0 Nm |
 
-  **The apparent threshold is engine speed returning to idle, not road speed.**
-  In first gear the two coincide near 4–8 km/h, which makes it look like a
-  speed threshold and is a coincidence of gearing — worth knowing before
-  hunting for one.
+  The apparent threshold is engine speed returning to idle, not road speed;
+  in first gear the two coincide near 4–8 km/h, which is gearing.
 
-Both are the same fault: **the drag line is systematically low at idle**, 14
-against a measured 25 in b7 at 800 rpm, because no straight line in rpm passes
-through both idle and the free-revving holds. Idle is asserted rather than
-fitted, and the assertion has to cover every state the engine idles in, not
-only the parked one.
+Both are one fault: the drag line is low at idle, 14 against a measured 25 in
+b7 at 800 rpm, so idle has to be asserted in every state the engine idles in.
 
-**What it costs**, because it is not free. Over `17_drive_property_z1` the
-share of samples displaying zero goes **28.4 % → 58.0 %**, with the peak
-unmoved at 153.3 Nm — but that log is six minutes of first-gear pottering with
-a great deal of coasting, so it is the worst case rather than a typical drive.
-And **pulling away reads zero until the car moves**: a median of 0.7 s after
-the pedal leaves rest across the 14 pull-aways in that log, 1.75 s at worst, so
-real torque against a slipping clutch is not shown for that time. Accepted
-deliberately — a stationary car showing a number is the thing being fixed.
+**What it costs**, because it is not free: over `17` the share of samples
+displaying zero goes **28.4 % → 58.0 %** (worst case, six minutes of
+first-gear pottering), and **pulling away reads zero until the car moves**, a
+median of 0.7 s after the pedal leaves rest, 1.75 s at worst. Accepted
+deliberately.
 
 Both thresholds are measured, and neither is an equality:
 
-- **Speed.** A stationary car does not send zero — 0x1A0 raw speed is **1**
-  (0.005 km/h) in every log while standing, 7953 frames of it in
-  `06_trip_reset` alone. The next value that ever appears is above 40
-  (0.2 km/h); nothing in between exists anywhere. The gate is 0.1 km/h.
-- **Throttle.** 0x280 b5 is exactly **38** at rest and never lower in any log,
-  against 48–61 across the four holds; across every fixture the next value
-  above 38 that ever appears is **44**, so nothing occupies 39–43. It is the
-  pedal and not the load, which is what lets it gate on its own: a released
-  pedal is a statement about the driver, and what b7 does afterwards is the
-  engine looking after itself.
+- **Speed.** A stationary car sends raw speed **1** (0.005 km/h), never 0 —
+  7953 frames of it in `06_trip_reset` — and the next value that ever appears
+  is above 40. The gate is 0.1 km/h.
+- **Throttle.** 0x280 b5 is exactly **38** at rest and never lower; the next
+  value above it that ever appears is **44**. It is the pedal and not the
+  load, which is what lets it gate on its own.
 
-⚠ **The b7 = 133 spike is not a counter-example**, though it was read as one
-here and that reading is what made the gate an AND. b7 does reach 133 at
-throttle 38 in `17_drive_property_z1` — at 4522 rpm, during a gearchange, in a
-frame where 0x1A0 was not reporting a valid speed at all. It is the pedal and
-the load byte disagreeing for a few frames, not a state the car sits in.
-Bucketed by engine speed, mean b7 at throttle 38 is 14–17 everywhere above
-1000 rpm, which is *below* the drag line; only the idle bucket sits above it,
-at 27.6. Gating those spikes away is a second thing this rule buys.
+⚠ **The b7 = 133 spike is not a counter-example**, though reading it as one is
+what made the gate an AND. It is at 4522 rpm during a gearchange, in a frame
+where 0x1A0 had no valid speed; bucketed by engine speed, mean b7 at throttle
+38 is 14–17 everywhere above 1000 rpm, below the drag line (`refuted.md` B9).
 
 **The construction is not ours.** SAE J1979 carries *actual engine percent
 torque* (PID 0x62) and *engine friction percent torque* (PID 0x8E) as separate
-standard PIDs — precisely indicated-minus-friction — and PID 0x64, *engine
-percent torque data*, gives five reference points of which **the first is
-idle**, so the standard also treats the idle value as its own datum rather than
-a point on a curve. Read off the [OBD-II PID
+PIDs — indicated minus friction — and PID 0x64 gives five reference points of
+which **the first is idle**, a datum of its own. Read off the [OBD-II PID
 tables](https://en.wikipedia.org/wiki/OBD-II_PIDs) and [CSS
 Electronics](https://www.csselectronics.com/pages/obd2-pid-table-on-board-diagnostics-j1979),
-which agree with each other; J1979 itself is paywalled and has not been read.
-That is **evidence, not a specification** — the rule stands on its own.
-Sports-mode power displays in production cars behave the same way, reading zero
-at idle and rising with load ([BMW i4
-forum](https://www.i4talk.com/threads/power-torque-instrument-cluster.7190/)).
+which agree; J1979 itself is paywalled and has not been read. Evidence, not a
+specification — the rule stands on its own.
 
 Eight tests in `test_compute.c` and two in `test_txframes.c` assert it, the
-latter end to end off the real idle logs including the one with the air
-conditioning running. One of the eight replays the stop above frame by frame,
-and one asserts that the gate does *open* — without that, the rest would pass
-on a `compute_torque_d()` that returned zero unconditionally. If one goes red,
-the fix is the code.
-
-The line still says nothing about drag under load, and 72–77 °C is warm rather
-than the 95–110 °C of real driving, so it very likely still overstates drag a
-little — the conservative direction. `open.md` question 7 stays open
-for that, with question 10 (the oil scale) underneath it. Torque is clamped at zero rather
-than going negative on the overrun, and is zero below 500 rpm, where the
-starter is turning the engine and b7 reads a constant 191–192.
-
-One consequence of the gate for that refit: **the holds it needs will display
-zero**, because they are taken standing still in neutral. That is correct and
-not a fault to chase — the refit is done off the raw log and b7, not off the
-display.
-
-```
-power [kW] = torque [Nm] × rpm ÷ 9550
-```
-
-The MFD15 cannot compute this itself — per the manual, math channels exist only
-on the MFD28/32.
+latter end to end off the real idle logs including the one with the A/C on.
+One replays the stop above frame by frame, and one asserts that the gate does
+*open*. If one goes red, the fix is the code. The holds a drag refit needs
+will display zero, correctly; the refit is done off the raw log.
 
 ---
 

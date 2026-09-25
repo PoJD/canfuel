@@ -201,6 +201,20 @@ topped out at 76.5 kW at 5200 rpm and 147 Nm, at any throttle opening, and
 **nothing tested that** — which is the part worth remembering. Two tests in
 `test_compute.c` now pin the ceiling.
 
+### B12. "b7 = 255 is the rated crank torque plus the drag at that speed"
+
+**Believed:** as the fix for B6, and shipped: requiring b7 = 255 to reproduce
+each factory rating gave 0.75 Nm/bit on the cold drag line and 0.74 on the warm
+one, and the two ratings "agreed" to 0.3 %.
+**Refuted by:** held full-throttle pulls in 4th (`19_postfix_drive_z1`). The
+engine plateaus at 185–206 and falls away above 4500 rpm with the pedal on the
+floor; relative load is flat at 78–81 %. b7 = 255 would need relative load near
+100 %, i.e. intake air colder than about −20 °C. The ratings agreed only
+because both were nailed to the same 255.
+**Cost:** the display read torque and power **30 % low** until the scale was
+re-read off the plateau as 1.06 Nm/bit. **Nothing in the test suite caught
+it**; a measurement did.
+
 ### B7. "Bit 15 of the fuel counter is constantly 1"
 
 **Believed:** stated as measured fact in `mfd15/docs/sensors.md`.
