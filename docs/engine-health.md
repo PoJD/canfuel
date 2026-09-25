@@ -2744,6 +2744,11 @@ anyway, can listen to the rest of the system on the same visit.
   symptoms* for what to ask), and the mounting and hangers of the new system
   for the overrun jingle. If they find and fix a crack, a 020 + 026 log
   afterwards is the test: cylinder 4's retard should be gone.
+- **The owner's own check before that: the thin hose between N112 and the
+  combination valve**, pulled off the valve's nipple at a warm idle. The
+  nipple should not pulse, since pulsing means a torn diaphragm passing
+  exhaust. The hose end should not suck, since suction means N112 passes
+  vacuum when switched off. Refit it before the next cold start.
 
 - **Group 032 again, a few hundred kilometres after the MAF swap**, one
   photographed screen, no session: it reads the new MAF's adaptation after it
