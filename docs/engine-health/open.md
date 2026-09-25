@@ -556,11 +556,15 @@ tenths.
    ~0.3 s resolution. *Already on record, off the display on 25/9: 13.9–14.2 V
    at a warm idle, peaks 14.2–14.5 V — the charging system itself looks
    normal.*
-0. **Engine idling, all loads on: battery + post → the far end of the main
-   red cable** (the fuse holder on the battery, the starter terminal or the
-   alternator B+, whichever it runs to). Wiggle the chafed section while
+0. **Engine idling, all loads on: battery + post → the alternator's B+ nut**
+   (the rubber-capped stud on the back of the alternator, where the thick red
+   cable ends; *general* for this engine family — follow the cable to be
+   sure). At idle that is the path the charging current takes; the cable to
+   the starter carries current only while cranking. Wiggle the chafed section while
    watching the meter: a jump is broken strands.
-1. **Engine idling, all loads on: battery − post → engine block.** Ground 2
+1. **Engine idling, all loads on: battery − post → the alternator's case.**
+   The charging current returns through the case, the block and ground 2, so
+   the case is the point that sees it; any bare bolt on the block will do. Ground 2
    and the clamp together. Then **post → clamp** and **strap lug → gearbox**
    one joint at a time, to find which one it is — the terminals already
    showed a drop.
