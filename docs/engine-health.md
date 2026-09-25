@@ -2418,29 +2418,42 @@ Which one dominates at this engine's idle is not established, and nothing
 here measures it. General knowledge only: a check valve that has stopped
 sealing tends to pass both ways.
 
-**Two free tests at a warm idle, before buying anything.** The owner's
-description leaves no vacuum line on the valve, so the vacuum test an earlier
-revision listed is dropped. The pump does not run warm, so neither can hurt:
+**What is on the car, from the owner's photographs of 25 September.** The
+combination valve is a round diaphragm body with the corrugated pump hose on
+it and a **small hose from a nipple on top**. That small hose does **not**
+run straight to the intake, correcting the owner's recollection of the day
+before. It runs to **a second, smaller module with its own electrical
+connector**, which carries a VW-marked plug. That matches the p. 20 function
+diagram and the p. 13 picture, and not the p. 13 text. **The reading taken
+here is that the module is N112, an electric valve switching vacuum to the
+combination valve**, and that the p. 13 text does not describe this car. ⚠ The
+module's part number could not be read in the photographs; the
+identification rests on the layout and the diagram, not on a label. The
+hose from N112 onward, the one the owner earlier described as going to the
+intake ahead of the MAF, would then be its vent or supply side. The line that
+tore in August is most plausibly the valve-to-N112 one: a combination valve with
+no control line cannot open, which is exactly what P0411 reports.
 
-1. **Pull the hose between the pump and the combination valve off the valve.**
-   Exhaust pulsing out of the valve's port, or soot inside that hose, means it
-   does not seal.
-2. **Pull the small hose off at the intake end, the one that tore**, at a
-   warm idle. Pulsing, warm or smelly gas coming out of it, or soot or
-   condensation inside it, means exhaust is reaching the intake through the
-   valve. Put it back straight after; open, it only draws engine-bay air
-   ahead of the MAF, as it did all of August.
+**Test 1 was done, and it is negative.** *Owner-reported, 25 September:* after a
+warm start, with the hose from the pump pulled off the valve at a running
+idle, **nothing pulsed out of the valve's port**. So at that moment the valve
+was shut and sealing, and **the valve being held open at a warm idle is ruled
+out for that idle**. That covers both a tired valve and a leaking N112, since
+either would have let exhaust out there.
 
-**SSP 233 disagrees with itself here, and the car decides it.** The p. 20
-function diagram of the AQY draws an **N112**, an electrically switched valve
-fed from a fuse and switched by J220, drawn with the same symbol as the N80
-purge valve. The p. 13 text says a secondary-air control valve exists only on
-the ATU, while p. 13's own picture shows such a valve (5) with vacuum
-lines to the combination valve (6). The legend that would name N112 is on
-p. 33, which the copy read here does not contain. **By the owner's
-recollection, the small hose is a plain, very narrow hose straight from the
-valve to the intake, with nothing in line**. That would make it a vent or
-reference line and not a control line; the owner will check it again.
+**What is left to check on this side is cheap:**
+
+- **Is there vacuum on the small hose at a warm idle?** Pull it off the
+  combination valve's nipple and put a finger over it. At a warm idle,
+  N112 should not be passing vacuum, so the finger should feel nothing.
+  Suction there means N112 is passing vacuum when it should not. That is not
+  harmful while the valve seals, but it is worth knowing.
+- **Soot or condensation inside the pump hose**, from the valve end. That is the
+  longer-term record test 1 cannot give.
+
+Neither expects a finding. **On the evidence of test 1, the secondary-air
+system is not what makes this idle stumble**, and the exhaust manifold and the
+cylinder 4 knock log remain the leads.
 
 **Which part it is.** Retail catalogues list the combination valve for
 2.0 engines of this family as **`06A 131 351`**, with suffixes B, D, F, H
