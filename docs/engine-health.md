@@ -2635,12 +2635,86 @@ it could not have shown knock there.
    a leak would not change the burnt mixture much is right. Air drawn in
    downstream of the valves reaches only the probe, not the cylinder.
 
-**The cheap next test separates noise from knock outright:** 026 alone, or
-with 003, standing in neutral, held at 2000, 2500, 3000 and 3500 rpm for
-about ten seconds each, warm. No load, so no knock is possible. If cylinder
-4 still reads above cylinder 1 from 2000 rpm up, it is mechanical, and a
-mechanic's stethoscope along the head around cylinder 4, at the engine
-speed where the gap is largest, is the way to find it.
+**The test that separates noise from knock, run the same afternoon.**
+Groups 026 and 003 only (`vcds/vcds-neutral-026-003.csv`, 335 samples, one
+every 0.6 s), standing in neutral, minutes after the drive log ended. Oil
+56 → 68 °C and coolant 89 → 97 °C over the log, read off the display, which
+also puts the drive log's end at about 56 °C of oil. Holds up to 3200 rpm
+and back down, then three throttle snaps. **No load: the air mass is
+5–9 g/s, a tenth of a full-throttle pull, so nothing can knock.** Medians
+per hold:
+
+| hold | rpm | MAF g/s | V1 | V2 | V3 | V4 | 4 / 1 |
+|---|---|---|---|---|---|---|---|
+| idle | 760 | 3.2 | 0.31 | 0.31 | 0.31 | 0.31 | 1.00 |
+| up | 1600 | 4.8 | 1.49 | 0.63 | 1.10 | 1.26 | 0.89 |
+| up | 2200 | 6.5 | 3.14 | 0.94 | 1.73 | 2.98 | 0.95 |
+| up | 2800 | 8.2 | 4.16 | 2.20 | 1.88 | **5.89** | **1.50** |
+| up | 3200 | 9.4 | 4.71 | 2.83 | 3.30 | **7.54** | **1.53** |
+| down | 2720 | 7.8 | 4.95 | 1.88 | 1.88 | **6.91** | **1.41** |
+| down | 2200 | 6.3 | 2.67 | 1.57 | 1.41 | **4.55** | **1.68** |
+| down | 1920 | 5.2 | 3.30 | 1.41 | 1.10 | 3.30 | 1.00 |
+| idle | 800 | 3.3 | 0.47 | 0.31 | 0.31 | 0.31 | 1.00 |
+
+**Cylinder 4 is 40–70 % above cylinder 1 from about 2700 rpm up, with no
+load at all.** That settles the question the drive log left open: **the
+extra in cylinder 4's window is not knock.** Knock is the end gas
+self-igniting, and it needs high cylinder pressure and temperature, which
+is load; at a tenth of full-throttle air, at a 25 °CA advance the ECU
+chose and did not trim, on 100-octane fuel, it does not happen. That is
+general engine physics, not a measurement inside the cylinder. What the
+extra *is* the log does not say: a sound the sensor hears, or electrical
+interference on its signal, both at the moment the ECU listens for
+cylinder 4. "Cylinder 4" names that moment, not where the source sits. The 1 and 4
+pair sits at about twice 2 and 3 here too, as it did on the road.
+
+Two details worth keeping:
+
+- **It switches on with engine speed rather than growing smoothly.** 4 and 1
+  are level at 1600 and 2200 on the way up and at 1920 on the way down, and
+  apart above that. A noise at a fixed crank angle with an amplitude that
+  simply grows with speed would show at every hold. Something that **moves
+  into cylinder 4's window** as the speed rises fits better, or a resonance.
+  That is an inference from the shape, not a measurement of the cause.
+- ⚠ **2200 rpm read differently up and down**: level on the way up, 1.68 on
+  the way down. The oil was 12 °C warmer by then. Hotter oil is the plausible
+  difference, and a hydraulic lifter is the classic part that gets noisier
+  as its oil thins, as general knowledge. One pass each way cannot separate
+  temperature from order.
+
+**Candidates, all general knowledge, none measured.** Once per cycle rules
+out anything turning at crank speed, which would hit windows 1 and 4
+equally. What is left at camshaft speed:
+
+- **electrical interference**: an injector or coil switching at that moment
+  and coupling into the sensor's wiring, or a poor earth. Not engine
+  hardware at all, and a stethoscope that hears nothing points here;
+
+- **the valvetrain at cylinder 4**, a lifter, a valve or a cam lobe;
+- **an injector.** Each one clicks once per cycle, and where the click falls
+  in crank angle shifts with engine speed as the injection timing moves.
+  That is the one candidate that naturally produces a noise that slides into
+  a window above some speed. ⚠ All four injectors are new since
+  23 September, and **no knock log exists from before the change**, so
+  whether cylinder 4's retard is older than the injectors is not known.
+
+**What it means for the engine.** Knock control retards cylinder 4 because
+it hears this noise at full throttle above 3000 rpm. That costs a little
+torque on that cylinder at those moments, and pulling timing back is the
+safe direction. **It has nothing
+to do with the idle**, where all four read the floor, and it is not a
+reason to suspect the exhaust manifold.
+
+*Owner-reported:* `IdleHealth` around 120 during this session, with the idle
+feeling restless, at 56–68 °C of oil.
+
+**Next: a mechanic's stethoscope**, or a long screwdriver held to the ear, at
+2800–3200 rpm in neutral, warm. Compare the injector body of cylinder 4 with
+cylinder 1's, then the head above cylinder 4 with the head above
+cylinder 1. A difference heard at 3000 rpm and not at 2000 is the part. Hearing
+nothing different points at the electrical side: the sensor wiring and the
+earth straps. ⚠ There is no healthy AQY logged to compare with, so how
+much of this is normal for the engine type is not known.
 
 ### What `deaktiv.` in group 014 is: a load threshold
 
@@ -2875,10 +2949,12 @@ anyway, can listen to the rest of the system on the same visit.
 
 ### What is owed, none of it urgent
 
-- **Next, and cheaper than anything else here: 026 standing in neutral at
-  2000–3500 rpm**, warm. No load means no knock, so cylinder 4 above
-  cylinder 1 there is mechanical. See the end of *Knock sensor voltage per
-  cylinder*.
+- ~~026 standing in neutral at 2000–3500 rpm.~~ **Done**: cylinder 4 is
+  above cylinder 1 with no load, so it is not knock. See *The test
+  that separates noise from knock*.
+- **Next: a stethoscope at 2800–3200 rpm in neutral**, at injector 4 against
+  injector 1 and the head above cylinder 4 against cylinder 1. See the same
+  section.
 - **Then, decided by the owner: the exhaust specialists.** A leak test of the
   original manifold (see *How an exhaust-side leak could produce these
   symptoms* for what to ask), and the mounting and hangers of the new system
