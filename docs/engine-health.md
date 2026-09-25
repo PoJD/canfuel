@@ -2788,6 +2788,37 @@ and the retard is within specification.
 3. **Nothing here is urgent.** Retard within specification is knock control
    doing its job.
 
+#### The exhaust rattle, at the same engine speed
+
+*Owner-reported, 25 September:* the rattle heard on the overrun (*A jingling
+from the exhaust on arrival*, below) is **a continuous buzzing under the car,
+roughly beneath the driver's seat, loudest at about 3000 rpm**, and it was
+heard during the neutral test. Something there has come loose.
+
+**That is the engine speed at which cylinder 4 pulls away from cylinder 1**,
+and "ancillary components loose" is one of VW's three causes. So the two may
+be one thing. What speaks for and against it:
+
+- **For:** the same engine speed, and a part refitted in September, which
+  is exactly the kind of cause the manual lists.
+- **Against, in general terms:** under the driver's seat is far from the
+  block, behind the flex pipe, which exists to keep the exhaust's vibration
+  away from the engine. And a rattle driven by the engine's firing, twice
+  per revolution, would land in all four windows, not in one. The
+  per-cylinder amplifier factor could still make a common noise look larger
+  in one cylinder. None of this is measured.
+
+**The test is the before and after.** `vcds/vcds-neutral-026-003.csv` is the
+before. Once the rattle is fixed, repeat the same neutral holds with 026 and
+003 at the same oil temperature. If cylinder 4 no longer pulls away from
+cylinder 1 at 2700–3200 rpm, it was the rattle.
+
+**It cannot explain the idle, the owner's second thought.** At idle knock
+control does nothing: no retard in either log, and 026 sits at its floor.
+The ECU changes nothing at idle because of what the knock sensors hear, and
+misfire detection works from crankshaft speed, not from them. The idle
+stumble is also older than the September exhaust work (`09`, August).
+
 ### What `deaktiv.` in group 014 is: a load threshold
 
 **The owner asked whether detection switching itself off correlates with the
@@ -3024,7 +3055,11 @@ anyway, can listen to the rest of the system on the same visit.
 - ~~026 standing in neutral at 2000–3500 rpm.~~ **Done**: cylinder 4 is
   above cylinder 1 with no load, so it is not knock. See *The test
   that separates noise from knock*.
-- **Next, in VW's own order** (*What VW's workshop manual says*): look over
+- **First: find and fix the exhaust rattle under the driver's seat**, then
+  repeat the neutral 026 + 003 holds as the after-log (*The exhaust rattle,
+  at the same engine speed*). The exhaust specialists can do the first half.
+- **Then, if that changes nothing, in VW's own order** (*What VW's workshop
+  manual says*): look over
   everything refitted in the last weeks for a loose bracket, clip or heat
   shield, ideally with the engine held at about 3000 rpm in neutral. Then
   G66's connector (clean, gold contacts, no corrosion) and its torque of
