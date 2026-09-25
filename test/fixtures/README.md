@@ -62,6 +62,7 @@ stands. It is duration, average flow and distance that need a clock.
 | `vcds/vcds-knock-aborted-022-023.csv` | VCDS log | 55 | own clock | the same, VCDS dropped at the start; engine stopped throughout | — |
 | `vcds/vcds-knock-020-026-003.csv` | VCDS log | 745 | own clock | groups 020, 026 and 003: knock retard and knock sensor voltage per cylinder, with engine speed and throttle, over a drive on 25/9/2026 with idle, tip-ins, overrun and full-throttle pulls. **No bus capture beside it** | — |
 | `vcds/vcds-neutral-026-003.csv` | VCDS log | 335 | own clock | groups 026 and 003 standing in neutral: idle, holds at 1600–3200 rpm up and back down, three throttle snaps, idle. Oil 56 → 68 °C, coolant 89 → 97 °C, read off the display. **No bus capture beside it** | — |
+| `vcds/vcds-neutral-026-003-clamp.csv` | VCDS log | 303 | own clock | the same neutral test repeated after the loose exhaust clamp was tightened and the rattle had stopped: idle, holds at 1760–3400 rpm up and back down, idle. Oil 65 → 71 °C, coolant 97 → 100 °C, read off the display. **No bus capture beside it** | — |
 
 ## The three `_z1` logs
 

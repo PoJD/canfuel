@@ -2819,6 +2819,68 @@ The ECU changes nothing at idle because of what the knock sensors hear, and
 misfire detection works from crankshaft speed, not from them. The idle
 stumble is also older than the September exhaust work (`09`, August).
 
+#### After the clamp: the rattle is gone, cylinder 4's extra is not
+
+*Owner-reported, 25 September:* the rattle was **an over-wide clamp, sitting
+loose, on a pipe joint behind the converter and behind the rear lambda
+probe too**. The garage had filled the joint with a thick layer of
+sealant, which shook out over the last two days. The clamp is now tightened
+as a temporary fix, without sealant, so the joint hums slightly and no
+longer rattles. The garage still has to redo it properly.
+
+The neutral test, repeated (`vcds/vcds-neutral-026-003-clamp.csv`, 303
+samples). Oil 65 → 71 °C and coolant 97 → 100 °C, read off the display,
+which is a few degrees warmer than the *before* log's 56 → 68 °C. The hold
+speeds do not match exactly. Medians per hold:
+
+| hold | rpm | MAF g/s | V1 | V2 | V3 | V4 | 4 / 1 | before, nearest hold |
+|---|---|---|---|---|---|---|---|---|
+| idle | 760 | 3.1 | 0.31 | 0.31 | 0.31 | 0.31 | 1.00 | 1.00 |
+| up | 1760 | 5.1 | 1.88 | 0.47 | 0.63 | 2.04 | 1.08 | 0.89 at 1600 |
+| up | 2360 | 7.3 | 3.30 | 1.57 | 1.10 | 4.87 | **1.48** | 0.95 at 2200 |
+| up | 2840 | 8.9 | 5.34 | 2.51 | 2.67 | 6.59 | **1.24** | 1.42 at 2800 |
+| up | 3400 | 10.8 | 6.44 | 2.43 | 4.47 | 4.24 | **0.66** | *(not visited)* |
+| down | 2960 | 9.2 | 4.55 | 2.04 | 2.83 | 7.22 | **1.59** | 1.31–1.68 at 2720 |
+| down | 2520 | 7.6 | 4.24 | 2.04 | 1.26 | 5.65 | **1.33** | — |
+| down | 2200 | 6.5 | 3.45 | 1.57 | 1.26 | 4.24 | **1.23** | 1.56 at 2200 |
+| idle | 800 | 3.3 | 0.47 | 0.31 | 0.31 | 0.47 | 1.00 | 1.00 |
+
+**The clamp was not it.** Cylinder 4 still reads 25–60 % above cylinder 1
+from about 2300 rpm, at the same speeds and by about the same margin as
+before, with the rattle gone. So the before-and-after test proposed under
+*The exhaust rattle* has come out negative. The noise in cylinder 4's
+window does not come from that joint. Hold speeds and oil temperature both
+differ slightly between the two logs, but neither difference is anywhere
+near large enough to hide a source that has gone away.
+
+**New: above about 3350 rpm the extra moves to cylinder 1.** 3400 rpm was not
+visited in the *before* log. Sample by sample, cylinder 4 reads 5.3–6.6 V
+through 3240–3320 rpm. From 3360 rpm it drops to 3.5–4.4 V, **while cylinder
+1 rises from about 3 V to 5.5–9.1 V**, and the change reverses as soon as
+the speed comes back down. Cylinder 3 also rises a little there. So it is
+not only a noise that slides into cylinder 4's window above about 2300 rpm.
+It **slides out again**, and something just as large appears in cylinder 1's
+window instead. Cylinders 1 and 4 are 360° of crank apart, so this is not
+a noise simply creeping into the next window in the firing order (1-3-4-2).
+What fits is a noise that is large only over certain speed bands, i.e. a
+resonance, or two sources that each have their own band. That is an
+inference from one log, not a measurement.
+
+It changes nothing about the conclusions above. The extra is present
+without load, so it is not knock. It is not the exhaust behind the
+converter. And it does not touch the idle, where all four sit at the floor.
+The stethoscope at 2800–3200 rpm in neutral is still the next step, and
+around 3400 rpm the place to listen shifts toward cylinder 1.
+
+*Owner-reported, same session:* `IdleHealth` **93** at about 71 °C of oil,
+"fluctuating a lot, at times back down towards 70". That is inside the
+57–120 this hot idle has read since the MAF swap. Fixing the clamp has not
+moved it, and was not expected to. The joint is downstream of both lambda
+probes, so air drawn in there never reaches either of them and cannot
+change the mixture. Backpressure does not either, because this ECU meters
+fuel from the MAF's air mass. And a leak in the exhaust cannot cause a
+misfire.
+
 ### What `deaktiv.` in group 014 is: a load threshold
 
 **The owner asked whether detection switching itself off correlates with the
