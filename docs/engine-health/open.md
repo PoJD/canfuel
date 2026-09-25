@@ -344,7 +344,8 @@ or late, intermittently, and gets worse as the oil thins. *General.*
 |---|---|---|---|---|
 | ✔ | ✔ | ✔ | ✔ | ✔ |
 
-- **For:** the **only candidate that can explain both clusters at once**: an
+- **For:** with H4, one of the **two candidates that can explain both
+  clusters at once**: an
   intermittent leak past a valve at idle misfires, and puffs; a ticking lifter
   at camshaft speed lands in one knock window. Temperature-dependent through
   oil viscosity. Compression is a **cranking** test and does not see a valve
@@ -353,6 +354,8 @@ or late, intermittently, and gets worse as the oil thins. *General.*
   lifter should be worst hot. The S5 excess switches on above ~2300 rpm and
   moves to cylinder 1 above ~3350, which fits a resonance better than a single
   part. No ticking has been reported.
+- **From the Polish AQY thread** (see H4): one poster traced idle vibration
+  to valves not sealing and fixed it with head work. A forum report.
 
 **Tests:**
 
@@ -425,38 +428,90 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
 2. A smoke test of the intake at the same garage visit as H2.
 3. 032 after a few hundred km: an idle cell moving positive would support it.
 
-### H4. Weak spark at light load that is not in the parts (earth, wiring, coil connector)
+### H4. Weak spark at light load that is not in the parts (earth, wiring, battery, coil connector)
 
 All the ignition parts are new, so what is left is what feeds them. A poor
-engine earth weakens the spark and adds noise to the knock-sensor signal.
-*General*, and one of the fixes in a long Polish thread on exactly this
-symptom on an AQY (forum.vwgolf.pl, t=522030 — a forum, so a lead, not a
-source). The original poster's own fix there was a cracked exhaust manifold;
-others were genuine leads, a Bosch coil, a holed breather hose, and the earth
-straps.
+engine earth weakens the spark and adds noise to the knock-sensor signal
+(*general*).
+
+**On this car there is already a hint.** *Owner-reported:* a large voltage
+drop was found earlier on the lights, and directly on the battery terminals.
+Not measured on the engine's own earth paths yet.
 
 | S1 | S2 | S3 | S4 | S5 |
 |---|---|---|---|---|
 | ✔ | ✔ | ✔ | ~ | ✔ |
 
-- **For:** the other candidate that could explain **both clusters**: a weak
-  spark misfires at idle and high vacuum, and a noisy ground puts a signal
-  into the knock channel that depends on engine speed. Cylinders 1 and 4 share
-  one coil output (twin-spark coils, SSP 233 p. 5), and their old plugs were
-  the worse pair.
+- **For:** with H1 the only candidate that could explain **both clusters**: a
+  weak spark misfires at idle and high vacuum, and a noisy ground puts a
+  signal into the knock channel that depends on engine speed. Cylinders 1 and
+  4 share one coil output (twin-spark coils, SSP 233 p. 5), and their old
+  plugs were the worse pair.
 - **Against:** the plug pair is better explained by the old coil. Nothing
   here measures the ignition.
 
-**Tests:**
+**What the long Polish AQY thread actually says** (forum.vwgolf.pl, t=522030,
+twelve pages, 2013–2017; a forum, so leads, not sources). ⚠ An earlier
+revision of this file said the original poster fixed it with a welded
+exhaust manifold. **He did not**: welding made it "practically stop" for a few
+days, then everything came back; he went on to a coil, leads, lambda probe,
+timing belt and plugs, planned to pull the head, and **never reported a fix**.
+The "four cracks, welding solved it" quote is from another thread, relayed by
+someone else. What posters did report as fixed:
 
-1. **Clean the engine earth straps** — engine to body, engine to gearbox,
-   battery to body. A wire brush. Then compare `IdleHealth` at the same oil
-   temperature and repeat the neutral 026 holds.
-2. **Voltage drop engine block to battery negative while cranking**: more
-   than a few tenths of a volt is a bad earth. A multimeter. *General.*
-3. **Coil connector** and the ignition harness for corrosion.
-4. **Swap plugs 4 and 2** and log 020 + 026 again: a change that follows the
-   plug is the plug.
+- **a new battery** (raq88, a battery 6–7 years old at purchase): "after 4
+  years the misfires stopped"; the moderator concluded *"the cause of the
+  vibrations is the car's electrics"*. One poster, a few weeks' follow-up;
+- **a new Bosch coil** (two posters, one also with a lambda probe);
+- **original thick VW leads** instead of new aftermarket (Beru) ones, which
+  made it misfire (one poster);
+- a cleaned-up earth was only **suggested** ("unscrew all the earths, wire-brush
+  them, copper paste"), with no result reported. Nobody in the thread
+  confirmed an earth fix; one noted it idled smoother after new alternator
+  brushes and regulator, and worse in wet weather.
+
+**Where the earths are.** A Golf/Jetta IV ground list (web.mit.edu/dennis,
+from the US repair literature; **this car's own current-flow diagram in the
+owner's manual is the authority** — the New Beetle shares the platform but
+not necessarily every ground point). The ones on the engine's side:
+
+| ground | where | carries |
+|---|---|---|
+| **1** | engine compartment, left, below the battery tray | battery negative to body |
+| **2** | on the transmission, near the engine block | **battery negative to transmission/engine — the engine's main earth** |
+| **15** | on the cylinder head | **ignition coils** |
+| **608** | plenum, left centre, forward of the ECM | engine-compartment wiring harness (the ECM's harness ground on that list) |
+| **609** | plenum, right, forward of the pollen filter | secondary air pump |
+
+The knock sensors do not use a chassis earth: they are screened pairs back to
+the ECM and bolted to the block (*general*). What matters for them is that the
+ECM's own ground and the engine block sit at the same potential — which is
+exactly what a poor ground 2 or 608 breaks.
+
+**Tests — measure first, clean what fails, instead of every earth in the car.**
+A voltage-drop test under load: meter on 2 V DC, probes on the two ends of one
+earth path, with current flowing. *General guidance:* a good path reads a
+tenth or two of a volt while cranking; half a volt or more is a bad joint.
+
+1. **Battery negative *post* (not the clamp) → engine block**, cranking. This
+   is ground 2 and the battery clamp together. Then post → clamp alone, to
+   split them — the terminals already showed a drop.
+2. **Battery negative post → body** next to ground 1, cranking and with the
+   headlights on.
+3. **Engine block → body**, engine idling with lights and fan on.
+4. **Coil ground (ground 15) → battery negative post**, engine idling.
+5. **Engine block → ECM ground pins** (back-probe the ECM connector; the pin
+   numbers are in the manual's current-flow diagram for the AQY), engine
+   idling.
+6. **Charging voltage** at the battery, idling with loads on, and the
+   battery's own condition (age, a load test). The one confirmed electrical
+   fix in the thread was a battery.
+
+Whatever reads high: clean to bright metal, refit at the manual's torque, and
+**then** compare `IdleHealth` at the same oil temperature and repeat the
+neutral 026 holds. Also: **what leads went on on 17/9** — genuine VW or
+aftermarket? The thread has one poster whose new aftermarket leads made it
+misfire.
 
 ### H5. Something in the cylinder 4 knock window that is not the engine's combustion (S4 + S5 only)
 
@@ -583,8 +638,8 @@ the oil temperature beside it.
    overnight start off 0x604 (S7), and one held 4th-gear pull to 6000 rpm
    with `Power` on the display and a capture running (S8).
 2. **Stethoscope and cold-start listening** — H1, H5. Free.
-3. **Earth straps cleaned, and the voltage drop measured** — H4, H5. A wire
-   brush and a multimeter.
+3. **The voltage-drop tests of H4**, then clean only what fails — H4, H5. A
+   multimeter, then a wire brush.
 4. **Spray test of the intake at a warm idle** — H3. A can of brake cleaner.
 5. **Exhaust runner temperatures with an IR thermometer** — names a cylinder,
    splits everything. Cheap.
