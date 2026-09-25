@@ -586,6 +586,23 @@ coolant, and the driver heard no burble at all, cold or hot. No coast happened
 below 61 °C of coolant, so the ECU's behaviour on a genuinely cold overrun is
 still not recorded.
 
+**Read again at the owner's prompting, and it answers more than that
+sentence allowed.** In `19` the car first moved at 48 °C of coolant and
+**12 °C of oil**. Coolant then climbs fast, to 90 °C within five minutes of
+driving, while the oil lags far behind. So the first coasts of the morning,
+at 61.5–72 °C of coolant, ran on **oil at roughly 13–22 °C**, which is a cold
+engine by any gauge the driver can see. On those the ECU cut the injectors
+exactly as it does warm: **shut 1.20–1.34 s after the lift**, against
+1.2–1.3 s warm in `17`. The two coasts before that are too short to cut
+(0.6 s, and a 1.6 s one that ends at the 1,208 rpm resume). **The driver heard
+no burble.** For the fork table above, that is the first row: the ECU cuts
+fuel on a cold engine too. **So the burble the owner remembers, fuel audibly
+burning in the exhaust through a cold coast, was fuel arriving with none
+commanded**, and with the old injectors gone it has gone too. ⚠ The one gap is
+coolant below about 60 °C, and the ECU's warm-up logic keys on coolant, not
+oil. That window lasts only the first couple of minutes of driving and this
+drive had no coast in it.
+
 ### The old converter was shown to the owner, and it is the one hard fact here
 
 Cracked on the outside, blocked inside, and **one chamber burned right
