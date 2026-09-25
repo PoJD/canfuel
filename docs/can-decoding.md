@@ -330,7 +330,7 @@ every 180° and each 180° window contains exactly one power stroke, start to
 finish. So each value the ECU publishes is the crank's mean speed **across one
 cylinder's contribution**, and the step to the next value is how much one
 cylinder's contribution differed from the one before it. That is what makes
-the step a per-cylinder quantity and what lets `docs/engine-health.md` put a
+the step a per-cylinder quantity and what lets `docs/engine-health-log.md` put a
 dip depth into an energy budget at all.
 
 ⚠ **"Once per 180°" and "once per firing event" are the same interval on this
@@ -358,7 +358,7 @@ frequencies at 0.1–1.5× and a shuffled null at about 1×.
 ⚠ **That is not a found fault, and reading it as one is the trap.** The
 smoothest recording this car has produced carries it as strongly as the
 roughest does, so it is **ordinary cylinder-to-cylinder variation**.
-`docs/engine-health.md`, *Is it one cylinder?*, has the tables, the conclusion
+`docs/engine-health-log.md`, *Is it one cylinder?*, has the tables, the conclusion
 that a single bad cylinder is ruled out, and the limit that matters most:
 **four equally bad cylinders leave no period at all**, so that hypothesis can
 be neither confirmed nor refuted this way.
@@ -385,7 +385,7 @@ no one bad cylinder — happens to survive, for entirely different reasons.
 ### The idle grade on 0x604, from a raw frame to the byte
 
 **So that the number can be checked rather than trusted.** `docs/frames.md`
-says what the bytes of 0x604 mean and `docs/engine-health.md` what they were on
+says what the bytes of 0x604 mean and `docs/engine-health-log.md` what they were on
 this engine; this is the chain between a raw 0x280 frame and the byte on the
 wire, on a real capture. Every figure below was printed by re-running
 `roughness()` in `tools/idledips.py` over `09_idle_60s_z1.txt` and recording
@@ -469,7 +469,7 @@ the deadband:
 6–15 rpm columns — the steps the deadband lets through in full — and the
 smooth recordings differ from the rough ones there, not in the tail past
 25 rpm, which is nearly empty everywhere. The post-repair drive sits on the
-anchors, which is `docs/engine-health.md`'s finding in one row: the repair did
+anchors, which is `docs/engine-health-log.md`'s finding in one row: the repair did
 not make the idle smooth.
 
 ---
@@ -539,7 +539,7 @@ catalyst temperature is, because the number is a gate and the test supplies the
 judgement. **The three sensor blocks matter for a different reason** — both
 oxygen sensors on this car have already been replaced once and both have since
 sat in the exhaust of a converter that was burning through, so any `not OK` is
-a second failure rather than a worn part. `engine-health.md` has what that
+a second failure rather than a worn part. `engine-health-log.md` has what that
 does to the lambda adaptation figures.
 
 Intake air, from the same read, is specified **−45.0 to +108.5 °C**.
@@ -646,7 +646,7 @@ are kept apart on purpose: the first says what the answer is, the second says
 there is no answer and none is wanted.
 
 **This register is about decoding the bus, and one live investigation is not in
-it.** `docs/engine-health.md` holds an open question about the *vehicle* —
+it.** `docs/engine-health-log.md` holds an open question about the *vehicle* —
 whether the engine is down on power, and whether `TORQUE_CNM_PER_BIT`
 under-read — which question 8 has since answered: it did, by 30 %. It is a
 holding document with an end date, not a tenth question, and the count above
@@ -717,7 +717,7 @@ agree with each other to 0.6 %.
 ⚠ **It is calibrated against a stock AQY's ratings, and this car is not one.**
 The remap below is a fact about this vehicle rather than a caution about
 somebody else's: the ECU was chipped years ago, it is not going back to
-standard, and `docs/engine-health.md` holds what is and is not known about it.
+standard, and `docs/engine-health-log.md` holds what is and is not known about it.
 
 **A remap therefore does not read correctly.**
 Which way it fails depends on something nobody has established — whether the
@@ -1611,7 +1611,7 @@ and the reason is worth keeping.
   two ways `frames.md` said a remap could fail.
 - **But the airflow of that same pull implies more torque than the display
   showed** — enough that either the engine is burning badly or the scale
-  under-reads, and the measurement supports both. `docs/engine-health.md` has
+  under-reads, and the measurement supports both. `docs/engine-health-log.md` has
   the numbers and the argument.
 - **The car is chipped**, which makes the derivation worse in a known
   direction: the bracket comes from *stock* ratings and this engine is not
@@ -1621,7 +1621,7 @@ and the reason is worth keeping.
 still no torque block on this ECU and there never will be. What is new is a
 different route to the same number — torque inferred from measured air and
 measured fuel — which needs no block and no dynamometer, and which
-`engine-health.md` sets out. **Until that capture exists this stays parked**,
+`engine-health-log.md` sets out. **Until that capture exists this stays parked**,
 and it stays here rather than moving to the open register, because there is
 still no work owed: the decision in the code is defensible, and the engine has
 to be repaired before any measurement of it means anything.

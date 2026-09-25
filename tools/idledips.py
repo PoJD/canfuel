@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Count transient dips of engine speed against its own one-second median.
 
-This is the measurement behind the idle tables in docs/engine-health.md. It
+This is the measurement behind the idle tables in docs/engine-health-log.md. It
 exists as a tool rather than as a number typed into prose because the first
 pass at it was an ad-hoc script that was not kept, and a later reconstruction
 of it disagreed with the published counts by two events -- small, but nobody
@@ -30,7 +30,7 @@ Three instruments, and why there are three
 
 `dips()` is the measurement. `dips_cheap()` asks the same question in a shape
 a PIC18F25K80 could answer live -- a first-order baseline, a latch, an idle
-gate -- and is the one whose numbers the prediction in docs/engine-health.md
+gate -- and is the one whose numbers the prediction in docs/engine-health-log.md
 is written against.
 
 `roughness()` does not count at all. It GRADES the idle, because a count past
@@ -60,7 +60,7 @@ has the measurement behind the second.
 Usage
 -----
 
-    python idledips.py                       # the table in engine-health.md
+    python idledips.py                       # the table in engine-health-log.md
     python idledips.py FILE [FILE ...]       # one line per log
     python idledips.py --from 50 --to 360 FILE
     python idledips.py --thresholds 15,20,25 FILE
@@ -176,7 +176,7 @@ def dips(rpm, threshold, t_from=None, t_to=None):
 def depths(rpm, threshold, t_from=None, t_to=None):
     """The depth of every dip, deepest first. The counts say how often the
     engine stumbles; this says how hard, which is what the energy argument in
-    docs/engine-health.md is written against."""
+    docs/engine-health-log.md is written against."""
     ev, span = dips(rpm, threshold, t_from, t_to)
     return sorted((d for _, d in ev), reverse=True), span
 
@@ -271,7 +271,7 @@ def segments(rpm, bands=SEGMENT_BANDS, cap_s=0.5):
 # there will never again be a rough engine to fit anything against -- at which
 # point ANY threshold reads zero and a detector tuned to read zero measures
 # nothing at all. So they are fixed before the repair, and the reading
-# afterwards is taken with them unchanged. docs/engine-health.md carries the
+# afterwards is taken with them unchanged. docs/engine-health-log.md carries the
 # prediction this pins down.
 #
 # Every operation is one a PIC18 does cheaply: the shift is 8, which on this
@@ -674,7 +674,7 @@ def slot_means(run):
     ``sd_true`` is the unbiased one and is the figure to quote: the variance
     between the slot means minus the variance the noise puts there,
     ``var(means) - mean(SE^2)``, floored at zero and square-rooted. It is what
-    the rough-against-smooth comparison in docs/engine-health.md rests on.
+    the rough-against-smooth comparison in docs/engine-health-log.md rests on.
     """
     d = _detrend(run)
     slots = [[] for _ in range(4)]

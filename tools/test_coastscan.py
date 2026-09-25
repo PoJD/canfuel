@@ -2,7 +2,7 @@
 """Tests for coastscan.py.
 
 Three facts about the corpus are asserted hard, because
-docs/engine-health.md argues from them:
+docs/engine-health-log.md argues from them:
 
 * the ECU does shut the injectors on the overrun -- four times in the one
   fixture that contains real driving

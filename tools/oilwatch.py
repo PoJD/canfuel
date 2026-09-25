@@ -69,7 +69,7 @@ import canlog
 
 # --- the band, and why it is these numbers ---------------------------------
 #
-# ⚠ ALL THREE ARE DECISIONS, not specifications. docs/engine-health.md has
+# ⚠ ALL THREE ARE DECISIONS, not specifications. docs/engine-health-log.md has
 # exactly two before-readings with a non-zero dip rate -- 13-17 C and 61.5 C --
 # and a zero one at 72.8-73.5 C, and the relationship between the three is not
 # monotonic. So there is no measured width to take; what follows is chosen:

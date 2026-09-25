@@ -7,7 +7,7 @@ Running them:
 
 These are properties of the detector rather than a copy of the published
 counts. Pinning the counts here would put the same numbers in two places and
-guarantee that one of them goes stale, which is the thing docs/engine-health.md
+guarantee that one of them goes stale, which is the thing docs/engine-health-log.md
 and CLAUDE.md both argue against; the counts have exactly one home and it is
 the tool's own output.
 
@@ -133,7 +133,7 @@ class CheapDetector(unittest.TestCase):
 
         These were fitted against a rough engine that is about to be repaired,
         after which nothing can re-fit them and any value at all reads zero.
-        If this test has to be edited, the prediction in engine-health.md is
+        If this test has to be edited, the prediction in engine-health-log.md is
         void and has to be rewritten rather than quietly re-based.
         """
         self.assertEqual((EWMA_SHIFT, TRIP_RPM, REARM_RPM, SETTLE_S),
@@ -214,7 +214,7 @@ class SegmentRate(unittest.TestCase):
 
     That is what makes a dip in it a per-cylinder quantity rather than a
     smoothed one -- 180 deg is one power stroke -- and it is the measurement
-    docs/engine-health.md argues the energy budget of one lost power stroke
+    docs/engine-health-log.md argues the energy budget of one lost power stroke
     from. Asserted as a band rather than a figure: what has to survive is that
     the interval tracks the engine and not the 10 ms frame period.
 
@@ -440,7 +440,7 @@ class RoughnessAgainstTheFixtures(unittest.TestCase):
 class StepDistribution(unittest.TestCase):
     """The shape the grade is a summary of.
 
-    This is what `--roughness --hist` prints and what engine-health.md shows,
+    This is what `--roughness --hist` prints and what engine-health-log.md shows,
     and it is the answer to "what is being measured" -- not an event and not a
     threshold, but how often each size of step between firing events happens.
     """
@@ -552,7 +552,7 @@ class PerCylinderStructure(unittest.TestCase):
 
     def test_the_line_is_in_the_smooth_log_too(self):
         """THE conclusion. If this ever fails one way, the line has become a
-        fault signature and engine-health.md is wrong; if it fails the other,
+        fault signature and engine-health-log.md is wrong; if it fails the other,
         the method has stopped finding what it found."""
         rough = period_power(self.runs("09_idle_60s_z1.txt"), 0.25)[0]
         smooth = period_power(self.runs("11_idle_noac_z1.txt"), 0.25)[0]
@@ -766,7 +766,7 @@ class HealthAgainstTheFixtures(unittest.TestCase):
 
     def test_the_two_recorded_cold_starts_are_the_ones_in_the_docs(self):
         """1.24 s against 0.83 s of cranking, 140 against 118 rpm lost: the
-        numbers docs/engine-health.md quotes, to the resolution of the byte."""
+        numbers docs/engine-health-log.md quotes, to the resolution of the byte."""
         cold = health_summary(os.path.join(FIXTURES, "18_coldstart_z1.txt"))
         fixed = health_summary(os.path.join(FIXTURES, "19_postfix_drive_z1.txt"))
         self.assertAlmostEqual(cold["start_crank"] * 0.032, 1.24, delta=0.032)

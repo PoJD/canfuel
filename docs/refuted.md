@@ -19,6 +19,11 @@ way — live in `can-decoding.md`. This file is only for things that were settle
 *against*. If an entry below is ever un-refuted by new evidence, say so in it
 rather than deleting it.
 
+**The engine itself has its own register**: hypotheses about the car's idle,
+misfires and knock control that were settled against are in
+`engine-health-refuted.md`, beside the open investigation in
+`engine-health.md`.
+
 ---
 
 ## A. Reading the datasheet

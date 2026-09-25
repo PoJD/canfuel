@@ -57,7 +57,7 @@ observed with a functioning lamp. So "for years" in a symptom description is a
 lower bound only where it reaches back past the purchase.
 
 **It is also the strongest argument for the diagnose-before-buying-parts
-position `engine-health.md` takes.** A previous owner who covered the lamp
+position `engine-health-log.md` takes.** A previous owner who covered the lamp
 rather than read it means the car arrived carrying an unresolved fault of
 unknown age, not a clean sheet.
 
@@ -183,13 +183,13 @@ Three entries carry more than a date.
 
 **The catalytic converter fitted in 10/2017 was replaced in 9/2026 having been
 found completely blocked**, against a service life of nine years and under
-28,000 km. `docs/engine-health.md`, *The old converter was shown to the owner*,
+28,000 km. `docs/engine-health-log.md`, *The old converter was shown to the owner*,
 is the account of it and treats it as the one hard fact in that investigation.
 
 **The plugs and leads of 12/2022 came out destroyed at about 1,500 km**, which
 is the derived distance in the table above and a fiftieth of what a set of plugs
 is normally good for. Eroded electrodes and dry carbon on all four, worse on
-cylinders 1 and 4, one visibly worse than the rest. `docs/engine-health.md`,
+cylinders 1 and 4, one visibly worse than the rest. `docs/engine-health-log.md`,
 *The plugs: four years by date, under 1,500 km by wear*, reads them; the short
 version is that this is the **second** consumable on this car to be destroyed by
 distance it never covered, after the converter directly above.
@@ -198,7 +198,7 @@ distance it never covered, after the converter directly above.
 because the injectors were still in transit on the day. How long the gap turned
 out to be is not recorded here — add the injectors' own fitting date to the
 table above when it happens, and the gap reads off the two dates. That splits a repair the rest of
-`docs/` had assumed would be one event, and `engine-health.md` carries what it
+`docs/` had assumed would be one event, and `engine-health-log.md` carries what it
 costs.
 
 **Compression, measured at the 17/9/2026 visit: 12 bar on all four cylinders**
@@ -208,9 +208,9 @@ project.* The evenness is the load-bearing part and it eliminates every
 per-cylinder mechanical explanation this project had been carrying — a burnt
 valve, a broken ring pack, a head gasket leaking between cylinders. It also
 agrees, from a completely different measurement, with the volumetric efficiency
-`engine-health.md` derives from mass air flow and the ECU's load channel.
+`engine-health-log.md` derives from mass air flow and the ECU's load channel.
 
-**The chiptuning of 6/2018 is the standing unknown.** `engine-health.md`, *The
+**The chiptuning of 6/2018 is the standing unknown.** `engine-health-log.md`, *The
 remap is a standing unknown*, and the warnings in `can-decoding.md` and
 `frames.md` about what a remap does to the torque and load channels all
 describe this car rather than a hypothetical one. It sits between the 8.8 of
@@ -246,7 +246,7 @@ how much they are likely worth:
    likely most of the low end, and it means the bottom of the range is softer
    than the top.
 2. **A car doing 600–900 km a year is doing them cold.** Short journeys run
-   through the warm-up enrichment, which `engine-health.md` measures directly
+   through the warm-up enrichment, which `engine-health-log.md` measures directly
    in *Cold enrichment, measured*. This pushes consumption **up**, so it is a
    candidate for the high years rather than the low ones — 2021's 10.9 is
    consistent with mostly-cold short runs and needs no fault to explain it.
@@ -259,7 +259,7 @@ how much they are likely worth:
    ECU's fuelling is whatever the upstream sensor tells it to be, so a sensor
    that has drifted moves the pump figure and canfuel's figure **together and
    in the same direction** — which is exactly why neither can detect it.
-   `engine-health.md`'s fork table is the thing to read here: any `not OK` from
+   `engine-health-log.md`'s fork table is the thing to read here: any `not OK` from
    VCDS blocks 034, 036 or 037 is a **second** failure of an already-replaced
    sensor, and both of these have additionally spent their lives behind a
    converter that was burning through.
@@ -280,7 +280,7 @@ never been calibrated against.** Closed-loop control hides part of it: if the
 new injectors flow differently from the model, lambda control moves the pulse
 width until the mixture is right, and the counter follows the pulse width. The
 residual does not vanish, it moves into the **fuel trims** — which is why
-`engine-health.md`'s **−4.7 % at idle against +1.6 % at part load** are worth
+`engine-health-log.md`'s **−4.7 % at idle against +1.6 % at part load** are worth
 re-reading after the new injectors have some distance on them, and why they
 are the first place to look if a tank-to-tank check comes out with a
 consistent offset rather than scatter.
@@ -293,8 +293,8 @@ Sorted by how directly they sit in the measurement chain:
 |---|---|
 | **Oxygen sensors, 10/2017** | the largest risk on the list. They set the fuelling, so they move both figures together and are invisible to any comparison of the two. **9 years and the full ownership distance**, behind a failing cat |
 | **Fuel filter** | was the oldest fuel-side part on the car and is **being replaced with the injectors**, so it leaves this table on the day. A restricted filter limits rail supply under demand; it was always by some distance the cheapest item here to eliminate, and it is now eliminated |
-| **MAF, 7/2018** | `engine-health.md` rules out a *badly* failing sensor by arithmetic — the volumetric efficiency it implies stays physical — and explicitly **does not** rule out a slightly lazy one. 8 years |
-| **Plugs and leads, 12/2022** | **four calendar years but only ~1,500 km.** `engine-health.md` records them as "four years downstream of whatever has been happening", which is true of the dates; the distance is the other half of it and it is small. Old by date, nearly new by wear |
+| **MAF, 7/2018** | `engine-health-log.md` rules out a *badly* failing sensor by arithmetic — the volumetric efficiency it implies stays physical — and explicitly **does not** rule out a slightly lazy one. 8 years |
+| **Plugs and leads, 12/2022** | **four calendar years but only ~1,500 km.** `engine-health-log.md` records them as "four years downstream of whatever has been happening", which is true of the dates; the distance is the other half of it and it is small. Old by date, nearly new by wear |
 | Pump 10/2022, coil 6/2026, FPR 7/2026, cat 9/2026, injectors 9/2026 | **effectively new.** Everything that sets rail pressure and injector flow — the two inputs 0x480 depends on — is now a 2026 part |
 | Throttle body, original | **not new, but inspected and found clean in 6/2026.** It meters the idle air, so it is on the idle fault's side of the engine; its condition was seen rather than assumed. An earlier revision of this table listed it as effectively new, and that was wrong |
 
@@ -312,10 +312,10 @@ not been touched in eight or nine years.
 **Everything that decides how much fuel is delivered and whether it is lit is
 now current, and since 24/9/2026 so is the MAF. What is left that tells the
 ECU what happened is the two oxygen sensors, nine years old**, which have
-spent those years behind a converter that was burning through. That was where to look next, and `engine-health.md`'s fork table was
+spent those years behind a converter that was burning through. That was where to look next, and `engine-health-log.md`'s fork table was
 what read it: any `not OK` from VCDS blocks 034, 036 or 037 would have been a
 **second** failure of an already-replaced sensor. **All three reported OK on
-24/9/2026**, and `engine-health.md` argues from them that the sensors are not
+24/9/2026**, and `engine-health-log.md` argues from them that the sensors are not
 what keeps the idle misfiring.
 
 ⚠ **The fuel lines are the one thing on the delivery row that stays old**, and
@@ -354,7 +354,7 @@ not the motive.
 
 **`docs/photos/` holds the parts this car has destroyed**, and it exists
 because the project has repeatedly regretted evidence that perished.
-`engine-health.md`, under *The plugs*, has the amended policy: **the written
+`engine-health-log.md`, under *The plugs*, has the amended policy: **the written
 judgement is the record and a picture never grades anything** — it is kept so
 a later reader can see what was being judged.
 
@@ -411,7 +411,7 @@ for however long the original one remained. If the 10/2022 purchase really was
 fitted, the overlap is shorter or nothing. **Neither the tank's date nor the
 filter's is established, so the order of the two is not either.**
 
-⚠ **This corrects `engine-health.md`, which until now said the tank was the
+⚠ **This corrects `engine-health-log.md`, which until now said the tank was the
 one part in the chain that had never been touched.** It is not, and that
 matters both ways round: an upstream source of contamination may have been
 removed years ago, or last year, and the difference decides whether the
@@ -476,7 +476,7 @@ Three things to keep in mind while reading the answer:
   not be closed retrospectively.
 - **Do not fit anything to the yearly numbers.** They are averages over as
   little as one fill, they are not evenly weighted, and treating them as eight
-  data points invites exactly the error `engine-health.md` warns about with the
+  data points invites exactly the error `engine-health-log.md` warns about with the
   b7 = 133 spike: a summary statistic over a log is not a state the car sits
   in.
 - **This bounds the fuel channel only.** It says nothing about

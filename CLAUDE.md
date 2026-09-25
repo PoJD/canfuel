@@ -148,7 +148,10 @@ carries a generated block; a figure typed into prose only goes stale.
   refuelling reset, timing and optimisation. `engine-health.md` is a holding
   document for one open investigation into the engine itself — the idle
   misfires that outlived the repair. **It has an end date rather than a
-  permanent home.** A one-shot procedure that has been followed is deleted
+  permanent home.** It holds only what is open: symptoms, hypotheses, tests.
+  What was settled against goes to `engine-health-refuted.md`, and
+  `engine-health-log.md` is the frozen full log up to 25 September 2026,
+  kept because tools and tables cite it. A one-shot procedure that has been followed is deleted
   rather than kept; `git log` is where it lives afterwards
 
 The C core reproduces the Python oracle on every fixture: fuel totals and
