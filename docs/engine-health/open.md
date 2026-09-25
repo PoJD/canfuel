@@ -579,12 +579,11 @@ tenths.
    watching the meter: a jump is broken strands.
 1. **Engine idling, all loads on: battery − post → the alternator's case.**
    The charging current returns through the case, the block and ground 2, so
-   the case is the point that sees it; any bare bolt on the block will do. Ground 2
-   and the clamp together. Then **post → clamp** and **strap lug → gearbox**
-   one joint at a time, to find which one it is — the terminals already
-   showed a drop.
-2. **Same state: battery + post → alternator B+ terminal.** The charging
-   positive side, same idea.
+   the case is the point that sees it; any bare bolt on the block will do.
+   This is ground 2 and the clamp together; if it reads high, split it one
+   joint at a time: **− post → − clamp**, then **strap lug → gearbox**.
+2. **Same state, if test 0 reads high: + post → + clamp**, then the
+   chafed section on its own, to find which part of the positive path it is.
 3. **Same state: engine block → body**, and **battery − post → body**
    next to ground 1.
 4. **Engine off, headlights on: battery − post → body** (ground 1) and
