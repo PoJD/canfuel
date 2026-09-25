@@ -1902,7 +1902,10 @@ will be new**, so a trim that is still large points outside those parts, at:
 Two things can be set aside already. The coolant sensor is verified against
 VCDS, so a wrong warm-up enrichment is out. The purge is out by block 070. An
 exhaust leak ahead of the front sensor would pull the trims positive, the
-opposite direction.
+opposite direction. ⚠ **That last sentence is wrong for this engine**:
+the rear loop takes an exhaust-side leak into the front probe's setpoint,
+not into the trim. See point 2 of *How an exhaust-side leak could produce
+these symptoms*, below.
 
 ### The two screens nobody explained
 
@@ -2880,6 +2883,49 @@ probes, so air drawn in there never reaches either of them and cannot
 change the mixture. Backpressure does not either, because this ECU meters
 fuel from the MAF's air mass. And a leak in the exhaust cannot cause a
 misfire.
+
+#### A leak ahead of the probes, scored against the symptoms
+
+*Owner's reasoning, 25 September:* the exhaust has never been tight. There
+were holes in the old system, then a botched joint on the new one. So a
+leak ahead of the probes would be no surprise, and the garage will check and
+repair the front section, including welding the manifold if it needs it.
+The mechanism is in *How an exhaust-side leak could produce these symptoms*
+above: air drawn in at idle only, the front probe fooled lean, the rear
+loop absorbing it, so 032 barely moves. What follows scores that mechanism
+against each symptom.
+
+| symptom | fit | why |
+|---|---|---|
+| puff from the exhaust at idle | **good** | a leak drawing in and blowing out on every pulse is heard as exactly that, and only at idle. A misfire also puffs, so this does not separate them |
+| rear probe on the rich side at hot idle (0.665–0.725 V) | **consistent** | the rich shift the rear loop leaves behind. It is also what a working converter shows, so it is weak evidence |
+| the fault is old, from before the September exhaust work | **consistent** | the exhaust was not tight before September either. Where the old holes were is not recorded, and only holes ahead of the probes count |
+| misfires and engine-speed dips at idle | **weak** | ECU misfire detection is crankshaft speed. Air outside the cylinder does not stop a cylinder firing. The only route is a slightly rich idle, and a few per cent rich does not normally misfire |
+| the misfire rate peaks around 50–61 °C of oil and falls when hot | **weak** | a manifold crack typically leaks most cold and closes as the metal expands, so it would be worst from cold. The cold idle graded *half* the mid-temperature rate |
+| the MAF swap roughly halved the hot-idle stumbling | **against** | a change of air metering moved the idle a long way. A leak in the exhaust would not care which MAF was fitted |
+| cylinder 4's extra knock-sensor signal | **weaker than before** | a puff from one runner is locked to that runner's blow-down, i.e. to crank angle, so it stays in one window at every speed. The clamp repeat shows the extra **moving from cylinder 4's window to cylinder 1's above about 3350 rpm**, which a crank-locked source does not do. General reasoning, not measured |
+| compression even, 12 bar | **neutral** | rules out the one exhaust leak that *does* misfire, a valve not sealing on its seat |
+
+**Verdict: a leak ahead of the probes is plausible for the puff and costs a
+few per cent of fuel at idle. It is a poor explanation for the stumble.**
+It is still worth fixing, since it cannot be ruled out cheaply and the
+garage is doing the work anyway. But the idle fault is not expected to go
+with it.
+
+**Predictions, written before the repair, so the repair is a test:**
+
+1. **If a leak ahead of the probes is found and sealed:** the puff at idle
+   goes. The rear probe at hot idle (036/037) moves a little leaner.
+   `IdleHealth` at 70–72 °C of oil stays in its 57–120 band. The mid-
+   temperature misfire rate in 014 does not fall by more than the scatter.
+2. **Cylinder 4's extra in the neutral 026 holds does not change**, unless
+   the leak turns out to be at cylinder 4's runner. If it does change, the
+   argument in the table above is wrong and should be struck.
+3. **If nothing is found ahead of the probes**, the puff is the misfire
+   itself, heard at the tail.
+
+Only a pressure or smoke test tells a leak from its absence. Looking at the
+manifold does not.
 
 ### What `deaktiv.` in group 014 is: a load threshold
 
