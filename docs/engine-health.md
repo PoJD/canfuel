@@ -2741,9 +2741,14 @@ anyway, can listen to the rest of the system on the same visit.
 
 - **Before the exhaust visit: a 020 + 026 log, the "before" of the
   comparison.** 026, knock sensor voltage per cylinder, has never been
-  logged on this car. Two groups keep VCDS's sample rate up. Start the log
-  once the engine is running, because VCDS has dropped at the start three
-  times now, and run `usbtin_capture.py` beside it. Drive the kind of
+  logged on this car. Start the log once the engine is running, because
+  VCDS has dropped at the start three times now. **With no bus capture
+  beside it, add group 003** (engine speed, MAF, throttle angle, advance).
+  Neither 020 nor 026 carries engine speed or load (Ross-Tech's block
+  list), so without 003 nothing would say which samples are tip-ins; its
+  throttle angle shows them directly. Three groups sample more slowly, and
+  that is the accepted price. With a capture running, 020 + 026 alone
+  would do. Drive the kind of
   driving the first knock log caught: pull-aways, and pressing the pedal
   again after coasting or a gearchange, at 1000–2000 rpm. Add a few
   minutes of warm idle and some steady cruise, so that 026 has a baseline
