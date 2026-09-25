@@ -178,7 +178,6 @@ here is owner-supplied from service records.
 | Injectors `06A 906 031 C`, new from the UK | **9/2026** | ~0 |
 | **Spark plugs and ignition leads** | **17/9/2026** | ~0 |
 | Rear shock absorbers, air-conditioning recharge, minor items | 17/9/2026 | ~0 |
-| **Battery, new** | **mid-September 2026**, one to two weeks before 25/9 *(owner; exact date not recorded)* | ~0 |
 
 Three entries carry more than a date.
 
@@ -220,6 +219,31 @@ going back to standard. The warnings in `docs/firmware/can-decoding.md` and
 describe this car rather than a hypothetical one. It sits between the 8.8 of
 2018 and the 9.9 of 2019 in the table above, which is suggestive and is not
 evidence — see below.
+
+---
+
+## Electrical work, 2026
+
+*Owner-supplied; exact dates not recorded.*
+
+| Part | Fitted | Why |
+|---|---|---|
+| **Battery, new** | mid-September 2026, one to two weeks before 25/9 | — |
+| Headlights, complete: ALKAR `2741128` left / `2742128` right (H1 dipped, H1 main, W5W, levelling motor) | 2026 | the old reflectors had degraded and water was getting in |
+| Light switch, Herth+Buss Elparts, replacing the original `1C0 941 531 A` | 2026, after the headlights | 0.3–0.7 V was being lost across the old switch |
+
+**The measurements that led to the switch**, differential and under load,
+are the only voltage-drop figures this project holds for the car, and
+`open.md` H4 reads them against the engine's earth. In short: 0.9 V lost at
+the dipped-beam bulb (1.6–1.9 V with main beam), **all on the positive side**;
+the lamp earth 0.1–0.2 V; the battery terminals **0.000 V (+) and
+0.002 V (−)**, recently cleaned. About half the loss sat before the fuse box
+(a steady ~0.09 Ω), mostly in the old switch. After the new switch the
+dipped beam loses 0.2 V across it (0.6 V with main beam, the same 0.04 Ω —
+so the rest is on the switch's shared input side, not its contacts), and
+roughly 0.45 V remains at the bulb, in the switch feed and the run from the
+fuse box to the lamp. **Left as it is, by decision**; a relay harness is the
+complete fix if it is ever wanted.
 
 ---
 

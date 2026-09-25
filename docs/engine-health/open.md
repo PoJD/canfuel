@@ -434,12 +434,29 @@ All the ignition parts are new, so what is left is what feeds them. A poor
 engine earth weakens the spark and adds noise to the knock-sensor signal
 (*general*).
 
-**On this car there is already a hint.** *Owner-reported:* a large voltage
-drop was found earlier on the lights, and directly on the battery terminals.
-Not measured on the engine's own earth paths yet. **The battery itself is new**
-(mid-September 2026, `vehicle-history.md`), so the thread's one confirmed
-electrical fix — a new battery — has in effect already been tried here; what
-the terminals and earth joints do under load has not.
+**What has already been measured on this car, and what it does not show.**
+*Owner-measured, in the headlight work (`vehicle-history.md`, *Electrical work, 2026*), differentially
+under load:* 0.9 V lost at the dipped-beam bulb, 1.6–1.9 V with main beam
+too — **all of it on the positive side**. The lamp's earth dropped only
+0.1–0.2 V, and **the battery terminals 0.000 V (+) and 0.002 V (−)** under the
+same ~15 A. Most of the loss sat in the old light switch (0.3–0.7 V across
+it); the rest is in its feed and the run to the lamp.
+
+So ⚠ **the terminals and the body earth are clean**, and an earlier line here
+that read the lights as a hint of a bad earth was wrong. Two things still
+carry over:
+
+- **the engine's own earth (ground 2, block to battery) was never loaded by
+  that test** — headlight current does not flow through it — so it is still
+  untested;
+- **26-year-old switch contacts had crept to tenths of a volt.** The ignition
+  coil and the ECM are fed through the same generation of relays, switches
+  and connectors, so a drop on the **positive** feed to the coil or the ECM is
+  as good a way to weaken the spark as a bad earth, and is measured the same
+  way (tests 5a and 5b below).
+
+The battery itself is new (mid-September 2026), so the thread's one confirmed
+electrical fix — a new battery — has in effect already been tried here.
 
 | S1 | S2 | S3 | S4 | S5 |
 |---|---|---|---|---|
@@ -526,6 +543,13 @@ tenths.
    block → ECM ground pins** (back-probe the connector; pins from the
    manual's current-flow diagram for the AQY). Small currents, so here even a
    tenth is suspect.
+5a. **Engine idling: battery + post → the coil's + supply pin**
+   (back-probed at the coil connector). The positive side of the spark: the
+   headlight circuit lost tenths of a volt in an old switch, and this feed
+   runs through relays and connectors of the same age.
+5b. **Engine idling: battery + post → the ECM's supply pins** (via the main
+   relay; pins from the current-flow diagram). A tired relay contact shows
+   here.
 6. **Battery voltage idling with the loads on** (a charging system holds
    roughly 13.5–14.5 V, *general*). The battery is new, so this checks the
    alternator and its regulator rather than the battery.
