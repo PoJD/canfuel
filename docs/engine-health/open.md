@@ -556,6 +556,21 @@ tenths.
    ~0.3 s resolution. *Already on record, off the display on 25/9: 13.9–14.2 V
    at a warm idle, peaks 14.2–14.5 V — the charging system itself looks
    normal.*
+0a. **No meter — the wiggle test on the chafed cable.** First find where the
+   chafed red cable goes: at idle only the one to the alternator (or to a
+   fuse holder feeding the cabin) carries current; the starter cable carries
+   none and shows nothing. Then, warm idle, all loads on, watch
+   `DisplayVolt` on the display (it updates faster than VCDS) with VCDS
+   logging 004 alongside as a record, and flex the chafed section by hand —
+   through a rag or a glove, clear of the belt, nothing metal near the bare
+   strands.
+   - **The reading moves only while the cable moves** → broken or corroded
+     strands, found. No further measurement needed for that cable.
+   - **Nothing moves** → the cable is **not** cleared. A steadily corroded
+     section has a constant resistance that movement does not change, and the
+     battery holds the system voltage on its side, so a drop between
+     alternator and battery barely shows in either reading. Test 0 is what
+     sees it.
 0. **Engine idling, all loads on: battery + post → the alternator's B+ nut**
    (the rubber-capped stud on the back of the alternator, where the thick red
    cable ends; *general* for this engine family — follow the cable to be
