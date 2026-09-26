@@ -643,6 +643,23 @@ numbered from the left; *owner-measured*). Battery 12.23 V.
 - Flexing the chafed battery cable changed nothing (expected; it clears
   nothing).
 
+**Second pass, same day, battery out and part of the intake off for access:**
+**3.8 / 3.2 Ω was the measurement, not the car.** From the battery's own
+negative cable clamp to pin 4: **≤ 0.4 Ω**; from the positive clamp to pin 2
+with the key on: the same, ≤ 0.4 Ω (with the key off, kilo-ohms — the
+ignition switch is in that path, which is exactly why the key matters); from
+the negative clamp to the intake and various metal housings: < 0.4 Ω
+everywhere. The earlier reading went through the extension lead's crocodile
+clip on the battery post. ⚠ **An ohmmeter cannot see what is being looked for
+here:** its floor is a few tenths of an ohm, while 0.21 V at a few amps is
+~0.05 Ω. So this rules out a **gross** fault in the coil's ground and supply
+— nothing like the TSB's broken wire — and says nothing finer. The running
+voltage drops (1a–1c) are what can.
+
+⚠ **The battery was disconnected for this**, so the ECM's adaptations
+(032, knock references, idle) start again from zero — another boundary for
+every before/after comparison (`vehicle-history.md`, *Before and after*).
+
 #### Step 2 — only if step 1 is clean: the main supply path (warm idle, loads on)
 
 Headlights, rear window heater and blower on full.

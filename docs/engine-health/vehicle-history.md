@@ -310,6 +310,7 @@ with the battery off, which also resets the ECU's adaptations:
 | 17/9 | plugs and leads | — |
 | 23/9 | injectors and fuel filter; battery disconnected | `19`–`23` (old MAF) |
 | 24/9 | MAF; battery disconnected again, adaptations from zero | `24` onwards |
+| 26/9 | battery out for the coil-harness measurements; adaptations from zero again | — |
 
 **Rule: no fuel calibration and no tank-to-tank comparison spans one of these
 lines.** For consumption, only the state after 24/9/2026 counts, and the first
