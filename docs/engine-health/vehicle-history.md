@@ -172,7 +172,7 @@ here is owner-supplied from service records.
 | Fuel pump, Bosch | 10/2022 | ~1,500 km |
 | Spark plugs and leads | 12/2022 *(replaced 9/2026)* | **~1,500 km — see below** |
 | Ignition coil | 6/2026 | ~0 |
-| Throttle body `028 129 748` | **original, never replaced.** 6/2026: inspected, new gasket, adaptation run. It was already clean, with no carbon — only wiped with a cloth — so it had evidently been cleaned at some earlier date nobody recorded | the car's |
+| Throttle body `06A 133 064 H` (VDO `408 237/111/017`) | **original, never replaced.** *Part number read off the label on the part, photographed 26/9/2026; an earlier revision gave `028 129 748`, with no recorded source — possibly the June gasket's number.* 6/2026: inspected, new gasket, adaptation run. It was already clean, with no carbon — only wiped with a cloth — so it had evidently been cleaned at some earlier date nobody recorded | the car's |
 | Fuel pressure regulator `037 133 035 C` | 7/2026 | ~0 |
 | Catalytic converter, **flex pipe**, silencer, exhaust gaskets: everything from the flex pipe (included) to the tail | **10/9/2026** *(previously 10/2017)* | ~0 |
 | Small hose from the secondary-air combination valve to the intake ahead of the MAF | torn off during the August heater work; fault **16795 / P0411** (secondary air, incorrect flow) photographed **11/8/2026 16:39**, hose refitted that day or a few days after | — |

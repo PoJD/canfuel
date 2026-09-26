@@ -165,6 +165,13 @@ carries a generated block; a figure typed into prose only goes stale.
     that preceded `open.md` lives only in git
     (`git show 7c69883:docs/engine-health.md`), and nothing in the tree cites it
 
+    **A photograph of the part on the car outranks everything in the
+    repository** — a part number, a routing, a location, a condition. When a
+    photo disagrees with a document, the document is corrected in the same
+    commit and says what it used to say; nobody argues the photo down with a
+    catalogue, a forum or an earlier revision of these files. The same holds
+    for anything the maintainer reads directly off the car.
+
   Firmware documents may point at engine-health for context, never for a fact
   they need; engine-health points at firmware freely (0x604, `IdleHealth`).
   A one-shot procedure that has been followed is deleted rather than kept;
