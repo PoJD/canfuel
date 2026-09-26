@@ -660,6 +660,35 @@ voltage drops (1a–1c) are what can.
 (032, knock references, idle) start again from zero — another boundary for
 every before/after comparison (`vehicle-history.md`, *Before and after*).
 
+**Running, 26/9, warm idle** (*owner-measured*; "loads on" = headlights, rear
+window heater and blower on full). Back-probing the coil connector was
+abandoned — its sleeve and seal are in the way, and the seal had already been
+disturbed once — and **no ground eyelet for the coil was found on the head**:
+the ground wire runs into the loom, probably to a splice shared with other
+consumers and on to a point under the car. The Golf/Jetta list's "ground 15 on
+the cylinder head" therefore does not hold for this car as seen. What was
+measured instead:
+
+| test | loads off | loads on | reading |
+|---|---|---|---|
+| battery − post → bare metal of the coil bracket (engine earth, 1a′) | 70–80 mV | 170–210 mV | **healthy**: ~0.1–0.13 V more for an estimated 30–40 A is a few milliohms for clamp, strap and engine together |
+| battery + → battery − (2d) | 13.97 V | **12.72 V** | the alternator does not hold the loads at idle |
+
+- **The engine's earth is clean.** Of the coil's ground path, only the thin
+  wire from pin 4 to wherever it lands is not covered by a running
+  measurement, and the ohmmeter showed it unbroken.
+- **The voltage argues against H4 on its own.** With the loads on, the whole
+  system — the coil's supply included — sits about 1.25 V *lower*, and that is
+  exactly the state in which `IdleHealth` is *better* (35–50 against 70–80,
+  S1). A spark weakened by supply voltage would do the opposite. Load on the
+  engine, not volts at the coil, is what moves the idle.
+- **12.72 V at idle with the loads on is its own question**, separate from the
+  misfires: a healthy alternator at idle speed may simply not cover this much
+  load, or the belt, the regulator or the chafed B+ cable may be losing it.
+  Raising the engine speed to ~2000 rpm with the loads on settles which.
+- The headlights were lit with the switch off while the engine ran: the
+  daytime running lights (fuse 27), not a fault.
+
 #### Step 2 — only if step 1 is clean: the main supply path (warm idle, loads on)
 
 Headlights, rear window heater and blower on full.
