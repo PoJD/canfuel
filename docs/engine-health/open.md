@@ -690,6 +690,17 @@ measured instead:
   just short of the ~13.5 V a working system usually holds (*general*). Still
   open between a loaded alternator and a loss on the way — the B+ cable
   (battery + → alternator B+ nut, loads on, revs up) is what splits them.
+- **The B+ path, measured** (battery + post → alternator B+ stud, loads on;
+  the B+ nut had just taken a slight further turn): **160 mV at idle, 360 mV
+  at raised revs**, battery 13.4 V as before. So the alternator's own terminal
+  sits at about 13.75 V and **roughly a third of a volt is lost on the way to
+  the battery at full charge current** — over the ~0.3 V worth chasing
+  (*general*), in the path that holds the chafed cable. It is a charging
+  question and not a misfire one: the coil is fed through the ignition switch,
+  not through this cable, and the idle is better, not worse, when the loads
+  drag the whole system down. Where in the path it sits — the eyelet at the
+  alternator, the cable, or its landing at the battery — is split by
+  measuring each piece the same way.
 - The headlights were lit with the switch off while the engine ran. Most
   likely the daytime running lights (fuse 27), which only run with the
   engine; not yet confirmed by switching the engine off with the key on.
