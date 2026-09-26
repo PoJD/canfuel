@@ -166,6 +166,7 @@ here is owner-supplied from service records.
 | MAF sensor | 7/2018 *(connector cleaned 7/2026)* | not recoverable — see *Distance and use* |
 | **MAF sensor, new** | **24/9/2026**, genuine VW `06A 906 461 A`; the 2018 unit is kept | ~0 |
 | Chiptuning, described by the owner as mild | 6/2018 | — |
+| Dipstick, dipstick cap and a seal recorded as "těsnění ventilu" (valve seal), **against an oil leak** | **12/7/2018**, service record | — |
 | Timing belt and water pump | **10/2017** | the whole ownership, ~27,800 km |
 | **Fuel tank** | **replaced inside the ownership, date not recoverable** | unknown — see below |
 | Fuel pump, Bosch | 10/2022 | ~1,500 km |

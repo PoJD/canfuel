@@ -295,6 +295,15 @@ throttle body sits and the intake plenum is only bracketed to the engine,
 with the exhaust manifold below it. The intake ports and the plugs are on the
 **front**, so this oil does not reach the plug boots.
 
+**Not the first leak.** The service record of **12/7/2018** lists a
+dipstick, a dipstick cap and a seal written as *"těsnění ventilu"* — against
+an oil leak (`vehicle-history.md`). Which seal that was is not recorded: the
+valve cover gasket would normally be written *těsnění víka ventilů*, and the
+breather in the filler neck also sits on a seal. ⚠ **Oil pushed out at the
+dipstick is the classic sign of crankcase pressure** (*general*), so a 2018
+leak fixed there is a point for H9's blocked-ventilation branch — a weak one,
+since a worn dipstick seal leaks without any help.
+
 **Where it comes from is not known.** The valve cover gasket is the usual
 source on any engine this old (*general*); a head gasket weeping outwards, a
 sender, a plug or a seal at the back of the head are the others.
