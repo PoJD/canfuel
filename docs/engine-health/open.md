@@ -486,6 +486,18 @@ intake port is ahead of the MAF and counts as metered air, not a leak.
 
 ### H4. Weak spark at light load that is not in the parts (earth, wiring, battery, coil connector)
 
+**Verdict after 26/9/2026: much weakened, not refuted — kept here, last in
+line.** Measured and clean: the coil's ground and supply for a gross fault
+(ohms), the engine's earth under load (running voltage drop), the charging.
+And the strongest point is not a measurement of a joint at all: **the idle is
+better with the loads on, when the whole system — the coil's supply included —
+sits 1.25 V lower.** A spark limited by supply would go the other way. Not
+measured, and why it stays open rather than going to `refuted.md`: the running
+drop on the thin wire from coil pin 4 to its splice (no back-probing, and its
+earth point was not found), and the ECM's own supply and grounds (608), which
+matter for the knock-sensor signal (S5) more than for the spark. Results in
+full under *Step 1* below.
+
 All the ignition parts are new, so what is left is what feeds them. A poor
 engine earth weakens the spark and adds noise to the knock-sensor signal
 (*general*).
@@ -899,14 +911,18 @@ the oil temperature beside it.
    few hundred km (S9; a positive idle cell would feed H3) and one held 4th-gear pull to 6000 rpm
    with `Power` on the display and a capture running (S8).
 2. **Stethoscope and cold-start listening** — H1, H5. Free.
-3. **The voltage-drop tests of H4, coil first**, then clean only what
-   fails — H4, H5. A multimeter, then a wire brush.
-4. **Spray test of the intake at a warm idle** — H3. A can of brake cleaner.
+3. ~~**The voltage-drop tests of H4, coil first**~~ — done 26/9, nothing
+   failed; H4 is last in line now (verdict under H4).
+4. ~~**Spray test of the intake at a warm idle**~~ — done 26/9 from the
+   front, no change; the back sits over the exhaust manifold and was not
+   sprayed (H3).
 5. **Exhaust runner temperatures with an IR thermometer** — names a cylinder,
    splits everything. Cheap.
 6. **G66 torque and connector, and a look for loose parts** — H5.
 7. **Smoke/pressure test of the manifold and intake at the garage**, with
-   the predictions under H2 held against the result — H2, H3. Already planned.
+   the predictions under H2 held against the result — H2, H3. **Booked for
+   after the weekend of 26/9**, together with finding the oil leak at the back
+   of the head (H2).
 8. **Leak-down test warm, and a rail pressure gauge** — H1, H7. Garage work,
    do both on one visit.
 9. **A healthy AQY recorded** — H0. Depends on finding one, so start asking
