@@ -685,7 +685,11 @@ measured instead:
 - **12.72 V at idle with the loads on is its own question**, separate from the
   misfires: a healthy alternator at idle speed may simply not cover this much
   load, or the belt, the regulator or the chafed B+ cable may be losing it.
-  Raising the engine speed to ~2000 rpm with the loads on settles which.
+  Raised by hand at the throttle to roughly 2000–3000 rpm (not read) with the
+  loads on, the battery came back to **13.4 V**: the alternator does charge,
+  just short of the ~13.5 V a working system usually holds (*general*). Still
+  open between a loaded alternator and a loss on the way — the B+ cable
+  (battery + → alternator B+ nut, loads on, revs up) is what splits them.
 - The headlights were lit with the switch off while the engine ran. Most
   likely the daytime running lights (fuse 27), which only run with the
   engine; not yet confirmed by switching the engine off with the key on.
