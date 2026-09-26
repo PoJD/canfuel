@@ -434,18 +434,21 @@ loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
 3. If nothing is found, the puff is the misfire itself (H1, H3, H4, H5).
 
 **Observed 26/9/2026, warm idle, bonnet open** (*owner, by eye and ear*): a
-faint smoke and possibly a faint hiss from the back of the head, below the
-intake manifold's mounting, where the exhaust manifold is — and an **oil leak
-at the back of the head** that a garage had already pointed out. Hiss *and*
+faint smoke and possibly a faint hiss from the back of the head — the side
+where the throttle body sits and the intake plenum is only bracketed to the
+engine, with the exhaust manifold below; the intake ports and the plugs are on
+the front — and an **oil leak at the back of the head** that a garage had
+already pointed out. Hiss *and*
 smoke mean something blowing **out**, which is the exhaust side: an intake
 leak draws air in and makes no smoke. So it is read as a physical sign for
 this hypothesis, not for H3. The smoke is most likely the leaking oil burning
 on the hot manifold (*general*) and says nothing about the exhaust by itself;
 the hiss, if real, does. The same garage visit should find both — the smoke or
 pressure test above and where the oil comes from. ⚠ Oil reaching the exhaust
-manifold is also a fire risk, which makes it worth fixing on its own. And
-since the plugs sit under the intake on this engine, **whether that oil
-reaches the plug boots** is worth a look whenever the intake is off (H4, 1e).
+manifold is also a fire risk, which makes it worth fixing on its own. The
+plugs are on the other side of the head, so this oil is not a route to the
+plug boots. **Booked for the garage after the weekend of 26/9**: where the oil
+comes from, and whether anything blows out of the exhaust side.
 
 ### H3. A small unmetered air leak at one intake runner
 
