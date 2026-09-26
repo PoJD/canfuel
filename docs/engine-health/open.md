@@ -538,93 +538,87 @@ moment, the difference is the drop on the ECM's positive feed and ground —
 with no connector to back-probe — and logged beside 014 it shows whether a
 voltage dip lines up with a misfire.
 
-**Tests — measure first, clean what fails, instead of every earth in the car.**
-A voltage drop only shows while current flows through the joint, so **the
-load has to go through the path being measured** (*general*):
+**Which bad joint could cause the misfires directly, and which only
+indirectly.** The primary symptoms are the misfires and the idle, so the
+joints are ranked by how directly they reach the spark (*general*):
 
-- **engine running** is the load for the engine's earth: the alternator is
-  bolted to the engine and its charging current returns through the block,
-  ground 2 and the battery clamp. Headlights, rear window heater, blower on
-  full: tens of amps, and a one-person test;
-- **headlights with the engine off** load the *body* earths (ground 1 and the
-  lamp grounds), not the engine's — the engine path then carries almost
-  nothing and reads near zero even when it is bad;
-- **cranking** is the heaviest load of all and can be done alone with the
-  meter clipped on and filmed, or with its MIN/MAX function.
+| joint | effect on the spark | rank |
+|---|---|---|
+| **coil ground** (connector pin → wire → eyelet on the head → engine → battery −) | direct: the coil pack's switching stage returns its current here; a poor ground weakens every spark it fires — the joint TSB 01-08-27 is about | **first** |
+| **coil supply** (fuse → wire → coil + pin) | direct: less voltage, less energy per spark | **first** |
+| HT leads seated on the coil towers and the plugs | direct, on the pair or cylinder concerned | first, by eye and hand |
+| ECM ground and supply | indirect but real: the ECM times the coil's dwell and the injectors from the voltage it sees | second |
+| main positive cable, engine earth strap, battery clamps | indirect: they only matter through the system voltage and the paths above | third |
 
-Meter on DC volts, one probe on the **battery post itself** (the lead, not
-the clamp), the other on bare metal: a bolt head on the head or block, the
-alternator bracket, the ground-strap bolt — not paint, not plastic.
-*General guidance:* under a few tenths of a volt per path is healthy, and
-every single joint (lug to metal, clamp to post) should drop hundredths, not
-tenths.
+So **start at the coil.** If both its joints and its leads are clean, the
+electrical branch of H4 is largely answered, and the rest is the slower work.
 
-00. **No meter at all — VCDS against the display, a load step.** The MFD15's
-   `DisplayVolt` is the display's own supply, measured in the cabin; the ECM's
-   supply voltage is in VCDS. Neither is calibrated against the other, so read
-   the **change**, not the absolute: warm idle, log both with every load off,
-   then switch on headlights, rear window heater and blower full, then off
-   again. The ECM sees the charging current's path (main cable, engine earth,
-   its own feed); the display does not. **If the ECM's reading falls
-   noticeably more than `DisplayVolt` when the loads come on**, the extra drop
-   is on the engine side and tests 0–2 are where it is. Logged beside 014,
-   the same run shows whether voltage dips line up with misfires, at VCDS's
-   ~0.3 s resolution. *Already on record, off the display on 25/9: 13.9–14.2 V
-   at a warm idle, peaks 14.2–14.5 V — the charging system itself looks
-   normal.*
-0a. **No meter — the wiggle test on the chafed cable.** First find where the
-   chafed red cable goes: at idle only the one to the alternator (or to a
-   fuse holder feeding the cabin) carries current; the starter cable carries
-   none and shows nothing. Then, warm idle, all loads on, watch
-   `DisplayVolt` on the display (it updates faster than VCDS) with VCDS
-   logging 004 alongside as a record, and flex the chafed section by hand —
-   through a rag or a glove, clear of the belt, nothing metal near the bare
-   strands.
-   - **The reading moves only while the cable moves** → broken or corroded
-     strands, found. No further measurement needed for that cable.
-   - **Nothing moves** → the cable is **not** cleared. A steadily corroded
-     section has a constant resistance that movement does not change, and the
-     battery holds the system voltage on its side, so a drop between
-     alternator and battery barely shows in either reading. Test 0 is what
-     sees it.
-0. **Engine idling, all loads on: battery + post → the alternator's B+ nut**
-   (the rubber-capped stud on the back of the alternator, where the thick red
-   cable ends; *general* for this engine family — follow the cable to be
-   sure). At idle that is the path the charging current takes; the cable to
-   the starter carries current only while cranking. Wiggle the chafed section while
-   watching the meter: a jump is broken strands.
-1. **Engine idling, all loads on: battery − post → the alternator's case.**
-   The charging current returns through the case, the block and ground 2, so
-   the case is the point that sees it; any bare bolt on the block will do.
-   This is ground 2 and the clamp together; if it reads high, split it one
-   joint at a time: **− post → − clamp**, then **strap lug → gearbox**.
-2. **Same state, if test 0 reads high: + post → + clamp**, then the
-   chafed section on its own, to find which part of the positive path it is.
-3. **Same state: engine block → body**, and **battery − post → body**
-   next to ground 1.
-4. **Engine off, headlights on: battery − post → body** (ground 1) and
-   **→ a headlight ground**. The body side under its own load.
-5. **Engine idling: coil ground → battery − post**, measured two ways: at
-   the ground eyelet on the head (ground 15), and **back-probed at the
-   coil connector's ground pin** — the wire TSB 01-08-27 replaces, so the
-   difference between the two readings is that wire. Moved up the order by
-   the bulletin: do it right after tests 0 and 1. Also **engine
-   block → ECM ground pins** (back-probe the connector; pins from the
-   manual's current-flow diagram for the AQY). Small currents, so here even a
-   tenth is suspect.
-5a. **Engine idling: battery + post → the coil's + supply pin**
-   (back-probed at the coil connector). The positive side of the spark: the
-   headlight circuit lost tenths of a volt in an old switch, and this feed
-   runs through relays and connectors of the same age.
-5b. **Engine idling: battery + post → the ECM's supply pins** (via the main
-   relay; pins from the current-flow diagram). A tired relay contact shows
-   here.
-6. **Battery voltage idling with the loads on** (a charging system holds
-   roughly 13.5–14.5 V, *general*). The battery is new, so this checks the
-   alternator and its regulator rather than the battery.
+**How the measurement works.** A voltage drop only shows while current flows
+through the joint. The coil draws its current at every spark, so **the coil's
+own joints are loaded at a plain warm idle** — no lights or fans needed, and a
+few minutes of idle is enough for all of them. The main cable and the engine
+earth are loaded by the alternator's charging current, which is why the later
+tests switch the headlights, rear window heater and blower on. Meter on DC
+volts; a long lead with crocodile clips so one probe can sit on the battery;
+that probe on the **battery post itself**, not the clamp. The meter averages
+the pulsed coil current, so the coil readings are small: **under ~0.1 V is
+clean, several tenths is a bad joint** (*general*).
 
-Watch the reading on test 1 through a few idle stumbles: a drop that jumps
-with them is a joint that moves, which is exactly the fault being chased.
+#### Step 1 — the coil (warm idle, secondary-air pump removed for access)
+
+- **1a. Coil ground: battery − post → the coil's ground eyelet on the head**
+  (ground 15).
+- **1b. Coil ground: battery − post → the ground pin of the coil connector**,
+  back-probed with the connector plugged in (a thin pin slid in beside the
+  wire seal, not through the insulation). The **difference 1b − 1a is the
+  wire TSB 01-08-27 replaces.**
+- **1c. Coil supply: battery + post → the supply pin of the coil connector**,
+  back-probed the same way. The pin assignment is in the manual's
+  current-flow diagram; it is the one that reads battery voltage with the
+  ignition on.
+- **1d. Engine off: the HT leads.** Each one pushed fully home on its coil
+  tower and its plug, the boots dry and uncracked. With the meter on ohms,
+  the four leads against each other: one reading far from the others (for
+  its length) is the bad one.
+
+Clearing the secondary-air fault the removal sets is expected afterwards.
+
+#### Step 2 — only if step 1 is clean: the main supply path (warm idle, loads on)
+
+Headlights, rear window heater and blower on full.
+
+- **2a. Battery + post → the alternator's B+ nut** (the rubber-capped stud
+  where the thick red cable ends; *general* for this engine family — follow
+  the cable to be sure). Flex the chafed section while watching: a jump is
+  broken strands. The starter cable carries nothing at idle and cannot be
+  tested this way.
+- **2b. Battery − post → the alternator's case** (or any bare bolt on the
+  block): ground 2 and the clamp together. If high, split it: − post →
+  − clamp, then strap lug → gearbox.
+- **2c. Battery − post → body** next to ground 1, and **engine block → body.**
+- **2d. Battery voltage** across the posts: roughly 13.5–14.5 V is a working
+  charging system (*general*).
+
+*General guidance for step 2:* under 0.2 V per path is healthy, over 0.3 V
+is worth chasing, and every single joint should drop hundredths.
+
+#### Step 3 — only if steps 1 and 2 are clean: the ECM (warm idle)
+
+- **3a. Battery + post → the ECM's supply pins** (via the main relay) and
+  **engine block → the ECM's ground pins**, back-probed; pins from the
+  current-flow diagram for the AQY. Even a tenth is suspect here.
+- **3b. Without a meter:** VCDS block 004 field 2 (the ECM's supply,
+  12.0–14.5 V) logged beside 014 and `DisplayVolt` on the display, with the
+  loads switched on and off. If the ECM's reading falls clearly more than
+  `DisplayVolt` when the loads come on, the drop is on the engine side;
+  whether a voltage dip lines up with a misfire shows at VCDS's ~0.3 s
+  resolution. *On record, 25/9: `DisplayVolt` 13.9–14.2 V at a warm idle,
+  peaks 14.2–14.5 V — the charging itself looks normal.*
+- **3c. Without a meter, the chafed cable:** watch `DisplayVolt` while
+  flexing it at idle with the loads on. A reading that moves only with the
+  cable finds it; one that does not move clears nothing, because a steadily
+  corroded section does not change with movement and the battery holds the
+  system voltage on its side. Step 2a is what sees that.
 
 Whatever reads high: clean to bright metal, refit at the manual's torque, and
 **then** compare `IdleHealth` at the same oil temperature and repeat the
@@ -759,8 +753,8 @@ the oil temperature beside it.
    overnight start off 0x604 (S7), and one held 4th-gear pull to 6000 rpm
    with `Power` on the display and a capture running (S8).
 2. **Stethoscope and cold-start listening** — H1, H5. Free.
-3. **The voltage-drop tests of H4**, then clean only what fails — H4, H5. A
-   multimeter, then a wire brush.
+3. **The voltage-drop tests of H4, coil first**, then clean only what
+   fails — H4, H5. A multimeter, then a wire brush.
 4. **Spray test of the intake at a warm idle** — H3. A can of brake cleaner.
 5. **Exhaust runner temperatures with an IR thermometer** — names a cylinder,
    splits everything. Cheap.
