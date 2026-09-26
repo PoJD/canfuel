@@ -622,6 +622,27 @@ clean, several tenths is a bad joint** (*general*).
 
 Clearing the secondary-air fault the removal sets is expected afterwards.
 
+**Results, 26/9/2026, first pass** (warm, coil connector unplugged, pins
+numbered from the left; *owner-measured*). Battery 12.23 V.
+
+| pin | ignition on, V to battery − | ignition off, Ω to battery − | reading |
+|---|---|---|---|
+| 1 | 0.158 V | 0.7 kΩ | ECM trigger line |
+| 2 | **12.02 V** | 552 kΩ | **supply** |
+| 3 | 0.157 V | 0.7 kΩ | ECM trigger line |
+| 4 | 0.009 V | **3.8 Ω** | **ground** |
+
+- **Supply: 0.21 V lost with the coil unplugged** — i.e. with only the other
+  ignition-switched consumers drawing through the shared feed (ignition
+  switch, fuse, connectors). With the coil's own current added it can only
+  be more; the running test (1c) is what sizes it.
+- **Ground: 3.8 Ω is far too high for a ground path** if it is real — at the
+  coil's current it would lose volts, not tenths. Not yet trusted: the meter
+  lead resistance (R0) was not measured and a probe on the front of a female
+  terminal makes poor contact. Split it: pin 4 → eyelet, eyelet → battery −.
+- Flexing the chafed battery cable changed nothing (expected; it clears
+  nothing).
+
 #### Step 2 — only if step 1 is clean: the main supply path (warm idle, loads on)
 
 Headlights, rear window heater and blower on full.
