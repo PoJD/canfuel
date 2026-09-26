@@ -433,6 +433,20 @@ loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
    this hypothesis was underrated and the argument against it is wrong.**
 3. If nothing is found, the puff is the misfire itself (H1, H3, H4, H5).
 
+**Observed 26/9/2026, warm idle, bonnet open** (*owner, by eye and ear*): a
+faint smoke and possibly a faint hiss from the back of the head, below the
+intake manifold's mounting, where the exhaust manifold is — and an **oil leak
+at the back of the head** that a garage had already pointed out. Hiss *and*
+smoke mean something blowing **out**, which is the exhaust side: an intake
+leak draws air in and makes no smoke. So it is read as a physical sign for
+this hypothesis, not for H3. The smoke is most likely the leaking oil burning
+on the hot manifold (*general*) and says nothing about the exhaust by itself;
+the hiss, if real, does. The same garage visit should find both — the smoke or
+pressure test above and where the oil comes from. ⚠ Oil reaching the exhaust
+manifold is also a fire risk, which makes it worth fixing on its own. And
+since the plugs sit under the intake on this engine, **whether that oil
+reaches the plug boots** is worth a look whenever the intake is off (H4, 1e).
+
 ### H3. A small unmetered air leak at one intake runner
 
 Air past the MAF leans one cylinder at idle, where air flow is smallest.
@@ -457,6 +471,15 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
    shows as a change in idle at the spot. Cheap, no dismantling. *General.*
 2. A smoke test of the intake at the same garage visit as H2.
 3. 032 after a few hundred km: an idle cell moving positive would support it.
+
+**Spray test, 26/9/2026** (contact cleaner — isopropanol and C6–C7 alkanes;
+warm idle, loads off, engine speed watched): **no change anywhere reachable
+from the front** — the joints disturbed that day, the MAF-to-throttle hose,
+the throttle body, the manifold and the runners as far as they can be reached.
+The rear of the manifold, and the small vacuum line that used to serve the
+secondary-air valve, were **not** sprayed: they sit above the exhaust
+manifold, which is no place for a flammable spray. The open secondary-air
+intake port is ahead of the MAF and counts as metered air, not a leak.
 
 ### H4. Weak spark at light load that is not in the parts (earth, wiring, battery, coil connector)
 
