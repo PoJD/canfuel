@@ -56,9 +56,11 @@ Separately, knock control hears something in cylinder 4's window above about
 2300 rpm that is not knock.
 
 **New on 26/9:** oil leaking at the back of the head (S10), and smoke with
-possibly a hiss from the same place at a warm idle (S11). **The car is parked
-until a garage has found both** — booked for after the weekend of 26/9, with
-the leak test of the exhaust and the intake (plan, step 7).
+possibly a hiss from the same place at a warm idle (S11). **S10's source is
+found — the valve cover gasket**, heavily at the back and at the front as far
+as the plug boots of cylinders 1 and 2 (S10). The owner replaces it with the
+filler-neck breather; the garage visit (plan, step 7) is still booked for
+S11's hiss and the leak test of the exhaust and the intake.
 
 ---
 
@@ -292,8 +294,7 @@ air metering.
 *Owner-reported, 26/9/2026*, and pointed out earlier by a garage (when, not
 recorded). Oil at the **back** of the head — the firewall side, where the
 throttle body sits and the intake plenum is only bracketed to the engine,
-with the exhaust manifold below it. The intake ports and the plugs are on the
-**front**, so this oil does not reach the plug boots.
+with the exhaust manifold below it.
 
 **Not the first leak.** The service record of **12/7/2018** lists a
 dipstick, a dipstick cap and a seal written as *"těsnění ventilu"* — against
@@ -304,16 +305,44 @@ dipstick is the classic sign of crankcase pressure** (*general*), so a 2018
 leak fixed there is a point for H9's blocked-ventilation branch — a weak one,
 since a worn dipstick seal leaks without any help.
 
-**Where it comes from is not known.** The valve cover gasket is the usual
-source on any engine this old (*general*); a head gasket weeping outwards, a
-sender, a plug or a seal at the back of the head are the others.
+**Source found, 26/9/2026 — the valve cover gasket.** *Owner-observed and
+photographed*, engine off, in the evening:
+
+- **at the back**, along the cover's edge and down onto the bracket and studs
+  below it: wet oily grime, not dried residue — **it leaks heavily there**;
+- **at the front, the plug side**: a wet line along the cover-to-head joint by
+  the leads, and **a wet ring of oil around the plug boot at the head** on
+  cylinders 1 and 2 only;
+- **the filler-neck breather** (`06A 103 465`): its lower body is visibly
+  oilier than the cover around it, so its seat or O-ring probably weeps too;
+- the breather hose to the intake looks sound from outside and was sprayed
+  in the H3 test with no change;
+- oily grime around the injector seats and the manifold flange below the
+  plugs, read as oil running down from the cover; the seats were sprayed in
+  the H3 test with no change.
+
+⚠ **Correction:** an earlier revision said the plugs are on the front "so
+this oil does not reach the plug boots". The photographs show that it does.
+
+**What that changes.** The leak itself is now explained and needs no
+hypothesis; what stays open is **why** (H9: a gasket this old leaks on its
+own, a blocked ventilation makes it leak sooner) and **what the oil at the
+plug boots does** — oil on a boot or on the plug's ceramic is a path for the
+spark to track to earth, most of all when damp (*general*). That reaches
+S1/S3 through H4 (test 1e) for cylinders 1 and 2, and is settled by what the
+boots and the plugs' insulators look like when they come out.
 
 **Why it is in this file and not only in the service list:** oil on the
 exhaust manifold is a fire risk and the likeliest source of S11's smoke; and
 *why* oil comes out can be the same thing that disturbs the idle — crankcase
 pressure and ventilation (H9).
 
-**How it closes:** the garage names the source and it is sealed. Then S11 is
+**How it closes:** the gasket and the breather are replaced (the owner's
+job), the head and the plug area are cleaned, and the boots and plugs of 1
+and 2 are photographed before cleaning. **Before taking anything apart**, at
+70–72 °C of oil: a few minutes of `IdleHealth` as the before-value, and H9
+test 3 (the filler cap) and a look at the dipstick — after a new gasket,
+whether the crankcase was pushing oil out can no longer be told. Then S11 is
 looked at again with the oil gone.
 
 ### S11. Smoke, and possibly a hiss, at the back of the head at a warm idle
@@ -394,10 +423,10 @@ full-load enrichment (*general*), for all four cylinders alike.
 | S5 ↔ S6 | **no** | the clamp was tightened and cylinder 4's excess stayed exactly as it was |
 | S7 ↔ S1 | **none** | S7 improved with the injectors; S1 did not |
 | S8 ↔ anything | **none** | top-end air and b7 identical on both MAFs; the idle changed a lot |
-| S10 ↔ S11 | **likely, not shown** | same place; oil on a hot manifold smokes. The hiss, if real, is not oil |
+| S10 ↔ S11 | **likely, not shown** | same place; the valve cover gasket leaks heavily at the back, above the manifold, and oil on a hot manifold smokes. The hiss, if real, is not oil |
 | S11 ↔ S2 | **possible** | an exhaust leak ahead of the probe both hisses and puffs. Never observed together |
 | S11 ↔ S6 | **possible** | if the hiss is exhaust, "never tight" reaches upstream of the probes too |
-| S10/S11 ↔ S1/S3 | **untested, not weak** | nothing measured so far *could* have shown a link, so "unknown" is no evidence against one. Oil outside the engine does not touch combustion; what can is the cause or a neighbour: a vacuum leak at the unsprayed rear hissing (H3/H9), the ventilation's oil fouling the throttle (H9 → H8), an exhaust leak ahead of the probe (H2), oil reaching the coil or a lead boot (H4, 1e). The one existing datum that points this way: the idle is better under load, which is what a small unmetered leak does |
+| S10/S11 ↔ S1/S3 | **untested, not weak** | nothing measured so far *could* have shown a link, so "unknown" is no evidence against one. Oil outside the engine does not touch combustion; what can is the cause or a neighbour: a vacuum leak at the unsprayed rear hissing (H3/H9), the ventilation's oil fouling the throttle (H9 → H8), an exhaust leak ahead of the probe (H2), oil reaching a lead boot (H4, 1e) — **seen on 26/9 at the boots of cylinders 1 and 2**. The one existing datum that points this way: the idle is better under load, which is what a small unmetered leak does |
 
 **So there are two separate clusters**, and they are worked separately below:
 **the idle** (S1, S2, S3) and **the cylinder 4 window** (S4, S5). S6 matters
@@ -1010,7 +1039,8 @@ drawing of this car.
 
 **Tests:**
 
-1. **The garage names S10's source** — already booked.
+1. ~~**The garage names S10's source**~~ — found by the owner on 26/9: the
+   valve cover gasket (S10).
 2. **The breather hoses by eye and hand**, engine off: cracked, collapsed,
    hardened so that they split when bent, or wet with oil on the outside
    (*general*).
@@ -1063,9 +1093,8 @@ misfires. *General.*
   now clean (S7), where a coolant leak into a cylinder shows worst
   (*general*); and **no coolant loss, overheating, white exhaust smoke or
   emulsion under the oil cap has been reported** — none has been looked for
-  either, which is what the cheap tests below are for. An external oil leak
-  at the back of a head is far more often the valve cover gasket
-  (*general*, H9).
+  either, which is what the cheap tests below are for. And **S10 is now
+  explained without it**: the valve cover gasket, found on 26/9.
 
 **Tests, cheapest first:**
 
@@ -1129,8 +1158,8 @@ the oil temperature beside it.
 6. **G66 torque and connector, and a look for loose parts** — H5.
 7. **Smoke/pressure test of the manifold and intake at the garage**, with
    the predictions under H2 held against the result — H2, H3. **Booked for
-   after the weekend of 26/9**, together with the source of S10 and what S11
-   is — H2, H9, H10. Ask for a combustion-gas test of the coolant on the same
+   after the weekend of 26/9**, together with what S11 is — H2, H9, H10.
+   (S10's source was found by the owner: the valve cover gasket.) Ask for a combustion-gas test of the coolant on the same
    visit if the leak is anywhere near the head gasket (H10). **Ask for the
    smoke to cover the back of the intake** — the part the spray test left
    out, where S11's hiss may be an intake leak rather than an exhaust one —
