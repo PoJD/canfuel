@@ -113,6 +113,16 @@ electrical from mechanical load:** log VCDS group 002 (load, injection time,
 air mass) with `IdleHealth` for lights only, A/C only, and both — if the grade
 follows the load figure whichever consumer raises it, it is the load.
 
+**The same, split by consumer, 26/9/2026 — owner-observed, VCDS not
+running:** A/C with the blower on full, lights and rear heater off →
+`IdleHealth` down to **35**; lights and rear window heater, no A/C → towards
+**40**; everything off → climbing back to 70–80 each time. **Both lower it,
+and this cannot tell which mechanism**: the A/C compressor is mostly
+mechanical load, lights and rear heater mostly electrical current, but
+20-odd amps through the alternator is also a few newton-metres the engine
+has to make at idle. Group 002's load figure beside each state is what
+would separate them.
+
 **The roughest reading yet, 26/9/2026 — cold, and in fog.** A few minutes
 after an overnight cold start (`StartClt` 14 °C) on a cold, foggy, very damp
 morning, `IdleRough` read **3.72 rpm** (index ~186) before the car drove off.
