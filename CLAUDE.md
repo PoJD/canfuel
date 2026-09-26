@@ -156,7 +156,12 @@ carries a generated block; a figure typed into prose only goes stale.
     repair — holding only what is open: symptoms, hypotheses, tests.
     `refuted.md` takes whatever is settled against. **Both have an end date.**
     `vcds.md` (the VCDS blocks and how to record them) and
-    `vehicle-history.md` (the car's record) are permanent. The long dated log
+    `vehicle-history.md` (the car's record) are permanent.
+    **Every new observation the maintainer reports about the car** — a sound,
+    a smell, a leak, a reading — **is flagged: say whether it could be a new
+    symptom in `open.md` (or change an existing one) and why, then ask. The
+    maintainer decides**; never add a symptom unasked, never let one pass
+    without asking. The long dated log
     that preceded `open.md` lives only in git
     (`git show 7c69883:docs/engine-health.md`), and nothing in the tree cites it
 

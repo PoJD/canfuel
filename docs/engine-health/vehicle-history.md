@@ -255,6 +255,11 @@ heater and blower on it holds 12.72 V at idle and 13.4 V at roughly
 checked; the cable eyelet under it is in place, with some surface corrosion
 at its edge.
 
+**The chafed main positive cable at the battery** — bare strands visible
+under its heat-shrink — was wrapped in PVC tape on 26/9/2026 (*owner*). The
+strands looked sound; the concern was moisture getting in. A tape wrap keeps
+water off, not out of strands that are already wet, so it is a stop-gap.
+
 ---
 
 ## What this means for the measurements

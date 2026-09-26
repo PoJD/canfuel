@@ -24,13 +24,19 @@ every hypothesis it touches, not into a dated section. Owner reports are
 marked *owner-reported*; general engine knowledge is marked *general*, since
 none of it comes from a document this project holds.
 
+**Every new observation of the owner's is checked against the symptom list,
+and the owner decides.** When something new is reported — a sound, a smell,
+a leak, a reading — say whether it could be a new symptom (or change an
+existing one) and why, and ask. Do not add it as a symptom unasked, and do not
+let it pass without asking.
+
 ⚠ **Nothing here changes a constant in `src/`.** The firmware only reports;
 `IdleHealth` and the start bytes on 0x604 are one of the instruments used
 below (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 25 September 2026
+## Where it stands — 26 September 2026
 
 **Replaced so far:** coil (6/2026), exhaust from the flex pipe back including
 the converter (9/2026), plugs and leads (17/9), all four injectors, fuel
@@ -48,6 +54,11 @@ and ignition path has now been changed and it is still there**, so what is
 left is either outside those parts or is normal for this engine.
 Separately, knock control hears something in cylinder 4's window above about
 2300 rpm that is not knock.
+
+**New on 26/9:** oil leaking at the back of the head (S10), and smoke with
+possibly a hiss from the same place at a warm idle (S11). **The car is parked
+until a garage has found both** — booked for after the weekend of 26/9, with
+the leak test of the exhaust and the intake (plan, step 7).
 
 ---
 
@@ -276,6 +287,49 @@ beside the reading. **An idle cell moving positive** would instead feed H3
 (an unmetered leak); a part-load cell moving strongly either way reopens the
 air metering.
 
+### S10. Oil leaking at the back of the head
+
+*Owner-reported, 26/9/2026*, and pointed out earlier by a garage (when, not
+recorded). Oil at the **back** of the head — the firewall side, where the
+throttle body sits and the intake plenum is only bracketed to the engine,
+with the exhaust manifold below it. The intake ports and the plugs are on the
+**front**, so this oil does not reach the plug boots.
+
+**Where it comes from is not known.** The valve cover gasket is the usual
+source on any engine this old (*general*); a head gasket weeping outwards, a
+sender, a plug or a seal at the back of the head are the others.
+
+**Why it is in this file and not only in the service list:** oil on the
+exhaust manifold is a fire risk and the likeliest source of S11's smoke; and
+*why* oil comes out can be the same thing that disturbs the idle — crankcase
+pressure and ventilation (H9).
+
+**How it closes:** the garage names the source and it is sealed. Then S11 is
+looked at again with the oil gone.
+
+### S11. Smoke, and possibly a hiss, at the back of the head at a warm idle
+
+*Owner, by eye and ear, 26/9/2026*, warm idle, bonnet open, over the exhaust
+manifold. A **faint smoke**; a **faint hiss** that the owner is not sure of;
+whether it smelled of exhaust could not be told.
+
+- **Something blowing out, not in.** An intake leak draws air in and makes no
+  smoke, so this is not the intake side (H3).
+- **Two readings, not exclusive:** oil from S10 burning on the hot manifold
+  gives smoke and no hiss; exhaust escaping at the manifold's joint to the
+  head, the manifold itself or its flange gives a hiss, and can carry smoke.
+  The second is a leak **ahead of the front lambda probe**, which is H2.
+- The rear of the intake and the old secondary-air vacuum line sit over the
+  same hot manifold and were not sprayed in the H3 test, on purpose.
+
+**How it closes:** the garage's smoke or pressure test from the head to the
+front probe (H2) and the source of S10. *Checks the owner can make, left to
+the garage by choice:* a rag held over the tailpipe for 2–3 s makes an
+exhaust leak hiss louder (a phone recording at the head, since it is a
+one-person job); an exhaust leak ticks loudest in the first minute after a
+cold start; dry black soot at a joint is exhaust, wet oily grime is oil
+(*all general*).
+
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** Whether 0x420's `OilTemp` is right is a firmware
@@ -325,11 +379,17 @@ full-load enrichment (*general*), for all four cylinders alike.
 | S5 ↔ S6 | **no** | the clamp was tightened and cylinder 4's excess stayed exactly as it was |
 | S7 ↔ S1 | **none** | S7 improved with the injectors; S1 did not |
 | S8 ↔ anything | **none** | top-end air and b7 identical on both MAFs; the idle changed a lot |
+| S10 ↔ S11 | **likely, not shown** | same place; oil on a hot manifold smokes. The hiss, if real, is not oil |
+| S11 ↔ S2 | **possible** | an exhaust leak ahead of the probe both hisses and puffs. Never observed together |
+| S11 ↔ S6 | **possible** | if the hiss is exhaust, "never tight" reaches upstream of the probes too |
+| S10/S11 ↔ S1/S3 | **unknown** | only through a common cause: H2 (exhaust) or H9 (crankcase) |
 
 **So there are two separate clusters**, and they are worked separately below:
 **the idle** (S1, S2, S3) and **the cylinder 4 window** (S4, S5). S6 matters
 only if it leaks ahead of the front probe; S7 is closed, and S8 and S9 each
-want one confirming reading and are probably closed.
+want one confirming reading and are probably closed. **A third cluster, the
+back of the head (S10, S11)**, appeared on 26/9 and goes to the garage as its
+own job; whether it joins the idle cluster is exactly what H2 and H9 ask.
 
 ---
 
@@ -344,9 +404,9 @@ settles it. ✔ fits, ~ fits weakly, ✘ does not fit, — says nothing.
 it might simply idle like this, and every number above might be its normal
 state.
 
-| S1 | S2 | S3 | S4 | S5 |
-|---|---|---|---|---|
-| ~ | ~ | ✘ | — | ~ |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
+|---|---|---|---|---|---|---|
+| ~ | ~ | ✘ | — | ~ | — | — |
 
 - **Against:** 014 reads **12–120 against VW's own 0–5**. The old converter
   burned through, which needs raw fuel in it. The owner feels it.
@@ -370,9 +430,9 @@ state.
 A hydraulic lifter that bleeds down or pumps up leaves a valve slightly open
 or late, intermittently, and gets worse as the oil thins. *General.*
 
-| S1 | S2 | S3 | S4 | S5 |
-|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ✔ | ✔ |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
+|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ✔ | ✔ | — | — |
 
 - **For:** with H4, one of the **two candidates that can explain both
   clusters at once**: an
@@ -408,9 +468,9 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in;
 under load it only blows out. *General.* The front probe reads lean, the rear
 loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
 
-| S1 | S2 | S3 | S4 | S5 |
-|---|---|---|---|---|
-| ~ | ✔ | ~ | ✘ | ✘ |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
+|---|---|---|---|---|---|---|
+| ~ | ✔ | ~ | ✘ | ✘ | — | ✔ |
 
 - **For:** the puff, idle only, an old manifold that has lived through years
   of misfires, a new flange gasket, the rear probe on the rich side at hot
@@ -433,34 +493,23 @@ loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
    this hypothesis was underrated and the argument against it is wrong.**
 3. If nothing is found, the puff is the misfire itself (H1, H3, H4, H5).
 
-**Observed 26/9/2026, warm idle, bonnet open** (*owner, by eye and ear*): a
-faint smoke and possibly a faint hiss from the back of the head — the side
-where the throttle body sits and the intake plenum is only bracketed to the
-engine, with the exhaust manifold below; the intake ports and the plugs are on
-the front — and an **oil leak at the back of the head** that a garage had
-already pointed out. Hiss *and*
-smoke mean something blowing **out**, which is the exhaust side: an intake
-leak draws air in and makes no smoke. So it is read as a physical sign for
-this hypothesis, not for H3. The smoke is most likely the leaking oil burning
-on the hot manifold (*general*) and says nothing about the exhaust by itself;
-the hiss, if real, does. The same garage visit should find both — the smoke or
-pressure test above and where the oil comes from. ⚠ Oil reaching the exhaust
-manifold is also a fire risk, which makes it worth fixing on its own. The
-plugs are on the other side of the head, so this oil is not a route to the
-plug boots. **Booked for the garage after the weekend of 26/9**: where the oil
-comes from, and whether anything blows out of the exhaust side.
+**S11 is the first physical sign for this hypothesis** (26/9): smoke and
+possibly a hiss over the exhaust manifold at a warm idle. The smoke alone is
+more likely S10's oil; **the hiss, if the garage confirms it, is this leak.**
+Nothing else about the argument above changes until the test is done.
 
 ### H3. A small unmetered air leak at one intake runner
 
 Air past the MAF leans one cylinder at idle, where air flow is smallest.
 *General.*
 
-| S1 | S2 | S3 | S4 | S5 |
-|---|---|---|---|---|
-| ✔ | ~ | ✔ | ~ | ✘ |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
+|---|---|---|---|---|---|---|
+| ✔ | ~ | ✔ | ~ | ✘ | — | ✘ |
 
 - **For:** the regime is exactly right. A lean cylinder can also knock on a
   tip-in (S4). Several of the forum cases were a breather hose.
+- **S11 does not fit:** an intake leak draws air in and makes no smoke.
 - **Against:** the idle trim is −3.1 %, slightly rich, and a leak big enough
   to misfire one cylinder would still pull the trim positive through one
   sensor averaging four. **A large leak is refuted** (`refuted.md`);
@@ -527,9 +576,9 @@ The battery itself is new (end of August 2026, the old one found dead during
 the headlight work), so the thread's one confirmed
 electrical fix — a new battery — has in effect already been tried here.
 
-| S1 | S2 | S3 | S4 | S5 |
-|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ~ | ✔ |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
+|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ~ | ✔ | — | — |
 
 - **For:** with H1 the only candidate that could explain **both clusters**: a
   weak spark misfires at idle and high vacuum, and a noisy ground puts a
@@ -804,9 +853,9 @@ Three candidates, all *general*:
 - **An injector click** that slides into the window as injection timing moves
   with speed. No knock log exists from before the new injectors.
 
-| S1 | S2 | S3 | S4 | S5 |
-|---|---|---|---|---|
-| — | — | — | ✔ | ✔ |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
+|---|---|---|---|---|---|---|
+| — | — | — | ✔ | ✔ | — | — |
 
 **Tests:** check G66's torque and connector; look over everything refitted in
 September for a loose bracket, clip or heat shield with the engine held at
@@ -835,9 +884,9 @@ changed in September, and neither has ever been gauged. (The bad cold start
 that once pointed here is closed, S7: it was the old injectors.)
 The owner's own remaining candidate is one of the new injectors.
 
-| S1 | S2 | S3 | S4 | S5 |
-|---|---|---|---|---|
-| ~ | ~ | ~ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
+|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | — |
 
 - **Against, for the idle:** four new injectors and a new filter changed
   nothing in S1; the trims are near zero; a leaking seat adds fuel at idle and
@@ -859,9 +908,9 @@ idle in group 003 is that control working). A dirty throttle body or a lost
 throttle adaptation makes the governor hunt. *General.* The MAF swap halving
 S1 shows that the idle is sensitive to how air is metered and controlled.
 
-| S1 | S2 | S3 | S4 | S5 |
-|---|---|---|---|---|
-| ~ | — | ~ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
+|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | — | — |
 
 - **Against:** a hunting governor is a slow oscillation, while S1 is a
   sudden dip lasting one or two firings and recovering in a quarter of a
@@ -871,6 +920,76 @@ S1 shows that the idle is sensitive to how air is metered and controlled.
 adaptation (VCDS basic setting). Compare `IdleHealth` at the same oil
 temperature. Cheap, but it is last on the list because the shape of the dip
 argues against it.
+
+### H9. Crankcase ventilation, or the valve cover gasket (S10, and possibly the idle)
+
+The crankcase is ventilated into the intake, and blow-by leaves through the
+breather hoses. *General* for any engine: **if the breather path is blocked**,
+crankcase pressure rises and pushes oil out of the weakest seal — typically
+the valve cover gasket — onto whatever is below. **If a breather hose or the
+gasket leaks instead**, the crankcase draws in air past the MAF at idle, where
+the manifold vacuum is highest: an unmetered leak, H3 by a different door.
+Either way one fault can make S10 and reach the idle.
+
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
+|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | ✔ | ✔ |
+
+- **For:** the commonest explanation of S10 and, through the oil, of S11's
+  smoke. Several forum cases of an unsettled idle were a breather hose (H3).
+  The back of the engine is exactly what the spray test could not reach.
+- **Against:** a gasket that only weeps oil lets in little air — it seals
+  against splash, and the crankcase is near atmospheric — and the idle trim
+  (−3.1 %) argues against a large unmetered leak (`refuted.md` A7). A
+  26-year-old gasket weeps without any help from a blocked breather, so S10
+  alone proves nothing about the ventilation.
+
+**Tests:**
+
+1. **The garage names S10's source** — already booked.
+2. **The breather hoses by eye and hand**, engine off: cracked, collapsed,
+   hardened so that they split when bent, or wet with oil on the outside
+   (*general*).
+3. **The oil filler cap at a warm idle** (*general*): loosen it slightly. A
+   strong, pulsing push of fumes means heavy blow-by or a blocked breather; a
+   slight steady suck means the ventilation works. Note what the engine speed
+   does. A garage can measure crankcase pressure properly.
+4. **After the repair**, `IdleHealth` at a matched oil temperature against the
+   current band: the same rule as H2 — a clear improvement means this was
+   underrated.
+
+### H10. A cracked head, or a head gasket leaking (asked about, least likely)
+
+A crack or a failed gasket can leak oil outwards (S10), combustion gas
+outwards (S11's hiss) or into the water jacket, and a cylinder that leaks
+misfires. *General.*
+
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
+|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | ~ | ~ |
+
+- **For:** it is the one cause that could sit behind S10, S11 and the idle
+  together.
+- **Against, and strongly:** compression is 12 bar and even on all four
+  (`refuted.md` A4); the coolant warms to 99–100.5 °C and holds it like a
+  healthy engine's (`docs/firmware/open.md` question 10); the cold start is
+  now clean (S7), where a coolant leak into a cylinder shows worst
+  (*general*); and **no coolant loss, overheating, white exhaust smoke or
+  emulsion under the oil cap has been reported** — none has been looked for
+  either, which is what the cheap tests below are for. An external oil leak
+  at the back of a head is far more often the valve cover gasket
+  (*general*, H9).
+
+**Tests, cheapest first:**
+
+1. **Coolant level** in the expansion tank, marked when cold and checked over
+   several cold starts. No loss is a strong point against.
+2. **The underside of the oil filler cap and the dipstick**: no milky
+   emulsion.
+3. **At the garage:** a combustion-gas (CO₂) test of the coolant, and the warm
+   leak-down of plan step 8 — which also shows a cylinder leaking into the
+   water jacket as bubbles in the expansion tank. Either one clean moves this
+   to `refuted.md`.
 
 ---
 
@@ -910,7 +1029,9 @@ the oil temperature beside it.
 1. **The confirming readings, whenever the car is out anyway**: 032 after a
    few hundred km (S9; a positive idle cell would feed H3) and one held 4th-gear pull to 6000 rpm
    with `Power` on the display and a capture running (S8).
-2. **Stethoscope and cold-start listening** — H1, H5. Free.
+2. **Stethoscope and cold-start listening** — H1, H5. Free. **With them,
+   engine off:** the coolant level marked cold, the oil filler cap's
+   underside, the breather hoses by eye and hand — H9, H10. Needs no drive.
 3. ~~**The voltage-drop tests of H4, coil first**~~ — done 26/9, nothing
    failed; H4 is last in line now (verdict under H4).
 4. ~~**Spray test of the intake at a warm idle**~~ — done 26/9 from the
@@ -921,8 +1042,9 @@ the oil temperature beside it.
 6. **G66 torque and connector, and a look for loose parts** — H5.
 7. **Smoke/pressure test of the manifold and intake at the garage**, with
    the predictions under H2 held against the result — H2, H3. **Booked for
-   after the weekend of 26/9**, together with finding the oil leak at the back
-   of the head (H2).
+   after the weekend of 26/9**, together with the source of S10 and what S11
+   is — H2, H9, H10. Ask for a combustion-gas test of the coolant on the same
+   visit if the leak is anywhere near the head gasket (H10).
 8. **Leak-down test warm, and a rail pressure gauge** — H1, H7. Garage work,
    do both on one visit.
 9. **A healthy AQY recorded** — H0. Depends on finding one, so start asking
