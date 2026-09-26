@@ -200,11 +200,24 @@ the dipstick smelt of nothing; a seat leak is additive and the error was
 multiplicative. **Rail pressure was never measured** — it is simply no longer
 needed to explain the trim. It survives for the cold start as H7.
 
-### C3. "The cold start is the fuel pump's check valve" — open, not refuted
+### C3. "The bad cold start is the pump's check valve, or still there" — answered: it was the old injectors
 
-Listed here only to say where it is: the cold start improved a lot on the new
-injectors, which points at their seats, but the check valve is eliminated
-only once the next overnight cold starts read clean (`open.md` S7).
+| | stand | injectors | crank to first firing | after first firing |
+|---|---|---|---|---|
+| `18_coldstart_z1`, 11/9 | ~10 h | old | 1.24 s | 451 → **311** rpm, nearly died |
+| `19_postfix_drive_z1`, 24/9 | ~19 h, 10 °C | new | 0.83 s | 450 → **331** rpm, caught |
+| 25/9 morning, display | ~12 h | new | 0.77 s | clean |
+| **26/9 morning, display** | **~10 h, cold fog, `StartClt` 14 °C** | new | **0.93 s** | **`StartDip` 74 rpm**, clean |
+
+*The first two are measured through `idledips.health_summary()`; the display
+rows are owner-reported.* The near-stall has not come back on the new
+injectors in any cold start, and the 26/9 start matches `18`'s ~10 h stand
+at a similar temperature. **So the rail bleed-down was the old injectors'
+seats, and the pump's check valve is not needed as an explanation** — it was
+never measured, so "not needed" is the strength of this, not "refuted". A
+residual fall of 74 rpm on a cold engine has no healthy reference to be
+judged against; `StartDip` over many mornings is the instrument
+(`docs/firmware/frames.md`, 0x604).
 
 ### C4. "The historical full-load misfire and warning lamp" — answered
 

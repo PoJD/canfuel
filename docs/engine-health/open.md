@@ -91,6 +91,17 @@ full misfire the sampling rounded off. The fall takes one or two firings and
 the recovery about 250 ms, which is the idle governor, not a fuelling loop:
 **the dip is the failed combustion itself, not the ECU correcting anything.**
 
+**The roughest reading yet, 26/9/2026 — cold, and in fog.** A few minutes
+after an overnight cold start (`StartClt` 14 °C) on a cold, foggy, very damp
+morning, `IdleRough` read **3.72 rpm** (index ~186) before the car drove off.
+*Owner-reported off the display, not photographed.* ⚠ Not comparable with the
+warm figures: the grade had not converged (under 30 s of idle; the filter
+rises from zero, so an unconverged reading is if anything low), and the only
+recorded cold idle, `18_coldstart_z1`, graded 2.74 in its first minute at
+25 °C of coolant. What it adds is the weather: the start itself was clean and
+the idle the worst seen, **on the dampest morning yet** — which is what an
+ignition fault that tracks moisture would do (H4, test 1e).
+
 **Temperature matters and it is not monotonic.** Rough cold, worst at about
 50–61 °C of oil, least rough hot. A reading without the oil temperature beside
 it cannot be compared with anything.
@@ -175,25 +186,12 @@ whether there is a leak **ahead of the front probe** — the original, 26-year-o
 manifold, the new gasket at its flange, the probe boss. Nobody has tested
 that; the garage is going to.
 
-### S7. The cold start — probably fixed, not yet proven
+### S7. The cold start — closed 26/9/2026
 
-| | stand | injectors | crank to first firing | after first firing |
-|---|---|---|---|---|
-| `18_coldstart_z1`, 11/9 | ~10 h | old | 1.24 s | 451 → **311** rpm, nearly died |
-| `19_postfix_drive_z1`, 24/9 | ~19 h, 10 °C | new | 0.83 s | 450 → **331** rpm, caught |
-| `24_mafswap_drive_z1`, 24/9, 27 °C coolant | hours | new | 0.86 s | no fall |
-| 25/9 morning, display | ~12 h | new | 0.77 s | clean |
-| 25/9 warm, display | minutes | new | 0.70 s | no fall, `StartClt` 86 °C |
-
-The first three are measured through `idledips.health_summary()`, the oracle
-for 0x604; the 25/9 rows are *owner-reported* off the display. Cranking
-shortened by a third on the new injectors; the fall has appeared only in the
-two coldest starts.
-**The next overnight cold start at under ~15 °C of coolant decides it**:
-`StartCrank`, `StartDip` and `StartClt` on 0x604.
-
-The same car, in 7/2026, **held no residual pressure** in the rail when the
-regulator was changed. Nobody has checked that on the new parts.
+**Fixed by the new injectors.** An overnight cold start at 14 °C of coolant,
+in cold fog, cranked in 0.93 s and fell only 74 rpm after first firing,
+against 1.24 s and a near-stall (451 → 311 rpm) on the old injectors. The
+table and the reasoning are in `refuted.md` C3.
 
 ### S8. Top end — "loses breath above 5000 rpm"
 
@@ -298,8 +296,8 @@ full-load enrichment (*general*), for all four cylinders alike.
 
 **So there are two separate clusters**, and they are worked separately below:
 **the idle** (S1, S2, S3) and **the cylinder 4 window** (S4, S5). S6 matters
-only if it leaks ahead of the front probe; S7, S8 and S9 each want one
-confirming reading and are probably closed.
+only if it leaks ahead of the front probe; S7 is closed, and S8 and S9 each
+want one confirming reading and are probably closed.
 
 ---
 
@@ -581,6 +579,15 @@ clean, several tenths is a bad joint** (*general*).
   the four leads against each other: one reading far from the others (for
   its length) is the bad one.
 
+- **1e. Damp and dark: the high-voltage side.** Moisture makes a cracked
+  coil housing or a worn boot leak its spark to earth instead of across the
+  plug (*general*; one AQY owner in the Polish thread found his idle worse in
+  wet weather, and the rough reading of 26/9 came on a foggy morning). On a
+  damp evening, engine idling, bonnet open, lights off: look along the leads
+  and the coil for sparks or a blue glow. Then a fine water mist from a spray
+  bottle over one lead at a time: a stumble that follows the mist names the
+  lead or the coil tower. Keep hands and the bottle clear of the HT side.
+
 Clearing the secondary-air fault the removal sets is expected afterwards.
 
 #### Step 2 — only if step 1 is clean: the main supply path (warm idle, loads on)
@@ -668,15 +675,16 @@ small ones 100 km later). Does not explain S5, which is a raw voltage. **Test:**
 log 020 + 026 again after a few hundred km without a disconnect; the tip-in
 retard should stay small.
 
-### H7. Fuel delivery at idle: rail pressure, check valve, one new injector
+### H7. Fuel delivery at idle: rail pressure, one new injector
 
 The regulator (7/2026) and the pump are the parts of the fuel path not
-changed in September, and neither has ever been gauged. A rail that bleeds down overnight fits S7.
+changed in September, and neither has ever been gauged. (The bad cold start
+that once pointed here is closed, S7: it was the old injectors.)
 The owner's own remaining candidate is one of the new injectors.
 
-| S1 | S2 | S3 | S4 | S5 | S7 |
-|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | ✔ |
+| S1 | S2 | S3 | S4 | S5 |
+|---|---|---|---|---|
+| ~ | ~ | ~ | — | — |
 
 - **Against, for the idle:** four new injectors and a new filter changed
   nothing in S1; the trims are near zero; a leaking seat adds fuel at idle and
@@ -685,11 +693,9 @@ The owner's own remaining candidate is one of the new injectors.
 **Tests:**
 
 1. **A fuel pressure gauge on the rail**: pressure at idle with the vacuum
-   hose on and off, then the drop over an hour after switching off. Settles
-   the regulator and the check valve in minutes. *General; VW's figures are
+   hose on and off. Settles the regulator in minutes. *General; VW's figures are
    not held here.*
-2. The next cold overnight start on 0x604 (S7).
-3. If a cylinder is ever named (see *Naming the cylinder* below): swap its
+2. If a cylinder is ever named (see *Naming the cylinder* below): swap its
    injector with another and see whether the fault follows.
 
 ### H8. Idle air control and the throttle body
@@ -749,8 +755,7 @@ running beside it should have one, and every `IdleHealth` reading should have
 the oil temperature beside it.
 
 1. **The confirming readings, whenever the car is out anyway**: 032 after a
-   few hundred km (S9; a positive idle cell would feed H3), the next cold
-   overnight start off 0x604 (S7), and one held 4th-gear pull to 6000 rpm
+   few hundred km (S9; a positive idle cell would feed H3) and one held 4th-gear pull to 6000 rpm
    with `Power` on the display and a capture running (S8).
 2. **Stethoscope and cold-start listening** — H1, H5. Free.
 3. **The voltage-drop tests of H4, coil first**, then clean only what
