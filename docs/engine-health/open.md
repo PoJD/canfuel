@@ -1067,6 +1067,27 @@ drawing of this car.
      slightly rich trim can idle better leaner for that reason alone.
      Decisive only if it repeats, cap on and off, at a matched oil
      temperature.
+
+   **Result, 26/9/2026 evening** (*owner-observed*; cold engine a few
+   minutes after a cold start, secondary-air pump heard running, so oil well
+   below the warm band; `IdleHealth` watched but not written down):
+   - **no suction at the cap** — as expected on this layout; it clears a
+     second path to the manifold and says nothing about the membrane;
+   - **a pulsing breath of air from the opening**, felt by hand — strength
+     not graded. Some pulsing is normal with the cap off (*general*); a
+     strong push of fumes would mean blow-by is not getting out;
+   - **the dipstick at atmospheric**: no push, no suction, no pulsing — **a
+     point against crankcase pressure**, and so against the blocked-
+     ventilation branch of H9 as the reason the gasket leaks;
+   - **`IdleHealth` somewhat worse with the cap off, not consistently** —
+     no sign that the ventilation disturbs the idle. If anything the extra
+     unmetered air made it rougher, which is the direction H3 predicts, but
+     inconsistent readings on a cold engine carry little weight.
+
+   **Reading:** the valve cover gasket (S10) most likely leaks from age, not
+   from pressure behind it. What would still change that: a strong,
+   fume-laden push at the cap on a **warm** engine, or a separator found
+   blocked in test 4.
 4. **The filler-neck breather and its hose off, engine cold**: oil sludge in
    the hose or at its end on the intake hose, a split in the hose where
    `N79` tees in, the separator in `06A 103 465` intact. The part costs a few
