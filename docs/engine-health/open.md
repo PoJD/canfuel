@@ -686,8 +686,9 @@ measured instead:
   misfires: a healthy alternator at idle speed may simply not cover this much
   load, or the belt, the regulator or the chafed B+ cable may be losing it.
   Raising the engine speed to ~2000 rpm with the loads on settles which.
-- The headlights were lit with the switch off while the engine ran: the
-  daytime running lights (fuse 27), not a fault.
+- The headlights were lit with the switch off while the engine ran. Most
+  likely the daytime running lights (fuse 27), which only run with the
+  engine; not yet confirmed by switching the engine off with the key on.
 
 #### Step 2 — only if step 1 is clean: the main supply path (warm idle, loads on)
 
