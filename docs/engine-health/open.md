@@ -313,12 +313,18 @@ looked at again with the oil gone.
 manifold. A **faint smoke**; a **faint hiss** that the owner is not sure of;
 whether it smelled of exhaust could not be told.
 
-- **Something blowing out, not in.** An intake leak draws air in and makes no
-  smoke, so this is not the intake side (H3).
-- **Two readings, not exclusive:** oil from S10 burning on the hot manifold
+- **The smoke is something blowing out; the hiss need not be.** An intake
+  leak makes no smoke, but it does hiss — a vacuum leak is heard as air
+  being drawn in (*general*). ⚠ An earlier revision read S11 as "not the
+  intake side" on the strength of the smoke alone, which conflated the two
+  observations.
+- **Three readings, not exclusive:** oil from S10 burning on the hot manifold
   gives smoke and no hiss; exhaust escaping at the manifold's joint to the
-  head, the manifold itself or its flange gives a hiss, and can carry smoke.
-  The second is a leak **ahead of the front lambda probe**, which is H2.
+  head, the manifold itself or its flange gives a hiss, and can carry smoke —
+  a leak **ahead of the front lambda probe**, H2; and **a vacuum leak at the
+  back of the intake** gives a hiss with no smoke of its own — H3 or H9, in
+  exactly the area the spray test left out. Smoke from the first and a hiss
+  from the third together would look like what was seen.
 - The rear of the intake and the old secondary-air vacuum line sit over the
   same hot manifold and were not sprayed in the H3 test, on purpose.
 
@@ -382,7 +388,7 @@ full-load enrichment (*general*), for all four cylinders alike.
 | S10 ↔ S11 | **likely, not shown** | same place; oil on a hot manifold smokes. The hiss, if real, is not oil |
 | S11 ↔ S2 | **possible** | an exhaust leak ahead of the probe both hisses and puffs. Never observed together |
 | S11 ↔ S6 | **possible** | if the hiss is exhaust, "never tight" reaches upstream of the probes too |
-| S10/S11 ↔ S1/S3 | **unknown** | only through a common cause: H2 (exhaust) or H9 (crankcase) |
+| S10/S11 ↔ S1/S3 | **untested, not weak** | nothing measured so far *could* have shown a link, so "unknown" is no evidence against one. Oil outside the engine does not touch combustion; what can is the cause or a neighbour: a vacuum leak at the unsprayed rear hissing (H3/H9), the ventilation's oil fouling the throttle (H9 → H8), an exhaust leak ahead of the probe (H2), oil reaching the coil or a lead boot (H4, 1e). The one existing datum that points this way: the idle is better under load, which is what a small unmetered leak does |
 
 **So there are two separate clusters**, and they are worked separately below:
 **the idle** (S1, S2, S3) and **the cylinder 4 window** (S4, S5). S6 matters
@@ -505,11 +511,17 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
 
 | S1 | S2 | S3 | S4 | S5 | S10 | S11 |
 |---|---|---|---|---|---|---|
-| ✔ | ~ | ✔ | ~ | ✘ | — | ✘ |
+| ✔ | ~ | ✔ | ~ | ✘ | — | ~ |
 
 - **For:** the regime is exactly right. A lean cylinder can also knock on a
-  tip-in (S4). Several of the forum cases were a breather hose.
-- **S11 does not fit:** an intake leak draws air in and makes no smoke.
+  tip-in (S4). Several of the forum cases were a breather hose. The idle is
+  better the more air goes through the engine (S1, *load at idle*), which
+  dilutes a fixed leak.
+- **S11 fits half:** an intake leak makes no smoke, but it hisses, and the
+  back of the intake is the part the spray test did not reach. What sits
+  there is for the garage's smoke test to list; the brake-servo vacuum line
+  and the old secondary-air vacuum line are the usual candidates on an engine
+  of this age (*general*, not checked against this car).
 - **Against:** the idle trim is −3.1 %, slightly rich, and a leak big enough
   to misfire one cylinder would still pull the trim positive through one
   sensor averaging four. **A large leak is refuted** (`refuted.md`);
@@ -706,6 +718,11 @@ clean, several tenths is a bad joint** (*general*).
   and the coil for sparks or a blue glow. Then a fine water mist from a spray
   bottle over one lead at a time: a stumble that follows the mist names the
   lead or the coil tower. Keep hands and the bottle clear of the HT side.
+
+  **While there, look for S10's oil on the coil and the lead boots.** Oil
+  softens rubber and holds dirt and water, which is how a boot starts to
+  track (*general*) — the one way the leak itself, rather than its cause,
+  could reach the spark.
 
 Clearing the secondary-air fault the removal sets is expected afterwards.
 
@@ -944,6 +961,37 @@ Either way one fault can make S10 and reach the idle.
   26-year-old gasket weeps without any help from a blocked breather, so S10
   alone proves nothing about the ventilation.
 
+**What the web says about this engine's ventilation — searched 26/9/2026.**
+Parts catalogues and forums, not VW documents; nothing here was read off a
+drawing of this car.
+
+- **The layout.** The breather sits in the **oil filler neck on the valve
+  cover**, VW `06A 103 465` (later revision `-D`), sold for AQY, APK, AZH,
+  AZJ and AEG and described as a pressure-control breather with an oil
+  separator. From it one hose runs to the **intake hose ahead of the throttle
+  valve** — after the MAF — with the heater `N79` teed into it against icing.
+  One aggregator claims a second hose to the intake manifold; no other source
+  shows one, so it is not relied on.
+- **What follows from that layout.** With the breather joined ahead of the
+  throttle, the crankcase sits near atmospheric at idle, so a weeping gasket
+  lets in little air — the argument *against* below stands. But anything
+  that leaks **between the breather and the intake hose**, or in the hose
+  itself, is air past the MAF, and a torn separator or valve in the filler
+  neck opens the crankcase to it.
+- **Blocked ventilation is the commonest cause of oil leaks on the sister
+  AZJ**, and **a fouled throttle body the commonest cause of an unsettled
+  idle** — mymotorlist.com's page for the AZJ (the AQY page lists ignition,
+  the idle controller and the crank sensor instead). The two meet: the
+  breather's oil mist is delivered straight onto the throttle, so a
+  ventilation that carries too much oil is H8 as well as H9.
+- **Forum cases on this engine**: an AQY Golf with `17990 / P1582` (idle
+  adaptation at its limit) and a cracked ventilation hose (golf4.de); German
+  threads on oily sludge in the filler-neck-to-intake hose, cleared with the
+  idle improving. Leads, not results.
+- **No VW bulletin was found** for the AQY or its US siblings about the
+  ventilation, a rear oil leak or the valve cover. The one bulletin that
+  touches this investigation is still TSB 01-08-27 (H4).
+
 **Tests:**
 
 1. **The garage names S10's source** — already booked.
@@ -953,8 +1001,14 @@ Either way one fault can make S10 and reach the idle.
 3. **The oil filler cap at a warm idle** (*general*): loosen it slightly. A
    strong, pulsing push of fumes means heavy blow-by or a blocked breather; a
    slight steady suck means the ventilation works. Note what the engine speed
-   does. A garage can measure crankcase pressure properly.
-4. **After the repair**, `IdleHealth` at a matched oil temperature against the
+   does — **an idle that settles with the cap loose** is the telltale the
+   Czech sources give for a faulty ventilation. A garage can measure
+   crankcase pressure properly.
+4. **The filler-neck breather and its hose off, engine cold**: oil sludge in
+   the hose or at its end on the intake hose, a split in the hose where
+   `N79` tees in, the separator in `06A 103 465` intact. The part costs a few
+   tens of euros, so replacing it on suspicion is a fair test.
+5. **After the repair**, `IdleHealth` at a matched oil temperature against the
    current band: the same rule as H2 — a clear improvement means this was
    underrated.
 
@@ -1044,7 +1098,10 @@ the oil temperature beside it.
    the predictions under H2 held against the result — H2, H3. **Booked for
    after the weekend of 26/9**, together with the source of S10 and what S11
    is — H2, H9, H10. Ask for a combustion-gas test of the coolant on the same
-   visit if the leak is anywhere near the head gasket (H10).
+   visit if the leak is anywhere near the head gasket (H10). **Ask for the
+   smoke to cover the back of the intake** — the part the spray test left
+   out, where S11's hiss may be an intake leak rather than an exhaust one —
+   and the ventilation from the filler neck to the intake hose (H9).
 8. **Leak-down test warm, and a rail pressure gauge** — H1, H7. Garage work,
    do both on one visit.
 9. **A healthy AQY recorded** — H0. Depends on finding one, so start asking
