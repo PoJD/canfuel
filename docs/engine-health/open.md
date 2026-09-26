@@ -1073,13 +1073,15 @@ drawing of this car.
    below the warm band; `IdleHealth` watched but not written down):
    - **no suction at the cap** — as expected on this layout; it clears a
      second path to the manifold and says nothing about the membrane;
-   - **a pulsing breath of air from the opening**, felt by hand — strength
-     not graded. Some pulsing is normal with the cap off (*general*); a
-     strong push of fumes would mean blow-by is not getting out;
+   - **a mild pulsing of air from the opening**, felt and heard as coming
+     from the cylinders; no strong push, no fumes reported. Some pulsing is
+     normal with the cap off (*general*); a strong push of fumes would mean
+     blow-by is not getting out;
    - **the dipstick at atmospheric**: no push, no suction, no pulsing — **a
      point against crankcase pressure**, and so against the blocked-
      ventilation branch of H9 as the reason the gasket leaks;
-   - **`IdleHealth` somewhat worse with the cap off, not consistently** —
+   - **`IdleHealth` somewhat worse with the cap off, not consistently**, and
+     the idle **audibly slightly worse** too —
      no sign that the ventilation disturbs the idle. If anything the extra
      unmetered air made it rougher, which is the direction H3 predicts, but
      inconsistent readings on a cold engine carry little weight.
