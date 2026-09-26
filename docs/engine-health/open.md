@@ -345,6 +345,20 @@ test 3 (the filler cap) and a look at the dipstick — after a new gasket,
 whether the crankcase was pushing oil out can no longer be told. Then S11 is
 looked at again with the oil gone.
 
+**Parts ordered 27/9/2026** (mlparts.cz, arriving the week after; matched to
+the car by the shop's catalogue): valve cover gasket Elring `325.070`
+(= `06A 103 483 C`); crankcase breather Febi `32452` (= `06A 103 465`);
+oil filler cap seal Febi `100690` (= `06A 103 483 D`); upper intake manifold
+gasket Elring `271.230` (= `06A 129 717`, the plenum has to come off for the
+cover); sealant Elring `030.793`, Dirko HT beige (= VW `D 176 404 A2`), a dab
+at the four points where the gasket's arches meet its straight runs. Whether
+the breather sits on a separate seal in the cover is not known; it is looked
+at when the old one comes out. They go into `vehicle-history.md` once fitted.
+
+**The before-values for the repair are the ones already in S1** — the warm
+band at 69–72 °C of oil, loads off; the after-reading is taken the same way.
+No separate cold baseline was taken.
+
 ### S11. Smoke, and possibly a hiss, at the back of the head at a warm idle
 
 *Owner, by eye and ear, 26/9/2026*, warm idle, bonnet open, over the exhaust
