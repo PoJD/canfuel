@@ -91,6 +91,28 @@ full misfire the sampling rounded off. The fall takes one or two firings and
 the recovery about 250 ms, which is the idle governor, not a fuelling loop:
 **the dip is the failed combustion itself, not the ECU correcting anything.**
 
+**Load at idle smooths it, 26/9/2026 — repeated.** *Owner-observed off the
+display*, warm after ~100 km, standing: with headlights, blower and A/C on,
+`IdleHealth` **48–50**, the calmest in weeks; everything off, it climbed to
+**70–80**; on again, back towards 50. Two to three times, the last switch-on
+with a smaller effect. **The same direction as August**, when the A/C-on hold
+(`12`) graded 29 against 48 without it (`11`).
+
+What it means, and what it does not: every one of those consumers is
+**torque** the engine has to make at idle — the A/C compressor directly, the
+lights and blower through the alternator — so the ECM opens up the air and
+the engine idles at higher load. **The idle is rougher the lighter the load**,
+which is where the misfires were always counted. ⚠ **It is not evidence for a
+bad electrical joint** — more current through a poor joint makes its drop
+larger, which would make things worse, not better; the system voltage is
+also a little *lower* with the loads on. It argues for causes that matter
+less as the air through the engine rises: **a small unmetered leak (H3)**,
+diluted by more metered air; exhaust gas left in the cylinder at high vacuum;
+a valve that seals worse at low cylinder pressure (H1). **To separate
+electrical from mechanical load:** log VCDS group 002 (load, injection time,
+air mass) with `IdleHealth` for lights only, A/C only, and both — if the grade
+follows the load figure whichever consumer raises it, it is the load.
+
 **The roughest reading yet, 26/9/2026 — cold, and in fog.** A few minutes
 after an overnight cold start (`StartClt` 14 °C) on a cold, foggy, very damp
 morning, `IdleRough` read **3.72 rpm** (index ~186) before the car drove off.
