@@ -933,8 +933,12 @@ S1 shows that the idle is sensitive to how air is metered and controlled.
   sudden dip lasting one or two firings and recovering in a quarter of a
   second — a combustion event, not a control loop.
 
-**Test:** look into the throttle body; clean it if dirty and run the throttle
-adaptation (VCDS basic setting). Compare `IdleHealth` at the same oil
+**Already done once:** in 6/2026 the throttle body was inspected, found
+clean, given a new gasket and adapted (`vehicle-history.md`), and the idle
+fault outlived it.
+
+**Test:** look into the throttle body again; clean it if dirty and run the
+throttle adaptation (VCDS basic setting). Compare `IdleHealth` at the same oil
 temperature. Cheap, but it is last on the list because the shape of the dip
 argues against it.
 
@@ -983,7 +987,10 @@ drawing of this car.
   idle** — mymotorlist.com's page for the AZJ (the AQY page lists ignition,
   the idle controller and the crank sensor instead). The two meet: the
   breather's oil mist is delivered straight onto the throttle, so a
-  ventilation that carries too much oil is H8 as well as H9.
+  ventilation that carries too much oil is H8 as well as H9. ⚠ **On this
+  car that route is weak**: the throttle body was inspected in 6/2026 and
+  found clean (`vehicle-history.md`), so any fouling since is three months'
+  worth.
 - **Forum cases on this engine**: an AQY Golf with `17990 / P1582` (idle
   adaptation at its limit) and a cracked ventilation hose (golf4.de); German
   threads on oily sludge in the filler-neck-to-intake hose, cleared with the
@@ -1004,6 +1011,23 @@ drawing of this car.
    does — **an idle that settles with the cap loose** is the telltale the
    Czech sources give for a faulty ventilation. A garage can measure
    crankcase pressure properly.
+
+   **How to read it on this layout** (the breather joins ahead of the
+   throttle, so a working system holds the crankcase only a little below
+   atmospheric — *general*, from the layout above):
+   - **cap hard to lift, or strong suction** — manifold vacuum is reaching
+     the crankcase, which this layout should not allow. **A clear fault**:
+     a second path to the manifold with a failed valve or membrane in it.
+   - **a pulsing push of fumes** — blow-by is not getting out: a blocked
+     breather or hose, or heavy blow-by. Also a clear finding.
+   - **cap comes off easily, neither of the above** — normal, and ⚠ **it
+     does not clear the membrane**: on this layout a torn one would not
+     make a strong vacuum either.
+   - **idle better with the cap off** — suggestive, not proof. Opening the
+     cap also lets unmetered air into the intake hose, and an engine with a
+     slightly rich trim can idle better leaner for that reason alone.
+     Decisive only if it repeats, cap on and off, at a matched oil
+     temperature.
 4. **The filler-neck breather and its hose off, engine cold**: oil sludge in
    the hose or at its end on the intake hose, a split in the hose where
    `N79` tees in, the separator in `06A 103 465` intact. The part costs a few
