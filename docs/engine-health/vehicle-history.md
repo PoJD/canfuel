@@ -247,6 +247,12 @@ roughly 0.45 V remains at the bulb, in the switch feed and the run from the
 fuse box to the lamp. **Left as it is, by decision**; a relay harness is the
 complete fix if it is ever wanted.
 
+**The alternator**, read off its label on 26/9/2026 (*owner photo*): Bosch,
+VW `028 903 028 D`, **14 V 90 A**, date code 17/99 — so most likely the one
+the car left the factory with, 26 years old. With headlights, rear window
+heater and blower on it holds 12.72 V at idle and 13.4 V at roughly
+2000–3000 rpm (`open.md` H4).
+
 ---
 
 ## What this means for the measurements
