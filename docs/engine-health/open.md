@@ -104,6 +104,44 @@ full misfire the sampling rounded off. The fall takes one or two firings and
 the recovery about 250 ms, which is the idle governor, not a fuelling loop:
 **the dip is the failed combustion itself, not the ECU correcting anything.**
 
+**August's hot idle, examined, 27/9/2026** (*the owner's question: was
+something done after August that made it worse?*).
+
+- **It is one session, not two recordings.** `11` (A/C off, 48) and `12`
+  (A/C on, 29) were taken minutes apart on 11/8 at 73 °C of oil; the A/C
+  one being smoother is the load effect above. So the hot, loads-off
+  August idle is **one 19 s hold grading 43–48**.
+- **Against September at the same state.** `24` at 69–70 °C, loads off —
+  the same torque at idle on 0x280 b7 (23 against August's 25) — cut into
+  the same 22 s windows grades **53–106**, median about 75. August sits
+  just below September's best window: unusual, not impossible by chance.
+- **At mid temperature August was not better.** `09`, the same day at
+  61 °C, grades 79–104 per window; `24` at 57–61 °C grades 48–89.
+- **Not the old battery.** The idea that a dying battery loaded the
+  alternator in August — a load, and load smooths this idle — is refuted
+  by the bus: indicated torque at idle was 25 then and 23 now.
+
+**What changed between 11/8 and the first September hot idle** — every item
+on record, so nothing is overlooked:
+
+| change | could it make only the hot idle worse? |
+|---|---|
+| **the secondary-air control line refitted, after 11/8** — in August it was off (P0411), so the combination valve could not open at all | **yes, in principle**: a valve or N112 that lets it open even slightly at idle joins intake and exhaust. `refuted.md` A8 found it sealing at one warm idle on 25/9; one moment, not every idle |
+| new battery, end of August | no — see above |
+| converter, flex pipe, silencer and a new flange gasket, 10/9 | through a leak ahead of the probe (H2) |
+| plugs and **NGK leads**, 17/9 | a lead that tracks (H4); the Polish thread's aftermarket leads |
+| injectors and fuel filter, 23/9; MAF, 24/9 | the idle got better with the MAF (A11) |
+| four battery disconnects — every fuel, idle and knock adaptation from zero | yes: relearning takes distance (H6) |
+| the fuel: the tank was filled in September | a different batch; nothing specific |
+| the weather: warm August, cool September | intake air temperature; nothing specific |
+
+**The one test that recreates August exactly and costs nothing:** at a
+warm idle, 70–72 °C of oil, loads off, take `IdleHealth`; then **pull the
+thin line between N112 and the combination valve** — the state of every
+August recording (A8 test 2 did it cold) — and take it again; refit it and
+clear the secondary-air fault afterwards. A clear improvement with it off
+is the combination valve or N112, whatever A8 saw on 25/9.
+
 **Load at idle smooths it, 26/9/2026 — repeated.** *Owner-observed off the
 display*, warm after ~100 km, standing: with headlights, blower and A/C on,
 `IdleHealth` **48–50**, the calmest in weeks; everything off, it climbed to
