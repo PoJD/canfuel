@@ -1444,6 +1444,11 @@ recorded here, since they move):
   If the idle does not improve, the smoke test afterwards covers the whole
   intake as refitted. (The valve cover gasket itself is not an intake
   joint: the crankcase sits at atmospheric, H9 test 3.)
+  **Smoke rather than a pressure- or vacuum-decay test of the intake**
+  (*general*): a sealed intake is never sealed — the throttle plate, the
+  open inlet valves and the breather all pass air — so a gauge that falls
+  says little, and says nothing about *where*. Smoke shows the place. The
+  vacuum gauge above is a different instrument, for the running engine.
 - **A fuel pressure gauge** with the adapter for this rail (H7 test 1).
 - **A leak-down tester** with a compressor, warm engine (H1 test 3): where
   the air leaves names the fault — the throttle an inlet valve, the tailpipe
