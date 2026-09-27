@@ -601,6 +601,12 @@ or late, intermittently, and gets worse as the oil thins. *General.*
   VW paid 40 %. The same thread has AQYs burning up to a litre of oil per
   1,000 km and misfiring on cylinder 2. A forum report, 2003, and the only
   one found where the cause was named in the valvetrain.
+  **That thread's oil-burning pattern is not this car's**: oil changed in
+  6/2026, never topped up since, and still at the upper mark on 27/9
+  despite the leak (`vehicle-history.md`) — over a few hundred km only, so
+  a consumption of a few decilitres per 1,000 km could hide in it; a litre
+  could not. A sticking tappet needs no oil consumption, so this takes
+  nothing from H1 itself.
 
 **Tests:**
 
