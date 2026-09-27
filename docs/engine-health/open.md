@@ -396,8 +396,16 @@ What it settles and what it moves:
   the manual's is the one place it insists on. Its drawing is too small to
   say whether it wants the same at the back cap.
 - The page gives **no torque for the valve cover's own nuts**. The 10 Nm on
-  it belongs to item 4, the bracket's nut; a figure for the cover nuts
-  needs a source before it is written here.
+  it belongs to item 4, the bracket's nut.
+
+  **Decision, 27/9/2026 (the owner's): the cover nuts are tightened by hand,
+  by feel** — evenly, until the gasket is lightly compressed and not
+  squeezed out of shape, and without stressing the cover. Chosen over a
+  torque wrench because no source this project holds gives a figure for
+  these nuts: 10 Nm turns up in a web comment, which is not a source, and a
+  video of the job did it by hand in exactly this way. The risk it accepts
+  is an uneven or loose joint; the check is a look along the joint after
+  the first warm run, and again after a few hundred km.
 
 **The before-values for the repair are the ones already in S1** — the warm
 band at 69–72 °C of oil, loads off; the after-reading is taken the same way.
