@@ -1103,6 +1103,16 @@ The owner's own remaining candidate is one of the new injectors.
      engine note. A stumble that follows the hand names the place. Keep
      clear of the belt and the HT leads.
 
+   **First look, 26/9/2026 evening** (*owner's photograph*, in the dark, one
+   injector on the right-hand end — cylinder 3 or 4, not certain which):
+   the two wires into the connector are wrapped in old tape, grey with oil
+   and dirt and lifting in places. An orange patch where the tape stops
+   short of the connector is **the wires' own insulation, not bare copper**
+   (*owner-checked*). Nothing there looks damaged; the other three
+   connectors and the loom under the sleeving are still to be looked at.
+   Beside the injector a bare threaded stud carries no nut — whether one
+   belongs there is not known.
+
 ### H8. Idle air control and the throttle body
 
 **New here, not argued in the log.** Idle speed on this engine is held by the
