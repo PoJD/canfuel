@@ -1265,8 +1265,30 @@ is what S5's excess does when it slides to cylinder 1 above ~3350 rpm. A
 lean cylinder cannot be the route here: cylinder 4 is the one that is
 *not* proud.
 
+**Why a click would show on tip-ins and not in steady driving**
+(*general*: how knock control works on engines of this kind, not read for
+this ECU). The knock sensor hears everything — valves, injectors, the
+timing gear — so the ECM does not judge loudness. For each cylinder it
+learns the normal noise level in that cylinder's window and calls knock
+only when the signal **jumps** above it. A steady click is learned and
+ignored; a click that **appears suddenly** is not, until the level catches
+up. That is S4's pattern: 13 of 16 events on a tip-in **after a coast or a
+gearchange**. On the overrun the ECM cuts injection, the injectors fall
+silent and the learned level drops; on the tip-in they start again at
+once, and a click well coupled into the block — injector 4's — lands above
+the level just learned. It also reads the full-throttle events of 25/9
+without strain: injection quantity, and so the click, grows fastest there.
+
+**What to expect with all four seated.** Steady driving: nothing — every
+click is learned as noise. Tip-ins after a coast: either the events spread
+or move — an injector's click need not fall in its own cylinder's window,
+it falls where injection timing puts it — or nothing changes and stays on
+4, which clears the injectors. Nothing here harms the engine either way:
+the retard is inside VW's 0–15 °CA.
+
 **What settles it, at no extra cost:** the neutral 026 + 003 holds
-(`vcds-neutral-026-003.csv` is the before) and a 020 drive repeated
+(`vcds-neutral-026-003.csv` is the before) and a 020 drive with the same
+tip-ins after coasts as on 24–25/9, repeated
 **after the injectors are refitted all four home**. If S4/S5 were injector
 4's click, the excess moves or spreads once 1–3 are seated too; if it stays
 on 4 alone, the injectors are cleared from it. Before the refit, the
