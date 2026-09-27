@@ -1399,6 +1399,52 @@ all *general*:
 
 ---
 
+## The idle's candidates, ranked — 27 September 2026
+
+**A judgement, not a measurement**, for S1–S3 only (the cylinder 4 window
+is its own cluster). It weighs three facts above all: **the idle is better
+the more load and air go through the engine** (S1), **no one cylinder
+dominates** (`refuted.md` A5), and **the mixture matters** (the MAF swap
+halved the dips, S9). Re-rank after every test.
+
+| rank | hypothesis | why here | what settles it |
+|---|---|---|---|
+| 1 | **H3/H9 — a small unmetered leak at the back of the intake**: the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants. Against: trim −3.1 % | a **smoke test of the intake** (below); and the valve cover job itself, which replaces the upper plenum gasket |
+| 2 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 | a healthy AQY recorded (H0 test 1) |
+| 3 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: worst at mid temperature, not hot; A5 | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
+| 4 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero | a **fuel pressure gauge** |
+| 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026 | clean, adapt, compare |
+| 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V | the day's list (S10), H7 test 3 for the injector side |
+| 7 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss. Against: air outside the cylinder does not stop it firing | a smoke test **of the exhaust** |
+| 8 | **the timing belt a tooth out** | free to look at. Against: the torque plateau is reached | the mark, during the valve cover job |
+
+**Tools worth owning for this, cheapest first** (*general*; prices not
+recorded here, since they move):
+
+- **A vacuum gauge on the manifold at a warm idle** — the cheapest
+  instrument that splits the top three. A steady needle is a healthy idle;
+  a regular flick down at one point in the cycle is a valve; a low, slowly
+  wandering needle is a leak or a mixture fault. Teed into a manifold
+  vacuum line (the brake-servo or the regulator's hose); readings are
+  compared with themselves and before/after, not against a number.
+- **An IR thermometer** for the four exhaust runners (*Naming the
+  cylinder*).
+- **A mechanic's stethoscope** (H1 test 1).
+- **A smoke leak detector for the intake** — the one the owner asked about.
+  The engine off and cold, the intake sealed at the air filter end, smoke
+  fed in at **the low pressure the machine is made for** (never workshop
+  air); smoke appearing anywhere downstream of the MAF is the leak, and a
+  plenum, a hose or a gasket at the back shows it where no spray could go.
+  The same machine into the tailpipe, cold, finds H2's leak ahead of the
+  probe. Best done **before** the valve cover job for the back of the
+  intake, so a leak there is seen rather than silently cured with the new
+  gasket, and again **after**, to prove the refit.
+- **A fuel pressure gauge** with the adapter for this rail (H7 test 1).
+- **A leak-down tester** with a compressor, warm engine (H1 test 3): where
+  the air leaves names the fault — the throttle an inlet valve, the tailpipe
+  an exhaust valve, the filler neck the rings, the expansion tank the head
+  gasket.
+
 ## The plan, cheapest and most decisive first
 
 Each step names the hypotheses it tests. Every step that can have a capture
