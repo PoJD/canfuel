@@ -268,3 +268,25 @@ the old scale, not the engine.
 A warm idle counted zero dips before any repair, so an impression formed there
 has nothing to be calmer than. Compare only at matched oil temperature, with a
 number.
+
+### C13. "A cracked head, or a head gasket leaking, behind the oil leak, the smoke and the idle" — argued
+
+**Believed:** never strongly; asked about on 26/9 as the one cause that could
+sit behind S10, S11 and the idle together (it was H10 in `open.md`).
+**Refuted by**, each on its own weak, together decisive:
+- **the coolant level has held for weeks**, and **no milky emulsion** has
+  ever been seen; the underside of the oil filler cap is clean
+  (*owner-observed, 27/9/2026*);
+- compression 12 bar and even on all four (A4); the coolant warms to
+  99–100.5 °C and holds it; the cold start is clean (C3), where coolant in a
+  cylinder shows worst (*general*);
+- the dipstick sat at atmospheric with the engine running (`open.md` H9
+  test 3, cold) — combustion gas into the crankcase would push there;
+- and nothing is left for it to explain: S10 is the valve cover gasket,
+  found and photographed on 26/9, and S11's smoke is most likely that oil
+  on the manifold.
+
+**Not done:** a combustion-gas (CO₂) test of the coolant and a warm
+leak-down. **What would revive it:** coolant going down, emulsion under the
+cap or the valve cover, bubbles in the expansion tank, or a garage smoke test
+that places S11's leak at the head-to-block joint.

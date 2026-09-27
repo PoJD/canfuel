@@ -1152,59 +1152,6 @@ repair blogs; still nothing from VW.
    current band: the same rule as H2 — a clear improvement means this was
    underrated.
 
-### H10. A cracked head, or a head gasket leaking (asked about, least likely)
-
-A crack or a failed gasket can leak oil outwards (S10), combustion gas
-outwards (S11's hiss) or into the water jacket, and a cylinder that leaks
-misfires. *General.*
-
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
-|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | ~ | ~ |
-
-- **For:** it is the one cause that could sit behind S10, S11 and the idle
-  together.
-- **Against, and strongly:** compression is 12 bar and even on all four
-  (`refuted.md` A4); the coolant warms to 99–100.5 °C and holds it like a
-  healthy engine's (`docs/firmware/open.md` question 10); the cold start is
-  now clean (S7), where a coolant leak into a cylinder shows worst
-  (*general*); and **no coolant loss, overheating, white exhaust smoke or
-  emulsion under the oil cap has been reported** — none has been looked for
-  either, which is what the cheap tests below are for. And **S10 is now
-  explained without it**: the valve cover gasket, found on 26/9. **The
-  dipstick sat at atmospheric** in H9 test 3 (26/9) — combustion gas leaking
-  into the crankcase past a gasket or through a crack would push there
-  (*general*); a weak point, taken cold.
-
-**Where it stands, 27/9/2026: very weak, not refuted.** Everything that
-spoke for it has another explanation — S10 is the valve cover gasket, S11's
-smoke most likely that oil on the manifold — and the direct evidence
-(compression, coolant temperature, a clean cold start, a quiet dipstick) all
-points against. **But nothing that tests it directly has been done**: no
-coolant level has been watched, nobody has looked for emulsion, and the
-CO₂ test has not been made. The rule of this file is that a hypothesis
-moves to `refuted.md` on evidence that settles it, not on having become
-unlikely, so it stays here — at the bottom of the list, with no work
-planned beyond the free checks below. Test 1 or 2 clean closes it for all
-practical purposes; the garage's CO₂ test would close it formally.
-
-**Tests, cheapest first:**
-
-1. **Coolant level** in the expansion tank, marked when cold and checked over
-   several cold starts. No loss is a strong point against.
-2. **The underside of the oil filler cap and the dipstick**: no milky
-   emulsion. **During the valve cover job the whole top of the head is
-   open**: no light-brown "mayonnaise" on the cam, the cam caps or the
-   underside of the cover (*general*; a little on the cap alone can be
-   condensation from short trips, a film across the head is not). A
-   photograph of it is the cheapest direct test this hypothesis will get.
-3. **At the garage:** a combustion-gas (CO₂) test of the coolant, and the warm
-   leak-down of plan step 8 — which also shows a cylinder leaking into the
-   water jacket as bubbles in the expansion tank. Either one clean moves this
-   to `refuted.md`.
-
----
-
 ## Naming the cylinder — the missing measurement
 
 **The idle fault has never been placed in a cylinder.** 014 on this ECU has no
@@ -1243,7 +1190,9 @@ the oil temperature beside it.
    with `Power` on the display and a capture running (S8).
 2. **Stethoscope and cold-start listening** — H1, H5. Free. **With them,
    engine off:** the coolant level marked cold, the oil filler cap's
-   underside, the breather hoses by eye and hand — H9, H10. Needs no drive.
+   underside, the breather hoses by eye and hand — H9. Needs no drive.
+   (The coolant level and the cap were checked on 27/9, clean — H10 is in
+   `refuted.md` C13.)
 3. ~~**The voltage-drop tests of H4, coil first**~~ — done 26/9, nothing
    failed; H4 is last in line now (verdict under H4).
 4. ~~**Spray test of the intake at a warm idle**~~ — done 26/9 from the
@@ -1254,9 +1203,10 @@ the oil temperature beside it.
 6. **G66 torque and connector, and a look for loose parts** — H5.
 7. **Smoke/pressure test of the manifold and intake at the garage**, with
    the predictions under H2 held against the result — H2, H3. **Booked for
-   after the weekend of 26/9**, together with what S11 is — H2, H9, H10.
-   (S10's source was found by the owner: the valve cover gasket.) Ask for a combustion-gas test of the coolant on the same
-   visit if the leak is anywhere near the head gasket (H10). **Ask for the
+   after the weekend of 26/9**, together with what S11 is — H2, H9.
+   (S10's source was found by the owner: the valve cover gasket.) A
+   combustion-gas test of the coolant only if the garage finds the leak at
+   the head gasket (`refuted.md` C13 says what would revive it). **Ask for the
    smoke to cover the back of the intake** — the part the spray test left
    out, where S11's hiss may be an intake leak rather than an exhaust one —
    and the ventilation from the filler neck to the intake hose (H9).
