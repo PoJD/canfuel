@@ -143,7 +143,8 @@ on record, so nothing is overlooked:
 | new battery, end of August | no — see above |
 | converter, flex pipe, silencer and a new flange gasket, 10/9 | through a leak ahead of the probe (H2) |
 | plugs and **NGK leads**, 17/9 | a lead that tracks (H4); the Polish thread's aftermarket leads |
-| injectors and fuel filter, 23/9; MAF, 24/9 | the idle got better with the MAF (A11) |
+| injectors and fuel filter, 23/9 — **fitted by the owner; the seats' seals on the manifold side never leak-tested** | yes: a seat leaking air past the MAF leans that one cylinder at idle (H3) |
+| MAF, 24/9 | no — the idle got better with it (A11) |
 | four battery disconnects — every fuel, idle and knock adaptation from zero | yes: relearning takes distance (H6) |
 | the fuel: the tank was filled in September | a different batch; nothing specific |
 | the weather: warm August, cool September | intake air temperature; nothing specific |
@@ -373,8 +374,8 @@ photographed*, engine off, in the evening:
 - the breather hose to the intake looks sound from outside and was sprayed
   in the H3 test with no change;
 - oily grime around the injector seats and the manifold flange below the
-  plugs, read as oil running down from the cover; the seats were sprayed in
-  the H3 test with no change.
+  plugs, read as oil running down from the cover. ⚠ The seats were **not**
+  sprayed (*owner's correction, 27/9*; an earlier revision said they were).
 
 ⚠ **Correction:** an earlier revision said the plugs are on the front "so
 this oil does not reach the plug boots". The photographs show that it does.
@@ -838,9 +839,14 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
 3. 032 after a few hundred km: an idle cell moving positive would support it.
 
 **Spray test, 26/9/2026** (contact cleaner — isopropanol and C6–C7 alkanes;
-warm idle, loads off, engine speed watched): **no change anywhere reachable
-from the front** — the joints disturbed that day, the MAF-to-throttle hose,
-the throttle body, the manifold and the runners as far as they can be reached.
+warm idle, loads off, engine speed watched): **no change** — but it covered
+**the hoses only**: the MAF-to-throttle hose and the other hoses in reach
+at the front. ⚠ *Owner's correction, 27/9/2026:* the injector seats, the
+area round the plugs, the throttle body's joints and the manifold's runner
+joints were **not** sprayed, for fear of spraying near the ignition on a
+running engine — an earlier revision listed them as sprayed and clean. **The
+injector seats, refitted by the owner on 23/9, are untested**; the smoke
+test after the valve cover job covers them, with the engine off.
 The rear of the manifold, and the small vacuum line that used to serve the
 secondary-air valve, were **not** sprayed: they sit above the exhaust
 manifold, which is no place for a flammable spray. The open secondary-air
@@ -1750,9 +1756,10 @@ the oil temperature beside it.
    `refuted.md` C13.)
 3. ~~**The voltage-drop tests of H4, coil first**~~ — done 26/9, nothing
    failed; H4 is last in line now (verdict under H4).
-4. ~~**Spray test of the intake at a warm idle**~~ — done 26/9 from the
-   front, no change; the back sits over the exhaust manifold and was not
-   sprayed (H3).
+4. ~~**Spray test of the intake at a warm idle**~~ — done 26/9 on the
+   hoses at the front only, no change; the injector seats, the runner
+   joints and the whole back were not sprayed (H3). The smoke test covers
+   them instead.
 5. **Exhaust runner temperatures with an IR thermometer** — names a cylinder,
    splits everything. Cheap.
 6. **G66 torque and connector, and a look for loose parts** — H5.
