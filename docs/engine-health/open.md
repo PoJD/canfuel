@@ -121,6 +121,19 @@ something done after August that made it worse?*).
   alternator in August — a load, and load smooths this idle — is refuted
   by the bus: indicated torque at idle was 25 then and 23 now.
 
+**On the same MAF, it did get worse** (*the owner's reading, 27/9: perhaps
+August's one fault was the MAF, and something done since added another*).
+The 2018 MAF was fitted until 24/9, so August and the morning of 24/9
+(`19`, `20`, before the swap) share it. Hot, in 22 s windows: August
+**43–48**; 24/9 **53–118**, median about 90 — and that with **more** torque
+at idle (b7 41–51 against 25), which should have smoothed it. So between
+11/8 and 24/9, with the MAF unchanged, the hot idle roughly doubled its
+grade; the new MAF then took about a third of it back (53–106, and 57–100
+off the display since). **That places the added cause in the table below,
+minus the MAF** — and several of its rows were the owner's own work. One
+limit: `19` and `20` came the morning after the 23/9 disconnect, with
+every adaptation fresh from zero.
+
 **What changed between 11/8 and the first September hot idle** — every item
 on record, so nothing is overlooked:
 
