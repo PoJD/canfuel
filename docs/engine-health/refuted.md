@@ -89,6 +89,11 @@ From the owner's photographs the small hose on the valve runs to a second
 module with its own connector, read here as N112 (SSP 233 p. 20 diagram);
 its part number was not legible. The P0411 of 11 August was a hose that
 came off during the heater work, refitted since.
+**Test 3, owner-reported 27/9/2026:** the line from N112 to the valve pulled
+off at a running idle — the state of every August recording — and
+`IdleHealth` did not change. Date and oil temperature not noted. It closes
+the one route by which the refitted line could have made September's idle
+worse than August's (`open.md` S1).
 
 ### A9. "Plugs 1 and 4 worse means injectors 1 and 4 were leaking" — argued
 

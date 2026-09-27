@@ -139,7 +139,7 @@ on record, so nothing is overlooked:
 
 | change | could it make only the hot idle worse? |
 |---|---|
-| **the secondary-air control line refitted, after 11/8** — in August it was off (P0411), so the combination valve could not open at all | **yes, in principle**: a valve or N112 that lets it open even slightly at idle joins intake and exhaust. `refuted.md` A8 found it sealing at one warm idle on 25/9; one moment, not every idle |
+| **the secondary-air control line refitted, after 11/8** — in August it was off (P0411), so the combination valve could not open at all | **no — tested**: the line pulled off at idle, as in August, and `IdleHealth` did not move (below; `refuted.md` A8) |
 | new battery, end of August | no — see above |
 | converter, flex pipe, silencer and a new flange gasket, 10/9 | through a leak ahead of the probe (H2) |
 | plugs and **NGK leads**, 17/9 | a lead that tracks (H4); the Polish thread's aftermarket leads |
@@ -149,12 +149,15 @@ on record, so nothing is overlooked:
 | the fuel: the tank was filled in September | a different batch; nothing specific |
 | the weather: warm August, cool September | intake air temperature; nothing specific |
 
-**The one test that recreates August exactly and costs nothing:** at a
-warm idle, 70–72 °C of oil, loads off, take `IdleHealth`; then **pull the
-thin line between N112 and the combination valve** — the state of every
-August recording (A8 test 2 did it cold) — and take it again; refit it and
-clear the secondary-air fault afterwards. A clear improvement with it off
-is the combination valve or N112, whatever A8 saw on 25/9.
+**The secondary-air line is already tested** (*owner-reported, 27/9/2026*):
+the thin line from N112 to the combination valve was pulled off at a
+running idle in the September work, recreating August's state, and
+`IdleHealth` **did not change**. Date and oil temperature were not noted.
+So that row is closed; `refuted.md` A8 carries it.
+
+**The old leads are not kept** (*owner, 27/9*), so the August ignition
+cannot be put back; a set of genuine VW leads is the only way to test the
+NGK ones (H4).
 
 **Load at idle smooths it, 26/9/2026 — repeated.** *Owner-observed off the
 display*, warm after ~100 km, standing: with headlights, blower and A/C on,
