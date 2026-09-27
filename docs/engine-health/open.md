@@ -143,7 +143,7 @@ on record, so nothing is overlooked:
 | new battery, end of August | no — see above |
 | converter, flex pipe, silencer and a new flange gasket, 10/9 | through a leak ahead of the probe (H2) |
 | plugs and **NGK leads**, 17/9 | a lead that tracks (H4); the Polish thread's aftermarket leads |
-| injectors and fuel filter, 23/9 — **fitted by the owner; the seats' seals on the manifold side never leak-tested** | yes: a seat leaking air past the MAF leans that one cylinder at idle (H3) |
+| injectors and fuel filter, 23/9 — **fitted by the owner; three of four not fully home in the manifold** (`vehicle-history.md`), never leak-tested | **yes — the strongest candidate left**: H3, *The injector seats* |
 | MAF, 24/9 | no — the idle got better with it (A11) |
 | four battery disconnects — every fuel, idle and knock adaptation from zero | yes: relearning takes distance (H6) |
 | the fuel: the tank was filled in September | a different batch; nothing specific |
@@ -840,6 +840,40 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
    shows as a change in idle at the spot. Cheap, no dismantling. *General.*
 2. A smoke test of the intake at the same garage visit as H2.
 3. 032 after a few hundred km: an idle cell moving positive would support it.
+
+**The injector seats — three not fully home, 27/9/2026.** *Owner-reported
+and photographed:* since the 23/9 refit, three injectors stand **under
+about 1 mm** proud of their bosses; only the one at the right-hand end is
+fully home, and an old injector alone clicked fully into every bore
+(`vehicle-history.md`). The manifold-end O-ring is all that seals them.
+
+**Against the data** (*general* for how a seat leak behaves):
+
+- **It fits the timing.** On the same MAF, the hot idle graded 43–48 on
+  11/8 and 53–118 on the morning after the refit (S1) — the injectors are
+  in that window, and they were the day before.
+- **It fits the load effect.** Air leaking at a seat enters the port
+  directly, past the MAF, and is largest against the highest vacuum — at
+  idle. More load means more metered air, so a fixed leak weighs less.
+- **It fits A5.** Three cylinders leaking alike leave no one cylinder
+  dominating the per-cylinder analysis.
+- **It fits S12.** A lean port misfires or stumbles on a tip-in first.
+- **It does not explain everything:** the idle stumbled and 014 counted
+  before 23/9 too (August at mid temperature, the cold start of 11/9).
+  At most it is the **added** cause S1 asks for.
+- **What speaks against:** a proud injector need not leak — the O-ring
+  may still sit in the bore; and the idle trim after the MAF swap read
+  **−3.1 %**, rich, where three leaking seats would push it positive. That
+  read was taken on the first afternoon of an adaptation learning from
+  zero, and the battery was off again on 26/9, so it is weak.
+
+**What settles it:** the 032 idle cell after a few hundred km without a
+disconnect (S9) — positive supports a seat leak; the smoke test with the
+engine off, which reaches the seats safely; and the refit itself, each
+injector home on its own before the rail goes on, with the O-rings looked
+at for a nick from being forced, then `IdleHealth` at 70–72 °C against
+57–100. ⚠ Do it as its own step, not together with the valve cover, if
+the answer is wanted; together, if only the cure is.
 
 **Spray test, 26/9/2026** (contact cleaner — isopropanol and C6–C7 alkanes;
 warm idle, loads off, engine speed watched): **no change** — but it covered

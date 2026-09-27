@@ -179,7 +179,7 @@ here is owner-supplied from service records.
 | Small hose from the secondary-air combination valve to the intake ahead of the MAF | torn off during the August heater work; fault **16795 / P0411** (secondary air, incorrect flow) photographed **11/8/2026 16:39**, hose refitted that day or a few days after | — |
 | Heater replacement, dashboard dismantled | **summer 2026, before 11/8** *(owner-reported)*; **the battery was out and disconnected for more than a week** — every ECM adaptation, the throttle's included, started again after it | — |
 | **Exhaust manifold** (stainless, double-flow, SSP 233 p. 7) | **original, never replaced** *(owner nearly certain)* | the car's |
-| Injectors `06A 906 031 C` / Bosch `0 280 155 791`, new from the UK | delivered 22/9, **fitted 23/9/2026** by the owner | ~0 |
+| Injectors `06A 906 031 C` / Bosch `0 280 155 791`, new from the UK | delivered 22/9, **fitted 23/9/2026** by the owner, **three of the four not fully home in the manifold** — see below | ~0 |
 | Upper intake manifold gasket, **Elring `271.230`** (sold as the equivalent of VW `06A 129 717`; the parts shop matched it to the VIN) | **9/2026**, packaging dated 17/9/2026 (Carvo s.r.o.), fitted by the owner — *read off the photographed packaging* | ~0 |
 | **Spark plugs and ignition leads**, NGK leads | **17/9/2026**, at the Dakuma garage | ~0 |
 | Rear shock absorbers, air-conditioning recharge, minor items | 17/9/2026 | ~0 |
@@ -314,6 +314,18 @@ how much they are likely worth:
 5. **The remap, the seasons, the tyres and the driver**, none of which are
    separable in a per-year figure and none of which are worth arguing about at
    this resolution.
+
+### The injectors are not fully seated — owner-reported and photographed, 27/9/2026
+
+The four were fitted **already clipped into the fuel rail**, and the rail
+was then pushed down onto the manifold. **Three would not go fully home**:
+a gap of **under about 1 mm** is left between the injector body and its
+boss, visible in the owner's photographs; **the one at the right-hand end,
+as the owner stands at it, is fully home**. When the owner tried one of
+the old injectors on its own, it **clicked fully home in every bore**,
+audibly. The O-ring on the manifold end is what seals each one against
+the intake. To be refitted during the valve cover job: each injector into
+its bore on its own first, then the rail over them (`open.md` H3).
 
 ### Before and after — do not mix across the September 2026 work
 
