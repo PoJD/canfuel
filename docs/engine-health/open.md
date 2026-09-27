@@ -1721,6 +1721,44 @@ all *general*:
 
 ---
 
+
+**What `--cylinders` shows across the dates, 27/9/2026** (the question: can
+the three proud injectors, 1–3, against a seated 4, be seen?).
+
+| log | when | f = 0.25 (one cylinder) | f = 0.50 (alternate firings) |
+|---|---|---|---|
+| `09`, `11` | 11/8, warm | 13x | **0.8–1.1x** |
+| `18` | 11/9, cold start | 21x | **20x** |
+| `19` | 24/9, whole drive | 23x | **19x** |
+| `20`, `24` | 24/9, warm | 20–22x | **11–12x** |
+
+- **No one cylinder stands out since 23/9.** The phase slots of `20` and
+  `24` split two high and two low, not one against three, which is what a
+  seated 4 against three leaking seats would look like. A small leak could
+  hide under it; a large one would not.
+- **Something new appeared between 11/8 and 11/9 — before the injectors,
+  the plugs and the leads:** a **period-2** pattern, absent in August,
+  present in every September log. In a firing order of 1-3-4-2
+  (*general*), period 2 is **cylinders 1 and 4 against 2 and 3** — the
+  coil's two outputs (H4). What changed in that month: the new battery and
+  the headlight wiring (end of August), the converter and flange (10/9),
+  the secondary-air line (closed, A8). One more reading, *a hypothesis*:
+  engine ECUs learn the crank wheel's tooth errors for misfire detection
+  and may lose that with the battery (*general, not read for this ECU*);
+  a lost adaptation shows exactly as a once-per-revolution pattern in
+  engine speed, which is period 2 — an artefact of measurement, not the
+  engine. It would fade with distance; an ignition or exhaust cause would
+  not.
+- **How much of the grade it is:** adding a period-2 of ±0.9 rpm — the
+  size seen in `24` — to August's `11` raises its grade from 48 to 62. So
+  it can account for a part of the August-to-September difference (S1),
+  not all of it.
+
+**What settles it:** `--cylinders` on every capture from now on — the
+f = 0.50 line fading over a few hundred km without a disconnect is the
+adaptation; staying is ignition or exhaust. The refit of the injectors
+should, if the seats leaked, change f = 0.25 and not f = 0.50.
+
 ## The idle's candidates, ranked — 27 September 2026
 
 **A judgement, not a measurement**, for S1–S3 only (the cylinder 4 window
