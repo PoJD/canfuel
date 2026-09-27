@@ -1318,8 +1318,8 @@ variant the manual's pin numbers below refer to.
   basic-setting block (`vcds.md`): read it under *measured values*, not
   under *basic settings*, or it runs the throttle adaptation.
 - **Display group 054, ignition on**: G69 at rest **0…6°**, at full
-  throttle **at least 75°**; zone 2 shows F60 as *idling* or *part
-  throttle*.
+  throttle **at least 75°**; the same check reads F60's state as
+  *idling* or *part throttle* (which zone was not transcribed reliably).
 - **Electrical**, connector off (without cruise control): G186's winding,
   pins 1 + 2, **3…200 Ω**; supply pins 4 + 7 **≥ 4.5 V** and 3 + 7
   **≥ 9 V** with the ignition on; each wire to the ECM **≤ 1.5 Ω** and
