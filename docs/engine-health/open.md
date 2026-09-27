@@ -413,6 +413,31 @@ What it settles and what it moves:
   is an uneven or loose joint; the check is a look along the joint after
   the first warm run, and again after a few hundred km.
 
+**While it is apart — the day's list.** The plenum off opens the back of
+the engine as nothing else in this investigation has, so the tests that
+need that access are gathered here. Each is written out where it belongs;
+this is the order, not the method. **Photograph before touching anything.**
+
+1. **Under the cover:** no emulsion on the cam, the caps or the cover's
+   underside (`refuted.md` C13 — a find reopens it); the old gasket and the
+   breather's seals by eye (item 5, and which one Febi `100690` replaces).
+2. **The timing mark** at TDC of cylinder 1, by the manual (*What the forums
+   say about this idle*).
+3. **The injector harness**, all four connectors and the loom under its
+   sleeving, and the ohm tests (H7 test 3).
+4. **The HT leads**, engine off, the four against each other on ohms, and
+   boots and towers dry (H4 test 1d; not yet done).
+5. **The ECM's harness earth on the plenum** (ground 608 on the Golf/Jetta
+   list; placed by this car's current-flow diagram): eyelet tight, clean,
+   no corrosion. The running tests never reached it.
+6. **The knock sensor G66**: its connector clean and its bolt at VW's torque
+   (H5, plan step 6) — if it is in reach with the plenum off.
+7. **The hoses at the back**, which the spray test left out: the
+   brake-servo line, the old secondary-air vacuum line, the breather hose
+   and its `N79` tee — cracked, hard or oily (H3, H9 test 4, S11).
+8. **The bare stud** beside the injector on the right: whether something
+   belongs on it (H7 test 3).
+
 **The before-values for the repair are the ones already in S1** — the warm
 band at 69–72 °C of oil, loads off; the after-reading is taken the same way.
 No separate cold baseline was taken.
