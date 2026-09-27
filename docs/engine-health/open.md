@@ -477,6 +477,43 @@ one-person job); an exhaust leak ticks loudest in the first minute after a
 cold start; dry black soot at a joint is exhaust, wet oily grime is oil
 (*all general*).
 
+### S12. A hesitation on tip-in, and after a gearchange
+
+*Owner-reported, 27/9/2026; added as a symptom at the owner's decision.*
+When the pedal is pressed the car **almost always hesitates** — the engine
+takes a moment and then pulls; *"spíš zaváhání"*, a hesitation rather than
+a knock through the driveline — and the same after a gearchange. Long
+present and lived with: the owner feeds the throttle in very gently over
+the clutch. Not a new fault, a newly reported one.
+
+⚠ S1 records the owner's earlier note that *"the hesitation that the old
+MAF caused has gone"*. Whether that was this or a different one (at
+cruise, say) is not recorded; this one is there on the new MAF.
+
+**What it could share with the idle.** A tip-in starts from the same
+state as the idle — the idle switch opening, the least air, the leanest
+transient — so a cause at the bottom of the load range can show in both:
+
+- **a lean tip-in**: air arriving before its fuel, worst with a leak past
+  the MAF (H3) or low rail pressure (H7) (*general*);
+- **the knock retard on tip-in** (S4): events of several °CA on cylinder 4
+  at 960–2000 rpm, 13 of 16 on a tip-in after a coast — a retard is a
+  moment of lost torque, which is what a hesitation is;
+- **the spark under a sudden load** (H4), the moment cylinder pressure
+  rises fastest;
+- **the throttle** (H8) — checked off the bus on 27/9: its potentiometer
+  shows no dead spot and no dropout, so not its track.
+
+**Not the driveline**, on the owner's description: engine and gearbox
+mounts give a knock or a lurch, not a pause in the engine's pull.
+
+**How it is measured.** Nothing records it yet. A capture of deliberate
+tip-ins — from a coast and after gearchanges, warm — with VCDS 020 (knock
+retard) beside it, shows whether the pause lines up with a retard on
+cylinder 4, with indicated torque (0x280 b7) lagging the pedal (b5), or
+with a stumble in engine speed. `17`, `19` and `24` already hold tip-ins
+and can be looked at first.
+
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** Whether 0x420's `OilTemp` is right is a firmware
@@ -530,6 +567,8 @@ full-load enrichment (*general*), for all four cylinders alike.
 | S11 ↔ S2 | **possible** | an exhaust leak ahead of the probe both hisses and puffs. Never observed together |
 | S11 ↔ S6 | **possible** | if the hiss is exhaust, "never tight" reaches upstream of the probes too |
 | S10/S11 ↔ S1/S3 | **untested, not weak** | nothing measured so far *could* have shown a link, so "unknown" is no evidence against one. Oil outside the engine does not touch combustion; what can is the cause or a neighbour: a vacuum leak at the unsprayed rear hissing (H3/H9), the ventilation's oil fouling the throttle (H9 → H8), an exhaust leak ahead of the probe (H2), oil reaching a lead boot (H4, 1e) — seen on 26/9 at the boots of 1 and 2, but **not a cause**: the idle was as rough on 17/9 with new, clean leads (S10). The one existing datum that points this way: the idle is better under load, which is what a small unmetered leak does |
+| S12 ↔ S4 | **possible, untested** | the knock retard is a tip-in event and a retard is lost torque. Never aligned in time |
+| S12 ↔ S1/S3 | **possible, untested** | both start from the bottom of the load range; a lean or weak-spark cause would show in both |
 
 **So there are two separate clusters**, and they are worked separately below:
 **the idle** (S1, S2, S3) and **the cylinder 4 window** (S4, S5). S6 matters
