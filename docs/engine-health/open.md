@@ -1209,6 +1209,26 @@ as 650–950 rpm with air mass under 4.5 g/s. Each group is read about every
   shape — more air, and the temperature dependence — with the two
   confounded; it says nothing about the throttle being at fault.
 
+**The potentiometer's track, off the bus, 27/9/2026.** With a cable
+throttle the ECM has no pedal sensor, so the driver's demand it puts on
+0x280 b5 can only come from the throttle body's own potentiometer
+(*reasoned from the layout, not read off a diagram*). Over `17`, `19` and
+`24` — about 540,000 frames at 10 ms — a worn track would show as dropouts
+or jumps. It shows neither:
+
+- **no single-frame spike anywhere** (a value leaving both neighbours by
+  three counts or more and coming straight back);
+- off rest, consecutive frames move by 0 or 1 count (0.4 %) almost always;
+  the larger steps are the pedal moving fast;
+- **every value from 41 to 212 occurs** — no dead spot along the track.
+  The only thin zone is 39–42, straight after the rest value 38, and that
+  is the switch from idle to driving, not wear (*Driving gate* in
+  `CLAUDE.md`: nothing between 38 and 44 in any log).
+
+The ECM may filter the value before sending it, so a glitch shorter than a
+frame or two could be smoothed away; a track worn enough to disturb the
+driving would not be.
+
 **Reading: against H8 at the resolution there is.** A sensor glitch shorter
 than the 0.6 s between readings would not be seen; a worn track that made
 the ECM chase phantom movement would, and does not show. Left in the file
