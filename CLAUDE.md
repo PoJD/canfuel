@@ -154,7 +154,8 @@ carries a generated block; a figure typed into prose only goes stale.
   - **`docs/engine-health/`** — the car's own engine. `open.md` is a holding
     document for one open investigation — the idle misfires that outlived the
     repair — holding only what is open: symptoms, hypotheses, tests.
-    `refuted.md` takes whatever is settled against. **Both have an end date.**
+    `refuted.md` takes whatever is settled against. `plan.md` is the planned
+    fixes in order, emptied as they are done. **All three have an end date.**
     `vcds.md` (the VCDS blocks and how to record them) and
     `vehicle-history.md` (the car's record) are permanent.
     **Every new observation the maintainer reports about the car** — a sound,

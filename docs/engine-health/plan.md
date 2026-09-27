@@ -1,0 +1,127 @@
+# Engine health — the planned fixes, in order
+
+**The order of work, and nothing else.** Why each step is there lives in
+`open.md` (symptoms, hypotheses, the ranked candidates); what was done
+lives in `vehicle-history.md` once it is done. **A step that has been done
+is removed from this file in the same commit that records it**, and the
+file is deleted when it is empty — `git log` keeps the rest.
+
+## The rule — the owner's decision, 27/9/2026
+
+**The idle comes first.** After the oil leak, the one thing this work is
+for is the unsettled idle (S1) and the misfires VCDS counts at idle (S3,
+group 014). So:
+
+- **Fix, then look.** Each step is a repair; the only readings taken are
+  the ones that decide the next step.
+- **No test for its own sake**, and nothing unrelated to the idle is
+  pursued until the idle is solved — unless it could be related.
+- **Run the engine as little as possible, and above all not at idle.**
+  The misfires are an idle phenomenon and the old converter already paid
+  for them once. Warm the engine by driving, not by idling.
+
+The rest of `open.md` — the other symptoms, every hypothesis's test list —
+stays as reference. **It is not a to-do list.**
+
+---
+
+## Step 1 — the valve cover job, all in one
+
+*Owner's decision:* everything below in one job, with no measurement between
+the parts, because the engine is not to be taken apart twice. The cost,
+accepted: an improvement cannot afterwards be put down to one part.
+
+**Parts** (ordered 27/9, `open.md` S10): valve cover gasket Elring
+`325.070`, breather Febi `32452`, filler seal Febi `100690`, upper plenum
+gasket Elring `271.230`, sealant Elring `030.793` (Dirko HT).
+
+**Photograph before touching anything, and anything found.**
+
+**The work, in order:**
+
+1. **Plenum and cover off.**
+2. **Under the cover — look, photograph:** no light-brown "mayonnaise" on
+   the cam, the caps or the cover's underside. None: nothing to do. Any:
+   `refuted.md` C13 reopens — say so before carrying on.
+3. **The timing mark**, while the front is open: cylinder 1 at TDC, the
+   cam sprocket's mark against its reference, **by the manual** — a free
+   look for a belt a tooth out.
+4. **The breather**: *turns clockwise to come off* (manual, item 3). Note
+   which seal Febi `100690` matches — the cap's (item 2) or the one under
+   the breather (item 5); item 5 is reused only if undamaged.
+5. **Clean off all the oil** — head, cover joint, plug area, injector area,
+   the manifold below. Keep cleaner out of the open intake ports.
+6. **Plugs out, cylinders 1 and 2 first:** photograph each plug's insulator
+   and each lead boot **with its cylinder number**, then clean. Oil on the
+   ceramic or in a boot is noted (H4).
+7. **Injectors out and refitted properly** (H3, *The injector seats*):
+   - look at each manifold-end O-ring for a nick or a flat from being
+     forced in on 23/9; a damaged one is replaced, not reused;
+   - push **each injector home in its bore on its own** — it clicks, as the
+     old one did in every bore — and only then fit the rail over all four;
+   - all four must end fully home, like cylinder 4's now.
+8. **While the plenum is off — look only, photograph:**
+   - the injector wiring under its sleeving and the four connectors;
+   - the hoses at the back: brake-servo line, the old secondary-air vacuum
+     line, the breather hose and its `N79` tee — cracked, hard, oily;
+   - the ECM's harness earth on the plenum (ground 608 on the Golf/Jetta
+     list): eyelet tight and clean;
+   - the bare stud beside the injector on the right: does something belong
+     on it?
+   Anything bad is fixed now; nothing is measured.
+9. **New cover gasket:** a dab of Dirko at the four points where the
+   arches meet the straight runs, **and at the joint of bearing cap 1 to
+   the head**, which the manual insists on. **Cover nuts by hand, evenly,
+   gasket lightly compressed** — no torque figure (owner's decision, S10).
+10. **New plenum gasket, plenum on, breather in, everything reconnected.**
+
+*Optional, only if it is quick while everything is open:* the four HT leads
+on ohms against each other; the four injector windings on ohms against
+each other. Skip them freely.
+
+## Step 2 — the first start, and the one decision
+
+**Before starting:** ignition on for a few seconds, off, on again, two or
+three times, so the pump fills the rail; look and **smell** at every
+injector and the rail for fuel.
+
+**First start:** the rail was opened, so a long crank and a rough first
+seconds are expected — **the start's quality is ignored**. Then, briefly:
+
+- **leaks** — fuel at the injectors and the rail, oil along the cover joint;
+- **`IdleHealth`** and **VCDS 014** logging (a CAN capture beside it costs
+  nothing and feeds `--cylinders` later).
+
+Then warm it **by driving**, and take the one reading that decides: at
+**70–72 °C of oil, loads off**, a minute or two of `IdleHealth` against the
+current band **57–100** (`open.md` S1), with 014 logging. Engine off.
+
+**Then:**
+
+- **Idle clearly better** (well below 57 at that temperature, 014 quiet):
+  record it; the loose ends in `open.md` can then be closed at leisure.
+- **Idle unchanged — the expected outcome:** no further tests. Go to step 3.
+
+Either way: a look along the new joints after the first warm run, and
+again after a few hundred km (the hand-tightened nuts).
+
+## Step 3 — the exhaust, at the garage
+
+A repair visit, not a test visit (H2, S6, S11):
+
+- **the whole exhaust leak-tested and made tight** — manifold, its joint to
+  the head, the flange and its gasket, the flex pipe, every joint back;
+- **both lambda probes**: seated and tight in their bosses, no leak at
+  either.
+
+*One line to ask, since it is the same machine and the same visit:* if they
+smoke-test the exhaust, whether they will put the smoke through the intake
+too (H3). Not required.
+
+Afterwards: `IdleHealth` at 70–72 °C against the band, as in step 2, with
+014 logging.
+
+## Step 4 — decided by step 3's result
+
+The same rule: **idle solved → stop and record; idle unchanged → the next
+repair from `open.md`'s ranked candidates**, chosen then, not now.

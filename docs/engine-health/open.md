@@ -12,6 +12,7 @@ normal for this engine, the file is deleted.
 | `refuted.md` | every hypothesis **settled against**, with what settled it, plus the questions that were **answered**. Read it before proposing something: most obvious ideas are already there |
 | `vcds.md` | the VCDS blocks read on this car, their specifications, and how to record VCDS beside a CAN capture |
 | `vehicle-history.md` | the car's permanent record: distance, consumption, every part replaced. **Stays when this investigation closes**; `open.md` and `refuted.md` go |
+| `plan.md` | **the planned fixes, in order**, and the rule that governs them: the idle first, no test for its own sake, as little idling as possible. Emptied step by step as the work is done |
 
 The long version this replaced, a dated log of 10–25 September 2026 with every
 alignment and argument in full, is in git:
@@ -36,7 +37,7 @@ below (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 26 September 2026
+## Where it stands — 27 September 2026
 
 **Replaced so far:** coil (6/2026), exhaust from the flex pipe back including
 the converter (9/2026), plugs and leads (17/9), all four injectors, fuel
@@ -59,8 +60,10 @@ Separately, knock control hears something in cylinder 4's window above about
 possibly a hiss from the same place at a warm idle (S11). **S10's source is
 found — the valve cover gasket**, heavily at the back and at the front as far
 as the plug boots of cylinders 1 and 2 (S10). The owner replaces it with the
-filler-neck breather; the garage visit (plan, step 7) is still booked for
-S11's hiss and the leak test of the exhaust and the intake.
+filler-neck breather in one job with the upper plenum gasket and a proper
+refit of the injectors, **three of which have not been fully home since
+23/9** (H3). Then, if the idle is unchanged, the garage for the exhaust.
+**The order is `plan.md`.**
 
 ---
 
@@ -468,55 +471,14 @@ What it settles and what it moves:
   is an uneven or loose joint; the check is a look along the joint after
   the first warm run, and again after a few hundred km.
 
-**While it is apart — the day's list.** The plenum off opens the back of
-the engine as nothing else in this investigation has, so the tests that
-need that access are gathered here. Each is written out where it belongs;
-this is the order, not the method. **Photograph before touching anything.**
-
-1. **Under the cover:** no emulsion on the cam, the caps or the cover's
-   underside (`refuted.md` C13 — a find reopens it); the old gasket and the
-   breather's seals by eye (item 5, and which one Febi `100690` replaces).
-2. **The timing mark** at TDC of cylinder 1, by the manual (*What the forums
-   say about this idle*).
-3. **The injector harness**, all four connectors and the loom under its
-   sleeving, and the ohm tests (H7 test 3).
-4. **The HT leads**, engine off, the four against each other on ohms, and
-   boots and towers dry (H4 test 1d; not yet done).
-5. **The ECM's harness earth on the plenum** (ground 608 on the Golf/Jetta
-   list; placed by this car's current-flow diagram): eyelet tight, clean,
-   no corrosion. The running tests never reached it.
-6. **The knock sensor G66**: its connector clean and its bolt at VW's torque
-   (H5, plan step 6) — if it is in reach with the plenum off.
-7. **The hoses at the back**, which the spray test left out: the
-   brake-servo line, the old secondary-air vacuum line, the breather hose
-   and its `N79` tee — cracked, hard or oily (H3, H9 test 4, S11).
-8. **The bare stud** beside the injector on the right: whether something
-   belongs on it (H7 test 3).
-9. **The injectors refitted**: each pushed home in its bore on its own —
-   it clicks, as the old one did — then the rail over them; the
-   manifold-end O-rings looked at for a nick first (H3, *The injector
-   seats*).
-
-**Decision, 27/9/2026 (the owner's): everything in one job** — the valve
-cover gasket, the breather and its seals, the upper plenum gasket, the
-injector refit and the cleaning, with no measurement between them. Chosen
-over separate steps because the engine is not to be taken apart twice.
-**What it costs:** an improvement afterwards cannot be put down to one part.
-What stays separable afterwards all the same: S11's smoke (the oil), the
-per-cylinder pattern of `--cylinders` (the injector seats move f = 0.25,
-not f = 0.50), and S4/S5 on cylinder 4 (H5).
-
-**After the job, the readings that close it** — all on the refitted engine,
-loads off unless stated:
-
-- `IdleHealth` at 70–72 °C of oil against 57–100 (S1);
-- 032 after a few hundred km without a battery disconnect (S9, H3);
-- 060 at a warm idle, with its A/C and filler-cap calibration (H8);
-- a capture for `--cylinders` (*Naming the cylinder*);
-- the neutral 026 + 003 holds and a 020 drive (S4, S5, H5);
-- the tip-in capture for S12;
-- a look along the new joints after the first warm run and after a few
-  hundred km (the hand-tightened cover nuts).
+**The job itself — the work list, the first start and what follows — is in
+`plan.md`**, step 1. *Owner's decision, 27/9/2026:* the cover gasket, the
+breather and its seals, the upper plenum gasket, the injector refit
+(H3, *The injector seats*) and the cleaning all in one job, with no
+measurement between them. What it costs: an improvement afterwards cannot
+be put down to one part. What stays separable all the same: S11's smoke
+(the oil), the `--cylinders` pattern (the injector seats move f = 0.25,
+not f = 0.50) and S4/S5 on cylinder 4 (H5).
 
 **The before-values for the repair are the ones already in S1** — the warm
 band at 69–72 °C of oil, loads off; the after-reading is taken the same way.
@@ -898,7 +860,7 @@ engine off, which reaches the seats safely; and the refit itself, each
 injector home on its own before the rail goes on, with the O-rings looked
 at for a nick from being forced, then `IdleHealth` at 70–72 °C against
 57–100. It goes together with the valve cover job, by the owner's
-decision (S10, *the day's list*): the cure is wanted more than the
+decision (`plan.md`, step 1): the cure is wanted more than the
 attribution.
 
 **Spray test, 26/9/2026** (contact cleaner — isopropanol and C6–C7 alkanes;
@@ -1845,7 +1807,7 @@ halved the dips, S9). Re-rank after every test.
 | 3 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: worst at mid temperature, not hot; A5 | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
 | 4 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero | a **fuel pressure gauge** |
 | 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | clean, adapt, compare |
-| 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V | the day's list (S10), H7 test 3 for the injector side |
+| 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V | a look while the plenum is off (`plan.md`, step 1); H7 test 3 for the injector side |
 | 7 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss. Against: air outside the cylinder does not stop it firing | a smoke test **of the exhaust** |
 | 8 | **the timing belt a tooth out** | free to look at. Against: the torque plateau is reached | the mark, during the valve cover job |
 
@@ -1886,50 +1848,15 @@ recorded here, since they move):
   an exhaust valve, the filler neck the rings, the expansion tank the head
   gasket.
 
-## The plan, cheapest and most decisive first
+## The plan
 
-Each step names the hypotheses it tests. Every step that can have a capture
-running beside it should have one, and every `IdleHealth` reading should have
-the oil temperature beside it.
+**The order of work is `plan.md`**, under the owner's rule of 27/9/2026:
+the idle first, a repair at a time, readings only where they decide the
+next step, and as little idling as possible. The tests listed under each
+symptom and hypothesis in this file stay as reference for when a step
+needs one; **they are not scheduled**. An earlier ten-step test plan stood
+here; it is in git.
 
-1. **The confirming readings, whenever the car is out anyway**: 032 after a
-   few hundred km (S9; a positive idle cell would feed H3) and one held 4th-gear pull to 6000 rpm
-   with `Power` on the display and a capture running (S8).
-2. **Stethoscope and cold-start listening** — H1, H5. Free. **With them,
-   engine off:** the coolant level marked cold, the oil filler cap's
-   underside, the breather hoses by eye and hand — H9. Needs no drive.
-   (The coolant level and the cap were checked on 27/9, clean — H10 is in
-   `refuted.md` C13.)
-3. ~~**The voltage-drop tests of H4, coil first**~~ — done 26/9, nothing
-   failed; H4 is last in line now (verdict under H4).
-4. ~~**Spray test of the intake at a warm idle**~~ — done 26/9 on the
-   hoses at the front only, no change; the injector seats, the runner
-   joints and the whole back were not sprayed (H3). The smoke test covers
-   them instead.
-5. **Exhaust runner temperatures with an IR thermometer** — names a cylinder,
-   splits everything. Cheap.
-6. **G66 torque and connector, and a look for loose parts** — H5.
-7. **Smoke/pressure test of the manifold and intake at the garage**, with
-   the predictions under H2 held against the result — H2, H3. **Booked for
-   after the weekend of 26/9**, together with what S11 is — H2, H9.
-   (S10's source was found by the owner: the valve cover gasket.) A
-   combustion-gas test of the coolant only if the garage finds the leak at
-   the head gasket (`refuted.md` C13 says what would revive it). **Ask for the
-   smoke to cover the back of the intake** — the part the spray test left
-   out, where S11's hiss may be an intake leak rather than an exhaust one —
-   and the ventilation from the filler neck to the intake hose (H9).
-8. **Leak-down test warm, and a rail pressure gauge** — H1, H7. Garage work,
-   do both on one visit.
-9. **A healthy AQY recorded** — H0. Depends on finding one, so start asking
-   now; it can happen at any point in this list and it changes how every other
-   result is read.
-10. **Throttle body cleaned and adapted** — H8, last.
-
-**After each step:** `IdleHealth` at 70–72 °C and at 50–61 °C of oil against
-the current band, and the neutral 026 + 003 holds if the step touched
-S4/S5. If a step changes nothing, say so in the hypothesis and leave it; if it
-kills a hypothesis, move it to `refuted.md`.
-
-**Meanwhile:** the owner avoids long idles — the misfires are an idle
-phenomenon and the exhaust has already paid for them once. `IdleHealth` on
-0x604 is the trend to watch.
+**Meanwhile:** avoid long idles — the misfires are an idle phenomenon and
+the exhaust has already paid for them once. `IdleHealth` on 0x604 is the
+trend to watch, always with the oil temperature beside it.
