@@ -177,6 +177,7 @@ here is owner-supplied from service records.
 | Fuel pressure regulator `037 133 035 C` | 7/2026 | ~0 |
 | Catalytic converter, **flex pipe**, silencer, exhaust gaskets: everything from the flex pipe (included) to the tail | **10/9/2026** *(previously 10/2017)* | ~0 |
 | Small hose from the secondary-air combination valve to the intake ahead of the MAF | torn off during the August heater work; fault **16795 / P0411** (secondary air, incorrect flow) photographed **11/8/2026 16:39**, hose refitted that day or a few days after | — |
+| Heater replacement, dashboard dismantled | **summer 2026, before 11/8** *(owner-reported)*; **the battery was out and disconnected for more than a week** — every ECM adaptation, the throttle's included, started again after it | — |
 | **Exhaust manifold** (stainless, double-flow, SSP 233 p. 7) | **original, never replaced** *(owner nearly certain)* | the car's |
 | Injectors `06A 906 031 C` / Bosch `0 280 155 791`, new from the UK | delivered 22/9, **fitted 23/9/2026** by the owner | ~0 |
 | Upper intake manifold gasket, **Elring `271.230`** (sold as the equivalent of VW `06A 129 717`; the parts shop matched it to the VIN) | **9/2026**, packaging dated 17/9/2026 (Carvo s.r.o.), fitted by the owner — *read off the photographed packaging* | ~0 |
