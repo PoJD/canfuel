@@ -514,6 +514,37 @@ cylinder 4, with indicated torque (0x280 b7) lagging the pedal (b5), or
 with a stumble in engine speed. `17`, `19` and `24` already hold tip-ins
 and can be looked at first.
 
+**First look at the tip-ins already held, 27/9/2026.** In `17`, `19` and
+`24`, every point where 0x280 b5 leaves its rest value with the engine
+running was taken, and kept only where the clutch was demonstrably engaged
+— engine speed over road speed (0x1A0) within 6 % from 0.8 s before to
+0.9 s after, above 15 km/h. That leaves **84 tip-ins**, nearly all from
+`19` and `24` (warm), none from a standstill. The car's own acceleration,
+from 0x1A0 over 0.3 s, was set against the ECM's indicated torque (b7).
+
+- **The firm ones pull cleanly.** Where b7 rose by 100 or more within
+  0.2 s (7 cases, 48–56 km/h), acceleration went from about −1.5 to
+  +3…+5 km/h/s within 0.25–0.4 s and stayed there — **no dip, no pause** at
+  this resolution.
+- **The gentle ones are slow, but in proportion.** Most tip-ins here are
+  small (b5 to 44–52), b7 takes 0.3–1 s to rise by 20, and the deceleration
+  merely fades over 0.5–0.8 s. That can feel like a hesitation, and nothing
+  in the data separates *slow because the pedal was gentle* from *slow
+  because the engine was*.
+- **Not reachable from these logs:** a pull-away, and the moment after a
+  gearchange while the clutch is still slipping — where the owner feels
+  it most — because engine speed then says nothing about the engine; and
+  anything shorter than about 0.15 s.
+
+**Reading:** no stumble is visible in 84 engaged tip-ins; the recorded
+driving does not contain the event in a form these logs can show. **What
+would:** a capture made for it — warm, 2nd or 3rd gear at a steady
+1500–2000 rpm, clutch fully up, the owner's normal gentle tip-in five to
+ten times, with a passenger pressing VCDS's log marker at each one that
+*feels* like a hesitation, and 020 (knock retard) logged beside it. The
+marked and unmarked tip-ins are then compared with each other, which needs
+no healthy car.
+
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** Whether 0x420's `OilTemp` is right is a firmware
