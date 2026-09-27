@@ -1224,6 +1224,29 @@ September for a loose bracket, clip or heat shield with the engine held at
 1. **After each, repeat the neutral 026 + 003 holds** at the same oil
 temperature: `vcds/vcds-neutral-026-003.csv` and `-clamp.csv` are the before.
 
+**The seated injector is cylinder 4's, 27/9/2026.** Since the 23/9 refit
+only cylinder 4's injector is fully home; 1–3 stand up to about 1 mm proud
+on their O-rings (`vehicle-history.md`). **And every knock log — S4's 022/023
+and 020, S5's 026 — was taken after that refit**, on 24–25/9; there is no
+knock log from before it. So *the only knocking cylinder is the only seated
+injector* is a coincidence nothing yet separates from a cause, and the
+third candidate above gives the cause a mechanism (*general*): an injector
+bottomed in its boss is coupled rigidly to the manifold and the head, one
+floating on its O-rings much less, so **only injector 4's click would
+reach the knock sensor strongly** — and an injector's click moves through
+the crank-angle windows as injection timing moves with engine speed, which
+is what S5's excess does when it slides to cylinder 1 above ~3350 rpm. A
+lean cylinder cannot be the route here: cylinder 4 is the one that is
+*not* proud.
+
+**What settles it, at no extra cost:** the neutral 026 + 003 holds
+(`vcds-neutral-026-003.csv` is the before) and a 020 drive repeated
+**after the injectors are refitted all four home**. If S4/S5 were injector
+4's click, the excess moves or spreads once 1–3 are seated too; if it stays
+on 4 alone, the injectors are cleared from it. Before the refit, the
+stethoscope on the body of injector 4 against 1 at ~3000 rpm in neutral
+is the direct look.
+
 **Is it worth chasing?** The retard is within VW's specification and costs a
 moment of torque on cylinder 4. It matters for this investigation only if H1
 or H4 turns out to be behind it.
