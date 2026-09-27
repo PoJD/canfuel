@@ -298,12 +298,16 @@ with the exhaust manifold below it.
 
 **Not the first leak.** The service record of **12/7/2018** lists a
 dipstick, a dipstick cap and a seal written as *"těsnění ventilu"* — against
-an oil leak (`vehicle-history.md`). Which seal that was is not recorded: the
-valve cover gasket would normally be written *těsnění víka ventilů*, and the
-breather in the filler neck also sits on a seal. ⚠ **Oil pushed out at the
-dipstick is the classic sign of crankcase pressure** (*general*), so a 2018
-leak fixed there is a point for H9's blocked-ventilation branch — a weak one,
-since a worn dipstick seal leaks without any help.
+an oil leak (`vehicle-history.md`). **What the owner remembers of it**
+(*owner-reported, 27/9/2026*; the paper is no longer kept): the job was the
+dipstick — the narrow neck the dipstick goes into was cracked and leaked
+oil — and the seal was probably the rubber the dipstick seats in. Not
+certain. So **whether the valve cover gasket is the original one is not
+known**; nothing on record says it was ever changed. ⚠ Oil at the dipstick
+is also the classic sign of crankcase pressure (*general*), but **a cracked
+neck leaks without any help**, so the 2018 leak is no evidence for H9's
+blocked-ventilation branch. An earlier revision counted it as a weak point
+for it.
 
 **Source found, 26/9/2026 — the valve cover gasket.** *Owner-observed and
 photographed*, engine off, in the evening:
