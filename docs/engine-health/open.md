@@ -1071,6 +1071,37 @@ The owner's own remaining candidate is one of the new injectors.
    not held here.*
 2. If a cylinder is ever named (see *Naming the cylinder* below): swap its
    injector with another and see whether the fault follows.
+3. **The injector harness, engine off, during the valve cover job** — when
+   the plenum is off and the rail's wiring is in reach for once. The
+   injectors are new, but **the harness to them is 26 years old**, and an
+   intermittent break or a chafe at idle vibration is exactly the fault
+   that no part swap reaches and that the ECU need not log. *General*
+   methods; no pinout or resistance figure for this car is held here, so
+   every test compares the four cylinders with each other.
+   - **By eye, under the sleeving**: insulation that is cracked, brittle,
+     oil-soaked or rubbed through, especially where the loom bends or
+     touches the head or the manifold; the four connectors' seals and
+     locking clips; green or white corrosion on the pins. Photograph what
+     is found before touching it.
+   - **Injector winding, connector unplugged, meter on ohms** across each
+     injector's two pins: the four should read alike. One far from the
+     others is that injector; the absolute value is Bosch `0 280 155 791`'s
+     and is not written here without its data.
+   - **Each wire for a break**, key off: from each connector's two harness
+     pins to where they go — one is a supply common to all four, the other
+     runs alone to the ECM, pins per the current-flow diagram. **While
+     measuring, flex the loom along its length**: an ohmmeter cannot see a
+     slightly high joint (see H4's second pass), but a reading that jumps
+     to open as the loom moves is the fault.
+   - **Each wire for a chafe to earth**: harness side, injector unplugged,
+     each pin to bare engine metal. With the ECM connected the reading goes
+     through it, so it is compared between cylinders, not against a
+     number: one pin reading near zero where the other three read high is
+     a wire touching earth.
+   - **Running, afterwards (optional):** at a warm idle, flex each
+     connector and the loom by hand while watching `IdleHealth` or the
+     engine note. A stumble that follows the hand names the place. Keep
+     clear of the belt and the HT leads.
 
 ### H8. Idle air control and the throttle body
 
