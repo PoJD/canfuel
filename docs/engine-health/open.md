@@ -332,9 +332,15 @@ this oil does not reach the plug boots". The photographs show that it does.
 hypothesis; what stays open is **why** (H9: a gasket this old leaks on its
 own, a blocked ventilation makes it leak sooner) and **what the oil at the
 plug boots does** — oil on a boot or on the plug's ceramic is a path for the
-spark to track to earth, most of all when damp (*general*). That reaches
-S1/S3 through H4 (test 1e) for cylinders 1 and 2, and is settled by what the
-boots and the plugs' insulators look like when they come out.
+spark to track to earth, most of all when damp (*general*). ⚠ **It cannot
+be the cause of S1/S3** (*the owner's point, 27/9/2026*): plugs and leads were
+new on 17/9 with clean boots, and the idle and the misfires were no better
+straight afterwards (`refuted.md` A2) — the fault was there before any oil
+could have reached them. The ring seen on 26/9 is on those new leads, so oil
+gets there within about nine days; **at most it adds to the stumble on 1 and
+2** from now on, which is one more reason to clean up and not a lead on the
+idle. Settled by what the boots and the plugs' insulators look like when
+they come out.
 
 **Why it is in this file and not only in the service list:** oil on the
 exhaust manifold is a fire risk and the likeliest source of S11's smoke; and
@@ -498,7 +504,7 @@ full-load enrichment (*general*), for all four cylinders alike.
 | S10 ↔ S11 | **likely, not shown** | same place; the valve cover gasket leaks heavily at the back, above the manifold, and oil on a hot manifold smokes. The hiss, if real, is not oil |
 | S11 ↔ S2 | **possible** | an exhaust leak ahead of the probe both hisses and puffs. Never observed together |
 | S11 ↔ S6 | **possible** | if the hiss is exhaust, "never tight" reaches upstream of the probes too |
-| S10/S11 ↔ S1/S3 | **untested, not weak** | nothing measured so far *could* have shown a link, so "unknown" is no evidence against one. Oil outside the engine does not touch combustion; what can is the cause or a neighbour: a vacuum leak at the unsprayed rear hissing (H3/H9), the ventilation's oil fouling the throttle (H9 → H8), an exhaust leak ahead of the probe (H2), oil reaching a lead boot (H4, 1e) — **seen on 26/9 at the boots of cylinders 1 and 2**. The one existing datum that points this way: the idle is better under load, which is what a small unmetered leak does |
+| S10/S11 ↔ S1/S3 | **untested, not weak** | nothing measured so far *could* have shown a link, so "unknown" is no evidence against one. Oil outside the engine does not touch combustion; what can is the cause or a neighbour: a vacuum leak at the unsprayed rear hissing (H3/H9), the ventilation's oil fouling the throttle (H9 → H8), an exhaust leak ahead of the probe (H2), oil reaching a lead boot (H4, 1e) — seen on 26/9 at the boots of 1 and 2, but **not a cause**: the idle was as rough on 17/9 with new, clean leads (S10). The one existing datum that points this way: the idle is better under load, which is what a small unmetered leak does |
 
 **So there are two separate clusters**, and they are worked separately below:
 **the idle** (S1, S2, S3) and **the cylinder 4 window** (S4, S5). S6 matters
@@ -1136,12 +1142,13 @@ repair blogs; still nothing from VW.
   VWVortex with random misfires and a rough idle could not be opened
   (paywalled to crawlers); its title matches, its outcome is not known.
 - **Reading.** No source found attributes a rough idle on an AQY to its
-  valve cover gasket and reports it cured by the gasket. The route that
-  fits this car is the narrow one — **oil on the boots of 1 and 2** — and it
-  is settled by the boots and plugs when they come out, not by the gasket.
-  **So the job is expected to cure S10 and S11's smoke and not expected to
-  cure S1**; a clear `IdleHealth` improvement at a matched oil temperature
-  afterwards would say the boots mattered, and would point at H4 test 1e.
+  valve cover gasket and reports it cured by the gasket. The one route that
+  fits this car — **oil on the boots of 1 and 2** — cannot be the cause
+  either: the idle was just as rough on 17/9 with new, clean plugs and leads
+  (S10). **So the job is expected to cure S10 and S11's smoke and not
+  expected to change S1.** If `IdleHealth` does improve clearly at a matched
+  oil temperature afterwards, that is a surprise worth chasing — through the
+  breather replaced with it (H9) rather than through the gasket.
 
 **Tests:**
 
