@@ -1184,9 +1184,35 @@ which is a wander over seconds, while S1 is a single firing that fails.
 **What would show it:** VCDS 003's throttle angle logged at a warm idle
 beside the engine speed — an angle that twitches or jumps without cause,
 or moves in step with the dips, is this hypothesis; a steady one clears
-it. Whether this throttle is cable-operated with an idle actuator or fully
-electronic decides which parts it has; it is read off the car (a cable
-from the pedal to it, or not), not assumed here.
+it. **The throttle is cable-operated** (*owner-observed, 27/9/2026*: a cable
+runs from the pedal to it), so idle is held by an actuator moving the plate
+inside the idle range, and the angle VCDS reports is the ECM's own sensor.
+
+**Checked against the logs already held, 27/9/2026** —
+`vcds/vcds-postfix-drive-003-014.csv` (003 with 014, the drive of
+`19`), and the 003 columns of `vcds-01-002-003`, `vcds-ride-002-003`,
+`vcds-neutral-026-003`, `-clamp` and `vcds-knock-020-026-003`; idle taken
+as 650–950 rpm with air mass under 4.5 g/s. Each group is read about every
+0.6 s.
+
+- **The angle is steady at a warm idle.** Between consecutive readings it
+  is unchanged about three times in four, and otherwise moves by **one
+  display step (0.4–0.5°)**; larger steps are rare and sit at transitions
+  into or out of idle. No twitching, no jumps — in every log, August's
+  included.
+- **The misfires do not ride on it.** Over the drive's idles the counter
+  rose 36 times, and in almost every case the angle was the same before and
+  after.
+- **A pattern that is not this hypothesis:** no misfire was counted at the
+  cold idles, where the ECM held the plate at 3.0–3.9°, and they came at the
+  warm idles at 0.9–2.6° (detection active throughout). That is S1's own
+  shape — more air, and the temperature dependence — with the two
+  confounded; it says nothing about the throttle being at fault.
+
+**Reading: against H8 at the resolution there is.** A sensor glitch shorter
+than the 0.6 s between readings would not be seen; a worn track that made
+the ECM chase phantom movement would, and does not show. Left in the file
+because cleaning and adapting is cheap, not because anything points here.
 
 ### H9. Crankcase ventilation, or the valve cover gasket (S10, and possibly the idle)
 
@@ -1438,7 +1464,7 @@ halved the dips, S9). Re-rank after every test.
 | 2 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 | a healthy AQY recorded (H0 test 1) |
 | 3 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: worst at mid temperature, not hot; A5 | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
 | 4 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero | a **fuel pressure gauge** |
-| 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026 | clean, adapt, compare |
+| 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | clean, adapt, compare |
 | 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V | the day's list (S10), H7 test 3 for the injector side |
 | 7 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss. Against: air outside the cylinder does not stop it firing | a smoke test **of the exhaust** |
 | 8 | **the timing belt a tooth out** | free to look at. Against: the torque plateau is reached | the mark, during the valve cover job |
