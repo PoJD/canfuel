@@ -1355,6 +1355,38 @@ fault by the manual's own terms: the actuator is at the end of its travel
 and the idle is being held by something else.
 
 
+**The throttle adaptation and the battery disconnects, 27/9/2026.** The web
+says the throttle adaptation (a VCDS basic setting) should be run after
+every battery disconnect; VW's manual, as transcribed, asks for it only
+when J338 is replaced. **It was run once, in 6/2026**, when the throttle was
+cleaned (`vehicle-history.md`) — *owner-reported*, date within the summer
+not recorded — and never since. The battery has been off at least four
+times after it: the new battery at the end of August, and 23/9, 24/9,
+26/9. Whether it was off between June and August (the coil in 6/2026, the
+regulator in 7/2026) is not recorded.
+
+The hot-idle grades against that (`idledips.py --roughness`, the only
+comparable state is oil at ~70–77 °C, loads off):
+
+| when | battery since the June adaptation | grade |
+|---|---|---|
+| 11/8 (`11`, `17`) | not recorded as off | **48**, 32 (5.8 s only) |
+| 24/9, after the 23/9 disconnect (`19`, `20`) | new battery; off 23/9 | **146**, 117 |
+| 24/9, after the 24/9 disconnect (`24`) | off again | **84** |
+| 26–27/9, off the display | off 26/9 | 57–100 |
+
+**August — the only state that may still have had the June adaptation in
+it — is the best hot idle on record.** That is a correlation with nothing
+separating it from everything else that changed between August and
+September: the converter, plugs, leads, injectors, MAF, every fuel and
+knock adaptation reset from zero, and August's holds being 22 s against
+minutes. It cannot carry a conclusion; **it does make the test cheap
+enough to run**: the throttle adaptation, then `IdleHealth` at 70–72 °C of
+oil, loads off, against the current band (57–100) — before or after the
+valve cover job, but **not in the same step as it**, or the two cannot be
+told apart. Which basic-setting group the owner used in June decides how
+it is repeated; it is not assumed here.
+
 **Reading: against H8 at the resolution there is.** A sensor glitch shorter
 than the 0.6 s between readings would not be seen; a worn track that made
 the ECM chase phantom movement would, and does not show. Left in the file
