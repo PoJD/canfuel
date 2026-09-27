@@ -1163,6 +1163,31 @@ throttle adaptation (VCDS basic setting). Compare `IdleHealth` at the same oil
 temperature. Cheap, but it is last on the list because the shape of the dip
 argues against it.
 
+**How a clean throttle could still do it** (*general*, asked 27/9/2026). At
+idle the plate is **almost closed** — all the idle air passes through a gap
+of a degree or two at its edge — so it is the smallest opening, not the
+bore, that matters. Three ways, none of them dirt:
+
+- **The position sensor worn at the idle position.** The plate spends most
+  of its life at that one angle, so a potentiometer's track wears there
+  first; a worn spot gives a noisy or jumping angle exactly at idle, and
+  the ECM corrects for movement that is not happening. The electronics and
+  the real angle then disagree, as the owner put it — only at idle.
+- **The idle actuator's motor or gears worn**: play or sticking makes the
+  plate move late or in small jumps, and the governor hunts.
+- **Wear of the plate edge or the bore** where it seals at idle: an air
+  gap the adaptation does not expect; the adaptation absorbs a fixed one,
+  but not one that moves.
+
+The same argument against applies to all three: they disturb **control**,
+which is a wander over seconds, while S1 is a single firing that fails.
+**What would show it:** VCDS 003's throttle angle logged at a warm idle
+beside the engine speed — an angle that twitches or jumps without cause,
+or moves in step with the dips, is this hypothesis; a steady one clears
+it. Whether this throttle is cable-operated with an idle actuator or fully
+electronic decides which parts it has; it is read off the car (a cable
+from the pedal to it, or not), not assumed here.
+
 ### H9. Crankcase ventilation, or the valve cover gasket (S10, and possibly the idle)
 
 The crankcase is ventilated into the intake, and blow-by leaves through the
