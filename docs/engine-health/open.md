@@ -492,6 +492,31 @@ this is the order, not the method. **Photograph before touching anything.**
    and its `N79` tee — cracked, hard or oily (H3, H9 test 4, S11).
 8. **The bare stud** beside the injector on the right: whether something
    belongs on it (H7 test 3).
+9. **The injectors refitted**: each pushed home in its bore on its own —
+   it clicks, as the old one did — then the rail over them; the
+   manifold-end O-rings looked at for a nick first (H3, *The injector
+   seats*).
+
+**Decision, 27/9/2026 (the owner's): everything in one job** — the valve
+cover gasket, the breather and its seals, the upper plenum gasket, the
+injector refit and the cleaning, with no measurement between them. Chosen
+over separate steps because the engine is not to be taken apart twice.
+**What it costs:** an improvement afterwards cannot be put down to one part.
+What stays separable afterwards all the same: S11's smoke (the oil), the
+per-cylinder pattern of `--cylinders` (the injector seats move f = 0.25,
+not f = 0.50), and S4/S5 on cylinder 4 (H5).
+
+**After the job, the readings that close it** — all on the refitted engine,
+loads off unless stated:
+
+- `IdleHealth` at 70–72 °C of oil against 57–100 (S1);
+- 032 after a few hundred km without a battery disconnect (S9, H3);
+- 060 at a warm idle, with its A/C and filler-cap calibration (H8);
+- a capture for `--cylinders` (*Naming the cylinder*);
+- the neutral 026 + 003 holds and a 020 drive (S4, S5, H5);
+- the tip-in capture for S12;
+- a look along the new joints after the first warm run and after a few
+  hundred km (the hand-tightened cover nuts).
 
 **The before-values for the repair are the ones already in S1** — the warm
 band at 69–72 °C of oil, loads off; the after-reading is taken the same way.
@@ -872,8 +897,9 @@ disconnect (S9) — positive supports a seat leak; the smoke test with the
 engine off, which reaches the seats safely; and the refit itself, each
 injector home on its own before the rail goes on, with the O-rings looked
 at for a nick from being forced, then `IdleHealth` at 70–72 °C against
-57–100. ⚠ Do it as its own step, not together with the valve cover, if
-the answer is wanted; together, if only the cure is.
+57–100. It goes together with the valve cover job, by the owner's
+decision (S10, *the day's list*): the cure is wanted more than the
+attribution.
 
 **Spray test, 26/9/2026** (contact cleaner — isopropanol and C6–C7 alkanes;
 warm idle, loads off, engine speed watched): **no change** — but it covered
