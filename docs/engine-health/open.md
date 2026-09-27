@@ -1409,7 +1409,7 @@ halved the dips, S9). Re-rank after every test.
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| 1 | **H3/H9 — a small unmetered leak at the back of the intake**: the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants. Against: trim −3.1 % | a **smoke test of the intake** (below); and the valve cover job itself, which replaces the upper plenum gasket |
+| 1 | **H3/H9 — a small unmetered leak at the back of the intake**: the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants. Against: trim −3.1 % | the valve cover job itself, which replaces the upper plenum gasket and the breather — an improvement afterwards answers it; if none, a **smoke test of the intake** (below) |
 | 2 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 | a healthy AQY recorded (H0 test 1) |
 | 3 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: worst at mid temperature, not hot; A5 | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
 | 4 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero | a **fuel pressure gauge** |
@@ -1436,9 +1436,14 @@ recorded here, since they move):
   air); smoke appearing anywhere downstream of the MAF is the leak, and a
   plenum, a hose or a gasket at the back shows it where no spray could go.
   The same machine into the tailpipe, cold, finds H2's leak ahead of the
-  probe. Best done **before** the valve cover job for the back of the
-  intake, so a leak there is seen rather than silently cured with the new
-  gasket, and again **after**, to prove the refit.
+  probe. **After the valve cover job is enough** (*the owner's point,
+  27/9/2026*): the job replaces the upper plenum gasket and the breather
+  and takes the rear hoses off and on, so it can cure an intake leak — and
+  if the idle improves, that is the answer wanted, whichever part did it.
+  A test **before** would only say *which* part it was; it is optional.
+  If the idle does not improve, the smoke test afterwards covers the whole
+  intake as refitted. (The valve cover gasket itself is not an intake
+  joint: the crankcase sits at atmospheric, H9 test 3.)
 - **A fuel pressure gauge** with the adapter for this rail (H7 test 1).
 - **A leak-down tester** with a compressor, warm engine (H1 test 3): where
   the air leaves names the fault — the throttle an inlet valve, the tailpipe
