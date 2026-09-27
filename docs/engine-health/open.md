@@ -843,7 +843,7 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
 
 **The injector seats — three not fully home, 27/9/2026.** *Owner-reported
 and photographed:* since the 23/9 refit, three injectors stand **under
-about 1 mm** proud of their bosses; only the one at the right-hand end is
+about 1 mm** proud of their bosses; only cylinder 4's is
 fully home, and an old injector alone clicked fully into every bore
 (`vehicle-history.md`). The manifold-end O-ring is all that seals them.
 

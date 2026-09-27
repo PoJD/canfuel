@@ -321,7 +321,8 @@ The four were fitted **already clipped into the fuel rail**, and the rail
 was then pushed down onto the manifold. **Three would not go fully home**:
 a gap of **under about 1 mm** is left between the injector body and its
 boss, visible in the owner's photographs; **the one at the right-hand end,
-as the owner stands at it, is fully home**. When the owner tried one of
+as the owner stands at it — cylinder 4 (*owner*) — is fully home**; 1, 2 and 3
+are the proud ones. When the owner tried one of
 the old injectors on its own, it **clicked fully home in every bore**,
 audibly. The O-ring on the manifold end is what seals each one against
 the intake. To be refitted during the valve cover job: each injector into
