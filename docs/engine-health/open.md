@@ -1343,6 +1343,18 @@ actuator has to hold the plate for the target idle, so an unmetered leak
 end — one reading at a warm idle, loads off, before and after the valve
 cover job.
 
+**Which way it moves is checked on the car, not assumed.** The manual
+gives only the band; what a low or a high reading means is the reasoning
+above. So calibrate it in one sitting, warm idle, 060 in measured values:
+read it loads off; then **A/C on** (the engine needs more air — the
+reading should move one way); then, loads off again, **the oil filler cap
+off** (unmetered air past the MAF through the breather's route, as in H9
+test 3 — it should move the other way). Two known disturbances give the
+direction and roughly the size of a real one. **Outside 60–90 %** is a
+fault by the manual's own terms: the actuator is at the end of its travel
+and the idle is being held by something else.
+
+
 **Reading: against H8 at the resolution there is.** A sensor glitch shorter
 than the 0.6 s between readings would not be seen; a worn track that made
 the ECM chase phantom movement would, and does not show. Left in the file
