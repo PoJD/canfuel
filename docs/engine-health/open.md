@@ -1211,6 +1211,62 @@ repair blogs; still nothing from VW.
    current band: the same rule as H2 — a clear improvement means this was
    underrated.
 
+## What the forums say about this idle — searched 27/9/2026
+
+A fresh sweep for the idle and the misfires alone (S1–S3), in German,
+Polish, Czech and English, looking for **threads that end in a fix**.
+Forums, so leads and not sources; several of the big ones (motor-talk.de,
+skodacommunity.de, vagboard.de, VWVortex) refuse automated reading, so what
+is below is only what could be read to the end.
+
+**The pattern is the finding: almost nobody reports a fix.** Every thread on
+an AQY or a sister engine with this picture that could be read to its end
+stops unresolved, after the same parts list this car has already been
+through.
+
+- **golf4.de, *Golf 4 AQY 2.0 Liter Benziner Motor ruckelt im Leerlauf*** —
+  the closest match found: an AQY stuttering **at idle only, not under load**,
+  intermittently, speed sagging to 760, **fault memory empty**; lambda
+  probe, plugs, leads, coil, coolant sensor, MAF replaced and the intake
+  cleaned and adapted. The advice was 014–016 while it happens; the owner
+  never came back.
+- **golf4.de, *Golf 4 2.0 AZJ 2001 Zündaussetzer im Leerlauf*** (the sister
+  engine) — misfires **only standing at idle**, one cylinder, every 10–30 s;
+  plugs and leads replaced; injector swap and the ECU suggested; a second
+  owner with the same picture, and **no fix**.
+- **forum.vwgolf.pl, *wypadanie zapłonu 2.0 aqy*** (t=434728, one page,
+  2011–2020) — two AQYs. The second (2016) is the one of interest:
+  misfires on several cylinders that **did not occur with the A/C on** —
+  the direction of S1's *load at idle* — and came worse in rain; plugs,
+  leads and coil changed, the leads helped a little; **no fix**, and a third
+  owner asked the same in 2020. The poster read the A/C effect as a part
+  overheating and being cooled by the condenser fan. That reading does not
+  fit here, where the lights and the blower did the same as the A/C at a
+  standstill; **the load reading still stands** (S1).
+- **VWVortex, a 2000 Golf with the AEG** (the US sibling, P0300/0301/0303/
+  0304) — per the search index, **leads arcing to the intake manifold**,
+  found by misting them with water in the dark. Not read in full. Test 1e
+  under H4 is this test; with new NGK leads it is a cheap check, not a
+  suspicion.
+- **golf4.de, *2.0 läuft unrund!!!*** (AQY/AGN) — rough cold, worse in the
+  wet, popping on acceleration; plugs, leads, coil no help; "fixed" by
+  unplugging and replugging the MAF — a MAF adaptation reset. This car's
+  MAF is new (S9), so there is nothing to take from it.
+- The general lists repeat what is already here: breather hoses (H9),
+  intake leaks at the lower manifold and the brake-servo line (H3), the
+  coolant sensor (`refuted.md` C6), lambda (C5), injectors (A1).
+
+**One lead not yet in this file: the timing belt a tooth out.** A cam
+sprocket a tooth off makes an engine idle roughly and shake slightly
+(*general*, repeated in the AQY timing-belt threads). This car's belt and
+water pump are from **10/2017** (`vehicle-history.md`). Against it:
+compression is even (A4) and the engine reaches its rated torque plateau
+(C11), where a retarded cam costs most. For it: nothing specific. **It is a
+free look during the valve cover job** — with the upper belt guard off, at
+TDC of cylinder 1, the cam sprocket's mark against its reference, **by the
+manual for this engine** (not written here until it is read there). Weak;
+listed because it costs nothing on that day.
+
 ## Naming the cylinder — the missing measurement
 
 **The idle fault has never been placed in a cylinder.** 014 on this ECU has no
