@@ -379,6 +379,12 @@ whether it smelled of exhaust could not be told.
   from the third together would look like what was seen.
 - The rear of the intake and the old secondary-air vacuum line sit over the
   same hot manifold and were not sprayed in the H3 test, on purpose.
+- **The gasket itself is an unlikely source of the hiss.** A leak hisses
+  only across a pressure difference, and H9 test 3 found the crankcase at
+  atmospheric — no suction at the cap, nothing at the dipstick. So after the
+  new gasket the smoke is expected to go and **a hiss that stays is the
+  exhaust or the intake**, H2 or H3; one that goes with the job was probably
+  never there.
 
 **How it closes:** the garage's smoke or pressure test from the head to the
 front probe (H2) and the source of S10. *Checks the owner can make, left to
@@ -1051,6 +1057,40 @@ drawing of this car.
   ventilation, a rear oil leak or the valve cover. The one bulletin that
   touches this investigation is still TSB 01-08-27 (H4).
 
+**The valve cover gasket and a rough idle — searched 27/9/2026.** Forums and
+repair blogs; still nothing from VW.
+
+- **The generic claim has two routes**, repeated across repair blogs: oil
+  reaching the spark plugs or their boots and tracking the spark to earth,
+  and a leaking gasket drawing in unmetered air. The first is written for
+  engines whose plugs sit **in wells under the cover**, where a failed
+  gasket fills the well. On the AQY the plugs are outside the cover on the
+  front of the head, so oil reaches a boot only by running down the outside
+  — which is what was photographed on 1 and 2 (S10). The second needs
+  vacuum in the crankcase, and this layout holds it near atmospheric (above,
+  and test 3's result), so **the air route is weak here**.
+- **The one AQY thread on this exact job** (golf4.de, *Ventildeckeldichtung
+  wechseln AQY 2.0*): the complaint was **oil at the top of the engine, with
+  smoke and a smell of burnt oil** — S10 and S11's smoke as seen here. One
+  poster still leaked after the new gasket and found the **camshaft seal**
+  instead; the thread reports **no change to the idle** either way, and it
+  was not asked. Its advice: the plenum comes off, check the gasket's VW
+  number rather than trust a catalogue's cross-reference, and do the plugs
+  while they are that easy to reach.
+- **A Golf 4 that stuttered at idle** (motor-talk.de, a 1.4 16V — a
+  different engine, plugs in wells) with the cover gasket weeping and a
+  breather hose wet with oil: the hose and breather were replaced, the oil
+  leak and a noise went, **the stutter stayed**. A second AQY thread on
+  VWVortex with random misfires and a rough idle could not be opened
+  (paywalled to crawlers); its title matches, its outcome is not known.
+- **Reading.** No source found attributes a rough idle on an AQY to its
+  valve cover gasket and reports it cured by the gasket. The route that
+  fits this car is the narrow one — **oil on the boots of 1 and 2** — and it
+  is settled by the boots and plugs when they come out, not by the gasket.
+  **So the job is expected to cure S10 and S11's smoke and not expected to
+  cure S1**; a clear `IdleHealth` improvement at a matched oil temperature
+  afterwards would say the boots mattered, and would point at H4 test 1e.
+
 **Tests:**
 
 1. ~~**The garage names S10's source**~~ — found by the owner on 26/9: the
@@ -1131,14 +1171,33 @@ misfires. *General.*
   (*general*); and **no coolant loss, overheating, white exhaust smoke or
   emulsion under the oil cap has been reported** — none has been looked for
   either, which is what the cheap tests below are for. And **S10 is now
-  explained without it**: the valve cover gasket, found on 26/9.
+  explained without it**: the valve cover gasket, found on 26/9. **The
+  dipstick sat at atmospheric** in H9 test 3 (26/9) — combustion gas leaking
+  into the crankcase past a gasket or through a crack would push there
+  (*general*); a weak point, taken cold.
+
+**Where it stands, 27/9/2026: very weak, not refuted.** Everything that
+spoke for it has another explanation — S10 is the valve cover gasket, S11's
+smoke most likely that oil on the manifold — and the direct evidence
+(compression, coolant temperature, a clean cold start, a quiet dipstick) all
+points against. **But nothing that tests it directly has been done**: no
+coolant level has been watched, nobody has looked for emulsion, and the
+CO₂ test has not been made. The rule of this file is that a hypothesis
+moves to `refuted.md` on evidence that settles it, not on having become
+unlikely, so it stays here — at the bottom of the list, with no work
+planned beyond the free checks below. Test 1 or 2 clean closes it for all
+practical purposes; the garage's CO₂ test would close it formally.
 
 **Tests, cheapest first:**
 
 1. **Coolant level** in the expansion tank, marked when cold and checked over
    several cold starts. No loss is a strong point against.
 2. **The underside of the oil filler cap and the dipstick**: no milky
-   emulsion.
+   emulsion. **During the valve cover job the whole top of the head is
+   open**: no light-brown "mayonnaise" on the cam, the cam caps or the
+   underside of the cover (*general*; a little on the cap alone can be
+   condensation from short trips, a film across the head is not). A
+   photograph of it is the cheapest direct test this hypothesis will get.
 3. **At the garage:** a combustion-gas (CO₂) test of the coolant, and the warm
    leak-down of plan step 8 — which also shows a cylinder leaking into the
    water jacket as bubbles in the expansion tank. Either one clean moves this
