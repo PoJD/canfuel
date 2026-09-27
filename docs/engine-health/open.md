@@ -355,9 +355,49 @@ the car by the shop's catalogue): valve cover gasket Elring `325.070`
 oil filler cap seal Febi `100690` (= `06A 103 483 D`); upper intake manifold
 gasket Elring `271.230` (= `06A 129 717`, the plenum has to come off for the
 cover); sealant Elring `030.793`, Dirko HT beige (= VW `D 176 404 A2`), a dab
-at the four points where the gasket's arches meet its straight runs. Whether
-the breather sits on a separate seal in the cover is not known; it is looked
-at when the old one comes out. They go into `vehicle-history.md` once fitted.
+at the four points where the gasket's arches meet its straight runs. They go
+into `vehicle-history.md` once fitted.
+
+**The exploded view, 27/9/2026** — the Bentley workshop manual for the
+Golf/Jetta, *Cylinder head and valvetrain (2.0 l engine)*, page 15c-5,
+figure N15-0205, *External cylinder head assembly*; found on the web by the
+owner. Summarised here rather than kept: it is a commercial publication, the
+same reason the VCDS label file is not in this repository. **The part being
+replaced is item 18.** From top to bottom:
+
+| item | part | the manual's note |
+|---|---|---|
+| 1 | cap | — |
+| 2 | gasket | under the cap |
+| 3 | vent housing — the breather, `06A 103 465` | **turn clockwise to remove** |
+| 4 | nut | 10 Nm |
+| 5 | gasket, under the vent housing | replace if damaged |
+| 6 | bracket | — |
+| 17 | oil deflector, under the cover | — |
+| **18** | **valve cover gasket** | replace if damaged; **before installing, coat the joint between bearing cap 1 and the head with sealant** |
+| 19 | valve cover | — |
+| 20 | reinforcing strip, on top of the cover | — |
+
+What it settles and what it moves:
+
+- **The breather does sit on its own seal** (item 5), and the cap on
+  another (item 2) — the question this paragraph used to leave open. The
+  oily lower body of the breather seen on 26/9 is item 5's seat. **Which of
+  the two the ordered Febi `100690` is, is not known** from the numbers
+  alone; compare it with both when the old ones come out, and if it is
+  item 2, item 5 is reused only if undamaged, as the manual allows.
+- **"Turn clockwise to remove"** is the opposite of what a hand does by
+  default, on a 26-year-old plastic housing. Worth knowing before the
+  first attempt.
+- **Where the sealant goes differs.** The plan above says a dab at the four
+  arch points; the manual names **the joint of bearing cap 1 to the head**,
+  the cam's front cap at the belt end, where the gasket crosses a split
+  line. They need not conflict — that joint is one of the arch points — but
+  the manual's is the one place it insists on. Its drawing is too small to
+  say whether it wants the same at the back cap.
+- The page gives **no torque for the valve cover's own nuts**. The 10 Nm on
+  it belongs to item 4, the bracket's nut; a figure for the cover nuts
+  needs a source before it is written here.
 
 **The before-values for the repair are the ones already in S1** — the warm
 band at 69–72 °C of oil, loads off; the after-reading is taken the same way.
