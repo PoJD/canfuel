@@ -547,6 +547,32 @@ state.
    026 neutral run — whether cylinder 4's excess is the engine type.
 2. The same on any other Motronic 5.9.2 engine is a weaker substitute.
 
+**Searched for on the web, 27/9/2026 — nothing usable exists.** Nobody was
+found to have published a recording of a healthy AQY's idle in any form that
+compares with this car's:
+
+- **VCDS**: no posted 014 (or 015/016) readings from a healthy AQY or a
+  sister engine at a warm idle. The forums quote VW's `0...5` and "zero or
+  near zero on a good engine" as general advice; the only AQY figures posted
+  are from engines with a fault. The specification stays the only target.
+- **Video**: Golf 4 2.0 drive videos exist, but an idle heard through a
+  phone is not a number, and none is labelled as a known-good engine.
+- **CAN**: comma.ai's public `commaCarSegments` dataset (MIT licence, raw
+  bus captures from openpilot users) has **no PQ34 car**; its one PQ
+  platform is the Passat NMS, whose powertrain bus carries 0x280 in the same
+  format (`opendbc` `vw_pq.dbc`, `Motor_1`, 0.25 rpm). All 33 of its
+  segments were read, with `tools/idledips.py` run on the six standstill
+  idles found (11–28 s each, ~800 rpm, coolant 88–103 °C). **It does not
+  compare**, for a reason worth keeping: that ECU **recomputes engine speed
+  every 10 ms frame and smooths it** — `--degrees` reads 49° at idle, not
+  180°, steps are at most 3 rpm per frame against up to 16 here, and the
+  grade reads exactly 0 on every hold because no step clears its deadband.
+  A per-power-stroke signal is a property of this car's Motronic, not of
+  0x280, so **`IdleHealth` means something only on an ECU that holds engine
+  speed per stroke**, and a donor car for test 1 should be checked with
+  `--degrees` before its grade is believed. (For the record, its dip counter
+  read 0–1 per hold at 20 rpm; on a smoothed signal that says nothing.)
+
 ### H1. A lifter or valve on one cylinder at a hot idle (valvetrain)
 
 A hydraulic lifter that bleeds down or pumps up leaves a valve slightly open
@@ -568,6 +594,13 @@ or late, intermittently, and gets worse as the oil thins. *General.*
   part. No ticking has been reported.
 - **From the Polish AQY thread** (see H4): one poster traced idle vibration
   to valves not sealing and fixed it with head work. A forum report.
+- **From a German AQY thread** (pkw-forum.de, *Ölverbrauch und
+  Zündaussetzer beim 2,0 ltr-Motor AQY*, 2003–2015): a Golf with misfires
+  whose head came off to find **a bucket tappet sticking intermittently**
+  (*"dass ein Tassenstößel zeitweise klemmte"*); the head was replaced and
+  VW paid 40 %. The same thread has AQYs burning up to a litre of oil per
+  1,000 km and misfiring on cylinder 2. A forum report, 2003, and the only
+  one found where the cause was named in the valvetrain.
 
 **Tests:**
 
