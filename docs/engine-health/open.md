@@ -1299,6 +1299,50 @@ The ECM may filter the value before sending it, so a glitch shorter than a
 frame or two could be smoothed away; a track worn enough to disturb the
 driving would not be.
 
+**What VW's repair manual says about this throttle, 27/9/2026** — Golf Mk4,
+*Motronic injection and ignition system (2.0 ltr. engine)*, as transcribed
+on workshop-manuals.com (*Checking throttle valve control part*,
+*Idling check*, *Technical data*; the 4-cyl. 2.0 mechanics, *Adjusting
+throttle cable*). A transcription of VW's manual, not VW's own document;
+the same source as the knock-retard specification in `vcds.md`. The part
+itself — `06A 133 064 H`, VDO `408.237/111/017` — is listed by parts
+sellers for the AEG, AQY and APK **without cruise control**, which is the
+variant the manual's pin numbers below refer to.
+
+- **The throttle valve control part J338** holds four things: the drive
+  G186 (the idle actuator's motor), its angle sender **G187**, the
+  throttle potentiometer **G69**, and the idle switch **F60**.
+- **Display group 060, warm idle** (coolant ≥ 85 °C): zone 1 *throttle
+  valve angle at the idling stop* **0…6°**; zone 2 *throttle valve
+  positioner* **60…90 %**; zone 3 *Idling*. ⚠ On this ECU 060 is also a
+  basic-setting block (`vcds.md`): read it under *measured values*, not
+  under *basic settings*, or it runs the throttle adaptation.
+- **Display group 054, ignition on**: G69 at rest **0…6°**, at full
+  throttle **at least 75°**; zone 2 shows F60 as *idling* or *part
+  throttle*.
+- **Electrical**, connector off (without cruise control): G186's winding,
+  pins 1 + 2, **3…200 Ω**; supply pins 4 + 7 **≥ 4.5 V** and 3 + 7
+  **≥ 9 V** with the ignition on; each wire to the ECM **≤ 1.5 Ω** and
+  open to its neighbours.
+- **Idle**: 740…820 rpm for the AQY, target 780 (group 056), not
+  adjustable; ECU Motronic M5.9.2.
+- **The cable**: adjusted only so that **full throttle is reached at the
+  quadrant** with the pedal down; the manual gives **no free-play figure**.
+  At rest the lever must sit on its idling stop, which the idling check
+  then confirms.
+
+**Against this car's data.** Group 003's third field on this ECU is
+*"klapka Pohon snímač úhlu 1"* — the throttle drive's angle sender, G187,
+the same quantity as 060 zone 1. At warm idle it read **0.9–3.9°** on the
+drive of 24/9 (mostly 1.7–2.2°) and **2.6–4.8°** in August's holds with and
+without the A/C: **inside 0…6° throughout**. Not yet read: 060 zone 2 (the
+positioner's %), and 054 (G69's range and F60). **060 zone 2 is the most
+useful of them** (*reasoned, not from the manual*): it is how far the
+actuator has to hold the plate for the target idle, so an unmetered leak
+(H3) should push it towards the low end and a restriction towards the high
+end — one reading at a warm idle, loads off, before and after the valve
+cover job.
+
 **Reading: against H8 at the resolution there is.** A sensor glitch shorter
 than the 0.6 s between readings would not be seen; a worn track that made
 the ECM chase phantom movement would, and does not show. Left in the file
