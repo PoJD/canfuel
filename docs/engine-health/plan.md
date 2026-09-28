@@ -82,14 +82,21 @@ decision, 28/9/2026*).
      - **ground 2, the engine's main earth** — follow the battery's
        negative cable to where it is bolted on the gearbox/engine;
      - **the coil's earth** (ground 15 on the head in the US list) —
-       follow the brown wire out of the coil's connector to its bolt;
+       *only if it can be seen*: the wires run in a sealed loom, which
+       is not cut for this (*owner's decision, 28/9/2026* — the
+       electrics are nearly ruled out); a look from behind the head or
+       from below while the intake is aside, not pursued further;
    - the bare stud beside the injector on the right: does something belong
      on it?
    Anything bad is fixed now; nothing is measured.
-8. **New cover gasket:** a dab of Dirko at the four points where the
-   arches meet the straight runs, **and at the joint of bearing cap 1 to
-   the head**, which the manual insists on. **Cover nuts by hand, evenly,
-   gasket lightly compressed** — no torque figure (owner's decision, S10).
+8. **New cover gasket:** a dab of Dirko at the **four points where the
+   half-moon arches meet the straight runs**, as in the videos. That
+   already covers what the manual insists on — the **joint of camshaft
+   bearing cap 1 to the head**: cap 1 is the camshaft's front bearing
+   cap, at the timing-belt end, and the front half-moon sits right across
+   the line where it meets the head. Nothing extra to find; just do not
+   skimp on the two front points. **Cover nuts by hand, evenly, gasket
+   lightly compressed** — no torque figure (owner's decision, S10).
 9. **New plenum gasket, plenum on, breather in, everything reconnected.**
 
 *Separately, any time, not part of the job* (*owner's decision,
