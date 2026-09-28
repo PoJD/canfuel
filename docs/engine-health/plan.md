@@ -75,12 +75,14 @@ decision, 28/9/2026*).
      air in: the membrane, if it can be seen (torn, hardened, deformed);
      the body and its spigots (cracks); a vent hole by the membrane, if it
      has one (oil at it means something inside leaks). Photograph it;
-   - the ECM's harness earth, ground 608 on the Golf/Jetta list: eyelet
-     tight and clean. ⚠ **Not on the intake plenum:** the list's
-     "plenum" is the **plenum chamber under the windscreen base** — the
-     body's water tray, where the ECM and the pollen filter sit — **in
-     its centre, by the ECM** (this engine's current-flow diagram) (`open.md` H4, *Where the earths
-     are*). Look there, under its cover; it is independent of the job;
+   - **the engine's two earths** (`open.md` H4, *Where the earths are*),
+     each eyelet tight, clean, no corrosion — found by following the
+     wires, since this engine's diagram does not name them (*VW's
+     convention: earth wires are brown*):
+     - **ground 2, the engine's main earth** — follow the battery's
+       negative cable to where it is bolted on the gearbox/engine;
+     - **the coil's earth** (ground 15 on the head in the US list) —
+       follow the brown wire out of the coil's connector to its bolt;
    - the bare stud beside the injector on the right: does something belong
      on it?
    Anything bad is fixed now; nothing is measured.
@@ -89,6 +91,11 @@ decision, 28/9/2026*).
    the head**, which the manual insists on. **Cover nuts by hand, evenly,
    gasket lightly compressed** — no torque figure (owner's decision, S10).
 9. **New plenum gasket, plenum on, breather in, everything reconnected.**
+
+*Separately, any time, not part of the job* (*owner's decision,
+28/9/2026*): **grounds 608 and 609** — in the plenum chamber under the
+windscreen base, not at the engine; 608 in its centre by the ECM
+(`open.md` H4).
 
 *Optional, only if it is quick while everything is open:* the four HT leads
 on ohms against each other; the four injector windings on ohms against
