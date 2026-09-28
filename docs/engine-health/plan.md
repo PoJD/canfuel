@@ -116,7 +116,9 @@ store it. **Then ignition on again and listen** for the 20–30 s routine
 the old part ran every time (`open.md` S13): silent means the old unit
 differed — a lead; still running means it is this part's normal.
 
-**Before the job, with the old throttle still on:** read and note the
+**Before the job, with the old throttle still on:** ignition on, engine
+not started — **time the throttle's routine with a stopwatch and listen
+for a click at its end** (`open.md` S13), then read and note the
 engine's fault memory (VCDS, 01, fault codes) — in particular **17973 /
 P1565, J338 lower stop not reached**, VW's sign of an adaptation that
 never completes. No engine running needed, and *no stored faults* is a

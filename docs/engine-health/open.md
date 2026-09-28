@@ -627,11 +627,39 @@ routine at every ignition-on is therefore either an adaptation that never
 completes — the idle then running on unfinished values, which touches S1
 — or this unit's own check, which the manual does not describe.
 
+**What owners of this engine family report, searched 28/9/2026** —
+forum-grade, not VW, and the fullest threads sit behind paywalls, so only
+their search excerpts were read:
+
+- **VW Vortex, Mk4 2.0 AEG** (the US sister of the AQY, same throttle
+  family): a buzzing of **about 15 s at every ignition-on, then one
+  click**, *"the sound of the throttle body trying to do a
+  self-alignment"*, with the rider *"if you don't hear that noise when
+  you turn the ignition on, your throttle body isn't aligning ... IT'S
+  SUPPOSED TO MAKE THAT NOISE"* (*Throttle Body Noise - Help Please !*;
+  *Throttle body - 5 sec noise when ignition turns on*). The AEG advice
+  there: key on, do not start, *"you'll hear the throttle body
+  aligning"*.
+- **Czech and German forums** (Octavia 2.0, Golf 4) call a quiet whine
+  from the throttle at ignition-on normal — the positioner's motor.
+- **VW's own procedure after a disconnect** starts *"switch ignition on
+  for at least 10 seconds"* before anything else — something happens in
+  that time, though the manual does not say what.
+
+**Reading: this is most likely the unit's normal routine**, and the
+every-time part is what owners describe too. Two things stay open: the
+**length** — owners say ~15 s (one thread 5 s), the owner here 20–30 s,
+none of it timed — and **the click at the end**, which nobody here has
+listened for. So S13 now rests on a duration, not on its existence.
+
 **How it closes** (`plan.md` step 2): after the job, the manual
 adaptation with the new part (098, *ADP OK*), ignition off, **ignition on
 again and listen**. **Silent → the old unit differed**, and S13 becomes a
-lead on the old throttle (H8) rather than on the car. **Still 20–30 s →**
-it is how this part behaves, and S13 closes as normal.
+lead on the old throttle (H8) rather than on the car. **Still running →**
+it is how this part behaves, and S13 closes as normal. **Before the job,
+once, with the old part: time it with a stopwatch and listen for a click
+at its end**; the same with the new part afterwards. A clearly longer run
+on the old part, or no click, is the only lead left in S13.
 
 ### Other — not symptoms, but they touch this file
 
