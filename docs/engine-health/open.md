@@ -1566,6 +1566,51 @@ which is why the old one is kept. What it buys: if the idle is unchanged
 afterwards, the whole of H8 (the three wear routes above included) goes to
 `refuted.md` with the rest of the job.
 
+**The cold-start idle, the baseline for the swap, 28/9/2026** (asked by
+the owner, who expected **1200+ rpm for 15–20 s** from the web and sees
+about 1000 at most). Off the three cold starts on record, all on the
+original throttle — `18` (coolant 16.5 °C), `19` (12.0 °C), `24`
+(27.0 °C) — engine speed off 0x280 from the first frame above 400 rpm:
+
+| | `18` | `19` | `24` |
+|---|---|---|---|
+| flare, first 2 s (peak) | 1446 | 1522 | 1340 |
+| 2–5 s, median | 931 | 1018 | 912 |
+| 5–60 s, median | 925–936 | 938–978 | 933–944 |
+| step down to ~810–850 at | 101.7 s, 32 °C | 101.5 s, 28.5 °C | 93.0 s, 40.5 °C |
+
+- **1200+ lasts about two seconds**, the start's own flare. After it the
+  engine holds a **flat plateau of 910–1020 rpm for 93–102 s**, then steps
+  down within about two seconds to the warm-up idle. Only the coldest start,
+  `19`, runs a little higher in its first ten seconds.
+- **The three starts are alike.** The plateau's height barely moves with
+  a 15 °C spread in start temperature, and the step comes at almost the
+  same *time* while the coolant stands anywhere from 28 to 40 °C. So it
+  is a **timed phase, not a temperature threshold**. That it is the
+  catalyst-heating phase, with the secondary-air pump running, is an
+  inference: the pump is heard after a cold start (H9 test 3), and the
+  timing and the retard below fit it. It is not read in a VW document.
+- **The ECU gets the speed it asks for.** VCDS 003 across `19`'s start
+  (`vcds-postfix-drive-003-014.csv`): 920–960 rpm on the plateau with
+  **ignition retarded to −0.8…−12 °**, the plate at **7.8° falling to
+  5.2°** as the engine warms. Then, at the step, advance goes positive, air
+  drops from 5.2 to 4.3 g/s and the plate goes to 3.5–3.9°. The speed is
+  flat while the plate moves smoothly, so the plateau is a **target being
+  met**: an actuator short of travel would show the speed sagging instead.
+  The plate is above the warm-idle band of 0…6°, but that band is
+  specified warm (060, coolant ≥ 85 °C).
+- **The web's 1200 is forum talk** about Mk4s in general, "for 30–60 s"
+  and "the secondary air ... no more than 30 s" (VW Vortex, uk-mkivs).
+  **No VW figure for the AQY's cold idle was found**: the manual's
+  transcription gives only the warm 740…820 rpm. So nothing says ~950 is
+  wrong for this ECU.
+
+**What the swap is compared on:** the first cold start after it should
+show the same plateau height, the same ~95–100 s and a similar plate angle.
+A different height or length would be the ECU choosing differently, which
+a new J338 should not cause. A sagging speed with the plate high would be
+the new part.
+
 ### H9. Crankcase ventilation, or the valve cover gasket (S10, and possibly the idle)
 
 The crankcase is ventilated into the intake, and blow-by leaves through the

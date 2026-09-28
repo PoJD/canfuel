@@ -124,6 +124,9 @@ seconds are expected — **the start's quality is ignored**. Then, briefly:
 - **leaks** — fuel at the injectors and the rail, oil along the cover joint;
 - **`IdleHealth`** and **VCDS 014** logging (a CAN capture beside it costs
   nothing and feeds `--cylinders` later).
+- **if the engine is cold:** the cold-start plateau against the baseline
+  in `open.md` H8 (~910–1020 rpm for ~95–100 s, then a step down), off the
+  same capture, with **003** logged if VCDS is on it for the plate angle.
 
 Then warm it **by driving**, and take the one reading that decides: at
 **70–72 °C of oil, loads off**, a minute or two of `IdleHealth` against the
