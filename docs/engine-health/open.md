@@ -656,9 +656,9 @@ run; the length was never timed, so ~15 s is possible. The owner keeps it
 open all the same: the forum's "normal" could be a normal of throttles
 that are already worn, and only a new part settles that.
 
-**How it closes** (`plan.md` steps 2 and 3), timed each time: the old
-part before the job; the old part after step 2's adaptation, which has
-certainly completed; the new part after its own adaptation in step 3.
+**How it closes** (`plan.md` tests 1 and 2), timed each time: the old
+part before the job; the old part after test 1's adaptation, which has
+certainly completed; the new part after its own adaptation in test 2.
 **New part silent, or clearly shorter → the old unit differed**, and S13
 becomes a lead on it (H8). **The same routine → it is how these parts
 behave**, and S13 closes as normal.
@@ -1672,7 +1672,7 @@ the ECM chase phantom movement would, and does not show. Left in the file
 because cleaning and adapting is cheap, not because anything points here.
 
 **Replaced preventively, on its own after the valve cover job — the
-owner's decision, 28/9/2026** (`plan.md` step 3). Nothing in the data asks
+owner's decision, 28/9/2026** (`plan.md` step 2). Nothing in the data asks
 for it; the part is original, 26 years old, cheap, and sits in the idle air
 path. First planned inside the valve cover job, then **split off by the
 owner the same day** so that its effect shows alone: the valve cover job
@@ -2097,7 +2097,7 @@ halved the dips, S9). Re-rank after every test.
 | 2 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 | a healthy AQY recorded (H0 test 1) |
 | 3 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: worst at mid temperature, not hot; A5 | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
 | 4 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero | a **fuel pressure gauge** |
-| 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | **replaced on its own after the valve cover job** (owner's decision, 28/9; `plan.md` step 3), so its effect shows alone |
+| 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | **replaced on its own after the valve cover job** (owner's decision, 28/9; `plan.md` step 2), so its effect shows alone |
 | 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V | a look while the plenum is off (`plan.md`, step 1); H7 test 3 for the injector side |
 | 7 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss. Against: air outside the cylinder does not stop it firing | a smoke test **of the exhaust** |
 | 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |

@@ -39,7 +39,7 @@ the breather (item 5, if it matches the old one — `open.md`). The oil
 filler cap is kept: nothing in it to wear, and it has never been wet with
 oil.
 
-The throttle body is **not** part of this job — it is step 3 (*owner's
+The throttle body is **not** part of this job — it is step 2 (*owner's
 decision, 28/9/2026*).
 
 **Photograph before touching anything, and anything found.**
@@ -90,124 +90,86 @@ decision, 28/9/2026*).
 on ohms against each other; the four injector windings on ohms against
 each other. Skip them freely.
 
-## Step 2 — the first start, and the one decision
+## Test 1 — after step 1: one cold start in the garden, no drive
 
-**Before starting:** ignition on for a few seconds, off, on again, two or
-three times, so the pump fills the rail; look and **smell** at every
-injector and the rail for fuel.
+*Owner's decision, 28/9/2026:* the valve cover job is tested with **one
+cold start at idle, standing, and the engine off again** — no drive, no
+warm-up. The full test waits for step 2.
 
-**The throttle adaptation, before the first start** — VW's manual asks
-for it after any battery disconnect (and after a new J338, step 3). **Basic setting, group 098** (VW's manual page 24-119,
-`open.md` H8). Ignition on, engine not running, no stored faults,
-battery ≥ 11.5 V, all consumers off, pedal untouched; basic settings, 098,
-*ADP runs* — the positioner is driven to min, max and a few points
-between, **at most 10 s** — then *ADP OK*. Switch the ignition off to
-store it. **Then ignition on again and listen, stopwatch in hand**: does
-the old part still run its routine (`open.md` S13) after an adaptation that
-has certainly completed? The same check is repeated with the new part in
-step 3.
+⚠ **What this test cannot show: the idle fault itself.** The misfires come
+at the *warm* idle; none were counted at the cold idles on record
+(`open.md` H8, *Checked against the logs already held*). What a cold start
+*can* show is **whether a leak was sealed**, because the leak signs have a
+cold-start baseline — and a sealed leak is the mechanism behind most of
+step 1.
 
 **Before the job, with the old throttle still on:** ignition on, engine
-not started — **time the throttle's routine with a stopwatch and listen
-for a click at its end** (`open.md` S13), then read and note the
-engine's fault memory (VCDS, 01, fault codes) — in particular **17973 /
-P1565, J338 lower stop not reached**, VW's sign of an adaptation that
-never completes. No engine running needed, and *no stored faults* is a
-precondition of the adaptation anyway.
+not started — **time the throttle's routine with a stopwatch** (`open.md`
+S13), then read and note the engine's fault memory (VCDS, 01, fault
+codes) — in particular **17973 / P1565, J338 lower stop not reached**.
+No engine running needed, and *no stored faults* is a precondition of the
+adaptation anyway.
 
-**First start:** the rail was opened, so a long crank and a rough first
-seconds are expected — **the start's quality is ignored**. Then, briefly:
+**After the job, before starting:**
 
-- **leaks** — fuel at the injectors and the rail, oil along the cover joint;
-- **`IdleHealth`**, a **CAN capture**, and **one VCDS log from before the
-  start to engine off: groups 014 + 003 + 055** (*decided 28/9/2026*).
-  014 is the misfire count; 003 the air mass and the plate angle, which
-  tell a sealed leak from a new throttle (below); 055 the idle regulator and its
-  learned adaptation, in g/s of air (`vcds.md`; logged once, 11/9). Three
-  groups cost 014 some rate and lose nothing: **014 is a count, not an
-  event** — it accumulates between readings, so a slower poll misses no
-  misfire, it only places each one less sharply in time. All three carry
+1. Ignition on for a few seconds, off, on again, two or three times, so
+   the pump fills the rail; look and **smell** at every injector and the
+   rail for fuel.
+2. **The throttle adaptation** — VW's manual asks for it after any battery
+   disconnect. **Basic setting, group 098** (VW's manual page 24-119,
+   `open.md` H8). Ignition on, engine not running, no stored faults,
+   battery ≥ 11.5 V, all consumers off, pedal untouched; basic settings,
+   098, *ADP runs* — the positioner driven to min, max and a few points
+   between, **at most 10 s** — then *ADP OK*. Ignition off to store it.
+3. **Ignition on again, stopwatch:** does the old part still run its
+   routine after an adaptation that has certainly completed, and how long?
+   (`open.md` S13)
+
+**The start — the engine cold, after a night**, so it compares with the
+cold starts on record. The rail was opened, so a long crank and a rough
+first seconds are expected — **the start's quality is ignored**.
+
+- **Leaks** — fuel at the injectors and the rail, oil along the cover
+  joint.
+- **A CAN capture and one VCDS log, 014 + 003 + 055, from before the start
+  to engine off** (*decided 28/9/2026*). 014 is the misfire count — **a
+  count, not an event**: it accumulates between readings, so three groups
+  cost it no misfire, only sharpness in time. 003 is air mass and plate
+  angle, 055 the idle regulator and its learned value. All three carry
   engine speed, so the log aligns to the capture (`vcds.md`).
-- **if the engine is cold:** the cold-start plateau against the baseline
-  in `open.md` H8 (~910–1020 rpm for ~95–100 s, then a step down), off the
-  same capture.
+- **About five minutes, then engine off.** That covers the cold plateau
+  and its step down at ~95–100 s and reaches the one 055 reading on
+  record.
 
-Then warm it **by driving**, and take the one reading that decides: at
-**70–72 °C of oil, loads off**, a minute or two of `IdleHealth` against the
-current band **57–100** (`open.md` S1), with the same three groups
-logging. Engine off.
+**Read against the cold-start baselines** (`open.md` H8, *The cold-start
+idle*; `vcds.md`, 055):
 
-**Read beside it, against `open.md` H8's baseline** (warm idle, loads off:
-1.3–2.6° at 3.1–3.5 g/s):
+| | before (old throttle) | a sealed leak would show |
+|---|---|---|
+| plateau | 910–1020 rpm for 93–102 s, then ~810–850 | the same — this is the ECU's schedule |
+| 003 on the plateau (`19`) | air 6.8 → 5.2 g/s, plate 7.8 → 5.2° | **more air through the MAF for the same speed, the plate further open** |
+| 003 after the step | air ~4.3 g/s, plate 3.5–3.9° | the same, more air and more plate |
+| 055, field 2 + field 3 | **−1.2 g/s** just after the start, **−0.8** five minutes in (11/9) | **clearly nearer zero** |
 
-- **air mass at idle up, and the plate up with it** → air that used to
-  bypass the MAF now goes through it: a leak was sealed (H3/H9);
-- **055, read as the sum of fields 2 and 3** (the live regulator plus
-  the learned adaptation): the whole air correction the idle is making.
-  With the adaptation at zero after the battery, the regulator carries
-  all of it, and as the adaptation learns the two trade places — **so the
-  sum compares from the first start**, with no wait. Baseline, 11/9, the
-  one 055 log (`vcds.md`): **−0.46 −0.73 = −1.2 g/s** just after the cold
-  start, falling to **−0.08 −0.73 = −0.8 g/s** five minutes in (coolant
-  ~60 °C, oil ~17 °C). No warm-idle baseline exists, so **compare like
-  with like: the first cold start after the job, the same first five
-  minutes.** VW's manual (`vcds.md`): the regulator is specified
-  −2.00…2.00 g/s, the learnt value −1.50…1.50, and **a run-in engine sits
-  negative, a new one positive** (friction). So −0.73 is normal for this
-  engine's age and **the sign proves nothing; only a change does.**
-  Clearly nearer zero says less air was reaching the engine unasked (a
-  sealed leak); about the same says nothing changed there. *That the two
-  fields add is reasoned from the labels and the unit, not from VW.*
-- **032 is not read now.** The battery is out for the job, so every
-  adaptation starts from zero; 032 is read once, after a few hundred km
-  (`open.md` S9), and an idle cell moving *negative* would also say a leak
-  was sealed.
+**055 is read as the sum of its two air fields** (the live regulator plus
+the learned value): the whole correction the idle is making. With the
+learned value at zero after the battery, the regulator carries all of it,
+and the two trade places as it learns — so the sum compares from the first
+start. VW's manual: regulator −2.00…2.00 g/s, learned value −1.50…1.50,
+and **a run-in engine sits negative, a new one positive**, so −0.73 was
+normal for this engine and **only a change means anything**. *That the two
+fields add is reasoned from the labels and the unit, not from VW.*
 
-⚠ **Fresh adaptations have read worse before**: 146 and 117 straight after
-the 23/9 disconnect, 84 after 24/9's, 57–100 once settled (`open.md` H8,
-*The throttle adaptation and the battery disconnects*). **So a first
-reading inside or above the band does not yet say "unchanged"** — repeat
-it, the same way, after a few days of normal driving before calling it.
+**Then:** whatever it shows, on to step 2. A clear leak signature here is
+put down to step 1 — no later step can take it.
 
-**Then:**
+## Step 2 — the throttle body
 
-- **Idle fixed** — **014 at zero** through the warm-idle reading, on the
-  first reading *and* on the repeat (VW's specification is 0…5; zero is the
-  owner's bar), whatever `IdleHealth` reads, since no healthy target for it
-  exists yet: record it, and read *What points at which repair* below off
-  data already taken. **The throttle was not the cause.** Step 3 is done
-  anyway, as prevention.
-- **Idle unchanged after the repeat — the expected outcome:** no further
-  tests. Go to step 3.
-
-### If the idle is fixed: what points at which repair
-
-*Owner's aim, 28/9/2026: indications, not proof — the repair came first.*
-Six things changed at once (cover gasket, breather, filler seal, plenum
-gasket, injectors reseated, plugs cleaned) plus every adaptation from
-zero — the throttle is kept apart, in step 3, for exactly this reason — so nothing below is conclusive. But the repairs act
-through **different mechanisms**, and most mechanisms leave their own mark
-in data this plan already takes. Read them together:
-
-| sign, against `open.md`'s baselines | points at |
-|---|---|
-| **What the job found** — a torn breather membrane, a cracked hose, a nicked injector O-ring, a flattened plenum gasket, photographed in step 1 | the part it was found on. **The strongest sign there will be** |
-| **Idle air mass up** at the same idle (was 3.1–3.5 g/s, loads off, warm), **plate angle up with it**, **055's sum nearer zero** (was ≈ −0.8 g/s five minutes into a cold start) | a sealed unmetered leak: plenum gasket, breather, hoses, injector seats (H3/H9) |
-| the same, and **032's idle cell moving negative** after a few hundred km | the same, confirmed through the mixture |
-| **fixed from the first warm reading** | a mechanical change — a leak, a seat |
-| **fixed only after days of driving** | adaptations settling (the fresh-adaptation readings of 23/9 and 24/9 were worse, `open.md` H8) |
-| **better, but only to August's level** (`IdleHealth` 48 on 11/8) | the injector seats — they are only in play since 23/9, while the rough idle is older (S2, S3); anything clearly better than August is something older |
-
-Either way: a look along the new joints after the first warm run, and
-again after a few hundred km (the hand-tightened nuts).
-
-## Step 3 — the throttle body, on its own
-
-*Owner's decision, 28/9/2026:* done **after** step 2's repeat reading,
-whatever it showed — as the fix if the idle is still unsettled, as
-prevention if it is not. Kept apart from step 1 so that its effect can be
-seen alone; it comes off with the engine assembled, and splitting it off
-also shortens step 1 if that does not fit in one session.
+*Owner's decision, 28/9/2026:* done **after** test 1, whatever it showed
+— as the fix if the idle is still unsettled, as prevention if it is not.
+Kept apart from step 1 so that what test 1 shows belongs to step 1; it
+comes off with the engine assembled, and splitting it off also shortens
+step 1 if that does not fit in one session.
 
 **Part:** Pierburg `7.03703.13.0`, **ordered 28/9** — cross-referenced to
 `06A 133 064 H`, the variant **without cruise control**, which is what the
@@ -220,25 +182,61 @@ one is not in the box.
 2. **Check the cable** — the lever on its idling stop at rest, full
    throttle reached at the quadrant with the pedal down (`open.md` H8,
    *What VW's repair manual says*).
-3. **Adaptation 098** as in step 2, *ADP OK*, ignition off. **Ignition on
-   again, stopwatch: does the new part run the routine, how long, and is
-   there a click at the end?** (`open.md` S13)
-4. **The same readings as step 2** — a CAN capture, 014 + 003 + 055, and
-   the warm-idle reading at 70–72 °C of oil, repeated after a few days.
+
+## Test 2 — after step 2: the full test
+
+1. **Adaptation 098** as in test 1, *ADP OK*, ignition off. **Ignition on
+   again, stopwatch:** does the new part run the routine, and how long
+   against the old part's times? (`open.md` S13)
+2. **If the engine is cold:** the same five minutes as test 1 — plateau,
+   003, 055 — against test 1. **Air mass and 055 as in test 1, only the
+   plate different** → the new throttle and its freshly learned stops,
+   nothing more.
+3. **Warm it by driving**, and take **the reading that decides**: at
+   **70–72 °C of oil, loads off**, a minute or two of `IdleHealth` against
+   the band **57–100** (`open.md` S1), with 014 + 003 + 055 logging.
+   Engine off.
+4. ⚠ **Repeat it after a few days of normal driving.** Fresh adaptations
+   have read worse before: 146 and 117 straight after the 23/9
+   disconnect, 84 after 24/9's, 57–100 once settled (`open.md` H8, *The
+   throttle adaptation and the battery disconnects*). A first reading
+   inside or above the band does not yet say "unchanged".
+5. **032 after a few hundred km** (`open.md` S9): an idle cell moving
+   *negative* would also say a leak was sealed.
 
 **Then:**
 
-- **step 2 left the idle unsettled and this fixes it** (014 at zero,
-  first reading and repeat) → **the throttle was the cause**. The kept old
-  part allows one confirmation if wanted — optional, the owner's call:
-  refitted for a day (15 minutes, adaptation 098), a returning fault
-  names it beyond doubt, and the new one goes back on;
-- **still unsettled** → go to step 4; S13 is at least answered — whether
-  the new part runs the same routine;
-- **already fixed in step 2** → nothing to decide; S13 answered the same
-  way.
+- **Idle fixed** — **014 at zero** through the warm-idle reading, on the
+  first reading *and* on the repeat (VW's specification is 0…5; zero is
+  the owner's bar), whatever `IdleHealth` reads, since no healthy target
+  for it exists yet: record it and read *What points at which repair*
+  below. The loose ends in `open.md` then close at leisure.
+- **Idle unchanged after the repeat — the expected outcome:** go to
+  step 3. S13 is at least answered.
 
-## Step 4 — the exhaust, at the garage
+Either way: a look along the new joints after the first warm run, and
+again after a few hundred km (the hand-tightened nuts).
+
+### If the idle is fixed: what points at which repair
+
+*Owner's aim, 28/9/2026: indications, not proof — the repair came first.*
+The warm-idle fix itself is seen only in test 2, after both steps, so the
+two cannot be split on it directly. They can be split on **mechanism**:
+
+| sign | points at |
+|---|---|
+| **What the job found** — a torn breather membrane, a cracked hose, a nicked injector O-ring, a flattened plenum gasket, photographed in step 1 | the part it was found on. **The strongest sign there will be** |
+| **Test 1 already showed the leak signature** (more air, plate further open, 055 nearer zero) | step 1: a sealed unmetered leak — plenum gasket, breather, hoses, injector seats (H3/H9) |
+| test 1 showed **nothing**, test 2's cold start shows only a different plate, and **S13 changed** with the new part | the throttle (H8) |
+| **fixed from the first warm reading** | a mechanical change — a leak, a seat, the throttle |
+| **fixed only after days of driving** | adaptations settling, or the throttle's adaptation completing |
+| **better, but only to August's level** (`IdleHealth` 48 on 11/8) | the injector seats — only in play since 23/9, while the rough idle is older (S2, S3); anything clearly better than August is something older |
+
+**One cheap way to go further — optional, the owner's call:** the old
+throttle is kept. Refitted for a day (15 minutes, adaptation 098), a
+returning fault would name it beyond doubt, and the new one goes back on.
+
+## Step 3 — the exhaust, at the garage
 
 A repair visit, not a test visit (H2, S6, S11):
 
@@ -251,10 +249,10 @@ A repair visit, not a test visit (H2, S6, S11):
 smoke-test the exhaust, whether they will put the smoke through the intake
 too (H3). Not required.
 
-Afterwards: `IdleHealth` at 70–72 °C against the band, as in step 2, with
+Afterwards: `IdleHealth` at 70–72 °C against the band, as in test 2, with
 014 logging. *Skipped if the idle is already fixed by then.*
 
-## Step 5 — decided by step 4's result
+## Step 4 — decided by step 3's result
 
 The same rule: **idle solved → stop and record; idle unchanged → the next
 repair from `open.md`'s ranked candidates**, chosen then, not now.
