@@ -1550,6 +1550,7 @@ drawing of this car.
   AZJ and AEG and described as a pressure-control breather with an oil
   separator. From it one hose runs to the **intake hose ahead of the throttle
   valve** — after the MAF — with the heater `N79` teed into it against icing.
+  *Confirmed on this car by the owner's photograph of 26/9/2026.*
   One aggregator claims a second hose to the intake manifold; no other source
   shows one, so it is not relied on.
 - **What follows from that layout.** With the breather joined ahead of the
@@ -1589,10 +1590,13 @@ drawing of this car.
   torn membrane: had that been the case here, the crankcase would sit under
   that vacuum and **the filler cap would suck** — test 3 found none. So the
   leaflet raises nothing test 3 did not already weigh. **The one thing it
-  makes worth checking** is where this car's breather hose really joins
-  the intake — ahead of the throttle, as the catalogues say, or on the
-  manifold like its FSI example. That is read off the car during the job
-  (`plan.md`, step 1).
+  made worth checking** was where this car's breather hose really joins
+  the intake. **Answered by the owner's photograph of 26/9/2026**: the
+  thick hose from the breather under the filler cap runs up into the
+  intake duct **directly ahead of the throttle body** (`06A 133 064 H`,
+  its label in the same frame) — after the MAF, not on the manifold. The
+  catalogues' layout above holds, and the leaflet's manifold-vacuum case
+  does not apply to this car.
 - **Blocked ventilation is the commonest cause of oil leaks on the sister
   AZJ**, and **a fouled throttle body the commonest cause of an unsettled
   idle** — mymotorlist.com's page for the AZJ (the AQY page lists ignition,
