@@ -180,10 +180,38 @@ it, the same way, after a few days of normal driving before calling it.
 
 **Then:**
 
-- **Idle clearly better** (well below 57 at that temperature, 014 quiet):
-  record it; the loose ends in `open.md` can then be closed at leisure.
+- **Idle fixed** — **014 at zero** through the warm-idle reading, on the
+  first reading *and* on the repeat (VW's specification is 0…5; zero is the
+  owner's bar), whatever `IdleHealth` reads, since no healthy target for it
+  exists yet: record it, and read *What points at which repair* below off
+  data already taken. The loose ends in `open.md` then close at leisure.
 - **Idle unchanged after the repeat — the expected outcome:** no further
   tests. Go to step 3.
+
+### If the idle is fixed: what points at which repair
+
+*Owner's aim, 28/9/2026: indications, not proof — the repair came first.*
+Seven things changed at once (cover gasket, breather, filler seal, plenum
+gasket, injectors reseated, throttle body, plugs cleaned) plus every
+adaptation from zero, so nothing below is conclusive. But the repairs act
+through **different mechanisms**, and most mechanisms leave their own mark
+in data this plan already takes. Read them together:
+
+| sign, against `open.md`'s baselines | points at |
+|---|---|
+| **What the job found** — a torn breather membrane, a cracked hose, a nicked injector O-ring, a flattened plenum gasket, photographed in step 1 | the part it was found on. **The strongest sign there will be** |
+| **Idle air mass up** at the same idle (was 3.1–3.5 g/s, loads off, warm), **plate angle up with it**, **055's sum nearer zero** (was ≈ −0.8 g/s five minutes into a cold start) | a sealed unmetered leak: plenum gasket, breather, hoses, injector seats (H3/H9) |
+| the same, and **032's idle cell moving negative** after a few hundred km | the same, confirmed through the mixture |
+| air mass and 055 **unchanged**, only the plate angle different, and **S13 silent** after the adaptation | the throttle (H8) — the old unit differed |
+| **fixed from the first warm reading** | a mechanical change — a leak, a seat, the throttle |
+| **fixed only after days of driving** | adaptations settling (the fresh-adaptation readings of 23/9 and 24/9 were worse, `open.md` H8), or the throttle's adaptation completing |
+| **better, but only to August's level** (`IdleHealth` 48 on 11/8) | the injector seats — they are only in play since 23/9, while the rough idle is older (S2, S3); anything clearly better than August is something older |
+
+**The one cheap way to go further — optional, the owner's call:** the old
+throttle is kept. Refitted for a day (15 minutes, adaptation 098), a
+returning fault would name it, and the new one goes back on. Of the parts
+changed it is the only one that can be put back without opening the engine
+again.
 
 Either way: a look along the new joints after the first warm run, and
 again after a few hundred km (the hand-tightened nuts).
