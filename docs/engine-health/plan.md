@@ -109,10 +109,14 @@ three times, so the pump fills the rail; look and **smell** at every
 injector and the rail for fuel.
 
 **The throttle adaptation, before the first start** — the new J338 needs
-it, and this is the one case where VW's manual asks for it: basic setting
-**060** by the manual's procedure (`vcds.md`, *Basic settings*). Listen at
-ignition-on for the ~20 s of the throttle seeking its stops (`open.md` H8)
-— the new part should sound the same.
+it, and this is the one case where VW's manual asks for it. **Which
+group, 098 or 060, is settled off the label file first** (`open.md` H8,
+*Which basic-setting group adapts it*); 098 is the expected one. Key on,
+engine off, no stored faults, battery ≥ 11.5 V, pedal untouched, coolant
+5–95 °C; basic settings, the group, *ADP RUN*, about 30 s while the
+throttle is heard cycling, then *ADP OK*. Listen at ignition-on for the
+~20 s of the throttle seeking its stops (`open.md` H8) — the new part
+should sound the same.
 
 **First start:** the rail was opened, so a long crank and a rough first
 seconds are expected — **the start's quality is ignored**. Then, briefly:

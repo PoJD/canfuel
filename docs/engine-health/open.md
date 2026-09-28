@@ -1463,7 +1463,9 @@ variant the manual's pin numbers below refer to.
   valve angle at the idling stop* **0…6°**; zone 2 *throttle valve
   positioner* **60…90 %**; zone 3 *Idling*. ⚠ On this ECU 060 is also a
   basic-setting block (`vcds.md`): read it under *measured values*, not
-  under *basic settings*, or it runs the throttle adaptation.
+  under *basic settings*, which would start whatever routine the label
+  file gives it. (An earlier revision said it runs the throttle
+  adaptation; that had no source — see below.)
 - **Display group 054, ignition on**: G69 at rest **0…6°**, at full
   throttle **at least 75°**; the same check reads F60's state as
   *idling* or *part throttle* (which zone was not transcribed reliably).
@@ -1521,6 +1523,22 @@ came *without* a fresh adaptation, and **the grades give no reason to
 suspect a missing adaptation**. (They could not have carried a conclusion
 anyway: the converter, plugs, leads, injectors, MAF and every other
 adaptation changed between August and September.)
+
+**Which basic-setting group adapts it, 28/9/2026** (asked by the owner).
+Ross-Tech's wiki, *Throttle Body Alignment (TBA)*, splits by hardware:
+**cable-throttle engines without an idle stabilisation valve use group
+098** (some SIMOS/Marelli ECUs 001), **drive-by-wire engines 060**. This
+car is the first kind — a cable to the plate, idle held by J338's own
+actuator rather than a separate valve — so **098 is the expected group**,
+and plan.md's earlier "060" was an inference, not a source. Ross-Tech's
+procedure: key on, engine off, no faults, battery ≥ 11.5 V, throttle at
+idle, coolant 5–95 °C; basic settings, the group, *ADP RUN*, the throttle
+heard cycling for the first seconds, about 30 s. Its notes add that on a
+cable throttle a mis-adjusted or sticky cable makes it fail. ⚠ **The
+ECU's label file carries both 060 and 098 as basic-setting blocks**
+(`vcds.md`), so the page decides nothing by itself: open both in
+*measured values* first and read what the label file names them; the one
+whose fields are the adaptation's is the one to run.
 
 **What the throttle does at every ignition-on** (*owner-observed,
 27/9/2026*): it is heard working for **about 20 s** after the key is
