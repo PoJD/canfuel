@@ -504,6 +504,10 @@ comments, docstrings, CLI help text, documentation, commit messages and file
 names. Conversation with the maintainer may be in Czech; nothing written to
 disk ever is.
 
+**The maintainer is a man and is addressed informally.** In Czech that means
+*tykání* (never *vykání*) and masculine forms throughout — *udělal jsi*,
+*naměřil jsi*, never the feminine.
+
 ---
 
 ## Non-negotiable rule: a pure C core
