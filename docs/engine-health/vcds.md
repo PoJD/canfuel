@@ -15,6 +15,12 @@ Anyone with VCDS for this ECU has the file.
 The ECU is `06A 906 018` (`06A 906 018 EJ` on the screen), Motronic 5.9.2,
 labels `06A-906-018-AQY.LBL`.
 
+**Cylinder numbering.** Cylinder 1 is at the timing-belt end; standing at the
+engine, **cylinder 4 is the one at the far right** (*owner*, 28/9/2026). VCDS
+numbers the same way, so every cylinder in these groups is the real one. An
+observation by eye names its cylinder by this rule — the plug-boot oil of S10
+was first recorded counted from the wrong end and corrected on 28/9/2026.
+
 ---
 
 ## The blocks

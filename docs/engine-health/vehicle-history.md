@@ -196,9 +196,11 @@ than enrichment (*general knowledge*).
 
 **The plugs and leads of 12/2022 came out destroyed at about 1,500 km**, which
 is the derived distance in the table above and a fiftieth of what a set of plugs
-is normally good for. Eroded electrodes and dry carbon on all four, worse on
-cylinders 1 and 4, one visibly worse than the rest; the ranking is the
-owner's, from handling them, and not the photograph's. This is the **second** consumable on this car to be destroyed by
+is normally good for. Eroded electrodes and dry carbon on all four, one visibly worse than the
+rest; the ranking is the owner's, from handling them, and not the
+photograph's. **Which cylinder any plug came from is not known** — the garage
+did not label them. *Corrected 28/9/2026:* this said "worse on cylinders 1
+and 4" until then, a pair nothing recorded. This is the **second** consumable on this car to be destroyed by
 distance it never covered, after the converter directly above.
 
 ⚠ **They were replaced separately from the injectors and ahead of them**,
@@ -321,7 +323,7 @@ The four were fitted **already clipped into the fuel rail**, and the rail
 was then pushed down onto the manifold. **Three would not go fully home**:
 a gap of **under about 1 mm** is left between the injector body and its
 boss, visible in the owner's photographs; **the one at the right-hand end,
-as the owner stands at it — cylinder 4 (*owner*) — is fully home**; 1, 2 and 3
+as the owner stands at it — cylinder 4 (*owner*, re-confirmed 28/9/2026) — is fully home**; 1, 2 and 3
 are the proud ones. When the owner tried one of
 the old injectors on its own, it **clicked fully home in every bore**,
 audibly. The O-ring on the manifold end is what seals each one against

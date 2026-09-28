@@ -51,7 +51,7 @@ gasket Elring `271.230`, sealant Elring `030.793` (Dirko HT).
    the breather (item 5); item 5 is reused only if undamaged.
 5. **Clean off all the oil** — head, cover joint, plug area, injector area,
    the manifold below. Keep cleaner out of the open intake ports.
-6. **Plugs out, cylinders 1 and 2 first:** photograph each plug's insulator
+6. **Plugs out, cylinders 3 and 4 first** (the oily boots, S10): photograph each plug's insulator
    and each lead boot **with its cylinder number**, then clean. Oil on the
    ceramic or in a boot is noted (H4).
 7. **Injectors out and refitted properly** (H3, *The injector seats*):

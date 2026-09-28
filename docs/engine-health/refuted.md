@@ -34,13 +34,17 @@ burned-through converter, the −4.7 % idle trim and the cold overrun burble.
 misfire counter both stayed (post-repair drive, 24/9).
 **What survives:** the old injectors probably did cause the cold-overrun burble
 and part of the bad cold start (C1, C3). They were never bench-tested; they are
-kept, labelled by cylinder. By inspection cylinder 1's nozzle was the dirtiest
-and cylinder 4's the cleanest.
+kept, but **not labelled by cylinder** (this said "labelled" until
+28/9/2026). By inspection at removal, cylinder 1's nozzle was the dirtiest and
+cylinder 4's the cleanest (*owner*, numbering confirmed 28/9/2026); the loose
+injectors can no longer be matched to those cylinders.
 
 ### A2. "Fouled plugs or tired leads" — replaced
 
 Plugs and leads new on 17/9, misfires unchanged. The old plugs were worn out
-after ~1,500 km, with 1 and 4 the worse pair; see A9 for what that pair means.
+after ~1,500 km, one visibly worse than the rest — **from which cylinder is
+not known**, since they were not labelled. (This said "1 and 4 the worse pair"
+until 28/9/2026; nothing recorded that pair. See A9.)
 
 ### A3. "The ignition coil" — replaced
 
@@ -101,6 +105,11 @@ worse than August's (`open.md` S1).
 and 4 share one coil output and its leads; the old coil was probably original
 and those plugs spent 3½ of their 4 years on it. Cylinder 4's old injector had
 the cleanest nozzle. **The pair names a coil output, not two injectors.**
+
+**Premise withdrawn, 28/9/2026:** the old plugs were never labelled by
+cylinder, so "plugs 1 and 4 worse" was never an observation — only that one
+plug was worst, and not which. The entry stays refuted; there is now no pair
+for either reading to explain.
 
 ### A10. "Knock control is causing the idle stumble" — measured
 

@@ -59,7 +59,7 @@ Separately, knock control hears something in cylinder 4's window above about
 **New on 26/9:** oil leaking at the back of the head (S10), and smoke with
 possibly a hiss from the same place at a warm idle (S11). **S10's source is
 found — the valve cover gasket**, heavily at the back and at the front as far
-as the plug boots of cylinders 1 and 2 (S10). The owner replaces it with the
+as the plug boots of cylinders 3 and 4 (S10). The owner replaces it with the
 filler-neck breather in one job with the upper plenum gasket and a proper
 refit of the injectors, **three of which have not been fully home since
 23/9** (H3). Then, if the idle is unchanged, the garage for the exhaust.
@@ -374,7 +374,10 @@ photographed*, engine off, in the evening:
   below it: wet oily grime, not dried residue — **it leaks heavily there**;
 - **at the front, the plug side**: a wet line along the cover-to-head joint by
   the leads, and **a wet ring of oil around the plug boot at the head** on
-  cylinders 1 and 2 only;
+  cylinders 3 and 4 only — the two at the right-hand end as the owner stands
+  at the engine. *Corrected 28/9/2026:* this said 1 and 2 until then, because
+  the owner had counted from the right; cylinder 1 is at the timing-belt end
+  (`vcds.md`, *Cylinder numbering*);
 - **the filler-neck breather** (`06A 103 465`): its lower body is visibly
   oilier than the cover around it, so its seat or O-ring probably weeps too;
 - the breather hose to the intake looks sound from outside and was sprayed
@@ -639,7 +642,7 @@ full-load enrichment (*general*), for all four cylinders alike.
 | S10 ↔ S11 | **likely, not shown** | same place; the valve cover gasket leaks heavily at the back, above the manifold, and oil on a hot manifold smokes. The hiss, if real, is not oil |
 | S11 ↔ S2 | **possible** | an exhaust leak ahead of the probe both hisses and puffs. Never observed together |
 | S11 ↔ S6 | **possible** | if the hiss is exhaust, "never tight" reaches upstream of the probes too |
-| S10/S11 ↔ S1/S3 | **untested, not weak** | nothing measured so far *could* have shown a link, so "unknown" is no evidence against one. Oil outside the engine does not touch combustion; what can is the cause or a neighbour: a vacuum leak at the unsprayed rear hissing (H3/H9), the ventilation's oil fouling the throttle (H9 → H8), an exhaust leak ahead of the probe (H2), oil reaching a lead boot (H4, 1e) — seen on 26/9 at the boots of 1 and 2, but **not a cause**: the idle was as rough on 17/9 with new, clean leads (S10). The one existing datum that points this way: the idle is better under load, which is what a small unmetered leak does |
+| S10/S11 ↔ S1/S3 | **untested, not weak** | nothing measured so far *could* have shown a link, so "unknown" is no evidence against one. Oil outside the engine does not touch combustion; what can is the cause or a neighbour: a vacuum leak at the unsprayed rear hissing (H3/H9), the ventilation's oil fouling the throttle (H9 → H8), an exhaust leak ahead of the probe (H2), oil reaching a lead boot (H4, 1e) — seen on 26/9 at the boots of 3 and 4, but **not a cause**: the idle was as rough on 17/9 with new, clean leads (S10). The one existing datum that points this way: the idle is better under load, which is what a small unmetered leak does |
 | S12 ↔ S4 | **possible, untested** | the knock retard is a tip-in event and a retard is lost torque. Never aligned in time |
 | S12 ↔ S1/S3 | **possible, untested** | both start from the bottom of the load range; a lean or weak-spark cause would show in both |
 
@@ -927,10 +930,10 @@ electrical fix — a new battery — has in effect already been tried here.
 - **For:** with H1 the only candidate that could explain **both clusters**: a
   weak spark misfires at idle and high vacuum, and a noisy ground puts a
   signal into the knock channel that depends on engine speed. Cylinders 1 and
-  4 share one coil output (twin-spark coils, SSP 233 p. 5), and their old
-  plugs were the worse pair.
-- **Against:** the plug pair is better explained by the old coil. Nothing
-  here measures the ignition.
+  4 share one coil output (twin-spark coils, SSP 233 p. 5).
+- **Against:** nothing here measures the ignition. (The old plugs were once
+  cited here as "1 and 4 the worse pair"; they were never labelled, so which
+  plug was worst is not known — `refuted.md` A9.)
 
 **What the long Polish AQY thread actually says** (forum.vwgolf.pl, t=522030,
 twelve pages, 2013–2017; a forum, so leads, not sources). ⚠ An earlier
@@ -1652,7 +1655,7 @@ repair blogs; still nothing from VW.
   (paywalled to crawlers); its title matches, its outcome is not known.
 - **Reading.** No source found attributes a rough idle on an AQY to its
   valve cover gasket and reports it cured by the gasket. The one route that
-  fits this car — **oil on the boots of 1 and 2** — cannot be the cause
+  fits this car — **oil on the boots of 3 and 4** — cannot be the cause
   either: the idle was just as rough on 17/9 with new, clean plugs and leads
   (S10). **So the job is expected to cure S10 and S11's smoke and not
   expected to change S1.** If `IdleHealth` does improve clearly at a matched
@@ -1798,8 +1801,8 @@ all *general*:
    through the converter, but it does set a fault code to clear afterwards;
    keep each cut short.
 3. **Plug reading after a few hundred km on the new plugs**, with the
-   cylinder of each plug recorded this time. The old ones named 1 and 4, but
-   that pair is also the old coil's output.
+   cylinder of each plug recorded this time. The old ones were not labelled:
+   one was worst, and which cylinder it came from is not known.
 
 ---
 
