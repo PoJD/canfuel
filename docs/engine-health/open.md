@@ -449,10 +449,17 @@ What it settles and what it moves:
 
 - **The breather does sit on its own seal** (item 5), and the cap on
   another (item 2) — the question this paragraph used to leave open. The
-  oily lower body of the breather seen on 26/9 is item 5's seat. **Which of
-  the two the ordered Febi `100690` is, is not known** from the numbers
-  alone; compare it with both when the old ones come out, and if it is
-  item 2, item 5 is reused only if undamaged, as the manual allows.
+  oily lower body of the breather seen on 26/9 is item 5's seat. **The
+  ordered Febi `100690` is item 2**, the cap's: febi's own catalogue calls
+  it *"Gasket for oil filler cap"* (partsfinder.bilsteingroup.com, febi
+  `100690`, read 28/9/2026). A still from someone's replacement video,
+  found by the owner, shows the same seat — cap off, a yellowish flat ring
+  on the breather's top rim, round the cross-ribbed opening. **Whether the
+  new breather Febi `32452` comes with item 5 is not known**: febi's
+  catalogue page gives no scope of delivery, and its photograph shows only
+  the top of the part, black on black; the shop was asked (28/9, a public
+  holiday). Until the box is open, item 5 is reused if undamaged, as the
+  manual allows.
 - **"Turn clockwise to remove"** is the opposite of what a hand does by
   default, on a 26-year-old plastic housing. Worth knowing before the
   first attempt.

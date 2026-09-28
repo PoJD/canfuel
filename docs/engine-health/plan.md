@@ -54,9 +54,10 @@ if one is not in the box.
 3. **The timing mark**, while the front is open: cylinder 1 at TDC, the
    cam sprocket's mark against its reference, **by the manual** — a free
    look for a belt a tooth out.
-4. **The breather**: *turns clockwise to come off* (manual, item 3). Note
-   which seal Febi `100690` matches — the cap's (item 2) or the one under
-   the breather (item 5); item 5 is reused only if undamaged.
+4. **The breather**: *turns clockwise to come off* (manual, item 3). Febi
+   `100690` is the cap's seal (item 2, `open.md`). The seal under the
+   breather (item 5): new if one is in the `32452` box, otherwise the old
+   one is reused only if undamaged.
 5. **Clean off all the oil** — head, cover joint, plug area, injector area,
    the manifold below. Keep cleaner out of the open intake ports.
 6. **Plugs out, cylinders 3 and 4 first** (the oily boots, S10): photograph each plug's insulator
