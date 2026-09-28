@@ -838,6 +838,13 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
   to misfire one cylinder would still pull the trim positive through one
   sensor averaging four. **A large leak is refuted** (`refuted.md`);
   only a small one at one runner survives. It cannot produce S5.
+- **VW's own leak signs, checked 28/9/2026** (`vcds.md`, VW's manual):
+  idle air mass is 3.1–3.5 g/s against 2.0–5.0, where VW's sign of
+  unmetered air is *below 2.0*; 055's learnt value read −0.73 g/s on 11/9
+  against −1.50…1.50, and VW says a run-in engine sits negative. Neither
+  is near a limit, so both agree with "no large leak" and **neither can
+  see a small one**. The 055 reading also predates 23/9, so it says
+  nothing about the injector seats.
 
 **Tests:**
 
