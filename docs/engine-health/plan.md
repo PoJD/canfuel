@@ -53,9 +53,29 @@ Plus a new gasket for its flange if one is not in the box.
 2. **Under the cover — look, photograph:** no light-brown "mayonnaise" on
    the cam, the caps or the cover's underside. None: nothing to do. Any:
    `refuted.md` C13 reopens — say so before carrying on.
-3. **The timing mark**, while the front is open: cylinder 1 at TDC, the
-   cam sprocket's mark against its reference, **by the manual** — a free
-   look for a belt a tooth out.
+3. **The timing mark**, while the front is open — a free look for a belt
+   a tooth out. By VW's manual for this engine ([Removing](https://workshop-manuals.com/volkswagen/golf-mk4/engine/4-cyl._injection_engine_(2.0_ltr.)_mechanics/engine_cylinder_head_valve_gear/removing_and_installing_cylinder_head/removing_installing_and_tensioning_toothed_belt/removing/)
+   and [Installing](https://workshop-manuals.com/volkswagen/golf-mk4/engine/4-cyl._injection_engine_(2.0_ltr.)_mechanics/engine_cylinder_head_valve_gear/removing_and_installing_cylinder_head/removing_installing_and_tensioning_toothed_belt/installing/)
+   the toothed belt, figures A13-0077 and A13-0045). **Two marks, both
+   must line up at once:**
+   - **the camshaft** — the upper toothed-belt guard off (the manual
+     moves the coolant expansion tank and the power-steering reservoir
+     aside first, hoses left on, only if they are in the way): the mark
+     on the camshaft pulley against the arrow marked **OT** on the guard
+     behind it;
+   - **the crankshaft**, manual gearbox — the **inspection window in the
+     gearbox housing**: the mark on the flywheel against the pointer at
+     the window's edge.
+
+   *How to turn it without special tools* (*general practice, not from the
+   manual*): with the plugs out (step 6 — do this after them), a socket
+   and ratchet on the crankshaft pulley's centre bolt, **only in the
+   engine's running direction, never back**, slowly. The camshaft turns
+   once per two crank turns, so if the flywheel mark is in the window and
+   the cam mark is half a turn away, go round once more. **Both marks in
+   line: timing correct. Flywheel in line and the cam mark a tooth or
+   more off: the belt has jumped** — stop, photograph both, and nothing
+   further is done to the belt in this job.
 4. **The breather**: *turns clockwise to come off* (manual, item 3). Lay
    the old item 5 beside the second `100690`: if they match, the new one
    goes under the breather; if not, the one in the `32452` box if there is
