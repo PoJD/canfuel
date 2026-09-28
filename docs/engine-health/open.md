@@ -423,7 +423,9 @@ oil filler cap seal Febi `100690` (= `06A 103 483 D`); upper intake manifold
 gasket Elring `271.230` (= `06A 129 717`, the plenum has to come off for the
 cover); sealant Elring `030.793`, Dirko HT beige (= VW `D 176 404 A2`), a dab
 at the four points where the gasket's arches meet its straight runs. They go
-into `vehicle-history.md` once fitted.
+into `vehicle-history.md` once fitted. **Added 28/9/2026, ordered:** the
+throttle body Pierburg `7.03703.13.0` (= `06A 133 064 H`, H8) and a second
+`100690` for under the breather.
 
 **The exploded view, 27/9/2026** — the Bentley workshop manual for the
 Golf/Jetta, *Cylinder head and valvetrain (2.0 l engine)*, page 15c-5,
@@ -461,8 +463,9 @@ What it settles and what it moves:
   onto the breather's top by the same kind of bayonet**, so item 5 may well
   be the same ring as item 2 — *a second-hand claim (another AI model,
   relayed by the owner), not checked against a VW catalogue*. **Owner's
-  decision, 28/9/2026:** buy a second `100690` and a new filler cap, and
-  settle it at the bench — if the second ring matches the old item 5, it
+  decision, 28/9/2026:** buy a second `100690` (ordered; the filler cap
+  itself is kept — nothing in it to wear, never wet with oil), and settle
+  it at the bench — if the second ring matches the old item 5, it
   goes under the breather. **Whether the new breather Febi `32452` comes
   with item 5 anyway is not known**: febi's catalogue gives no scope of
   delivery and its photograph shows the part black on black; the shop was

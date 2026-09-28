@@ -34,17 +34,16 @@ accepted: an improvement cannot afterwards be put down to one part.
 **Parts** (ordered 27/9, `open.md` S10): valve cover gasket Elring
 `325.070`, breather Febi `32452`, filler seal Febi `100690`, upper plenum
 gasket Elring `271.230`, sealant Elring `030.793` (Dirko HT).
-**Added 28/9** (*owner's decision*): a second `100690` for under the
-breather (item 5, if it matches the old one — `open.md`) and a new oil
-filler cap, matched to the car by the shop's catalogue.
+**Added 28/9, ordered** (*owner's decision*): a second `100690` for under
+the breather (item 5, if it matches the old one — `open.md`). The oil
+filler cap is kept: nothing in it to wear, and it has never been wet with
+oil.
 
 **Added 28/9 — the throttle body, preventively** (*owner's decision*; the
-reasoning and what it costs are in `open.md` H8): a new `06A 133 064 H`
-equivalent, **not yet ordered**. It must cross-reference to `06A 133 064 H`
-itself — the variant **without cruise control**, 7-pin connector, which is
-what the car's own label says. Candidates: Pierburg `7.03703.13.0`, febi
-`107030`, Magneti Marelli `802000000086`. Plus a new gasket for its flange
-if one is not in the box.
+reasoning and what it costs are in `open.md` H8): Pierburg
+`7.03703.13.0`, **ordered 28/9** — cross-referenced to `06A 133 064 H`, the
+variant **without cruise control**, which is what the car's own label says.
+Plus a new gasket for its flange if one is not in the box.
 
 **Photograph before touching anything, and anything found.**
 
@@ -61,7 +60,7 @@ if one is not in the box.
    the old item 5 beside the second `100690`: if they match, the new one
    goes under the breather; if not, the one in the `32452` box if there is
    one, else the old one if undamaged. The first `100690` goes under the
-   new cap (item 2).
+   old cap (item 2).
 5. **Clean off all the oil** — head, cover joint, plug area, injector area,
    the manifold below. Keep cleaner out of the open intake ports.
 6. **Plugs out, cylinders 3 and 4 first** (the oily boots, S10): photograph each plug's insulator
