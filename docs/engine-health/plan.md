@@ -44,6 +44,29 @@ decision, 28/9/2026*).
 
 **Photograph before touching anything, and anything found.**
 
+**Torques — VW's figures for this engine** (VW's manual as transcribed on
+workshop-manuals.com: *Dismantling and assembling intake manifold – upper
+part / – lower part*, figures N24-0950 and N24-0949, and *Removing and
+installing parts of the ignition system*, *Test data, spark plugs*; the
+breather's nut from the Bentley view in `open.md` S10). **A small torque
+wrench** (*owner's decision*); the cover nuts stay by hand (S10).
+
+| joint | torque | VW's note |
+|---|---|---|
+| intake manifold upper part → lower part, bolts (item 5) | **10 Nm** | gasket (item 13) always new |
+| throttle body → upper part, bolts (item 5) — step 2 | **10 Nm** | gasket (item 9) always new |
+| throttle cable bracket (item 4) | 10 Nm | |
+| fuel rail → lower part (item 12) | **10 Nm** | injector O-rings renewed if damaged |
+| spark plugs (BKUR 6 ET-10, gap 0.9–1.1 mm) | **30 Nm** | |
+| ignition coil | 10 Nm | |
+| breather bracket nut (Bentley item 4) | 10 Nm | |
+
+The upper part does not come off whole (*owner's plan, 28/9/2026*): it is
+moved aside with most of its hoses at the back left on, as in the videos;
+only the front hose by the fuel rail, and perhaps one at the back, is
+undone. Tightening evenly and crosswise is general practice; VW gives no
+order for the upper part.
+
 **The work, in order:**
 
 1. **Plenum and cover off.**
@@ -232,7 +255,7 @@ one is not in the box.
    and check the level again after the first warm run** — air in the
    circuit is what that finds.
 1. **Photograph the old one's plate and bore** at the idle edge before it
-   comes off; swap it with a new flange gasket. **Keep the old one,
+   comes off; swap it with a new flange gasket, **bolts 10 Nm** (the table in step 1). **Keep the old one,
    labelled.**
 2. **Check the cable** — the lever on its idling stop at rest, full
    throttle reached at the quadrant with the pedal down (`open.md` H8,
