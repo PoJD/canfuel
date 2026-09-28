@@ -163,13 +163,40 @@ and **a run-in engine sits negative, a new one positive**, so −0.73 was
 normal for this engine and **only a change means anything**. *That the two
 fields add is reasoned from the labels and the unit, not from VW.*
 
-**Then:** whatever it shows, on to step 2. A clear leak signature here is
-put down to step 1 — no later step can take it.
+**`IdleHealth` over the five minutes decides what comes next** (*owner's
+decision, 28/9/2026*: the engine is to run with misfires as little as
+possible, so the old throttle gets a drive only if the idle has earned it).
+The cold-idle baseline, the same grade minute by minute off the three cold
+starts on record (`idledips.py --roughness --windows 60`, loads off,
+standing):
+
+| minute after the start | `18` (11/9) | `19` (24/9) | `24` (24/9, new MAF) |
+|---|---|---|---|
+| 1st | 71 | 64 | **47** |
+| 2nd | 67 | 55 | 68 |
+| 3rd | 71 | 89 | 76 |
+| 4th | 76 | 83 | 97 |
+| 5th | 88 | 84–95 | — |
+
+The grade climbs as the engine warms, to **76–97 by the 4th–5th minute**
+in every start; a single early minute has read 47. So:
+
+- **`IdleHealth` below 50 through all five minutes, the 4th and 5th
+  included** — never seen before the repair — **the idle has clearly
+  changed**: drive the car out with the old throttle and take test 2's
+  warm reading (70–72 °C of oil, 014 with detection `aktivováno`) before
+  step 2. That is the honest test of step 1 alone.
+- **Anything else** — the usual climb into the 70s–90s — go straight to
+  step 2 without driving; test 2 is then the first warm test.
+
+Either way, a clear leak signature in the table above is put down to
+step 1 — no later step can take it.
 
 ## Step 2 — the throttle body
 
-*Owner's decision, 28/9/2026:* done **after** test 1, whatever it showed
-— as the fix if the idle is still unsettled, as prevention if it is not.
+*Owner's decision, 28/9/2026:* done **after** test 1 (and after its warm
+drive, if test 1 earned one), whatever it showed — as the fix if the idle
+is still unsettled, as prevention if it is not.
 Kept apart from step 1 so that what test 1 shows belongs to step 1; it
 comes off with the engine assembled, and splitting it off also shortens
 step 1 if that does not fit in one session.
