@@ -35,6 +35,14 @@ accepted: an improvement cannot afterwards be put down to one part.
 `325.070`, breather Febi `32452`, filler seal Febi `100690`, upper plenum
 gasket Elring `271.230`, sealant Elring `030.793` (Dirko HT).
 
+**Added 28/9 — the throttle body, preventively** (*owner's decision*; the
+reasoning and what it costs are in `open.md` H8): a new `06A 133 064 H`
+equivalent, **not yet ordered**. It must cross-reference to `06A 133 064 H`
+itself — the variant **without cruise control**, 7-pin connector, which is
+what the car's own label says. Candidates: Pierburg `7.03703.13.0`, febi
+`107030`, Magneti Marelli `802000000086`. Plus a new gasket for its flange
+if one is not in the box.
+
 **Photograph before touching anything, and anything found.**
 
 **The work, in order:**
@@ -78,7 +86,13 @@ gasket Elring `271.230`, sealant Elring `030.793` (Dirko HT).
    arches meet the straight runs, **and at the joint of bearing cap 1 to
    the head**, which the manual insists on. **Cover nuts by hand, evenly,
    gasket lightly compressed** — no torque figure (owner's decision, S10).
-10. **New plenum gasket, plenum on, breather in, everything reconnected.**
+10. **The throttle body** (added 28/9): photograph the old one's plate and
+    bore at the idle edge before it comes off; swap it with a new flange
+    gasket; **check the cable afterwards** — the lever on its idling stop
+    at rest, full throttle reached at the quadrant with the pedal down
+    (`open.md` H8, *What VW's repair manual says*). **Keep the old one,
+    labelled** — it is the known part if the new one misbehaves.
+11. **New plenum gasket, plenum on, breather in, everything reconnected.**
 
 *Optional, only if it is quick while everything is open:* the four HT leads
 on ohms against each other; the four injector windings on ohms against
@@ -89,6 +103,12 @@ each other. Skip them freely.
 **Before starting:** ignition on for a few seconds, off, on again, two or
 three times, so the pump fills the rail; look and **smell** at every
 injector and the rail for fuel.
+
+**The throttle adaptation, before the first start** — the new J338 needs
+it, and this is the one case where VW's manual asks for it: basic setting
+**060** by the manual's procedure (`vcds.md`, *Basic settings*). Listen at
+ignition-on for the ~20 s of the throttle seeking its stops (`open.md` H8)
+— the new part should sound the same.
 
 **First start:** the rail was opened, so a long crank and a rough first
 seconds are expected — **the start's quality is ignored**. Then, briefly:
