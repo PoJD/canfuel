@@ -1083,6 +1083,12 @@ not necessarily every ground point). The ones on the engine's side:
 | **608** | plenum, left centre, forward of the ECM | engine-compartment wiring harness (the ECM's harness ground on that list) |
 | **609** | plenum, right, forward of the pollen filter | secondary air pump |
 
+⚠ **"Plenum" in this list is the plenum chamber** — the body's water tray
+under the windscreen base, where the ECM and the pollen filter sit — **not
+the intake plenum** (the upper intake manifold). The pollen filter in 609's
+row is what gives it away. An earlier revision of `plan.md` looked for 608
+on the intake plenum while it was off.
+
 The knock sensors do not use a chassis earth: they are screened pairs back to
 the ECM and bolted to the block (*general*). What matters for them is that the
 ECM's own ground and the engine block sit at the same potential — which is

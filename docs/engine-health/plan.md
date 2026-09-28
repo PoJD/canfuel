@@ -75,8 +75,12 @@ decision, 28/9/2026*).
      air in: the membrane, if it can be seen (torn, hardened, deformed);
      the body and its spigots (cracks); a vent hole by the membrane, if it
      has one (oil at it means something inside leaks). Photograph it;
-   - the ECM's harness earth on the plenum (ground 608 on the Golf/Jetta
-     list): eyelet tight and clean;
+   - the ECM's harness earth, ground 608 on the Golf/Jetta list: eyelet
+     tight and clean. ⚠ **Not on the intake plenum:** the list's
+     "plenum" is the **plenum chamber under the windscreen base** — the
+     body's water tray, where the ECM and the pollen filter sit — left
+     of centre, forward of the ECM (`open.md` H4, *Where the earths
+     are*). Look there, under its cover; it is independent of the job;
    - the bare stud beside the injector on the right: does something belong
      on it?
    Anything bad is fixed now; nothing is measured.
