@@ -150,3 +150,21 @@ have to agree.
 
 The CSV files are in `test/fixtures/vcds/`, described in
 `test/fixtures/README.md`.
+
+## VW's repair manual — where the specifications come from
+
+The VW specifications quoted in these documents are read from **VW's repair
+manual for this engine as transcribed on workshop-manuals.com** — free,
+public, HTML only, a third-party transcription rather than VW's own
+document, and so far consistent with this ECU field for field. The
+official source is VW's paid **erWin** portal. The pages used:
+
+- [Idling check](https://workshop-manuals.com/volkswagen/golf-mk4/power_unit/motronic_injection_and_ignition_system_(2.0_ltr._engine)/mixture_preparation_system_electronic_inj.gas/checking_functions/idling_check/)
+- [Evaluating measured value blocks, display groups 0…9](https://workshop-manuals.com/volkswagen/golf-mk4/power_unit/motronic_injection_and_ignition_system_(2.0_ltr._engine)/self_diagnosis_v.a.g_inspection_service/evaluating_measured_value_blocks_display_groups_0...9_-basic_functions-/)
+- [Evaluating measured value blocks, display groups 50…69](https://workshop-manuals.com/volkswagen/golf-mk4/power_unit/motronic_injection_and_ignition_system_(2.0_ltr._engine)/self_diagnosis_v.a.g_inspection_service/evaluating_measured_value_blocks_display_groups_50...69_-speed_regulation-/) — 055, 056, 060, 098
+- [Adapting engine control unit to throttle valve control part](https://workshop-manuals.com/volkswagen/golf-mk4/power_unit/motronic_injection_and_ignition_system_(2.0_ltr._engine)/mixture_preparation_system_electronic_inj.gas/engine_control_unit/adapting_engine_control_unit_to_throttle_valve_control_part/) — page 24-119
+- [Checking throttle valve control part](https://workshop-manuals.com/volkswagen/golf-mk4/power_unit/motronic_injection_and_ignition_system_(2.0_ltr._engine)/mixture_preparation_system_electronic_inj.gas/checking_components/checking_throttle_valve_control_part)
+- [Adjusting throttle cable](https://workshop-manuals.com/volkswagen/golf-mk4/engine/4-cyl._injection_engine_(2.0_ltr.)_mechanics/fuel_supply_gas_operation/accelerator_mechanism/adjusting_throttle_cable/)
+
+Every page has `<` / `>` links to the neighbouring chapters, which is the
+quickest way through the rest of the manual.
