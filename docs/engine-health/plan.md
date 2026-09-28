@@ -39,11 +39,8 @@ the breather (item 5, if it matches the old one — `open.md`). The oil
 filler cap is kept: nothing in it to wear, and it has never been wet with
 oil.
 
-**Added 28/9 — the throttle body, preventively** (*owner's decision*; the
-reasoning and what it costs are in `open.md` H8): Pierburg
-`7.03703.13.0`, **ordered 28/9** — cross-referenced to `06A 133 064 H`, the
-variant **without cruise control**, which is what the car's own label says.
-Plus a new gasket for its flange if one is not in the box.
+The throttle body is **not** part of this job — it is step 3 (*owner's
+decision, 28/9/2026*).
 
 **Photograph before touching anything, and anything found.**
 
@@ -87,13 +84,7 @@ Plus a new gasket for its flange if one is not in the box.
    arches meet the straight runs, **and at the joint of bearing cap 1 to
    the head**, which the manual insists on. **Cover nuts by hand, evenly,
    gasket lightly compressed** — no torque figure (owner's decision, S10).
-9. **The throttle body** (added 28/9): photograph the old one's plate and
-    bore at the idle edge before it comes off; swap it with a new flange
-    gasket; **check the cable afterwards** — the lever on its idling stop
-    at rest, full throttle reached at the quadrant with the pedal down
-    (`open.md` H8, *What VW's repair manual says*). **Keep the old one,
-    labelled** — it is the known part if the new one misbehaves.
-10. **New plenum gasket, plenum on, breather in, everything reconnected.**
+9. **New plenum gasket, plenum on, breather in, everything reconnected.**
 
 *Optional, only if it is quick while everything is open:* the four HT leads
 on ohms against each other; the four injector windings on ohms against
@@ -106,15 +97,15 @@ three times, so the pump fills the rail; look and **smell** at every
 injector and the rail for fuel.
 
 **The throttle adaptation, before the first start** — VW's manual asks
-for it after a new J338 **and after any battery disconnect**, and this job
-has both. **Basic setting, group 098** (VW's manual page 24-119,
+for it after any battery disconnect (and after a new J338, step 3). **Basic setting, group 098** (VW's manual page 24-119,
 `open.md` H8). Ignition on, engine not running, no stored faults,
 battery ≥ 11.5 V, all consumers off, pedal untouched; basic settings, 098,
 *ADP runs* — the positioner is driven to min, max and a few points
 between, **at most 10 s** — then *ADP OK*. Switch the ignition off to
-store it. **Then ignition on again and listen** for the 20–30 s routine
-the old part ran every time (`open.md` S13): silent means the old unit
-differed — a lead; still running means it is this part's normal.
+store it. **Then ignition on again and listen, stopwatch in hand**: does
+the old part still run its routine (`open.md` S13) after an adaptation that
+has certainly completed? The same check is repeated with the new part in
+step 3.
 
 **Before the job, with the old throttle still on:** ignition on, engine
 not started — **time the throttle's routine with a stopwatch and listen
@@ -151,8 +142,6 @@ logging. Engine off.
 
 - **air mass at idle up, and the plate up with it** → air that used to
   bypass the MAF now goes through it: a leak was sealed (H3/H9);
-- **air mass unchanged, only the plate different** → the new throttle and
-  its freshly learned stops, nothing more;
 - **055, read as the sum of fields 2 and 3** (the live regulator plus
   the learned adaptation): the whole air correction the idle is making.
   With the adaptation at zero after the battery, the regulator carries
@@ -186,16 +175,17 @@ it, the same way, after a few days of normal driving before calling it.
   first reading *and* on the repeat (VW's specification is 0…5; zero is the
   owner's bar), whatever `IdleHealth` reads, since no healthy target for it
   exists yet: record it, and read *What points at which repair* below off
-  data already taken. The loose ends in `open.md` then close at leisure.
+  data already taken. **The throttle was not the cause.** Step 3 is done
+  anyway, as prevention.
 - **Idle unchanged after the repeat — the expected outcome:** no further
   tests. Go to step 3.
 
 ### If the idle is fixed: what points at which repair
 
 *Owner's aim, 28/9/2026: indications, not proof — the repair came first.*
-Seven things changed at once (cover gasket, breather, filler seal, plenum
-gasket, injectors reseated, throttle body, plugs cleaned) plus every
-adaptation from zero, so nothing below is conclusive. But the repairs act
+Six things changed at once (cover gasket, breather, filler seal, plenum
+gasket, injectors reseated, plugs cleaned) plus every adaptation from
+zero — the throttle is kept apart, in step 3, for exactly this reason — so nothing below is conclusive. But the repairs act
 through **different mechanisms**, and most mechanisms leave their own mark
 in data this plan already takes. Read them together:
 
@@ -204,21 +194,51 @@ in data this plan already takes. Read them together:
 | **What the job found** — a torn breather membrane, a cracked hose, a nicked injector O-ring, a flattened plenum gasket, photographed in step 1 | the part it was found on. **The strongest sign there will be** |
 | **Idle air mass up** at the same idle (was 3.1–3.5 g/s, loads off, warm), **plate angle up with it**, **055's sum nearer zero** (was ≈ −0.8 g/s five minutes into a cold start) | a sealed unmetered leak: plenum gasket, breather, hoses, injector seats (H3/H9) |
 | the same, and **032's idle cell moving negative** after a few hundred km | the same, confirmed through the mixture |
-| air mass and 055 **unchanged**, only the plate angle different, and **S13 silent** after the adaptation | the throttle (H8) — the old unit differed |
-| **fixed from the first warm reading** | a mechanical change — a leak, a seat, the throttle |
-| **fixed only after days of driving** | adaptations settling (the fresh-adaptation readings of 23/9 and 24/9 were worse, `open.md` H8), or the throttle's adaptation completing |
+| **fixed from the first warm reading** | a mechanical change — a leak, a seat |
+| **fixed only after days of driving** | adaptations settling (the fresh-adaptation readings of 23/9 and 24/9 were worse, `open.md` H8) |
 | **better, but only to August's level** (`IdleHealth` 48 on 11/8) | the injector seats — they are only in play since 23/9, while the rough idle is older (S2, S3); anything clearly better than August is something older |
-
-**The one cheap way to go further — optional, the owner's call:** the old
-throttle is kept. Refitted for a day (15 minutes, adaptation 098), a
-returning fault would name it, and the new one goes back on. Of the parts
-changed it is the only one that can be put back without opening the engine
-again.
 
 Either way: a look along the new joints after the first warm run, and
 again after a few hundred km (the hand-tightened nuts).
 
-## Step 3 — the exhaust, at the garage
+## Step 3 — the throttle body, on its own
+
+*Owner's decision, 28/9/2026:* done **after** step 2's repeat reading,
+whatever it showed — as the fix if the idle is still unsettled, as
+prevention if it is not. Kept apart from step 1 so that its effect can be
+seen alone; it comes off with the engine assembled, and splitting it off
+also shortens step 1 if that does not fit in one session.
+
+**Part:** Pierburg `7.03703.13.0`, **ordered 28/9** — cross-referenced to
+`06A 133 064 H`, the variant **without cruise control**, which is what the
+car's own label says (`open.md` H8). Plus a new gasket for its flange if
+one is not in the box.
+
+1. **Photograph the old one's plate and bore** at the idle edge before it
+   comes off; swap it with a new flange gasket. **Keep the old one,
+   labelled.**
+2. **Check the cable** — the lever on its idling stop at rest, full
+   throttle reached at the quadrant with the pedal down (`open.md` H8,
+   *What VW's repair manual says*).
+3. **Adaptation 098** as in step 2, *ADP OK*, ignition off. **Ignition on
+   again, stopwatch: does the new part run the routine, how long, and is
+   there a click at the end?** (`open.md` S13)
+4. **The same readings as step 2** — a CAN capture, 014 + 003 + 055, and
+   the warm-idle reading at 70–72 °C of oil, repeated after a few days.
+
+**Then:**
+
+- **step 2 left the idle unsettled and this fixes it** (014 at zero,
+  first reading and repeat) → **the throttle was the cause**. The kept old
+  part allows one confirmation if wanted — optional, the owner's call:
+  refitted for a day (15 minutes, adaptation 098), a returning fault
+  names it beyond doubt, and the new one goes back on;
+- **still unsettled** → go to step 4; S13 is at least answered — whether
+  the new part runs the same routine;
+- **already fixed in step 2** → nothing to decide; S13 answered the same
+  way.
+
+## Step 4 — the exhaust, at the garage
 
 A repair visit, not a test visit (H2, S6, S11):
 
@@ -232,9 +252,9 @@ smoke-test the exhaust, whether they will put the smoke through the intake
 too (H3). Not required.
 
 Afterwards: `IdleHealth` at 70–72 °C against the band, as in step 2, with
-014 logging.
+014 logging. *Skipped if the idle is already fixed by then.*
 
-## Step 4 — decided by step 3's result
+## Step 5 — decided by step 4's result
 
 The same rule: **idle solved → stop and record; idle unchanged → the next
 repair from `open.md`'s ranked candidates**, chosen then, not now.
