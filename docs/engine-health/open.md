@@ -780,7 +780,7 @@ or late, intermittently, and gets worse as the oil thins. *General.*
    on the sender port. Low pressure starves the lifters at exactly that
    state.
 
-### H2. A leak ahead of the front lambda probe (exhaust manifold, flange, probe boss)
+### H2. A leak ahead of the front lambda probe (exhaust manifold, its joint to the head, probe boss)
 
 At idle the exhaust pulses dip below atmospheric and a crack draws air in;
 under load it only blows out. *General.* The front probe reads lean, the rear
@@ -791,8 +791,17 @@ loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
 | ~ | ✔ | ~ | ✘ | ✘ | — | ✔ |
 
 - **For:** the puff, idle only, an old manifold that has lived through years
-  of misfires, a new flange gasket, the rear probe on the rich side at hot
-  idle (0.665–0.725 V), the exhaust never having been tight.
+  of misfires, the rear probe on the rich side at hot idle
+  (0.665–0.725 V), the exhaust never having been tight.
+- **Where "ahead of the probe" is, 28/9/2026** (*owner-observed*): the
+  front probe sits **on the manifold itself**, and the pipe fitted on 10/9
+  starts at the manifold's outlet (`vehicle-history.md`). So the zone this
+  hypothesis is about is only the **original manifold, its gasket to the
+  head and the probe's boss** — all 26 years old. The outlet flange and its
+  new gasket are downstream of the front probe and outside it. (An earlier
+  revision counted the new flange gasket *for* this hypothesis.) It fits
+  the owner's account that the puff and the rough idle are both older
+  than the 10/9 exhaust work, as are August's 014 counts.
 - **Against:** air outside the cylinder does not stop a cylinder firing, and
   a few per cent rich does not normally misfire. A crack leaks most cold, but
   S1 peaks mid-temperature. The MAF swap halved S1, which an exhaust leak
