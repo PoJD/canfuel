@@ -212,7 +212,9 @@ it cannot be compared with anything.
 ### S2. An occasional puff from the exhaust
 
 *Owner-reported*, at idle, before the injectors and after them, before the MAF
-and after it. Not recorded, not timed, never aligned with anything. It did
+and after it. **Long-standing: already there before the 10/9 exhaust work**,
+like the rough idle (*owner-reported, 28/9/2026*). Not recorded, not timed,
+never aligned with anything. It did
 **not** coincide with misfire detection going `deaktiv.`.
 
 ### S3. Misfires counted by the ECU at idle
