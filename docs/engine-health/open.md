@@ -1558,6 +1558,17 @@ drawing of this car.
   that leaks **between the breather and the intake hose**, or in the hose
   itself, is air past the MAF, and a torn separator or valve in the filler
   neck opens the crankcase to it.
+- **Why that route is weak at idle** (*general*, reasoned from the layout,
+  27/9/2026). Ahead of the throttle the intake sits only a little below
+  atmospheric — what the filter and the MAF cost — and at idle, with the
+  least air flowing, that difference is at its smallest. A tear in the
+  breather's diaphragm or a crack in its hose is driven by that small
+  difference, not by manifold vacuum, so it passes little air exactly where
+  the idle is worst. It is not nothing: the idle was audibly slightly worse
+  with the filler cap off (test 3), so this engine does notice air entering
+  there. The diaphragm valve's job, as the catalogue describes the part, is
+  to **regulate** the crankcase's depression rather than to act as a
+  one-way valve; its internal layout was not read off a drawing.
 - **Blocked ventilation is the commonest cause of oil leaks on the sister
   AZJ**, and **a fouled throttle body the commonest cause of an unsettled
   idle** — mymotorlist.com's page for the AZJ (the AQY page lists ignition,
