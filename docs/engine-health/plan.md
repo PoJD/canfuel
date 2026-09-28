@@ -108,13 +108,14 @@ each other. Skip them freely.
 three times, so the pump fills the rail; look and **smell** at every
 injector and the rail for fuel.
 
-**The throttle adaptation, before the first start** — the new J338 needs
-it, and this is the one case where VW's manual asks for it. **Which
-group, 098 or 060, is settled off the label file first** (`open.md` H8,
-*Which basic-setting group adapts it*); 098 is the expected one. Key on,
-engine off, no stored faults, battery ≥ 11.5 V, pedal untouched, coolant
-5–95 °C; basic settings, the group, *ADP RUN*, about 30 s while the
-throttle is heard cycling, then *ADP OK*. Listen at ignition-on for the
+**The throttle adaptation, before the first start** — VW's manual asks
+for it after a new J338 **and after any battery disconnect**, and this job
+has both. **Basic setting, group 098** (VW's manual page 24-119,
+`open.md` H8). Ignition on, engine not running, no stored faults,
+battery ≥ 11.5 V, all consumers off, pedal untouched; basic settings, 098,
+*ADP runs* — the positioner is driven to min, max and a few points
+between, **at most 10 s** — then *ADP OK*. Switch the ignition off to
+store it. Listen at ignition-on for the
 ~20 s of the throttle seeking its stops (`open.md` H8) — the new part
 should sound the same.
 
@@ -156,10 +157,13 @@ logging. Engine off.
   start, falling to **−0.08 −0.73 = −0.8 g/s** five minutes in (coolant
   ~60 °C, oil ~17 °C). No warm-idle baseline exists, so **compare like
   with like: the first cold start after the job, the same first five
-  minutes.** Clearly nearer zero says less air was reaching the engine
-  unasked (a sealed leak); about the same says nothing changed there.
-  *That the two fields add, and what the sign means, is reasoned from the
-  labels and the unit, not from a VW document.*
+  minutes.** VW's manual (`vcds.md`): the regulator is specified
+  −2.00…2.00 g/s, the learnt value −1.50…1.50, and **a run-in engine sits
+  negative, a new one positive** (friction). So −0.73 is normal for this
+  engine's age and **the sign proves nothing; only a change does.**
+  Clearly nearer zero says less air was reaching the engine unasked (a
+  sealed leak); about the same says nothing changed there. *That the two
+  fields add is reasoned from the labels and the unit, not from VW.*
 - **032 is not read now.** The battery is out for the job, so every
   adaptation starts from zero; 032 is read once, after a few hundred km
   (`open.md` S9), and an idle cell moving *negative* would also say a leak

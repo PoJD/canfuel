@@ -1461,7 +1461,10 @@ variant the manual's pin numbers below refer to.
   throttle potentiometer **G69**, and the idle switch **F60**.
 - **Display group 060, warm idle** (coolant ≥ 85 °C): zone 1 *throttle
   valve angle at the idling stop* **0…6°**; zone 2 *throttle valve
-  positioner* **60…90 %**; zone 3 *Idling*. ⚠ On this ECU 060 is also a
+  positioner* **60…90 %**; zone 3 *Idling*. ⚠ The manual's own
+  measured-value tables (`vcds.md`) put the **60–90 % in group 098** and
+  give 060 the positioner as a voltage, so read the percentage in 098.
+  ⚠ On this ECU 060 is also a
   basic-setting block (`vcds.md`): read it under *measured values*, not
   under *basic settings*, which would start whatever routine the label
   file gives it. (An earlier revision said it runs the throttle
@@ -1506,8 +1509,13 @@ and the idle is being held by something else.
 
 **The throttle adaptation and the battery disconnects, 27/9/2026.** The web
 says the throttle adaptation (a VCDS basic setting) should be run after
-every battery disconnect; VW's manual, as transcribed, asks for it only
-when J338 is replaced. **It was run once, in 6/2026**, when the throttle was
+every battery disconnect, **and so does VW's manual** for this engine
+(pages 24-119 and the notes on groups 060 and 098, `vcds.md`) — the voltage
+supply interrupted, the throttle removed or renewed. (An earlier revision
+said the manual asked for it only on a new J338; that was read off one
+page and was wrong.) The same page adds that an interrupted adaptation
+stores fault **17973** and *"when next switching on ignition the basic
+setting is automatically performed again"*. **It was run once, in 6/2026**, when the throttle was
 cleaned (`vehicle-history.md`) — *owner-reported*, date within the summer
 not recorded — and never since. The battery has been off many times after
 it: **for more than a week in the summer, for the heater and dashboard
@@ -1525,6 +1533,10 @@ anyway: the converter, plugs, leads, injectors, MAF and every other
 adaptation changed between August and September.)
 
 **Which basic-setting group adapts it, 28/9/2026** (asked by the owner).
+**Settled by VW's manual for this engine: 098** (page 24-119, *Adapting
+engine control unit to throttle valve control part*; `vcds.md`), which
+also names 060 as adapting it. The reasoning below came first and is kept
+because it agreed.
 Ross-Tech's wiki, *Throttle Body Alignment (TBA)*, splits by hardware:
 **cable-throttle engines without an idle stabilisation valve use group
 098** (some SIMOS/Marelli ECUs 001), **drive-by-wire engines 060**. This

@@ -51,8 +51,29 @@ finding:**
   VW's repair manual (Golf Mk4, *Motronic injection and ignition system,
   2.0 ltr.*, as transcribed on workshop-manuals.com), which matches this ECU's
   groups field for field.
-- **The idle regulator, block 055, is −2.00 to +2.00 g/s**, its adaptation
-  −1.50 to +0.150 g/s, and the target idle in 056 is 780 rpm.
+- **The idle regulator, block 055, is −2.00 to +2.00 g/s**, its learnt
+  value **−1.50 to +1.50 g/s**, and the target idle in 056 is 780 rpm.
+  (An earlier revision gave the learnt value's top as +0.150, a
+  transcription slip.) VW's note on the learnt value: it is *"the amount
+  that the idling speed stabilisation has moved away from the prescribed
+  average. For a new engine the values lie in the positive range, because
+  of the higher friction and in the negative range with an engine that
+  has run-in."* Field 4's bits, left to right: A/C compressor on, gear
+  engaged, A/C switched on, not relevant. *Source for this and the next
+  three bullets: VW's repair manual for this engine, as transcribed on
+  workshop-manuals.com — Golf Mk4, Motronic (2.0 ltr. engine),
+  Evaluating measured value blocks, display groups 0…9 and 50…69, read
+  28/9/2026.*
+- **Idle air mass, block 002: 2.0–5.0 g/s**; below 2.0 is *"large amount
+  of unmetered air between intake manifold and air mass meter"*. Idle
+  injection period 2.0–5.5 ms, engine load 15–35 %.
+- **Block 003 at idle: ignition 0–12 ° BTDC, throttle angle 0–6°.**
+- **Blocks 060 and 098 both adapt the throttle** when run under basic
+  settings, ignition on, engine not running; the adaptation procedure
+  itself (page 24-119) uses **098**. Its zones: ADP state, operating
+  condition *Idling*, positioner sender G127 **60.0–90.0 %**, angle 0–6°.
+  060 shows the same but G127 as a voltage, 0.0–5.0 V. **VW asks for the
+  adaptation after a battery disconnect** as well as after a new J338.
 - **Intake air** is specified −45.0 to +108.5 °C.
 - **Idle speed**, every block that carries it: 740–820 rpm, target 780
   (050/056).
