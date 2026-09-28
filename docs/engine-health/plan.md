@@ -147,12 +147,19 @@ logging. Engine off.
   bypass the MAF now goes through it: a leak was sealed (H3/H9);
 - **air mass unchanged, only the plate different** → the new throttle and
   its freshly learned stops, nothing more;
-- **055's adaptation** read −0.73 g/s on 11/9, the idle having learned
-  to take air away. It restarts from zero with the battery out, so it is
-  compared **after the repeat below**, once learned again: nearer zero
-  says less air was reaching the engine unasked (a sealed leak);
-  about −0.7 again says nothing changed there. *The reading of the sign
-  is reasoned from the label and the unit, not from a VW document.*
+- **055, read as the sum of fields 2 and 3** (the live regulator plus
+  the learned adaptation): the whole air correction the idle is making.
+  With the adaptation at zero after the battery, the regulator carries
+  all of it, and as the adaptation learns the two trade places — **so the
+  sum compares from the first start**, with no wait. Baseline, 11/9, the
+  one 055 log (`vcds.md`): **−0.46 −0.73 = −1.2 g/s** just after the cold
+  start, falling to **−0.08 −0.73 = −0.8 g/s** five minutes in (coolant
+  ~60 °C, oil ~17 °C). No warm-idle baseline exists, so **compare like
+  with like: the first cold start after the job, the same first five
+  minutes.** Clearly nearer zero says less air was reaching the engine
+  unasked (a sealed leak); about the same says nothing changed there.
+  *That the two fields add, and what the sign means, is reasoned from the
+  labels and the unit, not from a VW document.*
 - **032 is not read now.** The battery is out for the job, so every
   adaptation starts from zero; 032 is read once, after a few hundred km
   (`open.md` S9), and an idle cell moving *negative* would also say a leak
