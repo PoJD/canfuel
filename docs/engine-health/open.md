@@ -1572,14 +1572,44 @@ whose fields are the adaptation's is the one to run.
 
 **What the throttle does at every ignition-on** (*owner-observed,
 27/9/2026*): it is heard working for **about 20 s** after the key is
-turned, and sounds like it is **seeking its stops**. That is consistent
-with the ECM relearning the actuator's end positions by itself each time
-(*an inference from the sound, not read in the manual*), which would make
-a manual adaptation after a disconnect unnecessary. A manual adaptation,
-then `IdleHealth` at 70–72 °C of oil against 57–100, stays a free test —
-not in the same step as the valve cover job — but it now tests little.
-**If that sound is ever absent or different**, it is worth noting: it is
-the one sign the actuator gives of its own health.
+turned, and sounds like it is **seeking its stops**. *Owner-observed,
+28/9/2026:* **at every ignition-on, not once after a disconnect**, for
+**20–30 s** when the ignition is left on, confirmed to come from the
+throttle; whether it also did so after the June manual adaptation is not
+remembered. Usually the engine is started straight away and the routine
+never finishes.
+
+**What VW's manual says against that** (page 24-119, *Adapting engine
+control unit to throttle valve control part*, and the fault table; the
+links are in `vcds.md`): the adaptation drives the positioner to min, max
+and a few points between and **takes at most 10 s**. If it is
+interrupted, fault **17973 / P1565 — "Throttle valve control part -J338
+lower stop not reached"** is stored and *"when next switching on ignition
+the basic setting is automatically performed again"*. Causes it lists:
+the plate not reaching its mechanical stop (oil deposits, a mis-adjusted
+cable), battery voltage too low, J338 or its wiring defective. Nothing in
+the manual describes a routine at *every* ignition-on on an adapted unit.
+(An earlier revision read the sound as normal self-relearning that made a
+manual adaptation unnecessary; that was an inference and the manual does
+not support it.)
+
+**So two readings, and the fault memory tells them apart:**
+
+- **a loop** — an adaptation that never completes, because the key goes
+  straight to *start* or because it fails, is retried at the next
+  ignition-on, for ever. With **17973 stored** this is it, and it would
+  mean the idle has been run on an unfinished adaptation;
+- **this unit's normal check** at every ignition-on, not described in the
+  manual — possible, and then no fault is stored.
+
+**How it closes, without running the engine:** read the engine's fault
+memory (VCDS, 01, fault codes) **before the job** with the old throttle
+still on, and write down what is there — 17973 in particular. Then, with
+the new part, the manual adaptation (098, *ADP OK*), ignition off, and at
+the next ignition-on listen: the routine should now not run, or run only
+briefly. **If it still runs 20–30 s every time with *ADP OK* and no
+fault, it is the unit's own behaviour.** Either way this is the one sign
+the actuator gives of its own health, and worth noting if it changes.
 
 **Reading: against H8 at the resolution there is.** A sensor glitch shorter
 than the 0.6 s between readings would not be seen; a worn track that made
