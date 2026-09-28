@@ -234,6 +234,15 @@ never aligned with anything. It did
   37 of 319 and 38 of 70 dips carry an increment.
 - **No fault code is stored.** The rate stays below whatever the ECU needs to
   set one.
+- **When the counts start after a cold start** (checked 28/9/2026, VCDS
+  014 aligned on engine speed to the captures). **11/9** (`18`, old
+  injectors): the first count **2 min** after the start at coolant 35 °C,
+  oil 13 °C, then steadily from ~4 min (coolant 56–64 °C). **24/9** (`19`,
+  the injectors fitted 23/9, old MAF): **3 min of cold idle with detection
+  active and no count at all** (coolant 12 → ~48 °C); the first count at
+  +584 s, coolant 90 °C, oil 43 °C, then many. The logs after the MAF
+  swap (`24`) begin warm and cannot say. So on the car as it now is, **a
+  cold idle without counts is not evidence of a fix.**
 
 **Three properties of the counter that must be kept in mind**, all measured
 on the 24/9 logs (`refuted.md` A11, A12): it moves in steps of 12; detection switches off below about 20 % load, which on

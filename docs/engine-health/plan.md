@@ -96,9 +96,12 @@ each other. Skip them freely.
 cold start at idle, standing, and the engine off again** — no drive, no
 warm-up. The full test waits for step 2.
 
-⚠ **What this test cannot show: the idle fault itself.** The misfires come
-at the *warm* idle; none were counted at the cold idles on record
-(`open.md` H8, *Checked against the logs already held*). What a cold start
+⚠ **What this test cannot show: the idle fault itself.** On the injectors
+fitted 23/9 the one cold start on record (`19`, 24/9) idled **three
+minutes cold with detection active and counted nothing**; the counts began
+at coolant 90 °C, oil 43 °C (`open.md` S3, *When the counts start after a
+cold start*). **So a quiet 014 in the garden is not a fix.** (The 11/9
+cold start, on the old injectors, did count from two minutes in.) What a cold start
 *can* show is **whether a leak was sealed**, because the leak signs have a
 cold-start baseline — and a sealed leak is the mechanism behind most of
 step 1.
@@ -196,23 +199,28 @@ one is not in the box.
    **70–72 °C of oil, loads off**, a minute or two of `IdleHealth` against
    the band **57–100** (`open.md` S1), with 014 + 003 + 055 logging.
    Engine off.
-4. ⚠ **Repeat it after a few days of normal driving.** Fresh adaptations
-   have read worse before: 146 and 117 straight after the 23/9
-   disconnect, 84 after 24/9's, 57–100 once settled (`open.md` H8, *The
-   throttle adaptation and the battery disconnects*). A first reading
-   inside or above the band does not yet say "unchanged".
+4. **No repeat after days of driving if steps 1 and 2 and both tests fit
+   in one day** (*owner's decision, 28/9/2026*): the reading of that day
+   decides. Known and accepted: fresh adaptations have read worse before —
+   146 and 117 straight after the 23/9 disconnect, 84 after 24/9's, 57–100
+   once settled (`open.md` H8, *The throttle adaptation and the battery
+   disconnects*) — so a same-day reading can err towards "unchanged",
+   never towards "fixed".
 5. **032 after a few hundred km** (`open.md` S9): an idle cell moving
    *negative* would also say a leak was sealed.
 
 **Then:**
 
-- **Idle fixed** — **014 at zero** through the warm-idle reading, on the
-  first reading *and* on the repeat (VW's specification is 0…5; zero is
-  the owner's bar), whatever `IdleHealth` reads, since no healthy target
-  for it exists yet: record it and read *What points at which repair*
-  below. The loose ends in `open.md` then close at leisure.
-- **Idle unchanged after the repeat — the expected outcome:** go to
-  step 3. S13 is at least answered.
+- **Idle fixed** — **014 at zero** through the warm-idle reading (VW's
+  specification is 0…5; zero is the owner's bar) **with detection showing
+  `aktivováno` throughout** — the ECU switches it off below about 20 %
+  load, which on the new MAF is right at the hot-idle load (`open.md` S3),
+  and a zero with detection off says nothing. Whatever `IdleHealth` reads,
+  since no healthy target for it exists yet. Record it and read *What
+  points at which repair* below. The loose ends in `open.md` then close at
+  leisure.
+- **Idle unchanged — the expected outcome:** go to step 3. S13 is at
+  least answered.
 
 Either way: a look along the new joints after the first warm run, and
 again after a few hundred km (the hand-tightened nuts).
