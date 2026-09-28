@@ -259,8 +259,13 @@ one is not in the box.
    and check the level again after the first warm run** — air in the
    circuit is what that finds.
 1. **Photograph the old one's plate and bore** at the idle edge before it
-   comes off; swap it with a new flange gasket, **bolts 10 Nm** (the table in step 1). **Keep the old one,
-   labelled.**
+   comes off. **Then both flange faces and the old gasket** — the
+   throttle's and the plenum's — above all the **hard protrusion at the
+   lower left of the throttle's face** seen in the June photograph
+   (`open.md` H8), and whether the old gasket shows a gap or a dent
+   there. Clean the plenum's face flat; nothing may stand proud of it.
+   Swap with a new flange gasket, **bolts 10 Nm** (the table in step 1).
+   **Keep the old one, labelled.**
 2. **Check the cable** — the lever on its idling stop at rest, full
    throttle reached at the quadrant with the pedal down (`open.md` H8,
    *What VW's repair manual says*).

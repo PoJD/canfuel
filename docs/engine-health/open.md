@@ -1485,6 +1485,26 @@ S1 shows that the idle is sensitive to how air is metered and controlled.
 clean, given a new gasket and adapted (`vehicle-history.md`), and the idle
 fault outlived it.
 
+**A hard protrusion on the throttle's flange face, from the owner's
+photograph of 23/6/2026** (the June cleaning; found in the photos on
+28/9/2026): at the **lower left of the throttle body's mating face**, a
+small raised point that stayed after the face was cleaned — *"suspiciously
+hard"*, like baked-on remains of the original gasket or a flaw in the
+casting (*owner-observed*). **If it held the new June gasket off the face,
+air could pass round the gasket into the plenum — behind the plate, so
+unmetered**: a small leak of exactly H3's kind, present since June and
+possibly before. Weighed honestly: one point on a soft gasket may seal
+anyway, and the photograph cannot show whether it did. The phone
+screenshot is not kept here; **proper photographs come when the throttle
+is off in `plan.md` step 2**, of both faces.
+
+⚠ **What it does to step 2's reading:** the swap now changes two things —
+the throttle *and* this joint (a new part's clean face, a new gasket). So
+an idle fixed only by step 2 names **the throttle or its flange**, not the
+throttle alone. The air-against-angle curve can separate them: a sealed
+flange leak moves the idle **along** the curve (more air through the MAF,
+the plate further open), a different throttle moves the curve itself.
+
 **Test:** look into the throttle body again; clean it if dirty and run the
 throttle adaptation (VCDS basic setting). Compare `IdleHealth` at the same oil
 temperature. Cheap, but it is last on the list because the shape of the dip
@@ -2197,7 +2217,7 @@ stands; what moved is recorded in the rows.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| 1 | **H3/H9 — a small unmetered leak**: **three injectors not fully home since 23/9** (H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) | the valve cover job itself, which replaces the upper plenum gasket and the breather — an improvement afterwards answers it; if none, a **smoke test of the intake** (below) |
+| 1 | **H3/H9 — a small unmetered leak**: **three injectors not fully home since 23/9** (H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose; **and the throttle's flange**, where a hard protrusion on the old face may have kept the June gasket off (H8, 28/9) | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) | the valve cover job itself, which replaces the upper plenum gasket and the breather — an improvement afterwards answers it; if none, a **smoke test of the intake** (below) |
 | 2 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 | a healthy AQY recorded (H0 test 1) |
 | 3 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: worst at mid temperature, not hot; A5 | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
 | 4 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero | a **fuel pressure gauge** |
