@@ -1605,6 +1605,35 @@ original throttle — `18` (coolant 16.5 °C), `19` (12.0 °C), `24`
   transcription gives only the warm 740…820 rpm. So nothing says ~950 is
   wrong for this ECU.
 
+**The plate angle across every VCDS log with 003, 28/9/2026** — steady
+warm idle only (740–900 rpm for five readings running), split by air
+mass because the A/C adds about 1 g/s:
+
+| log | date | MAF | air ≈ 3.1–3.5 g/s | air ≥ 3.6 g/s |
+|---|---|---|---|---|
+| `vcds-01-002-003` | 11/8 | 2018 | **2.6–3.0°** (3.40 g/s) | 4.3–6.1° (4.31) |
+| `vcds-ride-002-003` | 11/8 | 2018 | **2.6–3.0°** (3.26) | 3.0–4.3° (3.68) |
+| `vcds-postfix-drive-003-014` | 24/9 | 2018 | **1.7–2.2°** (3.47) | 1.7–3.5° (4.37) |
+| `vcds-neutral-026-003` (+ `-clamp`) | 25/9 | new | **1.7–2.6°** (3.22–3.26) | — |
+| `vcds-knock-020-026-003` | 25/9 | new | **1.3–2.2°** (3.12) | 2.6–3.0° (3.79) |
+
+(10th–90th percentile; the display steps by 0.4–0.5°.) The cold plateau
+of `19` reads 7.8 → 5.2°, and full throttle reaches **85.1–85.5°** in every
+log that has it (`refuted.md` C7). Outside idle the angle follows the
+pedal.
+
+- **For the same metered air, the plate stands about 0.8° lower in
+  September than in August.** The MAF is the same 2018 unit on 11/8 and
+  24/9, so this is not the sensor swap. Between the two dates the
+  converter, the injectors, the plugs and leads all changed, and the
+  battery was disconnected several times. Every disconnect means the ECU
+  learns the throttle's stops again, and the angle is read against them.
+  **Which of these it is cannot be told**, and it is recorded rather than
+  argued: the step is two display counts, and nothing else in it points
+  at the throttle. It is not listed as a symptom.
+- **The new part's warm-idle baseline is therefore 1.3–2.6° at about
+  3.1–3.5 g/s**, loads off, from the September logs.
+
 **What the swap is compared on:** the first cold start after it should
 show the same plateau height, the same ~95–100 s and a similar plate angle.
 A different height or length would be the ECU choosing differently, which
