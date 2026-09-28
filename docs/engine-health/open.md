@@ -1569,6 +1569,30 @@ drawing of this car.
   there. The diaphragm valve's job, as the catalogue describes the part, is
   to **regulate** the crankcase's depression rather than to act as a
   one-way valve; its internal layout was not read off a drawing.
+- **Febi's own leaflet, 28/9/2026** — *Control of Crankcase Emissions*,
+  Ferdinand Bilstein GmbH + Co. KG, found by the owner at the breather he
+  bought (Febi `32452`). General, not about `06A 103 465`, and written to
+  sell parts. It gives **a ruptured rubber membrane and blocked or split
+  hoses as the typical defects**, with *"high oil consumption, burning oil,
+  loss of power, misfiring, and high carbon deposits"*; early signs
+  *"whistling noises from the intake, blueish smoke in the exhaust, high oil
+  consumption, and thick white or yellow residue under the oil cap"*. Its VW
+  example — 1.8/2.0 FSI/TFSI, a valve on the cover **connected directly to
+  the intake manifold** — adds *"engine idle speed to fluctuate and stall,
+  whistling noises from the engine at idle speed"* when the membrane splits.
+
+  **Against this car:** idle fluctuation and misfires, yes. Everything else
+  on the list, no — oil not topped up over ~700 km and still at the upper
+  mark (`vehicle-history.md`), the cap's underside clean (`refuted.md`
+  C13), no whistle reported, the smoke at the back explained as the cover
+  leak's oil (S11). And the leaflet's mechanism is manifold vacuum on a
+  torn membrane: had that been the case here, the crankcase would sit under
+  that vacuum and **the filler cap would suck** — test 3 found none. So the
+  leaflet raises nothing test 3 did not already weigh. **The one thing it
+  makes worth checking** is where this car's breather hose really joins
+  the intake — ahead of the throttle, as the catalogues say, or on the
+  manifold like its FSI example. That is read off the car during the job
+  (`plan.md`, step 1).
 - **Blocked ventilation is the commonest cause of oil leaks on the sister
   AZJ**, and **a fouled throttle body the commonest cause of an unsettled
   idle** — mymotorlist.com's page for the AZJ (the AQY page lists ignition,

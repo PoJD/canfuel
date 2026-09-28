@@ -64,6 +64,11 @@ gasket Elring `271.230`, sealant Elring `030.793` (Dirko HT).
    - the injector wiring under its sleeving and the four connectors;
    - the hoses at the back: brake-servo line, the old secondary-air vacuum
      line, the breather hose and its `N79` tee — cracked, hard, oily;
+   - **where the breather hose joins the intake**: ahead of the throttle
+     (the intake hose after the MAF) or on the manifold behind it —
+     photograph the joint (`open.md` H9, Febi's leaflet);
+   - the old breather: a split in its membrane or its body, if it can be
+     seen (H9);
    - the ECM's harness earth on the plenum (ground 608 on the Golf/Jetta
      list): eyelet tight and clean;
    - the bare stud beside the injector on the right: does something belong
