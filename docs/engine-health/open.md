@@ -1922,11 +1922,13 @@ sprocket a tooth off makes an engine idle roughly and shake slightly
 (*general*, repeated in the AQY timing-belt threads). This car's belt and
 water pump are from **10/2017** (`vehicle-history.md`). Against it:
 compression is even (A4) and the engine reaches its rated torque plateau
-(C11), where a retarded cam costs most. For it: nothing specific. **It is a
-free look during the valve cover job** — with the upper belt guard off, at
-TDC of cylinder 1, the cam sprocket's mark against its reference, **by the
-manual for this engine** (not written here until it is read there). Weak;
-listed because it costs nothing on that day.
+(C11), where a retarded cam costs most. For it: nothing specific.
+**Not checked in the valve cover job — the owner's decision, 28/9/2026:**
+weak, and it is not free after all. VW's manual for this engine checks
+the cam pulley's mark against *OT* on the belt guard and the flywheel's in
+the gearbox window, together (*Removing, installing and tensioning toothed
+belt*, `vcds.md`'s source), which means the upper guard off and the
+engine turned by hand. Left here should the ranked list ever reach it.
 
 ## Naming the cylinder — the missing measurement
 
@@ -2010,7 +2012,7 @@ halved the dips, S9). Re-rank after every test.
 | 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | **replaced in the valve cover job** (owner's decision, 28/9; `plan.md` step 1) — answered with the rest of it |
 | 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V | a look while the plenum is off (`plan.md`, step 1); H7 test 3 for the injector side |
 | 7 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss. Against: air outside the cylinder does not stop it firing | a smoke test **of the exhaust** |
-| 8 | **the timing belt a tooth out** | free to look at. Against: the torque plateau is reached | the mark, during the valve cover job |
+| 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
 
 **Tools worth owning for this, cheapest first** (*general*; prices not
 recorded here, since they move):
