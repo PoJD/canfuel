@@ -1570,6 +1570,16 @@ drawing of this car.
   there. The diaphragm valve's job, as the catalogue describes the part, is
   to **regulate** the crankcase's depression rather than to act as a
   one-way valve; its internal layout was not read off a drawing.
+- **Why a healthy breather adds no unmetered air, and a torn one does**
+  (*general*; the owner's question, 28/9/2026). What a healthy system
+  carries is **blow-by**: charge that the MAF already measured on its way
+  into the cylinders and that leaked past the rings — mostly burnt gas,
+  little oxygen, a small and steady flow the ECM's calibration already
+  lives with. A closed crankcase has no other inlet. A torn diaphragm (a
+  regulator diaphragm usually has outside air on its far side), a split
+  hose or a leaking seal **opens that closed path to the outside**, and
+  outside air never passed the MAF. The filler cap off (test 3) is exactly
+  that fault made on purpose — and the idle got slightly worse.
 - **Febi's own leaflet, 28/9/2026** — *Control of Crankcase Emissions*,
   Ferdinand Bilstein GmbH + Co. KG, found by the owner at the breather he
   bought (Febi `32452`). General, not about `06A 103 465`, and written to
