@@ -112,9 +112,9 @@ has both. **Basic setting, group 098** (VW's manual page 24-119,
 battery ≥ 11.5 V, all consumers off, pedal untouched; basic settings, 098,
 *ADP runs* — the positioner is driven to min, max and a few points
 between, **at most 10 s** — then *ADP OK*. Switch the ignition off to
-store it. **Then, at the next ignition-on, listen** for the 20–30 s
-routine the old part ran every time (`open.md` H8, *What VW's manual
-says against that*): after a completed adaptation it should not repeat.
+store it. **Then ignition on again and listen** for the 20–30 s routine
+the old part ran every time (`open.md` S13): silent means the old unit
+differed — a lead; still running means it is this part's normal.
 
 **Before the job, with the old throttle still on:** read and note the
 engine's fault memory (VCDS, 01, fault codes) — in particular **17973 /

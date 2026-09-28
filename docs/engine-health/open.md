@@ -609,6 +609,30 @@ ten times, with a passenger pressing VCDS's log marker at each one that
 marked and unmarked tip-ins are then compared with each other, which needs
 no healthy car.
 
+### S13. The throttle runs its routine at every ignition-on
+
+*Owner-reported, 28/9/2026; added as a symptom at the owner's decision.*
+With the ignition left on and the engine not started, the throttle is
+heard working for **20–30 s**, like seeking its stops — **at every
+ignition-on**, not once after a disconnect; confirmed to come from the
+throttle. Usually the engine is started straight away and the routine is
+cut short. **The engine's fault memory is empty, and 17973 has never been
+seen.** Whether it also did this after the June manual adaptation is not
+remembered.
+
+**Why it is a symptom:** VW's manual for this engine gives the adaptation
+at most 10 s and repeats it at ignition-on only after an interrupted one,
+storing 17973 / P1565 (H8, *What VW's manual says against that*). A
+routine at every ignition-on is therefore either an adaptation that never
+completes — the idle then running on unfinished values, which touches S1
+— or this unit's own check, which the manual does not describe.
+
+**How it closes** (`plan.md` step 2): after the job, the manual
+adaptation with the new part (098, *ADP OK*), ignition off, **ignition on
+again and listen**. **Silent → the old unit differed**, and S13 becomes a
+lead on the old throttle (H8) rather than on the car. **Still 20–30 s →**
+it is how this part behaves, and S13 closes as normal.
+
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** Whether 0x420's `OilTemp` is right is a firmware
@@ -664,6 +688,7 @@ full-load enrichment (*general*), for all four cylinders alike.
 | S10/S11 ↔ S1/S3 | **untested, not weak** | nothing measured so far *could* have shown a link, so "unknown" is no evidence against one. Oil outside the engine does not touch combustion; what can is the cause or a neighbour: a vacuum leak at the unsprayed rear hissing (H3/H9), the ventilation's oil fouling the throttle (H9 → H8), an exhaust leak ahead of the probe (H2), oil reaching a lead boot (H4, 1e) — seen on 26/9 at the boots of 3 and 4, but **not a cause**: the idle was as rough on 17/9 with new, clean leads (S10). The one existing datum that points this way: the idle is better under load, which is what a small unmetered leak does |
 | S12 ↔ S4 | **possible, untested** | the knock retard is a tip-in event and a retard is lost torque. Never aligned in time |
 | S12 ↔ S1/S3 | **possible, untested** | both start from the bottom of the load range; a lean or weak-spark cause would show in both |
+| S13 ↔ S1 | **possible, untested** | an adaptation that never completes leaves the idle control on unfinished values (H8). Answered by the new part's adaptation |
 
 **So there are two separate clusters**, and they are worked separately below:
 **the idle** (S1, S2, S3) and **the cylinder 4 window** (S4, S5). S6 matters
