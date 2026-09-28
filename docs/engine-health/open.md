@@ -1089,6 +1089,19 @@ the intake plenum** (the upper intake manifold). The pollen filter in 609's
 row is what gives it away. An earlier revision of `plan.md` looked for 608
 on the intake plenum while it was off.
 
+**This engine's own current-flow diagram, 28/9/2026** (VW's Golf 2003
+diagrams for the 2.0 l / 85 kW Motronic, AQY, as transcribed on
+portal-diagnostov.com; the drawings themselves are behind a login, only
+the legends were read): **608 is "Earth point, in centre of plenum
+chamber"**, and the ECM J220 is "in centre plenum chamber" — so 608 sits
+by the ECM in the middle of the water tray, not left of centre as the US
+list has it. The ignition page's legend (N152, the coil pack) **names no
+earth point**, so where this car's coil is earthed — ground 15 on the head
+in the US list — is still not confirmed for the AQY. *Practical, general
+VW convention:* earth wires are **brown**; following the brown wire out of
+the coil's connector finds its earth, and following the battery's negative
+cable finds ground 2.
+
 The knock sensors do not use a chassis earth: they are screened pairs back to
 the ECM and bolted to the block (*general*). What matters for them is that the
 ECM's own ground and the engine block sit at the same potential — which is
