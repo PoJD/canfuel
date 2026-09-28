@@ -1789,6 +1789,35 @@ pedal.
 - **The new part's warm-idle baseline is therefore 1.3–2.6° at about
   3.1–3.5 g/s**, loads off, from the September logs.
 
+**The lowest idle air and plate angle ever logged, 28/9/2026** — every
+VCDS log with 002 or 003, steady idle 700–900 rpm (asked by the owner,
+against VW's limits: idle air 2.0–5.0 g/s with *below 2.0* named as a large
+unmetered leak; plate 0–6°, `vcds.md`):
+
+| log | date | MAF | lowest idle air | plate there | lowest plate |
+|---|---|---|---|---|---|
+| `vcds-01-002-003` | 11/8 | 2018 | 3.19–3.26 g/s | 2.6° | 2.6° |
+| `vcds-ride-002-003` | 11/8 | 2018 | 3.12 g/s | 2.6° | 2.6° |
+| `vcds-postfix-drive-003-014` | 24/9 | 2018 | 2.92 g/s | 0.9° | 0.9° |
+| `vcds-mafswap-002-032` | 24/9 | new | **2.57 g/s** (load 19.1 %) | *003 not logged* | — |
+| `vcds-mafswap-002-014` | 24/9 | new | 2.71 g/s (load 19.5 %) | — | — |
+| `vcds-neutral-026-003` (+ `-clamp`) | 25/9 | new | 3.06 g/s | 2.2° | 1.7° |
+| `vcds-knock-020-026-003` | 25/9 | new | **2.64 g/s** | **0.9°** | 0.9° |
+
+- **Never near VW's leak mark**: the lowest air ever is 2.57 g/s against
+  2.0. The lowest plate, 0.9°, is at the bottom of 0–6° but inside it.
+- **Both fell between August and September.** For the air, part of it is
+  the sensor — the 2018 MAF over-read (`refuted.md` C2). For the plate it
+  is not: 0.9° is already there on 24/9 **on the 2018 MAF**.
+- **A lower plate for the same idle means less air is needed through the
+  plate.** Either the engine burns better (new plugs, leads, injectors) or
+  air arrives past it (a leak behind the throttle). These two quantities
+  cannot tell which; **the air and the plate rising together after the
+  job** can (`plan.md`, test 1).
+- **On the new MAF the idle load is 19–20 %**, right at the ~20 % below
+  which the ECU switches misfire detection off (S3) — why a zero in 014 at
+  a warm idle counts only with detection `aktivováno`.
+
 **What the swap is compared on:** the first cold start after it should
 show the same plateau height, the same ~95–100 s and a similar plate angle.
 A different height or length would be the ECU choosing differently, which
