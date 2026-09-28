@@ -34,6 +34,9 @@ accepted: an improvement cannot afterwards be put down to one part.
 **Parts** (ordered 27/9, `open.md` S10): valve cover gasket Elring
 `325.070`, breather Febi `32452`, filler seal Febi `100690`, upper plenum
 gasket Elring `271.230`, sealant Elring `030.793` (Dirko HT).
+**Added 28/9** (*owner's decision*): a second `100690` for under the
+breather (item 5, if it matches the old one — `open.md`) and a new oil
+filler cap, matched to the car by the shop's catalogue.
 
 **Added 28/9 — the throttle body, preventively** (*owner's decision*; the
 reasoning and what it costs are in `open.md` H8): a new `06A 133 064 H`
@@ -54,10 +57,11 @@ if one is not in the box.
 3. **The timing mark**, while the front is open: cylinder 1 at TDC, the
    cam sprocket's mark against its reference, **by the manual** — a free
    look for a belt a tooth out.
-4. **The breather**: *turns clockwise to come off* (manual, item 3). Febi
-   `100690` is the cap's seal (item 2, `open.md`). The seal under the
-   breather (item 5): new if one is in the `32452` box, otherwise the old
-   one is reused only if undamaged.
+4. **The breather**: *turns clockwise to come off* (manual, item 3). Lay
+   the old item 5 beside the second `100690`: if they match, the new one
+   goes under the breather; if not, the one in the `32452` box if there is
+   one, else the old one if undamaged. The first `100690` goes under the
+   new cap (item 2).
 5. **Clean off all the oil** — head, cover joint, plug area, injector area,
    the manifold below. Keep cleaner out of the open intake ports.
 6. **Plugs out, cylinders 3 and 4 first** (the oily boots, S10): photograph each plug's insulator

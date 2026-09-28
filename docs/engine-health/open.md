@@ -453,13 +453,20 @@ What it settles and what it moves:
   ordered Febi `100690` is item 2**, the cap's: febi's own catalogue calls
   it *"Gasket for oil filler cap"* (partsfinder.bilsteingroup.com, febi
   `100690`, read 28/9/2026). A still from someone's replacement video,
-  found by the owner, shows the same seat — cap off, a yellowish flat ring
-  on the breather's top rim, round the cross-ribbed opening. **Whether the
-  new breather Febi `32452` comes with item 5 is not known**: febi's
-  catalogue page gives no scope of delivery, and its photograph shows only
-  the top of the part, black on black; the shop was asked (28/9, a public
-  holiday). Until the box is open, item 5 is reused if undamaged, as the
-  manual allows.
+  found by the owner, shows **the breather's underside, turned over** — the
+  cross-ribbed bayonet that locks it into the cover, with a yellowish flat
+  ring round it: item 5. (An earlier revision of this paragraph read the
+  same still as the breather's top with the cap off; the owner corrected
+  it — there is no cap opening there, only the bayonet.) **The cap locks
+  onto the breather's top by the same kind of bayonet**, so item 5 may well
+  be the same ring as item 2 — *a second-hand claim (another AI model,
+  relayed by the owner), not checked against a VW catalogue*. **Owner's
+  decision, 28/9/2026:** buy a second `100690` and a new filler cap, and
+  settle it at the bench — if the second ring matches the old item 5, it
+  goes under the breather. **Whether the new breather Febi `32452` comes
+  with item 5 anyway is not known**: febi's catalogue gives no scope of
+  delivery and its photograph shows the part black on black; the shop was
+  asked (28/9, a public holiday).
 - **"Turn clockwise to remove"** is the opposite of what a hand does by
   default, on a 26-year-old plastic housing. Worth knowing before the
   first attempt.
