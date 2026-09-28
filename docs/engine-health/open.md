@@ -62,8 +62,8 @@ found — the valve cover gasket**, heavily at the back and at the front as far
 as the plug boots of cylinders 3 and 4 (S10). The owner replaces it with the
 filler-neck breather in one job with the upper plenum gasket and a proper
 refit of the injectors, **three of which have not been fully home since
-23/9** (H3). Then, if the idle is unchanged, the garage for the exhaust.
-**The order is `plan.md`.**
+23/9** (H3). Then the throttle body on its own (28/9, H8), then, if the
+idle is unchanged, the garage for the exhaust. **The order is `plan.md`.**
 
 ---
 
@@ -743,15 +743,24 @@ own job; whether it joins the idle cluster is exactly what H2 and H9 ask.
 Each one lists what it explains, what speaks against it, and the test that
 settles it. ✔ fits, ~ fits weakly, ✘ does not fit, — says nothing.
 
+**The columns are the open symptoms that bear on the engine.** Left out,
+each for a stated reason: **S6** (the exhaust's joint behind both probes —
+acoustic; the part of it that matters is H2's), **S7** (closed), **S8**
+(probably not a fault), **S9** (fixed by the MAF, one confirming read
+owed). S12 and S13 were added on 28/9/2026: **S12**, the tip-in
+hesitation, fits a lean tip-in (H3/H9, H7), a moment of knock retard (H5)
+and weak spark under sudden load (H4); **S13**, the throttle's routine, is
+H8's alone.
+
 ### H0. The idle is normal for this engine — and there is no fault to find
 
 **The one hypothesis nobody has been able to test.** An AQY with 26 years on
 it might simply idle like this, and every number above might be its normal
 state.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
-|---|---|---|---|---|---|---|
-| ~ | ~ | ✘ | — | ~ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S13 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ✘ | — | ~ | — | — | — | — |
 
 - **Against:** 014 reads **12–120 against VW's own 0–5**. The old converter
   burned through, which needs raw fuel in it. The owner feels it.
@@ -801,9 +810,9 @@ compares with this car's:
 A hydraulic lifter that bleeds down or pumps up leaves a valve slightly open
 or late, intermittently, and gets worse as the oil thins. *General.*
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
-|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ✔ | ✔ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S13 |
+|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ✔ | ✔ | — | — | — | — |
 
 - **For:** with H4, one of the **two candidates that can explain both
   clusters at once**: an
@@ -852,9 +861,9 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in;
 under load it only blows out. *General.* The front probe reads lean, the rear
 loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
-|---|---|---|---|---|---|---|
-| ~ | ✔ | ~ | ✘ | ✘ | — | ✔ |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S13 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | ✔ | ~ | ✘ | ✘ | — | ✔ | — | — |
 
 - **For:** the puff, idle only, an old manifold that has lived through years
   of misfires, the rear probe on the rich side at hot idle
@@ -896,9 +905,9 @@ Nothing else about the argument above changes until the test is done.
 Air past the MAF leans one cylinder at idle, where air flow is smallest.
 *General.*
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
-|---|---|---|---|---|---|---|
-| ✔ | ~ | ✔ | ~ | ✘ | — | ~ |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S13 |
+|---|---|---|---|---|---|---|---|---|
+| ✔ | ~ | ✔ | ~ | ✘ | — | ~ | ✔ | — |
 
 - **For:** the regime is exactly right. A lean cylinder can also knock on a
   tip-in (S4). Several of the forum cases were a breather hose. The idle is
@@ -1022,9 +1031,9 @@ The battery itself is new (end of August 2026, the old one found dead during
 the headlight work), so the thread's one confirmed
 electrical fix — a new battery — has in effect already been tried here.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
-|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ~ | ✔ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S13 |
+|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ~ | ✔ | — | — | ~ | — |
 
 - **For:** with H1 the only candidate that could explain **both clusters**: a
   weak spark misfires at idle and high vacuum, and a noisy ground puts a
@@ -1323,9 +1332,9 @@ Three candidates, all *general*:
 - **An injector click** that slides into the window as injection timing moves
   with speed. No knock log exists from before the new injectors.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
-|---|---|---|---|---|---|---|
-| — | — | — | ✔ | ✔ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S13 |
+|---|---|---|---|---|---|---|---|---|
+| — | — | — | ✔ | ✔ | — | — | ~ | — |
 
 **Tests:** check G66's torque and connector; look over everything refitted in
 September for a loose bracket, clip or heat shield with the engine held at
@@ -1399,9 +1408,9 @@ changed in September, and neither has ever been gauged. (The bad cold start
 that once pointed here is closed, S7: it was the old injectors.)
 The owner's own remaining candidate is one of the new injectors.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
-|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S13 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | — | ~ | — |
 
 - **Against, for the idle:** four new injectors and a new filter changed
   nothing in S1; the trims are near zero; a leaking seat adds fuel at idle and
@@ -1464,9 +1473,9 @@ idle in group 003 is that control working). A dirty throttle body or a lost
 throttle adaptation makes the governor hunt. *General.* The MAF swap halving
 S1 shows that the idle is sensitive to how air is metered and controlled.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
-|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S13 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | — | — | — | ✔ |
 
 - **Against:** a hunting governor is a slow oscillation, while S1 is a
   sudden dip lasting one or two firings and recovering in a quarter of a
@@ -1796,9 +1805,9 @@ gasket leaks instead**, the crankcase draws in air past the MAF at idle, where
 the manifold vacuum is highest: an unmetered leak, H3 by a different door.
 Either way one fault can make S10 and reach the idle.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 |
-|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | ✔ | ✔ |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S13 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | ✔ | ✔ | ~ | — |
 
 - **For:** the commonest explanation of S10 and, through the oil, of S11's
   smoke. Several forum cases of an unsettled idle were a breather hose (H3).
@@ -2111,23 +2120,25 @@ f = 0.50 line fading over a few hundred km without a disconnect is the
 adaptation; staying is ignition or exhaust. The refit of the injectors
 should, if the seats leaked, change f = 0.25 and not f = 0.50.
 
-## The idle's candidates, ranked — 27 September 2026
+## The idle's candidates, ranked — 28 September 2026
 
 **A judgement, not a measurement**, for S1–S3 only (the cylinder 4 window
 is its own cluster). It weighs three facts above all: **the idle is better
 the more load and air go through the engine** (S1), **no one cylinder
 dominates** (`refuted.md` A5), and **the mixture matters** (the MAF swap
-halved the dips, S9). Re-rank after every test.
+halved the dips, S9). Re-rank after every test, **and whenever the symptom
+list changes**. *Re-read 28/9/2026 after S12 and S13 were added: the order
+stands; what moved is recorded in the rows.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| 1 | **H3/H9 — a small unmetered leak**: **three injectors not fully home since 23/9** (H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants. Against: trim −3.1 % | the valve cover job itself, which replaces the upper plenum gasket and the breather — an improvement afterwards answers it; if none, a **smoke test of the intake** (below) |
+| 1 | **H3/H9 — a small unmetered leak**: **three injectors not fully home since 23/9** (H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) | the valve cover job itself, which replaces the upper plenum gasket and the breather — an improvement afterwards answers it; if none, a **smoke test of the intake** (below) |
 | 2 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 | a healthy AQY recorded (H0 test 1) |
 | 3 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: worst at mid temperature, not hot; A5 | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
 | 4 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero | a **fuel pressure gauge** |
-| 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | **replaced on its own after the valve cover job** (owner's decision, 28/9; `plan.md` step 2), so its effect shows alone |
+| 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | **replaced on its own after the valve cover job** (owner's decision, 28/9; `plan.md` step 2), so its effect shows alone. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports — timed on both parts in the plan |
 | 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V | a look while the plenum is off (`plan.md`, step 1); H7 test 3 for the injector side |
-| 7 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss. Against: air outside the cylinder does not stop it firing | a smoke test **of the exhaust** |
+| 7 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing | a smoke test **of the exhaust** (`plan.md` step 3) |
 | 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
 
 **Tools worth owning for this, cheapest first** (*general*; prices not

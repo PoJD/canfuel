@@ -162,7 +162,11 @@ carries a generated block; a figure typed into prose only goes stale.
     a smell, a leak, a reading — **is flagged: say whether it could be a new
     symptom in `open.md` (or change an existing one) and why, then ask. The
     maintainer decides**; never add a symptom unasked, never let one pass
-    without asking. The long dated log
+    without asking. **When the symptom list changes — a symptom added
+    or closed — every hypothesis's fit table in `open.md` gains or loses
+    that column in the same commit, and the ranked list of candidates is
+    re-read against it**; a symptom left out of the tables says why, once,
+    above them. The long dated log
     that preceded `open.md` lives only in git
     (`git show 7c69883:docs/engine-health.md`), and nothing in the tree cites it
 
