@@ -122,21 +122,48 @@ should sound the same.
 seconds are expected — **the start's quality is ignored**. Then, briefly:
 
 - **leaks** — fuel at the injectors and the rail, oil along the cover joint;
-- **`IdleHealth`** and **VCDS 014** logging (a CAN capture beside it costs
-  nothing and feeds `--cylinders` later).
+- **`IdleHealth`**, a **CAN capture**, and **one VCDS log from before the
+  start to engine off: groups 014 + 003 + 055** (*decided 28/9/2026*).
+  014 is the misfire count; 003 the air mass and the plate angle, which
+  tell a sealed leak from a new throttle (below); 055 the idle regulator,
+  specified −2.00…+2.00 g/s (`vcds.md`) and never logged yet. Three
+  groups cost 014 some rate and lose nothing: **014 is a count, not an
+  event** — it accumulates between readings, so a slower poll misses no
+  misfire, it only places each one less sharply in time. All three carry
+  engine speed, so the log aligns to the capture (`vcds.md`).
 - **if the engine is cold:** the cold-start plateau against the baseline
   in `open.md` H8 (~910–1020 rpm for ~95–100 s, then a step down), off the
-  same capture, with **003** logged if VCDS is on it for the plate angle.
+  same capture.
 
 Then warm it **by driving**, and take the one reading that decides: at
 **70–72 °C of oil, loads off**, a minute or two of `IdleHealth` against the
-current band **57–100** (`open.md` S1), with 014 logging. Engine off.
+current band **57–100** (`open.md` S1), with the same three groups
+logging. Engine off.
+
+**Read beside it, against `open.md` H8's baseline** (warm idle, loads off:
+1.3–2.6° at 3.1–3.5 g/s):
+
+- **air mass at idle up, and the plate up with it** → air that used to
+  bypass the MAF now goes through it: a leak was sealed (H3/H9);
+- **air mass unchanged, only the plate different** → the new throttle and
+  its freshly learned stops, nothing more;
+- **032 is not read now.** The battery is out for the job, so every
+  adaptation starts from zero; 032 is read once, after a few hundred km
+  (`open.md` S9), and an idle cell moving *negative* would also say a leak
+  was sealed.
+
+⚠ **Fresh adaptations have read worse before**: 146 and 117 straight after
+the 23/9 disconnect, 84 after 24/9's, 57–100 once settled (`open.md` H8,
+*The throttle adaptation and the battery disconnects*). **So a first
+reading inside or above the band does not yet say "unchanged"** — repeat
+it, the same way, after a few days of normal driving before calling it.
 
 **Then:**
 
 - **Idle clearly better** (well below 57 at that temperature, 014 quiet):
   record it; the loose ends in `open.md` can then be closed at leisure.
-- **Idle unchanged — the expected outcome:** no further tests. Go to step 3.
+- **Idle unchanged after the repeat — the expected outcome:** no further
+  tests. Go to step 3.
 
 Either way: a look along the new joints after the first warm run, and
 again after a few hundred km (the hand-tightened nuts).
