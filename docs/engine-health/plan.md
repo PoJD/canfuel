@@ -64,8 +64,11 @@ gasket Elring `271.230`, sealant Elring `030.793` (Dirko HT).
    - the injector wiring under its sleeving and the four connectors;
    - the hoses at the back: brake-servo line, the old secondary-air vacuum
      line, the breather hose and its `N79` tee — cracked, hard, oily;
-   - the old breather: a split in its membrane or its body, if it can be
-     seen (H9);
+   - **the old breather, out of the car** (H9) — what matters is any
+     opening **to the outside**, since that is what would let unmetered
+     air in: the membrane, if it can be seen (torn, hardened, deformed);
+     the body and its spigots (cracks); a vent hole by the membrane, if it
+     has one (oil at it means something inside leaks). Photograph it;
    - the ECM's harness earth on the plenum (ground 608 on the Golf/Jetta
      list): eyelet tight and clean;
    - the bare stud beside the injector on the right: does something belong
