@@ -125,8 +125,8 @@ seconds are expected — **the start's quality is ignored**. Then, briefly:
 - **`IdleHealth`**, a **CAN capture**, and **one VCDS log from before the
   start to engine off: groups 014 + 003 + 055** (*decided 28/9/2026*).
   014 is the misfire count; 003 the air mass and the plate angle, which
-  tell a sealed leak from a new throttle (below); 055 the idle regulator,
-  specified −2.00…+2.00 g/s (`vcds.md`) and never logged yet. Three
+  tell a sealed leak from a new throttle (below); 055 the idle regulator and its
+  learned adaptation, in g/s of air (`vcds.md`; logged once, 11/9). Three
   groups cost 014 some rate and lose nothing: **014 is a count, not an
   event** — it accumulates between readings, so a slower poll misses no
   misfire, it only places each one less sharply in time. All three carry
@@ -147,6 +147,12 @@ logging. Engine off.
   bypass the MAF now goes through it: a leak was sealed (H3/H9);
 - **air mass unchanged, only the plate different** → the new throttle and
   its freshly learned stops, nothing more;
+- **055's adaptation** read −0.73 g/s on 11/9, the idle having learned
+  to take air away. It restarts from zero with the battery out, so it is
+  compared **after the repeat below**, once learned again: nearer zero
+  says less air was reaching the engine unasked (a sealed leak);
+  about −0.7 again says nothing changed there. *The reading of the sign
+  is reasoned from the label and the unit, not from a VW document.*
 - **032 is not read now.** The battery is out for the job, so every
   adaptation starts from zero; 032 is read once, after a few hundred km
   (`open.md` S9), and an idle cell moving *negative* would also say a leak
