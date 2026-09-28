@@ -1818,6 +1818,42 @@ unmetered leak; plate 0–6°, `vcds.md`):
   which the ECU switches misfire detection off (S3) — why a zero in 014 at
   a warm idle counts only with detection `aktivováno`.
 
+**Air against plate angle is the throttle's own calibration curve**
+(*reasoned, general physics, 28/9/2026*). At idle the manifold is deep
+enough in vacuum that the flow past the plate is close to choked: how much
+air passes depends on the opening, the pressure ahead of the plate and the
+intake air's temperature, hardly on the manifold. So for one throttle body
+at a similar intake temperature, **a given angle means a given air mass**.
+Two different movements follow:
+
+- **along the curve** — air and angle rise or fall together. A leak
+  *behind* the plate sealed or opened does this; it does not move the
+  curve;
+- **the curve itself moving** — the same angle with a different air mass
+  (or the same air at a different angle). Causes: (1) the angle is read
+  differently from the plate's real opening — the sender's zero or the
+  learned lower stop moved; (2) the plate or bore changed — deposits, wear,
+  or a different part; (3) the MAF reads differently; (4) air entering
+  **between the MAF and the plate**, which passes the plate unmeasured and
+  makes the MAF read *less* at the same angle; (5) the intake temperature
+  (group 004, not in 003).
+
+**The curve has already moved once, on the same parts:** August against
+24/9, the same throttle and the same 2018 MAF, ~3.3–3.4 g/s at 2.6–3.0°
+then and at 1.7–2.2° after (the table above). Most likely (1): the battery
+was disconnected several times in between and the ECU relearns the stops
+each time — the owner's reading, that the old unit's electronics may show
+something other than the plate's real opening, has this much support. Only
+two display steps, and the intake temperature of those days is unknown.
+
+**How the plan reads it:** test 1 keeps the throttle and the MAF, so the
+curve should stay put — a move there is the relearned stop (098 is run) or
+air between the MAF and the plate. Test 2 changes the throttle, so a moved
+curve says the two parts differ, but not whether in the sender or in the
+metal; only a look at the plate's physical opening could split that.
+**Group 004 once per test** gives the intake temperature for the
+comparison (`plan.md`).
+
 **What the swap is compared on:** the first cold start after it should
 show the same plateau height, the same ~95–100 s and a similar plate angle.
 A different height or length would be the ECU choosing differently, which

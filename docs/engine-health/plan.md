@@ -184,6 +184,10 @@ first seconds are expected — **the start's quality is ignored**.
 - **About five minutes, then engine off.** That covers the cold plateau
   and its step down at ~95–100 s and reaches the one 055 reading on
   record.
+- **Group 004 for a minute**, once, at the end of the run (the three-group
+  log is full, so a separate short log): the intake air temperature, so
+  that the air against the plate angle compares like with like (`open.md`
+  H8, *Air against plate angle is the throttle's own calibration curve*).
 
 **Read against the cold-start baselines** (`open.md` H8, *The cold-start
 idle*; `vcds.md`, 055):
@@ -272,8 +276,9 @@ one is not in the box.
    nothing more.
 3. **Warm it by driving**, and take **the reading that decides**: at
    **70–72 °C of oil, loads off**, a minute or two of `IdleHealth` against
-   the band **57–100** (`open.md` S1), with 014 + 003 + 055 logging.
-   Engine off.
+   the band **57–100** (`open.md` S1), with 014 + 003 + 055 logging,
+   and **a minute of 004** after it for the intake temperature (as in
+   test 1). Engine off.
 4. **No repeat after days of driving if steps 1 and 2 and both tests fit
    in one day** (*owner's decision, 28/9/2026*): the reading of that day
    decides. Known and accepted: fresh adaptations have read worse before —
