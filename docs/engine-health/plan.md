@@ -206,6 +206,13 @@ step 1 if that does not fit in one session.
 car's own label says (`open.md` H8). Plus a new gasket for its flange if
 one is not in the box.
 
+0. **A coolant hose runs to the throttle body** (*owner-observed,
+   28/9/2026*), so the job opens the cooling circuit. **Not straight after
+   a warm drive:** after test 1's five garden minutes the coolant is warm
+   but the system is not under pressure; after a drive, wait for it to
+   cool. Pinch or plug the hose while it is off, and **afterwards top up
+   and check the level again after the first warm run** — air in the
+   circuit is what that finds.
 1. **Photograph the old one's plate and bore** at the idle edge before it
    comes off; swap it with a new flange gasket. **Keep the old one,
    labelled.**
