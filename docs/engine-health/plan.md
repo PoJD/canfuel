@@ -406,16 +406,50 @@ A repair visit, not a test visit (H2, S6, S11):
 - **the whole exhaust leak-tested and made tight** — manifold, its joint to
   the head, the flange and its gasket, the flex pipe, every joint back;
 - **both lambda probes**: seated and tight in their bosses, no leak at
-  either.
+  either;
+- at least a **visual check of the rest of the exhaust**, with the engine
+  running if they will.
 
-*One line to ask, since it is the same machine and the same visit:* if they
-smoke-test the exhaust, whether they will put the smoke through the intake
-too (H3). Not required.
+*One line to ask:* whether they have a smoke machine, and if so whether
+they will put the smoke through the intake too (H3). **Planned as if they
+do not** (*owner's decision, 29/9/2026*) — the intake smoke test is step 3.
 
 Afterwards: session A's hot idle again — 014 logging, three minutes at
 68–72 °C with the oil watch, `IdleHealth` against the band. *Skipped if the idle is already fixed by then.*
 
-## Step 3 — decided by step 2's result
+## Step 3 — only if the idle is still not fixed
 
-The same rule: **idle solved → stop and record; idle unchanged → the next
-repair from `open.md`'s ranked candidates**, chosen then, not now.
+The same rule: **idle solved → stop and record.** Otherwise, in this order
+(*owner's decision, 29/9/2026*), each deciding whether the next is needed:
+
+1. **An intake smoke test, done at home** (`open.md`, *The idle's
+   candidates, ranked*, row 1 and *Tools worth owning*). The engine off
+   and cold, so it costs no idle. The leak is still candidate 1 after
+   step 1, which replaced parts but tested no joint, and smoke is what
+   names *where*. Skipped if the garage already did it in step 2.
+   *General practice, not VW's:*
+   - **the smoke**: a cheap 12 V smoke machine, or home-made — a sealed
+     tin with a 12 V heater (a diesel glow plug or a resistance coil) and
+     a wick in **mineral (baby) oil**, fed by an **aquarium air pump**.
+     Never anything flammable in it, never workshop air: the pressure
+     only has to make the smoke flow;
+   - **seal the intake behind the MAF** — the hose between the MAF and
+     the throttle off, a glove or bag clamped into it — and feed the smoke
+     there or through a vacuum line (the brake-servo hose, disconnected);
+   - **hold the throttle open** (a string on the cable or a hand on the
+     quadrant) so the smoke reaches the plenum;
+   - a few minutes of smoke, a torch, and look at the throttle's flange,
+     the upper-to-lower plenum joint, the injector seats, the hoses at
+     the back, the breather and its `N79` tee, the brake servo's valve;
+   - ⚠ **smoke at the oil filler or the dipstick is expected**, not an
+     intake leak: the breather joins the crankcase to the intake. It
+     does test the new cover gasket along the way.
+
+   **Smoke found** → that joint is fixed, then session A's hot idle again.
+   **None** → the leak is as good as ruled out, and item 2 follows.
+2. **A vacuum gauge at a warm idle** (`open.md`, *Tools worth owning*),
+   teed into the brake-servo line: a regular flick down is a valve (H1),
+   a low, slowly wandering needle a mixture fault (H7) or a leak smoke
+   could not reach. A few minutes at idle, warmed by driving.
+3. **Then the next repair from `open.md`'s ranked candidates**, chosen
+   then, not now.
