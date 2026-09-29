@@ -62,8 +62,9 @@ found — the valve cover gasket**, heavily at the back and at the front as far
 as the plug boots of cylinders 3 and 4 (S10). The owner replaces it with the
 filler-neck breather in one job with the upper plenum gasket and a proper
 refit of the injectors, **three of which have not been fully home since
-23/9** (H3). Then the throttle body on its own (28/9, H8), then, if the
-idle is unchanged, the garage for the exhaust. **The order is `plan.md`.**
+23/9** (H3) — **and the throttle body in the same job** (*owner's decision,
+29/9*, after the flange photograph, H8). Then, if the idle is unchanged,
+the garage for the exhaust. **The order is `plan.md`.**
 
 ---
 
@@ -243,6 +244,26 @@ never aligned with anything. It did
   +584 s, coolant 90 °C, oil 43 °C, then many. The logs after the MAF
   swap (`24`) begin warm and cannot say. So on the car as it now is, **a
   cold idle without counts is not evidence of a fix.**
+
+- **How often 014 counts, by oil temperature** (*computed 29/9/2026*:
+  014 aligned on engine speed to the capture beside it, standing at
+  650–900 rpm with detection `aktivováno` only, binned by 0x420):
+
+  | oil | `24` — new MAF, adaptations fresh | `19` — old MAF, adaptations fresh |
+  |---|---|---|
+  | 48–56 °C | — | 3.6–10 a minute |
+  | 56–60 °C | **20 a minute** (102 s) | — |
+  | 60–64 °C | 2.5 a minute (95 s) | 1.5 a minute (196 s) |
+  | 64–68 °C | — | 2.0 a minute (152 s) |
+  | 68–72 °C | **10 a minute** (318 s) | **0.3 a minute** (433 s) |
+
+  On `24` the longest stretch of active standing idle with no count is
+  **57 s**. On `19` the last ~6½ minutes of hot idle at 70–71 °C read
+  **zero** — on the car before any repair, which is what A11's change of
+  ruler looks like from the other side: **on the old MAF a hot-idle zero
+  is not evidence**, and only `24` is a comparison for the car as it now
+  is. The test after the job (`plan.md`) takes its two stops and their
+  lengths from this table.
 
 **Three properties of the counter that must be kept in mind**, all measured
 on the 24/9 logs (`refuted.md` A11, A12): it moves in steps of 12; detection switches off below about 20 % load, which on
@@ -665,9 +686,10 @@ run; the length was never timed, so ~15 s is possible. The owner keeps it
 open all the same: the forum's "normal" could be a normal of throttles
 that are already worn, and only a new part settles that.
 
-**How it closes** (`plan.md` tests 1 and 2), timed each time: the old
-part before the job; the old part after test 1's adaptation, which has
-certainly completed; the new part after its own adaptation in test 2.
+**How it closes** (`plan.md` step 1 and the test after it), timed each
+time: the old part before the job; the old part again after its own 098,
+run before the job, which has certainly completed; the new part after its
+adaptation, before the first start.
 **New part silent, or clearly shorter → the old unit differed**, and S13
 becomes a lead on it (H8). **The same routine → it is how these parts
 behave**, and S13 closes as normal.
@@ -1496,12 +1518,14 @@ unmetered**: a small leak of exactly H3's kind, present since June and
 possibly before. Weighed honestly: one point on a soft gasket may seal
 anyway, and the photograph cannot show whether it did. The phone
 screenshot is not kept here; **proper photographs come when the throttle
-is off in `plan.md` step 2**, of both faces.
+is off in `plan.md` step 1**, of both faces.
 
-⚠ **What it does to step 2's reading:** the swap now changes two things —
-the throttle *and* this joint (a new part's clean face, a new gasket). So
-an idle fixed only by step 2 names **the throttle or its flange**, not the
-throttle alone. The air-against-angle curve can separate them: a sealed
+⚠ **What it does to the reading:** the swap changes two things — the
+throttle *and* this joint (a new part's clean face, a new gasket). It is
+also **why the throttle went back into the valve cover job** (*owner's
+decision, 29/9/2026*): the flange is a sealing joint like the others the
+job renews, so a fixed idle now names the job, and only the photographs of
+this face can speak for the flange. The air-against-angle curve can separate them: a sealed
 flange leak moves the idle **along** the curve (more air through the MAF,
 the plate further open), a different throttle moves the curve itself.
 
@@ -1728,18 +1752,17 @@ than the 0.6 s between readings would not be seen; a worn track that made
 the ECM chase phantom movement would, and does not show. Left in the file
 because cleaning and adapting is cheap, not because anything points here.
 
-**Replaced preventively, on its own after the valve cover job — the
-owner's decision, 28/9/2026** (`plan.md` step 2). Nothing in the data asks
-for it; the part is original, 26 years old, cheap, and sits in the idle air
-path. First planned inside the valve cover job, then **split off by the
-owner the same day** so that its effect shows alone: the valve cover job
-and its readings first with the old throttle, then the swap and the same
-readings. It comes off with the engine assembled, so the split costs
-nothing. A new aftermarket part is itself an unknown on the idle's side of
-the engine, which is why the old one is kept. What it buys: an idle fixed
-by the valve cover job clears the throttle; one fixed only by the swap
-names it; one fixed by neither sends the whole of H8 (the three wear routes
-above included) to `refuted.md`.
+**Replaced inside the valve cover job — the owner's decision,
+29/9/2026** (`plan.md` step 1). Nothing in the data asks for it; the part
+is original, 26 years old, cheap, and sits in the idle air path. First
+planned inside the job, split off on 28/9 so that its effect would show
+alone, and **put back into the job on 29/9** after the flange photograph
+above: the owner accepts that the idle then cannot tell the throttle from
+the rest. A new aftermarket part is itself an unknown on the idle's side of
+the engine, which is why the old one is kept — refitted for a day, it is
+the one way left to name it (`plan.md`, *What points at which repair*). An
+idle fixed by neither the job nor anything after it sends the whole of H8
+(the three wear routes above included) to `refuted.md`.
 
 **The cold-start idle, the baseline for the swap, 28/9/2026** (asked by
 the owner, who expected **1200+ rpm for 15–20 s** from the web and sees
@@ -1832,8 +1855,9 @@ unmetered leak; plate 0–6°, `vcds.md`):
 - **A lower plate for the same idle means less air is needed through the
   plate.** Either the engine burns better (new plugs, leads, injectors) or
   air arrives past it (a leak behind the throttle). These two quantities
-  cannot tell which; **the air and the plate rising together after the
-  job** can (`plan.md`, test 1).
+  cannot tell which; **more air through the MAF after the job** can
+  (`plan.md`, session A) — the plate no longer, since the job changes the
+  throttle too.
 - **On the new MAF the idle load is 19–20 %**, right at the ~20 % below
   which the ECU switches misfire detection off (S3) — why a zero in 014 at
   a warm idle counts only with detection `aktivováno`.
@@ -1866,13 +1890,15 @@ each time — the owner's reading, that the old unit's electronics may show
 something other than the plate's real opening, has this much support. Only
 two display steps, and the intake temperature of those days is unknown.
 
-**How the plan reads it:** test 1 keeps the throttle and the MAF, so the
-curve should stay put — a move there is the relearned stop (098 is run) or
-air between the MAF and the plate. Test 2 changes the throttle, so a moved
+**How the plan reads it:** the job changes the throttle, so a moved
 curve says the two parts differ, but not whether in the sender or in the
-metal; only a look at the plate's physical opening could split that.
-**Group 004 once per test** gives the intake temperature for the
-comparison (`plan.md`).
+metal; only a look at the plate's physical opening could split that. A
+sealed leak is therefore read off the **air and 055**, not off the plate
+(`plan.md`, session A). **Group 004 once per test** gives the intake
+temperature, so that the new part's own curve is recorded like for like
+(`plan.md`). *(Until 29/9 a separate test 1 kept the old throttle so that
+the curve could be read across the job; the owner put the throttle into
+the job instead.)*
 
 **What the swap is compared on:** the first cold start after it should
 show the same plateau height, the same ~95–100 s and a similar plate angle.
@@ -2213,15 +2239,17 @@ the more load and air go through the engine** (S1), **no one cylinder
 dominates** (`refuted.md` A5), and **the mixture matters** (the MAF swap
 halved the dips, S9). Re-rank after every test, **and whenever the symptom
 list changes**. *Re-read 28/9/2026 after S12 and S13 were added: the order
-stands; what moved is recorded in the rows.*
+stands; what moved is recorded in the rows. Re-read 29/9/2026 when the
+throttle went into the job: no symptom changed, the order stands, rows 1
+and 5 say how each is now settled.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| 1 | **H3/H9 — a small unmetered leak**: **three injectors not fully home since 23/9** (H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose; **and the throttle's flange**, where a hard protrusion on the old face may have kept the June gasket off (H8, 28/9) | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) | the valve cover job itself, which replaces the upper plenum gasket and the breather — an improvement afterwards answers it; if none, a **smoke test of the intake** (below) |
+| 1 | **H3/H9 — a small unmetered leak**: **three injectors not fully home since 23/9** (H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose; **and the throttle's flange**, where a hard protrusion on the old face may have kept the June gasket off (H8, 28/9) | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) | the valve cover job itself, which replaces the upper plenum gasket, the breather **and the throttle with its flange gasket** (29/9) — an improvement afterwards answers it; if none, a **smoke test of the intake** (below) |
 | 2 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 | a healthy AQY recorded (H0 test 1) |
 | 3 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: worst at mid temperature, not hot; A5 | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
 | 4 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero | a **fuel pressure gauge** |
-| 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | **replaced on its own after the valve cover job** (owner's decision, 28/9; `plan.md` step 2), so its effect shows alone. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports — timed on both parts in the plan |
+| 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `plan.md` step 1), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports — timed on both parts in the plan |
 | 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V | a look while the plenum is off (`plan.md`, step 1); H7 test 3 for the injector side |
 | 7 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing | a smoke test **of the exhaust** (`plan.md` step 3) |
 | 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |

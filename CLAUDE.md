@@ -1221,6 +1221,7 @@ is no `requirements.txt` and should not be one for a single package.
 
 ```
 python tools/usbtin_capture.py --seconds 60 --out idle_z1.txt   # record, Z1 on
+python tools/oilwatch.py idle_z1.txt                        # ...and, in a 2nd window, beep at the oil bands
 python tools/canlog.py test/fixtures/03_drive.txt          # per-ID summary
 python tools/canlog.py --dump --id 0x480 FILE              # print frames
 python tools/replay.py --every 100 test/fixtures/07_accel.txt
