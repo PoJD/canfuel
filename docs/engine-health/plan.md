@@ -135,6 +135,12 @@ engine running:
        is not cut for this (*owner's decision, 28/9/2026* — the
        electrics are nearly ruled out); a look from behind the head or
        from below while the intake is aside, not pursued further;
+     - **not found is done** (*owner's decision, 29/9/2026*): neither
+       has been found before, and neither needs to be. The engine's earth
+       was measured running on 26/9 — battery − to the coil bracket,
+       healthy under load (`open.md` H4, *Step 1*) — which covers ground
+       2's whole path wherever its bolt is; the coil's wire ohmed
+       unbroken. A search that finds nothing is not a gap in this step;
    - the bare stud beside the injector on the right: does something belong
      on it?
    Anything bad is fixed now; nothing is measured.
