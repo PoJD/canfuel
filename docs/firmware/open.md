@@ -121,8 +121,11 @@ survive.
    first, pan second, hose third. **Any drive will do and the harder the
    better**; the engine-health test after the valve cover job takes one
    such point at the end of each warm session (`docs/engine-health/plan.md`,
-   A4), and one after an ordinary drive before the job needs nothing but
-   the display. *General*: the radiator fan can start with the engine
+   A4). **Nothing before the job**: the engine is not run until then
+   (`docs/engine-health/plan.md`, the rule), and a cold engine adds
+   nothing — every surface sits at ambient, which the cold soaks in item 2
+   already cover without a thermometer. Any ordinary drive after it needs
+   nothing but the display. *General*: the radiator fan can start with the engine
    off — hands clear of it.
 
    **The dipstick tube** — the best route above — needs a separate contact
