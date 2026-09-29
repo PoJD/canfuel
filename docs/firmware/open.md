@@ -83,6 +83,53 @@ survive.
    - acceptable: an IR thermometer **rated past 100 °C** (the one used so far
      stops at 60) on the sump pan from underneath and on the filter. Not
      through the filler cap — that is the valve gear.
+
+   **The instrument, from 29/9/2026: a Bosch UniversalTemp** (*owner's
+   decision*). Bosch's manual: range **−30 to +500 °C**; accuracy at 21 °C
+   and emissivity 0.95 **±1.8 °C from 0 to 100 °C**, ±1.8 % above,
+   worsening by 0.1 °C per kelvin the ambient is away from 21 °C;
+   emissivity **fixed at three grades, ≈ 0.95 / 0.85 / 0.75**; spot
+   **12 : 1**; operated at −5 to +50 °C, and **up to 30 minutes to
+   acclimatise** after a change of temperature. So:
+
+   - **it is enough, by a wide margin.** At a displayed 70 °C the two
+     readings above are raw 157 — **70 against 93 °C**, a 23 °C gap
+     against ±1.8 °C plus a few for the ambient; at `19`'s 75.75 °C peak
+     it is 76 against 101;
+   - **0.95, and only on a matt surface.** A painted filter can; bare or
+     shiny metal (the manual names stainless steel) cannot, and the
+     manual's answer is **dark matt tape on the spot** — stuck on before
+     the drive, so that it is at the metal's temperature when read;
+   - **it travels in the cabin**, not in a cold boot, so that it is not
+     still acclimatising at the moment it is needed;
+   - **a check of the instrument itself in the same minute**: the upper
+     coolant hose (rubber, 0.95) against 0x288's coolant, which comes
+     from the engine ECU and is not in question;
+   - **what the surface reads is not the oil**, and errs one way: the
+     filter and the pan lose heat to the air, so they read at or below
+     the oil. So the two outcomes are not equally strong. **A filter well
+     above the channel is decisive against the shipped scale** — the oil
+     is hotter still. **A filter near the channel supports it** only as
+     far as the filter tracks the oil, which the cool-down of `21`–`23`
+     suggests it does (filter 1–3 °C above the channel, pan ~6–8 °C
+     below). *That the surfaces read low is reasoned, general heat
+     transfer, not measured here.*
+
+   **When:** the first minute after the engine stops, **ignition back on**
+   so 0x420 keeps coming — read off a capture as the raw byte, or off the
+   display, whose whole degrees are fine against a 23 °C gap. Filter
+   first, pan second, hose third. **Any drive will do and the harder the
+   better**; the engine-health test after the valve cover job takes one
+   such point at the end of each warm session (`docs/engine-health/plan.md`,
+   A4), and one after an ordinary drive before the job needs nothing but
+   the display. *General*: the radiator fan can start with the engine
+   off — hands clear of it.
+
+   **The dipstick tube** — the best route above — needs a separate contact
+   probe (the Bosch has none): a **thin, flexible wire-bead thermocouple**,
+   marked at the dipstick's own length, since a stiff probe will not follow
+   the tube's bend. The wet end of the dipstick shows where the oil is.
+   Optional; the IR route is enough to close this.
 2. **Two cold soaks at different ambients**, no thermometer at all. On a
    cold-soaked car both channels read the same temperature, so the ratio of
    their changes is the ratio of their slopes. 25 °C between the soaks moves

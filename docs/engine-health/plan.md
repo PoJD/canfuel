@@ -250,6 +250,17 @@ ignored.**
   temperature, so that air against plate angle compares like with like
   (`open.md` H8, *Air against plate angle is the throttle's own
   calibration curve*). Engine off.
+- **A4 — the oil thermometer, the first minute after engine off**
+  (*owner's decision, 29/9/2026*; `docs/firmware/open.md` question 10).
+  No engine running, so it costs the idle nothing, and it is not unrelated
+  to it: every idle reading here is compared at an oil temperature, and
+  the bands above are that channel's label. **Ignition back on at once**
+  so that 0x420 keeps coming and the capture keeps running; the owner
+  reads the IR thermometer aloud and Claude stamps each reading against
+  the capture's raw byte. **The oil filter first**, then **the sump pan
+  from underneath**, then **the upper coolant hose** — the last one checks
+  the thermometer itself against 0x288's coolant, which nobody doubts.
+  The method, and why it decides, is in the firmware question.
 - **Once cool: the coolant level.**
 
 **The leak signature, A1 against the cold starts on record** (`open.md`
@@ -299,7 +310,9 @@ disconnects*), so session A can err towards "unchanged", never towards
 "fixed", and B is what makes a zero certain.
 
 **Capture and VCDS 014 + 055 + 032**, warmed by driving, **three minutes
-standing at 68–72 °C** (`oilwatch.py --only hot`), loads off.
+standing at 68–72 °C** (`oilwatch.py --only hot`), loads off. **A4's
+oil thermometer again** at engine off: a second hot point for the same
+question, free.
 
 - **014 at zero again, detection `aktivováno`** — the misfires are gone.
   Record it, read *What points at which repair* below, and go to
