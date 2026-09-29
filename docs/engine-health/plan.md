@@ -224,7 +224,7 @@ zero there before 24/9 proves nothing.
   most the last half-second, after the engine is off.
 - **The oil watch is the owner's**, in a second `cmd` window, reading the
   same file while it grows: `python tools\oilwatch.py <session>_z1.txt`
-  (`--only hot` for session B). It never touches the adapter. It **beeps
+  (both stops in A and in B). It never touches the adapter. It **beeps
   three times** when a stop is due — ninety seconds ahead, so there is time
   to find a place — and **once, long**, when the idle in the band is long
   enough. **Aim for the band's lower edge**: after a drive the oil keeps
@@ -319,33 +319,47 @@ is 0…5; zero is the owner's bar.
 
 - **Any count** — the misfires are not gone: **step 2**. Session B and C
   are not run.
-- **Zero** — session B.
+- **Zero** — session B, the same day.
 
 `IdleHealth` is read beside it all, against the band **57–100** (`open.md`
 S1), but decides nothing yet: no healthy target for it exists.
 
-### Session B — the confirmation, after a few hundred km
+### Session B — the same test again, the same day, after a cool-down
 
-*Owner's decision, 29/9/2026:* **the verdict is taken twice**, the second
-time on settled adaptations — replacing the decision of 28/9 to let a
-same-day reading stand. Fresh adaptations have read worse before (146 and
-117 straight after the 23/9 disconnect, 84 after 24/9's, 57–100 once
-settled; `open.md` H8, *The throttle adaptation and the battery
-disconnects*), so session A can err towards "unchanged", never towards
-"fixed", and B is what makes a zero certain.
+*Owner's decision, 29/9/2026:* **the verdict is taken twice, both on the
+day of the job** — replacing an earlier draft of the same day that put the
+second reading a few hundred km later, "on settled adaptations". That
+reason did not hold up against its own evidence: fresh adaptations have
+read **worse** before (146 and 117 straight after the 23/9 disconnect, 84
+after 24/9's, 57–100 once settled; `open.md` H8, *The throttle adaptation
+and the battery disconnects*), so a zero on fresh adaptations errs towards
+"unchanged", never towards "fixed", and waiting cannot make it more
+certain. **And on the car as it now is, 014 has counted in every session
+ever logged** (`open.md` S3, the table by oil temperature), so a whole
+warm-up with none is not something that has happened by chance before.
 
-**Capture and VCDS 014 + 055 + 032**, warmed by driving, **three minutes
-standing at 68–72 °C** (`oilwatch.py --only hot`), loads off. **A4's
-oil thermometer again** at engine off: a second hot point for the same
-question, free.
+What a second session adds is **a second, independent pass through the
+band where it counted most**: a new start, a new warm-up, new air and
+fuel adaptation from where the first left them.
 
-- **014 at zero again, detection `aktivováno`** — the misfires are gone.
-  Record it, read *What points at which repair* below, and go to
-  session C.
-- **Counts** — they came back as the adaptations settled: step 2.
-- **055's learned value**, settled, against the −0.73 g/s of 11/9, and
-  **032's idle cell** (`open.md` S9): either moving *negative* also says a
-  leak was sealed.
+**When:** after the engine has cooled until the oil reads **below about
+45 °C** — a few hours; the oil watch shows it at ignition-on — so that the
+drive climbs through 56–62 °C again with time to be warned.
+
+**Capture and VCDS 014 + 055 + 032**, **the same two stops as A2 and A3**
+(the oil watch with both stops, as in A), loads off; A1's leak checks and
+the cold-start table are not repeated. **A4's oil thermometer again** at
+engine off: a second hot point for the same question, free.
+
+- **014 at zero again through both stops, detection `aktivováno`** — **the
+  misfires are gone**, and the verdict is closed. Record it, read *What
+  points at which repair* below, and go to session C.
+- **Counts** — they were not gone; A's zero was luck: step 2.
+- **055's learned value** against the −0.73 g/s of 11/9, and **032's idle
+  cell** (`open.md` S9): either moving *negative* also says a leak was
+  sealed. Read here for what they are after a day; **a photograph of both
+  screens after a few hundred km** is worth having later, but decides
+  nothing.
 
 ### Session C — only if A and B are both zero: the healthy idle
 
@@ -377,8 +391,7 @@ apart** (the cost accepted in step 1). What can:
 | **What the job found** — a torn breather membrane, a cracked hose, a nicked injector O-ring, a flattened plenum gasket, **a gap in the old throttle gasket at the protrusion**, photographed in step 1 | the part it was found on. **The strongest sign there will be** |
 | **A1 showed the leak signature** (more air, 055 nearer zero) | a sealed unmetered leak — plenum gasket, breather, hoses, injector seats, the throttle's flange (H3/H9/H8); which one only the photographs say |
 | **no leak signature, and S13 changed** with the new part | the throttle itself (H8) |
-| **zero already in session A** | a mechanical change — a leak, a seat, the throttle |
-| **zero only in session B** | adaptations settling, or the throttle's adaptation completing |
+| **zero in both sessions, from the first warm reading** | a mechanical change — a leak, a seat, the throttle — rather than anything that has to learn |
 | **better, but only to August's level** (`IdleHealth` 48 on 11/8) | the injector seats — only in play since 23/9, while the rough idle is older (S2, S3); anything clearly better than August is something older |
 
 **The one way to split the throttle from the rest — optional, the owner's

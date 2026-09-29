@@ -43,7 +43,7 @@ Usage
 -----
 
     python oilwatch.py a_z1.txt                  # both stops, rings (session A)
-    python oilwatch.py a_z1.txt --only hot       # the hot idle alone (session B)
+    python oilwatch.py a_z1.txt --only hot       # the hot idle alone
     python oilwatch.py a_z1.txt --once           # one line and exit
     python oilwatch.py a_z1.txt --lead 120       # more warning
     python oilwatch.py a_z1.txt --until stop --timeout 570
