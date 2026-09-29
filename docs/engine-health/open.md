@@ -2182,6 +2182,23 @@ all *general*:
    thermometer on the four manifold pipes close to the head, several minutes
    into a steady idle. A cylinder that misfires runs a cooler runner.
    Harmless, needs no tools beyond the thermometer.
+
+   ⚠ **What it can see here, worked out 29/9/2026** (*the owner offered to
+   measure the cylinders after a drive with the new IR thermometer*):
+   **a dead or badly weak cylinder, not this fault.** At 800 rpm each
+   cylinder fires about 400 times a minute; the dips come at 5–11 a minute
+   for the **whole** engine (S1), and a typical one is half a stroke. Even
+   all of them in one cylinder is **1–3 % of its combustions** — a runner
+   that much cooler sits inside the ordinary spread between four healthy
+   runners (*general*), so a reading that shows nothing says nothing.
+   **Around each plug or injector on the head is worse still**, and is not
+   worth taking: the head is one aluminium casting on one coolant circuit,
+   which smears any difference between cylinders, the intake side is
+   cooled by the fuel, and bare cast aluminium has an emissivity far
+   below the thermometer's lowest grade of 0.75 (*general*), so it reads
+   low and reflects its surroundings. *Decided:* the runners only if they
+   can be reached without dismantling anything, as a cheap check for a
+   gross fault; the head not at all.
 2. **Cylinder balance by unplugging one injector at a time**, at a warm idle,
    for a few seconds each, watching engine speed. The cylinder whose removal
    drops the speed least is the weakest. ⚠ It sends unburnt air, not fuel,
