@@ -145,7 +145,32 @@ engine running:
      lower left of the throttle's face** seen in the June photograph
      (`open.md` H8), and whether the old gasket shows a gap or a dent
      there;
-   - clean the plenum's face flat; nothing may stand proud of it;
+   - **clean the plenum's face flat; nothing may stand proud of it.**
+     *How — general practice, not VW's (the manual only says the gasket
+     is always new); owner's question, 29/9/2026:*
+     - **solvent and a plastic scraper first, and usually only**: brake
+       cleaner or technical petrol on a rag, old gasket remains lifted
+       with plastic or wood, never a steel blade. Try the solvent on a
+       hidden spot first if any part of the manifold is plastic;
+     - **abrasive only for a hard spot the solvent does not move**, and
+       then: fine wet paper (400–600) **wrapped round a flat block**, a
+       few strokes along the face, never by hand alone and **never a
+       rotary disc** — both round the face off, and a disc throws grit.
+       **Plug the bore with a rag first**: everything that falls in on
+       this side of the plate goes straight into the cylinders. Clean
+       again with solvent afterwards;
+     - **check it flat**: a steel rule on edge across the face in
+       several directions, a light behind it — no light under the rule;
+     - **a raised spot** — a deposit comes off as above; a hard lump in
+       the metal is taken down **to the face and not below it**, with the
+       block, checking with the rule as you go;
+     - **a pit or dent**: photograph it with a rule beside it. **Off the
+       line the gasket seals on, it does not matter. Across that line it
+       is a leak path**, and the choice is made on the spot: a small one
+       gets a thin film of the Dirko on that spot only, under the new
+       gasket — *a deviation from VW's dry gasket, decided because an
+       open leak path is worse*; one that a film cannot bridge means the
+       upper part is not reused, and the job waits for one;
    - the new one on with a new flange gasket, **bolts 10 Nm** (the table
      above), coolant hose back on. **Keep the old one, labelled**;
    - **check the cable** — the lever on its idling stop at rest, full
