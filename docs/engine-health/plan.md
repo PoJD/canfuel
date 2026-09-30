@@ -281,6 +281,17 @@ ignored.**
   temperature, so that air against plate angle compares like with like
   (`open.md` H8, *Air against plate angle is the throttle's own
   calibration curve*). Engine off.
+- **A4 — optional: the oil thermometer, the first minute after engine
+  off** (*owner's decision, 30/9/2026*: **decided before the drive** —
+  it depends on the thermometer being bought in time, and on the time
+  left for the tests; `docs/firmware/open.md` question 10). No engine
+  running, so it costs the idle nothing. **Ignition back on at once** so
+  that 0x420 keeps coming and the capture keeps running; the owner reads
+  the IR thermometer aloud and Claude stamps each reading against the
+  capture's raw byte. **The oil filter first**, then **the sump pan from
+  underneath**, then **the upper coolant hose** — the last one checks the
+  thermometer itself against 0x288's coolant, which nobody doubts. The
+  method, and why it decides, is in the firmware question.
 - **Once cool: the coolant level.**
 
 **The leak signature, A1 against the cold starts on record** (`open.md`
@@ -343,7 +354,8 @@ drive climbs through 56–62 °C again with time to be warned.
 
 **Capture and VCDS 014 + 055 + 032**, **the same two stops as A2 and A3**
 (the oil watch with both stops, as in A), loads off; A1's leak checks and
-the cold-start table are not repeated.
+the cold-start table are not repeated. **A4 again at engine off, if A4
+was taken**: a second hot point for the same question.
 
 - **014 at zero again through both stops, detection `aktivováno`** — **the
   misfires are gone**, and the verdict is closed. Record it, read *What
