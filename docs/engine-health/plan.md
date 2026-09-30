@@ -82,9 +82,16 @@ circuit is what that finds.
 **Before the job, with the old throttle still on** — ignition only, no
 engine running:
 
-- **Read the engine's fault memory** (VCDS, 01, fault codes), in particular
-  **17973 / P1565, J338 lower stop not reached**. *No stored faults* is a
-  precondition of the adaptation anyway.
+- **Read the engine's fault memory** (VCDS, 01, fault codes) — a minute,
+  ignition on. **It no longer decides S13**: the old part's timing did
+  that (`open.md` S13). It is the record of what the car carried into the
+  job, so that a code after it is known to be new. Last read after the
+  last drive before 26/9, empty; not read since the battery went back.
+  *That 098 ran on 29/9 suggests it was still empty, but VW lists "no
+  stored faults" as a precondition of the procedure, not as something the
+  ECU is known to enforce — and whether a disconnect clears this ECU's
+  memory is not settled either* (generally it does not; not read for this
+  ECU).
 
 **The work, in order:**
 
