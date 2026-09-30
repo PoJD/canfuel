@@ -502,6 +502,14 @@ What it settles and what it moves:
   with item 5 anyway is not known**: febi's catalogue gives no scope of
   delivery and its photograph shows the part black on black; the shop was
   asked (28/9, a public holiday).
+- **Preliminary, 30/9/2026: no seal at the breather at all** (*owner,
+  a quick look, not yet verified*) — neither item 2 under the cap nor
+  item 5 under the breather. To be confirmed when it comes apart
+  (`plan.md` step 1, item 3), with a photograph of the breather's
+  underside and its seat in the cover. **If it holds**, it is the most
+  direct explanation of the oily lower body seen on 26/9 — oil weeping
+  past an unsealed seat rather than, or as well as, past the cover
+  gasket — and an opening from the crankcase to the outside (H9).
 - **"Turn clockwise to remove"** is the opposite of what a hand does by
   default, on a 26-year-old plastic housing. Worth knowing before the
   first attempt.
@@ -1935,6 +1943,16 @@ the valve cover gasket — onto whatever is below. **If a breather hose or the
 gasket leaks instead**, the crankcase draws in air past the MAF at idle, where
 the manifold vacuum is highest: an unmetered leak, H3 by a different door.
 Either way one fault can make S10 and reach the idle.
+
+**Preliminary, 30/9/2026 — the breather may be sitting on no seal at all**
+(S10, *owner, a quick look, to be verified at the job*). If so, it is this
+second branch by a concrete door: at idle the breather holds the crankcase
+slightly below atmospheric, so an unsealed seat draws outside air, which
+leaves through the ventilation into the intake **behind the MAF** —
+unmetered. Its size is bounded by the ventilation path itself, so a small
+leak rather than a large one (*reasoned, general*), which is what rank 1
+in *The idle's candidates* asks for. The fit table below is unchanged
+until it is confirmed.
 
 | S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S13 |
 |---|---|---|---|---|---|---|---|---|
