@@ -84,8 +84,13 @@ survive.
      stops at 60) on the sump pan from underneath and on the filter. Not
      through the filler cap — that is the valve gear.
 
-   **The instrument, from 29/9/2026: a Bosch UniversalTemp** (*owner's
-   decision*). Bosch's manual: range **−30 to +500 °C**; accuracy at 21 °C
+   **The instrument: none yet** (*owner's decision, 30/9/2026*). A Bosch
+   UniversalTemp was chosen on 29/9, not found in the shop and judged too
+   dear for the job; a cheaper one is to be bought online, and this is
+   measured some other time, **not inside the engine-health test**. What
+   was worked out for the Bosch is kept as the checklist for whatever is
+   bought — range past 100 °C, an emissivity setting of 0.95, the tape,
+   the acclimatising, the coolant-hose check. Bosch's manual: range **−30 to +500 °C**; accuracy at 21 °C
    and emissivity 0.95 **±1.8 °C from 0 to 100 °C**, ±1.8 % above,
    worsening by 0.1 °C per kelvin the ambient is away from 21 °C;
    emissivity **fixed at three grades, ≈ 0.95 / 0.85 / 0.75**; spot
@@ -119,9 +124,7 @@ survive.
    so 0x420 keeps coming — read off a capture as the raw byte, or off the
    display, whose whole degrees are fine against a 23 °C gap. Filter
    first, pan second, hose third. **Any drive will do and the harder the
-   better**; the engine-health test after the valve cover job takes one
-   such point at the end of each warm session (`docs/engine-health/plan.md`,
-   A4). **Nothing before the job**: the engine is not run until then
+   better**, once a thermometer is at hand. **Nothing before the job**: the engine is not run until then
    (`docs/engine-health/plan.md`, the rule), and a cold engine adds
    nothing — every surface sits at ambient, which the cold soaks in item 2
    already cover without a thermometer. Any ordinary drive after it needs
