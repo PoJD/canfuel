@@ -85,13 +85,6 @@ engine running:
 - **Read the engine's fault memory** (VCDS, 01, fault codes), in particular
   **17973 / P1565, J338 lower stop not reached**. *No stored faults* is a
   precondition of the adaptation anyway.
-- **Time the throttle's routine with a stopwatch** at ignition-on
-  (`open.md` S13).
-- **Then adapt the old part, 098** (as in the test below, *ADP OK*),
-  ignition off, and **ignition on again, stopwatch**: does the old part
-  still run its routine after an adaptation that has certainly completed,
-  and how long? This was the old test 1's; it moves here because the old
-  part is not refitted before the test.
 
 **The work, in order:**
 
@@ -254,8 +247,8 @@ zero there before 24/9 proves nothing.
    a few points between, **at most 10 s** — then *ADP OK*. Ignition off to
    store it.
 3. **Ignition on again, stopwatch:** does the new part run the routine,
-   and how long against the old part's two times? (`open.md` S13 — this
-   closes it.)
+   and how long against the old part's 20 s, the same before and after
+   its own completed 098? (`open.md` S13 — this closes it.)
 
 ### Session A — the cold start and the warm-up drive, one log
 

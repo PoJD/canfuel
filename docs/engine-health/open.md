@@ -686,10 +686,25 @@ run; the length was never timed, so ~15 s is possible. The owner keeps it
 open all the same: the forum's "normal" could be a normal of throttles
 that are already worn, and only a new part settles that.
 
-**How it closes** (`plan.md` step 1 and the test after it), timed each
-time: the old part before the job; the old part again after its own 098,
-run before the job, which has certainly completed; the new part after its
-adaptation, before the first start.
+**The old part, timed — 29/9/2026** (*owner-measured, stopwatch*;
+battery reconnected after 26/9, engine not run):
+
+| | routine at ignition-on |
+|---|---|
+| before any adaptation | **20 s**, then one click |
+| 098 itself | min and max found quickly, *ADP OK* — **within VW's 10 s** (not timed, clearly shorter than the routine) |
+| ignition off, on again, after *ADP OK* | **20 s** again, then the click |
+
+- **The routine is not the adaptation.** VW's adaptation is the short
+  thing 098 does and it completed; the 20 s routine ran unchanged
+  straight after it. So **the loop reading is refuted on the old part**
+  (H8, *So two readings*): the idle has not been running on an unfinished
+  adaptation, and S13 no longer touches S1 that way.
+- **20 s is the length now**, not "20–30 s": timed twice alike. Longer
+  than the owners' ~15 s, which were never timed either.
+
+**How it closes** (`plan.md`, *Before the first start*): the new part
+after its adaptation, before the first start, timed the same way.
 **New part silent, or clearly shorter → the old unit differed**, and S13
 becomes a lead on it (H8). **The same routine → it is how these parts
 behave**, and S13 closes as normal.
@@ -749,7 +764,7 @@ full-load enrichment (*general*), for all four cylinders alike.
 | S10/S11 ↔ S1/S3 | **untested, not weak** | nothing measured so far *could* have shown a link, so "unknown" is no evidence against one. Oil outside the engine does not touch combustion; what can is the cause or a neighbour: a vacuum leak at the unsprayed rear hissing (H3/H9), the ventilation's oil fouling the throttle (H9 → H8), an exhaust leak ahead of the probe (H2), oil reaching a lead boot (H4, 1e) — seen on 26/9 at the boots of 3 and 4, but **not a cause**: the idle was as rough on 17/9 with new, clean leads (S10). The one existing datum that points this way: the idle is better under load, which is what a small unmetered leak does |
 | S12 ↔ S4 | **possible, untested** | the knock retard is a tip-in event and a retard is lost torque. Never aligned in time |
 | S12 ↔ S1/S3 | **possible, untested** | both start from the bottom of the load range; a lean or weak-spark cause would show in both |
-| S13 ↔ S1 | **possible, untested** | an adaptation that never completes leaves the idle control on unfinished values (H8). Answered by the new part's adaptation |
+| S13 ↔ S1 | **weak** | the one link was an adaptation that never completes, leaving the idle on unfinished values (H8); **refuted on the old part 29/9** — 098 completed and the 20 s routine ran unchanged after it (S13). Left only if the new part differs |
 
 **So there are two separate clusters**, and they are worked separately below:
 **the idle** (S1, S2, S3) and **the cylinder 4 window** (S4, S5). S6 matters
@@ -1747,6 +1762,11 @@ briefly. **If it still runs 20–30 s every time with *ADP OK* and no
 fault, it is the unit's own behaviour.** Either way this is the one sign
 the actuator gives of its own health, and worth noting if it changes.
 
+**Answered for the old part, 29/9/2026** (S13, *The old part, timed*): 098
+completed with *ADP OK* inside VW's 10 s, and the next ignition-on ran the
+same 20 s routine. **Not a loop.** Whether it is this unit's own check or
+every such part's is what the new part says.
+
 **Reading: against H8 at the resolution there is.** A sensor glitch shorter
 than the 0.6 s between readings would not be seen; a worn track that made
 the ECM chase phantom movement would, and does not show. Left in the file
@@ -2266,7 +2286,7 @@ and 5 say how each is now settled.*
 | 2 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 | a healthy AQY recorded (H0 test 1) |
 | 3 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: worst at mid temperature, not hot; A5 | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
 | 4 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero | a **fuel pressure gauge** |
-| 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `plan.md` step 1), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports — timed on both parts in the plan |
+| 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `plan.md` step 1), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — the new part is timed in the plan |
 | 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V | a look while the plenum is off (`plan.md`, step 1); H7 test 3 for the injector side |
 | 7 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing | the garage visit, a repair (`plan.md` step 2); a smoke test **of the exhaust** only if they have the machine |
 | 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
