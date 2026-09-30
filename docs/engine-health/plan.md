@@ -89,7 +89,6 @@ a part that exists four times names its cylinder.**
       and its `N79` tee — cracked, hard, oily
 - [ ] the old breather out of the car: membrane, body, spigots, vent hole
 - [ ] ground 2 — tight and clean if found; **not found is done**
-- [ ] the bare stud by the right injector
 - [ ] the old upper plenum gasket: flattened, torn, a gap
 
 **Item 8 — the throttle** (the day the new one is in hand)
@@ -199,8 +198,6 @@ engine running:
        healthy under load (`open.md` H4, *Step 1*) — which covers ground
        2's whole path wherever its bolt is; the coil's wire ohmed
        unbroken. A search that finds nothing is not a gap in this step;
-   - the bare stud beside the injector on the right: does something belong
-     on it?
    Anything bad is fixed now; nothing is measured.
 8. **The throttle body, while the upper part is aside:**
    - **photograph the old one's plate and bore** at the idle edge before

@@ -1507,8 +1507,9 @@ The owner's own remaining candidate is one of the new injectors.
    short of the connector is **the wires' own insulation, not bare copper**
    (*owner-checked*). Nothing there looks damaged; the other three
    connectors and the loom under the sleeving are still to be looked at.
-   Beside the injector a bare threaded stud carries no nut — whether one
-   belongs there is not known.
+   Beside the injector a bare threaded stud is **one of several on the
+   head, and nothing is missing from it** (*owner, 30/9/2026*; this read
+   "carries no nut — whether one belongs there is not known").
 
 ### H8. Idle air control and the throttle body
 
