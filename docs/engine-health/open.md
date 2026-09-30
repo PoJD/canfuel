@@ -1949,9 +1949,11 @@ Either way one fault can make S10 and reach the idle.
 second branch by a concrete door: at idle the breather holds the crankcase
 slightly below atmospheric, so an unsealed seat draws outside air, which
 leaves through the ventilation into the intake **behind the MAF** —
-unmetered. Its size is bounded by the ventilation path itself, so a small
-leak rather than a large one (*reasoned, general*), which is what rank 1
-in *The idle's candidates* asks for. The fit table below is unchanged
+unmetered. It is **test 3's filler-cap-off made smaller**, and that made
+the idle audibly slightly worse; the depression is small (test 3 felt no
+suction, and *The valve cover gasket and a rough idle* below calls the air
+route weak), so a small leak rather than a large one (*reasoned,
+general*) — which is what rank 1 in *The idle's candidates* asks for. The fit table below is unchanged
 until it is confirmed.
 
 | S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S13 |
@@ -2333,8 +2335,16 @@ recorded here, since they move):
   if the idle improves, that is the answer wanted, whichever part did it.
   A test **before** would only say *which* part it was; it is optional.
   If the idle does not improve, the smoke test afterwards covers the whole
-  intake as refitted. (The valve cover gasket itself is not an intake
-  joint: the crankcase sits at atmospheric, H9 test 3.)
+  intake as refitted. **The crankcase is part of what it tests**, though
+  only indirectly: the breather vents it into the duct ahead of the
+  throttle, behind the MAF, at a slight depression — too slight for test
+  3 to feel as suction, but the idle got audibly worse with the filler
+  cap off (H9). So a leak at the cover joint or at the breather's seat is
+  a small unmetered leak of its own, and the smoke reaches both through
+  the breather hose; smoke at the filler cap or the dipstick is that
+  path, not a leak. (*Corrected 30/9/2026*: this read "the valve cover
+  gasket itself is not an intake joint: the crankcase sits at
+  atmospheric".)
   **Smoke rather than a pressure- or vacuum-decay test of the intake**
   (*general*): a sealed intake is never sealed — the throttle plate, the
   open inlet valves and the breather all pass air — so a gauge that falls
