@@ -2022,8 +2022,7 @@ drawing of this car.
 
   **Against this car:** idle fluctuation and misfires, yes. Everything else
   on the list, no — oil not topped up over ~700 km and still at the upper
-  mark (`vehicle-history.md`), the cap's underside clean (`refuted.md`
-  C13), no whistle reported, the smoke at the back explained as the cover
+  mark (`vehicle-history.md`), no whistle reported, the smoke at the back explained as the cover
   leak's oil (S11). And the leaflet's mechanism is manifold vacuum on a
   torn membrane: had that been the case here, the crankcase would sit under
   that vacuum and **the filler cap would suck** — test 3 found none. So the

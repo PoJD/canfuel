@@ -289,8 +289,10 @@ number.
 sit behind S10, S11 and the idle together (it was H10 in `open.md`).
 **Refuted by**, each on its own weak, together decisive:
 - **the coolant level has held for weeks**, and **no milky emulsion** has
-  ever been seen; the underside of the oil filler cap is clean
-  (*owner-observed, 27/9/2026*);
+  ever been seen. (*Removed 30/9/2026, the owner's correction:* this also
+  read "the underside of the oil filler cap is clean (*owner-observed,
+  27/9/2026*)" — the cap was most likely not looked at that day, so it was
+  never an observation.);
 - compression 12 bar and even on all four (A4); the coolant warms to
   99–100.5 °C and holds it; the cold start is clean (C3), where coolant in a
   cylinder shows worst (*general*);
