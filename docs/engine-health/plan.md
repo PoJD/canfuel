@@ -50,6 +50,64 @@ new gasket for its flange if one is not in the box.
 
 **Photograph before touching anything, and anything found.**
 
+### What to report — the checklist
+
+*Owner's decision, 30/9/2026:* the owner keeps no notes; he reports each
+item in the session as he goes, with photographs, and Claude says what is
+still missing. The numbers are the work items below. **Every photograph of
+a part that exists four times names its cylinder.**
+
+**Before anything comes off**
+- [ ] the coolant level, cold, marked on the expansion tank
+- [ ] the dipstick: level, colour, any emulsion
+- [ ] the fault memory — before the job if the ignition goes on, else
+      with the new throttle before its 098 (*Before the first start*)
+
+**Items 2–3 — the cover and the breather**
+- [ ] the filler cap's underside: the light-brown film seen 30/9
+- [ ] the cover's underside, the cam and the bearing caps: any film or
+      emulsion, and **where it stops** — only near the cap and breather,
+      or further down
+- [ ] the breather: **is there a seal under it (item 5), and under the
+      cap (item 2)?** Photograph its underside and its seat in the cover
+- [ ] the old cover gasket: hard, cracked, flattened, where it wept
+- [ ] which ring went under the breather, and why (item 3)
+
+**Item 5 — plugs and boots**
+- [ ] each plug's insulator and electrode, cylinder by cylinder: colour,
+      deposits, oil, gap if a gauge is at hand
+- [ ] each lead boot inside: oil, tracking marks
+
+**Item 6 — injectors**
+- [ ] each manifold-end O-ring: nick, flat, fine
+- [ ] each injector clicked home on its own
+- [ ] all four fully home under the rail
+
+**Item 7 — while the plenum is off**
+- [ ] the injector wiring and its four connectors
+- [ ] the rear hoses: brake servo, old secondary-air line, breather hose
+      and its `N79` tee — cracked, hard, oily
+- [ ] the old breather out of the car: membrane, body, spigots, vent hole
+- [ ] ground 2 — tight and clean if found; **not found is done**
+- [ ] the bare stud by the right injector
+- [ ] the old upper plenum gasket: flattened, torn, a gap
+
+**Item 8 — the throttle** (the day the new one is in hand)
+- [ ] the old plate and bore at the idle edge, before it comes off
+- [ ] both flange faces and the old gasket, above all the protrusion at
+      the lower left and whether the gasket shows a gap there
+- [ ] the plenum's face after cleaning, the rule across it: no light
+- [ ] any pit or dent, with a rule beside it, and what was done about it
+- [ ] the cable: idle stop at rest, full throttle with the pedal down
+
+**Items 9–10 — back together**
+- [ ] Dirko at the four arch points, the two front ones not skimped
+- [ ] every rag out of the ports — **counted**
+- [ ] the coolant hose back on, the level topped up
+
+**Optional**, only if quick: the four HT leads and the four injector
+windings on ohms, each against the other three.
+
 **Torques — VW's figures for this engine** (VW's manual as transcribed on
 workshop-manuals.com: *Dismantling and assembling intake manifold – upper
 part / – lower part*, figures N24-0950 and N24-0949, and *Removing and
