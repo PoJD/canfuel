@@ -279,7 +279,9 @@ pressure and a crack in it admits little that is not already metered
 sleeve was not in stock anywhere in Prague on the day; **the old sleeves
 measure 15 mm outside, 8 mm inside, 47 mm long** (*owner-measured,
 1/10/2026*), so a length of 8 mm bore vacuum hose cut to four 47 mm
-pieces is the stand-in if the original does not come — *a decision, not
+pieces is the stand-in if the original does not come; the nipples on the
+injectors and on the rail are 8 mm at their narrowest, with a barb that
+holds the sleeve (*owner-measured*) — *a decision, not
 VW's part*. *What would revive
 this entry:* a sleeve split through on the injector side, where the nipple
 opens to the port.
