@@ -58,8 +58,12 @@ still missing. The numbers are the work items below. **Every photograph of
 a part that exists four times names its cylinder.**
 
 **Before anything comes off**
-- [ ] the coolant level, cold, marked on the expansion tank
-- [ ] the dipstick: level, colour, any emulsion
+- [ ] the coolant level, cold, marked on the expansion tank —
+      *photographed 1/10/2026*: pink coolant, the old tank's plastic
+      yellowed above it; **not yet marked**
+- [x] the dipstick: level, colour, any emulsion — **colour fine, no
+      emulsion** (*owner-reported, 1/10/2026*); the level is wet across
+      the hatched field in the photograph, not read off by the owner
 - [x] the fault memory — **empty, 1/10/2026, read before the battery
       came off** (*owner-reported*)
 
