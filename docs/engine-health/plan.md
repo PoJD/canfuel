@@ -166,7 +166,9 @@ engine running:
    the manifold below. Keep cleaner out of the open intake ports.
 5. **Plugs out, cylinders 3 and 4 first** (the oily boots, S10): photograph each plug's insulator
    and each lead boot **with its cylinder number**, then clean. Oil on the
-   ceramic or in a boot is noted (H4).
+   ceramic or in a boot is noted (H4). **The leads go back on the coil as
+   they came off: 1, 4, 2, 3**, clockwise from the top (*owner-read,
+   1/10/2026*; `open.md` H4, *Step 1*, 1d).
 6. **Injectors out and refitted properly** (H3, *The injector seats*):
    - look at each manifold-end O-ring for a nick or a flat from being
      forced in on 23/9; a damaged one is replaced, not reused;

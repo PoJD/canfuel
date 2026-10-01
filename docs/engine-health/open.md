@@ -1218,6 +1218,15 @@ clean, several tenths is a bad joint** (*general*).
   the four leads against each other: one reading far from the others (for
   its length) is the bad one.
 
+  **The leads' order on the coil** (*owner-read off the car, 1/10/2026*):
+  **1, 4, 2, 3**, clockwise from the top tower. So 1 and 4 sit side by
+  side, as do 2 and 3 — the two pairs the coil fires together in a firing
+  order of 1-3-4-2 (*general*), which is the period-2 split under *Naming
+  the cylinder*. A lead crossed between the pairs would fire a cylinder
+  on its exhaust stroke and could not pass as a rough idle; one swapped
+  within a pair still fires on time. Which tower the coil itself calls
+  which cylinder is not read here.
+
 - **1e. Damp and dark: the high-voltage side.** Moisture makes a cracked
   coil housing or a worn boot leak its spark to earth instead of across the
   plug (*general*; one AQY owner in the Polish thread found his idle worse in
