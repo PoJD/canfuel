@@ -1214,6 +1214,10 @@ clean, several tenths is a bad joint** (*general*).
   back-probed the same way. The pin assignment is in the manual's
   current-flow diagram; it is the one that reads battery voltage with the
   ignition on.
+- **1d, done 1/10/2026** (*owner*, at `plan.md` step 1): the four
+  leads all measure **about 6 kΩ end to end**, the small differences put
+  down to probe contact; every boot clean inside, no oil in any — so the
+  oil on 3 and 4's boots seen on 26/9 (S10) stayed on the outside.
 - **1d. Engine off: the HT leads.** Each one pushed fully home on its coil
   tower and its plug, the boots dry and uncracked. With the meter on ohms,
   the four leads against each other: one reading far from the others (for

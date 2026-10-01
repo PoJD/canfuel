@@ -87,7 +87,13 @@ a part that exists four times names its cylinder.**
 **Item 5 — plugs and boots**
 - [ ] each plug's insulator and electrode, cylinder by cylinder: colour,
       deposits, oil, gap if a gauge is at hand
-- [ ] each lead boot inside: oil, tracking marks
+- [x] each lead boot inside: oil, tracking marks — **clean, 1/10/2026**
+      (*owner, photographed*): no oil got into any boot. One boot's inner
+      rim carries a fine silvery speckle in the photographs — which lead
+      and which end not yet said
+- [x] the four HT leads on ohms (the optional item below): **all about
+      6 kΩ end to end**, small differences the owner puts down to probe
+      contact
 
 **Item 6 — injectors**
 - [ ] each manifold-end O-ring: nick, flat, fine
