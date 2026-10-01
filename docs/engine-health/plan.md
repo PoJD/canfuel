@@ -110,7 +110,7 @@ a part that exists four times names its cylinder.**
       **Cylinder 2 damaged** — went in harder, most likely the one forced
       on 23/9; replaced with the intake-side ring off an old injector, the
       kit's spare fitting only the rail end (`open.md` H3, *Found at the
-      refit*). 3 and 4 owed
+      refit*). **Cylinder 3 fine** (*owner, photographed*). 4 owed
 - [ ] each injector clicked home on its own
 - [ ] all four fully home under the rail
 
