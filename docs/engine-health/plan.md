@@ -194,7 +194,8 @@ a part that exists four times names its cylinder.**
 **Items 9–10 — back together**
 - [ ] Dirko at the four arch points, the two front ones not skimped
 - [ ] **the injectors' air-shroud line back on all four nipples** — off
-      since 1/10/2026; left off, each open nipple is a hole behind the
+      since 1/10/2026, out of the car: a rigid pipe with four rubber
+      sleeves, **looks fine** (*owner, photographed*); left off, each open nipple is a hole behind the
       throttle (`refuted.md` C9 holds only while it is connected)
 - [ ] every rag out of the ports — **counted**; since 1/10/2026 one in
       the cover's breather opening, one in the plenum's throttle mouth and
