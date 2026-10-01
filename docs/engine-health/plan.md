@@ -105,9 +105,11 @@ a part that exists four times names its cylinder.**
       out — what the breather sends, as expected (*owner, 1/10/2026*).
       **Two thinner hoses** join it too (*owner, 1/10/2026*): one to the
       injectors (their air shrouds, `refuted.md` C9), one to **another tee
-      right by the head, at the intake runners**. Owed: the connector for
-      cracks; **where that second tee's other branches go**, and its hoses
-      cracked or hard
+      right by the head, at the intake runners**. **The connector: no crack
+      seen anywhere** (*owner, 1/10/2026*) — only the smoke test (step 3)
+      would settle it, and it comes out easily if one finds a leak there
+      (*owner's decision: not pursued now*). Owed: **where that second
+      tee's other branches go**, and its hoses cracked or hard
 - [x] the intake duct where the breather hose joins it, ahead of the
       throttle: **oily inside, the whole hose off, 1/10/2026**
       (*owner-found*, `open.md` H9 test 4)
