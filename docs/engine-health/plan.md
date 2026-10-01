@@ -560,7 +560,8 @@ step, and the two-hold method of `vcds.md`.
 ### Afterwards, either way
 
 A look along the new joints after the first warm run, and again after a
-few hundred km (the hand-tightened nuts).
+few hundred km — **re-tightening the cover's outer nuts**, the ones
+reachable with the plenum on (`open.md` S10, *Decision, 1/10/2026*).
 
 ### If the idle is fixed: what points at which repair
 

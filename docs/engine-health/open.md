@@ -544,6 +544,16 @@ risk it accepted, a loose joint, is exactly what was found, whoever
 last fitted the cover. **The re-check after the first warm run and
 after a few hundred km is therefore not optional.**
 
+**Decision, 1/10/2026 (the owner's), replacing the hand-only rule above
+for this refit:** the nuts are tightened **firmer than "lightly
+compressed"**, evenly and crosswise, with feel — still by hand, no torque
+figure. **No threadlocker** (Loctite 243 considered and set aside: the
+nuts most likely lost their clamp to the gasket settling, which a locked
+thread does not prevent, and it would hide the re-check). **The re-check
+is limited to the outer nuts** that can be reached with the plenum on —
+the middle ones would mean taking the plenum off again, which is not
+done for this.
+
 **The job itself — the work list, the first start and what follows — is in
 `plan.md`**, step 1. *Owner's decision, 27/9/2026:* the cover gasket, the
 breather and its seals, the upper plenum gasket, the injector refit
