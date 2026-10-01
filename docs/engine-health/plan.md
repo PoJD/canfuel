@@ -125,7 +125,9 @@ a part that exists four times names its cylinder.**
       (*owner, photographed*); cylinder 2 went in with the most
       resistance, the rest easily. A little play in each bore, which the
       rail takes up when it is bolted down
-- [ ] all four fully home under the rail
+- [x] all four fully home under the rail — **photographed cylinder by
+      cylinder, 1/10/2026**: each grey collar flush on its boss, no gap,
+      each clip on the rail seated
 
 **Item 7 — while the plenum is off**
 - [x] the injector wiring and its four connectors — **fine, 1/10/2026**
