@@ -93,8 +93,12 @@ a part that exists four times names its cylinder.**
       and its `N79` tee — cracked, hard, oily. **The breather hose is
       oily inside, 1/10/2026** (*owner-found*, `open.md` H9 test 4);
       still owed: which end, its outside and the `N79` tee
-- [ ] the intake duct where the breather hose joins it, ahead of the
-      throttle: oil standing or running towards the plate
+- [x] the intake duct where the breather hose joins it, ahead of the
+      throttle: **oily inside, the whole hose off, 1/10/2026**
+      (*owner-found*, `open.md` H9 test 4)
+- [ ] that hose's two ends, by hand: **is the ragged lip seen in the
+      photograph split through**, and which end is it — the throttle's or
+      the MAF's
 - [ ] the old breather out of the car: membrane, body, spigots, vent hole
 - [ ] ground 2 — tight and clean if found; **not found is done**
 - [ ] the old upper plenum gasket: flattened, torn, a gap

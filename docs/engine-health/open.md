@@ -2177,6 +2177,20 @@ repair blogs; still nothing from VW.
    the question, which a photograph cannot grade. The membrane is
    judged on the old part out of the car (`plan.md` item 7); the new
    breather replaces it either way. The fit table is unchanged.
+
+   **The big intake hose too, 1/10/2026** (*owner-found and
+   photographed*): the oil has gone on past the breather hose's junction
+   — **the large intake hose from the MAF to the throttle is oily
+   inside**, taken off the car whole. The photograph shows a wet film
+   along the bottom of the bore. It also shows **the clamped end's rubber
+   lip ragged and swollen-looking, with what looks like a split running
+   in from the edge** at one side — *from the photograph only, not yet
+   confirmed by hand*. Oil softens and swells rubber (*general*). **If
+   that end is split through and it is the end on the throttle**, it is
+   an opening behind the MAF — unmetered air, H3 by another door, and the
+   one place in the intake where the breather's oil has been sitting on
+   the rubber. Until it is checked by hand, the fit tables are
+   unchanged.
 5. **After the repair**, `IdleHealth` at a matched oil temperature against the
    current band: the same rule as H2 — a clear improvement means this was
    underrated.
