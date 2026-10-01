@@ -201,6 +201,9 @@ a part that exists four times names its cylinder.**
 - [ ] the cable: idle stop at rest, full throttle with the pedal down
 
 **Items 9–10 — back together**
+- [x] the head's and the cover's sealing faces clean and dry —
+      **1/10/2026** (*owner*); the cover sits on dry, no gasket, no nuts,
+      as a lid until the parts arrive
 - [ ] Dirko at the four arch points, the two front ones not skimped
 - [ ] **the injectors' air-shroud line back on all four nipples** — off
       since 1/10/2026, out of the car: a rigid pipe with four rubber
