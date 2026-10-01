@@ -111,9 +111,10 @@ a part that exists four times names its cylinder.**
       (*owner's decision: not pursued now*). **The second tee** sits on a
       rigid pipe `06A 133 374`, up towards the throttle and down under the
       runners to EVAP by the owner's reading (`open.md` H9, *The
-      layout*). Owed: **where the pipe's top end joins the throttle —
-      ahead of the plate or behind it** — and the thin hoses on that tee:
-      cracked, hard, seated
+      layout*). **Its hoses fine** (*owner, 1/10/2026*). The throttle has
+      three metal spigots: this pipe on the top one, the two coolant hoses
+      on the two at the back underneath (*owner*). Closed for now; the
+      line goes into the smoke test with the rest if it comes to that
 - [x] the intake duct where the breather hose joins it, ahead of the
       throttle: **oily inside, the whole hose off, 1/10/2026**
       (*owner-found*, `open.md` H9 test 4)

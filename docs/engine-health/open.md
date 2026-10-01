@@ -2041,7 +2041,12 @@ drawing of this car.
   the throttle's bore carries a nipple on its plenum side — then this
   line runs at full manifold vacuum, and a leak anywhere along it, the
   tee or the thin hose to the breather's connector, is a far stronger
-  unmetered leak than anything ahead of the plate.
+  unmetered leak than anything ahead of the plate. **The pipe is on the throttle's top
+  spigot** (*owner*), and the photograph of the old throttle's plenum
+  side shows a brass port at the top of the bore **behind the plate** —
+  so most likely it is the vacuum side (*reasoned from the photographs,
+  not traced*). Its hoses were checked by hand and are fine (*owner,
+  1/10/2026*); a smoke test is what would settle it.
   One aggregator claims a second hose to the intake manifold; no other source
   shows one, so it is not relied on.
 - **What follows from that layout.** With the breather joined ahead of the
