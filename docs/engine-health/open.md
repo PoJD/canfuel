@@ -2051,7 +2051,8 @@ drawing of this car.
   the idle controller and the crank sensor instead). The two meet: the
   breather's oil mist is delivered straight onto the throttle, so a
   ventilation that carries too much oil is H8 as well as H9. ⚠ **On this
-  car that route is weak**: the throttle body was inspected in 6/2026 and
+  car that route was thought weak** (*the breather hose was found oily
+  inside on 1/10/2026, test 4 below, which weakens this*): the throttle body was inspected in 6/2026 and
   found clean (`vehicle-history.md`), so any fouling since is three months'
   worth.
 - **Forum cases on this engine**: an AQY Golf with `17990 / P1582` (idle
@@ -2154,6 +2155,28 @@ repair blogs; still nothing from VW.
    the hose or at its end on the intake hose, a split in the hose where
    `N79` tees in, the separator in `06A 103 465` intact. The part costs a few
    tens of euros, so replacing it on suspicion is a fair test.
+
+   **Partial result, 1/10/2026** (*owner-found and photographed*, during
+   `plan.md` step 1): **the hose from the breather to the intake ahead of
+   the throttle is oily inside** — a finger put into it came out covered.
+   The photograph shows the bore dark and wet, with a light-grey crusty
+   deposit on one side of the inner lip. The owner had looked at the
+   breather side in 6/2026 and is not sure that look was thorough, so
+   **how long the oil has been there is not known**.
+
+   **What it does and does not say** (*general, reasoned*): oil in this
+   hose is oil mist that the breather's separator let through, so it
+   speaks to **the separator and to the amount of blow-by** — the
+   blocked-or-overloaded branch of H9 — and it means the mist reaches
+   the throttle's bore (the route under *What the web says*, which is
+   no longer only three months' worth). **It does not by itself name
+   the membrane**: on this layout a torn membrane admits outside air
+   (*Why a healthy breather adds no unmetered air*), which a hose wet
+   with oil neither shows nor rules out — and some oil film in a
+   breather hose is common on a healthy engine too, so the amount is
+   the question, which a photograph cannot grade. The membrane is
+   judged on the old part out of the car (`plan.md` item 7); the new
+   breather replaces it either way. The fit table is unchanged.
 5. **After the repair**, `IdleHealth` at a matched oil temperature against the
    current band: the same rule as H2 — a clear improvement means this was
    underrated.

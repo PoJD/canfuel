@@ -90,7 +90,11 @@ a part that exists four times names its cylinder.**
 **Item 7 — while the plenum is off**
 - [ ] the injector wiring and its four connectors
 - [ ] the rear hoses: brake servo, old secondary-air line, breather hose
-      and its `N79` tee — cracked, hard, oily
+      and its `N79` tee — cracked, hard, oily. **The breather hose is
+      oily inside, 1/10/2026** (*owner-found*, `open.md` H9 test 4);
+      still owed: which end, its outside and the `N79` tee
+- [ ] the intake duct where the breather hose joins it, ahead of the
+      throttle: oil standing or running towards the plate
 - [ ] the old breather out of the car: membrane, body, spigots, vent hole
 - [ ] ground 2 — tight and clean if found; **not found is done**
 - [ ] the old upper plenum gasket: flattened, torn, a gap
