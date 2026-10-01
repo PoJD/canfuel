@@ -1559,9 +1559,12 @@ is off in `plan.md` step 1**, of both faces.
 (*owner, photographed*): the old throttle's flange face carries the old
 gasket's green residue all over and **no raised point at the lower
 left**; the owner thinks he most likely levelled it himself while
-cleaning in June. **The old gasket**, green, stayed stuck to the plenum's
-face and in the photograph is whole and even all round, with no gap or
-dent at the lower left. The plate and both sides of the bore look clean
+cleaning in June. **The June gasket came away on its own**, not stuck
+to either face; the green on both faces is the residue and imprint of
+**the original gasket**, which was torn when it came off in June
+(*owner*). *An earlier revision of this paragraph took the green on the
+plenum for the June gasket, stuck on and whole all round — the owner
+corrected it the same day.* The plate and both sides of the bore look clean
 — a thin dark line at the plate's edge, no oil film to be seen despite
 the oily intake hose ahead of it (H9 test 4) — and the owner judges the
 part fine. **So the flange is not a leak this job found**, and the
@@ -1573,10 +1576,12 @@ above as what it showed then.
 the plenum's mouth is **dry cast aluminium**, light grey, with a darker
 smudge at its lowest point — no standing oil, no wet film. The oil seen
 in the intake hose (H9 test 4) has not visibly reached the plenum. The
-plenum's flange face, with the old gasket off, carries green residue and
-**fine scratch marks towards its right-hand side** — whether any runs
-across the gasket's land from the bore to the outside is for the rule
-and a closer look after cleaning (`plan.md` item 8).
+plenum's flange face carries the original gasket's green imprint and
+**fine scratch marks towards its right-hand side**. Cleaned with petrol,
+**the rule across it shows no light**, and **the scratches stay inside
+the face** — none runs from the bore to the outside (*owner*). Two small
+dark spots near its right-hand outer edge are in the photographs and not
+yet looked at closely.
 
 ⚠ **What it does to the reading:** the swap changes two things — the
 throttle *and* this joint (a new part's clean face, a new gasket). It is

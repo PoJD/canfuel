@@ -120,13 +120,16 @@ a part that exists four times names its cylinder.**
 - [x] the old plate and bore at the idle edge — **clean, 1/10/2026**
       (*owner, photographed*): a thin dark line at the plate's edge, no
       oil film
-- [x] both flange faces and the old gasket — **no protrusion, no gap**
-      (`open.md` H8, *At the job*); the old green gasket is stuck to the
-      plenum's face and comes off with solvent and plastic, not a blade
-- [ ] the plenum's face after cleaning, the rule across it: no light —
-      **and the scratch marks on its right-hand side** (photographed
-      1/10/2026): does any run across the land from bore to outside?
+- [x] both flange faces — **no protrusion** (`open.md` H8, *At the
+      job*); the June gasket came away on its own, the green is the
+      original gasket's imprint
+- [x] the plenum's face after cleaning, the rule across it: **no light,
+      1/10/2026** (*owner*); the scratches on its right-hand side stay
+      inside the face, none from bore to outside
 - [ ] any pit or dent, with a rule beside it, and what was done about it
+      — two small dark spots near the plenum face's right-hand outer edge
+      in the photographs of 1/10/2026: pits, or dirt? On the gasket's line?
+- [ ] the June throttle gasket, if kept: any gap or dent at the lower left
 - [ ] the cable: idle stop at rest, full throttle with the pedal down
 
 **Items 9–10 — back together**
