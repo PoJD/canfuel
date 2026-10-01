@@ -86,7 +86,11 @@ a part that exists four times names its cylinder.**
 
 **Item 5 — plugs and boots**
 - [ ] each plug's insulator and electrode, cylinder by cylinder: colour,
-      deposits, oil, gap if a gauge is at hand
+      deposits, oil, gap if a gauge is at hand. **In the head, 1/10/2026**
+      (*photographed, cylinder counted on fingers*): all four upper
+      insulators clean and dry; **1 and 2 dry around the plug**, **3 and
+      4 sitting in black, oily grime** from the cover leak (S10), oil
+      outside only. Owed: the plugs out — firing ends
 - [x] each lead boot inside: oil, tracking marks — **clean, 1/10/2026**
       (*owner, photographed*): no oil got into any boot. One boot's inner
       rim carries a fine silvery speckle in the photographs — which lead
