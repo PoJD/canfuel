@@ -68,17 +68,21 @@ a part that exists four times names its cylinder.**
       came off** (*owner-reported*)
 
 **Items 2–3 — the cover and the breather**
-- [ ] the filler cap's underside: the light-brown film seen 30/9 —
-      *photographed 1/10/2026*: wet with dark oil, reddish-brown deposit
-      in the moulded lettering, nothing creamy to be seen; the owner's
-      word on it owed
+- [x] the filler cap's underside: the light-brown film seen 30/9 —
+      **harmless, 1/10/2026** (*owner*): a fine deposit of condensed
+      water built up over a long time, no emulsion; photographed
 - [ ] the cover's underside, the cam and the bearing caps: any film or
       emulsion, and **where it stops** — only near the cap and breather,
       or further down
-- [ ] the breather: **is there a seal under it (item 5), and under the
-      cap (item 2)?** Photograph its underside and its seat in the cover
+- [x] the breather: **is there a seal under it (item 5), and under the
+      cap (item 2)?** — **both there, 1/10/2026** (*owner, photographed*):
+      a notched flat ring under the breather; the cap's seal is built into
+      the cap (`refuted.md` C14)
 - [ ] the old cover gasket: hard, cracked, flattened, where it wept
-- [ ] which ring went under the breather, and why (item 3)
+- [ ] which ring went under the breather, and why (item 3) — the old
+      item 5 beside the `100690`; and whether the `100690` fits the cap at
+      all, its seal being part of the cap. *Owner considering a new cap
+      as well, 1/10/2026 — not decided*
 
 **Item 5 — plugs and boots**
 - [ ] each plug's insulator and electrode, cylinder by cylinder: colour,
@@ -99,15 +103,16 @@ a part that exists four times names its cylinder.**
 - [x] the intake duct where the breather hose joins it, ahead of the
       throttle: **oily inside, the whole hose off, 1/10/2026**
       (*owner-found*, `open.md` H9 test 4)
-- [ ] that hose's two ends, by hand: **is the ragged lip seen in the
-      photograph split through**, and which end is it — the throttle's or
-      the MAF's
+- [ ] that hose — **the MAF-to-throttle connector**, which the breather
+      hose and the `N79` tee join (*owner, 1/10/2026*) — by hand: **is the
+      ragged lip seen in the photograph split through**, and is it the
+      throttle's end or the MAF's
 - [ ] the old breather out of the car: membrane, body, spigots, vent hole
-      — **photographed 1/10/2026: what looks like a crack in the body**
-      where the hose spigot meets it, and the seam of the ring round its
-      middle looks open in places (`open.md` H9 test 4). Owed: **does the
-      crack go through** (light behind it, or a drop of cleaner from
-      inside), is the seam open or only an edge, and the membrane
+      — **1/10/2026, photographed**: oily everywhere; **a foreign black
+      patch on the body by the spigot**, askew and lifting at the edge,
+      read by the owner as a past repair (`open.md` H9 test 4); the seam
+      of its middle ring looks lifted. Owed: the seam by hand. **Keep the
+      part** — the patch is evidence
 - [ ] ground 2 — tight and clean if found; **not found is done**
 - [ ] the old upper plenum gasket: flattened, torn, a gap
 

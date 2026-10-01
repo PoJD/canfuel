@@ -306,3 +306,14 @@ sit behind S10, S11 and the idle together (it was H10 in `open.md`).
 leak-down. **What would revive it:** coolant going down, emulsion under the
 cap or the valve cover, bubbles in the expansion tank, or a garage smoke test
 that places S11's leak at the head-to-block joint.
+
+### C14. "The breather sits on no seal, and neither does the filler cap" — measured
+
+**Believed:** preliminarily, 30/9/2026, from a quick look before anything
+came off (`open.md` S10, H9), as a concrete door for unmetered air and for
+the oil on the breather's lower body.
+**Refuted by** the job itself, 1/10/2026 (*owner, photographed*): a flat
+ring (VW item 5) under the breather, notched on its inner edge, and the
+cap's seal built into the cap's body. **What would revive it:** nothing —
+the parts were in hand. The door H9 now points at is the breather's body.
+

@@ -502,14 +502,15 @@ What it settles and what it moves:
   with item 5 anyway is not known**: febi's catalogue gives no scope of
   delivery and its photograph shows the part black on black; the shop was
   asked (28/9, a public holiday).
-- **Preliminary, 30/9/2026: no seal at the breather at all** (*owner,
-  a quick look, not yet verified*) — neither item 2 under the cap nor
-  item 5 under the breather. To be confirmed when it comes apart
-  (`plan.md` step 1, item 3), with a photograph of the breather's
-  underside and its seat in the cover. **If it holds**, it is the most
-  direct explanation of the oily lower body seen on 26/9 — oil weeping
-  past an unsealed seat rather than, or as well as, past the cover
-  gasket — and an opening from the crankcase to the outside (H9).
+- **Both seals are there — 1/10/2026** (*owner, at the job,
+  photographed*): **item 5 under the breather**, a flat black ring with
+  notches on its inner edge, wet with oil; and **the cap's seal sits in
+  the cap's own body**, not as a loose ring. *This bullet used to read
+  "Preliminary, 30/9/2026: no seal at the breather at all" — a quick look
+  before anything came off, which the job has corrected* (`refuted.md`
+  C14). The oily lower body seen on 26/9 is therefore not an unsealed
+  seat; what is left for it is the cover gasket and the breather itself
+  (H9 test 4).
 - **"Turn clockwise to remove"** is the opposite of what a hand does by
   default, on a 26-year-old plastic housing. Worth knowing before the
   first attempt.
@@ -1955,17 +1956,20 @@ gasket leaks instead**, the crankcase draws in air past the MAF at idle, where
 the manifold vacuum is highest: an unmetered leak, H3 by a different door.
 Either way one fault can make S10 and reach the idle.
 
-**Preliminary, 30/9/2026 — the breather may be sitting on no seal at all**
-(S10, *owner, a quick look, to be verified at the job*). If so, it is this
-second branch by a concrete door: at idle the breather holds the crankcase
-slightly below atmospheric, so an unsealed seat draws outside air, which
-leaves through the ventilation into the intake **behind the MAF** —
-unmetered. It is **test 3's filler-cap-off made smaller**, and that made
-the idle audibly slightly worse; the depression is small (test 3 felt no
-suction, and *The valve cover gasket and a rough idle* below calls the air
-route weak), so a small leak rather than a large one (*reasoned,
-general*) — which is what rank 1 in *The idle's candidates* asks for. The fit table below is unchanged
-until it is confirmed.
+**The concrete door, 1/10/2026.** *This paragraph used to say the
+breather might sit on no seal at all (30/9, a quick look); at the job
+both seals were found in place (S10, `refuted.md` C14).* The door the job
+did find is **the breather's own body** (test 4, below): a patch on it
+that the owner reads as a past repair. Either way the mechanism is this
+second branch: at idle the breather holds the crankcase slightly below
+atmospheric, so an opening to the outside draws air, which leaves through
+the ventilation into the intake **behind the MAF** — unmetered. It is
+**test 3's filler-cap-off made smaller**, and that made the idle audibly
+slightly worse; the depression is small (test 3 felt no suction, and *The
+valve cover gasket and a rough idle* below calls the air route weak), so a
+small leak rather than a large one (*reasoned, general*) — which is what
+rank 1 in *The idle's candidates* asks for. The fit table below is
+unchanged until it is confirmed.
 
 | S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S13 |
 |---|---|---|---|---|---|---|---|---|
@@ -2193,26 +2197,33 @@ repair blogs; still nothing from VW.
    unchanged.
 
    **The old breather itself, out of the car, 1/10/2026** (*owner-found,
-   photographed; "a finding", described by the photographs so far*):
-   - **what looks like a crack in the body**, stress-whitened and
-     branching, at the root of the hose spigot where it meets the body;
+   photographed*):
+   - **a foreign patch on the body** — on one side, where the body
+     meets the hose spigot, **something black looks melted or stuck on,
+     like a tape** (*owner's reading*). He reads it as not original: it
+     sits **slightly askew** rather than square to the part, and its edge
+     is **lifting a little** — but a fingernail cannot lift it. At its
+     corner the photograph shows a whitish, branching mark; *an earlier
+     revision of this paragraph read that mark as a crack in the body,
+     before the owner described the patch*. A patch there would most
+     plausibly cover an earlier breach (*reasoned, not seen under it*);
    - **the seam of the ring round the body's middle** — the joint of the
-     two halves, where a membrane would sit (*general*) — looks lifted
-     in places;
-   - the spigot's outlet and the bayonet underneath wet with oil, as the
-     hoses were.
+     two halves, where a membrane would sit (*general*) — looks lifted in
+     places in the photographs, not checked by hand;
+   - **oily in every direction**, inside and out; a finger does not reach
+     the membrane.
 
-   **Why it matters** (*reasoned*): the breather's body is on the
-   crankcase side of the ventilation, which this layout holds slightly
-   below atmospheric at idle (above). **A crack through its wall, or an
-   open seam, is an opening to the outside behind the MAF** — the
-   unmetered-air branch of H9 by a concrete door, the same mechanism as
-   the unsealed seat of 30/9 and test 3's filler cap made smaller.
-   Small, for the same reason test 3 found no suction; but the engine
-   noticed test 3. **Not yet confirmed through the wall**: a crack in
-   the moulding's skin and a crack through it look alike in a
-   photograph. Until it is, the fit table is unchanged; the new breather
-   (`32452`) replaces it either way.
+   **What it says** (*reasoned*): the body is on the crankcase side of
+   the ventilation, slightly below atmospheric at idle. **A breach under a
+   lifting patch, or an open seam, is an opening to the outside behind
+   the MAF** — the concrete door above. Not proven: nobody has seen under
+   the patch, and it does hold. **The owner also reads the oil as the
+   membrane passing it**; the oil reaches the hose by the valve's normal
+   path — blow-by and its mist go *through* the breather — so oil past it
+   speaks to the separator, not to the membrane (*reasoned*, above). The
+   membrane stays unjudged; the new breather (`32452`) replaces it either
+   way. **The fit table is unchanged**, but this is the strongest sign
+   for H9's air branch found so far.
 5. **After the repair**, `IdleHealth` at a matched oil temperature against the
    current band: the same rule as H2 — a clear improvement means this was
    underrated.
