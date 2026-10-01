@@ -655,7 +655,8 @@ heard working for **20–30 s**, like seeking its stops — **at every
 ignition-on**, not once after a disconnect; confirmed to come from the
 throttle. Usually the engine is started straight away and the routine is
 cut short. **The engine's fault memory is empty, and 17973 has never been
-seen.** Whether it also did this after the June manual adaptation is not
+seen** — read empty again on 1/10/2026, before the battery came off for
+`plan.md` step 1 (*owner-reported*). Whether it also did this after the June manual adaptation is not
 remembered.
 
 **Why it is a symptom:** VW's manual for this engine gives the adaptation

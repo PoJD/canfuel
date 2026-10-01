@@ -60,8 +60,8 @@ a part that exists four times names its cylinder.**
 **Before anything comes off**
 - [ ] the coolant level, cold, marked on the expansion tank
 - [ ] the dipstick: level, colour, any emulsion
-- [ ] the fault memory — before the job if the ignition goes on, else
-      with the new throttle before its 098 (*Before the first start*)
+- [x] the fault memory — **empty, 1/10/2026, read before the battery
+      came off** (*owner-reported*)
 
 **Items 2–3 — the cover and the breather**
 - [ ] the filler cap's underside: the light-brown film seen 30/9
@@ -142,8 +142,9 @@ engine running:
 - **Read the engine's fault memory** (VCDS, 01, fault codes) — a minute,
   ignition on. **It no longer decides S13**: the old part's timing did
   that (`open.md` S13). It is the record of what the car carried into the
-  job, so that a code after it is known to be new. Last read after the
-  last drive before 26/9, empty; not read since the battery went back.
+  job, so that a code after it is known to be new. **Read 1/10/2026,
+  before the battery came off for the job: empty** (*owner-reported*) —
+  as after the last drive before 26/9.
   *That 098 ran on 29/9 suggests it was still empty, but VW lists "no
   stored faults" as a precondition of the procedure, not as something the
   ECU is known to enforce — and whether a disconnect clears this ECU's
