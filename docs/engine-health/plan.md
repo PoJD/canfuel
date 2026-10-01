@@ -205,7 +205,9 @@ a part that exists four times names its cylinder.**
       **1/10/2026** (*owner*); the cover sits on dry, no gasket, no nuts,
       as a lid until the parts arrive
 - [ ] Dirko at the four arch points, the two front ones not skimped
-- [ ] **the injectors' air-shroud line back on all four nipples** — off
+- [x] **the injectors' air-shroud line back on all four nipples** —
+      **done 1/10/2026** with new 8 mm sleeves; injector rail bolted at
+      **10 Nm** — off
       since 1/10/2026, out of the car: a rigid pipe with four rubber
       sleeves. *Revised the same day:* **the sleeves are crazed and
       cracked** (`06A 133 264`, `refuted.md` C9) — **new ones to be bought
