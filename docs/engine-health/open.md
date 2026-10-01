@@ -532,6 +532,18 @@ What it settles and what it moves:
   is an uneven or loose joint; the check is a look along the joint after
   the first warm run, and again after a few hundred km.
 
+**At the job, 1/10/2026 — the cover nuts were loose** (*owner-found,
+photographed*): **six of the eight came off by hand**; only two needed
+the ratchet. The old gasket came off **relatively well preserved** —
+still supple in the photographs, stuck down in places — and the owner
+doubts it is the original one. *Reasoned:* a joint whose nuts have
+backed off leaks with any gasket, so **the loose nuts are the most
+direct explanation of S10** — more than the gasket's age, which the
+section above assumed. It also bears on the decision just above: the
+risk it accepted, a loose joint, is exactly what was found, whoever
+last fitted the cover. **The re-check after the first warm run and
+after a few hundred km is therefore not optional.**
+
 **The job itself — the work list, the first start and what follows — is in
 `plan.md`**, step 1. *Owner's decision, 27/9/2026:* the cover gasket, the
 breather and its seals, the upper plenum gasket, the injector refit

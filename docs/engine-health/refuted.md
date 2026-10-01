@@ -302,6 +302,12 @@ sit behind S10, S11 and the idle together (it was H10 in `open.md`).
   found and photographed on 26/9, and S11's smoke is most likely that oil
   on the manifold.
 
+**Strengthened at the job, 1/10/2026** (*owner, photographed*): with
+the valve cover off, **no emulsion anywhere** — not under the cover, not
+on the cam or the caps; the dipstick and the filler cap's underside
+clean of it the same day. The cover's underside carries only a thin
+golden-brown film, the ordinary varnish of hot oil (*general*).
+
 **Not done:** a combustion-gas (CO₂) test of the coolant and a warm
 leak-down. **What would revive it:** coolant going down, emulsion under the
 cap or the valve cover, bubbles in the expansion tank, or a garage smoke test

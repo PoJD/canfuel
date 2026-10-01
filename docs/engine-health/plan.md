@@ -70,14 +70,17 @@ a part that exists four times names its cylinder.**
 - [x] the filler cap's underside: the light-brown film seen 30/9 —
       **harmless, 1/10/2026** (*owner*): a fine deposit of condensed
       water built up over a long time, no emulsion; photographed
-- [ ] the cover's underside, the cam and the bearing caps: any film or
-      emulsion, and **where it stops** — only near the cap and breather,
-      or further down
+- [x] the cover's underside, the cam and the bearing caps — **no
+      emulsion anywhere, 1/10/2026** (*owner, photographed*); a thin
+      golden varnish only (`refuted.md` C13, strengthened)
 - [x] the breather: **is there a seal under it (item 5), and under the
       cap (item 2)?** — **both there, 1/10/2026** (*owner, photographed*):
       a notched flat ring under the breather; the cap's seal is built into
       the cap (`refuted.md` C14)
-- [ ] the old cover gasket: hard, cracked, flattened, where it wept
+- [x] the old cover gasket — **relatively well preserved**, stuck down
+      in places, possibly not the original (*owner, 1/10/2026*). **Six of
+      the eight cover nuts were loose by hand** (`open.md` S10, *At the
+      job*)
 - [ ] which ring went under the breather, and why (item 3) — the old
       item 5 beside the `100690`; and whether the `100690` fits the cap at
       all, its seal being part of the cap — **when the parts arrive**, not
