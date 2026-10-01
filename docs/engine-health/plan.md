@@ -166,7 +166,7 @@ a part that exists four times names its cylinder.**
       read by the owner as a past repair (`open.md` H9 test 4); the seam
       of its middle ring **probably fine by hand** (*owner*) — the patch is
       the suspect. **Keep the part** — the patch is evidence
-- [ ] ground 2 — tight and clean if found; **not found is done**
+- [x] ground 2 — **not found, 1/10/2026** (*owner*); not found is done
 - [x] the old upper plenum gasket — **whole, 1/10/2026** (*owner,
       photographed*): no tear, no gap, pressed in evenly; the joint looked
       fine. Both faces cleaned, a rag over the lower part's ports. The
