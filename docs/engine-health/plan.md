@@ -101,8 +101,10 @@ a part that exists four times names its cylinder.**
       oily inside, 1/10/2026** (*owner-found*, `open.md` H9 test 4);
       **its outside fine** (*owner, 1/10/2026*); **the plastic connector
       is there, with no electrical connector — no `N79` heater on this
-      car** (`open.md` H9). Owed: the connector for cracks, and where the
-      thinner hose into it comes from
+      car** (`open.md` H9). **Oil and deposit inside it**, the worst wiped
+      out — what the breather sends, as expected (*owner, 1/10/2026*).
+      Owed: the connector for cracks, and where the thinner hose into it
+      comes from
 - [x] the intake duct where the breather hose joins it, ahead of the
       throttle: **oily inside, the whole hose off, 1/10/2026**
       (*owner-found*, `open.md` H9 test 4)
