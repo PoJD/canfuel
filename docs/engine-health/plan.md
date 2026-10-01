@@ -129,7 +129,9 @@ a part that exists four times names its cylinder.**
 - [ ] any pit or dent, with a rule beside it, and what was done about it
       — two small dark spots near the plenum face's right-hand outer edge
       in the photographs of 1/10/2026: pits, or dirt? On the gasket's line?
-- [ ] the June throttle gasket, if kept: any gap or dent at the lower left
+- [x] the June throttle gasket: **whole, 1/10/2026** (*photographed*) —
+      no tear, no gap from bore to outside, at the lower left or anywhere;
+      the bolt rings and a darker band along the bore pressed in evenly
 - [ ] the cable: idle stop at rest, full throttle with the pedal down
 
 **Items 9–10 — back together**

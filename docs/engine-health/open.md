@@ -1564,7 +1564,10 @@ to either face; the green on both faces is the residue and imprint of
 **the original gasket**, which was torn when it came off in June
 (*owner*). *An earlier revision of this paragraph took the green on the
 plenum for the June gasket, stuck on and whole all round — the owner
-corrected it the same day.* The plate and both sides of the bore look clean
+corrected it the same day.* **The June gasket itself is whole**
+(photographed): no tear and no gap from the bore to the outside, at the
+lower left or anywhere, its bolt rings and the band along the bore
+pressed in evenly. The plate and both sides of the bore look clean
 — a thin dark line at the plate's edge, no oil film to be seen despite
 the oily intake hose ahead of it (H9 test 4) — and the owner judges the
 part fine. **So the flange is not a leak this job found**, and the
