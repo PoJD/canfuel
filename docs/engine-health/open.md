@@ -1569,6 +1569,15 @@ part fine. **So the flange is not a leak this job found**, and the
 protrusion"* did not happen. The June photograph's point stays recorded
 above as what it showed then.
 
+**Behind the throttle, the same day** (*owner, photographed by torch*):
+the plenum's mouth is **dry cast aluminium**, light grey, with a darker
+smudge at its lowest point — no standing oil, no wet film. The oil seen
+in the intake hose (H9 test 4) has not visibly reached the plenum. The
+plenum's flange face, with the old gasket off, carries green residue and
+**fine scratch marks towards its right-hand side** — whether any runs
+across the gasket's land from the bore to the outside is for the rule
+and a closer look after cleaning (`plan.md` item 8).
+
 ⚠ **What it does to the reading:** the swap changes two things — the
 throttle *and* this joint (a new part's clean face, a new gasket). It is
 also **why the throttle went back into the valve cover job** (*owner's

@@ -123,7 +123,9 @@ a part that exists four times names its cylinder.**
 - [x] both flange faces and the old gasket — **no protrusion, no gap**
       (`open.md` H8, *At the job*); the old green gasket is stuck to the
       plenum's face and comes off with solvent and plastic, not a blade
-- [ ] the plenum's face after cleaning, the rule across it: no light
+- [ ] the plenum's face after cleaning, the rule across it: no light —
+      **and the scratch marks on its right-hand side** (photographed
+      1/10/2026): does any run across the land from bore to outside?
 - [ ] any pit or dent, with a rule beside it, and what was done about it
 - [ ] the cable: idle stop at rest, full throttle with the pedal down
 
