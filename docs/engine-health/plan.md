@@ -103,10 +103,10 @@ a part that exists four times names its cylinder.**
 - [x] the intake duct where the breather hose joins it, ahead of the
       throttle: **oily inside, the whole hose off, 1/10/2026**
       (*owner-found*, `open.md` H9 test 4)
-- [ ] that hose — **the MAF-to-throttle connector**, which the breather
-      hose and the `N79` tee join (*owner, 1/10/2026*) — by hand: **is the
-      ragged lip seen in the photograph split through**, and is it the
-      throttle's end or the MAF's
+- [x] that hose — **the MAF-to-throttle connector**, which the breather
+      hose and the `N79` tee join — by hand: **sound on every side**
+      (*owner, 1/10/2026*); the "split" was a frayed sliver at the end,
+      torn off. Clean the oil out of it before it goes back
 - [ ] the old breather out of the car: membrane, body, spigots, vent hole
       — **1/10/2026, photographed**: oily everywhere; **a foreign black
       patch on the body by the spigot**, askew and lifting at the edge,

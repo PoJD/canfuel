@@ -2184,17 +2184,15 @@ repair blogs; still nothing from VW.
 
    **The big intake hose too, 1/10/2026** (*owner-found and
    photographed*): the oil has gone on past the breather hose's junction
-   — **the large intake hose from the MAF to the throttle is oily
-   inside**, taken off the car whole. The photograph shows a wet film
-   along the bottom of the bore. It also shows **the clamped end's rubber
-   lip ragged and swollen-looking, with what looks like a split running
-   in from the edge** at one side — *from the photograph only, not yet
-   confirmed by hand*. Oil softens and swells rubber (*general*). **If
-   that end is split through and it is the end on the throttle**, it is
-   an opening behind the MAF — unmetered air, H3 by another door, and the
-   one place in the intake where the breather's oil has been sitting on
-   the rubber. Until it is checked by hand, the fit tables are
-   unchanged.
+   — **the large connector from the MAF to the throttle**, which the
+   breather hose and the `N79` tee join, **is oily inside**, taken off
+   the car whole; a wet film along the bottom of the bore. **The hose
+   itself is sound** (*owner, by hand*): what the photograph showed at
+   its clamped end as a possible split was a small frayed sliver of the
+   material turned inwards, which tore off like a loose thread — the
+   end only frays. *An earlier revision of this paragraph read it as
+   possibly a split through the wall, an opening behind the MAF; the
+   owner's hands corrected it the same day.* Fine on every side.
 
    **The old breather itself, out of the car, 1/10/2026** (*owner-found,
    photographed*):
