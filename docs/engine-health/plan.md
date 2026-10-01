@@ -116,7 +116,10 @@ a part that exists four times names its cylinder.**
       injector's own pins. *The harness side read 9.21–9.29 MΩ between
       its pins with the battery off — a path through the ECM, which says
       nothing about the injectors*
-- [ ] the rear hoses: brake servo, old secondary-air line, breather hose
+- [x] the rear hoses, by hand and eye — **fine, 1/10/2026** (*owner,
+      photographed*): brake servo line, coolant hoses, the rest at the
+      back. Detail on the breather hose below.
+- [x] (detail) brake servo, old secondary-air line, breather hose
       and its plastic connector — cracked, hard, oily. **The breather hose is
       oily inside, 1/10/2026** (*owner-found*, `open.md` H9 test 4);
       **its outside fine** (*owner, 1/10/2026*); **the plastic connector
