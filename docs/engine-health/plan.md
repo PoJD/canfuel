@@ -103,8 +103,11 @@ a part that exists four times names its cylinder.**
       is there, with no electrical connector — no `N79` heater on this
       car** (`open.md` H9). **Oil and deposit inside it**, the worst wiped
       out — what the breather sends, as expected (*owner, 1/10/2026*).
-      Owed: the connector for cracks, and where the thinner hose into it
-      comes from
+      **Two thinner hoses** join it too (*owner, 1/10/2026*): one to the
+      injectors (their air shrouds, `refuted.md` C9), one to **another tee
+      right by the head, at the intake runners**. Owed: the connector for
+      cracks; **where that second tee's other branches go**, and its hoses
+      cracked or hard
 - [x] the intake duct where the breather hose joins it, ahead of the
       throttle: **oily inside, the whole hose off, 1/10/2026**
       (*owner-found*, `open.md` H9 test 4)

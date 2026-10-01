@@ -2029,8 +2029,11 @@ drawing of this car.
   connector with no electrical connector**, and a thinner hose joins the
   same connector. *This bullet used to say "with the heater `N79` teed
   into it against icing", from the catalogues; the part on the car has no
-  wiring, so no heater is fitted here.* Where the thinner hose comes from
-  is not yet written down.
+  wiring, so no heater is fitted here.* **Two thinner hoses** join the same
+  connector (*owner, 1/10/2026*): one to the injectors' air shrouds
+  (`refuted.md` C9), one to **a second tee right by the head, at the
+  intake runners** — where that tee's other branches go is not yet
+  written down.
   One aggregator claims a second hose to the intake manifold; no other source
   shows one, so it is not relied on.
 - **What follows from that layout.** With the breather joined ahead of the
