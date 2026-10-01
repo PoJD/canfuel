@@ -275,7 +275,12 @@ established. The argument above still stands: the supply is taken from the
 breather's connector ahead of the throttle, so the rail sits near that
 pressure and a crack in it admits little that is not already metered
 (*reasoned*). **The owner replaces the sleeves rather than refit them**
-(*owner's decision*) — cheap, and it ends the question. *What would revive
+(*owner's decision*) — cheap, and it ends the question. The genuine
+sleeve was not in stock anywhere in Prague on the day; **the old sleeves
+measure 15 mm outside, 8 mm inside, 47 mm long** (*owner-measured,
+1/10/2026*), so a length of 8 mm bore vacuum hose cut to four 47 mm
+pieces is the stand-in if the original does not come — *a decision, not
+VW's part*. *What would revive
 this entry:* a sleeve split through on the injector side, where the nipple
 opens to the port.
 
