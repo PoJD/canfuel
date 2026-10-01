@@ -1052,8 +1052,10 @@ the new injectors' kit fits only the rail end, so cylinder 2 now carries
 **the intake-side ring taken off one of the old injectors** — in service
 until 23/9, looked fine and was refitted. *A decision, recorded as one:*
 an aged ring is a weaker seal than a new one of the right size; it was
-chosen over leaving the car open for a part. If the idle does not settle,
-a new intake-side ring for cylinder 2 is the cheap first thing to fit.
+chosen over leaving the car open for a part. **The owner judged the ring
+well preserved and soft** and does not plan a new one (*owner's decision,
+1/10/2026*). If the idle does not settle, a new intake-side ring for
+cylinder 2 stays the cheap first thing to fit.
 
 **Spray test, 26/9/2026** (contact cleaner — isopropanol and C6–C7 alkanes;
 warm idle, loads off, engine speed watched): **no change** — but it covered
