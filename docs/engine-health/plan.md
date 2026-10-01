@@ -149,9 +149,12 @@ a part that exists four times names its cylinder.**
 
 **Items 9–10 — back together**
 - [ ] Dirko at the four arch points, the two front ones not skimped
-- [ ] every rag out of the ports — **counted**; one is in the cover's
-      breather opening since 1/10/2026
-- [ ] the coolant hose back on, the level topped up
+- [ ] every rag out of the ports — **counted**; since 1/10/2026 one in
+      the cover's breather opening and one in the plenum's throttle mouth
+- [ ] **both** coolant hoses back on the new throttle, the level topped up.
+      Off since 1/10/2026, their ends tied upwards (one cable-tied to a
+      loom at the back, one tucked behind a cable) — **check they have
+      not turned down** before refitting
 
 **Optional**, only if quick: the four HT leads and the four injector
 windings on ohms, each against the other three.
@@ -179,9 +182,11 @@ only the front hose by the fuel rail, and perhaps one at the back, is
 undone. Tightening evenly and crosswise is general practice; VW gives no
 order for the upper part.
 
-**A coolant hose runs to the throttle body** (*owner-observed, 28/9/2026*),
-so the job opens the cooling circuit: **start it on a cold engine**, pinch
-or plug the hose while it is off, and **top up afterwards and check the
+**Two coolant hoses run to the throttle body** (*owner-observed: one on
+28/9/2026, both found when it came off on 1/10/2026* — this paragraph
+used to say *a* coolant hose), so the job opens the cooling circuit:
+**start it on a cold engine**, pinch, plug or tie the hoses' ends upwards
+while they are off, and **top up afterwards and check the
 level again after the first warm run** (the test below) — air in the
 circuit is what that finds.
 
@@ -286,7 +291,7 @@ engine running:
        open leak path is worse*; one that a film cannot bridge means the
        upper part is not reused, and the job waits for one;
    - the new one on with a new flange gasket, **bolts 10 Nm** (the table
-     above), coolant hose back on. **Keep the old one, labelled**;
+     above), both coolant hoses back on. **Keep the old one, labelled**;
    - **check the cable** — the lever on its idling stop at rest, full
      throttle reached at the quadrant with the pedal down (`open.md` H8,
      *What VW's repair manual says*).
