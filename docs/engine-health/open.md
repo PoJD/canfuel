@@ -1021,6 +1021,28 @@ at for a nick from being forced, then `IdleHealth` at 70–72 °C against
 decision (`plan.md`, step 1): the cure is wanted more than the
 attribution.
 
+**Found at the refit, 1/10/2026 — cylinder 2's manifold-end O-ring was
+damaged** (*owner-found, photographed*). Cylinder 2's injector went in
+harder than cylinder 1's, and is most likely the one forced in on 23/9;
+its intake-side ring came off damaged. Cylinder 1's was fine. **This is
+the first leak path found on a part since the investigation began** —
+the seal that alone closes the seat against manifold vacuum (above) —
+on one cylinder, present since 23/9. *What it does not settle*
+(*reasoned*): whether the damage went through the sealing line, and so
+how much air it passed, cannot be read from a photograph of a ring off
+the part; and it is one cylinder, where A5 saw no one cylinder stand out
+— though 2 sits in the 2-and-3 pair of the period-2 pattern under
+*Naming the cylinder*. The fit table is unchanged; a stumble that fades
+after this job is consistent with it, and so is one that does not.
+
+**What went back in its place** (*owner, 1/10/2026*): the spare ring in
+the new injectors' kit fits only the rail end, so cylinder 2 now carries
+**the intake-side ring taken off one of the old injectors** — in service
+until 23/9, looked fine and was refitted. *A decision, recorded as one:*
+an aged ring is a weaker seal than a new one of the right size; it was
+chosen over leaving the car open for a part. If the idle does not settle,
+a new intake-side ring for cylinder 2 is the cheap first thing to fit.
+
 **Spray test, 26/9/2026** (contact cleaner — isopropanol and C6–C7 alkanes;
 warm idle, loads off, engine speed watched): **no change** — but it covered
 **the hoses only**: the MAF-to-throttle hose and the other hoses in reach

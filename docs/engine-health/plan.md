@@ -106,8 +106,11 @@ a part that exists four times names its cylinder.**
 **Item 6 — injectors**
 - [ ] each manifold-end O-ring: nick, flat, fine — **cylinder 1 fine**
       (*owner, photographed, 1/10/2026*; a light mark on its top edge in
-      one photograph, by Claude's reading, to be felt by finger); 2, 3, 4
-      owed
+      one photograph, by Claude's reading, to be felt by finger).
+      **Cylinder 2 damaged** — went in harder, most likely the one forced
+      on 23/9; replaced with the intake-side ring off an old injector, the
+      kit's spare fitting only the rail end (`open.md` H3, *Found at the
+      refit*). 3 and 4 owed
 - [ ] each injector clicked home on its own
 - [ ] all four fully home under the rail
 
