@@ -1582,9 +1582,9 @@ in the intake hose (H9 test 4) has not visibly reached the plenum. The
 plenum's flange face carries the original gasket's green imprint and
 **fine scratch marks towards its right-hand side**. Cleaned with petrol,
 **the rule across it shows no light**, and **the scratches stay inside
-the face** — none runs from the bore to the outside (*owner*). Two small
-dark spots near its right-hand outer edge are in the photographs and not
-yet looked at closely.
+the face** — none runs from the bore to the outside (*owner*). The dark
+spots near its right-hand edge are deposit petrol did not lift, **not
+pits** (*owner*). The face is closed as fine.
 
 ⚠ **What it does to the reading:** the swap changes two things — the
 throttle *and* this joint (a new part's clean face, a new gasket). It is
@@ -2023,8 +2023,14 @@ drawing of this car.
   cover**, VW `06A 103 465` (later revision `-D`), sold for AQY, APK, AZH,
   AZJ and AEG and described as a pressure-control breather with an oil
   separator. From it one hose runs to the **intake hose ahead of the throttle
-  valve** — after the MAF — with the heater `N79` teed into it against icing.
-  *Confirmed on this car by the owner's photograph of 26/9/2026.*
+  valve** — after the MAF. *Confirmed on this car by the owner's
+  photograph of 26/9/2026.* **No heater on this car** (*owner, the part in
+  hand, 1/10/2026*): the hose joins the intake hose through **a plastic
+  connector with no electrical connector**, and a thinner hose joins the
+  same connector. *This bullet used to say "with the heater `N79` teed
+  into it against icing", from the catalogues; the part on the car has no
+  wiring, so no heater is fitted here.* Where the thinner hose comes from
+  is not yet written down.
   One aggregator claims a second hose to the intake manifold; no other source
   shows one, so it is not relied on.
 - **What follows from that layout.** With the breather joined ahead of the
@@ -2187,8 +2193,8 @@ repair blogs; still nothing from VW.
    fume-laden push at the cap on a **warm** engine, or a separator found
    blocked in test 4.
 4. **The filler-neck breather and its hose off, engine cold**: oil sludge in
-   the hose or at its end on the intake hose, a split in the hose where
-   `N79` tees in, the separator in `06A 103 465` intact. The part costs a few
+   the hose or at its end on the intake hose, a split in the hose or at
+   its plastic connector, the separator in `06A 103 465` intact. The part costs a few
    tens of euros, so replacing it on suspicion is a fair test.
 
    **Partial result, 1/10/2026** (*owner-found and photographed*, during
@@ -2216,7 +2222,8 @@ repair blogs; still nothing from VW.
    **The big intake hose too, 1/10/2026** (*owner-found and
    photographed*): the oil has gone on past the breather hose's junction
    — **the large connector from the MAF to the throttle**, which the
-   breather hose and the `N79` tee join, **is oily inside**, taken off
+   breather hose and a thinner one join through a plastic connector, **is
+   oily inside**, taken off
    the car whole; a wet film along the bottom of the bore. **The hose
    itself is sound** (*owner, by hand*): what the photograph showed at
    its clamped end as a possible split was a small frayed sliver of the

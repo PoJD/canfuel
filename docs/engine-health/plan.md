@@ -97,14 +97,17 @@ a part that exists four times names its cylinder.**
 **Item 7 — while the plenum is off**
 - [ ] the injector wiring and its four connectors
 - [ ] the rear hoses: brake servo, old secondary-air line, breather hose
-      and its `N79` tee — cracked, hard, oily. **The breather hose is
+      and its plastic connector — cracked, hard, oily. **The breather hose is
       oily inside, 1/10/2026** (*owner-found*, `open.md` H9 test 4);
-      **its outside fine** (*owner, 1/10/2026*); the `N79` tee still owed
+      **its outside fine** (*owner, 1/10/2026*); **the plastic connector
+      is there, with no electrical connector — no `N79` heater on this
+      car** (`open.md` H9). Owed: the connector for cracks, and where the
+      thinner hose into it comes from
 - [x] the intake duct where the breather hose joins it, ahead of the
       throttle: **oily inside, the whole hose off, 1/10/2026**
       (*owner-found*, `open.md` H9 test 4)
 - [x] that hose — **the MAF-to-throttle connector**, which the breather
-      hose and the `N79` tee join — by hand: **sound on every side**
+      hose and a thinner one join through a plastic connector — by hand: **sound on every side**
       (*owner, 1/10/2026*); the "split" was a frayed sliver at the end,
       torn off. Clean the oil out of it before it goes back
 - [ ] the old breather out of the car: membrane, body, spigots, vent hole
@@ -126,9 +129,8 @@ a part that exists four times names its cylinder.**
 - [x] the plenum's face after cleaning, the rule across it: **no light,
       1/10/2026** (*owner*); the scratches on its right-hand side stay
       inside the face, none from bore to outside
-- [ ] any pit or dent, with a rule beside it, and what was done about it
-      — two small dark spots near the plenum face's right-hand outer edge
-      in the photographs of 1/10/2026: pits, or dirt? On the gasket's line?
+- [x] any pit or dent — **none, 1/10/2026** (*owner*): the dark spots on
+      the plenum's face are deposit petrol did not lift; the face is flat
 - [x] the June throttle gasket: **whole, 1/10/2026** (*photographed*) —
       no tear, no gap from bore to outside, at the lower left or anywhere;
       the bolt rings and a darker band along the bore pressed in evenly
@@ -214,7 +216,8 @@ engine running:
 7. **While the plenum is off — look only, photograph:**
    - the injector wiring under its sleeving and the four connectors;
    - the hoses at the back: brake-servo line, the old secondary-air vacuum
-     line, the breather hose and its `N79` tee — cracked, hard, oily;
+     line, the breather hose and its plastic connector — cracked, hard,
+     oily;
    - **the old breather, out of the car** (H9) — what matters is any
      opening **to the outside**, since that is what would let unmetered
      air in: the membrane, if it can be seen (torn, hardened, deformed);
@@ -540,7 +543,8 @@ The same rule: **idle solved → stop and record.** Otherwise, in this order
      quadrant) so the smoke reaches the plenum;
    - a few minutes of smoke, a torch, and look at the throttle's flange,
      the upper-to-lower plenum joint, the injector seats, the hoses at
-     the back, the breather and its `N79` tee, the brake servo's valve;
+     the back, the breather and its hose's plastic connector, the brake
+     servo's valve;
    - ⚠ **smoke at the oil filler or the dipstick is expected**, not an
      intake leak: the breather joins the crankcase to the intake. It
      does test the new cover gasket along the way.
