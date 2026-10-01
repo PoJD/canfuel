@@ -58,9 +58,8 @@ still missing. The numbers are the work items below. **Every photograph of
 a part that exists four times names its cylinder.**
 
 **Before anything comes off**
-- [ ] the coolant level, cold, marked on the expansion tank —
-      *photographed 1/10/2026*: pink coolant, the old tank's plastic
-      yellowed above it; **not yet marked**
+- [x] the coolant level, cold — **photographed 1/10/2026, not marked**:
+      the owner reads it off that photograph later (*owner's decision*)
 - [x] the dipstick: level, colour, any emulsion — **colour fine, no
       emulsion** (*owner-reported, 1/10/2026*); the level is wet across
       the hatched field in the photograph, not read off by the owner
@@ -81,8 +80,9 @@ a part that exists four times names its cylinder.**
 - [ ] the old cover gasket: hard, cracked, flattened, where it wept
 - [ ] which ring went under the breather, and why (item 3) — the old
       item 5 beside the `100690`; and whether the `100690` fits the cap at
-      all, its seal being part of the cap. *Owner considering a new cap
-      as well, 1/10/2026 — not decided*
+      all, its seal being part of the cap — **when the parts arrive**, not
+      in hand on 1/10/2026. *Owner considering a new cap as well — not
+      decided*
 
 **Item 5 — plugs and boots**
 - [ ] each plug's insulator and electrode, cylinder by cylinder: colour,
@@ -99,7 +99,7 @@ a part that exists four times names its cylinder.**
 - [ ] the rear hoses: brake servo, old secondary-air line, breather hose
       and its `N79` tee — cracked, hard, oily. **The breather hose is
       oily inside, 1/10/2026** (*owner-found*, `open.md` H9 test 4);
-      still owed: which end, its outside and the `N79` tee
+      **its outside fine** (*owner, 1/10/2026*); the `N79` tee still owed
 - [x] the intake duct where the breather hose joins it, ahead of the
       throttle: **oily inside, the whole hose off, 1/10/2026**
       (*owner-found*, `open.md` H9 test 4)
@@ -111,8 +111,8 @@ a part that exists four times names its cylinder.**
       — **1/10/2026, photographed**: oily everywhere; **a foreign black
       patch on the body by the spigot**, askew and lifting at the edge,
       read by the owner as a past repair (`open.md` H9 test 4); the seam
-      of its middle ring looks lifted. Owed: the seam by hand. **Keep the
-      part** — the patch is evidence
+      of its middle ring **probably fine by hand** (*owner*) — the patch is
+      the suspect. **Keep the part** — the patch is evidence
 - [ ] ground 2 — tight and clean if found; **not found is done**
 - [ ] the old upper plenum gasket: flattened, torn, a gap
 
@@ -126,7 +126,8 @@ a part that exists four times names its cylinder.**
 
 **Items 9–10 — back together**
 - [ ] Dirko at the four arch points, the two front ones not skimped
-- [ ] every rag out of the ports — **counted**
+- [ ] every rag out of the ports — **counted**; one is in the cover's
+      breather opening since 1/10/2026
 - [ ] the coolant hose back on, the level topped up
 
 **Optional**, only if quick: the four HT leads and the four injector
