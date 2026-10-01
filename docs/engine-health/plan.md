@@ -108,8 +108,12 @@ a part that exists four times names its cylinder.**
       right by the head, at the intake runners**. **The connector: no crack
       seen anywhere** (*owner, 1/10/2026*) — only the smoke test (step 3)
       would settle it, and it comes out easily if one finds a leak there
-      (*owner's decision: not pursued now*). Owed: **where that second
-      tee's other branches go**, and its hoses cracked or hard
+      (*owner's decision: not pursued now*). **The second tee** sits on a
+      rigid pipe `06A 133 374`, up towards the throttle and down under the
+      runners to EVAP by the owner's reading (`open.md` H9, *The
+      layout*). Owed: **where the pipe's top end joins the throttle —
+      ahead of the plate or behind it** — and the thin hoses on that tee:
+      cracked, hard, seated
 - [x] the intake duct where the breather hose joins it, ahead of the
       throttle: **oily inside, the whole hose off, 1/10/2026**
       (*owner-found*, `open.md` H9 test 4)

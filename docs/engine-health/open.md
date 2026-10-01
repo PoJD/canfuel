@@ -2032,8 +2032,16 @@ drawing of this car.
   wiring, so no heater is fitted here.* **Two thinner hoses** join the same
   connector (*owner, 1/10/2026*): one to the injectors' air shrouds
   (`refuted.md` C9), one to **a second tee right by the head, at the
-  intake runners** — where that tee's other branches go is not yet
-  written down.
+  intake runners**. That tee (*owner, photographed 1/10/2026*) sits on a
+  **rigid pipe marked `06A 133 374`**, which runs **up towards the
+  throttle** and **down under the runners, by the owner's reading to the
+  EVAP side**. *What the pipe is, and which port on the throttle it
+  serves, is not read from any VW document.* **Why it matters**
+  (*reasoned*): if its top end takes vacuum from **behind the plate** —
+  the throttle's bore carries a nipple on its plenum side — then this
+  line runs at full manifold vacuum, and a leak anywhere along it, the
+  tee or the thin hose to the breather's connector, is a far stronger
+  unmetered leak than anything ahead of the plate.
   One aggregator claims a second hose to the intake manifold; no other source
   shows one, so it is not relied on.
 - **What follows from that layout.** With the breather joined ahead of the
