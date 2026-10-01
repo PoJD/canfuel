@@ -84,14 +84,16 @@ survive.
      stops at 60) on the sump pan from underneath and on the filter. Not
      through the filler cap — that is the valve gear.
 
-   **The instrument: bought, 1/10/2026** (*owner*) — Hornbach article
-   `10545469`, *Bezkontaktní teploměr IR*, 569 Kč. From the shop's listing
-   only (the page itself would not load here): **12 : 1**, emissivity
-   **adjustable 0.1–1.0**, laser pointer, backlit display. **Its range is
-   not yet read** — it must go past 100 °C, so it is taken off the box or
-   the manual before the drive. Set to **E 0.95** (owner's photograph).
-   Brand and model not recorded. *The paragraph below, from 30/9, said no
-   instrument had been bought.*
+   **The instrument: bought, 1/10/2026** (*owner*) — **Extol Premium
+   `8831302`**, Hornbach article `10545469`, 569 Kč — the candidate named
+   below. From **its own manual** (Extol's Czech user manual, read
+   1/10/2026, not kept here): range **−50 to +550 °C**; accuracy **±1.5 °C
+   above 25 °C**, ±3.0 °C from 0 to 25 °C; repeatability ±1 °C; emissivity
+   **adjustable 0.10–1.00**, default 0.95; spot **12 : 1**; operated at
+   **0–40 °C**, and **left 30 minutes to reach the ambient temperature**
+   after a change of it. Set to **E 0.95** (owner's photograph). So it is
+   enough: ±1.5 °C against a 23 °C gap. *The paragraph below, from 30/9,
+   said no instrument had been bought.*
 
    *30/9/2026:* **The instrument: none yet** (*owner's decision, 30/9/2026*). A Bosch
    UniversalTemp was chosen on 29/9, not found in the shop and judged too
