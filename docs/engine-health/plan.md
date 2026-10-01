@@ -80,7 +80,11 @@ a part that exists four times names its cylinder.**
 - [x] the old cover gasket — **relatively well preserved**, stuck down
       in places, possibly not the original (*owner, 1/10/2026*). **Six of
       the eight cover nuts were loose by hand** (`open.md` S10, *At the
-      job*)
+      job*). The cover's flange carries a **baked-on cream-coloured
+      residue** along one side's gasket channel — old gasket or old
+      sealant, not known (*owner, photographed*); to be cleaned off before
+      the new gasket. **The cover sits back on, without nuts, as a dust lid
+      until the parts arrive** (*owner, 1/10/2026*)
 - [ ] which ring went under the breather, and why (item 3) — the old
       item 5 beside the `100690`; and whether the `100690` fits the cap at
       all, its seal being part of the cap — **when the parts arrive**, not
