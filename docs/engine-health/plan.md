@@ -92,9 +92,9 @@ a part that exists four times names its cylinder.**
       4 sitting in black, oily grime** from the cover leak (S10), oil
       outside only. Owed: the plugs out — firing ends
 - [x] each lead boot inside: oil, tracking marks — **clean, 1/10/2026**
-      (*owner, photographed*): no oil got into any boot. One boot's inner
-      rim carries a fine silvery speckle in the photographs — which lead
-      and which end not yet said
+      (*owner, photographed*): no oil got into any boot; the leads checked
+      and fine (*owner* — a silvery speckle Claude read in one photograph
+      was nothing)
 - [x] the four HT leads on ohms (the optional item below): **all about
       6 kΩ end to end**, small differences the owner puts down to probe
       contact
@@ -105,7 +105,13 @@ a part that exists four times names its cylinder.**
 - [ ] all four fully home under the rail
 
 **Item 7 — while the plenum is off**
-- [ ] the injector wiring and its four connectors
+- [x] the injector wiring and its four connectors — **fine, 1/10/2026**
+      (*owner*)
+- [x] the four injector windings on ohms (the optional item below):
+      **15.9 Ω each, all four alike** (*owner, 1/10/2026*), across the
+      injector's own pins. *The harness side read 9.21–9.29 MΩ between
+      its pins with the battery off — a path through the ECM, which says
+      nothing about the injectors*
 - [ ] the rear hoses: brake servo, old secondary-air line, breather hose
       and its plastic connector — cracked, hard, oily. **The breather hose is
       oily inside, 1/10/2026** (*owner-found*, `open.md` H9 test 4);
