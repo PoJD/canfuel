@@ -68,7 +68,10 @@ a part that exists four times names its cylinder.**
       came off** (*owner-reported*)
 
 **Items 2–3 — the cover and the breather**
-- [ ] the filler cap's underside: the light-brown film seen 30/9
+- [ ] the filler cap's underside: the light-brown film seen 30/9 —
+      *photographed 1/10/2026*: wet with dark oil, reddish-brown deposit
+      in the moulded lettering, nothing creamy to be seen; the owner's
+      word on it owed
 - [ ] the cover's underside, the cam and the bearing caps: any film or
       emulsion, and **where it stops** — only near the cap and breather,
       or further down
@@ -100,6 +103,11 @@ a part that exists four times names its cylinder.**
       photograph split through**, and which end is it — the throttle's or
       the MAF's
 - [ ] the old breather out of the car: membrane, body, spigots, vent hole
+      — **photographed 1/10/2026: what looks like a crack in the body**
+      where the hose spigot meets it, and the seam of the ring round its
+      middle looks open in places (`open.md` H9 test 4). Owed: **does the
+      crack go through** (light behind it, or a drop of cleaner from
+      inside), is the seam open or only an edge, and the membrane
 - [ ] ground 2 — tight and clean if found; **not found is done**
 - [ ] the old upper plenum gasket: flattened, torn, a gap
 

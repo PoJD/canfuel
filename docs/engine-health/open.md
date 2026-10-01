@@ -2191,6 +2191,28 @@ repair blogs; still nothing from VW.
    one place in the intake where the breather's oil has been sitting on
    the rubber. Until it is checked by hand, the fit tables are
    unchanged.
+
+   **The old breather itself, out of the car, 1/10/2026** (*owner-found,
+   photographed; "a finding", described by the photographs so far*):
+   - **what looks like a crack in the body**, stress-whitened and
+     branching, at the root of the hose spigot where it meets the body;
+   - **the seam of the ring round the body's middle** — the joint of the
+     two halves, where a membrane would sit (*general*) — looks lifted
+     in places;
+   - the spigot's outlet and the bayonet underneath wet with oil, as the
+     hoses were.
+
+   **Why it matters** (*reasoned*): the breather's body is on the
+   crankcase side of the ventilation, which this layout holds slightly
+   below atmospheric at idle (above). **A crack through its wall, or an
+   open seam, is an opening to the outside behind the MAF** — the
+   unmetered-air branch of H9 by a concrete door, the same mechanism as
+   the unsealed seat of 30/9 and test 3's filler cap made smaller.
+   Small, for the same reason test 3 found no suction; but the engine
+   noticed test 3. **Not yet confirmed through the wall**: a crack in
+   the moulding's skin and a crack through it look alike in a
+   photograph. Until it is, the fit table is unchanged; the new breather
+   (`32452`) replaces it either way.
 5. **After the repair**, `IdleHealth` at a matched oil temperature against the
    current band: the same rule as H2 — a clear improvement means this was
    underrated.
