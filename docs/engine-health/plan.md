@@ -112,8 +112,11 @@ a part that exists four times names its cylinder.**
       rigid pipe `06A 133 374`, up towards the throttle and down under the
       runners to EVAP by the owner's reading (`open.md` H9, *The
       layout*). **Its hoses fine** (*owner, 1/10/2026*). The throttle has
-      three metal spigots: this pipe on the top one, the two coolant hoses
-      on the two at the back underneath (*owner*). Closed for now; the
+      three metal spigots: this pipe on the top one — **opening behind the
+      plate, so at manifold vacuum** (*owner, the part in hand*) — and
+      the two coolant hoses on the two at the back underneath: one runs
+      up to the expansion tank, the other down into the circuit
+      (*owner*). Closed for now; the
       line goes into the smoke test with the rest if it comes to that
 - [x] the intake duct where the breather hose joins it, ahead of the
       throttle: **oily inside, the whole hose off, 1/10/2026**

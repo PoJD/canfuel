@@ -2044,8 +2044,9 @@ drawing of this car.
   unmetered leak than anything ahead of the plate. **The pipe is on the throttle's top
   spigot** (*owner*), and the photograph of the old throttle's plenum
   side shows a brass port at the top of the bore **behind the plate** —
-  so most likely it is the vacuum side (*reasoned from the photographs,
-  not traced*). Its hoses were checked by hand and are fine (*owner,
+  **confirmed by the owner with the part in hand**: the port opens into
+  the bore on the engine side of the plate, so **this line runs at
+  manifold vacuum**. Its hoses were checked by hand and are fine (*owner,
   1/10/2026*); a smoke test is what would settle it.
   One aggregator claims a second hose to the intake manifold; no other source
   shows one, so it is not relied on.
