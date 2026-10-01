@@ -92,7 +92,7 @@ a part that exists four times names its cylinder.**
       decided*
 
 **Item 5 — plugs and boots**
-- [ ] each plug's insulator and electrode, cylinder by cylinder: colour,
+- [x] each plug's insulator and electrode, cylinder by cylinder: colour,
       deposits, oil, gap if a gauge is at hand. **In the head, 1/10/2026**
       (*photographed, cylinder counted on fingers*): all four upper
       insulators clean and dry; **1 and 2 dry around the plug**, **3 and
@@ -111,7 +111,7 @@ a part that exists four times names its cylinder.**
       contact
 
 **Item 6 — injectors**
-- [ ] each manifold-end O-ring: nick, flat, fine — **cylinder 1 fine**
+- [x] each manifold-end O-ring: nick, flat, fine — **cylinder 1 fine**
       (*owner, photographed, 1/10/2026*; a light mark on its top edge in
       one photograph, by Claude's reading, to be felt by finger).
       **Cylinder 2 damaged** — went in harder, most likely the one forced
@@ -169,7 +169,7 @@ a part that exists four times names its cylinder.**
       hose and a thinner one join through a plastic connector — by hand: **sound on every side**
       (*owner, 1/10/2026*); the "split" was a frayed sliver at the end,
       torn off. Clean the oil out of it before it goes back
-- [ ] the old breather out of the car: membrane, body, spigots, vent hole
+- [x] the old breather out of the car: membrane, body, spigots, vent hole
       — **1/10/2026, photographed**: oily everywhere; **a foreign black
       patch on the body by the spigot**, askew and lifting at the edge,
       read by the owner as a past repair (`open.md` H9 test 4); the seam
