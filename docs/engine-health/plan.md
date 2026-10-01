@@ -104,7 +104,10 @@ a part that exists four times names its cylinder.**
       contact
 
 **Item 6 — injectors**
-- [ ] each manifold-end O-ring: nick, flat, fine
+- [ ] each manifold-end O-ring: nick, flat, fine — **cylinder 1 fine**
+      (*owner, photographed, 1/10/2026*; a light mark on its top edge in
+      one photograph, by Claude's reading, to be felt by finger); 2, 3, 4
+      owed
 - [ ] each injector clicked home on its own
 - [ ] all four fully home under the rail
 
