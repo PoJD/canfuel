@@ -132,7 +132,12 @@ a part that exists four times names its cylinder.**
       of its middle ring **probably fine by hand** (*owner*) — the patch is
       the suspect. **Keep the part** — the patch is evidence
 - [ ] ground 2 — tight and clean if found; **not found is done**
-- [ ] the old upper plenum gasket: flattened, torn, a gap
+- [x] the old upper plenum gasket — **whole, 1/10/2026** (*owner,
+      photographed*): no tear, no gap, pressed in evenly; the joint looked
+      fine. Both faces cleaned, a rag over the lower part's ports. The
+      upper part's runners carry a **brownish oily film along their
+      floors**, all four — the breather's oil, by the route H9 test 4
+      traced (*reasoned*)
 
 **Item 8 — the throttle** (the day the new one is in hand)
 - [x] the old plate and bore at the idle edge — **clean, 1/10/2026**
@@ -154,7 +159,8 @@ a part that exists four times names its cylinder.**
 **Items 9–10 — back together**
 - [ ] Dirko at the four arch points, the two front ones not skimped
 - [ ] every rag out of the ports — **counted**; since 1/10/2026 one in
-      the cover's breather opening and one in the plenum's throttle mouth
+      the cover's breather opening, one in the plenum's throttle mouth and
+      one over the lower part's four ports
 - [ ] **both** coolant hoses back on the new throttle, the level topped up.
       Off since 1/10/2026, their ends tied upwards (one cable-tied to a
       loom at the back, one tucked behind a cable) — **check they have
