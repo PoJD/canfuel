@@ -121,7 +121,7 @@ a part that exists four times names its cylinder.**
       (*owner, photographed*); its plastic end washer, which holds the
       ring on, shows a chipped edge in two photographs — to be felt
       before it goes in
-- [x] each injector clicked home on its own — **all four, 1/10/2026**
+- [x] each injector clicked home on its own, rail on with its clips — **all four, 1/10/2026**
       (*owner, photographed*); cylinder 2 went in with the most
       resistance, the rest easily. A little play in each bore, which the
       rail takes up when it is bolted down
@@ -202,7 +202,9 @@ a part that exists four times names its cylinder.**
 - [ ] Dirko at the four arch points, the two front ones not skimped
 - [ ] **the injectors' air-shroud line back on all four nipples** — off
       since 1/10/2026, out of the car: a rigid pipe with four rubber
-      sleeves, **looks fine** (*owner, photographed*); left off, each open nipple is a hole behind the
+      sleeves. *Revised the same day:* **the sleeves are crazed and
+      cracked** (`06A 133 264`, `refuted.md` C9) — **new ones to be bought
+      before it goes back** (*owner's decision*); left off, each open nipple is a hole behind the
       throttle (`refuted.md` C9 holds only while it is connected)
 - [ ] every rag out of the ports — **counted**; since 1/10/2026 one in
       the cover's breather opening, one in the plenum's throttle mouth and

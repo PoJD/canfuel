@@ -266,6 +266,18 @@ turned out to be over-reading at idle, which is C2.)
 The shroud air is taken downstream of the MAF and is metered (SSP 233); the
 hose runs near intake-pipe pressure; the cracks are in the surface rubber only.
 
+**Seen again at the job, 1/10/2026** (*owner, photographed*): the shroud
+rail out of the car, its four rubber sleeves printed `06A 133 264`, **deeply
+crazed and cracked**, worst where they bend over the nipples — further
+gone than "surface only", though whether any crack goes through was not
+established. The argument above still stands: the supply is taken from the
+breather's connector ahead of the throttle, so the rail sits near that
+pressure and a crack in it admits little that is not already metered
+(*reasoned*). **The owner replaces the sleeves rather than refit them**
+(*owner's decision*) — cheap, and it ends the question. *What would revive
+this entry:* a sleeve split through on the injector side, where the nipple
+opens to the port.
+
 ### C10. "Group 014 is a lifetime total" — measured
 
 It is a current count that holds about three seconds and returns to zero,
