@@ -1555,6 +1555,20 @@ anyway, and the photograph cannot show whether it did. The phone
 screenshot is not kept here; **proper photographs come when the throttle
 is off in `plan.md` step 1**, of both faces.
 
+**At the job, 1/10/2026 — no protrusion, and the joint looks sealed**
+(*owner, photographed*): the old throttle's flange face carries the old
+gasket's green residue all over and **no raised point at the lower
+left**; the owner thinks he most likely levelled it himself while
+cleaning in June. **The old gasket**, green, stayed stuck to the plenum's
+face and in the photograph is whole and even all round, with no gap or
+dent at the lower left. The plate and both sides of the bore look clean
+— a thin dark line at the plate's edge, no oil film to be seen despite
+the oily intake hose ahead of it (H9 test 4) — and the owner judges the
+part fine. **So the flange is not a leak this job found**, and the
+`plan.md` table's row *"a gap in the old throttle gasket at the
+protrusion"* did not happen. The June photograph's point stays recorded
+above as what it showed then.
+
 ⚠ **What it does to the reading:** the swap changes two things — the
 throttle *and* this joint (a new part's clean face, a new gasket). It is
 also **why the throttle went back into the valve cover job** (*owner's

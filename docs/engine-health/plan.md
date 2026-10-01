@@ -117,9 +117,12 @@ a part that exists four times names its cylinder.**
 - [ ] the old upper plenum gasket: flattened, torn, a gap
 
 **Item 8 — the throttle** (the day the new one is in hand)
-- [ ] the old plate and bore at the idle edge, before it comes off
-- [ ] both flange faces and the old gasket, above all the protrusion at
-      the lower left and whether the gasket shows a gap there
+- [x] the old plate and bore at the idle edge — **clean, 1/10/2026**
+      (*owner, photographed*): a thin dark line at the plate's edge, no
+      oil film
+- [x] both flange faces and the old gasket — **no protrusion, no gap**
+      (`open.md` H8, *At the job*); the old green gasket is stuck to the
+      plenum's face and comes off with solvent and plastic, not a blade
 - [ ] the plenum's face after cleaning, the rule across it: no light
 - [ ] any pit or dent, with a rule beside it, and what was done about it
 - [ ] the cable: idle stop at rest, full throttle with the pedal down
