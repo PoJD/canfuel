@@ -90,7 +90,11 @@ a part that exists four times names its cylinder.**
       (*photographed, cylinder counted on fingers*): all four upper
       insulators clean and dry; **1 and 2 dry around the plug**, **3 and
       4 sitting in black, oily grime** from the cover leak (S10), oil
-      outside only. Owed: the plugs out — firing ends
+      outside only — **only a little, round the seat**, wiped off; the
+      head's casting visible again. **The plugs stay in** (*owner's
+      decision, 1/10/2026*): they would not come out with the access at
+      the back, they are new since 17/9, and from outside all four look
+      fine. Their firing ends are therefore not seen in this job
 - [x] each lead boot inside: oil, tracking marks — **clean, 1/10/2026**
       (*owner, photographed*): no oil got into any boot; the leads checked
       and fine (*owner* — a silvery speckle Claude read in one photograph
