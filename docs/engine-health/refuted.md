@@ -268,7 +268,8 @@ hose runs near intake-pipe pressure; the cracks are in the surface rubber only.
 
 **Seen again at the job, 1/10/2026** (*owner, photographed*): the shroud
 rail out of the car, its four rubber sleeves printed `06A 133 264`, **deeply
-crazed and cracked**, worst where they bend over the nipples — further
+crazed and cracked** on cylinders 2, 3 and 4 alike, cylinder 1's in the
+best state (*owner*), worst where they bend over the nipples — further
 gone than "surface only", though whether any crack goes through was not
 established. The argument above still stands: the supply is taken from the
 breather's connector ahead of the throttle, so the rail sits near that
