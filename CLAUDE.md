@@ -1266,9 +1266,11 @@ if it is still unclear, ask once.
 
 **You cannot hear him.** Nothing in either setup gives you a microphone, so
 a reading taken at the car — a thermometer, a gauge, a sound described —
-reaches you typed, after the fact. Never plan a step on his reading aloud;
-plan it on him writing the values down in order and typing them in, and
-align them to the capture by an event it records (engine off, a blip).
+reaches you as text. **Dictation on his phone into the chat works** (tested
+2/10/2026: "52,4 stupně Celsia" arrived as 52,4) — that is still text, not
+your hearing. Never plan a step on you hearing it; plan it on him writing
+or dictating the values in order, and align them to the capture by an
+event it records (engine off, a blip), not by when the message arrived.
 
 **The MFD and the CAN capture are one or the other, never both** (*the
 maintainer*): while the capture runs he cannot read `IdleHealth` off the

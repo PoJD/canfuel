@@ -124,7 +124,7 @@ start's quality is not what is tested — **it is ignored.**
   tape on the filter if it is bare metal. No engine running, so it costs
   the idle nothing. **Ignition back on at once** so
   that 0x420 keeps coming and the capture keeps running; **the owner
-  writes the three readings down in order and types them in afterwards** —
+  writes or dictates the three readings in order into the chat** —
   Claude cannot hear him (*this said "reads aloud"; corrected 2/10/2026*).
   Claude matches them to the minute after engine off, which the capture
   shows as the speed falling to zero; the oil moves far too slowly in
