@@ -627,6 +627,13 @@ one-person job); an exhaust leak ticks loudest in the first minute after a
 cold start; dry black soot at a joint is exhaust, wet oily grime is oil
 (*all general*).
 
+**After the job, preliminary — 2/10/2026** (*owner*): through the
+check-start runs, **no smoke at the back and no hiss** seen or heard. The
+engine was cold or part-warm, never at the warm idle where S11 was seen,
+so this decides nothing yet. Looking back, the owner thinks it came from
+the old breather — the loose seat and the flowed ring (H9). **To be
+checked at a warm idle in session A.**
+
 ### S12. A hesitation on tip-in, and after a gearchange
 
 *Owner-reported, 27/9/2026; added as a symptom at the owner's decision.*
