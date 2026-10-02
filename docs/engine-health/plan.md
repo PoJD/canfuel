@@ -559,6 +559,12 @@ compares cleanly**:
   nothing after. Earlier cold starts counted first at 2 min (11/9) or not
   for 3 min (24/9) — so not a verdict either way, but the misfires are
   not shown gone.
+- **Against `19` at the same stage** — standing after the step, 700–900
+  rpm, its 110–200 s against this log's 55–200 s (*computed 2/10/2026*):
+  rpm 798 ± 14.5 vs **794 ± 14.0**, timing 4.0 ± 2.6° vs **3.2 ± 2.3°**,
+  air 4.28 vs **3.96 g/s**. **The same idle, not a worse one**, as far as
+  VCDS sees it — the lower air fits the warmer start. Only `IdleHealth`
+  read worse, and fresh adaptations have read worse before.
 - **A dip at ~262 s**: 720 → 680 rpm, load 36 %, timing jumping to
   15–19° — the moment the owner felt the engine struggle.
 - **`IdleHealth` worse, peaks near 200** (*owner, off the MFD*); fresh
