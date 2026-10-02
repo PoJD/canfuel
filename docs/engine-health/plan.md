@@ -399,6 +399,11 @@ engine running:
    skimp on the two front points. **Cover nuts by hand, evenly, gasket
    lightly compressed** — no torque figure (owner's decision, S10).
 10. **New plenum gasket, plenum on, breather in, everything reconnected.**
+    *Order on the day (owner's decision, 2/10/2026):* the cover nuts gone
+    round once more, then the plenum, then the throttle, and **the
+    breather last** — the room is needed to work, and the breather is not
+    to be pressed on by accident. **The rag in the cover's breather
+    opening stays until the breather goes in.**
 
 *Separately, any time, not part of the job* (*owner's decision,
 28/9/2026*): **grounds 608 and 609** — in the plenum chamber under the
@@ -464,6 +469,17 @@ zero there before 24/9 proves nothing.
 3. **Ignition on again, stopwatch:** does the new part run the routine,
    and how long against the old part's 20 s, the same before and after
    its own completed 098? (`open.md` S13 — this closes it.)
+4. **Group 054, measured values, the same ignition-on, after the
+   stopwatch** (*owner's decision, 2/10/2026*) — so that it cannot
+   disturb the routine being timed. VW's manual as transcribed
+   (`open.md` H8, *What VW's repair manual says*): **G69 at rest 0…6°,
+   pedal to the floor at least 75°**, and **F60 reading *idling* at rest
+   and *part throttle* with the pedal just pressed** — the switch whose
+   click the new part makes (step 1, item 8). Which field carries F60 was
+   not transcribed reliably; it is read off the screen. No engine, so it
+   costs the idle nothing. **Out of range, or F60 not changing** → say so
+   before the first start. The old part was never read in 054, so this
+   checks the new part and compares with nothing.
 
 ### Session A — the cold start and the warm-up drive, one log
 
