@@ -268,6 +268,8 @@ a part that exists four times names its cylinder.**
       the secondary-air pump included; the battery and the coolant top-up
       last. *Owner's plan for the day:* no drive, only the steps before
       the first start and a short check start; session A on another day
+      — **no CAN capture for it** (*owner*): VCDS 014 + 003 + 055 and
+      `IdleHealth` read off the MFD
 - [ ] the coolant top-up — **not done 2/10/2026**: the level dropped a
       little and there is no coolant at hand (*owner*); the check start
       runs on it as it is, **topped up before session A's drive**
