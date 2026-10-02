@@ -537,20 +537,24 @@ zero there before 24/9 proves nothing.
 ### The check start, 2/10/2026 — what it showed
 
 *Not session A:* no drive, no bus capture, coolant temperature not
-recorded; `vcds/vcds-postrepair-checkstart-003-014-055.csv`. A first
-crank aborted after 8 s, then a start and about 4½ minutes standing, two
-throttle blips at ~200 s. Read against the leak-signature table below:
+recorded; `vcds/vcds-postrepair-checkstart-003-014-055.csv`. **The
+engine was not cold** (*owner*): it had run about a minute just before,
+while the owner listened to the noise, and VCDS dropped out — the log's
+first 8 s are that run's start. Then a restart and about 4½ minutes
+standing, two throttle blips at ~200 s. Read against the leak-signature
+table below — **which is written for a cold start, so none of it
+compares cleanly**:
 
 - **The plateau stepped down at ~50 s**, not 93–102 s: ~960–1000 rpm, then
-  ~800. Whether the engine started warmer than the baselines is not known
-  — no coolant figure.
+  ~800 — what a part-warm engine would do (*reasoned*).
 - **003 air: less, not more** — 6.1 → 4.4 g/s on the plateau (`19`: 6.8 →
   5.2), 4.4 falling to 3.5–3.7 after the step (before: ~4.3).
 - **055: further from zero, not nearer** — the regulator −1.2 → −2.0 on the
   plateau, −1.1 to −1.4 after; the learned value 0.00 (fresh).
-- So **no leak signature**: both readings moved the other way. Either the
-  engine needed less air than on the baselines (a warmer start would do
-  it) or more air now enters unmetered; this log cannot tell them apart.
+- So **no leak signature**: both readings moved the other way. A part-warm
+  engine needs less air, which accounts for the 003 side at least
+  (*reasoned*); more air entering unmetered cannot be ruled out from this
+  log. **Session A's cold start is the comparison.**
 - **014 counted 13, twice, at ~71–88 s**, cold, detection `aktivováno`;
   nothing after. Earlier cold starts counted first at 2 min (11/9) or not
   for 3 min (24/9) — so not a verdict either way, but the misfires are
