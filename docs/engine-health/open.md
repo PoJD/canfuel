@@ -1812,7 +1812,11 @@ variant the manual's pin numbers below refer to.
 the same quantity as 060 zone 1. At warm idle it read **0.9–3.9°** on the
 drive of 24/9 (mostly 1.7–2.2°) and **2.6–4.8°** in August's holds with and
 without the A/C: **inside 0…6° throughout**. Not yet read: 060 zone 2 (the
-positioner's %), and 054 (G69's range and F60). **060 zone 2 is the most
+positioner's %), and 054 (G69's range and F60). **054 on the new part,
+2/10/2026** (*photographed, engine off*): 5.6° and *volnoběh* at rest,
+91.1° and *část. zatíž.* to the floor — inside both figures, F60
+switching. The old part was never read in 054; the owner recalls it never
+above 85°. **060 zone 2 is the most
 useful of them** (*reasoned, not from the manual*): it is how far the
 actuator has to hold the plate for the target idle, so an unmetered leak
 (H3) should push it towards the low end and a restriction towards the high
