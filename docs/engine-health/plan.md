@@ -264,6 +264,10 @@ a part that exists four times names its cylinder.**
 - [x] **the cover complete, the leads back on the coil, the plenum on,
       the coil connected — 2/10/2026** (*owner*); the intake hose and the
       secondary-air pump, off for access, go back last
+- [x] **everything back together, 2/10/2026** (*owner, photographed*),
+      the secondary-air pump included; the battery and the coolant top-up
+      last. *Owner's plan for the day:* no drive, only the steps before
+      the first start and a short check start; session A on another day
 - [x] **the injectors' air-shroud line back on all four nipples** —
       **done 1/10/2026** with new 8 mm sleeves; injector rail bolted at
       **10 Nm** — off
