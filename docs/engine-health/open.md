@@ -564,7 +564,9 @@ after a few hundred km is therefore not optional.**
 **Decision, 1/10/2026 (the owner's), replacing the hand-only rule above
 for this refit:** the nuts are tightened **firmer than "lightly
 compressed"**, evenly and crosswise, with feel — still by hand, no torque
-figure. **No threadlocker** (Loctite 243 considered and set aside: the
+figure. **Done 2/10/2026 with a ratchet, by feel, about 4 Nm at most by
+the owner's estimate** (*owner*) — "by hand" here meaning without a
+torque wrench, not fingers alone. **No threadlocker** (Loctite 243 considered and set aside: the
 nuts most likely lost their clamp to the gasket settling, which a locked
 thread does not prevent, and it would hide the re-check). **The re-check
 is limited to the outer nuts** that can be reached with the plenum on —

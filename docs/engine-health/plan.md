@@ -227,6 +227,10 @@ a part that exists four times names its cylinder.**
       **1/10/2026** (*owner*); the cover sits on dry, no gasket, no nuts,
       as a lid until the parts arrive
 - [ ] Dirko at the four arch points, the two front ones not skimped
+- [x] the new cover gasket on and the cover nuts tightened — **2/10/2026,
+      with a ratchet, by feel, about 4 Nm at most by the owner's
+      estimate** (*owner*). "By hand" in this file and in S10 meant *by
+      feel, without a torque wrench*, not fingers alone
 - [x] **the injectors' air-shroud line back on all four nipples** —
       **done 1/10/2026** with new 8 mm sleeves; injector rail bolted at
       **10 Nm** — off
