@@ -505,12 +505,22 @@ What it settles and what it moves:
 - **Both seals are there — 1/10/2026** (*owner, at the job,
   photographed*): **item 5 under the breather**, a flat black ring with
   notches on its inner edge, wet with oil; and **the cap's seal sits in
-  the cap's own body**, not as a loose ring. *This bullet used to read
+  the cap's own body**. *Corrected 2/10/2026 by the owner's photograph:
+  it is a separate plain flat ring seated in the cap, which comes out —
+  this bullet said "not as a loose ring".* *This bullet used to read
   "Preliminary, 30/9/2026: no seal at the breather at all" — a quick look
   before anything came off, which the job has corrected* (`refuted.md`
   C14). The oily lower body seen on 26/9 is therefore not an unsealed
   seat; what is left for it is the cover gasket and the breather itself
   (H9 test 4).
+- **The rings side by side, 2/10/2026** (*owner, photographed*): the
+  `100690` (its bag: *Vergl. Nr. `06A 103 483 D`*, for VW-Audi) is **the
+  same size as the cap's old ring**, only with three notches on its inner
+  edge, and it seats in the cap more easily; and **the ring the new
+  `32452` comes with fitted is the same as the `100690`**, so it stays on
+  the breather. So **item 5 and item 2 are the same ring** — the
+  second-hand claim above, now settled by the parts. The old item 5 is
+  another matter: H9, *The old ring under the breather*.
 - **"Turn clockwise to remove"** is the opposite of what a hand does by
   default, on a 26-year-old plastic housing. Worth knowing before the
   first attempt.
@@ -2073,10 +2083,14 @@ small leak rather than a large one (*reasoned, general*) — which is what
 rank 1 in *The idle's candidates* asks for. The fit table below is
 unchanged until it is confirmed.
 
-**The old ring under the breather, 2/10/2026** (*owner*; not
-photographed beside the new one): **visibly larger than the ring the new
-`32452` comes with, with pressed-in marks, very soft, and smeared out as
-if the rubber had begun to flow — almost liquid in places.** Wrong for
+**The old ring under the breather, 2/10/2026** (*owner, photographed
+beside a new `100690`*): **visibly larger than the ring the new `32452`
+comes with, with pressed-in marks, very soft, and smeared out as if the
+rubber had begun to flow — almost liquid in places.** In the photograph
+it stands out past the new ring's outside edge all round and carries a
+raised step on its face, where the new one is flat sheet (*Claude's
+reading*). **On the car it always looked odd** (*owner*): it stuck out
+well beyond the breather's base, and not evenly. Wrong for
 the part, or flattened out of shape over the years — not known. *Rubber
 that has sat in oil softening and swelling is general, not read for this
 part*, and would account for both the size and the softness. A ring that

@@ -343,6 +343,8 @@ came off (`open.md` S10, H9), as a concrete door for unmetered air and for
 the oil on the breather's lower body.
 **Refuted by** the job itself, 1/10/2026 (*owner, photographed*): a flat
 ring (VW item 5) under the breather, notched on its inner edge, and the
-cap's seal built into the cap's body. **What would revive it:** nothing —
+cap's seal built into the cap's body. *Corrected 2/10/2026 by the owner's
+photograph: the cap's seal is a separate plain ring seated in the cap,
+not part of its body — it was there either way.* **What would revive it:** nothing —
 the parts were in hand. The door H9 now points at is the breather's body.
 

@@ -75,8 +75,9 @@ a part that exists four times names its cylinder.**
       golden varnish only (`refuted.md` C13, strengthened)
 - [x] the breather: **is there a seal under it (item 5), and under the
       cap (item 2)?** — **both there, 1/10/2026** (*owner, photographed*):
-      a notched flat ring under the breather; the cap's seal is built into
-      the cap (`refuted.md` C14)
+      a notched flat ring under the breather; the cap's seal a plain ring
+      seated in the cap — *this line said "built into the cap", corrected
+      by the owner's photograph of 2/10/2026* (`refuted.md` C14)
 - [x] the old cover gasket — **relatively well preserved**, stuck down
       in places, possibly not the original (*owner, 1/10/2026*). **Six of
       the eight cover nuts were loose by hand** (`open.md` S10, *At the
@@ -90,12 +91,15 @@ a part that exists four times names its cylinder.**
       photographed*): a notched flat ring, so the second `100690` is not
       needed there. The old item 5 was **visibly larger than the new one,
       with pressed-in marks, very soft and smeared out, almost liquid in
-      places** (*owner*; not photographed beside the new one)
-- [ ] whether the `100690` fits the cap, its seal being part of the cap —
-      **same size as the cap's own seal** (*owner, 2/10/2026*), which has
-      no notches; the `100690` has three on its inner edge, which the owner
-      expects not to matter. *Owner considering a new cap as well — not
-      decided*
+      places**; on the car it always stood out past the breather's
+      base, unevenly (*owner, photographed beside a new `100690`,
+      2/10/2026*; `open.md` H9)
+- [x] whether the `100690` fits the cap — **yes, 2/10/2026** (*owner,
+      photographed*): the same size as the cap's old plain ring, with
+      three notches on its inner edge, and it seats in the cap more easily.
+      The ring on the new `32452` is the same part, and stays on it
+- [ ] the new breather on the cover: its ring sits flat and covers every
+      opening round the seat (*owner, at refit*)
 
 **Item 5 — plugs and boots**
 - [x] each plug's insulator and electrode, cylinder by cylinder: colour,
