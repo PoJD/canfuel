@@ -101,7 +101,10 @@ a part that exists four times names its cylinder.**
       three notches on its inner edge, and it seats in the cap more easily.
       The ring on the new `32452` is the same part, and stays on it
 - [ ] the new breather on the cover: its ring sits flat and covers every
-      opening round the seat (*owner, at refit*)
+      opening round the seat (*owner, at refit*). **In, 2/10/2026**
+      (*owner, photographed*): it went in **much more stiffly than the
+      old one, which sat very loosely** (`open.md` H9). The ring's fit
+      all round not yet reported
 
 **Item 5 — plugs and boots**
 - [x] each plug's insulator and electrode, cylinder by cylinder: colour,

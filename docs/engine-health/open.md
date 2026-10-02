@@ -2109,7 +2109,11 @@ rubber had begun to flow — almost liquid in places.** In the photograph
 it stands out past the new ring's outside edge all round and carries a
 raised step on its face, where the new one is flat sheet (*Claude's
 reading*). **On the car it always looked odd** (*owner*): it stuck out
-well beyond the breather's base, and not evenly. Wrong for
+well beyond the breather's base, and not evenly. **And the old breather
+sat very loosely in the cover, where the new one with its new ring went
+in much more stiffly** (*owner, at the refit, 2/10/2026*) — a seat with
+little or no pressure on its ring, which fits a ring that had flowed
+out of shape (*reasoned*). Wrong for
 the part, or flattened out of shape over the years — not known. *Rubber
 that has sat in oil softening and swelling is general, not read for this
 part*, and would account for both the size and the softness. A ring that
