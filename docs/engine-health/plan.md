@@ -210,6 +210,9 @@ a part that exists four times names its cylinder.**
       switch F60 (`open.md` H8, *What VW's repair manual says*), so the
       click is most likely F60 (*reasoned, not confirmed*); whether the
       old part's F60 still switches is not known
+- [x] the contact face at the idle stop — **the old part's visibly
+      smaller, by perhaps 1–2 mm, possibly worn** (*owner, 2/10/2026*;
+      `open.md` H8, *The two parts side by side*)
 - [ ] the cable: idle stop at rest, full throttle with the pedal down
 
 **Items 9–10 — back together**
