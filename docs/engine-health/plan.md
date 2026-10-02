@@ -534,6 +534,46 @@ zero there before 24/9 proves nothing.
    before the first start. The old part was never read in 054, so this
    checks the new part and compares with nothing.
 
+### The check start, 2/10/2026 — what it showed
+
+*Not session A:* no drive, no bus capture, coolant temperature not
+recorded; `vcds/vcds-postrepair-checkstart-003-014-055.csv`. A first
+crank aborted after 8 s, then a start and about 4½ minutes standing, two
+throttle blips at ~200 s. Read against the leak-signature table below:
+
+- **The plateau stepped down at ~50 s**, not 93–102 s: ~960–1000 rpm, then
+  ~800. Whether the engine started warmer than the baselines is not known
+  — no coolant figure.
+- **003 air: less, not more** — 6.1 → 4.4 g/s on the plateau (`19`: 6.8 →
+  5.2), 4.4 falling to 3.5–3.7 after the step (before: ~4.3).
+- **055: further from zero, not nearer** — the regulator −1.2 → −2.0 on the
+  plateau, −1.1 to −1.4 after; the learned value 0.00 (fresh).
+- So **no leak signature**: both readings moved the other way. Either the
+  engine needed less air than on the baselines (a warmer start would do
+  it) or more air now enters unmetered; this log cannot tell them apart.
+- **014 counted 13, twice, at ~71–88 s**, cold, detection `aktivováno`;
+  nothing after. Earlier cold starts counted first at 2 min (11/9) or not
+  for 3 min (24/9) — so not a verdict either way, but the misfires are
+  not shown gone.
+- **A dip at ~262 s**: 720 → 680 rpm, load 36 %, timing jumping to
+  15–19° — the moment the owner felt the engine struggle.
+- **`IdleHealth` worse, peaks near 200** (*owner, off the MFD*); fresh
+  adaptations have read worse before (146 and 117 after earlier
+  disconnects), and this was a cold idle.
+- **A new noise at the timing-belt end** (*owner, video*): a mechanical
+  ticking that softens when the upper belt cover is pressed by hand. Its
+  rhythm in the phone recording is about **12 Hz at ~730 rpm, once per
+  crank revolution** (*Claude's analysis of the audio; a hint, not a
+  measurement*). The owner did not hear it before the job and asks
+  whether the cover nuts could cause it. *Reasoned:* the cover nuts at
+  ≤4 Nm cannot load anything in the belt drive; what pressing on the belt
+  cover changes is the cover itself — seated off its clips or touching
+  something after the work round it. **To check, engine off:** the upper
+  belt cover in its clips, its inside for fresh rub marks, the belt
+  under it. Whether this is a new symptom is the owner's to decide
+  (`open.md`).
+- The fault memory after it: not yet reported.
+
 ### Session A — the cold start and the warm-up drive, one log
 
 **Capture and VCDS 014 + 003 + 055** from before the start to engine off.
