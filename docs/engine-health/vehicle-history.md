@@ -173,14 +173,18 @@ here is owner-supplied from service records.
 | Spark plugs and leads | 12/2022 *(replaced 9/2026)* | **~1,500 km — see below** |
 | Ignition coil | 6/2026 | ~0 |
 | Engine oil (and presumably the filter, not stated) | **6/2026** *(owner-reported, 27/9/2026)*. **Not topped up since**, and on 27/9 the level still read at the **upper mark** on the dipstick despite the valve cover leak | **about 700 km** since the change *(owner's estimate, 27/9/2026: the ~450 km Šumava trip plus several runs to Ústí and back)*; odometer at the change not recorded |
-| Throttle body `06A 133 064 H` (VDO `408 237/111/017`) | **original, never replaced.** *Part number read off the label on the part, photographed 26/9/2026; an earlier revision gave `028 129 748`, with no recorded source — possibly the June gasket's number.* 6/2026: inspected, new gasket, adaptation run. It was already clean, with no carbon — only wiped with a cloth — so it had evidently been cleaned at some earlier date nobody recorded | the car's |
+| Throttle body `06A 133 064 H` (VDO `408 237/111/017`) | **original until 2/10/2026**, then replaced (row below; the old part is kept). *Part number read off the label on the part, photographed 26/9/2026; an earlier revision gave `028 129 748`, with no recorded source — possibly the June gasket's number.* 6/2026: inspected, new gasket, adaptation run. It was already clean, with no carbon — only wiped with a cloth — so it had evidently been cleaned at some earlier date nobody recorded | the car's |
 | Fuel pressure regulator `037 133 035 C` | 7/2026 | ~0 |
 | Catalytic converter, **flex pipe**, silencer, exhaust gaskets: everything from the flex pipe (included) to the tail | **10/9/2026** *(previously 10/2017)*. *Owner-observed, 28/9/2026:* the new front pipe is a **universal part with a blanked-off lambda boss**, and the front probe sits **on the manifold itself**. So the replaced section most likely begins at the manifold's outlet flange, with a new gasket there (*inferred, not confirmed with the garage*) | ~0 |
 | Small hose from the secondary-air combination valve to the intake ahead of the MAF | torn off during the August heater work; fault **16795 / P0411** (secondary air, incorrect flow) photographed **11/8/2026 16:39**, hose refitted that day or a few days after | — |
 | Heater replacement, dashboard dismantled | **summer 2026, before 11/8** *(owner-reported)*; **the battery was out and disconnected for more than a week** — every ECM adaptation, the throttle's included, started again after it | — |
 | **Exhaust manifold** (stainless, double-flow, SSP 233 p. 7) | **original, never replaced** *(owner nearly certain)* | the car's |
 | Injectors `06A 906 031 C` / Bosch `0 280 155 791`, new from the UK | delivered 22/9, **fitted 23/9/2026** by the owner, **three of the four not fully home in the manifold** — see below | ~0 |
-| Upper intake manifold gasket, **Elring `271.230`** (sold as the equivalent of VW `06A 129 717`; the parts shop matched it to the VIN) | **9/2026, twice** *(owner, 1/10/2026)*: **17/9 at the garage** with the plugs, and **23/9 by the owner** with the injectors; packaging dated 17/9/2026 (Carvo s.r.o.) — *read off the photographed packaging*. *This row used to give one fitting, by the owner.* The 23/9 one came off whole on 1/10/2026 (`plan.md` step 1) and a third new one goes on | ~0 |
+| Upper intake manifold gasket, **Elring `271.230`** (sold as the equivalent of VW `06A 129 717`; the parts shop matched it to the VIN) | **9/2026, twice** *(owner, 1/10/2026)*: **17/9 at the garage** with the plugs, and **23/9 by the owner** with the injectors; packaging dated 17/9/2026 (Carvo s.r.o.) — *read off the photographed packaging*. *This row used to give one fitting, by the owner.* The 23/9 one came off whole on 1/10/2026 and **a third new one went on 2/10/2026** (*The valve cover and throttle job*, below) | ~0 |
+| **Throttle body, new**, Pierburg `7.03703.13.0` (cross-referenced to `06A 133 064 H`, without cruise control), with a new flange gasket | **2/10/2026**, by the owner; 098 *ADP OK* | ~0 |
+| **Valve cover gasket** Elring `325.070`, **crankcase breather** Febi `32452` (its ring fitted), **filler cap ring** Febi `100690` (= `06A 103 483 D`), sealant Elring `030.793` | **2/10/2026**, by the owner | ~0 |
+| Injectors' air-shroud line: **new 8 mm sleeves** on the rigid pipe | **1/10/2026**, by the owner | ~0 |
+| Throttle vacuum elbow `06A 133 374` (tee to the throttle's top spigot) — **replaced by a longer plain hose**, the new throttle's spigot pointing the other way | **2/10/2026**, by the owner; the old elbow is kept | ~0 |
 | **Spark plugs and ignition leads**, NGK leads | **17/9/2026**, at the Dakuma garage | ~0 |
 | Rear shock absorbers, air-conditioning recharge, minor items | 17/9/2026 | ~0 |
 
@@ -226,6 +230,69 @@ describe this car rather than a hypothetical one. The owner describes the remap
 as mild. It sits between the 8.8 of
 2018 and the 9.9 of 2019 in the table above, which is suggestive and is not
 evidence — see below.
+
+### The valve cover and throttle job, 1–2/10/2026
+
+*By the owner, at home; every item photographed and reported as it was
+done. The full working checklist is in git (`plan.md` before 3/10/2026).*
+One job by decision, so that the engine was opened once — and at the cost
+that an improvement cannot be put down to one part.
+
+**What was done.** Upper plenum off and aside; valve cover off; breather
+out. Oil cleaned off the head, the cover joint, the plug area and the
+manifold. **Injectors out and refitted one by one**, each clicked home on
+its own, then the rail on at 10 Nm — cylinder 2's damaged manifold-end
+O-ring replaced with the intake-side ring of an old injector (all four
+then flush, photographed). Plugs left in (new since 17/9, not reachable
+from the back); leads ohmed (~6 kΩ each) and refitted 1, 4, 2, 3
+clockwise from the top tower. Injector windings 15.9 Ω each. The
+injectors' air-shroud line refitted with new sleeves. The breather hose
+and the MAF-to-throttle hose cleaned of oil. **New cover gasket** with
+Dirko at the four arch points; **the cover nuts with a ratchet, by feel,
+about 4 Nm at most**, gone round again after the middle ones slackened
+as the gasket settled. **New plenum gasket**, plenum at 10 Nm. **New
+throttle** on a new gasket at 10 Nm, both coolant hoses back, the vacuum
+elbow replaced by a longer hose (it would not reach the new spigot,
+which was not turned: it sits at manifold vacuum). **New breather** on
+its own ring, in the cover by its bayonet alone; the new `100690` in the
+old cap. The throttle cable's slack taken up (*owner's decision*).
+
+**What it found** (the detail is in `open.md`): the old breather **sat
+loose in the cover on a ring that had flowed out of shape** — larger than
+the new, marked, almost liquid in places (H9); **six of the eight cover
+nuts loose by hand** over a gasket gone **hard, almost like plastic**
+(S10); the vacuum elbow **hard with age**; the old throttle **silent
+where the new one's idle switch clicks**, with an **idle-stop face worn
+1–2 mm smaller** (H8). Found sound: both plenum gaskets, the June
+throttle gasket (and no protrusion on the flange), the plenum's face, the
+hoses at the back, every injector connector, no emulsion under the cover.
+The patch on the old breather turned out original (`refuted.md` C15).
+
+**Before the first start, 2/10/2026.** No fuel at the rail after priming.
+**098 *ADP OK*** (10.4°, 59.2 %, *volnoběh*). The ignition-on routine
+**still 20 s** with the new part, which closed S13 (`refuted.md` C16).
+**054: 5.6° and *volnoběh* at rest, 91.1° to the floor**, the switch
+changing to *část. zatíž.* — inside VW's figures before and after the
+cable was taken up. Battery reconnected, so every adaptation started
+from zero (055's learned value read 0.00); **no reset through VCDS**,
+decided, since there was nothing left to reset.
+
+**The check start, 2/10/2026** — standing only, no drive, no bus
+capture, on a part-warm engine (it had run a minute just before);
+`test/fixtures/vcds/vcds-postrepair-checkstart-003-014-055.csv`. Fault
+memory empty afterwards. **No leaks** seen. After the step down from the
+warm-up speed the standing idle matched `19`'s at the same stage — rpm
+794 ± 14.0 against 798 ± 14.5, timing 3.2 ± 2.3° against 4.0 ± 2.6° —
+with a little less air (3.96 against 4.28 g/s), which the warmer start
+accounts for; no leak signature, but the comparison was never a clean
+one. **014 counted 13 twice at ~71–88 s**, cold, and nothing after; one
+dip to 680 rpm at ~262 s. `IdleHealth` off the MFD peaked near 200 at
+first and read **57 at its lowest** later that evening, cold, with the
+A/C, blower, lights and rear window on — fresh adaptations, so neither
+compares. **A ticking at the timing-belt end** that softened when the
+upper belt cover was pressed went once the cover was taken off and
+refitted (*owner*). **No smoke or hiss at the back** (S11), on a cold or
+part-warm engine only. The verdict is the warm test, `plan.md`.
 
 ---
 

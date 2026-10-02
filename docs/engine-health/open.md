@@ -579,8 +579,8 @@ is limited to the outer nuts** that can be reached with the plenum on —
 the middle ones would mean taking the plenum off again, which is not
 done for this.
 
-**The job itself — the work list, the first start and what follows — is in
-`plan.md`**, step 1. *Owner's decision, 27/9/2026:* the cover gasket, the
+**The job itself — done 1–2/10/2026 — is recorded in
+`vehicle-history.md`, *The valve cover and throttle job***; what follows it is `plan.md`. *Owner's decision, 27/9/2026:* the cover gasket, the
 breather and its seals, the upper plenum gasket, the injector refit
 (H3, *The injector seats*) and the cleaning all in one job, with no
 measurement between them. What it costs: an improvement afterwards cannot
@@ -715,7 +715,7 @@ ignition-on**, not once after a disconnect; confirmed to come from the
 throttle. Usually the engine is started straight away and the routine is
 cut short. **The engine's fault memory is empty, and 17973 has never been
 seen** — read empty again on 1/10/2026, before the battery came off for
-`plan.md` step 1 (*owner-reported*). Whether it also did this after the June manual adaptation is not
+`vehicle-history.md`, *The valve cover and throttle job* (*owner-reported*). Whether it also did this after the June manual adaptation is not
 remembered.
 
 **Why it is a symptom:** VW's manual for this engine gives the adaptation
@@ -771,7 +771,7 @@ battery reconnected after 26/9, engine not run):
 - **20 s is the length now**, not "20–30 s": timed twice alike. Longer
   than the owners' ~15 s, which were never timed either.
 
-**How it closes** (`plan.md`, *Before the first start*): the new part
+**How it closes** (the first start after the job, `vehicle-history.md`, *The valve cover and throttle job*): the new part
 after its adaptation, before the first start, timed the same way.
 **New part silent, or clearly shorter → the old unit differed**, and S13
 becomes a lead on it (H8). **The same routine → it is how these parts
@@ -1082,7 +1082,7 @@ engine off, which reaches the seats safely; and the refit itself, each
 injector home on its own before the rail goes on, with the O-rings looked
 at for a nick from being forced, then `IdleHealth` at 70–72 °C against
 57–100. It goes together with the valve cover job, by the owner's
-decision (`plan.md`, step 1): the cure is wanted more than the
+decision (`vehicle-history.md`, *The valve cover and throttle job*): the cure is wanted more than the
 attribution.
 
 **Found at the refit, 1/10/2026 — cylinder 2's manifold-end O-ring was
@@ -1302,7 +1302,7 @@ clean, several tenths is a bad joint** (*general*).
   back-probed the same way. The pin assignment is in the manual's
   current-flow diagram; it is the one that reads battery voltage with the
   ignition on.
-- **1d, done 1/10/2026** (*owner*, at `plan.md` step 1): the four
+- **1d, done 1/10/2026** (*owner*, at the job, `vehicle-history.md`, *The valve cover and throttle job*): the four
   leads all measure **about 6 kΩ end to end**, the small differences put
   down to probe contact; every boot clean inside, no oil in any — so the
   oil on 3 and 4's boots seen on 26/9 (S10) stayed on the outside.
@@ -1645,7 +1645,7 @@ unmetered**: a small leak of exactly H3's kind, present since June and
 possibly before. Weighed honestly: one point on a soft gasket may seal
 anyway, and the photograph cannot show whether it did. The phone
 screenshot is not kept here; **proper photographs come when the throttle
-is off in `plan.md` step 1**, of both faces.
+is off in the valve cover job**, of both faces.
 
 **At the job, 1/10/2026 — no protrusion, and the joint looks sealed**
 (*owner, photographed*): the old throttle's flange face carries the old
@@ -1941,7 +1941,7 @@ the ECM chase phantom movement would, and does not show. Left in the file
 because cleaning and adapting is cheap, not because anything points here.
 
 **Replaced inside the valve cover job — the owner's decision,
-29/9/2026** (`plan.md` step 1). Nothing in the data asks for it; the part
+29/9/2026** (`vehicle-history.md`, *The valve cover and throttle job*). Nothing in the data asks for it; the part
 is original, 26 years old, cheap, and sits in the idle air path. First
 planned inside the job, split off on 28/9 so that its effect would show
 alone, and **put back into the job on 29/9** after the flange photograph
@@ -2362,7 +2362,7 @@ repair blogs; still nothing from VW.
    tens of euros, so replacing it on suspicion is a fair test.
 
    **Partial result, 1/10/2026** (*owner-found and photographed*, during
-   `plan.md` step 1): **the hose from the breather to the intake ahead of
+   the valve cover job, `vehicle-history.md`, *The valve cover and throttle job*): **the hose from the breather to the intake ahead of
    the throttle is oily inside** — a finger put into it came out covered.
    The photograph shows the bore dark and wet, with a light-grey crusty
    deposit on one side of the inner lip. The owner had looked at the
@@ -2380,7 +2380,7 @@ repair blogs; still nothing from VW.
    with oil neither shows nor rules out — and some oil film in a
    breather hose is common on a healthy engine too, so the amount is
    the question, which a photograph cannot grade. The membrane is
-   judged on the old part out of the car (`plan.md` item 7); the new
+   judged on the old part out of the car (`vehicle-history.md`, *The valve cover and throttle job*); the new
    breather replaces it either way. The fit table is unchanged.
 
    **The big intake hose too, 1/10/2026** (*owner-found and
@@ -2590,8 +2590,8 @@ was H8's alone, so only row 5 changes; the order stands.*
 | 2 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 | a healthy AQY recorded (H0 test 1) |
 | 3 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: worst at mid temperature, not hot; A5 | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
 | 4 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero | a **fuel pressure gauge** |
-| 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `plan.md` step 1), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
-| 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V | a look while the plenum is off (`plan.md`, step 1); H7 test 3 for the injector side |
+| 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `vehicle-history.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
+| 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V | a look while the plenum was off (`vehicle-history.md`, *The valve cover and throttle job*: wiring and connectors fine); H7 test 3 for the injector side |
 | 7 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing | the garage visit, a repair (`plan.md` step 2); a smoke test **of the exhaust** only if they have the machine |
 | 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
 
