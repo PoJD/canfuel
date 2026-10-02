@@ -85,10 +85,16 @@ a part that exists four times names its cylinder.**
       sealant, not known (*owner, photographed*); to be cleaned off before
       the new gasket. **The cover sits back on, without nuts, as a dust lid
       until the parts arrive** (*owner, 1/10/2026*)
-- [ ] which ring went under the breather, and why (item 3) — the old
-      item 5 beside the `100690`; and whether the `100690` fits the cap at
-      all, its seal being part of the cap — **when the parts arrive**, not
-      in hand on 1/10/2026. *Owner considering a new cap as well — not
+- [x] which ring went under the breather, and why (item 3) — **the one
+      the new `32452` comes with, fitted, 2/10/2026** (*owner,
+      photographed*): a notched flat ring, so the second `100690` is not
+      needed there. The old item 5 was **visibly larger than the new one,
+      with pressed-in marks, and very soft** (*owner*; not photographed
+      beside the new one)
+- [ ] whether the `100690` fits the cap, its seal being part of the cap —
+      **same size as the cap's own seal** (*owner, 2/10/2026*), which has
+      no notches; the `100690` has three on its inner edge, which the owner
+      expects not to matter. *Owner considering a new cap as well — not
       decided*
 
 **Item 5 — plugs and boots**
@@ -276,11 +282,11 @@ engine running:
 2. **Under the cover — look, photograph:** no light-brown "mayonnaise" on
    the cam, the caps or the cover's underside. None: nothing to do. Any:
    `refuted.md` C13 reopens — say so before carrying on.
-3. **The breather**: *turns clockwise to come off* (manual, item 3). Lay
-   the old item 5 beside the second `100690`: if they match, the new one
-   goes under the breather; if not, the one in the `32452` box if there is
-   one, else the old one if undamaged. The first `100690` goes under the
-   old cap (item 2).
+3. **The breather**: *turns clockwise to come off* (manual, item 3). The
+   new `32452` carries its own ring (item 5) fitted, so it goes on as it
+   came (*2/10/2026; this step used to weigh the old ring against a
+   second `100690`*). A `100690` goes under the old cap (item 2); the
+   other is a spare.
 4. **Clean off all the oil** — head, cover joint, plug area, injector area,
    the manifold below. Keep cleaner out of the open intake ports.
 5. **Plugs out, cylinders 3 and 4 first** (the oily boots, S10): photograph each plug's insulator
