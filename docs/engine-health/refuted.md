@@ -361,3 +361,15 @@ is made. **What would revive it:** nothing about the patch as such; a
 patch on the old part that came away from the body, or a crack found
 under it, would be a fault of that patch rather than a repair.
 
+### C16. "The throttle's routine at every ignition-on is a fault of the old part" — measured
+
+**Believed:** 28/9/2026, as symptom S13 (`open.md`): VW's manual gives
+the adaptation at most 10 s and repeats it only after an interrupted one,
+so a 20–30 s routine at every ignition-on looked like an adaptation that
+never completes, or a worn unit.
+**Refuted by** the new throttle, Pierburg `7.03703.13.0`, 2/10/2026
+(*owner-timed*): after its own 098 ended *ADP OK*, it ran **the same 20 s
+routine** at the next ignition-on, as the old part did before and after
+its completed 098 on 29/9. It is how these parts behave. **What would
+revive it:** a throttle of this family that stays silent at ignition-on,
+or a routine that lengthens.
