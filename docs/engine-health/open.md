@@ -2148,7 +2148,9 @@ drawing of this car.
   connector (*owner, 1/10/2026*): one to the injectors' air shrouds
   (`refuted.md` C9), one to **a second tee right by the head, at the
   intake runners**. That tee (*owner, photographed 1/10/2026*) sits on a
-  **rigid pipe marked `06A 133 374`**, which runs **up towards the
+  **moulded rubber hose marked `06A 133 374`** (VW/Audi logos, *Germany*;
+  *the owner's photograph of 2/10/2026 shows the marking on formed rubber
+  with a bend in it — this sentence used to call it a rigid pipe*), which runs **up towards the
   throttle** and **down under the runners, by the owner's reading to the
   EVAP side**. *What the pipe is, and which port on the throttle it
   serves, is not read from any VW document.* **Why it matters**
