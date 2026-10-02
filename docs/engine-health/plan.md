@@ -576,7 +576,7 @@ compares cleanly**:
   belt cover in its clips, its inside for fresh rub marks, the belt
   under it. Whether this is a new symptom is the owner's to decide
   (`open.md`).
-- The fault memory after it: not yet reported.
+- **The fault memory after it: empty** (*owner*).
 
 ### Session A — the cold start and the warm-up drive, one log
 
