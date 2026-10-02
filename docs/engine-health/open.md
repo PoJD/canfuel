@@ -1636,6 +1636,27 @@ the face** — none runs from the bore to the outside (*owner*). The dark
 spots near its right-hand edge are deposit petrol did not lift, **not
 pits** (*owner*). The face is closed as fine.
 
+**The two parts side by side, 2/10/2026** (*owner, by eye and ear on the
+bench*) — findings on the old part, not symptoms, so the fit table is
+unchanged:
+
+- **The new part clicks as the plate leaves rest**, like a door switch;
+  **the old one makes no sound at all.** J338 carries the idle switch F60
+  (*What VW's repair manual says*, below), so the click is most likely
+  F60 (*reasoned*). The owner reads it as the switch that hands the idle
+  over to the electronic idle control and back. Whether the old part's
+  F60 still switches is not known; an ohmmeter across the old
+  connector's pins, plate at rest against plate lifted, would say.
+- **The contact face at the idle stop inside the old part is visibly
+  smaller than the new one's, by perhaps 1–2 mm** — possibly worn down.
+  *Why it could matter (reasoned, not from VW):* the idle stop is where
+  the plate rests and where the switch is told it is at idle, so a worn
+  face moves both; the throttle adaptation (098) learns the stops, which
+  may hide some of it.
+
+Both point at the throttle (the `plan.md` table, *What points at which
+repair*), and both are read on the car only once it runs on the new part.
+
 ⚠ **What it does to the reading:** the swap changes two things — the
 throttle *and* this joint (a new part's clean face, a new gasket). It is
 also **why the throttle went back into the valve cover job** (*owner's
@@ -2051,6 +2072,14 @@ valve cover gasket and a rough idle* below calls the air route weak), so a
 small leak rather than a large one (*reasoned, general*) — which is what
 rank 1 in *The idle's candidates* asks for. The fit table below is
 unchanged until it is confirmed.
+
+**The old ring under the breather, 2/10/2026** (*owner*; not
+photographed beside the new one): **visibly larger than the ring the new
+`32452` comes with, with pressed-in marks, and very soft.** Wrong for the
+part, or flattened out of shape over the years — not known. A ring that
+no longer seals is a second door of the same kind next to the patch on
+the body (*reasoned*); a finding on a part, not a symptom, so the fit
+table stays as it is.
 
 | S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S13 |
 |---|---|---|---|---|---|---|---|---|
