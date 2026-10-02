@@ -566,7 +566,13 @@ for this refit:** the nuts are tightened **firmer than "lightly
 compressed"**, evenly and crosswise, with feel — still by hand, no torque
 figure. **Done 2/10/2026 with a ratchet, by feel, about 4 Nm at most by
 the owner's estimate** (*owner*) — "by hand" here meaning without a
-torque wrench, not fingers alone. **No threadlocker** (Loctite 243 considered and set aside: the
+torque wrench, not fingers alone. **The new gasket gave as it was
+tightened**: the middle nuts, done first, had slackened once the outer
+ones were down, and were taken up again until all were even (*owner*).
+The new gasket settling under the first pull is the same mechanism this
+section blames for the old nuts backing off (*reasoned*), which is why
+the middle nuts — out of reach once the plenum is on — are worth one
+more round before it goes on. **No threadlocker** (Loctite 243 considered and set aside: the
 nuts most likely lost their clamp to the gasket settling, which a locked
 thread does not prevent, and it would hide the re-check). **The re-check
 is limited to the outer nuts** that can be reached with the plenum on —

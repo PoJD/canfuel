@@ -230,7 +230,10 @@ a part that exists four times names its cylinder.**
 - [x] the new cover gasket on and the cover nuts tightened — **2/10/2026,
       with a ratchet, by feel, about 4 Nm at most by the owner's
       estimate** (*owner*). "By hand" in this file and in S10 meant *by
-      feel, without a torque wrench*, not fingers alone
+      feel, without a torque wrench*, not fingers alone. **The rubber
+      drew in as the nuts went down: the middle ones, tightened first,
+      had slackened again once the outer ones were done**; gone round
+      again, **now even all round** (*owner*)
 - [x] **the injectors' air-shroud line back on all four nipples** —
       **done 1/10/2026** with new 8 mm sleeves; injector rail bolted at
       **10 Nm** — off
