@@ -79,7 +79,9 @@ a part that exists four times names its cylinder.**
       seated in the cap — *this line said "built into the cap", corrected
       by the owner's photograph of 2/10/2026* (`refuted.md` C14)
 - [x] the old cover gasket — **relatively well preserved**, stuck down
-      in places, possibly not the original (*owner, 1/10/2026*). **Six of
+      in places, possibly not the original (*owner, 1/10/2026*); **beside
+      the new one, hard almost like plastic and set in its fitted shape**,
+      the new one supple (*owner, 2/10/2026*; `open.md` S10). **Six of
       the eight cover nuts were loose by hand** (`open.md` S10, *At the
       job*). The cover's flange carries a **baked-on cream-coloured
       residue** along one side's gasket channel — old gasket or old

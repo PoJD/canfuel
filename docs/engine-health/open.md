@@ -545,8 +545,15 @@ What it settles and what it moves:
 **At the job, 1/10/2026 — the cover nuts were loose** (*owner-found,
 photographed*): **six of the eight came off by hand**; only two needed
 the ratchet. The old gasket came off **relatively well preserved** —
-still supple in the photographs, stuck down in places — and the owner
-doubts it is the original one. *Reasoned:* a joint whose nuts have
+stuck down in places — and the owner doubts it is the original one.
+**Beside the new one, 2/10/2026** (*owner, by hand*): **hard, almost like
+plastic, and still holding the shape it was fitted in**, where the new
+one is supple rubber and far more flexible. *This paragraph used to say
+"still supple in the photographs" — Claude's reading of a photograph,
+which the owner's hands correct.* A gasket that has taken a set no
+longer follows the joint as the nuts back off (*general*), so the hard
+gasket and the loose nuts are one story rather than two; it changes no
+fit table, being a finding on a part. *Reasoned:* a joint whose nuts have
 backed off leaks with any gasket, so **the loose nuts are the most
 direct explanation of S10** — more than the gasket's age, which the
 section above assumed. It also bears on the decision just above: the
