@@ -577,6 +577,14 @@ compares cleanly**:
   under it. Whether this is a new symptom is the owner's to decide
   (`open.md`).
 - **The fault memory after it: empty** (*owner*).
+- **The noise was most likely the upper belt cover**: taken off and
+  refitted the same day, and the owner thinks the noise has gone — so not
+  added to `open.md` as a symptom (*owner's call*). Listen for it again in
+  session A.
+- **Later the same evening, still cold** (*owner, off the MFD*): with the
+  A/C, the blower, the lights and the rear window heater on, `IdleHealth`
+  read **57 at its lowest**. Cold, loaded and on fresh adaptations, so it
+  compares with nothing in the band (57–100, warm); recorded, not read.
 
 ### Session A — the cold start and the warm-up drive, one log
 
