@@ -507,7 +507,8 @@ zero there before 24/9 proves nothing.
    basic settings, 098, *ADP runs* — the positioner driven to min, max and
    a few points between, **at most 10 s** — then *ADP OK*. Ignition off to
    store it.
-3. **Ignition on again, stopwatch:** does the new part run the routine,
+3. **Done 2/10/2026: 098 *ADP OK*, the routine still 20 s** (`open.md`
+   S13). **Ignition on again, stopwatch:** does the new part run the routine,
    and how long against the old part's 20 s, the same before and after
    its own completed 098? (`open.md` S13 — this closes it.)
 4. **Group 054, measured values, the same ignition-on, after the

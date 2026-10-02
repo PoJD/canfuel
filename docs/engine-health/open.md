@@ -766,6 +766,14 @@ after its adaptation, before the first start, timed the same way.
 becomes a lead on it (H8). **The same routine → it is how these parts
 behave**, and S13 closes as normal.
 
+**The new part, timed — 2/10/2026** (*owner-measured, stopwatch*;
+battery reconnected, engine not run): 098 gave **ADP OK** (photographed:
+10.4°, 59.2 %, *volnoběh*), and at the next ignition-on the new part ran
+**the same routine, 20 s, as the old one**. By the rule above that is
+*how these parts behave*. *Closing S13 means taking its column out of
+every fit table in the same commit; that is done after the day's check
+start rather than in the middle of it.*
+
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** Whether 0x420's `OilTemp` is right is a firmware
