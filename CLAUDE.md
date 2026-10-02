@@ -1264,6 +1264,12 @@ if it is still unclear, ask once.
 - **In the cloud**, you cannot reach the adapter: hand him the commands and
   read the files he uploads.
 
+**You cannot hear him.** Nothing in either setup gives you a microphone, so
+a reading taken at the car — a thermometer, a gauge, a sound described —
+reaches you typed, after the fact. Never plan a step on his reading aloud;
+plan it on him writing the values down in order and typing them in, and
+align them to the capture by an event it records (engine off, a blip).
+
 **The MFD and the CAN capture are one or the other, never both** (*the
 maintainer*): while the capture runs he cannot read `IdleHealth` off the
 display. So never ask him to read it during a captured session — 0x604 is
