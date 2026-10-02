@@ -516,11 +516,13 @@ zero there before 24/9 proves nothing.
    floor **91.1°, *část. zatíž.*** — never *full load*, which the manual's
    two states (idling, part throttle) do not include either; the field
    carries F60, not load. The drive's angle sender read 5.2° throughout.
-   The owner recalls the old part never above 85°. **Cable left as it
-   is** (*decision*): it still has a little slack, and 91° is well past
-   75° while the rest angle is already near the top of 0…6°, so taking
-   up the slack risks holding the plate off its idle stop — F60 open at
-   idle — for nothing. **Group 054, measured values, the same ignition-on, after the
+   The owner recalls the old part never above 85°. *Claude advised
+   leaving the cable's slack, for fear of holding the plate off its idle
+   stop.* **The owner took the slack up** (*owner's decision, 2/10/2026*):
+   the pedal no longer has a dead start. **054 read again afterwards,
+   photographed: unchanged** — 5.6° and *volnoběh* at rest, 39.1° part,
+   91.1° full — so the plate still rests on its stop and F60 still
+   closes. **Group 054, measured values, the same ignition-on, after the
    stopwatch** (*owner's decision, 2/10/2026*) — so that it cannot
    disturb the routine being timed. VW's manual as transcribed
    (`open.md` H8, *What VW's repair manual says*): **G69 at rest 0…6°,
