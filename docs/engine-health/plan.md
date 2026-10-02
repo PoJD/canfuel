@@ -220,6 +220,14 @@ a part that exists four times names its cylinder.**
 - [x] the contact face at the idle stop — **the old part's visibly
       smaller, by perhaps 1–2 mm, possibly worn** (*owner, 2/10/2026*;
       `open.md` H8, *The two parts side by side*)
+- [ ] **the top spigot on the new part points the other way** from the
+      old one's (*owner, photographed beside the old part, 2/10/2026*), so
+      the hose from the rigid pipe `06A 133 374` does not reach it. The
+      spigot is **not turned or bent** (*decision*): it opens behind the
+      plate, at manifold vacuum, and a spigot loosened in the casting would
+      be exactly the unmetered leak this job is for. A longer hose of the
+      same bore, fuel- and vacuum-rated, routed to it in one piece — no
+      joint added
 - [ ] the cable: idle stop at rest, full throttle with the pedal down
 
 **Items 9–10 — back together**
