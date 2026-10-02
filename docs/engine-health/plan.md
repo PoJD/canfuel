@@ -585,6 +585,12 @@ compares cleanly**:
   A/C, the blower, the lights and the rear window heater on, `IdleHealth`
   read **57 at its lowest**. Cold, loaded and on fresh adaptations, so it
   compares with nothing in the band (57–100, warm); recorded, not read.
+- **No adaptation reset through VCDS** (*decision, owner's question
+  2/10/2026*): the battery was off for the job, and the log shows 055's
+  learned value at **0.00** — the adaptations already start from zero,
+  which is what session A is written for. A reset now would only restart
+  what the drive is about to learn. Whether this ECU offers one through
+  VCDS at all was not looked up.
 
 ### Session A — the cold start and the warm-up drive, one log
 
