@@ -2148,11 +2148,16 @@ drawing of this car.
   connector (*owner, 1/10/2026*): one to the injectors' air shrouds
   (`refuted.md` C9), one to **a second tee right by the head, at the
   intake runners**. That tee (*owner, photographed 1/10/2026*) sits on a
-  **moulded rubber hose marked `06A 133 374`** (VW/Audi logos, *Germany*;
-  *the owner's photograph of 2/10/2026 shows the marking on formed rubber
-  with a bend in it — this sentence used to call it a rigid pipe*), which runs **up towards the
-  throttle** and **down under the runners, by the owner's reading to the
-  EVAP side**. *What the pipe is, and which port on the throttle it
+  line that runs **up towards the throttle** and **down under the
+  runners, by the owner's reading to the EVAP side**. **The piece up to
+  the throttle is a short moulded rubber elbow marked `06A 133 374`**
+  (VW/Audi logos, *Germany*; *owner, photographed and confirmed
+  2/10/2026*) — **hard with age**, where a new hose of the same kind is
+  much more flexible (*owner*). It was replaced at the job by a longer
+  plain hose, the new throttle's spigot pointing the other way (`plan.md`
+  item 8). *This sentence used to say the tee sat on a rigid pipe marked
+  `06A 133 374`; the number is the elbow's, and what the rest of the line
+  is made of was not read.* *What the pipe is, and which port on the throttle it
   serves, is not read from any VW document.* **Why it matters**
   (*reasoned*): if its top end takes vacuum from **behind the plate** —
   the throttle's bore carries a nipple on its plenum side — then this

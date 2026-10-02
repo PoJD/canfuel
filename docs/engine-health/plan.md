@@ -165,8 +165,9 @@ a part that exists four times names its cylinder.**
       seen anywhere** (*owner, 1/10/2026*) — only the smoke test (step 3)
       would settle it, and it comes out easily if one finds a leak there
       (*owner's decision: not pursued now*). **The second tee** sits on a
-      moulded rubber hose `06A 133 374` (*this said "rigid pipe" until the
-      owner's photograph of 2/10/2026*), up towards the throttle and down under the
+      line up towards the throttle — its last piece the moulded elbow
+      `06A 133 374`, hard with age (*this said "rigid pipe `06A 133 374`"
+      until the owner's photograph of 2/10/2026*) — and down under the
       runners to EVAP by the owner's reading (`open.md` H9, *The
       layout*). **Its hoses fine** (*owner, 1/10/2026*). The throttle has
       three metal spigots: this pipe on the top one — **opening behind the
@@ -223,14 +224,15 @@ a part that exists four times names its cylinder.**
       `open.md` H8, *The two parts side by side*)
 - [x] **the top spigot on the new part points the other way** from the
       old one's (*owner, photographed beside the old part, 2/10/2026*), so
-      the hose from `06A 133 374` does not reach it. The
+      the moulded elbow `06A 133 374` from the tee does not reach it. The
       spigot is **not turned or bent** (*decision*): it opens behind the
       plate, at manifold vacuum, and a spigot loosened in the casting would
       be exactly the unmetered leak this job is for. A longer hose of the
       same bore, fuel- and vacuum-rated, routed to it in one piece — no
       joint added
       — **done 2/10/2026, the throttle on** (*owner, photographed*): the
-      old moulded elbow replaced by **one longer piece of the hose bought
+      old moulded elbow (`06A 133 374`, **hard with age**; the new hose
+      the same kind but far more flexible — *owner*) replaced by **one longer piece of the hose bought
       for the injectors' air-shroud line** (the same bore), spring clips at
       both ends, in an open arc over the throttle. Whether that hose is
       fuel-rated is not known; it works either way, and a fuel-rated
