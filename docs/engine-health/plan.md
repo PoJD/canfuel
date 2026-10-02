@@ -268,6 +268,9 @@ a part that exists four times names its cylinder.**
       the secondary-air pump included; the battery and the coolant top-up
       last. *Owner's plan for the day:* no drive, only the steps before
       the first start and a short check start; session A on another day
+- [ ] the coolant top-up — **not done 2/10/2026**: the level dropped a
+      little and there is no coolant at hand (*owner*); the check start
+      runs on it as it is, **topped up before session A's drive**
 - [x] **the injectors' air-shroud line back on all four nipples** —
       **done 1/10/2026** with new 8 mm sleeves; injector rail bolted at
       **10 Nm** — off
