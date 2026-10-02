@@ -272,6 +272,9 @@ a part that exists four times names its cylinder.**
       Off since 1/10/2026, their ends tied upwards (one cable-tied to a
       loom at the back, one tucked behind a cable) — **check they have
       not turned down** before refitting
+- [x] **the new throttle complete and connected, 2/10/2026** (*owner*):
+      gasket, bolts, both coolant hoses, connector, cable — "everything".
+      The coolant level is still to be topped up
 
 **Optional**, only if quick: the four HT leads and the four injector
 windings on ohms, each against the other three.
