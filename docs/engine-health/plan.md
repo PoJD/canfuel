@@ -493,7 +493,11 @@ zero there before 24/9 proves nothing.
   missed and the watch moves on to the hot one; closed by accident, it is
   started again and rebuilds its state from the file.
 - **VCDS on its own log file**, groups as each session says; check that it
-  is still logging after the engine catches (`vcds.md`).
+  is still logging after the engine catches (`vcds.md`). On the laptop it
+  lands in Downloads, where Claude picks it up afterwards.
+- **`IdleHealth` comes from the capture, not the MFD**: the two are one or
+  the other, never both (*owner*, `CLAUDE.md`, *Recording a session at the
+  car*). Nobody reads it off the display during a captured session.
 
 ### Before the first start
 
@@ -674,8 +678,9 @@ is 0…5; zero is the owner's bar.
   are not run.
 - **Zero** — session B, the same day.
 
-`IdleHealth` is read beside it all, against the band **57–100** (`open.md`
-S1), but decides nothing yet: no healthy target for it exists.
+`IdleHealth` is read out of the capture afterwards, against the band
+**57–100** (`open.md` S1), but decides nothing yet: no healthy target for
+it exists.
 
 ### Session B — the same test again, the same day, after a cool-down
 
@@ -706,7 +711,7 @@ was taken**: a second hot point for the same question.
 
 - **014 at zero again through both stops, detection `aktivováno`** — **the
   misfires are gone**, and the verdict is closed. Record it, read *What
-  points at which repair* below, and go to session C.
+  points at which repair* below.
 - **Counts** — they were not gone; A's zero was luck: step 2.
 - **055's learned value** against the −0.73 g/s of 11/9, and **032's idle
   cell** (`open.md` S9): either moving *negative* also says a leak was
@@ -714,19 +719,18 @@ was taken**: a second hot point for the same question.
   screens after a few hundred km** is worth having later, but decides
   nothing.
 
-### Session C — only if A and B are both zero: the healthy idle
+**At B's second stop, after its three minutes — only if both sessions are
+zero so far:** **one minute of group 002** as its own short log (VW's idle
+limits: air 2.0–5.0 g/s, injection 2.0–5.5 ms, load 15–35 %, `vcds.md`),
+then **two minutes with the A/C on**, the capture still running — the
+regulator's answer to a load step, the two-hold method of `vcds.md`.
 
-**Nothing is decided by it**, so it is not a test for its own sake: it is
-the recording nobody has. **This car becomes the healthy AQY that H0 has
-never had** (`open.md` S1, *What is not known: the healthy target*) — the
-`IdleHealth` target and VW's idle specifications on an engine that meets
-them.
-
-**Capture and VCDS 002 + 003 + 055** (014 has given its verdict; 002
-carries VW's idle limits — air 2.0–5.0 g/s, injection 2.0–5.5 ms, load
-15–35 %, `vcds.md`), warm at 68–72 °C: **two minutes loads off, then two
-minutes with the A/C on**, same speed — the regulator's answer to a load
-step, and the two-hold method of `vcds.md`.
+*There used to be a session C for this* — a separate warm recording of the
+healthy idle. **Dropped, owner's decision 2/10/2026:** if A and B are both
+zero, their warm stops already are the healthy-idle recording that H0 never
+had (`open.md` S1, *What is not known: the healthy target*), with the
+capture beside them. The two things C added beyond that, 002 and the A/C
+step, cost three minutes here instead of a session.
 
 ### Afterwards, either way
 

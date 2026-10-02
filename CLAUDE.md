@@ -1248,6 +1248,27 @@ python tools/flash.py --read-eeprom ring.bin               # read-only
 python tools/flash.py --dry-run                            # print, run nothing
 ```
 
+### Recording a session at the car — who runs what
+
+**Find out where you are running before proposing anything.** The
+maintainer's Windows laptop is the one with VCDS installed and the USBtin
+attached; a cloud container has neither, and then he is usually talking to
+you from his phone. Check the platform and look for a VCDS installation;
+if it is still unclear, ask once.
+
+- **On the laptop**, propose this every time without being asked: **you run
+  `usbtin_capture.py` yourself**, started before the ignition and left
+  running to engine off; **he runs `oilwatch.py` in a second terminal**
+  on the same file; **VCDS logs to its own file, and afterwards you find it
+  in the laptop's Downloads folder** (*the maintainer's description*).
+- **In the cloud**, you cannot reach the adapter: hand him the commands and
+  read the files he uploads.
+
+**The MFD and the CAN capture are one or the other, never both** (*the
+maintainer*): while the capture runs he cannot read `IdleHealth` off the
+display. So never ask him to read it during a captured session — 0x604 is
+in the capture, so read it from there afterwards.
+
 **`make -C mplab CAN_MODE=X` and the flash are one step in `flash.py` on
 purpose.** The three hexes differ by one `-D` and nothing else, so a hex
 flashed in the belief that it is a different mode is a correctly programmed
