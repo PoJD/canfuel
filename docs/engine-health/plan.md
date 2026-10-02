@@ -226,7 +226,8 @@ a part that exists four times names its cylinder.**
 - [x] the head's and the cover's sealing faces clean and dry —
       **1/10/2026** (*owner*); the cover sits on dry, no gasket, no nuts,
       as a lid until the parts arrive
-- [ ] Dirko at the four arch points, the two front ones not skimped
+- [x] Dirko at the four arch points, the two front ones not skimped —
+      **done 2/10/2026** (*owner*)
 - [x] the new cover gasket on and the cover nuts tightened — **2/10/2026,
       with a ratchet, by feel, about 4 Nm at most by the owner's
       estimate** (*owner*). "By hand" in this file and in S10 meant *by
