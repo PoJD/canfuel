@@ -112,11 +112,17 @@ start's quality is not what is tested — **it is ignored.**
   stays A2 and A3 — but it shows whether the idle settles as the fresh
   adaptations learn. At this stop also: **any smoke or hiss at the back**
   (S11, not seen on the cold check starts).
-- **A4 — optional: the oil thermometer, the first minute after engine
-  off** (*owner's decision, 30/9/2026*: **decided before the drive** —
-  it depends on the thermometer being bought in time, and on the time
-  left for the tests; `docs/firmware/open.md` question 10). No engine
-  running, so it costs the idle nothing. **Ignition back on at once** so
+- **A4 — the oil thermometer, the first minute after engine off**, at
+  the end of A3+ when the oil is at its hottest (*owner's decision,
+  2/10/2026*: **taken, no longer optional** — the Extol is bought;
+  `docs/firmware/open.md` question 10). **No cold reading beforehand**
+  (*decision*): the instrument is checked hot, in the same minute, on the
+  coolant hose below, and a cold engine adds nothing — every surface sits
+  at ambient, and the capture's first seconds at ignition-on record the
+  cold soak anyway. **The thermometer rides in the cabin** so it is
+  acclimatised (its manual: 30 minutes), set to **E 0.95**, with dark matt
+  tape on the filter if it is bare metal. No engine running, so it costs
+  the idle nothing. **Ignition back on at once** so
   that 0x420 keeps coming and the capture keeps running; the owner reads
   the IR thermometer aloud and Claude stamps each reading against the
   capture's raw byte. **The oil filter first**, then **the sump pan from

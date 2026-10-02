@@ -93,7 +93,9 @@ survive.
    **0–40 °C**, and **left 30 minutes to reach the ambient temperature**
    after a change of it. Set to **E 0.95** (owner's photograph). So it is
    enough: ±1.5 °C against a 23 °C gap. *The paragraph below, from 30/9,
-   said no instrument had been bought.*
+   said no instrument had been bought.* **Taken in the engine-health
+   test's session A as A4, after its last hot stop — no longer optional**
+   (*owner's decision, 2/10/2026*; `docs/engine-health/plan.md`).
 
    *30/9/2026:* **The instrument: none yet** (*owner's decision, 30/9/2026*). A Bosch
    UniversalTemp was chosen on 29/9, not found in the shop and judged too
@@ -138,9 +140,8 @@ survive.
    so 0x420 keeps coming — read off a capture as the raw byte, or off the
    display, whose whole degrees are fine against a 23 °C gap. Filter
    first, pan second, hose third. **Any drive will do and the harder the
-   better**, once a thermometer is at hand — the engine-health test's A4
-   if it is taken there. **Nothing before the job**: the engine is not run until then
-   (`docs/engine-health/plan.md`, the rule), and a cold engine adds
+   better** — the engine-health test's A4, after an hour's driving. **No
+   cold reading** (*decision, 2/10/2026*): a cold engine adds
    nothing — every surface sits at ambient, which the cold soaks in item 2
    already cover without a thermometer. Any ordinary drive after it needs
    nothing but the display. *General*: the radiator fan can start with the engine
