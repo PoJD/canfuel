@@ -100,11 +100,14 @@ a part that exists four times names its cylinder.**
       photographed*): the same size as the cap's old plain ring, with
       three notches on its inner edge, and it seats in the cap more easily.
       The ring on the new `32452` is the same part, and stays on it
-- [ ] the new breather on the cover: its ring sits flat and covers every
+- [x] the new breather on the cover: its ring sits flat and covers every
       opening round the seat (*owner, at refit*). **In, 2/10/2026**
       (*owner, photographed*): it went in **much more stiffly than the
-      old one, which sat very loosely** (`open.md` H9). The ring's fit
-      all round not yet reported
+      old one, which sat very loosely** (`open.md` H9). **The ring sits
+      flat** (*owner*); nothing else holds the breather — its bayonet
+      only
+- [x] the `100690` in the cap, the cap on — **2/10/2026** (*owner,
+      photographed*); it closes more tightly than with the old ring
 
 **Item 5 — plugs and boots**
 - [x] each plug's insulator and electrode, cylinder by cylinder: colour,
@@ -283,7 +286,7 @@ windings on ohms, each against the other three.
 workshop-manuals.com: *Dismantling and assembling intake manifold – upper
 part / – lower part*, figures N24-0950 and N24-0949, and *Removing and
 installing parts of the ignition system*, *Test data, spark plugs*; the
-breather's nut from the Bentley view in `open.md` S10). **A small torque
+Bentley view's item 4 from `open.md` S10). **A small torque
 wrench** (*owner's decision*); the cover nuts stay by hand (S10).
 
 | joint | torque | VW's note |
@@ -294,7 +297,7 @@ wrench** (*owner's decision*); the cover nuts stay by hand (S10).
 | fuel rail → lower part (item 12) | **10 Nm** | injector O-rings renewed if damaged |
 | spark plugs (BKUR 6 ET-10, gap 0.9–1.1 mm) | **30 Nm** | |
 | ignition coil | 10 Nm | |
-| breather bracket nut (Bentley item 4) | 10 Nm | |
+| Bentley item 4, a nut by the bracket (item 6) — **not the breather's** | 10 Nm | the breather is held by its bayonet alone; no nut or screw holds it (*owner, 2/10/2026*). *This row used to read "breather bracket nut", Claude's reading of the drawing* |
 
 The upper part does not come off whole (*owner's plan, 28/9/2026*): it is
 moved aside with most of its hoses at the back left on, as in the videos;
