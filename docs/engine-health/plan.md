@@ -258,8 +258,9 @@ a part that exists four times names its cylinder.**
       drew in as the nuts went down: the middle ones, tightened first,
       had slackened again once the outer ones were done**; gone round
       again, **now even all round** (*owner*)
-- [x] **the cover complete, the leads back on the coil, the plenum on —
-      2/10/2026** (*owner*)
+- [x] **the cover complete, the leads back on the coil, the plenum on,
+      the coil connected — 2/10/2026** (*owner*); the intake hose and the
+      secondary-air pump, off for access, go back last
 - [x] **the injectors' air-shroud line back on all four nipples** —
       **done 1/10/2026** with new 8 mm sleeves; injector rail bolted at
       **10 Nm** — off
