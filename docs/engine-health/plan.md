@@ -188,7 +188,9 @@ a part that exists four times names its cylinder.**
 - [x] that hose — **the MAF-to-throttle connector**, which the breather
       hose and a thinner one join through a plastic connector — by hand: **sound on every side**
       (*owner, 1/10/2026*); the "split" was a frayed sliver at the end,
-      torn off. Clean the oil out of it before it goes back
+      torn off. Clean the oil out of it before it goes back — **cleaned
+      and back on, the breather hose and the thin one joined, 2/10/2026**
+      (*owner, photographed*)
 - [x] the old breather out of the car: membrane, body, spigots, vent hole
       — **1/10/2026, photographed**: oily everywhere; **a foreign black
       patch on the body by the spigot**, askew and lifting at the edge,
@@ -243,7 +245,8 @@ a part that exists four times names its cylinder.**
       both ends, in an open arc over the throttle. Whether that hose is
       fuel-rated is not known; it works either way, and a fuel-rated
       piece can replace it later. The old elbow is kept
-- [ ] the cable: idle stop at rest, full throttle with the pedal down
+- [x] the cable: idle stop at rest, full throttle with the pedal down —
+      **OK, 2/10/2026** (*owner*)
 
 **Items 9–10 — back together**
 - [x] the head's and the cover's sealing faces clean and dry —
@@ -269,7 +272,7 @@ a part that exists four times names its cylinder.**
       cracked** (`06A 133 264`, `refuted.md` C9) — **new ones to be bought
       before it goes back** (*owner's decision*); left off, each open nipple is a hole behind the
       throttle (`refuted.md` C9 holds only while it is connected)
-- [ ] every rag out of the ports — **counted**; since 1/10/2026 one in
+- [x] every rag out of the ports — **counted**, all out 2/10/2026 (*owner*); since 1/10/2026 one in
       the cover's breather opening, one in the plenum's throttle mouth and
       one over the lower part's four ports
 - [ ] **both** coolant hoses back on the new throttle, the level topped up.
