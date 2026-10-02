@@ -347,4 +347,17 @@ cap's seal built into the cap's body. *Corrected 2/10/2026 by the owner's
 photograph: the cap's seal is a separate plain ring seated in the cap,
 not part of its body — it was there either way.* **What would revive it:** nothing —
 the parts were in hand. The door H9 now points at is the breather's body.
+*2/10/2026: not the patch on it, which is original — C15.*
+
+### C15. "The patch on the old breather's body is a past repair" — measured
+
+**Believed:** 1/10/2026, from the old breather out of the car (`open.md`
+H9 test 4): a black patch where the body meets the hose spigot, askew and
+lifting at the edge, read by the owner as not original and so as the
+cover over an earlier breach — the concrete door for unmetered air.
+**Refuted by** the new part, 2/10/2026 (*owner*): **the new `32452`
+carries the same patch, looking exactly the same**, so it is how the part
+is made. **What would revive it:** nothing about the patch as such; a
+patch on the old part that came away from the body, or a crack found
+under it, would be a fault of that patch rather than a repair.
 

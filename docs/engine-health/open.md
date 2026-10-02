@@ -2071,8 +2071,12 @@ Either way one fault can make S10 and reach the idle.
 **The concrete door, 1/10/2026.** *This paragraph used to say the
 breather might sit on no seal at all (30/9, a quick look); at the job
 both seals were found in place (S10, `refuted.md` C14).* The door the job
-did find is **the breather's own body** (test 4, below): a patch on it
-that the owner reads as a past repair. Either way the mechanism is this
+did find was **the breather's own body** (test 4, below): a patch on it
+that the owner read as a past repair. *2/10/2026: the new `32452` carries
+the same patch, so it is original (`refuted.md` C15); this paragraph used
+to name it as the door.* What is left of this door is the old ring under
+the breather (below) and the membrane, which nobody has judged. Either way
+the mechanism is this
 second branch: at idle the breather holds the crankcase slightly below
 atmospheric, so an opening to the outside draws air, which leaves through
 the ventilation into the intake **behind the MAF** — unmetered. It is
@@ -2094,8 +2098,8 @@ well beyond the breather's base, and not evenly. Wrong for
 the part, or flattened out of shape over the years — not known. *Rubber
 that has sat in oil softening and swelling is general, not read for this
 part*, and would account for both the size and the softness. A ring that
-no longer seals is a second door of the same kind next to the patch on
-the body (*reasoned*); a finding on a part, not a symptom, so the fit
+no longer seals is a door of exactly this kind (*reasoned*) — and with
+the patch shown original, the only concrete one the job found here; a finding on a part, not a symptom, so the fit
 table stays as it is.
 
 | S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S13 |
@@ -2366,13 +2370,16 @@ repair blogs; still nothing from VW.
    the ventilation, slightly below atmospheric at idle. **A breach under a
    lifting patch, or an open seam, is an opening to the outside behind
    the MAF** — the concrete door above. Not proven: nobody has seen under
-   the patch, and it does hold. **The owner also reads the oil as the
+   the patch, and it does hold. *2/10/2026: the patch is original — the
+   new part carries the same one (`refuted.md` C15) — so it is no sign of
+   an earlier breach.* **The owner also reads the oil as the
    membrane passing it**; the oil reaches the hose by the valve's normal
    path — blow-by and its mist go *through* the breather — so oil past it
    speaks to the separator, not to the membrane (*reasoned*, above). The
    membrane stays unjudged; the new breather (`32452`) replaces it either
-   way. **The fit table is unchanged**, but this is the strongest sign
-   for H9's air branch found so far.
+   way. **The fit table is unchanged.** *This used to end "but this is
+   the strongest sign for H9's air branch found so far"; with the patch
+   original, that sign is now the old ring under the breather.*
 5. **After the repair**, `IdleHealth` at a matched oil temperature against the
    current band: the same rule as H2 — a clear improvement means this was
    underrated.

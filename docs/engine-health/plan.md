@@ -182,9 +182,10 @@ a part that exists four times names its cylinder.**
 - [x] the old breather out of the car: membrane, body, spigots, vent hole
       — **1/10/2026, photographed**: oily everywhere; **a foreign black
       patch on the body by the spigot**, askew and lifting at the edge,
-      read by the owner as a past repair (`open.md` H9 test 4); the seam
-      of its middle ring **probably fine by hand** (*owner*) — the patch is
-      the suspect. **Keep the part** — the patch is evidence
+      read by the owner as a past repair (`open.md` H9 test 4) — **the new
+      `32452` has the same patch, so it is original** (*owner, 2/10/2026*;
+      `refuted.md` C15); the seam of its middle ring **probably fine by
+      hand** (*owner*). **Keep the part** — with its old ring
 - [x] ground 2 — **not found, 1/10/2026** (*owner*); not found is done
 - [x] the old upper plenum gasket — **whole, 1/10/2026** (*owner,
       photographed*): no tear, no gap, pressed in evenly; the joint looked
