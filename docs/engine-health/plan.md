@@ -622,6 +622,12 @@ ignored.**
   temperature, so that air against plate angle compares like with like
   (`open.md` H8, *Air against plate angle is the throttle's own
   calibration curve*). Engine off.
+- **A3+ — then about an hour's driving, and one last stop hot**
+  (*owner's decision, 2/10/2026*): **three minutes standing, loads off**,
+  the same three groups. It decides nothing on its own — the verdict
+  stays A2 and A3 — but it shows whether the idle settles as the fresh
+  adaptations learn. At this stop also: **any smoke or hiss at the back**
+  (S11, not seen on the cold check starts).
 - **A4 — optional: the oil thermometer, the first minute after engine
   off** (*owner's decision, 30/9/2026*: **decided before the drive** —
   it depends on the thermometer being bought in time, and on the time
