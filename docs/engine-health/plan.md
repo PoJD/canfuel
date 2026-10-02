@@ -204,6 +204,12 @@ a part that exists four times names its cylinder.**
 - [x] the June throttle gasket: **whole, 1/10/2026** (*photographed*) —
       no tear, no gap from bore to outside, at the lower left or anywhere;
       the bolt rings and a darker band along the bore pressed in evenly
+- [x] the new part opened by hand on the bench — **an audible click
+      inside, like a door switch, as the plate leaves rest; the old part
+      makes no such sound** (*owner, 2/10/2026*). J338 carries the idle
+      switch F60 (`open.md` H8, *What VW's repair manual says*), so the
+      click is most likely F60 (*reasoned, not confirmed*); whether the
+      old part's F60 still switches is not known
 - [ ] the cable: idle stop at rest, full throttle with the pedal down
 
 **Items 9–10 — back together**
