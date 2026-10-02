@@ -89,8 +89,8 @@ a part that exists four times names its cylinder.**
       the new `32452` comes with, fitted, 2/10/2026** (*owner,
       photographed*): a notched flat ring, so the second `100690` is not
       needed there. The old item 5 was **visibly larger than the new one,
-      with pressed-in marks, and very soft** (*owner*; not photographed
-      beside the new one)
+      with pressed-in marks, very soft and smeared out, almost liquid in
+      places** (*owner*; not photographed beside the new one)
 - [ ] whether the `100690` fits the cap, its seal being part of the cap —
       **same size as the cap's own seal** (*owner, 2/10/2026*), which has
       no notches; the `100690` has three on its inner edge, which the owner

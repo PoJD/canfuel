@@ -2075,8 +2075,11 @@ unchanged until it is confirmed.
 
 **The old ring under the breather, 2/10/2026** (*owner*; not
 photographed beside the new one): **visibly larger than the ring the new
-`32452` comes with, with pressed-in marks, and very soft.** Wrong for the
-part, or flattened out of shape over the years — not known. A ring that
+`32452` comes with, with pressed-in marks, very soft, and smeared out as
+if the rubber had begun to flow — almost liquid in places.** Wrong for
+the part, or flattened out of shape over the years — not known. *Rubber
+that has sat in oil softening and swelling is general, not read for this
+part*, and would account for both the size and the softness. A ring that
 no longer seals is a second door of the same kind next to the patch on
 the body (*reasoned*); a finding on a part, not a symptom, so the fit
 table stays as it is.
