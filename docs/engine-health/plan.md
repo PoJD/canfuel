@@ -156,6 +156,15 @@ The start decides nothing about the misfires; that stays A2 and A3.
   stays A2 and A3 — but it shows whether the idle settles as the fresh
   adaptations learn. At this stop also: **any smoke or hiss at the back**
   (S11, not seen on the cold check starts).
+  **Then, after the three minutes, the MAF wiggle** (*owner's decision,
+  3/10/2026*): one short blip of the throttle to mark the moment in the
+  capture, then **30–60 s of moving the MAF's connector and harness**
+  by hand, still standing, loads off. Afterwards the dips and the grade
+  in the wiggle window are set against the three quiet minutes before it,
+  and 003's air mass beside them. Dips that cluster in the wiggle, or air
+  that drops out, mean the contact; nothing different means the harness
+  found unclipped (`vehicle-history.md`, the MAF row) was cosmetic, as
+  assessed.
 - **A4 — the oil thermometer, the first minute after engine off**, at
   the end of A3+ when the oil is at its hottest (*owner's decision,
   2/10/2026*: **taken, no longer optional** — the Extol is bought;
