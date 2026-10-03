@@ -34,13 +34,12 @@ in `open.md` (S10, H8, H9) and `refuted.md` (C14–C16).
 **Still owed before session A:**
 - **Top up the coolant**, cold — the level dropped a little after the job
   and none was at hand on 2/10.
-- **The MAF's orientation, settled by the harness** (`vehicle-history.md`,
-  the MAF row): the connector points forward, and whether that is turned
-  round is not known. The car's own harness decides it — where its clip
-  holder is, and which way the connector reaches it with no strain. Turn
-  the housing (two screws) only if the harness says so, and clip it
-  either way. Cosmetic by the owner's assessment, so not counted as a
-  change to what session A tests.
+- **Turn the MAF housing 180° and clip its harness** (*owner's decision,
+  3/10/2026*: "almost certainly" turned round, by the harness;
+  `vehicle-history.md`, the MAF row). Two screws, **engine not run
+  afterwards** before session A, which needs it cold. Cosmetic by the
+  owner's assessment, so not counted as a change to what session A
+  tests — with one caveat on the leak signature, below.
 - At A1, **listen at the timing-belt end**: a noise there on 2/10 went when
   the upper belt cover was refitted (*owner*), and it should stay gone.
 
@@ -201,6 +200,13 @@ sealed leak is read off the air and the regulator:
 | 003 air on the plateau (`19`) | 6.8 → 5.2 g/s | **more air through the MAF for the same speed** |
 | 003 air after the step | ~4.3 g/s | the same, more air |
 | 055, field 2 + field 3 | **−1.2 g/s** just after the start, **−0.8** five minutes in (11/9) | **clearly nearer zero** |
+
+⚠ **The MAF was turned round before A** (3/10/2026). A housing turned on
+its axis can bias 003's reading by a constant few per cent (*general*;
+`open.md` S9), so a few per cent more air on 003 is not a sealed leak
+on its own. 055's sum is the stronger witness of the two here: it is the
+idle's own correction, and a constant bias in the MAF does not move it
+by the margin the table asks for.
 
 **055 is read as the sum of its two air fields** (the live regulator plus
 the learned value): the whole correction the idle is making. With the
