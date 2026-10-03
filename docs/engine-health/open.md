@@ -226,6 +226,21 @@ never aligned with anything. It did
 - **122 of 129 new events began at a standstill idle**; the few seen in 1st
   and 2nd are mostly the three-second hold of an event that began standing.
   None during a pull.
+- **"Only at idle" is the car, not a blind spot of the detection** (added
+  3/10/2026). The method (`vcds.md`, block 014, *What the number is*)
+  sees a misfire **more** easily under load — each firing is a large
+  torque pulse there, so a missing one stands far out of the noise — and
+  is weakest at idle, which is why it switches off below about 20 % load
+  (*general*). And on this car it has worked under load: the historical
+  full-load misfire set the lamp above ~4500 rpm (`refuted.md` C4). So
+  no count during a pull is a real absence. **What it does not see**
+  (*general*): below about 20 % load (light cruise, the coast down), on
+  the overrun with the fuel cut, at high engine speed, and **in
+  transients — a gearchange, a sharp tip-in — where ECUs commonly
+  suppress detection** against false alarms. That last gap is exactly
+  **S12**, the tip-in hesitation: a short stumble there could escape 014
+  and the dips alike (engine speed while driving follows the car), which
+  is why S12 has its own marked capture.
 - **Values 12–120 against the label file's stated 0 to 5.** By VW's own
   measuring-block specification, this is out of range.
 - **The events are the S1 dips.** Aligned on engine speed, counter increments
