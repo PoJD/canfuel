@@ -34,10 +34,13 @@ in `open.md` (S10, H8, H9) and `refuted.md` (C14–C16).
 **Still owed before session A:**
 - **Top up the coolant**, cold — the level dropped a little after the job
   and none was at hand on 2/10.
-- **Turn the MAF housing 180° and clip its harness** — two screws; it sat
-  turned round, with the harness unclipped (`vehicle-history.md`, the MAF
-  row). Cosmetic by the owner's assessment, so not counted as a change
-  to what session A tests.
+- **The MAF's orientation, settled by the harness** (`vehicle-history.md`,
+  the MAF row): the connector points forward, and whether that is turned
+  round is not known. The car's own harness decides it — where its clip
+  holder is, and which way the connector reaches it with no strain. Turn
+  the housing (two screws) only if the harness says so, and clip it
+  either way. Cosmetic by the owner's assessment, so not counted as a
+  change to what session A tests.
 - At A1, **listen at the timing-belt end**: a noise there on 2/10 went when
   the upper belt cover was refitted (*owner*), and it should stay gone.
 
