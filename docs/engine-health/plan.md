@@ -346,10 +346,24 @@ the idle is already fixed by then.*
 ## Step 3 — only if the idle is still not fixed
 
 The same rule: **idle solved → stop and record.** Otherwise, in this order
-(*owner's decision, 29/9/2026*), each deciding whether the next is needed:
+(*owner's decision, 29/9/2026; items 1 and 2 swapped 3/10/2026*), each
+deciding whether the next is needed:
 
-1. **An intake smoke test, done at home** (`open.md`, *The idle's
-   candidates, ranked*, row 1 and *Tools worth owning*). The engine off
+1. **A vacuum gauge at a warm idle** (`open.md`, *Tools worth owning*),
+   teed into the brake-servo line. A few minutes at idle, warmed by
+   driving. **First because it is cheap and needs nothing built**
+   (*owner's decision, 3/10/2026*, swapping it with the smoke test).
+   Read against itself, not against a number (*general*):
+   - **a steady needle** → no valve and no large leak; go to item 3. ⚠ A
+     small leak can still hide under a steady needle, so the smoke test
+     stays possible later if nothing else explains the idle;
+   - **a regular flick down** at one point in the cycle → a valve (H1);
+     the smoke test is not needed, go to item 3 with H1 first;
+   - **a low or slowly wandering needle** → a leak or a mixture fault
+     (H3, H7): the smoke test follows, to say *where*.
+2. **An intake smoke test, done at home — only if item 1 points at a
+   leak** (`open.md`, *The idle's candidates, ranked*, row 1 and *Tools
+   worth owning*). The engine off
    and cold, so it costs no idle. The leak is still candidate 1 after
    step 1, which replaced parts but tested no joint, and smoke is what
    names *where*.
@@ -373,10 +387,8 @@ The same rule: **idle solved → stop and record.** Otherwise, in this order
      does test the new cover gasket along the way.
 
    **Smoke found** → that joint is fixed, then session A's hot idle again.
-   **None** → the leak is as good as ruled out, and item 2 follows.
-2. **A vacuum gauge at a warm idle** (`open.md`, *Tools worth owning*),
-   teed into the brake-servo line: a regular flick down is a valve (H1),
-   a low, slowly wandering needle a mixture fault (H7) or a leak smoke
-   could not reach. A few minutes at idle, warmed by driving.
+   **None** → the leak is as good as ruled out, and item 3 follows.
+   *How to make the smoke is not settled yet* (*owner, 3/10/2026*: the
+   machines are too dear); the home-made one above is the candidate.
 3. **Then the next repair from `open.md`'s ranked candidates**, chosen
    then, not now.
