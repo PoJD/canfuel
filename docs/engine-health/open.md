@@ -64,7 +64,8 @@ filler-neck breather in one job with the upper plenum gasket and a proper
 refit of the injectors, **three of which have not been fully home since
 23/9** (H3) — **and the throttle body in the same job** (*owner's decision,
 29/9*, after the flange photograph, H8). Then, if the idle is unchanged,
-the garage for the exhaust. **The order is `plan.md`.**
+the exhaust, tested and repaired by the owner (*owner's decision,
+3/10/2026*). **The order is `plan.md`.**
 
 ---
 
@@ -312,14 +313,15 @@ within seconds.
 a joint behind the converter that the garage filled with sealant, which shook
 out within two weeks and rattled under the driver's seat, loudest at about
 3000 rpm and on the overrun. The clamp is now tightened as a temporary fix,
-without sealant; the joint **hums slightly** and no longer rattles. The garage
-still has to redo it.
+without sealant; the joint **hums slightly** and no longer rattles. The owner
+makes it tight before the exhaust test (`plan.md` step 2; it was the
+garage's to redo until 3/10/2026).
 
 **That joint is downstream of both lambda probes**, so it cannot affect the
 mixture, the trims or any misfire. What matters for the other symptoms is
 whether there is a leak **ahead of the front probe** — the original, 26-year-old
 manifold, the new gasket at its flange, the probe boss. Nobody has tested
-that; the garage is going to.
+that; the owner will (`plan.md` step 2).
 
 ### S7. The cold start — closed 26/9/2026
 
@@ -619,9 +621,9 @@ whether it smelled of exhaust could not be told.
   exhaust or the intake**, H2 or H3; one that goes with the job was probably
   never there.
 
-**How it closes:** the garage's smoke or pressure test from the head to the
-front probe (H2) and the source of S10. *Checks the owner can make, left to
-the garage by choice:* a rag held over the tailpipe for 2–3 s makes an
+**How it closes:** the owner's tailpipe test from the head to the front
+probe (H2, `plan.md` step 2) and the source of S10. *The checks it uses:*
+a rag held over the tailpipe for 2–3 s makes an
 exhaust leak hiss louder (a phone recording at the head, since it is a
 one-person job); an exhaust leak ticks loudest in the first minute after a
 cold start; dry black soot at a joint is exhaust, wet oily grime is oil
@@ -844,8 +846,8 @@ full-load enrichment (*general*), for all four cylinders alike.
 **the idle** (S1, S2, S3) and **the cylinder 4 window** (S4, S5). S6 matters
 only if it leaks ahead of the front probe; S7 is closed, and S8 and S9 each
 want one confirming reading and are probably closed. **A third cluster, the
-back of the head (S10, S11)**, appeared on 26/9 and goes to the garage as its
-own job; whether it joins the idle cluster is exactly what H2 and H9 ask.
+back of the head (S10, S11)**, appeared on 26/9; its oil is the valve cover job, its hiss the owner's
+exhaust test; whether it joins the idle cluster is exactly what H2 and H9 ask.
 
 ---
 
@@ -996,8 +998,12 @@ loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
 
 **Tests:**
 
-1. **Smoke or pressure test** of the manifold, flange and probe boss, at the
-   exhaust specialist. Looking is not a test. *Already decided by the owner.*
+1. **A pressure test** of the manifold, its joint to the head and the probe
+   boss: the tailpipe closed for a few seconds at a warm idle, the known
+   joint behind the converter made tight first. Looking is not a test.
+   *The owner's own, decided 3/10/2026* (`plan.md` step 2), replacing the
+   exhaust specialist; a found leak ahead of the probe means a new
+   manifold.
 2. **Written before the repair, so the repair is a test:** if a leak ahead of
    the probes is found and sealed, the puff goes; the rear probe (036/037) at
    hot idle moves a little leaner; `IdleHealth` at 70–72 °C stays in its
@@ -1008,7 +1014,7 @@ loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
 
 **S11 is the first physical sign for this hypothesis** (26/9): smoke and
 possibly a hiss over the exhaust manifold at a warm idle. The smoke alone is
-more likely S10's oil; **the hiss, if the garage confirms it, is this leak.**
+more likely S10's oil; **the hiss, if the tailpipe test confirms it, is this leak.**
 Nothing else about the argument above changes until the test is done.
 
 ### H3. A small unmetered air leak at one intake runner
@@ -1047,7 +1053,7 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
    gasket, the runner joints, the injector seats, the breather hoses and the
    vacuum lines, with `IdleHealth` or engine speed on the display. A leak
    shows as a change in idle at the spot. Cheap, no dismantling. *General.*
-2. A smoke test of the intake at the same garage visit as H2.
+2. A smoke test of the intake, at home (`plan.md` step 3).
 3. 032 after a few hundred km: an idle cell moving positive would support it.
 
 **The injector seats — three not fully home, 27/9/2026.** *Owner-reported
@@ -2592,7 +2598,7 @@ was H8's alone, so only row 5 changes; the order stands.*
 | 4 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero | a **fuel pressure gauge** |
 | 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `vehicle-history.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
 | 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V | a look while the plenum was off (`vehicle-history.md`, *The valve cover and throttle job*: wiring and connectors fine); H7 test 3 for the injector side |
-| 7 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing | the garage visit, a repair (`plan.md` step 2); a smoke test **of the exhaust** only if they have the machine |
+| 7 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing | the owner's tailpipe test, and a new manifold if it leaks there (`plan.md` step 2, *owner's decision, 3/10*) |
 | 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
 
 **Tools worth owning for this, cheapest first** (*general*; prices not

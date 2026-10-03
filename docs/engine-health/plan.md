@@ -287,23 +287,61 @@ call:** the old throttle is kept. Refitted for a day (15 minutes, the
 coolant hose, adaptation 098), a returning fault would name it beyond
 doubt, and the new one goes back on.
 
-## Step 2 — the exhaust, at the garage
+## Step 2 — the exhaust, by the owner
 
-A repair visit, not a test visit (H2, S6, S11):
+*Owner's decision, 3/10/2026, replacing "at the garage":* if the idle is
+not fixed by step 1, **the owner tests and repairs the exhaust himself**
+(H2, S6, S11). The garage is the fallback, not the plan.
 
-- **the whole exhaust leak-tested and made tight** — manifold, its joint to
-  the head, the flange and its gasket, the flex pipe, every joint back;
-- **both lambda probes**: seated and tight in their bosses, no leak at
-  either;
-- at least a **visual check of the rest of the exhaust**, with the engine
-  running if they will.
-
-*One line to ask:* whether they have a smoke machine, and if so whether
-they will put the smoke through the intake too (H3). **Planned as if they
-do not** (*owner's decision, 29/9/2026*) — the intake smoke test is step 3.
+1. **Make the known joint tight first** — the one behind the converter
+   that has never been tight (`open.md` S6), clamped since without
+   sealant. It is behind both probes and cannot touch the idle, but the
+   test below pressurises the whole exhaust, and a joint that blows there
+   is the loudest thing on the car and masks a smaller leak further
+   forward.
+2. **The tailpipe test**, warm idle, outdoors: the tailpipe closed for
+   **2–3 s at a time** — a folded rag in a gloved hand, or a rubber
+   bung — while the manifold, its joint to the head, the probe boss and
+   the outlet flange are listened to and felt for (a hand near, never on:
+   the manifold is far too hot to touch). With the outlet closed the whole
+   exhaust is under pressure, so a leak that draws air in at idle (H2)
+   now blows out, and hisses or puffs. A helper, or a phone recording at
+   the head, since one person cannot do both ends. *All general:* never
+   longer than a few seconds, never indoors; a leak that ticks loudest in
+   the first minute after a cold start is a crack that closes as it
+   warms, so listen then too; dry black soot at a joint is exhaust.
+   **Warm and not cold** because a crack in cast iron may only open hot.
+   A smoke machine into the tailpipe, cold (`open.md`, *Tools worth
+   owning*), shows the place better but cannot see a crack that only
+   opens hot; it is the second look, not the first.
+3. **If it leaks ahead of the front probe — the manifold, its gasket to
+   the head or the probe boss — a new manifold** (*owner's decision*:
+   new rather than the old one re-gasketed, once it is off anyway),
+   with a new gasket to the head, new nuts, a new gasket at the outlet
+   flange, and the probe refitted with anti-seize on its thread.
+   - **Which part.** VW numbers the AQY manifold `06A 253 031` plus a
+     suffix, and the suffixes differ by model and year: VW Classic Parts
+     lists `…AQ` for the AEH/AKL 1.6, while a parts aggregator lists the
+     same `…AQ` for a Golf IV AQY. **Neither is taken as fact.** The
+     number cast into this car's manifold, read and photographed, or a
+     dealer's or mlparts' lookup by VIN, decides it.
+   - **What it costs, looked up 3/10/2026** (prices move): new from VW,
+     about **€350–490** for the `06A 253 031` family (VW Classic Parts
+     €388 for `…AQ`, €485 for `…BP`); **used, 700–1,500 Kč** at Czech
+     breakers. No new aftermarket cast manifold for the AQY was found in
+     a quick search of Czech shops; worth asking mlparts by VIN before
+     paying VW's price. Performance headers were not looked at — not
+     wanted.
+   - ⚠ *General:* the studs into the head are 26 years old and the one
+     real risk of the job. Penetrating oil the days before, heat, and
+     patience; a stud that snaps in the head is the point at which it
+     goes to a garage after all.
+4. **If nothing leaks ahead of the probe**, H2 is refuted for the zone it
+   is about and goes to `refuted.md`; the manifold stays.
 
 Afterwards: session A's hot idle again — 014 logging, three minutes at
-68–72 °C with the oil watch, `IdleHealth` against the band. *Skipped if the idle is already fixed by then.*
+68–72 °C with the oil watch, `IdleHealth` against the band. *Skipped if
+the idle is already fixed by then.*
 
 ## Step 3 — only if the idle is still not fixed
 
@@ -314,7 +352,7 @@ The same rule: **idle solved → stop and record.** Otherwise, in this order
    candidates, ranked*, row 1 and *Tools worth owning*). The engine off
    and cold, so it costs no idle. The leak is still candidate 1 after
    step 1, which replaced parts but tested no joint, and smoke is what
-   names *where*. Skipped if the garage already did it in step 2.
+   names *where*.
    *General practice, not VW's:*
    - **the smoke**: a cheap 12 V smoke machine, or home-made — a sealed
      tin with a 12 V heater (a diesel glow plug or a resistance coil) and
