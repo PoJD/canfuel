@@ -36,9 +36,6 @@ in `open.md` (S10, H8, H9) and `refuted.md` (C14–C16).
   and none was at hand on 2/10.
 - At A1, **listen at the timing-belt end**: a noise there on 2/10 went when
   the upper belt cover was refitted (*owner*), and it should stay gone.
-- **After the warm part of session A, engine off: the warm look at the
-  timing belt** (`open.md` S14) — upper guard off, photographs, a paper
-  towel round the inside of the guard. Never with the engine running.
 
 ---
 

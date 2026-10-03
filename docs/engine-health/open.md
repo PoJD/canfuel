@@ -783,88 +783,6 @@ battery reconnected, engine not run): 098 gave **ADP OK** (photographed:
 **the same routine, 20 s, as the old one**. By the rule above that is
 *how these parts behave*. **S13 closed on this**, its column out of every fit table.
 
-### S14. The timing belt is completely dry at a cold start
-
-*Owner-observed, 2/10/2026, at the cold start after the job; added as a
-symptom at the owner's decision, 3/10/2026.* The belt at the timing end
-looked **completely dry**. The owner reported it as "chain or belt"; on
-this engine it is **the toothed belt**, the one replaced with the water
-pump in 10/2017 (`vehicle-history.md`), at cylinder 1's end (`vcds.md`).
-The upper guard was off at some point that day — the ticking at the belt
-end went once it was taken off and refitted (`vehicle-history.md`, *The
-check start*); whether the belt was seen with the guard off or through
-it is not recorded. To be looked at again on a warm engine (*the owner's
-plan*).
-
-**The reading, and why it is probably not a fault.** A toothed belt runs
-**dry by design**: it sits outside the oil, behind its own guard, and oil
-or coolant on it softens the rubber and lets the teeth slip or strip
-(*general*). Nothing that is in view at that end — the belt, the cam and
-crank sprockets, the tensioner, the water pump's pulley — is lubricated
-by engine oil. **So dry is the healthy state, cold or warm, and the
-symptom would be the opposite: a belt or guard wet with oil or coolant.**
-What *is* oiled is under the valve cover — the camshaft, its bearings,
-the bucket tappets — and those are not visible with the cover on.
-
-**What else it could be, if not normal** — the readings to keep apart:
-
-- **(a) Normal — a dry belt.** By far the likeliest. Closes S14 as
-  *how this engine is built*, into `refuted.md`.
-- **(b) The concern behind it: a dry top end at a cold start.** If the
-  worry is that oil reaches the valvetrain late after a cold start, the
-  belt cannot show it either way. What can: **a clatter from the head in
-  the first seconds after a cold start** that dies away — tappets that
-  drained overnight (H1 test 2) — and **the oil pressure lamp going out
-  promptly** after the start. Neither has been reported. That is H1's
-  territory, not the belt's.
-- **(c) What would make it a real symptom** — wet oil or coolant at the
-  belt end, on the warm look:
-  - oil behind the **cam sprocket**: the **camshaft seal** — the part one
-    poster on golf4.de found still leaking after a new valve cover gasket
-    (H9, *The valve cover gasket and a rough idle*);
-  - oil at the top, along the head: the **bearing cap 1 joint**, the one
-    place Bentley's page insists on sealant for the cover gasket (S10,
-    *The exploded view*) — the joint just redone, so a new leak there
-    would be the job's;
-  - oil at the bottom, behind the crank sprocket: the **crankshaft front
-    seal**;
-  - **coolant** (sweet smell, a crust, pink or green) at the pump: the
-    **water pump** seal. ⚠ The coolant level did drop a little after the
-    job (`plan.md`), most likely the bleed, but a wet pump would be
-    another explanation.
-  Any of them would be oil outside the engine, a neighbour of S10, and a
-  reason to look at the belt before it fails rather than a lead on the
-  idle.
-- **(d) The belt's own condition**, which the look costs nothing extra:
-  it is **nine years old** at about 27,800 km, and rubber ages by time as
-  well as by distance (*general*). Cracks across the back or at the
-  roots of the teeth, a glazed back, frayed edges or a tooth worn
-  unevenly are reasons to replace it on age, whatever the oil says. The
-  replacement interval for this engine is VW's to state and is not held
-  here.
-
-**How it closes — the warm look.** Engine **off**, after a warm drive or
-a warm idle (`plan.md` session A is one), upper guard off. **Never with
-the engine running**: a hand near a running belt is the one way this
-check can hurt someone (*general*). Photograph, before touching anything:
-the belt's back and teeth over the cam sprocket, the face of the cam
-sprocket and the gap behind it, the inside of the guard, and the pump.
-Wipe the inside of the guard with a clean paper towel — not the belt —
-and look at the towel.
-
-- **Dry and clean → (a)**, S14 closes as normal, into `refuted.md`.
-- **Wet → (c)**, and the photograph says which seal. S14 stays, retitled
-  for the leak.
-- **Cracked or glazed → (d)**, a replacement goes into `plan.md` at the
-  owner's decision, independent of the rest.
-
-⚠ **It costs one thing of row 8 below, if the owner wants it.** With the
-upper guard off, the cam sprocket's mark is in view; VW's check also
-needs the flywheel mark in the gearbox window and the engine turned by
-hand to TDC (*the timing belt a tooth out*, under *What the forums
-say*). Not scheduled — the owner decided against it on 28/9 — only
-cheaper while the guard is off.
-
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** Whether 0x420's `OilTemp` is right is a firmware
@@ -921,8 +839,6 @@ full-load enrichment (*general*), for all four cylinders alike.
 | S12 ↔ S4 | **possible, untested** | the knock retard is a tip-in event and a retard is lost torque. Never aligned in time |
 | S12 ↔ S1/S3 | **possible, untested** | both start from the bottom of the load range; a lean or weak-spark cause would show in both |
 | S13 ↔ S1 | **weak** | the one link was an adaptation that never completes, leaving the idle on unfinished values (H8); **refuted on the old part 29/9** — 098 completed and the 20 s routine ran unchanged after it (S13). **Closed 2/10/2026**: the new part does the same |
-| S14 ↔ S10 | **none so far — the look decides** | the belt end holds the camshaft seal and the bearing cap 1 joint just resealed; a dry belt says neither leaks, on a cold engine only. Oil there on the warm look would join S14 to S10 |
-| S14 ↔ S1/S3 | **none** | a toothed belt is not oil-lubricated, so its dryness says nothing about the oil reaching the valvetrain (H1) or anything that burns in a cylinder |
 
 **So there are two separate clusters**, and they are worked separately below:
 **the idle** (S1, S2, S3) and **the cylinder 4 window** (S4, S5). S6 matters
@@ -930,8 +846,6 @@ only if it leaks ahead of the front probe; S7 is closed, and S8 and S9 each
 want one confirming reading and are probably closed. **A third cluster, the
 back of the head (S10, S11)**, appeared on 26/9 and goes to the garage as its
 own job; whether it joins the idle cluster is exactly what H2 and H9 ask.
-**S14, the dry timing belt** (3/10), joins no cluster: a dry belt is most
-likely its design state, and it joins S10 only if the warm look finds oil.
 
 ---
 
@@ -947,11 +861,7 @@ acoustic; the part of it that matters is H2's), **S7** (closed), **S8**
 owed), **S13** (closed 2/10/2026: the new throttle behaves the same). S12 and S13 were added on 28/9/2026: **S12**, the tip-in
 hesitation, fits a lean tip-in (H3/H9, H7), a moment of knock retard (H5)
 and weak spark under sudden load (H4); **S13**, the throttle's routine, was
-H8's alone. **S14**, the dry timing belt, was added on 3/10/2026 and reads
-**— in every table**: no hypothesis here predicts oil on the belt or its
-absence, because a toothed belt runs dry by design. If the warm look finds
-it wet, the column becomes H9's (crankcase pressure pushing oil past a
-seal) and the leak's.
+H8's alone.
 
 ### H0. The idle is normal for this engine — and there is no fault to find
 
@@ -959,9 +869,9 @@ seal) and the leak's.
 it might simply idle like this, and every number above might be its normal
 state.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S14 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ✘ | — | ~ | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
+|---|---|---|---|---|---|---|---|
+| ~ | ~ | ✘ | — | ~ | — | — | — |
 
 - **Against:** 014 reads **12–120 against VW's own 0–5**. The old converter
   burned through, which needs raw fuel in it. The owner feels it.
@@ -1011,9 +921,9 @@ compares with this car's:
 A hydraulic lifter that bleeds down or pumps up leaves a valve slightly open
 or late, intermittently, and gets worse as the oil thins. *General.*
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S14 |
-|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ✔ | ✔ | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
+|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ✔ | ✔ | — | — | — |
 
 - **For:** with H4, one of the **two candidates that can explain both
   clusters at once**: an
@@ -1062,9 +972,9 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in;
 under load it only blows out. *General.* The front probe reads lean, the rear
 loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S14 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | ✔ | ~ | ✘ | ✘ | — | ✔ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
+|---|---|---|---|---|---|---|---|
+| ~ | ✔ | ~ | ✘ | ✘ | — | ✔ | — |
 
 - **For:** the puff, idle only, an old manifold that has lived through years
   of misfires, the rear probe on the rich side at hot idle
@@ -1106,9 +1016,9 @@ Nothing else about the argument above changes until the test is done.
 Air past the MAF leans one cylinder at idle, where air flow is smallest.
 *General.*
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S14 |
-|---|---|---|---|---|---|---|---|---|
-| ✔ | ~ | ✔ | ~ | ✘ | — | ~ | ✔ | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
+|---|---|---|---|---|---|---|---|
+| ✔ | ~ | ✔ | ~ | ✘ | — | ~ | ✔ |
 
 - **For:** the regime is exactly right. A lean cylinder can also knock on a
   tip-in (S4). Several of the forum cases were a breather hose. The idle is
@@ -1256,9 +1166,9 @@ The battery itself is new (end of August 2026, the old one found dead during
 the headlight work), so the thread's one confirmed
 electrical fix — a new battery — has in effect already been tried here.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S14 |
-|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ~ | ✔ | — | — | ~ | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
+|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ~ | ✔ | — | — | ~ |
 
 - **For:** with H1 the only candidate that could explain **both clusters**: a
   weak spark misfires at idle and high vacuum, and a noisy ground puts a
@@ -1570,9 +1480,9 @@ Three candidates, all *general*:
 - **An injector click** that slides into the window as injection timing moves
   with speed. No knock log exists from before the new injectors.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S14 |
-|---|---|---|---|---|---|---|---|---|
-| — | — | — | ✔ | ✔ | — | — | ~ | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
+|---|---|---|---|---|---|---|---|
+| — | — | — | ✔ | ✔ | — | — | ~ |
 
 **Tests:** check G66's torque and connector; look over everything refitted in
 September for a loose bracket, clip or heat shield with the engine held at
@@ -1646,9 +1556,9 @@ changed in September, and neither has ever been gauged. (The bad cold start
 that once pointed here is closed, S7: it was the old injectors.)
 The owner's own remaining candidate is one of the new injectors.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S14 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | — | — | ~ | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
+|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | — | ~ |
 
 - **Against, for the idle:** four new injectors and a new filter changed
   nothing in S1; the trims are near zero; a leaking seat adds fuel at idle and
@@ -1712,9 +1622,9 @@ idle in group 003 is that control working). A dirty throttle body or a lost
 throttle adaptation makes the governor hunt. *General.* The MAF swap halving
 S1 shows that the idle is sensitive to how air is metered and controlled.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S14 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
+|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | — | — | — |
 
 - **Against:** a hunting governor is a slow oscillation, while S1 is a
   sudden dip lasting one or two firings and recovering in a quarter of a
@@ -2232,9 +2142,9 @@ no longer seals is a door of exactly this kind (*reasoned*) — and with
 the patch shown original, the only concrete one the job found here; a finding on a part, not a symptom, so the fit
 table stays as it is.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 | S14 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | ✔ | ✔ | ~ | — |
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
+|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | ✔ | ✔ | ~ |
 
 - **For:** the commonest explanation of S10 and, through the oil, of S11's
   smoke. Several forum cases of an unsettled idle were a breather hose (H3).
@@ -2672,9 +2582,7 @@ list changes**. *Re-read 28/9/2026 after S12 and S13 were added: the order
 stands; what moved is recorded in the rows. Re-read 29/9/2026 when the
 throttle went into the job: no symptom changed, the order stands, rows 1
 and 5 say how each is now settled. Re-read 2/10/2026 when S13 closed: it
-was H8's alone, so only row 5 changes; the order stands. Re-read 3/10/2026
-when S14, the dry timing belt, was added: it bears on no idle candidate and
-the order stands; row 8 notes that the warm look takes the upper guard off.*
+was H8's alone, so only row 5 changes; the order stands.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
@@ -2685,7 +2593,7 @@ the order stands; row 8 notes that the warm look takes the upper guard off.*
 | 5 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `vehicle-history.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
 | 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V | a look while the plenum was off (`vehicle-history.md`, *The valve cover and throttle job*: wiring and connectors fine); H7 test 3 for the injector side |
 | 7 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing | the garage visit, a repair (`plan.md` step 2); a smoke test **of the exhaust** only if they have the machine |
-| 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9; with the upper guard off for S14's warm look, the cam mark is in view and only the flywheel side is extra |
+| 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
 
 **Tools worth owning for this, cheapest first** (*general*; prices not
 recorded here, since they move):
