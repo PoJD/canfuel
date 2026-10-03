@@ -90,7 +90,42 @@ zero there before 24/9 proves nothing.
 value; all three carry engine speed, so the log aligns to the capture
 (`vcds.md`). **A cold start**: the engine has stood overnight, or all day,
 and has not been run since. Note the coolant temperature at the start. The
-start's quality is not what is tested — **it is ignored.**
+start's quality **is now measured too** (*owner's decision, 3/10/2026*,
+reversing "it is ignored"). That rule was written for the very first start
+after the job, with the rail just opened and a new throttle on its first
+run, which says nothing about the car. That start happened on 2/10, and the
+check starts that day were part-warm, so **A is the first real cold start
+on the repaired car**. And the job touched two things a start sees: **the
+injectors were taken out and refitted**, and a seat that now leaks drains
+the rail over a stand and lengthens the crank, which was the old injectors'
+fault (`refuted.md` C3); and **the new throttle** sets the air for the
+first seconds, which is the fall after first firing.
+
+**Read from the capture's 0x604** (`docs/firmware/frames.md`, *The
+start*): `StartCrank`, `StartDip` and `StartClt`, with `StartSeen` set —
+the capture starts before the ignition, so the converter sees the engine
+stopped. Note how long the car stood. Start it the way the earlier ones
+were. **Compared with** `refuted.md` C3, the two captured starts in 0x604's own figures (`docs/firmware/frames.md`):
+
+| | stand | coolant | crank to first firing | `StartDip` |
+|---|---|---|---|---|
+| 24/9 (`19`) | ~19 h | 12 °C | 0.83 s | 118 rpm |
+| 25/9 | ~12 h | — | 0.77 s | — (clean) |
+| 26/9 | ~10 h | 14 °C | 0.93 s | 74 rpm |
+| 11/9 (`18`), old injectors | ~10 h | 16 °C | 1.22 s | 141 rpm, nearly died |
+
+- **Crank about 0.8–0.95 s, dip within 74–118 rpm** → the start is as it
+  was on the new injectors; the refit and the throttle did not hurt it.
+- **Crank towards 1.2 s or longer** after a night's stand → a seat that
+  drains the rail, the same mechanism as C3: the refit is suspect, a leak
+  check at the injectors before anything else.
+- **Dip clearly below 74** → the start got better, most likely the
+  throttle. **Dip near or above 141, or a near-stall** → it got worse.
+- ⚠ **One start is noise** (`docs/firmware/frames.md`): only the
+  near-stall and a crank past 1.2 s count on their own. Everything else
+  is a first point, and each cold morning from now on adds one.
+
+The start decides nothing about the misfires; that stays A2 and A3.
 
 - **A1 — standing, 2–3 minutes, then drive off.** Leaks: fuel at the
   injectors and the rail, oil along the cover joint, **coolant at the
