@@ -157,6 +157,15 @@ class Compute:
                 self.restarts += 1
             self.prev_counter = c
             self.last_ms = now_ms
+            if restart:
+                # As compute.c does: the flow reads zero with the engine
+                # stopped instead of freezing at whatever was burning when it
+                # was switched off. 26_sessionA_warm_z1 is the first log to
+                # end with the engine stopped and the ignition on, and the
+                # twins disagreed there until this matched.
+                self._flow = [[0.0, 0.0] for _ in range(FLOW_BUCKETS)]
+                self._flow_open = 0
+                self.flow_ul_s = 0.0
             return
 
         delta_ul = (c - self.prev_counter) % COUNTER_MODULO

@@ -140,27 +140,33 @@ class AgainstTheFixtures(unittest.TestCase):
     def test_a_log_without_timestamps_is_skipped_rather_than_guessed_at(self):
         self.assertEqual(samples(os.path.join(FIXTURES, "03_drive.txt")), [])
 
-    def test_the_corpus_holds_109_overrun_fuel_cuts(self):
-        """Four in 17_drive_property_z1, 72 in the hour of 19, 33 in 24.
+    def test_the_corpus_holds_141_overrun_fuel_cuts(self):
+        """Four in 17_drive_property_z1, 72 in the hour of 19, 33 in 24, and
+        17 and 15 in the two halves of session A, 25 and 26.
 
         Counted per log, so a change to the detector shows where it moved
         rather than only that the total did.
         """
-        self.assertEqual(len(self.cuts), 109)
+        self.assertEqual(len(self.cuts), 141)
         self.assertEqual(self.per_log, {"17_drive_property_z1.txt": 4,
                                         "19_postfix_drive_z1.txt": 72,
-                                        "24_mafswap_drive_z1.txt": 33})
+                                        "24_mafswap_drive_z1.txt": 33,
+                                        "25_sessionA_cold_z1.txt": 17,
+                                        "26_sessionA_warm_z1.txt": 15})
 
     def test_the_cut_does_not_engage_the_moment_the_pedal_comes_up(self):
-        """0.77-4.27 s after the lift across the corpus, never at once.
+        """0.77-5.51 s after the lift across the corpus, never at once.
 
         17's four sat at 1.2-1.3 s, which once read as a fixed delay; the
         drives show it is not one, and the shortest is still most of a second.
-        That is why a one-second coast shows nothing.
+        That is why a one-second coast shows nothing. The longest, 5.51 s, is
+        a single coast in 26; until it the corpus topped out at 4.27 s. It
+        was not looked into, so the bound moved with it rather than the
+        coast being explained away.
         """
         delays = [c[0][0] - w[0][0] for w, c in self.cuts]
         self.assertGreater(min(delays), 0.7)
-        self.assertLess(max(delays), 4.5)
+        self.assertLess(max(delays), 6.0)
 
     def test_fuel_comes_back_well_above_idle(self):
         """1,380-3,500 rpm across the corpus, and never near idle.

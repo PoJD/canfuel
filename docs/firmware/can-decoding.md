@@ -165,9 +165,13 @@ peak. Testing for equality with `0x40` throws away two thirds of the samples
 and distance comes out as 14 m instead of 27 m. That would directly corrupt
 FuelAvg and Range, two of the four headline numbers on the display.
 
-The 0x43 ramp only shows up in logs that start with the ignition being switched
-on (`01_ign_only`, `06_trip_reset`). It lasts ~0.4 s and the raw value falls
-464 → 0 during it. Pinned down by `test_init_ramp_only_after_ignition_on`.
+The 0x43 ramp shows up in logs that start with the ignition being switched
+on (`01_ign_only`, `06_trip_reset`, `25_sessionA_cold_z1`). It lasts ~0.4 s and
+the raw value falls 464 → 0 during it. **It also appears when the engine stops
+with the ignition left on**: `26_sessionA_warm_z1` is the one log that holds
+that, and 0x43 is there for 1.5 s from the same frame as 0x480's reset to zero
+(trap 2), nowhere else in its 17 minutes. So it marks an engine-run boundary,
+either way. Pinned down by `test_init_ramp_only_after_ignition_on`.
 
 **0x42 is not part of that story, and `17_drive_property_z1.txt` showed it.**
 It occurs 134 times mid-drive at 26 km/h, nowhere near an ignition event, and
@@ -204,6 +208,12 @@ if (counter == 0 || rpm == 0) { prev = counter; return; }  /* reinitialise */
 In `06_trip_reset.txt` this triggers 324 times — and that is correct. Every
 detection falls inside the contiguous opening stretch where the ignition is on
 but the engine is not running. In `07_accel.txt` it never triggers.
+
+**The reset is the engine stopping, not only the key.** `26_sessionA_warm_z1`
+ends with 35 s of ignition on after the engine stopped, and 0x480 drops from
+0x90F5 to zero in the frame where engine speed reaches zero, then stays there
+— 725 restarts, all in that tail. That is why the rule tests `rpm == 0` as
+well as the counter, and why `compute.c` also clears the flow window there.
 
 **A wrap can land exactly on zero, and then this misfires.** Found in
 `09_idle_60s_z1.txt`, where the counter runs `32756 → 0 → 0 → 24`: a step of

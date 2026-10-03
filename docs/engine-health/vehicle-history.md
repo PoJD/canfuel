@@ -164,7 +164,7 @@ here is owner-supplied from service records.
 | Fuel filter | **12/2017**, and possibly again 10/2022 — see below | 4 or 9 years, **not established** |
 | **Fuel filter, new**, Bosch `0 450 905 318` | **23/9/2026**, with the injectors | ~0 |
 | MAF sensor | 7/2018 *(connector cleaned 7/2026)* | not recoverable — see *Distance and use* |
-| **MAF sensor, new** | **24/9/2026**, genuine VW `06A 906 461 A`; the 2018 unit is kept. **Noticed 3/10/2026** (*owner*): the connector points to the front of the car, as on the 2018 unit before it; a video of another VW with a similar engine showed it pointing to the firewall. **Whether this one is turned is not settled** — photos of other cars show it as it is here — *this said "turned 180°, found" until later the same day*. The flow direction is right either way (the housing's two ends differ, airbox side and hose side), the connector is plugged in and its wires are not under tension; **only the harness is not clipped into its holder at the back**. *The owner's assessment: cosmetic either way.* **Then, the same day: "almost certainly" turned round** (*owner*, by the harness) — to be turned and clipped before session A (`plan.md`) | ~0 |
+| **MAF sensor, new** | **24/9/2026**, genuine VW `06A 906 461 A`; the 2018 unit is kept. **Noticed 3/10/2026** (*owner*): the connector points to the front of the car, as on the 2018 unit before it; a video of another VW with a similar engine showed it pointing to the firewall. **Whether this one is turned is not settled** — photos of other cars show it as it is here — *this said "turned 180°, found" until later the same day*. The flow direction is right either way (the housing's two ends differ, airbox side and hose side), the connector is plugged in and its wires are not under tension; **only the harness is not clipped into its holder at the back**. *The owner's assessment: cosmetic either way.* **Then, the same day: "almost certainly" turned round** (*owner*, by the harness). **Left as it is, owner's decision before session A, 3/10/2026**: the harness reaches its holder this way too, so there was nothing to gain from turning it | ~0 |
 | Chiptuning, described by the owner as mild | 6/2018 | — |
 | Dipstick, dipstick cap and a seal recorded as "těsnění ventilu" (valve seal), **against an oil leak**. *Owner's recollection (27/9/2026), not certain:* the dipstick's narrow neck was cracked and leaking, and the seal was probably the rubber the dipstick seats in — not the valve cover gasket. The record itself is no longer kept | **12/7/2018**, service record | — |
 | Timing belt and water pump | **10/2017** | the whole ownership, ~27,800 km |
@@ -295,7 +295,25 @@ refitted (*owner*). **The belt end is completely dry**, nothing
 seeping anywhere behind the guard — so neither the camshaft seal nor the
 bearing cap 1 joint just resealed leaks there, on a cold engine
 (*owner*, 3/10/2026; a toothed belt runs dry by design). **No smoke or hiss at the back** (S11), on a cold or
-part-warm engine only. The verdict is the warm test, `plan.md`.
+part-warm engine only.
+
+**The first warm run, 3/10/2026 — the cover leaks again, at cylinder 4's
+end.** Session A (`open.md` S3, *Session A*): coolant topped up cold
+beforehand, the MAF left as it was. Dry at the cold start. **At the
+in-band stop, about 20 minutes after the start, oil running out "in a
+stream" at the half-moon arch at the gearbox end of the head, cylinder 4's
+end** — nowhere along the front, the back or the timing-belt end (*owner,
+photographed*: `photos/cover-leak-2026-10-03-cyl4-end.jpg` and, below it,
+`photos/cover-leak-2026-10-03-below.jpg`). It ran down **as far as the
+ignition coil**, and the drive home was short and gentle.
+In the photograph the gasket's edge shows as a light strip along the
+joint, pushed out into a loop at that corner, with oil pooled on the head
+below it (*Claude's reading of a photograph*). What the owner noticed
+afterwards: **on that side the wiring-loom bracket sits under the strips
+that hold the cover down**, while the video of the job has the front and
+rear strips on the cover and the side bracket on top of them — which can
+load the cover unevenly (*owner*). Cause not settled; `open.md` S10, and
+the next step is `plan.md`.
 
 ---
 
@@ -413,6 +431,7 @@ with the battery off, which also resets the ECU's adaptations:
 | 23/9 | injectors and fuel filter; battery disconnected | `19`–`23` (old MAF) |
 | 24/9 | MAF; battery disconnected again, adaptations from zero | `24` onwards |
 | 26/9 | battery out for the coil-harness measurements; adaptations from zero again. Back in 29/9, throttle adapted (098, *ADP OK*) on the old part | — |
+| 1–2/10 | the valve cover and throttle job (below); battery disconnected, adaptations from zero | `25`–`26` (session A) |
 
 **Rule: no fuel calibration and no tank-to-tank comparison spans one of these
 lines.** For consumption, only the state after 24/9/2026 counts, and the first
@@ -514,6 +533,9 @@ a later reader can see what was being judged.
 | [`fuel-filter-2017-removed.jpg`](photos/fuel-filter-2017-removed.jpg) | the can, off |
 | [`fuel-filter-2017-drained.jpg`](photos/fuel-filter-2017-drained.jpg) | what drained out of it |
 | [`plugs-2026-09-17-removed.jpg`](photos/plugs-2026-09-17-removed.jpg) | the four plugs out at 17/9/2026, after ~1,500 km |
+| [`cover-leak-2026-10-03-cyl4-end.jpg`](photos/cover-leak-2026-10-03-cyl4-end.jpg) | the new cover gasket leaking at cylinder 4's end, 3/10/2026, on the first warm run — kept because cleaning the oil off destroys it |
+| [`cover-leak-2026-10-03-below.jpg`](photos/cover-leak-2026-10-03-below.jpg) | the same leak, the oil below it |
+| [`cover-leak-2026-10-03-bracket.jpg`](photos/cover-leak-2026-10-03-bracket.jpg) | the wiring-loom bracket under the cover's hold-down strip at that end |
 
 **What they show, as description rather than interpretation.** The can carries
 heavy surface corrosion over most of its body, and the joint at the clamp is

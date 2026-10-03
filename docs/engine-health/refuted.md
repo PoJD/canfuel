@@ -229,9 +229,12 @@ needed to explain the trim. It survives for the cold start as H7.
 | `19_postfix_drive_z1`, 24/9 | ~19 h, 10 °C | new | 0.83 s | 450 → **331** rpm, caught |
 | 25/9 morning, display | ~12 h | new | 0.77 s | clean |
 | **26/9 morning, display** | **~10 h, cold fog, `StartClt` 14 °C** | new | **0.93 s** | **`StartDip` 74 rpm**, clean |
+| **3/10, `25_sessionA_cold_z1`** — after the injector refit and the new throttle | **27 h**, coolant 17 °C (`StartClt`) | new | **0.77 s** | **`StartDip` 15 rpm**, clean |
 
-*The first two are measured through `idledips.health_summary()`; the display
-rows are owner-reported.* The near-stall has not come back on the new
+*`18`, `19` and 3/10 are measured through `idledips.health_summary()`; the
+display rows are owner-reported.* **3/10 is the closest like-for-like with
+`18` there is**: nearly the same coolant (raw 88 against 86) and a stand
+almost three times as long, and it fell 15 rpm where `18` fell 141. The near-stall has not come back on the new
 injectors in any cold start, and the 26/9 start matches `18`'s ~10 h stand
 at a similar temperature. **So the rail bleed-down was the old injectors'
 seats, and the pump's check valve is not needed as an explanation** — it was

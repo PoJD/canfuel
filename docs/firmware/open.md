@@ -167,10 +167,11 @@ survive.
    | `18_coldstart_z1`, 11/9, ~10 h | 16.5 °C (raw 86) | 12.75 °C (raw 81) | −3.75 |
    | `19_postfix_drive_z1`, 24/9, ~19 h, ambient 10.0 °C | 12.0 °C (raw 80) | 9.75 °C (raw 77) | −2.25 |
    | 26/9, ~10 h, cold fog; *owner-reported off the display, whole degrees* | 14 °C | 11 °C | ≈ −3 |
+   | `25_sessionA_cold_z1`, 3/10, 27 h, evening | 18.0 °C (raw 88) | 12.75 °C (raw 81) | −5.25 |
 
-   **Consistent, and not yet decisive.** The oil sits 2–4 °C below the
-   coolant at every soak, so the offset at the cold end holds up. But the three
-   soaks span only ~4.5 °C of coolant — about 6 counts, where telling the
+   **Consistent, and not yet decisive.** The oil sits 2–5 °C below the
+   coolant at every soak, so the offset at the cold end holds up. But the four
+   soaks span only ~6 °C of coolant — about 8 counts, where telling the
    slopes apart needs ~25 °C. The winter morning is still what closes it,
    ideally read off a capture (raw bytes) rather than the display's rounded
    degrees.

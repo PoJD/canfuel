@@ -50,6 +50,8 @@ stands. It is duration, average flow and distance that need a clock.
 | `22_oilcool_p2_z1.txt` | slcan+Z1 | 10,956 | ✅ adapter | cool-down point 2, as above. 15 s | 71.25–72.75 °C |
 | `23_oilcool_p3_z1.txt` | slcan+Z1 | 11,023 | ✅ adapter | cool-down point 3, as above. 15 s | 68.25–69.0 °C |
 | `24_mafswap_drive_z1.txt` | slcan+Z1, **filtered** | 643,763 | ✅ adapter | **after the MAF swap**: a start at 27 °C of coolant and 19.5 °C of oil, driving, a 52–60 °C oil idle, more driving with pulls, hot idle. 30 min | 27.0–100.5 °C |
+| `25_sessionA_cold_z1.txt` | slcan+Z1, **filtered** | 366,455 | ✅ adapter | **session A, first half**: ignition on after a 27 h stand, cold start, 7 min cold idle, the drive to the oil band and the start of the in-band stop. 17 min | 17.25–96.0 °C |
+| `26_sessionA_warm_z1.txt` | slcan+Z1, **filtered** | 360,079 | ✅ adapter | **session A, second half**: the rest of the in-band stop, the drive home, a short hot idle, **the engine stopped with the ignition left on** for its last 35 s. 17 min | 88.5–100.5 °C |
 | `idle.txt` | slcan | 1,136 | none | short idle, colder engine | 68.25 °C |
 | `vcds/vcds-01-002-003.csv` | VCDS log | 1,019 | own clock | the diagnostic side of holds 1–6 | — |
 | `vcds/vcds-ride-002-003.csv` | VCDS log | 902 | own clock | the diagnostic side of the drive | — |
@@ -63,6 +65,7 @@ stands. It is duration, average flow and distance that need a clock.
 | `vcds/vcds-knock-020-026-003.csv` | VCDS log | 745 | own clock | groups 020, 026 and 003: knock retard and knock sensor voltage per cylinder, with engine speed and throttle, over a drive on 25/9/2026 with idle, tip-ins, overrun and full-throttle pulls. **No bus capture beside it** | — |
 | `vcds/vcds-neutral-026-003.csv` | VCDS log | 335 | own clock | groups 026 and 003 standing in neutral: idle, holds at 1600–3200 rpm up and back down, three throttle snaps, idle. Oil 56 → 68 °C, coolant 89 → 97 °C, read off the display. **No bus capture beside it** | — |
 | `vcds/vcds-neutral-026-003-clamp.csv` | VCDS log | 303 | own clock | the same neutral test repeated after the loose exhaust clamp was tightened and the rattle had stopped: idle, holds at 1760–3400 rpm up and back down, idle. Oil 65 → 71 °C, coolant 97 → 100 °C, read off the display. **No bus capture beside it** | — |
+| `vcds/vcds-sessionA-003-014-055.csv` | VCDS log | 2,094 | own clock | groups 003, 014 and 055 across the whole of `25` and `26`, from before the start to engine off, after the valve cover and throttle job. Fresh adaptations | — |
 | `vcds/vcds-postrepair-checkstart-003-014-055.csv` | VCDS log | 29,458 | own clock | groups 003, 014 and 055 on 2/10/2026, the first runs after the valve cover and throttle job: the first 8 s are the start of a run of about a minute during which VCDS dropped out, then a restart of the **part-warm** engine and about 4½ minutes standing, two throttle blips at ~200 s. Fresh adaptations (battery off, 055's learned value 0). **No bus capture beside it**; coolant temperature not recorded | — |
 
 ## The three `_z1` logs
@@ -435,7 +438,7 @@ documents: the torque scale in `docs/firmware/can-decoding.md` question 8, 0x200
 *IDs present on the bus*, the engine in `docs/engine-health/open.md` and
 `docs/engine-health/refuted.md`.
 
-**`19` and `24` are filtered** to the six identifiers the firmware accepts —
+**`19`, `24`, `25` and `26` are filtered** to the six identifiers the firmware accepts —
 0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480 — to keep an hour of driving to a size
 a repository can hold. The unfiltered capture behind `19` (65 MB) is kept
 outside the repository. **They say nothing about what else is on the bus**, and
@@ -466,6 +469,26 @@ pins exactly that shape so the exclusion cannot swallow a real one.
 the ignition on and the engine off, taken while the oil filter was read with an
 IR thermometer in the rain. Oil raw 125, 123–124 and 121–122. The readings and
 what they say about the oil scale are `docs/firmware/open.md` question 10.
+
+## `25` and `26` — session A, one session in two files
+
+**The session after the valve cover and throttle job**, 3/10/2026: the
+test `docs/engine-health/plan.md` set, with the findings in
+`docs/engine-health/open.md` S3 and S10. **It is two files because the
+capture was restarted once**, about 17 minutes in, during the in-band
+stop. The adapter's clock restarts with each capture, so the gap between
+them — about a second — is not in the data and the two do not
+concatenate; anything run across both treats the second as following
+the first.
+
+**`25` starts before the ignition**, so it holds the 0x1A0 ramp (`0x43`)
+and the cold soak (coolant raw 88, oil raw 81 — `docs/firmware/open.md`
+question 10). **`26` ends with the engine stopped and the ignition still
+on**, the only fixture that does: 0x480 drops to zero in the frame where
+engine speed does, and 0x1A0 shows `0x43` for 1.5 s from the same frame
+(`docs/firmware/can-decoding.md`, trap 2 and the 0x1A0 gate). It is also
+where the Python reference was found to keep the flow window across an
+engine stop when `compute.c` does not; `replay.py` now clears it too.
 
 ## Naming
 

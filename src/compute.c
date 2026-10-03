@@ -389,9 +389,9 @@ void compute_on_fuel(compute_t *c, const decode_state_t *st, uint32_t now_ms)
         c->prev_counter = st->fuel_counter;
         c->last_fuel_ms = now_ms;
         c->have_prev = true;
-        /* Unlike the Python reference we also drop the window here, so the
-         * flow reads zero with the engine stopped instead of freezing at
-         * whatever was burning when it was switched off. */
+        /* Drop the window too, so the flow reads zero with the engine
+         * stopped instead of freezing at whatever was burning when it was
+         * switched off. tools/replay.py does the same. */
         flow_clear(c);
         return;
     }

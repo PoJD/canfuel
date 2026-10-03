@@ -67,6 +67,12 @@ refit of the injectors, **three of which have not been fully home since
 the exhaust, tested and repaired by the owner (*owner's decision,
 3/10/2026*). **The order is `plan.md`.**
 
+**Since then:** the job was done 1–2/10 (`vehicle-history.md`), and
+session A on 3/10 still counted misfires at the warm idle, about as `24`
+did (S3, *Session A*). **The new cover gasket leaked at cylinder 4's end
+on that first warm run** (S10), so the joint is redone and the verdict
+taken again before the exhaust (`plan.md`).
+
 ---
 
 ## The symptoms
@@ -280,6 +286,48 @@ never aligned with anything. It did
   is not evidence**, and only `24` is a comparison for the car as it now
   is. The test after the job (`plan.md`) takes its two stops and their
   lengths from this table.
+
+- **Session A, 3/10/2026 — after the valve cover and throttle job**
+  (`25_sessionA_cold_z1` and `26_sessionA_warm_z1`, with
+  `vcds/vcds-sessionA-003-014-055.csv`). A cold start after a 27 h
+  stand, ~7 min of cold idle, a drive to the 55–68 °C band, ~6 min
+  standing there, a drive home, ~2 min hot. Fresh adaptations (battery
+  off for the job). Aligned on engine start and stop; the two clocks
+  drift 12 s in 31 minutes, which is ignored. Standing idle only,
+  binned by 0x420:
+
+  | oil | 014 rises a minute | 014 non-zero | dips ≥ 20 rpm a minute (`24` / `19`) | `IdleHealth` |
+  |---|---|---|---|---|
+  | < 40 °C | **0** (419 s) | 0 % | **22.0** (11.8 / 13.7) | 120–178 |
+  | 40–60 °C | **16.8** (111 s) | 75 % | 15.7 (9.4 / 22.4) | — |
+  | 60–66 °C | **15.6** (299 s) | 75 % | 9.3 (5.2 / 14.0) | 101–117 |
+  | 66–80 °C | **3.0** (102 s) | 40 % | 13.6 (8.6 / 19.4) | 60 |
+
+  Driving, the counter read non-zero in 8–16 % of samples, 1–2 rises a
+  minute; detection `deaktiv.` 19–40 % of the driving samples and 1–8 %
+  standing. **The misfires are not gone**: by `plan.md`'s rule any count
+  is the verdict, and these are about as many as `24` counted. **On the
+  engine-speed ruler the idle is about half as rough again as `24`'s**
+  and still better than `19`'s, band for band; the small samples (`24`'s
+  middle band is 80 s) make that a direction, not a figure. *The dip
+  column is `idledips.dips()` at 20 rpm over standing idle at 400–1100
+  rpm, which reproduces this section's `24` and `19` figures to within
+  1.5 a minute; `IdleHealth` is `idledips --roughness` in two-minute
+  windows.*
+
+  **Twenty-two dips a minute cold with 014 at zero** is the same thing
+  `19` showed (above): cold, this ECU does not count what engine speed
+  shows.
+
+  **No leak signature at the cold start** (`plan.md`'s table): plateau
+  ~920 rpm for ~95 s, 003's air 7.0 → 5.1 g/s on it (`19`: 6.8 → 5.2),
+  ~4.0–4.3 g/s after the step (`19`: ~4.3); 055's regulator −0.4 → −1.65
+  g/s over the first two minutes, then −0.5 to −0.8 at 3–7 min, the
+  learned value 0 throughout — the same neighbourhood as 11/9's sum of
+  −1.2 → −0.8. So the job sealed nothing that shows at a cold idle.
+  **The cover was found leaking at cylinder 4's end by the in-band stop**
+  (S10), so the warm figures were taken with a joint open; how much that
+  matters is S10's question.
 
 **Three properties of the counter that must be kept in mind**, all measured
 on the 24/9 logs (`refuted.md` A11, A12): it moves in steps of 12; detection switches off below about 20 % load, which on
@@ -616,6 +664,46 @@ not f = 0.50) and S4/S5 on cylinder 4 (H5).
 **The before-values for the repair are the ones already in S1** — the warm
 band at 69–72 °C of oil, loads off; the after-reading is taken the same way.
 No separate cold baseline was taken.
+
+**Leaking again on the first warm run, 3/10/2026** (`vehicle-history.md`,
+*The first warm run*): dry at a cold start, then **a stream of oil at
+the half-moon arch at cylinder 4's end** by the in-band stop, about 20
+minutes after the start, and down to the coil. Nowhere else along the
+joint. The candidates, none settled, all *reasoned* except the last:
+
+- **the gasket out of its groove at that arch** — set in crooked as the
+  cover went down, so the corner was never under the gasket. The
+  photograph shows the gasket's edge pushed out into a loop there, which
+  fits, but a photograph of an oily corner is not a finding;
+- **the Dirko at that arch not bridging** the step between the arch and
+  the straight run — the four arch points are where a cover gasket needs
+  the sealant, and where it leaks when it is short;
+- **the nuts slack again**: ~4 Nm by feel on a gasket that was still
+  settling when it went on (the middle nuts slackened once already). The
+  re-check of the outer nuts after the first warm run was planned for
+  exactly this;
+- **the strips stacked the wrong way on that side** (*owner*, 3/10/2026):
+  the wiring-loom bracket under the front and rear hold-down strips, where
+  the video of the job puts it on top of them — so the clamp at that end
+  may sit on the bracket rather than on the cover.
+
+**Dry cold and leaking warm** says the joint opens as the head and cover
+heat and the crankcase sees pressure; it does not say which of the four
+(*general*). **What settles it is the cover coming off:** the gasket's
+print and the Dirko at that arch, photographed before anything is
+cleaned. That, and the cheap test before it, are `plan.md`.
+
+**Whether the leak bears on the idle.** The breather vents the crankcase
+into the intake **behind the MAF** (the MAF-to-throttle hose, H9), so a
+joint open to the outside is, at idle, a path for air the MAF does not
+see (*general*: at idle the crankcase sits slightly below atmosphere
+through the breather's valve). Session A shows **no leak signature at
+the cold start** (S3, *Session A*) — but the joint was dry then. At the
+warm stops 055 read about −1.1 g/s with the learned value moving
+negative, which a leak would also do; **there is no warm 055 baseline to
+set it against** (055 was logged only on the cold start of 11/9), so this
+is a question and not a sign. It is why the misfire verdict is taken
+again after the joint is sealed (`plan.md`).
 
 ### S11. Smoke, and possibly a hiss, at the back of the head at a warm idle
 

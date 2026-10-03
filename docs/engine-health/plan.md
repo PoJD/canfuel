@@ -28,24 +28,132 @@ stays as reference. **It is not a to-do list.**
 ## Step 1 — the valve cover job and the throttle body: done 1–2/10/2026
 
 Recorded in `vehicle-history.md`, *The valve cover and throttle job,
-1–2/10/2026*, with the check start that followed it; what the job found is
-in `open.md` (S10, H8, H9) and `refuted.md` (C14–C16).
+1–2/10/2026*, with the check start that followed it and the first warm
+run; what the job found is in `open.md` (S10, H8, H9) and `refuted.md`
+(C14–C16).
 
-**Still owed before session A:**
-- **Top up the coolant**, cold — the level dropped a little after the job
-  and none was at hand on 2/10.
-- **Turn the MAF housing 180° and clip its harness** (*owner's decision,
-  3/10/2026*: "almost certainly" turned round, by the harness;
-  `vehicle-history.md`, the MAF row). Two screws, **engine not run
-  afterwards** before session A, which needs it cold. Cosmetic by the
-  owner's assessment, so not counted as a change to what session A
-  tests — with one caveat on the leak signature, below.
-- At A1, **listen at the timing-belt end**: a noise there on 2/10 went when
-  the upper belt cover was refitted (*owner*), and it should stay gone.
+**Session A ran on 3/10/2026** (`open.md` S3, *Session A*): the misfires
+were still counted at the warm stops, about as on `24`, and **the new
+cover gasket leaked at cylinder 4's end by the first warm stop**
+(`open.md` S10). So step 1b comes before the verdict is acted on.
+
+---
+
+## Step 1b — the cover joint again, at cylinder 4's end
+
+*Owner's decision, 3/10/2026:* the joint is made tight before anything
+else, and the misfire verdict is taken again on a sealed engine.
+*Decision* on the order: the warm stops of 3/10 were read with the joint
+open, and an open joint there is, at idle, a path for air the MAF does
+not see (`open.md` S10, *Whether the leak bears on the idle*). So step 2,
+the exhaust, waits for the test after 1b.
+
+**Photograph before touching anything, and anything found.** The owner
+reports each item in the session as he goes, as in step 1.
+
+### First, the cheap try — no dismantling
+
+*The owner's idea, 3/10/2026.* On cylinder 4's side the wiring-loom
+bracket sits **under** the strips that hold the cover down; in the video
+of the job the front and rear strips sit on the cover and the bracket on
+top of them (`open.md` S10, the fourth candidate). Photographed: `photos/cover-leak-2026-10-03-bracket.jpg`.
+
+- [ ] the oil cleaned off the coil, the bracket, the head below the
+      joint and the manifold below that — **so a new leak shows**, and so
+      oil does not sit on the coil
+- ~~the strips and the bracket restacked as in the video~~ — **not
+      possible without the plenum off** (*owner, 3/10/2026, photographed*):
+      the bracket is held by three more bolts beside it, done up and out
+      of reach behind the plenum, and it is too stiff to spring over. So
+      the restack is item 8 of the full job below
+- [ ] **the outer cover nuts gone round, evenly and crosswise** — the
+      re-check after the first warm run that the job already planned
+      (`open.md` S10, *Decision, 1/10/2026*)
+- [ ] **a warm run, by driving** — not by idling (*The rule*) — and a
+      look along the whole joint, cylinder 4's arch first
+
+**Dry** → go to *The test after the job*, below. **Still leaking** → the
+cover comes off.
+
+### Then, if it still leaks — plenum aside, cover off
+
+**Parts first** (*decision*): **a new cover gasket**, Elring `325.070` —
+one that has leaked at a corner may be cut or set out of shape there,
+and the job is not done a third time to save the price of one; **a new
+upper plenum gasket**, Elring `271.230` — VW: *always new* (the torque
+table below); **Dirko** (Elring `030.793`), in hand. The breather, its
+ring, the cap ring and the throttle stay as they are.
+
+**The battery stays connected** (*decision*): nothing electrical is
+undone but the coil's and the injectors' connectors, ignition off, and
+keeping it saves the adaptations and the throttle's 098. If it does come
+off, **098 again before the first start** (VW's manual, `open.md` H8).
+
+**Before anything comes off**
+- [ ] the dipstick: the level, after the oil that ran out
+- [ ] the coolant level, cold
+
+**The work**
+1. [ ] **The upper plenum aside**, as on 1/10: most hoses at the back left
+   on, only what has to come off. A rag over the lower part's four ports
+   at once.
+2. [ ] **The breather hose off the cover; the cover nuts off; the cover
+   lifted straight up.**
+3. [ ] **Before anything is cleaned — photograph, cylinder 4's arch first,
+   then the other three**: is the gasket in its groove all the way round
+   the arch, or out of it? Is the Dirko there, continuous across the step
+   from the arch to the straight run, and pressed out evenly? Where the oil
+   came through. **This is the finding that answers `open.md` S10**, and
+   cleaning destroys it.
+4. [ ] **Clean off all the oil**: head, cover flange and groove, the old
+   Dirko off both faces, the plug area, **the coil, its connector and
+   bracket**, **the lead boots of 3 and 4 inside and out** (oil in a boot is
+   noted, `open.md` H4), the manifold below. Keep cleaner out of the open
+   ports. Both faces clean and dry.
+5. [ ] **The new gasket into its groove all the way round**, the arches
+   checked by finger before the cover goes down.
+6. [ ] **Dirko at the four arch points**, the step from arch to straight
+   run filled, cylinder 4's end and the two front ones not skimped.
+7. [ ] **The cover straight down**, not slid, so the gasket cannot leave
+   its groove; a look along the edge at all four corners.
+8. [ ] **The strips in the video's order**: front and rear on the cover,
+   the side bracket on top.
+9. [ ] **The nuts evenly and crosswise, then round again** once the
+   gasket has settled — it settled under the first pull on 2/10.
+   **The torque is not changed on a guess** (*decision*): no VW figure
+   for these nuts is held — searched again 3/10/2026; the transcription
+   this project uses carries the cylinder head for this engine but not
+   the cover, and the 10 Nm that turns up belongs to other VW engines.
+   The photographs of item 3 say whether 2/10's ~4 Nm was short of clamp
+   or the gasket was simply off its groove, and **the choice is made from
+   them on the day**.
+10. [ ] **New plenum gasket, plenum on at 10 Nm**, the breather hose back,
+    everything reconnected; **every rag out, counted**.
+11. [ ] **A warm run, by driving**, and a look along the joint; the coil
+    dry.
+
+**Torques — VW's figures for this engine**, the rows this step needs
+(VW's manual as transcribed on workshop-manuals.com, *Dismantling and
+assembling intake manifold – upper part*, figure N24-0950, and *Removing
+and installing parts of the ignition system*; the full table is in git,
+`plan.md` before 2/10/2026):
+
+| joint | torque | VW's note |
+|---|---|---|
+| intake manifold upper part → lower part | **10 Nm** | gasket always new |
+| ignition coil | 10 Nm | |
+| the cover nuts | **no VW figure held** | item 9 |
 
 ---
 
 ## The test after the job — the misfires first
+
+**Run once as session A on 3/10/2026, with the cover leaking**
+(`open.md` S3, *Session A*), and **run again after step 1b** — session A,
+then B if A is zero, as below. What 3/10 has already settled: the cold
+start against the table (clean) and the leak signature at the cold idle
+(none). Both are recorded again on the second run, since they cost
+nothing.
 
 *Owner's decision, 29/9/2026:* one full test after the one job, in
 sessions. **Group 014 is in every VCDS log until the misfire verdict is
@@ -133,6 +241,7 @@ same arithmetic (`docs/firmware/frames.md`):
 | 25/9 | ~12 h | — | 0.77 s | — (clean) |
 | 26/9 | ~10 h | 14 °C | 0.93 s | 74 rpm |
 | 11/9 (`18`), old injectors | ~10 h | 16 °C | 1.22 s | 141 rpm, nearly died |
+| **3/10, session A** | **27 h** | **17 °C** | **0.77 s** | **15 rpm** |
 
 - **Crank about 0.8–0.95 s, dip within 74–118 rpm** → the start is as it
   was on the new injectors; the refit and the throttle did not hurt it.
@@ -179,7 +288,9 @@ The start decides nothing about the misfires; that stays A2 and A3.
 - **A4 — the oil thermometer, the first minute after engine off**, at
   the end of A3+ when the oil is at its hottest (*owner's decision,
   2/10/2026*: **taken, no longer optional** — the Extol is bought;
-  `docs/firmware/open.md` question 10). **No cold reading beforehand**
+  `docs/firmware/open.md` question 10). ⚠ **Struck on 3/10/2026: the
+  thermometer was broken before session A** (*owner*), so A4 is not
+  taken until there is another one. **No cold reading beforehand**
   (*decision*): the instrument is checked hot, in the same minute, on the
   coolant hose below, and a cold engine adds nothing — every surface sits
   at ambient, and the capture's first seconds at ignition-on record the
@@ -210,12 +321,10 @@ sealed leak is read off the air and the regulator:
 | 003 air after the step | ~4.3 g/s | the same, more air |
 | 055, field 2 + field 3 | **−1.2 g/s** just after the start, **−0.8** five minutes in (11/9) | **clearly nearer zero** |
 
-⚠ **The MAF was turned round before A** (3/10/2026). A housing turned on
-its axis can bias 003's reading by a constant few per cent (*general*;
-`open.md` S9), so a few per cent more air on 003 is not a sealed leak
-on its own. 055's sum is the stronger witness of the two here: it is the
-idle's own correction, and a constant bias in the MAF does not move it
-by the margin the table asks for.
+**The MAF was left as it was** (*owner's decision*, 3/10/2026,
+`vehicle-history.md`), so 003 compares with the earlier logs directly.
+On 3/10 the cold idle showed **no leak signature** (`open.md` S3,
+*Session A*).
 
 **055 is read as the sum of its two air fields** (the live regulator plus
 the learned value): the whole correction the idle is making. With the

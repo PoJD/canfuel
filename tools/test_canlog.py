@@ -181,7 +181,8 @@ class TestFixtureContent(unittest.TestCase):
     #: exactly the six identifiers the firmware accepts and nothing else, so
     #: they say nothing about what else is on the bus -- and must not be read
     #: as evidence that the other eight have gone quiet.
-    FILTERED = {"19_postfix_drive_z1.txt", "24_mafswap_drive_z1.txt"}
+    FILTERED = {"19_postfix_drive_z1.txt", "24_mafswap_drive_z1.txt",
+                "25_sessionA_cold_z1.txt", "26_sessionA_warm_z1.txt"}
     ACCEPTED_IDS = {0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480}
 
     #: The last few milliseconds of 20, as the ignition goes off and the bus
@@ -395,14 +396,20 @@ class TestFixtureContent(unittest.TestCase):
 
         02_idle_60s is excluded because it is doubled (see below) and the
         second copy appears to reset the flag back to zero.
+
+        Sticky within one engine run: when the engine stops with the ignition
+        still on, the whole word drops to zero (docs/firmware/can-decoding.md
+        trap 2) and the flag starts again. 26_sessionA_warm_z1 is the one log
+        that holds that, its last 35 s, so each run is checked on its own.
         """
         for name, frames in self.frames.items():
             if name == "02_idle_60s.txt":
                 continue
-            b15 = [(f.data[3] >> 7) & 1 for f in frames if f.can_id == 0x480]
-            if 1 in b15:
-                first = b15.index(1)
-                self.assertTrue(all(b == 1 for b in b15[first:]), f"{name}: bit 15 is not sticky")
+            for run in self.engine_runs(frames):
+                b15 = [(w >> 15) & 1 for w in run]
+                if 1 in b15:
+                    first = b15.index(1)
+                    self.assertTrue(all(b == 1 for b in b15[first:]), f"{name}: bit 15 is not sticky")
 
     def test_counter_masked_to_15_bits(self):
         for name, frames in self.frames.items():
@@ -411,13 +418,36 @@ class TestFixtureContent(unittest.TestCase):
 
     def test_counter_only_moves_forward(self):
         """The delta is (new - old) mod 32768 and must never come out negative."""
-        for name in self.frames:
-            vals = self.counter(name)
-            deltas = [(b - a) % 32768 for a, b in zip(vals, vals[1:])]
-            # A jump past half the range would mean we missed a wrap, or that
-            # the counter reset after the ignition was switched off.
-            big = [d for d in deltas if d > 16384]
-            self.assertEqual(big, [], f"{name}: suspicious deltas {big[:5]}")
+        for name, frames in self.frames.items():
+            for run in self.engine_runs(frames):
+                vals = [w & 0x7FFF for w in run]
+                deltas = [(b - a) % 32768 for a, b in zip(vals, vals[1:])]
+                # A jump past half the range would mean we missed a wrap, or a
+                # reset that is not the engine stopping.
+                big = [d for d in deltas if d > 16384]
+                self.assertEqual(big, [], f"{name}: suspicious deltas {big[:5]}")
+
+    @staticmethod
+    def engine_runs(frames):
+        """0x480's raw word, split where it drops to exactly zero.
+
+        That is the reset of trap 2 -- the engine stopping, with or without
+        the ignition -- and the one place a backward step is the car rather
+        than a missed wrap. Only a drop to zero splits; any other backward
+        jump stays inside a run and fails the tests that use this.
+        """
+        runs, cur = [], []
+        for f in frames:
+            if f.can_id != 0x480:
+                continue
+            w = u16le(f.data, 2)
+            if w == 0 and cur and cur[-1] != 0:
+                runs.append(cur)
+                cur = []
+            cur.append(w)
+        if cur:
+            runs.append(cur)
+        return runs
 
     def test_accel_counter_span(self):
         """07_accel is timestamped, so it is the only fixture from which an
@@ -483,12 +513,20 @@ class TestFixtureContent(unittest.TestCase):
         0x43 does still look specific to the ignition ramp: it appears in the
         two logs that start with the key being turned and in no other recording
         in the corpus. 18 and 19 were both started with the ignition already
-        on, and read 0x40 from their first frame.
+        on, and read 0x40 from their first frame. 25_sessionA_cold_z1 was
+        started before the ignition, and has the ramp.
+
+        **Not only at ignition on: also when the engine stops.**
+        26_sessionA_warm_z1 is the one log in which the engine stops with the
+        ignition left on, and 0x43 is there for 1.5 s from the same frame as
+        0x480's reset to zero (trap 2), and nowhere else in its 17 minutes. So
+        0x43 marks the engine-run boundary, either way, not the key alone.
         """
-        ignition_on = ("01_ign_only.txt", "06_trip_reset.txt")
+        boundary = ("01_ign_only.txt", "06_trip_reset.txt",
+                    "25_sessionA_cold_z1.txt", "26_sessionA_warm_z1.txt")
         for name, frames in self.frames.items():
             gates = {f.data[1] for f in frames if f.can_id == 0x1A0}
-            if name in ignition_on:
+            if name in boundary:
                 self.assertEqual(gates & {0x42, 0x43}, {0x42, 0x43}, name)
             else:
                 self.assertNotIn(0x43, gates, f"{name}: unexpected ramp 0x43")
