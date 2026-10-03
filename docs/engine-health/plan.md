@@ -48,89 +48,72 @@ open, and an open joint there is, at idle, a path for air the MAF does
 not see (`open.md` S10, *Whether the leak bears on the idle*). So step 2,
 the exhaust, waits for the test after 1b.
 
-**Photograph before touching anything, and anything found.** The owner
-reports each item in the session as he goes, as in step 1.
+**The cover came off on the night of 3/10/2026** (*owner*), and the cause
+is found: **the gasket fitted on 2/10 is for another engine** (`open.md`
+S10, *The cause*). Its half-moon is an open arch that leaves a hole of
+about 1 cm into the crankcase. So what is left of this step is a
+reassembly with the right gasket, then the test.
 
-### First, the cheap try — no dismantling
+**Parts** (*owner, buying 4/10/2026*):
+- **cover gasket Elring `915.653`** — listed for AQY; it has solid
+  half-moons and metal sleeves at the bolt holes, like the one that came
+  off. ⚠ Its VW number `051 103 483` A/D/E is autokelly's
+  cross-reference, not checked by VIN. **Compared with the old gasket in
+  the shop, piece by piece** — half-moons, sleeves, the number and
+  spacing of the holes — before it is bought;
+- **upper plenum gasket Elring `271.230`** — VW: *always new* (the torque
+  table below); the number was ordered by the garage by VIN on 17/9;
+- **Dirko** (Elring `030.793`), in hand.
 
-*The owner's idea, 3/10/2026.* On cylinder 4's side the wiring-loom
-bracket sits **under** the strips that hold the cover down; in the video
-of the job the front and rear strips sit on the cover and the bracket on
-top of them (`open.md` S10, the fourth candidate). Photographed: `photos/cover-leak-2026-10-03-bracket.jpg`.
+The breather, its ring, the cap ring and the throttle stay as they are.
+**The battery stays connected** (*decision*): nothing electrical is undone
+but the coil's and the injectors' connectors, ignition off, and keeping it
+saves the adaptations and the throttle's 098. If it does come off, **098
+again before the first start** (VW's manual, `open.md` H8).
 
-- [ ] the oil cleaned off the coil, the bracket, the head below the
-      joint and the manifold below that — **so a new leak shows**, and so
-      oil does not sit on the coil
-- ~~the strips and the bracket restacked as in the video~~ — **not
-      possible without the plenum off** (*owner, 3/10/2026, photographed*):
-      the bracket is held by three more bolts beside it, done up and out
-      of reach behind the plenum, and it is too stiff to spring over. So
-      the restack is item 8 of the full job below
-- [ ] **the outer cover nuts gone round, evenly and crosswise** — the
-      re-check after the first warm run that the job already planned
-      (`open.md` S10, *Decision, 1/10/2026*)
-- [ ] **a warm run, by driving** — not by idling (*The rule*) — and a
-      look along the whole joint, cylinder 4's arch first
-
-**Dry** → go to *The test after the job*, below. **Still leaking** → the
-cover comes off.
-
-### Then, if it still leaks — plenum aside, cover off
-
-**Parts first** (*decision*): **a new cover gasket**, Elring `325.070` —
-one that has leaked at a corner may be cut or set out of shape there,
-and the job is not done a third time to save the price of one; **a new
-upper plenum gasket**, Elring `271.230` — VW: *always new* (the torque
-table below); **Dirko** (Elring `030.793`), in hand. The breather, its
-ring, the cap ring and the throttle stay as they are.
-
-**The battery stays connected** (*decision*): nothing electrical is
-undone but the coil's and the injectors' connectors, ignition off, and
-keeping it saves the adaptations and the throttle's 098. If it does come
-off, **098 again before the first start** (VW's manual, `open.md` H8).
-
-**Before anything comes off**
-- [ ] the dipstick: the level, after the oil that ran out
+**Before the start**
+- [ ] **the oil level, cold, on level ground** — about 0.5 l was topped
+      up on 3/10 after the leak, read on a hot engine straight after;
+      top up in small amounts to the upper mark at most. **Not over it**:
+      an overfilled crankcase pushes oil through the breather into the
+      intake, which would spoil the test (*general*)
 - [ ] the coolant level, cold
 
-**The work**
-1. [ ] **The upper plenum aside**, as on 1/10: most hoses at the back left
-   on, only what has to come off. A rag over the lower part's four ports
-   at once.
-2. [ ] **The breather hose off the cover; the cover nuts off; the cover
-   lifted straight up.**
-3. [ ] **Before anything is cleaned — photograph, cylinder 4's arch first,
-   then the other three**: is the gasket in its groove all the way round
-   the arch, or out of it? Is the Dirko there, continuous across the step
-   from the arch to the straight run, and pressed out evenly? Where the oil
-   came through. **This is the finding that answers `open.md` S10**, and
-   cleaning destroys it.
-4. [ ] **Clean off all the oil**: head, cover flange and groove, the old
+**The reassembly**
+1. [x] **The upper plenum aside, the cover off** — 3/10/2026, night
+   (*owner*).
+2. [x] **The finding photographed** — the open arch of `325.070` against
+   the old gasket's solid half-moon (`vehicle-history.md`, *The wrong
+   gasket*).
+3. [ ] **Clean off all the oil**: head, cover flange and groove, the old
    Dirko off both faces, the plug area, **the coil, its connector and
-   bracket**, **the lead boots of 3 and 4 inside and out** (oil in a boot is
-   noted, `open.md` H4), the manifold below. Keep cleaner out of the open
-   ports. Both faces clean and dry.
-5. [ ] **The new gasket into its groove all the way round**, the arches
-   checked by finger before the cover goes down.
-6. [ ] **Dirko at the four arch points**, the step from arch to straight
-   run filled, cylinder 4's end and the two front ones not skimped.
-7. [ ] **The cover straight down**, not slid, so the gasket cannot leave
-   its groove; a look along the edge at all four corners.
-8. [ ] **The strips in the video's order**: front and rear on the cover,
-   the side bracket on top.
-9. [ ] **The nuts evenly and crosswise, then round again** once the
-   gasket has settled — it settled under the first pull on 2/10.
-   **The torque is not changed on a guess** (*decision*): no VW figure
-   for these nuts is held — searched again 3/10/2026; the transcription
-   this project uses carries the cylinder head for this engine but not
-   the cover, and the 10 Nm that turns up belongs to other VW engines.
-   The photographs of item 3 say whether 2/10's ~4 Nm was short of clamp
-   or the gasket was simply off its groove, and **the choice is made from
-   them on the day**.
-10. [ ] **New plenum gasket, plenum on at 10 Nm**, the breather hose back,
-    everything reconnected; **every rag out, counted**.
-11. [ ] **A warm run, by driving**, and a look along the joint; the coil
-    dry.
+   bracket**, **the lead boots of 3 and 4 inside and out** (oil in a boot
+   is noted, `open.md` H4), the manifold below. Keep cleaner out of the
+   open ports. Both faces clean and dry.
+4. [ ] **The new gasket into its groove all the way round**, both
+   half-moons seated, checked by finger before the cover goes down.
+5. [ ] **Dirko at the four arch points**, the step from arch to straight
+   run filled, the two front ones not skimped (VW: the joint of bearing
+   cap 1 to the head, `open.md` S10).
+6. [ ] **The cover straight down**, not slid; a look along the edge at all
+   four corners.
+7. [ ] **The strips in the video's order**: front and rear on the cover,
+   the side bracket on top (`open.md` S10;
+   `photos/cover-leak-2026-10-03-bracket.jpg`).
+8. [ ] **The nuts evenly and crosswise, then round again** once the
+   gasket has settled. **No VW figure for these nuts is held** — searched
+   again 3/10/2026: the transcription this project uses carries the
+   cylinder head for this engine but not the cover, and the 10 Nm that
+   turns up belongs to other VW engines. With metal sleeves in the gasket,
+   the nut stops on the sleeve and the rubber cannot be over-squeezed,
+   which `325.070` had no protection against (*reasoned*). So: by feel,
+   until each nut is firmly down on its sleeve.
+9. [ ] **New plenum gasket, plenum on at 10 Nm**, the breather hose back,
+   everything reconnected; **every rag out, counted**.
+
+Then **the test after the job, below — session A again**, from a cold
+engine. The first drive of it is also the joint's warm run: a look along
+it at the first stop, cylinder 4's end first, and the coil dry.
 
 **Torques — VW's figures for this engine**, the rows this step needs
 (VW's manual as transcribed on workshop-manuals.com, *Dismantling and
@@ -142,7 +125,7 @@ and installing parts of the ignition system*; the full table is in git,
 |---|---|---|
 | intake manifold upper part → lower part | **10 Nm** | gasket always new |
 | ignition coil | 10 Nm | |
-| the cover nuts | **no VW figure held** | item 9 |
+| the cover nuts | **no VW figure held** | item 8 |
 
 ---
 

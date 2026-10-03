@@ -383,3 +383,15 @@ routine** at the next ignition-on, as the old part did before and after
 its completed 098 on 29/9. It is how these parts behave. **What would
 revive it:** a throttle of this family that stays silent at ignition-on,
 or a routine that lengthens.
+
+### C17. "Elring `325.070` is the valve cover gasket for this engine" — measured
+
+**Believed:** 27/9/2026, when the parts were ordered: the shop's catalogue
+matched it to the car, a Golf IV 2.0 / 85 kW, and it went on 2/10.
+**Refuted by** the part itself, 3/10/2026 (*owner, photographed*): at the
+half-moon it has an open arch where this head needs a solid half-moon, so
+it leaked a stream of oil at cylinder 4's end on the first warm run, and
+it lacks the metal sleeves the old gasket has. Catalogues list it for
+AZJ, BER, AZG and AEG, not AQY (`open.md` S10, *The cause*). **The general
+lesson:** a match by vehicle is not a match by engine code. **What would
+revive it:** nothing about this head; it is a different part.

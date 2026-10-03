@@ -182,7 +182,7 @@ here is owner-supplied from service records.
 | Injectors `06A 906 031 C` / Bosch `0 280 155 791`, new from the UK | delivered 22/9, **fitted 23/9/2026** by the owner, **three of the four not fully home in the manifold** — see below | ~0 |
 | Upper intake manifold gasket, **Elring `271.230`** (sold as the equivalent of VW `06A 129 717`; the parts shop matched it to the VIN) | **9/2026, twice** *(owner, 1/10/2026)*: **17/9 at the garage** with the plugs, and **23/9 by the owner** with the injectors; packaging dated 17/9/2026 (Carvo s.r.o.) — *read off the photographed packaging*. *This row used to give one fitting, by the owner.* The 23/9 one came off whole on 1/10/2026 and **a third new one went on 2/10/2026** (*The valve cover and throttle job*, below) | ~0 |
 | **Throttle body, new**, Pierburg `7.03703.13.0` (cross-referenced to `06A 133 064 H`, without cruise control), with a new flange gasket | **2/10/2026**, by the owner; 098 *ADP OK* | ~0 |
-| **Valve cover gasket** Elring `325.070`, **crankcase breather** Febi `32452` (its ring fitted), **filler cap ring** Febi `100690` (= `06A 103 483 D`), sealant Elring `030.793` | **2/10/2026**, by the owner | ~0 |
+| **Valve cover gasket** Elring `325.070` — ⚠ **the wrong part, for another engine; off again 3/10/2026** (*The wrong gasket*, below) —, **crankcase breather** Febi `32452` (its ring fitted), **filler cap ring** Febi `100690` (= `06A 103 483 D`), sealant Elring `030.793` | **2/10/2026**, by the owner | ~0 |
 | Injectors' air-shroud line: **new 8 mm sleeves** on the rigid pipe | **1/10/2026**, by the owner | ~0 |
 | Throttle vacuum elbow `06A 133 374` (tee to the throttle's top spigot) — **replaced by a longer plain hose**, the new throttle's spigot pointing the other way | **2/10/2026**, by the owner; the old elbow is kept | ~0 |
 | **Spark plugs and ignition leads**, NGK leads | **17/9/2026**, at the Dakuma garage | ~0 |
@@ -312,8 +312,21 @@ below it (*Claude's reading of a photograph*). What the owner noticed
 afterwards: **on that side the wiring-loom bracket sits under the strips
 that hold the cover down**, while the video of the job has the front and
 rear strips on the cover and the side bracket on top of them — which can
-load the cover unevenly (*owner*). Cause not settled; `open.md` S10, and
-the next step is `plan.md`.
+load the cover unevenly (*owner*). **About 0.5 l of oil topped up** at
+home, the dipstick having read at its bottom mark (*owner*).
+
+**The wrong gasket, the same night.** The owner took the plenum and the
+cover off again rather than wait, and **the fault was the part, not the
+fitting**: the new Elring `325.070` has, at the half-moon, **an open arch
+that leaves a hole about 1 cm across** into the crankcase once
+assembled, where the gasket that came off on 1/10 has **a solid, ribbed
+half-moon**. The new one also has **no metal sleeves** at the bolt holes,
+which the old one has, and a taller, softer section (*owner, photographed
+side by side*). No part number found on the old gasket. **`325.070` is
+listed for AZJ, BER, AZG and AEG and not for AQY**; Elring `915.653` is
+listed for AQY and looks like the old one (autokelly, 4/10/2026). Why the
+wrong one was ordered: `open.md` S10, *The cause*. The right part goes
+on next (`plan.md`, step 1b).
 
 ---
 
@@ -536,6 +549,11 @@ a later reader can see what was being judged.
 | [`cover-leak-2026-10-03-cyl4-end.jpg`](photos/cover-leak-2026-10-03-cyl4-end.jpg) | the new cover gasket leaking at cylinder 4's end, 3/10/2026, on the first warm run — kept because cleaning the oil off destroys it |
 | [`cover-leak-2026-10-03-below.jpg`](photos/cover-leak-2026-10-03-below.jpg) | the same leak, the oil below it |
 | [`cover-leak-2026-10-03-bracket.jpg`](photos/cover-leak-2026-10-03-bracket.jpg) | the wiring-loom bracket under the cover's hold-down strip at that end |
+| [`cover-gasket-old-halfmoon.jpg`](photos/cover-gasket-old-halfmoon.jpg) | the gasket that came off on 1/10: a solid half-moon |
+| [`cover-gasket-old-halfmoon-edge.jpg`](photos/cover-gasket-old-halfmoon-edge.jpg) | the same half-moon from its edge, ribbed all round |
+| [`cover-gasket-325070-open-arch.jpg`](photos/cover-gasket-325070-open-arch.jpg) | Elring `325.070`, the wrong part: an open arch at the same place |
+| [`cover-gasket-325070-open-arch-2.jpg`](photos/cover-gasket-325070-open-arch-2.jpg) | the same arch from another side |
+| [`cover-gasket-325070-profile.jpg`](photos/cover-gasket-325070-profile.jpg) | `325.070`'s taller ribbed section |
 
 **What they show, as description rather than interpretation.** The can carries
 heavy surface corrosion over most of its body, and the joint at the clamp is

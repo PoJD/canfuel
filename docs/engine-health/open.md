@@ -70,8 +70,10 @@ the exhaust, tested and repaired by the owner (*owner's decision,
 **Since then:** the job was done 1–2/10 (`vehicle-history.md`), and
 session A on 3/10 still counted misfires at the warm idle, about as `24`
 did (S3, *Session A*). **The new cover gasket leaked at cylinder 4's end
-on that first warm run** (S10), so the joint is redone and the verdict
-taken again before the exhaust (`plan.md`).
+on that first warm run — it was the gasket for another engine, with an
+open arch where this head needs a half-moon** (S10). The joint is redone
+with the right part and the verdict taken again before the exhaust
+(`plan.md`).
 
 ---
 
@@ -689,16 +691,43 @@ joint. The candidates, none settled, all *reasoned* except the last:
 
 **Dry cold and leaking warm** says the joint opens as the head and cover
 heat and the crankcase sees pressure; it does not say which of the four
-(*general*). **What settles it is the cover coming off:** the gasket's
-print and the Dirko at that arch, photographed before anything is
-cleaned. That, and the cheap test before it, are `plan.md`.
+(*general*).
+
+**The cause, found the same night — none of the four: the gasket was for
+another engine** (*owner*, cover off, photographed; `vehicle-history.md`,
+*The wrong gasket*). The Elring `325.070` fitted on 2/10 has **an open
+arch where this head needs a half-moon**: assembled, it leaves **a hole
+about 1 cm across** from the crankcase to the outside at cylinder 4's end.
+It also has **no metal sleeves** at the bolt holes and a taller, softer
+section. The gasket that came off has solid, ribbed half-moons and
+sleeves. So the joint could not have sealed whatever the nuts, the Dirko
+or the strips did, and the four candidates above are moot.
+
+**How the wrong part was chosen.** `325.070` (cross-referenced to VW
+`06A 103 483 C`) was matched **to the car, not to the engine**, by
+mlparts' catalogue (the parts list above, 27/9). autokelly lists it for
+AZJ, BER, AZG and AEG — **not AQY** — and lists **Elring `915.653`** for
+APK, AQY and AEG, with solid half-moons and sleeves, cross-referenced to
+VW `051 103 483` A/D/E (*owner, 4/10/2026, screenshots*). The upper
+plenum gasket `271.230` is not in question: the garage ordered it by VIN
+on 17/9, and it has come off whole three times. ⚠ **A catalogue match by
+vehicle is not a match by engine code**: a Golf IV 2.0 / 85 kW was built
+with more than one engine, and on this car it cost a job. Every part from
+now on is checked against the engine code, or against the part that came
+off.
 
 **Whether the leak bears on the idle.** The breather vents the crankcase
 into the intake **behind the MAF** (the MAF-to-throttle hose, H9), so a
 joint open to the outside is, at idle, a path for air the MAF does not
 see (*general*: at idle the crankcase sits slightly below atmosphere
-through the breather's valve). Session A shows **no leak signature at
-the cold start** (S3, *Session A*) — but the joint was dry then. At the
+through the breather's valve). **The hole was about 1 cm across, and open
+from the first start** — the oil only came through once warm, but the
+air path was there cold too. Yet session A shows **no leak signature at
+the cold start** (S3, *Session A*): 003's air and 055 read as on `19` and
+11/9. *One reading, not tested:* the job of 1–2/10 sealed old paths (the
+breather's melted ring, the injector seats) about as much as the hole
+opened a new one. The cold idle did dip more (22 a minute against 12–14),
+which a leak would also do. At the
 warm stops 055 read about −1.1 g/s with the learned value moving
 negative, which a leak would also do; **there is no warm 055 baseline to
 set it against** (055 was logged only on the cold start of 11/9), so this
