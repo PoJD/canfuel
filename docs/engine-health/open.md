@@ -381,6 +381,13 @@ beside the reading. **An idle cell moving positive** would instead feed H3
 (an unmetered leak); a part-load cell moving strongly either way reopens the
 air metering.
 
+**Read it only after the MAF housing is turned the right way round**
+(`vehicle-history.md`, the MAF row, 3/10/2026). It sat turned 180° about
+its axis, so its sensing channel sampled the other side of the duct; that
+can only bias the reading by a constant few per cent, which the trims
+absorb (*general*), so the trims may move a little after the turn. A
+move there is the turn, not a new fault.
+
 ### S10. Oil leaking at the back of the head
 
 *Owner-reported, 26/9/2026*, and pointed out earlier by a garage (when, not
