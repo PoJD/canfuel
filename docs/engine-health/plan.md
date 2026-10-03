@@ -79,9 +79,11 @@ zero there before 24/9 proves nothing.
 - **VCDS on its own log file**, groups as each session says; check that it
   is still logging after the engine catches (`vcds.md`). On the laptop it
   lands in Downloads, where Claude picks it up afterwards.
-- **`IdleHealth` comes from the capture, not the MFD**: the two are one or
-  the other, never both (*owner*, `CLAUDE.md`, *Recording a session at the
-  car*). Nobody reads it off the display during a captured session.
+- **`IdleHealth` and the start are computed from the ECU's raw frames**,
+  not read off anything: with the USBtin connected the MFD is out, and the
+  converter, powered through it, is off the bus — **the capture holds no
+  0x600–0x604** (*owner*, `CLAUDE.md`, *Recording a session at the car*).
+  `tools/idledips.py` computes both from 0x280 and 0x288 afterwards.
 
 ### Session A — the cold start and the warm-up drive, one log
 
@@ -101,11 +103,14 @@ the rail over a stand and lengthens the crank, which was the old injectors'
 fault (`refuted.md` C3); and **the new throttle** sets the air for the
 first seconds, which is the fall after first firing.
 
-**Read from the capture's 0x604** (`docs/firmware/frames.md`, *The
-start*): `StartCrank`, `StartDip` and `StartClt`, with `StartSeen` set —
-the capture starts before the ignition, so the converter sees the engine
-stopped. Note how long the car stood. Start it the way the earlier ones
-were. **Compared with** `refuted.md` C3, the two captured starts in 0x604's own figures (`docs/firmware/frames.md`):
+**Computed from the capture's raw ECU frames** — 0x280's engine speed and
+0x288's coolant — by `idledips.health_summary()`: the same `StartCrank`,
+`StartDip` and `StartClt` the firmware puts in 0x604 (`docs/firmware/frames.md`,
+*The start*), which is not itself in a capture. The capture starts before
+the ignition, so the engine is seen stopped and the crank is timed from its
+first turn. Note how long the car stood. Start it the way the earlier ones
+were. **Compared with** `refuted.md` C3, the two captured starts in the
+same arithmetic (`docs/firmware/frames.md`):
 
 | | stand | coolant | crank to first firing | `StartDip` |
 |---|---|---|---|---|
@@ -202,7 +207,8 @@ is 0…5; zero is the owner's bar.
   are not run.
 - **Zero** — session B, the same day.
 
-`IdleHealth` is read out of the capture afterwards, against the band
+`IdleHealth` is computed from the capture's 0x280 afterwards
+(`idledips.py`), against the band
 **57–100** (`open.md` S1), but decides nothing yet: no healthy target for
 it exists.
 

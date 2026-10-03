@@ -1273,9 +1273,22 @@ or dictating the values in order, and align them to the capture by an
 event it records (engine off, a blip), not by when the message arrived.
 
 **The MFD and the CAN capture are one or the other, never both** (*the
-maintainer*): while the capture runs he cannot read `IdleHealth` off the
-display. So never ask him to read it during a captured session — 0x604 is
-in the capture, so read it from there afterwards.
+maintainer*), **and the converter goes with the MFD.** The converter stays
+behind the air vent for good, but it is powered through the MFD's harness:
+
+- **MFD in the car** — the converter is on the bus and the display shows
+  its frames; the USBtin is not connected, so nothing is captured.
+- **USBtin capturing** — the MFD is out, so the converter is unpowered and
+  **not on the bus. A capture never contains 0x600–0x604.**
+
+So **everything taken from a captured session comes from the ECU's raw
+frames**, computed afterwards: `IdleHealth` and the start (`StartCrank`,
+`StartDip`, `StartClt`) by `tools/idledips.py` — `health_summary()` over
+0x280 and 0x288, the oracle 0x604 is diffed against exactly, so the figures
+are the ones the display would have shown. Never ask him to read the display
+during a captured session, and never plan a step on 0x60x being in a
+capture. *Corrected 3/10/2026: this said "0x604 is in the capture, so read
+it from there afterwards", and a plan was written on it.*
 
 **`make -C mplab CAN_MODE=X` and the flash are one step in `flash.py` on
 purpose.** The three hexes differ by one `-D` and nothing else, so a hex
