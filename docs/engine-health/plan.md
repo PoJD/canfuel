@@ -105,11 +105,18 @@ reversing "it is ignored"). That rule was written for the very first start
 after the job, with the rail just opened and a new throttle on its first
 run, which says nothing about the car. That start happened on 2/10, and the
 check starts that day were part-warm, so **A is the first real cold start
-on the repaired car**. And the job touched two things a start sees: **the
-injectors were taken out and refitted**, and a seat that now leaks drains
-the rail over a stand and lengthens the crank, which was the old injectors'
-fault (`refuted.md` C3); and **the new throttle** sets the air for the
+on the repaired car**, and **the new throttle** sets the air for the
 first seconds, which is the fall after first firing.
+
+*Corrected 3/10/2026 by the owner:* this also said the injector refit
+could lengthen the crank through "a seat that now leaks". It cannot. The
+refit moved the injectors' seals, not their valves: fuel leaves an
+injector only through its nozzle, the same parts as before, so the
+drip that drained the rail on the old injectors (`refuted.md` C3) cannot
+be new. A leaking **upper O-ring** at the rail would be an external fuel
+leak — seen and smelt at A1 — and is unlikely, since each injector went
+into the head first and the rail onto them afterwards (*owner*). So a
+long crank now would need **another cause**.
 
 **Computed from the capture's raw ECU frames** — 0x280's engine speed and
 0x288's coolant — by `idledips.health_summary()`: the same `StartCrank`,
@@ -129,9 +136,9 @@ same arithmetic (`docs/firmware/frames.md`):
 
 - **Crank about 0.8–0.95 s, dip within 74–118 rpm** → the start is as it
   was on the new injectors; the refit and the throttle did not hurt it.
-- **Crank towards 1.2 s or longer** after a night's stand → a seat that
-  drains the rail, the same mechanism as C3: the refit is suspect, a leak
-  check at the injectors before anything else.
+- **Crank towards 1.2 s or longer** after a night's stand → the rail is
+  losing pressure over the stand, and not through the refit (above): fuel
+  at the rail or the injectors at A1 first, then the fuel path (H7).
 - **Dip clearly below 74** → the start got better, most likely the
   throttle. **Dip near or above 141, or a near-stall** → it got worse.
 - ⚠ **One start is noise** (`docs/firmware/frames.md`): only the
