@@ -291,7 +291,10 @@ first and read **57 at its lowest** later that evening, cold, with the
 A/C, blower, lights and rear window on — fresh adaptations, so neither
 compares. **A ticking at the timing-belt end** that softened when the
 upper belt cover was pressed went once the cover was taken off and
-refitted (*owner*). **No smoke or hiss at the back** (S11), on a cold or
+refitted (*owner*). **The belt end is completely dry**, nothing
+seeping anywhere behind the guard — so neither the camshaft seal nor the
+bearing cap 1 joint just resealed leaks there, on a cold engine
+(*owner*, 3/10/2026; a toothed belt runs dry by design). **No smoke or hiss at the back** (S11), on a cold or
 part-warm engine only. The verdict is the warm test, `plan.md`.
 
 ---
