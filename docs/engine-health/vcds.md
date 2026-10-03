@@ -47,8 +47,9 @@ finding:**
 - **Misfires, block 014, are specified `0...5`.** This car reads 12–120. It
   also shows the counter is a *current* count, whatever `(celkovy)` says: 0 to
   5 is not the range of a lifetime total. **In practice the specification
-  is zero**: this counter moves in steps of 12 (`refuted.md` C10, A11), so
-  its smallest non-zero reading is already outside 0–5. A sister VAG ECU
+  is zero**: this counter reads mostly in multiples of 12, now and then
+  13–17 (every 014 log in `test/fixtures/vcds/`, counted 3/10/2026), and
+  its smallest non-zero reading on record is 12 — already outside 0–5. A sister VAG ECU
   says it outright — the AUA's list of blocks and specifications gives
   014 field 3, *Zähler Verbrennungsaussetzer insgesamt*, as **0**, and 015/016
   per cylinder likewise (wiki.a2-freun.de, *J537 – Motorsteuergerät AUA –
@@ -64,7 +65,7 @@ finding:**
   engine speed and **load** counts as a misfire; and the counts are summed
   over a window of crank revolutions (1000 in the patents) and reset. So
   014 is **the output of that calculation, not a number of misfired
-  combustions** — why it steps by 12 and holds about 3 s here is the
+  combustions** — why it reads in twelves and holds about 3 s here is the
   calibration, and no public source says. *Reasoned from it:* a threshold
   that moves with load, and load computed from the MAF, is the likely
   reason the counter's sensitivity changed with the MAF (`refuted.md` A11).
