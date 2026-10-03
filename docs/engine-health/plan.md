@@ -350,7 +350,14 @@ The same rule: **idle solved → stop and record.** Otherwise, in this order
 deciding whether the next is needed:
 
 1. **A vacuum gauge at a warm idle** (`open.md`, *Tools worth owning*),
-   teed into the brake-servo line. A few minutes at idle, warmed by
+   teed into **the fuel pressure regulator's vacuum hose** at the front of
+   the engine (*owner's choice, 3/10/2026*: the easiest to reach) or the
+   brake-servo line — any hose to the manifold **behind the throttle
+   plate** reads the same vacuum (*general*). Keep the gauge's hose short,
+   or it smooths away the flick a valve makes, and the T-piece tight, or
+   it is a leak of its own. **While the regulator's hose is off, look and
+   sniff inside it: fuel in it is a leaking diaphragm**, rich at idle — a
+   free check for H7 (*general*). A few minutes at idle, warmed by
    driving. **First because it is cheap and needs nothing built**
    (*owner's decision, 3/10/2026*, swapping it with the smoke test).
    Read against itself, not against a number (*general*):
