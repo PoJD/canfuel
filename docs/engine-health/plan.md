@@ -97,7 +97,9 @@ zero there before 24/9 proves nothing.
 003 is air mass and plate angle, 055 the idle regulator and its learned
 value; all three carry engine speed, so the log aligns to the capture
 (`vcds.md`). **A cold start**: the engine has stood overnight, or all day,
-and has not been run since. Note the coolant temperature at the start. The
+and has not been run since. The coolant at the start comes from the
+capture's 0x288 (`StartClt`) — the cluster has only a cold lamp and the
+MFD is out, so nobody reads it at the car (*owner*, 3/10/2026). The
 start's quality **is now measured too** (*owner's decision, 3/10/2026*,
 reversing "it is ignored"). That rule was written for the very first start
 after the job, with the rail just opened and a new throttle on its first
