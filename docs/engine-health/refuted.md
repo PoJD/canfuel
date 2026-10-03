@@ -126,6 +126,13 @@ dip. The ruler changed, not the engine. Dips a minute at a standstill idle,
 morning (old MAF) → afternoon (new MAF): 22.1 → 10.9 at 40–60 °C of oil,
 14.5 → 5.1 at 60–66 °C, 21.4 → 8.7 at 66–80 °C.
 
+*Added 3/10/2026 — why the ruler changed, reasoned rather than measured:*
+in Bosch's misfire detection the roughness threshold depends on load
+(`vcds.md`, block 014, *What the number is*), and this ECU computes load
+from the MAF. The new MAF reads less air than the over-reading old one
+(C2), so a lower load, a different threshold, and the same dip crossing
+it more often.
+
 ### A12. "Misfire detection's 20 % load threshold masked the morning's misfires" — measured
 
 Real in kind, small in size: re-running the morning as if on the new MAF
