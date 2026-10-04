@@ -59,9 +59,15 @@ reading their own:
 - **A CAN capture** of the powertrain bus (USBtin, listen only, the
   adapter's own timestamps) — engine speed once per 180° of crank, one
   value per firing, which makes each dip one cylinder's stroke.
-- **`IdleHealth`**, a grade this project computes from those firings
-  (100 = this engine in August–September before the repairs, lower is
-  smoother), shown on the dashboard display and recomputed from captures;
+- **`IdleHealth`**, a grade this project computes from those firings —
+  the mean change of engine speed from one firing to the next, small
+  changes ignored — shown on the dashboard display and recomputed from
+  captures. **Its 100 is two recordings, not an average over driving:**
+  the 60 s warm idle of 11/8 at 61 °C of oil (`09`) and the cold start's
+  five-minute warm-up of 11/9 (`18`), both on the old parts, both
+  2.12 rpm, rounded to 2.00 for the arithmetic. Lower is smoother. So it
+  measures against **the middle band and the cold idle before the
+  repairs**, not against the hot idle, which was already better then;
   and **dips ≥ 20 rpm a minute** from the same data
   (`tools/idledips.py`). **Neither reproduces 014**, and why is
   `docs/firmware/open.md` question 11: they measure smoothness, 014 is the
@@ -227,8 +233,10 @@ whole session.
 - the joint **stayed dry**;
 - **014 read zero at both warm stops — the first time ever**, at oil
   temperatures where it had always counted;
-- the hot idle was **the smoothest on record** by both grades (`IdleHealth`
-  60, 4.4 dips a minute), and the owner felt it calmer;
+- the hot idle was **the smoothest since August** by both grades
+  (`IdleHealth` 60–72, 4.4 dips a minute), and the owner felt it calmer.
+  ⚠ Not the smoothest on record: August's one hot hold graded **48** — but
+  it lasted 22 s, too short to compare like with like;
 - **then, after five minutes of hard driving, 014 counted at every idle.**
 
 **Afternoon, session B** after a cool-down: **014 counting again** — at the
@@ -260,6 +268,35 @@ The owner's honest note at the end of the day: the morning's "calmest idle
 yet" was measured against the noisy 3/10 (a belt that had probably rubbed on
 its cover with the cover sitting low) — and the grades agreed with that
 reading rather than with a wish.
+
+---
+
+### `IdleHealth` against its own 100, 4/10/2026
+
+*The owner's question: the 100 is "before the repairs" — measured the same
+way now, has it moved?* The whole-stop mean step, in the conditions the
+100 was taken in and beside them:
+
+| state | before the repairs | 24/9, new MAF | 3/10 | **4/10** |
+|---|---|---|---|---|
+| middle band, ~55–62 °C of oil | **2.12 rpm (`09`, 11/8)** | 1.67 (51–61 °C) | 2.22 (58–65 °C) | **1.95** (A2), **2.14** (B1) |
+| cold idle, the first five minutes | **2.16 (`18`, 11/9)** | — | — | **2.42** (A1) |
+| hot, ~70 °C | 0.96 (`11`, 11/8, a 22 s hold) | 1.85 | — | **1.44** (A3) |
+
+As an index (÷ 2.00 × 100): the middle band 106 → 98–107, the cold idle
+108 → 121, the hot idle 92 on 24/9 → 72 on 4/10.
+
+**What it says, plainly:**
+- **Against its own 100, the idle has not measurably improved.** The
+  middle band reads within a few per cent of the August recording; the
+  cold idle reads a little worse than the cold start of 11/9, which was on
+  the old injectors.
+- **The hot idle improved against 24/9** — the morning after the
+  injectors and the MAF — **but not past August's**, which was one short
+  hold.
+- So the calmer idle the owner feels on 4/10 is real *at the hot idle* and
+  *against the week before*; it is not a return to a better engine than
+  August's.
 
 ---
 
