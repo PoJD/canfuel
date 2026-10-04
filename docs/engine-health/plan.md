@@ -98,10 +98,11 @@ zero once more and **098 is run before the first start** (VW's manual,
    is noted, `open.md` H4), the manifold below. Keep cleaner out of the
    open ports. Both faces clean and dry.
    *4/10/2026 (owner):* the worst of the oil cleaned off the cables;
-   **the coil's body and its leads dry**. What ran down onto the gearbox
-   stays, **as cosmetic** — the owner's decision
-   (`photos/cover-leak-2026-10-04-cleaned.jpg`). Still to confirm here:
-   the boots of 3 and 4 *inside*, and the two faces of the joint.
+   the leads dry, and **oil on one part of the coil** (*this said the
+   coil's body was dry; corrected by the owner the same day*). **The lead
+   boots and the plugs are clean — no oil got in there** (*owner*). What
+   ran down onto the gearbox stays, **as cosmetic** — the owner's decision
+   (`photos/cover-leak-2026-10-04-cleaned.jpg`).
 4. [ ] **The new gasket into its groove all the way round**, both
    half-moons seated, checked by finger before the cover goes down.
 5. [ ] **Dirko at the four arch points**, the step from arch to straight

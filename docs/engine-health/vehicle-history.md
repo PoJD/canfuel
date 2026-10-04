@@ -340,8 +340,10 @@ solid, ribbed half-moons and metal sleeves like the gasket that came off
 `photos/cover-gasket-915653-whole.jpg`); **`915.653` read off the
 package's label**, EAN `4041248115435`
 (`photos/cover-gasket-915653-label.jpg`; *this used to say the number was
-not legible in the photographs*). The worst of the oil cleaned off the cables; **the coil's body
-and its leads dry** after the 3/10 leak had run down as far as the coil.
+not legible in the photographs*). The worst of the oil cleaned off the cables; **the leads dry and oil on one part of the coil** after the 3/10 leak
+had run down as far as it (*this said the coil's body was dry; corrected
+by the owner the same day*). **The lead boots and the plugs clean, no oil
+in them** (*owner*).
 The oil left on the gearbox is left there, as cosmetic (*owner*;
 `photos/cover-leak-2026-10-04-cleaned.jpg`).
 **The cover back on, 4/10/2026**, with `915.653`: the nuts tightened
