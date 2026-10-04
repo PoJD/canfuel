@@ -163,6 +163,8 @@ zero there before 24/9 proves nothing.
   running to engine off — `python tools/usbtin_capture.py --seconds 3600
   --out <session>_z1.txt`. It ends itself; stopped early, it loses at
   most the last half-second, after the engine is off.
+- **`git pull` on the laptop first** — on 3/10 its checkout was behind,
+  so the oil watch would not run and Claude had to hold it instead.
 - **The oil watch is the owner's**, in a second `cmd` window, reading the
   same file while it grows: `python tools\oilwatch.py <session>_z1.txt`
   (both stops in A and in B). It never touches the adapter. It **beeps
@@ -193,7 +195,9 @@ zero there before 24/9 proves nothing.
   ignition, as always;
 - **one extra stop before A2, for the joint** — yesterday's leak only
   showed once the oil was warm. **Stop at about 45–50 °C of oil, not
-  higher**, engine running, loads off, **a minute or two**: along the
+  higher**, engine running, loads off, **a minute**, rung by the oil
+  watch started with `--leak-stop` (one beep long when the minute is in;
+  driven through, it is marked missed and the watch goes on to A2): along the
   cover joint, cylinder 4's end and the coil first. *Decision* on the
   ceiling: the oil keeps rising at a standing idle (`19`: 60 → 65 °C in
   4½ minutes), so a stop above 50 °C risks reaching A2's band standing

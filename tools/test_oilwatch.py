@@ -17,7 +17,7 @@ import tempfile
 import unittest
 
 import canlog
-from oilwatch import (BELL_DONE, BELL_ON, BELL_STOP, STANDSTILL_MMH, STOPS,
+from oilwatch import (BELL_DONE, BELL_ON, BELL_STOP, LEAK_STOP, STANDSTILL_MMH, STOPS,
                       THROTTLE_REST, UNTIL, Tail, oil_c, verdict, wait_for)
 
 MID, HOT = STOPS
@@ -161,6 +161,22 @@ class Verdicts(unittest.TestCase):
         t = self.tail_for(capture(300, lambda s: 50.0 + s / 20))
         self.assertEqual(t.log[0][:2], ("mid", "missed"))
         self.assertEqual(t.stop(), HOT)
+
+    def test_the_leak_stop_comes_first_and_then_the_middle_one(self):
+        stops = (LEAK_STOP,) + STOPS
+        t = self.tail_for(drive((LEAK_STOP.idle_s + 10, lambda s: 47.0, False),
+                                (60, lambda s: 48.0, True)), stops)
+        self.assertEqual(t.log[0][:2], ("leak", "done"))
+        self.assertEqual(t.stop(), MID)
+
+    def test_the_leak_stop_driven_through_does_not_cost_the_middle_one(self):
+        stops = (LEAK_STOP,) + STOPS
+        t = self.tail_for(capture(300, lambda s: 40.0 + s / 20), stops)
+        self.assertEqual(t.log[0][:2], ("leak", "missed"))
+        self.assertEqual(t.stop(), MID)
+
+    def test_the_leak_stop_sits_below_the_middle_band(self):
+        self.assertLess(LEAK_STOP.hi_c, MID.lo_c)
 
     def test_an_idle_is_one_standing_not_a_sum_of_short_ones(self):
         half = MID.idle_s * 0.6

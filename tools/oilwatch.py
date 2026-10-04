@@ -123,6 +123,14 @@ STOPS = (
     Stop("hot", 68.0, 72.0, 3 * 60.0),
 )
 
+#: Opt-in with --leak-stop: a short stop BEFORE the middle band, to look along
+#: the valve cover joint once the oil is warm (`plan.md`, session A after step
+#: 1b; the owner's decision, 4/10/2026). It reads nothing: the band and the
+#: minute are decisions. The ceiling is 50 C because a standing idle keeps
+#: heating the oil (19: 60 -> 65 C in 4.5 min), and a stop entered higher can
+#: reach the middle band standing instead of being driven into from below.
+LEAK_STOP = Stop("leak", 45.0, 50.0, 60.0)
+
 #: Seconds of warning asked for before the band arrives. A driver has to notice
 #: the beep and then find somewhere legal to stop.
 LEAD_S = 90.0
@@ -451,6 +459,9 @@ def main(argv=None):
     ap.add_argument("capture", help="the file usbtin_capture.py is writing")
     ap.add_argument("--only", choices=[s.name for s in STOPS],
                     help="watch for this one stop and no other")
+    ap.add_argument("--leak-stop", action="store_true",
+                    help="add a one-minute stop at %.0f-%.0f C before the others, "
+                         "to look along the cover joint" % (LEAK_STOP.lo_c, LEAK_STOP.hi_c))
     ap.add_argument("--once", action="store_true", help="print one line and exit")
     ap.add_argument("--lead", type=float, default=LEAD_S,
                     help="seconds of warning before the band (default %d)" % LEAD_S)
@@ -466,6 +477,8 @@ def main(argv=None):
     args = ap.parse_args(argv)
 
     stops = [s for s in STOPS if args.only in (None, s.name)]
+    if args.leak_stop:
+        stops.insert(0, LEAK_STOP)
     tail = Tail(args.capture, stops)
     tail.poll()
     if args.once:
