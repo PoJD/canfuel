@@ -105,12 +105,12 @@ zero once more and **098 is run before the first start** (VW's manual,
 5. [ ] **Dirko at the four arch points**, the step from arch to straight
    run filled, the two front ones not skimped (VW: the joint of bearing
    cap 1 to the head, `open.md` S10).
-6. [ ] **The cover straight down**, not slid; a look along the edge at all
+6. [x] **The cover straight down**, not slid; a look along the edge at all
    four corners.
 7. [ ] **The strips in the video's order**: front and rear on the cover,
    the side bracket on top (`open.md` S10;
    `photos/cover-leak-2026-10-03-bracket.jpg`).
-8. [ ] **The nuts evenly and crosswise, then round again** once the
+8. [x] **The nuts evenly and crosswise, then round again** once the
    gasket has settled. **No VW figure for these nuts is held** — searched
    again 3/10/2026: the transcription this project uses carries the
    cylinder head for this engine but not the cover, and the 10 Nm that
@@ -118,6 +118,18 @@ zero once more and **098 is run before the first start** (VW's manual,
    the nut stops on the sleeve and the rubber cannot be over-squeezed,
    which `325.070` had no protection against (*reasoned*). So: by feel,
    until each nut is firmly down on its sleeve.
+
+   *4/10/2026 (owner):* **the cover is on**, the nuts tightened evenly by
+   feel, and **each one could be felt landing on its brass sleeve** —
+   unlike `325.070`, which had none. Items 4–7 are not reported one by one;
+   what the photographs show (*Claude's reading*): the gasket's edge lying
+   even along the joint at the timing-belt end, a solid half-moon in place
+   at the end photographed, and light-coloured material at the step beside
+   the front nut, consistent with Dirko
+   (`photos/cover-on-2026-10-04-belt-end.jpg`,
+   `photos/cover-on-2026-10-04-halfmoon.jpg`,
+   `photos/cover-on-2026-10-04-strip.jpg`). The joint is judged by the warm
+   run, not by these.
 9. [ ] **New plenum gasket, plenum on at 10 Nm**, the breather hose back,
    everything reconnected; **every rag out, counted**.
 

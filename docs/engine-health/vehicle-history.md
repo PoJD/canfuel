@@ -342,6 +342,9 @@ in them). The worst of the oil cleaned off the cables; **the coil's body
 and its leads dry** after the 3/10 leak had run down as far as the coil.
 The oil left on the gearbox is left there, as cosmetic (*owner*;
 `photos/cover-leak-2026-10-04-cleaned.jpg`).
+**The cover back on, 4/10/2026**, with `915.653`: the nuts tightened
+evenly by feel, each felt seating on its brass sleeve (*owner*;
+`photos/cover-on-2026-10-04-*.jpg`). The plenum next.
 
 ---
 
@@ -572,6 +575,9 @@ a later reader can see what was being judged.
 | [`cover-gasket-915653-halfmoon.jpg`](photos/cover-gasket-915653-halfmoon.jpg) | Elring `915.653`, the right part, 4/10/2026: a solid half-moon and a sleeved bolt hole |
 | [`cover-gasket-915653-whole.jpg`](photos/cover-gasket-915653-whole.jpg) | the same gasket whole, beside the new upper plenum gasket |
 | [`cover-leak-2026-10-04-cleaned.jpg`](photos/cover-leak-2026-10-04-cleaned.jpg) | the coil, its leads and the harness after the worst of the oil was cleaned off, 4/10/2026 |
+| [`cover-on-2026-10-04-belt-end.jpg`](photos/cover-on-2026-10-04-belt-end.jpg) | `915.653` fitted, the cover on: the joint at the timing-belt end, 4/10/2026 |
+| [`cover-on-2026-10-04-halfmoon.jpg`](photos/cover-on-2026-10-04-halfmoon.jpg) | the same, a solid half-moon in place at the end of the head |
+| [`cover-on-2026-10-04-strip.jpg`](photos/cover-on-2026-10-04-strip.jpg) | a hold-down strip and its nut on the refitted cover |
 
 **What they show, as description rather than interpretation.** The can carries
 heavy surface corrosion over most of its body, and the joint at the clamp is
