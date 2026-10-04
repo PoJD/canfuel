@@ -32,8 +32,11 @@ reason the ECU learns air away being air the plate did not let in.
 ⚠ **Keep the battery connected through steps 2 and 2a** if the work
 allows. The learned value has settled at about −1.1 g/s, and that is what
 makes step 2b readable in one session. If a repair needs the battery off,
-say so: step 2b then has to drive until the learned value is past −0.93
-again before a stop counts.
+say so: step 2b's stops then count only once the learned value is past
+−0.93 again — **or once it plainly is not going there**: on 4/10, from
+zero, it took about 35 minutes of driving and stops to pass −0.93. A
+learned value that stays well short of that after as long is a result in
+itself (H10: air the plate did not let in is gone).
 
 ---
 
