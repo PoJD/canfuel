@@ -129,6 +129,15 @@ weakly, and across days it does not track 014 at all (3/10's hot stop
    11.3 / 7.8 / 20.3 and `IdleHealth` 135 / 156 / 120 / 143 / 90. Neither
    follows 014 there either, and the dip count reads no worse than
    `IdleHealth` — so **the condition holds and the change goes ahead**.
+
+   **Re-run on the adapted stops only**, at the owner's question
+   (`docs/engine-health/open.md` H10: 014 counts only once 055's learned
+   value has passed about −0.93): eight stops of 4/10. Rank correlation
+   with 014 — `IdleHealth` −0.62, the dip count −0.05, one slow firing
+   ≥ 6 / 8 / 12 rpm −0.50 / −0.29 / +0.51 (the last on two non-zero
+   stops out of eight), second difference −0.38, **oil temperature
+   +0.68**. On the adapted stops 014 follows the oil band and nothing the
+   bus carries, so the choice above stands.
 2. **Design, to be settled in the implementation:** 0x604's
    `IdleHealth` byte keeps its position and its 255 = not converged; its
    unit becomes **dips a minute over settled idle**, from `dips_cheap()`'s

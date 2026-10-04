@@ -434,8 +434,7 @@ new flange and exhaust sealant in hand — **for comfort, not for the
 idle**: it is behind both probes and spits on every drive. **Items 2–4,
 the tailpipe test and a new manifold, wait**: session B weakened H2 (no
 lambda correction toward rich at B1, and counts at a cold manifold), and
-step 2b below costs nothing and comes first. They return if step 2b
-refutes H10.
+steps 2a and 2b below come first. They return if step 2b refutes H10.
 
 *Owner's decision, 3/10/2026, replacing "at the garage":* if the idle is
 not fixed by step 1, **the owner tests and repairs the exhaust himself**
@@ -491,9 +490,22 @@ Afterwards: session A's hot idle again — 014 logging, three minutes at
 68–72 °C with the oil watch, `IdleHealth` against the band. *Skipped if
 the idle is already fixed by then.*
 
-## Step 2b — the adaptation test (`open.md` H10), after step 2
+## Step 2a — the intake smoke test, straight after step 2
 
-*Owner's decision, 4/10/2026.* On 4/10 014 read zero while 055's learned
+*Owner's decision, 4/10/2026, evening:* **the smoke test of the intake
+comes next, whatever H10 turns out to be** — the misfires are there
+either way, and H10 would only say how the ECU comes to count them, not
+where the air comes from. It is step 3's item 2, brought forward and no
+longer waiting on the vacuum gauge (item 1); it also looks for the hiss
+the owner hears and cannot place (`open.md` S11). The way it is done is
+in step 3 below. **Smoke anywhere behind the MAF** is a leak: sealed,
+then step 2b reads the result.
+
+## Step 2b — the adaptation test (`open.md` H10), after step 2a
+
+*Owner's decision, 4/10/2026; moved behind the smoke test the same
+evening.* After a repair from step 2a it is also the before-and-after:
+with no leak left, the learned value should stop walking past −0.93. On 4/10 014 read zero while 055's learned
 idle air value was between 0 and −0.92 g/s and counted every time it was
 at −0.95 or beyond, warm or cold. A battery disconnect sets it back to
 zero, so the test is free:
@@ -539,7 +551,9 @@ deciding whether the next is needed:
      the smoke test is not needed, go to item 3 with H1 first;
    - **a low or slowly wandering needle** → a leak or a mixture fault
      (H3, H7): the smoke test follows, to say *where*.
-2. **An intake smoke test, done at home — only if item 1 points at a
+2. *Brought forward as step 2a (owner's decision, 4/10/2026), so it no
+   longer waits on item 1; the method stands.*
+   **An intake smoke test, done at home — only if item 1 points at a
    leak** (`open.md`, *The idle's candidates, ranked*, row 1 and *Tools
    worth owning*). The engine off
    and cold, so it costs no idle. The leak is still candidate 1 after
