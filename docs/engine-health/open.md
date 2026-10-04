@@ -1147,34 +1147,49 @@ the owner has observed:
 C1): the ECU shuts the injectors **0.78–1.39 s after the pedal comes up**
 — counted from the lift, not from the clutch. On a downshift the pedal
 comes up first, so by the time the clutch is released much of that delay
-has gone, and **"one to two seconds after the clutch" can fall on either
-side of the cut.** The two sides mean different things:
+has gone, and **"one to two seconds after the clutch" falls around the
+cut.** Which is what the owner's reading of it predicts (*4/10/2026*):
+**fuel left unburnt in the exhaust, burning when air reaches it.**
 
-- **Before the cut** — the engine is pulled up by the wheels with the
-  throttle shut, the highest manifold vacuum it ever sees and the
-  thinnest charge, and it is still being fuelled. A charge that fails to
-  fire there goes into a hot exhaust and burns. That is a misfire at the
-  lightest load, the same family as S3, and **where 014 is blind**: it
-  does not count on the overrun or in transients (S3). A blip opens the
-  throttle and matches the speed, which is why it nearly stops it
-  (*reasoned*). The delay itself is the factory's and every engine has
-  it, so this is not "normal" by itself — a healthy engine burns that
-  charge.
-- **After the cut** — fuel arriving with none commanded: an injector
-  that does not seal, or a regulator diaphragm passing fuel at high
-  vacuum (H7). This is the reading C1 took for the cold burble.
-
-The oxygen to burn it needs no leak — a misfire leaves its own air — but
-a leak in the exhaust ahead of the converter (H2), or S6's joint, would
-add to it (*general*).
+- **Where the fuel comes from: a cylinder that did not burn it.** The
+  engine is pulled up by the wheels with the throttle shut, the highest
+  manifold vacuum it ever sees and the thinnest charge, and it is still
+  being fuelled. A charge that fails to fire there leaves for the
+  exhaust as fuel and air. That is a misfire at the lightest load, the
+  same family as S3, and **where 014 is blind**: it does not count on the
+  overrun or in transients (S3). The delay before the cut is the
+  factory's and every engine has it, so this is not "normal" by itself —
+  a healthy engine burns that charge.
+- **Where the air comes from: the cut itself.** Once the injectors shut,
+  every cylinder pumps plain air into a hot exhaust that still holds the
+  unburnt charge of the last fuelled revolutions. So the bangs can come
+  **after** the cut and still be fuel injected **before** it (*general*).
+  A leak ahead of the converter (H2), or S6's joint, would add air but is
+  not needed. A blip opens the throttle and matches the speed, so those
+  last fuelled firings burn, which is why it nearly stops it
+  (*reasoned*).
+- **"Left over" means seconds, not minutes.** A hot exhaust is flushed
+  through in a few seconds at idle (*reasoned*, not measured), so fuel
+  from a misfire episode at the last stop is gone long before the next
+  downshift. What the episodes do is say the engine was misfiring then,
+  and plausibly still is at the next, lighter load.
+- **Fuel with none commanded — an injector that does not seal, or a
+  regulator diaphragm passing fuel at high vacuum (H7) — is the weak
+  reading.** The injectors are from 23/9 and the regulator from 7/2026;
+  the regulator's vacuum hose was dry each time it came off (H7); and
+  the original fuel hoses could only leak outwards, never into a
+  cylinder (*owner, 4/10/2026*). This was C1's reading of the cold
+  burble, and it no longer fits.
 
 **Test, when a capture is being taken anyway:** one or two downshifts
 without a blip, each written into the chat ("3→2, bangs" / "no bangs")
 and aligned to the capture by the jump in engine speed as the clutch
-comes up, not by when the message arrived. 0x480 then says whether fuel
-was still being commanded when it banged. A search of `24`–`29` found
-no unblipped downshift clean enough to read; the bangs themselves are
-not on the bus.
+comes up, not by when the message arrived. 0x480 gives how much was
+injected after the clutch came up and when the cut fell — so how many
+fuelled revolutions at the thinnest charge preceded each bang. Bangs
+**and** a cut long before the clutch came up would point back at fuel
+with none commanded. A search of `24`–`29` found no unblipped downshift
+clean enough to read; the bangs themselves are not on the bus.
 
 ### Other — not symptoms, but they touch this file
 
@@ -1264,8 +1279,8 @@ H8's alone.
 
 **S14 was added on 4/10/2026** and judged the same way for every row: a
 misfire at the thinnest charge (H3 ✔, H1/H4/H10 ~), air ahead of the
-converter to burn it in (H2 ✔), or fuel after the cut (H7 ~, the one
-branch S14's test can split off). H0 ✘: the owner's other cars do not do
+converter to burn it in (H2 ✔), or fuel nobody commanded (H7 ~, the
+weak reading: every part that could pass it is new). H0 ✘: the owner's other cars do not do
 it, and it follows the misfire episodes. H5, H8 and the closed H9 say
 nothing about it.
 
@@ -3099,7 +3114,7 @@ Re-read again when S9 and S12 closed: S12 was a supporting point for H3
 H9 closed the same evening (`refuted.md` A15); row 2 is H3 alone, with
 the breather hose folded into it.* *Re-read 4/10/2026 when S14 was
 added: it fits H3 and H2 alike and leaves the order as it stands; it
-would lift H7 only if its test finds bangs after the cut.*
+would lift H7 only if its test finds bangs with the cut long past.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
