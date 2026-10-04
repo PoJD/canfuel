@@ -496,7 +496,14 @@ in cold fog, cranked in 0.93 s and fell only 74 rpm after first firing,
 against 1.24 s and a near-stall (451 → 311 rpm) on the old injectors. The
 table and the reasoning are in `refuted.md` C3.
 
-### S8. Top end — "loses breath above 5000 rpm"
+### S8. Top end — "loses breath above 5000 rpm" — closed 4/10/2026
+
+**Closed by its own first criterion** (below): the hard drive of 4/10
+(`28`) held full throttle to 5,770 rpm, and b7 eased rather than dropped
+— a median of 185 / 187 / 183 / 181 from 4,000 to 6,000 rpm in 500 rpm
+bins, against `24`'s 192 / 192 / 187 / 181 — while the owner felt the car
+pull better at the top than before. Out of every fit table, as it already
+was.
 
 *Owner-reported* after the morning drive of 24/9, on the old MAF: the car
 pulls better in 1st to 3rd but runs out of breath above about 5000 rpm in
@@ -562,7 +569,14 @@ can only bias the reading by a constant few per cent, which the trims
 absorb (*general*), so the trims may move a little after the turn. A
 move there is the turn, not a new fault.
 
-### S10. Oil leaking at the back of the head
+### S10. Oil leaking at the back of the head — closed 4/10/2026
+
+**Found and repaired** (*owner's decision to close, 4/10/2026*): the cover
+gasket, first the hardened original and then the wrong part fitted on
+2/10, replaced on 4/10 by Elring `915.653`; the joint stayed dry through
+both sessions of that day, hot and cold. The re-tightening of the outer
+nuts after a few hundred km stays in `plan.md` (*Standing items*). Kept
+here for the record; out of every fit table since.
 
 *Owner-reported, 26/9/2026*, and pointed out earlier by a garage (when, not
 recorded). Oil at the **back** of the head — the firewall side, where the
@@ -889,7 +903,12 @@ after the hot end of session A (*owner*), with the right gasket, Elring
 (*owner*). **The re-check of the outer nuts after a few hundred km stays**
 (`plan.md`, *Standing items*); S10 closes with it.
 
-### S11. Smoke, and possibly a hiss, at the back of the head at a warm idle
+### S11. A hiss at the back of the engine at a warm idle
+
+*Retitled 4/10/2026, from "Smoke, and possibly a hiss, at the back of the
+head at a warm idle":* the smoke was S10's oil burning off (*owner*, 4/10),
+and the hiss is now certain — heard again after step 1b, from the back,
+not yet placed (below). What is left of this symptom is the hiss.
 
 *Owner, by eye and ear, 26/9/2026*, warm idle, bonnet open, over the exhaust
 manifold. A **faint smoke**; a **faint hiss** that the owner is not sure of;
@@ -1144,20 +1163,21 @@ full-load enrichment (*general*), for all four cylinders alike.
 | S2 ↔ S6 | **possible** | if there is a leak ahead of the probes. The known leak is behind them |
 | S5 ↔ S6 | **no** | the clamp was tightened and cylinder 4's excess stayed exactly as it was |
 | S7 ↔ S1 | **none** | S7 improved with the injectors; S1 did not |
-| S8 ↔ anything | **none** | top-end air and b7 identical on both MAFs; the idle changed a lot |
-| S10 ↔ S11 | **likely, not shown** | same place; the valve cover gasket leaks heavily at the back, above the manifold, and oil on a hot manifold smokes. The hiss, if real, is not oil |
+| S8 ↔ anything | **none** | top-end air and b7 identical on both MAFs; the idle changed a lot. **S8 closed 4/10/2026** |
+| S10 ↔ S11 | **the smoke, yes; the hiss, no** | the smoke was S10's oil burning off the manifold (owner, 4/10); the hiss stayed after S10 was repaired. **S10 closed 4/10/2026** |
 | S11 ↔ S2 | **possible** | an exhaust leak ahead of the probe both hisses and puffs. Never observed together |
 | S11 ↔ S6 | **possible** | if the hiss is exhaust, "never tight" reaches upstream of the probes too |
-| S10/S11 ↔ S1/S3 | **untested, not weak** | nothing measured so far *could* have shown a link, so "unknown" is no evidence against one. Oil outside the engine does not touch combustion; what can is the cause or a neighbour: a vacuum leak at the unsprayed rear hissing (H3/H9), the ventilation's oil fouling the throttle (H9 → H8), an exhaust leak ahead of the probe (H2), oil reaching a lead boot (H4, 1e) — seen on 26/9 at the boots of 3 and 4, but **not a cause**: the idle was as rough on 17/9 with new, clean leads (S10). The one existing datum that points this way: the idle is better under load, which is what a small unmetered leak does |
+| S10/S11 ↔ S1/S3 | **S10: the hole of 3/10 bore on 014 that day; closed. S11: untested, not weak** | nothing measured so far *could* have shown a link, so "unknown" is no evidence against one. Oil outside the engine does not touch combustion; what can is the cause or a neighbour: a vacuum leak at the unsprayed rear hissing (H3/H9), the ventilation's oil fouling the throttle (H9 → H8), an exhaust leak ahead of the probe (H2), oil reaching a lead boot (H4, 1e) — seen on 26/9 at the boots of 3 and 4, but **not a cause**: the idle was as rough on 17/9 with new, clean leads (S10). The one existing datum that points this way: the idle is better under load, which is what a small unmetered leak does |
 | S12 ↔ S4 | **possible, untested** | the knock retard is a tip-in event and a retard is lost torque. Never aligned in time |
 | S12 ↔ S1/S3 | **possible, untested** | both start from the bottom of the load range; a lean or weak-spark cause would show in both |
 | S13 ↔ S1 | **weak** | the one link was an adaptation that never completes, leaving the idle on unfinished values (H8); **refuted on the old part 29/9** — 098 completed and the 20 s routine ran unchanged after it (S13). **Closed 2/10/2026**: the new part does the same |
 
 **So there are two separate clusters**, and they are worked separately below:
 **the idle** (S1, S2, S3) and **the cylinder 4 window** (S4, S5). S6 matters
-only if it leaks ahead of the front probe; S7 is closed, and S8 and S9 each
-want one confirming reading and are probably closed. **A third cluster, the
-back of the head (S10, S11)**, appeared on 26/9; its oil is the valve cover job, its hiss the owner's
+only if it leaks ahead of the front probe; S7 and S8 are closed, and S9
+wants one confirming reading. **A third cluster, the back of the head
+(S10, S11)**, appeared on 26/9 — S10 is closed (4/10/2026), the hiss
+remains; its oil is the valve cover job, its hiss the owner's
 exhaust test; whether it joins the idle cluster is exactly what H2 and H9 ask.
 
 ---
@@ -1170,8 +1190,9 @@ settles it. ✔ fits, ~ fits weakly, ✘ does not fit, — says nothing.
 **The columns are the open symptoms that bear on the engine.** Left out,
 each for a stated reason: **S6** (the exhaust's joint behind both probes —
 acoustic; the part of it that matters is H2's), **S7** (closed), **S8**
-(probably not a fault), **S9** (fixed by the MAF, one confirming read
-owed), **S13** (closed 2/10/2026: the new throttle behaves the same). S12 and S13 were added on 28/9/2026: **S12**, the tip-in
+(closed 4/10/2026), **S9** (fixed by the MAF, one confirming read
+owed), **S10** (closed 4/10/2026: the cover joint, found and repaired),
+**S13** (closed 2/10/2026: the new throttle behaves the same). S12 and S13 were added on 28/9/2026: **S12**, the tip-in
 hesitation, fits a lean tip-in (H3/H9, H7), a moment of knock retard (H5)
 and weak spark under sudden load (H4); **S13**, the throttle's routine, was
 H8's alone.
@@ -1182,9 +1203,9 @@ H8's alone.
 it might simply idle like this, and every number above might be its normal
 state.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
-|---|---|---|---|---|---|---|---|
-| ~ | ~ | ✘ | — | ~ | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 |
+|---|---|---|---|---|---|---|
+| ~ | ~ | ✘ | — | ~ | — | — |
 
 - **Against:** 014 reads **12–120 against VW's own 0–5**. The old converter
   burned through, which needs raw fuel in it. The owner feels it.
@@ -1234,9 +1255,9 @@ compares with this car's:
 A hydraulic lifter that bleeds down or pumps up leaves a valve slightly open
 or late, intermittently, and gets worse as the oil thins. *General.*
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
-|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ✔ | ✔ | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 |
+|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ✔ | ✔ | — | — |
 
 - **For:** with H4, one of the **two candidates that can explain both
   clusters at once**: an
@@ -1285,9 +1306,9 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in;
 under load it only blows out. *General.* The front probe reads lean, the rear
 loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
-|---|---|---|---|---|---|---|---|
-| ~ | ✔ | ~ | ✘ | ✘ | — | ✔ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 |
+|---|---|---|---|---|---|---|
+| ~ | ✔ | ~ | ✘ | ✘ | ✔ | — |
 
 - **For:** the puff, idle only, an old manifold that has lived through years
   of misfires, the rear probe on the rich side at hot idle
@@ -1333,9 +1354,9 @@ Nothing else about the argument above changes until the test is done.
 Air past the MAF leans one cylinder at idle, where air flow is smallest.
 *General.*
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
-|---|---|---|---|---|---|---|---|
-| ✔ | ~ | ✔ | ~ | ✘ | — | ~ | ✔ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 |
+|---|---|---|---|---|---|---|
+| ✔ | ~ | ✔ | ~ | ✘ | ~ | ✔ |
 
 - **For:** the regime is exactly right. A lean cylinder can also knock on a
   tip-in (S4). Several of the forum cases were a breather hose. The idle is
@@ -1483,9 +1504,9 @@ The battery itself is new (end of August 2026, the old one found dead during
 the headlight work), so the thread's one confirmed
 electrical fix — a new battery — has in effect already been tried here.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
-|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ~ | ✔ | — | — | ~ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 |
+|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ~ | ✔ | — | ~ |
 
 - **For:** with H1 the only candidate that could explain **both clusters**: a
   weak spark misfires at idle and high vacuum, and a noisy ground puts a
@@ -1797,9 +1818,9 @@ Three candidates, all *general*:
 - **An injector click** that slides into the window as injection timing moves
   with speed. No knock log exists from before the new injectors.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
-|---|---|---|---|---|---|---|---|
-| — | — | — | ✔ | ✔ | — | — | ~ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 |
+|---|---|---|---|---|---|---|
+| — | — | — | ✔ | ✔ | — | ~ |
 
 **Tests:** check G66's torque and connector; look over everything refitted in
 September for a loose bracket, clip or heat shield with the engine held at
@@ -1873,9 +1894,9 @@ changed in September, and neither has ever been gauged. (The bad cold start
 that once pointed here is closed, S7: it was the old injectors.)
 The owner's own remaining candidate is one of the new injectors.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
-|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | — | — | ~ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 |
+|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | ~ |
 
 - **Against, for the idle:** four new injectors and a new filter changed
   nothing in S1; the trims are near zero; a leaking seat adds fuel at idle and
@@ -1939,9 +1960,9 @@ idle in group 003 is that control working). A dirty throttle body or a lost
 throttle adaptation makes the governor hunt. *General.* The MAF swap halving
 S1 shows that the idle is sensitive to how air is metered and controlled.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
-|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 |
+|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | — | — |
 
 - **Against:** a hunting governor is a slow oscillation, while S1 is a
   sudden dip lasting one or two firings and recovering in a quarter of a
@@ -2460,9 +2481,16 @@ no longer seals is a door of exactly this kind (*reasoned*) — and with
 the patch shown original, the only concrete one the job found here; a finding on a part, not a symptom, so the fit
 table stays as it is.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
-|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | ✔ | ✔ | ~ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 |
+|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | ✘ | ~ |
+
+*4/10/2026:* **right about S10** — the cover gasket was the leak, and it is
+repaired (S10, closed). S11 is now the hiss alone, and it **outlived the
+new breather and the new gasket**, so it is no longer this hypothesis's
+(✘); S11's smoke was S10's oil, as the first bullet below said. What is
+left of H9 for the idle is H3's: an unmetered leak, now at the breather's
+hose and connector only, which `plan.md` step 2a's smoke covers.
 
 - **For:** the commonest explanation of S10 and, through the oil, of S11's
   smoke. Several forum cases of an unsettled idle were a breather hose (H3).
@@ -2803,9 +2831,9 @@ On 4/10 014 followed it, stop by stop, and not the temperature:
   run-in engine sits negative anyway (`plan.md`, *055 is read as the sum
   of its two air fields*), so the sign alone is no fault.
 
-| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
-|---|---|---|---|---|---|---|---|
-| ~ | — | ✔ | — | — | — | ~ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 |
+|---|---|---|---|---|---|---|
+| ~ | — | ✔ | — | — | ~ | — |
 
 S1 only partly: engine speed barely moved with 014 on 4/10 (S3); S11 only
 through H3, as the leak that would make the ECU learn air away.
@@ -2979,7 +3007,9 @@ learned value through both sessions, and B counted on a cold idle — and
 **H3/H9 come back up behind it**, as the likeliest reason the ECU learns
 idle air away; **H2 drops**: at B1 033 did not correct toward rich, and
 counts at a cold manifold do not need it. H8 rises with H3 for the same
-reason. The order is settled by `plan.md` steps 2a–2c.*
+reason. The order is settled by `plan.md` steps 2a–2c.* *Re-read 4/10/2026,
+late, when S8 and S10 closed and S11 lost its smoke: S10 was in no row's
+reasoning except as H9's oil, which the repair answered; the order stands.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
