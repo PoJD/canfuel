@@ -138,6 +138,16 @@ weakly, and across days it does not track 014 at all (3/10's hot stop
    stops out of eight), second difference −0.38, **oil temperature
    +0.68**. On the adapted stops 014 follows the oil band and nothing the
    bus carries, so the choice above stands.
+
+   **And with 014's size, not only its rises** (the owner's question):
+   per stop, the sum of the counter's increments a minute (a jump of 24
+   weighs twice one of 12) and its mean value, over all 24 stops with a
+   014 log, cold ones included. The ranks do not move — every grade's
+   correlation with the three measures agrees to within 0.08, because
+   the counter steps in twelves and its rises and its sum are nearly
+   proportional. With the cold stops in, every grade correlates
+   *negatively* (−0.28 to −0.63): a cold idle is the roughest on engine
+   speed and the one 014 does not count, so temperature drives both.
 2. **Design, to be settled in the implementation:** 0x604's
    `IdleHealth` byte keeps its position and its 255 = not converged; its
    unit becomes **dips a minute over settled idle**, from `dips_cheap()`'s
