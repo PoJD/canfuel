@@ -66,8 +66,10 @@ Everything else settled against is in `refuted.md`.
   The lead is **H10** — the counting follows 055's learned idle air value —
   with **H3**, an unmetered leak at the intake, as its likeliest cause,
   then H2 and H8 (*The idle's candidates, ranked*).
-- **Around the idle:** S2 (an occasional puff from the exhaust) and S11 (a
-  hiss at the back of the engine at a warm idle, not yet placed).
+- **Around the idle:** S2 (an occasional puff from the exhaust), S11 (a
+  hiss at the back of the engine at a warm idle, not yet placed) and S14
+  (bangs from the exhaust on a downshift without a blip — the old
+  "cold-overrun burble", back warm on the new injectors).
 - **The cylinder 4 knock window: S4 and S5**, a cluster of its own
   (H5, H6), not pursued until the idle is solved (`plan.md`, *The rule*).
 - **S6, the exhaust joint behind the converter** — comfort only, behind
@@ -1121,6 +1123,59 @@ battery reconnected, engine not run): 098 gave **ADP OK** (photographed:
 **the same routine, 20 s, as the old one**. By the rule above that is
 *how these parts behave*. **S13 closed on this**, its column out of every fit table.
 
+### S14. Bangs from the exhaust on a downshift without a blip
+
+*Owner-reported, 4/10/2026; added as a symptom at the owner's decision.*
+On a downshift **without a throttle blip**, the exhaust often lets out a
+**series of small bangs**, as if unburnt fuel were burning in it. What
+the owner has observed:
+
+- **with a blip, almost never**; without one, often but not every time;
+- **only on a downshift** — not on a plain lift-off in gear;
+- about **one to two seconds after the clutch comes up** (*the owner's
+  estimate, not timed*);
+- **warm, and clearly** on 4/10 — not a cold-engine effect;
+- often **right after a misfire episode**, after an idle for example —
+  the owner's impression, never aligned with 014;
+- **the same sound as the cold-overrun burble** that `refuted.md` A1
+  and C1 put down to the old injectors. Those were replaced on 23/9, so
+  that attribution does not hold; both entries now say so;
+- none of the owner's other cars does it. The owner avoids doing it
+  until it is fixed.
+
+**What happens in that second** (*measured*, `coastscan.py`, `refuted.md`
+C1): the ECU shuts the injectors **0.78–1.39 s after the pedal comes up**
+— counted from the lift, not from the clutch. On a downshift the pedal
+comes up first, so by the time the clutch is released much of that delay
+has gone, and **"one to two seconds after the clutch" can fall on either
+side of the cut.** The two sides mean different things:
+
+- **Before the cut** — the engine is pulled up by the wheels with the
+  throttle shut, the highest manifold vacuum it ever sees and the
+  thinnest charge, and it is still being fuelled. A charge that fails to
+  fire there goes into a hot exhaust and burns. That is a misfire at the
+  lightest load, the same family as S3, and **where 014 is blind**: it
+  does not count on the overrun or in transients (S3). A blip opens the
+  throttle and matches the speed, which is why it nearly stops it
+  (*reasoned*). The delay itself is the factory's and every engine has
+  it, so this is not "normal" by itself — a healthy engine burns that
+  charge.
+- **After the cut** — fuel arriving with none commanded: an injector
+  that does not seal, or a regulator diaphragm passing fuel at high
+  vacuum (H7). This is the reading C1 took for the cold burble.
+
+The oxygen to burn it needs no leak — a misfire leaves its own air — but
+a leak in the exhaust ahead of the converter (H2), or S6's joint, would
+add to it (*general*).
+
+**Test, when a capture is being taken anyway:** one or two downshifts
+without a blip, each written into the chat ("3→2, bangs" / "no bangs")
+and aligned to the capture by the jump in engine speed as the clutch
+comes up, not by when the message arrived. 0x480 then says whether fuel
+was still being commanded when it banged. A search of `24`–`29` found
+no unblipped downshift clean enough to read; the bangs themselves are
+not on the bus.
+
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** Whether 0x420's `OilTemp` is right is a firmware
@@ -1176,10 +1231,13 @@ full-load enrichment (*general*), for all four cylinders alike.
 | S10/S11 ↔ S1/S3 | **S10: the hole of 3/10 bore on 014 that day; closed. S11: untested, not weak** | nothing measured so far *could* have shown a link, so "unknown" is no evidence against one. Oil outside the engine does not touch combustion; what can is the cause or a neighbour: a vacuum leak at the unsprayed rear hissing (H3/H9), the ventilation's oil fouling the throttle (H9 → H8), an exhaust leak ahead of the probe (H2), oil reaching a lead boot (H4, 1e) — seen on 26/9 at the boots of 3 and 4, but **not a cause**: the idle was as rough on 17/9 with new, clean leads (S10). The one existing datum that points this way: the idle is better under load, which is what a small unmetered leak does |
 | S12 ↔ S4 | **S12 closed 4/10/2026**; was possible, untested | the knock retard is a tip-in event and a retard is lost torque. Never aligned in time |
 | S12 ↔ S1/S3 | **S12 closed 4/10/2026**; was possible, untested | both start from the bottom of the load range; a lean or weak-spark cause would show in both |
+| S14 ↔ S3 | **possible, owner-reported** | the bangs often follow a misfire episode; never aligned, and 014 does not count on the overrun, so it cannot be |
+| S14 ↔ S2 | **possible** | both are fuel or air burning in the exhaust. A misfire puffs at idle and bangs on the overrun |
+| S14 ↔ S6 | **possible** | a leaky joint draws air in and feeds an afterburn; behind both probes, so it cannot cause the misfire |
 | S13 ↔ S1 | **weak** | the one link was an adaptation that never completes, leaving the idle on unfinished values (H8); **refuted on the old part 29/9** — 098 completed and the 20 s routine ran unchanged after it (S13). **Closed 2/10/2026**: the new part does the same |
 
 **So there are two separate clusters**, and they are worked separately below:
-**the idle** (S1, S2, S3) and **the cylinder 4 window** (S4, S5). S6 matters
+**the idle** (S1, S2, S3, and S14 on the overrun) and **the cylinder 4 window** (S4, S5). S6 matters
 only if it leaks ahead of the front probe; S7, S8, S9 and S12 are
 closed. **A third cluster, the back of the head
 (S10, S11)**, appeared on 26/9 — S10 is closed (4/10/2026), the hiss
@@ -1204,15 +1262,22 @@ hesitation, fits a lean tip-in (H3/H9, H7), a moment of knock retard (H5)
 and weak spark under sudden load (H4); **S13**, the throttle's routine, was
 H8's alone.
 
+**S14 was added on 4/10/2026** and judged the same way for every row: a
+misfire at the thinnest charge (H3 ✔, H1/H4/H10 ~), air ahead of the
+converter to burn it in (H2 ✔), or fuel after the cut (H7 ~, the one
+branch S14's test can split off). H0 ✘: the owner's other cars do not do
+it, and it follows the misfire episodes. H5, H8 and the closed H9 say
+nothing about it.
+
 ### H0. The idle is normal for this engine — and there is no fault to find
 
 **The one hypothesis nobody has been able to test.** An AQY with 26 years on
 it might simply idle like this, and every number above might be its normal
 state.
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ~ | ~ | ✘ | — | ~ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ~ | ~ | ✘ | — | ~ | — | ✘ |
 
 - **Against:** 014 reads **12–120 against VW's own 0–5**. The old converter
   burned through, which needs raw fuel in it. The owner feels it.
@@ -1262,9 +1327,9 @@ compares with this car's:
 A hydraulic lifter that bleeds down or pumps up leaves a valve slightly open
 or late, intermittently, and gets worse as the oil thins. *General.*
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ✔ | ✔ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ✔ | ✔ | — | ~ |
 
 - **For:** with H4, one of the **two candidates that can explain both
   clusters at once**: an
@@ -1313,9 +1378,9 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in;
 under load it only blows out. *General.* The front probe reads lean, the rear
 loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ~ | ✔ | ~ | ✘ | ✘ | ✔ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ~ | ✔ | ~ | ✘ | ✘ | ✔ | ✔ |
 
 - **For:** the puff, idle only, an old manifold that has lived through years
   of misfires, the rear probe on the rich side at hot idle
@@ -1361,9 +1426,9 @@ Nothing else about the argument above changes until the test is done.
 Air past the MAF leans one cylinder at idle, where air flow is smallest.
 *General.*
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ✔ | ~ | ✔ | ~ | ✘ | ~ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ✔ | ~ | ✔ | ~ | ✘ | ~ | ✔ |
 
 - **For:** the regime is exactly right. A lean cylinder can also knock on a
   tip-in (S4). Several of the forum cases were a breather hose. The idle is
@@ -1511,9 +1576,9 @@ The battery itself is new (end of August 2026, the old one found dead during
 the headlight work), so the thread's one confirmed
 electrical fix — a new battery — has in effect already been tried here.
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ~ | ✔ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ~ | ✔ | — | ~ |
 
 - **For:** with H1 the only candidate that could explain **both clusters**: a
   weak spark misfires at idle and high vacuum, and a noisy ground puts a
@@ -1825,9 +1890,9 @@ Three candidates, all *general*:
 - **An injector click** that slides into the window as injection timing moves
   with speed. No knock log exists from before the new injectors.
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| — | — | — | ✔ | ✔ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| — | — | — | ✔ | ✔ | — | — |
 
 **Tests:** check G66's torque and connector; look over everything refitted in
 September for a loose bracket, clip or heat shield with the engine held at
@@ -1906,9 +1971,9 @@ changed in September, and neither has ever been gauged. (The bad cold start
 that once pointed here is closed, S7: it was the old injectors.)
 The owner's own remaining candidate is one of the new injectors.
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | ~ |
 
 - **Against, for the idle:** four new injectors and a new filter changed
   nothing in S1; the trims are near zero; a leaking seat adds fuel at idle and
@@ -1972,9 +2037,9 @@ idle in group 003 is that control working). A dirty throttle body or a lost
 throttle adaptation makes the governor hunt. *General.* The MAF swap halving
 S1 shows that the idle is sensitive to how air is metered and controlled.
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | — | — |
 
 - **Against:** a hunting governor is a slow oscillation, while S1 is a
   sudden dip lasting one or two firings and recovering in a quarter of a
@@ -2500,9 +2565,9 @@ no longer seals is a door of exactly this kind (*reasoned*) — and with
 the patch shown original, the only concrete one the job found here; a finding on a part, not a symptom, so the fit
 table stays as it is.
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | ✘ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | ✘ | — |
 
 *4/10/2026:* **right about S10** — the cover gasket was the leak, and it is
 repaired (S10, closed). S11 is now the hiss alone, and it **outlived the
@@ -2850,9 +2915,9 @@ On 4/10 014 followed it, stop by stop, and not the temperature:
   run-in engine sits negative anyway (`plan.md`, *055 is read as the sum
   of its two air fields*), so the sign alone is no fault.
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ~ | — | ✔ | — | — | ~ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ~ | — | ✔ | — | — | ~ | ~ |
 
 S1 only partly: engine speed barely moved with 014 on 4/10 (S3); S11 only
 through H3, as the leak that would make the ECU learn air away.
@@ -3032,7 +3097,9 @@ reasoning except as H9's oil, which the repair answered; the order stands.
 Re-read again when S9 and S12 closed: S12 was a supporting point for H3
 ("also fits S12") and nothing more, S9 was in no row; the order stands.
 H9 closed the same evening (`refuted.md` A15); row 2 is H3 alone, with
-the breather hose folded into it.*
+the breather hose folded into it.* *Re-read 4/10/2026 when S14 was
+added: it fits H3 and H2 alike and leaves the order as it stands; it
+would lift H7 only if its test finds bangs after the cut.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|

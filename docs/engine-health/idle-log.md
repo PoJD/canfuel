@@ -262,7 +262,7 @@ fit (it counted at −0.28, with the hole open).
 | the MAF, 24/9 | **yes** — the rich trim, and the idle smoother on engine speed |
 | the job of 1–2/10 | **probably, for smoothness at the hot idle**: about 9 dips a minute (24/9), 5 (3/10, a one-minute stop) and 4.4 (4/10). The middle band did not move. Which part — the seated injectors, the breather, the throttle — **cannot be told**; they went in together |
 | the right gasket, 4/10 | **for the oil, yes.** For 014: the zero of session A came on fresh adaptations, and session B counted again, so **not shown** |
-| the plugs, leads, injectors, coil | they did not fix the idle; the old injectors probably caused the bad cold start and the cold burble, which are gone |
+| the plugs, leads, injectors, coil | they did not fix the idle; the old injectors probably caused the bad cold start, which is gone. *This also said "and the cold burble"; that came back on the new injectors, warm, 4/10 (`open.md` S14)* |
 
 The owner's honest note at the end of the day: the morning's "calmest idle
 yet" was measured against the noisy 3/10 (a belt that had probably rubbed on

@@ -32,8 +32,10 @@ long version of `open.md`, which is in git:
 burned-through converter, the −4.7 % idle trim and the cold overrun burble.
 **Refuted by:** four new Bosch injectors (23/9) and the stumble and the
 misfire counter both stayed (post-repair drive, 24/9).
-**What survives:** the old injectors probably did cause the cold-overrun burble
-and part of the bad cold start (C1, C3). They were never bench-tested; they are
+**What survives:** the old injectors probably did cause part of the bad
+cold start (C3). *Until 4/10/2026 this read "the old injectors probably
+did cause the cold-overrun burble and part of the bad cold start (C1,
+C3)": the burble is back on the new ones, warm (C1, `open.md` S14).* They were never bench-tested; they are
 kept, but **not labelled by cylinder** (this said "labelled" until
 28/9/2026). By inspection at removal, cylinder 1's nozzle was the dirtiest and
 cylinder 4's the cleanest (*owner*, numbering confirmed 28/9/2026); the loose
@@ -225,6 +227,15 @@ exactly as warm: in `17_drive_property_z1` the four warm cuts shut
 1.19–1.30 s after the lift and gave fuel back at 1700–1754 rpm. So the burble was fuel arriving with none commanded — the old
 injectors — and it has not been heard since. Gap: coolant below ~60 °C, the
 first two minutes of driving, has no coast recorded.
+
+**Un-refuted in part, 4/10/2026** (`open.md` S14): the measurement above
+stands — the ECU does cut fuel cold — but **the conclusion drawn from it
+does not.** The owner hears the same sound, warm, on the new injectors,
+on a downshift without a blip, one to two seconds after the clutch comes
+up. The cut comes 0.78–1.39 s after the *pedal*, so that can fall before
+it, where the bang is a fuelled charge that did not fire rather than
+fuel nobody commanded. "The old injectors, and not heard since" was
+wrong on both counts.
 
 ### C2. "The rich trim is from new injectors of a different flow class, from fuel in the oil, from a leaking seat, or from rail pressure" — measured / argued
 
