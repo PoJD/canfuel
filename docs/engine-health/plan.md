@@ -566,8 +566,18 @@ deciding whether the next is needed:
      Never anything flammable in it, never workshop air: the pressure
      only has to make the smoke flow;
    - **seal the intake behind the MAF** — the hose between the MAF and
-     the throttle off, a glove or bag clamped into it — and feed the smoke
-     there or through a vacuum line (the brake-servo hose, disconnected);
+     the throttle off **at the MAF's end**, a glove or bag clamped into
+     it. **Not through the MAF**: oil smoke over its sensing element is
+     the one thing here that can spoil a part (*general caution, not
+     VW's*). The cost is that the MAF-to-hose clamp is not tested — check
+     it by hand;
+   - **feed the smoke through the fuel pressure regulator's vacuum hose**
+     (*owner's choice, 4/10/2026*: at the front, the easiest to reach),
+     taken off at the regulator, so the smoke enters the manifold behind
+     the plate; the brake-servo hose would do the same. ⚠ **A wet hose or
+     a smell of fuel in it** when it comes off is itself a finding: the
+     regulator's diaphragm leaking into the manifold (*general*; the
+     regulator is from 7/2026, `vehicle-history.md`);
    - **hold the throttle open** (a string on the cable or a hand on the
      quadrant) so the smoke reaches the plenum;
    - a few minutes of smoke, a torch, and look at the throttle's flange,
