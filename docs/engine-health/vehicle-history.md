@@ -334,6 +334,15 @@ right, over the wiring harnesses and down to the driveshaft, none onto the
 exhaust manifold or the back of the head; wiped off where reachable
 (*owner*, 4/10/2026).
 
+**The right gasket in hand, 4/10/2026.** Elring `915.653` bought, with
+solid, ribbed half-moons and metal sleeves like the gasket that came off
+(*owner, photographed*: `photos/cover-gasket-915653-halfmoon.jpg`,
+`photos/cover-gasket-915653-whole.jpg`; the number itself is not legible
+in them). The worst of the oil cleaned off the cables; **the coil's body
+and its leads dry** after the 3/10 leak had run down as far as the coil.
+The oil left on the gearbox is left there, as cosmetic (*owner*;
+`photos/cover-leak-2026-10-04-cleaned.jpg`).
+
 ---
 
 ## Electrical work, 2026
@@ -560,6 +569,9 @@ a later reader can see what was being judged.
 | [`cover-gasket-325070-open-arch.jpg`](photos/cover-gasket-325070-open-arch.jpg) | Elring `325.070`, the wrong part: an open arch at the same place |
 | [`cover-gasket-325070-open-arch-2.jpg`](photos/cover-gasket-325070-open-arch-2.jpg) | the same arch from another side |
 | [`cover-gasket-325070-profile.jpg`](photos/cover-gasket-325070-profile.jpg) | `325.070`'s taller ribbed section |
+| [`cover-gasket-915653-halfmoon.jpg`](photos/cover-gasket-915653-halfmoon.jpg) | Elring `915.653`, the right part, 4/10/2026: a solid half-moon and a sleeved bolt hole |
+| [`cover-gasket-915653-whole.jpg`](photos/cover-gasket-915653-whole.jpg) | the same gasket whole, beside the new upper plenum gasket |
+| [`cover-leak-2026-10-04-cleaned.jpg`](photos/cover-leak-2026-10-04-cleaned.jpg) | the coil, its leads and the harness after the worst of the oil was cleaned off, 4/10/2026 |
 
 **What they show, as description rather than interpretation.** The can carries
 heavy surface corrosion over most of its body, and the joint at the clamp is

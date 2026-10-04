@@ -61,6 +61,11 @@ reassembly with the right gasket, then the test.
   cross-reference, not checked by VIN. **Compared with the old gasket in
   the shop, piece by piece** — half-moons, sleeves, the number and
   spacing of the holes — before it is bought;
+  **Bought 4/10/2026 and judged the right part** (*owner*): solid,
+  ribbed half-moons and metal sleeves at the bolt holes, as on the
+  gasket that came off (`photos/cover-gasket-915653-halfmoon.jpg`,
+  `photos/cover-gasket-915653-whole.jpg`). The part number is not legible
+  in either photograph, so it rests on the owner's word;
 - **upper plenum gasket Elring `271.230`** — VW: *always new* (the torque
   table below); the number was ordered by the garage by VIN on 17/9;
 - **Dirko** (Elring `030.793`), in hand.
@@ -90,6 +95,11 @@ zero once more and **098 is run before the first start** (VW's manual,
    bracket**, **the lead boots of 3 and 4 inside and out** (oil in a boot
    is noted, `open.md` H4), the manifold below. Keep cleaner out of the
    open ports. Both faces clean and dry.
+   *4/10/2026 (owner):* the worst of the oil cleaned off the cables;
+   **the coil's body and its leads dry**. What ran down onto the gearbox
+   stays, **as cosmetic** — the owner's decision
+   (`photos/cover-leak-2026-10-04-cleaned.jpg`). Still to confirm here:
+   the boots of 3 and 4 *inside*, and the two faces of the joint.
 4. [ ] **The new gasket into its groove all the way round**, both
    half-moons seated, checked by finger before the cover goes down.
 5. [ ] **Dirko at the four arch points**, the step from arch to straight
