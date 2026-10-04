@@ -670,8 +670,13 @@ No separate cold baseline was taken.
 **Leaking again on the first warm run, 3/10/2026** (`vehicle-history.md`,
 *The first warm run*): dry at a cold start, then **a stream of oil at
 the half-moon arch at cylinder 4's end** by the in-band stop, about 20
-minutes after the start, and down to the coil. Nowhere else along the
-joint. The candidates, none settled, all *reasoned* except the last:
+minutes after the start, and down to the coil. **Not only there**: with
+the cover off, a little oil also at **the back of the joint**, so it
+probably leaked there too (*owner*, 4/10/2026; this used to say "nowhere
+else along the joint", which was the look from outside on 3/10). About a
+litre in all ran down **to the right, over the wiring harnesses and down
+to the driveshaft** — none onto the exhaust manifold or the back of the
+head (*owner*). The candidates, none settled, all *reasoned* except the last:
 
 - **the gasket out of its groove at that arch** — set in crooked as the
   cover went down, so the corner was never under the gasket. The
@@ -701,7 +706,9 @@ about 1 cm across** from the crankcase to the outside at cylinder 4's end.
 It also has **no metal sleeves** at the bolt holes and a taller, softer
 section. The gasket that came off has solid, ribbed half-moons and
 sleeves. So the joint could not have sealed whatever the nuts, the Dirko
-or the strips did, and the four candidates above are moot.
+or the strips did, and the four candidates above are moot. A soft section
+with nothing to stop the nuts also fits the oil at the back of the joint
+(*reasoned*).
 
 **How the wrong part was chosen.** `325.070` (cross-referenced to VW
 `06A 103 483 C`) was matched **to the car, not to the engine**, by

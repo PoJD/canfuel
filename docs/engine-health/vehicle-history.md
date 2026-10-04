@@ -302,7 +302,8 @@ end.** Session A (`open.md` S3, *Session A*): coolant topped up cold
 beforehand, the MAF left as it was. Dry at the cold start. **At the
 in-band stop, about 20 minutes after the start, oil running out "in a
 stream" at the half-moon arch at the gearbox end of the head, cylinder 4's
-end** — nowhere along the front, the back or the timing-belt end (*owner,
+end** — from outside, nowhere along the front, the back or the timing-belt
+end (*owner,
 photographed*: `photos/cover-leak-2026-10-03-cyl4-end.jpg` and, below it,
 `photos/cover-leak-2026-10-03-below.jpg`). It ran down **as far as the
 ignition coil**, and the drive home was short and gentle.
@@ -327,6 +328,11 @@ listed for AZJ, BER, AZG and AEG and not for AQY**; Elring `915.653` is
 listed for AQY and looks like the old one (autokelly, 4/10/2026). Why the
 wrong one was ordered: `open.md` S10, *The cause*. The right part goes
 on next (`plan.md`, step 1b).
+With the cover off, **a little oil at the back of the joint too**, which
+the look from outside had not shown. **About a litre** had run down to the
+right, over the wiring harnesses and down to the driveshaft, none onto the
+exhaust manifold or the back of the head; wiped off where reachable
+(*owner*, 4/10/2026).
 
 ---
 
