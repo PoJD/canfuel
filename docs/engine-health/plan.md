@@ -74,10 +74,10 @@ costs no idle. *General practice, not VW's:*
 - **feed the smoke through the fuel pressure regulator's vacuum hose**
   (*owner's choice*: at the front, the easiest to reach), taken off at
   the regulator, so the smoke enters the manifold behind the plate; the
-  brake-servo hose would do the same. ⚠ **A wet hose or a smell of fuel
-  in it** when it comes off is itself a finding: the regulator's
-  diaphragm leaking into the manifold (*general*; the regulator is from
-  7/2026);
+  brake-servo hose would do the same. **No fuel in it** (*owner*,
+  4/10/2026): it was off several times during the intake work of 1–4/10
+  and never smelled of petrol, so the regulator's diaphragm is not
+  leaking into the manifold (*general*: that is how such a leak shows);
 - **hold the throttle open** (a string on the cable or a hand on the
   quadrant) so the smoke fills both sides of the plate;
 - a few minutes of smoke, a torch, and look at the throttle's flange and

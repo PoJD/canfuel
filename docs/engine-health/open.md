@@ -1908,6 +1908,11 @@ retard should stay small.
 
 ### H7. Fuel delivery at idle: rail pressure, one new injector
 
+*4/10/2026 (owner):* the regulator's vacuum hose came off several times
+during the intake work of 1–4/10 and never smelled of petrol — no sign
+of a diaphragm leaking fuel into the manifold (*general*: that is how
+one shows).
+
 The regulator (7/2026) and the pump are the parts of the fuel path not
 changed in September, and neither has ever been gauged. (The bad cold start
 that once pointed here is closed, S7: it was the old injectors.)
