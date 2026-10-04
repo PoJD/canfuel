@@ -156,8 +156,14 @@ carries a generated block; a figure typed into prose only goes stale.
     repair — holding only what is open: symptoms, hypotheses, tests.
     `refuted.md` takes whatever is settled against. `plan.md` is the planned
     fixes in order, emptied as they are done. **All three have an end date.**
-    `vcds.md` (the VCDS blocks and how to record them) and
-    `vehicle-history.md` (the car's record) are permanent.
+    `vcds.md` (the VCDS blocks and how to record them),
+    `vehicle-history.md` (the service record: parts, dates, distances —
+    a service book and nothing more) and **`idle-log.md`** (the diary of
+    the idle investigation: the picture at each stage, what was done and
+    measured, and what a repair is *not* known to have achieved; kept
+    current until the idle is fixed, then kept as reference for other
+    owners) are permanent. **Each step `plan.md` completes adds an entry
+    to `idle-log.md` in the same commit.**
     **Every new observation the maintainer reports about the car** — a sound,
     a smell, a leak, a reading — **is flagged: say whether it could be a new
     symptom in `open.md` (or change an existing one) and why, then ask. The

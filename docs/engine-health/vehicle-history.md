@@ -7,6 +7,11 @@ elsewhere in `docs/` lean on facts that had, until now, no written home:
 that the car has been chipped, that the plugs are old, that both oxygen
 sensors date from the year it was bought.
 
+**It is the service book and nothing more**: what was replaced or
+serviced, when, at what distance, with what part. **How the engine's idle
+was investigated — what each job found and what each test showed — is
+`idle-log.md`.**
+
 **It is a permanent document, unlike `open.md`.** That one carries
 an end date and is deleted when its investigation closes.
 This one outlives them: when the investigation ends, the history it was
@@ -164,7 +169,7 @@ here is owner-supplied from service records.
 | Fuel filter | **12/2017**, and possibly again 10/2022 — see below | 4 or 9 years, **not established** |
 | **Fuel filter, new**, Bosch `0 450 905 318` | **23/9/2026**, with the injectors | ~0 |
 | MAF sensor | 7/2018 *(connector cleaned 7/2026)* | not recoverable — see *Distance and use* |
-| **MAF sensor, new** | **24/9/2026**, genuine VW `06A 906 461 A`; the 2018 unit is kept. **Noticed 3/10/2026** (*owner*): the connector points to the front of the car, as on the 2018 unit before it; a video of another VW with a similar engine showed it pointing to the firewall. **Whether this one is turned is not settled** — photos of other cars show it as it is here — *this said "turned 180°, found" until later the same day*. The flow direction is right either way (the housing's two ends differ, airbox side and hose side), the connector is plugged in and its wires are not under tension; **only the harness is not clipped into its holder at the back**. *The owner's assessment: cosmetic either way.* **Then, the same day: "almost certainly" turned round** (*owner*, by the harness). **Left as it is, owner's decision before session A, 3/10/2026**: the harness reaches its holder this way too, so there was nothing to gain from turning it. **The wiggle test, 4/10/2026** (`open.md` S3, *Session A after step 1b*): 30–60 s of moving the connector and harness at a hot idle changed nothing — 003's air never dropped out (3.06–3.54 g/s against 2.92–4.03 in the three minutes before), and the misfires counted there were already counting before the hand went near it (*owner*, who watched 014 before going to the engine). **The contact is sound; the unclipped harness is cosmetic, as assessed**. **The hose from the MAF to the throttle is not held by the original clips** (*owner*, 4/10/2026, fitted by him at some earlier date): at the MAF a pipe clamp — a rubber-lined band drawn up by two bolts each side — and at the throttle a plain metal band clamp with one screw | ~0 |
+| **MAF sensor, new** | **24/9/2026**, genuine VW `06A 906 461 A`; the 2018 unit is kept. The hose from it to the throttle is held by the owner's own clamps, not VW's: a rubber-lined two-bolt pipe clamp at the MAF, a one-screw band clamp at the throttle. Its orientation and the wiggle test: `idle-log.md`, *The MAF* | ~0 |
 | Chiptuning, described by the owner as mild | 6/2018 | — |
 | Dipstick, dipstick cap and a seal recorded as "těsnění ventilu" (valve seal), **against an oil leak**. *Owner's recollection (27/9/2026), not certain:* the dipstick's narrow neck was cracked and leaking, and the seal was probably the rubber the dipstick seats in — not the valve cover gasket. The record itself is no longer kept | **12/7/2018**, service record | — |
 | Timing belt and water pump | **10/2017** | the whole ownership, ~27,800 km |
@@ -179,10 +184,10 @@ here is owner-supplied from service records.
 | Small hose from the secondary-air combination valve to the intake ahead of the MAF | torn off during the August heater work; fault **16795 / P0411** (secondary air, incorrect flow) photographed **11/8/2026 16:39**, hose refitted that day or a few days after | — |
 | Heater replacement, dashboard dismantled | **summer 2026, before 11/8** *(owner-reported)*; **the battery was out and disconnected for more than a week** — every ECM adaptation, the throttle's included, started again after it | — |
 | **Exhaust manifold** (stainless, double-flow, SSP 233 p. 7) | **original, never replaced** *(owner nearly certain)* | the car's |
-| Injectors `06A 906 031 C` / Bosch `0 280 155 791`, new from the UK | delivered 22/9, **fitted 23/9/2026** by the owner, **three of the four not fully home in the manifold** — see below | ~0 |
+| Injectors `06A 906 031 C` / Bosch `0 280 155 791`, new from the UK | delivered 22/9, **fitted 23/9/2026** by the owner, three of the four not fully home in the manifold until refitted on 1/10/2026 (`idle-log.md`) | ~0 |
 | Upper intake manifold gasket, **Elring `271.230`** (sold as the equivalent of VW `06A 129 717`; the parts shop matched it to the VIN) | **9/2026, twice** *(owner, 1/10/2026)*: **17/9 at the garage** with the plugs, and **23/9 by the owner** with the injectors; packaging dated 17/9/2026 (Carvo s.r.o.) — *read off the photographed packaging*. *This row used to give one fitting, by the owner.* The 23/9 one came off whole on 1/10/2026 and **a third new one went on 2/10/2026** (*The valve cover and throttle job*, below) | ~0 |
 | **Throttle body, new**, Pierburg `7.03703.13.0` (cross-referenced to `06A 133 064 H`, without cruise control), with a new flange gasket | **2/10/2026**, by the owner; 098 *ADP OK* | ~0 |
-| **Valve cover gasket** Elring `325.070` — ⚠ **the wrong part, for another engine; off again 3/10/2026** (*The wrong gasket*, below) —, **crankcase breather** Febi `32452` (its ring fitted), **filler cap ring** Febi `100690` (= `06A 103 483 D`), sealant Elring `030.793` | **2/10/2026**, by the owner | ~0 |
+| **Valve cover gasket** Elring `325.070` — ⚠ **the wrong part, for another engine; off again 3/10/2026** (`idle-log.md`, *The wrong gasket*) —, **crankcase breather** Febi `32452` (its ring fitted), **filler cap ring** Febi `100690` (= `06A 103 483 D`), sealant Elring `030.793` | **2/10/2026**, by the owner | ~0 |
 | **Valve cover gasket, the right one**, Elring `915.653` (listed for AQY; solid half-moons, metal sleeves), on Dirko Elring `030.793`, with a new upper plenum gasket Elring `271.230` | **4/10/2026**, by the owner | ~0 |
 | Injectors' air-shroud line: **new 8 mm sleeves** on the rigid pipe | **1/10/2026**, by the owner | ~0 |
 | Throttle vacuum elbow `06A 133 374` (tee to the throttle's top spigot) — **replaced by a longer plain hose**, the new throttle's spigot pointing the other way | **2/10/2026**, by the owner; the old elbow is kept | ~0 |
@@ -232,160 +237,12 @@ as mild. It sits between the 8.8 of
 2018 and the 9.9 of 2019 in the table above, which is suggestive and is not
 evidence — see below.
 
-### The valve cover and throttle job, 1–2/10/2026
+### The valve cover and throttle job, 1–4/10/2026
 
-*By the owner, at home; every item photographed and reported as it was
-done. The full working checklist is in git (`plan.md` before 3/10/2026).*
-One job by decision, so that the engine was opened once — and at the cost
-that an improvement cannot be put down to one part.
-
-**What was done.** Upper plenum off and aside; valve cover off; breather
-out. Oil cleaned off the head, the cover joint, the plug area and the
-manifold. **Injectors out and refitted one by one**, each clicked home on
-its own, then the rail on at 10 Nm — cylinder 2's damaged manifold-end
-O-ring replaced with the intake-side ring of an old injector (all four
-then flush, photographed). Plugs left in (new since 17/9, not reachable
-from the back); leads ohmed (~6 kΩ each) and refitted 1, 4, 2, 3
-clockwise from the top tower. Injector windings 15.9 Ω each. The
-injectors' air-shroud line refitted with new sleeves. The breather hose
-and the MAF-to-throttle hose cleaned of oil. **New cover gasket** with
-Dirko at the four arch points; **the cover nuts with a ratchet, by feel,
-about 4 Nm at most**, gone round again after the middle ones slackened
-as the gasket settled. **New plenum gasket**, plenum at 10 Nm. **New
-throttle** on a new gasket at 10 Nm, both coolant hoses back, the vacuum
-elbow replaced by a longer hose (it would not reach the new spigot,
-which was not turned: it sits at manifold vacuum). **New breather** on
-its own ring, in the cover by its bayonet alone; the new `100690` in the
-old cap. The throttle cable's slack taken up (*owner's decision*).
-
-**What it found** (the detail is in `open.md`): the old breather **sat
-loose in the cover on a ring that had flowed out of shape** — larger than
-the new, marked, almost liquid in places (H9); **six of the eight cover
-nuts loose by hand** over a gasket gone **hard, almost like plastic**
-(S10); the vacuum elbow **hard with age**; the old throttle **silent
-where the new one's idle switch clicks**, with an **idle-stop face worn
-1–2 mm smaller** (H8). Found sound: both plenum gaskets, the June
-throttle gasket (and no protrusion on the flange), the plenum's face, the
-hoses at the back, every injector connector, no emulsion under the cover.
-The patch on the old breather turned out original (`refuted.md` C15).
-
-**Before the first start, 2/10/2026.** No fuel at the rail after priming.
-**098 *ADP OK*** (10.4°, 59.2 %, *volnoběh*). The ignition-on routine
-**still 20 s** with the new part, which closed S13 (`refuted.md` C16).
-**054: 5.6° and *volnoběh* at rest, 91.1° to the floor**, the switch
-changing to *část. zatíž.* — inside VW's figures before and after the
-cable was taken up. Battery reconnected, so every adaptation started
-from zero (055's learned value read 0.00); **no reset through VCDS**,
-decided, since there was nothing left to reset.
-
-**The check start, 2/10/2026** — standing only, no drive, no bus
-capture, on a part-warm engine (it had run a minute just before);
-`test/fixtures/vcds/vcds-postrepair-checkstart-003-014-055.csv`. Fault
-memory empty afterwards. **No leaks** seen. After the step down from the
-warm-up speed the standing idle matched `19`'s at the same stage — rpm
-794 ± 14.0 against 798 ± 14.5, timing 3.2 ± 2.3° against 4.0 ± 2.6° —
-with a little less air (3.96 against 4.28 g/s), which the warmer start
-accounts for; no leak signature, but the comparison was never a clean
-one. **014 counted 13 twice at ~71–88 s**, cold, and nothing after; one
-dip to 680 rpm at ~262 s. `IdleHealth` off the MFD peaked near 200 at
-first and read **57 at its lowest** later that evening, cold, with the
-A/C, blower, lights and rear window on — fresh adaptations, so neither
-compares. **A ticking at the timing-belt end** that softened when the
-upper belt cover was pressed went once the cover was taken off and
-refitted (*owner*). **The belt end is completely dry**, nothing
-seeping anywhere behind the guard — so neither the camshaft seal nor the
-bearing cap 1 joint just resealed leaks there, on a cold engine
-(*owner*, 3/10/2026; a toothed belt runs dry by design). **No smoke or hiss at the back** (S11), on a cold or
-part-warm engine only.
-
-**The first warm run, 3/10/2026 — the cover leaks again, at cylinder 4's
-end.** Session A (`open.md` S3, *Session A*): coolant topped up cold
-beforehand, the MAF left as it was. Dry at the cold start. **At the
-in-band stop, about 20 minutes after the start, oil running out "in a
-stream" at the half-moon arch at the gearbox end of the head, cylinder 4's
-end** — from outside, nowhere along the front, the back or the timing-belt
-end (*owner,
-photographed*: `photos/cover-leak-2026-10-03-cyl4-end.jpg` and, below it,
-`photos/cover-leak-2026-10-03-below.jpg`). It ran down **as far as the
-ignition coil**, and the drive home was short and gentle.
-In the photograph the gasket's edge shows as a light strip along the
-joint, pushed out into a loop at that corner, with oil pooled on the head
-below it (*Claude's reading of a photograph*). What the owner noticed
-afterwards: **on that side the wiring-loom bracket sits under the strips
-that hold the cover down**, while the video of the job has the front and
-rear strips on the cover and the side bracket on top of them — which can
-load the cover unevenly (*owner*). **About 0.5 l of oil topped up** at
-home, the dipstick having read at its bottom mark (*owner*).
-
-**The wrong gasket, the same night.** The owner took the plenum and the
-cover off again rather than wait, and **the fault was the part, not the
-fitting**: the new Elring `325.070` has, at the half-moon, **an open arch
-that leaves a hole about 1 cm across** into the crankcase once
-assembled, where the gasket that came off on 1/10 has **a solid, ribbed
-half-moon**. The new one also has **no metal sleeves** at the bolt holes,
-which the old one has, and a taller, softer section (*owner, photographed
-side by side*). No part number found on the old gasket. **`325.070` is
-listed for AZJ, BER, AZG and AEG and not for AQY**; Elring `915.653` is
-listed for AQY and looks like the old one (autokelly, 4/10/2026). Why the
-wrong one was ordered: `open.md` S10, *The cause*. The right part goes
-on next (`plan.md`, step 1b).
-With the cover off, **a little oil at the back of the joint too**, which
-the look from outside had not shown. **About a litre** had run down to the
-right, over the wiring harnesses and down to the driveshaft, none onto the
-exhaust manifold or the back of the head; wiped off where reachable
-(*owner*, 4/10/2026).
-
-**The right gasket in hand, 4/10/2026.** Elring `915.653` bought, with
-solid, ribbed half-moons and metal sleeves like the gasket that came off
-(*owner, photographed*: `photos/cover-gasket-915653-halfmoon.jpg`,
-`photos/cover-gasket-915653-whole.jpg`); **`915.653` read off the
-package's label**, EAN `4041248115435`
-(`photos/cover-gasket-915653-label.jpg`; *this used to say the number was
-not legible in the photographs*). The worst of the oil cleaned off the cables; **the leads dry and oil on one part of the coil** after the 3/10 leak
-had run down as far as it (*this said the coil's body was dry; corrected
-by the owner the same day*). **The lead boots and the plugs clean, no oil
-in them** (*owner*).
-The oil left on the gearbox is left there, as cosmetic (*owner*;
-`photos/cover-leak-2026-10-04-cleaned.jpg`).
-**The cover back on, 4/10/2026**, with `915.653`: the nuts tightened
-evenly by feel, each felt seating on its brass sleeve (*owner*;
-`photos/cover-on-2026-10-04-*.jpg`). **The plenum back on the same day
-with its new gasket, the job complete** (*owner*;
-`photos/plenum-on-2026-10-04.jpg`). Oil: about 1 l topped up in all since
-the leak; cold, the dipstick about 0.5 mm below the upper mark (*owner*).
-
-**The first warm run after step 1b, 4/10/2026.** Battery disconnected
-for the job, so 098 was run before the start (*owner*: OK). Session A
-again (`open.md` S3, *Session A after step 1b*). **The joint stayed dry**
-at the stop at 45–50 °C of oil and after the hot end of the run; the
-smoke seen was the 3/10 oil burning off (*owner*). The hiss at the back
-remained (S11). Fault memory empty afterwards; 032 −0.8 / +2.3 %
-(`photos/vcds-032-2026-10-04-after-sessionA.jpg`). **The belt noise
-was gone, too.** *Owner, 4/10/2026:* with the wrong gasket of 2–3/10 the
-cover most likely sat lower than it should, and the timing belt probably
-rubbed on the plastic of its cover — the likely source of the ticking at
-the belt end on 2/10 (above); with `915.653` on, the noise was gone and
-the engine bay quieter. **The belt was checked by the owner and is
-fine.**
-
-**Session B the same afternoon**, after a cool-down to 32 °C of oil: a
-part-warm start, the misfires back at B1 and on the idle after the start,
-ended by the owner at B1 (`open.md` S3, *Session B*; H10).
-
-**The starts measured from the capture** (`StartCrank`, `StartDip`,
-`StartClt` by `tools/idledips.py`, `docs/firmware/frames.md`, *The
-start*). ⚠ One start is noise: only a near-stall or a crank past 1.2 s
-counts on its own.
-
-| | stand | coolant | crank to first firing | `StartDip` |
-|---|---|---|---|---|
-| 11/9 (`18`), old injectors | ~10 h | 16 °C | 1.22 s | 141 rpm, nearly died |
-| 24/9 (`19`) | ~19 h | 12 °C | 0.83 s | 118 rpm |
-| 25/9 | ~12 h | — | 0.77 s | — (clean) |
-| 26/9 | ~10 h | 14 °C | 0.93 s | 74 rpm |
-| 3/10, session A | 27 h | 17 °C | 0.77 s | 15 rpm |
-| 4/10, session A, adaptations at zero after a disconnect and 098 | ~15 h | 15 °C | 1.38 s | 0 rpm |
-| 4/10, session B, part-warm | ~2 h | 44 °C | 0.70 s | 0 rpm |
+By the owner, at home. The parts are the rows above dated 1/10, 2/10 and
+4/10/2026; what the job found, the wrong gasket of 2/10 and the sessions
+that followed are in `idle-log.md` (*Appendix — the job of 1–4/10 in
+detail*).
 
 ---
 
@@ -477,19 +334,6 @@ how much they are likely worth:
    separable in a per-year figure and none of which are worth arguing about at
    this resolution.
 
-### The injectors are not fully seated — owner-reported and photographed, 27/9/2026
-
-The four were fitted **already clipped into the fuel rail**, and the rail
-was then pushed down onto the manifold. **Three would not go fully home**:
-a gap of **under about 1 mm** is left between the injector body and its
-boss, visible in the owner's photographs; **the one at the right-hand end,
-as the owner stands at it — cylinder 4 (*owner*, re-confirmed 28/9/2026) — is fully home**; 1, 2 and 3
-are the proud ones. When the owner tried one of
-the old injectors on its own, it **clicked fully home in every bore**,
-audibly. The O-ring on the manifold end is what seals each one against
-the intake. To be refitted during the valve cover job: each injector into
-its bore on its own first, then the rail over them (`open.md` H3).
-
 ### Before and after — do not mix across the September 2026 work
 
 **There is no single "after".** The repair came in steps, several of them
@@ -503,7 +347,8 @@ with the battery off, which also resets the ECU's adaptations:
 | 23/9 | injectors and fuel filter; battery disconnected | `19`–`23` (old MAF) |
 | 24/9 | MAF; battery disconnected again, adaptations from zero | `24` onwards |
 | 26/9 | battery out for the coil-harness measurements; adaptations from zero again. Back in 29/9, throttle adapted (098, *ADP OK*) on the old part | — |
-| 1–2/10 | the valve cover and throttle job (below); battery disconnected, adaptations from zero | `25`–`26` (session A) |
+| 1–2/10 | the valve cover and throttle job (`idle-log.md`); battery disconnected, adaptations from zero | `25`–`26` (session A) |
+| 4/10 | the right cover gasket; battery disconnected, 098, adaptations from zero | `27`–`29` (sessions A and B) |
 
 **Rule: no fuel calibration and no tank-to-tank comparison spans one of these
 lines.** For consumption, only the state after 24/9/2026 counts, and the first

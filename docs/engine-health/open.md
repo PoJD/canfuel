@@ -11,7 +11,8 @@ normal for this engine, the file is deleted.
 | **this one** | symptoms → hypotheses → tests → plan. Short on purpose |
 | `refuted.md` | every hypothesis **settled against**, with what settled it, plus the questions that were **answered**. Read it before proposing something: most obvious ideas are already there |
 | `vcds.md` | the VCDS blocks read on this car, their specifications, and how to record VCDS beside a CAN capture |
-| `vehicle-history.md` | the car's permanent record: distance, consumption, every part replaced. **Stays when this investigation closes**; `open.md` and `refuted.md` go |
+| `vehicle-history.md` | the car's service record: distance, consumption, every part replaced. **Stays when this investigation closes**; `open.md` and `refuted.md` go |
+| `idle-log.md` | **the diary of the idle investigation**: what was believed, done and measured at each stage, and what nobody can say a repair achieved. Kept current until the idle is fixed, then **stays** as reference |
 | `plan.md` | **the planned fixes, in order**, and the rule that governs them: the idle first, no test for its own sake, as little idling as possible. Emptied step by step as the work is done |
 
 The long version this replaced, a dated log of 10–25 September 2026 with every
@@ -369,7 +370,7 @@ never aligned with anything. It did
   | hot, after a hard drive | 72–73 °C | 238 s | **7–9** | 7–11 | 82–92 |
   | the MAF wiggle | 73 °C | 71 s | 13.6 | 15.3 | 79 |
 
-  **The MAF wiggle found nothing** (`vehicle-history.md`, the MAF row):
+  **The MAF wiggle found nothing** (`idle-log.md`, *The MAF*):
   the counts were there before it (*owner*, watching 014 before he went
   to the engine), and 003's air never dropped out under the hand. Its
   13.6 against 9.2 a minute is 71 s against 189, a difference that small
@@ -574,7 +575,7 @@ learning after a battery disconnect, so not the closing read
 for both cells is **−10…+10 %**.
 
 **Read it only after the MAF's orientation is settled**
-(`vehicle-history.md`, the MAF row, 3/10/2026). If the housing sat
+(`idle-log.md`, *The MAF*, 3/10/2026). If the housing sat
 turned 180° about its axis, its sensing channel sampled the other side
 of the duct; that
 can only bias the reading by a constant few per cent, which the trims
@@ -789,7 +790,7 @@ the middle ones would mean taking the plenum off again, which is not
 done for this.
 
 **The job itself — done 1–2/10/2026 — is recorded in
-`vehicle-history.md`, *The valve cover and throttle job***; what follows it is `plan.md`. *Owner's decision, 27/9/2026:* the cover gasket, the
+`idle-log.md`, *The valve cover and throttle job***; what follows it is `plan.md`. *Owner's decision, 27/9/2026:* the cover gasket, the
 breather and its seals, the upper plenum gasket, the injector refit
 (H3, *The injector seats*) and the cleaning all in one job, with no
 measurement between them. What it costs: an improvement afterwards cannot
@@ -801,7 +802,7 @@ not f = 0.50) and S4/S5 on cylinder 4 (H5).
 band at 69–72 °C of oil, loads off; the after-reading is taken the same way.
 No separate cold baseline was taken.
 
-**Leaking again on the first warm run, 3/10/2026** (`vehicle-history.md`,
+**Leaking again on the first warm run, 3/10/2026** (`idle-log.md`,
 *The first warm run*): dry at a cold start, then **a stream of oil at
 the half-moon arch at cylinder 4's end** by the in-band stop, about 20
 minutes after the start, and down to the coil. **Not only there**: with
@@ -833,7 +834,7 @@ heat and the crankcase sees pressure; it does not say which of the four
 (*general*).
 
 **The cause, found the same night — none of the four: the gasket was for
-another engine** (*owner*, cover off, photographed; `vehicle-history.md`,
+another engine** (*owner*, cover off, photographed; `idle-log.md`,
 *The wrong gasket*). The Elring `325.070` fitted on 2/10 has **an open
 arch where this head needs a half-moon**: assembled, it leaves **a hole
 about 1 cm across** from the crankcase to the outside at cylinder 4's end.
@@ -1065,7 +1066,7 @@ ignition-on**, not once after a disconnect; confirmed to come from the
 throttle. Usually the engine is started straight away and the routine is
 cut short. **The engine's fault memory is empty, and 17973 has never been
 seen** — read empty again on 1/10/2026, before the battery came off for
-`vehicle-history.md`, *The valve cover and throttle job* (*owner-reported*). Whether it also did this after the June manual adaptation is not
+`idle-log.md`, *The valve cover and throttle job* (*owner-reported*). Whether it also did this after the June manual adaptation is not
 remembered.
 
 **Why it is a symptom:** VW's manual for this engine gives the adaptation
@@ -1121,7 +1122,7 @@ battery reconnected after 26/9, engine not run):
 - **20 s is the length now**, not "20–30 s": timed twice alike. Longer
   than the owners' ~15 s, which were never timed either.
 
-**How it closes** (the first start after the job, `vehicle-history.md`, *The valve cover and throttle job*): the new part
+**How it closes** (the first start after the job, `idle-log.md`, *The valve cover and throttle job*): the new part
 after its adaptation, before the first start, timed the same way.
 **New part silent, or clearly shorter → the old unit differed**, and S13
 becomes a lead on it (H8). **The same routine → it is how these parts
@@ -1411,7 +1412,7 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
 and photographed:* since the 23/9 refit, three injectors stand **under
 about 1 mm** proud of their bosses; only cylinder 4's is
 fully home, and an old injector alone clicked fully into every bore
-(`vehicle-history.md`). The manifold-end O-ring is all that seals them.
+(`idle-log.md`, *The injectors were not fully seated*). The manifold-end O-ring is all that seals them.
 
 **Against the data** (*general* for how a seat leak behaves):
 
@@ -1439,7 +1440,7 @@ engine off, which reaches the seats safely; and the refit itself, each
 injector home on its own before the rail goes on, with the O-rings looked
 at for a nick from being forced, then `IdleHealth` at 70–72 °C against
 57–100. It goes together with the valve cover job, by the owner's
-decision (`vehicle-history.md`, *The valve cover and throttle job*): the cure is wanted more than the
+decision (`idle-log.md`, *The valve cover and throttle job*): the cure is wanted more than the
 attribution.
 
 **Found at the refit, 1/10/2026 — cylinder 2's manifold-end O-ring was
@@ -1659,7 +1660,7 @@ clean, several tenths is a bad joint** (*general*).
   back-probed the same way. The pin assignment is in the manual's
   current-flow diagram; it is the one that reads battery voltage with the
   ignition on.
-- **1d, done 1/10/2026** (*owner*, at the job, `vehicle-history.md`, *The valve cover and throttle job*): the four
+- **1d, done 1/10/2026** (*owner*, at the job, `idle-log.md`, *The valve cover and throttle job*): the four
   leads all measure **about 6 kΩ end to end**, the small differences put
   down to probe contact; every boot clean inside, no oil in any — so the
   oil on 3 and 4's boots seen on 26/9 (S10) stayed on the outside.
@@ -2303,7 +2304,7 @@ the ECM chase phantom movement would, and does not show. Left in the file
 because cleaning and adapting is cheap, not because anything points here.
 
 **Replaced inside the valve cover job — the owner's decision,
-29/9/2026** (`vehicle-history.md`, *The valve cover and throttle job*). Nothing in the data asks for it; the part
+29/9/2026** (`idle-log.md`, *The valve cover and throttle job*). Nothing in the data asks for it; the part
 is original, 26 years old, cheap, and sits in the idle air path. First
 planned inside the job, split off on 28/9 so that its effect would show
 alone, and **put back into the job on 29/9** after the flange photograph
@@ -2739,7 +2740,7 @@ repair blogs; still nothing from VW.
    tens of euros, so replacing it on suspicion is a fair test.
 
    **Partial result, 1/10/2026** (*owner-found and photographed*, during
-   the valve cover job, `vehicle-history.md`, *The valve cover and throttle job*): **the hose from the breather to the intake ahead of
+   the valve cover job, `idle-log.md`, *The valve cover and throttle job*): **the hose from the breather to the intake ahead of
    the throttle is oily inside** — a finger put into it came out covered.
    The photograph shows the bore dark and wet, with a light-grey crusty
    deposit on one side of the inner lip. The owner had looked at the
@@ -2757,7 +2758,7 @@ repair blogs; still nothing from VW.
    with oil neither shows nor rules out — and some oil film in a
    breather hose is common on a healthy engine too, so the amount is
    the question, which a photograph cannot grade. The membrane is
-   judged on the old part out of the car (`vehicle-history.md`, *The valve cover and throttle job*); the new
+   judged on the old part out of the car (`idle-log.md`, *The valve cover and throttle job*); the new
    breather replaces it either way. The fit table is unchanged.
 
    **The big intake hose too, 1/10/2026** (*owner-found and
@@ -3051,8 +3052,8 @@ the breather hose folded into it.*
 | 1 | **H10 — the learned idle air value turns the counting on** | 4/10: 014 at zero while 055's learned value was 0 to −0.92 g/s, counting at −0.95 and beyond, warm or cold — and session B counted on a cold idle, which no fresh-adaptation session ever has. Against: 3/10 counted at −0.28 (with the hole open); a correlation in time over one day; the mechanism is reasoned only | `plan.md` step 2c, optional: the battery off, 098, session A again — after the smoke test (2a) and the test with adaptations kept (2b), owner's decision 4/10 |
 | 2 | **H3 — a small unmetered leak** (with what is left of H9, closed 4/10: the breather's original hose and connector): **three injectors not fully home since 23/9** (H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose; **and the throttle's flange**, where a hard protrusion on the old face may have kept the June gasket off (H8, 28/9) | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) **4/10, against:** the warm leak signature did not move with the hole sealed, and a leak does not wait for a hard drive (S3, *Session A after step 1b*) **4/10 evening, for:** an unmetered leak is what makes an ECU learn idle air away — H10's likeliest cause | the valve cover job itself, which replaces the upper plenum gasket, the breather **and the throttle with its flange gasket** (29/9) — an improvement afterwards answers it; now **the smoke test of the intake**, straight after the exhaust joint (`plan.md` step 2a, *owner's decision, 4/10*) |
 | 3 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing **4/10: the hiss stayed after 1b, from the back (S11), and 014 came back only after a hard drive — heat from load, which opens a crack or a gasket; the owner's lead.** Still against: it has to act through the lambda control, which B3's 033 shows **4/10 evening, against:** at B1 033's median was −0.8 %, not the positive correction air at the probe would force, and B counted on a cold idle | the owner's tailpipe test, and a new manifold if it leaks there (`plan.md` step 3, *owner's decision, 3/10*) |
-| 4 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) **4/10 evening:** a new throttle passing more at rest than the ECU's model would also make it learn air away (H10) | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `vehicle-history.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
-| 5 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits only in form** — a coil that breaks down hot is the textbook case, but **the coil is from 6/2026**, and the 3/10 oil sat **only on the outside of its plastic and on the outsides of the leads of 3 and 4, wiped dry** (*owner*, 4/10/2026) | a look while the plenum was off (`vehicle-history.md`, *The valve cover and throttle job*: wiring and connectors fine); H7 test 3 for the injector side |
+| 4 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) **4/10 evening:** a new throttle passing more at rest than the ECU's model would also make it learn air away (H10) | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `idle-log.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
+| 5 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits only in form** — a coil that breaks down hot is the textbook case, but **the coil is from 6/2026**, and the 3/10 oil sat **only on the outside of its plastic and on the outsides of the leads of 3 and 4, wiped dry** (*owner*, 4/10/2026) | a look while the plenum was off (`idle-log.md`, *The valve cover and throttle job*: wiring and connectors fine); H7 test 3 for the injector side |
 | 6 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero **4/10: the pattern fits only in form** — fuel heat-soaked at the rail after a hard drive; against, the return-flow rail keeps fuel moving, heat soak is a hot-*restart* effect, and the coolant read the same at A3's zero | a **fuel pressure gauge** |
 | 7 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 **4/10, against:** zero at both warm stops is not what a normal-for-the-engine idle does on a counter that read 10–20 a minute there | a healthy AQY recorded (H0 test 1) |
 | 8 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: worst at mid temperature, not hot; A5 **4/10, against:** zero at both warm stops | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |

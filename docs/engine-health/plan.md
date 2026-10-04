@@ -2,7 +2,8 @@
 
 **The order of work, and nothing else.** Why each step is there lives in
 `open.md` (symptoms, hypotheses, the ranked candidates); what was done
-lives in `vehicle-history.md` once it is done. **A step that has been done
+lives in `vehicle-history.md` (the parts) and `idle-log.md` (the story)
+once it is done. **A step that has been done
 is removed from this file in the same commit that records it**, and the
 file is deleted when it is empty — `git log` keeps the rest.
 
@@ -24,7 +25,7 @@ The rest of `open.md` — the other symptoms, every hypothesis's test list —
 stays as reference. **It is not a to-do list.**
 
 **Where it stands:** the valve cover, throttle and breather job and the
-cover joint are done and recorded (`vehicle-history.md`); the three
+cover joint are done and recorded (`vehicle-history.md`, `idle-log.md`); the three
 sessions after them are in `open.md` S3. The misfires remain, and they
 follow 055's learned idle air value (`open.md` H10) — the likeliest
 reason the ECU learns air away being air the plate did not let in.
@@ -69,7 +70,7 @@ costs no idle. *General practice, not VW's:*
   MAF-to-hose clamp untested; it holds by the owner's check, is a
   rubber-lined pipe clamp rather than VW's, and was sprayed at a warm
   idle on 26/9 with no change (`open.md` H3, *Spray test*;
-  `vehicle-history.md`, the MAF row). The throttle end, refitted since,
+  `idle-log.md`, *The MAF*). The throttle end, refitted since,
   is inside the smoke;
 - **feed the smoke through the fuel pressure regulator's vacuum hose**
   (*owner's choice*: at the front, the easiest to reach), taken off at
