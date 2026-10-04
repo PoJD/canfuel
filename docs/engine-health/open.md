@@ -38,56 +38,43 @@ below (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 27 September 2026
+## Where it stands — 4 October 2026
 
-**Replaced so far:** coil (6/2026), exhaust from the flex pipe back including
-the converter (9/2026), plugs and leads (17/9), all four injectors, fuel
-filter (23/9), MAF (24/9). The regulator is from 7/2026. Compression is
-12 bar on all four.
+**A summary of what is closed and what is left, and nothing else.** How
+it got here, stage by stage, is `idle-log.md`; the parts and dates are
+`vehicle-history.md`; what comes next is `plan.md`. Rewritten whenever a
+symptom or a hypothesis opens or closes, not added to.
 
-**Fixed by that:** the rich lambda trim (it was the MAF; one confirming
-read owed, S9), the cold-overrun burble, the long cranking, the historical
-full-load lamp. The car pulls better
-and drives better than at any point on record.
+**Closed** — kept below for the record, out of every fit table:
 
-**Not fixed:** the idle. It still stumbles, the ECU still counts misfires at a
-standstill idle, the exhaust still puffs now and then. **Every part in the fuel
-and ignition path has now been changed and it is still there**, so what is
-left is either outside those parts or is normal for this engine.
-Separately, knock control hears something in cylinder 4's window above about
-2300 rpm that is not knock.
+| | how it closed |
+|---|---|
+| S7, the cold start | fixed by the new injectors (26/9) |
+| S8, the top end | owner's decision, criterion met in part (4/10) |
+| S9, the rich lambda trim | fixed by the MAF (4/10, short of its own criterion) |
+| S10, the oil leak at the back of the head | the cover gasket, repaired (4/10) |
+| S12, the tip-in hesitation | withdrawn by the owner as mechanical play (4/10) |
+| S13, the throttle's routine at ignition-on | normal for the part (2/10) |
+| H9, crankcase ventilation and the cover gasket | right about S10, settled against for the idle (4/10, `refuted.md` A15) |
 
-**New on 26/9:** oil leaking at the back of the head (S10), and smoke with
-possibly a hiss from the same place at a warm idle (S11). **S10's source is
-found — the valve cover gasket**, heavily at the back and at the front as far
-as the plug boots of cylinders 3 and 4 (S10). The owner replaces it with the
-filler-neck breather in one job with the upper plenum gasket and a proper
-refit of the injectors, **three of which have not been fully home since
-23/9** (H3) — **and the throttle body in the same job** (*owner's decision,
-29/9*, after the flange photograph, H8). Then, if the idle is unchanged,
-the exhaust, tested and repaired by the owner (*owner's decision,
-3/10/2026*). **The order is `plan.md`.**
+Everything else settled against is in `refuted.md`.
 
-**Since then:** the job was done 1–2/10 (`vehicle-history.md`), and
-session A on 3/10 still counted misfires at the warm idle, about as `24`
-did (S3, *Session A*). **The new cover gasket leaked at cylinder 4's end
-on that first warm run — it was the gasket for another engine, with an
-open arch where this head needs a half-moon** (S10). The joint is redone
-with the right part and the verdict taken again before the exhaust
-(`plan.md`).
+**Open — what this file is still for:**
 
-**4/10/2026, evening, after session B:** the misfires were back at B1
-and on a part-warm idle, with 033 not pointing at the probe. They follow
-055's learned idle air value (H10), which the battery disconnect had set
-to zero for session A. The exhaust manifold waits; the intake smoke
-test comes next, then session A with the adaptations kept (`plan.md`
-steps 2a and 2b); the free test of H10 is optional (step 2c).
+- **The idle: S1 (unsettled) and S3 (misfires counted at idle).** Every
+  part in the fuel and ignition path has been replaced and both remain.
+  The lead is **H10** — the counting follows 055's learned idle air value —
+  with **H3**, an unmetered leak at the intake, as its likeliest cause,
+  then H2 and H8 (*The idle's candidates, ranked*).
+- **Around the idle:** S2 (an occasional puff from the exhaust) and S11 (a
+  hiss at the back of the engine at a warm idle, not yet placed).
+- **The cylinder 4 knock window: S4 and S5**, a cluster of its own
+  (H5, H6), not pursued until the idle is solved (`plan.md`, *The rule*).
+- **S6, the exhaust joint behind the converter** — comfort only, behind
+  both probes.
 
-**4/10/2026, after step 1b:** the joint dry, and **014 at zero at both
-warm stops for the first time** — until five minutes of hard driving,
-after which every idle counted again (S3, *Session A after step 1b*). The
-owner's goal is **zero after a hard drive too**; session B tests the
-pattern, and the owner leans to the exhaust manifold next (H2).
+**Next:** `plan.md` — the exhaust joint (S6), then the intake smoke test,
+then session A with the adaptations kept.
 
 ---
 
