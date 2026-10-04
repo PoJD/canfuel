@@ -69,7 +69,9 @@ Everything else settled against is in `refuted.md`.
 - **Around the idle:** S2 (an occasional puff from the exhaust), S11 (a
   hiss at the back of the engine at a warm idle, not yet placed) and S14
   (bangs from the exhaust on a downshift without a blip — the old
-  "cold-overrun burble", back warm on the new injectors).
+  "cold-overrun burble", back warm on the new injectors) — the
+  owner's to watch, expected to go with S1/S3, pursued only if it
+  outlives them).
 - **The cylinder 4 knock window: S4 and S5**, a cluster of its own
   (H5, H6), not pursued until the idle is solved (`plan.md`, *The rule*).
 - **S6, the exhaust joint behind the converter** — comfort only, behind
@@ -1181,7 +1183,13 @@ cut.** Which is what the owner's reading of it predicts (*4/10/2026*):
   cylinder (*owner, 4/10/2026*). This was C1's reading of the cold
   burble, and it no longer fits.
 
-**Test, when a capture is being taken anyway:** one or two downshifts
+**The owner's decision, 4/10/2026: S14 is his to watch, and it is not
+in `plan.md`.** He expects it to go with S1/S3 and will not provoke it
+meanwhile. Once the idle is fixed he checks it himself; **only if S14
+outlives S1/S3 is it worked on further.** The test below stays as
+reference and is not scheduled.
+
+**Test, if it is ever wanted:** one or two downshifts
 without a blip, each written into the chat ("3→2, bangs" / "no bangs")
 and aligned to the capture by the jump in engine speed as the clutch
 comes up, not by when the message arrived. 0x480 gives how much was
