@@ -138,8 +138,15 @@ weakly, and across days it does not track 014 at all (3/10's hot stop
 3. **`tools/idledips.py` is the oracle**, diffed exactly by
    `replay.py --host-build` as `IdleHealth` is today; `test_idledips.py`
    and the `_z1` fixtures carry the expected values.
-4. **`mfd15` changes in the same breath** — the channel's name and unit in
-   `S-AQY.TRI`, and `test_txframes.c`'s pinned offsets.
+4. **The name stays `IdleHealth`** (*owner's decision, 4/10/2026*); only
+   its meaning changes, from a 0–200 index to dips a minute, clamped at
+   254. **The theoretical ceiling is far above that and never reached:** a
+   dip needs one 180° value 20 rpm under the baseline and one back within
+   10, so at an 800 rpm idle's ~1,600 values a minute the detector could
+   in principle book ~800; the baseline's 2.7 s lag keeps it far lower,
+   and the worst stop on record reads 28. `mfd15` changes in the same
+   breath wherever `S-AQY.TRI` carries a unit or a scale for the channel,
+   with `test_txframes.c`'s pinned offsets unchanged.
 5. **XC8 installed and the `firmware` job's gates run locally** before the
    push (`CLAUDE.md`), with the `THROTTLE_REST` comment above corrected
    in the same change.
