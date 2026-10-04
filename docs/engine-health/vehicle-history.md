@@ -360,7 +360,13 @@ again (`open.md` S3, *Session A after step 1b*). **The joint stayed dry**
 at the stop at 45–50 °C of oil and after the hot end of the run; the
 smoke seen was the 3/10 oil burning off (*owner*). The hiss at the back
 remained (S11). Fault memory empty afterwards; 032 −0.8 / +2.3 %
-(`photos/vcds-032-2026-10-04-after-sessionA.jpg`).
+(`photos/vcds-032-2026-10-04-after-sessionA.jpg`). **The belt noise
+was gone, too.** *Owner, 4/10/2026:* with the wrong gasket of 2–3/10 the
+cover most likely sat lower than it should, and the timing belt probably
+rubbed on the plastic of its cover — the likely source of the ticking at
+the belt end on 2/10 (above); with `915.653` on, the noise was gone and
+the engine bay quieter. **The belt was checked by the owner and is
+fine.**
 
 **Session B the same afternoon**, after a cool-down to 32 °C of oil: a
 part-warm start, the misfires back at B1 and on the idle after the start,
