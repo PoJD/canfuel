@@ -37,7 +37,7 @@ was first recorded counted from the wrong end and corrected on 28/9/2026.
 | **022 / 023** | ignition retard per cylinder, 1–2 and 3–4 | the first cylinder-4 log |
 | **026** | **knock sensor voltage per cylinder**, *amplifier factor included* | S5. Not the raw signal: the ECU scales each cylinder |
 | **032** | lambda adaptations, idle and part load | the rich trim that was the MAF (S9) |
-| **055 / 056** | idle regulator, its adaptation, target idle speed | 055 logged once, on the cold start of 11/9 (`vcds-coldstart-014-055.csv`): regulator −0.46 → −0.08 g/s as the engine warmed, adaptation **−0.73 g/s** throughout, load-state bits `0000`. The cold-start baseline for `plan.md`'s test after the job |
+| **055 / 056** | idle regulator, its adaptation, target idle speed | 055 logged once, on the cold start of 11/9 (`vcds-coldstart-014-055.csv`): regulator −0.46 → −0.08 g/s as the engine warmed, adaptation **−0.73 g/s** throughout, load-state bits `0000`. The cold-start baseline for the sessions of 3–4/10 (`open.md` S3) |
 | **070** | evaporative valve test | TEV OK — purge ruled out |
 | **100** | readiness bits, OBD status, time since start | all monitors complete |
 
@@ -171,7 +171,7 @@ have to agree.
   about the idle compares without it. With the display out, the capture
   has it: `tools/oilwatch.py` reads the capture file while it is being
   written, in a second window, and beeps when an idle is due in its band
-  and when it has been long enough (`plan.md`, *Who runs what*).
+  and when it has been long enough (`plan.md` step 2b, *Who runs what*).
 
 The CSV files are in `test/fixtures/vcds/`, described in
 `test/fixtures/README.md`.

@@ -362,6 +362,25 @@ smoke seen was the 3/10 oil burning off (*owner*). The hiss at the back
 remained (S11). Fault memory empty afterwards; 032 −0.8 / +2.3 %
 (`photos/vcds-032-2026-10-04-after-sessionA.jpg`).
 
+**Session B the same afternoon**, after a cool-down to 32 °C of oil: a
+part-warm start, the misfires back at B1 and on the idle after the start,
+ended by the owner at B1 (`open.md` S3, *Session B*; H10).
+
+**The starts measured from the capture** (`StartCrank`, `StartDip`,
+`StartClt` by `tools/idledips.py`, `docs/firmware/frames.md`, *The
+start*). ⚠ One start is noise: only a near-stall or a crank past 1.2 s
+counts on its own.
+
+| | stand | coolant | crank to first firing | `StartDip` |
+|---|---|---|---|---|
+| 11/9 (`18`), old injectors | ~10 h | 16 °C | 1.22 s | 141 rpm, nearly died |
+| 24/9 (`19`) | ~19 h | 12 °C | 0.83 s | 118 rpm |
+| 25/9 | ~12 h | — | 0.77 s | — (clean) |
+| 26/9 | ~10 h | 14 °C | 0.93 s | 74 rpm |
+| 3/10, session A | 27 h | 17 °C | 0.77 s | 15 rpm |
+| 4/10, session A, adaptations at zero after a disconnect and 098 | ~15 h | 15 °C | 1.38 s | 0 rpm |
+| 4/10, session B, part-warm | ~2 h | 44 °C | 0.70 s | 0 rpm |
+
 ---
 
 ## Electrical work, 2026

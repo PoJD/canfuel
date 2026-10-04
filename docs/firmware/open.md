@@ -250,7 +250,8 @@ survive.
    enough: ±1.5 °C against a 23 °C gap. *The paragraph below, from 30/9,
    said no instrument had been bought.* **Taken in the engine-health
    test's session A as A4, after its last hot stop — no longer optional**
-   (*owner's decision, 2/10/2026*; `docs/engine-health/plan.md`).
+   (*owner's decision, 2/10/2026*; `docs/engine-health/plan.md`, *Standing
+   items*).
 
    *30/9/2026:* **The instrument: none yet** (*owner's decision, 30/9/2026*). A Bosch
    UniversalTemp was chosen on 29/9, not found in the shop and judged too
@@ -259,7 +260,7 @@ survive.
    550 °C, ±1.5–3 °C with the band unstated, emissivity adjustable
    0.1–1.0, 12 : 1, operated at 0–40 °C) — enough against a 23 °C gap. It
    is **optional inside the engine-health test** (`docs/engine-health/plan.md`,
-   A4), decided by the owner before the drive. What was worked out for
+   *Standing items*, A4), decided by the owner before the drive. What was worked out for
    the Bosch is kept as the checklist for whatever is bought — range past 100 °C, an emissivity setting of 0.95, the tape,
    the acclimatising, the coolant-hose check. Bosch's manual: range **−30 to +500 °C**; accuracy at 21 °C
    and emissivity 0.95 **±1.8 °C from 0 to 100 °C**, ±1.8 % above,
