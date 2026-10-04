@@ -66,10 +66,10 @@ reassembly with the right gasket, then the test.
 - **Dirko** (Elring `030.793`), in hand.
 
 The breather, its ring, the cap ring and the throttle stay as they are.
-**The battery stays connected** (*decision*): nothing electrical is undone
-but the coil's and the injectors' connectors, ignition off, and keeping it
-saves the adaptations and the throttle's 098. If it does come off, **098
-again before the first start** (VW's manual, `open.md` H8).
+**The battery is disconnected again** (*owner*, 4/10/2026; this used to
+say it stays connected, as a decision), so the adaptations start from
+zero once more and **098 is run before the first start** (VW's manual,
+`open.md` H8).
 
 **Before the start**
 - [ ] **the oil level, cold, on level ground** — about 0.5 l was topped
@@ -183,6 +183,24 @@ zero there before 24/9 proves nothing.
   `tools/idledips.py` computes both from 0x280 and 0x288 afterwards.
 
 ### Session A — the cold start and the warm-up drive, one log
+
+**The second run, after step 1b — what differs** (*owner's decision,
+4/10/2026*):
+- **the start's quality is not read.** The first start after the
+  reassembly is session A's own start, straight after 098 on a battery
+  that was off; the cold-start table below keeps 3/10 as its point and
+  gets no row from this run. The capture still starts before the
+  ignition, as always;
+- **one extra stop before A2, for the joint** — yesterday's leak only
+  showed once the oil was warm. **Stop at about 45–50 °C of oil, not
+  higher**, engine running, loads off, **a minute or two**: along the
+  cover joint, cylinder 4's end and the coil first. *Decision* on the
+  ceiling: the oil keeps rising at a standing idle (`19`: 60 → 65 °C in
+  4½ minutes), so a stop above 50 °C risks reaching A2's band standing
+  instead of driving into it from below. It costs no reading: it is
+  standing idle in the 40–56 °C band, which 3/10 had only 111 s of;
+- everything else as below, including the 003/055 comparison at the warm
+  stops (*The leak signature, warm*, below).
 
 **Capture and VCDS 014 + 003 + 055** from before the start to engine off.
 003 is air mass and plate angle, 055 the idle regulator and its learned
@@ -308,6 +326,25 @@ sealed leak is read off the air and the regulator:
 `vehicle-history.md`), so 003 compares with the earlier logs directly.
 On 3/10 the cold idle showed **no leak signature** (`open.md` S3,
 *Session A*).
+
+**The leak signature, warm — 3/10 with the hole, against the run after
+1b.** 3/10 gave the first warm 055 there is (`vcds-sessionA-003-014-055.csv`,
+medians over standing idle at 600–1100 rpm):
+
+| 3/10, the hole open | rpm | 003 air | plate | 055 sum |
+|---|---|---|---|---|
+| cold idle, 0–7 min | 800 | 4.03 g/s | 3.9° | −1.06 |
+| warm stop, 13–21 min | 760 | 3.19 g/s | 2.6° | −1.21 |
+| hot stop, 29–31 min | 800 | 3.19 g/s | 2.6° | −1.20 |
+
+*Reasoned:* the hole let air into the crankcase, which the breather passes
+into the intake **behind the MAF**, so with it sealed the MAF sees that air
+again: **003 higher at the same speed and 055 nearer zero** at the warm
+stops. **Unchanged means the hole carried little air at idle**, which is
+what the layout predicts (`open.md` H9, *Why that route is weak at idle*,
+and test 3, the filler cap off, "audibly slightly worse"). *Decision* on
+the reading, since the noise of a median over a stop is not known: a
+shift smaller than **0.2 g/s in either is read as no change**.
 
 **055 is read as the sum of its two air fields** (the live regulator plus
 the learned value): the whole correction the idle is making. With the
