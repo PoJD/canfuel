@@ -998,8 +998,10 @@ changing instead."
  *
  * THROTTLE. 0x280 b5 reads exactly 38 at rest and 48-61 across the four
  * free-revving holds; 18,060 of 34,495 frames in 17_drive_property_z1 are at
- * 38, and across every fixture in the directory the next value above 38 that
- * ever appears is 44 -- nothing occupies 39 to 43. It is the pedal and not the
+ * 38, and on that throttle body the next value above 38 that ever appears is
+ * 44 -- nothing occupies 39 to 43. The body fitted 2/10/2026 rests at 35,
+ * with nothing at 36 to 44 (27_ and 28_sessionA2), so 38 sits in an empty
+ * gap on both parts and the gate needs no change. It is the pedal and not the
  * load, which is why it can gate on its own now: a released pedal is a
  * statement about the driver, and what b7 does afterwards is the engine
  * looking after itself.
