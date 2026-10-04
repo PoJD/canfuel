@@ -57,9 +57,9 @@ hears and cannot place (`open.md` S11). The engine off and cold, so it
 costs no idle. *General practice, not VW's:*
 
 - **the smoke**: a 12 V smoke tester **with its own air pump** — the
-  owner has no aquarium pump. Looked up 4/10/2026 (prices move): Lincos
-  `MG78016`, about 2,000 Kč, pump built in, 5–35 ml of mineral (baby)
-  oil; others from about 1,900 Kč, unverified. Never anything flammable
+  owner has no aquarium pump. **Lincos `MG78016` ordered** (*owner*,
+  4/10/2026): pump built in, 5–35 ml of mineral (baby) oil — the oil to
+  have in hand. Never anything flammable
   in it, never workshop air: the pressure only has to make the smoke
   flow;
 - **seal the intake behind the MAF** — the hose between the MAF and the
