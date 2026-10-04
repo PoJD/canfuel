@@ -86,9 +86,19 @@ costs no idle. *General practice, not VW's:*
   the hoses at the back (brake servo, the old secondary-air vacuum line),
   the breather and its hose's plastic connector, the brake servo's valve
   — **the back is what no spray ever reached**;
-- ⚠ **smoke at the oil filler or the dipstick is expected**, not an
-  intake leak: the breather joins the crankcase to the intake. It does
-  test the cover gasket along the way.
+- **smoke at the oil filler, the dipstick or the cover joint is a leak
+  too**, of the crankcase: the breather joins the crankcase to the
+  intake behind the MAF, so wherever smoke leaves the crankcase, air
+  gets in at idle and reaches the manifold unmetered. It is a smaller
+  path than a joint on the intake itself — everything it admits has to
+  pass the breather's valve, and the crankcase sits only slightly below
+  atmosphere — but not a nothing: the idle got audibly worse with the
+  filler cap off (`open.md` H9). Judge by amount: a faint wisp round a
+  seated dipstick against a steady stream. *Corrected 4/10/2026: this
+  read "smoke at the oil filler or the dipstick is expected, not an
+  intake leak".* The dipstick's tube is loose and its bracket missing
+  (*owner*, 4/10/2026), so look at its foot in the block as well as its
+  top;
 
 **Smoke found** → that joint is repaired, then step 2b. **None** → step 2b
 all the same.

@@ -3188,8 +3188,10 @@ recorded here, since they move):
   3 to feel as suction, but the idle got audibly worse with the filler
   cap off (H9). So a leak at the cover joint or at the breather's seat is
   a small unmetered leak of its own, and the smoke reaches both through
-  the breather hose; smoke at the filler cap or the dipstick is that
-  path, not a leak. (*Corrected 30/9/2026*: this read "the valve cover
+  the breather hose; **smoke at the filler cap or the dipstick is a leak
+  of the same kind** — the crankcase not sealed there — and is judged by
+  amount (*corrected 4/10/2026*: this read "is that path, not a leak").
+  (*Corrected 30/9/2026*: this read "the valve cover
   gasket itself is not an intake joint: the crankcase sits at
   atmospheric".)
   **Smoke rather than a pressure- or vacuum-decay test of the intake**
