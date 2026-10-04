@@ -154,6 +154,21 @@ older chain (dirty tank → holed filter → spoiled injectors) is **unresolvabl
 now**: the tank's replacement date is unknown and the old injectors went
 untested. Parked, not refuted.
 
+### A15. "The crankcase ventilation or the cover gasket causes the idle" (`open.md` H9) — measured
+
+**Believed:** 26/9/2026, when oil was found at the back of the head: a
+breather or a cover joint open to the outside lets the crankcase draw air
+past the MAF at idle.
+**Half right, and settled for the idle.** The cover gasket *was* S10's
+leak — first a hardened original, then a wrong part with an open arch —
+and it is repaired (`open.md` S10, closed). But the breather was replaced
+on 2/10 and the cover sealed with the right gasket on 4/10, and the
+misfires were still counted that day, on a joint that stayed dry hot and
+cold. **What is left of it** — the original breather hose and its plastic
+connector — is an ordinary unmetered-air point, H3's, and the intake
+smoke test covers it (`plan.md` step 2a). **What would revive it:** smoke
+at the breather's own seat or the new gasket's joint.
+
 ---
 
 ## B. The cylinder 4 knock window
