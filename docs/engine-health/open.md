@@ -377,9 +377,9 @@ never aligned with anything. It did
   counted at its first warm stop after a gentle warm-up, b5 never past
   105.
   *Reasoned, not tested:* something that needs heat from load and outlasts
-  the drive — the exhaust at the back (H2, with S11's hiss), the spark
-  when hot (H4, the coil had oil on it), the fuel heat-soaked at the rail
-  (H7). Not an intake leak (H3): one does not depend on what was driven
+  the drive — the exhaust at the back (H2, with S11's hiss) first; the
+  spark when hot (H4) and fuel heat-soaked at the rail (H7) fit in form
+  only (the ranked list says why). Not an intake leak (H3): one does not depend on what was driven
   before, and the leak signature did not move (below). Session B's B3
   (`plan.md`) repeats it with 033 beside it.
 
@@ -2862,16 +2862,17 @@ was H8's alone, so only row 5 changes; the order stands. **Re-read 4/10/2026 aft
 engine** (S3, *Session A after step 1b*): no symptom added or closed, but
 the order changes — 014 at zero at both warm stops and back only after a
 hard drive is a fault that needs heat from load. **H2 moves to the top**
-(with S11's hiss), H4 and H7 up beside it as the other two that fit, and
-H3/H9 down: the leak signature did not move. H8's part is new and the
+(with S11's hiss), H4 and H7 up behind it as the fallbacks if B3's 033
+does not point at the probe — both fit the pattern in form only (the rows
+say why) — and H3/H9 down: the leak signature did not move. H8's part is new and the
 pattern does not follow it. What separates the top three is `plan.md`
 session B's B3.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | 1 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing **4/10: the hiss stayed after 1b, from the back (S11), and 014 came back only after a hard drive — heat from load, which opens a crack or a gasket; the owner's lead.** Still against: it has to act through the lambda control, which B3's 033 shows | the owner's tailpipe test, and a new manifold if it leaks there (`plan.md` step 2, *owner's decision, 3/10*) |
-| 2 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits** — a coil or lead that breaks down only hot is the textbook case, and the coil had oil on it on 3/10 | a look while the plenum was off (`vehicle-history.md`, *The valve cover and throttle job*: wiring and connectors fine); H7 test 3 for the injector side |
-| 3 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero **4/10: the pattern fits** — fuel heat-soaked at the rail after a hard drive; against, the coolant read the same at A3's zero | a **fuel pressure gauge** |
+| 2 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits only in form** — a coil that breaks down hot is the textbook case, but **the coil is from 6/2026**, and the 3/10 oil sat **only on the outside of its plastic and on the outsides of the leads of 3 and 4, wiped dry** (*owner*, 4/10/2026) | a look while the plenum was off (`vehicle-history.md`, *The valve cover and throttle job*: wiring and connectors fine); H7 test 3 for the injector side |
+| 3 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero **4/10: the pattern fits only in form** — fuel heat-soaked at the rail after a hard drive; against, the return-flow rail keeps fuel moving, heat soak is a hot-*restart* effect, and the coolant read the same at A3's zero | a **fuel pressure gauge** |
 | 4 | **H3/H9 — a small unmetered leak**: **three injectors not fully home since 23/9** (H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose; **and the throttle's flange**, where a hard protrusion on the old face may have kept the June gasket off (H8, 28/9) | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) **4/10, against:** the warm leak signature did not move with the hole sealed, and a leak does not wait for a hard drive (S3, *Session A after step 1b*) | the valve cover job itself, which replaces the upper plenum gasket, the breather **and the throttle with its flange gasket** (29/9) — an improvement afterwards answers it; if none, a **vacuum gauge** first and a **smoke test of the intake** only if it points at a leak (`plan.md` step 3, *owner's decision, 3/10*) |
 | 5 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 **4/10, against:** zero at both warm stops is not what a normal-for-the-engine idle does on a counter that read 10–20 a minute there | a healthy AQY recorded (H0 test 1) |
 | 6 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: worst at mid temperature, not hot; A5 **4/10, against:** zero at both warm stops | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
