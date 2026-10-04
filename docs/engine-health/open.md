@@ -358,6 +358,12 @@ never aligned with anything. It did
   | hot, after a hard drive | 72–73 °C | 238 s | **7–9** | 7–11 | 82–92 |
   | the MAF wiggle | 73 °C | 71 s | 13.6 | 15.3 | 79 |
 
+  **The MAF wiggle found nothing** (`vehicle-history.md`, the MAF row):
+  the counts were there before it (*owner*, watching 014 before he went
+  to the engine), and 003's air never dropped out under the hand. Its
+  13.6 against 9.2 a minute is 71 s against 189, a difference that small
+  a sample does not carry.
+
   **The first warm stops ever logged with 014 at zero**, at the
   temperatures where `24` counted 20 and 10 a minute and 3/10 16 and 3.
   **Then it came back, and what brought it was the drive, not the
