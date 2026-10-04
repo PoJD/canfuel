@@ -39,130 +39,16 @@ cover gasket leaked at cylinder 4's end by the first warm stop**
 
 ---
 
-## Step 1b — the cover joint again, at cylinder 4's end
+## Step 1b — the cover joint again, with the right gasket: done 4/10/2026
 
-*Owner's decision, 3/10/2026:* the joint is made tight before anything
-else, and the misfire verdict is taken again on a sealed engine.
-*Decision* on the order: the warm stops of 3/10 were read with the joint
-open, and an open joint there is, at idle, a path for air the MAF does
-not see (`open.md` S10, *Whether the leak bears on the idle*). So step 2,
-the exhaust, waits for the test after 1b.
-
-**The cover came off on the night of 3/10/2026** (*owner*), and the cause
-is found: **the gasket fitted on 2/10 is for another engine** (`open.md`
-S10, *The cause*). Its half-moon is an open arch that leaves a hole of
-about 1 cm into the crankcase. So what is left of this step is a
-reassembly with the right gasket, then the test.
-
-**Parts** (*owner, buying 4/10/2026*):
-- **cover gasket Elring `915.653`** — listed for AQY; it has solid
-  half-moons and metal sleeves at the bolt holes, like the one that came
-  off. ⚠ Its VW number `051 103 483` A/D/E is autokelly's
-  cross-reference, not checked by VIN. **Compared with the old gasket in
-  the shop, piece by piece** — half-moons, sleeves, the number and
-  spacing of the holes — before it is bought;
-  **Bought 4/10/2026 and judged the right part** (*owner*): solid,
-  ribbed half-moons and metal sleeves at the bolt holes, as on the
-  gasket that came off (`photos/cover-gasket-915653-halfmoon.jpg`,
-  `photos/cover-gasket-915653-whole.jpg`). **The number is read off the
-  package's label: `915.653`**, Elring Germany, EAN `4041248115435`
-  (`photos/cover-gasket-915653-label.jpg`; *this used to say the number
-  rested on the owner's word, being legible in neither photograph*);
-- **upper plenum gasket Elring `271.230`** — VW: *always new* (the torque
-  table below); the number was ordered by the garage by VIN on 17/9;
-- **Dirko** (Elring `030.793`), in hand.
-
-The breather, its ring, the cap ring and the throttle stay as they are.
-**The battery is disconnected again** (*owner*, 4/10/2026; this used to
-say it stays connected, as a decision), so the adaptations start from
-zero once more and **098 is run before the first start** (VW's manual,
-`open.md` H8).
-
-**Before the start**
-- [x] **the oil level, cold, on level ground** — about 0.5 l was topped
-      up on 3/10 after the leak, read on a hot engine straight after;
-      top up in small amounts to the upper mark at most. **Not over it**:
-      an overfilled crankcase pushes oil through the breather into the
-      intake, which would spoil the test (*general*)
-
-      *4/10/2026 (owner):* **about 1 l topped up in all** since the leak,
-      the evening of 3/10 included; the dipstick now reads **about 0.5 mm
-      below the upper mark** (it read exactly at it the day before), and is
-      left there. Spare oil to be bought.
-- [x] the coolant level, cold — *4/10/2026 (owner):* checked and topped
-      up with the rest of the distilled water, **slightly above max**
-
-**The reassembly**
-1. [x] **The upper plenum aside, the cover off** — 3/10/2026, night
-   (*owner*).
-2. [x] **The finding photographed** — the open arch of `325.070` against
-   the old gasket's solid half-moon (`vehicle-history.md`, *The wrong
-   gasket*).
-3. [ ] **Clean off all the oil**: head, cover flange and groove, the old
-   Dirko off both faces, the plug area, **the coil, its connector and
-   bracket**, **the lead boots of 3 and 4 inside and out** (oil in a boot
-   is noted, `open.md` H4), the manifold below. Keep cleaner out of the
-   open ports. Both faces clean and dry.
-   *4/10/2026 (owner):* the worst of the oil cleaned off the cables;
-   the leads dry, and **oil on one part of the coil** (*this said the
-   coil's body was dry; corrected by the owner the same day*). **The lead
-   boots and the plugs are clean — no oil got in there** (*owner*). What
-   ran down onto the gearbox stays, **as cosmetic** — the owner's decision
-   (`photos/cover-leak-2026-10-04-cleaned.jpg`).
-4. [x] **The new gasket into its groove all the way round**, both
-   half-moons seated, checked by finger before the cover goes down.
-5. [x] **Dirko at the four arch points**, the step from arch to straight
-   run filled, the two front ones not skimped (VW: the joint of bearing
-   cap 1 to the head, `open.md` S10).
-6. [x] **The cover straight down**, not slid; a look along the edge at all
-   four corners.
-7. [x] **The strips in the video's order**: front and rear on the cover,
-   the side bracket on top (`open.md` S10;
-   `photos/cover-leak-2026-10-03-bracket.jpg`).
-8. [x] **The nuts evenly and crosswise, then round again** once the
-   gasket has settled. **No VW figure for these nuts is held** — searched
-   again 3/10/2026: the transcription this project uses carries the
-   cylinder head for this engine but not the cover, and the 10 Nm that
-   turns up belongs to other VW engines. With metal sleeves in the gasket,
-   the nut stops on the sleeve and the rubber cannot be over-squeezed,
-   which `325.070` had no protection against (*reasoned*). So: by feel,
-   until each nut is firmly down on its sleeve.
-
-   *4/10/2026 (owner):* **the cover is on**, the nuts tightened evenly by
-   feel, and **each one could be felt landing on its brass sleeve** —
-   unlike `325.070`, which had none. **The gasket sits in its groove and the
-   Dirko is on** (*owner*, items 4 and 5; the Dirko in
-   `photos/cover-on-2026-10-04-belt-end.jpg`). Item 7 not reported;
-   what the photographs show (*Claude's reading*): the gasket's edge lying
-   even along the joint at the timing-belt end, a solid half-moon in place
-   at the end photographed, and light-coloured material at the step beside
-   the front nut, consistent with Dirko
-   (`photos/cover-on-2026-10-04-belt-end.jpg`,
-   `photos/cover-on-2026-10-04-halfmoon.jpg`,
-   `photos/cover-on-2026-10-04-strip.jpg`). The joint is judged by the warm
-   run, not by these.
-9. [x] **New plenum gasket, plenum on at 10 Nm**, the breather hose back,
-   everything reconnected; **every rag out, counted**.
-
-**All done, 4/10/2026** (*owner*: "vše hotovo";
-`photos/plenum-on-2026-10-04.jpg`, and the side bracket on the refitted
-cover in `photos/cover-on-2026-10-04-bracket.jpg`).
-
-Then **the test after the job, below — session A again**, from a cold
-engine. The first drive of it is also the joint's warm run: a look along
-it at the first stop, cylinder 4's end first, and the coil dry.
-
-**Torques — VW's figures for this engine**, the rows this step needs
-(VW's manual as transcribed on workshop-manuals.com, *Dismantling and
-assembling intake manifold – upper part*, figure N24-0950, and *Removing
-and installing parts of the ignition system*; the full table is in git,
-`plan.md` before 2/10/2026):
-
-| joint | torque | VW's note |
-|---|---|---|
-| intake manifold upper part → lower part | **10 Nm** | gasket always new |
-| ignition coil | 10 Nm | |
-| the cover nuts | **no VW figure held** | item 8 |
+Recorded in `vehicle-history.md` (*The wrong gasket*, *The cover back on*,
+*The first warm run after step 1b*); Elring `915.653` on Dirko, the upper
+plenum gasket new, the battery disconnected and **098 run before the first
+start**. Session A was run again the same day on the sealed engine
+(`open.md` S3, *Session A after step 1b*): **the joint stayed dry**, and
+**014 read zero through A2 and A3 for the first time** — then counted at
+every idle after five minutes of hard driving. So session B, below, gains
+a stop after a hard drive.
 
 ---
 
@@ -224,7 +110,8 @@ zero there before 24/9 proves nothing.
 ### Session A — the cold start and the warm-up drive, one log
 
 **The second run, after step 1b — what differs** (*owner's decision,
-4/10/2026*):
+4/10/2026*; **run 4/10/2026**, results in `open.md` S3, *Session A after
+step 1b*):
 - **the start's quality is read again** (*owner's decision, 4/10/2026*;
   this said it was not read, the first start being straight after 098 on
   a battery that was off). The reason it was ignored before was the rail
@@ -290,7 +177,7 @@ same arithmetic (`docs/firmware/frames.md`):
 | 26/9 | ~10 h | 14 °C | 0.93 s | 74 rpm |
 | 11/9 (`18`), old injectors | ~10 h | 16 °C | 1.22 s | 141 rpm, nearly died |
 | **3/10, session A** | **27 h** | **17 °C** | **0.77 s** | **15 rpm** |
-| 4/10, after 1b, adaptations at zero | ~15 h | | | |
+| 4/10, after 1b, adaptations at zero | ~15 h | 15 °C | **1.38 s** | 0 rpm |
 
 - **Crank about 0.8–0.95 s, dip within 74–118 rpm** → the start is as it
   was on the new injectors; the refit and the throttle did not hurt it.
@@ -452,18 +339,24 @@ fuel adaptation from where the first left them.
 45 °C** — a few hours; the oil watch shows it at ignition-on — so that the
 drive climbs through 56–62 °C again with time to be warned.
 
-**Capture and VCDS 014 + 055 + 032**, **the same two stops as A2 and A3**
+**Capture and VCDS 014 + 055 + 033** from the start to engine off — 033,
+the live lambda control, in place of 032 (*owner's decision, 4/10/2026*),
+so that B3 below has the two stops to be read against; **032 is
+photographed once at the end**, engine off, as on 4/10. **The same two
+stops as A2 and A3**
 (the oil watch with both stops, as in A), loads off; A1's leak checks and
 the cold-start table are not repeated. **A4 again at engine off, if A4
 was taken**: a second hot point for the same question.
 
-- **014 at zero again through both stops, detection `aktivováno`** — **the
-  misfires are gone**, and the verdict is closed. Record it, read *What
-  points at which repair* below.
+- **014 at zero again through both stops and at B3, detection
+  `aktivováno`** — **the misfires are gone**, and the verdict is closed:
+  the owner's bar is zero *after a hard drive too* (*owner's decision,
+  4/10/2026*). Record it, read *What points at which repair* below.
+  Zero at the two stops and counts at B3 is read under B3.
 - **Counts** — they were not gone; A's zero was luck: step 2.
 - **055's learned value** against the −0.73 g/s of 11/9, and **032's idle
-  cell** (`open.md` S9): either moving *negative* also says a leak was
-  sealed. Read here for what they are after a day; **a photograph of both
+  cell** in the photograph (`open.md` S9): either moving *negative* also
+  says a leak was sealed. Read here for what they are after a day; **a photograph of both
   screens after a few hundred km** is worth having later, but decides
   nothing.
 
@@ -472,6 +365,24 @@ zero so far:** **one minute of group 002** as its own short log (VW's idle
 limits: air 2.0–5.0 g/s, injection 2.0–5.5 ms, load 15–35 %, `vcds.md`),
 then **two minutes with the A/C on**, the capture still running — the
 regulator's answer to a load step, the two-hold method of `vcds.md`.
+
+**Then B3 — the hot stop after a hard drive** (*owner's decision,
+4/10/2026*). The second run of session A (`open.md` S3, *Session A after
+step 1b*) read 014 at zero through A2 and A3 and then counting at every
+idle once **five minutes of hard driving** (5400–5770 rpm, b5 ≥ 80 for
+40–54 % of each minute) had gone before, at the same oil and coolant as A3.
+So after B's second stop: **five minutes driven the same way**, then **three
+minutes standing, loads off**, VCDS on **014 + 033 + 004** as a new log —
+the counts, the live lambda control and the probe voltage (033; label file:
+control −10…+10 %, probe 0–1 V), and the intake air temperature (004).
+- **Zero at B's two stops and counts at B3** → the pattern is real: a fault
+  that needs heat from load, not a leak at the intake. **033 adding fuel
+  at B3** (positive, *general*: a probe that sees outside air reads lean)
+  where it did not at the stops points at air reaching the probe — the
+  exhaust ahead of it (H2), step 2. **033 steady while 014
+  counts** points away from the probe — spark or fuel when hot (H4, H7).
+- **Counts already at B's stops** → A's zero was luck, and step 2 as
+  planned.
 
 *There used to be a session C for this* — a separate warm recording of the
 healthy idle. **Dropped, owner's decision 2/10/2026:** if A and B are both

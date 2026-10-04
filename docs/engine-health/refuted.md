@@ -395,3 +395,24 @@ it lacks the metal sleeves the old gasket has. Catalogues list it for
 AZJ, BER, AZG and AEG, not AQY (`open.md` S10, *The cause*). **The general
 lesson:** a match by vehicle is not a match by engine code. **What would
 revive it:** nothing about this head; it is a different part.
+
+### C18. "The open cover joint cost 18–30 % of torque under load" — measured
+
+**Believed:** 4/10/2026, from session A (`open.md` S10, *Under load it did
+bear*): at b5 80 and above, 0x280 b7 on 3/10 read 18–30 % below `19` and
+`24` at the same engine speed and b5, and the 1 cm hole into the crankcase
+was taken to be air the MAF did not see.
+**Refuted by** the run after step 1b, 4/10/2026 (`27`/`28`, the same bins,
+driving, oil above 55 °C, at least 30 frames each), **with the joint
+sealed and dry**: b7 reads where 3/10 read, not where `24` did — 94 against
+92 at 1500 rpm and b5 80–89, 96 against 96 at 2000 and 90–99, 82 against
+94 at 2500 and 90–99. **What the comparison missed:** the throttle body
+was replaced between `24` and `26`, and **b5 is its own sensor** — at
+idle it reads **35 on the new part and 38 on the old** in every log either
+side of the swap. So equal b5 is not equal opening across the swap, and
+the deficit belongs to the new part's scale, not to the hole. At full
+throttle, where b5 saturates and the scale cannot matter, b7 is 175–183
+against `24`'s 177–185. **The general lesson:** a byte read off a part
+compares only while the part stays the same. **What would revive it:** a
+part-throttle deficit between logs taken on the same throttle body.
+

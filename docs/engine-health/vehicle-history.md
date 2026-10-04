@@ -183,6 +183,7 @@ here is owner-supplied from service records.
 | Upper intake manifold gasket, **Elring `271.230`** (sold as the equivalent of VW `06A 129 717`; the parts shop matched it to the VIN) | **9/2026, twice** *(owner, 1/10/2026)*: **17/9 at the garage** with the plugs, and **23/9 by the owner** with the injectors; packaging dated 17/9/2026 (Carvo s.r.o.) — *read off the photographed packaging*. *This row used to give one fitting, by the owner.* The 23/9 one came off whole on 1/10/2026 and **a third new one went on 2/10/2026** (*The valve cover and throttle job*, below) | ~0 |
 | **Throttle body, new**, Pierburg `7.03703.13.0` (cross-referenced to `06A 133 064 H`, without cruise control), with a new flange gasket | **2/10/2026**, by the owner; 098 *ADP OK* | ~0 |
 | **Valve cover gasket** Elring `325.070` — ⚠ **the wrong part, for another engine; off again 3/10/2026** (*The wrong gasket*, below) —, **crankcase breather** Febi `32452` (its ring fitted), **filler cap ring** Febi `100690` (= `06A 103 483 D`), sealant Elring `030.793` | **2/10/2026**, by the owner | ~0 |
+| **Valve cover gasket, the right one**, Elring `915.653` (listed for AQY; solid half-moons, metal sleeves), on Dirko Elring `030.793`, with a new upper plenum gasket Elring `271.230` | **4/10/2026**, by the owner | ~0 |
 | Injectors' air-shroud line: **new 8 mm sleeves** on the rigid pipe | **1/10/2026**, by the owner | ~0 |
 | Throttle vacuum elbow `06A 133 374` (tee to the throttle's top spigot) — **replaced by a longer plain hose**, the new throttle's spigot pointing the other way | **2/10/2026**, by the owner; the old elbow is kept | ~0 |
 | **Spark plugs and ignition leads**, NGK leads | **17/9/2026**, at the Dakuma garage | ~0 |
@@ -352,6 +353,14 @@ evenly by feel, each felt seating on its brass sleeve (*owner*;
 with its new gasket, the job complete** (*owner*;
 `photos/plenum-on-2026-10-04.jpg`). Oil: about 1 l topped up in all since
 the leak; cold, the dipstick about 0.5 mm below the upper mark (*owner*).
+
+**The first warm run after step 1b, 4/10/2026.** Battery disconnected
+for the job, so 098 was run before the start (*owner*: OK). Session A
+again (`open.md` S3, *Session A after step 1b*). **The joint stayed dry**
+at the stop at 45–50 °C of oil and after the hot end of the run; the
+smoke seen was the 3/10 oil burning off (*owner*). The hiss at the back
+remained (S11). Fault memory empty afterwards; 032 −0.8 / +2.3 %
+(`photos/vcds-032-2026-10-04-after-sessionA.jpg`).
 
 ---
 

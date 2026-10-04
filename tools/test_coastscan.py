@@ -140,22 +140,25 @@ class AgainstTheFixtures(unittest.TestCase):
     def test_a_log_without_timestamps_is_skipped_rather_than_guessed_at(self):
         self.assertEqual(samples(os.path.join(FIXTURES, "03_drive.txt")), [])
 
-    def test_the_corpus_holds_141_overrun_fuel_cuts(self):
-        """Four in 17_drive_property_z1, 72 in the hour of 19, 33 in 24, and
-        17 and 15 in the two halves of session A, 25 and 26.
+    def test_the_corpus_holds_180_overrun_fuel_cuts(self):
+        """Four in 17_drive_property_z1, 72 in the hour of 19, 33 in 24,
+        17 and 15 in the two halves of session A, 25 and 26, and 13 and 26
+        in the two halves of its second run, 27 and 28.
 
         Counted per log, so a change to the detector shows where it moved
         rather than only that the total did.
         """
-        self.assertEqual(len(self.cuts), 141)
+        self.assertEqual(len(self.cuts), 180)
         self.assertEqual(self.per_log, {"17_drive_property_z1.txt": 4,
                                         "19_postfix_drive_z1.txt": 72,
                                         "24_mafswap_drive_z1.txt": 33,
                                         "25_sessionA_cold_z1.txt": 17,
-                                        "26_sessionA_warm_z1.txt": 15})
+                                        "26_sessionA_warm_z1.txt": 15,
+                                        "27_sessionA2_cold_z1.txt": 13,
+                                        "28_sessionA2_warm_z1.txt": 26})
 
     def test_the_cut_does_not_engage_the_moment_the_pedal_comes_up(self):
-        """0.77-5.51 s after the lift across the corpus, never at once.
+        """0.71-5.51 s after the lift across the corpus, never at once.
 
         17's four sat at 1.2-1.3 s, which once read as a fixed delay; the
         drives show it is not one, and the shortest is still most of a second.
@@ -169,15 +172,18 @@ class AgainstTheFixtures(unittest.TestCase):
         self.assertLess(max(delays), 6.0)
 
     def test_fuel_comes_back_well_above_idle(self):
-        """1,380-3,500 rpm across the corpus, and never near idle.
+        """1,380-3,900 rpm across the corpus, and never near idle.
 
         There is no single resume speed: it moves with gear and road speed, so
         17's 1,700-1,754 in first gear was one corner of a range and not the
-        rule. The floor is still far above the ~800 rpm idle.
+        rule. The floor is still far above the ~800 rpm idle. The top, 3,897,
+        is one coast in 28, after the hardest driving in the corpus; until it
+        the corpus topped out near 3,500. Like the delay bound, the ceiling
+        moved with it rather than the coast being explained away.
         """
         back = [c[-1][1] for _, c in self.cuts]
         self.assertGreater(min(back), 1300)
-        self.assertLess(max(back), 3600)
+        self.assertLess(max(back), 4000)
 
     def test_a_log_where_the_car_never_moves_has_no_coasts_at_all(self):
         cold = samples(os.path.join(FIXTURES, "18_coldstart_z1.txt"))
