@@ -279,6 +279,12 @@ The start decides nothing about the misfires; that stays A2 and A3.
   **014 is logged through the whole session, with that minute of 004 the
   only gap** (*owner's decision, 4/10/2026*); a new file after the gap
   costs nothing, every log aligns on engine speed.
+- **On the drives, some throttle** (*owner's decision, 4/10/2026*): if
+  the joint stays dry, drive briskly enough that b5 spends time at 80–110
+  — the range where 3/10 read 18–30 % less torque with the hole open
+  (`open.md` S10, *Under load it did bear*). Claude sets b7 against `24`
+  afterwards; nothing is read at the car. If oil shows at the early stop,
+  gently, as on 3/10.
 - **A3+ — then about an hour's driving, and one last stop hot**
   (*owner's decision, 2/10/2026*): **three minutes standing, loads off**,
   the same three groups. It decides nothing on its own — the verdict

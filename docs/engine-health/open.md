@@ -741,6 +741,36 @@ set it against** (055 was logged only on the cold start of 11/9), so this
 is a question and not a sign. It is why the misfire verdict is taken
 again after the joint is sealed (`plan.md`).
 
+**Under load it did bear, and measurably.** *Owner, 4/10/2026:* the engine
+pulled worse on 3/10 — first a warm-up drive, then, once the leak was
+found, gentle driving home. The capture agrees: 0x280 b7 (indicated
+torque) at the same engine speed and the same b5 (throttle), driving, oil
+above 55 °C, medians over bins of 500 rpm and 10 counts of b5 with at
+least 30 frames in each log:
+
+| rpm | b5 | `19` | `24` | `26`, the hole open |
+|---|---|---|---|---|
+| 1500 | 80–89 | 118 | 112 | **92** |
+| 1500 | 90–99 | 151 | 131 | **102** |
+| 2000 | 80–89 | 114 | 102 | **84** |
+| 2000 | 90–99 | 135 | 133 | **96** |
+| 2000 | 100–109 | 153 | 151 | **106** |
+| 2500 | 90–99 | 129 | 128 | **94** |
+
+**18–30 % less at b5 80 and above**, where `19` and `24` agree with each
+other; at b5 50–69 `26` reads the same or slightly more. Air density
+explains a few per cent, not a third. *Reasoned:* the hole is driven by
+the drop across the filter and the MAF, which grows roughly with the
+square of the flow — next to nothing at idle's 3 g/s, a real share of the
+air under load. Air the MAF does not see is load the ECU does not
+compute, so b7 reads low, the fuel is metered short and the engine pulls
+less. **So the hole's effect is load-dependent: small at idle, which is
+why 003 and 055 showed no signature there, and large when driving.** ⚠ 3/10
+never went past b5 105 (`24` reached 212), so full throttle is unseen;
+whether the bins were steady or accelerating was not separated; one drive,
+fresh adaptations. **What tests it:** the same table on the run after
+step 1b (`plan.md`) — b7 back on `24`'s line if the hole was the cause.
+
 ### S11. Smoke, and possibly a hiss, at the back of the head at a warm idle
 
 *Owner, by eye and ear, 26/9/2026*, warm idle, bonnet open, over the exhaust
