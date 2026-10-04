@@ -7,15 +7,118 @@ always used, because code and documents cite them; the answered ones are in
 `can-decoding.md` under *Resolved questions*, and the ones not worth answering
 under *Never resolved but not required*.
 
-**Both of these may stay open for good, and that is allowed.** Neither blocks
+**7 and 10 may stay open for good, and that is allowed.** Neither blocks
 anything: the firmware ships a defensible value for each, errs in a known
 direction, and nothing in `src/` changes until a measurement says so.
+**11 is a planned change** whose variants are costed and wait for the
+owner's choice.
 
 **10 sits under 7.** The drag line of question 7 is fitted against oil
 temperature, so if question 10 finds the oil channel wrong, question 7 is being
 asked in the wrong units — and may simply be answered.
 
 The engine's own faults are not here; they are `docs/engine-health/open.md`.
+
+---
+
+## 11. `IdleHealth` does not follow VCDS group 014 — what should it measure?
+
+*Raised by the owner, 4/10/2026.* After step 1b the ECU's misfire counter
+(group 014) read zero at both warm stops for the first time, the owner
+felt the calmest idle yet, and `IdleHealth` read about what it had read
+the day before. The owner wants the grade **as close to how the ECU
+measures as the bus allows**.
+
+### What was measured
+
+Every standing stop of 60 s and more, oil above 40 °C, in the four
+captures that have a 014 log beside them, 014 aligned on engine speed
+(the method of `docs/engine-health/open.md` S3). Candidate grades from
+0x280, each over the whole stop:
+
+| log | oil | 014 a minute | `IdleHealth` | dips a minute (`dips_cheap`) | one slow firing ≥ 6 / 8 / 12 rpm, a minute | mean second difference, rpm |
+|---|---|---|---|---|---|---|
+| `19` | 51 °C | 8.0 | 123 | 16.4 | 47 / 21 / 1.3 | 6.54 |
+| `19` | 63 °C | 2.0 | 64 | 10.4 | 29 / 9.7 / 1.1 | 5.90 |
+| `19` | 70 °C | 0.0 | 112 | 28.4 | 68 / 19 / 3.8 | 6.76 |
+| `19` | 71 °C | 0.0 | 146 | 22.1 | 78 / 39 / 3.1 | 6.42 |
+| `24` | 70 °C | 9.6 | 84 | 10.9 | 36 / 11 / 0.5 | 5.56 |
+| 3/10 | 62 °C | 17.5 | 114 | 12.4 | 38 / 13 / 0.7 | 6.32 |
+| 3/10 | 70 °C | 5.0 | 62 | 14.9 | 8.9 / 2.0 / 0.0 | 4.28 |
+| 4/10 | 45 °C | 0.0 | 117 | 14.7 | 35 / 13 / 1.1 | 5.84 |
+| 4/10 | 59 °C | 0.0 | 109 | 10.1 | 38 / 11 / 0.5 | 5.89 |
+| 4/10 | 71 °C | 0.0 | **60** | **5.6** | 18 / 4.7 / 0.1 | 4.81 |
+| 4/10, after a hard drive | 73 °C | 9.1 | 92 | 10.1 | 16 / 2.9 / 0.3 | 5.00 |
+| 4/10, the MAF wiggle | 73 °C | 14.6 | 79 | 12.8 | 16 / 3.6 / 0.0 | 5.69 |
+
+*One slow firing* is the shape a lone misfire leaves on crank speed: one
+180° value below **both** its neighbours by at least the threshold — the
+nearest thing on the bus to the ECU's per-cylinder segment times.
+*Second difference* is |x₋₁ − 2x + x₊₁| over the same values. `24`'s
+first stop has no 014 beside it and is left out.
+
+**Rank correlation with 014** (Spearman, stops with detection active):
+
+| grade | all 12 | new MAF only (`24`, 3/10, 4/10), 8 | hot only, 7 |
+|---|---|---|---|
+| `IdleHealth` | −0.12 | +0.05 | −0.22 |
+| dips a minute | −0.09 | +0.27 | −0.30 |
+| one slow firing ≥ 6 | −0.34 | −0.02 | −0.48 |
+| one slow firing ≥ 8 | −0.24 | +0.12 | −0.48 |
+| one slow firing ≥ 12 | −0.36 | −0.04 | −0.50 |
+| second difference | −0.17 | +0.24 | −0.15 |
+
+### What it says
+
+- **No grade the bus allows follows 014** — not the current one, not a
+  dip count, and not the shape-of-a-misfire detector built to imitate the
+  ECU. Twelve stops is a small sample, but nothing is even close.
+- **Why** (*reasoned*): the ECU times the crank per cylinder off its own
+  sensor, against thresholds that move with load — which is why 014
+  changed its ruler when the MAF did (`docs/engine-health/refuted.md`
+  A11), and why `19` reads the roughest idle on record with 014 at zero.
+  0x280 carries one recomputed speed per 180° (`can-decoding.md` trap 5);
+  whatever the ECU sees in a single firing does not survive into it.
+  **014 cannot be rebuilt from the bus**, and it is not on the bus.
+- **What the grades do follow is the idle's smoothness — what the owner
+  feels.** At the hot stop `IdleHealth` went 146 → 84 → 62 → **60** from
+  `19` to 4/10 and the dip count 22 → 11 → 15 → **5.6**; 4/10's hot stop
+  is the smoothest on record by both, which is what the owner felt. They
+  also follow **oil temperature** more than anything else: the middle
+  band reads 105–125 on most days.
+
+### The variants, for the owner to choose from
+
+1. **Keep `IdleHealth` and read it only on hot oil (≥ 66 °C)** — no
+   firmware change: a rule for reading the display, written into
+   `frames.md`. In that band it shows the trend above.
+2. **Make it steadier.** The EWMA over 256 firings (9.7 s) lets two-minute
+   windows of one stop read 56 to 109; `ROUGH_SHIFT` 10, about 40 s, would
+   settle it. The level over a whole stop does not change, only its
+   scatter.
+3. **Add the dip count** (`tools/idledips.py` `dips_cheap()`, already the
+   firmware's shape: shifts and adds, no division) as a second byte in
+   0x604. It moved 4× at the hot stop where `IdleHealth` moved 2.4×, and
+   "dips a minute" means something to a reader.
+4. **Gate either grade on oil temperature in the firmware** — freeze it,
+   or report 255, outside the hot band, so the display never shows a
+   middle-band reading that compares with nothing.
+
+**None of them is a misfire counter, and none can be.** For misfires,
+VCDS 014 stays the instrument.
+
+### Also due with the next change under `src/`
+
+The `THROTTLE_REST` comment in `config.h` says b5 rests at 38; on the
+throttle body fitted 2/10/2026 it rests at **35**, with nothing at 36–44
+(`27`, `28`). The gate at 38 is in the empty gap for both parts and needs
+no change; only the comment does.
+
+### How it closes
+
+The owner picks among 1–4; what is chosen goes into `src/` with
+`idledips.py` as its oracle, as `IdleHealth` did, and 0x604's layout
+changes in `mfd15` in the same breath if a byte is added.
 
 ---
 

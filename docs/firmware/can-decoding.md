@@ -115,7 +115,7 @@ finds it rather than rediscovers it.
 | Oil temperature | 0x420 | 3 | × 0.75 − 48 °C | 0xFF with the engine off |
 | Fuel in tank | 0x320 | 2, mask 0x7F | indicated litres | bit 0x80 = reserve lamp; the scale reads low, `refuel-reset.md` |
 | Torque (indicated) | 0x280 | 7 | 1.06 Nm/bit | measured off the full-throttle plateau, see `frames.md` |
-| Throttle position | 0x280 | 5 | 38 = rest position | |
+| Throttle position | 0x280 | 5 | 38 = rest position (35 on the throttle body fitted 2/10/2026) | |
 | Engine load | 0x280 | 6 | | 0 with the engine off; **not decoded by the firmware** |
 | Wheel speeds | 0x4A0 | 4× 16-bit LE | (raw >> 1) × 0.01 km/h | bit 0 = direction |
 | Acceleration | 0x5A0 | 0 | (val − 127) / 100 G | lateral; **not decoded by the firmware** |

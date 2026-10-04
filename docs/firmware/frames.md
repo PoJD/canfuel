@@ -759,9 +759,12 @@ Both thresholds are measured, and neither is an equality:
 - **Speed.** A stationary car sends raw speed **1** (0.005 km/h), never 0 —
   7953 frames of it in `06_trip_reset` — and the next value that ever appears
   is above 40. The gate is 0.1 km/h.
-- **Throttle.** 0x280 b5 is exactly **38** at rest and never lower; the next
-  value above it that ever appears is **44**. It is the pedal and not the
-  load, which is what lets it gate on its own.
+- **Throttle.** 0x280 b5 is exactly **38** at rest on the original throttle
+  body, and the next value above it that ever appears is **44**. **On the
+  new one, fitted 2/10/2026, rest is 35** and nothing appears between 36
+  and 44 (`27`, `28`), so the gate at 38 sits in the empty gap for both
+  parts and needs no change. It is the pedal and not the load, which is
+  what lets it gate on its own.
 
 ⚠ **The b7 = 133 spike is not a counter-example**, though reading it as one is
 what made the gate an AND. It is at 4522 rpm during a gearchange, in a frame

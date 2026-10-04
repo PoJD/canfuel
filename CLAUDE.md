@@ -150,7 +150,7 @@ carries a generated block; a figure typed into prose only goes stale.
   - **`docs/firmware/`** — everything the converter needed or needs.
     **`install.md` is the procedure**, plus decoding, frame layout, refuelling
     reset, timing, optimisation, flashing, `refuted.md`, `open.md` (the open
-    firmware questions, 7 and 10) and `datasheets/`
+    firmware questions, 7, 10 and 11) and `datasheets/`
   - **`docs/engine-health/`** — the car's own engine. `open.md` is a holding
     document for one open investigation — the idle misfires that outlived the
     repair — holding only what is open: symptoms, hypotheses, tests.
@@ -1106,7 +1106,7 @@ keeping straight, because they look similar from a distance:
 | `docs/firmware/refuted.md` | believed, then **settled against**. An answer exists and it is "no" |
 | `docs/firmware/can-decoding.md` → *Resolved questions* | asked and **answered**, with the evidence kept |
 | `docs/firmware/can-decoding.md` → *Never resolved but not required* | **no answer, and none wanted.** Do not work on these |
-| `docs/firmware/open.md` | genuinely open, with what closes each. There are two, 7 and 10, and both may stay open for good |
+| `docs/firmware/open.md` | genuinely open, with what closes each. There are three: 7 and 10, which may stay open for good, and 11, a planned change to `IdleHealth` |
 
 ## Read `docs/firmware/can-decoding.md` before touching the maths
 
@@ -1674,9 +1674,11 @@ Both thresholds are measured, and neither is an equality:
 - **A standing car does not send zero.** 0x1A0 raw speed is **1** — 0.005 km/h
   — in every log while stationary (7953 frames of it in `06_trip_reset`), and
   the next value that ever appears is above 40. The gate is 0.1 km/h.
-- **0x280 b5 is 38 at rest** and never lower in any log; across every fixture
-  the next value above 38 that ever appears is **44**, so nothing occupies
-  39–43. It is the pedal and not the load, which is what lets it gate on its
+- **0x280 b5 is 38 at rest** on the original throttle body, and the next
+  value above 38 that ever appears is **44**, so nothing occupies 39–43.
+  **The body fitted 2/10/2026 rests at 35** with nothing at 36–44, so the
+  gate at 38 still sits in an empty gap; the comment in `config.h` still
+  says 38 only, and is corrected with the next change under `src/`. It is the pedal and not the load, which is what lets it gate on its
   own: a released pedal is a statement about the driver, and what b7 does
   afterwards is the engine looking after itself.
 
