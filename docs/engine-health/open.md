@@ -242,6 +242,14 @@ like the rough idle (*owner-reported, 28/9/2026*). Not recorded, not timed,
 never aligned with anything. It did
 **not** coincide with misfire detection going `deaktiv.`.
 
+*Owner, 4/10/2026:* only now and then, and **much weaker than S14's
+bangs** — in his reading **the same thing, smaller**: the unburnt charge
+of a misfire going off in the exhaust. It fits (*reasoned*): at idle
+nothing cuts the fuel, so a misfired charge brings only its own air and
+no surplus, and most of it burns quietly in the converter; on the
+overrun the cut pumps plain air in after it, and it bangs. Still never
+aligned with 014, so it remains a reading, not a measurement.
+
 ### S3. Misfires counted by the ECU at idle
 
 **VCDS group 014**, on every drive since the counter was first logged.
@@ -1257,7 +1265,7 @@ full-load enrichment (*general*), for all four cylinders alike.
 | S1/S3 ↔ oil temperature | **strong, non-monotonic** | worst at ~50–61 °C of oil, less cold, least hot. On every drive |
 | S4 ↔ S5 | **very likely one thing** | same cylinder window, same engine speeds, and S5 needs no combustion. Knock control retards cylinder 4 because it hears S5's noise |
 | S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle, in any log. Only a common cause could link them |
-| S2 ↔ S3 | **unknown** | never aligned in time. A misfire puffs and a leak puffs |
+| S2 ↔ S3 | **likely, by the owner's reading; never aligned** | the owner takes S2 for S14's smaller twin, a misfire's charge going off in the exhaust (S2, 4/10/2026). A leak ahead of the probe would puff too (H2) |
 | S2 ↔ S6 | **possible** | if there is a leak ahead of the probes. The known leak is behind them |
 | S5 ↔ S6 | **no** | the clamp was tightened and cylinder 4's excess stayed exactly as it was |
 | S7 ↔ S1 | **none** | S7 improved with the injectors; S1 did not |
@@ -1269,7 +1277,7 @@ full-load enrichment (*general*), for all four cylinders alike.
 | S12 ↔ S4 | **S12 closed 4/10/2026**; was possible, untested | the knock retard is a tip-in event and a retard is lost torque. Never aligned in time |
 | S12 ↔ S1/S3 | **S12 closed 4/10/2026**; was possible, untested | both start from the bottom of the load range; a lean or weak-spark cause would show in both |
 | S14 ↔ S3 | **possible, owner-reported** | the bangs often follow a misfire episode; never aligned, and 014 does not count on the overrun, so it cannot be |
-| S14 ↔ S2 | **possible** | both are fuel or air burning in the exhaust. A misfire puffs at idle and bangs on the overrun |
+| S14 ↔ S2 | **likely one mechanism** (*owner, 4/10/2026*) | both are a misfire's charge burning in the exhaust: weak at idle, where it brings only its own air; loud on the overrun, where the fuel cut adds plain air behind it |
 | S14 ↔ S6 | **possible** | a leaky joint draws air in and feeds an afterburn; behind both probes, so it cannot cause the misfire |
 | S13 ↔ S1 | **weak** | the one link was an adaptation that never completes, leaving the idle on unfinished values (H8); **refuted on the old part 29/9** — 098 completed and the 20 s routine ran unchanged after it (S13). **Closed 2/10/2026**: the new part does the same |
 
