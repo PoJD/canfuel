@@ -1106,7 +1106,7 @@ keeping straight, because they look similar from a distance:
 | `docs/firmware/refuted.md` | believed, then **settled against**. An answer exists and it is "no" |
 | `docs/firmware/can-decoding.md` → *Resolved questions* | asked and **answered**, with the evidence kept |
 | `docs/firmware/can-decoding.md` → *Never resolved but not required* | **no answer, and none wanted.** Do not work on these |
-| `docs/firmware/open.md` | genuinely open, with what closes each. There are three: 7 and 10, which may stay open for good, and 11, a planned change to `IdleHealth` |
+| `docs/firmware/open.md` | genuinely open, with what closes each. There are three: 7 and 10, which may stay open for good, and 11, `IdleHealth` against 014, which waits on a deliberate-misfire test |
 
 ## Read `docs/firmware/can-decoding.md` before touching the maths
 

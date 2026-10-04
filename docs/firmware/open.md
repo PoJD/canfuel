@@ -10,8 +10,8 @@ under *Never resolved but not required*.
 **7 and 10 may stay open for good, and that is allowed.** Neither blocks
 anything: the firmware ships a defensible value for each, errs in a known
 direction, and nothing in `src/` changes until a measurement says so.
-**11 is a planned change**, decided by the owner and waiting on one more
-set of data.
+**11 is settled for now** — `IdleHealth` stays as it is — and waits on
+one test after the engine's idle is solved.
 
 **10 sits under 7.** The drag line of question 7 is fitted against oil
 temperature, so if question 10 finds the oil channel wrong, question 7 is being
@@ -107,6 +107,65 @@ first stop has no 014 beside it and is left out.
 **None of them is a misfire counter, and none can be.** For misfires,
 VCDS 014 stays the instrument.
 
+### The decision: `IdleHealth` stays as it is
+
+*Owner's decision, 4/10/2026, evening:* **nothing in the firmware
+changes.** Matching 014 is not a goal worth having: the owner has often
+felt an unsettled idle with 014 at zero, the ECU evidently counts little
+or nothing before its adaptations settle (`docs/engine-health/open.md`
+H10), and much else goes into it. 014 is most likely built to catch a
+**real, regular misfire** and would show one plainly; what it shows at a
+merely rough idle is an undocumented by-product. `IdleHealth` grades the
+idle's smoothness, which is what it was built for and what the owner
+feels.
+
+The evidence behind it, all from 4/10/2026:
+
+- **Session B** (`29`): five stops, 014 at 1.5 / 4.3 / 14.3 / 5.2 / 4.7 a
+  minute; the dip count read 9.2 / 18.5 / 11.3 / 7.8 / 20.3 and
+  `IdleHealth` 135 / 156 / 120 / 143 / 90. Neither follows 014.
+- **The adapted stops only** (the eight where 055's learned value had
+  passed about −0.93, H10): rank correlation with 014 — `IdleHealth`
+  −0.62, the dip count −0.05, one slow firing ≥ 6 / 8 / 12 rpm −0.50 /
+  −0.29 / +0.51 (the last on two non-zero stops out of eight), second
+  difference −0.38, **oil temperature +0.68**.
+- **014 weighted by its size** — the sum of the counter's increments a
+  minute, and its mean — over all 24 stops with a 014 log: every grade's
+  correlation agrees with the count of rises to within 0.08, since the
+  counter steps in twelves. With the cold stops in, every grade correlates
+  *negatively* (−0.28 to −0.63): a cold idle is the roughest on engine
+  speed and the one 014 does not count.
+- **014 cannot be split by cylinder on this ECU**: the label file has
+  group 014 and no 015 or 016.
+
+**Considered and set aside the same day: the dip count in place of
+`IdleHealth`.** Variant 3 as a replacement in byte 0, keeping the name,
+with `IdleRough` (byte 1, the same grade in raw units) made reserved. It
+was the sharper reading of smoothness at the hot stop, but no closer to
+014 than the grade it would have replaced, and that closeness was the
+reason it was wanted.
+
+### Next: a deliberate misfire, once the idle is solved
+
+*Owner's proposal, 4/10/2026; **not before** `docs/engine-health/plan.md`
+is empty.* A known, regular misfire, so that both instruments can be read
+against something real:
+
+- **Warm idle, oil in the hot band, loads off**; the capture running and
+  VCDS on 014 (with 055 and 033 beside it).
+- **A minute as it is, then one injector's connector off for a minute,
+  then back on for a minute.** With the connector off that cylinder gets
+  no fuel, so nothing unburnt reaches the converter (*general*). One
+  cylinder of four out is a quarter of the firings — about 200 a minute at
+  800 rpm.
+- **The fault memory cleared afterwards** (*owner*).
+
+**What it gives:** how 014 counts a misfire whose rate is known; what one
+looks like on 0x280 — the size of the dip, whether the *one slow firing*
+shape of the table above appears every second revolution; and what
+`IdleHealth` reads with a cylinder dead. If the grade then wants a
+different scale or anchor, that is decided from this test, not before.
+
 ### Also due with the next change under `src/`
 
 The `THROTTLE_REST` comment in `config.h` says b5 rests at 38; on the
@@ -114,75 +173,11 @@ throttle body fitted 2/10/2026 it rests at **35**, with nothing at 36–44
 (`27`, `28`). The gate at 38 is in the empty gap for both parts and needs
 no change; only the comment does.
 
-### The decision, and the plan
-
-*Owner's decision, 4/10/2026:* **variant 3, but as a replacement, not a
-second byte** — `IdleHealth` becomes the dip count; no new metric is
-added. Chosen over 1, 2 and 4 because it is the sharper reading of the
-same smoothness and is legible as "dips a minute". **Not** chosen because
-it follows 014: among the post-MAF stops it ranks closest (+0.27) but
-weakly, and across days it does not track 014 at all (3/10's hot stop
-14.9 dips with 014 at 5; `19`'s 22 with 014 at zero).
-
-1. **Checked against session B, 4/10/2026** (`29`): five stops, 014 at
-   1.5 / 4.3 / 14.3 / 5.2 / 4.7 a minute; the dip count read 9.2 / 18.5 /
-   11.3 / 7.8 / 20.3 and `IdleHealth` 135 / 156 / 120 / 143 / 90. Neither
-   follows 014 there either, and the dip count reads no worse than
-   `IdleHealth` — so **the condition holds and the change goes ahead**.
-
-   **Re-run on the adapted stops only**, at the owner's question
-   (`docs/engine-health/open.md` H10: 014 counts only once 055's learned
-   value has passed about −0.93): eight stops of 4/10. Rank correlation
-   with 014 — `IdleHealth` −0.62, the dip count −0.05, one slow firing
-   ≥ 6 / 8 / 12 rpm −0.50 / −0.29 / +0.51 (the last on two non-zero
-   stops out of eight), second difference −0.38, **oil temperature
-   +0.68**. On the adapted stops 014 follows the oil band and nothing the
-   bus carries, so the choice above stands.
-
-   **And with 014's size, not only its rises** (the owner's question):
-   per stop, the sum of the counter's increments a minute (a jump of 24
-   weighs twice one of 12) and its mean value, over all 24 stops with a
-   014 log, cold ones included. The ranks do not move — every grade's
-   correlation with the three measures agrees to within 0.08, because
-   the counter steps in twelves and its rises and its sum are nearly
-   proportional. With the cold stops in, every grade correlates
-   *negatively* (−0.28 to −0.63): a cold idle is the roughest on engine
-   speed and the one 014 does not count, so temperature drives both.
-2. **Design, to be settled in the implementation:** 0x604's
-   `IdleHealth` byte keeps its position and its 255 = not converged; its
-   unit becomes **dips a minute over settled idle**, from `dips_cheap()`'s
-   detector (trip 20 rpm, re-arm 10, the restartable 3 s settle). How the
-   rate is carried — an EWMA of events against idle time, by shifts, or
-   a count over a fixed idle window — is decided there, and costed in
-   `docs/firmware/timing.md` like every other loop.
-3. **`tools/idledips.py` is the oracle**, diffed exactly by
-   `replay.py --host-build` as `IdleHealth` is today; `test_idledips.py`
-   and the `_z1` fixtures carry the expected values.
-4. **The name stays `IdleHealth`** (*owner's decision, 4/10/2026*); only
-   its meaning changes, from a 0–200 index to dips a minute, clamped at
-   254. **The theoretical ceiling is far above that and never reached:** a
-   dip needs one 180° value 20 rpm under the baseline and one back within
-   10, so at an 800 rpm idle's ~1,600 values a minute the detector could
-   in principle book ~800; the baseline's 2.7 s lag keeps it far lower,
-   and the worst stop on record reads 28.
-   **`IdleRough`, byte 1, goes** (*owner's decision, 4/10/2026*): today it
-   is the same grade as byte 0 in raw units (byte 0 = byte 1 × 25 >> 4),
-   and once byte 0 is the dip count the old grade has no reader. Byte 1
-   becomes **reserved, always 255**, as `StartHealth` in byte 3 already
-   is; the frame stays eight bytes (`TXFRAME_DLC`), so the saving is the
-   firmware's work and a channel on the display, not bus time.
-   `HEALTH_LAYOUT_VERSION` moves. **`mfd15` in the same breath:** in
-   `S-AQY.TRI` the `IdleRough` line goes, and `IdleHealth`'s range moves
-   from 200 to 254 (it carries no unit); `test_txframes.c` pins the new
-   layout.
-5. **XC8 installed and the `firmware` job's gates run locally** before the
-   push (`CLAUDE.md`), with the `THROTTLE_REST` comment above corrected
-   in the same change.
-
 ### How it closes
 
-When the replacement is in `src/`, on the display, and B's stops agree
-with the oracle; until then `IdleHealth` stays as it is.
+When the deliberate-misfire test has been run and read: `IdleHealth`
+either gets a scale or an anchor from it, or is confirmed as it is.
+Until then nothing in `src/` changes for this question.
 
 ---
 

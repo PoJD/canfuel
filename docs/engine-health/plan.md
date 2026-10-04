@@ -372,10 +372,6 @@ limits: air 2.0–5.0 g/s, injection 2.0–5.5 ms, load 15–35 %, `vcds.md`),
 then **two minutes with the A/C on**, the capture still running — the
 regulator's answer to a load step, the two-hold method of `vcds.md`.
 
-**Afterwards, from the capture alone** (nothing at the car): the dip count
-over every stop of B against 014, for `docs/firmware/open.md` question 11
-— the check before `IdleHealth` is replaced.
-
 **Then B3 — the hot stop after a hard drive** (*owner's decision,
 4/10/2026*). The second run of session A (`open.md` S3, *Session A after
 step 1b*) read 014 at zero through A2 and A3 and then counting at every
