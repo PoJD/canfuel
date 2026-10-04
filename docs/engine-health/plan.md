@@ -570,7 +570,9 @@ deciding whether the next is needed:
      it. **Not through the MAF**: oil smoke over its sensing element is
      the one thing here that can spoil a part (*general caution, not
      VW's*). The cost is that the MAF-to-hose clamp is not tested — check
-     it by hand;
+     it by hand. *Owner, 4/10/2026:* it holds; it is a rubber-lined pipe
+     clamp, not VW's, and the throttle end's plain band clamp is inside
+     the smoke (`vehicle-history.md`, the MAF row);
    - **feed the smoke through the fuel pressure regulator's vacuum hose**
      (*owner's choice, 4/10/2026*: at the front, the easiest to reach),
      taken off at the regulator, so the smoke enters the manifold behind
