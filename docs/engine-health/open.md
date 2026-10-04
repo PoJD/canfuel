@@ -79,7 +79,8 @@ with the right part and the verdict taken again before the exhaust
 and on a part-warm idle, with 033 not pointing at the probe. They follow
 055's learned idle air value (H10), which the battery disconnect had set
 to zero for session A. The exhaust manifold waits; the intake smoke
-test comes next, then a free test of H10 (`plan.md` steps 2a and 2b).
+test comes next, then session A with the adaptations kept (`plan.md`
+steps 2a and 2b); the free test of H10 is optional (step 2c).
 
 **4/10/2026, after step 1b:** the joint dry, and **014 at zero at both
 warm stops for the first time** — until five minutes of hard driving,
@@ -2808,7 +2809,7 @@ On 4/10 014 followed it, stop by stop, and not the temperature:
 S1 only partly: engine speed barely moved with 014 on 4/10 (S3); S11 only
 through H3, as the leak that would make the ECU learn air away.
 
-**The test:** `plan.md` step 2b — a battery disconnect sets the learned
+**The test:** `plan.md` step 2c, optional — a battery disconnect sets the learned
 value back to zero for nothing, and one session reads whether 014 stays
 quiet until it passes about −0.93 again.
 
@@ -2977,11 +2978,11 @@ learned value through both sessions, and B counted on a cold idle — and
 **H3/H9 come back up behind it**, as the likeliest reason the ECU learns
 idle air away; **H2 drops**: at B1 033 did not correct toward rich, and
 counts at a cold manifold do not need it. H8 rises with H3 for the same
-reason. The order is settled by `plan.md` step 2b.*
+reason. The order is settled by `plan.md` steps 2a–2c.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| 1 | **H10 — the learned idle air value turns the counting on** | 4/10: 014 at zero while 055's learned value was 0 to −0.92 g/s, counting at −0.95 and beyond, warm or cold — and session B counted on a cold idle, which no fresh-adaptation session ever has. Against: 3/10 counted at −0.28 (with the hole open); a correlation in time over one day; the mechanism is reasoned only | `plan.md` step 2b: the battery off, 098, session A again — after the smoke test (step 2a), owner's decision 4/10 |
+| 1 | **H10 — the learned idle air value turns the counting on** | 4/10: 014 at zero while 055's learned value was 0 to −0.92 g/s, counting at −0.95 and beyond, warm or cold — and session B counted on a cold idle, which no fresh-adaptation session ever has. Against: 3/10 counted at −0.28 (with the hole open); a correlation in time over one day; the mechanism is reasoned only | `plan.md` step 2c, optional: the battery off, 098, session A again — after the smoke test (2a) and the test with adaptations kept (2b), owner's decision 4/10 |
 | 2 | **H3/H9 — a small unmetered leak**: **three injectors not fully home since 23/9** (H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose; **and the throttle's flange**, where a hard protrusion on the old face may have kept the June gasket off (H8, 28/9) | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) **4/10, against:** the warm leak signature did not move with the hole sealed, and a leak does not wait for a hard drive (S3, *Session A after step 1b*) **4/10 evening, for:** an unmetered leak is what makes an ECU learn idle air away — H10's likeliest cause | the valve cover job itself, which replaces the upper plenum gasket, the breather **and the throttle with its flange gasket** (29/9) — an improvement afterwards answers it; if none, a **vacuum gauge** first and a **smoke test of the intake** only if it points at a leak (`plan.md` step 3, *owner's decision, 3/10*) |
 | 3 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing **4/10: the hiss stayed after 1b, from the back (S11), and 014 came back only after a hard drive — heat from load, which opens a crack or a gasket; the owner's lead.** Still against: it has to act through the lambda control, which B3's 033 shows **4/10 evening, against:** at B1 033's median was −0.8 %, not the positive correction air at the probe would force, and B counted on a cold idle | the owner's tailpipe test, and a new manifold if it leaks there (`plan.md` step 2, *owner's decision, 3/10*) |
 | 4 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) **4/10 evening:** a new throttle passing more at rest than the ECU's model would also make it learn air away (H10) | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `vehicle-history.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |

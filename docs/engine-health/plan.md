@@ -54,6 +54,9 @@ a stop after a hard drive.
 
 ## The test after the job — the misfires first
 
+**Run on 3/10 and twice on 4/10** (`open.md` S3). What follows stays as
+**the procedure step 2b uses again**, with step 2b's changes.
+
 **Run once as session A on 3/10/2026, with the cover leaking**
 (`open.md` S3, *Session A*), and **run again after step 1b** — session A,
 then B if A is zero, as below. What 3/10 has already settled: the cold
@@ -430,7 +433,8 @@ new flange and exhaust sealant in hand — **for comfort, not for the
 idle**: it is behind both probes and spits on every drive. **Items 2–4,
 the tailpipe test and a new manifold, wait**: session B weakened H2 (no
 lambda correction toward rich at B1, and counts at a cold manifold), and
-steps 2a and 2b below come first. They return if step 2b refutes H10.
+steps 2a and 2b below come first. They return if step 2b still counts
+with no leak found in 2a, or if step 2c refutes H10.
 
 *Owner's decision, 3/10/2026, replacing "at the garage":* if the idle is
 not fixed by step 1, **the owner tests and repairs the exhaust himself**
@@ -486,7 +490,7 @@ Afterwards: session A's hot idle again — 014 logging, three minutes at
 68–72 °C with the oil watch, `IdleHealth` against the band. *Skipped if
 the idle is already fixed by then.*
 
-## Step 2a — the intake smoke test, straight after step 2
+## Step 2a — the intake smoke test, straight after step 2, and its repair
 
 *Owner's decision, 4/10/2026, evening:* **the smoke test of the intake
 comes next, whatever H10 turns out to be** — the misfires are there
@@ -494,36 +498,62 @@ either way, and H10 would only say how the ECU comes to count them, not
 where the air comes from. It is step 3's item 2, brought forward and no
 longer waiting on the vacuum gauge (item 1); it also looks for the hiss
 the owner hears and cannot place (`open.md` S11). The way it is done is
-in step 3 below. **Smoke anywhere behind the MAF** is a leak: sealed,
-then step 2b reads the result.
+in step 3 below.
 
-## Step 2b — the adaptation test (`open.md` H10), after step 2a
+- **Smoke anywhere behind the MAF** → that joint is repaired, and only
+  then step 2b.
+- **No smoke** → step 2b all the same: it is the reading of the car after
+  step 2, and it says whether step 3 is needed.
 
-*Owner's decision, 4/10/2026; moved behind the smoke test the same
-evening.* After a repair from step 2a it is also the before-and-after:
-with no leak left, the learned value should stop walking past −0.93. On 4/10 014 read zero while 055's learned
-idle air value was between 0 and −0.92 g/s and counted every time it was
-at −0.95 or beyond, warm or cold. A battery disconnect sets it back to
-zero, so the test is free:
+⚠ **Keep the battery connected through steps 2 and 2a** if the work
+allows it. 055's learned value has settled at about −1.1 g/s, and that is
+what makes step 2b readable in one session (below). If a repair does
+need the battery off, say so: step 2b then has to drive until the
+learned value is past −0.93 again before a stop counts.
+
+## Step 2b — the test afterwards: session A, adaptations kept
+
+**Session A as written above** — a cold start after a night's stand, A1,
+A2 at 56–62 °C and A3 at 68–72 °C — with VCDS on **014 + 055 + 033 from
+before the start to engine off**, the oil watch with both stops, no
+battery disconnect, no 098, and no hard drive.
+
+**One session can decide now, and on 4/10 it could not** (*reasoned*,
+from `open.md` H10): on 4/10 A ran on adaptations fresh from a
+disconnect, and 014 stayed at zero until the learned value passed about
+−0.93 — so its zero said nothing. With the adaptations kept, the learned
+value starts where session B left it (−1.0 to −1.2), where 014 counted
+at **every** stop of B, the cold one included. So:
+
+- **014 at zero at A2 and A3, the learned value still past −0.93** → a
+  real change, not the fresh-adaptation zero of 4/10. **Session B the
+  same day after a cool-down to below 45 °C of oil**, the same two stops,
+  as confirmation (*owner's decision, 4/10/2026*: after that day, two
+  sessions rather than one). Zero in both → the idle is fixed; record it.
+- **Counts at A2 or A3** → not fixed; session B is not run; step 3.
+- **Either way, watch the learned value**: if the repair sealed a leak,
+  it should drift back toward zero over the session (*reasoned*: air the
+  plate did not let in is what made the ECU learn air away, H10).
+
+## Step 2c — the adaptation test (`open.md` H10): optional
+
+*Owner's decision, 4/10/2026; made optional the same evening* — it says
+how the ECU comes to count, not where the air comes from. On 4/10 014
+read zero while 055's learned idle air value was between 0 and −0.92 g/s
+and counted every time it was at −0.95 or beyond, warm or cold. A
+battery disconnect sets it back to zero, so the test is free:
 
 1. **The battery off overnight**, then **098** before the first start
    (the throttle's own adaptation goes with the battery, as on 4/10).
 2. **Session A again** — the capture, the oil watch with both stops, VCDS
-   **014 + 055 + 033 from before the start to engine off**, no extra
-   stops. Drive normally between the stops; the hard drive is not part of
-   it any more.
+   **014 + 055 + 033 from before the start to engine off**.
 3. **Then drive on** until 055's learned value has passed −1.0, and stop
    for three minutes, loads off.
 
-**What it says** (Claude reads the logs; nothing is judged at the car):
-- **Zero while the learned value is near zero, counts once it passes
-  about −0.93** → **H10 confirmed**: the misfires appear as the ECU learns
-  to take idle air away. Then *why* it learns that — air reaching the
-  engine past the throttle plate, H3 or the new throttle's own flow (H8)
-  — is step 3: the vacuum gauge, then the intake smoke test, which also
-  shows where S11's hiss comes from if it is the intake.
-- **Counts while the learned value is still near zero** → **H10 refuted**;
-  step 2's items 2–4 come back, the manifold first.
+**What it says:** zero while the learned value is near zero and counts
+once it passes about −0.93 → **H10 confirmed**; counts while it is still
+near zero → **H10 refuted**, and step 2's items 2–4, the manifold first,
+come back.
 
 ## Step 3 — only if the idle is still not fixed
 
