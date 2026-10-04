@@ -10,8 +10,8 @@ under *Never resolved but not required*.
 **7 and 10 may stay open for good, and that is allowed.** Neither blocks
 anything: the firmware ships a defensible value for each, errs in a known
 direction, and nothing in `src/` changes until a measurement says so.
-**11 is a planned change** whose variants are costed and wait for the
-owner's choice.
+**11 is a planned change**, decided by the owner and waiting on one more
+set of data.
 
 **10 sits under 7.** The drag line of question 7 is fitted against oil
 temperature, so if question 10 finds the oil channel wrong, question 7 is being
@@ -114,11 +114,40 @@ throttle body fitted 2/10/2026 it rests at **35**, with nothing at 36–44
 (`27`, `28`). The gate at 38 is in the empty gap for both parts and needs
 no change; only the comment does.
 
+### The decision, and the plan
+
+*Owner's decision, 4/10/2026:* **variant 3, but as a replacement, not a
+second byte** — `IdleHealth` becomes the dip count; no new metric is
+added. Chosen over 1, 2 and 4 because it is the sharper reading of the
+same smoothness and is legible as "dips a minute". **Not** chosen because
+it follows 014: among the post-MAF stops it ranks closest (+0.27) but
+weakly, and across days it does not track 014 at all (3/10's hot stop
+14.9 dips with 014 at 5; `19`'s 22 with 014 at zero).
+
+1. **Check it first against session B** (`docs/engine-health/plan.md`):
+   the dip count over B's stops, with 014 beside them, added to the table
+   above. Go ahead unless B shows it reading worse than `IdleHealth` on
+   the same stops.
+2. **Design, to be settled in the implementation:** 0x604's
+   `IdleHealth` byte keeps its position and its 255 = not converged; its
+   unit becomes **dips a minute over settled idle**, from `dips_cheap()`'s
+   detector (trip 20 rpm, re-arm 10, the restartable 3 s settle). How the
+   rate is carried — an EWMA of events against idle time, by shifts, or
+   a count over a fixed idle window — is decided there, and costed in
+   `docs/firmware/timing.md` like every other loop.
+3. **`tools/idledips.py` is the oracle**, diffed exactly by
+   `replay.py --host-build` as `IdleHealth` is today; `test_idledips.py`
+   and the `_z1` fixtures carry the expected values.
+4. **`mfd15` changes in the same breath** — the channel's name and unit in
+   `S-AQY.TRI`, and `test_txframes.c`'s pinned offsets.
+5. **XC8 installed and the `firmware` job's gates run locally** before the
+   push (`CLAUDE.md`), with the `THROTTLE_REST` comment above corrected
+   in the same change.
+
 ### How it closes
 
-The owner picks among 1–4; what is chosen goes into `src/` with
-`idledips.py` as its oracle, as `IdleHealth` did, and 0x604's layout
-changes in `mfd15` in the same breath if a byte is added.
+When the replacement is in `src/`, on the display, and B's stops agree
+with the oracle; until then `IdleHealth` stays as it is.
 
 ---
 
