@@ -1582,6 +1582,17 @@ intake itself because what it admits has to pass the breather's valve.
 test 3), so the crankcase depression it would act on is slight; how
 much it admits is not known. Parts and the refit before the smoke test:
 `plan.md` step 2a. The fit table is unchanged.
+*What the web says, searched 4/10/2026* (forum threads and parts
+guides, read only as search summaries — the threads themselves would not
+open): the plastic tube on the Mk4/Beetle 2.0 is a **known failure**,
+brittle with heat and age, and a cracked or loose one is a known intake
+leak through the crankcase. The cases reported come **with a lean code
+(P0171) or lean trims**, a rough idle, sometimes a whistle. This car
+has **neither** — 032's idle cell −0.8 %, no fault stored — so a leak
+here is possible but, if it is there, smaller than the forum cases.
+Ross-Tech's own P0171 page lists intake leaks and the MAF, and does
+not name the dipstick. Generic "most common vacuum leak" lists rank the
+dipstick high; they are written for every engine at once.
 
 **Spray test, 26/9/2026** (contact cleaner — isopropanol and C6–C7 alkanes;
 warm idle, loads off, engine speed watched): **no change** — but it covered
