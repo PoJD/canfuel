@@ -498,12 +498,15 @@ table and the reasoning are in `refuted.md` C3.
 
 ### S8. Top end — "loses breath above 5000 rpm" — closed 4/10/2026
 
-**Closed by its own first criterion** (below): the hard drive of 4/10
-(`28`) held full throttle to 5,770 rpm, and b7 eased rather than dropped
-— a median of 185 / 187 / 183 / 181 from 4,000 to 6,000 rpm in 500 rpm
-bins, against `24`'s 192 / 192 / 187 / 181 — while the owner felt the car
-pull better at the top than before. Out of every fit table, as it already
-was.
+**Closed at the owner's decision, 4/10/2026, with its first criterion
+(below) met only in part.** The hard drive of 4/10 (`28`) held full
+throttle to 5,770 rpm, and b7 eased rather than dropped — a median of
+185 / 187 / 183 / 181 from 4,000 to 6,000 rpm in 500 rpm bins, against
+`24`'s 192 / 192 / 187 / 181 — and the owner felt the car pull better at
+the top than before. **What the criterion asked and this is not:** a held
+pull in 4th to 6,000 rpm with the display's `Power`; these were mixed
+gears, the MFD was out, and the 5,500–6,000 bin is 47 frames. Out of
+every fit table, as it already was.
 
 *Owner-reported* after the morning drive of 24/9, on the old MAF: the car
 pulls better in 1st to 3rd but runs out of breath above about 5000 rpm in
