@@ -96,9 +96,13 @@ twitching has not.
 
 *Owner, 4/10/2026, after step 1b:* the idle **feels clearly calmer** —
 said cold and again warm. The numbers taken at matched oil temperature,
-as `refuted.md` C12 asks, agree at A2 and A3 (S3, *Session A after step
-1b*: 9.2 and 4.4 dips a minute against 3/10's 15.7 and 13.6), and stop
-agreeing after a hard drive.
+as `refuted.md` C12 asks, **agree against the car before 1/10 and barely
+differ from 3/10**: at a hot stop, ~70 °C, dips ≥ 20 rpm a minute went
+20 (`19`, old MAF) → 9.1 (`24`) → 5.0 (3/10) → **4.4**, and `IdleHealth`
+112–146 → 84 → 62 → **60**; in the middle band the dips sit at 9–11 on
+`24`, 3/10 and 4/10 alike (S3, *Session A after step 1b*). So the calm
+the owner feels is the job of 1–2/10 at the hot idle, and 1b's change is
+in 014 rather than in engine speed.
 
 **How it is measured.** `IdleHealth` on 0x604 grades one firing against the
 next (100 = the engine before the repair, lower is smoother). Offline,
@@ -353,8 +357,8 @@ never aligned with anything. It did
   |---|---|---|---|---|---|
   | A1, cold | 11–17 °C | 318 s | **0** | 17–20 | 81 → 171 |
   | the joint stop | 41–47 °C | 116 s | **0** | 11.9 | 126 |
-  | **A2** | 55–62 °C | 255 s | **0** | **9.2** (3/10: 15.7) | 103–109 |
-  | **A3** | 68–71 °C | 468 s | **0** | **4.4** (3/10: 13.6) | 56–62, one window 109 |
+  | **A2** | 55–62 °C | 255 s | **0** | **9.1** (3/10 at 58–65 °C: 10.8) | 103–109 |
+  | **A3** | 68–71 °C | 468 s | **0** | **4.4** (3/10 at 69 °C: 5.0) | 56–62, one window 109 |
   | hot, after a hard drive | 72–73 °C | 238 s | **7–9** | 7–11 | 82–92 |
   | the MAF wiggle | 73 °C | 71 s | 13.6 | 15.3 | 79 |
 
@@ -363,6 +367,13 @@ never aligned with anything. It did
   to the engine), and 003's air never dropped out under the hand. Its
   13.6 against 9.2 a minute is 71 s against 189, a difference that small
   a sample does not carry.
+
+  *The 3/10 figures beside A2 and A3 are its stops taken whole, by the
+  same rule; they replace 15.7 and 13.6, which were the 40–60 and 66–80
+  °C bins of the band table above — a different cut of the same idle,
+  and not like with like.* **On engine speed the idle barely moved from
+  3/10** (−16 % and −12 %, the second on a 65 s stop); **014 is what
+  changed**.
 
   **The first warm stops ever logged with 014 at zero**, at the
   temperatures where `24` counted 20 and 10 a minute and 3/10 16 and 3.
