@@ -294,8 +294,9 @@ of 014 fall on both sides**: the voltage just before them was lean
 +7 % — so the misfires do not wait for a lean swing. *What this does not
 show:* a shift of the switching point itself, which an even swing hides;
 that is what the rear probe (0.665–0.725 V at a hot idle, H2) and 032
-near zero on a new MAF and new injectors guard against. The probes' age
-is not on record.
+near zero on a new MAF and new injectors guard against. Both probes date
+from 10/2017, about 27,600 km (`vehicle-history.md`) — nine years of a
+misfiring idle behind them, few kilometres.
 
 ### C6. "A thermostat stuck open, or a coolant sensor reading low, drives a warm-up enrichment" — measured
 
