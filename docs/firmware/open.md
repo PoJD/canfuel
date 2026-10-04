@@ -144,9 +144,17 @@ weakly, and across days it does not track 014 at all (3/10's hot stop
    dip needs one 180° value 20 rpm under the baseline and one back within
    10, so at an 800 rpm idle's ~1,600 values a minute the detector could
    in principle book ~800; the baseline's 2.7 s lag keeps it far lower,
-   and the worst stop on record reads 28. `mfd15` changes in the same
-   breath wherever `S-AQY.TRI` carries a unit or a scale for the channel,
-   with `test_txframes.c`'s pinned offsets unchanged.
+   and the worst stop on record reads 28.
+   **`IdleRough`, byte 1, goes** (*owner's decision, 4/10/2026*): today it
+   is the same grade as byte 0 in raw units (byte 0 = byte 1 × 25 >> 4),
+   and once byte 0 is the dip count the old grade has no reader. Byte 1
+   becomes **reserved, always 255**, as `StartHealth` in byte 3 already
+   is; the frame stays eight bytes (`TXFRAME_DLC`), so the saving is the
+   firmware's work and a channel on the display, not bus time.
+   `HEALTH_LAYOUT_VERSION` moves. **`mfd15` in the same breath:** in
+   `S-AQY.TRI` the `IdleRough` line goes, and `IdleHealth`'s range moves
+   from 200 to 254 (it carries no unit); `test_txframes.c` pins the new
+   layout.
 5. **XC8 installed and the `firmware` job's gates run locally** before the
    push (`CLAUDE.md`), with the `THROTTLE_REST` comment above corrected
    in the same change.
