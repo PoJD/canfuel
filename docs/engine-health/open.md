@@ -77,8 +77,9 @@ Everything else settled against is in `refuted.md`.
 - **S6, the exhaust joint behind the converter** — comfort only, behind
   both probes.
 
-**Next:** `plan.md` — the exhaust joint (S6), then the intake smoke test,
-then session A with the adaptations kept.
+**Next:** `plan.md` — the exhaust joint (S6), the dipstick tube refitted
+(H3), then the intake smoke test, then session A with the adaptations
+kept.
 
 ---
 
@@ -1563,6 +1564,24 @@ chosen over leaving the car open for a part. **The owner judged the ring
 well preserved and soft** and does not plan a new one (*owner's decision,
 1/10/2026*). If the idle does not settle, a new intake-side ring for
 cylinder 2 stays the cheap first thing to fit.
+
+**The dipstick tube — loose, its bracket missing, 4/10/2026**
+(*owner-observed*, by hand and against videos of the same engine; a
+finding on a part, not a symptom, at the owner's decision). The orange
+upper guide's mounting tab holds nothing — the metal bracket that should
+fix it is not there — the tube moves under the hand, the dipstick sits
+a little loose in it, and **a small amount of fresh oil** shows round
+its foot below; it may have backed out of the block again. The 2018
+service record already lists a dipstick job against an oil leak (S10,
+*Not the first leak*). **Why it belongs here:** the tube is an opening
+into the crankcase, and the breather joins the crankcase to the intake
+behind the MAF, so a tube that does not seal is a small unmetered leak
+— the same kind as 3/10's hole in the cover, smaller than one on the
+intake itself because what it admits has to pass the breather's valve.
+**Against:** the dipstick read atmospheric with the engine running (H9
+test 3), so the crankcase depression it would act on is slight; how
+much it admits is not known. Parts and the refit before the smoke test:
+`plan.md` step 2a. The fit table is unchanged.
 
 **Spray test, 26/9/2026** (contact cleaner — isopropanol and C6–C7 alkanes;
 warm idle, loads off, engine speed watched): **no change** — but it covered
@@ -3149,7 +3168,7 @@ would lift H7 only if its test finds bangs with the cut long past.*
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | 1 | **H10 — the learned idle air value turns the counting on** | 4/10: 014 at zero while 055's learned value was 0 to −0.92 g/s, counting at −0.95 and beyond, warm or cold — and session B counted on a cold idle, which no fresh-adaptation session ever has. Against: 3/10 counted at −0.28 (with the hole open); a correlation in time over one day; the mechanism is reasoned only | `plan.md` step 2c, optional: the battery off, 098, session A again — after the smoke test (2a) and the test with adaptations kept (2b), owner's decision 4/10 |
-| 2 | **H3 — a small unmetered leak** (with what is left of H9, closed 4/10: the breather's original hose and connector): **three injectors not fully home since 23/9** (H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose; **and the throttle's flange**, where a hard protrusion on the old face may have kept the June gasket off (H8, 28/9) | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) **4/10, against:** the warm leak signature did not move with the hole sealed, and a leak does not wait for a hard drive (S3, *Session A after step 1b*) **4/10 evening, for:** an unmetered leak is what makes an ECU learn idle air away — H10's likeliest cause | the valve cover job itself, which replaces the upper plenum gasket, the breather **and the throttle with its flange gasket** (29/9) — an improvement afterwards answers it; now **the smoke test of the intake**, straight after the exhaust joint (`plan.md` step 2a, *owner's decision, 4/10*) |
+| 2 | **H3 — a small unmetered leak** (with what is left of H9, closed 4/10: the breather's original hose and connector): **three injectors not fully home since 23/9** (H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose; **the dipstick tube, loose with its bracket missing** (4/10, a crankcase path); **and the throttle's flange**, where a hard protrusion on the old face may have kept the June gasket off (H8, 28/9) | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) **4/10, against:** the warm leak signature did not move with the hole sealed, and a leak does not wait for a hard drive (S3, *Session A after step 1b*) **4/10 evening, for:** an unmetered leak is what makes an ECU learn idle air away — H10's likeliest cause | the valve cover job itself, which replaces the upper plenum gasket, the breather **and the throttle with its flange gasket** (29/9) — an improvement afterwards answers it; now **the smoke test of the intake**, straight after the exhaust joint (`plan.md` step 2a, *owner's decision, 4/10*) |
 | 3 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing **4/10: the hiss stayed after 1b, from the back (S11), and 014 came back only after a hard drive — heat from load, which opens a crack or a gasket; the owner's lead.** Still against: it has to act through the lambda control, which B3's 033 shows **4/10 evening, against:** at B1 033's median was −0.8 %, not the positive correction air at the probe would force, and B counted on a cold idle | the owner's tailpipe test, and a new manifold if it leaks there (`plan.md` step 3, *owner's decision, 3/10*) |
 | 4 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) **4/10 evening:** a new throttle passing more at rest than the ECU's model would also make it learn air away (H10) | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `idle-log.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
 | 5 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits only in form** — a coil that breaks down hot is the textbook case, but **the coil is from 6/2026**, and the 3/10 oil sat **only on the outside of its plastic and on the outsides of the leads of 3 and 4, wiped dry** (*owner*, 4/10/2026) | a look while the plenum was off (`idle-log.md`, *The valve cover and throttle job*: wiring and connectors fine); H7 test 3 for the injector side |

@@ -55,7 +55,27 @@ manifold is not part of this step (step 3).
 turns out to be** — the misfires are there either way, and the smoke says
 where air gets in, which H10 cannot. It also looks for the hiss the owner
 hears and cannot place (`open.md` S11). The engine off and cold, so it
-costs no idle. *General practice, not VW's:*
+costs no idle.
+
+**First, the dipstick tube** (*owner's decision, 4/10/2026*): loose, its
+bracket missing, fresh oil at its foot (`open.md` H3, *The dipstick
+tube*). Refitted before the smoke, so that smoke at the dipstick means
+something. **The part numbers, to be confirmed by VIN at the parts shop
+before ordering** (ETKA shows the bracket and its bolt on the same
+drawing; none of these was read off a VW catalogue page for this car):
+- dipstick: **`06B 115 611 R`** — sold for the Beetle, Golf and Jetta
+  2.0 SOHC 1998–2005 by several sellers;
+- upper guide, the orange one: **`06A 103 663 C`** — listed by VW's US
+  parts site for the 2002 Beetle 2.0; **not `…663 B`**, which is the
+  1.8T's;
+- lower metal tube, block to guide: **`06D 103 634 E`?** — not verified;
+  the sellers that list it disagree about which engines;
+- the bracket and its bolt: **not found**; ask for them by VIN.
+
+The tube goes home in the block (it may need a new seal there — ask
+with the tube), the guide clipped onto it and bolted to the bracket.
+
+*General practice, not VW's:*
 
 - **the smoke**: a 12 V smoke tester **with its own air pump** — the
   owner has no aquarium pump. **Lincos `MG78016` ordered** (*owner*,
@@ -96,9 +116,8 @@ costs no idle. *General practice, not VW's:*
   filler cap off (`open.md` H9). Judge by amount: a faint wisp round a
   seated dipstick against a steady stream. *Corrected 4/10/2026: this
   read "smoke at the oil filler or the dipstick is expected, not an
-  intake leak".* The dipstick's tube is loose and its bracket missing
-  (*owner*, 4/10/2026), so look at its foot in the block as well as its
-  top;
+  intake leak".* With the dipstick tube refitted (above), look at its foot in the block
+  as well as its top;
 
 **Smoke found** → that joint is repaired, then step 2b. **None** → step 2b
 all the same.
