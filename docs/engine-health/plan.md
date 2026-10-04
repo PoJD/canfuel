@@ -89,7 +89,8 @@ zero once more and **098 is run before the first start** (VW's manual,
       the evening of 3/10 included; the dipstick now reads **about 0.5 mm
       below the upper mark** (it read exactly at it the day before), and is
       left there. Spare oil to be bought.
-- [ ] the coolant level, cold
+- [x] the coolant level, cold — *4/10/2026 (owner):* checked and topped
+      up with the rest of the distilled water, **slightly above max**
 
 **The reassembly**
 1. [x] **The upper plenum aside, the cover off** — 3/10/2026, night
