@@ -79,11 +79,16 @@ zero once more and **098 is run before the first start** (VW's manual,
 `open.md` H8).
 
 **Before the start**
-- [ ] **the oil level, cold, on level ground** — about 0.5 l was topped
+- [x] **the oil level, cold, on level ground** — about 0.5 l was topped
       up on 3/10 after the leak, read on a hot engine straight after;
       top up in small amounts to the upper mark at most. **Not over it**:
       an overfilled crankcase pushes oil through the breather into the
       intake, which would spoil the test (*general*)
+
+      *4/10/2026 (owner):* **about 1 l topped up in all** since the leak,
+      the evening of 3/10 included; the dipstick now reads **about 0.5 mm
+      below the upper mark** (it read exactly at it the day before), and is
+      left there. Spare oil to be bought.
 - [ ] the coolant level, cold
 
 **The reassembly**
@@ -110,7 +115,7 @@ zero once more and **098 is run before the first start** (VW's manual,
    cap 1 to the head, `open.md` S10).
 6. [x] **The cover straight down**, not slid; a look along the edge at all
    four corners.
-7. [ ] **The strips in the video's order**: front and rear on the cover,
+7. [x] **The strips in the video's order**: front and rear on the cover,
    the side bracket on top (`open.md` S10;
    `photos/cover-leak-2026-10-03-bracket.jpg`).
 8. [x] **The nuts evenly and crosswise, then round again** once the
@@ -135,8 +140,12 @@ zero once more and **098 is run before the first start** (VW's manual,
    `photos/cover-on-2026-10-04-halfmoon.jpg`,
    `photos/cover-on-2026-10-04-strip.jpg`). The joint is judged by the warm
    run, not by these.
-9. [ ] **New plenum gasket, plenum on at 10 Nm**, the breather hose back,
+9. [x] **New plenum gasket, plenum on at 10 Nm**, the breather hose back,
    everything reconnected; **every rag out, counted**.
+
+**All done, 4/10/2026** (*owner*: "vše hotovo";
+`photos/plenum-on-2026-10-04.jpg`, and the side bracket on the refitted
+cover in `photos/cover-on-2026-10-04-bracket.jpg`).
 
 Then **the test after the job, below — session A again**, from a cold
 engine. The first drive of it is also the joint's warm run: a look along
@@ -215,11 +224,17 @@ zero there before 24/9 proves nothing.
 
 **The second run, after step 1b — what differs** (*owner's decision,
 4/10/2026*):
-- **the start's quality is not read.** The first start after the
-  reassembly is session A's own start, straight after 098 on a battery
-  that was off; the cold-start table below keeps 3/10 as its point and
-  gets no row from this run. The capture still starts before the
-  ignition, as always;
+- **the start's quality is read again** (*owner's decision, 4/10/2026*;
+  this said it was not read, the first start being straight after 098 on
+  a battery that was off). The reason it was ignored before was the rail
+  opened on 1/10; this time the fuel side was not touched — only the
+  plenum, a few hoses and the cover gasket — so a cold start should be
+  as on 3/10. **About 15 h of stand** (*owner*). It gets its row in the
+  cold-start table below. ⚠ *Caveat, not a reason to skip it:* the
+  adaptations are at zero after the disconnect and 098, which 3/10's start
+  did not share (it followed check starts on 2/10); a worse start this
+  time is read against that first, the same rule as a single start
+  everywhere else;
 - **one extra stop before A2, for the joint** — yesterday's leak only
   showed once the oil was warm. **Stop at about 45–50 °C of oil, not
   higher**, engine running, loads off, **a minute**, rung by the oil
@@ -274,6 +289,7 @@ same arithmetic (`docs/firmware/frames.md`):
 | 26/9 | ~10 h | 14 °C | 0.93 s | 74 rpm |
 | 11/9 (`18`), old injectors | ~10 h | 16 °C | 1.22 s | 141 rpm, nearly died |
 | **3/10, session A** | **27 h** | **17 °C** | **0.77 s** | **15 rpm** |
+| 4/10, after 1b, adaptations at zero | ~15 h | | | |
 
 - **Crank about 0.8–0.95 s, dip within 74–118 rpm** → the start is as it
   was on the new injectors; the refit and the throttle did not hurt it.

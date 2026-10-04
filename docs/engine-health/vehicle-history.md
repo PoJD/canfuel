@@ -348,7 +348,10 @@ The oil left on the gearbox is left there, as cosmetic (*owner*;
 `photos/cover-leak-2026-10-04-cleaned.jpg`).
 **The cover back on, 4/10/2026**, with `915.653`: the nuts tightened
 evenly by feel, each felt seating on its brass sleeve (*owner*;
-`photos/cover-on-2026-10-04-*.jpg`). The plenum next.
+`photos/cover-on-2026-10-04-*.jpg`). **The plenum back on the same day
+with its new gasket, the job complete** (*owner*;
+`photos/plenum-on-2026-10-04.jpg`). Oil: about 1 l topped up in all since
+the leak; cold, the dipstick about 0.5 mm below the upper mark (*owner*).
 
 ---
 
@@ -583,6 +586,8 @@ a later reader can see what was being judged.
 | [`cover-on-2026-10-04-belt-end.jpg`](photos/cover-on-2026-10-04-belt-end.jpg) | `915.653` fitted, the cover on: the joint at the timing-belt end, 4/10/2026 |
 | [`cover-on-2026-10-04-halfmoon.jpg`](photos/cover-on-2026-10-04-halfmoon.jpg) | the same, a solid half-moon in place at the end of the head |
 | [`cover-on-2026-10-04-strip.jpg`](photos/cover-on-2026-10-04-strip.jpg) | a hold-down strip and its nut on the refitted cover |
+| [`cover-on-2026-10-04-bracket.jpg`](photos/cover-on-2026-10-04-bracket.jpg) | the side bracket and harness at the refitted cover |
+| [`plenum-on-2026-10-04.jpg`](photos/plenum-on-2026-10-04.jpg) | the engine reassembled, plenum on, 4/10/2026 |
 
 **What they show, as description rather than interpretation.** The can carries
 heavy surface corrosion over most of its body, and the joint at the clamp is
