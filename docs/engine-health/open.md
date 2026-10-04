@@ -69,7 +69,7 @@ Everything else settled against is in `refuted.md`.
 - **Around the idle:** S2 (an occasional puff from the exhaust), S11 (a
   hiss at the back of the engine at a warm idle, not yet placed) and S14
   (bangs from the exhaust on a downshift without a blip — the old
-  "cold-overrun burble", back warm on the new injectors) — the
+  "cold-overrun burble", back warm on the new injectors — the
   owner's to watch, expected to go with S1/S3, pursued only if it
   outlives them).
 - **The cylinder 4 knock window: S4 and S5**, a cluster of its own
