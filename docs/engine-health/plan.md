@@ -125,8 +125,8 @@ zero once more and **098 is run before the first start** (VW's manual,
    *4/10/2026 (owner):* **the cover is on**, the nuts tightened evenly by
    feel, and **each one could be felt landing on its brass sleeve** —
    unlike `325.070`, which had none. **The gasket sits in its groove and the
-Dirko is on** (*owner*, items 4 and 5; the Dirko in
-`photos/cover-on-2026-10-04-belt-end.jpg`). Item 7 not reported;
+   Dirko is on** (*owner*, items 4 and 5; the Dirko in
+   `photos/cover-on-2026-10-04-belt-end.jpg`). Item 7 not reported;
    what the photographs show (*Claude's reading*): the gasket's edge lying
    even along the joint at the timing-belt end, a solid half-moon in place
    at the end photographed, and light-coloured material at the step beside
