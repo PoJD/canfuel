@@ -166,13 +166,6 @@ shape of the table above appears every second revolution; and what
 `IdleHealth` reads with a cylinder dead. If the grade then wants a
 different scale or anchor, that is decided from this test, not before.
 
-### Also due with the next change under `src/`
-
-The `THROTTLE_REST` comment in `config.h` says b5 rests at 38; on the
-throttle body fitted 2/10/2026 it rests at **35**, with nothing at 36–44
-(`27`, `28`). The gate at 38 is in the empty gap for both parts and needs
-no change; only the comment does.
-
 ### How it closes
 
 When the deliberate-misfire test has been run and read: `IdleHealth`

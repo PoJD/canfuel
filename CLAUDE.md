@@ -1677,8 +1677,7 @@ Both thresholds are measured, and neither is an equality:
 - **0x280 b5 is 38 at rest** on the original throttle body, and the next
   value above 38 that ever appears is **44**, so nothing occupies 39–43.
   **The body fitted 2/10/2026 rests at 35** with nothing at 36–44, so the
-  gate at 38 still sits in an empty gap; the comment in `config.h` still
-  says 38 only, and is corrected with the next change under `src/`. It is the pedal and not the load, which is what lets it gate on its
+  gate at 38 still sits in an empty gap (`config.h` says so beside it). It is the pedal and not the load, which is what lets it gate on its
   own: a released pedal is a statement about the driver, and what b7 does
   afterwards is the engine looking after itself.
 
