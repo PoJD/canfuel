@@ -64,8 +64,10 @@ reassembly with the right gasket, then the test.
   **Bought 4/10/2026 and judged the right part** (*owner*): solid,
   ribbed half-moons and metal sleeves at the bolt holes, as on the
   gasket that came off (`photos/cover-gasket-915653-halfmoon.jpg`,
-  `photos/cover-gasket-915653-whole.jpg`). The part number is not legible
-  in either photograph, so it rests on the owner's word;
+  `photos/cover-gasket-915653-whole.jpg`). **The number is read off the
+  package's label: `915.653`**, Elring Germany, EAN `4041248115435`
+  (`photos/cover-gasket-915653-label.jpg`; *this used to say the number
+  rested on the owner's word, being legible in neither photograph*);
 - **upper plenum gasket Elring `271.230`** — VW: *always new* (the torque
   table below); the number was ordered by the garage by VIN on 17/9;
 - **Dirko** (Elring `030.793`), in hand.
