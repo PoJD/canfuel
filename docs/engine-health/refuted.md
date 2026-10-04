@@ -282,6 +282,21 @@ probe is an independent witness against a front probe lying rich. The jingle
 on the overrun was the clamp (B4); the knock test on the cold converter can is
 still worth a tap next time the car is up, but nothing points at it.
 
+**The front probe at a standing idle, 4/10/2026** (033's voltage in
+`vcds-sessionB-014-055-033.csv`, 685 samples below 900 rpm, one every
+0.9 s): it **swings the full narrowband range**, 0.075–0.725 V between
+the 5th and 95th percentile, **53 % of samples lean and 47 % rich** — a
+probe switching evenly about its set point, not a lazy one stuck in the
+middle or on one side. 41 crossings of 0.45 V a minute is at the
+sampling's own limit, so it switches at least that fast. **The 83 rises
+of 014 fall on both sides**: the voltage just before them was lean
+(< 0.45 V) for 42 and rich for 41, and the live correction ran −7 to
++7 % — so the misfires do not wait for a lean swing. *What this does not
+show:* a shift of the switching point itself, which an even swing hides;
+that is what the rear probe (0.665–0.725 V at a hot idle, H2) and 032
+near zero on a new MAF and new injectors guard against. The probes' age
+is not on record.
+
 ### C6. "A thermostat stuck open, or a coolant sensor reading low, drives a warm-up enrichment" — measured
 
 The coolant on 0x288 — the ECU's own figure — warms up to 99–100.5 °C like a
