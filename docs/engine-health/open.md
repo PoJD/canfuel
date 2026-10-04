@@ -1147,11 +1147,18 @@ the owner has observed:
 
 **What happens in that second** (*measured*, `coastscan.py`, `refuted.md`
 C1): the ECU shuts the injectors **0.78–1.39 s after the pedal comes up**
-— counted from the lift, not from the clutch. On a downshift the pedal
-comes up first, so by the time the clutch is released much of that delay
-has gone, and **"one to two seconds after the clutch" falls around the
-cut.** Which is what the owner's reading of it predicts (*4/10/2026*):
-**fuel left unburnt in the exhaust, burning when air reaches it.**
+— counted from the lift, not from the clutch, and measured on coasts in
+gear, never on a downshift. **How the owner downshifts** (*owner,
+4/10/2026*): pedal up and clutch down together and fast, then the
+clutch let out **slowly at the end**, so as not to jerk the car — a
+blip most of the time, sometimes not. So the delay starts with the
+clutch, not ahead of it, and the slow end of the release is a stretch
+of the engine being dragged up on a shut throttle. **Whether the ECU
+fuels or cuts through that stretch is not measured**, and how long it
+lasts is the owner's to vary; "one to two seconds after the clutch"
+sits inside it. Which is what the owner's reading predicts
+(*4/10/2026*): **fuel left unburnt in the exhaust, burning when air
+reaches it.**
 
 - **Where the fuel comes from: a cylinder that did not burn it.** The
   engine is pulled up by the wheels with the throttle shut, the highest
@@ -1162,6 +1169,13 @@ cut.** Which is what the owner's reading of it predicts (*4/10/2026*):
   overrun or in transients (S3). The delay before the cut is the
   factory's and every engine has it, so this is not "normal" by itself —
   a healthy engine burns that charge.
+  **Why a small intake leak would show here first** (*general*): the
+  vacuum is at its highest, but a small hole passes little more air for
+  it — once the manifold is below about half an atmosphere the flow
+  through a hole is choked and barely grows. What makes the leak matter
+  is the other side: the charge per cylinder is smallest and carries the
+  most residual exhaust, so the same small lean error that an idle just
+  survives is enough here to stop it firing.
 - **Where the air comes from: the cut itself.** Once the injectors shut,
   every cylinder pumps plain air into a hot exhaust that still holds the
   unburnt charge of the last fuelled revolutions. So the bangs can come
