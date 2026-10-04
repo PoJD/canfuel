@@ -124,10 +124,11 @@ it follows 014: among the post-MAF stops it ranks closest (+0.27) but
 weakly, and across days it does not track 014 at all (3/10's hot stop
 14.9 dips with 014 at 5; `19`'s 22 with 014 at zero).
 
-1. **Check it first against session B** (`docs/engine-health/plan.md`):
-   the dip count over B's stops, with 014 beside them, added to the table
-   above. Go ahead unless B shows it reading worse than `IdleHealth` on
-   the same stops.
+1. **Checked against session B, 4/10/2026** (`29`): five stops, 014 at
+   1.5 / 4.3 / 14.3 / 5.2 / 4.7 a minute; the dip count read 9.2 / 18.5 /
+   11.3 / 7.8 / 20.3 and `IdleHealth` 135 / 156 / 120 / 143 / 90. Neither
+   follows 014 there either, and the dip count reads no worse than
+   `IdleHealth` — so **the condition holds and the change goes ahead**.
 2. **Design, to be settled in the implementation:** 0x604's
    `IdleHealth` byte keeps its position and its 255 = not converged; its
    unit becomes **dips a minute over settled idle**, from `dips_cheap()`'s

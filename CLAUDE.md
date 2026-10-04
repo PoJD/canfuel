@@ -143,7 +143,7 @@ carries a generated block; a figure typed into prose only goes stale.
   arithmetic properties, plus `replay_host.c`
 - `tools/` — `canlog.py`, `replay.py` (which `--host-build` diffs against the C
   core), `cycles.py`, `checkdocs.py`, `divconst.py`
-- `test/fixtures/` — twenty-eight recordings from the vehicle, documented, of
+- `test/fixtures/` — twenty-nine recordings from the vehicle, documented, of
   which the `_z1` ones are the only ones with trustworthy time
 - `docs/` — two folders that answer different questions, and **a document
   belongs to exactly one of them**:

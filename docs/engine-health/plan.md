@@ -319,6 +319,12 @@ it exists.
 
 ### Session B — the same test again, the same day, after a cool-down
 
+**Run 4/10/2026; the misfires were back** (`open.md` S3, *Session B*):
+14.3 a minute at B1, and counts even at the idle after a part-warm start.
+By the rule below that is "A's zero was not a fix". B2 and B3 were not
+run — the owner ended the session at B1. What it showed instead is
+`open.md` H10: the counts follow 055's learned value, not the heat.
+
 *Owner's decision, 29/9/2026:* **the verdict is taken twice, both on the
 day of the job** — replacing an earlier draft of the same day that put the
 second reading a few hundred km later, "on settled adaptations". That
@@ -422,6 +428,15 @@ doubt, and the new one goes back on.
 
 ## Step 2 — the exhaust, by the owner
 
+**Reduced to item 1, owner's decision 4/10/2026.** The joint behind the
+converter is made tight after the owner is back (about 11/10), with the
+new flange and exhaust sealant in hand — **for comfort, not for the
+idle**: it is behind both probes and spits on every drive. **Items 2–4,
+the tailpipe test and a new manifold, wait**: session B weakened H2 (no
+lambda correction toward rich at B1, and counts at a cold manifold), and
+step 2b below costs nothing and comes first. They return if step 2b
+refutes H10.
+
 *Owner's decision, 3/10/2026, replacing "at the garage":* if the idle is
 not fixed by step 1, **the owner tests and repairs the exhaust himself**
 (H2, S6, S11). The garage is the fallback, not the plan.
@@ -475,6 +490,32 @@ not fixed by step 1, **the owner tests and repairs the exhaust himself**
 Afterwards: session A's hot idle again — 014 logging, three minutes at
 68–72 °C with the oil watch, `IdleHealth` against the band. *Skipped if
 the idle is already fixed by then.*
+
+## Step 2b — the adaptation test (`open.md` H10), after step 2
+
+*Owner's decision, 4/10/2026.* On 4/10 014 read zero while 055's learned
+idle air value was between 0 and −0.92 g/s and counted every time it was
+at −0.95 or beyond, warm or cold. A battery disconnect sets it back to
+zero, so the test is free:
+
+1. **The battery off overnight**, then **098** before the first start
+   (the throttle's own adaptation goes with the battery, as on 4/10).
+2. **Session A again** — the capture, the oil watch with both stops, VCDS
+   **014 + 055 + 033 from before the start to engine off**, no extra
+   stops. Drive normally between the stops; the hard drive is not part of
+   it any more.
+3. **Then drive on** until 055's learned value has passed −1.0, and stop
+   for three minutes, loads off.
+
+**What it says** (Claude reads the logs; nothing is judged at the car):
+- **Zero while the learned value is near zero, counts once it passes
+  about −0.93** → **H10 confirmed**: the misfires appear as the ECU learns
+  to take idle air away. Then *why* it learns that — air reaching the
+  engine past the throttle plate, H3 or the new throttle's own flow (H8)
+  — is step 3: the vacuum gauge, then the intake smoke test, which also
+  shows where S11's hiss comes from if it is the intake.
+- **Counts while the learned value is still near zero** → **H10 refuted**;
+  step 2's items 2–4 come back, the manifold first.
 
 ## Step 3 — only if the idle is still not fixed
 

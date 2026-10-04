@@ -75,6 +75,12 @@ open arch where this head needs a half-moon** (S10). The joint is redone
 with the right part and the verdict taken again before the exhaust
 (`plan.md`).
 
+**4/10/2026, evening, after session B:** the misfires were back at B1
+and on a part-warm idle, with 033 not pointing at the probe. They follow
+055's learned idle air value (H10), which the battery disconnect had set
+to zero for session A. The exhaust manifold waits; a free test of H10
+comes first (`plan.md` step 2b).
+
 **4/10/2026, after step 1b:** the joint dry, and **014 at zero at both
 warm stops for the first time** — until five minutes of hard driving,
 after which every idle counted again (S3, *Session A after step 1b*). The
@@ -403,6 +409,27 @@ never aligned with anything. It did
   **The start**: 1.38 s of crank to first firing, `StartDip` 0, coolant
   15 °C, after ~15 h — past `plan.md`'s 1.2 s, on adaptations at zero;
   read against the next cold start, not alone. No fault code stored.
+
+- **Session B, 4/10/2026** — after a cool-down to 32 °C of oil, a
+  part-warm start (coolant 44 °C, `StartCrank` 0.70 s, `StartDip` 0),
+  ended by the owner at B1 (`29_sessionB_z1`, with
+  `vcds/vcds-sessionB-014-055-033.csv`). Standing idle, 014 aligned on
+  engine speed:
+
+  | stop | oil | 014 a minute | dips a minute | `IdleHealth` | 033, median |
+  |---|---|---|---|---|---|
+  | after the start | 31–36 °C | **1.5–4.3** | 9–19 | 135–156 | 0.0 / +0.8 % |
+  | **B1** | 59 °C | **14.3** | 11.3 | 120 | **−0.8 %** |
+  | home, two stops | 69–71 °C | ~5 | 8–20 | 90–143 | −1.6 % |
+
+  **The misfires were back**, at B1 about as on 3/10, **and on the idle
+  after the start** — the first counts on an idle that cold since the
+  adaptations were last fresh. **033 did not add fuel** at B1: its median
+  sat at −0.8 %, swinging both ways (above +3 % in 13 % of the session's
+  samples and below −3 % in 13 %) — not the steady positive correction
+  air reaching the probe would make (H2). **055's learned value was −1.02
+  to −1.24 throughout**, where it had ended session A. Read together
+  with session A: H10.
 
 **Three properties of the counter that must be kept in mind**, all measured
 on the 24/9 logs (`refuted.md` A11, A12): it moves in steps of 12; detection switches off below about 20 % load, which on
@@ -915,7 +942,9 @@ it. So the breather (H9) and the cover gasket are out as its source, and
 **what is left is the reading this section already gave a hiss that
 stays: the exhaust ahead of the probe (H2) or the intake at the back
 (H3)**. The owner's direction is H2; the tailpipe test above is what
-separates the two.
+separates the two. *Owner, the same evening:* he still hears a hiss
+somewhere in the engine bay and **cannot place it**. An intake hiss is
+what the smoke test of `plan.md` step 3 would show.
 
 ### S12. A hesitation on tip-in, and after a gearchange
 
@@ -2718,6 +2747,71 @@ repair blogs; still nothing from VW.
    current band: the same rule as H2 — a clear improvement means this was
    underrated.
 
+### H10. The learned idle air value turns the counting on (S3)
+
+*Raised 4/10/2026, from sessions A and B of that day.* 055 field 3 is the
+idle regulator's **learned value** — the share of the idle air correction
+the ECU has learned and keeps, as against field 2, the live regulator.
+After a battery disconnect it starts at zero and walks negative as the
+engine runs: **the ECU learns to let less air past the throttle at idle**.
+On 4/10 014 followed it, stop by stop, and not the temperature:
+
+| | learned value, g/s | 014 a minute | oil |
+|---|---|---|---|
+| A1, cold | 0.00 | 0 | 12–16 °C |
+| the joint stop | −0.25 | 0 | 45 °C |
+| A2 | −0.58 | 0 | 59 °C |
+| A3 | **−0.92** | **0** | 71 °C |
+| after the hard drive | **−0.95 → −1.16** | **8 → 15** | 73 °C |
+| B, idle after a part-warm start | −1.17 | **1.5–4.3** | 31–36 °C |
+| B1 | −1.17 | **14.3** | 59 °C |
+| B, stops on the way home | −1.1 to −1.2 | ~5 | 69–71 °C |
+
+**For:**
+- **It is the only reading that orders all of 4/10.** The hard drive was
+  where the learned value crossed −0.93, which made heat look like the
+  cause; session B started with it already at −1.17 and counted on a
+  cold idle, which **no fresh-adaptation session has ever done** (3/10
+  and 4/10 A were zero cold).
+- **It fits the history.** 24/9, straight after a disconnect: three
+  minutes of cold idle with no count (S3, *When the counts start after a
+  cold start*). 11/9, adaptations long settled: the first count two
+  minutes after a cold start.
+- **It turns `plan.md` session B's 29/9 reasoning round.** That said a
+  zero on fresh adaptations errs towards "unchanged"; on 014, fresh
+  adaptations are where it is quietest, so a zero there errs towards
+  "fixed" — which is what 4/10's session A did.
+
+**Against, or not yet known:**
+- **3/10 does not fit**: 17.5 a minute at a learned value of −0.28. That
+  day the cover had a 1 cm hole into the crankcase (S10), a cause of its
+  own; it is the one exception and it has a reason, but it is still one.
+- **A correlation in time, two sessions, one day.** Every quantity that
+  grows with running time grows with the learned value.
+- **The mechanism is reasoned, not measured.** The sum of fields 2 and 3
+  stayed at −1.1 g/s all day — the ECU's total correction did not change,
+  only how it is split. *Reasoned:* with the learned value carrying it, the
+  live regulator sits near zero and answers a stumble from a narrower
+  base; or the learned value moves the plate's rest towards a point where
+  this throttle's air is least even. Neither is shown.
+- **Why it learns negative at all** is the real question. A learned value
+  taking air away is what an engine does when air arrives that the plate
+  did not let in — an unmetered leak (H3), or a throttle body that passes
+  more at rest than the ECU's model of it (H8, the part is new). VW: a
+  run-in engine sits negative anyway (`plan.md`, *055 is read as the sum
+  of its two air fields*), so the sign alone is no fault.
+
+| S1 | S2 | S3 | S4 | S5 | S10 | S11 | S12 |
+|---|---|---|---|---|---|---|---|
+| ~ | — | ✔ | — | — | — | ~ | — |
+
+S1 only partly: engine speed barely moved with 014 on 4/10 (S3); S11 only
+through H3, as the leak that would make the ECU learn air away.
+
+**The test:** `plan.md` step 2b — a battery disconnect sets the learned
+value back to zero for nothing, and one session reads whether 014 stays
+quiet until it passes about −0.93 again.
+
 ## What the forums say about this idle — searched 27/9/2026
 
 A fresh sweep for the idle and the misfires alone (S1–S3), in German,
@@ -2877,18 +2971,25 @@ hard drive is a fault that needs heat from load. **H2 moves to the top**
 does not point at the probe — both fit the pattern in form only (the rows
 say why) — and H3/H9 down: the leak signature did not move. H8's part is new and the
 pattern does not follow it. What separates the top three is `plan.md`
-session B's B3.*
+session B's B3.* *Re-read 4/10/2026 evening, after session B: no symptom
+added or closed. **H10 goes in at the top** — the counts followed 055's
+learned value through both sessions, and B counted on a cold idle — and
+**H3/H9 come back up behind it**, as the likeliest reason the ECU learns
+idle air away; **H2 drops**: at B1 033 did not correct toward rich, and
+counts at a cold manifold do not need it. H8 rises with H3 for the same
+reason. The order is settled by `plan.md` step 2b.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| 1 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing **4/10: the hiss stayed after 1b, from the back (S11), and 014 came back only after a hard drive — heat from load, which opens a crack or a gasket; the owner's lead.** Still against: it has to act through the lambda control, which B3's 033 shows | the owner's tailpipe test, and a new manifold if it leaks there (`plan.md` step 2, *owner's decision, 3/10*) |
-| 2 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits only in form** — a coil that breaks down hot is the textbook case, but **the coil is from 6/2026**, and the 3/10 oil sat **only on the outside of its plastic and on the outsides of the leads of 3 and 4, wiped dry** (*owner*, 4/10/2026) | a look while the plenum was off (`vehicle-history.md`, *The valve cover and throttle job*: wiring and connectors fine); H7 test 3 for the injector side |
-| 3 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero **4/10: the pattern fits only in form** — fuel heat-soaked at the rail after a hard drive; against, the return-flow rail keeps fuel moving, heat soak is a hot-*restart* effect, and the coolant read the same at A3's zero | a **fuel pressure gauge** |
-| 4 | **H3/H9 — a small unmetered leak**: **three injectors not fully home since 23/9** (H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose; **and the throttle's flange**, where a hard protrusion on the old face may have kept the June gasket off (H8, 28/9) | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) **4/10, against:** the warm leak signature did not move with the hole sealed, and a leak does not wait for a hard drive (S3, *Session A after step 1b*) | the valve cover job itself, which replaces the upper plenum gasket, the breather **and the throttle with its flange gasket** (29/9) — an improvement afterwards answers it; if none, a **vacuum gauge** first and a **smoke test of the intake** only if it points at a leak (`plan.md` step 3, *owner's decision, 3/10*) |
-| 5 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 **4/10, against:** zero at both warm stops is not what a normal-for-the-engine idle does on a counter that read 10–20 a minute there | a healthy AQY recorded (H0 test 1) |
-| 6 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: worst at mid temperature, not hot; A5 **4/10, against:** zero at both warm stops | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
-| 7 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `vehicle-history.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
-| 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
+| 1 | **H10 — the learned idle air value turns the counting on** | 4/10: 014 at zero while 055's learned value was 0 to −0.92 g/s, counting at −0.95 and beyond, warm or cold — and session B counted on a cold idle, which no fresh-adaptation session ever has. Against: 3/10 counted at −0.28 (with the hole open); a correlation in time over one day; the mechanism is reasoned only | `plan.md` step 2b: the battery off, 098, session A again |
+| 2 | **H3/H9 — a small unmetered leak**: **three injectors not fully home since 23/9** (H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose; **and the throttle's flange**, where a hard protrusion on the old face may have kept the June gasket off (H8, 28/9) | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) **4/10, against:** the warm leak signature did not move with the hole sealed, and a leak does not wait for a hard drive (S3, *Session A after step 1b*) **4/10 evening, for:** an unmetered leak is what makes an ECU learn idle air away — H10's likeliest cause | the valve cover job itself, which replaces the upper plenum gasket, the breather **and the throttle with its flange gasket** (29/9) — an improvement afterwards answers it; if none, a **vacuum gauge** first and a **smoke test of the intake** only if it points at a leak (`plan.md` step 3, *owner's decision, 3/10*) |
+| 3 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing **4/10: the hiss stayed after 1b, from the back (S11), and 014 came back only after a hard drive — heat from load, which opens a crack or a gasket; the owner's lead.** Still against: it has to act through the lambda control, which B3's 033 shows **4/10 evening, against:** at B1 033's median was −0.8 %, not the positive correction air at the probe would force, and B counted on a cold idle | the owner's tailpipe test, and a new manifold if it leaks there (`plan.md` step 2, *owner's decision, 3/10*) |
+| 4 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) **4/10 evening:** a new throttle passing more at rest than the ECU's model would also make it learn air away (H10) | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `vehicle-history.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
+| 5 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits only in form** — a coil that breaks down hot is the textbook case, but **the coil is from 6/2026**, and the 3/10 oil sat **only on the outside of its plastic and on the outsides of the leads of 3 and 4, wiped dry** (*owner*, 4/10/2026) | a look while the plenum was off (`vehicle-history.md`, *The valve cover and throttle job*: wiring and connectors fine); H7 test 3 for the injector side |
+| 6 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero **4/10: the pattern fits only in form** — fuel heat-soaked at the rail after a hard drive; against, the return-flow rail keeps fuel moving, heat soak is a hot-*restart* effect, and the coolant read the same at A3's zero | a **fuel pressure gauge** |
+| 7 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 **4/10, against:** zero at both warm stops is not what a normal-for-the-engine idle does on a counter that read 10–20 a minute there | a healthy AQY recorded (H0 test 1) |
+| 8 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: worst at mid temperature, not hot; A5 **4/10, against:** zero at both warm stops | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
+| 9 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
 
 **Tools worth owning for this, cheapest first** (*general*; prices not
 recorded here, since they move):
