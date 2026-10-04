@@ -1730,7 +1730,7 @@ voltage drops (1a–1c) are what can.
 
 ⚠ **The battery was disconnected for this**, so the ECM's adaptations
 (032, knock references, idle) start again from zero — another boundary for
-every before/after comparison (`vehicle-history.md`, *Before and after*).
+every before/after comparison (`docs/firmware/fuel-check.md`, *Before and after*).
 
 **Running, 26/9, warm idle** (*owner-measured*; "loads on" = headlights, rear
 window heater and blower on full). Back-probing the coil connector was

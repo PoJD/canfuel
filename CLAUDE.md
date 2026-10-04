@@ -149,7 +149,8 @@ carries a generated block; a figure typed into prose only goes stale.
   belongs to exactly one of them**:
   - **`docs/firmware/`** — everything the converter needed or needs.
     **`install.md` is the procedure**, plus decoding, frame layout, refuelling
-    reset, timing, optimisation, flashing, `refuted.md`, `open.md` (the open
+    reset, timing, optimisation, flashing, `fuel-check.md` (the pump
+    history and how to check `FuelAvg` against it), `refuted.md`, `open.md` (the open
     firmware questions, 7, 10 and 11) and `datasheets/`
   - **`docs/engine-health/`** — the car's own engine. `open.md` is a holding
     document for one open investigation — the idle misfires that outlived the

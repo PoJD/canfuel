@@ -167,7 +167,9 @@ and how it is being found — and has an end date.
 | **`docs/engine-health/open.md`** | **the engine's open faults** — symptoms, hypotheses, the test that settles each, the plan |
 | `docs/engine-health/refuted.md` | every engine hypothesis settled against, and what settled it |
 | `docs/engine-health/vcds.md` | the VCDS blocks this project reads, and how to record VCDS beside a CAN capture |
-| `docs/engine-health/vehicle-history.md` | **the car itself** — distance, the measured consumption history, and what has been replaced. Read it before trusting a consumption figure against the vehicle |
+| `docs/engine-health/vehicle-history.md` | **the car's service book** — distance, and what has been replaced when |
+| `docs/engine-health/idle-log.md` | the diary of the idle investigation, stage by stage, kept as reference |
+| `docs/firmware/fuel-check.md` | the pump history, and how to check `FuelAvg` against the pump. Read it before trusting a consumption figure against the vehicle |
 | `test/fixtures/README.md` | description of the logs and known data defects |
 | `mplab/README.md` | how to build the firmware, and what JP2 is for |
 
