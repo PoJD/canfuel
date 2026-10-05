@@ -68,12 +68,20 @@ drawing; none of these was read off a VW catalogue page for this car):
 - upper guide, the orange one: **`06A 103 663 C`** — listed by VW's US
   parts site for the 2002 Beetle 2.0; **not `…663 B`**, which is the
   1.8T's;
-- lower metal tube, block to guide: **`06D 103 634 E`?** — not verified;
-  the sellers that list it disagree about which engines;
-- the bracket and its bolt: **not found**; ask for them by VIN.
+- lower metal tube, block to guide: **not replaced** (*owner's decision,
+  4/10/2026*: by most accounts hard to get out). Pushed home in the block
+  if it has backed out;
+- the bracket: **no number found.** On videos of this engine it is a flat
+  steel strap bolted under the intake manifold, with a small pin at its
+  foot that the orange guide's tab clips over. Ask by VIN; or take one,
+  with its bolt, off a scrapped engine of the same family — **check the
+  engine code on the donor** (AQY, AZJ, APK, AZH, AEG — Golf IV, Bora,
+  Beetle, Octavia I 2.0, *general*, not checked against a catalogue) and
+  compare it with a photo of the manifold before taking it.
+  `06A 133 228 S`, sold as an "inlet manifold support" for the AZJ, came
+  up in a search; whether it is this strap is **not known**.
 
-The tube goes home in the block (it may need a new seal there — ask
-with the tube), the guide clipped onto it and bolted to the bracket.
+The guide clipped onto the tube and onto the bracket's pin.
 
 *General practice, not VW's:*
 
