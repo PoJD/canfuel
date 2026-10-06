@@ -148,13 +148,15 @@ counted at every stop, the cold one included.
 - **A3** — drive on, and stop at **68–72 °C**: three minutes standing,
   loads off;
 - driving between the stops normally — no hard drive;
-- engine off; **032 photographed** with the ignition on.
+- **straight on into step 2c**, engine running and the capture still
+  going;
+- after 2c, engine off; **032 photographed** with the ignition on.
 
 **Who runs what — the laptop, two windows:**
 - **`git pull` on the laptop first.**
 - **The CAN capture is Claude's**: `usbtin_capture.py`, listen only, one
-  file for the session, started before the ignition and left running to
-  engine off — `python tools/usbtin_capture.py --seconds 3600 --out
+  file for the session and step 2c, started before the ignition and left
+  running to engine off — `python tools/usbtin_capture.py --seconds 3600 --out
   <session>_z1.txt`. **Stopped early, Claude closes the USBtin's channel**
   so its light goes out.
 - **The oil watch is the owner's**, in a second `cmd` window on the same
@@ -163,16 +165,17 @@ counted at every stop, the cold one included.
   long enough. **Aim for the band's lower edge**: the oil keeps rising at
   a standing idle.
 - **VCDS on its own log, groups 014 + 055 + 033** from before the start to
-  engine off; check it is still logging once the engine catches. It lands
-  in Downloads, where Claude picks it up.
+  the end of A3, then a second log for step 2c; check it is still
+  logging once the engine catches. Both land in Downloads, where Claude
+  picks them up.
 - **Everything else comes from the capture's raw frames afterwards**
   (`tools/idledips.py`): the MFD is out while the USBtin is in, so the
   capture holds no 0x600–0x604.
 
 **What it says** (Claude reads the logs; nothing is judged at the car):
 - **014 at zero at A2 and A3 with the learned value still past −0.93** →
-  a real change. **Session B the same day** after a cool-down to below
-  45 °C of oil — the same two stops — as confirmation (*owner's decision,
+  a real change. **Session B the same day** after step 2c and a
+  cool-down to below 45 °C of oil — the same two stops — as confirmation (*owner's decision,
   4/10/2026*). Zero in both → the idle is fixed; record it.
 - **Counts at A2 or A3** → not fixed; session B is not run; step 3.
 - **Either way, the learned value**: if a leak was sealed it should drift
@@ -180,36 +183,41 @@ counted at every stop, the cold one included.
   the warm stops of 4/10 — air 3.1–3.3 g/s at 760 rpm, plate 2.6°, 055's
   sum −1.1 g/s — where a sealed leak shows as more air through the MAF.
 
-## Step 2d — the cylinder 4 knock window again, all four injectors seated
+## Step 2c — the cylinder 4 knock window, in the same drive as 2b
 
-*Owner's decision, 6/10/2026:* **after step 2b, whatever 014 shows
-there.** An exception to the rule above, made knowingly: S4/S5 are not
-the idle fault (`refuted.md` A10). It is cheap, though, it costs no idle,
-and no knock log has been taken since all four injectors went home on
-1/10. Until then only cylinder 4's injector was seated (`open.md` H5).
+*Owner's decision, 6/10/2026:* **run straight on from step 2b's A3,
+whatever 014 shows there**, without switching the engine off or stopping
+the capture. One drive, one capture file. An exception to the rule
+above, made knowingly: S4/S5 are not the idle fault (`refuted.md` A10).
+It is cheap, though, it costs no idle, and no knock log has been taken
+since all four injectors went home on 1/10. Until then only cylinder 4's
+injector was seated (`open.md` H5). 2b is over by the time this starts,
+so the load here cannot touch its reading.
 
 **Not an idle with throttle blips.** S4's retard came only **while
 driving**, under load: tip-ins after a coast or a gearchange, and
 full-throttle pulls. S5's excess appeared **standing in neutral, but at a
 held 2300 rpm and up**, and at idle all four cylinders sit on the floor.
-Blips at a standstill load nothing, so they show neither. Two parts,
-one VCDS log, **groups 020 + 026 + 003**, the same three as
-`vcds-knock-020-026-003.csv`:
+Blips at a standstill load nothing, so they show neither.
 
-1. **Standing, neutral, handbrake on, warm by driving**, oil about 56–70 °C
-   (the before ran 56 → 68 °C). Hold each speed for 10–15 s:
-   **1600, 2000, 2400, 2800, 3200, 3500 rpm**, then back down the same
-   steps, then the engine off. 3500 is there to catch the move to
-   cylinder 1's window above ~3350 rpm. The before is
-   `vcds-neutral-026-003.csv` and `-clamp.csv`.
-2. **A drive, warm**, repeating 24–25/9: **tip-ins after a coast and
-   after gearchanges at 1000–2000 rpm**, a dozen or more, and where the
-   road allows **two or three full-throttle pulls through 3000–4000 rpm**.
+**VCDS: at the end of A3, stop the 014 + 055 + 033 log and start a new
+one, groups 020 + 026 + 003**, the same three as
+`vcds-knock-020-026-003.csv`. Do it quickly; it is idle time. The
+capture keeps running throughout and carries the oil temperature and
+engine speed to align with. Then two parts:
+
+1. **Still standing at A3, neutral, handbrake on.** Hold each speed for
+   10–15 s: **1600, 2000, 2400, 2800, 3200, 3500 rpm**, then back down
+   the same steps. 3500 is there to catch the move to cylinder 1's window
+   above ~3350 rpm. The oil after A3 sits about 70 °C, close to the
+   `-clamp` log's 65 → 71 °C. The before is `vcds-neutral-026-003.csv`
+   and `-clamp.csv`.
+2. **Drive on**, repeating 24–25/9: **tip-ins after a coast and after
+   gearchanges at 1000–2000 rpm**, a dozen or more, and where the road
+   allows **two or three full-throttle pulls through 3000–4000 rpm**.
    The before is `vcds-knock-020-026-003.csv` and `vcds-knock-022-023.csv`.
 
-**No CAN capture needed**, since VCDS carries everything here. **The MFD in**,
-so the oil temperature is read off the display at the start and end of
-part 1 and written into the chat.
+Then the engine off, the capture stopped, and 032 photographed (step 2b).
 
 **What it says** (`open.md` H5; Claude reads the log):
 - **Cylinder 4's excess over 1 in 026 gone, and 020's events spread over
@@ -225,11 +233,11 @@ part 1 and written into the chat.
   from S4/S5, and next come G66's 20 Nm and its connector, then a look
   for a loose bracket at ~3000 rpm in neutral (H5's tests).
 
-## Step 2c — the adaptation test (`open.md` H10): optional
+## Step 2d — the adaptation test (`open.md` H10): optional
 
 *Owner's decision, 4/10/2026:* optional — it says how the ECU comes to
 count, not where the air comes from. **The battery off overnight, 098,
-then step 2b's session**, driving on afterwards until the learned value
+then step 2b's session** (without 2c), driving on afterwards until the learned value
 has passed −1.0 and stopping three minutes. Zero while the learned value
 is near zero and counts once it passes about −0.93 → H10 confirmed;
 counts while it is still near zero → H10 refuted, and the manifold
