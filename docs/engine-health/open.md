@@ -2014,7 +2014,8 @@ the retard is inside VW's 0–15 °CA.
 **What settles it, at no extra cost:** the neutral 026 + 003 holds
 (`vcds-neutral-026-003.csv` is the before) and a 020 drive with the same
 tip-ins after coasts as on 24–25/9, repeated
-**after the injectors are refitted all four home**. If S4/S5 were injector
+**after the injectors are refitted all four home** — done 1/10; the logs
+are `plan.md` step 2d (*owner's decision, 6/10/2026*). If S4/S5 were injector
 4's click, the excess moves or spreads once 1–3 are seated too; if it stays
 on 4 alone, the injectors are cleared from it. Before the refit, the
 stethoscope on the body of injector 4 against 1 at ~3000 rpm in neutral

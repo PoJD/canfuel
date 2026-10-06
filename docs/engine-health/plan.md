@@ -180,6 +180,51 @@ counted at every stop, the cold one included.
   the warm stops of 4/10 — air 3.1–3.3 g/s at 760 rpm, plate 2.6°, 055's
   sum −1.1 g/s — where a sealed leak shows as more air through the MAF.
 
+## Step 2d — the cylinder 4 knock window again, all four injectors seated
+
+*Owner's decision, 6/10/2026:* **after step 2b, whatever 014 shows
+there.** An exception to the rule above, made knowingly: S4/S5 are not
+the idle fault (`refuted.md` A10). It is cheap, though, it costs no idle,
+and no knock log has been taken since all four injectors went home on
+1/10. Until then only cylinder 4's injector was seated (`open.md` H5).
+
+**Not an idle with throttle blips.** S4's retard came only **while
+driving**, under load: tip-ins after a coast or a gearchange, and
+full-throttle pulls. S5's excess appeared **standing in neutral, but at a
+held 2300 rpm and up**, and at idle all four cylinders sit on the floor.
+Blips at a standstill load nothing, so they show neither. Two parts,
+one VCDS log, **groups 020 + 026 + 003**, the same three as
+`vcds-knock-020-026-003.csv`:
+
+1. **Standing, neutral, handbrake on, warm by driving**, oil about 56–70 °C
+   (the before ran 56 → 68 °C). Hold each speed for 10–15 s:
+   **1600, 2000, 2400, 2800, 3200, 3500 rpm**, then back down the same
+   steps, then the engine off. 3500 is there to catch the move to
+   cylinder 1's window above ~3350 rpm. The before is
+   `vcds-neutral-026-003.csv` and `-clamp.csv`.
+2. **A drive, warm**, repeating 24–25/9: **tip-ins after a coast and
+   after gearchanges at 1000–2000 rpm**, a dozen or more, and where the
+   road allows **two or three full-throttle pulls through 3000–4000 rpm**.
+   The before is `vcds-knock-020-026-003.csv` and `vcds-knock-022-023.csv`.
+
+**No CAN capture needed**, since VCDS carries everything here. **The MFD in**,
+so the oil temperature is read off the display at the start and end of
+part 1 and written into the chat.
+
+**What it says** (`open.md` H5; Claude reads the log):
+- **Cylinder 4's excess over 1 in 026 gone, and 020's events spread over
+  several cylinders, moved to another or gone.** The likeliest reading is
+  injector 4's click, coupled into the block while it alone was seated.
+  "All four alike" is only one possible form of this result. A click
+  falls where injection timing puts it, not necessarily in its own
+  cylinder's window, and a steady click is learned away as noise.
+  ⚠ The job of 1–2/10 also refitted the throttle, the breather and the
+  cover, so a loose part among those (H5's second candidate) changed at
+  the same time, and this reading cannot fully separate the two.
+- **Still on cylinder 4 alone, in both parts.** The injectors are cleared
+  from S4/S5, and next come G66's 20 Nm and its connector, then a look
+  for a loose bracket at ~3000 rpm in neutral (H5's tests).
+
 ## Step 2c — the adaptation test (`open.md` H10): optional
 
 *Owner's decision, 4/10/2026:* optional — it says how the ECU comes to
