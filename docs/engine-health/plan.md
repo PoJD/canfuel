@@ -190,10 +190,20 @@ counted at every stop, the cold one included.
   says does not happen. The one way 2b still tests H10 (`open.md` H10,
   *The test*).
 - **Counts at A2 or A3** → not fixed; session B is not run; step 3.
-- **Either way, the learned value**: if a leak was sealed it should drift
-  back toward zero over the session (*reasoned*, H10). And 003 against
-  the warm stops of 4/10 — air 3.1–3.3 g/s at 760 rpm, plate 2.6°, 055's
-  sum −1.1 g/s — where a sealed leak shows as more air through the MAF.
+- **Either way, the air** (*reasoned*, H10; `open.md` H10, *How much of
+  it a leak can be*). If 2a sealed a leak, the plate has to let in what
+  the leak used to. **The first sign is 055 field 2, the live regulator,
+  going positive already at A1**, where it otherwise sits near zero. Then
+  over the session the learned value, field 3, drifts from −1.0 to −1.2
+  toward zero and takes over from field 2, slowly: on 4/10 it took about
+  35 minutes to go from zero to −0.93. The sum of the two moves at once,
+  by the leak's share, tenths of a g/s at most. And 003 against the warm
+  stops of 4/10 — air 3.1–3.3 g/s at 760 rpm, plate 2.6°, 055's sum
+  −1.1 g/s — where a sealed leak shows as more air through the MAF and a
+  slightly wider plate. On the fuel side, 033 dips a few per cent negative
+  and 032's idle cell follows only over distance. **All of these are small**.
+  014 decides, and these say only whether the air changed at all, read
+  at a matched oil temperature with the loads off.
 
 ## Step 2c — the cylinder 4 knock window, in the same drive as 2b
 
