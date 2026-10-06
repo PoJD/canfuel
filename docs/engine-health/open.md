@@ -3004,7 +3004,12 @@ until the learned value passes about −0.93 again. It says how the ECU
 comes to count, not where the air comes from, so it is not done now; and
 once the idle is fixed and 014 stays at zero, it can no longer be done at
 all. **H10 stays open as an explanation of the counting**, not as a
-separate fault to chase. *Until 6/10/2026 this was `plan.md` step 2c,
+separate fault to chase. **One reading can still go against it, for
+free:** if step 2b finds the learned value risen above about −0.93 and
+014 counting all the same (`plan.md` step 2b, *What it says*). A rise to
+there with 014 at zero is what H10 predicts for a sealed leak, but it
+cannot confirm H10, because a repair that fixes the idle would show the
+same. *Until 6/10/2026 this was `plan.md` step 2c,
 then 2d, optional.*
 
 ## What the forums say about this idle — searched 27/9/2026

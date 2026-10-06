@@ -175,8 +175,20 @@ counted at every stop, the cold one included.
 **What it says** (Claude reads the logs; nothing is judged at the car):
 - **014 at zero at A2 and A3 with the learned value still past −0.93** →
   a real change. **Session B the same day** after step 2c and a
-  cool-down to below 45 °C of oil — the same two stops — as confirmation (*owner's decision,
-  4/10/2026*). Zero in both → the idle is fixed; record it.
+  cool-down to below 45 °C of oil — the same two stops — as confirmation
+  (*owner's decision, 4/10/2026*). Zero in both → the idle is fixed; record it.
+- **014 at zero, and the learned value has risen above −0.93 during the
+  session** — the likeliest look of a fix if 2a sealed the leak
+  (*reasoned*, H10): the ECU stops learning air away because the air is
+  gone, and stops counting with it. **It counts as a real change too**,
+  and readable, because the value started at −1.0 to −1.2 with nothing
+  reset, so the rise itself says the air changed. Then session B the
+  same way, and afterwards **055 and 014 on the next few drives**: the
+  value staying up and 014 at zero → the idle is fixed; record it.
+- **The learned value above −0.93 and 014 still counting** → not fixed,
+  and **against H10**: counting without the learned value is what H10
+  says does not happen. The one way 2b still tests H10 (`open.md` H10,
+  *The test*).
 - **Counts at A2 or A3** → not fixed; session B is not run; step 3.
 - **Either way, the learned value**: if a leak was sealed it should drift
   back toward zero over the session (*reasoned*, H10). And 003 against
