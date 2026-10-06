@@ -1454,6 +1454,10 @@ loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
    *The owner's own, decided 3/10/2026* (`plan.md` step 3), replacing the
    exhaust specialist; a found leak ahead of the probe means a new
    manifold.
+   **Before it, a cold smoke test of the exhaust** with the intake smoke
+   tester, fed into the tailpipe (`plan.md` step 2a, *owner's decision,
+   6/10/2026*). Smoke ahead of the probe settles H2. Clean does not clear
+   it, since a crack in cast iron may only open hot.
 2. **Written before the repair, so the repair is a test:** if a leak ahead of
    the probes is found and sealed, the puff goes; the rear probe (036/037) at
    hot idle moves a little leaner; `IdleHealth` at 70–72 °C stays in its

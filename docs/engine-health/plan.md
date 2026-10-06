@@ -127,6 +127,26 @@ The guide clipped onto the tube and onto the bracket's pin.
   intake leak".* With the dipstick tube refitted (above), look at its foot in the block
   as well as its top;
 
+**Then the exhaust, with the same tester** (*owner's decision,
+6/10/2026*): a cold look at H2's zone (`open.md` H2) for a few minutes
+more, before the warm tailpipe test of step 3. *General practice, not
+VW's:*
+- the smoke into the **tailpipe**, the gap round the tester's hose
+  closed with a rag or tape. The exhaust is a large volume at almost no
+  pressure, so give it time;
+- look at **the manifold itself** (a crack), **its gasket to the head**,
+  **the front probe's boss** and **the manifold's outlet flange**. That is
+  H2's zone, ahead of the front probe;
+- smoke further back, from the joint behind the converter that step 2
+  will have made tight or anything behind it, is **behind both probes**.
+  It is noted but it is not H2;
+- the engine is stopped, so some exhaust valves stand open. Smoke that
+  finds its way through a cylinder into the intake is that, not a leak;
+- ⚠ **a clean result does not clear H2.** A crack in cast iron may only
+  open hot (`open.md` H2), so nothing here replaces the warm tailpipe
+  test. Smoke *does* settle it: a leak ahead of the probe goes to step 3's
+  manifold decision at once.
+
 **Smoke found** → that joint is repaired, then step 2b. **None** → step 2b
 all the same.
 
