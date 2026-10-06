@@ -2998,9 +2998,14 @@ On 4/10 014 followed it, stop by stop, and not the temperature:
 S1 only partly: engine speed barely moved with 014 on 4/10 (S3); S11 only
 through H3, as the leak that would make the ECU learn air away.
 
-**The test:** `plan.md` step 2d, optional — a battery disconnect sets the learned
-value back to zero for nothing, and one session reads whether 014 stays
-quiet until it passes about −0.93 again.
+**The test — not to be run** (*owner's decision, 6/10/2026*). It was a
+battery disconnect, 098, and one session reading whether 014 stays quiet
+until the learned value passes about −0.93 again. It says how the ECU
+comes to count, not where the air comes from, so it is not done now; and
+once the idle is fixed and 014 stays at zero, it can no longer be done at
+all. **H10 stays open as an explanation of the counting**, not as a
+separate fault to chase. *Until 6/10/2026 this was `plan.md` step 2c,
+then 2d, optional.*
 
 ## What the forums say about this idle — searched 27/9/2026
 
@@ -3167,7 +3172,7 @@ learned value through both sessions, and B counted on a cold idle — and
 **H3/H9 come back up behind it**, as the likeliest reason the ECU learns
 idle air away; **H2 drops**: at B1 033 did not correct toward rich, and
 counts at a cold manifold do not need it. H8 rises with H3 for the same
-reason. The order is settled by `plan.md` steps 2a–2d.* *Re-read 4/10/2026,
+reason. The order is settled by `plan.md` steps 2a–2c.* *Re-read 4/10/2026,
 late, when S8 and S10 closed and S11 lost its smoke: S10 was in no row's
 reasoning except as H9's oil, which the repair answered; the order stands.
 Re-read again when S9 and S12 closed: S12 was a supporting point for H3
@@ -3179,7 +3184,7 @@ would lift H7 only if its test finds bangs with the cut long past.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| 1 | **H10 — the learned idle air value turns the counting on** | 4/10: 014 at zero while 055's learned value was 0 to −0.92 g/s, counting at −0.95 and beyond, warm or cold — and session B counted on a cold idle, which no fresh-adaptation session ever has. Against: 3/10 counted at −0.28 (with the hole open); a correlation in time over one day; the mechanism is reasoned only | `plan.md` step 2d, optional: the battery off, 098, session A again — after the smoke test (2a) and the test with adaptations kept (2b), owner's decision 4/10 |
+| 1 | **H10 — the learned idle air value turns the counting on** | 4/10: 014 at zero while 055's learned value was 0 to −0.92 g/s, counting at −0.95 and beyond, warm or cold — and session B counted on a cold idle, which no fresh-adaptation session ever has. Against: 3/10 counted at −0.28 (with the hole open); a correlation in time over one day; the mechanism is reasoned only | **none — not to be run** (*owner's decision, 6/10*): the battery-off test says how 014 comes to count, not where the air comes from, and cannot be done once the idle is fixed. Stays open as the explanation of the counting (H10, *The test*) |
 | 2 | **H3 — a small unmetered leak** (with what is left of H9, closed 4/10: the breather's original hose and connector): **three injectors not fully home since 23/9** (H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line, the breather hose; **the dipstick tube, loose with its bracket missing** (4/10, a crankcase path); **and the throttle's flange**, where a hard protrusion on the old face may have kept the June gasket off (H8, 28/9) | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) **4/10, against:** the warm leak signature did not move with the hole sealed, and a leak does not wait for a hard drive (S3, *Session A after step 1b*) **4/10 evening, for:** an unmetered leak is what makes an ECU learn idle air away — H10's likeliest cause | the valve cover job itself, which replaces the upper plenum gasket, the breather **and the throttle with its flange gasket** (29/9) — an improvement afterwards answers it; now **the smoke test of the intake**, straight after the exhaust joint (`plan.md` step 2a, *owner's decision, 4/10*) |
 | 3 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing **4/10: the hiss stayed after 1b, from the back (S11), and 014 came back only after a hard drive — heat from load, which opens a crack or a gasket; the owner's lead.** Still against: it has to act through the lambda control, which B3's 033 shows **4/10 evening, against:** at B1 033's median was −0.8 %, not the positive correction air at the probe would force, and B counted on a cold idle | the owner's tailpipe test, and a new manifold if it leaks there (`plan.md` step 3, *owner's decision, 3/10*) |
 | 4 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) **4/10 evening:** a new throttle passing more at rest than the ECU's model would also make it learn air away (H10) | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `idle-log.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |

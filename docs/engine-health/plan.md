@@ -233,16 +233,6 @@ Then the engine off, the capture stopped, and 032 photographed (step 2b).
   from S4/S5, and next come G66's 20 Nm and its connector, then a look
   for a loose bracket at ~3000 rpm in neutral (H5's tests).
 
-## Step 2d — the adaptation test (`open.md` H10): optional
-
-*Owner's decision, 4/10/2026:* optional — it says how the ECU comes to
-count, not where the air comes from. **The battery off overnight, 098,
-then step 2b's session** (without 2c), driving on afterwards until the learned value
-has passed −1.0 and stopping three minutes. Zero while the learned value
-is near zero and counts once it passes about −0.93 → H10 confirmed;
-counts while it is still near zero → H10 refuted, and the manifold
-(step 3) moves up.
-
 ## Step 3 — only if the idle is still not fixed
 
 The same rule: **idle solved → stop and record.** Otherwise, each
