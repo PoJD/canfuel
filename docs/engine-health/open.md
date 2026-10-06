@@ -2990,6 +2990,14 @@ On 4/10 014 followed it, stop by stop, and not the temperature:
   more at rest than the ECU's model of it (H8, the part is new). VW: a
   run-in engine sits negative anyway (`plan.md`, *055 is read as the sum
   of its two air fields*), so the sign alone is no fault.
+- **How much of it a leak can be** (*reasoned*, 6/10/2026). Fuel is
+  metered off the MAF, so air entering behind it gets no fuel. If all
+  −1.1 g/s stood for a leak, the idle would take about 1.1 g/s unmetered
+  on top of the MAF's 3.1, roughly a third lean. The lambda trim would
+  then sit tens of per cent positive, and it reads about −3 %. **So most
+  of the learned value is not a leak**: a run-in engine, the new
+  throttle's rest. A sealed leak can move it only by its own share. That
+  is a few tenths at most, though enough to cross −0.93 from −1.1.
 
 | S1 | S2 | S3 | S4 | S5 | S11 | S14 |
 |---|---|---|---|---|---|---|
