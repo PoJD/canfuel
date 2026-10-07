@@ -72,9 +72,10 @@ drawing; none of these was read off a VW catalogue page for this car):
   4/10/2026*: by most accounts hard to get out). Pushed home in the block
   if it has backed out;
 - the bracket: **`06A 133 376`, no suffix, the likeliest number
-  (7/10/2026, not confirmed).** The dealer offered **`06A 133 376 D`**,
-  and the owner found that one listed for the **1.8T**, where it looks
-  different (*owner*, 7/10/2026). The bare `06A 133 376` is sold as an
+  (7/10/2026, not confirmed).** The dealer gave **`06B 103 623 P`**,
+  which is a different part (*owner*, 7/10/2026). What it is was not
+  found. The owner found **`06A 133 376 D`** himself, listed for the
+  **1.8T**, and it looks different there (*owner*, 7/10/2026). The bare `06A 133 376` is sold as an
   "oil dipstick retaining plate". It sits beside the 2.0's lower
   manifold in a Brazilian 2009 Bora 2.0 catalogue page (oemwolf.com),
   and a search summary of an ETKA mirror (ilcats.ru) placed it in the
