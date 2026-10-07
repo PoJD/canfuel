@@ -71,7 +71,19 @@ drawing; none of these was read off a VW catalogue page for this car):
 - lower metal tube, block to guide: **not replaced** (*owner's decision,
   4/10/2026*: by most accounts hard to get out). Pushed home in the block
   if it has backed out;
-- the bracket: **no number found.** On videos of this engine it is a flat
+- the bracket: **`06A 133 376`, no suffix, the likeliest number
+  (7/10/2026, not confirmed).** The dealer offered **`06A 133 376 D`**,
+  and the owner found that one listed for the **1.8T**, where it looks
+  different (*owner*, 7/10/2026). The bare `06A 133 376` is sold as an
+  "oil dipstick retaining plate". It sits beside the 2.0's lower
+  manifold in a Brazilian 2009 Bora 2.0 catalogue page (oemwolf.com),
+  and a search summary of an ETKA mirror (ilcats.ru) placed it in the
+  APK/AQY Golf's intake group. That page itself would not open, so the
+  engine code is **second-hand**. Same pattern as the guide: the suffix
+  separates the engines (`…663 C` the 2.0's, `…663 B` the 1.8T's).
+  **Ask for `06A 133 376` by VIN and compare it with the videos before
+  paying.** Its bolt was not found. Earlier searching:
+  **no number found.** On videos of this engine it is a flat
   steel strap bolted under the intake manifold, with a small pin at its
   foot that the orange guide's tab clips over. Ask by VIN; or take one,
   with its bolt, off a scrapped engine of the same family — **check the
