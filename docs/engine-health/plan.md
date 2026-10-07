@@ -60,49 +60,11 @@ costs no idle.
 **First, the dipstick tube** (*owner's decision, 4/10/2026*): loose, its
 bracket missing, fresh oil at its foot (`open.md` H3, *The dipstick
 tube*). Refitted before the smoke, so that smoke at the dipstick means
-something. **The part numbers, to be confirmed by VIN at the parts shop
-before ordering** (ETKA shows the bracket and its bolt on the same
-drawing; none of these was read off a VW catalogue page for this car):
-- dipstick: **`06B 115 611 R`** — sold for the Beetle, Golf and Jetta
-  2.0 SOHC 1998–2005 by several sellers;
-- upper guide, the orange one: **`06A 103 663 C`** — listed by VW's US
-  parts site for the 2002 Beetle 2.0; **not `…663 B`**, which is the
-  1.8T's;
-- lower metal tube, block to guide: **not replaced** (*owner's decision,
-  4/10/2026*: by most accounts hard to get out). Pushed home in the block
-  if it has backed out;
-- the bracket: **no number confirmed** (7/10/2026). On videos of this
-  engine it is a flat steel strap bolted under the intake manifold. It is
-  **L-shaped, with a small tab turned up at its end** that the orange
-  guide's mounting tab clips over (*owner*, from a video still,
-  7/10/2026). What was ruled out, and what is left:
-  - **`06B 103 623 P`, the dealer's number, is the oil pan baffle**:
-    "windage tray" (ECS Tuning), "flame shield", position 23 of the
-    crankcase diagram where the guide `06A 103 663 C` is position 32
-    (lllparts.fr). Not this part;
-  - **`06A 133 376` (no suffix) is not it either**: an 18 g "arretoir"
-    (retainer), position 9 of the 2.0's intake diagram, next to the
-    connecting hose. It is **U-shaped** on that drawing (*owner*,
-    7/10/2026). `06A 133 376 D` is the 1.8T's and looks different again
-    (*owner*). *Corrected 7/10/2026: this named `06A 133 376` as the
-    likeliest number;*
-  - **left in the same intake diagram** (lllparts.fr, the AQY/APK/AZH
-    page): **position 22, `06A 133 942`, "arretoir", AQY and AZH**
-    (`06A 133 344` for the APK), listed at 0.356 kg. That weight is heavy
-    for a strap, so this is unconfirmed. Position 20, `06A 133 229 E`,
-    "appui" for the AQY, is the manifold support at 1.03 kg, so not the
-    strap. **Look at position 22's shape on that drawing**, and ask
-    for it by VIN with the video still in hand;
-  - the strap may also sit in a diagram not searched (the dipstick's
-    own, or the block's) without a number of its own.
-
-  Failing that, take one with its bolt off a scrapped engine of the same
-  family. **Check the engine code on the donor** (AQY, AZJ, APK, AZH,
-  AEG — Golf IV, Bora, Beetle, Octavia I 2.0, *general*, not checked
-  against a catalogue) and compare it with a photo of the manifold
-  before taking it. `06A 133 228 S`, sold as an "inlet manifold support"
-  for the AZJ, came up in a search; whether it is this strap is **not
-  known**.
+something. The guide and the missing bracket are renewed. **Finding
+the parts is done outside this repository** (*owner's decision,
+7/10/2026*). The lower metal tube, block to guide, is **not replaced**
+(*owner's decision, 4/10/2026*: by most accounts hard to get out), only
+pushed home in the block if it has backed out.
 
 The guide clipped onto the tube and onto the bracket's pin.
 
