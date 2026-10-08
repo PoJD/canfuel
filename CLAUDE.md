@@ -156,7 +156,12 @@ carries a generated block; a figure typed into prose only goes stale.
     document for one open investigation — the idle misfires that outlived the
     repair — holding only what is open: symptoms, hypotheses, tests.
     `refuted.md` takes whatever is settled against. `plan.md` is the planned
-    fixes in order, emptied as they are done. **All three have an end date.**
+    fixes in order, emptied as they are done, **in two parts that are
+    never mixed**: Part 1 is what to do, as bare instructions the
+    maintainer follows at the car without reading any reasoning; Part 2
+    is why, and how the results are read. A new instruction goes into
+    Part 1 and its reason into Part 2, in the same commit (*the
+    maintainer's rule, 8/10/2026*). **All three have an end date.**
     `vcds.md` (the VCDS blocks and how to record them),
     `vehicle-history.md` (the service record: parts, dates, distances —
     a service book and nothing more) and **`idle-log.md`** (the diary of
