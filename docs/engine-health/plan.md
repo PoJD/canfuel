@@ -207,21 +207,21 @@ repository** (*owner's decision, 7/10/2026*).
 - **not through the MAF**: oil smoke over its sensing element is the one
   thing here that can spoil a part (*general caution*). **It comes out
   altogether** (*owner's decision, 8/10/2026*), not just off the hose,
-  because smoke can reach it from the airbox side too. **The route the
-  owner means** (*owner*, 8/10/2026): the thin line from the intake
-  manifold runs through N112, the electric valve, to the combination
-  valve, and **N112 vents into the airbox**. So intake smoke that gets
-  past N112 comes out in the airbox, ahead of the MAF. *Corrected
-  8/10/2026: this first named the combination valve, through the pump,
-  as the route. The owner reports that valve sealing (A8 test 1), and
-  the route he meant is N112's.* **Smoke at the airbox's open outlet
-  therefore says N112 passes manifold to vent**, and that is **an
-  unmetered leak in its own right** (*reasoned*). At idle, manifold
-  vacuum then draws filtered air from the airbox through N112 into the
-  manifold, past the MAF. It would be small, since the line is thin.
-  A8 test 2 found no air at the N112 end of the line when cold
-  (`refuted.md` A8). That tested the valve's port, not its vent, so
-  this was never checked directly. The MAF out also
+  because smoke can reach it from the airbox side too. **The route**
+  (*owner*, 8/10/2026): the thin line from the intake manifold runs
+  through N112, the electric valve, to the combination valve's control
+  side, the valve the pump blows through. Smoke reaches the airbox only
+  if it gets **past N112 and then past the combination valve's control
+  side into the pump's path**, and back through the pump into the
+  airbox, ahead of the MAF. Neither should pass. Neither was tested for
+  it, and both are probably original (*owner*). A8 tested only that the
+  valve seals against exhaust and that the line passed no air when cold
+  (`refuted.md` A8). **Smoke at the airbox's open outlet therefore means
+  that chain passes**. As an idle leak it would need both valves passing
+  at once (*reasoned*), so it is unlikely. The MAF comes out anyway
+  because it costs nothing. *Corrected 8/10/2026: this said N112 vents
+  into the airbox, attributed to the owner. He did not say that, and
+  where N112 vents is not known.* The MAF out also
   leaves the MAF-to-hose clamp untested. It holds by the owner's check, is a
   rubber-lined pipe clamp rather than VW's, and was sprayed at a warm
   idle on 26/9 with no change (`open.md` H3, *Spray test*; `idle-log.md`,
