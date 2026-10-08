@@ -34,14 +34,16 @@ After about 11/10, with the new flange and exhaust sealant in hand.
 **The intake**
 1. Smoke tester: Lincos `MG78016`, mineral (baby) oil, 5–35 ml. Nothing
    flammable in it, no workshop air.
-2. Take the hose between the MAF and the throttle off **at the MAF's
-   end**. Clamp a glove or bag into the hose. Do not smoke through the
-   MAF.
-3. Take the vacuum hose off the fuel pressure regulator. Feed the smoke
+2. Ignition off. **Take the MAF out**: unplug it, take it off the airbox
+   and off the hose. Keep it bagged, away from the car, until both smoke
+   tests are done.
+3. Clamp a glove or bag into the open end of the hose to the throttle.
+   Leave the airbox's outlet open.
+4. Take the vacuum hose off the fuel pressure regulator. Feed the smoke
    in there.
-4. Hold the throttle open with a string on the cable or a hand on the
+5. Hold the throttle open with a string on the cable or a hand on the
    quadrant.
-5. Smoke for a few minutes. With a torch, look at:
+6. Smoke for a few minutes. With a torch, look at:
    - the throttle's flange and its hose clamp
    - the upper-to-lower plenum joint
    - the four injector seats
@@ -50,7 +52,8 @@ After about 11/10, with the new flange and exhaust sealant in hand.
    - the breather, its hose and the hose's plastic connector
    - the oil filler, the dipstick (top and foot in the block), the cover
      joint
-6. Photograph every place smoke comes out, and note whether it is a wisp
+   - the airbox's open outlet
+7. Photograph every place smoke comes out, and note whether it is a wisp
    or a steady stream.
 
 **The exhaust**, with the same tester
@@ -62,7 +65,9 @@ After about 11/10, with the new flange and exhaust sealant in hand.
    - the front lambda probe's boss
    - the manifold's outlet flange
    - the joint behind the converter, and anything behind it
+   - the airbox's open outlet
 3. Photograph every place smoke comes out.
+4. Only now: the MAF back in, the hose back on.
 
 **Afterwards:** repair whatever leaked on the intake. Smoke at the
 manifold, its gasket or the probe boss → go straight to step 3.2's
@@ -200,8 +205,21 @@ repository** (*owner's decision, 7/10/2026*).
 - **the tester** has its own pump because the owner has no aquarium pump
   (*owner*, 4/10/2026). The pressure only has to make the smoke flow;
 - **not through the MAF**: oil smoke over its sensing element is the one
-  thing here that can spoil a part (*general caution*). That leaves the
-  MAF-to-hose clamp untested. It holds by the owner's check, is a
+  thing here that can spoil a part (*general caution*). **It comes out
+  altogether** (*owner's decision, 8/10/2026*), not just off the hose,
+  because smoke can reach it from the airbox side too. The secondary-air
+  pump draws from the airbox ahead of the MAF (H3, *Spray test*) and
+  blows through the combination valve into the head. Smoke in the
+  exhaust (the exhaust test, or intake smoke through a cylinder whose
+  valves overlap) that got past a combination valve not sealing would
+  come back through the pump into the airbox. **Smoke at the airbox's
+  open outlet therefore points at the combination valve** (the valve on
+  the head at the end of the pump's thick hose, opened by the thin line
+  from N112), or at the pump's hoses. It would not be an unmetered intake
+  leak, since it joins the exhaust to the airbox ahead of the MAF. A8
+  found the valve sealing at a warm idle (`refuted.md` A8), so smoke there
+  would be new. The MAF out also
+  leaves the MAF-to-hose clamp untested. It holds by the owner's check, is a
   rubber-lined pipe clamp rather than VW's, and was sprayed at a warm
   idle on 26/9 with no change (`open.md` H3, *Spray test*; `idle-log.md`,
   *The MAF*). The throttle end, refitted since, is inside the smoke;
