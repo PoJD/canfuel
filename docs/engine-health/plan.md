@@ -207,21 +207,28 @@ repository** (*owner's decision, 7/10/2026*).
 - **not through the MAF**: oil smoke over its sensing element is the one
   thing here that can spoil a part (*general caution*). **It comes out
   altogether** (*owner's decision, 8/10/2026*), not just off the hose,
-  because smoke can reach it from the airbox side too. **The route**
-  (*owner*, 8/10/2026): the thin line from the intake manifold runs
-  through N112, the electric valve, to the combination valve's control
-  side, the valve the pump blows through. Smoke reaches the airbox only
-  if it gets **past N112 and then past the combination valve's control
-  side into the pump's path**, and back through the pump into the
-  airbox, ahead of the MAF. Neither should pass. Neither was tested for
-  it, and both are probably original (*owner*). A8 tested only that the
+  because smoke can reach it from the airbox side too. **Two routes
+  into the airbox.** The thin line from the intake manifold runs through
+  N112, the electric valve, to the combination valve's control side, the
+  valve the pump blows through. **N112 vents into the airbox** (*owner*,
+  8/10/2026). Both valves are probably original (*owner*), and neither
+  was ever tested for passing smoke. A8 tested only that the combination
   valve seals against exhaust and that the line passed no air when cold
-  (`refuted.md` A8). **Smoke at the airbox's open outlet therefore means
-  that chain passes**. As an idle leak it would need both valves passing
-  at once (*reasoned*), so it is unlikely. The MAF comes out anyway
-  because it costs nothing. *Corrected 8/10/2026: this said N112 vents
-  into the airbox, attributed to the owner. He did not say that, and
-  where N112 vents is not known.* The MAF out also
+  (`refuted.md` A8).
+  - **Through N112's vent** (*reasoned*). Unpowered, N112 should block
+    the manifold and vent the control line into the airbox. If it passes
+    manifold to vent, smoke comes straight out in the airbox, and **this
+    needs N112 alone**. At idle it would also be a small unmetered leak:
+    manifold vacuum drawing filtered air from the airbox past the MAF.
+  - **Through the pump** needs N112 *and* the combination valve's control
+    side to pass, into the pump's path and back through the pump. That
+    takes both valves at once (*owner*, 8/10/2026), so it is the
+    unlikely one.
+
+  **Smoke at the airbox's open outlet** therefore points at N112 first.
+  *Corrected 8/10/2026, twice: first N112's vent was taken as said by the
+  owner before he had said it, then it was withdrawn; the owner has since
+  confirmed it.* The MAF out also
   leaves the MAF-to-hose clamp untested. It holds by the owner's check, is a
   rubber-lined pipe clamp rather than VW's, and was sprayed at a warm
   idle on 26/9 with no change (`open.md` H3, *Spray test*; `idle-log.md`,
