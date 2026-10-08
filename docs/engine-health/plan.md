@@ -32,8 +32,9 @@ After about 11/10, with the new flange and exhaust sealant in hand.
 3. Fit the bracket and clip the guide onto it.
 
 **The intake**
-1. Smoke tester: Lincos `MG78016`, mineral (baby) oil, 5–35 ml. Nothing
-   flammable in it, no workshop air.
+1. Smoke tester: Lincos `MG78016`, 5–35 ml of baby oil whose ingredients
+   (INCI) read **`Paraffinum Liquidum`**, unscented. **No plant oil**
+   (sesame, almond, olive). Nothing flammable in it, no workshop air.
 2. Ignition off. **Take the MAF out**: unplug it, take it off the airbox
    and off the hose. Keep it bagged, away from the car, until both smoke
    tests are done.
@@ -204,6 +205,11 @@ repository** (*owner's decision, 7/10/2026*).
 **The intake** (*general practice, not VW's*):
 - **the tester** has its own pump because the owner has no aquarium pump
   (*owner*, 4/10/2026). The pressure only has to make the smoke flow;
+- **mineral oil, not plant oil** (*general*): smoke testers are made for
+  paraffin oil, and a plant oil gums on the heater. Plant oils are sold
+  as baby oil too. The calendula baby oil at hand (Weleda) is sesame oil,
+  so it was ruled out (*owner*, photo of the label, 8/10/2026). Brake
+  mineral oil for bicycles was also ruled out, for its additives and dye;
 - **not through the MAF**: oil smoke over its sensing element is the one
   thing here that can spoil a part (*general caution*). **It comes out
   altogether** (*owner's decision, 8/10/2026*), not just off the hose,
