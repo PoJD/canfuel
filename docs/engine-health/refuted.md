@@ -215,6 +215,22 @@ precaution. One cylinder retarding is not that.
 It would set a fault code and retard all cylinders to be safe. No code, and
 three cylinders read zero retard.
 
+### B7. "Injector 4's click, coupled into the block while only it was seated, is what knock control hears" — measured
+
+**Believed:** 27/9–9/10/2026 (`open.md` H5): every knock log was taken
+while only cylinder 4's injector was fully home, and a rigidly coupled
+injector's click would reach the sensor strongest. **Refuted by** step 2c,
+9/10/2026, the first knock log with all four seated
+(`vcds-step2c-020-026-003.csv`, `30_step2b_z1.txt`): 020 retarded
+**cylinder 4 alone** while driving — 9.5 % of samples, up to 13.5 °CA,
+against 2.1 % and 5.2 °CA on 25/9, on a harder drive (to 6,010 rpm) —
+with cylinder 1 at five samples above 4000 rpm and 2 and 3 at zero; and
+in the neutral holds 026 still read cylinder 4 **19–28 % above cylinder 1**
+from 1400 to 3350 rpm (the 25/9 holds 25–57 % by the same cut), handing
+over to cylinder 1 above ~3350 rpm as before. Neither moved nor spread.
+**Not excluded:** that seating 1–3 took some of S5's excess away, which the
+smaller ratio would allow; it did not take it off cylinder 4.
+
 ---
 
 ## C. Other things that were suspected and are settled

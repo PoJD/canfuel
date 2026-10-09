@@ -302,13 +302,13 @@ As an index (÷ 2.00 × 100): the middle band 106 → 98–107, the cold idle
 
 ## Where it stands, and what comes next
 
-**Open:** S1 and S3. The misfires remain on settled adaptations. The lead
-idea is **air reaching the engine past the throttle** — an unmetered leak at
-the back of the intake, never sprayed, where the owner also hears a hiss he
-cannot place — with the learned idle air value as the ECU's way of showing
-it. **Next** (`plan.md`): an **intake smoke
-test**; then session A **without** resetting the adaptations, so that a
-zero means something.
+**Open:** S1 and S3. The misfires remain on settled adaptations, and the
+intake is tight cold. The lead idea is still **air the throttle did not
+let in**, with the learned idle air value as the ECU's way of showing it —
+but sealing the two places the smoke found moved nothing (9/10, below), so
+where that air comes from is open again: the exhaust ahead of the probe
+(H2) has never been looked at warm. **Next** (`plan.md` step 3): G66 for
+the knock window, then a vacuum gauge, then the manifold.
 
 *Entries are added here as each step is done.*
 
@@ -369,6 +369,27 @@ with the adaptations kept, is the first that can show whether either
 mattered** — nothing is claimed until it has. The car went back together the same
 day with the new MAF, the regulator's hose and nothing left in the duct
 (*owner*).
+
+**9/10/2026 — the drive on kept adaptations (steps 2b and 2c)**
+(`30_step2b_z1`; `open.md` S3, *Steps 2b and 2c*). The first session in
+which nothing had been reset, so a zero would have meant something.
+**There was none**: 014 counted on the cold idle after the start, at
+both warm stops (6.8 a minute at 56–61 °C, 11–12 at 67.5 °C) and on the
+way home. 055's learned value sat at −1.1 to −1.3 throughout and never
+rose; 003's air and plate at a warm idle were 4/10's to the decimal;
+032 read −2.3 / +5.5 % afterwards. **So the dipstick guide and the MAF
+clamp did not fix the idle**, and nothing says they let in the air the
+ECU is learning away. On engine speed the idle is where 4/10 left it.
+The owner felt it calmer at A2; the grades do not show that.
+
+The same drive answered the knock window: with all four injectors home,
+the retard and 026's excess **stayed on cylinder 4** (S4, S5), so the
+injectors are cleared from it (`refuted.md` B7). G66 is next, by the
+owner's decision, ahead of the vacuum gauge, which is not bought yet.
+
+**What the drive is not known to have achieved:** anything. It changed
+nothing on the car; it measured the 9/10 work, and that measured as no
+change at idle.
 
 ---
 

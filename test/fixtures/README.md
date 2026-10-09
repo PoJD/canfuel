@@ -55,6 +55,7 @@ stands. It is duration, average flow and distance that need a clock.
 | `27_sessionA2_cold_z1.txt` | slcan+Z1, **filtered** | 494,924 | ✅ adapter | **session A again, after step 1b, first half**: ignition on after a ~15 h stand, cold start on adaptations at zero (098 just run), 5 min cold idle, a stop at 41–47 °C of oil for the cover joint, the A2 stop at 55–62 °C, into the drive to A3. 23 min | 15.75–100.5 °C |
 | `28_sessionA2_warm_z1.txt` | slcan+Z1, **filtered** | 522,963 | ✅ adapter | **second half**: the A3 stop at 68–71 °C, five minutes of hard driving (to 5,770 rpm), a hot stop where 014 counted again, the MAF wiggle, engine off. 24 min | 88.5–100.5 °C |
 | `29_sessionB_z1.txt` | slcan+Z1, **filtered** | 540,646 | ✅ adapter | **session B**: a part-warm start after a ~2 h cool-down (oil 31 °C), an idle after the start, the B1 stop at 59 °C, the drive home with two stops, engine off. 25 min | 44.25–100.5 °C |
+| `30_step2b_z1.txt` | slcan+Z1, **filtered** | 1,199,898 | ✅ adapter | **`plan.md` steps 2b and 2c, one drive** on kept adaptations: ignition on, a cold start, the A1 idle (oil 10 °C), the A2 stop at 56–61 °C, the A3 stop at 67.5 °C, the neutral holds 1600–3500 rpm, tip-ins and pulls to 6,010 rpm, hot stops on the way home, engine off. Filtered after the capture rather than by the adapter. 56 min | 14.25–100.5 °C |
 | `idle.txt` | slcan | 1,136 | none | short idle, colder engine | 68.25 °C |
 | `vcds/vcds-01-002-003.csv` | VCDS log | 1,019 | own clock | the diagnostic side of holds 1–6 | — |
 | `vcds/vcds-ride-002-003.csv` | VCDS log | 902 | own clock | the diagnostic side of the drive | — |
@@ -75,6 +76,10 @@ stands. It is duration, average flow and distance that need a clock.
 | `vcds/vcds-sessionA2-hot-003-014-055.csv` | VCDS log | 1,107 | own clock | groups 003, 014 and 055 from after A3 to engine off: the hard drive, the hot stop, the MAF wiggle | — |
 | `vcds/vcds-sessionB-prestart-014-055-033.csv` | VCDS log | 97 | own clock | ignition on before `29`'s start, engine not running | — |
 | `vcds/vcds-sessionB-014-055-033.csv` | VCDS log | 1,433 | own clock | groups 014, 055 and 033 across `29` from about the start to engine off | — |
+| `vcds/vcds-step2b-014-055-033.csv` | VCDS log | 1,700 | own clock | groups 014, 055 and 033 across `30` from the start through A1, A2 and the first part of A3 | — |
+| `vcds/vcds-step2b-a3-014-055-003.csv` | VCDS log | 158 | own clock | groups 014, 055 and 003, the rest of the A3 stop in `30`: 003 at a warm idle, which 2b had left out | — |
+| `vcds/vcds-step2c-020-026-003.csv` | VCDS log | 807 | own clock | groups 020, 026 and 003 across `30` from the end of A3: the neutral holds, the tip-ins and the pulls | — |
+| `vcds/vcds-step2c-home-014-055-003.csv` | VCDS log | 800 | own clock | groups 014, 055 and 003 across `30` on the drive home and its hot stops, to engine off | — |
 | `vcds/vcds-postrepair-checkstart-003-014-055.csv` | VCDS log | 29,458 | own clock | groups 003, 014 and 055 on 2/10/2026, the first runs after the valve cover and throttle job: the first 8 s are the start of a run of about a minute during which VCDS dropped out, then a restart of the **part-warm** engine and about 4½ minutes standing, two throttle blips at ~200 s. Fresh adaptations (battery off, 055's learned value 0). **No bus capture beside it**; coolant temperature not recorded | — |
 
 ## The three `_z1` logs
@@ -447,7 +452,7 @@ documents: the torque scale in `docs/firmware/can-decoding.md` question 8, 0x200
 *IDs present on the bus*, the engine in `docs/engine-health/open.md` and
 `docs/engine-health/refuted.md`.
 
-**`19`, `24` and `25`–`29` are filtered** to the six identifiers the firmware accepts —
+**`19`, `24` and `25`–`30` are filtered** to the six identifiers the firmware accepts —
 0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480 — to keep an hour of driving to a size
 a repository can hold. The unfiltered capture behind `19` (65 MB) is kept
 outside the repository. **They say nothing about what else is on the bus**, and

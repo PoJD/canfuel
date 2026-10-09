@@ -75,12 +75,15 @@ Everything else settled against is in `refuted.md`.
   owner's to watch, expected to go with S1/S3, pursued only if it
   outlives them).
 - **The cylinder 4 knock window: S4 and S5**, a cluster of its own
-  (H5, H6), not pursued until the idle is solved (`plan.md`, *The rule*).
+  (H5, H6). The injectors were cleared from it on 9/10 (`refuted.md`
+  B7); G66 is next, by the owner's decision, ahead of the idle's own
+  step (`plan.md` step 3).
 
-**Next:** `plan.md` — 2b and 2c, one drive with the adaptations kept;
-the smoke tests of 9/10 are done (the intake tight cold after the
-dipstick and the MAF clamp; the exhaust inconclusive). Then step 3 if
-the idle is not fixed.
+**Next:** `plan.md` step 3 — G66, then the vacuum gauge once bought,
+then the exhaust manifold. Steps 2a–2c are done: the intake tight cold,
+and on the drive of 9/10 with the adaptations kept, 014 counting at
+every warm stop with nothing a sealed leak would move having moved (S3,
+*Steps 2b and 2c*).
 
 ---
 
@@ -434,6 +437,53 @@ aligned with 014, so it remains a reading, not a measurement.
   to −1.24 throughout**, where it had ended session A. Read together
   with session A: H10.
 
+- **Steps 2b and 2c, 9/10/2026** — the first session on **kept
+  adaptations**, after the smoke tests sealed the dipstick guide and the
+  MAF-to-hose clamp (`plan.md` 2a), the exhaust joint behind the converter
+  remade and the new MAF back in. A cold start, the three stops, the
+  knock holds and drive, the way home (`30_step2b_z1`, with
+  `vcds/vcds-step2b-*.csv` and `vcds-step2c-*.csv`). 014 aligned on engine
+  speed (mean error 21–24 rpm), standing idle with detection
+  `aktivováno`; dips and `IdleHealth` cut the same way from `27`–`29`
+  for the comparison:
+
+  | stop | oil | 014 rises a minute | 055 learned, g/s | dips ≥ 20 rpm a minute (4/10) | `IdleHealth` (4/10) |
+  |---|---|---|---|---|---|
+  | A1, cold | 10–13 °C | **1.4–1.8** | −1.12 | 12.1 (16.5) | 86 (98) |
+  | **A2** | 56–61 °C | **6.8** | −1.10 to −1.17 | 8.4 (9.2) | 67 (70) |
+  | **A3** | 67.5 °C | **10.7–12.5** | −1.11 to −1.17 | 13.9 (4.4) | 56 (39) |
+  | hot, the way home | 72–73 °C | 3.7–5.8 | −1.17 to −1.32 | 7.4–10 (6.7–15) | 41–61 (38–59) |
+
+  **The misfires are not gone**, at both warm stops and on the cold idle
+  after the start — the second cold idle to count, after session B's,
+  and again with the learned value already past −0.93. **The learned
+  value never came up**: −1.07 to −1.33 all session, more negative by the
+  end. **Nothing a sealed leak would show moved**: at A3, 003 read
+  3.12 g/s at 760 rpm with the plate at 2.6° (4/10: 3.1–3.3 g/s, 2.6°),
+  055's sum −1.14 (−1.06 to −1.16), 055's live regulator at zero rather
+  than positive, 033's median −0.8 % (+1.6 % at A2). 032 after the drive:
+  **−2.3 / +5.5 %** (`photos/vcds-032-2026-10-09-after-step2b.jpg`;
+  4/10: −0.8 / +2.3 %) — the idle cell moved negative, not toward the
+  positive a leak at the probe or behind the MAF would want. **On engine
+  speed, no change**: the cold and A2 stops a little smoother than 4/10,
+  A3 rougher, the hot stops the same. The owner felt the idle calmer at
+  A2 (*owner-reported*, 9/10); the grades do not show it, and it is not
+  recorded as a change to S1 (`refuted.md` C12).
+
+  **The size of the readings** (*the owner's question*, 9/10): the
+  non-zero values at idle had a median of 12–24 and peaks of 12–48, with
+  a maximum of 72–96, against 24–36, 24–48 and 84–132 in sessions A and
+  B — smaller over the session, but **not at A3**, which read 24, 48 and
+  96. 014 is a yes/no witness (below), so this is a direction at most.
+
+  **No new link to cylinder 4** (*the owner's question*, 9/10).
+  `idledips.py --cylinders` over the four stops finds the same period-4
+  structure as 4/10, of the same size — `sd_true` 1.8–2.6 rpm against
+  1.8–2.3 on `28` and `29` — and the bus cannot say which cylinder a slot
+  is (*Naming the cylinder*). The knock window is still under load only,
+  and at idle 026 sits on the floor, so nothing here ties the misfires to
+  cylinder 4.
+
 **Three properties of the counter that must be kept in mind**, all measured
 on the 24/9 logs (`refuted.md` A11, A12): it moves in steps of 12; detection switches off below about 20 % load, which on
 the new MAF is right at the hot-idle load; and it counted **five to fifty times
@@ -452,6 +502,13 @@ within seconds.
 - 25/9, about 100 km later: the small tip-in events had shrunk to 0.7–1.5 °CA;
   the large ones (up to 5.2 °CA) came only at full throttle, 3000–4000 rpm.
 - **Never at idle**, in either log.
+- **9/10/2026, all four injectors seated** (`vcds-step2c-020-026-003.csv`,
+  step 2c): still **cylinder 4 alone** — 9.5 % of the driving samples,
+  onsets at 1280–2320 rpm on the tip-ins and 3640–5560 rpm on the pulls,
+  **up to 13.5 °CA** — against 2.1 % and 5.2 °CA on 25/9, on a harder drive
+  (to 6,010 rpm against about 4,000). Cylinder 1 five samples above
+  4000 rpm, 2 and 3 none. One event standing, at 1640 rpm in the holds.
+  The injectors are cleared from it (`refuted.md` B7).
 - **Within VW's specification** of 0–15 °CA per cylinder while driving —
   VW's repair manual for the Golf Mk4, *Motronic injection and ignition system
   (2.0 ltr. engine)*, display groups 10–29, as transcribed on
@@ -465,6 +522,11 @@ within seconds.
 - **Above about 3350 rpm the extra moves to cylinder 1's window** and comes
   back to 4 as soon as the speed drops. One log; not seen in the other because
   it did not go that high.
+- **9/10/2026, all four injectors seated** (step 2c's holds, mean 026 by
+  rpm band): cylinder 4 **19–28 % above cylinder 1** from 1400 to
+  3350 rpm, against 25–57 % in the two 25/9 holds cut the same way, and
+  **below cylinder 1 above 3350** (0.83) as before. Smaller, still on 4
+  (`refuted.md` B7).
 - **At idle all four sit on the floor** (0.31 V). 026 sees nothing there.
 - Cylinders **1 and 4 read about twice 2 and 3 in every state, fired or not.**
   That pair is the crank-symmetric one and is explained without a fault (see
@@ -2070,64 +2132,35 @@ Three candidates, all *general*:
   buzzes only in a speed band would explain the switch-on and the move to
   cylinder 1 above 3350 rpm. **The exhaust clamp was one candidate and it was
   not it.**
-- **An injector click** that slides into the window as injection timing moves
-  with speed. No knock log exists from before the new injectors.
+- ~~**An injector click** that slides into the window as injection timing
+  moves with speed.~~ **Settled against 9/10/2026** (`refuted.md` B7): with
+  all four seated, both S4 and S5 stayed on cylinder 4.
 
 | S1 | S2 | S3 | S4 | S5 | S11 | S14 |
 |---|---|---|---|---|---|---|
 | — | — | — | ✔ | ✔ | — | — |
 
-**Tests:** check G66's torque and connector; look over everything refitted in
+**Tests:** check G66's torque and connector (`plan.md` step 3, first —
+*owner's decision, 9/10/2026*); look over everything refitted in
 September for a loose bracket, clip or heat shield with the engine held at
-~3000 rpm in neutral; the stethoscope from H1 on the injector bodies of 4 and
-1. **After each, repeat the neutral 026 + 003 holds** at the same oil
-temperature: `vcds/vcds-neutral-026-003.csv` and `-clamp.csv` are the before.
+~3000 rpm in neutral. **After each, repeat the neutral 026 + 003 holds and
+the 020 drive** at the same oil temperature:
+`vcds/vcds-step2c-020-026-003.csv` is the before, with
+`vcds-neutral-026-003.csv` and `-clamp.csv` behind it.
 
-**The seated injector is cylinder 4's, 27/9/2026.** Since the 23/9 refit
-only cylinder 4's injector is fully home; 1–3 stand up to about 1 mm proud
-on their O-rings (`vehicle-history.md`). **And every knock log — S4's 022/023
-and 020, S5's 026 — was taken after that refit**, on 24–25/9; there is no
-knock log from before it. So *the only knocking cylinder is the only seated
-injector* is a coincidence nothing yet separates from a cause, and the
-third candidate above gives the cause a mechanism (*general*): an injector
-bottomed in its boss is coupled rigidly to the manifold and the head, one
-floating on its O-rings much less, so **only injector 4's click would
-reach the knock sensor strongly** — and an injector's click moves through
-the crank-angle windows as injection timing moves with engine speed, which
-is what S5's excess does when it slides to cylinder 1 above ~3350 rpm. A
-lean cylinder cannot be the route here: cylinder 4 is the one that is
-*not* proud.
-
-**Why a click would show on tip-ins and not in steady driving**
+**Why the events come on tip-ins and not in steady driving**
 (*general*: how knock control works on engines of this kind, not read for
 this ECU). The knock sensor hears everything — valves, injectors, the
 timing gear — so the ECM does not judge loudness. For each cylinder it
 learns the normal noise level in that cylinder's window and calls knock
-only when the signal **jumps** above it. A steady click is learned and
-ignored; a click that **appears suddenly** is not, until the level catches
-up. That is S4's pattern: 13 of 16 events on a tip-in **after a coast or a
-gearchange**. On the overrun the ECM cuts injection, the injectors fall
-silent and the learned level drops; on the tip-in they start again at
-once, and a click well coupled into the block — injector 4's — lands above
-the level just learned. It also reads the full-throttle events of 25/9
-without strain: injection quantity, and so the click, grows fastest there.
-
-**What to expect with all four seated.** Steady driving: nothing — every
-click is learned as noise. Tip-ins after a coast: either the events spread
-or move — an injector's click need not fall in its own cylinder's window,
-it falls where injection timing puts it — or nothing changes and stays on
-4, which clears the injectors. Nothing here harms the engine either way:
-the retard is inside VW's 0–15 °CA.
-
-**What settles it, at no extra cost:** the neutral 026 + 003 holds
-(`vcds-neutral-026-003.csv` is the before) and a 020 drive with the same
-tip-ins after coasts as on 24–25/9, repeated
-**after the injectors are refitted all four home** — done 1/10; the logs
-are `plan.md` step 2c, in the same drive as 2b (*owner's decision, 6/10/2026*). If S4/S5 were injector
-4's click, the excess moves or spreads once 1–3 are seated too; if it stays
-on 4 alone, the injectors are cleared from it. Before the refit, the
-stethoscope on the body of injector 4 against 1 at ~3000 rpm in neutral
-is the direct look.
+only when the signal **jumps** above it. A steady noise is learned and
+ignored; one that **appears suddenly** is not, until the level catches
+up. That is S4's pattern: 13 of 16 events on 24/9 on a tip-in **after a
+coast or a gearchange**, and again on 9/10. Whatever cylinder 4's window
+hears, it is something that rises sharply with load. *Until 9/10/2026
+this paragraph argued it for injector 4's click, coupled into the block
+while it alone was seated; that is settled against (`refuted.md` B7), and
+the argument for it is there and in git.*
 
 **Is it worth chasing?** The retard is within VW's specification and costs a
 moment of torque on cylinder 4. It matters for this investigation only if H1
@@ -3065,6 +3098,10 @@ On 4/10 014 followed it, stop by stop, and not the temperature:
 | B, idle after a part-warm start | −1.17 | **1.5–4.3** | 31–36 °C |
 | B1 | −1.17 | **14.3** | 59 °C |
 | B, stops on the way home | −1.1 to −1.2 | ~5 | 69–71 °C |
+| **9/10**, A1, cold, kept adaptations | −1.12 | **1.4–1.8** | 10–13 °C |
+| 9/10, A2 | −1.10 to −1.17 | **6.8** | 56–61 °C |
+| 9/10, A3 | −1.11 to −1.17 | **10.7–12.5** | 67.5 °C |
+| 9/10, the way home | −1.17 to −1.32 | 3.7–5.8 | 72–73 °C |
 
 **For:**
 - **It is the only reading that orders all of 4/10.** The hard drive was
@@ -3076,6 +3113,12 @@ On 4/10 014 followed it, stop by stop, and not the temperature:
   minutes of cold idle with no count (S3, *When the counts start after a
   cold start*). 11/9, adaptations long settled: the first count two
   minutes after a cold start.
+- **9/10 kept to it.** On kept adaptations the learned value never left
+  −1.07 to −1.33, and 014 counted at every stop, the cold idle after the
+  start included — as session B did, and as no fresh-adaptation session
+  has. The one reading that could have gone against it, the learned
+  value back above −0.93 with 014 still counting, did not come: the
+  value did not rise at all (S3, *Steps 2b and 2c*).
 - **It turns `plan.md` session B's 29/9 reasoning round.** That said a
   zero on fresh adaptations errs towards "unchanged"; on 014, fresh
   adaptations are where it is quietest, so a zero there errs towards
@@ -3122,11 +3165,12 @@ comes to count, not where the air comes from, so it is not done now; and
 once the idle is fixed and 014 stays at zero, it can no longer be done at
 all. **H10 stays open as an explanation of the counting**, not as a
 separate fault to chase. **One reading can still go against it, for
-free:** if step 2b finds the learned value risen above about −0.93 and
-014 counting all the same (`plan.md` step 2b, *What it says*). A rise to
-there with 014 at zero is what H10 predicts for a sealed leak, but it
-cannot confirm H10, because a repair that fixes the idle would show the
-same. *Until 6/10/2026 this was `plan.md` step 2c,
+free:** if a session finds the learned value risen above about −0.93
+and 014 counting all the same. A rise to there with 014 at zero is what
+H10 predicts for a sealed leak, but it cannot confirm H10, because a
+repair that fixes the idle would show the same. *Step 2b, 9/10/2026,
+was that reading's first chance; the value did not rise, so it neither
+went against H10 nor tested it.* *Until 6/10/2026 this was `plan.md` step 2c,
 then 2d, optional.*
 
 ## What the forums say about this idle — searched 27/9/2026
@@ -3322,6 +3366,14 @@ the intake is tight cold everywhere, and the exhaust smoke test said
 nothing either way. **2b now decides between them**: 055 rising and 014
 quiet on the sealed intake points at what was sealed today (H3, the
 dipstick or the MAF joint); no change points at H2's warm test.*
+*Re-read 9/10/2026 after 2b: no symptom added or closed. **No change** —
+014 counting at every stop, the learned value never above −1.07, 003's
+air and plate as on 4/10, 032's idle cell more negative. So neither the
+dipstick nor the MAF joint was the air H10 is learning away. **The order
+stands, H2 at 2 and H3 at 3**, with H3 weaker by one more test: tight
+cold, and now no warm sign of the two places it found. H2's warm test is
+`plan.md` step 3, behind G66 (the knock window, by the owner's decision)
+and the vacuum gauge, which splits H1, H3 and H7 once bought.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|

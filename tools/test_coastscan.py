@@ -140,16 +140,16 @@ class AgainstTheFixtures(unittest.TestCase):
     def test_a_log_without_timestamps_is_skipped_rather_than_guessed_at(self):
         self.assertEqual(samples(os.path.join(FIXTURES, "03_drive.txt")), [])
 
-    def test_the_corpus_holds_202_overrun_fuel_cuts(self):
+    def test_the_corpus_holds_250_overrun_fuel_cuts(self):
         """Four in 17_drive_property_z1, 72 in the hour of 19, 33 in 24,
         17 and 15 in the two halves of session A, 25 and 26, and 13 and 26
-        in the two halves of its second run, 27 and 28, and 22 in session B,
-        29.
+        in the two halves of its second run, 27 and 28, 22 in session B,
+        29, and 48 in the drive of steps 2b and 2c, 30.
 
         Counted per log, so a change to the detector shows where it moved
         rather than only that the total did.
         """
-        self.assertEqual(len(self.cuts), 202)
+        self.assertEqual(len(self.cuts), 250)
         self.assertEqual(self.per_log, {"17_drive_property_z1.txt": 4,
                                         "19_postfix_drive_z1.txt": 72,
                                         "24_mafswap_drive_z1.txt": 33,
@@ -157,10 +157,11 @@ class AgainstTheFixtures(unittest.TestCase):
                                         "26_sessionA_warm_z1.txt": 15,
                                         "27_sessionA2_cold_z1.txt": 13,
                                         "28_sessionA2_warm_z1.txt": 26,
-                                        "29_sessionB_z1.txt": 22})
+                                        "29_sessionB_z1.txt": 22,
+                                        "30_step2b_z1.txt": 48})
 
     def test_the_cut_does_not_engage_the_moment_the_pedal_comes_up(self):
-        """0.71-11.06 s after the lift across the corpus, never at once.
+        """0.63-11.06 s after the lift across the corpus, never at once.
 
         17's four sat at 1.2-1.3 s, which once read as a fixed delay; the
         drives show it is not one, and the shortest is still most of a second.
@@ -168,10 +169,11 @@ class AgainstTheFixtures(unittest.TestCase):
         a single coast in 26; until it the corpus topped out at 4.27 s. It
         was not looked into, so the bound moved with it rather than the
         coast being explained away -- and so did 29's single 11.06 s, the
-        longest since, on the gentle drive home of session B.
+        longest since, on the gentle drive home of session B. The floor moved
+        the same way: 0.71 s until 30, whose shortest is 0.63 s.
         """
         delays = [c[0][0] - w[0][0] for w, c in self.cuts]
-        self.assertGreater(min(delays), 0.7)
+        self.assertGreater(min(delays), 0.6)
         self.assertLess(max(delays), 12.0)
 
     def test_fuel_comes_back_well_above_idle(self):

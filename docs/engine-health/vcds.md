@@ -171,7 +171,7 @@ have to agree.
   about the idle compares without it. With the display out, the capture
   has it: `tools/oilwatch.py` reads the capture file while it is being
   written, in a second window, and beeps when an idle is due in its band
-  and when it has been long enough (`plan.md` step 2b).
+  and when it has been long enough.
 
 The CSV files are in `test/fixtures/vcds/`, described in
 `test/fixtures/README.md`.
