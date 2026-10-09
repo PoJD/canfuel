@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Which cylinder carries the stumble? The injector cut test, read.
 
-This is the reading of `docs/engine-health/plan.md` step 3.3: one injector
+This is the reading of `docs/engine-health/plan.md` step 3.5: one injector
 connector off at a time at a warm idle, in two rounds, the second reversed
 (1, 2, 3, 4, 4, 3, 2, 1 -- or 1, 4, 4, 1 when only the outer two can be
 reached). The criteria were fixed in plan.md BEFORE the test was run, so

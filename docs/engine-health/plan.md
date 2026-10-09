@@ -39,30 +39,38 @@ off; Claude runs the capture throughout.
      reaches — the flange under the manifold, the front pipe back to the
      converter, the probe if it shows. **Black soot streaks** at a joint
      mark a leak. The manifold itself is under its heat shield: leave it.
-   - **Still cold, engine off: a dry run for step 3.** Unplug and plug
-     back injector connectors **1 and 4** once each, by the connector
-     body with the clip pressed — **never by the wires**. Write whether
-     it goes one-handed in a glove in a few seconds.
-   - **Same time: the plug leads, one at a time, 4 first.** Pull the
-     plug end off **by its metal sleeve, fingers on the tabs, with a
-     slight twist — never by the cable.** Look at the contact deep inside
-     and at the top of the plug. Does the end turn or slide on its cable
-     more than the others?
-     **Lay a scrap of paper with the cylinder's number in each photo.**
-     Photograph both, and the plug's ceramic where its make is printed.
-     Push the boot back on: **does it click?** How hard does it pull off
-     compared with the others?
-     Write it for each of the four. **Change nothing.**
    - **Nothing found cold → the same again warm**, after a drive to
      68–72 °C of oil.
-   - **Leaks there → a new manifold, after step 3**: new gasket to the head, new nuts,
+   - **Leaks there → a new manifold, after step 4**: new gasket to the head, new nuts,
      new outlet gasket, the probe refitted with anti-seize. Part
      `06A 253 031` + suffix: read the number cast into the manifold, or
      ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
      Penetrating oil on the studs the days before; a snapped stud goes to
      a garage.
-3. **Injectors 1 and 4 in turn, warm idle — on up to three separate
-   days.**
+3. **New plugs and leads, original VW, engine cold.** Bought by VIN.
+   **Do not disconnect the battery.**
+   - Before anything comes off: a scrap of paper with the cylinder's
+     number in every photo.
+   - Each old lead in turn, 4 first: pull the plug end off **by its metal
+     sleeve, on the tabs, with a slight twist — never by the cable**. Does
+     it click when pushed back? Does the end turn or slide on its cable?
+     Photograph the contact inside it.
+   - Blow out each plug well before the plug comes out. Loosen with a
+     plug socket (rubber insert), extension and ratchet, a steady pull.
+     **If a plug will not move, stop: that one goes to a garage.**
+   - Photograph each old plug, numbered: the top and the ceramic.
+   - Keep the old plugs and leads in a bag, numbered.
+   - New plugs to the torque on their box or in VW's manual. New leads:
+     each one must click, at the plug and at the coil.
+4. **An ordinary drive, warm, the next day or after** — like 9/10.
+   Claude runs the capture; VCDS on **014, 055, 033**. A few stops at a
+   warm idle, a minute or two each. Write the stops.
+   **Claude says then whether anything below is still needed.**
+5. **Only if Claude asks after step 4: injectors 1 and 4 in turn, warm
+   idle — on up to three separate days.**
+   - First, cold and engine off, unplug and plug back injector connectors
+     1 and 4 once, by the connector body with the clip pressed — never by
+     the wires. Write whether it goes one-handed in a glove.
    - Drive until the oil reads 68–72 °C. Stop, neutral, handbrake on,
      loads off. Claude runs the capture; VCDS on **014, 055, 003**.
    - If step 2 needs its warm run, do it first, on this same stop.
@@ -77,8 +85,8 @@ off; Claude runs the capture throughout.
      three days.
    - **If it cannot be done warm:** the same on a cold start, beginning
      about 2 minutes after the start.
-4. **Spray test at the intake, warm idle** — on the same warm stop as
-   step 3, after it, with the capture still running.
+6. **Spray test at the intake, warm idle** — on the same warm stop as
+   step 5, after it, or on step 4's drive if step 5 is not needed.
    - A short burst of **unlit propane** (or brake cleaner) at one joint
      at a time: the throttle flange, the plenum's joints, the hoses and
      vacuum lines at the back, the servo line, the breather hose. Say
@@ -86,16 +94,17 @@ off; Claude runs the capture throughout.
    - **Never towards the exhaust side or its heat shield**; a fire
      extinguisher within reach.
    - Write any place where the engine speed changed.
-5. **High-voltage side in the dark, a damp evening, warm idle.**
+7. **Only if the idle is still not right: high-voltage side in the dark,
+   a damp evening, warm idle.**
    - Bonnet open, lights off: look along the leads and the coil for a
      spark or a blue glow.
    - Then a fine water mist over one lead at a time, and the coil.
      Hands and the bottle clear of the leads.
    - Write anything seen, and which lead the engine stumbled at.
-6. **Vacuum gauge, warm idle**, once one is bought. Tee it into the fuel
+8. **Vacuum gauge, warm idle**, once one is bought. Tee it into the fuel
    pressure regulator's vacuum hose. Short hose to the gauge, tight
    T-piece. Note what the needle does.
-7. **The next repair** — Claude picks it from `open.md` then.
+9. **The next repair** — Claude picks it from `open.md` then.
 
 ## Standing items
 
@@ -198,7 +207,34 @@ the next is needed.
    3/10/2026); the suffix differs by model and year; the studs into the
    head are 26 years old. **Nothing leaks ahead of the probe** → H2 is
    refuted for its zone and goes to `refuted.md`.
-3. **Injectors 1 and 4** (*the owner's proposal, 9/10/2026*; `open.md`,
+3. **New plugs and leads** (*owner's decision, 9/10/2026*; `open.md` H4,
+   1d). Plug 4's terminal burnt black by 1/10, a fortnight after the
+   garage fitted the set; the plug-end boots never click; the owner pulls
+   them by hand, without a puller; one plug end's insert crusted. Rather
+   than name the cylinder first and change one plug and lead, the owner
+   changes the whole set for VW originals — the set as a whole is under
+   suspicion (*every* plug end fails to click), and he does not want to
+   keep working the engine. **The price, stated once:** step 5 can no
+   longer name the cylinder the dips kept to, if they stop keeping to it.
+   **What the old parts still say:** photographed and numbered, a loose
+   or crusted end on lead 4 would name it after the fact. **The battery
+   stays connected**, so that the adaptations stay settled and the drive
+   after compares with 9/10's (`refuted.md` C19). *General*: plugs come
+   out cold, because the head is aluminium; a plug socket holds the plug
+   and spares the ceramic; one that will not move goes to a garage,
+   because a thread pulled out of the head is a far bigger job. The
+   torque is not quoted here: no source for it is held.
+4. **The drive after** (*decided 9/10/2026*). **How it is read**:
+   `cutscan.py --pairs` on its warm idles against `30` (34 of 103 pairs
+   on the same slot, 33 %) — back to about a quarter means the stumble
+   that kept to one cylinder has gone; 014 at the warm stops against
+   9/10's 6.8–12.5 a minute on the same settled adaptations; `IdleHealth`
+   by oil band against `open.md` S1's table. ⚠ One drive gives about a
+   hundred pairs, and 33 % against 25 % is under two standard deviations
+   at that size, so **a drop is a direction, not a verdict**: two or
+   three ordinary drives settle it, at no cost. Still keeping to one slot
+   → step 5 names the cylinder, the new set ruled out.
+5. **Injectors 1 and 4** (*the owner's proposal, 9/10/2026*; `open.md`,
    *Naming the cylinder*). It is also `docs/firmware/open.md` question
    11's deliberate misfire, brought forward at the owner's decision the
    same day. With a connector off, that cylinder gets no fuel, so the
@@ -287,36 +323,25 @@ the next is needed.
    **Before any new manifold** (*decided 9/10/2026*): it is free, and the
    manifold is the bigger job — a cylinder named here would change what
    the manifold is expected to fix. Step 2's warm run shares its drive.
-   **The plug leads at the dry run** (*decided 9/10/2026*, `open.md` H4,
-   1d): plug 4's terminal was burnt black on 1/10, which is what a boot
-   contact that does not grip leaves (*general*), and the owner has never
-   heard the boots click home. Their contacts have never been looked at,
-   only the leads' resistance; all four, so that 4 is compared with the
-   others rather than with nothing. Nothing is changed before
-   step 3.3, so that the test can still name the cylinder: a new plug
-   first would leave no way of telling whether it was the cause. If 4 is
-   named, plug 4 and lead 4 are the first repair, and `cutscan.py
-   --pairs` on an ordinary warm idle afterwards says whether the dips
-   stopped keeping to one slot.
-4. **The spray test** (`open.md` H3 test 1, *decided 9/10/2026*). What
+6. **The spray test** (`open.md` H3 test 1, *decided 9/10/2026*). What
    is left of H3 after the cold smoke of 9/10 is a joint that opens only
    hot, which smoke into a cold, stopped engine cannot find; and the back
    of the intake has never been sprayed. A leak there draws the gas in
    and the engine speed moves at that spot (*general*). Free, and on the
-   same warm stop as step 3, so no extra idling for the warm-up. Away
+   same warm stop as step 5 (or step 4's drive), so no extra idling for the warm-up. Away
    from the exhaust because both gases burn and the manifold at idle is
    hot enough to light them (*general*).
-5. **The high-voltage side** (`open.md` H4 test 1e, *decided 9/10/2026*):
+7. **The high-voltage side** (`open.md` H4 test 1e, *decided 9/10/2026*):
    the roughest reading on record came on a foggy morning (S1), and the
    moisture a tracking boot or coil needs is what the mist supplies.
    The leads were measured and the coil is new, which is why it is late
    in the order; it is free.
-6. **The vacuum gauge** (`open.md`, *Tools worth owning*). A long hose
+8. **The vacuum gauge** (`open.md`, *Tools worth owning*). A long hose
    smooths away the flick a valve makes. Read against itself (*general*):
    **a steady needle** → no valve and no large leak; **a regular flick
    down** at one point in the cycle → a valve (H1); **a low or slowly
    wandering needle** → a leak or a mixture fault (H3, H7).
-7. **The next repair** is chosen then, not now, from `open.md`'s ranked
+9. **The next repair** is chosen then, not now, from `open.md`'s ranked
    candidates.
 
 ## Standing items — why

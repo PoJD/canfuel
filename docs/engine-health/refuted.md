@@ -78,7 +78,7 @@ slot, against a quarter by chance (p ≈ 2×10⁻¹⁰). A cylinder that stumble
 on a few per cent of its strokes hardly moves its mean, which is why the
 periodogram could not see it. Not "dominates" — roughly 45 % of the dips on
 one cylinder, by a model fit — but not four alike either. Back in
-`open.md` as the question `plan.md` step 3.3 answers.
+`open.md` as the question `plan.md` step 3.5 answers.
 
 ### A6. "The evaporative purge" — measured
 
