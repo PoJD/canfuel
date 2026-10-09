@@ -307,8 +307,8 @@ intake is tight cold. The lead idea is still **air the throttle did not
 let in**, with the learned idle air value as the ECU's way of showing it —
 but sealing the two places the smoke found moved nothing (9/10, below), so
 where that air comes from is open again: the exhaust ahead of the probe
-(H2) has never been looked at warm. **Next** (`plan.md` step 3): G66 for
-the knock window, then a vacuum gauge, then the manifold.
+(H2) has never been looked at warm. **Next** (`plan.md` step 3): a
+vacuum gauge once bought, then the manifold.
 
 *Entries are added here as each step is done.*
 
@@ -384,8 +384,9 @@ The owner felt it calmer at A2; the grades do not show that.
 
 The same drive answered the knock window: with all four injectors home,
 the retard and 026's excess **stayed on cylinder 4** (S4, S5), so the
-injectors are cleared from it (`refuted.md` B7). G66 is next, by the
-owner's decision, ahead of the vacuum gauge, which is not bought yet.
+injectors are cleared from it (`refuted.md` B7). With no link found
+between the window and the misfires, it stays out of the plan (*owner's
+decision*, 9/10/2026); G66 is a test in `open.md` H5, not a step.
 
 **What the drive is not known to have achieved:** anything. It changed
 nothing on the car; it measured the 9/10 work, and that measured as no

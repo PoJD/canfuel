@@ -76,11 +76,11 @@ Everything else settled against is in `refuted.md`.
   outlives them).
 - **The cylinder 4 knock window: S4 and S5**, a cluster of its own
   (H5, H6). The injectors were cleared from it on 9/10 (`refuted.md`
-  B7); G66 is next, by the owner's decision, ahead of the idle's own
-  step (`plan.md` step 3).
+  B7). **Not in `plan.md`** (*owner's decision, 9/10/2026*): no link to
+  the misfires has been found, so its tests, G66 first, stay in H5.
 
-**Next:** `plan.md` step 3 — G66, then the vacuum gauge once bought,
-then the exhaust manifold. Steps 2a–2c are done: the intake tight cold,
+**Next:** `plan.md` step 3 — the vacuum gauge once bought, then the
+exhaust manifold. Steps 2a–2c are done: the intake tight cold,
 and on the drive of 9/10 with the adaptations kept, 014 counting at
 every warm stop with nothing a sealed leak would move having moved (S3,
 *Steps 2b and 2c*).
@@ -2140,8 +2140,9 @@ Three candidates, all *general*:
 |---|---|---|---|---|---|---|
 | — | — | — | ✔ | ✔ | — | — |
 
-**Tests:** check G66's torque and connector (`plan.md` step 3, first —
-*owner's decision, 9/10/2026*); look over everything refitted in
+**Tests** — not scheduled (*owner's decision, 9/10/2026*: the idle
+first, and no link between this window and the misfires has been found):
+check G66's torque and connector first; look over everything refitted in
 September for a loose bracket, clip or heat shield with the engine held at
 ~3000 rpm in neutral. **After each, repeat the neutral 026 + 003 holds and
 the 020 drive** at the same oil temperature:
@@ -3372,8 +3373,8 @@ air and plate as on 4/10, 032's idle cell more negative. So neither the
 dipstick nor the MAF joint was the air H10 is learning away. **The order
 stands, H2 at 2 and H3 at 3**, with H3 weaker by one more test: tight
 cold, and now no warm sign of the two places it found. H2's warm test is
-`plan.md` step 3, behind G66 (the knock window, by the owner's decision)
-and the vacuum gauge, which splits H1, H3 and H7 once bought.*
+`plan.md` step 3, behind the vacuum gauge, which splits H1, H3 and H7
+once bought.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
