@@ -15,8 +15,20 @@ records it**, and the file is deleted when it is empty.
 ## Step 3 — the idle is not fixed
 
 One at a time, Claude says after each whether the next is needed.
+**1 and 2 are one warm session**: Claude runs the capture, drive until
+the oil is at 68–72 °C, stop outdoors, loads off, handbrake on, neutral.
 
-1. **The exhaust manifold, warm idle, outdoors.**
+1. **The brake servo hose.**
+   - VCDS: start a log, **groups 003 + 055 + 014**. Start a stopwatch
+     at the same moment.
+   - Do not touch the brake pedal until the end.
+   - **0:00–1:00** hose free. **1:00–2:00** pinched. **2:00–3:00** free.
+     **3:00–4:00** pinched. **4:00–5:00** free. Then stop the log.
+   - Pinch it **close to the manifold**, with hose-clamp pliers or with
+     pliers over a folded rag, so the hose is not cut.
+   - Write into the chat if the engine speed or the sound changed while
+     pinched.
+2. **The exhaust manifold, the same session, straight after.**
    - Close the tailpipe for **2–3 s at a time**, never longer.
    - Meanwhile listen at the manifold, its gasket to the head, the probe
      boss, the outlet flange and the front pipe back to the converter.
@@ -29,10 +41,10 @@ One at a time, Claude says after each whether the next is needed.
      ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
      Penetrating oil on the studs the days before; a snapped stud goes to
      a garage.
-2. **Vacuum gauge, warm idle**, once one is bought. Tee it into the fuel
+3. **Vacuum gauge, warm idle**, once one is bought. Tee it into the fuel
    pressure regulator's vacuum hose. Short hose to the gauge, tight
    T-piece. Note what the needle does.
-3. **The next repair** — Claude picks it from `open.md` then.
+4. **The next repair** — Claude picks it from `open.md` then.
 
 ## Standing items
 
@@ -79,7 +91,26 @@ G66 and the rest of H5's tests stay in `open.md` as tests, not steps.
 **Idle solved → stop and record.** Otherwise each item decides whether
 the next is needed.
 
-1. **The exhaust ahead of the front probe (H2)** first (*reasoned*,
+1. **The brake servo hose** (*decided 9/10/2026*, H3). It is the one
+   part of the intake the smoke could not test: smoke pushed into the
+   manifold closes the servo's check valve, so the servo's diaphragm and
+   seals behind it were never pressurised (*general*: the valve passes
+   only from servo to manifold). A servo that leaks feeds unmetered air
+   into the manifold at exactly the idle vacuum. Pinched shut, that air
+   stops: **003's air rises and 055's live regulator moves positive by the
+   same amount**, while the ECU replaces through the throttle what the
+   leak used to give. **014 alone cannot say it** — it is a yes/no witness
+   and needs minutes, so it is logged only as a bonus. **Fixed one-minute
+   windows** from the log's own clock, so no alignment is needed; two
+   pinched windows so that one drift is not read as a result. **Read:** a
+   shift of **0.2 g/s or more, the same way in both pinched windows and
+   back in the free ones** → the servo, its check valve or that hose
+   leaks: replace what leaks. Less → the servo is cleared, and H3 is left
+   with joints that open only hot. Pinched near the manifold so the
+   whole hose is on the servo's side. The pedal stays still because a
+   brake application lets air into the servo and would move 055 on its
+   own (*general*).
+2. **The exhaust ahead of the front probe (H2)** (*reasoned*,
    9/10/2026): `open.md`'s next after H10 now that 2b moved nothing on
    the intake side, the one with a symptom of its own since S15 was
    heard, and free, while the gauge is not yet bought. With the outlet closed, a leak that draws air in at idle blows
@@ -92,12 +123,12 @@ the next is needed.
    3/10/2026); the suffix differs by model and year; the studs into the
    head are 26 years old. **Nothing leaks ahead of the probe** → H2 is
    refuted for its zone and goes to `refuted.md`.
-2. **The vacuum gauge** (`open.md`, *Tools worth owning*). A long hose
+3. **The vacuum gauge** (`open.md`, *Tools worth owning*). A long hose
    smooths away the flick a valve makes. Read against itself (*general*):
    **a steady needle** → no valve and no large leak; **a regular flick
    down** at one point in the cycle → a valve (H1); **a low or slowly
    wandering needle** → a leak or a mixture fault (H3, H7).
-3. **The next repair** is chosen then, not now, from `open.md`'s ranked
+4. **The next repair** is chosen then, not now, from `open.md`'s ranked
    candidates.
 
 ## Standing items — why

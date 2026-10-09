@@ -1806,6 +1806,13 @@ the owner's reading, the old clamp pressed in the wrong place and held
 the hose badly. **Either way the joint behind the MAF is now tight cold**,
 and the intake as a whole with it.
 
+⚠ **The brake servo was not tested by any of it** (*reasoned*,
+9/10/2026): smoke pushed into the manifold closes the servo's check
+valve (*general*: it passes only from servo to manifold), so the servo's
+diaphragm and seals behind it never saw the smoke. A leaking servo feeds
+unmetered air at exactly the idle vacuum. Its test is pinching the hose
+at a warm idle with 003 and 055 logged (`plan.md` step 3).
+
 ⚠ **Cold and stopped, so a joint that opens only hot is not cleared.**
 What the result does do: the back of the intake that no spray ever
 reached showed nothing, and the one place it did show is the crankcase's
