@@ -33,10 +33,12 @@ off; Claude runs the capture throughout.
      again.
    - **Afterwards, play both recordings back yourself** and write whether
      a hiss or a puff comes up at each "teď", and on which recording.
-   - Then listen yourself at the manifold, its gasket to the head, the
-     probe boss, the outlet flange and the front pipe back to the
-     converter, with the tailpipe open, for the sputter (S15). A hand
-     near, never on. Write where it is loudest. Engine off.
+   - Then, tailpipe open, say whether the sputter (S15) is louder
+     **from above in the engine bay or from under the car**. Engine off.
+   - **Cold, engine off: photograph the manifold and the front pipe**
+     from above and from below, as close as the phone gets — the joint
+     to the head, the probe, the flange below the manifold. **Black soot
+     streaks** at a joint mark a leak.
    - **Nothing found cold → the same again warm**, after a drive to
      68–72 °C of oil.
    - **Leaks there → a new manifold**: new gasket to the head, new nuts,
@@ -135,7 +137,12 @@ the next is needed.
    audio), so the owner listens back and reports; each closure
    also loads the engine and shows on the capture as a dip in engine
    speed, which places it in time but says nothing about where a leak
-   is. The front pipe as far as the converter is listened to as
+   is. **The joints cannot be told apart by ear** — they cannot be
+   reached (*owner*, 9/10/2026) — so the sound only says engine bay or
+   underbody, and **the photographs do the locating**: an exhaust leak
+   leaves a black soot trail where it blows out (*general*), and a
+   photograph outranks every other source here. A leak the photos cannot
+   place is a job for a garage with a lift. The front pipe as far as the converter is listened to as
    well, and the sputter with the tailpipe open, because S15 may sit just
    behind the manifold rather than in it (`open.md` S15) — a new manifold
    answers only a leak in the manifold. A new manifold if it leaks (*owner's decision*,
