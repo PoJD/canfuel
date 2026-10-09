@@ -57,6 +57,8 @@ off; Claude runs the capture throughout.
      Cylinder 1 is at the timing-belt end. Each time: connector off
      **1 min**, back on, **30 s** as it is.
    - **1 min** as it is, engine off.
+   - **If 2 and 3 cannot be reached:** only 1 and 4, in the order
+     **1, 4, 4, 1**, the same 1 min off and 30 s on.
    - Write the time of every off and on into the chat. The engine light
      will come on, maybe flashing: carry on.
    - Clear the fault memory with VCDS.
@@ -221,10 +223,22 @@ the next is needed.
      an intermittent fault there (ignition, injector, valve); air alone →
      a weak cylinder that is not the stumble; neither → the whole engine
      (H0, H2, H4, H7, H8).
-   - **The dead cylinder names the slots** for the first time — its
-     stroke is a huge dip once every four — so `--cylinders` can put
-     names to the period-2 pattern (1 and 4 against 2 and 3, `open.md`)
-     in this capture and every earlier one.
+   - **The dead cylinder names the slots only while it is out.** Its
+     stroke is a huge dip once every four, but the bus loses the cylinder
+     phase every few seconds — whenever two strokes quantise to the same
+     0.25 rpm (`idledips.cylinder_runs`; on `30` the phase held a median
+     3 s, at most 16 s). So the names cannot be carried into the
+     four-cylinder minutes or into earlier captures, and the dips cannot
+     be put to cylinders one by one: comparing the cuts is the only way.
+     *Corrected 9/10/2026*: this said the names would hold "in this
+     capture and every earlier one".
+   - **Only 1 and 4** (if 2 and 3 cannot be reached): the same criteria,
+     1 against 4 directly. It can say *1* or *4*; it **cannot** say *not
+     one cylinder* — a culprit at 2 or 3 makes the two cuts alike, which
+     is also what four alike cylinders do — so "alike" is recorded as
+     "not 1 and not 4". Question 11's reading needs only one cut and is
+     whole either way. The plug lead of 2 or 3 is **not** pulled instead:
+     that sends fuel to the converter.
    - Question 11's own reading — 014 and `IdleHealth` against a misfire
      of known rate — comes from the same minutes.
    About 13 minutes of warm idle, against the rule; the owner's call, and
