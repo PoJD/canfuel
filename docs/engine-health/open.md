@@ -1375,6 +1375,14 @@ full-load enrichment (*general*), for all four cylinders alike.
      question 8). On a stock ECU that premise becomes true by construction;
      if b7's plateau moves, the scale is recalibrated from the new pull.
 
+**The brake pedal is soft and long** (*owner-reported*, 9/10/2026): a
+firm stop needs the pedal pushed a long way. **Not an engine symptom,
+and not the servo** — a servo that loses vacuum makes the pedal *hard*
+(*general*); soft and long is the hydraulics: air or old fluid that has
+taken up water, worn pads or discs, the master cylinder (*general*). It
+is here only so that `plan.md`'s servo checks are not read through it.
+A safety matter for a garage, outside this investigation.
+
 ---
 
 ## How the symptoms relate — what is measured
@@ -1810,8 +1818,9 @@ and the intake as a whole with it.
 9/10/2026): smoke pushed into the manifold closes the servo's check
 valve (*general*: it passes only from servo to manifold), so the servo's
 diaphragm and seals behind it never saw the smoke. A leaking servo feeds
-unmetered air at exactly the idle vacuum. Its test is pinching the hose
-at a warm idle with 003 and 055 logged (`plan.md` step 3).
+unmetered air at exactly the idle vacuum. Its line is rigid plastic and
+cannot be pinched (*owner*); its tests are the three standard servo
+checks (`plan.md` step 3).
 
 ⚠ **Cold and stopped, so a joint that opens only hot is not cleared.**
 What the result does do: the back of the intake that no spray ever

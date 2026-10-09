@@ -18,16 +18,14 @@ One at a time, Claude says after each whether the next is needed.
 **1 and 2 are one warm session**: Claude runs the capture, drive until
 the oil is at 68–72 °C, stop outdoors, loads off, handbrake on, neutral.
 
-1. **The brake servo hose.**
-   - VCDS: start a log, **groups 003 + 055 + 014**. Start a stopwatch
-     at the same moment.
-   - Do not touch the brake pedal until the end.
-   - **0:00–1:00** hose free. **1:00–2:00** pinched. **2:00–3:00** free.
-     **3:00–4:00** pinched. **4:00–5:00** free. Then stop the log.
-   - Pinch it **close to the manifold**, with hose-clamp pliers or with
-     pliers over a folded rag, so the hose is not cut.
-   - Write into the chat if the engine speed or the sound changed while
-     pinched.
+1. **The brake servo.** First two at home, engine cold is fine:
+   - **a.** Engine off. Press the pedal five times. Hold it lightly
+     pressed and start the engine. Write whether **the pedal sank**.
+   - **b.** Let it run a minute, switch off. Press the pedal slowly three
+     times. Write **which presses were light** and which hard.
+   - **c.** In the warm session: idle, **hold the pedal down firmly for
+     30 s**, listen at the pedal and at the back of the engine bay for a
+     hiss. Write when you pressed, and what you heard.
 2. **The exhaust manifold, the same session, straight after.**
    - Close the tailpipe for **2–3 s at a time**, never longer.
    - Meanwhile listen at the manifold, its gasket to the head, the probe
@@ -91,25 +89,25 @@ G66 and the rest of H5's tests stay in `open.md` as tests, not steps.
 **Idle solved → stop and record.** Otherwise each item decides whether
 the next is needed.
 
-1. **The brake servo hose** (*decided 9/10/2026*, H3). It is the one
-   part of the intake the smoke could not test: smoke pushed into the
-   manifold closes the servo's check valve, so the servo's diaphragm and
-   seals behind it were never pressurised (*general*: the valve passes
-   only from servo to manifold). A servo that leaks feeds unmetered air
-   into the manifold at exactly the idle vacuum. Pinched shut, that air
-   stops: **003's air rises and 055's live regulator moves positive by the
-   same amount**, while the ECU replaces through the throttle what the
-   leak used to give. **014 alone cannot say it** — it is a yes/no witness
-   and needs minutes, so it is logged only as a bonus. **Fixed one-minute
-   windows** from the log's own clock, so no alignment is needed; two
-   pinched windows so that one drift is not read as a result. **Read:** a
-   shift of **0.2 g/s or more, the same way in both pinched windows and
-   back in the free ones** → the servo, its check valve or that hose
-   leaks: replace what leaks. Less → the servo is cleared, and H3 is left
-   with joints that open only hot. Pinched near the manifold so the
-   whole hose is on the servo's side. The pedal stays still because a
-   brake application lets air into the servo and would move 055 on its
-   own (*general*).
+1. **The brake servo** (*decided 9/10/2026*, H3). It is the one part of
+   the intake the smoke could not test: smoke pushed into the manifold
+   closes the servo's check valve, so the servo's diaphragm and seals
+   behind it were never pressurised (*general*: the valve passes only
+   from servo to manifold). A servo that leaks feeds unmetered air into
+   the manifold at exactly the idle vacuum. **Pinching its line was the
+   first plan and cannot be done**: the line is rigid plastic (*owner*,
+   9/10/2026). The three checks are the standard ones (*general*, not
+   read for this car): **a** — the pedal sinks when the engine starts,
+   or the servo gives no assist; **b** — one or two light presses after
+   switch-off, or the check valve or the diaphragm does not hold;
+   **c** — no hiss and no dip in engine speed with the pedal held, or
+   the diaphragm leaks into the manifold. The dip is read off the
+   capture, aligned on the dip itself. **All three good** → the servo is
+   cleared for H3, which is left with joints that open only hot. **Any
+   bad** → the check valve and its line first (cheap), the servo only if
+   they are not it. ⚠ **The pedal is soft and long** (*owner*, 9/10) —
+   that is hydraulic, not the servo (a servo that fails makes the pedal
+   *hard*), so it is not read into any of this (`open.md`, *Other*).
 2. **The exhaust ahead of the front probe (H2)** (*reasoned*,
    9/10/2026): `open.md`'s next after H10 now that 2b moved nothing on
    the intake side, the one with a symptom of its own since S15 was
