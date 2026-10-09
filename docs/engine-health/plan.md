@@ -16,20 +16,22 @@ records it**, and the file is deleted when it is empty.
 
 One at a time, Claude says after each whether the next is needed.
 
-1. **Vacuum gauge, warm idle**, once one is bought. Tee it into the fuel
-   pressure regulator's vacuum hose. Short hose to the gauge, tight
-   T-piece. Note what the needle does.
-2. **The exhaust manifold, warm idle, outdoors.**
+1. **The exhaust manifold, warm idle, outdoors.**
    - Close the tailpipe for **2–3 s at a time**, never longer.
    - Meanwhile listen at the manifold, its gasket to the head, the probe
-     boss and the outlet flange. A hand near, never on. Phone recording at
-     the head.
+     boss, the outlet flange and the front pipe back to the converter.
+     A hand near, never on. Phone recording at each.
+   - Listen there also with the tailpipe open, for the sputter (S15),
+     and say where it is loudest.
    - **Leaks there → a new manifold**: new gasket to the head, new nuts,
      new outlet gasket, the probe refitted with anti-seize. Part
      `06A 253 031` + suffix: read the number cast into the manifold, or
      ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
      Penetrating oil on the studs the days before; a snapped stud goes to
      a garage.
+2. **Vacuum gauge, warm idle**, once one is bought. Tee it into the fuel
+   pressure regulator's vacuum hose. Short hose to the gauge, tight
+   T-piece. Note what the needle does.
 3. **The next repair** — Claude picks it from `open.md` then.
 
 ## Standing items
@@ -77,20 +79,24 @@ G66 and the rest of H5's tests stay in `open.md` as tests, not steps.
 **Idle solved → stop and record.** Otherwise each item decides whether
 the next is needed.
 
-1. **The vacuum gauge** (`open.md`, *Tools worth owning*). A long hose
+1. **The exhaust ahead of the front probe (H2)** first (*reasoned*,
+   9/10/2026): `open.md`'s next after H10 now that 2b moved nothing on
+   the intake side, the one with a symptom of its own since S15 was
+   heard, and free, while the gauge is not yet bought. With the outlet closed, a leak that draws air in at idle blows
+   out, and hisses or puffs. Warm, because a crack in cast iron may only
+   open hot; never longer than a few seconds and never indoors
+   (*general*). The front pipe as far as the converter is listened to as
+   well, and the sputter with the tailpipe open, because S15 may sit just
+   behind the manifold rather than in it (`open.md` S15) — a new manifold
+   answers only a leak in the manifold. A new manifold if it leaks (*owner's decision*,
+   3/10/2026); the suffix differs by model and year; the studs into the
+   head are 26 years old. **Nothing leaks ahead of the probe** → H2 is
+   refuted for its zone and goes to `refuted.md`.
+2. **The vacuum gauge** (`open.md`, *Tools worth owning*). A long hose
    smooths away the flick a valve makes. Read against itself (*general*):
    **a steady needle** → no valve and no large leak; **a regular flick
    down** at one point in the cycle → a valve (H1); **a low or slowly
    wandering needle** → a leak or a mixture fault (H3, H7).
-2. **The exhaust ahead of the front probe (H2)**, the top of
-   `open.md`'s ranking after H10 now that 2b moved nothing on the intake
-   side. With the outlet closed, a leak that draws air in at idle blows
-   out, and hisses or puffs. Warm, because a crack in cast iron may only
-   open hot; never longer than a few seconds and never indoors
-   (*general*). A new manifold if it leaks (*owner's decision*,
-   3/10/2026); the suffix differs by model and year; the studs into the
-   head are 26 years old. **Nothing leaks ahead of the probe** → H2 is
-   refuted for its zone and goes to `refuted.md`.
 3. **The next repair** is chosen then, not now, from `open.md`'s ranked
    candidates.
 

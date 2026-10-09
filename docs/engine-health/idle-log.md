@@ -388,6 +388,13 @@ injectors are cleared from it (`refuted.md` B7). With no link found
 between the window and the misfires, it stays out of the plan (*owner's
 decision*, 9/10/2026); G66 is a test in `open.md` H5, not a step.
 
+**Heard on the same drive** (*owner*): no puff (S2) and no bangs on
+the unblipped downshifts (S14) — possibly the joint behind the
+converter feeding them, possibly a tighter exhaust muffling them; both
+kept open. And, newly audible now that joint is quiet, **a constant
+sputter close behind the engine at every load**, added as S15 — H2's
+zone, so the tailpipe test moves to the front of step 3.
+
 **What the drive is not known to have achieved:** anything. It changed
 nothing on the car; it measured the 9/10 work, and that measured as no
 change at idle.
