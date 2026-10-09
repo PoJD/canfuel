@@ -1548,6 +1548,21 @@ compares with this car's:
   `--degrees` before its grade is believed. (For the record, its dip counter
   read 0–1 per hold at 20 rpm; on a smoothed signal that says nothing.)
 
+**Searched again, 9/10/2026, across the whole group** (VW, Škoda, Audi,
+Seat; English, German, Czech; Ross-Tech's wiki and forums, RS246,
+audizine, golf4.de, BRISKODA, Czech forums): **still no posted 014 log
+from an engine described as healthy**, on any VAG petrol. What exists is
+the specification — 0, in every label file and repair list found (the
+AUA's, a Ross-Tech label file for the Audi 2.4) — and forum advice that
+a good engine reads 0 with detection active. One search summary gave
+"0 to 10" at idle for an A8 D3 V8; the page refused to open, so it is
+**not used**. Forum cases with idle counts all end in a fault found
+(an Octavia 1.6 MPI with counts on 1 and 4 at idle only, gone with new
+leads after a corroded contact; a timing-chain fix elsewhere). So test 1
+stays the only way: **any** VAG petrol with a 014 counter at a warm idle
+would say whether such counters sit at zero in practice; an M5.9.2 2.0
+8V (AQY, AEG, APK, AZJ) would also answer for this calibration.
+
 ### H1. A lifter or valve on one cylinder at a hot idle (valvetrain)
 
 A hydraulic lifter that bleeds down or pumps up leaves a valve slightly open
