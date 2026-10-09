@@ -147,10 +147,12 @@ was the sharper reading of smoothness at the hot stop, but no closer to
 014 than the grade it would have replaced, and that closeness was the
 reason it was wanted.
 
-### Next: a deliberate misfire, once the idle is solved
+### Next: a deliberate misfire
 
-*Owner's proposal, 4/10/2026; **not before** `docs/engine-health/plan.md`
-is empty.* A known, regular misfire, so that both instruments can be read
+*Owner's proposal, 4/10/2026. **Brought forward on 9/10/2026** (owner's
+decision): it is now `docs/engine-health/plan.md` step 3.3, one cylinder
+after another, where it also names the weak cylinder if there is one;
+this was "not before `plan.md` is empty".* A known, regular misfire, so that both instruments can be read
 against something real:
 
 - **Warm idle, oil in the hot band, loads off**; the capture running and

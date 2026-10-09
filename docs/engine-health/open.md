@@ -1628,6 +1628,12 @@ loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
 - **For:** the puff, idle only, an old manifold that has lived through years
   of misfires, the rear probe on the rich side at hot idle
   (0.665–0.725 V), the exhaust never having been tight.
+- **Against, 9/10/2026** (*owner-reported*): **no ticking** is heard,
+  cold or warm. A crack or a blown gasket at the head classically ticks,
+  loudest in the first minute after a cold start (*general*). Weak — a
+  small leak need not — and it fits a leak further back (the outlet
+  flange, the front pipe), where S15's sputter "from under the car" also
+  points, better than one at the head.
 - **For, 9/10/2026:** S15 — a constant sputter close behind the engine at
   every load, heard once the louder joint behind the converter was
   remade. The first symptom that is a leak heard rather than inferred;
@@ -3311,6 +3317,9 @@ all *general*:
    drops the speed least is the weakest. ⚠ It sends unburnt air, not fuel,
    through the converter, but it does set a fault code to clear afterwards;
    keep each cut short.
+   **Scheduled, 9/10/2026** (*owner's decision*): `plan.md` step 3.3,
+   all four in turn, read off 055/003 and the capture rather than engine
+   speed alone.
 3. **Plug reading after a few hundred km on the new plugs**, with the
    cylinder of each plug recorded this time. The old ones were not labelled:
    one was worst, and which cylinder it came from is not known.

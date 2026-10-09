@@ -41,16 +41,29 @@ off; Claude runs the capture throughout.
      mark a leak. The manifold itself is under its heat shield: leave it.
    - **Nothing found cold → the same again warm**, after a drive to
      68–72 °C of oil.
-   - **Leaks there → a new manifold**: new gasket to the head, new nuts,
+   - **Leaks there → a new manifold, after step 3**: new gasket to the head, new nuts,
      new outlet gasket, the probe refitted with anti-seize. Part
      `06A 253 031` + suffix: read the number cast into the manifold, or
      ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
      Penetrating oil on the studs the days before; a snapped stud goes to
      a garage.
-3. **Vacuum gauge, warm idle**, once one is bought. Tee it into the fuel
+3. **The injectors one at a time, warm idle** — only if the injector
+   connectors can be reached with the plenum on. If not, skip it and say so.
+   - Drive until the oil reads 68–72 °C. Stop, neutral, handbrake on,
+     loads off. Claude runs the capture; VCDS on **014, 055, 003**.
+   - If step 2 needs its warm run, do it first, on this same stop.
+   - **1 min** as it is.
+   - **Cylinder 1** (timing-belt end): connector off **1 min**, back on,
+     **1 min** as it is.
+   - The same for **2, 3 and 4**.
+   - **1 min** as it is, engine off.
+   - Write the time of every off and on into the chat. The engine light
+     will come on, maybe flashing: carry on.
+   - Clear the fault memory with VCDS.
+4. **Vacuum gauge, warm idle**, once one is bought. Tee it into the fuel
    pressure regulator's vacuum hose. Short hose to the gauge, tight
    T-piece. Note what the needle does.
-4. **The next repair** — Claude picks it from `open.md` then.
+5. **The next repair** — Claude picks it from `open.md` then.
 
 ## Standing items
 
@@ -60,8 +73,6 @@ off; Claude runs the capture throughout.
   engine off; ignition straight back on; within a minute measure the oil
   filter, the sump from beneath and the upper coolant hose; write the
   three readings into the chat in that order.
-- **Once the idle is solved:** one injector unplugged for a minute at a
-  warm idle, with 014 logged.
 
 ---
 
@@ -155,12 +166,47 @@ the next is needed.
    3/10/2026); the suffix differs by model and year; the studs into the
    head are 26 years old. **Nothing leaks ahead of the probe** → H2 is
    refuted for its zone and goes to `refuted.md`.
-3. **The vacuum gauge** (`open.md`, *Tools worth owning*). A long hose
+3. **The injectors one at a time** (*the owner's proposal, 9/10/2026*;
+   `open.md`, *Naming the cylinder*, method 2). It is also
+   `docs/firmware/open.md` question 11's deliberate misfire, brought
+   forward from "once the idle is solved" at the owner's decision the same
+   day and run for all four cylinders instead of one. With a connector
+   off, that cylinder gets no fuel, so the converter sees air and not fuel
+   (*general*); the light comes on because a quarter of the firings missing
+   is far above the 2 % VW stores a code at (`vcds.md`, *What VW says*),
+   and the rate that damages a converter flashes it (SSP 175) — VW does not
+   publish this ECU's figure. **How it is read** (*reasoned*):
+   - **055 and 003** — how much air the idle regulator adds to hold its
+     speed with each cylinder out. The least is the weakest cylinder.
+     Engine speed alone says little: the regulator restores it in seconds.
+   - **The dips (S1) on the three that still fire**, from the capture,
+     with the dead cylinder's slot taken out (`idledips.py` gets that
+     when there is a capture). A cylinder that carries the stumble leaves
+     the other three nearly smooth when it is out; the others do not.
+     Three cylinders run at more load each, and load calms this idle, so
+     the dips fall every time — only the four cuts compared with each
+     other mean anything.
+   - **One cylinder carrying most of the dips** → that cylinder: H1, or
+     H3 at its runner. **All four alike** → not one cylinder: H0, H4, H7,
+     H8, H2. A minute a cylinder is 8–14 dips, enough to see a majority,
+     not a small share; repeat the round if it is unclear.
+   - **The dead cylinder names the slots** for the first time — its
+     stroke is a huge dip once every four — so `--cylinders` can put
+     names to the period-2 pattern (1 and 4 against 2 and 3, `open.md`)
+     in this capture and every earlier one.
+   - Question 11's own reading — 014 and `IdleHealth` against a misfire
+     of known rate — comes from the same minutes.
+   About 12 minutes of warm idle, against the rule; the owner's call, and
+   the converter is not at risk with the fuel off. **Before any new
+   manifold** (*decided 9/10/2026*): it is free, and the manifold is the
+   bigger job — a cylinder named here would change what the manifold is
+   expected to fix. Step 2's warm run shares its drive.
+4. **The vacuum gauge** (`open.md`, *Tools worth owning*). A long hose
    smooths away the flick a valve makes. Read against itself (*general*):
    **a steady needle** → no valve and no large leak; **a regular flick
    down** at one point in the cycle → a valve (H1); **a low or slowly
    wandering needle** → a leak or a mixture fault (H3, H7).
-4. **The next repair** is chosen then, not now, from `open.md`'s ranked
+5. **The next repair** is chosen then, not now, from `open.md`'s ranked
    candidates.
 
 ## Standing items — why
@@ -169,5 +215,3 @@ the next is needed.
 - **The thermometer reading (A4)**: `docs/firmware/open.md` question 10.
   The ignition goes back on so the capture keeps 0x420. The coolant hose
   checks the instrument against 0x288's coolant.
-- **The deliberate misfire**: `docs/firmware/open.md` question 11 — 014
-  and `IdleHealth` read against a misfire of known rate.
