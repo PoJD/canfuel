@@ -77,7 +77,8 @@ Everything else settled against is in `refuted.md`.
 - **The cylinder 4 knock window: S4 and S5**, a cluster of its own
   (H5, H6), not pursued until the idle is solved (`plan.md`, *The rule*).
 
-**Next:** `plan.md` — the exhaust smoke test (the intake's of 9/10
+**Next:** `plan.md` — a metal clamp at the MAF-to-hose joint, where
+the second smoke test of 9/10 showed smoke (H3), then the exhaust smoke test (the intake's of 9/10
 was clean but for the dipstick guide's seat, put right the same day; H3), then session A with the adaptations kept.
 
 ---
@@ -1661,6 +1662,21 @@ the MAF out, the hose to the throttle plugged.
 - **No smoke from the airbox's open outlet** (*owner*), so N112 did not
   pass manifold to vent, unpowered and cold — the route `plan.md` had
   put first for smoke there.
+
+**The second test, the same day, with the old MAF in the hose**
+(`plan.md` step 2a; *owner, photographed*:
+`photos/smoke-intake-2026-10-09-maf-clamp.jpg`). The 2018 MAF pushed
+into the hose as the real one sits, its airbox end closed with a glove
+and a rag, so the hose held pressure on the car's own joint.
+- **Smoke at the MAF-to-hose joint, under the owner's rubber-lined pipe
+  clamp** (*owner*: "it seems to"). **That joint is behind the MAF**: air
+  in there is unmetered — the one leak in this whole intake that H3 and
+  H10 would most want. ⚠ **Not yet certain**: the glove and rag closing
+  the MAF's end sit a few centimetres away and leaked the first time, so
+  the smoke in the photo can be theirs. The owner fits a narrower
+  all-metal clamp and smokes it again; that tells the two apart.
+- **The dipstick: nothing**, or practically nothing.
+- Nothing anywhere else.
 
 ⚠ **Cold and stopped, so a joint that opens only hot is not cleared.**
 What the result does do: the back of the intake that no spray ever
@@ -3275,7 +3291,12 @@ outlet included — and the seat was put right to a faint wisp. So H3 has
 lost its cold evidence: everything left of it is a joint that opens only
 hot, which is H2's argument too, and H2 has not been looked at at all.
 **H2 moves to 2, H3 to 3.** 2b still reads 055 on the reseated
-dipstick, and the exhaust smoke test is H2's first look.*
+dipstick, and the exhaust smoke test is H2's first look.* *Then the
+second test showed smoke at the MAF-to-hose clamp, not yet told apart
+from the test's own plug. **The order is held until the new clamp is
+smoked**: a leak there confirmed puts H3 back to 2 — unmetered air
+right behind the MAF, the kind H10 says the ECU learns away; clean puts
+it where it is.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|

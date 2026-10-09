@@ -350,6 +350,13 @@ wisp** — the same day.
 it **does not show** that the leak found had anything to do with the
 misfires. The drive of 2b will say.
 
+**Then the intake again, the old MAF in the hose** so that it held
+pressure on its own joint: the dipstick now clean, and **smoke at the
+MAF-to-hose joint under the owner's rubber-lined clamp** — or at the
+glove and rag closing the MAF's end beside it; the photo cannot tell
+(`photos/smoke-intake-2026-10-09-maf-clamp.jpg`). A leak there would be
+air behind the MAF. A metal clamp and a taped end will settle it.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail

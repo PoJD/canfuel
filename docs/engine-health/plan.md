@@ -17,16 +17,13 @@ off, say so before step 2b.
 
 ## Step 2a — the smoke tests, engine off and cold
 
-**The intake again, with the old MAF in place**
-1. Fit the old MAF (the 2018 one) into the airbox and the hose, as the
-   real one sits. Leave it unplugged. The new MAF stays bagged.
-2. Close the airbox's air inlet (the snorkel) with a bag or tape. *Or,
-   for the hose alone:* the old MAF in the hose only, its airbox end
-   closed with a bag and tape.
-3. Smoke into the regulator's hose as before, throttle held open.
-4. Look at everything from the first time, and also: the old MAF's two
-   joints, the clamp at the hose, the airbox's lid and its seal.
-5. Photograph every place smoke comes out; wisp or stream.
+**The MAF-to-hose clamp**
+1. Replace the rubber-lined pipe clamp at the MAF end of the hose with a
+   narrower all-metal one.
+2. Old MAF in the hose again, its airbox end closed with a bag and
+   **tape**, wound tight — no glove, no rag.
+3. Smoke into the regulator's hose. Look at the new clamp only, with a
+   torch, close up. Photograph it; wisp or stream.
 
 **The exhaust**, with the same tester
 1. Smoke into the tailpipe. Close the gap round the hose with a rag or
@@ -166,7 +163,15 @@ new MAF stays out until the exhaust test is over**: smoke into the tailpipe
 can pass an open exhaust valve, then an open inlet valve, and reach the
 intake, and the airbox side of the MAF (*reasoned*).
 
-**The second intake test, with the old MAF** (*owner's decision,
+**The second intake test was run on 9/10/2026** (`open.md` H3, *The
+second test*): smoke at the MAF-to-hose joint, or at the glove and rag
+beside it. **Hence the new clamp, and the MAF's end taped rather than
+plugged**, so that whatever smokes at the joint can only be the joint.
+A metal clamp because the rubber lining can creep and the band of a
+plumbing clamp is wide for the hose's lip (*general*); the choice is
+the owner's (*owner's decision, 9/10/2026*).
+
+*What it was for:* (*owner's decision,
 9/10/2026*): the glove leaked most the first time, so the intake never
 held much pressure, and a small leak may have bled off unseen. With a
 MAF in place the duct is closed by the car's own joints, and **only once
