@@ -2134,6 +2134,21 @@ clean, several tenths is a bad joint** (*general*).
   screwed-on nut** (*owner*, 9/10/2026, as the plug-well photos show),
   so a loose nut is ruled out and what is left is the grip of the boots
   themselves. Checked at `plan.md` step 2's dry run.
+  **The ends of the leads, photographed 1/10/2026** (*owner*,
+  `photos/leads-2026-10-01-*.jpg`, sent 9/10/2026), not labelled by
+  cylinder or by end. Two kinds: a **rubber end** with a red sleeve
+  round a rolled terminal held by a bent wire spring — the spring is
+  what latches over the groove of a plug's post (*general*), so this is
+  most likely the plug end; and a **slotted metal sleeve** round a rubber
+  insert. *The owner*: the metal end is most likely the coil's, and there
+  the click is clear; at the plugs it never is. *Read off the photos*:
+  the wire springs of the rubber ends sit differently from one end to
+  the next, in some standing off the terminal, and no black is visible
+  on any terminal; one metal end's insert (`-metal-end-1`) is darker and
+  crusted where the others are clean. Neither can be put to a cylinder.
+  *Reasoned:* a spring that has been bent off the terminal does not latch,
+  which fits no click at the plugs; whether lead 4's is one of them is
+  for the dry run, labelled.
 - **1d. Engine off: the HT leads.** Each one pushed fully home on its coil
   tower and its plug, the boots dry and uncracked. With the meter on ohms,
   the four leads against each other: one reading far from the others (for

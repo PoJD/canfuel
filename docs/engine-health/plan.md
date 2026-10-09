@@ -45,8 +45,10 @@ off; Claude runs the capture throughout.
      it goes one-handed in a glove in a few seconds.
    - **Same time: the plug leads, one at a time, 4 first.** Pull the boot
      off, look at the metal contact inside and at the top of the plug.
+     **Lay a scrap of paper with the cylinder's number in each photo.**
      Photograph both, and the plug's ceramic where its make is printed.
-     Push the boot back on: **does it click?**
+     Push the boot back on: **does it click?** How hard does it pull off
+     compared with the others?
      Write it for each of the four. **Change nothing.**
    - **Nothing found cold → the same again warm**, after a drive to
      68–72 °C of oil.
