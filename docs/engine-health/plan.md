@@ -204,8 +204,10 @@ the next is needed.
      speed with each cylinder out. The least is the weakest cylinder.
      Engine speed alone says little: the regulator restores it in seconds.
    - **The dips (S1) on the three that still fire**, from the capture,
-     with the dead cylinder's slot taken out (`idledips.py` gets that
-     when there is a capture). A cylinder that carries the stumble leaves
+     with the dead cylinder's slot taken out. **`tools/cutscan.py`
+     reads the whole test** — finds the cuts in the capture, counts,
+     applies the rules below and prints the verdict; it stops rather than
+     guess if it finds a different number of cuts than the order names. A cylinder that carries the stumble leaves
      the other three nearly smooth when it is out; the others do not.
      Three cylinders run at more load each, and load calms this idle, so
      the dips fall every time — only the four cuts compared with each
