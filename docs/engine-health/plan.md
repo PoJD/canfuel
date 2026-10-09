@@ -17,31 +17,10 @@ off, say so before step 2b.
 
 ## Step 2a — the smoke tests, engine off and cold
 
-**The intake**
-1. Smoke tester: Lincos `MG78016`, 5–35 ml of **the smoke oil supplied
-   with it**. Do not mix it with any other oil. Nothing flammable in it,
-   no workshop air.
-2. Ignition off. **Take the MAF out**: unplug it, take it off the airbox
-   and off the hose. Keep it bagged, away from the car, until both smoke
-   tests are done.
-3. Clamp a glove or bag into the open end of the hose to the throttle.
-   Leave the airbox's outlet open.
-4. Take the vacuum hose off the fuel pressure regulator. Feed the smoke
-   in there.
-5. Hold the throttle open with a string on the cable or a hand on the
-   quadrant.
-6. Smoke for a few minutes. With a torch, look at:
-   - the throttle's flange and its hose clamp
-   - the upper-to-lower plenum joint
-   - the four injector seats
-   - the hoses at the back: brake servo, the old secondary-air vacuum line
-   - the brake servo's valve
-   - the breather, its hose and the hose's plastic connector
-   - the oil filler, the dipstick (top and foot in the block), the cover
-     joint
-   - the airbox's open outlet
-7. Photograph every place smoke comes out, and note whether it is a wisp
-   or a steady stream.
+**The dipstick**
+1. Seal the orange guide where it seats on the metal tube.
+2. When it has cured: smoke into the regulator's hose again, as on 9/10,
+   and look at that seat only.
 
 **The exhaust**, with the same tester
 1. Smoke into the tailpipe. Close the gap round the hose with a rag or
@@ -56,7 +35,7 @@ off, say so before step 2b.
 3. Photograph every place smoke comes out.
 4. Only now: the MAF back in, the hose back on.
 
-**Afterwards:** repair whatever leaked on the intake. Smoke at the
+**Afterwards:** smoke at the
 manifold, its gasket or the probe boss → go straight to step 3.2's
 manifold decision. Then step 2b.
 
@@ -177,6 +156,15 @@ no idle.
 
 **The dipstick tube is refitted** (9/10/2026, `open.md` H3, *The
 dipstick tube*), so smoke at the dipstick now means something.
+
+**The intake was smoked on 9/10/2026** (`open.md` H3, *Smoke test of the
+intake*): smoke at the dipstick guide's seat on the metal tube and
+nowhere else reported. Hence the seal and a second look at that seat
+alone. *How to seal it is the owner's call*; the Dirko already in hand
+(Elring `030.793`, used on the cover) is oil-resistant and needs no new
+part (*Claude's suggestion*). The guide must still come off the tube one
+day for a new one, so a thin bead round the joint rather than glue
+inside it.
 
 **The intake** (*general practice, not VW's*):
 - **the tester** has its own pump because the owner has no aquarium pump

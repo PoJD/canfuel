@@ -335,6 +335,17 @@ smoke test can read the dipstick, not as a cure**: the crankcase path it
 closed is a small one, behind the breather's valve (`open.md` H3), and
 **nothing is claimed for S1 or S3** until a session measures it.
 
+**9/10/2026 — the intake smoked, cold** (*owner, photographed*:
+`photos/smoke-intake-2026-10-09-*.jpg`). The test the investigation had
+wanted since 27/9: smoke into the manifold, the MAF out. **The back of
+the intake — the plenum, the injector seats, the hoses no spray had
+reached — showed nothing.** The one leak was at the dipstick, where the
+new guide seats on the metal tube: a crankcase path, the smallest kind.
+The plug in the hose leaked most, which was the test and not the car.
+⚠ Cold and stopped, so a joint that opens only hot is not cleared; and
+it **does not show** that the leak found had anything to do with the
+misfires. The seat is to be sealed and the drive of 2b will say.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
