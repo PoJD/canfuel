@@ -306,7 +306,7 @@ As an index (÷ 2.00 × 100): the middle band 106 → 98–107, the cold idle
 idea is **air reaching the engine past the throttle** — an unmetered leak at
 the back of the intake, never sprayed, where the owner also hears a hiss he
 cannot place — with the learned idle air value as the ECU's way of showing
-it. **Next** (`plan.md`): the dipstick tube refitted; an **intake smoke
+it. **Next** (`plan.md`): an **intake smoke
 test**; then session A **without** resetting the adaptations, so that a
 zero means something.
 
@@ -324,6 +324,16 @@ have touched the mixture, the trims or a misfire, and **nothing is
 claimed for S1 or S3**. What it can say is about S2 and S14: a puff or a
 bang that goes on unchanged after it was not fed by this joint. S6 closed
 at the owner's decision (`open.md`).
+
+**9/10/2026 — the dipstick guide renewed** (*owner, photographed*:
+`photos/dipstick-2026-10-09-*.jpg`). The old orange guide was loose at
+its foot and turned out not to be this engine's part, its mounting tab
+in another place — perhaps why the bracket was gone. The new one clicks
+onto the metal tube and holds; the bracket is a strip of sheet metal
+bolted to the head, the guide cable-tied to it. **Done so that the
+smoke test can read the dipstick, not as a cure**: the crankcase path it
+closed is a small one, behind the breather's valve (`open.md` H3), and
+**nothing is claimed for S1 or S3** until a session measures it.
 
 ---
 

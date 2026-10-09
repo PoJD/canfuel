@@ -17,13 +17,6 @@ off, say so before step 2b.
 
 ## Step 2a — the smoke tests, engine off and cold
 
-**Before the smoke: the dipstick tube**
-1. Push the lower metal tube home in the block if it has backed out. Do
-   not replace it.
-2. Fit the new orange guide onto the tube.
-3. Bend a bracket from sheet metal, fix it where the original sat, and
-   clip the guide onto it. The tube must not move under the hand.
-
 **The intake**
 1. Smoke tester: Lincos `MG78016`, 5–35 ml of **the smoke oil supplied
    with it**. Do not mix it with any other oil. Nothing flammable in it,
@@ -182,17 +175,8 @@ where air gets in, which H10 cannot. It also looks for the hiss the owner
 hears and cannot place (`open.md` S11). Engine off and cold, so it costs
 no idle.
 
-**The dipstick tube first** (*owner's decision, 4/10/2026*): loose, its
-bracket missing, fresh oil at its foot (`open.md` H3, *The dipstick
-tube*). Refitted before the smoke so that smoke at the dipstick means
-something. The lower tube stays (*owner's decision, 4/10/2026*: by most
-accounts hard to get out). **Finding the parts is done outside this
-repository** (*owner's decision, 7/10/2026*). **The original bracket
-could not be had, so the owner makes one from sheet metal** (*owner's
-decision, 9/10/2026*). It only has to hold the guide still: what seals
-the crankcase is the tube home in the block and the dipstick seated in
-the guide (*reasoned*), so a home-made bracket costs nothing the smoke
-can read.
+**The dipstick tube is refitted** (9/10/2026, `open.md` H3, *The
+dipstick tube*), so smoke at the dipstick now means something.
 
 **The intake** (*general practice, not VW's*):
 - **the tester** has its own pump because the owner has no aquarium pump
