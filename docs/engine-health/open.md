@@ -2105,6 +2105,26 @@ clean, several tenths is a bad joint** (*general*).
   leads all measure **about 6 kΩ end to end**, the small differences put
   down to probe contact; every boot clean inside, no oil in any — so the
   oil on 3 and 4's boots seen on 26/9 (S10) stayed on the outside.
+  **Plug 4's terminal, seen at the same job** (*owner*, 1/10/2026;
+  photographed, `photos/plug-well-cyl4-2026-10-09.png`, reported
+  9/10/2026): a **black, burnt-looking patch on top of the plug** that
+  petrol would not shift. In the photo the terminal post of 4 is darkly
+  mottled where the other plug wells' terminals are light and even, and
+  the hex carries a dark smudge. On the metal, not on the ceramic. *General*:
+  a burnt terminal is what a boot contact that does not grip well leaves
+  behind — the spark jumps a small gap at the terminal, pits and blackens
+  it, and loses energy for the gap in the cylinder: **an intermittent
+  misfire on that one cylinder**, often worse in the wet. The plugs and
+  leads were new on 17/9, so it formed within two weeks. The 6 kΩ of 1d
+  is the lead end to end, which says nothing about the grip at the plug.
+  *Reasoned, not shown:* it fits the dips keeping to one cylinder
+  (*Naming the cylinder*) and, since 1 and 4 most likely share a coil
+  output (above: period 2 is the coil's two outputs), a fault at plug 4
+  would cost cylinder 4 and spare 1 — the shape the pairs fit. The boots
+  were pushed home again on 1/10, and the dips kept to one slot after it
+  (`25`–`30`), so if this is the cause, reseating did not cure it.
+  **The first named candidate for the cylinder** — `plan.md` step 3.3
+  names the cylinder before anything is changed.
 - **1d. Engine off: the HT leads.** Each one pushed fully home on its coil
   tower and its plug, the boots dry and uncracked. With the meter on ohms,
   the four leads against each other: one reading far from the others (for
