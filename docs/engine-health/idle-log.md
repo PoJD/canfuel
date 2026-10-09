@@ -34,8 +34,10 @@ owner and was restored in 2017.
 
 **S1 — the unsettled idle.** At a standstill the engine speed dips by 20–45
 rpm every few seconds and recovers in about a quarter of a second. Felt from
-the seat. **It depends on temperature, and not simply:** rough cold, worst
-at about 50–61 °C of oil, calmest hot. A reading without the oil
+the seat. **It depends on temperature:** roughest cold, calmer as the oil
+warms, calmest hot. *(This read "not simply: … worst at about 50–61 °C of
+oil" until 9/10/2026; the middle-band peak was 014's, sharpest on fresh
+adaptations, and engine speed never showed it — `open.md` S1.)* A reading without the oil
 temperature beside it compares with nothing.
 
 **S3 — misfires counted at idle.** VCDS group **014** field 3. Three

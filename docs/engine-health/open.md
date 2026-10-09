@@ -239,9 +239,20 @@ recorded cold idle, `18_coldstart_z1`, graded 2.74 in its first minute at
 the idle the worst seen, **on the dampest morning yet** — which is what an
 ignition fault that tracks moisture would do (H4, test 1e).
 
-**Temperature matters and it is not monotonic.** Rough cold, worst at about
-50–61 °C of oil, least rough hot. A reading without the oil temperature beside
-it cannot be compared with anything.
+**Temperature matters: roughest cold, calmer as the oil warms, calmest
+hot.** Re-read 9/10/2026 over every capture since 24/9 (standing idle,
+binned by 0x420, `idledips --roughness`): the mean step is highest cold
+and falls with the oil in every session, on fresh adaptations and settled
+ones alike — on `30`, 2.06 rpm at 10–20 °C, 1.89 at 50–60, 1.85 at 60–70,
+1.53 at 70–80; on `29`, 2.33 / 2.12 / 1.86 / 1.83; on `27`/`28`, 2.42 /
+1.94 / 1.51. The dip count scatters (8–22 a minute) with no band
+consistently on top. *Corrected 9/10/2026, at the owner's question:* this
+read "not monotonic … worst at about 50–61 °C of oil", which no capture
+since 24/9 bears out for engine speed; the middle-band peak is 014's
+(S3), and on settled adaptations that is shallow. ⚠ Every engine idles
+roughest cold (*general*: enrichment, a raised idle), so cold-worst says
+nothing about the fault on its own. A reading without the oil
+temperature beside it cannot be compared with anything.
 
 ### S2. An occasional puff from the exhaust
 
@@ -1393,7 +1404,7 @@ A safety matter for a garage, outside this investigation.
 |---|---|---|
 | S1 ↔ S3 | **the same events** | aligned three times, p ≤ 0.023. Both are crank speed, so partly one signal read twice |
 | S1/S3 ↔ S9 | **strong** | the MAF swap halved the dips at every oil temperature (−51 to −65 %). An over-reading MAF was causing some of the stumbles; the rest is the residual fault |
-| S1/S3 ↔ oil temperature | **strong, non-monotonic** | worst at ~50–61 °C of oil, less cold, least hot. On every drive |
+| S1/S3 ↔ oil temperature | **strong; the two differ** (*re-read 9/10/2026*) | **S1** (engine speed) roughest cold and calmer as the oil warms, in every session since 24/9. **S3** (014): near zero cold — the counter's own blind spot, since engine speed is worst there; on fresh adaptations a sharp peak in the middle band and zero hot; **on settled ones flatter** — 6–16 a minute from ~40 °C up, about half as many at 70–80 °C as at 55–68 (`29`, `30`). *This read "non-monotonic, worst at ~50–61 °C, on every drive" for both* |
 | S4 ↔ S5 | **very likely one thing** | same cylinder window, same engine speeds, and S5 needs no combustion. Knock control retards cylinder 4 because it hears S5's noise |
 | S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle, in any log. Only a common cause could link them |
 | S2 ↔ S3 | **likely, by the owner's reading; never aligned** | the owner takes S2 for S14's smaller twin, a misfire's charge going off in the exhaust (S2, 4/10/2026). A leak ahead of the probe would puff too (H2) |
@@ -1519,8 +1530,10 @@ or late, intermittently, and gets worse as the oil thins. *General.*
   at camshaft speed lands in one knock window. Temperature-dependent through
   oil viscosity. Compression is a **cranking** test and does not see a valve
   that closes at 250 rpm but hangs at a hot idle.
-- **Against:** S1 is worst at 50–61 °C and eases when hot, while a thin-oil
-  lifter should be worst hot. The S5 excess switches on above ~2300 rpm and
+- **Against:** the idle is never worst hot, while a thin-oil lifter should
+  be — engine speed is calmest hot, and 014 at 70–80 °C counts about half
+  what it does at 55–68 (*re-read 9/10/2026*; this read "S1 is worst at
+  50–61 °C and eases when hot"). The S5 excess switches on above ~2300 rpm and
   moves to cylinder 1 above ~3350, which fits a resonance better than a single
   part. No ticking has been reported.
 - **From the Polish AQY thread** (see H4): one poster traced idle vibration
@@ -1581,10 +1594,13 @@ loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
   the owner's account that the puff and the rough idle are both older
   than the 10/9 exhaust work, as are August's 014 counts.
 - **Against:** air outside the cylinder does not stop a cylinder firing, and
-  a few per cent rich does not normally misfire. A crack leaks most cold, but
-  S1 peaks mid-temperature. The MAF swap halved S1, which an exhaust leak
+  a few per cent rich does not normally misfire. The MAF swap halved S1, which an exhaust leak
   would not care about. It cannot produce S5: that is there without exhaust
   pressure.
+- **Withdrawn 9/10/2026:** "a crack leaks most cold, but S1 peaks
+  mid-temperature". S1 does not peak there in any capture since 24/9 —
+  it is roughest cold (S1, *Temperature matters*). That does not turn
+  into evidence *for* this hypothesis: every engine idles roughest cold.
 
 **Tests:**
 
@@ -3361,7 +3377,11 @@ added or closed. **H10 leaves the list** — it was never a fault, only
 the explanation of when 014 counts, and it ranked first for that. **H2
 moves to 1, H3 to 2**, the rest up one. The question H10 left — why the
 ECU learns air away — is H3's and H8's, and their rows already carry
-it.*
+it.* *Re-read 9/10/2026 when the temperature profile was corrected
+(S1, *Temperature matters*): no symptom added or closed. S1 is roughest
+cold, not mid-temperature, so H2 loses one argument against it and gains
+none for it; H1 keeps its against in a new form (never worst hot). **The
+order stands.***
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
@@ -3371,7 +3391,7 @@ it.*
 | 4 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits only in form** — a coil that breaks down hot is the textbook case, but **the coil is from 6/2026**, and the 3/10 oil sat **only on the outside of its plastic and on the outsides of the leads of 3 and 4, wiped dry** (*owner*, 4/10/2026) | a look while the plenum was off (`idle-log.md`, *The valve cover and throttle job*: wiring and connectors fine); H7 test 3 for the injector side |
 | 5 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero **4/10: the pattern fits only in form** — fuel heat-soaked at the rail after a hard drive; against, the return-flow rail keeps fuel moving, heat soak is a hot-*restart* effect, and the coolant read the same at A3's zero | a **fuel pressure gauge** |
 | 6 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 **4/10, against:** zero at both warm stops is not what a normal-for-the-engine idle does on a counter that read 10–20 a minute there | a healthy AQY recorded (H0 test 1) |
-| 7 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: worst at mid temperature, not hot; A5 **4/10, against:** zero at both warm stops | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
+| 7 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: never worst hot (S1, S3, re-read 9/10); A5 **4/10, against:** zero at both warm stops | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
 | 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
 
 **Tools worth owning for this, cheapest first** (*general*; prices not

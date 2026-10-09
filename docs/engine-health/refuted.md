@@ -74,7 +74,9 @@ together" is neither confirmed nor refuted.
 ### A6. "The evaporative purge" — measured
 
 Block 070: TEV OK, lambda deviation 0.0 %. Also purge runs warm, while the
-stumble was worst mid-temperature and present cold.
+stumble was worst mid-temperature and present cold. *(9/10/2026: the
+stumble is in fact roughest cold and present warm — `open.md` S1. The
+refutation stands on block 070.)*
 
 ### A7. "A large intake (unmetered) air leak" — argued
 
