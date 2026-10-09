@@ -15,12 +15,15 @@ records it**, and the file is deleted when it is empty.
 ## Step 3 — the idle is not fixed
 
 One at a time, Claude says after each whether the next is needed.
-**1 and 2 are one warm session**: Claude runs the capture, drive until
-the oil is at 68–72 °C, stop outdoors, loads off, handbrake on, neutral.
+**2 is a warm session**: Claude runs the capture, drive until the oil
+is at 68–72 °C, stop outdoors, loads off, handbrake on, neutral.
 
-1. **The brake servo, check c.** In the warm session: idle, **hold the pedal down firmly for
-     30 s**, listen at the pedal and at the back of the engine bay for a
-     hiss. Write when you pressed, and what you heard.
+1. **The brake servo, check c — a cold start will do, no drive.**
+   - Claude starts the capture; then start the engine.
+   - About **two minutes** after the start, once the idle has settled:
+     **hold the pedal down firmly for 30 s**, release, wait 30 s, hold
+     again 30 s. Nobody else touches anything.
+   - Write when you pressed, and anything heard. Engine off.
 2. **The exhaust manifold, the same session, straight after.**
    - Close the tailpipe for **2–3 s at a time**, never longer.
    - Meanwhile listen at the manifold, its gasket to the head, the probe
@@ -98,7 +101,12 @@ the next is needed.
    switch-off, or the check valve or the diaphragm does not hold;
    **c** — no hiss and no dip in engine speed with the pedal held, or
    the diaphragm leaks into the manifold. The dip is read off the
-   capture, aligned on the dip itself. **All three good** → the servo is
+   capture, aligned on the dip itself. **Cold is enough for c**
+   (*decided 9/10/2026*): the manifold vacuum the diaphragm sees is an
+   idle's either way, and the servo's rubber does not need engine heat
+   to leak; two minutes in, the fast-idle step is over, so a dip is not
+   confused with it. Two holds, so that one stray dip is not the
+   result. It saves a drive, and it keeps the idle short. **All three good** → the servo is
    cleared for H3, which is left with joints that open only hot. **Any
    bad** → the check valve and its line first (cheap), the servo only if
    they are not it. ⚠ **The pedal is soft and long** (*owner*, 9/10) —
