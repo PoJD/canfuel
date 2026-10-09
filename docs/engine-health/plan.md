@@ -69,10 +69,25 @@ off; Claude runs the capture throughout.
    - Write the time of every off and on into the chat. The engine light
      will come on, maybe flashing: carry on.
    - Clear the fault memory with VCDS.
-4. **Vacuum gauge, warm idle**, once one is bought. Tee it into the fuel
+4. **Spray test at the intake, warm idle** — on the same warm stop as
+   step 3, after it, with the capture still running.
+   - A short burst of **unlit propane** (or brake cleaner) at one joint
+     at a time: the throttle flange, the plenum's joints, the hoses and
+     vacuum lines at the back, the servo line, the breather hose. Say
+     "teď" and the place each time, and wait 10 s between.
+   - **Never towards the exhaust side or its heat shield**; a fire
+     extinguisher within reach.
+   - Write any place where the engine speed changed.
+5. **High-voltage side in the dark, a damp evening, warm idle.**
+   - Bonnet open, lights off: look along the leads and the coil for a
+     spark or a blue glow.
+   - Then a fine water mist over one lead at a time, and the coil.
+     Hands and the bottle clear of the leads.
+   - Write anything seen, and which lead the engine stumbled at.
+6. **Vacuum gauge, warm idle**, once one is bought. Tee it into the fuel
    pressure regulator's vacuum hose. Short hose to the gauge, tight
    T-piece. Note what the needle does.
-5. **The next repair** — Claude picks it from `open.md` then.
+7. **The next repair** — Claude picks it from `open.md` then.
 
 ## Standing items
 
@@ -266,12 +281,25 @@ the next is needed.
    manifold** (*decided 9/10/2026*): it is free, and the manifold is the
    bigger job — a cylinder named here would change what the manifold is
    expected to fix. Step 2's warm run shares its drive.
-4. **The vacuum gauge** (`open.md`, *Tools worth owning*). A long hose
+4. **The spray test** (`open.md` H3 test 1, *decided 9/10/2026*). What
+   is left of H3 after the cold smoke of 9/10 is a joint that opens only
+   hot, which smoke into a cold, stopped engine cannot find; and the back
+   of the intake has never been sprayed. A leak there draws the gas in
+   and the engine speed moves at that spot (*general*). Free, and on the
+   same warm stop as step 3, so no extra idling for the warm-up. Away
+   from the exhaust because both gases burn and the manifold at idle is
+   hot enough to light them (*general*).
+5. **The high-voltage side** (`open.md` H4 test 1e, *decided 9/10/2026*):
+   the roughest reading on record came on a foggy morning (S1), and the
+   moisture a tracking boot or coil needs is what the mist supplies.
+   The leads were measured and the coil is new, which is why it is late
+   in the order; it is free.
+6. **The vacuum gauge** (`open.md`, *Tools worth owning*). A long hose
    smooths away the flick a valve makes. Read against itself (*general*):
    **a steady needle** → no valve and no large leak; **a regular flick
    down** at one point in the cycle → a valve (H1); **a low or slowly
    wandering needle** → a leak or a mixture fault (H3, H7).
-5. **The next repair** is chosen then, not now, from `open.md`'s ranked
+7. **The next repair** is chosen then, not now, from `open.md`'s ranked
    candidates.
 
 ## Standing items — why
