@@ -17,11 +17,6 @@ off, say so before step 2b.
 
 ## Step 2a — the smoke tests, engine off and cold
 
-**The dipstick**
-1. Seal the orange guide where it seats on the metal tube.
-2. When it has cured: smoke into the regulator's hose again, as on 9/10,
-   and look at that seat only.
-
 **The exhaust**, with the same tester
 1. Smoke into the tailpipe. Close the gap round the hose with a rag or
    tape. Give it time.
@@ -154,77 +149,11 @@ where air gets in, which H10 cannot. It also looks for the hiss the owner
 hears and cannot place (`open.md` S11). Engine off and cold, so it costs
 no idle.
 
-**The dipstick tube is refitted** (9/10/2026, `open.md` H3, *The
-dipstick tube*), so smoke at the dipstick now means something.
-
-**The intake was smoked on 9/10/2026** (`open.md` H3, *Smoke test of the
-intake*): smoke at the dipstick guide's seat on the metal tube and
-nowhere else reported. Hence the seal and a second look at that seat
-alone. *How to seal it is the owner's call*; the Dirko already in hand
-(Elring `030.793`, used on the cover) is oil-resistant and needs no new
-part (*Claude's suggestion*). The guide must still come off the tube one
-day for a new one, so a thin bead round the joint rather than glue
-inside it.
-
-**The intake** (*general practice, not VW's*):
-- **the tester** has its own pump because the owner has no aquarium pump
-  (*owner*, 4/10/2026). The pressure only has to make the smoke flow;
-- **the supplied oil**: the tester came with its own bottle, labelled in
-  Chinese as smoke oil for smoke leak testers (*owner*, photos,
-  8/10/2026). Its notes say: for smoke testers only, not to be mixed
-  with other substances, and old liquid poured out before new is added.
-  So nothing else is bought. Had it been needed, the choice was baby oil
-  reading `Paraffinum Liquidum`, never a plant oil, which gums on the
-  heater (*general*). The Weleda calendula oil at hand is sesame oil, and
-  bicycle brake mineral oil carries additives and dye. Both were ruled
-  out;
-- **not through the MAF**: oil smoke over its sensing element is the one
-  thing here that can spoil a part (*general caution*). **It comes out
-  altogether** (*owner's decision, 8/10/2026*), not just off the hose,
-  because smoke can reach it from the airbox side too. **Two routes
-  into the airbox.** The thin line from the intake manifold runs through
-  N112, the electric valve, to the combination valve's control side, the
-  valve the pump blows through. **N112 vents into the airbox** (*owner*,
-  8/10/2026). Both valves are probably original (*owner*), and neither
-  was ever tested for passing smoke. A8 tested only that the combination
-  valve seals against exhaust and that the line passed no air when cold
-  (`refuted.md` A8).
-  - **Through N112's vent** (*reasoned*). Unpowered, N112 should block
-    the manifold and vent the control line into the airbox. If it passes
-    manifold to vent, smoke comes straight out in the airbox, and **this
-    needs N112 alone**. At idle it would also be a small unmetered leak:
-    manifold vacuum drawing filtered air from the airbox past the MAF.
-  - **Through the pump** needs N112 *and* the combination valve's control
-    side to pass, into the pump's path and back through the pump. That
-    takes both valves at once (*owner*, 8/10/2026), so it is the
-    unlikely one.
-
-  **Smoke at the airbox's open outlet** therefore points at N112 first.
-  *Corrected 8/10/2026, twice: first N112's vent was taken as said by the
-  owner before he had said it, then it was withdrawn; the owner has since
-  confirmed it.* The MAF out also
-  leaves the MAF-to-hose clamp untested. It holds by the owner's check, is a
-  rubber-lined pipe clamp rather than VW's, and was sprayed at a warm
-  idle on 26/9 with no change (`open.md` H3, *Spray test*; `idle-log.md`,
-  *The MAF*). The throttle end, refitted since, is inside the smoke;
-- **the regulator's hose** (*owner's choice*: at the front, the easiest
-  to reach) puts the smoke into the manifold behind the plate; the
-  brake-servo hose would do the same. **No fuel in it** (*owner*,
-  4/10/2026): it was off several times during 1–4/10 and never smelled of
-  petrol, so the regulator's diaphragm is not leaking into the manifold
-  (*general*: that is how such a leak shows);
-- **the throttle held open** so the smoke fills both sides of the plate;
-- **the back** is what no spray ever reached;
-- **smoke at the oil filler, the dipstick or the cover joint is a leak
-  too**, of the crankcase: the breather joins the crankcase to the intake
-  behind the MAF, so wherever smoke leaves the crankcase, air gets in at
-  idle unmetered. It is a smaller path than a joint on the intake — what
-  it admits has to pass the breather's valve, and the crankcase sits only
-  slightly below atmosphere — but not nothing: the idle got audibly worse
-  with the filler cap off (`open.md` H9). Judge by amount: a faint wisp
-  round a seated dipstick against a steady stream. *Corrected 4/10/2026:
-  this read "smoke at the oil filler or the dipstick is expected, not an
-  intake leak".*
+**The intake is done** (9/10/2026, `open.md` H3, *Smoke test of the
+intake*): clean but for a faint wisp at the dipstick guide's seat. **The
+MAF stays out until the exhaust test is over**: smoke into the tailpipe
+can pass an open exhaust valve, then an open inlet valve, and reach the
+intake, and the airbox side of the MAF (*reasoned*).
 
 **The exhaust** (*owner's decision, 6/10/2026*; *general practice, not
 VW's*): a cold look at H2's zone (`open.md` H2) before the warm tailpipe

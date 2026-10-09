@@ -342,9 +342,13 @@ the intake — the plenum, the injector seats, the hoses no spray had
 reached — showed nothing.** The one leak was at the dipstick, where the
 new guide seats on the metal tube: a crankcase path, the smallest kind.
 The plug in the hose leaked most, which was the test and not the car.
+The airbox's outlet, the throttle, the filler and the cover joint were
+clean. **The dipstick was a real stream; the guide was reseated and the
+bracket bent to press it down, and smoked again it gave only a faint
+wisp** — the same day.
 ⚠ Cold and stopped, so a joint that opens only hot is not cleared; and
 it **does not show** that the leak found had anything to do with the
-misfires. The seat is to be sealed and the drive of 2b will say.
+misfires. The drive of 2b will say.
 
 ---
 
