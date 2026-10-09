@@ -47,7 +47,9 @@ off; Claude runs the capture throughout.
      ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
      Penetrating oil on the studs the days before; a snapped stud goes to
      a garage.
-3. **New plugs and leads, original VW, engine cold.** Bought by VIN.
+3. **New plugs and leads, original VW, engine cold.** Plugs: **VW
+   `101000033AA`** (AQY in the seller's list). Leads: by VIN, AQY in
+   their list.
    **Do not disconnect the battery.**
    - Before anything comes off: a scrap of paper with the cylinder's
      number in every photo.
@@ -223,7 +225,11 @@ the next is needed.
    out cold, because the head is aluminium; a plug socket holds the plug
    and spares the ceramic; one that will not move goes to a garage,
    because a thread pulled out of the head is a far bigger job. The
-   torque is not quoted here: no source for it is held.
+   torque is not quoted here: no source for it is held. **The plugs:
+   VW `101000033AA`** "Zapalovací svíčka LONGLIFE ORIGINÁL", AQY in
+   Autokelly's list of engines for it (*owner's screenshot*, 9/10/2026),
+   344 Kč each against the garage's 200; VW's plugs are made for it by a
+   plug maker, which is why the picture shows NGK (*general*).
 4. **The drive after** (*decided 9/10/2026*). **How it is read**:
    `cutscan.py --pairs` on its warm idles against `30` (34 of 103 pairs
    on the same slot, 33 %) — back to about a quarter means the stumble
