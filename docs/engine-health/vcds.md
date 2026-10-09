@@ -56,6 +56,16 @@ finding:**
   Messwertblöcke und Sollwerte*, read 3/10/2026; a different engine and
   ECU, so supporting evidence, not this car's figure).
 
+- **This ECU has no per-cylinder misfire counters.** Blocks 015 and 016,
+  which carry them on other VAG engines, do not exist on this car's ECU
+  (*owner*, checked on the car; confirmed again 9/10/2026), and the label
+  file defines only 014 in that range. So **no misfire on this car can
+  be put to a cylinder by VCDS**. The only per-cylinder readings it has
+  are the knock ones — 020 and 022/023 (timing retard) and 026 (knock
+  sensor voltage) — and those see the engine under load, not at idle.
+  Engine speed on the bus cannot name a cylinder either
+  (`open.md`, *Naming the cylinder*).
+
   **What the number is** — Bosch's patents on misfire detection
   (DE19547058B4, DE19622448B4, DE19814732A1, DE10010459; read 3/10/2026),
   a principle and not this ECU's calibration: the ECU times each crank
