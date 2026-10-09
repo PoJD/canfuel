@@ -53,9 +53,9 @@ off; Claude runs the capture throughout.
      loads off. Claude runs the capture; VCDS on **014, 055, 003**.
    - If step 2 needs its warm run, do it first, on this same stop.
    - **1 min** as it is.
-   - **Cylinder 1** (timing-belt end): connector off **1 min**, back on,
-     **1 min** as it is.
-   - The same for **2, 3 and 4**.
+   - **Two rounds, in this order: 1, 2, 3, 4, then 4, 3, 2, 1.**
+     Cylinder 1 is at the timing-belt end. Each time: connector off
+     **1 min**, back on, **30 s** as it is.
    - **1 min** as it is, engine off.
    - Write the time of every off and on into the chat. The engine light
      will come on, maybe flashing: carry on.
@@ -186,17 +186,48 @@ the next is needed.
      Three cylinders run at more load each, and load calms this idle, so
      the dips fall every time — only the four cuts compared with each
      other mean anything.
-   - **One cylinder carrying most of the dips** → that cylinder: H1, or
-     H3 at its runner. **All four alike** → not one cylinder: H0, H4, H7,
-     H8, H2. A minute a cylinder is 8–14 dips, enough to see a majority,
-     not a small share; repeat the round if it is unclear.
+   - **Two rounds, the second reversed** (*decided 9/10/2026*): two
+     minutes a cylinder, the reversal cancels a slow drift of temperature
+     through the test, and a result must hold in both rounds. 30 s
+     between cuts lets the regulator and the lambda settle.
+   - **The criteria, fixed before the test** (*decided 9/10/2026*, so the
+     result cannot be read to fit). Reasoned from the data, not from a
+     source: at a warm idle on settled adaptations the dips ran 12 ± 3.3
+     a minute (`30`, nine one-minute windows — Poisson-like; `28` was
+     three times as scattered), and 003's air 3.14 g/s with a 40 s mean
+     scattering ±0.04 g/s (`30`, A3). A simulated round at 6–10 dips a
+     minute finds a cylinder carrying all the dips every time, one
+     carrying three quarters 77–94 % of the time at two minutes (36–62 %
+     at one), half rarely.
+     1. **Dips — an intermittent cylinder.** Dips counted on the three
+        firing cylinders, the dead slot out, the first 5 s of each cut
+        out. **One cylinder** if its cut leaves the fewest, at p < 0.05
+        against equal shares (the four counts as one multinomial, given
+        their total), **and** it is the fewest in both rounds.
+     2. **Air — a steadily weak cylinder.** 003's air over the last 40 s
+        of each cut, its ignition angle beside it (the idle control uses
+        both). **Weak** if its cut needs **≥ 0.15 g/s less** than the
+        mean of the other three, in both rounds — about 10 % less work
+        from that cylinder (*reasoned*: cutting a healthy one needs
+        ~1.1 g/s more, a 10 % weaker one ~0.14 g/s less than that).
+     3. **Not one cylinder** if the dips give p > 0.2 and the air differs
+        by under 0.08 g/s. That rules out one cylinder carrying three
+        quarters or more of the dips, or one 10 % weak — **not a smaller
+        share**, and it is recorded that way.
+     4. **Anything between is undecided** — at most one more round, not a
+        reading stretched to fit.
+   - **What each outcome points at:** dips and air on the same cylinder →
+     that cylinder (H1, H3 at its runner, its plug and lead); dips alone →
+     an intermittent fault there (ignition, injector, valve); air alone →
+     a weak cylinder that is not the stumble; neither → the whole engine
+     (H0, H2, H4, H7, H8).
    - **The dead cylinder names the slots** for the first time — its
      stroke is a huge dip once every four — so `--cylinders` can put
      names to the period-2 pattern (1 and 4 against 2 and 3, `open.md`)
      in this capture and every earlier one.
    - Question 11's own reading — 014 and `IdleHealth` against a misfire
      of known rate — comes from the same minutes.
-   About 12 minutes of warm idle, against the rule; the owner's call, and
+   About 13 minutes of warm idle, against the rule; the owner's call, and
    the converter is not at risk with the fuel off. **Before any new
    manifold** (*decided 9/10/2026*): it is free, and the manifold is the
    bigger job — a cylinder named here would change what the manifold is
