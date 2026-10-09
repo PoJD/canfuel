@@ -1647,7 +1647,10 @@ the MAF out, the hose to the throttle plugged.
   clicked back on, and the sheet-metal bracket bent so that it presses
   the guide down onto the tube — perhaps what the original bracket did.
   Smoked again: **almost nothing, only a very faint wisp**
-  (`photos/smoke-intake-2026-10-09-8.jpg`).
+  (`photos/smoke-intake-2026-10-09-8.jpg`). **No sealant on the seat**
+  (*owner's decision, 9/10/2026*): the factory fits nothing there, the
+  guide is meant to click on dry, and a wisp behind the breather's valve
+  is not worth a joint that is harder to take apart.
 - **Tight** (*owner*): the injector seats, the intake itself and the
   hoses at the back.
 - **The plug in the hose to the throttle leaked most** — round the
