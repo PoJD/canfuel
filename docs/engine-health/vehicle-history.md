@@ -294,8 +294,8 @@ a later reader can see what was being judged.
 | [`cover-on-2026-10-04-strip.jpg`](photos/cover-on-2026-10-04-strip.jpg) | a hold-down strip and its nut on the refitted cover |
 | [`cover-on-2026-10-04-bracket.jpg`](photos/cover-on-2026-10-04-bracket.jpg) | the side bracket and harness at the refitted cover |
 | [`plenum-on-2026-10-04.jpg`](photos/plenum-on-2026-10-04.jpg) | the engine reassembled, plenum on, 4/10/2026 |
-| [`plug-well-cyl4-2026-10-09.png`](photos/plug-well-cyl4-2026-10-09.png) | down cylinder 4's plug well: dark, uneven patches on the plug's terminal and a smudge on its hex (*owner*: seen 1/10/2026, would not come off with petrol); sent 9/10/2026 |
-| [`plug-well-2026-10-09-b.png`](photos/plug-well-2026-10-09-b.png), [`-c`](photos/plug-well-2026-10-09-c.png), [`-d`](photos/plug-well-2026-10-09-d.png) | the other three plug wells, cylinder not recorded; `-d` too dark to judge |
+| [`plug-well-cyl4-2026-10-09.jpg`](photos/plug-well-cyl4-2026-10-09.jpg) | down cylinder 4's plug well: dark, uneven patches on the plug's terminal and a smudge on its hex (*owner*: seen 1/10/2026, would not come off with petrol); sent 9/10/2026 |
+| [`plug-well-2026-10-09-b.jpg`](photos/plug-well-2026-10-09-b.jpg), [`-c`](photos/plug-well-2026-10-09-c.jpg), [`-d`](photos/plug-well-2026-10-09-d.jpg) | the other three plug wells, cylinder not recorded; `-d` too dark to judge |
 
 **What they show, as description rather than interpretation.** The can carries
 heavy surface corrosion over most of its body, and the joint at the clamp is

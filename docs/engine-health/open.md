@@ -2106,7 +2106,7 @@ clean, several tenths is a bad joint** (*general*).
   down to probe contact; every boot clean inside, no oil in any — so the
   oil on 3 and 4's boots seen on 26/9 (S10) stayed on the outside.
   **Plug 4's terminal, seen at the same job** (*owner*, 1/10/2026;
-  photographed, `photos/plug-well-cyl4-2026-10-09.png`, reported
+  photographed, `photos/plug-well-cyl4-2026-10-09.jpg`, reported
   9/10/2026): a **black, burnt-looking patch on top of the plug** that
   petrol would not shift. In the photo the terminal post of 4 is darkly
   mottled where the other plug wells' terminals are light and even, and
