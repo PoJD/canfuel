@@ -29,6 +29,10 @@ off; Claude runs the capture throughout.
      under the car by the front pipe.
    - At the tailpipe, **say aloud "teď"** and close it for **2–3 s**,
      never longer. Five times, a few seconds apart.
+   - Move the phone under the car by the front pipe and do the five
+     again.
+   - **Afterwards, play both recordings back yourself** and write whether
+     a hiss or a puff comes up at each "teď", and on which recording.
    - Then listen yourself at the manifold, its gasket to the head, the
      probe boss, the outlet flange and the front pipe back to the
      converter, with the tailpipe open, for the sputter (S15). A hand
@@ -126,7 +130,9 @@ the next is needed.
    hears S15 cold too, so a leak that sputters cold can be found cold,
    and the drive is needed only if cold finds nothing. The owner works
    alone, so the phone listens at the manifold while he closes the
-   tailpipe, and his "teď" marks each closure on the audio; each closure
+   tailpipe, and his "teď" marks each closure on the audio. Claude
+   cannot hear the recordings (and this laptop cannot decode a phone's
+   audio), so the owner listens back and reports; each closure
    also loads the engine and shows on the capture as a dip in engine
    speed, which places it in time but says nothing about where a leak
    is. The front pipe as far as the converter is listened to as
