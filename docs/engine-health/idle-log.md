@@ -262,7 +262,7 @@ fit (it counted at −0.28, with the hole open).
 | change | sure it helped? |
 |---|---|
 | the MAF, 24/9 | **yes** — the rich trim, and the idle smoother on engine speed |
-| the job of 1–2/10 | **probably, for smoothness at the hot idle**: about 9 dips a minute (24/9), 5 (3/10, a one-minute stop) and 4.4 (4/10). The middle band did not move. Which part — the seated injectors, the breather, the throttle — **cannot be told**; they went in together |
+| the job of 1–2/10 | **not shown.** *This read "probably, for smoothness at the hot idle": about 9 dips a minute (24/9), 5 (3/10, a one-minute stop) and 4.4 (4/10).* Both calm hot stops were on fresh adaptations; on settled ones (4/10 B, 9/10) the hot idle is back where the MAF left it (*corrected 9/10/2026*, `open.md` S1). The middle band did not move |
 | the right gasket, 4/10 | **for the oil, yes.** For 014: the zero of session A came on fresh adaptations, and session B counted again, so **not shown** |
 | the plugs, leads, injectors, coil | they did not fix the idle; the old injectors probably caused the bad cold start, which is gone. *This also said "and the cold burble"; that came back on the new injectors, warm, 4/10 (`open.md` S14)* |
 
@@ -298,7 +298,9 @@ As an index (÷ 2.00 × 100): the middle band 106 → 98–107, the cold idle
   hold.
 - So the calmer idle the owner feels on 4/10 is real *at the hot idle* and
   *against the week before*; it is not a return to a better engine than
-  August's.
+  August's. *Corrected 9/10/2026:* and it did not last — it came on fresh
+  adaptations, and on settled ones the hot idle reads as it did after the
+  MAF (`open.md` S1).
 
 ---
 
@@ -418,6 +420,17 @@ the car and leaves the fault where it was; what it leaves behind is a
 rule: a quiet 014 after a disconnect is not a repair until the learned
 value has walked back past about −0.93 g/s. The leak ahead of the probe
 (H2) is now the first candidate.
+
+**9/10/2026 — every session since the repairs, compared like with like**
+(`open.md` S1, the table under *Owner, 4/10/2026*). By oil band and with
+the adaptations matched, **the MAF of 24/9 is the only repair that shows
+on engine speed.** The calmer hot idle of 3/10 and 4/10, credited until
+today to the job of 1–2/10, came both times on fresh adaptations, and on
+settled ones it is gone — the same thing 014 does. So neither the cover,
+the throttle, the breather, the gasket, the dipstick nor the clamp is
+known to have changed the idle; the gasket did fix the oil. One hint
+left: 9/10's cold idle read calmer than 3/10 and 4/10, too few windows
+to carry.
 
 ---
 

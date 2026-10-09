@@ -108,9 +108,36 @@ as `refuted.md` C12 asks, **agree against the car before 1/10 and barely
 differ from 3/10**: at a hot stop, ~70 °C, dips ≥ 20 rpm a minute went
 20 (`19`, old MAF) → 9.1 (`24`) → 5.0 (3/10) → **4.4**, and `IdleHealth`
 112–146 → 84 → 62 → **60**; in the middle band the dips sit at 9–11 on
-`24`, 3/10 and 4/10 alike (S3, *Session A after step 1b*). So the calm
-the owner feels is the job of 1–2/10 at the hot idle, and 1b's change is
-in 014 rather than in engine speed.
+`24`, 3/10 and 4/10 alike (S3, *Session A after step 1b*). ~~So the calm
+the owner feels is the job of 1–2/10 at the hot idle~~ — *withdrawn
+9/10/2026*: both calm hot stops came on **fresh adaptations**, and on
+settled ones the hot idle is back where the MAF left it (below). 1b's
+change is in 014 rather than in engine speed.
+
+**Every session since the repairs, like with like** (*re-read
+9/10/2026*): standing idle in 30 s windows, `idledips --roughness` mean
+step in rpm (lower is calmer), ± the standard error over the windows,
+binned by 0x420:
+
+| session | adaptations | < 30 °C | 50–65 °C | 67–80 °C |
+|---|---|---|---|---|
+| `19`/`20`, 24/9, new injectors, old MAF | fresh | 2.21 ± 0.22 | 2.17 ± 0.09 | 2.26 ± 0.09 |
+| `24`, 24/9, **new MAF** | fresh | 2.07 ± 0.27 | **1.67 ± 0.07** | **1.82 ± 0.14** |
+| `25`/`26`, 3/10, after the job, cover open | fresh | 2.59 ± 0.23 | 2.22 ± 0.09 | 1.36 (2 windows) |
+| `27`/`28`, 4/10 A, the right gasket | **fresh** | 2.41 ± 0.29 | 1.92 ± 0.04 | **1.48 ± 0.07** |
+| `29`, 4/10 B | settled | — | 2.10 ± 0.18 | 1.77 (2 windows) |
+| `30`, 9/10, dipstick and MAF clamp | settled | 1.90 ± 0.13 | 1.89 ± 0.08 | **1.77 ± 0.05** |
+
+**The MAF is the one change that shows** (middle and hot band, and the
+dips halved). **Nothing since does, once adaptations are matched**: the
+middle band has stayed at 1.7–2.2, and the calm hot idle of 3/10 and
+4/10 A — taken for the job's — came on fresh adaptations and is gone on
+settled ones. That is the same pattern 014 shows (`refuted.md` C19):
+**fresh adaptations look better on both rulers**, so a session after a
+battery disconnect is no test of a repair. The one hint the other way
+is 9/10's cold idle (1.90 against 2.4–2.6), on five windows and a cold
+idle that also depends on how long after the start it is measured:
+the next cold start on settled adaptations says whether it holds.
 
 **How it is measured.** `IdleHealth` on 0x604 grades one firing against the
 next (100 = the engine before the repair, lower is smoother). Offline,
