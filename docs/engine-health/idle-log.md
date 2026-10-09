@@ -432,6 +432,18 @@ known to have changed the idle; the gasket did fix the oil. One hint
 left: 9/10's cold idle read calmer than 3/10 and 4/10, too few windows
 to carry.
 
+**9/10/2026 — the dips keep to one cylinder.** Looked for once more at
+the owner's question, as events this time rather than as averages: in
+every idle capture since August, two dips close together fall on the
+same cylinder's stroke far more often than chance — 36 % of pairs against
+25 %. Roughly half the stumbles come from one cylinder (or from two
+neighbours in the firing order). Which one, the bus cannot say; cutting
+injectors 1 and 4 in turn can, and that is now `plan.md` step 3.3. It
+moves the suspicion from what acts on the whole engine — the exhaust
+ahead of the probe among them — to what acts on one cylinder: its
+runner, its valves, its plug and lead (`open.md`, *The dips keep to one
+slot*).
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail

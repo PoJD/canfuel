@@ -70,6 +70,15 @@ in the rough ones (13.4× against 13.1×), and the four phase slots differ by
 the idle grade gives, and confounded with temperature.
 **Limit:** four cylinders equally bad leave nothing periodic, so "all four
 together" is neither confirmed nor refuted.
+**Partly un-refuted, 9/10/2026** (`open.md`, *Naming the cylinder*, *The
+dips keep to one slot*). The slot **means** still show no outlier, and that
+stands. But the **dips** — the events this hypothesis was about — keep to
+one slot: 256 of 720 pairs of dips in one phase-intact run fall on the same
+slot, against a quarter by chance (p ≈ 2×10⁻¹⁰). A cylinder that stumbles
+on a few per cent of its strokes hardly moves its mean, which is why the
+periodogram could not see it. Not "dominates" — roughly 45 % of the dips on
+one cylinder, by a model fit — but not four alike either. Back in
+`open.md` as the question `plan.md` step 3.3 answers.
 
 ### A6. "The evaporative purge" — measured
 

@@ -40,10 +40,9 @@ off; Claude runs the capture throughout.
      converter, the probe if it shows. **Black soot streaks** at a joint
      mark a leak. The manifold itself is under its heat shield: leave it.
    - **Still cold, engine off: a dry run for step 3.** Unplug and plug
-     back each of the four injector connectors once, by the connector
-     body with the clip pressed — **never by the wires**. Write which
-     ones can be reached, and whether it goes one-handed in a glove in
-     a few seconds.
+     back injector connectors **1 and 4** once each, by the connector
+     body with the clip pressed — **never by the wires**. Write whether
+     it goes one-handed in a glove in a few seconds.
    - **Nothing found cold → the same again warm**, after a drive to
      68–72 °C of oil.
    - **Leaks there → a new manifold, after step 3**: new gasket to the head, new nuts,
@@ -52,23 +51,22 @@ off; Claude runs the capture throughout.
      ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
      Penetrating oil on the studs the days before; a snapped stud goes to
      a garage.
-3. **The injectors one at a time, warm idle** — only if the injector
-   connectors can be reached with the plenum on. If not, skip it and say so.
+3. **Injectors 1 and 4 in turn, warm idle — on up to three separate
+   days.**
    - Drive until the oil reads 68–72 °C. Stop, neutral, handbrake on,
      loads off. Claude runs the capture; VCDS on **014, 055, 003**.
    - If step 2 needs its warm run, do it first, on this same stop.
    - **1 min** as it is.
-   - **Two rounds, in this order: 1, 2, 3, 4, then 4, 3, 2, 1.**
-     Cylinder 1 is at the timing-belt end. Each time: connector off
-     **1 min**, back on, **30 s** as it is.
+   - **In this order: 1, 4, 4, 1.** Cylinder 1 is at the timing-belt end.
+     Each time: connector off **1 min**, back on, **30 s** as it is.
    - **1 min** as it is, engine off.
-   - **If 2 and 3 cannot be reached:** only 1 and 4, in the order
-     **1, 4, 4, 1**, the same 1 min off and 30 s on.
-   - **If it cannot be done warm:** the same order on a cold start,
-     beginning about 2 minutes after the start.
    - Write the time of every off and on into the chat. The engine light
      will come on, maybe flashing: carry on.
    - Clear the fault memory with VCDS.
+   - **Claude says after each day whether another is needed.** At most
+     three days.
+   - **If it cannot be done warm:** the same on a cold start, beginning
+     about 2 minutes after the start.
 4. **Spray test at the intake, warm idle** — on the same warm stop as
    step 3, after it, with the capture still running.
    - A short burst of **unlit propane** (or brake cleaner) at one joint
@@ -158,7 +156,7 @@ the next is needed.
    that is hydraulic, not the servo (a servo that fails makes the pedal
    *hard*), so it is not read into any of this (`open.md`, *Other*).
 2. **The exhaust ahead of the front probe (H2)** (*reasoned*,
-   9/10/2026): `open.md`'s first candidate since H10 closed (9/10, `refuted.md` C19), and next now that 2b moved nothing on
+   9/10/2026): `open.md`'s first candidate when this was written (since 9/10 second, behind H3, now that the dips keep to one cylinder — but still the one with symptoms of its own), and next now that 2b moved nothing on
    the intake side, the one with a symptom of its own since S15 was
    heard, and free, while the gauge is not yet bought. With the outlet closed, a leak that draws air in at idle blows
    out, and hisses or puffs. Warm, because a crack in cast iron may only
@@ -190,72 +188,76 @@ the next is needed.
    3/10/2026); the suffix differs by model and year; the studs into the
    head are 26 years old. **Nothing leaks ahead of the probe** → H2 is
    refuted for its zone and goes to `refuted.md`.
-3. **The injectors one at a time** (*the owner's proposal, 9/10/2026*;
-   `open.md`, *Naming the cylinder*, method 2). It is also
-   `docs/firmware/open.md` question 11's deliberate misfire, brought
-   forward from "once the idle is solved" at the owner's decision the same
-   day and run for all four cylinders instead of one. With a connector
-   off, that cylinder gets no fuel, so the converter sees air and not fuel
-   (*general*); the light comes on because a quarter of the firings missing
-   is far above the 2 % VW stores a code at (`vcds.md`, *What VW says*),
-   and the rate that damages a converter flashes it (SSP 175) — VW does not
-   publish this ECU's figure. **How it is read** (*reasoned*):
-   - **055 and 003** — how much air the idle regulator adds to hold its
-     speed with each cylinder out. The least is the weakest cylinder.
-     Engine speed alone says little: the regulator restores it in seconds.
-   - **The dips (S1) on the three that still fire**, from the capture,
-     with the dead cylinder's slot taken out. **`tools/cutscan.py`
-     reads the whole test** — finds the cuts in the capture, counts,
-     applies the rules below and prints the verdict; it stops rather than
-     guess if it finds a different number of cuts than the order names. A cylinder that carries the stumble leaves
-     the other three nearly smooth when it is out; the others do not.
-     Three cylinders run at more load each, and load calms this idle, so
-     the dips fall every time — only the four cuts compared with each
-     other mean anything.
-   - **Two rounds, the second reversed** (*decided 9/10/2026*): two
-     minutes a cylinder, the reversal cancels a slow drift of temperature
-     through the test, and a result must hold in both rounds. 30 s
-     between cuts lets the regulator and the lambda settle.
+3. **Injectors 1 and 4** (*the owner's proposal, 9/10/2026*; `open.md`,
+   *Naming the cylinder*). It is also `docs/firmware/open.md` question
+   11's deliberate misfire, brought forward at the owner's decision the
+   same day. With a connector off, that cylinder gets no fuel, so the
+   converter sees air and not fuel (*general*); the light comes on because
+   a quarter of the firings missing is far above the 2 % VW stores a code
+   at (`vcds.md`, *What VW says*), and the rate that damages a converter
+   flashes it (SSP 175) — VW does not publish this ECU's figure.
+   - **Why it can name a cylinder at all.** The idles already show the
+     dips keeping to one slot (`open.md`, *The dips keep to one slot*),
+     but the bus cannot say which cylinder a slot is. While a cylinder is
+     out its slot is known, and the firing order 1-3-4-2 names the other
+     three: **cutting 1 names 3, 4 and 2; cutting 4 names 2, 1 and 3.** So
+     the two outer cylinders name all four, and 2 and 3 are named by both
+     cuts — the two must agree about them, which is the check.
+     (*Decided 9/10/2026*, the owner's question: 2 and 3 are hard to
+     reach, and they are not needed.) The one assumption, stated rather
+     than proved: a dip shows in its cylinder's slot with the same lag as
+     the dead stroke's deficit.
+   - **Why up to three days.** The idles put roughly 45 % of the dips on
+     one cylinder (or 40 % each on two neighbours in the firing order),
+     about 1.8 times its share — a real effect but not a large one, so it
+     takes many dips. Simulated with `tools/cutscan.py` at 6–10 dips a
+     minute (*decided 9/10/2026*): the named cylinder comes out right in
+     0–47 % of trials on one day's four cut-minutes, 25–83 % on twelve,
+     and 58–92 % on all four cylinders for sixteen; a cylinder carrying
+     three quarters or more is found on one day. Three days of 1, 4, 4, 1
+     are twelve cut-minutes without any one idle growing past about
+     7 minutes, which keeps to the rule. The days are pooled.
+   - **`tools/cutscan.py` reads the whole test**, all days together: it
+     finds the cuts in the capture, counts, applies the rules below and
+     prints the verdict; it stops rather than guess if it finds a
+     different number of cuts than the order names.
    - **The criteria, fixed before the test** (*decided 9/10/2026*, so the
-     result cannot be read to fit). Reasoned from the data, not from a
-     source: at a warm idle on settled adaptations the dips ran 12 ± 3.3
-     a minute (`30`, nine one-minute windows — Poisson-like; `28` was
-     three times as scattered), and 003's air 3.14 g/s with a 40 s mean
-     scattering ±0.04 g/s (`30`, A3). A simulated round at 6–10 dips a
-     minute finds a cylinder carrying all the dips every time, one
-     carrying three quarters 77–94 % of the time at two minutes (36–62 %
-     at one), half rarely.
-     1. **Dips — an intermittent cylinder.** Dips counted on the three
-        firing cylinders, the dead slot out, the first 5 s of each cut
-        out. **One cylinder** if its cut leaves the fewest, at p < 0.05
-        against equal shares (the four counts as one multinomial, given
-        their total), **and** it is the fewest in both rounds.
+     result cannot be read to fit; *revised the same day*, before any
+     run, when the dips were found to keep to one slot — the earlier
+     version compared the cuts with each other first, which simulation
+     showed would find a 45 % cylinder only 14–28 % of the time):
+     1. **By name — the main reading.** Dips counted on the three firing
+        cylinders, named from the dead slot, the first 5 s of each cut
+        out; each a stroke 20 rpm below its own cylinder's neighbours.
+        **One cylinder** if its rate is the highest at p < 0.05 against
+        every cylinder alike (an exact multinomial on the counts, given
+        their total and each cylinder's strokes), **and** it is the
+        highest in both halves of the pooled cuts.
      2. **Air — a steadily weak cylinder.** 003's air over the last 40 s
         of each cut, its ignition angle beside it (the idle control uses
-        both). **Weak** if its cut needs **≥ 0.15 g/s less** than the
-        mean of the other three, in both rounds — about 10 % less work
-        from that cylinder (*reasoned*: cutting a healthy one needs
-        ~1.1 g/s more, a 10 % weaker one ~0.14 g/s less than that).
-     3. **Not one cylinder** if the dips give p > 0.2 and the air differs
-        by under 0.08 g/s. That rules out one cylinder carrying three
-        quarters or more of the dips, or one 10 % weak — **not a smaller
-        share**, and it is recorded that way.
-     4. **Anything between is undecided** — at most one more round, not a
-        reading stretched to fit.
-   - **What each outcome points at:** dips and air on the same cylinder →
-     that cylinder (H1, H3 at its runner, its plug and lead); dips alone →
-     an intermittent fault there (ignition, injector, valve); air alone →
-     a weak cylinder that is not the stumble; neither → the whole engine
-     (H0, H2, H4, H7, H8).
-   - **The dead cylinder names the slots only while it is out.** Its
-     stroke is a huge dip once every four, but the bus loses the cylinder
-     phase every few seconds — whenever two strokes quantise to the same
-     0.25 rpm (`idledips.cylinder_runs`; on `30` the phase held a median
-     3 s, at most 16 s). So the names cannot be carried into the
-     four-cylinder minutes or into earlier captures, and the dips cannot
-     be put to cylinders one by one: comparing the cuts is the only way.
-     *Corrected 9/10/2026*: this said the names would hold "in this
-     capture and every earlier one".
+        both). **Weak** if one cut needs **≥ 0.15 g/s less** than the
+        other, in both halves — about 10 % less work from that cylinder
+        (*reasoned*: cutting a healthy one needs ~1.1 g/s more, a 10 %
+        weaker one ~0.14 g/s less than that). Only 1 and 4 can be weighed
+        this way.
+     3. **No cylinder stands out** if the named rates give p > 0.2 after
+        three days. That rules out one carrying three quarters or more,
+        **not a smaller share**, and it is recorded that way.
+     4. **Anything between is undecided** after three days — not a reading
+        stretched to fit. The cuts compared with each other are printed
+        as a secondary reading and decide nothing.
+   - **What each outcome points at:** a cylinder named → that cylinder:
+     its plug and lead, its injector, its runner (H3), its valves (H1);
+     air weak too → a steady fault there (a valve, a runner leak) rather
+     than an intermittent one; nothing → the whole engine (H0, H2, H4,
+     H7, H8).
+   - **The names hold only while a cylinder is out.** The bus loses the
+     cylinder phase every few seconds — whenever two strokes quantise to
+     the same 0.25 rpm (`idledips.cylinder_runs`; on `30` the phase held
+     a median 3 s, at most 16 s). So they cannot be carried into the
+     four-cylinder minutes or into earlier captures. *Corrected 9/10/2026*:
+     this said the names would hold "in this capture and every earlier
+     one".
    - **The dry run and the cold fallback** (*decided 9/10/2026*: the
      owner doubts the connectors can be handled hot). The injectors sit
      on the intake side, away from the manifold, which at a warm idle is
@@ -263,26 +265,18 @@ the next is needed.
      says whether a glove is enough. The connectors are taken by the
      body because the harness is 26 years old (`open.md` H7 test 3): a
      wire torn here would be a new fault no reading could tell apart.
-     **Cold is the worse version**: the reversed second round cancels a
-     steady warm-up, roughly; the fast idle must be over first; 014 hardly
-     counts cold, so question 11's reading is lost; the regulator drifts
-     as the engine warms, so the air criterion is weaker; a lifter that
-     shows only on warm oil (H1) cannot show. The dips are more numerous
-     cold, so criterion 1 may if anything do better.
-   - **Only 1 and 4** (if 2 and 3 cannot be reached): the same criteria,
-     1 against 4 directly. It can say *1* or *4*; it **cannot** say *not
-     one cylinder* — a culprit at 2 or 3 makes the two cuts alike, which
-     is also what four alike cylinders do — so "alike" is recorded as
-     "not 1 and not 4". Question 11's reading needs only one cut and is
-     whole either way. The plug lead of 2 or 3 is **not** pulled instead:
-     that sends fuel to the converter.
+     **Cold is the worse version**: the fast idle must be over first; 014
+     hardly counts cold, so question 11's reading is lost; the regulator
+     drifts as the engine warms, so the air criterion is weaker; a lifter
+     that shows only on warm oil (H1) cannot show. The dips are more
+     numerous cold, so criterion 1 may if anything do better. The plug
+     lead of a cylinder is **never** pulled instead: that sends fuel to
+     the converter.
    - Question 11's own reading — 014 and `IdleHealth` against a misfire
      of known rate — comes from the same minutes.
-   About 13 minutes of warm idle, against the rule; the owner's call, and
-   the converter is not at risk with the fuel off. **Before any new
-   manifold** (*decided 9/10/2026*): it is free, and the manifold is the
-   bigger job — a cylinder named here would change what the manifold is
-   expected to fix. Step 2's warm run shares its drive.
+   **Before any new manifold** (*decided 9/10/2026*): it is free, and the
+   manifold is the bigger job — a cylinder named here would change what
+   the manifold is expected to fix. Step 2's warm run shares its drive.
 4. **The spray test** (`open.md` H3 test 1, *decided 9/10/2026*). What
    is left of H3 after the cold smoke of 9/10 is a joint that opens only
    hot, which smoke into a cold, stopped engine cannot find; and the back

@@ -52,11 +52,13 @@ number, no simulation, no seed.
 Usage
 -----
 
-    python cutscan.py CAPTURE                          # order 1,2,3,4,4,3,2,1
-    python cutscan.py --order 1,4,4,1 CAPTURE
+    python cutscan.py CAPTURE                          # order 1,4,4,1
+    python cutscan.py DAY1 DAY2 DAY3                   # sessions, pooled
+    python cutscan.py --order 1,2,3,4,4,3,2,1 CAPTURE
     python cutscan.py --vcds LOG.csv CAPTURE           # ...with 003's air
     python cutscan.py --cuts 120-180,210-270,... CAPTURE
     python cutscan.py --scan CAPTURE                   # the per-run deficits
+    python cutscan.py --pairs CAPTURE [...]            # no cuts: same-slot dips
 """
 
 from __future__ import annotations
@@ -201,6 +203,48 @@ def firing_dips(runs, t_from, t_to):
     return events, exposure
 
 
+#: The firing order (*general*, the AQY's 1-3-4-2). Slot k after the dead one
+#: in a run is the cylinder k places after the dead one in this order.
+FIRING_ORDER = (1, 3, 4, 2)
+
+
+def named_dips(runs, t_from, t_to, dead_cyl):
+    """{cylinder: (events, firing strokes)} inside one cut, by NAME.
+
+    While a cylinder is out its slot is known, and the firing order names the
+    other three -- the one measurement on this bus that can put a dip to a
+    cylinder. It rests on one assumption, stated rather than proved: that a
+    dip shows in its cylinder's slot with the same lag as the dead stroke's
+    deficit does. Cutting 1 and cutting 4 both name 2 and 3, so the two must
+    agree about them; that is the check.
+    """
+    pos = FIRING_ORDER.index(dead_cyl)
+    out = {c: [0, 0] for c in FIRING_ORDER if c != dead_cyl}
+    for run in runs:
+        if run[-1][0] < t_from or run[0][0] >= t_to:
+            continue
+        dead, _ = slot_deficit(run)
+        v = [r for _, r in run]
+        flagged_prev = {}
+        for i, (t, r) in enumerate(run):
+            k = (i - dead) % 4
+            if k == 0 or not (t_from <= t < t_to):
+                continue
+            cyl = FIRING_ORDER[(pos + k) % 4]
+            same = [v[j] for j in range(i - 4 * DIP_NEIGHBOURS,
+                                        i + 4 * DIP_NEIGHBOURS + 1, 4)
+                    if j != i and 0 <= j < len(v)]
+            if len(same) < DIP_NEIGHBOURS:
+                continue
+            out[cyl][1] += 1
+            low = statistics.median(same) - r >= DIP_RPM
+            # one event per run of low strokes of the same cylinder
+            if low and not flagged_prev.get(cyl):
+                out[cyl][0] += 1
+            flagged_prev[cyl] = low
+    return {c: tuple(x) for c, x in out.items()}
+
+
 # --- the statistics ---------------------------------------------------------
 
 def min_rate_p(counts, exposures):
@@ -235,6 +279,84 @@ def min_rate_p(counts, exposures):
         return s
 
     return min(1.0, math.exp(lf[n]) * tail(0, n, False))
+
+
+def max_rate_p(counts, exposures):
+    """P(largest count/expected >= observed), all alike, given the total.
+
+    The mirror of min_rate_p(): the question here is whether one named
+    cylinder carries MORE of the dips than its share of the strokes.
+    """
+    n = sum(counts)
+    k = len(counts)
+    if n == 0 or k < 2:
+        return 1.0
+    tot = float(sum(exposures))
+    probs = [e / tot for e in exposures]
+    observed = max(c / (n * p) for c, p in zip(counts, probs))
+    logp = [math.log(p) for p in probs]
+    lf = [math.lgamma(i + 1) for i in range(n + 1)]
+    eps = 1e-12
+
+    @lru_cache(maxsize=None)
+    def tail(j, left, hi_seen):
+        if j == k - 1:
+            c = left
+            hit = hi_seen or c / (n * probs[j]) >= observed - eps
+            return math.exp(c * logp[j] - lf[c]) if hit else 0.0
+        s = 0.0
+        for c in range(left + 1):
+            hit = hi_seen or c / (n * probs[j]) >= observed - eps
+            s += math.exp(c * logp[j] - lf[c]) * tail(j + 1, left - c, hit)
+        return s
+
+    return min(1.0, math.exp(lf[n]) * tail(0, n, False))
+
+
+def named_verdict(order, named):
+    """plan.md 3.3 rule 1, by name. named[i] is named_dips() for cut i.
+
+    Returns (lines, dict). One cylinder if the highest named rate is at
+    p < P_ONE over all cuts AND it is the highest in both rounds.
+    """
+    half = len(order) // 2
+    cyls = sorted({c for d in named for c in d})
+
+    def pool(idx):
+        ev = {c: 0 for c in cyls}
+        ex = {c: 0 for c in cyls}
+        for i in idx:
+            for c, (e, x) in named[i].items():
+                ev[c] += e
+                ex[c] += x
+        return ev, ex
+
+    ev, ex = pool(range(len(order)))
+    named_cyls = [c for c in cyls if ex[c] > 0]
+    p = max_rate_p([ev[c] for c in named_cyls], [ex[c] for c in named_cyls])
+    rate = {c: ev[c] / ex[c] for c in named_cyls}
+    high = max(named_cyls, key=lambda c: rate[c])
+    by_round = []
+    for idx in (range(0, half), range(half, len(order))):
+        e, x = pool(idx)
+        ok = [c for c in named_cyls if x[c] > 0]
+        by_round.append(max(ok, key=lambda c: e[c] / x[c]))
+    one = p < P_ONE and all(r == high for r in by_round)
+    res = {"p": p, "high": high, "by_round": by_round, "one": one,
+           "rate": rate, "unnamed": [c for c in cyls if ex[c] == 0]}
+    lines = ["dips by NAME, per 1000 firing strokes: " + ", ".join(
+        "%d: %.1f (%d of %d)" % (c, 1000 * rate[c], ev[c], ex[c])
+        for c in named_cyls),
+        "p (largest rate, all alike) = %.3g; highest by round: %s"
+        % (p, ", ".join(str(r) for r in by_round))]
+    if one:
+        lines.append(f"VERDICT by name: cylinder {high} carries more of the "
+                     f"dips than its share (p < {P_ONE}, highest in both rounds)")
+    elif p > P_NONE:
+        lines.append("VERDICT by name: no cylinder stands out")
+    else:
+        lines.append("VERDICT by name: undecided")
+    return lines, res
 
 
 # --- VCDS -------------------------------------------------------------------
@@ -402,54 +524,88 @@ def verdict(order, counts, exposures, air=None):
     return lines, res
 
 
-def main(argv=None):
-    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("capture")
-    ap.add_argument("--order", default="1,2,3,4,4,3,2,1")
-    ap.add_argument("--vcds", help="VCDS CSV with groups 003 (and 014)")
-    ap.add_argument("--cuts", help="intervals by hand: a-b,a-b,... in seconds")
-    ap.add_argument("--scan", action="store_true",
-                    help="print every run's slot deficit and stop")
-    args = ap.parse_args(argv)
+# --- the dips keep to one slot: the evidence from ordinary idles -------------
 
-    rpm, _, _, gated = idledips.series(args.capture)
+#: Two dips closer than this may be one stumble and its recovery.
+PAIR_MIN_LAG = 16
+
+
+def slot_dips(run):
+    """Stroke indices of dip events in a four-cylinder run, each stroke judged
+    against the same slot either side of it -- so a slot that merely sits a
+    little low cannot make its own dips (that would be the period-4 line of
+    refuted.md A5 again, which is a mean and not an event)."""
+    v = [r for _, r in run]
+    out, prev = [], False
+    for i in range(len(v)):
+        same = [v[j] for j in range(i - 4 * DIP_NEIGHBOURS,
+                                    i + 4 * DIP_NEIGHBOURS + 1, 4)
+                if j != i and 0 <= j < len(v)]
+        if len(same) < 2 * DIP_NEIGHBOURS:
+            prev = False
+            continue
+        low = statistics.median(same) - v[i] >= DIP_RPM
+        if low and not prev:
+            out.append(i)
+        prev = low
+    return out
+
+
+def slot_pairs(gated, min_lag=PAIR_MIN_LAG):
+    """[n by lag mod 4] over every pair of dips inside one phase-intact run.
+
+    Which cylinder a slot is cannot be known, but whether two dips fall on
+    the SAME slot can: by chance a quarter of pairs would. One cylinder
+    carrying share s0 of the dips (and the others s1..s3) puts sum(s_i^2)
+    of the pairs on lag 0 mod 4.
+    """
+    by_mod = [0, 0, 0, 0]
+    for run in stroke_runs(gated):
+        e = slot_dips(run)
+        for a in range(len(e)):
+            for b in range(a + 1, len(e)):
+                lag = e[b] - e[a]
+                if lag >= min_lag:
+                    by_mod[lag % 4] += 1
+    return by_mod
+
+
+def binom_upper(k, n, p):
+    """P(X >= k) for X ~ Binomial(n, p)."""
+    return sum(math.comb(n, j) * p ** j * (1 - p) ** (n - j)
+               for j in range(k, n + 1))
+
+
+def read_session(capture, order, cuts_arg=None, vcds_path=None):
+    """One capture: its cuts, dips by cut and by name, and the air."""
+    rpm, _, _, gated = idledips.series(capture)
     runs = stroke_runs(gated)
-    if args.scan:
-        for run in runs:
-            dead, d = slot_deficit(run)
-            print("%8.1f-%8.1f s  %4d strokes  slot %d  %5.1f rpm%s" % (
-                run[0][0], run[-1][0], len(run), dead, d,
-                "  CUT" if d >= CUT_DEFICIT_RPM else ""))
-        return 0
-
-    order = [int(x) for x in args.order.split(",")]
-    if len(order) % 2:
-        raise SystemExit("--order must be two rounds of equal length")
-    if args.cuts:
-        cuts = [tuple(float(x) for x in s.split("-")) for s in args.cuts.split(",")]
+    if cuts_arg:
+        cuts = [tuple(float(x) for x in s.split("-")) for s in cuts_arg.split(",")]
     else:
         cuts = find_cuts(runs)
     if len(cuts) != len(order):
-        print("found %d cuts, the order names %d -- stopping rather than "
-              "guessing which is which:" % (len(cuts), len(order)))
+        print("%s: found %d cuts, the order names %d -- stopping rather than "
+              "guessing which is which:" % (capture, len(cuts), len(order)))
         for a, b in cuts:
             print("  %8.1f-%8.1f s" % (a, b))
         print("check with --scan, then give them with --cuts")
-        return 1
-
-    counts, exposures = [], []
-    print("%-4s %-19s %6s %8s %8s" % ("cyl", "cut, capture s", "dips", "strokes",
+        return None
+    print("== %s" % capture)
+    print("%-4s %-19s %6s %8s %8s" % ("cut", "capture s", "dips", "strokes",
                                        "grade"))
+    counts, exposures = [], []
     for c, (a, b) in zip(order, cuts):
         ev, ex = firing_dips(runs, a + CUT_SETTLE_S, b)
         counts.append(ev)
         exposures.append(ex)
         grade = idledips.roughness(gated, a, b)[0]
         print("%-4d %8.1f-%8.1f %6d %8d %8.2f" % (c, a, b, ev, ex, grade))
-
+    named = [named_dips(runs, a + CUT_SETTLE_S, b, c)
+             for c, (a, b) in zip(order, cuts)]
     air = None
-    if args.vcds:
-        vc = read_vcds(args.vcds)
+    if vcds_path:
+        vc = read_vcds(vcds_path)
         got = air_by_cut(vc, rpm, cuts)
         if got:
             air_ign, off = got
@@ -458,14 +614,87 @@ def main(argv=None):
                   % (off, AIR_TAIL_S))
             for c, (x, y) in zip(order, air_ign):
                 print("  %d: air %s g/s, ignition %s deg" % (
-                    c, "—" if x is None else "%.2f" % x,
-                    "—" if y is None else "%.1f" % y))
+                    c, "-" if x is None else "%.2f" % x,
+                    "-" if y is None else "%.1f" % y))
             mis = misfires_by_cut(vc, rpm, cuts, off)
             if mis:
                 print("014 rises a minute per cut (question 11): " + ", ".join(
                     "%d: %.1f" % (c, m) for c, m in zip(order, mis)))
+    return counts, exposures, named, air
 
-    for line in verdict(order, counts, exposures, air)[0]:
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
+    ap.add_argument("captures", nargs="+",
+                    help="one or more sessions, pooled in the order given")
+    ap.add_argument("--order", default="1,4,4,1",
+                    help="the cut order of EVERY session")
+    ap.add_argument("--vcds", nargs="*", default=[],
+                    help="VCDS CSVs with 003 (and 014), one per capture")
+    ap.add_argument("--cuts", help="intervals by hand, one capture only")
+    ap.add_argument("--pairs", action="store_true",
+                    help="ordinary idles: do dips keep to one slot? (no cuts)")
+    ap.add_argument("--scan", action="store_true",
+                    help="print every run's slot deficit and stop")
+    args = ap.parse_args(argv)
+
+    if args.pairs:
+        total = [0, 0, 0, 0]
+        for cap in args.captures:
+            m = slot_pairs(idledips.series(cap)[3])
+            total = [x + y for x, y in zip(total, m)]
+            n = sum(m)
+            print("%-30s pairs %4d  same slot %3d (%s)  lag mod 4: %s" % (
+                cap.split("/")[-1], n, m[0],
+                "%.0f%%" % (100.0 * m[0] / n) if n else "-",
+                " ".join("%d:%d" % (k, x) for k, x in enumerate(m))))
+        n = sum(total)
+        if n:
+            print("pooled: %d of %d on the same slot (%.0f%%, chance 25%%), "
+                  "p = %.2g" % (total[0], n, 100.0 * total[0] / n,
+                                binom_upper(total[0], n, 0.25)))
+        return 0
+
+    if args.scan:
+        for cap in args.captures:
+            for run in stroke_runs(idledips.series(cap)[3]):
+                dead, d = slot_deficit(run)
+                print("%8.1f-%8.1f s  %4d strokes  slot %d  %5.1f rpm%s" % (
+                    run[0][0], run[-1][0], len(run), dead, d,
+                    "  CUT" if d >= CUT_DEFICIT_RPM else ""))
+        return 0
+
+    order = [int(x) for x in args.order.split(",")]
+    if len(order) % 2:
+        raise SystemExit("--order must be two rounds of equal length")
+    if args.cuts and len(args.captures) != 1:
+        raise SystemExit("--cuts takes one capture at a time")
+    if args.vcds and len(args.vcds) != len(args.captures):
+        raise SystemExit("--vcds takes one log per capture")
+
+    all_order, counts, exposures, named, air = [], [], [], [], []
+    air_ok = True                   # the air is used only if every session has it
+    for i, cap in enumerate(args.captures):
+        got = read_session(cap, order, args.cuts,
+                           args.vcds[i] if args.vcds else None)
+        if got is None:
+            return 1
+        c, e, n, a = got
+        all_order += order
+        counts += c
+        exposures += e
+        named += n
+        if a is None:
+            air_ok = False
+        else:
+            air += a
+
+    print("== pooled over %d session(s)" % len(args.captures))
+    for line in named_verdict(all_order, named)[0]:
+        print(line)
+    print("-- the cuts compared with each other (secondary):")
+    for line in verdict(all_order, counts, exposures,
+                        air if air_ok else None)[0]:
         print(line)
     return 0
 

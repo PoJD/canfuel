@@ -24,8 +24,9 @@ import random
 import unittest
 
 import cutscan
-from cutscan import (find_cuts, firing_dips, min_rate_p, read_vcds,
-                     slot_deficit, stroke_runs, verdict)
+from cutscan import (find_cuts, firing_dips, max_rate_p, min_rate_p,
+                     named_dips, named_verdict, read_vcds, slot_deficit,
+                     stroke_runs, verdict)
 from idledips import FIXTURES, series
 
 FIRING = (1, 3, 4, 2)        # the firing order: slot i % 4 is FIRING[i % 4]
@@ -52,6 +53,9 @@ def synthetic(cuts, dip_cyls=(), dip_p=0.0, seconds=None, rpm=800.0,
         dead = any(a <= t < b and c == cyl for a, b, c in cuts)
         if dead:
             v -= 30.0
+        elif isinstance(dip_p, dict):
+            if rnd.random() < dip_p.get(cyl, 0.0):
+                v -= 30.0
         elif cyl in dip_cyls and rnd.random() < dip_p:
             v -= 30.0
         strokes.append((t, int(round(v * 4))))
@@ -142,6 +146,80 @@ class NamingTheCylinder(unittest.TestCase):
                         order=[1, 4, 4, 1])
         self.assertTrue(res["dips_one"])
         self.assertEqual(res["low"], 4)
+
+
+class ByName(unittest.TestCase):
+    """While a cylinder is out, the other three have names. The design
+    plan.md 3.3 settled on is 1 and 4 only, repeated on separate days."""
+
+    @staticmethod
+    def named(gated, order):
+        runs = stroke_runs(gated)
+        cuts = find_cuts(runs)
+        return [named_dips(runs, a + cutscan.CUT_SETTLE_S, b, c)
+                for c, (a, b) in zip(order, cuts)], len(cuts)
+
+    def test_cutting_1_names_3_4_and_2(self):
+        sched = [(30, 90, 1)]
+        named, n = self.named(synthetic(sched, seconds=120), [1])
+        self.assertEqual(n, 1)
+        self.assertEqual(sorted(named[0]), [2, 3, 4])
+
+    def test_a_dip_prone_middle_cylinder_is_named_by_the_outer_cuts(self):
+        order = [1, 4, 4, 1, 1, 4, 4, 1]
+        sched = [(30 + 90 * k, 90 + 90 * k, c) for k, c in enumerate(order)]
+        named, n = self.named(synthetic(sched, dip_p={3: 0.02}), order)
+        self.assertEqual(n, len(order))
+        res = named_verdict(order, named)[1]
+        self.assertTrue(res["one"])
+        self.assertEqual(res["high"], 3)
+
+    def test_an_outer_cylinder_is_named_by_the_other_cut(self):
+        order = [1, 4, 4, 1, 1, 4, 4, 1]
+        sched = [(30 + 90 * k, 90 + 90 * k, c) for k, c in enumerate(order)]
+        named, n = self.named(synthetic(sched, dip_p={1: 0.02}), order)
+        res = named_verdict(order, named)[1]
+        self.assertTrue(res["one"])
+        self.assertEqual(res["high"], 1)
+
+    def test_dips_on_all_four_name_nobody(self):
+        order = [1, 4, 4, 1]
+        sched = [(30 + 90 * k, 90 + 90 * k, c) for k, c in enumerate(order)]
+        named, _ = self.named(synthetic(sched, dip_cyls=(1, 2, 3, 4),
+                                        dip_p=0.006, seed=11), order)
+        self.assertFalse(named_verdict(order, named)[1]["one"])
+
+    def test_the_max_statistic_mirrors_the_min(self):
+        self.assertAlmostEqual(max_rate_p([8, 2], [100, 100]),
+                               min_rate_p([8, 2], [100, 100]), places=9)
+        self.assertGreater(max_rate_p([10, 10, 10], [100] * 3), 0.99)
+
+
+class SameSlotPairs(unittest.TestCase):
+    """The evidence from ordinary idles: do the dips keep to one slot?"""
+
+    def test_dips_on_one_cylinder_keep_to_one_slot(self):
+        m = cutscan.slot_pairs(synthetic([], dip_p={3: 0.02}, seconds=900, seed=4))
+        self.assertGreater(m[0] / sum(m), 0.8)
+
+    def test_dips_on_all_four_do_not(self):
+        m = [0, 0, 0, 0]
+        for seed in (1, 2, 3, 5):
+            got = cutscan.slot_pairs(synthetic([], dip_cyls=(1, 2, 3, 4),
+                                               dip_p=0.006, seconds=900,
+                                               seed=seed))
+            m = [x + y for x, y in zip(m, got)]
+        self.assertLess(m[0] / sum(m), 0.35)
+
+    def test_the_real_idles_keep_to_one_slot(self):
+        """The finding of 9/10/2026 (docs/engine-health/open.md, *The dips
+        keep to one slot*). If this fails, that section is wrong."""
+        m = [0, 0, 0, 0]
+        for name in ("19_postfix_drive_z1.txt", "24_mafswap_drive_z1.txt",
+                     "28_sessionA2_warm_z1.txt", "30_step2b_z1.txt"):
+            got = cutscan.slot_pairs(series(os.path.join(FIXTURES, name))[3])
+            m = [x + y for x, y in zip(m, got)]
+        self.assertLess(cutscan.binom_upper(m[0], sum(m), 0.25), 0.001)
 
 
 class TheStatistics(unittest.TestCase):

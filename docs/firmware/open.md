@@ -150,8 +150,9 @@ reason it was wanted.
 ### Next: a deliberate misfire
 
 *Owner's proposal, 4/10/2026. **Brought forward on 9/10/2026** (owner's
-decision): it is now `docs/engine-health/plan.md` step 3.3, one cylinder
-after another, where it also names the weak cylinder if there is one;
+decision): it is now `docs/engine-health/plan.md` step 3.3, cylinders 1 and 4
+in turn on up to three days, where it also names the cylinder the dips
+keep to;
 this was "not before `plan.md` is empty".* A known, regular misfire, so that both instruments can be read
 against something real:
 
