@@ -1609,7 +1609,11 @@ loose at its foot. The original bracket could not be had, so a strip of
 sheet metal is bolted to the head (thread-locked) and the guide is
 cable-tied to it; the original can replace it if one turns up. **The old
 guide was not this engine's part** (*owner*): its mounting tab sat
-elsewhere, which may be why the bracket had been taken off. *Inferred,
+elsewhere, which may be why the bracket had been taken off. Side by side
+with the new one (*owner, photographed*:
+`photos/dipstick-2026-10-09-old-vs-new-*.jpg`): the old guide is bent
+the other way — to the left, were the bracket where it belongs — and its
+tab sits about 2 cm lower than the new, correct one's. *Inferred,
 not known:* the 2018 dipstick job (*Not the first leak*, above) is the
 likeliest time it went on. **What this settles:** the dipstick is now a
 sealed, fixed path, so smoke at it in `plan.md` step 2a is a finding
