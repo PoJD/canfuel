@@ -20,7 +20,9 @@ off, say so before step 2b.
 **The intake again, with the old MAF in place**
 1. Fit the old MAF (the 2018 one) into the airbox and the hose, as the
    real one sits. Leave it unplugged. The new MAF stays bagged.
-2. Close the airbox's air inlet (the snorkel) with a bag or tape.
+2. Close the airbox's air inlet (the snorkel) with a bag or tape. *Or,
+   for the hose alone:* the old MAF in the hose only, its airbox end
+   closed with a bag and tape.
 3. Smoke into the regulator's hose as before, throttle held open.
 4. Look at everything from the first time, and also: the old MAF's two
    joints, the clamp at the hose, the airbox's lid and its seal.
