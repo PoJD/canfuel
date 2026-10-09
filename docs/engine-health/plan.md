@@ -39,6 +39,11 @@ off; Claude runs the capture throughout.
      reaches — the flange under the manifold, the front pipe back to the
      converter, the probe if it shows. **Black soot streaks** at a joint
      mark a leak. The manifold itself is under its heat shield: leave it.
+   - **Still cold, engine off: a dry run for step 3.** Unplug and plug
+     back each of the four injector connectors once, by the connector
+     body with the clip pressed — **never by the wires**. Write which
+     ones can be reached, and whether it goes one-handed in a glove in
+     a few seconds.
    - **Nothing found cold → the same again warm**, after a drive to
      68–72 °C of oil.
    - **Leaks there → a new manifold, after step 3**: new gasket to the head, new nuts,
@@ -59,6 +64,8 @@ off; Claude runs the capture throughout.
    - **1 min** as it is, engine off.
    - **If 2 and 3 cannot be reached:** only 1 and 4, in the order
      **1, 4, 4, 1**, the same 1 min off and 30 s on.
+   - **If it cannot be done warm:** the same order on a cold start,
+     beginning about 2 minutes after the start.
    - Write the time of every off and on into the chat. The engine light
      will come on, maybe flashing: carry on.
    - Clear the fault memory with VCDS.
@@ -232,6 +239,19 @@ the next is needed.
      be put to cylinders one by one: comparing the cuts is the only way.
      *Corrected 9/10/2026*: this said the names would hold "in this
      capture and every earlier one".
+   - **The dry run and the cold fallback** (*decided 9/10/2026*: the
+     owner doubts the connectors can be handled hot). The injectors sit
+     on the intake side, away from the manifold, which at a warm idle is
+     warm rather than hot (*general*, not measured here); the dry run
+     says whether a glove is enough. The connectors are taken by the
+     body because the harness is 26 years old (`open.md` H7 test 3): a
+     wire torn here would be a new fault no reading could tell apart.
+     **Cold is the worse version**: the reversed second round cancels a
+     steady warm-up, roughly; the fast idle must be over first; 014 hardly
+     counts cold, so question 11's reading is lost; the regulator drifts
+     as the engine warms, so the air criterion is weaker; a lifter that
+     shows only on warm oil (H1) cannot show. The dips are more numerous
+     cold, so criterion 1 may if anything do better.
    - **Only 1 and 4** (if 2 and 3 cannot be reached): the same criteria,
      1 against 4 directly. It can say *1* or *4*; it **cannot** say *not
      one cylinder* — a culprit at 2 or 3 makes the two cuts alike, which
