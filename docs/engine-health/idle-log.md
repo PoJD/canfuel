@@ -306,11 +306,24 @@ As an index (÷ 2.00 × 100): the middle band 106 → 98–107, the cold idle
 idea is **air reaching the engine past the throttle** — an unmetered leak at
 the back of the intake, never sprayed, where the owner also hears a hiss he
 cannot place — with the learned idle air value as the ECU's way of showing
-it. **Next** (`plan.md`): the exhaust joint behind the converter, for
-comfort; an **intake smoke test**; then session A **without** resetting the
-adaptations, so that a zero means something.
+it. **Next** (`plan.md`): the dipstick tube refitted; an **intake smoke
+test**; then session A **without** resetting the adaptations, so that a
+zero means something.
 
 *Entries are added here as each step is done.*
+
+**9/10/2026 — the exhaust joint behind the converter, resealed** (*owner,
+photographed*: `photos/exhaust-joint-2026-10-09-old-parts.jpg`,
+`photos/exhaust-joint-2026-10-09-new.jpg`). The joint the garage had
+filled with sealant on 10/9, and that had rattled since, was taken apart
+and remade with a two-bolt sleeve connector and exhaust sealant. A little
+play remains — the pipe behind is about 1 mm narrower — which the sealant
+is expected to take up; a reducing connector if not. **Done for comfort,
+not for the idle**: the joint is behind both lambda probes, so it cannot
+have touched the mixture, the trims or a misfire, and **nothing is
+claimed for S1 or S3**. What it can say is about S2 and S14: a puff or a
+bang that goes on unchanged after it was not fed by this joint. S6 closed
+at the owner's decision (`open.md`).
 
 ---
 

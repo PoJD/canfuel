@@ -12,16 +12,8 @@ records it**, and the file is deleted when it is empty.
 
 # Part 1 — what to do
 
-⚠ **Keep the battery connected through steps 2 and 2a.** If a repair
-needs it off, say so before step 2b.
-
-## Step 2 — the exhaust joint behind the converter
-
-After about 11/10, with the new flange and exhaust sealant in hand.
-
-1. Make the joint behind the converter tight with the new flange and
-   sealant.
-2. Do not touch the manifold.
+⚠ **Keep the battery connected through step 2a.** If a repair needs it
+off, say so before step 2b.
 
 ## Step 2a — the smoke tests, engine off and cold
 
@@ -29,7 +21,8 @@ After about 11/10, with the new flange and exhaust sealant in hand.
 1. Push the lower metal tube home in the block if it has backed out. Do
    not replace it.
 2. Fit the new orange guide onto the tube.
-3. Fit the bracket and clip the guide onto it.
+3. Bend a bracket from sheet metal, fix it where the original sat, and
+   clip the guide onto it. The tube must not move under the hand.
 
 **The intake**
 1. Smoke tester: Lincos `MG78016`, 5–35 ml of **the smoke oil supplied
@@ -181,16 +174,10 @@ from zero, it took about 35 minutes of driving and stops to pass −0.93. A
 learned value that stays well short of that after as long is a result in
 itself (H10: air the plate did not let in is gone).
 
-## Step 2 — why
-
-*Owner's decision, 4/10/2026.* The joint behind the converter has never
-been tight (`open.md` S6). **For comfort, not for the idle**: it is
-behind both probes and spits on every drive. The manifold is step 3.
-
 ## Step 2a — why, and what the smoke means
 
-*Owner's decision, 4/10/2026:* **straight after step 2, whatever H10
-turns out to be** — the misfires are there either way, and the smoke says
+*Owner's decision, 4/10/2026:* **next, whatever H10 turns out to
+be** — the misfires are there either way, and the smoke says
 where air gets in, which H10 cannot. It also looks for the hiss the owner
 hears and cannot place (`open.md` S11). Engine off and cold, so it costs
 no idle.
@@ -200,7 +187,12 @@ bracket missing, fresh oil at its foot (`open.md` H3, *The dipstick
 tube*). Refitted before the smoke so that smoke at the dipstick means
 something. The lower tube stays (*owner's decision, 4/10/2026*: by most
 accounts hard to get out). **Finding the parts is done outside this
-repository** (*owner's decision, 7/10/2026*).
+repository** (*owner's decision, 7/10/2026*). **The original bracket
+could not be had, so the owner makes one from sheet metal** (*owner's
+decision, 9/10/2026*). It only has to hold the guide still: what seals
+the crankcase is the tube home in the block and the dipstick seated in
+the guide (*reasoned*), so a home-made bracket costs nothing the smoke
+can read.
 
 **The intake** (*general practice, not VW's*):
 - **the tester** has its own pump because the owner has no aquarium pump
