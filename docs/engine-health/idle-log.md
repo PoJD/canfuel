@@ -244,7 +244,7 @@ middle stop as on 3/10, and even on the idle straight after the start,
 which no session had done before. The live lambda control (033) did not
 correct toward rich, which an exhaust leak at the front probe would force.
 
-**What the two sessions showed together** (`open.md` H10): 014 followed
+**What the two sessions showed together** (then `open.md` H10, closed 9/10/2026 as `refuted.md` C19): 014 followed
 **055's learned idle air value**, not the heat. From zero after the
 disconnect it walked negative as the engine ran; **while it was above about
 −0.93 g/s, 014 read zero; from −0.95 on, it counted — warm or cold.** The
@@ -407,6 +407,16 @@ capture, is the one that would see it.
 nothing on the car; it measured the 9/10 work, and that measured as no
 change at idle.
 
+**9/10/2026 — H10 closed at the owner's decision** (`refuted.md` C19).
+With 014 counting straight after a cold start on kept adaptations, as it
+never has on fresh ones, the owner took the learned idle air value as
+settled: it says **when** 014 counts, not **why** — a correlation
+accepted, never tested by a battery disconnect. It changes nothing on
+the car and leaves the fault where it was; what it leaves behind is a
+rule: a quiet 014 after a disconnect is not a repair until the learned
+value has walked back past about −0.93 g/s. The leak ahead of the probe
+(H2) is now the first candidate.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
@@ -553,7 +563,7 @@ fine.**
 
 **Session B the same afternoon**, after a cool-down to 32 °C of oil: a
 part-warm start, the misfires back at B1 and on the idle after the start,
-ended by the owner at B1 (`open.md` S3, *Session B*; H10).
+ended by the owner at B1 (`open.md` S3, *Session B*; `refuted.md` C19).
 
 **The starts measured from the capture** (`StartCrank`, `StartDip`,
 `StartClt` by `tools/idledips.py`, `docs/firmware/frames.md`, *The

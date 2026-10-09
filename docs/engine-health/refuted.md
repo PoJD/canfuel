@@ -474,3 +474,43 @@ against `24`'s 177–185. **The general lesson:** a byte read off a part
 compares only while the part stays the same. **What would revive it:** a
 part-throttle deficit between logs taken on the same throttle body.
 
+
+### C19. "Why 014 is quiet on some idles and counts on others" (`open.md` H10) — answered at the owner's decision, 9/10/2026
+
+**The question:** raised 4/10/2026 from sessions A and B. 014 read zero
+at idle after some starts and counted after others, at the same oil
+temperature.
+**The answer, accepted:** **it follows 055's learned idle air value**
+(field 3). While the value sits above about −0.93 g/s — freshly after a
+battery disconnect and 098 — 014 reads zero; from about −0.95 on it
+counts, warm or cold. In every session but one: 4/10 A at 0 to −0.92 and
+zero counts, then counting from −0.95 after the hard drive; 4/10 B at
+−1.17 and counting on a part-warm idle; 9/10 (step 2b, the first session
+on kept adaptations) at −1.07 to −1.33 and **counting on the cold idle
+straight after the start** and at every stop. No session on fresh
+adaptations has ever counted on a cold idle; none on settled ones has
+been quiet.
+**How strong:** a correlation in time, not tested. **Closed by the
+owner** (9/10/2026, "more or less confirmed" by the count straight after
+the start), without the battery-off test that would have shown it
+directly (refused 6/10/2026: it says how the ECU comes to count, not
+where the air comes from). What stood against it is kept: 3/10 counted
+at −0.28 with the 1 cm hole open in the cover (S10, a cause of its
+own); every quantity that grows with running time grows with the
+learned value; the mechanism — the live regulator answering from a
+narrower base, or the plate resting where this throttle's air is least
+even — is reasoned and not shown.
+**What it does not answer:** the fault. **Why the ECU learns air away**
+stays open, with the candidates that could cause it — H3 (air the MAF
+did not see) and H8 (a new throttle passing more at rest than the ECU's
+model) — and most of the −1.1 g/s is not a leak at all: that much
+unmetered air would make the idle about a third lean, against a trim
+near −3 % (*reasoned*, 6/10/2026; VW: a run-in engine sits negative
+anyway).
+**The rule it leaves:** **a quiet 014 after a battery disconnect is not
+evidence of a repair** until 055's learned value has walked past about
+−0.93 again. Compare 014 only on settled adaptations.
+**What would revive it:** a session with the learned value above about
+−0.93 and 014 counting all the same (other than with a cause of its own,
+as on 3/10), or one with it well past −0.93 and 014 at zero on an
+unrepaired engine.

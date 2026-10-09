@@ -87,7 +87,7 @@ stays as reference. **It is not a to-do list.**
 **Where it stands:** steps 2a–2c are done and recorded (`idle-log.md`,
 9/10/2026). The intake is tight cold, the misfires remain at every warm
 stop on settled adaptations, and nothing a sealed leak would move —
-003's air, the plate, 055's learned value — moved (`open.md` S3, H10).
+003's air, the plate, 055's learned value — moved (`open.md` S3; `refuted.md` C19).
 **The cylinder 4 knock window stays out of this plan** (*owner's
 decision, 9/10/2026*): with no link found between it and the misfires,
 G66 and the rest of H5's tests stay in `open.md` as tests, not steps.
@@ -123,7 +123,7 @@ the next is needed.
    that is hydraulic, not the servo (a servo that fails makes the pedal
    *hard*), so it is not read into any of this (`open.md`, *Other*).
 2. **The exhaust ahead of the front probe (H2)** (*reasoned*,
-   9/10/2026): `open.md`'s next after H10 now that 2b moved nothing on
+   9/10/2026): `open.md`'s first candidate since H10 closed (9/10, `refuted.md` C19), and next now that 2b moved nothing on
    the intake side, the one with a symptom of its own since S15 was
    heard, and free, while the gauge is not yet bought. With the outlet closed, a leak that draws air in at idle blows
    out, and hisses or puffs. Warm, because a crack in cast iron may only

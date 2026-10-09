@@ -114,8 +114,8 @@ VCDS 014 stays the instrument.
 *Owner's decision, 4/10/2026, evening:* **nothing in the firmware
 changes.** Matching 014 is not a goal worth having: the owner has often
 felt an unsettled idle with 014 at zero, the ECU evidently counts little
-or nothing before its adaptations settle (`docs/engine-health/open.md`
-H10), and much else goes into it. 014 is most likely built to catch a
+or nothing before its adaptations settle (`docs/engine-health/refuted.md`
+C19), and much else goes into it. 014 is most likely built to catch a
 **real, regular misfire** and would show one plainly; what it shows at a
 merely rough idle is an undocumented by-product. `IdleHealth` grades the
 idle's smoothness, which is what it was built for and what the owner
@@ -127,7 +127,7 @@ The evidence behind it, all from 4/10/2026:
   minute; the dip count read 9.2 / 18.5 / 11.3 / 7.8 / 20.3 and
   `IdleHealth` 135 / 156 / 120 / 143 / 90. Neither follows 014.
 - **The adapted stops only** (the eight where 055's learned value had
-  passed about −0.93, H10): rank correlation with 014 — `IdleHealth`
+  passed about −0.93, `docs/engine-health/refuted.md` C19): rank correlation with 014 — `IdleHealth`
   −0.62, the dip count −0.05, one slow firing ≥ 6 / 8 / 12 rpm −0.50 /
   −0.29 / +0.51 (the last on two non-zero stops out of eight), second
   difference −0.38, **oil temperature +0.68**.
