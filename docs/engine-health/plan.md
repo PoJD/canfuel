@@ -14,13 +14,6 @@ records it**, and the file is deleted when it is empty.
 
 ⚠ **Keep the battery connected until step 2b.**
 
-## Before step 2b
-
-1. The new MAF back in, plugged in, the hose on it with the new metal
-   clamp.
-2. The vacuum hose back on the fuel pressure regulator.
-3. Nothing left in the airbox or the hose: glove, rag, bag, tape.
-
 ## Step 2b and 2c — one drive
 
 **At home, the night before:** the battery stays connected. No 098.
@@ -128,14 +121,13 @@ from zero, it took about 35 minutes of driving and stops to pass −0.93. A
 learned value that stays well short of that after as long is a result in
 itself (H10: air the plate did not let in is gone).
 
-## Before step 2b — why
+## What 2a changed, which 2b reads
 
 Step 2a, the smoke tests, is done (`open.md` H3, *Smoke test of the
-intake*; H2, test 1). It left the MAF out, the regulator's hose off and
-plugs in the duct; a forgotten one is either a fault code or an engine
-that will not run. **What 2a changed, which 2b reads**: the dipstick
-guide reseated and the MAF-to-hose joint on a new metal clamp, both
-possibly leaks behind the MAF.
+intake*; H2, test 1), and the car is back together with the new MAF
+(*owner*, 9/10/2026). It changed two things that may both have been
+leaks behind the MAF: the dipstick guide reseated, and the MAF-to-hose
+joint on a new metal clamp.
 
 ## Step 2b — why, and how it is read
 

@@ -366,7 +366,9 @@ probe (H2) is neither found nor ruled out.
 **Where that leaves the idle:** the intake tight cold everywhere, two
 possible leaks behind the MAF closed on one afternoon. **The next drive,
 with the adaptations kept, is the first that can show whether either
-mattered** — nothing is claimed until it has.
+mattered** — nothing is claimed until it has. The car went back together the same
+day with the new MAF, the regulator's hose and nothing left in the duct
+(*owner*).
 
 ---
 
