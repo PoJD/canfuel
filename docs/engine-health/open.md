@@ -2130,8 +2130,10 @@ clean, several tenths is a bad joint** (*general*).
   trusted the leads from the start. *General*: a boot latches over the
   plug's terminal — on plugs for VW often a nut screwed on an M4 thread
   — and one that does not latch rests on it and arcs, which is what
-  burns a terminal black. A missing, loose or wrong terminal would do
-  the same on any lead. Checked at `plan.md` step 2's dry run.
+  burns a terminal black. **The plugs carry solid terminal posts, no
+  screwed-on nut** (*owner*, 9/10/2026, as the plug-well photos show),
+  so a loose nut is ruled out and what is left is the grip of the boots
+  themselves. Checked at `plan.md` step 2's dry run.
 - **1d. Engine off: the HT leads.** Each one pushed fully home on its coil
   tower and its plug, the boots dry and uncracked. With the meter on ohms,
   the four leads against each other: one reading far from the others (for

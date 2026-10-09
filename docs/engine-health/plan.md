@@ -46,8 +46,7 @@ off; Claude runs the capture throughout.
    - **Same time: the plug leads, one at a time, 4 first.** Pull the boot
      off, look at the metal contact inside and at the top of the plug.
      Photograph both, and the plug's ceramic where its make is printed.
-     Is the top of the plug a solid post or a nut on a thread? If a nut,
-     is it tight by finger? Push the boot back on: **does it click?**
+     Push the boot back on: **does it click?**
      Write it for each of the four. **Change nothing.**
    - **Nothing found cold → the same again warm**, after a drive to
      68–72 °C of oil.
