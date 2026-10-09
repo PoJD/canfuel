@@ -35,10 +35,10 @@ off; Claude runs the capture throughout.
      a hiss or a puff comes up at each "teď", and on which recording.
    - Then, tailpipe open, say whether the sputter (S15) is louder
      **from above in the engine bay or from under the car**. Engine off.
-   - **Cold, engine off: photograph the manifold and the front pipe**
-     from above and from below, as close as the phone gets — the joint
-     to the head, the probe, the flange below the manifold. **Black soot
-     streaks** at a joint mark a leak.
+   - **Cold, engine off: photograph from below** whatever the phone
+     reaches — the flange under the manifold, the front pipe back to the
+     converter, the probe if it shows. **Black soot streaks** at a joint
+     mark a leak. The manifold itself is under its heat shield: leave it.
    - **Nothing found cold → the same again warm**, after a drive to
      68–72 °C of oil.
    - **Leaks there → a new manifold**: new gasket to the head, new nuts,
@@ -141,8 +141,14 @@ the next is needed.
    reached (*owner*, 9/10/2026) — so the sound only says engine bay or
    underbody, and **the photographs do the locating**: an exhaust leak
    leaves a black soot trail where it blows out (*general*), and a
-   photograph outranks every other source here. A leak the photos cannot
-   place is a job for a garage with a lift. The front pipe as far as the converter is listened to as
+   photograph outranks every other source here. **The manifold and its
+   joint to the head sit under the heat shield** and cannot be seen or
+   photographed (*owner*, 9/10/2026), so the photos cover only the flange
+   and the pipe below it. **How it is read** (*decided 9/10/2026*): soot
+   below → that joint; louder from the engine bay with nothing below →
+   the manifold or its joint to the head, which is the owner's standing
+   decision of a new manifold (3/10/2026), the shield coming off then
+   anyway; nothing either way → warm, then a garage with a lift. The front pipe as far as the converter is listened to as
    well, and the sputter with the tailpipe open, because S15 may sit just
    behind the manifold rather than in it (`open.md` S15) — a new manifold
    answers only a leak in the manifold. A new manifold if it leaks (*owner's decision*,
