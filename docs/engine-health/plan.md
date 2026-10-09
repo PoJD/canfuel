@@ -12,35 +12,14 @@ records it**, and the file is deleted when it is empty.
 
 # Part 1 — what to do
 
-⚠ **Keep the battery connected through step 2a.** If a repair needs it
-off, say so before step 2b.
+⚠ **Keep the battery connected until step 2b.**
 
-## Step 2a — the smoke tests, engine off and cold
+## Before step 2b
 
-**The MAF-to-hose clamp**
-1. Replace the rubber-lined pipe clamp at the MAF end of the hose with a
-   narrower all-metal one.
-2. Old MAF in the hose again, its airbox end closed with a bag and
-   **tape**, wound tight — no glove, no rag.
-3. Smoke into the regulator's hose. Look at the new clamp only, with a
-   torch, close up. Photograph it; wisp or stream.
-
-**The exhaust**, with the same tester
-1. Smoke into the tailpipe. Close the gap round the hose with a rag or
-   tape. Give it time.
-2. Look at:
-   - the manifold itself
-   - its gasket to the head
-   - the front lambda probe's boss
-   - the manifold's outlet flange
-   - the joint behind the converter, and anything behind it
-   - the airbox's open outlet
-3. Photograph every place smoke comes out.
-4. Only now: the MAF back in, the hose back on.
-
-**Afterwards:** smoke at the
-manifold, its gasket or the probe boss → go straight to step 3.2's
-manifold decision. Then step 2b.
+1. The new MAF back in, plugged in, the hose on it with the new metal
+   clamp.
+2. The vacuum hose back on the fuel pressure regulator.
+3. Nothing left in the airbox or the hose: glove, rag, bag, tape.
 
 ## Step 2b and 2c — one drive
 
@@ -149,53 +128,14 @@ from zero, it took about 35 minutes of driving and stops to pass −0.93. A
 learned value that stays well short of that after as long is a result in
 itself (H10: air the plate did not let in is gone).
 
-## Step 2a — why, and what the smoke means
+## Before step 2b — why
 
-*Owner's decision, 4/10/2026:* **next, whatever H10 turns out to
-be** — the misfires are there either way, and the smoke says
-where air gets in, which H10 cannot. It also looks for the hiss the owner
-hears and cannot place (`open.md` S11). Engine off and cold, so it costs
-no idle.
-
-**The intake is done** (9/10/2026, `open.md` H3, *Smoke test of the
-intake*): clean but for a faint wisp at the dipstick guide's seat. **The
-new MAF stays out until the exhaust test is over**: smoke into the tailpipe
-can pass an open exhaust valve, then an open inlet valve, and reach the
-intake, and the airbox side of the MAF (*reasoned*).
-
-**The second intake test was run on 9/10/2026** (`open.md` H3, *The
-second test*): smoke at the MAF-to-hose joint, or at the glove and rag
-beside it. **Hence the new clamp, and the MAF's end taped rather than
-plugged**, so that whatever smokes at the joint can only be the joint.
-A metal clamp because the rubber lining can creep and the band of a
-plumbing clamp is wide for the hose's lip (*general*); the choice is
-the owner's (*owner's decision, 9/10/2026*).
-
-*What it was for:* (*owner's decision,
-9/10/2026*): the glove leaked most the first time, so the intake never
-held much pressure, and a small leak may have bled off unseen. With a
-MAF in place the duct is closed by the car's own joints, and **only once
-the airbox inlet is closed** — otherwise the smoke runs out through the
-filter. It also reaches what the first test could not: the MAF's joints
-and its clamp to the hose (`open.md` H3, *Spray test*). **The old MAF
-because smoke oil may film its element**, and that part is retired
-(`idle-log.md`, *The MAF*); after this it is not a spare to trust
-without a clean (*general caution*). N112's vent now opens inside the
-closed volume, so it cannot show — it was clean on 9/10.
-
-**The exhaust** (*owner's decision, 6/10/2026*; *general practice, not
-VW's*): a cold look at H2's zone (`open.md` H2) before the warm tailpipe
-test of step 3. The exhaust is a large volume at almost no pressure,
-hence the time.
-- the manifold, its gasket, the probe boss and the outlet flange are
-  **H2's zone, ahead of the front probe**;
-- smoke from the joint behind the converter or anything behind it is
-  **behind both probes**: noted, but it is not H2;
-- with the engine stopped some exhaust valves stand open, so smoke that
-  comes through a cylinder into the intake is that, not a leak;
-- ⚠ **a clean result does not clear H2.** A crack in cast iron may only
-  open hot (`open.md` H2), so nothing here replaces step 3's warm test.
-  Smoke *does* settle it.
+Step 2a, the smoke tests, is done (`open.md` H3, *Smoke test of the
+intake*; H2, test 1). It left the MAF out, the regulator's hose off and
+plugs in the duct; a forgotten one is either a fault code or an engine
+that will not run. **What 2a changed, which 2b reads**: the dipstick
+guide reseated and the MAF-to-hose joint on a new metal clamp, both
+possibly leaks behind the MAF.
 
 ## Step 2b — why, and how it is read
 

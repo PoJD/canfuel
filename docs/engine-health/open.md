@@ -77,9 +77,10 @@ Everything else settled against is in `refuted.md`.
 - **The cylinder 4 knock window: S4 and S5**, a cluster of its own
   (H5, H6), not pursued until the idle is solved (`plan.md`, *The rule*).
 
-**Next:** `plan.md` — a metal clamp at the MAF-to-hose joint, where
-the second smoke test of 9/10 showed smoke (H3), then the exhaust smoke test (the intake's of 9/10
-was clean but for the dipstick guide's seat, put right the same day; H3), then session A with the adaptations kept.
+**Next:** `plan.md` — 2b and 2c, one drive with the adaptations kept;
+the smoke tests of 9/10 are done (the intake tight cold after the
+dipstick and the MAF clamp; the exhaust inconclusive). Then step 3 if
+the idle is not fixed.
 
 ---
 
@@ -993,7 +994,9 @@ stays: the exhaust ahead of the probe (H2) or the intake at the back
 (H3)**. The owner's direction is H2; the tailpipe test above is what
 separates the two. *Owner, the same evening:* he still hears a hiss
 somewhere in the engine bay and **cannot place it**. An intake hiss is
-what the smoke test of `plan.md` step 2a would show.
+what the smoke test of `plan.md` step 2a would show. **9/10/2026: the
+intake smoked tight cold** (H3, *Smoke test of the intake*), so an intake
+hiss now needs a joint that opens only warm or under vacuum.
 
 ### S12. A hesitation on tip-in, and after a gearchange — closed 4/10/2026
 
@@ -1476,6 +1479,12 @@ loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
    tester, fed into the tailpipe (`plan.md` step 2a, *owner's decision,
    6/10/2026*). Smoke ahead of the probe settles H2. Clean does not clear
    it, since a crack in cast iron may only open hot.
+   **Done 9/10/2026** (*owner*): **no smoke anywhere** — the manifold
+   or anywhere below — **but the exhaust would hardly take pressure**,
+   so the owner rates it as saying little. With the converter, the
+   silencer and the open valves to fill, that is what a low-pressure
+   tester meets (*reasoned*). **H2 is neither cleared nor touched**;
+   the warm tailpipe test (`plan.md` step 3) stays its test.
 2. **Written before the repair, so the repair is a test:** if a leak ahead of
    the probes is found and sealed, the puff goes; the rear probe (036/037) at
    hot idle moves a little leaner; `IdleHealth` at 70–72 °C stays in its
@@ -1525,7 +1534,9 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
    gasket, the runner joints, the injector seats, the breather hoses and the
    vacuum lines, with `IdleHealth` or engine speed on the display. A leak
    shows as a change in idle at the spot. Cheap, no dismantling. *General.*
-2. A smoke test of the intake, at home (`plan.md` step 2a).
+2. A smoke test of the intake, at home — **done 9/10/2026**, tight cold
+   after the dipstick and the MAF clamp were put right (*Smoke test of
+   the intake*, below).
 3. 032 after a few hundred km: an idle cell moving positive would support it.
 
 **The injector seats — three not fully home, 27/9/2026.** *Owner-reported
@@ -1677,6 +1688,14 @@ and a rag, so the hose held pressure on the car's own joint.
   all-metal clamp and smokes it again; that tells the two apart.
 - **The dipstick: nothing**, or practically nothing.
 - Nothing anywhere else.
+
+**The third test, the same day, with a new clamp** (*owner*): the
+rubber-lined pipe clamp at the MAF end replaced with a narrower
+all-metal one, and smoked again — **no smoke anywhere**. Whether the old
+joint really leaked stays open: the smoke may have been the plug's, or,
+the owner's reading, the old clamp pressed in the wrong place and held
+the hose badly. **Either way the joint behind the MAF is now tight cold**,
+and the intake as a whole with it.
 
 ⚠ **Cold and stopped, so a joint that opens only hot is not cleared.**
 What the result does do: the back of the intake that no spray ever
@@ -2739,7 +2758,8 @@ repaired (S10, closed). S11 is now the hiss alone, and it **outlived the
 new breather and the new gasket**, so it is no longer this hypothesis's
 (✘); S11's smoke was S10's oil, as the first bullet below said. What is
 left of H9 for the idle is H3's: an unmetered leak, now at the breather's
-hose and connector only, which `plan.md` step 2a's smoke covers.
+hose and connector only, which the smoke of 9/10/2026 found tight cold
+(H3).
 
 - **For:** the commonest explanation of S10 and, through the oil, of S11's
   smoke. Several forum cases of an unsettled idle were a breather hose (H3).
@@ -3296,7 +3316,12 @@ second test showed smoke at the MAF-to-hose clamp, not yet told apart
 from the test's own plug. **The order is held until the new clamp is
 smoked**: a leak there confirmed puts H3 back to 2 — unmetered air
 right behind the MAF, the kind H10 says the ECU learns away; clean puts
-it where it is.*
+it where it is.* *Then the new clamp smoked clean, and whether the old
+one leaked cannot now be told. **The order stands — H2 at 2, H3 at 3**:
+the intake is tight cold everywhere, and the exhaust smoke test said
+nothing either way. **2b now decides between them**: 055 rising and 014
+quiet on the sealed intake points at what was sealed today (H3, the
+dipstick or the MAF joint); no change points at H2's warm test.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|

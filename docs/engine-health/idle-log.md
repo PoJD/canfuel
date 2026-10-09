@@ -355,7 +355,18 @@ pressure on its own joint: the dipstick now clean, and **smoke at the
 MAF-to-hose joint under the owner's rubber-lined clamp** — or at the
 glove and rag closing the MAF's end beside it; the photo cannot tell
 (`photos/smoke-intake-2026-10-09-maf-clamp.jpg`). A leak there would be
-air behind the MAF. A metal clamp and a taped end will settle it.
+air behind the MAF. **With a narrower all-metal clamp it smoked clean**,
+so the joint is tight now; whether it leaked before cannot be told —
+the owner thinks the old clamp pressed in the wrong place.
+
+**9/10/2026 — the exhaust smoked, cold.** No smoke anywhere, but it
+would hardly take pressure, so it says little. A leak ahead of the
+probe (H2) is neither found nor ruled out.
+
+**Where that leaves the idle:** the intake tight cold everywhere, two
+possible leaks behind the MAF closed on one afternoon. **The next drive,
+with the adaptations kept, is the first that can show whether either
+mattered** — nothing is claimed until it has.
 
 ---
 

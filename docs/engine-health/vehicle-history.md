@@ -117,7 +117,7 @@ here is owner-supplied from service records.
 | Fuel filter | **12/2017**, and possibly again 10/2022 — see below | 4 or 9 years, **not established** |
 | **Fuel filter, new**, Bosch `0 450 905 318` | **23/9/2026**, with the injectors | ~0 |
 | MAF sensor | 7/2018 *(connector cleaned 7/2026)* | not recoverable — see *Distance and use* |
-| **MAF sensor, new** | **24/9/2026**, genuine VW `06A 906 461 A`; the 2018 unit is kept. The hose from it to the throttle is held by the owner's own clamps, not VW's: a rubber-lined two-bolt pipe clamp at the MAF, a one-screw band clamp at the throttle. Its orientation and the wiggle test: `idle-log.md`, *The MAF* | ~0 |
+| **MAF sensor, new** | **24/9/2026**, genuine VW `06A 906 461 A`; the 2018 unit is kept. The hose from it to the throttle is held by the owner's own clamps, not VW's: at the MAF **a narrower all-metal clamp since 9/10/2026** (*until then a rubber-lined pipe clamp*, possibly not seating the hose well — `idle-log.md`, 9/10), a one-screw band clamp at the throttle. Its orientation and the wiggle test: `idle-log.md`, *The MAF* | ~0 |
 | Chiptuning, described by the owner as mild | 6/2018 | — |
 | Dipstick, dipstick cap and a seal recorded as "těsnění ventilu" (valve seal), **against an oil leak**. *Owner's recollection (27/9/2026), not certain:* the dipstick's narrow neck was cracked and leaking, and the seal was probably the rubber the dipstick seats in — not the valve cover gasket. The record itself is no longer kept | **12/7/2018**, service record | — |
 | Timing belt and water pump | **10/2017** | the whole ownership, ~27,800 km |
