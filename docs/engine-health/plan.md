@@ -17,6 +17,15 @@ off, say so before step 2b.
 
 ## Step 2a — the smoke tests, engine off and cold
 
+**The intake again, with the old MAF in place**
+1. Fit the old MAF (the 2018 one) into the airbox and the hose, as the
+   real one sits. Leave it unplugged. The new MAF stays bagged.
+2. Close the airbox's air inlet (the snorkel) with a bag or tape.
+3. Smoke into the regulator's hose as before, throttle held open.
+4. Look at everything from the first time, and also: the old MAF's two
+   joints, the clamp at the hose, the airbox's lid and its seal.
+5. Photograph every place smoke comes out; wisp or stream.
+
 **The exhaust**, with the same tester
 1. Smoke into the tailpipe. Close the gap round the hose with a rag or
    tape. Give it time.
@@ -151,9 +160,21 @@ no idle.
 
 **The intake is done** (9/10/2026, `open.md` H3, *Smoke test of the
 intake*): clean but for a faint wisp at the dipstick guide's seat. **The
-MAF stays out until the exhaust test is over**: smoke into the tailpipe
+new MAF stays out until the exhaust test is over**: smoke into the tailpipe
 can pass an open exhaust valve, then an open inlet valve, and reach the
 intake, and the airbox side of the MAF (*reasoned*).
+
+**The second intake test, with the old MAF** (*owner's decision,
+9/10/2026*): the glove leaked most the first time, so the intake never
+held much pressure, and a small leak may have bled off unseen. With a
+MAF in place the duct is closed by the car's own joints, and **only once
+the airbox inlet is closed** — otherwise the smoke runs out through the
+filter. It also reaches what the first test could not: the MAF's joints
+and its clamp to the hose (`open.md` H3, *Spray test*). **The old MAF
+because smoke oil may film its element**, and that part is retired
+(`idle-log.md`, *The MAF*); after this it is not a spare to trust
+without a clean (*general caution*). N112's vent now opens inside the
+closed volume, so it cannot show — it was clean on 9/10.
 
 **The exhaust** (*owner's decision, 6/10/2026*; *general practice, not
 VW's*): a cold look at H2's zone (`open.md` H2) before the warm tailpipe
