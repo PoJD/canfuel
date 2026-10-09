@@ -79,6 +79,31 @@ finding:**
   calibration, and no public source says. *Reasoned from it:* a threshold
   that moves with load, and load computed from the MAF, is the likely
   reason the counter's sensitivity changed with the MAF (`refuted.md` A11).
+
+  **What VW says about the same detection on Motronic M5.9** — VW's
+  self-study programme *SSP 175, On-Board-Diagnose II, Konstruktion und
+  Funktion*, pp. 10 and 50–52 (read 9/10/2026; not kept here, it is VW's).
+  M5.9 is this ECU's family, not its calibration:
+  - **The fault code needs more than 2 %.** The rate is checked "in
+    festgelegten Meßintervallen von 1000 KW-Umdrehungen"; 1.5 times the HC
+    limit "entspricht einer Aussetzerrate größer 2 %". A second window of
+    200 revolutions, weighted by engine speed and load, watches for a rate
+    that damages the converter (the lamp blinks). Codes P0300/16684 and
+    P0301–P0304/16685–16688. *Arithmetic:* at 780 rpm, 1000 revolutions
+    are 77 s and 2000 firings, so 2 % is about **31 misfires a minute** —
+    which is why this car's 014 has never left a code at idle.
+  - **The crank wheel is adapted on the overrun**: "Um kleine
+    Fehler/Toleranzen am Zahnkranz zu kompensieren, findet während des
+    Fahrbetriebes in der Schubphase eine Geberradadaption statt." Detection
+    measures the 60-2 wheel through G28 segment by segment, so its tooth
+    errors have to be learned first. **Whether a battery disconnect clears
+    it on this ECU is not known**; that it is learned only with the fuel
+    cut, which here needs ~76–84 °C of coolant and 1,500+ rpm
+    (`tools/coastscan.py`), is VW's statement plus this car's bus.
+    Bosch's patent on the adaptation (US 6,142,011) stores the values
+    from the last run and starts from zero on the very first.
+  - **Rough roads switch it off** for a set time, on a signal from the
+    ABS — so a count is suppressed, never invented, by the road.
 - **Ignition retard per cylinder, 022/023/020: 0–15 °CA while driving** — from
   VW's repair manual (Golf Mk4, *Motronic injection and ignition system,
   2.0 ltr.*, as transcribed on workshop-manuals.com), which matches this ECU's

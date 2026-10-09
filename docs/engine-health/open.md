@@ -1503,7 +1503,13 @@ state.
   burned through, which needs raw fuel in it. The owner feels it.
 - **For:** no fault code; the counter's sensitivity moves with the MAF and with
   battery disconnects; today's best hot idle (57) is in the neighbourhood of
-  August's, before any work (48). And for S5: there is no healthy AQY's 026 to compare with, so the
+  August's, before any work (48). **Why no code is ever stored**
+  (*9/10/2026*, `vcds.md`, *What the number is*): VW's Motronic M5.9
+  stores P0300/16684 only above a **2 % misfire rate over 1000 crank
+  revolutions** — at 780 rpm about 31 misfires a minute. 014's 6–16 rises
+  a minute are 0.4–1 % even if each rise were one misfire, which nobody
+  has shown. So the empty fault memory says *under 2 %*, not *healthy*:
+  it is consistent with H0 and with a small real fault alike. And for S5: there is no healthy AQY's 026 to compare with, so the
   1-and-4 excess could be how this engine sounds.
 
 **Tests:**
@@ -3408,7 +3414,13 @@ it.* *Re-read 9/10/2026 when the temperature profile was corrected
 (S1, *Temperature matters*): no symptom added or closed. S1 is roughest
 cold, not mid-temperature, so H2 loses one argument against it and gains
 none for it; H1 keeps its against in a new form (never worst hot). **The
-order stands.***
+order stands.*** *Re-read 9/10/2026 after the search on 014 (`vcds.md`, *What the
+number is*; `refuted.md` C19): no symptom added or closed. The 4/10
+zeros at the warm stops, counted against H0 and H1, came on fresh
+adaptations and are withdrawn from both rows; the empty fault memory is
+explained by the 2 % threshold and fits H0 and a real fault alike. **H0
+stands stronger than it did, the order stands**: H0's test 1, a healthy
+AQY's 014, is still the one reading that decides it.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
@@ -3417,8 +3429,8 @@ order stands.***
 | 3 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) **4/10 evening:** a new throttle passing more at rest than the ECU's model would also make it learn air away (`refuted.md` C19) | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `idle-log.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
 | 4 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits only in form** — a coil that breaks down hot is the textbook case, but **the coil is from 6/2026**, and the 3/10 oil sat **only on the outside of its plastic and on the outsides of the leads of 3 and 4, wiped dry** (*owner*, 4/10/2026) | a look while the plenum was off (`idle-log.md`, *The valve cover and throttle job*: wiring and connectors fine); H7 test 3 for the injector side |
 | 5 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero **4/10: the pattern fits only in form** — fuel heat-soaked at the rail after a hard drive; against, the return-flow rail keeps fuel moving, heat soak is a hot-*restart* effect, and the coolant read the same at A3's zero | a **fuel pressure gauge** |
-| 6 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 **4/10, against:** zero at both warm stops is not what a normal-for-the-engine idle does on a counter that read 10–20 a minute there | a healthy AQY recorded (H0 test 1) |
-| 7 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: never worst hot (S1, S3, re-read 9/10); A5 **4/10, against:** zero at both warm stops | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
+| 6 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 **4/10, against:** ~~zero at both warm stops is not what a normal-for-the-engine idle does on a counter that read 10–20 a minute there~~ *withdrawn 9/10: those zeros came on fresh adaptations (`refuted.md` C19)* | a healthy AQY recorded (H0 test 1) |
+| 7 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: never worst hot (S1, S3, re-read 9/10); A5 ~~**4/10, against:** zero at both warm stops~~ *(withdrawn 9/10: fresh adaptations, `refuted.md` C19)* | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
 | 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
 
 **Tools worth owning for this, cheapest first** (*general*; prices not

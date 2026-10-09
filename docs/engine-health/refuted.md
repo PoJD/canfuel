@@ -516,3 +516,17 @@ evidence of a repair** until 055's learned value has walked past about
 −0.93 and 014 counting all the same (other than with a cause of its own,
 as on 3/10), or one with it well past −0.93 and 014 at zero on an
 unrepaired engine.
+**A second explanation fits the same data — added 9/10/2026, after the
+close** (`vcds.md`, *What VW says about the same detection*). The ECU
+also learns the crank wheel's tooth errors, on the overrun, for misfire
+detection itself. If a disconnect clears that too (not known for this
+ECU), 014 would stay quiet after a disconnect until enough fuel-cut
+overrun has been driven — and every session above fits that as well:
+4/10 A had 13 cuts, mostly at 2,000–3,000 rpm, and counted only after
+the hard drive added cuts from 3,500–5,300 rpm; **3/10 counted at its
+first warm stop after 17 cuts**, which explains H10's one exception
+without the hole. The captures cannot tell the two adaptations apart.
+**The rule above holds either way** — a quiet 014 after a disconnect
+is no evidence — but *which* adaptation turns the counting on is open,
+and "it follows 055's learned value" is the less certain half of this
+entry.
