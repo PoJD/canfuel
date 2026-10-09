@@ -43,10 +43,12 @@ off; Claude runs the capture throughout.
      back injector connectors **1 and 4** once each, by the connector
      body with the clip pressed — **never by the wires**. Write whether
      it goes one-handed in a glove in a few seconds.
-   - **Same time: plug lead 4.** Pull its boot off the plug, look at the
-     metal contact inside and at the top of plug 4. Photograph both.
-     Push it back on: does it click home and hold as firmly as lead 1's?
-     Write what you see. **Change nothing.**
+   - **Same time: the plug leads, one at a time, 4 first.** Pull the boot
+     off, look at the metal contact inside and at the top of the plug.
+     Photograph both, and the plug's ceramic where its make is printed.
+     Is the top of the plug a solid post or a nut on a thread? If a nut,
+     is it tight by finger? Push the boot back on: **does it click?**
+     Write it for each of the four. **Change nothing.**
    - **Nothing found cold → the same again warm**, after a drive to
      68–72 °C of oil.
    - **Leaks there → a new manifold, after step 3**: new gasket to the head, new nuts,
@@ -281,10 +283,12 @@ the next is needed.
    **Before any new manifold** (*decided 9/10/2026*): it is free, and the
    manifold is the bigger job — a cylinder named here would change what
    the manifold is expected to fix. Step 2's warm run shares its drive.
-   **Plug lead 4 at the dry run** (*decided 9/10/2026*, `open.md` H4,
+   **The plug leads at the dry run** (*decided 9/10/2026*, `open.md` H4,
    1d): plug 4's terminal was burnt black on 1/10, which is what a boot
-   contact that does not grip leaves (*general*). Its contact has never
-   been looked at, only the lead's resistance. Nothing is changed before
+   contact that does not grip leaves (*general*), and the owner has never
+   heard the boots click home. Their contacts have never been looked at,
+   only the leads' resistance; all four, so that 4 is compared with the
+   others rather than with nothing. Nothing is changed before
    step 3.3, so that the test can still name the cylinder: a new plug
    first would leave no way of telling whether it was the cause. If 4 is
    named, plug 4 and lead 4 are the first repair, and `cutscan.py

@@ -2125,6 +2125,13 @@ clean, several tenths is a bad joint** (*general*).
   (`25`–`30`), so if this is the cause, reseating did not cure it.
   **The first named candidate for the cylinder** — `plan.md` step 3.3
   names the cylinder before anything is changed.
+  **The boots never clicked clearly** (*owner*, 9/10/2026): refitting
+  the leads, he has not heard a clear click on the plugs, and has not
+  trusted the leads from the start. *General*: a boot latches over the
+  plug's terminal — on plugs for VW often a nut screwed on an M4 thread
+  — and one that does not latch rests on it and arcs, which is what
+  burns a terminal black. A missing, loose or wrong terminal would do
+  the same on any lead. Checked at `plan.md` step 2's dry run.
 - **1d. Engine off: the HT leads.** Each one pushed fully home on its coil
   tower and its plug, the boots dry and uncracked. With the meter on ohms,
   the four leads against each other: one reading far from the others (for
