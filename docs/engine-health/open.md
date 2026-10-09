@@ -1603,7 +1603,8 @@ much it admits is not known. The fit table is unchanged.
 
 **Refitted 9/10/2026** (*owner, photographed*:
 `photos/dipstick-2026-10-09-bracket.jpg`, `-seated.jpg`, `-guide.jpg`).
-A new orange guide, **clicked onto the metal tube** and holding it
+**The lower metal tube was fully home in the block** (*owner*), so it
+had not backed out. A new orange guide, **clicked onto the metal tube** and holding it
 better than the old one, which was not visibly cracked but was very
 loose at its foot. The original bracket could not be had, so a strip of
 sheet metal is bolted to the head (thread-locked) and the guide is

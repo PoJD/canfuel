@@ -328,8 +328,8 @@ at the owner's decision (`open.md`).
 **9/10/2026 — the dipstick guide renewed** (*owner, photographed*:
 `photos/dipstick-2026-10-09-*.jpg`). The old orange guide was loose at
 its foot and turned out not to be this engine's part, its mounting tab
-in another place — perhaps why the bracket was gone. The new one clicks
-onto the metal tube and holds; the bracket is a strip of sheet metal
+in another place — perhaps why the bracket was gone. The metal tube
+was fully home in the block. The new one clicks onto it and holds; the bracket is a strip of sheet metal
 bolted to the head, the guide cable-tied to it. **Done so that the
 smoke test can read the dipstick, not as a cure**: the crankcase path it
 closed is a small one, behind the breather's valve (`open.md` H3), and
