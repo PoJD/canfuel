@@ -295,8 +295,8 @@ a later reader can see what was being judged.
 | [`cover-on-2026-10-04-bracket.jpg`](photos/cover-on-2026-10-04-bracket.jpg) | the side bracket and harness at the refitted cover |
 | [`plenum-on-2026-10-04.jpg`](photos/plenum-on-2026-10-04.jpg) | the engine reassembled, plenum on, 4/10/2026 |
 | [`plug-well-cyl4-2026-10-09.jpg`](photos/plug-well-cyl4-2026-10-09.jpg) | down cylinder 4's plug well: dark, uneven patches on the plug's terminal and a smudge on its hex (*owner*: seen 1/10/2026, would not come off with petrol); sent 9/10/2026 |
-| `leads-2026-10-01-rubber-end-1`…`-4.jpg` | inside the leads' rubber ends: a red sleeve round a rolled terminal held by a wire spring. Which lead each is was not recorded (*owner*, photographed 1/10/2026) |
-| `leads-2026-10-01-metal-end-1`…`-6.jpg` | the leads' other ends: a slotted metal sleeve round a rubber insert, the terminal deep inside; `-1`'s insert darker and crusted where the rest are clean. Which lead each is, again not recorded |
+| `leads-2026-10-01-coil-end-1`…`-4.jpg` | inside the leads' **coil** ends: a red sleeve round a rolled terminal held by a wire spring (*owner*, photographed 1/10/2026; which end is which confirmed 9/10). Which lead each is was not recorded |
+| `leads-2026-10-01-plug-end-1`…`-6.jpg` | the leads' **plug** ends: a slotted metal sleeve with tabs for a puller, round a rubber insert, the terminal deep inside; `-1`'s insert darker and crusted where the rest are clean. Which lead each is, again not recorded |
 | [`plug-well-2026-10-09-b.jpg`](photos/plug-well-2026-10-09-b.jpg), [`-c`](photos/plug-well-2026-10-09-c.jpg), [`-d`](photos/plug-well-2026-10-09-d.jpg) | the other three plug wells, cylinder not recorded; `-d` too dark to judge |
 
 **What they show, as description rather than interpretation.** The can carries

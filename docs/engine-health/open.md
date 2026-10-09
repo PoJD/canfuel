@@ -2136,19 +2136,21 @@ clean, several tenths is a bad joint** (*general*).
   themselves. Checked at `plan.md` step 2's dry run.
   **The ends of the leads, photographed 1/10/2026** (*owner*,
   `photos/leads-2026-10-01-*.jpg`, sent 9/10/2026), not labelled by
-  cylinder or by end. Two kinds: a **rubber end** with a red sleeve
-  round a rolled terminal held by a bent wire spring — the spring is
-  what latches over the groove of a plug's post (*general*), so this is
-  most likely the plug end; and a **slotted metal sleeve** round a rubber
-  insert. *The owner*: the metal end is most likely the coil's, and there
-  the click is clear; at the plugs it never is. *Read off the photos*:
-  the wire springs of the rubber ends sit differently from one end to
-  the next, in some standing off the terminal, and no black is visible
-  on any terminal; one metal end's insert (`-metal-end-1`) is darker and
-  crusted where the others are clean. Neither can be put to a cylinder.
-  *Reasoned:* a spring that has been bent off the terminal does not latch,
-  which fits no click at the plugs; whether lead 4's is one of them is
-  for the dry run, labelled.
+  cylinder. **The plug end** (*owner*, 9/10/2026; told by the outer
+  shell) is a **slotted metal sleeve with tabs for a puller**, round a
+  rubber insert with the terminal deep inside; **the coil end** is
+  rubber, a red sleeve round a rolled terminal held by a wire spring, and
+  there the click is clear. *Read off the photos*: one plug end's insert
+  (`-plug-end-1`) is darker and crusted where the other five shots are
+  clean — the end that sits on a plug, so if it is lead 4's it is the
+  other half of plug 4's burnt terminal. The coil ends' springs sit
+  differently from end to end, but those ends click. **The owner pulls
+  the plug ends by hand, having no puller.** *General*: without one the
+  pull tends to go through the cable, and the crimp or resistor inside
+  the end is what gives — a loose contact that arcs. Neither photo set
+  can be put to a cylinder; the dry run labels them.
+  *Corrected 9/10/2026*: this read the rubber end as the plug's, before
+  the owner said which is which.
 - **1d. Engine off: the HT leads.** Each one pushed fully home on its coil
   tower and its plug, the boots dry and uncracked. With the meter on ohms,
   the four leads against each other: one reading far from the others (for

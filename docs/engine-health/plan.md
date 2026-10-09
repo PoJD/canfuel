@@ -43,8 +43,11 @@ off; Claude runs the capture throughout.
      back injector connectors **1 and 4** once each, by the connector
      body with the clip pressed — **never by the wires**. Write whether
      it goes one-handed in a glove in a few seconds.
-   - **Same time: the plug leads, one at a time, 4 first.** Pull the boot
-     off, look at the metal contact inside and at the top of the plug.
+   - **Same time: the plug leads, one at a time, 4 first.** Pull the
+     plug end off **by its metal sleeve, fingers on the tabs, with a
+     slight twist — never by the cable.** Look at the contact deep inside
+     and at the top of the plug. Does the end turn or slide on its cable
+     more than the others?
      **Lay a scrap of paper with the cylinder's number in each photo.**
      Photograph both, and the plug's ceramic where its make is printed.
      Push the boot back on: **does it click?** How hard does it pull off
