@@ -395,6 +395,14 @@ kept open. And, newly audible now that joint is quiet, **a constant
 sputter close behind the engine at every load**, added as S15 — H2's
 zone, so the tailpipe test moves to the front of step 3.
 
+**9/10/2026, evening — the brake servo, checks a and b** (*owner*).
+The one part of the intake the smoke could not reach, since its check
+valve shuts against smoke from the manifold. The pedal sank at the
+start, and after switch-off gave one or two light presses before going
+hard: the servo assists and holds vacuum. A leaking diaphragm is not
+shown by these alone; check c, the pedal held at a warm idle with a
+capture, is the one that would see it.
+
 **What the drive is not known to have achieved:** anything. It changed
 nothing on the car; it measured the 9/10 work, and that measured as no
 change at idle.

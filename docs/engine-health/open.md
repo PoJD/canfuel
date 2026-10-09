@@ -1820,7 +1820,13 @@ valve (*general*: it passes only from servo to manifold), so the servo's
 diaphragm and seals behind it never saw the smoke. A leaking servo feeds
 unmetered air at exactly the idle vacuum. Its line is rigid plastic and
 cannot be pinched (*owner*); its tests are the three standard servo
-checks (`plan.md` step 3).
+checks (`plan.md` step 3). **9/10/2026, a and b good** (*owner*): the
+pedal sank when the engine started, so the servo assists; after
+switch-off the first press was light, the second perhaps a little,
+then hard, so the check valve and diaphragm hold vacuum for a press or
+two. **c** was tried the same evening without a capture: no hiss heard
+from the driver's seat with the bonnet open, and no change in the idle
+by ear with the pedal held — read again off a capture (`plan.md`).
 
 ⚠ **Cold and stopped, so a joint that opens only hot is not cleared.**
 What the result does do: the back of the intake that no spray ever

@@ -18,12 +18,7 @@ One at a time, Claude says after each whether the next is needed.
 **1 and 2 are one warm session**: Claude runs the capture, drive until
 the oil is at 68–72 °C, stop outdoors, loads off, handbrake on, neutral.
 
-1. **The brake servo.** First two at home, engine cold is fine:
-   - **a.** Engine off. Press the pedal five times. Hold it lightly
-     pressed and start the engine. Write whether **the pedal sank**.
-   - **b.** Let it run a minute, switch off. Press the pedal slowly three
-     times. Write **which presses were light** and which hard.
-   - **c.** In the warm session: idle, **hold the pedal down firmly for
+1. **The brake servo, check c.** In the warm session: idle, **hold the pedal down firmly for
      30 s**, listen at the pedal and at the back of the engine bay for a
      hiss. Write when you pressed, and what you heard.
 2. **The exhaust manifold, the same session, straight after.**
@@ -90,7 +85,8 @@ G66 and the rest of H5's tests stay in `open.md` as tests, not steps.
 the next is needed.
 
 1. **The brake servo** (*decided 9/10/2026*, H3). It is the one part of
-   the intake the smoke could not test: smoke pushed into the manifold
+   the intake the smoke could not test (*a and b done 9/10/2026, both
+   good — `open.md` H3*): smoke pushed into the manifold
    closes the servo's check valve, so the servo's diaphragm and seals
    behind it were never pressurised (*general*: the valve passes only
    from servo to manifold). A servo that leaks feeds unmetered air into
