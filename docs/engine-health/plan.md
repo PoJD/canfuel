@@ -15,22 +15,26 @@ records it**, and the file is deleted when it is empty.
 ## Step 3 — the idle is not fixed
 
 One at a time, Claude says after each whether the next is needed.
-**2 is a warm session**: Claude runs the capture, drive until the oil
-is at 68–72 °C, stop outdoors, loads off, handbrake on, neutral.
+**1 and 2 are one cold start**, outdoors, handbrake on, neutral, loads
+off; Claude runs the capture throughout.
 
 1. **The brake servo, check c — a cold start will do, no drive.**
    - Claude starts the capture; then start the engine.
    - About **two minutes** after the start, once the idle has settled:
      **hold the pedal down firmly for 30 s**, release, wait 30 s, hold
      again 30 s. Nobody else touches anything.
-   - Write when you pressed, and anything heard. Engine off.
-2. **The exhaust manifold, the same session, straight after.**
-   - Close the tailpipe for **2–3 s at a time**, never longer.
-   - Meanwhile listen at the manifold, its gasket to the head, the probe
-     boss, the outlet flange and the front pipe back to the converter.
-     A hand near, never on. Phone recording at each.
-   - Listen there also with the tailpipe open, for the sputter (S15),
-     and say where it is loudest.
+   - Write when you pressed, and anything heard.
+2. **The exhaust manifold, straight after, still cold.**
+   - Phone recording, laid in the engine bay by the manifold; later
+     under the car by the front pipe.
+   - At the tailpipe, **say aloud "teď"** and close it for **2–3 s**,
+     never longer. Five times, a few seconds apart.
+   - Then listen yourself at the manifold, its gasket to the head, the
+     probe boss, the outlet flange and the front pipe back to the
+     converter, with the tailpipe open, for the sputter (S15). A hand
+     near, never on. Write where it is loudest. Engine off.
+   - **Nothing found cold → the same again warm**, after a drive to
+     68–72 °C of oil.
    - **Leaks there → a new manifold**: new gasket to the head, new nuts,
      new outlet gasket, the probe refitted with anti-seize. Part
      `06A 253 031` + suffix: read the number cast into the manifold, or
@@ -118,7 +122,14 @@ the next is needed.
    heard, and free, while the gauge is not yet bought. With the outlet closed, a leak that draws air in at idle blows
    out, and hisses or puffs. Warm, because a crack in cast iron may only
    open hot; never longer than a few seconds and never indoors
-   (*general*). The front pipe as far as the converter is listened to as
+   (*general*) — **but cold first** (*decided 9/10/2026*): the owner
+   hears S15 cold too, so a leak that sputters cold can be found cold,
+   and the drive is needed only if cold finds nothing. The owner works
+   alone, so the phone listens at the manifold while he closes the
+   tailpipe, and his "teď" marks each closure on the audio; each closure
+   also loads the engine and shows on the capture as a dip in engine
+   speed, which places it in time but says nothing about where a leak
+   is. The front pipe as far as the converter is listened to as
    well, and the sputter with the tailpipe open, because S15 may sit just
    behind the manifold rather than in it (`open.md` S15) — a new manifold
    answers only a leak in the manifold. A new manifold if it leaks (*owner's decision*,
