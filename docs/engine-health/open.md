@@ -341,8 +341,11 @@ through every idle again*; `tools/dipcontext.py`, warm standing idle at
   that holds a few cycles would be; and a cylinder carrying more than its
   share of independent dips gives exactly this excess — at 45 % on one
   cylinder, 2.5 to 1 (*The dips keep to one slot*). So it says again
-  that one cylinder takes more dips, and nothing about how long a fault
-  lasts.
+  what *The dips keep to one slot* found — some cylinder takes more than
+  its share, which one unknown — and nothing about how long a fault
+  lasts. **And it is the older captures that say it**: `31`, after the
+  new leads, reads 2 against 2, as its pairs did (S3, *The drive after
+  the new leads*).
 
 **What it means** (*reasoned*). The three readings of load — loads on
 smooth the idle (26/9, above), a more negative learned idle air makes
