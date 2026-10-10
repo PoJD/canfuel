@@ -3401,8 +3401,8 @@ repair blogs; still nothing from VW.
 *Added 10/10/2026 at the owner's request, as a weak hypothesis written
 down so that it is not argued again from the start.* Both probes are the
 one part of the mixture control that has not been changed: **10/2017,
-~27,600 km** (`vehicle-history.md`). *The owner is not sure both were
-changed then (10/10/2026); the service record says both.*
+~27,600 km** (`vehicle-history.md`; both, *the owner's decision to keep
+the record as it stands*, 10/10/2026).
 
 **What it needs.** The two-loop control (SSP 233 p. 16, as in H2) holds
 the front probe at its switching point and lets the rear probe move that
@@ -3808,7 +3808,8 @@ mixture, and too little to misfire; the order above it stands.*
 **Tools worth owning for this, cheapest first** (*general*; prices not
 recorded here, since they move):
 
-- **A vacuum gauge on the manifold at a warm idle** — the cheapest
+- **A vacuum gauge on the manifold at a warm idle** (*ordered by the
+  owner 10/10/2026, due the following week*) — the cheapest
   instrument that splits the top three. A steady needle is a healthy idle;
   a regular flick down at one point in the cycle is a valve; a low, slowly
   wandering needle is a leak or a mixture fault. Teed into a manifold

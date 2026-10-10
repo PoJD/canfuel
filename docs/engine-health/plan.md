@@ -69,7 +69,8 @@ capture on every drive.
    - Then a fine water mist over one lead at a time, and the coil.
      Hands and the bottle clear of the leads.
    - Write anything seen, and which lead the engine stumbled at.
-5. **Vacuum gauge, warm idle**, once one is bought. Tee it into the fuel
+5. **Vacuum gauge, warm idle**, when it arrives (ordered 10/10, due
+   the week after). Tee it into the fuel
    pressure regulator's vacuum hose. Short hose to the gauge, tight
    T-piece. Note what the needle does.
 6. **The next repair** — Claude picks it from `open.md` then.
