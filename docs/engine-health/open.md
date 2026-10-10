@@ -92,8 +92,9 @@ Everything else settled against is in `refuted.md`.
   B7). **Not in `plan.md`** (*owner's decision, 9/10/2026*): no link to
   the misfires has been found, so its tests, G66 first, stay in H5.
 
-**Next:** `plan.md` step 3 — two or three ordinary drives, with the
-exhaust test on a cold start. Done:
+**Next:** `plan.md` step 3 — **nothing until the vacuum gauge arrives**
+(ordered 10/10; the engine is not started meanwhile, *owner's decision*),
+then one cold session: the gauge and the exhaust test together. Done:
 the intake tight cold (2a–2c), the servo, new plugs and leads, and one
 day of the injector cuts, which named no cylinder (S3, *The drive after
 the new leads*).

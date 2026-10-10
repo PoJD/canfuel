@@ -92,6 +92,12 @@ which is why the table above is left alone — and it is also the reason the
 fill that ended the trip is not a consumption figure
 (`docs/firmware/fuel-check.md`, *The fill of 2026-09-19*).
 
+⚠ **Since then the car has been driven for this investigation** — the
+drives of 24/9, 25/9 (about 100 km, the motorway), 3/10, 4/10, 9/10
+and 10/10
+among them — **and no odometer reading has been taken.** The next
+reading goes in the table above.
+
 So the tail end of the record is a car that was barely driven and then not
 driven at all. **Per-year distance is recorded only for 2023 onwards**; the
 26,300 km covered between September 2017 and December 2022 is a single lump
@@ -108,8 +114,10 @@ in light but real use — the collapse is recent, not lifelong.
 
 ## Work done to the fuel and intake tract
 
-**The order is by what it does to the measurement, not by date.** Everything
-here is owner-supplied from service records.
+**The older rows are ordered by what they do to the measurement; the work
+of September and October 2026 is added in the order it was done**, as
+*Keeping this current* asks. Everything here is owner-supplied from
+service records or from the owner's own work.
 
 | Part | Fitted | Age in distance |
 |---|---|---|
@@ -144,6 +152,7 @@ here is owner-supplied from service records.
 | **Spark plugs and ignition leads**, NGK leads (*"NGK SPARK PLUG CABLE"* and *"5ME2"* printed on them, `photos/cover-leak-2026-10-04-cleaned.jpg`; the set number is not printed). The invoice names no part numbers: **plugs 800 Kč the four, leads 1,650 Kč the set** (*owner*, read 9/10/2026). **The plugs were NGK `BKUR6ET-10`** — read off one of them on removal, 10/10/2026 (`photos/plug-old-2026-10-10-type.jpg`) | **17/9/2026**, at the Dakuma garage; **off 10/10/2026** (row below), kept numbered | ~0 |
 | **Spark plugs and ignition leads, new**: NGK `BKUR6ET-10` plugs, the same type as before, at 25–30 Nm (*read off the NGK box*); NGK `RC-VW254` leads, black, printed *"5MB"* (`photos/leads-new-2026-10-10-*.jpg`). The upper intake off for it, **a new Elring `271.230` under it**. Battery left connected | **10/10/2026**, by the owner | ~0 |
 | Rear shock absorbers, air-conditioning recharge, minor items | 17/9/2026 | ~0 |
+| **Battery disconnected** — every ECM adaptation (fuel, idle air, knock, throttle) restarts from zero each time | after the summer heater work (row above), then **23/9, 26/9, 1–2/10 and the morning of 4/10/2026**; 098 run 2/10 and 4/10. **Connected since 4/10**, through the work of 9/10 and 10/10 (*from `idle-log.md` and `open.md`*) | — |
 
 Three entries carry more than a date.
 
@@ -173,9 +182,11 @@ single variable.
 **Compression, measured at the 17/9/2026 visit: 12 bar on all four cylinders**
 (earlier revisions said 13, which was misremembered),
 even across the engine. *Recorded from the garage, not measured by this
-project.* The evenness is the load-bearing part and it eliminates every
-per-cylinder mechanical explanation this project had been carrying — a burnt
-valve, a broken ring pack, a head gasket leaking between cylinders. It also
+project.* The evenness is the load-bearing part and it eliminates the
+per-cylinder mechanical faults a cranking test can see — a burnt valve, a
+broken ring pack, a head gasket leaking between cylinders. *Not* a valve or
+lifter that seals at cranking speed and hangs only at a warm idle, which
+is `open.md` H1 (*qualified 10/10/2026*). It also
 agrees, from a completely different measurement, with the volumetric efficiency
 `docs/firmware/frames.md` derives from mass air flow and the ECU's load channel (84–93 %).
 
@@ -256,12 +267,13 @@ more.** If the 10/2022 part turns up in a box unopened, add that here — it
 would settle the pair and cost nothing.
 
 **The reason it was changed is protection, not suspicion.** Nothing
-points at the filter and no leak or restriction has been observed. It is
+points at the filter and no leak or restriction has been observed. It
 went in because **the filter is the last barrier between nine years of tank
 and a set of brand new injector nozzles**, and new injectors behind an old
 filter is the one combination on this car where a cheap part can ruin an
 expensive one. That it also leaves the measurement chain — the entry above in
-*Which parts are old enough to bias the result* — is a consequence and was
+`docs/firmware/fuel-check.md`, *Which parts are old enough to bias the
+result* — is a consequence and was
 not the motive.
 
 ### What the 2017 filter looked like coming off — photographed

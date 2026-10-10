@@ -310,8 +310,9 @@ As an index (÷ 2.00 × 100): the middle band 106 → 98–107, the cold idle
 new plugs and leads (10/10, below), and the intake is tight cold. The
 dips that kept to one cylinder's stroke did not keep to one on the first
 drive after the new leads, and fewer came. **Next** (`plan.md` step 3):
-two or three ordinary drives to see whether that holds, the exhaust
-test on one of their cold starts.
+nothing until the vacuum gauge arrives — the engine is not started
+meanwhile (*owner's decision*, 10/10) — then one cold session with the
+gauge and the exhaust test together.
 
 *Entries are added here as each step is done.*
 
@@ -492,6 +493,30 @@ fall, so **the new leads did not fix S3**. What may have gone with lead
 4 or plug 1 is the one-cylinder share of the dips; two or three more
 drives say whether that holds, and the intake gasket changed the same
 day, so even then it cannot be split between them.
+
+The fault memory after the cuts held the test's five codes and nothing
+else — P1237/P1240 for the pulled connectors, P0301/P0304 and P0300 —
+so the ECU named the two cut cylinders and no other (`open.md`, *Naming
+the cylinder*; `photos/vcds-faults-2026-10-10-after-cuts.jpg`). Cleared.
+
+**10/10/2026, evening — no work on the car; the idles read again, and
+decisions** (*owner*). The vacuum gauge was ordered (MAR-POL `M57673`),
+the engine is to stay unstarted until it comes, and its test is merged
+with the exhaust test into one cold session (`plan.md` step 3). The
+fuel pressure gauge is **not** bought: low rail pressure would show at
+full load first, where the engine is well, and a steady error would
+show in 032 (H7, down to 5). Both lambda probes reading wrong together
+is written down as H11, last. Every warm idle since 24/9 read again
+with a new tool (`tools/dipcontext.py`; `open.md` S1, *What comes before
+a dip*): **a dip is more likely just after the idle governor has
+trimmed the charge** — less air or advance, the mixture unchanged — so
+one or more cylinders run at the edge of firing at the idle's charge,
+which is "load helps" (26/9) seen within a second. It names no part. A
+reading of it as short runs on one cylinder, pointing at a hanging
+valve, did not survive a closer look at the same day. **What it is not
+known to have achieved:** nothing was changed; it weakened the causes
+that do not care about the charge (H4, H7's harness) and left the
+order of the rest as it was.
 
 ---
 
