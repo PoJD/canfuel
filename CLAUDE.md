@@ -1276,6 +1276,19 @@ if it is still unclear, ask once.
 - **In the cloud**, you cannot reach the adapter: hand him the commands and
   read the files he uploads.
 
+**After every captured session, without asking** (*the maintainer,
+10/10/2026*): the capture is written to its next free
+`test/fixtures/NN_<name>_z1.txt`; when it ends, **the whole capture is
+kept unfiltered** at `../raw-captures/YYYY-MM-DD_<name>_unfiltered_z1.txt`
+(beside the repositories, not in one), and the fixture is then **filtered
+to the six accepted identifiers** — `grep -E
+'^t(1A0|280|288|320|420|480)'` — and added to the `FILTERED` set in
+`tools/test_canlog.py`, a row in `test/fixtures/README.md` and its count
+in `tools/test_coastscan.py`. The VCDS logs go to
+`test/fixtures/vcds/vcds-<step>-<groups>.csv`. A capture stopped early
+leaves the adapter's channel open: send `C\r` to its port. None of this
+is a question for the maintainer.
+
 **You cannot hear him.** Nothing in either setup gives you a microphone, so
 a reading taken at the car — a thermometer, a gauge, a sound described —
 reaches you as text. **Dictation on his phone into the chat works** (tested

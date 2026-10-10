@@ -18,7 +18,8 @@ One at a time, Claude says after each whether the next is needed.
 **2 and 3 ride on the drives of 1**; Claude runs the capture throughout.
 
 1. **Two or three ordinary drives, warm**, on different days — like
-   10/10. Claude runs the capture; VCDS on **014, 003, 020**. **055 read
+   10/10. Claude runs the capture; VCDS on **014, 003, 020** — on the
+   next drive **014, 020, 026** instead. **055 read
    once, at the end: warm idle, before switching off.** A few stops at a
    warm idle, a minute or two each. Write the stops.
    **Claude says after each drive whether anything below is still
@@ -143,7 +144,12 @@ the next is needed.
    says the adaptations are settled and the comparison holds
    (`refuted.md` C19). **020** stays on as a third group, data and not a
    step: on 10/10 cylinder 4's retard nearly vanished with the new
-   leads (`open.md` S4), and more drives say whether it holds.
+   leads (`open.md` S4), and more drives say whether it holds. **026 on
+   the next drive** (*owner's decision*, 10/10/2026), to see whether
+   cylinder 4's high knock-sensor reading (S5) went with lead 4 too;
+   VCDS takes three groups, so 003 sits that drive out (*decided*): its
+   idle air was 3.08 g/s on 10/10, the baseline is set, and the idle is
+   still read off 014 and the capture.
 2. **The exhaust ahead of the front probe (H2)** (*reasoned*,
    9/10/2026): `open.md`'s first candidate when this was written (since 9/10 second, behind H3, now that the dips keep to one cylinder — but still the one with symptoms of its own), and next now that 2b moved nothing on
    the intake side, the one with a symptom of its own since S15 was

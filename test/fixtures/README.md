@@ -458,7 +458,8 @@ documents: the torque scale in `docs/firmware/can-decoding.md` question 8, 0x200
 **`19`, `24` and `25`–`31` are filtered** to the six identifiers the firmware accepts —
 0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480 — to keep an hour of driving to a size
 a repository can hold. The unfiltered capture behind `19` (65 MB) is kept
-outside the repository. **They say nothing about what else is on the bus**, and
+outside the repository, and so are those behind `30` and `31`, in
+`../raw-captures/` beside it. **They say nothing about what else is on the bus**, and
 the identifier tests in `tools/test_canlog.py` skip them on purpose.
 
 | | `19` | `24` |
