@@ -311,7 +311,7 @@ new plugs and leads (10/10, below), and the intake is tight cold. The
 dips that kept to one cylinder's stroke did not keep to one on the first
 drive after the new leads, and fewer came. **Next** (`plan.md` step 3):
 two or three ordinary drives to see whether that holds, the exhaust
-test on one of their cold starts and the spray test on a warm stop.
+test on one of their cold starts, and the new intake gasket smoked.
 
 *Entries are added here as each step is done.*
 
