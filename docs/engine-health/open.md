@@ -318,6 +318,14 @@ through every idle again*; `tools/dipcontext.py`, warm standing idle at
   wavered. Air or advance cannot be told apart here: 0x280 b5 does not
   move at this scale, and the advance is only on VCDS 003, about once a
   second.
+  **Not the lambda control** (*the owner's question*, 10/10/2026): it
+  works on fuel alone, swings much wider (033 ran −7 to +7 % at a
+  standing idle) and the 014 rises fall on its lean and rich swings
+  alike (`refuted.md` C5); it does not move the ECU's torque, which
+  falls here with the fuel and after a small rise in engine speed —
+  the idle governor's signature, holding 780 rpm (*reasoned*). The
+  governor trims both ways all the time; the finding is only that dips
+  follow its trims down more often than its trims up.
 - **It is not the speed rise that the dip detector selects.** Split by
   how engine speed moved, a dip starts within the next 0.3 s after
   indicated torque **fell** over the half second before in **5.0 %,
