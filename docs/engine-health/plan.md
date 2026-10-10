@@ -58,12 +58,17 @@ each whether the next is needed. Claude runs the capture on every drive.
      - **Adaptation (10)** → channel **01** → **Read**. Photograph the
        screen. **Write down the value shown; it is the one to go back
        to.**
-     - **+10 rpm**, Test, Save. Read group **056**: field 2 (specified)
-       and field 1 (actual). Repeat **+10 rpm at a time**, as high as
-       the ECU will take, **no more than 900 rpm specified**. Write each
-       step, and where the ECU stopped accepting.
-     - **1 min** at idle, loads off: note `IdleHealth` and the oil
-       temperature. Engine off, ignition off.
+     - **First, 2 min as it is**, loads off: VCDS logging **014, 056,
+       055**. Claude keeps the capture running throughout.
+     - Then in stages of **+20 rpm** (two steps of 10), each: Adaptation
+       → **+20 rpm**, Test, Save → back to logging **014, 056, 055** for
+       **2 min**, loads off. Write the time each stage starts.
+     - **Stop at the first stage where 014 stays at 0 for the whole 2
+       min with detection `aktivováno`.** Hold it **2 min more** to be
+       sure. If 014 reads `deaktiv.`, a zero means nothing: go on.
+     - **No more than 900 rpm specified**, and stop where the ECU stops
+       accepting. Write each stage's specified rpm (056 field 2).
+     - Engine off, ignition off. Write the final value and the date.
      - A "data transfer" error → ignition off, start again from the
        login. Login refused, or the idle hunting → the original value
        back, and stop.
@@ -234,7 +239,19 @@ vozidel*, 12/2020), while every block of this ECU specifies 740–820 rpm
 test.** The ECU may not take 900 at all: on another ECU the adaptation
 spans 124–132, about ±40 rpm (Ross-Tech, 1.8T), and owners of early Mk4
 2.0s report about 50 rpm of travel (*forum*). One step at a time and
-056 read after each. **What it does to the readings**: every
+056 read after each. **Where to stop is read off the engine** (*owner's
+decision*, 10/10/2026): the first stage at which 014 counts nothing for
+two minutes with detection active, held two more. A stage is two minutes
+because at a warm stop 014 counts a few times a minute (S3), so two
+minutes of zero is a reading and one is not; stages of 20 rpm keep the
+whole climb to a quarter of an hour of idle or so. Detection must read
+`aktivováno`: below about 20 % load it switches off (S3), and a higher
+idle can move the load, so a zero with it off says nothing. **Claude
+grades each stage from the capture** — `IdleHealth` and the dips by the
+stage's start time — so the step that quiets 014 is also checked on
+engine speed, the measure 014 cannot fake. A stage that holds today is
+read again on the next drives, because the learned idle air may settle
+somewhere new (`refuted.md` C19). **What it does to the readings**: every
 comparison from then on is at the new idle — the additive's tanks
 included, accepted by the owner, who can put the original value back
 for a comparison at the old idle. Write down the value and the date, so
