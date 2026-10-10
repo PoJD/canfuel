@@ -1814,10 +1814,23 @@ or late, intermittently, and gets worse as the oil thins. *General.*
 6. **The lifters pressed down, valve cover off**, cam lobe up: one
    that gives before the valve moves has bled down (*general*; a VW
    check of this kind is recalled, not read here).
-7. **A look at the inlet valves** through the ports or with a borescope
-   through the plug hole, if the manifold is ever off again; a chemical
-   inlet-valve cleaner is the cheap trial, *not scheduled* — it is
-   another run at idle and the owner decides.
+7. **A borescope through the plug hole** — no running, nothing taken
+   apart but the plugs (*the owner's question*, 10/10/2026; *general*).
+   Engine cold, all four plugs out, each cylinder in turn, the crank
+   turned by hand so the piston is down and the valves can be seen
+   closed and open. **What it can show:** the combustion side of both
+   valves — carbon on the faces, a burnt or chipped edge, a seat that
+   shows light; the piston crown (dry soot, or wet with oil); scoring on
+   the bore. Compared cylinder against cylinder, since nothing here says
+   what this engine's chamber should look like. **What it cannot:** the
+   back of the inlet valve, where port-injection deposits sit, and a
+   lifter. The back of the inlet valve is reached the other way, the
+   scope down an injector's bore in the manifold with that injector out
+   — whether the angle shows the valve is not known until tried; or with
+   the manifold off. A side-view (mirror) or articulating tip is what
+   makes the valves visible at all; a straight-ahead scope sees the
+   piston. A chemical inlet-valve cleaner is the cheap trial if it finds
+   deposits, *not scheduled* — another run at idle, the owner's call.
 
 ### H2. A leak ahead of the front lambda probe (exhaust manifold, its joint to the head, probe boss)
 
