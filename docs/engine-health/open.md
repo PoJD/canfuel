@@ -1786,8 +1786,12 @@ or late, intermittently, and gets worse as the oil thins. *General.*
 4. **Oil pressure at a hot idle** against VW's figure, if a gauge can be put
    on the sender port. Low pressure starves the lifters at exactly that
    state.
-5. **The vacuum gauge** (`plan.md` step 3): a drop that comes and goes,
-   a few flicks running, is the hanging valve; see `plan.md` Part 2.
+5. **The vacuum gauge** (`plan.md` step 3) reads H1 only through its
+   rarer patterns — a regular flick, a flutter, flicks that stay at 2500;
+   an intermittent flick at idle is any misfire (`plan.md` Part 2).
+6a. **The lifters pressed down, valve cover off**, cam lobe up: one
+   that gives before the valve moves has bled down (*general*; a VW
+   check of this kind is recalled, not read here).
 6. **A look at the inlet valves** through the ports or with a borescope
    through the plug hole, if the manifold is ever off again; a chemical
    inlet-valve cleaner is the cheap trial, *not scheduled* — it is

@@ -318,15 +318,25 @@ weather.
   the same way. **So the count is first compared with the dips**: the
   capture runs under the same minute, and if the needle flicks about as
   often as the engine speed dips (S1: 5–15 a minute warm), the gauge is
-  seeing the misfires themselves, and the reading below is what tells
-  their cause. The 2500 rpm hold is also the marker that lines the film
-  up with the capture.
+  seeing the misfires themselves. The 2500 rpm hold is also the marker
+  that lines the film up with the capture.
+- **Flicks at idle that are gone at 2500 do not separate the causes**
+  (*corrected 10/10/2026, the owner's point*: this table first read a
+  flick that stays at 2500 as H1's sign). Nothing on this car has ever
+  misfired off idle — 014 never counts during a pull (S3), and the
+  August holds at 1536–2926 rpm in neutral (`13`–`16`, `10`) carry no
+  dip of 20 rpm, against 15 a minute at idle (`09`) — so flicks gone at
+  2500 is the expected reading **for every hypothesis, H1 included**: a
+  hydraulic lifter has least oil pressure behind it at idle (*general*).
+  ⚠ The holds are weak evidence on their own — short, on the old parts,
+  and a missed firing at 2500 moves the speed about a third as much as
+  at idle, so a 20 rpm threshold is blunter there (*reasoned*).
 
 | what the needle does | reading | for |
 |---|---|---|
 | **steady at idle**, the level normal for itself, rises a little at 2500 and steady there | no valve fault, no large leak; the dips are too small for the gauge to see | H0, or a fault the gauge cannot reach |
-| **an occasional sharp flick down**, irregular, now and then in a row, then seconds of quiet — **and still there at 2500** | **a valve that hangs** (a lifter bleeding off, a stem sticking): it is mechanical, so it does not care that the combustion is safe at 2500 | **H1** |
-| the same flicks at idle, **gone at 2500** | the misfires themselves, at idle only — whatever their cause; the gauge cannot name it | S3 confirmed; H1 neither for nor against, H3/H0 as before |
+| **an occasional sharp flick down** at idle, irregular, gone at 2500 | the misfires themselves — a hanging valve, a spark, a lean runner all look alike here | S3 confirmed; **names nothing** |
+| the same flicks **still there at 2500** | something that misfires off idle too, which nothing on this car has done before | new; a valve (H1) first |
 | **a regular flick on every cycle**, same size each time | one valve that never seals (burnt, bent) — unlikely with even compression | H1, a worse form; leak-down next |
 | **low and steady at idle**, normal-ish at 2500 | air in behind the throttle | H3 |
 | **low and steady at idle and at 2500 alike** | a late cam — the belt a tooth out — or an exhaust restriction | the belt (ranked 8) |
@@ -335,12 +345,16 @@ weather.
 
 **What follows from it:**
 
-- **H1's reading** (flicks that stay at 2500, or a regular flick): the
-  next step is to name the cylinder — the stethoscope over each lifter
-  at a warm idle (H1 test 1), then a warm leak-down (test 3), and the
-  valve cover off to look at the lifters and cams if either points. A
-  flick that stays at 2500 is the one reading the gauge can give that
-  points at the valvetrain rather than at a misfire of any cause.
+- **What the gauge can and cannot say about H1.** It points at the
+  valvetrain only through the rarer readings — a regular flick, a fast
+  flutter, flicks that stay at 2500. **An intermittent flick at idle
+  alone cannot tell a hanging valve from any other misfire.** H1 is
+  then answered by the tests aimed at it: the stethoscope over each
+  lifter at a warm idle (H1 test 1), a warm leak-down (test 3), and with
+  the valve cover off, each lifter pressed down with its cam lobe
+  pointing up — a lifter that gives before the valve moves has bled
+  down (*general*; VW's manuals describe a check of this kind for these
+  engines, recalled and **not** checked against the manual here).
 - **Flicks only at idle**: the gauge has confirmed the misfires and not
   named them; nothing moves in the ranked list, and the next repair is
   chosen from it as it stands.
