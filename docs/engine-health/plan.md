@@ -18,14 +18,13 @@ records it**, and the file is deleted when it is empty.
 time; Claude says after each whether the next is needed. Claude runs
 the capture on every drive.
 
-1. **One session, the gauge on: cold start, exhaust, drive, warm idle.**
+1. **Cold: the gauge and the exhaust.** No driving with the gauge on.
    - **Before, engine cold and off:** tee the gauge into the fuel
      pressure regulator's vacuum hose. Short hose to the gauge, tight
-     T-piece. Lay the gauge where the bonnet closes on nothing and the
-     hose is clear of the belt and the exhaust.
+     T-piece. Lay the gauge clear of the belt and the exhaust.
    - **Start it.** Claude runs the capture; VCDS on **014, 020, 026**.
      Film the gauge **30 s** straight after the start.
-   - **The exhaust, cold**, before driving off:
+   - **The exhaust:**
      - Phone recording, laid in the engine bay by the manifold; later
        under the car by the front pipe.
      - At the tailpipe, **say aloud "teď"** and close it for **2–3 s**,
@@ -34,23 +33,27 @@ the capture on every drive.
        again.
      - Then, tailpipe open, say whether the sputter (S15) is louder
        **from above in the engine bay or from under the car**.
-     - Film the gauge **30 s** again, then drive off.
-   - **Drive** as on 10/10, oil to 68–72 °C. A few stops at a warm idle,
-     a minute or two each. Write the stops.
-   - **Back, warm idle:** film the gauge **1 min**, then write what the
-     needle does. **055 read once.** Engine off.
-   - **Afterwards:** gauge off, the regulator's hose back on its own,
-     pushed fully home. **Play both exhaust recordings back yourself**
-     and write whether a hiss or a puff comes up at each "teď", and on
-     which recording.
+   - Film the gauge **1 min** again. Engine off.
+   - **Gauge off**, the regulator's hose back on its own, pushed fully
+     home. Write what the needle did.
+   - **Play both exhaust recordings back yourself** and write whether a
+     hiss or a puff comes up at each "teď", and on which recording.
    - **Cold, engine off (the next morning will do): photograph from
      below** whatever the phone reaches — the flange under the manifold,
      the front pipe back to the converter, the probe if it shows.
      **Black soot streaks** at a joint mark a leak. The manifold itself
      is under its heat shield: leave it.
-2. **One or two more ordinary drives, warm**, on different days, no
-   gauge. VCDS on **014, 003, 020**; 055 once at the end, warm idle.
-3. **Only if 1 found nothing at the exhaust: the exhaust test again,
+2. **Only if the needle showed nothing cold: the gauge warm.**
+   - A drive to 68–72 °C of oil, as on 10/10. Claude runs the capture;
+     VCDS on **014, 020, 026**. A few stops at a warm idle, a minute or
+     two each. Write the stops.
+   - Back: engine off, tee the gauge in as before.
+   - Start, film the gauge **1 min** at idle. **055 read once.** Engine
+     off, gauge off, hose back on.
+3. **Two or three ordinary drives, warm**, on different days, no gauge
+   (one fewer if 2 was done). VCDS on **014, 003, 020**; 055 once at
+   the end, warm idle.
+4. **Only if 1 found nothing at the exhaust: the exhaust test again,
    warm**, after a drive to 68–72 °C of oil.
    - **Leaks there → a new manifold**: new gasket to the head, new nuts,
      new outlet gasket, the probe refitted with anti-seize. Part
@@ -58,7 +61,7 @@ the capture on every drive.
      ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
      Penetrating oil on the studs the days before; a snapped stud goes to
      a garage.
-4. **Only if Claude asks: injectors 1 and 4 again, warm idle** — as on
+5. **Only if Claude asks: injectors 1 and 4 again, warm idle** — as on
    10/10.
    - Drive until the oil reads 68–72 °C. Stop, neutral, handbrake on,
      loads off. Claude runs the capture; VCDS on **014, 055, 003**.
@@ -71,14 +74,14 @@ the capture on every drive.
    - Write every off and on into the chat. The engine light will come
      on, maybe flashing: carry on.
    - Clear the fault memory with VCDS.
-5. **Only if the idle is still not right: high-voltage side in the dark,
+6. **Only if the idle is still not right: high-voltage side in the dark,
    a damp evening, warm idle.**
    - Bonnet open, lights off: look along the leads and the coil for a
      spark or a blue glow.
    - Then a fine water mist over one lead at a time, and the coil.
      Hands and the bottle clear of the leads.
    - Write anything seen, and which lead the engine stumbled at.
-6. **The next repair** — Claude picks it from `open.md` then.
+7. **The next repair** — Claude picks it from `open.md` then.
 
 ## Standing items
 
@@ -126,26 +129,24 @@ G66 and the rest of H5's tests stay in `open.md` as tests, not steps.
 **Idle solved → stop and record.** Otherwise each item decides whether
 the next is needed.
 
-**Nothing until the vacuum gauge is here, then one session for three
-things** (*owner's decision*, 10/10/2026): the engine is not started
-while the gauge is on its way (MAR-POL `M57673`, ordered 10/10, `open.md`
-*Tools worth owning*), and the first session then takes the cold
-exhaust test, a captured drive and the gauge together — one cold start
-and one drive instead of three, which keeps to *Run the engine as little
-as possible*. **The gauge is read warm, and cold as well** (*decided
-10/10/2026*, the owner's question): the warm idle is the reading — that
-is where 014 counts at the stops and where the idle settles at its own
-speed, while a cold idle runs raised and enriched, which moves the
-needle for reasons of its own (*general*). But S1 is roughest cold, and
-with the gauge teed in for the cold start anyway the two cold films cost
-nothing; a flick present cold and gone warm, or the other way round, is
-itself a result. **It stays on through the drive** rather than being
-refitted on a hot engine (*decided*); a hose pinched or off shows as a
-rough or lean idle and a needle at zero, so the drive's stops say if it
-went wrong. Filmed rather than watched, because a flick at idle comes
-several times a second and a video can be stepped through.
+**Nothing until the vacuum gauge is here** (*owner's decision*,
+10/10/2026): the engine is not started while the gauge is on its way
+(MAR-POL `M57673`, ordered 10/10, `open.md` *Tools worth owning*). **Item
+1 then takes the gauge and the cold exhaust test on one cold start**, so
+the engine runs once for both. **The gauge is read cold first, and warm
+only if cold shows nothing; it is never on during a drive** (*owner's
+decision*, 10/10/2026, replacing the same day's plan of one session with
+the gauge left on through the drive). Cold is not the cleaner reading —
+a cold idle runs raised and enriched, which moves the needle for reasons
+of its own, and the warm idle is where 014 counts at the stops
+(*general*) — but S1 is roughest cold, and a valve that flicks the
+needle (H1) or a leak that drags it low (H3) is there cold too. So a
+clear result cold is enough; a quiet needle cold leaves the warm idle,
+which item 2 reads on a drive that is captured anyway and so counts as
+one of item 3's. Filmed rather than watched, because a flick at idle
+comes several times a second and a video can be stepped through.
 
-**Items 1 and 2 — the drives** (*decided 10/10/2026*). The first drive after the new
+**Items 2 and 3 — the drives** (*decided 10/10/2026*). The first drive after the new
    plugs and leads put the dips at a quarter of pairs on one slot — 10
    of 39, 26 %, against 34 of 103, 33 %, on 9/10 — while 014 counted as
    before (`open.md` S3, *The drive after the new leads*). One drive
@@ -153,7 +154,7 @@ several times a second and a video can be stepped through.
    cost nothing. **How it is read**: `cutscan.py --pairs` on the idles,
    outside any cut, pooled with 10/10's — still near a quarter → the
    one-cylinder share is gone, and what 014 counts acts on the whole
-   engine; back toward a third → item 4 names the cylinder. 014 by
+   engine; back toward a third → item 5 names the cylinder. 014 by
    stop and the grade by oil band against `open.md` S1 and S3. **The
    groups**: **014** is the reading; **003** the idle air, which says
    whether anything sealed or opened; **055 once**, at the end on a
@@ -167,7 +168,7 @@ several times a second and a video can be stepped through.
    VCDS takes three groups, so 003 sits that drive out (*decided*): its
    idle air was 3.08 g/s on 10/10, the baseline is set, and the idle is
    still read off 014 and the capture.
-**Items 1 and 3 — the exhaust ahead of the front probe (H2)** (*reasoned*,
+**Items 1 and 4 — the exhaust ahead of the front probe (H2)** (*reasoned*,
    9/10/2026): `open.md`'s first candidate when this was written (since 9/10 second, behind H3, now that the dips keep to one cylinder — but still the one with symptoms of its own), and next now that 2b moved nothing on
    the intake side, the one with a symptom of its own since S15 was
    heard, and free. With the outlet closed, a leak that draws air in at idle blows
@@ -200,7 +201,7 @@ several times a second and a video can be stepped through.
    3/10/2026); the suffix differs by model and year; the studs into the
    head are 26 years old. **Nothing leaks ahead of the probe** → H2 is
    refuted for its zone and goes to `refuted.md`.
-**Item 4 — injectors 1 and 4** (*the owner's proposal, 9/10/2026*; `open.md`,
+**Item 5 — injectors 1 and 4** (*the owner's proposal, 9/10/2026*; `open.md`,
    *Naming the cylinder*). It is also `docs/firmware/open.md` question
    11's deliberate misfire, brought forward at the owner's decision the
    same day. With a connector off, that cylinder gets no fuel, so the
@@ -282,20 +283,20 @@ several times a second and a video can be stepped through.
      of known rate — comes from the same minutes.
    **Day 1, 10/10/2026** (`open.md`, *Naming the cylinder*): no
    cylinder stands out (p = 0.28), neither 1 nor 4 weak by air, on
-   twenty dips. **Not repeated unless items 1–2 bring the dips back to one
+   twenty dips. **Not repeated unless items 2–3 bring the dips back to one
    slot** (*decided 10/10/2026*): the test exists to name the cylinder
    the dips keep to, and on the same drive they kept to none.
-**Item 5 — the high-voltage side** (`open.md` H4 test 1e, *decided 9/10/2026*):
+**Item 6 — the high-voltage side** (`open.md` H4 test 1e, *decided 9/10/2026*):
    the roughest reading on record came on a foggy morning (S1), and the
    moisture a tracking boot or coil needs is what the mist supplies.
    The plugs and leads are new (10/10) and the coil is from 6/2026,
    which is why it is late in the order; it is free.
-**Item 1 — how the gauge is read** (`open.md`, *Tools worth owning*). A long hose
+**Items 1 and 2 — how the gauge is read** (`open.md`, *Tools worth owning*). A long hose
    smooths away the flick a valve makes. Read against itself (*general*):
    **a steady needle** → no valve and no large leak; **a regular flick
    down** at one point in the cycle → a valve (H1); **a low or slowly
    wandering needle** → a leak or a mixture fault (H3, H7).
-**Item 6 — the next repair** is chosen then, not now, from `open.md`'s ranked
+**Item 7 — the next repair** is chosen then, not now, from `open.md`'s ranked
    candidates.
 
 ## Standing items — why
