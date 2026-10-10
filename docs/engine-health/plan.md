@@ -47,9 +47,8 @@ off; Claude runs the capture throughout.
      ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
      Penetrating oil on the studs the days before; a snapped stud goes to
      a garage.
-3. **New plugs and leads, original VW, engine cold.** Plugs: **VW
-   `101000033AA`** (AQY in the seller's list). Leads: by VIN, AQY in
-   their list.
+3. **New plugs and leads, engine cold:** **NGK `RC-VW254`** leads and
+   **NGK `BKUR6ET-10`** plugs, bought 10/10/2026.
    **Do not disconnect the battery.**
    - Before anything comes off: a scrap of paper with the cylinder's
      number in every photo.
@@ -65,8 +64,9 @@ off; Claude runs the capture throughout.
    - New plugs to the torque on their box or in VW's manual. New leads:
      each one must click, at the plug and at the coil.
 4. **An ordinary drive, warm, the next day or after** — like 9/10.
-   Claude runs the capture; VCDS on **014, 055, 033**. A few stops at a
-   warm idle, a minute or two each. Write the stops.
+   Claude runs the capture; VCDS on **014, 003, 020**. **055 read once,
+   at the first warm stop.** A few stops at a warm idle, a minute or two
+   each. Write the stops.
    **Claude says then whether anything below is still needed.**
 5. **Only if Claude asks after step 4: injectors 1 and 4 in turn, warm
    idle — on up to three separate days.**
@@ -225,12 +225,27 @@ the next is needed.
    out cold, because the head is aluminium; a plug socket holds the plug
    and spares the ceramic; one that will not move goes to a garage,
    because a thread pulled out of the head is a far bigger job. The
-   torque is not quoted here: no source for it is held. **The plugs:
-   VW `101000033AA`** "Zapalovací svíčka LONGLIFE ORIGINÁL", AQY in
-   Autokelly's list of engines for it (*owner's screenshot*, 9/10/2026),
-   344 Kč each against the garage's 200; VW's plugs are made for it by a
-   plug maker, which is why the picture shows NGK (*general*).
-4. **The drive after** (*decided 9/10/2026*). **How it is read**:
+   torque is not quoted here: no source for it is held. **The parts**
+   (*owner*, 10/10/2026): VW originals could not be had that day — the
+   plugs `101000033AA` were found, AQY in the seller's list, but no
+   original leads — so **NGK `RC-VW254`** leads and **NGK
+   `BKUR6ET-10`** plugs. The leads are black and heavier than the grey
+   set they replace, so a different construction; RC-VW254 is listed
+   against VW sets `06A 905 409 F / L / P` and `06A 905 430 E` by a
+   seller's search summary, not opened, and AQY was not seen in its list.
+   **Tried dry, the new plug ends need far more force to click home**
+   than the owner ever used on the old ones — which may mean the old ones
+   were never fully seated, and is why each new one must click.
+4. **The drive after** (*decided 9/10/2026*). **The groups**
+   (*decided 10/10/2026*): **014** is the reading; **003** shows air,
+   plate and ignition angle at idle — the air should not move, which says
+   only the ignition was touched, and the idle control trims with the
+   ignition angle too; **020** costs nothing on a drive and shows whether
+   cylinder 4's retard under load (S4) changed with the new set — data,
+   not a step, the knock window staying out of the plan. **055 once**, at
+   the first warm stop: the learned value still near −1.1 to −1.3 says the
+   adaptations stayed settled and the comparison with 9/10 holds
+   (`refuted.md` C19). **How it is read**:
    `cutscan.py --pairs` on its warm idles against `30` (34 of 103 pairs
    on the same slot, 33 %) — back to about a quarter means the stumble
    that kept to one cylinder has gone; 014 at the warm stops against

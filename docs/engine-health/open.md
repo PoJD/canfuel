@@ -2154,6 +2154,11 @@ clean, several tenths is a bad joint** (*general*).
   can be put to a cylinder; the dry run labels them.
   *Corrected 9/10/2026*: this read the rubber end as the plug's, before
   the owner said which is which.
+  **The new set, tried dry** (*owner*, 10/10/2026): NGK `RC-VW254` plug
+  ends click onto the plugs only with far more force than he had ever
+  used on the old ones — so the old ones may never have been fully home.
+  It does not tell a worn or ill-fitting end from one never pushed far
+  enough; either leaves a contact that arcs.
 - **1d. Engine off: the HT leads.** Each one pushed fully home on its coil
   tower and its plug, the boots dry and uncracked. With the meter on ohms,
   the four leads against each other: one reading far from the others (for
