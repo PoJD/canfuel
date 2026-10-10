@@ -242,6 +242,12 @@ the next is needed.
    set they replace, so a different construction; RC-VW254 is listed
    against VW sets `06A 905 409 F / L / P` and `06A 905 430 E` by a
    seller's search summary, not opened, and AQY was not seen in its list.
+   **The old plugs were the same type**, NGK `BKUR6ET-10`, read off one
+   on removal (*owner*, 10/10/2026). So the plug as a part is unchanged:
+   the step renews worn and burnt plugs of the same kind, and what really
+   changes is **the leads** — a different construction whose ends grip —
+   **and the intake gasket**. A better idle afterwards points at the
+   lead-to-plug contact, not at the plug type.
    **Tried dry, the new plug ends need far more force to click home**
    than the owner ever used on the old ones — which may mean the old ones
    were never fully seated, and is why each new one must click.

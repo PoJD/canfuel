@@ -141,7 +141,7 @@ here is owner-supplied from service records.
 | **Valve cover gasket, the right one**, Elring `915.653` (listed for AQY; solid half-moons, metal sleeves), on Dirko Elring `030.793`, with a new upper plenum gasket Elring `271.230` | **4/10/2026**, by the owner | ~0 |
 | Injectors' air-shroud line: **new 8 mm sleeves** on the rigid pipe | **1/10/2026**, by the owner | ~0 |
 | Throttle vacuum elbow `06A 133 374` (tee to the throttle's top spigot) — **replaced by a longer plain hose**, the new throttle's spigot pointing the other way | **2/10/2026**, by the owner; the old elbow is kept | ~0 |
-| **Spark plugs and ignition leads**, NGK leads (*"NGK SPARK PLUG CABLE"* and *"5ME2"* printed on them, `photos/cover-leak-2026-10-04-cleaned.jpg`; the set number is not printed). The invoice names no part numbers: **plugs 800 Kč the four, leads 1,650 Kč the set** (*owner*, read 9/10/2026). The plugs' make is not recorded | **17/9/2026**, at the Dakuma garage | ~0 |
+| **Spark plugs and ignition leads**, NGK leads (*"NGK SPARK PLUG CABLE"* and *"5ME2"* printed on them, `photos/cover-leak-2026-10-04-cleaned.jpg`; the set number is not printed). The invoice names no part numbers: **plugs 800 Kč the four, leads 1,650 Kč the set** (*owner*, read 9/10/2026). **The plugs were NGK `BKUR6ET-10`** — read off one of them on removal, 10/10/2026 (`photos/plug-old-2026-10-10-type.jpg`) | **17/9/2026**, at the Dakuma garage | ~0 |
 | Rear shock absorbers, air-conditioning recharge, minor items | 17/9/2026 | ~0 |
 
 Three entries carry more than a date.
@@ -299,6 +299,7 @@ a later reader can see what was being judged.
 | `leads-2026-10-01-plug-end-1`…`-6.jpg` | the leads' **plug** ends: a slotted metal sleeve with tabs for a puller, round a rubber insert, the terminal deep inside; `-1`'s insert darker and crusted where the rest are clean. Which lead each is, again not recorded |
 | `leads-old-2026-10-10-plug-end-cyl1`…`cyl4.jpg` | the old NGK leads' plug ends, **numbered by cylinder** (*owner*, 10/10/2026, on removal): cylinder 4's rubber insert scored and ragged, its terminal not visible; 1–3 smoother, their brass terminals plainly in view |
 | `plug-old-2026-10-10-cyl4-top.jpg`, `-cyl4-tip.jpg` | the old plug from cylinder 4 (*owner*, 10/10/2026): its terminal post dark and pitted; the firing end coated in dry black soot |
+| `plug-old-2026-10-10-type.jpg`, `plug-new-2026-10-10.jpg` | an old plug's print, NGK `BKUR6E…10` on the ceramic and `…ET … JAPAN` on the shell; a new NGK of the same type beside it |
 | `plug-old-2026-10-10-cyl3-top.jpg`, `-cyl3-tip.jpg` | the old plug from cylinder 3: terminal darkened but smooth; firing end sooted like 4, crusted on the ground electrodes |
 | [`plug-well-2026-10-09-b.jpg`](photos/plug-well-2026-10-09-b.jpg), [`-c`](photos/plug-well-2026-10-09-c.jpg), [`-d`](photos/plug-well-2026-10-09-d.jpg) | the other three plug wells, cylinder not recorded; `-d` too dark to judge |
 
