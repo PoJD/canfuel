@@ -78,7 +78,9 @@ Everything else settled against is in `refuted.md`.
   servo is cleared (H3). Ranked now (*re-read 10/10*): **H2**, the
   exhaust ahead of the probe — S15 still heard — then **H7**, rail
   pressure, and **H3**, a leak, with no cheap test left (*The idle's
-  candidates, ranked*).
+  candidates, ranked*). **H11**, both lambda probes shifted alike, is
+  written down last (10/10, at the owner's request) so that it is not
+  argued again from the start.
 - **Around the idle:** S2 (an occasional puff from the exhaust) and S11
   (a hiss at the back of the engine at a warm idle, not yet placed) —
   **neither heard on 9/10 or 10/10**, both kept open. **S15**, a constant
@@ -3394,6 +3396,77 @@ repair blogs; still nothing from VW.
    current band: the same rule as H2 — a clear improvement means this was
    underrated.
 
+### H11. Both lambda probes shifted alike, so the mixture is off and nothing sees it
+
+*Added 10/10/2026 at the owner's request, as a weak hypothesis written
+down so that it is not argued again from the start.* Both probes are the
+one part of the mixture control that has not been changed: **10/2017,
+~27,600 km** (`vehicle-history.md`). *The owner is not sure both were
+changed then (10/10/2026); the service record says both.*
+
+**What it needs.** The two-loop control (SSP 233 p. 16, as in H2) holds
+the front probe at its switching point and lets the rear probe move that
+point slowly. One probe lying is caught by the other; **only both lying
+in the same direction is not.** For a mixture that is really rich to pass
+unseen, both have to read *leaner* than the truth: the front makes the
+ECU add fuel, the rear then sees its target and does not take it back.
+(Both reading richer would hide a lean mixture the same way.) An aged
+narrowband probe can shift where it switches, and one that answers
+lean-to-rich more slowly than rich-to-lean moves the mean mixture in the
+same way (*general*).
+
+| S1 | S2 | S3 | S4 | S5 | S11 | S15 |
+|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | — |
+
+S1 and S3 only as a background on all four cylinders — **a few per cent
+off λ = 1 does not misfire on its own** (*general*, as under H2); S2 for
+surplus fuel burning in the exhaust. S4 and S5 are one cylinder's; S11
+and S15 are sounds a probe does not make.
+
+- **For:** nine years, and a misfiring idle with a burned-through
+  converter behind them (`vehicle-history.md`). **None of the probe tests
+  sees a shift**: 034 times the front probe's period, 046 compares
+  amplitudes, 036/037 check the rear for presence and response (`vcds.md`)
+  — all OK on 24/9 (`refuted.md` C5), and all blind to where the
+  switching point sits. The front probe's even, full swing at idle
+  (`refuted.md` C5) rules out a lazy probe, not a shifted one. Dry soot on
+  plugs 1, 3 and 4 (H4, 1d) fits a rich mixture — and fits idling, short
+  trips and misfires as well. **10/10: the dips no longer keep to one slot**
+  on one drive (S3), which gives back a little to causes acting on all four.
+- **The rear probe's 0.665–0.725 V at a hot idle does not decide it**
+  either way: that is where a narrowband probe behind a working converter
+  usually sits (*general*), and a shifted rear probe reads the same.
+- **Against — the trims, read as an independent sum.** The ECU meters fuel
+  from the MAF and the injectors' flow, and the probes only correct it. A
+  steady error in the probes therefore shows in 032 + 033 as a correction
+  of its own size, **less whatever error the MAF and the injectors carry**.
+  Read: 032 −0.8 / +2.3 % (4/10), 033's median −0.8 % at idle (B1) — on a
+  **new MAF and new injectors** (9/2026). A hidden error of five per cent
+  would need the two new parts to be wrong by five per cent the other way,
+  just enough to cancel it. Their tolerances are not held here, so this
+  bounds the shift to a few per cent rather than excluding it.
+- **Against — the sign.** Hiding a rich mixture means the ECU adding fuel:
+  a positive correction. The idle cell has read negative every time on the
+  new MAF (−3.1 %, −0.8 %), the ECU taking fuel out.
+- **Against, as the misfires' cause:** a shift small enough to hide in the
+  trims is too small to misfire, and one large enough to misfire could not
+  hide in them.
+
+**Tests:**
+
+1. **A four-gas analyser** — the emissions station's, the one instrument
+   on the list that measures the mixture without the car's probes: CO, HC,
+   O₂ and the λ computed from them, at a warm idle and at ~2500 rpm. λ
+   close to 1 with low CO closes this; λ clearly below 1 with the trims
+   near zero opens it. *Not in `plan.md`.*
+2. **A wideband sensor as a reference**, if the blanked-off boss on the
+   new front pipe (`vehicle-history.md`) turns out to sit ahead of the
+   converter — where it sits is not recorded. Its λ against the ECU's
+   switching, at idle and under load.
+3. If either finds a shift: new probes, front first, and 032 read again on
+   settled adaptations.
+
 ## What the forums say about this idle — searched 27/9/2026
 
 A fresh sweep for the idle and the misfires alone (S1–S3), in German,
@@ -3714,7 +3787,11 @@ same way for the third time, and nothing moved that a new leak would
 move — 003's air at a warm idle 3.08 g/s against 3.12, 055's learned
 value where it was, 014 at 9/10's rates. That reading is the test, and
 it is clean; H3 keeps its place at 3 with no test of its own left
-short of the vacuum gauge.*
+short of the vacuum gauge.* *Re-read 10/10/2026 when **H11** was
+added (both probes shifted alike, at the owner's request): no symptom
+added or closed. **It goes in last, at 9** — the trims on a new MAF and new
+injectors bound it to a few per cent, the wrong sign for a hidden rich
+mixture, and too little to misfire; the order above it stands.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
@@ -3726,6 +3803,7 @@ short of the vacuum gauge.*
 | 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits only in form** — a coil that breaks down hot is the textbook case, but **the coil is from 6/2026**, and the 3/10 oil sat **only on the outside of its plastic and on the outsides of the leads of 3 and 4, wiped dry** (*owner*, 4/10/2026) **9/10: the dips keep to one slot — for the high-voltage side of one lead or tower (test 1e), against the supply side** **9/10, for — the first named part: plug 4's terminal burnt black by 1/10, the plug-end boots never click, one plug end crusted, the owner pulls them by hand (1d)** | **new plugs and leads, VW originals** (*owner's decision, 9/10*, `plan.md` step 3.3), and the drive after: the dips back to a quarter of pairs on one slot → it was here **10/10, done: a quarter (26 %) on the first drive, but 014 counting as before — so not the misfires; the one-cylinder share of the dips, if two or three more drives hold** |
 | 7 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) **4/10 evening:** a new throttle passing more at rest than the ECU's model would also make it learn air away (`refuted.md` C19) **9/10, against: the throttle feeds all four alike, and the dips keep to one slot** | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `idle-log.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
 | 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
+| 9 | **H11 — both lambda probes shifted alike** | the only part of the mixture control not changed, 10/2017; no probe test sees a shift; soot on three plugs. Against: 032 + 033 near zero on a new MAF and new injectors bounds it to a few per cent, and with the wrong sign — negative, the ECU taking fuel out; a few per cent does not misfire | a **four-gas analyser** at the emissions station (H11 test 1) |
 
 **Tools worth owning for this, cheapest first** (*general*; prices not
 recorded here, since they move):

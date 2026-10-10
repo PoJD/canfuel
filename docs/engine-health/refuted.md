@@ -325,6 +325,11 @@ near zero on a new MAF and new injectors guard against. Both probes date
 from 10/2017, about 27,600 km (`vehicle-history.md`) — nine years of a
 misfiring idle behind them, few kilometres.
 
+**The rear probe is a witness only against the front one alone.** Both
+shifted the same way would pass every test above; that case is open as
+`open.md` H11 (10/10/2026), bounded there by the trims rather than by the
+probes.
+
 ### C6. "A thermostat stuck open, or a coolant sensor reading low, drives a warm-up enrichment" — measured
 
 The coolant on 0x288 — the ECU's own figure — warms up to 99–100.5 °C like a
