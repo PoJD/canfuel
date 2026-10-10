@@ -33,9 +33,15 @@ the capture on every drive.
        again.
      - Then, tailpipe open, say whether the sputter (S15) is louder
        **from above in the engine bay or from under the car**.
-   - Film the gauge **1 min** again. Engine off.
+   - Film the gauge **1 min** again.
+   - **Then 2500 rpm, held by hand, 15 s**, filming; let it fall back
+     and film **15 s** of idle. Engine off.
    - **Gauge off**, the regulator's hose back on its own, pushed fully
-     home. Write what the needle did.
+     home.
+   - **Write, from the films:** the number the needle sits at, in the
+     dial's own units, at idle and at 2500; **how many times it flicked
+     down in the 1 min of idle**; whether the flicks come singly or a few
+     in a row; whether they are still there at 2500.
    - **Play both exhaust recordings back yourself** and write whether a
      hiss or a puff comes up at each "teď", and on which recording.
    - **Cold, engine off (the next morning will do): photograph from
@@ -48,8 +54,10 @@ the capture on every drive.
      VCDS on **014, 020, 026**. A few stops at a warm idle, a minute or
      two each. Write the stops.
    - Back: engine off, tee the gauge in as before.
-   - Start, film the gauge **1 min** at idle. **055 read once.** Engine
-     off, gauge off, hose back on.
+   - Start, film the gauge **1 min** at idle, then **2500 rpm 15 s** and
+     **15 s** of idle again. **055 read once.** Engine off, gauge off,
+     hose back on.
+   - **Write** the same four things as in 1.
 3. **Two or three ordinary drives, warm**, on different days, no gauge
    (one fewer if 2 was done). VCDS on **014, 003, 020**; 055 once at
    the end, warm idle.
@@ -291,19 +299,59 @@ comes several times a second and a video can be stepped through.
    moisture a tracking boot or coil needs is what the mist supplies.
    The plugs and leads are new (10/10) and the coil is from 6/2026,
    which is why it is late in the order; it is free.
-**Items 1 and 2 — how the gauge is read** (`open.md`, *Tools worth owning*). A long hose
-   smooths away the flick a valve makes. Read against itself (*general*):
-   **a steady needle** → no valve and no large leak; **a regular flick
-   down** at one point in the cycle → a valve (H1); **a low or slowly
-   wandering needle** → a leak or a mixture fault (H3, H7). **A drop
-   that comes and goes** — a few flicks in a row, then quiet for seconds
-   — is what a valve that hangs only sometimes would do (*general*: a
-   lifter bleeding off shows as an intermittent drop at idle), and it is
-   the shape the dips have (`open.md` S1): now and then, not on every
-   stroke. That is why the films are a minute and not a glance. A flick on every
-   stroke of one cylinder would be a valve that never seals, which the
-   even compression makes unlikely. **Low and steady** → a late cam
-   (the belt a tooth out) as much as a leak (*general*).
+**Items 1 and 2 — how the gauge is read** (`open.md`, *Tools worth
+owning*, and H1 test 5). Everything here is *general* — the classic
+readings of a manifold vacuum gauge — and none of it is VW's figure
+for this engine. **Read the needle against itself**, never against a
+number from a book: the absolute level also depends on altitude and the
+weather.
+
+- **What a flick is.** At idle each cylinder draws on the manifold once
+  per cycle, about 6–7 times a second per cylinder at 780 rpm, so a
+  healthy needle sits still or trembles evenly. A cylinder that does
+  not draw its share — a valve not closing, or a firing that failed —
+  shows as **a quick dip of the needle and back**, a fraction of a
+  second. That is why it is filmed: a phone at 30 frames a second can
+  be stepped through, an eye cannot.
+- **A flick is any misfire, not only a valve.** Whatever makes a
+  cylinder miss — a valve, a spark, a lean runner — flicks the needle
+  the same way. **So the count is first compared with the dips**: the
+  capture runs under the same minute, and if the needle flicks about as
+  often as the engine speed dips (S1: 5–15 a minute warm), the gauge is
+  seeing the misfires themselves, and the reading below is what tells
+  their cause. The 2500 rpm hold is also the marker that lines the film
+  up with the capture.
+
+| what the needle does | reading | for |
+|---|---|---|
+| **steady at idle**, the level normal for itself, rises a little at 2500 and steady there | no valve fault, no large leak; the dips are too small for the gauge to see | H0, or a fault the gauge cannot reach |
+| **an occasional sharp flick down**, irregular, now and then in a row, then seconds of quiet — **and still there at 2500** | **a valve that hangs** (a lifter bleeding off, a stem sticking): it is mechanical, so it does not care that the combustion is safe at 2500 | **H1** |
+| the same flicks at idle, **gone at 2500** | the misfires themselves, at idle only — whatever their cause; the gauge cannot name it | S3 confirmed; H1 neither for nor against, H3/H0 as before |
+| **a regular flick on every cycle**, same size each time | one valve that never seals (burnt, bent) — unlikely with even compression | H1, a worse form; leak-down next |
+| **low and steady at idle**, normal-ish at 2500 | air in behind the throttle | H3 |
+| **low and steady at idle and at 2500 alike** | a late cam — the belt a tooth out — or an exhaust restriction | the belt (ranked 8) |
+| **a fast, even flutter** that gets worse at 2500 | weak valve springs, or worn guides if it steadies with speed | H1, the springs and guides |
+| **slow wandering** up and down over seconds, at idle | mixture or idle control hunting | H8, H7 |
+
+**What follows from it:**
+
+- **H1's reading** (flicks that stay at 2500, or a regular flick): the
+  next step is to name the cylinder — the stethoscope over each lifter
+  at a warm idle (H1 test 1), then a warm leak-down (test 3), and the
+  valve cover off to look at the lifters and cams if either points. A
+  flick that stays at 2500 is the one reading the gauge can give that
+  points at the valvetrain rather than at a misfire of any cause.
+- **Flicks only at idle**: the gauge has confirmed the misfires and not
+  named them; nothing moves in the ranked list, and the next repair is
+  chosen from it as it stands.
+- **Low and steady**: at idle only → H3 moves up, and the intake is
+  smoked warm; at 2500 too → the belt's marks are checked.
+- **Steady and normal**: the valvetrain and a large leak are cleared as
+  far as a gauge can clear them; H1 and H3 both lose, and H0 gains.
+- **Cold and warm differ** (item 2 done): a flick cold that is gone warm
+  fits the cold enrichment and deposits (H1, *inlet-valve deposits*);
+  one that is there warm only fits a lifter on thin oil.
+
 **Item 7 — the next repair** is chosen then, not now, from `open.md`'s ranked
    candidates.
 
