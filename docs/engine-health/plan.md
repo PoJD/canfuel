@@ -14,12 +14,12 @@ records it**, and the file is deleted when it is empty.
 
 ## Step 3 — the idle is not fixed
 
-**Engine not started until the vacuum gauge is here.** Then one at a
-time; Claude says after each whether the next is needed. Claude runs
-the capture on every drive.
+**The engine runs once before the vacuum gauge is here — for item 1 —
+and otherwise not until it is.** Then one at a time; Claude says after
+each whether the next is needed. Claude runs the capture on every drive.
 
-1. **The joint behind the converter, made tight** — before the gauge
-   session.
+1. **The joint behind the converter, made tight, then the exhaust test,
+   cold.**
    - Measure both pipes' outside diameters; write them into the chat.
    - Connector off. A strip of thin sheet, **about 0.4–0.5 mm,
      stainless, not galvanised**, as wide as the connector's grip on
@@ -31,16 +31,8 @@ the capture on every drive.
    - Connector on, bolts tightened in turn, evenly. Nothing may move.
    - Look at the exhaust's rubber hangers: nothing pulling the joint
      sideways or letting it sag.
-   - After the first drive, cold again: bolts tightened once more.
-     Write whether it is still heard.
-2. **Cold: the gauge and the exhaust.** No driving with the gauge on.
-   - **Before, engine cold and off:** tee the gauge into the fuel
-     pressure regulator's vacuum hose. Short hose to the gauge, tight
-     T-piece. Lay the gauge clear of the belt and the exhaust.
-   - **Start it.** Claude runs the capture; VCDS on **014, 020, 026**.
-     Film the gauge **30 s** straight after the start.
-   - **The exhaust — only if the joint behind the converter is tight**
-     (shimmed and resealed beforehand); otherwise skip to the next film:
+   - **Cold start.** Claude runs the capture; VCDS on **014, 020, 026**.
+   - **The exhaust test**, straight after the start:
      - Phone recording, laid in the engine bay by the manifold; later
        under the car by the front pipe.
      - At the tailpipe, **say aloud "teď"** and close it for **2–3 s**,
@@ -48,8 +40,25 @@ the capture on every drive.
      - Move the phone under the car by the front pipe and do the five
        again.
      - Then, tailpipe open, say whether the sputter (S15) is louder
-       **from above in the engine bay or from under the car**.
-   - Film the gauge **1 min** again.
+       **from above in the engine bay or from under the car**, and
+       whether the joint behind the converter is heard.
+   - **A short drive** to warm the exhaust, then home, engine off.
+   - **Play both recordings back yourself** and write whether a hiss or
+     a puff comes up at each "teď", and on which recording.
+   - **Cold again (the next morning will do):** the connector's bolts
+     tightened once more; **photograph from below** whatever the phone
+     reaches — the flange under the manifold, the front pipe back to the
+     converter, the probe if it shows. **Black soot streaks** at a joint
+     mark a leak. The manifold itself is under its heat shield: leave
+     it. Write whether the joint was heard on the drive.
+2. **When the gauge is here: the gauge, cold.** No driving with the
+   gauge on.
+   - **Before, engine cold and off:** tee the gauge into the fuel
+     pressure regulator's vacuum hose. Short hose to the gauge, tight
+     T-piece. Lay the gauge clear of the belt and the exhaust.
+   - **Start it.** Claude runs the capture; VCDS on **014, 020, 026**.
+     Film the gauge **30 s** straight after the start, then **1 min**
+     more.
    - **Then 2500 rpm, held by hand, 15 s**, filming; let it fall back
      and film **15 s** of idle. Engine off.
    - **Gauge off**, the regulator's hose back on its own, pushed fully
@@ -58,13 +67,6 @@ the capture on every drive.
      dial's own units, at idle and at 2500; **how many times it flicked
      down in the 1 min of idle**; whether the flicks come singly or a few
      in a row; whether they are still there at 2500.
-   - **Play both exhaust recordings back yourself** and write whether a
-     hiss or a puff comes up at each "teď", and on which recording.
-   - **Cold, engine off (the next morning will do): photograph from
-     below** whatever the phone reaches — the flange under the manifold,
-     the front pipe back to the converter, the probe if it shows.
-     **Black soot streaks** at a joint mark a leak. The manifold itself
-     is under its heat shield: leave it.
 3. **Only if the needle showed nothing cold: the gauge warm.**
    - A drive to 68–72 °C of oil, as on 10/10. Claude runs the capture;
      VCDS on **014, 020, 026**. A few stops at a warm idle, a minute or
@@ -163,11 +165,12 @@ G66 and the rest of H5's tests stay in `open.md` as tests, not steps.
 **Idle solved → stop and record.** Otherwise each item decides whether
 the next is needed.
 
-**Nothing until the vacuum gauge is here** (*owner's decision*,
-10/10/2026): the engine is not started while the gauge is on its way
-(MAR-POL `M57673`, ordered 10/10, `open.md` *Tools worth owning*). **Item
-1 then takes the gauge and the cold exhaust test on one cold start**, so
-the engine runs once for both. **The gauge is read cold first, and warm
+**The engine runs for item 1 and otherwise waits for the vacuum gauge**
+(*owner's decision*, 10/10/2026; the gauge is MAR-POL `M57673`, ordered
+10/10, `open.md` *Tools worth owning*). **Item 2 is the gauge alone**,
+on a cold start of its own (*owner's decision*, 10/10/2026, replacing
+the plan of one session for the gauge and the exhaust test together:
+the exhaust test moved to item 1, with the joint). **The gauge is read cold first, and warm
 only if cold shows nothing; it is never on during a drive** (*owner's
 decision*, 10/10/2026, replacing the same day's plan of one session with
 the gauge left on through the drive). Cold is not the cleaner reading —
@@ -176,18 +179,19 @@ of its own, and the warm idle is where 014 counts at the stops
 (*general*) — but S1 is roughest cold, and a valve that flicks the
 needle (H1) or a leak that drags it low (H3) is there cold too. So a
 clear result cold is enough; a quiet needle cold leaves the warm idle,
-which item 2 reads on a drive that is captured anyway and so counts as
+which item 3 reads on a drive that is captured anyway and so counts as
 one of item 6's. Filmed rather than watched, because a flick at idle
 comes several times a second and a video can be stepped through.
 
-**Items 1 and 2 — the joint first, then the exhaust test**
-(*owner's decision*, 10/10/2026, to do the joint first; `open.md` S6,
-reopened; the method *general*). The joint rattles again, and a
+**Item 1 — the joint first, then the exhaust test** (*owner's
+decision*, 10/10/2026: the joint and the test together, the gauge on its
+own when it comes; `open.md` S6, reopened; the method *general*). The joint rattles again, and a
 leak behind the converter lets the closed tailpipe's pressure out there,
 so the manifold ahead of the probe is barely tested, and its noise
-drowns the sputter (S15) the phone is listening for. The gauge does not
-depend on it, so the session goes ahead without the exhaust part if the
-joint is not done. **The shim**: about 54.2 mm in a 55 mm connector is
+drowns the sputter (S15) the phone is listening for — so the joint
+comes first and the test straight after, on the same cold start. The
+short drive is the shim's first heat cycle, after which the bolts are
+tightened again. **The shim**: about 54.2 mm in a 55 mm connector is
 about 0.4 mm a side, so a strip of that thickness takes up the play; a
 thicker one keeps the connector from closing evenly. Stainless because
 plain steel rusts out and galvanised sheet gives off zinc fumes when the
@@ -258,7 +262,7 @@ its own about a lifter.
    VCDS takes three groups, so 003 sits that drive out (*decided*): its
    idle air was 3.08 g/s on 10/10, the baseline is set, and the idle is
    still read off 014 and the capture.
-**Items 2 and 7 — the exhaust ahead of the front probe (H2)** (*reasoned*,
+**Items 1 and 7 — the exhaust ahead of the front probe (H2)** (*reasoned*,
    9/10/2026): `open.md`'s first candidate when this was written (since 9/10 second, behind H3, now that the dips keep to one cylinder — but still the one with symptoms of its own), and next now that 2b moved nothing on
    the intake side, the one with a symptom of its own since S15 was
    heard, and free. With the outlet closed, a leak that draws air in at idle blows
