@@ -63,6 +63,12 @@ the capture on every drive.
 4. **One can of Liqui Moly *DFI Cleaner* (= *Pro-Line Direct Injection
    Cleaner*, 120 ml)** into the tank, then fill **30–50 l** of ordinary
    95. Drive the tank as usual. Battery stays connected.
+   - **`IdleHealth` off the display, before the can and through both
+     tanks after it:** on drives where the oil reaches **68–72 °C**, at
+     one stop of **at least a minute**, always with **the same loads on**
+     (lights, blower, rear window heater). Write into the chat: date,
+     `IdleHealth`, oil temperature, which loads. A few before the can,
+     then as they come.
 5. **On the next tank: two or three ordinary drives, warm**, on
    different days. Claude runs the capture; VCDS on **014, 003, 020**;
    055 once at the end, warm idle. Write the stops.
@@ -180,7 +186,18 @@ read**: the drives of item 5 against `30`, `31` and item 1's session —
 settled (the battery stays on, `refuted.md` C19). Better → deposits had
 a part; the same → H1's deposit branch loses, and Claude picks from the
 ranked list. A tank is weeks of this car's driving, so the reading is
-late by design. Not a test of anything else, and it decides nothing on
+late by design. **`IdleHealth` off the display is the running reading in
+between** (*the owner's point*, 10/10/2026) — the one instrument that
+needs neither the laptop nor a capture. Read like with like or not at
+all: it moves with the oil (S1, *Temperature matters*), and **loads
+lower it on their own** — lights, blower and A/C took it from 70–80 to
+35–50 (S1, 26/9) — so the loads have to be the same every time, or
+winter's habit of running them would pass for the additive working. It
+needs about half a minute of settled idle before it reads at all (255
+until then, `docs/firmware/frames.md`), and wanders from window to
+window, so a direction needs several readings each side of the can, not
+one; the readings before the can are the baseline, since none exist
+with these loads. Not a test of anything else, and it decides nothing on
 its own about a lifter.
 
 **Item 5 — the drives** (*decided 10/10/2026*, before the additive was; they now come after it). The first drive after the new
