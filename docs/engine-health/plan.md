@@ -323,14 +323,14 @@ weather.
 - **Flicks at idle that are gone at 2500 do not separate the causes**
   (*corrected 10/10/2026, the owner's point*: this table first read a
   flick that stays at 2500 as H1's sign). Nothing on this car has ever
-  misfired off idle — 014 never counts during a pull (S3), and the
-  August holds at 1536–2926 rpm in neutral (`13`–`16`, `10`) carry no
-  dip of 20 rpm, against 15 a minute at idle (`09`) — so flicks gone at
-  2500 is the expected reading **for every hypothesis, H1 included**: a
-  hydraulic lifter has least oil pressure behind it at idle (*general*).
-  ⚠ The holds are weak evidence on their own — short, on the old parts,
-  and a missed firing at 2500 moves the speed about a third as much as
-  at idle, so a 20 rpm threshold is blunter there (*reasoned*).
+  misfired under load: with detection `aktivováno` while driving, 014
+  started counting about once per 250 samples, against several a minute
+  at idle (`open.md` S3, *Off idle, by detection state*). A 2500 rpm
+  hold in neutral is light load, where 014 is mostly `deaktiv.` and the
+  bus is too noisy to see a misfire, so **the gauge is the only thing
+  that reads it there** — and flicks gone at 2500 is still the expected
+  reading **for every hypothesis, H1 included**: a hydraulic lifter has
+  least oil pressure behind it at idle (*general*).
 
 | what the needle does | reading | for |
 |---|---|---|

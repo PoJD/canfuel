@@ -416,6 +416,19 @@ show it.
   where S12, the tip-in hesitation, would have sat: a short stumble there
   could escape 014 and the dips alike (engine speed while driving follows
   the car). S12 was withdrawn on 4/10/2026; the gap remains.
+- **Off idle, by detection state** (*the owner's question*,
+  10/10/2026: is 014 not simply `deaktiv.` there?). Partly: over every
+  014 log from 24/9 on, above 1500 rpm detection reads `deaktiv.` in
+  about 45 % of samples — the free-revving and coasting where load is
+  low, which is also where a 2500 rpm hold in neutral sits. But it reads
+  `aktivováno` in about 4,300 samples there, while driving at a median
+  load of 40–55 %, and **new counts started in 15 of them**, under one
+  per 250 samples, against several a minute at a standing idle. So the
+  absence under load is real; at a free-revving 2500 nothing is known
+  from 014. **Nor from the bus**: a missed firing at 2500 moves engine
+  speed about a third as much as at idle, which the noise of 0x280
+  there swallows (*reasoned*; `idledips` on `10`, `13`–`16` at a scaled
+  threshold counts hundreds a minute, which is noise, not misfires).
 - **Values 12–120 against the label file's stated 0 to 5.** By VW's own
   measuring-block specification, this is out of range.
 - **The events are the S1 dips.** Aligned on engine speed, counter increments
