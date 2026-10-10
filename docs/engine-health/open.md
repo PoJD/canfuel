@@ -1803,6 +1803,12 @@ loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
 |---|---|---|---|---|---|---|
 | ~ | ✔ | ~ | ✘ | ✘ | ✔ | ✔ |
 
+- **Against, mildly, 10/10/2026** (S1, *What comes before a dip*):
+  this hypothesis acts on the mixture through the lambda control, and
+  what comes before a dip is the idle governor's trim of the charge,
+  not a lean swing of the mixture (as `refuted.md` C5 found for 014).
+  Its sounds (S2, S11, S15) are untouched by this.
+
 - **For:** the puff, idle only, an old manifold that has lived through years
   of misfires, the rear probe on the rich side at hot idle
   (0.665–0.725 V), the exhaust never having been tight.
@@ -2156,6 +2162,14 @@ electrical fix — a new battery — has in effect already been tried here.
 | S1 | S2 | S3 | S4 | S5 | S11 | S15 |
 |---|---|---|---|---|---|---|
 | ✔ | ✔ | ✔ | ~ | ✔ | — | — |
+
+- **Against, 10/10/2026** (S1, *What comes before a dip*): the dips
+  come 1.6–3.5 times as often just after the idle governor has trimmed
+  the charge as just after it added some. An intermittent contact —
+  in the harness, an earth, the coil's feed — does not care about the
+  charge, so it cannot make that dependence; it could still be a part
+  of the dips, not the reason they follow the trims. The same direction
+  as *load helps* (S1), which already counted against this hypothesis.
 
 - **For:** with H1 the only candidate that could explain **both clusters**: a
   weak spark misfires at idle and high vacuum, and a noisy ground puts a
@@ -2609,6 +2623,12 @@ The owner's own remaining candidate is one of the new injectors.
 |---|---|---|---|---|---|---|
 | ~ | ~ | ~ | — | — | — | — |
 
+- **Against, 10/10/2026** (S1, *What comes before a dip*): the dips
+  follow the governor's trims of the charge. Rail pressure does not
+  move with them, and an intermittent break in the injector harness
+  (test 3) does not care about the charge; either could be a part of
+  the dips, not the reason they follow the trims.
+
 - **Against, for the idle:** four new injectors and a new filter changed
   nothing in S1; the trims are near zero; a leaking seat adds fuel at idle and
   the trim would show it.
@@ -2690,6 +2710,13 @@ S1 shows that the idle is sensitive to how air is metered and controlled.
 | S1 | S2 | S3 | S4 | S5 | S11 | S15 |
 |---|---|---|---|---|---|---|
 | ~ | — | ~ | — | — | — | — |
+
+- **Unchanged, 10/10/2026** (S1, *What comes before a dip*): the
+  governor's trims come before the dips, so this part is the trigger,
+  but the trims are ordinary — about 1 % of the injection time and
+  1.5 % of the torque — and come both ways all the time. A governor
+  that hunts would show larger and more frequent ones; these do not
+  point at the throttle.
 
 - **Against:** a hunting governor is a slow oscillation, while S1 is a
   sudden dip lasting one or two firings and recovering in a quarter of a
@@ -3535,6 +3562,10 @@ same way (*general*).
 |---|---|---|---|---|---|---|
 | ~ | ~ | ~ | — | — | — | — |
 
+- **Against, mildly, 10/10/2026** (S1, *What comes before a dip*):
+  what comes before a dip is less charge at the same mixture, not a
+  leaner mixture; a shift of the probes moves the mixture.
+
 S1 and S3 only as a background on all four cylinders — **a few per cent
 off λ = 1 does not misfire on its own** (*general*, as under H2); S2 for
 surplus fuel burning in the exhaust. S4 and S5 are one cylinder's; S11
@@ -3944,6 +3975,13 @@ ECU has just trimmed the charge, which H1 and H3 fit alike. **The order
 stands.** (It moved H1 to 2 for an hour, on "short runs on one
 cylinder", which the lags did not bear out.) The vacuum gauge, next,
 reads both.*
+*Re-read 10/10/2026 for what the same finding takes from the others
+(*the owner's question*): a fault that does not care about the charge
+cannot make the dips follow the governor's trims, so **H4** and the
+harness half of **H7** are weaker as the cause, though not out as a
+part; **H2** and **H11**, which act on the mixture ratio, a little
+weaker; **H8** unchanged. No symptom added or closed, and **the order
+stands** — H7 and H4 already sit at 5 and 6.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
