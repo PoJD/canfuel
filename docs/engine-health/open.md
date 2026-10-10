@@ -4208,8 +4208,12 @@ login 01283 or 11463 — Ross-Tech's 1.8T page and forum reports); nothing
 found confirms channel 01 or its range on `06A 906 018 EJ`, and the
 "default 128" quoted for it is the 1.8T's. **First, read only**: channel
 01, *Read*, nothing saved — the ECU refuses a channel it does not have;
-if it answers, photograph the value so it can be put back, and look in
-the label file for the channel. **Not during the additive's tanks**
+if it answers, photograph the value so it can be put back. **The label
+file does not settle it** (*read 10/10/2026*, the owner's copy of
+`06A-906-018-AQY.LBL`, Ross-Tech 2005, not kept here): it defines the
+coding and the measuring blocks only, and **no adaptation channel at
+all** — which says nothing either way, since a label file need not list
+them. The read on the car is the only check. **Not during the additive's tanks**
 (`plan.md` items 5–6), which it would confound; and it does not show
 that the learned idle air stays above −0.93 g/s, which may simply learn
 around a new target (`refuted.md` C19).
