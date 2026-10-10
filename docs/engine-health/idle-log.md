@@ -520,6 +520,12 @@ known to have achieved:** nothing was changed; it weakened the causes
 that do not care about the charge (H4, H7's harness) and left the
 order of the rest as it was.
 
+**10/10/2026 — the joint behind the converter heard again** (*owner*):
+the remake of 9/10 did not hold — the pipe behind is about 54.2 mm in a
+55 mm connector and moved in it even tightened. S6 reopened; a shim
+under the connector is the owner's fix, and the exhaust test waits on
+it. Nothing for the idle either way: the joint is behind both probes.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail

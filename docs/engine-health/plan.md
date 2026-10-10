@@ -24,7 +24,8 @@ the capture on every drive.
      T-piece. Lay the gauge clear of the belt and the exhaust.
    - **Start it.** Claude runs the capture; VCDS on **014, 020, 026**.
      Film the gauge **30 s** straight after the start.
-   - **The exhaust:**
+   - **The exhaust — only if the joint behind the converter is tight**
+     (shimmed and resealed beforehand); otherwise skip to the next film:
      - Phone recording, laid in the engine bay by the manifold; later
        under the car by the front pipe.
      - At the tailpipe, **say aloud "teď"** and close it for **2–3 s**,
@@ -163,6 +164,14 @@ clear result cold is enough; a quiet needle cold leaves the warm idle,
 which item 2 reads on a drive that is captured anyway and so counts as
 one of item 3's. Filmed rather than watched, because a flick at idle
 comes several times a second and a video can be stepped through.
+
+**Item 1's exhaust test waits on the joint behind the converter**
+(*owner*, 10/10/2026; `open.md` S6, reopened): it rattles again, and a
+leak behind the converter lets the closed tailpipe's pressure out there,
+so the manifold ahead of the probe is barely tested, and its noise
+drowns the sputter (S15) the phone is listening for. The gauge does not
+depend on it, so the session goes ahead without the exhaust part if the
+joint is not done.
 
 **Items 3 to 5 — the engine left alone, and the additive** (*owner's
 decision*, 10/10/2026). After the gauge, unless it shows an intake leak
