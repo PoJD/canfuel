@@ -208,8 +208,10 @@ comes several times a second and a video can be stepped through.
 *For later, if wanted*). Whether this ECU has the channel at all is
 read on the car, because nothing found confirms it — the label file
 lists no adaptation channels and the procedure is documented for the
-1.8T. If it does, the owner raises the idle the same day, as a
-mitigation. **820 rpm specified is the ceiling** (*decided*): it is the
+1.8T. If it does, the owner raises the idle the same day. **The
+owner's reason**: to lessen what the misfires do — to the converter
+above all — whatever their cause turns out to be, while the cause is
+still being looked for. **820 rpm specified is the ceiling** (*decided*): it is the
 top of VW's 740–820 rpm for idle speed in every block that carries it
 (`vcds.md`), so the engine stays inside its own specification. One
 step at a time and 056 read after each, because what one step is worth
