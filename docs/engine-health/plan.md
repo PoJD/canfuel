@@ -59,8 +59,9 @@ each whether the next is needed. Claude runs the capture on every drive.
        screen. **Write down the value shown; it is the one to go back
        to.**
      - **+10 rpm**, Test, Save. Read group **056**: field 2 (specified)
-       and field 1 (actual). Repeat **+10 rpm at a time, to no more than
-       820 rpm specified.** Write each step.
+       and field 1 (actual). Repeat **+10 rpm at a time**, as high as
+       the ECU will take, **no more than 900 rpm specified**. Write each
+       step, and where the ECU stopped accepting.
      - **1 min** at idle, loads off: note `IdleHealth` and the oil
        temperature. Engine off, ignition off.
      - A "data transfer" error → ignition off, start again from the
@@ -222,11 +223,18 @@ binder (not held here). The VCDS screens are its translation of the
 VAG 1551/1552 key presses. The owner raises the idle the same day. **The
 owner's reason**: to lessen what the misfires do — to the converter
 above all — whatever their cause turns out to be, while the cause is
-still being looked for. **820 rpm specified is the ceiling** (*decided*): it is the
-top of VW's 740–820 rpm for idle speed in every block that carries it
-(`vcds.md`), so the engine stays inside its own specification. One
-step at a time and 056 read after each, because what one step is worth
-on this ECU is not known. **What it does to the readings**: every
+still being looked for. **The ceiling is the owner's, 900 rpm**
+(*owner's decision*, 10/10/2026, replacing 820, which was Claude's): it
+is a workaround, and the only costs found are a little more fuel at
+idle and **the emissions test** — VW's manual keeps the idle inside its
+emissions-test range, and the Czech test measures at idle against the
+maker's figures (the ministry's *Metodický postup měření emisí
+vozidel*, 12/2020), while every block of this ECU specifies 740–820 rpm
+(`vcds.md`). **So it goes back inside 740–820 before an emissions
+test.** The ECU may not take 900 at all: on another ECU the adaptation
+spans 124–132, about ±40 rpm (Ross-Tech, 1.8T), and owners of early Mk4
+2.0s report about 50 rpm of travel (*forum*). One step at a time and
+056 read after each. **What it does to the readings**: every
 comparison from then on is at the new idle — the additive's tanks
 included, accepted by the owner, who can put the original value back
 for a comparison at the old idle. Write down the value and the date, so

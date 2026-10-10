@@ -4212,8 +4212,13 @@ this engine family: Golf Mk4 repair manual, *Motronic (2.0 ltr.
 engine)*, *Adapting idling speed* (workshop-manuals.com) — no fault
 stored, coolant at least 85 °C, **login 01283**, adaptation channel 1,
 10 rpm steps, kept inside the emissions-test range; the manual allows it
-"slightly" for droning or vibration at idle. **Ceiling 820 rpm
-specified**, the top of VW's idle range (`vcds.md`). **11463 is not for
+"slightly" for droning or vibration at idle. **Ceiling 900 rpm
+specified, the owner's** — above VW's 740–820 (`vcds.md`), so it goes
+back inside that range before an emissions test (`plan.md` Part 2,
+item 1). **Whether this ECU has the channel is shown only by the car**:
+VW's manual is for the 2.0 Motronic of the Golf Mk4, the manual whose
+blocks `vcds.md` matches field for field to this ECU, but it does not
+name `06A 906 018 EJ`. **11463 is not for
 this**: it is the engine ECU's cruise-control activation code (Ross-Tech,
 1.8T page). The owner's own `06A-906-018-AQY.LBL` lists no adaptation
 channels, which a label file need not. **What it changes**: the baseline
