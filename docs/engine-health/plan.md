@@ -60,7 +60,10 @@ each whether the next is needed. Claude runs the capture on every drive.
      Film the gauge **30 s** straight after the start, then **1 min**
      more.
    - **Then 2500 rpm, held by hand, 15 s**, filming; let it fall back
-     and film **15 s** of idle. Engine off.
+     and film **15 s** of idle.
+   - **The clutch, timed on the phone's stopwatch from the moment the
+     2500 drops:** pedal **down 30 s, up 30 s, down 30 s, up 30 s**.
+     Gear in neutral throughout. Engine off.
    - **Gauge off**, the regulator's hose back on its own, pushed fully
      home.
    - **Write, from the films:** the number the needle sits at, in the
@@ -182,6 +185,23 @@ clear result cold is enough; a quiet needle cold leaves the warm idle,
 which item 3 reads on a drive that is captured anyway and so counts as
 one of item 6's. Filmed rather than watched, because a flick at idle
 comes several times a second and a video can be stepped through.
+
+**Item 2's clutch minutes** (*owner's decision*, 10/10/2026, on a lead
+raised by another assistant): that the dips and 014 are not misfires at
+all but mechanical play in the driveline — the gearbox input shaft, the
+clutch, the flywheel, the crank pulley's damper — showing at an
+unloaded idle and gone under load. **Against it, from this car's data**:
+the MAF swap halved the dips, fresh and settled adaptations change what
+014 counts, the dips kept to one firing slot (720°) on the captures to
+9/10 where anything turning with the crank repeats at 360°, and the old
+converter burned through, which takes unburnt fuel. **For it, honestly**:
+the dips come when the governor has just lowered the torque, which is
+also when play would show. **The pedal down** takes the gearbox input
+shaft and the clutch disc out of the engine's load; the dips and
+`IdleHealth` the same either way → not the gearbox side; clearly calmer
+with the pedal down → that side is a lead. The flywheel and the pulley
+turn either way and are not separated by it. Free, on a capture already
+running, and the 2500 rpm drop marks the start on the capture.
 
 **Item 1 — the joint first, then the exhaust test** (*owner's
 decision*, 10/10/2026: the joint and the test together, the gauge on its
