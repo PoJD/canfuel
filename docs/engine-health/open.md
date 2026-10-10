@@ -2516,8 +2516,11 @@ The owner's own remaining candidate is one of the new injectors.
 **Tests:**
 
 1. **A fuel pressure gauge on the rail**: pressure at idle with the vacuum
-   hose on and off. Settles the regulator in minutes. *General; VW's figures are
-   not held here.*
+   hose on and off. Settles the regulator in minutes. **3 bar** is printed on
+   the regulator (`vehicle-history.md`, *owner-read*, 10/10/2026) — the
+   figure to read against; VW's own is not held here. **Needs a gauge
+   reading well past 3 bar**: the vacuum gauge on order (*Tools worth
+   owning*) stops at 1 kg/cm² and cannot do it.
 2. If a cylinder is ever named (see *Naming the cylinder* below): swap its
    injector with another and see whether the fault follows.
 3. **The injector harness, engine off, during the valve cover job** — when
@@ -3809,7 +3812,10 @@ mixture, and too little to misfire; the order above it stands.*
 recorded here, since they move):
 
 - **A vacuum gauge on the manifold at a warm idle** (*ordered by the
-  owner 10/10/2026, due the following week*) — the cheapest
+  owner 10/10/2026, due the following week*: MAR-POL `M57673`, a fuel-pump
+  and vacuum tester with hoses and adapters, 0–1 kg/cm² on the pressure
+  side by a retailer's listing — its vacuum scale to be checked on the
+  dial when it arrives; **not a rail-pressure gauge**, H7 test 1) — the cheapest
   instrument that splits the top three. A steady needle is a healthy idle;
   a regular flick down at one point in the cycle is a valve; a low, slowly
   wandering needle is a leak or a mixture fault. Teed into a manifold
@@ -3847,7 +3853,8 @@ recorded here, since they move):
   open inlet valves and the breather all pass air — so a gauge that falls
   says little, and says nothing about *where*. Smoke shows the place. The
   vacuum gauge above is a different instrument, for the running engine.
-- **A fuel pressure gauge** with the adapter for this rail (H7 test 1).
+- **A fuel pressure gauge** with the adapter for this rail (H7 test 1),
+  reading well past the regulator's 3 bar.
 - **A leak-down tester** with a compressor, warm engine (H1 test 3): where
   the air leaves names the fault — the throttle an inlet valve, the tailpipe
   an exhaust valve, the filler neck the rings, the expansion tank the head
