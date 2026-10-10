@@ -15,8 +15,8 @@ records it**, and the file is deleted when it is empty.
 ## Step 3 — the idle is not fixed
 
 One at a time, Claude says after each whether the next is needed.
-**2 rides on a cold start of one of 1's drives; 3 is engine off, any
-day.** Claude runs the capture on every drive.
+**2 rides on a cold start of one of 1's drives.** Claude runs the
+capture on every drive.
 
 1. **Two or three ordinary drives, warm**, on different days — like
    10/10. Claude runs the capture; VCDS on **014, 003, 020** — on the
@@ -49,10 +49,7 @@ day.** Claude runs the capture on every drive.
      ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
      Penetrating oil on the studs the days before; a snapped stud goes to
      a garage.
-3. **Smoke the intake, engine cold and off**, as on 9/10: the MAF out,
-   smoke into the hose. Look first at the **upper intake gasket put on
-   10/10**, all round the plenum's joint, then the rest as before.
-4. **Only if Claude asks after step 1: injectors 1 and 4 again, warm
+3. **Only if Claude asks after step 1: injectors 1 and 4 again, warm
    idle** — as on 10/10.
    - Drive until the oil reads 68–72 °C. Stop, neutral, handbrake on,
      loads off. Claude runs the capture; VCDS on **014, 055, 003**.
@@ -65,17 +62,17 @@ day.** Claude runs the capture on every drive.
    - Write every off and on into the chat. The engine light will come
      on, maybe flashing: carry on.
    - Clear the fault memory with VCDS.
-5. **Only if the idle is still not right: high-voltage side in the dark,
+4. **Only if the idle is still not right: high-voltage side in the dark,
    a damp evening, warm idle.**
    - Bonnet open, lights off: look along the leads and the coil for a
      spark or a blue glow.
    - Then a fine water mist over one lead at a time, and the coil.
      Hands and the bottle clear of the leads.
    - Write anything seen, and which lead the engine stumbled at.
-6. **Vacuum gauge, warm idle**, once one is bought. Tee it into the fuel
+5. **Vacuum gauge, warm idle**, once one is bought. Tee it into the fuel
    pressure regulator's vacuum hose. Short hose to the gauge, tight
    T-piece. Note what the needle does.
-7. **The next repair** — Claude picks it from `open.md` then.
+6. **The next repair** — Claude picks it from `open.md` then.
 
 ## Standing items
 
@@ -131,7 +128,7 @@ the next is needed.
    cost nothing. **How it is read**: `cutscan.py --pairs` on the idles,
    outside any cut, pooled with 10/10's — still near a quarter → the
    one-cylinder share is gone, and what 014 counts acts on the whole
-   engine; back toward a third → step 4 names the cylinder. 014 by
+   engine; back toward a third → step 3 names the cylinder. 014 by
    stop and the grade by oil band against `open.md` S1 and S3. **The
    groups**: **014** is the reading; **003** the idle air, which says
    whether anything sealed or opened; **055 once**, at the end on a
@@ -178,16 +175,7 @@ the next is needed.
    3/10/2026); the suffix differs by model and year; the studs into the
    head are 26 years old. **Nothing leaks ahead of the probe** → H2 is
    refuted for its zone and goes to `refuted.md`.
-3. **The smoke test** (*decided 10/10/2026*; it was in the plug step as
-   "later, not on the day of the change" and went out with that step by
-   mistake). The upper intake gasket was renewed on 10/10 and that joint
-   has not been tested since it was disturbed; smoke shows a leak there
-   cold, at no risk. **The spray test is struck out** (*owner's decision,
-   10/10/2026*): what it alone could find is a joint that opens only hot,
-   and the idle is roughest cold and calmest hot (`open.md` S1,
-   *Temperature matters*) — a leak that waits for heat runs against that.
-   A leak present cold is the smoke's to find.
-4. **Injectors 1 and 4** (*the owner's proposal, 9/10/2026*; `open.md`,
+3. **Injectors 1 and 4** (*the owner's proposal, 9/10/2026*; `open.md`,
    *Naming the cylinder*). It is also `docs/firmware/open.md` question
    11's deliberate misfire, brought forward at the owner's decision the
    same day. With a connector off, that cylinder gets no fuel, so the
@@ -272,17 +260,17 @@ the next is needed.
    twenty dips. **Not repeated unless step 1 brings the dips back to one
    slot** (*decided 10/10/2026*): the test exists to name the cylinder
    the dips keep to, and on the same drive they kept to none.
-5. **The high-voltage side** (`open.md` H4 test 1e, *decided 9/10/2026*):
+4. **The high-voltage side** (`open.md` H4 test 1e, *decided 9/10/2026*):
    the roughest reading on record came on a foggy morning (S1), and the
    moisture a tracking boot or coil needs is what the mist supplies.
    The plugs and leads are new (10/10) and the coil is from 6/2026,
    which is why it is late in the order; it is free.
-6. **The vacuum gauge** (`open.md`, *Tools worth owning*). A long hose
+5. **The vacuum gauge** (`open.md`, *Tools worth owning*). A long hose
    smooths away the flick a valve makes. Read against itself (*general*):
    **a steady needle** → no valve and no large leak; **a regular flick
    down** at one point in the cycle → a valve (H1); **a low or slowly
    wandering needle** → a leak or a mixture fault (H3, H7).
-7. **The next repair** is chosen then, not now, from `open.md`'s ranked
+6. **The next repair** is chosen then, not now, from `open.md`'s ranked
    candidates.
 
 ## Standing items — why

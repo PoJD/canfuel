@@ -77,8 +77,8 @@ Everything else settled against is in `refuted.md`.
   one-cylinder share of the dips, two or three more drives say. The
   servo is cleared (H3). Ranked now (*re-read 10/10*): **H2**, the
   exhaust ahead of the probe — S15 still heard — then **H7**, rail
-  pressure, and **H3**, now only the intake gasket renewed on 10/10
-  (*The idle's candidates, ranked*).
+  pressure, and **H3**, a leak, with no cheap test left (*The idle's
+  candidates, ranked*).
 - **Around the idle:** S2 (an occasional puff from the exhaust) and S11
   (a hiss at the back of the engine at a warm idle, not yet placed) —
   **neither heard on 9/10 or 10/10**, both kept open. **S15**, a constant
@@ -90,7 +90,7 @@ Everything else settled against is in `refuted.md`.
   the misfires has been found, so its tests, G66 first, stay in H5.
 
 **Next:** `plan.md` step 3 — two or three ordinary drives, with the
-exhaust test on a cold start, and the new intake gasket smoked. Done:
+exhaust test on a cold start. Done:
 the intake tight cold (2a–2c), the servo, new plugs and leads, and one
 day of the injector cuts, which named no cylinder (S3, *The drive after
 the new leads*).
@@ -3708,8 +3708,13 @@ ticking, against), H8 7, the belt 8.* *Then the spray test was struck out (*owne
 on the owner's argument: a joint that opens only hot runs against S1 —
 roughest cold, calmest hot — and a leak present cold is the smoke's,
 which found the intake tight on 9/10. **H3 drops behind H7, to 3**: what
-is left of it is the gasket renewed on 10/10, untested until the next
-smoke.*
+is left of it is the gasket renewed on 10/10.* *No smoke for it either
+(*owner's decision*, 10/10/2026): the gasket is the same part fitted the
+same way for the third time, and nothing moved that a new leak would
+move — 003's air at a warm idle 3.08 g/s against 3.12, 055's learned
+value where it was, 014 at 9/10's rates. That reading is the test, and
+it is clean; H3 keeps its place at 3 with no test of its own left
+short of the vacuum gauge.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
