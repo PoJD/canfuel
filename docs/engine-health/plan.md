@@ -31,6 +31,9 @@ each whether the next is needed. Claude runs the capture on every drive.
    - Connector on, bolts tightened in turn, evenly. Nothing may move.
    - Look at the exhaust's rubber hangers: nothing pulling the joint
      sideways or letting it sag.
+   - **The crank pulley, engine off:** look at its rubber ring between
+     the inner and outer metal rings — cracks, bulging, the outer ring
+     out of line. Photograph it.
    - **Cold start.** Claude runs the capture; VCDS on **014, 020, 026**.
    - **The exhaust test**, straight after the start:
      - Phone recording, laid in the engine bay by the manifold; later
@@ -42,7 +45,12 @@ each whether the next is needed. Claude runs the capture on every drive.
      - Then, tailpipe open, say whether the sputter (S15) is louder
        **from above in the engine bay or from under the car**, and
        whether the joint behind the converter is heard.
-   - **A short drive** to warm the exhaust, then home, engine off.
+   - **The clutch, cold:** blip to about 2500 rpm for 2–3 s, let it drop,
+     and from that moment on the phone's stopwatch: pedal **down 30 s,
+     up 30 s, down 30 s, up 30 s**. Neutral throughout.
+   - **A short drive** to warm the exhaust. **Home, warm, before engine
+     off: the clutch again** — the same blip and the same four 30 s.
+     Engine off.
    - **Play both recordings back yourself** and write whether a hiss or
      a puff comes up at each "teď", and on which recording.
    - **Cold again (the next morning will do):** the connector's bolts
@@ -61,9 +69,7 @@ each whether the next is needed. Claude runs the capture on every drive.
      more.
    - **Then 2500 rpm, held by hand, 15 s**, filming; let it fall back
      and film **15 s** of idle.
-   - **The clutch, timed on the phone's stopwatch from the moment the
-     2500 drops:** pedal **down 30 s, up 30 s, down 30 s, up 30 s**.
-     Gear in neutral throughout. Engine off.
+   - Engine off.
    - **Gauge off**, the regulator's hose back on its own, pushed fully
      home.
    - **Write, from the films:** the number the needle sits at, in the
@@ -186,7 +192,9 @@ which item 3 reads on a drive that is captured anyway and so counts as
 one of item 6's. Filmed rather than watched, because a flick at idle
 comes several times a second and a video can be stepped through.
 
-**Item 2's clutch minutes** (*owner's decision*, 10/10/2026, on a lead
+**Item 1's clutch minutes** (*owner's decision*, 10/10/2026, brought
+forward from the gauge session to the cold start after the joint, and
+once more warm at the end of its drive; on a lead
 raised by another assistant): that the dips and 014 are not misfires at
 all but mechanical play in the driveline — the gearbox input shaft, the
 clutch, the flywheel, the crank pulley's damper — showing at an
@@ -200,8 +208,11 @@ also when play would show. **The pedal down** takes the gearbox input
 shaft and the clutch disc out of the engine's load; the dips and
 `IdleHealth` the same either way → not the gearbox side; clearly calmer
 with the pedal down → that side is a lead. The flywheel and the pulley
-turn either way and are not separated by it. Free, on a capture already
-running, and the 2500 rpm drop marks the start on the capture.
+turn either way and are not separated by it — the pulley's rubber, by
+eye, is the free look at one of them. Free, on a capture already
+running; the blip's drop marks the start on the capture. Two minutes of
+idle each time, cold and warm, against the standing rule — accepted for
+the test.
 
 **Item 1 — the joint first, then the exhaust test** (*owner's
 decision*, 10/10/2026: the joint and the test together, the gauge on its

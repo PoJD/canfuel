@@ -3733,7 +3733,7 @@ charge, which play does not make.
 
 **Tests:**
 
-1. **The clutch minutes** (`plan.md` step 3, item 2): pedal down takes
+1. **The clutch minutes** (`plan.md` step 3, item 1, cold and warm): pedal down takes
    the gearbox input shaft and the clutch disc out of the engine's load.
    Dips and `IdleHealth` the same either way → not that side; clearly
    calmer with the pedal down → it is a lead. The flywheel and the pulley
@@ -4133,7 +4133,7 @@ are free and on a capture already planned.*
 | 7 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) **4/10 evening:** a new throttle passing more at rest than the ECU's model would also make it learn air away (`refuted.md` C19) **9/10, against: the throttle feeds all four alike, and the dips keep to one slot** | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `idle-log.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
 | 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
 | 9 | **H11 — both lambda probes shifted alike** | the only part of the mixture control not changed, 10/2017; no probe test sees a shift; soot on three plugs. Against: 032 + 033 near zero on a new MAF and new injectors bounds it to a few per cent, and with the wrong sign — negative, the ECU taking fuel out; a few per cent does not misfire | a **four-gas analyser** at the emissions station (H11 test 1) |
-| 10 | **H12 — driveline play read as misfires** | load calms the idle, and the dips follow torque trims down, both of which play would also do. Against: the MAF swap and the learned idle air move it, which play would not; the 720° slot pattern (to 9/10); a burned-through converter; the cut test's exact codes | the **clutch minutes** (`plan.md` item 2), the crank pulley's damper by eye |
+| 10 | **H12 — driveline play read as misfires** | load calms the idle, and the dips follow torque trims down, both of which play would also do. Against: the MAF swap and the learned idle air move it, which play would not; the 720° slot pattern (to 9/10); a burned-through converter; the cut test's exact codes | the **clutch minutes** (`plan.md` item 1), the crank pulley's damper by eye |
 
 **Tools worth owning for this, cheapest first** (*general*; prices not
 recorded here, since they move):
