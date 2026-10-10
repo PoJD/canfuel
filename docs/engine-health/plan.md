@@ -222,12 +222,16 @@ for a comparison at the old idle. Write down the value and the date, so
 no reading is ever compared across the change by mistake. A raised idle
 that calms the dips confirms what the load readings say (S1) and fixes
 nothing underneath. **A login asked for stops it** (*decided*,
-10/10/2026, the owner's question why): the codes found (01283, 11463)
-come from forum reports on other ECUs, and on VW engine ECUs a login is
-not always only a key — some codes switch a function on as they are
-entered (11463 is widely reported to enable cruise control, *general*,
-not checked for this ECU). Trying codes blind on a running engine is
-not worth that; the next session looks the right one up first.
+10/10/2026, the owner's question why; *looked up the same evening*):
+**Ross-Tech's own procedure** (1.8T page) **uses no login at all** —
+warm idle, 01, Adaptation 10, channel 01, 124–132, Save. **11463 is
+not an idle code**: the same Ross-Tech page, and every source found,
+give it as the engine ECU's login for **activating cruise control**
+(16167 to deactivate), so entering it would change the car, not unlock
+the idle. **01283** appears in one forum post repeating the 1.8T
+procedure, nowhere authoritative. So: no login → go on; a login asked
+for → stop, and the code is looked up for this ECU before anything is
+tried; **never 11463** for this.
 
 **Item 1's clutch minutes** (*owner's decision*, 10/10/2026, brought
 forward from the gauge session to the cold start after the joint, and

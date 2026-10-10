@@ -4203,8 +4203,10 @@ another assistant). Raising the target idle a few tens of rpm through
 VCDS adaptation would add a little air at idle, which is the direction
 every load reading says calms it (S1, *What comes before a dip*). **Not
 verified for this ECU**: the procedure is documented for the 1.8T
-(01 → Adaptation 10 → channel 01, values 124–132, warm idle, sometimes a
-login 01283 or 11463 — Ross-Tech's 1.8T page and forum reports); nothing
+(01 → Adaptation 10 → channel 01, values 124–132, warm idle, **no
+login** on Ross-Tech's 1.8T page; forum reports add a login 01283 or
+11463, but **11463 is the engine ECU's cruise-control activation code**,
+on the same Ross-Tech page — `plan.md` Part 2, item 1); nothing
 found confirms channel 01 or its range on `06A 906 018 EJ`, and the
 "default 128" quoted for it is the 1.8T's. **First, read only**: channel
 01, *Read*, nothing saved — the ECU refuses a channel it does not have;
