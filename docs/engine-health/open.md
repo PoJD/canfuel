@@ -3591,6 +3591,16 @@ all *general*:
    carrying most of them could have been found. **No second day for
    now** (*decided 10/10/2026*): the dips stopped keeping to one slot on
    the same drive (below), which was the reason to name one.
+   **The fault memory after the cuts** (*owner's photograph*,
+   `photos/vcds-faults-2026-10-10-after-cuts.jpg`; cleared since): five
+   codes, all the test's own — 17645/P1237 and 17648/P1240, injectors 1
+   (N30) and 4 (N34) *open circuit, sporadic*, the connectors pulled;
+   16685/P0301 and 16688/P0304, misfire on 1 and 4; 16684/P0300,
+   multiple. *Reasoned:* **the ECU named the two cut cylinders and no
+   other** — so its per-cylinder detection names cylinders correctly on
+   this car, and **no P0302 or P0303** means neither 2 nor 3 crossed the
+   2 % store threshold (`vcds.md`, *What VW says*) that day. P0300 is
+   the cuts' too, or cannot be told from them. Nothing else was stored.
 3. **Plug reading after a few hundred km on the new plugs**, with the
    cylinder of each plug recorded this time. The old ones were not labelled:
    one was worst, and which cylinder it came from is not known.
