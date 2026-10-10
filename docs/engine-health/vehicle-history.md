@@ -298,7 +298,8 @@ a later reader can see what was being judged.
 | `leads-2026-10-01-coil-end-1`…`-4.jpg` | inside the leads' **coil** ends: a red sleeve round a rolled terminal held by a wire spring (*owner*, photographed 1/10/2026; which end is which confirmed 9/10). Which lead each is was not recorded |
 | `leads-2026-10-01-plug-end-1`…`-6.jpg` | the leads' **plug** ends: a slotted metal sleeve with tabs for a puller, round a rubber insert, the terminal deep inside; `-1`'s insert darker and crusted where the rest are clean. Which lead each is, again not recorded |
 | `leads-old-2026-10-10-plug-end-cyl1`…`cyl4.jpg` | the old NGK leads' plug ends, **numbered by cylinder** (*owner*, 10/10/2026, on removal): cylinder 4's rubber insert scored and ragged, its terminal not visible; 1–3 smoother, their brass terminals plainly in view |
-| `plug-old-2026-10-10-cyl4-top.jpg`, `-cyl4-tip.jpg` | the old plug from cylinder 4 (*owner*, 10/10/2026): its terminal post dark and pitted; the firing end coated in dry black soot. The other three to follow |
+| `plug-old-2026-10-10-cyl4-top.jpg`, `-cyl4-tip.jpg` | the old plug from cylinder 4 (*owner*, 10/10/2026): its terminal post dark and pitted; the firing end coated in dry black soot |
+| `plug-old-2026-10-10-cyl3-top.jpg`, `-cyl3-tip.jpg` | the old plug from cylinder 3: terminal darkened but smooth; firing end sooted like 4, crusted on the ground electrodes |
 | [`plug-well-2026-10-09-b.jpg`](photos/plug-well-2026-10-09-b.jpg), [`-c`](photos/plug-well-2026-10-09-c.jpg), [`-d`](photos/plug-well-2026-10-09-d.jpg) | the other three plug wells, cylinder not recorded; `-d` too dark to judge |
 
 **What they show, as description rather than interpretation.** The can carries
