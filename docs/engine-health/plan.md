@@ -53,12 +53,12 @@ off; Claude runs the capture throughout.
    - Before anything comes off: a scrap of paper with the cylinder's
      number in every photo.
    - **The upper intake comes off to reach the plugs**; a new gasket
-     under it (bought 10/10/2026). Throttle connector off only with the
+     under it, Elring `271.230` again (bought 10/10/2026). Throttle connector off only with the
      ignition off. **Photograph the old gasket both sides, every port
      numbered, and the faces it sat on.** Look at the four injector seats
      while it is open.
-   - **After reassembly: smoke the intake** as on 9/10, if the smoke
-     machine is to hand. If the idle is odd afterwards: VCDS 098.
+   - **Later, not on the day of the change: smoke the intake** as on
+     9/10. If the idle is odd afterwards: VCDS 098.
    - Each old lead in turn, 4 first: pull the plug end off **by its metal
      sleeve, on the tabs, with a slight twist — never by the cable**. Does
      it click when pushed back? Does the end turn or slide on its cable?
@@ -71,6 +71,8 @@ off; Claude runs the capture throughout.
    - New plugs to the torque on their box or in VW's manual. New leads:
      each one must click, at the plug and at the coil.
 4. **An ordinary drive, warm, the next day or after** — like 9/10.
+   Steps 1 and 2 need not come first (*owner*, 10/10/2026): the servo
+   check fits on any cold start, the exhaust and the smoke test wait.
    Claude runs the capture; VCDS on **014, 003, 020**. **055 read once,
    at the first warm stop.** A few stops at a warm idle, a minute or two
    each. Write the stops.
@@ -243,8 +245,10 @@ the next is needed.
    **Tried dry, the new plug ends need far more force to click home**
    than the owner ever used on the old ones — which may mean the old ones
    were never fully seated, and is why each new one must click.
-   **The upper intake comes off for it, with a new gasket under it**
-   (*owner*, 10/10/2026). ⚠ **That is a second change in the same
+   **The upper intake comes off for it, with a new gasket under it** —
+   Elring `271.230` again (*owner*, 10/10/2026); the one coming off went
+   on with the cover on 4/10, so it is days old and a clean one says
+   little. ⚠ **That is a second change in the same
    step**: the gasket is an H3 joint, and a leak at one runner would also
    put the dips on one cylinder. It cannot be avoided, so it is read
    around: **003's air and plate at a warm idle** move if unmetered air
