@@ -165,7 +165,10 @@ Lines from the tank flushed with the filter off, and through the new filter:
 clear petrol at every stage (23/9). The filter that came off was sound. The
 older chain (dirty tank → holed filter → spoiled injectors) is **unresolvable
 now**: the tank's replacement date is unknown and the old injectors went
-untested. Parked, not refuted.
+untested. Parked, not refuted. *Added 10/10/2026* (*owner*): until the
+summer of 2026 the tank held fuel about three years old, from before the
+lay-up — a plausible source for what spoiled the old injectors, and not
+one that is still there: the lines ran clear on 23/9.
 
 ### A15. "The crankcase ventilation or the cover gasket causes the idle" (`open.md` H9) — measured
 
