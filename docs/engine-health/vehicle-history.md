@@ -297,6 +297,7 @@ a later reader can see what was being judged.
 | [`plug-well-cyl4-2026-10-09.jpg`](photos/plug-well-cyl4-2026-10-09.jpg) | down cylinder 4's plug well: dark, uneven patches on the plug's terminal and a smudge on its hex (*owner*: seen 1/10/2026, would not come off with petrol); sent 9/10/2026 |
 | `leads-2026-10-01-coil-end-1`…`-4.jpg` | inside the leads' **coil** ends: a red sleeve round a rolled terminal held by a wire spring (*owner*, photographed 1/10/2026; which end is which confirmed 9/10). Which lead each is was not recorded |
 | `leads-2026-10-01-plug-end-1`…`-6.jpg` | the leads' **plug** ends: a slotted metal sleeve with tabs for a puller, round a rubber insert, the terminal deep inside; `-1`'s insert darker and crusted where the rest are clean. Which lead each is, again not recorded |
+| `leads-old-2026-10-10-plug-end-cyl1`…`cyl4.jpg` | the old NGK leads' plug ends, **numbered by cylinder** (*owner*, 10/10/2026, on removal): cylinder 4's rubber insert scored and ragged, its terminal not visible; 1–3 smoother, their brass terminals plainly in view |
 | [`plug-well-2026-10-09-b.jpg`](photos/plug-well-2026-10-09-b.jpg), [`-c`](photos/plug-well-2026-10-09-c.jpg), [`-d`](photos/plug-well-2026-10-09-d.jpg) | the other three plug wells, cylinder not recorded; `-d` too dark to judge |
 
 **What they show, as description rather than interpretation.** The can carries

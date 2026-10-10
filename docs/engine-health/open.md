@@ -2159,6 +2159,17 @@ clean, several tenths is a bad joint** (*general*).
   used on the old ones — so the old ones may never have been fully home.
   It does not tell a worn or ill-fitting end from one never pushed far
   enough; either leaves a contact that arcs.
+  **The old leads off, 10/10/2026** (*owner*, photographed and numbered,
+  `photos/leads-old-2026-10-10-plug-end-cyl*.jpg`): the coil ends all
+  fine; at the plugs **4 the worst**, and every old end came off far more
+  easily than the new ones went on. *Read off the photos*: **cylinder 4's
+  rubber insert is scored and ragged inside, and its terminal cannot be
+  seen**, where in 1, 2 and 3 the insert is smoother and the brass
+  terminal plainly in view. *Reasoned:* a terminal sitting further back in
+  its boot — pulled up the cable, or never seated — reaches the plug's
+  post short, which is a contact that arcs and the burnt terminal of plug
+  4 (1/10); it could also be no more than the light. **Lead 4 is the
+  named part**, after the fact, by its own end.
 - **1d. Engine off: the HT leads.** Each one pushed fully home on its coil
   tower and its plug, the boots dry and uncracked. With the meter on ohms,
   the four leads against each other: one reading far from the others (for
