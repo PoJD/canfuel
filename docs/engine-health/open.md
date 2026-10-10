@@ -4197,6 +4197,23 @@ symptom and hypothesis in this file stay as reference for when a step
 needs one; **they are not scheduled**. An earlier ten-step test plan stood
 here; it is in git.
 
+**For later, if wanted — a higher idle as a mitigation, not a fix**
+(*owner's decision to keep it as an option*, 10/10/2026, on a lead from
+another assistant). Raising the target idle a few tens of rpm through
+VCDS adaptation would add a little air at idle, which is the direction
+every load reading says calms it (S1, *What comes before a dip*). **Not
+verified for this ECU**: the procedure is documented for the 1.8T
+(01 → Adaptation 10 → channel 01, values 124–132, warm idle, sometimes a
+login 01283 or 11463 — Ross-Tech's 1.8T page and forum reports); nothing
+found confirms channel 01 or its range on `06A 906 018 EJ`, and the
+"default 128" quoted for it is the 1.8T's. **First, read only**: channel
+01, *Read*, nothing saved — the ECU refuses a channel it does not have;
+if it answers, photograph the value so it can be put back, and look in
+the label file for the channel. **Not during the additive's tanks**
+(`plan.md` items 5–6), which it would confound; and it does not show
+that the learned idle air stays above −0.93 g/s, which may simply learn
+around a new target (`refuted.md` C19).
+
 **Meanwhile:** avoid long idles — the misfires are an idle phenomenon and
 the exhaust has already paid for them once. `IdleHealth` on 0x604 is the
 trend to watch, always with the oil temperature beside it.
