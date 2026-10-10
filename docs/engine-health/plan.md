@@ -52,6 +52,13 @@ off; Claude runs the capture throughout.
    **Do not disconnect the battery.**
    - Before anything comes off: a scrap of paper with the cylinder's
      number in every photo.
+   - **The upper intake comes off to reach the plugs**; a new gasket
+     under it (bought 10/10/2026). Throttle connector off only with the
+     ignition off. **Photograph the old gasket both sides, every port
+     numbered, and the faces it sat on.** Look at the four injector seats
+     while it is open.
+   - **After reassembly: smoke the intake** as on 9/10, if the smoke
+     machine is to hand. If the idle is odd afterwards: VCDS 098.
    - Each old lead in turn, 4 first: pull the plug end off **by its metal
      sleeve, on the tabs, with a slight twist — never by the cable**. Does
      it click when pushed back? Does the end turn or slide on its cable?
@@ -236,6 +243,17 @@ the next is needed.
    **Tried dry, the new plug ends need far more force to click home**
    than the owner ever used on the old ones — which may mean the old ones
    were never fully seated, and is why each new one must click.
+   **The upper intake comes off for it, with a new gasket under it**
+   (*owner*, 10/10/2026). ⚠ **That is a second change in the same
+   step**: the gasket is an H3 joint, and a leak at one runner would also
+   put the dips on one cylinder. It cannot be avoided, so it is read
+   around: **003's air and plate at a warm idle** move if unmetered air
+   was sealed and stay if only the ignition changed; and **the old
+   gasket is evidence** — a track, a deposit or a burnt path at one port
+   would name that runner (*general*). The smoke test after reassembly
+   checks the joint just disturbed. Unplugging the throttle with the
+   ignition off loses nothing that is known; 098 is VW's adaptation if
+   the idle is odd (`vcds.md`).
 4. **The drive after** (*decided 9/10/2026*). **The groups**
    (*decided 10/10/2026*): **014** is the reading; **003** shows air,
    plate and ignition angle at idle — the air should not move, which says
