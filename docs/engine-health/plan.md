@@ -48,19 +48,17 @@ each whether the next is needed. Claude runs the capture on every drive.
    - **The clutch, cold:** blip to about 2500 rpm for 2–3 s, let it drop,
      and from that moment on the phone's stopwatch: pedal **down 30 s,
      up 30 s, down 30 s, up 30 s**. Neutral throughout.
-   - Engine off. **No drive.**
+   - **A short drive** to warm the exhaust. **Home, warm, before engine
+     off: the clutch again** — the same blip and the same four 30 s.
+     Engine off.
    - **Play both recordings back yourself** and write whether a hiss or
      a puff comes up at each "teď", and on which recording.
-   - **On the first drive after it, whenever that is:** at home, warm,
-     before engine off, **the clutch again** — the same blip and the same
-     four 30 s; Claude runs the capture. Then, **cold again**, the
-     connector's bolts tightened once more, and write whether the joint
-     was heard on the drive.
-   - **Photograph from below**, cold, any time whatever the phone
+   - **Cold again (the next morning will do):** the connector's bolts
+     tightened once more; **photograph from below** whatever the phone
      reaches — the flange under the manifold, the front pipe back to the
      converter, the probe if it shows. **Black soot streaks** at a joint
      mark a leak. The manifold itself is under its heat shield: leave
-     it.
+     it. Write whether the joint was heard on the drive.
 2. **When the gauge is here: the gauge, cold.** No driving with the
    gauge on.
    - **Before, engine cold and off:** tee the gauge into the fuel
@@ -218,18 +216,13 @@ the test.
 
 **Item 1 — the joint first, then the exhaust test** (*owner's
 decision*, 10/10/2026: the joint and the test together, the gauge on its
-own when it comes; `open.md` S6, reopened; the method *general*; **a
-cold start only, no drive** — the owner's, 10/10/2026: the warm half of
-the clutch minutes and the shim's first heat cycle ride on whichever
-drive comes next). The joint rattles again, and a
+own when it comes; `open.md` S6, reopened; the method *general*). The joint rattles again, and a
 leak behind the converter lets the closed tailpipe's pressure out there,
 so the manifold ahead of the probe is barely tested, and its noise
 drowns the sputter (S15) the phone is listening for — so the joint
 comes first and the test straight after, on the same cold start. The
-first drive after it is the shim's first heat cycle, after which the
-bolts are tightened again; the sealant does not set until it has been
-hot, so whether the joint is quiet is read on that drive, not on the
-cold start. **The shim**: about 54.2 mm in a 55 mm connector is
+short drive is the shim's first heat cycle, after which the bolts are
+tightened again. **The shim**: about 54.2 mm in a 55 mm connector is
 about 0.4 mm a side, so a strip of that thickness takes up the play; a
 thicker one keeps the connector from closing evenly. Stainless because
 plain steel rusts out and galvanised sheet gives off zinc fumes when the
