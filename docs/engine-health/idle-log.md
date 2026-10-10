@@ -310,8 +310,10 @@ As an index (÷ 2.00 × 100): the middle band 106 → 98–107, the cold idle
 new plugs and leads (10/10, below), and the intake is tight cold. The
 dips that kept to one cylinder's stroke did not keep to one on the first
 drive after the new leads, and fewer came. **Next** (`plan.md` step 3):
-nothing until the vacuum gauge arrives — the engine is not started
-meanwhile (*owner's decision*, 10/10) — then one cold session with the
+the joint behind the converter shimmed tight first (S6, reopened
+10/10); otherwise nothing until the vacuum gauge arrives — the engine
+is not started meanwhile (*owner's decision*, 10/10) — then one cold
+session with the
 gauge and the exhaust test together; unless it shows an intake leak
 plainly, the engine is left alone and a tank is run with a PEA
 inlet-valve cleaner, read on the drives after.

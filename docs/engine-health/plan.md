@@ -18,7 +18,22 @@ records it**, and the file is deleted when it is empty.
 time; Claude says after each whether the next is needed. Claude runs
 the capture on every drive.
 
-1. **Cold: the gauge and the exhaust.** No driving with the gauge on.
+1. **The joint behind the converter, made tight** — before the gauge
+   session.
+   - Measure both pipes' outside diameters; write them into the chat.
+   - Connector off. A strip of thin sheet, **about 0.4–0.5 mm,
+     stainless, not galvanised**, as wide as the connector's grip on
+     the narrower pipe, wrapped round it as far as it goes, a small gap
+     at the ends.
+   - A thin coat of exhaust sealant on the pipe under the strip and on
+     the strip under the connector. Pipe ends as close together as they
+     go.
+   - Connector on, bolts tightened in turn, evenly. Nothing may move.
+   - Look at the exhaust's rubber hangers: nothing pulling the joint
+     sideways or letting it sag.
+   - After the first drive, cold again: bolts tightened once more.
+     Write whether it is still heard.
+2. **Cold: the gauge and the exhaust.** No driving with the gauge on.
    - **Before, engine cold and off:** tee the gauge into the fuel
      pressure regulator's vacuum hose. Short hose to the gauge, tight
      T-piece. Lay the gauge clear of the belt and the exhaust.
@@ -50,7 +65,7 @@ the capture on every drive.
      the front pipe back to the converter, the probe if it shows.
      **Black soot streaks** at a joint mark a leak. The manifold itself
      is under its heat shield: leave it.
-2. **Only if the needle showed nothing cold: the gauge warm.**
+3. **Only if the needle showed nothing cold: the gauge warm.**
    - A drive to 68–72 °C of oil, as on 10/10. Claude runs the capture;
      VCDS on **014, 020, 026**. A few stops at a warm idle, a minute or
      two each. Write the stops.
@@ -58,20 +73,20 @@ the capture on every drive.
    - Start, film the gauge **1 min** at idle, then **2500 rpm 15 s** and
      **15 s** of idle again. **055 read once.** Engine off, gauge off,
      hose back on.
-   - **Write** the same four things as in 1.
-3. **No clear intake leak in 1 or 2 → the engine is left alone.** Low
+   - **Write** the same four things as in 2.
+4. **No clear intake leak in 2 or 3 → the engine is left alone.** Low
    and steady at idle only → Claude says the next step instead.
-4. **One can of Liqui Moly *DFI Cleaner* (= *Pro-Line Direct Injection
+5. **One can of Liqui Moly *DFI Cleaner* (= *Pro-Line Direct Injection
    Cleaner*, 120 ml)** into the tank, then fill **30–50 l** of the usual
    OMV MaxxMotion 100. Drive the tank as usual. Battery stays connected.
    - **`IdleHealth` off the display, through both tanks after the can:**
      on drives where the oil reaches **68–72 °C**, at one stop of **at
      least a minute with every load off**. Write into the chat: date,
      `IdleHealth`, oil temperature.
-5. **On the next tank: two or three ordinary drives, warm**, on
+6. **On the next tank: two or three ordinary drives, warm**, on
    different days. Claude runs the capture; VCDS on **014, 003, 020**;
    055 once at the end, warm idle. Write the stops.
-6. **Only if Claude asks after 5:**
+7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 68–72 °C of oil.
      **Leaks there → a new manifold**: new gasket to the head, new nuts,
      new outlet gasket, the probe refitted with anti-seize. Part
@@ -91,7 +106,7 @@ the capture on every drive.
      spark or a blue glow; then a fine water mist over one lead at a time
      and the coil, hands and bottle clear. Write anything seen and which
      lead the engine stumbled at.
-7. **The next repair** — Claude picks it from `open.md` then.
+8. **The next repair** — Claude picks it from `open.md` then.
 
 ## Standing items
 
@@ -162,18 +177,27 @@ of its own, and the warm idle is where 014 counts at the stops
 needle (H1) or a leak that drags it low (H3) is there cold too. So a
 clear result cold is enough; a quiet needle cold leaves the warm idle,
 which item 2 reads on a drive that is captured anyway and so counts as
-one of item 3's. Filmed rather than watched, because a flick at idle
+one of item 6's. Filmed rather than watched, because a flick at idle
 comes several times a second and a video can be stepped through.
 
-**Item 1's exhaust test waits on the joint behind the converter**
-(*owner*, 10/10/2026; `open.md` S6, reopened): it rattles again, and a
+**Items 1 and 2 — the joint first, then the exhaust test**
+(*owner's decision*, 10/10/2026, to do the joint first; `open.md` S6,
+reopened; the method *general*). The joint rattles again, and a
 leak behind the converter lets the closed tailpipe's pressure out there,
 so the manifold ahead of the probe is barely tested, and its noise
 drowns the sputter (S15) the phone is listening for. The gauge does not
 depend on it, so the session goes ahead without the exhaust part if the
-joint is not done.
+joint is not done. **The shim**: about 54.2 mm in a 55 mm connector is
+about 0.4 mm a side, so a strip of that thickness takes up the play; a
+thicker one keeps the connector from closing evenly. Stainless because
+plain steel rusts out and galvanised sheet gives off zinc fumes when the
+exhaust is hot. Sealant thin, so the connector grips metal and not a
+layer of paste. Retightened after one heat cycle because the sealant
+and the sheet settle. **How it is read**: not heard after the drive →
+S6 closes again; heard → the hangers, then a welded joint at an exhaust
+shop.
 
-**Items 3 to 5 — the engine left alone, and the additive** (*owner's
+**Items 4 to 6 — the engine left alone, and the additive** (*owner's
 decision*, 10/10/2026). After the gauge, unless it shows an intake leak
 plainly, no more work on the engine for now: no new tools, nothing taken
 apart, no garage. The one thing tried is an inlet-valve cleaner in the
@@ -189,7 +213,7 @@ cleaner in it washes exactly where port-injection deposits sit
 and no sooner than every 5,000 km, so it is **one treatment**, not a
 course. **The usual fuel, OMV MaxxMotion 100**, so that the can is the
 only thing that changes. **How it is
-read**: the drives of item 5 against `30`, `31` and item 1's session —
+read**: the drives of item 6 against `30`, `31` and item 2's session —
 014 by stop and the grade by oil band (`open.md` S1, S3), adaptations
 settled (the battery stays on, `refuted.md` C19). Better → deposits had
 a part; the same → H1's deposit branch loses, and Claude picks from the
@@ -204,7 +228,7 @@ additive working. **Loads off, then, for that one minute** (*decided
 10/10/2026*, the owner's point that the baseline already exists): the
 captured hot stops on settled adaptations are loads-off — `30` and `31`
 grade 1.53–1.77 rpm at 67–80 °C (S1's table; `IDLE_ROUGH_100` is 2.00),
-and item 1's session adds one more — so no readings are needed before
+and item 2's session adds one more — so no readings are needed before
 the can. A minute without loads is the price, against the standing rule
 for the converter, accepted for one stop a drive. It needs about half a
 minute of settled idle before it reads at all (255 until then,
@@ -212,7 +236,7 @@ minute of settled idle before it reads at all (255 until then,
 direction needs several readings, not one. Not a test of anything else, and it decides nothing on
 its own about a lifter.
 
-**Item 5 — the drives** (*decided 10/10/2026*, before the additive was; they now come after it). The first drive after the new
+**Item 6 — the drives** (*decided 10/10/2026*, before the additive was; they now come after it). The first drive after the new
    plugs and leads put the dips at a quarter of pairs on one slot — 10
    of 39, 26 %, against 34 of 103, 33 %, on 9/10 — while 014 counted as
    before (`open.md` S3, *The drive after the new leads*). One drive
@@ -220,7 +244,7 @@ its own about a lifter.
    cost nothing. **How it is read**: `cutscan.py --pairs` on the idles,
    outside any cut, pooled with 10/10's — still near a quarter → the
    one-cylinder share is gone, and what 014 counts acts on the whole
-   engine; back toward a third → item 6's cuts name the cylinder. 014 by
+   engine; back toward a third → item 7's cuts name the cylinder. 014 by
    stop and the grade by oil band against `open.md` S1 and S3. **The
    groups**: **014** is the reading; **003** the idle air, which says
    whether anything sealed or opened; **055 once**, at the end on a
@@ -234,7 +258,7 @@ its own about a lifter.
    VCDS takes three groups, so 003 sits that drive out (*decided*): its
    idle air was 3.08 g/s on 10/10, the baseline is set, and the idle is
    still read off 014 and the capture.
-**Items 1 and 6 — the exhaust ahead of the front probe (H2)** (*reasoned*,
+**Items 2 and 7 — the exhaust ahead of the front probe (H2)** (*reasoned*,
    9/10/2026): `open.md`'s first candidate when this was written (since 9/10 second, behind H3, now that the dips keep to one cylinder — but still the one with symptoms of its own), and next now that 2b moved nothing on
    the intake side, the one with a symptom of its own since S15 was
    heard, and free. With the outlet closed, a leak that draws air in at idle blows
@@ -267,7 +291,7 @@ its own about a lifter.
    3/10/2026); the suffix differs by model and year; the studs into the
    head are 26 years old. **Nothing leaks ahead of the probe** → H2 is
    refuted for its zone and goes to `refuted.md`.
-**Item 6 — injectors 1 and 4 again** (*the owner's proposal, 9/10/2026*; `open.md`,
+**Item 7 — injectors 1 and 4 again** (*the owner's proposal, 9/10/2026*; `open.md`,
    *Naming the cylinder*). It is also `docs/firmware/open.md` question
    11's deliberate misfire, brought forward at the owner's decision the
    same day. With a connector off, that cylinder gets no fuel, so the
@@ -349,15 +373,15 @@ its own about a lifter.
      of known rate — comes from the same minutes.
    **Day 1, 10/10/2026** (`open.md`, *Naming the cylinder*): no
    cylinder stands out (p = 0.28), neither 1 nor 4 weak by air, on
-   twenty dips. **Not repeated unless item 5's drives bring the dips back to one
+   twenty dips. **Not repeated unless item 6's drives bring the dips back to one
    slot** (*decided 10/10/2026*): the test exists to name the cylinder
    the dips keep to, and on the same drive they kept to none.
-**Item 6 — the high-voltage side** (`open.md` H4 test 1e, *decided 9/10/2026*):
+**Item 7 — the high-voltage side** (`open.md` H4 test 1e, *decided 9/10/2026*):
    the roughest reading on record came on a foggy morning (S1), and the
    moisture a tracking boot or coil needs is what the mist supplies.
    The plugs and leads are new (10/10) and the coil is from 6/2026,
    which is why it is late in the order; it is free.
-**Items 1 and 2 — how the gauge is read** (`open.md`, *Tools worth
+**Items 2 and 3 — how the gauge is read** (`open.md`, *Tools worth
 owning*, and H1 test 5). Everything here is *general* — the classic
 readings of a manifold vacuum gauge — and none of it is VW's figure
 for this engine. **Read the needle against itself**, never against a
@@ -420,11 +444,11 @@ weather.
   smoked warm; at 2500 too → the belt's marks are checked.
 - **Steady and normal**: the valvetrain and a large leak are cleared as
   far as a gauge can clear them; H1 and H3 both lose, and H0 gains.
-- **Cold and warm differ** (item 2 done): a flick cold that is gone warm
+- **Cold and warm differ** (item 3 done): a flick cold that is gone warm
   fits the cold enrichment and deposits (H1, *inlet-valve deposits*);
   one that is there warm only fits a lifter on thin oil.
 
-**Item 7 — the next repair** is chosen then, not now, from `open.md`'s ranked
+**Item 8 — the next repair** is chosen then, not now, from `open.md`'s ranked
    candidates.
 
 ## Standing items — why

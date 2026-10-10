@@ -94,9 +94,10 @@ Everything else settled against is in `refuted.md`.
   B7). **Not in `plan.md`** (*owner's decision, 9/10/2026*): no link to
   the misfires has been found, so its tests, G66 first, stay in H5.
 
-**Next:** `plan.md` step 3 — **nothing until the vacuum gauge arrives**
-(ordered 10/10; the engine is not started meanwhile, *owner's decision*),
-then one cold session: the gauge and the exhaust test together. Unless
+**Next:** `plan.md` step 3 — **first the joint behind the converter,
+shimmed tight (S6)**; otherwise **nothing until the vacuum gauge
+arrives** (ordered 10/10; the engine is not started meanwhile, *owner's
+decision*), then one cold session: the gauge and the exhaust test together. Unless
 it shows an intake leak plainly, the engine is then left alone and a
 tank is run with a PEA inlet-valve cleaner, read on the drives after
 (*owner's decision*, 10/10). Done:
