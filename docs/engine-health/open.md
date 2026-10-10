@@ -4213,8 +4213,10 @@ file does not settle it** (*read 10/10/2026*, the owner's copy of
 `06A-906-018-AQY.LBL`, Ross-Tech 2005, not kept here): it defines the
 coding and the measuring blocks only, and **no adaptation channel at
 all** — which says nothing either way, since a label file need not list
-them. The read on the car is the only check. **Not during the additive's tanks**
-(`plan.md` items 5–6), which it would confound; and it does not show
+them. The read on the car is the only check. **Brought forward by the owner to `plan.md` item 1** (10/10/2026): read
+the channel, and raise the idle the same day if it exists — accepted
+that it changes the baseline for the additive's tanks, with the original
+value kept to go back to; and it does not show
 that the learned idle air stays above −0.93 g/s, which may simply learn
 around a new target (`refuted.md` C19).
 

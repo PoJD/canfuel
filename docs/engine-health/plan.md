@@ -49,8 +49,20 @@ each whether the next is needed. Claude runs the capture on every drive.
      and from that moment on the phone's stopwatch: pedal **down 30 s,
      up 30 s, down 30 s, up 30 s**. Neutral throughout.
    - **A drive of about 30 min**, until the oil reads 68–72 °C. **Home,
-     warm, before engine off: the clutch again** — the same blip and the same four 30 s.
-     Engine off.
+     warm, before engine off: the clutch again** — the same blip and the
+     same four 30 s.
+   - **Then, still warm and idling, VCDS: is there an idle adaptation?**
+     01 → Adaptation 10 → channel **01** → **Read** only. Photograph
+     the screen whatever it says.
+     - **Refused or no such channel** → nothing more. Engine off.
+     - **It answers** → write the value down; it is the one to go back
+       to. Then **one step up**, Save; read group **056** field 2 (the
+       specified idle) and field 1 (the actual). Repeat one step at a
+       time, **no higher than 820 rpm specified**. Write each value and
+       the rpm it gave. Then **1 min** at idle, loads off, and note
+       `IdleHealth` and the oil temperature. Engine off.
+     - Login asked for, an error, or the idle hunting → put the
+       original value back and stop.
    - **Play both recordings back yourself** and write whether a hiss or
      a puff comes up at each "teď", and on which recording.
    - **Cold again (the next morning will do):** the connector's bolts
@@ -191,6 +203,23 @@ clear result cold is enough; a quiet needle cold leaves the warm idle,
 which item 3 reads on a drive that is captured anyway and so counts as
 one of item 6's. Filmed rather than watched, because a flick at idle
 comes several times a second and a video can be stepped through.
+
+**Item 1's idle adaptation** (*owner's decision*, 10/10/2026; `open.md`,
+*For later, if wanted*). Whether this ECU has the channel at all is
+read on the car, because nothing found confirms it — the label file
+lists no adaptation channels and the procedure is documented for the
+1.8T. If it does, the owner raises the idle the same day, as a
+mitigation. **820 rpm specified is the ceiling** (*decided*): it is the
+top of VW's 740–820 rpm for idle speed in every block that carries it
+(`vcds.md`), so the engine stays inside its own specification. One
+step at a time and 056 read after each, because what one step is worth
+on this ECU is not known. **What it does to the readings**: every
+comparison from then on is at the new idle — the additive's tanks
+included, accepted by the owner, who can put the original value back
+for a comparison at the old idle. Write down the value and the date, so
+no reading is ever compared across the change by mistake. A raised idle
+that calms the dips confirms what the load readings say (S1) and fixes
+nothing underneath.
 
 **Item 1's clutch minutes** (*owner's decision*, 10/10/2026, brought
 forward from the gauge session to the cold start after the joint, and
