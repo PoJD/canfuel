@@ -48,15 +48,18 @@ One at a time, Claude says after each whether the next is needed.
      ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
      Penetrating oil on the studs the days before; a snapped stud goes to
      a garage.
-3. **Spray test at the intake, warm idle** — on a warm stop of one of
-   step 1's drives.
-   - A short burst of **unlit propane** (or brake cleaner) at one joint
-     at a time: the throttle flange, the plenum's joints, the hoses and
-     vacuum lines at the back, the servo line, the breather hose. Say
-     "teď" and the place each time, and wait 10 s between.
-   - **Never towards the exhaust side or its heat shield**; a fire
-     extinguisher within reach.
-   - Write any place where the engine speed changed.
+3. **The intake: smoke cold, then spray warm.**
+   - **Smoke, engine cold and off**, as on 9/10: the MAF out, smoke into
+     the hose. Look first at the **upper intake gasket put on 10/10**,
+     all round the plenum's joint, then the rest as before.
+   - **Spray**, on a warm stop of one of step 1's drives:
+     - A short burst of **unlit propane** (or brake cleaner) at one joint
+       at a time: the throttle flange, the plenum's joints, the hoses and
+       vacuum lines at the back, the servo line, the breather hose. Say
+       "teď" and the place each time, and wait 10 s between.
+     - **Never towards the exhaust side or its heat shield**; a fire
+       extinguisher within reach.
+     - Write any place where the engine speed changed.
 4. **Only if Claude asks after step 1: injectors 1 and 4 again, warm
    idle** — as on 10/10.
    - Drive until the oil reads 68–72 °C. Stop, neutral, handbrake on,
@@ -191,6 +194,11 @@ the next is needed.
    warm stop of one of step 1's drives, so no extra idling for the warm-up. Away
    from the exhaust because both gases burn and the manifold at idle is
    hot enough to light them (*general*).
+   **The smoke first** (*restored 10/10/2026*: it was in the plug step as
+   "later, not on the day of the change" and went out with that step by
+   mistake): the upper intake gasket was renewed on 10/10 and that joint
+   has not been tested since it was disturbed. Smoke shows a leak there
+   cold, at no risk; the spray adds only what opens hot.
    The servo line stays on the list: the servo itself was cleared on
    10/10 (`open.md` H3), its joints were not.
 4. **Injectors 1 and 4** (*the owner's proposal, 9/10/2026*; `open.md`,
