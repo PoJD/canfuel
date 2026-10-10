@@ -63,12 +63,10 @@ the capture on every drive.
 4. **One can of Liqui Moly *DFI Cleaner* (= *Pro-Line Direct Injection
    Cleaner*, 120 ml)** into the tank, then fill **30–50 l** of the usual
    OMV MaxxMotion 100. Drive the tank as usual. Battery stays connected.
-   - **`IdleHealth` off the display, before the can and through both
-     tanks after it:** on drives where the oil reaches **68–72 °C**, at
-     one stop of **at least a minute**, always with **the same loads on**
-     (lights, blower, rear window heater). Write into the chat: date,
-     `IdleHealth`, oil temperature, which loads. A few before the can,
-     then as they come.
+   - **`IdleHealth` off the display, through both tanks after the can:**
+     on drives where the oil reaches **68–72 °C**, at one stop of **at
+     least a minute with every load off**. Write into the chat: date,
+     `IdleHealth`, oil temperature.
 5. **On the next tank: two or three ordinary drives, warm**, on
    different days. Claude runs the capture; VCDS on **014, 003, 020**;
    055 once at the end, warm idle. Write the stops.
@@ -192,13 +190,17 @@ between** (*the owner's point*, 10/10/2026) — the one instrument that
 needs neither the laptop nor a capture. Read like with like or not at
 all: it moves with the oil (S1, *Temperature matters*), and **loads
 lower it on their own** — lights, blower and A/C took it from 70–80 to
-35–50 (S1, 26/9) — so the loads have to be the same every time, or
-winter's habit of running them would pass for the additive working. It
-needs about half a minute of settled idle before it reads at all (255
-until then, `docs/firmware/frames.md`), and wanders from window to
-window, so a direction needs several readings each side of the can, not
-one; the readings before the can are the baseline, since none exist
-with these loads. Not a test of anything else, and it decides nothing on
+35–50 (S1, 26/9) — so winter's habit of running them would pass for the
+additive working. **Loads off, then, for that one minute** (*decided
+10/10/2026*, the owner's point that the baseline already exists): the
+captured hot stops on settled adaptations are loads-off — `30` and `31`
+grade 1.53–1.77 rpm at 67–80 °C (S1's table; `IDLE_ROUGH_100` is 2.00),
+and item 1's session adds one more — so no readings are needed before
+the can. A minute without loads is the price, against the standing rule
+for the converter, accepted for one stop a drive. It needs about half a
+minute of settled idle before it reads at all (255 until then,
+`docs/firmware/frames.md`) and wanders from window to window, so a
+direction needs several readings, not one. Not a test of anything else, and it decides nothing on
 its own about a lifter.
 
 **Item 5 — the drives** (*decided 10/10/2026*, before the additive was; they now come after it). The first drive after the new
