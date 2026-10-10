@@ -762,6 +762,18 @@ behind both probes, so still nothing for the mixture or the misfires,
 but **it drowns S15** (S15 ↔ S6) **and vents the tailpipe test** (`plan.md`
 step 3), so H2 cannot be tested past it.
 
+**Can this joint make 014 count?** (*the owner's question*, 10/10/2026,
+after another assistant suggested exhaust pulses disturbed by a leak
+behind the probe could read as misfires.) **No, on this car's data**:
+014 counted at every warm stop on 9/10 (`30`, S3 *Steps 2b and 2c*),
+the day the joint was remade and quiet; it counted in August, on the
+old converter, before any of this exhaust existed; and the dips it
+follows are 720° events on one firing at a time that come when the
+idle governor trims the charge (S1, *What comes before a dip*) — a
+leak behind the converter, past all four cylinders' merged flow, has no
+way to pick a firing, and a slightly lower back pressure is if anything
+easier on the idle (*reasoned*).
+
 *What closed it on 9/10:*
 
 **Closed at the owner's decision, 9/10/2026.** The joint behind the
