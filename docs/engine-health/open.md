@@ -38,7 +38,7 @@ below (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 9 October 2026
+## Where it stands — 10 October 2026
 
 **A summary of what is closed and what is left, and nothing else.** How
 it got here, stage by stage, is `idle-log.md`; the parts and dates are
@@ -67,15 +67,15 @@ Everything else settled against is in `refuted.md`.
   part in the fuel and ignition path has been replaced and both remain.
   **When** 014 counts is settled — it follows 055's learned idle air
   value (`refuted.md` C19, closed 9/10) — but not **what the fault is**.
-  **The dips keep to one cylinder's stroke** (9/10, *Naming the
-  cylinder*), so the lead is what acts on one cylinder — first **H4's
-  high-voltage side**: plug 4's terminal burnt black, plug-end boots that
-  never click, a crusted plug end (H4, 1d). **The owner changes plugs and
-  leads for VW originals** (*decision, 9/10/2026*, `plan.md` step 3.3);
-  the drive after says whether the dips stop keeping to one slot. Then
-  **H3**, a leak at one runner, **H2** — its sounds are its own, but it
-  cannot pick a cylinder — and **H1**, a valve (*The idle's candidates,
-  ranked*).
+  **The dips kept to one cylinder's stroke** (9/10, *Naming the
+  cylinder*), and the old parts named two single-cylinder faults: lead
+  4's plug end and plug 1, almost loose (H4, 1d). **New plugs and leads
+  went in on 10/10, and on the drive after the dips did not keep to one
+  slot — but 014 counted as before** (S3, *The drive after the new
+  leads*). So the leads did not fix S3; whether they took the
+  one-cylinder share of the dips, two or three more drives say. The
+  servo is cleared (H3). Then **H3**'s hot joints, **H2** — its sounds
+  are its own — and **H1**, a valve (*The idle's candidates, ranked*).
 - **Around the idle:** S2 (an occasional puff from the exhaust), S11 (a
   hiss at the back of the engine at a warm idle, not yet placed) and S14
   (bangs from the exhaust on a downshift without a blip — the old
@@ -89,11 +89,11 @@ Everything else settled against is in `refuted.md`.
   B7). **Not in `plan.md`** (*owner's decision, 9/10/2026*): no link to
   the misfires has been found, so its tests, G66 first, stay in H5.
 
-**Next:** `plan.md` step 3 — the servo and the exhaust on a cold start,
-then new plugs and leads and an ordinary drive after them. Steps 2a–2c are done: the intake tight cold,
-and on the drive of 9/10 with the adaptations kept, 014 counting at
-every warm stop with nothing a sealed leak would move having moved (S3,
-*Steps 2b and 2c*).
+**Next:** `plan.md` step 3 — two or three ordinary drives, with the
+exhaust test on a cold start and the spray test on a warm stop. Done:
+the intake tight cold (2a–2c), the servo, new plugs and leads, and one
+day of the injector cuts, which named no cylinder (S3, *The drive after
+the new leads*).
 
 ---
 
@@ -133,6 +133,7 @@ binned by 0x420:
 | `27`/`28`, 4/10 A, the right gasket | **fresh** | 2.41 ± 0.29 | 1.92 ± 0.04 | **1.48 ± 0.07** |
 | `29`, 4/10 B | settled | — | 2.10 ± 0.18 | 1.77 (2 windows) |
 | `30`, 9/10, dipstick and MAF clamp | settled | 1.90 ± 0.13 | 1.89 ± 0.08 | **1.77 ± 0.05** |
+| `31`, 10/10, **new leads and plugs**, intake gasket | settled | 2.40 ± 0.22 | 1.91 ± 0.06 (4 windows) | **1.53 ± 0.08** (cuts left out) |
 
 **The MAF is the one change that shows** (middle and hot band, and the
 dips halved). **Nothing since does, once adaptations are matched**: the
@@ -529,6 +530,34 @@ open** (*owner's decision*), as S14 is.
   B — smaller over the session, but **not at A3**, which read 24, 48 and
   96. 014 is a yes/no witness (below), so this is a direction at most.
 
+- **The drive after the new leads, 10/10/2026** (`31_step4_drive_z1`,
+  `vcds/vcds-step4-014-003-020.csv` and `vcds-step5-014-055-003.csv`;
+  `plan.md` step 3). New plugs of the same type, new leads of a
+  different construction and a new upper intake gasket, the battery
+  kept, so the adaptations are 9/10's. Standing idle only, 014 aligned
+  on engine speed:
+
+  | stop | oil | 014 rises a minute (9/10) | 003 air, g/s |
+  |---|---|---|---|
+  | cold idle, servo held | 10–13 °C | **3.6** (1.4–1.8) | 3.89–4.42 |
+  | short cold stop | ~20 °C | 14.0 (—) | 3.73 |
+  | middle | 58–60 °C | **9.4** (6.8) | 3.15 |
+  | hot, before the cuts | 69–70 °C | **6.0** (10.7–12.5) | 3.08 (3.12) |
+  | hot, after the cuts and home | 70 °C | 2.7–5.7 (3.7–5.8) | 3.11–3.24 |
+
+  055's learned value −1.14 before the cuts, −1.28 after (9/10: −1.07 to
+  −1.33). **The misfires are not gone**: better at the hot stop, worse in
+  the middle and cold, no direction overall. **The dips no longer keep
+  to one slot**: `cutscan.py --pairs` over the idles outside the cuts,
+  10 of 39 pairs on the same slot, 26 % against chance's 25 % (9/10: 34
+  of 103, 33 %); over the whole capture the tool reads 41 %, but 38 of
+  its 78 pairs are inside the cuts, where a dead cylinder is the slot.
+  Fewer pairs from a drive of the same kind means fewer dips. ⚠ 39 pairs
+  is a direction: 33 % and 26 % are not apart at this size. The
+  engine-speed grade by oil band (S1's table): calmer hot (1.53 against
+  1.77), the same in the middle, rougher cold (2.40 against 1.90) — the
+  same no-direction as 014.
+
   **No new link to cylinder 4** (*the owner's question*, 9/10).
   `idledips.py --cylinders` over the four stops finds the same period-4
   structure as 4/10, of the same size — `sd_true` 1.8–2.6 rpm against
@@ -562,6 +591,26 @@ within seconds.
   (to 6,010 rpm against about 4,000). Cylinder 1 five samples above
   4000 rpm, 2 and 3 none. One event standing, at 1640 rpm in the holds.
   The injectors are cleared from it (`refuted.md` B7).
+- **10/10/2026, the first drive on the new plugs and leads**
+  (`vcds-step4-014-003-020.csv`, an ordinary drive with a few pulls to
+  89 g/s): cylinder 4 retarded in **3 of 1,841 samples, at most 1.5°**.
+  By 003's air, cylinder 4's share of samples with retard:
+
+  | air, g/s | 25/9 | 9/10 | **10/10** |
+  |---|---|---|---|
+  | < 15 | 5 of 652 | 14 of 650 | **1 of 1,533** |
+  | 15–30 | 3 of 71 | 8 of 69 | **0 of 208** |
+  | 30–50 | 3 of 14 | 0 of 27 | **0 of 86** |
+  | > 50 | 5 of 8 | 22 of 54 | **2 of 14** |
+
+  Fewer at every band, including part load, where today has the most
+  samples — not just a gentler drive. The owner, watching 020 on the
+  way, saw none, where on earlier days he saw it regularly (*owner*,
+  10/10/2026). *Reasoned, not shown:* lead 4's plug end was the worn one
+  (H4, 1d), and a contact arcing at the plug is a broadband noise inside
+  cylinder 4's own knock window — a cause for S4 and S5 that is not
+  combustion, which is H5's own question. One drive; 026 was not logged,
+  so S5 is not read.
 - **Within VW's specification** of 0–15 °CA per cylinder while driving —
   VW's repair manual for the Golf Mk4, *Motronic injection and ignition system
   (2.0 ltr. engine)*, display groups 10–29, as transcribed on
@@ -1905,6 +1954,17 @@ then hard, so the check valve and diaphragm hold vacuum for a press or
 two. **c** was tried the same evening without a capture: no hiss heard
 from the driver's seat with the bonnet open, and no change in the idle
 by ear with the pedal held — read again off a capture (`plan.md`).
+**10/10/2026, c good off a capture** (`31_step4_drive_z1`, on the cold
+idle two minutes after the start): the brake switch is on the bus —
+0x1A0 byte 1 bit 3, which toggles exactly at each hold — so the two
+holds of 45 s and 44 s are timed to the frame. Engine speed 813 rpm on
+the first hold, 813 released, 806 on the second, the warm-up's drift;
+no step at any edge; 003's air 4.07 / 3.95 / 3.89 g/s, falling with the
+warm-up, not rising with the pedal; 014 counted the same with the pedal
+and without (the owner saw it counting with neither foot down). **All
+three checks good: the servo is cleared** — tested cold, as decided, so
+it is the diaphragm at idle vacuum that is cleared, not a joint that
+opens only hot.
 
 ⚠ **Cold and stopped, so a joint that opens only hot is not cleared.**
 What the result does do: the back of the intake that no spray ever
@@ -2187,6 +2247,11 @@ clean, several tenths is a bad joint** (*general*).
     cylinder high, its partner low) — so between them, lead 4 and plug 1
     are the two single-cylinder faults found, and both are now renewed.
     Which of the two carried the dips, the change cannot say.
+  **The drive after the change, 10/10/2026** (S3, *The drive after the
+  new leads*): 014 still counts, at about 9/10's rates; the dips no
+  longer keep to one slot, on one drive. **So the high-voltage side was
+  not the misfires**; it may have been the one-cylinder share of the
+  dips, which more drives confirm or not.
 - **1d. Engine off: the HT leads.** Each one pushed fully home on its coil
   tower and its plug, the boots dry and uncracked. With the meter on ohms,
   the four leads against each other: one reading far from the others (for
@@ -3405,7 +3470,14 @@ all *general*:
    **Scheduled, 9/10/2026** (*owner's decision*): `plan.md` step 3.5 —
    cylinders 1 and 4 only, which name all four while they are out, on up
    to three days, read by name off the capture (*The dips keep to one
-   slot*, below).
+   slot*, below). **Day 1, 10/10/2026** (`31`, after the new leads):
+   1, 4, 4, 1, cuts of 47–73 s. Dips by name 1: 0, 2: 7, 3: 11, 4: 2 —
+   **no cylinder stands out** (p = 0.28); the air with 1 out and with 4
+   out alike (3.52 / 3.58 against 3.46 / 3.58 g/s), so neither is a
+   steadily weak cylinder. Twenty dips in all, so only a cylinder
+   carrying most of them could have been found. **No second day for
+   now** (*decided 10/10/2026*): the dips stopped keeping to one slot on
+   the same drive (below), which was the reason to name one.
 3. **Plug reading after a few hundred km on the new plugs**, with the
    cylinder of each plug recorded this time. The old ones were not labelled:
    one was worst, and which cylinder it came from is not known.
@@ -3452,6 +3524,16 @@ all four alike give 20–34 %, all on one cylinder 96 %.
 (H1), its plug, lead or coil tower (H4's high-voltage side), its injector —
 and argues against the dips coming from what acts on all four alike (H2's
 air at the shared probe, H7, H8, H0, H4's supply).
+
+**10/10/2026, after the new plugs and leads** (`31`): 10 of 39 pairs on
+the same slot, 26 %, outside the injector cuts — chance — and fewer
+pairs than any drive of its length. One drive cannot tell 26 % from
+33 %; if the next two or three stay near a quarter, the one-cylinder
+share went with lead 4 or plug 1 (H4, 1d) or the intake gasket changed
+the same day, and the misfires 014 still counts (S3) are the engine's
+as a whole. ⚠ `cutscan.py --pairs` reads the whole capture: on a
+capture with cuts in it the cut minutes must be left out by hand, or
+the dead slot makes the pairs (41 % on `31` with them in).
 
 ---
 
@@ -3589,7 +3671,7 @@ it.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| 1 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits only in form** — a coil that breaks down hot is the textbook case, but **the coil is from 6/2026**, and the 3/10 oil sat **only on the outside of its plastic and on the outsides of the leads of 3 and 4, wiped dry** (*owner*, 4/10/2026) **9/10: the dips keep to one slot — for the high-voltage side of one lead or tower (test 1e), against the supply side** **9/10, for — the first named part: plug 4's terminal burnt black by 1/10, the plug-end boots never click, one plug end crusted, the owner pulls them by hand (1d)** | **new plugs and leads, VW originals** (*owner's decision, 9/10*, `plan.md` step 3.3), and the drive after: the dips back to a quarter of pairs on one slot → it was here |
+| 1 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits only in form** — a coil that breaks down hot is the textbook case, but **the coil is from 6/2026**, and the 3/10 oil sat **only on the outside of its plastic and on the outsides of the leads of 3 and 4, wiped dry** (*owner*, 4/10/2026) **9/10: the dips keep to one slot — for the high-voltage side of one lead or tower (test 1e), against the supply side** **9/10, for — the first named part: plug 4's terminal burnt black by 1/10, the plug-end boots never click, one plug end crusted, the owner pulls them by hand (1d)** | **new plugs and leads, VW originals** (*owner's decision, 9/10*, `plan.md` step 3.3), and the drive after: the dips back to a quarter of pairs on one slot → it was here **10/10, done: a quarter (26 %) on the first drive, but 014 counting as before — so not the misfires; the one-cylinder share of the dips, if two or three more drives hold** |
 | 2 | **H3 — a small unmetered leak** (with what is left of H9, closed 4/10: the breather's original hose and connector): ~~three injectors not fully home since 23/9~~ (all four seated 1/10, `idle-log.md`; H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line **and N112, which vents into the airbox ahead of the MAF** (8/10, `plan.md` step 2a), the breather hose; **the dipstick tube, loose with its bracket missing** (4/10, a crankcase path; **refitted 9/10; the only place smoke came out on 9/10, at the guide's seat, put right to a faint wisp the same day**); **and the throttle's flange**, where a hard protrusion on the old face may have kept the June gasket off (H8, 28/9) | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) **4/10, against:** the warm leak signature did not move with the hole sealed, and a leak does not wait for a hard drive (S3, *Session A after step 1b*) **4/10 evening, for:** an unmetered leak is what makes an ECU learn idle air away — the likeliest reason the ECU learns air away (H10, closed 9/10, `refuted.md` C19) **9/10, against: the intake smoked clean cold, the airbox outlet (N112) included** **9/10, for: the dips keep to one slot** (*The dips keep to one slot*) — a leak at one runner acts on one cylinder | the valve cover job itself, which replaces the upper plenum gasket, the breather **and the throttle with its flange gasket** (29/9) — an improvement afterwards answers it; now **the smoke test of the intake**, next (`plan.md` step 2a, *owner's decision, 4/10*) |
 | 3 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing **4/10: the hiss stayed after 1b, from the back (S11), and 014 came back only after a hard drive — heat from load, which opens a crack or a gasket; the owner's lead.** Still against: it has to act through the lambda control, which B3's 033 shows **4/10 evening, against:** at B1 033's median was −0.8 %, not the positive correction air at the probe would force, and B counted on a cold idle **9/10, against it as the dips' cause: they keep to one slot, and air at the shared probe acts on all four alike** — its sounds (S2, S11, S15) are its own either way | the owner's tailpipe test, and a new manifold if it leaks there (`plan.md` step 3, *owner's decision, 3/10*) |
 | 4 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: never worst hot (S1, S3, re-read 9/10); A5 ~~**4/10, against:** zero at both warm stops~~ *(withdrawn 9/10: fresh adaptations, `refuted.md` C19)* **9/10, for: the dips keep to one slot** | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |

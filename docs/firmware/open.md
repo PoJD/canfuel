@@ -171,6 +171,27 @@ shape of the table above appears every second revolution; and what
 `IdleHealth` reads with a cylinder dead. If the grade then wants a
 different scale or anchor, that is decided from this test, not before.
 
+**Run once, 10/10/2026** (`test/fixtures/31_step4_drive_z1.txt`, with
+`vcds/vcds-step5-014-055-003.csv`; cylinders 1, 4, 4, 1 at 70 °C of oil,
+each cut 47–73 s rather than a minute, the owner's call while 014 read
+high). What it gave:
+
+- **014 with one cylinder of four dead**: the field changed about 60
+  times a minute, median 474–528, peaks 1,152–1,188 — against 12–96 on an
+  ordinary idle. About 200 misfires a minute did not make 200 changes a
+  minute, so neither its rate of change nor its size is a misfire rate.
+- **On 0x280**: the dead cylinder's slot sits **20–23 rpm** below the
+  other three, every stroke, for the whole cut (`cutscan.py --scan`).
+  So a single missing combustion at idle is about a 20 rpm step — the
+  size the ordinary idle dips already are.
+- **The grade** (`idledips.py --roughness --windows 30`) over windows
+  holding a cut: a mean step of 3.6–10.7 rpm, the 0–200 index at its
+  clamp, against 1.0–2.3 rpm on the same stop with all four firing.
+
+Not yet read into a decision: whether the grade wants a scale or an
+anchor from these is a change to `src/` and its tests, and is its own
+piece of work.
+
 ### How it closes
 
 When the deliberate-misfire test has been run and read: `IdleHealth`

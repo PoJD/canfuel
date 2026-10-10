@@ -184,7 +184,8 @@ class TestFixtureContent(unittest.TestCase):
     FILTERED = {"19_postfix_drive_z1.txt", "24_mafswap_drive_z1.txt",
                 "25_sessionA_cold_z1.txt", "26_sessionA_warm_z1.txt",
                 "27_sessionA2_cold_z1.txt", "28_sessionA2_warm_z1.txt",
-                "29_sessionB_z1.txt", "30_step2b_z1.txt"}
+                "29_sessionB_z1.txt", "30_step2b_z1.txt",
+                "31_step4_drive_z1.txt"}
     ACCEPTED_IDS = {0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480}
 
     #: The last few milliseconds of 20, as the ignition goes off and the bus

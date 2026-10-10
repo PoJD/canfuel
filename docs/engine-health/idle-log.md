@@ -306,13 +306,12 @@ As an index (÷ 2.00 × 100): the middle band 106 → 98–107, the cold idle
 
 ## Where it stands, and what comes next
 
-**Open:** S1 and S3. The misfires remain on settled adaptations, and the
-intake is tight cold. The lead idea is still **air the throttle did not
-let in**, with the learned idle air value as the ECU's way of showing it —
-but sealing the two places the smoke found moved nothing (9/10, below), so
-where that air comes from is open again: the exhaust ahead of the probe
-(H2) has never been looked at warm. **Next** (`plan.md` step 3): a
-vacuum gauge once bought, then the manifold.
+**Open:** S1 and S3. The misfires remain on settled adaptations, with
+new plugs and leads (10/10, below), and the intake is tight cold. The
+dips that kept to one cylinder's stroke did not keep to one on the first
+drive after the new leads, and fewer came. **Next** (`plan.md` step 3):
+two or three ordinary drives to see whether that holds, the exhaust
+test on one of their cold starts and the spray test on a warm stop.
 
 *Entries are added here as each step is done.*
 
@@ -443,6 +442,56 @@ moves the suspicion from what acts on the whole engine — the exhaust
 ahead of the probe among them — to what acts on one cylinder: its
 runner, its valves, its plug and lead (`open.md`, *The dips keep to one
 slot*).
+
+**10/10/2026 — new plugs and leads, and a new intake gasket** (*owner*,
+photographed and numbered by cylinder; `vehicle-history.md`). NGK
+`RC-VW254` leads and NGK `BKUR6ET-10` plugs — the plugs the same type as
+the old ones, so what really changed is **the leads** and **the upper
+intake gasket**, which had to come off to reach them. The battery stayed
+connected, so the adaptations stayed settled. The old parts named two
+single-cylinder faults after the fact: **lead 4's plug end** scored
+inside, its terminal out of sight, over **plug 4's pitted terminal**;
+and **plug 1, almost loose** — cylinder 4's 360° partner (`open.md` H4,
+1d). Every old plug end came off far more easily than the new ones go
+on.
+
+**10/10/2026 — the drive after, the servo held, injectors 1 and 4 cut**
+(`31_step4_drive_z1`, `vcds/vcds-step4-*.csv`, `vcds-step5-*.csv`;
+`open.md` S3, *The drive after the new leads*). One session: a cold
+start, the servo held twice on the cold idle, stops at 58–60 °C and
+69–70 °C of oil, the cut test on the hot stop, home.
+- **The servo: no dip.** The pedal is on the bus (0x1A0), so the holds
+  are timed exactly: 813 rpm held, 813 released, 806 on the second hold,
+  the drift of the warm-up; 003's air did not rise. All three checks
+  good — the servo is cleared (`open.md` H3).
+- **014 still counts**: 3.6 a minute on the cold idle (9/10: 1.4–1.8),
+  9.4 at 58–60 °C (6.8), 6.0 at the hot stop (10.7–12.5), 3–6 on the hot
+  stops home (3.7–5.8). Better at one stop, worse at another — **not
+  fixed**.
+- **The dips no longer keep to one slot**: 10 of 39 pairs, 26 % against
+  chance's 25 % (9/10: 34 of 103, 33 %) — and there are far fewer of
+  them. One drive is a direction, not a verdict.
+- **Nothing a sealed runner would show moved**: 003 at the hot idle
+  3.08 g/s (9/10: 3.12); 055's learned value −1.14 to −1.29, so the
+  adaptations are the settled ones the comparison needs. The engine-speed
+  grade by oil band: calmer hot (1.53 against 1.77 rpm), the same in
+  the middle, rougher cold (2.40 against 1.90).
+- **The cuts named no cylinder** (one day, cuts of 47–73 s): dips by
+  name 1: 0, 2: 7, 3: 11, 4: 2, p = 0.28; the air with 1 out and with 4
+  out the same (3.52–3.58 against 3.46–3.58 g/s), so neither 1 nor 4 is
+  a steadily weak cylinder. With so few dips the test could only have
+  found a cylinder carrying most of them.
+- **020: cylinder 4's retard nearly gone** — 3 of 1,841 samples, at most
+  1.5°, against 44 of 800 and up to 13.5° on 9/10 — and fewer at every
+  load band, not only at full load. The owner, watching it, saw none
+  where on earlier days he saw it regularly. A gentler drive than 9/10's
+  pulls, so a direction (`open.md` S4).
+
+**What it is not known to have achieved:** the misfire count did not
+fall, so **the new leads did not fix S3**. What may have gone with lead
+4 or plug 1 is the one-cylinder share of the dips; two or three more
+drives say whether that holds, and the intake gasket changed the same
+day, so even then it cannot be split between them.
 
 ---
 
