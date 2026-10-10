@@ -1789,10 +1789,10 @@ or late, intermittently, and gets worse as the oil thins. *General.*
 5. **The vacuum gauge** (`plan.md` step 3) reads H1 only through its
    rarer patterns — a regular flick, a flutter, flicks that stay at 2500;
    an intermittent flick at idle is any misfire (`plan.md` Part 2).
-6a. **The lifters pressed down, valve cover off**, cam lobe up: one
+6. **The lifters pressed down, valve cover off**, cam lobe up: one
    that gives before the valve moves has bled down (*general*; a VW
    check of this kind is recalled, not read here).
-6. **A look at the inlet valves** through the ports or with a borescope
+7. **A look at the inlet valves** through the ports or with a borescope
    through the plug hole, if the manifold is ever off again; a chemical
    inlet-valve cleaner is the cheap trial, *not scheduled* — it is
    another run at idle and the owner decides.
