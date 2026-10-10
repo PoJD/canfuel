@@ -3697,6 +3697,53 @@ and S15 are sounds a probe does not make.
 3. If either finds a shift: new probes, front first, and 032 read again on
    settled adaptations.
 
+### H12. Driveline play read as misfires — gearbox input shaft, clutch, flywheel, crank pulley
+
+*Added 10/10/2026 at the owner's request, from a lead another assistant
+raised; ranked last.* The idea: the dips and 014 are not misfires but
+mechanical play in what the crank drives, felt at an unloaded idle where
+almost nothing resists the crank, and taken up under load. 014 reads
+crank-segment times through G28 (`vcds.md`), so a jolt there would be
+counted as readily as a missed firing.
+
+| S1 | S2 | S3 | S4 | S5 | S11 | S15 |
+|---|---|---|---|---|---|---|
+| ~ | ✘ | ~ | ~ | ~ | — | — |
+
+S1 and S3 as a counterfeit of both; S4 and S5 because a mechanical
+knock in cylinder 4's window could read as knock (S5 already fits a
+resonance better than a single part, H1); S2 not — a puff is unburnt
+charge, which play does not make.
+
+- **For:** load calms the idle (S1, 26/9), and play is taken up under
+  load (the owner's relay of the argument); the dips come just after the
+  governor has lowered the torque (S1, *What comes before a dip*), which
+  is when play would show.
+- **Against:** the MAF swap halved the dips (`refuted.md` A11) and the
+  learned idle air decides when 014 counts (`refuted.md` C19) — neither
+  touches a flywheel; the dips kept to one firing slot, 720°, on the
+  captures to 9/10 (*The dips keep to one slot*), where anything turning
+  with the crank repeats every 360° and the alternator at a ratio that is
+  not whole — weaker since 10/10, when that pattern went; the old
+  converter burned through, which takes unburnt fuel; the injector cuts
+  stored codes for exactly the cut cylinders and no other, so the
+  detection works (*Naming the cylinder*). **Compression does not bear on
+  it** either way: a cranking test sees neither play nor a flywheel.
+  Whether this car has a dual-mass flywheel at all is **not recorded**.
+
+**Tests:**
+
+1. **The clutch minutes** (`plan.md` step 3, item 2): pedal down takes
+   the gearbox input shaft and the clutch disc out of the engine's load.
+   Dips and `IdleHealth` the same either way → not that side; clearly
+   calmer with the pedal down → it is a lead. The flywheel and the pulley
+   turn either way and are not separated by it.
+2. **The crank pulley's damper, by eye, engine off**: the rubber ring
+   between its inner and outer metal rings cracked, bulging or the outer
+   ring walking out of line (*general*). Free.
+3. What the flywheel is, read off the parts catalogue by VIN, if test 1
+   or 2 points here.
+
 ## What the forums say about this idle — searched 27/9/2026
 
 A fresh sweep for the idle and the misfires alone (S1–S3), in German,
@@ -4069,6 +4116,11 @@ stands** — H7 and H4 already sit at 5 and 6.*
 one). **The order stands**; H2's test waits on the joint being tight,
 since a leak behind the converter vents the tailpipe test and its noise
 drowns S15 (`plan.md` step 3).*
+*Re-read 10/10/2026 when **H12** was added (driveline play, at the
+owner's request): no symptom added or closed. **It goes in last, at
+10**: its two points for are shared with H1 and H3, and four of the
+measurements against it are things play cannot do. The clutch minutes
+are free and on a capture already planned.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
@@ -4081,6 +4133,7 @@ drowns S15 (`plan.md` step 3).*
 | 7 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) **4/10 evening:** a new throttle passing more at rest than the ECU's model would also make it learn air away (`refuted.md` C19) **9/10, against: the throttle feeds all four alike, and the dips keep to one slot** | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `idle-log.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
 | 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
 | 9 | **H11 — both lambda probes shifted alike** | the only part of the mixture control not changed, 10/2017; no probe test sees a shift; soot on three plugs. Against: 032 + 033 near zero on a new MAF and new injectors bounds it to a few per cent, and with the wrong sign — negative, the ECU taking fuel out; a few per cent does not misfire | a **four-gas analyser** at the emissions station (H11 test 1) |
+| 10 | **H12 — driveline play read as misfires** | load calms the idle, and the dips follow torque trims down, both of which play would also do. Against: the MAF swap and the learned idle air move it, which play would not; the 720° slot pattern (to 9/10); a burned-through converter; the cut test's exact codes | the **clutch minutes** (`plan.md` item 2), the crank pulley's damper by eye |
 
 **Tools worth owning for this, cheapest first** (*general*; prices not
 recorded here, since they move):
