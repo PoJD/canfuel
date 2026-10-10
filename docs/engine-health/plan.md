@@ -68,7 +68,8 @@ off; Claude runs the capture throughout.
      **If a plug will not move, stop: that one goes to a garage.**
    - Photograph each old plug, numbered: the top and the ceramic.
    - Keep the old plugs and leads in a bag, numbered.
-   - New plugs to the torque on their box or in VW's manual. New leads:
+   - New plugs screwed in by hand first, then to **25–30 Nm** (*owner*,
+     read off the NGK box, 10/10/2026). New leads:
      each one must click, at the plug and at the coil.
 4. **An ordinary drive, warm, the next day or after** — like 9/10.
    Steps 1 and 2 need not come first (*owner*, 10/10/2026): the servo

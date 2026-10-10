@@ -2170,6 +2170,23 @@ clean, several tenths is a bad joint** (*general*).
   post short, which is a contact that arcs and the burnt terminal of plug
   4 (1/10); it could also be no more than the light. **Lead 4 is the
   named part**, after the fact, by its own end.
+  **The old plugs, out on 10/10/2026** (*owner*, photographed by
+  cylinder, `photos/plug-old-2026-10-10-cyl*.jpg`; all NGK `BKUR6ET-10`,
+  the same type as the new ones):
+  - **terminal tops:** only **4** pitted and mottled; 1, 2 and 3 darkened
+    but smooth — the other half of lead 4's end;
+  - **firing ends:** dry black soot on **1, 3 and 4**, lightest on **2**.
+    Soot on three of four is the engine's (*general*: rich running, much
+    idling, short trips), not one cylinder's;
+  - **plug 1 came out almost without effort, as if never tightened**
+    (*owner*). *General*: a loose plug can let combustion gas past its
+    seat and runs hot. The compression of 17/9 (12 bar, even) was taken
+    **with the plugs out, before these were fitted**, so it does not
+    cover this. *Reasoned:* cylinder 1 is cylinder 4's 360° partner — the
+    pair the slot pairs pointed at (*The dips keep to one slot*: one
+    cylinder high, its partner low) — so between them, lead 4 and plug 1
+    are the two single-cylinder faults found, and both are now renewed.
+    Which of the two carried the dips, the change cannot say.
 - **1d. Engine off: the HT leads.** Each one pushed fully home on its coil
   tower and its plug, the boots dry and uncracked. With the meter on ohms,
   the four leads against each other: one reading far from the others (for

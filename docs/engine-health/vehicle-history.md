@@ -300,6 +300,7 @@ a later reader can see what was being judged.
 | `leads-old-2026-10-10-plug-end-cyl1`…`cyl4.jpg` | the old NGK leads' plug ends, **numbered by cylinder** (*owner*, 10/10/2026, on removal): cylinder 4's rubber insert scored and ragged, its terminal not visible; 1–3 smoother, their brass terminals plainly in view |
 | `plug-old-2026-10-10-cyl4-top.jpg`, `-cyl4-tip.jpg` | the old plug from cylinder 4 (*owner*, 10/10/2026): its terminal post dark and pitted; the firing end coated in dry black soot |
 | `plug-old-2026-10-10-type.jpg`, `plug-new-2026-10-10.jpg` | an old plug's print, NGK `BKUR6E…10` on the ceramic and `…ET … JAPAN` on the shell; a new NGK of the same type beside it |
+| `plug-old-2026-10-10-cyl1-top.jpg`, `-cyl1-tip.jpg` | the old plug from cylinder 1, **which came out almost without effort, as if never tightened** (*owner*): terminal darkened, smoother than 4; firing end sooted like 3 and 4 |
 | `plug-old-2026-10-10-cyl2-top.jpg`, `-cyl2-tip.jpg` | the old plug from cylinder 2: terminal darkened, smooth; firing end lighter than 3 and 4 — grey electrodes, the soot mainly on the shell face |
 | `plug-old-2026-10-10-cyl3-top.jpg`, `-cyl3-tip.jpg` | the old plug from cylinder 3: terminal darkened but smooth; firing end sooted like 4, crusted on the ground electrodes |
 | [`plug-well-2026-10-09-b.jpg`](photos/plug-well-2026-10-09-b.jpg), [`-c`](photos/plug-well-2026-10-09-c.jpg), [`-d`](photos/plug-well-2026-10-09-d.jpg) | the other three plug wells, cylinder not recorded; `-d` too dark to judge |
