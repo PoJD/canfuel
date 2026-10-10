@@ -4197,29 +4197,23 @@ symptom and hypothesis in this file stay as reference for when a step
 needs one; **they are not scheduled**. An earlier ten-step test plan stood
 here; it is in git.
 
-**For later, if wanted — a higher idle as a mitigation, not a fix**
-(*owner's decision to keep it as an option*, 10/10/2026, on a lead from
-another assistant). Raising the target idle a few tens of rpm through
-VCDS adaptation would add a little air at idle, which is the direction
-every load reading says calms it (S1, *What comes before a dip*). **Not
-verified for this ECU**: the procedure is documented for the 1.8T
-(01 → Adaptation 10 → channel 01, values 124–132, warm idle, **no
-login** on Ross-Tech's 1.8T page; forum reports add a login 01283 or
-11463, but **11463 is the engine ECU's cruise-control activation code**,
-on the same Ross-Tech page — `plan.md` Part 2, item 1); nothing
-found confirms channel 01 or its range on `06A 906 018 EJ`, and the
-"default 128" quoted for it is the 1.8T's. **First, read only**: channel
-01, *Read*, nothing saved — the ECU refuses a channel it does not have;
-if it answers, photograph the value so it can be put back. **The label
-file does not settle it** (*read 10/10/2026*, the owner's copy of
-`06A-906-018-AQY.LBL`, Ross-Tech 2005, not kept here): it defines the
-coding and the measuring blocks only, and **no adaptation channel at
-all** — which says nothing either way, since a label file need not list
-them. The read on the car is the only check. **Brought forward by the owner to `plan.md` item 1** (10/10/2026): read
-the channel, and raise the idle the same day if it exists — accepted
-that it changes the baseline for the additive's tanks, with the original
-value kept to go back to; and it does not show
-that the learned idle air stays above −0.93 g/s, which may simply learn
+**A higher idle as a mitigation, not a fix** (*owner's decision*,
+10/10/2026, on a lead from another assistant; **brought forward to
+`plan.md` item 1**). Raising the specified idle a few tens of rpm adds a
+little air at idle, which is the direction every load reading says
+calms it (S1, *What comes before a dip*). **The procedure is VW's**, for
+this engine family: Golf Mk4 repair manual, *Motronic (2.0 ltr.
+engine)*, *Adapting idling speed* (workshop-manuals.com) — no fault
+stored, coolant at least 85 °C, **login 01283**, adaptation channel 1,
+10 rpm steps, kept inside the emissions-test range; the manual allows it
+"slightly" for droning or vibration at idle. **Ceiling 820 rpm
+specified**, the top of VW's idle range (`vcds.md`). **11463 is not for
+this**: it is the engine ECU's cruise-control activation code (Ross-Tech,
+1.8T page). The owner's own `06A-906-018-AQY.LBL` lists no adaptation
+channels, which a label file need not. **What it changes**: the baseline
+for every reading after it, the additive's tanks included — accepted by
+the owner, the original value kept to go back to. It does not show that
+the learned idle air stays above −0.93 g/s, which may simply learn
 around a new target (`refuted.md` C19).
 
 **Meanwhile:** avoid long idles — the misfires are an idle phenomenon and

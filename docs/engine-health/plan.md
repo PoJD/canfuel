@@ -51,18 +51,22 @@ each whether the next is needed. Claude runs the capture on every drive.
    - **A drive of about 30 min**, until the oil reads 68–72 °C. **Home,
      warm, before engine off: the clutch again** — the same blip and the
      same four 30 s.
-   - **Then, still warm and idling, VCDS: is there an idle adaptation?**
-     01 → Adaptation 10 → channel **01** → **Read** only. Photograph
-     the screen whatever it says.
-     - **Refused or no such channel** → nothing more. Engine off.
-     - **It answers** → write the value down; it is the one to go back
-       to. Then **one step up**, Save; read group **056** field 2 (the
-       specified idle) and field 1 (the actual). Repeat one step at a
-       time, **no higher than 820 rpm specified**. Write each value and
-       the rpm it gave. Then **1 min** at idle, loads off, and note
-       `IdleHealth` and the oil temperature. Engine off.
-     - Login asked for, an error, or the idle hunting → put the
-       original value back and stop.
+   - **Then, still warm and idling, the idle speed in VCDS.**
+     - First: **fault memory empty** (clear it if anything is stored),
+       and **coolant at least 85 °C** (group 004, field 3).
+     - 01-Engine → **Login (11)** → **01283** → Do it.
+     - **Adaptation (10)** → channel **01** → **Read**. Photograph the
+       screen. **Write down the value shown; it is the one to go back
+       to.**
+     - **+10 rpm**, Test, Save. Read group **056**: field 2 (specified)
+       and field 1 (actual). Repeat **+10 rpm at a time, to no more than
+       820 rpm specified.** Write each step.
+     - **1 min** at idle, loads off: note `IdleHealth` and the oil
+       temperature. Engine off, ignition off.
+     - A "data transfer" error → ignition off, start again from the
+       login. Login refused, or the idle hunting → the original value
+       back, and stop.
+     - **Never 11463.**
    - **Play both recordings back yourself** and write whether a hiss or
      a puff comes up at each "teď", and on which recording.
    - **Cold again (the next morning will do):** the connector's bolts
@@ -205,10 +209,17 @@ one of item 6's. Filmed rather than watched, because a flick at idle
 comes several times a second and a video can be stepped through.
 
 **Item 1's idle adaptation** (*owner's decision*, 10/10/2026; `open.md`,
-*For later, if wanted*). Whether this ECU has the channel at all is
-read on the car, because nothing found confirms it — the label file
-lists no adaptation channels and the procedure is documented for the
-1.8T. If it does, the owner raises the idle the same day. **The
+*For later, if wanted*). **The procedure is VW's own, for this engine
+family** (*found the same evening*): the Golf Mk4 repair manual,
+*Motronic injection and ignition system (2.0 ltr. engine)*, *Adapting
+idling speed*, as transcribed on workshop-manuals.com — the same manual
+`vcds.md` already matches field for field to this ECU. It allows the
+idle to be changed "slightly", as an exception for droning or vibration
+at idle, with **no fault stored**, **coolant at least 85 °C**, **login
+01283**, adaptation **channel 1**, the specified speed moved in **10 rpm
+steps**, and the result kept inside the range in VW's emissions test
+binder (not held here). The VCDS screens are its translation of the
+VAG 1551/1552 key presses. The owner raises the idle the same day. **The
 owner's reason**: to lessen what the misfires do — to the converter
 above all — whatever their cause turns out to be, while the cause is
 still being looked for. **820 rpm specified is the ceiling** (*decided*): it is the
@@ -223,15 +234,13 @@ no reading is ever compared across the change by mistake. A raised idle
 that calms the dips confirms what the load readings say (S1) and fixes
 nothing underneath. **A login asked for stops it** (*decided*,
 10/10/2026, the owner's question why; *looked up the same evening*):
-**Ross-Tech's own procedure** (1.8T page) **uses no login at all** —
-warm idle, 01, Adaptation 10, channel 01, 124–132, Save. **11463 is
-not an idle code**: the same Ross-Tech page, and every source found,
+**VW's manual gives the login: 01283** (above). Ross-Tech's 1.8T page
+uses none, on another ECU. **11463 is not an idle code**: the same Ross-Tech page, and every source found,
 give it as the engine ECU's login for **activating cruise control**
 (16167 to deactivate), so entering it would change the car, not unlock
 the idle. **01283** appears in one forum post repeating the 1.8T
-procedure, nowhere authoritative. So: no login → go on; a login asked
-for → stop, and the code is looked up for this ECU before anything is
-tried; **never 11463** for this.
+procedure — and turns out to be VW's own code for this engine family.
+**Never 11463** for this.
 
 **Item 1's clutch minutes** (*owner's decision*, 10/10/2026, brought
 forward from the gauge session to the cold start after the joint, and
