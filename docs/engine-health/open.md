@@ -1754,8 +1754,16 @@ or late, intermittently, and gets worse as the oil thins. *General.*
   50–61 °C and eases when hot"). The S5 excess switches on above ~2300 rpm and
   moves to cylinder 1 above ~3350, which fits a resonance better than a single
   part. No ticking has been reported.
-- **From the Polish AQY thread** (see H4): one poster traced idle vibration
-  to valves not sealing and fixed it with head work. A forum report.
+- **From the Polish AQY thread** (see H4; forum.vwgolf.pl t=522030, page
+  6, re-read 10/10/2026): **Kavior** (14/11/2013) put an AQY's idle
+  vibration down to valves not sealing, and after **new piston rings and
+  "a light going-over of the head"** it "practically disappeared" — new
+  plugs and leads had not helped him; **nowed** (23 and 25/11/2013) had
+  vibration, **bangs into the exhaust** and misfires, found **some carbon
+  on the valves** and replaced **three valve guides**, and called it the
+  head. Rings and head together, so the valves are not separated from
+  the rings; a forum report. **No lifter in it** — the lifter case is the
+  German thread below.
 - **From a German AQY thread** (pkw-forum.de, *Ölverbrauch und
   Zündaussetzer beim 2,0 ltr-Motor AQY*, 2003–2015): a Golf with misfires
   whose head came off to find **a bucket tappet sticking intermittently**
@@ -3597,7 +3605,10 @@ and S15 are sounds a probe does not make.
   switching point sits. The front probe's even, full swing at idle
   (`refuted.md` C5) rules out a lazy probe, not a shifted one. Dry soot on
   plugs 1, 3 and 4 (H4, 1d) fits a rich mixture — and fits idling, short
-  trips and misfires as well. **10/10: the dips no longer keep to one slot**
+  trips and misfires as well. In the long Polish AQY thread (t=522030,
+  2016–2017) two posters reported the vibration gone with a **new lambda
+  probe**, one naming an original Bosch — but nothing says theirs were
+  merely shifted rather than dead (*forum*). **10/10: the dips no longer keep to one slot**
   on one drive (S3), which gives back a little to causes acting on all four.
 - **The rear probe's 0.665–0.725 V at a hot idle does not decide it**
   either way: that is where a narrowband probe behind a working converter
