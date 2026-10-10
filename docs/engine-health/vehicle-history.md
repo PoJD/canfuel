@@ -209,6 +209,20 @@ detail*).
 
 ---
 
+## Fault memory, as found in old scans
+
+*Owner's VCDS scans, found 10/10/2026; the dates are the owner's.*
+
+| When | Stored | Since |
+|---|---|---|
+| **1/2018** | 16824 / P0440, EVAP emission control system, intermittent | **never repaired**; not stored since |
+| **5/2019** | 16556 / P0172, fuel trim too rich; 16684 / P0300, random/multiple misfire; **16688 / P0304, cylinder 4 misfire** — all intermittent | not stored since |
+
+Scans: `photos/vcds-faults-2018-01.png`, `photos/vcds-faults-2019-05.png`.
+The 2019 codes sit inside the life of the converter that later burned
+through (10/2017 – 9/2026), and a misfire code on this ECU needs more
+than 2 % (`vcds.md`, *What VW says*).
+
 ## Electrical work, 2026
 
 *Owner-supplied; days not recorded.*

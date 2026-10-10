@@ -445,7 +445,13 @@ show it.
   two independent witnesses. And the converse does not hold: only 7 of 34,
   37 of 319 and 38 of 70 dips carry an increment.
 - **No fault code is stored.** The rate stays below whatever the ECU needs to
-  set one.
+  set one. **It once did**: an old scan from **5/2019** holds P0300 and
+  **P0304, cylinder 4**, with P0172, too rich (*owner*, found 10/10/2026;
+  `vehicle-history.md`, *Fault memory, as found in old scans*) — so in
+  2019 one cylinder, number 4, misfired past the 2 % store threshold,
+  inside the old converter's life. History, not a symptom of today's
+  engine: every part in that cylinder's fuel and ignition path has since
+  been replaced, and nothing has been stored since 2019.
 - **When the counts start after a cold start** (checked 28/9/2026, VCDS
   014 aligned on engine speed to the captures). **11/9** (`18`, old
   injectors): the first count **2 min** after the start at coolant 35 °C,

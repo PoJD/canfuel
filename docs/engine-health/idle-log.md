@@ -79,6 +79,16 @@ reading their own:
 
 ## Before September 2026 — the history
 
+- **1/2018** — fault memory (*owner's old scan*,
+  `photos/vcds-faults-2018-01.png`): **16824 / P0440, EVAP system,
+  intermittent** — never repaired; not seen since.
+- **5/2019** — fault memory (*owner's old scan*,
+  `photos/vcds-faults-2019-05.png`): **16556 / P0172, too rich**,
+  **16684 / P0300** and **16688 / P0304, cylinder 4 misfire**, all
+  intermittent. Codes this ECU stores only above a 2 % misfire rate
+  (`vcds.md`), so cylinder 4 was misfiring well past today's counts
+  then; and rich, a year after the remap and the 2018 MAF — the MAF
+  that over-read until 9/2026 (S9). Not seen again in any scan since.
 - **6/2018** — remap. **12/2017** — fuel filter changed; the old one came
   off corroded and leaking, with dark, cloudy fuel in it (photographed).
   The fuel tank was replaced at some point in the ownership; when is not
