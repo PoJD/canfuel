@@ -76,10 +76,8 @@ Everything else settled against is in `refuted.md`.
   leads*). So the leads did not fix S3; whether they took the
   one-cylinder share of the dips, two or three more drives say. The
   servo is cleared (H3). Ranked now (*re-read 10/10*): **H2**, the
-  exhaust ahead of the probe — S15 still heard — then **H1**, a valve,
-  and **H3**, a leak, which the vacuum gauge on order splits (H1 up on
-  10/10: the dips come in short runs on one cylinder, S1, *What comes
-  before a dip*); **H7**,
+  exhaust ahead of the probe — S15 still heard — then **H3**, a leak,
+  and **H1**, a valve, which the vacuum gauge on order splits; **H7**,
   rail pressure, down to 5 on the owner's argument (*The idle's
   candidates, ranked*). **H11**, both lambda probes shifted alike, is
   written down last (10/10, at the owner's request) so that it is not
@@ -309,6 +307,17 @@ through every idle again*; `tools/dipcontext.py`, warm standing idle at
   away, and the dip comes in the next few cycles; afterwards both rise
   as it catches the fall. In 6 of the 9 captures alone; `24`, `27` and
   `29` show it weakly or not.
+  ⚠ **It is an average, not something each dip shows.** The shift is
+  under one count of either byte (b6 is ~0.08 ms a count against ~3 ms
+  at idle, `docs/firmware/can-decoding.md` question 3), so −0.33 means
+  roughly one dip in three had the byte one count lower just before it;
+  no single dip can be read for it. And both bytes are **the ECU's own
+  calculation** — injection time follows the air per stroke the MAF
+  reports, b7 the ECU's torque model — so "trimmed" means the ECU saw
+  or set a little less charge: the throttle closed a touch, or the MAF
+  wavered. Air or advance cannot be told apart here: 0x280 b5 does not
+  move at this scale, and the advance is only on VCDS 003, about once a
+  second.
 - **It is not the speed rise that the dip detector selects.** Split by
   how engine speed moved, a dip starts within the next 0.3 s after
   indicated torque **fell** over the half second before in **5.0 %,
@@ -325,7 +334,15 @@ through every idle again*; `tools/dipcontext.py`, warm standing idle at
   (720°, the same cylinder) **36 times**, against **16** a whole number
   and a half later (360°, its partner in the firing order) — equal
   windows, so chance gives as many of one as of the other (p ≈ 0.007,
-  one-sided; 862 dips). Short runs on one cylinder, not isolated events.
+  one-sided; 862 dips). ⚠ **Not runs** (*corrected the same day*, at
+  the owner's question how this bears on a lifter): this read "short runs
+  on one cylinder, not isolated events". By lag, the 36 are spread over
+  1–6 cycles (11, 3, 1, 13, 5, 3), not gathered at one or two as a state
+  that holds a few cycles would be; and a cylinder carrying more than its
+  share of independent dips gives exactly this excess — at 45 % on one
+  cylinder, 2.5 to 1 (*The dips keep to one slot*). So it says again
+  that one cylinder takes more dips, and nothing about how long a fault
+  lasts.
 
 **What it means** (*reasoned*). The three readings of load — loads on
 smooth the idle (26/9, above), a more negative learned idle air makes
@@ -336,11 +353,9 @@ and anything that takes a little charge away tips them over. It is a
 property, not a part: what narrows that edge at light load is a valve
 that seals worse at low cylinder pressure (H1), dilution by a small leak
 (H3), a late cam (the belt a tooth out, ranked 8), or the engine's own
-margin (H0). The runs on one cylinder fit a state that holds for a few
-cycles — **a valve that hangs and frees** — better than random burns at
-a lean or dilute limit, which come independently (*general*). It argues
-against a fault that does not care about the charge: an intermittent
-wire, a crank-sensor artefact (which would repeat at 360°, not 720°).
+margin (H0) — **it does not choose between them**. It argues against a
+fault that does not care about the charge: an intermittent wire, a
+crank-sensor artefact (which would repeat at 360°, not 720°).
 
 ### S2. An occasional puff from the exhaust
 
@@ -1730,12 +1745,12 @@ or late, intermittently, and gets worse as the oil thins. *General.*
   litre could not. A sticking tappet needs no oil consumption, so this takes
   nothing from H1 itself.
 
-- **For, 10/10/2026** (S1, *What comes before a dip*): the dips come
-  when the ECU has just taken a little charge away, which is when a valve
-  that seals worse at low cylinder pressure would show; and they come in
-  short runs on one cylinder (36 against 16), which fits a valve that
-  hangs for a few cycles and frees better than random lean or dilute
-  burns. The same search found an Opel Zafira A with misfires at idle
+- **For, 10/10/2026, weakly** (S1, *What comes before a dip*): the dips
+  come when the ECU has just taken a little charge away, which is when a
+  valve that seals worse at low cylinder pressure would show — and when
+  a leak at one runner would (H3), so it does not separate the two. *This
+  also read "and in short runs on one cylinder", corrected the same day:
+  the excess is a weak cylinder's share, not runs.* The same search found an Opel Zafira A with misfires at idle
   only, a few minutes after the start, **sticking inlet valves**, cured
   by an inlet-valve cleaner and hard driving (*autoservicepraxis.de*,
   FabuCar case, 6/2023 — another engine, a trade magazine's reader case,
@@ -3914,15 +3929,16 @@ load first, where the engine is well, and a steady error would show in
 gauge is not bought. **H3 to 2, H1 to 3, H0 to 4.***
 *Re-read 10/10/2026 after the idles were gone through again (S1, *What
 comes before a dip*): no symptom added or closed. The dips come when the
-ECU has just trimmed the charge, and in short runs on one cylinder.
-**H1 to 2, H3 to 3**: both fit the charge, only a valve that hangs fits
-the runs. The vacuum gauge, next, reads both.*
+ECU has just trimmed the charge, which H1 and H3 fit alike. **The order
+stands.** (It moved H1 to 2 for an hour, on "short runs on one
+cylinder", which the lags did not bear out.) The vacuum gauge, next,
+reads both.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | 1 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing **4/10: the hiss stayed after 1b, from the back (S11), and 014 came back only after a hard drive — heat from load, which opens a crack or a gasket; the owner's lead.** Still against: it has to act through the lambda control, which B3's 033 shows **4/10 evening, against:** at B1 033's median was −0.8 %, not the positive correction air at the probe would force, and B counted on a cold idle **9/10, against it as the dips' cause: they keep to one slot, and air at the shared probe acts on all four alike** — its sounds (S2, S11, S15) are its own either way | the owner's tailpipe test, and a new manifold if it leaks there (`plan.md` step 3, *owner's decision, 3/10*) |
-| 2 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: never worst hot (S1, S3, re-read 9/10); A5 ~~**4/10, against:** zero at both warm stops~~ *(withdrawn 9/10: fresh adaptations, `refuted.md` C19)* **9/10, for: the dips keep to one slot** **10/10, for: the dips come just after the ECU trims the charge, and in short runs on one cylinder, 36 against 16 (S1, *What comes before a dip*)** | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
-| 3 | **H3 — a small unmetered leak** (with what is left of H9, closed 4/10: the breather's original hose and connector): ~~three injectors not fully home since 23/9~~ (all four seated 1/10, `idle-log.md`; H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line **and N112, which vents into the airbox ahead of the MAF** (8/10, `plan.md` step 2a), the breather hose; **the dipstick tube, loose with its bracket missing** (4/10, a crankcase path; **refitted 9/10; the only place smoke came out on 9/10, at the guide's seat, put right to a faint wisp the same day**); **and the throttle's flange**, where a hard protrusion on the old face may have kept the June gasket off (H8, 28/9) | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) **4/10, against:** the warm leak signature did not move with the hole sealed, and a leak does not wait for a hard drive (S3, *Session A after step 1b*) **4/10 evening, for:** an unmetered leak is what makes an ECU learn idle air away — the likeliest reason the ECU learns air away (H10, closed 9/10, `refuted.md` C19) **9/10, against: the intake smoked clean cold, the airbox outlet (N112) included** **9/10, for: the dips keep to one slot** (*The dips keep to one slot*) — a leak at one runner acts on one cylinder | the valve cover job itself, which replaces the upper plenum gasket, the breather **and the throttle with its flange gasket** (29/9) — an improvement afterwards answers it; now **the smoke test of the intake**, next (`plan.md` step 2a, *owner's decision, 4/10*) |
+| 2 | **H3 — a small unmetered leak** (with what is left of H9, closed 4/10: the breather's original hose and connector): ~~three injectors not fully home since 23/9~~ (all four seated 1/10, `idle-log.md`; H3, *The injector seats*), and at the back the plenum and its upper gasket, the brake-servo line, the old secondary-air vacuum line **and N112, which vents into the airbox ahead of the MAF** (8/10, `plan.md` step 2a), the breather hose; **the dipstick tube, loose with its bracket missing** (4/10, a crankcase path; **refitted 9/10; the only place smoke came out on 9/10, at the guide's seat, put right to a faint wisp the same day**); **and the throttle's flange**, where a hard protrusion on the old face may have kept the June gasket off (H8, 28/9) | the only candidate that predicts *load helps*; the back was never sprayed; S11's hiss; a leak at the plenum feeds all four, as A5 wants; **also fits S12**, a lean tip-in. Against: trim −3.1 %; VW's own leak signs — idle air 3.1–3.5 g/s against 2.0–5.0, 055's learnt value −0.73 against ±1.50 — rule out a large leak, not a small one (28/9) **4/10, against:** the warm leak signature did not move with the hole sealed, and a leak does not wait for a hard drive (S3, *Session A after step 1b*) **4/10 evening, for:** an unmetered leak is what makes an ECU learn idle air away — the likeliest reason the ECU learns air away (H10, closed 9/10, `refuted.md` C19) **9/10, against: the intake smoked clean cold, the airbox outlet (N112) included** **9/10, for: the dips keep to one slot** (*The dips keep to one slot*) — a leak at one runner acts on one cylinder | the valve cover job itself, which replaces the upper plenum gasket, the breather **and the throttle with its flange gasket** (29/9) — an improvement afterwards answers it; now **the smoke test of the intake**, next (`plan.md` step 2a, *owner's decision, 4/10*) |
+| 3 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: never worst hot (S1, S3, re-read 9/10); A5 ~~**4/10, against:** zero at both warm stops~~ *(withdrawn 9/10: fresh adaptations, `refuted.md` C19)* **9/10, for: the dips keep to one slot** **10/10, for, weakly: the dips come just after the ECU trims the charge — as H3's do (S1, *What comes before a dip*)** | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
 | 4 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 **4/10, against:** ~~zero at both warm stops is not what a normal-for-the-engine idle does on a counter that read 10–20 a minute there~~ *withdrawn 9/10: those zeros came on fresh adaptations (`refuted.md` C19)* **9/10, against: the dips keep to one slot rather than spreading over four alike** — weakly: nobody knows how a healthy AQY shares them | a healthy AQY recorded (H0 test 1) |
 | 5 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero **4/10: the pattern fits only in form** — fuel heat-soaked at the rail after a hard drive; against, the return-flow rail keeps fuel moving, heat soak is a hot-*restart* effect, and the coolant read the same at A3's zero **9/10, against: rail pressure acts on all four alike, and the dips keep to one slot** **10/10, against (the owner's argument): low pressure shows at full load first, where the engine is well, and a steady error shows in 032, near zero** | a fuel pressure gauge — **not bought** (*owner*, 10/10) |
 | 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits only in form** — a coil that breaks down hot is the textbook case, but **the coil is from 6/2026**, and the 3/10 oil sat **only on the outside of its plastic and on the outsides of the leads of 3 and 4, wiped dry** (*owner*, 4/10/2026) **9/10: the dips keep to one slot — for the high-voltage side of one lead or tower (test 1e), against the supply side** **9/10, for — the first named part: plug 4's terminal burnt black by 1/10, the plug-end boots never click, one plug end crusted, the owner pulls them by hand (1d)** | **new plugs and leads, VW originals** (*owner's decision, 9/10*, `plan.md` step 3.3), and the drive after: the dips back to a quarter of pairs on one slot → it was here **10/10, done: a quarter (26 %) on the first drive, but 014 counting as before — so not the misfires; the one-cylinder share of the dips, if two or three more drives hold** |

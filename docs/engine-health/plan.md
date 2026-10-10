@@ -299,9 +299,8 @@ comes several times a second and a video can be stepped through.
    that comes and goes** — a few flicks in a row, then quiet for seconds
    — is what a valve that hangs only sometimes would do (*general*: a
    lifter bleeding off shows as an intermittent drop at idle), and it is
-   the shape the dips have (`open.md` S1, *What comes before a dip*):
-   now and then, sometimes on the same cylinder a cycle or two running.
-   That is why the films are a minute and not a glance. A flick on every
+   the shape the dips have (`open.md` S1): now and then, not on every
+   stroke. That is why the films are a minute and not a glance. A flick on every
    stroke of one cylinder would be a valve that never seals, which the
    even compression makes unlikely. **Low and steady** → a late cam
    (the belt a tooth out) as much as a leak (*general*).
