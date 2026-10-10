@@ -1795,7 +1795,11 @@ or late, intermittently, and gets worse as the oil thins. *General.*
   late, and the same search's general sources put them at a cold,
   low-throttle idle on port-injected engines (*general*): they soak up fuel
   while cold, which fits S1 being roughest cold. Nothing on this engine
-  has looked at the backs of the valves.
+  has looked at the backs of the valves. **Against, 10/10/2026**: the
+  owner has long run OMV MaxxMotion 100 (`vehicle-history.md`), a
+  premium fuel sold with a detergent package, which works against
+  inlet-valve deposits building up (*general*); what the car ran on
+  before 2017 is not known.
 
 **Tests:**
 

@@ -152,6 +152,7 @@ service records or from the owner's own work.
 | **Spark plugs and ignition leads**, NGK leads (*"NGK SPARK PLUG CABLE"* and *"5ME2"* printed on them, `photos/cover-leak-2026-10-04-cleaned.jpg`; the set number is not printed). The invoice names no part numbers: **plugs 800 Kč the four, leads 1,650 Kč the set** (*owner*, read 9/10/2026). **The plugs were NGK `BKUR6ET-10`** — read off one of them on removal, 10/10/2026 (`photos/plug-old-2026-10-10-type.jpg`) | **17/9/2026**, at the Dakuma garage; **off 10/10/2026** (row below), kept numbered | ~0 |
 | **Spark plugs and ignition leads, new**: NGK `BKUR6ET-10` plugs, the same type as before, at 25–30 Nm (*read off the NGK box*); NGK `RC-VW254` leads, black, printed *"5MB"* (`photos/leads-new-2026-10-10-*.jpg`). The upper intake off for it, **a new Elring `271.230` under it**. Battery left connected | **10/10/2026**, by the owner | ~0 |
 | Rear shock absorbers, air-conditioning recharge, minor items | 17/9/2026 | ~0 |
+| **Fuel: OMV MaxxMotion 100**, bought as a rule (*owner*, 10/10/2026: "long-term"; since when is not recorded). Before 9/2017, not known | — | — |
 | **Battery disconnected** — every ECM adaptation (fuel, idle air, knock, throttle) restarts from zero each time | after the summer heater work (row above), then **23/9, 26/9, 1–2/10 and the morning of 4/10/2026**; 098 run 2/10 and 4/10. **Connected since 4/10**, through the work of 9/10 and 10/10 (*from `idle-log.md` and `open.md`*) | — |
 
 Three entries carry more than a date.

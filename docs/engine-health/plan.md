@@ -61,8 +61,8 @@ the capture on every drive.
 3. **No clear intake leak in 1 or 2 → the engine is left alone.** Low
    and steady at idle only → Claude says the next step instead.
 4. **One can of Liqui Moly *DFI Cleaner* (= *Pro-Line Direct Injection
-   Cleaner*, 120 ml)** into the tank, then fill **30–50 l** of ordinary
-   95. Drive the tank as usual. Battery stays connected.
+   Cleaner*, 120 ml)** into the tank, then fill **30–50 l** of the usual
+   OMV MaxxMotion 100. Drive the tank as usual. Battery stays connected.
    - **`IdleHealth` off the display, before the can and through both
      tanks after it:** on drives where the oil reaches **68–72 °C**, at
      one stop of **at least a minute**, always with **the same loads on**
@@ -180,7 +180,8 @@ the injector sprays onto the back of the inlet valve, so fuel with the
 cleaner in it washes exactly where port-injection deposits sit
 (*reasoned*). **Dose and interval are the maker's**: 120 ml for 30–50 l,
 and no sooner than every 5,000 km, so it is **one treatment**, not a
-course. Ordinary 95: no reason was found to pay for more. **How it is
+course. **The usual fuel, OMV MaxxMotion 100**, so that the can is the
+only thing that changes. **How it is
 read**: the drives of item 5 against `30`, `31` and item 1's session —
 014 by stop and the grade by oil band (`open.md` S1, S3), adaptations
 settled (the battery stays on, `refuted.md` C19). Better → deposits had
