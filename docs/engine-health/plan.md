@@ -58,41 +58,47 @@ the capture on every drive.
      **15 s** of idle again. **055 read once.** Engine off, gauge off,
      hose back on.
    - **Write** the same four things as in 1.
-3. **Two or three ordinary drives, warm**, on different days, no gauge
-   (one fewer if 2 was done). VCDS on **014, 003, 020**; 055 once at
-   the end, warm idle.
-4. **Only if 1 found nothing at the exhaust: the exhaust test again,
-   warm**, after a drive to 68–72 °C of oil.
-   - **Leaks there → a new manifold**: new gasket to the head, new nuts,
+3. **No clear intake leak in 1 or 2 → the engine is left alone.** Low
+   and steady at idle only → Claude says the next step instead.
+4. **One can of Liqui Moly *DFI Cleaner* (= *Pro-Line Direct Injection
+   Cleaner*, 120 ml)** into the tank, then fill **30–50 l** of ordinary
+   95. Drive the tank as usual. Battery stays connected.
+5. **On the next tank: two or three ordinary drives, warm**, on
+   different days. Claude runs the capture; VCDS on **014, 003, 020**;
+   055 once at the end, warm idle. Write the stops.
+6. **Only if Claude asks after 5:**
+   - **The exhaust test again, warm**, after a drive to 68–72 °C of oil.
+     **Leaks there → a new manifold**: new gasket to the head, new nuts,
      new outlet gasket, the probe refitted with anti-seize. Part
      `06A 253 031` + suffix: read the number cast into the manifold, or
      ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
-     Penetrating oil on the studs the days before; a snapped stud goes to
-     a garage.
-5. **Only if Claude asks: injectors 1 and 4 again, warm idle** — as on
-   10/10.
-   - Drive until the oil reads 68–72 °C. Stop, neutral, handbrake on,
-     loads off. Claude runs the capture; VCDS on **014, 055, 003**.
-   - **1 min** as it is.
-   - **In this order: 1, 4, 4, 1.** Cylinder 1 is at the timing-belt end.
-     Each time: connector off **1 min** (30 s at the least), back on,
-     **30 s** as it is. Gloves; by the connector body with the clip
-     pressed, never by the wires.
-   - **1 min** as it is, engine off.
-   - Write every off and on into the chat. The engine light will come
-     on, maybe flashing: carry on.
-   - Clear the fault memory with VCDS.
-6. **Only if the idle is still not right: high-voltage side in the dark,
-   a damp evening, warm idle.**
-   - Bonnet open, lights off: look along the leads and the coil for a
-     spark or a blue glow.
-   - Then a fine water mist over one lead at a time, and the coil.
-     Hands and the bottle clear of the leads.
-   - Write anything seen, and which lead the engine stumbled at.
+     Penetrating oil on the studs the days before; a snapped stud goes
+     to a garage.
+   - **Injectors 1 and 4 again, warm idle** — as on 10/10: oil at
+     68–72 °C, neutral, handbrake on, loads off; Claude runs the
+     capture, VCDS on **014, 055, 003**; 1 min as it is; **1, 4, 4, 1**,
+     each connector off **1 min** (30 s at the least) and back on for
+     **30 s**, by the connector body with the clip pressed, gloves; 1 min
+     as it is, engine off. Write every off and on into the chat; a
+     flashing lamp is expected. Clear the fault memory with VCDS.
+   - **The high-voltage side in the dark**, a damp evening, warm idle:
+     bonnet open, lights off, look along the leads and the coil for a
+     spark or a blue glow; then a fine water mist over one lead at a time
+     and the coil, hands and bottle clear. Write anything seen and which
+     lead the engine stumbled at.
 7. **The next repair** — Claude picks it from `open.md` then.
 
 ## Standing items
 
+- **Every drive, for the converter:**
+  - Drive off within half a minute of starting; never warm it up
+    standing.
+  - Standing at idle: **lights, blower and rear window heater on**, the
+    seat heaters too. Or a touch of throttle.
+  - At a stop longer than a minute or two, where it is safe: engine off.
+  - After a hard or long drive: switch off on arrival, no idling.
+  - **Engine lamp flashing**: ease off at once, stop where safe, engine
+    off, write it into the chat.
 - **After a few hundred km:** re-tighten the cover's outer nuts you can
   reach with the plenum on, and look along the joint.
 - **When there is a thermometer, at the end of a hot captured session:**
@@ -154,7 +160,30 @@ which item 2 reads on a drive that is captured anyway and so counts as
 one of item 3's. Filmed rather than watched, because a flick at idle
 comes several times a second and a video can be stepped through.
 
-**Items 2 and 3 — the drives** (*decided 10/10/2026*). The first drive after the new
+**Items 3 to 5 — the engine left alone, and the additive** (*owner's
+decision*, 10/10/2026). After the gauge, unless it shows an intake leak
+plainly, no more work on the engine for now: no new tools, nothing taken
+apart, no garage. The one thing tried is an inlet-valve cleaner in the
+fuel, because inlet-valve deposits (`open.md` H1, *Inlet-valve deposits*)
+are the one candidate a can in the tank can reach. **Why this product**:
+Liqui Moly states that it works through **polyetheramine (PEA)** and
+that it suits every four-stroke petrol engine; PEA is the additive
+chemistry aimed at inlet-valve and chamber deposits (*general*). The
+"direct injection" in its name is not a restriction — on this engine
+the injector sprays onto the back of the inlet valve, so fuel with the
+cleaner in it washes exactly where port-injection deposits sit
+(*reasoned*). **Dose and interval are the maker's**: 120 ml for 30–50 l,
+and no sooner than every 5,000 km, so it is **one treatment**, not a
+course. Ordinary 95: no reason was found to pay for more. **How it is
+read**: the drives of item 5 against `30`, `31` and item 1's session —
+014 by stop and the grade by oil band (`open.md` S1, S3), adaptations
+settled (the battery stays on, `refuted.md` C19). Better → deposits had
+a part; the same → H1's deposit branch loses, and Claude picks from the
+ranked list. A tank is weeks of this car's driving, so the reading is
+late by design. Not a test of anything else, and it decides nothing on
+its own about a lifter.
+
+**Item 5 — the drives** (*decided 10/10/2026*, before the additive was; they now come after it). The first drive after the new
    plugs and leads put the dips at a quarter of pairs on one slot — 10
    of 39, 26 %, against 34 of 103, 33 %, on 9/10 — while 014 counted as
    before (`open.md` S3, *The drive after the new leads*). One drive
@@ -162,7 +191,7 @@ comes several times a second and a video can be stepped through.
    cost nothing. **How it is read**: `cutscan.py --pairs` on the idles,
    outside any cut, pooled with 10/10's — still near a quarter → the
    one-cylinder share is gone, and what 014 counts acts on the whole
-   engine; back toward a third → item 5 names the cylinder. 014 by
+   engine; back toward a third → item 6's cuts name the cylinder. 014 by
    stop and the grade by oil band against `open.md` S1 and S3. **The
    groups**: **014** is the reading; **003** the idle air, which says
    whether anything sealed or opened; **055 once**, at the end on a
@@ -176,7 +205,7 @@ comes several times a second and a video can be stepped through.
    VCDS takes three groups, so 003 sits that drive out (*decided*): its
    idle air was 3.08 g/s on 10/10, the baseline is set, and the idle is
    still read off 014 and the capture.
-**Items 1 and 4 — the exhaust ahead of the front probe (H2)** (*reasoned*,
+**Items 1 and 6 — the exhaust ahead of the front probe (H2)** (*reasoned*,
    9/10/2026): `open.md`'s first candidate when this was written (since 9/10 second, behind H3, now that the dips keep to one cylinder — but still the one with symptoms of its own), and next now that 2b moved nothing on
    the intake side, the one with a symptom of its own since S15 was
    heard, and free. With the outlet closed, a leak that draws air in at idle blows
@@ -209,7 +238,7 @@ comes several times a second and a video can be stepped through.
    3/10/2026); the suffix differs by model and year; the studs into the
    head are 26 years old. **Nothing leaks ahead of the probe** → H2 is
    refuted for its zone and goes to `refuted.md`.
-**Item 5 — injectors 1 and 4** (*the owner's proposal, 9/10/2026*; `open.md`,
+**Item 6 — injectors 1 and 4 again** (*the owner's proposal, 9/10/2026*; `open.md`,
    *Naming the cylinder*). It is also `docs/firmware/open.md` question
    11's deliberate misfire, brought forward at the owner's decision the
    same day. With a connector off, that cylinder gets no fuel, so the
@@ -291,7 +320,7 @@ comes several times a second and a video can be stepped through.
      of known rate — comes from the same minutes.
    **Day 1, 10/10/2026** (`open.md`, *Naming the cylinder*): no
    cylinder stands out (p = 0.28), neither 1 nor 4 weak by air, on
-   twenty dips. **Not repeated unless items 2–3 bring the dips back to one
+   twenty dips. **Not repeated unless item 5's drives bring the dips back to one
    slot** (*decided 10/10/2026*): the test exists to name the cylinder
    the dips keep to, and on the same drive they kept to none.
 **Item 6 — the high-voltage side** (`open.md` H4 test 1e, *decided 9/10/2026*):
@@ -370,6 +399,20 @@ weather.
    candidates.
 
 ## Standing items — why
+
+- **Every drive, for the converter** (*the owner's question*, 10/10/2026;
+  all from this car's data): **122 of 129 counted misfire events began
+  at a standing idle** and almost none under load (`open.md` S3), so the
+  converter's exposure is standing idle, cold warm-ups included — 014
+  counts on the cold idle too since 9/10. **Loads on smooth it**: lights,
+  blower and A/C took `IdleHealth` from 70–80 to 35–50 (S1, 26/9), and a
+  dip is likelier the moment the charge falls (S1, *What comes before a
+  dip*), so anything that adds charge at idle — an electrical load or a
+  little throttle — helps. **After a hard drive** session A counted at
+  every stop where gentle warm-ups had not (S3, 4/10). **A flashing
+  lamp** is the ECU's own converter-damage rate (SSP 175, `vcds.md`);
+  this car's idle counts sit below even the 2 % that stores a code, so a
+  flash means something new.
 
 - **The cover's nuts**: the gasket settles (`open.md` S10).
 - **The thermometer reading (A4)**: `docs/firmware/open.md` question 10.

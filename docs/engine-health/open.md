@@ -94,7 +94,10 @@ Everything else settled against is in `refuted.md`.
 
 **Next:** `plan.md` step 3 — **nothing until the vacuum gauge arrives**
 (ordered 10/10; the engine is not started meanwhile, *owner's decision*),
-then one cold session: the gauge and the exhaust test together. Done:
+then one cold session: the gauge and the exhaust test together. Unless
+it shows an intake leak plainly, the engine is then left alone and a
+tank is run with a PEA inlet-valve cleaner, read on the drives after
+(*owner's decision*, 10/10). Done:
 the intake tight cold (2a–2c), the servo, new plugs and leads, and one
 day of the injector cuts, which named no cylinder (S3, *The drive after
 the new leads*).

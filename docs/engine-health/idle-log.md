@@ -312,7 +312,9 @@ dips that kept to one cylinder's stroke did not keep to one on the first
 drive after the new leads, and fewer came. **Next** (`plan.md` step 3):
 nothing until the vacuum gauge arrives — the engine is not started
 meanwhile (*owner's decision*, 10/10) — then one cold session with the
-gauge and the exhaust test together.
+gauge and the exhaust test together; unless it shows an intake leak
+plainly, the engine is left alone and a tank is run with a PEA
+inlet-valve cleaner, read on the drives after.
 
 *Entries are added here as each step is done.*
 
