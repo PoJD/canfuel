@@ -75,7 +75,7 @@ off; Claude runs the capture throughout.
    Steps 1 and 2 need not come first (*owner*, 10/10/2026): the servo
    check fits on any cold start, the exhaust and the smoke test wait.
    Claude runs the capture; VCDS on **014, 003, 020**. **055 read once,
-   at the first warm stop.** A few stops at a warm idle, a minute or two
+   at the end: warm idle, before switching off.** A few stops at a warm idle, a minute or two
    each. Write the stops.
    **Claude says then whether anything below is still needed.**
 5. **Only if Claude asks after step 4: injectors 1 and 4 in turn, warm
@@ -272,7 +272,8 @@ the next is needed.
    ignition angle too; **020** costs nothing on a drive and shows whether
    cylinder 4's retard under load (S4) changed with the new set — data,
    not a step, the knock window staying out of the plan. **055 once**, at
-   the first warm stop: the learned value still near −1.1 to −1.3 says the
+   the end of the drive on a warm idle (*owner's choice*, 10/10/2026:
+   the learned value moves slowly, so one reading anywhere warm will do): the learned value still near −1.1 to −1.3 says the
    adaptations stayed settled and the comparison with 9/10 holds
    (`refuted.md` C19). **How it is read**:
    `cutscan.py --pairs` on its warm idles against `30` (34 of 103 pairs
