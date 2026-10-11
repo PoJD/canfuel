@@ -335,13 +335,27 @@ calm the idle either — the morning, the first drive on them, is the
 roughest warm idle on record (S1).
 
 **What it does not explain is why the dips halved with the new MAF.**
-Not the mixture (fuel per stroke the same); not stroke-to-stroke noise
-(the injection byte's spread within 2 s and VCDS's scatter of the air
-are the same on both sensors); and the dip rate inside `19` did not
-follow the size of the correction. One candidate, *reasoned*, not shown:
-the load the ECU computes from the MAF feeds the idle governor's torque
-model and the misfire thresholds — and 014 did count differently after
-the swap (A11). **A test, if wanted:** the 2018 unit is kept; refitted
+The fall held: standing warm idle, dips a minute by oil band
+(`dipcontext.Capture.dips()`), 13–19 on the old MAF (`19`, `20`) and
+6–14 in every capture since (`24`–`31`). **Everything else the bus and
+VCDS show of a dip is the same on both sensors** (11/10/2026): the
+fuel per stroke; the dip's depth and shape, and the trim before it
+(`dipcontext --profile`, `19` against `26`–`31`); the injection byte's
+spread within 2 s and its wander within 10 s; VCDS's scatter of the
+air; the advance at a warm idle (0.8–1.5° on both). And the dip rate
+inside `19` did not follow the size of the correction. So the old MAF
+changed **how often** the margin was crossed and nothing visible about
+**how**. Two candidates, *reasoned*, neither shown:
+- **the lambda loop's swing scaled up.** The correction multiplies the
+  fuel the MAF asked for (*general*), so with the base a tenth to a
+  third too large, a swing of the same few per cent is that much larger
+  in real fuel — a deeper lean swing, which is where the dips sit
+  (S1, *What comes before a dip*). It needs the probe on the scope
+  (H11 test 2) to see.
+- **the load the ECU computes from the MAF** feeds the idle governor's
+  torque model and the misfire thresholds — and 014 did count
+  differently after the swap (A11).
+Neither excludes a third: the swap took the intake hose off and on. **A test, if wanted:** the 2018 unit is kept; refitted
 for one session (hot idle, a hard drive, hot idle, VCDS 002 and 033) it
 says whether that sensor drifts with heat or the morning had another
 cause.
