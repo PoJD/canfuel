@@ -3954,6 +3954,25 @@ all *general*:
 3. **Plug reading after a few hundred km on the new plugs**, with the
    cylinder of each plug recorded this time. The old ones were not labelled:
    one was worst, and which cylinder it came from is not known.
+4. **The crank and cam sensors on the owner's scope** (*proposed
+   11/10/2026*; the LHT00SU1 of H11 test 2). The bus gives engine speed
+   once per 180° (`docs/firmware/can-decoding.md` trap 5); the crank
+   sensor gives it once per tooth, which is what the ECU's own misfire
+   detection works from (*general*). Channel 1 back-probed on the crank
+   sensor's signal, channel 2 on the cam sensor's, which marks one point
+   in every 720° and so tells the cylinders apart. Per-tooth speed then
+   shows **which cylinder each dip falls on**, and whether its stroke
+   added nothing (a misfire) or only less (a weak one) — for every dip
+   of a warm idle, not twenty dips over three days of cuts. Read off the
+   signal itself, not assumed: the tooth count and the gap, the cam
+   pulse's position, and which stroke is cylinder 1, by cutting one
+   injector once with the scope running. **Unverified, and settles
+   whether it can be done at all:** whether the scope records a minute
+   or more at a few tens of kS/s on both channels (vendor software or
+   sigrok, whose support for this model came as a patch, 2024), and the
+   sensors' connector pins, from VW's wiring diagram for this engine.
+   Nothing is bought but back-probe pins and female leads; the engine
+   runs only as an idle already planned.
 
 ### The dips keep to one slot — 9/10/2026
 
