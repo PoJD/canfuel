@@ -3914,6 +3914,27 @@ owner feeling them from the seat. **What the bus cannot show** is a
 glitch shorter than its 180° average — a sensor that upsets one spark
 or one injection and so causes a real misfire. Only the raw signal
 answers that (*Naming the cylinder*, method 4).
+**The same scan on every other sensor the data carries, 11/10/2026**
+(*the owner's question*):
+- **The pedal, 0x280 b5**: at rest it never leaves its rest value for
+  even one frame in any capture — 38 on the old throttle body, 35 on the
+  new, over some 1.2 M frames at idle speed.
+- **Road speed, 0x1A0** (the ABS wheel sensors, independent of G28): no
+  one-frame spike above 2 km/h anywhere.
+- **Coolant, 0x288 b1 (G62's reading)**: while the engine runs it only
+  ever flickers by its last bit (0.75 °C), which is quantisation. **With
+  the engine off and the ignition on** it twice jumps 3 bits (2.25 °C)
+  and back within a few frames — 11 times in `08`, once at the end of
+  `26` — which water cannot do. *Reasoned:* not the idle's cause, since
+  it never happens running; whether it is the ECU reading the sender
+  differently with the engine stopped or a contact at G62 is not known.
+- **VCDS, at a warm standing idle** (8,767 samples of 003): the throttle
+  angle steps by one display unit (1.7 ↔ 2.2) as the idle controller
+  works; the air mass has three lone samples out of line, the largest
+  +2 g/s — the scatter of a running engine at one sample a second, not a
+  sensor. Lambda (033) switches by design and cannot be read this way.
+**Not on the bus at all:** the cam sensor (G40), intake air temperature
+(only in 004, once), and the knock sensors' raw signal (026 is S5's).
 **The pkw-forum.de bucket-tappet thread (H1) is still the only AQY
 report found with a named cause in the valvetrain.**
 
