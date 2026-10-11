@@ -34,7 +34,7 @@ each whether the next is needed. Claude runs the capture on every drive.
    - **The crank pulley, engine off:** look at its rubber ring between
      the inner and outer metal rings — cracks, bulging, the outer ring
      out of line. Photograph it.
-   - **Cold start.** Claude runs the capture; VCDS on **014, 020, 026**.
+   - **Cold start.** Claude runs the capture; VCDS on **014, 001, 020**.
    - **The exhaust test**, straight after the start:
      - Phone recording, laid in the engine bay by the manifold; later
        under the car by the front pipe.
@@ -88,7 +88,7 @@ each whether the next is needed. Claude runs the capture on every drive.
    - **Before, engine cold and off:** tee the gauge into the fuel
      pressure regulator's vacuum hose. Short hose to the gauge, tight
      T-piece. Lay the gauge clear of the belt and the exhaust.
-   - **Start it.** Claude runs the capture; VCDS on **014, 020, 026**.
+   - **Start it.** Claude runs the capture; VCDS on **001, 003** only.
      Film the gauge **30 s** straight after the start, then **1 min**
      more.
    - **Then 2500 rpm, held by hand, 15 s**, filming; let it fall back
@@ -102,7 +102,7 @@ each whether the next is needed. Claude runs the capture on every drive.
      in a row; whether they are still there at 2500.
 3. **Only if the needle showed nothing cold: the gauge warm.**
    - A drive to 68–72 °C of oil, as on 10/10. Claude runs the capture;
-     VCDS on **014, 020, 026**. A few stops at a warm idle, a minute or
+     VCDS on **014, 001, 020**. A few stops at a warm idle, a minute or
      two each. Write the stops.
    - Back: engine off, tee the gauge in as before.
    - Start, film the gauge **1 min** at idle, then **2500 rpm 15 s** and
@@ -215,6 +215,21 @@ clear result cold is enough; a quiet needle cold leaves the warm idle,
 which item 3 reads on a drive that is captured anyway and so counts as
 one of item 6's. Filmed rather than watched, because a flick at idle
 comes several times a second and a video can be stepped through.
+
+**Which VCDS groups, and why** (*decided 11/10/2026*, the owner's
+question why 014/020/026 were in the gauge session): **026** belongs to
+the knock window (S5) and reads its floor at idle, so it is dropped from
+every idle-only step; **020** stays only where there is driving under
+load, for cylinder 4's retard after the new leads (S4); **014** stays
+where the clutch minutes or a stop are read for misfires. **001** joins
+wherever there is idle — engine speed to align on and the lambda
+correction in one group (`open.md` S1, *What VCDS saw just before a
+dip*). **The gauge session (item 2) logs 001 and 003 only**: the lambda
+correction, and the air, throttle and advance, beside the needle — two
+groups read faster than three — so a flick can be set against what the
+mixture and the governor were doing; the film is put on the capture's
+clock by the 2500 rpm drop, VCDS by engine speed. 014 is not needed
+there: the dips on the bus are the misfires' timing.
 
 **Item 1's three minutes of group 001** (*owner's decision*, 11/10/2026;
 `open.md` S1, *What VCDS saw just before a dip*): the lambda correction
