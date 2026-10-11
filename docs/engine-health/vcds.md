@@ -196,6 +196,34 @@ have to agree.
   VCDS reads the groups one after another, about 0.3 s apart, so a sample in
   one group sits that far from the next group's. That blurs a transient,
   not a steady hold.
+- **The ECU answers about 3.35 blocks a second, and that is all there is.**
+  Measured off every log in `test/fixtures/vcds/` (11/10): one group alone
+  ran 3.36 rows/s (`vcds-sessionA2-004.csv`), two groups 1.67 rows/s, three
+  1.11 — the same 3.35 blocks/s every time, divided among the groups. So a
+  group read **alone** comes three times as often as one of three, and that
+  is the only speed-up available. What does not help, and why:
+  - **VCDS's *Turbo* button** is for engine ECUs on KWP-2000, CAN or UDS
+    (Ross-Tech, *Advanced Measuring Blocks*). This one is KWP-1281 on
+    K-line, where Ross-Tech states the ceiling is in the ECU's firmware —
+    "about 3.5 samples per second when running a single group" on some
+    ECUs. Ours is one of those.
+  - **Shortening the protocol timing** (*Options*, `Blk Int` down to 25)
+    is reported on forums to gain a little and to make some ECUs drop the
+    link. It cannot pass the ECU's own ceiling; not worth losing a session
+    to.
+  - **A change inside the ECU** — a flag, a remapped CAN frame carrying
+    lambda — would mean reading and rewriting its flash. Nobody publishes
+    an open tool or a map definition for Motronic M5.9.2 (NefMoto's flasher
+    covers ME7, Simos 3 and EDC15), forum posts say an M5 file comes out
+    only by desoldering the chip, and a mistake leaves the car without an
+    engine ECU. **Decided against (11/10).**
+  - So a faster lambda is a **separate measurement**, not a faster VCDS:
+    the scope on the probe signal or a wideband in the blanked boss,
+    `open.md` H11 test 2.
+- **For a single quantity at speed, log one group that carries engine
+  speed** — 001 has engine speed and the lambda correction together, so it
+  aligns to the capture by itself; 033 has no engine speed and cannot be
+  aligned on its own.
 - **Check that the log is still running after the engine catches.** VCDS has
   lost the ECU during cranking twice and does not recover on its own. The
   cold start of 11/9 lost its first 86 s of running to it.
