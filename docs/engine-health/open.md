@@ -364,6 +364,15 @@ through every idle again*; `tools/dipcontext.py`, warm standing idle at
   **More of it is cheap**: VCDS reads faster with fewer groups, and
   group **001** alone carries engine speed (to align on) **and** the
   lambda control (`vcds.md`).
+  **Read against H2** (*the owner's question*, 11/10): air drawn in
+  ahead of the probe makes it read *lean* and the loop add fuel; just
+  before a dip it read a little *rich* and the loop was taking fuel out —
+  the other way, so this is **no help to H2**. After a dip the probe
+  reads leaner (0.33 V), which is what a missed firing's unburnt oxygen
+  passing the probe would do (*reasoned*). **Read against a probe that
+  jumps** (H11's kin): 0.8 % is well inside the loop's ordinary ±7 %
+  swing, so this is the loop's normal phase, not a glitch; a glitch
+  would need the probe's own fast signal to see.
 - **It is not the speed rise that the dip detector selects.** Split by
   how engine speed moved, a dip starts within the next 0.3 s after
   indicated torque **fell** over the half second before in **5.0 %,
