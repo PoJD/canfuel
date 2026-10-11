@@ -4310,6 +4310,20 @@ owner's request): no symptom added or closed. **It goes in last, at
 10**: its two points for are shared with H1 and H3, and four of the
 measurements against it are things play cannot do. The clutch minutes
 are free and on a capture already planned.*
+*Re-read 11/10/2026 for what the MAF's effect says (*the owner's
+question: if a sensor could halve the dips, can the fault be in the
+engine at all?*; `refuted.md` C2). **Yes, but only a soft one.** A dip
+needs two things at once: a margin too narrow, and a swing of charge or
+mixture that crosses it. A sensor can only change the swing. The old
+MAF made the swings bigger and the crossings twice as frequent; the
+6–14 a minute that remain on the new one are crossings of a margin a
+healthy engine would not have. So it **weakens a hard mechanical fault**
+— a valve that does not close, a cylinder that misfires whatever the
+mixture — which compression (12 bar, even) already argued against; and
+**it fits every margin cause** — a lean runner (H3), deposits, a valve
+that leaks or sticks only a little (H1), and H0, an engine with less
+margin than it should have. It is the same reading as load calming the
+idle and a higher idle being a fair mitigation. **The order stands.***
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
