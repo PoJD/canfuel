@@ -124,6 +124,7 @@ service records or from the owner's own work.
 | Both oxygen sensors (pre- and post-cat) | **10/2017 — never changed since** | the whole ownership, ~27,600 km |
 | Fuel filter | **12/2017**, and possibly again 10/2022 — see below | 4 or 9 years, **not established** |
 | **Fuel filter, new**, Bosch `0 450 905 318` | **23/9/2026**, with the injectors | ~0 |
+| Air filter element | **1/2023** *(owner-reported from his records, 11/10/2026)*; looks clean by eye. The car stands outdoors all year | — |
 | MAF sensor | 7/2018 *(connector cleaned 7/2026)* | not recoverable — see *Distance and use* |
 | **MAF sensor, new** | **24/9/2026**, genuine VW `06A 906 461 A`; the 2018 unit is kept. The hose from it to the throttle is held by the owner's own clamps, not VW's: at the MAF **a narrower all-metal clamp since 9/10/2026** (a worm-drive band clamp marked `W2 50-70mm`, *photographed*: `photos/maf-clamp-2026-10-09-*.jpg`) (*until then a rubber-lined pipe clamp*, possibly not seating the hose well — `idle-log.md`, 9/10), a one-screw band clamp at the throttle. Its orientation and the wiggle test: `idle-log.md`, *The MAF* | ~0 |
 | Chiptuning, described by the owner as mild | 6/2018 | — |
