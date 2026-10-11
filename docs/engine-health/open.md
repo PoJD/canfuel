@@ -487,7 +487,10 @@ show it.
   sees a misfire **more** easily under load — each firing is a large
   torque pulse there, so a missing one stands far out of the noise — and
   is weakest at idle, which is why it switches off below about 20 % load
-  (*general*). And on this car it has worked under load: the historical
+  (*general*; **measured 11/10/2026** over every 014 log, the load in
+  the same group: detection `aktivováno` in **none** of ~2,550 samples
+  below 18 %, 5 % of them at 18–20 %, 46 % at 20–22 %, 83 % at 22–24 %
+  and 90–97 % from 24 % up — the rest up there is transients). And on this car it has worked under load: the historical
   full-load misfire set the lamp above ~4500 rpm (`refuted.md` C4). So
   no count during a pull is a real absence. **What it does not see**
   (*general*): below about 20 % load (light cruise, the coast down), on
