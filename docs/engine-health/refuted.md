@@ -277,6 +277,21 @@ the dipstick smelt of nothing; a seat leak is additive and the error was
 multiplicative. **Rail pressure was never measured** — it is simply no longer
 needed to explain the trim. It survives for the cold start as H7.
 
+**What is known about the old MAF, and what is not** (*the owner's
+question, 11/10/2026*). The over-read rests on **one morning**: the
+drive of 24/9 on the new injectors, compared with the new MAF the same
+afternoon. **In August the same MAF had 032 at −4.7 / +1.6 %** — fine.
+So either it began to over-read between August and 24/9, or it already
+did and the old injectors were delivering correspondingly less fuel per
+millisecond, which hid it (*reasoned*: air per commanded fuel is the MAF's
+error times the injectors' flow, and both changed that week). The data
+cannot tell those apart, so **"the old MAF always over-read" is not
+established**. And **an over-reading MAF is not a rich engine** while the
+lambda loop is in control: a trim of −16 % is the ECU taking that fuel
+back out, keeping the mixture at λ = 1 (*general*). It could have run
+rich only where the loop is not in charge — warm-up before the probe is
+hot, and after a battery disconnect until the trims were learned again.
+
 ### C3. "The bad cold start is the pump's check valve, or still there" — answered: it was the old injectors
 
 | | stand | injectors | crank to first firing | after first firing |

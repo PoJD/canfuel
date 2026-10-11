@@ -120,8 +120,11 @@ reading their own:
   **16684 / P0300** and **16688 / P0304, cylinder 4 misfire**, all
   intermittent. Codes this ECU stores only above a 2 % misfire rate
   (`vcds.md`), so cylinder 4 was misfiring well past today's counts
-  then; and rich, a year after the remap and the 2018 MAF — the MAF
-  that over-read until 9/2026 (S9). Not seen again in any scan since.
+  then; and rich, a year after the remap and the 2018 MAF. *(This read
+  "the MAF that over-read until 9/2026" until 11/10/2026: that MAF was
+  found over-reading only on 24/9/2026, and read near zero in August —
+  `refuted.md` C2. What made 2019 rich is not known.)* Not seen again
+  in any scan since.
 - **6/2018** — remap. **12/2017** — fuel filter changed; the old one came
   off corroded and leaking, with dark, cloudy fuel in it (photographed).
   The fuel tank was replaced at some point in the ownership; when is not
@@ -195,7 +198,8 @@ Air per commanded fuel had risen 14–45 % since August.
 
 **Afternoon: the MAF replaced** (a genuine VW unit for an insert of 2018).
 **032 settled at −3.1 / +4.7 %** and the air-to-fuel ratio returned to
-August's: **the old MAF had been over-reading** (`refuted.md` C2).
+August's: **the old MAF was over-reading that morning** (`refuted.md` C2;
+*"had been over-reading" until 11/10/2026* — since when is not known).
 
 - **Confident:** the rich trim was the MAF.
 - **The idle got smoother on engine speed** — dips at a standstill fell

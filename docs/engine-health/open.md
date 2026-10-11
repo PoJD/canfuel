@@ -953,7 +953,9 @@ it already was.
 Group 032 went from −4.7 / +1.6 % (August) to **−16.4 / −13.3 %** after the
 injector change on the old MAF, and to **−3.1 / +4.7 %** by the end of the
 first afternoon on the new one, with air per commanded fuel back at August's
-value. The explanation is in `refuted.md` C2: the old MAF over-read.
+value. The explanation is in `refuted.md` C2: the old MAF over-read —
+**on that morning**; whether it did before August is not known, and with
+the loop in control the trims kept the mixture at λ = 1 (C2, *11/10*).
 
 **How it closes:** one photographed 032 screen after a few hundred km with no
 battery disconnect in between. Closed if both cells have settled within a few
