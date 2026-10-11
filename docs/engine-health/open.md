@@ -1969,7 +1969,13 @@ loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
   hypothesis is about is only the **original manifold, its gasket to the
   head and the probe's boss** — all 26 years old. The outlet flange and its
   new gasket are downstream of the front probe and outside it. (An earlier
-  revision counted the new flange gasket *for* this hypothesis.) It fits
+  revision counted the new flange gasket *for* this hypothesis.) *Owner, 11/10/2026:* that joint, manifold to
+  front pipe, was remade by the garage in the converter work and had
+  been before; web reports name it as a trouble spot on these cars. **It
+  is S15's candidate, not H2's**: behind the probe, so a leak there
+  cannot steer the mixture or the misfires, but it can sputter. The
+  phone under the front pipe and the photos from below (`plan.md` item
+  1) are aimed at it. It fits
   the owner's account that the puff and the rough idle are both older
   than the 10/9 exhaust work, as are August's 014 counts.
 - **Against:** air outside the cylinder does not stop a cylinder firing, and
@@ -3749,10 +3755,15 @@ and S15 are sounds a probe does not make.
    O₂ and the λ computed from them, at a warm idle and at ~2500 rpm. λ
    close to 1 with low CO closes this; λ clearly below 1 with the trims
    near zero opens it. *Not in `plan.md`.*
-2. **A wideband sensor as a reference**, if the blanked-off boss on the
-   new front pipe (`vehicle-history.md`) turns out to sit ahead of the
-   converter — where it sits is not recorded. Its λ against the ECU's
-   switching, at idle and under load.
+2. **A wideband sensor as a reference** in the blanked-off boss on the
+   new front pipe, which sits **ahead of the converter and behind the
+   front probe** (*owner*, 11/10/2026). Its λ against the ECU's
+   switching, at idle and under load. **Cheaper and nearer to hand: the
+   front probe's own signal** back-probed at its connector into a USB
+   oscilloscope (*the owner has one*, 11/10/2026; never used) — a few
+   hundred samples a second against VCDS's one, with the capture beside
+   it; the scope's high input impedance does not load the signal, and
+   the heater's 12 V shares the connector. *Not scheduled.*
 3. If either finds a shift: new probes, front first, and 032 read again on
    settled adaptations.
 
