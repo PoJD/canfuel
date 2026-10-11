@@ -1895,6 +1895,19 @@ or late, intermittently, and gets worse as the oil thins. *General.*
 4. **Oil pressure at a hot idle** against VW's figure, if a gauge can be put
    on the sender port. Low pressure starves the lifters at exactly that
    state.
+**Which valve, and what reaches it** (*the owner's question*,
+11/10/2026; *general*). A valve held off its seat **by deposits** is
+more often an **inlet** — the back of the inlet valve collects them on a
+port-injected engine with a breather feeding oil mist (H1, *Inlet-valve
+deposits*) — though flakes of carbon on an **exhaust** seat can do the
+same. A **burnt** valve is usually an exhaust one, and the even
+12 bar argues against one. A **lifter** that bleeds down can sit under
+**any of the eight** valves. **The PEA cleaner** reaches the backs of
+the inlet valves and the chamber side of all of them, not a lifter or an
+exhaust valve's stem. **The vacuum gauge does not tell inlet from
+exhaust**; the warm leak-down does (test 3): air out of the throttle is
+an inlet valve, out of the tailpipe an exhaust one.
+
 5. **The vacuum gauge** (`plan.md` step 3) reads H1 only through its
    rarer patterns — a regular flick, a flutter, flicks that stay at 2500;
    an intermittent flick at idle is any misfire (`plan.md` Part 2).
