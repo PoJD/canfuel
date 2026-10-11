@@ -51,6 +51,8 @@ each whether the next is needed. Claude runs the capture on every drive.
    - **A drive of about 30 min**, until the oil reads 68–72 °C. **Home,
      warm, before engine off: the clutch again** — the same blip and the
      same four 30 s.
+   - **Then 3 min at idle, loads off, VCDS logging group 001 alone**
+     (one group only).
    - **Then, still warm and idling, the idle speed in VCDS.**
      - First: **fault memory empty** (clear it if anything is stored),
        and **coolant at least 85 °C** (group 004, field 3).
@@ -213,6 +215,14 @@ clear result cold is enough; a quiet needle cold leaves the warm idle,
 which item 3 reads on a drive that is captured anyway and so counts as
 one of item 6's. Filmed rather than watched, because a flick at idle
 comes several times a second and a video can be stepped through.
+
+**Item 1's three minutes of group 001** (*owner's decision*, 11/10/2026;
+`open.md` S1, *What VCDS saw just before a dip*): the lambda correction
+just before a dip read about 0.8 % lower than in quiet idle, on two
+sessions. One group logs faster than three, and 001 carries engine speed
+to align on and the lambda correction together, so three minutes of it
+put more samples beside dips than a whole session of three groups did.
+Before the idle adaptation, so it is the old idle.
 
 **Item 1's idle adaptation** (*owner's decision*, 10/10/2026; `open.md`,
 *For later, if wanted*). **The procedure is VW's own, for this engine
