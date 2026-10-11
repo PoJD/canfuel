@@ -3760,7 +3760,12 @@ and S15 are sounds a probe does not make.
    front probe** (*owner*, 11/10/2026). Its λ against the ECU's
    switching, at idle and under load. **Cheaper and nearer to hand: the
    front probe's own signal** back-probed at its connector into a USB
-   oscilloscope (*the owner has one*, 11/10/2026; never used) — a few
+   oscilloscope (*the owner has one*, 11/10/2026; never used: an
+   **LHT00SU1** — two analog channels, ±10 V, 8 bits by its vendors'
+   listings, so about 0.08 V a step, enough to see the probe switch and
+   when, not a shift of its switching point; whether its software or
+   sigrok records minutes at a time is **not established**, a test on
+   the desk with a battery first) — a few
    hundred samples a second against VCDS's one, with the capture beside
    it; the scope's high input impedance does not load the signal, and
    the heater's 12 V shares the connector. *Not scheduled.*
