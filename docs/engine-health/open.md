@@ -3973,6 +3973,12 @@ all *general*:
    sensors' connector pins, from VW's wiring diagram for this engine.
    Nothing is bought but back-probe pins and female leads; the engine
    runs only as an idle already planned.
+   **It also checks G28 itself, which nothing else can** (*the owner's
+   question, 11/10*): every dip in the captures and every count in 014 is
+   read off this one sensor, so a sensor or a tooth fault would counterfeit
+   both. The raw signal shows a short or damaged tooth, a weak or noisy
+   amplitude, and whether the dips are in the engine's speed or only in
+   the pulses.
 
 ### The dips keep to one slot — 9/10/2026
 
