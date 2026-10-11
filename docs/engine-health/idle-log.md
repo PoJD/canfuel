@@ -209,6 +209,12 @@ August's: **the old MAF was over-reading that morning** (`refuted.md` C2;
   (`refuted.md` A11). Reasoned: this ECU's misfire threshold depends on
   load, which it computes from the MAF.
 
+*Read again 11/10/2026* (`refuted.md` C2, *What the bus says*): the
+old MAF read about 10 % high that morning and **about a third high on
+the hot idle after the pulls** — the same fuel, the same throttle, more
+air on the gauge — so it drifted with heat. August's captures read
+normal, but none of them has a hot idle after hard driving.
+
 **Lesson for anyone else:** after changing the MAF, do not compare 014
 across the change.
 

@@ -292,6 +292,45 @@ back out, keeping the mixture at λ = 1 (*general*). It could have run
 rich only where the loop is not in charge — warm-up before the probe is
 hot, and after a battery disconnect until the trims were learned again.
 
+**What the bus says about the old MAF — 11/10/2026** (*the owner asked
+for more*; `tools/fuelratio.py`). The ECU's fuel counter (0x480) divided
+by the injection byte (0x288 b6) integrated over the strokes, at a warm
+standing idle — a reading of how much the ECU takes away from the fuel
+its MAF asks for (the tool's docstring says why it is read that way):
+
+| warm standing idle | MAF | injectors | ratio |
+|---|---|---|---|
+| August, `09`, `11`, `12` | 2018 | old | 0.30–0.32 |
+| 24/9 morning, `19`, the first 35 min | 2018 | new | 0.27–0.29 |
+| 24/9, the end of `19` and all of `20`, after the full-throttle pulls | 2018 | new | **0.20–0.23** |
+| every capture since, `24`–`31`, hard drives included | new | new | 0.30–0.34 |
+
+VCDS 003 agrees, at the same throttle plate (2.2°): **the old MAF read
+3.5 g/s at a hot idle early in `19` and 4.75 g/s at its end**, against
+about 3.2–3.3 on the new one. The fuel per intake stroke on the counter
+did not move — 11.7 µl in `19`, 11.3 in `20`, 11.4 in `24`. **Same fuel,
+same throttle, a third more air on the gauge.**
+
+*Reasoned:* **on 24/9 the old MAF over-read by about a tenth, and by
+about a third after hard driving** — it drifted with heat — while the
+lambda loop kept the fuel where it belonged. The new one does not drift
+(`28` and `30` are hot idles after hard drives). **August reads normal**,
+and cannot say more: either the sensor was still fine, or the old
+injectors' under-delivery cancelled it; and no August capture has a hot
+idle after hard driving, which is where the fault showed.
+
+**What it does not explain is why the dips halved with the new MAF.**
+Not the mixture (fuel per stroke the same); not stroke-to-stroke noise
+(the injection byte's spread within 2 s and VCDS's scatter of the air
+are the same on both sensors); and the dip rate inside `19` did not
+follow the size of the correction. One candidate, *reasoned*, not shown:
+the load the ECU computes from the MAF feeds the idle governor's torque
+model and the misfire thresholds — and 014 did count differently after
+the swap (A11). **A test, if wanted:** the 2018 unit is kept; refitted
+for one session (hot idle, a hard drive, hot idle, VCDS 002 and 033) it
+says whether that sensor drifts with heat or the morning had another
+cause.
+
 ### C3. "The bad cold start is the pump's check valve, or still there" — answered: it was the old injectors
 
 | | stand | injectors | crank to first firing | after first firing |
