@@ -3889,6 +3889,31 @@ AQY's usual electrical faults; the Opel case under H1. **G28** — the
 crank sensor, which both 014 and the bus's engine speed are read from —
 would give artefacts at 360°, not the 720° runs above, and a failing one
 usually sets a code (*general*); not a hypothesis on that alone.
+**Looked for in every `_z1` capture, 11/10/2026** (*the owner's
+question*; what forum owners describe from a failing G28 is a code, a
+bad start, a random stall, or engine speed jumping wildly in a live
+log). On 0x280, nothing of the kind:
+- **no step that the crank could not make**: every change of more than
+  12 % between consecutive 180° values is the engine catching on a start
+  (one per start, eight in all);
+- **no fall to zero while running and no gap in 0x280**, but one: 14 s in
+  `26`, where the whole bus went quiet and the fuel counter came back at
+  zero — the key turned off and on (`docs/firmware/can-decoding.md`
+  trap 2), not a stall;
+- **no spike**: a one-segment move out and straight back, 10 rpm or more,
+  occurs 312 times, and **193 of them inside the injector cuts of `31`**,
+  where the cylinder is known to be dead. That is the shape of a real
+  missing stroke, so it is not a sensor's;
+- **the idle dips are not one segment**: of 399 warm-idle dips in `26`,
+  `28`, `29` and `30`, one is a lone segment; the rest fall over 2–3
+  segments and recover over 3–5, and the next segment takes back a
+  median of 26 % of the depth. A crank with mass slows and recovers like
+  that; a late edge from a sensor is put right by the next one.
+*Reasoned:* the dips are in the engine's speed, which agrees with the
+owner feeling them from the seat. **What the bus cannot show** is a
+glitch shorter than its 180° average — a sensor that upsets one spark
+or one injection and so causes a real misfire. Only the raw signal
+answers that (*Naming the cylinder*, method 4).
 **The pkw-forum.de bucket-tappet thread (H1) is still the only AQY
 report found with a named cause in the valvetrain.**
 
