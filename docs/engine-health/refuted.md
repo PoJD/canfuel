@@ -295,8 +295,11 @@ hot, and after a battery disconnect until the trims were learned again.
 **What the bus says about the old MAF — 11/10/2026** (*the owner asked
 for more*; `tools/fuelratio.py`). The ECU's fuel counter (0x480) divided
 by the injection byte (0x288 b6) integrated over the strokes, at a warm
-standing idle — a reading of how much the ECU takes away from the fuel
-its MAF asks for (the tool's docstring says why it is read that way):
+standing idle. ~~A reading of how much the ECU takes away from the fuel
+its MAF asks for~~ — *refuted the same day by the injector cuts of `31`:
+both fields carry the lambda correction, so the ratio is not it.* What
+is left is that the two fields part only on that morning, on the old MAF,
+and why is not known:
 
 | warm standing idle | MAF | injectors | ratio |
 |---|---|---|---|
@@ -311,13 +314,25 @@ about 3.2–3.3 on the new one. The fuel per intake stroke on the counter
 did not move — 11.7 µl in `19`, 11.3 in `20`, 11.4 in `24`. **Same fuel,
 same throttle, a third more air on the gauge.**
 
-*Reasoned:* **on 24/9 the old MAF over-read by about a tenth, and by
-about a third after hard driving** — it drifted with heat — while the
-lambda loop kept the fuel where it belonged. The new one does not drift
+*Reasoned* (from the VCDS air and the counter, not from the ratio):
+**on 24/9 the old MAF over-read, by about a third on the hot idle after
+hard driving** — it drifted with heat — while the lambda loop kept the
+fuel where it belonged; the counter carries the loop's correction (the
+cuts of `31` show it), so the same fuel per stroke is the same mixture. The new one does not drift
 (`28` and `30` are hot idles after hard drives). **August reads normal**,
 and cannot say more: either the sensor was still fine, or the old
 injectors' under-delivery cancelled it; and no August capture has a hot
-idle after hard driving, which is where the fault showed.
+idle after hard driving, which is where the fault showed. The second
+reading has one thing for it: **it explains why the trims appeared the
+day after the injectors** without a coincidence — new injectors that
+deliver what they are told uncover a MAF the worn ones had been hiding.
+
+**Why it was the MAF and not the injectors** (*the owner's question,
+11/10*): the injectors were already in for the morning drive, and **the
+same injectors** gave −16 % in the morning and −3 % in the afternoon,
+with the MAF the one part changed between. And the injectors did not
+calm the idle either — the morning, the first drive on them, is the
+roughest warm idle on record (S1).
 
 **What it does not explain is why the dips halved with the new MAF.**
 Not the mixture (fuel per stroke the same); not stroke-to-stroke noise

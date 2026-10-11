@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""How much the ECU corrects its air-based fuel, read off the bus alone.
+"""Two fuel fields of the bus against each other, at a warm standing idle.
 
 Written on 11/10/2026 for the owner's question about the old MAF
 (docs/engine-health/refuted.md C2, *What the bus says about the old MAF*):
@@ -17,14 +17,14 @@ question 3). On a warm standing idle it sits at **0.30-0.32** in every
 capture on the new MAF and in every August capture on the old one, and it
 does not move with the oil from 50 C up.
 
-*What it means is a reading, not a datasheet fact:* the two fields are not
-the same quantity, because on the morning of 24/9 they parted -- the byte
-rose while the counter did not, and VCDS's air mass rose with the byte at an
-unchanged throttle angle. The reading taken here is that b6 follows the
-air-based fuel before the lambda correction and the counter follows the
-fuel finally injected, so a ratio below its usual value is the ECU taking
-fuel away from what the MAF asked for. That agrees with 032 where both
-exist (about -16 % on that morning against about -3 % in August).
+**What it means is not known.** It was first read (11/10/2026) as the
+lambda correction -- b6 before it, the counter after it -- and that is
+**refuted by the injector cuts of `31`**: with one injector unplugged the
+loop adds about 16 % of fuel, and the counter per stroke and b6 both rose
+by that much while the ratio stayed put. Both fields carry the correction.
+What is left is an observation: the two parted on the morning of 24/9, on
+the old MAF, and nowhere else -- b6 rose, the fuel per stroke on the
+counter did not.
 
 It is read only where it is comparable: a warm standing idle (coolant at
 least `COOLANT_MIN_C`, engine speed `IDLE_RPM`, throttle at rest, standing).
