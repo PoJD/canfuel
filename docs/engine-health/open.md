@@ -490,8 +490,11 @@ show it.
   (*general*; **measured 11/10/2026** over every 014 log, the load in
   the same group: detection `aktivováno` in **none** of ~2,550 samples
   below 18 %, 5 % of them at 18–20 %, 46 % at 20–22 %, 83 % at 22–24 %
-  and 90–97 % from 24 % up; what switches it off in the rest was not
-  examined). And on this car it has worked under load: the historical
+  and 90–97 % from 24 % up. Of the 832 samples off above 24 %, **404
+  lie within three samples (~2 s) of a load under 18 %** — the pedal
+  released, the engine braking, as the owner has noted, and detection
+  staying off a moment after; the other half the group alone cannot
+  explain — a gearchange or tip-in would need the throttle beside it). And on this car it has worked under load: the historical
   full-load misfire set the lamp above ~4500 rpm (`refuted.md` C4). So
   no count during a pull is a real absence. **What it does not see**
   (*general*): below about 20 % load (light cruise, the coast down), on
