@@ -10,6 +10,7 @@ What is held:
   anything at all
 - the injector cuts of `31` are found and kept out, so that a dead cylinder
   is never read as a dip
+- the VCDS reading aligns a real log to its capture and sorts its samples
 """
 
 from __future__ import annotations
@@ -75,6 +76,22 @@ class RealIdleTest(unittest.TestCase):
         for c in dipcontext.CHANNELS:
             for _, _, _, mc in self.out[c]:
                 self.assertLess(abs(mc), limit[c], c)
+
+
+class VcdsNearTest(unittest.TestCase):
+    """The --vcds reading on one real pair: it aligns, and it sorts."""
+
+    def test_step2b_sorts_033_samples(self):
+        cap = Capture(_path("30_step2b_z1.txt"))
+        out = dipcontext.vcds_near(
+            cap, os.path.join(FIXTURES, "vcds", "vcds-step2b-014-055-033.csv"))
+        quiet = out[("033", "lambda correction %", "quiet")]
+        before = out[("033", "lambda correction %", "before a dip")]
+        self.assertGreater(len(quiet), 100)
+        self.assertGreater(len(before), 10)
+        # corrections are percentages inside VW's own band
+        for v in quiet + before:
+            self.assertLessEqual(abs(v), 10.0)
 
 
 class CutsTest(unittest.TestCase):

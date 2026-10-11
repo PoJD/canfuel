@@ -321,7 +321,11 @@ middle or on one side. 41 crossings of 0.45 V a minute is at the
 sampling's own limit, so it switches at least that fast. **The 83 rises
 of 014 fall on both sides**: the voltage just before them was lean
 (< 0.45 V) for 42 and rich for 41, and the live correction ran −7 to
-+7 % — so the misfires do not wait for a lean swing. *What this does not
++7 % — so the misfires do not wait for a lean swing. *Sharpened 11/10/2026*
+(`open.md` S1, *What VCDS saw just before a dip*): timed against the
+dips on the bus instead of 014's rises, the correction just before a dip
+is about 0.8 % lower than in quiet idle — a slight lean-going side,
+on two sessions. Still nothing against the probes themselves. *What this does not
 show:* a shift of the switching point itself, which an even swing hides;
 that is what the rear probe (0.665–0.725 V at a hot idle, H2) and 032
 near zero on a new MAF and new injectors guard against. Both probes date

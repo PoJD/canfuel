@@ -27,6 +27,7 @@ was first recorded counted from the wrong end and corrected on 28/9/2026.
 
 | block | what it carries | what it has been used for |
 |---|---|---|
+| **001** | engine speed · coolant · **lambda control** (−10…+10 %) · basic-setting bits | not logged yet; **the one group that carries both engine speed (to align on) and the lambda correction**, so it can be logged alone at VCDS's fastest (`open.md` S1, *What VCDS saw just before a dip*) |
 | **002** | engine speed · load · injection time · **mass air flow** | full-load air and load; b6 of 0x288 is injection time |
 | **003** | engine speed · **mass air flow** · throttle angle · ignition advance | mass air flow is not on the CAN bus; the idle advance shows the idle control working |
 | **004** | engine speed · **ECM supply voltage** (spec 12.0–14.5 V) · coolant · intake air temperature | the ECM's own view of its supply: the voltage-drop tests in `open.md` H4 |

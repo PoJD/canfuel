@@ -29,6 +29,15 @@ Three readings, all over a warm standing idle:
     torque change is never confused with the speed change the idle
     governor answers.
 
+``--vcds LOG``
+    VCDS is far too slow to see a dip, but over hundreds of dips its
+    samples land just before some of them and just after others. With
+    one capture and the VCDS log taken beside it, every sample of 003,
+    033 or 055 is put on the capture's clock (`cutscan.align`, on
+    engine speed) and sorted: within `VCDS_NEAR_S` before a dip, within
+    it after one, or quiet (no dip within `VCDS_QUIET_S`). The means of
+    each field in the three classes are printed.
+
 ``--runs``
     How the next dip follows one: after a whole number of engine cycles
     (720 deg -- the same cylinder again) or after a whole number plus a
@@ -78,6 +87,18 @@ HORIZON_S = 0.3
 STEP_S = 0.05
 TORQUE_BAND = 0.5   # counts of b7 or b6 between the two windows
 RPM_BAND = 3.0      # rpm, cycle-averaged, over 0.4 s
+#: --vcds: a sample "before" or "after" a dip if one lies this close.
+VCDS_NEAR_S = 0.6
+#: --vcds: a sample is "quiet" if no dip lies within this.
+VCDS_QUIET_S = 2.0
+#: --vcds: the fields read, by group: (index after the time column, name).
+#: 033 carries no engine speed, so its log must hold a group that does
+#: (003, 014 or 055) for the alignment.
+VCDS_FIELDS = {
+    "003": ((1, "air g/s"), (2, "throttle deg"), (3, "advance deg BTDC")),
+    "033": ((0, "lambda correction %"), (1, "probe V")),
+    "055": ((1, "idle regulator g/s"), (2, "learned idle air g/s")),
+}
 #: --runs: how close to a whole (or half) number of cycles counts.
 RUN_TOL = 0.12
 RUN_MAX_CYCLES = 6.5
@@ -250,6 +271,45 @@ def runs(cap):
     return len(ev), whole, half
 
 
+def vcds_near(cap, log_path):
+    """{(group, field, class): [values]} for one capture and its VCDS log."""
+    vc = cutscan.read_vcds(log_path)
+    g0 = next((g for g in ("014", "003", "055") if g in vc), None)
+    if g0 is None:
+        raise SystemExit(f"{log_path}: no group with engine speed to align on")
+    vr = []
+    for t, x in vc[g0]:
+        try:
+            vr.append((t, float(x[0])))
+        except ValueError:
+            pass
+    off = cutscan.align(vr, cap.rpm_pairs)
+    dips = sorted(cap.dips())
+    out = {}
+    for g, fields in VCDS_FIELDS.items():
+        for t, x in vc.get(g, ()):
+            tc = t + off
+            if not cap.idle_around(tc, VCDS_NEAR_S, VCDS_NEAR_S):
+                continue
+            j = bisect.bisect_left(dips, tc - VCDS_QUIET_S)
+            near = [d for d in dips[j:j + 32] if abs(d - tc) <= VCDS_QUIET_S]
+            if any(0 < d - tc <= VCDS_NEAR_S for d in near):
+                cls = "before a dip"
+            elif any(0 <= tc - d <= VCDS_NEAR_S for d in near):
+                cls = "after a dip"
+            elif not near:
+                cls = "quiet"
+            else:
+                continue
+            for k, name in fields:
+                try:
+                    v = float(x[k].replace(",", "."))
+                except (ValueError, IndexError):
+                    continue
+                out.setdefault((g, name, cls), []).append(v)
+    return out
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("files", nargs="+")
@@ -257,10 +317,27 @@ def main(argv=None):
     g.add_argument("--trigger", action="store_true")
     g.add_argument("--strata", action="store_true")
     g.add_argument("--runs", action="store_true")
+    g.add_argument("--vcds", nargs="+", metavar="LOG",
+                   help="VCDS logs, one per capture, in the same order")
     ap.add_argument("--channel", choices=("b7", "inj"), default="b7",
                     help="--strata: indicated torque or injection time")
     args = ap.parse_args(argv)
     caps = [Capture(p) for p in args.files]
+    if args.vcds:
+        if len(args.vcds) != len(caps):
+            raise SystemExit("--vcds wants one log per capture")
+        pooled = {}
+        for cap, log in zip(caps, args.vcds):
+            for k, v in vcds_near(cap, log).items():
+                pooled.setdefault(k, []).extend(v)
+        for k in sorted(pooled):
+            v = pooled[k]
+            if len(v) < 5:
+                continue
+            se = statistics.pstdev(v) / len(v) ** 0.5
+            print(f"  {k[0]} {k[1]:22} {k[2]:13} n={len(v):5d} "
+                  f"mean {statistics.mean(v):+8.3f} ±{se:.3f}")
+        return 0
     if args.trigger:
         out, n = trigger(caps)
         print(f"{n} dips, warm standing idle, cuts left out")

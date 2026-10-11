@@ -325,14 +325,45 @@ through every idle again*; `tools/dipcontext.py`, warm standing idle at
   wavered. Air or advance cannot be told apart here: 0x280 b5 does not
   move at this scale, and the advance is only on VCDS 003, about once a
   second.
-  **Not the lambda control** (*the owner's question*, 10/10/2026): it
-  works on fuel alone, swings much wider (033 ran −7 to +7 % at a
-  standing idle) and the 014 rises fall on its lean and rich swings
-  alike (`refuted.md` C5); it does not move the ECU's torque, which
-  falls here with the fuel and after a small rise in engine speed —
-  the idle governor's signature, holding 780 rpm (*reasoned*). The
-  governor trims both ways all the time; the finding is only that dips
-  follow its trims down more often than its trims up.
+  ~~**Not the lambda control**~~ *(10/10/2026; corrected 11/10, below)*:
+  this read that the lambda control works on fuel alone and swings
+  wider, that 014's rises fall on its lean and rich swings alike
+  (`refuted.md` C5), and that the torque falling with the fuel after a
+  small rise in engine speed is the idle governor's signature. **The
+  torque and the speed rise still say governor; the fuel may be the
+  lambda control's as much** — see the next bullet.
+- **What VCDS saw just before a dip** (*11/10/2026, the owner's
+  question whether slow VCDS samples ever landed beside a dip*;
+  `tools/dipcontext.py --vcds`, captures `26`, `29`–`31` with their
+  logs, warm idle, cuts out). VCDS samples about once a second, so no
+  single sample sees a dip — but over hundreds of dips some land within
+  0.6 s before one, some after, and the rest are quiet idle:
+
+  | VCDS field | before a dip | after a dip | quiet |
+  |---|---|---|---|
+  | 033 lambda correction | **−0.69 ± 0.23 %** (n 85) | −0.25 ± 0.28 % | **+0.11 ± 0.10 %** (n 361) |
+  | 033 probe voltage | 0.40 ± 0.03 V | 0.33 ± 0.03 V | 0.36 ± 0.01 V |
+  | 003 ignition advance | 3.6 ± 0.2° | 3.9 ± 0.2° | 3.3 ± 0.1° |
+  | 003 air | 3.15 ± 0.01 g/s | 3.16 ± 0.01 g/s | 3.12 ± 0.01 g/s |
+  | 055 regulator, learned | no difference | | |
+
+  **Just before a dip the lambda control was taking fuel out** — the
+  probe reading a little rich, the correction about 0.8 % lower than in
+  quiet idle, about three standard errors. That is the size of the
+  injection-time fall on the bus (−0.9 %), so **that fall may be the
+  lambda loop's leaning swing rather than, or as well as, the
+  governor's trim.** Around dips the governor is busier — a little more
+  air and advance, a correction of the dips themselves (*reasoned*).
+  ⚠ Two sessions carry the 033 rows (`29`, `30`), so a direction, not a
+  figure; it **sharpens `refuted.md` C5**, which timed the probe against
+  014's rises (late by the counter's own window) rather than against the
+  dips, and found no side. **What it means**, if it holds: a cylinder
+  that misfires on the lean side of the loop's swing — a mixture margin
+  as much as a charge margin, which leans toward a lean runner (H3) and
+  a mixture shift (H11, H7) a little more than toward a valve (H1).
+  **More of it is cheap**: VCDS reads faster with fewer groups, and
+  group **001** alone carries engine speed (to align on) **and** the
+  lambda control (`vcds.md`).
 - **It is not the speed rise that the dip detector selects.** Split by
   how engine speed moved, a dip starts within the next 0.3 s after
   indicated torque **fell** over the half second before in **5.0 %,
