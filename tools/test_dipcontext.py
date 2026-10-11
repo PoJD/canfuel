@@ -10,6 +10,7 @@ What is held:
   anything at all
 - the injector cuts of `31` are found and kept out, so that a dead cylinder
   is never read as a dip
+- the profile puts each dip's lowest value at zero, and draws
 - the VCDS reading aligns a real log to its capture and sorts its samples
 """
 
@@ -76,6 +77,25 @@ class RealIdleTest(unittest.TestCase):
         for c in dipcontext.CHANNELS:
             for _, _, _, mc in self.out[c]:
                 self.assertLess(abs(mc), limit[c], c)
+
+
+class ProfileTest(unittest.TestCase):
+    """--profile on one warm idle: aligned on the minimum, and drawable."""
+
+    @classmethod
+    def setUpClass(cls):
+        cls.rows, cls.n = dipcontext.profile([Capture(_path("28_sessionA2_warm_z1.txt"))])
+
+    def test_the_lowest_point_is_at_zero(self):
+        speed = {o: r for o, r, _, _ in self.rows}
+        self.assertGreater(self.n, 20)
+        self.assertLess(speed[0.0], -15.0)
+        self.assertEqual(min(speed, key=speed.get), 0.0)
+
+    def test_it_draws(self):
+        svg = dipcontext.profile_svg(self.rows, self.n, ["28"])
+        self.assertTrue(svg.startswith("<svg"))
+        self.assertEqual(svg.count("<polyline"), 3)
 
 
 class VcdsNearTest(unittest.TestCase):

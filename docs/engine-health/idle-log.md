@@ -25,6 +25,39 @@ twice. Each stage says how sure it is.
 
 ---
 
+## What is being chased, in one picture
+
+![One idle dip](dip-profile.svg)
+
+*Added 11/10/2026, at the owner's request, as the preamble to everything
+below.* At a warm standing idle, every few seconds, **the engine speed
+falls by twenty-odd rpm in two strokes and climbs back in about a fifth
+of a second.** The picture is the average of four hundred of them, read
+off the CAN bus; the details are in `open.md` S1, *One dip, read stroke
+by stroke*.
+
+What it shows, in plain words:
+
+1. **Half a second before**, the idle has crept a few rpm too high, and
+   the ECU does what it should: it takes a little air and fuel away —
+   about one per cent.
+2. **Then one combustion fails or nearly fails.** The crank loses speed
+   over two strokes.
+3. **The ECU notices at once** and adds fuel, air and advance; the idle
+   is back within about five strokes and overshoots slightly.
+
+**The ECU is not the fault**: it regulates correctly and in time. **The
+engine is**: a charge one per cent smaller than usual — well inside the
+range the idle control always works in — is enough to make it misfire.
+A healthy engine has the margin for that and this one does not. **Where
+the margin went is the question this whole diary is about**, and it is
+still open. It is also why the engine is fine under load (a bigger
+charge, more margin), and why the ECU's own misfire counter (014) sees
+only some of these dips — it is switched off at the lightest load and
+counts in steps of twelve.
+
+---
+
 ## The car, the symptoms, and the instruments
 
 **The car.** VW New Beetle, 2.0 l **AQY** (85 kW), ECU `06A 906 018`,

@@ -38,6 +38,15 @@ Three readings, all over a warm standing idle:
     it after one, or quiet (no dip within `VCDS_QUIET_S`). The means of
     each field in the three classes are printed.
 
+``--profile [--svg OUT]``
+    One dip as the bus sees it, for the owner to look at: engine speed
+    *not* averaged over a cycle, so the fall and the recovery keep their
+    shape, each dip aligned on its own lowest 0x280 value, with injection
+    time and indicated torque beside it, relative to `PROFILE_BASE_S`
+    before. ``--svg`` draws the same three rows as
+    docs/engine-health/dip-profile.svg (S1, *One dip, read stroke by
+    stroke*).
+
 ``--runs``
     How the next dip follows one: after a whole number of engine cycles
     (720 deg -- the same cylinder again) or after a whole number plus a
@@ -99,6 +108,11 @@ VCDS_FIELDS = {
     "033": ((0, "lambda correction %"), (1, "probe V")),
     "055": ((1, "idle regulator g/s"), (2, "learned idle air g/s")),
 }
+#: --profile: offsets, the baseline, and how far either side of a found
+#: dip its lowest value is looked for.
+PROFILE_OFFSETS = tuple(round(i * 0.02, 2) for i in range(-40, 21))
+PROFILE_BASE_S = 1.2
+PROFILE_SEEK_S = 0.1
 #: --runs: how close to a whole (or half) number of cycles counts.
 RUN_TOL = 0.12
 RUN_MAX_CYCLES = 6.5
@@ -310,6 +324,92 @@ def vcds_near(cap, log_path):
     return out
 
 
+def profile(caps):
+    """[(offset, speed, inj, b7)] means over every dip, and the dip count.
+
+    Speed is the raw 0x280 value, aligned on each dip's own minimum.
+    """
+    acc = [[[], [], []] for _ in PROFILE_OFFSETS]
+    n = 0
+    for cap in caps:
+        t, v = cap.rpm.t, cap.rpm.v
+        for d in cap.dips():
+            i0 = bisect.bisect_left(t, d - PROFILE_SEEK_S)
+            i1 = bisect.bisect_right(t, d + PROFILE_SEEK_S)
+            if i1 <= i0:
+                continue
+            tm = t[min(range(i0, i1), key=lambda j: v[j])]
+            series = (cap.rpm, cap.inj, cap.b7)
+            base = [s.at(tm - PROFILE_BASE_S) for s in series]
+            vals = [[s.at(tm + o) for s in series] for o in PROFILE_OFFSETS]
+            if None in base or any(None in x for x in vals):
+                continue
+            n += 1
+            for slot, x in zip(acc, vals):
+                for k in range(3):
+                    slot[k].append(x[k] - base[k])
+    rows = [(o,) + tuple(statistics.mean(a) for a in slot)
+            for o, slot in zip(PROFILE_OFFSETS, acc) if slot[0]]
+    return rows, n
+
+
+def profile_svg(rows, n, names):
+    """The three rows of profile() as one SVG, light background, no script."""
+    panels = (("Engine speed, rpm (0x280)", 1, (-30.0, 10.0), (-20, -10, 0, 10)),
+              ("Injection time, counts of ~0.08 ms (0x288 b6)", 2,
+               (-0.6, 0.6), (-0.5, 0, 0.5)),
+              ("Indicated torque, counts of 1.06 Nm (0x280 b7)", 3,
+               (-0.6, 0.6), (-0.5, 0, 0.5)))
+    w, h, left, right, top, ph, gap = 760, 690, 70, 34, 90, 150, 40
+    lo_o, hi_o = rows[0][0], rows[-1][0]
+
+    def x(o):
+        return left + (o - lo_o) / (hi_o - lo_o) * (w - left - right)
+
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" '
+           f'viewBox="0 0 {w} {h}" font-family="Helvetica,Arial,sans-serif">',
+           f'<rect width="{w}" height="{h}" fill="#fcfcfb"/>',
+           f'<text x="{left}" y="30" font-size="17" font-weight="bold" '
+           f'fill="#0b0b0b">One idle dip, as the bus sees it</text>',
+           f'<text x="{left}" y="50" font-size="12" fill="#52514e">Mean of {n} '
+           f'dips, warm standing idle, {", ".join(names)}. Change from '
+           f'{PROFILE_BASE_S} s before; 0 ms = the lowest value.</text>']
+    for p, (title, col, (lo, hi), ticks) in enumerate(panels):
+        y0 = top + p * (ph + gap)
+
+        def y(val, y0=y0, lo=lo, hi=hi):
+            return y0 + ph - (max(lo, min(hi, val)) - lo) / (hi - lo) * ph
+
+        out.append(f'<text x="{left}" y="{y0 - 8}" font-size="13" '
+                   f'fill="#0b0b0b">{title}</text>')
+        for a, b, fill in ((-0.50, -0.10, "#eda10022"), (0.0, 0.22, "#2a78d61a")):
+            out.append(f'<rect x="{x(a):.1f}" y="{y0}" width="{x(b) - x(a):.1f}" '
+                       f'height="{ph}" fill="{fill}"/>')
+        for tk in ticks:
+            out.append(f'<line x1="{left}" x2="{w - right}" y1="{y(tk):.1f}" '
+                       f'y2="{y(tk):.1f}" stroke="'
+                       f'{"#9a9994" if tk == 0 else "#e4e3df"}"/>')
+            out.append(f'<text x="{left - 8}" y="{y(tk) + 4:.1f}" font-size="11" '
+                       f'fill="#52514e" text-anchor="end">{tk}</text>')
+        pts = " ".join(f"{x(r[0]):.1f},{y(r[col]):.1f}" for r in rows)
+        out.append(f'<polyline points="{pts}" fill="none" stroke="#2a78d6" '
+                   f'stroke-width="2" stroke-linejoin="round"/>')
+        out.append(f'<line x1="{x(0):.1f}" x2="{x(0):.1f}" y1="{y0}" '
+                   f'y2="{y0 + ph}" stroke="#52514e" stroke-dasharray="3 3"/>')
+    yb = top + 3 * (ph + gap) - gap + 18
+    for o in (-0.8, -0.6, -0.4, -0.2, 0.0, 0.2, 0.4):
+        if lo_o <= o <= hi_o:
+            out.append(f'<text x="{x(o):.1f}" y="{yb}" font-size="11" '
+                       f'fill="#52514e" text-anchor="middle">'
+                       f'{round(o * 1000):+d} ms</text>'.replace("+0 ms", "0 ms"))
+    out.append(f'<text x="{x(-0.30):.1f}" y="{yb + 22}" font-size="12" '
+               f'fill="#8a5a00" text-anchor="middle">the ECU trims</text>')
+    out.append(f'<text x="{x(0.11):.1f}" y="{yb + 22}" font-size="12" '
+               f'fill="#1c5cab" text-anchor="middle">the ECU catches it</text>')
+    out.append("</svg>")
+    return "\n".join(out) + "\n"
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("files", nargs="+")
@@ -317,10 +417,12 @@ def main(argv=None):
     g.add_argument("--trigger", action="store_true")
     g.add_argument("--strata", action="store_true")
     g.add_argument("--runs", action="store_true")
+    g.add_argument("--profile", action="store_true")
     g.add_argument("--vcds", nargs="+", metavar="LOG",
                    help="VCDS logs, one per capture, in the same order")
     ap.add_argument("--channel", choices=("b7", "inj"), default="b7",
                     help="--strata: indicated torque or injection time")
+    ap.add_argument("--svg", metavar="OUT", help="--profile: also draw it")
     args = ap.parse_args(argv)
     caps = [Capture(p) for p in args.files]
     if args.vcds:
@@ -337,6 +439,17 @@ def main(argv=None):
             se = statistics.pstdev(v) / len(v) ** 0.5
             print(f"  {k[0]} {k[1]:22} {k[2]:13} n={len(v):5d} "
                   f"mean {statistics.mean(v):+8.3f} ±{se:.3f}")
+        return 0
+    if args.profile:
+        rows, n = profile(caps)
+        print(f"{n} dips, warm standing idle, cuts left out")
+        print("  offset   speed    inj     b7")
+        for o, r, i, b in rows:
+            print(f"  {o:+.2f}  {r:+6.1f}  {i:+.2f}  {b:+.2f}")
+        if args.svg:
+            names = [os.path.basename(c.path).split("_")[0] for c in caps]
+            with open(args.svg, "w", encoding="utf-8", newline="\n") as fh:
+                fh.write(profile_svg(rows, n, names))
         return 0
     if args.trigger:
         out, n = trigger(caps)

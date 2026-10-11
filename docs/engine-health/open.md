@@ -298,6 +298,40 @@ roughest cold (*general*: enrichment, a raised idle), so cold-worst says
 nothing about the fault on its own. A reading without the oil
 temperature beside it cannot be compared with anything.
 
+**One dip, read stroke by stroke — 11/10/2026** (*the owner's request
+to see the dips "through my eyes"*). The figure is `dip-profile.svg`,
+beside this file, drawn by `tools/dipcontext.py
+--profile --svg` from `26`, `28`, `29` and `30` — engine speed straight
+off 0x280, not averaged over a cycle, each dip aligned on its own lowest
+value, injection time and indicated torque beside it, all relative to
+1.2 s before. One stroke is ~37 ms at this idle.
+
+![One idle dip](dip-profile.svg)
+
+| from the bottom | engine speed | injection, torque | read as |
+|---|---|---|---|
+| −0.5 s | a few rpm **above** where it was | both begin to fall | the idle has overshot a little |
+| −0.5 to −0.15 s | stays a little above | down about 0.3 count each, lowest at −0.18 s | the governor takes charge away; the lambda loop is on its lean swing (VCDS, next bullet) |
+| −40 ms to 0 | **falls in two strokes** to about −22 | injection already rising | **the event**: a stroke that gives little or nothing |
+| 0 to +0.2 s | climbs back over ~5 strokes | injection up at once (about +0.5 count by +0.16 s), torque from +60 ms | the governor answers the fall |
+| +0.2 to +0.3 s | overshoots by about +6 | both ease off | settling |
+
+*Reasoned, with the control loop as general knowledge:* Motronic holds
+the idle on a slow path (throttle angle, so air, with the fuel computed
+from the MAF and trimmed by the lambda loop) and a fast one (ignition
+advance, which changes torque on the next stroke) (*general*). Read in
+that light, **the ECU behaves correctly throughout**: it trims when the
+idle overshoots, it answers the fall within a stroke or two, and the
+size of both is ordinary. What is not ordinary is the engine: **a
+charge about one per cent smaller and leaner than usual, inside the
+range the control always works in, is enough for one combustion to
+fail.** A healthy engine has margin for that. Something narrows it —
+in one cylinder or in all — which is the question H1, H3 and the
+deposits answer differently; it is also why load calms the idle and
+why a higher idle is a fair mitigation. ⚠ An average: the trim before
+the dip is under one count, so roughly one dip in three carries it
+(next bullet); and 014 cannot be matched to single dips (S3).
+
 **What comes before a dip — 10/10/2026** (*the owner's request to go
 through every idle again*; `tools/dipcontext.py`, warm standing idle at
 ≥ 55 °C of oil, the injector cuts of `31` left out, captures `19`, `20`,
