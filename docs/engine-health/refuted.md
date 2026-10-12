@@ -194,8 +194,11 @@ tee is crazed, and the inside carries oil and deposit. A split under a
 clamp can open with heat and movement. **It does not revive this
 entry**: the cuff sits on the intake ahead of the throttle, at
 intake-pipe pressure, where a split draws little at idle (*reasoned*, as
-C9), and whatever it draws reaches all four cylinders alike. Replaced
-with a new one by the number (*owner's decision*).
+C9), and whatever it draws reaches all four cylinders alike. **Kept and
+cleaned inside** (*owner's decision*): a new one would take too long to
+come, and by the owner's reading nothing is wrong with it but the
+deposit. **Blown through with the far end stopped, it holds** (*owner*),
+so the split seam does not go through.
 
 ---
 
