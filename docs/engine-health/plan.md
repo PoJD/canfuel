@@ -402,7 +402,7 @@ its own about a lifter.
    photographed (*owner*, 9/10/2026), so the photos cover only the flange
    and the pipe below it. **Photographed 12/10/2026, cold, before the
    test** (*owner*; `idle-log.md`): the joint to the front pipe and
-   cylinders 3 and 4's pipes from below; no clear soot trail in Claude's reading of them, and one close-up not yet placed. **How it is read** (*decided 9/10/2026*): soot
+   cylinders 3 and 4's pipes from below; no clear soot trail in Claude's reading of them. **How it is read** (*decided 9/10/2026*): soot
    below → that joint; louder from the engine bay with nothing below →
    the manifold or its joint to the head, which is the owner's standing
    decision of a new manifold (3/10/2026), the shield coming off then

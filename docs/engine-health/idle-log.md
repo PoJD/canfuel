@@ -595,9 +595,10 @@ photographed from below; a new air filter** (*owner, photographed*;
   the front pipe, with its spring bolts, and cylinders 3 and 4's pipes.
   The owner sees nothing wrong at the joint; the pipes are original and
   rusty outside, and a hole cannot be told from there. In Claude's
-  reading no clear black soot trail shows anywhere photographed; one
-  close-up (`manifold-2026-10-12-below-closeup.jpg`), a dark rough
-  surface with a crack-like line, is not yet placed. Cylinders 1 and 2
+  reading no clear black soot trail shows anywhere photographed. One
+  close-up of a dark rough surface with a crack-like line is **probably
+  the driveshaft** (*owner*; `photos/driveshaft-2026-10-12-below.jpg`),
+  not the exhaust. Cylinders 1 and 2
   and the joint to the head stay unseen.
 - **The blanked boss is an old probe with its leads cut off**
   (`photos/exhaust-blanked-boss-2026-10-12.jpg`), behind the front
