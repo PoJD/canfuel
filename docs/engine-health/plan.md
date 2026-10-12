@@ -170,7 +170,11 @@ up to the throttle on 2/10 is 8 mm while the tee's leg to the breather's
 connector takes 6 mm. A hose too wide for its leg is an unmetered leak
 at full vacuum, the kind that matters at idle. The intake smoked clean
 on 9/10 with it on, so it is not expected to be loose; the check costs
-nothing while the hoses are off. **Not started half-assembled**
+nothing while the hoses are off. **Item 2's start is the first with all
+four changes of 12/10** — the airbox sealed and cured, the three hoses
+off the breather's connector, and this one (`open.md`, *Where it
+stands*); the gauge reads the hoses' share, not the airbox's.
+**Not started half-assembled**
 (*reasoned*): an open port on the breather's connector or on the tee is
 an unmetered leak far larger than anything being hunted, and an open
 path for dirt past the filter.

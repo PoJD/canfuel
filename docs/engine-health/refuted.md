@@ -190,7 +190,12 @@ photographed*: `photos/breather-hose-2026-10-12-*.jpg`): `06A 103 493 N`,
 its larger end on the breather, its cuff on the intake hose behind the
 MAF (*owner*). **The cuff's moulding seam has opened into a split at its
 end**, the cuff's edge is torn in places, the outside of the bend by the
-tee is crazed, and the inside carries oil and deposit. A split under a
+tee is crazed, and the inside carries oil and deposit — **a black,
+sticky layer about 0.5 cm deep round the inside, oil with dust or other
+dirt, not oil alone** (*owner*, 12/10/2026). Where the dust came from
+was not established; the airbox crack let unfiltered air in ahead of
+the MAF, and this hose's cuff sits in that stream (*reasoned*, not
+shown). A split under a
 clamp can open with heat and movement. **It does not revive this
 entry**: the cuff sits on the intake ahead of the throttle, at
 intake-pipe pressure, where a split draws little at idle (*reasoned*, as
@@ -487,7 +492,8 @@ surface crazed with fine crossing cracks**, one of them darker and more
 open. Blown into with the far end stopped, **a little air may have gone
 out somewhere** — the owner cannot say it was not imagined, and if it
 was real it was very little. Whether any crack goes through was not
-settled. **The argument above stands**: the hose sits at intake-pipe
+settled; the owner reads the damage as surface, the rubber porous with
+age. **The argument above stands**: the hose sits at intake-pipe
 pressure ahead of the throttle, on air the MAF has already metered.
 Replaced (*owner's decision*) — no VW number readable on it, the white
 print is smeared, so a hose of the same bore: **8 mm inside**

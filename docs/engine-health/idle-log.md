@@ -722,7 +722,12 @@ idle on 001, then the idle adaptation, engine off.
   the same evening: it holds when blown through, but cleaning would not
   take out years of deposit inside and it is worn (*owner's decision*;
   *this entry first said it was kept and cleaned, a new one being too
-  slow to come*). **The intake hose MAF to throttle `1C0 129 684` is
+  slow to come*). Its inside carried a black sticky layer of about
+  0.5 cm, oil with dust or other dirt (*owner*; `refuted.md` A15). **In
+  the owner's reading the damage on all three is surface, and the
+  rubber is porous with age**: the thin hose to the tee lets air seep
+  away slowly rather than through a hole, the shroud supply perhaps a
+  little, and a new hose cannot be blown through at all. **The intake hose MAF to throttle `1C0 129 684` is
   the one original hose left**: blown through, its loose-feeling
   plastic stub included, it leaks nowhere (*owner*). The engine goes
   back together in two goes — the intake hose, perhaps one new thin
