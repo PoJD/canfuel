@@ -725,8 +725,9 @@ idle on 001, then the idle adaptation, engine off.
   slow to come*). **The intake hose MAF to throttle `1C0 129 684` is
   the one original hose left**: blown through, its loose-feeling
   plastic stub included, it leaks nowhere (*owner*). The engine goes
-  back together on **14/10**, when the vacuum gauge is here too
-  (*owner*). **The next warm idle is the first with these hoses new**:
+  back together in two goes — the intake hose, perhaps one new thin
+  hose and new clamps on the tee-to-throttle hose on 13/10, the rest
+  when the parts come, about 14/10 with the vacuum gauge (*owner*). **The next warm idle is the first with these hoses new**:
   calmer, or 032/033 moving, would say this line was drawing air.
 
 **What it is not known to have achieved:** the idle raised to the ECU's

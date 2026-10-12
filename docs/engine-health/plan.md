@@ -18,10 +18,15 @@ records it**, and the file is deleted when it is empty.
 says after each whether the next is needed. Claude runs the capture on
 every drive.
 
-1. **Reassembly, 14/10, engine cold:** the new hoses on, clamps on every
-   end. **The 8 mm hose from the tee up to the throttle:** pull it at
-   the tee by hand — it must not move or turn; loose → a 6 mm hose, or
-   a clamp that closes it fully. Write into the chat how it sat.
+1. **Reassembly, in two goes, engine cold.**
+   - **13/10:** the intake hose MAF to throttle back on; a new thin hose
+     if it fits. **The 8 mm hose from the tee up to the throttle:** pull
+     it at the tee by hand before clamping — it must not move or turn;
+     loose → a 6 mm hose, or a clamp that closes it fully. New clamps on
+     both its ends. Write into the chat how it sat.
+   - **When the parts are here:** the breather hose and the other thin
+     hose on, clamps on every end.
+   - **The engine is not started until every hose is on.**
 2. **When the gauge is here: the gauge, cold.** No driving with the
    gauge on.
    - **Before, engine cold and off:** tee the gauge into the fuel
@@ -165,7 +170,10 @@ up to the throttle on 2/10 is 8 mm while the tee's leg to the breather's
 connector takes 6 mm. A hose too wide for its leg is an unmetered leak
 at full vacuum, the kind that matters at idle. The intake smoked clean
 on 9/10 with it on, so it is not expected to be loose; the check costs
-nothing while the hoses are off.
+nothing while the hoses are off. **Not started half-assembled**
+(*reasoned*): an open port on the breather's connector or on the tee is
+an unmetered leak far larger than anything being hunted, and an open
+path for dirt past the filter.
 
 **Which VCDS groups, and why** (*decided 11/10/2026*, the owner's
 question why 014/020/026 were in the gauge session): **026** belongs to

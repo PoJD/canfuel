@@ -3710,7 +3710,7 @@ drawing of this car.
   the tee whose leg to the breather's connector takes the 6 mm hose; if
   the tee's legs are one size, an 8 mm hose sits loose on its leg —
   at manifold vacuum. Whether it is tight there is checked at the
-  reassembly (`plan.md` item 1). For it: the intake smoked clean on
+  reassembly (`plan.md` item 1), where it gets the clamps it lacked. For it: the intake smoked clean on
   9/10 with that hose already on.
   One aggregator claims a second hose to the intake manifold; no other source
   shows one, so it is not relied on.
