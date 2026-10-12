@@ -490,7 +490,7 @@ nearly as little and graded 1.82. Two readings, neither shown
 (*reasoned*): fewer weak strokes, so the governor needs less charge to
 hold the speed — the calm idle the cause and the low charge the
 result; or **the MAF reading truer**, the airbox crack having disturbed
-the flow across it (`vehicle-history.md`) — which 032's idle cell
+the flow across it (S9, *the cracked airbox*) — which 032's idle cell
 agrees with, from −2.3 % on 9/10 (fuel taken away) to 0.0 %. The
 intake air temperature, which a leaking airbox in the engine bay would
 raise, is not on the bus. 003 was not logged that day, so the MAF's own
@@ -1046,6 +1046,37 @@ way for one to drift (*general*). **How old the crack is is not known**,
 and the old MAF was not inspected for dust, so this is a candidate and
 nothing more. It bears on the new MAF too: from 12/10 it breathes
 filtered air only.
+
+**A second way it could have acted, on the new MAF too: the flow across
+the sensor** (*reasoned*, 12/10/2026, at the owner's question; sealed
+inside and then outside the same day). A hot-film MAF samples the
+stream through its own channel, not the whole duct — which is why its
+orientation mattered (below). Air entering through a crack just ahead of
+the outlet can skew the velocity profile there, so the sensor reads a
+few per cent more or less than the engine draws, and at idle, ~3 g/s, a
+small skew is a large share. **Reading high**, the ECU computes more
+load: more modelled torque (0x280 b7), more injection, which the lambda
+loop then takes away (a negative idle cell in 032), and its timing from
+a higher-load cell. **12/10 fits all three**: the lowest b7 and
+injection time at a warm idle on record, and 032's idle cell at 0.0
+against −2.3 % on 9/10 (S1, *12/10*). How it could make dips: an error
+that varies with the intake's pulsation is one the slow lambda loop
+cannot follow, so each charge trim of the idle governor would move the
+mixture for a moment — and the dips do follow those trims, with the loop
+on its lean swing (S1, *What comes before a dip*). **Confounded**: the
+old element's pleats were bent over at one end (`vehicle-history.md`),
+which also shapes the flow to the MAF, and it was changed the same day.
+The owner's other thought, warmer engine-bay air through the crack, is
+mass the MAF measures, so not the mixture; a warmer charge only leans
+toward knock and opens the throttle a touch — the weakest of the three
+at idle.
+
+*What would confirm or refute it, at no cost:* **003's air at a warm
+idle** below the 3.08–3.12 g/s of 9/10 and 10/10 at the same idle
+(logged from now on wherever there is idle, `plan.md`); b7 and the
+injection time staying as low, and `IdleHealth` as calm, on the next
+drives; 032's idle cell staying near zero. All of it reverting means
+12/10 was chance or weather, and this goes to `refuted.md`.
 
 **How it closes:** one photographed 032 screen after a few hundred km with no
 battery disconnect in between. Closed if both cells have settled within a few

@@ -39,7 +39,7 @@ every drive.
      in a row; whether they are still there at 2500.
 3. **Only if the needle showed nothing cold: the gauge warm.**
    - A drive to 68–72 °C of oil, as on 10/10. Claude runs the capture;
-     VCDS on **014, 001, 020**. A few stops at a warm idle, a minute or
+     VCDS on **014, 001, 003**. A few stops at a warm idle, a minute or
      two each. Write the stops.
    - Back: engine off, tee the gauge in as before.
    - Start, film the gauge **1 min** at idle, then **2500 rpm 15 s** and
@@ -170,6 +170,16 @@ groups read faster than three — so a flick can be set against what the
 mixture and the governor were doing; the film is put on the capture's
 clock by the 2500 rpm drop, VCDS by engine speed. 014 is not needed
 there: the dips on the bus are the misfires' timing.
+
+**003 is also the MAF's own figure** (*decided 12/10/2026*, the owner's
+request after the airbox was sealed; `open.md` S9, *the cracked
+airbox*): 12/10 held the idle on the least charge on record with 032's
+idle cell at 0.0, which a MAF that used to over-read would explain, and
+003 was not logged that day. So **every step with an idle logs 003**:
+item 2 reads it cold, against the earlier cold starts at the same
+coolant; **item 3 logs 014, 001 and 003**, dropping 020 — S4 is out of
+this plan and 020 was data, not a step — so the warm idle's air is read
+against 3.08–3.12 g/s; item 6 logs it already.
 
 **Item 1 — the bolts once more** (*owner's decision*, 10/10/2026;
 `open.md` S6, closed 12/10/2026). The drive of 12/10 was the shim's
