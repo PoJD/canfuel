@@ -683,6 +683,19 @@ idle on 001, then the idle adaptation, engine off.
   the new air filter with the airbox crack sealed. One day; the drives
   of item 6 say whether it holds.
 
+- **The dips keep to one slot again**: 46 of 121 pairs, 38 %, p =
+  0.0011 (`cutscan.py --pairs`), against 10/10's 26 % on 39 — so the
+  new leads did not take the one-cylinder share (`open.md`, *Naming the
+  cylinder*).
+- **The 3 min of 001 did not repeat the lean swing before a dip**:
+  lambda correction −0.38 % before a dip, −0.48 % quiet, no difference
+  (`open.md` S1, *What VCDS saw just before a dip*).
+
+- **Evening, cold: the joint's bolts tightened once more** (`plan.md`
+  item 1, done): one moved a little, the one over the shim not at all —
+  the sealant inside settling, as expected after its first heat cycle
+  (*owner*).
+
 **What it is not known to have achieved:** the idle raised to the ECU's
 limit did not quiet 014, so the raise is not a workaround and was
 undone. Whether the calmer warm idle is the new filter and the sealed

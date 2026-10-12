@@ -18,8 +18,6 @@ records it**, and the file is deleted when it is empty.
 says after each whether the next is needed. Claude runs the capture on
 every drive.
 
-1. **Cold, the next morning will do:** the exhaust connector's two bolts
-   tightened once more. No engine run for it.
 2. **When the gauge is here: the gauge, cold.** No driving with the
    gauge on.
    - **Before, engine cold and off:** tee the gauge into the fuel
@@ -211,14 +209,6 @@ as scattered** → it over-read without harming the idle; **B and
 steadier** → something that shapes the flow helped, not the
 calibration. Nothing here is a reason to buy a part.
 
-**Item 1 — the bolts once more** (*owner's decision*, 10/10/2026;
-`open.md` S6, closed 12/10/2026). The drive of 12/10 was the shim's
-first heat cycle; the sealant sets only once it has been hot, and the
-sheet and the sealant settle under the connector, so the bolts are
-tightened again cold. The joint was not heard on that drive (*owner*),
-so nothing else is planned for it; heard again → the hangers, then a
-welded joint at an exhaust shop.
-
 **Items 4 to 6 — the engine left alone, and the additive** (*owner's
 decision*, 10/10/2026). After the gauge, unless it shows an intake leak
 plainly, no more work on the engine for now: no new tools, nothing taken
@@ -402,7 +392,10 @@ what is left, if Claude asks for it after item 6. The owner works
    cylinder stands out (p = 0.28), neither 1 nor 4 weak by air, on
    twenty dips. **Not repeated unless item 6's drives bring the dips back to one
    slot** (*decided 10/10/2026*): the test exists to name the cylinder
-   the dips keep to, and on the same drive they kept to none.
+   the dips keep to, and on the same drive they kept to none. **On
+   12/10 they were back on one slot**, 46 of 121 pairs, 38 %, p = 0.0011
+   (`open.md`, *Naming the cylinder*) — so the cuts are back in play;
+   item 6's drives confirm it first, since they are captured anyway.
 **Item 7 — the high-voltage side** (`open.md` H4 test 1e, *decided 9/10/2026*):
    the roughest reading on record came on a foggy morning (S1), and the
    moisture a tracking boot or coil needs is what the mist supplies.

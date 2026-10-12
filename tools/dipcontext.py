@@ -104,6 +104,7 @@ VCDS_QUIET_S = 2.0
 #: 033 carries no engine speed, so its log must hold a group that does
 #: (003, 014 or 055) for the alignment.
 VCDS_FIELDS = {
+    "001": ((2, "lambda correction %"),),
     "003": ((1, "air g/s"), (2, "throttle deg"), (3, "advance deg BTDC")),
     "033": ((0, "lambda correction %"), (1, "probe V")),
     "055": ((1, "idle regulator g/s"), (2, "learned idle air g/s")),
@@ -288,7 +289,7 @@ def runs(cap):
 def vcds_near(cap, log_path):
     """{(group, field, class): [values]} for one capture and its VCDS log."""
     vc = cutscan.read_vcds(log_path)
-    g0 = next((g for g in ("014", "003", "055") if g in vc), None)
+    g0 = next((g for g in ("014", "003", "055", "001") if g in vc), None)
     if g0 is None:
         raise SystemExit(f"{log_path}: no group with engine speed to align on")
     vr = []

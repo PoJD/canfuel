@@ -74,7 +74,9 @@ Everything else settled against is in `refuted.md`.
   went in on 10/10, and on the drive after the dips did not keep to one
   slot — but 014 counted as before** (S3, *The drive after the new
   leads*). So the leads did not fix S3; whether they took the
-  one-cylinder share of the dips, two or three more drives say. The
+  one-cylinder share of the dips, two or three more drives say —
+  **and on 12/10 the dips were back on one slot** (38 %, p = 0.001), so
+  they did not take it either. The
   servo is cleared (H3). Ranked now (*re-read 10/10*): **H2**, the
   exhaust ahead of the probe — S15 still heard — then **H3**, a leak,
   and **H1**, a valve, which the vacuum gauge on order splits; **H7**,
@@ -407,6 +409,16 @@ through every idle again*; `tools/dipcontext.py`, warm standing idle at
   **More of it is cheap**: VCDS reads faster with fewer groups, and
   group **001** alone carries engine speed (to align on) **and** the
   lambda control (`vcds.md`).
+  **12/10: not reproduced** (`32`, 3 min of 001 alone at a warm idle,
+  `dipcontext.py --vcds`, which now reads 001): lambda correction
+  **−0.38 ± 0.15 %** before a dip (n 62), **−0.48 ± 0.06 %** quiet
+  (n 374), −0.56 ± 0.16 % after — no difference; the drive's own 001
+  log the same (−0.40 / −0.55 / −0.60). So the lean swing before a dip
+  is **not shown** on the one session built to show it, as many samples
+  beside dips as the two earlier sessions together. Either it was
+  chance there, or it belongs to the rougher idles of `29`–`30` and not
+  to the calmer one of 12/10 (S1, *12/10*). It stays a direction that
+  one session failed to repeat.
   **Read against H2** (*the owner's question*, 11/10): air drawn in
   ahead of the probe makes it read *lean* and the loop add fuel; just
   before a dip it read a little *rich* and the loop was taking fuel out —
@@ -897,9 +909,10 @@ within seconds.
 ### S6. The exhaust is not tight — closed 12/10/2026
 
 **Closed, 12/10/2026**: shimmed that morning, and **not heard once on the
-drive the same day** (*owner*; `idle-log.md`). The bolts are tightened
-once more cold (`plan.md` item 1); heard again → the hangers, then a
-welded joint at an exhaust shop. What follows is the record.
+drive the same day** (*owner*; `idle-log.md`). The bolts were tightened
+once more cold that evening: one moved a little, the one over the shim
+did not move at all — the sealant inside settling (*owner*). Heard again
+→ the hangers, then a welded joint at an exhaust shop. What follows is the record.
 
 
 **Reopened at the owner's decision, 10/10/2026**: the joint remade on
@@ -4292,6 +4305,13 @@ as a whole. ⚠ `cutscan.py --pairs` reads the whole capture: on a
 capture with cuts in it the cut minutes must be left out by hand, or
 the dead slot makes the pairs (41 % on `31` with them in).
 
+**12/10/2026** (`32`, no cuts, every idle in it, cold and warm and the
+adaptation stages): **46 of 121 pairs on the same slot, 38 %, p =
+0.0011** — back on one slot, more than 9/10's 33 %. Pooled with 10/10,
+56 of 160, 35 %. So **the one-cylinder share did not go with the new
+leads**: 10/10's quarter was the small sample. Which cylinder is still
+the cuts' question (`plan.md` item 7), and they come back into it.
+
 ---
 
 
@@ -4502,7 +4522,7 @@ idle and a higher idle being a fair mitigation. **The order stands.***
 | 3 | **H1 — a lifter or valve** | the one cause a forum has named on an AQY (a sticking bucket tappet); compression cannot see it. Against: never worst hot (S1, S3, re-read 9/10); A5 ~~**4/10, against:** zero at both warm stops~~ *(withdrawn 9/10: fresh adaptations, `refuted.md` C19)* **9/10, for: the dips keep to one slot** **10/10, for, weakly: the dips come just after the ECU trims the charge — as H3's do (S1, *What comes before a dip*)** | a **vacuum gauge** at idle (below), the stethoscope, a warm leak-down |
 | 4 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 **4/10, against:** ~~zero at both warm stops is not what a normal-for-the-engine idle does on a counter that read 10–20 a minute there~~ *withdrawn 9/10: those zeros came on fresh adaptations (`refuted.md` C19)* **9/10, against: the dips keep to one slot rather than spreading over four alike** — weakly: nobody knows how a healthy AQY shares them | a healthy AQY recorded (H0 test 1) |
 | 5 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero **4/10: the pattern fits only in form** — fuel heat-soaked at the rail after a hard drive; against, the return-flow rail keeps fuel moving, heat soak is a hot-*restart* effect, and the coolant read the same at A3's zero **9/10, against: rail pressure acts on all four alike, and the dips keep to one slot** **10/10, against (the owner's argument): low pressure shows at full load first, where the engine is well, and a steady error shows in 032, near zero** | a fuel pressure gauge — **not bought** (*owner*, 10/10) |
-| 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits only in form** — a coil that breaks down hot is the textbook case, but **the coil is from 6/2026**, and the 3/10 oil sat **only on the outside of its plastic and on the outsides of the leads of 3 and 4, wiped dry** (*owner*, 4/10/2026) **9/10: the dips keep to one slot — for the high-voltage side of one lead or tower (test 1e), against the supply side** **9/10, for — the first named part: plug 4's terminal burnt black by 1/10, the plug-end boots never click, one plug end crusted, the owner pulls them by hand (1d)** | **new plugs and leads, VW originals** (*owner's decision, 9/10*, `plan.md` step 3.3), and the drive after: the dips back to a quarter of pairs on one slot → it was here **10/10, done: a quarter (26 %) on the first drive, but 014 counting as before — so not the misfires; the one-cylinder share of the dips, if two or three more drives hold** |
+| 6 | **H4 — the electrical feed to the spark** | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits only in form** — a coil that breaks down hot is the textbook case, but **the coil is from 6/2026**, and the 3/10 oil sat **only on the outside of its plastic and on the outsides of the leads of 3 and 4, wiped dry** (*owner*, 4/10/2026) **9/10: the dips keep to one slot — for the high-voltage side of one lead or tower (test 1e), against the supply side** **9/10, for — the first named part: plug 4's terminal burnt black by 1/10, the plug-end boots never click, one plug end crusted, the owner pulls them by hand (1d)** | **new plugs and leads, VW originals** (*owner's decision, 9/10*, `plan.md` step 3.3), and the drive after: the dips back to a quarter of pairs on one slot → it was here **10/10, done: a quarter (26 %) on the first drive, but 014 counting as before — so not the misfires; the one-cylinder share of the dips, if two or three more drives hold** **12/10, against: back on one slot, 38 % (p = 0.001) — the leads did not take the share either** |
 | 7 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) **4/10 evening:** a new throttle passing more at rest than the ECU's model would also make it learn air away (`refuted.md` C19) **9/10, against: the throttle feeds all four alike, and the dips keep to one slot** | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `idle-log.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
 | 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
 | 9 | **H11 — both lambda probes shifted alike** | the only part of the mixture control not changed, 10/2017; no probe test sees a shift; soot on three plugs. Against: 032 + 033 near zero on a new MAF and new injectors bounds it to a few per cent, and with the wrong sign — negative, the ECU taking fuel out; a few per cent does not misfire | a **four-gas analyser** at the emissions station (H11 test 1) |
