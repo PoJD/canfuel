@@ -326,8 +326,8 @@ its own about a lifter.
    still read off 014 and the capture.
 **Item 7 — the exhaust ahead of the front probe (H2), warm** (*reasoned*,
    9/10/2026): `open.md`'s first candidate when this was written (**fourth since 12/10**, when the dips came back on one slot and the cold test found nothing) (since 9/10 second, behind H3, now that the dips keep to one cylinder — but still the one with symptoms of its own), and next now that 2b moved nothing on
-   the intake side, the one with a symptom of its own since S15 was
-   heard, and free. With the outlet closed, a leak that draws air in at idle blows
+   the intake side, and free (S15, which first made it urgent, closed
+   12/10 with the joint behind the converter). With the outlet closed, a leak that draws air in at idle blows
    out, and hisses or puffs. Warm, because a crack in cast iron may only
    open hot; never longer than a few seconds and never indoors
    (*general*) — **but cold first** (*decided 9/10/2026*): the owner
@@ -356,9 +356,7 @@ what is left, if Claude asks for it after item 6. The owner works
    the manifold or its joint to the head, which is the owner's standing
    decision of a new manifold (3/10/2026), the shield coming off then
    anyway; nothing either way → warm, then a garage with a lift. The front pipe as far as the converter is listened to as
-   well, and the sputter with the tailpipe open, because S15 may sit just
-   behind the manifold rather than in it (`open.md` S15) — a new manifold
-   answers only a leak in the manifold. A new manifold if it leaks (*owner's decision*,
+   well — a new manifold answers only a leak in the manifold. A new manifold if it leaks (*owner's decision*,
    3/10/2026); the suffix differs by model and year; the studs into the
    head are 26 years old. **Nothing leaks ahead of the probe** → H2 is
    refuted for its zone and goes to `refuted.md`.

@@ -637,7 +637,9 @@ idle on 001, then the idle adaptation, engine off.
   hot — so the warm test stays in `plan.md` item 7.
 - **The joint behind the converter: not heard on the whole drive**
   (*owner*). S6 closed (`open.md`); the bolts are tightened once more
-  cold.
+  cold. **The sputter close behind the engine (S15) has gone with it** —
+  the owner's reading is that it was that joint; S15 closed at his
+  decision, to reopen if it is heard again.
 - **The clutch makes no difference to the idle**, cold or warm. The
   `IdleHealth` (30 s halves from the blip's
   drop) cold, oil ~30 °C: down 145, up 135, down 145, up 126; warm,
