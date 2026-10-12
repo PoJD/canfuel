@@ -181,7 +181,10 @@ carries a generated block; a figure typed into prose only goes stale.
     nothing that identifies the car or its owner goes into it** — not the
     full VIN (the type, year and plant positions are fine), not a
     registration plate, not an address; a photograph showing one is
-    cropped first (*the maintainer, 12/10/2026*). **When the symptom list changes — a symptom added
+    cropped first (*the maintainer, 12/10/2026*). **The full VIN is kept in
+    the maintainer's private claude.ai artifact *New Beetle VIN***; a
+    session with the Artifact tool finds it with `action: "list"` and
+    reads it there, and never copies it into a file here. **When the symptom list changes — a symptom added
     or closed — every hypothesis's fit table in `open.md` gains or loses
     that column in the same commit, and the ranked list of candidates is
     re-read against it**; a symptom left out of the tables says why, once,
