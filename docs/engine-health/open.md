@@ -836,9 +836,10 @@ within seconds.
 
 **Reopened at the owner's decision, 10/10/2026**: the joint remade on
 9/10 **is heard again** (*owner*). Its cause is the one noted at
-closing: the pipe behind reads **about 54.2 mm** against the connector's
-**55** (*owner-measured*), so even fully tightened the narrower pipe
-**moved in the connector**. The closing note said a connector change
+closing: the pipe from the converter reads **54.2 mm** and the one from
+behind **55.0 mm**, against the connector's **55** (*owner-measured*;
+*corrected 12/10/2026* — this said the pipe behind was the narrower), so
+even fully tightened the narrower pipe **moved in the connector**. The closing note said a connector change
 would be a repair rather than a reopened symptom; the owner reopened it
 because it is again a noise in the zone being listened to. **The fix
 planned** (*owner*, the method *general*): the connector off, a shim of
@@ -875,8 +876,7 @@ band clamp and pressed half-shells — and
 `photos/exhaust-joint-2026-10-09-new.jpg`, the new connector in place,
 sealant at both ends). *`plan.md` step 2 expected a new flange; the photo
 shows a sleeve connector, and the photo wins.* **A little play remains**:
-the pipe behind the joint is about 1 mm narrower than the one ahead of it
-(*owner*), which the sealant is expected to take up. The owner expects it
+one pipe is about 1 mm narrower than the other (*owner*; *Corrected 12/10/2026* (*owner-measured*): the narrower pipe is **the one from the converter, 54.2 mm**; the one from behind is **55.0 mm**; this said the pipe behind was the narrower.), which the sealant is expected to take up. The owner expects it
 to blow far less; should it not, a reducing (asymmetric) connector is the
 later fix, and it would be recorded as a repair, not reopened as a
 symptom. Out of every fit table, as it already was. The record of what it

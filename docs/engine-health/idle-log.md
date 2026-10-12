@@ -377,7 +377,7 @@ photographed*: `photos/exhaust-joint-2026-10-09-old-parts.jpg`,
 `photos/exhaust-joint-2026-10-09-new.jpg`). The joint the garage had
 filled with sealant on 10/9, and that had rattled since, was taken apart
 and remade with a two-bolt sleeve connector and exhaust sealant. A little
-play remains — the pipe behind is about 1 mm narrower — which the sealant
+play remains — one pipe is about 1 mm narrower (*Corrected 12/10/2026* (*owner-measured*): the narrower pipe is **the one from the converter, 54.2 mm**; the one from behind is **55.0 mm**; this said the pipe behind was the narrower.) — which the sealant
 is expected to take up; a reducing connector if not. **Done for comfort,
 not for the idle**: the joint is behind both lambda probes, so it cannot
 have touched the mixture, the trims or a misfire, and **nothing is
@@ -575,7 +575,8 @@ that do not care about the charge (H4, H7's harness) and left the
 order of the rest as it was.
 
 **10/10/2026 — the joint behind the converter heard again** (*owner*):
-the remake of 9/10 did not hold — the pipe behind is about 54.2 mm in a
+the remake of 9/10 did not hold — the pipe from the converter is 54.2 mm
+(the one behind 55.0; *corrected 12/10/2026*, this said the pipe behind) in a
 55 mm connector and moved in it even tightened. S6 reopened; a shim
 under the connector is the owner's fix, and the exhaust test waits on
 it. Nothing for the idle either way: the joint is behind both probes.
@@ -584,7 +585,8 @@ it. Nothing for the idle either way: the joint is behind both probes.
 photographed from below; a new air filter** (*owner, photographed*;
 `vehicle-history.md`). No engine run.
 - **The joint** (`photos/exhaust-joint-2026-10-12-*.jpg`): apart, a
-  strip of sheet wrapped round the narrower pipe, sealant under and over
+  strip of sheet wrapped round the narrower pipe, the one from the
+  converter (54.2 mm; the one behind is 55.0, *owner-measured*), sealant under and over
   it, the sleeve connector back on. **It holds and nothing moves.**
   Whether it is quiet is read on the drive (`plan.md` item 1).
 - **From below, cold** (`photos/exhaust-flange-2026-10-12-below-*.jpg`,
