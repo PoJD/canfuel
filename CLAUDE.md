@@ -174,7 +174,10 @@ carries a generated block; a figure typed into prose only goes stale.
     a smell, a leak, a reading — **is flagged: say whether it could be a new
     symptom in `open.md` (or change an existing one) and why, then ask. The
     maintainer decides**; never add a symptom unasked, never let one pass
-    without asking. **When the symptom list changes — a symptom added
+    without asking. **Idle smoothness is quoted on the `IdleHealth`
+    scale everywhere** — `idledips --roughness`'s mean step in rpm × 50,
+    so a capture compares with the display — never as the raw rpm grade
+    (*the maintainer, 12/10/2026*). **When the symptom list changes — a symptom added
     or closed — every hypothesis's fit table in `open.md` gains or loses
     that column in the same commit, and the ranked list of candidates is
     re-read against it**; a symptom left out of the tables says why, once,
