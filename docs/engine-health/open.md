@@ -1078,6 +1078,15 @@ injection time staying as low, and `IdleHealth` as calm, on the next
 drives; 032's idle cell staying near zero. All of it reverting means
 12/10 was chance or weather, and this goes to `refuted.md`.
 
+**How sealed it was on 12/10** (*owner*): the inside layer went on about
+30 minutes before the start, thin and still soft through the session;
+the outside layer only after the engine was off. A soft sealant still
+fills a crack against the airbox's slight depression (*reasoned*), so
+12/10 was read with the crack mostly closed. **From the next start it is
+sealed twice and cured** — so if the airbox matters, the next warm idles
+should read at least as calm as 12/10; calmer still would point at it
+more strongly, rougher again would point away from it.
+
 **If the data says the sealing helped** (*owner's decision*,
 12/10/2026): the airbox comes out whole, is inspected for any other
 crack, and is sealed again properly. **A new one is not bought**: none

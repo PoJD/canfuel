@@ -181,6 +181,36 @@ coolant; **item 3 logs 014, 001 and 003**, dropping 020 — S4 is out of
 this plan and 020 was data, not a step — so the warm idle's air is read
 against 3.08–3.12 g/s; item 6 logs it already.
 
+**How 003's air is read** (*decided 12/10/2026*, the owner's request;
+`open.md` S9, *the cracked airbox*). Claude does this at the first warm
+idle with 003, at 780 rpm specified, 65–75 °C of oil, loads off, against
+the warm idles of 9/10 and 10/10 (`30`, `31`, `vcds-step2b-a3-*`,
+`vcds-step5-*`). What 12/10 already says: 032's idle cell from −2.3 to
+0.0 % means the MAF now reads **less, relative to the air**, than it
+did; fuel 3–5 % lower at λ = 1 means **the air itself** fell 3–5 %; b7,
+computed from the MAF, fell 15 %, more than the fuel. So the expectation
+is lower, and **how much lower** decides:
+
+| 003 at a warm idle | reading |
+|---|---|
+| **A — well lower, ~2.8–2.9 g/s** (more than the fuel's 3–5 %) | the MAF used to over-read, the crack or the old element skewing its flow; fits 032 and b7 |
+| **B — a little lower, ~2.95–3.0** (as the fuel) | the MAF reads as it did; the engine simply needs less air. The calm idle is the engine's, and the airbox played no part |
+| **C — unchanged, ~3.1** | contradicts 032; first suspect the comparison (idle speed, loads) |
+| **D — higher than 3.15** | contradicts 032 and b7 |
+
+**The scatter decides the link to the idle, not the level.** A steady
+error — always 5 % high — is taken out entirely by the lambda loop and
+032 and cannot rock the idle; only an error that varies with the
+intake's pulsation can, by shifting the mixture at each charge trim
+before the slow loop follows (`open.md` S1, *What comes before a dip*).
+So the sample-to-sample spread of 003's air at the warm idle is set
+against 9/10 and 10/10 as well: **lower and much steadier** → the
+airbox or the element was rocking the idle, and the owner takes the
+airbox out, inspects it and seals it again (`open.md` S9); **lower and
+as scattered** → it over-read without harming the idle; **B and
+steadier** → something that shapes the flow helped, not the
+calibration. Nothing here is a reason to buy a part.
+
 **Item 1 — the bolts once more** (*owner's decision*, 10/10/2026;
 `open.md` S6, closed 12/10/2026). The drive of 12/10 was the shim's
 first heat cycle; the sealant sets only once it has been hot, and the
