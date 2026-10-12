@@ -717,13 +717,17 @@ idle on 001, then the idle adaptation, engine off.
   end. It sits on the line at manifold vacuum, so it is the one of the
   three that can matter at idle — on all four cylinders alike. To be
   replaced with plain 6 mm silicone hose, the number not being had; the
-  shroud supply with 8 mm hose; and the missing clamps; the breather
-  hose kept and cleaned inside — blown through, it holds — a new one too
-  slow to come (*owner's decision*). **The intake hose MAF to
-  throttle `1C0 129 684` stays**: blown through, its loose-feeling
-  plastic stub included, it leaks nowhere (*owner*). **The next warm
-  idle is the first with these hoses new**: calmer, or 032/033 moving,
-  would say this line was drawing air.
+  shroud supply with 8 mm hose; and the missing clamps (*owner's
+  decision*). **The breather hose is replaced too**, a new one ordered
+  the same evening: it holds when blown through, but cleaning would not
+  take out years of deposit inside and it is worn (*owner's decision*;
+  *this entry first said it was kept and cleaned, a new one being too
+  slow to come*). **The intake hose MAF to throttle `1C0 129 684` is
+  the one original hose left**: blown through, its loose-feeling
+  plastic stub included, it leaks nowhere (*owner*). The engine goes
+  back together on **14/10**, when the vacuum gauge is here too
+  (*owner*). **The next warm idle is the first with these hoses new**:
+  calmer, or 032/033 moving, would say this line was drawing air.
 
 **What it is not known to have achieved:** the idle raised to the ECU's
 limit did not quiet 014, so the raise is not a workaround and was
