@@ -1078,6 +1078,15 @@ injection time staying as low, and `IdleHealth` as calm, on the next
 drives; 032's idle cell staying near zero. All of it reverting means
 12/10 was chance or weather, and this goes to `refuted.md`.
 
+**If the data says the sealing helped** (*owner's decision*,
+12/10/2026): the airbox comes out whole, is inspected for any other
+crack, and is sealed again properly. **A new one is not bought**: none
+is to be had new (*owner*, searched 12/10/2026), and a used one is not
+wanted. **The vacuum gauge cannot answer this**: it reads the manifold
+behind the throttle, and air through the airbox passes the throttle like
+the rest; a metering error moves the fuel and the timing, not the
+needle by anything readable (*reasoned*).
+
 **How it closes:** one photographed 032 screen after a few hundred km with no
 battery disconnect in between. Closed if both cells have settled within a few
 per cent of zero — the proper bar is the specified range for 032 in the
