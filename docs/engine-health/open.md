@@ -38,7 +38,7 @@ below (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 10 October 2026
+## Where it stands — 12 October 2026
 
 **A summary of what is closed and what is left, and nothing else.** How
 it got here, stage by stage, is `idle-log.md`; the parts and dates are
@@ -56,6 +56,7 @@ symptom or a hypothesis opens or closes, not added to.
 | S12, the tip-in hesitation | withdrawn by the owner as mechanical play (4/10) |
 | S13, the throttle's routine at ignition-on | normal for the part (2/10) |
 | S14, bangs on an unblipped downshift | none since S6's joint was remade, with S3 unchanged; closed at the owner's decision (10/10) |
+| S6, the exhaust joint behind the converter | shimmed 12/10 and not heard on the drive that day (*owner*) |
 | H10, the learned idle air value turns the counting on | accepted as the explanation of when 014 counts, closed at the owner's decision (9/10, `refuted.md` C19). Why the ECU learns air away stays with H3 and H8 |
 | H9, crankcase ventilation and the cover gasket | right about S10, settled against for the idle (4/10, `refuted.md` A15) |
 
@@ -85,19 +86,25 @@ Everything else settled against is in `refuted.md`.
   (a hiss at the back of the engine at a warm idle, not yet placed) —
   **neither heard on 9/10 or 10/10**, both kept open. **S15**, a constant
   sputter from the exhaust close behind the engine at every load (added
-  9/10) — H2's zone, **still heard** (*owner*, 10/10/2026). **S6**, the
-  joint behind the converter, **reopened 10/10** (*owner's decision*):
-  it rattled again the day after it was remade, and drowns S15 and
-  vents the tailpipe test until it is tight; **shimmed 12/10**, read on
-  the next drive.
+  9/10) — H2's zone, **still heard** (*owner*, 10/10/2026); **the
+  tailpipe test found no leak cold on 12/10**, which leaves the warm one.
+  **S16**, a tick in neutral, cold, gone with the clutch pedal down
+  (added 12/10) — the gearbox side, **not pursued** (*owner's
+  decision*): the clutch minutes showed it has nothing to do with the
+  idle (H12).
 - **The cylinder 4 knock window: S4 and S5**, a cluster of its own
   (H5, H6). The injectors were cleared from it on 9/10 (`refuted.md`
   B7). **Not in `plan.md`** (*owner's decision, 9/10/2026*): no link to
   the misfires has been found, so its tests, G66 first, stay in H5.
 
-**Next:** `plan.md` step 3 — **the exhaust test on the next cold
-start**, the joint behind the converter shimmed tight on 12/10 (S6);
-then **nothing until the vacuum gauge arrives** (ordered 10/10, *owner's
+**12/10** (`idle-log.md`): the exhaust test cold found nothing (H2,
+warm still open); the clutch minutes cleared the gearbox side (H12); the
+idle raised to the ECU's limit, 830 rpm, did not quiet 014 and was put
+back; and **the warm idle read calmer than on any day before** (S1,
+*12/10*), cause unknown. S6 closed and S16 added; neither is a column of
+the fit tables, so the ranked list stands as it was.
+
+**Next:** `plan.md` step 3 — **nothing until the vacuum gauge arrives** (ordered 10/10, *owner's
 decision*), and the gauge on a cold start of its own. Unless
 it shows an intake leak plainly, the engine is then left alone and a
 tank is run with a PEA inlet-valve cleaner, read on the drives after
@@ -449,6 +456,23 @@ that seals worse at low cylinder pressure (H1), dilution by a small leak
 margin (H0) — **it does not choose between them**. It argues against a
 fault that does not care about the charge: an intermittent wire, a
 crank-sensor artefact (which would repeat at 360°, not 720°).
+
+**12/10 — the warm idle calmer than on any day before** (`32`,
+`idle-log.md`). At 68–71 °C of oil the grade was **0.99** at the first
+warm stop and **1.22** over 5½ minutes at the original idle setting,
+against **1.53–1.77** for `30` and `31` at 67–80 °C; dips 3.7–4.9 a
+minute. The owner saw smaller 014 figures than usual. Adaptations
+settled (055 −1.18 to −1.21), and 032 read **0.0 / +2.3 %** after it,
+against −0.8 / +2.3 on 4/10 and −2.3 / +5.5 on 9/10. Changed since `31`:
+the joint behind the converter, which is behind both probes and so not
+it (`refuted.md` A13), and **a new air filter with the airbox crack
+ahead of the MAF sealed** (`vehicle-history.md`). Cold it was no better
+— 2.5–2.9 at ~30 °C against `31`'s 2.40. **One day, cause unknown**;
+the drives of `plan.md` item 6 say whether it holds, and a calmer idle
+on the next drives with nothing else changed would point at the airbox.
+**Raising the idle did not help**: from 780 to 830 rpm specified, the
+ECU's limit, 014 kept counting and the grade rose slightly with engine
+speed; put back the same day.
 
 ### S2. An occasional puff from the exhaust
 
@@ -832,7 +856,13 @@ within seconds.
   for 1–2, G66 for 3–4, from a sister engine's manual, not the AQY page). So
   comparing 4 against 1 is weaker than the tables make it look.
 
-### S6. The exhaust is not tight — reopened 10/10/2026
+### S6. The exhaust is not tight — closed 12/10/2026
+
+**Closed, 12/10/2026**: shimmed that morning, and **not heard once on the
+drive the same day** (*owner*; `idle-log.md`). The bolts are tightened
+once more cold (`plan.md` item 1); heard again → the hangers, then a
+welded joint at an exhaust shop. What follows is the record.
+
 
 **Reopened at the owner's decision, 10/10/2026**: the joint remade on
 9/10 **is heard again** (*owner*). Its cause is the one noted at
@@ -1688,6 +1718,26 @@ behind it. Ahead of the front probe it would also draw air in between
 pulses at idle and read lean to the probe (H2). Where along that length
 it is, is the tailpipe test's question (`plan.md` step 3).
 
+**The tailpipe test cold, 12/10/2026: no leak heard** (*owner*, from his
+recordings by the manifold and under the car by the front pipe; Claude
+cannot hear them): no hiss or puff at any of ten closures, only the
+exhaust being throttled. Cold only, so the warm test is what is left
+(`plan.md` item 7, H2).
+
+### S16. A tick in neutral, cold, with the clutch pedal up
+
+*Owner-heard, 12/10/2026; added at the owner's decision, **not to be
+pursued**.* A **regular ticking** at a cold idle in neutral with the
+clutch pedal **up**; **gone with the pedal down** (*owner*; on his phone
+video, which Claude cannot hear). With the pedal down the gearbox input
+shaft stops, so it is on the gearbox side of the clutch — gear rattle in
+neutral, the input shaft's bearing or the clutch disc's springs, louder
+on cold gearbox oil (*general*, not checked for this car).
+
+**It is not the idle's fault**: the same minutes graded the idle with
+the pedal up and down, and pedal up was not rougher (H12, test 1). Out
+of the fit tables for that reason.
+
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** Whether 0x420's `OilTemp` is right is a firmware
@@ -1777,10 +1827,12 @@ Each one lists what it explains, what speaks against it, and the test that
 settles it. ✔ fits, ~ fits weakly, ✘ does not fit, — says nothing.
 
 **The columns are the open symptoms that bear on the engine.** Left out,
-each for a stated reason: **S6** (reopened 10/10/2026, closed 9/10: the
-joint behind both probes; never a column, being acoustic and behind the
-probes, so neither closing nor reopening it moves a table — the part of
-it that bears on the idle is H2's), **S7** (closed), **S8**
+each for a stated reason: **S6** (closed 12/10/2026, after closing 9/10
+and reopening 10/10: the joint behind both probes; never a column, being
+acoustic and behind the probes, so neither closing nor reopening it
+moves a table — the part of it that bears on the idle is H2's), **S16**
+(added 12/10/2026: a tick on the gearbox side of the clutch, shown that
+day to have no bearing on the idle — H12 test 1), **S7** (closed), **S8**
 (closed 4/10/2026), **S9** (closed 4/10/2026: fixed by the MAF),
 **S10** (closed 4/10/2026: the cover joint, found and repaired),
 **S12** (closed 4/10/2026: withdrawn by the owner as mechanical play),
@@ -3866,14 +3918,20 @@ charge, which play does not make.
 
 **Tests:**
 
-1. **The clutch minutes** (`plan.md` step 3, item 1, cold and warm): pedal down takes
+1. **The clutch minutes** (cold and warm): pedal down takes
    the gearbox input shaft and the clutch disc out of the engine's load.
    Dips and `IdleHealth` the same either way → not that side; clearly
    calmer with the pedal down → it is a lead. The flywheel and the pulley
-   turn either way and are not separated by it.
+   turn either way and are not separated by it. **Done 12/10/2026: not
+   that side.** The grade in 30 s halves, cold: down 2.90, up 2.70, down
+   2.90, up 2.52; warm: down 1.66 (settling from the blip), up 1.14, down
+   0.89, up 0.99, down 1.16, up 1.01 (`32`, `idle-log.md`). Pedal up is
+   not rougher. The gearbox side has a noise of its own (S16), and it
+   does not reach the idle.
 2. **The crank pulley's damper, by eye, engine off**: the rubber ring
    between its inner and outer metal rings cracked, bulging or the outer
-   ring walking out of line (*general*). Free.
+   ring walking out of line (*general*). Free. **Done 12/10/2026: fine
+   by eye** (`idle-log.md`).
 3. What the flywheel is, read off the parts catalogue by VIN, if test 1
    or 2 points here.
 

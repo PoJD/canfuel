@@ -14,56 +14,12 @@ records it**, and the file is deleted when it is empty.
 
 ## Step 3 — the idle is not fixed
 
-**The engine runs once before the vacuum gauge is here — for item 1 —
-and otherwise not until it is.** Then one at a time; Claude says after
-each whether the next is needed. Claude runs the capture on every drive.
+**The engine waits for the vacuum gauge.** Then one at a time; Claude
+says after each whether the next is needed. Claude runs the capture on
+every drive.
 
-1. **The exhaust test, cold.**
-   - **Cold start.** Claude runs the capture; VCDS on **014, 001, 020**.
-   - **The exhaust test**, straight after the start:
-     - Phone recording, laid in the engine bay by the manifold; later
-       under the car by the front pipe.
-     - At the tailpipe, **say aloud "teď"** and close it for **2–3 s**,
-       never longer. Five times, a few seconds apart.
-     - Move the phone under the car by the front pipe and do the five
-       again.
-     - Then, tailpipe open, say whether the sputter (S15) is louder
-       **from above in the engine bay or from under the car**, and
-       whether the joint behind the converter is heard.
-   - **The clutch, cold:** blip to about 2500 rpm for 2–3 s, let it drop,
-     and from that moment on the phone's stopwatch: pedal **down 30 s,
-     up 30 s, down 30 s, up 30 s**. Neutral throughout.
-   - **A drive of about 30 min**, until the oil reads 68–72 °C. **Home,
-     warm, before engine off: the clutch again** — the same blip and the
-     same four 30 s.
-   - **Then 3 min at idle, loads off, VCDS logging group 001 alone**
-     (one group only).
-   - **Then, still warm and idling, the idle speed in VCDS.**
-     - First: **fault memory empty** (clear it if anything is stored),
-       and **coolant at least 85 °C** (group 004, field 3).
-     - 01-Engine → **Login (11)** → **01283** → Do it.
-     - **Adaptation (10)** → channel **01** → **Read**. Photograph the
-       screen. **Write down the value shown; it is the one to go back
-       to.**
-     - **First, 2 min as it is**, loads off: VCDS logging **014, 056,
-       055**. Claude keeps the capture running throughout.
-     - Then in stages of **+20 rpm** (two steps of 10), each: Adaptation
-       → **+20 rpm**, Test, Save → back to logging **014, 056, 055** for
-       **2 min**, loads off. Write the time each stage starts.
-     - **Stop at the first stage where 014 stays at 0 for the whole 2
-       min with detection `aktivováno`.** Hold it **2 min more** to be
-       sure. If 014 reads `deaktiv.`, a zero means nothing: go on.
-     - **No more than 900 rpm specified**, and stop where the ECU stops
-       accepting. Write each stage's specified rpm (056 field 2).
-     - Engine off, ignition off. Write the final value and the date.
-     - A "data transfer" error → ignition off, start again from the
-       login. Login refused, or the idle hunting → the original value
-       back, and stop.
-     - **Never 11463.**
-   - **Play both recordings back yourself** and write whether a hiss or
-     a puff comes up at each "teď", and on which recording.
-   - **Cold again (the next morning will do):** the connector's bolts
-     tightened once more. Write whether the joint was heard on the drive.
+1. **Cold, the next morning will do:** the exhaust connector's two bolts
+   tightened once more. No engine run for it.
 2. **When the gauge is here: the gauge, cold.** No driving with the
    gauge on.
    - **Before, engine cold and off:** tee the gauge into the fuel
@@ -169,7 +125,10 @@ the drive after and one day of injector cuts. The intake is tight cold,
 the servo is cleared, and the misfires remain at every warm stop on
 settled adaptations with nothing a sealed leak would move having moved
 (`open.md` S3; `refuted.md` C19). On the one drive since the new leads
-the dips no longer keep to one cylinder's stroke.
+the dips no longer keep to one cylinder's stroke. **On 12/10 item 1
+of this step was done** (`idle-log.md`): the exhaust tight to the ear
+cold, the clutch no part of the dips, and the idle raised as far as the
+ECU allows without quieting 014, then put back.
 **The cylinder 4 knock window stays out of this plan** (*owner's
 decision, 9/10/2026*): with no link found between it and the misfires,
 G66 and the rest of H5's tests stay in `open.md` as tests, not steps.
@@ -179,12 +138,12 @@ G66 and the rest of H5's tests stay in `open.md` as tests, not steps.
 **Idle solved → stop and record.** Otherwise each item decides whether
 the next is needed.
 
-**The engine runs for item 1 and otherwise waits for the vacuum gauge**
+**The engine waits for the vacuum gauge**
 (*owner's decision*, 10/10/2026; the gauge is MAR-POL `M57673`, ordered
 10/10, `open.md` *Tools worth owning*). **Item 2 is the gauge alone**,
 on a cold start of its own (*owner's decision*, 10/10/2026, replacing
 the plan of one session for the gauge and the exhaust test together:
-the exhaust test moved to item 1, with the joint). **The gauge is read cold first, and warm
+the exhaust test went first, with the joint, and was done 12/10). **The gauge is read cold first, and warm
 only if cold shows nothing; it is never on during a drive** (*owner's
 decision*, 10/10/2026, replacing the same day's plan of one session with
 the gauge left on through the drive). Cold is not the cleaner reading —
@@ -212,106 +171,13 @@ mixture and the governor were doing; the film is put on the capture's
 clock by the 2500 rpm drop, VCDS by engine speed. 014 is not needed
 there: the dips on the bus are the misfires' timing.
 
-**Item 1's three minutes of group 001** (*owner's decision*, 11/10/2026;
-`open.md` S1, *What VCDS saw just before a dip*): the lambda correction
-just before a dip read about 0.8 % lower than in quiet idle, on two
-sessions. One group logs faster than three, and 001 carries engine speed
-to align on and the lambda correction together, so three minutes of it
-put more samples beside dips than a whole session of three groups did.
-Before the idle adaptation, so it is the old idle.
-
-**Item 1's idle adaptation** (*owner's decision*, 10/10/2026; `open.md`,
-*For later, if wanted*). **The procedure is VW's own, for this engine
-family** (*found the same evening*): the Golf Mk4 repair manual,
-*Motronic injection and ignition system (2.0 ltr. engine)*, *Adapting
-idling speed*, as transcribed on workshop-manuals.com — the same manual
-`vcds.md` already matches field for field to this ECU. It allows the
-idle to be changed "slightly", as an exception for droning or vibration
-at idle, with **no fault stored**, **coolant at least 85 °C**, **login
-01283**, adaptation **channel 1**, the specified speed moved in **10 rpm
-steps**, and the result kept inside the range in VW's emissions test
-binder (not held here). The VCDS screens are its translation of the
-VAG 1551/1552 key presses. The owner raises the idle the same day. **The
-owner's reason**: to lessen what the misfires do — to the converter
-above all — whatever their cause turns out to be, while the cause is
-still being looked for. **The ceiling is the owner's, 900 rpm**
-(*owner's decision*, 10/10/2026, replacing 820, which was Claude's): it
-is a workaround, and the only costs found are a little more fuel at
-idle and **the emissions test** — VW's manual keeps the idle inside its
-emissions-test range, and the Czech test measures at idle against the
-maker's figures (the ministry's *Metodický postup měření emisí
-vozidel*, 12/2020), while every block of this ECU specifies 740–820 rpm
-(`vcds.md`). **So it goes back inside 740–820 before an emissions
-test.** The ECU may not take 900 at all: on another ECU the adaptation
-spans 124–132, about ±40 rpm (Ross-Tech, 1.8T), and owners of early Mk4
-2.0s report about 50 rpm of travel (*forum*). One step at a time and
-056 read after each. **Where to stop is read off the engine** (*owner's
-decision*, 10/10/2026): the first stage at which 014 counts nothing for
-two minutes with detection active, held two more. A stage is two minutes
-because at a warm stop 014 counts a few times a minute (S3), so two
-minutes of zero is a reading and one is not; stages of 20 rpm keep the
-whole climb to a quarter of an hour of idle or so. Detection must read
-`aktivováno`: below about 20 % load it switches off (S3), and a higher
-idle can move the load, so a zero with it off says nothing. **Claude
-grades each stage from the capture** — `IdleHealth` and the dips by the
-stage's start time — so the step that quiets 014 is also checked on
-engine speed, the measure 014 cannot fake. A stage that holds today is
-read again on the next drives, because the learned idle air may settle
-somewhere new (`refuted.md` C19). **What it does to the readings**: every
-comparison from then on is at the new idle — the additive's tanks
-included, accepted by the owner, who can put the original value back
-for a comparison at the old idle. Write down the value and the date, so
-no reading is ever compared across the change by mistake. A raised idle
-that calms the dips confirms what the load readings say (S1) and fixes
-nothing underneath. **A login asked for stops it** (*decided*,
-10/10/2026, the owner's question why; *looked up the same evening*):
-**VW's manual gives the login: 01283** (above). Ross-Tech's 1.8T page
-uses none, on another ECU. **11463 is not an idle code**: the same Ross-Tech page, and every source found,
-give it as the engine ECU's login for **activating cruise control**
-(16167 to deactivate), so entering it would change the car, not unlock
-the idle. **01283** appears in one forum post repeating the 1.8T
-procedure — and turns out to be VW's own code for this engine family.
-**Never 11463** for this.
-
-**Item 1's clutch minutes** (*owner's decision*, 10/10/2026, brought
-forward from the gauge session to the cold start after the joint, and
-once more warm at the end of its drive; on a lead
-raised by another assistant): that the dips and 014 are not misfires at
-all but mechanical play in the driveline — the gearbox input shaft, the
-clutch, the flywheel, the crank pulley's damper — showing at an
-unloaded idle and gone under load. **Against it, from this car's data**:
-the MAF swap halved the dips, fresh and settled adaptations change what
-014 counts, the dips kept to one firing slot (720°) on the captures to
-9/10 where anything turning with the crank repeats at 360°, and the old
-converter burned through, which takes unburnt fuel. **For it, honestly**:
-the dips come when the governor has just lowered the torque, which is
-also when play would show. **The pedal down** takes the gearbox input
-shaft and the clutch disc out of the engine's load; the dips and
-`IdleHealth` the same either way → not the gearbox side; clearly calmer
-with the pedal down → that side is a lead. The flywheel and the pulley
-turn either way and are not separated by it — the pulley's rubber, by
-eye, is the free look at one of them — **looked at 12/10/2026, fine by
-eye** (`idle-log.md`). Free, on a capture already
-running; the blip's drop marks the start on the capture. Two minutes of
-idle each time, cold and warm, against the standing rule — accepted for
-the test.
-
-**Item 1 — the exhaust test, after the joint** (*owner's
-decision*, 10/10/2026: the joint and the test together, the gauge on its
-own when it comes; `open.md` S6, reopened; the method *general*). A
-leak behind the converter lets the closed tailpipe's pressure out there,
-so the manifold ahead of the probe is barely tested, and its noise
-drowns the sputter (S15) the phone is listening for — so the joint was
-shimmed first (12/10, `idle-log.md`) and the test comes on the first
-cold start after it. The
-drive is the shim's first heat cycle, after which the bolts are
-tightened again, because the sealant and the sheet settle; the sealant
-sets only once it has been hot, so whether
-the joint is quiet is read on it. Half an hour is enough to bring the
-oil to the band the warm clutch minutes want (*owner*, 10/10/2026).
-**How it is read**: not heard after the drive →
-S6 closes again; heard → the hangers, then a welded joint at an exhaust
-shop.
+**Item 1 — the bolts once more** (*owner's decision*, 10/10/2026;
+`open.md` S6, closed 12/10/2026). The drive of 12/10 was the shim's
+first heat cycle; the sealant sets only once it has been hot, and the
+sheet and the sealant settle under the connector, so the bolts are
+tightened again cold. The joint was not heard on that drive (*owner*),
+so nothing else is planned for it; heard again → the hangers, then a
+welded joint at an exhaust shop.
 
 **Items 4 to 6 — the engine left alone, and the additive** (*owner's
 decision*, 10/10/2026). After the gauge, unless it shows an intake leak
@@ -374,7 +240,7 @@ its own about a lifter.
    VCDS takes three groups, so 003 sits that drive out (*decided*): its
    idle air was 3.08 g/s on 10/10, the baseline is set, and the idle is
    still read off 014 and the capture.
-**Items 1 and 7 — the exhaust ahead of the front probe (H2)** (*reasoned*,
+**Item 7 — the exhaust ahead of the front probe (H2), warm** (*reasoned*,
    9/10/2026): `open.md`'s first candidate when this was written (since 9/10 second, behind H3, now that the dips keep to one cylinder — but still the one with symptoms of its own), and next now that 2b moved nothing on
    the intake side, the one with a symptom of its own since S15 was
    heard, and free. With the outlet closed, a leak that draws air in at idle blows
@@ -382,7 +248,10 @@ its own about a lifter.
    open hot; never longer than a few seconds and never indoors
    (*general*) — **but cold first** (*decided 9/10/2026*): the owner
    hears S15 cold too, so a leak that sputters cold can be found cold,
-   and the drive is needed only if cold finds nothing. The owner works
+   and the drive is needed only if cold finds nothing. **Cold found
+nothing, 12/10/2026** (*owner*, `idle-log.md`): no hiss or puff at any
+closure, above or below, only the exhaust being throttled — so warm is
+what is left, if Claude asks for it after item 6. The owner works
    alone, so the phone listens at the manifold while he closes the
    tailpipe, and his "teď" marks each closure on the audio. Claude
    cannot hear the recordings (and this laptop cannot decode a phone's

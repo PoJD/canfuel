@@ -363,8 +363,8 @@ As an index (÷ 2.00 × 100): the middle band 106 → 98–107, the cold idle
 new plugs and leads (10/10, below), and the intake is tight cold. The
 dips that kept to one cylinder's stroke did not keep to one on the first
 drive after the new leads, and fewer came. **Next** (`plan.md` step 3):
-the joint behind the converter is shimmed (12/10, below), so the exhaust
-test on the next cold start; then nothing
+the exhaust test found nothing cold, the gearbox side is cleared and the
+idle raise did nothing (12/10, below); nothing more
 until the vacuum gauge arrives (*owner's decision*, 10/10), and the
 gauge on a cold start of its own; unless it shows an intake leak
 plainly, the engine is left alone and a tank is run with a PEA
@@ -621,6 +621,72 @@ joint is behind both probes, and the airbox crack is ahead of the MAF,
 so the air through it was metered — neither can have moved the mixture
 or 014. The photos clear nothing ahead of the probe on their own: the
 exhaust test is what reads it.
+
+**12/10/2026 — the exhaust test cold, the clutch, and the idle raised
+and put back** (`32_step3_item1_z1`, `vcds/vcds-step3-1-*.csv`;
+`plan.md` step 3 item 1). One session on kept adaptations: a cold start
+at 10.5 °C of coolant, the exhaust test on the cold idle, the clutch
+cold, a 9 min drive to 68–70 °C of oil, the clutch warm, 3 min of warm
+idle on 001, then the idle adaptation, engine off.
+- **The exhaust test, cold: nothing** (*owner*, from his two phone
+  recordings): five closures by the manifold and five under the car by
+  the front pipe; no hiss or puff at any of them, only the exhaust being
+  throttled. Claude cannot hear the recordings; this is the owner's
+  reading. H2 is not refuted by it — a crack in cast iron may open only
+  hot — so the warm test stays in `plan.md` item 7.
+- **The joint behind the converter: not heard on the whole drive**
+  (*owner*). S6 closed (`open.md`); the bolts are tightened once more
+  cold.
+- **The clutch makes no difference to the idle**, cold or warm. The
+  engine-speed grade (`IdleHealth`'s rpm, 30 s halves from the blip's
+  drop) cold, oil ~30 °C: down 2.90, up 2.70, down 2.90, up 2.52; warm,
+  oil 70 °C: down 1.66 (still settling from the blip), up 1.14, down
+  0.89, up 0.99, down 1.16, up 1.01. Pedal up is not rougher — if
+  anything the reverse — so the gearbox input shaft and the clutch disc
+  are not where the dips come from (`open.md` H12). The flywheel and
+  the pulley turn either way and stay unseparated by it.
+- **A tick in neutral, cold, pedal up only** (*owner*, heard; on his
+  phone video, which Claude cannot hear): regular, gone with the pedal
+  down. Added as S16, not to be pursued (*owner's decision*).
+- **The idle adaptation**: channel 01 read **128 = 780 rpm** (fault
+  memory empty, coolant 90 °C, login 01283;
+  `photos/vcds-idle-adapt-2026-10-12-*.jpg`). Two minutes at each of
+  128, 130, 132, 133 and 133 again — 134 was meant and 133 entered, and
+  136 was then saved and **the ECU kept 133 = 830 rpm, its limit**. 014
+  kept counting at every stage with detection active; from 133 it read
+  `deaktiv.` for a third and then two thirds of the time, as a higher
+  idle lowers the load (S3). By stage:
+
+  | channel 01 | specified | grade | dips /min (bus) | 014 steps up /min |
+  |---|---|---|---|---|
+  | 128 | 780 | 1.22 | 4.9 | ~9 |
+  | 130 | 800 | 1.31 | 2.3 | ~5 |
+  | 132 | 820 | 1.36 | 5.1 | ~4 |
+  | 133 | 830 | 1.35 | 2.6 | ~5 |
+  | 133 | 830 | 1.40 | 3.1 | (detection mostly off) |
+
+  The last column counts how often the VCDS field stepped up within the
+  stage, not the counter's total, so it compares stages with each other
+  and not with S3's earlier rates. **No stage quieted 014, and the bus
+  shows no trend** — the dips go up and down and the grade rises
+  slightly with engine speed. **Put back to 128 the same day** (*owner's
+  decision*), warm on a restart, 056 reading 780
+  (`vcds/vcds-step3-1-back128-014-056.csv`).
+- **The warm idle was calmer than on any day before** at the same oil:
+  grade 0.99 at the first warm stop and 1.22 at 128 after the clutch,
+  against 1.53–1.77 for `30` and `31` at 67–80 °C (`open.md` S1); the
+  owner saw smaller 014 figures than usual too. 055's learned value
+  −1.18 to −1.21 (settled), and 032 read **0.0 / +2.3 %** afterwards
+  (`photos/vcds-032-2026-10-12-after-step3-1.jpg`; 4/10 −0.8 / +2.3,
+  9/10 −2.3 / +5.5). The changes since `31`: the joint behind the
+  converter — behind both probes, so not it (`refuted.md` A13) — and
+  the new air filter with the airbox crack sealed. One day; the drives
+  of item 6 say whether it holds.
+
+**What it is not known to have achieved:** the idle raised to the ECU's
+limit did not quiet 014, so the raise is not a workaround and was
+undone. Whether the calmer warm idle is the new filter and the sealed
+airbox, the weather or one day's chance is not known.
 
 ---
 

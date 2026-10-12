@@ -156,6 +156,7 @@ service records or from the owner's own work.
 | Rear shock absorbers, air-conditioning recharge, minor items | 17/9/2026 | ~0 |
 | **Fuel: OMV MaxxMotion 100**, throughout the ownership (*owner*, 10/10/2026: "since 2017, always"). Before 9/2017, not known. **Until summer 2026 the tank held fuel about three years old** (*owner*, 10/10/2026), bought before the lay-up of 2023–2025 (*Distance and use*) | since 9/2017 | the whole ownership, ~27,800 km |
 | **Battery disconnected** — every ECM adaptation (fuel, idle air, knock, throttle) restarts from zero each time | after the summer heater work (row above), then **23/9, 26/9, 1–2/10 and the morning of 4/10/2026**; 098 run 2/10 and 4/10. **Connected since 4/10**, through the work of 9/10 and 10/10 (*from `idle-log.md` and `open.md`*) | — |
+| **Idle speed adaptation**, 01-Engine channel 01 (login 01283, VW's procedure; `vcds.md`) | **128 = 780 rpm specified, as found 12/10/2026** (`photos/vcds-idle-adapt-2026-10-12-*.jpg`). Raised the same day in steps to **133 = 830 rpm, the most this ECU accepts** — 136 saved, 133 kept — then **put back to 128** the same day, warm, 056 reading 780 again (*owner's decision*; `idle-log.md`) | — |
 
 Three entries carry more than a date.
 
