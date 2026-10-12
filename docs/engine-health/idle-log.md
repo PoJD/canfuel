@@ -601,7 +601,8 @@ photographed from below; a new air filter** (*owner, photographed*;
   probe, so not in H2's zone. The rear probe's cable re-routed clear of
   the floor.
 - **A new Bosch air filter**, and **a crack in the airbox**, ahead of
-  the MAF, sealed with putty.
+  the MAF, sealed with putty (`photos/airbox-crack-2026-10-12-sealed.jpg`;
+  the old element, `photos/air-filter-old-2026-10-12-*.jpg`).
 
 **What it is not known to have achieved:** nothing for the idle. The
 joint is behind both probes, and the airbox crack is ahead of the MAF,
