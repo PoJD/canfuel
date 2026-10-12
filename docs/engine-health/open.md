@@ -3685,7 +3685,24 @@ drawing of this car.
   own on the intake hose **just behind the MAF** (*owner*, 12/10/2026;
   `refuted.md` C9). *This bullet used to say that two thinner hoses
   joined the same connector, one of them the shroud supply (owner,
-  1/10/2026); corrected by the owner with the hoses in hand.* That tee (*owner, photographed 1/10/2026*) sits on a
+  1/10/2026); corrected by the owner with the hoses in hand.*
+  **Could the two thin hoses have been swapped by an earlier hand?**
+  (*the owner's question*, 12/10/2026.) Probably not, on three counts
+  off the parts themselves: the tee's hose is a moulded VW part
+  (`06A 133 374`) with a formed end over its connector, which a plain
+  hose pushed on elsewhere would not be; the shroud supply was **clean
+  inside** (`refuted.md` C9), where a hose carrying crankcase gas comes
+  out oily, as the breather hose did; and the two bores differ, 6 and
+  8 mm, so a swap would have meant forcing each onto the other's
+  nipple. **The routing also makes sense as built** (*general*, not
+  from a VW document for this engine): ahead of the throttle there is
+  almost no suction at idle, so a breather needs a second, small path
+  to manifold vacuum for its gases to move — which is what the tee's
+  hose gives it, from the breather's connector to the throttle's
+  vacuum spigot. The injectors' shroud air only needs clean, metered
+  air ahead of the plate, which the port behind the MAF gives without
+  crankcase oil in it. What would settle it: oil inside the tee's old
+  hose (it then carried breather gas, as built) — to be looked at. That tee (*owner, photographed 1/10/2026*) sits on a
   line that runs **up towards the throttle** and **down under the
   runners, by the owner's reading to the EVAP side**. **The piece up to
   the throttle is a short moulded rubber elbow marked `06A 133 374`**
