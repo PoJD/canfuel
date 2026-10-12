@@ -18,6 +18,12 @@ records it**, and the file is deleted when it is empty.
 says after each whether the next is needed. Claude runs the capture on
 every drive.
 
+1. **Cold, engine off, any day before the gauge: lead 4.**
+   - Pull lead 4's boot off its plug, by the boot, and push it back on
+     until it clicks. Do the same with lead 1 to compare.
+   - Write whether 4 now sits as firmly as 1, and whether it clicks.
+   - Photograph lead 4's boot inside and the plug's white ceramic: any
+     dark line, burn or crack.
 2. **When the gauge is here: the gauge, cold.** No driving with the
    gauge on.
    - **Before, engine cold and off:** tee the gauge into the fuel
@@ -209,6 +215,20 @@ as scattered** → it over-read without harming the idle; **B and
 steadier** → something that shapes the flow helped, not the
 calibration. Nothing here is a reason to buy a part.
 
+**Item 1 — lead 4** (*owner's decision*, 12/10/2026; `open.md` H4
+test 1e). When the new leads went on on 10/10, lead 4's plug end
+clicked but felt the least firm of the four. A boot not fully home
+leaves a gap the spark can jump or track across, on one cylinder only,
+and cylinder 4 is where S4, S5 and the old burnt plug terminal point,
+with the dips back on one slot on 12/10. Cold and engine off, so no
+spark and no idle; lead 1 is the comparison because it is the other
+outer cylinder and easy to reach. **How it is read**: firm now and
+clean → it was seated and is again, nothing named; still loose →
+the boot or the plug's terminal nut, and a new lead 4; a dark track on
+the ceramic or in the boot → it has been arcing, and the gauge session
+then reads the first idle with it seated. Nothing is measured, so it
+needs no capture.
+
 **Items 4 to 6 — the engine left alone, and the additive** (*owner's
 decision*, 10/10/2026). After the gauge, unless it shows an intake leak
 plainly, no more work on the engine for now: no new tools, nothing taken
@@ -271,7 +291,7 @@ its own about a lifter.
    idle air was 3.08 g/s on 10/10, the baseline is set, and the idle is
    still read off 014 and the capture.
 **Item 7 — the exhaust ahead of the front probe (H2), warm** (*reasoned*,
-   9/10/2026): `open.md`'s first candidate when this was written (since 9/10 second, behind H3, now that the dips keep to one cylinder — but still the one with symptoms of its own), and next now that 2b moved nothing on
+   9/10/2026): `open.md`'s first candidate when this was written (**fourth since 12/10**, when the dips came back on one slot and the cold test found nothing) (since 9/10 second, behind H3, now that the dips keep to one cylinder — but still the one with symptoms of its own), and next now that 2b moved nothing on
    the intake side, the one with a symptom of its own since S15 was
    heard, and free. With the outlet closed, a leak that draws air in at idle blows
    out, and hisses or puffs. Warm, because a crack in cast iron may only
