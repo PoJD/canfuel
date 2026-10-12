@@ -486,7 +486,8 @@ was real it was very little. Whether any crack goes through was not
 settled. **The argument above stands**: the hose sits at intake-pipe
 pressure ahead of the throttle, on air the MAF has already metered.
 Replaced (*owner's decision*) — no VW number readable on it, the white
-print is smeared, so a hose of the same bore.
+print is smeared, so a hose of the same bore: **8 mm inside**
+(*owner-measured*), the same 8 mm hose the sleeves were cut from.
 
 ### C10. "Group 014 is a lifetime total" — measured
 

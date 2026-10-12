@@ -711,6 +711,17 @@ idle on 001, then the idle adaptation, engine off.
   the intake ahead of the throttle, where a crack draws little at idle,
   and on all four cylinders alike — so not read as the dips' cause.
   Both to be replaced (*owner's decision*).
+- **The third hose off that connector leaks** (`open.md`, *What the web
+  says about this engine's ventilation*): the thin hose to the tee by
+  the runners, white print `06A 133 374`, lets air out when blown into
+  with the far end stopped, cracked across its bend and crazed at its
+  end. It sits on the line at manifold vacuum, so it is the one of the
+  three that can matter at idle — on all four cylinders alike. To be
+  replaced by the number, with the intake hose MAF to throttle
+  `1C0 129 684`, whose plastic stub for the breather moves in its joint,
+  and the missing clamps (*owner's decision*). **The next warm idle is
+  the first with all of it new**: calmer, or 032/033 moving, would say
+  this line was drawing air.
 
 **What it is not known to have achieved:** the idle raised to the ECU's
 limit did not quiet 014, so the raise is not a workaround and was
