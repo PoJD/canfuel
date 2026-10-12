@@ -3702,7 +3702,9 @@ drawing of this car.
   vacuum spigot. The injectors' shroud air only needs clean, metered
   air ahead of the plate, which the port behind the MAF gives without
   crankcase oil in it. What would settle it: oil inside the tee's old
-  hose (it then carried breather gas, as built) — to be looked at. That tee (*owner, photographed 1/10/2026*) sits on a
+  hose (it then carried breather gas, as built). **Pictures of the same
+  engine on the web show the same routing** (*owner*, 12/10/2026) —
+  other cars, not this one, but they agree; taken as not swapped. That tee (*owner, photographed 1/10/2026*) sits on a
   line that runs **up towards the throttle** and **down under the
   runners, by the owner's reading to the EVAP side**. **The piece up to
   the throttle is a short moulded rubber elbow marked `06A 133 374`**
