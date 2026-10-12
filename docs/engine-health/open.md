@@ -1897,9 +1897,10 @@ full-load enrichment (*general*), for all four cylinders alike.
   probably not, the rest almost certainly not. The one route in would be an
   altered idle ignition map, and idle is held by the ECU's own closed-loop
   control.
-- **How it closes: return the ECU to standard**, which the owner is
-  considering. That needs the original map (whether the tuner kept it is not
-  recorded). If it happens:
+- **How it closes: return the ECU to standard** — **the owner will ask
+  the tuner whether the original map was kept** and have it written
+  back if so (*owner's decision*, 12/10/2026; `plan.md` item 4a). If it
+  happens:
   1. `IdleHealth` at a matched oil temperature and a 020 + 026 neutral log,
      before and after — that turns the remap's role in S1 and S4/S5 from an
      assessment into a measurement;

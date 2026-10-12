@@ -128,7 +128,7 @@ service records or from the owner's own work.
 | **Air filter element, new**, Bosch **`S 3714`** = `1 457 433 714` (the box lists Mann `C37153`, Mahle `LX684`, Purflux `A379`; *read off the box*, `photos/air-filter-new-2026-10-12-label.jpg`). **The airbox was found cracked**, on the filtered side ahead of the MAF, and sealed with putty by the owner — air through the crack was metered but unfiltered (`photos/airbox-crack-2026-10-12-sealed.jpg`; **sealed from outside too, the same day**, as a stopgap until a new airbox is decided on — `photos/airbox-crack-2026-10-12-sealed-outside.jpg`; the airbox is **`1C0 129 607 A`**, element `1J0 129 620`, Mann `C37153`, *read off the lid*, `photos/airbox-2026-10-12-label.jpg`; the crack itself against the light, `photos/airbox-2026-10-12-detail.jpg`; the outlet and MAF, `photos/airbox-2026-10-12-outlet-maf.jpg`). The old element (`photos/air-filter-old-2026-10-12-*.jpg`): dust streaks on the dirty side, the clean side clean by eye, the pleats bent over at one end | **12/10/2026**, by the owner | ~0 |
 | MAF sensor | 7/2018 *(connector cleaned 7/2026)* | not recoverable — see *Distance and use* |
 | **MAF sensor, new** | **24/9/2026**, genuine VW `06A 906 461 A`; the 2018 unit is kept. The hose from it to the throttle is held by the owner's own clamps, not VW's: at the MAF **a narrower all-metal clamp since 9/10/2026** (a worm-drive band clamp marked `W2 50-70mm`, *photographed*: `photos/maf-clamp-2026-10-09-*.jpg`) (*until then a rubber-lined pipe clamp*, possibly not seating the hose well — `idle-log.md`, 9/10), a one-screw band clamp at the throttle. Its orientation and the wiggle test: `idle-log.md`, *The MAF* | ~0 |
-| Chiptuning, described by the owner as mild | 6/2018 | — |
+| Chiptuning, described by the owner as mild | 6/2018 — **confirmed by the original order email** (*owner*, 12/10/2026) | — |
 | Dipstick, dipstick cap and a seal recorded as "těsnění ventilu" (valve seal), **against an oil leak**. *Owner's recollection (27/9/2026), not certain:* the dipstick's narrow neck was cracked and leaking, and the seal was probably the rubber the dipstick seats in — not the valve cover gasket. The record itself is no longer kept | **12/7/2018**, service record | — |
 | Timing belt and water pump | **10/2017** | the whole ownership, ~27,800 km |
 | **Fuel tank** | **replaced inside the ownership, date not recoverable** | unknown — see below |
@@ -196,8 +196,11 @@ agrees, from a completely different measurement, with the volumetric efficiency
 `docs/firmware/frames.md` derives from mass air flow and the ECU's load channel (84–93 %).
 
 **The chiptuning of 6/2018 is the standing unknown.** The tuner's own remark
-was that there was nothing to be had at the top of the range; the car is not
-going back to standard. The warnings in `docs/firmware/can-decoding.md` and
+was that there was nothing to be had at the top of the range. **The owner
+now means to ask the tuner for the original map and have it written back**
+(*owner's decision*, 12/10/2026, to take this unknown out of the idle
+question; `plan.md` item 4a) — *this said "the car is not going back to
+standard"*. The warnings in `docs/firmware/can-decoding.md` and
 `docs/firmware/frames.md` about what a remap does to the torque and load channels all
 describe this car rather than a hypothetical one. The owner describes the remap
 as mild. It sits between the 8.8 of

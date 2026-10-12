@@ -62,7 +62,8 @@ counts in steps of twelve.
 
 **The car.** VW New Beetle, 2.0 l **AQY** (85 kW), ECU `06A 906 018`,
 model year 2000, bought in 9/2017 at 126,200 km and driven little since.
-**Remapped in 6/2018**, described by the owner as mild; not undone. The engine warning lamp had been masked by a previous
+**Remapped in 6/2018**, described by the owner as mild; not undone so
+far — the owner means to ask the tuner for the original (12/10/2026). The engine warning lamp had been masked by a previous
 owner and was restored in 2017.
 
 **S1 — the unsettled idle.** At a standstill the engine speed dips by 20–45

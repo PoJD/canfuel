@@ -55,6 +55,13 @@ every drive.
    - **Write** the same four things as in 2.
 4. **No clear intake leak in 2 or 3 → the engine is left alone.** Low
    and steady at idle only → Claude says the next step too.
+4a. **Only if the tuner still has the original map:** have it written
+   back, after 2 and 3, before 5 if it fits. Ask the tuner whether
+   writing it clears the ECU's adaptations and write the answer into the
+   chat. Then **two or three ordinary warm drives before the can**:
+   Claude runs the capture; VCDS on **014, 003**; 055 once at the end,
+   warm idle; on one of them **one held full-throttle pull in 4th**. No
+   time for the drives → the can first, the map after the can's tanks.
 5. **Whatever 2 and 3 showed, after them:** **one can of Liqui Moly
    *DFI Cleaner* (= *Pro-Line Direct Injection Cleaner*, 120 ml)** into
    the tank, then fill **30–50 l** of the usual
@@ -234,6 +241,21 @@ airbox out, inspects it and seals it again (`open.md` S9); **lower and
 as scattered** → it over-read without harming the idle; **B and
 steadier** → something that shapes the flow helped, not the
 calibration. Nothing here is a reason to buy a part.
+
+**Item 4a — the original map** (*owner's decision*, 12/10/2026, to take
+the remap out of the idle question; `open.md`, *The remap*). After the
+gauge, so the gauge's reading stays on the car as it has been. **Kept
+apart from the can by a few drives**, or the two changes cannot be told
+apart afterwards; if there is no time for the drives, the can goes
+first and the map waits for both tanks, since the can's reading is the
+slower one. **Whether a reflash clears the adaptations is not known**
+(*not read from any document*); the drives are planned as if it does —
+fresh adaptations look better on both rulers (`refuted.md` C19), so the
+reading is taken on the last of them and against `30`–`32`. **The pull
+in 4th** is for the converter, not the idle: the torque scale was fitted
+by making this car's plateau reproduce the stock ratings
+(`docs/firmware/can-decoding.md` question 8), so on a stock map the pull
+says whether it still holds.
 
 **Items 4 to 6 — the engine left alone, and the additive** (*owner's
 decision*, 10/10/2026). **The can goes in whatever the gauge shows**
