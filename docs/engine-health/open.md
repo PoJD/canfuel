@@ -87,15 +87,16 @@ Everything else settled against is in `refuted.md`.
   sputter from the exhaust close behind the engine at every load (added
   9/10) — H2's zone, **still heard** (*owner*, 10/10/2026). **S6**, the
   joint behind the converter, **reopened 10/10** (*owner's decision*):
-  it rattles again the day after it was remade, and drowns S15 and
-  vents the tailpipe test until it is tight.
+  it rattled again the day after it was remade, and drowns S15 and
+  vents the tailpipe test until it is tight; **shimmed 12/10**, read on
+  the next drive.
 - **The cylinder 4 knock window: S4 and S5**, a cluster of its own
   (H5, H6). The injectors were cleared from it on 9/10 (`refuted.md`
   B7). **Not in `plan.md`** (*owner's decision, 9/10/2026*): no link to
   the misfires has been found, so its tests, G66 first, stay in H5.
 
-**Next:** `plan.md` step 3 — **first the joint behind the converter,
-shimmed tight (S6), and the exhaust test on the cold start after it**;
+**Next:** `plan.md` step 3 — **the exhaust test on the next cold
+start**, the joint behind the converter shimmed tight on 12/10 (S6);
 then **nothing until the vacuum gauge arrives** (ordered 10/10, *owner's
 decision*), and the gauge on a cold start of its own. Unless
 it shows an intake leak plainly, the engine is then left alone and a
@@ -844,7 +845,10 @@ planned** (*owner*, the method *general*): the connector off, a shim of
 thin sheet — about 0.4–0.5 mm, stainless, **not galvanised** — wrapped
 round the narrower pipe under it, a thin coat of exhaust sealant under
 and over the shim, the bolts tightened evenly and again after the first
-heat cycle, and the hangers checked for strain. **Why it matters here**:
+heat cycle, and the hangers checked for strain. **Done 12/10/2026** (*owner, photographed*:
+`photos/exhaust-joint-2026-10-12-*.jpg`): the strip and the sealant
+under the connector, and nothing moves. **Open until the drive says
+whether it is quiet** (`plan.md` item 1). **Why it matters here**:
 behind both probes, so still nothing for the mixture or the misfires,
 but **it drowns S15** (S15 ↔ S6) **and vents the tailpipe test** (`plan.md`
 step 3), so H2 cannot be tested past it.

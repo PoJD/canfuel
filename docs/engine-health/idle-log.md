@@ -363,8 +363,8 @@ As an index (÷ 2.00 × 100): the middle band 106 → 98–107, the cold idle
 new plugs and leads (10/10, below), and the intake is tight cold. The
 dips that kept to one cylinder's stroke did not keep to one on the first
 drive after the new leads, and fewer came. **Next** (`plan.md` step 3):
-the joint behind the converter shimmed tight first (S6, reopened
-10/10) and the exhaust test on the cold start after it; then nothing
+the joint behind the converter is shimmed (12/10, below), so the exhaust
+test on the next cold start; then nothing
 until the vacuum gauge arrives (*owner's decision*, 10/10), and the
 gauge on a cold start of its own; unless it shows an intake leak
 plainly, the engine is left alone and a tank is run with a PEA
@@ -579,6 +579,35 @@ the remake of 9/10 did not hold — the pipe behind is about 54.2 mm in a
 55 mm connector and moved in it even tightened. S6 reopened; a shim
 under the connector is the owner's fix, and the exhaust test waits on
 it. Nothing for the idle either way: the joint is behind both probes.
+
+**12/10/2026 — the joint behind the converter shimmed; the exhaust
+photographed from below; a new air filter** (*owner, photographed*;
+`vehicle-history.md`). No engine run.
+- **The joint** (`photos/exhaust-joint-2026-10-12-*.jpg`): apart, a
+  strip of sheet wrapped round the narrower pipe, sealant under and over
+  it, the sleeve connector back on. **It holds and nothing moves.**
+  Whether it is quiet is read on the drive (`plan.md` item 1).
+- **From below, cold** (`photos/exhaust-flange-2026-10-12-below-*.jpg`,
+  `photos/manifold-2026-10-12-*.jpg`): the joint from the manifold to
+  the front pipe, with its spring bolts, and cylinders 3 and 4's pipes.
+  The owner sees nothing wrong at the joint; the pipes are original and
+  rusty outside, and a hole cannot be told from there. In Claude's
+  reading no clear black soot trail shows anywhere photographed; one
+  close-up (`manifold-2026-10-12-below-closeup.jpg`), a dark rough
+  surface with a crack-like line, is not yet placed. Cylinders 1 and 2
+  and the joint to the head stay unseen.
+- **The blanked boss is an old probe with its leads cut off**
+  (`photos/exhaust-blanked-boss-2026-10-12.jpg`), behind the front
+  probe, so not in H2's zone. The rear probe's cable re-routed clear of
+  the floor.
+- **A new Bosch air filter**, and **a crack in the airbox**, ahead of
+  the MAF, sealed with putty.
+
+**What it is not known to have achieved:** nothing for the idle. The
+joint is behind both probes, and the airbox crack is ahead of the MAF,
+so the air through it was metered — neither can have moved the mixture
+or 014. The photos clear nothing ahead of the probe on their own: the
+exhaust test is what reads it.
 
 ---
 

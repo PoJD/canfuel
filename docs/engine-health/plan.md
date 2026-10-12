@@ -18,19 +18,9 @@ records it**, and the file is deleted when it is empty.
 and otherwise not until it is.** Then one at a time; Claude says after
 each whether the next is needed. Claude runs the capture on every drive.
 
-1. **The joint behind the converter, made tight, then the exhaust test,
-   cold.**
-   - Measure both pipes' outside diameters; write them into the chat.
-   - Connector off. A strip of thin sheet, **about 0.4–0.5 mm,
-     stainless, not galvanised**, as wide as the connector's grip on
-     the narrower pipe, wrapped round it as far as it goes, a small gap
-     at the ends.
-   - A thin coat of exhaust sealant on the pipe under the strip and on
-     the strip under the connector. Pipe ends as close together as they
-     go.
-   - Connector on, bolts tightened in turn, evenly. Nothing may move.
+1. **The exhaust test, cold.**
    - Look at the exhaust's rubber hangers: nothing pulling the joint
-     sideways or letting it sag.
+     behind the converter sideways or letting it sag.
    - **The crank pulley, engine off:** look at its rubber ring between
      the inner and outer metal rings — cracks, bulging, the outer ring
      out of line. Photograph it.
@@ -78,11 +68,7 @@ each whether the next is needed. Claude runs the capture on every drive.
    - **Play both recordings back yourself** and write whether a hiss or
      a puff comes up at each "teď", and on which recording.
    - **Cold again (the next morning will do):** the connector's bolts
-     tightened once more; **photograph from below** whatever the phone
-     reaches — the flange under the manifold, the front pipe back to the
-     converter, the probe if it shows. **Black soot streaks** at a joint
-     mark a leak. The manifold itself is under its heat shield: leave
-     it. Write whether the joint was heard on the drive.
+     tightened once more. Write whether the joint was heard on the drive.
 2. **When the gauge is here: the gauge, cold.** No driving with the
    gauge on.
    - **Before, engine cold and off:** tee the gauge into the fuel
@@ -314,23 +300,20 @@ running; the blip's drop marks the start on the capture. Two minutes of
 idle each time, cold and warm, against the standing rule — accepted for
 the test.
 
-**Item 1 — the joint first, then the exhaust test** (*owner's
+**Item 1 — the exhaust test, after the joint** (*owner's
 decision*, 10/10/2026: the joint and the test together, the gauge on its
-own when it comes; `open.md` S6, reopened; the method *general*). The joint rattles again, and a
+own when it comes; `open.md` S6, reopened; the method *general*). A
 leak behind the converter lets the closed tailpipe's pressure out there,
 so the manifold ahead of the probe is barely tested, and its noise
-drowns the sputter (S15) the phone is listening for — so the joint
-comes first and the test straight after, on the same cold start. The
+drowns the sputter (S15) the phone is listening for — so the joint was
+shimmed first (12/10, `idle-log.md`) and the test comes on the first
+cold start after it. The
 drive is the shim's first heat cycle, after which the bolts are
-tightened again; the sealant sets only once it has been hot, so whether
+tightened again, because the sealant and the sheet settle; the sealant
+sets only once it has been hot, so whether
 the joint is quiet is read on it. Half an hour is enough to bring the
-oil to the band the warm clutch minutes want (*owner*, 10/10/2026). **The shim**: about 54.2 mm in a 55 mm connector is
-about 0.4 mm a side, so a strip of that thickness takes up the play; a
-thicker one keeps the connector from closing evenly. Stainless because
-plain steel rusts out and galvanised sheet gives off zinc fumes when the
-exhaust is hot. Sealant thin, so the connector grips metal and not a
-layer of paste. Retightened after one heat cycle because the sealant
-and the sheet settle. **How it is read**: not heard after the drive →
+oil to the band the warm clutch minutes want (*owner*, 10/10/2026).
+**How it is read**: not heard after the drive →
 S6 closes again; heard → the hangers, then a welded joint at an exhaust
 shop.
 
@@ -417,7 +400,9 @@ its own about a lifter.
    photograph outranks every other source here. **The manifold and its
    joint to the head sit under the heat shield** and cannot be seen or
    photographed (*owner*, 9/10/2026), so the photos cover only the flange
-   and the pipe below it. **How it is read** (*decided 9/10/2026*): soot
+   and the pipe below it. **Photographed 12/10/2026, cold, before the
+   test** (*owner*; `idle-log.md`): the joint to the front pipe and
+   cylinders 3 and 4's pipes from below; no clear soot trail in Claude's reading of them, and one close-up not yet placed. **How it is read** (*decided 9/10/2026*): soot
    below → that joint; louder from the engine bay with nothing below →
    the manifold or its joint to the head, which is the owner's standing
    decision of a new manifold (3/10/2026), the shield coming off then
