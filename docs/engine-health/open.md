@@ -2303,7 +2303,14 @@ fully home, and an old injector alone clicked fully into every bore
 
 - **It fits the timing.** On the same MAF, the hot idle graded 43–48 on
   11/8 and 53–118 on the morning after the refit (S1) — the injectors are
-  in that window, and they were the day before.
+  in that window, and they were the day before. **So are the hoses**
+  (*the owner's thought*, 12/10/2026): since August the intake hose and
+  the thin hoses on it were off several times and handled a good deal,
+  and hard, porous 1999 rubber that is moved can start to seep where it
+  had not. August's 43–48 are 22 s holds, shorter than the device waits
+  before it grades (S1), so the comparison is weak; the first start with
+  the thin hoses and the breather hose new (`plan.md` item 2) answers it
+  better than August can.
 - **It fits the load effect.** Air leaking at a seat enters the port
   directly, past the MAF, and is largest against the highest vacuum — at
   idle. More load means more metered air, so a fixed leak weighs less.
@@ -3732,7 +3739,14 @@ drawing of this car.
   so it stays — no new one to be had short of a VW original the owner
   will not pay for — **the one original hose left on this line**; the
   breather hose, though it holds when blown through, is replaced too
-  (*owner's decision*, 12/10/2026; `refuted.md` A15). Clamps were
+  (*owner's decision*, 12/10/2026; `refuted.md` A15). **The closed
+  plastic branch on this hose just behind the MAF**, from which nothing
+  leads (*owner*), is by its shape an **intake resonator** — a side
+  chamber tuned to damp the intake's pressure pulsation and its noise
+  (*general*, not read from any VW document for this part). Hoses sold
+  for the same place without it (*owner*, 12/10/2026) are therefore not
+  like for like: the MAF was calibrated with the chamber in place, and
+  more pulsation at the MAF can move its reading (*general*). Clamps were
   missing at some hose ends. **The plain hose fitted 2/10 from the tee
   up to the throttle's top spigot is 8 mm** (*owner*, 12/10/2026), on
   the tee whose leg to the breather's connector takes the 6 mm hose; if
