@@ -54,9 +54,10 @@ every drive.
      hose back on.
    - **Write** the same four things as in 2.
 4. **No clear intake leak in 2 or 3 → the engine is left alone.** Low
-   and steady at idle only → Claude says the next step instead.
-5. **One can of Liqui Moly *DFI Cleaner* (= *Pro-Line Direct Injection
-   Cleaner*, 120 ml)** into the tank, then fill **30–50 l** of the usual
+   and steady at idle only → Claude says the next step too.
+5. **Whatever 2 and 3 showed, after them:** **one can of Liqui Moly
+   *DFI Cleaner* (= *Pro-Line Direct Injection Cleaner*, 120 ml)** into
+   the tank, then fill **30–50 l** of the usual
    OMV MaxxMotion 100. Drive the tank as usual. Battery stays connected.
    - **`IdleHealth` off the display, through both tanks after the can:**
      on drives where the oil reaches **68–72 °C**, at one stop of **at
@@ -235,7 +236,13 @@ steadier** → something that shapes the flow helped, not the
 calibration. Nothing here is a reason to buy a part.
 
 **Items 4 to 6 — the engine left alone, and the additive** (*owner's
-decision*, 10/10/2026). After the gauge, unless it shows an intake leak
+decision*, 10/10/2026). **The can goes in whatever the gauge shows**
+(*owner's decision*, 12/10/2026): a leak and tired valves can both be
+there at once (`open.md`, *The idle's candidates, ranked*), so a leak
+found does not make the cleaner pointless. **After the gauge, not
+before it** (*decided 12/10/2026*): the gauge's needle is the cleanest
+reading of the valves there will be, and deposits the can moves would
+move it — so the gauge first gives the before. After the gauge, unless it shows an intake leak
 plainly, no more work on the engine for now: no new tools, nothing taken
 apart, no garage. The one thing tried is an inlet-valve cleaner in the
 fuel, because inlet-valve deposits (`open.md` H1, *Inlet-valve deposits*)
