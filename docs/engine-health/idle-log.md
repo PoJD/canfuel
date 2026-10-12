@@ -702,7 +702,7 @@ idle on 001, then the idle adaptation, engine off.
   sit alike and lead 4 looks sound (*owner*). Nothing named; H4 keeps
   its place on the one-cylinder argument alone (`open.md`, *The idle's
   candidates, ranked*).
-- **The two original hoses off the breather's connector, taken off and
+- **Two original hoses off the intake hose, taken off and
   looked at** (*owner, photographed*; `refuted.md` A15 and C9): the
   breather hose `06A 103 493 N` with its cuff split along the moulding
   seam at the end, torn at the edge, crazed at the bend and oily inside;
@@ -710,7 +710,7 @@ idle on 001, then the idle adaptation, engine off.
   very small leak when blown into with the far end stopped. Both sit on
   the intake ahead of the throttle, where a crack draws little at idle,
   and on all four cylinders alike — so not read as the dips' cause.
-- **The third hose off that connector leaks** (`open.md`, *What the web
+- **The thin hose from the tee leaks** (`open.md`, *What the web
   says about this engine's ventilation*): the thin hose to the tee by
   the runners, white print `06A 133 374`, lets air out when blown into
   with the far end stopped, cracked across its bend and crazed at its

@@ -111,7 +111,8 @@ the fit tables, so the ranked list stands as it was.
 
 **The next start carries four changes at once** (*owner*, 12/10): the
 airbox crack sealed inside and out, both layers cured; the three thin
-and breather hoses off the breather's connector new; and the 8 mm hose
+and breather hoses new — the breather hose and the tee's hose on the
+connector ahead of the throttle, the shroud supply behind the MAF; and the 8 mm hose
 from the throttle to the tee checked, and narrower if it sits loose.
 So an improvement after it cannot be put down to one of them; the
 vacuum gauge reads only the hoses' share (S9, *the cracked airbox*).
@@ -3669,10 +3670,15 @@ drawing of this car.
   connector with no electrical connector**, and a thinner hose joins the
   same connector. *This bullet used to say "with the heater `N79` teed
   into it against icing", from the catalogues; the part on the car has no
-  wiring, so no heater is fitted here.* **Two thinner hoses** join the same
-  connector (*owner, 1/10/2026*): one to the injectors' air shrouds
-  (`refuted.md` C9), one to **a second tee right by the head, at the
-  intake runners**. That tee (*owner, photographed 1/10/2026*) sits on a
+  wiring, so no heater is fitted here.* **The connector sits on the
+  intake hose just ahead of the throttle**, and **one thinner hose joins
+  it**, a little below the breather hose: the one from **a second tee
+  right by the head, at the intake runners** (*owner*, 12/10/2026). **The
+  injectors' air-shroud supply does not join it**: it has a port of its
+  own on the intake hose **just behind the MAF** (*owner*, 12/10/2026;
+  `refuted.md` C9). *This bullet used to say that two thinner hoses
+  joined the same connector, one of them the shroud supply (owner,
+  1/10/2026); corrected by the owner with the hoses in hand.* That tee (*owner, photographed 1/10/2026*) sits on a
   line that runs **up towards the throttle** and **down under the
   runners, by the owner's reading to the EVAP side**. **The piece up to
   the throttle is a short moulded rubber elbow marked `06A 133 374`**

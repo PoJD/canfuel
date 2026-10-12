@@ -467,7 +467,7 @@ crazed and cracked** on cylinders 2, 3 and 4 alike, cylinder 1's in the
 best state (*owner*), worst where they bend over the nipples — further
 gone than "surface only", though whether any crack goes through was not
 established. The argument above still stands: the supply is taken from the
-breather's connector ahead of the throttle, so the rail sits near that
+intake hose ahead of the throttle, so the rail sits near that
 pressure and a crack in it admits little that is not already metered
 (*reasoned*). **The owner replaces the sleeves rather than refit them**
 (*owner's decision*) — cheap, and it ends the question. The genuine
@@ -485,8 +485,10 @@ this entry:* a sleeve split through on the injector side, where the nipple
 opens to the port.
 
 **Seen again 12/10/2026, the supply hose** (*owner, photographed*:
-`photos/shroud-supply-hose-2026-10-12-*.jpg`): the thin hose from the
-breather's connector behind the MAF to the rigid shroud pipe, the one
+`photos/shroud-supply-hose-2026-10-12-*.jpg`): the thin hose from its
+own port on the intake hose just behind the MAF to the rigid shroud
+pipe (*owner*, 12/10/2026; *this read "from the breather's connector
+behind the MAF"* — it does not join that connector), the one
 the sleeves hang off, original (moulded date 1999). Clean inside, **its
 surface crazed with fine crossing cracks**, one of them darker and more
 open. Blown into with the far end stopped, **a little air may have gone
