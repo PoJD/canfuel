@@ -19,8 +19,6 @@ and otherwise not until it is.** Then one at a time; Claude says after
 each whether the next is needed. Claude runs the capture on every drive.
 
 1. **The exhaust test, cold.**
-   - Look at the exhaust's rubber hangers: nothing pulling the joint
-     behind the converter sideways or letting it sag.
    - **The crank pulley, engine off:** look at its rubber ring between
      the inner and outer metal rings — cracks, bulging, the outer ring
      out of line. Photograph it.

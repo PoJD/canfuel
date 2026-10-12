@@ -588,7 +588,8 @@ photographed from below; a new air filter** (*owner, photographed*;
   strip cut from the old connector (probably galvanised) wrapped round
   the narrower pipe, the one from the
   converter (54.2 mm; the one behind is 55.0, *owner-measured*), sealant under and over
-  it, the sleeve connector back on. **It holds and nothing moves.**
+  it, the sleeve connector back on. **It holds and nothing moves**, and
+  the rubber hangers are fine (*owner*).
   Whether it is quiet is read on the drive (`plan.md` item 1).
 - **From below, cold** (`photos/exhaust-flange-2026-10-12-below-*.jpg`,
   `photos/manifold-2026-10-12-*.jpg`): the joint from the manifold to
