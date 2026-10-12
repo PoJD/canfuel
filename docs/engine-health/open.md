@@ -475,6 +475,28 @@ on the next drives with nothing else changed would point at the airbox.
 ECU's limit, 014 kept counting and the grade rose slightly with engine
 speed; put back the same day.
 
+*What else moved on the bus that day* (every byte of 0x280 and 0x288 and
+the fuel counter, standing warm idle at 65–75 °C of oil, `24`–`32`;
+*read 12/10/2026*). **One thing: the engine held the same 797 rpm on
+the least charge on record** — indicated torque (0x280 b7) 20.0–20.9
+against 21.6–26.6, injection time (0x288 b6) 34.0–34.9 against
+35.3–39.0 counts, fuel 286–293 against 291–320 µl/s. Against `30` and
+`31`, about 8 % less injection and 15 % less torque. Nothing else
+moved: the throttle at rest (b5 35), the load byte at its idle floor
+(b6 21), coolant and oil as on the other days; in VCDS the lambda
+correction (001, −0.46 % mean) and the idle controller (055, 056) as
+before. **It does not track the grade across days**: `24` needed
+nearly as little and graded 1.82. Two readings, neither shown
+(*reasoned*): fewer weak strokes, so the governor needs less charge to
+hold the speed — the calm idle the cause and the low charge the
+result; or **the MAF reading truer**, the airbox crack having disturbed
+the flow across it (`vehicle-history.md`) — which 032's idle cell
+agrees with, from −2.3 % on 9/10 (fuel taken away) to 0.0 %. The
+intake air temperature, which a leaking airbox in the engine bay would
+raise, is not on the bus. 003 was not logged that day, so the MAF's own
+figure at idle is not known; the next session that logs 003 at a warm
+idle reads it against 3.08–3.12 g/s (S3).
+
 ### S2. An occasional puff from the exhaust
 
 *Owner-reported*, at idle, before the injectors and after them, before the MAF
@@ -839,6 +861,11 @@ within seconds.
   cylinder 4's own knock window — a cause for S4 and S5 that is not
   combustion, which is H5's own question. One drive; 026 was not logged,
   so S5 is not read.
+- **12/10/2026: back, smaller than 9/10** — 16 of 2,231 samples on
+  cylinder 4, up to 11.2°, and 3 on cylinder 1, up to 3.7°, on a drive
+  with pulls to 5,800 rpm (`32`, `vcds/vcds-step3-1-drive-014-001-020.csv`);
+  10/10 had 3 to 1.5°, 9/10 44 to 13.5°. So the new leads did not take
+  it away; harder driving brings it back. Out of `plan.md`, as S4 is.
 - **Within VW's specification** of 0–15 °CA per cylinder while driving —
   VW's repair manual for the Golf Mk4, *Motronic injection and ignition system
   (2.0 ltr. engine)*, display groups 10–29, as transcribed on
@@ -1376,6 +1403,14 @@ after the hot end of session A (*owner*), with the right gasket, Elring
 `915.653`. Smoke at the back was old oil from the 3/10 leak burning off
 (*owner*). **The re-check of the outer nuts after a few hundred km stays**
 (`plan.md`, *Standing items*); S10 closes with it.
+
+**The re-check, 12/10/2026** (*owner*): the nuts had loosened — some
+took about 90° to bring back, some a full turn — and all eight were
+tightened with the plenum on. The gasket settling, as expected; no oil
+seen. The standing item stays for the next few hundred km. Not an idle
+fault: the calmer idle of 12/10 (S1) was read before the nuts were
+tightened, and the crankcase path is settled against for the idle
+(H9, `refuted.md` A15).
 
 ### S11. A hiss at the back of the engine at a warm idle
 
