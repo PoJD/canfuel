@@ -489,7 +489,21 @@ crank-sensor artefact (which would repeat at 360°, not 720°).
 `idle-log.md`). At 68–71 °C of oil `IdleHealth` was **50** at the first
 warm stop and **61** over 5½ minutes at the original idle setting,
 against **77–89** for `30` and `31` at 67–80 °C; dips 3.7–4.9 a
-minute. The owner saw smaller 014 figures than usual. Adaptations
+minute. The owner saw smaller 014 figures than usual; **counted, 014
+moved little** (*read 12/10/2026*, the owner's question; standing idle,
+detection `aktivováno`, aligned on engine speed, 10/10's cuts and
+12/10's raised idle left out):
+
+| oil | 9/10 (`30`) | 10/10 (`31`) | 12/10 (`32`) |
+|---|---|---|---|
+| < 40 °C | 1.8 a minute, 11 % non-zero | 6.2, 39 % | 6.9, 48 % |
+| 40–60 °C | 9.6, 61 % | 9.8, 61 % | 7.6, 55 % |
+| 66–80 °C | 8.8, 58 %, max 96 | 6.1, 42 %, max 48 | **5.3, 40 %, max 84** |
+
+Rises a minute, then the share of samples non-zero. The hot band is a
+little lower day by day and the readings are the usual twelves (median
+12), so the calm of 12/10 shows on engine speed and hardly in 014: a
+direction, inside the scatter of one session. Adaptations
 settled (055 −1.18 to −1.21), and 032 read **0.0 / +2.3 %** after it,
 against −0.8 / +2.3 on 4/10 and −2.3 / +5.5 on 9/10. Changed since `31`:
 the joint behind the converter, which is behind both probes and so not

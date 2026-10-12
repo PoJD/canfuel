@@ -675,7 +675,10 @@ idle on 001, then the idle adaptation, engine off.
 - **The warm idle was calmer than on any day before** at the same oil:
   `IdleHealth` 50 at the first warm stop and 61 at 128 after the clutch,
   against 77–89 for `30` and `31` at 67–80 °C (`open.md` S1); the
-  owner saw smaller 014 figures than usual too. 055's learned value
+  owner saw smaller 014 figures than usual too, but **counted, 014
+  hardly moved**: 5.3 rises a minute hot, 40 % of samples non-zero,
+  against 6.1 and 42 % on 10/10 and 8.8 and 58 % on 9/10 (`open.md` S1,
+  *12/10*). 055's learned value
   −1.18 to −1.21 (settled), and 032 read **0.0 / +2.3 %** afterwards
   (`photos/vcds-032-2026-10-12-after-step3-1.jpg`; 4/10 −0.8 / +2.3,
   9/10 −2.3 / +5.5). The changes since `31`: the joint behind the
