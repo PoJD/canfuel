@@ -640,6 +640,10 @@ idle on 001, then the idle adaptation, engine off.
   cold. **The sputter close behind the engine (S15) has gone with it** —
   the owner's reading is that it was that joint; S15 closed at his
   decision, to reopen if it is heard again.
+- **The hiss at the back of the engine (S11) closed too** (*owner's
+  decision*): not heard since 10/10, and no smoke at the engine; the
+  owner puts it down to the valve cover or the breather. To reopen if
+  heard again.
 - **The clutch makes no difference to the idle**, cold or warm. The
   `IdleHealth` (30 s halves from the blip's
   drop) cold, oil ~30 °C: down 145, up 135, down 145, up 126; warm,

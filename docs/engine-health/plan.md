@@ -327,7 +327,8 @@ its own about a lifter.
 **Item 7 — the exhaust ahead of the front probe (H2), warm** (*reasoned*,
    9/10/2026): `open.md`'s first candidate when this was written (**fourth since 12/10**, when the dips came back on one slot and the cold test found nothing) (since 9/10 second, behind H3, now that the dips keep to one cylinder — but still the one with symptoms of its own), and next now that 2b moved nothing on
    the intake side, and free (S15, which first made it urgent, closed
-   12/10 with the joint behind the converter). With the outlet closed, a leak that draws air in at idle blows
+   12/10 with the joint behind the converter, and S11's hiss the same
+   day; what is left for it is S2's puff). With the outlet closed, a leak that draws air in at idle blows
    out, and hisses or puffs. Warm, because a crack in cast iron may only
    open hot; never longer than a few seconds and never indoors
    (*general*) — **but cold first** (*decided 9/10/2026*): the owner
