@@ -531,8 +531,8 @@ start, the servo held twice on the cold idle, stops at 58–60 °C and
 - **Nothing a sealed runner would show moved**: 003 at the hot idle
   3.08 g/s (9/10: 3.12); 055's learned value −1.14 to −1.29, so the
   adaptations are the settled ones the comparison needs. The engine-speed
-  grade by oil band: calmer hot (1.53 against 1.77 rpm), the same in
-  the middle, rougher cold (2.40 against 1.90).
+  `IdleHealth` by oil band: calmer hot (77 against 89), the same in
+  the middle, rougher cold (120 against 95).
 - **The cuts named no cylinder** (one day, cuts of 47–73 s): dips by
   name 1: 0, 2: 7, 3: 11, 4: 2, p = 0.28; the air with 1 out and with 4
   out the same (3.52–3.58 against 3.46–3.58 g/s), so neither 1 nor 4 is
@@ -638,10 +638,10 @@ idle on 001, then the idle adaptation, engine off.
   (*owner*). S6 closed (`open.md`); the bolts are tightened once more
   cold.
 - **The clutch makes no difference to the idle**, cold or warm. The
-  engine-speed grade (`IdleHealth`'s rpm, 30 s halves from the blip's
-  drop) cold, oil ~30 °C: down 2.90, up 2.70, down 2.90, up 2.52; warm,
-  oil 70 °C: down 1.66 (still settling from the blip), up 1.14, down
-  0.89, up 0.99, down 1.16, up 1.01. Pedal up is not rougher — if
+  `IdleHealth` (30 s halves from the blip's
+  drop) cold, oil ~30 °C: down 145, up 135, down 145, up 126; warm,
+  oil 70 °C: down 83 (still settling from the blip), up 57, down
+  45, up 50, down 58, up 51. Pedal up is not rougher — if
   anything the reverse — so the gearbox input shaft and the clutch disc
   are not where the dips come from (`open.md` H12). The flywheel and
   the pulley turn either way and stay unseparated by it.
@@ -657,24 +657,24 @@ idle on 001, then the idle adaptation, engine off.
   `deaktiv.` for a third and then two thirds of the time, as a higher
   idle lowers the load (S3). By stage:
 
-  | channel 01 | specified | grade | dips /min (bus) | 014 steps up /min |
+  | channel 01 | specified | `IdleHealth` | dips /min (bus) | 014 steps up /min |
   |---|---|---|---|---|
-  | 128 | 780 | 1.22 | 4.9 | ~9 |
-  | 130 | 800 | 1.31 | 2.3 | ~5 |
-  | 132 | 820 | 1.36 | 5.1 | ~4 |
-  | 133 | 830 | 1.35 | 2.6 | ~5 |
-  | 133 | 830 | 1.40 | 3.1 | (detection mostly off) |
+  | 128 | 780 | 61 | 4.9 | ~9 |
+  | 130 | 800 | 66 | 2.3 | ~5 |
+  | 132 | 820 | 68 | 5.1 | ~4 |
+  | 133 | 830 | 68 | 2.6 | ~5 |
+  | 133 | 830 | 70 | 3.1 | (detection mostly off) |
 
   The last column counts how often the VCDS field stepped up within the
   stage, not the counter's total, so it compares stages with each other
   and not with S3's earlier rates. **No stage quieted 014, and the bus
-  shows no trend** — the dips go up and down and the grade rises
+  shows no trend** — the dips go up and down and `IdleHealth` rises
   slightly with engine speed. **Put back to 128 the same day** (*owner's
   decision*), warm on a restart, 056 reading 780
   (`vcds/vcds-step3-1-back128-014-056.csv`).
 - **The warm idle was calmer than on any day before** at the same oil:
-  grade 0.99 at the first warm stop and 1.22 at 128 after the clutch,
-  against 1.53–1.77 for `30` and `31` at 67–80 °C (`open.md` S1); the
+  `IdleHealth` 50 at the first warm stop and 61 at 128 after the clutch,
+  against 77–89 for `30` and `31` at 67–80 °C (`open.md` S1); the
   owner saw smaller 014 figures than usual too. 055's learned value
   −1.18 to −1.21 (settled), and 032 read **0.0 / +2.3 %** afterwards
   (`photos/vcds-032-2026-10-12-after-step3-1.jpg`; 4/10 −0.8 / +2.3,

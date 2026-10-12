@@ -151,35 +151,40 @@ settled ones the hot idle is back where the MAF left it (below). 1b's
 change is in 014 rather than in engine speed.
 
 **Every session since the repairs, like with like** (*re-read
-9/10/2026*): standing idle in 30 s windows, `idledips --roughness` mean
-step in rpm (lower is calmer), ± the standard error over the windows,
-binned by 0x420:
+9/10/2026*): standing idle in 30 s windows, `IdleHealth` (lower is calmer;
+`idledips --roughness`'s mean step in rpm × 50), ± the standard error
+over the windows, binned by 0x420:
 
 | session | adaptations | < 30 °C | 50–65 °C | 67–80 °C |
 |---|---|---|---|---|
-| `19`/`20`, 24/9, new injectors, old MAF | fresh | 2.21 ± 0.22 | 2.17 ± 0.09 | 2.26 ± 0.09 |
-| `24`, 24/9, **new MAF** | fresh | 2.07 ± 0.27 | **1.67 ± 0.07** | **1.82 ± 0.14** |
-| `25`/`26`, 3/10, after the job, cover open | fresh | 2.59 ± 0.23 | 2.22 ± 0.09 | 1.36 (2 windows) |
-| `27`/`28`, 4/10 A, the right gasket | **fresh** | 2.41 ± 0.29 | 1.92 ± 0.04 | **1.48 ± 0.07** |
-| `29`, 4/10 B | settled | — | 2.10 ± 0.18 | 1.77 (2 windows) |
-| `30`, 9/10, dipstick and MAF clamp | settled | 1.90 ± 0.13 | 1.89 ± 0.08 | **1.77 ± 0.05** |
-| `31`, 10/10, **new leads and plugs**, intake gasket | settled | 2.40 ± 0.22 | 1.91 ± 0.06 (4 windows) | **1.53 ± 0.08** (cuts left out) |
+| `19`/`20`, 24/9, new injectors, old MAF | fresh | 111 ± 11 | 109 ± 5 | 113 ± 5 |
+| `24`, 24/9, **new MAF** | fresh | 104 ± 14 | **84 ± 4** | **91 ± 7** |
+| `25`/`26`, 3/10, after the job, cover open | fresh | 130 ± 12 | 111 ± 5 | 68 (2 windows) |
+| `27`/`28`, 4/10 A, the right gasket | **fresh** | 121 ± 15 | 96 ± 2 | **74 ± 4** |
+| `29`, 4/10 B | settled | — | 105 ± 9 | 89 (2 windows) |
+| `30`, 9/10, dipstick and MAF clamp | settled | 95 ± 7 | 95 ± 4 | **89 ± 3** |
+| `31`, 10/10, **new leads and plugs**, intake gasket | settled | 120 ± 11 | 96 ± 3 (4 windows) | **77 ± 4** (cuts left out) |
 
 **The MAF is the one change that shows** (middle and hot band, and the
 dips halved). **Nothing since does, once adaptations are matched**: the
-middle band has stayed at 1.7–2.2, and the calm hot idle of 3/10 and
+middle band has stayed at 84–111, and the calm hot idle of 3/10 and
 4/10 A — taken for the job's — came on fresh adaptations and is gone on
 settled ones. That is the same pattern 014 shows (`refuted.md` C19):
 **fresh adaptations look better on both rulers**, so a session after a
 battery disconnect is no test of a repair. The one hint the other way
-is 9/10's cold idle (1.90 against 2.4–2.6), on five windows and a cold
+is 9/10's cold idle (95 against 120–130), on five windows and a cold
 idle that also depends on how long after the start it is measured:
 the next cold start on settled adaptations says whether it holds.
 
 **How it is measured.** `IdleHealth` on 0x604 grades one firing against the
 next (100 = the engine before the repair, lower is smoother). Offline,
 `tools/idledips.py` counts dips of ≥ 20 rpm and computes the same grade from a
-capture.
+capture. **Every idle figure in these files is on the `IdleHealth` scale**
+(*owner's decision*, 12/10/2026: like with like): `idledips --roughness`
+prints the mean step in rpm, and `IdleHealth` is that × 50
+(`IDLE_ROUGH_100` = 64 counts of 1/32 rpm = 2.00 rpm). A figure from a
+capture is a mean over a window; the display shows a running filter of
+the same quantity, so the two agree on a steady idle and not to the unit.
 
 **Current values**, *owner-reported off the display*. Hot idle, 69–72 °C of
 oil: `IdleHealth` **57–100, sometimes over 100**; 93 on the last reading,
@@ -294,11 +299,11 @@ would separate them.
 
 **The roughest reading yet, 26/9/2026 — cold, and in fog.** A few minutes
 after an overnight cold start (`StartClt` 14 °C) on a cold, foggy, very damp
-morning, `IdleRough` read **3.72 rpm** (index ~186) before the car drove off.
+morning, `IdleHealth` read **~186** (`IdleRough` 3.72 rpm) before the car drove off.
 *Owner-reported off the display, not photographed.* ⚠ Not comparable with the
 warm figures: the grade had not converged (under 30 s of idle; the filter
 rises from zero, so an unconverged reading is if anything low), and the only
-recorded cold idle, `18_coldstart_z1`, graded 2.74 in its first minute at
+recorded cold idle, `18_coldstart_z1`, graded 137 in its first minute at
 25 °C of coolant. What it adds is the weather: the start itself was clean and
 the idle the worst seen, **on the dampest morning yet** — which is what an
 ignition fault that tracks moisture would do (H4, test 1e).
@@ -307,9 +312,9 @@ ignition fault that tracks moisture would do (H4, test 1e).
 hot.** Re-read 9/10/2026 over every capture since 24/9 (standing idle,
 binned by 0x420, `idledips --roughness`): the mean step is highest cold
 and falls with the oil in every session, on fresh adaptations and settled
-ones alike — on `30`, 2.06 rpm at 10–20 °C, 1.89 at 50–60, 1.85 at 60–70,
-1.53 at 70–80; on `29`, 2.33 / 2.12 / 1.86 / 1.83; on `27`/`28`, 2.42 /
-1.94 / 1.51. The dip count scatters (8–22 a minute) with no band
+ones alike — on `30`, 103 at 10–20 °C, 95 at 50–60, 93 at 60–70,
+77 at 70–80; on `29`, 117 / 106 / 93 / 92; on `27`/`28`, 121 /
+97 / 76. The dip count scatters (8–22 a minute) with no band
 consistently on top. *Corrected 9/10/2026, at the owner's question:* this
 read "not monotonic … worst at about 50–61 °C of oil", which no capture
 since 24/9 bears out for engine speed; the middle-band peak is 014's
@@ -480,20 +485,20 @@ fault that does not care about the charge: an intermittent wire, a
 crank-sensor artefact (which would repeat at 360°, not 720°).
 
 **12/10 — the warm idle calmer than on any day before** (`32`,
-`idle-log.md`). At 68–71 °C of oil the grade was **0.99** at the first
-warm stop and **1.22** over 5½ minutes at the original idle setting,
-against **1.53–1.77** for `30` and `31` at 67–80 °C; dips 3.7–4.9 a
+`idle-log.md`). At 68–71 °C of oil `IdleHealth` was **50** at the first
+warm stop and **61** over 5½ minutes at the original idle setting,
+against **77–89** for `30` and `31` at 67–80 °C; dips 3.7–4.9 a
 minute. The owner saw smaller 014 figures than usual. Adaptations
 settled (055 −1.18 to −1.21), and 032 read **0.0 / +2.3 %** after it,
 against −0.8 / +2.3 on 4/10 and −2.3 / +5.5 on 9/10. Changed since `31`:
 the joint behind the converter, which is behind both probes and so not
 it (`refuted.md` A13), and **a new air filter with the airbox crack
 ahead of the MAF sealed** (`vehicle-history.md`). Cold it was no better
-— 2.5–2.9 at ~30 °C against `31`'s 2.40. **One day, cause unknown**;
+— 125–145 at ~30 °C against `31`'s 120. **One day, cause unknown**;
 the drives of `plan.md` item 6 say whether it holds, and a calmer idle
 on the next drives with nothing else changed would point at the airbox.
 **Raising the idle did not help**: from 780 to 830 rpm specified, the
-ECU's limit, 014 kept counting and the grade rose slightly with engine
+ECU's limit, 014 kept counting and `IdleHealth` rose slightly with engine
 speed; put back the same day.
 
 *What else moved on the bus that day* (every byte of 0x280 and 0x288 and
@@ -507,7 +512,7 @@ moved: the throttle at rest (b5 35), the load byte at its idle floor
 (b6 21), coolant and oil as on the other days; in VCDS the lambda
 correction (001, −0.46 % mean) and the idle controller (055, 056) as
 before. **It does not track the grade across days**: `24` needed
-nearly as little and graded 1.82. Two readings, neither shown
+nearly as little and graded 91. Two readings, neither shown
 (*reasoned*): fewer weak strokes, so the governor needs less charge to
 hold the speed — the calm idle the cause and the low charge the
 result; or **the MAF reading truer**, the airbox crack having disturbed
@@ -825,8 +830,8 @@ found no leak ahead of the converter (S15).
   its 78 pairs are inside the cuts, where a dead cylinder is the slot.
   Fewer pairs from a drive of the same kind means fewer dips. ⚠ 39 pairs
   is a direction: 33 % and 26 % are not apart at this size. The
-  engine-speed grade by oil band (S1's table): calmer hot (1.53 against
-  1.77), the same in the middle, rougher cold (2.40 against 1.90) — the
+  `IdleHealth` by oil band (S1's table): calmer hot (77 against
+  89), the same in the middle, rougher cold (120 against 95) — the
   same no-direction as 014.
 
   **No new link to cylinder 4** (*the owner's question*, 9/10).
@@ -4096,9 +4101,9 @@ charge, which play does not make.
    Dips and `IdleHealth` the same either way → not that side; clearly
    calmer with the pedal down → it is a lead. The flywheel and the pulley
    turn either way and are not separated by it. **Done 12/10/2026: not
-   that side.** The grade in 30 s halves, cold: down 2.90, up 2.70, down
-   2.90, up 2.52; warm: down 1.66 (settling from the blip), up 1.14, down
-   0.89, up 0.99, down 1.16, up 1.01 (`32`, `idle-log.md`). Pedal up is
+   that side.** `IdleHealth` in 30 s halves, cold: down 145, up 135, down
+   145, up 126; warm: down 83 (settling from the blip), up 57, down
+   45, up 50, down 58, up 51 (`32`, `idle-log.md`). Pedal up is
    not rougher. The gearbox side has a noise of its own (S16), and it
    does not reach the idle.
 2. **The crank pulley's damper, by eye, engine off**: the rubber ring

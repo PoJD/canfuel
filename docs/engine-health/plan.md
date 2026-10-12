@@ -251,7 +251,7 @@ and no sooner than every 5,000 km, so it is **one treatment**, not a
 course. **The usual fuel, OMV MaxxMotion 100**, so that the can is the
 only thing that changes. **How it is
 read**: the drives of item 6 against `30`, `31` and item 2's session —
-014 by stop and the grade by oil band (`open.md` S1, S3), adaptations
+014 by stop and `IdleHealth` by oil band (`open.md` S1, S3), adaptations
 settled (the battery stays on, `refuted.md` C19). Better → deposits had
 a part; the same → H1's deposit branch loses, and Claude picks from the
 ranked list. A tank is weeks of this car's driving, so the reading is
@@ -264,7 +264,7 @@ lower it on their own** — lights, blower and A/C took it from 70–80 to
 additive working. **Loads off, then, for that one minute** (*decided
 10/10/2026*, the owner's point that the baseline already exists): the
 captured hot stops on settled adaptations are loads-off — `30` and `31`
-grade 1.53–1.77 rpm at 67–80 °C (S1's table; `IDLE_ROUGH_100` is 2.00),
+`IdleHealth` 77–89 at 67–80 °C (S1's table),
 and item 2's session adds one more — so no readings are needed before
 the can. A minute without loads is the price, against the standing rule
 for the converter, accepted for one stop a drive. It needs about half a
@@ -282,7 +282,7 @@ its own about a lifter.
    outside any cut, pooled with 10/10's — still near a quarter → the
    one-cylinder share is gone, and what 014 counts acts on the whole
    engine; back toward a third → item 7's cuts name the cylinder. 014 by
-   stop and the grade by oil band against `open.md` S1 and S3. **The
+   stop and `IdleHealth` by oil band against `open.md` S1 and S3. **The
    groups**: **014** is the reading; **003** the idle air, which says
    whether anything sealed or opened; **055 once**, at the end on a
    warm idle (*owner's choice*, 10/10/2026): still near −1.1 to −1.3
