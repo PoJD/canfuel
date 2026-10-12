@@ -19,9 +19,6 @@ and otherwise not until it is.** Then one at a time; Claude says after
 each whether the next is needed. Claude runs the capture on every drive.
 
 1. **The exhaust test, cold.**
-   - **The crank pulley, engine off:** look at its rubber ring between
-     the inner and outer metal rings — cracks, bulging, the outer ring
-     out of line. Photograph it.
    - **Cold start.** Claude runs the capture; VCDS on **014, 001, 020**.
    - **The exhaust test**, straight after the start:
      - Phone recording, laid in the engine bay by the manifold; later
@@ -293,7 +290,8 @@ shaft and the clutch disc out of the engine's load; the dips and
 `IdleHealth` the same either way → not the gearbox side; clearly calmer
 with the pedal down → that side is a lead. The flywheel and the pulley
 turn either way and are not separated by it — the pulley's rubber, by
-eye, is the free look at one of them. Free, on a capture already
+eye, is the free look at one of them — **looked at 12/10/2026, fine by
+eye** (`idle-log.md`). Free, on a capture already
 running; the blip's drop marks the start on the capture. Two minutes of
 idle each time, cold and warm, against the standing rule — accepted for
 the test.

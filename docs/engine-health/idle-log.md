@@ -605,6 +605,13 @@ photographed from below; a new air filter** (*owner, photographed*;
   (`photos/exhaust-blanked-boss-2026-10-12.jpg`), behind the front
   probe, so not in H2's zone. The rear probe's cable re-routed clear of
   the floor.
+- **The crank pulley, engine off** (`photos/crank-pulley-2026-10-12.jpg`,
+  partly legible `…105 243 F` cast in): **fine by eye** (*owner*); in
+  Claude's reading no crack or bulge shows in the rubber ring and the
+  outer ring sits in line, as far as a photo can say. Also photographed,
+  the three-bolt pulley beside the A/C compressor, `038 145 255 A` cast
+  in (`photos/pulley-038145255A-2026-10-12-*.jpg`), and the ribbed belt
+  over it: nothing seen.
 - **A new Bosch air filter**, and **a crack in the airbox**, ahead of
   the MAF, sealed with putty (`photos/airbox-crack-2026-10-12-sealed.jpg`;
   the old element, `photos/air-filter-old-2026-10-12-*.jpg`).
