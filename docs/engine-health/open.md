@@ -84,7 +84,8 @@ Everything else settled against is in `refuted.md`.
   argued again from the start.
 - **Around the idle:** S2 (an occasional puff from the exhaust) and S11
   (a hiss at the back of the engine at a warm idle, not yet placed) —
-  **neither heard on 9/10 or 10/10**, both kept open. **S15**, a constant
+  **neither heard on 9/10 or 10/10**; **S2 heard again on 12/10**,
+  quieter, and by the owner's ear together with the dips. **S15**, a constant
   sputter from the exhaust close behind the engine at every load (added
   9/10) — H2's zone, **still heard** (*owner*, 10/10/2026); **the
   tailpipe test found no leak cold on 12/10**, which leaves the warm one.
@@ -499,6 +500,16 @@ open** (*owner's decision*), as S14 is.
 a tighter exhaust behind the converter may only be hiding a puff that
 starts ahead of it; the tailpipe test (`plan.md` step 3) is what would
 show it.
+
+*12/10/2026, owner:* **heard again at idle, much quieter** than before
+the joint behind the converter was shimmed, and **heard together with
+the dips in engine speed** — the owner's ear, standing at the car,
+not an alignment of a recording with the capture. So the puff
+**outlived the resealed joint** (S2 ↔ S6) and goes with the dips, as
+a misfire's unburnt charge would (S2 ↔ S3); it does not say which
+cylinder. It also counts against the dips being driveline play (H12),
+which puts no charge into the exhaust. The tailpipe test that day, cold,
+found no leak ahead of the converter (S15).
 
 ### S3. Misfires counted by the ECU at idle
 
@@ -1790,8 +1801,8 @@ A safety matter for a garage, outside this investigation.
 | S1/S3 ↔ oil temperature | **strong; the two differ** (*re-read 9/10/2026*) | **S1** (engine speed) roughest cold and calmer as the oil warms, in every session since 24/9. **S3** (014): near zero cold — the counter's own blind spot, since engine speed is worst there; on fresh adaptations a sharp peak in the middle band and zero hot; **on settled ones flatter** — 6–16 a minute from ~40 °C up, about half as many at 70–80 °C as at 55–68 (`29`, `30`). *This read "non-monotonic, worst at ~50–61 °C, on every drive" for both* |
 | S4 ↔ S5 | **very likely one thing** | same cylinder window, same engine speeds, and S5 needs no combustion. Knock control retards cylinder 4 because it hears S5's noise |
 | S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle, in any log. Only a common cause could link them |
-| S2 ↔ S3 | **likely, by the owner's reading; never aligned** | the owner takes S2 for S14's smaller twin, a misfire's charge going off in the exhaust (S2, 4/10/2026). A leak ahead of the probe would puff too (H2) |
-| S2 ↔ S6 | **possible**; **S6 reopened 10/10/2026** | if there is a leak ahead of the probes. The known leak was behind them. A puff that outlives the resealed joint did not come from it |
+| S2 ↔ S3 | **likely: heard with the dips by the owner on 12/10/2026; never aligned with a recording** | the owner takes S2 for S14's smaller twin, a misfire's charge going off in the exhaust (S2, 4/10/2026); on 12/10 he heard the puffs come with the engine-speed dips. A leak ahead of the probe would puff too (H2) |
+| S2 ↔ S6 | **not S6**: **S6 closed 12/10/2026**, and S2 was heard that day | the puff outlived the resealed joint, so it did not come from it. A leak ahead of the probes remains possible (H2) |
 | S5 ↔ S6 | **no**; **S6 reopened 10/10/2026** | the clamp was tightened and cylinder 4's excess stayed exactly as it was |
 | S7 ↔ S1 | **none** | S7 improved with the injectors; S1 did not |
 | S8 ↔ anything | **none** | top-end air and b7 identical on both MAFs; the idle changed a lot. **S8 closed 4/10/2026** |
@@ -3912,7 +3923,9 @@ charge, which play does not make.
   not whole — weaker since 10/10, when that pattern went; the old
   converter burned through, which takes unburnt fuel; the injector cuts
   stored codes for exactly the cut cylinders and no other, so the
-  detection works (*Naming the cylinder*). **Compression does not bear on
+  detection works (*Naming the cylinder*); **the puffs come with the
+  dips** (S2, 12/10/2026, by ear), and play puts no charge into the
+  exhaust. **Compression does not bear on
   it** either way: a cranking test sees neither play nor a flywheel.
   Whether this car has a dual-mass flywheel at all is **not recorded**.
 
@@ -4409,7 +4422,7 @@ idle and a higher idle being a fair mitigation. **The order stands.***
 | 7 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) **4/10 evening:** a new throttle passing more at rest than the ECU's model would also make it learn air away (`refuted.md` C19) **9/10, against: the throttle feeds all four alike, and the dips keep to one slot** | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `idle-log.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
 | 8 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
 | 9 | **H11 — both lambda probes shifted alike** | the only part of the mixture control not changed, 10/2017; no probe test sees a shift; soot on three plugs. Against: 032 + 033 near zero on a new MAF and new injectors bounds it to a few per cent, and with the wrong sign — negative, the ECU taking fuel out; a few per cent does not misfire | a **four-gas analyser** at the emissions station (H11 test 1) |
-| 10 | **H12 — driveline play read as misfires** | load calms the idle, and the dips follow torque trims down, both of which play would also do. Against: the MAF swap and the learned idle air move it, which play would not; the 720° slot pattern (to 9/10); a burned-through converter; the cut test's exact codes | the **clutch minutes** (`plan.md` item 1), the crank pulley's damper by eye |
+| 10 | **H12 — driveline play read as misfires** | load calms the idle, and the dips follow torque trims down, both of which play would also do. Against: the MAF swap and the learned idle air move it, which play would not; the 720° slot pattern (to 9/10); a burned-through converter; the cut test's exact codes **12/10, against: the clutch minutes cleared the gearbox side, the pulley looked fine, and the puffs (S2) come with the dips** | the flywheel alone is left, from the parts catalogue by VIN, only if something points there |
 
 **Tools worth owning for this, cheapest first** (*general*; prices not
 recorded here, since they move):
