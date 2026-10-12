@@ -968,6 +968,17 @@ value. The explanation is in `refuted.md` C2: the old MAF over-read —
 **on that morning**; whether it did before August is not known, and with
 the loop in control the trims kept the mixture at λ = 1 (C2, *11/10*).
 
+**A possible cause of the over-reading — the cracked airbox** (*added at
+the owner's decision*, 12/10/2026; `vehicle-history.md`, the air filter
+row; `photos/airbox-crack-2026-10-12-sealed.jpg`). The airbox was found
+cracked on its clean side, ahead of the MAF, and sealed. Air through the
+crack was metered, so it cannot have moved the mixture itself; but it
+was unfiltered, and dust on a hot-film MAF's sensing element is a known
+way for one to drift (*general*). **How old the crack is is not known**,
+and the old MAF was not inspected for dust, so this is a candidate and
+nothing more. It bears on the new MAF too: from 12/10 it breathes
+filtered air only.
+
 **How it closes:** one photographed 032 screen after a few hundred km with no
 battery disconnect in between. Closed if both cells have settled within a few
 per cent of zero — the proper bar is the specified range for 032 in the

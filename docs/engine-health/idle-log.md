@@ -585,7 +585,8 @@ it. Nothing for the idle either way: the joint is behind both probes.
 photographed from below; a new air filter** (*owner, photographed*;
 `vehicle-history.md`). No engine run.
 - **The joint** (`photos/exhaust-joint-2026-10-12-*.jpg`): apart, a
-  strip of sheet wrapped round the narrower pipe, the one from the
+  strip cut from the old connector (probably galvanised) wrapped round
+  the narrower pipe, the one from the
   converter (54.2 mm; the one behind is 55.0, *owner-measured*), sealant under and over
   it, the sleeve connector back on. **It holds and nothing moves.**
   Whether it is quiet is read on the drive (`plan.md` item 1).
