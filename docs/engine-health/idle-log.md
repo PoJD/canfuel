@@ -695,6 +695,22 @@ idle on 001, then the idle adaptation, engine off.
   item 1, done): one moved a little, the one over the shim not at all —
   the sealant inside settling, as expected after its first heat cycle
   (*owner*).
+- **Lead 4 reseated, cold** (`plan.md` step 3, the item added the same
+  day): lead 4's plug end had felt the least firm of the four when the
+  new leads went on (`open.md` H4, test 1e). Pulled, turned a little and
+  pushed home, it no longer tends to work its way off; all four boots
+  sit alike and lead 4 looks sound (*owner*). Nothing named; H4 keeps
+  its place on the one-cylinder argument alone (`open.md`, *The idle's
+  candidates, ranked*).
+- **The two original hoses off the breather's connector, taken off and
+  looked at** (*owner, photographed*; `refuted.md` A15 and C9): the
+  breather hose `06A 103 493 N` with its cuff split along the moulding
+  seam at the end, torn at the edge, crazed at the bend and oily inside;
+  the injectors' shroud supply hose crazed, clean inside, and perhaps a
+  very small leak when blown into with the far end stopped. Both sit on
+  the intake ahead of the throttle, where a crack draws little at idle,
+  and on all four cylinders alike — so not read as the dips' cause.
+  Both to be replaced (*owner's decision*).
 
 **What it is not known to have achieved:** the idle raised to the ECU's
 limit did not quiet 014, so the raise is not a workaround and was

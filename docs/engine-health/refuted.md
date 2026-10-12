@@ -185,6 +185,18 @@ connector — is an ordinary unmetered-air point, H3's, and the intake
 smoke test covers it (`plan.md` step 2a). **What would revive it:** smoke
 at the breather's own seat or the new gasket's joint.
 
+**The original breather hose seen off the car, 12/10/2026** (*owner,
+photographed*: `photos/breather-hose-2026-10-12-*.jpg`): `06A 103 493 N`,
+its larger end on the breather, its cuff on the intake hose behind the
+MAF (*owner*). **The cuff's moulding seam has opened into a split at its
+end**, the cuff's edge is torn in places, the outside of the bend by the
+tee is crazed, and the inside carries oil and deposit. A split under a
+clamp can open with heat and movement. **It does not revive this
+entry**: the cuff sits on the intake ahead of the throttle, at
+intake-pipe pressure, where a split draws little at idle (*reasoned*, as
+C9), and whatever it draws reaches all four cylinders alike. Replaced
+with a new one by the number (*owner's decision*).
+
 ---
 
 ## B. The cylinder 4 knock window
@@ -462,6 +474,19 @@ hold firmly over the barbs (*owner*) — *a decision, not
 VW's part*. *What would revive
 this entry:* a sleeve split through on the injector side, where the nipple
 opens to the port.
+
+**Seen again 12/10/2026, the supply hose** (*owner, photographed*:
+`photos/shroud-supply-hose-2026-10-12-*.jpg`): the thin hose from the
+breather's connector behind the MAF to the rigid shroud pipe, the one
+the sleeves hang off, original (moulded date 1999). Clean inside, **its
+surface crazed with fine crossing cracks**, one of them darker and more
+open. Blown into with the far end stopped, **a little air may have gone
+out somewhere** — the owner cannot say it was not imagined, and if it
+was real it was very little. Whether any crack goes through was not
+settled. **The argument above stands**: the hose sits at intake-pipe
+pressure ahead of the throttle, on air the MAF has already metered.
+Replaced (*owner's decision*) — no VW number readable on it, the white
+print is smeared, so a hose of the same bore.
 
 ### C10. "Group 014 is a lifetime total" — measured
 
