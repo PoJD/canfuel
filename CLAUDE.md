@@ -177,7 +177,11 @@ carries a generated block; a figure typed into prose only goes stale.
     without asking. **Idle smoothness is quoted on the `IdleHealth`
     scale everywhere** — `idledips --roughness`'s mean step in rpm × 50,
     so a capture compares with the display — never as the raw rpm grade
-    (*the maintainer, 12/10/2026*). **When the symptom list changes — a symptom added
+    (*the maintainer, 12/10/2026*). **This repository is public, so
+    nothing that identifies the car or its owner goes into it** — not the
+    full VIN (the type, year and plant positions are fine), not a
+    registration plate, not an address; a photograph showing one is
+    cropped first (*the maintainer, 12/10/2026*). **When the symptom list changes — a symptom added
     or closed — every hypothesis's fit table in `open.md` gains or loses
     that column in the same commit, and the ranked list of candidates is
     re-read against it**; a symptom left out of the tables says why, once,

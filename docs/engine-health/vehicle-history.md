@@ -30,7 +30,7 @@ and what it says about the converter's fuel channel, is
 | | |
 |---|---|
 | Model | VW New Beetle |
-| VIN | `WVWZZZ9CZYM601445` |
+| VIN | `WVWZZZ9CZYM……` — **the serial deliberately left out** of this public repository (*owner's decision*, 12/10/2026); the full VIN is in the car's registration documents |
 | Engine | **2.0 l AQY**, 85 kW — ECU `06A 906 018`, labels `06A-906-018-AQY.LBL` |
 | Platform | PQ34 |
 | Bought | **25 September 2017** at 126,200 km |
