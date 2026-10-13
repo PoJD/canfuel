@@ -196,10 +196,10 @@ agrees, from a completely different measurement, with the volumetric efficiency
 `docs/firmware/frames.md` derives from mass air flow and the ECU's load channel (84–93 %).
 
 **The chiptuning of 6/2018 is the standing unknown.** The tuner's own remark
-was that there was nothing to be had at the top of the range. **The owner
-now means to ask the tuner for the original map and have it written back**
-(*owner's decision*, 12/10/2026, to take this unknown out of the idle
-question; `plan.md` item 4a) — *this said "the car is not going back to
+was that there was nothing to be had at the top of the range. **The tuner
+kept the original map and writes it back on 22/10/2026** (*owner's
+decision*, 12/10/2026, to take this unknown out of the idle question;
+`plan.md` item 5a) — *this said "the car is not going back to
 standard"*. The warnings in `docs/firmware/can-decoding.md` and
 `docs/firmware/frames.md` about what a remap does to the torque and load channels all
 describe this car rather than a hypothetical one. The owner describes the remap

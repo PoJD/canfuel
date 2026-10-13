@@ -55,21 +55,21 @@ every drive.
    - **Write** the same four things as in 2.
 4. **No clear intake leak in 2 or 3 → the engine is left alone.** Low
    and steady at idle only → Claude says the next step too.
-4a. **22/10: the original map written back** at the tuner, after 2
-   and 3, before 5 if it fits. Ask the tuner whether
-   writing it clears the ECU's adaptations and write the answer into the
-   chat. Then **two or three ordinary warm drives before the can**:
-   Claude runs the capture; VCDS on **014, 003**; 055 once at the end,
-   warm idle; on one of them **one held full-throttle pull in 4th**. No
-   time for the drives → the can first, the map after the can's tanks.
-5. **Whatever 2 and 3 showed, after them:** **one can of Liqui Moly
+5. **Whatever 2 and 3 showed, straight after them:** **one can of Liqui Moly
    *DFI Cleaner* (= *Pro-Line Direct Injection Cleaner*, 120 ml)** into
    the tank, then fill **30–50 l** of the usual
-   OMV MaxxMotion 100. Drive the tank as usual. Battery stays connected.
+   OMV MaxxMotion 100. Drive the tank as usual, captures or not.
+   Battery stays connected.
+   - **Before 22/10: at least one drive with the capture**, warm, as in
+     6; VCDS on **014, 003**; 055 once at the end, warm idle.
    - **`IdleHealth` off the display, through both tanks after the can:**
      on drives where the oil reaches **68–72 °C**, at one stop of **at
      least a minute with every load off**. Write into the chat: date,
      `IdleHealth`, oil temperature.
+5a. **22/10: the original map written back** at the tuner; the ECU
+   comes out of the car. Then **two or three ordinary warm drives**:
+   Claude runs the capture; VCDS on **014, 003**; 055 once at the end,
+   warm idle; on one of them **one held full-throttle pull in 4th**.
 6. **On the next tank: two or three ordinary drives, warm**, on
    different days. Claude runs the capture; VCDS on **014, 003, 020**;
    055 once at the end, warm idle. Write the stops.
@@ -242,17 +242,19 @@ as scattered** → it over-read without harming the idle; **B and
 steadier** → something that shapes the flow helped, not the
 calibration. Nothing here is a reason to buy a part.
 
-**Item 4a — the original map** (*owner's decision*, 12/10/2026, to take
+**Item 5a — the original map** (*owner's decision*, 12/10/2026, to take
 the remap out of the idle question; `open.md`, *The remap*). **The tuner
 kept it, and writes it back on 22/10/2026** (*owner*, 13/10). After the
-gauge, so the gauge's reading stays on the car as it has been. **Kept
-apart from the can by a few drives**, or the two changes cannot be told
-apart afterwards; if there is no time for the drives, the can goes
-first and the map waits for both tanks, since the can's reading is the
-slower one. **Whether a reflash clears the adaptations is not known**
-(*not read from any document*); the drives are planned as if it does —
-fresh adaptations look better on both rulers (`refuted.md` C19), so the
-reading is taken on the last of them and against `30`–`32`. **The pull
+gauge, so the gauge's reading stays on the car as it has been. **The can
+goes in before it, straight after the gauge, and the two are knowingly
+not told apart** (*owner's decision*, 13/10/2026: the aim is a healthy
+idle, not knowing which change gave it). The one capture between them
+(item 5) keeps a rough before for the map. **The adaptations start from
+zero**: the ECU comes out of the car, which resets them as a battery
+disconnect does (`refuted.md` C19, *owner*: already seen on this car),
+so the tuner is not asked. Fresh adaptations look better on both
+rulers (C19), so the reading is taken on the last of the drives and
+against `30`–`32`. **The pull
 in 4th** is for the converter, not the idle: the torque scale was fitted
 by making this car's plateau reproduce the stock ratings
 (`docs/firmware/can-decoding.md` question 8), so on a stock map the pull
@@ -282,7 +284,9 @@ course. **The usual fuel, OMV MaxxMotion 100**, so that the can is the
 only thing that changes. **How it is
 read**: the drives of item 6 against `30`, `31` and item 2's session —
 014 by stop and `IdleHealth` by oil band (`open.md` S1, S3), adaptations
-settled (the battery stays on, `refuted.md` C19). Better → deposits had
+settled (the battery stays on, `refuted.md` C19 — except the reset on
+22/10, item 5a, so the drives just after it read low on 014 for a
+reason that is not the can). Better → deposits had
 a part; the same → H1's deposit branch loses, and Claude picks from the
 ranked list. A tank is weeks of this car's driving, so the reading is
 late by design. **`IdleHealth` off the display is the running reading in

@@ -1920,11 +1920,14 @@ full-load enrichment (*general*), for all four cylinders alike.
   altered idle ignition map, and idle is held by the ECU's own closed-loop
   control.
 - **How it closes: return the ECU to standard** (*owner's decision*,
-  12/10/2026; `plan.md` item 4a). **The tuner kept the original map and
+  12/10/2026; `plan.md` item 5a). **The tuner kept the original map and
   writes it back on 22/10/2026** (*owner*, 13/10). Then:
   1. `IdleHealth` at a matched oil temperature and a 020 + 026 neutral log,
-     before and after — that turns the remap's role in S1 and S4/S5 from an
-     assessment into a measurement;
+     before and after. **The cleaner goes in some days before the map**
+     (*owner's decision*, 13/10/2026: the idle first, the reason second),
+     so the difference is the map plus the cleaner's first days, and the
+     adaptations start from zero with the ECU out — a measurement of
+     *both*, not of the remap alone;
   2. **one held full-throttle pull in 4th with a capture**, because the
      firmware's torque scale was derived by making this car's plateau
      reproduce the *stock* ratings (`docs/firmware/can-decoding.md`
