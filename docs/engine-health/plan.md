@@ -55,8 +55,8 @@ every drive.
    - **Write** the same four things as in 2.
 4. **No clear intake leak in 2 or 3 → the engine is left alone.** Low
    and steady at idle only → Claude says the next step too.
-4a. **Only if the tuner still has the original map:** have it written
-   back, after 2 and 3, before 5 if it fits. Ask the tuner whether
+4a. **22/10: the original map written back** at the tuner, after 2
+   and 3, before 5 if it fits. Ask the tuner whether
    writing it clears the ECU's adaptations and write the answer into the
    chat. Then **two or three ordinary warm drives before the can**:
    Claude runs the capture; VCDS on **014, 003**; 055 once at the end,
@@ -243,7 +243,8 @@ steadier** → something that shapes the flow helped, not the
 calibration. Nothing here is a reason to buy a part.
 
 **Item 4a — the original map** (*owner's decision*, 12/10/2026, to take
-the remap out of the idle question; `open.md`, *The remap*). After the
+the remap out of the idle question; `open.md`, *The remap*). **The tuner
+kept it, and writes it back on 22/10/2026** (*owner*, 13/10). After the
 gauge, so the gauge's reading stays on the car as it has been. **Kept
 apart from the can by a few drives**, or the two changes cannot be told
 apart afterwards; if there is no time for the drives, the can goes
