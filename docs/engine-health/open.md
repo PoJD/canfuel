@@ -2309,7 +2309,8 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
 - **The vacuum gauge, 14/10/2026, against a large leak** (`plan.md` step 3
   item 2; `33`, `34`, the owner's video of `34`): teed into the fuel
   pressure regulator's hose, the needle sat **steady** at idle, about
-  16–17 inHg once its zero is taken from the engine off (the needle sits
+  16–17 inHg once its zero is taken from the engine off (*that level
+  not confirmed*: `idle-log.md`, 14/10) (the needle sits
   a quarter-turn off zero at rest; the figure is read off the angle,
   ±2), went **a little higher and steady at ~2150 rpm**, and on a snap
   dropped, overshot above idle and settled back. A leak behind the

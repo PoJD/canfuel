@@ -30,6 +30,14 @@ Claude runs the capture on every drive.
    - **A new capture before the start**, VCDS on **014, 003, 001** again.
      Drive to Prague as usual, about an hour. On arrival, at a warm idle:
      **055 read once**, then engine off, capture and VCDS stopped.
+   - **Back home from Prague, still warm: the gauge.** Engine off; tee
+     the gauge into the fuel pressure regulator's hose as on 14/10.
+     **Photograph the needle with the engine off**, the phone straight
+     over the dial. Claude runs a new capture; VCDS on **001, 003**.
+     Start, film **1 min** of idle from the same spot, then **2500 rpm
+     15 s** and **15 s** of idle. Engine off, gauge off, hose back on.
+     Write how often the needle flicked down in the minute, and whether
+     at 2500 too.
    - Then drive the tank as usual, captures or not.
    - **`IdleHealth` off the display, through both tanks after the can:**
      on drives where the oil reaches **68–72 °C**, at one stop of **at
@@ -150,6 +158,20 @@ needs a tank's worth of driving to act (*general*, and the maker's dose
 is one can per 30–50 l), so the hour carries at most its first trace;
 the reading is item 6's. It also stands as the one captured drive item
 5a wants before the map goes back.
+
+**The warm gauge after all, on the way home** (*owner's decision*,
+14/10/2026 evening, reversing the same day's drop): **for
+completeness**, at the end of 15/10's drive, when the engine is warm
+anyway. The can is in the tank by then, so it is not a clean before —
+**knowingly accepted**: after one hour of fuel with the cleaner a
+deposit has hardly moved (*general*), and the gauge answers a lifter
+on thin oil and a crack that opens hot, which the cold reading could
+not. **The engine-off photograph is what makes the level readable**:
+on 14/10 the rest position and the idle were never on one frame of the
+same dial, and the level written down then could not be checked
+afterwards (`idle-log.md`, 14/10). Same angle for both, so the two
+needle angles are measured on one picture of the scale. VCDS 001 and
+003, as on 14/10, so the two sessions compare.
 
 **Which VCDS groups, and why** (*decided 11/10/2026*, the owner's
 question why 014/020/026 were in the gauge session): **026** belongs to

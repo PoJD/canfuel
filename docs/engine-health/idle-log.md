@@ -794,7 +794,18 @@ airbox, the weather or one day's chance is not known.
   of those did. **Nothing in it sets the renewed hoses or the airbox
   apart from before**, cold.
 - **The warm gauge reading dropped** (*owner's decision*, 14/10): the
-  idle is roughest cold and the gauge saw nothing there.
+  idle is roughest cold and the gauge saw nothing there. **Put back the
+  same evening** (*owner*), for completeness, at the end of 15/10's
+  drive with the can already in.
+- **The level is not settled** (*Claude, 14/10, on the owner's photo of
+  the dial*): the dial's green "NORMAL MOTOR" band is about 17–22 inHg
+  and its red "LATE IGN TIMING" about 14–17, read off the photo ±1; the
+  photo has the needle at about 12 inHg on the dial, and whether that
+  is the engine off or the idle was not recorded. Engine off, 16–17
+  above it would be past the end of the scale; so **the 16–17 inHg
+  above is not confirmed**, and the warm session photographs both
+  states on one angle. What the needle did — steady, the snap, a
+  little higher at the hold — does not depend on the level.
 
 **What it is not known to have achieved:** the gauge on the common
 plenum cannot see a small leak at one runner, and the idle it read was
