@@ -1581,9 +1581,9 @@ breather. **Heard again at the back on 14/10** (*owner*), on the cold
 start with the vacuum gauge teed in at the top of the tee by the
 runners, on the throttle's vacuum line (*owner*; *this read "into the
 fuel pressure regulator's hose"*), and every hose of 12/10 new; his reading is that it is the same
-hiss. The tee and the gauge's own fitting were in the line that day, and
-a start without them, which would have told them apart, was not made, so
-**where it comes from is still not placed**. The gauge on the same two
+hiss. The tee and the gauge's own fitting were in the line that day;
+**he heard it on a start without them too** (below), so it is not
+theirs. The gauge on the same two
 starts read steady and rising a little off idle (H3, *The vacuum gauge*),
 which no large leak behind the throttle does.
 
@@ -1594,11 +1594,14 @@ while driving. **His own reading: it may be normal** — the idle's air
 passing the nearly shut throttle plate under manifold vacuum, which
 every throttled engine makes (*general*) — and he has never listened
 to a healthy engine this close, so he cannot tell. **Kept open at his
-decision**, with that note; no test is planned for it. *Noted the same
-evening* (*owner*): on 14/10 the gauge's tee was fitted **at the top
-of the tee by the runners**, on the throttle's vacuum line — right
-where he heard it — so that day's hiss may have been the tester's own
-fitting.
+decision**, with that note; no test is planned for it. **Heard without the gauge too, 14/10/2026** (*owner*), so it is not
+the tester's fitting; and **not at the front, where the tee by the
+runners sits**, but further back: **behind the throttle, at the intake
+hose from the MAF to the throttle** (`1C0 129 684`, the one original
+hose left on the breather's line, which could not be had new), **or
+the throttle itself**. *Claude had suggested the same evening that the
+tester's tee, fitted at the tee by the runners, might be the hiss; the
+owner put it right.*
 
 ### S12. A hesitation on tip-in, and after a gearchange — closed 4/10/2026
 
