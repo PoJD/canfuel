@@ -185,7 +185,8 @@ class TestFixtureContent(unittest.TestCase):
                 "25_sessionA_cold_z1.txt", "26_sessionA_warm_z1.txt",
                 "27_sessionA2_cold_z1.txt", "28_sessionA2_warm_z1.txt",
                 "29_sessionB_z1.txt", "30_step2b_z1.txt",
-                "31_step4_drive_z1.txt", "32_step3_item1_z1.txt"}
+                "31_step4_drive_z1.txt", "32_step3_item1_z1.txt",
+                "33_step3_gauge_cold_z1.txt", "34_step3_gauge_2500_z1.txt"}
     ACCEPTED_IDS = {0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480}
 
     #: The last few milliseconds of 20, as the ignition goes off and the bus
@@ -524,9 +525,12 @@ class TestFixtureContent(unittest.TestCase):
         ignition left on, and 0x43 is there for 1.5 s from the same frame as
         0x480's reset to zero (trap 2), and nowhere else in its 17 minutes. So
         0x43 marks the engine-run boundary, either way, not the key alone.
+        33_step3_gauge_cold_z1 runs through two ignition cycles, the cold
+        start and the key turned again for 34, and has it too.
         """
         boundary = ("01_ign_only.txt", "06_trip_reset.txt",
-                    "25_sessionA_cold_z1.txt", "26_sessionA_warm_z1.txt")
+                    "25_sessionA_cold_z1.txt", "26_sessionA_warm_z1.txt",
+                    "33_step3_gauge_cold_z1.txt")
         for name, frames in self.frames.items():
             gates = {f.data[1] for f in frames if f.can_id == 0x1A0}
             if name in boundary:

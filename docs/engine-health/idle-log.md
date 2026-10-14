@@ -369,7 +369,9 @@ idle raise did nothing (12/10, below); nothing more
 until the vacuum gauge arrives (*owner's decision*, 10/10), and the
 gauge on a cold start of its own; unless it shows an intake leak
 plainly, the engine is left alone and a tank is run with a PEA
-inlet-valve cleaner, read on the drives after.
+inlet-valve cleaner, read on the drives after. **14/10: the gauge cold
+read steady and normal** (below); its warm reading is next, then the
+can.
 
 *Entries are added here as each step is done.*
 
@@ -749,6 +751,42 @@ idle on 001, then the idle adaptation, engine off.
 limit did not quiet 014, so the raise is not a workaround and was
 undone. Whether the calmer warm idle is the new filter and the sealed
 airbox, the weather or one day's chance is not known.
+
+**14/10/2026 — every hose on, and the vacuum gauge cold**
+(`33_step3_gauge_cold_z1`, `34_step3_gauge_2500_z1`,
+`vcds/vcds-step3-2-gauge-*.csv`; `plan.md` step 3 items 1 and 2).
+- **The reassembly finished** (*owner, photographed*): the new breather
+  hose (Gates `EMH118`) with a new spring clamp at its upper end, the
+  thin hose to the tee and the 8 mm hose from the tee to the throttle
+  with new clips at both ends, the thin hose on the intake hose's spigot
+  clamped. How the 8 mm hose sat on the tee before clamping was not
+  written down.
+- **The gauge** (MAR-POL `M57673`) teed into the fuel pressure
+  regulator's hose. **Its needle rests a quarter-turn off zero** with
+  the engine off (*owner, photographed*), so readings are taken against
+  that rest position. Two starts: `33` cold (coolant 16 → 64 °C, about
+  5 min of idle at 820–960 rpm, no hold) and `34` part-warm (53 → 82 °C:
+  two snaps, ~14 s at 2100–2200 rpm, 3½ min of idle). Read off the
+  owner's 32 s video of `34`, frame by frame: **steady at idle**, about
+  16–17 inHg against the rest position (read off the angle, ±2); **on a
+  snap it dropped towards zero, overshot above idle and settled back**;
+  **a little higher and steady at the hold**. That is `plan.md`'s
+  "steady and normal" row: no large leak behind the throttle and no
+  valve that does not seal, as far as a gauge can say (`open.md` H3,
+  *The vacuum gauge*). The video holds only a few seconds of idle at a
+  stretch, so **flicks were neither counted nor ruled out**; on the
+  cold start's film the owner saw the needle not move at all.
+- **`IdleHealth` ~103 on `33`** (cold) and **~114 on `34`**, rough as the
+  owner felt it.
+- **The hiss at the back heard again** on the cold start (*owner*); his
+  reading is that it is the same hiss, and **S11 is reopened** at his
+  decision (`open.md` S11). The tee and the gauge's fitting were in the
+  line, and the start without them was not made, so the hiss is not
+  placed.
+
+**What it is not known to have achieved:** the gauge on the common
+plenum cannot see a small leak at one runner, and the idle it read was
+part-cold; the warm reading is `plan.md` item 3.
 
 ---
 

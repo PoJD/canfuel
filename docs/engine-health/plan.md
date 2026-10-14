@@ -14,45 +14,27 @@ records it**, and the file is deleted when it is empty.
 
 ## Step 3 — the idle is not fixed
 
-**The engine waits for the vacuum gauge.** Then one at a time; Claude
-says after each whether the next is needed. Claude runs the capture on
-every drive.
+One at a time; Claude says after each whether the next is needed.
+Claude runs the capture on every drive.
 
-1. **Reassembly, in two goes, engine cold.**
-   - **13/10:** the intake hose MAF to throttle back on; a new thin hose
-     if it fits. **The 8 mm hose from the tee up to the throttle:** pull
-     it at the tee by hand before clamping — it must not move or turn;
-     loose → a 6 mm hose, or a clamp that closes it fully. New clamps on
-     both its ends. Write into the chat how it sat.
-   - **When the parts are here:** the breather hose and the other thin
-     hose on, clamps on every end.
-   - **The engine is not started until every hose is on.**
-2. **When the gauge is here: the gauge, cold.** No driving with the
-   gauge on.
-   - **Before, engine cold and off:** tee the gauge into the fuel
-     pressure regulator's vacuum hose. Short hose to the gauge, tight
-     T-piece. Lay the gauge clear of the belt and the exhaust.
-   - **Start it.** Claude runs the capture; VCDS on **001, 003** only.
-     Film the gauge **30 s** straight after the start, then **1 min**
-     more.
-   - **Then 2500 rpm, held by hand, 15 s**, filming; let it fall back
-     and film **15 s** of idle.
-   - Engine off.
-   - **Gauge off**, the regulator's hose back on its own, pushed fully
-     home.
-   - **Write, from the films:** the number the needle sits at, in the
-     dial's own units, at idle and at 2500; **how many times it flicked
-     down in the 1 min of idle**; whether the flicks come singly or a few
-     in a row; whether they are still there at 2500.
 3. **Only if the needle showed nothing cold: the gauge warm.**
    - A drive to 68–72 °C of oil, as on 10/10. Claude runs the capture;
      VCDS on **014, 001, 003**. A few stops at a warm idle, a minute or
      two each. Write the stops.
-   - Back: engine off, tee the gauge in as before.
+   - Back: engine off, tee the gauge into the fuel pressure regulator's
+     vacuum hose: short hose to the gauge, tight T-piece, the gauge clear
+     of the belt and the exhaust. **Photograph where the needle sits**
+     before the start: that is its zero.
    - Start, film the gauge **1 min** at idle, then **2500 rpm 15 s** and
      **15 s** of idle again. **055 read once.** Engine off, gauge off,
      hose back on.
-   - **Write** the same four things as in 2.
+   - **Then one start without the gauge**, the regulator's hose on its own:
+     listen at the back for the hiss, and write whether it is there and
+     where.
+   - **Write**: where the needle sits at idle and at 2500 against its
+     zero; how many times it flicked down in the 1 min of idle; whether
+     the flicks come singly or a few in a row; whether they are still
+     there at 2500.
 4. **No clear intake leak in 2 or 3 → the engine is left alone.** Low
    and steady at idle only → Claude says the next step too.
 5. **Whatever 2 and 3 showed, straight after them:** **one can of Liqui Moly
@@ -171,21 +153,14 @@ which item 3 reads on a drive that is captured anyway and so counts as
 one of item 6's. Filmed rather than watched, because a flick at idle
 comes several times a second and a video can be stepped through.
 
-**Item 1 — why the 8 mm hose** (*the owner's check*, 12/10/2026).
-The tee by the runners is on the line at manifold vacuum (`open.md`,
-*What the web says about this engine's ventilation*), and the hose fitted
-up to the throttle on 2/10 is 8 mm while the tee's leg to the breather's
-connector takes 6 mm. A hose too wide for its leg is an unmetered leak
-at full vacuum, the kind that matters at idle. The intake smoked clean
-on 9/10 with it on, so it is not expected to be loose; the check costs
-nothing while the hoses are off. **Item 2's start is the first with all
-four changes of 12/10** — the airbox sealed and cured, the three hoses
-on the intake hose, and this one (`open.md`, *Where it
-stands*); the gauge reads the hoses' share, not the airbox's.
-**Not started half-assembled**
-(*reasoned*): an open port on the breather's connector or on the tee is
-an unmetered leak far larger than anything being hunted, and an open
-path for dirt past the filter.
+**Item 3 — the needle's zero and the start without the gauge**
+(*decided 14/10/2026*, after item 2). The gauge's needle sits about a
+quarter-turn off zero at rest, so on 14/10 nothing could be read until
+it was photographed with the engine off; every reading is taken against
+that photograph. The hiss at the back was heard again on that day's
+gauge start (`open.md` S11, reopened), with the tee and the gauge's own
+fitting in the line; a start without them is what tells their leak from
+the engine's.
 
 **Which VCDS groups, and why** (*decided 11/10/2026*, the owner's
 question why 014/020/026 were in the gauge session): **026** belongs to
