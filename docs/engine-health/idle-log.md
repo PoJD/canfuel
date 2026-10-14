@@ -370,8 +370,8 @@ until the vacuum gauge arrives (*owner's decision*, 10/10), and the
 gauge on a cold start of its own; unless it shows an intake leak
 plainly, the engine is left alone and a tank is run with a PEA
 inlet-valve cleaner, read on the drives after. **14/10: the gauge cold
-read steady and normal** (below); its warm reading is next, then the
-can.
+read steady and normal** (below); the warm reading was dropped at the
+owner's decision, and the can goes in on 15/10.
 
 *Entries are added here as each step is done.*
 
@@ -770,8 +770,8 @@ airbox, the weather or one day's chance is not known.
   owner's 32 s video of `34`, frame by frame: **steady at idle**, about
   16–17 inHg against the rest position (read off the angle, ±2); **on a
   snap it dropped towards zero, overshot above idle and settled back**;
-  **a little higher and steady at the hold**. That is `plan.md`'s
-  "steady and normal" row: no large leak behind the throttle and no
+  **a little higher and steady at the hold**. That is the
+  "steady and normal" row (`open.md`, *How the vacuum gauge is read*): no large leak behind the throttle and no
   valve that does not seal, as far as a gauge can say (`open.md` H3,
   *The vacuum gauge*). The video holds only a few seconds of idle at a
   stretch, so **flicks were neither counted nor ruled out**; on the
@@ -784,9 +784,21 @@ airbox, the weather or one day's chance is not known.
   line, and the start without them was not made, so the hiss is not
   placed.
 
+- **Read afterwards** (*Claude, 14/10*; `open.md` H3, *The vacuum
+  gauge*): the slow fall after a snap, which the owner asked about, is
+  the landing every capture since 3/10 shows, 2–2½ s from 1400 rpm to
+  idle; 003's air over the cold idle, over 6 g/s in the first minute,
+  is what 3/10 and 10/10 read at the same minutes. The cold idle on
+  `idledips --roughness` sits between 9/10's and 12/10's, calm for the
+  first minute or two and rougher from about 40 °C of coolant, as both
+  of those did. **Nothing in it sets the renewed hoses or the airbox
+  apart from before**, cold.
+- **The warm gauge reading dropped** (*owner's decision*, 14/10): the
+  idle is roughest cold and the gauge saw nothing there.
+
 **What it is not known to have achieved:** the gauge on the common
 plenum cannot see a small leak at one runner, and the idle it read was
-part-cold; the warm reading is `plan.md` item 3.
+part-cold; the warm reading was not made.
 
 ---
 

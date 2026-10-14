@@ -2317,6 +2317,20 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
   not rule out a small leak at one runner, which a gauge on the common
   plenum cannot see. Engine part-cold (coolant 16–82 °C across the two
   starts).
+  **Two readings off the same session agree** (*checked 14/10/2026*, the
+  owner's question whether the needle's slow return after a snap is a
+  leak): **the landing after a snap is the car's usual one** — engine
+  speed from 1400 rpm to within 30 rpm of idle in 1.8–2.4 s on `34`
+  against 2.0–2.6 s at every warm standing release with the pedal
+  left at rest on `28`–`32`, before the
+  hoses were renewed — which is the ECU easing the throttle shut, not
+  an idle that hangs (*reasoned*); the needle's overshoot above idle
+  for those seconds is the closed throttle at speed, the healthy
+  reading (*general*). And **003's cold air matches the earlier cold
+  starts minute by minute** — 6.11, 5.14, 4.03, 3.96 g/s on 14/10
+  against 6.25, 4.86, 3.96, 3.96 on 3/10 (`vcds-sessionA-*`) and 5.34,
+  4.93, 4.03, 3.89 on 10/10 (`vcds-step4-*`); a leak behind the MAF
+  would make it read *less* for the same idle, never more.
 - **S11 fits half:** an intake leak makes no smoke, but it hisses, and the
   back of the intake is the part the spray test did not reach. What sits
   there is for the garage's smoke test to list; the brake-servo vacuum line
@@ -4701,7 +4715,7 @@ named it does not). S6 closed and S16 added on
 H3, *The vacuum gauge*) and when **S11 reopened** (heard again, *owner*):
 the S11 column comes back to every fit table as it stood before 12/10.
 The gauge read steady at idle and a little higher at ~2150 rpm, with a
-clean snap — `plan.md`'s "steady and normal" row, so **H3 and H1 are
+clean snap — the "steady and normal" row of *How the vacuum gauge is read*, so **H3 and H1 are
 weaker and H0 stronger**. **The order stands** (*decision*): the gauge
 rules out a large leak and a valve that does not seal, both already
 argued against by VW's leak signs and the even compression, and it
@@ -4783,6 +4797,75 @@ recorded here, since they move):
   the air leaves names the fault — the throttle an inlet valve, the tailpipe
   an exhaust valve, the filler neck the rings, the expansion tank the head
   gasket.
+
+**How the vacuum gauge is read** (H1 test 5; *moved here from
+`plan.md` on 14/10/2026*, when its gauge steps were done — the cold
+reading made, the warm one dropped at the owner's decision). Everything here is *general* — the classic
+readings of a manifold vacuum gauge — and none of it is VW's figure
+for this engine. **Read the needle against itself**, never against a
+number from a book: the absolute level also depends on altitude and the
+weather.
+
+- **What a flick is.** At idle each cylinder draws on the manifold once
+  per cycle, about 6–7 times a second per cylinder at 780 rpm, so a
+  healthy needle sits still or trembles evenly. A cylinder that does
+  not draw its share — a valve not closing, or a firing that failed —
+  shows as **a quick dip of the needle and back**, a fraction of a
+  second. That is why it is filmed: a phone at 30 frames a second can
+  be stepped through, an eye cannot.
+- **A flick is any misfire, not only a valve.** Whatever makes a
+  cylinder miss — a valve, a spark, a lean runner — flicks the needle
+  the same way. **So the count is first compared with the dips**: the
+  capture runs under the same minute, and if the needle flicks about as
+  often as the engine speed dips (S1: 5–15 a minute warm), the gauge is
+  seeing the misfires themselves. The 2500 rpm hold is also the marker
+  that lines the film up with the capture.
+- **Flicks at idle that are gone at 2500 do not separate the causes**
+  (*corrected 10/10/2026, the owner's point*: this table first read a
+  flick that stays at 2500 as H1's sign). Nothing on this car has ever
+  misfired under load: with detection `aktivováno` while driving, 014
+  started counting about once per 250 samples, against several a minute
+  at idle (`open.md` S3, *Off idle, by detection state*). A 2500 rpm
+  hold in neutral is light load, where 014 is mostly `deaktiv.` and the
+  bus is too noisy to see a misfire, so **the gauge is the only thing
+  that reads it there** — and flicks gone at 2500 is still the expected
+  reading **for every hypothesis, H1 included**: a hydraulic lifter has
+  least oil pressure behind it at idle (*general*).
+
+| what the needle does | reading | for |
+|---|---|---|
+| **steady at idle**, the level normal for itself, rises a little at 2500 and steady there | no valve fault, no large leak; the dips are too small for the gauge to see | H0, or a fault the gauge cannot reach |
+| **an occasional sharp flick down** at idle, irregular, gone at 2500 | the misfires themselves — a hanging valve, a spark, a lean runner all look alike here | S3 confirmed; **names nothing** |
+| the same flicks **still there at 2500** | something that misfires off idle too, which nothing on this car has done before | new; a valve (H1) first |
+| **a regular flick on every cycle**, same size each time | one valve that never seals (burnt, bent) — unlikely with even compression | H1, a worse form; leak-down next |
+| **low and steady at idle**, normal-ish at 2500 | air in behind the throttle | H3 |
+| **low and steady at idle and at 2500 alike** | a late cam — the belt a tooth out — or an exhaust restriction | the belt (ranked 8) |
+| **a fast, even flutter** that gets worse at 2500 | weak valve springs, or worn guides if it steadies with speed | H1, the springs and guides |
+| **slow wandering** up and down over seconds, at idle | mixture or idle control hunting | H8, H7 |
+
+**What follows from it:**
+
+- **What the gauge can and cannot say about H1.** It points at the
+  valvetrain only through the rarer readings — a regular flick, a fast
+  flutter, flicks that stay at 2500. **An intermittent flick at idle
+  alone cannot tell a hanging valve from any other misfire.** H1 is
+  then answered by the tests aimed at it: the stethoscope over each
+  lifter at a warm idle (H1 test 1), a warm leak-down (test 3), and with
+  the valve cover off, each lifter pressed down with its cam lobe
+  pointing up — a lifter that gives before the valve moves has bled
+  down (*general*; VW's manuals describe a check of this kind for these
+  engines, recalled and **not** checked against the manual here).
+- **Flicks only at idle**: the gauge has confirmed the misfires and not
+  named them; nothing moves in the ranked list, and the next repair is
+  chosen from it as it stands.
+- **Low and steady**: at idle only → H3 moves up, and the intake is
+  smoked warm; at 2500 too → the belt's marks are checked.
+- **Steady and normal**: the valvetrain and a large leak are cleared as
+  far as a gauge can clear them; H1 and H3 both lose, and H0 gains.
+- **Cold and warm differ** (*not read on this car*: the warm reading
+  was dropped, 14/10/2026): a flick cold that is gone warm fits the cold
+  enrichment and deposits (H1, *inlet-valve deposits*); one that is
+  there warm only fits a lifter on thin oil.
 
 ## The plan
 

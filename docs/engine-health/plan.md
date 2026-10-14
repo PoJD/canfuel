@@ -17,33 +17,20 @@ records it**, and the file is deleted when it is empty.
 One at a time; Claude says after each whether the next is needed.
 Claude runs the capture on every drive.
 
-3. **Only if the needle showed nothing cold: the gauge warm.**
-   - A drive to 68–72 °C of oil, as on 10/10. Claude runs the capture;
-     VCDS on **014, 001, 003**. A few stops at a warm idle, a minute or
-     two each. Write the stops.
-   - Back: engine off, tee the gauge into the fuel pressure regulator's
-     vacuum hose: short hose to the gauge, tight T-piece, the gauge clear
-     of the belt and the exhaust. **Photograph where the needle sits**
-     before the start: that is its zero.
-   - Start, film the gauge **1 min** at idle, then **2500 rpm 15 s** and
-     **15 s** of idle again. **055 read once.** Engine off, gauge off,
-     hose back on.
-   - **Then one start without the gauge**, the regulator's hose on its own:
-     listen at the back for the hiss, and write whether it is there and
-     where.
-   - **Write**: where the needle sits at idle and at 2500 against its
-     zero; how many times it flicked down in the 1 min of idle; whether
-     the flicks come singly or a few in a row; whether they are still
-     there at 2500.
-4. **No clear intake leak in 2 or 3 → the engine is left alone.** Low
-   and steady at idle only → Claude says the next step too.
-5. **Whatever 2 and 3 showed, straight after them:** **one can of Liqui Moly
-   *DFI Cleaner* (= *Pro-Line Direct Injection Cleaner*, 120 ml)** into
-   the tank, then fill **30–50 l** of the usual
-   OMV MaxxMotion 100. Drive the tank as usual, captures or not.
-   Battery stays connected.
-   - **Before 22/10: at least one drive with the capture**, warm, as in
-     6; VCDS on **014, 003**; 055 once at the end, warm idle.
+5. **15/10: the drive to Prague, and the can on the way.** An ordinary
+   drive, not a test. Battery stays connected.
+   - **In the garden**, the engine cold: Claude runs the capture; VCDS on
+     **014, 003, 001**. Start; bonnet open, **listen at the back for the
+     hiss** while the half minute passes, the gauge off; write whether it
+     is there and where. Bonnet shut, drive to the petrol station. There:
+     engine off, capture and VCDS stopped.
+   - **At the station: one can of Liqui Moly *DFI Cleaner* (= *Pro-Line
+     Direct Injection Cleaner*, 120 ml)** into the tank, then fill
+     **30–50 l** of the usual OMV MaxxMotion 100.
+   - **A new capture before the start**, VCDS on **014, 003, 001** again.
+     Drive to Prague as usual, about an hour. On arrival, at a warm idle:
+     **055 read once**, then engine off, capture and VCDS stopped.
+   - Then drive the tank as usual, captures or not.
    - **`IdleHealth` off the display, through both tanks after the can:**
      on drives where the oil reaches **68–72 °C**, at one stop of **at
      least a minute with every load off**. Write into the chat: date,
@@ -135,32 +122,34 @@ G66 and the rest of H5's tests stay in `open.md` as tests, not steps.
 **Idle solved → stop and record.** Otherwise each item decides whether
 the next is needed.
 
-**The engine waits for the vacuum gauge**
-(*owner's decision*, 10/10/2026; the gauge is MAR-POL `M57673`, ordered
-10/10, `open.md` *Tools worth owning*). **Item 2 is the gauge alone**,
-on a cold start of its own (*owner's decision*, 10/10/2026, replacing
-the plan of one session for the gauge and the exhaust test together:
-the exhaust test went first, with the joint, and was done 12/10). **The gauge is read cold first, and warm
-only if cold shows nothing; it is never on during a drive** (*owner's
-decision*, 10/10/2026, replacing the same day's plan of one session with
-the gauge left on through the drive). Cold is not the cleaner reading —
-a cold idle runs raised and enriched, which moves the needle for reasons
-of its own, and the warm idle is where 014 counts at the stops
-(*general*) — but S1 is roughest cold, and a valve that flicks the
-needle (H1) or a leak that drags it low (H3) is there cold too. So a
-clear result cold is enough; a quiet needle cold leaves the warm idle,
-which item 3 reads on a drive that is captured anyway and so counts as
-one of item 6's. Filmed rather than watched, because a flick at idle
-comes several times a second and a video can be stepped through.
+**The vacuum gauge is done, cold only** (*owner's decision*,
+14/10/2026, after it read steady and normal cold; `idle-log.md`).
+The warm reading that was to follow is **dropped**: the idle is
+roughest cold (`open.md` S1, *Temperature matters*), the gauge saw
+nothing there, and the owner sees no reason a warm idle would show
+what the worst one did not; the can is the next thing he wants on the
+car. What the warm reading would have added — a lifter on thin oil
+(H1), a crack that opens hot — stays in `open.md` as those
+hypotheses' tests. How the gauge is read is in `open.md`, *Tools worth
+owning*. **The start without the gauge rides on 15/10's cold start**
+(*decided 14/10/2026*): the regulator's hose is back on its own, so the
+hiss heard on 14/10 with the tee in the line (S11) is either there
+without it or not, at no cost but listening during the half minute
+before driving off.
 
-**Item 3 — the needle's zero and the start without the gauge**
-(*decided 14/10/2026*, after item 2). The gauge's needle sits about a
-quarter-turn off zero at rest, so on 14/10 nothing could be read until
-it was photographed with the engine off; every reading is taken against
-that photograph. The hiss at the back was heard again on that day's
-gauge start (`open.md` S11, reopened), with the tee and the gauge's own
-fitting in the line; a start without them is what tells their leak from
-the engine's.
+**Item 5 — the drive of 15/10** (*owner's decision*, 14/10/2026: an
+ordinary drive to a morning appointment in Prague, the can added at the
+petrol station on the way, rather than a separate warm session). **Two
+captures**, because the converter's frames and the capture never share
+a session and a fixture is one ignition cycle at a time: the first is
+the cold start and a short drive on the old fuel; the second is the hour
+to Prague, on fuel with the cleaner in it, and holds the warm stops of
+Prague traffic — the first warm idle with 003 since the hoses were
+renewed, read as below. **It is a before, not an after**: a cleaner
+needs a tank's worth of driving to act (*general*, and the maker's dose
+is one can per 30–50 l), so the hour carries at most its first trace;
+the reading is item 6's. It also stands as the one captured drive item
+5a wants before the map goes back.
 
 **Which VCDS groups, and why** (*decided 11/10/2026*, the owner's
 question why 014/020/026 were in the gauge session): **026** belongs to
@@ -170,22 +159,21 @@ load, for cylinder 4's retard after the new leads (S4); **014** stays
 where the clutch minutes or a stop are read for misfires. **001** joins
 wherever there is idle — engine speed to align on and the lambda
 correction in one group (`open.md` S1, *What VCDS saw just before a
-dip*). **The gauge session (item 2) logs 001 and 003 only**: the lambda
-correction, and the air, throttle and advance, beside the needle — two
-groups read faster than three — so a flick can be set against what the
-mixture and the governor were doing; the film is put on the capture's
-clock by the 2500 rpm drop, VCDS by engine speed. 014 is not needed
-there: the dips on the bus are the misfires' timing.
+dip*). **15/10's drive (item 5) logs 014, 003 and 001** (*decided
+14/10/2026*, the owner having left the choice): 014 for the misfires at
+each stop, 003 for the warm idle's air below, 001 for the lambda
+correction beside the dips; the same three on both captures, so nothing
+is changed at the petrol station.
 
 **003 is also the MAF's own figure** (*decided 12/10/2026*, the owner's
 request after the airbox was sealed; `open.md` S9, *the cracked
 airbox*): 12/10 held the idle on the least charge on record with 032's
 idle cell at 0.0, which a MAF that used to over-read would explain, and
 003 was not logged that day. So **every step with an idle logs 003**:
-item 2 reads it cold, against the earlier cold starts at the same
-coolant; **item 3 logs 014, 001 and 003**, dropping 020 — S4 is out of
-this plan and 020 was data, not a step — so the warm idle's air is read
-against 3.08–3.12 g/s; item 6 logs it already.
+the gauge session read it cold, the same as the earlier cold starts minute by
+minute (`idle-log.md`, 14/10); **item 5 logs it warm**, dropping 020 —
+S4 is out of this plan and 020 was data, not a step — so the warm
+idle's air is read against 3.08–3.12 g/s; item 6 logs it already.
 
 **How 003's air is read** (*decided 12/10/2026*, the owner's request;
 `open.md` S9, *the cracked airbox*). Claude does this at the first warm
@@ -235,7 +223,7 @@ by making this car's plateau reproduce the stock ratings
 (`docs/firmware/can-decoding.md` question 8), so on a stock map the pull
 says whether it still holds.
 
-**Items 4 to 6 — the engine left alone, and the additive** (*owner's
+**Items 5 and 6 — the engine left alone, and the additive** (*owner's
 decision*, 10/10/2026). **The can goes in whatever the gauge shows**
 (*owner's decision*, 12/10/2026): a leak and tired valves can both be
 there at once (`open.md`, *The idle's candidates, ranked*), so a leak
@@ -257,7 +245,7 @@ cleaner in it washes exactly where port-injection deposits sit
 and no sooner than every 5,000 km, so it is **one treatment**, not a
 course. **The usual fuel, OMV MaxxMotion 100**, so that the can is the
 only thing that changes. **How it is
-read**: the drives of item 6 against `30`, `31` and item 2's session —
+read**: the drives of item 6 against `30`, `31` and 14/10's gauge session (`33`, `34`) —
 014 by stop and `IdleHealth` by oil band (`open.md` S1, S3), adaptations
 settled (the battery stays on, `refuted.md` C19 — except the reset on
 22/10, item 5a, so the drives just after it read low on 014 for a
@@ -274,7 +262,7 @@ additive working. **Loads off, then, for that one minute** (*decided
 10/10/2026*, the owner's point that the baseline already exists): the
 captured hot stops on settled adaptations are loads-off — `30` and `31`
 `IdleHealth` 77–89 at 67–80 °C (S1's table),
-and item 2's session adds one more — so no readings are needed before
+and 14/10's gauge session adds one more — so no readings are needed before
 the can. A minute without loads is the price, against the standing rule
 for the converter, accepted for one stop a drive. It needs about half a
 minute of settled idle before it reads at all (255 until then,
@@ -434,73 +422,6 @@ what is left, if Claude asks for it after item 6. The owner works
    moisture a tracking boot or coil needs is what the mist supplies.
    The plugs and leads are new (10/10) and the coil is from 6/2026,
    which is why it is late in the order; it is free.
-**Items 2 and 3 — how the gauge is read** (`open.md`, *Tools worth
-owning*, and H1 test 5). Everything here is *general* — the classic
-readings of a manifold vacuum gauge — and none of it is VW's figure
-for this engine. **Read the needle against itself**, never against a
-number from a book: the absolute level also depends on altitude and the
-weather.
-
-- **What a flick is.** At idle each cylinder draws on the manifold once
-  per cycle, about 6–7 times a second per cylinder at 780 rpm, so a
-  healthy needle sits still or trembles evenly. A cylinder that does
-  not draw its share — a valve not closing, or a firing that failed —
-  shows as **a quick dip of the needle and back**, a fraction of a
-  second. That is why it is filmed: a phone at 30 frames a second can
-  be stepped through, an eye cannot.
-- **A flick is any misfire, not only a valve.** Whatever makes a
-  cylinder miss — a valve, a spark, a lean runner — flicks the needle
-  the same way. **So the count is first compared with the dips**: the
-  capture runs under the same minute, and if the needle flicks about as
-  often as the engine speed dips (S1: 5–15 a minute warm), the gauge is
-  seeing the misfires themselves. The 2500 rpm hold is also the marker
-  that lines the film up with the capture.
-- **Flicks at idle that are gone at 2500 do not separate the causes**
-  (*corrected 10/10/2026, the owner's point*: this table first read a
-  flick that stays at 2500 as H1's sign). Nothing on this car has ever
-  misfired under load: with detection `aktivováno` while driving, 014
-  started counting about once per 250 samples, against several a minute
-  at idle (`open.md` S3, *Off idle, by detection state*). A 2500 rpm
-  hold in neutral is light load, where 014 is mostly `deaktiv.` and the
-  bus is too noisy to see a misfire, so **the gauge is the only thing
-  that reads it there** — and flicks gone at 2500 is still the expected
-  reading **for every hypothesis, H1 included**: a hydraulic lifter has
-  least oil pressure behind it at idle (*general*).
-
-| what the needle does | reading | for |
-|---|---|---|
-| **steady at idle**, the level normal for itself, rises a little at 2500 and steady there | no valve fault, no large leak; the dips are too small for the gauge to see | H0, or a fault the gauge cannot reach |
-| **an occasional sharp flick down** at idle, irregular, gone at 2500 | the misfires themselves — a hanging valve, a spark, a lean runner all look alike here | S3 confirmed; **names nothing** |
-| the same flicks **still there at 2500** | something that misfires off idle too, which nothing on this car has done before | new; a valve (H1) first |
-| **a regular flick on every cycle**, same size each time | one valve that never seals (burnt, bent) — unlikely with even compression | H1, a worse form; leak-down next |
-| **low and steady at idle**, normal-ish at 2500 | air in behind the throttle | H3 |
-| **low and steady at idle and at 2500 alike** | a late cam — the belt a tooth out — or an exhaust restriction | the belt (ranked 8) |
-| **a fast, even flutter** that gets worse at 2500 | weak valve springs, or worn guides if it steadies with speed | H1, the springs and guides |
-| **slow wandering** up and down over seconds, at idle | mixture or idle control hunting | H8, H7 |
-
-**What follows from it:**
-
-- **What the gauge can and cannot say about H1.** It points at the
-  valvetrain only through the rarer readings — a regular flick, a fast
-  flutter, flicks that stay at 2500. **An intermittent flick at idle
-  alone cannot tell a hanging valve from any other misfire.** H1 is
-  then answered by the tests aimed at it: the stethoscope over each
-  lifter at a warm idle (H1 test 1), a warm leak-down (test 3), and with
-  the valve cover off, each lifter pressed down with its cam lobe
-  pointing up — a lifter that gives before the valve moves has bled
-  down (*general*; VW's manuals describe a check of this kind for these
-  engines, recalled and **not** checked against the manual here).
-- **Flicks only at idle**: the gauge has confirmed the misfires and not
-  named them; nothing moves in the ranked list, and the next repair is
-  chosen from it as it stands.
-- **Low and steady**: at idle only → H3 moves up, and the intake is
-  smoked warm; at 2500 too → the belt's marks are checked.
-- **Steady and normal**: the valvetrain and a large leak are cleared as
-  far as a gauge can clear them; H1 and H3 both lose, and H0 gains.
-- **Cold and warm differ** (item 3 done): a flick cold that is gone warm
-  fits the cold enrichment and deposits (H1, *inlet-valve deposits*);
-  one that is there warm only fits a lifter on thin oil.
-
 **Item 8 — the next repair** is chosen then, not now, from `open.md`'s ranked
    candidates.
 
