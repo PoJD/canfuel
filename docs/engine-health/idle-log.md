@@ -838,6 +838,23 @@ airbox, the weather or one day's chance is not known.
   so the manifold barely notices; a valve that does not seal is what
   flicks a gauge, and the bus sees these dips far better than any
   gauge can.
+- **The cold start's film** (*Claude, 14/10*; the owner's second video
+  in four parts, 46 s, put on `33`'s clock by engine speed from its
+  sound, correlation 0.70–0.93: it runs from **33 s to 80 s after the
+  start**, at 920–940 rpm). **About 17½ inHg**, against about 18½ on
+  the same measure at the part-warm idle of `34` — a hair lower, not
+  higher, which a cold idle with the throttle further open gives
+  (*general*); the difference is inside the error. That stretch is the
+  calm one every cold start shows: **one dip of 20 rpm or more** in
+  the 46 s, 941 → 909 over 0.15 s at 112.1 s, and twenty of 12–19.
+  Through it the needle's tip moved **0.6–0.8°, for five frames**,
+  towards *more* vacuum — about 0.15 inHg, at the limit of what the
+  film resolves, against ±0.3° of frame-to-frame noise and two single
+  frames of 0.7° elsewhere. If it is real, it fits the throttle easing
+  shut a little as the dip began (`open.md` S1, *What comes before a
+  dip*: the dips come just after the ECU trims the charge), not a
+  cylinder failing to draw. **Not a finding**: one event, at the noise
+  floor.
 - **The idle advance beside it** (003): a median of 2–5° BTDC at idle
   on every captured idle since 3/10, inside VW's 0–12° (`vcds.md`), and
   18–25° at 2000–2150 rpm. The ECU moves it −10 to +18° from sample to
