@@ -29,11 +29,11 @@ Claude runs the capture on every drive.
      Drive to Prague as usual, about an hour. On arrival, at a warm idle:
      **055 read once**, then engine off, capture and VCDS stopped.
    - **Back home from Prague, still warm: the gauge.** Engine off; tee
-     the gauge into the fuel pressure regulator's hose as on 14/10.
+     the gauge in at the top of the tee by the runners, as on 14/10.
      **Photograph the needle with the engine off**, the phone straight
      over the dial. Claude runs a new capture; VCDS on **001, 003**.
      Start, film **1 min** of idle from the same spot, then **2500 rpm
-     15 s** and **15 s** of idle. Engine off, gauge off, hose back on.
+     15 s** and **15 s** of idle. Engine off, gauge off, the line as it was.
      Write how often the needle flicked down in the minute, and whether
      at 2500 too.
    - Then drive the tank as usual, captures or not.

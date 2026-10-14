@@ -762,8 +762,15 @@ airbox, the weather or one day's chance is not known.
   clamped. **The 8 mm hose was sound before clamping** (*owner*,
   reported afterwards): tight at both ends, on a tee whose upward leg
   is 8 mm and side leg 6 mm.
-- **The gauge** (MAR-POL `M57673`) teed into the fuel pressure
-  regulator's hose. **Its needle rests a quarter-turn off zero** with
+- **The gauge** (MAR-POL `M57673`) teed in **at the top of the tee by
+  the runners**, on the 8 mm line from the throttle's vacuum spigot
+  (*owner*, reported afterwards: the regulator's hose is about 4 mm,
+  too narrow for the tester's 6 mm tee and hose). *This entry said
+  "teed into the fuel pressure regulator's hose", from the plan.* The
+  line runs at manifold vacuum, but its tee's side leg goes to the
+  breather's connector ahead of the throttle, so the point may sit a
+  little below the manifold's own vacuum (*reasoned*): the readings
+  below are, if anything, low. **Its needle rests a quarter-turn off zero** with
   the engine off (*owner, photographed*), so readings are taken against
   that rest position. Two starts: `33` cold (coolant 16 → 64 °C, about
   5 min of idle at 820–960 rpm, no hold) and `34` part-warm (53 → 82 °C:

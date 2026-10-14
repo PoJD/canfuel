@@ -1578,8 +1578,9 @@ for on purpose. Kept open; noted, not closed.
 decision.** Closed when it had not been heard since 10/10 and there was
 no smoke at the engine; the owner then read it as the valve cover or the
 breather. **Heard again at the back on 14/10** (*owner*), on the cold
-start with the vacuum gauge teed into the fuel pressure regulator's
-hose and every hose of 12/10 new; his reading is that it is the same
+start with the vacuum gauge teed in at the top of the tee by the
+runners, on the throttle's vacuum line (*owner*; *this read "into the
+fuel pressure regulator's hose"*), and every hose of 12/10 new; his reading is that it is the same
 hiss. The tee and the gauge's own fitting were in the line that day, and
 a start without them, which would have told them apart, was not made, so
 **where it comes from is still not placed**. The gauge on the same two
@@ -1593,7 +1594,11 @@ while driving. **His own reading: it may be normal** — the idle's air
 passing the nearly shut throttle plate under manifold vacuum, which
 every throttled engine makes (*general*) — and he has never listened
 to a healthy engine this close, so he cannot tell. **Kept open at his
-decision**, with that note; no test is planned for it.
+decision**, with that note; no test is planned for it. *Noted the same
+evening* (*owner*): on 14/10 the gauge's tee was fitted **at the top
+of the tee by the runners**, on the throttle's vacuum line — right
+where he heard it — so that day's hiss may have been the tester's own
+fitting.
 
 ### S12. A hesitation on tip-in, and after a gearchange — closed 4/10/2026
 
@@ -2316,8 +2321,11 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
   better the more air goes through the engine (S1, *load at idle*), which
   dilutes a fixed leak.
 - **The vacuum gauge, 14/10/2026, against a large leak** (`plan.md` step 3
-  item 2; `33`, `34`, the owner's video of `34`): teed into the fuel
-  pressure regulator's hose, the needle sat **steady** at idle, **about
+  item 2; `33`, `34`, the owner's video of `34`): teed in at the top of
+  the tee by the runners, on the throttle's vacuum line (*owner*; *this
+  read "into the fuel pressure regulator's hose"*; a point that may read
+  a little under the manifold's own vacuum, `idle-log.md` 14/10), the
+  needle sat **steady** at idle, **about
   18–19 inHg** once its zero is taken from the engine off, inside the
   dial's green band (about 17–22) and above its "late ignition" band
   (the needle sits a quarter-turn off zero at rest; measured off the
