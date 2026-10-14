@@ -759,8 +759,9 @@ airbox, the weather or one day's chance is not known.
   hose (Gates `EMH118`) with a new spring clamp at its upper end, the
   thin hose to the tee and the 8 mm hose from the tee to the throttle
   with new clips at both ends, the thin hose on the intake hose's spigot
-  clamped. How the 8 mm hose sat on the tee before clamping was not
-  written down.
+  clamped. **The 8 mm hose was sound before clamping** (*owner*,
+  reported afterwards): tight at both ends, on a tee whose upward leg
+  is 8 mm and side leg 6 mm.
 - **The gauge** (MAR-POL `M57673`) teed into the fuel pressure
   regulator's hose. **Its needle rests a quarter-turn off zero** with
   the engine off (*owner, photographed*), so readings are taken against
