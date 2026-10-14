@@ -48,6 +48,10 @@ Claude runs the capture on every drive.
 6. **On the next tank: two or three ordinary drives, warm**, on
    different days. Claude runs the capture; VCDS on **014, 003, 020**;
    055 once at the end, warm idle. Write the stops.
+   - **On one of them, a hard motorway run**: a few minutes brisk at
+     the limit, two or three full pulls, then **a warm stop of a few
+     minutes** with loads off. Before it: the timing belt's interval
+     checked against its date (10/2017).
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 68–72 °C of oil.
      **Leaks there → a new manifold**: new gasket to the head, new nuts,
@@ -310,6 +314,23 @@ its own about a lifter.
    VCDS takes three groups, so 003 sits that drive out (*decided*): its
    idle air was 3.08 g/s on 10/10, the baseline is set, and the idle is
    still read off 014 and the capture.
+**Item 6's hard run** (*owner's request*, 14/10/2026: to bring back the
+drive after which the misfires once came). On 4/10, on fresh
+adaptations, 014 counted only at the stop after a hard drive, 7–9 a
+minute, and at no gentler stop (`open.md` S3, *Session A after step
+1b*); since 9/10, on settled ones, it counts at every warm stop
+anyway, so the run says less than it would have then. What is read is
+**the stop after it**, not the run: under load 014 has almost never
+counted on this car. **After 22/10**, so that the run's heat is not
+mixed into the can's reading and so that it is on the original map;
+no harm to the engine or to the cleaner (*general*: the cleaner is
+made for ordinary driving, motorways included). **The belt** is the
+one part that sustained high revs load harder, and at 9 years its
+age, not its 27,800 km, is what to check against VW's interval, which
+this repository does not hold (`vehicle-history.md`). The legal limit
+caps it: minutes at 5000 rpm in top gear are well past 130 km/h, so
+brisk at the limit plus full pulls is the run.
+
 **Item 7 — the exhaust ahead of the front probe (H2), warm** (*reasoned*,
    9/10/2026): `open.md`'s first candidate when this was written (**fourth since 12/10**, when the dips came back on one slot and the cold test found nothing) (since 9/10 second, behind H3, now that the dips keep to one cylinder — but still the one with symptoms of its own), and next now that 2b moved nothing on
    the intake side, and free (S15, which first made it urgent, closed
