@@ -20,9 +20,7 @@ Claude runs the capture on every drive.
 5. **15/10: the drive to Prague, and the can on the way.** An ordinary
    drive, not a test. Battery stays connected.
    - **In the garden**, the engine cold: Claude runs the capture; VCDS on
-     **014, 003, 001**. Start; bonnet open, **listen at the back for the
-     hiss** while the half minute passes, the gauge off; write whether it
-     is there and where. Bonnet shut, drive to the petrol station. There:
+     **014, 003, 001**. Start and drive to the petrol station. There:
      engine off, capture and VCDS stopped.
    - **At the station: one can of Liqui Moly *DFI Cleaner* (= *Pro-Line
      Direct Injection Cleaner*, 120 ml)** into the tank, then fill
@@ -139,11 +137,9 @@ what the worst one did not; the can is the next thing he wants on the
 car. What the warm reading would have added — a lifter on thin oil
 (H1), a crack that opens hot — stays in `open.md` as those
 hypotheses' tests. How the gauge is read is in `open.md`, *Tools worth
-owning*. **The start without the gauge rides on 15/10's cold start**
-(*decided 14/10/2026*): the regulator's hose is back on its own, so the
-hiss heard on 14/10 with the tee in the line (S11) is either there
-without it or not, at no cost but listening during the half minute
-before driving off.
+owning*. **No listening for the hiss on 15/10** (*owner's decision*,
+14/10/2026): it is heard only with his head right by the throttle, and
+he may be hearing the throttle's own air (`open.md` S11).
 
 **Item 5 — the drive of 15/10** (*owner's decision*, 14/10/2026: an
 ordinary drive to a morning appointment in Prague, the can added at the

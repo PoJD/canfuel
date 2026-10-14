@@ -1586,6 +1586,15 @@ a start without them, which would have told them apart, was not made, so
 starts read steady and rising a little off idle (H3, *The vacuum gauge*),
 which no large leak behind the throttle does.
 
+**Placed, roughly, 14/10/2026** (*owner*): **on the right side of the
+engine, perhaps near the throttle**, and only with his head right by
+the hoses and the throttle — nothing he can hear from further off, or
+while driving. **His own reading: it may be normal** — the idle's air
+passing the nearly shut throttle plate under manifold vacuum, which
+every throttled engine makes (*general*) — and he has never listened
+to a healthy engine this close, so he cannot tell. **Kept open at his
+decision**, with that note; no test is planned for it.
+
 ### S12. A hesitation on tip-in, and after a gearchange — closed 4/10/2026
 
 **Withdrawn by the owner, 4/10/2026**, after watching for it on that day's
