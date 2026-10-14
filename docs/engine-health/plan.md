@@ -17,18 +17,19 @@ records it**, and the file is deleted when it is empty.
 One at a time; Claude says after each whether the next is needed.
 Claude runs the capture on every drive.
 
-5. **15/10: the drive to Prague, and the can on the way.** An ordinary
-   drive, not a test. Battery stays connected.
-   - **In the garden**, the engine cold: Claude runs the capture; VCDS on
-     **014, 003, 001**. Start and drive to the petrol station. There:
-     engine off, capture and VCDS stopped.
+5. **15/10: across town and back, and the can on the way.** Ordinary
+   drives, not a test. Battery stays connected. Claude runs a capture
+   on each of the three drives; VCDS on **014, 003, 001** on each.
+   - **From the garden, the engine cold, to the petrol station** (about
+     3 km). There: engine off, capture and VCDS stopped.
    - **At the station: one can of Liqui Moly *DFI Cleaner* (= *Pro-Line
-     Direct Injection Cleaner*, 120 ml)** into the tank, then fill
-     **30–50 l** of the usual OMV MaxxMotion 100.
-   - **A new capture before the start**, VCDS on **014, 003, 001** again.
-     Drive to Prague as usual, about an hour. On arrival, at a warm idle:
-     **055 read once**, then engine off, capture and VCDS stopped.
-   - **Back home from Prague, still warm: the gauge.** Engine off; tee
+     Direct Injection Cleaner*, 120 ml)** into the tank, then **about
+     18 l** of the usual OMV MaxxMotion 100.
+   - **From the station to the appointment** (an hour at most). Engine
+     off on arrival, capture and VCDS stopped.
+   - **From the appointment home.** At home, at a warm idle: **055 and
+     032 read once each**, then engine off, capture and VCDS stopped.
+   - **At home, still warm: the gauge.** Engine off; tee
      the gauge in at the top of the tee by the runners, as on 14/10.
      **Photograph the needle with the engine off**, the phone straight
      over the dial. Claude runs a new capture; VCDS on **001, 003**.
@@ -145,21 +146,31 @@ owning*. **No listening for the hiss on 15/10** (*owner's decision*,
 14/10/2026): it is heard only with his head right by the throttle, and
 he may be hearing the throttle's own air (`open.md` S11).
 
-**Item 5 — the drive of 15/10** (*owner's decision*, 14/10/2026: an
-ordinary drive to a morning appointment in Prague, the can added at the
-petrol station on the way, rather than a separate warm session). **Two
-captures**, because the converter's frames and the capture never share
-a session and a fixture is one ignition cycle at a time: the first is
-the cold start and a short drive on the old fuel; the second is the hour
-to Prague, on fuel with the cleaner in it, and holds the warm stops of
-Prague traffic — the first warm idle with 003 since the hoses were
-renewed, read as below. **It is a before, not an after**: a cleaner
-needs a tank's worth of driving to act (*general*, and the maker's dose
-is one can per 30–50 l), so the hour carries at most its first trace;
-the reading is item 6's. It also stands as the one captured drive item
-5a wants before the map goes back.
+**Item 5 — the drives of 15/10** (*owner's decision*, 14/10/2026:
+ordinary drives across town to a morning appointment and back, the can
+added at the petrol station on the way, rather than a separate warm
+session; *this read "the drive to Prague", the owner lives in Prague*).
+**A capture per drive**, because the converter's frames and the capture
+never share a session and a fixture is one ignition cycle at a time:
+the first is the cold start and 3 km on the old fuel; the second and
+third are the hour out and the drive back, on fuel with the cleaner in
+it, and hold the warm stops of town traffic — the first warm idle with
+003 since the hoses were renewed, read as below. **About 18 l**
+(*owner's decision*): the tank read 21 indicated on 14/10 (`34`), about
+22 in fact at the sender's gain (`docs/firmware/refuel-reset.md`), so
+it lands near 40 l, the middle of the maker's 30–50. **055 and 032 at
+home**, not before the appointment, where there is no time (*owner*):
+055 says whether the adaptations are settled (`refuted.md` C19); **032**
+is the owner's addition, to see whether the lambda adaptations move —
+12/10 put its idle cell at 0.0 against −2.3 before the airbox was
+sealed (`open.md` S9), and the hoses and the can could each move it.
+**It is a before, not an after**: a cleaner needs a tank's worth of
+driving to act (*general*, and the maker's dose is one can per
+30–50 l), so these drives carry at most its first trace; the reading
+is item 6's. They also stand as the captured drives item 5a wants
+before the map goes back.
 
-**The warm gauge after all, on the way home** (*owner's decision*,
+**The warm gauge after all, at home** (*owner's decision*,
 14/10/2026 evening, reversing the same day's drop): **for
 completeness**, at the end of 15/10's drive, when the engine is warm
 anyway. The can is in the tank by then, so it is not a clean before —
