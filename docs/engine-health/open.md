@@ -2308,12 +2308,11 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
   dilutes a fixed leak.
 - **The vacuum gauge, 14/10/2026, against a large leak** (`plan.md` step 3
   item 2; `33`, `34`, the owner's video of `34`): teed into the fuel
-  pressure regulator's hose, the needle sat **steady** at idle, about
-  16–17 inHg once its zero is taken from the engine off (about 17½–20 on the
-  owner's two photos of the dial, the low half of its green band:
-  `idle-log.md`, 14/10) (the needle sits
-  a quarter-turn off zero at rest; the figure is read off the angle,
-  ±2), went **a little higher and steady at ~2150 rpm**, and on a snap
+  pressure regulator's hose, the needle sat **steady** at idle, **about
+  18–19 inHg** once its zero is taken from the engine off, inside the
+  dial's green band (about 17–22) and above its "late ignition" band
+  (the needle sits a quarter-turn off zero at rest; measured off the
+  owner's video, ±1½, `idle-log.md`, 14/10; *this read 16–17*), went **a little higher and steady at ~2150 rpm** (20–21½), and on a snap
   dropped, overshot above idle and settled back. A leak behind the
   throttle reads low at idle and recovers off it; this did not. It does
   not rule out a small leak at one runner, which a gauge on the common

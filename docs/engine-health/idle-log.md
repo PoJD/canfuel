@@ -768,7 +768,8 @@ airbox, the weather or one day's chance is not known.
   5 min of idle at 820–960 rpm, no hold) and `34` part-warm (53 → 82 °C:
   two snaps, ~14 s at 2100–2200 rpm, 3½ min of idle). Read off the
   owner's 32 s video of `34`, frame by frame: **steady at idle**, about
-  16–17 inHg against the rest position (read off the angle, ±2); **on a
+  18–19 inHg against the rest position (measured below; *this read
+  16–17, read off the angle*); **on a
   snap it dropped towards zero, overshot above idle and settled back**;
   **a little higher and steady at the hold**. That is the
   "steady and normal" row (`open.md`, *How the vacuum gauge is read*): no large leak behind the throttle and no
@@ -797,18 +798,38 @@ airbox, the weather or one day's chance is not known.
   idle is roughest cold and the gauge saw nothing there. **Put back the
   same evening** (*owner*), for completeness, at the end of 15/10's
   drive with the can already in.
-- **The level, checked on the owner's two photos of the dial** (*14/10*:
-  one engine off, one at the settled idle; `34`). The dial's green
-  "NORMAL MOTOR" band is about 17–22 inHg, its red "LATE IGN TIMING"
-  about 14–17. **Engine off, the needle's tip rests at the far end of
-  the dial, just past 70 cmHg**, not near its zero; at idle it had
-  swung back **about 100–115°**, and the printed scale runs about
-  5.6° per inHg, so **about 17½–20 inHg**, the low half of the green
-  band. That rests on the gauge moving by its printed scale, which the
-  wrong rest position makes an assumption, and on two photos at
-  different angles (±2 inHg). *Corrected the same evening*: Claude had
-  doubted the 16–17 inHg above, taking the photo at idle for the rest
-  position; the two photos agree with it within their error.
+- **The level, measured off the owner's video and photos** (*Claude,
+  14/10*; the owner's rest photo, his 32 s video in three parts, engine
+  speed from the video's sound). The dial's green "NORMAL MOTOR" band is
+  about 17–22 inHg, its red "LATE IGN TIMING" about 14–17. **Engine off,
+  the needle's tip rests low on the left, at about 12 on the dial**; the
+  vacuum turns it the dial's own way, and the printed scale runs about
+  5.7° per inHg, so the true vacuum is the angle turned from rest over
+  that. The needle's wide tail end makes it easy to read: it points at
+  the dial's vacuum "0" when the true vacuum is **about 19 inHg** (tip
+  and tail measured on the rest photo and an idle frame, 18.8 and
+  19.9), and every inHg the tail moves along the vacuum scale adds one.
+  | moment (engine speed from the sound) | true vacuum, inHg |
+  |---|---|
+  | settled idle, ~815 rpm | **about 18–19** |
+  | the throttle opening, ~1600–1700 rpm rising | about 13, for a moment |
+  | steady at 2000–2150 rpm | about 20–21½ |
+  | sharp release from ~2600 rpm, 2000 → 1200 rpm | **about 24–25**, falling to idle's 19 in about 3 s |
+  | gentle release from ~1850 rpm | about 20–21, back to 19 |
+  ±1½ inHg on every row: two different camera angles, and the
+  assumption that the mechanism turns by its printed scale, which a
+  needle that rests a quarter-turn out cannot confirm. **The idle sits
+  in the green band, not the red one**, before any allowance for
+  altitude, which would only raise it against a sea-level band.
+  *Corrected the same evening*: Claude first took the photo at idle for
+  the rest position, then had the rest at the far end of the dial; the
+  owner put both right, and the figures here replace both.
+- **The idle advance beside it** (003): a median of 2–5° BTDC at idle
+  on every captured idle since 3/10, inside VW's 0–12° (`vcds.md`), and
+  18–25° at 2000–2150 rpm. The ECU moves it −10 to +18° from sample to
+  sample, which is its fast idle control. A low idle advance is what
+  the dial's "LATE IGN TIMING" band means, and the reading did not
+  fall into it.
 
 **What it is not known to have achieved:** the gauge on the common
 plenum cannot see a small leak at one runner, and the idle it read was
