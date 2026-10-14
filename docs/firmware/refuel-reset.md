@@ -233,6 +233,31 @@ not have refused five on its own**: at a gain of 0.905 a 6 L fill still shows
 the work**, and what the wide point adds is that the compression is not a
 quirk of the bottom of the travel.
 
+### The level stops at 51 L, and that is not this firmware
+
+**Owner-reported, off the display and the instrument cluster, 14/10/2026.**
+About **8 L topped a tank already showing 50.9 up to full, and the display
+did not move**: it stayed at 50.9. Over the following driving the
+**cluster's needle fell slowly from full while the display still read
+50.9**. The captures agree from the other side: **the highest level 0x320
+has ever carried, across every `_z1` fixture, is 51** — 88,170 frames of
+it, and nothing above.
+
+So the ceiling is in the number on the bus, upstream of this firmware:
+`decode.c` masks seven bits and `compute_tank_d()` clamps nothing below
+that. Whether the sender stops travelling there or the cluster stops
+transmitting there is not known; the needle moving while the bus value
+does not points at the cluster's side, and the owner reads it as the
+car's own design (*owner*; how the cluster drives its needle is not
+read from any VW document). Against a nominal 55 L, **the top four
+litres or so are invisible on 0x320**.
+
+What it costs here, *reasoned*: a fill that starts above about 47
+indicated cannot rise by more than four, so **it cannot fire the
+refuelling reset**, whatever it delivers; and with the tank brim-full,
+`FuelTank` and the range read low until the level falls below 51.
+**Nothing in `src/` changes for it**, for the reason in the next section.
+
 ### What it changes in `src/`, which is nothing, and that is a decision
 
 **`compute_tank_d()` stays uncalibrated.** `CLAUDE.md` closed the tank as a
