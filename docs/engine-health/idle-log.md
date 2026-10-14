@@ -824,6 +824,20 @@ airbox, the weather or one day's chance is not known.
   *Corrected the same evening*: Claude first took the photo at idle for
   the rest position, then had the rest at the far end of the dial; the
   owner put both right, and the figures here replace both.
+- **The dips the film caught** (*Claude, 14/10*; each part of the video
+  put on `34`'s clock by engine speed from its sound, to within a
+  frame or two). About 9 s of the 32 are settled idle, and `34` has
+  **three dips** in them: 42 rpm at 188.8 s, 21 at 190.7, 29 at 211.5
+  — the usual rate for that oil. Stepped through at 30 frames a second
+  against the dial's ticks: **no flick of the needle at either
+  readable one** (the 21 rpm dip falls in a blurred stretch); a jump
+  of 1.4° at the third is a doubled frame of camera shake, the print
+  doubled with it. What this frame rate and hand-held film could have
+  shown is about 1° of needle, roughly ⅕ inHg. Not surprising
+  (*reasoned*): a cylinder that fails to fire still draws its charge,
+  so the manifold barely notices; a valve that does not seal is what
+  flicks a gauge, and the bus sees these dips far better than any
+  gauge can.
 - **The idle advance beside it** (003): a median of 2–5° BTDC at idle
   on every captured idle since 3/10, inside VW's 0–12° (`vcds.md`), and
   18–25° at 2000–2150 rpm. The ECU moves it −10 to +18° from sample to
