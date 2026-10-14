@@ -167,10 +167,10 @@ anyway. The can is in the tank by then, so it is not a clean before —
 deposit has hardly moved (*general*), and the gauge answers a lifter
 on thin oil and a crack that opens hot, which the cold reading could
 not. **The engine-off photograph is what makes the level readable**:
-on 14/10 the rest position and the idle were never on one frame of the
-same dial, and the level written down then could not be checked
-afterwards (`idle-log.md`, 14/10). Same angle for both, so the two
-needle angles are measured on one picture of the scale. VCDS 001 and
+the needle rests at the far end of the dial, not at its zero, so the
+level is the angle between the two states; on 14/10 it came out of two
+photos at different angles (`idle-log.md`, 14/10). Same angle for
+both this time, so the two are measured on one picture of the scale. VCDS 001 and
 003, as on 14/10, so the two sessions compare.
 
 **Which VCDS groups, and why** (*decided 11/10/2026*, the owner's

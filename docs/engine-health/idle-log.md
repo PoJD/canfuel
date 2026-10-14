@@ -797,15 +797,18 @@ airbox, the weather or one day's chance is not known.
   idle is roughest cold and the gauge saw nothing there. **Put back the
   same evening** (*owner*), for completeness, at the end of 15/10's
   drive with the can already in.
-- **The level is not settled** (*Claude, 14/10, on the owner's photo of
-  the dial*): the dial's green "NORMAL MOTOR" band is about 17–22 inHg
-  and its red "LATE IGN TIMING" about 14–17, read off the photo ±1; the
-  photo has the needle at about 12 inHg on the dial, and whether that
-  is the engine off or the idle was not recorded. Engine off, 16–17
-  above it would be past the end of the scale; so **the 16–17 inHg
-  above is not confirmed**, and the warm session photographs both
-  states on one angle. What the needle did — steady, the snap, a
-  little higher at the hold — does not depend on the level.
+- **The level, checked on the owner's two photos of the dial** (*14/10*:
+  one engine off, one at the settled idle; `34`). The dial's green
+  "NORMAL MOTOR" band is about 17–22 inHg, its red "LATE IGN TIMING"
+  about 14–17. **Engine off, the needle's tip rests at the far end of
+  the dial, just past 70 cmHg**, not near its zero; at idle it had
+  swung back **about 100–115°**, and the printed scale runs about
+  5.6° per inHg, so **about 17½–20 inHg**, the low half of the green
+  band. That rests on the gauge moving by its printed scale, which the
+  wrong rest position makes an assumption, and on two photos at
+  different angles (±2 inHg). *Corrected the same evening*: Claude had
+  doubted the 16–17 inHg above, taking the photo at idle for the rest
+  position; the two photos agree with it within their error.
 
 **What it is not known to have achieved:** the gauge on the common
 plenum cannot see a small leak at one runner, and the idle it read was
