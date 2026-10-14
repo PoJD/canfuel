@@ -1299,6 +1299,14 @@ in `tools/test_coastscan.py`. The VCDS logs go to
 leaves the adapter's channel open: send `C\r` to its port. None of this
 is a question for the maintainer.
 
+**And then, every time, the one-cylinder share of the dips** (*the
+maintainer, 14/10/2026*): `python tools/cutscan.py --pairs` on the new
+capture, reported to him as pairs on the same slot, the share against
+chance's 25 % and p — **alone, and pooled with the captures since the
+last repair** — and added under `docs/engine-health/open.md`, *The dips
+keep to one slot*. A capture with injector cuts in it is read with the
+cut minutes left out, or the dead slot makes the pairs.
+
 **You cannot hear him.** Nothing in either setup gives you a microphone, so
 a reading taken at the car — a thermometer, a gauge, a sound described —
 reaches you as text. **Dictation on his phone into the chat works** (tested

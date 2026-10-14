@@ -4510,6 +4510,14 @@ adaptation stages): **46 of 121 pairs on the same slot, 38 %, p =
 leads**: 10/10's quarter was the small sample. Which cylinder is still
 the cuts' question (`plan.md` item 7), and they come back into it.
 
+**14/10/2026** (`33` cold, `34` part-warm, the gauge starts; no cuts):
+**8 of 23 pairs on the same slot, 35 %, p = 0.2** (4 of 13 and 4 of
+10). The same direction as 9/10–12/10, but two short idles give too
+few pairs to say anything on their own; pooled with `32`, 54 of 144,
+38 %. **Read after every capture from now on** (*owner's decision*,
+14/10/2026; `CLAUDE.md`, *After every captured session*): the capture
+alone and pooled with the others since the last repair.
+
 ---
 
 
