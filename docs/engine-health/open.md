@@ -4286,6 +4286,21 @@ the gearbox window, together (*Removing, installing and tensioning toothed
 belt*, `vcds.md`'s source), which means the upper guard off and the
 engine turned by hand. Left here should the ranked list ever reach it.
 
+**A stretched belt, or half a tooth?** (*the owner's question*,
+14/10/2026). A belt does not jump half a tooth: it skips whole teeth or
+none. What age can do is a drift of a degree or two — the belt's cords
+stretch very little and its tensioner takes up what they do, and the
+teeth and pulleys wear (*general*; not this belt's figure). Either way
+**the cam is out by the same angle for all four cylinders**, so it
+cannot explain dips that keep to one slot (*The dips keep to one
+slot*), and a whole tooth is argued against by the vacuum gauge too:
+about 18–19 inHg at idle, steady, a little higher at 2000 rpm
+(H3, *The vacuum gauge*), where a late cam reads low at both. **Not a
+reason to open it for the idle.** Its replacement is a question of
+maintenance — its age against VW's interval, which this repository
+does not hold (`plan.md` item 6) — and if it is renewed, the marks are
+read as it comes off, which answers this lead at no extra cost.
+
 **Searched again 10/10/2026** (*the owner's request*), German, Czech and
 English, for an AQY or a sister 2.0 8V with an idle-only misfire that
 ends in a fix. **Nothing new on this engine.** What came back:
