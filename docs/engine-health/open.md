@@ -1601,7 +1601,12 @@ hose from the MAF to the throttle** (`1C0 129 684`, the one original
 hose left on the breather's line, which could not be had new), **or
 the throttle itself**. *Claude had suggested the same evening that the
 tester's tee, fitted at the tee by the runners, might be the hiss; the
-owner put it right.*
+owner put it right.* **Moving the intake hose and covering places by
+hand at random left the sound unchanged** (*owner*, 14/10/2026). A
+leak at a joint usually changes when the joint is flexed or the place
+covered (*general*), so this leans away from the hose and its joints
+and towards the throttle's own air or something the hand did not
+reach — weakly: a random search can miss the spot.
 
 ### S12. A hesitation on tip-in, and after a gearchange — closed 4/10/2026
 
