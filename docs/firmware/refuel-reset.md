@@ -249,12 +249,16 @@ that. Whether the sender stops travelling there or the cluster stops
 transmitting there is not known; the needle moving while the bus value
 does not points at the cluster's side, and the owner reads it as the
 car's own design (*owner*; how the cluster drives its needle is not
-read from any VW document). Against a nominal 55 L, **the top four
-litres or so are invisible on 0x320**.
+read from any VW document). **At least the top eight litres are invisible on 0x320**: the
+8 L topping went in above the point where it already read 51. *This
+said "the top four litres or so", from the 55 L nominal; the owner put
+it right from the 8 L.* How far below the brim the 51 really starts
+is not measured.
 
 What it costs here, *reasoned*: a fill that starts above about 47
 indicated cannot rise by more than four, so **it cannot fire the
-refuelling reset**, whatever it delivers; and with the tank brim-full,
+refuelling reset**, whatever it delivers — eight litres into a tank
+showing 51 rose by nothing; and with the tank brim-full,
 `FuelTank` and the range read low until the level falls below 51.
 **Nothing in `src/` changes for it**, for the reason in the next section.
 
