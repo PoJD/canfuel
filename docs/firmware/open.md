@@ -301,6 +301,26 @@ cluster a few degrees off at the cold end would do it; nothing here
 says which. **On the display, the two differ by 4 °C**: today's 72 °C
 (raw 160) is **100 °C by the DBC, 96 °C by `raw − 64`**.
 
+**Why the DBC's offset and not a fitted one** (*decided 15/10/2026*,
+on the owner's question why the slope should hold and the offset not).
+A DBC defines the **encoding** — how the cluster turns its own reading
+into a byte — and an encoding has no error of its own, in its offset
+any more than in its slope. What can be off is **the reading**: the
+sender and the cluster's treatment of it. At the 24/9 soak, ambient
+10.0 °C, the cluster's two temperatures are off **in opposite
+directions** — oil 17 °C by the DBC (+7), its coolant byte 7.5 °C
+(−2.5) — while the ECU's coolant reads 12.0. So the cluster is a few
+degrees out at the cold end on both senders, and an offset fitted to
+that end would be a calibration of one sender at one temperature,
+carried untested to the hot end where the reading is used. **So the
+encoding is the DBC's, `raw − 60`**, and the cold-end excess is the
+sender's: G266 measures the oil level thermally, by heating, which
+could bias its temperature (*general*, not checked on this sender).
+*The paragraph above, and the owner's chat on 15/10, first leaned to
+`raw − 64`*. The web was searched for anyone reconciling the two the
+same day: only the opendbc file and the RS4 thread (`x − 60`) turned
+up, and a Porsche 997.2 using `x − 60` on another frame.
+
 ### How it closes
 
 1. **A thermometer in hot oil, straight after a hard drive**, against
