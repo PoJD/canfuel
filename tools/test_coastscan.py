@@ -140,18 +140,19 @@ class AgainstTheFixtures(unittest.TestCase):
     def test_a_log_without_timestamps_is_skipped_rather_than_guessed_at(self):
         self.assertEqual(samples(os.path.join(FIXTURES, "03_drive.txt")), [])
 
-    def test_the_corpus_holds_299_overrun_fuel_cuts(self):
+    def test_the_corpus_holds_346_overrun_fuel_cuts(self):
         """Four in 17_drive_property_z1, 72 in the hour of 19, 33 in 24,
         17 and 15 in the two halves of session A, 25 and 26, and 13 and 26
         in the two halves of its second run, 27 and 28, 22 in session B,
         29, 48 in the drive of steps 2b and 2c, 30, 33 in the drive after
-        the new plugs and leads, 31, and 16 in the drive of step 3 item 1,
-        32.
+        the new plugs and leads, 31, 16 in the drive of step 3 item 1,
+        32, and 32 and 15 in the two halves of the drive of item 5, 35
+        and 36.
 
         Counted per log, so a change to the detector shows where it moved
         rather than only that the total did.
         """
-        self.assertEqual(len(self.cuts), 299)
+        self.assertEqual(len(self.cuts), 346)
         self.assertEqual(self.per_log, {"17_drive_property_z1.txt": 4,
                                         "19_postfix_drive_z1.txt": 72,
                                         "24_mafswap_drive_z1.txt": 33,
@@ -162,7 +163,9 @@ class AgainstTheFixtures(unittest.TestCase):
                                         "29_sessionB_z1.txt": 22,
                                         "30_step2b_z1.txt": 48,
                                         "31_step4_drive_z1.txt": 33,
-                                        "32_step3_item1_z1.txt": 16})
+                                        "32_step3_item1_z1.txt": 16,
+                                        "35_item5_drive_z1.txt": 32,
+                                        "36_item5_drive2_z1.txt": 15})
 
     def test_the_cut_does_not_engage_the_moment_the_pedal_comes_up(self):
         """0.63-11.06 s after the lift across the corpus, never at once.

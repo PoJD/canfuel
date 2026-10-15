@@ -186,7 +186,8 @@ class TestFixtureContent(unittest.TestCase):
                 "27_sessionA2_cold_z1.txt", "28_sessionA2_warm_z1.txt",
                 "29_sessionB_z1.txt", "30_step2b_z1.txt",
                 "31_step4_drive_z1.txt", "32_step3_item1_z1.txt",
-                "33_step3_gauge_cold_z1.txt", "34_step3_gauge_2500_z1.txt"}
+                "33_step3_gauge_cold_z1.txt", "34_step3_gauge_2500_z1.txt",
+                "35_item5_drive_z1.txt", "36_item5_drive2_z1.txt"}
     ACCEPTED_IDS = {0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480}
 
     #: The last few milliseconds of 20, as the ignition goes off and the bus
