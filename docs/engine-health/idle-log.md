@@ -969,6 +969,9 @@ drive home (`37`, headlights only, A/C and blower off, oil 100–101 °C):
   A/C idle of August graded 29 (`12`), 26/9's went towards 35. Under
   load, so not comparable with the lights-only baseline, but a floor
   nobody had seen.
+  **A/C and blower off again, oil still 98 °C: back up towards a median
+  of about 55** (*owner*). So the low was the load's, as on 26/9, and
+  the lights-only idle stood where it had at the start of the stop.
 - **The display's `OilTemp` moved to `raw − 60` the same evening**
   (`mfd15` `S-AQY.TRI`, uploaded by the owner): every oil temperature
   read off the display from then on is on it, as every figure in these
