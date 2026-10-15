@@ -186,7 +186,7 @@ read**: the drives of item 6 against `30`, `31` and 14/10's gauge session (`33`,
 settled (the battery stays on, `refuted.md` C19 — except the reset on
 22/10, item 5a, so the drives just after it read low on 014 for a
 reason that is not the can). Better → deposits had
-a part; the same → H1's deposit branch loses, and Claude picks from the
+a part; the same → H13 loses its inlet-valve half, and Claude picks from the
 ranked list. A tank is weeks of this car's driving, so the reading is
 late by design. **`IdleHealth` off the display is the running reading in
 between** (*the owner's point*, 10/10/2026) — the one instrument that
