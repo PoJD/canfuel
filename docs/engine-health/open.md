@@ -1021,6 +1021,16 @@ in cold fog, cranked in 0.93 s and fell only 74 rpm after first firing,
 against 1.24 s and a near-stall (451 → 311 rpm) on the old injectors. The
 table and the reasoning are in `refuted.md` C3.
 
+**Every captured start since, read 15/10/2026** (*the owner's question*;
+the start rules of `idledips.start_fields()`, each start from rest in
+`24`–`38`): **14 starts, `StartDip` 0 in 13 and 15 rpm in one** (`25`,
+3/10), cold at 9.8–17 °C of coolant and warm alike. Crank to first firing
+0.69–0.90 s, and **1.18–1.38 s on four cold mornings** (`27`, `30`, `31`,
+`35`, coolant 9.8–15.8 °C) against 0.76–0.80 s on three others as cold
+(`25`, `32`, `33`) — a spread, not a trend, and every one of them caught
+cleanly. The owner's account agrees: no dip worth the name since the
+injectors (*owner*). Nothing here reopens S7.
+
 ### S8. Top end — "loses breath above 5000 rpm" — closed 4/10/2026
 
 **Closed at the owner's decision, 4/10/2026, with its first criterion
