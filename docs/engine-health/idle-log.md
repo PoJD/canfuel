@@ -937,9 +937,7 @@ drive home (`37`, headlights only, A/C and blower off, oil 72–73 °C):
   28 l, so about 10–12 l of the treated fill burnt. At a level crossing,
   **oil 72 °C**, headlights and the blower on its first step: **40–50
   for about three minutes, once 35** for a moment; after five more
-  minutes of driving, standing at home, **70**. The earlier trip of the
-  day, oil not read, showed 48–65 out, 60–70 back and 80–100 at home,
-  and is not counted (*owner's decision*). *Read*: 40–50 with lights
+  minutes of driving, standing at home, **70**. *Read*: 40–50 with lights
   and blower sits where small loads put this idle before the can
   (26/9: lights and rear heater towards 40; `35` this morning with
   blower and seat heating, 38–50 at 66–67 °C), and 70 within 54–75, the
