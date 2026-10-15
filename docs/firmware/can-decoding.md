@@ -112,7 +112,7 @@ finds it rather than rediscovers it.
 | Speed | 0x1A0 | 2–3 LE | × 0.005 km/h | validity gate in b1, see below |
 | Engine speed | 0x280 | 2–3 LE | × 0.25 rpm | |
 | Coolant temperature | 0x288 | 1 | × 0.75 − 48 °C | 0xFF = fault |
-| Oil temperature | 0x420 | 3 | × 0.75 − 48 °C | 0xFF with the engine off |
+| Oil temperature | 0x420 | 3 | × 0.75 − 48 °C | 0xFF with the engine off; **opendbc's `Kombi_2` has `raw − 60`**, `open.md` question 10 |
 | Fuel in tank | 0x320 | 2, mask 0x7F | indicated litres | bit 0x80 = reserve lamp; the scale reads low, `refuel-reset.md` |
 | Torque (indicated) | 0x280 | 7 | 1.06 Nm/bit | measured off the full-throttle plateau, see `frames.md` |
 | Throttle position | 0x280 | 5 | 38 = rest position (35 on the throttle body fitted 2/10/2026) | |

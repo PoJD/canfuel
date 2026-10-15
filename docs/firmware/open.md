@@ -264,6 +264,43 @@ coolant's slope is pinned at 0.57–0.89 (0.75 inside it), but the oil's is
 0.76–1.16 only if one assumes where the oil ends up. Both 0.75 and 1.00
 survive.
 
+### A published layout: `Kombi_2`, oil `raw − 60` (*found 15/10/2026*)
+
+**The question was never searched on the web until 15/10/2026** (the
+owner's question). It has an answer there, and it is not ours:
+
+- **commaai's opendbc, `opendbc/dbc/vw_pq.dbc`** (the PQ platform's
+  CAN database, MIT-licensed, fetched 15/10/2026 from
+  `github.com/commaai/opendbc`), message `BO_ 1056 Kombi_2` — 0x420 —
+  signal `Oeltemperatur_4_1 : 24|8@1+ (1,-60)`: **byte 3, `°C = raw ×
+  1 − 60`**, commented "kombi oil temperature". The German names and
+  their `_4_1` suffixes are VW's own message-matrix style, so it reads
+  as taken from VW's matrix rather than fitted to a log — *a judgement
+  about a community file, not a VW document*.
+- **An Audizine thread on the RS4's 2.7T** reads 0x420 byte 3 as oil,
+  `x − 60` °C, from its own logging — another platform, the same answer.
+
+**The rest of the same definition fits this car, which is what makes it
+count:** byte 0 bit 0 is `Fehlerstatus_Aussentemp` and is **set** in
+every frame (b0 = 1), with the ambient bytes 1 and 2 at zero — the
+cluster reporting that it has no ambient sensor, which is what
+`refuted.md` B11 found the hard way (the mirror's thermometer is its
+own). Byte 4 is `Kuehlmitteltemp__4_1__Kombi_2_ (0.75, −48)`, **the
+cluster's coolant**, and in `18` and `38` it tracks 0x288's coolant 4–13
+counts below it — a second coolant reading (the gauge's own sender,
+*general*: these engines carry one for the ECU and one for the gauge).
+
+**What it settles and what it does not.** The **slope, 1.0**, agrees
+with the soaks' lean (~1.1, 1.03–1.23) and with oil near the coolant
+when warm; the shipped 0.75 now rests on nothing but the borrowed
+analogy. The **offset is less sure**: at the cold soaks `raw − 60` puts
+the oil 3.5–5 °C *above* 0x288's coolant, and on 24/9 at 17 °C against
+an ambient of 10.0 — not where a soaked sump sits — while `raw − 64`
+lands within a degree of the ECU's coolant at every soak. A sender or
+cluster a few degrees off at the cold end would do it; nothing here
+says which. **On the display, the two differ by 4 °C**: today's 72 °C
+(raw 160) is **100 °C by the DBC, 96 °C by `raw − 64`**.
+
 ### How it closes
 
 1. **A thermometer in hot oil, straight after a hard drive**, against
