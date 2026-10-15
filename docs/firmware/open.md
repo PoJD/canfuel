@@ -256,7 +256,14 @@ do not quite:
 | `33_step3_gauge_cold_z1`, 14/10 | 15.75 °C | 20 °C | +4.25 |
 | `35_item5_drive_z1`, 15/10, a cold, damp morning | 10.5 °C | 14 °C | +3.5 |
 
-Each the first 0x288 and 0x420 frame after ignition-on. **The oil reads
+*15/10/2026, evening, off the display* (the new TRI's first reading,
+*owner*, photographed): after a few hours in a garage, ignition on,
+**coolant 40 °C, oil 41 °C** — +1, inside the display's whole degrees;
+the old scale would have shown the oil at 28. Not a full soak, so not a
+row of the table, but the first reading on the display that puts the oil
+where a cooling engine's oil should be.
+
+Each row the first 0x288 and 0x420 frame after ignition-on. **The oil reads
 2–5 °C above the coolant and, on 24/9, 7 °C above the ambient** — not
 where a soaked sump sits; the cluster's coolant byte errs the other way
 (7.5 °C that morning). So the cluster's two senders are each a few degrees
