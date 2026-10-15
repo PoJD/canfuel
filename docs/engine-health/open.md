@@ -101,8 +101,9 @@ Everything else settled against is in `refuted.md`.
 - **On the overrun: S14**, the burble on an unblipped downshift,
   **reopened 15/10** — back, now and then and much quieter, with the
   joint behind the converter still tight. **S17**, a new exhaust sound
-  from a new place, the owner's guess the manifold's joint (added
-  15/10), not yet placed: the owner looks under the car.
+  from a new place (added 15/10): **only at about 2200 rpm, like a
+  resonance** — a part vibrating rather than a leak; the joint behind
+  the converter or one nearer the engine, not yet placed.
 - **The cylinder 4 knock window: S4 and S5**, a cluster of its own
   (H5, H6). The injectors were cleared from it on 9/10 (`refuted.md`
   B7). **Not in `plan.md`** (*owner's decision, 9/10/2026*): no link to
@@ -1953,6 +1954,17 @@ hypotheses* says why); if it is at the manifold or its joint, it is in
 H2's zone, ahead of the front probe, which is where a leak would also
 bear on the mixture (H2) and where S15 was once placed.
 
+*Owner, 15/10/2026, later:* **only at certain engine speeds, almost
+like a resonance — at about 2200 rpm** at the moment. It **could be
+the joint he remade** behind the converter (S6), though to him it
+sounds **closer to the engine**. *General, not checked on this car:* a
+sound tied to one engine speed is a part brought to vibrate at that
+frequency — a heat shield, a hanger, a clamp or a joint not quite
+tight — whereas a gas leak blows at every speed and grows with load. So
+it now reads as **mechanical rather than a leak**, which bears on no
+hypothesis about the idle; whether it comes with engine speed alone (in
+neutral, standing) or with road speed and load is what would place it.
+
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** Whether 0x420's `OilTemp` is right is a firmware
@@ -2026,7 +2038,8 @@ A safety matter for a garage, outside this investigation.
 | S15 ↔ S11 | **possible, never compared** | an exhaust leak at the head can hiss as well as sputter; whether the owner's hiss and the sputter are one sound has not been asked |
 | S15 ↔ S6 | **one source, by the owner's reading; S15 closed 12/10/2026** | S15 went when S6's joint was remade on 12/10 (*owner*). *This row said "masking only … behind the converter, it cannot be S15's source"* |
 | S15 ↔ S1/S3 | **untested** | only through H2: air drawn in ahead of the front probe leans its reading and the mixture follows. 033 and 032 have not shown the positive correction that would need (S3) |
-| S17 ↔ anything | **not yet placed** (added 15/10/2026) | at the manifold's joint, if the owner's guess holds, it is H2's zone, so S2, S11 and the mixture (S1/S3) would be the links to test; until it is placed, none is claimed |
+| S17 ↔ S6 | **possible** (*owner*, 15/10/2026) | a resonance at about 2200 rpm could be the joint behind the converter, remade 12/10, though it sounds closer to the engine |
+| S17 ↔ anything else | **not yet placed** (added 15/10/2026) | a sound at one engine speed reads as a part vibrating rather than a leak (*general*), so no link to the idle is claimed; at the manifold's joint it would be in H2's zone |
 | S13 ↔ S1 | **weak** | the one link was an adaptation that never completes, leaving the idle on unfinished values (H8); **refuted on the old part 29/9** — 098 completed and the 20 s routine ran unchanged after it (S13). **Closed 2/10/2026**: the new part does the same |
 
 **So there are two separate clusters**, and they are worked separately below:
@@ -2056,9 +2069,10 @@ day to have no bearing on the idle — H12 test 1), **S7** (closed), **S8**
 **S10** (closed 4/10/2026: the cover joint, found and repaired),
 **S12** (closed 4/10/2026: withdrawn by the owner as mechanical play),
 **S13** (closed 2/10/2026: the new throttle behaves the same),
-**S17** (added 15/10/2026: a new exhaust sound not yet placed or described;
-it becomes a column once the owner has placed it, if it bears on the
-engine). S12 and S13 were added on 28/9/2026: **S12**, the tip-in
+**S17** (added 15/10/2026: a new exhaust sound, only at about 2200 rpm
+like a resonance, not yet placed — read as a part vibrating rather than
+a leak, so it bears on no hypothesis about the idle; it becomes a column
+if it turns out to be a leak). S12 and S13 were added on 28/9/2026: **S12**, the tip-in
 hesitation, fits a lean tip-in (H3/H9, H7), a moment of knock retard (H5)
 and weak spark under sudden load (H4); **S13**, the throttle's routine, was
 H8's alone.
