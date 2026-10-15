@@ -2999,6 +2999,17 @@ clean, several tenths is a bad joint** (*general*).
   to work its way off, and it looks sound. Nothing named — the owner's
   word for it is a red herring.
 
+  **15/10/2026, owner, re-checked by hand:** lead 4's plug end clicks
+  audibly, but **it still sits looser than the other three** — it turns
+  and gives more freely in the direction of removal by hand, though it
+  takes real force to pull off; it does not hold as snugly as the rest.
+  So the 12/10 reseat did not make it like the others. *Reasoned:* a
+  boot that grips less can leave the spark a path in the damp (above);
+  whether it does is this test's question, and the one day of cuts
+  (10/10) gave cylinder 4 only 2 of 20 dips — too few to clear it or name
+  it (*Naming the cylinder*). A genuine VW lead for cylinder 4 alone is
+  the cheap swap if it is ever wanted (*owner's question*, 15/10).
+
 Clearing the secondary-air fault the removal sets is expected afterwards.
 
 **Results, 26/9/2026, first pass** (warm, coil connector unplugged, pins
