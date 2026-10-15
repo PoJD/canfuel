@@ -38,7 +38,7 @@ below (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 12 October 2026
+## Where it stands — 15 October 2026
 
 **A summary of what is closed and what is left, and nothing else.** How
 it got here, stage by stage, is `idle-log.md`; the parts and dates are
@@ -55,7 +55,6 @@ symptom or a hypothesis opens or closes, not added to.
 | S10, the oil leak at the back of the head | the cover gasket, repaired (4/10) |
 | S12, the tip-in hesitation | withdrawn by the owner as mechanical play (4/10) |
 | S13, the throttle's routine at ignition-on | normal for the part (2/10) |
-| S14, bangs on an unblipped downshift | none since S6's joint was remade, with S3 unchanged; closed at the owner's decision (10/10) |
 | S6, the exhaust joint behind the converter | shimmed 12/10 and not heard on the drive that day (*owner*) |
 | S15, the sputter close behind the engine | not heard since S6's joint was remade, 12/10; the owner's reading is that it was that joint (*owner's decision*) |
 | H10, the learned idle air value turns the counting on | accepted as the explanation of when 014 counts, closed at the owner's decision (9/10, `refuted.md` C19). Why the ECU learns air away stays with H3 and H8 |
@@ -99,6 +98,11 @@ Everything else settled against is in `refuted.md`.
   (added 12/10) — the gearbox side, **not pursued** (*owner's
   decision*): the clutch minutes showed it has nothing to do with the
   idle (H12).
+- **On the overrun: S14**, the burble on an unblipped downshift,
+  **reopened 15/10** — back, now and then and much quieter, with the
+  joint behind the converter still tight. **S17**, a new exhaust sound
+  from a new place, the owner's guess the manifold's joint (added
+  15/10), not yet placed: the owner looks under the car.
 - **The cylinder 4 knock window: S4 and S5**, a cluster of its own
   (H5, H6). The injectors were cleared from it on 9/10 (`refuted.md`
   B7). **Not in `plan.md`** (*owner's decision, 9/10/2026*): no link to
@@ -1763,7 +1767,7 @@ battery reconnected, engine not run): 098 gave **ADP OK** (photographed:
 **the same routine, 20 s, as the old one**. By the rule above that is
 *how these parts behave*. **S13 closed on this**, its column out of every fit table.
 
-### S14. Bangs from the exhaust on a downshift without a blip — closed 10/10/2026
+### S14. Bangs from the exhaust on a downshift without a blip — reopened 15/10/2026
 
 *Owner-reported, 4/10/2026; added as a symptom at the owner's decision.*
 On a downshift **without a throttle blip**, the exhaust often lets out a
@@ -1869,6 +1873,21 @@ was worked on: they did not outlive S1/S3, they left without them. The
 owner's reading: likely not related to the idle at all. Taken out of
 every fit table the same day; the relations below are kept as written.
 
+**Reopened 15/10/2026** (*owner's decision*). On the drives of 15/10,
+downshifting without a blip, **the burble is back**: **not every time,
+and much quieter** than before 9/10, which the owner puts down to the
+joint behind the converter being tight (S6, shimmed 12/10 and still
+sound, *owner*). So it **outlived the resealed joint**: that joint
+was at most what fed the air or carried the sound, not its source, and
+the closing argument of 10/10 — gone with the joint while S3 stayed —
+no longer holds. Back in every fit table, as judged on 4/10 (*The open
+hypotheses*). The same day the first can of inlet-valve cleaner went
+into the tank with 100-octane fuel (`plan.md` item 5), so the timing
+cannot be put on either; and the fuel cut on the overrun reads as it
+did on 9–12/10 (`coastscan.py` on `35`–`37`: injectors shut 0.8–1.6 s
+after the lift, fuel back at 1,300–2,400 rpm). The test above is still
+the one that would read it, and still not scheduled.
+
 ### S15. A constant sputtering from the exhaust near the engine — closed 12/10/2026
 
 *Owner-reported, 9/10/2026; added as a symptom at the owner's decision.*
@@ -1920,6 +1939,19 @@ on cold gearbox oil (*general*, not checked for this car).
 **It is not the idle's fault**: the same minutes graded the idle with
 the pedal up and down, and pedal up was not rougher (H12, test 1). Out
 of the fit tables for that reason.
+
+### S17. A new exhaust sound, from a new place
+
+*Owner-heard, 15/10/2026; added as a symptom at the owner's decision.*
+**A sound not heard before**, different from S2's puff, S14's burble,
+S15's sputter and S11's hiss, and **from another place** (*owner*);
+his guess is **the joint at the exhaust manifold**, not the one behind
+the converter, which he reads as sound. What it is like, when it is
+heard and exactly where are **not yet known**: the owner looks under the
+car. Until then it is **out of the fit tables** (*The open
+hypotheses* says why); if it is at the manifold or its joint, it is in
+H2's zone, ahead of the front probe, which is where a leak would also
+bear on the mixture (H2) and where S15 was once placed.
 
 ### Other — not symptoms, but they touch this file
 
@@ -1989,15 +2021,16 @@ A safety matter for a garage, outside this investigation.
 | S12 ↔ S1/S3 | **S12 closed 4/10/2026**; was possible, untested | both start from the bottom of the load range; a lean or weak-spark cause would show in both |
 | S14 ↔ S3 | **possible, owner-reported** | the bangs often follow a misfire episode; never aligned, and 014 does not count on the overrun, so it cannot be |
 | S14 ↔ S2 | **likely one mechanism** (*owner, 4/10/2026*) | both are a misfire's charge burning in the exhaust: weak at idle, where it brings only its own air; loud on the overrun, where the fuel cut adds plain air behind it |
-| S14 ↔ S6 | **possible**; **S6 reopened 10/10/2026**, S14 stays closed until bangs return | a leaky joint draws air in and feeds an afterburn; behind both probes, so it cannot cause the misfire. Bangs that go on unchanged after the reseal were not fed by it |
+| S14 ↔ S6 | **not its source**: **S14 reopened 15/10/2026** with the joint behind the converter tight (S6 closed 12/10), quieter — the joint fed or carried it at most; *this row read "possible; S14 stays closed until bangs return"* | a leaky joint draws air in and feeds an afterburn; behind both probes, so it cannot cause the misfire. Bangs that go on unchanged after the reseal were not fed by it |
 | S15 ↔ S2 | **possible** | a leak ahead of the probe can puff now and then as well as sputter all the time (H2). S2 is occasional and S15 constant, so they are kept apart |
 | S15 ↔ S11 | **possible, never compared** | an exhaust leak at the head can hiss as well as sputter; whether the owner's hiss and the sputter are one sound has not been asked |
 | S15 ↔ S6 | **one source, by the owner's reading; S15 closed 12/10/2026** | S15 went when S6's joint was remade on 12/10 (*owner*). *This row said "masking only … behind the converter, it cannot be S15's source"* |
 | S15 ↔ S1/S3 | **untested** | only through H2: air drawn in ahead of the front probe leans its reading and the mixture follows. 033 and 032 have not shown the positive correction that would need (S3) |
+| S17 ↔ anything | **not yet placed** (added 15/10/2026) | at the manifold's joint, if the owner's guess holds, it is H2's zone, so S2, S11 and the mixture (S1/S3) would be the links to test; until it is placed, none is claimed |
 | S13 ↔ S1 | **weak** | the one link was an adaptation that never completes, leaving the idle on unfinished values (H8); **refuted on the old part 29/9** — 098 completed and the 20 s routine ran unchanged after it (S13). **Closed 2/10/2026**: the new part does the same |
 
 **So there are two separate clusters**, and they are worked separately below:
-**the idle** (S1, S2, S3; S15, closed 12/10; S14, on the overrun, closed 10/10) and **the cylinder 4 window** (S4, S5). S7, S8, S9
+**the idle** (S1, S2, S3; S15, closed 12/10; S14, on the overrun, reopened 15/10) and **the cylinder 4 window** (S4, S5). S7, S8, S9
 and S12 are closed; **S6 is open again (10/10)** but behind both probes,
 and what bears on the idle is still the exhaust **ahead of** the front
 probe, which is H2's. **A third cluster, the back of the head
@@ -2023,7 +2056,9 @@ day to have no bearing on the idle — H12 test 1), **S7** (closed), **S8**
 **S10** (closed 4/10/2026: the cover joint, found and repaired),
 **S12** (closed 4/10/2026: withdrawn by the owner as mechanical play),
 **S13** (closed 2/10/2026: the new throttle behaves the same),
-**S14** (closed 10/10/2026: gone with S6's joint while S3 stayed). S12 and S13 were added on 28/9/2026: **S12**, the tip-in
+**S17** (added 15/10/2026: a new exhaust sound not yet placed or described;
+it becomes a column once the owner has placed it, if it bears on the
+engine). S12 and S13 were added on 28/9/2026: **S12**, the tip-in
 hesitation, fits a lean tip-in (H3/H9, H7), a moment of knock retard (H5)
 and weak spark under sudden load (H4); **S13**, the throttle's routine, was
 H8's alone.
@@ -2033,7 +2068,11 @@ misfire at the thinnest charge (H3 ✔, H1/H4 ~, and H10 ~ until it closed 9/10)
 converter to burn it in (H2 ✔), or fuel nobody commanded (H7 ~, the
 weak reading: every part that could pass it is new). H0 ✘: the owner's other cars do not do
 it, and it follows the misfire episodes. H5, H8 and the closed H9 say
-nothing about it.
+nothing about it. **Taken out when it closed on 10/10/2026 and
+back on 15/10/2026, when it reopened**, with the same judgement. H11
+and H12 came after 4/10 and are judged now, as each was for S2: H11 ~
+(a mixture a few per cent off fails the thinnest charge first) and H12
+✘ (play puts nothing into the exhaust).
 
 ### H0. The idle is normal for this engine — and there is no fault to find
 
@@ -2041,9 +2080,9 @@ nothing about it.
 it might simply idle like this, and every number above might be its normal
 state.
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ~ | ~ | ✘ | — | ~ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ~ | ~ | ✘ | — | ~ | — | ✘ |
 
 - **Against:** 014 reads **12–120 against VW's own 0–5**. The old converter
   burned through, which needs raw fuel in it. The owner feels it.
@@ -2114,9 +2153,9 @@ would say whether such counters sit at zero in practice; an M5.9.2 2.0
 A hydraulic lifter that bleeds down or pumps up leaves a valve slightly open
 or late, intermittently, and gets worse as the oil thins. *General.*
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ✔ | ✔ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ✔ | ✔ | — | ~ |
 
 - **For:** with H4, one of the **two candidates that can explain both
   clusters at once**: an
@@ -2234,9 +2273,9 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in;
 under load it only blows out. *General.* The front probe reads lean, the rear
 loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ~ | ✔ | ~ | ✘ | ✘ | ✔ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ~ | ✔ | ~ | ✘ | ✘ | ✔ | ✔ |
 
 - **Against, mildly, 10/10/2026** (S1, *What comes before a dip*):
   this hypothesis acts on the mixture through the lambda control, and
@@ -2320,9 +2359,9 @@ Nothing else about the argument above changes until the test is done.
 Air past the MAF leans one cylinder at idle, where air flow is smallest.
 *General.*
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ✔ | ~ | ✔ | ~ | ✘ | ~ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ✔ | ~ | ✔ | ~ | ✘ | ~ | ✔ |
 
 - **For:** the regime is exactly right. A lean cylinder can also knock on a
   tip-in (S4). Several of the forum cases were a breather hose. The idle is
@@ -2647,9 +2686,9 @@ The battery itself is new (end of August 2026, the old one found dead during
 the headlight work), so the thread's one confirmed
 electrical fix — a new battery — has in effect already been tried here.
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ~ | ✔ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ~ | ✔ | — | ~ |
 
 - **Against, 10/10/2026** (S1, *What comes before a dip*): the dips
   come 1.6–3.5 times as often just after the idle governor has trimmed
@@ -3068,9 +3107,9 @@ Three candidates, all *general*:
   moves with speed.~~ **Settled against 9/10/2026** (`refuted.md` B7): with
   all four seated, both S4 and S5 stayed on cylinder 4.
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| — | — | — | ✔ | ✔ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| — | — | — | ✔ | ✔ | — | — |
 
 **Tests** — not scheduled (*owner's decision, 9/10/2026*: the idle
 first, and no link between this window and the misfires has been found):
@@ -3121,9 +3160,9 @@ changed in September, and neither has ever been gauged. (The bad cold start
 that once pointed here is closed, S7: it was the old injectors.)
 The owner's own remaining candidate is one of the new injectors.
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | ~ |
 
 - **Against, 10/10/2026** (S1, *What comes before a dip*): the dips
   follow the governor's trims of the charge. Rail pressure does not
@@ -3209,9 +3248,9 @@ idle in group 003 is that control working). A dirty throttle body or a lost
 throttle adaptation makes the governor hunt. *General.* The MAF swap halving
 S1 shows that the idle is sensitive to how air is metered and controlled.
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | — | — |
 
 - **Unchanged, 10/10/2026** (S1, *What comes before a dip*): the
   governor's trims come before the dips, so this part is the trigger,
@@ -3744,9 +3783,9 @@ no longer seals is a door of exactly this kind (*reasoned*) — and with
 the patch shown original, the only concrete one the job found here; a finding on a part, not a symptom, so the fit
 table stays as it is.
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | ✘ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | ✘ | — |
 
 *4/10/2026:* **right about S10** — the cover gasket was the leak, and it is
 repaired (S10, closed). S11 is now the hiss alone, and it **outlived the
@@ -4133,9 +4172,9 @@ narrowband probe can shift where it switches, and one that answers
 lean-to-rich more slowly than rich-to-lean moves the mean mixture in the
 same way (*general*).
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | ~ |
 
 - **Against, mildly, 10/10/2026** (S1, *What comes before a dip*):
   what comes before a dip is less charge at the same mixture, not a
@@ -4211,9 +4250,9 @@ almost nothing resists the crank, and taken up under load. 014 reads
 crank-segment times through G28 (`vcds.md`), so a jolt there would be
 counted as readily as a missed firing.
 
-| S1 | S2 | S3 | S4 | S5 | S11 |
-|---|---|---|---|---|---|
-| ~ | ✘ | ~ | ~ | ~ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ~ | ✘ | ~ | ~ | ~ | — | ✘ |
 
 S1 and S3 as a counterfeit of both; S4 and S5 because a mechanical
 knock in cylinder 4's window could read as knock (S5 already fits a
@@ -4792,6 +4831,17 @@ argued against by VW's leak signs and the even compression, and it
 cannot see a small leak at one runner or an intermittent valve at all;
 the idle it read was part-cold, 33's and 34's. S11 back gives H2 its
 ✔ again and H3 its ~, and moves neither.*
+
+*Re-read 15/10/2026 when **S14 reopened** and **S17 was added**: the
+S14 column comes back to every fit table as judged on 4/10 (H3 and H2 ✔;
+H1, H4, H7 and H11 ~; H0 and H12 ✘). When it closed it had been a
+supporting point for H3 and H2 and decided no row's place, and it
+decides none now: **the order stands.** What it does change is its own
+reading — it outlived the joint behind the converter, so that joint
+was not its source. S17 is not a column until it is placed; if it is at
+the manifold's joint, it is H2's to read, and H2 would be re-read then.
+The warm captures of the same day (`35`–`38`) moved nothing either:
+the warm idle read as on 12/10.*
 
 **More than one at once** (*the owner's point*, 12/10/2026). The
 ranking reads each hypothesis as the whole cause, and it need not be:
