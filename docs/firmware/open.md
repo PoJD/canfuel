@@ -378,6 +378,31 @@ survive.
    at 1.1 the filter would sit ~14 °C below the oil. **A lean, not a
    reading**; the winter morning or item 1's thermometer still closes it.
 
+   **How cold the winter morning has to be** (*worked out 15/10/2026*;
+   the IR thermometer was broken the same week, *owner*, so this is now
+   the way it closes). The soaks so far sit at a coolant of 10–17 °C,
+   oil 2–5 °C below it on the shipped scale. Anchoring a steeper oil
+   slope at that cluster (raw 77 ≈ 10 °C) and asking what the shipped
+   scale would then display after a full soak at an ambient T:
+
+   | ambient | coolant shows | oil shows, if 0.75 is right | if 1.0 | if 1.1 |
+   |---|---|---|---|---|
+   | 0 °C | 0 | about −3 | about +3 | about +3 |
+   | −5 °C | −5 | about −8 | about −1 | about −1 |
+   | −10 °C | −10 | about −13 | about −6 | about −4 |
+
+   So **the sign of oil minus coolant flips**: about 3 °C below on the
+   right scale, 3–6 °C above on a steeper one. **About 0 °C already
+   hints; −5 °C or colder settles it** even in the display's whole
+   degrees. *Reasoned from the fit above, not measured*; the anchor is
+   the cluster's middle, so the table is good to a degree or two.
+   **The procedure**: the car outside **overnight, ten hours or more**,
+   so that both are at ambient and the soak-length confound above
+   shrinks to nothing; the ignition on, **the engine not started**, and
+   within the first twenty seconds `OilTemp` and the coolant read off
+   the display — or, better, a 20 s capture for the raw bytes (the MFD
+   and the capture are one or the other, `CLAUDE.md`).
+
    **Consistent, and not yet decisive.** The oil sits 2–5 °C below the
    coolant at every soak, so the offset at the cold end holds up. But the four
    soaks span only ~6 °C of coolant — about 8 counts, where telling the
