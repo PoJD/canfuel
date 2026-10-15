@@ -350,6 +350,33 @@ survive.
    | `19_postfix_drive_z1`, 24/9, ~19 h, ambient 10.0 °C | 12.0 °C (raw 80) | 9.75 °C (raw 77) | −2.25 |
    | 26/9, ~10 h, cold fog; *owner-reported off the display, whole degrees* | 14 °C | 11 °C | ≈ −3 |
    | `25_sessionA_cold_z1`, 3/10, 27 h, evening | 18.0 °C (raw 88) | 12.75 °C (raw 81) | −5.25 |
+   | `27_sessionA2_cold_z1`, 4/10, ~15 h | 15.75 °C (raw 85) | 11.25 °C (raw 79) | −4.5 |
+   | `30_step2b_z1`, 9/10 | 15.0 °C (raw 84) | 9.75 °C (raw 77) | −5.25 |
+   | `31_step4_drive_z1`, 10/10 | 13.5 °C (raw 82) | 10.5 °C (raw 78) | −3.0 |
+   | `32_step3_item1_z1`, 12/10 | 10.5 °C (raw 78) | 8.25 °C (raw 75) | −2.25 |
+   | `33_step3_gauge_cold_z1`, 14/10 | 15.75 °C (raw 85) | 12.0 °C (raw 80) | −3.75 |
+   | `35_item5_drive_z1`, 15/10, a cold, damp morning | 10.5 °C (raw 78) | 7.5 °C (raw 74) | −3.0 |
+
+   *Rows from `27` on added 15/10/2026*, each the first 0x288 and 0x420
+   frame after ignition-on; soak lengths not recorded except where the
+   fixture's README row gives one. **15/10's "very cold" start was not
+   colder than 12/10's** — the same coolant byte — so the span did not
+   widen.
+
+   **The eight soaks fitted, and why it is not a result.** Oil counts
+   against coolant counts give **0.68 oil counts per coolant count** (r =
+   0.92), which on a coolant slope of 0.75 puts the oil's at **about 1.1
+   °C per count**, 1.03–1.23 leaving any one soak out — nearer `raw − 64`
+   than the shipped scale. Two reasons it settles nothing: the span is
+   still **8 coolant counts, 6 °C**, where the method wants ~25; and **the
+   soaks are not equal**. A sump cools faster than the water in the head,
+   so a shorter soak or a warmer night leaves the coolant further above
+   the oil — which is exactly what a slope above 0.75 looks like
+   (*reasoned*, not measured; the soak lengths and ambients that would
+   separate the two were not recorded). And it runs against the hot end,
+   where the filter read within 1–3 °C of the shipped scale (`21`–`23`);
+   at 1.1 the filter would sit ~14 °C below the oil. **A lean, not a
+   reading**; the winter morning or item 1's thermometer still closes it.
 
    **Consistent, and not yet decisive.** The oil sits 2–5 °C below the
    coolant at every soak, so the offset at the cold end holds up. But the four

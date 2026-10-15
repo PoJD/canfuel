@@ -21,8 +21,8 @@ Claude runs the capture on every drive.
    - **`IdleHealth` off the display, through both tanks after the can:**
      on drives where the oil reaches **68–72 °C**, at one stop of **at
      least a minute with every load off but the lights**, which stay
-     on. Write into the chat: date,
-     `IdleHealth`, oil temperature.
+     on. Write into the chat: date, oil temperature, **where
+     `IdleHealth` mostly sat and the lowest it touched**.
 5a. **22/10: the original map written back** at the tuner; the ECU
    comes out of the car. Then **two or three ordinary warm drives**:
    Claude runs the capture; VCDS on **014, 003**; 055 once at the end,
@@ -206,7 +206,11 @@ the reading; "loads off" means everything else. A minute without loads is the pr
 for the converter, accepted for one stop a drive. It needs about half a
 minute of settled idle before it reads at all (255 until then,
 `docs/firmware/frames.md`) and wanders from window to window, so a
-direction needs several readings, not one. Not a test of anything else, and it decides nothing on
+direction needs several readings, not one. **Where it sat and the lowest
+it touched, both** (*owner*, 15/10/2026: the minima are what he
+watches): a minimum is a signal, but on a grade that wanders it keeps
+falling the longer one watches, so on its own it would make long stops
+look better than short ones; beside the level it sat at, it does not. Not a test of anything else, and it decides nothing on
 its own about a lifter.
 
 **Item 6 — the drives** (*decided 10/10/2026*, before the additive was; they now come after it). The first drive after the new
