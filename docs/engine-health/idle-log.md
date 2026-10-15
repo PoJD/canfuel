@@ -953,6 +953,11 @@ drive home (`37`, headlights only, A/C and blower off, oil 100–101 °C):
   first "where small loads put this idle before the can", counting the
   lights as a load the baselines did not have.*
 
+- **The display's `OilTemp` moved to `raw − 60` the same evening**
+  (`mfd15` `S-AQY.TRI`, uploaded by the owner): every oil temperature
+  read off the display from then on is on it, as every figure in these
+  documents is (`docs/firmware/open.md` question 10).
+
 **What it is not known to have achieved:** the gauge on the common
 plenum still cannot see a small leak at one runner; and the can had
 been in the tank an hour, so these readings are a before for item 6,
