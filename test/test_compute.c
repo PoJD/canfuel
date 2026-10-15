@@ -1419,8 +1419,9 @@ static void test_a_creeping_car_is_not_at_rest(void)
     TT_EQ(c.tank_stable_l, 8);
 }
 
-/* No fixture contains a refuelling -- the tank reads 0 l with the reserve lamp
- * on through most of them -- so none of them may produce one either. A false
+/* None of these fixtures contains a refuelling -- the tank reads 0 l with the
+ * reserve lamp on through most of them -- so none of them may produce one
+ * either. 35_item5_drive_z1 does contain one and has its own test below. A false
  * positive silently destroys an average the driver has watched for 600 km,
  * which is the asymmetry docs/firmware/refuel-reset.md is built around, and the sender
  * jumping between 1, 5, 7 and 9 l during a pull-away is exactly the shape of
@@ -1440,6 +1441,21 @@ static void test_no_fixture_triggers_a_refuelling(void)
         TT_TRUE(replay_log(logs[i], &r));
         TT_EQ(r.cp.refuels, 0);
     }
+}
+
+/* The one recorded refuelling: 35_item5_drive_z1 stops at a petrol station
+ * with the tank reading 19-20 l, takes about 18 l with the engine off, and
+ * comes back reading 36. The rule must fire exactly once, a few seconds after
+ * the restart, and clear the trip as it stood at the pump -- every microlitre
+ * and millimetre of it, which replay.py --host-build then adds back to agree
+ * with the oracle over the whole log. */
+static void test_the_pump_stop_in_35_is_one_refuelling(void)
+{
+    replay_result_t r;
+    TT_TRUE(replay_log("35_item5_drive_z1.txt", &r));
+    TT_EQ(r.cp.refuels, 1);
+    TT_EQ(r.refuel_ul, 696182);
+    TT_EQ(r.cp.total_ul + r.refuel_ul, 1785035);
 }
 
 static void test_tank_is_damped(void)
@@ -1951,6 +1967,7 @@ int main(void)
     TT_RUN(test_a_rise_after_arriving_is_still_a_refuelling);
     TT_RUN(test_a_creeping_car_is_not_at_rest);
     TT_RUN(test_no_fixture_triggers_a_refuelling);
+    TT_RUN(test_the_pump_stop_in_35_is_one_refuelling);
     TT_RUN(test_tank_is_damped);
 
     TT_RUN(test_data_timeout);

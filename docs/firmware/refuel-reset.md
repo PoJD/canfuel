@@ -65,8 +65,8 @@ So the counter is *quicker* to believe a real fill and no more willing to
 believe a spurious one — the case the median genuinely covered better, a burst
 of noise longer than five seconds but shorter than thirteen, is not a shape the
 sender produces at rest. **1584 of 1622 measured at-rest samples were the same
-litre**, and `test_no_fixture_triggers_a_refuelling` replays every
-recordings and requires that none of them fires the rule.
+litre**, and `test_no_fixture_triggers_a_refuelling` replays the
+recordings without a refuelling and requires that none of them fires the rule.
 
 ---
 
@@ -159,12 +159,21 @@ it is about six litres.** At the near-empty gain of 0.83 a 5 L fill indicates
 5 L has ever gone into this car — `config.h` says so — so this is a margin
 rather than a hole, but it is the margin, and it is one litre wide.
 
-**So the rule works in the car and has for some time.** What is still missing
-is not a demonstration, it is a *recording*: every one of these happened with
-nothing logging, and `18_coldstart_z1` opens at 50 L already filled rather
-than filling. *Watch out when implementing* below therefore stands unchanged,
-and so does the fixture suite's position — `test_no_fixture_triggers_a_refuelling`
-replays every log, and in none of them does anybody refuel.
+**So the rule works in the car and has for some time.** Every one of these
+happened with nothing logging, and `18_coldstart_z1` opens at 50 L already
+filled rather than filling.
+
+**The first recording is `35_item5_drive_z1`** (2026-10-15, about 18 L at the
+pump with the engine off, on the rule as it now stands in the tree). 0x320
+read 19–20 before the stop and **36** from the first frame after the restart;
+the core fires once, 3.8 s after that frame, and clears a trip of
+696,182 µl and 2.96 km. `test_the_pump_stop_in_35_is_one_refuelling` holds
+it, and `replay.py --host-build` adds the cleared trip back, because its
+oracle counts the whole log and has no refuelling rule. A 16 L rise says
+nothing about the threshold's edge — the jerrycan below still would.
+*Watch out when implementing* stands unchanged, and
+`test_no_fixture_triggers_a_refuelling` still replays every other log that
+predates it and requires silence.
 
 ⚠ **The jerrycan is the one worth having and the one nobody wrote down.** A
 jerrycan is a small fill and `REFUEL_RISE_L` is a threshold about small

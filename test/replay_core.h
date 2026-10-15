@@ -22,6 +22,12 @@ typedef struct {
     size_t         frames;
     size_t         fuel_frames;
     bool           timestamped;
+    /* What compute_tick()'s refuelling rule zeroed: the trip as it stood at
+     * each detected refuelling. tools/replay.py has no refuelling rule -- it
+     * is the counter's oracle, not the tank's -- so the comparison adds these
+     * back and diffs the whole log. test_compute.c holds the rule itself. */
+    uint32_t       refuel_ul;
+    uint32_t       refuel_mm;
 } replay_result_t;
 
 /* Synthetic clock for the five oldest fixtures, which carry no timestamps at
@@ -57,10 +63,14 @@ static inline bool replay_log(const char *name, replay_result_t *r)
     r->frames = lf.count;
     r->fuel_frames = 0;
     r->timestamped = lf.timestamped;
+    r->refuel_ul = 0;
+    r->refuel_mm = 0;
 
     for (i = 0; i < lf.count; i++) {
         const log_frame_t *f = &lf.frames[i];
         uint32_t now_ms;
+        uint32_t trip_ul, trip_mm;
+        uint32_t refuels;
 
         decode_frame(&r->st, f->can_id, f->data, f->dlc);
 
@@ -82,8 +92,17 @@ static inline bool replay_log(const char *name, replay_result_t *r)
         last_ms = now_ms;
         n480++;
 
-        /* Distance first, then the counter -- the same order as replay.py. */
+        /* Distance first, then the counter -- the same order as replay.py.
+         * A refuelling can only be confirmed standing, so the distance this
+         * one tick integrated before the reset is nil. */
+        trip_ul = r->cp.total_ul;
+        trip_mm = r->cp.total_mm;
+        refuels = r->cp.refuels;
         compute_tick(&r->cp, &r->st, now_ms);
+        if (r->cp.refuels != refuels) {
+            r->refuel_ul += trip_ul;
+            r->refuel_mm += trip_mm;
+        }
         compute_on_fuel(&r->cp, &r->st, now_ms);
     }
 

@@ -572,17 +572,42 @@ def start_fields(frames):
     return crank, dip, clt
 
 
+def last_start_s(frames):
+    """Seconds from the first frame to the last start, or None if none seen.
+
+    A start is what start_fields() and the firmware's start_watch() call one:
+    the first non-zero 0x280 after a zero one, never the first frame of a log
+    that opens with the engine already turning.
+    """
+    phase = _UNKNOWN
+    t_start = None
+    for f in frames:
+        if f.can_id != 0x280 or len(f.data) < 8 or f.ts_ms is None:
+            continue
+        if (f.data[2] | (f.data[3] << 8)) == 0:
+            phase = _STOPPED
+        elif phase == _UNKNOWN:
+            phase = _RUNNING
+        elif phase == _STOPPED:
+            phase, t_start = _RUNNING, f.ts_ms
+    if t_start is None:
+        return None
+    return (t_start - frames[0].ts_ms) / 1000.0
+
+
 def health_summary(path):
     """What `replay.py --host-build` compares against test/build/replay_host.
 
-    The grade is roughness() over the whole log with nothing windowed, which is
-    what the firmware computes; idle_ms is its settled idle rounded to the
-    millisecond the firmware counts in. Empty for a log with no timestamps.
+    The grade is roughness() from the last start to the end of the log, which
+    is what the firmware computes: a new start clears its grade (compute.c,
+    start_watch()). Over a log with one start or none that is the whole log.
+    idle_ms is its settled idle rounded to the millisecond the firmware counts
+    in. Empty for a log with no timestamps.
     """
     frames = canlog.parse_file(path, fix_doubled=os.path.basename(path).startswith("02"))
     if not frames or frames[0].ts_ms is None:
         return {}
-    _, counts, _, idle_s = roughness(series(path)[3])
+    _, counts, _, idle_s = roughness(series(path)[3], t_from=last_start_s(frames))
     crank, dip, clt = start_fields(frames)
     return {"idle_rough": counts, "idle_ms": round(idle_s * 1000.0),
             "start_crank": crank, "start_dip": dip, "start_clt": clt}

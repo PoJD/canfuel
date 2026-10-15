@@ -746,7 +746,7 @@ class TheStart(unittest.TestCase):
 class HealthAgainstTheFixtures(unittest.TestCase):
     """The twin of test_the_fixtures_grade_exactly_as_the_oracle in
     test/test_compute.c: the same logs, the same numbers. The grade is
-    roughness() over the whole log, which is what the firmware computes;
+    roughness() from the log's last start, which is what the firmware computes;
     `replay.py --host-build` checks every other timestamped fixture."""
 
     WANT = {

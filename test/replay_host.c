@@ -55,8 +55,14 @@ int main(int argc, char **argv)
         printf("frames=%lu\n", (unsigned long)r.frames);
         printf("fuel_frames=%lu\n", (unsigned long)r.fuel_frames);
         printf("span_ms=%lu\n", (unsigned long)r.span_ms);
-        printf("total_ul=%lu\n", (unsigned long)r.cp.total_ul);
-        printf("total_mm=%lu\n", (unsigned long)r.cp.total_mm);
+        /* The whole log, as replay.py counts it: the trip plus whatever a
+         * detected refuelling cleared from it (replay_core.h). trip_* is what
+         * the device would be showing at the end. */
+        printf("total_ul=%lu\n", (unsigned long)(r.cp.total_ul + r.refuel_ul));
+        printf("total_mm=%lu\n", (unsigned long)(r.cp.total_mm + r.refuel_mm));
+        printf("trip_ul=%lu\n", (unsigned long)r.cp.total_ul);
+        printf("trip_mm=%lu\n", (unsigned long)r.cp.total_mm);
+        printf("refuels=%lu\n", (unsigned long)r.cp.refuels);
         printf("restarts=%lu\n", (unsigned long)r.cp.restarts);
         printf("flow_ul_s=%lu\n", (unsigned long)r.cp.flow_ul_s);
         printf("fuel_now_d=%u\n", v.fuel_now_d);
