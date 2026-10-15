@@ -939,14 +939,19 @@ drive home (`37`, headlights only, A/C and blower off, oil 72–73 °C):
   for about three minutes, once 35** for a moment, before the filming
   began (an 11 s film of the display there reads **40–48**, `IdleRough`
   0.81–0.97 rpm, the same quantity ×50); after five more
-  minutes of driving, standing at home, **70**. *Read*: 40–50 with lights
-  and blower sits where small loads put this idle before the can
-  (26/9: lights and rear heater towards 40; `35` this morning with
-  blower and seat heating, 38–50 at 66–67 °C), and 70 within 54–75, the
-  captured loads-off range of the day. A single 35 is one window of a
-  grade that wanders between windows. So nothing yet that the loads do
-  not explain — and half a tank is early for the cleaner by its maker's
-  dose (`plan.md` item 5).
+  minutes of driving, standing at home, **70**. *Read*: **the lights
+  are on all the time** (*owner*), and in every captured baseline, so
+  the one load beyond the baseline was **the blower's first step**.
+  40–48 with that alone is below the day's captured range with only the
+  lights, 54–75 at 67–73 °C (`37`, `38`), and level with this morning's
+  stops under heavier loads — blower and seat heating, at times the A/C
+  — 38–55 at 66–67 °C (`35`). So it is lower than the small load
+  explains on its face; but the blower's share has never been read on
+  its own, it is one stop, and 70 at home five minutes later is back
+  inside the range. **A lead, not a change** — and half a tank is early
+  for the cleaner by its maker's dose (`plan.md` item 5). *This read at
+  first "where small loads put this idle before the can", counting the
+  lights as a load the baselines did not have.*
 
 **What it is not known to have achieved:** the gauge on the common
 plenum still cannot see a small leak at one runner; and the can had

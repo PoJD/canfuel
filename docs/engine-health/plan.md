@@ -20,7 +20,8 @@ Claude runs the capture on every drive.
 5. **The can is in (15/10). Drive the tank as usual**, captures or not.
    - **`IdleHealth` off the display, through both tanks after the can:**
      on drives where the oil reaches **68–72 °C**, at one stop of **at
-     least a minute with every load off**. Write into the chat: date,
+     least a minute with every load off but the lights**, which stay
+     on. Write into the chat: date,
      `IdleHealth`, oil temperature.
 5a. **22/10: the original map written back** at the tuner; the ECU
    comes out of the car. Then **two or three ordinary warm drives**:
@@ -198,7 +199,10 @@ additive working. **Loads off, then, for that one minute** (*decided
 captured hot stops on settled adaptations are loads-off — `30` and `31`
 `IdleHealth` 77–89 at 67–80 °C (S1's table),
 and 14/10's gauge session adds one more — so no readings are needed before
-the can. A minute without loads is the price, against the standing rule
+the can. **The lights are the exception** (*owner*, 15/10/2026): the
+car runs them all the time, so they are on in every captured baseline
+(`test/fixtures/README.md` lists headlights throughout) and stay on for
+the reading; "loads off" means everything else. A minute without loads is the price, against the standing rule
 for the converter, accepted for one stop a drive. It needs about half a
 minute of settled idle before it reads at all (255 until then,
 `docs/firmware/frames.md`) and wanders from window to window, so a
