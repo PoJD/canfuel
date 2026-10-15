@@ -972,6 +972,13 @@ drive home (`37`, headlights only, A/C and blower off, oil 100–101 °C):
   **A/C and blower off again, oil still 98 °C: back up towards a median
   of about 55** (*owner*). So the low was the load's, as on 26/9, and
   the lights-only idle stood where it had at the start of the stop.
+- **`IdleHealth` at home after the drive back, the same evening**
+  (*owner*, off the display): a brisker drive, then at **oil 100 °C**
+  **about 80 with the lights only, and not below 50 with every load on**.
+  Rougher than the stop before, which had also followed a brisk drive and
+  read 55 and 23 in the same two states — so the drive before a stop
+  does not decide it (4/10's pattern was the adaptations, `refuted.md`
+  C19), and the idle on one evening spans 55–80 lights-only.
 - **The display's `OilTemp` moved to `raw − 60` the same evening**
   (`mfd15` `S-AQY.TRI`, uploaded by the owner): every oil temperature
   read off the display from then on is on it, as every figure in these
