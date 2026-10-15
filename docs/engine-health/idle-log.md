@@ -961,6 +961,9 @@ drive home (`37`, headlights only, A/C and blower off, oil 100–101 °C):
   the band of the day's captured idles with the lights only (54–75) and
   of 12/10's (50–61), at its low edge; one stop, after a drive like no
   other in the record, so a reading and not a change.
+  **Then, the same stop, A/C on and the blower on 2: 31–39, median
+  about 35, and much steadier** (*owner*) — the load effect of S1
+  (26/9: A/C with the blower, towards 35), the same as before the can.
 - **The display's `OilTemp` moved to `raw − 60` the same evening**
   (`mfd15` `S-AQY.TRI`, uploaded by the owner): every oil temperature
   read off the display from then on is on it, as every figure in these
