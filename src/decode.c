@@ -26,10 +26,10 @@ static int16_t temp_c100(uint8_t raw)
 }
 
 /* The oil, from the instrument cluster on 0x420 (Kombi_2): a different module
- * and a different scaling, raw - 60 C, as opendbc's vw_pq.dbc defines it. It
- * used to share the coolant's by analogy; docs/firmware/open.md question 10
- * has the argument. Nothing in the firmware consumes it -- the display reads
- * 0x420 itself through mfd15's S-AQY.TRI, which carries the same formula. */
+ * with its own scaling, raw - 60 C, as opendbc's vw_pq.dbc defines it
+ * (docs/firmware/open.md question 10). Nothing in the firmware consumes it --
+ * the display reads 0x420 itself through mfd15's S-AQY.TRI, which carries the
+ * same formula. */
 static int16_t oil_c100(uint8_t raw)
 {
     if (raw == 0xFFu) {

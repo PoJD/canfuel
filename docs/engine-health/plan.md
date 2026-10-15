@@ -1,13 +1,5 @@
 # Engine health — the planned fixes, in order
 
-⚠ **Oil temperatures up to and including 15/10/2026 are on the old scale.** 0x420's
-oil was read as `raw × 0.75 − 48` until then and is `raw − 60` since
-(`docs/firmware/open.md` question 10). Every oil figure dated then or earlier —
-bands, tables, readings off the display — is on the old scale; on today's
-display it is **(old + 48) / 0.75 − 60**: 56 → 79, 68 → 95, 72 → 100,
-77 → 107. The tools read today's scale; `canlog.oil_from_old_scale()`
-converts an old figure.
-
 **Part 1 is what to do, in order, with no explanation.** It is what goes
 to the car. **Part 2 is why, and how the results are read.** Keep it that
 way (*owner's decision, 8/10/2026*). An instruction goes in Part 1 and its
@@ -205,7 +197,7 @@ lower it on their own** — lights, blower and A/C took it from 70–80 to
 additive working. **Loads off, then, for that one minute** (*decided
 10/10/2026*, the owner's point that the baseline already exists): the
 captured hot stops on settled adaptations are loads-off — `30` and `31`
-`IdleHealth` 77–89 at 67–80 °C (S1's table),
+`IdleHealth` 77–89 at 93–111 °C (S1's table),
 and 14/10's gauge session adds one more — so no readings are needed before
 the can. **The lights are the exception** (*owner*, 15/10/2026): the
 car runs them all the time, so they are on in every captured baseline

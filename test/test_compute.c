@@ -668,19 +668,19 @@ static void test_drag_model_sits_on_the_warm_free_rev_holds(void)
      * hold's own value, 48 to 61, so only the speed is fictional. */
     st.speed_mmh = 20000u;              /* 20 km/h -- the gate is open */
 
-    /* 13_rev1500_z1, oil 72.8 C. Model is above the point, so it clamps. */
+    /* 13_rev1500_z1, oil 101 C. Model is above the point, so it clamps. */
     st.rpm_q4 = 1536u * 4u;
     st.torque_ind_cnm = 19u * TORQUE_CNM_PER_BIT;
     st.throttle = 48u;
     TT_EQ(compute_torque_d(&st), 0);
 
-    /* 14_rev1850_z1, oil 74.2 C. */
+    /* 14_rev1850_z1, oil 103 C. */
     st.rpm_q4 = 1850u * 4u;
     st.torque_ind_cnm = 21u * TORQUE_CNM_PER_BIT;
     st.throttle = 51u;
     TT_EQ(compute_torque_d(&st), 0);
 
-    /* 15_rev2372_z1, oil 75.3 C. The one point the line falls below, by 1.4
+    /* 15_rev2372_z1, oil 104 C. The one point the line falls below, by 1.4
      * counts. Phantom torque, bounded by the fit's largest residual -- 1.8
      * counts, written in counts so that it follows the scale. */
     st.rpm_q4 = 2372u * 4u;
@@ -688,7 +688,7 @@ static void test_drag_model_sits_on_the_warm_free_rev_holds(void)
     st.throttle = 56u;
     TT_TRUE(compute_torque_d(&st) <= 18u * TORQUE_CNM_PER_BIT / 100u);
 
-    /* 16_rev2926_z1, oil 76.6 C. */
+    /* 16_rev2926_z1, oil 106 C. */
     st.rpm_q4 = 2926u * 4u;
     st.torque_ind_cnm = 27u * TORQUE_CNM_PER_BIT;
     st.throttle = 61u;
@@ -726,7 +726,7 @@ static void test_the_gate_zero_at_a_standstill_warm(void)
     decode_state_t st;
     decode_init(&st);
 
-    /* 11_idle_noac_z1: 798 rpm, b7 = 25, oil 72.8 C, A/C off, standing. */
+    /* 11_idle_noac_z1: 798 rpm, b7 = 25, oil 101 C, A/C off, standing. */
     st.rpm_q4 = 798u * 4u;
     st.torque_ind_cnm = 25u * TORQUE_CNM_PER_BIT;
     st.speed_mmh = 5u;                  /* raw 1 -- what standing really sends */
@@ -740,7 +740,7 @@ static void test_the_gate_zero_at_a_standstill_cold(void)
     decode_state_t st;
     decode_init(&st);
 
-    /* 02_idle_60s: b7 = 29 on 60.8 C oil. Without the gate the cold engine is
+    /* 02_idle_60s: b7 = 29 on 85 C oil. Without the gate this cooler engine is
      * the worse case -- 10.9 Nm -- which is exactly why the gate is not a
      * tolerance on the drag fit. */
     st.rpm_q4 = 797u * 4u;

@@ -1,13 +1,5 @@
 # VCDS on this car — the blocks we read, and how to record them
 
-⚠ **Oil temperatures up to and including 15/10/2026 are on the old scale.** 0x420's
-oil was read as `raw × 0.75 − 48` until then and is `raw − 60` since
-(`docs/firmware/open.md` question 10). Every oil figure dated then or earlier —
-bands, tables, readings off the display — is on the old scale; on today's
-display it is **(old + 48) / 0.75 − 60**: 56 → 79, 68 → 95, 72 → 100,
-77 → 107. The tools read today's scale; `canlog.oil_from_old_scale()`
-converts an old figure.
-
 The ECU's own view of the engine comes through VCDS on the OBD socket, and
 none of it is on the CAN bus the firmware reads. This file is **our own summary
 of the blocks this project uses** and the one recording technique everything

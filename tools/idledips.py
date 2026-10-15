@@ -31,7 +31,7 @@ Three instruments, and why there are three
 `dips()` is the measurement. `dips_cheap()` asks the same question in a shape
 a PIC18F25K80 could answer live -- a first-order baseline, a latch, an idle
 gate -- and is the one whose numbers the before-repair prediction was written
-against (12.1 and 11.6 a minute cold and at 61 C of oil, predicted ~0 after;
+against (12.1 and 11.6 a minute cold and at 85 C of oil, predicted ~0 after;
 the repair did not reach it, docs/engine-health/refuted.md A1).
 
 `roughness()` does not count at all. It GRADES the idle, because a count past
@@ -266,7 +266,7 @@ def segments(rpm, bands=SEGMENT_BANDS, cap_s=0.5):
 # produce rather than ones only a laptop can.
 #
 # ⚠ THESE CONSTANTS ARE FROZEN, and the reason is not superstition. They were
-# fitted against one rough engine (09 at 61 C, 18 from cold) and two smooth
+# fitted against one rough engine (09 at 85 C, 18 from cold) and two smooth
 # readings of the same engine (11 and 12 at 73 C). New injectors, plugs and
 # leads are fitted the week after 18 was recorded, and if they cure the idle
 # there will never again be a rough engine to fit anything against -- at which
@@ -412,7 +412,7 @@ ROUGH_OUT_SHIFT = 5      # accumulator >> 5 is the reported unit, 1/32 rpm
 
 #: The 100 point of the 0-100 index, in ROUGH_OUT_SHIFT counts.
 #:
-#: MEASURED: `09_idle_60s_z1` at 61 C and the whole warm-up of
+#: MEASURED: `09_idle_60s_z1` at 85 C and the whole warm-up of
 #: `18_coldstart_z1` both give 2.12 rpm -- two independent recordings of the
 #: engine before the repair, agreeing to three figures.
 #:

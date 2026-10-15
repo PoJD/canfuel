@@ -103,16 +103,7 @@ import canlog
 #   quiet stretch ever seen there. Longer buys little and costs idling with
 #   misfires, which the plan exists to avoid.
 #
-# ⚠ THESE ARE OIL, 0x420 BYTE 3, AND NOT THE COOLANT. The decode is the open
-# question 10 in docs/firmware/open.md. It does not matter here, because the
-# before-readings went through the same decode -- matching the label matches
-# the byte either way. It would matter if anyone retuned these numbers against
-# a corrected scale without moving the before-readings with them.
-#
-# *15/10/2026: the scale was corrected* (raw - 60, canlog.oil_c) **and the
-# bands moved with it**: each is written as the figure it was decided at, on
-# the old scale, through canlog.oil_from_old_scale -- so it covers exactly the
-# raw bytes it always did, and prints on the scale the display now shows.
+# ⚠ THESE ARE OIL, 0x420 BYTE 3 (raw - 60, canlog.oil_c), AND NOT THE COOLANT.
 
 
 @dataclass(frozen=True)
@@ -124,18 +115,17 @@ class Stop:
 
 
 STOPS = (
-    Stop("mid", canlog.oil_from_old_scale(56.0), canlog.oil_from_old_scale(62.0), 2 * 60.0),
-    Stop("hot", canlog.oil_from_old_scale(68.0), canlog.oil_from_old_scale(72.0), 3 * 60.0),
+    Stop("mid", 79.0, 86.0, 2 * 60.0),
+    Stop("hot", 95.0, 100.0, 3 * 60.0),
 )
 
 #: Opt-in with --leak-stop: a short stop BEFORE the middle band, to look along
 #: the valve cover joint once the oil is warm (`plan.md`, session A after step
 #: 1b; the owner's decision, 4/10/2026). It reads nothing: the band and the
-#: minute are decisions. The ceiling is 50 C (old scale; 71 today) because a
-#: standing idle keeps heating the oil (19: 60 -> 65 C old, in 4.5 min), and a stop entered higher can
+#: minute are decisions. The ceiling is 70 C because a standing idle keeps
+#: heating the oil (19: 84 -> 91 C in 4.5 min), and a stop entered higher can
 #: reach the middle band standing instead of being driven into from below.
-LEAK_STOP = Stop("leak", canlog.oil_from_old_scale(45.0),
-                 canlog.oil_from_old_scale(50.0), 60.0)
+LEAK_STOP = Stop("leak", 64.0, 70.0, 60.0)
 
 #: Seconds of warning asked for before the band arrives. A driver has to notice
 #: the beep and then find somewhere legal to stop.
@@ -146,7 +136,7 @@ LEAD_S = 90.0
 SLOPE_WINDOW_S = 240.0
 
 #: Below this the rate is noise, not a climb, and nothing is predicted from it.
-SLOPE_FLOOR_C_PER_MIN = 0.05 / 0.75   # decided as 0.05 on the old scale
+SLOPE_FLOOR_C_PER_MIN = 0.07
 
 STANDSTILL_MMH = 100   # src/config.h, and docs/firmware/can-decoding.md trap 1
 THROTTLE_REST = 38     # src/config.h

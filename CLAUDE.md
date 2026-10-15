@@ -151,7 +151,7 @@ carries a generated block; a figure typed into prose only goes stale.
     **`install.md` is the procedure**, plus decoding, frame layout, refuelling
     reset, timing, optimisation, flashing, `fuel-check.md` (the pump
     history and how to check `FuelAvg` against it), `refuted.md`, `open.md` (the open
-    firmware questions, 7, 10 and 11) and `datasheets/`
+    firmware questions, 10 and 11) and `datasheets/`
   - **`docs/engine-health/`** — the car's own engine. `open.md` is a holding
     document for one open investigation — the idle misfires that outlived the
     repair — holding only what is open: symptoms, hypotheses, tests.
@@ -1128,7 +1128,7 @@ keeping straight, because they look similar from a distance:
 | `docs/firmware/refuted.md` | believed, then **settled against**. An answer exists and it is "no" |
 | `docs/firmware/can-decoding.md` → *Resolved questions* | asked and **answered**, with the evidence kept |
 | `docs/firmware/can-decoding.md` → *Never resolved but not required* | **no answer, and none wanted.** Do not work on these |
-| `docs/firmware/open.md` | genuinely open, with what closes each. There are three: 7 and 10, which may stay open for good, and 11, `IdleHealth` against 014, which waits on a deliberate-misfire test |
+| `docs/firmware/open.md` | genuinely open, with what closes each. There are two: 10, whether the oil sender reads right cold, which may stay open for good, and 11, `IdleHealth` against 014, which waits on a deliberate-misfire test |
 
 ## Read `docs/firmware/can-decoding.md` before touching the maths
 
@@ -1634,9 +1634,9 @@ build is**: a procedure that carries its own progress becomes a diary, and a
 diary in a repository goes stale the moment somebody works without updating it.
 Where the build has actually got to is asked, not read.
 
-**One calibration is left: the drag line on hot oil**, question 7 in
-`docs/firmware/open.md`. It is a refinement to a working device
-rather than a blocker, and it lives in `docs/firmware/install.md` under *Then: calibration*.
+**No calibration is left.** The drag line on hot oil, question 7, closed on
+15/10/2026: read as `raw − 60`, the oil of its four holds was at 101–106 °C,
+where the engine runs (`docs/firmware/can-decoding.md`, *Resolved questions*).
 
 **The tank was the other one and it is closed, as a decision.** 6 L into a
 nearly empty tank settled at 5 L, which is the sender's own nonlinearity and
@@ -1649,7 +1649,7 @@ The rest of this section is why the drag line and the torque scale are what
 they are, because that reasoning has nowhere else to live.
 
 **The drag line is a least-squares fit through the four warm free-revving
-holds `13`–`16`** (72.8–76.6 °C, stationary in neutral, so net torque is zero
+holds `13`–`16`** (oil 101–106 °C, stationary in neutral, so net torque is zero
 and b7 *is* the drag):
 
 ```
@@ -1739,11 +1739,10 @@ five reference points of which **the first is idle**, so the standard also
 treats idle as its own datum rather than a point on a curve. `docs/firmware/frames.md`
 has the citations.
 
-The drag line is question 7 in `docs/firmware/open.md` — 72–77 °C is warm,
-not the 95–110 °C of real driving, so it still probably overstates drag
-slightly, which is the conservative direction. **Question 10, whether the oil
-temperature channel is right at all, sits underneath it** and may close it
-outright.
+The drag line was question 7 and is closed: its holds were at 101–106 °C of
+oil and real driving runs at 98–107 °C, so it is fitted where the engine
+runs. Question 10 — whether the oil sender reads right, above all cold —
+would reopen it only if the warm end turned out several degrees out.
 
 **The scale is measured, off the plateau the engine actually reaches.** 0x280
 b7 is a percentage of a reference torque inside the ECU, not Nm, and nobody

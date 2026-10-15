@@ -856,15 +856,13 @@ changing instead."
  *   drag_cnm = BASE + rpm * SLOPE / 10000
  *
  * FITTED on the four warm free-revving holds, rather than a line
- * through two COLD-OIL fixture points. Stationary, in neutral, oil 72.8-76.6 C
- * off 0x420 b3 -- on the old scale, raw x 0.75 - 48; 101-106 C on today's raw
- * - 60 (docs/firmware/open.md question 10) -- ~2,375 frames of 0x280 averaged
- * per hold:
+ * through two COLD-OIL fixture points. Stationary, in neutral, oil 101-106 C
+ * off 0x420 b3, ~2,375 frames of 0x280 averaged per hold:
  *
- *   13_rev1500_z1   1536 rpm, b7 = 18.81, oil 72.8 C, throttle 48
- *   14_rev1850_z1   1850 rpm, b7 = 20.66, oil 74.2 C, throttle 51
- *   15_rev2372_z1   2372 rpm, b7 = 26.32, oil 75.3 C, throttle 56
- *   16_rev2926_z1   2926 rpm, b7 = 27.23, oil 76.6 C, throttle 61
+ *   13_rev1500_z1   1536 rpm, b7 = 18.81, oil 101 C, throttle 48
+ *   14_rev1850_z1   1850 rpm, b7 = 20.66, oil 103 C, throttle 51
+ *   15_rev2372_z1   2372 rpm, b7 = 26.32, oil 104 C, throttle 56
+ *   16_rev2926_z1   2926 rpm, b7 = 27.23, oil 106 C, throttle 61
  *
  * In neutral the crank drives nothing, so net torque is zero at every one of
  * them and b7 IS the drag there. Least squares gives, in bytes,
@@ -874,8 +872,8 @@ changing instead."
  * and BASE/SLOPE below are that line times TORQUE_CNM_PER_BIT. The calibration
  * is in BYTES, not Nm -- change the scale and this must be refitted with it.
  *
- * What it replaces and why. The old line was fitted on 02_idle_60s (60.8 C)
- * and 05_rev3000 (39.0 C), and cold oil overstates drag most exactly where the
+ * What it replaces and why. The old line was fitted on 02_idle_60s (85 C)
+ * and 05_rev3000 (56 C), and cooler oil overstates drag most exactly where the
  * fit is most sensitive to it. Since this is SUBTRACTED from indicated torque,
  * an overstated drag understates torque and power on the display: the old line
  * showed zero for 51 % of 17_drive_property_z1, where the new one shows a
@@ -899,10 +897,10 @@ changing instead."
  * refit removed, and the gate has already dealt with the only places it
  * showed.
  *
- * STILL NOT HOT. 72-77 C is warm, not the 95-110 C of real driving, so this
- * line very likely still overstates drag a little -- which is the conservative
- * direction. Question 7 in docs/firmware/open.md stays open for exactly that,
- * with question 10 (whether the oil scale is right) underneath it.
+ * FITTED HOT. The holds' oil, 101-106 C, is where real driving runs (98-107 C),
+ * which closed question 7 (docs/firmware/can-decoding.md). Question 10 in
+ * docs/firmware/open.md -- whether the oil sender reads right -- would reopen it
+ * only if the warm end turned out several degrees out.
  *
  * THE SLOPE IS SCALED BY 2**16, NOT BY 10,000. It is our own
  * fixed-point choice and nothing outside this file reads it, so a power of two

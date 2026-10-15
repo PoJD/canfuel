@@ -60,7 +60,7 @@ static void test_clt_error_value(void)
 }
 
 /* raw - 60 C, opendbc's Kombi_2 (docs/firmware/open.md question 10): a warm
- * idle's raw 160 is 100 C, which the old coolant-borrowed scale called 72. */
+ * idle's raw 160 is 100 C. */
 static void test_oil_scale(void)
 {
     decode_state_t st;

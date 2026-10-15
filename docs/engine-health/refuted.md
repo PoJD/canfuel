@@ -1,13 +1,5 @@
 # Engine health — refuted hypotheses and answered questions
 
-⚠ **Oil temperatures up to and including 15/10/2026 are on the old scale.** 0x420's
-oil was read as `raw × 0.75 − 48` until then and is `raw − 60` since
-(`docs/firmware/open.md` question 10). Every oil figure dated then or earlier —
-bands, tables, readings off the display — is on the old scale; on today's
-display it is **(old + 48) / 0.75 − 60**: 56 → 79, 68 → 95, 72 → 100,
-77 → 107. The tools read today's scale; `canlog.oil_from_old_scale()`
-converts an old figure.
-
 The companion of `open.md`. **Every idea about this engine that was
 put forward and then settled against**, with what settled it, and the
 questions that were simply answered. It exists because each entry here was a
@@ -144,8 +136,8 @@ It came from the 014 counter, which read more at the hot idle after the swap.
 **Refuted by:** engine speed. Dips at a standstill idle fell 51–65 % at every
 oil temperature band; the counter was counting five to fifty times more per
 dip. The ruler changed, not the engine. Dips a minute at a standstill idle,
-morning (old MAF) → afternoon (new MAF): 22.1 → 10.9 at 40–60 °C of oil,
-14.5 → 5.1 at 60–66 °C, 21.4 → 8.7 at 66–80 °C.
+morning (old MAF) → afternoon (new MAF): 22.1 → 10.9 at 57–84 °C of oil,
+14.5 → 5.1 at 84–92 °C, 21.4 → 8.7 at 92–111 °C.
 
 *Added 3/10/2026 — why the ruler changed, reasoned rather than measured:*
 in Bosch's misfire detection the roughness threshold depends on load
@@ -281,7 +273,7 @@ smaller ratio would allow; it did not take it off cylinder 4.
 ### C1. "The ECU does not cut fuel on a cold overrun, so the cold burble was commanded fuel" — measured
 
 **Refuted by:** `coastscan.py` on `19_postfix_drive_z1`: the first coasts of the
-morning, on oil at 13–22 °C, cut the injectors 1.20–1.34 s after the lift
+morning, on oil at 21–33 °C, cut the injectors 1.20–1.34 s after the lift
 exactly as warm: in `17_drive_property_z1` the four warm cuts shut
 1.19–1.30 s after the lift and gave fuel back at 1700–1754 rpm. So the burble was fuel arriving with none commanded — the old
 injectors — and it has not been heard since. Gap: coolant below ~60 °C, the
@@ -613,7 +605,7 @@ bear*): at b5 80 and above, 0x280 b7 on 3/10 read 18–30 % below `19` and
 `24` at the same engine speed and b5, and the 1 cm hole into the crankcase
 was taken to be air the MAF did not see.
 **Refuted by** the run after step 1b, 4/10/2026 (`27`/`28`, the same bins,
-driving, oil above 55 °C, at least 30 frames each), **with the joint
+driving, oil above 77 °C, at least 30 frames each), **with the joint
 sealed and dry**: b7 reads where 3/10 read, not where `24` did — 94 against
 92 at 1500 rpm and b5 80–89, 96 against 96 at 2000 and 90–99, 82 against
 94 at 2500 and 90–99. **What the comparison missed:** the throttle body

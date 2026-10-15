@@ -289,8 +289,8 @@ What the display shows on day one, from the grade over the recordings so far:
 
 | state | IdleHealth |
 |---|---|
-| warm idle, oil 52–60 °C (old 0x420 scale; 76–87 today), new MAF | 73–100 |
-| hot idle, oil 69–71 °C (old scale; 96–99 today), new MAF | 68–121 |
+| warm idle, oil 76–84 °C, new MAF | 73–100 |
+| hot idle, oil 96–99 °C, new MAF | 68–121 |
 | August's hot idle, before any work: one 22 s hold (`11`); 29 in the A/C-on hold beside it (`12`). The device itself would still read 255 after 22 s | 48 |
 
 ⚠ **The index is comparable only at comparable temperature.** The grade is not
@@ -700,7 +700,7 @@ free byte shift. **The calibration is in bytes, not Nm**: both constants are
 the byte line times the scale, recomputed from the byte line whenever the scale
 moves and never rescaled from their old values. It replaced a cold-oil line
 that understated torque at part throttle; whether it needs a hot-oil refit is
-`open.md` question 7, with question 10 (the oil scale) underneath it.
+`can-decoding.md` question 7, closed 15/10/2026: the holds were on hot oil.
 
 **The idle point is excluded on purpose.** `11_idle_noac_z1` is b7 = 24.96 at
 798 rpm, *above* the line — b7 falls to 18.81 by 1536 rpm before it rises,

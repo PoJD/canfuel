@@ -265,7 +265,7 @@ static void test_idle_produces_sane_frames(void)
     /* IDLING PRODUCES NO NET TORQUE AND THE DISPLAY MUST SAY SO -- end to end,
      * off a real log, through decode, compute and the assembled frame. This is
      * the driving gate (config.h) and it is a fixed requirement, not a
-     * tolerance on the drag fit: 02_idle_60s is the worst case, b7 = 29 on 60.8 C
+     * tolerance on the drag fit: 02_idle_60s is the worst case, b7 = 29 on 85 C
      * oil, which the drag line alone would show as 10.9 Nm. Zero here, and
      * zero at the two warm idle logs below.
      *

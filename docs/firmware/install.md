@@ -1293,39 +1293,25 @@ one on it.
 ⚠ **And for anything that needs hot oil, dismantle FIRST and drive second.**
 The oil has to be at temperature *while the holds are recorded*, and it cools
 while trim is being undone. Get the USBtin connected and the dashboard apart,
-then drive to heat the oil, then do the sweep. The obvious order — drive it hot
+then drive to heat the oil, then record. The obvious order — drive it hot
 and then start unclipping panels — wastes the heat it just took a drive to
 make.
-
-The calibration below can be done later, on a working car, but it does need
-this reopened: the capture comes off the display's connector.
 
 ---
 
 ## Then: calibration
 
-**One thing is left, and it needs the car:**
+**Nothing is left.** The drag line was the last, question 7, and it closed on
+15/10/2026 without a drive: with 0x420 read as `raw − 60` the four
+free-revving holds it was fitted on were at 101–106 °C, which is where the
+engine runs (`docs/firmware/can-decoding.md` question 7).
 
-- **Drag torque on hot oil**, open question 7. The
-  line in `config.h` is a least-squares fit through four free-revving holds at
-  72–77 °C, stationary in neutral, where net torque is zero and the raw byte
-  is the drag itself. **72–77 °C is warm, not the 95–110 °C of real driving**,
-  so it probably still overstates drag slightly, which is the conservative
-  direction. Repeat the same sweep on hotter oil, in neutral.
-  `docs/firmware/open.md` question 7 has the reasoning and the procedure —
-  and why question 10, a thermometer in hot oil, should come first.
-
-  ⚠ **The holds themselves will display zero**, because they are taken
-  standing still and the driving gate returns zero for a standing car whatever
-  the pedal is doing (`frames.md`). That is correct and not a fault to chase:
-  the refit is done off the raw log and b7, not off the display.
-
-  **Torque and power must read zero whenever the car is standing still, and
-  whenever the pedal is released at any speed** — cold or warm. That is the
-  driving gate (`frames.md`), a fixed requirement rather than a side effect of
-  the drag fit, and it is worth checking on the first drive: if a stationary
-  car shows a number, or a number survives lifting off, something is wrong with
-  the speed or throttle decoding, not with the calibration.
+**Torque and power must read zero whenever the car is standing still, and
+whenever the pedal is released at any speed** — cold or warm. That is the
+driving gate (`frames.md`), a fixed requirement rather than a side effect of
+the drag fit, and it is worth checking on the first drive: if a stationary
+car shows a number, or a number survives lifting off, something is wrong with
+the speed or throttle decoding, not with the calibration.
 
 **The tank was the other one, and it is closed — as a decision, not as a
 measurement.** 6 L from a jerrycan into a nearly empty tank settled at 5 L on
@@ -1348,8 +1334,7 @@ the numbers and is resolved. The VCDS session once planned for it found that
 this ECU has no torque measuring block at all — **do not plan that session
 again.**
 
-`docs/firmware/can-decoding.md` now has exactly one open question, and it is the drag
-line above.
+`docs/firmware/open.md` holds what is still open; none of it is a calibration.
 
 ---
 

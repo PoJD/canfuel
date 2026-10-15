@@ -1,13 +1,5 @@
 # Engine health — what is still wrong, and how to find out why
 
-⚠ **Oil temperatures up to and including 15/10/2026 are on the old scale.** 0x420's
-oil was read as `raw × 0.75 − 48` until then and is `raw − 60` since
-(`docs/firmware/open.md` question 10). Every oil figure dated then or earlier —
-bands, tables, readings off the display — is on the old scale; on today's
-display it is **(old + 48) / 0.75 − 60**: 56 → 79, 68 → 95, 72 → 100,
-77 → 107. The tools read today's scale; `canlog.oil_from_old_scale()`
-converts an old figure.
-
 **The working document for one open investigation into the engine itself.**
 It holds only what is **unresolved**: the symptoms still present, the
 hypotheses still standing, and the test that would confirm or kill each one.
@@ -157,7 +149,7 @@ twitching has not.
 *Owner, 4/10/2026, after step 1b:* the idle **feels clearly calmer** —
 said cold and again warm. The numbers taken at matched oil temperature,
 as `refuted.md` C12 asks, **agree against the car before 1/10 and barely
-differ from 3/10**: at a hot stop, ~70 °C, dips ≥ 20 rpm a minute went
+differ from 3/10**: at a hot stop, ~97 °C, dips ≥ 20 rpm a minute went
 20 (`19`, old MAF) → 9.1 (`24`) → 5.0 (3/10) → **4.4**, and `IdleHealth`
 112–146 → 84 → 62 → **60**; in the middle band the dips sit at 9–11 on
 `24`, 3/10 and 4/10 alike (S3, *Session A after step 1b*). ~~So the calm
@@ -171,7 +163,7 @@ change is in 014 rather than in engine speed.
 `idledips --roughness`'s mean step in rpm × 50), ± the standard error
 over the windows, binned by 0x420:
 
-| session | adaptations | < 30 °C | 50–65 °C | 67–80 °C |
+| session | adaptations | < 44 °C | 71–91 °C | 93–111 °C |
 |---|---|---|---|---|
 | `19`/`20`, 24/9, new injectors, old MAF | fresh | 111 ± 11 | 109 ± 5 | 113 ± 5 |
 | `24`, 24/9, **new MAF** | fresh | 104 ± 14 | **84 ± 4** | **91 ± 7** |
@@ -202,9 +194,9 @@ prints the mean step in rpm, and `IdleHealth` is that × 50
 capture is a mean over a window; the display shows a running filter of
 the same quantity, so the two agree on a steady idle and not to the unit.
 
-**Current values**, *owner-reported off the display*. Hot idle, 69–72 °C of
+**Current values**, *owner-reported off the display*. Hot idle, 96–100 °C of
 oil: `IdleHealth` **57–100, sometimes over 100**; 93 on the last reading,
-"fluctuating a lot". At 56–68 °C: about 120. Readings with no temperature
+"fluctuating a lot". At 79–95 °C: about 120. Readings with no temperature
 noted: 80–160, which compare with nothing. Dips ≥ 20 rpm at a standstill idle: **5–11 a minute**
 (`24_mafswap_drive_z1`), down from 15–21 on the old MAF the same morning.
 
@@ -230,15 +222,15 @@ the recovery about 250 ms, which is the idle governor, not a fuelling loop:
 something done after August that made it worse?*).
 
 - **It is one session, not two recordings.** `11` (A/C off, 48) and `12`
-  (A/C on, 29) were taken minutes apart on 11/8 at 73 °C of oil; the A/C
+  (A/C on, 29) were taken minutes apart on 11/8 at 101 °C of oil; the A/C
   one being smoother is the load effect above. So the hot, loads-off
   August idle is **one 19 s hold grading 43–48**.
-- **Against September at the same state.** `24` at 69–70 °C, loads off —
+- **Against September at the same state.** `24` at 96–97 °C, loads off —
   the same torque at idle on 0x280 b7 (23 against August's 25) — cut into
   the same 22 s windows grades **53–106**, median about 75. August sits
   just below September's best window: unusual, not impossible by chance.
 - **At mid temperature August was not better.** `09`, the same day at
-  61 °C, grades 79–104 per window; `24` at 57–61 °C grades 48–89.
+  85 °C, grades 79–104 per window; `24` at 80–85 °C grades 48–89.
 - **Not the old battery.** The idea that a dying battery loaded the
   alternator in August — a load, and load smooths this idle — is refuted
   by the bus: indicated torque at idle was 25 then and 23 now.
@@ -328,11 +320,11 @@ ignition fault that tracks moisture would do (H4, test 1e).
 hot.** Re-read 9/10/2026 over every capture since 24/9 (standing idle,
 binned by 0x420, `idledips --roughness`): the mean step is highest cold
 and falls with the oil in every session, on fresh adaptations and settled
-ones alike — on `30`, 103 at 10–20 °C, 95 at 50–60, 93 at 60–70,
-77 at 70–80; on `29`, 117 / 106 / 93 / 92; on `27`/`28`, 121 /
+ones alike — on `30`, 103 at 17–31 °C, 95 at 71–84, 93 at 84–97,
+77 at 97–111; on `29`, 117 / 106 / 93 / 92; on `27`/`28`, 121 /
 97 / 76. The dip count scatters (8–22 a minute) with no band
 consistently on top. *Corrected 9/10/2026, at the owner's question:* this
-read "not monotonic … worst at about 50–61 °C of oil", which no capture
+read "not monotonic … worst at about 71–85 °C of oil", which no capture
 since 24/9 bears out for engine speed; the middle-band peak is 014's
 (S3), and on settled adaptations that is shallow. ⚠ Every engine idles
 roughest cold (*general*: enrichment, a raised idle), so cold-worst says
@@ -375,7 +367,7 @@ the dip is under one count, so roughly one dip in three carries it
 
 **What comes before a dip — 10/10/2026** (*the owner's request to go
 through every idle again*; `tools/dipcontext.py`, warm standing idle at
-≥ 55 °C of oil, the injector cuts of `31` left out, captures `19`, `20`,
+≥ 77 °C of oil, the injector cuts of `31` left out, captures `19`, `20`,
 `24` and `26`–`31`). Three readings no tool had made before:
 
 - **The ECU has trimmed the engine just before a dip.** Averaged over
@@ -501,9 +493,9 @@ fault that does not care about the charge: an intermittent wire, a
 crank-sensor artefact (which would repeat at 360°, not 720°).
 
 **12/10 — the warm idle calmer than on any day before** (`32`,
-`idle-log.md`). At 68–71 °C of oil `IdleHealth` was **50** at the first
+`idle-log.md`). At 95–99 °C of oil `IdleHealth` was **50** at the first
 warm stop and **61** over 5½ minutes at the original idle setting,
-against **77–89** for `30` and `31` at 67–80 °C; dips 3.7–4.9 a
+against **77–89** for `30` and `31` at 93–111 °C; dips 3.7–4.9 a
 minute. The owner saw smaller 014 figures than usual; **counted, 014
 moved little** (*read 12/10/2026*, the owner's question; standing idle,
 detection `aktivováno`, aligned on engine speed, 10/10's cuts and
@@ -511,9 +503,9 @@ detection `aktivováno`, aligned on engine speed, 10/10's cuts and
 
 | oil | 9/10 (`30`) | 10/10 (`31`) | 12/10 (`32`) |
 |---|---|---|---|
-| < 40 °C | 1.8 a minute, 11 % non-zero | 6.2, 39 % | 6.9, 48 % |
-| 40–60 °C | 9.6, 61 % | 9.8, 61 % | 7.6, 55 % |
-| 66–80 °C | 8.8, 58 %, max 96 | 6.1, 42 %, max 48 | **5.3, 40 %, max 84** |
+| < 57 °C | 1.8 a minute, 11 % non-zero | 6.2, 39 % | 6.9, 48 % |
+| 57–84 °C | 9.6, 61 % | 9.8, 61 % | 7.6, 55 % |
+| 92–111 °C | 8.8, 58 %, max 96 | 6.1, 42 %, max 48 | **5.3, 40 %, max 84** |
 
 Rises a minute, then the share of samples non-zero. The hot band is a
 little lower day by day and the readings are the usual twelves (median
@@ -524,7 +516,7 @@ against −0.8 / +2.3 on 4/10 and −2.3 / +5.5 on 9/10. Changed since `31`:
 the joint behind the converter, which is behind both probes and so not
 it (`refuted.md` A13), and **a new air filter with the airbox crack
 ahead of the MAF sealed** (`vehicle-history.md`). Cold it was no better
-— 125–145 at ~30 °C against `31`'s 120. **One day, cause unknown**;
+— 125–145 at ~44 °C against `31`'s 120. **One day, cause unknown**;
 the drives of `plan.md` item 6 say whether it holds, and a calmer idle
 on the next drives with nothing else changed would point at the airbox.
 **Raising the idle did not help**: from 780 to 830 rpm specified, the
@@ -532,7 +524,7 @@ ECU's limit, 014 kept counting and `IdleHealth` rose slightly with engine
 speed; put back the same day.
 
 *What else moved on the bus that day* (every byte of 0x280 and 0x288 and
-the fuel counter, standing warm idle at 65–75 °C of oil, `24`–`32`;
+the fuel counter, standing warm idle at 91–104 °C of oil, `24`–`32`;
 *read 12/10/2026*). **One thing: the engine held the same 797 rpm on
 the least charge on record** — indicated torque (0x280 b7) 20.0–20.9
 against 21.6–26.6, injection time (0x288 b6) 34.0–34.9 against
@@ -650,10 +642,10 @@ found no leak ahead of the converter (S15).
 - **When the counts start after a cold start** (checked 28/9/2026, VCDS
   014 aligned on engine speed to the captures). **11/9** (`18`, old
   injectors): the first count **2 min** after the start at coolant 35 °C,
-  oil 13 °C, then steadily from ~4 min (coolant 56–64 °C). **24/9** (`19`,
+  oil 21 °C, then steadily from ~4 min (coolant 56–64 °C). **24/9** (`19`,
   the injectors fitted 23/9, old MAF): **3 min of cold idle with detection
   active and no count at all** (coolant 12 → ~48 °C); the first count at
-  +584 s, coolant 90 °C, oil 43 °C, then many. The logs after the MAF
+  +584 s, coolant 90 °C, oil 61 °C, then many. The logs after the MAF
   swap (`24`) begin warm and cannot say. So on the car as it now is, **a
   cold idle without counts is not evidence of a fix.**
 
@@ -663,14 +655,14 @@ found no leak ahead of the converter (S15).
 
   | oil | `24` — new MAF, adaptations fresh | `19` — old MAF, adaptations fresh |
   |---|---|---|
-  | 48–56 °C | — | 3.6–10 a minute |
-  | 56–60 °C | **20 a minute** (102 s) | — |
-  | 60–64 °C | 2.5 a minute (95 s) | 1.5 a minute (196 s) |
-  | 64–68 °C | — | 2.0 a minute (152 s) |
-  | 68–72 °C | **10 a minute** (318 s) | **0.3 a minute** (433 s) |
+  | 68–79 °C | — | 3.6–10 a minute |
+  | 79–84 °C | **20 a minute** (102 s) | — |
+  | 84–89 °C | 2.5 a minute (95 s) | 1.5 a minute (196 s) |
+  | 89–95 °C | — | 2.0 a minute (152 s) |
+  | 95–100 °C | **10 a minute** (318 s) | **0.3 a minute** (433 s) |
 
   On `24` the longest stretch of active standing idle with no count is
-  **57 s**. On `19` the last ~6½ minutes of hot idle at 70–71 °C read
+  **57 s**. On `19` the last ~6½ minutes of hot idle at 97–99 °C read
   **zero** — on the car before any repair, which is what A11's change of
   ruler looks like from the other side: **on the old MAF a hot-idle zero
   is not evidence**, and only `24` is a comparison for the car as it now
@@ -680,7 +672,7 @@ found no leak ahead of the converter (S15).
 - **Session A, 3/10/2026 — after the valve cover and throttle job**
   (`25_sessionA_cold_z1` and `26_sessionA_warm_z1`, with
   `vcds/vcds-sessionA-003-014-055.csv`). A cold start after a 27 h
-  stand, ~7 min of cold idle, a drive to the 55–68 °C band, ~6 min
+  stand, ~7 min of cold idle, a drive to the 77–95 °C band, ~6 min
   standing there, a drive home, ~2 min hot. Fresh adaptations (battery
   off for the job). Aligned on engine start and stop; the two clocks
   drift 12 s in 31 minutes, which is ignored. Standing idle only,
@@ -688,10 +680,10 @@ found no leak ahead of the converter (S15).
 
   | oil | 014 rises a minute | 014 non-zero | dips ≥ 20 rpm a minute (`24` / `19`) | `IdleHealth` |
   |---|---|---|---|---|
-  | < 40 °C | **0** (419 s) | 0 % | **22.0** (11.8 / 13.7) | 120–178 |
-  | 40–60 °C | **16.8** (111 s) | 75 % | 15.7 (9.4 / 22.4) | — |
-  | 60–66 °C | **15.6** (299 s) | 75 % | 9.3 (5.2 / 14.0) | 101–117 |
-  | 66–80 °C | **3.0** (102 s) | 40 % | 13.6 (8.6 / 19.4) | 60 |
+  | < 57 °C | **0** (419 s) | 0 % | **22.0** (11.8 / 13.7) | 120–178 |
+  | 57–84 °C | **16.8** (111 s) | 75 % | 15.7 (9.4 / 22.4) | — |
+  | 84–92 °C | **15.6** (299 s) | 75 % | 9.3 (5.2 / 14.0) | 101–117 |
+  | 92–111 °C | **3.0** (102 s) | 40 % | 13.6 (8.6 / 19.4) | 60 |
 
   Driving, the counter read non-zero in 8–16 % of samples, 1–2 rises a
   minute; detection `deaktiv.` 19–40 % of the driving samples and 1–8 %
@@ -727,12 +719,12 @@ found no leak ahead of the converter (S15).
 
   | stop | oil | standing | 014 rises a minute | dips ≥ 20 rpm a minute | `IdleHealth` |
   |---|---|---|---|---|---|
-  | A1, cold | 11–17 °C | 318 s | **0** | 17–20 | 81 → 171 |
-  | the joint stop | 41–47 °C | 116 s | **0** | 11.9 | 126 |
-  | **A2** | 55–62 °C | 255 s | **0** | **9.1** (3/10 at 58–65 °C: 10.8) | 103–109 |
-  | **A3** | 68–71 °C | 468 s | **0** | **4.4** (3/10 at 69 °C: 5.0) | 56–62, one window 109 |
-  | hot, after a hard drive | 72–73 °C | 238 s | **7–9** | 7–11 | 82–92 |
-  | the MAF wiggle | 73 °C | 71 s | 13.6 | 15.3 | 79 |
+  | A1, cold | 19–27 °C | 318 s | **0** | 17–20 | 81 → 171 |
+  | the joint stop | 59–67 °C | 116 s | **0** | 11.9 | 126 |
+  | **A2** | 77–87 °C | 255 s | **0** | **9.1** (3/10 at 81–91 °C: 10.8) | 103–109 |
+  | **A3** | 95–99 °C | 468 s | **0** | **4.4** (3/10 at 96 °C: 5.0) | 56–62, one window 109 |
+  | hot, after a hard drive | 100–101 °C | 238 s | **7–9** | 7–11 | 82–92 |
+  | the MAF wiggle | 101 °C | 71 s | 13.6 | 15.3 | 79 |
 
   **The MAF wiggle found nothing** (`idle-log.md`, *The MAF*):
   the counts were there before it (*owner*, watching 014 before he went
@@ -741,7 +733,7 @@ found no leak ahead of the converter (S15).
   a sample does not carry.
 
   *The 3/10 figures beside A2 and A3 are its stops taken whole, by the
-  same rule; they replace 15.7 and 13.6, which were the 40–60 and 66–80
+  same rule; they replace 15.7 and 13.6, which were the 57–84 and 92–111
   °C bins of the band table above — a different cut of the same idle,
   and not like with like.* **On engine speed the idle barely moved from
   3/10** (−16 % and −12 %, the second on a 65 s stop); **014 is what
@@ -776,7 +768,7 @@ found no leak ahead of the converter (S15).
   15 °C, after ~15 h — past `plan.md`'s 1.2 s, on adaptations at zero;
   read against the next cold start, not alone. No fault code stored.
 
-- **Session B, 4/10/2026** — after a cool-down to 32 °C of oil, a
+- **Session B, 4/10/2026** — after a cool-down to 47 °C of oil, a
   part-warm start (coolant 44 °C, `StartCrank` 0.70 s, `StartDip` 0),
   ended by the owner at B1 (`29_sessionB_z1`, with
   `vcds/vcds-sessionB-014-055-033.csv`). Standing idle, 014 aligned on
@@ -784,9 +776,9 @@ found no leak ahead of the converter (S15).
 
   | stop | oil | 014 a minute | dips a minute | `IdleHealth` | 033, median |
   |---|---|---|---|---|---|
-  | after the start | 31–36 °C | **1.5–4.3** | 9–19 | 135–156 | 0.0 / +0.8 % |
-  | **B1** | 59 °C | **14.3** | 11.3 | 120 | **−0.8 %** |
-  | home, two stops | 69–71 °C | ~5 | 8–20 | 90–143 | −1.6 % |
+  | after the start | 45–52 °C | **1.5–4.3** | 9–19 | 135–156 | 0.0 / +0.8 % |
+  | **B1** | 83 °C | **14.3** | 11.3 | 120 | **−0.8 %** |
+  | home, two stops | 96–99 °C | ~5 | 8–20 | 90–143 | −1.6 % |
 
   **The misfires were back**, at B1 about as on 3/10, **and on the idle
   after the start** — the first counts on an idle that cold since the
@@ -809,10 +801,10 @@ found no leak ahead of the converter (S15).
 
   | stop | oil | 014 rises a minute | 055 learned, g/s | dips ≥ 20 rpm a minute (4/10) | `IdleHealth` (4/10) |
   |---|---|---|---|---|---|
-  | A1, cold | 10–13 °C | **1.4–1.8** | −1.12 | 12.1 (16.5) | 86 (98) |
-  | **A2** | 56–61 °C | **6.8** | −1.10 to −1.17 | 8.4 (9.2) | 67 (70) |
-  | **A3** | 67.5 °C | **10.7–12.5** | −1.11 to −1.17 | 13.9 (4.4) | 56 (39) |
-  | hot, the way home | 72–73 °C | 3.7–5.8 | −1.17 to −1.32 | 7.4–10 (6.7–15) | 41–61 (38–59) |
+  | A1, cold | 17–21 °C | **1.4–1.8** | −1.12 | 12.1 (16.5) | 86 (98) |
+  | **A2** | 79–85 °C | **6.8** | −1.10 to −1.17 | 8.4 (9.2) | 67 (70) |
+  | **A3** | 94 °C | **10.7–12.5** | −1.11 to −1.17 | 13.9 (4.4) | 56 (39) |
+  | hot, the way home | 100–101 °C | 3.7–5.8 | −1.17 to −1.32 | 7.4–10 (6.7–15) | 41–61 (38–59) |
 
   **The misfires are not gone**, at both warm stops and on the cold idle
   after the start — the second cold idle to count, after session B's,
@@ -845,11 +837,11 @@ found no leak ahead of the converter (S15).
 
   | stop | oil | 014 rises a minute (9/10) | 003 air, g/s |
   |---|---|---|---|
-  | cold idle, servo held | 10–13 °C | **3.6** (1.4–1.8) | 3.89–4.42 |
-  | short cold stop | ~20 °C | 14.0 (—) | 3.73 |
-  | middle | 58–60 °C | **9.4** (6.8) | 3.15 |
-  | hot, before the cuts | 69–70 °C | **6.0** (10.7–12.5) | 3.08 (3.12) |
-  | hot, after the cuts and home | 70 °C | 2.7–5.7 (3.7–5.8) | 3.11–3.24 |
+  | cold idle, servo held | 17–21 °C | **3.6** (1.4–1.8) | 3.89–4.42 |
+  | short cold stop | ~31 °C | 14.0 (—) | 3.73 |
+  | middle | 81–84 °C | **9.4** (6.8) | 3.15 |
+  | hot, before the cuts | 96–97 °C | **6.0** (10.7–12.5) | 3.08 (3.12) |
+  | hot, after the cuts and home | 97 °C | 2.7–5.7 (3.7–5.8) | 3.11–3.24 |
 
   055's learned value −1.14 before the cuts, −1.28 after (9/10: −1.07 to
   −1.33). **The misfires are not gone**: better at the hot stop, worse in
@@ -1248,7 +1240,7 @@ pressure and ventilation (H9).
 **How it closes:** the gasket and the breather are replaced (the owner's
 job), the head and the plug area are cleaned, and the boots and plugs of 1
 and 2 are photographed before cleaning. **Before taking anything apart**, at
-70–72 °C of oil: a few minutes of `IdleHealth` as the before-value, and H9
+97–100 °C of oil: a few minutes of `IdleHealth` as the before-value, and H9
 test 3 (the filler cap) and a look at the dipstick — after a new gasket,
 whether the crankcase was pushing oil out can no longer be told. Then S11 is
 looked at again with the oil gone.
@@ -1394,7 +1386,7 @@ be put down to one part. What stays separable all the same: S11's smoke
 not f = 0.50) and S4/S5 on cylinder 4 (H5).
 
 **The before-values for the repair are the ones already in S1** — the warm
-band at 69–72 °C of oil, loads off; the after-reading is taken the same way.
+band at 96–100 °C of oil, loads off; the after-reading is taken the same way.
 No separate cold baseline was taken.
 
 **Leaking again on the first warm run, 3/10/2026** (`idle-log.md`,
@@ -1475,7 +1467,7 @@ again after the joint is sealed (`plan.md`).
 pulled worse on 3/10 — first a warm-up drive, then, once the leak was
 found, gentle driving home. The capture agrees: 0x280 b7 (indicated
 torque) at the same engine speed and the same b5 (throttle), driving, oil
-above 55 °C, medians over bins of 500 rpm and 10 counts of b5 with at
+above 77 °C, medians over bins of 500 rpm and 10 counts of b5 with at
 least 30 frames in each log:
 
 | rpm | b5 | `19` | `24` | `26`, the hole open |
@@ -1505,7 +1497,7 @@ joint sealed b7 reads where 3/10 did; b5 is the throttle body's own
 sensor, which was replaced between `24` and `26`, and reads 35 at idle
 on the new part against 38 on the old.
 
-**After step 1b, 4/10/2026: the joint dry** at the stop at 45–50 °C and
+**After step 1b, 4/10/2026: the joint dry** at the stop at 64–71 °C and
 after the hot end of session A (*owner*), with the right gasket, Elring
 `915.653`. Smoke at the back was old oil from the 3/10 leak burning off
 (*owner*). **The re-check of the outer nuts after a few hundred km stays**
@@ -1975,12 +1967,13 @@ neutral, standing) or with road speed and load is what would place it.
 
 ### Other — not symptoms, but they touch this file
 
-**Oil temperature.** Whether 0x420's `OilTemp` is right is a firmware
-question, `docs/firmware/open.md` question 10, and is settled by a
-thermometer in hot oil. It matters here because S1 depends on oil temperature
-and every `IdleHealth` comparison is made at a matched one. If the channel
-turns out to read 25 °C low, every oil temperature in this file shifts with
-it — the comparisons between readings still hold, the absolute figures do not.
+**Oil temperature.** 0x420's `OilTemp` is `raw − 60` °C, the
+cluster's `Kombi_2` as opendbc defines it (`docs/firmware/open.md`
+question 10). It matters here because S1 depends on oil temperature and
+every `IdleHealth` comparison is made at a matched one. Whether the sender
+reads right is question 10's: a few degrees high at a cold soak, unknown
+warm. A bias moves both sides of every comparison alike, so the
+comparisons hold whatever the absolute figures turn out to be.
 
 **The remap.** The ECU was chipped in 2018; the tuner's own remark was that
 there was nothing to be had at the top of the range. What a remap on a
@@ -2025,7 +2018,7 @@ A safety matter for a garage, outside this investigation.
 |---|---|---|
 | S1 ↔ S3 | **the same events** | aligned three times, p ≤ 0.023. Both are crank speed, so partly one signal read twice |
 | S1/S3 ↔ S9 | **strong** | the MAF swap halved the dips at every oil temperature (−51 to −65 %). An over-reading MAF was causing some of the stumbles; the rest is the residual fault |
-| S1/S3 ↔ oil temperature | **strong; the two differ** (*re-read 9/10/2026*) | **S1** (engine speed) roughest cold and calmer as the oil warms, in every session since 24/9. **S3** (014): near zero cold — the counter's own blind spot, since engine speed is worst there; on fresh adaptations a sharp peak in the middle band and zero hot; **on settled ones flatter** — 6–16 a minute from ~40 °C up, about half as many at 70–80 °C as at 55–68 (`29`, `30`). *This read "non-monotonic, worst at ~50–61 °C, on every drive" for both* |
+| S1/S3 ↔ oil temperature | **strong; the two differ** (*re-read 9/10/2026*) | **S1** (engine speed) roughest cold and calmer as the oil warms, in every session since 24/9. **S3** (014): near zero cold — the counter's own blind spot, since engine speed is worst there; on fresh adaptations a sharp peak in the middle band and zero hot; **on settled ones flatter** — 6–16 a minute from ~57 °C up, about half as many at 97–111 °C as at 77–95 (`29`, `30`). *This read "non-monotonic, worst at ~71–85 °C, on every drive" for both* |
 | S4 ↔ S5 | **very likely one thing** | same cylinder window, same engine speeds, and S5 needs no combustion. Knock control retards cylinder 4 because it hears S5's noise |
 | S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle, in any log. Only a common cause could link them |
 | S2 ↔ S3 | **likely: heard with the dips by the owner on 12/10/2026; never aligned with a recording** | the owner takes S2 for S14's smaller twin, a misfire's charge going off in the exhaust (S2, 4/10/2026); on 12/10 he heard the puffs come with the engine-speed dips. A leak ahead of the probe would puff too (H2) |
@@ -2189,9 +2182,9 @@ or late, intermittently, and gets worse as the oil thins. *General.*
   purpose, where a lifter that bleeds down is usually heard. Weak: a
   valve that hangs slightly need not tick.
 - **Against:** the idle is never worst hot, while a thin-oil lifter should
-  be — engine speed is calmest hot, and 014 at 70–80 °C counts about half
-  what it does at 55–68 (*re-read 9/10/2026*; this read "S1 is worst at
-  50–61 °C and eases when hot"). The S5 excess switches on above ~2300 rpm and
+  be — engine speed is calmest hot, and 014 at 97–111 °C counts about half
+  what it does at 77–95 (*re-read 9/10/2026*; this read "S1 is worst at
+  71–85 °C and eases when hot"). The S5 excess switches on above ~2300 rpm and
   moves to cylinder 1 above ~3350, which fits a resonance better than a single
   part. No ticking has been reported.
 - **From the Polish AQY thread** (see H4; forum.vwgolf.pl t=522030, page
@@ -2365,7 +2358,7 @@ loop absorbs it, so 032 barely moves (SSP 233 p. 16, the two-loop control).
    the warm tailpipe test (`plan.md` step 3) stays its test.
 2. **Written before the repair, so the repair is a test:** if a leak ahead of
    the probes is found and sealed, the puff goes; the rear probe (036/037) at
-   hot idle moves a little leaner; `IdleHealth` at 70–72 °C stays in its
+   hot idle moves a little leaner; `IdleHealth` at 97–100 °C stays in its
    57–120 band; the mid-temperature 014 rate does not fall beyond scatter;
    cylinder 4's 026 excess does not change. **If the idle improves clearly,
    this hypothesis was underrated and the argument against it is wrong.**
@@ -2419,7 +2412,7 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
   4.93, 4.03, 3.89 on 10/10 (`vcds-step4-*`); a leak behind the MAF
   would make it read *less* for the same idle, never more.
 - **The vacuum gauge warm, 15/10/2026** (`38`, the owner's 3½ min video;
-  oil 67–70 °C, coolant 94–100 °C, the same tee): **steady at idle, about
+  oil 93–97 °C, coolant 94–100 °C, the same tee): **steady at idle, about
   19 inHg**, as part-cold; **about 22 at a 15 s hold of ~2500 rpm**,
   steady; **about 22½–23 on each release**, back to idle's in a few
   seconds. **No flick at idle**: none of ~0.1 inHg or more in 78 s of
@@ -2493,7 +2486,7 @@ fully home, and an old injector alone clicked fully into every bore
 disconnect (S9) — positive supports a seat leak; the smoke test with the
 engine off, which reaches the seats safely; and the refit itself, each
 injector home on its own before the rail goes on, with the O-rings looked
-at for a nick from being forced, then `IdleHealth` at 70–72 °C against
+at for a nick from being forced, then `IdleHealth` at 97–100 °C against
 57–100. It goes together with the valve cover job, by the owner's
 decision (`idle-log.md`, *The valve cover and throttle job*): the cure is wanted more than the
 attribution.
@@ -3514,7 +3507,7 @@ it: **for more than a week in the summer, for the heater and dashboard
 work, before the August recordings** (*owner-reported*), then the new
 battery at the end of August, and 23/9, 24/9, 26/9.
 
-The hot-idle grades (`idledips.py --roughness`, oil ~70–77 °C, loads off)
+The hot-idle grades (`idledips.py --roughness`, oil ~97–107 °C, loads off)
 were 48 on 11/8, 146 and 117 on 24/9 after the 23/9 disconnect, 84 after
 the 24/9 one, and 57–100 off the display since. **August looked like the
 one state with the June adaptation intact, and it was not** — the battery

@@ -73,9 +73,8 @@ listing XC8 generates; nothing has put a scope on it. The margins are large
 enough that this is a stated limitation rather than a worry — the busiest
 transmit slot uses 2.4 ms of its 25 — but it is not a measurement.
 
-⚠ **One calibration is open**: the engine's drag torque is fitted on 72–77 °C
-oil rather than the 95–110 °C of real driving, which biases torque and power
-slightly low. `docs/firmware/open.md` question 7.
+**The calibration is done**: the engine's drag torque is fitted on oil at
+101–106 °C, where the engine runs (`docs/firmware/can-decoding.md` question 7).
 
 **[`docs/firmware/install.md`](docs/firmware/install.md) is the procedure** — the whole path from
 three clones to a working device, in the order it has to happen, with each step

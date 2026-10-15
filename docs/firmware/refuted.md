@@ -156,7 +156,7 @@ b2, masked with 0x7F.
 **Believed:** genuinely open, with `07_accel` recorded
 specifically to settle it and coming out inconclusive.
 **Refuted by:** reading all seven fixtures in the order the coolant says they
-were recorded. It is a warm-up curve lagging the coolant, 21 → 65 °C while the
+were recorded. It is a warm-up curve lagging the coolant, 32 → 91 °C while the
 coolant goes 68 → 99 °C; it is *highest* in `03_drive`, the one log with air
 actually moving through the engine, where an intake temperature would fall; and
 it reads 255 with the ignition on and the engine off, which a thermistor the

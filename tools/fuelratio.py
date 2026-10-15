@@ -15,7 +15,7 @@ divided by the injection-time byte integrated over the intake strokes in the
 same window (0x288 b6 times strokes; docs/firmware/can-decoding.md
 question 3). On a warm standing idle it sits at **0.30-0.32** in every
 capture on the new MAF and in every August capture on the old one, and it
-does not move with the oil from 50 C up.
+does not move with the oil from 71 C up.
 
 **What it means is not known.** It was first read (11/10/2026) as the
 lambda correction -- b6 before it, the counter after it -- and that is

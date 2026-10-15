@@ -76,8 +76,7 @@ import cutscan
 import idledips
 
 #: Warm standing idle: oil at least this, 0x420 (S1's middle and hot bands).
-#: Decided as 55 C on the old scale; the same bytes on today's (canlog.oil_c).
-OIL_MIN_C = canlog.oil_from_old_scale(55.0)
+OIL_MIN_C = 78.0
 #: Engine speed accepted as idle.
 IDLE_RPM = (650.0, 950.0)
 #: Seconds kept clear either side of a found injector cut.

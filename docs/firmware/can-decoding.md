@@ -112,7 +112,7 @@ finds it rather than rediscovers it.
 | Speed | 0x1A0 | 2–3 LE | × 0.005 km/h | validity gate in b1, see below |
 | Engine speed | 0x280 | 2–3 LE | × 0.25 rpm | |
 | Coolant temperature | 0x288 | 1 | × 0.75 − 48 °C | 0xFF = fault |
-| Oil temperature | 0x420 | 3 | **− 60 °C** (×1) | 0xFF with the engine off. `Kombi_2`, the cluster's, per opendbc's `vw_pq.dbc`; **× 0.75 − 48 until 15/10/2026**, every oil figure before then is on that scale — `open.md` question 10 |
+| Oil temperature | 0x420 | 3 | − 60 °C | 0xFF with the engine off. `Kombi_2`, the instrument cluster's, per opendbc's `vw_pq.dbc` — `open.md` question 10 |
 | Fuel in tank | 0x320 | 2, mask 0x7F | indicated litres | bit 0x80 = reserve lamp; the scale reads low, `refuel-reset.md` |
 | Torque (indicated) | 0x280 | 7 | 1.06 Nm/bit | measured off the full-throttle plateau, see `frames.md` |
 | Throttle position | 0x280 | 5 | 38 = rest position (35 on the throttle body fitted 2/10/2026) | |
@@ -137,7 +137,7 @@ Exact at the cold end and inside the fan cycle at the hot end, over 88 °C of
 span. All three VCDS values also land exactly on the 0.75 °C grid of the raw
 byte (12.0 = 80, 99.0 = 196, 100.5 = 198), which says VCDS reads the same
 quantity at the same resolution: **this decode is the ECU's own scale.** The
-oil on 0x420 b3 shared the formula by analogy only until 15/10/2026, when it moved to opendbc's `raw − 60` (question 10, `open.md`).
+oil on 0x420 b3 is a different module's and has its own scale, `raw − 60` (question 10, `open.md`).
 
 ---
 
@@ -451,7 +451,7 @@ what a first-order filter is.
 72 × 25 = 1800, >> 4 = **112**.
 
 - **100 is measured and then rounded to a shift.** The engine before the
-  repair graded 2.12 rpm on two recordings 45 °C apart (`09`, and `18` from
+  repair graded 2.12 rpm on two recordings 60 °C of oil apart (`09`, and `18` from
   50 s to 360 s). `IDLE_ROUGH_100` is 64 counts = 2.00 rpm rather than 68 =
   2.12, because 100/64 = 25/16 is a multiply and a shift where 100/68 is a
   division; the 6 % that costs is inside the 13 % the anchor scatters between
@@ -467,9 +467,9 @@ the deadband:
 
 | log | what it is | events | 0–2 | 2–4 | 4–6 | 6–10 | 10–15 | 15–25 | >25 | IdleRough |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `09_idle_60s_z1` | before the repair, oil 61 °C — **an anchor** | 1,488 | 25.1 % | 24.7 % | 21.2 % | 21.6 % | 5.9 % | 1.4 % | 0.1 % | 72 |
+| `09_idle_60s_z1` | before the repair, oil 85 °C — **an anchor** | 1,488 | 25.1 % | 24.7 % | 21.2 % | 21.6 % | 5.9 % | 1.4 % | 0.1 % | 72 |
 | `18_coldstart_z1`, 50–360 s | before the repair, the warm-up — **an anchor** | 8,375 | 25.3 % | 26.1 % | 19.9 % | 20.9 % | 6.2 % | 1.5 % | 0.0 % | — |
-| `11_idle_noac_z1` | before the repair, oil 73 °C, A/C off | 573 | 34.7 % | 35.3 % | 18.0 % | 10.3 % | 1.6 % | 0.2 % | 0.0 % | 31 |
+| `11_idle_noac_z1` | before the repair, oil 101 °C, A/C off | 573 | 34.7 % | 35.3 % | 18.0 % | 10.3 % | 1.6 % | 0.2 % | 0.0 % | 31 |
 | `12_idle_ac_z1` | the same, A/C on | 565 | 42.5 % | 35.2 % | 14.9 % | 7.1 % | 0.4 % | 0.0 % | 0.0 % | 19 |
 | `19_postfix_drive_z1` | after plugs, leads, injectors: every idle of the hour | 25,895 | 24.8 % | 24.9 % | 19.3 % | 22.4 % | 7.2 % | 1.4 % | 0.0 % | 94 |
 | `24_mafswap_drive_z1` | after the MAF as well | 22,833 | 27.8 % | 27.1 % | 19.5 % | 19.7 % | 4.8 % | 1.1 % | 0.1 % | 54 |
@@ -623,21 +623,21 @@ was computed from 1.14 s in. No discrepancy exists.
 
 ### 4. ~~Is 0x420 b3 oil or IAT?~~ — **closed: it is oil, from a real sensor**
 
-Ordered by coolant, the fixtures give a warm-up curve that lags it — 21 → 65 °C
+Ordered by coolant, the fixtures give a warm-up curve that lags it — 32 → 91 °C
 while the coolant goes 68 → 99 °C — highest in the one log with air moving
 through the engine, where an intake temperature would fall:
 
 | Log | Coolant | 0x420 b3 |
 |---|---|---|
-| `06_trip_reset` (cold start) | 54.0 °C | 255, then 20.3 °C |
-| `idle` | 68.25 °C | 21.0 °C |
-| `07_accel` | 75.75 °C | 32.3 °C |
-| `05_rev3000` | 90.0 °C | 39.0 °C |
-| `02_idle_60s` | 96.75 °C | 61.5 °C |
-| `03_drive` | 99.0 °C | 65.3 °C |
+| `06_trip_reset` (cold start) | 54.0 °C | 255, then 31 °C |
+| `idle` | 68.25 °C | 32 °C |
+| `07_accel` | 75.75 °C | 47 °C |
+| `05_rev3000` | 90.0 °C | 56 °C |
+| `02_idle_60s` | 96.75 °C | 86 °C |
+| `03_drive` | 99.0 °C | 91 °C |
 
 **Measured directly as well**: at the end of `18_coldstart_z1` this channel
-extrapolates to 18.4 °C where VCDS block 006 read the intake at **22.5 °C**.
+extrapolates to 29 °C where VCDS block 006 read the intake at **22.5 °C**.
 
 **Not oil pressure** (`refuted.md` B10): it does not move when the engine
 starts, is not zero with it stopped, and ratchets one count per hold rather
@@ -648,7 +648,7 @@ coolant fell five counts while this rose two.
 58 down, every one exactly ±1 count, and dithers both ways through a steady
 hold — what an analogue sensor does and arithmetic does not.
 
-**255 is the fault / not-yet-available value** (it decodes to 143.25 °C, which
+**255 is the fault / not-yet-available value** (it decodes to 195 °C, which
 the display latches as an oil maximum), not a signature of a stopped engine:
 `08_ign_only_z1` and the 41 s before `18` fires both read a real temperature.
 
@@ -691,6 +691,39 @@ the candidate rather than proving the trip odometer absent. **Retired because
 it no longer matters**: the average resets on refuelling (`refuel-reset.md`).
 If a second trigger is ever wanted: a 3 km drive with the USBtin running and
 the reset pressed halfway, then the same scan.
+
+### 7. ~~The drag line on hot oil~~ — **closed 15/10/2026: it was fitted on hot oil**
+
+**What the firmware ships.** A least-squares line through the four warm
+free-revving holds `13`–`16`, stationary in neutral where b7 *is* the drag:
+
+| hold | rpm | b7 | oil |
+|---|---|---|---|
+| `13_rev1500_z1` | 1536 | 18.81 | 101 °C |
+| `14_rev1850_z1` | 1850 | 20.66 | 103 °C |
+| `15_rev2372_z1` | 2372 | 26.32 | 104 °C |
+| `16_rev2926_z1` | 2926 | 27.23 | 106 °C |
+
+```
+drag_b7   = 9.11 + 0.006514 x rpm        residuals -0.9 to +1.8 counts
+drag [Nm] = 9.66 + 0.00690  x rpm        at 1.06 Nm/bit
+```
+
+It replaced a cold-oil line (56–85 °C) that overstated drag by 4 counts at
+idle and 10 at 2930 rpm, and took the share of `17_drive_property_z1` showing
+a torque from 49 % to 78 %. The idle point is excluded and covered by the
+driving gate instead (`frames.md`).
+
+**Why it was open, and why it is not.** The question was whether real
+driving runs the oil hotter than the holds, so that drag there is lower and
+the line overstates it. With 0x420 read as `raw − 60` (`open.md` question
+10), **the holds were at 101–106 °C and real driving runs at 98–107 °C**
+(the hottest recorded is `16` and `17`, 107 °C; 56 minutes of hard driving,
+`19`, 105 °C): the line is fitted where the engine runs. Nothing to refit.
+
+**When it moves, `TORQUE_CNM_PER_BIT` moves with it** — one calibration,
+never one half alone (`config.h`, `frames.md`). It would move only if
+question 10's thermometer found the warm end several degrees out.
 
 ### 8. ~~The torque byte's scale~~ — **closed: 1.06 Nm/bit, measured off the full-throttle plateau**
 

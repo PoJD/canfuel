@@ -301,22 +301,11 @@ def parse_file(path, *, strict: bool = False, fix_doubled: bool = False) -> list
 def oil_c(byte: int) -> Optional[float]:
     """0x420 byte 3, the cluster's oil temperature: raw - 60 C, 0xFF = none.
 
-    opendbc's vw_pq.dbc, Kombi_2, Oeltemperatur_4_1 (1, -60). Until 15/10/2026
-    every tool here read it as raw x 0.75 - 48, the coolant's scale borrowed
-    by analogy -- docs/firmware/open.md question 10. The one place the scale
-    lives, so that no tool can drift from src/decode.c again.
+    opendbc's vw_pq.dbc, Kombi_2, Oeltemperatur_4_1 (1, -60) --
+    docs/firmware/open.md question 10. The one place the scale lives in the
+    tools, so that none can drift from src/decode.c's oil_c100().
     """
     return None if byte == 0xFF else byte - 60.0
-
-
-def oil_from_old_scale(c: float) -> float:
-    """An oil temperature written before 15/10/2026, on today's scale.
-
-    The documents of that time quote 0x420 on raw x 0.75 - 48; this maps a
-    figure from them onto the same raw byte read as raw - 60, so a band that
-    was decided then keeps exactly the bytes it had: 72 -> 100, 68 -> 94.7.
-    """
-    return (c + 48.0) / 0.75 - 60.0
 
 
 def _summary(path: str, frames: list[Frame]) -> None:
