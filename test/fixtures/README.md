@@ -200,7 +200,7 @@ nothing and 0x280 b7 *is* the drag there; least squares through them gives
 fixtures. Oil was 101, 103, 104 and 106 °C, throttle 48, 51, 56 and 61.
 **`11` is deliberately not on that line** — 798 rpm at b7 = 24.96 sits above
 it, because idle is a regulated state with the throttle at its rest position
-38. See `docs/firmware/open.md` question 7 and the comment in `config.h`.
+38. See `docs/firmware/can-decoding.md` question 7 (closed) and the comment in `config.h`.
 
 ### Matching the two recordings
 
@@ -290,9 +290,9 @@ idle: a short piece of land has no steady state above idle. Regressions off
 this file are therefore not comparable with the holds' and should not be
 quoted against them.
 
-**The oil barely warmed**, 104 → 107 °C over the whole drive, with coolant
-already at 100 °C. Low-speed pottering does not heat a sump, so the **hot**-oil
-refit question 7 wants still has no data (`docs/firmware/open.md`).
+**The oil barely moved**, 104 → 107 °C over the whole drive, with coolant
+already at 100 °C — the holds' own range, so nothing here asks for a refit
+(`docs/firmware/can-decoding.md` question 7, closed).
 
 What this log did settle is what the warm refit was worth. Replayed through
 each version, counting samples that display zero torque:
