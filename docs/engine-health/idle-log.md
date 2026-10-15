@@ -964,6 +964,11 @@ drive home (`37`, headlights only, A/C and blower off, oil 100–101 °C):
   **Then, the same stop, A/C on and the blower on 2: 31–39, median
   about 35, and much steadier** (*owner*) — the load effect of S1
   (26/9: A/C with the blower, towards 35), the same as before the can.
+  **Falling as the stop went on, to 23–25** (*owner*), still with the
+  A/C and blower — the lowest `IdleHealth` on record in any state; the
+  A/C idle of August graded 29 (`12`), 26/9's went towards 35. Under
+  load, so not comparable with the lights-only baseline, but a floor
+  nobody had seen.
 - **The display's `OilTemp` moved to `raw − 60` the same evening**
   (`mfd15` `S-AQY.TRI`, uploaded by the owner): every oil temperature
   read off the display from then on is on it, as every figure in these
