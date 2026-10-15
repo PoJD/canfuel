@@ -381,21 +381,39 @@ survive.
    **How cold the winter morning has to be** (*worked out 15/10/2026*;
    the IR thermometer was broken the same week, *owner*, so this is now
    the way it closes). The soaks so far sit at a coolant of 10–17 °C,
-   oil 2–5 °C below it on the shipped scale. Anchoring a steeper oil
-   slope at that cluster (raw 77 ≈ 10 °C) and asking what the shipped
-   scale would then display after a full soak at an ambient T:
+   about 13 on average, with the oil 2–5 °C below it on the shipped
+   scale. Both slopes have to agree there, so the table anchors each at
+   that cluster (13 °C true, oil displayed ~10) and asks what the shipped
+   scale would display after a full soak at an ambient T:
 
    | ambient | coolant shows | oil shows, if 0.75 is right | if 1.0 | if 1.1 |
    |---|---|---|---|---|
-   | 0 °C | 0 | about −3 | about +3 | about +3 |
-   | −5 °C | −5 | about −8 | about −1 | about −1 |
-   | −10 °C | −10 | about −13 | about −6 | about −4 |
+   | 25 °C, a summer dawn | 25 | about 22 | about 19 | about 18 |
+   | 0 °C | 0 | about −3 | about 0 | about +1 |
+   | −5 °C | −5 | about −8 | about −3½ | about −2 |
+   | −10 °C | −10 | about −13 | about −7 | about −6 |
 
-   So **the sign of oil minus coolant flips**: about 3 °C below on the
-   right scale, 3–6 °C above on a steeper one. **About 0 °C already
-   hints; −5 °C or colder settles it** even in the display's whole
-   degrees. *Reasoned from the fit above, not measured*; the anchor is
-   the cluster's middle, so the table is good to a degree or two.
+   Oil minus coolant is **about −3 °C at every ambient on the right
+   scale**; on a steeper one it moves by roughly a third of a degree for
+   every degree away from 13 °C — up in the cold, down in the heat. The
+   soaks' own scatter in that difference is about 3 °C (−2.25 to −5.25
+   above), so the move has to be twice that: **−5 °C hints, −10 °C
+   settles it**, and a summer dawn at 25 °C moves it only 3–4 °C, as
+   much as a 0 °C morning. *Reasoned from the fit above, not measured*,
+   good to a degree or two. *This table first anchored the steeper
+   slopes at raw 77 = 10 °C against the shipped scale's −3 °C offset,
+   which overstated the 0 °C row by about three degrees.*
+
+   **Summer counts only before the sun.** Sun on a parked car heats the
+   bonnet and the top of the engine, where the coolant sensor is, well
+   before the sump by the road; that puts the coolant above the oil,
+   which is the same direction a steeper oil slope shows in the heat
+   (*reasoned*). A dawn reading after a warm night is fair; an
+   afternoon one is not. **No summer soak exists in the fixtures** —
+   August's captures (`08`–`17`) all start on a warm engine, and `18`
+   on 11/9 is the first cold start — so a summer dawn would widen the
+   span, and with a winter morning give the 25 °C the method wants.
+
    **The procedure**: the car outside **overnight, ten hours or more**,
    so that both are at ambient and the soak-length confound above
    shrinks to nothing; the ignition on, **the engine not started**, and
