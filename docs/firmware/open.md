@@ -240,6 +240,17 @@ raw 77 after a 19-hour soak is 9.75 °C, against a filter at 10.7 and ambient
 10.0. Whether this engine has an oil-to-water heat exchanger, and where the
 sender sits, would explain a cool sump; nobody has looked.
 
+**The owner does not trust that IR reading** (*owner*, 15/10/2026), and
+it is given little weight from here on (*decision*): it was the old
+instrument that stops at 60 °C, its emissivity and spot on the filter
+were not recorded, and a filter or a pan read from outside is a surface
+cooling into the air, not the oil. With it discounted, **what is left
+for the shipped slope is only the analogy with the coolant's scale**;
+against it, the 25 °C gap to the coolant and the soaks' lean towards
+~1.1 (*How it closes*, item 2). **Still open**: the soaks are confounded
+and span 6 °C, and nothing changes in `decode.c` or the TRI file until
+the winter morning.
+
 **The slope is wrong, and `°C = raw − 64` is closer.** The only argument is
 that the gap to the coolant grows with temperature — 3.75 °C at a cold soak,
 20–26 °C warm — which is what a slope error looks like. Under `raw − 64` every
@@ -375,8 +386,8 @@ survive.
    (*reasoned*, not measured; the soak lengths and ambients that would
    separate the two were not recorded). And it runs against the hot end,
    where the filter read within 1–3 °C of the shipped scale (`21`–`23`);
-   at 1.1 the filter would sit ~14 °C below the oil. **A lean, not a
-   reading**; the winter morning or item 1's thermometer still closes it.
+   at 1.1 the filter would sit ~14 °C below the oil, though the owner
+   does not trust that reading (above). **A lean, not a reading**; the winter morning or item 1's thermometer still closes it.
 
    **How cold the winter morning has to be** (*worked out 15/10/2026*;
    the IR thermometer was broken the same week, *owner*, so this is now
