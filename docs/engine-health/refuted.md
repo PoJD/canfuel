@@ -408,6 +408,9 @@ judged against; `StartDip` over many mornings is the instrument
 The lamp used to come on after minutes above ~4500 rpm on the motorway. On
 25/9, ~100 km with five minutes held at 4500 and bursts to 5000 on all the new
 parts: no lamp, no hesitation. *Owner-reported.* Cleared on the new parts.
+**15/10/2026, harder still**: about 10 minutes held at ~5000 rpm in 6th at
+full throttle on the motorway, pulls to the 6500 rpm limiter in 2nd, no
+lamp (*owner*).
 
 ### C5. "The oxygen sensors failed again" / "the new converter is failing" — measured
 

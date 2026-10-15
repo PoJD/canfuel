@@ -263,6 +263,12 @@ the old scale would have shown the oil at 28. Not a full soak, so not a
 row of the table, but the first reading on the display that puts the oil
 where a cooling engine's oil should be.
 
+*Warm, the same evening* (*owner*, off the display): on the hardest
+drive yet — motorway at full throttle, ~10 min at 5000 rpm — the oil
+peaked at **106 °C with the coolant at 92 °C**, oil above coolant under
+sustained load as a healthy engine's runs (*general*), and inside the
+98–107 °C the captures record.
+
 Each row the first 0x288 and 0x420 frame after ignition-on. **The oil reads
 2–5 °C above the coolant and, on 24/9, 7 °C above the ambient** — not
 where a soaked sump sits; the cluster's coolant byte errs the other way

@@ -1077,6 +1077,17 @@ between the two MAFs and nothing collapses at the top.**
 3. If the owner's feel was only ever about the old MAF's morning, say so and
    close it.
 
+**15/10/2026, the hardest drive yet** (*owner*, the MFD in, no capture, no
+VCDS): motorway in 6th at full throttle, then **about 10 minutes held at
+~5000 rpm** — where the lamp used to flash and 014 to count (`refuted.md`
+C4) — with **no lamp**; full-throttle pulls in the lower gears, and **2nd
+to the limiter, which is at 6500 rpm**, not 6000 as the owner had
+assumed. "Runs like butter, behaves like a healthy naturally aspirated
+engine" (*owner*). **The owner's reading: there is no lack of breath at
+the top.** S8 stays closed, now on his own test rather than in part. On
+the remap still (`plan.md` item 5a writes the original map back on
+22/10), so it says nothing yet about the stock map.
+
 ### S9. The rich lambda trim — closed 4/10/2026
 
 **Closed at the owner's decision, 4/10/2026, short of its own criterion
