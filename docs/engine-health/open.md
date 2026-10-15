@@ -2357,6 +2357,16 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
   against 6.25, 4.86, 3.96, 3.96 on 3/10 (`vcds-sessionA-*`) and 5.34,
   4.93, 4.03, 3.89 on 10/10 (`vcds-step4-*`); a leak behind the MAF
   would make it read *less* for the same idle, never more.
+- **The vacuum gauge warm, 15/10/2026** (`38`, the owner's 3½ min video;
+  oil 67–70 °C, coolant 94–100 °C, the same tee): **steady at idle, about
+  19 inHg**, as part-cold; **about 22 at a 15 s hold of ~2500 rpm**,
+  steady; **about 22½–23 on each release**, back to idle's in a few
+  seconds. **No flick at idle**: none of ~0.1 inHg or more in 78 s of
+  film held still (needle measured on every frame, noise 0.1°), and
+  none at the seven of `38`'s eight 20-rpm dips that fell in a readable
+  stretch (`idle-log.md`, 15/10). The same "steady and normal" row,
+  warm: no lifter bleeding down on thin oil and no crack opening hot
+  that a gauge on the plenum can see.
 - **S11 fits half:** an intake leak makes no smoke, but it hisses, and the
   back of the intake is the part the spray test did not reach. What sits
   there is for the garage's smoke test to list; the brake-servo vacuum line
@@ -4536,6 +4546,14 @@ few pairs to say anything on their own; pooled with `32`, 54 of 144,
 38 %. **Read after every capture from now on** (*owner's decision*,
 14/10/2026; `CLAUDE.md`, *After every captured session*): the capture
 alone and pooled with the others since the last repair.
+
+**15/10/2026** (item 5, the can in at the station between `35` and
+`36`; no cuts): `35` the drive out, **29 of 98, 30 %, p = 0.17**; `36`
+its continuation, 4 of 9; `37` the drive home with 4 min of warm idle,
+**6 of 11, 55 %, p = 0.034**; `38` the warm gauge, 0 of 1. The day
+pooled: **39 of 119, 33 %, p = 0.035**. Pooled with `32`–`34`, since the
+exhaust joint: **93 of 263, 35 %, p = 0.00012**. The same direction,
+and the long drive with the loads on (`35`) the weakest of it.
 
 ---
 

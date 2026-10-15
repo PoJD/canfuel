@@ -17,27 +17,7 @@ records it**, and the file is deleted when it is empty.
 One at a time; Claude says after each whether the next is needed.
 Claude runs the capture on every drive.
 
-5. **15/10: across town and back, and the can on the way.** Ordinary
-   drives, not a test. Battery stays connected. Claude runs a capture
-   on each of the three drives; VCDS on **014, 003, 001** on each.
-   - **From the garden, the engine cold, to the petrol station** (about
-     3 km). There: engine off, capture and VCDS stopped.
-   - **At the station: one can of Liqui Moly *DFI Cleaner* (= *Pro-Line
-     Direct Injection Cleaner*, 120 ml)** into the tank, then **about
-     18 l** of the usual OMV MaxxMotion 100.
-   - **From the station to the appointment** (an hour at most). Engine
-     off on arrival, capture and VCDS stopped.
-   - **From the appointment home.** At home, at a warm idle: **055 and
-     032 read once each**, then engine off, capture and VCDS stopped.
-   - **At home, still warm: the gauge.** Engine off; tee
-     the gauge in at the top of the tee by the runners, as on 14/10.
-     **Photograph the needle with the engine off**, the phone straight
-     over the dial. Claude runs a new capture; VCDS on **001, 003**.
-     Start, film **1 min** of idle from the same spot, then **2500 rpm
-     15 s** and **15 s** of idle. Engine off, gauge off, the line as it was.
-     Write how often the needle flicked down in the minute, and whether
-     at 2500 too.
-   - Then drive the tank as usual, captures or not.
+5. **The can is in (15/10). Drive the tank as usual**, captures or not.
    - **`IdleHealth` off the display, through both tanks after the can:**
      on drives where the oil reaches **68–72 °C**, at one stop of **at
      least a minute with every load off**. Write into the chat: date,
@@ -133,56 +113,13 @@ G66 and the rest of H5's tests stay in `open.md` as tests, not steps.
 **Idle solved → stop and record.** Otherwise each item decides whether
 the next is needed.
 
-**The vacuum gauge is done, cold only** (*owner's decision*,
-14/10/2026, after it read steady and normal cold; `idle-log.md`).
-The warm reading that was to follow is **dropped**: the idle is
-roughest cold (`open.md` S1, *Temperature matters*), the gauge saw
-nothing there, and the owner sees no reason a warm idle would show
-what the worst one did not; the can is the next thing he wants on the
-car. What the warm reading would have added — a lifter on thin oil
-(H1), a crack that opens hot — stays in `open.md` as those
-hypotheses' tests. How the gauge is read is in `open.md`, *Tools worth
-owning*. **No listening for the hiss on 15/10** (*owner's decision*,
-14/10/2026): it is heard only with his head right by the throttle, and
-he may be hearing the throttle's own air (`open.md` S11).
-
-**Item 5 — the drives of 15/10** (*owner's decision*, 14/10/2026:
-ordinary drives across town to a morning appointment and back, the can
-added at the petrol station on the way, rather than a separate warm
-session; *this read "the drive to Prague", the owner lives in Prague*).
-**A capture per drive**, because the converter's frames and the capture
-never share a session and a fixture is one ignition cycle at a time:
-the first is the cold start and 3 km on the old fuel; the second and
-third are the hour out and the drive back, on fuel with the cleaner in
-it, and hold the warm stops of town traffic — the first warm idle with
-003 since the hoses were renewed, read as below. **About 18 l**
-(*owner's decision*): the tank read 21 indicated on 14/10 (`34`), about
-22 in fact at the sender's gain (`docs/firmware/refuel-reset.md`), so
-it lands near 40 l, the middle of the maker's 30–50. **055 and 032 at
-home**, not before the appointment, where there is no time (*owner*):
-055 says whether the adaptations are settled (`refuted.md` C19); **032**
-is the owner's addition, to see whether the lambda adaptations move —
-12/10 put its idle cell at 0.0 against −2.3 before the airbox was
-sealed (`open.md` S9), and the hoses and the can could each move it.
-**It is a before, not an after**: a cleaner needs a tank's worth of
-driving to act (*general*, and the maker's dose is one can per
-30–50 l), so these drives carry at most its first trace; the reading
-is item 6's. They also stand as the captured drives item 5a wants
-before the map goes back.
-
-**The warm gauge after all, at home** (*owner's decision*,
-14/10/2026 evening, reversing the same day's drop): **for
-completeness**, at the end of 15/10's drive, when the engine is warm
-anyway. The can is in the tank by then, so it is not a clean before —
-**knowingly accepted**: after one hour of fuel with the cleaner a
-deposit has hardly moved (*general*), and the gauge answers a lifter
-on thin oil and a crack that opens hot, which the cold reading could
-not. **The engine-off photograph is what makes the level readable**:
-the needle rests at the far end of the dial, not at its zero, so the
-level is the angle between the two states; on 14/10 it came out of two
-photos at different angles (`idle-log.md`, 14/10). Same angle for
-both this time, so the two are measured on one picture of the scale. VCDS 001 and
-003, as on 14/10, so the two sessions compare.
+**Item 5 — the can, and the tank after it.** The drives of 15/10, the
+can and the warm gauge are done (`idle-log.md`, 15/10). **They are a
+before, not an after**: a cleaner needs a tank's worth of driving to
+act (*general*, and the maker's dose is one can per 30–50 l), so those
+drives carry at most its first trace; the reading is item 6's. They
+also stand as the captured drives item 5a wants before the map goes
+back.
 
 **Which VCDS groups, and why** (*decided 11/10/2026*, the owner's
 question why 014/020/026 were in the gauge session): **026** belongs to
@@ -192,11 +129,7 @@ load, for cylinder 4's retard after the new leads (S4); **014** stays
 where the clutch minutes or a stop are read for misfires. **001** joins
 wherever there is idle — engine speed to align on and the lambda
 correction in one group (`open.md` S1, *What VCDS saw just before a
-dip*). **15/10's drive (item 5) logs 014, 003 and 001** (*decided
-14/10/2026*, the owner having left the choice): 014 for the misfires at
-each stop, 003 for the warm idle's air below, 001 for the lambda
-correction beside the dips; the same three on both captures, so nothing
-is changed at the petrol station.
+dip*).
 
 **003 is also the MAF's own figure** (*decided 12/10/2026*, the owner's
 request after the airbox was sealed; `open.md` S9, *the cracked
@@ -204,39 +137,8 @@ airbox*): 12/10 held the idle on the least charge on record with 032's
 idle cell at 0.0, which a MAF that used to over-read would explain, and
 003 was not logged that day. So **every step with an idle logs 003**:
 the gauge session read it cold, the same as the earlier cold starts minute by
-minute (`idle-log.md`, 14/10); **item 5 logs it warm**, dropping 020 —
-S4 is out of this plan and 020 was data, not a step — so the warm
-idle's air is read against 3.08–3.12 g/s; item 6 logs it already.
-
-**How 003's air is read** (*decided 12/10/2026*, the owner's request;
-`open.md` S9, *the cracked airbox*). Claude does this at the first warm
-idle with 003, at 780 rpm specified, 65–75 °C of oil, loads off, against
-the warm idles of 9/10 and 10/10 (`30`, `31`, `vcds-step2b-a3-*`,
-`vcds-step5-*`). What 12/10 already says: 032's idle cell from −2.3 to
-0.0 % means the MAF now reads **less, relative to the air**, than it
-did; fuel 3–5 % lower at λ = 1 means **the air itself** fell 3–5 %; b7,
-computed from the MAF, fell 15 %, more than the fuel. So the expectation
-is lower, and **how much lower** decides:
-
-| 003 at a warm idle | reading |
-|---|---|
-| **A — well lower, ~2.8–2.9 g/s** (more than the fuel's 3–5 %) | the MAF used to over-read, the crack or the old element skewing its flow; fits 032 and b7 |
-| **B — a little lower, ~2.95–3.0** (as the fuel) | the MAF reads as it did; the engine simply needs less air. The calm idle is the engine's, and the airbox played no part |
-| **C — unchanged, ~3.1** | contradicts 032; first suspect the comparison (idle speed, loads) |
-| **D — higher than 3.15** | contradicts 032 and b7 |
-
-**The scatter decides the link to the idle, not the level.** A steady
-error — always 5 % high — is taken out entirely by the lambda loop and
-032 and cannot rock the idle; only an error that varies with the
-intake's pulsation can, by shifting the mixture at each charge trim
-before the slow loop follows (`open.md` S1, *What comes before a dip*).
-So the sample-to-sample spread of 003's air at the warm idle is set
-against 9/10 and 10/10 as well: **lower and much steadier** → the
-airbox or the element was rocking the idle, and the owner takes the
-airbox out, inspects it and seals it again (`open.md` S9); **lower and
-as scattered** → it over-read without harming the idle; **B and
-steadier** → something that shapes the flow helped, not the
-calibration. Nothing here is a reason to buy a part.
+minute (`idle-log.md`, 14/10), and 15/10 read it warm (row C there:
+unchanged); item 6 logs it already.
 
 **Item 5a — the original map** (*owner's decision*, 12/10/2026, to take
 the remap out of the idle question; `open.md`, *The remap*). **The tuner
@@ -244,8 +146,8 @@ kept it, and writes it back on 22/10/2026** (*owner*, 13/10). After the
 gauge, so the gauge's reading stays on the car as it has been. **The can
 goes in before it, straight after the gauge, and the two are knowingly
 not told apart** (*owner's decision*, 13/10/2026: the aim is a healthy
-idle, not knowing which change gave it). The one capture between them
-(item 5) keeps a rough before for the map. **The adaptations start from
+idle, not knowing which change gave it). The captures of 15/10 between them
+(item 5) keep a rough before for the map. **The adaptations start from
 zero**: the ECU comes out of the car, which resets them as a battery
 disconnect does (`refuted.md` C19, *owner*: already seen on this car),
 so the tuner is not asked. Fresh adaptations look better on both

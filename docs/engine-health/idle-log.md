@@ -370,8 +370,9 @@ until the vacuum gauge arrives (*owner's decision*, 10/10), and the
 gauge on a cold start of its own; unless it shows an intake leak
 plainly, the engine is left alone and a tank is run with a PEA
 inlet-valve cleaner, read on the drives after. **14/10: the gauge cold
-read steady and normal** (below); the warm reading was dropped at the
-owner's decision, and the can goes in on 15/10.
+read steady and normal**, **15/10 warm the same** (below), and the can
+went in on 15/10; the tank is now driven, `IdleHealth` read off the
+display, until the original map goes back on 22/10.
 
 *Entries are added here as each step is done.*
 
@@ -873,6 +874,68 @@ airbox, the weather or one day's chance is not known.
 **What it is not known to have achieved:** the gauge on the common
 plenum cannot see a small leak at one runner, and the idle it read was
 part-cold; the warm reading was not made.
+
+**15/10/2026 — the can, and the warm idle, still on the remap**
+(`plan.md` item 5; `35`–`38`). One can of Liqui Moly *DFI
+Cleaner* into the tank at the station, then about 18 l of OMV
+MaxxMotion 100, between `35` and `36`. Read so far, at the end of the
+drive home (`37`, headlights only, A/C and blower off, oil 72–73 °C):
+
+- **032 −4.7 / +4.7 %** (12/10: 0.0 / +2.3; 4/10: −0.8 / +2.3). The
+  idle cell moved 4.7 points lean of 12/10's, the part-load cell 2.4
+  points rich, the first reading on the new fuel and the cleaner: a
+  direction, not a finding.
+- **055's learned value −1.18 g/s**, inside the settled −1.14 to −1.29.
+- **003's air at the warm idle**, read as decided on 12/10 against 9/10
+  (A well lower → the MAF used to over-read; B a little lower → the
+  engine needs less air; C unchanged → suspect the comparison first;
+  D higher): **3.15 g/s, spread 0.10**, over the last 3 min (the first
+  minute after the stop 3.25 with a tail to 4.4, the engine settling);
+  9/10's hot idle 3.14, spread 0.07. **Row C, unchanged and as
+  scattered** — the comparison is ordinary (760–800 rpm, loads off, 96–
+  100 °C of coolant), so the MAF reads as it did and 12/10's lower
+  charge did not hold. The gauge's idle after the hold, `38`: 3.09,
+  spread 0.09.
+- **`IdleHealth` 54** over the 4 min at home (oil 72–73 °C), **59** over
+  `38`'s idle at 67–70 °C; 12/10's 50–61 at 68–71 °C, `30`/`31`'s
+  77–89. As calm as 12/10.
+- **014 counted on 70 of 285 samples, 25 %, at the home idle**, max 36
+  — against 40 % on 12/10's hot band.
+- **The dips keep to one slot** on the day pooled, 33 % (`open.md`,
+  *The dips keep to one slot*).
+- **The gauge warm** (`38`; oil 67–70 °C, coolant 94–100 °C; `open.md`
+  H3, *The vacuum gauge warm*). The owner's video, 3 min 34 s, starts
+  about 1½ min after the start and ends before engine off, so **there
+  is no engine-off frame and 14/10's rest position is used** (same
+  gauge, same tee). Put on `38`'s clock by engine speed from its sound
+  (offset 194.4 s, the two agreeing within 1 % at idle, the hold and
+  the snap). Read the 14/10 way, by the needle's tail on the vacuum
+  scale:
+  | moment | true vacuum, inHg |
+  |---|---|
+  | settled idle, ~800 rpm | **about 19** |
+  | hold at ~2490 rpm, 15 s | **about 22**, steady |
+  | throttle opening to ~3000 rpm | about 18, for a moment |
+  | each release, 2300 → idle | **about 22½–23**, back to 19 in a few seconds |
+  ±1½ inHg as on 14/10; the hold and the releases from the needle's
+  angle against the idle's in the same film (5.7° per inHg).
+  **Flicks** (the plan's question): the needle's angle measured on every
+  frame against the dial's own hub, brass pivot and screw, so the hand
+  holding the gauge drops out. **None** of 0.6° or more (about 0.1 inHg)
+  in the 78 s where the film is still enough to read, against a frame
+  noise of 0.1°. Of `38`'s eight dips of 20 rpm or more in the filmed
+  idle, **seven are readable and none moved the needle** beyond 0.3°
+  (troughs 768–787 rpm); three of them in a stretch where the hand
+  turned the dial slowly, read off the needle's angle in the picture,
+  which turned with it and did not jump; the eighth fell while the
+  camera pointed at the engine. **None at 2500 either**: steady through the hold. As on 14/10,
+  a cylinder that fails to fire still draws its charge, so the
+  manifold barely notices; the bus sees these dips far better.
+
+**What it is not known to have achieved:** the gauge on the common
+plenum still cannot see a small leak at one runner; and the can had
+been in the tank an hour, so these readings are a before for item 6,
+not an after.
 
 ---
 
