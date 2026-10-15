@@ -953,6 +953,14 @@ drive home (`37`, headlights only, A/C and blower off, oil 100–101 °C):
   first "where small loads put this idle before the can", counting the
   lights as a load the baselines did not have.*
 
+- **`IdleHealth` after the hardest drive yet, the same evening**
+  (*owner*, off the display, no capture): a motorway run at full throttle
+  with ~10 min held at 5000 rpm (`open.md` S8), then a warm idle at **oil
+  98 °C** (the new scale), lights only, blower and seats off: **about 70
+  at first, 30–40 for a while, about 50–55 as the owner's median**. In
+  the band of the day's captured idles with the lights only (54–75) and
+  of 12/10's (50–61), at its low edge; one stop, after a drive like no
+  other in the record, so a reading and not a change.
 - **The display's `OilTemp` moved to `raw − 60` the same evening**
   (`mfd15` `S-AQY.TRI`, uploaded by the owner): every oil temperature
   read off the display from then on is on it, as every figure in these
