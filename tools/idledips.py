@@ -138,8 +138,8 @@ def series(path: str):
             rpm_q4 = f.data[2] | (f.data[3] << 8)
             rpm.append((t, rpm_q4 / 4.0))
             gated.append((t, rpm_q4, f.data[5], speed_mmh))
-        elif f.can_id == 0x420 and len(f.data) >= 4:
-            oil.append((t, f.data[3] * 0.75 - 48.0))
+        elif f.can_id == 0x420 and len(f.data) >= 4 and f.data[3] != 0xFF:
+            oil.append((t, canlog.oil_c(f.data[3])))
         elif f.can_id == 0x288 and len(f.data) >= 2:
             clt.append((t, f.data[1] * 0.75 - 48.0))
     return rpm, oil, clt, gated

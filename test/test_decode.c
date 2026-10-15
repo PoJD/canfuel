@@ -59,6 +59,18 @@ static void test_clt_error_value(void)
     TT_EQ(st.clt_c100, DECODE_TEMP_INVALID);
 }
 
+/* raw - 60 C, opendbc's Kombi_2 (docs/firmware/open.md question 10): a warm
+ * idle's raw 160 is 100 C, which the old coolant-borrowed scale called 72. */
+static void test_oil_scale(void)
+{
+    decode_state_t st;
+    decode_init(&st);
+    feed(&st, CAN_ID_OIL, "010000a0b800ff00");
+    TT_EQ(st.oil_c100, 10000);
+    feed(&st, CAN_ID_OIL, "010000004e00ff00");
+    TT_EQ(st.oil_c100, -6000);
+}
+
 static void test_oil_error_value(void)
 {
     decode_state_t st;
@@ -267,6 +279,7 @@ int main(void)
     TT_RUN(test_torque_and_throttle);
     TT_RUN(test_clt);
     TT_RUN(test_clt_error_value);
+    TT_RUN(test_oil_scale);
     TT_RUN(test_oil_error_value);
     TT_RUN(test_reserve_lamp_does_not_leak_into_the_litres);
     TT_RUN(test_the_tank_is_invalid_until_a_frame_carries_it);

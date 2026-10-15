@@ -22,6 +22,11 @@ from oilwatch import (BELL_DONE, BELL_ON, BELL_STOP, LEAK_STOP, STANDSTILL_MMH, 
 
 MID, HOT = STOPS
 
+#: The temperatures below were written on the old 0x420 scale (raw x 0.75 -
+#: 48) before 15/10/2026, around bands decided on it; OLD() puts each on
+#: today's, so every synthetic byte is the one it always was.
+OLD = canlog.oil_from_old_scale
+
 FIXTURES = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                         os.pardir, "test", "fixtures")
 
@@ -39,7 +44,7 @@ def capture(seconds, oil_at, moving=True, rate_hz=10, t0=0.0, pedal=False):
     for i in range(int(seconds * rate_hz)):
         t = t0 + i / rate_hz
         ms = int(t * 1000)
-        oil_byte = int(round((oil_at(t) + 48.0) / 0.75))
+        oil_byte = int(round(oil_at(t) + 60.0))      # canlog.oil_c inverted
         out.append(slcan(0x420, [0x01, 0, 0, oil_byte], ms))
         out.append(slcan(0x288, [0, 0xC4], ms))
         out.append(slcan(0x280, [0, 0, 0x80, 0x0C, 0, throttle, 20, 40], ms))
@@ -49,7 +54,7 @@ def capture(seconds, oil_at, moving=True, rate_hz=10, t0=0.0, pedal=False):
 
 class Decoding(unittest.TestCase):
     def test_the_oil_scale_is_the_documented_one(self):
-        self.assertEqual(oil_c(0x51), 0x51 * 0.75 - 48.0)
+        self.assertEqual(oil_c(0x51), 0x51 - 60.0)
 
     def test_the_key_off_value_is_not_a_temperature(self):
         self.assertIsNone(oil_c(0xFF))
@@ -66,27 +71,27 @@ class Tailing(unittest.TestCase):
             fh.write(text)
 
     def test_only_the_appended_part_is_read_again(self):
-        self.write(capture(10, lambda t: 40.0), "w")
+        self.write(capture(10, lambda t: OLD(40.0)), "w")
         tail = Tail(self.path)
         tail.poll()
         self.assertEqual(tail.poll(), 0, "nothing new must read nothing")
-        self.write(capture(5, lambda t: 41.0))
+        self.write(capture(5, lambda t: OLD(41.0)))
         self.assertGreater(tail.poll(), 0)
 
     def test_a_half_written_line_is_not_lost(self):
-        text = capture(6, lambda t: 40.0)
+        text = capture(6, lambda t: OLD(40.0))
         cut = len(text) // 2
         self.write(text[:cut], "w")
         tail = Tail(self.path)
         tail.poll()
         self.write(text[cut:])
         tail.poll()
-        # the channel quantises to 0.75 C a count
-        self.assertLess(abs(tail.now["oil"] - 40.0), 0.75)
+        # the channel quantises to 1 C a count
+        self.assertLessEqual(abs(tail.now["oil"] - OLD(40.0)), 0.5)
 
     def test_the_timestamp_wrap_does_not_go_backwards(self):
         """The adapter's counter wraps every 65.5 s; an hour wraps it 55 times."""
-        self.write(capture(200, lambda t: 40.0), "w")
+        self.write(capture(200, lambda t: OLD(40.0)), "w")
         tail = Tail(self.path)
         tail.poll()
         self.assertGreater(tail.t_s, 190.0)
@@ -117,7 +122,7 @@ class Verdicts(unittest.TestCase):
         return t
 
     def test_a_climb_well_short_of_the_band_says_keep_driving(self):
-        t = self.tail_for(capture(300, lambda s: 20.0 + s * 0.5 / 60))
+        t = self.tail_for(capture(300, lambda s: OLD(20.0 + s * 0.5 / 60)))
         self.assertEqual(verdict(t)[0], "KEEP DRIVING")
 
     def test_a_climb_about_to_reach_the_band_gives_warning(self):
@@ -131,47 +136,47 @@ class Verdicts(unittest.TestCase):
         self.assertIn("mid", verdict(t)[1])
 
     def test_a_long_enough_idle_in_the_band_is_done(self):
-        t = self.tail_for(capture(MID.idle_s + 30, lambda s: 58.0, moving=False))
+        t = self.tail_for(capture(MID.idle_s + 30, lambda s: OLD(58.0), moving=False))
         self.assertEqual(verdict(t)[0], "IDLING, DONE")
         self.assertIn("drive on", verdict(t)[1])
 
     def test_a_short_idle_in_the_band_is_not_done_yet(self):
-        t = self.tail_for(capture(60, lambda s: 58.0, moving=False))
+        t = self.tail_for(capture(60, lambda s: OLD(58.0), moving=False))
         self.assertEqual(verdict(t)[0], "IDLING, IN BAND")
 
     def test_a_standing_car_is_recognised_as_standing(self):
-        t = self.tail_for(capture(60, lambda s: 58.0, moving=False))
+        t = self.tail_for(capture(60, lambda s: OLD(58.0), moving=False))
         self.assertTrue(t.stationary())
         self.assertFalse(t.moving())
         self.assertLessEqual(t.now["speed_mmh"], STANDSTILL_MMH)
 
     def test_nothing_is_predicted_from_a_flat_channel(self):
-        t = self.tail_for(capture(300, lambda s: 30.0))
+        t = self.tail_for(capture(300, lambda s: OLD(30.0)))
         self.assertIsNone(t.seconds_to(MID.lo_c))
         self.assertEqual(verdict(t)[0], "KEEP DRIVING")
 
     def test_after_the_middle_idle_it_watches_for_the_hot_one(self):
-        t = self.tail_for(drive((MID.idle_s + 10, lambda s: 58.0, False),
-                                (60, lambda s: 60.0, True)))
+        t = self.tail_for(drive((MID.idle_s + 10, lambda s: OLD(58.0), False),
+                                (60, lambda s: OLD(60.0), True)))
         self.assertEqual(t.stop(), HOT)
         self.assertEqual(t.log[0][:2], ("mid", "done"))
         self.assertEqual(verdict(t)[0], "KEEP DRIVING")
 
     def test_a_middle_band_driven_through_is_missed_and_the_hot_one_follows(self):
-        t = self.tail_for(capture(300, lambda s: 50.0 + s / 20))
+        t = self.tail_for(capture(300, lambda s: OLD(50.0 + s / 20)))
         self.assertEqual(t.log[0][:2], ("mid", "missed"))
         self.assertEqual(t.stop(), HOT)
 
     def test_the_leak_stop_comes_first_and_then_the_middle_one(self):
         stops = (LEAK_STOP,) + STOPS
-        t = self.tail_for(drive((LEAK_STOP.idle_s + 10, lambda s: 47.0, False),
-                                (60, lambda s: 48.0, True)), stops)
+        t = self.tail_for(drive((LEAK_STOP.idle_s + 10, lambda s: OLD(47.0), False),
+                                (60, lambda s: OLD(48.0), True)), stops)
         self.assertEqual(t.log[0][:2], ("leak", "done"))
         self.assertEqual(t.stop(), MID)
 
     def test_the_leak_stop_driven_through_does_not_cost_the_middle_one(self):
         stops = (LEAK_STOP,) + STOPS
-        t = self.tail_for(capture(300, lambda s: 40.0 + s / 20), stops)
+        t = self.tail_for(capture(300, lambda s: OLD(40.0 + s / 20)), stops)
         self.assertEqual(t.log[0][:2], ("leak", "missed"))
         self.assertEqual(t.stop(), MID)
 
@@ -180,16 +185,16 @@ class Verdicts(unittest.TestCase):
 
     def test_an_idle_is_one_standing_not_a_sum_of_short_ones(self):
         half = MID.idle_s * 0.6
-        t = self.tail_for(drive((half, lambda s: 58.0, False),
-                                (20, lambda s: 58.0, True),
-                                (half, lambda s: 58.0, False)))
+        t = self.tail_for(drive((half, lambda s: OLD(58.0), False),
+                                (20, lambda s: OLD(58.0), True),
+                                (half, lambda s: OLD(58.0), False)))
         self.assertEqual(verdict(t)[0], "IDLING, IN BAND")
 
     def test_a_touch_of_the_pedal_while_standing_does_not_restart_the_idle(self):
-        text = (capture(MID.idle_s * 0.6, lambda s: 58.0, moving=False)
-                + capture(3, lambda s: 58.0, moving=False, pedal=True,
+        text = (capture(MID.idle_s * 0.6, lambda s: OLD(58.0), moving=False)
+                + capture(3, lambda s: OLD(58.0), moving=False, pedal=True,
                           t0=MID.idle_s * 0.6)
-                + capture(MID.idle_s * 0.6, lambda s: 58.0, moving=False,
+                + capture(MID.idle_s * 0.6, lambda s: OLD(58.0), moving=False,
                           t0=MID.idle_s * 0.6 + 3))
         t = self.tail_for(text)
         self.assertEqual(verdict(t)[0], "IDLING, DONE")
@@ -211,20 +216,20 @@ class Verdicts(unittest.TestCase):
         self.assertEqual(verdict(t)[0], "STOP NOW")
 
     def test_both_idles_done_and_driven_away_is_all_done(self):
-        t = self.tail_for(drive((MID.idle_s + 5, lambda s: 58.0, False),
-                                (30, lambda s: 65.0, True),
-                                (HOT.idle_s + 5, lambda s: 70.0, False)))
+        t = self.tail_for(drive((MID.idle_s + 5, lambda s: OLD(58.0), False),
+                                (30, lambda s: OLD(65.0), True),
+                                (HOT.idle_s + 5, lambda s: OLD(70.0), False)))
         self.assertEqual(verdict(t)[0], "IDLING, DONE")
         self.assertIn("engine off", verdict(t)[1])
-        t = self.tail_for(drive((MID.idle_s + 5, lambda s: 58.0, False),
-                                (30, lambda s: 65.0, True),
-                                (HOT.idle_s + 5, lambda s: 70.0, False),
-                                (10, lambda s: 70.0, True)))
+        t = self.tail_for(drive((MID.idle_s + 5, lambda s: OLD(58.0), False),
+                                (30, lambda s: OLD(65.0), True),
+                                (HOT.idle_s + 5, lambda s: OLD(70.0), False),
+                                (10, lambda s: OLD(70.0), True)))
         self.assertEqual(verdict(t)[0], "ALL STOPS DONE")
 
     def test_a_restarted_watch_arrives_at_the_same_state(self):
-        text = drive((MID.idle_s + 5, lambda s: 58.0, False),
-                     (120, lambda s: 60.0 + s / 60, True))
+        text = drive((MID.idle_s + 5, lambda s: OLD(58.0), False),
+                     (120, lambda s: OLD(60.0 + s / 60), True))
         whole = self.tail_for(text)
         with open(self.path, "w", encoding="ascii") as fh:
             fh.write(text[: len(text) // 3])
@@ -257,14 +262,14 @@ class Until(unittest.TestCase):
         self.assertIn("STOP NOW", out.getvalue())
 
     def test_nothing_to_report_times_out_with_2_and_is_not_a_failure(self):
-        self.write(capture(300, lambda s: 20.0 + s * 0.1 / 60))
+        self.write(capture(300, lambda s: OLD(20.0 + s * 0.1 / 60)))
         tail = Tail(self.path)
         out = io.StringIO()
         self.assertEqual(wait_for(tail, "stop", 0.2, 0.01, 90.0, out), 2)
         self.assertIn("KEEP DRIVING", out.getvalue())
 
     def test_it_sees_the_state_arrive_in_a_file_that_is_still_growing(self):
-        cold = capture(300, lambda s: 20.0 + s / 60)
+        cold = capture(300, lambda s: OLD(20.0 + s / 60))
         warm = capture(60, lambda s: MID.lo_c + 1.0, t0=300)
         self.write(cold)
         tail = Tail(self.path)
@@ -276,11 +281,11 @@ class Until(unittest.TestCase):
     def test_every_until_target_is_a_headline_verdict_can_produce(self):
         produced = set()
         for text in (capture(300, lambda s: MID.lo_c + 1.0),
-                     capture(MID.idle_s + 30, lambda s: 58.0, moving=False),
-                     drive((MID.idle_s + 5, lambda s: 58.0, False),
-                           (30, lambda s: 65.0, True),
-                           (HOT.idle_s + 5, lambda s: 70.0, False),
-                           (10, lambda s: 70.0, True))):
+                     capture(MID.idle_s + 30, lambda s: OLD(58.0), moving=False),
+                     drive((MID.idle_s + 5, lambda s: OLD(58.0), False),
+                           (30, lambda s: OLD(65.0), True),
+                           (HOT.idle_s + 5, lambda s: OLD(70.0), False),
+                           (10, lambda s: OLD(70.0), True))):
             self.write(text)
             t = Tail(self.path)
             t.poll()
@@ -302,9 +307,9 @@ class TheBands(unittest.TestCase):
             self.assertLess(a.hi_c, b.lo_c)
 
     def test_the_hot_band_holds_the_plans_reading(self):
-        """plan.md has read 70-72 C of oil since before this tool."""
-        self.assertLessEqual(HOT.lo_c, 70.0)
-        self.assertGreaterEqual(HOT.hi_c, 72.0)
+        """plan.md has read 70-72 C of oil (old scale) since before this tool."""
+        self.assertLessEqual(HOT.lo_c, OLD(70.0))
+        self.assertGreaterEqual(HOT.hi_c, OLD(72.0))
 
 
 class AgainstTheRecordings(unittest.TestCase):

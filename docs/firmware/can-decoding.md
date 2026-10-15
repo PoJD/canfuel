@@ -112,7 +112,7 @@ finds it rather than rediscovers it.
 | Speed | 0x1A0 | 2–3 LE | × 0.005 km/h | validity gate in b1, see below |
 | Engine speed | 0x280 | 2–3 LE | × 0.25 rpm | |
 | Coolant temperature | 0x288 | 1 | × 0.75 − 48 °C | 0xFF = fault |
-| Oil temperature | 0x420 | 3 | × 0.75 − 48 °C | 0xFF with the engine off; **opendbc's `Kombi_2` has `raw − 60`**, `open.md` question 10 |
+| Oil temperature | 0x420 | 3 | **− 60 °C** (×1) | 0xFF with the engine off. `Kombi_2`, the cluster's, per opendbc's `vw_pq.dbc`; **× 0.75 − 48 until 15/10/2026**, every oil figure before then is on that scale — `open.md` question 10 |
 | Fuel in tank | 0x320 | 2, mask 0x7F | indicated litres | bit 0x80 = reserve lamp; the scale reads low, `refuel-reset.md` |
 | Torque (indicated) | 0x280 | 7 | 1.06 Nm/bit | measured off the full-throttle plateau, see `frames.md` |
 | Throttle position | 0x280 | 5 | 38 = rest position (35 on the throttle body fitted 2/10/2026) | |
@@ -137,7 +137,7 @@ Exact at the cold end and inside the fan cycle at the hot end, over 88 °C of
 span. All three VCDS values also land exactly on the 0.75 °C grid of the raw
 byte (12.0 = 80, 99.0 = 196, 100.5 = 198), which says VCDS reads the same
 quantity at the same resolution: **this decode is the ECU's own scale.** The
-oil on 0x420 b3 shares the formula by analogy only, and that is question 10 (`open.md`).
+oil on 0x420 b3 shared the formula by analogy only until 15/10/2026, when it moved to opendbc's `raw − 60` (question 10, `open.md`).
 
 ---
 

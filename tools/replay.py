@@ -28,7 +28,7 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Iterator, Optional
 
-from canlog import Frame, parse_file
+from canlog import Frame, oil_c, parse_file
 
 # --- constants, mirroring src/config.h ------------------------------------
 
@@ -108,7 +108,7 @@ def decode(frame: Frame, st: Decoded) -> None:
         st.clt_c = None if d[1] == 0xFF else d[1] * 0.75 - 48.0
 
     elif cid == 0x420 and len(d) >= 4:
-        st.oil_c = None if d[3] == 0xFF else d[3] * 0.75 - 48.0
+        st.oil_c = oil_c(d[3])   # raw - 60, src/decode.c's oil_c100()
 
     elif cid == 0x320 and len(d) >= 3:
         # Bit 7 is the reserve lamp and is deliberately not decoded, here or

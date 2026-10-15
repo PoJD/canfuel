@@ -16,13 +16,26 @@ static uint16_t u16le(const uint8_t *d, uint8_t i)
     return (uint16_t)(d[i] | ((uint16_t)d[i + 1] << 8));
 }
 
-/* Both temperature sensors share the same scaling and the same fault value. */
+/* The coolant, from the engine ECU on 0x288. */
 static int16_t temp_c100(uint8_t raw)
 {
     if (raw == 0xFFu) {
         return DECODE_TEMP_INVALID;
     }
     return (int16_t)((int16_t)raw * 75 - 4800);   /* raw * 0.75 - 48 C */
+}
+
+/* The oil, from the instrument cluster on 0x420 (Kombi_2): a different module
+ * and a different scaling, raw - 60 C, as opendbc's vw_pq.dbc defines it. It
+ * used to share the coolant's by analogy; docs/firmware/open.md question 10
+ * has the argument. Nothing in the firmware consumes it -- the display reads
+ * 0x420 itself through mfd15's S-AQY.TRI, which carries the same formula. */
+static int16_t oil_c100(uint8_t raw)
+{
+    if (raw == 0xFFu) {
+        return DECODE_TEMP_INVALID;
+    }
+    return (int16_t)((int16_t)raw * 100 - 6000);  /* raw - 60 C */
 }
 
 void decode_init(decode_state_t *st)
@@ -97,7 +110,7 @@ bool decode_frame(decode_state_t *st, uint16_t can_id,
         if (dlc < 4) {
             return false;
         }
-        st->oil_c100 = temp_c100(data[3]);
+        st->oil_c100 = oil_c100(data[3]);
         return true;
 
     case CAN_ID_TANK:

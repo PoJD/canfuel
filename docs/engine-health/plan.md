@@ -1,5 +1,13 @@
 # Engine health — the planned fixes, in order
 
+⚠ **Oil temperatures up to and including 15/10/2026 are on the old scale.** 0x420's
+oil was read as `raw × 0.75 − 48` until then and is `raw − 60` since
+(`docs/firmware/open.md` question 10). Every oil figure dated then or earlier —
+bands, tables, readings off the display — is on the old scale; on today's
+display it is **(old + 48) / 0.75 − 60**: 56 → 79, 68 → 95, 72 → 100,
+77 → 107. The tools read today's scale; `canlog.oil_from_old_scale()`
+converts an old figure.
+
 **Part 1 is what to do, in order, with no explanation.** It is what goes
 to the car. **Part 2 is why, and how the results are read.** Keep it that
 way (*owner's decision, 8/10/2026*). An instruction goes in Part 1 and its
@@ -19,7 +27,7 @@ Claude runs the capture on every drive.
 
 5. **The can is in (15/10). Drive the tank as usual**, captures or not.
    - **`IdleHealth` off the display, through both tanks after the can:**
-     on drives where the oil reaches **68–72 °C**, at one stop of **at
+     on drives where the oil reaches **95–100 °C** on the display, at one stop of **at
      least a minute with every load off but the lights**, which stay
      on. Write into the chat: date, oil temperature, **where
      `IdleHealth` mostly sat and the lowest it touched**.
@@ -35,7 +43,7 @@ Claude runs the capture on every drive.
      minutes** with loads off. Before it: the timing belt's interval
      checked against its date (10/2017).
 7. **Only if Claude asks after 6:**
-   - **The exhaust test again, warm**, after a drive to 68–72 °C of oil.
+   - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      **Leaks there → a new manifold**: new gasket to the head, new nuts,
      new outlet gasket, the probe refitted with anti-seize. Part
      `06A 253 031` + suffix: read the number cast into the manifold, or
@@ -43,7 +51,7 @@ Claude runs the capture on every drive.
      Penetrating oil on the studs the days before; a snapped stud goes
      to a garage.
    - **Injectors 1 and 4 again, warm idle** — as on 10/10: oil at
-     68–72 °C, neutral, handbrake on, loads off; Claude runs the
+     95–100 °C, neutral, handbrake on, loads off; Claude runs the
      capture, VCDS on **014, 055, 003**; 1 min as it is; **1, 4, 4, 1**,
      each connector off **1 min** (30 s at the least) and back on for
      **30 s**, by the connector body with the clip pressed, gloves; 1 min

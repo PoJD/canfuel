@@ -193,7 +193,7 @@ static void test_no_frame_can_break_the_decoder(void)
         TT_TRUE(st.clt_c100 == DECODE_TEMP_INVALID ||
                 (st.clt_c100 >= -4800 && st.clt_c100 <= 14325));
         TT_TRUE(st.oil_c100 == DECODE_TEMP_INVALID ||
-                (st.oil_c100 >= -4800 && st.oil_c100 <= 14325));
+                (st.oil_c100 >= -6000 && st.oil_c100 <= 19400));
     }
 }
 

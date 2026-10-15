@@ -202,8 +202,18 @@ Until then nothing in `src/` changes for this question.
 
 ## 10. Is the oil temperature right, and not merely oil?
 
-**Question 4 settled *what* 0x420 b3 is. Nothing has settled what it is
-worth.** The formula `× 0.75 − 48` was borrowed from the coolant on 0x288 by
+**Decided 15/10/2026: `raw − 60`**, the published layout below, in
+`src/decode.c` (`oil_c100()`), `tools/canlog.py` (`oil_c()`, which every
+tool now uses) and `mfd15/tri/S-AQY.TRI` together; the display shows it
+once that file is uploaded. **Every oil figure up to and including
+15/10/2026 is on the old scale**, `(old + 48) / 0.75 − 60` on today's.
+**What stays open** is whether the sender reads right, above all at the
+cold end, where it reads a few degrees high (below) — the winter morning
+of *How it closes* item 2 answers that, and nothing changes on it unless
+it is far out. Question 7 underneath is re-read in its own section.
+
+**Question 4 settled *what* 0x420 b3 is. Nothing settled what it is
+worth until 15/10/2026.** The formula `× 0.75 − 48` was borrowed from the coolant on 0x288 by
 analogy, and the two bytes come from different modules: the coolant from the
 engine ECU, the oil from the instrument cluster, which the sender is wired to.
 
@@ -526,6 +536,14 @@ It replaced a cold-oil line (39–61 °C) that overstated drag by 4 counts at
 idle and 10 at 2930 rpm, and took the share of `17_drive_property_z1` showing
 a torque from 49 % to 78 %. The idle point is excluded and covered by the
 driving gate instead (`frames.md`).
+
+**Re-read 15/10/2026, when question 10 decided the oil scale.** On
+today's `raw − 60` the four holds were at **101–106 °C**, not 72–77: the
+line *is* a hot-oil line, and the premise below — that real driving runs
+hotter than the holds — is gone with the old scale. **The question is
+therefore all but closed**; it is left open until question 10's winter
+morning says the sender reads right warm as well as cold, and the
+paragraphs below are kept as they were argued.
 
 **Why it is open.** 72–77 °C is warm but not the 95–110 °C of real driving,
 so the line probably still overstates drag a little — the conservative

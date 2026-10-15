@@ -78,7 +78,7 @@ def windows(path):
         elif f.can_id == 0x288 and len(d) >= 7:
             b6, clt = d[6], d[1] * 0.75 - 48.0
         elif f.can_id == 0x420 and len(d) >= 4:
-            oil = None if d[3] == 0xFF else d[3] * 0.75 - 48.0
+            oil = canlog.oil_c(d[3])
         elif f.can_id == 0x1A0 and len(d) >= 4:
             # docs/firmware/can-decoding.md trap 1
             if (d[1] & 0x40) and not (d[1] & 0x03):

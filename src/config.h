@@ -857,7 +857,9 @@ changing instead."
  *
  * FITTED on the four warm free-revving holds, rather than a line
  * through two COLD-OIL fixture points. Stationary, in neutral, oil 72.8-76.6 C
- * off 0x420 b3, ~2,375 frames of 0x280 averaged per hold:
+ * off 0x420 b3 -- on the old scale, raw x 0.75 - 48; 101-106 C on today's raw
+ * - 60 (docs/firmware/open.md question 10) -- ~2,375 frames of 0x280 averaged
+ * per hold:
  *
  *   13_rev1500_z1   1536 rpm, b7 = 18.81, oil 72.8 C, throttle 48
  *   14_rev1850_z1   1850 rpm, b7 = 20.66, oil 74.2 C, throttle 51
