@@ -59,6 +59,7 @@ Usage
     python cutscan.py --cuts 120-180,210-270,... CAPTURE
     python cutscan.py --scan CAPTURE                   # the per-run deficits
     python cutscan.py --pairs CAPTURE [...]            # no cuts: same-slot dips
+    python cutscan.py --shares CAPTURE [...]           # one cylinder or two
 """
 
 from __future__ import annotations
@@ -570,6 +571,67 @@ def slot_pairs(gated, min_lag=PAIR_MIN_LAG):
     return by_mod
 
 
+def slot_runs(gated, min_lag=PAIR_MIN_LAG, skip_cuts=True):
+    """[[slot of each dip, mod 4], ...] for every phase-intact run holding two
+    or more dips at least `min_lag` strokes apart. Runs that touch an
+    injector cut (`find_cuts`, padded by 5 s) are left out when skip_cuts."""
+    runs = stroke_runs(gated)
+    cuts = find_cuts(runs) if skip_cuts else []
+    out = []
+    for run in runs:
+        t0, t1 = run[0][0], run[-1][0]
+        if any(a - 5 <= t1 and t0 <= b + 5 for a, b in cuts):
+            continue
+        kept = []
+        for i in slot_dips(run):
+            if not kept or i - kept[-1] >= min_lag:
+                kept.append(i)
+        if len(kept) >= 2:
+            out.append([i % 4 for i in kept])
+    return out
+
+
+def shares_loglik(shares, runs):
+    """Log-likelihood of the runs under per-slot shares, the run's phase
+    unknown (each of the four rotations equally likely)."""
+    total = 0.0
+    for r in runs:
+        total += math.log(sum(math.prod(shares[(x + k) % 4] for x in r)
+                              for k in range(4)) / 4)
+    return total
+
+
+def slot_shares(runs, iters=500):
+    """The per-slot shares that best explain the runs, by EM over the
+    unknown phase of each run; rotated so the largest comes first, then in
+    firing order. Pairs alone fix only how the dips repeat (their
+    autocorrelation) and cannot tell one cylinder carrying half from two
+    neighbours in the firing order carrying 40 % each; a run with three or
+    more dips carries their order, and that is what this reads."""
+    p = [0.4, 0.3, 0.1, 0.2]
+    for _ in range(iters):
+        acc = [1e-9] * 4
+        for r in runs:
+            w = [math.prod(p[(x + k) % 4] for x in r) for k in range(4)]
+            sw = sum(w)
+            for k in range(4):
+                for x in r:
+                    acc[(x + k) % 4] += w[k] / sw
+        n = sum(acc)
+        p = [a / n for a in acc]
+    k = p.index(max(p))
+    return p[k:] + p[:k]
+
+
+#: Named readings for --shares, as shares in firing order from the leader.
+SHARE_MODELS = (
+    ("all four alike", (0.25, 0.25, 0.25, 0.25)),
+    ("one cylinder, the rest alike", (0.50, 1 / 6, 1 / 6, 1 / 6)),
+    ("one cylinder, partner 0", (0.50, 0.25, 0.001, 0.25)),
+    ("two neighbours alike", (0.42, 0.42, 0.03, 0.13)),
+)
+
+
 def binom_upper(k, n, p):
     """P(X >= k) for X ~ Binomial(n, p)."""
     return sum(math.comb(n, j) * p ** j * (1 - p) ** (n - j)
@@ -634,6 +696,8 @@ def main(argv=None):
     ap.add_argument("--cuts", help="intervals by hand, one capture only")
     ap.add_argument("--pairs", action="store_true",
                     help="ordinary idles: do dips keep to one slot? (no cuts)")
+    ap.add_argument("--shares", action="store_true",
+                    help="ordinary idles: one cylinder or two? (cuts left out)")
     ap.add_argument("--scan", action="store_true",
                     help="print every run's slot deficit and stop")
     args = ap.parse_args(argv)
@@ -653,6 +717,21 @@ def main(argv=None):
             print("pooled: %d of %d on the same slot (%.0f%%, chance 25%%), "
                   "p = %.2g" % (total[0], n, 100.0 * total[0] / n,
                                 binom_upper(total[0], n, 0.25)))
+        return 0
+
+    if args.shares:
+        runs = []
+        for cap in args.captures:
+            runs += slot_runs(idledips.series(cap)[3])
+        best = slot_shares(runs)
+        lb = shares_loglik(best, runs)
+        print("%d runs with two or more dips, %d with three or more" % (
+            len(runs), sum(len(r) >= 3 for r in runs)))
+        print("best shares, leader first, then in firing order: %s  (logL %.1f)"
+              % (" ".join("%.2f" % x for x in best), lb))
+        for name, m in SHARE_MODELS:
+            print("  %-30s logL %8.1f  (%5.1f below the best)" % (
+                name, shares_loglik(m, runs), lb - shares_loglik(m, runs)))
         return 0
 
     if args.scan:

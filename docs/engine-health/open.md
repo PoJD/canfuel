@@ -68,8 +68,10 @@ Everything else settled against is in `refuted.md`.
   part in the fuel and ignition path has been replaced and both remain.
   **When** 014 counts is settled — it follows 055's learned idle air
   value (`refuted.md` C19, closed 9/10) — but not **what the fault is**.
-  **The dips kept to one cylinder's stroke** (9/10, *Naming the
-  cylinder*), and the old parts named two single-cylinder faults: lead
+  **The dips are not shared alike** (9/10, *Naming the
+  cylinder*): **about half on one cylinder and most of the rest on its
+  neighbour in the firing order** (16/10, *One cylinder or two*; the
+  documents said *one cylinder* until then), and the old parts named two single-cylinder faults: lead
   4's plug end and plug 1, almost loose (H4, 1d). **New plugs and leads
   went in on 10/10, and on the drive after the dips did not keep to one
   slot — but 014 counted as before** (S3, *The drive after the new
@@ -4499,10 +4501,11 @@ S5 needs no combustion; S11 is a sound outside the cylinder.
 - **For:** the one change to the engine's control that nothing so far has
   undone; it is older than every replaced part, and S3 survived every
   part (S3); 5/2019's P0172 and P0304 came a year after it.
-- **Against:** a map acts on all four cylinders alike, and **the dips keep
-  to one slot** — 33–38 % against chance's 25 % (*The dips keep to one
-  slot*), so at most it lowers the margin until the weakest cylinder
-  shows; the idle is held closed loop, by mixture and by speed; the tuner
+- **Against:** a map acts on all four cylinders alike, and **the dips
+  are not shared alike** — 33–38 % of pairs on one slot against chance's
+  25 %, about half the dips on one cylinder and most of the rest on its
+  neighbour (*The dips keep to one slot*), so at most it lowers the
+  margin until the weakest two show; the idle is held closed loop, by mixture and by speed; the tuner
   called it mild and found nothing at the top of the range; 003's idle
   advance sits inside VW's 0–12° (`vcds.md`), so there is no sign of
   an idle map pushed far.
@@ -4744,6 +4747,13 @@ all *general*:
 
 ### The dips keep to one slot — 9/10/2026
 
+⚠ **"One slot" is the name of the method, not the finding** (*the
+owner's correction*, 16/10/2026: these files kept saying *one cylinder*
+where the reading had always allowed two). Pairs say the dips are **not
+shared alike** and nothing more; **which of one or two cylinders it is
+was read only on 16/10, and it is two rather than one** (*One cylinder or
+two*, at the end of this section).
+
 *Asked by the owner: has a single weaker cylinder ever been looked for?*
 It had — as slot **means** (`refuted.md` A5), which show no outlier. A
 cylinder that stumbles on 1–3 % of its strokes moves its mean by about half
@@ -4776,7 +4786,10 @@ all four alike give 20–34 %, all on one cylinder 96 %.
   at roughly 35 / 24 / 14 / 25 % fits **one cylinder carrying about 45 %
   of the dips with its 360° partner carrying almost none** — and fits two
   cylinders neighbouring in the firing order at about 40 % each just as
-  well. Either way it is not the whole engine alike.
+  well. Either way it is not the whole engine alike. **Pairs can never
+  tell those two apart**, however many: they measure how the dips repeat
+  (the autocorrelation over four slots), and both readings repeat alike.
+  *One cylinder or two*, below, reads it from runs of three.
 - **Which cylinder, the bus cannot say**: the phase is lost every few
   seconds. `plan.md` step 3.5 names it, by cutting 1 and 4.
 
@@ -4817,6 +4830,55 @@ its continuation, 4 of 9; `37` the drive home with 4 min of warm idle,
 pooled: **39 of 119, 33 %, p = 0.035**. Pooled with `32`–`34`, since the
 exhaust joint: **93 of 263, 35 %, p = 0.00012**. The same direction,
 and the long drive with the loads on (`35`) the weakest of it.
+
+**One cylinder or two — 16/10/2026** (*the owner's question*;
+`cutscan.py --shares`). A run with **three or more** dips in it keeps
+their order as well as their spacing, and order is what pairs lose. So
+the shares of the four slots are fitted to every run at once, each run's
+phase unknown (EM over the four rotations), on every idle from `09` to
+`38`, the injector cuts left out: **292 runs with two or more dips, 99
+with three or more**. In firing order from the slot that leads:
+
+| | leader | the next to fire | its 360° partner | the one before |
+|---|---|---|---|---|
+| **all, `09`–`38`** | **0.48** | **0.31** | 0.03 | 0.19 |
+| before the new leads, `09`–`30` | 0.49 | 0.28 | 0.03 | 0.20 |
+| since, `31`–`38` | 0.43 | **0.41** | 0.03 | 0.13 |
+
+Against the best fit, in log-likelihood (2 is about seven to one, 7 about
+a thousand): **all four alike 31.7 below; one cylinder with the rest
+alike 15.3 below; one cylinder with its partner at zero and both
+neighbours alike 7.1 below; two neighbours alike (42/42/3/13) 1.5
+below.** Resampling the runs (200 times): the leader 42–52 % (90 %), its
+360° partner 0–11 %, and the second-largest 25 % or more in 93 % of the
+draws; which neighbour is the larger, the next or the one before, 69 % to
+31 % — not settled. **Tested against itself**: dips planted on one
+cylinder read 92–97 % on it, even with 60 % of each dip carried into the
+next stroke (a misfire slowing the crank past its own stroke), so the
+second share is not one cylinder smeared onto the next.
+
+**What follows:**
+
+- **Not one cylinder alone**: about half the dips on one, **most of the
+  rest on a cylinder next to it in the firing order**, and almost none on
+  its 360° partner. **Since the new leads the two are level**, 43 and 41
+  %. So *two neighbours in the firing order* is the reading, with one of
+  them perhaps ahead; the documents' *one cylinder* was too narrow.
+- **Which pair, the bus cannot say**: in 1-3-4-2 (*general*) the
+  neighbours are **1–3, 3–4, 4–2, 2–1**. Two of them, **3–4 and 2–1**,
+  are also side by side on the head (cylinder 1 at the belt end,
+  `vcds.md`), sharing a wall of the intake and exhaust ports; 1–3 and 4–2
+  are not.
+- **Not one coil output**: the coil pairs 1 with 4 and 2 with 3 (S1, the
+  period-2 line; H4), which are each other's 360° partners — the pair the
+  fit gives almost nothing. A fault on one output would put the dips on a
+  partner pair.
+- **For the hypotheses**: one lead, one plug, one valve or one injector
+  explains one of the two at most (H1, H4's high-voltage side); what can
+  reach two neighbours is something shared by the pair or common to all
+  four with two weaker than the rest — a leak where two runners meet or
+  their gasket (H3), deposits (H13), any margin cause with two cylinders
+  nearer the edge (*More than one at once*, in the ranked list).
 
 ---
 
@@ -5089,8 +5151,9 @@ too and has found nothing cold. The rest from H2 down one.*
 ranking reads each hypothesis as the whole cause, and it need not be:
 valves on some cylinders near their limit (H1) together with small
 intake leaks (H3) would give both what the one-slot share shows — about
-half the dips on one cylinder (*The dips keep to one slot*) — and the
-rest spread over the engine, and each repair would then help only in
+half the dips on one cylinder and most of the rest on its neighbour in
+the firing order (*The dips keep to one slot*, *One cylinder or two*,
+16/10) — and the rest spread over the engine, and each repair would then help only in
 part. *Reasoned*, not tested; it is why a partial improvement after a
 repair is read as a share, not as a miss.
 

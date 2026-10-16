@@ -222,6 +222,27 @@ class SameSlotPairs(unittest.TestCase):
         self.assertLess(cutscan.binom_upper(m[0], sum(m), 0.25), 0.001)
 
 
+class SlotShares(unittest.TestCase):
+    """One cylinder or two -- what pairs cannot tell and runs of three can."""
+
+    def _shares(self, dip_p):
+        runs = []
+        for seed in (1, 2, 3):
+            runs += cutscan.slot_runs(synthetic([], dip_p=dip_p, seconds=900,
+                                                seed=seed))
+        return cutscan.slot_shares(runs)
+
+    def test_one_cylinder_is_one(self):
+        got = self._shares({4: 0.02})
+        self.assertGreater(got[0], 0.8)
+
+    def test_two_neighbours_are_two(self):
+        # 3 and 4 follow each other in the firing order 1-3-4-2
+        got = self._shares({3: 0.012, 4: 0.012})
+        self.assertGreater(min(got[0], max(got[1], got[3])), 0.3)
+        self.assertLess(got[2], 0.1)
+
+
 class TheStatistics(unittest.TestCase):
 
     def test_equal_counts_are_unremarkable(self):

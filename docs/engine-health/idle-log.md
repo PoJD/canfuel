@@ -1002,6 +1002,15 @@ it counts does not follow `IdleHealth` (`open.md` S3, *The events are
 the S1 dips*). So 014 is no ruler of this idle, as S3 already said, and
 now on eleven sessions.
 
+**One cylinder or two, read the same day** (*the owner's correction*:
+these files said *one cylinder* where the evidence always allowed two).
+Runs of three or more dips keep their order, which pairs lose, and fitted
+over every idle since August (`cutscan.py --shares`): **about half the
+dips on one cylinder, most of the rest on its neighbour in the firing
+order, almost none on its 360° partner**; since the new leads the two are
+level, 43 and 41 % (`open.md`, *One cylinder or two*). Which pair, the bus
+cannot say; not the two on one coil output.
+
 **What it is not known to have achieved:** nothing changed on the car;
 one stop, with its oil temperature unknown, is a reading and not a change.
 
