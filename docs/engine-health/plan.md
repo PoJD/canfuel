@@ -26,7 +26,8 @@ Claude runs the capture on every drive.
 5a. **22/10: the original map written back** at the tuner; the ECU
    comes out of the car. Then **two or three ordinary warm drives**:
    Claude runs the capture; VCDS on **014, 003**; 055 once at the end,
-   warm idle; on one of them **one held full-throttle pull in 4th**.
+   warm idle; on one of them **one held full-throttle pull in 4th**,
+   with VCDS on **014, 003, 020** for that drive.
 6. **On the next tank: two or three ordinary drives, warm**, on
    different days. Claude runs the capture; VCDS on **014, 003, 020**;
    055 once at the end, warm idle. Write the stops.
@@ -158,6 +159,19 @@ in 4th** is for the converter, not the idle: the torque scale was fitted
 by making this car's plateau reproduce the stock ratings
 (`docs/firmware/can-decoding.md` question 8), so on a stock map the pull
 says whether it still holds.
+
+**How the map is told from the can** (*added 16/10/2026*, when the remap
+became `open.md` H14 at the owner's request). The drives after 22/10
+carry the map, the cleaner and fresh adaptations at once, so they are
+read on what the cleaner cannot move: **003's idle advance** against the
+remap's 3.3° quiet (`open.md` S1, *What VCDS saw just before a dip*);
+**the fuel cut on the overrun**, by `coastscan.py` on the captures,
+against 0.8–1.6 s and 1,300–2,400 rpm; **014 against `IdleHealth`** —
+one moving without the other is the detection's calibration, not the
+engine; and **020 on the pull**, cylinder 4's retard (S4), which is why
+that one drive logs it. A calmer idle with the advance or the fuel cut
+moved points at the map; with both where they were, at the cleaner or
+the adaptations (H14 test 1). Nothing for the owner to do beyond 020.
 
 **Items 5 and 6 — the engine left alone, and the additive** (*owner's
 decision*, 10/10/2026). **The can goes in whatever the gauge shows**
