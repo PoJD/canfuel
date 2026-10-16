@@ -4422,6 +4422,10 @@ combustion and S11 is a sound outside the cylinder: neither.
   which a ring stuck by deposits or a valve held off its seat would
   lower; the vacuum gauge steady at idle cold and warm (H3, *The vacuum
   gauge*), against a valve that does not seal.
+- **For, a little** (*owner*, recalled 16/10/2026): about 6/2026 every
+  start ran on three cylinders until fresh fuel replaced three-year-old
+  fuel (`idle-log.md`); unburnt stale fuel in one cylinder is a source of
+  exactly the deposits this needs. Which cylinder, no scan was kept.
 - **Not against:** the hardest drive yet (15/10) left the warm idle where
   it was (`IdleHealth` about 55 lights-only, `idle-log.md`); one drive
   does not burn off years of deposit, and the cleaner had been in the
