@@ -989,6 +989,22 @@ plenum still cannot see a small leak at one runner; and the can had
 been in the tank an hour, so these readings are a before for item 6,
 not an after.
 
+**16/10/2026 — a brisker drive, and 014 against the A/C** (*owner*, off
+the display and VCDS 014, no capture; `plan.md` item 5's running
+reading). After a brisker drive than usual, a warm idle: **`IdleHealth`
+about 50–70**, rougher than the evening before's ~80 at home; the oil
+temperature and the loads were not given. Then with VCDS on 014: **A/C
+on, 014 at zero for several minutes with `IdleHealth` about 70; A/C off,
+014 counting and `IdleHealth` barely moved** (`open.md` S3, *The A/C
+switches it*). Read the same day against every capture with a 014 log
+(`tools/s3align.py`): when 014 counts it counts the dips, but how often
+it counts does not follow `IdleHealth` (`open.md` S3, *The events are
+the S1 dips*). So 014 is no ruler of this idle, as S3 already said, and
+now on eleven sessions.
+
+**What it is not known to have achieved:** nothing changed on the car;
+one stop, with its oil temperature unknown, is a reading and not a change.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail

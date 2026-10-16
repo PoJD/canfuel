@@ -635,6 +635,37 @@ found no leak ahead of the converter (S15).
   speed (*general*: that is how OBD misfire detection works), so they are not
   two independent witnesses. And the converse does not hold: only 7 of 34,
   37 of 319 and 38 of 70 dips carry an increment.
+  **Re-read over every capture with a 014 log, 16/10/2026** (*the owner's
+  question*; `tools/s3align.py`, eleven sessions from `18` to `37`,
+  standing idle with detection `aktivováno`, the cuts left out; four logs
+  do not line up with their capture by engine speed and are skipped):
+  **the timing holds in every session that counts at all.** The dip
+  sits **0–1.5 s before the 014 sample that shows the rise**, and
+  nowhere else (`--lag`). **50 % of the 857 rises have a dip of 20 rpm
+  or more in that 1.5 s, against 22 % of the samples that did not rise**,
+  p between 10⁻³ and 10⁻²⁰ session by session; the one exception, `35`,
+  counted twice in a drive. **The converse still does not hold: 32 % of
+  the 1,513 dips are followed by a rise**, and on `18`, `19` and `35`
+  almost none (15 %, 10 %, 2 %). **And over minutes the two part**
+  (`--windows`, 103 stretches of 60 s): rises a minute against
+  `IdleHealth`, Spearman **0.20**; against dips a minute, 0.16; dips a
+  minute against `IdleHealth`, **0.79**. At 90 °C of oil and up, the
+  minutes with 014 silent read `IdleHealth` 104 in the median (n 6, 52–
+  142), those with it counting 76 (n 42) — **a silent 014 was if anything
+  the rougher idle.** So: **when 014 counts, it counts these dips; whether
+  it counts is decided elsewhere** — the load and the learned idle air
+  (`refuted.md` C19), not how rough the idle is. `35`'s near-silence came
+  on the morning's stops under the blower, seat heating and at times the
+  A/C (`idle-log.md`, 15/10).
+- **The A/C switches it, by the owner's eye, 16/10/2026** (*owner*,
+  VCDS 014 and the display, no capture): a warm idle after a brisker
+  drive; **with the A/C on, 014 sat at zero for several minutes while
+  `IdleHealth` read about 70; with the A/C off, 014 began counting and
+  `IdleHealth` barely moved.** The same as the re-read above, seen
+  live: the count follows the state the ECU is in, not the idle. Not a
+  new symptom (*owner's decision*, 16/10): a property of S3's witness.
+  Which of the load or the idle air does it is not told apart; a stop
+  with a capture, A/C on and off, 014 and 055 in VCDS would.
 - **No fault code is stored.** The rate stays below whatever the ECU needs to
   set one. **It once did**: an old scan from **5/2019** holds P0300 and
   **P0304, cylinder 4**, with P0172, too rich (*owner*, found 10/10/2026;
@@ -2043,7 +2074,7 @@ A safety matter for a garage, outside this investigation.
 
 | pair | link | evidence |
 |---|---|---|
-| S1 ↔ S3 | **the same events** | aligned three times, p ≤ 0.023. Both are crank speed, so partly one signal read twice |
+| S1 ↔ S3 | **the same events, but 014 is switched** | aligned three times, p ≤ 0.023; **re-read 16/10 over eleven sessions: half the rises sit on a dip in the 1.5 s before, against 22 % by chance; a third of the dips get a rise; and rises a minute do not follow `IdleHealth` (Spearman 0.20)**, nor did 014 follow the idle when the A/C went off (*owner*, 16/10). Both are crank speed, so partly one signal read twice (S3, *The events are the S1 dips*) |
 | S1/S3 ↔ S9 | **strong** | the MAF swap halved the dips at every oil temperature (−51 to −65 %). An over-reading MAF was causing some of the stumbles; the rest is the residual fault |
 | S1/S3 ↔ oil temperature | **strong; the two differ** (*re-read 9/10/2026*) | **S1** (engine speed) roughest cold and calmer as the oil warms, in every session since 24/9. **S3** (014): near zero cold — the counter's own blind spot, since engine speed is worst there; on fresh adaptations a sharp peak in the middle band and zero hot; **on settled ones flatter** — 6–16 a minute from ~57 °C up, about half as many at 97–111 °C as at 77–95 (`29`, `30`). *This read "non-monotonic, worst at ~71–85 °C, on every drive" for both* |
 | S4 ↔ S5 | **very likely one thing** | same cylinder window, same engine speeds, and S5 needs no combustion. Knock control retards cylinder 4 because it hears S5's noise |
