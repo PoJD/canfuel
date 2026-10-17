@@ -4523,6 +4523,22 @@ idle's ignition or its detection; S2 and S14 through the overrun's fuel
 cut and as a misfire's charge going out; S4 through advance under load.
 S5 needs no combustion; S11 is a sound outside the cylinder.
 
+- **The idle advance, read 17/10/2026** (*the owner's question*: is it
+  aggressive against VW's figure?; `tools/idleadvance.py`, every 003 log,
+  steady warm idle at 740–900 rpm with the plate shut, air at or below
+  3.5 g/s): **since 24/9, medians 1.5–3.8° BTDC**, p10–p90 about 0 to
+  7°, after TDC in 1–9 % of samples (26 % on `vcds-neutral-026-003`) —
+  inside VW's 0–12° BTDC (`vcds.md`) at its retarded end. **Not
+  aggressive at idle.** **But on 11/8, on the same map, the median was
+  −0.8° and −2.3° — after TDC in 63–74 % of samples**, below VW's range
+  (`vcds-01-002-003`, `vcds-ride-002-003`). The shift happened between
+  11/8 and 24/9, with the map unchanged, so **it is not the map's**; what
+  changed between was the new injectors (23/9), the 2018 MAF still on,
+  the adaptations reset. *Reasoned, not shown*: at idle the ECU takes
+  advance away when the engine makes more torque than the idle needs,
+  so in August something gave it torque to spare, and the repairs took it
+  away. Off idle the advance reaches 38°, which cannot be judged without
+  VW's load map; 22/10 compares it like with like.
 - **For:** the one change to the engine's control that nothing so far has
   undone; it is older than every replaced part, and S3 survived every
   part (S3); 5/2019's P0172 and P0304 came a year after it.

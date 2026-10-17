@@ -1042,6 +1042,18 @@ hold.
 the first after the new leads; the other captures have no cut to name
 their pair.
 
+**17/10/2026 — the idle advance, August against now** (*the owner's
+question* about the remap; `tools/idleadvance.py`). On a steady warm idle
+without the A/C, **11/8 put the spark after TDC most of the time**,
+medians −0.8° and −2.3°, below VW's 0–12° BTDC; **every log since 24/9
+reads 1.5–3.8° BTDC**. The map did not change between, so the remap is
+not what set it; the injectors, the reset adaptations and the repairs
+since are what changed (`open.md` H14). It is the baseline the stock map
+is read against on 22/10.
+
+**What it is not known to have achieved:** why the ECU was taking advance
+away in August is reasoned, not measured.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
