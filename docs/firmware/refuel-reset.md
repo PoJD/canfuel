@@ -250,7 +250,9 @@ stopped short of the brim, which was not recorded either way, or the
 near-empty reading hides litres the sender does not report, which the
 0.83 gain at that end would do. **The two cannot be separated from these
 numbers**, and nothing here was calibrated on the 56, so nothing moves.
-The level after this fill reads the ceiling below and gives no gain.
+The display read **50.9 after it** (*owner*), the ceiling below again,
+so this fill gives no gain: the litres above where 51 starts went in
+unseen.
 
 ### The level stops at 51 L, and that is not this firmware
 
