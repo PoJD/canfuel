@@ -232,10 +232,13 @@ its own about a lifter.
    of 39, 26 %, against 34 of 103, 33 %, on 9/10 — while 014 counted as
    before (`open.md` S3, *The drive after the new leads*). One drive
    cannot tell those apart; two or three more, pooled, can, and they
-   cost nothing. **How it is read**: `cutscan.py --pairs` on the idles,
-   outside any cut, pooled with 10/10's — still near a quarter → the
-   one-cylinder share is gone, and what 014 counts acts on the whole
-   engine; back toward a third → item 7's cuts name the cylinder. 014 by
+   cost nothing. **How it is read** (*since 17/10/2026*): `cutscan.py
+   --shares` on the idles, alone and pooled since the last repair — the
+   share the top two carry and p against all four alike (`open.md`, *One
+   cylinder or two*: two neighbours with two thirds, 3 and 4 on `31`); a
+   capture with cuts in it also `--name`. *This read "`--pairs` ... near a
+   quarter / back toward a third", on the short runs whose pair shares
+   turned out high.* 014 by
    stop and `IdleHealth` by oil band against `open.md` S1 and S3. **The
    groups**: **014** is the reading; **003** the idle air, which says
    whether anything sealed or opened; **055 once**, at the end on a
@@ -312,8 +315,11 @@ what is left, if Claude asks for it after item 6. The owner works
    at (`vcds.md`, *What VW says*), and the rate that damages a converter
    flashes it (SSP 175) — VW does not publish this ECU's figure.
    - **Why it can name a cylinder at all.** The idles already show the
-     dips keeping to one slot (`open.md`, *The dips keep to one slot*),
-     but the bus cannot say which cylinder a slot is. While a cylinder is
+     dips not shared alike (`open.md`, *The dips keep to one slot*),
+     but the bus cannot say which cylinder a slot is. *Since 17/10/2026
+     the cut also names the idle around it*: the phase now holds for
+     minutes (`open.md`, *One cylinder or two*), so `cutscan.py --name`
+     names every dip in the run the cut sits in — on `31`, 4 and 3. While a cylinder is
      out its slot is known, and the firing order 1-3-4-2 names the other
      three: **cutting 1 names 3, 4 and 2; cutting 4 names 2, 1 and 3.** So
      the two outer cylinders name all four, and 2 and 3 are named by both

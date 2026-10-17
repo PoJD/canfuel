@@ -58,7 +58,7 @@ Usage
     python cutscan.py --vcds LOG.csv CAPTURE           # ...with 003's air
     python cutscan.py --cuts 120-180,210-270,... CAPTURE
     python cutscan.py --scan CAPTURE                   # the per-run deficits
-    python cutscan.py --pairs CAPTURE [...]            # no cuts: same-slot dips
+    python cutscan.py --pairs CAPTURE [...]            # history: same-slot pairs, no p
     python cutscan.py --shares CAPTURE [...]           # one cylinder or two
     python cutscan.py --name CAPTURE                   # cuts in it: name the dips
 """
@@ -556,14 +556,21 @@ def slot_dips(run):
 def slot_pairs(gated, min_lag=PAIR_MIN_LAG):
     """[n by lag mod 4] over every pair of dips inside one phase-intact run.
 
+    The runs are bridged ones (`bridged_runs`, minutes long) and the injector
+    cuts are left out (5 s margin) -- both since 17/10/2026; before that the
+    runs were seconds long and a capture with cuts had to be read by hand.
+
     Which cylinder a slot is cannot be known, but whether two dips fall on
     the SAME slot can: by chance a quarter of pairs would. One cylinder
     carrying share s0 of the dips (and the others s1..s3) puts sum(s_i^2)
     of the pairs on lag 0 mod 4.
     """
     by_mod = [0, 0, 0, 0]
-    for run in stroke_runs(gated):
-        e = slot_dips(run)
+    cuts = find_cuts(stroke_runs(gated))
+    for run in bridged_runs(gated):
+        tt = {i: t for t, _, i in run}
+        e = [i for i in indexed_dips(run)
+             if not any(a - 5 <= tt[i] <= b + 5 for a, b in cuts)]
         for a in range(len(e)):
             for b in range(a + 1, len(e)):
                 lag = e[b] - e[a]
@@ -747,9 +754,27 @@ SHARE_MODELS = (
 
 
 def binom_upper(k, n, p):
-    """P(X >= k) for X ~ Binomial(n, p)."""
-    return sum(math.comb(n, j) * p ** j * (1 - p) ** (n - j)
-               for j in range(k, n + 1))
+    """P(X >= k) for X ~ Binomial(n, p), in log space so a large n works."""
+    def term(j):
+        return math.exp(math.lgamma(n + 1) - math.lgamma(j + 1)
+                        - math.lgamma(n - j + 1) + j * math.log(p)
+                        + (n - j) * math.log(1 - p))
+    return min(1.0, sum(term(j) for j in range(k, n + 1)))
+
+
+def chi2_3_upper(x):
+    """P(chi-squared with 3 degrees of freedom >= x)."""
+    if x <= 0:
+        return 1.0
+    return math.erfc(math.sqrt(x / 2)) + math.sqrt(2 * x / math.pi) * math.exp(-x / 2)
+
+
+def shares_report(runs):
+    """(best shares, p against all four alike, top two together)."""
+    best = slot_shares(runs)
+    lr = 2 * (shares_loglik(best, runs) - shares_loglik((0.25,) * 4, runs))
+    top2 = best[0] + max(best[1], best[3])
+    return best, chi2_3_upper(lr), top2
 
 
 def read_session(capture, order, cuts_arg=None, vcds_path=None):
@@ -831,15 +856,29 @@ def main(argv=None):
                 " ".join("%d:%d" % (k, x) for k, x in enumerate(m))))
         n = sum(total)
         if n:
-            print("pooled: %d of %d on the same slot (%.0f%%, chance 25%%), "
-                  "p = %.2g" % (total[0], n, 100.0 * total[0] / n,
-                                binom_upper(total[0], n, 0.25)))
+            print("pooled: %d of %d on the same slot (%.0f%%, chance 25%%). "
+                  "No p: pairs inside one run are not independent -- "
+                  "--shares is the test" % (total[0], n, 100.0 * total[0] / n))
         return 0
 
     if args.shares:
         runs = []
         for cap in args.captures:
-            runs += slot_runs(idledips.series(cap)[3])
+            got = slot_runs(idledips.series(cap)[3])
+            runs += got
+            if len(args.captures) > 1 and got:
+                b, p, top2 = shares_report(got)
+                print("%-30s runs %3d dips %4d  shares %s  top two %.0f%%  "
+                      "p(all alike) %.2g" % (cap.split("/")[-1], len(got),
+                                             sum(map(len, got)),
+                                             " ".join("%.2f" % x for x in b),
+                                             100 * top2, p))
+        if not runs:
+            print("no run with two dips")
+            return 0
+        b, p, top2 = shares_report(runs)
+        print("pooled: %d dips; top two together %.0f%%; p against all four "
+              "alike %.2g" % (sum(map(len, runs)), 100 * top2, p))
         best = slot_shares(runs)
         lb = shares_loglik(best, runs)
         print("%d runs with two or more dips, %d with three or more" % (

@@ -1299,13 +1299,17 @@ in `tools/test_coastscan.py`. The VCDS logs go to
 leaves the adapter's channel open: send `C\r` to its port. None of this
 is a question for the maintainer.
 
-**And then, every time, the one-cylinder share of the dips** (*the
-maintainer, 14/10/2026*): `python tools/cutscan.py --pairs` on the new
-capture, reported to him as pairs on the same slot, the share against
-chance's 25 % and p — **alone, and pooled with the captures since the
-last repair** — and added under `docs/engine-health/open.md`, *The dips
-keep to one slot*. A capture with injector cuts in it is read with the
-cut minutes left out, or the dead slot makes the pairs.
+**And then, every time, how the dips share out over the cylinders** (*the
+maintainer, 14/10/2026; the method changed at his request 17/10/2026*):
+`python tools/cutscan.py --shares` on the new capture **and on it pooled
+with the captures since the last repair**, reported to him as the share
+the top two slots carry together and p against all four alike, and added
+under `docs/engine-health/open.md`, *The dips keep to one slot*. **If the
+capture has injector cuts in it, `--name` as well**: the cuts name every
+slot through the same run, so its dips are named by cylinder. Both read
+**bridged runs** (`cutscan.bridged_runs`), minutes long; the cut minutes
+are left out by the tool. `--pairs` is kept for history only: pairs
+within one long run are not independent, so it gives no p.
 
 **You cannot hear him.** Nothing in either setup gives you a microphone, so
 a reading taken at the car — a thermometer, a gauge, a sound described —

@@ -219,7 +219,18 @@ class SameSlotPairs(unittest.TestCase):
                      "28_sessionA2_warm_z1.txt", "30_step2b_z1.txt"):
             got = cutscan.slot_pairs(series(os.path.join(FIXTURES, name))[3])
             m = [x + y for x, y in zip(m, got)]
-        self.assertLess(cutscan.binom_upper(m[0], sum(m), 0.25), 0.001)
+        self.assertGreater(m[0] / sum(m), 0.26)
+
+    def test_the_real_idles_are_not_shared_alike(self):
+        """17/10/2026 (open.md, *One cylinder or two*): two neighbours
+        carry about two thirds. If this fails, that section is wrong."""
+        runs = []
+        for name in ("19_postfix_drive_z1.txt", "30_step2b_z1.txt",
+                     "31_step4_drive_z1.txt"):
+            runs += cutscan.slot_runs(series(os.path.join(FIXTURES, name))[3])
+        best, p, top2 = cutscan.shares_report(runs)
+        self.assertLess(p, 1e-6)
+        self.assertGreater(top2, 0.55)
 
 
 class SlotShares(unittest.TestCase):

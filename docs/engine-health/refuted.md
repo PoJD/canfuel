@@ -78,7 +78,12 @@ slot, against a quarter by chance (p ≈ 2×10⁻¹⁰). A cylinder that stumble
 on a few per cent of its strokes hardly moves its mean, which is why the
 periodogram could not see it. Not "dominates" — roughly 45 % of the dips on
 one cylinder, by a model fit — but not four alike either. Back in
-`open.md` as the question `plan.md` step 3.5 answers.
+`open.md` as the question `plan.md` step 3.5 answers. **17/10/2026**:
+the pair figures above were read on runs seconds long and run high; on
+minutes-long runs the dips put about two thirds on **two** neighbours in
+the firing order, and on `31`, where the cuts name the slots, those are
+cylinders 4 and 3 (`open.md`, *One cylinder or two*). Still not four
+alike, and still no outlier in the means.
 
 ### A6. "The evaporative purge" — measured
 

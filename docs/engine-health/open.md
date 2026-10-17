@@ -4507,10 +4507,10 @@ S5 needs no combustion; S11 is a sound outside the cylinder.
   undone; it is older than every replaced part, and S3 survived every
   part (S3); 5/2019's P0172 and P0304 came a year after it.
 - **Against:** a map acts on all four cylinders alike, and **the dips
-  are not shared alike** — 33–38 % of pairs on one slot against chance's
-  25 %, two thirds of the dips on two neighbours, 3 and 4 where named
-  (*The dips keep to one slot*), so at most it lowers the margin until
-  the weakest two show; the idle is held closed loop, by mixture and by speed; the tuner
+  are not shared alike** — two thirds of them on two neighbours in the
+  firing order, 3 and 4 where named (*The dips keep to one slot*, *One
+  cylinder or two*), so at most it lowers the margin until the weakest
+  two show; the idle is held closed loop, by mixture and by speed; the tuner
   called it mild and found nothing at the top of the range; 003's idle
   advance sits inside VW's 0–12° (`vcds.md`), so there is no sign of
   an idle map pushed far.
@@ -4785,6 +4785,17 @@ except the short ones and `26` (3/10, the cover open, 9 % of 23 pairs);
 44 % before the MAF, 33 % on 9/10. Tested against itself: dips planted on
 all four alike give 20–34 %, all on one cylinder 96 %.
 
+⚠ **Every figure from here to *One cylinder or two* was read on runs
+seconds long, and the pair shares are high**: on the bridged runs of
+17/10 the same captures give 22–38 % of pairs on the same slot, 28 % in
+the bulk, which is what two neighbours at about a third each and the
+other two at a sixth predict (0.37² + 0.30² + 2 × 0.16² ≈ 0.28). The short
+runs broke where the engine ran smoothest — a held value is two strokes
+alike — so they kept the rough stretches. The p-values are not valid
+either way on long runs (their pairs are not independent). **The
+direction stands; the sizes and the p are history.** What replaces them
+is the table in *One cylinder or two*.
+
 **What it is, and what it is not:**
 - **Not a recovery echo**: the same-slot pairs are spread over lags of 16
   to 50 strokes and more, and the result holds beyond 40.
@@ -4922,6 +4933,44 @@ even half is p ≈ 10⁻⁵. ⚠ One drive, the first after the new leads.
   half a minute, then the idle left alone for minutes in the same run,
   names every dip in it (*Naming the cylinder*). `plan.md` item 7's
   injectors 1 and 4 already are such a test.
+- **It does not reach across driving** (*the owner's question*, 17/10):
+  above about 1500 rpm 0x280's 10 ms frames come once or twice a stroke,
+  so strokes can no longer be counted, and integrating engine speed over
+  time instead drifts by more than half a stroke within 10 s in 10–30 %
+  of cases even at idle (`31`, `30`, `32`; 371 ppm of steady clock offset
+  on `31` taken out first). **So each stop to be named needs its own cut.**
+
+**By capture, bridged runs** (`cutscan.py --shares`, 17/10/2026; the
+shares in firing order from the slot that leads, p against all four
+alike; a capture with one run cannot place its dips and reads as all
+alike):
+
+| capture | dips | shares | top two | p |
+|---|---|---|---|---|
+| `09` | 18 | 0.56 0.00 0.28 0.17 | 72 % | 0.008 |
+| `18` | 46 | one run | — | — |
+| `19` | 257 | 0.41 0.16 0.17 0.26 | 67 % | 4×10⁻⁵ |
+| `20` | 66 | 0.47 0.09 0.12 0.32 | 79 % | 5×10⁻⁵ |
+| `24` | 154 | 0.32 0.30 0.19 0.19 | 62 % | 0.4 |
+| `25` | 139 | 0.39 0.20 0.14 0.28 | 66 % | 0.011 |
+| `26` | 89 | 0.43 0.16 0.15 0.26 | 69 % | 0.011 |
+| `27` | 155 | 0.39 0.28 0.11 0.23 | 66 % | 0.001 |
+| `28` | 107 | 0.38 0.11 0.14 0.37 | 75 % | 0.002 |
+| `29` | 109 | 0.45 0.32 0.10 0.12 | 77 % | 7×10⁻⁵ |
+| `30` | 262 | 0.43 0.20 0.13 0.24 | 67 % | 5×10⁻⁶ |
+| `31` | 201 | 0.41 0.14 0.17 0.28 | 69 % | 4×10⁻⁵ |
+| `32` | 388 | 0.32 0.27 0.15 0.27 | 59 % | 0.004 |
+| `33` | 53 | one run | — | — |
+| `34` | 55 | 0.38 0.18 0.10 0.34 | 72 % | 0.04 |
+| `35` | 228 | 0.35 0.27 0.12 0.26 | 62 % | 0.18 |
+| `36` | 13 | 0.58 0.16 0.00 0.25 | 84 % | 0.08 |
+| `37` | 66 | 0.38 0.32 0.07 0.23 | 70 % | 0.08 |
+| `38` | 29 | 0.25 0.25 0.25 0.25 | — | 1 |
+| **pooled** | **2,435** | **0.37 0.16 0.16 0.30** | **67 %** | **10⁻³³** |
+
+The top two are neighbours in every capture that places its dips at all
+(the second-largest share sits next to the leader, never opposite it),
+and the weakest captures are the loaded `35` and the short ones.
 ---
 
 
