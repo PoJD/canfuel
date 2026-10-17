@@ -60,6 +60,43 @@ twice, is the whole of what stands between this project and a real check on
 the fuel channel — and the car is now in the state where that check is finally
 worth taking.
 
+### The fill of 2026-10-17 — the first brim with the distance kept
+
+**51.47 litres, off the pump, filled to full** (*owner*), into a tank the
+display read at **1.1 L**; the first fill without the Liqui Moly cleaner
+after its tank (`docs/engine-health/plan.md` item 5). **The odometer read
+about 154,200 km** shortly after, and the instrument cluster's trip was
+zeroed at the pump, so **the cluster's trip carries this tank's
+kilometres** to the next full fill without anybody needing the odometer
+to the kilometre. That makes this step 1 of the procedure below. The
+refuelling reset fired: the converter's trip started from the pump too.
+
+**Read at the next full fill, before the nozzle goes in**: the cluster's
+trip, and the display's `TripDist`, `TripFuel` and `FuelAvg`. Then the
+litres off the pump.
+
+**The converter does not see the whole tank, and that is filled in
+afterwards** (*decided 17/10/2026*). With the USBtin capturing, the MFD
+is out and the converter unpowered (`CLAUDE.md`, *Recording a session at
+the car*), so a captured drive is missing from `TripDist` and `TripFuel`.
+It is not missing from the capture: `tools/replay.py` integrates 0x1A0
+and the 0x480 counter with the same arithmetic, so the captured drives'
+kilometres and microlitres are added to the display's figures by
+replay, not by hand. **A drive with the MFD out and no capture is lost
+outright**, and the comparison then says so rather than guessing it.
+
+⚠ **This tank spans the map going back on 22/10** (`docs/engine-health/plan.md`
+item 5a), which is a line in the table below. Taken anyway, and read as
+one figure over two maps: a ratio near one says both count fuel as the
+pump does; one that is off cannot say which map moved it, and then the
+next tank, all on the stock map, is the check.
+
+**Distance is a second comparison in the same numbers.** On the first
+11 km, with no stop between, the display read **11.3** and the cluster
+**11.1** (*owner*): 0x1A0's speed against the cluster's own calibration,
+neither of them ground truth, and inside the cluster's 0.1 km
+resolution. Over a tankful it becomes a percentage worth reading.
+
 ---
 
 ## What this means for the measurements

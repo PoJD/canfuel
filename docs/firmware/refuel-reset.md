@@ -242,6 +242,16 @@ not have refused five on its own**: at a gain of 0.905 a 6 L fill still shows
 the work**, and what the wide point adds is that the compression is not a
 quirk of the bottom of the travel.
 
+**The fill of 2026-10-17 bears on that 56 L** (*owner*, off the display
+and the pump; `fuel-check.md`): **51.47 L to full into a tank the display
+read at 1.1**. Taken at face value the brim holds about 52.6 L, three and
+a half less than the 0.905 scale's 56 — so either the 2026-09-19 fill
+stopped short of the brim, which was not recorded either way, or the
+near-empty reading hides litres the sender does not report, which the
+0.83 gain at that end would do. **The two cannot be separated from these
+numbers**, and nothing here was calibrated on the 56, so nothing moves.
+The level after this fill reads the ceiling below and gives no gain.
+
 ### The level stops at 51 L, and that is not this firmware
 
 **Owner-reported, off the display and the instrument cluster, 14/10/2026.**
