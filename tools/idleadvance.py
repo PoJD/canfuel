@@ -9,7 +9,7 @@ not kept produces numbers nobody can check.
 A steady warm idle is `STEADY` consecutive 003 samples at 740-900 rpm with
 the throttle plate at 4.5 deg or less -- the same window the plate-angle
 table in open.md (H8) uses -- split by air mass, because the A/C adds about
-1 g/s. 003's fourth field is the advance in deg before TDC; a negative value
+1 g/s and so does a cold engine. 003's fourth field is the advance in deg before TDC; a negative value
 is a spark after TDC. VW's figure for block 003 at idle is 0-12 deg BTDC
 (docs/engine-health/vcds.md).
 
@@ -27,7 +27,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 STEADY = 5
 RPM = (740.0, 900.0)
 PLATE_MAX = 4.5
-AIR_SPLIT = (3.5, 3.6)   # g/s: at or below the first, no A/C; above the second, A/C
+AIR_SPLIT = (3.5, 3.6)   # g/s: the A/C or a cold engine puts the air above the second
 
 
 def steady_advance(path):
