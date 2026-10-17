@@ -28,6 +28,14 @@ Claude runs the capture on every drive.
    Claude runs the capture; VCDS on **014, 003**; 055 once at the end,
    warm idle; on one of them **one held full-throttle pull in 4th**,
    with VCDS on **014, 003, 020** for that drive.
+   - **On one of these drives, two or three stops with a cut**, oil at
+     95–100 °C: neutral, handbrake on, loads off. **Injector 1's
+     connector off for 30 s** (injector 4 if 1 cannot be reached), by
+     the connector body with the clip pressed, gloves; back on. **Then
+     at least 3 minutes of idle, nothing touched** — no throttle, no
+     steering, no loads. Write each off and on into the chat. A
+     flashing lamp is expected; clear the fault memory with VCDS after
+     the drive.
 6. **On the next tank: two or three ordinary drives, warm**, on
    different days. Claude runs the capture; VCDS on **014, 003, 020**;
    055 once at the end, warm idle. Write the stops.
@@ -43,13 +51,6 @@ Claude runs the capture on every drive.
      ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
      Penetrating oil on the studs the days before; a snapped stud goes
      to a garage.
-   - **Injectors 1 and 4 again, warm idle** — as on 10/10: oil at
-     95–100 °C, neutral, handbrake on, loads off; Claude runs the
-     capture, VCDS on **014, 055, 003**; 1 min as it is; **1, 4, 4, 1**,
-     each connector off **1 min** (30 s at the least) and back on for
-     **30 s**, by the connector body with the clip pressed, gloves; 1 min
-     as it is, engine off. Write every off and on into the chat; a
-     flashing lamp is expected. Clear the fault memory with VCDS.
    - **The high-voltage side in the dark**, a damp evening, warm idle:
      bonnet open, lights off, look along the leads and the coil for a
      spark or a blue glow; then a fine water mist over one lead at a time
@@ -306,7 +307,25 @@ what is left, if Claude asks for it after item 6. The owner works
    3/10/2026); the suffix differs by model and year; the studs into the
    head are 26 years old. **Nothing leaks ahead of the probe** → H2 is
    refuted for its zone and goes to `refuted.md`.
-**Item 7 — injectors 1 and 4 again** (*the owner's proposal, 9/10/2026*; `open.md`,
+**The stop cuts in item 5a** (*owner's decision*, 17/10/2026; `open.md`,
+*One cylinder or two*). **They replace item 7's injectors 1 and 4**,
+whose reasoning stays below for the criteria. Since 17/10 the cylinder
+phase holds for minutes at idle, so one cut names every dip in the idle
+run it sits in, up to the moment the car moves (`cutscan.py --name`);
+it does not reach across driving, so each stop needs its own cut. One
+cut of 30 s is enough to fix the slot (`31`'s cuts held it through 430
+s); the 3 minutes after it are what is named, about 20–40 dips a stop,
+so two or three stops give more named dips than all of `31`. After the
+map, because the question is whether the dips are still on **3 and 4**
+on the stock map and the cleaner: the same pair → the map was not what
+weakened them, and the hypotheses that act on that pair (`open.md`, the
+ranked list) stand; a different pair, or all four alike → the map or
+the cleaner moved it. Injector 1 rather than 4 so that the suspect
+cylinder runs throughout. Read with `--name` on each stop and `--shares`
+pooled.
+
+**Item 7 — injectors 1 and 4 again** (*superseded 17/10/2026 by the
+stop cuts above*; *the owner's proposal, 9/10/2026*; `open.md`,
    *Naming the cylinder*). It is also `docs/firmware/open.md` question
    11's deliberate misfire, brought forward at the owner's decision the
    same day. With a connector off, that cylinder gets no fuel, so the
