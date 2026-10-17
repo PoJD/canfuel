@@ -4974,7 +4974,11 @@ even half is p ≈ 10⁻⁵. ⚠ One drive, the first after the new leads.
   so strokes can no longer be counted, and integrating engine speed over
   time instead drifts by more than half a stroke within 10 s in 10–30 %
   of cases even at idle (`31`, `30`, `32`; 371 ppm of steady clock offset
-  on `31` taken out first). **So each stop to be named needs its own cut.**
+  on `31` taken out first). Counting 0x280's frames as the clock instead
+  is far worse (tens of strokes a minute): the frames are not periodic,
+  7–21 ms apart. Keeping the phase across a minute at 2500 rpm needs the
+  angle right to about 0.01 %; the integral holds about 0.3 % (*the
+  owner's question*, 17/10). **So each stop to be named needs its own cut.**
 
 **By capture, bridged runs** (`cutscan.py --shares`, 17/10/2026; the
 shares in firing order from the slot that leads, p against all four
