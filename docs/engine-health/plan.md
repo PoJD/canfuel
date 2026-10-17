@@ -17,16 +17,13 @@ records it**, and the file is deleted when it is empty.
 One at a time; Claude says after each whether the next is needed.
 Claude runs the capture on every drive.
 
-5. **The can is in (15/10). Drive the tank as usual**, captures or not.
+5. **The can's tank is driven (17/10); no second can.** Drive this
+   tank as usual, captures or not.
    - **`IdleHealth` off the display, through both tanks after the can:**
      on drives where the oil reaches **95–100 °C** on the display, at one stop of **at
      least a minute with every load off but the lights**, which stay
      on. Write into the chat: date, oil temperature, **where
      `IdleHealth` mostly sat and the lowest it touched**.
-   - **If Claude reads the idle as better after the tank, even a
-     little: one can into each of the next one or two tanks**, the same
-     dose, the same fuel. **After the last can's tank: engine oil and
-     filter changed.**
 5a. **22/10: the original map written back** at the tuner; the ECU
    comes out of the car. Then **two or three ordinary warm drives**:
    Claude runs the capture; VCDS on **014, 003**; 055 once at the end,
@@ -222,7 +219,14 @@ is not known. Varnish is also what sticks a hydraulic lifter, so it
 would work against the cure. **Hence the oil change after the course**;
 the oil is from 6/2026 anyway. Loosened carbon can lodge under a valve
 for a while (*general*), so a rough patch during the course is read
-against the next tank, not as a verdict. **The usual fuel, OMV MaxxMotion 100**, so that the can is the
+against the next tank, not as a verdict. **The first tank read no
+better** (17/10/2026, `idle-log.md`): loads off, `IdleHealth` 70–90 at
+99 °C of oil, inside the 50–90 the display has wandered over since 12/10
+and at its rough end. So **no second can** — the owner had already
+filled without one — and **no oil change is owed to the cleaner**
+(*decided 17/10/2026*): it was the price of a course, and one can at the
+maker's dose is the maker's own use of it. Not a verdict on the can
+either: that stays item 6's reading, below. **The usual fuel, OMV MaxxMotion 100**, so that the can is the
 only thing that changes. **How it is
 read**: the drives of item 6 against `30`, `31` and 14/10's gauge session (`33`, `34`) —
 014 by stop and `IdleHealth` by oil band (`open.md` S1, S3), adaptations

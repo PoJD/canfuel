@@ -1054,6 +1054,26 @@ is read against on 22/10.
 **What it is not known to have achieved:** why the ECU was taking advance
 away in August is reasoned, not measured.
 
+**17/10/2026 — the can's tank driven, and refilled without one**
+(*owner*, off the display, no capture; `plan.md` item 5). Brisk motorway
+driving again; the engine pulled normally. At a warm stop, oil 99 °C:
+**`IdleHealth` mostly 70–90 with the loads off** but the lights, and
+**down to about 40 at its lowest with every load on**. The tank was run
+down to 1.1 l on the display and **refilled to full with
+OMV MaxxMotion 100 and no cleaner**, the treated litre left in it mixed
+through. `FuelAvg` read **10.3 l/100 km** before the fill (*owner*: much
+of it hard and high in the revs).
+
+Read against the readings since the can (`plan.md` item 5): 15/10 54
+and ~80, 16/10 50–70, now 70–90 — the same range as 12/10's 50–61 and
+`30`/`31`'s 77–89 before it, at the rough end. **No better**, so no
+second can (`plan.md`, Part 2).
+
+**What it is not known to have achieved:** the can's effect, either way.
+The display wanders from window to window and these are a driver's
+readings of it; item 6's drives are the reading, and the map goes back
+on 22/10 before them.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
