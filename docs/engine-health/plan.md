@@ -23,6 +23,10 @@ Claude runs the capture on every drive.
      least a minute with every load off but the lights**, which stay
      on. Write into the chat: date, oil temperature, **where
      `IdleHealth` mostly sat and the lowest it touched**.
+   - **If Claude reads the idle as better after the tank, even a
+     little: one can into each of the next one or two tanks**, the same
+     dose, the same fuel. **After the last can's tank: engine oil and
+     filter changed.**
 5a. **22/10: the original map written back** at the tuner; the ECU
    comes out of the car. Then **two or three ordinary warm drives**:
    Claude runs the capture; VCDS on **014, 003**; 055 once at the end,
@@ -193,8 +197,25 @@ chemistry aimed at inlet-valve and chamber deposits (*general*). The
 the injector sprays onto the back of the inlet valve, so fuel with the
 cleaner in it washes exactly where port-injection deposits sit
 (*reasoned*). **Dose and interval are the maker's**: 120 ml for 30–50 l,
-and no sooner than every 5,000 km, so it is **one treatment**, not a
-course. **The usual fuel, OMV MaxxMotion 100**, so that the can is the
+and no sooner than every 5,000 km ("at the earliest", the maker's
+wording on the retail listing), so it is **one treatment**, not a
+course. **A course of two or three tanks if the first helps**
+(*owner's decision*, 17/10/2026): deposits of a decade or more do not
+come off in one tank (*general*), so a first sign is a reason to go on
+rather than to stop. **It knowingly departs from the maker's interval**,
+which gives no reason and no overdose data. *Reasoned, from the
+chemistry*: the dose per litre stays the maker's, which is what does the
+cleaning — twice the cleaner in one tank is not twice the cleaning; PEA
+is ashless and metal-free, so the converter and the probes are not at
+risk; **the oil is**: fuel and its additive reach the crankcase past the
+rings, and an SAE study of PEA cleaners at high treat rates (SAE
+2020-01-2100) found one PEA chemistry (PO-PEA) forming varnish and
+sludge in the oil and another (BO-PEA) not — which one Liqui Moly uses
+is not known. Varnish is also what sticks a hydraulic lifter, so it
+would work against the cure. **Hence the oil change after the course**;
+the oil is from 6/2026 anyway. Loosened carbon can lodge under a valve
+for a while (*general*), so a rough patch during the course is read
+against the next tank, not as a verdict. **The usual fuel, OMV MaxxMotion 100**, so that the can is the
 only thing that changes. **How it is
 read**: the drives of item 6 against `30`, `31` and 14/10's gauge session (`33`, `34`) —
 014 by stop and `IdleHealth` by oil band (`open.md` S1, S3), adaptations
