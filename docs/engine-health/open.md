@@ -90,7 +90,11 @@ Everything else settled against is in `refuted.md`.
   than the other three by hand** (15/10, H4 test 1e) explains 4 at most,
   not 3; then **H14**, the remap
   of 6/2018 (added 16/10 at the owner's request), as a margin taken from
-  all four, read when the original map goes back on 22/10; then **H2**, the
+  all four, read when the original map goes back on 22/10; then **H15**,
+  the aftermarket leads (added 17/10 at the owner's request): VW
+  originals were decided on 9/10 and NGK went in, and a genuine set is
+  the cheap swap after the map — against it, a clean engine under load
+  and two cylinders on separate leads; then **H2**, the
   exhaust ahead of the probe, down from 1: nothing cold, and it acts on
   all four alike (*The idle's candidates, ranked*). **H11**, both lambda probes shifted alike, is
   written down last (10/10, at the owner's request) so that it is not
@@ -280,7 +284,7 @@ So that row is closed; `refuted.md` A8 carries it.
 
 **The old leads are not kept** (*owner, 27/9*), so the August ignition
 cannot be put back; a set of genuine VW leads is the only way to test the
-NGK ones (H4).
+NGK ones (H15).
 
 **Load at idle smooths it, 26/9/2026 — repeated.** *Owner-observed off the
 display*, warm after ~100 km, standing: with headlights, blower and A/C on,
@@ -496,7 +500,7 @@ cylinders run at the edge of stable combustion at the idle's charge**,
 and anything that takes a little charge away tips them over. It is a
 property, not a part: what narrows that edge at light load is a valve
 that seals worse at low cylinder pressure (H1), dilution by a small leak
-(H3), a late cam (the belt a tooth out, ranked 10), or the engine's own
+(H3), a late cam (the belt a tooth out, ranked 11), or the engine's own
 margin (H0) — **it does not choose between them**. It argues against a
 fault that does not care about the charge: an intermittent wire, a
 crank-sensor artefact (which would repeat at 360°, not 720°).
@@ -3191,7 +3195,7 @@ neutral 026 holds. **The leads fitted on 17/9 are NGK**, i.e. aftermarket
 and not VW's thick originals. In the thread, NGK leads did not help its
 original poster and one poster's new aftermarket (Beru) leads made his engine
 misfire until he went back to the originals — a lead, cheap to test by
-borrowing a genuine VW set.
+borrowing a genuine VW set. **Now its own hypothesis, H15** (17/10/2026).
 
 ### H5. Something in the cylinder 4 knock window that is not the engine's combustion (S4 + S5 only)
 
@@ -4564,6 +4568,78 @@ S5 needs no combustion; S11 is a sound outside the cylinder.
    retard on cylinder 4 (S4). A calmer idle with the advance moved → H14;
    with the advance where it was → the cleaner or the adaptations.
 
+### H15. The aftermarket leads (and plugs) — a set that fits all four slightly wrong
+
+*Added 17/10/2026 at the owner's request*, as the fallback if the idle is
+the same on the original map. Until now it sat inside H4 as one sentence
+(*a lead, cheap to test by borrowing a genuine VW set*), where it did not
+belong: H4 is the spark **not** in the parts, and this is the parts.
+
+**The claim.** Not one bad lead, which the new set of 10/10 would have
+taken away, but **a design that sits wrong on this engine's plugs, in
+every set of it**. The leads on the car since 17/9 are NGK — the garage's
+set, then NGK `RC-VW254` from 10/10 — and **the 12/2022 set's maker is
+not recorded**; its plugs are in `vehicle-history.md`'s photograph of
+17/9 and their print cannot be read there. **VW originals were decided on
+9/10** (ranked list, row H4) **and NGK went in instead**, so the swap the
+idle was going to be read on has never happened.
+
+**What it rests on:**
+
+- **The Polish AQY thread** (H4): one poster's new aftermarket Beru leads
+  made the engine misfire until he went back to VW's thick originals.
+  One poster, a forum; the thread's original poster had NGK leads and
+  they did not help him. **The thread names leads, not plugs.**
+- **The plug ends.** The old NGK set came off far more easily than the
+  new one went on, and lead 4's end was scored inside with its terminal
+  set back (H4 test 1d); the new lead 4 still sits looser than the other
+  three after a reseat (H4 test 1e, 15/10). A boot that grips a plug's
+  post loosely is a contact that can arc (*general*).
+
+**Why it is weak, and the reasoning is general, not this car's:**
+
+- **Only at idle, and well under load.** A spark needs the least voltage
+  at idle, where the charge is thinnest in pressure; a lead that leaks
+  its spark or a boot that arcs shows first under load and in the damp
+  (*general*). This engine is the other way round — the motorway pulls
+  are clean and the warm idle is not.
+- **Two cylinders, 3 and 4** (*One cylinder or two*), on separate leads
+  and different coil outputs. One poor fit explains one of them; the
+  other needs the whole set to be marginal, and then the other two
+  cylinders should show it too.
+- **The leads changed on 10/10 and 014 did not** (S3, *The drive after
+  the new leads*). That compares NGK with NGK, so it does not test this —
+  but it does say a fresh boot on every plug moved nothing.
+- **Load calms the idle while the supply sags 1.25 V** (H4). That is
+  about the feed, not the leads, so it argues only weakly here.
+
+**The plugs** are kept in the name and not in the test. NGK `BKUR6ET-10`
+on both sets since 17/9; whether it is the type VW lists for this engine
+is not checked here and is read at the VW parts counter by VIN, with the
+leads. A plug of the right heat range and gap is a commodity (*general*),
+and the 12/2022 set was destroyed by the engine's running, not by its
+make (`vehicle-history.md`).
+
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 |
+|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | ~ | — | ~ |
+
+S1, S2, S3 and S14 as misfires and their unburnt charge, all ~ because a
+spark fault should be worse under load and is not; S4 and S5 because an
+arcing end on lead 4 could put noise into cylinder 4's knock window;
+S11 is a sound outside the cylinder.
+
+**Tests:**
+
+1. **A genuine VW set of leads, bought by VIN at the counter**, with the
+   plug type checked there at the same time. Fitted cold, each end pushed
+   home until it clicks, and then **two or three warm stops**: `IdleHealth`
+   loads off at 95–100 °C, 014, and the dips by cylinder against `31`.
+   Calmer, with the dips off 3 and 4 → it was here. The same → H15 is
+   refuted, and H4's spark side with it.
+2. *Cheaper, narrower:* lead 4 alone. It can clear or name cylinder 4,
+   and says nothing about cylinder 3.
+
 ## What the forums say about this idle — searched 27/9/2026
 
 A fresh sweep for the idle and the misfires alone (S1–S3), in German,
@@ -5294,6 +5370,14 @@ four alike — H14, H2, H0, H7, H8, the belt, H11 — can only be the margin
 the pair falls through first, and stays below. ⚠ The pair is named on one
 drive; the other captures have the same shape with no name, and item
 5a's stop cuts name it again (`plan.md`).*
+*Re-read 17/10/2026 when **H15, the aftermarket leads**, was added at
+the owner's request: no symptom added or closed. **It goes in at 6**
+(*decision*): below H14, which is being tested on 22/10 anyway, and
+above H2 and everything that acts on all four alike, because its test is
+cheap, reversible and takes nothing apart, and lead 4 is a part on one of
+the two named cylinders. It stays below H4's injector loom because the
+shape (3 and 4, separate leads) and the clean pulls are against it. The
+rest from H2 down one.*
 
 **More than one at once** (*the owner's point*, 12/10/2026). The
 ranking reads each hypothesis as the whole cause, and it need not be:
@@ -5312,13 +5396,14 @@ repair is read as a share, not as a miss.
 | 3 | **H13 — deposits after years of gentle driving** | the owner's history (15/10): the engine seldom above 3000 rpm for at least nine years and perhaps fifteen; fits every margin property of S1 — roughest cold, calmer under load, a charge one per cent smaller enough to fail one combustion, one cylinder ahead of the rest with no part naming it — and nothing in the repairs touched it. Against: premium fuel with detergents since 2017; compression 12 bar and even; the vacuum gauge steady | **the PEA cleaner over the tank, under way** (`plan.md` item 5), with regular hard driving; a borescope if it is wanted sooner |
 | 4 | **H4 — the electrical feed to the spark** | **17/10, against the spark side: the dips sit on 3 and 4** (*One cylinder or two*), which have separate leads and plugs and sit on different coil outputs (1+4, 2+3), and the same two-neighbour shape was there before the new plugs and leads of 10/10 and after them; the supply acts on all four. **What is left is the injector loom where it reaches 3 and 4**, taped, oily and shared by the two (H7 test 3) | harness 26 years old. Against: better with loads on, when the supply sags 1.25 V **4/10: the pattern fits only in form** — a coil that breaks down hot is the textbook case, but **the coil is from 6/2026**, and the 3/10 oil sat **only on the outside of its plastic and on the outsides of the leads of 3 and 4, wiped dry** (*owner*, 4/10/2026) **9/10: the dips keep to one slot — for the high-voltage side of one lead or tower (test 1e), against the supply side** **9/10, for — the first named part: plug 4's terminal burnt black by 1/10, the plug-end boots never click, one plug end crusted, the owner pulls them by hand (1d)** | **new plugs and leads, VW originals** (*owner's decision, 9/10*, `plan.md` step 3.3), and the drive after: the dips back to a quarter of pairs on one slot → it was here **10/10, done: a quarter (26 %) on the first drive, but 014 counting as before — so not the misfires; the one-cylinder share of the dips, if two or three more drives hold** **12/10, against: back on one slot, 38 % (p = 0.001) — the leads did not take the share either** **12/10, for: lead 4's plug end felt the least firm when fitted (owner, test 1e), on the cylinder S4, S5 and the old plug 4 point at; reseated the same day: all four sit alike, lead 4 sound — nothing (test 1e)** |
 | 5 | **H14 — the remap of 6/2018** | the one change to the engine's control nothing has undone, older than every replaced part; it can reach the idle through its ignition (the governor's margin), the detection's calibration and the overrun's fuel cut (S14); 5/2019's P0172 and P0304 a year after it. Against: a map acts on all four alike and the dips keep to one slot; a fuel change at idle would sit in 032, which reads small; mild by the tuner's word; the idle advance inside VW's range. Added 16/10 at the owner's request | **the original map, 22/10** (`plan.md` item 5a), read on what the cleaner does not move: 003's idle advance, the fuel cut by `coastscan.py`, 014 against `IdleHealth`, 020 on the pull (H14 test 1) |
-| 6 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing **4/10: the hiss stayed after 1b, from the back (S11), and 014 came back only after a hard drive — heat from load, which opens a crack or a gasket; the owner's lead.** Still against: it has to act through the lambda control, which B3's 033 shows **4/10 evening, against:** at B1 033's median was −0.8 %, not the positive correction air at the probe would force, and B counted on a cold idle **9/10, against it as the dips' cause: they keep to one slot, and air at the shared probe acts on all four alike** — its sounds (S2, S11) are its own either way **12/10: S15 closed, gone with the joint behind the converter — H2's one heard leak withdrawn** | the owner's tailpipe test, and a new manifold if it leaks there (`plan.md` step 3, *owner's decision, 3/10*) **12/10, against: the tailpipe test found nothing cold, and the dips are back on one slot (38 %) — an exhaust leak ahead of the shared probe acts on all four alike. The warm test is still owed (`plan.md` item 7)** |
-| 7 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 **4/10, against:** ~~zero at both warm stops is not what a normal-for-the-engine idle does on a counter that read 10–20 a minute there~~ *withdrawn 9/10: those zeros came on fresh adaptations (`refuted.md` C19)* **9/10, against: the dips keep to one slot rather than spreading over four alike** — weakly: nobody knows how a healthy AQY shares them | a healthy AQY recorded (H0 test 1) |
-| 8 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero **4/10: the pattern fits only in form** — fuel heat-soaked at the rail after a hard drive; against, the return-flow rail keeps fuel moving, heat soak is a hot-*restart* effect, and the coolant read the same at A3's zero **9/10, against: rail pressure acts on all four alike, and the dips keep to one slot** **10/10, against (the owner's argument): low pressure shows at full load first, where the engine is well, and a steady error shows in 032, near zero** | a fuel pressure gauge — **not bought** (*owner*, 10/10) |
-| 9 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) **4/10 evening:** a new throttle passing more at rest than the ECU's model would also make it learn air away (`refuted.md` C19) **9/10, against: the throttle feeds all four alike, and the dips keep to one slot** | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `idle-log.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
-| 10 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
-| 11 | **H11 — both lambda probes shifted alike** | the only part of the mixture control not changed, 10/2017; no probe test sees a shift; soot on three plugs. Against: 032 + 033 near zero on a new MAF and new injectors bounds it to a few per cent, and with the wrong sign — negative, the ECU taking fuel out; a few per cent does not misfire | a **four-gas analyser** at the emissions station (H11 test 1) |
-| 12 | **H12 — driveline play read as misfires** | **17/10, against: play repeats every 360°, which is the pairs 1+4 and 2+3; the dips sit on 3 and 4, 180° apart**; load calms the idle, and the dips follow torque trims down, both of which play would also do. Against: the MAF swap and the learned idle air move it, which play would not; the 720° slot pattern (to 9/10); a burned-through converter; the cut test's exact codes **12/10, against: the clutch minutes cleared the gearbox side, the pulley looked fine, and the puffs (S2) come with the dips** | the flywheel alone is left, from the parts catalogue by VIN, only if something points there |
+| 6 | **H15 — the aftermarket leads (and plugs)** | VW originals were decided on 9/10 and NGK went in, so a genuine set has never been on the car since 17/9 and perhaps not since 2022; lead 4 still sits looser than the rest (H4 test 1e); one forum case of aftermarket leads misfiring until originals went back. Against: the engine is clean under load, where a spark fault shows first; the dips sit on 3 and 4, separate leads on separate coil outputs; new boots on 10/10 moved nothing. Added 17/10 at the owner's request | **a genuine VW set by VIN**, the plug type checked at the counter, then two or three warm stops (H15 test 1) |
+| 7 | **H2 — an exhaust leak ahead of the probe** | explains the puff and possibly S11's hiss; the zone is now only the **original manifold, its gasket to the head and the probe boss** — the new flange is behind the probe (28/9), and the puff is older than the 10/9 exhaust work (S2). Against: air outside the cylinder does not stop it firing **4/10: the hiss stayed after 1b, from the back (S11), and 014 came back only after a hard drive — heat from load, which opens a crack or a gasket; the owner's lead.** Still against: it has to act through the lambda control, which B3's 033 shows **4/10 evening, against:** at B1 033's median was −0.8 %, not the positive correction air at the probe would force, and B counted on a cold idle **9/10, against it as the dips' cause: they keep to one slot, and air at the shared probe acts on all four alike** — its sounds (S2, S11) are its own either way **12/10: S15 closed, gone with the joint behind the converter — H2's one heard leak withdrawn** | the owner's tailpipe test, and a new manifold if it leaks there (`plan.md` step 3, *owner's decision, 3/10*) **12/10, against: the tailpipe test found nothing cold, and the dips are back on one slot (38 %) — an exhaust leak ahead of the shared probe acts on all four alike. The warm test is still owed (`plan.md` item 7)** |
+| 8 | **H0 — normal for this engine** | any engine idles least steadily at its lightest load; nothing has ever been compared. Against: 014 reads 12–120 against VW's 0–5 **4/10, against:** ~~zero at both warm stops is not what a normal-for-the-engine idle does on a counter that read 10–20 a minute there~~ *withdrawn 9/10: those zeros came on fresh adaptations (`refuted.md` C19)* **9/10, against: the dips keep to one slot rather than spreading over four alike** — weakly: nobody knows how a healthy AQY shares them | a healthy AQY recorded (H0 test 1) |
+| 9 | **H7 — rail pressure** | the regulator and pump never gauged; mixture sensitivity. Against: trims near zero **4/10: the pattern fits only in form** — fuel heat-soaked at the rail after a hard drive; against, the return-flow rail keeps fuel moving, heat soak is a hot-*restart* effect, and the coolant read the same at A3's zero **9/10, against: rail pressure acts on all four alike, and the dips keep to one slot** **10/10, against (the owner's argument): low pressure shows at full load first, where the engine is well, and a steady error shows in 032, near zero** | a fuel pressure gauge — **not bought** (*owner*, 10/10) |
+| 10 | **H8 — throttle body and idle control** | original part, all four cylinders. Against: the dip is one firing, not a hunting loop; found clean in 6/2026; **the idle angle in every VCDS log is steady and the misfires do not move with it** (27/9) **4/10 evening:** a new throttle passing more at rest than the ECU's model would also make it learn air away (`refuted.md` C19) **9/10, against: the throttle feeds all four alike, and the dips keep to one slot** | **replaced inside the valve cover job** (owner's decision, 29/9, reversing 28/9's separate step; `idle-log.md`, *The valve cover and throttle job*), so its effect no longer shows alone — only the kept old part, refitted for a day, can name it. **S13** (its routine at every ignition-on) now sits here too, most likely the unit's normal behaviour by owners' reports; **the old part timed at 20 s before and after a completed 098** (29/9), so not an unfinished adaptation — **and the new part the same, 2/10: S13 closed, nothing left of it for H8** |
+| 11 | **the timing belt a tooth out** | belt from 10/2017. Against: even compression, the torque plateau is reached | the marks (VW's manual), **not done in the valve cover job** — owner's decision, 28/9 |
+| 12 | **H11 — both lambda probes shifted alike** | the only part of the mixture control not changed, 10/2017; no probe test sees a shift; soot on three plugs. Against: 032 + 033 near zero on a new MAF and new injectors bounds it to a few per cent, and with the wrong sign — negative, the ECU taking fuel out; a few per cent does not misfire | a **four-gas analyser** at the emissions station (H11 test 1) |
+| 13 | **H12 — driveline play read as misfires** | **17/10, against: play repeats every 360°, which is the pairs 1+4 and 2+3; the dips sit on 3 and 4, 180° apart**; load calms the idle, and the dips follow torque trims down, both of which play would also do. Against: the MAF swap and the learned idle air move it, which play would not; the 720° slot pattern (to 9/10); a burned-through converter; the cut test's exact codes **12/10, against: the clutch minutes cleared the gearbox side, the pulley looked fine, and the puffs (S2) come with the dips** | the flywheel alone is left, from the parts catalogue by VIN, only if something points there |
 
 **Tools worth owning for this, cheapest first** (*general*; prices not
 recorded here, since they move):
