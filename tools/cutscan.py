@@ -60,6 +60,7 @@ Usage
     python cutscan.py --scan CAPTURE                   # the per-run deficits
     python cutscan.py --pairs CAPTURE [...]            # no cuts: same-slot dips
     python cutscan.py --shares CAPTURE [...]           # one cylinder or two
+    python cutscan.py --name CAPTURE                   # cuts in it: name the dips
 """
 
 from __future__ import annotations
@@ -571,24 +572,134 @@ def slot_pairs(gated, min_lag=PAIR_MIN_LAG):
     return by_mod
 
 
-def slot_runs(gated, min_lag=PAIR_MIN_LAG, skip_cuts=True):
-    """[[slot of each dip, mod 4], ...] for every phase-intact run holding two
-    or more dips at least `min_lag` strokes apart. Runs that touch an
-    injector cut (`find_cuts`, padded by 5 s) are left out when skip_cuts."""
-    runs = stroke_runs(gated)
-    cuts = find_cuts(runs) if skip_cuts else []
-    out = []
-    for run in runs:
-        t0, t1 = run[0][0], run[-1][0]
-        if any(a - 5 <= t1 and t0 <= b + 5 for a, b in cuts):
+#: A held value lasting this many stroke-times or more hid a stroke. Read off
+#: the injector cuts of `31` (16/10/2026), where the dead cylinder says how
+#: many strokes each hold really was: one stroke held for 1.35-1.64 stroke
+#: times, two for 1.83-2.20, nothing between. A stroke runs long because the
+#: frames are 10 ms apart and because a dip slows the crank.
+HOLD_SPLIT = 1.75
+
+
+def bridged_runs(gated, t_from=None, t_to=None):
+    """Runs of (time, rpm, stroke index) that keep the phase across a held
+    value: a hold of r stroke-times counts as one stroke below HOLD_SPLIT
+    and as int(r - HOLD_SPLIT) + 2 above it, so the index skips the hidden
+    stroke instead of the run breaking. Broken only where the idle gate is.
+
+    Checked against the cuts of `31`: one run of 430 s across all four cuts
+    (1, 4, 4, 1) puts cylinder 1 on one slot both times and cylinder 4 two
+    slots from it both times, as the firing order 1-3-4-2 must."""
+    out, cur, prev, pt, idx = [], [], None, None, 0
+
+    def flush():
+        if len(cur) >= MIN_RUN_STROKES:
+            mean = sum(r for _, r, _ in cur) / len(cur)
+            if IDLE_RPM[0] <= mean <= IDLE_RPM[1]:
+                out.append(list(cur))
+
+    for t, q4, throttle, speed in gated:
+        if (t_from is not None and t < t_from) or (t_to is not None and t >= t_to):
             continue
+        if (speed > idledips.GATE_SPEED_MMH or throttle > idledips.GATE_THROTTLE
+                or q4 == 0):
+            flush()
+            cur, prev, idx = [], None, 0
+            continue
+        if prev is None:
+            prev, pt = q4, t
+            continue
+        if q4 == prev:
+            continue
+        r = (t - pt) / (60.0 / (prev / 4.0) / 2.0)
+        cur.append((pt, prev / 4.0, idx))
+        idx += 1 if r < HOLD_SPLIT else int(r - HOLD_SPLIT) + 2
+        prev, pt = q4, t
+    flush()
+    return out
+
+
+def indexed_dips(run):
+    """Stroke indices of dips in a bridged run -- slot_dips() over an index
+    that may skip: each stroke against the same slot either side of it."""
+    v = {i: r for _, r, i in run}
+    out, prev = [], False
+    for i in sorted(v):
+        same = [v[j] for j in range(i - 4 * DIP_NEIGHBOURS,
+                                    i + 4 * DIP_NEIGHBOURS + 1, 4)
+                if j != i and j in v]
+        if len(same) < 2 * DIP_NEIGHBOURS - 2:
+            prev = False
+            continue
+        low = statistics.median(same) - v[i] >= DIP_RPM
+        if low and not prev:
+            out.append(i)
+        prev = low
+    return out
+
+
+def slot_runs(gated, min_lag=PAIR_MIN_LAG, skip_cuts=True):
+    """[[slot of each dip, mod 4], ...] for every bridged run holding two or
+    more dips at least `min_lag` strokes apart. Dips within 5 s of an
+    injector cut (`find_cuts`) are left out when skip_cuts."""
+    cuts = find_cuts(stroke_runs(gated)) if skip_cuts else []
+    out = []
+    for run in bridged_runs(gated):
+        tt = {i: t for t, _, i in run}
         kept = []
-        for i in slot_dips(run):
+        for i in indexed_dips(run):
+            if any(a - 5 <= tt[i] <= b + 5 for a, b in cuts):
+                continue
             if not kept or i - kept[-1] >= min_lag:
                 kept.append(i)
         if len(kept) >= 2:
             out.append([i % 4 for i in kept])
     return out
+
+
+FIRING_ORDER = (1, 3, 4, 2)
+
+
+def named_idle_dips(gated, order):
+    """Dips named by cylinder, in a capture with injector cuts in it.
+
+    Within one bridged run every cut names its slot: the dead cylinder is
+    the low one. The firing order then names the other three. Every dip in
+    the same run outside the cuts (5 s margin) gets its cylinder. Returns
+    {cylinder: dips}, the strokes examined, and how many cuts agreed with
+    the firing order; a run whose cuts disagree is skipped."""
+    cuts = find_cuts(stroke_runs(gated))
+    if len(cuts) != len(order):
+        raise SystemExit("found %d cuts, the order names %d" % (len(cuts), len(order)))
+    counts = {c: 0 for c in FIRING_ORDER}
+    strokes = 0
+    agreed = 0
+    for run in bridged_runs(gated):
+        slot_of = {}
+        for (a, b), cyl in zip(cuts, order):
+            w = [(i, r) for t, r, i in run if a + 5 <= t < b - 5]
+            if len(w) < 100:
+                continue
+            med = [statistics.median([r for i, r in w if i % 4 == k])
+                   for k in range(4)]
+            dead = min(range(4), key=lambda k: med[k])
+            # slot of cylinder 1 implied by this cut
+            slot_of.setdefault(cyl, []).append(dead)
+        implied = set()
+        for cyl, slots in slot_of.items():
+            for d in slots:
+                implied.add((d - FIRING_ORDER.index(cyl)) % 4)
+        if len(implied) != 1:
+            continue
+        agreed += sum(len(v) for v in slot_of.values())
+        base = implied.pop()
+        tt = {i: t for t, _, i in run}
+        for i in indexed_dips(run):
+            if any(a - 5 <= tt[i] <= b + 5 for a, b in cuts):
+                continue
+            counts[FIRING_ORDER[(i - base) % 4]] += 1
+        strokes += sum(1 for t, _, _ in run
+                       if not any(a - 5 <= t <= b + 5 for a, b in cuts))
+    return counts, strokes, agreed
 
 
 def shares_loglik(shares, runs):
@@ -607,7 +718,8 @@ def slot_shares(runs, iters=500):
     firing order. Pairs alone fix only how the dips repeat (their
     autocorrelation) and cannot tell one cylinder carrying half from two
     neighbours in the firing order carrying 40 % each; a run with three or
-    more dips carries their order, and that is what this reads."""
+    more dips carries their order, and that is what this reads. The runs
+    are bridged ones (`bridged_runs`), minutes long, so most carry many."""
     p = [0.4, 0.3, 0.1, 0.2]
     for _ in range(iters):
         acc = [1e-9] * 4
@@ -629,6 +741,8 @@ SHARE_MODELS = (
     ("one cylinder, the rest alike", (0.50, 1 / 6, 1 / 6, 1 / 6)),
     ("one cylinder, partner 0", (0.50, 0.25, 0.001, 0.25)),
     ("two neighbours alike", (0.42, 0.42, 0.03, 0.13)),
+    ("two neighbours, two others", (0.35, 0.15, 0.15, 0.35)),
+    ("the two on one coil output", (0.35, 0.15, 0.35, 0.15)),
 )
 
 
@@ -698,6 +812,9 @@ def main(argv=None):
                     help="ordinary idles: do dips keep to one slot? (no cuts)")
     ap.add_argument("--shares", action="store_true",
                     help="ordinary idles: one cylinder or two? (cuts left out)")
+    ap.add_argument("--name", action="store_true",
+                    help="a capture with cuts: name the cylinder of every "
+                         "dip outside them, in the same run")
     ap.add_argument("--scan", action="store_true",
                     help="print every run's slot deficit and stop")
     args = ap.parse_args(argv)
@@ -732,6 +849,18 @@ def main(argv=None):
         for name, m in SHARE_MODELS:
             print("  %-30s logL %8.1f  (%5.1f below the best)" % (
                 name, shares_loglik(m, runs), lb - shares_loglik(m, runs)))
+        return 0
+
+    if args.name:
+        order = [int(x) for x in args.order.split(",")]
+        for cap in args.captures:
+            counts, strokes, agreed = named_idle_dips(idledips.series(cap)[3], order)
+            n = sum(counts.values())
+            print("%s: %d cuts agreed on the phase; %d dips outside the cuts "
+                  "over %d strokes" % (cap.split("/")[-1], agreed, n, strokes))
+            for c in FIRING_ORDER:
+                print("  cylinder %d: %3d%s" % (c, counts[c], "  (%.0f%%)" %
+                                                (100.0 * counts[c] / n) if n else ""))
         return 0
 
     if args.scan:

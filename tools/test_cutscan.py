@@ -243,6 +243,26 @@ class SlotShares(unittest.TestCase):
         self.assertLess(got[2], 0.1)
 
 
+class BridgedRuns(unittest.TestCase):
+    """The phase kept across a held value, checked on the real cuts."""
+
+    def test_the_cuts_of_31_agree_across_one_run(self):
+        g = series(os.path.join(FIXTURES, "31_step4_drive_z1.txt"))[3]
+        counts, strokes, agreed = cutscan.named_idle_dips(g, [1, 4, 4, 1])
+        self.assertEqual(agreed, 4)
+        self.assertGreater(strokes, 3000)
+
+    def test_a_synthetic_schedule_is_one_run_and_agrees(self):
+        g = synthetic(SCHEDULE, seed=3)
+        counts, strokes, agreed = cutscan.named_idle_dips(g, ORDER)
+        self.assertEqual(agreed, 8)
+
+    def test_named_dips_find_the_planted_cylinder(self):
+        g = synthetic([(30, 90, 1)], dip_p={3: 0.02}, seconds=400, seed=6)
+        counts, _, _ = cutscan.named_idle_dips(g, [1])
+        self.assertEqual(max(counts, key=counts.get), 3)
+
+
 class TheStatistics(unittest.TestCase):
 
     def test_equal_counts_are_unremarkable(self):

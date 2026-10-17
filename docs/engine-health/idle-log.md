@@ -1025,6 +1025,23 @@ cannot say; not the two on one coil output.
 **What it is not known to have achieved:** nothing changed on the car;
 one stop is a reading and not a change.
 
+**17/10/2026 — the dips named: cylinders 3 and 4** (*the owner's
+insistence* that a stroke's time is known from the engine speed). A held
+value that lasts 1.75 stroke-times or more hid a stroke, read off the
+injector cuts of `31`, and counting it keeps the cylinder phase for
+minutes instead of seconds: one run of 430 s across all four cuts of
+10/10 put cylinders 1 and 4 where the firing order says. In that run the
+dips outside the cuts fall **42 % on cylinder 4, 31 % on cylinder 3**,
+14 % on 2 and 12 % on 1 (`open.md`, *One cylinder or two*). Over every
+idle since August the same shape, unnamed: two neighbours in the firing
+order with two thirds of the dips. The figure of 16/10 that the partner
+cylinder carries almost none came from the short runs and does not
+hold.
+
+**What it is not known to have achieved:** the names rest on one drive,
+the first after the new leads; the other captures have no cut to name
+their pair.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
