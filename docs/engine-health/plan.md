@@ -40,6 +40,13 @@ Claude runs the capture on every drive.
      steering, no loads. Write each off and on into the chat. A
      flashing lamp is expected; clear the fault memory with VCDS after
      the drive.
+   - **At one of those stops, after the 3 minutes, the loom**, still
+     in neutral, no throttle, timed on a phone from the moment injector
+     1 went back on: **minute 3–4 flex the loom and connector at
+     injector 3**, gently, by hand; **4–5 hands off**; **5–6 the same at
+     injector 4**; **6–7 hands off**; then drive on. Keep clear of the
+     belt, the fan and the HT leads. Write into the chat anything the
+     engine did and at which injector.
 6. **On the next tank: two or three ordinary drives, warm**, on
    different days. Claude runs the capture; VCDS on **014, 003, 020**;
    055 once at the end, warm idle. Write the stops.
@@ -344,6 +351,20 @@ ranked list) stand; a different pair, or all four alike → the map or
 the cleaner moved it. Injector 1 rather than 4 so that the suspect
 cylinder runs throughout. Read with `--name` on each stop and `--shares`
 pooled.
+
+**The loom at one stop** (*owner's decision*, 17/10/2026; `open.md` H4
+row, H7 test 3). What is left of the electrical side is the injector
+loom where it runs to 3 and 4 — one section for the two, taped and
+oily in the photograph of 26/9. A contact that breaks for a moment
+drops or shortens one injection, which the ECU does not see (it knows
+what it commanded, not what the injector did). **It goes after the
+stop's 3 untouched minutes and before the car moves**, so the run the
+cut named is still unbroken and every dip during the flexing is named
+too; the minutes are timed from injector 1 going back on because that
+moment is in the capture, which a message in the chat is not. **Read**:
+dips on 3 a minute with the hand at 3, against the minutes either side,
+and the same for 4. A clear rise on the cylinder under the hand → that
+loom; nothing → the loom is cleared as far as a hand can clear it.
 
 **Item 7 — injectors 1 and 4 again** (*superseded 17/10/2026 by the
 stop cuts above*; *the owner's proposal, 9/10/2026*; `open.md`,
