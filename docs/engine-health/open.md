@@ -2164,6 +2164,19 @@ state.
 
 - **Against:** 014 reads **12–120 against VW's own 0–5**. The old converter
   burned through, which needs raw fuel in it. The owner feels it.
+- **Against, 17/10/2026, weaker than it looks** (*the owner's question*:
+  does the pair not refute it?). The dips sit two thirds on two
+  neighbours, **3 and 4** where named (*One cylinder or two*). That alone
+  does not refute H0: no engine fires its four cylinders alike — the
+  plenum feeds its runners unevenly and the end cylinders run differently
+  (*general*) — so whatever roughness a healthy AQY has would also gather
+  on its weakest cylinders, and no healthy AQY has been recorded to say
+  which (test 1). **What it adds against H0 is the name**: the pair holds
+  cylinder 4, the one the 2019 scan stored as P0304 and the one whose
+  knock window is noisy (S4, S5) — the dips sit where a stored misfire
+  and a second anomaly already sat, which normal variation has no reason
+  to do. Not refuted; down, and it stays below every per-cylinder
+  candidate.
 - **For:** no fault code; the counter's sensitivity moves with the MAF and with
   battery disconnects; today's best hot idle (57) is in the neighbourhood of
   August's, before any work (48). **Why no code is ever stored**
