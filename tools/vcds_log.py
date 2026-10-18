@@ -143,6 +143,7 @@ class Vcds:
 
     def open_blocks(self, groups):
         """From wherever VCDS is, to the measuring blocks showing `groups`."""
+        self.stop_log()     # a log left open blocks the window's buttons
         if not self.exists(T_BLOCKS):
             if not self.exists(T_FUNCS):
                 if not self.exists(T_SELECT):
@@ -166,6 +167,7 @@ class Vcds:
     def read_faults(self):
         """The engine's fault list as VCDS shows it, one line per entry.
         Opens 02 and goes back; never touches 'Vymazat pamet'."""
+        self.stop_log()
         if self.exists(T_BLOCKS):
             self.click("blocks", self.win(T_BLOCKS), 1)
             time.sleep(2)
@@ -249,16 +251,22 @@ def main(argv=None):
 
     v = Vcds()
     n = 1
-    blocks = v.open_blocks(a.groups)
-    v.start_log(blocks, part_path(a.out, n))
+
+    def stopping():
+        return os.path.exists(stop) or (a.seconds and time.time() - t0 > a.seconds)
+
+    # Everything from here on is inside the try, so that however it ends --
+    # the stop file, an error, Ctrl-C -- the log dialog is stopped and
+    # closed, which is what writes the file. A log left running is the one
+    # outcome this tool must never have.
     try:
-        while True:
-            if os.path.exists(stop) or (a.seconds and time.time() - t0 > a.seconds):
-                log("stopping")
-                break
+        blocks = v.open_blocks(a.groups)
+        v.start_log(blocks, part_path(a.out, n))
+        t0 = time.time()            # --seconds counts logging, not setup
+        while not stopping():
             if v.dismiss_init():
                 n += 1
-                while True:
+                while not stopping():
                     try:
                         blocks = v.open_blocks(a.groups)
                         v.start_log(blocks, part_path(a.out, n))
@@ -268,9 +276,19 @@ def main(argv=None):
                         v.dismiss_init()
                         time.sleep(3)
             time.sleep(0.5)
+        log("stopping")
     finally:
-        v.stop_log()
-        log("log closed; %d part(s)" % n)
+        for attempt in range(3):
+            try:
+                v.stop_log()
+                break
+            except Exception as e:
+                log("closing the log failed (%s); again" % str(e)[:80])
+                time.sleep(2)
+        if v.log_dialog() is not None:
+            log("WARNING: the log dialog is still open -- close it in VCDS")
+        else:
+            log("log closed; %d part(s)" % n)
         if os.path.exists(stop):
             os.remove(stop)
     return 0
