@@ -29,6 +29,12 @@ Claude runs the capture on every drive.
    Claude runs the capture; VCDS on **014, 003**; 055 once at the end,
    warm idle; on one of them **one held full-throttle pull in 4th**,
    with VCDS on **014, 003, 020** for that drive.
+   - **At the tuner, before he writes**, ask for these files, each the
+     **whole flash**, not only the maps: **the original** he read
+     before the remap, **his remapped version**, and if he will,
+     **a read of the ECU as it is now**. Write down the ECU part number
+     and software version off his tool or the label. Not the EEPROM.
+     Upload the files into the chat; they never go into the repository.
    - **On one of these drives, two or three stops with a cut**, oil at
      95–100 °C: neutral, handbrake on, loads off. **Injector 1's
      connector off for 30 s** (injector 4 if 1 cannot be reached), by
@@ -168,6 +174,26 @@ in 4th** is for the converter, not the idle: the torque scale was fitted
 by making this car's plateau reproduce the stock ratings
 (`docs/firmware/can-decoding.md` question 8), so on a stock map the pull
 says whether it still holds.
+
+**The tuner's files** (*owner's decision*, 18/10/2026). The ECU is read
+on the bench through its pins, not over OBD, which gives the whole
+flash: the program as well as the calibration. **The original against
+the remap** says byte for byte what the tuner changed, so the map's
+part in the idle can be read off the files rather than only off the
+drives after 22/10: whether idle speed, idle advance, the overrun fuel
+cut or **misfire detection** were touched. The last matters most — a
+detection dulled by the remap would make 014 understate the engine on
+every drive since, which is H14's other half (`open.md`, *The remap*).
+**The whole flash, not only the maps**, because a maps-only file can be
+diffed but not disassembled, and the program is where the CAN torque
+reference behind 0x280 b7 lives (`docs/firmware/can-decoding.md`
+question 8, measured, not read). **The read of the ECU as it is now**
+shows that the remapped file he kept is the one that was in the car,
+and the part number and software version that the original belongs to
+this ECU. **Not the EEPROM**: it holds the immobiliser and nothing this
+needs. **Never in the repository, nor on its public release**: it is
+Bosch/VW software, the same reason the VCDS label file is not kept
+here; what goes into the repository is the summary of what changed.
 
 **How the map is told from the can** (*added 16/10/2026*, when the remap
 became `open.md` H14 at the owner's request). The drives after 22/10
