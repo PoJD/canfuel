@@ -2078,6 +2078,14 @@ tick stayed. Engine switched off.
   **Its source is not placed by the audio**: one valve or lifter, one
   port's exhaust leak and the injector nearest the phone would all click
   once per cycle; the owner heard it as new.
+  Re-analysed off the same video on the laptop, the result is the same:
+  the envelope repeats every **0.149–0.154 s** while the low band fires
+  every **0.037–0.039 s** at idle, four firings to a click. Revved, it
+  is 0.074–0.092 s against 0.020–0.022 s, still about four to one
+  (`photos/tick-2026-10-18-cold-spectrogram.png`). The step in the
+  spectrogram at 3.7 s is the phone changing its audio processing, not
+  the engine. The video is not in the repository: it is 23 MB and
+  carries the phone's GPS position.
 - **Not S16**: the clutch pedal down did not change it (*owner*), and S16
   is on the gearbox side and goes with the pedal.
 - **Oil 1–2 mm above the maximum** on the dipstick (*owner*, topped up

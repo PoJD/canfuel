@@ -31,8 +31,10 @@ Claude runs the capture on every drive.
      **about 4000 rpm** now and then. **Not full throttle to the
      limiter.**
    - **A tick, a felt misfire or the engine lamp on**: ease off and
-     drive on gently. **The lamp flashing**: ease off at once and
-     drive home gently.
+     drive on gently.
+   - **The lamp flashing, or running on three cylinders**: stop where
+     it is safe, **switch the engine off, wait a few minutes**, start
+     again. Drive on only if it runs on four.
    - VCDS on **014, 001, 003** whenever the laptop is in the car.
    - **After the drive: read the fault memory of 01, save it ("Uložit
      chyby"), then clear it.**
@@ -183,8 +185,10 @@ holding a valve open, and ordinary revs keep the chamber hot enough to
 burn deposit off (*general*). Full load on a valve that may not be
 seating is the one case that risks more than a misfire, so it waits
 (*reasoned, not shown*). **A flashing lamp** is the misfire rate the
-ECU treats as damaging to the converter (`vcds.md`, SSP 175), so it
-ends the drive's load at once. **The fault memory is saved before it
+ECU treats as damaging to the converter (`vcds.md`, SSP 175), so the
+engine stops rather than carrying on to home on three cylinders
+(*owner's decision*, 18/10/2026). On 18/10 a restart after a few
+minutes off brought all four back (S18). **The fault memory is saved before it
 is cleared** so that each drive starts from an empty memory and the
 saved file keeps the code, its status and its count. **014 above 72
 while driving** is the new mark: sixteen earlier logs never reached
