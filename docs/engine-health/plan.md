@@ -86,6 +86,14 @@ Claude runs the capture on every drive.
    OMV MaxxMotion 100. If it goes in: the maker's dose, into a fresh
    tank of the usual fuel, and **item 5's S18 rules on every drive of
    that tank**. **After that tank: oil and filter changed.**
+6b. **Or instead of 6a, the owner's choice after 6: a look inside with a
+   borescope.** Not bought yet. An articulating one, joystick-steered
+   in four directions, probe 6.2–6.5 mm, its own screen, 1–1.5 m;
+   about 4,000–5,000 Kč. Engine cold, plugs out, the engine turned by
+   hand on the crank pulley bolt. Each cylinder at TDC on compression
+   (both valves shut): piston crown, chamber roof, both valve faces and
+   their edges; then the piston down for the cylinder wall. **A video
+   of every cylinder**, 3 against the other three.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      **Leaks there → a new manifold**: new gasket to the head, new nuts,
@@ -416,6 +424,28 @@ watches): a minimum is a signal, but on a grade that wanders it keeps
 falling the longer one watches, so on its own it would make long stops
 look better than short ones; beside the level it sat at, it does not. Not a test of anything else, and it decides nothing on
 its own about a lifter.
+
+**Item 6b — the borescope, as the alternative to a second can**
+(*owner's decision*, 19/10/2026, held until item 6's tank is read): a
+can costs a few hundred crowns and only goes on doing what the first
+did; a camera shows whether there is deposit at all, and whether
+cylinder 3 looks different from the others, which nothing on the bus
+can. **What it can see through a plug hole** (*general*): the
+combustion side only — piston crown, chamber roof, the faces and edges
+of both valves (this head has two per cylinder), the bore. **Not** the
+back of the inlet valves, which sits in the port, the half PEA cleans
+best; that needs the intake off. **And it cannot show sealing**: a
+valve that looks clean can still leak, which is the leak-down's job
+(`open.md` S18). **Why articulating** (*decided*, 19/10/2026): a fixed
+head looks straight down at the piston and sees the valves at a slant
+if at all; a gooseneck bent by hand works but every change of view is
+out, re-bend, in; dual-lens fixed heads with a side camera (about
+600–2,000 Kč, mostly 8 mm) are the cheap middle way and fit a plug
+hole too. A professional articulating set (over 20,000 Kč) is ruled
+out (*owner*). Cheap "360°" listings are sometimes 180° in four
+directions; check before buying. **Cold** so that the lens neither
+mists nor overheats; **TDC on compression** because both valves are
+shut there, so their faces and edges are what faces the camera.
 
 **Item 6 — the drives** (*decided 10/10/2026*, before the additive was; they now come after it). The first drive after the new
    plugs and leads put the dips at a quarter of pairs on one slot — 10
