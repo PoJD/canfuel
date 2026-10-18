@@ -95,6 +95,7 @@ stands. It is duration, average flow and distance that need a clock.
 | `vcds/vcds-item5-drive-014-001-003-1.csv` | VCDS log | 1,077 | own clock | groups 014, 001 and 003 over the first part of `35`, from 07:12:57 to the fuel stop | — |
 | `vcds/vcds-item5-drive-014-001-003-2.csv` | VCDS log | 3,373 | own clock | the same groups from 07:35:44, the new session at the pump, to the destination: the rest of `35` and all of `36` | — |
 | `vcds/vcds-item5-drive3-014-001-003.csv` | VCDS log | 2,447 | own clock | groups 014, 001 and 003 across `37`, from 10:03:38 to the warm idle at home | — |
+| `vcds/vcds-s18-home-014-001-003.csv` | VCDS log | 1,359 | own clock | groups 014, 001 and 003 on the warm drive home of 18/10 (`open.md` S18), from 12:40:19 after the fault memory was cleared; no CAN capture, the MFD was in. The group order changes during the log, so read each block by its content rather than by the header | — |
 | `vcds/vcds-item5-gauge-001-003-1.csv` | VCDS log | 38 | own clock | groups 001 and 003, the first 18 s of `38`'s idle, before VCDS hung | — |
 | `vcds/vcds-item5-gauge-001-003-2.csv` | VCDS log | 450 | own clock | the same groups from the restart through the hold to engine off | — |
 | `vcds/vcds-step3-1-drive-014-001-020.csv` | VCDS log | 2,231 | own clock | groups 014, 001 and 020 across `32` from the cold start through the exhaust test, the cold clutch, the drive and the warm clutch | — |

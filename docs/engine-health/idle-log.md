@@ -1087,6 +1087,21 @@ warm stop. VCDS 014/001/003 logged on that drive, not yet read. This was
 the day after the cleaner's tank ran out. **Not known**: whether a flake
 of deposit or a valve or lifter on 3 did it; the next cold starts tell.
 
+**18/10/2026, afternoon — the tick back, warm** (*owner*; `open.md`
+S18). Before the drive home the fault memory held P0300 and P0303 twice
+each, `35-10`, sporadic. It was cleared, and the drive of about 30
+minutes stored nothing. **The tick came back a few minutes after the
+start, lasted a few minutes and stopped by itself.** VCDS 014 showed
+**two bursts warm under part load**, 270 at 1720 rpm and 351 at
+2960 rpm, each a few seconds long. **Nothing above 72 had ever been
+logged while driving.** A few pulls to 4000 rpm were clean.
+`IdleHealth` at a warm stop, oil 101 °C, no loads: **mostly 80–90, lowest about 68**.
+**Not known**: which cylinder the bursts were (014 cannot say), and
+whether they came at the same moments as the tick.
+The days before had been the hardest driving the car has had in the
+owner's hands, on purpose, to let the cleaner loosen what it could; **the
+owner now holds deposits (H13) the most likely**, with nothing certain.
+
 ---
 
 

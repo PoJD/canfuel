@@ -22,6 +22,23 @@ Claude runs the capture on every drive.
    stop of **at least a minute with every load off but the lights**,
    which stay on. Write into the chat: date, oil temperature, **where
    `IdleHealth` mostly sat and the lowest it touched**.
+   **Also until 22/10, on every drive (S18):**
+   - **Warm the engine up gently**: no high revs until the oil reads
+     **80 °C** on the display.
+   - **Listen for the tick** at every stop, window open, cold and
+     warm.
+   - **Warm, on four cylinders and no tick**: ordinary driving, up to
+     **about 4000 rpm** now and then. **Not full throttle to the
+     limiter.**
+   - **A tick, a felt misfire or the engine lamp on**: ease off and
+     drive on gently. **The lamp flashing**: ease off at once and
+     drive home gently.
+   - VCDS on **014, 001, 003** whenever the laptop is in the car.
+   - **After the drive: read the fault memory of 01, save it ("Uložit
+     chyby"), then clear it.**
+   - Write into the chat: date, **whether it ticked** (cold or warm,
+     roughly when and for how long), **the codes and their status**,
+     and where the VCDS log is.
 5a. **22/10: the original map written back** at the tuner; the ECU
    comes out of the car. **The drive home first, as below; then one or
    two ordinary warm drives**: Claude runs the capture; VCDS on
@@ -147,6 +164,31 @@ decision*, 18/10/2026): from the reflash on, every drive is item 5a's
 or 6's, captured, and `IdleHealth` is computed from the capture
 instead. *It read "through both tanks after the can", which ran into
 5a.*
+
+**Item 5, the S18 drives** (*owner's request*, 18/10/2026; `open.md`
+S18). The question S18 leaves is **whether cylinder 3 and the tick keep
+coming back**. A flake of deposit loosened by the cleaner (H13) should
+come back less and less and then stop. A lifter or valve (H1) should
+not fade, and should be at its worst cold. So the reading is the run of
+drives, not any one of them:
+- **No tick and no code on several drives in a row, and no 014 burst
+  above 72 while driving**: fading, which reads for the flake.
+- **The tick back cold, again and again**: compression and a leak-down
+  on 3, warm and cold, then a borescope at the seats (`open.md` S18).
+
+**Why gently cold**: S18 first came on a cold engine, and a cold engine
+is where a hanging lifter would show. **Why 4000 rpm is fine and the
+limiter is not**: a cylinder that fires with no tick has nothing
+holding a valve open, and ordinary revs keep the chamber hot enough to
+burn deposit off (*general*). Full load on a valve that may not be
+seating is the one case that risks more than a misfire, so it waits
+(*reasoned, not shown*). **A flashing lamp** is the misfire rate the
+ECU treats as damaging to the converter (`vcds.md`, SSP 175), so it
+ends the drive's load at once. **The fault memory is saved before it
+is cleared** so that each drive starts from an empty memory and the
+saved file keeps the code, its status and its count. **014 above 72
+while driving** is the new mark: sixteen earlier logs never reached
+it, and 18/10 read 270 and 351 (S18).
 
 **Which VCDS groups, and why** (*decided 11/10/2026*, the owner's
 question why 014/020/026 were in the gauge session): **026** belongs to
