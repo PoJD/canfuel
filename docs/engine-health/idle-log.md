@@ -1091,7 +1091,7 @@ of deposit or a valve or lifter on 3 did it; the next cold starts tell.
 S18). Before the drive home the fault memory held P0300 and P0303 twice
 each, `35-10`, sporadic. It was cleared, and the drive of about 30
 minutes stored nothing. **The tick came back a few minutes after the
-start, lasted a few minutes and stopped by itself.** VCDS 014 showed
+start, lasted a few minutes and stopped by itself.** Throttle quickened it but did not quieten it. VCDS 014 showed
 **two bursts warm under part load**, 270 at 1720 rpm and 351 at
 2960 rpm, each a few seconds long. **Nothing above 72 had ever been
 logged while driving.** A few pulls to 4000 rpm were clean.
