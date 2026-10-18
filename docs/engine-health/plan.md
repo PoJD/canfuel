@@ -46,13 +46,21 @@ Claude runs the capture on every drive.
        how it sits the next time you are at the car, before you need
        it;
      - in the dark: **look at lead 3, its boots and the coil** for
-       sparks.
+       sparks;
+     - **a phone video of 15–20 s at the same place as on 18/10**, at
+       the intake manifold; if there is time, a second one right over
+       the valve cover at 3.
+   - **Not while it ticks**: high revs or full throttle; ordinary
+     driving is fine. **No tests where it is not safe to stop.**
    - Write into the chat: date, **whether it ticked**; for each
      episode: **minutes after the start, oil temperature**, **hard
      driving before it** (how long before), **wet or dry** (rain, fog,
      a wash), **at idle or under throttle**, **whether a blip of
-     throttle quietened it**, how long it lasted, and what the tests
-     above showed. Then **the codes and their status**, and where the
+     throttle quietened it**, how long it lasted, **how it ended**
+     (by itself, or after the engine was switched off), **`IdleHealth`
+     while it ticked and after**, **a puff from the exhaust or a smell**
+     (fuel, rotten eggs, burning), **whether the car pulled normally**,
+     and what the tests above showed. Then **the codes and their status**, and where the
      VCDS log is.
 5a. **22/10: the original map written back** at the tuner; the ECU
    comes out of the car. **The drive home first, as below; then one or
@@ -209,7 +217,13 @@ seating is the one case that risks more than a misfire, so it waits
 ECU treats as damaging to the converter (`vcds.md`, SSP 175), so the
 engine stops rather than carrying on to home on three cylinders
 (*owner's decision*, 18/10/2026). On 18/10 a restart after a few
-minutes off brought all four back (S18). **What is written about each episode**
+minutes off brought all four back (S18). **The video** goes through the same analysis as 18/10's
+(`photos/tick-2026-10-18-cold-spectrogram.png`), so the two can be
+compared: the same sound, at the same rate against engine speed.
+**`IdleHealth` during the tick** says whether the tick costs the
+combustion or is only a noise. **A smell after an episode** means
+unburnt fuel reached the converter, and **a puff** would tie S2 to
+S18. **What is written about each episode**
 is what tells the causes apart (`open.md` S18, *Read as*). Deposits
 come after hard driving or the cleaner, cold or warm alike. A lifter
 follows the oil: after standing, or at a hot idle, and quiet with a
