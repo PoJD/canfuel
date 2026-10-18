@@ -1212,6 +1212,9 @@ tools/          flash.py — builds a mode and flashes it in one command, and
                 adapters of their own
                 cycles.py — cycle budgets out of the XC8 listing, a CI gate
                 checkdocs.py — prose vs config.h, a CI gate
+                vcds_log.py — drives VCDS (pywinauto): logs up to three
+                measuring blocks of 01 and reconnects when the ECU drops.
+                Clicks only an allow-list of read buttons
 ```
 
 **The two `config` headers must not be confused.** `src/config.h` is the pure
@@ -1237,10 +1240,12 @@ reference there is for these registers on this silicon.
 
 ## Tools
 
-**`pyserial` is the project's only third-party dependency**, and only
-`usbtin_capture.py` uses it (`pip install pyserial`). Everything else — the
-tests, the replay, the cycle budgets — is standard library, which is why there
-is no `requirements.txt` and should not be one for a single package.
+**Two third-party dependencies, each for one tool on the laptop**:
+`pyserial` for `usbtin_capture.py` (`pip install pyserial`) and
+`pywinauto` for `vcds_log.py` (`pip install pywinauto`, Windows only).
+Everything else — the tests, the replay, the cycle budgets — is standard
+library, which is why there is no `requirements.txt`: CI needs neither, and
+`test_vcds_log.py` imports the tool without touching pywinauto.
 
 ```
 python tools/usbtin_capture.py --seconds 60 --out idle_z1.txt   # record, Z1 on
@@ -1282,8 +1287,15 @@ if it is still unclear, ask once.
 - **On the laptop**, propose this every time without being asked: **you run
   `usbtin_capture.py` yourself**, started before the ignition and left
   running to engine off; **he runs `oilwatch.py` in a second terminal**
-  on the same file; **VCDS logs to its own file, and afterwards you find it
-  in the laptop's Downloads folder** (*the maintainer's description*).
+  on the same file; **you run VCDS too, with `tools/vcds_log.py`**
+  (*the maintainer, 18/10/2026*): the HEX-V2 cable in, ignition on, then
+  `python tools/vcds_log.py --groups 014 001 003 --out
+  "C:/Users/Luboš/Downloads/<name> 14-1-3 YY-MM-DD.CSV"` in the
+  background, stopped by creating `<out>.stop` at engine off. When the
+  ECU drops at the start, the tool presses OK on *Inicializace jednotky*,
+  reconnects and logs on into `<out>-2.CSV`, `-3` ..., each part a
+  complete file. It reads only: the rule above. The fault memory is read
+  and cleared by him, by hand.
 - **In the cloud**, you cannot reach the adapter: hand him the commands and
   read the files he uploads.
 
