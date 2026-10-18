@@ -17,26 +17,24 @@ records it**, and the file is deleted when it is empty.
 One at a time; Claude says after each whether the next is needed.
 Claude runs the capture on every drive.
 
-5. **The can's tank is driven (17/10); no second can.** Drive this
-   tank as usual, captures or not.
-   - **`IdleHealth` off the display, through both tanks after the can:**
-     on drives where the oil reaches **95–100 °C** on the display, at one stop of **at
-     least a minute with every load off but the lights**, which stay
-     on. Write into the chat: date, oil temperature, **where
-     `IdleHealth` mostly sat and the lowest it touched**.
+5. **Until 22/10: `IdleHealth` off the display**, with the MFD in: on
+   drives where the oil reaches **95–100 °C** on the display, at one
+   stop of **at least a minute with every load off but the lights**,
+   which stay on. Write into the chat: date, oil temperature, **where
+   `IdleHealth` mostly sat and the lowest it touched**.
 5a. **22/10: the original map written back** at the tuner; the ECU
-   comes out of the car. Then **two or three ordinary warm drives**:
-   Claude runs the capture; VCDS on **014, 003**; 055 once at the end,
-   warm idle; on one of them **one held full-throttle pull in 4th**,
-   with VCDS on **014, 003, 020** for that drive.
+   comes out of the car. **The drive home first, as below; then one or
+   two ordinary warm drives**: Claude runs the capture; VCDS on
+   **014, 003**; 055 once at the end, warm idle; on one of them **one
+   held full-throttle pull in 4th**, with VCDS on **014, 003, 020** for
+   that drive.
    - **At the tuner, before he writes**, ask for these files, each the
      **whole flash**, not only the maps: **the original** he read
      before the remap, **his remapped version**, and if he will,
      **a read of the ECU as it is now**. Write down the ECU part number
      and software version off his tool or the label. Not the EEPROM.
      Upload the files into the chat; they never go into the repository.
-   - **The drive home from the tuner is the first of these drives,
-     captured, not with the MFD.** Capture started **before the first
+   - **The drive home from the tuner, captured, not with the MFD.** Capture started **before the first
      start** at the tuner, running to engine off at home; VCDS on
      **014, 055, 003** the whole way. No `oilwatch.py`. **A few minutes
      of idle straight after the start, cold**; once warm, drive briskly;
@@ -144,7 +142,11 @@ before, not an after**: a cleaner needs a tank's worth of driving to
 act (*general*, and the maker's dose is one can per 30–50 l), so those
 drives carry at most its first trace; the reading is item 6's. They
 also stand as the captured drives item 5a wants before the map goes
-back.
+back. **The display's `IdleHealth` runs only until 22/10** (*owner's
+decision*, 18/10/2026): from the reflash on, every drive is item 5a's
+or 6's, captured, and `IdleHealth` is computed from the capture
+instead. *It read "through both tanks after the can", which ran into
+5a.*
 
 **Which VCDS groups, and why** (*decided 11/10/2026*, the owner's
 question why 014/020/026 were in the gauge session): **026** belongs to
