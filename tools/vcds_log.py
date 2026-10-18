@@ -15,6 +15,10 @@ that ends is a complete file.
 reads the engine's fault memory instead (02), prints it and writes it to
 the file, then goes back. Clearing it stays the owner's, by hand.
 
+Every run ends by ending the communication with 01 (06) and closing VCDS,
+and prints DONE, so nothing is left for the owner to click (--keep-open
+leaves both open).
+
 Stop a log by creating the file named by --stop (default --out + ".stop"), or
 with --seconds. Either way the log dialog is stopped and closed, which is
 what writes the last file.
@@ -65,6 +69,9 @@ ALLOWED = {
     ("log", 1257),               # Stop
     ("log", 1),                  # Zpet -- closing the dialog writes the file
     ("init", 2),                 # OK on "the unit does not answer"
+    ("main", 1017),              # Vybrat jednotku
+    ("select", 1249),            # Zpet
+    ("main", 1026),              # Konec -- quits VCDS
 }
 FORBIDDEN = {
     ("blocks", 1293),            # Smazat chyby -- clears the fault memory
@@ -147,7 +154,7 @@ class Vcds:
         if not self.exists(T_BLOCKS):
             if not self.exists(T_FUNCS):
                 if not self.exists(T_SELECT):
-                    self.win(T_MAIN).child_window(control_id=1017).click()   # Vybrat jednotku
+                    self.click("main", self.win(T_MAIN), 1017)
                     time.sleep(2)
                 self.click("select", self.win(T_SELECT), "01-Motor")
                 self.win(T_FUNCS).wait("exists", timeout=40)
@@ -173,7 +180,7 @@ class Vcds:
             time.sleep(2)
         if not self.exists(T_FUNCS):
             if not self.exists(T_SELECT):
-                self.win(T_MAIN).child_window(control_id=1017).click()
+                self.click("main", self.win(T_MAIN), 1017)
                 time.sleep(2)
             self.click("select", self.win(T_SELECT), "01-Motor")
             self.win(T_FUNCS).wait("exists", timeout=40)
@@ -209,6 +216,41 @@ class Vcds:
         self.click("log", d, 1)
         time.sleep(1.5)
 
+    def end_session(self):
+        """Back out of 01 and end the communication (06), so that nothing is
+        left talking to the ECU. Called at the end of every run."""
+        self.stop_log()
+        if self.exists(T_FAULTS):
+            self.click("faults", self.win(T_FAULTS), 1)
+            time.sleep(1.5)
+        if self.exists(T_BLOCKS):
+            self.click("blocks", self.win(T_BLOCKS), 1)
+            time.sleep(2)
+        if self.exists(T_FUNCS):
+            try:
+                self.wait_enabled(self.win(T_FUNCS), 1301, timeout=10)
+            except RuntimeError:
+                pass
+            self.click("funcs", self.win(T_FUNCS), 1301)
+            time.sleep(2)
+        if self.exists(T_FUNCS) or self.exists(T_BLOCKS):
+            log("WARNING: the communication with 01 is still open")
+        else:
+            log("communication with 01 ended")
+
+    def quit(self):
+        """Close VCDS altogether, from the unit selection back to Konec."""
+        if self.exists(T_SELECT):
+            self.click("select", self.win(T_SELECT), 1249)
+            time.sleep(1.5)
+        self.click("main", self.win(T_MAIN), 1026)
+        time.sleep(2)
+        try:
+            self.Application(backend="win32").connect(path=VCDS_EXE, timeout=1)
+            log("WARNING: VCDS is still running")
+        except Exception:
+            log("VCDS closed")
+
     def dismiss_init(self):
         if self.exists(T_INIT):
             self.click("init", self.win(T_INIT), 2)
@@ -233,14 +275,23 @@ def main(argv=None):
     p.add_argument("--out", help="the CSV VCDS writes; parts get -2, -3 ...")
     p.add_argument("--stop", help="create this file to stop (default: OUT.stop)")
     p.add_argument("--seconds", type=float, help="stop after this long")
+    p.add_argument("--keep-open", action="store_true",
+                   help="leave VCDS and the communication with 01 open at the end")
     a = p.parse_args(argv)
     if a.faults:
-        lines = Vcds().read_faults()
+        v = Vcds()
+        try:
+            lines = v.read_faults()
+        finally:
+            v.end_session()
+            if not a.keep_open:
+                v.quit()
         text = "%s  01-Motor, fault memory (read by vcds_log.py)\n%s\n" % (
             time.strftime("%Y-%m-%d %H:%M:%S"), "\n".join(lines))
         with open(a.faults, "w", encoding="utf-8") as f:
             f.write(text)
         print(text, end="")
+        log("DONE")
         return 0
     if not a.groups or not a.out:
         p.error("--groups and --out are needed to log")
@@ -289,6 +340,15 @@ def main(argv=None):
             log("WARNING: the log dialog is still open -- close it in VCDS")
         else:
             log("log closed; %d part(s)" % n)
+            if a.keep_open:
+                log("communication left open (--keep-open)")
+            else:
+                try:
+                    v.end_session()
+                    v.quit()
+                except Exception as e:
+                    log("WARNING: ending the communication or VCDS failed (%s)" % str(e)[:80])
+        log("DONE")
         if os.path.exists(stop):
             os.remove(stop)
     return 0

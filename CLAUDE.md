@@ -1295,7 +1295,8 @@ if it is still unclear, ask once.
   ECU drops at the start, the tool presses OK on *Inicializace jednotky*,
   reconnects and logs on into `<out>-2.CSV`, `-3` ..., each part a
   complete file. After the drive, `--faults <file>.txt` reads the fault
-  memory of 01 and writes it out. It reads only: the rule above. **The
+  memory of 01 and writes it out. **Every run ends the communication and
+  closes VCDS**, and you tell him when it is done, so he clicks nothing. It reads only: the rule above. **The
   fault memory is cleared by him, by hand.**
 - **In the cloud**, you cannot reach the adapter: hand him the commands and
   read the files he uploads.
