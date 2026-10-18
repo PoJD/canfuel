@@ -104,9 +104,21 @@ class Vcds:
             self.app = Application(backend="win32").start(VCDS_EXE, work_dir=VCDS_DIR)
             log("VCDS started")
             time.sleep(6)
+        self.dismiss_balloon()
+
+    def dismiss_balloon(self):
+        """Close the "a newer version" balloon. While it is up VCDS greys out
+        every button, so it is checked before each click and on every pass of
+        wait_enabled(), not only at start: it can appear after we connect."""
+        closed = False
         for w in self.app.windows():
-            if w.class_name() == "BalloonHelpClassDS":   # "a newer version"
+            if w.class_name() == "BalloonHelpClassDS":
                 w.close()
+                closed = True
+        if closed:
+            log("the 'newer version' balloon closed")
+            time.sleep(0.5)            # the buttons re-enable after it goes
+        return closed
 
     def win(self, title_re):
         return self.app.window(title_re=title_re)
@@ -125,6 +137,7 @@ class Vcds:
         if (where, ctrl) in FORBIDDEN or (where, ctrl) not in ALLOWED:
             raise RuntimeError("refused to click %s/%s: not on the read-only allow-list"
                                % (where, ctrl))
+        self.dismiss_balloon()
         if isinstance(ctrl, str):
             b = [c for c in spec.wrapper_object().descendants()
                  if c.class_name() == "Button" and c.is_visible()
@@ -143,6 +156,7 @@ class Vcds:
         while time.time() - t0 < timeout:
             if self.exists(T_INIT):
                 raise RuntimeError("the unit does not answer")
+            self.dismiss_balloon()
             try:
                 if c.is_enabled():
                     return
