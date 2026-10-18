@@ -99,7 +99,7 @@ Claude runs the capture on every drive.
    the owner decides to then.** Until then every tank is plain
    OMV MaxxMotion 100. If it goes in: the maker's dose, into a fresh
    tank of the usual fuel, and **item 5's S18 rules on every drive of
-   that tank**.
+   that tank**. **After that tank: oil and filter changed.**
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      **Leaks there → a new manifold**: new gasket to the head, new nuts,
@@ -373,9 +373,11 @@ tank would change two things at once and leave the reading with no
 answer. **Episodes on the cleaner's tank are expected, not a verdict**:
 under H13, each tank sheds another layer, so a tick or a 014 burst
 there is the same process. Under H1 the tick would not depend on which
-tank is in. **A second can puts the oil change back on the table**,
-because of the varnish risk above, and that is decided when the can
-goes in. Not a verdict on the can
+tank is in. **The oil and filter are changed after the second can's
+tank** (*owner's decision*, 18/10/2026): not all of what the cleaner
+loosens leaves through the exhaust, and the varnish risk above is on
+the oil side. The filter holds particles, not what is dissolved or
+finer than its mesh (*general*), so only the change takes it out. Not a verdict on the can
 either: that stays item 6's reading, below. **The usual fuel, OMV MaxxMotion 100**, so that the can is the
 only thing that changes. **How it is
 read**: the drives of item 6 against `30`, `31` and 14/10's gauge session (`33`, `34`) —
