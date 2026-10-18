@@ -38,9 +38,20 @@ Claude runs the capture on every drive.
    - VCDS on **014, 001, 003** whenever the laptop is in the car.
    - **After the drive: read the fault memory of 01, save it ("Uložit
      chyby"), then clear it.**
-   - Write into the chat: date, **whether it ticked** (cold or warm,
-     roughly when and for how long), **the codes and their status**,
-     and where the VCDS log is.
+   - **While it ticks**, if you can stop safely, in neutral at idle:
+     - a screwdriver handle to the ear, its tip on each injector and
+       on the valve cover above 3 in turn: **where is it loudest**;
+     - **injector 3's connector off for 10 s**, then back on: **does the
+       tick stop**;
+     - in the dark: **look at lead 3, its boots and the coil** for
+       sparks.
+   - Write into the chat: date, **whether it ticked**; for each
+     episode: **minutes after the start, oil temperature**, **hard
+     driving before it** (how long before), **wet or dry** (rain, fog,
+     a wash), **at idle or under throttle**, **whether a blip of
+     throttle quietened it**, how long it lasted, and what the tests
+     above showed. Then **the codes and their status**, and where the
+     VCDS log is.
 5a. **22/10: the original map written back** at the tuner; the ECU
    comes out of the car. **The drive home first, as below; then one or
    two ordinary warm drives**: Claude runs the capture; VCDS on
@@ -196,7 +207,15 @@ seating is the one case that risks more than a misfire, so it waits
 ECU treats as damaging to the converter (`vcds.md`, SSP 175), so the
 engine stops rather than carrying on to home on three cylinders
 (*owner's decision*, 18/10/2026). On 18/10 a restart after a few
-minutes off brought all four back (S18). **The fault memory is saved before it
+minutes off brought all four back (S18). **What is written about each episode**
+is what tells the causes apart (`open.md` S18, *Read as*). Deposits
+come after hard driving or the cleaner, cold or warm alike. A lifter
+follows the oil: after standing, or at a hot idle, and quiet with a
+blip. A spark that arcs follows the damp and the load. **The tests
+while it ticks** split the rest: the injector off stops an injector's
+own click but not a valve's or a spark's, and the screwdriver places
+it. The connector off at idle is a deliberate misfire of 10 s, as the
+cuts of item 5a are. **The fault memory is saved before it
 is cleared** so that each drive starts from an empty memory and the
 saved file keeps the code, its status and its count. **014 above 72
 while driving** is the new mark: sixteen earlier logs never reached

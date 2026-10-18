@@ -2125,9 +2125,33 @@ tick stayed. Engine switched off.
 **Read as** (*reasoned, not shown*): something on cylinder 3 that did not
 let it seal or fire for a while and then let go — **a flake of deposit
 under valve 3's seat** after a tank of cleaner, or **a valve or hydraulic
-lifter on 3** that hung and recovered. An electrical cause (H4, H15) can
-drop a cylinder on and off but does not click at camshaft rate unless it
-arcs. **The afternoon's return leans towards the flake** (*the owner's
+lifter on 3** that hung and recovered. **Two more fit both the tick and
+the misfire** (*reasoned, 18/10*):
+- **Injector 3.** Each injector clicks once per cycle (sequential
+  injection), and the phone was at the manifold beside them. A pintle
+  held by a loosened piece of deposit clicks differently and sprays
+  badly, so the cylinder misses. The cleaner fits it as well as it fits
+  a flake. Against: the injectors are new, 23/9.
+- **A spark arcing on 3** (lead, boot or coil tower; H4, H15). The coil
+  fires 2 and 3 together every revolution. Only the compression
+  spark needs a high voltage, so only that one would find a way to
+  earth: **once per cycle**, and the cylinder misses because the spark
+  went elsewhere. It would come and go with damp and load. Against: the
+  video's tick went on with all four firing, though a partial arc can
+  do that. *This said, until 18/10, that an electrical cause "does not
+  click at camshaft rate unless it arcs", as if that were unlikely. An
+  arc would click at exactly that rate.*
+- An **exhaust port leak on 3** ticks once per cycle and seals as it
+  warms (*general*), but does not drop the cylinder.
+
+**What tells them apart is when it happens** (*general, not checked on
+this car*): deposits after hard driving or the cleaner, cold or warm
+alike, fading over tanks; a lifter with the oil, after standing or at
+a hot idle, quiet with a blip, day after day; an arc with the damp and
+the load; a burnt valve getting worse, under load, with 3's compression
+falling. **The tests while it ticks** are in `plan.md` item 5.
+**Both 014 bursts on 18/10 were warm and under load**, which fits the
+flake, the injector or the arc, and the lifter poorly. **The afternoon's return leans towards the flake** (*the owner's
 reading too: the tick was new and came with the cleaner*). PEA cleans
 the combustion chamber as well as the intake valve. What it loosens
 leaves through the exhaust valve, and a flake caught under that seat
