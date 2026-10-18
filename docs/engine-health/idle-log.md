@@ -1074,7 +1074,21 @@ The display wanders from window to window and these are a driver's
 readings of it; item 6's drives are the reading, and the map goes back
 on 22/10 before them.
 
+**18/10/2026 — cylinder 3 out, cold, and a tick** (*owner*; `open.md`
+S18). A short gentle drive cold, `IdleHealth` about 90–100; the engine
+wavered harder than its dips, **ran on three cylinders for a while**, and
+a tick at camshaft rate began (the owner's video, analysed: one click per
+cycle, about 0.15 s at 800 rpm). The clutch did not change it; oil 1–2 mm
+over the maximum. **P0303 and P0300 stored** — the ECU's first named
+cylinder. Driving on, cylinder 3 dropped out again with the lamp
+flashing; **after a restart all four ran, the tick was gone, and it stayed
+gone** over a longer gentle drive, `IdleHealth` 60–70 with the A/C on at a
+warm stop. VCDS 014/001/003 logged on that drive, not yet read. This was
+the day after the cleaner's tank ran out. **Not known**: whether a flake
+of deposit or a valve or lifter on 3 did it; the next cold starts tell.
+
 ---
+
 
 ## Appendix — the job of 1–4/10 in detail
 

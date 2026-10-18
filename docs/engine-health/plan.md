@@ -31,8 +31,8 @@ Claude runs the capture on every drive.
    - **At the tuner, before he writes**, ask for these files, each the
      **whole flash**, not only the maps: **the original** he read
      before the remap, **his remapped version**, and if he will,
-     **a read of the ECU as it is now**. Write down the ECU part number
-     and software version off his tool or the label. Not the EEPROM.
+     **a read of the ECU as it is now**. Write down the software
+     version off his tool. Not the EEPROM.
      Upload the files into the chat; they never go into the repository.
    - **The drive home from the tuner, captured, not with the MFD.** Capture started **before the first
      start** at the tuner, running to engine off at home; VCDS on
@@ -220,8 +220,8 @@ diffed but not disassembled, and the program is where the CAN torque
 reference behind 0x280 b7 lives (`docs/firmware/can-decoding.md`
 question 8, measured, not read). **The read of the ECU as it is now**
 shows that the remapped file he kept is the one that was in the car,
-and the part number and software version that the original belongs to
-this ECU. **Not the EEPROM**: it holds the immobiliser and nothing this
+and the software version that the original belongs to this ECU, whose
+part number VCDS reads as **06A 906 018 EJ**, Motronic (18/10/2026). **Not the EEPROM**: it holds the immobiliser and nothing this
 needs. **Never in the repository, nor on its public release**: it is
 Bosch/VW software, the same reason the VCDS label file is not kept
 here; what goes into the repository is the summary of what changed.
