@@ -82,6 +82,11 @@ Claude runs the capture on every drive.
      the limit, two or three full pulls, then **a warm stop of a few
      minutes** with loads off. Before it: the timing belt's interval
      checked against its date (10/2017).
+6a. **A second can of the cleaner, only after 6's drives, and only if
+   the owner decides to then.** Until then every tank is plain
+   OMV MaxxMotion 100. If it goes in: the maker's dose, into a fresh
+   tank of the usual fuel, and **item 5's S18 rules on every drive of
+   that tank**.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      **Leaks there → a new manifold**: new gasket to the head, new nuts,
@@ -331,7 +336,21 @@ better** (17/10/2026, `idle-log.md`): loads off, `IdleHealth` 70–90 at
 and at its rough end. So **no second can** — the owner had already
 filled without one — and **no oil change is owed to the cleaner**
 (*decided 17/10/2026*): it was the price of a course, and one can at the
-maker's dose is the maker's own use of it. Not a verdict on the can
+maker's dose is the maker's own use of it.
+
+**Item 6a reopens the second can, for S18 and not for the idle**
+(*owner's decision*, 18/10/2026). If S18 is deposits (H13), the cleaner
+is what loosens them, and a second tank may finish the job. Hard
+driving on plain fuel may do some of the same, and the plain tanks
+show how much. **Not before the map, and not on item 6's tank**: the
+map goes back on 22/10, and item 6 reads what it did. A can in that
+tank would change two things at once and leave the reading with no
+answer. **Episodes on the cleaner's tank are expected, not a verdict**:
+under H13, each tank sheds another layer, so a tick or a 014 burst
+there is the same process. Under H1 the tick would not depend on which
+tank is in. **A second can puts the oil change back on the table**,
+because of the varnish risk above, and that is decided when the can
+goes in. Not a verdict on the can
 either: that stays item 6's reading, below. **The usual fuel, OMV MaxxMotion 100**, so that the can is the
 only thing that changes. **How it is
 read**: the drives of item 6 against `30`, `31` and 14/10's gauge session (`33`, `34`) —
