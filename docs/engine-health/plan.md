@@ -35,6 +35,11 @@ Claude runs the capture on every drive.
      **a read of the ECU as it is now**. Write down the ECU part number
      and software version off his tool or the label. Not the EEPROM.
      Upload the files into the chat; they never go into the repository.
+   - **The drive home from the tuner is the first of these drives,
+     captured, not with the MFD.** Capture started **before the first
+     start** at the tuner, running to engine off at home; VCDS on
+     **014, 055, 003** the whole way. **One idle stop straight after the
+     start, cold**, then a few on the way. Write each stop into the chat.
    - **On one of these drives, two or three stops with a cut**, oil at
      95–100 °C: neutral, handbrake on, loads off. **Injector 1's
      connector off for 30 s** (injector 4 if 1 cannot be reached), by
@@ -174,6 +179,19 @@ in 4th** is for the converter, not the idle: the torque scale was fitted
 by making this car's plateau reproduce the stock ratings
 (`docs/firmware/can-decoding.md` question 8), so on a stock map the pull
 says whether it still holds.
+
+**The drive home, captured** (*owner's decision*, 18/10/2026). The
+reflash resets the adaptations, which is the battery-off test of
+`refuted.md` C19 that was refused on 6/10 as not worth a test of its
+own — here it comes free. C19 says 014 stays at zero while 055's
+learned idle air (field 3) sits above about −0.93 g/s and counts from
+about −0.95, by time correlation only; so 055 is logged the whole way
+rather than once at the end, with 014 beside it. **014 starting as
+field 3 crosses −0.95** supports C19; starting elsewhere reopens it.
+`IdleHealth`, computed from the capture over the same drive, says
+whether the idle itself changes at that moment or only the counter.
+003 keeps the idle advance for H14. The cold stop is the one fresh
+adaptations have never counted on (C19), so it is the before.
 
 **The tuner's files** (*owner's decision*, 18/10/2026). The ECU is read
 on the bench through its pins, not over OBD, which gives the whole
