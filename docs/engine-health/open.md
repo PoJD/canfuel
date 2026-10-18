@@ -2156,6 +2156,20 @@ tick stayed. Engine switched off.
   burns worse without ticking audibly — the quiet end of a valve that
   does not quite seat. **Fault memory not yet read** for this drive; a
   stored P0303 without the lamp would favour the second.
+- **The drive home, 18/10 evening, no tick** (*owner*; capture `39`,
+  VCDS 014/001/003 throughout, 33 min): a cold start, pulls under
+  4000 rpm and **one full-throttle pull in 2nd to nearly 6000 rpm**;
+  **no tick heard and no three-cylinder running**. **Fault memory empty
+  before and after** (read by `vcds_log.py` with the engine idling).
+  The idle, read off 0x280 (`idledips --roughness --windows 60`, the
+  `IdleHealth` scale): **64–78** at a warm stop with the blower on its
+  first step and the headlights (oil 98 °C), **82–104** at home with
+  every load off (oil 102 °C), which the owner felt as quite restless;
+  014 counted through both, to 72 at home. **Recorded under S18 at the
+  owner's decision**: a drive without an episode, now including high
+  rpm under full load, which is where a valve that does not quite seat
+  would be expected to tick first (*reasoned*). It does not close S18 —
+  one clean drive cannot — and the idle is S1's, not a new symptom.
 - **Context**: the cleaner's tank (item 5, the PEA can of 15/10) was
   driven to empty on 17/10 and the tank refilled with plain fuel; this
   was the next cold start but one. **The drives of the days before were
@@ -5331,11 +5345,17 @@ alike):
 | `36` | 13 | 0.58 0.16 0.00 0.25 | 84 % | 0.08 |
 | `37` | 66 | 0.38 0.32 0.07 0.23 | 70 % | 0.08 |
 | `38` | 29 | 0.25 0.25 0.25 0.25 | — | 1 |
-| **pooled** | **2,435** | **0.37 0.16 0.16 0.30** | **67 %** | **10⁻³³** |
+| `39` | 70 | 0.47 0.30 0.07 0.16 | 77 % | 0.0009 |
+| **pooled `09`–`38`** | **2,435** | **0.37 0.16 0.16 0.30** | **67 %** | **10⁻³³** |
 
 The top two are neighbours in every capture that places its dips at all
 (the second-largest share sits next to the leader, never opposite it),
 and the weakest captures are the loaded `35` and the short ones.
+
+**18/10/2026** (`39`, the evening drive home; no cuts): **70 dips, top
+two 77 %, p = 0.0009**, the neighbours again. Pooled since the exhaust
+joint, `32`–`39`: **902 dips, 0.34 0.26 0.14 0.26, top two 61 %,
+p = 6×10⁻⁷**.
 ---
 
 

@@ -188,7 +188,8 @@ class TestFixtureContent(unittest.TestCase):
                 "31_step4_drive_z1.txt", "32_step3_item1_z1.txt",
                 "33_step3_gauge_cold_z1.txt", "34_step3_gauge_2500_z1.txt",
                 "35_item5_drive_z1.txt", "36_item5_drive2_z1.txt",
-                "37_item5_drive3_z1.txt", "38_item5_gauge_z1.txt"}
+                "37_item5_drive3_z1.txt", "38_item5_gauge_z1.txt",
+                "39_drive_home_z1.txt"}
     ACCEPTED_IDS = {0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480}
 
     #: The last few milliseconds of 20, as the ignition goes off and the bus
@@ -531,12 +532,13 @@ class TestFixtureContent(unittest.TestCase):
         start and the key turned again for 34, and has it too, as does
         35_item5_drive_z1, which stops at a petrol station and starts again,
         and 37_item5_drive3_z1, whose engine stops with the key left on for
-        VCDS to read 055.
+        VCDS to read 055, and 39_drive_home_z1, in its last second as the
+        engine stops.
         """
         boundary = ("01_ign_only.txt", "06_trip_reset.txt",
                     "25_sessionA_cold_z1.txt", "26_sessionA_warm_z1.txt",
                     "33_step3_gauge_cold_z1.txt", "35_item5_drive_z1.txt",
-                    "37_item5_drive3_z1.txt")
+                    "37_item5_drive3_z1.txt", "39_drive_home_z1.txt")
         for name, frames in self.frames.items():
             gates = {f.data[1] for f in frames if f.can_id == 0x1A0}
             if name in boundary:
