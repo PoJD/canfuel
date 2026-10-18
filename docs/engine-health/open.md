@@ -2093,6 +2093,14 @@ tick stayed. Engine switched off.
   is on the gearbox side and goes with the pedal.
 - **Oil 1–2 mm above the maximum** on the dipstick (*owner*, topped up
   recently): not low, so not a starved lifter.
+- **The oil looks darker than its age would suggest** (*owner*,
+  18/10/2026; in since 6/2026). It is not a symptom of its own. Read
+  as (*general*): the cleaner and the hard driving loosen carbon on
+  the oil side too, and the oil's detergents hold it in suspension,
+  finer than the filter catches. It would become one if the oil
+  thickened, smelled of fuel, or **its level rose on the dipstick**,
+  which would be fuel in the oil. The level is watched from 1–2 mm
+  over the maximum.
 - **Then**: on the drive on, the tick stopped at times, and **cylinder 3
   dropped out again with the lamp flashing**. Engine off; **after a
   restart all four ran and the tick was gone**, and stayed gone through a
