@@ -2141,6 +2141,21 @@ tick stayed. Engine switched off.
   and is not only a noise. That fits a valve that does not quite seat,
   where a small leak ticks and burns worse and a larger one misses. It
   fits poorly a lifter with a gap, whose valve still closes.
+- **The evening, warm, no tick** (*owner*, 18/10, off the display, no
+  capture, no VCDS): a mostly calm drive with a few pulls to 4000 rpm,
+  all clean; **no tick heard**, four cylinders throughout, the lamp
+  off. At a stop about 18:00, some 15 minutes after the start, oil
+  95 °C: **`IdleHealth` about 120 with every load off, lowest about
+  98; about 100 with the lights on**. That is the level seen in the
+  afternoon only **while it ticked** (120–130), against 80–90 at the
+  stop without it and 70–90 on 17/10; 95 °C is the cool end of the band,
+  which accounts for some of it and not 30–40. The owner felt the idle
+  **more restless than before**. **Recorded under S18 at the owner's
+  decision**, not as a change to S1. Read as (*reasoned, not shown*):
+  either the idle as a whole got worse, or cylinder 3 still seals or
+  burns worse without ticking audibly — the quiet end of a valve that
+  does not quite seat. **Fault memory not yet read** for this drive; a
+  stored P0303 without the lamp would favour the second.
 - **Context**: the cleaner's tank (item 5, the PEA can of 15/10) was
   driven to empty on 17/10 and the tank refilled with plain fuel; this
   was the next cold start but one. **The drives of the days before were
