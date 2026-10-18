@@ -1299,9 +1299,13 @@ if it is still unclear, ask once.
   memory after (`faults-after.txt`), without leaving 01 in between, and
   only then ends the communication and closes VCDS, printing DONE. It
   starts from whatever state VCDS is in, closed or half-open. **At the
-  end he switches the engine off and the ignition back on** so that the
-  fault memory can be read, then you create the stop file and tell him
-  the codes and that it is done. He clicks nothing; `--faults <file>`
+  end, with the engine still idling, he says so**; you create the stop
+  file, the tool reads the fault memory (about half a minute), and you
+  tell him the codes and that it is done; **only then does he switch
+  off**. The fault memory needs the ECU awake, so if he has switched off
+  already, he turns the ignition back on until you say done. The USBtin
+  capture still runs to engine off; only the VCDS log ends early. He
+  clicks nothing; `--faults <file>`
   alone reads the memory without logging. It reads only: the rule above. **The
   fault memory is cleared by him, by hand.**
 - **In the cloud**, you cannot reach the adapter: hand him the commands and
