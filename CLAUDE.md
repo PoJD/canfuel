@@ -1300,6 +1300,15 @@ if it is still unclear, ask once.
 - **In the cloud**, you cannot reach the adapter: hand him the commands and
   read the files he uploads.
 
+**The fault memory is read after every session at the car, without
+asking** (*the maintainer, 18/10/2026*) — every measurement, every drive
+logged, and above all one with an episode (`plan.md` item 5, S18). On the
+laptop you read it yourself with `tools/vcds_log.py --faults`, once the
+logging has stopped, save it beside the session's VCDS logs, and give him
+the codes with their status; **he clears it, by hand**. In the cloud he
+reads it and writes it into the chat. A session whose fault memory was
+not read is not finished.
+
 **After every captured session, without asking** (*the maintainer,
 10/10/2026*): the capture is written to its next free
 `test/fixtures/NN_<name>_z1.txt`. When it ends, **the whole capture goes
