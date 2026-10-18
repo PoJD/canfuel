@@ -21,9 +21,13 @@ class Guard(unittest.TestCase):
             with self.assertRaises(RuntimeError):
                 self.vcds.click(where, None, ctrl)
 
+    def test_clearing_from_the_fault_list_is_refused(self):
+        with self.assertRaises(RuntimeError):
+            self.vcds.click("faults", None, 1112)
+
     def test_anything_unlisted_is_refused(self):
         with self.assertRaises(RuntimeError):
-            self.vcds.click("funcs", None, 1095)   # fault memory: read by hand
+            self.vcds.click("funcs", None, 1102)   # coding
 
 
 class Parts(unittest.TestCase):

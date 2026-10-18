@@ -10,7 +10,12 @@ logs on into the next file, --out with -2, -3 ... before the extension.
 VCDS writes a log to disk only when its log dialog closes, so every part
 that ends is a complete file.
 
-Stop it by creating the file named by --stop (default --out + ".stop"), or
+    python tools/vcds_log.py --faults "C:/Users/.../Downloads/faults.txt"
+
+reads the engine's fault memory instead (02), prints it and writes it to
+the file, then goes back. Clearing it stays the owner's, by hand.
+
+Stop a log by creating the file named by --stop (default --out + ".stop"), or
 with --seconds. Either way the log dialog is stopped and closed, which is
 what writes the last file.
 
@@ -43,12 +48,15 @@ T_MAIN = r"VCDS:.*Hlavn.*"
 T_SELECT = r".*V.b.r ..d.c. jednotky"
 T_FUNCS = r".*01-Motor.*V.b.r funkc.*"
 T_BLOCKS = r".*01-Motor.*M..en. hodnoty.*"
+T_FAULTS = r".*01-Motor.*Pam.. z.vad.*"
 T_INIT = r"VCDS: Inicializace jednotky"   # "the unit does not answer", OK only
 
 # (window, control id) pairs this script may click, and nothing else.
 ALLOWED = {
     ("select", "01-Motor"),      # the unit button, found by its text
     ("funcs", 1096),             # Mereni hodnoty - 08
+    ("funcs", 1095),             # Pamet zavad - 02: opens the list, reads only
+    ("faults", 1),               # Zpet
     ("funcs", 1301),             # Ukonceni komunikace - 06
     ("blocks", 1174), ("blocks", 1128), ("blocks", 1129),   # Start, groups A-C
     ("blocks", 1217),            # Logovani
@@ -60,6 +68,7 @@ ALLOWED = {
 }
 FORBIDDEN = {
     ("blocks", 1293),            # Smazat chyby -- clears the fault memory
+    ("faults", 1112),            # Vymazat pamet - 05 -- clears it too
     ("blocks", 1216),            # Prepnout na zakladni nastaveni
     ("log", 1260),               # Zakl. nastaveni
     ("funcs", 1102), ("funcs", 1104), ("funcs", 1101), ("funcs", 1100),
@@ -154,6 +163,29 @@ class Vcds:
             time.sleep(2.5)
         return blocks
 
+    def read_faults(self):
+        """The engine's fault list as VCDS shows it, one line per entry.
+        Opens 02 and goes back; never touches 'Vymazat pamet'."""
+        if self.exists(T_BLOCKS):
+            self.click("blocks", self.win(T_BLOCKS), 1)
+            time.sleep(2)
+        if not self.exists(T_FUNCS):
+            if not self.exists(T_SELECT):
+                self.win(T_MAIN).child_window(control_id=1017).click()
+                time.sleep(2)
+            self.click("select", self.win(T_SELECT), "01-Motor")
+            self.win(T_FUNCS).wait("exists", timeout=40)
+        self.wait_enabled(self.win(T_FUNCS), 1095)
+        self.click("funcs", self.win(T_FUNCS), 1095)
+        fw = self.win(T_FAULTS)
+        fw.wait("exists", timeout=30)
+        self.wait_enabled(fw, 1)
+        time.sleep(2)
+        lines = fw.child_window(control_id=1110, class_name="ListBox").wrapper_object().item_texts()
+        self.click("faults", fw, 1)
+        time.sleep(1.5)
+        return lines
+
     def start_log(self, blocks, path):
         self.wait_enabled(blocks, 1217)
         self.click("blocks", blocks, 1217)
@@ -193,11 +225,23 @@ def part_path(out, n):
 
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    p.add_argument("--groups", nargs="+", required=True, help="up to three, e.g. 014 001 003")
-    p.add_argument("--out", required=True, help="the CSV VCDS writes; parts get -2, -3 ...")
+    p.add_argument("--faults", metavar="TXT",
+                   help="only read the engine's fault memory into TXT and print it; no logging")
+    p.add_argument("--groups", nargs="+", help="up to three, e.g. 014 001 003")
+    p.add_argument("--out", help="the CSV VCDS writes; parts get -2, -3 ...")
     p.add_argument("--stop", help="create this file to stop (default: OUT.stop)")
     p.add_argument("--seconds", type=float, help="stop after this long")
     a = p.parse_args(argv)
+    if a.faults:
+        lines = Vcds().read_faults()
+        text = "%s  01-Motor, fault memory (read by vcds_log.py)\n%s\n" % (
+            time.strftime("%Y-%m-%d %H:%M:%S"), "\n".join(lines))
+        with open(a.faults, "w", encoding="utf-8") as f:
+            f.write(text)
+        print(text, end="")
+        return 0
+    if not a.groups or not a.out:
+        p.error("--groups and --out are needed to log")
     if len(a.groups) > 3:
         p.error("VCDS shows three groups at a time")
     stop = a.stop or a.out + ".stop"
