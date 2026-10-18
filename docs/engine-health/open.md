@@ -2119,7 +2119,10 @@ tick stayed. Engine switched off.
   **Throttle did not quieten the tick** on either occasion, the morning
   or the afternoon; it only quickened, as the video shows. **It stopped
   by itself**, not with a blip, a restart or the temperature (*owner*,
-  18/10).
+  18/10). **By ear it seemed to come from under the valve cover rather
+  than from the injectors at the front**, though not certainly
+  (*owner*, 18/10); a valve cover resonates, and an ear places sound
+  poorly in an engine bay.
 - **Context**: the cleaner's tank (item 5, the PEA can of 15/10) was
   driven to empty on 17/10 and the tank refilled with plain fuel; this
   was the next cold start but one. **The drives of the days before were
@@ -2135,7 +2138,12 @@ the misfire** (*reasoned, 18/10*):
   injection), and the phone was at the manifold beside them. A pintle
   held by a loosened piece of deposit clicks differently and sprays
   badly, so the cylinder misses. The cleaner fits it as well as it fits
-  a flake. Against: the injectors are new, 23/9.
+  a flake. Against: the injectors are new, 23/9. **Weak for the tick**
+  (*reasoned, 18/10*): a clogged injector sprays badly but clicks as
+  every injector does, and a stuck one would go quieter, not louder;
+  and one that starved 3 would drop it for as long as it ticked, where
+  the video's tick went on with all four firing. The owner's ear put
+  the sound under the cover, not at the injectors.
 - **A spark arcing on 3** (lead, boot or coil tower; H4, H15). The coil
   fires 2 and 3 together every revolution. Only the compression
   spark needs a high voltage, so only that one would find a way to
@@ -2145,6 +2153,18 @@ the misfire** (*reasoned, 18/10*):
   do that. *This said, until 18/10, that an electrical cause "does not
   click at camshaft rate unless it arcs", as if that were unlikely. An
   arc would click at exactly that rate.*
+- **How a valve that does not seat can tick** (*reasoned*): gas at
+  compression and combustion pressure jets through the gap past the
+  seat once per cycle, as a manifold leak does, and a valve closing on
+  a hard piece of carbon knocks on it. A small gap leaks and ticks
+  while the cylinder still fires, which fits the video; a larger one
+  drops it, which fits the misfires.
+- **Deposit and lifter at once** (*reasoned*): carbon from the chamber
+  cannot reach a lifter, which sits in oil behind the stem seal. But
+  the oil side has its own deposits, varnish and sludge, and a little
+  of the PEA reaches the oil (*general*), so a loosened particle in a
+  lifter's oil feed could hang it. That is H1 caused the way H13 is,
+  under the cover where the owner heard it.
 - An **exhaust port leak on 3** ticks once per cycle and seals as it
   warms (*general*), but does not drop the cylinder.
 

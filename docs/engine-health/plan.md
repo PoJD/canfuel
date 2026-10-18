@@ -42,7 +42,9 @@ Claude runs the capture on every drive.
      - a screwdriver handle to the ear, its tip on each injector and
        on the valve cover above 3 in turn: **where is it loudest**;
      - **injector 3's connector off for 10 s**, then back on: **does the
-       tick stop**;
+       tick stop**. **Only if it can be reached without tools**: look at
+       how it sits the next time you are at the car, before you need
+       it;
      - in the dark: **look at lead 3, its boots and the coil** for
        sparks.
    - Write into the chat: date, **whether it ticked**; for each
