@@ -2132,6 +2132,13 @@ tick stayed. Engine switched off.
   (*owner*, 18/10); a valve cover resonates, and an ear places sound
   poorly in an engine bay. **Dry that day**, no rain or fog
   (*owner*).
+  **`IdleHealth` while it ticked, warm in the afternoon with the oil
+  above 95 °C: about 120–130**, against 80–90 at the stop without it.
+  **While running on three: at the top of its range** (*owner's
+  estimates off the display*, 18/10). So the tick costs the combustion
+  and is not only a noise. That fits a valve that does not quite seat,
+  where a small leak ticks and burns worse and a larger one misses. It
+  fits poorly a lifter with a gap, whose valve still closes.
 - **Context**: the cleaner's tank (item 5, the PEA can of 15/10) was
   driven to empty on 17/10 and the tank refilled with plain fuel; this
   was the next cold start but one. **The drives of the days before were
