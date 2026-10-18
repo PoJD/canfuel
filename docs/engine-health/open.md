@@ -2191,7 +2191,10 @@ this car*): deposits after hard driving or the cleaner, cold or warm
 alike, fading over tanks; a lifter with the oil, after standing or at
 a hot idle, quiet with a blip, day after day; an arc with the damp and
 the load; a burnt valve getting worse, under load, with 3's compression
-falling. **The tests while it ticks** are in `plan.md` item 5.
+falling. Tests while it ticks (a screwdriver as a stethoscope, injector
+3's connector off, a look in the dark) would place it, and **were
+dropped by the owner** (18/10): naming the cylinder would not change the
+next step (`plan.md` item 5).
 **Both 014 bursts on 18/10 were warm and under load**, which fits the
 flake, the injector or the arc, and the lifter poorly. **The afternoon's return leans towards the flake** (*the owner's
 reading too: the tick was new and came with the cleaner*). PEA cleans

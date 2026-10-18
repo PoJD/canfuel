@@ -22,46 +22,24 @@ Claude runs the capture on every drive.
    stop of **at least a minute with every load off but the lights**,
    which stay on. Write into the chat: date, oil temperature, **where
    `IdleHealth` mostly sat and the lowest it touched**.
-   **Also until 22/10, on every drive (S18):**
+   **Also until 22/10, on every drive (S18) — protecting the engine and
+   the converter comes first:**
    - **Warm the engine up gently**: no high revs until the oil reads
      **80 °C** on the display.
-   - **Listen for the tick** at every stop, window open, cold and
-     warm.
-   - **Warm, on four cylinders and no tick**: ordinary driving, up to
-     **about 4000 rpm** now and then. **Not full throttle to the
-     limiter.**
-   - **A tick, a felt misfire or the engine lamp on**: ease off and
-     drive on gently.
-   - **The lamp flashing, or running on three cylinders**: stop where
-     it is safe, **switch the engine off, wait a few minutes**, start
-     again. Drive on only if it runs on four.
+   - **Warm and on four cylinders**: ordinary driving, up to **about
+     4000 rpm** now and then. **Not full throttle to the limiter.**
+   - **A tick or a felt misfire**: ease off and drive on gently, no
+     high revs while it lasts.
+   - **The engine lamp flashing, or running on three cylinders**: stop
+     where it is safe, **switch the engine off, wait a few minutes**,
+     start again. Drive on only if it runs on four.
    - VCDS on **014, 001, 003** whenever the laptop is in the car.
    - **After the drive: read the fault memory of 01, save it ("Uložit
      chyby"), then clear it.**
-   - **While it ticks**, if you can stop safely, in neutral at idle:
-     - a screwdriver handle to the ear, its tip on each injector and
-       on the valve cover above 3 in turn: **where is it loudest**;
-     - **injector 3's connector off for 10 s**, then back on: **does the
-       tick stop**. **Only if it can be reached without tools**: look at
-       how it sits the next time you are at the car, before you need
-       it;
-     - in the dark: **look at lead 3, its boots and the coil** for
-       sparks;
-     - **a phone video of 15–20 s at the same place as on 18/10**, at
-       the intake manifold; if there is time, a second one right over
-       the valve cover at 3.
-   - **Not while it ticks**: high revs or full throttle; ordinary
-     driving is fine. **No tests where it is not safe to stop.**
-   - Write into the chat: date, **whether it ticked**; for each
-     episode: **minutes after the start, oil temperature**, **hard
-     driving before it** (how long before), **wet or dry** (rain, fog,
-     a wash), **at idle or under throttle**, **whether a blip of
-     throttle quietened it**, how long it lasted, **how it ended**
-     (by itself, or after the engine was switched off), **`IdleHealth`
-     while it ticked and after**, **a puff from the exhaust or a smell**
-     (fuel, rotten eggs, burning), **whether the car pulled normally**,
-     and what the tests above showed. Then **the codes and their status**, and where the
-     VCDS log is.
+   - **If there was an episode** (a tick or a misfire), write into the
+     chat: **when** (date, roughly what time, minutes after the start),
+     **what came before** (hard driving, a cold start, a long stand),
+     **oil temperature** and **`IdleHealth`** off the display.
 5a. **22/10: the original map written back** at the tuner; the ECU
    comes out of the car. **The drive home first, as below; then one or
    two ordinary warm drives**: Claude runs the capture; VCDS on
@@ -217,21 +195,21 @@ seating is the one case that risks more than a misfire, so it waits
 ECU treats as damaging to the converter (`vcds.md`, SSP 175), so the
 engine stops rather than carrying on to home on three cylinders
 (*owner's decision*, 18/10/2026). On 18/10 a restart after a few
-minutes off brought all four back (S18). **The video** goes through the same analysis as 18/10's
-(`photos/tick-2026-10-18-cold-spectrogram.png`), so the two can be
-compared: the same sound, at the same rate against engine speed.
-**`IdleHealth` during the tick** says whether the tick costs the
-combustion or is only a noise. **A smell after an episode** means
-unburnt fuel reached the converter, and **a puff** would tie S2 to
-S18. **What is written about each episode**
-is what tells the causes apart (`open.md` S18, *Read as*). Deposits
-come after hard driving or the cleaner, cold or warm alike. A lifter
-follows the oil: after standing, or at a hot idle, and quiet with a
-blip. A spark that arcs follows the damp and the load. **The tests
-while it ticks** split the rest: the injector off stops an injector's
-own click but not a valve's or a spark's, and the screwdriver places
-it. The connector off at idle is a deliberate misfire of 10 s, as the
-cuts of item 5a are. **The fault memory is saved before it
+minutes off brought all four back (S18).
+
+**No tests at the car, and only four things written down** (*owner's
+decision*, 18/10/2026). Pointing at one cylinder would not change what
+comes next: H13 acts on all four, the dips sit on 3 and 4 with 1 and 2
+better but not clean, and loosening the deposits is the cure for all of
+them. The car is driven normally, to work as well, with no time to stop
+and listen. So item 5 protects the engine and the converter, and keeps
+only what costs nothing: when, what came before, the oil temperature
+and `IdleHealth`. That is enough to see whether episodes follow hard
+driving and the cleaner (deposits) or cold starts after a stand (a
+lifter), and whether they fade. The screwdriver, the injector's
+connector, the look in the dark and the videos were dropped; they are
+in git history (*Read as* in `open.md` S18 keeps what each would have
+told). **The fault memory is saved before it
 is cleared** so that each drive starts from an empty memory and the
 saved file keeps the code, its status and its count. **014 above 72
 while driving** is the new mark: sixteen earlier logs never reached
