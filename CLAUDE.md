@@ -1305,7 +1305,11 @@ that every capture is added to, not a release per capture:
 `gzip -k FILE && gh release upload raw-captures FILE.gz` from the laptop
 (or dragged onto the release in the web page if `gh` is not there). A
 release asset is outside git history, so it costs the repository
-nothing. **Never commit an unfiltered capture to the tree**, and the
+nothing. **Then the local copy is deleted, but only once the asset has
+been downloaded back** from the release URL below and its decompressed
+`sha256sum` matches the original's; a file that does not match is
+uploaded again and kept. `../raw-captures/` is a staging folder, and the
+release is where the unfiltered captures live. **Never commit an unfiltered capture to the tree**, and the
 reason is size, not principle: the filtered fixtures alone are close to
 300 MB, unfiltered is about twice that (`19`: 65 MB against 34), GitHub
 refuses a file over 100 MB, which a ten-minute drive would pass, and git
@@ -1317,8 +1321,9 @@ capture so far sits only in the laptop's `../raw-captures/`.** The
 first session on the laptop creates it (`gh release create raw-captures
 --title "Raw CAN captures" --notes "Unfiltered USBtin captures, gzipped.
 Fixtures in test/fixtures/ are these filtered to six identifiers."`),
-uploads every file there gzipped, checks the asset list against the
-folder, and deletes this paragraph in the same commit.
+uploads every file there gzipped, downloads each back and checks it
+as above, deletes the local copies that matched, and deletes this
+paragraph in the same commit.
 
 **And then, every time, how the dips share out over the cylinders** (*the
 maintainer, 14/10/2026; the method changed at his request 17/10/2026*):
