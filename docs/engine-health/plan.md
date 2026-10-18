@@ -19,9 +19,9 @@ Claude runs the capture on every drive.
 
 5. **Until 22/10: `IdleHealth` off the display**, with the MFD in: on
    drives where the oil reaches **95–100 °C** on the display, at one
-   stop of **at least a minute with every load off but the lights**,
-   which stay on. Write into the chat: date, oil temperature, **where
-   `IdleHealth` mostly sat and the lowest it touched**.
+   stop **in the two states of the standing items**, loads off and
+   loads on. Write into the chat: date, oil temperature, and for each
+   state **where `IdleHealth` mostly sat and the lowest it touched**.
    **Also until 22/10, on every drive (S18) — protecting the engine and
    the converter comes first:**
    - **Warm the engine up gently**: no high revs until the oil reads
@@ -112,6 +112,17 @@ Claude runs the capture on every drive.
   - After a hard or long drive: switch off on arrival, no idling.
   - **Engine lamp flashing**: ease off at once, stop where safe, engine
     off, write it into the chat.
+- **`IdleHealth` at a warm stop, always in two states** (oil 95–100 °C,
+  neutral, no throttle, nothing else touched), on every drive that reads
+  it, captured or off the display:
+  1. **2 minutes with every load off**, the lights too where the switch
+     allows it (in the dark); whatever cannot be switched off stays on,
+     and say which.
+  2. **Then 2 minutes with every load on**: main beam, both seat
+     heaters, the heated glass, A/C and the blower on full.
+
+  With the laptop, Claude reads both off the capture; with the MFD in,
+  write each state's reading into the chat.
 - **After a few hundred km:** re-tighten the cover's outer nuts you can
   reach with the plenum on, and look along the joint.
 - **When there is a thermometer, at the end of a hot captured session:**
@@ -385,7 +396,9 @@ needs neither the laptop nor a capture. Read like with like or not at
 all: it moves with the oil (S1, *Temperature matters*), and **loads
 lower it on their own** — lights, blower and A/C took it from 70–80 to
 35–50 (S1, 26/9) — so winter's habit of running them would pass for the
-additive working. **Loads off, then, for that one minute** (*decided
+additive working. *Superseded 19/10/2026 by the two states of the standing items, all
+loads off against all on; what follows is the reasoning that held
+until then.* **Loads off, then, for that one minute** (*decided
 10/10/2026*, the owner's point that the baseline already exists): the
 captured hot stops on settled adaptations are loads-off — `30` and `31`
 `IdleHealth` 77–89 at 93–111 °C (S1's table),
@@ -630,6 +643,23 @@ stop cuts above*; *the owner's proposal, 9/10/2026*; `open.md`,
   this car's idle counts sit below even the 2 % that stores a code, so a
   flash means something new.
 
+- **`IdleHealth` in two states** (*owner's decision*, 19/10/2026;
+  `open.md` S1, *Since the cleaner*): since the cleaner's tank the
+  partial loads seem to make little difference, now and then the
+  opposite, and only everything on together still calms it (*owner*).
+  So "loads off but the lights" is replaced: one state is loads off
+  and the other is all of them on, which leaves nothing between them
+  to argue about. The lights were kept on because the car runs them
+  all the time (15/10), but they can be switched off in the dark
+  (*owner*), so they go off where they can. **Why two minutes each**:
+  on a steady warm idle, neighbouring 2-minute windows of `IdleHealth`
+  differ by 4–18 (standard deviation, `24`, `26`, `28`, `30`, `32`,
+  `37`), and minute windows wander more. So one pair shows only a
+  large difference, about 25 or more. **Pairs pool over drives**, which
+  is what an hour's idle in one place would otherwise be. In a capture
+  the switch is visible in b7, which jumps with the load, so the states
+  need no timing in the chat. Four minutes standing is accepted against
+  the converter rule above (*owner*).
 - **The cover's nuts**: the gasket settles (`open.md` S10).
 - **The thermometer reading (A4)**: `docs/firmware/open.md` question 10.
   The ignition goes back on so the capture keeps 0x420. The coolant hose

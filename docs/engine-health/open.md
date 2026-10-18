@@ -330,6 +330,17 @@ mechanical load, lights and rear heater mostly electrical current, but
 has to make at idle. Group 002's load figure beside each state is what
 would separate them.
 
+**Since the cleaner, the partial loads hardly matter** (*owner-observed
+off the display*, 19/10/2026): since the PEA tank, lights alone or a
+few consumers make little difference, sometimes the opposite (on 18/10
+about 80 with nothing on, nearer 100 with some loads); **everything on
+together** (main beam, both seats, heated glass, A/C, blower on full)
+still calms it, consistently. Estimates off the display, not yet
+measured; the two-state reading in `plan.md`'s standing items is what
+measures it. Read as (*reasoned, not shown*): if the cleaner took part
+of what made the idle rough only at low air flow, what is left depends
+less on the load.
+
 **The roughest reading yet, 26/9/2026 — cold, and in fog.** A few minutes
 after an overnight cold start (`StartClt` 14 °C) on a cold, foggy, very damp
 morning, `IdleHealth` read **~186** (`IdleRough` 3.72 rpm) before the car drove off.

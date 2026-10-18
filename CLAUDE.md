@@ -1310,6 +1310,13 @@ if it is still unclear, ask once.
   fault memory is cleared by him, by hand.**
 - **In the cloud**, you cannot reach the adapter: hand him the commands and
   read the files he uploads.
+- **`IdleHealth` at a warm stop is always read in two states** (*the
+  maintainer, 19/10/2026*): 2 minutes with every load off, then 2
+  minutes with every load on — never "loads off but the lights". The
+  instruction is `docs/engine-health/plan.md`'s standing items; remind
+  him of it at the warm idle that ends a session, and split the states
+  in the capture by b7.
+
 
 **The fault memory is read after every session at the car, without
 asking** (*the maintainer, 18/10/2026*) — every measurement, every drive
