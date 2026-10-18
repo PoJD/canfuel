@@ -203,7 +203,10 @@ remap's 3.3° quiet (`open.md` S1, *What VCDS saw just before a dip*);
 **the fuel cut on the overrun**, by `coastscan.py` on the captures,
 against 0.8–1.6 s and 1,300–2,400 rpm; **014 against `IdleHealth`** —
 one moving without the other is the detection's calibration, not the
-engine; and **020 on the pull**, cylinder 4's retard (S4), which is why
+engine; **014 under load**, new counts per `aktivováno` sample above
+1500 rpm against 15 in about 4,300 on the remap (`open.md` H14 route 6,
+whether the remap dulled the detection while driving); and **020 on the
+pull**, cylinder 4's retard (S4), which is why
 that one drive logs it. A calmer idle with the advance or the fuel cut
 moved points at the map; with both where they were, at the cleaner or
 the adaptations (H14 test 1). Nothing for the owner to do beyond 020.

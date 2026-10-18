@@ -637,6 +637,20 @@ found no leak ahead of the converter (S15).
   speed about a third as much as at idle, which the noise of 0x280
   there swallows (*reasoned*; `idledips` on `10`, `13`–`16` at a scaled
   threshold counts hundreds a minute, which is noise, not misfires).
+- **Unless the remap dulled the detection under load** (*the owner's
+  question*, 18/10/2026; H14 route 6). Everything above was read on the
+  remap, and the detection's thresholds are calibration, so "only at
+  idle" holds for this calibration and not yet for the engine.
+  **Against it, already**: the full-load lamp of `refuted.md` C4 came
+  on **after the remap** (*owner*, 18/10/2026), so the detection under
+  load was not off; 032 reads small, where frequent misfires under load
+  would show as a learned enrichment (the unburnt oxygen reads lean at
+  the front probe); and the converter and the rear probe are well (C5).
+  None of it rules out thresholds raised short of off. **Nothing
+  independent sees a misfire while driving**: the dips on 0x280 are the
+  calibration-free witness, and the noise there swallows them. **The
+  comparison for the stock map**: new counts per `aktivováno` sample
+  above 1500 rpm, **15 in about 4,300** on the remap.
 - **Values 12–120 against the label file's stated 0 to 5.** By VW's own
   measuring-block specification, this is out of range.
 - **The events are the S1 dips.** Aligned on engine speed, counter increments
@@ -4518,6 +4532,39 @@ cause not known (`idle-log.md`).
 5. **Knock control**: more advance means more retard, which fits S4
    under load; **at idle it is excluded by measurement** — no retard and
    no 026 signal at idle in any log (*How the symptoms relate*).
+6. **The misfire detection dulled under load, not at idle** (*the
+   owner's question*, 18/10/2026). Route 3 the other way round: tuners
+   commonly desensitise or switch off misfire detection (*general*), and
+   if this one did it under load, the misfires would be **everywhere and
+   counted only at idle**, and "only at idle" (S3) would be the
+   calibration's, not the engine's. The evidence against it is in S3
+   (*Unless the remap dulled the detection under load*): the C4 lamp lit
+   on this map, 032 small, the converter well — enough against off, not
+   against dulled. **If the stock map counted under load**, the picture
+   turns over:
+   - **S3** becomes "everywhere", and **S1** stays an idle symptom only
+     because idle is where 0x280 can see a misfire, not where it
+     happens;
+   - **S4/S5 ↔ S1/S3** changes from *none measured* to suspect: the
+     knock on cylinder 4 is a load event and the dips sit on 3 and 4,
+     and only "no misfires under load" keeps them apart today;
+   - **S2 and S14** gain: more misfires, more unburnt charge in the
+     exhaust;
+   - **weaker**: the candidates that act only at light load — **H3**
+     (a small leak is diluted under load), **H8**, **H0**, and **H1**
+     and **H13** as far as they lean on "a hot idle";
+   - **stronger**: the ones that act everywhere and most under load —
+     **H4 and H15**, since a spark needs more voltage the higher the
+     cylinder pressure, and misfiring under load is a weak spark's
+     typical sign (*general*); **H7**; one cylinder's mechanics;
+   - **H14 itself** would be confirmed as why it went unseen, not as
+     the cause.
+
+   **And the other reading**: stock counting under load could also be
+   a more sensitive detection catching noise (a rough road, a
+   gearchange). So the files decide it before the drives do — whether
+   the remap touched the detection's thresholds (`plan.md` item 5a, *The
+   tuner's files*) — and the drives give the rate to set beside it.
 
 | S1 | S2 | S3 | S4 | S5 | S11 | S14 |
 |---|---|---|---|---|---|---|
@@ -4565,7 +4612,9 @@ S5 needs no combustion; S11 is a sound outside the cylinder.
    *What VCDS saw just before a dip*, and every 003 log since); **the
    fuel cut on the overrun** by `coastscan.py` against 0.8–1.6 s and
    1,300–2,400 rpm; **014 against `IdleHealth`**, which moving apart
-   would be the detection's calibration; and **020 on the pull**, the
+   would be the detection's calibration; **014 under load**, new counts
+   per `aktivováno` sample against 15 in about 4,300 (route 6); and
+   **020 on the pull**, the
    retard on cylinder 4 (S4). A calmer idle with the advance moved → H14;
    with the advance where it was → the cleaner or the adaptations.
 

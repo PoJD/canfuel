@@ -415,7 +415,9 @@ The lamp used to come on after minutes above ~4500 rpm on the motorway. On
 parts: no lamp, no hesitation. *Owner-reported.* Cleared on the new parts.
 **15/10/2026, harder still**: about 10 minutes held at ~5000 rpm in 6th at
 full throttle on the motorway, pulls to the 6500 rpm limiter in 2nd, no
-lamp (*owner*).
+lamp (*owner*). **The lamp was on the remap**, after 6/2018 (*owner*,
+18/10/2026), so the remap had not switched off misfire detection under
+load (`open.md` H14 route 6).
 
 ### C5. "The oxygen sensors failed again" / "the new converter is failing" — measured
 
