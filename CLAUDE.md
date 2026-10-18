@@ -1299,6 +1299,27 @@ in `tools/test_coastscan.py`. The VCDS logs go to
 leaves the adapter's channel open: send `C\r` to its port. None of this
 is a question for the maintainer.
 
+**The unfiltered capture is then gzipped and attached to the GitHub
+release `raw-captures`** (*the maintainer, 18/10/2026*) — one release
+that every capture is added to, not a release per capture:
+`gzip -k FILE && gh release upload raw-captures FILE.gz` from the laptop
+(or dragged onto the release in the web page if `gh` is not there). A
+release asset is outside git history, so it costs the repository
+nothing. **Never commit an unfiltered capture to the tree**, and the
+reason is size, not principle: the filtered fixtures alone are close to
+300 MB, unfiltered is about twice that (`19`: 65 MB against 34), GitHub
+refuses a file over 100 MB, which a ten-minute drive would pass, and git
+keeps whatever it is given for good. A cloud session reads an asset with
+`curl -fLO https://github.com/PoJD/canfuel/releases/download/raw-captures/<file>.gz`.
+
+⚠ **Not done yet: the release does not exist, and every unfiltered
+capture so far sits only in the laptop's `../raw-captures/`.** The
+first session on the laptop creates it (`gh release create raw-captures
+--title "Raw CAN captures" --notes "Unfiltered USBtin captures, gzipped.
+Fixtures in test/fixtures/ are these filtered to six identifiers."`),
+uploads every file there gzipped, checks the asset list against the
+folder, and deletes this paragraph in the same commit.
+
 **And then, every time, how the dips share out over the cylinders** (*the
 maintainer, 14/10/2026; the method changed at his request 17/10/2026*):
 `python tools/cutscan.py --shares` on the new capture **and on it pooled
