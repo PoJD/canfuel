@@ -13,7 +13,7 @@ normal for this engine, the file is deleted.
 | `vcds.md` | the VCDS blocks read on this car, their specifications, and how to record VCDS beside a CAN capture |
 | `vehicle-history.md` | the car's service record: distance, consumption, every part replaced. **Stays when this investigation closes**; `open.md` and `refuted.md` go |
 | `idle-log.md` | **the diary of the idle investigation**: what was believed, done and measured at each stage, and what nobody can say a repair achieved. Kept current until the idle is fixed, then **stays** as reference |
-| `plan.md` | **the planned fixes, in order**, and the rule that governs them: the idle first, no test for its own sake, as little idling as possible. Emptied step by step as the work is done |
+| `plan.md` | **the planned fixes, in order**, and the rule that governs them: S18 and the idle first, no test for its own sake, as little idling as possible. Emptied step by step as the work is done |
 
 The long version this replaced, a dated log of 10–25 September 2026 with every
 alignment and argument in full, is in git:
@@ -64,6 +64,17 @@ Everything else settled against is in `refuted.md`.
 
 **Open — what this file is still for:**
 
+- **S18 is now the worst symptom** (*owner's decision*, 18/10/2026),
+  ahead of the idle; the owner reads the two as likely one cause
+  (deposits, H13). **S18, cylinder 3 out cold with a tick at camshaft
+  rate** (18/10):
+  P0303 and P0300 stored, the first time the ECU has named a cylinder;
+  gone after a restart and through a longer drive. Ranked re-read: H13
+  up to 2 behind H1, H3 to 3. **It came back warm the same afternoon**:
+  the tick for a few minutes, and two short bursts in 014 under part
+  load, the largest the counter has ever read while driving, with no
+  code. A loose flake fits better than the valvetrain; a repeat makes
+  compression and a leak-down on 3 the next step.
 - **The idle: S1 (unsettled) and S3 (misfires counted at idle).** Every
   part in the fuel and ignition path has been replaced and both remain.
   **When** 014 counts is settled — it follows 055's learned idle air
@@ -100,14 +111,6 @@ Everything else settled against is in `refuted.md`.
   all four alike (*The idle's candidates, ranked*). **H11**, both lambda probes shifted alike, is
   written down last (10/10, at the owner's request) so that it is not
   argued again from the start.
-- **S18, cylinder 3 out cold with a tick at camshaft rate** (18/10):
-  P0303 and P0300 stored, the first time the ECU has named a cylinder;
-  gone after a restart and through a longer drive. Ranked re-read: H13
-  up to 2 behind H1, H3 to 3. **It came back warm the same afternoon**:
-  the tick for a few minutes, and two short bursts in 014 under part
-  load, the largest the counter has ever read while driving, with no
-  code. A loose flake fits better than the valvetrain; a repeat makes
-  compression and a leak-down on 3 the next step.
 - **Around the idle:** S2 (an occasional puff from the exhaust) and S11
   (a hiss at the back of the engine at a warm idle, not yet placed) —
   **neither heard on 9/10 or 10/10**; **S2 heard again on 12/10**; **S11 closed 12/10 and reopened 14/10**, heard again at the back on the gauge start (*owner*);

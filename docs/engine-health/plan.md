@@ -128,7 +128,10 @@ Claude runs the capture on every drive.
 
 **The idle comes first.** After the oil leak, the one thing this work is
 for is the unsettled idle (S1) and the misfires VCDS counts at idle (S3,
-group 014). So:
+group 014). **Amended 18/10/2026** (*owner's decision*): **S18,
+cylinder 3 dropping out with a tick, is now the worst symptom and comes
+first**, with the idle beside it, since the owner reads both as likely
+one cause. The rules below hold for both. So:
 
 - **Fix, then look.** Each step is a repair; the only readings taken are
   the ones that decide the next step.
@@ -338,8 +341,9 @@ filled without one — and **no oil change is owed to the cleaner**
 (*decided 17/10/2026*): it was the price of a course, and one can at the
 maker's dose is the maker's own use of it.
 
-**Item 6a reopens the second can, for S18 and not for the idle**
-(*owner's decision*, 18/10/2026). If S18 is deposits (H13), the cleaner
+**Item 6a reopens the second can, for S18 and for the idle**
+(*owner's decision*, 18/10/2026: the owner reads both as likely one
+cause, deposits). If S18 is deposits (H13), the cleaner
 is what loosens them, and a second tank may finish the job. Hard
 driving on plain fuel may do some of the same, and the plain tanks
 show how much. **Not before the map, and not on item 6's tank**: the

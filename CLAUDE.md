@@ -154,7 +154,8 @@ carries a generated block; a figure typed into prose only goes stale.
     firmware questions, 10 and 11) and `datasheets/`
   - **`docs/engine-health/`** — the car's own engine. `open.md` is a holding
     document for one open investigation — the idle misfires that outlived the
-    repair — holding only what is open: symptoms, hypotheses, tests.
+    repair, and since 18/10/2026 ahead of them cylinder 3 dropping out with
+    a tick (S18) — holding only what is open: symptoms, hypotheses, tests.
     `refuted.md` takes whatever is settled against. `plan.md` is the planned
     fixes in order, emptied as they are done, **in two parts that are
     never mixed**: Part 1 is what to do, as bare instructions the
