@@ -38,8 +38,11 @@ Claude runs the capture on every drive.
    - **The drive home from the tuner is the first of these drives,
      captured, not with the MFD.** Capture started **before the first
      start** at the tuner, running to engine off at home; VCDS on
-     **014, 055, 003** the whole way. **One idle stop straight after the
-     start, cold**, then a few on the way. Write each stop into the chat.
+     **014, 055, 003** the whole way. No `oilwatch.py`. **A few minutes
+     of idle straight after the start, cold**; once warm, drive briskly;
+     **when 055's field 3 nears −0.95, stop for another few minutes of
+     idle** — read it at a stop, not while driving; **one more at home**.
+     Write each stop into the chat.
    - **On one of these drives, two or three stops with a cut**, oil at
      95–100 °C: neutral, handbrake on, loads off. **Injector 1's
      connector off for 30 s** (injector 4 if 1 cannot be reached), by
@@ -191,7 +194,15 @@ field 3 crosses −0.95** supports C19; starting elsewhere reopens it.
 `IdleHealth`, computed from the capture over the same drive, says
 whether the idle itself changes at that moment or only the counter.
 003 keeps the idle advance for H14. The cold stop is the one fresh
-adaptations have never counted on (C19), so it is the before.
+adaptations have never counted on (C19), so it is the before; the car
+will have stood for hours at the tuner (the flash transfer is slow on
+this ECU, *owner*), so the start is a true cold one. **The brisk
+driving** is what 4/10 A did before field 3 crossed; the stop at −0.95
+puts an idle right on the crossing, and the one at home is the after
+(*owner's decision*, 18/10/2026). **Whether field 3 learns while
+driving or only at idle is not known here**, which is why it is read
+at each stop as well. No `oilwatch.py`: no step on this drive waits
+for an oil band.
 
 **The tuner's files** (*owner's decision*, 18/10/2026). The ECU is read
 on the bench through its pins, not over OBD, which gives the whole
