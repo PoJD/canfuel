@@ -1338,6 +1338,17 @@ slot through the same run, so its dips are named by cylinder. Both read
 are left out by the tool. `--pairs` is kept for history only: pairs
 within one long run are not independent, so it gives no p.
 
+**When Claude drives VCDS itself, it may only read** (*the maintainer,
+18/10/2026*): **measuring blocks**, logging them, and **reading the
+fault memory**, which includes saving it to a file. **Nothing that
+writes to a control unit, ever**: no clearing the fault memory (*the
+maintainer always clears it himself, by hand*), no coding, no
+adaptation, no basic settings, no output tests, no readiness or
+service resets. A script that drives VCDS clicks only buttons on an
+explicit allow-list for those reads, and stops rather than clicking
+anything it does not recognise. If a step seems to need a write, stop
+and ask; do not find a way round.
+
 **You cannot hear him.** Nothing in either setup gives you a microphone, so
 a reading taken at the car — a thermometer, a gauge, a sound described —
 reaches you as text. **Dictation on his phone into the chat works** (tested
