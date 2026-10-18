@@ -2,8 +2,11 @@
 
     python tools/vcds_log.py --groups 014 001 003 --out "C:/Users/.../Downloads/x.CSV"
 
-Opens 01-Motor, measuring blocks, the given groups (up to three) and the log
-dialog, and logs to --out. When the ECU stops answering -- the ignition
+Reads the engine's fault memory (to OUT faults-before.txt), then goes to
+the measuring blocks without leaving 01, sets the groups (up to three) and
+logs to --out; on stop it reads the fault memory again (faults-after.txt),
+ends the communication and closes VCDS. It starts from whatever state VCDS
+is in. When the ECU stops answering -- the ignition
 switched off, the voltage dip of a start -- VCDS shows "Initialisation of
 the control unit" with a single OK. This script presses it, goes back in and
 logs on into the next file, --out with -2, -3 ... before the extension.
@@ -267,50 +270,80 @@ def part_path(out, n):
     return "%s-%d%s" % (root, n, ext)
 
 
+def write_faults(path, lines, when):
+    text = "%s  01-Motor, fault memory %s (read by vcds_log.py)\n%s\n" % (
+        time.strftime("%Y-%m-%d %H:%M:%S"), when, "\n".join(lines))
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
+    print(text, end="", flush=True)
+
+
+def read_faults_retrying(v, timeout, stopping=lambda: False):
+    """Read the fault memory, riding out an ECU that is not answering yet
+    (the ignition just switched on). None if it never answered."""
+    t0 = time.time()
+    while time.time() - t0 < timeout and not stopping():
+        try:
+            return v.read_faults()
+        except Exception as e:
+            log("fault memory not read yet (%s); retrying" % str(e)[:80])
+            v.dismiss_init()
+            time.sleep(3)
+    return None
+
+
+def faults_path(out, when):
+    return "%s faults-%s.txt" % (os.path.splitext(out)[0], when)
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     p.add_argument("--faults", metavar="TXT",
                    help="only read the engine's fault memory into TXT and print it; no logging")
     p.add_argument("--groups", nargs="+", help="up to three, e.g. 014 001 003")
-    p.add_argument("--out", help="the CSV VCDS writes; parts get -2, -3 ...")
+    p.add_argument("--out", help="the CSV VCDS writes; parts get -2, -3 ...; the fault "
+                                 "memory before and after goes beside it")
     p.add_argument("--stop", help="create this file to stop (default: OUT.stop)")
     p.add_argument("--seconds", type=float, help="stop after this long")
     p.add_argument("--keep-open", action="store_true",
                    help="leave VCDS and the communication with 01 open at the end")
     a = p.parse_args(argv)
-    if a.faults:
-        v = Vcds()
-        try:
-            lines = v.read_faults()
-        finally:
-            v.end_session()
-            if not a.keep_open:
-                v.quit()
-        text = "%s  01-Motor, fault memory (read by vcds_log.py)\n%s\n" % (
-            time.strftime("%Y-%m-%d %H:%M:%S"), "\n".join(lines))
-        with open(a.faults, "w", encoding="utf-8") as f:
-            f.write(text)
-        print(text, end="")
-        log("DONE")
-        return 0
-    if not a.groups or not a.out:
-        p.error("--groups and --out are needed to log")
-    if len(a.groups) > 3:
-        p.error("VCDS shows three groups at a time")
-    stop = a.stop or a.out + ".stop"
-    t0 = time.time()
+    if not a.faults:
+        if not a.groups or not a.out:
+            p.error("--groups and --out are needed to log")
+        if len(a.groups) > 3:
+            p.error("VCDS shows three groups at a time")
 
     v = Vcds()
-    n = 1
+    v.dismiss_init()                # a dialog left over from an earlier run
+    n = 0
+    stop = (a.stop or a.out + ".stop") if a.out else None
+    t0 = time.time()
 
     def stopping():
-        return os.path.exists(stop) or (a.seconds and time.time() - t0 > a.seconds)
+        return (stop and os.path.exists(stop)) or (a.seconds and time.time() - t0 > a.seconds)
 
-    # Everything from here on is inside the try, so that however it ends --
-    # the stop file, an error, Ctrl-C -- the log dialog is stopped and
-    # closed, which is what writes the file. A log left running is the one
-    # outcome this tool must never have.
+    # Everything is inside the try, so that however it ends -- the stop file,
+    # an error, Ctrl-C -- the log dialog is stopped and closed (which is what
+    # writes the file), the communication ended and VCDS closed. A log left
+    # running is the one outcome this tool must never have.
     try:
+        if a.faults:
+            lines = read_faults_retrying(v, 60)
+            if lines is None:
+                log("WARNING: the ECU never answered; fault memory NOT read")
+            else:
+                write_faults(a.faults, lines, "")
+            return 0
+
+        # 1. the fault memory before, 2. the blocks and the log, without
+        # leaving 01 in between; 3. the fault memory after, likewise.
+        lines = read_faults_retrying(v, 60)
+        if lines is None:
+            log("WARNING: fault memory before NOT read")
+        else:
+            write_faults(faults_path(a.out, "before"), lines, "before")
+        n = 1
         blocks = v.open_blocks(a.groups)
         v.start_log(blocks, part_path(a.out, n))
         t0 = time.time()            # --seconds counts logging, not setup
@@ -328,6 +361,13 @@ def main(argv=None):
                         time.sleep(3)
             time.sleep(0.5)
         log("stopping")
+        v.stop_log()
+        log("log closed; %d part(s)" % n)
+        lines = read_faults_retrying(v, 90)
+        if lines is None:
+            log("WARNING: fault memory after NOT read -- is the ignition on?")
+        else:
+            write_faults(faults_path(a.out, "after"), lines, "after")
     finally:
         for attempt in range(3):
             try:
@@ -338,19 +378,18 @@ def main(argv=None):
                 time.sleep(2)
         if v.log_dialog() is not None:
             log("WARNING: the log dialog is still open -- close it in VCDS")
+        elif a.keep_open:
+            log("VCDS and the communication left open (--keep-open)")
         else:
-            log("log closed; %d part(s)" % n)
-            if a.keep_open:
-                log("communication left open (--keep-open)")
-            else:
-                try:
-                    v.end_session()
-                    v.quit()
-                except Exception as e:
-                    log("WARNING: ending the communication or VCDS failed (%s)" % str(e)[:80])
-        log("DONE")
-        if os.path.exists(stop):
+            try:
+                v.dismiss_init()
+                v.end_session()
+                v.quit()
+            except Exception as e:
+                log("WARNING: ending the communication or VCDS failed (%s)" % str(e)[:80])
+        if stop and os.path.exists(stop):
             os.remove(stop)
+        log("DONE")
     return 0
 
 

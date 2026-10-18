@@ -1294,9 +1294,15 @@ if it is still unclear, ask once.
   background, stopped by creating `<out>.stop` at engine off. When the
   ECU drops at the start, the tool presses OK on *Inicializace jednotky*,
   reconnects and logs on into `<out>-2.CSV`, `-3` ..., each part a
-  complete file. After the drive, `--faults <file>.txt` reads the fault
-  memory of 01 and writes it out. **Every run ends the communication and
-  closes VCDS**, and you tell him when it is done, so he clicks nothing. It reads only: the rule above. **The
+  complete file. **One run does the whole session**: the fault memory
+  before (`<out> faults-before.txt`), the blocks and the log, the fault
+  memory after (`faults-after.txt`), without leaving 01 in between, and
+  only then ends the communication and closes VCDS, printing DONE. It
+  starts from whatever state VCDS is in, closed or half-open. **At the
+  end he switches the engine off and the ignition back on** so that the
+  fault memory can be read, then you create the stop file and tell him
+  the codes and that it is done. He clicks nothing; `--faults <file>`
+  alone reads the memory without logging. It reads only: the rule above. **The
   fault memory is cleared by him, by hand.**
 - **In the cloud**, you cannot reach the adapter: hand him the commands and
   read the files he uploads.
