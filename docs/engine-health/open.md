@@ -93,7 +93,8 @@ Everything else settled against is in `refuted.md`.
   all four, read when the original map goes back on 22/10; then **H15**,
   the aftermarket leads (added 17/10 at the owner's request): VW
   originals were decided on 9/10 and NGK went in, and a genuine set is
-  the cheap swap after the map — against it, a clean engine under load
+  the swap after the map, **upper plenum off to fit them** (*owner*,
+  18/10) — against it, a clean engine under load
   and two cylinders on separate leads; then **H2**, the
   exhaust ahead of the probe, down from 1: nothing cold, and it acts on
   all four alike (*The idle's candidates, ranked*). **H11**, both lambda probes shifted alike, is
@@ -4632,12 +4633,19 @@ S11 is a sound outside the cylinder.
 **Tests:**
 
 1. **A genuine VW set of leads, bought by VIN at the counter**, with the
-   plug type checked there at the same time. Fitted cold, each end pushed
+   plug type checked there at the same time. **The upper plenum comes off
+   to fit them** (*owner*, 18/10/2026: they cannot be pushed home
+   properly without it), with a new Elring `271.230` under it as on
+   10/10 — so the intake is opened too and the test is not one variable
+   unless the gasket is the one thing besides the leads that changes.
+   Done together with any job that takes the plenum off anyway (H3's
+   runners of 3 and 4). Fitted cold, each end pushed
    home until it clicks, and then **two or three warm stops**: `IdleHealth`
    loads off at 95–100 °C, 014, and the dips by cylinder against `31`.
    Calmer, with the dips off 3 and 4 → it was here. The same → H15 is
    refuted, and H4's spark side with it.
-2. *Cheaper, narrower:* lead 4 alone. It can clear or name cylinder 4,
+2. *Cheaper, narrower:* lead 4 alone, the plenum off all the same. It
+   can clear or name cylinder 4,
    and says nothing about cylinder 3.
 
 ## What the forums say about this idle — searched 27/9/2026
@@ -5374,8 +5382,13 @@ drive; the other captures have the same shape with no name, and item
 the owner's request: no symptom added or closed. **It goes in at 6**
 (*decision*): below H14, which is being tested on 22/10 anyway, and
 above H2 and everything that acts on all four alike, because its test is
-cheap, reversible and takes nothing apart, and lead 4 is a part on one of
-the two named cylinders. It stays below H4's injector loom because the
+cheap and reversible, and lead 4 is a part on one of the two named
+cylinders. ⚠ *Corrected 18/10/2026* (*owner*): this said the test
+"takes nothing apart". **The leads cannot be fitted properly without the
+upper plenum off**, as on 10/10 — a new Elring `271.230` under it, and a
+joint on the intake opened and remade, which is H3's ground. So it is
+best done when the plenum comes off anyway, and H3 at 2 is the likeliest
+reason it will. It stays below H4's injector loom because the
 shape (3 and 4, separate leads) and the clean pulls are against it. The
 rest from H2 down one.*
 
