@@ -1325,16 +1325,6 @@ a file over 100 MB, which a ten-minute drive would pass, and git keeps
 whatever it is given for good. A release asset is outside git history,
 so it costs the repository nothing.
 
-⚠ **Not done yet: the release does not exist, and every unfiltered
-capture so far sits only in the laptop's `../raw-captures/`**, beside
-the repositories, where the procedure before 18/10/2026 kept them. The
-first session on the laptop creates the release (`gh release create
-raw-captures --title "Raw CAN captures" --notes "Unfiltered USBtin
-captures, gzipped. Fixtures in test/fixtures/ are these filtered to six
-identifiers."`), uploads every file there gzipped, downloads each back
-and checks it as in step 3, deletes the files that matched and then the
-folder itself, and deletes this paragraph in the same commit.
-
 **And then, every time, how the dips share out over the cylinders** (*the
 maintainer, 14/10/2026; the method changed at his request 17/10/2026*):
 `python tools/cutscan.py --shares` on the new capture **and on it pooled
