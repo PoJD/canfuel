@@ -1102,6 +1102,19 @@ The days before had been the hardest driving the car has had in the
 owner's hands, on purpose, to let the cleaner loosen what it could; **the
 owner now holds deposits (H13) the most likely**, with nothing certain.
 
+**19/10/2026 — the adaptations after the episodes** (*owner*, VCDS,
+ignition on and the engine off, before the plenum came off for
+`plan.md` item 6b; `open.md` S18, *Why the idle got worse*). The fault
+memory **empty** after three drives that day. **032: −3.1 / +5.5 %**,
+**055's learnt idle air: −1.27 g/s**, both inside what they read before
+the episodes (`photos/vcds-032-055-2026-10-19-before-6b.jpg`). The
+same day the warm idle read about 100 with every load off and about 50
+with every load on (`open.md` S1, *Since the cleaner*).
+
+**What it is not known to have achieved:** nothing was changed; it
+rules out an adaptation learnt during the misfires as the cause of the
+worse idle, and says nothing about what is.
+
 ---
 
 

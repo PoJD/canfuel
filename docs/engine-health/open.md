@@ -2221,6 +2221,8 @@ tick stayed. Engine switched off.
   (S1, *Since the cleaner*). **Recorded under S18 at the owner's
   decision**, the fifth drive without an episode. Fault memory not
   read; the next reading covers all three drives of 19/10.
+- **Fault memory empty** (*owner*, 19/10 evening, VCDS 01, before the
+  plenum came off): nothing stored over the three drives of 19/10.
 - **Context**: the cleaner's tank (item 5, the PEA can of 15/10) was
   driven to empty on 17/10 and the tank refilled with plain fuel; this
   was the next cold start but one. **The drives of the days before were
@@ -2328,9 +2330,14 @@ The candidates, in order of fit (*reasoned, not shown*):
   oxygen past the probe, which reads lean, and the ECU richens; if that
   went into the idle's additive mixture adaptation, or into the idle
   air in 055, it acts only at a small charge. Fits 2, and it is the one
-  candidate that can be read at once (`plan.md` item 5, the
-  adaptations once before 22/10). Against: it acts on all four, which
-  fits 3 poorly, and the rise began before the episodes.
+  candidate that can be read at once. Against: it acts on all four,
+  which fits 3 poorly, and the rise began before the episodes. **Read
+  19/10, engine off, against** (`photos/vcds-032-055-2026-10-19-before-6b.jpg`):
+  032 **−3.1 / +5.5 %**, inside its own history (−3.1 / +4.7 on 24/9,
+  −2.3 / +5.5 on 9/10, 0.0 / +2.3 on 12/10, −4.7 / +4.7 on 15/10), and
+  the idle cell takes fuel away where a misfire-learnt trim would add
+  it; 055's learnt idle air **−1.27 g/s** against −1.18 to −1.21 on
+  12/10, inside ±1.50. Nothing was learnt away by the episodes.
 - **A lifter or valve (H1).** A valve that seats late hurts the idle
   most, which fits 2; but not why it began with the cleaner, nor why
   the tick has stayed away on five drives.
