@@ -2292,6 +2292,59 @@ ticks, then a borescope through 3's plug hole at the valve seats. **The
 lamp flashing means ease off**: that is the misfire rate that damages
 the converter (`vcds.md`).
 
+**Why the idle got worse — reasoned, 19/10/2026** (*the owner's
+question*; nothing here is measured beyond the readings it cites). The
+warm idle with loads off, or the lights only, read off the display:
+50–61 on 12/10, about 54 on 15/10 (the can in), 50–70 on 16/10, 70–90
+on 17/10, 80–90 on 18/10 afternoon without a tick, about 120 and
+82–104 (`39`) on 18/10 evening, about 100 on 19/10. **With every load
+on it has hardly moved**: about 40 at its lowest on 17/10, mostly about
+50 on 19/10 (S1, *Since the cleaner*). Three things follow:
+1. **The rise began about 16–17/10, with the cleaner and the hard
+   driving, not with the episodes**, which fall in the middle of it.
+   Glances off the display, but about 55 to about 100 is twice what
+   one pair can show.
+2. **It is worse only at a small charge**: the shape of S1 itself, a
+   margin that more air and fuel cover.
+3. **`39`, the first capture after the episodes, has its dips more
+   concentrated than any pool before it**, top two 77 % against 61–67 %
+   (*The dips keep to one slot*): one capture, 70 dips, slots not named
+   — but it points to one pair of cylinders getting worse rather than
+   to something acting on all four.
+
+The candidates, in order of fit (*reasoned, not shown*):
+- **Deposit the cleaner loosened and has not yet burnt off (H13).** PEA
+  soaks and softens carbon before driving burns or blows it out
+  (*general*), so for a while the surfaces are uneven and come away in
+  pieces. A piece under valve 3's seat is the episodes; what is left, a
+  valve that nearly seats, is the idle — a leak costs most at a small
+  charge and vanishes under load. Fits 1, 2 and 3. **If so it should
+  improve over a tank or two**: a prediction, not yet an observation.
+- **Injector 3 holding a loosened piece.** A poor spray matters most at
+  the shortest pulse, which is the idle, and hides in a long pulse
+  under load. Fits 2 and 3. Against: the injectors are new (23/9), and
+  the cleaner works to clean nozzles.
+- **An adaptation learnt during the misfires.** A misfire sends unburnt
+  oxygen past the probe, which reads lean, and the ECU richens; if that
+  went into the idle's additive mixture adaptation, or into the idle
+  air in 055, it acts only at a small charge. Fits 2, and it is the one
+  candidate that can be read at once (`plan.md` item 5, the
+  adaptations once before 22/10). Against: it acts on all four, which
+  fits 3 poorly, and the rise began before the episodes.
+- **A lifter or valve (H1).** A valve that seats late hurts the idle
+  most, which fits 2; but not why it began with the cleaner, nor why
+  the tick has stayed away on five drives.
+- **Unlikely**: the converter damaged by the flashing lamp, which would
+  cost power at the top first, and that is fine; the ignition, where
+  nothing changed and the timing follows the cleaner.
+
+**What separates them, cheapest first**: 032 and 055 against their
+baselines (the adaptation in or out); the borescope this week (carbon
+on 3 against the others, flaking or patchy for H13; not sealing); the
+injector cut on 22/10, which names the cylinders — though the map goes
+back the same day, so a change in the idle then cannot be given to one
+cause alone.
+
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** 0x420's `OilTemp` is `raw − 60` °C, the
