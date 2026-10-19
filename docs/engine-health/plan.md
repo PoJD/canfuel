@@ -41,11 +41,10 @@ Claude runs the capture on every drive.
      chat: **when** (date, roughly what time, minutes after the start),
      **what came before** (hard driving, a cold start, a long stand),
      **oil temperature** and **`IdleHealth`** off the display.
-   - **Once before 22/10, the adaptations**, with the laptop in the car:
-     first **ignition on, engine not running**, 01 → measuring blocks
-     **032**, then **055**, a screenshot of each; then at the **warm
-     idle** that ends a drive (oil 95–100 °C, loads off, neutral), the
-     same two again. Upload the four screenshots into the chat.
+   - **Once before 22/10, the adaptations**, after a warm drive:
+     **ignition on, engine not running**, 01 → measuring blocks
+     **032**, then **055**, a screenshot of each. Upload both into the
+     chat.
 5a. **22/10: the original map written back** at the tuner; the ECU
    comes out of the car. **The drive home first, as below; then one or
    two ordinary warm drives**: Claude runs the capture; VCDS on
@@ -254,14 +253,14 @@ idle's worsening is a mixture or idle-air adaptation learnt while
 cylinder 3 misfired; 032 and 055 are where the ECU keeps both, and the
 baselines are on record (032 −2.3 / +5.5 on 9/10, 0.0 / +2.3 after
 12/10; 055's learnt value −1.18 to −1.21 on 12/10). **Before 22/10**
-because the map going back may well reset them, and then the question
-can no longer be asked. **Engine off and warm idle both** (*decided*):
-a learnt value is stored, so it may well read with the engine stopped
-(*general, not checked on this car*), but 055's regulator field is live
-and needs the engine running, and the baselines were all taken running.
-Reading both settles whether the engine-off reading is enough for next
-time, at no extra cost. Read-only, measuring blocks: nothing is
-written to the ECU.
+because the map going back resets them: the adaptations are held only
+by the ECU's permanent supply, and the ECU comes out of the car
+(*owner*, 19/10/2026), so after it the question can no longer be
+asked. **Engine off is enough**: the learnt values read with the
+ignition on and the engine stopped, already done on 12/10
+(`idle-log.md`), which is how the baseline was taken (*owner*,
+19/10/2026). Read-only, measuring blocks: nothing is written to the
+ECU.
 
 **Which VCDS groups, and why** (*decided 11/10/2026*, the owner's
 question why 014/020/026 were in the gauge session): **026** belongs to

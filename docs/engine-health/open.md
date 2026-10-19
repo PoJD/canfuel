@@ -2341,7 +2341,9 @@ The candidates, in order of fit (*reasoned, not shown*):
 **What separates them, cheapest first**: 032 and 055 against their
 baselines (the adaptation in or out); the borescope this week (carbon
 on 3 against the others, flaking or patchy for H13; not sealing); the
-injector cut on 22/10, which names the cylinders — though the map goes
+injector cut on 22/10, which names the cylinders — the adaptations
+start again from nothing that day, since the ECU comes out of the car
+and only its permanent supply holds them (*owner*) — though the map goes
 back the same day, so a change in the idle then cannot be given to one
 cause alone.
 
