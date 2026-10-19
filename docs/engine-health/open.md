@@ -343,7 +343,9 @@ every load on 30–70, mostly about 50**, with restless stretches up to
 70. Main beam stayed off, on a car park, so as not to dazzle other
 drivers. A difference of about 50, against the 25 one pair can show
 (`plan.md`, *`IdleHealth` in two states*): **everything on together
-still calms it, now measured once**. Read as (*reasoned, not shown*): if the cleaner took part
+still calms it, now measured once**. The same evening, oil 100 °C, lights and the
+blower on its first step read **100–110, at moments 120** (S18): the
+partial load did not help again. Read as (*reasoned, not shown*): if the cleaner took part
 of what made the idle rough only at low air flow, what is left depends
 less on the load.
 
@@ -2210,6 +2212,15 @@ tick stayed. Engine switched off.
   on 17/10 and 80–90 on 18/10 afternoon without a tick. **Recorded under
   S18 at the owner's decision**, not as a change to S1. It does not say
   what the episodes did, only that the idle has not come back from them.
+- **The drive home, 19/10 evening, no tick** (*owner*; MFD in, no
+  capture, no VCDS): a few pulls, nothing big, in a queue of traffic.
+  **No tick**; the idle **certainly less steady than before the
+  episodes** (*owner*). At a warm stop, oil 100 °C, lights and the
+  blower on its first step: **`IdleHealth` about 100–110, at moments
+  towards 120** — no better than the afternoon's every load off
+  (S1, *Since the cleaner*). **Recorded under S18 at the owner's
+  decision**, the fifth drive without an episode. Fault memory not
+  read; the next reading covers all three drives of 19/10.
 - **Context**: the cleaner's tank (item 5, the PEA can of 15/10) was
   driven to empty on 17/10 and the tank refilled with plain fuel; this
   was the next cold start but one. **The drives of the days before were
