@@ -2181,6 +2181,14 @@ tick stayed. Engine switched off.
   rpm under full load, which is where a valve that does not quite seat
   would be expected to tick first (*reasoned*). It does not close S18 —
   one clean drive cannot — and the idle is S1's, not a new symptom.
+- **The morning, 19/10, no tick** (*owner*; no MFD, no capture, no
+  VCDS): about 35 minutes, the first 10 at normal speed, so the engine
+  was warm, then Prague traffic. **No tick, the lamp off**, the car
+  drove normally; the idle by feel **no clear change** from the days
+  before, with no figure to put on it. **Recorded under S18 at the
+  owner's decision**, as a third drive without an episode. **Fault
+  memory not read** after it: the next reading covers this drive too,
+  so a code stored then cannot be pinned to one of the two.
 - **Context**: the cleaner's tank (item 5, the PEA can of 15/10) was
   driven to empty on 17/10 and the tank refilled with plain fuel; this
   was the next cold start but one. **The drives of the days before were

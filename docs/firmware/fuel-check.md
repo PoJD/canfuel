@@ -84,6 +84,12 @@ and the 0x480 counter with the same arithmetic, so the captured drives'
 kilometres and microlitres are added to the display's figures by
 replay, not by hand. **A drive with the MFD out and no capture is lost
 outright**, and the comparison then says so rather than guessing it.
+In this tank so far:
+
+- **19/10/2026 morning**, about 35 minutes, the first 10 at normal
+  speed and the rest in Prague traffic (*owner*): in neither the display
+  nor any fixture, so the pump's litres will run above the sum by that
+  drive's fuel.
 
 ⚠ **This tank spans the map going back on 22/10** (`docs/engine-health/plan.md`
 item 5a), which is a line in the table below. Taken anyway, and read as
