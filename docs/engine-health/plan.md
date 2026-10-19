@@ -91,16 +91,29 @@ Claude runs the capture on every drive.
    OMV MaxxMotion 100. If it goes in: the maker's dose, into a fresh
    tank of the usual fuel, and **item 5's S18 rules on every drive of
    that tank**. **After that tank: oil and filter changed.**
-6b. **Or instead of 6a, the owner's choice after 6: a look inside with a
-   borescope.** **Bought** (*owner*, 19/10/2026); the owner means to
-   look this week, before 22/10, once the pliers for the plug leads
-   arrive. An articulating one, joystick-steered
-   in four directions, probe 6.2–6.5 mm, its own screen, 1–1.5 m;
-   about 4,000–5,000 Kč. Engine cold, plugs out, the engine turned by
-   hand on the crank pulley bolt. Each cylinder at TDC on compression
-   (both valves shut): piston crown, chamber roof, both valve faces and
-   their edges; then the piston down for the cylinder wall. **A video
-   of every cylinder**, 3 against the other three.
+6b. **20/10, before 22/10: a look inside with the borescope, the upper
+   plenum off.** Engine cold.
+   - **Upper plenum off**; a clean cloth over each runner opening
+     whenever nothing is going in. **A new Elring `271.230`** under it
+     when it goes back.
+   - **The intake side**: the probe down each runner of the lower
+     manifold to the back of the inlet valve, its stem and tulip; the
+     injector's tip on the way. **A video of each**, saying the
+     cylinder.
+   - **The combustion side**: plugs out; **a photo of all four side by
+     side**, each by its cylinder (insulator, electrodes, thread). The
+     engine turned by hand on the crank pulley bolt; each cylinder at
+     TDC on compression (both valves shut): piston crown, chamber roof,
+     both valve faces and their edges; then the piston down for the
+     cylinder wall. **A video of every cylinder.**
+   - Plugs back at 25–30 Nm; every lead pushed fully home, at the plug
+     and at the coil.
+   - Upload the videos and photos into the chat. **Nothing is cleaned
+     on this day.**
+   - **If the valve backs carry heavy carbon**: Claude and the owner
+     decide the cleaning then — the owner's choice is a professional
+     walnut clean; ask the workshop whether they take the lower
+     manifold off for it.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      **Leaks there → a new manifold**: new gasket to the head, new nuts,
@@ -452,6 +465,26 @@ watches): a minimum is a signal, but on a grade that wanders it keeps
 falling the longer one watches, so on its own it would make long stops
 look better than short ones; beside the level it sat at, it does not. Not a test of anything else, and it decides nothing on
 its own about a lifter.
+
+**Item 6b brought forward, with the intake side** (*owner's decision*,
+19/10/2026): before 22/10 rather than after item 6, and with the upper
+plenum off so that the probe can go down the lower manifold's runners
+to the backs of the inlet valves — the owner's idea. That is the half
+of H13 a plug hole cannot reach and the half where a port-injected
+engine's worst deposit sits (*general*), so it answers H13's inlet
+half directly; the plugs are reachable there too. **Nothing is cleaned
+on the day**: cleaning is decided on what the videos show. **Walnut
+blasting, if it comes to it, at a workshop** (*owner*): on a
+port-injected engine the injectors sit in the lower manifold, and
+blasting usually wants the port at the head bare, to seal on and to
+suck the media out (*general, not checked for this engine*), so
+whether the lower manifold comes off is the workshop's call, not
+assumed here. **Not a solvent in place behind closed valves** (*decided*,
+19/10): valve 3 may not seal (S18), and what it lets through goes into
+the cylinder and on to the converter. ⚠ **The refit is a third change
+before 22/10's two** (the map, the adaptations), and every refit of the
+plenum is a chance of a new leak (H3); read 22/10's results with that
+in mind. Accepted: what the camera shows does not depend on the map.
 
 **Item 6b — the borescope, as the alternative to a second can**
 (*owner's decision*, 19/10/2026, held until item 6's tank is read): a

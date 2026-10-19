@@ -4796,6 +4796,28 @@ combustion and S11 is a sound outside the cylinder: neither.
 3. **A borescope through a plug hole**, warm engine off: the piston crown
    and the chamber; through the inlet port with the manifold off, the
    valve backs. Looks, and names a cylinder if one is worse.
+   **Brought forward to 20/10** (`plan.md` item 6b, *owner's decision*,
+   19/10/2026), and **the valve backs through the lower manifold's
+   runners with only the upper plenum off** (*the owner's idea*), the
+   plugs photographed by cylinder. Read as (*reasoned*): heavy carbon
+   on the valve backs, most on 3 and 4, is H13's inlet half found, and
+   a mechanical clean (walnut, at a workshop) then outranks a second
+   can; little carbon there weakens the inlet half and leaves the
+   chamber and the seats. It cannot show a seat that does not seal;
+   that stays the leak-down's.
+   - **Weighed, 19/10/2026** (*an AI answer the owner pasted in*, read
+     as evidence, not a source): that the valve backs are *certainly*
+     coked is not known. For it, in general: the breather's oil mist
+     and the exhaust pushed back at valve overlap both bake onto the
+     back of an inlet valve, and a porous deposit soaks up fuel at the
+     idle. Against it, on this car: a detergent premium fuel since 2017
+     (*Against* above), and port injection washes the valve, where the
+     heavy cases that walnut blasting is known for are direct-injected
+     (*general*). Two of its figures were this car's but from another
+     cause: 032's −4.7 % was August, the old MAF (S9), and the sooty plug
+     was the old plug 4, before 10/10. Cleaning the back of a valve does
+     not clean its seat, and compression and the vacuum gauge were
+     sound before the episodes.
 
 ### H14. The remap of 6/2018 — the idle's ignition, or its margin
 
