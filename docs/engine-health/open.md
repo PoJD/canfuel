@@ -335,9 +335,15 @@ off the display*, 19/10/2026): since the PEA tank, lights alone or a
 few consumers make little difference, sometimes the opposite (on 18/10
 about 80 with nothing on, nearer 100 with some loads); **everything on
 together** (main beam, both seats, heated glass, A/C, blower on full)
-still calms it, consistently. Estimates off the display, not yet
-measured; the two-state reading in `plan.md`'s standing items is what
-measures it. Read as (*reasoned, not shown*): if the cleaner took part
+still calms it, consistently. Estimates off the display at first;
+the two-state reading in `plan.md`'s standing items is what measures
+it. **The first pair, 19/10/2026 afternoon** (*owner*, off the display,
+oil 101 °C, after a brisk drive): **loads off 90–120, mostly about 100;
+every load on 30–70, mostly about 50**, with restless stretches up to
+70. Main beam stayed off, on a car park, so as not to dazzle other
+drivers. A difference of about 50, against the 25 one pair can show
+(`plan.md`, *`IdleHealth` in two states*): **everything on together
+still calms it, now measured once**. Read as (*reasoned, not shown*): if the cleaner took part
 of what made the idle rough only at low air flow, what is left depends
 less on the load.
 
@@ -2189,6 +2195,21 @@ tick stayed. Engine switched off.
   owner's decision**, as a third drive without an episode. **Fault
   memory not read** after it: the next reading covers this drive too,
   so a code stored then cannot be pinned to one of the two.
+- **The afternoon, 19/10, brisk, no tick** (*owner*; MFD in, no
+  capture, no VCDS): about 15 minutes of motorway after the town,
+  **full throttle again**, as on `39`. **No tick, the lamp off, the
+  engine pulled well.** **Recorded under S18 at the owner's decision**,
+  the fourth drive without an episode since the afternoon of 18/10.
+  **Fault memory not read**; the owner will read it on a later drive
+  and expects it empty, and that reading covers both drives of 19/10.
+- **The idle since the episodes, the owner's assessment** (19/10):
+  **still subjectively worse than before them**; the episodes did
+  affect the idle, and so far rather for the worse. The figures with
+  every load off agree: about 100 at 101 °C of oil on 19/10 (S1, *Since
+  the cleaner*), about 120 and 82–104 on 18/10 evening, against 70–90
+  on 17/10 and 80–90 on 18/10 afternoon without a tick. **Recorded under
+  S18 at the owner's decision**, not as a change to S1. It does not say
+  what the episodes did, only that the idle has not come back from them.
 - **Context**: the cleaner's tank (item 5, the PEA can of 15/10) was
   driven to empty on 17/10 and the tank refilled with plain fuel; this
   was the next cold start but one. **The drives of the days before were

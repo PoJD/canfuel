@@ -26,10 +26,11 @@ Claude runs the capture on every drive.
    the converter comes first:**
    - **Warm the engine up gently**: no high revs until the oil reads
      **80 °C** on the display.
-   - **Warm and on four cylinders**: ordinary driving, up to **about
-     4000 rpm** now and then. **Not full throttle to the limiter.**
+   - **Warm and on four cylinders**: spirited driving is fine, full
+     throttle included.
    - **A tick or a felt misfire**: ease off and drive on gently, no
      high revs while it lasts.
+   - **The engine lamp on**: ease off.
    - **The engine lamp flashing, or running on three cylinders**: stop
      where it is safe, **switch the engine off, wait a few minutes**,
      start again. Drive on only if it runs on four.
@@ -87,7 +88,9 @@ Claude runs the capture on every drive.
    tank of the usual fuel, and **item 5's S18 rules on every drive of
    that tank**. **After that tank: oil and filter changed.**
 6b. **Or instead of 6a, the owner's choice after 6: a look inside with a
-   borescope.** Not bought yet. An articulating one, joystick-steered
+   borescope.** **Bought** (*owner*, 19/10/2026); the owner means to
+   look this week, before 22/10, once the pliers for the plug leads
+   arrive. An articulating one, joystick-steered
    in four directions, probe 6.2–6.5 mm, its own screen, 1–1.5 m;
    about 4,000–5,000 Kč. Engine cold, plugs out, the engine turned by
    hand on the crank pulley bolt. Each cylinder at TDC on compression
@@ -205,12 +208,18 @@ drives, not any one of them:
   on 3, warm and cold, then a borescope at the seats (`open.md` S18).
 
 **Why gently cold**: S18 first came on a cold engine, and a cold engine
-is where a hanging lifter would show. **Why 4000 rpm is fine and the
-limiter is not**: a cylinder that fires with no tick has nothing
-holding a valve open, and ordinary revs keep the chamber hot enough to
-burn deposit off (*general*). Full load on a valve that may not be
-seating is the one case that risks more than a misfire, so it waits
-(*reasoned, not shown*). **A flashing lamp** is the misfire rate the
+is where a hanging lifter would show. **Why spirited driving warm**
+(*owner's decision*, 19/10/2026): until then this read "up to about
+4000 rpm, not full throttle to the limiter", set by the owner on 18/10
+when more episodes were expected — full load on a valve that might not
+be seating was the one case that risked more than a misfire (*reasoned,
+not shown*). None came: four drives since the afternoon of 18/10, two
+of them with full-throttle pulls (`39`, and 19/10 afternoon), no tick
+and no lamp (S18). A cylinder that fires with no tick has nothing
+holding a valve open, and hard driving keeps the chamber hot enough to
+burn deposit off (*general*), which is what the cleaner is for. What
+stays is the reaction to a warning: **a lamp that lights** means ease
+off, and **a flashing lamp** is the misfire rate the
 ECU treats as damaging to the converter (`vcds.md`, SSP 175), so the
 engine stops rather than carrying on to home on three cylinders
 (*owner's decision*, 18/10/2026). On 18/10 a restart after a few
