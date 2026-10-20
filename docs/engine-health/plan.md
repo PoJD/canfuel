@@ -17,12 +17,12 @@ records it**, and the file is deleted when it is empty.
 One at a time; Claude says after each whether the next is needed.
 Claude runs the capture on every drive.
 
-5. **Until 22/10: `IdleHealth` off the display**, with the MFD in: on
+5. **Until the map goes back: `IdleHealth` off the display**, with the MFD in: on
    drives where the oil reaches **95–100 °C** on the display, at one
    stop **in the two states of the standing items**, loads off and
    loads on. Write into the chat: date, oil temperature, and for each
    state **where `IdleHealth` mostly sat and the lowest it touched**.
-   **Also until 22/10, on every drive (S18) — protecting the engine and
+   **Also until the map goes back, on every drive (S18) — protecting the engine and
    the converter comes first:**
    - **Warm the engine up gently**: no high revs until the oil reads
      **80 °C** on the display.
@@ -41,7 +41,10 @@ Claude runs the capture on every drive.
      chat: **when** (date, roughly what time, minutes after the start),
      **what came before** (hard driving, a cold start, a long stand),
      **oil temperature** and **`IdleHealth`** off the display.
-5a. **22/10: the original map written back** at the tuner; the ECU
+5a. **Postponed: the original map written back** at the tuner — not
+   on 22/10; first the tuner emails both files, the original and his
+   remap; upload them into the chat (they never go into the
+   repository); a new date after they are read. Then, at the tuner, the ECU
    comes out of the car. **The drive home first, as below; then one or
    two ordinary warm drives**: Claude runs the capture; VCDS on
    **014, 003**; 055 once at the end, warm idle; on one of them **one
@@ -186,7 +189,7 @@ before, not an after**: a cleaner needs a tank's worth of driving to
 act (*general*, and the maker's dose is one can per 30–50 l), so those
 drives carry at most its first trace; the reading is item 6's. They
 also stand as the captured drives item 5a wants before the map goes
-back. **The display's `IdleHealth` runs only until 22/10** (*owner's
+back. **The display's `IdleHealth` runs only until the map goes back** (*owner's
 decision*, 18/10/2026): from the reflash on, every drive is item 5a's
 or 6's, captured, and `IdleHealth` is computed from the capture
 instead. *It read "through both tanks after the can", which ran into
@@ -260,7 +263,15 @@ unchanged); item 6 logs it already.
 
 **Item 5a — the original map** (*owner's decision*, 12/10/2026, to take
 the remap out of the idle question; `open.md`, *The remap*). **The tuner
-kept it, and writes it back on 22/10/2026** (*owner*, 13/10). After the
+kept it, and was to write it back on 22/10/2026** (*owner*, 13/10).
+**Postponed 20/10** (*owner*): the tuner agreed to email both files, the
+original and the remap, so that they can be compared first — in a
+private place, never in this repository, since they are the tuner's
+and VW's. What a comparison can show (*decided*): where the two differ
+and by how much; what each differing table *is* needs a map definition
+for this ECU, so without one it is a guess from a table's shape and is
+written as one. It also leaves the VW leads of item 6b as the only
+change on the car, so they are read on their own. After the
 gauge, so the gauge's reading stays on the car as it has been. **The can
 goes in before it, straight after the gauge, and the two are knowingly
 not told apart** (*owner's decision*, 13/10/2026: the aim is a healthy
@@ -436,9 +447,10 @@ are replaced, and with them the plugs: **VW originals**, the swap H15
 was waiting for, decided on 9/10 and not done then. ⚠ **The leads are
 only at VW's central store**, so both arrive on 21/10 (*owner*, 20/10;
 the plugs were in stock, but he wants the two together): the set goes
-in the day before the map of 22/10, or that morning, and **a change in
-the idle then cannot be given to one of them alone**. Accepted by the
-owner.
+in the day before the map of 22/10, or that morning, and a change in
+the idle then could not be given to one of them alone. **The map was
+then postponed** (item 5a), so the leads and plugs are read on their
+own after all.
 
 **Item 6 — the drives** (*decided 10/10/2026*, before the additive was; they now come after it). The first drive after the new
    plugs and leads put the dips at a quarter of pairs on one slot — 10
