@@ -229,7 +229,7 @@ have to agree.
     engine ECU. **Decided against (11/10).**
   - So a faster lambda is a **separate measurement**, not a faster VCDS:
     the scope on the probe signal or a wideband in the blanked boss,
-    `open.md` H11 test 2.
+    `open.md` H11.
 - **For a single quantity at speed, log one group that carries engine
   speed** — 001 has engine speed and the lambda correction together, so it
   aligns to the capture by itself; 033 has no engine speed and cannot be
