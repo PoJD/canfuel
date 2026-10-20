@@ -87,7 +87,8 @@ Claude runs the capture on every drive.
    OMV MaxxMotion 100. If it goes in: the maker's dose, into a fresh
    tank of the usual fuel, and **item 5's S18 rules on every drive of
    that tank**. **After that tank: oil and filter changed.**
-6b. **20/10 morning, the refit**: VW plugs at 25–30 Nm; VW leads,
+6b. **When the parts arrive (21/10), the refit**: VW plugs
+   `101 000 033 AA` at 25–30 Nm; VW leads `06A 905 409 L`,
    every end pushed fully home at the plug and at the coil; the plenum
    on a new gasket `06A 129 717`. A photo of each box with its part
    number. Then start it and write into the chat how it started and how
@@ -432,10 +433,12 @@ its own about a lifter.
 **Item 6b, the refit** (*owner's decision*, 20/10/2026): the look of
 19–20/10 is done (`idle-log.md`). Lead 2 tore on removal, so the leads
 are replaced, and with them the plugs: **VW originals**, the swap H15
-was waiting for, decided on 9/10 and not done then. ⚠ It lands two days
-before the map of 22/10, so a change in the idle then cannot be given
-to one of them alone; one or two drives between them are what separate
-them, and only roughly.
+was waiting for, decided on 9/10 and not done then. ⚠ **The leads are
+only at VW's central store**, so both arrive on 21/10 (*owner*, 20/10;
+the plugs were in stock, but he wants the two together): the set goes
+in the day before the map of 22/10, or that morning, and **a change in
+the idle then cannot be given to one of them alone**. Accepted by the
+owner.
 
 **Item 6 — the drives** (*decided 10/10/2026*, before the additive was; they now come after it). The first drive after the new
    plugs and leads put the dips at a quarter of pairs on one slot — 10
