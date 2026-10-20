@@ -5204,6 +5204,37 @@ the idle back at least where it was before the episodes, loads off
 about 70–90 at 95–100 °C of oil (17/10, 18/10 afternoon), and better
 if this is the cause.
 
+**The idle against every time the leads were handled** (*the owner's
+question*, 20/10/2026; `IdleHealth` from the captures, standing idle in
+30 s windows at 93–111 °C of oil with the heavy-load windows left out
+(b7 median above 32), mean ± standard error — the method of S1, *Every
+session since the repairs*, carried on to `39`):
+
+| date | capture | adaptations | the leads | `IdleHealth` | top two (*One cylinder or two*) |
+|---|---|---|---|---|---|
+| 24/9 | `24` | fresh | NGK of 17/9 | 91 ± 6 | 62 % |
+| 3/10 | `26` | fresh | off and on for the cover job | 61 ± 8 (3 windows) | 69 % |
+| 4/10 A | `28` | fresh | | 72 ± 3 | 75 % |
+| 4/10 B | `29` | settled | | 89 ± 8 (2 windows) | 77 % |
+| 9/10 | `30` | settled | pulled by hand (H4 1d) the same day | 83 ± 3 | 67 % |
+| 10/10 | `31` | settled | **new NGK set** | 77 ± 4 (cuts left out) | 69 % |
+| 12/10 | `32` | settled | **lead 4 re-seated** | **63 ± 1** (66 windows; the idle-speed trial in it) | **59 %** |
+| 15/10 | `37`, `38` | settled | | **59 ± 4**, 61 ± 5 | 70 % |
+| 18/10 eve | `39` | settled | | 78 ± 4 | 77 % |
+| 19/10 | display | settled | | about 100, loads off | — |
+
+Read as (*reasoned, not shown*): **the calmest idles on settled
+adaptations this car has given, 12/10 and 15/10, came in the days after
+the new set and lead 4's re-seat, and it worsened from there**; the
+calm of 3–4/10 came on fresh adaptations and says nothing (S1). That is
+the shape a fresh grip that works loose would give, and **the owner
+felt it** (20/10): re-seated, lead 4 held better, though not as a lead
+should, and by the 19/10 removal it was loose again. **It is also the
+shape of the cleaner** (in from 15/10) **and of the episodes** (18/10),
+which sit on the same days, and session to session the grade scatters
+by about ten. No step after any handling makes the leads worse. So: a
+hint for H15, not a test; the VW set, with nothing else changed, is.
+
 S1, S2, S3 and S14 as misfires and their unburnt charge, all ~ because a
 spark fault should be worse under load and is not; S4 and S5 because an
 arcing end on lead 4 could put noise into cylinder 4's knock window;
