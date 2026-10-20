@@ -90,7 +90,7 @@ Claude runs the capture on every drive.
 6b. **When the parts arrive (21/10), the refit**: VW plugs
    `101 000 033 AA` at 25–30 Nm; VW leads `06A 905 409 L`,
    every end pushed fully home at the plug and at the coil; the plenum
-   on a new gasket `06A 129 717`. A photo of each box with its part
+   on a new Elring `271.230` (VW `06A 129 717` is out of production). A photo of each box with its part
    number. Then start it and write into the chat how it started and how
    the idle runs.
 7. **Only if Claude asks after 6:**
