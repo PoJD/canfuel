@@ -6,7 +6,10 @@ connector off at a time at a warm idle, in two rounds, the second reversed
 (1, 2, 3, 4, 4, 3, 2, 1 -- or 1, 4, 4, 1 when only the outer two can be
 reached). The criteria were fixed in plan.md BEFORE the test was run, so
 that the result cannot be read to fit; this file implements them and prints
-a verdict rather than a table to be interpreted.
+a verdict rather than a table to be interpreted. That step and its
+criteria (3.3) have since left plan.md, which was condensed on 20/10/2026;
+they are in `git show d327332:docs/engine-health/plan.md`, and this file
+is now where the criteria live.
 
 What it does
 ------------
@@ -100,7 +103,7 @@ DIP_NEIGHBOURS = 3
 AIR_TAIL_S = 40.0
 
 #: plan.md 3.3's criteria, fixed before the test. Do not tune them to a
-#: result: change plan.md first, with the reason, and only then these.
+#: result: write the reason here first, and only then change them.
 P_ONE = 0.05
 P_NONE = 0.20
 AIR_WEAK_GS = 0.15
