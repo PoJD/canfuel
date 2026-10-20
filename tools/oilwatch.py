@@ -85,8 +85,8 @@ import canlog
 # ⚠ THE BANDS AND THE LENGTHS ARE DECISIONS, not specifications. What they are
 # chosen from is measured: group 014 aligned on engine speed to the captures
 # beside it, standing idle with detection `aktivováno` only, binned by oil
-# temperature (`docs/engine-health/open.md` S3, *How often 014 counts, by oil
-# temperature*). On 24, the car as it now is -- new MAF, adaptations fresh
+# temperature (S3, *How often 014 counts, by oil temperature*, in
+# `git show d327332:docs/engine-health/open.md`). On 24, the car as it now is -- new MAF, adaptations fresh
 # after a disconnect, which is also what the job leaves -- the counter moved
 # 20 times a minute at 56-60 C and 10 times a minute at 68-72 C, and the
 # longest quiet stretch of active idle was 57 s.

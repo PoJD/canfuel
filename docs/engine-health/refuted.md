@@ -604,7 +604,7 @@ matched it to the car, a Golf IV 2.0 / 85 kW, and it went on 2/10.
 half-moon it has an open arch where this head needs a solid half-moon, so
 it leaked a stream of oil at cylinder 4's end on the first warm run, and
 it lacks the metal sleeves the old gasket has. Catalogues list it for
-AZJ, BER, AZG and AEG, not AQY (`open.md` S10, *The cause*). **The general
+AZJ, BER, AZG and AEG, not AQY (D5). **The general
 lesson:** a match by vehicle is not a match by engine code. **What would
 revive it:** nothing about this head; it is a different part.
 
@@ -682,3 +682,63 @@ without the hole. The captures cannot tell the two adaptations apart.
 is no evidence — but *which* adaptation turns the counting on is open,
 and "it follows 055's learned value" is the less certain half of this
 entry.
+
+---
+
+## D. Symptoms closed
+
+Moved out of `open.md` when it was condensed, 20/10/2026. Each was closed at
+the owner's decision; the full entries, with every measurement, are in
+`git show d327332:docs/engine-health/open.md`. **Heard or seen again → it
+reopens in `open.md`.**
+
+### D1. S6 — the exhaust is not tight — closed 12/10/2026
+The joint behind the converter: the pipes read 54.2 and 55.0 mm against the
+connector's 55 (*owner-measured*), so the narrower one moved in it even fully
+tightened. Shimmed with thin stainless sheet and exhaust sealant on 12/10
+(`photos/exhaust-joint-2026-10-12-*.jpg`) and not heard since; it lies behind
+both probes, so it was never the idle (A13). Heard again → the hangers, then a
+welded joint.
+
+### D2. S7 — the cold start — closed 26/9/2026
+Fixed by the new injectors (C3). Of 14 captured starts in `24`–`38`, 13 had
+`StartDip` 0 and one 15 rpm, cold and warm alike; crank to first firing
+0.69–1.38 s, a spread rather than a trend.
+
+### D3. S8 — "loses breath above 5000 rpm" — closed 4/10/2026
+On the hard drive of 4/10 (`28`) b7 eased from 185 to 181 between 4,000 and
+6,000 rpm rather than dropping, and the car pulled better at the top. Its
+criterion — a held pull in 4th to 6,000 rpm with the display's `Power` — was
+met only in part.
+
+### D4. S9 — the rich lambda trim — closed 4/10/2026
+032 at −16.4 / −13.3 % on the old MAF, −3.1 / +4.7 % on the new one and near
+zero at every read since: the old MAF over-read (C2). The airbox, found cracked
+ahead of the MAF and sealed on 12/10, is a possible cause of that over-reading,
+not shown.
+
+### D5. S10 — oil at the back of the head — closed 4/10/2026
+The valve cover gasket: the hardened original, then a wrong part on 2/10
+(C17), replaced on 4/10 by Elring `915.653`; dry since, hot and cold. Neither
+the ventilation nor the gasket was the idle (A15). The re-tightening stays in
+`plan.md`'s standing items.
+
+### D6. S12 — a hesitation on tip-in and after a gearchange — closed 4/10/2026
+Withdrawn by the owner after watching for it: in his judgement mechanical play
+in the mounting or the driveline, and the hesitation itself no longer felt.
+
+### D7. S13 — the throttle's routine at every ignition-on — closed 2/10/2026
+20–30 s of the throttle seeking its stops at every ignition-on. The new
+throttle body does the same after its own completed 098, so it is how these
+parts behave (C16).
+
+### D8. S15 — a constant sputter from the exhaust near the engine — closed 12/10/2026
+Heard from 9/10, at every load. The cold tailpipe test of 12/10 found no leak,
+and since S6's joint was shimmed the same day it has not been heard at all: in
+the owner's reading it was that joint all along. *The entry used to say that
+joint could not be the source; the owner's ear on the car outranks that.*
+
+### D9. "A higher idle quiets the misfires" — measured, 12/10/2026
+The specified idle raised from 780 to 830 rpm, the ECU's limit (VW's
+procedure, login 01283): 014 kept counting and `IdleHealth` rose slightly with
+engine speed. Put back the same day.
