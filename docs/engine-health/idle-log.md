@@ -1115,6 +1115,39 @@ with every load on (`open.md` S1, *Since the cleaner*).
 rules out an adaptation learnt during the misfires as the cause of the
 worse idle, and says nothing about what is.
 
+**19–20/10/2026 — the look inside** (*owner*, borescope, photos off its
+screen; `plan.md` item 6b; `open.md` H13 test 3, H15, S18). Upper plenum
+off, each inlet port seen from above down the lower manifold's runners,
+each chamber through its plug hole, the engine not turned. Read from
+photographs of a cheap screen, so a reading and not a measurement:
+
+| | 1 | 2 | 3 | 4 |
+|---|---|---|---|---|
+| inlet port, deposit on its walls | least | little | **most** | some |
+| back of the inlet valve | thin lacquer | thin lacquer | thin lacquer | thin lacquer |
+| injector tip | clean | clean | clean | clean |
+| plug, electrodes | sooted | **light grey** | sooted | sooted |
+| oil on the plug's thread | yes | yes | yes | yes |
+| lead's plug end came off | hard | hard, **tore** | **easily** | **easily** |
+| exhaust valve from below | a band at the edge | clean | **light patches, deposit come away** | a thin rim |
+| piston crown | thin layer | thin layer | **islands, the layer breaking up** | **a crust at the edge** |
+| wet patches on the crown | yes | yes | yes | yes |
+| bore | cross-hatch, no scores | the same | the same | the same |
+
+**No valve back is coked**, so nothing for a walnut clean; the deposit
+is in thin layers, not millimetres; valves whole, bores unscored.
+**3 and 4 differ from 1 and 2** in the ports, the exhaust valves, the
+crowns and how easily their leads came off — the pair the dips sit on.
+**Only 3 shows deposit come away**, on its exhaust valve and its crown,
+which fits the episodes of 18/10. The plugs do not follow the pair:
+**plug 2 alone is light**, as the old set's was on 10/10. Oil on every
+thread and wet patches on every crown are the engine's, not one
+cylinder's. Injector 4's peeling tape renewed; lead 2 torn on removal.
+
+**What it is not known to have achieved:** nothing was cleaned or
+changed but lead 2 and the tape; the camera cannot show whether a valve
+seals.
+
 ---
 
 

@@ -2223,6 +2223,13 @@ tick stayed. Engine switched off.
   read; the next reading covers all three drives of 19/10.
 - **Fault memory empty** (*owner*, 19/10 evening, VCDS 01, before the
   plenum came off): nothing stored over the three drives of 19/10.
+- **The look inside, 19–20/10** (*owner*, borescope; `idle-log.md`):
+  **cylinder 3's exhaust valve carries light patches where a layer of
+  deposit has come away**, and its crown a layer breaking into islands —
+  the only cylinder of the four where that is seen. It fits a flake
+  under 3's exhaust seat on 18/10 (*Read as*, below) and does not show
+  it: where a piece went, and whether the seat now seals, the camera
+  cannot say; that stays the leak-down's.
 - **Context**: the cleaner's tank (item 5, the PEA can of 15/10) was
   driven to empty on 17/10 and the tank refilled with plain fuel; this
   was the next cold start but one. **The drives of the days before were
@@ -4803,7 +4810,7 @@ combustion and S11 is a sound outside the cylinder: neither.
 3. **A borescope through a plug hole**, warm engine off: the piston crown
    and the chamber; through the inlet port with the manifold off, the
    valve backs. Looks, and names a cylinder if one is worse.
-   **Brought forward to 20/10** (`plan.md` item 6b, *owner's decision*,
+   **Brought forward to 19–20/10** (*owner's decision*,
    19/10/2026), and **the valve backs through the lower manifold's
    runners with only the upper plenum off** (*the owner's idea*), the
    plugs photographed by cylinder. Read as (*reasoned*): heavy carbon
@@ -4812,6 +4819,18 @@ combustion and S11 is a sound outside the cylinder: neither.
    can; little carbon there weakens the inlet half and leaves the
    chamber and the seats. It cannot show a seat that does not seal;
    that stays the leak-down's.
+   **Done 19–20/10/2026** (`idle-log.md`, the table): **no inlet valve
+   back is coked** — thin lacquer on all four, injector tips clean — so
+   **the walnut clean has nothing to do**, and H13's inlet half is
+   weak. **The chamber half is where it is**: thin layers on every
+   crown, a crust on 4's bowl edge (`photos/borescope-2026-10-20-cyl4-piston-edge.jpg`),
+   and **on 3 a layer breaking up, crown and exhaust valve alike**
+   (`photos/borescope-2026-10-20-cyl3-exhaust-valve*.jpg`) — the only
+   cylinder where deposit is seen to have come away. Ports and chambers
+   rank **3 > 4 > 2 > 1**, the pair the dips sit on. Read as (*reasoned*):
+   the cleaner is working on the chambers, hardest on 3, which is S18's
+   cylinder; what is left there is the PEA's job and driving's, not a
+   workshop's.
    - **Weighed, 19/10/2026** (*an AI answer the owner pasted in*, read
      as evidence, not a source): that the valve backs are *certainly*
      coked is not known. For it, in general: the breather's oil mist
@@ -4991,11 +5010,11 @@ idle was going to be read on has never happened.
   set of 10/10, nine days on. Lead 1 came off hard, **lead 2's plug end
   tore** when it was gripped by the rubber. The two easy ones are the
   two cylinders the dips sit on (*One cylinder or two*), and the second
-  time a loose end on 4 has been felt (above). **One plain reading
-  stands beside it** (*reasoned*): plugs 3 and 4 both had oil on their
-  threads from their wells (H13, the 6b look), and an oiled boot slides
-  off a post more easily; 1 and 2 were not reported oiled. Either way
-  it is a fact about 3 and 4. **The swap to VW originals happens now**
+  time a loose end on 4 has been felt (above). *Until 20/10 this gave
+  an oiled boot as the plain reading, plugs 3 and 4 having oil on their
+  threads; **all four had** (`idle-log.md`, 19–20/10), lead 2 the
+  tightest of all, so oil does not explain it.* It stays a fact about
+  3 and 4 without an explanation. **The swap to VW originals happens now**
   because lead 2 must be replaced (*owner*, 20/10): it is the test this
   hypothesis was waiting for, though it now lands beside the map of
   22/10, so a change in the idle cannot be given to one of them alone.
