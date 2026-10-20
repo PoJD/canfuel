@@ -5124,7 +5124,34 @@ make (`vehicle-history.md`).
 
 | S1 | S2 | S3 | S4 | S5 | S11 | S14 | S18 |
 |---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | ~ | — | ~ | ~ |
+| ✔ | ✔ | ✔ | ~ | ~ | — | ✔ | ~ |
+
+*Re-read 20/10/2026* (*the owner's request*; it read ~ throughout
+before): **S1 and S3**, because a plug end that costs spark energy fails
+first at idle, where the charge is thinnest and the most diluted, and
+load calms it by thickening the charge; **S2 and S14**, a charge that
+did not light leaves through the exhaust, at idle as a puff and on the
+re-entry after an overrun cut as bangs; **S4 and S5 ~**, an arc at lead
+4 could put noise into the knock sensor's signal (*reasoned, not
+shown*), as 4's crown crust could cause real knock; **S18 ~**, an arc at
+a boot clicks once per cycle, but a restart curing it fits a flake
+better. **The physics, in short** (*general*, the manifold pressure
+measured): at idle the manifold sits at about 0.35–0.4 bar absolute
+(the gauge's 18–19 inHg), so the charge is a third of full load's, the
+gap needs a few kV to break down and the mixture, thin, cool and full of
+residual gas, is hard to light: what it needs from the spark is energy
+and duration. Under load the gap needs tens of kV and the dense, hot,
+turbulent charge lights from almost any spark. So **a voltage fault**
+(cracked insulation, a damp or oily boot) shows under load and in the
+damp, **an energy fault** (a loose contact, high resistance) at idle
+and cold. The old plug 4's terminal, burnt black and pitted by 1/10, is
+what arcing at a loose end leaves. **Against**: the soot does not follow
+the pair (plug 3 the cleanest), and the fault survived a change of
+leads on 10/10 — explained only if it is the NGK design's fit on these
+plugs, not one bad lead. **What the VW set should do, if this is it**:
+the dips' share on 3 and 4 falls towards a quarter each, loads-off
+`IdleHealth` towards the loads-on figure, 014 counts less, the bangs
+thin out.
 
 S1, S2, S3 and S14 as misfires and their unburnt charge, all ~ because a
 spark fault should be worse under load and is not; S4 and S5 because an
