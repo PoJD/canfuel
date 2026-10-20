@@ -105,8 +105,11 @@ Claude runs the capture on every drive.
    - **While fitting the VW set**: for each cylinder, how firmly the end
      seats and whether it clicks — metal or rubber. The same for the
      coil ends. Write it into the chat by cylinder.
-   - **On the first warm drive after it**: `IdleHealth` in the two
-     states of the standing items.
+   - **The first drive after it is captured, from the laptop** (*owner*,
+     20/10): MFD out, USBtin capture and VCDS 014, 001, 003 run by
+     Claude, the fault memory read before and after. At the warm idle
+     that ends it, the two states of the standing items; Claude reads
+     `IdleHealth` off the capture, split by b7.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      **Leaks there → a new manifold**: new gasket to the head, new nuts,
@@ -468,8 +471,10 @@ H15) — so the old ends are measured (the clip's inner diameter; length
 and resistance per lead, an outlier against the others being the sign,
 whether the set's resistance is in the core, rising with length, or
 fixed in the ends) and the VW ends are described the same way, cylinder
-by cylinder, against them. The first warm drive's two-state
-`IdleHealth` is the first reading of the change (`open.md` S1, *When S1
+by cylinder, against them. The first drive is captured rather than read
+off the display (*owner*, 20/10), so its two-state `IdleHealth`, the
+dips' shares by `cutscan.py --shares` and 014 all come from one session:
+the first reading of the change (`open.md` S1, *When S1
 closes*).
 
 **Item 6 — the drives** (*decided 10/10/2026*, before the additive was; they now come after it). The first drive after the new
