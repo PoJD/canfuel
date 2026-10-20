@@ -3662,6 +3662,14 @@ The owner's own remaining candidate is one of the new injectors.
   **The fuel pressure gauge is not bought** (*owner's decision*,
   10/10/2026); test 1 stays for if 032 ever wanders.
 
+- **A plug washed clean by fuel** (*searched 20/10/2026*, a
+  search-engine extract on the AEG/AQY, not read in full): *"#3 was much
+  cleaner than all the rest … replaced #3 injector as it was washing
+  that plug in fuel"*. **On this car plug 3 is the cleanest of the
+  four** (`idle-log.md`, 19–20/10). Weak here: the injectors are new
+  (23/9) and injector 3's tip looked clean on the borescope. It is a
+  reason more not to read soot on a plug as combustion quality.
+
 **Tests:**
 
 1. **A fuel pressure gauge on the rail**: pressure at idle with the vacuum
@@ -5059,6 +5067,24 @@ idle was going to be read on has never happened.
   looked alike at all four, by eye, and the only hiss is at the
   throttle (*owner*, 20/10; S11) — which says little about a small leak.
   If the VW leads take the dips off 3 and 4, the chain holds.
+- **Searched 20/10/2026** (forums and search-engine extracts; leads, not
+  sources; the two big threads sit behind a bot wall and were read only
+  as extracts):
+  - **`06A 905 409 L` is a later revision.** A write-up of a lead change
+    on the 2.0 AEG (vwvortex, *DIY: Replacing Spark Plug Wires on a 2.0
+    AEG engine*) says it supersedes the factory `06A 905 409 F`, thicker
+    and with extra silicone wrapping by the intake manifold, Beru making
+    both. Not confirmed in a catalogue. If so, VW reworked the lead,
+    which says the first design had a weakness, likely heat at the
+    manifold. It is the set ordered on 20/10.
+  - **A plug end that burnt out** (newbeetle.org, *Rough idle, misfire
+    fixed*, a 2004 Beetle 2.0, Bosch leads): about 80,000 km on, the end
+    on cylinder 1 had arced and come apart inside; a rough hot idle and
+    a weak spark; new plugs and leads cured it.
+  - **Idle-only misfire and the plug end**: general pages on idle-only
+    misfires list a loose or worn plug end, one lead maker's page saying
+    the contact matters most at idle and less as the revs rise —
+    consistent with the energy reading above, and partly marketing.
 - **The injector loom at 4** (*owner*, 19/10, plenum off): its PVC tape
   was peeling where it leaves the harness; the wires under it whole,
   sitting in the connector's seals. The tape renewed.
