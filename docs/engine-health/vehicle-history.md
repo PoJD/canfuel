@@ -119,6 +119,7 @@ given):
 | Date | Entry | Where |
 |---|---|---|
 | 20/6/2018 | service: A/C, **plugs, leads**, radiator, exhaust repair | a garage |
+| 31/8/2018 | A/C, STK, **the intake looked at: no fault; compression about 13 bar** (invoice, below) | Dakuma |
 | 30/6/2018 | chiptuning | the tuner |
 | 6/7/2018 | **new MAF** | — |
 | 10/10/2018 | oil and oil filter (long-life) | — |
@@ -228,6 +229,19 @@ lifter that seals at cranking speed and hangs only at a warm idle, which
 is `open.md` H1 (*qualified 10/10/2026*). It also
 agrees, from a completely different measurement, with the volumetric efficiency
 `docs/firmware/frames.md` derives from mass air flow and the ECU's load channel (84–93 %).
+
+**An earlier reading: about 13 bar, 31/8/2018** (*the Dakuma invoice of
+that date*, found by the owner 20/10/2026; the sheet's *Servis klima,
+STK, zkoumání sání*, 8,390 Kč): A/C work and the STK/emissions, and two
+notes — *"Cesta vzduchu pro motor bez zjevné závady"* (the engine's air
+path without apparent fault) and *"Tlaky motoru kolem 13 bar"* (engine
+compression about 13 bar). No figure per cylinder. So **about 13 bar in
+2018 and 12 bar on all four in 2026**, eight years and ~25,000 km apart,
+with different gauges and garages: a difference inside what two
+cranking tests can be compared to, and no cylinder singled out. The
+owner had the intake looked at in 2018 already, after the MAF of 7/2018
+(*the sheet*). The invoice itself is not kept here: it carries the
+owner's name, address and the car's plate.
 
 **The chiptuning of 6/2018 is the standing unknown.** The tuner's own remark
 was that there was nothing to be had at the top of the range. **The tuner
