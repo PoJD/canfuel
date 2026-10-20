@@ -235,6 +235,18 @@ but those are 22-second holds, shorter than the device waits before it grades
 at all, and August's idle stumbled too. **So nobody knows what a well AQY
 grades.** That is hypothesis H0 below, and it is the first thing to fix.
 
+**When S1 closes** (*decided*, 20/10/2026, the owner's question; the
+owner closes it): with no healthy target, by three relative marks, read
+over several drives at 95–100 °C of oil: **(1) the dips no longer keep
+to a pair** — `cutscan.py --shares`, pooled since the last repair,
+consistent with all four alike; it needs no target, so it is the
+strongest of the three; **(2) load is no longer needed** — loads-off
+`IdleHealth` within about 25 of the loads-on figure, pair after pair
+(19/10: about 100 against 50); **(3) at least the best level this car
+has shown**, loads off about 50–60 (12/10, 15/10). A healthy AQY's
+recording (H0 test 1) would replace (3) with a real target. Short of
+all three, the owner may still close it as *acceptable, cause known*.
+
 **What one dip is worth.** Engine speed on 0x280 is recomputed once per 180°
 of crank, one power stroke (`docs/firmware/can-decoding.md` trap 6), so a dip is one
 cylinder's stroke. At the warm idle of `09_idle_60s_z1` — 796 rpm, 326 µl/s,
@@ -632,6 +644,13 @@ found no leak ahead of the converter (S15).
 ### S3. Misfires counted by the ECU at idle
 
 **VCDS group 014**, on every drive since the counter was first logged.
+
+**When S3 closes** (*decided*, 20/10/2026): **014 reads 0** at a warm
+idle with loads off, oil 95–100 °C, for at least 3–5 minutes, **on three
+sessions on different days, one of them straight after a hard drive**,
+where it has counted most. VW specifies 0–5 and this counter steps in
+twelves (*The blocks*, `vcds.md`), so zero is the only reading inside
+the specification.
 
 - **122 of 129 new events began at a standstill idle**; the few seen in 1st
   and 2nd are mostly the three-second hold of an event that began standing.
@@ -5037,7 +5056,12 @@ idle was going to be read on has never happened.
   post loosely is a contact that can arc (*general*).
 - **The plug ends of 3 and 4 came off far more easily than 1 and 2**
   (*owner*, 19–20/10/2026, plugs out for `plan.md` item 6b): the NGK
-  set of 10/10, nine days on. Lead 1 came off hard, **lead 2's plug end
+  set of 10/10, nine days on. **By grip, 2 > 1 > 3 ≈ 4** (*owner*, 20/10,
+corrected: this said *lead 1 came off hard*): 2 the tightest, this time
+and on 10/10 alike, 1 a little less, 3 and 4 almost without force. The
+owner reads it as the NGK set's design — each lead a different length,
+no difference visible inside — and means to measure the ends with a
+caliper. **Lead 2's plug end
   tore** when it was gripped by the rubber. The two easy ones are the
   two cylinders the dips sit on (*One cylinder or two*), and the second
   time a loose end on 4 has been felt (above). *Until 20/10 this gave
