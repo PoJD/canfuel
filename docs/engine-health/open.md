@@ -5184,6 +5184,26 @@ the dips' share on 3 and 4 falls towards a quarter each, loads-off
 `IdleHealth` towards the loads-on figure, 014 counts less, the bangs
 thin out.
 
+**The relief after each plug change, and how long it lasts** (*the
+owner's idea*, 20/10/2026, and a second reading beside it). *His*: new
+plugs help while they are good, and the poor combustion then spoils
+them — the 12/2022 set came out eroded and carbon-dry at ~1,500 km
+(`vehicle-history.md`), and the episodes of 18/10 may have done it again.
+Against it, the plugs pulled on 19–20/10 looked sound, insulators
+white, plug 3 the cleanest, and after 10/10 the pattern was back within
+two days (26 % on the first drive, 38 % on 12/10), which is too soon
+for a plug to wear. *The second* (*reasoned*): every plug change also
+re-seats the leads; a fresh end grips, then works loose with heat and
+vibration, which fits a relief of days and the two ends that held
+least, 3 and 4. **Since the VW plugs and leads go in together, the two
+are told apart by how long a relief lasts**: weeks, and either the VW
+ends hold or the VW plugs last — the ends are checked by hand after a
+few drives; a few days, as after 10/10, and it is neither, with the
+intake (H3) next. **The least either reading predicts** (*the owner*):
+the idle back at least where it was before the episodes, loads off
+about 70–90 at 95–100 °C of oil (17/10, 18/10 afternoon), and better
+if this is the cause.
+
 S1, S2, S3 and S14 as misfires and their unburnt charge, all ~ because a
 spark fault should be worse under load and is not; S4 and S5 because an
 arcing end on lead 4 could put noise into cylinder 4's knock window;
