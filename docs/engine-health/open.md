@@ -5027,9 +5027,11 @@ S5 needs no combustion; S11 is a sound outside the cylinder.
    retard on cylinder 4 (S4). A calmer idle with the advance moved → H14;
    with the advance where it was → the cleaner or the adaptations.
 
-### H15. The aftermarket leads (and plugs) — a set that fits all four slightly wrong
+### H15. The aftermarket leads (and plugs) — NGK plug ends that grip loosely, on 3 and 4 above all
 
-*Added 17/10/2026 at the owner's request*, as the fallback if the idle is
+*Retitled 20/10/2026*: it read *a set that fits all four slightly
+wrong*, before the look inside found the ends of 3 and 4 the loose
+ones. *Added 17/10/2026 at the owner's request*, as the fallback if the idle is
 the same on the original map. Until now it sat inside H4 as one sentence
 (*a lead, cheap to test by borrowing a genuine VW set*), where it did not
 belong: H4 is the spark **not** in the parts, and this is the parts.
@@ -5242,21 +5244,29 @@ S11 is a sound outside the cylinder.
 
 **Tests:**
 
-1. **A genuine VW set of leads, bought by VIN at the counter**, with the
-   plug type checked there at the same time. **The upper plenum comes off
-   to fit them** (*owner*, 18/10/2026: they cannot be pushed home
-   properly without it), with a new Elring `271.230` under it as on
-   10/10 — so the intake is opened too and the test is not one variable
-   unless the gasket is the one thing besides the leads that changes.
-   Done together with any job that takes the plenum off anyway (H3's
-   runners of 3 and 4). Fitted cold, each end pushed
-   home until it clicks, and then **two or three warm stops**: `IdleHealth`
-   loads off at 95–100 °C, 014, and the dips by cylinder against `31`.
-   Calmer, with the dips off 3 and 4 → it was here. The same → H15 is
-   refuted, and H4's spark side with it.
-2. *Cheaper, narrower:* lead 4 alone, the plenum off all the same. It
-   can clear or name cylinder 4,
-   and says nothing about cylinder 3.
+1. **The VW set, `06A 905 409 L`, with VW plugs `101 000 033 AA`**,
+   ordered by VIN 20/10, fitted when they arrive (`plan.md` item 6b),
+   **the only change on the car** — the map is postponed. At the
+   refit: each old and new plug end compared by eye, and for each
+   cylinder **the force each VW end takes and whether it clicks metal
+   or rubber**, against the NGK's 2 > 1 > 3 ≈ 4. **The first drive is
+   captured from the laptop** (VCDS 014, 001, 003), with the two states
+   of the standing items at its warm idle; then more drives, captured
+   or off the display. Read against **19/10** (loads off about 100,
+   every load on about 50) and against the calmest settled idles,
+   12/10 and 15/10 (about 60, the table above):
+   - **calmer, the dips off 3 and 4 (`cutscan.py --shares` towards a
+     quarter each), 014 counting less, and it lasts weeks** → it was
+     here; the VW ends are checked by hand after a few drives, so that
+     a firm grip is seen to hold;
+   - **calmer for a few days, then back**, as after 10/10 → the relief
+     was the fresh seating, not the design, and neither the VW ends nor
+     the plugs cured it: H3 next;
+   - **the same** → H15 is refuted, and H4's spark side with it.
+
+*Until 20/10 this was a VW set fitted cold to each click with two or
+three warm stops read against `31`, and a second, narrower test of
+lead 4 alone; the whole set is being changed, so the narrow test went.*
 
 ## What the forums say about this idle — searched 27/9/2026
 
