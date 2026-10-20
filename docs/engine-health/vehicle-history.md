@@ -133,7 +133,7 @@ service records or from the owner's own work.
 | Timing belt and water pump | **10/2017** | the whole ownership, ~27,800 km |
 | **Fuel tank** | **replaced inside the ownership, date not recoverable** | unknown — see below |
 | Fuel pump, Bosch | 10/2022 | ~1,500 km |
-| Spark plugs and leads | 12/2022 *(replaced 9/2026)* | **~1,500 km — see below** |
+| Spark plugs and leads, **NGK both** — the invoice: *NGK sada kabel pro zapalování* 1,785 Kč, *NGK zapalovací svíčky* 4 × 189 Kč, at the Dakuma garage, 22/12/2022 (*owner*, found 20/10/2026; the invoice names no part numbers and is not kept here, since it carries the owner's name and the car's plate) | 12/2022 *(replaced 9/2026)* | **~1,500 km — see below** |
 | Ignition coil | 6/2026 | ~0 |
 | Engine oil (and presumably the filter, not stated) | **6/2026** *(owner-reported, 27/9/2026)*. **Not topped up since**, and on 27/9 the level still read at the **upper mark** on the dipstick despite the valve cover leak | **about 700 km** since the change *(owner's estimate, 27/9/2026: the ~450 km Šumava trip plus several runs to Ústí and back)*; odometer at the change not recorded |
 | Throttle body `06A 133 064 H` (VDO `408 237/111/017`) | **original until 2/10/2026**, then replaced (row below; the old part is kept). *Part number read off the label on the part, photographed 26/9/2026; an earlier revision gave `028 129 748`, with no recorded source — possibly the June gasket's number.* 6/2026: inspected, new gasket, adaptation run. It was already clean, with no carbon — only wiped with a cloth — so it had evidently been cleaned at some earlier date nobody recorded | the car's |

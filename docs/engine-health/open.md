@@ -5037,9 +5037,13 @@ belong: H4 is the spark **not** in the parts, and this is the parts.
 **The claim.** Not one bad lead, which the new set of 10/10 would have
 taken away, but **a design that sits wrong on this engine's plugs, in
 every set of it**. The leads on the car since 17/9 are NGK — the garage's
-set, then NGK `RC-VW254` from 10/10 — and **the 12/2022 set's maker is
-not recorded**; its plugs are in `vehicle-history.md`'s photograph of
-17/9 and their print cannot be read there. **VW originals were decided on
+set, then NGK `RC-VW254` from 10/10 — and **the 12/2022 set was NGK
+too**, leads and plugs (*owner*, the invoice found 20/10/2026;
+`vehicle-history.md`). *This said until then that its maker was not
+recorded.* So **every set on the car since at least 12/2022 has been
+NGK**, which answers the strongest argument against H15 — that the
+pattern on 3 and 4 outlived three sets of leads — only if the fault is
+the NGK design's fit, as claimed, and not a single bad lead. **VW originals were decided on
 9/10** (ranked list, row H4) **and NGK went in instead**, so the swap the
 idle was going to be read on has never happened.
 
