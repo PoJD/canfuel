@@ -104,6 +104,39 @@ driven at all. **Per-year distance is recorded only for 2023 onwards**; the
 with no breakdown, which is why some of the service items below can be dated
 but not given a distance.
 
+**The owner's expense sheet adds a breakdown** (*owner*, read
+20/10/2026; its *Tach nyní* figures are round readings at the start of
+each year, not exact): 126,200 km at purchase (9/2017), 135,000 (2/2018),
+139,000 (2/2019), 142,000 (1/2020), 152,000 (1/2022), 152,900 (1/2023),
+153,500 (1/2024) — so about **8,800 km in the first five months, 4,000
+in 2018, 3,000 in 2019, 10,000 over 2020–2021 together, 900 in 2022**.
+The lump above splits that way; it does not change the sum.
+
+**Ignition and other engine work from the same sheet** (*owner's
+records*; descriptions as he wrote them, part makes not stated unless
+given):
+
+| Date | Entry | Where |
+|---|---|---|
+| 20/6/2018 | service: A/C, **plugs, leads**, radiator, exhaust repair | a garage |
+| 30/6/2018 | chiptuning | the tuner |
+| 6/7/2018 | **new MAF** | — |
+| 10/10/2018 | oil and oil filter (long-life) | — |
+| 9/1/2020 | service: oil, **plugs**, boots, track-rod ends, **battery, thermostat** | Spei |
+| 10/8/2021 | annual service: arms, brakes, oil, **"dekarbonizace" (decarbonisation)**, filters | Spei |
+| 16/8/2022 | oil, STK, brake cleaning | Dakuma |
+| 22/12/2022 | **plugs and leads, NGK** (the invoice, row above) | Dakuma |
+| 15/6/2026 | oil and filter, the old fuel drained (self) | — |
+| 25/6/2026 | new ignition coil | — |
+| 17/9/2026, 10/10/2026 | plugs and leads, NGK | Dakuma, then the owner |
+
+**Plugs were changed five times in the ownership and leads four**:
+6/2018, 1/2020 (plugs only), 12/2022, 9/2026, 10/2026. **The owner
+believes every set was NGK**; the invoice proves it for 12/2022 and the
+two of 2026, and 6/2018 and 1/2020 are to be checked against their
+invoices. What the 2021 *decarbonisation* was — an additive, an intake
+or a chamber cleaning — is not recorded.
+
 Two cross-checks, both of which hold. The 900 + 600 + 0 of the three recorded
 years sums to the **~1,500 km since the plugs and leads were changed in
 December 2022**, which is a separate record agreeing with this one. And
