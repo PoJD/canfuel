@@ -96,14 +96,14 @@ Claude runs the capture on every drive.
    on a new Elring `271.230` (VW `06A 129 717` is out of production). A photo of each box with its part
    number. Then start it and write into the chat how it started and how
    the idle runs.
-   - **Before fitting, the old NGK set** (*plug ends of 1, 3, 4; lead 2
-     is torn*): with a caliper, the inner diameter of the metal clip in
-     each plug end; each lead's length and its end-to-end resistance
-     with a multimeter. A photo of the caliper on each reading.
+   - **Before fitting, the old NGK set**: the plug ends compared by eye
+     with the VW ones, a photo of both side by side. (A caliper does not
+     reach the clip, which sits too deep — *owner*, 20/10.)
    - **A photo of a VW plug's top beside an NGK's**, the terminal both
      leads grip.
-   - **While fitting the VW set**: for each cylinder, how firmly the end
-     seats and whether it clicks — metal or rubber. The same for the
+   - **While fitting the VW set**: for each cylinder, how much force the
+     end takes to push on, against the old set's (which went on lightly,
+     3 and 4 most of all), and whether it clicks — metal or rubber. The same for the
      coil ends. Write it into the chat by cylinder.
    - **The first drive after it is captured, from the laptop** (*owner*,
      20/10): MFD out, USBtin capture and VCDS 014, 001, 003 run by
@@ -467,11 +467,10 @@ then postponed** (item 5a), so the leads and plugs are read on their
 own after all. **What is recorded at the refit, and why** (*decided*,
 20/10/2026): H15 rests on how the NGK ends sat on these plugs — by
 grip 2 > 1 > 3 ≈ 4, a rubbery click with a faint metallic one (`open.md`
-H15) — so the old ends are measured (the clip's inner diameter; length
-and resistance per lead, an outlier against the others being the sign,
-whether the set's resistance is in the core, rising with length, or
-fixed in the ends) and the VW ends are described the same way, cylinder
-by cylinder, against them. The first drive is captured rather than read
+H15) — so the old ends are compared with the VW ones by eye and by the force
+they take, cylinder by cylinder. The clip sits too deep for a caliper
+(*owner*, 20/10), and resistance was dropped as unlikely to be the
+difference (*owner*). The first drive is captured rather than read
 off the display (*owner*, 20/10), so its two-state `IdleHealth`, the
 dips' shares by `cutscan.py --shares` and 014 all come from one session:
 the first reading of the change (`open.md` S1, *When S1
