@@ -5061,7 +5061,10 @@ corrected: this said *lead 1 came off hard*): 2 the tightest, this time
 and on 10/10 alike, 1 a little less, 3 and 4 almost without force. The
 owner reads it as the NGK set's design — each lead a different length,
 no difference visible inside — and means to measure the ends with a
-caliper. **Lead 2's plug end
+caliper. **How they seat** (*owner*, 20/10): the NGK ends of 10/10 do
+click on, but it sounds like rubber, with only a faint metallic click
+at the end, weaker than he would expect for a contact carrying the
+spark; his own guess, to be read against the VW set. **Lead 2's plug end
   tore** when it was gripped by the rubber. The two easy ones are the
   two cylinders the dips sit on (*One cylinder or two*), and the second
   time a loose end on 4 has been felt (above). *Until 20/10 this gave
