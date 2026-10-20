@@ -4986,6 +4986,22 @@ idle was going to be read on has never happened.
   set back (H4 test 1d); the new lead 4 still sits looser than the other
   three after a reseat (H4 test 1e, 15/10). A boot that grips a plug's
   post loosely is a contact that can arc (*general*).
+- **The plug ends of 3 and 4 came off far more easily than 1 and 2**
+  (*owner*, 19–20/10/2026, plugs out for `plan.md` item 6b): the NGK
+  set of 10/10, nine days on. Lead 1 came off hard, **lead 2's plug end
+  tore** when it was gripped by the rubber. The two easy ones are the
+  two cylinders the dips sit on (*One cylinder or two*), and the second
+  time a loose end on 4 has been felt (above). **One plain reading
+  stands beside it** (*reasoned*): plugs 3 and 4 both had oil on their
+  threads from their wells (H13, the 6b look), and an oiled boot slides
+  off a post more easily; 1 and 2 were not reported oiled. Either way
+  it is a fact about 3 and 4. **The swap to VW originals happens now**
+  because lead 2 must be replaced (*owner*, 20/10): it is the test this
+  hypothesis was waiting for, though it now lands beside the map of
+  22/10, so a change in the idle cannot be given to one of them alone.
+- **The injector loom at 4** (*owner*, 19/10, plenum off): its PVC tape
+  was peeling where it leaves the harness; the wires under it whole,
+  sitting in the connector's seals. The tape renewed.
 
 **Why it is weak, and the reasoning is general, not this car's:**
 
