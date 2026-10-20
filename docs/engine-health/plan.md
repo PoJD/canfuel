@@ -96,6 +96,17 @@ Claude runs the capture on every drive.
    on a new Elring `271.230` (VW `06A 129 717` is out of production). A photo of each box with its part
    number. Then start it and write into the chat how it started and how
    the idle runs.
+   - **Before fitting, the old NGK set** (*plug ends of 1, 3, 4; lead 2
+     is torn*): with a caliper, the inner diameter of the metal clip in
+     each plug end; each lead's length and its end-to-end resistance
+     with a multimeter. A photo of the caliper on each reading.
+   - **A photo of a VW plug's top beside an NGK's**, the terminal both
+     leads grip.
+   - **While fitting the VW set**: for each cylinder, how firmly the end
+     seats and whether it clicks — metal or rubber. The same for the
+     coil ends. Write it into the chat by cylinder.
+   - **On the first warm drive after it**: `IdleHealth` in the two
+     states of the standing items.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      **Leaks there → a new manifold**: new gasket to the head, new nuts,
@@ -450,7 +461,16 @@ the plugs were in stock, but he wants the two together): the set goes
 in the day before the map of 22/10, or that morning, and a change in
 the idle then could not be given to one of them alone. **The map was
 then postponed** (item 5a), so the leads and plugs are read on their
-own after all.
+own after all. **What is recorded at the refit, and why** (*decided*,
+20/10/2026): H15 rests on how the NGK ends sat on these plugs — by
+grip 2 > 1 > 3 ≈ 4, a rubbery click with a faint metallic one (`open.md`
+H15) — so the old ends are measured (the clip's inner diameter; length
+and resistance per lead, an outlier against the others being the sign,
+whether the set's resistance is in the core, rising with length, or
+fixed in the ends) and the VW ends are described the same way, cylinder
+by cylinder, against them. The first warm drive's two-state
+`IdleHealth` is the first reading of the change (`open.md` S1, *When S1
+closes*).
 
 **Item 6 — the drives** (*decided 10/10/2026*, before the additive was; they now come after it). The first drive after the new
    plugs and leads put the dips at a quarter of pairs on one slot — 10
