@@ -2392,6 +2392,21 @@ full-load enrichment (*general*), for all four cylinders alike.
 - **Postponed 20/10** (*owner*): the map is not written back on 22/10;
   the tuner emails both files, the original and the remap, to be
   compared first, privately (`plan.md` 5a).
+  **What a comparison can and cannot do** (*decided*, 20/10, after a
+  search): the ECU is a Bosch M5.9.2, software `1037352075` V04, a
+  256 KB flash (`vcds.md`), and **no map definition for it is public**.
+  So: (1) the two files are diffed — how many bytes, in how many
+  blocks; (2) tables are found by shape — 8-bit maps beside rising axes
+  of engine speed and load, the method tuners describe for other
+  Motronics, written as a guess where it is one; (3) **the idle cells of
+  the ignition map are read against what the bus measured**, the spark
+  after TDC in August and 1.5–3.8° BTDC since 24/9 (`idle-log.md`,
+  17/10, `tools/idleadvance.py`): a remap that touched them is H14 for
+  the idle; one confined to the top of the range, as the tuner said,
+  weakens it. To ask the tuner: the whole 256 KB flash, and which
+  tables he changed. A vendor sells a stock file for exactly
+  `1037352075`, which would show whether the tuner's *original* is
+  stock — the owner's call, and never in this repository either.
 - **How it closes: return the ECU to standard** (*owner's decision*,
   12/10/2026; `plan.md` item 5a). **The tuner kept the original map and
   writes it back on 22/10/2026** (*owner*, 13/10). Then:

@@ -15,6 +15,16 @@ Anyone with VCDS for this ECU has the file.
 The ECU is `06A 906 018` (`06A 906 018 EJ` on the screen), Motronic 5.9.2,
 labels `06A-906-018-AQY.LBL`.
 
+**What is inside it** (*a file vendor's listing, not a Bosch or VW
+document*, read 20/10/2026, ecufile.net, *BOSCH M5.9.2 0261206327 …
+06A906018EJ 1037352075 V04*): Bosch hardware **`0261206327`**, software
+**`1037352075`**, version **V04** — the `V04` VCDS prints in every log's
+header (*MOTR HS V04*) — flash **AM29F200** (2 Mbit, 256 KB), EEPROM
+**24C02**. The part number and the version both match this car, which
+is what makes it worth writing down. **No map definition** (damos, XDF,
+A2L) for M5.9.2 was found in the open; definitions are sold, and are
+tied to one software version (`open.md` H14).
+
 **Cylinder numbering.** Cylinder 1 is at the timing-belt end; standing at the
 engine, **cylinder 4 is the one at the far right** (*owner*, 28/9/2026). VCDS
 numbers the same way, so every cylinder in these groups is the real one. An
