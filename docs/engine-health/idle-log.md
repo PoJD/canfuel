@@ -605,6 +605,7 @@ above all (`photos/leads-vw-2026-10-21-*.jpg`). **Every plug end went on
 with about the same force, clicked audibly, and sits with no play at
 all**; the NGK ends had a slight play on the plug at **3 and 4, and perhaps
 1**. The VW ends carry a small rubber ring inside that the NGK ends lack.
+The plenum back on a new Elring `271.230`.
 
 **Not known to have achieved:** not yet driven; the first drive is
 captured from the laptop.
