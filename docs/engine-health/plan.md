@@ -100,6 +100,27 @@ Claude runs the capture on every drive. **Current: item 6.**
    - Drain at once, new VW filter, new oil. Write into the chat the
      filter's part number off the invoice or box, and the oil's make,
      viscosity and VW approval.
+6c. **Any time, when convenient: two checks at one warm stop**, oil
+   95–100 °C, neutral, handbrake on, loads off, bonnet open. With the
+   USBtin capturing if the laptop is there (no MFD then); otherwise by ear
+   and the rev counter.
+   - **The screwdriver**: a long screwdriver's tip on the valve cover, ear
+     on the handle, **above each cylinder in turn, 1, 2, 3, 4**, about
+     30 s each, then 3 and 4 again. Keep clear of the belt, the fan and the
+     HT leads. Write into the chat whether any cylinder sounds different:
+     a tick, a knock, an uneven beat.
+   - **Brake cleaner**, **non-chlorinated only** (the can says so), a fire
+     extinguisher within reach. Short bursts of one second, **never on the
+     exhaust manifold, the leads or the coil**. 20–30 s between places,
+     until the idle is back. In this order:
+     1. the joint of the lower manifold to the head at **cylinder 1**;
+     2. the same joint at **cylinder 3**, then at **cylinder 4**;
+     3. where **injector 3**, then **injector 4**, enters the manifold;
+     4. the joint of the upper plenum to the lower manifold; the vacuum
+        hoses.
+     Watch the first one or two seconds after each burst. Write each place
+     into the chat with the time, and whether the engine changed: revs up,
+     smoother, or a stumble.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
@@ -361,6 +382,31 @@ cylinder; resistance was dropped as unlikely to be the difference
 **Read** over several drives against 19/10 and 12–15/10, by how long a
 relief lasts (`open.md` H15): lasting weeks → the leads; a few days, then
 back → the seating, H3 next; the same → H15 refuted.
+
+**Item 6c — the screwdriver and the brake cleaner** (*owner's
+decision*, 21/10/2026: no propane for now, no stethoscope bought; *when
+he gets to it*). Both test a cause rather than name a cylinder, which
+`open.md` already does for 3 and 4.
+
+- **The screwdriver is H1's cheapest test** (`open.md` H1): a lifter that
+  bleeds down or a valve that seats late ticks at camshaft rate over its
+  own cylinder. A sound only over 3 or 4 points at the valvetrain there; all
+  four alike weakens H1. A screwdriver hears less than a stethoscope, so
+  silence is weaker evidence than a tick.
+- **The brake cleaner is H3's** (`open.md` H3): sprayed where air is drawn
+  in, it is drawn in too and enriches the charge for a moment, and the idle
+  answers within a second or two before the lambda loop takes it back. Any
+  prompt change counts. **Cylinder 1 first** shows what *nothing* looks like.
+  A reaction at 3 or 4's head joint or injector seat, and not at 1, is a
+  leak at that runner: the lower gasket or the injector's O-ring is the
+  repair. **No reaction anywhere weakens H3 a good deal**, since this reaches
+  the one place the vacuum gauge on the common plenum could not (`open.md`
+  H3). The smoke test of 9/10 looked for air going out, cold; this one looks
+  for air going in, warm and running. **Non-chlorinated**, because a
+  chlorinated cleaner burnt in the cylinder makes phosgene (*general*).
+- **Captured if possible**: `IdleHealth` is a filtered grade and too slow for
+  a one-second event, but the capture resolves each stroke, so each burst
+  can be read off engine speed against the time written into the chat.
 
 **Item 7 — the exhaust ahead of the front probe (H2), warm.** A leak that
 draws air in at idle blows out when the outlet is closed, and hisses or

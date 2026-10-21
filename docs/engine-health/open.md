@@ -400,7 +400,7 @@ on one or two cylinders. *General.*
   should be; the valves looked whole on 19–20/10 (which says nothing of
   sealing); S18 is now explained by 3's flaked deposit without it.
 
-**Tests:** a stethoscope over each lifter, warm; a warm leak-down (**not to be
+**Tests:** a screwdriver (or a stethoscope) on the cover over each lifter, warm (`plan.md` 6c); a warm leak-down (**not to be
 done**, *owner's decision*, 20/10); the lifters pressed down with the cover
 off. **Whether S18 recurs** is the reading left.
 
@@ -448,8 +448,8 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
   off), the breather and its hoses (12/10), the throttle and its gasket (2/10),
   the injectors re-seated (1/10).
 
-**Test:** the lower manifold gasket at the head — renewed, or smoked warm —
-**next if the VW leads change nothing** (H15).
+**Test:** brake cleaner at each runner's head joint and injector seat, warm
+and running (`plan.md` 6c); then the lower gasket renewed if it answers.
 
 ### H4. Weak spark from what feeds the parts (earth, wiring, coil feed)
 
@@ -787,8 +787,8 @@ is in git.
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | 1 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away (S18); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts | the second cleaner (`plan.md` 6a), driving; S18 recurring or not |
-| 2 | **H1** valve or lifter | S18's tick, a seat that nearly closes — on 3 one with deposit on it (H13) | S18 recurring; no leak-down (*owner*) |
-| 3 | **H3** a leak at one runner | the only one that predicts *load helps* directly; 3 and 4 neighbours; the lower gasket never renewed | the lower gasket, smoked warm or renewed |
+| 2 | **H1** valve or lifter | S18's tick, a seat that nearly closes — on 3 one with deposit on it (H13) | the screwdriver over 3 and 4 (`plan.md` 6c); S18 recurring |
+| 3 | **H3** a leak at one runner | the only one that predicts *load helps* directly; 3 and 4 neighbours; the lower gasket never renewed | brake cleaner at the runners, warm (`plan.md` 6c) |
 | 4 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show | the files, then the original map (3/11) |
 | 5 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
 | 6 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped | flexed at a warm idle |
