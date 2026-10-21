@@ -76,13 +76,15 @@ Claude runs the capture on every drive. **Current: item 6.**
      hands off**; then drive on. Keep clear of the belt, the fan and the
      HT leads. Write into the chat anything the engine did and at which
      injector.
-6. **On the next tank: two or three ordinary warm drives**, on different
-   days. Claude runs the capture; VCDS on **014, 003, 020**; 055 once at
-   the end, warm idle. Write the stops.
+6. **This tank: drive normally with the MFD in**, plain fuel, item 5's
+   rules; brisk driving once warm is welcome. At a warm stop now and
+   then, the two states of the standing items, written into the chat.
+   - **After the tank: one or two warm drives captured**, on different
+     days. Claude runs the capture; VCDS on **014, 003, 020**; 055 once
+     at the end, warm idle. Write the stops.
    - **On one of them, a hard motorway run**: a few minutes brisk at the
      limit, two or three full pulls, then **a warm stop of a few
-     minutes**, loads off. Before it: the timing belt's interval checked
-     against its date (10/2017).
+     minutes**, loads off.
 6a. **A second can of the cleaner, only after 6's drives, and only if
    the owner decides to then.** Until then every tank is plain OMV
    MaxxMotion 100. If it goes in: the maker's dose, into a fresh tank of
@@ -281,7 +283,9 @@ and is written as one.
   either side, and the same for 4. A clear rise on the cylinder under the
   hand → that loom; nothing → cleared as far as a hand can clear it.
 
-**Item 6 — the drives** (*decided 10/10/2026*). The dips' shares need
+**Item 6 — the drives** (*decided 10/10/2026*; *the owner, 21/10: the
+tank on the display, the captures after it*). The display follows the
+idle through the tank; the captures read where it got to. The dips' shares need
 several drives pooled, and they cost nothing. **Read**: `cutscan.py
 --shares` on the idles, alone and pooled since the last repair — the
 share the top two carry and p against all four alike (`open.md`, *The
@@ -297,10 +301,8 @@ S3, *Session A after step 1b*); on settled ones it counts at every warm
 stop, so the run says less than it would have then. What is read is
 **the stop after it**: under load 014 has almost never counted on this
 car. On the original map if it is back by then, and apart from a
-cleaner's tank. **The belt** is the part sustained high revs load
-hardest; at 9 years its age, not its distance, is what to check against
-VW's interval (`vehicle-history.md`). The legal limit caps the run: brisk
-at the limit plus full pulls.
+cleaner's tank. The legal limit caps the run: brisk at the limit plus
+full pulls.
 
 **Item 6a — a second can** (*owner's decision*, 18/10/2026: S18 and the
 idle likely one cause, deposits). If S18 is deposits (H13), the cleaner
