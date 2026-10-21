@@ -677,7 +677,10 @@ then more drives. Read against 19/10 (loads off ~100, on ~50) and 12–15/10
   seating, not the design: H3 next;
 - **the same** → H15 refuted, and H4's spark side with it.
 
-**Fitted 21/10/2026** (*owner*): the VW leads are much stiffer than the NGK
+**Fitted 21/10/2026** (*owner*). **The VW plug is the same NGK
+`BKUR6ET-10` as the set of 10/10** — its box says so — so the plugs are
+only new, not different, and **the leads are the one real change**. The VW
+leads are much stiffer than the NGK
 set, and **each VW plug end carries a small rubber ring inside**, where it
 seats on the plug; the NGK ends have none. A difference in exactly the
 part H15 is about, seen before any drive; what it does to the grip is the
