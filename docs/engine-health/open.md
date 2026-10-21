@@ -698,6 +698,13 @@ counter. Two things name cylinders: the **injector cuts** (one connector off
 at a warm idle; `plan.md` 5a), which mark their slot through a long run, and
 the fault codes they leave. **10/10** (`31`): cuts of 1, 4, 4, 1.
 
+**The leads' order on the coil** (*owner-read off the car, 1/10/2026*):
+**1, 4, 2, 3, clockwise from the top tower** — 1 and 4 side by side, 2 and 3
+side by side, the two pairs the coil fires together in the firing order
+1-3-4-2. Which tower the coil itself calls which cylinder is not read.
+*Dropped by the condensation of 20/10 and put back 21/10, when the leads
+were changed.*
+
 ### One cylinder or two
 
 `cutscan.py --shares` fits the shares of the four firing slots to every run of
