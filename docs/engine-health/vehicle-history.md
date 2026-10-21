@@ -283,6 +283,20 @@ picture is kept so a later reader can see what was judged.
 | `borescope-2026-10-20-cyl3-exhaust-valve.jpg`, `-2.jpg` | cylinder 3's exhaust valve: light patches with a raised dark rim, where deposit has come away |
 | `borescope-2026-10-20-cyl4-piston-edge.jpg` | cylinder 4's piston crown: a granular crust heaviest along the bowl edge |
 | `borescope-2026-10-20-cyl2-chamber.jpg` | cylinder 2's chamber: an even thin layer, nothing flaking |
+| `lower-manifold-2026-10-19-ports.jpg` | the lower manifold's four runners with the plenum off, 19/10 late evening |
+| `borescope-2026-10-20-cyl4-inlet-port-1`…`-3.jpg`, `-cyl3-…-1`…`-3`, `-cyl2-…-1`, `-2`, `-cyl1-…-1`, `-2` | **the inlet ports from above**, stem, guide boss and the back of the inlet valve; a deposit rim round the throat in each. `cyl4-inlet-port-2` is the frame the owner asked about on 21/10 (*a hole burnt beside the seat?* — the seat face cannot be seen from the port) |
+| `borescope-2026-10-20-cyl4-valve`, `-cyl2-valve`, `-cyl1-valve.jpg` | a valve head through the plug hole; **inlet or exhaust not recorded** |
+| `borescope-2026-10-20-cyl4-chamber`, `-cyl4-crown.jpg` | cylinder 4's crown: a granular layer, darker round the bowl |
+| `borescope-2026-10-20-cyl4-crown-line-1`…`-3.jpg` | cylinder 4's crown: **a thin dark line from the crown's edge in towards the bowl**, in three frames from different angles. What it is — a crack, a scratch, a fibre or the edge of a deposit — is not known |
+| `borescope-2026-10-20-cyl3-crown-1`…`-4.jpg` | cylinder 3's crown: the layer broken into islands, bare metal between them |
+| `borescope-2026-10-20-cyl2-crown.jpg` | cylinder 2's crown: a thin even layer, a flake lifting at the edge |
+| `borescope-2026-10-20-cyl1-crown`, `-cyl1-crown-edge.jpg` | cylinder 1's crown: a thin layer; a small dark mark at the edge in `-edge` |
+
+The borescope frames above were taken off the owner's album and **assigned
+to cylinders by their timestamps** against his order (ports 4-3-2-1 from
+23:59, a few minutes apart; then chambers 4-3-2-1, each after its plug came
+out, the plug photographed first). The rest of the 109 frames of that night
+are in the owner's album, not here.
 | `lead2-plug-end-torn-2026-10-20.jpg` | lead 2's plug end, torn on removal |
 | `injector4-loom-2026-10-19.jpg` | injector 4's wires leaving the harness, old tape peeling, insulation whole |
 
