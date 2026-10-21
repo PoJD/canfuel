@@ -774,7 +774,17 @@ be read to its end stops unresolved after the same parts list this car has
 been through. What was reported as fixed: a new battery, a new Bosch coil, a
 new lambda probe, **original VW leads instead of aftermarket ones**, rings
 and a head going-over, a sticking bucket tappet, the timing belt a tooth out.
-Most of these are already done here; the VW leads and the belt are not.
+Most of these are already done here; the belt is not.
+
+**Pictures of the inside of this engine family** (searched 21/10, the same
+languages): **none found** that would compare — no borescope or head-off
+photo set of an AQY, AEG, APK or AZJ with its mileage. The one general
+reading that bears on it is ExxonMobil's borescope guide for gas engines
+(*A Basic Guide to Borescopic Inspection*, §3): some crown deposit is
+normal and *"should be evenly distributed. Uneven deposit distribution is a
+sign for non-homogeneous thermal dissipation"* — the amount on this
+engine is not judged against anything, its **unevenness, 3 > 4 > 2 > 1**,
+is the finding (H13).
 
 ---
 
