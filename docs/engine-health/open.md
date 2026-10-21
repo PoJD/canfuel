@@ -123,7 +123,9 @@ leads and lead 4's re-seat; the idle has worsened since (*Why the idle got
 worse*, S18).
 
 **What is not known: the healthy target.** Every recording is of this engine
-with the fault present; nobody has recorded a healthy AQY (H0 test 1).
+with the fault present, and **none will be**: a CAN capture of another car
+needs its cluster harness tapped behind the vent, which no owner will allow
+(*owner*, 21/10).
 
 **When S1 closes** (*decided*, 20/10; the owner closes it), read over several
 drives at 95–100 °C of oil: **(1) the dips no longer keep to a pair** —
@@ -370,12 +372,13 @@ the idle) and S17 (a resonance, not placed); the closed ones are in
   noisy knock window; S18 named cylinder 3; the inside of 3 and 4 is worse.
 - **For:** no code is stored (2 % threshold: *under 2 %*, not *healthy*).
 
-**Test:** **record a healthy AQY** — another 2.0 8V (AQY, AEG, APK, AZJ;
-Motronic M5.9.2), warm idle, 3–5 min, a USBtin capture and 014. The single
-most valuable measurement left; nothing usable has been published (searched
-27/9 and 9/10). ⚠ It only compares on an ECU that holds engine speed per
-stroke (`idledips.py --degrees` reads 180°); the one public PQ capture,
-comma.ai's Passat, smooths it and grades 0.
+**Test:** ~~a USBtin capture of a healthy AQY~~ — **not obtainable**
+(*owner*, 21/10): the bus is reached only at the cluster harness behind the
+vent, and no owner will have a splice made there. What remains needs only the
+diagnostic port: **VCDS on 014 at a warm idle of a healthy AQY**, 3–5 min,
+loads off — whether a sound engine of this family also counts above VW's
+0–5. It compares only on the same ECU (Motronic M5.9.2), and says nothing
+of the grade or of the pair.
 
 ### H1. A lifter or valve on one cylinder (valvetrain)
 
@@ -790,7 +793,7 @@ is in git.
 | 5 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
 | 6 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped | flexed at a warm idle |
 | 7 | **H2** a leak ahead of the probe | S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test |
-| 8 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | a healthy AQY's capture |
+| 8 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
 | 9 | **H7** fuel delivery | never gauged; plug 3 the cleanest | a rail gauge, an injector swap |
 | 10 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
 | 11 | **H8** throttle and idle control | new since 2/10; all four | — |
