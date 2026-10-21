@@ -41,8 +41,8 @@ Claude runs the capture on every drive. **Current: item 6.**
      **when** (date, time, minutes after the start), **what came before**
      (hard driving, a cold start, a long stand), **oil temperature**,
      **`IdleHealth`**.
-5a. **Postponed: the original map written back** at the tuner, perhaps
-   in the week of 26/10, before this tank runs out; the owner calls him.
+5a. **Postponed: the original map written back** at the tuner, **booked
+   for 3/11**.
    First the tuner emails both files, the original and his remap;
    upload them into the chat (never into the repository); a new date
    after they are read. When it goes ahead:
@@ -87,10 +87,10 @@ Claude runs the capture on every drive. **Current: item 6.**
      limit, two or three full pulls, then **a warm stop of a few
      minutes**, loads off.
 6a. **A second can of the cleaner: Liqui Moly *DFI Cleaner* again**,
-   bought by the owner. **Into the first tank filled after the map is
-   back and 5a's captured drives are done**, never into this one. Until
-   then every tank is plain OMV MaxxMotion 100. The maker's dose, into a
-   fresh tank of the usual fuel, **item 5's S18 rules on every drive of that tank**.
+   bought by the owner. **Into the next tank, after this one**, never
+   into this one; if that tank is not run down by 3/11, the map goes
+   back on it anyway. Every other tank is plain OMV MaxxMotion 100. The
+   maker's dose, into a fresh tank of the usual fuel, **item 5's S18 rules on every drive of that tank**.
    **After that tank: oil and filter changed.**
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
@@ -308,7 +308,10 @@ full pulls.
 
 **Item 6a — a second can** (*owner's decision*, 18/10/2026: S18 and the
 idle likely one cause, deposits; *bought 21/10, the same product*, so the
-second tank compares with the first). If S18 is deposits (H13), the cleaner
+second tank compares with the first; *the owner, 21/10: into the tank
+after this one, the map not before 3/11*). If the map comes back while
+that tank still runs, the drives after 3/11 read the map and the cleaner
+together, and only those before it read the cleaner alone. If S18 is deposits (H13), the cleaner
 loosens them and a second tank may finish the job; plain tanks of hard
 driving show how much driving alone does. The first can's tank read no
 better (17/10, `idle-log.md`), so no second can was put in then. **Not
