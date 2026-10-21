@@ -185,7 +185,13 @@ carries a generated block; a figure typed into prose only goes stale.
     cropped first (*the maintainer, 12/10/2026*). **The full VIN is kept in
     the maintainer's private claude.ai artifact *New Beetle VIN***; a
     session with the Artifact tool finds it with `action: "list"` and
-    reads it there, and never copies it into a file here. **When the symptom list changes — a symptom added
+    reads it there, and never copies it into a file here. **The owner's photo album**
+    (Google Photos, every repair since 6/2026) **is in the private artifact
+    *New Beetle Photo Album*** the same way: the link, an index of the
+    borescope night of 19–20/10, and how to page through it from a cloud
+    session. Frames are picked by timestamp; each borescope series of a
+    chamber starts with that cylinder's plug. The link never goes into a
+    file here. **When the symptom list changes — a symptom added
     or closed — every hypothesis's fit table in `open.md` gains or loses
     that column in the same commit, and the ranked list of candidates is
     re-read against it**; a symptom left out of the tables says why, once,
