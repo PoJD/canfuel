@@ -738,6 +738,7 @@ largest shares):
 | `35`–`38` (15/10) | 13–228 | 62–84 % | 0.08–1 |
 | `39` (18/10) | 70 | **77 %** | 0.0009 |
 | **pooled `09`–`38`** | **2,435** | **67 %** | **10⁻³³** |
+| `40` (21/10), the first after the VW plugs and leads | 157 | **58 %** | **0.77** |
 
 The pair was already there on 11/8, on the 2022 leads and the old injectors.
 `--pairs` is kept for history only: pairs within a run are not independent.

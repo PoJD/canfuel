@@ -610,6 +610,53 @@ The plenum back on a new Elring `271.230`.
 **Not known to have achieved:** not yet driven; the first drive is
 captured from the laptop.
 
+**21/10/2026 — the first drive after the refit** (`40_refit_drive_z1`,
+`vcds/vcds-step6b-*.csv`; `plan.md` item 6b). An hour: a cold start, a
+gentle warm-up, the two-state warm stop at 99–100 °C of oil, then half an
+hour on with full-throttle pulls and a warm stop at the end. VCDS 014,
+001, 003, then 014, 020, 003, then 032 and 055 at the last idle. **Fault
+memory empty** before and after each part.
+
+- **The start**: 1.22 s from the first turn to the first firing, 19 °C
+  of coolant, no dip after it (`19`: 0.83 s). Felt a little long
+  (*owner*); **not pursued** — usual after everything was apart (*owner's
+  decision*).
+- **Warm stop, split by b7**:
+
+  | state | b7 | `IdleHealth` mostly | lowest |
+  |---|---|---|---|
+  | loads off (the lights perhaps on by themselves) | 19–24 | 67–79 | 67 |
+  | every load on | 37–47 | **34–45** | 34 |
+  | loads off again, longer | 23–29 | 60–70 | 50 |
+
+  Loads on, 30–50 was usual before the episodes too (*owner*), so this is
+  about where it was before S18, not better. **Felt calmer, with longer
+  quiet stretches, though not always** (*owner*).
+- **014 at warm idle**: 2.7 and 4.6 rises a minute, 26 % and 43 % of
+  samples non-zero (`39`: 7.5, 55 %; `37`: 3.3, 32 %). At a hard zero
+  through the loads-on minutes (*owner*, and the log).
+- **The dips' shares**: 157 dips, **the top two 58 %, p 0.77** against
+  all four alike — the first capture since `24` in which they do not keep
+  to a pair (`open.md`, *The dips keep to one slot*).
+- **020**: cylinder 4 retards up to 11.2 °CA at full throttle, 4 % of
+  samples; 1 a few times, 2 and 3 never. S4 stays.
+- **032 −6.3 / +5.5 %, 055 −1.42 to −1.37 g/s** (19/10: −3.1 / +5.5,
+  −1.27): more fuel taken away at idle and less air asked for, which a
+  sealed leak would do. One reading, on adaptations still settling.
+- **Full throttle felt a touch livelier** (*owner*).
+- **A hesitation of about a second at 12:21**, full throttle straight
+  after the 1–2 change, like fuel starvation (*owner*). **It was the
+  traction control**: in that second and nowhere else in the hour,
+  0x1A0 b0 goes to 1 and b4–b5 fall from FE to 7A and recover over
+  1.6 s, and 0x280 b1 falls below b7 while the pedal stays down; none of
+  `19`, `37` or `39` has such an event. **That reading of 0x1A0 is
+  inferred from this one event, not documented.** The road was dry; a
+  wheel slipping is possible (*owner*). Not a symptom (*owner's
+  decision*).
+
+**Not known to have achieved:** one drive. Whether the shares stay spread
+and the quiet stretches last is item 6's to read.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail

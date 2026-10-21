@@ -18,7 +18,7 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Claude runs the capture on every drive. **Current: item 6b.**
+Claude runs the capture on every drive. **Current: item 6.**
 
 5. **Until the map goes back, on drives with the MFD in:** where the oil
    reaches **95–100 °C**, one stop in the two states of the standing
@@ -88,28 +88,6 @@ Claude runs the capture on every drive. **Current: item 6b.**
    MaxxMotion 100. If it goes in: the maker's dose, into a fresh tank of
    the usual fuel, **item 5's S18 rules on every drive of that tank**.
    **After that tank: oil and filter changed.**
-6b. **The refit — plugs, leads and the plenum gasket fitted 21/10
-   (`idle-log.md`); the start and the first drive remain**, captured
-   from the laptop from the start: VW plugs
-   `101 000 033 AA` at 25–30 Nm; VW leads `06A 905 409 L`, every end
-   pushed fully home at the plug and at the coil; the plenum on a new
-   Elring `271.230` (VW `06A 129 717` is out of production). A photo of
-   each box with its part number.
-   - **Before fitting**: the old NGK plug ends compared by eye with the
-     VW ones, a photo of both side by side (no caliper: the clip sits too
-     deep).
-   - **A photo of a VW plug's top beside an NGK's**, the terminal both
-     leads grip.
-   - **While fitting**: for each cylinder, the force the VW end takes to
-     push on against the old set's (which went on lightly, 3 and 4 most of
-     all), and whether it clicks, metal or rubber. The same for the coil
-     ends. Write it into the chat by cylinder.
-   - Start it; write into the chat how it started and how the idle runs.
-   - **The first drive after it, captured from the laptop**: MFD out,
-     USBtin capture and VCDS 014, 001, 003 run by Claude, the fault memory
-     read before and after. At the warm idle that ends it, the two states
-     of the standing items; Claude reads `IdleHealth` off the capture,
-     split by b7.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
@@ -353,8 +331,7 @@ the refit**: H15 rests on how the NGK ends sat — by grip 2 > 1 > 3 ≈ 4,
 a rubbery click with a faint metallic one (`open.md` H15) — so the old
 ends are compared with the VW ones by eye and by force, cylinder by
 cylinder; resistance was dropped as unlikely to be the difference
-(*owner*). **The first drive is captured** (*owner*, 20/10), so its
-two-state `IdleHealth`, the dips' shares and 014 come from one session.
+(*owner*). Fitted and first driven 21/10, captured (`idle-log.md`).
 **Read** over several drives against 19/10 and 12–15/10, by how long a
 relief lasts (`open.md` H15): lasting weeks → the leads; a few days, then
 back → the seating, H3 next; the same → H15 refuted.
