@@ -86,12 +86,20 @@ Claude runs the capture on every drive. **Current: item 6.**
    - **On one of them, a hard motorway run**: a few minutes brisk at the
      limit, two or three full pulls, then **a warm stop of a few
      minutes**, loads off.
-6a. **A second can of the cleaner: Liqui Moly *DFI Cleaner* again**,
-   bought by the owner. **Into the next tank, after this one**, never
-   into this one; if that tank is not run down by 3/11, the map goes
-   back on it anyway. Every other tank is plain OMV MaxxMotion 100. The
-   maker's dose, into a fresh tank of the usual fuel, **item 5's S18 rules on every drive of that tank**.
-   **After that tank: oil and filter changed.**
+6a. **A second cleaner: Liqui Moly *Pro-Line Benzin-System-Reiniger***
+   (`5153`, 500 ml), bought by the owner. **Into the next tank, after
+   this one**, never into this one; if that tank is not run down by 3/11,
+   the map goes back on it anyway. Every other tank is plain OMV
+   MaxxMotion 100. One can into a fresh tank of the usual fuel (at most
+   70 l a can), **item 5's S18 rules on every drive of that tank**.
+   **After that tank: the oil flushed, then oil and filter changed**:
+   - Warm the engine to operating temperature, park it.
+   - One can of Liqui Moly *Pro-Line Motorspülung* (500 ml, up to 5 l of
+     oil) into the warm oil.
+   - **10–15 minutes at idle, standing**; no driving, no revs.
+   - Drain at once, new VW filter, new oil. Write into the chat the
+     filter's part number off the invoice or box, and the oil's make,
+     viscosity and VW approval.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
@@ -309,7 +317,17 @@ full pulls.
 **Item 6a — a second can** (*owner's decision*, 18/10/2026: S18 and the
 idle likely one cause, deposits; *bought 21/10, the same product*, so the
 second tank compares with the first; *the owner, 21/10: into the tank
-after this one, the map not before 3/11*). If the map comes back while
+after this one, the map not before 3/11*). **The second is a different
+product** (*owner's choice*, 21/10): Pro-Line `5153`, whose product
+sheet names injectors, inlet valves, plugs and combustion chambers but
+gives its base only as "a combination of additives in a carrier", no
+PEA — so the second tank reads that product, not a second dose of the
+first, and the ashless argument below is the first can's, not
+necessarily this one's. **The flush** (*owner's decision*, 21/10): two
+cleaner tanks and hard driving put additive and loosened deposit into
+the oil; the maker's procedure is warm oil, 10–15 min of idle, then oil
+and filter. Clean amber oil on every plug thread on 20/10 (`idle-log.md`)
+says the oil was not sludged; the flush is insurance, not a repair. If the map comes back while
 that tank still runs, the drives after 3/11 read the map and the cleaner
 together, and only those before it read the cleaner alone. If S18 is deposits (H13), the cleaner
 loosens them and a second tank may finish the job; plain tanks of hard
