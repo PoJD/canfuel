@@ -654,6 +654,30 @@ memory empty** before and after each part.
   wheel slipping is possible (*owner*). Not a symptom (*owner's
   decision*).
 
+- **Against every settled idle since 24/9** (every stop in each capture,
+  not only the measured ones; 30 s windows, run ends trimmed). **Hot, loads
+  off** (oil 93–112 °C, b7 ≤ 30): `IdleHealth` 67 ± 2, dips ≥ 20 rpm
+  4.6 a minute, ≥ 30 rpm 0.3, the deepest 34, the longest stretch without a
+  dip ≥ 20 rpm 52 s, 29 % of the time in stretches of 30 s or more —
+  **level with 12–15/10** (`32`: 63, 4.3, 90 s, 39 %; `37`: 62, 4.8, 84 s,
+  37 %; `38`: 60, 1.8, 72 s, 59 %) and **well clear of `39`** (80, 10.0,
+  22 s, 0 %); not better than the best. **Hot, every load on**: 37, dips
+  ≥ 20 rpm 0.7 a minute, 89 % of the time in quiet stretches, the longest
+  118 s — the calmest recorded (`35`: 51, 1.0). **Cold** (oil below 60 °C):
+  94, dips ≥ 30 rpm none, the deepest 29, against 109–137 and 36–49 for
+  every other cold start but `35` (89). Idle speed and its spread
+  unchanged (798 rpm).
+- **014 against every VCDS log at idle**: the first part, coolant ≥ 85 °C,
+  26 % non-zero, 2.6 rises a minute, p90 12, the longest zero 224 s;
+  next to 15/10 (`item5-drive-2`: 19 %, 1.5, 256 s) and far from 18/10
+  (`drive-home-2`: 55 %, 7.5, 23 s). MAF 3.19 g/s, advance 3.0–3.8 °BTDC
+  and lambda 0.0 % at a hot idle, as on every drive since 15/10: **the
+  plenum changed nothing the MAF can see**.
+- **Full throttle**: b7 on held pulls 173–191, 1–6 counts under `19`, `37`
+  and `39`; engine speed rises as fast as on `37` and `39` in 2nd and 3rd.
+  **Nothing measured shows the livelier feel, nor contradicts it** — intake
+  temperature and grade are not logged.
+
 **Not known to have achieved:** one drive. Whether the shares stay spread
 and the quiet stretches last is item 6's to read.
 

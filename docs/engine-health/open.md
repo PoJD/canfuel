@@ -113,6 +113,7 @@ error):
 | 15/10 | `37`, `38` | settled | the cleaner in | **59–61** |
 | 18/10 eve | `39` | settled | after S18's episodes | 78 ± 4 |
 | 19/10 | display | settled | | about 100 loads off |
+| 21/10 | `40` | settled | **VW plugs and leads, new plenum gasket** | 67 ± 2 |
 
 **The MAF is the one change that showed at once** (24/9: the dips halved).
 The calmest settled idles, 12/10 and 15/10, came in the days after the new
