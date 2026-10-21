@@ -88,7 +88,8 @@ Claude runs the capture on every drive. **Current: item 6b.**
    MaxxMotion 100. If it goes in: the maker's dose, into a fresh tank of
    the usual fuel, **item 5's S18 rules on every drive of that tank**.
    **After that tank: oil and filter changed.**
-6b. **When the parts arrive (21/10), the refit**: VW plugs
+6b. **The refit — plugs and leads fitted 21/10 (`idle-log.md`); the
+   start and the first drive remain**: VW plugs
    `101 000 033 AA` at 25–30 Nm; VW leads `06A 905 409 L`, every end
    pushed fully home at the plug and at the coil; the plenum on a new
    Elring `271.230` (VW `06A 129 717` is out of production). A photo of

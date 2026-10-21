@@ -685,6 +685,10 @@ set, and **each VW plug end carries a small rubber ring inside**, where it
 seats on the plug; the NGK ends have none. A difference in exactly the
 part H15 is about, seen before any drive; what it does to the grip is the
 refit's measurement, not this.
+**The refit** (*owner*, 21/10): every VW end on with about the same
+force, an audible click, and **no play at all**, where the NGK ends had a
+slight play on 3 and 4, perhaps 1 — the cylinders whose dips and deposits
+stand out. The leads routed clear of the plenum, 3's above all.
 
 **The least it predicts** (*owner*): the idle back at least where it was
 before the episodes, loads off about 70–90 at 95–100 °C.

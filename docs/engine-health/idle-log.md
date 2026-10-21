@@ -597,6 +597,18 @@ removal.
 **Not known to have achieved:** nothing cleaned or changed but lead 2 and
 the tape; the camera cannot show whether a valve seals.
 
+**21/10/2026 — the VW plugs and leads** (*owner*; `plan.md` item 6b;
+`open.md` H15). Plugs `101 000 033 AA` — the box reads NGK `BKUR6ET-10`,
+the plug of 10/10 — then leads `06A 905 409 L`, on the coil 1, 4, 2, 3
+clockwise from the top tower, routed clear of the plenum's brackets, 3's
+above all (`photos/leads-vw-2026-10-21-*.jpg`). **Every plug end went on
+with about the same force, clicked audibly, and sits with no play at
+all**; the NGK ends had a slight play on the plug at **3 and 4, and perhaps
+1**. The VW ends carry a small rubber ring inside that the NGK ends lack.
+
+**Not known to have achieved:** not yet driven; the first drive is
+captured from the laptop.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
