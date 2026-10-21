@@ -61,8 +61,10 @@ routine, S15 the sputter; H9 (crankcase ventilation, A15) and H10 (when
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm).
 
-**Ranked (20/10 evening):** **H15, H13, H1, H3, H4, H14, H2**, then H0, H7,
-H8, the timing belt, H11, H12 (*The idle's candidates, ranked*).
+**Ranked (21/10, after the VW leads):** **H13, H1, H3, H14, H15, H4, H2**,
+then H0, H7, the timing belt, H8, H11, H12 (*The idle's candidates,
+ranked*). H15 is no longer first: the idle on the VW leads is level with
+the best on the NGK set, not better (*owner*, 21/10).
 
 **Next** (`plan.md`): the VW leads `06A 905 409 L` and plugs
 `101 000 033 AA` on 21/10, **the only change on the car**; the first drive
@@ -694,6 +696,18 @@ stand out. The leads routed clear of the plenum, 3's above all.
 **The least it predicts** (*owner*): the idle back at least where it was
 before the episodes, loads off about 70–90 at 95–100 °C.
 
+**Read 21/10 (`40`, one drive): not the main cause** (*owner*, 21/10).
+Loads off 67 ± 2 hot, **level with 12–15/10 and not better**; 014 next to
+15/10; loads on and cold the calmest recorded. The least it predicted is
+met, the *calmer* is not. **One thing is not yet read the same way**: the
+dips spread out, top two 58 % at p 0.77 — the first capture since 11/8
+where the pair does not show; but 157 dips, one drive, and `24` read
+p 0.4 once before. **The upper plenum gasket was renewed the same day**, so
+the leads were not the only change. **Kept, demoted**, for a share: if the
+captures after item 6 keep the dips spread, the leads took the pair away
+and left the level — a part, not the whole (*More than one at once*); if the
+pair comes back, H15 goes to `refuted.md`.
+
 ---
 
 ## Naming the cylinder
@@ -769,17 +783,17 @@ is in git.
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| 1 | **H15** NGK plug ends | the only thing found that touches 3 and 4 alone; an energy fault shows at idle | the VW set, 21/10, the only change |
-| 2 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away (S18) — a consequence and now a cause | the cleaner, driving; S18 recurring or not |
-| 3 | **H1** valve or lifter | S18's tick, a seat that nearly closes | S18 recurring; no leak-down (*owner*) |
-| 4 | **H3** a leak at one runner | predicts *load helps*; 3 and 4 neighbours | the lower gasket, if H15 changes nothing |
-| 5 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped | flexed at a warm idle |
-| 6 | **H14** the remap | the one control change never undone | the files, then the original map |
+| 1 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away (S18); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts | the second cleaner (`plan.md` 6a), driving; S18 recurring or not |
+| 2 | **H1** valve or lifter | S18's tick, a seat that nearly closes — on 3 one with deposit on it (H13) | S18 recurring; no leak-down (*owner*) |
+| 3 | **H3** a leak at one runner | the only one that predicts *load helps* directly; 3 and 4 neighbours; the lower gasket never renewed | the lower gasket, smoked warm or renewed |
+| 4 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show | the files, then the original map (3/11) |
+| 5 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
+| 6 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped | flexed at a warm idle |
 | 7 | **H2** a leak ahead of the probe | S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test |
-| 8 | **H0** normal for this engine | no healthy AQY recorded | a healthy AQY's capture |
-| 9 | **H7** fuel delivery | never gauged | a rail gauge, an injector swap |
-| 10 | **H8** throttle and idle control | new since 2/10; all four | — |
-| 11 | **the timing belt a tooth out** | belt from 10/2017 | its marks; even compression and the full plateau argue against |
+| 8 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | a healthy AQY's capture |
+| 9 | **H7** fuel delivery | never gauged; plug 3 the cleanest | a rail gauge, an injector swap |
+| 10 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
+| 11 | **H8** throttle and idle control | new since 2/10; all four | — |
 | 12 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 13 | **H12** driveline play | — | done: the clutch minutes cleared it |
 
