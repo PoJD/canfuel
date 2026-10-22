@@ -86,20 +86,24 @@ Claude runs the capture on every drive. **Current: item 6.**
    - **On one of them, a hard motorway run**: a few minutes brisk at the
      limit, two or three full pulls, then **a warm stop of a few
      minutes**, loads off.
-6a. **A second cleaner: Liqui Moly *Pro-Line Benzin-System-Reiniger***
-   (`5153`, 500 ml), bought by the owner. **Into the next tank, after
-   this one**, never into this one; if that tank is not run down by 3/11,
-   the map goes back on it anyway. Every other tank is plain OMV
-   MaxxMotion 100. One can into a fresh tank of the usual fuel (at most
-   70 l a can), **item 5's S18 rules on every drive of that tank**.
-   **After that tank: the oil flushed, then oil and filter changed**:
+6a. **Two tanks of BG 44K** (BG `208` *44K Platinum*, 325 ml a can), from
+   the BG kit 6577. **Into the next tank, after this one**, never into
+   this one, and **into the tank after that again**. One can into each
+   fresh tank of the usual OMV MaxxMotion 100, **filled up**, and no
+   refuelling until that tank is run down (at least 40 l a tank). Drive it
+   as item 6: warm, brisk once warm. **Item 5's S18 rules on every drive
+   of both tanks.** The map at 3/11 goes ahead whatever tank is in.
+   **Straight after the second tank: the oil flushed, then oil and filter
+   changed**:
    - Warm the engine to operating temperature, park it.
-   - One can of Liqui Moly *Pro-Line Motorspülung* (500 ml, up to 5 l of
-     oil) into the warm oil.
-   - **10–15 minutes at idle, standing**; no driving, no revs.
-   - Drain at once, new VW filter, new oil. Write into the chat the
+   - One can of **BG `109` EPR** (325 ml, from the kit) into the warm oil.
+   - **Run it standing for the time on the can**, at the speed the can
+     says; no driving. A tick: stop the engine and drain.
+   - Drain at once, hot, new VW filter, new oil. Write into the chat the
      filter's part number off the invoice or box, and the oil's make,
      viscosity and VW approval.
+   - **The kit's BG `115` MOA stays on the shelf**: nothing into the new
+     oil.
 6c. **Any time, when convenient: two checks at one warm stop**, oil
    95–100 °C, neutral, handbrake on, loads off, bonnet open. With the
    USBtin capturing if the laptop is there (no MFD then); otherwise by ear
@@ -335,39 +339,44 @@ car. On the original map if it is back by then, and apart from a
 cleaner's tank. The legal limit caps the run: brisk at the limit plus
 full pulls.
 
-**Item 6a — a second can** (*owner's decision*, 18/10/2026: S18 and the
-idle likely one cause, deposits; *bought 21/10, the same product*, so the
-second tank compares with the first; *the owner, 21/10: into the tank
-after this one, the map not before 3/11*). **The second is a different
-product** (*owner's choice*, 21/10): Pro-Line `5153`, whose product
-sheet names injectors, inlet valves, plugs and combustion chambers but
-gives its base only as "a combination of additives in a carrier", no
-PEA — so the second tank reads that product, not a second dose of the
-first, and the ashless argument below is the first can's, not
-necessarily this one's. **The flush** (*owner's decision*, 21/10): two
-cleaner tanks and hard driving put additive and loosened deposit into
-the oil; the maker's procedure is warm oil, 10–15 min of idle, then oil
-and filter. Clean amber oil on every plug thread on 20/10 (`idle-log.md`)
-says the oil was not sludged; the flush is insurance, not a repair. If the map comes back while
-that tank still runs, the drives after 3/11 read the map and the cleaner
-together, and only those before it read the cleaner alone. If S18 is deposits (H13), the cleaner
-loosens them and a second tank may finish the job; plain tanks of hard
-driving show how much driving alone does. The first can's tank read no
-better (17/10, `idle-log.md`), so no second can was put in then. **Not
-before the map, and not on item 6's tank**: two changes at once leave
-the reading with no answer. **The usual fuel**, so the can is the only
-change. PEA is ashless, so the converter and probes are not at risk;
-**the oil is**: additive reaches the crankcase past the rings, one PEA
-chemistry formed varnish at high treat rates (SAE 2020-01-2100), and
-varnish sticks lifters — **hence the oil and filter change after that
-tank**. **Episodes on
-the cleaner's tank are expected, not a verdict**: under H13 each tank
-sheds a layer; under H1 the tick would not depend on the tank. **Read**:
-item 6's drives against `30`, `31`, `33`, `34`, on settled adaptations
-(the reset at 5a makes the drives just after it read low on 014 for
-another reason). Better → deposits had a part; the same → H13 loses its
-inlet-valve half. A tank is weeks of this car's driving, so the reading
-is late by design.
+**Item 6a — two tanks of BG 44K** (*owner's decision*, 18/10/2026: S18
+and the idle likely one cause, deposits; *21/10–22/10*: BG 44K for two
+tanks in a row instead of the Liqui Moly Pro-Line `5153` bought on 21/10,
+which is kept for later; **the overlap with the map at 3/11 accepted** —
+*"I mainly want it solved"*). **Two tanks** because BG's own instructions
+for a deep clean are two full tanks in a row, against one can per
+10,000–15,000 km for upkeep; a third adds less. BG names injectors,
+valves and the combustion chamber, and publishes no chemistry: that it is
+PEA is said of it, not stated by its maker.
+
+**What the overlap costs.** The drives after 3/11 read the map and the
+cleaner together, and only those before it read the cleaner alone. If the
+idle improves, which of H13 and H14 did it is left open; the owner chose a
+fix over the answer.
+
+**The flush and the oil** (*owner's decision*, 21/10, kept with BG's
+product). Two cleaner tanks and hard driving put additive and loosened
+deposit into the oil: additive reaches the crankcase past the rings, one
+PEA chemistry formed varnish at high treat rates (SAE 2020-01-2100), and
+varnish sticks lifters — **hence the change straight after the second
+tank, not later**. BG's run time for EPR differs between its own sheets
+(45 min at 1,200 rpm on the product page, 5–10 min in its oil-change
+procedure), so **the can decides**. BG warns against EPR on a heavily
+sludged engine; clean amber oil on every plug thread on 20/10
+(`idle-log.md`) says this one is not. **MOA is not used** (*owner*,
+22/10): it stays in the new oil for the whole interval, its composition is
+not published, it is about 8 % of the fill and so changes an oil chosen
+for its VW approval, and its claims (ring and valve carbon) are H13's —
+a change that would sit in the engine for months.
+
+**Episodes on the cleaner's tanks are expected, not a verdict**: under H13
+each tank sheds a layer; under H1 the tick would not depend on the tank.
+For the converter it is a misfire that matters, not the cleaner — hence
+item 5's rules. **Read**: item 6's drives and the captures after each
+tank against `30`, `31`, `33`, `34` and `40`, on settled adaptations (the
+reset at 5a makes the drives just after it read low on 014 for another
+reason), and the shares pooled since the last repair. A tank is weeks of
+this car's driving, so the reading is late by design.
 
 **Item 6b — the refit** (*owner's decision*, 20/10/2026). The look of
 19–20/10 is done (`idle-log.md`); lead 2 tore on removal, so the leads are

@@ -574,8 +574,8 @@ hard use burns them off (*general*).
   knock on 4 (S4).
 - **Against:** a detergent premium fuel since 2017; compression even.
 
-**Tests:** the cleaner and hard driving (a tank from 15/10, done; a second can
-is `plan.md` 6a, the owner's call after the next drives); whether S18 recurs.
+**Tests:** the cleaner and hard driving (a tank from 15/10, done; two tanks of
+BG 44K next, then a flush and fresh oil, `plan.md` 6a); whether S18 recurs.
 
 ### H14. The remap of 6/2018 — the idle's ignition, or its margin
 
