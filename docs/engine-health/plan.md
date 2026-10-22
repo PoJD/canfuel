@@ -99,9 +99,11 @@ Claude runs the capture on every drive. **Current: item 6.**
    - One can of **BG `109` EPR** (325 ml, from the kit) into the warm oil.
    - **Run it standing for the time on the can**, at the speed the can
      says; no driving. A tick: stop the engine and drain.
-   - Drain at once, hot, new VW filter, new oil. Write into the chat the
-     filter's part number off the invoice or box, and the oil's make,
-     viscosity and VW approval.
+   - Drain at once, hot. **New filter Bosch `0 451 103 314`**, set beside
+     the old one first: the same thread, seal and height, or it does not
+     go on. **New oil Total *Quartz 9000 Energy* 5W-40**; the can must say
+     **VW 502.00**. Write into the chat the odometer and the litres it
+     took.
    - **The kit's BG `115` MOA stays on the shelf**: nothing into the new
      oil.
 6c. **Any time, when convenient: two checks at one warm stop**, oil
@@ -363,7 +365,13 @@ tank, not later**. BG's run time for EPR differs between its own sheets
 (45 min at 1,200 rpm on the product page, 5–10 min in its oil-change
 procedure), so **the can decides**. BG warns against EPR on a heavily
 sludged engine; clean amber oil on every plug thread on 20/10
-(`idle-log.md`) says this one is not. **MOA is not used** (*owner*,
+(`idle-log.md`) says this one is not. **The oil and filter** (*bought 22/10*, mlparts.cz, with the BG cans):
+Total *Quartz 9000 Energy* 5W-40, whose maker's data sheet lists ACEA
+A3/B4 and **VW 502.00**/505.00 — 502.00 is the approval for this engine on
+fixed-interval changes; the list varies by market, hence the check on the
+can. Filter Bosch `0 451 103 314`, sold for this engine and crossed to VW
+`06A 115 561 B` by sellers' listings rather than a maker's catalogue, hence
+the side-by-side check. **MOA is not used** (*owner*,
 22/10): it stays in the new oil for the whole interval, its composition is
 not published, it is about 8 % of the fill and so changes an oil chosen
 for its VW approval, and its claims (ring and valve carbon) are H13's —
