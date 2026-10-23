@@ -446,7 +446,7 @@ warm coolant, because "full operating temperature" is the oil's.
 says the first may be done **twice at once**, which BG neither says nor
 forbids. A drain leaves roughly a tenth of the fill behind, so the EPR left
 in the new oil is under one percent of it. The oil between runs standing for
-under an hour, so it needs the viscosity and nothing else; It is **the same oil
+under an hour, so it needs the viscosity and nothing else; it is **the same oil
 as the final fill**, Total *Quartz 9000 Energy* 5W-40 (*owner*, 23/10), so
 what a drain leaves behind is that oil and EPR and nothing else. *Quartz
 9000* 5W-40 was chosen first; it carries the same ACEA A3/B4 and VW
