@@ -99,6 +99,10 @@ Claude runs the capture on every drive. **Current: item 6.**
      that tank is then driven normally.
    - **The second tank**: one can, then **filled up**, and no refuelling
      until it is run down. Drive it as item 6.
+   - **Italian tune-up on both tanks**: once the **oil reads 90 °C**,
+     and not in the first 30 km after the pump, stretches held high in
+     the lower gears, at the limit. **A tick, a miss or the lamp, lit or
+     flashing: ease off at once**, then item 5's rules.
    - **Item 5's S18 rules on every drive of both tanks.** The map at 3/11
      goes ahead whatever tank is in.
    **Straight after the second tank: the oil flushed twice, then oil and
@@ -405,6 +409,16 @@ than 27 for that reason, 23/10), and the strength a little milder; the
 window of 25–30 l is wider than that error. Nothing independent compares the variants; three cans at once
 (their option 2) was rejected for the most shedding at once, three times
 the cost and no evidence of more benefit.
+
+**The Italian tune-up** (*owner's decision*, 23/10) is Red Rider's
+"indiánský způsob" for its strong tank, applied to both: heat and gas
+flow through the chamber while the cleaner is in the fuel. **On oil at
+90 °C** because S18 came cold and the oil is the slower of the two to
+warm; **not in the first 30 km** because the cleaner reaches the
+injectors only after the fuel already in the filter and lines, 10–30 km
+by Red Rider's figure. **A misfire under load costs the converter more
+than one at idle** (more unburnt mixture per second into it), hence
+easing off at the first sign rather than at a flashing lamp alone.
 
 **What the overlap costs.** The drives after 3/11 read the map and the
 cleaner together, and only those before it read the cleaner alone. If the
