@@ -84,8 +84,8 @@ Claude runs the capture on every drive. **Current: item 6.**
      clearly better**: one or two warm drives captured, on different
      days. Claude runs the capture; VCDS on **014, 003, 020**; 055 once
      at the end, warm idle. Write the stops.
-6a. **Two tanks of BG 44K** (BG `208` *44K Platinum*, 325 ml a can), from
-   the BG kit 6577. **Into the next tank, after this one**, never into
+6a. **Two tanks of BG 44K** (BG `208` *44K Platinum*, 325 ml a can).
+   **Into the next tank, after this one**, never into
    this one, and **into the tank after that again**. Fuel the usual OMV
    MaxxMotion 100; **the can goes in first, then the fuel**.
    - **The first tank is a strong one: 25 l indicated in the tank with
@@ -115,8 +115,8 @@ Claude runs the capture on every drive. **Current: item 6.**
    at any point with EPR in the oil:
    - **First flush.** Warm the engine until the **oil reads 90 °C**, park
      it. Check the dipstick: **at the upper mark, take out about 0.3 l**
-     with a syringe through the dipstick tube first. One can of EPR (from
-     the kit) into the oil. Hold **1,200–1,300 rpm** with a stick on the
+     with a syringe through the dipstick tube first. One can of EPR into
+     the oil. Hold **1,200–1,300 rpm** with a stick on the
      pedal, **30 minutes**, standing.
    - Drain at once, hot, the car tilted towards the plug, and let it drip
      a long time. **Old filter out; Bosch `0 451 103 314` on**, set beside
@@ -133,8 +133,7 @@ Claude runs the capture on every drive. **Current: item 6.**
    - **A tick at any point during a flush**: stop the engine and drain.
      **A lifter tapping for a few seconds after the first start on new
      oil** is expected; one that stays is written into the chat.
-   - **The kit's BG `115` MOA stays on the shelf**: nothing into the new
-     oil.
+   - **Nothing into the new oil.**
 6c. **Any time, when convenient: two checks at one warm stop**, oil
    95–100 °C, neutral, handbrake on, loads off, bonnet open. With the
    USBtin capturing if the laptop is there (no MFD then); otherwise by ear
@@ -494,14 +493,16 @@ camshaft rate that stays.
 
 BG warns against EPR on a heavily sludged engine; clean amber oil on every
 plug thread on 20/10 (`idle-log.md`) says this one is not. **The oil**
-(*bought 22/10*, mlparts.cz, with the BG cans): Total *Quartz 9000 Energy*
+(*bought 22/10*, mlparts.cz): Total *Quartz 9000 Energy*
 5W-40, whose maker's data sheet lists ACEA A3/B4 and **VW 502.00**/505.00 —
 502.00 is the approval for this engine on fixed-interval changes; the list
-varies by market, hence the check on the can. **MOA is not used** (*owner*,
-22/10): it stays in the new oil for the whole interval, its composition is
-not published, it is about 8 % of the fill and so changes an oil chosen
-for its VW approval, and its claims (ring and valve carbon) are H13's —
-a change that would sit in the engine for months. **Later changes**: EPR
+varies by market, hence the check on the can. **No additive in the new oil**
+(*owner*, 22/10): BG's `115` MOA, considered with the cleaners and not
+bought (only the two cleaners were, two cans of each), would stay in the
+oil for the whole interval, its composition is not published, it is about
+8 % of the fill and so changes an oil chosen for its VW approval, and its
+claims (ring and valve carbon) are H13's — a change that would sit in the
+engine for months. **Later changes**: EPR
 at every change until the symptoms are settled, at most once a year
 (*owner*, 23/10).
 
