@@ -94,11 +94,17 @@ In this tank so far:
   the cluster's trip at **289.4 km**, the display reading **23.5 L**
   before it (*owner*, `docs/engine-health/photos/odometer-2026-10-23.jpg`).
   It went in after **325 ml of BG 44K** (`docs/engine-health/plan.md`
-  item 6a), which burns as fuel and is in no pump's litres. 3.11 l is
-  under `REFUEL_RISE_L`, so the converter's trip carries on through it,
-  as the cluster's does. **At the next brim, the pump's litres are added
-  to these 3.11 and the can's 0.325**; the cleaner's tanks in between are
-  read for the ratio, not for the engine's consumption.
+  item 6a), which burns as fuel and is in no pump's litres. **The
+  converter's trip reset at it all the same**: that evening the display
+  read **`TripDist` 98.7 km, `FuelAvg` 11.1**, about the day's driving
+  (*owner*, 23/10; `refuel-reset.md`, the table). So **the display's trip
+  runs from this fill, not from 17/10**, and what it held for 17–23/10
+  was not written down before the nozzle went in; the cluster's trip
+  still spans the whole tank. **At the next brim, the pump's litres are
+  added to these 3.11 and the can's 0.325**; the cleaner's tanks in
+  between are read for the ratio, not for the engine's consumption.
+  *This said "3.11 l is under `REFUEL_RISE_L`, so the converter's trip
+  carries on through it" until the display showed otherwise.*
 
 ⚠ **This tank no longer spans the map going back**: that was set for
 22/10 and is postponed to 3/11 (`docs/engine-health/plan.md` item 5a),

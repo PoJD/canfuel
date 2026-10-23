@@ -130,7 +130,7 @@ a log, and everything below is bounded by that.
 | indicated after | **50.9 L** |
 | the reset | **fired** — the average zeroed |
 
-### The rule has fired in the car at least three times, and none of them is recorded
+### The rule has fired in the car at least four times off the display, and none of them is recorded
 
 ⚠ **An earlier version of this section called this the first, and it was
 not.** Owner-recalled, so the count is approximate and the dates are not
@@ -141,8 +141,9 @@ held:
 | earlier | **6 L from a jerrycan**, at the garden | fired |
 | earlier | **a full tank**, the one `18_coldstart_z1` was recorded on | fired |
 | 2026-09-19 | the 44.17 L above | fired |
+| 2026-10-23 | **3.11 L off the pump and 325 ml of BG 44K**, at 23.5 L indicated | **fired** — `TripDist` 98.7 km that evening, about the day's driving (*owner*) |
 
-⚠ **All three fired on a threshold of THREE, not four.** The firmware in the
+⚠ **The first three fired on a threshold of THREE, not four.** The firmware in the
 car predates `REFUEL_RISE_L` becoming 4 (commit `e8d634c`), so every one of
 these is evidence about the rule **as flashed** rather than as it now stands
 in the tree — and a fill watched in the car stays a test of three until the
@@ -158,6 +159,23 @@ it is about six litres.** At the near-empty gain of 0.83 a 5 L fill indicates
 4.15, the sender reports whole litres, and `4 > 4` is false. Nothing under
 5 L has ever gone into this car — `config.h` says so — so this is a margin
 rather than a hole, but it is the margin, and it is one litre wide.
+
+⚠ **The fill of 2026-10-23 is the smallest yet, and it fired.** 3.4 L
+delivered in all, and expected to pass under the rule (`fuel-check.md`
+said so). To fire, the at-rest level had to stand above the baseline by
+more than the threshold — **at least 4 indicated on a threshold of three,
+5 on four** — so the indicated rise was at least 1.2 to 1.5 times the
+litres delivered, where both measured gains are under one (0.83 near
+empty, 0.905 over 11–51). It was observed as the trip, not as `refuels`
+(JP1 out), and the level after it was not read. **Two readings fit and
+nothing separates them**: the sender's gain is above one mid-travel,
+where it has never been recorded (*Why a 4 L threshold* below); or the
+baseline sat below the true level when the nozzle went in — a car
+parked on a slope at the pump, or a float still settling from the
+drive. **No change follows**: it was a real fill, and a reset on a real
+fill is the error the threshold already accepts. It does move the
+smallest fill the rule catches down from the six litres argued below,
+mid-tank at least.
 
 **So the rule works in the car and has for some time.** Every one of these
 happened with nothing logging, and `18_coldstart_z1` opens at 50 L already
@@ -322,7 +340,7 @@ In the current data the tank reports **0 litres with the reserve lamp on**
 against these logs — a recording taken while refuelling is needed. Until then
 it has to run on synthetic frames in `test_compute.c`.
 
-⚠ **The rule has since fired in the car at least three times** — *The
+⚠ **The rule has since fired in the car at least four times** — *The
 2026-09-19 fill* above. Those are observations off a display and not
 recordings, so this paragraph stands unchanged: what is still missing is a
 capture spanning a fill, and nothing in the corpus is one.
