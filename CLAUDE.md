@@ -1259,6 +1259,7 @@ python tools/oilwatch.py idle_z1.txt                        # ...and, in a 2nd w
 python tools/canlog.py test/fixtures/03_drive.txt          # per-ID summary
 python tools/canlog.py --dump --id 0x480 FILE              # print frames
 python tools/replay.py --every 100 test/fixtures/07_accel.txt
+python tools/afterpull.py FILE                             # the warm idle after full-load pulls
 python -m unittest discover -s tools -p "test_*.py"        # the Python tools
 
 make -C test test                                          # the whole C suite
