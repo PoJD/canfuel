@@ -186,8 +186,11 @@ old scan of 5/2019 (`vehicle-history.md`).
 
 **When S3 closes** (*decided*, 20/10): 014 reads **0** at a warm idle with
 loads off, oil 95–100 °C, for 3–5 minutes, **on three sessions on different
-days, one straight after a hard drive**. The counter steps in twelves, so
-zero is the only reading inside the specification.
+days**. The counter steps in twelves, so zero is the only reading inside
+the specification. *This also asked for one session straight after a hard
+drive* (20/10), dropped 23/10 at the owner's decision: what that rested
+on, 014 counting only after the hard drive of 4/10, was an adaptation
+completing rather than load (`refuted.md` C19).
 
 - **Only at idle, and that is the car.** Detection sees a misfire more easily
   under load and switches off below about 20 % load (measured over every 014
