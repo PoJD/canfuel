@@ -175,10 +175,13 @@ parked on a slope at the pump, or a float still settling from the
 drive. **The display was swinging about a litre up and down before the
 fill** (*owner*, 23/10), so the 23.5 is itself ±1 and the level the
 baseline froze on is not known to better than that. That favours the
-second reading without settling it: on a threshold of three, a fill
-showing at the 0.905 gain (+3.1) plus one litre of swing clears it; on
-four it needs nearly two. Which threshold the device carries is the
-question above. **No change follows**: it was a real fill, and a reset on a real
+second reading without settling it. **The device carries four**: it was
+last flashed on 24/9/2026 (`--preserve-eeprom`, commit `efe8573`
+records it), after `REFUEL_RISE_L` became 4, and no later flash is
+recorded; no hash of the flashed hex was written down, only the date.
+So the indicated rise was at least 5: a fill showing at the 0.905 gain
+(+3.1) needs nearly two litres of swing on top, more than the one seen.
+**No change follows**: it was a real fill, and a reset on a real
 fill is the error the threshold already accepts. It does move the
 smallest fill the rule catches down from the six litres argued below,
 mid-tank at least.
