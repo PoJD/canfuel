@@ -404,6 +404,12 @@ about. The valve is closed by its spring; the lifter only removes the gap.
   small charge and is covered by load; S18's tick once per cycle; one forum
   AQY case of a sticking bucket tappet (pkw-forum.de, 2003) and one of valves
   not sealing (forum.vwgolf.pl t=522030).
+  **The oil before 6/2026** (*owner*, 23/10; `vehicle-history.md`): about
+  three years in the engine, nearly one of them standing outdoors,
+  condensed water under the filler cap at the change — the conditions in
+  which oil forms varnish and acids (*general*), and varnish is what
+  sticks a plunger or a check ball. Weak: it says the means was there,
+  not that a lifter took it up.
 - **Against:** compression **13 bar in 2018 and 12 bar even on all four in
   2026** (`vehicle-history.md`) — no cylinder losing; the vacuum gauge
   steady cold and warm, no flick (H3); no ticking before S18, and none on the
