@@ -47,6 +47,10 @@ Done, and each one is a fault it exists to make impossible:
 - **Reads EEData off the part.** `--read-eeprom FILE` writes the 1,024 bytes
   out and changes nothing, which is what looking at a persist ring during
   bring-up wants.
+- **Says what went into the part.** A successful flash ends with one
+  `flashed:` line: date, commit, `+dirty` if `src/` or `mplab/Makefile`
+  differed from it, mode, and the SHA-256 of the hex. It goes into the
+  table below.
 
 Not done: nothing, of the two gaps this file used to list.
 
@@ -58,6 +62,22 @@ string somebody typed.
 
 `tools/test_flash.py` holds IPECMD's real output for every case the tool
 parses, including the three failures, and needs no programmer to run.
+
+---
+
+## What is in the car
+
+**One row per flash of the converter in the car, newest last**, copied from
+the `flashed:` line `flash.py` prints. Added 23/10/2026 when the refuelling
+threshold the device carries had to be dug out of the git log
+(`refuel-reset.md`, the fill of 23/10). Bench flashes do not belong here.
+
+| date | commit | mode | hex SHA-256 | how known |
+|---|---|---|---|---|
+| 2026-09-24 | the tree of `efe8573` (`src/` as at its parent) | normal, `--preserve-eeprom` | not recorded | `efe8573`'s message: "Used for this flash"; no hash was printed then. Carries `REFUEL_RISE_L` = 4 and 0x604 |
+
+**No later flash is recorded.** The oil scale moved to `raw − 60` in
+`decode.c` on 15/10 without one; the display reads oil off 0x420 itself.
 
 ---
 

@@ -11,7 +11,9 @@ run.
 Nothing here touches a device.
 """
 
+import hashlib
 import re
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -384,6 +386,32 @@ class TestModes(unittest.TestCase):
     def test_names_match_hal_can_h(self):
         self.assertEqual(flash.MODES["loopback"], "LOOPBACK")
         self.assertEqual(flash.MODES["listen-only"], "LISTEN_ONLY")
+
+
+class Provenance(unittest.TestCase):
+    def test_the_line_carries_everything(self):
+        line = flash.provenance_line("2026-10-23", "abcdef012345", False,
+                                     "normal", "0" * 64, True)
+        self.assertEqual(line, "flashed: 2026-10-23  commit abcdef012345  "
+                               "mode normal  hex sha256 " + "0" * 64)
+
+    def test_dirty_and_no_build_are_said(self):
+        line = flash.provenance_line("2026-10-23", "abcdef012345", True,
+                                     "loopback", "1" * 64, False)
+        self.assertIn("commit abcdef012345+dirty", line)
+        self.assertIn("--no-build", line)
+
+    def test_the_hash_is_of_the_file(self):
+        with tempfile.TemporaryDirectory() as d:
+            p = Path(d) / "canfuel.hex"
+            p.write_bytes(b":00000001FF\n")
+            self.assertEqual(flash.hex_sha256(p),
+                             hashlib.sha256(b":00000001FF\n").hexdigest())
+
+    def test_git_state_reads_this_repository(self):
+        commit, dirty = flash.git_state()
+        self.assertRegex(commit, r"^[0-9a-f]{12}$")
+        self.assertIsInstance(dirty, bool)
 
 
 if __name__ == "__main__":

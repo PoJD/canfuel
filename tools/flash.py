@@ -78,6 +78,15 @@ what the firmware has had to store since `-OL` released the part, which is not
 a thing a verify should depend on. `-M` verifies implicitly, and that is the
 verify that counts.
 
+WHAT WENT INTO THE PART IS PRINTED, because nobody wrote it down once and it
+was missed. A successful flash ends with one `flashed:` line -- the date, the
+commit the tree was on, whether `src/` or `mplab/Makefile` differed from it,
+the mode, and the SHA-256 of the hex that was written. It goes into
+`docs/firmware/flashing.md`, *What is in the car*, so that "which firmware is
+the converter running" is read rather than reconstructed from the git log.
+With `--no-build` the commit is the tree's and not necessarily the hex's, and
+the line says so.
+
 WARNING: **JP2 comes off before programming and goes back on afterwards**, and
 no software can check that. IPECMD also drops an `MPLABXLog.xml` into whatever
 directory it is run from.
@@ -86,6 +95,8 @@ directory it is run from.
 from __future__ import annotations
 
 import argparse
+import datetime
+import hashlib
 import re
 import subprocess
 import sys
@@ -427,6 +438,37 @@ def build(mode: str, dry: bool) -> bool:
     return done.returncode == 0
 
 
+def hex_sha256(hex_path: Path) -> str:
+    """The SHA-256 of the hex file as written to the part."""
+    return hashlib.sha256(hex_path.read_bytes()).hexdigest()
+
+
+def git_state() -> tuple[str, bool]:
+    """(commit, whether anything that ends up in the hex differs from it).
+
+    Only `src/` and `mplab/Makefile` count: a dirty document changes nothing
+    in the part, and calling the build dirty for it would teach the reader to
+    ignore the flag.
+    """
+    def git(*a: str) -> str:
+        done = subprocess.run(["git", *a], cwd=REPO, text=True,
+                              capture_output=True)
+        return done.stdout.strip() if done.returncode == 0 else ""
+    commit = git("rev-parse", "--short=12", "HEAD") or "<no git>"
+    dirty = bool(git("status", "--porcelain", "--", "src", "mplab/Makefile"))
+    return commit, dirty
+
+
+def provenance_line(date: str, commit: str, dirty: bool, mode: str,
+                    sha256: str, built: bool) -> str:
+    """The one line that records what went into the part."""
+    line = "flashed: %s  commit %s%s  mode %s  hex sha256 %s" % (
+        date, commit, "+dirty" if dirty else "", mode, sha256)
+    if not built:
+        line += "  (--no-build: the commit is the tree's, not the hex's)"
+    return line
+
+
 def stamped_mode(build_dir: Path) -> str:
     """What mplab/Makefile recorded the last build as -- see MODE_STAMP there."""
     stamp = build_dir / "can_mode"
@@ -621,6 +663,12 @@ def _main(args: argparse.Namespace, hex_path: Path, rep: "Report") -> int:
         print("supply only until that is dropped below.")
     else:
         print("PASS -- the %s build is in the part and running." % args.mode)
+    commit, dirty = git_state()
+    print()
+    print(provenance_line(datetime.date.today().isoformat(), commit, dirty,
+                          args.mode, hex_sha256(hex_path), not args.no_build))
+    print("  ^ into docs/firmware/flashing.md, *What is in the car*.")
+    print()
     print("Put JP2 back on. JP1 decides whether the LEDs light and whether")
     print("0x603 is transmitted; steps 6 and 7 both want it fitted.")
     return 0
