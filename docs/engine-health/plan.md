@@ -119,7 +119,8 @@ Claude runs the capture on every drive. **Current: item 6.**
    - **Second flush.** Run it until the **oil reads 90 °C** again, then
      the second can of EPR, **1,200–1,300 rpm, 30 minutes**, standing.
    - Drain at once, hot, tilted, a long drip. **The VW filter on**, the
-     Bosch off. **The new VW drain plug in.** **New oil Total *Quartz 9000
+     Bosch off. **The new VW drain plug in, about 30 Nm**; check the
+     figure at VW when buying it. **New oil Total *Quartz 9000
      Energy* 5W-40**; the can must say **VW 502.00**. Write into the chat
      the odometer and the litres it took.
    - **A tick at any point during a flush**: stop the engine and drain.
@@ -406,8 +407,16 @@ crankcase past the rings, one PEA chemistry formed varnish at high treat
 rates (SAE 2020-01-2100), and varnish sticks lifters — **hence the change
 straight after the second tank, not later**, and the strong first tank
 makes that more true, not less. **EPR cleans the oil side** — rings and
-hydraulic lifters, which is H1's — **not valve faces or chambers**, which
-are the fuel cleaner's; it is not expected to mend the idle by itself.
+hydraulic lifters — **not valve faces or chambers**, which are the fuel
+cleaner's. **Both of its sides can reach the idle**: the lifters are H1's,
+and a ring stuck with coke costs compression, which tells most at idle,
+where the charge is small. Against rings as the cause: compression **12 bar
+even on all four** (`refuted.md` A4), while the inside differs by cylinder
+(3 > 4 > 2 > 1); the evenness is the strong part, the absolute figure is
+weak (gauge, cranking strokes and throttle not recorded). *This said "it is
+not expected to mend the idle by itself"* (23/10), which the evidence does
+not support; corrected the same day at the owner's question. **The drain
+plug at about 30 Nm** is the owner's figure (23/10), not a VW document.
 
 **The run time.** BG's data sheet for `109`: for a **3.7–5.6 l** crankcase,
 one can, **10 minutes at 1,200 rpm** after full operating temperature
