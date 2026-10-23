@@ -428,7 +428,10 @@ even on all four** (`refuted.md` A4), while the inside differs by cylinder
 weak (gauge, cranking strokes and throttle not recorded). *This said "it is
 not expected to mend the idle by itself"* (23/10), which the evidence does
 not support; corrected the same day at the owner's question. **The drain
-plug at about 30 Nm** is the owner's figure (23/10), not a VW document.
+plug at about 30 Nm** is the owner's figure (23/10), not a VW document. **No compression test before and after**
+(*owner's decision*, 23/10): it would read EPR's effect on the rings, at the
+cost of the leads off twice, which disturbs H15's reading of the new VW
+leads; whether the idle moves is read as for the tanks.
 
 **The run time.** BG's data sheet for `109`: for a **3.7–5.6 l** crankcase,
 one can, **10 minutes at 1,200 rpm** after full operating temperature
