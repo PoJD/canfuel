@@ -88,11 +88,12 @@ Claude runs the capture on every drive. **Current: item 6.**
    the BG kit 6577. **Into the next tank, after this one**, never into
    this one, and **into the tank after that again**. Fuel the usual OMV
    MaxxMotion 100; **the can goes in first, then the fuel**.
-   - **The first tank is a strong one: about 27 l in the tank with the
-     can.** No need to run down to the reserve. At the pump, before fuelling, read `FuelTank`
-     on the MFD, standing; pour in one can, then **27 minus that reading**
-     in litres. A few tight turns leaving the pump. Drive it warm and brisk once warm, as
-     item 6, until the reserve light again.
+   - **The first tank is a strong one: 25 l indicated in the tank with
+     the can.** No need to run down to the reserve. At the pump, before
+     fuelling, read `FuelTank` on the MFD, standing; pour in one can,
+     then **25 minus that reading** in litres. A few tight turns leaving
+     the pump. Drive it warm and brisk once warm, as item 6, until the
+     reserve light again.
    - **A tick, the engine missing or the lamp flashing on the strong
      tank**: item 5's rules, and **at the next pump fill up**; the rest of
      that tank is then driven normally.
@@ -399,8 +400,9 @@ whatever was there before, and the MFD shows them. The lamp is bit 0x80 of
 8 in `17`, off at 11 in `27`; no capture crosses it, so where in between
 is not known. **The indication reads low**, by a gain of 0.83 near empty
 and 0.905 over most of the travel (`docs/firmware/refuel-reset.md`), so
-27 indicated is somewhat more in the tank, and the strength a little
-milder; the window of 25–30 l is wider than that error. Nothing independent compares the variants; three cans at once
+25 indicated is somewhat more in the tank (the owner aims at 25 rather
+than 27 for that reason, 23/10), and the strength a little milder; the
+window of 25–30 l is wider than that error. Nothing independent compares the variants; three cans at once
 (their option 2) was rejected for the most shedding at once, three times
 the cost and no evidence of more benefit.
 
