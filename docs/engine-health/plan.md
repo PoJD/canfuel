@@ -412,8 +412,13 @@ the cost and no evidence of more benefit.
 
 **The Italian tune-up** (*owner's decision*, 23/10) is Red Rider's
 "indiánský způsob" for its strong tank, applied to both: heat and gas
-flow through the chamber while the cleaner is in the fuel. **On oil at
-90 °C** because S18 came cold and the oil is the slower of the two to
+flow through the chamber while the cleaner is in the fuel. **BG says
+nothing about driving** (its sheet: add at fill-up); Red Rider calls long
+distances a myth, finds mixed driving better because a standing engine
+gives the cleaner time to soak, and asks for a hard throttle now and
+then; no controlled study of the tune-up itself was found (23/10), only
+forums and a patent's claim of deposit removal near full load. **On oil at
+90 °C** (*decision*) because S18 came cold and the oil is the slower of the two to
 warm; **not in the first 30 km** because the cleaner reaches the
 injectors only after the fuel already in the filter and lines, 10–30 km
 by Red Rider's figure. **A misfire under load costs the converter more
