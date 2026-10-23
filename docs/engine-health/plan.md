@@ -103,7 +103,7 @@ Claude runs the capture on every drive. **Current: item 6.**
      goes ahead whatever tank is in.
    **Straight after the second tank: the oil flushed twice, then oil and
    filter changed.** Bought for it: a **second can of BG `109` EPR**,
-   **about 4 l of any cheap 5W-40 or 10W-40** (no approval needed), and at
+   **4 l of Total *Quartz 9000* 5W-40** (autodily-pema.cz), and at
    VW **an original oil filter and a new drain plug**. Outdoors, no driving
    at any point with EPR in the oil:
    - **First flush.** Warm the engine until the **oil reads 90 °C**, park
@@ -114,7 +114,7 @@ Claude runs the capture on every drive. **Current: item 6.**
    - Drain at once, hot, the car tilted towards the plug, and let it drip
      a long time. **Old filter out; Bosch `0 451 103 314` on**, set beside
      the old one first: the same thread, seal and height, or it does not
-     go on. **The old drain plug back in.** Fill with the cheap oil to the
+     go on. **The old drain plug back in.** Fill with the Quartz 9000 to the
      mark.
    - **Second flush.** Run it until the **oil reads 90 °C** again, then
      the second can of EPR, **1,200–1,300 rpm, 30 minutes**, standing.
@@ -433,8 +433,13 @@ warm coolant, because "full operating temperature" is the oil's.
 **Twice in one day.** Red Rider advises EPR at three changes in a row and
 says the first may be done **twice at once**, which BG neither says nor
 forbids. A drain leaves roughly a tenth of the fill behind, so the EPR left
-in the new oil is under one percent of it. The cheap oil runs standing for
-under an hour, so it needs the viscosity and nothing else. **A filter
+in the new oil is under one percent of it. The oil between runs standing for
+under an hour, so it needs the viscosity and nothing else; **Total
+*Quartz 9000* 5W-40** was chosen (*owner*, 23/10, at the price of a cheaper
+one) so that what a drain leaves behind is the same maker's A3/B4 5W-40
+rather than another oil. Retail listings give it ACEA A3/B4 and VW
+502.00/505.00 like the *Energy*; no maker's sheet was read for it, and for
+this stage none is needed. **A filter
 each stage**: the old one is not left to run the second flush in bypass
 with the first flush's debris; the Bosch, crossed by sellers' listings
 only, serves the cheap oil, and **the VW original serves the interval**
