@@ -174,26 +174,28 @@ quiet idle — the loop on its lean swing. **Not reproduced on 12/10** (`32`,
 001 alone, the session built for it): a direction one session failed to
 repeat.
 
-**After full-load pulls** (*owner*, 23/10 evening, the first 44K tank,
+**After high revs** (*owner*, 23/10 evening, the first 44K tank,
 display, the everyday state): straight after a stretch held at high revs,
 `IdleHealth` **37**, the lowest yet in that state, then **slowly back to 50
 within about a minute and above it after another**; stretches of plain idle
 without revving go back to 70–80. **New to him**, though he watches the
 display and drives hard most days now: after hard driving before, the
 lowest came only after about half a minute. **The captures agree that it is
-new** (`tools/afterpull.py`, 23/10): pulls above 4500 rpm at full load
-(b7 > 150) in the five minutes before a warm stop, the grade in bins from
-the moment the idle settles. Without a cleaner the idle after pulls
-**starts rough and calms over 1–3 minutes** — `30` 98 → 56 (four pulls,
-16 s above 4500), `40` 100 → 54 (four, 15 s), `39` 87 → 69, `28` 92 → 70;
-the one capture with a cleaner in the tank and pulls before a stop, `37`
-(Liqui Moly, 15/10), **starts calm and rises** — 57, 44, then 60, and 64,
-54, 77, 76 at the next stop. One capture, two short stops, against a
-bin-to-bin scatter of ±20 in a single idle; **no capture on a 44K tank
-yet**, and the captured pulls are shorter than the owner's driving now.
+new** (`tools/afterpull.py`, 23/10): engine speed held above 4000 rpm at
+any load — sustained revs, a light foot in second as often as full
+throttle (*the owner's correction*) — in the five minutes before a warm
+stop, the grade in bins from the moment the idle settles. Without a
+cleaner the idle after high revs **starts rough and calms over 1–3
+minutes** — `30` 98 → 56 (33 s above 4000), `40` 100 → 54 (30 s), `39`
+87 → 69, `28` 92 → 70; the one capture with a cleaner in the tank and high
+revs before a stop, `37` (Liqui Moly, 15/10), **starts calm and rises** —
+57, 44, then 60, and 64, 54, 77, 76 at the next stop. One capture, two
+short stops, against a bin-to-bin scatter of ±20 in a single idle; **no
+capture on a 44K tank yet**, and none holds more than 18 s above 4000 at a
+stretch, far less than the owner drives now.
 Read as (*reasoned*), if it is the cleaner: what the cleaner has loosened
 and not yet removed (H13) costs combustion at idle on the cylinders that
-carry it, and the heat and gas flow of full load clear or dry it for a
+carry it, and the heat and gas flow of high revs clear or dry it for a
 while — flakes under 3's exhaust seat blown out (*the owner's reading*), or
 softened deposit that soaks up fuel at a cool idle and is dried hot.
 
@@ -619,9 +621,8 @@ hard use burns them off (*general*).
   and 4**, from something that touches those two only (H15). Once there, the
   deposit adds to it: a flake under a seat (S18), heat and compression for
   knock on 4 (S4).
-- **With a cleaner in, the idle after full-load pulls starts calm and
-  worsens over minutes; without one, the reverse** (S1, *After full-load
-  pulls*): one capture and one display evening, so far.
+- **With a cleaner in, the idle after high revs starts calm and worsens
+  over minutes; without one, the reverse** (S1, *After high revs*): one capture and one display evening, so far.
 - **Against:** a detergent premium fuel since 2017; compression even.
 
 **Tests:** the cleaner and hard driving (a tank from 15/10, done; two tanks of

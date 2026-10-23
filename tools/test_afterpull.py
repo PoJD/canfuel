@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
-"""Tests for afterpull.py -- the warm idle after full-load pulls.
+"""Tests for afterpull.py -- the warm idle after high revs.
 
 What is held:
 
-- a pull needs both the speed and the load, and two stretches a moment
-  apart are one pull
+- a stretch is engine speed above 4000 rpm at any load, and two stretches
+  a moment apart are one
 - a standing idle is graded on idledips.roughness()'s scale: the same
   dead band, the same settle, the same gate
-- on `37`, the one capture with a cleaner in the tank and pulls before a
-  stop, the stop 54 s after the pulls is found and starts calm -- the
-  reading open.md S1 quotes
+- on `37`, the one capture with a cleaner in the tank and high revs before
+  a stop, the stop after them is found and starts calm -- the reading
+  open.md S1 quotes
 """
 
 from __future__ import annotations
@@ -35,23 +35,23 @@ def _drive(rows, dt=0.01):
 
 
 class PullsTest(unittest.TestCase):
-    def test_speed_without_load_is_not_a_pull(self):
-        smp = _drive([(2, 5000, 100, 80000, 200), (1, 800, 20, 0, 35)])
-        self.assertEqual(afterpull.pulls(smp), [])
+    def test_speed_with_a_light_foot_counts(self):
+        smp = _drive([(2, 4300, 60, 80000, 80), (1, 800, 20, 0, 35)])
+        self.assertEqual(len(afterpull.pulls(smp)), 1)
 
-    def test_load_without_speed_is_not_a_pull(self):
+    def test_load_without_speed_is_not_one(self):
         smp = _drive([(2, 3000, 190, 80000, 200), (1, 800, 20, 0, 35)])
         self.assertEqual(afterpull.pulls(smp), [])
 
     def test_a_short_gap_is_one_pull(self):
-        smp = _drive([(2, 5000, 190, 80000, 200), (0.5, 4000, 190, 80000, 200),
+        smp = _drive([(2, 5000, 190, 80000, 200), (0.5, 3500, 190, 80000, 200),
                       (3, 5200, 190, 80000, 200), (1, 800, 20, 0, 35)])
         p = afterpull.pulls(smp)
         self.assertEqual(len(p), 1)
         self.assertAlmostEqual(p[0][2], 5.0, delta=0.05)
 
     def test_a_long_gap_is_two(self):
-        smp = _drive([(2, 5000, 190, 80000, 200), (5, 3000, 120, 80000, 200),
+        smp = _drive([(2, 5000, 190, 80000, 200), (5, 3500, 120, 80000, 200),
                       (2, 5000, 190, 80000, 200), (1, 800, 20, 0, 35)])
         self.assertEqual(len(afterpull.pulls(smp)), 2)
 
@@ -82,13 +82,12 @@ class IdleTest(unittest.TestCase):
 
 
 class CaptureTest(unittest.TestCase):
-    def test_37_starts_calm_after_the_pulls(self):
+    def test_37_starts_calm_after_high_revs(self):
         out = io.StringIO()
         rows = afterpull.report(os.path.join(FIXTURES, "37_item5_drive3_z1.txt"),
                                 out=out)
         self.assertGreaterEqual(rows, 2)
         first = out.getvalue().splitlines()[0].split("|")
-        self.assertEqual(int(first[1].split()[0]), 4)          # four pulls
         bins = first[2].split()
         self.assertLess(int(bins[1]), 50)                      # 15-30 s
         self.assertGreater(int(bins[2]), int(bins[1]))         # then up

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""The warm idle in the minutes after full-load pulls -- does it start calm or rough?
+"""The warm idle in the minutes after high revs -- does it start calm or rough?
 
 Written on 23/10/2026 for the owner's observation on the first BG 44K tank
-(docs/engine-health/open.md S1, *After full-load pulls*): straight after
+(docs/engine-health/open.md S1, *After high revs*): straight after
 driving the engine hard, `IdleHealth` at a stop reads far lower than usual and
 climbs back over the next minutes. The question was whether the captures show
 that shape before the cleaner, and kept as a tool for the reason idledips.py
@@ -11,13 +11,17 @@ can check.
 
 What it does, per capture:
 
-* finds the **pulls**: stretches where engine speed is above `PULL_RPM` and
-  indicated torque (0x280 b7) above `PULL_B7` -- full load, the plateau of
-  docs/firmware/can-decoding.md question 8 being 185-206;
+* finds the **high-rev stretches**: engine speed held above `PULL_RPM`,
+  whatever the load. The owner's correction, 23/10: what he drives is
+  sustained revs -- 4000+ in second with a light foot as often as full
+  throttle -- so the load is not a condition (`PULL_B7` is 0). The first
+  version wanted 4500 rpm at full load and missed most of it;
 * finds every **warm standing idle** with the gate, settle rule and dead band
   of `idledips.roughness()`, so that the grade is the one the display shows;
-* for each idle that began within `LOOK_S` of a pull, prints the pulls in that
-  window and the grade in bins of time since the idle settled.
+* for each idle that began within `LOOK_S` of one, prints the stretches in
+  that window -- how many, the seconds above `PULL_RPM`, the longest single
+  stretch, and how long before the idle the last one ended -- and the grade
+  in bins of time since the idle settled.
 
 The grade is `IdleHealth`'s scale, the mean dead-banded step x 50, as
 everywhere in docs/engine-health. A bin with fewer than `MIN_STEPS` steps is
@@ -25,7 +29,7 @@ left empty rather than read: a 15 s bin of a warm idle holds several hundred.
 Injector cuts (`cutscan.find_cuts`) are left out, as in dipcontext.py; a
 dead cylinder would read as the roughest idle on record.
 
-``--all`` prints every warm idle, pulls before it or not, which is the
+``--all`` prints every warm idle, high revs before it or not, which is the
 like-with-like control.
 
 The constants are the ones the reading in open.md was made with. Change them
@@ -42,15 +46,16 @@ import canlog
 import cutscan
 import idledips
 
-#: A pull: engine speed above this...
-PULL_RPM = 4500.0
-#: ...with indicated torque (0x280 b7) above this. Full load reads 185-206.
-PULL_B7 = 150
+#: A high-rev stretch: engine speed above this...
+PULL_RPM = 4000.0
+#: ...with indicated torque (0x280 b7) above this. 0: any load (*owner*,
+#: 23/10). Full load reads 185-206.
+PULL_B7 = 0
 #: Samples further apart than this do not add time (a gap in the capture).
 MAX_DT_S = 0.5
-#: Two stretches closer than this are one pull.
+#: Two stretches closer than this are one.
 PULL_MERGE_S = 1.0
-#: How far before an idle a pull is looked for.
+#: How far before an idle a stretch is looked for.
 LOOK_S = 300.0
 #: Warm: oil at least this at the end of the idle (0x420, raw - 60).
 OIL_MIN_C = 85.0
@@ -86,13 +91,13 @@ def samples(path):
 
 
 def pulls(smp, rpm=PULL_RPM, b7=PULL_B7):
-    """[start, end, seconds above, integral of (rpm - PULL_RPM) dt] per pull."""
+    """[start, end, seconds above, integral of (rpm - PULL_RPM) dt] per stretch."""
     out, cur = [], None
     for k in range(len(smp) - 1):
         t, rq4, _, _, torque, _ = smp[k]
         dt = smp[k + 1][0] - t
         r = rq4 / 4.0
-        if r > rpm and torque > b7 and dt < MAX_DT_S:
+        if r > rpm and torque >= b7 and dt < MAX_DT_S:
             if cur is None or t - cur[1] > PULL_MERGE_S:
                 cur = [t, t, 0.0, 0.0]
                 out.append(cur)
@@ -179,9 +184,10 @@ def report(path, look=LOOK_S, show_all=False, out=sys.stdout):
             continue
         g = [grade(run["steps"], a, b) for a, b in BINS]
         last = ("%5.0fs" % (run["t_idle"] - before[-1][1])) if before else "     -"
-        out.write("%-22s %6.0f %4.0f %4.0f | %5d %6.1f %7.1f %s | %s | %3d\n" % (
+        out.write("%-22s %6.0f %4.0f %4.0f | %5d %6.1f %6.1f %s | %s | %3d\n" % (
             name, run["t0"], run["t1"] - run["t0"], run["oil"], len(before),
-            sum(q[2] for q in before), sum(q[3] for q in before) / 1000.0, last,
+            sum(q[2] for q in before), max((q[2] for q in before), default=0.0),
+            last,
             " ".join("%5s" % ("-" if x is None else "%.0f" % x) for x in g),
             run["b7"]))
         rows += 1
@@ -192,12 +198,12 @@ def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("files", nargs="+", help="_z1 captures to read")
     ap.add_argument("--look", type=float, default=LOOK_S,
-                    help="seconds before an idle to look for pulls (%(default)s)")
+                    help="seconds before an idle to look for high revs (%(default)s)")
     ap.add_argument("--all", action="store_true",
-                    help="every warm idle, pulls before it or not")
+                    help="every warm idle, high revs before it or not")
     args = ap.parse_args(argv)
-    print("%-22s %6s %4s %4s | %5s %6s %7s %6s | %s | %3s" % (
-        "log", "idle@", "dur", "oil", "pulls", "s>4500", "krpm*s", "last",
+    print("%-22s %6s %4s %4s | %5s %6s %6s %6s | %s | %3s" % (
+        "log", "idle@", "dur", "oil", "n", "s>%d" % PULL_RPM, "longst", "last",
         " ".join("%5s" % ("%d-%s" % (a, b if b else "")) for a, b in BINS), "b7"))
     for path in args.files:
         report(path, args.look, args.all)
