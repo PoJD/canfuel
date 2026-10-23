@@ -88,22 +88,43 @@ Claude runs the capture on every drive. **Current: item 6.**
      minutes**, loads off.
 6a. **Two tanks of BG 44K** (BG `208` *44K Platinum*, 325 ml a can), from
    the BG kit 6577. **Into the next tank, after this one**, never into
-   this one, and **into the tank after that again**. One can into each
-   fresh tank of the usual OMV MaxxMotion 100, **filled up**, and no
-   refuelling until that tank is run down (at least 40 l a tank). Drive it
-   as item 6: warm, brisk once warm. **Item 5's S18 rules on every drive
-   of both tanks.** The map at 3/11 goes ahead whatever tank is in.
-   **Straight after the second tank: the oil flushed, then oil and filter
-   changed**:
-   - Warm the engine to operating temperature, park it.
-   - One can of **BG `109` EPR** (325 ml, from the kit) into the warm oil.
-   - **Run it standing for the time on the can**, at the speed the can
-     says; no driving. A tick: stop the engine and drain.
-   - Drain at once, hot. **New filter Bosch `0 451 103 314`**, set beside
+   this one, and **into the tank after that again**. Fuel the usual OMV
+   MaxxMotion 100; **the can goes in first, then the fuel**.
+   - **The first tank is a strong one**: run this tank down to the
+     reserve light, pour in one can, then **only about 25–30 l**. A few
+     tight turns leaving the pump. Drive it warm and brisk once warm, as
+     item 6, until the reserve light again.
+   - **A tick, the engine missing or the lamp flashing on the strong
+     tank**: item 5's rules, and **at the next pump fill up**; the rest of
+     that tank is then driven normally.
+   - **The second tank**: one can, then **filled up**, and no refuelling
+     until it is run down. Drive it as item 6.
+   - **Item 5's S18 rules on every drive of both tanks.** The map at 3/11
+     goes ahead whatever tank is in.
+   **Straight after the second tank: the oil flushed twice, then oil and
+   filter changed.** Bought for it: a **second can of BG `109` EPR**,
+   **about 4 l of any cheap 5W-40 or 10W-40** (no approval needed), and at
+   VW **an original oil filter and a new drain plug**. Outdoors, no driving
+   at any point with EPR in the oil:
+   - **First flush.** Warm the engine until the **oil reads 90 °C**, park
+     it. Check the dipstick: **at the upper mark, take out about 0.3 l**
+     with a syringe through the dipstick tube first. One can of EPR (from
+     the kit) into the oil. Hold **1,200–1,300 rpm** with a stick on the
+     pedal, **30 minutes**, standing.
+   - Drain at once, hot, the car tilted towards the plug, and let it drip
+     a long time. **Old filter out; Bosch `0 451 103 314` on**, set beside
      the old one first: the same thread, seal and height, or it does not
-     go on. **New oil Total *Quartz 9000 Energy* 5W-40**; the can must say
-     **VW 502.00**. Write into the chat the odometer and the litres it
-     took.
+     go on. **The old drain plug back in.** Fill with the cheap oil to the
+     mark.
+   - **Second flush.** Run it until the **oil reads 90 °C** again, then
+     the second can of EPR, **1,200–1,300 rpm, 30 minutes**, standing.
+   - Drain at once, hot, tilted, a long drip. **The VW filter on**, the
+     Bosch off. **The new VW drain plug in.** **New oil Total *Quartz 9000
+     Energy* 5W-40**; the can must say **VW 502.00**. Write into the chat
+     the odometer and the litres it took.
+   - **A tick at any point during a flush**: stop the engine and drain.
+     **A lifter tapping for a few seconds after the first start on new
+     oil** is expected; one that stays is written into the chat.
    - **The kit's BG `115` MOA stays on the shelf**: nothing into the new
      oil.
 6c. **Any time, when convenient: two checks at one warm stop**, oil
@@ -345,11 +366,33 @@ full pulls.
 and the idle likely one cause, deposits; *21/10–22/10*: BG 44K for two
 tanks in a row instead of the Liqui Moly Pro-Line `5153` bought on 21/10,
 which is kept for later; **the overlap with the map at 3/11 accepted** —
-*"I mainly want it solved"*). **Two tanks** because BG's own instructions
-for a deep clean are two full tanks in a row, against one can per
-10,000–15,000 km for upkeep; a third adds less. BG names injectors,
-valves and the combustion chamber, and publishes no chemistry: that it is
-PEA is said of it, not stated by its maker.
+*"I mainly want it solved"*). BG's own data sheet for `208` says only that
+one can treats **up to 75 l**; it publishes no chemistry, so that it is PEA
+is said of it, not stated by its maker. BG names injectors, valves and the
+combustion chamber, and on this port-injected engine the fuel washes the
+back of the intake valves, so a fuel-borne cleaner reaches the deposits it
+is meant for.
+
+**The strong first tank** (*owner's decision*, 23/10, variant C of the
+research that day). Its source is the BG reseller Red Rider (BG Centrum
+Liberec), not BG: for an engine over 150,000 km, or one that drives
+badly — this one is both — it offers two or three full tanks in a row, three
+cans at once, or one can into about 15 l and a second into a full tank.
+**That is a reseller's practice, claimed over a hundred engines, not a
+specification.** Chosen here at about 25–30 l, between two and three times
+the strength BG's label allows for (one can to 75 l) and milder than their
+15 l, for two risks of this car
+rather than of engines in general: a cleaner that works faster sheds more
+deposit at once, and S18 already looks like **one flake under valve 3's
+exhaust seat after a single can** of another cleaner — a flake held there
+under load can burn a seat; and every misfire heats **the converter fitted
+in 9/2026, whose predecessor came off blocked and burnt through**. The
+strong tank has one property three cans at once lack, which is what
+makes it acceptable: **it can be undone at any pump** — filling up dilutes
+it at once. The can goes in before the fuel so that the fuel mixes it
+(Red Rider). Nothing independent compares the variants; three cans at once
+(their option 2) was rejected for the most shedding at once, three times
+the cost and no evidence of more benefit.
 
 **What the overlap costs.** The drives after 3/11 read the map and the
 cleaner together, and only those before it read the cleaner alone. If the
@@ -357,25 +400,53 @@ idle improves, which of H13 and H14 did it is left open; the owner chose a
 fix over the answer.
 
 **The flush and the oil** (*owner's decision*, 21/10, kept with BG's
-product). Two cleaner tanks and hard driving put additive and loosened
-deposit into the oil: additive reaches the crankcase past the rings, one
-PEA chemistry formed varnish at high treat rates (SAE 2020-01-2100), and
-varnish sticks lifters — **hence the change straight after the second
-tank, not later**. BG's run time for EPR differs between its own sheets
-(45 min at 1,200 rpm on the product page, 5–10 min in its oil-change
-procedure), so **the can decides**. BG warns against EPR on a heavily
-sludged engine; clean amber oil on every plug thread on 20/10
-(`idle-log.md`) says this one is not. **The oil and filter** (*bought 22/10*, mlparts.cz, with the BG cans):
-Total *Quartz 9000 Energy* 5W-40, whose maker's data sheet lists ACEA
-A3/B4 and **VW 502.00**/505.00 — 502.00 is the approval for this engine on
-fixed-interval changes; the list varies by market, hence the check on the
-can. Filter Bosch `0 451 103 314`, sold for this engine and crossed to VW
-`06A 115 561 B` by sellers' listings rather than a maker's catalogue, hence
-the side-by-side check. **MOA is not used** (*owner*,
+product; **twice, variant O3**, 23/10). Two cleaner tanks and hard driving
+put additive and loosened deposit into the oil: additive reaches the
+crankcase past the rings, one PEA chemistry formed varnish at high treat
+rates (SAE 2020-01-2100), and varnish sticks lifters — **hence the change
+straight after the second tank, not later**, and the strong first tank
+makes that more true, not less. **EPR cleans the oil side** — rings and
+hydraulic lifters, which is H1's — **not valve faces or chambers**, which
+are the fuel cleaner's; it is not expected to mend the idle by itself.
+
+**The run time.** BG's data sheet for `109`: for a **3.7–5.6 l** crankcase,
+one can, **10 minutes at 1,200 rpm** after full operating temperature
+(20 for direct injection and small diesels). *This said "45 min at 1,200
+rpm on the product page"*: 45 minutes is the same sheet's figure for a
+9.4–15.1 l crankcase and the 946 ml bottle, not for this engine. BG calls
+10 minutes a minimum ("in as little as 10 minutes"); Red Rider runs
+**30 minutes at about 1,300 rpm**. **30 minutes is chosen** (*decision*):
+standing, without load, the bearings are lightly loaded and the time is
+cheap, while the one way EPR is known to do harm, driving on it, is
+excluded either way. The clock starts at **90 °C of oil** rather than at
+warm coolant, because "full operating temperature" is the oil's.
+
+**Twice in one day.** Red Rider advises EPR at three changes in a row and
+says the first may be done **twice at once**, which BG neither says nor
+forbids. A drain leaves roughly a tenth of the fill behind, so the EPR left
+in the new oil is under one percent of it. The cheap oil runs standing for
+under an hour, so it needs the viscosity and nothing else. **A filter
+each stage**: the old one is not left to run the second flush in bypass
+with the first flush's debris; the Bosch, crossed by sellers' listings
+only, serves the cheap oil, and **the VW original serves the interval**
+(*owner*, 23/10), with a new VW drain plug. **The 0.3 l out first**: on
+27/9 the oil stood at the upper mark, and a can on top of that is above it
+(Red Rider's first step). **The lifter after the fill**: a hydraulic lifter
+can tap briefly while it fills from new oil, which is not S18's tick at
+camshaft rate that stays.
+
+BG warns against EPR on a heavily sludged engine; clean amber oil on every
+plug thread on 20/10 (`idle-log.md`) says this one is not. **The oil**
+(*bought 22/10*, mlparts.cz, with the BG cans): Total *Quartz 9000 Energy*
+5W-40, whose maker's data sheet lists ACEA A3/B4 and **VW 502.00**/505.00 —
+502.00 is the approval for this engine on fixed-interval changes; the list
+varies by market, hence the check on the can. **MOA is not used** (*owner*,
 22/10): it stays in the new oil for the whole interval, its composition is
 not published, it is about 8 % of the fill and so changes an oil chosen
 for its VW approval, and its claims (ring and valve carbon) are H13's —
-a change that would sit in the engine for months.
+a change that would sit in the engine for months. **Later changes**: EPR
+at every change until the symptoms are settled, at most once a year
+(*owner*, 23/10).
 
 **Episodes on the cleaner's tanks are expected, not a verdict**: under H13
 each tank sheds a layer; under H1 the tick would not depend on the tank.
