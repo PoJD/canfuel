@@ -898,9 +898,9 @@ changing instead."
  * showed.
  *
  * FITTED HOT. The holds' oil, 101-106 C, is where real driving runs (98-107 C),
- * which closed question 7 (docs/firmware/can-decoding.md). Question 10 in
- * docs/firmware/open.md -- whether the oil sender reads right -- would reopen it
- * only if the warm end turned out several degrees out.
+ * which closed question 7 (docs/firmware/can-decoding.md). Question 10 there,
+ * whether the oil sender reads right, was closed without a warm-end
+ * thermometer; one finding the warm end several degrees out would reopen both.
  *
  * THE SLOPE IS SCALED BY 2**16, NOT BY 10,000. It is our own
  * fixed-point choice and nothing outside this file reads it, so a power of two

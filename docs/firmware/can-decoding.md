@@ -112,7 +112,7 @@ finds it rather than rediscovers it.
 | Speed | 0x1A0 | 2–3 LE | × 0.005 km/h | validity gate in b1, see below |
 | Engine speed | 0x280 | 2–3 LE | × 0.25 rpm | |
 | Coolant temperature | 0x288 | 1 | × 0.75 − 48 °C | 0xFF = fault |
-| Oil temperature | 0x420 | 3 | − 60 °C | 0xFF with the engine off. `Kombi_2`, the instrument cluster's, per opendbc's `vw_pq.dbc` — `open.md` question 10 |
+| Oil temperature | 0x420 | 3 | − 60 °C | 0xFF with the engine off. `Kombi_2`, the instrument cluster's, per opendbc's `vw_pq.dbc` — question 10 |
 | Fuel in tank | 0x320 | 2, mask 0x7F | indicated litres | bit 0x80 = reserve lamp; the scale reads low, `refuel-reset.md` |
 | Torque (indicated) | 0x280 | 7 | 1.06 Nm/bit | measured off the full-throttle plateau, see `frames.md` |
 | Throttle position | 0x280 | 5 | 38 = rest position (35 on the throttle body fitted 2/10/2026) | |
@@ -137,7 +137,7 @@ Exact at the cold end and inside the fan cycle at the hot end, over 88 °C of
 span. All three VCDS values also land exactly on the 0.75 °C grid of the raw
 byte (12.0 = 80, 99.0 = 196, 100.5 = 198), which says VCDS reads the same
 quantity at the same resolution: **this decode is the ECU's own scale.** The
-oil on 0x420 b3 is a different module's and has its own scale, `raw − 60` (question 10, `open.md`).
+oil on 0x420 b3 is a different module's and has its own scale, `raw − 60` (question 10).
 
 ---
 
@@ -557,13 +557,12 @@ sixty-second recording on a live bus.
 
 ## Open questions
 
-**Two are open, 7 (the drag line on hot oil) and 10 (whether the oil
-temperature is right), and they live in `open.md`** with what closing each
-takes. The numbering is unchanged across the register because code and
+**One is open, 11 (what `IdleHealth` should measure), and it lives in
+`open.md`** with what closing it takes. The numbering is unchanged across the register because code and
 documents cite it, so it is not contiguous in any one section: renumbering
 would silently break every `question 7` in the tree.
 
-The rest of the register is below: **Resolved** holds 1, 2, 4, 5, 6, 8 and 9,
+The rest of the register is below: **Resolved** holds 1, 2, 4, 5, 6, 7, 8, 9 and 10,
 kept with their evidence because a closed question that does not say how it
 was closed reopens itself; **Never resolved but not required** holds 3, never
 answered and not to be worked on again. The two are kept apart on purpose: the
@@ -577,7 +576,7 @@ The engine's own faults are not in this register at all; they are
 
 ## Resolved questions
 
-Seven that were settled, each with its answer and the evidence that closed it
+Nine that were settled, each with its answer and the evidence that closed it
 — the evidence is what stops a question being reopened by somebody arguing from
 first principles, the same case `refuted.md` makes for itself. The long
 write-ups that led here are in `git log`.
@@ -658,7 +657,7 @@ sump, wired to the instrument cluster, not the engine ECU — which is why
 `01-Motor` has no oil temperature block. ⚠ That makes the oil byte the
 cluster's and the coolant byte the ECU's: **two modules with no reason to
 share a scaling**, and this firmware borrowed the coolant's `× 0.75 − 48`.
-Whether the number is *right* is question 10 in `open.md`.
+Whether the number is *right* is question 10, below.
 
 ### 5. ~~AccelG — longitudinal or lateral?~~ — **closed: it is lateral**
 
@@ -716,14 +715,15 @@ driving gate instead (`frames.md`).
 
 **Why it was open, and why it is not.** The question was whether real
 driving runs the oil hotter than the holds, so that drag there is lower and
-the line overstates it. With 0x420 read as `raw − 60` (`open.md` question
+the line overstates it. With 0x420 read as `raw − 60` (question
 10), **the holds were at 101–106 °C and real driving runs at 98–107 °C**
 (the hottest recorded is `16` and `17`, 107 °C; 56 minutes of hard driving,
 `19`, 105 °C): the line is fitted where the engine runs. Nothing to refit.
 
 **When it moves, `TORQUE_CNM_PER_BIT` moves with it** — one calibration,
 never one half alone (`config.h`, `frames.md`). It would move only if
-question 10's thermometer found the warm end several degrees out.
+a thermometer in hot oil (question 10, *What would reopen it*) found the
+warm end several degrees out.
 
 ### 8. ~~The torque byte's scale~~ — **closed: 1.06 Nm/bit, measured off the full-throttle plateau**
 
@@ -779,6 +779,124 @@ the status flags with `F` afterwards, and writes the raw slcan stream that
 the whole bus and filter afterwards**: no acceptance filter is set, because the
 mask polarity is documented nowhere we hold and a filter that passes nothing is
 indistinguishable from a dead bus.
+
+### 10. ~~Does the oil sender read right?~~ — **closed 23/10/2026 at the owner's decision: the scale fits, the cold end's few degrees accepted**
+
+**Closed by the owner** (23/10/2026): the scale was settled on 15/10 and
+everything read on it since sits where a warm engine's oil runs — 98–107 °C
+in the captures, 105–110 °C on hard runs and 111 °C at the most, off the
+display. The cold end's 2–5 °C above the coolant is accepted as the
+cluster's own sender, and no thermometer reading was taken: **it is closed
+on agreement, not on the warm-end measurement**, which is said here so that
+nobody cites it as one.
+
+
+**The scale is `°C = raw − 60`** (*decided 15/10/2026*): 0x420 is the
+instrument cluster's `Kombi_2`, and commaai's opendbc `vw_pq.dbc`
+(MIT-licensed, `github.com/commaai/opendbc`, fetched 15/10/2026) defines
+byte 3 as `Oeltemperatur_4_1 : 24|8@1+ (1,-60)`. It is in `src/decode.c`
+(`oil_c100()`), `tools/canlog.py` (`oil_c()`, which every tool uses) and
+`mfd15/tri/S-AQY.TRI`.
+
+**Why that file is believed** — it is a community file, not a VW document:
+
+- **the rest of its `Kombi_2` fits this car.** Byte 0 bit 0,
+  `Fehlerstatus_Aussentemp`, is set in every frame with the ambient bytes 1
+  and 2 at zero — the cluster saying it has no ambient sensor, which
+  `refuted.md` B11 found the hard way (the mirror's thermometer is its own).
+  Byte 4, `Kuehlmitteltemp__4_1__Kombi_2_ (0.75, −48)`, is the cluster's
+  coolant and tracks 0x288's 3–10 °C below it — the gauge's own sender
+  (*general*: these engines carry one for the ECU and one for the gauge);
+- the German names with their `_4_1` suffixes are VW's message-matrix
+  style, so it reads as taken from VW's matrix rather than fitted to a log
+  (*a judgement*);
+- **an Audizine thread on the RS4's 2.7T** reads 0x420 byte 3 as oil,
+  `x − 60`, from its own logging;
+- **this car's soaks give the same slope on their own**: oil counts
+  against coolant counts at eight cold soaks fit 0.68 oil counts per
+  coolant count (r = 0.92), about 1.1 °C a count against `Kombi_2`'s 1.0;
+- **warm, the oil sits at 98–104 °C**, at or a little above the coolant,
+  which is where a warm engine's oil runs (*general*); the hottest recorded
+  is 107 °C (`16`, `17`).
+
+The encoding is the DBC's whole — slope and offset — rather than an offset
+fitted to the soaks below (*decided 15/10/2026*, the owner's question): an
+encoding has no error of its own; what can be off is the sender's reading,
+and an offset fitted at one temperature would be a calibration of that one
+sender carried untested to the warm end where the reading is used.
+
+**Who reads it.** `st.oil_c100` is decoded and consumed by nothing in this
+firmware. The display shows `OilTemp` straight off 0x420 through `mfd15`,
+and the engine investigation compares every `IdleHealth` reading at a
+matched oil temperature — on the same channel, so a bias in it moves both
+sides of a comparison alike.
+
+**What stayed open: the cold end reads a few degrees high.**
+
+After a full soak the oil and the coolant should both sit at ambient. They
+do not quite:
+
+| soak | coolant (0x288) | oil | oil − coolant |
+|---|---|---|---|
+| `18_coldstart_z1`, 11/9, ~10 h | 16.5 °C | 21 °C | +4.5 |
+| `19_postfix_drive_z1`, 24/9, ~19 h, ambient 10.0 °C | 12.0 °C | 17 °C | +5.0 |
+| 26/9, ~10 h, cold fog; *owner-reported off the display, whole degrees* | 14 °C | 19 °C | ≈ +5 |
+| `25_sessionA_cold_z1`, 3/10, 27 h, evening | 18.0 °C | 21 °C | +3.0 |
+| `27_sessionA2_cold_z1`, 4/10, ~15 h | 15.75 °C | 19 °C | +3.25 |
+| `30_step2b_z1`, 9/10 | 15.0 °C | 17 °C | +2.0 |
+| `31_step4_drive_z1`, 10/10 | 13.5 °C | 18 °C | +4.5 |
+| `32_step3_item1_z1`, 12/10 | 10.5 °C | 15 °C | +4.5 |
+| `33_step3_gauge_cold_z1`, 14/10 | 15.75 °C | 20 °C | +4.25 |
+| `35_item5_drive_z1`, 15/10, a cold, damp morning | 10.5 °C | 14 °C | +3.5 |
+
+*15/10/2026, evening, off the display* (the new TRI's first reading,
+*owner*, photographed): after a few hours in a garage, ignition on,
+**coolant 40 °C, oil 41 °C** — +1, inside the display's whole degrees;
+the old scale would have shown the oil at 28. Not a full soak, so not a
+row of the table, but the first reading on the display that puts the oil
+where a cooling engine's oil should be.
+
+*Warm, the same evening* (*owner*, off the display): on the hardest
+drive yet — motorway at full throttle, ~10 min at 5000 rpm — the oil
+peaked at **106 °C with the coolant at 92 °C**, oil above coolant under
+sustained load as a healthy engine's runs (*general*), and inside the
+98–107 °C the captures record.
+
+Each row the first 0x288 and 0x420 frame after ignition-on. **The oil reads
+2–5 °C above the coolant and, on 24/9, 7 °C above the ambient** — not
+where a soaked sump sits; the cluster's coolant byte errs the other way
+(7.5 °C that morning). So the cluster's two senders are each a few degrees
+out at the cold end. G266 measures the oil level thermally, by heating,
+which could bias its temperature (*general*, not checked on this sender).
+
+**What it costs**: a few degrees on the display when cold, and nothing
+known when warm — which is the question.
+
+**What would reopen it** — the two measurements that were its tests, kept for whoever has a winter morning or a thermometer:
+
+1. **A winter morning, the engine not started.** The car outside overnight,
+   **ten hours or more**, so that both sit at ambient; ignition on, and
+   within the first twenty seconds `OilTemp` and the coolant off the
+   display — or a 20 s capture for the raw bytes (the MFD and the capture
+   are one or the other, `CLAUDE.md`). The soaks above span only 10.5–18 °C
+   of coolant. **If the oil still reads 2–5 °C above the coolant at −5 to
+   −10 °C**, the error is a constant offset and the warm readings are as
+   good as the cold ones; **if the gap grows or shrinks**, the sender's own
+   slope differs and the warm end is uncertain by about as much. *Decided
+   15/10/2026*: a constant few degrees changes nothing; a drift of several
+   per 20 °C would be written down beside the channel, and nothing in `src/`
+   or the TRI file moves for less than that.
+2. **A thermometer in hot oil, straight after a hard drive**, against
+   `OilTemp` at the same moment — the direct answer at the warm end. Best a
+   thin K-type thermocouple down the dipstick tube, marked at the dipstick's
+   length; an IR thermometer on the sump or filter reads a surface cooling
+   into the air, not the oil. **The Extol IR thermometer bought for this
+   (1/10/2026) was broken the same month** (*owner*), and the one IR reading
+   taken, on the filter after the 24/9 drive (the old instrument, stopping at
+   60 °C, emissivity not recorded), sat 16 °C below the channel and is **not
+   trusted** (*owner*, 15/10/2026). Optional.
+3. **VCDS cannot do it**: this ECU has no oil temperature in any block
+   (`docs/engine-health/vcds.md`). Do not spend a session looking.
 
 ---
 

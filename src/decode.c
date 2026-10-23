@@ -27,7 +27,7 @@ static int16_t temp_c100(uint8_t raw)
 
 /* The oil, from the instrument cluster on 0x420 (Kombi_2): a different module
  * with its own scaling, raw - 60 C, as opendbc's vw_pq.dbc defines it
- * (docs/firmware/open.md question 10). Nothing in the firmware consumes it --
+ * (docs/firmware/can-decoding.md question 10). Nothing in the firmware consumes it --
  * the display reads 0x420 itself through mfd15's S-AQY.TRI, which carries the
  * same formula. */
 static int16_t oil_c100(uint8_t raw)

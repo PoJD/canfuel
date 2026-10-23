@@ -491,7 +491,7 @@ only, oil 100–101 °C):
   23–25**, the lowest on record in any state. At home after, oil 100 °C:
   **about 80 lights only, not below 50 every load on**.
 - **The display's `OilTemp` moved to `raw − 60`** the same evening (`mfd15`
-  `S-AQY.TRI`); every oil figure since is on it (`docs/firmware/open.md`
+  `S-AQY.TRI`); every oil figure since is on it (`docs/firmware/can-decoding.md`
   question 10).
 
 **Not known to have achieved:** the can had been in an hour — a before, not

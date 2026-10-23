@@ -59,7 +59,7 @@ static void test_clt_error_value(void)
     TT_EQ(st.clt_c100, DECODE_TEMP_INVALID);
 }
 
-/* raw - 60 C, opendbc's Kombi_2 (docs/firmware/open.md question 10): a warm
+/* raw - 60 C, opendbc's Kombi_2 (docs/firmware/can-decoding.md question 10): a warm
  * idle's raw 160 is 100 C. */
 static void test_oil_scale(void)
 {

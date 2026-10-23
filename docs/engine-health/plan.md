@@ -203,14 +203,14 @@ Claude runs the capture on every drive. **Current: item 6.**
 
   With the laptop, Claude reads both off the capture; with the MFD in,
   write each state's reading into the chat.
+- **When there is no time for the two states: the everyday state**, and
+  most readings off the display will be in it — **blower on 1, one seat
+  heater on 1, the lights on**, oil warm. A reading in it needs no label;
+  any other state is named.
 - **The fault memory after every session at the car**: read, saved,
   then cleared by the owner by hand.
 - **After a few hundred km:** re-tighten the cover's outer nuts you can
   reach with the plenum on, and look along the joint.
-- **When there is a thermometer, at the end of a hot captured session:**
-  engine off; ignition straight back on; within a minute measure the oil
-  filter, the sump from beneath and the upper coolant hose; write the
-  three readings into the chat in that order.
 
 ---
 
@@ -443,8 +443,8 @@ is chosen as the point to ease off, held only briefly: 105–110 °C on a hard
 run and 111 °C for a few minutes (*owner*, 23/10) are inside it, and this
 oil is changed straight after the second tank, so its oxidation has no
 interval left to cost. The reading is the instrument cluster's, on
-0x420 (`docs/firmware/open.md` question 10 is whether its sender reads
-right, above all cold).
+0x420 (`docs/firmware/can-decoding.md` question 10, closed 23/10 at the
+owner's decision: it reads where a warm engine's oil runs).
 
 **Load, not revs** (*reasoned*, 23/10): what heats the chamber and the
 valves is the fuel burnt per second, which is the power; on the flat at a
@@ -629,9 +629,13 @@ candidates, ranked*.
   capture the switch shows in b7, so the states need no timing in the
   chat. Four minutes standing is accepted against the converter rule
   (*owner*).
+- **The everyday state** (*owner's decision*, 23/10/2026): four minutes
+  and main beam at every stop do not fit his driving, so most readings
+  off the display come in one fixed mild-load state. It is a third ruler,
+  not either of the two: it is compared with itself, and shifts in it are
+  watched without conclusions yet (*owner*). It sits between the two
+  states, so it reads neither as calm as every load on nor as rough as
+  every load off.
 - **The fault memory** (*owner*, 18/10/2026): every session starts from
   an empty memory, and the saved file keeps what the session stored.
 - **The cover's nuts**: the gasket settles (`refuted.md` D5).
-- **The thermometer reading**: `docs/firmware/open.md` question 10. The
-  ignition goes back on so the capture keeps 0x420; the coolant hose
-  checks the instrument against 0x288's coolant.

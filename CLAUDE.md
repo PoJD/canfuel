@@ -151,7 +151,7 @@ carries a generated block; a figure typed into prose only goes stale.
     **`install.md` is the procedure**, plus decoding, frame layout, refuelling
     reset, timing, optimisation, flashing, `fuel-check.md` (the pump
     history and how to check `FuelAvg` against it), `refuted.md`, `open.md` (the open
-    firmware questions, 10 and 11) and `datasheets/`
+    firmware question, 11) and `datasheets/`
   - **`docs/engine-health/`** — the car's own engine. `open.md` is a holding
     document for one open investigation — the idle misfires that outlived the
     repair, and since 18/10/2026 ahead of them cylinder 3 dropping out with
@@ -1135,7 +1135,7 @@ keeping straight, because they look similar from a distance:
 | `docs/firmware/refuted.md` | believed, then **settled against**. An answer exists and it is "no" |
 | `docs/firmware/can-decoding.md` → *Resolved questions* | asked and **answered**, with the evidence kept |
 | `docs/firmware/can-decoding.md` → *Never resolved but not required* | **no answer, and none wanted.** Do not work on these |
-| `docs/firmware/open.md` | genuinely open, with what closes each. There are two: 10, whether the oil sender reads right cold, which may stay open for good, and 11, `IdleHealth` against 014, which waits on a deliberate-misfire test |
+| `docs/firmware/open.md` | genuinely open, with what closes each. There is one: 11, `IdleHealth` against 014, which waits on a deliberate-misfire test. 10, whether the oil sender reads right, was closed by the maintainer on 23/10/2026 |
 
 ## Read `docs/firmware/can-decoding.md` before touching the maths
 
@@ -1321,7 +1321,10 @@ if it is still unclear, ask once.
   minutes with every load on — never "loads off but the lights". The
   instruction is `docs/engine-health/plan.md`'s standing items; remind
   him of it at the warm idle that ends a session, and split the states
-  in the capture by b7.
+  in the capture by b7. **Off the display, without time for that, he
+  reads a fixed everyday state** (blower 1, one seat heater 1, lights;
+  *the maintainer, 23/10/2026*); a figure he gives without a state is in
+  it, and it compares only with itself.
 
 
 **The fault memory is read after every session at the car, without
@@ -1829,8 +1832,9 @@ has the citations.
 
 The drag line was question 7 and is closed: its holds were at 101–106 °C of
 oil and real driving runs at 98–107 °C, so it is fitted where the engine
-runs. Question 10 — whether the oil sender reads right, above all cold —
-would reopen it only if the warm end turned out several degrees out.
+runs. Question 10 — whether the oil sender reads right — is closed too,
+by the maintainer on 23/10/2026 and without a warm-end thermometer; a
+thermometer finding the warm end several degrees out would reopen both.
 
 **The scale is measured, off the plateau the engine actually reaches.** 0x280
 b7 is a percentage of a reference torque inside the ECU, not Nm, and nobody

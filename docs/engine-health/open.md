@@ -78,7 +78,10 @@ tuner's two files have been compared.
 ### S1. Unsettled idle — engine speed fluctuates
 
 **What is seen.** Every few seconds the idle dips by 20–45 rpm and recovers in
-about a quarter of a second. It feels restless from the driver's seat too.
+about a quarter of a second. It feels restless from the driver's seat too:
+**the larger dips, about 15 rpm and over by the owner's guess, are felt as a
+slight jerk in the seat** and heard, and between jerks `IdleHealth` holds
+lower (*owner*, 23/10/2026: about 50 between, higher with each).
 
 **How it is measured.** `IdleHealth` on 0x604 grades one firing against the
 next (100 = the engine before the repair, lower is smoother). Offline,
@@ -322,8 +325,8 @@ handled*).
 
 ### Other — not symptoms, but they touch this file
 
-**Oil temperature.** 0x420's `OilTemp` is `raw − 60` °C (`docs/firmware/open.md`
-question 10). A bias moves both sides of every comparison alike.
+**Oil temperature.** 0x420's `OilTemp` is `raw − 60` °C (`docs/firmware/can-decoding.md`
+question 10, closed 23/10). A bias moves both sides of every comparison alike.
 
 **The remap.** The ECU was remapped in 6/2018, "mild", the tuner finding
 nothing at the top. Written down as H14 (16/10). **Postponed 20/10** (*owner*):

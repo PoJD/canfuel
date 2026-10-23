@@ -302,7 +302,7 @@ def oil_c(byte: int) -> Optional[float]:
     """0x420 byte 3, the cluster's oil temperature: raw - 60 C, 0xFF = none.
 
     opendbc's vw_pq.dbc, Kombi_2, Oeltemperatur_4_1 (1, -60) --
-    docs/firmware/open.md question 10. The one place the scale lives in the
+    docs/firmware/can-decoding.md question 10. The one place the scale lives in the
     tools, so that none can drift from src/decode.c's oil_c100().
     """
     return None if byte == 0xFF else byte - 60.0
