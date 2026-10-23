@@ -110,8 +110,9 @@ Claude runs the capture on every drive. **Current: item 6.**
    **Straight after the second tank: the oil flushed twice, then oil and
    filter changed.** Bought for it: **two cans of BG `109` EPR**,
    **5 l of Total *Quartz 9000 Energy* 5W-40** (autodily-pema.cz), the
-   same oil as the final fill; what is left over is for topping up, and at
-   VW **an original oil filter and a new drain plug**. Outdoors, no driving
+   same oil as the final fill; what is left over is for topping up, and from
+   the VW dealer **the original filter `06A 115 561 B` and a new drain
+   plug** (bought 23/10). Outdoors, no driving
    at any point with EPR in the oil:
    - **First flush.** Warm the engine until the **oil reads 90 °C**, park
      it. Check the dipstick: **at the upper mark, take out about 0.3 l**
@@ -517,7 +518,10 @@ oil for the whole interval, its composition is not published, it is about
 claims (ring and valve carbon) are H13's — a change that would sit in the
 engine for months. **Later changes**: EPR
 at every change until the symptoms are settled, at most once a year
-(*owner*, 23/10).
+(*owner*, 23/10). **The VW filter** is `06A 115 561 B` off its box
+(`photos/oil-filter-vw-2026-10-23-box.jpg`), the number the Bosch was
+crossed to, bought at the dealer 23/10 for about 500 Kč against a little
+over 100 at mlparts.cz (*owner*), where the next one comes from.
 
 **Episodes on the cleaner's tanks are expected, not a verdict**: under H13
 each tank sheds a layer; under H1 the tick would not depend on the tank.
