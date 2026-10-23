@@ -442,8 +442,9 @@ recollection of 115 °C as critical was not found in any source.** So 120 °C
 is chosen as the point to ease off, held only briefly: 105–110 °C on a hard
 run and 111 °C for a few minutes (*owner*, 23/10) are inside it, and this
 oil is changed straight after the second tank, so its oxidation has no
-interval left to cost. The reading is the converter's, off the ECU's
-sender (`docs/firmware/open.md` question 10 is about its cold end).
+interval left to cost. The reading is the instrument cluster's, on
+0x420 (`docs/firmware/open.md` question 10 is whether its sender reads
+right, above all cold).
 
 **Load, not revs** (*reasoned*, 23/10): what heats the chamber and the
 valves is the fuel burnt per second, which is the power; on the flat at a
