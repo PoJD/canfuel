@@ -100,8 +100,10 @@ Claude runs the capture on every drive. **Current: item 6.**
    - **The second tank**: one can, then **filled up**, and no refuelling
      until it is run down. Drive it as item 6.
    - **Italian tune-up on both tanks**: once the **oil reads 90 °C**,
-     and not in the first 30 km after the pump, stretches held high in
-     the lower gears, at the limit. **A tick, a miss or the lamp, lit or
+     and not in the first 30 km after the pump: **the motorway at the
+     limit, with full-throttle pulls** — slip roads, and 80 to 130 in
+     4th — and an easy stretch after each few; a long climb whenever
+     the route has one. **A tick, a miss or the lamp, lit or
      flashing: ease off at once**, then item 5's rules.
    - **Item 5's S18 rules on every drive of both tanks.** The map at 3/11
      goes ahead whatever tank is in.
@@ -424,6 +426,14 @@ injectors only after the fuel already in the filter and lines, 10–30 km
 by Red Rider's figure. **A misfire under load costs the converter more
 than one at idle** (more unburnt mixture per second into it), hence
 easing off at the first sign rather than at a flashing lamp alone.
+**Load, not revs** (*reasoned*, 23/10): what heats the chamber and the
+valves is the fuel burnt per second, which is the power; on the flat at a
+given speed the power is set by the drag whatever the gear, so a lower
+gear adds revs and pumping losses, not heat. Power comes from speed and
+from acceleration, so the motorway gives the steady part and the pulls
+the peaks; the cleaner also washes the intake valves with more fuel the
+higher the load. Twenty minutes of climb is not on the owner's routes,
+and the pulls stand in for it.
 
 **What the overlap costs.** The drives after 3/11 read the map and the
 cleaner together, and only those before it read the cleaner alone. If the
