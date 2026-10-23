@@ -80,19 +80,16 @@ Claude runs the capture on every drive. **Current: item 6.**
 6. **This tank: drive normally with the MFD in**, plain fuel, item 5's
    rules; brisk driving once warm is welcome. At a warm stop now and
    then, the two states of the standing items, written into the chat.
-   - **After the tank: one or two warm drives captured**, on different
+   - **No captures for now.** Only **once `IdleHealth` on the MFD is
+     clearly better**: one or two warm drives captured, on different
      days. Claude runs the capture; VCDS on **014, 003, 020**; 055 once
      at the end, warm idle. Write the stops.
-   - **On one of them, a hard motorway run**: a few minutes brisk at the
-     limit, two or three full pulls, then **a warm stop of a few
-     minutes**, loads off.
 6a. **Two tanks of BG 44K** (BG `208` *44K Platinum*, 325 ml a can), from
    the BG kit 6577. **Into the next tank, after this one**, never into
    this one, and **into the tank after that again**. Fuel the usual OMV
    MaxxMotion 100; **the can goes in first, then the fuel**.
    - **The first tank is a strong one: about 27 l in the tank with the
-     can.** Not before item 6's captured drives are done; no need to run
-     down to the reserve. At the pump, before fuelling, read `FuelTank`
+     can.** No need to run down to the reserve. At the pump, before fuelling, read `FuelTank`
      on the MFD, standing; pour in one can, then **27 minus that reading**
      in litres. A few tight turns leaving the pump. Drive it warm and brisk once warm, as
      item 6, until the reserve light again.
@@ -356,7 +353,16 @@ whether anything sealed or opened; **020** is data, not a step: whether
 cylinder 4's retard, nearly gone with the new leads on 10/10, stays gone
 (S4).
 
-**Item 6's hard run** (*owner's request*, 14/10/2026). On 4/10, on fresh
+**No captures until the display shows a change** (*owner's decision*,
+23/10/2026), and **the hard run before the cleaner dropped** with them.
+What it costs: a capture on plain fuel just before the cleaner, the
+reference its tanks would have been read against. What is left: `40`,
+the refit drive of 21/10 on plain fuel, as that reference; the display
+through the tanks; and the captures once `IdleHealth` moves, which then
+say what moved. The hard run's reasoning is kept for when it is run.
+
+**Item 6's hard run** (*owner's request*, 14/10/2026; *not run before
+the cleaner*, 23/10). On 4/10, on fresh
 adaptations, 014 counted only at the stop after a hard drive (`open.md`
 S3, *Session A after step 1b*); on settled ones it counts at every warm
 stop, so the run says less than it would have then. What is read is
@@ -401,9 +407,7 @@ whatever was there before, and the MFD shows them. The lamp is bit 0x80 of
 is not known. **The indication reads low**, by a gain of 0.83 near empty
 and 0.905 over most of the travel (`docs/firmware/refuel-reset.md`), so
 27 indicated is somewhat more in the tank, and the strength a little
-milder; the window of 25–30 l is wider than that error. **After item 6's
-captured drives**, because the hard run is read apart from a cleaner's
-tank. Nothing independent compares the variants; three cans at once
+milder; the window of 25–30 l is wider than that error. Nothing independent compares the variants; three cans at once
 (their option 2) was rejected for the most shedding at once, three times
 the cost and no evidence of more benefit.
 
@@ -480,8 +484,8 @@ at every change until the symptoms are settled, at most once a year
 **Episodes on the cleaner's tanks are expected, not a verdict**: under H13
 each tank sheds a layer; under H1 the tick would not depend on the tank.
 For the converter it is a misfire that matters, not the cleaner — hence
-item 5's rules. **Read**: item 6's drives and the captures after each
-tank against `30`, `31`, `33`, `34` and `40`, on settled adaptations (the
+item 5's rules. **Read**: the display through each tank, and the captures
+once `IdleHealth` moves, against `30`, `31`, `33`, `34` and `40`, on settled adaptations (the
 reset at 5a makes the drives just after it read low on 014 for another
 reason), and the shares pooled since the last repair. A tank is weeks of
 this car's driving, so the reading is late by design.
