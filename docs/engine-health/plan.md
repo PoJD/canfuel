@@ -110,7 +110,7 @@ Claude runs the capture on every drive. **Current: item 6.**
    **Straight after the second tank: the oil flushed twice, then oil and
    filter changed.** Bought for it: **two cans of BG `109` EPR**,
    **5 l of Total *Quartz 9000 Energy* 5W-40** (autodily-pema.cz), the
-   same oil as the final fill; the litre left over is for topping up, and at
+   same oil as the final fill; what is left over is for topping up, and at
    VW **an original oil filter and a new drain plug**. Outdoors, no driving
    at any point with EPR in the oil:
    - **First flush.** Warm the engine until the **oil reads 90 °C**, park
@@ -125,8 +125,13 @@ Claude runs the capture on every drive. **Current: item 6.**
      mark.
    - **Second flush.** Run it until the **oil reads 90 °C** again, then
      the second can of EPR, **1,200–1,300 rpm, 30 minutes**, standing.
-   - Drain at once, hot, tilted, a long drip. **The VW filter on**, the
-     Bosch off. **The new VW drain plug in, about 30 Nm**; check the
+   - Drain at once, hot, tilted, a long drip.
+   - ***Optional*, decided on the day: a rinse without EPR.** The Bosch
+     stays on, the old drain plug back in. **2.5–3 l** of what is left of
+     the 5 l can and the old top-up oil, **the dipstick above the lower
+     mark** before starting. Run it warm, **10 minutes**, then drain at
+     once, hot, tilted, a long drip.
+   - **The VW filter on**, the Bosch off. **The new VW drain plug in, about 30 Nm**; check the
      figure at VW when buying it. **New oil Total *Quartz 9000
      Energy* 5W-40**; the can must say **VW 502.00**. Write into the chat
      the odometer and the litres it took.
@@ -487,7 +492,15 @@ with the first flush's debris; the Bosch, crossed by sellers' listings
 only, serves the oil between, and **the VW original serves the interval**
 (*owner*, 23/10), with a new VW drain plug. **The 0.3 l out first**: on
 27/9 the oil stood at the upper mark, and a can on top of that is above it
-(Red Rider's first step). **The lifter after the fill**: a hydraulic lifter
+(Red Rider's first step). **The optional rinse** (*owner*, 23/10, to
+be decided on the day) takes the EPR left in the final fill from under
+one percent to about a tenth of that, by the same tenth-a-drain
+estimate. Neither level is known to harm anything; BG's own single flush
+leaves the first. It needs no oil bought: about 10 l in hand, some 3.5 l
+a fill. It runs at a normal level, never with less oil and EPR in it:
+halving the fill under EPR doubles its strength against BG's one can to
+3.7–5.6 l. Without the rinse about 1.5 l more stays for topping up; with
+it, about 0.5 l. **The lifter after the fill**: a hydraulic lifter
 can tap briefly while it fills from new oil, which is not S18's tick at
 camshaft rate that stays.
 
