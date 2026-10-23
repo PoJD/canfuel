@@ -681,6 +681,30 @@ memory empty** before and after each part.
 **Not known to have achieved:** one drive. Whether the shares stay spread
 and the quiet stretches last is item 6's to read.
 
+**23/10/2026 — the first 44K tank** (*owner*, display and VCDS, no
+capture; `plan.md` item 6a). One can of BG 44K into 23.5 l of OMV
+MaxxMotion 100 at 154,501 km; driven warm and hard.
+- **After a hard motorway run**, ~70 km in, the everyday state (blower 1,
+  one seat heater 1, lights): `IdleHealth` 45–50 between jerks, 70–90 with
+  them, never above 100 warm (`open.md` S1, the table).
+- **Home through Prague traffic in the evening**, much idling, unsettled
+  throughout. Straight after a last stretch held above 4000 rpm in a low
+  gear: **37**, the lowest yet in that state, then slowly back to 50 within
+  about a minute and above it after another; plain idling took it back to
+  70–80. **New to the owner**: after hard driving before, the lowest came
+  only after about half a minute. **The captures say the same**
+  (`tools/afterpull.py`): without a cleaner the idle after high revs starts
+  rough and calms; with Liqui Moly in (`37`) it started calm and rose
+  (`open.md` S1, *After high revs*).
+- **VCDS afterwards, engine off: fault memory empty.** **032 −3.1 /
+  +4.7 %, 055 −1.32 g/s** (21/10: −6.3 / +5.5, −1.42 to −1.37; 19/10:
+  −3.1 / +5.5, −1.27): the idle trim back where it was before the refit,
+  all inside their history. One reading.
+
+**Not known to have achieved:** the tank is a day old; whether the calm
+after high revs is the cleaner, and whether it lasts, needs a capture on a
+44K tank.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
