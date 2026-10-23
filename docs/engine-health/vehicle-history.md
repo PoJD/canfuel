@@ -40,6 +40,7 @@ symptom in `docs/` is dated after it, with a working lamp.
 |---|---|
 | At purchase, 25 Sep 2017 | 126,200 km |
 | At 13 Sep 2026 | 154,000 km |
+| At 23 Oct 2026 | **154,501 km** (`photos/odometer-2026-10-23.jpg`; the cluster's trip 289.4 km since the fill of 17/10) |
 | **Covered in ownership** | **27,800 km over 9.0 years**, about 3,100 km a year *(derived)* |
 
 Odometer at the start of each year, from the owner's expense sheet
@@ -68,8 +69,8 @@ plugs and leads of 12/2022** *(derived)*.
 ⚠ **Since the 13/9/2026 reading**: about 450 km to the Šumava and back,
 ending 19/9/2026 (*owner-reported, not an odometer reading*), then the
 investigation's drives (24/9, 25/9 about 100 km of motorway, 3/10, 4/10,
-9/10, 10/10 and later). **No odometer reading taken since**; the next one
-goes in the first table.
+9/10, 10/10 and later). **No odometer reading taken
+until 23/10/2026**, in the first table.
 
 ---
 

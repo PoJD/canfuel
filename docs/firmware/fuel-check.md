@@ -90,12 +90,20 @@ In this tank so far:
   speed and the rest in Prague traffic (*owner*): in neither the display
   nor any fixture, so the pump's litres will run above the sum by that
   drive's fuel.
+- **23/10/2026, a part fill: 3.11 l** off the pump at **154,501 km**,
+  the cluster's trip at **289.4 km**, the display reading **23.5 L**
+  before it (*owner*, `docs/engine-health/photos/odometer-2026-10-23.jpg`).
+  It went in after **325 ml of BG 44K** (`docs/engine-health/plan.md`
+  item 6a), which burns as fuel and is in no pump's litres. 3.11 l is
+  under `REFUEL_RISE_L`, so the converter's trip carries on through it,
+  as the cluster's does. **At the next brim, the pump's litres are added
+  to these 3.11 and the can's 0.325**; the cleaner's tanks in between are
+  read for the ratio, not for the engine's consumption.
 
-⚠ **This tank spans the map going back on 22/10** (`docs/engine-health/plan.md`
-item 5a), which is a line in the table below. Taken anyway, and read as
-one figure over two maps: a ratio near one says both count fuel as the
-pump does; one that is off cannot say which map moved it, and then the
-next tank, all on the stock map, is the check.
+⚠ **This tank no longer spans the map going back**: that was set for
+22/10 and is postponed to 3/11 (`docs/engine-health/plan.md` item 5a),
+so the whole tank so far is on the remap. *This said "this tank spans
+the map going back on 22/10" until 23/10.*
 
 **Distance is a second comparison in the same numbers.** On the first
 11 km, with no stop between, the display read **11.3** and the cluster
