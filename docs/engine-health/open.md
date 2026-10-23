@@ -386,7 +386,15 @@ of the grade or of the pair.
 ### H1. A lifter or valve on one cylinder (valvetrain)
 
 A hydraulic lifter that bleeds down, or a valve that seats late or not quite,
-on one or two cylinders. *General.*
+on one or two cylinders. *General.* The AQY's lifters are hydraulic bucket
+tappets (*hydrostely*), fed from the head's gallery through a small hole
+each; inside, a plunger and a check ball hold an oil column that takes up
+the lash. They fail two ways (*general*): **one that does not fill** (a
+narrowed feed, air, wear) leaves lash, ticks, and opens its valve late and
+short, worst hot at idle; **one whose plunger or ball sticks** with varnish
+or debris holds its valve a hair open, which costs compression and misses
+at a small charge and is covered by load — the case this hypothesis is
+about. The valve is closed by its spring; the lifter only removes the gap.
 
 | S1 | S2 | S3 | S4 | S5 | S11 | S14 | S18 |
 |---|---|---|---|---|---|---|---|
@@ -403,7 +411,9 @@ on one or two cylinders. *General.*
   should be; the valves looked whole on 19–20/10 (which says nothing of
   sealing); S18 is now explained by 3's flaked deposit without it.
 
-**Tests:** a screwdriver (or a stethoscope) on the cover over each lifter, warm (`plan.md` 6c); a warm leak-down (**not to be
+**Tests:** a screwdriver (or a stethoscope) on the cover over each lifter, warm (`plan.md` 6c); **the two EPR flushes** (`plan.md` 6a), which clean the
+feed passages and the plungers' varnish — they run alongside BG 44K, so
+an improvement does not tell H1 from H13; a warm leak-down (**not to be
 done**, *owner's decision*, 20/10); the lifters pressed down with the cover
 off. **Whether S18 recurs** is the reading left.
 
@@ -800,7 +810,7 @@ is in git.
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | 1 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away (S18); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts | the second cleaner (`plan.md` 6a), driving; S18 recurring or not |
-| 2 | **H1** valve or lifter | S18's tick, a seat that nearly closes — on 3 one with deposit on it (H13) | the screwdriver over 3 and 4 (`plan.md` 6c); S18 recurring |
+| 2 | **H1** valve or lifter | S18's tick, a seat that nearly closes — on 3 one with deposit on it (H13) | the screwdriver over 3 and 4 (`plan.md` 6c); the EPR flushes (6a); S18 recurring |
 | 3 | **H3** a leak at one runner | the only one that predicts *load helps* directly; 3 and 4 neighbours; the lower gasket never renewed | brake cleaner at the runners, warm (`plan.md` 6c) |
 | 4 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show | the files, then the original map (3/11) |
 | 5 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
