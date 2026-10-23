@@ -102,7 +102,8 @@ Claude runs the capture on every drive. **Current: item 6.**
      goes ahead whatever tank is in.
    **Straight after the second tank: the oil flushed twice, then oil and
    filter changed.** Bought for it: a **second can of BG `109` EPR**,
-   **4 l of Total *Quartz 9000* 5W-40** (autodily-pema.cz), and at
+   **5 l of Total *Quartz 9000 Energy* 5W-40** (autodily-pema.cz), the
+   same oil as the final fill; the litre left over is for topping up, and at
    VW **an original oil filter and a new drain plug**. Outdoors, no driving
    at any point with EPR in the oil:
    - **First flush.** Warm the engine until the **oil reads 90 °C**, park
@@ -113,7 +114,7 @@ Claude runs the capture on every drive. **Current: item 6.**
    - Drain at once, hot, the car tilted towards the plug, and let it drip
      a long time. **Old filter out; Bosch `0 451 103 314` on**, set beside
      the old one first: the same thread, seal and height, or it does not
-     go on. **The old drain plug back in.** Fill with the Quartz 9000 to the
+     go on. **The old drain plug back in.** Fill with the 5 l can's oil to the
      mark.
    - **Second flush.** Run it until the **oil reads 90 °C** again, then
      the second can of EPR, **1,200–1,300 rpm, 30 minutes**, standing.
@@ -354,22 +355,14 @@ cylinder 4's retard, nearly gone with the new leads on 10/10, stays gone
 (S4).
 
 **No captures until the display shows a change** (*owner's decision*,
-23/10/2026), and **the hard run before the cleaner dropped** with them.
+23/10/2026), and **the hard run dropped** with them: it was planned because on
+4/10 014 counted only at the stop after a hard drive, and that was an
+adaptation completing rather than load (`refuted.md` C19).
 What it costs: a capture on plain fuel just before the cleaner, the
 reference its tanks would have been read against. What is left: `40`,
 the refit drive of 21/10 on plain fuel, as that reference; the display
 through the tanks; and the captures once `IdleHealth` moves, which then
-say what moved. The hard run's reasoning is kept for when it is run.
-
-**Item 6's hard run** (*owner's request*, 14/10/2026; *not run before
-the cleaner*, 23/10). On 4/10, on fresh
-adaptations, 014 counted only at the stop after a hard drive (`open.md`
-S3, *Session A after step 1b*); on settled ones it counts at every warm
-stop, so the run says less than it would have then. What is read is
-**the stop after it**: under load 014 has almost never counted on this
-car. On the original map if it is back by then, and apart from a
-cleaner's tank. The legal limit caps the run: brisk at the limit plus
-full pulls.
+say what moved.
 
 **Item 6a — two tanks of BG 44K** (*owner's decision*, 18/10/2026: S18
 and the idle likely one cause, deposits; *21/10–22/10*: BG 44K for two
@@ -453,12 +446,12 @@ warm coolant, because "full operating temperature" is the oil's.
 says the first may be done **twice at once**, which BG neither says nor
 forbids. A drain leaves roughly a tenth of the fill behind, so the EPR left
 in the new oil is under one percent of it. The oil between runs standing for
-under an hour, so it needs the viscosity and nothing else; **Total
-*Quartz 9000* 5W-40** was chosen (*owner*, 23/10, at the price of a cheaper
-one) so that what a drain leaves behind is the same maker's A3/B4 5W-40
-rather than another oil. Retail listings give it ACEA A3/B4 and VW
-502.00/505.00 like the *Energy*; no maker's sheet was read for it, and for
-this stage none is needed. **A filter
+under an hour, so it needs the viscosity and nothing else; It is **the same oil
+as the final fill**, Total *Quartz 9000 Energy* 5W-40 (*owner*, 23/10), so
+what a drain leaves behind is that oil and EPR and nothing else. *Quartz
+9000* 5W-40 was chosen first; it carries the same ACEA A3/B4 and VW
+502.00/505.00 in TotalEnergies' catalogue, so nothing is lost either way,
+and *Energy 0W-30* was set aside as a different grade. **A filter
 each stage**: the old one is not left to run the second flush in bypass
 with the first flush's debris; the Bosch, crossed by sellers' listings
 only, serves the oil between, and **the VW original serves the interval**
