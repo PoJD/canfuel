@@ -172,7 +172,13 @@ nothing separates them**: the sender's gain is above one mid-travel,
 where it has never been recorded (*Why a 4 L threshold* below); or the
 baseline sat below the true level when the nozzle went in — a car
 parked on a slope at the pump, or a float still settling from the
-drive. **No change follows**: it was a real fill, and a reset on a real
+drive. **The display was swinging about a litre up and down before the
+fill** (*owner*, 23/10), so the 23.5 is itself ±1 and the level the
+baseline froze on is not known to better than that. That favours the
+second reading without settling it: on a threshold of three, a fill
+showing at the 0.905 gain (+3.1) plus one litre of swing clears it; on
+four it needs nearly two. Which threshold the device carries is the
+question above. **No change follows**: it was a real fill, and a reset on a real
 fill is the error the threshold already accepts. It does move the
 smallest fill the rule catches down from the six litres argued below,
 mid-tank at least.
