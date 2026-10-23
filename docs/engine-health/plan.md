@@ -90,9 +90,11 @@ Claude runs the capture on every drive. **Current: item 6.**
    the BG kit 6577. **Into the next tank, after this one**, never into
    this one, and **into the tank after that again**. Fuel the usual OMV
    MaxxMotion 100; **the can goes in first, then the fuel**.
-   - **The first tank is a strong one**: run this tank down to the
-     reserve light, pour in one can, then **only about 25–30 l**. A few
-     tight turns leaving the pump. Drive it warm and brisk once warm, as
+   - **The first tank is a strong one: about 27 l in the tank with the
+     can.** Not before item 6's captured drives are done; no need to run
+     down to the reserve. At the pump, before fuelling, read `FuelTank`
+     on the MFD, standing; pour in one can, then **27 minus that reading**
+     in litres. A few tight turns leaving the pump. Drive it warm and brisk once warm, as
      item 6, until the reserve light again.
    - **A tick, the engine missing or the lamp flashing on the strong
      tank**: item 5's rules, and **at the next pump fill up**; the rest of
@@ -391,7 +393,17 @@ in 9/2026, whose predecessor came off blocked and burnt through**. The
 strong tank has one property three cans at once lack, which is what
 makes it acceptable: **it can be undone at any pump** — filling up dilutes
 it at once. The can goes in before the fuel so that the fuel mixes it
-(Red Rider). Nothing independent compares the variants; three cans at once
+(Red Rider). **Aimed at litres in the tank, not at the reserve lamp**
+(*owner*, 23/10): the strength is the can over the litres in the tank,
+whatever was there before, and the MFD shows them. The lamp is bit 0x80 of
+0x320 b2 and the fixtures place it at **8–11 indicated litres**: on through
+8 in `17`, off at 11 in `27`; no capture crosses it, so where in between
+is not known. **The indication reads low**, by a gain of 0.83 near empty
+and 0.905 over most of the travel (`docs/firmware/refuel-reset.md`), so
+27 indicated is somewhat more in the tank, and the strength a little
+milder; the window of 25–30 l is wider than that error. **After item 6's
+captured drives**, because the hard run is read apart from a cleaner's
+tank. Nothing independent compares the variants; three cans at once
 (their option 2) was rejected for the most shedding at once, three times
 the cost and no evidence of more benefit.
 
