@@ -108,7 +108,7 @@ Claude runs the capture on every drive. **Current: item 6.**
    - **Item 5's S18 rules on every drive of both tanks.** The map at 3/11
      goes ahead whatever tank is in.
    **Straight after the second tank: the oil flushed twice, then oil and
-   filter changed.** Bought for it: a **second can of BG `109` EPR**,
+   filter changed.** Bought for it: **two cans of BG `109` EPR**,
    **5 l of Total *Quartz 9000 Energy* 5W-40** (autodily-pema.cz), the
    same oil as the final fill; the litre left over is for topping up, and at
    VW **an original oil filter and a new drain plug**. Outdoors, no driving
