@@ -103,8 +103,9 @@ Claude runs the capture on every drive. **Current: item 6.**
      and not in the first 30 km after the pump: **the motorway at the
      limit, with full-throttle pulls** — slip roads, and 80 to 130 in
      4th — and an easy stretch after each few; a long climb whenever
-     the route has one. **A tick, a miss or the lamp, lit or
-     flashing: ease off at once**, then item 5's rules.
+     the route has one. **Oil above 120 °C: ease off** until it is
+     back under 110. **A tick, a miss or the lamp, lit or flashing: ease
+     off at once**, then item 5's rules.
    - **Item 5's S18 rules on every drive of both tanks.** The map at 3/11
      goes ahead whatever tank is in.
    **Straight after the second tank: the oil flushed twice, then oil and
@@ -431,6 +432,19 @@ injectors only after the fuel already in the filter and lines, 10–30 km
 by Red Rider's figure. **A misfire under load costs the converter more
 than one at idle** (more unburnt mixture per second into it), hence
 easing off at the first sign rather than at a flashing lamp alone.
+**The oil temperature** (*decision*, 23/10). No maker states a limit:
+TotalEnergies' catalogue gives none for the *Quartz 9000* oils, and no VW
+figure for this engine was found. What is general and agreed is that oil
+oxidises about twice as fast for every 10 °C (the Arrhenius rule, AMSOIL
+and others); forums put the start of real concern at a sustained 120–130 °C
+and breakdown at 130–150 °C, none from a data sheet. **The owner's
+recollection of 115 °C as critical was not found in any source.** So 120 °C
+is chosen as the point to ease off, held only briefly: 105–110 °C on a hard
+run and 111 °C for a few minutes (*owner*, 23/10) are inside it, and this
+oil is changed straight after the second tank, so its oxidation has no
+interval left to cost. The reading is the converter's, off the ECU's
+sender (`docs/firmware/open.md` question 10 is about its cold end).
+
 **Load, not revs** (*reasoned*, 23/10): what heats the chamber and the
 valves is the fuel burnt per second, which is the power; on the flat at a
 given speed the power is set by the drag whatever the gear, so a lower
