@@ -442,7 +442,7 @@ rather than another oil. Retail listings give it ACEA A3/B4 and VW
 this stage none is needed. **A filter
 each stage**: the old one is not left to run the second flush in bypass
 with the first flush's debris; the Bosch, crossed by sellers' listings
-only, serves the cheap oil, and **the VW original serves the interval**
+only, serves the oil between, and **the VW original serves the interval**
 (*owner*, 23/10), with a new VW drain plug. **The 0.3 l out first**: on
 27/9 the oil stood at the upper mark, and a can on top of that is above it
 (Red Rider's first step). **The lifter after the fill**: a hydraulic lifter
