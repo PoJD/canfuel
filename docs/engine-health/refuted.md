@@ -538,6 +538,13 @@ sit behind S10, S11 and the idle together (it was H10 in `open.md`).
   read "the underside of the oil filler cap is clean (*owner-observed,
   27/9/2026*)" — the cap was most likely not looked at that day, so it was
   never an observation.);
+  *Added 23/10/2026, the owner:* **at the oil change of 6/2026**, after
+  about three years and nearly a year standing outdoors, **the cap's
+  underside was slightly brown with condensed water**, which he reads as
+  condensation and not coolant. So "never seen" stands for coolant
+  emulsion only; condensation under the cap of an engine that stood
+  outdoors is the ordinary case (*general*), and the job of 1/10 found
+  none;
 - compression 12 bar and even on all four (A4); the coolant warms to
   99–100.5 °C and holds it; the cold start is clean (C3), where coolant in a
   cylinder shows worst (*general*);
