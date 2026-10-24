@@ -48,8 +48,9 @@ routine, S15 the sputter, S18 cylinder 3 out with a tick (24/10); H9 (crankcase 
 
 - **The idle — S1 (unsettled) and S3 (014 counts at idle).** Every part in
   the fuel and ignition path has been replaced and both remain. **About two
-  thirds of the dips sit on two neighbouring cylinders, 3 and 4** where the
-  injector cuts of 10/10 name them (*One cylinder or two*). The look inside
+  thirds of the dips sat on two neighbouring cylinders, 3 and 4**, on every
+  capture until the VW leads; **on all four alike since** (`40`, `41`; *The
+  dips keep to one slot*). The look inside
   on 19–20/10 found **3 and 4 worse inside too** — ports, crowns, exhaust
   valves — and their NGK plug ends the loosest (`idle-log.md`).
 - **Around the idle:** S2 (an occasional puff), S14 (bangs on an unblipped
@@ -61,12 +62,13 @@ routine, S15 the sputter, S18 cylinder 3 out with a tick (24/10); H9 (crankcase 
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm).
 
-**Ranked (24/10, after the strong 44K tank):** **H3, H14, H1, H13, H15, H4, H2**,
-then H0, H7, the timing belt, H8, H11, H12 (*The idle's candidates,
-ranked*). H13 was first until its own test, a strong cleaner tank and
-~450 hard km, left `IdleHealth` where it was; H1 is weakened by 18/10 not
-coming back. H15 is no longer first: the idle on the VW leads is level with
-the best on the NGK set, not better (*owner*, 21/10).
+**Ranked (24/10, after the cold capture with one cut):** **H14, H7, H13, H1,
+H2**, then H0, H8, H3, H15, H4, the timing belt, H11, H12 (*The idle's
+candidates, ranked*). **The dips are on all four alike on both captures since
+the VW leads** (`40`, `41`; *The dips keep to one slot*), while the warm idle
+graded no better than the best days on the NGK set: the leads took away 3 and
+4's excess, not the roughness. So what acts on all four leads, and what acts
+on one or two (H3, H15, H4) goes down. H7 rises on S19 alone.
 
 **Next** (`plan.md`): the VW leads `06A 905 409 L` and plugs
 `101 000 033 AA` on 21/10, **the only change on the car**; the first drive
@@ -321,7 +323,7 @@ no hypothesis about the idle. Out of the fit tables until placed.
 
 ### S19. P0172 stored, too rich — with one start that died at once
 
-**16556 / P0172, bank 1 too rich, 35-00**, found in the fault memory before
+**16556 / P0172, bank 1 too rich, 35-00, not marked sporadic** (P1240 beside it was), found in the fault memory before
 the cold capture on the night of 24/10 (`idle-log.md`), **the first since
 5/2019** (`vehicle-history.md`), and set some time after the last empty
 reading. The same window holds **the one bad start of that afternoon**:
@@ -334,6 +336,19 @@ trims behind it were lost to the clearing before 032 was read
 (`CLAUDE.md`); the next reading of 032 is the first evidence. Also in the
 window: the first tank of Orlen Verva 100 and two 170 km drives held at
 5000 rpm.
+
+**Not settled that the start set it** (*reasoned*): a start that dies at
+once runs on a cold probe, open loop, and cannot itself trip a trim fault;
+what would link the two is **one cause** that puts in too much fuel, seen
+once at the start and once later in closed loop. **Read by what follows:**
+032's idle trim well negative at the next reading, or P0172 back with no bad
+start, says a standing cause rather than a one-off; P0172 back after
+fills only would point at the purge path (*general*: a canister flooded by a
+brim-full fill), which 070 found sound on 27/9 (`refuted.md` A6) but not
+since. Tonight's 001, with the stored adaptation still in force, read
+**+15 to +22 %** while warming and about **−3 to +1 %** warm — adding fuel
+cold, near zero warm, which a hard rich fault would not show; weak, since
+it is the trim on top of an adaptation not read.
 
 ### Other — not symptoms, but they touch this file
 
@@ -873,17 +888,17 @@ is in git.
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| 1 | **H3** a leak at one runner | the only one that predicts *load helps* directly; 3 and 4 neighbours; the lower gasket never renewed | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
-| 2 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show | the files, then the original map (3/11) |
-| 3 | **H1** valve or lifter | 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back | the phone recording over each lifter (`plan.md` 6c); the EPR flushes (6a) |
-| 4 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | the second 44K tank (`plan.md` 6a), driving |
-| 5 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
-| 6 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped | flexed at a warm idle |
-| 7 | **H2** a leak ahead of the probe | S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test |
-| 8 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
-| 9 | **H7** fuel delivery | never gauged; plug 3 the cleanest; **the only one S19 fits** (24/10) | a rail gauge, an injector swap |
-| 10 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
-| 11 | **H8** throttle and idle control | new since 2/10; all four | — |
+| 1 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show; **first since 24/10: the dips on all four alike on `40` and `41`**, the picture it predicts | the files, then the original map (3/11) |
+| 2 | **H7** fuel delivery | never gauged; plug 3 the cleanest; **the only one S19 fits** (24/10); one code so far | a rail gauge, an injector swap |
+| 3 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | the second 44K tank (`plan.md` 6a), driving |
+| 4 | **H1** valve or lifter | 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back | the phone recording over each lifter (`plan.md` 6c); the EPR flushes (6a) |
+| 5 | **H2** a leak ahead of the probe | S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test |
+| 6 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
+| 7 | **H8** throttle and idle control | new since 2/10; all four | — |
+| 8 | **H3** a leak at one runner | the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
+| 9 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
+| 10 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason | flexed at a warm idle |
+| 11 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
 | 12 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 13 | **H12** driveline play | — | done: the clutch minutes cleared it |
 
