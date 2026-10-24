@@ -1328,14 +1328,14 @@ if it is still unclear, ask once.
   it, and it compares only with itself.
 
 
-**The fault memory is read after every session at the car, without
-asking** (*the maintainer, 18/10/2026*) — every measurement, every drive
-logged, and above all one with an episode (`plan.md` item 5, S18). On the
+**The fault memory is read after every session with VCDS connected,
+without asking** (*the maintainer, 18/10/2026; narrowed 25/10/2026*: only
+when VCDS is connected anyway, never asked for after a plain drive). On the
 laptop you read it yourself with `tools/vcds_log.py --faults`, once the
 logging has stopped, save it beside the session's VCDS logs, and give him
 the codes with their status; **he clears it, by hand**. In the cloud he
-reads it and writes it into the chat. A session whose fault memory was
-not read is not finished.
+reads it and writes it into the chat. A VCDS session whose fault memory
+was not read is not finished; a drive without VCDS has none to read.
 
 **After every captured session, without asking** (*the maintainer,
 10/10/2026*): the capture is written to its next free

@@ -35,8 +35,8 @@ Claude runs the capture on every drive. **Current: item 6.**
      safe, **engine off, wait a few minutes**, start again. Drive on only
      if it runs on four.
    - VCDS on **014, 001, 003** whenever the laptop is in the car.
-   - After the drive: read the fault memory of 01, save it ("Uložit
-     chyby"), then clear it.
+   - After a drive with VCDS connected: read the fault memory of 01,
+     save it ("Uložit chyby"), then clear it.
    - After an episode (a tick or a misfire), write into the chat:
      **when** (date, time, minutes after the start), **what came before**
      (hard driving, a cold start, a long stand), **oil temperature**,
@@ -198,8 +198,8 @@ Claude runs the capture on every drive. **Current: item 6.**
   most readings off the display will be in it — **blower on 1, one seat
   heater on 1, the lights on**, oil warm. A reading in it needs no label;
   any other state is named.
-- **The fault memory after every session at the car**: read, saved,
-  then cleared by the owner by hand.
+- **The fault memory after every session with VCDS connected**: read,
+  saved, then cleared by the owner by hand. Not after a plain drive.
 - **After a few hundred km:** re-tighten the cover's outer nuts you can
   reach with the plenum on, and look along the joint.
 
@@ -638,4 +638,7 @@ candidates, ranked*.
   every load off.
 - **The fault memory** (*owner*, 18/10/2026): every session starts from
   an empty memory, and the saved file keeps what the session stored.
+  Only when VCDS is connected anyway (*owner*, 25/10/2026): a plain
+  drive is not worth a laptop, and a lit or flashing lamp is the
+  backstop for what it would have caught.
 - **The cover's nuts**: the gasket settles (`refuted.md` D5).
