@@ -141,11 +141,13 @@ Claude runs the capture on every drive. **Current: item 6.**
      30 s each, then 3 and 4 again. Keep clear of the belt, the fan and the
      HT leads. Write into the chat whether any cylinder sounds different:
      a tick, a knock, an uneven beat.
-   - **The phone video**, at the same stop, before the brake cleaner: one
-     continuous video, the phone held still a few cm away, **about 10 s at
-     each place**: over injector 1, 2, 3, 4 (as close as the plenum lets
-     you, at the connector), then over the valve cover above cylinder 1, 2,
-     3, 4. Nothing needs saying aloud. Upload the video.
+   - **The phone recording**, at the same stop, before the brake cleaner:
+     **one continuous sound recording** (the Dictaphone app; a video is
+     too large to upload), the phone held still a few cm away, **about
+     10 s at each place**: over injector 1, 2, 3, 4 (as close as the plenum
+     lets you, at the connector), then over the valve cover above cylinder
+     1, 2, 3, 4. **Between places, one knock with a knuckle on the inner
+     wing.** Upload the recording.
    - **Brake cleaner**, **non-chlorinated only** (the can says so), a fire
      extinguisher within reach. Short bursts of one second, **never on the
      exhaust manifold, the leads or the coil**. 20–30 s between places,
@@ -619,8 +621,12 @@ he gets to it*). Both test a cause rather than name a cylinder, which
   one noisy lifter would both produce. Moved place to place: **injectors**
   move the loud stretch round the cycle by 180° steps (firing order
   1-3-4-2) and sound alike over each; **a lifter** keeps it in one place,
-  loudest over one cylinder's part of the cover. Places are read off the
-  video's frames. The rpm comes from the sound itself (the firing tone, at
+  loudest over one cylinder's part of the cover. **It has to be one
+  recording**: the loud stretch is placed against the cycle, and separate
+  clips each start at an arbitrary point of it, so only loudness could be
+  compared between them, not position. Sound alone, because an upload is
+  size-limited (*owner*, 24/10) and a video of that length is not; the
+  places come from the order and the knocks between them. The rpm comes from the sound itself (the firing tone, at
   twice crank speed), as it did on 14/10: 30.8 Hz, 924 rpm, inside the
   900–950 of `33`'s cold phase.
 - **The screwdriver is H1's cheapest test** (`open.md` H1): a lifter that
