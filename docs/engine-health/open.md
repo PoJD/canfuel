@@ -405,8 +405,12 @@ about. The valve is closed by its spring; the lifter only removes the gap.
   three years in the engine, nearly one of them standing outdoors,
   condensed water under the filler cap at the change — the conditions in
   which oil forms varnish and acids (*general*), and varnish is what
-  sticks a plunger or a check ball. Weak: it says the means was there,
-  not that a lifter took it up.
+  sticks a plunger or a check ball. **The old oil came out really black,
+  and no flush was run** (*owner*, 24/10). Weak: it says the means was
+  there, not that a lifter took it up — black is what a detergent oil
+  holding soot looks like after three years (*general*), and the top end
+  seen with the cover off on 1/10 carried only a thin golden-brown film,
+  no sludge on the cam or the caps (`refuted.md`, the head gasket entry).
 - **Against:** compression **13 bar in 2018 and 12 bar even on all four in
   2026** (`vehicle-history.md`) — no cylinder losing; the vacuum gauge
   steady cold and warm, no flick (H3); no ticking before 18/10, and **none on any
