@@ -851,6 +851,22 @@ settle in the intake and flood the first start.
   valve feeds vapour into the intake during the overrun fuel cut, where the
   vacuum is highest (*reasoned*).
 
+**The owner's variant** (24/10): **each pulse a slug of fuel**, from a
+canister flooded with liquid that the charcoal no longer holds, and now and
+then a slug that burns badly. That answers the first *Against* above in
+part: pulses are not an even flow, and a slug reaches whichever intake
+strokes are open at that moment, so it *could* fail one firing and not the
+next (*reasoned*). What speaks against it: **on 27/9, with the idle
+already rough, 070 opened the valve and lambda moved 0.0 %** (`refuted.md`
+A6) — a flooded canister would have sent the probe rich at once; and the
+weeks on 3 and 4 would need the purge port to sit nearer their runners,
+which nobody has looked at. A canister flooded since 27/9 is not
+excluded: a tank filled past the first click, or the car parked nose
+uphill on a full tank, can push liquid into it (*general*, unconfirmed on
+this car). **So the pinch is read for the dips as well** (`plan.md` 6e):
+dips gone while pinched, back when released, would put the idle itself on
+H16.
+
 **Tests** (`plan.md` 6e): the valve without power at a warm idle, a finger
 on its canister-side port — **any suction is a leak**; then the hose to the
 intake pinched for a minute at a time with 001 logged, best right after a

@@ -156,9 +156,11 @@ Claude runs the capture on every drive. **Current: item 6.**
      into the chat: **suction or none**.
    - The connector back on, the finger still there, up to 2 minutes:
      write whether **pulsing suction** comes. The hose back on.
-   - **The pinch**: Claude logs 001. Pinch the hose **between N80 and the
-     intake** through a rag with pliers, 1 minute; release, 1 minute;
-     three times. Say **"pinched"** and **"released"** each time.
+   - **The pinch**: Claude runs the capture (MFD out) and logs 001. Loads
+     off, nothing else touched. Pinch the hose **between N80 and the
+     intake** through a rag with pliers, **2 minutes**; release, 2
+     minutes; three times. Say **"pinched"** and **"released"** each
+     time.
    - At the end Claude reads the fault memory again; then clear it by
      hand.
    - **Only if there was suction**: N80 off the car; blow through it with
@@ -702,9 +704,16 @@ it resets 032 (`CLAUDE.md`).
   add the fuel the purge had been bringing; the size of the step is the
   purge's share. Nothing moving on a full tank means the purge brings
   little. The ECU does not purge all the time, so three pinches and not
-  one.
+  one. **The capture is read for the dips too** (*the owner's variant*,
+  24/10: a slug of fuel per pulse from a flooded canister, `open.md`
+  H16): dips a minute and `IdleHealth` over the pinched minutes against
+  the released ones, by `tools/idledips.py`. Two minutes each because
+  `IdleHealth` needs half a minute to settle and a minute holds only a
+  dozen or two dips; even so, three pairs show only a large difference.
 - **Read:** suction → a new N80, then 032 again after a few drives and
-  whether S19 comes back; it would not touch the idle (H16, *Against*).
+  whether S19 comes back; the idle only if the pinch moved the dips.
+  **Fewer dips in every pinched window** → the purge feeds the idle
+  itself, and H16 moves up the ranking with S1 fitting.
   No suction and no step → H16 to `refuted.md`, and the fuel is looked for
   at H7. No suction but a large step → the valve is sound and the canister
   is very loaded: whether the tank is filled past the first click
