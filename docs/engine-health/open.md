@@ -469,8 +469,12 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
   off), the breather and its hoses (12/10), the throttle and its gasket (2/10),
   the injectors re-seated (1/10).
 
-**Test:** brake cleaner at each runner's head joint and injector seat, warm
-and running (`plan.md` 6c); then the lower gasket renewed if it answers.
+**Test: none without dismantling.** Brake cleaner at each runner's head
+joint and injector seat was the plan, and it **cannot be done in place**
+(*owner*, 24/10): no room past the coil at 4, the runners of 2 and 3 out of
+reach. What is left is the plenum and the lower manifold off, **the lower
+gasket renewed** and the injector O-rings looked at — a repair that tests
+by its result.
 
 ### H4. Weak spark from what feeds the parts (earth, wiring, coil feed)
 
@@ -826,7 +830,7 @@ is in git.
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| 1 | **H3** a leak at one runner | the only one that predicts *load helps* directly; 3 and 4 neighbours; the lower gasket never renewed | brake cleaner at the runners, warm (`plan.md` 6c) |
+| 1 | **H3** a leak at one runner | the only one that predicts *load helps* directly; 3 and 4 neighbours; the lower gasket never renewed | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
 | 2 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show | the files, then the original map (3/11) |
 | 3 | **H1** valve or lifter | 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back | the screwdriver over 3 and 4 (`plan.md` 6c); the EPR flushes (6a) |
 | 4 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | the second 44K tank (`plan.md` 6a), driving |

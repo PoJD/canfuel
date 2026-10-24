@@ -141,25 +141,13 @@ Claude runs the capture on every drive. **Current: item 6.**
      30 s each, then 3 and 4 again. Keep clear of the belt, the fan and the
      HT leads. Write into the chat whether any cylinder sounds different:
      a tick, a knock, an uneven beat.
-   - **The phone recording**, at the same stop, before the brake cleaner:
+   - **The phone recording**, at the same stop:
      **one continuous sound recording** (the Dictaphone app; a video is
      too large to upload), the phone held still a few cm away, **about
      10 s at each place**: over injector 1, 2, 3, 4 (as close as the plenum
      lets you, at the connector), then over the valve cover above cylinder
      1, 2, 3, 4. **Between places, one knock with a knuckle on the inner
      wing.** Upload the recording.
-   - **Brake cleaner**, **non-chlorinated only** (the can says so), a fire
-     extinguisher within reach. Short bursts of one second, **never on the
-     exhaust manifold, the leads or the coil**. 20–30 s between places,
-     until the idle is back. In this order:
-     1. the joint of the lower manifold to the head at **cylinder 1**;
-     2. the same joint at **cylinder 3**, then at **cylinder 4**;
-     3. where **injector 3**, then **injector 4**, enters the manifold;
-     4. the joint of the upper plenum to the lower manifold; the vacuum
-        hoses.
-     Watch the first one or two seconds after each burst. Write each place
-     into the chat with the time, and whether the engine changed: revs up,
-     smoother, or a stumble.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
@@ -608,10 +596,11 @@ cylinder; resistance was dropped as unlikely to be the difference
 relief lasts (`open.md` H15): lasting weeks → the leads; a few days, then
 back → the seating, H3 next; the same → H15 refuted.
 
-**Item 6c — the screwdriver and the brake cleaner** (*owner's
+**Item 6c — the screwdriver and the phone recording** (*owner's
 decision*, 21/10/2026: no propane for now, no stethoscope bought; *when
 he gets to it*). Both test a cause rather than name a cylinder, which
-`open.md` already does for 3 and 4.
+`open.md` already does for 3 and 4. *This item also held a brake-cleaner
+test at the runners, dropped 24/10 (below).*
 
 - **The phone video tells an injector from a lifter by where the loud part
   of the cycle sits** (*reasoned*, 24/10, from the gauge video of 14/10):
@@ -634,7 +623,11 @@ he gets to it*). Both test a cause rather than name a cylinder, which
   own cylinder. A sound only over 3 or 4 points at the valvetrain there; all
   four alike weakens H1. A screwdriver hears less than a stethoscope, so
   silence is weaker evidence than a tick.
-- **The brake cleaner is H3's** (`open.md` H3): sprayed where air is drawn
+- **The brake cleaner, dropped** (*owner's decision*, 24/10/2026, having
+  looked): there is no room to spray the lower manifold's joints without
+  hitting the coil at cylinder 4 and much else, and the runners of 2 and 3
+  cannot be reached at all; only taking the plenum and the manifold off
+  would. What it was for, kept for that day: it was H3's (`open.md` H3): sprayed where air is drawn
   in, it is drawn in too and enriches the charge for a moment, and the idle
   answers within a second or two before the lambda loop takes it back. Any
   prompt change counts. **Cylinder 1 first** shows what *nothing* looks like.
@@ -645,9 +638,6 @@ he gets to it*). Both test a cause rather than name a cylinder, which
   H3). The smoke test of 9/10 looked for air going out, cold; this one looks
   for air going in, warm and running. **Non-chlorinated**, because a
   chlorinated cleaner burnt in the cylinder makes phosgene (*general*).
-- **Captured if possible**: `IdleHealth` is a filtered grade and too slow for
-  a one-second event, but the capture resolves each stroke, so each burst
-  can be read off engine speed against the time written into the chat.
 
 **Item 7 — the exhaust ahead of the front probe (H2), warm.** A leak that
 draws air in at idle blows out when the outlet is closed, and hisses or
