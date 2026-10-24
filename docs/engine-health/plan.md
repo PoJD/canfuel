@@ -481,6 +481,35 @@ plug at about 30 Nm** is the owner's figure (23/10), not a VW document. **No com
 cost of the leads off twice, which disturbs H15's reading of the new VW
 leads; whether the idle moves is read as for the tanks.
 
+**What would have to be wrong for the flush to mend the idle** (*reasoned*,
+24/10, at the owner's question; he now expects the cleaners to do nothing
+for it). EPR reaches the idle by three routes only:
+
+- **A lifter on 3 or 4 whose plunger or check ball is varnished** and holds
+  its valve a hair open (H1): compression lost at a small charge, covered by
+  load — the idle's own pattern. Against: compression even, a valve held
+  open shows when cranking; the vacuum gauge steady with no flick per cycle;
+  the idle not worst hot; 18/10's tick never back. A lifter that does not
+  fill would tick all the time, and none does.
+- **A compression ring coked in its groove on 3 or 4** (H13's ring lands):
+  worst where cylinder pressure is lowest, at idle. Against: that is exactly
+  what a compression test finds, and it read even — the strongest point
+  against; the absolute 12 bar is the weak one.
+- **Oil-control rings stuck**, oil burnt on 3 and 4, the deposit and the
+  poorer combustion with it. Against: plug 3 the cleanest, no oil use known;
+  and that would mend over thousands of kilometres, not at a flush.
+
+Not a route: **the AQY has no cam phaser**; fresh, thinner oil lowers the
+friction of all four alike, which `IdleHealth`, a spread between power
+strokes, does not see. **So the flush mends the idle only if a ring or a
+lifter on 3 or 4 is wrong in a way compression and the gauge both missed** —
+possible, against the two best measurements held. Its firm reason is
+maintenance: the additive and the loosened deposit of two strong cleaner
+tanks out of the oil before they varnish a lifter. **The test that tells
+first** is item 6c's screwdriver over each lifter, warm: 3 or 4 sounding
+unlike 1 and 2 gives the flush a chance; all four alike makes it an oil
+change with an additive.
+
 **The run time.** BG's data sheet for `109`: for a **3.7–5.6 l** crankcase,
 one can, **10 minutes at 1,200 rpm** after full operating temperature
 (20 for direct injection and small diesels). *This said "45 min at 1,200
