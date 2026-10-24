@@ -1337,6 +1337,14 @@ the codes with their status; **he clears it, by hand**. In the cloud he
 reads it and writes it into the chat. A VCDS session whose fault memory
 was not read is not finished; a drive without VCDS has none to read.
 
+**The adaptations go with it, and before he clears anything** (*the
+maintainer, 24/10/2026*): once the fault memory is read, `tools/vcds_log.py
+--groups 032 055 --seconds 20 --out ".../<name> 32-55 YY-MM-DD.CSV"`, saved
+as `test/fixtures/vcds/vcds-<step>-adaptations-032-055.csv`. **Clearing the
+fault memory resets 032 to 0.0 / 0.0** -- seen 24/10, when the trims behind
+a stored P0172 were lost that way -- so a reading after the clearing is
+worth nothing.
+
 **After every captured session, without asking** (*the maintainer,
 10/10/2026*): the capture is written to its next free
 `test/fixtures/NN_<name>_z1.txt`. When it ends, **the whole capture goes

@@ -142,25 +142,6 @@ Claude runs the capture on every drive. **Current: item 6.**
      lets you, at the connector), then over the valve cover above cylinder
      1, 2, 3, 4. **Between places, one knock with a knuckle on the inner
      wing.** Upload the recording.
-6d. **Next, in the garage: a cold idle captured, with injector 4 cut once**
-   (*owner's decision*, 24/10; the exception to item 6's "no captures").
-   Claude runs the USBtin capture and VCDS from the laptop; **you only
-   connect things and do what Claude says**.
-   1. **MFD out, USBtin in**, the HEX-V2 cable in. Garage door wide open.
-      Engine cold or part-warm, as it is.
-   2. Laptop on, a new session; tell Claude "item 6d". **Ignition off**
-      until Claude says the capture runs.
-   3. Ignition on; wait until Claude says VCDS is logging. **Start.**
-      Neutral, handbrake on, every load off, no throttle.
-   4. **4 minutes, nothing touched.**
-   5. **Injector 4's connector off for 30 s** (gloves, press the clip,
-      pull by the connector body), then back on. Say "off" and "on" into
-      the chat as you do it. The lamp flashing is expected.
-   6. **4 minutes, nothing touched.**
-   7. Say "end", **engine still running**; Claude stops VCDS and reads
-      the fault memory. **Switch off only when Claude says done.**
-   8. **Clear the fault memory yourself**, by hand (P0304 and P0300 from
-      the cut are expected). MFD back in.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
@@ -608,27 +589,6 @@ cylinder; resistance was dropped as unlikely to be the difference
 **Read** over several drives against 19/10 and 12–15/10, by how long a
 relief lasts (`open.md` H15): lasting weeks → the leads; a few days, then
 back → the seating, H3 next; the same → H15 refuted.
-
-**Item 6d — the cold capture with one cut** (*owner's decision*, 24/10).
-The question: **are the dips still on 3 and 4, or now on all four alike?**
-`40`, the first capture on the VW leads, read 58 % on the top two and
-p = 0.77 — all four alike — after every capture before it put about two
-thirds on the pair (`open.md`, *The dips keep to one slot*), and the phone
-recording of 24/10 found no cylinder standing out. One capture of 157 dips
-is not enough to rewrite that. **Cold** because the cold idle dips most
-(`IdleHealth` about 115 that evening), so minutes give the numbers a warm
-idle needs an hour for. **One cut is enough**: `cutscan.py --name` names
-every slot from one bridged run that spans a cut, as one run spanned all
-four on 10/10; 4 is the injector within reach. **4 minutes either side**
-so that the run before and after is long, nothing touched so that it is
-not broken. **How it is read**: `cutscan.py --shares` and `--name` on the
-capture alone and pooled with `40`. **The pair again** → the 3-and-4 story
-stands and `40` was chance. **All four alike again** → what acts on one or
-two cylinders loses its ground (H3 at one runner, H4 the loom at 3 and 4,
-H15's ends on 3 and 4), and what acts on all four gains (H14, H8, H1 as
-oil and lifters in general, H0). 014 is read outside the cut minute, which
-it counts by construction; whether the ECU counts at all cold is a
-reading too.
 
 **Item 6c — the phone recording** (*owner's
 decision*, 21/10/2026: no propane for now, no stethoscope bought; *when

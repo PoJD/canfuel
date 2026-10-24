@@ -763,6 +763,27 @@ told this way.
 **Not known to have achieved:** whether a lifter ticks hot; this was
 part-warm.
 
+**24/10/2026, night — the cold capture with one cut** (`plan.md` item 6d;
+`41`, VCDS 014/001/003). In the garage, a start at oil 52 °C and coolant
+60 °C, neutral, every load off, nothing touched for 4 minutes, **injector
+4's connector off for 30 s**, 4 minutes more; 12.6 minutes to oil 82 °C.
+**The fault memory before the start held 16556 / P0172, too rich, 35-00**,
+the first since 5/2019 (`vehicle-history.md`); after the cut it added
+**17648 / P1240, injector 4 open circuit**, and **no P0304 or P0300** —
+014 counted through the cut regardless (36–65), and **counts cold**: 12 to
+72 in the first five minutes. Both codes cleared by the owner.
+`IdleHealth` **123–131** for the first five minutes, **87–104** from oil
+73 °C on (`idledips --roughness`, per minute, the cut minute left out).
+**The dips: all four alike.** `cutscan --shares`: 124 dips, top two
+**55 %**, p = 0.77; `--name` over the run that spans the cut, 137 dips:
+**1: 24 %, 3: 31 %, 4: 20 %, 2: 25 %**. Pooled with `40`: 281 dips, 56 %,
+p = 0.56. **032 and 055 read afterwards, engine off: 0.0 / 0.0 %, −1.31
+g/s** — the lambda adaptations were already reset by the clearing, so the
+trims that went with P0172 were not read.
+
+**Not known to have achieved:** what set P0172; the one bad start of the
+afternoon and the first tank of Orlen fall in the same window.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
