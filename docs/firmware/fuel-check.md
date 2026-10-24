@@ -162,6 +162,8 @@ say *(derived)*:
 - **Distance: `TripDist` 256 against the cluster's 254.1 km, +0.7 %**
   (+0.5 to +1.0 with the display's whole kilometres). A first
   percentage over a real distance; neither instrument is ground truth.
+  The first 4.5 km of the next tank read **4.6 on the display** (*owner*,
+  24/10): the same direction, inside both instruments' 0.1 km.
 
 **Within the pump history, at its upper end** (7.0–10.9, above): a
 tank of brisk motorway, a strong cleaner and Prague traffic, on the

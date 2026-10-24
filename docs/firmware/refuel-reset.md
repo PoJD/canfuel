@@ -239,8 +239,18 @@ returns per litre actually delivered.
 |---|---|---|---|
 | near empty, an earlier fill | 6 L | 5 L | **0.83** |
 | 11 → 51 indicated, this fill | 44.17 L | **40.0 L** | **0.905** |
+| 0.4 → 51.0 indicated, 2026-10-24 | 50.88 L + 0.325 L of BG 44K | **50.6 L** | **0.99** |
 
-**Both are under one, and the second is forty litres wide rather than five**,
+⚠ **The 2026-10-24 row disagrees with the other two, and is recorded, not
+reconciled** (*owner*, the display after the fill: `FuelTank` 51.0). Both
+brims read about 51, so the two pump fills say the span from 10.9 down to
+0.4 indicated held only about 6.7 L — the opposite of a compressed bottom.
+Either brim may have stopped a litre or two from the other, and 0.4 is
+where the sender is known to be poor; nothing here separates them. **The
+tank is closed as a decision** (`CLAUDE.md`, *The torque calibration*):
+this is data for a sender question nobody is asking, not work.
+
+**The first two are under one, and the second is forty litres wide rather than five**,
 so the scale is compressed over most of the travel and not only at the bottom
 where the sender was already known to be poor.
 
