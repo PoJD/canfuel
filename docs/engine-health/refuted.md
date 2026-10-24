@@ -711,6 +711,13 @@ welded joint.
 Fixed by the new injectors (C3). Of 14 captured starts in `24`–`38`, 13 had
 `StartDip` 0 and one 15 rpm, cold and warm alike; crank to first firing
 0.69–1.38 s, a spread rather than a trend.
+**24/10/2026, one bad start, kept closed** (*owner's decision*): after
+about 4 hours parked outdoors, nose uphill, it caught and died at once, as
+if without fuel; the next start and every other that day normal, the first
+such in about a month. Not captured. A tank just filled to 51 l makes a
+pickup starving on the slope unlikely (*reasoned*); a rail that lost its
+pressure while standing fits (*general*), as does the first tank of Orlen
+Verva 100 (`idle-log.md`, 24/10). **Another → S7 reopens.**
 
 ### D3. S8 — "loses breath above 5000 rpm" — closed 4/10/2026
 On the hard drive of 4/10 (`28`) b7 eased from 185 to 181 between 4,000 and
