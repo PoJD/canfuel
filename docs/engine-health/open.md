@@ -58,17 +58,18 @@ routine, S15 the sputter, S18 cylinder 3 out with a tick (24/10); H9 (crankcase 
 - **The cylinder 4 knock window: S4, S5** — its own cluster, not in
   `plan.md` (*owner's decision*, 9/10).
 - **New, 24/10: S19** — P0172 stored, suspected with the start that died at
-  once; fits H7 alone.
+  once; fits H7 and H16 (the purge valve, added 24/10).
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm).
 
 **Ranked (24/10, after the cold capture with one cut):** **H14, H7, H13, H1,
-H2**, then H0, H8, H3, H15, H4, the timing belt, H11, H12 (*The idle's
+H2**, then H0, H8, H3, H15, H4, the timing belt, H16, H11, H12 (*The idle's
 candidates, ranked*). **The dips are on all four alike on both captures since
 the VW leads** (`40`, `41`; *The dips keep to one slot*), while the warm idle
 graded no better than the best days on the NGK set: the leads took away 3 and
 4's excess, not the roughness. So what acts on all four leads, and what acts
-on one or two (H3, H15, H4) goes down. H7 rises on S19 alone.
+on one or two (H3, H15, H4) goes down. H7 rises on S19 alone. H16 enters
+low: it is there for the rich trim and S19, not for the idle.
 
 **Next** (`plan.md`): the VW leads `06A 905 409 L` and plugs
 `101 000 033 AA` on 21/10, **the only change on the car**; the first drive
@@ -345,7 +346,8 @@ once at the start and once later in closed loop. **Read by what follows:**
 start, says a standing cause rather than a one-off; P0172 back after
 fills only would point at the purge path (*general*: a canister flooded by a
 brim-full fill), which 070 found sound on 27/9 (`refuted.md` A6) but not
-since. Tonight's 001, with the stored adaptation still in force, read
+since — and 070 shows that the valve opens, not that it seals (H16).
+Tonight's 001, with the stored adaptation still in force, read
 **+15 to +22 %** while warming and about **−3 to +1 %** warm — adding fuel
 cold, near zero warm, which a hard rich fault would not show; weak, since
 it is the trim on top of an adaptation not read.
@@ -572,7 +574,8 @@ hundred km without a disconnect.
   not hold gives a rich code and a start that floods after standing; the
   only hypothesis that predicts both. Every lean-side one (H2, H3, H4,
   H15: unburnt air reaches the probe) predicts P0171 or nothing, not
-  P0172.
+  P0172. **Since 24/10 not the only one**: a purge valve that does not
+  seal predicts both as well (H16), and its test is cheaper.
 
 **Tests:** a rail pressure gauge (**not bought**, *owner's decision*, 10/10);
 swap injector 3 with another if the cylinder stays named.
@@ -794,6 +797,68 @@ captures after item 6 keep the dips spread, the leads took the pair away
 and left the level — a part, not the whole (*More than one at once*); if the
 pair comes back, H15 goes to `refuted.md`.
 
+### H16. The purge valve N80 does not seal — fuel vapour into the intake
+
+*Added 24/10 at the owner's request.* For **the rich idle trim and S19**,
+not for the idle itself. 032's idle cell has read at or below zero in
+every reading since the MAF was replaced on 24/9 (−3.1, −0.8, −2.3, 0.0,
+−4.7, −3.1, −6.3, −3.1 %, `idle-log.md`; the 0.0 / 0.0 of 24/10 is the
+clearing's reset), while the part-load cell reads +2 to +6 %.
+**Somewhere a fixed amount of fuel joins the charge that the ECU did not
+meter**, and a fixed amount shows most where the air is least, at idle
+(*reasoned*). Nothing in these files has said where it comes from.
+
+**How the system works** (*general*, not from this ECU's documentation):
+the tank vents into a charcoal canister; N80 sits between the canister and
+the intake and is **closed without power**. The ECU pulses it open only in
+closed-loop lambda control, warm, so that the probe sees what the vapour
+does and the injection is corrected. A pause after the start, then pulses,
+is the valve working as designed (the owner saw exactly that, 25–27/9).
+A healthy engine purges at idle too, at a small rate. **A valve that does
+not seal** passes vapour all the time, cold and in open loop, on the
+overrun and **while the car stands**, when vapour from the canister can
+settle in the intake and flood the first start.
+
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 |
+|---|---|---|---|---|---|---|---|
+| ~ | — | — | — | — | — | ~ | ✔ |
+
+- **For: S19.** A rich code and a start that dies at once after four hours
+  standing, in a window that holds a fill, is the textbook picture of a
+  leaking purge valve (*general*). **H7 is no longer the only hypothesis
+  that predicts both.**
+- **For: the idle trim** negative at idle, positive at part load — the
+  shape of a fixed fuel flow rather than a scale error.
+- **For: the history.** P0440, EVAP, stored in 1/2018 and never repaired
+  (`vehicle-history.md`). **The filler cap off at idle, 25–27/9: audibly
+  slightly worse** (`idle-log.md`) — the tank reached the idle at that
+  moment, though a valve purging as designed would show the same.
+- **Against: what block 070 found** (`refuted.md` A6): TEV OK, lambda
+  deviation 0.0 %. A test that commands the valve open and reads the
+  response says the valve **opens**; it cannot say that the valve **seals**
+  without power (*reasoned*; exactly what that block looks for is not in the
+  label summary, `vcds.md`). 0.0 % says only that the canister had nothing to
+  give at that moment. So 070 refutes a dead valve, not a leaking one.
+- **Against: S1 and S3.** A dip is one firing that fails and recovers in
+  about a quarter of a second (S1); vapour comes through the common plenum
+  to all four alike as a slow, even flow that the lambda loop follows, so
+  it cannot make one firing in hundreds fail and the next succeed. **The
+  dips sat on 3 and 4 for weeks** (*The dips keep to one slot*), which a
+  common-plenum source cannot pick. And the size: a trim of a few per cent
+  rich is far from any rich misfire limit — slightly rich burns more
+  readily, not less (*general*). Load smoothing the idle (S1) fits it, but
+  fits almost everything that adds charge. S14 is ~ only because a leaking
+  valve feeds vapour into the intake during the overrun fuel cut, where the
+  vacuum is highest (*reasoned*).
+
+**Tests** (`plan.md` 6e): the valve without power at a warm idle, a finger
+on its canister-side port — **any suction is a leak**; then the hose to the
+intake pinched for a minute at a time with 001 logged, best right after a
+full fill — **lambda control rising while it is pinched** is fuel that came
+through the purge. **Read:** suction → a new N80, and 032 read again after
+some drives; neither shows anything → H16 to `refuted.md` on the seal test,
+and the fuel is looked for elsewhere (H7).
+
 ---
 
 ## Naming the cylinder
@@ -889,7 +954,7 @@ is in git.
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | 1 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show; **first since 24/10: the dips on all four alike on `40` and `41`**, the picture it predicts | the files, then the original map (3/11) |
-| 2 | **H7** fuel delivery | never gauged; plug 3 the cleanest; **the only one S19 fits** (24/10); one code so far | a rail gauge, an injector swap |
+| 2 | **H7** fuel delivery | never gauged; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge, an injector swap |
 | 3 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | the second 44K tank (`plan.md` 6a), driving |
 | 4 | **H1** valve or lifter | 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back | the phone recording over each lifter (`plan.md` 6c); the EPR flushes (6a) |
 | 5 | **H2** a leak ahead of the probe | S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test |
@@ -899,8 +964,9 @@ is in git.
 | 9 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
 | 10 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason | flexed at a warm idle |
 | 11 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
-| 12 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
-| 13 | **H12** driveline play | — | done: the clutch minutes cleared it |
+| 12 | **H16** the purge valve leaking | here for the rich idle trim and S19, not the idle: vapour reaches all four alike as an even flow, and cannot fail one firing in hundreds (H16) | the seal test and the pinch with 001 (`plan.md` 6e) |
+| 13 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
+| 14 | **H12** driveline play | — | done: the clutch minutes cleared it |
 
 **More than one at once** (*the owner's point*, 12/10): each repair may help
 only in part; a partial improvement is read as a share, not a miss.

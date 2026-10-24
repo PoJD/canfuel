@@ -146,6 +146,23 @@ Claude runs the capture on every drive. **Current: item 6.**
      lets you, at the connector), then over the valve cover above cylinder
      1, 2, 3, 4. **Between places, one knock with a knuckle on the inner
      wing.** Upload the recording.
+6e. **The purge valve N80, at a warm idle** (oil 80 °C or above), any day;
+   **best straight after filling the tank full**. With VCDS. Keep clear
+   of the belt and the fan.
+   - **First**, before anything is unplugged: Claude reads the fault
+     memory, 032 and 055.
+   - **The seal test**: the connector off N80; the hose off N80 on the
+     **canister side**; a finger on the valve's open port for 10 s. Write
+     into the chat: **suction or none**.
+   - The connector back on, the finger still there, up to 2 minutes:
+     write whether **pulsing suction** comes. The hose back on.
+   - **The pinch**: Claude logs 001. Pinch the hose **between N80 and the
+     intake** through a rag with pliers, 1 minute; release, 1 minute;
+     three times. Say **"pinched"** and **"released"** each time.
+   - At the end Claude reads the fault memory again; then clear it by
+     hand.
+   - **Only if there was suction**: N80 off the car; blow through it with
+     no power and write whether air passes.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
@@ -666,6 +683,32 @@ dropped 24/10 (below).*
   H3). The smoke test of 9/10 looked for air going out, cold; this one looks
   for air going in, warm and running. **Non-chlorinated**, because a
   chlorinated cleaner burnt in the cylinder makes phosgene (*general*).
+
+**Item 6e — the purge valve** (`open.md` H16; *the owner's request*,
+24/10/2026). Independent of the order of 6–6c; it needs only a warm idle.
+It asks where the fuel behind the negative idle trim comes from, and
+whether S19 (P0172 and the start that died after standing) has a cause
+cheaper to test than a rail gauge (H7). **The fault memory, 032 and 055
+first**, because the unplugged connector will store a fault and clearing
+it resets 032 (`CLAUDE.md`).
+- **The seal test** is what block 070 never did (`refuted.md` A6): with
+  no power the valve must be shut, and at a warm idle the intake vacuum
+  stands behind it, so **any suction at the canister-side port is a
+  leak**. The pulses after the connector goes back show it still opens.
+- **The pinch** asks how much fuel the purge brings when it works as
+  designed. A full fill loads the canister, so right after one is when a
+  flow shows if there is one (*general*). Read the lambda control in 001
+  against the spoken marks: **rising while pinched** means the ECU had to
+  add the fuel the purge had been bringing; the size of the step is the
+  purge's share. Nothing moving on a full tank means the purge brings
+  little. The ECU does not purge all the time, so three pinches and not
+  one.
+- **Read:** suction → a new N80, then 032 again after a few drives and
+  whether S19 comes back; it would not touch the idle (H16, *Against*).
+  No suction and no step → H16 to `refuted.md`, and the fuel is looked for
+  at H7. No suction but a large step → the valve is sound and the canister
+  is very loaded: whether the tank is filled past the first click
+  (*general*), and the canister's state, come next.
 
 **Item 7 — the exhaust ahead of the front probe (H2), warm.** A leak that
 draws air in at idle blows out when the outlet is closed, and hisses or

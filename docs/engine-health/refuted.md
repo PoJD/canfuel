@@ -90,7 +90,13 @@ alike, and still no outlier in the means.
 Block 070: TEV OK, lambda deviation 0.0 %. Also purge runs warm, while the
 stumble was worst mid-temperature and present cold. *(9/10/2026: the
 stumble is in fact roughest cold and present warm — `open.md` S1. The
-refutation stands on block 070.)*
+refutation stands on block 070.)* *(24/10/2026: **partly reopened.** 070 commands the
+valve open and reads the response, so it shows a valve that **opens**; it
+cannot show one that **seals** without power, and 0.0 % says only that the
+canister gave nothing at that moment. A leaking valve is back in `open.md`
+as **H16**, for the rich idle trim and S19, not for the stumble. For the
+stumble the refutation stands, on other grounds now: a dip is one firing,
+and vapour reaches all four as an even flow — H16.)*
 
 ### A7. "A large intake (unmetered) air leak" — argued
 
