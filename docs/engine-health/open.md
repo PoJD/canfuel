@@ -119,6 +119,7 @@ error):
 | 21/10 | `40` | settled | **VW plugs and leads, new plenum gasket** | 67 ± 2 |
 | 23/10 | display | settled | the first 44K tank, ~70 km in, after a hard motorway run | 45–50 between jerks, 70–90 with them, **never above 100** warm; *fan on 1, one seat heater on 1, lights* (*owner*) |
 | 23/10 eve | display | settled | home through Prague traffic, much idling, unsettled throughout; the last stretch held at higher revs in a low gear | **37** straight after, the lowest yet in this state, then slowly back to 50 within about a minute and above it after another; *fan on 1, one seat heater on 1, lights* (*owner*) |
+| 24/10 eve | display | settled | the second 44K tank, Orlen Verva 100, after ~340 km in the day with about an hour above 4000 rpm; 3–5 min of warm idle | **70–80**, everyday state (*owner*) |
 
 **The MAF is the one change that showed at once** (24/9: the dips halved).
 The calmest settled idles, 12/10 and 15/10, came in the days after the new

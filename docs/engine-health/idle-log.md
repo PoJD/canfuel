@@ -706,8 +706,8 @@ after high revs is the cleaner, and whether it lasts, needs a capture on a
 44K tank.
 
 **24/10/2026 — the first 44K tank run down, the second in** (*owner*,
-display, no capture; `plan.md` item 6a). About 140 km, much of it
-motorway, **5000 rpm held for long stretches**; oil never above 110 °C.
+display, no capture; `plan.md` item 6a). About 170 km out (*owner*;
+this said 140 until he corrected it), much of it motorway, **5000 rpm held for long stretches**; oil never above 110 °C.
 **No tick, no lamp lit or flashing, nothing wrong felt** over the whole
 drive (S18). Part-warm, oil about 60 °C, after one stop: `IdleHealth`
 **70–80**, the state not given, so the everyday one; the warm idle was
@@ -720,6 +720,25 @@ of 17–24/10 came out at **9.9 l/100 km off the pump**
 **S18 closed** (*owner's decision*, 24/10; `refuted.md` D10): no tick,
 no three-cylinder running and no lamp on any drive since the evening of
 18/10.
+
+**A bad start in the afternoon** (*owner*): after about 4 hours parked
+outdoors, nose uphill, the engine **caught and died at once, as if it had
+no fuel**; the next start was normal, and none before or after it that
+day was bad. The first in about a month. With a tank just filled to 51 l
+indicated, a pickup running dry on the slope is hard to make work
+(*reasoned*); a rail that lost its pressure while standing would do it
+(*general*), and so would a fuel that starts differently, 24/10 being the
+first tank of Orlen. One start; nothing shows which.
+
+**The drive back the same evening**, about 170 km again, about 340 in the
+day: **about an hour in all above 4000 rpm, much of it held at 5000**
+(*owner*). No tick, no miss, no lamp. Pulls well, perhaps better
+(*owner*, who calls it possibly placebo); `Power` **about 87 kW** at full
+throttle above 5000 rpm, against the 85.4 the scale was set on
+(`docs/firmware/frames.md`) — inside the 2 % the tests pin it to, on a cool
+day, when b7 reads higher (`CLAUDE.md`, the torque scale's caveats).
+**`IdleHealth` 70–80** after 3–5 minutes of warm idle near the end,
+everyday state: no change.
 
 **Not known to have achieved:** whether the strong tank did anything to
 the idle; no warm reading and no capture on it. What S18 was is not

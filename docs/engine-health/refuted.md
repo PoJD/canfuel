@@ -760,6 +760,10 @@ read above 72 driving. The cleaner's tank had just run out.
 from the evening of 18/10 through 24/10 (*owner*) — `39`, `40`, the first
 44K tank driven hard with long stretches at 5000 rpm, full-throttle pulls
 on most of them; fault memory empty after `39`, over 19/10 and on 23/10.
+**And the hardest test the car can be given**, 24/10 (*owner*): about
+340 km in the day, about an hour of it above 4000 rpm, much held at 5000,
+with none of it — the misfires under load of the 18/10 afternoon
+included.
 **The look inside, 19–20/10**: on 3 alone a layer of deposit come away from
 the exhaust valve and the crown (`idle-log.md`).
 

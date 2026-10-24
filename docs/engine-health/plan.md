@@ -638,7 +638,7 @@ candidates, ranked*.
   every load off.
 - **The fault memory** (*owner*, 18/10/2026): every session starts from
   an empty memory, and the saved file keeps what the session stored.
-  Only when VCDS is connected anyway (*owner*, 25/10/2026): a plain
+  Only when VCDS is connected anyway (*owner*, 24/10/2026): a plain
   drive is not worth a laptop, and a lit or flashing lamp is the
   backstop for what it would have caught.
 - **The cover's nuts**: the gasket settles (`refuted.md` D5).

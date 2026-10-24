@@ -1329,7 +1329,7 @@ if it is still unclear, ask once.
 
 
 **The fault memory is read after every session with VCDS connected,
-without asking** (*the maintainer, 18/10/2026; narrowed 25/10/2026*: only
+without asking** (*the maintainer, 18/10/2026; narrowed 24/10/2026*: only
 when VCDS is connected anyway, never asked for after a plain drive). On the
 laptop you read it yourself with `tools/vcds_log.py --faults`, once the
 logging has stopped, save it beside the session's VCDS logs, and give him
