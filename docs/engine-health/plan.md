@@ -132,17 +132,10 @@ Claude runs the capture on every drive. **Current: item 6.**
      **A lifter tapping for a few seconds after the first start on new
      oil** is expected; one that stays is written into the chat.
    - **Nothing into the new oil.**
-6c. **Any time, when convenient: two checks at one warm stop**, oil
-   95–100 °C, neutral, handbrake on, loads off, bonnet open. With the
-   USBtin capturing if the laptop is there (no MFD then); otherwise by ear
-   and the rev counter.
-   - **The screwdriver**: a long screwdriver's tip on the valve cover, ear
-     on the handle, **above each cylinder in turn, 1, 2, 3, 4**, about
-     30 s each, then 3 and 4 again. Keep clear of the belt, the fan and the
-     HT leads. Write into the chat whether any cylinder sounds different:
-     a tick, a knock, an uneven beat.
-   - **The phone recording**, at the same stop:
-     **one continuous sound recording** (the Dictaphone app; a video is
+6c. **Any time, when convenient, at one warm stop**: oil 95–100 °C,
+   neutral, handbrake on, loads off, bonnet open. Keep clear of the belt,
+   the fan and the HT leads.
+   - **The phone recording**: **one continuous sound recording** (the Dictaphone app; a video is
      too large to upload), the phone held still a few cm away, **about
      10 s at each place**: over injector 1, 2, 3, 4 (as close as the plenum
      lets you, at the connector), then over the valve cover above cylinder
@@ -500,7 +493,7 @@ lifter on 3 or 4 is wrong in a way compression and the gauge both missed** —
 possible, against the two best measurements held. Its firm reason is
 maintenance: the additive and the loosened deposit of two strong cleaner
 tanks out of the oil before they varnish a lifter. **The test that tells
-first** is item 6c's screwdriver over each lifter, warm: 3 or 4 sounding
+first** is item 6c's phone recording over each lifter, warm: 3 or 4 sounding
 unlike 1 and 2 gives the flush a chance; all four alike makes it an oil
 change with an additive.
 
@@ -596,11 +589,12 @@ cylinder; resistance was dropped as unlikely to be the difference
 relief lasts (`open.md` H15): lasting weeks → the leads; a few days, then
 back → the seating, H3 next; the same → H15 refuted.
 
-**Item 6c — the screwdriver and the phone recording** (*owner's
+**Item 6c — the phone recording** (*owner's
 decision*, 21/10/2026: no propane for now, no stethoscope bought; *when
 he gets to it*). Both test a cause rather than name a cylinder, which
 `open.md` already does for 3 and 4. *This item also held a brake-cleaner
-test at the runners, dropped 24/10 (below).*
+test at the runners and a screwdriver by ear over each lifter, both
+dropped 24/10 (below).*
 
 - **The phone video tells an injector from a lifter by where the loud part
   of the cycle sits** (*reasoned*, 24/10, from the gauge video of 14/10):
@@ -618,11 +612,13 @@ test at the runners, dropped 24/10 (below).*
   places come from the order and the knocks between them. The rpm comes from the sound itself (the firing tone, at
   twice crank speed), as it did on 14/10: 30.8 Hz, 924 rpm, inside the
   900–950 of `33`'s cold phase.
-- **The screwdriver is H1's cheapest test** (`open.md` H1): a lifter that
+- **The screwdriver, dropped** (*owner's decision*, 24/10/2026): the
+  recording asks the same question of the same places — a lifter that
   bleeds down or a valve that seats late ticks at camshaft rate over its
-  own cylinder. A sound only over 3 or 4 points at the valvetrain there; all
-  four alike weakens H1. A screwdriver hears less than a stethoscope, so
-  silence is weaker evidence than a tick.
+  own cylinder (`open.md` H1) — and can be measured and compared, where an
+  ear cannot; he trusts it more. What the screwdriver would have added is
+  contact: it hears the cover's structure rather than the air, which the
+  phone a few cm away does not.
 - **The brake cleaner, dropped** (*owner's decision*, 24/10/2026, having
   looked): there is no room to spray the lower manifold's joints without
   hitting the coil at cylinder 4 and much else, and the runners of 2 and 3

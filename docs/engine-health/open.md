@@ -419,7 +419,7 @@ about. The valve is closed by its spring; the lifter only removes the gap.
   should be; the valves looked whole on 19–20/10 (which says nothing of
   sealing); 18/10 is explained by 3's flaked deposit without it.
 
-**Tests:** a screwdriver (or a stethoscope) on the cover over each lifter, warm (`plan.md` 6c); **the two EPR flushes** (`plan.md` 6a), which clean the
+**Tests:** a phone recording over each injector and each lifter, warm (`plan.md` 6c; the screwdriver by ear dropped 24/10); **the two EPR flushes** (`plan.md` 6a), which clean the
 feed passages and the plungers' varnish — they run alongside BG 44K, so
 an improvement does not tell H1 from H13; a warm leak-down (**not to be
 done**, *owner's decision*, 20/10); the lifters pressed down with the cover
@@ -832,7 +832,7 @@ is in git.
 |---|---|---|---|
 | 1 | **H3** a leak at one runner | the only one that predicts *load helps* directly; 3 and 4 neighbours; the lower gasket never renewed | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
 | 2 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show | the files, then the original map (3/11) |
-| 3 | **H1** valve or lifter | 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back | the screwdriver over 3 and 4 (`plan.md` 6c); the EPR flushes (6a) |
+| 3 | **H1** valve or lifter | 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back | the phone recording over each lifter (`plan.md` 6c); the EPR flushes (6a) |
 | 4 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | the second 44K tank (`plan.md` 6a), driving |
 | 5 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
 | 6 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped | flexed at a warm idle |
