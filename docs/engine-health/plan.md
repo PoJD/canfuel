@@ -210,8 +210,10 @@ Claude runs the capture on every drive. **Current: item 6.**
 ## The rule — the owner's decision, 27/9/2026, amended 18/10/2026
 
 **The idle comes first**: the unsettled idle (S1) and the misfires 014
-counts at idle (S3). **S18, cylinder 3 dropping out with a tick, now comes
-first beside it**, since the owner reads both as likely one cause. So:
+counts at idle (S3). **S18, cylinder 3 dropping out with a tick, came
+first beside it** from 18/10 until it closed on 24/10, after a week
+without it (`refuted.md` D10); item 5's drive rules stay until the map
+goes back, so that a return is caught. So:
 
 - **Fix, then look.** Each step is a repair; the only readings taken are
   the ones that decide the next step.
@@ -255,7 +257,7 @@ does not. It needs about half a minute of settled idle before it reads
 at all (255 until then, `docs/firmware/frames.md`), so a direction needs
 several readings.
 
-**The S18 drives** (*owner's request*, 18/10/2026; `open.md` S18). The
+**The S18 drives** (*owner's request*, 18/10/2026; `refuted.md` D10). The
 question is **whether cylinder 3 and the tick keep coming back**. A flake
 of deposit loosened by the cleaner (H13) should come back less and less,
 then stop; a lifter or valve (H1) should not fade, and should be worst
@@ -263,7 +265,7 @@ cold. So the reading is the run of drives:
 - **No tick and no code on several drives in a row, and no 014 burst
   above 72 while driving** → fading, which reads for the flake.
 - **The tick back cold, again and again** → a valve or lifter (H1). No
-  leak-down (*owner's decision*, 20/10/2026; `open.md` S18).
+  leak-down (*owner's decision*, 20/10/2026; `refuted.md` D10).
 
 **014 above 72 while driving** is the mark: sixteen earlier logs never
 reached it, and 18/10 read 270 and 351. **Gently cold** because S18 came

@@ -745,6 +745,31 @@ and since S6's joint was shimmed the same day it has not been heard at all: in
 the owner's reading it was that joint all along. *The entry used to say that
 joint could not be the source; the owner's ear on the car outranks that.*
 
+### D10. S18 — cylinder 3 dropped out, cold, with a tick at camshaft rate — closed 24/10/2026
+**What happened, 18/10** (*owner*): on a short gentle drive cold the engine
+ran on three cylinders for a while, with a tick that followed engine speed;
+**P0300 and P0303** stored, the first cylinder the ECU ever named. The tick,
+off the owner's video: once per 720°, camshaft rate, all four firing beneath
+it (`photos/tick-2026-10-18-cold-spectrogram.png`). Cylinder 3 dropped out
+again with the lamp flashing; after a restart all four ran. That afternoon,
+warm, the tick came back for a few minutes and went by itself; **014 read
+two bursts under part load, 270 and 351**, where sixteen earlier logs never
+read above 72 driving. The cleaner's tank had just run out.
+
+**Since**: **no tick, no three-cylinder running, no lamp** on any drive
+from the evening of 18/10 through 24/10 (*owner*) — `39`, `40`, the first
+44K tank driven hard with long stretches at 5000 rpm, full-throttle pulls
+on most of them; fault memory empty after `39`, over 19/10 and on 23/10.
+**The look inside, 19–20/10**: on 3 alone a layer of deposit come away from
+the exhaust valve and the crown (`idle-log.md`).
+
+**Closed at the owner's decision**, on the run of clean drives that
+`plan.md` Part 2 (*The S18 drives*) set as the reading: it faded, which
+reads for **a flake of deposit under 3's exhaust seat** (`open.md` H13)
+over a lifter or valve that hung (H1), and does not prove it. Not settled:
+the cause. **Heard or seen again, above all cold → it reopens in
+`open.md`**; item 5's drive rules in `plan.md` stay until the map goes back.
+
 ### D9. "A higher idle quiets the misfires" — measured, 12/10/2026
 The specified idle raised from 780 to 830 rpm, the ECU's limit (VW's
 procedure, login 01283): 014 kept counting and `IdleHealth` rose slightly with

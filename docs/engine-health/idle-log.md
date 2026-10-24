@@ -541,8 +541,8 @@ second can (`plan.md`, Part 2).
 
 **Not known to have achieved:** the can's effect, either way.
 
-**18/10/2026 — cylinder 3 out, cold, and a tick** (*owner*; `open.md`
-S18). A short gentle drive cold: the engine **ran on three cylinders for a
+**18/10/2026 — cylinder 3 out, cold, and a tick** (*owner*; `refuted.md`
+D10). A short gentle drive cold: the engine **ran on three cylinders for a
 while**, with a tick at camshaft rate (the owner's video); the clutch did
 not change it. **P0303 and P0300 stored** — the ECU's first named cylinder.
 Cylinder 3 dropped out again, lamp flashing; **after a restart all four ran
@@ -550,7 +550,7 @@ and the tick stayed gone**, `IdleHealth` 60–70 with the A/C on warm. The day
 after the cleaner's tank ran out. **Not known**: a flake of deposit, or a
 valve or lifter on 3.
 
-**18/10/2026, afternoon — the tick back, warm** (*owner*; `open.md` S18).
+**18/10/2026, afternoon — the tick back, warm** (*owner*; `refuted.md` D10).
 Fault memory before: P0300 and P0303 twice each, sporadic; cleared; the
 drive stored nothing. **The tick came back a few minutes in and stopped by
 itself.** `IdleHealth` while it ticked about 120–130, against 80–90 without
@@ -560,7 +560,7 @@ owner holds deposits (H13) the most likely.** **Not known**: which cylinder
 the bursts were, or whether they matched the tick.
 
 **19/10/2026 — the adaptations after the episodes** (*owner*, VCDS,
-engine off; `open.md` S18, *Why the idle got worse*). Fault memory
+engine off; `open.md` S1, *Why the idle got worse*). Fault memory
 **empty** after three drives. **032 −3.1 / +5.5 %, 055 −1.27 g/s**, inside
 their earlier ranges (`photos/vcds-032-055-2026-10-19-before-6b.jpg`). Warm
 idle that day about 100 loads off, about 50 every load on (`open.md` S1).
@@ -717,8 +717,13 @@ first fill of another brand since 2017 (`vehicle-history.md`). The tank
 of 17–24/10 came out at **9.9 l/100 km off the pump**
 (`docs/firmware/fuel-check.md`, *The fill of 2026-10-24*).
 
+**S18 closed** (*owner's decision*, 24/10; `refuted.md` D10): no tick,
+no three-cylinder running and no lamp on any drive since the evening of
+18/10.
+
 **Not known to have achieved:** whether the strong tank did anything to
-the idle; no warm reading and no capture on it.
+the idle; no warm reading and no capture on it. What S18 was is not
+settled by its absence; it reads for a flake (`open.md` H13).
 
 ---
 
