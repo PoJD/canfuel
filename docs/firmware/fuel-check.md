@@ -117,6 +117,72 @@ the map going back on 22/10" until 23/10.*
 neither of them ground truth, and inside the cluster's 0.1 km
 resolution. Over a tankful it becomes a percentage worth reading.
 
+### The fill of 2026-10-24 — the 17/10 tank closed
+
+**50.88 litres of Orlen Verva 100, off the pump**, at **154,755 km**,
+the cluster's trip at **543.5 km** (the last digit half-lit; .9 is
+possible and moves nothing below), after the second can of BG 44K
+(`docs/engine-health/plan.md` item 6a). Read before the nozzle went in
+(`docs/engine-health/photos/mfd-2026-10-24-before-fill.jpg`,
+`docs/engine-health/photos/odometer-2026-10-24.jpg`): **`FuelAvg` 9.7,
+`TripDist` 256, `FuelTank` 0.4, Range 4** (*owner*: 0.7 L left). Both
+the cluster's trip and the converter's were zeroed at it (*owner*). The
+pump receipt is not kept here: the photograph shows the owner.
+
+**The pump's figure for the tank, 17/10 to 24/10** *(derived)*:
+
+| | |
+|---|---|
+| petrol, 3.11 + 50.88 | **53.99 l** |
+| and the 44K can of 23/10 | 0.325 l |
+| distance, the cluster's trip | **543.5 km** (odometer 154,755 − 154,501 + 289.4 = 543.4) |
+| **litres over kilometres, petrol only** | **9.94 l/100 km** |
+| the same with the can counted as fuel | 9.99 l/100 km |
+
+⚠ **Brim to brim only if both fills stopped at the same click.**
+17/10 was filled to full (*owner*); 24/10 took 50.88 into 0.4–0.7
+indicated against 51.47 into 1.1, so the two ends agree to about a
+litre, which is the brim's own scatter (step 5 below) — about 2 % of
+this figure. **Not owner-confirmed as full to the click.**
+
+**It is the first post-repair pump figure, and it checks the firmware
+only loosely.** The display's trip covers **the last 254.1 km** of the
+cluster's 543.5, because the 23/10 part fill reset it (above), so no
+display figure spans the same tank as the pump's. What the numbers do
+say *(derived)*:
+
+- **`TripFuel` on the last stretch: 9.7 × 2.56 ≈ 24.8 l** (±0.1 for the
+  display's rounding). That leaves **29.2 l for the first 289.4 km, 10.1
+  l/100 km** — the cold 19/10 drive across Prague, `39`, `40` with its
+  long warm stops, and the end of the Liqui Moly tank's habits. The
+  previous tank read 10.3 on the display (`docs/engine-health/idle-log.md`,
+  17/10). **Plausible, and not a test**: a converter reading 5 % low
+  would move the same litres into the first half and stay just as
+  plausible.
+- **Distance: `TripDist` 256 against the cluster's 254.1 km, +0.7 %**
+  (+0.5 to +1.0 with the display's whole kilometres). A first
+  percentage over a real distance; neither instrument is ground truth.
+
+**Within the pump history, at its upper end** (7.0–10.9, above): a
+tank of brisk motorway, a strong cleaner and Prague traffic, on the
+remap. One tank, so the step-5 caution applies.
+
+**The next tank is the clean one**: the cluster's trip and the
+display's both start at this brim, no capture is planned
+(`docs/engine-health/plan.md` item 6), and the 44K can (0.325 l) went in
+before the fuel again. **Read at the next full fill, before the nozzle**:
+the cluster's trip, `TripDist`, `FuelAvg`, the odometer; then the
+litres, filled to the click. A captured drive or one with the MFD out in
+between is written down, as above.
+
+⚠ **Two things this tank changes and the next comparison carries.**
+The fuel is **Orlen Verva 100**, not OMV MaxxMotion 100 (no OMV on the
+route, *owner*): a consumption comparison across the brand is fine for
+the firmware, which compares against the same tank's pump, and is noted
+for the engine. And **the map goes back on 3/11** (`docs/engine-health/plan.md`
+item 5a), likely inside this tank: **read the four figures on the day,
+before the map goes back**, so the tank can be split at it.
+
 ---
 
 ## What this means for the measurements

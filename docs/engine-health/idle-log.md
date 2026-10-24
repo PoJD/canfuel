@@ -705,6 +705,21 @@ MaxxMotion 100 at 154,501 km; driven warm and hard.
 after high revs is the cleaner, and whether it lasts, needs a capture on a
 44K tank.
 
+**24/10/2026 — the first 44K tank run down, the second in** (*owner*,
+display, no capture; `plan.md` item 6a). About 140 km, much of it
+motorway, **5000 rpm held for long stretches**; oil never above 110 °C.
+**No tick, no lamp lit or flashing, nothing wrong felt** over the whole
+drive (S18). Part-warm, oil about 60 °C, after one stop: `IdleHealth`
+**70–80**, the state not given, so the everyday one; the warm idle was
+not read. Run down to 0.4–0.7 l and refilled at 154,755 km: **the second
+can of 44K, then 50.88 l of Orlen Verva 100** — no OMV on the route, the
+first fill of another brand since 2017 (`vehicle-history.md`). The tank
+of 17–24/10 came out at **9.9 l/100 km off the pump**
+(`docs/firmware/fuel-check.md`, *The fill of 2026-10-24*).
+
+**Not known to have achieved:** whether the strong tank did anything to
+the idle; no warm reading and no capture on it.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail

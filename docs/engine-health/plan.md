@@ -85,21 +85,12 @@ Claude runs the capture on every drive. **Current: item 6.**
      days. Claude runs the capture; VCDS on **014, 003, 020**; 055 once
      at the end, warm idle. Write the stops.
 6a. **Two tanks of BG 44K** (BG `208` *44K Platinum*, 325 ml a can).
-   **Into the next tank, after this one**, never into
-   this one, and **into the tank after that again**. Fuel the usual OMV
-   MaxxMotion 100; **the can goes in first, then the fuel**.
-   - **The first tank is a strong one: 25 l indicated in the tank with
-     the can.** No need to run down to the reserve. At the pump, before
-     fuelling, read `FuelTank` on the MFD, standing; pour in one can,
-     then **25 minus that reading** in litres. A few tight turns leaving
-     the pump. Drive it warm and brisk once warm, as item 6, until the
-     reserve light again.
-   - **A tick, the engine missing or the lamp flashing on the strong
-     tank**: item 5's rules, and **at the next pump fill up**; the rest of
-     that tank is then driven normally.
-   - **The second tank**: one can, then **filled up**, and no refuelling
-     until it is run down. Drive it as item 6.
-   - **Italian tune-up on both tanks**: once the **oil reads 90 °C**,
+   **The second tank is in, from 24/10** (the first ran 23–24/10).
+   - **The second tank**: no refuelling until it is run down. Drive it
+     as item 6. At the next fill, before the nozzle: the cluster's trip,
+     `TripDist`, `FuelAvg`, the odometer; then fill to the click.
+   - **On 3/11, before the map goes back**: the same four figures.
+   - **Italian tune-up**: once the **oil reads 90 °C**,
      and not in the first 30 km after the pump: **the motorway at the
      limit, with full-throttle pulls** — slip roads, and 80 to 130 in
      4th — and an easy stretch after each few; a long climb whenever
@@ -387,6 +378,13 @@ is said of it, not stated by its maker. BG names injectors, valves and the
 combustion chamber, and on this port-injected engine the fuel washes the
 back of the intake valves, so a fuel-borne cleaner reaches the deposits it
 is meant for.
+
+**The four figures at the second tank's ends, and on 3/11**: the
+second tank is the first that the cluster's trip and the display's
+both cover from a brim, so it is the first real check of `FuelAvg`
+against the pump (`docs/firmware/fuel-check.md`, *The fill of
+2026-10-24*); the map going back inside it would mix two calibrations
+in one ratio, and the figures on the day split the tank at the line.
 
 **The strong first tank** (*owner's decision*, 23/10, variant C of the
 research that day). Its source is the BG reseller Red Rider (BG Centrum

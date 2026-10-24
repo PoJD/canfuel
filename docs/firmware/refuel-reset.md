@@ -142,6 +142,7 @@ held:
 | earlier | **a full tank**, the one `18_coldstart_z1` was recorded on | fired |
 | 2026-09-19 | the 44.17 L above | fired |
 | 2026-10-23 | **3.11 L off the pump and 325 ml of BG 44K**, at 23.5 L indicated | **fired** — `TripDist` 98.7 km that evening, about the day's driving (*owner*) |
+| 2026-10-24 | **50.88 L off the pump and 325 ml of BG 44K**, at 0.4 L indicated | **fired** — `TripDist` zeroed after the fill (*owner*) |
 
 ⚠ **The first three fired on a threshold of THREE, not four.** The firmware in the
 car predates `REFUEL_RISE_L` becoming 4 (commit `e8d634c`), so every one of

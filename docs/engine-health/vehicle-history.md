@@ -41,6 +41,7 @@ symptom in `docs/` is dated after it, with a working lamp.
 | At purchase, 25 Sep 2017 | 126,200 km |
 | At 13 Sep 2026 | 154,000 km |
 | At 23 Oct 2026 | **154,501 km** (`photos/odometer-2026-10-23.jpg`; the cluster's trip 289.4 km since the fill of 17/10) |
+| At 24 Oct 2026 | **154,755 km** (`photos/odometer-2026-10-24.jpg`; the cluster's trip 543.5 km since the fill of 17/10, zeroed at this fill) |
 | **Covered in ownership** | **27,800 km over 9.0 years**, about 3,100 km a year *(derived)* |
 
 Odometer at the start of each year, from the owner's expense sheet
@@ -147,7 +148,8 @@ Owner-supplied from service records or from his own work.
 | **Borescope look**: plenum off; inlet ports through the runners, chambers through the plug holes; plugs out and back hand-tight. **Lead 2's plug end tore** on removal. Injector 4's peeling harness tape renewed, the wires whole. **Clean amber oil on every plug thread** (`photos/plug-2026-10-20-cyl*.jpg`). Nothing cleaned. **Ordered from VW, arriving 21/10**: leads `06A 905 409 L`, plugs `101 000 033 AA`; plenum gasket Elring `271.230` (VW `06A 129 717` out of production). A row of their own once fitted | **19–20/10/2026**, by the owner | ~0 |
 | Valve cover nuts **checked with the plenum off**: most already tight, the rest tightened | **20/10/2026**, by the owner | ~0 |
 | **Spark plugs and ignition leads, VW**: plugs `101 000 033 AA`, whose box reads **"NGK BKUR6ET-10"** — the same plug as the set of 10/10, made in Japan, printed VW/Audi and NGK in black and stamped with the VW number (`photos/plug-vw-2026-10-21-*.jpg`; the 10/10 plug beside one, printed *NGK R* in blue, `photos/plug-ngk-old-vs-vw-2026-10-21.jpg`). Leads `06A 905 409 L` (`photos/leads-vw-2026-10-21-*.jpg`), **much stiffer to the touch** than the NGK `RC-VW254`, and **each plug end has a small rubber ring inside** where it seats on the plug, which the NGK ends do not have (*owner*; the inside of each, `photos/lead-end-vw-2026-10-21-inside.jpg`, `photos/lead-end-ngk-old-2026-10-21-inside.jpg`). Plugs fitted first, then the leads, 1, 4, 2, 3 clockwise from the coil's top tower, routed clear of the plenum (`photos/refit-2026-10-21-ports-covered.jpg`); every end clicked and sits with no play (*owner*). **The plenum refitted on a new Elring `271.230`** | **21/10/2026**, by the owner, bought from VW the same day | ~0 |
-| **Fuel: OMV MaxxMotion 100**, always (*owner*, 10/10/2026). Before 9/2017 not known. **Until summer 2026 the tank held fuel about three years old** | since 9/2017 | ~27,800 km |
+| **Fuel: OMV MaxxMotion 100**, always (*owner*, 10/10/2026). Before 9/2017 not known. **Until summer 2026 the tank held fuel about three years old** | 9/2017 to 23/10/2026 | ~27,800 km |
+| **Fuel: Orlen Verva 100**, 50.88 l, with the second can of BG 44K; no OMV on the route (*owner*). *This row said "OMV MaxxMotion 100, always" until this fill* | **24/10/2026** | — |
 | **Battery disconnected** (every ECM adaptation restarts) | after the summer heater work, then **23/9, 26/9, 1–2/10 and the morning of 4/10/2026**; 098 run 2/10 and 4/10. **Connected since 4/10** | — |
 
 ### Notes to the table
