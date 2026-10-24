@@ -482,8 +482,7 @@ cost of the leads off twice, which disturbs H15's reading of the new VW
 leads; whether the idle moves is read as for the tanks.
 
 **What would have to be wrong for the flush to mend the idle** (*reasoned*,
-24/10, at the owner's question; he now expects the cleaners to do nothing
-for it). EPR reaches the idle by three routes only:
+24/10, at the owner's question). EPR reaches the idle by three routes only:
 
 - **A lifter on 3 or 4 whose plunger or check ball is varnished** and holds
   its valve a hair open (H1): compression lost at a small charge, covered by
@@ -509,6 +508,18 @@ tanks out of the oil before they varnish a lifter. **The test that tells
 first** is item 6c's screwdriver over each lifter, warm: 3 or 4 sounding
 unlike 1 and 2 gives the flush a chance; all four alike makes it an oil
 change with an additive.
+
+**And the fuel cleaner in the tank** (*the owner's point*, 24/10): the strong
+first 44K tank, hours above 4000 rpm and about 450 km left `IdleHealth` at
+70–80, as before, and he expects the second tank to do no more. What it can
+reach on this engine (*reasoned*): the injector nozzles, new in 9/2026; the
+inlet valve backs, only thin lacquer on the borescope; **the chambers and
+exhaust valves, where 3 and 4 do carry more** — slowly, over tanks. For it
+to mend the idle, that chamber deposit would have to be **the cause** of 3
+and 4's poorer combustion rather than its consequence, which the evenness
+of every other cause speaks against (`open.md` H13). So the second tank is
+driven out because the can is in, and read as the last word on H13; the
+idle is not expected to move on it.
 
 **The run time.** BG's data sheet for `109`: for a **3.7–5.6 l** crankcase,
 one can, **10 minutes at 1,200 rpm** after full operating temperature

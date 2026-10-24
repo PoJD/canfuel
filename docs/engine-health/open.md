@@ -59,9 +59,11 @@ routine, S15 the sputter, S18 cylinder 3 out with a tick (24/10); H9 (crankcase 
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm).
 
-**Ranked (21/10, after the VW leads):** **H13, H1, H3, H14, H15, H4, H2**,
+**Ranked (24/10, after the strong 44K tank):** **H3, H14, H1, H13, H15, H4, H2**,
 then H0, H7, the timing belt, H8, H11, H12 (*The idle's candidates,
-ranked*; re-read 24/10 when S18 closed, the order unchanged). H15 is no longer first: the idle on the VW leads is level with
+ranked*). H13 was first until its own test, a strong cleaner tank and
+~450 hard km, left `IdleHealth` where it was; H1 is weakened by 18/10 not
+coming back. H15 is no longer first: the idle on the VW leads is level with
 the best on the NGK set, not better (*owner*, 21/10).
 
 **Next** (`plan.md`): the VW leads `06A 905 409 L` and plugs
@@ -592,7 +594,11 @@ hard use burns them off (*general*).
 - **18/10 has not come back** in six days of hard driving, a strong 44K
   tank among them (`refuted.md` D10) — what a flake that burnt off does.
   Weak: one episode, and its absence.
-- **Against:** a detergent premium fuel since 2017; compression even.
+- **Against:** a detergent premium fuel since 2017; compression even;
+  **the strong first 44K tank changed nothing** (23–24/10, *owner*): about
+  450 km on it, hours above 4000 rpm, and `IdleHealth` at the warm stops
+  70–80 as before (S1, the table). The owner now expects the cleaner to do
+  nothing for the idle (24/10).
 
 **Tests:** the cleaner and hard driving (a tank from 15/10, done; two tanks of
 BG 44K, the second from 24/10, then a flush and fresh oil, `plan.md` 6a).
@@ -816,10 +822,10 @@ is in git.
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| 1 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts | the second cleaner (`plan.md` 6a), driving |
-| 2 | **H1** valve or lifter | 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back | the screwdriver over 3 and 4 (`plan.md` 6c); the EPR flushes (6a) |
-| 3 | **H3** a leak at one runner | the only one that predicts *load helps* directly; 3 and 4 neighbours; the lower gasket never renewed | brake cleaner at the runners, warm (`plan.md` 6c) |
-| 4 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show | the files, then the original map (3/11) |
+| 1 | **H3** a leak at one runner | the only one that predicts *load helps* directly; 3 and 4 neighbours; the lower gasket never renewed | brake cleaner at the runners, warm (`plan.md` 6c) |
+| 2 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show | the files, then the original map (3/11) |
+| 3 | **H1** valve or lifter | 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back | the screwdriver over 3 and 4 (`plan.md` 6c); the EPR flushes (6a) |
+| 4 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | the second 44K tank (`plan.md` 6a), driving |
 | 5 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
 | 6 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped | flexed at a warm idle |
 | 7 | **H2** a leak ahead of the probe | S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test |
