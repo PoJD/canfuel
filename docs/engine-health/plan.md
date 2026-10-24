@@ -132,8 +132,8 @@ Claude runs the capture on every drive. **Current: item 6.**
      **A lifter tapping for a few seconds after the first start on new
      oil** is expected; one that stays is written into the chat.
    - **Nothing into the new oil.**
-6c. **Any time, when convenient, at any engine temperature**; write the
-   oil temperature into the chat. Neutral, handbrake on, loads off, bonnet
+6c. **Once more, warm** (oil 95–100 °C; the part-warm one is done, 24/10),
+   any time it is convenient; write the oil temperature into the chat. Neutral, handbrake on, loads off, bonnet
    open; **in a garage, the door wide open**. Keep clear of the belt,
    the fan and the HT leads.
    - **The phone recording**: **one continuous sound recording** (the Dictaphone app; a video is
@@ -619,6 +619,12 @@ dropped 24/10 (below).*
   loudest hot and one stuck with varnish cold, so a first recording part-warm
   (oil about 50 °C) is followed by a warm one only if it shows nothing. The
   idle grades worst cold, where the 14/10 clip was taken.
+- **The part-warm recording, 24/10** (`idle-log.md`): one click per firing,
+  all four alike, at all eight places; no once-per-cycle sound anywhere.
+  Read by the harmonics of the folded profile: four per cycle is every
+  firing alike, **one per cycle is one source standing out**, which a
+  noisy lifter would make over its cylinder; that one sat at noise. So the
+  warm recording follows, for a lifter that ticks only hot.
 - **The screwdriver, dropped** (*owner's decision*, 24/10/2026): the
   recording asks the same question of the same places — a lifter that
   bleeds down or a valve that seats late ticks at camshaft rate over its

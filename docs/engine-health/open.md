@@ -416,7 +416,10 @@ about. The valve is closed by its spring; the lifter only removes the gap.
   steady cold and warm, no flick (H3); no ticking before 18/10, and **none on any
   drive since, through 24/10** (`refuted.md` D10) — a lifter that hung
   should not fade, and this did; the idle is never worst hot, where a thin-oil lifter
-  should be; the valves looked whole on 19–20/10 (which says nothing of
+  should be; **the phone recording of 24/10, part-warm** (oil 52–58 °C):
+  one click per firing, all four alike, over every injector and over the
+  cover at each cylinder — no once-per-cycle sound over any lifter
+  (`idle-log.md`, 24/10); the valves looked whole on 19–20/10 (which says nothing of
   sealing); 18/10 is explained by 3's flaked deposit without it.
 
 **Tests:** a phone recording over each injector and each lifter, warm (`plan.md` 6c; the screwdriver by ear dropped 24/10); **the two EPR flushes** (`plan.md` 6a), which clean the
@@ -690,6 +693,13 @@ time.
   on 1 and 2 is not known.
 - **The plug soot does not follow the pair**: 1 and 4 sooted, 2 lighter, 3 the
   cleanest (*owner's reading*, 20/10).
+- **A once-per-cycle sound on the NGK set, none on the VW one** (*reasoned*,
+  24/10, from two phone recordings): the gauge clip of 14/10 carries a
+  strong component once every 720° (7.7 % of the level, steady across its
+  two halves) besides an eight-per-cycle one; the recording of 24/10, on the
+  VW leads, has neither — only one click per firing, all four alike. An
+  arcing plug end clicks once per cycle (S18's reading). **Not a
+  comparison**: other place, 924 against 810 rpm, a clip of 10 s.
 
 **The idle against every time the leads were handled** (the like-with-like
 table in S1): the calmest settled idles, **12/10 and 15/10, came in the days

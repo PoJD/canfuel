@@ -744,6 +744,25 @@ everyday state: no change.
 the idle; no warm reading and no capture on it. What S18 was is not
 settled by its absence; it reads for a flake (`open.md` H13).
 
+**24/10/2026, late evening — the phone recording, part-warm** (`plan.md`
+item 6c; *owner*). In the garage after the drive, oil 52 → 58 °C and
+coolant 57 → 75 °C over it, `IdleHealth` **about 115**. One continuous
+85 s recording, injectors 1–4 then the valve cover over 1–4, knuckle
+knocks between: six knocks found, the first 20 s unsplit (a knock missed;
+taken as injectors 1 and 2 by the order). Idle **810 rpm** off the firing
+tone (27.0 Hz). The clicks above 3 kHz, folded at the camshaft's period
+(the phase carried through the whole recording off the firing tone):
+**one click per firing, all four alike, at every one of the eight
+places** — the four-per-cycle component 7–10 % of the level, the
+once-per-cycle one at most 1.8 % with its phase wandering place to place,
+which is noise. **No cylinder's sound stands out**, not over an injector
+and not over the cover at 3 or 4. The phone a few cm off does not single
+out the nearest injector either, so injector against injector cannot be
+told this way.
+
+**Not known to have achieved:** whether a lifter ticks hot; this was
+part-warm.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
