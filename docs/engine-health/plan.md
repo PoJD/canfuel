@@ -99,15 +99,18 @@ Claude runs the capture on every drive. **Current: item 6.**
      off at once**, then item 5's rules.
    - **Item 5's S18 rules on every drive of both tanks.** The map at 3/11
      goes ahead whatever tank is in.
-   **Straight after the second tank: the oil flushed twice, then oil and
-   filter changed.** Bought for it: **two cans of BG `109` EPR**,
+   **Next, 25/10 in the morning, with the second tank still in: the oil
+   flushed twice, then oil and filter changed**; the tank is driven out
+   afterwards, on the new oil. Bought for it: **two cans of BG `109` EPR**,
    **5 l of Total *Quartz 9000 Energy* 5W-40** (autodily-pema.cz), the
    same oil as the final fill; what is left over is for topping up, and from
    the VW dealer **the original filter `06A 115 561 B` and a new drain
    plug** (bought 23/10). Outdoors, no driving
    at any point with EPR in the oil:
-   - **First flush.** Warm the engine until the **oil reads 90 °C**, park
-     it. Check the dipstick: **at the upper mark, take out about 0.3 l**
+   - **First, on the old oil: item 6c's warm recording.** Warm the engine
+     by driving until the **oil reads 90 °C**, park it outdoors, and make
+     the recording (6c) **before any EPR goes in**.
+   - **First flush.** Oil still at 90 °C. Check the dipstick: **at the upper mark, take out about 0.3 l**
      with a syringe through the dipstick tube first. One can of EPR into
      the oil. Hold **1,200–1,300 rpm** with a stick on the
      pedal, **30 minutes**, standing.
@@ -132,8 +135,9 @@ Claude runs the capture on every drive. **Current: item 6.**
      **A lifter tapping for a few seconds after the first start on new
      oil** is expected; one that stays is written into the chat.
    - **Nothing into the new oil.**
-6c. **Once more, warm** (oil 95–100 °C; the part-warm one is done, 24/10),
-   any time it is convenient; write the oil temperature into the chat. Neutral, handbrake on, loads off, bonnet
+6c. **Once more, warm** (oil 90 °C or above; the part-warm one is done, 24/10),
+   **on the old oil, straight before the first flush** (6a); write the oil
+   temperature into the chat. Neutral, handbrake on, loads off, bonnet
    open; **in a garage, the door wide open**. Keep clear of the belt,
    the fan and the HT leads.
    - **The phone recording**: **one continuous sound recording** (the Dictaphone app; a video is
@@ -429,9 +433,11 @@ and others); forums put the start of real concern at a sustained 120–130 °C
 and breakdown at 130–150 °C, none from a data sheet. **The owner's
 recollection of 115 °C as critical was not found in any source.** So 120 °C
 is chosen as the point to ease off, held only briefly: 105–110 °C on a hard
-run and 111 °C for a few minutes (*owner*, 23/10) are inside it, and this
-oil is changed straight after the second tank, so its oxidation has no
-interval left to cost. The reading is the instrument cluster's, on
+run and 111 °C for a few minutes (*owner*, 23/10) are inside it. *This said
+the oil is changed straight after the second tank, so its oxidation costs
+no interval*; since the flush moved ahead (25/10), the rest of the tank is
+driven on the new oil, and brief spells under 120 °C are what a VW 502.00
+oil is rated for. The reading is the instrument cluster's, on
 0x420 (`docs/firmware/can-decoding.md` question 10, closed 23/10 at the
 owner's decision: it reads where a warm engine's oil runs).
 
@@ -455,7 +461,20 @@ put additive and loosened deposit into the oil: additive reaches the
 crankcase past the rings, one PEA chemistry formed varnish at high treat
 rates (SAE 2020-01-2100), and varnish sticks lifters — **hence the change
 straight after the second tank, not later**, and the strong first tank
-makes that more true, not less. **EPR cleans the oil side** — rings and
+makes that more true, not less. **Moved ahead to 25/10, with the second
+tank still in** (*owner's decision*, 24/10): the caution was this
+project's, not BG's or any source's; the owner no longer trusts an oil that
+has carried a strong tank, hours above 4000 rpm and loosened carbon; and
+**done now it stands apart from the map of 3/11** (H14, first since 24/10),
+leaving drives between to read it alone, where at the end of the tank the
+two would have fallen together. The cost, accepted: the rest of the second
+tank's additive and loosened deposit goes into the new oil — small, the
+treat rate reaching the crankcase being a fraction of the dose, and the
+first tank showed no harm; a plain change after the tank stays possible,
+not planned. The overlap with 44K reads nothing away: the second tank is
+expected to move nothing (below). **The warm recording (6c) goes first, on
+the old oil**, because it is the lifters' test and after the flush there
+is nothing left to compare it with. **EPR cleans the oil side** — rings and
 hydraulic lifters — **not valve faces or chambers**, which are the fuel
 cleaner's. **Both of its sides can reach the idle**: the lifters are H1's,
 and a ring stuck with coke costs compression, which tells most at idle,
