@@ -99,7 +99,7 @@ Claude runs the capture on every drive. **Current: item 6.**
      off at once**, then item 5's rules.
    - **Item 5's S18 rules on every drive of both tanks.** The map at 3/11
      goes ahead whatever tank is in.
-   **Next, 25/10 in the morning, with the second tank still in: the oil
+   **Next, before the map of 3/11 and with the second tank still in: the oil
    flushed twice, then oil and filter changed**; the tank is driven out
    afterwards, on the new oil. Bought for it: **two cans of BG `109` EPR**,
    **5 l of Total *Quartz 9000 Energy* 5W-40** (autodily-pema.cz), the
@@ -435,7 +435,7 @@ recollection of 115 °C as critical was not found in any source.** So 120 °C
 is chosen as the point to ease off, held only briefly: 105–110 °C on a hard
 run and 111 °C for a few minutes (*owner*, 23/10) are inside it. *This said
 the oil is changed straight after the second tank, so its oxidation costs
-no interval*; since the flush moved ahead (25/10), the rest of the tank is
+no interval*; since the flush moved ahead of the tank's end, the rest of the tank is
 driven on the new oil, and brief spells under 120 °C are what a VW 502.00
 oil is rated for. The reading is the instrument cluster's, on
 0x420 (`docs/firmware/can-decoding.md` question 10, closed 23/10 at the
@@ -461,8 +461,8 @@ put additive and loosened deposit into the oil: additive reaches the
 crankcase past the rings, one PEA chemistry formed varnish at high treat
 rates (SAE 2020-01-2100), and varnish sticks lifters — **hence the change
 straight after the second tank, not later**, and the strong first tank
-makes that more true, not less. **Moved ahead to 25/10, with the second
-tank still in** (*owner's decision*, 24/10): the caution was this
+makes that more true, not less. **Moved ahead to before the map, with the
+second tank still in** (*owner's decision*, 24/10): the caution was this
 project's, not BG's or any source's; the owner no longer trusts an oil that
 has carried a strong tank, hours above 4000 rpm and loosened carbon; and
 **done now it stands apart from the map of 3/11** (H14, first since 24/10),
