@@ -1000,7 +1000,9 @@ so a few seconds late; the steps in the log lead them.
 **Not known to have achieved:** a source for the rich idle trim — it is
 neither N80 nor the regulator's reference; H17 and an injector are left
 (`open.md` H7, H17). Whether N80's small leak at rest is what floods S7's
-starts: the new valve (`plan.md` 6k) reads it.
+starts — the valve is **not replaced** (*the owner's decision*, 25/10:
+it helps neither the idle nor the trim); 6h's priming reads S7 without
+it.
 
 ---
 

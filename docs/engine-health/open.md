@@ -370,7 +370,9 @@ night took away a correction the start relied on, is not known. **The
 new hose answers it**, read with 6h. **A second reading since 6e**
 (25/10 night): N80 passes a little air without power (H16), so vapour
 while standing is now a cause with a found part behind it; the new valve
-(`plan.md` 6k) reads it.
+is **not fitted** (*the owner's decision*, 25/10: it helps neither the
+idle nor the trim), so the priming of 6h is what tells starved from
+flooded.
 
 **Read off the display**: `StartCrank` and `StartDip` on 0x604
 (`docs/firmware/frames.md`) for every cold start, failed or not. **The test**
@@ -1063,12 +1065,16 @@ the pulses, **no liquid fuel**. **What it leaves:**
   canister had no way in, and the regulation still sat at −0.7 % on top
   of 032's −7.8: the engine wanted the same fuel taken away with N80 out
   of the circuit (*reasoned*; the learnt value applied cold is
-  *general*). The trim's first *For* above is answered against.
+  *general*). The trim's first *For* above is answered against —
+  **cold**; a warm idle with the canister cut off was not run.
 - **The owner's slug variant: no liquid**, on a day after a fill.
 - **Still possible: S7 and S19.** A valve that passes air without power
   passes vapour while the car stands, which no running test sees; the
-  leak is small, and whether it is enough to flood a start is what
-  replacing it reads (`plan.md` 6k).
+  leak is small, and whether it is enough to flood a start is not
+  known. **The valve is not replaced** (*the owner's decision*, 25/10):
+  a part that helps neither the idle nor the trim is not worth fitting
+  for the starts alone. 6h's priming reads S7 without it: primed starts
+  that still die say flooding, which keeps N80 among the causes.
 
 ### H17. Fuel in the oil, boiled off through the crankcase ventilation
 
@@ -1268,7 +1274,7 @@ is in git.
 | 9 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
 | 10 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason | flexed at a warm idle |
 | 11 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
-| 12 | **H16** the purge valve leaking | here for S7 and S19 only: an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest | a new N80 and the cold starts (`plan.md` 6k, 6h) |
+| 12 | **H16** the purge valve leaking | here for S7 and S19 only: an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest; not replaced (*owner*, 25/10) | the cold starts, primed and plain (`plan.md` 6h) |
 | 13 | **H17** fuel in the oil | VW's first cause for this car's 032; the oil level has not risen; here for the trim and S19's code, not the idle: roughest cold, when there is nothing to boil off | 032 on the new oil (`plan.md` 6g) |
 | 14 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 15 | **H12** driveline play | — | done: the clutch minutes cleared it |

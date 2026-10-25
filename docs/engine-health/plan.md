@@ -146,10 +146,6 @@ Claude runs the capture on every drive. **Current: item 6.**
      lets you, at the connector), then over the valve cover above cylinder
      1, 2, 3, 4. **Between places, one knock with a knuckle on the inner
      wing.** Upload the recording.
-6k. **A new purge valve N80.** The number off the old valve's label, or
-   by VIN. Engine off; the hoses back on as they came off, with clips.
-   Then, with VCDS connected anyway, 032 read after a few drives; the
-   cold starts as 6h.
 6g. **032 around the oil change.**
    - At the last VCDS session **before** the oil change (6a): 032 read,
      as always before anything is cleared.
@@ -680,20 +676,6 @@ dropped 24/10 (below).*
   H3). The smoke test of 9/10 looked for air going out, cold; this one looks
   for air going in, warm and running. **Non-chlorinated**, because a
   chlorinated cleaner burnt in the cylinder makes phosgene (*general*).
-
-**Item 6k — a new N80** (`open.md` H16; the rule 6e set beforehand, *the
-owner's agreement*, 25/10/2026). On 6e the unpowered valve **let a
-little air through** when blown towards the intake, so by the rule it is
-replaced, though running cold no suction could be felt at its port. **It
-is not for the rich idle trim**: with the canister cut off by a finger
-the regulation still sat near zero on top of the −7.8 % learnt value, so
-that fuel does not come through N80 (`idle-log.md`, 25/10 night). It is
-for **S7 and S19** — vapour reaching the intake while the car stands,
-which a valve that passes air without power allows and no running test
-can see. **Read**: S7's plain cold starts (6h) clean from then on → a
-standing leak through N80 was their cause; still dying → H7's rail or an
-injector. 032 is read beside it only because it costs nothing; it is not
-expected to move.
 
 **Item 6g — fuel in the oil** (`open.md` H17; 25/10/2026, from VW's
 evaluation of block 032, `vcds.md`). VW names oil dilution first for a
