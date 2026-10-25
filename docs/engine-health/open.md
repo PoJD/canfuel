@@ -729,6 +729,12 @@ hundred km without a disconnect.
   higher than ever. So the rich idle trim is **not** answered by the hose;
   what it answered on 6i's first minute and a half did not last a drive
   (`idle-log.md`).
+  **Its size, then** (25/10, *reasoned*): from −8.6 on the cracked hose
+  to −7.8 a drive later on the new one is under a point, against the
+  roughly 8 % a fully open or blocked reference would give — and the −8.6
+  was read with the old hose already off for a few seconds. **The hose
+  was at most a small share of the extra fuel**; the rest comes from
+  elsewhere (H16, H17, or the regulator or an injector itself).
 
 **Tests:** a rail pressure gauge (**not bought**, *owner's decision*, 10/10;
 VW's figures, if one is: 2.5 bar at idle, 3.0 with the regulator's hose
@@ -829,6 +835,12 @@ counted only at idle; the overrun fuel cut (S14); knock control under load
 (S4). **The idle advance** (`tools/idleadvance.py`, 17/10): medians 1.5–3.8°
 BTDC since 24/9, inside VW's 0–12°, **not aggressive**; on 11/8, on the same
 map, after TDC most of the time — so that shift is not the map's.
+
+**Against it as the source of the rich idle trim** (25/10, *reasoned*):
+032's idle cell has read anywhere from **0.0 (12/10) to −8.6 (25/10)** on
+this one map (H16 has the readings). A map does not change between
+drives, so it cannot be what moves the trim from day to day; at most it is
+a constant offset underneath, which only the files' diff can show.
 
 **The ECU** (`vcds.md`): Bosch M5.9.2, hardware `0261206327`, software
 `1037352075` V04, 256 KB flash. No map definition is public.
