@@ -95,6 +95,12 @@ about 90 loads off and 120–130 straight after a start and after the loads
 went off (*owner*) — so a high grade did not come from felt jerks that
 time. One idle, oil about 80 °C; whether the grade's make-up changed
 (more small steps, fewer deep dips) needs a capture.
+**By ear, 25/10 evening** (*owner*, warm, the everyday state): **in the
+calmer stretches the engine speed drops a little and holds there**. Not
+shown by VCDS, whose 40 rpm steps put the stretches with 014 counting and
+without at the same 760–800 (`idle-log.md`); a capture's quarter-rpm
+0x280 would show it. It sits beside *What comes before a dip*: a dip
+follows the idle overshooting a little.
 
 **How it is measured.** `IdleHealth` on 0x604 grades one firing against the
 next (100 = the engine before the repair, lower is smoother). Offline,
@@ -136,6 +142,7 @@ error):
 | 23/10 eve | display | settled | home through Prague traffic, much idling, unsettled throughout; the last stretch held at higher revs in a low gear | **37** straight after, the lowest yet in this state, then slowly back to 50 within about a minute and above it after another; *fan on 1, one seat heater on 1, lights* (*owner*) |
 | 24/10 eve | display | settled | the second 44K tank, Orlen Verva 100, after ~340 km in the day with about an hour above 4000 rpm; 3–5 min of warm idle | **70–80**, everyday state (*owner*) |
 | 25/10 | display | settled, 032 relearning | **the regulator's vacuum hose renewed**; oil about 80 °C, not 93+ | **about 90** loads off, **35–40** loads on (lowest 35); **no jerk felt** (*owner*) |
+| 25/10 eve | display | settled | the new hose, a drive later; oil 96 °C | **70–80**, everyday state; **50–60** at a light before, same state (*owner*) |
 
 **The MAF is the one change that showed at once** (24/9: the dips halved).
 The calmest settled idles, 12/10 and 15/10, came in the days after the new
@@ -274,6 +281,11 @@ completing rather than load (`refuted.md` C19).
   learned idle air (C19).
 - **The drive after the new leads, 10/10** (`31`): 014 at about 9/10's
   rates — better hot, worse cold, no direction. The leads did not fix S3.
+- **The new regulator hose, 25/10** (`plan.md` 6i, 6j): on 6i 014 counted
+  loads off at 80 °C of oil and read 0 loads on; **a drive later, at
+  96 °C of oil in the everyday state, it counted at 12 ten times in
+  4.7 minutes, 24 and 36 near the end**, and 0 through a 34 s stop at a
+  light (`idle-log.md`). The hose did not fix S3.
 
 ### S4. Knock retard on cylinder 4, and only cylinder 4
 
@@ -689,6 +701,11 @@ hundred km without a disconnect.
   (H16; *reasoned*) and is what 6f's closed hose reads (`idle-log.md`). `IdleHealth` loads off **about 90
   at 80 °C of oil**, where it has sat before: the roughness is not shown to
   have gone with it (`idle-log.md`).
+  **A drive later, the same evening (6j): 032 −7.8 / +6.3 %** — the idle
+  cell back to about where it stood on the cracked hose, the part load
+  higher than ever. So the rich idle trim is **not** answered by the hose;
+  what it answered on 6i's first minute and a half did not last a drive
+  (`idle-log.md`).
 
 **Tests:** a rail pressure gauge (**not bought**, *owner's decision*, 10/10;
 VW's figures, if one is: 2.5 bar at idle, 3.0 with the regulator's hose

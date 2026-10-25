@@ -918,6 +918,41 @@ drives; **a lean idle** — the engine still wanted about −5 % warm once the
 regulation settled, so the hose answers part of the rich idle, not all of
 it.
 
+**25/10/2026, evening — 014 at a warm idle on the new hose** (`plan.md`
+6j; a drive, MFD in, no capture; Claude logged 014, 001 and 032 from
+before the start, `test/fixtures/vcds/vcds-step6j-*.csv`). **Not in the
+planned state**: the owner kept the everyday load (one seat heater on 2,
+the blower on 1, lights) rather than every load off. On 6i 014 read 0
+all through every load on, so this state does not flatter it.
+
+| stop | length | coolant | 014 | lambda regulation | `IdleHealth` (*owner*) |
+|---|---|---|---|---|---|
+| a light | 78 s | 92–94 °C | **12 twice**, 5 s and 13 s | about +2 %, one swing to +28 % for 3 s | |
+| a light | 34 s | 92–94 °C | **0 throughout** | about −0.5 %, ±2 | 50–60 |
+| the stop, oil 96 °C | 4.7 min | 94–99 °C | **12 ten times**, 1–13 s each, **24 twice and 36 once** near the end | about −1 %, ±2, no step | **70–80** |
+
+- **014 still counts warm on the new hose**, in a loaded state, and more
+  towards the end of the long stop than at its start; the quiet stretches
+  between ran 20–80 s. **So the hose did not take the counted misfires
+  with it** (`open.md` S3), whatever the feel of the drive before.
+- **It counted while driving too**: 12 at a steady 2200 rpm for 8 s, and
+  13 over 800–1760 rpm for 15 s.
+- **The regulation made no step** like 6i's fall to −10 %, at any stop:
+  the purge, if it is what moved 6i, did not show here.
+- **032 is back to −7.8 / +6.3 %** (−7.8 / +5.5 at the key; the part-load
+  cell moved during the drive): from 6i's −4.7 / +3.9 on the same
+  afternoon, **the idle cell returned to about where it stood on the
+  cracked hose** (−8.6). 055 −0.06 / −0.97 g/s
+  (`vcds-step6j-adaptations-032-055.csv`).
+- **Fault memory empty** before and after. **Nothing cleared.**
+- **The owner, by ear**: in the calmer stretches the engine speed drops a
+  little and holds there, calmer (`open.md` S1). VCDS reads engine speed
+  in steps of 40 rpm, and the stretches with 014 and without it both sit
+  at 760–800, so this log neither shows nor contradicts it.
+
+**Not known to have achieved:** anything for the idle. The rich idle trim
+is not answered either: 032's idle cell ran back to −7.8 within a drive.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
