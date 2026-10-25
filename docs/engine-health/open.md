@@ -839,7 +839,7 @@ settle in the intake and flood the first start.
   valve permanently open"* (`vcds.md`, block 032). *(This bullet first
   read the "filler cap off at idle" of 25–27/9 as the fuel tank's; in
   these files the filler cap is the oil filler, so that test bears on
-  the crankcase, H17, unless the owner says otherwise.)*
+  the crankcase, H17 — the oil filler, confirmed by the owner 25/10.)*
 - **Against: what block 070 found** (`refuted.md` A6): TEV OK, lambda
   deviation 0.0 %. A test that commands the valve open and reads the
   response says the valve **opens**; it cannot say that the valve **seals**
@@ -869,8 +869,9 @@ A6) — a flooded canister would have sent the probe rich at once; and the
 weeks on 3 and 4 would need the purge port to sit nearer their runners,
 which nobody has looked at. A canister flooded since 27/9 is not
 excluded: a tank filled past the first click, or the car parked nose
-uphill on a full tank, can push liquid into it (*general*, unconfirmed on
-this car). **So the hose is pinched at a warm idle with `IdleHealth` read off the
+uphill on a full tank, can push liquid into it (*general*). **The first
+does not happen here**: the owner always stops at the first click
+(25/10), the fill of 24/10 included; the slope stays. **So the hose is pinched at a warm idle with `IdleHealth` read off the
 display** (`plan.md` 6e): lower while pinched, back when released, would
 put the idle itself on H16.
 
@@ -911,6 +912,11 @@ P0172 sets on the long one** — the fuel coming out all at once.
   years apart (`vehicle-history.md`).
 - **For: the idle trim**, low at idle and normal-to-positive at part
   load: VW's own wording for it.
+- **Against: the dipstick** (*owner*, 24/10): the level where it was at
+  the last top-up, about 1 mm over the upper mark. Fuel collecting in the
+  oil raises the level (*general*), and it has not risen that far can be
+  read; a millimetre is the stick's resolution, so a small dilution is not
+  excluded, and the smell was not reported.
 - **Against: the bad start of 24/10.** Fuel in the oil does not flood a
   start after standing (*reasoned*); if P0172 and that start are one event
   (*owner's decision*, S19), H16 and H7 explain both and H17 only the code.
@@ -924,8 +930,7 @@ P0172 sets on the long one** — the fuel coming out all at once.
   off, and it was rough for years, through oil changes. The same holds
   for H16's vapour.
 
-**Tests:** **the dipstick** — the level against 27/9's upper mark with
-nothing topped up, and a smell of fuel (`plan.md` 6g); **032 before the
+**Tests:** the dipstick, read 24/10 (above); **032 before the
 oil change and again on the new oil** after a couple of hundred km, with
 no clearing between unless 032 is read first. A trim that moves to zero
 on fresh oil is VW's own confirmation; one that stays points back at H16
@@ -1048,7 +1053,7 @@ is in git.
 | 10 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason | flexed at a warm idle |
 | 11 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
 | 12 | **H16** the purge valve leaking | here for the rich idle trim and S19, not the idle: an even flow to all four cannot fail one firing in hundreds; a slug per pulse could, and 6e asks (H16) | the pinch off the display, then the seal test (`plan.md` 6e, 6f) |
-| 13 | **H17** fuel in the oil | VW's first cause for this car's 032; here for the trim and S19's code, not the idle: roughest cold, when there is nothing to boil off | the dipstick; 032 on the new oil (`plan.md` 6g) |
+| 13 | **H17** fuel in the oil | VW's first cause for this car's 032; the oil level has not risen; here for the trim and S19's code, not the idle: roughest cold, when there is nothing to boil off | 032 on the new oil (`plan.md` 6g) |
 | 14 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 15 | **H12** driveline play | — | done: the clutch minutes cleared it |
 

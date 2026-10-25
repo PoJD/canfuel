@@ -784,6 +784,21 @@ trims that went with P0172 were not read.
 **Not known to have achieved:** what set P0172; the one bad start of the
 afternoon and the first tank of Orlen fall in the same window.
 
+**25/10/2026 — where the extra fuel at idle could come from** (`open.md`
+H16, H17; `plan.md` 6e–6g). VW's evaluation of block 032 for this engine
+(`vcds.md`) lists for a low idle value with part load normal: oil
+dilution first, then a leaking injector, high fuel pressure, N80
+permanently open, the MAF, the probe. Two candidates written down: **H16**,
+N80 not sealing (block 070 of 27/9 showed it opens, not that it seals),
+and **H17**, fuel in the oil after weeks of cold idles for the captures.
+**Read off the car** (*owner*): the dipstick on 24/10 where it was at the
+last top-up, about 1 mm over the upper mark — no rise to see; the tank is
+never filled past the first click, the fill of 24/10 included; the
+"filler cap off at idle, slightly worse" of 25–27/9 was the oil filler.
+
+**Not known to have achieved:** nothing changed on the car; whether either
+source exists waits on 6e–6g.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail

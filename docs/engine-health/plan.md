@@ -170,10 +170,7 @@ Claude runs the capture on every drive. **Current: item 6.**
      hand.
    - **Only if there was suction**: N80 off the car; blow through it with
      no power and write whether air passes.
-6g. **The dipstick, now, and 032 around the oil change.**
-   - On level ground, engine off at least 5 minutes: pull the dipstick,
-     wipe, dip again. Write the level against the marks, and **whether
-     the oil smells of fuel**. A photo of the stick.
+6g. **032 around the oil change.**
    - At the last VCDS session **before** the oil change (6a): 032 read,
      as always before anything is cleared.
    - After about 200 km on the new oil: 032 again.
@@ -740,9 +737,8 @@ it resets 032 (`CLAUDE.md`).
 evaluation of block 032, `vcds.md`). VW names oil dilution first for a
 low idle learnt value with part load normal, which is this car's 032,
 and says it goes away with an oil change — which 6a does anyway, so the
-test costs one reading either side. **The dipstick**: the oil stood at
-the upper mark on 27/9 with nothing added since, so a level above it, or
-a smell of fuel, is fuel in the oil (*general*). **Read**: 032's idle
+test costs one reading either side. (The dipstick part is done: 24/10,
+the level unchanged since the last top-up, `idle-log.md`.) **Read**: 032's idle
 cell close to zero on the new oil → H17 confirmed and the cold idles of
 the captures were feeding it — fewer and shorter standing cold idles
 from then on; unchanged → H16 and H7 carry the trim. EPR in the flush
