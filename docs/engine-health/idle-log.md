@@ -811,7 +811,18 @@ intake came off, which pinched it — the crack from about September
 freely. A split there pushes rich (H7); the first part found that fits
 032's shape. To be renewed with clips (`plan.md` 6e).
 
-**Not known to have achieved:** nothing fitted yet.
+**For the days until the new one** (*owner*): the cracked end cut back by
+about 1 cm, all the slack allowed
+(`photos/fpr-vacuum-hose-2026-10-25-cut-piece.jpg`), and the hose turned
+round so that end sits on the regulator. **The fresh cut still shows the
+crack from the bore** (`…-after-cut.jpg`). A leak into that hose acts on
+the regulator wherever along it it is (*reasoned*), so the turn moves it
+away from the intake without making it smaller; only the shorter crack
+can. 032 is read before the new hose goes on, once enough driving has
+passed since the clearing of 24/10.
+
+**Not known to have achieved:** nothing fitted yet; whether the cut
+changed `IdleHealth`.
 
 ---
 
