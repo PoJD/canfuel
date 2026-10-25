@@ -889,8 +889,8 @@ both of its halves (corrected 25/10, from the log sample by sample).*
   −1. **Something brought about 3 points of fuel two minutes into a warm
   idle.** The canister purge starting is the obvious candidate, a day
   after a fill (`open.md` H16; *reasoned, not shown*); when 032 moved was
-  not logged, so this log cannot tell the two apart. 6f's pinch, with 032
-  logged beside the regulation, can (`plan.md`).
+  not logged, so this log cannot tell the two apart. 6f's closed purge hose,
+  with 032 logged beside the regulation, can (`plan.md`).
 - **The probe switches**: 033 field 2 crossed 0.45 V at least 36–50
   times a minute in every state, rich and lean about half each — a lower
   bound, since VCDS samples each block only every 0.9 s. VW asks for 20

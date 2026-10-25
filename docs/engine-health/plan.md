@@ -150,9 +150,12 @@ Claude runs the capture on every drive. **Current: item 6.**
    in.** Oil 95–100 °C, neutral, handbrake on, **every load off**; keep
    clear of the belt and the fan. **Do not unplug N80.**
    - 2 minutes free: write the `IdleHealth` level and the lowest.
-   - Pinch the hose **between N80 and the intake** through a rag with
-     pliers, 2 minutes: write the level and the lowest.
-   - Three times. Then the hose free.
+   - The hose **between N80 and the intake** off **at N80** (twist it
+     loose first, gently; it is hard); its end **closed** — a rubber
+     vacuum cap or a short hose with a bolt in it — 2 minutes: write the
+     level and the lowest. N80 stays plugged in, its port open.
+   - Three times. Then the hose back on. **A crack at its end**:
+     photograph it.
    - **On the new regulator hose** (fitted 25/10): 032 again after a few
      drives, before anything is cleared.
    - ***If a reducer fits the MAR-POL gauge to that thin hose*:** the
@@ -169,9 +172,9 @@ Claude runs the capture on every drive. **Current: item 6.**
      into the chat: **suction or none**.
    - The connector back on, the finger still there, up to 2 minutes:
      write whether **pulsing suction** comes. The hose back on.
-   - **The pinch**: Claude logs 001, 032 and 033. Loads off, nothing else touched. Pinch
-     the hose as in 6e, 2 minutes; release, 2 minutes; three times. Say
-     **"pinched"** and **"released"** each time.
+   - **The purge closed**: Claude logs 001, 032 and 033. Loads off, nothing else touched. The
+     hose off N80 and closed as in 6e, 2 minutes; back on, 2 minutes;
+     three times. Say **"closed"** and **"open"** each time.
    - **The regulator's hose**, 033 logged: off at the intake end, **the
      intake's tube closed** — a rubber vacuum cap or a short hose with a
      bolt in it, or the thumb — 30 s; back on, 30 s; twice. Say **"off"**
@@ -763,22 +766,31 @@ it resets 032 (`CLAUDE.md`).
 - **6e first, off the display** (*the owner*, 25/10: captures kept to a
   minimum, since the MFD twice lost the bus on 24/10 and each fix was
   plug C pulled and cleaned, which he does not want to repeat). **The
-  hose is pinched, not N80 unplugged**: an unplugged valve stops only the
+  hose is closed off, not N80 unplugged**: an unplugged valve stops only the
   pulses the ECU commands, while a valve that leaks keeps passing; the
-  pinch stops both. And the unplugged connector would store a fault that
-  stays until a VCDS session, where clearing it resets 032. **Read**:
-  `IdleHealth` lower in every pinched window than in the free windows
+  closed hose stops both. And the unplugged connector would store a fault that
+  stays until a VCDS session, where clearing it resets 032. **Not
+  pinched any more** (*the owner*, 25/10: the hose is hard and will not
+  just squeeze): pliers on a hardened hose can crack it, and a crack
+  between N80 and the intake is a vacuum leak opening in the middle of
+  the test, which changes the idle for a reason of its own. **Off at N80
+  with the intake end closed does the same job**: no hose, no flow, the
+  commanded pulses and a leak alike, and N80 still powered, so no fault.
+  Its open port draws nothing, since the vacuum came from the intake's
+  side (*reasoned*). The end that came off is where a hardened hose
+  cracks first, as the regulator's did. **Read**:
+  `IdleHealth` lower in every closed window than in the free windows
   beside it → the purge feeds the dips (the owner's variant, `open.md`
   H16), and 6f follows soon; no difference → the purge does not make the
   idle, and 6f is only about the trim and S19. `IdleHealth` needs half a
   minute to settle, so two minutes and not one.
-- **The pinch** (6f) asks how much fuel the purge brings when it works as
+- **The closed hose** (6f) asks how much fuel the purge brings when it works as
   designed. A full fill loads the canister, so right after one is when a
   flow shows if there is one (*general*). Read the lambda control in 001
-  against the spoken marks: **rising while pinched** means the ECU had to
+  against the spoken marks: **rising while closed** means the ECU had to
   add the fuel the purge had been bringing; the size of the step is the
   purge's share. Nothing moving on a full tank means the purge brings
-  little. The ECU does not purge all the time, so three pinches and not
+  little. The ECU does not purge all the time, so three closings and not
   one. **032 is logged beside it** (25/10): on 6i's idle the regulation
   fell from +6.5 % to −10 % two minutes in and settled about 3 points
   richer, and with the idle cell not logged that could not be told from
