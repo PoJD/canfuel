@@ -188,6 +188,12 @@ Claude runs the capture on every drive. **Current: item 6.**
    - At the last VCDS session **before** the oil change (6a): 032 read,
      as always before anything is cleared.
    - After about 200 km on the new oil: 032 again.
+6h. **Every cold start, until S7 is placed.** Before turning the key,
+   nothing else. Write into the chat: date, how long parked, the outside
+   temperature, **caught and died, or ran**, and `StartCrank` and
+   `StartDip` off the display.
+   - **On alternate cold mornings, prime it**: ignition on 3 s, off, on
+     3 s again, then start. Write **primed** beside that start.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
@@ -801,6 +807,18 @@ boils off only from hot oil, so H17 predicts the warm idle calmer and the
 cold one unchanged; a calmer warm idle with 032 unmoved is EPR on the
 rings (H13), not H17. EPR in the flush
 (6a) does not spoil the comparison: it is drained with the old oil.
+
+**Item 6h — the cold start** (`open.md` S7, reopened 25/10). The priming
+asks one question: **did the rail lose its pressure while standing?** With
+the ignition on the pump runs for a moment (*general*), so two goes refill
+a rail that bled down overnight; a start that then catches and stays was
+starved, and the leak is the pump's non-return valve, an injector or the
+regulator (H7; VW's holding test in `vcds.md` names which with a gauge).
+Primed starts that die as well say flooding (H7's injector, H16) or the
+fuel, and the next fill of another brand reads the fuel. Alternate
+mornings, so that plain and primed meet the same weather. `StartCrank`
+and `StartDip` because the display carries them and a start the owner
+calls normal may still show a long crank.
 
 **Item 7 — the exhaust ahead of the front probe (H2), warm.** A leak that
 draws air in at idle blows out when the outlet is closed, and hisses or

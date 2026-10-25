@@ -824,6 +824,12 @@ passed since the clearing of 24/10.
 **Not known to have achieved:** nothing fitted yet; whether the cut
 changed `IdleHealth`.
 
+**25/10/2026 — the cold start died at once again** (*owner*): the first
+start of the morning caught and died, the second ran. The second since the
+fill of 24/10 and the rule of `refuted.md` D2 reopens **S7** (`open.md`).
+Priming on alternate mornings, `StartCrank` and `StartDip` off the display
+(`plan.md` 6h).
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
