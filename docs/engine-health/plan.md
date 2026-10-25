@@ -146,37 +146,32 @@ Claude runs the capture on every drive. **Current: item 6.**
      lets you, at the connector), then over the valve cover above cylinder
      1, 2, 3, 4. **Between places, one knock with a knuckle on the inner
      wing.** Upload the recording.
-6e. **The purge valve and the regulator's hose — one session, VCDS
-   and the MFD both in, no capture.** Best soon after a full fill. Keep
-   clear of the belt and the fan.
-   0. **Before the start**, cable in, ignition on: Claude starts the
+6e. **N80 and the regulator, on a cold start — the laptop in, VCDS
+   logging throughout.** Neutral, handbrake on, every load off, nothing
+   else touched. Keep clear of the belt and the fan. No `IdleHealth`.
+   0. **Cable in, ignition on, engine not started**: Claude starts the
       VCDS log (fault memory, 032, 055 and 030 first, then **001, 032,
-      033**). Start and drive until the **oil reads 90 °C**.
-   1. **Stop**: neutral, handbrake on, **every load off**, nothing else
-      touched. Say **"stopped"**.
-   2. **Purge closed, three times** (six windows): the hose between N80
-      and the intake off **at N80** (twist it loose first, gently; it is
-      hard), its end closed — a rubber vacuum cap or a short hose with a
-      bolt in it — **2 minutes**; back on, **2 minutes**. N80 stays
-      plugged in. Say **"closed"** or **"open"** as each window starts.
-      At each window's end note **`IdleHealth`'s level and lowest**;
-      dictate them at the end, in order. **A crack at its end**:
-      photograph it.
+      033** to the end).
+   1. **Engine off**: the hose off N80 **on the tank's side**, where it
+      is easier to reach a little further along. **Blow through N80
+      towards the intake** through a short clean piece of hose, not
+      breathing the vapour: **nothing may pass**. Write which.
+   2. **Start, a finger on N80's open port at once.**
+      - **Suction at once → switch off at once** and say so: that is the
+        finding.
+      - **None → keep the finger there** until the pulses come (usually
+        within two minutes). Say **"pulses"** when you feel them. Look
+        and smell: **liquid fuel at the hose or the port** — write it.
+      - The hose back on.
    3. **The regulator's hose, twice**: off at the intake end, the
       intake's tube closed (cap, bolt or thumb), **30 s**; back on,
-      **30 s**. Say **"off"** and **"on"**. No `IdleHealth` here.
-   4. **The seal test, last**: N80's connector off; the hose off N80 on
-      the **canister side**; a finger on the valve's open port **10 s** —
-      say **suction or none**. The connector back on, the finger still
-      there, up to 2 minutes — **pulsing suction or none**. Both hoses
-      back on.
-   5. **Engine still running**: say **"end"**. Claude stops the log,
-      reads the fault memory (N80 unplugged leaves a code), logs 032 and
-      055 for 20 s and says **"done"**. Switch off only then.
-   6. **Then clear the fault memory by hand** — never before "done":
-      clearing resets 032.
-   - **Only if there was suction in 4**: N80 off the car, blow through it
-     with no power, write whether air passes.
+      **30 s**. Say **"off"** and **"on"**. **Fuel at the hose's free
+      end**: write it.
+   4. **Engine still running**: say **"end"**. Claude stops the log,
+      reads the fault memory, logs 032 and 055 for 20 s and says
+      **"done"**. Switch off only then; then drive or not, as you like.
+   5. **Clear the fault memory by hand** only after "done", if it holds
+      anything: clearing resets 032.
 6g. **032 around the oil change.**
    - At the last VCDS session **before** the oil change (6a): 032 read,
      as always before anything is cleared.
@@ -708,60 +703,51 @@ dropped 24/10 (below).*
   for air going in, warm and running. **Non-chlorinated**, because a
   chlorinated cleaner burnt in the cylinder makes phosgene (*general*).
 
-**Item 6e — the purge valve and the regulator's hose** (`open.md` H16,
-H7; *the owner's request*, 24/10/2026; **6e and 6f merged into one
-session with VCDS** at his request, 25/10, as too many separate tests).
-It asks where the fuel behind the negative idle trim comes from, and
-whether S19 (P0172 and the start that died after standing) has a cause
-cheaper to test than a rail gauge (H7). **The MFD stays in**, since VCDS
-and the display ran together on 6j (`idle-log.md`); only a capture
-excludes the MFD. **`IdleHealth` only in (2)** (25/10): VCDS reads engine
-speed in 40 rpm steps about once a second and cannot see a 20 rpm dip,
-so whether the purge makes the idle rough is the display's to answer;
-in (3) the loop takes the fuel out within seconds and the grade would not
-settle in 30 s. **032 and 055 after the fault memory, before the
-clearing** (`CLAUDE.md`, *The adaptations go with it*).
+**Item 6e — N80 and the regulator, on a cold start** (`open.md` H16,
+H7; *the owner's request*, 24/10/2026; **reduced to this by the owner,
+25/10**, at the car: N80's own port is hard to reach, the hose comes off
+easily a little further towards the tank, and he has seen the pulses
+before). It asks where the fuel behind the negative idle trim comes from,
+and whether S19 (P0172 and the start that died after standing) has a
+cause cheaper to test than a rail gauge (H7).
 
-- **What Claude logs** (*decided*): **001, 032, 033** — engine speed and
-  the lambda regulation, the idle cell beside it, and the front probe.
-  **030 is read once** for a few seconds at the start: VW's list for a
-  low idle value ends with the probe's heating or a soiled probe
-  (`vcds.md`, block 032); 030 must read `1 1 1`, 033 field 2 switch at
-  least 20 times a minute (passed on 6i, `idle-log.md`). The fault
-  memory, 032 and 055 come **first**, because clearing resets 032.
-- **Purge closed (2)**: closing the hose stops both what the ECU commands
-  and anything a leaking valve passes; unplugging N80 would stop only the
-  first, and store a code. **Not pinched**: the hose is hard and pliers
-  could crack it into a vacuum leak mid-test (*owner*, 25/10). Two
-  readings in one: **the regulation in 001 plus 032's idle cell rising
-  while closed** is fuel the purge had been bringing, its step the
-  purge's share (a step in one that the other cancels is the ECU moving
-  it between them; 6i's fall to −10 % is why 032 is logged); **`IdleHealth`
-  lower in every closed window than beside it** puts the idle itself on
-  H16 (the owner's slug variant). Two minutes because the grade needs
-  half a minute to settle; three times because the ECU does not purge
-  all the time. A full fill loads the canister, so a flow shows best
-  then (*general*).
-- **The regulator's hose (3)**, from H7: the regulation going about 8 %
-  more negative within seconds of the hose coming off says the regulator
-  answers its reference. The tube is closed at once because open it is a
-  vacuum leak. **Fuel at the hose** is a leaking regulator diaphragm,
-  fuel straight into the intake — S19's other way in. `IdleHealth` is
-  not read here: the loop takes the fuel out within seconds.
-- **The seal test (4)** is what block 070 never did (`refuted.md` A6):
-  without power the valve must be shut, and the intake vacuum stands
-  behind it, so **any suction is a leak**; the pulses after the connector
-  goes back show it still opens. Last, because the unplugged connector
-  stores a code, read and cleared at the end.
-- **Dropped in the merge**: blowing through the regulator's tube engine
-  off, and the vacuum gauge on that hose — (3) asks the same question
-  live; and 032 "after a few drives on the new hose" — read in (1).
-- **Read:** suction → a new N80, then 032 after a few drives and whether
-  S19 comes back. No suction and no step → H16 to `refuted.md`, the fuel
-  looked for at H7 and H17. No suction but a large step → the valve is
-  sound and the canister very loaded; its state comes next. No step on
-  the regulator's hose → it never saw its reference. `IdleHealth` moved
-  by the closed purge → 6e is about the idle, not only the trim.
+- **The seal, twice over.** Without power N80 must be shut, so a blow
+  towards the intake must not pass (1). Running cold it is still shut,
+  since the ECU purges only once it is in closed loop (*general*; the
+  pause before the pulses is what the owner saw on 25–27/9), and the
+  intake vacuum stands behind it: **any suction at once is a leak** (2).
+  A leaking N80 is the H16 that explains S19 and S7 — vapour while the
+  car stands, flooding the first start.
+- **The pulses** (2) show it still opens when commanded. **Liquid fuel**
+  at the hose is a canister flooded past what the charcoal holds — the
+  owner's slug variant. With the hose off and N80 pulsing the engine
+  draws unmetered air through it, so the hose goes back on soon after.
+- **No `IdleHealth`, and no closed-purge windows** (*the owner's
+  decision*, 25/10): what that left out is **the designed purge's share
+  at a warm idle** — 6i's regulation fell to −10 % two minutes in, which
+  fits the purge starting, and a loaded canister working as designed
+  still brings fuel. It is not a fault and stays unmeasured; with N80
+  sealing, H16 as written is refuted.
+- **The regulator cold (3)**: the lambda regulation is active about a
+  minute after a cold start — on 6d it switched on within a minute at
+  60 °C of coolant and sat about +20 % with about ±2 of scatter — so the
+  roughly 8 % step of a regulator that answers its reference stands well
+  out of it; twice, so that the slow drift of the warm-up enrichment is
+  not read as a step. The tube is closed at once because open it is a
+  vacuum leak. **Fuel at the hose** is a leaking diaphragm — none and no
+  smell on 25/10 (*owner*), so expected none.
+- **What Claude logs**: 001, 032, 033 throughout; 030 once at the start
+  (VW's list for a low idle value ends with the probe, `vcds.md`, block
+  032: `1 1 1`, and 033 field 2 switching at least 20 times a minute,
+  passed on 6i). Fault memory, 032 and 055 first and last, before any
+  clearing (`CLAUDE.md`, *The adaptations go with it*); N80 stays plugged
+  in, so no code is expected.
+- **Read:** air through N80 in (1) or suction at once in (2) → a new
+  N80, then 032 after a few drives and whether S19 and S7 come back.
+  Neither → H16 to `refuted.md`; the fuel is looked for at H7 and H17
+  (6g). No step in (3) → the regulator does not answer its reference;
+  a step of about 8 % → the regulator is cleared too, and H17 is what is
+  left for the trim.
 
 **Item 6g — fuel in the oil** (`open.md` H17; 25/10/2026, from VW's
 evaluation of block 032, `vcds.md`). VW names oil dilution first for a
