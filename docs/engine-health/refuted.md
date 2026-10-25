@@ -105,7 +105,11 @@ leak big enough to misfire a cylinder, and the misfires themselves (oxygen
 through an unburnt cylinder), would both push it positive: one runner
 leaking dilutes to a quarter at the one sensor, but a cylinder has to run a
 long way lean before it misfires. **A small leak at one runner is not excluded** and is
-H3 in `open.md`.
+H3 in `open.md`. *(25/10/2026: **stronger since.** P0172 stored on 24/10
+says the ECU ran out of room taking fuel *away*, and VW's evaluation of
+032 for this engine reads unmetered air from **high** idle values, never
+low (`vcds.md`, block 032). A small leak still hides if a larger rich
+source outweighs it: the trim is their sum.)*
 
 ### A8. "The secondary-air combination valve or N112 open at idle — air or exhaust between intake and exhaust (an uncontrolled EGR)" — measured
 

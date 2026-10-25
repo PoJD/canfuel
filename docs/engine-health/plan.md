@@ -157,7 +157,8 @@ Claude runs the capture on every drive. **Current: item 6.**
    best straight after filling the tank full). Keep clear of the belt and
    the fan.
    - **First**, before anything is unplugged: Claude reads the fault
-     memory, 032 and 055.
+     memory, 032 and 055, then logs **030 and 033** at the warm idle for a
+     minute.
    - **The seal test**: the connector off N80; the hose off N80 on the
      **canister side**; a finger on the valve's open port for 10 s. Write
      into the chat: **suction or none**.
@@ -696,7 +697,12 @@ dropped 24/10 (below).*
   chlorinated cleaner burnt in the cylinder makes phosgene (*general*).
 
 **Items 6e and 6f — the purge valve** (`open.md` H16; *the owner's
-request*, 24/10/2026). Independent of the order of 6–6c; it needs only a warm idle.
+request*, 24/10/2026). **030 and 033 ride along in 6f** (25/10): VW's
+list for a low idle value ends with the probe — its heating, or a soiled
+probe (`vcds.md`, block 032) — and the probes are from 2017 (`open.md`
+H11). 030 must read `1 1 1` (regulation active, probe ready, heating
+on); 033 field 1 must swing about zero and field 2 switch at least 20
+times a minute. Either failing puts the probe on S19's list. Independent of the order of 6–6c; it needs only a warm idle.
 It asks where the fuel behind the negative idle trim comes from, and
 whether S19 (P0172 and the start that died after standing) has a cause
 cheaper to test than a rail gauge (H7). **The fault memory, 032 and 055

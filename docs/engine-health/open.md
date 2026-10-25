@@ -351,7 +351,12 @@ since — and 070 shows that the valve opens, not that it seals (H16).
 Tonight's 001, with the stored adaptation still in force, read
 **+15 to +22 %** while warming and about **−3 to +1 %** warm — adding fuel
 cold, near zero warm, which a hard rich fault would not show; weak, since
-it is the trim on top of an adaptation not read.
+it is the trim on top of an adaptation not read. **The misfires make it
+stronger, not weaker** (*reasoned*, as `refuted.md` A7): an unburnt charge
+carries oxygen to the probe and reads lean, so with 014 counting the
+mixture is if anything richer than the trims say. And **it all but rules
+out a meaningful intake leak** (A7): that would have pushed the other
+way.
 
 ### Other — not symptoms, but they touch this file
 
