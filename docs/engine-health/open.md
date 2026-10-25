@@ -892,13 +892,19 @@ values at idling with part load normal — possible oil dilution*, which
 goes away after a motorway drive or an oil change (`vcds.md`, block 032).
 That is exactly this car's 032 (H16 has the readings).
 
-**The mechanism** (*general*, and in another maker's bulletin for the
-same code): fuel washes past the rings while the engine runs rich and
-cold, collects in the oil, and **boils off once the oil is hot**, into
-the crankcase ventilation and the intake, as fuel the MAF never saw. The
-ECU takes it away at idle, where it is the largest share. The same
-bulletin's pattern: **many short or cold runs, then a long hot one, and
-P0172 sets on the long one** — the fuel coming out all at once.
+**The mechanism** (*general*): fuel washes past the rings while the
+engine runs rich and cold, collects in the oil, and **boils off once the
+oil is hot**, into the crankcase ventilation and the intake, as fuel the
+MAF never saw. The ECU takes it away at idle, where it is the largest
+share. **Mazda's Service Alert SA-026/18** (5/2018, NHTSA's file) gives
+the pattern: many short trips, the oil level rising, **then a longer trip
+fully warm and P0172**, from the fuel boiling off at once; GM's PIP5647A
+(4/2020) the same picture with trims near −20 % and the cure an oil
+change. ⚠ **Both are about direct injection**, and Mazda says outright
+that on a port-injected engine, which the AQY is, fuel is unlikely to
+reach the cylinder walls. **Both also have the oil level rising**, which
+here it has not (below). They show the mechanism; for this engine the
+only source is VW's own list.
 
 | S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 |
 |---|---|---|---|---|---|---|---|
@@ -1014,9 +1020,8 @@ Most of these are already done here; the belt is not.
 same languages): **no AQY thread with a reported fix.** The general
 lists agree with VW's (`vcds.md`, block 032): a leaking injector, fuel
 pressure too high, a purge valve stuck open, the MAF, the probe, **and
-fuel in the oil**, with one maker's bulletin (NHTSA's file of service
-bulletins) describing P0172 set on a long drive after many short ones and
-cured by an oil change. New Beetle forum leads, unread to their end (the
+fuel in the oil** — Mazda SA-026/18 and GM PIP5647A, both for
+direct-injection engines and both with the oil level rising (H17). New Beetle forum leads, unread to their end (the
 pages refuse automated reading): the short vacuum hose to the fuel
 pressure regulator, N80. Overfilling the tank past the first click is
 named as a way to flood the canister (*general*; H16).
