@@ -153,10 +153,12 @@ Claude runs the capture on every drive. **Current: item 6.**
    - Pinch the hose **between N80 and the intake** through a rag with
      pliers, 2 minutes: write the level and the lowest.
    - Three times. Then the hose free.
-   - **The regulator's vacuum hose**, same warm idle: pull it off **at the
-     intake end**, put a thumb over the intake's tube at once. Write:
-     **strong suction, weak, or none**. Look into the hose's end for
-     crumbs, **and smell it for fuel**. Hose back on within 10 s.
+   - **The regulator's vacuum hose, engine off**, any time: pull it off
+     **at the intake end**. Smell the hose's end for fuel and look into it
+     for crumbs. Then **blow into the intake's tube** (through a short
+     piece of clean hose): it must pass freely. Then blow through the
+     hose itself, off the regulator too. Write: **free, stiff, or
+     blocked**, for each, and any fuel smell. Hose back on.
 6f. **The purge valve, at the next session with VCDS** (oil 80 °C or above;
    best straight after filling the tank full). Keep clear of the belt and
    the fan.
@@ -716,10 +718,13 @@ times a minute. Either failing puts the probe on S19's list.
 **The regulator's hose, in 6e and 6f** (`open.md` H7, *The regulator's
 vacuum reference*; the owner's question, 25/10). The thumb goes on the
 intake's tube at once because an open tube is a vacuum leak, which would
-change the idle for a reason of its own. **6e, the thumb**: strong suction
-says the tube is clear; weak or none says it is blocked, and the regulator
-has been at the no-vacuum pressure all along — clean the tube, then 032
-after some drives. **`IdleHealth` with the hose off is not read**: the
+change the idle for a reason of its own. **6e, blowing, engine off** (*the
+owner's idea*, 25/10): the intake is open to the air through the throttle,
+so a clear tube passes breath freely; a stiff or blocked one says the
+regulator has been at the no-vacuum pressure all along — clean it, then
+032 after some drives. It needs no running engine, so no belt and no
+leak to manage. A small crumb blown inwards is drawn into the engine and
+burnt (*general*). **`IdleHealth` with the hose off is not read**: the
 lambda loop takes the extra fuel out within seconds, so the idle would
 show nothing about it. **6f, with 033**: the loop shows instead what the
 idle would not — the regulation going about 8 % more negative when the hose

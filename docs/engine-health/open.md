@@ -595,7 +595,7 @@ hundred km without a disconnect.
   this car's 032**, low at idle and normal at part load, and VW's "fuel
   pressure too high". Only a full blockage or a leak does it; a partly
   blocked tube only slows the response. **Tests** (`plan.md` 6e, 6f): the
-  thumb on the intake's tube at a warm idle, then the hose off with 033
+  intake's tube and the hose blown through, engine off, then the hose off with 033
   logged — the regulation should go about 8 % more negative within
   seconds; **nothing moving** means the regulator never saw the vacuum.
 
