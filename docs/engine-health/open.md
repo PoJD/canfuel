@@ -684,7 +684,7 @@ hundred km without a disconnect.
   square root of the pressure across the injector). **That is the shape of
   this car's 032**, low at idle and normal at part load, and VW's "fuel
   pressure too high". Only a full blockage or a leak does it; a partly
-  blocked tube only slows the response. **Tests** (`plan.md` 6e, 6f): the
+  blocked tube only slows the response. **Tests** (`plan.md` 6e): the
   intake's tube and the hose blown through, engine off, then the hose off with 033
   logged — the regulation should go about 8 % more negative within
   seconds; **nothing moving** means the regulator never saw the vacuum.
@@ -721,7 +721,7 @@ hundred km without a disconnect.
   engine wanting about −5 % in all (idle cell plus regulation, an
   approximation) against about −2 % before — **about 3 points of fuel
   arriving on their own at a warm idle**, which fits the purge starting
-  (H16; *reasoned*) and is what 6f's closed hose reads (`idle-log.md`). `IdleHealth` loads off **about 90
+  (H16; *reasoned*) and is what 6e's closed hose reads (`idle-log.md`). `IdleHealth` loads off **about 90
   at 80 °C of oil**, where it has sat before: the roughness is not shown to
   have gone with it (`idle-log.md`).
   **A drive later, the same evening (6j): 032 −7.8 / +6.3 %** — the idle
@@ -1039,7 +1039,7 @@ does not happen here**: the owner always stops at the first click
 display** (`plan.md` 6e): lower while closed, back when open, would
 put the idle itself on H16.
 
-**Tests** (`plan.md` 6e, 6f): the valve without power at a warm idle, a finger
+**Tests** (`plan.md` 6e): the valve without power at a warm idle, a finger
 on its canister-side port — **any suction is a leak**; then the hose to the
 intake closed off at N80 for two minutes at a time with 001 logged, best right after a
 full fill — **lambda control rising while it is closed** is fuel that came
@@ -1245,7 +1245,7 @@ is in git.
 | 9 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
 | 10 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason | flexed at a warm idle |
 | 11 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
-| 12 | **H16** the purge valve leaking | here for the rich idle trim and S19, not the idle: an even flow to all four cannot fail one firing in hundreds; a slug per pulse could, and 6e asks (H16) | the hose closed off the display, then the seal test (`plan.md` 6e, 6f) |
+| 12 | **H16** the purge valve leaking | here for the rich idle trim and S19, not the idle: an even flow to all four cannot fail one firing in hundreds; a slug per pulse could, and 6e asks (H16) | the hose closed off the display, then the seal test (`plan.md` 6e) |
 | 13 | **H17** fuel in the oil | VW's first cause for this car's 032; the oil level has not risen; here for the trim and S19's code, not the idle: roughest cold, when there is nothing to boil off | 032 on the new oil (`plan.md` 6g) |
 | 14 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 15 | **H12** driveline play | — | done: the clutch minutes cleared it |
