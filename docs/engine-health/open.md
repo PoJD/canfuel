@@ -295,7 +295,10 @@ probably on different sensors.
 → S7 reopens".* **The engine catches and dies at once, as if it had no fuel;
 the next start runs normally** (*owner*). **24/10**, afternoon, after about
 4 hours parked outdoors nose uphill (`idle-log.md`); **25/10**, the cold start
-of the morning, "the first start always dies" (*owner*). Neither captured.
+of the morning **after about 12 hours on the level, in the garage**, "the
+first start always dies" (*owner*). Neither captured. **The slope is not
+needed**, so it says nothing either way, and the pickup running dry on a
+hill is out.
 Closed on 26/9 after the new injectors (`refuted.md` D2): 14 captured
 starts, all clean.
 

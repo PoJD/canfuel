@@ -825,7 +825,8 @@ passed since the clearing of 24/10.
 changed `IdleHealth`.
 
 **25/10/2026 — the cold start died at once again** (*owner*): the first
-start of the morning caught and died, the second ran. The second since the
+start of the morning, **after about 12 hours on the level in the garage**,
+caught and died, the second ran — so the slope of 24/10 was not needed. The second since the
 fill of 24/10 and the rule of `refuted.md` D2 reopens **S7** (`open.md`).
 Priming on alternate mornings, `StartCrank` and `StartDip` off the display
 (`plan.md` 6h).
