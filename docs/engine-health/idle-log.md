@@ -956,6 +956,52 @@ all through every load on, so this state does not flatter it.
 **Not known to have achieved:** anything for the idle. The rich idle trim
 is not answered either: 032's idle cell ran back to −7.8 within a drive.
 
+**25/10/2026, night — N80 and the regulator, on a cold start** (`plan.md`
+item 6e; in the garage, MFD in, no capture; Claude logged 032, 055 and 030
+before the start, then 001, 032 and 033 from the start to the end,
+`test/fixtures/vcds/vcds-step6e-*.csv`). Coolant 34.5 °C at the key,
+neutral, every load off. The event times below are the owner's messages,
+so a few seconds late; the steps in the log lead them.
+
+- **Before the start: fault memory empty, 032 −7.8 / +7.8 %**, 055
+  −0.96 g/s. 030 was read with the engine off, `000 000`, which says
+  nothing about the probe.
+- **N80 blown through towards the intake, engine off, the tank-side hose
+  off: it passes, "but really little"** (*owner*). By 6e's rule that is
+  a valve that does not seal.
+- **Started with a finger on N80's open port: no suction at all**, then
+  **the pulses came**, and **no liquid fuel** at the port or the hose
+  (*owner*); the hose went back on. So the leak blown in at rest is too
+  small for a finger to feel against the running intake's vacuum.
+- **The lambda regulation came on about 90 s after the start**, at 51 °C
+  of coolant, and **with the canister cut off by the finger sat at
+  −0.7 % on average** until the pulses — with 032's −7.8 still in force.
+  **So the engine wanted about 8 % less fuel at idle with nothing coming
+  through N80 at all**: the fuel behind the negative idle trim does not
+  come from the purge path, at least tonight (*reasoned*; that the ECU
+  applies the learnt idle value already at this temperature is
+  *general*, not shown for this ECU). The designed purge, once the hose
+  was back, showed no step either (about +0.2 % for the 80 s before the
+  regulator test).
+- **The regulator's hose off at the intake end, the tube closed, twice
+  for about 40 s**: the regulation went **to −8.6 and −10.2 % within
+  seconds**, averaging **−3.7 and −6.3 %** over each window while 032's
+  idle cell learnt part of the step away (−7.8 → −12.5 the first time);
+  **back on, +3 to +8.6 %** each time, settling near zero, the idle cell
+  back to −8.6. **The step of about 8 % the regulator owes its
+  reference, twice.** **No fuel at the hose's free end** either time
+  (*owner*).
+- **`IdleHealth` 120–140** off the display, cold, oil under 70 °C
+  (*owner*; the planned test read none) — as 6d's cold 123–131 (24/10);
+  not a new observation (*owner*).
+- **After: fault memory empty; 032 −8.6 / +7.8 %**, 055 −0.06 /
+  −1.16 g/s (`vcds-step6e-adaptations-032-055.csv`). **Nothing cleared.**
+
+**Not known to have achieved:** a source for the rich idle trim — it is
+neither N80 nor the regulator's reference; H17 and an injector are left
+(`open.md` H7, H17). Whether N80's small leak at rest is what floods S7's
+starts: the new valve (`plan.md` 6k) reads it.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail

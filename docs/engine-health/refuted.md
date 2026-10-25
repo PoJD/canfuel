@@ -700,6 +700,25 @@ is no evidence — but *which* adaptation turns the counting on is open,
 and "it follows 055's learned value" is the less certain half of this
 entry.
 
+### C20. "The fuel pressure regulator does not answer its vacuum reference, or leaks through its diaphragm" (`open.md` H7) — measured
+
+**Believed:** 25/10/2026, from 032's shape (low at idle, normal at part
+load) and VW's "fuel pressure too high", with the regulator's vacuum hose
+found cracked at its intake end.
+**Refuted by** `plan.md` 6e, 25/10/2026 night, on a cold start with the
+lambda regulation active (`idle-log.md`;
+`test/fixtures/vcds/vcds-step6e-cold-2-001-032-033.csv`): the hose off
+at the intake end, the tube closed, twice for about 40 s — **the
+regulation stepped to −8.6 and −10.2 % within seconds and back to +3 to
++8.6 % when it went on**, the roughly 8 % step a regulator owes its
+reference; **no fuel at the hose's free end** either time (*owner*),
+nor on the warm idle earlier that day.
+**What it does not refute:** the regulator's base pressure, the pump's
+non-return valve and the injectors — the rest of H7, which only a rail
+gauge reads.
+**What would revive it:** fuel or its smell at that hose, or a repeat with
+no step in the regulation.
+
 ---
 
 ## D. Symptoms closed

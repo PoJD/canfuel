@@ -367,7 +367,10 @@ those first seconds. **Against**: the crack is from about September and
 the starts were clean for a month until 24/10. Whether this ECU applies
 032's learnt idle value in open loop too, so that the clearing of 24/10
 night took away a correction the start relied on, is not known. **The
-new hose answers it** (`plan.md` 6e), read with 6h.
+new hose answers it**, read with 6h. **A second reading since 6e**
+(25/10 night): N80 passes a little air without power (H16), so vapour
+while standing is now a cause with a found part behind it; the new valve
+(`plan.md` 6k) reads it.
 
 **Read off the display**: `StartCrank` and `StartDip` on 0x604
 (`docs/firmware/frames.md`) for every cold start, failed or not. **The test**
@@ -686,10 +689,13 @@ hundred km without a disconnect.
   square root of the pressure across the injector). **That is the shape of
   this car's 032**, low at idle and normal at part load, and VW's "fuel
   pressure too high". Only a full blockage or a leak does it; a partly
-  blocked tube only slows the response. **Tests** (`plan.md` 6e): the
-  intake's tube and the hose blown through, engine off, then the hose off with 033
-  logged — the regulation should go about 8 % more negative within
-  seconds; **nothing moving** means the regulator never saw the vacuum.
+  blocked tube only slows the response. **Tested 25/10 night** (6e,
+  `idle-log.md`), cold, the hose off at the intake end twice: **the
+  regulation went to −8.6 and −10.2 % within seconds** and came back
+  when it went on, **no fuel at the hose** — the regulator answers its
+  reference and its diaphragm holds (`refuted.md` C20). **Not tested**:
+  its base pressure, the pump's non-return valve and the injectors, which
+  only a gauge reads.
 - **Found 25/10** (*owner*; `photos/fpr-vacuum-hose-2026-10-25-end.jpg`,
   `-side.jpg`): that hose's **intake end is breaking up** — on the photo
   the wall has come apart into layers with voids between them and a crack
@@ -714,7 +720,7 @@ hundred km without a disconnect.
   with the old hose pulled off**, so it may carry them (*the owner*,
   25/10; *reasoned*: a fraction of a point at 6i's relearning rate, and
   the open hose pushes both ways — `idle-log.md`). **Replaced the same evening** with
-  clips at both ends (`plan.md` 6e); 032 after some drives says the rest.
+  clips at both ends; 032 after some drives says the rest.
   **The first idle on the new hose, the same afternoon**: the live
   regulation **+6.5 % loads off for the first minute and a half**, and
   032's idle cell already **−4.7** from −8.6 — **the hose was carrying
@@ -723,7 +729,8 @@ hundred km without a disconnect.
   engine wanting about −5 % in all (idle cell plus regulation, an
   approximation) against about −2 % before — **about 3 points of fuel
   arriving on their own at a warm idle**, which fits the purge starting
-  (H16; *reasoned*) and is what 6e's closed hose reads (`idle-log.md`). `IdleHealth` loads off **about 90
+  (H16; *reasoned*) — left unmeasured by the owner's decision (25/10), and
+  6e's cold start showed no such step (`idle-log.md`). `IdleHealth` loads off **about 90
   at 80 °C of oil**, where it has sat before: the roughness is not shown to
   have gone with it (`idle-log.md`).
   **A drive later, the same evening (6j): 032 −7.8 / +6.3 %** — the idle
@@ -736,7 +743,12 @@ hundred km without a disconnect.
   roughly 8 % a fully open or blocked reference would give — and the −8.6
   was read with the old hose already off for a few seconds. **The hose
   was at most a small share of the extra fuel**; the rest comes from
-  elsewhere (H16, H17, or the regulator or an injector itself).
+  elsewhere (H16, H17, or the regulator or an injector itself). **Since
+  6e** (25/10 night) not H16 and not the regulator's reference: with the
+  canister cut off the regulation sat near zero on top of −7.8 (H16), and
+  the regulator answered its hose. Left: **H17, or an injector** — a
+  regulator holding a high base pressure would scale the fuel alike at
+  every load, not take it away at idle alone (*reasoned*).
 
 **Tests:** a rail pressure gauge (**not bought**, *owner's decision*, 10/10;
 VW's figures, if one is: 2.5 bar at idle, 3.0 with the regulator's hose
@@ -1042,12 +1054,21 @@ does not happen here**: the owner always stops at the first click
 6e): liquid fuel at the hose when the pulses come is what the variant
 leaves to look for.
 
-**Tests** (`plan.md` 6e, the owner's form of 25/10): engine off, a blow
-through N80 towards the intake must not pass; on a cold start, before the
-ECU purges, a finger on its tank-side port — **any suction is a leak**;
-then the pulses, and liquid fuel at the hose looked for. **Read:** air or
-suction → a new N80, and 032 read again after some drives; neither → H16
-to `refuted.md` on the seal test, and the fuel is looked for at H7 and H17.
+**Tested 25/10 night** (`plan.md` 6e, `idle-log.md`): engine off, a blow
+through N80 towards the intake **passed, "but really little"**
+(*owner*); on the cold start **no suction** at its tank-side port, then
+the pulses, **no liquid fuel**. **What it leaves:**
+
+- **Not the rich idle trim.** With the port closed by the finger the
+  canister had no way in, and the regulation still sat at −0.7 % on top
+  of 032's −7.8: the engine wanted the same fuel taken away with N80 out
+  of the circuit (*reasoned*; the learnt value applied cold is
+  *general*). The trim's first *For* above is answered against.
+- **The owner's slug variant: no liquid**, on a day after a fill.
+- **Still possible: S7 and S19.** A valve that passes air without power
+  passes vapour while the car stands, which no running test sees; the
+  leak is small, and whether it is enough to flood a start is what
+  replacing it reads (`plan.md` 6k).
 
 ### H17. Fuel in the oil, boiled off through the crankcase ventilation
 
@@ -1247,7 +1268,7 @@ is in git.
 | 9 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
 | 10 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason | flexed at a warm idle |
 | 11 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
-| 12 | **H16** the purge valve leaking | here for the rich idle trim and S19, not the idle: an even flow to all four cannot fail one firing in hundreds; a slug per pulse could, and 6e looks for liquid at the hose (H16) | the seal test, blown and on a cold start (`plan.md` 6e) |
+| 12 | **H16** the purge valve leaking | here for S7 and S19 only: an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest | a new N80 and the cold starts (`plan.md` 6k, 6h) |
 | 13 | **H17** fuel in the oil | VW's first cause for this car's 032; the oil level has not risen; here for the trim and S19's code, not the idle: roughest cold, when there is nothing to boil off | 032 on the new oil (`plan.md` 6g) |
 | 14 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 15 | **H12** driveline play | — | done: the clutch minutes cleared it |
@@ -1255,6 +1276,12 @@ is in git.
 **Re-read 25/10 with S7 reopened**: the order stands, since the ranking is
 for the idle and S7 is a start; S7 sits with S19 on H7 and H16, and H7's
 place at 2 is the firmer for it.
+
+**Re-read 25/10 night, after 6e**: the order stands. H7 loses its
+regulator's reference (`refuted.md` C20) and keeps the rail and the
+injectors, which is where its place at 2 came from; H16 keeps its place
+for the starts alone. **For the rich idle trim**, which this table does
+not rank, H17 and an injector are what is left (H7).
 
 **More than one at once** (*the owner's point*, 12/10): each repair may help
 only in part; a partial improvement is read as a share, not a miss.
