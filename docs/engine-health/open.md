@@ -1170,7 +1170,9 @@ only source is VW's own list.
   EPR also cleans the rings (H13), so a calmer warm idle after 6a would be
   H17 *or* H13; only 032 belongs to H17 alone.
 
-**Tests:** the dipstick, read 24/10 (above); **032 before the
+**Tests:** the dipstick, read 24/10 (above); **a laboratory analysis of
+the old oil with fuel dilution**, sampled hot before the first EPR
+(`plan.md` 6a) — the one test the level's balance cannot hide; **032 before the
 oil change and again on the new oil** after a couple of hundred km, with
 no clearing between unless 032 is read first. A trim that moves to zero
 on fresh oil is VW's own confirmation; one that stays points back at H16
