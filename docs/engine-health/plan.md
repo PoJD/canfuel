@@ -113,8 +113,11 @@ Claude runs the capture on every drive. **Current: item 6.**
    - **The oil sample, before any EPR.** Oil still at 90 °C, engine off.
      With a **clean** syringe and tube through the dipstick tube, about
      **100 ml into a clean bottle** from the laboratory's kit (or a new
-     one), closed and labelled with the date and the odometer. A used-oil
-     analysis **with fuel dilution**; the laboratory is the owner's choice.
+     one), closed and labelled with the date and the odometer; the first
+     few ml out of the syringe go to waste, not into the bottle. **Kept
+     closed, dry and dark; not sent yet** — Claude says after 6g's 032
+     whether it goes (a used-oil analysis **with fuel dilution**; the
+     laboratory is the owner's choice).
    - **First flush.** Oil still at 90 °C. Check the dipstick: **at the upper mark, take out about 0.3 l**
      with a syringe through the dipstick tube first (the sample counts towards it). One can of EPR into
      the oil. Hold **1,200–1,300 rpm** with a stick on the
@@ -515,7 +518,13 @@ it, gas chromatography or flash point, is theirs to say). The 44K does
 not matter: what reaches the oil from the fuel carries it either way, at
 a fraction of the dose. **Hot, after a drive**, because that is the oil as
 it is mixed and as the engine sees it; the hot oil has also boiled off
-some fuel, so the figure is a lower bound (*general*). **Read**: a
+some fuel, so the figure is a lower bound (*general*). **Taken always,
+sent only if 032 does not settle it** (*the owner's decision*, 25/10):
+032 on the new oil answers for free, but not in two cases — **unchanged**
+while fuel still reaches the oil and refills the new oil within the few
+hundred km before the reading, and **back to zero** where EPR freeing the
+rings cut the blow-by rather than the old oil carrying fuel (H13). A
+sealed bottle keeps for weeks (*general*). **Read**: a
 dilution of a few per cent or more → H17 stands, whatever 032 does next;
 none → H17 to `refuted.md`, and the rich idle trim is the injectors' or
 the MAF's (H7).
