@@ -156,7 +156,7 @@ Claude runs the capture on every drive. **Current: item 6.**
    - **The regulator's vacuum hose renewed**: 4 mm inside, a hose sold
      for vacuum **and fuel vapour** (plain silicone swells in fuel), **a
      clip at both ends**. If the laptop can be in the car before it goes
-     on: Claude reads 032 first. Photograph the old one's split end.
+     on: Claude reads 032 first.
      Before fitting, **blow into the intake's tube**: it must pass freely.
    - ***If a reducer fits the MAR-POL gauge to that thin hose*:** the
      hose off **at the regulator**, the gauge on its end, warm idle:

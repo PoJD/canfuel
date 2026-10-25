@@ -598,7 +598,10 @@ hundred km without a disconnect.
   intake's tube and the hose blown through, engine off, then the hose off with 033
   logged — the regulation should go about 8 % more negative within
   seconds; **nothing moving** means the regulator never saw the vacuum.
-- **Found 25/10** (*owner*): that hose's **intake end is split**, after
+- **Found 25/10** (*owner*; `photos/fpr-vacuum-hose-2026-10-25-end.jpg`,
+  `-side.jpg`): that hose's **intake end is breaking up** — on the photo
+  the wall has come apart into layers with voids between them and a crack
+  runs from the bore outwards *(this said "split" until the photo)*, after
   the many times it came off with the intake work, **no clip on it since
   6/2026**, and **left off at least once** when the intake went back
   (when, not known). It blows through freely. **A split at the joint
