@@ -947,6 +947,18 @@ only source is VW's own list.
   rings or stuck ring lands (H13) let more of all of it by. This car has
   the first two in quantity: long cold idles for the captures, and 014
   counting at them.
+- **The owner's loop** (25/10): whatever first made it misfire — the old
+  probe, plugs, leads, coil, injectors — put fuel in the oil, and the fuel
+  coming back through the breather now keeps combustion poor, so the fault
+  outlives every part that started it. **What it predicts after the flush
+  and fresh oil (`plan.md` 6a): 032's idle cell near zero, and the *warm*
+  idle calmer** — warm, because the fuel boils off only from hot oil; the
+  cold idle should not move. **Against it**: the oil level has not risen;
+  the change of 6/2026 moved nothing he noticed; compression is 12 bar on
+  all four (`refuted.md` A4), so the rings seal; and a trim of a few per
+  cent is what is left to act on. ⚠ **The flush cannot name it alone**:
+  EPR also cleans the rings (H13), so a calmer warm idle after 6a would be
+  H17 *or* H13; only 032 belongs to H17 alone.
 
 **Tests:** the dipstick, read 24/10 (above); **032 before the
 oil change and again on the new oil** after a couple of hundred km, with

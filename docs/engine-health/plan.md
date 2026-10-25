@@ -741,7 +741,11 @@ test costs one reading either side. (The dipstick part is done: 24/10,
 the level unchanged since the last top-up, `idle-log.md`.) **Read**: 032's idle
 cell close to zero on the new oil → H17 confirmed and the cold idles of
 the captures were feeding it — fewer and shorter standing cold idles
-from then on; unchanged → H16 and H7 carry the trim. EPR in the flush
+from then on; unchanged → H16 and H7 carry the trim. **`IdleHealth`
+beside it, cold and warm apart** (the owner's loop, `open.md` H17): fuel
+boils off only from hot oil, so H17 predicts the warm idle calmer and the
+cold one unchanged; a calmer warm idle with 032 unmoved is EPR on the
+rings (H13), not H17. EPR in the flush
 (6a) does not spoil the comparison: it is drained with the old oil.
 
 **Item 7 — the exhaust ahead of the front probe (H2), warm.** A leak that
