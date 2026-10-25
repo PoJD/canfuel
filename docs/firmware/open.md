@@ -187,6 +187,42 @@ Not yet read into a decision: whether the grade wants a scale or an
 anchor from these is a change to `src/` and its tests, and is its own
 piece of work.
 
+### Re-read in stretches, 25/10/2026
+
+*The owner's question:* from the seat, when no jerk is felt 014 mostly
+counts nothing — is there an `IdleHealth` below which 014 is silent (his
+guess 45–50)? `tools/s3align.py --windows` (`--window-s 30` as well),
+now with `40` and `39` paired and 014's own load field read, over
+stretches of continuous standing idle rather than whole stops, oil ≥ 85 °C,
+**`18` and `19` left out** (the old MAF, `docs/engine-health/refuted.md`
+A11; `19` also came a day after a battery disconnect):
+
+- **No threshold at an ordinary load.** Since the battery stayed
+  connected (4/10, captures `30`–`40`), stretches below 55 still count:
+  10 % of the 30 s ones silent, 36 % of samples non-zero.
+- **What looked like one is the load.** Every warm stretch silent at
+  `IdleHealth` 32–43 is loads on on `40`, 014's load 32–37 % against
+  23–27 % ordinarily. The load alone lowers the grade and stops 014
+  counting, so mixed in it reads as a threshold.
+- **On fresh adaptations it did behave so** (24/9–4/10, `24`–`29`):
+  Spearman rises vs `IdleHealth` **+0.69** (30 s) / **+0.91** (60 s), and
+  44 % of the 55–70 stretches silent. That is the C19 state — whether 014
+  counts at all follows the learned idle air — and likely where the
+  owner's sense of it comes from.
+- **On settled adaptations a plateau, then a knee about 80**: +0.30 /
+  +0.34; 4.5–5.9 rises a minute and 36–50 % of samples non-zero anywhere
+  from below 55 to 80, then 8.7 and 11 above 80 and 100.
+- **The deep dips do not lead.** In the first pass of these stretches
+  (*ad hoc*, not kept) the count of dips of 30 rpm and more a minute
+  correlated with 014's rises at +0.04, of 20 rpm and more at +0.32,
+  `IdleHealth` at +0.46: how often 014 counts follows the idle's overall
+  restlessness more than its deepest dips.
+
+So the table above's "nothing even close" was the old MAF and the cold
+stops mixed in. **The decision of 4/10 stands**: on settled adaptations
+`IdleHealth` below 80 says little about 014, and 014 below 80 little
+about the grade.
+
 ### How it closes
 
 When the deliberate-misfire test has been run and read: `IdleHealth`

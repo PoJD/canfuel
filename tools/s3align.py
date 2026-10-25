@@ -29,10 +29,14 @@ default        per capture: the share of rises with a dip in the
                `NEAR_S` before them, against the share of other samples
                (one-sided binomial p); and the share of dips followed by a
                rise within `NEAR_S`, against random idle moments.
-``--windows``  `WINDOW_S` stretches of continuous active idle: rises a
-               minute, dips a minute and `IdleHealth` (`idledips
-               --roughness` x 50), with Spearman's rank correlation
-               between each pair.
+``--windows``  `WINDOW_S` stretches of continuous active idle (or
+               ``--window-s``): rises a minute, dips a minute and
+               `IdleHealth` (`idledips --roughness` x 50), with Spearman's
+               rank correlation between each pair; then, warm and on the
+               new MAF, by `IdleHealth` band in three groups -- fresh
+               adaptations (`FRESH`), settled ones, and loads on (014's
+               load above `LOAD_PCT`), which have to be read apart
+               (docs/firmware/open.md 11, *Re-read in stretches*).
 """
 import argparse
 import bisect
@@ -75,13 +79,31 @@ PAIRS = (
     ("35_item5_drive_z1.txt", ("vcds-item5-drive-014-001-003-1.csv",)),
     ("36_item5_drive2_z1.txt", ("vcds-item5-drive-014-001-003-2.csv",)),
     ("37_item5_drive3_z1.txt", ("vcds-item5-drive3-014-001-003.csv",)),
+    ("39_drive_home_z1.txt", ("vcds-drive-home-014-001-003-1.csv",
+                              "vcds-drive-home-014-001-003-2.csv")),
+    ("40_refit_drive_z1.txt", ("vcds-step6b-drive-014-001-003.csv",
+                               "vcds-step6b-drive-014-020-003.csv",
+                               "vcds-step6b-drive-2-014-001-003.csv")),
 )
+
+#: Before the MAF of 24/9: 014 measured with another ruler (refuted.md A11),
+#: so --windows leaves these out of its tables.
+OLD_MAF = ("18_coldstart_z1.txt", "19_postfix_drive_z1.txt")
+#: On fresh adaptations -- the battery was disconnected repeatedly until the
+#: morning of 4/10 and has stayed connected since (vehicle-history.md). The
+#: learned idle air decides whether 014 counts at all (refuted.md C19), so
+#: --windows reads these apart from the captures since.
+FRESH = ("24_mafswap_drive_z1.txt", "25_sessionA_cold_z1.txt",
+         "26_sessionA_warm_z1.txt", "27_sessionA2_cold_z1.txt",
+         "28_sessionA2_warm_z1.txt", "29_sessionB_z1.txt")
 
 DIP_RPM = 20.0     #: the dip threshold S1's tables use
 NEAR_S = 1.5       #: the lag window --lag finds: 0-1.5 s from dip to rise
 WINDOW_S = 60.0    #: --windows stretch length
 CUT_PAD_S = 5.0    #: margin around an injector cut
 MAX_GAP_S = 2.5    #: two 014 samples further apart are not one interval
+LOAD_PCT = 28.0    #: --windows: above this mean 014 load a stretch is loads on
+OIL_C = 85.0       #: --windows: the bands table reads warm stretches only
 
 
 def _at(pairs, keys, t, default=None):
@@ -90,7 +112,8 @@ def _at(pairs, keys, t, default=None):
 
 
 def load(dip_rpm=DIP_RPM):
-    """[(capture, intervals, dips, gated)]: intervals are (t0, t1, rose, oil)."""
+    """[(capture, intervals, dips, gated)]: intervals are
+    (t0, t1, rose, oil, load %, count)."""
     out = []
     for cap, logs in PAIRS:
         rpm, oil, _, gated = idledips.series(os.path.join(FIX, cap))
@@ -107,15 +130,16 @@ def load(dip_rpm=DIP_RPM):
             pts = []
             for t, f in g:
                 try:
-                    pts.append((t, float(f[0]), int(float(f[2])), f[3]))
+                    pts.append((t, float(f[0]), int(float(f[2])), f[3],
+                                float(f[1])))
                 except (ValueError, IndexError):
                     continue
             try:
-                off = cutscan.align([(t, r) for t, r, _, _ in pts], rpm)
+                off = cutscan.align([(t, r) for t, r, *_ in pts], rpm)
             except SystemExit as e:
                 print("%s + %s: skipped, %s" % (cap, lg, e), file=sys.stderr)
                 continue
-            for (t0, r0, m0, s0), (t1, r1, m1, s1) in zip(pts, pts[1:]):
+            for (t0, r0, m0, s0, _), (t1, r1, m1, s1, l1) in zip(pts, pts[1:]):
                 a, b = t0 + off, t1 + off
                 if not (600 <= r0 <= 1000 and 600 <= r1 <= 1000):
                     continue
@@ -128,7 +152,7 @@ def load(dip_rpm=DIP_RPM):
                 if any(x - CUT_PAD_S <= t <= y + CUT_PAD_S
                        for x, y in cuts for t in (a, b)):
                     continue
-                iv.append((a, b, m1 > m0, _at(oil, ot, b)))
+                iv.append((a, b, m1 > m0, _at(oil, ot, b), l1, m1))
         iv.sort()
         out.append((cap, iv, dips, gated))
     return out
@@ -150,7 +174,7 @@ def lag_table(data):
     hist = {True: [0] * len(bins), False: [0] * len(bins)}
     n = {True: 0, False: 0}
     for _, iv, dips, _ in data:
-        for a, b, rose, _ in iv:
+        for a, b, rose, *_ in iv:
             n[rose] += 1
             i = bisect.bisect_left(dips, b - 8)
             while i < len(dips) and dips[i] <= b + 6:
@@ -175,11 +199,11 @@ def timing_table(data, seed=1):
     for cap, iv, dips, _ in data:
         if not iv:
             continue
-        rises = [b for a, b, r, _ in iv if r]
-        others = [b for a, b, r, _ in iv if not r]
+        rises = [b for a, b, r, *_ in iv if r]
+        others = [b for a, b, r, *_ in iv if not r]
         k = sum(_dip_before(dips, b) for b in rises)
         q = sum(_dip_before(dips, b) for b in others)
-        ends = [b for _, b, _, _ in iv]
+        ends = [b for _, b, *_ in iv]
 
         def rise_after(t):
             i = bisect.bisect_right(ends, t)
@@ -196,7 +220,7 @@ def timing_table(data, seed=1):
         cd = [d for d in dips if covered(d)]
         f = sum(rise_after(d) for d in cd)
         base = sum(rise_after(rnd.uniform(a, b))
-                   for a, b, _, _ in (rnd.choice(iv) for _ in range(5000))) / 5000
+                   for a, b, *_ in (rnd.choice(iv) for _ in range(5000))) / 5000
         pq = q / len(others) if others else 0.0
         p = binom_tail(k, len(rises), pq) if rises else float("nan")
         print("%-4s %6d %8d (%3.0f%%) %8d (%3.0f%%) %8.1e %6d %8d (%3.0f%%) %6.0f%%" % (
@@ -232,7 +256,7 @@ def spearman(a, b):
     return num / den if den else float("nan")
 
 
-def windows(data):
+def windows(data, window_s=WINDOW_S):
     rows = []
     for cap, iv, dips, gated in data:
         cur = []
@@ -241,22 +265,24 @@ def windows(data):
             if not cur:
                 return
             a, b = cur[0][0], cur[-1][1]
-            if b - a < WINDOW_S - 10:
+            if b - a < window_s - 10:
                 return
             g = idledips.roughness(gated, a, b)[0]
             if g is None:
                 return
             nd = bisect.bisect_left(dips, b) - bisect.bisect_left(dips, a)
             rows.append((cap[:2], 60 * sum(x[2] for x in cur) / (b - a),
-                         60 * nd / (b - a), 50 * g, cur[-1][3]))
+                         60 * nd / (b - a), 50 * g, cur[-1][3],
+                         sum(x[4] for x in cur) / len(cur),
+                         sum(x[5] > 0 for x in cur) / len(cur), cap))
 
         for x in iv:
-            if cur and (x[0] - cur[-1][1] > 1.0 or x[1] - cur[0][0] > WINDOW_S):
+            if cur and (x[0] - cur[-1][1] > 1.0 or x[1] - cur[0][0] > window_s):
                 flush()
                 cur = []
             cur.append(x)
         flush()
-    print("%d stretches of %.0f s of active standing idle" % (len(rows), WINDOW_S))
+    print("%d stretches of %.0f s of active standing idle" % (len(rows), window_s))
     for name, i, j in (("rises/min vs IdleHealth", 1, 3),
                        ("rises/min vs dips/min", 1, 2),
                        ("dips/min vs IdleHealth", 2, 3)):
@@ -269,6 +295,30 @@ def windows(data):
             sel.sort()
             print("  oil >= 90 C, %-12s n=%3d  IdleHealth median %3.0f, %3.0f-%3.0f" % (
                 label, len(sel), sel[len(sel) // 2], sel[0], sel[-1]))
+    # By IdleHealth band, the old MAF and the cold left out, loads on apart:
+    # the load alone both lowers the grade and stops 014 counting, so mixed
+    # in it reads as a threshold of the grade.
+    use = [r for r in rows if r[7] not in OLD_MAF
+           and r[4] is not None and r[4] >= OIL_C]
+    for label, sel in (
+            ("fresh adaptations, to 4/10",
+             [r for r in use if r[7] in FRESH and r[5] <= LOAD_PCT]),
+            ("settled adaptations, since 4/10",
+             [r for r in use if r[7] not in FRESH and r[5] <= LOAD_PCT]),
+            ("loads on, load > %.0f %%" % LOAD_PCT,
+             [r for r in use if r[5] > LOAD_PCT])):
+        if len(sel) < 4:
+            continue
+        print("oil >= %.0f C, %s: %d stretches, Spearman rises vs IdleHealth %.2f" % (
+            OIL_C, label, len(sel), spearman([r[1] for r in sel], [r[3] for r in sel])))
+        print("  IdleHealth    n  silent  samples counting  rises/min")
+        for lo, hi in ((0, 55), (55, 70), (70, 80), (80, 100), (100, 999)):
+            b = [r for r in sel if lo <= r[3] < hi]
+            if b:
+                print("  %3d-%-4d %6d %6.0f%% %12.0f%% %12.2f" % (
+                    lo, hi, len(b), 100 * sum(r[1] == 0 for r in b) / len(b),
+                    100 * sum(r[6] for r in b) / len(b),
+                    sum(r[1] for r in b) / len(b)))
 
 
 def main(argv=None):
@@ -276,12 +326,13 @@ def main(argv=None):
     ap.add_argument("--lag", action="store_true")
     ap.add_argument("--windows", action="store_true")
     ap.add_argument("--dip-rpm", type=float, default=DIP_RPM)
+    ap.add_argument("--window-s", type=float, default=WINDOW_S)
     args = ap.parse_args(argv)
     data = load(args.dip_rpm)
     if args.lag:
         lag_table(data)
     elif args.windows:
-        windows(data)
+        windows(data, args.window_s)
     else:
         timing_table(data)
 

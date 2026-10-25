@@ -101,6 +101,9 @@ shown by VCDS, whose 40 rpm steps put the stretches with 014 counting and
 without at the same 760–800 (`idle-log.md`); a capture's quarter-rpm
 0x280 would show it. It sits beside *What comes before a dip*: a dip
 follows the idle overshooting a little.
+**By feel, 25/10** (*owner*): the idle felt calmer all day, on the new
+regulator hose and the second 44K tank; he says so himself before the
+data. 6j's 014 agrees in kind: its episodes stayed at 12 (below).
 
 **How it is measured.** `IdleHealth` on 0x604 grades one firing against the
 next (100 = the engine before the repair, lower is smoother). Offline,
@@ -286,6 +289,26 @@ completing rather than load (`refuted.md` C19).
   96 °C of oil in the everyday state, it counted at 12 ten times in
   4.7 minutes, 24 and 36 near the end**, and 0 through a 34 s stop at a
   light (`idle-log.md`). The hose did not fix S3.
+- **How far an episode climbs** (25/10): the counter's floor is 12, so
+  how often it counts says less than whether an episode stops at 12 or
+  climbs to 24, 36 and more. Warm idles, coolant ≥ 88 °C: **6j 2 of 16
+  episodes climbed (12 %)**, 6i 2 of 9; 12/10 25 of 47, 15/10 10 of 31
+  and 12 of 41, 18/10 24 of 37, 21/10 8 of 20. 6j against the four
+  before the hose, pooled: one-sided p ≈ 0.06, episodes of one stop not
+  independent, and 6j in the everyday state. **How often it counts did
+  not change** — about two episodes a minute, as 15/10 and 21/10. The
+  hose and the second 44K tank (24/10) cannot be told apart here.
+- **014 against `IdleHealth`, re-read in stretches** (25/10,
+  `tools/s3align.py --windows`; `docs/firmware/open.md` 11, *Re-read in
+  stretches*): **no `IdleHealth` below which 014 is silent at an
+  ordinary load** on settled adaptations — a plateau to about 80, more
+  above. On fresh adaptations (to 4/10) it did fall silent below about
+  70, and loads on (014's load above 28 %) silence it at any grade.
+- **The clearing of 24/10 reset 032 to 0.0 / 0.0 and left 055 at −1.31
+  g/s** (`idle-log.md`), read once: on this ECU the clearing did not
+  restart the learned idle air that C19 ties 014 to, so 6i and 6j count
+  on settled idle air. Whether it restarts the crank-wheel adaptation is
+  not known (`vcds.md`).
 
 ### S4. Knock retard on cylinder 4, and only cylinder 4
 
