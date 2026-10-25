@@ -146,9 +146,16 @@ Claude runs the capture on every drive. **Current: item 6.**
      lets you, at the connector), then over the valve cover above cylinder
      1, 2, 3, 4. **Between places, one knock with a knuckle on the inner
      wing.** Upload the recording.
-6e. **The purge valve N80, at a warm idle** (oil 80 °C or above), any day;
-   **best straight after filling the tank full**. With VCDS. Keep clear
-   of the belt and the fan.
+6e. **The purge valve, off the display — now, on any drive with the MFD
+   in.** Oil 95–100 °C, neutral, handbrake on, **every load off**; keep
+   clear of the belt and the fan. **Do not unplug N80.**
+   - 2 minutes free: write the `IdleHealth` level and the lowest.
+   - Pinch the hose **between N80 and the intake** through a rag with
+     pliers, 2 minutes: write the level and the lowest.
+   - Three times. Then the hose free.
+6f. **The purge valve, at the next session with VCDS** (oil 80 °C or above;
+   best straight after filling the tank full). Keep clear of the belt and
+   the fan.
    - **First**, before anything is unplugged: Claude reads the fault
      memory, 032 and 055.
    - **The seal test**: the connector off N80; the hose off N80 on the
@@ -156,11 +163,9 @@ Claude runs the capture on every drive. **Current: item 6.**
      into the chat: **suction or none**.
    - The connector back on, the finger still there, up to 2 minutes:
      write whether **pulsing suction** comes. The hose back on.
-   - **The pinch**: Claude runs the capture (MFD out) and logs 001. Loads
-     off, nothing else touched. Pinch the hose **between N80 and the
-     intake** through a rag with pliers, **2 minutes**; release, 2
-     minutes; three times. Say **"pinched"** and **"released"** each
-     time.
+   - **The pinch**: Claude logs 001. Loads off, nothing else touched. Pinch
+     the hose as in 6e, 2 minutes; release, 2 minutes; three times. Say
+     **"pinched"** and **"released"** each time.
    - At the end Claude reads the fault memory again; then clear it by
      hand.
    - **Only if there was suction**: N80 off the car; blow through it with
@@ -686,8 +691,8 @@ dropped 24/10 (below).*
   for air going in, warm and running. **Non-chlorinated**, because a
   chlorinated cleaner burnt in the cylinder makes phosgene (*general*).
 
-**Item 6e — the purge valve** (`open.md` H16; *the owner's request*,
-24/10/2026). Independent of the order of 6–6c; it needs only a warm idle.
+**Items 6e and 6f — the purge valve** (`open.md` H16; *the owner's
+request*, 24/10/2026). Independent of the order of 6–6c; it needs only a warm idle.
 It asks where the fuel behind the negative idle trim comes from, and
 whether S19 (P0172 and the start that died after standing) has a cause
 cheaper to test than a rail gauge (H7). **The fault memory, 032 and 055
@@ -697,23 +702,28 @@ it resets 032 (`CLAUDE.md`).
   no power the valve must be shut, and at a warm idle the intake vacuum
   stands behind it, so **any suction at the canister-side port is a
   leak**. The pulses after the connector goes back show it still opens.
-- **The pinch** asks how much fuel the purge brings when it works as
+- **6e first, off the display** (*the owner*, 25/10: captures kept to a
+  minimum, since the MFD twice lost the bus on 24/10 and each fix was
+  plug C pulled and cleaned, which he does not want to repeat). **The
+  hose is pinched, not N80 unplugged**: an unplugged valve stops only the
+  pulses the ECU commands, while a valve that leaks keeps passing; the
+  pinch stops both. And the unplugged connector would store a fault that
+  stays until a VCDS session, where clearing it resets 032. **Read**:
+  `IdleHealth` lower in every pinched window than in the free windows
+  beside it → the purge feeds the dips (the owner's variant, `open.md`
+  H16), and 6f follows soon; no difference → the purge does not make the
+  idle, and 6f is only about the trim and S19. `IdleHealth` needs half a
+  minute to settle, so two minutes and not one.
+- **The pinch** (6f) asks how much fuel the purge brings when it works as
   designed. A full fill loads the canister, so right after one is when a
   flow shows if there is one (*general*). Read the lambda control in 001
   against the spoken marks: **rising while pinched** means the ECU had to
   add the fuel the purge had been bringing; the size of the step is the
   purge's share. Nothing moving on a full tank means the purge brings
   little. The ECU does not purge all the time, so three pinches and not
-  one. **The capture is read for the dips too** (*the owner's variant*,
-  24/10: a slug of fuel per pulse from a flooded canister, `open.md`
-  H16): dips a minute and `IdleHealth` over the pinched minutes against
-  the released ones, by `tools/idledips.py`. Two minutes each because
-  `IdleHealth` needs half a minute to settle and a minute holds only a
-  dozen or two dips; even so, three pairs show only a large difference.
+  one.
 - **Read:** suction → a new N80, then 032 again after a few drives and
-  whether S19 comes back; the idle only if the pinch moved the dips.
-  **Fewer dips in every pinched window** → the purge feeds the idle
-  itself, and H16 moves up the ranking with S1 fitting.
+  whether S19 comes back; the idle only if 6e moved it.
   No suction and no step → H16 to `refuted.md`, and the fuel is looked for
   at H7. No suction but a large step → the valve is sound and the canister
   is very loaded: whether the tank is filled past the first click
