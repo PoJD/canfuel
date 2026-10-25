@@ -185,6 +185,18 @@ Claude runs the capture on every drive. **Current: item 6.**
    - At the last VCDS session **before** the oil change (6a): 032 read,
      as always before anything is cleared.
    - After about 200 km on the new oil: 032 again.
+6i. **Tonight, 25/10: a warm idle on the new regulator hose**, in the
+   garage, **the door wide open**; MFD in, **no capture**; Claude drives
+   VCDS from the laptop session.
+   - First, engine off: **the new hose's two cut ends** looked at once
+     more — a crack in a cut means cut again.
+   - Idle until the oil reads **90 °C**. Claude logs **001, 014, 033** from
+     the start to the end.
+   - Then **2 minutes every load off**, then **2 minutes every load on**
+     (the standing items). Write `IdleHealth` for each: where it sat and
+     the lowest. Say when each state starts.
+   - Still idling, Claude reads **032 and 055** for 20 s, then the fault
+     memory. **Nothing is cleared tonight.**
 6h. **Every cold start, until S7 is placed.** Before turning the key,
    nothing else. Write into the chat: date, how long parked, the outside
    temperature, **caught and died, or ran**, and `StartCrank` and
@@ -800,6 +812,18 @@ boils off only from hot oil, so H17 predicts the warm idle calmer and the
 cold one unchanged; a calmer warm idle with 032 unmoved is EPR on the
 rings (H13), not H17. EPR in the flush
 (6a) does not spoil the comparison: it is drained with the old oil.
+
+**Item 6i — the warm idle on the new hose** (*owner's decision*, 25/10).
+032 holds **−8.6 %** learnt on the cracked hose; with the extra fuel gone
+the ECU now has to give it back, so **the live lambda regulation (001
+field 3, 033 field 1) should sit positive**, by up to the learnt value,
+until the adaptation relearns (*reasoned*). That is the hose's effect
+read directly, the same evening, without waiting for drives. **About
+zero** says the hose was not the fuel. `IdleHealth` in both states is the
+first figure on the new hose, oil 90 °C and not the usual 95–100, so it
+compares only loosely. **No clearing**: 032 after some drives is the
+reading 6e waits for, and the clearing resets it. No capture, because
+the MFD and the USBtin are one or the other and the display is read.
 
 **Item 6h — the cold start** (`open.md` S7, reopened 25/10). The priming
 asks one question: **did the rail lose its pressure while standing?** With
