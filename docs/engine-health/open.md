@@ -65,14 +65,15 @@ routine, S15 the sputter, S18 cylinder 3 out with a tick (24/10); H9 (crankcase 
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm).
 
-**Ranked (24/10, after the cold capture with one cut):** **H14, H7, H13, H1,
+**Ranked (25/10 night, after 6e):** **H14, H13, H1, H7,
 H2**, then H0, H8, H3, H15, H4, the timing belt, H16, H17, H11, H12 (*The idle's
 candidates, ranked*). **The dips are on all four alike on both captures since
 the VW leads** (`40`, `41`; *The dips keep to one slot*), while the warm idle
 graded no better than the best days on the NGK set: the leads took away 3 and
 4's excess, not the roughness. So what acts on all four leads, and what acts
-on one or two (H3, H15, H4) goes down. H7 rises on S19 alone. H16 enters
-low: it is there for the rich trim and S19, not for the idle.
+on one or two (H3, H15, H4) goes down. **H7 goes down after 6e**: its
+regulator answers, and one injector cannot spread the dips over four.
+H16 stays low, for S7 and S19 only.
 
 **Next** (`plan.md`): the VW leads `06A 905 409 L` and plugs
 `101 000 033 AA` on 21/10, **the only change on the car**; the first drive
@@ -1264,9 +1265,9 @@ is in git.
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | 1 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show; **first since 24/10: the dips on all four alike on `40` and `41`**, the picture it predicts | the files, then the original map (3/11) |
-| 2 | **H7** fuel delivery | never gauged; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge, an injector swap |
-| 3 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | the second 44K tank (`plan.md` 6a), driving |
-| 4 | **H1** valve or lifter | 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back | the phone recording over each lifter (`plan.md` 6c); the EPR flushes (6a) |
+| 2 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | the second 44K tank (`plan.md` 6a), driving |
+| 3 | **H1** valve or lifter | 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back | the phone recording over each lifter (`plan.md` 6c); the EPR flushes (6a) |
+| 4 | **H7** fuel delivery | never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge, an injector swap |
 | 5 | **H2** a leak ahead of the probe | S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test |
 | 6 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
 | 7 | **H8** throttle and idle control | new since 2/10; all four | — |
@@ -1283,10 +1284,14 @@ is in git.
 for the idle and S7 is a start; S7 sits with S19 on H7 and H16, and H7's
 place at 2 is the firmer for it.
 
-**Re-read 25/10 night, after 6e**: the order stands. H7 loses its
-regulator's reference (`refuted.md` C20) and keeps the rail and the
-injectors, which is where its place at 2 came from; H16 keeps its place
-for the starts alone. **For the rich idle trim**, which this table does
+**Re-read 25/10 night, after 6e** (*agreed with the owner*): **H7 from 2
+to 4**, below H13 and H1. Its regulator answers its reference
+(`refuted.md` C20); a high base pressure would take fuel away at every
+load alike, against 032's positive part load (*reasoned*); and one bad
+injector would put the dips on its cylinder, while since the VW leads
+they sit on all four alike. What is left of H7 — the rail's holding
+pressure, a dripping injector — is mostly for S7 and S19. H16 keeps its
+place for the starts alone. **For the rich idle trim**, which this table does
 not rank, H17 and an injector are what is left (H7).
 
 **More than one at once** (*the owner's point*, 12/10): each repair may help
