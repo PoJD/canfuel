@@ -159,6 +159,9 @@ Claude runs the capture on every drive. **Current: item 6.**
      piece of clean hose): it must pass freely. Then blow through the
      hose itself, off the regulator too. Write: **free, stiff, or
      blocked**, for each, and any fuel smell. Hose back on.
+   - ***If a reducer fits the MAR-POL gauge to that thin hose*:** the
+     hose off **at the regulator** instead, the gauge on its end, warm
+     idle: write the vacuum it reads. Hose back on.
 6f. **The purge valve, at the next session with VCDS** (oil 80 °C or above;
    best straight after filling the tank full). Keep clear of the belt and
    the fan.
@@ -724,7 +727,14 @@ so a clear tube passes breath freely; a stiff or blocked one says the
 regulator has been at the no-vacuum pressure all along — clean it, then
 032 after some drives. It needs no running engine, so no belt and no
 leak to manage. A small crumb blown inwards is drawn into the engine and
-burnt (*general*). **`IdleHealth` with the hose off is not read**: the
+burnt (*general*). **The gauge on the hose's regulator end** is the
+better form of the same test, from the owner's Haynes page (25/10; the
+New Beetle manual, *All models except 2.0L BGD and BEV*, which is the
+AQY): at idle the hose must carry the intake's vacuum, Haynes says 12–14
+inHg, here about 18–19 at the tee (`idle-log.md`, 14/10). It reads the
+whole path, a cracked hose included, where blowing finds only a blockage.
+On 14/10 the gauge would not go on that hose, too narrow, so it waits on
+a reducer. **`IdleHealth` with the hose off is not read**: the
 lambda loop takes the extra fuel out within seconds, so the idle would
 show nothing about it. **6f, with 033**: the loop shows instead what the
 idle would not — the regulation going about 8 % more negative when the hose
