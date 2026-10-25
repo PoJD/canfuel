@@ -660,7 +660,9 @@ hundred km without a disconnect.
 
 - **Against:** four new injectors and a new filter changed nothing in S1; the
   trims near zero; full-load pulls reach ~85 kW, where a weak pump shows first;
-  the regulator (7/2026, 3 bar) dry at its hose; injector tips clean on the
+  the regulator (6/2026, 3 bar) dry at its hose, **no fuel and no smell at
+  the hose's end when it came off on 25/10** (*owner*) — against a leaking
+  diaphragm, not against one that does not answer its reference; injector tips clean on the
   borescope (19–20/10).
 - **A plug washed clean by fuel** (a forum extract on the AEG/AQY, 20/10:
   *"#3 was much cleaner … replaced #3 injector as it was washing that plug"*):

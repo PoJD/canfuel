@@ -102,7 +102,9 @@ compares with nothing.
   cylinders** at first, on fuel about three years old (`refuted.md` A14);
   gone with fresh fuel. Which cylinder is not known. Throttle body
   inspected: clean.
-- **7/2026** — new fuel pressure regulator; MAF connector cleaned.
+- **6/2026** — new fuel pressure regulator (*owner*, 25/10/2026; *this
+  said 7/2026 until then*).
+- **7/2026** — MAF connector cleaned.
 - **Summer 2026** — heater replaced; **battery off more than a week**, every
   adaptation restarted. A secondary-air hose torn off in the work (P0411,
   11/8) and refitted.
@@ -834,7 +836,8 @@ Priming on alternate mornings, `StartCrank` and `StartDip` off the display
 **25/10/2026, evening — the regulator's vacuum hose renewed** (*owner*;
 `open.md` H7; `plan.md` 6e). About 10 km on the cracked hose since the
 clearing of 24/10. At a running idle the old hose pulled off for **a few
-seconds**: **vacuum on the intake's side**, and `IdleHealth` **70 → about
+seconds**: **vacuum on the intake's side**, **no fuel at the hose's
+regulator end and no smell of it** (*owner*, 25/10), and `IdleHealth` **70 → about
 120 at once** — with the hose open, so a vacuum leak and the regulator at
 full pressure together, and no reading of either alone. **Then**, engine
 off: **fault memory empty; 032 −8.6 / +3.9 %**, the most negative idle
