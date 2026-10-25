@@ -933,8 +933,20 @@ only source is VW's own list.
   by about the trim, a few per cent (*reasoned*). A cylinder at the edge
   of stable combustion (S1, *Load smooths it*) could be tipped by that.
   **Against it**: the idle is roughest cold, when there is little to boil
-  off, and it was rough for years, through oil changes. The same holds
-  for H16's vapour.
+  off, and it was rough for years, through oil changes. **The change of
+  6/2026**, three-year-old black oil out, **brought nothing the owner
+  noticed in the idle** (*owner*, 25/10) — weak, since that was on the
+  old parts with no `IdleHealth` and no 032 read either side. The same
+  holds for H16's vapour.
+- **How fuel would reach the oil on a port-injected engine**
+  (*general*): cold, part of the injected fuel stays liquid on the port
+  walls and the cold cylinder walls, and some of it is scraped past the
+  rings; **a misfire** sends a whole unburnt charge into the cylinder,
+  some of it down past the rings with the blow-by; a **dripping
+  injector** after switching off wets one cylinder directly (H7); worn
+  rings or stuck ring lands (H13) let more of all of it by. This car has
+  the first two in quantity: long cold idles for the captures, and 014
+  counting at them.
 
 **Tests:** the dipstick, read 24/10 (above); **032 before the
 oil change and again on the new oil** after a couple of hundred km, with
