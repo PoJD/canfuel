@@ -805,7 +805,9 @@ intake's vacuum leaves the rail high at idle, VW's "fuel pressure too
 high". **Found: its intake end breaking up** — the wall parted into
 layers with voids between them, a crack from the bore outwards
 (`photos/fpr-vacuum-hose-2026-10-25-end.jpg`, `-side.jpg`) — no clip on it since 6/2026, off
-and on with every intake job and left off at least once. Blows through
+and on with every intake job, and at least once left on while the
+intake came off, which pinched it — the crack from about September
+(*owner*). Blows through
 freely. A split there pushes rich (H7); the first part found that fits
 032's shape. To be renewed with clips (`plan.md` 6e).
 

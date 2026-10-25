@@ -603,8 +603,11 @@ hundred km without a disconnect.
   the wall has come apart into layers with voids between them and a crack
   runs from the bore outwards *(this said "split" until the photo)*, after
   the many times it came off with the intake work, **no clip on it since
-  6/2026**, and **left off at least once** when the intake went back
-  (when, not known). It blows through freely. **A split at the joint
+  6/2026**, and **at least once left on when the intake came off, so it
+  was stretched and pinched** — the likely start of the crack, **from
+  about September** (*owner*, 25/10; *this said "left off at least once"
+  until he corrected it*). It blows through freely. The timing fits 032:
+  low at idle at every reading since 24/9, the first after the MAF. **A split at the joint
   pushes rich, not lean** (*reasoned*): the narrow tube on the intake
   limits what the split can let into the engine, while the hose behind it
   fills from outside, so the regulator sees less vacuum than the intake
