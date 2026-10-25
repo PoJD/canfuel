@@ -124,6 +124,10 @@ of 10/2017 was **completely blocked, cracked outside, one chamber burned
 through** — raw fuel burning in it, i.e. misfires. **The one hard fact of
 the investigation.**
 
+032's idle cell **−4.7 %** on 10/9 (*the owner*, off a photo in the album,
+read 25/10; the part-load cell, the time and whether before or after the
+exhaust work not yet given).
+
 ## 11/9 — a cold start recorded, on the old parts
 
 `18_coldstart_z1`, with 014 + 055. **1.24 s of cranking, first firing at
