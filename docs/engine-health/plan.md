@@ -722,7 +722,8 @@ times a minute. Either failing puts the probe on S19's list.
 
 **The new regulator hose** (fitted 25/10, `idle-log.md`; `open.md` H7).
 The cracked hose's own figure is **−8.6 / +3.9 %**, relearnt from zero
-since 24/10's clearing. **The idle cell moving towards zero on the new
+since 24/10's clearing — read after a few seconds of idle with the hose
+pulled off, so it may carry those (`idle-log.md`). **The idle cell moving towards zero on the new
 hose** → the crack was the extra fuel; the oil change (6g) then reads on
 top of it, which is why it waits.
 

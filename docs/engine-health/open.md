@@ -673,7 +673,10 @@ hundred km without a disconnect.
   clearing, about 10 km of driving on it, **−8.6 / +3.9 %** — **the most
   negative idle value on record** (before: −6.3), the part load positive
   as always (`photos/vcds-032-055-2026-10-25-before-new-fpr-hose.jpg`;
-  055 −1.25 g/s; fault memory empty). **Replaced the same evening** with
+  055 −1.25 g/s; fault memory empty). **Read after a few seconds of idle
+  with the old hose pulled off**, so it may carry them (*the owner*,
+  25/10; *reasoned*: a fraction of a point at 6i's relearning rate, and
+  the open hose pushes both ways — `idle-log.md`). **Replaced the same evening** with
   clips at both ends (`plan.md` 6e); 032 after some drives says the rest.
   **The first idle on the new hose, the same afternoon**: the live
   regulation **+2.4 % loads off, +0.6 % loads on**, and 032's idle cell
