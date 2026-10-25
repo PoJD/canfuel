@@ -1115,7 +1115,7 @@ only source is VW's own list.
 - **The shape predates the captures' cold idles** (*the owner's photo of
   20/8*, found 25/10): 032 **−5.5 / 0.0 %** on 20/8 and −4.7 / +1.6 on
   11/8, two months on the oil of 15/6 and before the cold idles of the
-  captures (`idle-log.md`, August). So those sessions did not create it. Either dilution built up within two months
+  captures (`idle-log.md`, *Before September 2026*). So those sessions did not create it. Either dilution built up within two months
   of ordinary use — the last weeks of the old oil also held the starts on
   three cylinders (*About 6/2026*), but that oil went out on 15/6 — or the
   fuel comes from elsewhere. August had the old injectors, the old MAF
