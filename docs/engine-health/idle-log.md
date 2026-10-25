@@ -869,6 +869,8 @@ did not wait for 90 °C of oil; the two states were taken at **oil about
 - **014 counted 12 in the first ~25 s after the start**, at 1200–1360 rpm,
   then reset and read 0 to the end.
 - **Fault memory empty** before and after. **Nothing cleared.**
+- **No jerk felt in the seat** at any point, `IdleHealth` high or not
+  (*owner*; `open.md` S1).
 
 **Not known to have achieved:** a smoother idle — loads off at about 90 is
 where it has sat warm before (70–90 at 99 °C of oil, 17/10), so the

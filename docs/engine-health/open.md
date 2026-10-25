@@ -90,6 +90,11 @@ about a quarter of a second. It feels restless from the driver's seat too:
 **the larger dips, about 15 rpm and over by the owner's guess, are felt as a
 slight jerk in the seat** and heard, and between jerks `IdleHealth` holds
 lower (*owner*, 23/10/2026: about 50 between, higher with each).
+**On the new regulator hose, 25/10, no jerk was felt** with `IdleHealth`
+about 90 loads off and 120–130 straight after a start and after the loads
+went off (*owner*) — so a high grade did not come from felt jerks that
+time. One idle, oil about 80 °C; whether the grade's make-up changed
+(more small steps, fewer deep dips) needs a capture.
 
 **How it is measured.** `IdleHealth` on 0x604 grades one firing against the
 next (100 = the engine before the repair, lower is smoother). Offline,
@@ -130,6 +135,7 @@ error):
 | 23/10 | display | settled | the first 44K tank, ~70 km in, after a hard motorway run | 45–50 between jerks, 70–90 with them, **never above 100** warm; *fan on 1, one seat heater on 1, lights* (*owner*) |
 | 23/10 eve | display | settled | home through Prague traffic, much idling, unsettled throughout; the last stretch held at higher revs in a low gear | **37** straight after, the lowest yet in this state, then slowly back to 50 within about a minute and above it after another; *fan on 1, one seat heater on 1, lights* (*owner*) |
 | 24/10 eve | display | settled | the second 44K tank, Orlen Verva 100, after ~340 km in the day with about an hour above 4000 rpm; 3–5 min of warm idle | **70–80**, everyday state (*owner*) |
+| 25/10 | display | settled, 032 relearning | **the regulator's vacuum hose renewed**; oil about 80 °C, not 93+ | **about 90** loads off, **35–40** loads on (lowest 35); **no jerk felt** (*owner*) |
 
 **The MAF is the one change that showed at once** (24/9: the dips halved).
 The calmest settled idles, 12/10 and 15/10, came in the days after the new
