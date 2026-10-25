@@ -131,8 +131,10 @@ through** — raw fuel burning in it, i.e. misfires. **The one hard fact of
 the investigation.**
 
 032 **−4.7 / +1.6 %** at 17:49 on 10/9 (`photos/vcds-032-2026-09-10.jpg`,
-found by the owner in the album 25/10); whether before or after the
-exhaust work not known. *This reading used to be dated 11/8.*
+found by the owner in the album 25/10): **after the exhaust work** — the
+car went to the garage on 9/9 (*owner*). Little driving since, so the
+cells mostly still hold what was learnt on the old exhaust (*reasoned*).
+*This reading used to be dated 11/8.*
 
 ## 11/9 — a cold start recorded, on the old parts
 
