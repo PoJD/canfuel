@@ -799,6 +799,16 @@ never filled past the first click, the fill of 24/10 included; the
 **Not known to have achieved:** nothing changed on the car; whether either
 source exists waits on 6e–6g.
 
+**Later the same day — the regulator's vacuum hose** (*owner*;
+`open.md` H7). Followed up because a hose that does not carry the
+intake's vacuum leaves the rail high at idle, VW's "fuel pressure too
+high". **Found: its intake end split**, no clip on it since 6/2026, off
+and on with every intake job and left off at least once. Blows through
+freely. A split there pushes rich (H7); the first part found that fits
+032's shape. To be renewed with clips (`plan.md` 6e).
+
+**Not known to have achieved:** nothing fitted yet.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail

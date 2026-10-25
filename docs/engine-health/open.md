@@ -598,6 +598,17 @@ hundred km without a disconnect.
   intake's tube and the hose blown through, engine off, then the hose off with 033
   logged — the regulation should go about 8 % more negative within
   seconds; **nothing moving** means the regulator never saw the vacuum.
+- **Found 25/10** (*owner*): that hose's **intake end is split**, after
+  the many times it came off with the intake work, **no clip on it since
+  6/2026**, and **left off at least once** when the intake went back
+  (when, not known). It blows through freely. **A split at the joint
+  pushes rich, not lean** (*reasoned*): the narrow tube on the intake
+  limits what the split can let into the engine, while the hose behind it
+  fills from outside, so the regulator sees less vacuum than the intake
+  has and holds the rail higher. How much depends on the split against the
+  tube, unmeasured. **The first part found on the car that fits the shape
+  of 032 and VW's "fuel pressure too high"**; its weight is not known.
+  Replaced with a clip (`plan.md` 6e); 032 before and after says the rest.
 
 **Tests:** a rail pressure gauge (**not bought**, *owner's decision*, 10/10;
 VW's figures, if one is: 2.5 bar at idle, 3.0 with the regulator's hose
