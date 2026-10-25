@@ -679,9 +679,14 @@ hundred km without a disconnect.
   the open hose pushes both ways — `idle-log.md`). **Replaced the same evening** with
   clips at both ends (`plan.md` 6e); 032 after some drives says the rest.
   **The first idle on the new hose, the same afternoon**: the live
-  regulation **+2.4 % loads off, +0.6 % loads on**, and 032's idle cell
-  already **−4.7** from −8.6 — **the hose was carrying fuel**, so the rich
-  idle trim is at least partly answered. `IdleHealth` loads off **about 90
+  regulation **+6.5 % loads off for the first minute and a half**, and
+  032's idle cell already **−4.7** from −8.6 — **the hose was carrying
+  fuel**, so the rich idle trim is at least partly answered. **Partly**:
+  two minutes in, the regulation fell to −10 % and settled near zero, the
+  engine wanting about −5 % in all (idle cell plus regulation, an
+  approximation) against about −2 % before — **about 3 points of fuel
+  arriving on their own at a warm idle**, which fits the purge starting
+  (H16; *reasoned*) and is what 6f's pinch reads (`idle-log.md`). `IdleHealth` loads off **about 90
   at 80 °C of oil**, where it has sat before: the roughness is not shown to
   have gone with it (`idle-log.md`).
 

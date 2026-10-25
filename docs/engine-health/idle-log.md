@@ -865,18 +865,48 @@ did not wait for 90 °C of oil; the two states were taken at **oil about
 | state | rpm | lambda regulation, 001 / 033 | `IdleHealth` (*owner*) |
 |---|---|---|---|
 | first 37 s after the start | ~1100 | +7.7 % | 120 |
-| every load off, 2½ min | 781 | **+2.4 %** | 120 falling to **about 90**, where it held |
-| every load on, 2½ min | 779 | **+0.6 %** | **35–40** for long, lowest **35**, rising to 45–50 at the end |
-| loads off again | — | — | 130 at once, then **about 90** |
+| every load off, first ~85 s | 781 | **+6.5 %**, steady (+3.9 … +9.4) | 120 falling to **about 90**, where it held |
+| every load off, the next ~65 s | 772 | **+6 → −10 % → −1 %** | |
+| every load on, 2½ min | 783 | **+0.5 %**, ±2 around zero | **35–40** for long, lowest **35**, rising to 45–50 at the end |
+| loads off again, 14 s logged | 769 | −0.2 % | 130 at once, then **about 90** |
 
-- **The regulation sat positive**, as the hose's effect predicted: the ECU
-  was giving back fuel the adaptation had learnt to take away.
+*This table gave the loads-off state as one figure, +2.4 %, the mean over
+both of its halves (corrected 25/10, from the log sample by sample).*
+
+- **The regulation sat positive for the first minute and a half**, as the
+  hose's effect predicted: the ECU was giving back fuel the adaptation had
+  learnt to take away.
+- **Then it fell through zero to −10 % within about 50 s** (−11.7 % in
+  001 at its lowest, ~165 s after the start) **and came back to about −1 %**,
+  coolant steady at 94.5 °C, nothing touched. **It settled about 3 points
+  richer than it began**: adding the live regulation and the idle cell as
+  if they were one percentage (*an approximation*: the idle cell is
+  additive, the regulation a factor), the engine wanted about −2 % in the
+  first minute and a half (−8.6 + 6.5) and about −5 % from then on
+  (−4.7 + 0 … +0.5, loads off and on alike). **The idle cell relearning
+  cannot make that by itself** (*reasoned*): moving it 3.9 points towards
+  zero takes 3.9 out of the live regulation, +6.5 → about +2.6, not to
+  −1. **Something brought about 3 points of fuel two minutes into a warm
+  idle.** The canister purge starting is the obvious candidate, a day
+  after a fill (`open.md` H16; *reasoned, not shown*); when 032 moved was
+  not logged, so this log cannot tell the two apart. 6f's pinch, with 032
+  logged beside the regulation, can (`plan.md`).
+- **The probe switches**: 033 field 2 crossed 0.45 V at least 36–50
+  times a minute in every state, rich and lean about half each — a lower
+  bound, since VCDS samples each block only every 0.9 s. VW asks for 20
+  (`plan.md` 6f); that half of 6f's probe check is passed. 030 was not
+  logged.
 - **032 had already moved, read at the idle afterwards: −4.7 / +3.9 %**
   against −8.6 / +3.9 on the cracked hose — the idle cell relearnt about
   half-way in one sitting, the part load untouched
   (`vcds-step6i-adaptations-032-055.csv`; 055 −1.21 g/s).
-- **014 counted 12 in the first ~25 s after the start**, at 1200–1360 rpm,
-  then reset and read 0 to the end.
+- **014 read 12 on and off for the whole first loads-off state** — at
+  1200–1360 rpm after the start, then at 760–800 rpm warm, 24 twice
+  (~114 and ~124 s) and 13 at the switch to loads on — **and 0 from
+  ~191 s to the end**, every load on and the 14 s of loads off logged
+  after. *This said "12 in the first ~25 s, then 0 to the end" (corrected
+  25/10, from the log).* So 014 went quiet with the loads on, where
+  `IdleHealth` was lowest; it stayed out of 0–5 loads off (`vcds.md`).
 - **Fault memory empty** before and after. **Nothing cleared.**
 - **No jerk felt in the seat** at any point, `IdleHealth` high or not
   (*owner*; `open.md` S1).
@@ -884,7 +914,9 @@ did not wait for 90 °C of oil; the two states were taken at **oil about
 **Not known to have achieved:** a smoother idle — loads off at about 90 is
 where it has sat warm before (70–90 at 99 °C of oil, 17/10), so the
 roughness is not shown to have moved; the cold starts (S7); 032 after some
-drives.
+drives; **a lean idle** — the engine still wanted about −5 % warm once the
+regulation settled, so the hose answers part of the rich idle, not all of
+it.
 
 ---
 

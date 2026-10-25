@@ -169,7 +169,7 @@ Claude runs the capture on every drive. **Current: item 6.**
      into the chat: **suction or none**.
    - The connector back on, the finger still there, up to 2 minutes:
      write whether **pulsing suction** comes. The hose back on.
-   - **The pinch**: Claude logs 001. Loads off, nothing else touched. Pinch
+   - **The pinch**: Claude logs 001, 032 and 033. Loads off, nothing else touched. Pinch
      the hose as in 6e, 2 minutes; release, 2 minutes; three times. Say
      **"pinched"** and **"released"** each time.
    - **The regulator's hose**, 033 logged: off at the intake end, **the
@@ -779,7 +779,12 @@ it resets 032 (`CLAUDE.md`).
   add the fuel the purge had been bringing; the size of the step is the
   purge's share. Nothing moving on a full tank means the purge brings
   little. The ECU does not purge all the time, so three pinches and not
-  one.
+  one. **032 is logged beside it** (25/10): on 6i's idle the regulation
+  fell from +6.5 % to −10 % two minutes in and settled about 3 points
+  richer, and with the idle cell not logged that could not be told from
+  the cell relearning (`idle-log.md`). Summed with the regulation, a
+  step in the sum is fuel arriving; a step in one that the other cancels
+  is only the ECU moving it between them.
 - **Read:** suction → a new N80, then 032 again after a few drives and
   whether S19 comes back; the idle only if 6e moved it.
   No suction and no step → H16 to `refuted.md`, and the fuel is looked for
