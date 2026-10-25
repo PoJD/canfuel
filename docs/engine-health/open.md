@@ -583,6 +583,22 @@ hundred km without a disconnect.
   P0172. **Since 24/10 not the only one**: a purge valve that does not
   seal predicts both as well (H16), and its test is cheaper.
 
+- **The regulator's vacuum reference** (*the owner's question*, 25/10).
+  The regulator holds the rail a fixed 3 bar above the intake through a
+  hose to a narrow tube on the intake; the old hose was well perished when
+  he replaced it in 6/2026, so crumbs of it could sit in that tube. **A
+  blocked or open reference leaves the rail at the no-vacuum pressure at
+  idle**, VW's 3.0 bar instead of 2.5 (`vcds.md`): about half a bar more
+  across the injectors, roughly 8 % more fuel at idle and less and less as
+  the throttle opens and the vacuum falls (*reasoned*: flow goes with the
+  square root of the pressure across the injector). **That is the shape of
+  this car's 032**, low at idle and normal at part load, and VW's "fuel
+  pressure too high". Only a full blockage or a leak does it; a partly
+  blocked tube only slows the response. **Tests** (`plan.md` 6e, 6f): the
+  thumb on the intake's tube at a warm idle, then the hose off with 033
+  logged — the regulation should go about 8 % more negative within
+  seconds; **nothing moving** means the regulator never saw the vacuum.
+
 **Tests:** a rail pressure gauge (**not bought**, *owner's decision*, 10/10;
 VW's figures, if one is: 2.5 bar at idle, 3.0 with the regulator's hose
 off, **2.0 bar or more ten minutes after switching off**, the last being

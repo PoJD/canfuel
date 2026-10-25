@@ -153,6 +153,10 @@ Claude runs the capture on every drive. **Current: item 6.**
    - Pinch the hose **between N80 and the intake** through a rag with
      pliers, 2 minutes: write the level and the lowest.
    - Three times. Then the hose free.
+   - **The regulator's vacuum hose**, same warm idle: pull it off **at the
+     intake end**, put a thumb over the intake's tube at once. Write:
+     **strong suction, weak, or none**. Look into the hose's end for
+     crumbs. Hose back on within 10 s.
 6f. **The purge valve, at the next session with VCDS** (oil 80 °C or above;
    best straight after filling the tank full). Keep clear of the belt and
    the fan.
@@ -167,6 +171,8 @@ Claude runs the capture on every drive. **Current: item 6.**
    - **The pinch**: Claude logs 001. Loads off, nothing else touched. Pinch
      the hose as in 6e, 2 minutes; release, 2 minutes; three times. Say
      **"pinched"** and **"released"** each time.
+   - **The regulator's hose**, 033 logged: off at the intake end, thumb on
+     the tube, 30 s; back on, 30 s; twice. Say **"off"** and **"on"**.
    - At the end Claude reads the fault memory again; then clear it by
      hand.
    - **Only if there was suction**: N80 off the car; blow through it with
@@ -702,7 +708,20 @@ list for a low idle value ends with the probe — its heating, or a soiled
 probe (`vcds.md`, block 032) — and the probes are from 2017 (`open.md`
 H11). 030 must read `1 1 1` (regulation active, probe ready, heating
 on); 033 field 1 must swing about zero and field 2 switch at least 20
-times a minute. Either failing puts the probe on S19's list. Independent of the order of 6–6c; it needs only a warm idle.
+times a minute. Either failing puts the probe on S19's list.
+
+**The regulator's hose, in 6e and 6f** (`open.md` H7, *The regulator's
+vacuum reference*; the owner's question, 25/10). The thumb goes on the
+intake's tube at once because an open tube is a vacuum leak, which would
+change the idle for a reason of its own. **6e, the thumb**: strong suction
+says the tube is clear; weak or none says it is blocked, and the regulator
+has been at the no-vacuum pressure all along — clean the tube, then 032
+after some drives. **`IdleHealth` with the hose off is not read**: the
+lambda loop takes the extra fuel out within seconds, so the idle would
+show nothing about it. **6f, with 033**: the loop shows instead what the
+idle would not — the regulation going about 8 % more negative when the hose
+comes off says the regulator answers its reference; no step says it was
+not seeing it. No fault is expected from either. Independent of the order of 6–6c; it needs only a warm idle.
 It asks where the fuel behind the negative idle trim comes from, and
 whether S19 (P0172 and the start that died after standing) has a cause
 cheaper to test than a rail gauge (H7). **The fault memory, 032 and 055
