@@ -306,8 +306,10 @@ starts, all clean.
 Verva 100 since 2017, with the second can of BG 44K — **both bad starts
 came after it**, and none in about a month before. The fault memory was
 cleared the night of 24/10, resetting 032. The regulator's vacuum hose was
-cut back and turned on 25/10 (H7); whether before or after that morning's
-start is not yet known.
+cut back and turned on 25/10 (H7), **before** that morning's start
+(*owner*). It cannot be both starts' cause, since 24/10's came before it;
+a hose not fully home would add a small air leak at the first idle, which
+is worth one look and no more.
 
 **How it reads** (*general*): caught, then died, then a clean second start
 is what **a rail that lost its pressure while standing** does — the pump
