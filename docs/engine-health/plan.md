@@ -170,6 +170,13 @@ Claude runs the capture on every drive. **Current: item 6.**
      hand.
    - **Only if there was suction**: N80 off the car; blow through it with
      no power and write whether air passes.
+6g. **The dipstick, now, and 032 around the oil change.**
+   - On level ground, engine off at least 5 minutes: pull the dipstick,
+     wipe, dip again. Write the level against the marks, and **whether
+     the oil smells of fuel**. A photo of the stick.
+   - At the last VCDS session **before** the oil change (6a): 032 read,
+     as always before anything is cleared.
+   - After about 200 km on the new oil: 032 again.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
@@ -728,6 +735,18 @@ it resets 032 (`CLAUDE.md`).
   at H7. No suction but a large step → the valve is sound and the canister
   is very loaded: whether the tank is filled past the first click
   (*general*), and the canister's state, come next.
+
+**Item 6g — fuel in the oil** (`open.md` H17; 25/10/2026, from VW's
+evaluation of block 032, `vcds.md`). VW names oil dilution first for a
+low idle learnt value with part load normal, which is this car's 032,
+and says it goes away with an oil change — which 6a does anyway, so the
+test costs one reading either side. **The dipstick**: the oil stood at
+the upper mark on 27/9 with nothing added since, so a level above it, or
+a smell of fuel, is fuel in the oil (*general*). **Read**: 032's idle
+cell close to zero on the new oil → H17 confirmed and the cold idles of
+the captures were feeding it — fewer and shorter standing cold idles
+from then on; unchanged → H16 and H7 carry the trim. EPR in the flush
+(6a) does not spoil the comparison: it is drained with the old oil.
 
 **Item 7 — the exhaust ahead of the front probe (H2), warm.** A leak that
 draws air in at idle blows out when the outlet is closed, and hisses or

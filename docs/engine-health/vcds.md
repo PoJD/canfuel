@@ -47,7 +47,7 @@ was first recorded counted from the wrong end and corrected on 28/9/2026.
 | **020** | ignition retard of **all four cylinders** in one group | knock control per cylinder (S4); replaces 022 + 023 and frees a slot |
 | **022 / 023** | ignition retard per cylinder, 1–2 and 3–4 | the first cylinder-4 log |
 | **026** | **knock sensor voltage per cylinder**, *amplifier factor included* | S5. Not the raw signal: the ECU scales each cylinder |
-| **032** | lambda adaptations, idle and part load | the rich trim that was the MAF (S9) |
+| **032** | lambda adaptations, idle and part load | the rich trim that was the MAF (S9); slightly negative at idle since (`open.md` H16, H17) |
 | **055 / 056** | idle regulator, its adaptation, target idle speed | 055 logged once, on the cold start of 11/9 (`vcds-coldstart-014-055.csv`): regulator −0.46 → −0.08 g/s as the engine warmed, adaptation **−0.73 g/s** throughout, load-state bits `0000`. The cold-start baseline for the sessions of 3–4/10 (`open.md` S3) |
 | **070** | evaporative valve test | TEV OK — purge ruled out |
 | **100** | readiness bits, OBD status, time since start | all monitors complete |
@@ -135,6 +135,26 @@ finding:**
 - **Idle air mass, block 002: 2.0–5.0 g/s**; below 2.0 is *"large amount
   of unmetered air between intake manifold and air mass meter"*. Idle
   injection period 2.0–5.5 ms, engine load 15–35 %.
+- **Block 032, the lambda learnt values: idle (additive) and part load
+  (multiplicative), each −10.0 to +10.0 %.** Negative means the engine
+  ran rich and the ECU takes fuel away. VW's evaluation of **low values**,
+  for this engine, in its order: **low at idle with part load normal —
+  possible oil dilution**, gone after a motorway drive or an oil change; a
+  leaking injector; fuel pressure too high; **the activated charcoal
+  filter solenoid valve (N80) permanently open**; the air mass meter; the
+  lambda probe heating, or a soiled probe. *High* values point at
+  unmetered air, a blocked injector, low fuel pressure. Block 033 field 1
+  is the live lambda regulation, −10.0 to +10.0 %, which should swing
+  around 0. *Source: VW's repair manual, Golf Mk4, Motronic (2.0 ltr.
+  engine), Evaluating measured value blocks, display groups 30…49
+  -Lambda regulation-, as transcribed on workshop-manuals.com, read
+  25/10/2026.*
+- **Fuel pressure** (same manual, *Checking fuel pressure regulator and
+  holding pressure*): **about 2.5 bar at idle** with the regulator's vacuum
+  hose on, **about 3.0 bar** with it off, and **at least 2.0 bar ten
+  minutes after the ignition is switched off**; below that, the pump's
+  non-return valve, then the regulator (the return pinched), then the
+  O-rings of the rail and the injectors.
 - **Block 003 at idle: ignition 0–12 ° BTDC, throttle angle 0–6°.**
 - **Blocks 060 and 098 both adapt the throttle** when run under basic
   settings, ignition on, engine not running; the adaptation procedure

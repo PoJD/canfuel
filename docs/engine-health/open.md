@@ -58,12 +58,13 @@ routine, S15 the sputter, S18 cylinder 3 out with a tick (24/10); H9 (crankcase 
 - **The cylinder 4 knock window: S4, S5** — its own cluster, not in
   `plan.md` (*owner's decision*, 9/10).
 - **New, 24/10: S19** — P0172 stored, suspected with the start that died at
-  once; fits H7 and H16 (the purge valve, added 24/10).
+  once; fits H7 and H16 (the purge valve, added 24/10); the code alone
+  also H17 (fuel in the oil, 25/10).
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm).
 
 **Ranked (24/10, after the cold capture with one cut):** **H14, H7, H13, H1,
-H2**, then H0, H8, H3, H15, H4, the timing belt, H16, H11, H12 (*The idle's
+H2**, then H0, H8, H3, H15, H4, the timing belt, H16, H17, H11, H12 (*The idle's
 candidates, ranked*). **The dips are on all four alike on both captures since
 the VW leads** (`40`, `41`; *The dips keep to one slot*), while the warm idle
 graded no better than the best days on the NGK set: the leads took away 3 and
@@ -577,7 +578,10 @@ hundred km without a disconnect.
   P0172. **Since 24/10 not the only one**: a purge valve that does not
   seal predicts both as well (H16), and its test is cheaper.
 
-**Tests:** a rail pressure gauge (**not bought**, *owner's decision*, 10/10);
+**Tests:** a rail pressure gauge (**not bought**, *owner's decision*, 10/10;
+VW's figures, if one is: 2.5 bar at idle, 3.0 with the regulator's hose
+off, **2.0 bar or more ten minutes after switching off**, the last being
+S19's question — `vcds.md`);
 swap injector 3 with another if the cylinder stays named.
 
 ### H8. Idle air control and the throttle body
@@ -830,9 +834,12 @@ settle in the intake and flood the first start.
 - **For: the idle trim** negative at idle, positive at part load — the
   shape of a fixed fuel flow rather than a scale error.
 - **For: the history.** P0440, EVAP, stored in 1/2018 and never repaired
-  (`vehicle-history.md`). **The filler cap off at idle, 25–27/9: audibly
-  slightly worse** (`idle-log.md`) — the tank reached the idle at that
-  moment, though a valve purging as designed would show the same.
+  (`vehicle-history.md`). **And VW lists it**: among the causes of a low
+  idle learnt value in 032, *"the activated charcoal filter solenoid
+  valve permanently open"* (`vcds.md`, block 032). *(This bullet first
+  read the "filler cap off at idle" of 25–27/9 as the fuel tank's; in
+  these files the filler cap is the oil filler, so that test bears on
+  the crankcase, H17, unless the owner says otherwise.)*
 - **Against: what block 070 found** (`refuted.md` A6): TEV OK, lambda
   deviation 0.0 %. A test that commands the valve open and reads the
   response says the valve **opens**; it cannot say that the valve **seals**
@@ -874,6 +881,55 @@ full fill — **lambda control rising while it is pinched** is fuel that came
 through the purge. **Read:** suction → a new N80, and 032 read again after
 some drives; neither shows anything → H16 to `refuted.md` on the seal test,
 and the fuel is looked for elsewhere (H7).
+
+### H17. Fuel in the oil, boiled off through the crankcase ventilation
+
+*Added 25/10, from the owner's question* (does the extra fuel at idle
+belong with the idle and with S19?) *and VW's own list.* **VW's
+evaluation of block 032 for this engine puts it first**: *low learnt
+values at idling with part load normal — possible oil dilution*, which
+goes away after a motorway drive or an oil change (`vcds.md`, block 032).
+That is exactly this car's 032 (H16 has the readings).
+
+**The mechanism** (*general*, and in another maker's bulletin for the
+same code): fuel washes past the rings while the engine runs rich and
+cold, collects in the oil, and **boils off once the oil is hot**, into
+the crankcase ventilation and the intake, as fuel the MAF never saw. The
+ECU takes it away at idle, where it is the largest share. The same
+bulletin's pattern: **many short or cold runs, then a long hot one, and
+P0172 sets on the long one** — the fuel coming out all at once.
+
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 |
+|---|---|---|---|---|---|---|---|
+| ~ | — | — | — | — | — | — | ✔ |
+
+- **For: S19, the code.** Since 24/9 this engine has stood through cold
+  idles for minutes at a time, session after session, for the captures
+  — open loop, rich, the regime that puts fuel in the oil (*general*).
+  P0172 then set in the window holding **two 170 km drives with 5000 rpm
+  held** and oil to 110 °C. The oil is from 6/2026, after a change three
+  years apart (`vehicle-history.md`).
+- **For: the idle trim**, low at idle and normal-to-positive at part
+  load: VW's own wording for it.
+- **Against: the bad start of 24/10.** Fuel in the oil does not flood a
+  start after standing (*reasoned*); if P0172 and that start are one event
+  (*owner's decision*, S19), H16 and H7 explain both and H17 only the code.
+  Two causes in one window are not excluded.
+- **S1 ~, through a mechanism and not the size.** The ECU's correction is
+  the same for all four cylinders; vapour from the breather need not
+  reach all four alike, so the cylinders that get less of it end up lean
+  by about the trim, a few per cent (*reasoned*). A cylinder at the edge
+  of stable combustion (S1, *Load smooths it*) could be tipped by that.
+  **Against it**: the idle is roughest cold, when there is little to boil
+  off, and it was rough for years, through oil changes. The same holds
+  for H16's vapour.
+
+**Tests:** **the dipstick** — the level against 27/9's upper mark with
+nothing topped up, and a smell of fuel (`plan.md` 6g); **032 before the
+oil change and again on the new oil** after a couple of hundred km, with
+no clearing between unless 032 is read first. A trim that moves to zero
+on fresh oil is VW's own confirmation; one that stays points back at H16
+and H7.
 
 ---
 
@@ -949,6 +1005,17 @@ new lambda probe, **original VW leads instead of aftermarket ones**, rings
 and a head going-over, a sticking bucket tappet, the timing belt a tooth out.
 Most of these are already done here; the belt is not.
 
+**P0172 and a negative idle trim on this engine** (searched 25/10, the
+same languages): **no AQY thread with a reported fix.** The general
+lists agree with VW's (`vcds.md`, block 032): a leaking injector, fuel
+pressure too high, a purge valve stuck open, the MAF, the probe, **and
+fuel in the oil**, with one maker's bulletin (NHTSA's file of service
+bulletins) describing P0172 set on a long drive after many short ones and
+cured by an oil change. New Beetle forum leads, unread to their end (the
+pages refuse automated reading): the short vacuum hose to the fuel
+pressure regulator, N80. Overfilling the tank past the first click is
+named as a way to flood the canister (*general*; H16).
+
 **Pictures of the inside of this engine family** (searched 21/10, the same
 languages): **none found** that would compare — no borescope or head-off
 photo set of an AQY, AEG, APK or AZJ with its mileage. The one general
@@ -981,8 +1048,9 @@ is in git.
 | 10 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason | flexed at a warm idle |
 | 11 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
 | 12 | **H16** the purge valve leaking | here for the rich idle trim and S19, not the idle: an even flow to all four cannot fail one firing in hundreds; a slug per pulse could, and 6e asks (H16) | the pinch off the display, then the seal test (`plan.md` 6e, 6f) |
-| 13 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
-| 14 | **H12** driveline play | — | done: the clutch minutes cleared it |
+| 13 | **H17** fuel in the oil | VW's first cause for this car's 032; here for the trim and S19's code, not the idle: roughest cold, when there is nothing to boil off | the dipstick; 032 on the new oil (`plan.md` 6g) |
+| 14 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
+| 15 | **H12** driveline play | — | done: the clutch minutes cleared it |
 
 **More than one at once** (*the owner's point*, 12/10): each repair may help
 only in part; a partial improvement is read as a share, not a miss.
