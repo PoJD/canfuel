@@ -1116,7 +1116,23 @@ only source is VW's own list.
   the last top-up, about 1 mm over the upper mark. Fuel collecting in the
   oil raises the level (*general*), and it has not risen that far can be
   read; a millimetre is the stick's resolution, so a small dilution is not
-  excluded, and the smell was not reported.
+  excluded. **The smell, 25/10**: "of engine, not plainly of petrol"
+  (*owner*, by nose, not a chemical test) — weak, since a few per cent of
+  dilution is not reliably smelt, least of all on cold oil (*general*);
+  the same as September's dipstick (`refuted.md` C2).
+- **The level may balance** (*the owner's point*, 25/10): fuel coming in
+  and oil being burnt at the same time leave the stick where it was, and
+  an older engine that never needs topping up between changes is the
+  exception rather than the rule. **Worn or stuck rings would do both**
+  (*general*): blow-by carries fuel down past them, and an oil-control
+  ring that does not scrape leaves oil to burn; valve-stem seals are the
+  other usual way oil is burnt. So the unchanged level weakens H17 less
+  than it reads. **Against the rings**: 12 bar on all four
+  (`refuted.md` A4), and the sooted plugs of 20/10 were dry black, not
+  oily. The **wet patches on all four crowns** (`idle-log.md`, 19–20/10)
+  cannot be told apart from fuel or condensed water on a cheap screen
+  with the engine stopped. **How much oil it burns is not known**: the
+  top-ups since 6/2026 include the litre lost at the cover joint (3/10).
 - **Against: the bad start of 24/10.** Fuel in the oil does not flood a
   start after standing (*reasoned*); if P0172 and that start are one event
   (*owner's decision*, S19), H16 and H7 explain both and H17 only the code.
