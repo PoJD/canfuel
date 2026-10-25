@@ -147,28 +147,34 @@ Claude runs the capture on every drive. **Current: item 6.**
      1, 2, 3, 4. **Between places, one knock with a knuckle on the inner
      wing.** Upload the recording.
 6e. **The purge valve and the regulator's hose — one session, VCDS
-   and the MFD both in.** Oil 90 °C or above, best soon after a full
-   fill. Neutral, handbrake on, **every load off**, nothing else touched.
-   Keep clear of the belt and the fan. Claude runs VCDS throughout and
-   says when each part starts.
-   1. **Claude first**: the fault memory, 032 and 055 read; then the live
-      log.
-   2. **Purge closed, three times**: the hose between N80 and the intake
-      off **at N80** (twist it loose first, gently; it is hard), its end
-      closed — a rubber vacuum cap or a short hose with a bolt in it —
-      **2 minutes**; back on, **2 minutes**. N80 stays plugged in. Say
-      **"closed"** and **"open"** each time, and write `IdleHealth`'s
-      level and lowest for each window. **A crack at its end**:
+   and the MFD both in, no capture.** Best soon after a full fill. Keep
+   clear of the belt and the fan.
+   0. **Before the start**, cable in, ignition on: Claude starts the
+      VCDS log (fault memory, 032, 055 and 030 first, then **001, 032,
+      033**). Start and drive until the **oil reads 90 °C**.
+   1. **Stop**: neutral, handbrake on, **every load off**, nothing else
+      touched. Say **"stopped"**.
+   2. **Purge closed, three times** (six windows): the hose between N80
+      and the intake off **at N80** (twist it loose first, gently; it is
+      hard), its end closed — a rubber vacuum cap or a short hose with a
+      bolt in it — **2 minutes**; back on, **2 minutes**. N80 stays
+      plugged in. Say **"closed"** or **"open"** as each window starts.
+      At each window's end note **`IdleHealth`'s level and lowest**;
+      dictate them at the end, in order. **A crack at its end**:
       photograph it.
-   3. **The regulator's hose, twice**: off at the intake end, the intake's
-      tube closed (cap, bolt or thumb), **30 s**; back on, **30 s**. Say
-      **"off"** and **"on"**. **Fuel at the hose's free end**: write it.
+   3. **The regulator's hose, twice**: off at the intake end, the
+      intake's tube closed (cap, bolt or thumb), **30 s**; back on,
+      **30 s**. Say **"off"** and **"on"**. No `IdleHealth` here.
    4. **The seal test, last**: N80's connector off; the hose off N80 on
       the **canister side**; a finger on the valve's open port **10 s** —
-      **suction or none**. The connector back on, the finger still there,
-      up to 2 minutes — **pulsing suction or none**. Both hoses back on.
-   5. **Claude again**: the fault memory (N80 unplugged leaves a code),
-      and done. Then you clear it by hand.
+      say **suction or none**. The connector back on, the finger still
+      there, up to 2 minutes — **pulsing suction or none**. Both hoses
+      back on.
+   5. **Engine still running**: say **"end"**. Claude stops the log,
+      reads the fault memory (N80 unplugged leaves a code), logs 032 and
+      055 for 20 s and says **"done"**. Switch off only then.
+   6. **Then clear the fault memory by hand** — never before "done":
+      clearing resets 032.
    - **Only if there was suction in 4**: N80 off the car, blow through it
      with no power, write whether air passes.
 6g. **032 around the oil change.**
@@ -709,7 +715,12 @@ It asks where the fuel behind the negative idle trim comes from, and
 whether S19 (P0172 and the start that died after standing) has a cause
 cheaper to test than a rail gauge (H7). **The MFD stays in**, since VCDS
 and the display ran together on 6j (`idle-log.md`); only a capture
-excludes the MFD.
+excludes the MFD. **`IdleHealth` only in (2)** (25/10): VCDS reads engine
+speed in 40 rpm steps about once a second and cannot see a 20 rpm dip,
+so whether the purge makes the idle rough is the display's to answer;
+in (3) the loop takes the fuel out within seconds and the grade would not
+settle in 30 s. **032 and 055 after the fault memory, before the
+clearing** (`CLAUDE.md`, *The adaptations go with it*).
 
 - **What Claude logs** (*decided*): **001, 032, 033** — engine speed and
   the lambda regulation, the idle cell beside it, and the front probe.
