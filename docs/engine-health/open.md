@@ -1112,6 +1112,15 @@ only source is VW's own list.
   years apart (`vehicle-history.md`).
 - **For: the idle trim**, low at idle and normal-to-positive at part
   load: VW's own wording for it.
+- **The shape predates the captures' cold idles** (*the owner's photo of
+  20/8*, found 25/10): 032 **−5.5 / 0.0 %** on 20/8 and −4.7 / +1.6 on
+  11/8, two months on the oil of 15/6 and before the cold idles of the
+  captures (`idle-log.md`, August). So those sessions did not create it. Either dilution built up within two months
+  of ordinary use — the last weeks of the old oil also held the starts on
+  three cylinders (*About 6/2026*), but that oil went out on 15/6 — or the
+  fuel comes from elsewhere. August had the old injectors, the old MAF
+  and the regulator's old hose, so it cannot be compared with the −8.6 of
+  25/10 in size, only in shape.
 - **Against: the dipstick** (*owner*, 24/10): the level where it was at
   the last top-up, about 1 mm over the upper mark. Fuel collecting in the
   oil raises the level (*general*), and it has not risen that far can be

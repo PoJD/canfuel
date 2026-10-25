@@ -110,6 +110,10 @@ compares with nothing.
   11/8) and refitted.
 - **11/8** — the first captures (`09`, `11`, `12`). Hot idle **43–48** (29
   with the A/C on); at 85 °C of oil 15 dips a minute. 032 **−4.7 / +1.6 %**.
+- **20/8, 7:49** — 032 **−5.5 / 0.0 %**; 001 at the same idle 760 rpm,
+  coolant 94.5 °C, regulation +0.8 % (`photos/vcds-001-032-2026-08-20.jpg`,
+  found by the owner in the album 25/10). Two months on the oil of 15/6,
+  before any of the captures' cold idles.
 
 **The picture then:** a leaking injector.
 
