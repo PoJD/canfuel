@@ -156,7 +156,7 @@ Claude runs the capture on every drive. **Current: item 6.**
    - **The regulator's vacuum hose**, same warm idle: pull it off **at the
      intake end**, put a thumb over the intake's tube at once. Write:
      **strong suction, weak, or none**. Look into the hose's end for
-     crumbs. Hose back on within 10 s.
+     crumbs, **and smell it for fuel**. Hose back on within 10 s.
 6f. **The purge valve, at the next session with VCDS** (oil 80 °C or above;
    best straight after filling the tank full). Keep clear of the belt and
    the fan.
@@ -171,8 +171,11 @@ Claude runs the capture on every drive. **Current: item 6.**
    - **The pinch**: Claude logs 001. Loads off, nothing else touched. Pinch
      the hose as in 6e, 2 minutes; release, 2 minutes; three times. Say
      **"pinched"** and **"released"** each time.
-   - **The regulator's hose**, 033 logged: off at the intake end, thumb on
-     the tube, 30 s; back on, 30 s; twice. Say **"off"** and **"on"**.
+   - **The regulator's hose**, 033 logged: off at the intake end, **the
+     intake's tube closed** — a rubber vacuum cap or a short hose with a
+     bolt in it, or the thumb — 30 s; back on, 30 s; twice. Say **"off"**
+     and **"on"**. The hose's free end stays open; **fuel at it** is
+     written into the chat.
    - At the end Claude reads the fault memory again; then clear it by
      hand.
    - **Only if there was suction**: N80 off the car; blow through it with
@@ -721,7 +724,9 @@ lambda loop takes the extra fuel out within seconds, so the idle would
 show nothing about it. **6f, with 033**: the loop shows instead what the
 idle would not — the regulation going about 8 % more negative when the hose
 comes off says the regulator answers its reference; no step says it was
-not seeing it. No fault is expected from either. Independent of the order of 6–6c; it needs only a warm idle.
+not seeing it. No fault is expected from either. **Fuel or its smell at
+the hose** is a regulator diaphragm that leaks, fuel straight into the
+intake (*general*) — S19's other way in. Independent of the order of 6–6c; it needs only a warm idle.
 It asks where the fuel behind the negative idle trim comes from, and
 whether S19 (P0172 and the start that died after standing) has a cause
 cheaper to test than a rail gauge (H7). **The fault memory, 032 and 055
