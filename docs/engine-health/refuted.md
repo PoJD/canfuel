@@ -316,7 +316,9 @@ needed to explain the trim. It survives for the cold start as H7.
 **What is known about the old MAF, and what is not** (*the owner's
 question, 11/10/2026*). The over-read rests on **one morning**: the
 drive of 24/9 on the new injectors, compared with the new MAF the same
-afternoon. **In August the same MAF had 032 at −4.7 / +1.6 %** — fine.
+afternoon. **The same MAF had 032 at −5.5 / 0.0 % on 20/8 and −4.7 / +1.6 %
+on 10/9** — fine (*this said "in August" for the second, until the
+owner's photo dated it*).
 So either it began to over-read between August and 24/9, or it already
 did and the old injectors were delivering correspondingly less fuel per
 millisecond, which hid it (*reasoned*: air per commanded fuel is the MAF's

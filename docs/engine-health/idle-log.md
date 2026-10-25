@@ -109,11 +109,17 @@ compares with nothing.
   adaptation restarted. A secondary-air hose torn off in the work (P0411,
   11/8) and refitted.
 - **11/8** — the first captures (`09`, `11`, `12`). Hot idle **43–48** (29
-  with the A/C on); at 85 °C of oil 15 dips a minute. 032 **−4.7 / +1.6 %**.
+  with the A/C on); at 85 °C of oil 15 dips a minute. *This line also
+  carried 032 −4.7 / +1.6 %; the owner's photo dates that reading 10/9
+  (below), not 11/8.*
 - **20/8, 7:49** — 032 **−5.5 / 0.0 %**; 001 at the same idle 760 rpm,
   coolant 94.5 °C, regulation +0.8 % (`photos/vcds-001-032-2026-08-20.jpg`,
   found by the owner in the album 25/10). Two months on the oil of 15/6,
   before any of the captures' cold idles.
+- **6–9/2026, how the car was used** (*owner*, 25/10): still unregistered,
+  so **many short cold runs**: started in the garden and left idling while
+  he and his son sat in it, now and then moved a little on the property.
+  Next to no road driving between the oil change and September.
 
 **The picture then:** a leaking injector.
 
@@ -124,9 +130,9 @@ of 10/2017 was **completely blocked, cracked outside, one chamber burned
 through** — raw fuel burning in it, i.e. misfires. **The one hard fact of
 the investigation.**
 
-032's idle cell **−4.7 %** on 10/9 (*the owner*, off a photo in the album,
-read 25/10; the part-load cell, the time and whether before or after the
-exhaust work not yet given).
+032 **−4.7 / +1.6 %** at 17:49 on 10/9 (`photos/vcds-032-2026-09-10.jpg`,
+found by the owner in the album 25/10); whether before or after the
+exhaust work not known. *This reading used to be dated 11/8.*
 
 ## 11/9 — a cold start recorded, on the old parts
 
