@@ -846,6 +846,35 @@ regulator at full pressure together, and no reading of either alone.
 **Not known to have achieved:** 032 on the new hose after some drives;
 the cold starts (S7).
 
+**25/10/2026, the same afternoon — the first idle on the new hose**
+(`plan.md` 6i; in the garage, MFD in, no capture; Claude logged 014, 001,
+033 from the start, `test/fixtures/vcds/vcds-step6i-warm-idle-*.csv`).
+Restarted warm: **oil 77 °C, coolant 84 °C** before the key. The owner
+did not wait for 90 °C of oil; the two states were taken at **oil about
+80 °C**, coolant 90 → 96 °C, so `IdleHealth` compares only loosely.
+
+| state | rpm | lambda regulation, 001 / 033 | `IdleHealth` (*owner*) |
+|---|---|---|---|
+| first 37 s after the start | ~1100 | +7.7 % | 120 |
+| every load off, 2½ min | 781 | **+2.4 %** | 120 falling to **about 90**, where it held |
+| every load on, 2½ min | 779 | **+0.6 %** | **35–40** for long, lowest **35**, rising to 45–50 at the end |
+| loads off again | — | — | 130 at once, then **about 90** |
+
+- **The regulation sat positive**, as the hose's effect predicted: the ECU
+  was giving back fuel the adaptation had learnt to take away.
+- **032 had already moved, read at the idle afterwards: −4.7 / +3.9 %**
+  against −8.6 / +3.9 on the cracked hose — the idle cell relearnt about
+  half-way in one sitting, the part load untouched
+  (`vcds-step6i-adaptations-032-055.csv`; 055 −1.21 g/s).
+- **014 counted 12 in the first ~25 s after the start**, at 1200–1360 rpm,
+  then reset and read 0 to the end.
+- **Fault memory empty** before and after. **Nothing cleared.**
+
+**Not known to have achieved:** a smoother idle — loads off at about 90 is
+where it has sat warm before (70–90 at 99 °C of oil, 17/10), so the
+roughness is not shown to have moved; the cold starts (S7); 032 after some
+drives.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail

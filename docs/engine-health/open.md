@@ -669,6 +669,12 @@ hundred km without a disconnect.
   as always (`photos/vcds-032-055-2026-10-25-before-new-fpr-hose.jpg`;
   055 −1.25 g/s; fault memory empty). **Replaced the same evening** with
   clips at both ends (`plan.md` 6e); 032 after some drives says the rest.
+  **The first idle on the new hose, the same afternoon**: the live
+  regulation **+2.4 % loads off, +0.6 % loads on**, and 032's idle cell
+  already **−4.7** from −8.6 — **the hose was carrying fuel**, so the rich
+  idle trim is at least partly answered. `IdleHealth` loads off **about 90
+  at 80 °C of oil**, where it has sat before: the roughness is not shown to
+  have gone with it (`idle-log.md`).
 
 **Tests:** a rail pressure gauge (**not bought**, *owner's decision*, 10/10;
 VW's figures, if one is: 2.5 bar at idle, 3.0 with the regulator's hose
