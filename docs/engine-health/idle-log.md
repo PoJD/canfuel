@@ -831,6 +831,21 @@ fill of 24/10 and the rule of `refuted.md` D2 reopens **S7** (`open.md`).
 Priming on alternate mornings, `StartCrank` and `StartDip` off the display
 (`plan.md` 6h).
 
+**25/10/2026, evening — the regulator's vacuum hose renewed** (*owner*;
+`open.md` H7; `plan.md` 6e). About 10 km on the cracked hose since the
+clearing of 24/10, then, engine off: **fault memory empty; 032 −8.6 /
++3.9 %**, the most negative idle value on record; **055 −1.25 g/s**
+(`photos/vcds-faults-2026-10-25-before-new-fpr-hose.jpg`,
+`vcds-032-055-2026-10-25-before-new-fpr-hose.jpg`). At a running idle the
+old hose pulled off at the regulator: **vacuum at it**, and `IdleHealth`
+**70 → about 120 at once** — with the hose open, so a vacuum leak and the
+regulator at full pressure together, and no reading of either alone.
+**The new hose** (STARLINE 4 × 8 mm) cut fresh at both ends and fitted
+**with a spring clip at each end** (`photos/fpr-vacuum-hose-2026-10-25-fitted.jpg`).
+
+**Not known to have achieved:** 032 on the new hose after some drives;
+the cold starts (S7).
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail

@@ -663,7 +663,12 @@ hundred km without a disconnect.
   has and holds the rail higher. How much depends on the split against the
   tube, unmeasured. **The first part found on the car that fits the shape
   of 032 and VW's "fuel pressure too high"**; its weight is not known.
-  Replaced with a clip (`plan.md` 6e); 032 before and after says the rest.
+  **Its own figure, 25/10**: 032 relearnt from zero since 24/10's
+  clearing, about 10 km of driving on it, **−8.6 / +3.9 %** — **the most
+  negative idle value on record** (before: −6.3), the part load positive
+  as always (`photos/vcds-032-055-2026-10-25-before-new-fpr-hose.jpg`;
+  055 −1.25 g/s; fault memory empty). **Replaced the same evening** with
+  clips at both ends (`plan.md` 6e); 032 after some drives says the rest.
 
 **Tests:** a rail pressure gauge (**not bought**, *owner's decision*, 10/10;
 VW's figures, if one is: 2.5 bar at idle, 3.0 with the regulator's hose

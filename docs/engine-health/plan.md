@@ -153,11 +153,8 @@ Claude runs the capture on every drive. **Current: item 6.**
    - Pinch the hose **between N80 and the intake** through a rag with
      pliers, 2 minutes: write the level and the lowest.
    - Three times. Then the hose free.
-   - **The regulator's vacuum hose renewed**: 4 mm inside, a hose sold
-     for vacuum **and fuel vapour** (plain silicone swells in fuel), **a
-     clip at both ends**. If the laptop can be in the car before it goes
-     on: Claude reads 032 first.
-     Before fitting, **blow into the intake's tube**: it must pass freely.
+   - **On the new regulator hose** (fitted 25/10): 032 again after a few
+     drives, before anything is cleared.
    - ***If a reducer fits the MAR-POL gauge to that thin hose*:** the
      hose off **at the regulator**, the gauge on its end, warm idle:
      write the vacuum it reads. Hose back on.
@@ -723,15 +720,11 @@ H11). 030 must read `1 1 1` (regulation active, probe ready, heating
 on); 033 field 1 must swing about zero and field 2 switch at least 20
 times a minute. Either failing puts the probe on S19's list.
 
-**The regulator's hose renewed** (*owner's decision*, 25/10, after
-finding its intake end split, `open.md` H7). **032 either side is the
-reading**, and the hose goes before the oil change so that the two do not
-fall in one reading: 032 relearns from zero after 24/10's clearing, so
-one read before the new hose is the cracked hose's own figure. Without a
-read before, the history (−1 to −6 % since 24/9) stands in. **The idle
-cell moving towards zero on the new hose** → the split was the extra fuel;
-the oil change (6g) then reads on top of it. A fuel-vapour rating because
-a regulator diaphragm that ever leaks puts fuel in that hose (*general*).
+**The new regulator hose** (fitted 25/10, `idle-log.md`; `open.md` H7).
+The cracked hose's own figure is **−8.6 / +3.9 %**, relearnt from zero
+since 24/10's clearing. **The idle cell moving towards zero on the new
+hose** → the crack was the extra fuel; the oil change (6g) then reads on
+top of it, which is why it waits.
 
 **The regulator's hose, in 6e and 6f** (`open.md` H7, *The regulator's
 vacuum reference*; the owner's question, 25/10). The thumb goes on the
