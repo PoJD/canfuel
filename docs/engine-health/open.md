@@ -307,9 +307,8 @@ Verva 100 since 2017, with the second can of BG 44K — **both bad starts
 came after it**, and none in about a month before. The fault memory was
 cleared the night of 24/10, resetting 032. The regulator's vacuum hose was
 cut back and turned on 25/10 (H7), **before** that morning's start
-(*owner*). It cannot be both starts' cause, since 24/10's came before it;
-a hose not fully home would add a small air leak at the first idle, which
-is worth one look and no more.
+(*owner*). The cutting cannot be both starts' cause, since 24/10's came
+before it; the crack itself was there for both (below).
 
 **How it reads** (*general*): caught, then died, then a clean second start
 is what **a rail that lost its pressure while standing** does — the pump
@@ -318,8 +317,16 @@ injector, the regulator; VW: at least 2.0 bar ten minutes after switching
 off, `vcds.md`). **A cylinder flooded while standing** reads the same to the
 driver (H7's dripping injector, H16's vapour). A fuel that starts
 differently cold is the third, from the timing alone. **The cracked
-regulator hose does not fit** (*reasoned*): at cranking the intake is
-near atmospheric, so its reference makes no difference.
+regulator hose, the owner's reading** (25/10): too much fuel pressure at
+the first idle, and the engine floods. *This said "does not fit", true
+only of the cranking itself.* **For** (*reasoned*): the moment it catches,
+vacuum forms; a hose that does not carry it leaves the rail high, and
+cold the engine runs open loop, so nothing takes the extra fuel out in
+those first seconds. **Against**: the crack is from about September and
+the starts were clean for a month until 24/10. Whether this ECU applies
+032's learnt idle value in open loop too, so that the clearing of 24/10
+night took away a correction the start relied on, is not known. **The
+new hose answers it** (`plan.md` 6e), read with 6h.
 
 **Read off the display**: `StartCrank` and `StartDip` on 0x604
 (`docs/firmware/frames.md`) for every cold start, failed or not. **The test**
