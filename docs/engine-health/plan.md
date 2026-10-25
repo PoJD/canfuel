@@ -194,6 +194,17 @@ Claude runs the capture on every drive. **Current: item 6.**
    `StartDip` off the display.
    - **On alternate cold mornings, prime it**: ignition on 3 s, off, on
      3 s again, then start. Write **primed** beside that start.
+6j. **014 at a warm idle, on the new regulator hose — the next drive,
+   with the laptop and the MFD in.**
+   - Before the key: Claude starts VCDS logging **014, 001 and 032**
+     (it reads the fault memory first by itself).
+   - Drive normally until the oil reads **90 °C** or above.
+   - Stop, neutral, no throttle: **3 minutes with every load off**. Write
+     into the chat where `IdleHealth` mostly sat and the lowest it
+     touched. No second state.
+   - Engine still idling: say so; Claude stops the log, reads the fault
+     memory and 032 / 055 and says done. Then switch off.
+   - Clear nothing until Claude has said done.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
@@ -830,6 +841,27 @@ fuel, and the next fill of another brand reads the fuel. Alternate
 mornings, so that plain and primed meet the same weather. `StartCrank`
 and `StartDip` because the display carries them and a start the owner
 calls normal may still show a long crank.
+
+**Item 6j — 014 at a warm idle** (*the owner*, 25/10). On 6i's idle
+014 read 12 on and off through the whole first loads-off state and 0 all
+through loads on; loads off was logged for only 14 s after that, at
+80 °C of oil, so whether it still counts warm on the new hose is not
+known (`idle-log.md`). The owner felt the next drive smoother, and says
+himself that he nearly always does: **014 and `IdleHealth` are the
+measure**, not the feel. **One state only, loads off** (*the owner's
+decision*, 25/10, against the standing two states for this item): every
+load on gives the same figures every time, and loads off and the
+everyday state read almost alike, so loads off is the one that
+discriminates; it is also the state 014 counted in on 6i. Three minutes
+rather than two, for more 014 readings. **90 °C of oil**, because 6i's
+80 °C compares only loosely with anything. **032 logged live** beside
+001: on 6i the regulation fell from +6.5 % to −10 % two minutes into the
+idle and settled about 3 points richer, and with the idle cell not
+logged that could not be told from the cell relearning. A step in
+032 + regulation together is fuel arriving (the purge, H16); a step in
+one that the other cancels is the ECU moving it between them. **Read:**
+014 at 0 loads off, warm → the hose took the counted misfires with it
+(`open.md` S3); 12s as on 6i → it did not, whatever the feel.
 
 **Item 7 — the exhaust ahead of the front probe (H2), warm.** A leak that
 draws air in at idle blows out when the outlet is closed, and hisses or
