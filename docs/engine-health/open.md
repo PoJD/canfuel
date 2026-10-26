@@ -149,6 +149,7 @@ error):
 | 24/10 eve | display | settled | the second 44K tank, Orlen Verva 100, after ~340 km in the day with about an hour above 4000 rpm; 3–5 min of warm idle | **70–80**, everyday state (*owner*) |
 | 25/10 | display | settled, 032 relearning | **the regulator's vacuum hose renewed**; oil about 80 °C, not 93+ | **about 90** loads off, **35–40** loads on (lowest 35); **no jerk felt** (*owner*) |
 | 25/10 eve | display | settled | the new hose, a drive later; oil 96 °C | **70–80**, everyday state; **50–60** at a light before, same state (*owner*) |
+| 26/10 | display | settled | warmed in a jam, gently, under 3000 rpm; then one brisker stretch, revs held up in 2nd downhill on engine braking | **80–100** all through the warm-up, **still at 92 °C** of oil; **60–70** after the brisker stretch; everyday state (*owner*) |
 
 **The MAF is the one change that showed at once** (24/9: the dips halved).
 The calmest settled idles, 12/10 and 15/10, came in the days after the new
@@ -184,6 +185,25 @@ charge**, and anything that takes a little charge away tips them over.
 session since 24/9. Every engine idles roughest cold (*general*), so this
 says nothing about the fault on its own. The roughest reading yet, ~186, came
 cold on the dampest, foggiest morning (26/9, *owner*).
+
+**But warm oil alone does not bring the calm idle; driving does** (26/10,
+*the owner's observation, checked against the captures*). On 26/10 a
+gentle warm-up in a jam, under 3000 rpm, held `IdleHealth` at 80–100 up
+to 92 °C of oil; it fell to 60–70 only after one brisker stretch (table
+above). The captures agree in kind (`tools/afterpull.py`'s `idle_runs()`,
+graded per minute, 26/10): **warmed at idle, the grade stops at about
+90–110** — `41` ~120 → ~90 over 52–82 °C, `32` 139 → ~95 over 46–78 °C,
+`25`+`26` ~110 at 82–91 °C after a warm-up that never held 3000 rpm —
+and **every calm warm idle came after a drive**. **What the drive needs is
+not high revs**: `26` read 67 at 96 °C after a drive home under
+3000 rpm, `35` 38–55 at 91–94 °C after one that touched 3292; and high
+revs do not reliably calm it (`19` 57 → 104–143 after 6000 rpm, before
+the cleaner — *After high revs*, below). ⚠ **Not separated**: no capture
+warms past 92 °C at idle alone, so a few degrees more oil and the drive
+itself always came together. The owner's reading (*hypothesis*): the
+chambers carry something — deposit, oil, moisture — that a working drive
+clears and an idle does not. Settled by a warm-up to 95 °C at idle alone,
+or by a gentle warm drive straight into an idle.
 
 **What comes before a dip** (`tools/dipcontext.py`, 852 warm dips,
 10/10). **The ECU has trimmed the charge just before a dip** — injection time
