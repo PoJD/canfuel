@@ -671,7 +671,9 @@ included the litre lost at the cover joint (3/10). A fresh fill to a
 photographed level gives the start. **Read**: a level falling between
 top-ups → oil burnt, H18 (or the rings) up; a level rising → fuel in the
 oil, H17 up; steady → neither in quantity, or both at once (H17, *The
-level may balance*), which 032 (6g) then splits. Five minutes standing and
+level may balance*), which 032 (6g) then splits. **A falling level is first
+looked for underneath**: the sump's rear was oily on 26/10 (`open.md`,
+*Other*), and a leak lowers the level exactly as burning does. Five minutes standing and
 level ground because the stick reads the sump only once the oil has run
 back; the photograph because a millimetre is the stick's resolution.
 

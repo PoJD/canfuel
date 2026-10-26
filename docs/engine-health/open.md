@@ -573,6 +573,17 @@ compared first, privately, never in this repository (`plan.md` 5a).
 **The brake pedal is soft and long** (*owner*, 9/10): hydraulics, not the
 servo and not the engine — a matter for a garage.
 
+**Oil on the underside, the sump's rear the wettest** (*owner*, 26/10,
+looking from below during the oil change; `photos/sump-oil-2026-10-26-*.jpg`):
+an oily film over the sump towards the back, along its flange and on the
+bracket behind it; the gearbox casing drier. **It was there before the
+change** (*owner*), though nobody had looked from below; **whether it is
+what ran down from the cover joint on 3/10 (S10, closed) or a leak of its
+own is not known.** Not pursued for now (*owner's decision*, 26/10). **It
+bears on `plan.md` 6i**: a leak lowers the dipstick level as burning
+does, so a falling level is read against it, and the underside is wiped
+clean after the change so that fresh oil there shows.
+
 ---
 
 ## How the symptoms relate — what is measured
