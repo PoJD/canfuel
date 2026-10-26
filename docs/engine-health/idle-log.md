@@ -1186,7 +1186,8 @@ over minutes — slower than the display's own filter (about 10 s,
 **Then** (*owner*): the fault was stored again in the course of it
 (P1582, read as the learnt value still out of range when it set); **cleared
 by the owner once 055 had settled**, and **the next start was normal —
-no dip, no fault**. 032 was already at zero from the disconnect.
+no dip, no fault**; **two more starts after it, both clean, the lamp
+off** (*owner*). 032 was already at zero from the disconnect.
 
 ---
 
