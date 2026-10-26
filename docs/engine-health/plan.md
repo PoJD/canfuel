@@ -35,9 +35,11 @@ Claude runs the capture on every drive. **Current: item 6.**
      **before the first start** at the tuner, running to engine off at
      home; VCDS on **014, 055, 003** the whole way; no `oilwatch.py`.
      **A few minutes of cold idle straight after the start**; once warm,
-     drive briskly; **when 055 field 3 nears −0.95, stop for a few
-     minutes of idle** (read it at a stop, not while driving); **one more
-     stop at home**. Write each stop into the chat.
+     drive briskly; **once the oil is above 90 °C, three or four stops
+     of 3–5 minutes each**, the everyday state, nothing touched, normal
+     driving between them; **at the last one, item 6k** if it has not
+     been done yet; **one more stop at home**. Write each stop into the
+     chat.
    - **Then one or two ordinary warm drives**, captured; VCDS on
      **014, 003**; 055 once at the end, warm idle. On one of them **one
      held full-throttle pull in 4th**, with VCDS on **014, 003, 020** for
@@ -81,7 +83,7 @@ Claude runs the capture on every drive. **Current: item 6.**
    tank is driven out on the new oil.
 6g. **032 on the new oil** (the *before* read 26/10: −8.6 / +7.8 %).
    - After about 200 km on the new oil: 032 and 055, before anything is
-     cleared.
+     cleared. **Before 3/11**: the map resets 032 again.
 6h. **Every cold start, until S7 is placed.** Before turning the key,
    nothing else. Write into the chat: date, how long parked, the outside
    temperature, **caught and died, or ran**, and `StartCrank` and
@@ -197,6 +199,18 @@ adaptations are settled (about −1.1 to −1.3), so a comparison holds
 
 **Item 5a — the original map** (*owner's decision*, 12/10/2026, to take
 the remap out of the idle question; `open.md` H14, *The remap*).
+**The stops on the drive home** (*agreed with the owner*, 26/10, for H8):
+055's learnt value moves **only at a warm standing idle** and holds
+through driving (`idle-log.md`, 26/10), so after the reset it can only
+walk down from zero at stops; three or four warm stops give `IdleHealth`
+off the capture, second by second, against the learnt value on the way
+down — the owner's hypothesis that the regulation narrows the margin
+(`open.md` H8), which 26/10 had no capture for. 003 rather than 001
+because the capture carries the oil, the throttle and the speed, and 003
+adds what it does not: the MAF's air and the ignition angle. 10–20
+minutes of idle in all, against the standing item for the converter,
+accepted as an exception. **6g goes first**: the map's reset would clear
+the 032 it waits for.
 **Postponed 20/10** (*owner*): the tuner emails both files to be compared
 first, privately, never in this repository. What each differing table
 *is* needs a map definition, so without one it is a guess from its shape
