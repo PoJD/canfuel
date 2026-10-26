@@ -1124,6 +1124,26 @@ coming back on the road** would say it has not.
 oil with 6g's 032 at about 200 km, `IdleHealth` cold and warm apart, and
 6i's dipstick.
 
+**26/10/2026, night — P1582 kept coming back, the battery disconnected
+and 098** (*owner*). On the first short drive on the new oil, **without
+the stick, the lamp came back with 17990 / P1582**, and **the engine
+nearly stalled after a warm start** — twice that evening. Read as 055's
+−2.78 g/s (*reasoned*): the idle running with that much air learnt away.
+**The battery off for about a minute**, then 098 under basic settings,
+ignition on: **"ADP v pořádku" at once, the throttle not moving**
+(5.6°, G127 71.8 %, idling; `photos/vcds-098-2026-10-26-after-disconnect.jpg`)
+— read as the adaptation done by itself at the first ignition-on after
+the reconnect, as this throttle does at every ignition-on (S13). Then
+(`photos/vcds-032-055-2026-10-26-after-disconnect.jpg`): **032 reset to
+0.0 / 0.0, but 055 field 3 still −2.78 g/s**, and **P1582 still stored**
+(the disconnect does not clear the fault memory). **Nearly stalled again
+after the start.** So a disconnect of a minute reset 032 and not 055 —
+whether a longer one, or 098 run with the fault memory empty (VW's
+condition), resets 055 is not known; on 4/10 a disconnect and 098 left
+it near zero (`refuted.md` C19). Left for now (*owner*, he had to go).
+**Every start and idle until 055 is back is read with it in mind** —
+6h's starts above all.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
