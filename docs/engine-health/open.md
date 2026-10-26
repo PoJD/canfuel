@@ -497,7 +497,17 @@ about 1300 by itself, and **"it just fluctuates"** (*owner*). **His
 above 3 kHz, 1 s windows): **1266–1294 rpm for 4 s, then a step down to
 1215–1241** for the rest, ±10–15 rpm within each. **Over the flush**
 (*owner*, off the display): mostly swinging **1250–1300**, now and then
-settling at about **1230**; **the stick does not move at all**. **Also on the road**
+settling at about **1230**; **the stick does not move at all**. **A 3-minute
+recording** at about minute 22–25 of the flush, read the same way (1 s
+windows): median **1260**, mostly 1240–1290, swinging 10–20 rpm over
+seconds; **once a lower, calmer stretch of about 28 s at 1195–1222**,
+entered by a drop of about 45 rpm within 2 s and left by a rise, and
+one shorter dip to about 1205. **Two states, then: lower and calm,
+higher and swinging** — the video's 1266–1294 → 1215–1241 the same
+pattern. What switches between them is not known; an on/off load such as
+the radiator fan, or the purge valve's cycles (H16), would give a step at
+a held plate (*reasoned*); the sound shows no fan switching clearly.
+**Also on the road**
 (*owner*): hard to hold the engine speed steady, **noticed since the job
 of 1–2/10**, which fitted **the new throttle** (Pierburg `7.03703.13.0`)
 and **took up the throttle cable's slack** (`idle-log.md`, *The valve
