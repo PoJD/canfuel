@@ -64,6 +64,8 @@ routine, S15 the sputter, S18 cylinder 3 out with a tick (24/10); H9 (crankcase 
 - **New, 24/10: S19** — P0172 stored, suspected with the start that died at
   once; fits H7 and H16 (the purge valve, added 24/10); the code alone
   also H17 (fuel in the oil, 25/10).
+- **New, 26/10: S20** — engine speed wanders at a constant pedal, seen in
+  the EPR flush and lately on the road (*owner*); not the idle.
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm).
 
@@ -484,6 +486,29 @@ mixture is if anything richer than the trims say. And **it all but rules
 out a meaningful intake leak** (A7): that would have pushed the other
 way.
 
+### S20. Engine speed wanders at a constant pedal
+
+*Added 26/10 at the owner's request.* **During the first EPR flush**
+(`plan.md` 6a), standing in neutral, the pedal held by a stick of wood:
+the speed swung a little at first, held about 1250, then rose slowly to
+about 1300 by itself, and **"it just fluctuates"** (*owner*). **His
+9 s video** of it, read from its sound (the firing rate in the clicks
+above 3 kHz, 1 s windows): **1266–1294 rpm for 4 s, then a step down to
+1215–1241** for the rest, ±10–15 rpm within each. **Also on the road,
+lately** (*owner*): hard to hold the engine speed steady; since when is
+not known.
+
+**Not S1.** S1 is dips at idle with the idle governor in charge; this is
+above idle with the pedal held. ⚠ **Twice soft**: it was seen with EPR,
+a solvent, in the oil; and on this engine the pedal is a sensor, the ECU
+moves the throttle (S13, `refuted.md` D7), and a stick on a pedal can
+settle, so a wandering speed and a wandering throttle cannot be told
+apart from the sound. A capture tells them apart: 0x280 b5 is the pedal,
+so stretches where it holds still show whether the speed wanders anyway.
+The slow rise to 1300 reads as the oil thinned by EPR and still warming,
+less friction at the same throttle (*reasoned*); the swings and the step
+do not.
+
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** 0x420's `OilTemp` is `raw − 60` °C (`docs/firmware/can-decoding.md`
@@ -526,15 +551,15 @@ Each lists what it explains, what speaks against it, and the test that
 settles it. ✔ fits, ~ fits weakly, ✘ does not fit, — says nothing.
 
 **The columns are the open symptoms that bear on the engine**: S1, S2, S3,
-S4, S5, S7 (reopened 25/10), S11, S14, S19. Left out: S16 (the gearbox side, shown not to touch
+S4, S5, S7 (reopened 25/10), S11, S14, S19, S20 (added 26/10). Left out: S16 (the gearbox side, shown not to touch
 the idle) and S17 (a resonance, not placed); the closed ones are in
 `refuted.md` §D.
 
 ### H0. The idle is normal for this engine — and there is no fault to find
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ✘ | — | ~ | ✘ | — | ✘ | ✘ |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ✘ | — | ~ | ✘ | — | ✘ | ✘ | ~ |
 
 - **Against:** 014 reads 12–120 against VW's 0–5; the old converter burned
   through; the dips sit on 3 and 4, the cylinder of the 2019 P0304 and of the
@@ -562,9 +587,9 @@ or debris holds its valve a hair open, which costs compression and misses
 at a small charge and is covered by load — the case this hypothesis is
 about. The valve is closed by its spring; the lifter only removes the gap.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ✔ | ✔ | — | — | ~ | — |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ✔ | ✔ | — | — | ~ | — | — |
 
 - **For:** a valve that seals worse at low cylinder pressure misfires at a
   small charge and is covered by load; the tick once per cycle of 18/10 (`refuted.md` D10); one forum
@@ -605,9 +630,9 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in.
 *General.* The zone is only the **original manifold, its gasket to the head
 and the probe's boss**: the probe sits on the manifold (`vehicle-history.md`).
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | ✔ | ~ | ✘ | ✘ | — | ✔ | ✔ | ✘ |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| ~ | ✔ | ~ | ✘ | ✘ | — | ✔ | ✔ | ✘ | ~ |
 
 - **For:** the puff (S2), the hiss (S11), air for S14's bangs; a 26-year-old
   manifold that has lived through years of misfires.
@@ -625,9 +650,9 @@ new manifold.
 Air past the MAF leans one cylinder at idle, where air flow is smallest.
 *General.* **The only candidate that predicts *load helps* directly.**
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| ✔ | ~ | ✔ | ~ | ✘ | — | ~ | ✔ | ✘ |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ~ | ✔ | ~ | ✘ | — | ~ | ✔ | ✘ | — |
 
 - **For:** the regime; S14 at the thinnest charge; a leak at one runner acts
   on one cylinder, and 3 and 4 are neighbours on the lower manifold.
@@ -662,9 +687,9 @@ pick them. **What is left**: the injector loom where it reaches 3 and 4,
 shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
 19/10; tape renewed). The plug-end side moved to H15.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | ~ | ~ | — | ~ | ✘ |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | ~ | ~ | — | ~ | ✘ | — |
 
 **Tests:** the injector loom flexed at 3 and 4 at a warm idle, watching the
 grade (`plan.md` 5a's loom minutes); VCDS 004 (the ECM's supply) beside 014.
@@ -677,9 +702,9 @@ The ECU books anything at cylinder 4's crank angle to cylinder 4: G66, its
 torque or connector; a loose ancillary part buzzing in a speed band; **an arc
 at lead 4's plug end** (H15). Injector 4's click is settled against (B7).
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| — | — | — | ✔ | ✔ | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| — | — | — | ✔ | ✔ | — | — | — | — | — |
 
 **Tests** — not scheduled (*owner's decision*, 9/10): G66's torque and
 connector; a look for a loose bracket at ~3000 rpm in neutral; after the VW
@@ -693,9 +718,9 @@ hundred km without a disconnect.
 
 ### H7. Fuel delivery at idle: rail pressure, one injector
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | ✔ | — | ~ | ✔ |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | ✔ | — | ~ | ✔ | ~ |
 
 - **Against:** four new injectors and a new filter changed nothing in S1; the
   trims near zero; full-load pulls reach ~85 kW, where a weak pump shows first;
@@ -794,9 +819,9 @@ swap injector 3 with another if the cylinder stays named.
 
 ### H8. Idle air control and the throttle body
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | ~ | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | ~ | — | — | — | ~ |
 
 **Against:** a dip is one firing that fails and recovers in a quarter of a
 second, not a hunting loop; the plate angle in every VCDS log is steady and
@@ -811,9 +836,9 @@ because it is in the idle air path, not because anything points here.
 that it is not argued again.* The probes are from 10/2017, the one part of
 the mixture control not changed.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | — | — | ~ | ~ |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | — | ~ | ~ | ~ |
 
 **Against:** 032 + 033 near zero on a new MAF and new injectors bound a hidden
 shift to a few per cent, and with the wrong sign (the ECU takes fuel out); a
@@ -823,9 +848,9 @@ analyser at the emissions station, warm idle and 2500 rpm. *Not in
 
 ### H12. Driveline play read as misfires
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | ✘ | ~ | ~ | ~ | — | — | ✘ | — |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| ~ | ✘ | ~ | ~ | ~ | — | — | ✘ | — | — |
 
 **Against:** the MAF swap halved the dips; play repeats every 360°, the pairs
 1+4 and 2+3, while the dips sit on 3 and 4, 180° apart; the puffs come with
@@ -839,9 +864,9 @@ pulley's damper fine by eye.
 3000 rpm for at least nine years (*owner*). Gentle use builds deposits where
 hard use burns them off (*general*).
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| ✔ | ~ | ✔ | ~ | — | ~ | — | ~ | ~ |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ~ | ✔ | ~ | — | ~ | — | ~ | ~ | — |
 
 - **The look inside, 19–20/10** (H13 test 3, `idle-log.md`): **no inlet valve
   back is coked** — thin lacquer on all four, so no walnut clean; **the
@@ -874,9 +899,9 @@ BG 44K, the second from 24/10, then a flush and fresh oil, `plan.md` 6a).
 it narrows the margin until the weakest two show. Fuel at a warm idle is pulled
 back by the lambda loop and would show in 032, which reads small.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | ✘ | ~ | — | ~ | ~ |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | ✘ | ~ | — | ~ | ~ | ~ |
 
 **Where a remap could reach the idle**: the idle's base advance (the governor's
 fast actuator); its cold corrections; **the misfire detection's own
@@ -913,9 +938,9 @@ has been NGK (the invoice; `vehicle-history.md`), and the owner believes all
 of them since 2018 were. A genuine VW set has never been on the car in his
 time.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ~ | ~ | ~ | — | ✔ | ✘ |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ~ | ~ | ~ | — | ✔ | ✘ | — |
 
 **What it rests on:**
 
@@ -1037,9 +1062,9 @@ not seal** passes vapour all the time, cold and in open loop, on the
 overrun and **while the car stands**, when vapour from the canister can
 settle in the intake and flood the first start.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | — | — | — | — | ✔ | — | ~ | ✔ |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | — | — | — | ✔ | — | ~ | ✔ | ~ |
 
 - **For: S19.** A rich code and a start that dies at once after four hours
   standing, in a window that holds a fill, is the textbook picture of a
@@ -1133,9 +1158,9 @@ reach the cylinder walls. **Both also have the oil level rising**, which
 here it has not (below). They show the mechanism; for this engine the
 only source is VW's own list.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | — | — | — | — | — | — | — | ✔ |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | — | — | — | — | — | — | ✔ | ~ |
 
 - **For: S19, the code.** Since 24/9 this engine has stood through cold
   idles for minutes at a time, session after session, for the captures
@@ -1238,9 +1263,9 @@ oil run down the valve guide, and the intake's vacuum, highest at idle,
 draws it into the cylinder, where it costs combustion; under load the
 vacuum falls, the flow stops, and what collected burns away.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | — | — | — | — | — |
 
 - **For: the shape of 26/10**, worse after idling and gentle driving,
   calmer after work, the calm lasting — what oil collecting at a small
@@ -1404,6 +1429,11 @@ they sit on all four alike. What is left of H7 — the rail's holding
 pressure, a dripping injector — is mostly for S7 and S19. H16 keeps its
 place for the starts alone. **For the rich idle trim**, which this table does
 not rank, H17 and an injector are what is left (H7).
+
+**Re-read 26/10 with S20 added** (speed wandering at a constant pedal):
+the order stands, since the ranking is for the idle and S20 is not the
+idle. S20 fits nothing firmly: weakly what moves the mixture or the
+throttle at a held pedal (H2, H7, H8, H11, H14, H16, H17) and H0.
 
 **Re-read 26/10 with H18 added** (oil past the stem seals): the order
 above it stands. H18 enters below H17: it reads the shape of 26/10 but
