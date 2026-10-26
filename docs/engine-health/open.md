@@ -71,9 +71,13 @@ routine, S15 the sputter, S18 cylinder 3 out with a tick (24/10); H9 (crankcase 
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm).
 
-**Ranked (25/10 night, after 6e; H18 added 26/10):** **H14, H13, H1, H7,
-H2**, then H0, H8, H3, H15, H4, the timing belt, H16, H17, H18, H11, H12 (*The idle's
-candidates, ranked*). **The dips are on all four alike on both captures since
+**Ranked (26/10, after the oil change and the relearning; agreed with the
+owner):** **H14, H13, H8, H7, H2**, then H1, H0, H3, H15, H4, the timing
+belt, H16, H17, H18, H11, H12 (*The idle's candidates, ranked*). **H8 up
+from seventh**: S20 since the new throttle, and 26/10's wrong learnt idle
+air spoiling the idle and the starts until it relearnt (H8). **H1 down
+from third**: the hot phone recording found no lifter, and 18/10's tick
+has not come back. **The dips are on all four alike on both captures since
 the VW leads** (`40`, `41`; *The dips keep to one slot*), while the warm idle
 graded no better than the best days on the NGK set: the leads took away 3 and
 4's excess, not the roughness. So what acts on all four leads, and what acts
@@ -1519,11 +1523,11 @@ is in git.
 |---|---|---|---|
 | 1 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show; **first since 24/10: the dips on all four alike on `40` and `41`**, the picture it predicts | the files, then the original map (3/11) |
 | 2 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | the second 44K tank (`plan.md` 6a), driving |
-| 3 | **H1** valve or lifter | 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes (6a) |
+| 3 | **H8** throttle and idle control | **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting follows 055's learnt value (`refuted.md` C19), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); the A/C at a warm stop (`plan.md` 6k) |
 | 4 | **H7** fuel delivery | never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge, an injector swap |
 | 5 | **H2** a leak ahead of the probe | S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test |
-| 6 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
-| 7 | **H8** throttle and idle control | new since 2/10; all four | — |
+| 6 | **H1** valve or lifter | **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes (6a) |
+| 7 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
 | 8 | **H3** a leak at one runner | the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
 | 9 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
 | 10 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason | flexed at a warm idle |
@@ -1547,6 +1551,15 @@ they sit on all four alike. What is left of H7 — the rail's holding
 pressure, a dripping injector — is mostly for S7 and S19. H16 keeps its
 place for the starts alone. **For the rich idle trim**, which this table does
 not rank, H17 and an injector are what is left (H7).
+
+**Re-read 26/10, after the oil change** (*agreed with the owner*): **H8
+from 7 to 3** — S20 dates from this throttle, 014 follows 055's learnt
+value (C19), the stick's wrong learnt value spoilt the idle and the starts
+and its relearning calmed them, and the owner's hypothesis that the
+regulation narrows the margin; against it, 014 did not trend with the
+value in the relearning log. **H1 from 3 to 6** — the hot recording found
+no lifter, and the tick of 18/10 has not come back in eight days. **H7,
+H2 and H0 keep their substance**; H0 moves from 6 to 7.
 
 **Re-read 26/10 with S20 added** (speed wandering at a constant pedal):
 the order stands, since the ranking is for the idle and S20 is not the

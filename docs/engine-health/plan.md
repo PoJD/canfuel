@@ -116,6 +116,14 @@ Claude runs the capture on every drive. **Current: item 6.**
    chat. **The same about every 500 km**, always after at least 5 minutes
    standing on level ground. Any top-up: the litres and the odometer
    into the chat.
+6k. **The A/C at a warm stop**, once, when there is time (oil 90 °C or
+   above, neutral, nothing touched):
+   - **1 minute: the everyday state and the A/C on.**
+   - **1 minute: every load on except the A/C** — main beam, heated
+     glass, both seat heaters, the blower full.
+   - Write into the chat `IdleHealth` for each, and **055 field 3** for
+     each if the laptop is in (a VCDS log of 014, 055, 001 across both is
+     better still).
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
@@ -648,6 +656,16 @@ looked for underneath**: the sump's rear was oily on 26/10 (`open.md`,
 *Other*), and a leak lowers the level exactly as burning does. Five minutes standing and
 level ground because the stick reads the sump only once the oil has run
 back; the photograph because a millimetre is the stick's resolution.
+
+**Item 6k — the A/C at a warm stop** (`open.md` S1, *A second reading*;
+H8; *the owner's request*, 26/10). On 26/10 055's learnt idle air read
+exactly 0.00 whenever its load bits read `0101`, the A/C and all-loads
+stretches. If the calm that every load brings is the learnt value set
+aside rather than the load, the A/C alone calms the idle and every load
+without the A/C does not. **Read**: calm with the A/C alone, and 055
+field 3 at 0 with it → the learnt value (H8, C19); calm without the A/C
+too, field 3 unmoved → the load itself, the charge (S1, *Load smooths
+it*); neither → the 26/10 readings were the relearning, not the loads.
 
 **Item 7 — the exhaust ahead of the front probe (H2), warm.** A leak that
 draws air in at idle blows out when the outlet is closed, and hisses or
