@@ -58,7 +58,9 @@ routine, S15 the sputter, S18 cylinder 3 out with a tick (24/10); H9 (crankcase 
 - **The cylinder 4 knock window: S4, S5** — its own cluster, not in
   `plan.md` (*owner's decision*, 9/10).
 - **Reopened, 25/10: S7, the cold start** — the first start dies at once,
-  the second runs; twice since the fill of 24/10. Fits H7 and H16.
+  the second runs; twice since the fill of 24/10, and on 26/10 a third
+  that the held starter carried (`StartDip` 218, the deepest on record).
+  Fits H7 and H16.
 - **New, 24/10: S19** — P0172 stored, suspected with the start that died at
   once; fits H7 and H16 (the purge valve, added 24/10); the code alone
   also H17 (fuel in the oil, 25/10).
@@ -338,7 +340,16 @@ probably on different sensors.
 the next start runs normally** (*owner*). **24/10**, afternoon, after about
 4 hours parked outdoors nose uphill (`idle-log.md`); **25/10**, the cold start
 of the morning **after about 12 hours on the level, in the garage**, "the
-first start always dies" (*owner*). Neither captured. **The slope is not
+first start always dies" (*owner*). Neither captured. **26/10**, after
+about 10 hours in the garage at about 12 °C (*owner's estimate*), not
+primed: **the starter held until it caught, about 4 s by the owner's
+count**, and it did not die. Off the display: **`StartCrank` 1.22 s,
+`StartDip` 218 rpm, `StartClt` 24 °C** — the deepest `StartDip` on
+record, against 15–118 on the clean starts of 24/9–3/10 and 141 on
+11/9's near-stall on the old injectors (`idle-log.md`, *The starts
+measured from the capture*). Read as (*reasoned*): it fired at 1.22 s
+and fell back about to cranking speed within 2 s — the same catch and
+die, with the starter still turning to carry it. **The slope is not
 needed**, so it says nothing either way, and the pickup running dry on a
 hill is out.
 Closed on 26/9 after the new injectors (`refuted.md` D2): 14 captured

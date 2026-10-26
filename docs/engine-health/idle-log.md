@@ -1020,6 +1020,23 @@ starts — the valve is **not replaced** (*the owner's decision*, 25/10:
 it helps neither the idle nor the trim); 6h's priming reads S7 without
 it.
 
+**26/10/2026 — the cold start, plain, off the display** (*owner*;
+`plan.md` 6h). About 10 hours in the garage, about 12 °C there (*owner's
+estimate*; nothing read off the display before the start), **not
+primed**. The starter held until the engine caught, **about 4 s** by
+his count; **it did not die**. **`StartCrank` 1.22 s, `StartDip`
+218 rpm, `StartClt` 24 °C.** The deepest `StartDip` on record (11/9's
+near-stall on the old injectors: 141; the clean starts of 24/9–3/10:
+15–118) and a crank to first firing level with 11/9's. Read as
+(*reasoned*): `StartCrank` ends at the first 400 rpm, so it fired at
+1.22 s and fell back about 218 rpm, to cranking speed, in the next 2 s —
+the catch and die of 24 and 25/10, carried this time by the starter;
+the 4 s are to running, not to first firing. The third bad start since
+the fill of 24/10 (`open.md` S7). A coolant of 24 °C after 10 hours in
+a garage of about 12 °C: either the engine had not cooled to the garage
+or the garage was warmer than guessed; either way warmer than 11/9's
+16 °C. The next cold start is primed.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
