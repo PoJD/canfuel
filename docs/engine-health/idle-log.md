@@ -1147,6 +1147,23 @@ it near zero (`refuted.md` C19). Left for now (*owner*, he had to go).
 **Every start and idle until 055 is back is read with it in mind** —
 6h's starts above all.
 
+**26/10/2026, later — 055 learnt itself back** (*owner*, VCDS 014/055/001
+logged, `LOG-01-014-055-001.CSV` on the laptop; warm idles, coolant 96 °C).
+**055 field 3 walked back on its own over the idling: −2.78 → −2.08 →
+about −1.8 → −1.52 → −1.24 → −0.97, settling at −0.90 / −0.91** with
+field 2 swinging about ±0.1 g/s (`photos/vcds-032-055-2026-10-26-relearnt.jpg`,
+cropped). **032 still 0.0 / 0.0** — not yet relearnt after the
+disconnect. So no longer disconnect was needed. The settled value sits
+**above the −1.1 to −1.3 of 9/10–26/10, and just above C19's −0.93**.
+Off the display along the way (*owner*): `IdleHealth` 55–60 at 62 °C of
+oil; about 100 warm with 014 counting (12) and the learnt value at about
+−2; 60–79 straight after the A/C was switched off; **with the A/C on,
+055 field 3 read 0** (*owner*: the ECU may not take the A/C idle for the
+same idle); 45–50 straight after every load went off, rising slowly
+over minutes — slower than the display's own filter (about 10 s,
+`src/config.h` `IDLE_CONVERGE_S`), so the engine and not the display.
+The log is read when it is uploaded.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
