@@ -1216,9 +1216,10 @@ only source is VW's own list.
   EPR also cleans the rings (H13), so a calmer warm idle after 6a would be
   H17 *or* H13; only 032 belongs to H17 alone.
 
-**Tests:** the dipstick, read 24/10 (above); **a laboratory analysis of
-the old oil with fuel dilution**, sampled hot before the first EPR
-(`plan.md` 6a) — the one test the level's balance cannot hide; **032 before the
+**Tests:** the dipstick, read 24/10 (above), and **its level on the new
+oil** (`plan.md` 6i); *a laboratory analysis of the old oil with fuel
+dilution was planned and dropped, 26/10 (the owner's decision): not
+taken*; **032 before the
 oil change and again on the new oil** after a couple of hundred km, with
 no clearing between unless 032 is read first. A trim that moves to zero
 on fresh oil is VW's own confirmation; one that stays points back at H16
@@ -1261,7 +1262,7 @@ vacuum falls, the flow stops, and what collected burns away.
 - **S3 ~** for the same reason as S1: misfires at idle, on all four.
 
 **Tests:** **the oil consumption on the fresh oil** after `plan.md` 6a,
-read on the dipstick from a known level, which separates this from H17 —
+read on the dipstick from a photographed level (`plan.md` 6i), which separates this from H17 —
 oil burnt lowers the level, fuel in the oil raises it, and both together
 hide each other (H17, *The level may balance*); **the plugs** at the next
 change, for oily deposit on the firing end. A compression or leak-down
@@ -1384,7 +1385,7 @@ is in git.
 | 11 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
 | 12 | **H16** the purge valve leaking | here for S7 and S19 only: an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest; not replaced (*owner*, 25/10) | the cold starts, primed and plain (`plan.md` 6h) |
 | 13 | **H17** fuel in the oil | VW's first cause for this car's 032; the oil level has not risen; here for the trim and S19's code, not the idle: roughest cold, when there is nothing to boil off | 032 on the new oil (`plan.md` 6g) |
-| 14 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil consumption on the fresh oil (`plan.md` 6a) |
+| 14 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
 | 15 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 16 | **H12** driveline play | — | done: the clutch minutes cleared it |
 

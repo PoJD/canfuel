@@ -110,16 +110,8 @@ Claude runs the capture on every drive. **Current: item 6.**
    - **First, on the old oil: item 6c's warm recording.** Warm the engine
      by driving until the **oil reads 90 °C**, park it outdoors, and make
      the recording (6c) **before any EPR goes in**.
-   - **The oil sample, before any EPR.** Oil still at 90 °C, engine off.
-     With a **clean** syringe and tube through the dipstick tube, about
-     **100 ml into a clean bottle** from the laboratory's kit (or a new
-     one), closed and labelled with the date and the odometer; the first
-     few ml out of the syringe go to waste, not into the bottle. **Kept
-     closed, dry and dark; not sent yet** — Claude says after 6g's 032
-     whether it goes (a used-oil analysis **with fuel dilution**; the
-     laboratory is the owner's choice).
    - **First flush.** Oil still at 90 °C. Check the dipstick: **at the upper mark, take out about 0.3 l**
-     with a syringe through the dipstick tube first (the sample counts towards it). One can of EPR into
+     with a syringe through the dipstick tube first. One can of EPR into
      the oil. Hold **1,200–1,300 rpm** with a stick on the
      pedal, **30 minutes**, standing.
    - Drain at once, hot, the car tilted towards the plug, and let it drip
@@ -130,11 +122,6 @@ Claude runs the capture on every drive. **Current: item 6.**
    - **Second flush.** Run it until the **oil reads 90 °C** again, then
      the second can of EPR, **1,200–1,300 rpm, 30 minutes**, standing.
    - Drain at once, hot, tilted, a long drip.
-   - ***Optional*, decided on the day: a rinse without EPR.** The Bosch
-     stays on, the old drain plug back in. **2.5–3 l** of what is left of
-     the 5 l can and the old top-up oil, **the dipstick above the lower
-     mark** before starting. Run it warm, **10 minutes**, then drain at
-     once, hot, tilted, a long drip.
    - **The VW filter on**, the Bosch off. **The new VW drain plug in, about 30 Nm**; check the
      figure at VW when buying it. **New oil Total *Quartz 9000
      Energy* 5W-40**; the can must say **VW 502.00**. Write into the chat
@@ -164,6 +151,12 @@ Claude runs the capture on every drive. **Current: item 6.**
    `StartDip` off the display.
    - **On alternate cold mornings, prime it**: ignition on 3 s, off, on
      3 s again, then start. Write **primed** beside that start.
+6i. **The oil level on the new oil.** After the first drive on it, the
+   car on level ground and **at least 5 minutes standing**: the dipstick
+   out, wiped, in, out, and **photographed**; the odometer into the
+   chat. **The same about every 500 km**, always after at least 5 minutes
+   standing on level ground. Any top-up: the litres and the odometer
+   into the chat.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
@@ -507,6 +500,10 @@ plug at about 30 Nm** is the owner's figure (23/10), not a VW document. **No com
 cost of the leads off twice, which disturbs H15's reading of the new VW
 leads; whether the idle moves is read as for the tanks.
 
+**The oil sample — dropped, 26/10** (*the owner's decision*): not taken.
+H17 is read from 032 alone (6g), with the two blind cases below left
+open, and 6i's level reads oil burnt against fuel gained only together.
+What it was for, kept for the record:
 **The oil sample** (`open.md` H17; *the owner's agreement*, 25/10). The
 dipstick cannot tell fuel coming in from nothing happening when oil is
 burnt at the same time (*the owner's point*), and 032 on the new oil says
@@ -596,8 +593,9 @@ with the first flush's debris; the Bosch, crossed by sellers' listings
 only, serves the oil between, and **the VW original serves the interval**
 (*owner*, 23/10), with a new VW drain plug. **The 0.3 l out first**: on
 27/9 the oil stood at the upper mark, and a can on top of that is above it
-(Red Rider's first step). **The optional rinse** (*owner*, 23/10, to
-be decided on the day) takes the EPR left in the final fill from under
+(Red Rider's first step). **The optional rinse — dropped, 26/10** (*the
+owner's decision*); the final fill keeps the EPR of one drip, under one
+percent by the estimate below. It would have taken the EPR left in the final fill from under
 one percent to about a tenth of that, by the same tenth-a-drain
 estimate. Neither level is known to harm anything; BG's own single flush
 leaves the first. It needs no oil bought: about 10 l in hand, some 3.5 l
@@ -733,6 +731,18 @@ fuel, and the next fill of another brand reads the fuel. Alternate
 mornings, so that plain and primed meet the same weather. `StartCrank`
 and `StartDip` because the display carries them and a start the owner
 calls normal may still show a long crank.
+
+**Item 6i — the oil level on the new oil** (`open.md` H18, H17; *the
+owner's agreement*, 26/10). Oil burnt past the stem seals or rings lowers
+the level; fuel collecting in the oil raises it (*general*). On the old
+oil neither could be read: no known starting level, and the top-ups
+included the litre lost at the cover joint (3/10). A fresh fill to a
+photographed level gives the start. **Read**: a level falling between
+top-ups → oil burnt, H18 (or the rings) up; a level rising → fuel in the
+oil, H17 up; steady → neither in quantity, or both at once (H17, *The
+level may balance*), which 032 (6g) then splits. Five minutes standing and
+level ground because the stick reads the sump only once the oil has run
+back; the photograph because a millimetre is the stick's resolution.
 
 **Item 7 — the exhaust ahead of the front probe (H2), warm.** A leak that
 draws air in at idle blows out when the outlet is closed, and hisses or
