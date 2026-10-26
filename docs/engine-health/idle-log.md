@@ -1133,7 +1133,10 @@ nearly stalled after a warm start** — twice that evening. Read as 055's
 ignition on: **"ADP v pořádku" at once, the throttle not moving**
 (5.6°, G127 71.8 %, idling; `photos/vcds-098-2026-10-26-after-disconnect.jpg`)
 — read as the adaptation done by itself at the first ignition-on after
-the reconnect, as this throttle does at every ignition-on (S13). Then
+the reconnect, as this throttle does at every ignition-on (S13): **no
+sound from the throttle under 098, only its usual routine at
+ignition-on** (*owner*). Or 098 did not really run, with P1582 still
+stored against VW's condition of an empty fault memory. Then
 (`photos/vcds-032-055-2026-10-26-after-disconnect.jpg`): **032 reset to
 0.0 / 0.0, but 055 field 3 still −2.78 g/s**, and **P1582 still stored**
 (the disconnect does not clear the fault memory). **Nearly stalled again
