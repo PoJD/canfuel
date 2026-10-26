@@ -204,7 +204,14 @@ it**: at a warm stop, a minute of the everyday state with the A/C alone
 against a minute of every load but the A/C, `IdleHealth` and 055 field 3
 read in each; and a log of 055 with 014 across such a switch. ⚠ Which of
 the bits is the A/C was not separated, and whether the ECU uses another
-learnt value with the A/C on, or none, is not known.
+learnt value with the A/C on, or none, is not known. **Ross-Tech's list
+of groups 050–059** describes a variant of 055 *"with separation for rear
+window defroster/A/C readiness"* (searched 26/10): **a separate learnt
+value for that state** would read 0.00 too if the disconnect of 26/10
+reset it and it had not relearnt yet. So the 0.00 may be a second learnt
+value at zero rather than none. **Read it at the next A/C stop**: field 3
+staying at 0.00 over minutes of A/C idle says none or not shown; moving
+away from 0 says a learnt value of its own.
 
 **Temperature.** Roughest cold, calmer as the oil warms, calmest hot, in every
 session since 24/9. Every engine idles roughest cold (*general*), so this
