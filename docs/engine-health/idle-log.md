@@ -1045,6 +1045,30 @@ cleared**. 032 the same as after 6e on 25/10 night (−8.6 / +7.8), across
 the day's drives; 055 −1.16 then. This is 6g's *before*; the *after* is
 032 at about 200 km on the new oil.
 
+**26/10/2026 — the phone recording, hot** (`plan.md` 6c; *owner*). On
+the old oil, straight before the first flush, **oil 100 °C**. One
+continuous 82 s recording, injectors 1–4 then the valve cover over 1–4,
+**a double knuckle knock between places: all seven found**, so every
+place is split by its knocks, not by the order. Idle **790–800 rpm** off
+the firing tone (26.3–26.7 Hz). Read as on 24/10: the clicks above
+3 kHz folded at the camshaft's period, the phase carried off the firing
+tone. **One click per firing, all four alike, at every one of the eight
+places**: the four-per-cycle component **15–17 %** of the level
+everywhere (7–10 % part-warm on 24/10); the once-per-cycle one **1.4–4.2
+%**, against 1.0–3.3 % folded at a wrong period (the noise floor), its
+phase not repeating from place to place and over cover 1–4 **2.4, 2.7,
+3.3, 2.9 %** — no cylinder standing out. The mean level the same at all
+eight places, so the phone hears the whole bay and not the part under
+it, as on 24/10. ⚠ The firing tone slipped about one firing between
+injector 3 and 4, so a once-per-cycle phase cannot be compared across
+that join; it sat at the noise floor anyway. *The analysis was an
+ad-hoc script, not kept, as on 24/10.*
+
+**Not known to have achieved:** nothing changed on the car. **Hot, no
+lifter ticks** at camshaft rate over any cylinder, which the part-warm
+recording could not say; by `plan.md`'s own reading, all four alike makes
+the flush an oil change with an additive for the idle.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail

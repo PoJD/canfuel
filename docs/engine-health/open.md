@@ -588,10 +588,12 @@ about. The valve is closed by its spring; the lifter only removes the gap.
   should be; **the phone recording of 24/10, part-warm** (oil 52–58 °C):
   one click per firing, all four alike, over every injector and over the
   cover at each cylinder — no once-per-cycle sound over any lifter
-  (`idle-log.md`, 24/10); the valves looked whole on 19–20/10 (which says nothing of
+  (`idle-log.md`, 24/10), and **the same hot, 26/10** (oil 100 °C): no
+  once-per-cycle sound above the noise floor at any of the eight places
+  (`idle-log.md`, 26/10); the valves looked whole on 19–20/10 (which says nothing of
   sealing); 18/10 is explained by 3's flaked deposit without it.
 
-**Tests:** a phone recording over each injector and each lifter, warm (`plan.md` 6c; the screwdriver by ear dropped 24/10); **the two EPR flushes** (`plan.md` 6a), which clean the
+**Tests:** a phone recording over each injector and each lifter, **done part-warm 24/10 and hot 26/10, nothing** (the screwdriver by ear dropped 24/10); **the two EPR flushes** (`plan.md` 6a), which clean the
 feed passages and the plungers' varnish — they run alongside BG 44K, so
 an improvement does not tell H1 from H13; a warm leak-down (**not to be
 done**, *owner's decision*, 20/10); the lifters pressed down with the cover
@@ -1374,7 +1376,7 @@ is in git.
 |---|---|---|---|
 | 1 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show; **first since 24/10: the dips on all four alike on `40` and `41`**, the picture it predicts | the files, then the original map (3/11) |
 | 2 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | the second 44K tank (`plan.md` 6a), driving |
-| 3 | **H1** valve or lifter | 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back | the phone recording over each lifter (`plan.md` 6c); the EPR flushes (6a) |
+| 3 | **H1** valve or lifter | 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes (6a) |
 | 4 | **H7** fuel delivery | never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge, an injector swap |
 | 5 | **H2** a leak ahead of the probe | S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test |
 | 6 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |

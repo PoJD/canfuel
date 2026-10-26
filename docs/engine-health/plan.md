@@ -107,9 +107,8 @@ Claude runs the capture on every drive. **Current: item 6.**
    the VW dealer **the original filter `06A 115 561 B` and a new drain
    plug** (bought 23/10). Outdoors, no driving
    at any point with EPR in the oil:
-   - **First, on the old oil: item 6c's warm recording.** Warm the engine
-     by driving until the **oil reads 90 °C**, park it outdoors, and make
-     the recording (6c) **before any EPR goes in**.
+   - **First, on the old oil**: warm the engine by driving until the
+     **oil reads 90 °C**, and park it outdoors.
    - **First flush.** Oil still at 90 °C. Check the dipstick: **at the upper mark, take out about 0.3 l**
      with a syringe through the dipstick tube first. One can of EPR into
      the oil. Hold **1,200–1,300 rpm** with a stick on the
@@ -130,17 +129,6 @@ Claude runs the capture on every drive. **Current: item 6.**
      **A lifter tapping for a few seconds after the first start on new
      oil** is expected; one that stays is written into the chat.
    - **Nothing into the new oil.**
-6c. **Once more, warm** (oil 90 °C or above; the part-warm one is done, 24/10),
-   **on the old oil, straight before the first flush** (6a); write the oil
-   temperature into the chat. Neutral, handbrake on, loads off, bonnet
-   open; **in a garage, the door wide open**. Keep clear of the belt,
-   the fan and the HT leads.
-   - **The phone recording**: **one continuous sound recording** (the Dictaphone app; a video is
-     too large to upload), the phone held still a few cm away, **about
-     10 s at each place**: over injector 1, 2, 3, 4 (as close as the plenum
-     lets you, at the connector), then over the valve cover above cylinder
-     1, 2, 3, 4. **Between places, one knock with a knuckle on the inner
-     wing.** Upload the recording.
 6g. **032 around the oil change.**
    - At the last VCDS session **before** the oil change (6a): 032 read,
      as always before anything is cleared.
@@ -483,9 +471,9 @@ tank's additive and loosened deposit goes into the new oil — small, the
 treat rate reaching the crankcase being a fraction of the dose, and the
 first tank showed no harm; a plain change after the tank stays possible,
 not planned. The overlap with 44K reads nothing away: the second tank is
-expected to move nothing (below). **The warm recording (6c) goes first, on
-the old oil**, because it is the lifters' test and after the flush there
-is nothing left to compare it with. **EPR cleans the oil side** — rings and
+expected to move nothing (below). **The warm phone recording went first, on
+the old oil** (26/10, `idle-log.md`), because it is the lifters' test and
+after the flush there is nothing left to compare it with. **EPR cleans the oil side** — rings and
 hydraulic lifters — **not valve faces or chambers**, which are the fuel
 cleaner's. **Both of its sides can reach the idle**: the lifters are H1's,
 and a ring stuck with coke costs compression, which tells most at idle,
@@ -549,10 +537,11 @@ strokes, does not see. **So the flush mends the idle only if a ring or a
 lifter on 3 or 4 is wrong in a way compression and the gauge both missed** —
 possible, against the two best measurements held. Its firm reason is
 maintenance: the additive and the loosened deposit of two strong cleaner
-tanks out of the oil before they varnish a lifter. **The test that tells
-first** is item 6c's phone recording over each lifter, warm: 3 or 4 sounding
-unlike 1 and 2 gives the flush a chance; all four alike makes it an oil
-change with an additive.
+tanks out of the oil before they varnish a lifter. **The test that told
+first** was the phone recording over each lifter, hot (26/10,
+`idle-log.md`): **all four alike**, so for the idle the flush is an oil
+change with an additive; 3 or 4 sounding unlike 1 and 2 would have given
+it a chance.
 
 **And the fuel cleaner in the tank** (*the owner's point*, 24/10): the strong
 first 44K tank, hours above 4000 rpm and about 450 km left `IdleHealth` at
@@ -646,64 +635,6 @@ cylinder; resistance was dropped as unlikely to be the difference
 **Read** over several drives against 19/10 and 12–15/10, by how long a
 relief lasts (`open.md` H15): lasting weeks → the leads; a few days, then
 back → the seating, H3 next; the same → H15 refuted.
-
-**Item 6c — the phone recording** (*owner's
-decision*, 21/10/2026: no propane for now, no stethoscope bought; *when
-he gets to it*). Both test a cause rather than name a cylinder, which
-`open.md` already does for 3 and 4. *This item also held a brake-cleaner
-test at the runners and a screwdriver by ear over each lifter, both
-dropped 24/10 (below).*
-
-- **The phone video tells an injector from a lifter by where the loud part
-  of the cycle sits** (*reasoned*, 24/10, from the gauge video of 14/10):
-  folded at the camshaft's period, that clip's clicks above 3 kHz repeat
-  every 720° (its two halves correlate 0.89) and one stretch of the cycle
-  is much louder than the rest — which the injector nearest the phone and
-  one noisy lifter would both produce. Moved place to place: **injectors**
-  move the loud stretch round the cycle by 180° steps (firing order
-  1-3-4-2) and sound alike over each; **a lifter** keeps it in one place,
-  loudest over one cylinder's part of the cover. **It has to be one
-  recording**: the loud stretch is placed against the cycle, and separate
-  clips each start at an arbitrary point of it, so only loudness could be
-  compared between them, not position. Sound alone, because an upload is
-  size-limited (*owner*, 24/10) and a video of that length is not; the
-  places come from the order and the knocks between them. The rpm comes from the sound itself (the firing tone, at
-  twice crank speed), as it did on 14/10: 30.8 Hz, 924 rpm, inside the
-  900–950 of `33`'s cold phase.
-- **Any temperature** (*owner's point*, 24/10): which part of the cycle is
-  loud, and whether it moves from place to place, does not depend on it,
-  and the rpm comes from the recording itself. A lifter that bleeds down is
-  loudest hot and one stuck with varnish cold, so a first recording part-warm
-  (oil about 50 °C) is followed by a warm one only if it shows nothing. The
-  idle grades worst cold, where the 14/10 clip was taken.
-- **The part-warm recording, 24/10** (`idle-log.md`): one click per firing,
-  all four alike, at all eight places; no once-per-cycle sound anywhere.
-  Read by the harmonics of the folded profile: four per cycle is every
-  firing alike, **one per cycle is one source standing out**, which a
-  noisy lifter would make over its cylinder; that one sat at noise. So the
-  warm recording follows, for a lifter that ticks only hot.
-- **The screwdriver, dropped** (*owner's decision*, 24/10/2026): the
-  recording asks the same question of the same places — a lifter that
-  bleeds down or a valve that seats late ticks at camshaft rate over its
-  own cylinder (`open.md` H1) — and can be measured and compared, where an
-  ear cannot; he trusts it more. What the screwdriver would have added is
-  contact: it hears the cover's structure rather than the air, which the
-  phone a few cm away does not.
-- **The brake cleaner, dropped** (*owner's decision*, 24/10/2026, having
-  looked): there is no room to spray the lower manifold's joints without
-  hitting the coil at cylinder 4 and much else, and the runners of 2 and 3
-  cannot be reached at all; only taking the plenum and the manifold off
-  would. What it was for, kept for that day: it was H3's (`open.md` H3): sprayed where air is drawn
-  in, it is drawn in too and enriches the charge for a moment, and the idle
-  answers within a second or two before the lambda loop takes it back. Any
-  prompt change counts. **Cylinder 1 first** shows what *nothing* looks like.
-  A reaction at 3 or 4's head joint or injector seat, and not at 1, is a
-  leak at that runner: the lower gasket or the injector's O-ring is the
-  repair. **No reaction anywhere weakens H3 a good deal**, since this reaches
-  the one place the vacuum gauge on the common plenum could not (`open.md`
-  H3). The smoke test of 9/10 looked for air going out, cold; this one looks
-  for air going in, warm and running. **Non-chlorinated**, because a
-  chlorinated cleaner burnt in the cylinder makes phosgene (*general*).
 
 **Item 6g — fuel in the oil** (`open.md` H17; 25/10/2026, from VW's
 evaluation of block 032, `vcds.md`). VW names oil dilution first for a
