@@ -67,8 +67,8 @@ routine, S15 the sputter, S18 cylinder 3 out with a tick (24/10); H9 (crankcase 
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm).
 
-**Ranked (25/10 night, after 6e):** **H14, H13, H1, H7,
-H2**, then H0, H8, H3, H15, H4, the timing belt, H16, H17, H11, H12 (*The idle's
+**Ranked (25/10 night, after 6e; H18 added 26/10):** **H14, H13, H1, H7,
+H2**, then H0, H8, H3, H15, H4, the timing belt, H16, H17, H18, H11, H12 (*The idle's
 candidates, ranked*). **The dips are on all four alike on both captures since
 the VW leads** (`40`, `41`; *The dips keep to one slot*), while the warm idle
 graded no better than the best days on the NGK set: the leads took away 3 and
@@ -202,7 +202,7 @@ the cleaner — *After high revs*, below). ⚠ **Not separated**: no capture
 warms past 92 °C at idle alone, so a few degrees more oil and the drive
 itself always came together. The owner's reading (*hypothesis*): the
 chambers carry something — deposit, oil, moisture — that a working drive
-clears and an idle does not. Settled by a warm-up to 95 °C at idle alone,
+clears and an idle does not (H13, H17, H18). Settled by a warm-up to 95 °C at idle alone,
 or by a gentle warm drive straight into an idle.
 
 **What comes before a dip** (`tools/dipcontext.py`, 852 warm dips,
@@ -1176,6 +1176,9 @@ only source is VW's own list.
   cannot be told apart from fuel or condensed water on a cheap screen
   with the engine stopped. **How much oil it burns is not known**: the
   top-ups since 6/2026 include the litre lost at the cover joint (3/10).
+  **No blue smoke seen, ever** (*owner*, 26/10): against burning oil in
+  any quantity, by the rings or the stem seals (H18). Weak: a small
+  consumption is not visible by eye (*general*).
 - **Against: the bad start of 24/10.** Fuel in the oil does not flood a
   start after standing (*reasoned*); if P0172 and that start are one event
   (*owner's decision*, S19), H16 and H7 explain both and H17 only the code.
@@ -1220,6 +1223,49 @@ oil change and again on the new oil** after a couple of hundred km, with
 no clearing between unless 032 is read first. A trim that moves to zero
 on fresh oil is VW's own confirmation; one that stays points back at H16
 and H7.
+
+### H18. Oil past the valve-stem seals, drawn in at idle
+
+*Added 26/10 at the owner's request*, from his reading of 26/10 (S1,
+*Temperature*): the warm idle stays at 90–110 through a gentle warm-up
+and calms only after a drive in which the engine works, and stays calm
+for the next 15–20 minutes of idling. **The mechanism** (*general*;
+owners' forums, not a manufacturer): a worn or hardened stem seal lets
+oil run down the valve guide, and the intake's vacuum, highest at idle,
+draws it into the cylinder, where it costs combustion; under load the
+vacuum falls, the flow stops, and what collected burns away.
+
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | — | — | — | — |
+
+- **For: the shape of 26/10**, worse after idling and gentle driving,
+  calmer after work, the calm lasting — what oil collecting at a small
+  charge and burnt off under load would give (*reasoned*).
+- **For: all four alike.** The seals age together, and since the VW
+  leads the dips sit on all four alike (*The dips keep to one slot*).
+- **For, weakly: what the screen showed** on 19–20/10 (`idle-log.md`):
+  a thin lacquer on the back of every inlet valve and wet patches on
+  every crown. Oil from the guide would leave both, but so would the
+  breather's oil mist, fuel or condensed water; a cheap screen with the
+  engine stopped cannot tell them apart.
+- **Against: no blue smoke seen**, ever (*owner*, 26/10), and the plugs of
+  20/10 dry black, not oily. The oil on every plug's thread is from the
+  cover side and says nothing about the chamber.
+- **Against: 26/10 itself.** The calm came after engine braking downhill,
+  when the vacuum is at its highest and a leaking seal passes the most;
+  the drive's load after it would have to burn off more than the coast
+  drew in.
+- **Against: the dipstick** (H17): no loss can be read between top-ups.
+  **How much oil it burns is not known** (H17).
+- **S3 ~** for the same reason as S1: misfires at idle, on all four.
+
+**Tests:** **the oil consumption on the fresh oil** after `plan.md` 6a,
+read on the dipstick from a known level, which separates this from H17 —
+oil burnt lowers the level, fuel in the oil raises it, and both together
+hide each other (H17, *The level may balance*); **the plugs** at the next
+change, for oily deposit on the firing end. A compression or leak-down
+test does not reach the seals.
 
 ---
 
@@ -1338,8 +1384,9 @@ is in git.
 | 11 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
 | 12 | **H16** the purge valve leaking | here for S7 and S19 only: an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest; not replaced (*owner*, 25/10) | the cold starts, primed and plain (`plan.md` 6h) |
 | 13 | **H17** fuel in the oil | VW's first cause for this car's 032; the oil level has not risen; here for the trim and S19's code, not the idle: roughest cold, when there is nothing to boil off | 032 on the new oil (`plan.md` 6g) |
-| 14 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
-| 15 | **H12** driveline play | — | done: the clutch minutes cleared it |
+| 14 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil consumption on the fresh oil (`plan.md` 6a) |
+| 15 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
+| 16 | **H12** driveline play | — | done: the clutch minutes cleared it |
 
 **Re-read 25/10 with S7 reopened**: the order stands, since the ranking is
 for the idle and S7 is a start; S7 sits with S19 on H7 and H16, and H7's
@@ -1354,6 +1401,11 @@ they sit on all four alike. What is left of H7 — the rail's holding
 pressure, a dripping injector — is mostly for S7 and S19. H16 keeps its
 place for the starts alone. **For the rich idle trim**, which this table does
 not rank, H17 and an injector are what is left (H7).
+
+**Re-read 26/10 with H18 added** (oil past the stem seals): the order
+above it stands. H18 enters below H17: it reads the shape of 26/10 but
+has no blue smoke, no oily plug and no falling level behind it, and its
+test comes with the fresh oil of 6a.
 
 **More than one at once** (*the owner's point*, 12/10): each repair may help
 only in part; a partial improvement is read as a share, not a miss.
