@@ -65,7 +65,8 @@ routine, S15 the sputter, S18 cylinder 3 out with a tick (24/10); H9 (crankcase 
   once; fits H7 and H16 (the purge valve, added 24/10); the code alone
   also H17 (fuel in the oil, 25/10).
 - **New, 26/10: S20** — engine speed wanders at a constant pedal, seen in
-  the EPR flush and lately on the road (*owner*); not the idle.
+  the EPR flush and on the road since the new throttle of 1–2/10
+  (*owner*); not the idle. Fits H8 by its timing.
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm).
 
@@ -494,17 +495,23 @@ the speed swung a little at first, held about 1250, then rose slowly to
 about 1300 by itself, and **"it just fluctuates"** (*owner*). **His
 9 s video** of it, read from its sound (the firing rate in the clicks
 above 3 kHz, 1 s windows): **1266–1294 rpm for 4 s, then a step down to
-1215–1241** for the rest, ±10–15 rpm within each. **Also on the road,
-lately** (*owner*): hard to hold the engine speed steady; since when is
-not known.
+1215–1241** for the rest, ±10–15 rpm within each. **Also on the road**
+(*owner*): hard to hold the engine speed steady, **noticed since the job
+of 1–2/10**, which fitted **the new throttle** (Pierburg `7.03703.13.0`)
+and **took up the throttle cable's slack** (`idle-log.md`, *The valve
+cover and throttle job*); the same job renewed the cover gasket, the
+plenum gasket and the breather.
 
 **Not S1.** S1 is dips at idle with the idle governor in charge; this is
-above idle with the pedal held. ⚠ **Twice soft**: it was seen with EPR,
-a solvent, in the oil; and on this engine the pedal is a sensor, the ECU
-moves the throttle (S13, `refuted.md` D7), and a stick on a pedal can
-settle, so a wandering speed and a wandering throttle cannot be told
-apart from the sound. A capture tells them apart: 0x280 b5 is the pedal,
-so stretches where it holds still show whether the speed wanders anyway.
+above idle with the pedal held. **The pedal works the throttle by a
+cable** (*owner*, 26/10, off the car; *this said the pedal was a sensor
+and the ECU moved the throttle — wrong*), so with the pedal held the plate
+is held, and what wanders is the engine's torque at that plate, or the
+plate itself through the cable and the idle stop. ⚠ **Soft**: it was
+seen with EPR, a solvent, in the oil, and a stick on a pedal can settle,
+which the sound cannot tell from the engine. A capture tells them apart:
+0x280 b5 is the throttle, so stretches where it holds still show whether
+the speed wanders anyway.
 The slow rise to 1300 reads as the oil thinned by EPR and still warming,
 less friction at the same throttle (*reasoned*); the swings and the step
 do not.
@@ -821,7 +828,12 @@ swap injector 3 with another if the cylinder stays named.
 
 | S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
 |---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | ~ | — | — | — | ~ |
+| ~ | — | ~ | — | — | ~ | — | — | — | ✔ |
+
+**For: S20, by its timing** (*owner*, 26/10): the speed has been hard
+to hold at a steady pedal since the job of 1–2/10, which fitted this
+throttle and took up its cable's slack. Not measured; a capture with the
+throttle held still would show whether the plate or the engine moves.
 
 **Against:** a dip is one firing that fails and recovers in a quarter of a
 second, not a hunting loop; the plate angle in every VCDS log is steady and
@@ -1432,8 +1444,9 @@ not rank, H17 and an injector are what is left (H7).
 
 **Re-read 26/10 with S20 added** (speed wandering at a constant pedal):
 the order stands, since the ranking is for the idle and S20 is not the
-idle. S20 fits nothing firmly: weakly what moves the mixture or the
-throttle at a held pedal (H2, H7, H8, H11, H14, H16, H17) and H0.
+idle. S20 fits H8 by its timing (since the new throttle and the cable's
+slack taken up, 1–2/10, *owner*), weakly what moves the mixture at a held
+plate (H2, H7, H11, H14, H16, H17) and H0.
 
 **Re-read 26/10 with H18 added** (oil past the stem seals): the order
 above it stands. H18 enters below H17: it reads the shape of 26/10 but
