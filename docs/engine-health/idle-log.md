@@ -1091,6 +1091,10 @@ and learnt it. The clearing of 24/10 left 055 alone (−1.31 after it), so
 it is expected to relearn by itself over ordinary idling; a warm
 `IdleHealth` until it has is read with that in mind. Fault memory then
 cleared by the owner.
+**The first drain** (`photos/oil-drained-2026-10-26-flush1.jpg`,
+cropped clear of the reflections): the surface dark, glossy and even,
+**no foam, no milky emulsion, nothing floating**. The sky's reflection
+hides the colour and the depth, so it says nothing of sediment.
 
 ---
 
