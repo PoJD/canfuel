@@ -1082,6 +1082,15 @@ target, 35-10, sporadic**
 window). Read as the stick (*reasoned*): the speed held about 450 rpm
 above the idle target for half an hour, standing, at a plate barely off
 its stop.
+**Before the clearing** (`photos/vcds-032-055-2026-10-26-after-flush1.jpg`,
+cropped): **032 −8.6 / +8.6 %** (+7.8 before the flush), **055 field 3
+−2.10 g/s** (−1.14 before), **outside VW's −1.50 to +1.50**
+(`vcds.md`). Read as the same stick (*reasoned*): the idle stabilisation
+took air away for half an hour against a speed it could not bring down,
+and learnt it. The clearing of 24/10 left 055 alone (−1.31 after it), so
+it is expected to relearn by itself over ordinary idling; a warm
+`IdleHealth` until it has is read with that in mind. Fault memory then
+cleared by the owner.
 
 ---
 
