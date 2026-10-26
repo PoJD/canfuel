@@ -511,7 +511,19 @@ and the ECU moved the throttle — wrong*), so with the pedal held the plate
 is held, and what wanders is the engine's torque at that plate, or the
 plate itself through the cable and the idle stop. ⚠ **Soft**: it was
 seen with EPR, a solvent, in the oil. The stick is not it (*owner*: it
-does not move). A capture tells them apart:
+does not move).
+
+**The captures show no change with the new throttle at part throttle**
+(26/10). Every stretch of at least 2 s with 0x280 b5 not moving by one
+count, above 15 km/h, in one gear, oil above 80 °C; the rpm's scatter
+about its straight-line trend in each: **1500–2500 rpm, part throttle,
+5.3 rpm on the old throttle (`19`, `24`, 84 stretches) against 4.1 on
+the new (`26`–`40`, 137)**; 2500–3500 4.3 against 4.2. Only full
+throttle above 3500 rpm reads higher on the new, 9.0 against 5.9 — pulls,
+far more and harder after 2/10, not a held speed. ⚠ What this cannot
+see: a wander slower than a few seconds, which on the road the gradient
+hides, and a standing hold above idle, which no capture since 2/10
+holds. *An ad-hoc script, not kept.* A capture tells them apart:
 0x280 b5 is the throttle, so stretches where it holds still show whether
 the speed wanders anyway.
 The slow rise to 1300 reads as the oil thinned by EPR and still warming,
