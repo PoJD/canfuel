@@ -64,9 +64,10 @@ routine, S15 the sputter, S18 cylinder 3 out with a tick (24/10); H9 (crankcase 
 - **New, 24/10: S19** — P0172 stored, suspected with the start that died at
   once; fits H7 and H16 (the purge valve, added 24/10); the code alone
   also H17 (fuel in the oil, 25/10).
-- **New, 26/10: S20** — engine speed wanders at a constant pedal, seen in
-  the EPR flush and on the road since the new throttle of 1–2/10
-  (*owner*); not the idle. Fits H8 by its timing.
+- **New, 26/10: S20** — engine speed wanders at a constant pedal, on the
+  road since the new throttle of 1–2/10 (*owner*); what the EPR flush
+  showed may be the stick and the ECU's idle control (S20). Not the idle.
+  Fits H8 by its timing.
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm).
 
@@ -517,6 +518,15 @@ higher and swinging** — the video's 1266–1294 → 1215–1241 the same
 pattern. What switches between them is not known; an on/off load such as
 the radiator fan, or the purge valve's cycles (H16), would give a step at
 a held plate (*reasoned*); the sound shows no fan switching clearly.
+**The flush's part is weak since** (*owner*, 26/10, in the second
+flush): setting the stick so that it did not move turned out hard, and
+the swing may have been the stick after all; set again, it sits at
+1250–1300. **And the ECU was in it** (*reasoned*): **P0507** set in the
+first flush and **055's learnt value went to −2.10 g/s**, so the ECU took
+the held engine for an idle running high and worked its idle control
+against it; with the plate near its stop, a controller pushing against a
+held pedal could itself give a speed that swings and steps. **So S20
+rests on the road observation**, not on the flush.
 **Also on the road**
 (*owner*): hard to hold the engine speed steady, **noticed since the job
 of 1–2/10**, which fitted **the new throttle** (Pierburg `7.03703.13.0`)
