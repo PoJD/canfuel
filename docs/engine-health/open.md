@@ -184,6 +184,23 @@ pair**, 19/10, oil 101 °C: loads off mostly about 100, every load on mostly
 about 50 — twice what one pair can show by chance. Read as (*reasoned*):
 **one or more cylinders run at the edge of stable combustion at the idle's
 charge**, and anything that takes a little charge away tips them over.
+**A second reading, from 26/10** (*the owner's hypothesis*, not tested):
+**with the A/C and every load on, the ECU sets its learnt idle air aside.**
+In the relearning log of 26/10
+(`test/fixtures/vcds/vcds-step6a-055-relearn-014-055-001.csv`,
+`idle-log.md`) 055's learnt value read **exactly 0.00 whenever its load
+bits read `0101`** — the A/C and all-loads stretches — and came back the
+moment they returned to `0000`. That learnt value is what 014's counting
+follows in `refuted.md` C19, negative on this engine since September.
+So "every load on" may calm the idle not by the load at all but by
+taking the learnt value out of play; and **since the cleaner the partial
+loads hardly matter while everything on together does** — and
+everything on is the one state with the A/C in it. **What would test
+it**: at a warm stop, a minute of the everyday state with the A/C alone
+against a minute of every load but the A/C, `IdleHealth` and 055 field 3
+read in each; and a log of 055 with 014 across such a switch. ⚠ Which of
+the bits is the A/C was not separated, and whether the ECU uses another
+learnt value with the A/C on, or none, is not known.
 
 **Temperature.** Roughest cold, calmer as the oil warms, calmest hot, in every
 session since 24/9. Every engine idles roughest cold (*general*), so this
