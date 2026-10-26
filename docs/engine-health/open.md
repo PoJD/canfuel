@@ -1501,6 +1501,25 @@ pages refuse automated reading): the short vacuum hose to the fuel
 pressure regulator, N80. Overfilling the tank past the first click is
 named as a way to flood the canister (*general*; H16).
 
+**The idle air regulation, 055 and P1582** (searched 26/10, English and
+German, for H8): **no source gives typical values of 055's learnt value
+on this engine, and none relates it to 014** — the one specification is
+still VW's own, −1.50 to +1.50 g/s and negative on a run-in engine
+(`vcds.md`), which every reading here except the stick's has kept inside.
+A German overview gives 055 in per cent for other ECUs, so the g/s scale
+is this ECU's label file and not general. **P1582 on an AQY**, in one
+motor-talk thread read only in search extracts: a cracked vacuum hose to
+the brake servo, unmetered air, with the additive lambda learnt value
+high (the opposite sign of this car's 032), cured with the hose and the
+adaptations reset. The general P1582 lists name air leaks, the injectors,
+the fuel pressure regulator, the throttle and oil dilution. Throttle
+cleaning and a relearn are the usual advice; one AQY extract says the
+stutter got *worse* after a relearn. **One more AQY thread with this
+picture** (golf4.de, 2012, read in full): a warm idle that stutters now
+and then, dipping from 800 to 760 rpm only in the stutter, driving fine,
+the probe, plugs, leads, coil, coolant sender and MAF replaced and the
+throttle cleaned and adapted — **unresolved**, like the rest.
+
 **Pictures of the inside of this engine family** (searched 21/10, the same
 languages): **none found** that would compare — no borescope or head-off
 photo set of an AQY, AEG, APK or AZJ with its mileage. The one general
