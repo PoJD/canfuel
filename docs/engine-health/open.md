@@ -914,6 +914,40 @@ spot or dropout on the bus; the throttle is **new since 2/10** (Pierburg
 `7.03703.13.0`) and the idle fault outlived it; it acts on all four. Kept
 because it is in the idle air path, not because anything points here.
 
+**The owner's hypothesis, 26/10: the idle regulation itself.** 055's
+learnt value has been negative on this engine since September, so the
+ECU idles it on less air than its base model; **less air is a smaller
+charge, and a smaller charge is nearer the edge S1 reads the idle at**
+(*Load smooths it*) — more air, from a load or from the learnt value set
+aside (S1, *A second reading*), calms it (*reasoned*). **For**: on 26/10
+`IdleHealth` off the display fell as the value relearnt from −2.78 to
+−0.90 (`idle-log.md`); 014's counting follows the value in `refuted.md`
+C19; S20 dates from this throttle (*owner*). **Against**: in the same
+log **014 counted about as often at −1.0 as at −2.8** (no trend,
+`idle-log.md`); the display readings were single figures across changing
+temperature, loads and time, with no `IdleHealth` in the VCDS log to set
+against the value; and a dip is one failed firing (S1), which a
+regulator can bring nearer but not cause.
+
+**Do 055 and 032 belong together?** (*the owner's question*, 26/10): the
+ECU takes away both air (055) and fuel (032's idle cell). *Reasoned*, not
+measured: **not through one cause**. Air the MAF did not see would push
+055 negative but 032 *positive* (lean); extra fuel — vapour from the
+breather or N80, fuel in the oil — pushes 032 negative, but the lambda
+loop brings the mixture back to λ = 1, which leaves the idle's torque and
+so 055 where they were. And both are answers, not causes: undone, the
+idle would run rich and fast, not better. **The exception was 26/10**,
+when 055's −2.78 was learnt wrong against the stick, and undoing it did
+help.
+
+**Tests, both already in the plan**: **6g** — 032 relearns from zero
+after the disconnect of 26/10 while 055 sits at −0.90; 032's idle cell
+back near −8 with 055 unmoved says the two are independent and the rich
+idle has its own source (H7, H16, H17). **5a** — the ECU comes back from
+the tuner on zeroed adaptations; the drive home, captured with VCDS on
+014, 055 and 003, gives `IdleHealth` second by second against the
+learnt value as it walks down from zero, which 26/10 could not.
+
 ### H11. Both lambda probes shifted alike
 
 *Added 10/10 at the owner's request, as a weak hypothesis written down so
