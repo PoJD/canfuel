@@ -1069,6 +1069,20 @@ lifter ticks** at camshaft rate over any cylinder, which the part-warm
 recording could not say; by `plan.md`'s own reading, all four alike makes
 the flush an oil change with an additive for the idle.
 
+**26/10/2026 — the first EPR flush, and P0507** (`plan.md` 6a; *owner*;
+the full entry follows when the change is done). At **154,999 km**: the
+first can of EPR, **30 minutes at 1250–1300 rpm**, standing, the pedal
+held by a stick; no tick. Drained hot; **the old filter was a VW
+original**; the Bosch `0 451 103 314` on (the same seal and thread, a
+different top plate), the old drain plug back at 30 Nm, fresh oil to the
+mark, no leak at the start. **The engine lamp lit in the warm-up for
+the second flush**: fault memory **16891 / P0507, idle speed above the
+target, 35-10, sporadic**
+(`photos/vcds-faults-2026-10-26-p0507-flush.jpg`, cropped to the VCDS
+window). Read as the stick (*reasoned*): the speed held about 450 rpm
+above the idle target for half an hour, standing, at a plate barely off
+its stop.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
