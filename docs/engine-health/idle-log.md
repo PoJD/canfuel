@@ -1037,6 +1037,14 @@ a garage of about 12 °C: either the engine had not cooled to the garage
 or the garage was warmer than guessed; either way warmer than 11/9's
 16 °C. The next cold start is primed.
 
+**26/10/2026 — 032 before the oil change** (`plan.md` 6g; *owner*;
+`photos/vcds-032-055-2026-10-26-before-6a.jpg`, cropped to the VCDS
+window). Engine off, ignition on, before any EPR: **032 −8.6 / +7.8 %**,
+**055 field 3 −1.14 g/s**; **fault memory empty** (*owner*); **nothing
+cleared**. 032 the same as after 6e on 25/10 night (−8.6 / +7.8), across
+the day's drives; 055 −1.16 then. This is 6g's *before*; the *after* is
+032 at about 200 km on the new oil.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
