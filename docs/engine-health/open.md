@@ -269,6 +269,16 @@ the MAF. Much weaker than S14's bangs, and in the owner's reading the same
 thing smaller: **a misfire's unburnt charge going off in the exhaust**. On
 12/10 he heard the puffs **come with the dips** (by ear, not aligned with a
 recording). It outlived the resealed joint behind the converter (S6, closed).
+**Heard again 26/10** (*owner*), at the warming idle between the two EPR
+flushes, on the fresh oil with what EPR was left in it, and recorded by
+phone (48 s). Read from the sound (the exhaust note at twice the firing
+rate, 65.7 Hz; idle about 990 rpm): **no single stroke stands out** —
+of about 1600, none above 1.45× the median pulse — but **four moments,
+at about 0:03, 0:12, 0:24 and 0:37, where the exhaust note weakens by
+about 20 % and the speed dips about 15–20 rpm for half a second**
+(averaged over 0.25 s, so the true dip is deeper), the size of an S1 dip.
+**Whether those four are the puffs he hears is not yet confirmed**; if
+they are, S2 and S1 are aligned on a recording for the first time.
 
 ### S3. Misfires counted by the ECU at idle
 
