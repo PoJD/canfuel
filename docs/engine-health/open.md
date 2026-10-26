@@ -495,7 +495,9 @@ the speed swung a little at first, held about 1250, then rose slowly to
 about 1300 by itself, and **"it just fluctuates"** (*owner*). **His
 9 s video** of it, read from its sound (the firing rate in the clicks
 above 3 kHz, 1 s windows): **1266–1294 rpm for 4 s, then a step down to
-1215–1241** for the rest, ±10–15 rpm within each. **Also on the road**
+1215–1241** for the rest, ±10–15 rpm within each. **Over the flush**
+(*owner*, off the display): mostly swinging **1250–1300**, now and then
+settling at about **1230**; **the stick does not move at all**. **Also on the road**
 (*owner*): hard to hold the engine speed steady, **noticed since the job
 of 1–2/10**, which fitted **the new throttle** (Pierburg `7.03703.13.0`)
 and **took up the throttle cable's slack** (`idle-log.md`, *The valve
@@ -508,8 +510,8 @@ cable** (*owner*, 26/10, off the car; *this said the pedal was a sensor
 and the ECU moved the throttle — wrong*), so with the pedal held the plate
 is held, and what wanders is the engine's torque at that plate, or the
 plate itself through the cable and the idle stop. ⚠ **Soft**: it was
-seen with EPR, a solvent, in the oil, and a stick on a pedal can settle,
-which the sound cannot tell from the engine. A capture tells them apart:
+seen with EPR, a solvent, in the oil. The stick is not it (*owner*: it
+does not move). A capture tells them apart:
 0x280 b5 is the throttle, so stretches where it holds still show whether
 the speed wanders anyway.
 The slow rise to 1300 reads as the oil thinned by EPR and still warming,
