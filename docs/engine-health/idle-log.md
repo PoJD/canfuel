@@ -1162,7 +1162,26 @@ oil; about 100 warm with 014 counting (12) and the learnt value at about
 same idle); 45–50 straight after every load went off, rising slowly
 over minutes — slower than the display's own filter (about 10 s,
 `src/config.h` `IDLE_CONVERGE_S`), so the engine and not the display.
-The log is read when it is uploaded.
+**The log** (`test/fixtures/vcds/vcds-step6a-055-relearn-014-055-001.csv`,
+37 minutes, from the start through the drive to the end of the idling):
+- **055 field 3 learns only at a warm standing idle** — with 001's
+  basic-setting requirements all `111111` — and holds still through
+  every stretch of driving: −2.78 for the first 12 minutes of mixed
+  driving, then down in steps at each idle, field 2 at about +1.0 to
+  +1.3 g/s while it learnt, falling towards 0 as it arrived.
+- **Field 3 reads exactly 0.00 whenever 055's load bits read `0101`**
+  (and 001's first requirement bit drops to 0) — the owner's A/C and
+  all-loads stretches — and returns to the learnt value when they go
+  back to `0000`. So with those loads on, the ECU does not use (or does
+  not show) the learnt idle value at all. Which bit is the A/C was not
+  separated.
+- **014 counted at every value the learnt value passed through**:
+  counter non-zero for 35 % of the warm idle at −2.2 to −2.8, 49 % at
+  −1.9 to −2.2, 19 % at −1.4 to −1.9, 31 % at −1.1 to −1.4 and **37 %
+  at −0.97 to −1.1**, the counter in steps of 12 up to 60. No trend with
+  the learnt value; the log ended at −0.97, still below C19's −0.93, so
+  **whether 014 goes quiet above it is not yet tested** — the settled
+  −0.90 is the next session's to read.
 
 ---
 
