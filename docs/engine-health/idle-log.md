@@ -1096,6 +1096,34 @@ cropped clear of the reflections): the surface dark, glossy and even,
 **no foam, no milky emulsion, nothing floating**. The sky's reflection
 hides the colour and the depth, so it says nothing of sediment.
 
+**26/10/2026, evening — the second flush and the new oil** (`plan.md` 6a;
+*owner*). The second can of EPR at 90 °C of oil, **30 minutes at
+1220–1300 rpm**, the stick again; no tick. The second drain black, which
+is the deposit EPR dissolves (*general*). **The VW filter `06A 115 561 B`
+and the new VW drain plug, about 30 Nm; Total *Quartz 9000 Energy* 5W-40,
+about 4 l**; no leak at the start. **Done at 154,999 km**: two EPR
+flushes, the Bosch filter between, the sample and the rinse dropped.
+**The underside oily**, the sump's rear the wettest, before the change
+too (`open.md`, *Other*).
+
+**After the second flush** (`photos/vcds-faults-2026-10-26-after-flush2.jpg`,
+cropped): **16891 / P0507** again, sporadic, and **17990 / P1582, idle
+adaptation at its limit, 35-00** — both the stick (*reasoned*): the idle
+stabilisation went on learning against the held speed until it ran out
+of range. Both cleared by the owner; the adaptations were read only
+after the clearing and a short idle to look for leaks
+(`photos/vcds-032-055-2026-10-26-new-oil.jpg`): **032 −1.6 / 0.0 %** (the
+clearing's reset and a minute of relearning, not 6g's *after*), **055
+field 3 −2.78 g/s**, further out of VW's −1.50 to +1.50 than after the
+first flush. **055 is not reset by a clearing** (24/10), so it has to
+relearn by itself over ordinary idling; until it has, a warm
+`IdleHealth` and the idle's feel are read with it in mind, and **P1582
+coming back on the road** would say it has not.
+
+**Not known to have achieved:** anything for the idle — read on the new
+oil with 6g's 032 at about 200 km, `IdleHealth` cold and warm apart, and
+6i's dipstick.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail

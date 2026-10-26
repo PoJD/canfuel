@@ -99,40 +99,11 @@ Claude runs the capture on every drive. **Current: item 6.**
      off at once**, then item 5's rules.
    - **Item 5's S18 rules on every drive of both tanks.** The map at 3/11
      goes ahead whatever tank is in.
-   **Next, before the map of 3/11 and with the second tank still in: the oil
-   flushed twice, then oil and filter changed**; the tank is driven out
-   afterwards, on the new oil. Bought for it: **two cans of BG `109` EPR**,
-   **5 l of Total *Quartz 9000 Energy* 5W-40** (autodily-pema.cz), the
-   same oil as the final fill; what is left over is for topping up, and from
-   the VW dealer **the original filter `06A 115 561 B` and a new drain
-   plug** (bought 23/10). Outdoors, no driving
-   at any point with EPR in the oil:
-   - **First, on the old oil**: warm the engine by driving until the
-     **oil reads 90 °C**, and park it outdoors.
-   - **First flush.** Oil still at 90 °C. Check the dipstick: **at the upper mark, take out about 0.3 l**
-     with a syringe through the dipstick tube first. One can of EPR into
-     the oil. Hold **1,200–1,300 rpm** with a stick on the
-     pedal, **30 minutes**, standing.
-   - Drain at once, hot, the car tilted towards the plug, and let it drip
-     a long time. **Old filter out; Bosch `0 451 103 314` on**, set beside
-     the old one first: the same thread, seal and height, or it does not
-     go on. **The old drain plug back in.** Fill with the 5 l can's oil to the
-     mark.
-   - **Second flush.** Run it until the **oil reads 90 °C** again, then
-     the second can of EPR, **1,200–1,300 rpm, 30 minutes**, standing.
-   - Drain at once, hot, tilted, a long drip.
-   - **The VW filter on**, the Bosch off. **The new VW drain plug in, about 30 Nm**; check the
-     figure at VW when buying it. **New oil Total *Quartz 9000
-     Energy* 5W-40**; the can must say **VW 502.00**. Write into the chat
-     the odometer and the litres it took.
-   - **A tick at any point during a flush**: stop the engine and drain.
-     **A lifter tapping for a few seconds after the first start on new
-     oil** is expected; one that stays is written into the chat.
-   - **Nothing into the new oil.**
-6g. **032 around the oil change.**
-   - At the last VCDS session **before** the oil change (6a): 032 read,
-     as always before anything is cleared.
-   - After about 200 km on the new oil: 032 again.
+   **The flush and the oil change are done** (26/10, `idle-log.md`); the
+   tank is driven out on the new oil.
+6g. **032 on the new oil** (the *before* read 26/10: −8.6 / +7.8 %).
+   - After about 200 km on the new oil: 032 and 055, before anything is
+     cleared.
 6h. **Every cold start, until S7 is placed.** Before turning the key,
    nothing else. Write into the chat: date, how long parked, the outside
    temperature, **caught and died, or ran**, and `StartCrank` and
@@ -454,6 +425,7 @@ cleaner together, and only those before it read the cleaner alone. If the
 idle improves, which of H13 and H14 did it is left open; the owner chose a
 fix over the answer.
 
+*Done 26/10 (`idle-log.md`); kept below for how its results are read.*
 **The flush and the oil** (*owner's decision*, 21/10, kept with BG's
 product; **twice, variant O3**, 23/10). Two cleaner tanks and hard driving
 put additive and loosened deposit into the oil: additive reaches the
