@@ -779,7 +779,9 @@ not shown.
 The valve cover gasket: the hardened original, then a wrong part on 2/10
 (C17), replaced on 4/10 by Elring `915.653`; dry since, hot and cold. Neither
 the ventilation nor the gasket was the idle (A15). The re-tightening stays in
-`plan.md`'s standing items.
+`plan.md`'s standing items. *(26/10: re-tightened again by the
+owner in the week of 19/10, hundreds of km on the gasket by then; the item
+left the standing items at his request.)*
 
 ### D6. S12 — a hesitation on tip-in and after a gearchange — closed 4/10/2026
 Withdrawn by the owner after watching for it: in his judgement mechanical play
@@ -824,6 +826,8 @@ reads for **a flake of deposit under 3's exhaust seat** (`open.md` H13)
 over a lifter or valve that hung (H1), and does not prove it. Not settled:
 the cause. **Heard or seen again, above all cold → it reopens in
 `open.md`**; item 5's drive rules in `plan.md` stay until the map goes back.
+*(26/10: they left `plan.md` at the owner's request — he keeps them as a
+habit until the map goes back, not as a step.)*
 
 ### D9. "A higher idle quiets the misfires" — measured, 12/10/2026
 The specified idle raised from 780 to 830 rpm, the ECU's limit (VW's

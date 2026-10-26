@@ -20,27 +20,6 @@ The full previous version, before it was condensed on 20/10/2026:
 One at a time; Claude says after each whether the next is needed.
 Claude runs the capture on every drive. **Current: item 6.**
 
-5. **Until the map goes back, on drives with the MFD in:** where the oil
-   reaches **95–100 °C**, one stop in the two states of the standing
-   items. Write into the chat: date, oil temperature, and for each state
-   **where `IdleHealth` mostly sat and the lowest it touched**.
-   **Also until the map goes back, on every drive (S18):**
-   - Warm up gently: no high revs until the oil reads **80 °C**.
-   - Warm and on four cylinders: spirited driving is fine, full throttle
-     included.
-   - A tick or a felt misfire: ease off, drive on gently, no high revs
-     while it lasts.
-   - Engine lamp on: ease off.
-   - Engine lamp flashing, or running on three cylinders: stop where
-     safe, **engine off, wait a few minutes**, start again. Drive on only
-     if it runs on four.
-   - VCDS on **014, 001, 003** whenever the laptop is in the car.
-   - After a drive with VCDS connected: read the fault memory of 01,
-     save it ("Uložit chyby"), then clear it.
-   - After an episode (a tick or a misfire), write into the chat:
-     **when** (date, time, minutes after the start), **what came before**
-     (hard driving, a cold start, a long stand), **oil temperature**,
-     **`IdleHealth`**.
 5a. **Postponed: the original map written back** at the tuner, **booked
    for 3/11**.
    First the tuner emails both files, the original and his remap;
@@ -77,8 +56,8 @@ Claude runs the capture on every drive. **Current: item 6.**
      hands off**; then drive on. Keep clear of the belt, the fan and the
      HT leads. Write into the chat anything the engine did and at which
      injector.
-6. **This tank: drive normally with the MFD in**, plain fuel, item 5's
-   rules; brisk driving once warm is welcome. At a warm stop now and
+6. **This tank: drive normally with the MFD in**, plain fuel; brisk
+   driving once warm is welcome. At a warm stop now and
    then, the two states of the standing items, written into the chat.
    - **No captures for now.** Only **once `IdleHealth` on the MFD is
      clearly better**: one or two warm drives captured, on different
@@ -96,9 +75,8 @@ Claude runs the capture on every drive. **Current: item 6.**
      4th — and an easy stretch after each few; a long climb whenever
      the route has one. **Oil above 120 °C: ease off** until it is
      back under 110. **A tick, a miss or the lamp, lit or flashing: ease
-     off at once**, then item 5's rules.
-   - **Item 5's S18 rules on every drive of both tanks.** The map at 3/11
-     goes ahead whatever tank is in.
+     off at once**.
+   - The map at 3/11 goes ahead whatever tank is in.
    **The flush and the oil change are done** (26/10, `idle-log.md`); the
    tank is driven out on the new oil.
 6g. **032 on the new oil** (the *before* read 26/10: −8.6 / +7.8 %).
@@ -171,8 +149,6 @@ Claude runs the capture on every drive. **Current: item 6.**
   any other state is named.
 - **The fault memory after every session with VCDS connected**: read,
   saved, then cleared by the owner by hand. Not after a plain drive.
-- **After a few hundred km:** re-tighten the cover's outer nuts you can
-  reach with the plenum on, and look along the joint.
 
 ---
 
@@ -183,8 +159,9 @@ Claude runs the capture on every drive. **Current: item 6.**
 **The idle comes first**: the unsettled idle (S1) and the misfires 014
 counts at idle (S3). **S18, cylinder 3 dropping out with a tick, came
 first beside it** from 18/10 until it closed on 24/10, after a week
-without it (`refuted.md` D10); item 5's drive rules stay until the map
-goes back, so that a return is caught. So:
+without it (`refuted.md` D10); the owner keeps its drive rules as a
+habit until the map goes back, so that a return is caught (they left
+Part 1 on 26/10 at his request: not a step, what he does anyway). So:
 
 - **Fix, then look.** Each step is a repair; the only readings taken are
   the ones that decide the next step.
@@ -217,40 +194,6 @@ cylinder 4's retard (S4). **026** reads its floor at idle and belongs to
 the knock window, so it is dropped. **055** once at a warm idle says the
 adaptations are settled (about −1.1 to −1.3), so a comparison holds
 (`refuted.md` C19).
-
-**Item 5 — `IdleHealth` off the display, and the S18 rules.** The display
-reading runs only until the map goes back (*owner's decision*,
-18/10/2026); from then every drive is captured and `IdleHealth` comes from
-the capture. **Where it sat and the lowest it touched, both** (*owner*,
-15/10/2026): on a grade that wanders, a minimum keeps falling the longer
-one watches, so alone it would favour long stops; beside the level it
-does not. It needs about half a minute of settled idle before it reads
-at all (255 until then, `docs/firmware/frames.md`), so a direction needs
-several readings.
-
-**The S18 drives** (*owner's request*, 18/10/2026; `refuted.md` D10). The
-question is **whether cylinder 3 and the tick keep coming back**. A flake
-of deposit loosened by the cleaner (H13) should come back less and less,
-then stop; a lifter or valve (H1) should not fade, and should be worst
-cold. So the reading is the run of drives:
-- **No tick and no code on several drives in a row, and no 014 burst
-  above 72 while driving** → fading, which reads for the flake.
-- **The tick back cold, again and again** → a valve or lifter (H1). No
-  leak-down (*owner's decision*, 20/10/2026; `refuted.md` D10).
-
-**014 above 72 while driving** is the mark: sixteen earlier logs never
-reached it, and 18/10 read 270 and 351. **Gently cold** because S18 came
-cold, where a hanging lifter would show. **Spirited driving warm**
-(*owner's decision*, 19/10/2026): full-throttle drives since 18/10 brought
-no tick, and heat burns deposit off (*general*). **A flashing lamp** is the misfire
-rate the ECU treats as damaging to the converter (`vcds.md`, SSP 175), so
-the engine stops rather than carrying on on three cylinders; on 18/10 a
-restart after a few minutes brought all four back. **No tests at the car,
-four things written down** (*owner's decision*, 18/10/2026): they are
-enough to see whether episodes follow hard driving (deposits) or cold
-starts after a stand (a lifter). **The fault memory is saved before it is
-cleared** so that each drive starts empty and the file keeps the code,
-its status and its count.
 
 **Item 5a — the original map** (*owner's decision*, 12/10/2026, to take
 the remap out of the idle question; `open.md` H14, *The remap*).
@@ -596,7 +539,7 @@ over 100 at mlparts.cz (*owner*), where the next one comes from.
 **Episodes on the cleaner's tanks are expected, not a verdict**: under H13
 each tank sheds a layer; under H1 the tick would not depend on the tank.
 For the converter it is a misfire that matters, not the cleaner — hence
-item 5's rules. **Read**: the display through each tank, and the captures
+easing off at one. **Read**: the display through each tank, and the captures
 once `IdleHealth` moves, against `30`, `31`, `33`, `34` and `40`, on settled adaptations (the
 reset at 5a makes the drives just after it read low on 014 for another
 reason), and the shares pooled since the last repair. A tank is weeks of

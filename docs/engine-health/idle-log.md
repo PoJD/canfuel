@@ -1096,6 +1096,10 @@ cropped clear of the reflections): the surface dark, glossy and even,
 **no foam, no milky emulsion, nothing floating**. The sky's reflection
 hides the colour and the depth, so it says nothing of sediment.
 
+**The week of 19/10/2026 — the valve cover nuts re-tightened** (*owner*,
+reported 26/10; `plan.md`'s standing item after a few hundred km on the
+new gasket, now done and removed). Nothing claimed for the idle.
+
 **26/10/2026, evening — the second flush and the new oil** (`plan.md` 6a;
 *owner*). The second can of EPR at 90 °C of oil, **30 minutes at
 1220–1300 rpm**, the stick again; no tick. The second drain black, which
