@@ -701,6 +701,16 @@ without the hole. The captures cannot tell the two adaptations apart.
 is no evidence — but *which* adaptation turns the counting on is open,
 and "it follows 055's learned value" is the less certain half of this
 entry.
+**26/10/2026 — evidence for the 055 half** (`idle-log.md`, 26/10;
+`test/fixtures/vcds/vcds-step6a-055-relearn-014-055-001.csv`). After a
+disconnect of about a minute, **032 was at 0.0 / 0.0 but 055's learnt
+value still −2.78 g/s**, and **014 counted within the first 30 s of the
+warm idle** and at every value down to −0.97. So **zeroed lambda
+adaptations do not quiet 014** — "fresh adaptations" in the rule above
+means 055's, not 032's. It does not test the tooth-error reading: a
+disconnect that left 055 alone may have left that adaptation alone too.
+The threshold itself — quiet above about −0.93 — is still untested from
+the other side; the log ended at −0.97.
 
 ### C20. "The fuel pressure regulator does not answer its vacuum reference, or leaks through its diaphragm" (`open.md` H7) — measured
 
