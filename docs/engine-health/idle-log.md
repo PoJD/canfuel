@@ -1257,6 +1257,19 @@ field 3 0.00 with the A/C. Nothing cleared; nothing to clear.
 neither of its clean outcomes: the A/C's calm is the larger, but the
 loads calm without it too, and the A/C's sixth minute was not calm.
 
+**27/10/2026, late morning — the throttle cable slackened** (*owner*).
+Taken up to the stop on 1–2/10, and the very top of the pedal's travel
+no longer felt right to him; he reads S20's swing, the flush's too, as
+the cable holding the plate off its rest. **054 after it: about 5° at
+rest, 90° on the floor** (2/10: 5.6° and 91.1°), so the plate still
+rests and still opens fully. **098 at once *ADP OK*, the throttle
+silent** — as on 26/10, when 055 did not reset; the ECU appears to skip
+the run while it holds a valid one (*reasoned*). **Then the battery
+off, both poles, for several hours**, to reset 055: in this car 055 went
+to zero each time 098 really ran after a disconnect (2/10, 4/10) and
+not on 26/10, when it did not (*reasoned* from those three, not from VW).
+In the afternoon: reconnect, 098, then 032 and 055 read.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
