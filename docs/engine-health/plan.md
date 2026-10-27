@@ -97,13 +97,15 @@ Claude runs the capture on every drive. **Current: item 6.**
    standing on level ground. Any top-up: the litres and the odometer
    into the chat.
 6k. **The A/C at a warm stop**, once, when there is time (oil 90 °C or
-   above, neutral, nothing touched):
-   - **1 minute: the everyday state and the A/C on.**
+   above, neutral, nothing touched), with **VCDS logging 014, 055, 001**
+   across it (with the laptop, Claude runs `vcds_log.py`; the owner writes
+   each phase into the chat as he switches, and Claude notes the time):
+   - **1 minute: the everyday state**, as the reference.
+   - **3 minutes: the everyday state and the A/C on** — long enough to see
+     whether 055 field 3 moves off 0.00.
    - **1 minute: every load on except the A/C** — main beam, heated
      glass, both seat heaters, the blower full.
-   - Write into the chat `IdleHealth` for each, and **055 field 3** for
-     each if the laptop is in (a VCDS log of 014, 055, 001 across both is
-     better still).
+   - For each, where `IdleHealth` mostly sat, and 055 field 3.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
