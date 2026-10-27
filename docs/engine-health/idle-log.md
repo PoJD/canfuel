@@ -1207,8 +1207,9 @@ The next cold start is plain.
 fell overnight after the change of 26/10 as the oil ran back from the
 head; **about 0.4 l added** in the morning, at the top mark straight
 after; **155,024 km**. After the drive below, about 10 minutes standing:
-**exactly at the top mark** (*owner*; the photo not yet in the album when
-this was written). That is 6i's first reading.
+**exactly at the top mark** (*owner*; photographed at 08:02, about
+11 minutes after engine off, `photos/dipstick-2026-10-27-6i-first.jpg`).
+That is 6i's first reading.
 
 **27/10/2026 — the A/C at a warm stop** (`plan.md` 6k; *owner*, display
 on video; VCDS 014/055/001 the whole drive,
