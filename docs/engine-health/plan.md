@@ -98,7 +98,8 @@ Claude runs the capture on every drive. **Current: item 6.**
 6l. **055 reset, 27/10 afternoon.** Steps 1–4 the owner alone, before
    the drive; steps 5–6 Claude on the laptop.
    1. The battery back on. Ignition on; let the throttle's 20 s routine
-      finish.
+      finish. **032 and 055 read now, before 098**, A/C off; the values
+      into the chat.
    2. The fault memory read and cleared (owner).
    3. **098 under Basic Settings (04), not Measuring Blocks (08)**,
       engine off, every load off. The throttle should be heard moving,
@@ -623,7 +624,10 @@ back; the photograph because a millimetre is the stick's resolution.
 **Item 6l — the 055 reset** (*the owner's decision*, 27/10). 055 has
 gone to 0.00 each time 098 really ran after a disconnect (2/10, 4/10);
 on 26/10 and the morning of 27/10, 098 was opened as a measuring block
-and nothing ran (`idle-log.md`). Not a repair: 055's two fields sum to
+and nothing ran (`idle-log.md`). **032 and 055 are read once before
+098 as well** (*the owner's addition*): field 3 already at 0.00 says a
+disconnect of hours resets 055 by itself, where 26/10's minute did not;
+unchanged says it takes 098. Not a repair: 055's two fields sum to
 the same correction at every warm idle (`open.md` H8), so the log is
 expected to show field 2 taking the whole of it at once and handing it
 to field 3 over two to three minutes of warm idle. **Read**: the
