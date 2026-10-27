@@ -1193,6 +1193,65 @@ by the owner once 055 had settled**, and **the next start was normal —
 no dip, no fault**; **two more starts after it, both clean, the lamp
 off** (*owner*). 032 was already at zero from the disconnect.
 
+**27/10/2026 — the cold start, primed** (*owner*; `plan.md` 6h). About
+11 hours in the garage, 18 °C there; oil 27 °C and coolant 24 °C off the
+display before the start; **primed four times** rather than the plan's
+twice. It caught after cranking long and **ran**, with **a hesitation
+after the starter let go**. **`StartCrank` 1.18 s, `StartDip` 0,
+`StartClt` 24 °C** (`open.md` S7): no fall after the catch, against
+26/10's 218 unprimed. The owner read it as "not the fuel pressure"; one
+primed start against one plain one points, if anywhere, the other way.
+The next cold start is plain.
+
+**27/10/2026 — the oil topped up** (*owner*; `plan.md` 6i). The level
+fell overnight after the change of 26/10 as the oil ran back from the
+head; **about 0.4 l added** in the morning, at the top mark straight
+after; **155,024 km**. After the drive below, about 10 minutes standing:
+**exactly at the top mark** (*owner*; the photo not yet in the album when
+this was written). That is 6i's first reading.
+
+**27/10/2026 — the A/C at a warm stop** (`plan.md` 6k; *owner*, display
+on video; VCDS 014/055/001 the whole drive,
+`test/fixtures/vcds/vcds-step6k-014-055-001.csv` the start and
+`vcds-step6k-2-014-055-001.csv` the rest). Fault memory empty before and
+after. A gentle drive to about 88 °C of oil, `IdleHealth` about 90 at a
+3-minute stop on the way, then 40–60 at the idles of 20–30 minutes more;
+then, standing, neutral, nothing else touched:
+
+| from | state | `IdleHealth` (video) | 014 | 055 bits | field 3 | field 2 |
+|---|---|---|---|---|---|---|
+| 07:23 | everyday | **~70** (59–73) | 12–48 | `0000` | −1.11 → −1.04 | about 0 |
+| 07:25:31 | + A/C, first minute | 59 → 45 | 0 | `0101` | **0.00** | → −0.99 |
+| 07:27 | + A/C, minutes 2–5 | **35–50** | 0 | `0101` | 0.00 | about −1.0 |
+| 07:31 | + A/C, minute 6 | **56 → 75** | 0 | `0101` | 0.00 | about −1.0 |
+| 07:32:30 | + A/C + every load but main beam | **35 → 25** | 0 | `0101` | 0.00 | −1.28 |
+| 07:38:41 | everyday, A/C off | — | 12 within a minute | `0000` | −1.04 | 0.00 |
+| 07:40:18 | every load but the A/C and main beam | **54–62**, 37 at the end | 12 ×3, then 0 | `0000` | **−1.04 → −0.77** | +0.23 |
+| 07:44:30 | + A/C, driving, then standing | ~51 (48–60) | 0 | `0101` | 0.00 | frozen driving, about −1.0 standing |
+
+**`0101` is the A/C.** With it on, field 3 holds 0.00 through minutes
+of idle and a drive, and field 2 takes over the learnt value's size: no
+second learnt value showed. Every load but the A/C leaves the learnt
+value in play, and **it relearnt by +0.27 g/s in those two minutes** —
+back to −0.81 when the loads went off. Main beam left off throughout (the
+owner would have dazzled the traffic). `IdleHealth` filters, so each state
+reads about half a minute late. Read in `open.md` S1, *A second
+reading*, and H8.
+
+**On the drive before it, 014 counted on the road**: two episodes in
+steps of 12, 12 → 36 and 12 → 48, at 1900–2100 rpm and 25–26 % load; the
+owner saw it count at the jerk he feels when the throttle goes back on
+after a gearchange. **S12 reopened** at his request (`open.md`).
+
+**Then, A/C still on, engine running** (`vcds-step6k-adaptations-032-055.csv`):
+**032 −6.3 / +8.6 %** (−8.6 / +7.8 on 26/10 before the change; 6g's
+*after* is at about 200 km on the new oil, this is on the way), 055
+field 3 0.00 with the A/C. Nothing cleared; nothing to clear.
+
+**Not known to have achieved:** nothing changed on the car. 6k gave
+neither of its clean outcomes: the A/C's calm is the larger, but the
+loads calm without it too, and the A/C's sixth minute was not calm.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail

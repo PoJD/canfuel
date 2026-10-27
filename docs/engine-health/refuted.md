@@ -786,6 +786,9 @@ left the standing items at his request.)*
 ### D6. S12 — a hesitation on tip-in and after a gearchange — closed 4/10/2026
 Withdrawn by the owner after watching for it: in his judgement mechanical play
 in the mounting or the driveline, and the hesitation itself no longer felt.
+*Reopened 27/10 at the owner's request (`open.md` S12): felt all along,
+and 014 counted on the road at such moments. Whether play or combustion
+is open there.*
 
 ### D7. S13 — the throttle's routine at every ignition-on — closed 2/10/2026
 20–30 s of the throttle seeking its stops at every ignition-on. The new
