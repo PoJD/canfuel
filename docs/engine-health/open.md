@@ -535,6 +535,18 @@ firing that fails shows as one short step, the rocking of a mount as a
 slow oscillation at the driveline's frequency; or the same tip-ins with
 the clutch slipped gently, which takes the driveline out.
 
+**A third, mechanical, measured 27/10 evening: the pedal stuck** exactly
+where a tip-in starts. Ignition on, engine off, the plate came off its
+5.6° rest **in jumps of 1–4°** (5.6 → 8.7 → 10.0) through the band where
+the ECU switches from idle to part load (about 9.5°); **greased, it moved
+in 0.4–0.5° steps**, the sensor's own resolution, and felt smoother
+(*owner*; `idle-log.md`, 27/10 evening). A pedal that breaks free opens
+the plate in one lurch, which the foot cannot feather — a jerk with no
+misfire in it. **It does not explain 014 counting** at those moments, so
+it would be one cause beside the other two, not instead of them. **The
+next drives tell**: whether the jerk is gone or milder, and whether 014
+still counts at the tip-ins.
+
 ### S14. Bangs from the exhaust on a downshift without a blip
 
 *Owner*, 4/10: on a downshift **without a throttle blip** a series of small
