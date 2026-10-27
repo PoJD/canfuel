@@ -164,6 +164,31 @@ error):
 | 25/10 | display | settled, 032 relearning | **the regulator's vacuum hose renewed**; oil about 80 °C, not 93+ | **about 90** loads off, **35–40** loads on (lowest 35); **no jerk felt** (*owner*) |
 | 25/10 eve | display | settled | the new hose, a drive later; oil 96 °C | **70–80**, everyday state; **50–60** at a light before, same state (*owner*) |
 | 26/10 | display | settled | warmed in a jam, gently, under 3000 rpm; then one brisker stretch, revs held up in 2nd downhill on engine braking | **80–100** all through the warm-up, **still at 92 °C** of oil; **60–70** after the brisker stretch; everyday state (*owner*) |
+| 27/10 | display, video | settled | `plan.md` 6k: a gentle drive to about 88 °C of oil, the A/C against the loads (`idle-log.md`) | **~70** everyday state; **35–50** the A/C alone; **54–62** every load but the A/C; **25–35** both |
+| 27/10 eve | display, video | settled (055 reset that afternoon, relearnt to −1.17) | the pedal greased; oil changed 26/10; the second 44K tank about four-fifths used; oil 100 °C | **54** loads off (mean; **35–65** in waves of about 1½ min); **34** every load on with the A/C (26–42, still falling) — **the first stop with loads off within 25 of loads on** (condition 2 below), one stop |
+
+**The trend over every capture** (28/10, at the owner's question; every
+standing idle settled 30 s and more, graded as `tools/afterpull.py`'s
+`idle_runs()` grades, the display's filter replayed beside it;
+loads off is b7 ≤ 25 at 93 °C of oil and over):
+
+| | warm, loads off: stop means | middle band, ~77–88 °C |
+|---|---|---|
+| 11/8 (`09`, `11`) | 48, one 22 s hold | 106 |
+| 24/9 (`24`, new MAF) | 88, 92 | 84 |
+| 3–10/10 (`26`–`31`) | 67–103, most 75–95 | 90–111 |
+| 12–15/10 (`32`, `37`, `38`) | **48–75**, most 55–66 | 93 |
+| 18/10 (`39`) | 68–96 | — |
+| 21/10 (`40`) | 61–67 | 75 |
+| 24/10 (`41`) | — | 87–104, warmed at idle |
+| 27/10 (display) | 54 | — |
+
+**Before October there is no trend to read**: two days of captures, and
+the one hot figure of August is a 22 s hold. **Warm, the idle stepped
+down once**, from about 75–95 to about 50–70, **between 10 and 12/10**
+(the leads, lead 4 re-seated), rose for 17–19/10 and came back; 27/10
+is level with its best, not past it. **Cold it has come down**, and that
+is the clearer change (below, *Temperature*).
 
 **The MAF is the one change that showed at once** (24/9: the dips halved).
 The calmest settled idles, 12/10 and 15/10, came in the days after the new
@@ -239,6 +264,35 @@ clean outcomes; neighbouring 2-minute windows differ by 4–18.
 session since 24/9. Every engine idles roughest cold (*general*), so this
 says nothing about the fault on its own. The roughest reading yet, ~186, came
 cold on the dampest, foggiest morning (26/9, *owner*).
+
+**The cold idle has come down since 21/10** (*the owner's observation*,
+28/10: over 100 now only after a start, about 130 at the coldest, nothing
+near 200; checked against every capture with a cold start, the same day).
+The display's highest in the first idle after a start, and the stop's
+mean:
+
+| start | oil at the start | first idle: mean / display's highest | the idle after it, 23–39 °C |
+|---|---|---|---|
+| 11/9 (`18`) | 21 °C | 108 / 157 | — |
+| 24/9 (`19`) | 17 °C | 111 / 179 | 134 / 160 |
+| 26/9 (display) | cold | ~186 (*owner*) | |
+| 3/10 (`25`), fresh adaptations | 21 °C | 127 / **196** | 161 / **196** |
+| 4/10 (`27`), fresh adaptations | 19 °C | 112 / 185 | 160 / 181 |
+| 9/10 (`30`) | 17 °C | 107 / 148 | 114 / 140 |
+| 10/10 (`31`) | 18 °C | 105 / 165 | 147 / 184 |
+| 12/10 (`32`) | 15 °C | 121 / 178 | |
+| 14/10 (`33`) | 20 °C | 103 / 150 | |
+| **21/10 (`40`)** | 24 °C | **77 / 90** | **118 / 145** |
+| 24/10 (6e, display) | cold, under 70 °C | 120–140 (*owner*) | |
+| since (display) | | about 130 at the coldest (*owner*) | |
+
+`35` (15/10) is left out: it started with every load on. **The first
+capture that reads low cold is 21/10's**, the first drive on the VW plugs
+and leads and the new plenum gasket, **two days before the first 44K
+tank** — so the cold drop is not the cleaner's, whatever else it may be.
+⚠ One capture: 21/10 started at 24 °C of oil, warmer than the 15–21 °C
+of the others, and the display since is the owner's glances. A cold
+capture from about 15–20 °C would settle it.
 
 **But warm oil alone does not bring the calm idle; driving does** (26/10,
 *the owner's observation, checked against the captures*). On 26/10 a
