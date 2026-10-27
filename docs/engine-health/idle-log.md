@@ -1140,7 +1140,9 @@ ignition on: **"ADP v pořádku" at once, the throttle not moving**
 the reconnect, as this throttle does at every ignition-on (S13): **no
 sound from the throttle under 098, only its usual routine at
 ignition-on** (*owner*). Or 098 did not really run, with P1582 still
-stored against VW's condition of an empty fault memory. Then
+stored against VW's condition of an empty fault memory. *(27/10: it did
+not — the owner had opened 098 as a measuring block, not under basic
+settings; the same happened on 27/10.)* Then
 (`photos/vcds-032-055-2026-10-26-after-disconnect.jpg`): **032 reset to
 0.0 / 0.0, but 055 field 3 still −2.78 g/s**, and **P1582 still stored**
 (the disconnect does not clear the fault memory). **Nearly stalled again
@@ -1263,8 +1265,10 @@ no longer felt right to him; he reads S20's swing, the flush's too, as
 the cable holding the plate off its rest. **054 after it: about 5° at
 rest, 90° on the floor** (2/10: 5.6° and 91.1°), so the plate still
 rests and still opens fully. **098 at once *ADP OK*, the throttle
-silent** — as on 26/10, when 055 did not reset; the ECU appears to skip
-the run while it holds a valid one (*reasoned*). **Then the battery
+silent** — as on 26/10, when 055 did not reset. **Both times 098 was
+opened as a measuring block, not under basic settings** (*owner*, the
+same afternoon), so *ADP OK* was the stored state being read and no
+adaptation ran; *this said the ECU appeared to skip the run*. **Then the battery
 off, both poles, for several hours**, to reset 055: in this car 055 went
 to zero each time 098 really ran after a disconnect (2/10, 4/10) and
 not on 26/10, when it did not (*reasoned* from those three, not from VW).
