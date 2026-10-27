@@ -1348,8 +1348,35 @@ with or without the pedal; that is the load status, not a fault. Fault
 memory empty before and after every log.
 
 **Not known to have achieved:** nothing at idle — the pedal is not
-touched there. Whether a steady light throttle on the road is now
-smooth is for the next drive.
+touched there.
+
+**27/10/2026, late evening — the drive after the greasing** (*owner*
+driving, MFD in, no capture; VCDS 014/003/055,
+`test/fixtures/vcds/vcds-pedal-drive-014-003-055.csv` the start and
+`vcds-pedal-drive-2-014-003-055.csv` the rest, the ECU dropping once at
+the start; adaptations `vcds-pedal-adaptations-032-055.csv`). About
+15 minutes on the road. **The throttle could be fed in smoothly, for the
+first time with this car** — the mounts' play still felt, but ordinary
+(*owner*); **S12 closed** (`refuted.md` D6). A jerk he reported at
+22:14:38 fell 4 s after a 014 count of 12 at a steady 2040 rpm, 25 %
+load, throttle 10.4°, no tip-in; the tip-in before it (840 → 1280 rpm,
+plate 2.6 → 15.6°) counted nothing. **014 counted 12–36 five times at a
+steady 2000–2200 rpm and 25 % load**, none at a tip-in.
+
+Then the warm stop, standing, in neutral:
+
+| window | state | rpm | load | air | 014 | 055 field 3 | `IdleHealth` (display, *owner*) |
+|---|---|---|---|---|---|---|---|
+| 22:23:46–22:25:46 | every load off | 773 | 27.3 % | 2.58 g/s | **12 six times, once 24**, in 2 min | −1.17 | about 45, 37 at its lowest |
+| 22:28:04–22:31:04 | every load on, A/C included, dipped beams | 783 | 33.8 % | 4.19 g/s | **0** | 0.00 (`0101`, the A/C) | falling slowly, about 39 at the end |
+| after | everyday state again | | | | | | climbing slowly back to about 50 |
+
+**Adaptations, engine idling, loads on** (22:32): **032 −8.6 / +8.6 %**
+— the idle trim back where it was on 26/10, from −6.3 in the afternoon
+— **055 field 3 −0.97**. Fault memory empty before and after.
+
+**Not known to have achieved:** the idle is unchanged; the jerk on
+tip-in is gone. The owner filmed the display; the video is in the album.
 
 ---
 

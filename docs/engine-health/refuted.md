@@ -807,6 +807,62 @@ in the mounting or the driveline, and the hesitation itself no longer felt.
 and 014 counted on the road at such moments. Whether play or combustion
 is open there.*
 
+**Closed again 27/10/2026 evening, by the owner: the accelerator pedal
+was sticking, and greasing it cured the jerk.** On the drive after it
+(`test/fixtures/vcds/vcds-pedal-drive-2-014-003-055.csv`) the throttle
+could be fed in smoothly for the first time with this car; the play of
+the engine mounts is still felt but is ordinary (*owner*). The pedal
+measurement is in `idle-log.md`, 27/10 evening. **What it does not
+close:** 014 counting on the road at steady 1800–2200 rpm and 25 % load
+went on after the greasing, with no tip-in — that is kept in `open.md`
+S3, not here.
+
+What `open.md` said while it was open, kept as it stood:
+
+> **Widened by the owner, 27/10 evening: both — after a gearchange and
+> on a tip-in after engine braking.** *Briefly this said "not the
+> gearchange, only after engine braking"; he corrected it the same
+> evening.*
+>
+> *Closed 4/10 by the owner as play in the mounting or the driveline
+> (`refuted.md` D6); reopened 27/10 at his request.* **A jerk or hesitation
+> as the throttle goes back on in the next gear**, felt for a long time
+> (*owner*). **On 27/10 he watched 014 on the road and saw it count at
+> exactly those moments**, and reads it as misfires rather than play. The
+> log (`vcds/vcds-step6k-2-014-055-001.csv`, the drive before the A/C stop):
+> **two episodes counted in steps of 12 while driving, 12 → 24 → 36 at
+> about 2100 rpm and 12 → 24 → 48 at about 1900 rpm, both at 25–26 %
+> load**, detection `aktivováno`; and **four shorter ones, 12 (once
+> 12 → 24), at 1160–1920 rpm and 25–30 % load**, also `aktivováno`, one of
+> them at 06:45 with the coolant at 55 °C (*re-read 27/10*). The gear is not in the log, so that
+> they were tip-ins after a change is the owner's, not the log's. ⚠ The
+> other changes in that field at gearchanges came with detection
+> `deaktiv.` and read 13–18, not steps of 12: not misfires (one 13, at
+> 07:03:44, came with detection still `aktivováno` and cleared 2 s later).
+>
+> **Not settled that it is combustion** (*reasoned*): misfire detection
+> reads crank speed, and **play that lets the engine rock as the drive
+> takes up again shakes the crank** — exactly what H12 says and what the
+> owner first concluded. A misfire on tip-in after a lift is also
+> plausible: the overrun fuel cut leaves the port walls dry, and the first
+> firings after it run lean (*general*). **What tells them apart**: a
+> capture (0x280's engine speed per 180°) across a few such tip-ins — a
+> firing that fails shows as one short step, the rocking of a mount as a
+> slow oscillation at the driveline's frequency; or the same tip-ins with
+> the clutch slipped gently, which takes the driveline out.
+>
+> **A third, mechanical, measured 27/10 evening: the pedal stuck** exactly
+> where a tip-in starts. Ignition on, engine off, the plate came off its
+> 5.6° rest **in jumps of 1–4°** (5.6 → 8.7 → 10.0) through the band where
+> the ECU switches from idle to part load (about 9.5°); **greased, it moved
+> in 0.4–0.5° steps**, the sensor's own resolution, and felt smoother
+> (*owner*; `idle-log.md`, 27/10 evening). A pedal that breaks free opens
+> the plate in one lurch, which the foot cannot feather — a jerk with no
+> misfire in it. **It does not explain 014 counting** at those moments, so
+> it would be one cause beside the other two, not instead of them. **The
+> next drives tell**: whether the jerk is gone or milder, and whether 014
+> still counts at the tip-ins.
+
 ### D7. S13 — the throttle's routine at every ignition-on — closed 2/10/2026
 20–30 s of the throttle seeking its stops at every ignition-on. The new
 throttle body does the same after its own completed 098, so it is how these
