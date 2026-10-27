@@ -508,6 +508,12 @@ If it is a leak: behind the throttle it is H3, ahead of the probe H2.
 
 ### S12. A jerk when the throttle goes back on after a gearchange — reopened 27/10
 
+**Narrowed by the owner, 27/10 evening: it is not the gearchange, it is
+the change from engine braking to throttle** — a tip-in after the
+overrun, whatever came before it. *This said "after a gearchange"
+throughout until then; the text below keeps it where it quotes the
+earlier reading.*
+
 *Closed 4/10 by the owner as play in the mounting or the driveline
 (`refuted.md` D6); reopened 27/10 at his request.* **A jerk or hesitation
 as the throttle goes back on in the next gear**, felt for a long time
