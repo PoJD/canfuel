@@ -1323,6 +1323,34 @@ reset, and `IdleHealth` with it (about 50 in the everyday state, as on
 26/10). Not a repair, and not meant as one (`plan.md` Part 2 had it as a
 reading of the handover). The analysis of the logs is still to be done.
 
+**27/10/2026, evening — the accelerator pedal greased** (*owner*;
+Claude logging on the laptop, ignition on, engine not running, VCDS
+098/060/003 read as measuring blocks, nothing run under basic settings).
+After the cable was slackened the car was a little better, but a fine,
+steady part throttle was still hard to hold and the pedal felt as if it
+stuck at the start of its travel. Three logs, field 1 (G187, the plate)
+throughout; G188 sat at 71.8–72.2 % in all three and does not follow the
+cable:
+
+| log | what | rest | idle → part load | floor | first steps off rest |
+|---|---|---|---|---|---|
+| `vcds-pedal-cabin-098-060-003.csv` | pedal, before greasing | 5.6° | 9.5–10.9° | 90.7–91.1° | jumps of 1–4°: 5.6 → 8.7 → 10.0, 7.8 → 9.5, 9.1 → 10.9 |
+| `vcds-pedal-lever-098-060-003.csv` | by hand at the throttle lever | 5.6° | 8.7–10.4° | 89.8° | similar jumps; the lever is awkward to reach (*owner*) |
+| `vcds-pedal-greased-098-060-003.csv` | pedal, after greasing | 5.6° | 9.5° | — | **every step 0.4–0.5°, the sensor's own resolution**, four times out of four, never a step back |
+
+The plate returned to 5.6° after every release, a sudden one from the
+floor included. **The pedal stuck, in the band where the ECU switches
+from idle to part load, and greasing it cured that**: smoother under the
+foot (*owner*) and in the log. The greased runs were slower than the
+first ones, so some of the difference may be the foot; the drive decides.
+The plate between rest and about 9.5° still reads as *idle* to the ECU,
+with or without the pedal; that is the load status, not a fault. Fault
+memory empty before and after every log.
+
+**Not known to have achieved:** nothing at idle — the pedal is not
+touched there. Whether a steady light throttle on the road is now
+smooth is for the next drive.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail

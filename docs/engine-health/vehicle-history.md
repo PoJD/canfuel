@@ -155,6 +155,7 @@ Owner-supplied from service records or from his own work.
 | **Fuel: Orlen Verva 100**, 50.88 l, with the second can of BG 44K; no OMV on the route (*owner*). *This row said "OMV MaxxMotion 100, always" until this fill* | **24/10/2026** | — |
 | **Battery disconnected** (every ECM adaptation restarts — *except 055, which a minute's disconnect on 26/10 left alone*) | after the summer heater work, then **23/9, 26/9, 1–2/10, the morning of 4/10, about a minute on 26/10 and from midday 27/10/2026** (several hours); 098 run 2/10 and 4/10 (on 26/10 and the morning of 27/10 it was only read as a measuring block) | — |
 | **Throttle cable slackened** at its detent (*owner*): it had been taken up to the stop on 1–2/10; 054 afterwards about 5° at rest to 90° on the floor | **27/10/2026**, by the owner | — |
+| **Accelerator pedal greased** (*owner*): it stuck near the start of its travel, plate jumping 1–4° at a time; smooth afterwards (`idle-log.md`, 27/10 evening) | **27/10/2026**, by the owner | — |
 
 ### Notes to the table
 
