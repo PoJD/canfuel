@@ -1196,12 +1196,14 @@ off** (*owner*). 032 was already at zero from the disconnect.
 **27/10/2026 — the cold start, primed** (*owner*; `plan.md` 6h). About
 11 hours in the garage, 18 °C there; oil 27 °C and coolant 24 °C off the
 display before the start; **primed four times** rather than the plan's
-twice. It caught after cranking long and **ran**, with **a hesitation
-after the starter let go**. **`StartCrank` 1.18 s, `StartDip` 0,
-`StartClt` 24 °C** (`open.md` S7): no fall after the catch, against
-26/10's 218 unprimed. The owner read it as "not the fuel pressure"; one
-primed start against one plain one points, if anywhere, the other way.
-The next cold start is plain.
+twice. **Not a clean start**: he held the starter well past the first
+firing, it cranked long, ran, and **hesitated for a while**.
+**`StartCrank` 1.18 s, `StartDip` 0, `StartClt` 24 °C** (`open.md` S7)
+— the display's measures end at the first firing and 2 s after it, so
+they miss a stumble carried by the held starter. **His reading**: before
+the new injectors priming always made it catch at once without a
+hesitation, and today it did not, so this is not the rail draining while
+standing. The next cold start is plain.
 
 **27/10/2026 — the oil topped up** (*owner*; `plan.md` 6i). The level
 fell overnight after the change of 26/10 as the oil ran back from the

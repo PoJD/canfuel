@@ -440,9 +440,18 @@ needed**, so it says nothing either way, and the pickup running dry on a
 hill is out. **27/10, primed** (four times rather than twice, *owner*),
 after about 11 hours in the garage at 18 °C: it ran, **`StartCrank`
 1.18 s, `StartDip` 0, `StartClt` 24 °C** — no fall after the catch,
-against 218 unprimed the day before; **a hesitation after the starter
-let go** (*owner*). One pair, primed against plain; it points at
-pressure lost while standing (H7), which the owner read the other way.
+against 218 unprimed the day before. **Not a clean start** (*owner*):
+he held the starter longer again, it turned well past the 1.18 s
+before it ran, and it hesitated for a while. The display does not see
+that: `StartCrank` stops at the first 0x280 at 400 rpm and `StartDip`
+looks only 2 s past it, so a first firing that lifts the speed while
+the held starter carries the engine through a stumble reads short and
+dip-free (*reasoned*, `docs/firmware/frames.md`). **Against pressure
+lost while standing as the whole** (*owner*): before the new injectors
+priming always cured it, the engine catching at once without a
+hesitation, and today it did not. So primed still hesitates, which is
+the "both die" branch below: flooding or the fuel rather than a rail
+that drained.
 Closed on 26/9 after the new injectors (`refuted.md` D2): 14 captured
 starts, all clean.
 
