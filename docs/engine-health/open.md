@@ -349,7 +349,8 @@ completing rather than load (`refuted.md` C19).
   log). Driving with detection `aktivováno`, new counts start once per ~250
   samples, against several a minute standing. **But not never: on 27/10
   (6k's drive) two episodes on the road climbed 12 → 36 and 12 → 48**, at
-  1900–2100 rpm and 25–26 % load, just above the cut-off — the owner felt
+  1900–2100 rpm and 25–26 % load, and four more counted 12 (once 24) at
+  1160–1920 rpm and 25–30 % load, all just above the cut-off — the owner felt
   S12's jerk at such moments (S12). ⚠ With detection `deaktiv.` the field
   reads 13, 15, 16, 18 at each lift — not steps of 12, so not misfires. The C4 full-load lamp lit on
   this map, so detection under load was not off — **unless the remap dulled
@@ -513,10 +514,13 @@ exactly those moments**, and reads it as misfires rather than play. The
 log (`vcds/vcds-step6k-2-014-055-001.csv`, the drive before the A/C stop):
 **two episodes counted in steps of 12 while driving, 12 → 24 → 36 at
 about 2100 rpm and 12 → 24 → 48 at about 1900 rpm, both at 25–26 %
-load**, detection `aktivováno`. The gear is not in the log, so that
+load**, detection `aktivováno`; and **four shorter ones, 12 (once
+12 → 24), at 1160–1920 rpm and 25–30 % load**, also `aktivováno`, one of
+them at 06:45 with the coolant at 55 °C (*re-read 27/10*). The gear is not in the log, so that
 they were tip-ins after a change is the owner's, not the log's. ⚠ The
 other changes in that field at gearchanges came with detection
-`deaktiv.` and read 13–18, not steps of 12: not misfires.
+`deaktiv.` and read 13–18, not steps of 12: not misfires (one 13, at
+07:03:44, came with detection still `aktivováno` and cleared 2 s later).
 
 **Not settled that it is combustion** (*reasoned*): misfire detection
 reads crank speed, and **play that lets the engine rock as the drive
@@ -692,7 +696,7 @@ clean after the change so that fresh oil there shows.
 | S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle; but the dips sit on 3 and 4, and lead 4's end was the loosest (H15) |
 | S19 ↔ the bad start of 24/10 | **suspected one event** (*owner*) | same window, both what a cylinder flooded while standing gives (S19) |
 | S7 ↔ S19 | **same window** | both after the fill of 24/10; the 24/10 start is in both |
-| S12 ↔ S3 | **014 counts with it** (27/10) | two episodes on the road at 25–26 % load; whether combustion or the driveline shaking the crank is open (S12) |
+| S12 ↔ S3 | **014 counts with it** (27/10) | two climbs and four single counts on the road at 25–30 % load; whether combustion or the driveline shaking the crank is open (S12) |
 | S11 ↔ S1 | **untested** | if the hiss is a leak, H3 or H2; the owner reads it as the throttle's own air |
 
 **Two clusters**: **the idle** (S1, S2, S3, S14) and **the cylinder 4

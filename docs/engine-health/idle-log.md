@@ -1223,7 +1223,7 @@ then, standing, neutral, nothing else touched:
 
 | from | state | `IdleHealth` (video) | 014 | 055 bits | field 3 | field 2 |
 |---|---|---|---|---|---|---|
-| 07:23 | everyday | **~70** (59–73) | 12–48 | `0000` | −1.11 → −1.04 | about 0 |
+| 07:23 | everyday | **~70** (59–73) | 12–48, then **0 → 72** in the 15 s before the A/C | `0000` | −1.11 → −1.04 | about 0 |
 | 07:25:31 | + A/C, first minute | 59 → 45 | 0 | `0101` | **0.00** | → −0.99 |
 | 07:27 | + A/C, minutes 2–5 | **35–50** | 0 | `0101` | 0.00 | about −1.0 |
 | 07:31 | + A/C, minute 6 | **56 → 75** | 0 | `0101` | 0.00 | about −1.0 |
@@ -1241,8 +1241,10 @@ owner would have dazzled the traffic). `IdleHealth` filters, so each state
 reads about half a minute late. Read in `open.md` S1, *A second
 reading*, and H8.
 
-**On the drive before it, 014 counted on the road**: two episodes in
-steps of 12, 12 → 36 and 12 → 48, at 1900–2100 rpm and 25–26 % load; the
+**On the drive before it, 014 counted on the road**: two climbs in
+steps of 12, 12 → 36 and 12 → 48, at 1900–2100 rpm and 25–26 % load, and
+four shorter counts (12, once 12 → 24) at 1160–1920 rpm and 25–30 % load,
+detection `aktivováno` at each (*re-read 27/10*); the
 owner saw it count at the jerk he feels when the throttle goes back on
 after a gearchange. **S12 reopened** at his request (`open.md`).
 
