@@ -95,21 +95,21 @@ Claude runs the capture on every drive. **Current: item 6.**
    chat. **The same about every 500 km**, always after at least 5 minutes
    standing on level ground. Any top-up: the litres and the odometer
    into the chat.
-6l. **055 reset, 27/10 afternoon** — the owner at the car, Claude on
-   the laptop.
-   - The battery back on. Ignition on; let the throttle's 20 s routine
-     finish.
-   - Claude reads the fault memory. The owner clears it by hand.
-   - The owner runs **098 under Basic Settings (04), not Measuring
-     Blocks (08)**, engine off, every load off. The throttle should be
-     heard moving, then *ADP OK*. Ignition off for at least 20 s.
-   - Ignition on, A/C off: Claude reads **032 and 055** for 20 s. Field
-     3 at 0.00 → go on; not 0.00 → 098 again.
-   - The drive home with VCDS logging **014, 055, 003** from before the
-     start to the end; any warm stop at least 3 minutes. MFD in, no
-     capture.
-   - At home, engine idling: Claude reads the fault memory, then 032 and
-     055. Nothing cleared before that.
+6l. **055 reset, 27/10 afternoon.** Steps 1–4 the owner alone, before
+   the drive; steps 5–6 Claude on the laptop.
+   1. The battery back on. Ignition on; let the throttle's 20 s routine
+      finish.
+   2. The fault memory read and cleared (owner).
+   3. **098 under Basic Settings (04), not Measuring Blocks (08)**,
+      engine off, every load off. The throttle should be heard moving,
+      then *ADP OK*. Ignition off for at least 20 s.
+   4. Ignition on, A/C off: **032 and 055** read. Field 3 at 0.00 → go
+      on; not 0.00 → 098 again. The values into the chat.
+   5. The drive home with VCDS logging **014, 055, 003** from before the
+      start to the end; any warm stop at least 3 minutes. MFD in, no
+      capture.
+   6. At home, engine idling: the fault memory, then 032 and 055, read.
+      Nothing cleared before that.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
