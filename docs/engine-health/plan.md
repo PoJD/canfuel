@@ -95,22 +95,6 @@ Claude runs the capture on every drive. **Current: item 6.**
    chat. **The same about every 500 km**, always after at least 5 minutes
    standing on level ground. Any top-up: the litres and the odometer
    into the chat.
-6l. **055 reset, 27/10 afternoon.** Steps 1–4 the owner alone, before
-   the drive; steps 5–6 Claude on the laptop.
-   1. The battery back on. Ignition on; let the throttle's 20 s routine
-      finish. **032 and 055 read now, before 098**, A/C off; the values
-      into the chat.
-   2. The fault memory read and cleared (owner).
-   3. **098 under Basic Settings (04), not Measuring Blocks (08)**,
-      engine off, every load off. The throttle should be heard moving,
-      then *ADP OK*. Ignition off for at least 20 s.
-   4. Ignition on, A/C off: **032 and 055** read. Field 3 at 0.00 → go
-      on; not 0.00 → 098 again. The values into the chat.
-   5. The drive home with VCDS logging **014, 055, 003** from before the
-      start to the end; any warm stop at least 3 minutes. MFD in, no
-      capture.
-   6. At home, engine idling: the fault memory, then 032 and 055, read.
-      Nothing cleared before that.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
@@ -621,7 +605,8 @@ looked for underneath**: the sump's rear was oily on 26/10 (`open.md`,
 level ground because the stick reads the sump only once the oil has run
 back; the photograph because a millimetre is the stick's resolution.
 
-**Item 6l — the 055 reset** (*the owner's decision*, 27/10). 055 has
+**Item 6l — the 055 reset** (*the owner's decision*, 27/10; **done
+27/10, logged in `idle-log.md`; the logs are read as below**). 055 has
 gone to 0.00 each time 098 really ran after a disconnect (2/10, 4/10);
 on 26/10 and the morning of 27/10, 098 was opened as a measuring block
 and nothing ran (`idle-log.md`). **032 and 055 are read once before

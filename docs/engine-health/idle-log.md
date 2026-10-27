@@ -1274,6 +1274,55 @@ to zero each time 098 really ran after a disconnect (2/10, 4/10) and
 not on 26/10, when it did not (*reasoned* from those three, not from VW).
 In the afternoon: reconnect, 098, then 032 and 055 read.
 
+**27/10/2026, afternoon — the 055 reset** (`plan.md` 6l; *owner* at the
+car, Claude logging on the laptop; VCDS 014/055/003,
+`test/fixtures/vcds/vcds-step6l-014-055-003.csv` the start,
+`vcds-step6l-2-014-055-003.csv` the drive, `vcds-step6l-settle-014-055-003.csv`
+the idle after it). **Before 098, after several hours off: 032 0.0 / 0.0 %
+and 055 field 3 0.00** (VCDS screen photographed 15:58, album) — **a
+disconnect of hours resets 055 by itself**, where 26/10's minute did not.
+**098 then run under Basic Settings: *ADP OK*, plate 5.6°**; 032 and 055
+unchanged after it (*owner*). Fault memory empty before and after every
+read.
+
+The drive home, about 40 minutes, gentle, MFD in, **no standing idle
+longer than about 45 s**: **field 3 stayed at 0.00 the whole drive**,
+field 2 carrying the whole correction (−0.8 to −1.6 at the short idles).
+`IdleHealth` about 50 on the road, everyday state. 014 counted in steps
+of 12 at 1300–2500 rpm and at idle, field 3 at zero throughout.
+
+At the first warm stop, then at home, standing, neutral:
+
+| s in log | state | field 2 | field 3 | `IdleHealth` (display) |
+|---|---|---|---|---|
+| stop, first 15 s | everyday | −0.84 → −1.05 | 0.00 | "very rough" (*owner*) |
+| next ~15 s | everyday | about −1.08 | **0.00 → −0.28**, then held 80 s | |
+| + A/C, blower high | | −0.98 | **0.00** (`0101`) | 35 |
+| settle log, A/C and blower off | everyday | −0.23 → −0.75 | −0.28 → **−0.56** in ~20 s, then held | 45–50 |
+| a blip to ~1500 | everyday | → −0.47 | → −0.82 | 55–60 |
+| a blip again | everyday | → −0.17 | → **−1.11**, held | 50 |
+| a last blip | everyday | about 0.0 | −1.11 → −1.08 | 48–50, 37 at times |
+
+**Field 3 learns only in the 15–30 s after each entry into idle** — a
+stop, the A/C going off, a blip — and holds between them; a steady
+drive teaches it nothing. Three entries took it from 0 to its value, about
+3 minutes of idle in all. **It settled at −1.11 to −1.13**, inside the
+−1.1 to −1.3 of every reset so far, field 2 back to about 0. With the A/C
+on it reads 0.00 and the learnt value survives underneath (`0101`, as in
+6k).
+
+**Adaptations, engine idling** (`vcds-step6l-adaptations-032-055.csv` just
+after the drive, A/C still on; `vcds-step6l-settled-adaptations-032-055.csv`
+once 055 had settled): **032 −3.1 / +6.3 % → −6.3 / +6.3 %**, the idle
+trim learnt from 0.0 in one 40-minute drive and halved again in the
+nine minutes of idle after it. 055 field 3 −1.13, field 2 +0.01. Nothing
+cleared; nothing to clear.
+
+**Not known to have achieved:** 055 is back where it was before the
+reset, and `IdleHealth` with it (about 50 in the everyday state, as on
+26/10). Not a repair, and not meant as one (`plan.md` Part 2 had it as a
+reading of the handover). The analysis of the logs is still to be done.
+
 ---
 
 ## Appendix — the job of 1–4/10 in detail
