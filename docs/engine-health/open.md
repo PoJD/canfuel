@@ -1016,6 +1016,25 @@ minute, the learnt value still aside, the grade climbed back to 56–75.
 One stop; it supports the regulation narrowing the margin, not as the
 whole.
 
+**The sum of 055's two fields does not move** (27/10, re-read over
+every VCDS log with 055 and 014). Field 2 (the live regulator) plus
+field 3 (the learnt value) sits at **−0.9 to −1.35 g/s at every warm
+idle on record**, whether field 3 was 0.00 (2/10, 4/10 after 098),
+−1.2 (settled) or −2.78 (26/10, when field 2 stood at +1.46). After a
+reset the live field carries the whole correction at once and hands it
+to the learnt one over **two to three minutes of warm idle**; the
+learnt value always ends at about −1.1 to −1.3. On 27/10 the A/C did
+the same bookkeeping: **everyday −1.07, A/C −0.98, A/C with the loads
+−1.10** — the learnt value set aside, the correction the same.
+So **zeroing 055 does not give the warm idle more air** beyond its
+first minutes (*measured*, VCDS 003 on 4/10: 3.1–3.3 g/s and a plate at
+2.6–2.8° in the quiet phase after the reset, as on settled sessions),
+and 6k's calm with the A/C is the A/C's load, not the value set aside.
+The one state that moved the sum was every load but the A/C: −0.69,
+the ECU giving more air than its model. Against the regulation half of
+H8 as "less air"; the −1.1 reads as what this engine needs at a warm
+idle (`refuted.md` C19).
+
 **Do 055 and 032 belong together?** (*the owner's question*, 26/10): the
 ECU takes away both air (055) and fuel (032's idle cell). *Reasoned*, not
 measured: **not through one cause**. Air the MAF did not see would push

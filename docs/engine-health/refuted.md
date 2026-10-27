@@ -711,6 +711,23 @@ means 055's, not 032's. It does not test the tooth-error reading: a
 disconnect that left 055 alone may have left that adaptation alone too.
 The threshold itself — quiet above about −0.93 — is still untested from
 the other side; the log ended at −0.97.
+**27/10/2026 — the 055 half loses its mechanism** (re-read of
+`vcds-sessionA2-003-014-055.csv` against the settled logs). In 4/10 A's
+warm idles, with field 3 walking from −0.3 to −0.92 and **no count at
+all**, VCDS 003 read **3.1–3.3 g/s of air, the plate at 2.6–2.8° and
+2–4° of advance** — what the settled sessions read while counting
+(`step2b-a3`, `step2c-home`, `step5`), with field 2 + field 3 at −0.9
+to −1.2 in both (`open.md` H8). Same air, same plate, same ignition:
+the engine was not being run differently while 014 was quiet. Nor was
+it smoother: `IdleHealth` 72–74 on `28` (`open.md` S1's table) against
+63–89 on the settled sessions around it. **So the quiet after a reset
+reads as the detector's own state, which is the tooth-error half**, and
+it ended in 4/10 A's hot stop after the hard drive's overrun cuts.
+Still a correlation; **what separates them**: after a real reset, warm
+up and settle 055 at idle with no overrun cut above about 2500 rpm
+(clutch down on every lift), then 014 at a warm idle — quiet with 055
+settled says the tooth errors; then a few cuts from 4000+, and counting
+again confirms it.
 
 ### C20. "The fuel pressure regulator does not answer its vacuum reference, or leaks through its diaphragm" (`open.md` H7) — measured
 
