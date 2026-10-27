@@ -95,6 +95,21 @@ Claude runs the capture on every drive. **Current: item 6.**
    chat. **The same about every 500 km**, always after at least 5 minutes
    standing on level ground. Any top-up: the litres and the odometer
    into the chat.
+6l. **055 reset, 27/10 afternoon** — the owner at the car, Claude on
+   the laptop.
+   - The battery back on. Ignition on; let the throttle's 20 s routine
+     finish.
+   - Claude reads the fault memory. The owner clears it by hand.
+   - The owner runs **098 under Basic Settings (04), not Measuring
+     Blocks (08)**, engine off, every load off. The throttle should be
+     heard moving, then *ADP OK*. Ignition off for at least 20 s.
+   - Ignition on, A/C off: Claude reads **032 and 055** for 20 s. Field
+     3 at 0.00 → go on; not 0.00 → 098 again.
+   - The drive home with VCDS logging **014, 055, 003** from before the
+     start to the end; any warm stop at least 3 minutes. MFD in, no
+     capture.
+   - At home, engine idling: Claude reads the fault memory, then 032 and
+     055. Nothing cleared before that.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
@@ -604,6 +619,20 @@ looked for underneath**: the sump's rear was oily on 26/10 (`open.md`,
 *Other*), and a leak lowers the level exactly as burning does. Five minutes standing and
 level ground because the stick reads the sump only once the oil has run
 back; the photograph because a millimetre is the stick's resolution.
+
+**Item 6l — the 055 reset** (*the owner's decision*, 27/10). 055 has
+gone to 0.00 each time 098 really ran after a disconnect (2/10, 4/10);
+on 26/10 and the morning of 27/10, 098 was opened as a measuring block
+and nothing ran (`idle-log.md`). Not a repair: 055's two fields sum to
+the same correction at every warm idle (`open.md` H8), so the log is
+expected to show field 2 taking the whole of it at once and handing it
+to field 3 over two to three minutes of warm idle. **Read**: the
+handover's length and where field 3 settles (about −1.1 to −1.3 every
+time so far); 003's air, plate and advance against 4/10 A's; and **014
+quiet afterwards is not an improvement** (`refuted.md` C19) — compare
+it only once 055 has settled and after a drive with lifts from high
+revs. 003 rather than 001 because the comparison with 4/10 is in 003;
+the coolant is on the display.
 
 **Item 7 — the exhaust ahead of the front probe (H2), warm.** A leak that
 draws air in at idle blows out when the outlet is closed, and hisses or
