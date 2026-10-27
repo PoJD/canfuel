@@ -1365,18 +1365,47 @@ steady 2000–2200 rpm and 25 % load**, none at a tip-in.
 
 Then the warm stop, standing, in neutral:
 
-| window | state | rpm | load | air | 014 | 055 field 3 | `IdleHealth` (display, *owner*) |
-|---|---|---|---|---|---|---|---|
-| 22:23:46–22:25:46 | every load off | 773 | 27.3 % | 2.58 g/s | **12 six times, once 24**, in 2 min | −1.17 | about 45, 37 at its lowest |
-| 22:28:04–22:31:04 | every load on, A/C included, dipped beams | 783 | 33.8 % | 4.19 g/s | **0** | 0.00 (`0101`, the A/C) | falling slowly, about 39 at the end |
-| after | everyday state again | | | | | | climbing slowly back to about 50 |
+| window | state | rpm | load | air | throttle | 014 | 055 field 3 | `IdleHealth` (video) |
+|---|---|---|---|---|---|---|---|---|
+| 22:23:46–22:26:54 | every load off | 773–784 | 26–27 % | 3.33 g/s | 2.6° | **12 six times, once 24**, in the first 2 min; none in the last minute | −1.17 | **mean 54**, swinging **35–65** |
+| 22:28:04–22:31:16 | every load on, A/C included, dipped beams | 783 | 33.8 % | 4.12 g/s | 4.2° | **0** | 0.00 (`0101`, the A/C) | **mean 34**: 35–42 for the first two minutes, **26–32 in the last** |
+| after | everyday state again | | | | | | | climbing slowly back to about 50 (*owner*) |
+
+*Corrected 28/10 from the two videos of the display (album, 22:23:54 and
+22:28:12, three minutes each), read every 5 s and every second around
+the lows; the first 25 s of each are left out, still carrying the state
+before through the grade's filter.* The table said **about 45, 37 at its
+lowest** loads off and **falling slowly, about 39 at the end** loads on,
+the owner's glances; and its air column, **2.58 and 4.19 g/s, was 003's
+throttle angle in degrees**, the air is 3.33 and 4.12. The loads-off
+video runs a minute past the window first given (to 22:26:54), the
+loads still off: load 26 %, bits `0000`. The display's other page,
+filmed in passing: **coolant 97 °C, oil 100 °C** (101 the most), so both
+states are in the hot band; **the display's supply 14.1 V loads off and
+12.5 V loads on** (14.4 the most).
+
+**Loads on is the calmer by about 20**, as at 6k in the morning (every
+load and the A/C together 25–35 there, 26–42 here), and it kept
+calming through its third minute. **Loads off the grade came in waves
+of about a minute and a half** — 71 → 48 → 65 → **35** → 62 — and
+**014's counts fell in the calming halves**: 22:23:51–22:24:28 while it
+fell from 71 to 48, 22:25:06–22:25:41 while it fell from 65 to 35 (the
+lowest at 22:25:53, the grade about 10 s behind); the climbs back,
+22:24:40–22:25:05 and 22:25:42–22:26:54, counted nothing. Over the same
+stretches 003 read **about 7 rpm lower and 1° more advance while 014
+counted** (775 against 783 rpm, 4.1–4.8° against 3.2–3.5°). Two waves on
+one stop, and VCDS and the phone are two clocks: **not a finding, but
+the opposite of 014 counting a rough idle** — it counts in the calm,
+slower stretches the owner heard on 25/10 (`open.md` S1, *By ear*), and
+not in the restless ones the grade rises on.
 
 **Adaptations, engine idling, loads on** (22:32): **032 −8.6 / +8.6 %**
 — the idle trim back where it was on 26/10, from −6.3 in the afternoon
 — **055 field 3 −0.97**. Fault memory empty before and after.
 
 **Not known to have achieved:** the idle is unchanged; the jerk on
-tip-in is gone. The owner filmed the display; the video is in the album.
+tip-in is gone. The owner filmed the display in both states; the
+videos are in the album and read above.
 
 ---
 
