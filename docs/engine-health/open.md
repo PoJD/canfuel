@@ -187,11 +187,33 @@ the weather cooler?). Not on the bus (`docs/firmware/can-decoding.md`,
 figure is August's, the hottest month; the warm idle moved **in a step**
 between 10 and 12/10 and went up again 17–19/10, not gradually as the
 autumn cooled; and the cold drop of 21/10 came on a start at 24 °C of oil,
-warmer than the others. A small share cannot be ruled out. **From 28/10
-the outside temperature is written beside each reading** (`plan.md`,
-standing items), and the daily temperatures of the capture days are to be
-looked up once a weather archive answers (refused for its daily limit,
-28/10).
+warmer than the others. **Measured against the weather, 28/10**: the
+air temperature of each capture day, 07–19 local, from the SYNOP reports of
+Praha-Ruzyně (WMO 11518, via OGIMET), against every warm loads-off stop
+(oil ≥ 93 °C, b7 ≤ 25, settled 30 s and more; `tools/afterpull.py`'s
+`idle_runs()`):
+
+| day | air, mean (min–max) | stops | `IdleHealth`, each stop |
+|---|---|---|---|
+| 24/9 (`24`) | 12.6 (10.4–15.1) | 2 | 88, 92 |
+| 3/10 (`26`) | 16.0 (11.1–21.2) | 1 | 67 |
+| 4/10 (`28`, `29`) | 15.0 (6.0–19.3) | 5 | 72, 80, 77, 95, 93 |
+| 9/10 (`30`) | 9.7 (6.0–12.2) | 5 | 93, 75, 77, 82, 75 |
+| 10/10 (`31`) | 11.6 (10.3–12.6) | 3 | 78, 89, 103 |
+| 12/10 (`32`) | 9.7 (5.4–12.9) | 4 | 72, 48, 59, 66 |
+| 15/10 (`36`–`38`) | 11.0 (4.8–15.3) | 6 | 66, 55, 69, 75, 58, 58 |
+| 18/10 (`39`) | 10.1 (7.9–11.9) | 3 | 68, 81, 96 |
+| 21/10 (`40`) | 10.8 (4.9–13.9) | 3 | 61, 67, 66 |
+| 27/10 (display), evening | about 7 | 1 | 54 |
+
+**No relation**: the day means against the day's mean grade correlate at
+r = 0.13 (nine days), and days of the same air differ by 20 — 9/10 and
+12/10 both 9.7 °C, 80 against 61; the warmest October day, 3/10, is among
+the calm ones. Within September–October the weather does not explain the
+trend. ⚠ Day temperatures, not the moment of the stop, and the intake air
+under the bonnet at a warm idle is set more by the engine than by the
+weather. **From 28/10 the outside temperature is written beside each
+reading** (`plan.md`, standing items), so later readings carry their own.
 
 **The MAF is the one change that showed at once** (24/9: the dips halved).
 The calmest settled idles, 12/10 and 15/10, came in the days after the new
