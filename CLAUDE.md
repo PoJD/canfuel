@@ -1,1577 +1,397 @@
 # canfuel — converter firmware
 
-A fuel consumption converter for VW PQ34 cars with the AQY engine
-(2.0 l / 85 kW). *(Developed and verified on a 2.0 AQY.)* It reads the powertrain CAN bus (500 kbps), computes consumption, range,
-torque and power, and sends them back onto the bus in frames 0x600–0x604. A
-CANchecked MFD15 Gen2 display renders them from its own TRI file (repo `mfd15`).
+A fuel consumption converter for VW PQ34 cars with the AQY engine (2.0 l /
+85 kW), developed and verified on a 2.0 AQY. It reads the powertrain CAN bus
+(500 kbps), computes consumption, range, torque and power, and sends them back
+onto the bus in frames 0x600–0x604. A CANchecked MFD15 Gen2 display renders
+them from its own TRI file (repo `mfd15`). MCU: PIC18F25K80, 16 MHz, XC8. The
+board lives in the `kicad` repo.
 
-MCU: PIC18F25K80, 16 MHz, XC8. The board lives in the `kicad` repo.
+This file holds **the rules and where things are**. The reasoning behind each
+hardware decision lives next to the code it produced (`src/hal_can.c`,
+`src/hal_sys.c`, `src/pic_config.h`, `src/config.h`) and in `docs/firmware/`;
+when this file and those disagree on a detail, read the code and fix this file.
+
+*Condensed 28/10/2026 at the maintainer's request; the full previous version
+is `git show bfbdd8d:CLAUDE.md`.*
+
+---
+
+## Language and address
+
+**Everything in this repository is written in English** — code, identifiers,
+comments, CLI help, documentation, commit messages, file names. Conversation
+with the maintainer may be in Czech; nothing written to disk ever is.
+
+**The maintainer is a man and is addressed informally**: in Czech *tykání*
+and masculine forms throughout (*udělal jsi*, *naměřil jsi*).
 
 ---
 
 ## Sourcing hardware facts — manufacturer datasheets only
 
-The same rule as in the `kicad` repo, and for the same reason. It applies here
-to firmware: **every register name, configuration bit, timing, endurance
-figure and electrical limit comes from the manufacturer's datasheet for the
-exact part, and from nothing else.** Not forum posts, not application notes
-recalled from memory, not "this is how it is always done", not code from a
-previous project, and not the recollection of whoever is at the keyboard —
-**including the model's.**
+**Every register name, configuration bit, timing, endurance figure and
+electrical limit comes from the manufacturer's datasheet for the exact part,
+and from nothing else** — not forums, not application notes from memory, not
+code from a previous project, not anybody's recollection, the model's
+included.
 
-When the datasheet does not settle a question, **decide it and write the
-decision down as a decision** — what was chosen, what it was chosen over, and
-what the reasoning was. Do not fill the gap with a plausible number presented
-as a fact, and do not stop and ask. A guess dressed up as a specification is
-worse than an open question, because the next person cannot tell them apart; a
-decision that says it is a decision is neither.
+- **Quote the source** next to every hardware constant: `DS39977C §2.7`,
+  `DS39977C Table 31-1 D122`.
+- The datasheets are in `docs/firmware/datasheets/`: `pic18f25k80-datasheet.pdf`
+  (DS39977C) and `mcp2562-datasheet.pdf` (DS20005167C).
+  `pdftotext -layout <pdf> -` makes them greppable.
+- **Register tables outrank prose** (the CANMX case below). **Absolute
+  Maximum Ratings outrank DC characteristics**, and both outrank what a part
+  is seen to tolerate. **Typical is not guaranteed**: a *typ* with no min/max
+  cannot be designed against — say so and what it costs.
+- **Where the datasheet is deliberately not followed**, say so and why, next
+  to the citation.
+- **Where the datasheet does not settle it, decide and write the decision
+  down as a decision** — what was chosen, over what, why. Never a plausible
+  number dressed as a fact, and **do not queue questions for the
+  maintainer**. If it genuinely needs information nobody has yet, say so in
+  one line and carry on.
+- ⚠ **The VCDS label file is deliberately not kept here** (Ross-Tech's,
+  commercial). This project keeps its own summary of the blocks it uses, in
+  `docs/engine-health/vcds.md`.
 
-**Do not queue up questions for the maintainer.** Judgement calls belong in the
-work, next to the code they produce. If something is genuinely undecidable
-without information nobody has yet — a measurement off the car, a part that has
-not arrived — say so in the same place, in one line, and carry on with
-everything that does not depend on it.
+Facts about the *car* (signal table, frame periods, the bus already
+terminated) are settled by measurement and marked as measured in
+`docs/firmware/can-decoding.md`; the rule above is about parts.
 
-In practice:
-
-- **Quote the source.** Every hardware constant in the code or the docs names
-  its document and section — `DS39977C §2.7`, `DS39977C Table 31-1 D122`. A
-  number without a citation is a number nobody can re-check.
-- **The datasheets are in `docs/firmware/datasheets/`.** `pic18f25k80-datasheet.pdf` (Microchip
-  DS39977C, PIC18F66K80 family) and `mcp2562-datasheet.pdf` (DS20005167C,
-  MCP2561/2).
-
-  ⚠ **The VCDS label file for this ECU is deliberately NOT kept here.** It is
-  Ross-Tech's, part of a commercial product rather than a freely redistributed
-  manufacturer document, so it does not belong in a repository under Apache 2.0
-  even in the third-party section of `NOTICE` — which exists for material whose
-  owners publish it openly. What this project keeps instead is **its own summary
-  of the handful of blocks it actually uses**, in `docs/engine-health/vcds.md`. The
-  maintainer has the file; anyone else with VCDS for this ECU has it too.
-  The datasheets are duplicated from the `kicad` repo on purpose: firmware
-  work should not depend on a sibling checkout being present.
-- **Register tables outrank prose.** The chapters are summaries and they do
-  get it wrong — see the CANMX finding below, where the ECAN chapter's opening
-  paragraph contradicts the configuration register table.
-- **Absolute Maximum Ratings outrank the DC characteristics tables**, and both
-  outrank what a part is observed to tolerate.
-- **Where the datasheet is deliberately not followed**, say so and say why,
-  next to the citation. An unexplained deviation is indistinguishable from an
-  oversight six months later.
-- **Typical is not guaranteed.** A figure given only as *typ* with no min/max
-  cannot be designed against. Say what it is and what that costs — the FVR
-  below is exactly this case.
-
-Facts about the *car* — the signal table, the frame periods, that the bus is
-already terminated — are not datasheet questions. They were settled by
-measurement and are marked as measured where they appear, in
-`docs/firmware/can-decoding.md`. The rule above is about parts.
-
-`pdftotext -layout docs/firmware/datasheets/pic18f25k80-datasheet.pdf -` makes the PDF greppable,
-which is the fastest way to find a parameter number.
-
-### Working code from the other repos is evidence, not a source
-
-`github.com/PoJD/can` holds `CanSwitch.X` and `CanRelay.X`, and
-`github.com/PoJD/piclib` holds the CAN and EEPROM layer they share. **Both are
-built on the same PIC18F25K80 at the same 16 MHz crystal**, which makes them
-the right place to start every question below: a known-good register-level
-setup on identical silicon, which no datasheet can give you.
-
-**Be precise about what was actually proven.** They were never installed in
-the house. They were bench-tested over a 200 m run of LAN cable and everything
-worked — a serious test of the wiring and the transceivers, and better
-evidence than a desk full of jumper wires. But it is a bench test, and
-`CanSwitch.X/main.c` runs `#define BAUD_RATE 50`.
-
-Which matters here, because **canfuel runs at 500 kbps — ten times faster.**
-Bus length and bit timing both scale against bit rate, so their 200 m result
-says nothing about ours, and their bit timing was never exercised anywhere
-near our rate. What transfers is the *plumbing*: the configuration bits, the
-register sequences, the shape of the driver. The 500 kbps numbers in the HAL
-section below were derived from the datasheet and have since **run on a bench
-bus and in the car** -- hours of traffic at 357 frames a second with both error
-counters sitting at zero, plus deliberate fault injection, and then the same
-counters at zero on the vehicle's own bus with its 1.4 m unterminated stub.
-
-Working code also does not stop a deviation from the datasheet propagating.
-Three cases, all real:
-
-- `CanSwitch.X/config.h` sets `CANMX = PORTC`, which is correct there and
-  **wrong here** — this board is wired to RB2/RB3. Copying the file wholesale
-  is the single most expensive mistake available.
-- `piclib/can_initRcPortsForCan()` is hard-wired to the same wrong pin pair.
-- `piclib/can.c` never writes `CIOCON`'s `CLKSEL`, so the CAN system clock is
-  left on its reset value, which selects the PLL (DS39977C Register 27-55).
-  With `PLLCFG = OFF` there is no PLL and the datasheet does not say what the
-  mux then delivers. It evidently works at 50 kbps; the bit rate is not
-  something to leave to inference at 500 kbps.
-
-⚠ **Check the caller before concluding that a sibling repository got
-something wrong.** `piclib/dao.c` looks as though it omits the `GIE` bracket
-the datasheet's Required Sequence puts around the EEPROM unlock, and it does
-not: the bracket is in `dao_saveDataItem()`, which opens with `di()` and closes
-with `ei()` around a superset of the sequence. Reading the inner
-`dao_writeByte()` in isolation produces the opposite answer.
-
-So: read them first, then check what you took against the PDF, then cite the
-PDF. Neither repo is a submodule of this one; clone them beside it when
-needed. **`piclib` was evaluated for this firmware and not used** — the
-reasoning is in the HAL section below.
+**Working code from the sibling repos is evidence, not a source.**
+`github.com/PoJD/can` (`CanSwitch.X`, `CanRelay.X`) and `github.com/PoJD/piclib`
+run the same PIC18F25K80 at the same 16 MHz and are the right place to start a
+register question — but they were bench-tested at **50 kbps**, ten times
+slower, so their bit timing proves nothing at ours, and they carry deviations
+that must not propagate: `CanSwitch.X/config.h` sets `CANMX = PORTC` (wrong
+here), `can_initRcPortsForCan()` uses the same wrong pins, `piclib/can.c` never
+writes `CIOCON.CLKSEL`. ⚠ **Check the caller before concluding a sibling got
+something wrong** (`piclib/dao.c`'s GIE bracket is in `dao_saveDataItem()`).
+Read them, check against the PDF, cite the PDF. Neither is a submodule;
+**`piclib` was evaluated and not used** (Mode 0 only, a house-protocol API,
+wrong pins, globals defined in a header).
 
 ---
 
-## What this is
+## What this is, and where everything lives
 
-**A complete firmware that builds: `make -C mplab` produces
-`mplab/build/canfuel.hex` under XC8 v4.00 with no warnings.** Exact byte counts
-are deliberately not quoted here — `make -C mplab` prints them, and `README.md`
-carries a generated block; a figure typed into prose only goes stale.
+**A complete firmware that builds clean**: `make -C mplab` →
+`mplab/build/canfuel.hex` under XC8 v4.00, no warnings. Byte counts are not
+quoted here; `README.md` carries a generated block.
 
-- `src/config.h`, `decode.c`, `compute.c`, `txframes.c`, `persist.c` — the
-  whole brain of the device, no `<xc.h>` anywhere, all scaled integers
-- `src/pic_config.h` — the `#pragma config` bits, every one of them cited
-- `src/hal_sys.c` — Timer2 millisecond clock, the 12-bit A/D on the band gap,
-  the two LEDs, the `DBG_EN` jumper, EEPROM behind `persist_backend_t`
-- `src/hal_can.c` — ECAN on RB2/RB3 at 500 kbps, Mode 2 with an eight-deep
-  receive FIFO, six hardware filters, three transmit buffers, and a
-  build-time choice of Normal, Listen Only or Loopback
-- `src/main.c` — the cooperative scheduler, and nothing else
-- `mplab/` — `canfuel.X` for the IDE and a plain `Makefile` driving `xc8-cc`,
-  which is the authoritative recipe and what CI runs
-- `test/` — the whole core against the fixtures, the scheduler and the
-  arithmetic properties, plus `replay_host.c`
-- `tools/` — `canlog.py`, `replay.py` (which `--host-build` diffs against the C
-  core), `cycles.py`, `checkdocs.py`, `divconst.py`
-- `test/fixtures/` — thirty recordings from the vehicle, documented, of
-  which the `_z1` ones are the only ones with trustworthy time
-- `docs/` — two folders that answer different questions, and **a document
-  belongs to exactly one of them**:
-  - **`docs/firmware/`** — everything the converter needed or needs.
-    **`install.md` is the procedure**, plus decoding, frame layout, refuelling
-    reset, timing, optimisation, flashing, `fuel-check.md` (the pump
-    history and how to check `FuelAvg` against it), `refuted.md`, `open.md` (the open
-    firmware question, 11) and `datasheets/`
-  - **`docs/engine-health/`** — the car's own engine. `open.md` is a holding
-    document for one open investigation — the idle misfires that outlived the
-    repair (cylinder 3 dropping out with a tick, S18, closed on 24/10/2026)
-    — holding only what is open: symptoms, hypotheses, tests.
-    `refuted.md` takes whatever is settled against. `plan.md` is the planned
-    fixes in order, emptied as they are done, **in two parts that are
-    never mixed**: Part 1 is what to do, as bare instructions the
-    maintainer follows at the car without reading any reasoning; Part 2
-    is why, and how the results are read. A new instruction goes into
-    Part 1 and its reason into Part 2, in the same commit (*the
-    maintainer's rule, 8/10/2026*). **All three have an end date.**
-    `vcds.md` (the VCDS blocks and how to record them),
-    `vehicle-history.md` (the service record: parts, dates, distances —
-    a service book and nothing more) and **`idle-log.md`** (the diary of
-    the idle investigation: the picture at each stage, what was done and
-    measured, and what a repair is *not* known to have achieved; kept
-    current until the idle is fixed, then kept as reference for other
-    owners) are permanent. **Each step `plan.md` completes adds an entry
-    to `idle-log.md` in the same commit.** **Every `idle-log.md` entry is
-    a `##` heading with the date and a short title, then the same three
-    lines in this order — `Repairs` (what was changed, fitted, adjusted
-    or added), `Tests` (what was only tested, read or recorded), `Changes
-    after` (split into *measured*, *felt* and *not known*) — with an
-    empty line left out, then a short detail and no procedure.** Analysis
-    and the maintainer's questions that only re-read earlier data are not
-    entries; their findings go to the symptom in `open.md` (*the
-    maintainer, 28/10/2026*).
-    **Every new observation the maintainer reports about the car** — a sound,
-    a smell, a leak, a reading — **is flagged: say whether it could be a new
-    symptom in `open.md` (or change an existing one) and why, then ask. The
-    maintainer decides**; never add a symptom unasked, never let one pass
-    without asking. **Idle smoothness is quoted on the `IdleHealth`
-    scale everywhere** — `idledips --roughness`'s mean step in rpm × 50,
-    so a capture compares with the display — never as the raw rpm grade
-    (*the maintainer, 12/10/2026*). **This repository is public, so
-    nothing that identifies the car or its owner goes into it** — not the
-    full VIN (the type, year and plant positions are fine), not a
-    registration plate, not an address; a photograph showing one is
-    cropped first (*the maintainer, 12/10/2026*). **The full VIN is kept in
-    the maintainer's private claude.ai artifact *New Beetle VIN***; a
-    session with the Artifact tool finds it with `action: "list"` and
-    reads it there, and never copies it into a file here. **The owner's photo album**
-    (Google Photos, every repair since 6/2026) **is in the private artifact
-    *New Beetle Photo Album*** the same way: the link, an index of the
-    borescope night of 19–20/10, and how to page through it from a cloud
-    session. Frames are picked by timestamp; each borescope series of a
-    chamber starts with that cylinder's plug. The link never goes into a
-    file here. **When the symptom list changes — a symptom added
-    or closed — every hypothesis's fit table in `open.md` gains or loses
-    that column in the same commit, and the ranked list of candidates is
-    re-read against it**; a symptom left out of the tables says why, once,
-    above them. The long dated log
-    that preceded `open.md` lives only in git
-    (`git show 7c69883:docs/engine-health.md`), and nothing in the tree cites it
-
-    **A photograph of the part on the car outranks everything in the
-    repository** — a part number, a routing, a location, a condition. When a
-    photo disagrees with a document, the document is corrected in the same
-    commit and says what it used to say; nobody argues the photo down with a
-    catalogue, a forum or an earlier revision of these files. The same holds
-    for anything the maintainer reads directly off the car.
-
-  Firmware documents may point at engine-health for context, never for a fact
-  they need; engine-health points at firmware freely (0x604, `IdleHealth`).
-  A one-shot procedure that has been followed is deleted rather than kept;
-  `git log` is where it lives afterwards
-
-The C core reproduces the Python oracle on every fixture: fuel totals and
-restart counts agree **exactly**, distance to within 7 mm over 54 m. Both were
-checked against figures measured in the vehicle.
-
-All three CI jobs do real work. `core` runs `make check-pure`, `make test`,
-`make check-hal` and the `--host-build` diff; `tools` runs the Python tests and
-`checkdocs.py --check`; `firmware` installs a pinned XC8 **and a pinned Device
-Family Pack**, builds the hex, uploads it as an artifact, and — because it is
-the only job with a compiler — is also the one that runs `cycles.py --check`
-and the `checkdocs.py` size check, both of which need the listing and the
-memory summary that build writes.
-
-### What is verified, and what is not — read before trusting any of it
-
-The core is checked against every fixture. The hardware half is checked against
-the datasheet, against `gcc -fsyntax-only`, and against XC8 itself.
-
-- **It compiles and links clean, with no warnings, for the real part**, so
-  every register and bit name in `hal_can.c` and `hal_sys.c` exists on the
-  PIC18F25K80 and every `#pragma config` keyword is spelled the way the device
-  data spells it. `test/xc8stub/xc.h` cannot show either, since it agrees with
-  the code by construction.
-- **The configuration words are read back out of the hex, not assumed.**
-  `CONFIG3H` at 300005h comes out `0x89`, so bit 0 `CANMX` is **set** — CANTX
-  and CANRX on RB2 and RB3, which is what the board is wired to and what
-  DS39977C Register 28-5 says that bit means. The single most expensive bit in
-  the project, confirmed against the artefact that will actually be flashed.
-  `CONFIG2H = 0x26` likewise reads back as `WDTPS<3:0> = 1001` = 512.
-- **It fits, with room to spare**, in both program space and RAM at `-O2`.
-- **Compiling proves nothing about the silicon.** A register that exists but is
-  written in the wrong order, at the wrong time, or with the wrong value
-  compiles exactly as cleanly as one that does not.
-- **500 kbps has run on a bench bus and in the car.** The bit timing was
-  datasheet arithmetic and is now also a measurement: hours of traffic at 357
-  frames a second with `hal_can_rx_errors()` and `hal_can_tx_errors()` both at
-  zero, the six hardware filters holding under a flood, and recovery from
-  deliberate starvation and from a node at half the bit rate. **The car's bus
-  -- the longer one, with the 1.4 m unterminated stub the Prop_Seg budget was
-  widened for -- then read the same**: both counters zero, `COMSTAT` zero,
-  `UNHEALTHY` clear, read off 0x603 on the display rather than off a blink
-  rate. The one thing that has ever disturbed it is the MFD15 itself, and only
-  while somebody is operating it; see `docs/firmware/frames.md`.
-- **The A/D reading is calibrated per unit, against a meter.** `VDD_CAL_*` in
-  `config.h`, and the recipe for redoing it is beside them. The 1.024 V
-  reference has no tolerance anywhere in the datasheet, so the nominal
-  arithmetic was 4.1 % out on the board it was measured on; calibrated, it
-  agrees with a meter to under a hundredth of a volt. **The residual is the
-  A/D's own scatter**, about ±0.025 V sample to sample, which is five times an
-  LSB -- so read a mean, never one frame, and never calibrate against one.
-- **The timing budget is counted, not measured.** `docs/firmware/timing.md` costs every
-  function out of the assembly listing XC8 generates. A typical pass is
-  49–134 µs, so the loop runs 7,400–20,000 times a second; the busiest transmit
-  slot uses **2.4 ms of its 25**; the worst pass without an EEPROM write is
-  **5.1 ms**, against a FIFO that tolerates 22 ms of blindness. **The whole firmware uses
-  20 % of the CPU** at an upper bound, and the largest single item is receiving
-  frames rather than any arithmetic. The one figure the datasheet declines to bound is the
-  EEPROM write — D122's 4 ms is a *typ* with no maximum — and nothing
-  downstream of it is a deadline.
-- **One frame leaves every 25 ms and never two together, and that is a
-  correctness rule rather than tidiness.** The four frames used to go out in
-  two bursts, and on the bench **both USBtin adapters silently dropped
-  whichever of ours came third on the wire** — no overrun flag, on an empty
-  bus, so not throughput. Moving a frame out of the burst restored it to its
-  nominal rate and moving another in broke that one instead. The converter was
-  never at fault: the module reported every frame as successfully transmitted,
-  which in CAN needs somebody else's acknowledgement, so this is insurance for
-  the MFD15 rather than a repair. **Which frame is third on the wire is not
-  which send is third in the code** — DS39977C §27.6.3 sends equal-priority
-  buffers highest number first, so the symptom moves as the surrounding code
-  changes. `src/config.h` has the argument, `test_never_two_frames_in_one_pass`
-  holds it on the host, `tools/bench_test.py` measures the real gap on the
-  adapter's own clock, and it is why the EEPROM write sits in a slot that
-  transmits nothing and why a missed slot is dropped rather than caught up.
-- **`docs/firmware/optimisation.md` is required reading before changing any loop or any
-  arithmetic in `src/`.** It carries what was optimised and why, what was tried
-  and rejected, and the two things that generalise on this part: use the
-  narrowest integer type that provably holds the value, and prefer a walking
-  pointer to an index in a hot loop.
-- **The refuelling rule is a first-order filter and a counter of consecutive
-  at-rest samples, not a median.** "Is the level persistently higher than it
-  was" needs no sort, no histogram and no division. `docs/firmware/refuel-reset.md` is
-  the rule, `docs/firmware/optimisation.md` §8 the argument that it is the same answer.
-- **Distance is integrated on `DIST_TICK_MS` = 10 ms with the remainder
-  carried, and that is a correctness rule, not a budget.** `main.c` calls
-  `compute_tick()` every pass; integrating on a 1 ms delta truncates **6.4 % of
-  the distance at 50 km/h and all of it below 3.6 km/h**, straight into
-  FuelAvg, Range and the trip. **No fixture can show it** — the tests tick on
-  0x480, ~38 ms apart, where the same fault is 0.8 %, and the Python oracle
-  shares the reasoning, so the twins would agree with each other about a wrong
-  number. `DIST_MIN_MMH` is the other half: a standing vehicle reports
-  0.005 km/h, which an exact integrator turns into 83 mm a minute.
-  `docs/firmware/optimisation.md` §6.
-- **Neither division nor multiplication uses the compiler's helpers.** XC8
-  v4.00 reaches for a per-bit loop for both — `___lldiv` 1,026 cycles,
-  `___lmul` 849 — while the part has a single-cycle 8×8 multiplier it will only
-  use for `uint8 × uint8` and `uint16 × uint8`. Both are assembled from byte
-  products by hand: `src/fastmul.h` for multiplication (seven products, 137
-  instructions) and `src/divconst.h` for division by a constant, which
-  multiplies by a proved reciprocal instead. **`___lmul` is absent from the
-  build entirely** and the three remaining `___lldiv` calls all divide by a
-  *variable*, where a reciprocal cannot help.
-
-  Two details that are easy to undo by accident: `div_const` is a macro so the
-  shift stays a literal, and a shift of 8/16/24 is free while any other is a
-  rotate loop. **Never add a divisor by hand** — `tools/divconst.py` derives and
-  proves it, `test/test_divconst.c` proves the C, and the exhaustive build
-  walked 26.8 billion values.
-
-  **A divisor here should be one the physics forces.** 1000, 3600 and 95500
-  are; a scaling factor chosen by us is one we can choose to be a power of two,
-  so the tank filter and the drag slope use 128 and 2\*\*16 and both divisions
-  are shifts. `docs/firmware/optimisation.md` §11.
-- **`tools/cycles.py` measures loop bodies out of the listing** and requires
-  every backward branch in the build to be declared in one of its three tables.
-  It stops rather than guessing, so a change of algorithm cannot pass silently.
-
-### Building for the device
-
-`make -C mplab` needs no arguments. Everything the toolchain requires — that
-XC8 v4.00 ships no device data at all, that `-mdfp` names the `xc8`
-subdirectory *inside* a Device Family Pack, that the pack version must match
-the compiler, that the path to it must be pure ASCII, and the `TMP` handling
-under MSYS — is encoded in `mplab/Makefile` and explained in
-[`mplab/README.md`](mplab/README.md), with the exact error messages each one
-produces. CI runs the same makefile with the same pinned versions.
-
-
-### Toolchain
-
-gcc, make, git and Python 3.11 build and test the core. Building for the device
-additionally needs **XC8 v4.00** and **`PIC18F-K_DFP 1.13.292`**; `mplab/Makefile`
-looks for `xc8-cc` on `PATH` and falls back to XC8's default install path, and
-takes the pack from `DFP=` (default `C:/mchp_packs/...`, which is what CI
-overrides). **Keep that path pure ASCII** — an accented directory silently drops
-the pack's include directories and the build dies two steps later on
-`'pic18.h' file not found`.
-
-**`ipecmd` is invoked by bare name and has to be on `PATH`**, which the MPLAB X
-installer does not do for you; it lives in `mplab_platform/mplab_ipe` under the
-install directory. That is the only tool this repository requires on `PATH`
-without a fallback.
-
-MPLAB X finds its own toolchain regardless of `PATH`, so the IDE building is
-not evidence that `make -C mplab` will, and the IDE manages its own packs.
-**`make` is the build.**
-
-**Under MSYS, `make` can hand its recipes an empty `TMP`**, after which gcc
-tries to write temporary files into a directory it cannot write and fails. Both
-makefiles derive one themselves:
-
-```make
-CYGPATH := $(shell command -v cygpath 2>/dev/null)
-ifneq ($(CYGPATH),)
-export TMP := $(shell cygpath -m /tmp)
-endif
+```
+src/
+  config.h        every constant and switch           PURE
+  decode.c/.h     frame parsing                       PURE
+  compute.c/.h    maths                               PURE
+  txframes.c/.h   frame assembly                      PURE
+  persist.c/.h    EEPROM circular buffer              PURE
+  divconst.h      division by a constant              PURE  (optimisation.md)
+  fastmul.h       wide multiplication                 PURE  (optimisation.md)
+  hal_can.c/.h    ECAN + MCP2562
+  hal_sys.c/.h    Timer2 ms clock, band-gap A/D, LEDs, DBG_EN, EEPROM
+  pic_config.h    the #pragma config bits, each cited
+  main.c          the cooperative scheduler and nothing else
+test/             tt.h, logread.h, replay_core.h, sched.h (header-only on
+                  purpose), test_*.c (globbed), replay_host.c, xc8stub/xc.h
+mplab/            Makefile (the authoritative device build, what CI runs),
+                  canfuel.X (IDE), README.md (toolchain traps, JP2)
+tools/            Python, standard library unless noted below
+test/fixtures/    recordings from the car; README.md documents every one
+docs/firmware/    everything the converter needs
+docs/engine-health/  the car's own engine
 ```
 
-`cygpath` exists only on MSYS and Cygwin, so it is self-guarding and leaves
-Linux, macOS and CI alone.
+**The two `config` headers must not be confused**: `src/config.h` is the pure
+core's and never sees `<xc.h>`; `src/pic_config.h` is the `#pragma config`
+block, included only by `main.c`, `hal_can.c`, `hal_sys.c`. Constants belong in
+`config.h`, not in code.
 
-### Flashing is a command line, and the tool is IPECMD
+**`docs/` has two folders and a document belongs to exactly one.**
+Firmware documents may point at engine-health for context, never for a fact
+they need; engine-health points at firmware freely.
 
-**The device is programmed with `ipecmd`, not from the IDE.** The procedure
-is steps 4 and 5 of `docs/firmware/install.md`; the full argument for every flag, the
-observed exit codes and the environment traps are in
-[`docs/firmware/flashing.md`](docs/firmware/flashing.md), which is also where
-`tools/flash.py` gets its rules.
+- **`docs/firmware/`** — `install.md` (**the procedure**; it deliberately
+  carries no progress — where the build is, is asked, not read),
+  `can-decoding.md`, `frames.md` (all five frames and the torque/driving-gate
+  reasoning), `refuel-reset.md`, `timing.md`, `optimisation.md`,
+  `flashing.md`, `fuel-check.md`, `refuted.md`, `open.md`, `datasheets/`.
+- **`docs/engine-health/`** — see *Engine health* below.
 
-Four things belong here because they are decisions rather than procedure:
-
-- **`-OL` on every programming command.** The IPECMD default for *Release From
-  Reset* is `Hold in reset`. Forgetting it produces a correctly programmed
-  board that does nothing, which reads as a firmware fault.
-- **`-W` only for a bare board on the desk, and at 4.5 V.** Power from the
-  programmer is the maintainer's decision for a board with **no other supply
-  and nothing else connected** — the board has no regulator of its own, so its
-  5 V comes from the display's harness or not at all. `flash.py
-  --power-from-programmer` passes `-W4.5` on every call and ends with a plain
-  call that drops the rail again, because `-W` leaves it live. **4.5 and not
-  5.0, measured**: a plain `-W` asks for 5.0 V, the PICkit 3 on USB delivers
-  4.625, and IPECMD refuses to connect; `-W4.5` is regulated to and the part
-  answers. The board draws under 30 mA, which is the PICkit 3's limit
-  (DS51795B). In the car, or with a bench supply on, never — two supplies on
-  one rail. `docs/firmware/refuted.md` E6 and `docs/firmware/flashing.md` have the rest.
-- **The EEPROM is erased by default, and that is left alone.** *Erase All
-  Before Program* is on unless `-OH` turns it off, so a plain `-M` discards the
-  persist ring. `persist_load()` returning false on a virgin EEPROM is a
-  correct start, not an error, so during bring-up that is the better default;
-  **`flash.py --preserve-eeprom` is the opt-in**, and it passes `-Z0-3FF` *and
-  proves it worked* — EEData dumped before and after and compared byte for
-  byte, with the programming step deliberately not releasing the part so that
-  the firmware cannot write between the two. A preserve that silently did not
-  happen is indistinguishable from one that did until the trip is gone.
-  **`mplab/canfuel.X` sets `programoptions.preserveeeprom = true`**, so the IDE
-  and the command line deliberately differ. Know which one is in your hand.
-- **Never branch on IPECMD's exit code.** A target that is not powered prints
-  `Operation Succeeded` and returns 0, while bad ICSP wiring returns 1. Parse
-  the output.
-
-**MPLAB X therefore stays installed** — `ipecmd.exe` and the programmer firmware
-images are both parts of it. What goes away is the clicking, not the dependency.
-
-**The pack IPECMD uses is not the pack the compiler uses**, and they must not be
-forced to agree: IPECMD resolves the pack bundled with MPLAB X, while
-`mplab/Makefile` pins one the compiler will accept. One describes the part to a
-compiler, the other to a programmer.
-
-**The ICSP header pinout is DS51795B Figure 1-2** — held at
-`kicad/canfuel/docs/pickit3-users-guide.pdf`. That connector is six pins and J3
-is five, because pin 6 is `PGM (LVP)` and this project does not use low-voltage
-programming. `docs/firmware/install.md` step 4 also keeps a procedure for establishing a
-pinout by measurement, which needs no document and works on any programmer.
-
-
-## The pin assignment
-
-**The board design is frozen and this pinout is not provisional** —
-`hal_can.c` and `hal_sys.c` are written against it.
-
-**Everything in this section comes from `kicad/canfuel/docs/implementation-plan.md`
-§4.2. If it ever disagrees with that file, that file wins.**
-
-| Signal | Pin | Notes |
-| --- | --- | --- |
-| `CAN_TX` | **RB2** (23) | to MCP2562 pin 1 |
-| `CAN_RX` | **RB3** (24) | to MCP2562 pin 4 |
-| `LED_PWR` | **RC0** (11) | via 1 kΩ to an LED to ground, active high |
-| `LED_CAN` | **RC1** (12) | via 1 kΩ to an LED to ground, active high |
-| `DBG_EN` | **RA0** (2) | JP1 to +5 V, 10 kΩ pull-down |
-| `PGC` / `PGD` | RB6 / RB7 (27/28) | ICSP header J3 |
-| MCLR | 1 | R6 470 Ω, C8 100 nF behind jumper JP2 |
-| OSC1 / OSC2 | 9 / 10 | 16 MHz crystal, HS, **no PLL** |
-
-Seven things follow from the board and are firmware obligations, not
-suggestions:
-
-1. **The fourteen unused pins must be driven low at start-up** — RA1, RA2, RA3,
-   RA5, RC2–RC7, RB0, RB1, RB4, RB5. DS39977C §2.7 wants unused I/O either
-   driven low or pulled to VSS through 1–10 kΩ, and **there are no resistors on
-   the board for this**; fourteen of them would have cost more area than they
-   were worth. The pins go nowhere at all — the escape header that used to
-   break them out was removed because it made both LEDs and the whole ICSP
-   connector unroutable. So this is the only thing standing between them and
-   floating inputs.
-2. **CANTX/CANRX are on RB2/RB3, so the config bit must say so.** The ECAN
-   module can also sit on RC6/RC7 and both were once brought out; with the
-   escape header gone, moving it now means soldering onto the PDIP socket pins
-   from underneath. Get the config bit right the first time.
-3. **`DBG_EN` (JP1) gates two things, not one.** The LEDs only light when it
-   is high — nothing may light up in the car — and **the 0x603 diagnostic frame
-   is only transmitted while it is high** either, so a closed dashboard also
-   carries no traffic for a frame nobody is reading. The 10 kΩ pull-down means
-   an absent jumper is a defined low, not a floating input — but RA0 is AN0, so
-   **it has to be switched to digital** before it is read.
-
-   This is a widening of what the jumper means and it is deliberate: JP1 says
-   "somebody is looking at this device". It is still **not** the CAN mode
-   switch — that stays a build flag, for the reasons in the HAL section.
-4. **The MCP2562's STBY pin is hard-wired to ground.** There is no standby
-   control line and no pin to drive; do not write one. Its VIO is tied to VDD.
-5. **The 120 Ω termination is deliberately not fitted** (R5, silkscreened
-   `120R DNF`). The car's bus is already terminated at both ends. Bench testing
-   off the car needs an external terminator.
-6. **JP2 must come off before programming and go back afterwards.** It puts the
-   100 nF MCLR capacitor in circuit, which is what DS39977C Figure 2-2 asks for
-   and also what interferes with ICSP.
-7. **Pin 6 is VDDCORE/VCAP, not a port pin.** The 28-pin K80 has no RA4 and no
-   ENVREG: the core regulator is always on. Nothing to configure, but do not go
-   looking for an ENVREG bit.
-
-Port A can only sink or source 2 mA against port B and C's 25 mA, which is why
-the LEDs are on port C. If anything ever needs a spare pin that drives current,
-it does not come from port A.
-
-## The one coupling to another repo
-
-This repo sits next to two siblings, `kicad` (the board) and `mfd15` (the
-display config). They have separate toolchains and separate GitHub remotes
-under `PoJD/`, and the directory above them is deliberately not a git repo.
-
-The coupling to **`mfd15`** is **the layout of all five frames, 0x600 to
-0x604**, defined in `docs/firmware/frames.md` and consumed by `mfd15/tri/S-AQY.TRI`. The
-coupling to **`kicad`** is the pin assignment in the section above — one-way,
-and already frozen by an order that has been placed.
-
-That file has already been uploaded to a real display and verified, so it is
-final until this firmware starts transmitting. When the layout changes here, it
-must change there in the same breath. Getting it wrong does not produce an
-error — the display shows plausible but wrong numbers, which is worse.
-`test/test_txframes.c` pins every offset against the TRI file, with the
-relevant TRI lines quoted in its header comment.
-
-**0x602 and 0x603 used to be uncoupled, and are not any more.** They were
-ours to change freely for as long as S-AQY.TRI did not read them, and it reads
-them now — along with `Flow` in 0x601 b4–5, which was transmitted with no
-sensor pointed at it. So the rule above applies to every field this
-firmware puts on the wire, with no exceptions to remember.
-
-**0x603 is the one that answers "is the CAN side healthy" in numbers** rather
-than in an LED blink rate; its layout is in `docs/firmware/frames.md`,
-`tools/bench_test.py` decodes it, and the display now decodes it too — bit by
-bit, under names rather than as a hex byte. It is still transmitted only with
-JP1 fitted, so those twelve channels read zero in a closed dashboard **by
-design**; that is the first thing to check before calling one of them a fault.
-
-**0x604 is the engine-health frame and it is NOT behind JP1** — the idle grade
-and the start, for a closed dashboard. Its "not known" is 255 in every byte,
-never zero, and the whole frame reads 255 on a quiet bus: a zero there would be
-a perfectly smooth engine. `docs/firmware/frames.md` has the layout, `tools/idledips.py`
-is the oracle the C is diffed against exactly, and `docs/firmware/can-decoding.md`
-trap 6 carries the arithmetic from a raw frame to the byte.
-
-The useful check on the display: compare FuelNow against
-FuelCntRaw. FuelCntRaw is the raw ECU counter with no
-conversion, so if it rises while FuelNow shows nonsense, the fault is in this
-firmware's arithmetic rather than in its input.
-
----
-
-## Language
-
-**Everything in this repository is written in English** — code, identifiers,
-comments, docstrings, CLI help text, documentation, commit messages and file
-names. Conversation with the maintainer may be in Czech; nothing written to
-disk ever is.
-
-**The maintainer is a man and is addressed informally.** In Czech that means
-*tykání* (never *vykání*) and masculine forms throughout — *udělal jsi*,
-*naměřil jsi*, never the feminine.
+A one-shot procedure that has been followed is deleted; `git log` keeps it.
 
 ---
 
 ## Non-negotiable rule: a pure C core
 
-`src/decode.c`, `src/compute.c` and `src/txframes.c` **must not contain a
-single `#include <xc.h>`.** They take arrays of bytes and a time in
-milliseconds, and return numbers.
+`decode.c`, `compute.c`, `txframes.c` and `persist.c` **never include
+`<xc.h>`**; `make -C test check-pure` enforces it. They take bytes and a
+millisecond time and return numbers; `persist.c` reaches the EEPROM through
+`persist_backend_t`. The whole core compiles with gcc and is tested against
+real logs with no hardware. Hardware belongs only in `hal_can.c` and
+`hal_sys.c`.
 
-`src/persist.c` is held to the same rule and `make check-pure` enforces it for
-all four. It reaches the EEPROM through two function pointers
-(`persist_backend_t`), which is what lets `test_persist.c` simulate 100,000
-write cycles against a RAM array and check that the wear really is spread.
+**No floating point anywhere in the core.** Every quantity is a scaled
+integer named by its scale: `_UL` µl, `_MM` mm, `_MMH` 0.001 km/h, `_CNM`
+0.01 Nm, `_D` tenths, `_C` hundredths. One µl per metre is exactly
+0.1 l/100 km; v [0.001 km/h] × t [ms] ÷ 3600 = s [mm].
 
-The whole core has to be compilable with gcc and testable against real logs
-without a single piece of hardware. That is what should prevent ten board
-revisions — before anything is soldered, a log is replayed and the consumption
-figures are checked by eye.
-
-Hardware belongs exclusively in `hal_can.c` and `hal_sys.c`.
-
-**No floating point anywhere in the core.** Every quantity is a scaled integer
-and every name says which scale: `_UL` microlitres, `_MM` millimetres, `_MMH`
-0.001 km/h, `_CNM` 0.01 Nm, `_D` tenths, `_C` hundredths. The PIC18 has no FPU,
-the accumulators have to be exact, and everything ends up an integer on the
-wire regardless — a float would only be somewhere for rounding to hide. Two
-identities do most of the work and are worth knowing:
-
-- **one microlitre per metre is exactly 0.1 l/100 km**, so `FuelAvg` is a
-  single division of the two accumulators
-- **v [0.001 km/h] × t [ms] ÷ 3600 = s [mm]**, so distance never needs a
-  conversion factor either
-
----
-
-## The core's API — what `main.c` has to call
-
-The whole core is four headers and no globals. Every function takes the state
-it works on, so there is nothing to initialise in a particular order beyond
-what is shown here. Written out in full because it is the one thing a new
-session would otherwise reconstruct by reading five files.
+### The core's API — what `main.c` calls
 
 ```c
-decode_state_t  st;   /* last known bus state          */
-compute_t       cp;   /* accumulators and windows      */
-persist_t       ps;   /* which EEPROM slot comes next  */
-tx_values_t     tx;   /* one gather, five frames       */
-```
+decode_state_t st; compute_t cp; persist_t ps; tx_values_t tx;
 
-**At start-up**
-
-```c
-decode_init(&st);
-compute_init(&cp);
-
+/* start-up */
+decode_init(&st); compute_init(&cp);
 persist_record_t rec;
-if (persist_load(&ps, &hal_eeprom_backend, &rec)) {
+if (persist_load(&ps, &hal_eeprom_backend, &rec))
     compute_restore(&cp, rec.total_ul, rec.total_mm,
                     rec.tank_stable_l, rec.tank_stable_valid);
-}
-/* A virgin EEPROM returns false and zeroed accumulators. That is correct,
- * not an error -- do not treat it as one. */
-```
+/* a virgin EEPROM returns false: correct, not an error */
 
-**Every received frame**, from the 10 ms slot:
+/* every received frame */
+decode_frame(&st, id, data, dlc);
+if (id == CAN_ID_FUEL)        compute_on_fuel(&cp, &st, now_ms);
+else if (id == CAN_ID_ENGINE) compute_on_engine(&cp, &st, now_ms);
 
-```c
-decode_frame(&st, id, data, dlc);          /* returns false for ids we ignore */
-if (id == CAN_ID_FUEL) {
-    compute_on_fuel(&cp, &st, now_ms);     /* 0x480 is the heartbeat */
-} else if (id == CAN_ID_ENGINE) {
-    compute_on_engine(&cp, &st, now_ms);   /* idle grade and start, 0x604 */
-}
-```
-
-**Every scheduler tick** — integrates distance, samples the tank once a second,
-and is safe to call as often as you like:
-
-```c
+/* every pass: distance, tank, refuelling */
 compute_tick(&cp, &st, now_ms);
-```
 
-**Every 100 ms**
-
-```c
+/* every 100 ms */
 txframes_gather(&tx, &cp, &st, hal_sys_vdd_c(), now_ms);
-txframes_fuel(&tx, buf);    hal_can_send(CAN_ID_TX_FUEL,   buf, TXFRAME_DLC);
-txframes_engine(&tx, buf);  hal_can_send(CAN_ID_TX_ENGINE, buf, TXFRAME_DLC);
-```
+txframes_fuel(&tx, buf);   hal_can_send(CAN_ID_TX_FUEL,   buf, TXFRAME_DLC);
+txframes_engine(&tx, buf); hal_can_send(CAN_ID_TX_ENGINE, buf, TXFRAME_DLC);
 
-**Every second**
-
-```c
+/* every second */
 txframes_gather_trip(&tx, &cp, now_ms);
-txframes_trip(&tx, buf);    hal_can_send(CAN_ID_TX_TRIP, buf, TXFRAME_DLC);
-
-/* 0x603 only while somebody is looking -- see docs/firmware/frames.md. Everything in
- * it comes from the HAL rather than the core, which is why the gather takes
- * scalars: txframes.c stays pure. */
-if (hal_sys_debug_enabled()) {
+txframes_trip(&tx, buf);   hal_can_send(CAN_ID_TX_TRIP, buf, TXFRAME_DLC);
+if (hal_sys_debug_enabled()) {          /* 0x603 only with JP1 */
     txframes_gather_diag(&tx, hal_can_rx_errors(), hal_can_tx_errors(),
                          hal_can_status(), flags, hal_sys_reset_cause(),
                          tx_fail, uptime_s);
-    txframes_diag(&tx, buf);  hal_can_send(CAN_ID_TX_DIAG, buf, TXFRAME_DLC);
+    txframes_diag(&tx, buf); hal_can_send(CAN_ID_TX_DIAG, buf, TXFRAME_DLC);
 }
-
-/* 0x604 always -- it is for a closed dashboard. */
-txframes_gather_health(&tx, &cp, now_ms);
-txframes_health(&tx, buf);  hal_can_send(CAN_ID_TX_HEALTH, buf, TXFRAME_DLC);
-
-persist_record_t rec = { cp.total_ul, cp.total_mm,
-                         cp.tank_stable_l, cp.tank_stable_valid };
-persist_save(&ps, &rec, now_ms);   /* itself decides whether to write */
+txframes_gather_health(&tx, &cp, now_ms);   /* 0x604 always */
+txframes_health(&tx, buf); hal_can_send(CAN_ID_TX_HEALTH, buf, TXFRAME_DLC);
+persist_save(&ps, &rec, now_ms);            /* decides itself whether to write */
 ```
 
-`persist_save()` already carries the `PERSIST_INTERVAL_MS` rule — 20 s, so at
-most three times a minute — the only-on-change rule, and the refusal to store
-a record that says nothing onto an EEPROM that already says nothing. Call it
-every second and let it say no; do not build a second timer for it in
-`main.c`.
-
-Three things `main.c` must **not** do, because the core already does them:
-
-- clear the trip on refuelling — `compute_tick()` does it and bumps
-  `cp.refuels`
-- zero the transmitted values when the bus goes quiet — `txframes_gather()`
-  does it, and deliberately leaves `VddConv` alone
-- clamp anything to the display's range — every getter clamps
-
-`now_ms` is a free-running millisecond counter. It may wrap; the core uses
-unsigned differences everywhere and handles the wrap correctly, so it must
-**not** be reset or clamped by `hal_sys`.
+`persist_save()` carries the `PERSIST_INTERVAL_MS` rule (20 s, so at most
+three times a minute), the only-on-change rule and the refusal to store an
+empty record: call it every second and let it say no. `main.c` must **not**
+clear the trip on refuelling, zero values on a quiet bus, or clamp to the
+display's range — the core does all three. `now_ms` is free-running and may
+wrap; never reset or clamp it. Read `hal_sys_millis()` once per pass and hand
+that value to every call.
 
 ---
 
-## The decisions behind the HAL
-
-All of these are now implemented in `src/hal_can.c`, `src/hal_sys.c` and
-`src/pic_config.h`, and each of them appears again as a comment next to the
-code it produced. This section is the index; the code is the detail.
-
-Everything below that carries a citation was read out of
-`docs/firmware/datasheets/pic18f25k80-datasheet.pdf` (DS39977C) or `docs/firmware/datasheets/mcp2562-datasheet.pdf`
-(DS20005167C). Everything without one is a **decision**, not a specification,
-and says so. Do not promote a decision to a specification without opening the
-PDF.
-
-**`CANMX` is 1, and the chapter text says the opposite.** DS39977C Register
-28-5 (CONFIG3H, byte address 300005h) defines bit 0:
-
-> `1` = CANTX and CANRX pins are located on RB2 and RB3, respectively
-> `0` = CANTX and CANRX pins are located on RC6 and RC7, respectively
-
-The board is wired to RB2/RB3, so the bit is **set**, which is also the reset
-default. But §27.1's opening paragraph says the pins "can be placed on
-alternate I/O pins by *setting* the CANMX Configuration bit" — which is
-backwards. The register table and the pin-table footnote ("Default pin
-assignment for CANRX and CANTX when the CANMX Configuration bit is set") agree
-with each other against the prose, so the table wins.
-
-**The ECAN chapter is §27, not §22.** §22 is the chapter number from an older
-PIC18 CAN datasheet and does not carry over; citing it is a standing trap. In DS39977C: §27.1 module overview and the six-step
-initialisation sequence, §27.3 modes, §27.4 functional Mode 0/1/2, §27.5
-buffers, §27.9 baud rate, §27.15 interrupts.
-
-This is exactly why the rule above exists, and why obligation 2 in the board
-section is worth taking seriously: with the escape header gone, getting this
-wrong means soldering to the underside of the PDIP socket. Take the `#pragma
-config` keyword from the XC8 device header rather than guessing its spelling.
-
-**Unused pins — the datasheet gives two options and the board only allows one.**
-DS39977C §2.7: *"Unused I/O pins should be configured as outputs and driven to
-a logic low state. Alternatively, connect a 1 kΩ to 10 kΩ resistor to VSS on
-unused pins and drive the output to logic low."* There are no such resistors on
-the board, so the first option is the only one available: TRIS to output, LAT
-to zero, for RA1, RA2, RA3, RA5, RC2–RC7, RB0, RB1, RB4, RB5.
-
-**EEPROM.** 1,024 bytes on the PIC18F25K80 (DS39977C Table 1, device summary).
-The circular buffer occupies 0..767 and leaves the top 256 free. From
-Table 31-1, Memory Programming Requirements:
-
-| Param | What | Value |
-|---|---|---|
-| D120 | Byte endurance | **100 K min**, 1000 K typ, −40 to +125 °C |
-| D122 | TDEW, erase/write cycle time | 4 ms typ |
-| D124 | TREF, total E/W cycles **before refresh** | 1 M min, 10 M typ |
-| D121 | VDD for read/write via EECON | 1.8 to 5.5 V |
-
-D120 is the number `persist.h`'s header comment argues from and it is a
-*minimum*, which is the right way round to design. The 4 ms of D122 is why the
-write must not be attempted from an interrupt; three times a minute it is
-otherwise irrelevant.
-
-**D124 is not a ceiling, and it is easy to read as one.** It is not a budget
-for the whole array that our writes *spend*. It is the opposite. §8.8:
-*"Frequently changing values will typically be updated more often than
-specification D124. If this is not the case, an array refresh must be
-performed."* D124 is about **disturb**: a byte that is never written degrades
-as its neighbours are, and after a million array cycles it needs reading and
-rewriting to survive. The note beneath it is explicit — *"If data EEPROM is
-only used to store constants and/or data that changes often, an array refresh
-is likely not required."*
-
-Our ring rewrites every one of its 768 bytes once per 64 writes, which is four
-orders of magnitude more often than D124 asks, so **no refresh is ever needed
-and D124 is not a ceiling we approach.** The only limit is D120: 64 slots ×
-100 K = **6.4 M writes**, which at `PERSIST_INTERVAL_MS` = 20 s is 4.1 years
-of engine-on time, or roughly 97 calendar years at an hour of driving a day.
-
-That headroom is what pays for `PERSIST_INTERVAL_MS` being as short as it is:
-the shorter the interval, the less accumulator is lost at each ignition-off.
-`config.h` costs all four candidates and `persist.h` explains what the loss is
-and why writing at every stop would have made the displayed average *worse*.
-
-`persist.c` wants exactly two functions and their shape is already fixed:
-
-```c
-uint8_t hal_eeprom_read(uint16_t addr, void *ctx);
-void    hal_eeprom_write(uint16_t addr, uint8_t value, void *ctx);
-```
-
-wrapped in a `persist_backend_t`. `ctx` is unused on the PIC — pass `NULL`.
-
-**VddConv, and what it is honestly worth.** Read the band gap on ADC channel 31
-(DS39977C Register 23-1: *"11111 = Channel 31 (1.024V band gap)"*) against VDD
-as the converter's reference, and invert:
-
-```
-VDD = 1.024 × 4096 / code
-```
-
-**4096, not 1023.** `1.024 × 1023 / ADC` is the ten-bit formula from a
-different PIC and is a standing trap here. This A/D is twelve bits — DS39977C Table 31-25 parameter A01,
-`NR Resolution ... 12 bit` — and §23.5 confirms it: *"The A/D conversion
-requires 14 TAD per 12-bit conversion."* The ten-bit formula would have
-reported four times the real supply, and 20 V on the display is exactly the
-kind of wrong that gets blamed on the wiring.
-
-Three things the datasheet says about it, and none of them are flattering:
-
-- the reference is **1.024 V with no tolerance given at all** — the figure
-  appears only in the channel list of Register 23-1, and Section 31.0 has no
-  min, typ or max for it. So VddConv is a trend and a sanity check, not a
-  calibrated voltmeter. An absolute reading needs a per-unit constant.
-- Table 31-25 parameters A01 and A50 specify the twelve-bit resolution **only
-  for VREF ≥ 3.0 V**, and VREF here is VDD. Below 3 V the number stops meaning
-  anything, which is why `BORV` is now 3.0 V rather than the sibling projects'
-  1.8 V.
-- Table 31-11 parameter 36, TIVRST: the internal reference takes **25 µs typ**
-  to become stable. `adc_init()` waits 50 µs once, rather than before every
-  conversion.
-
-Clock and acquisition, from Table 23-1 and Table 31-26: `ADCS<2:0> = 101`
-(FOSC/16) gives TAD = 1 µs at 16 MHz, inside parameter 130's 0.8–12.5 µs and
-inside the 20 MHz that Table 23-1 allows for 16 TOSC; `ACQT<2:0> = 100`
-(8 TAD) is 8 µs against the 2.45 µs Equation 23-3 works out and the 1.4 µs of
-parameter 135.
-
-Returned as `uint16_t hal_sys_vdd_c(void)` in 0.01 V, which is what
-`txframes_gather()` takes.
-
-**MCP2562.** DS20005167C: the `STBY` pin is the standby control (§1.7.9) and on
-this board it is hard-wired to ground, so there is no line to drive and no
-standby mode to write. `VIO` exists only on the MCP2562, not the MCP2561, and
-here it is tied to VDD — so the digital levels are plain 5 V and no level
-shifting is involved.
-
-**RB2 idles high, and it is not cosmetic.** RB2/CANTX drives the MCP2562's
-`TXD`, which is **active low**: a driven-low TXD is a request to hold the bus
-dominant. `ports_init()` used to write `LATB = 0x00`, so from power-up until
-`hal_can_init()` ran — several milliseconds later, `persist_load()` scans the
-whole EEPROM ring in between — the transceiver was being asked to jam the bus.
-DS20005167C §1.5 is the backstop rather than the excuse: it detects a
-"Permanent dominant condition on TXD" and disables the CANH and CANL drivers
-"in order to prevent the corruption of data on the CAN bus", but only after
-tPDT, 1.25 ms typical (Table 1-4 parameter 11), which at 500 kbps is over six
-hundred bit times. `LATB` is `0x04` now, and `hal_can_init()` sets the bit
-again before it touches the module.
-
-It matters a third time in Loopback, where §27.3.5 says "The TXCAN pin will
-revert to port I/O while the device is in this mode" — so there `LATB2` is the
-only thing keeping a fitted transceiver off the bus.
-
-**Three ECAN modes, chosen at build time.** `HAL_CAN_MODE_NORMAL` is the
-converter; the other two exist so that the first contact between this firmware
-and a real 500 kbps bus is not a node that has already started acknowledging
-frames. The values of `hal_can_mode_t` *are* the `REQOP<2:0>` codes of Register
-27-1, so there is one table and not two that can drift.
-
-- **`LISTEN_ONLY`** (`011`) — §27.3.4: "a silent mode, meaning no messages will
-  be transmitted while in this state, including error flags or Acknowledge
-  signals". Receives and filters exactly as normal. This is the point: a
-  Normal-mode node with wrong bit timing does not merely fail to read the bus,
-  it corrupts it, and our bit timing is arithmetic no hardware has run.
-- **`LOOPBACK`** (`010`) — §27.3.5: the transmit buffers are delivered to the
-  receive buffers "without actually transmitting messages on the CAN bus", so
-  the whole path can be exercised with no bus and no transceiver at all.
-
-Selected with `make -C mplab CAN_MODE=LISTEN_ONLY` (or `LOOPBACK`), which
-defines `CAN_START_MODE` over the default in `config.h`. A build flag rather
-than an edit, so a diagnostic hex leaves nothing in the tree to commit by
-accident; a misspelled mode is a compile error rather than a silent normal
-build. **It is deliberately not the `DBG_EN` jumper** — JP1 means "the LEDs may
-light", which is as useful while transmitting as while listening, so the two
-have no reason to move together.
-
-`hal_can_send()` refuses up front in Listen Only rather than setting `TXREQ` on
-a frame that can never complete and leaving all three buffers busy for ever.
-Loopback does queue, because delivery to our own FIFO is the whole point of it.
-
-**LEDs.** `LED_PWR` on RC0 and `LED_CAN` on RC1, active high through 1 kΩ, and
-only when `DBG_EN` (RA0) is high. Nothing lights up in the car. **RA0 is AN0,
-so it has to be switched to digital before it is read** — left analogue it
-reads zero and the LEDs simply never work, a bug that looks exactly like a
-wiring fault. The pin assignment itself comes from the board section below,
-which is sourced from `kicad`.
-
-`LED_CAN` carries the bus state (steady = healthy, 2.5 Hz = errors or an
-overflow, 5 Hz = the module never reached its mode, dark = quiet bus).
-`LED_PWR` is steady in a normal build and **blinks slowly in either silent
-mode** — without that, a listen-only hex left in the device by accident is
-indistinguishable from a transmitter that has quietly stopped working: frames
-arrive, `LED_CAN` is steady, and the display just shows nothing.
-
-**Which frames to receive, and in which functional mode.** The six
-`CAN_ID_*` identifiers in `config.h`, and **only identifiers something
-consumes** — a filter is a hardware resource and a decoded field nobody reads
-is dead weight. 0x5A0 is deliberately **not** accepted for exactly that
-reason: nothing in the firmware reads the acceleration, and the display takes
-0x5A0 off the bus itself. Fourteen identifiers are broadcast
-periodically and the bus carries 682–727 frames a second; the six we keep are
-357 of them, so hardware filtering throws away slightly more than half the bus
-reads and half the FIFO pressure before they cost anything.
-
-**Mode 2 rather than Mode 0, and the reason is depth, not filter count.**
-Mode 0's six acceptance filters (DS39977C §27.4.1) would hold the six
-identifiers we accept, so filters are not what decides it. **Mode 0 has two
-receive buffers and Mode 2 forms a FIFO out of all eight** (§27.4.3). The six identifiers arrive at **3.58 per
-10 ms**, measured off the `_z1` fixtures and near-identical at idle, at 2586 rpm
-and over six minutes of driving. Two buffers against that is a coin toss on
-every pass, and it collapses entirely during an EEPROM write, which blocks for
-~48 ms and happens three times a minute. The sixteen filters are now a
-convenience; the FIFO is the requirement.
-
-The FIFO is read through `FP<3:0>` in `CANCON` and the access-bank window in
-`ECANCON`, per §27.15.1. **That window is a loaded gun**: in Mode 1 and 2,
-`ECANCON<4:0>` decides which buffer the addresses the header calls
-`RXB0CON..RXB0D7` actually refer to. Every function in `hal_can.c` that touches
-an `RXB0*` name sets `EWIN` first, in the same breath. Forget it once and you
-read a message out of an acceptance filter, or write a transmit frame into one.
-`EWIN` resets to `10000` (Receive Buffer 0), which is why `ECANCON` is set to
-`0x90` and not `0x80`.
-
-**Configuration bits — `src/pic_config.h`, started from `CanSwitch.X/config.h`.**
-That file is a working PIC18F25K80 configuration at a 16 MHz crystal, and most
-of it transfers unchanged: `PLLCFG = OFF`, `XINST = OFF` (XC8 requires it),
-`MCLRE = ON`, `STVREN = ON`, `IESO = OFF`, `FCMEN = OFF`, `PWRTEN = ON`, all
-the code and table protection off.
-
-Four bits differ, and one that does not differ is load-bearing here in a way it
-was not there:
-
-| Bit | CanSwitch | canfuel | Why |
-|---|---|---|---|
-| `CANMX` | `PORTC` | **`PORTB`** | this board is wired RB2/RB3 |
-| `WDTEN` | `OFF` | **`ON`** | see below |
-| `WDTPS` | `1048576` | **`512`** | 4 ms × 512 = 2.048 s |
-| `BORV` | `3` (1.8 V) | **`0`** (3.0 V) | the A/D is only specified above 3.0 V |
-| `BOREN` | `NOSLP` | **`ON`** | we never sleep, so the distinction is empty |
-| `RETEN` | `ON` | **`OFF`** | likewise — it only controls the sleep regulator |
-| `SOSCSEL` | `DIG` | `DIG` | **unchanged and critical**, see below |
-| `FOSC` | `HS1` | `HS1` | 16 MHz is the top of HS1 and the bottom of HS2 |
-
-**`SOSCSEL = DIG` is the quiet one.** DS39977C Register 28-1:
-`10 = Digital (SCLKI) mode; I/O port functionality of RC0 and RC1 is enabled`.
-Pins 11 and 12 of the 28-pin part are `RC0/SOSCO/SCLKI` and `RC1/SOSCI` — which
-are exactly the two LED pins. Without `DIG` the LEDs belong to the secondary
-oscillator and simply never light, and the symptom is indistinguishable from a
-dry joint. It is inherited rather than chosen, but it must not be lost.
-
-**`WDTEN = ON`, decided rather than inherited.** Both siblings run with the
-watchdog off, which is reasonable for a light switch: a wedged one gets noticed
-and power-cycled. A converter behind an air vent does not, and it is feeding a
-display the driver is reading. The longest the main loop can go without a
-`CLRWDT()` is one EEPROM record — twelve bytes at the 4 ms typ of Table 31-1
-D122, about 48 ms, three times a minute. `WDTPS = 512` gives 2.048 s, forty times
-that, so only a real hang can trip it.
-
-**`BORV = 0`, likewise decided.** Table 31-25 parameters A01 and A50 specify
-the A/D's twelve-bit resolution only for VREF ≥ 3.0 V, and VREF is VDD. Below
-3 V the converter would keep running and keep transmitting numbers that are no
-longer specified. Resetting is the better failure.
-
-`CANMX = PORTB` / `PORTC` is also the answer to the pragma spelling. Their
-comment on `PORTC` reads "ECAN TX and RX pins are located on RC6 and RC7",
-which agrees with Register 28-5 and against the §27.1 prose — a third
-independent confirmation of the reading above.
-
-**`T3CKMX` and `T0CKMX` are deliberately absent.** DS39977C Register 28-5 note
-1: they are "implemented only on the 64-pin devices ... Maintain as `0' on
-28-pin, 40-pin and 44-pin devices", and both default to `1`. On this part they
-do nothing, and the XC8 keyword for the `0` state could not be verified against
-a device header from a machine without XC8 — so the documented default was kept
-rather than a keyword guessed. Neither sibling sets them either.
-
-**`FOSC = HS1` at 16 MHz, and Table 3-1 cannot be used to check it.** DS39977C
-Register 28-2 gives `0011 = HS1, HS oscillator (medium power, 4 MHz-16 MHz)`
-and `0010 = HS2, HS oscillator (high power, 16 MHz-25 MHz)`, so 16 MHz is the
-top of one range and the bottom of the other and either is defensible. HS1 is
-what the sibling projects run at this crystal, so HS1 it is.
-
-Table 3-1 appears to say the opposite — its frequency column is misaligned
-against its mode column by one row from HS1 downwards. **Use Register 28-2.**
-
-**The instruction cycle is Fosc/4**, so 16 MHz gives 4 MHz and Tcy = 250 ns.
-DS39977C, CLKOUT in the pin table: *"OSC2 pin outputs CLKO, which has 1/4 the
-frequency of OSC1 and denotes the instruction cycle rate"*, and T0CON's T0CS
-bit selects *"0 = Internal instruction cycle clock (CLKO)"*. `CanSwitch.X`
-confirms it empirically: Timer0 in 16-bit mode with a 1:16 prescaler off that
-clock rolls over at 4 MHz/16/65536 ≈ 3.8 Hz, which is the "roughly 4 times a
-second" its comment claims. (Its arithmetic calls 4 MHz the *oscillator* rate,
-which is muddled — the conclusion is right, the reasoning is not. Worth
-noticing, since a right value on a wrong reason stops being right the moment
-anything moves.)
-
-**500 kbps works out to BRP = 0 and needs no cleverness.** DS39977C Equation
-27-3 gives `TQ (µs) = (2 × (BRP + 1))/FOSC (MHz)` and Register 27-52 allows
-`BRP<5:0> = 000000 → TQ = (2 × 1)/FOSC`. At 16 MHz that is TQ = 0.125 µs, and
-piclib's fixed 16 TQ bit time gives 2 µs — exactly 500 kbps.
-
-`piclib`'s own formula, `BRP = (1000 × cpuSpeed)/(32 × baudRate) − 1`, returns
-0 for `can_setupBaudRate(500, 16)`, so the call is simply correct. Note it
-wants the **oscillator** frequency, not the instruction rate.
-
-**The segment split is not piclib's, though.** piclib uses SYNC 1 + PROP 4 +
-PS1 8 + PS2 3, and so did this firmware until the round trip was worked out.
-It is now **SYNC 1 + PROP 7 + PS1 5 + PS2 3 = 16 TQ, SJW 2** — the same 16 TQ,
-the same 81.25 % sample point, `BRGCON1/2/3 = 0x40 / 0xA6 / 0x82`. Three TQ
-moved from Phase_Seg1 into Prop_Seg, which is the segment that pays for the
-signal's round trip and for reflections off an unterminated stub:
-
-- **Round trip.** DS39977C §27.9.4, with DS20005167C §2.3 parameters 4
-  (125 ns) and 6 (110 ns): `Prop_Seg ≥ 2 × (235 ns + 5 ns/m × L)` allows
-  **L ≤ 3.0 m** at 500 ns and **L ≤ 40.5 m** at 875 ns. Three metres is not a
-  comfortable budget for a bus running from the engine bay to the dashboard.
-- **Stub.** The board hangs on an unterminated stub of **about 1.4 m of
-  CANH/CANL from the instrument cluster** to the air vent — measured as
-  1.3–1.4 m, and 1.4 m is the figure carried everywhere, deliberately the
-  pessimistic end. **It stays an estimate on purpose**: refining it means
-  taking the dashboard apart again, and at 3.5 m allowed the margin swallows
-  the difference. Both 120 Ω terminators are elsewhere in the car; **60.1 Ω
-  measured** across CANH/CANL says so, and is also why R5 stays unfitted.
-  onsemi AND8376/D's `L_STUB_MAX ≤ T_PROP_SEG/(50 × T_PROP(BUS))` gives 2.0 m
-  at the old split and 3.5 m at this one, so the margin goes from 1.4× to
-  2.5×. An application note about somebody else's transceivers is evidence,
-  not a specification — but it points the same way the datasheet arithmetic
-  above does.
-
-SJW = 2 rather than §27.11's "typically 1": we are one node among many whose
-oscillators we neither built nor can measure, the ISO 11898-1 bound
-`df ≤ SJW/(2 × 10 × NBT)` doubles from 0.31 % to 0.63 %, and the only price is
-`Phase_Seg2 ≥ SJW`, which 3 ≥ 2 pays with room. The full derivation, with
-every citation, is the comment block above `BRGCON1_500K` in `hal_can.c`.
-
-All of which was arithmetic, and the arithmetic held: `CanSwitch.X` passes
-`BAUD_RATE 50`, so BRP = 0 and this whole path was exercised by nobody until
-the bench. It now has hours on it at 357 frames a second with both error
-counters at zero. **That is a two-node bus of about a metre**; the car's is
-longer, has a 1.4 m unterminated stub off it, and is the thing the Prop_Seg
-budget above was widened for. Check the counters there before assuming.
-
-**`piclib` was read closely and then not used.** It was the right place to
-start and it settled the register sequences, but consuming it costs more than
-writing the twenty lines it would save:
-
-- `can.c` is **Mode 0 only** — one transmit buffer, two receive buffers, six
-  filters. We need an eight-deep FIFO, so Mode 2, which `can.c` has no notion
-  of. (Its six filters would now hold our six identifiers, but its two receive
-  buffers still would not hold the traffic.)
-- Its API is not "send this identifier": it is a `CanHeader` of
-  `messageType`/`nodeID` that `can_headerToId()` packs into the eleven bits in
-  a scheme belonging to the house lighting protocol. Our identifiers are
-  numbers off a VW bus.
-- `can_initRcPortsForCan()` is hard-wired to the wrong pin pair for this board.
-- `can.h` **defines** `MessageStatus messageStatus;` and `byte filterCount = 0;`
-  in the header rather than declaring them — one translation unit only by
-  luck.
-- `dao.c` is shaped around 16-bit values in numbered buckets; `persist.c` wants
-  arbitrary byte addresses.
-
-So `hal_can.c` and `hal_sys.c` are written directly against DS39977C, and
-**this repository has no submodules**. `piclib`'s EEPROM layer is still exactly
-the right shape to have copied the *sequence* from — `EEADRH:EEADR` addressing
-over the full ten-bit range, the `0x55`/`0xAA` unlock, `WREN`, polling `WR` —
-and `hal_eeprom_write()` follows the same steps with the datasheet's Example
-8-2 open beside it.
-
-### Three choices the datasheet does not make for you
-
-**Which timer makes the millisecond: Timer2.** `CanSwitch.X` uses Timer0 in
-16-bit mode with a 1:16 prescaler, but only for a coarse debug heartbeat.
-Timer0 would need a software reload every interrupt and would drift by the
-latency of each one. Timer2 has a period register and reloads itself
-(DS39977C §15.0, Register 15-1), and the chain divides exactly:
-
-```
-FOSC/4 = 4 MHz          250 ns per timer clock
-prescale 1:4            1 µs per count      T2CKPS<1:0> = 01
-PR2 = 249, so 250       250 µs per match
-postscale 1:4           1000 µs per interrupt   T2OUTPS<3:0> = 0011
-```
-
-No remainder and nothing to drift. Timer2 clashes with nothing here — the CCP
-and MSSP modules that could claim it are unused.
-
-**Interrupt or polling for receive: polling, and it is not close.** Functional
-Mode 2 turns all eight receive buffers into one FIFO (§27.4.3), and the six
-identifiers we accept arrive at roughly four frames per 10 ms. `main.c` drains
-the FIFO **every loop pass**, not on a 10 ms slot, which leaves something like
-a twenty-fold margin. An interrupt would buy nothing and would cost the one
-thing that is genuinely awkward: the receive path and the transmit path both
-steer the `ECANCON` access-bank window, and there is no lock available between
-an ISR and the main loop.
-
-The one place frames really are lost is the EEPROM write, three times a minute,
-which blocks for about 48 ms. That was checked rather than waved away — the fuel
-counter delta is `(new − old) mod 32768` so a gap costs nothing, distance is
-integrated against the clock rather than against frame arrivals, and the clock
-keeps running because `hal_eeprom_write()` re-enables interrupts the instant
-the unlock sequence is over. `main.c` clears the resulting overflow flag so the
-LED keeps meaning something.
-
-**Whether the watchdog goes on: yes.** Argued in the configuration-bit table
-above.
-
-### One deliberate deviation from the datasheet, in `hal_eeprom_write()`
-
-DS39977C Example 8-2 marks `BCF INTCON, GIE` … `BSF INTCON, GIE` as part of the
-**Required Sequence**, with `GIE` staying clear across the `WR` poll as well as
-across the unlock. **We restore `GIE` the instant `WR` is set**, and poll with
-interrupts on.
-
-Why: the poll is 4 ms typ per byte (Table 31-1, D122) and a record is twelve
-bytes, so following the example literally would hold interrupts off for ~48 ms
-three times a minute. The only interrupt in this firmware is the millisecond clock,
-and that clock is what every accumulator in the core is integrated against —
-losing 144 ms of it per minute would be a silent 0.24 % error in distance and in the
-trip average.
-
-Why it is safe: the sequence the datasheet actually requires is "write 55h to
-EECON2, write 0AAh to EECON2, then set WR bit" (§8.4), and that is fully
-bracketed. §8.4 also states that "after a write sequence has been initiated,
-EECON1, EEADRH:EEADR and EEDATA cannot be modified", so nothing an interrupt
-could do disturbs a cycle in flight.
-
-The watchdog is deliberately **not** cleared inside that poll. If `WR` never
-clears the hardware is broken and a reset is the right outcome; a `CLRWDT()`
-there would turn it into a permanent hang.
-
-**The millisecond clock itself, whatever timer feeds it.** One free-running
-`uint32_t`, exposed as `uint32_t hal_sys_millis(void)`. Read it once at the top
-of each scheduler pass and hand that one value to every core call in the pass —
-reading it repeatedly can straddle a millisecond and hand the core a tick of
-zero where it expects one. `main.c` does exactly that and should keep doing it.
-
-It must be read atomically against the interrupt that writes it, and four bytes
-on an eight-bit machine are not one instruction: `hal_sys_millis()` clears
-`GIE` around the read and **restores** it rather than forcing it on, because it
-is also reachable from inside the EEPROM write path. This is a software
-decision, not a datasheet one.
+## The board — frozen
+
+Sourced from `kicad/canfuel/docs/implementation-plan.md` §4.2, which wins on
+any disagreement.
+
+| Signal | Pin | Notes |
+| --- | --- | --- |
+| `CAN_TX` / `CAN_RX` | **RB2** (23) / **RB3** (24) | to MCP2562 pins 1 / 4 |
+| `LED_PWR` / `LED_CAN` | **RC0** (11) / **RC1** (12) | 1 kΩ to an LED to ground, active high |
+| `DBG_EN` | **RA0** (2) | JP1 to +5 V, 10 kΩ pull-down |
+| `PGC` / `PGD` | RB6 / RB7 | ICSP header J3 (5 pins, no LVP) |
+| MCLR | 1 | R6 470 Ω, C8 100 nF behind JP2 |
+| OSC1 / OSC2 | 9 / 10 | 16 MHz crystal, HS, **no PLL** |
+
+Firmware obligations that follow:
+
+1. **The fourteen unused pins are driven low at start-up** (RA1–3, RA5,
+   RC2–7, RB0, RB1, RB4, RB5; DS39977C §2.7) — there are no resistors.
+2. **`CANMX` = 1 (RB2/RB3).** Moving the module now means soldering under
+   the socket.
+3. **`DBG_EN` gates the LEDs and the 0x603 frame**; RA0 is AN0 and must be
+   made digital before it is read. It is not the CAN mode switch.
+4. The MCP2562's STBY is hard-wired to ground, VIO to VDD — nothing to drive.
+5. **The 120 Ω terminator is not fitted** (R5 DNF): the car's bus is
+   terminated (60.1 Ω measured). A bench needs an external one.
+6. **JP2 off before programming, back on after.**
+7. Pin 6 is VCAP; the 28-pin K80 has no RA4 and no ENVREG.
+
+Port A sources only 2 mA; anything that drives current comes from B or C.
+
+## The decisions behind the HAL — an index
+
+Each is argued, with citations, in a comment beside the code it produced.
+Anything without a citation is a **decision** and says so; do not promote it
+to a specification without opening the PDF.
+
+- **`CANMX` is 1, and DS39977C §27.1's prose says the opposite** — Register
+  28-5 and the pin-table footnote win. **The ECAN chapter is §27, not §22.**
+  Take `#pragma config` spellings from the XC8 device header.
+- **RB2 idles high** (`LATB = 0x04`): TXD is active low, so a low RB2 asks
+  the transceiver to jam the bus until `hal_can_init()`; in Loopback LATB2 is
+  all that keeps a fitted transceiver quiet.
+- **500 kbps: BRP = 0, SYNC 1 + PROP 7 + PS1 5 + PS2 3, SJW 2**,
+  `BRGCON1/2/3 = 0x40/0xA6/0x82` — Prop_Seg widened for the 1.4 m
+  unterminated stub. Ran on the bench and in the car with both error counters
+  at zero.
+- **Mode 2, an eight-deep FIFO, six hardware filters**, receive by polling
+  every pass. **Every function touching an `RXB0*` name sets `EWIN` first**
+  (`ECANCON = 0x90`). Only identifiers something consumes are accepted;
+  0x5A0 deliberately is not.
+- **Three modes at build time**: `make -C mplab CAN_MODE=LISTEN_ONLY` /
+  `LOOPBACK`; `hal_can_send()` refuses in Listen Only; `LED_PWR` blinks slowly
+  in either silent mode. Not the jumper.
+- **Configuration bits** differ from `CanSwitch.X` in `CANMX = PORTB`,
+  `WDTEN = ON` with `WDTPS = 512` (2.048 s), `BORV = 0` (3.0 V: the A/D is
+  specified only above), `BOREN = ON`, `RETEN = OFF`. **`SOSCSEL = DIG` must
+  not be lost** (RC0/RC1 are the LEDs). `FOSC = HS1` — use Register 28-2,
+  Table 3-1 is misaligned. `T3CKMX`/`T0CKMX` deliberately absent.
+- **VddConv = 1.024 × 4096 / code** — twelve bits, **never the ten-bit
+  1023**; the 1.024 V reference has no tolerance, so it is calibrated per unit
+  (`VDD_CAL_*`); read a mean, never one frame.
+- **Timer2 makes the millisecond** with no remainder; the clock is read
+  atomically, restoring rather than forcing `GIE`.
+- **EEPROM**: the ring uses 0..767; D120's 100 K is the limit, **D124 is not
+  a ceiling** (`config.h`, `persist.h`). **One deliberate deviation**:
+  `hal_eeprom_write()` restores `GIE` the instant `WR` is set instead of
+  holding it across the 4 ms poll (`hal_sys.c` argues why), and never clears
+  the watchdog inside the poll.
+
+**What is verified and what is not.** It compiles and links clean for the
+real part; the configuration words are **read back out of the hex**
+(`CONFIG3H = 0x89`, CANMX set); 500 kbps has run on the bench and on the
+car's bus. **Compiling proves nothing about order, timing or value on
+silicon.** The timing budget is counted out of the listing, not measured
+(`timing.md`). **One frame leaves every 25 ms and never two together** — a
+correctness rule (USBtin dropped the third of a burst); it is why the EEPROM
+write sits in a slot that transmits nothing. **Distance is integrated on
+`DIST_TICK_MS` with the remainder carried**, a correctness rule no fixture
+can show (`optimisation.md` §6). **Neither multiplication nor division uses
+XC8's helpers** (`fastmul.h`, `divconst.h`); **never add a divisor by hand** —
+`tools/divconst.py` derives and proves it; a divisor should be one the
+physics forces. **`docs/firmware/optimisation.md` is required reading before
+changing any loop or arithmetic in `src/`.** `tools/cycles.py --check` gates
+every backward branch.
 
 ---
 
-## `docs/firmware/refuted.md` — read it before reintroducing a good idea
+## The coupling to `mfd15` and `kicad`
 
-Everything this project believed and got wrong, across all three
-repositories, with what refuted it. It exists because a refuted idea is a
-*plausible* idea, and several of the entries are things anyone reasoning from
-first principles would propose again: an escape header for the unused pins, an
-enclosure, a submodule for `piclib`, reading the tank level straight off the
-bus, resetting the trip from the instrument cluster.
+**The layout of all five frames, 0x600–0x604**, defined in
+`docs/firmware/frames.md` and read by `mfd15/tri/S-AQY.TRI`, **changes there in
+the same breath as here** — a mismatch shows plausible wrong numbers, not an
+error. `test/test_txframes.c` pins every offset against the TRI file. Every
+field on the wire is coupled, 0x602 and 0x603 included. **0x603** (CAN
+health) is sent only with JP1, so it reads zero in a closed dashboard by
+design. **0x604** (idle grade and the start) is **not** behind JP1, and its
+"not known" is 255, never 0. The coupling to `kicad` is the pin table above,
+one-way and frozen.
 
-Two rules for it. **Only settled-against things go in** — questions live in
-`docs/firmware/open.md` and `docs/firmware/can-decoding.md`. The engine has
-its own register, `docs/engine-health/refuted.md`, under the same rules. And **nothing is ever deleted from it**; if new evidence
-un-refutes an entry, say so inside the entry.
-
-The firmware's questions are sorted four ways and the distinction is worth
-keeping straight, because they look similar from a distance:
-
-| Where | What it means |
-|---|---|
-| `docs/firmware/refuted.md` | believed, then **settled against**. An answer exists and it is "no" |
-| `docs/firmware/can-decoding.md` → *Resolved questions* | asked and **answered**, with the evidence kept |
-| `docs/firmware/can-decoding.md` → *Never resolved but not required* | **no answer, and none wanted.** Do not work on these |
-| `docs/firmware/open.md` | genuinely open, with what closes each. There is one: 11, `IdleHealth` against 014, which waits on a deliberate-misfire test. 10, whether the oil sender reads right, was closed by the maintainer on 23/10/2026 |
-
-## Read `docs/firmware/can-decoding.md` before touching the maths
-
-It documents the traps that are easy to run aground on quietly. In short:
-
-1. **The speed validity gate is not an equality.** `b1 == 0x40` is wrong; the
-   correct rule is `(b1 & 0x40) && !(b1 & 0x03)`. The equality throws away two
-   thirds of the samples and corrupts both FuelAvg and Range.
-2. **The fuel counter resets to zero when the ignition goes off.** Without
-   restart detection (`counter == 0 || rpm == 0` → reinitialise `prev`) the
-   delta jumps nonsensically. The delta is always `(new − old) mod 32768`.
-3. **Bit 15 of the counter is not constant.** It is zero from ignition on until
-   the first wrap, then permanently one. The 0x7FFF mask drops it anyway.
-4. **FuelAvg must return zero below 100 m of distance.** Otherwise it divides
-   by nearly zero.
-5. **0x280's engine speed is recomputed once per 180° OF CRANK, not once per
-   frame.** Measured as a constant angle from idle to 3200 rpm, so at idle each
-   value arrives three to four times and the hold length moves with engine
-   speed — anything averaged, differentiated or counted over *frames* rather
-   than over *changes* is weighted by engine speed, which is an artefact that
-   looks exactly like a result. 180° is one power stroke, which is what makes
-   the step a per-cylinder quantity; **it is not cylinder identification and
-   there is none on this bus.** `decode.c` is unaffected; anything derived over
-   time is not.
-6. **A frame that never arrived is not a reading of zero.** `decode_init()`
-   zeroes everything, and zero litres is a legal tank level, so the tank needs
-   `tank_valid` the way speed needs `speed_valid` — it is the one decoded field
-   feeding state that latches and then reaches the EEPROM. No fixture and no
-   Python replay can show this; both replay a car that was talking.
+Useful check on the display: FuelCntRaw (the raw ECU counter) rising while
+FuelNow is nonsense means the fault is in this firmware's arithmetic.
 
 ---
 
-## Layout
+## Before touching the maths
 
-```
-src/
-  main.c        scheduler and glue — the only place it all meets
-  decode.c/.h   frame parsing          PURE C
-  compute.c/.h  maths                  PURE C
-  txframes.c/.h frame assembly         PURE C
-  persist.c/.h  EEPROM circular buffer PURE C
-  divconst.h    division by a constant  PURE C -- read docs/firmware/optimisation.md
-  fastmul.h     wide multiplication     PURE C -- read docs/firmware/optimisation.md
-  hal_can.c/.h  ECAN + MCP2562
-  hal_sys.c/.h  timer, ADC, LEDs, jumper, EEPROM
-  pic_config.h  the #pragma config bits, and only those
-  config.h      every constant and switch
-test/
-  tt.h          the test framework, small enough to read at a sitting
-  logread.h     the fixture parser in C, the counterpart of canlog.py
-  replay_core.h one log through decode + compute, mirrors replay.py's loop
-  sched.h       one log through the core AS main.c DRIVES IT -- a clock, the
-                slots, and the EEPROM write as a blocking gap that loses frames
-  replay_host.c the binary behind replay.py --host-build
-  test_*.c      decode, compute, txframes, persist, divconst,
-                scheduler (rate and jitter invariance), props (fuzz + invariants)
-  xc8stub/xc.h  a fake device header, for `make check-hal` and nothing else
-mplab/
-  Makefile      the authoritative device build, drives xc8-cc — CI runs this
-  canfuel.X/    the MPLAB X project, for editing and for driving a PICkit
-  README.md     how to build, and what JP2 is for
-tools/          flash.py — builds a mode and flashes it in one command, and
-                decides every step on IPECMD's output rather than its exit
-                code. Checks CANMX in the hex before writing anything, and
-                --preserve-eeprom keeps the persist ring AND checks that it
-                did, by dumping EEData either side of the write
-                canlog.py, replay.py — Python, runs anywhere
-                bench_test.py — the bench tests of docs/firmware/install.md step 7:
-                listen-only, traffic, four scenarios and fault injection, each
-                ending in a verdict rather than a blink rate. Needs pyserial,
-                one CAN adapter, and two for the listen-only and fault tests
-                bench_scenarios.py — the synthetic streams behind it. Frames are
-                REAL ones with one field patched, never built from scratch: a
-                builder written from decode.c's table would be its twin
-                acker.py — holds one adapter open in NORMAL mode so somebody
-                acknowledges the converter. Start it before the board and leave
-                it up: an unacknowledged converter latches UNHEALTHY and
-                saturates the refusal counter within a second, which reads as a
-                fault and is not one. Stop it for 7.3 and 7.4, which want two
-                adapters of their own
-                cycles.py — cycle budgets out of the XC8 listing, a CI gate
-                checkdocs.py — prose vs config.h, a CI gate
-                vcds_log.py — drives VCDS (pywinauto): logs up to three
-                measuring blocks of 01 and reconnects when the ECU drops.
-                Clicks only an allow-list of read buttons
-```
+**Read `docs/firmware/can-decoding.md`** — its traps: the speed validity gate
+is `(b1 & 0x40) && !(b1 & 0x03)`, not an equality; the fuel counter resets at
+ignition-off and its delta is `(new − old) mod 32768`; bit 15 is not constant;
+FuelAvg is zero below 100 m; **a frame that never arrived is not a reading of
+zero** (`tank_valid`); **0x280's engine speed changes once per 180° of crank**,
+so anything counted over frames rather than changes is weighted by engine
+speed — and it is not cylinder identification.
 
-**The two `config` headers must not be confused.** `src/config.h` is the pure
-core's constants and must never see `<xc.h>`. `src/pic_config.h` is the
-`#pragma config` block, includes `<xc.h>` itself, and is included only by
-`main.c`, `hal_can.c` and `hal_sys.c`. `make check-pure` enforces the first
-half of that mechanically.
+**The torque calibration** (`frames.md`, `can-decoding.md` questions 7–8,
+`config.h`): `TORQUE_CNM_PER_BIT` (1.06) and the drag line are **one
+calibration — never move one alone**; the drag line is fitted on warm oil and
+**idle is asserted, not fitted**; b7 is *indicated* torque and **b7 = 255 is
+not full scale**. **The driving gate is a fixed requirement, not a
+calibration**: torque and power are shown only while the car moves **and**
+the pedal is off its rest (`compute_torque_d()`); the tests that hold it are
+fixed in the code, never in the test. `TORQUE_TRIM_PCT` stays 0. The tank
+calibration is closed as a decision; do not reopen it.
 
-`tt.h`, `logread.h` and `replay_core.h` are header-only on purpose: the
-Makefile builds one `test_*.c` against the core and nothing else, so a helper
-that needed its own object file would mean touching the build rule every time.
-
-Constants belong in `config.h`, not in the code. In particular
-`FUELNOW_LH_BELOW_MMH`, `FUELNOW_CLAMP_D`, `REFUEL_RISE_L` and the frame
-periods.
-
-**This repository has no submodules**, and the reasoning for not making
-`piclib` one is in the HAL section. Clone `piclib` and
-`can` beside this repo when you want to read them — they are still the best
-reference there is for these registers on this silicon.
+**`docs/firmware/refuted.md`** — read before reintroducing a good idea; only
+settled-against things go in, nothing is ever deleted. The firmware's
+questions sort four ways: `refuted.md` (settled "no"), `can-decoding.md`
+*Resolved questions* (answered), *Never resolved but not required* (do not
+work on these), `docs/firmware/open.md` (genuinely open: 11, `IdleHealth`
+against 014).
 
 ---
 
-## Tools
-
-**Two third-party dependencies, each for one tool on the laptop**:
-`pyserial` for `usbtin_capture.py` (`pip install pyserial`) and
-`pywinauto` for `vcds_log.py` (`pip install pywinauto`, Windows only).
-Everything else — the tests, the replay, the cycle budgets — is standard
-library, which is why there is no `requirements.txt`: CI needs neither, and
-`test_vcds_log.py` imports the tool without touching pywinauto.
+## Testing — and what a test proves
 
 ```
-python tools/usbtin_capture.py --seconds 60 --out idle_z1.txt   # record, Z1 on
-python tools/oilwatch.py idle_z1.txt                        # ...and, in a 2nd window, beep at the oil bands
-python tools/canlog.py test/fixtures/03_drive.txt          # per-ID summary
-python tools/canlog.py --dump --id 0x480 FILE              # print frames
-python tools/replay.py --every 100 test/fixtures/07_accel.txt
-python tools/afterpull.py FILE                             # the warm idle after high revs
-python -m unittest discover -s tools -p "test_*.py"        # the Python tools
-
-make -C test test                                          # the whole C suite
-make -C test check-pure                                    # no <xc.h> in the core
-make -C test check-hal                                     # the HAL still compiles
-make -C test sanitize                                      # ASan + UBSan, CI only
-python tools/replay.py --host-build test/fixtures/*.txt    # Python vs C
-python tools/cycles.py                                     # cycle budgets
-python tools/cycles.py --check                             # ...and fail if over
-python tools/checkdocs.py --check                          # prose vs config.h
-python tools/checkdocs.py --write                          # ...after make -C mplab
-
-make -C mplab                                              # -> build/canfuel.hex
-make -C mplab CAN_MODE=LOOPBACK                            # talks to itself
-make -C mplab CAN_MODE=LISTEN_ONLY                         # never ACKs
-
-python tools/flash.py --mode loopback                      # build AND flash it
-python tools/flash.py --preserve-eeprom                    # ...keeping the ring
-python tools/flash.py --identify                           # read-only
-python tools/flash.py --read-eeprom ring.bin               # read-only
-python tools/flash.py --dry-run                            # print, run nothing
+make -C test test           # the whole C suite          make -C test check-pure
+make -C test check-hal      # HAL compiles vs a stub     make -C test sanitize (CI)
+python tools/replay.py --host-build test/fixtures/*.txt  # Python vs C
+python -m unittest discover -s tools -p "test_*.py"
+python tools/checkdocs.py --check                         # prose vs config.h
+python tools/cycles.py --check                            # needs a build
 ```
 
-### Recording a session at the car — who runs what
+- **Fixtures are real logs; never edit them.** Only the `_z1` logs have
+  trustworthy time; `06`/`07` carry host time wrong by about ×2;
+  `02_idle_60s` holds its recording twice and is corrected at read time.
+  `test/fixtures/README.md` documents every one and the measured values.
+- `tools/test_replay.py` and `test/test_compute.c` are twins: **a change to
+  the maths belongs in both.** But **twins do not catch a fault they share**,
+  and fixtures tick the core off 0x480 while `main.c` ticks it every pass —
+  hence `test_scheduler.c` (drives the core as `main.c` does, the EEPROM
+  write as a blocking gap) and `test_props.c` (invariants, fuzzing **reachable
+  states only**).
+- **A verification is only as wide as the call chain it ran.** Do not
+  hand-build a struct another module produces when the question is what the
+  device does; drive `decode_frame()` → `compute_*()` → the consumer
+  (`test_a_silent_bus_reaches_the_eeprom_not_at_all` is the shape). Report
+  the scope that actually ran.
+- `test/xc8stub/xc.h` agrees with the code by construction and proves nothing
+  about the hardware.
+- Adding a `test_*.c` needs no Makefile change.
 
-**Find out where you are running before proposing anything.** The
-maintainer's Windows laptop is the one with VCDS installed and the USBtin
-attached; a cloud container has neither, and then he is usually talking to
-you from his phone. Check the platform and look for a VCDS installation;
-if it is still unclear, ask once.
+### Numbers in prose — `checkdocs.py` enforces both rules
 
-- **On the laptop**, propose this every time without being asked: **you run
-  `usbtin_capture.py` yourself**, started before the ignition and left
-  running to engine off; **he runs `oilwatch.py` in a second terminal**
-  on the same file; **you run VCDS too, with `tools/vcds_log.py`**
-  (*the maintainer, 18/10/2026*): the HEX-V2 cable in, ignition on, then
-  `python tools/vcds_log.py --groups 014 001 003 --out
-  "C:/Users/Luboš/Downloads/<name> 14-1-3 YY-MM-DD.CSV"` in the
-  background, stopped by creating `<out>.stop` at engine off. When the
-  ECU drops at the start, the tool presses OK on *Inicializace jednotky*,
-  reconnects and logs on into `<out>-2.CSV`, `-3` ..., each part a
-  complete file. **One run does the whole session**: the fault memory
-  before (`<out> faults-before.txt`), the blocks and the log, the fault
-  memory after (`faults-after.txt`), without leaving 01 in between, and
-  only then ends the communication and closes VCDS, printing DONE. It
-  starts from whatever state VCDS is in, closed or half-open. **At the
-  end, with the engine still idling, he says so**; you create the stop
-  file, the tool reads the fault memory (about half a minute), and you
-  tell him the codes and that it is done; **only then does he switch
-  off**. The fault memory needs the ECU awake, so if he has switched off
-  already, he turns the ignition back on until you say done. The USBtin
-  capture still runs to engine off; only the VCDS log ends early. He
-  clicks nothing; `--faults <file>`
-  alone reads the memory without logging. It reads only: the rule above. **The
-  fault memory is cleared by him, by hand.**
-- **In the cloud**, you cannot reach the adapter: hand him the commands and
-  read the files he uploads.
-- **`IdleHealth` at a warm stop is always read in two states** (*the
-  maintainer, 19/10/2026*): 2 minutes with every load off, then 2
-  minutes with every load on — never "loads off but the lights". The
-  instruction is `docs/engine-health/plan.md`'s standing items; remind
-  him of it at the warm idle that ends a session, and split the states
-  in the capture by b7. **Off the display, without time for that, he
-  reads a fixed everyday state** (blower 1, one seat heater 1, lights;
-  *the maintainer, 23/10/2026*); a figure he gives without a state is in
-  it, and it compares only with itself.
+What rots here is figures inside correct arguments.
+1. **A number a command prints is generated or not written down.**
+   `README.md`'s build-size block is filled by `checkdocs.py --write` from
+   XC8's own summary; **never edit it by hand**.
+2. **A number derived from a constant is derived in one place**; everywhere
+   else says what it means and cites it.
 
+Repeat reasoning freely; cross-reference by name (symbol, heading, register),
+never by line number. Datasheet numbers may be repeated.
 
-**The fault memory is read after every session with VCDS connected,
-without asking** (*the maintainer, 18/10/2026; narrowed 24/10/2026*: only
-when VCDS is connected anyway, never asked for after a plain drive). On the
-laptop you read it yourself with `tools/vcds_log.py --faults`, once the
-logging has stopped, save it beside the session's VCDS logs, and give him
-the codes with their status; **he clears it, by hand**. In the cloud he
-reads it and writes it into the chat. A VCDS session whose fault memory
-was not read is not finished; a drive without VCDS has none to read.
+---
 
-**The adaptations go with it, and before he clears anything** (*the
-maintainer, 24/10/2026*): once the fault memory is read, `tools/vcds_log.py
---groups 032 055 --seconds 20 --out ".../<name> 32-55 YY-MM-DD.CSV"`, saved
-as `test/fixtures/vcds/vcds-<step>-adaptations-032-055.csv`. **Clearing the
-fault memory resets 032 to 0.0 / 0.0** -- seen 24/10, when the trims behind
-a stored P0172 were lost that way -- so a reading after the clearing is
-worth nothing.
+## Building, flashing, committing
 
-**After every captured session, without asking** (*the maintainer,
-10/10/2026*): the capture is written to its next free
-`test/fixtures/NN_<name>_z1.txt`. When it ends, **the whole capture goes
-to the GitHub release `raw-captures` unfiltered** (*the maintainer,
-18/10/2026*), and only then is the fixture **filtered to the six
-accepted identifiers** — `grep -E '^t(1A0|280|288|320|420|480)'` — and
-added to the `FILTERED` set in `tools/test_canlog.py`, a row in
-`test/fixtures/README.md` and its count in `tools/test_coastscan.py`.
-The VCDS logs go to `test/fixtures/vcds/vcds-<step>-<groups>.csv`. A
-capture stopped early leaves the adapter's channel open: send `C\r` to
-its port. None of this is a question for the maintainer.
+**`make -C mplab` is the build** (XC8 v4.00 + `PIC18F-K_DFP 1.13.292`, pack
+path pure ASCII, `TMP` derived under MSYS); `mplab/README.md` has every trap.
+`ipecmd` must be on `PATH`. The pack IPECMD uses is not the compiler's, on
+purpose.
 
-**The release is the only home of the unfiltered captures; nothing is
-kept locally.** One release that every capture is added to, not a
-release per capture. The upload, from the laptop:
+**Flashing is `tools/flash.py` / IPECMD**, never the IDE
+(`docs/firmware/flashing.md`): **`-OL` on every programming command**;
+**`-W4.5` only for a bare board on the desk**, never with another supply; the
+EEPROM is erased by default and **`--preserve-eeprom` is the opt-in that also
+proves it**, while `canfuel.X` preserves — know which is in your hand;
+**never branch on IPECMD's exit code**. Build and flash are one step so a hex
+cannot be flashed in the wrong mode.
 
-1. gzip a copy of the unfiltered fixture, outside the repository, as
-   `YYYY-MM-DD_<name>_unfiltered_z1.txt.gz`;
-2. `gh release upload raw-captures <that file>` (or drag it onto the
-   release in the web page if `gh` is not there);
-3. download it back from the URL below and check that its decompressed
-   `sha256sum` matches the unfiltered fixture's. If it does not, upload
-   again; **filter nothing until it matches**, because filtering in
-   place destroys the only other copy;
-4. delete the `.gz`, then filter the fixture.
+**Work directly on `main`** — no branches, no pull requests; if a harness
+hands you a branch, merge it into `main` and push `main`. CI is the review.
 
-**When an unfiltered capture is needed**, on the laptop or in the cloud
-alike, it is downloaded on demand into a temporary directory — the
-scratchpad in a cloud session, never the repository — read, and
-deleted afterwards:
-`curl -fLO https://github.com/PoJD/canfuel/releases/download/raw-captures/<file>.gz`.
+**One commit per problem, committed as each is finished**; but when edits
+have mixed, **do not split them by hand** — a tree where code, tests and docs
+agree beats a tidy log.
 
-**Never commit an unfiltered capture to the tree**, and the reason is
-size, not principle: the filtered fixtures alone are close to 300 MB,
-unfiltered is about twice that (`19`: 65 MB against 34), GitHub refuses
-a file over 100 MB, which a ten-minute drive would pass, and git keeps
-whatever it is given for good. A release asset is outside git history,
-so it costs the repository nothing.
-
-**And then, every time, how the dips share out over the cylinders** (*the
-maintainer, 14/10/2026; the method changed at his request 17/10/2026*):
-`python tools/cutscan.py --shares` on the new capture **and on it pooled
-with the captures since the last repair**, reported to him as the share
-the top two slots carry together and p against all four alike, and added
-under `docs/engine-health/open.md`, *The dips keep to one slot*. **If the
-capture has injector cuts in it, `--name` as well**: the cuts name every
-slot through the same run, so its dips are named by cylinder. Both read
-**bridged runs** (`cutscan.bridged_runs`), minutes long; the cut minutes
-are left out by the tool. `--pairs` is kept for history only: pairs
-within one long run are not independent, so it gives no p.
-
-**When Claude drives VCDS itself, it may only read** (*the maintainer,
-18/10/2026*): **measuring blocks**, logging them, and **reading the
-fault memory**, which includes saving it to a file. **Nothing that
-writes to a control unit, ever**: no clearing the fault memory (*the
-maintainer always clears it himself, by hand*), no coding, no
-adaptation, no basic settings, no output tests, no readiness or
-service resets. A script that drives VCDS clicks only buttons on an
-explicit allow-list for those reads, and stops rather than clicking
-anything it does not recognise. If a step seems to need a write, stop
-and ask; do not find a way round.
-
-**You cannot hear him.** Nothing in either setup gives you a microphone, so
-a reading taken at the car — a thermometer, a gauge, a sound described —
-reaches you as text. **Dictation on his phone into the chat works** (tested
-2/10/2026: "52,4 stupně Celsia" arrived as 52,4) — that is still text, not
-your hearing. Never plan a step on you hearing it; plan it on him writing
-or dictating the values in order, and align them to the capture by an
-event it records (engine off, a blip), not by when the message arrived.
-
-**The MFD and the CAN capture are one or the other, never both** (*the
-maintainer*), **and the converter goes with the MFD.** The converter stays
-behind the air vent for good, but it is powered through the MFD's harness:
-
-- **MFD in the car** — the converter is on the bus and the display shows
-  its frames; the USBtin is not connected, so nothing is captured.
-- **USBtin capturing** — the MFD is out, so the converter is unpowered and
-  **not on the bus. A capture never contains 0x600–0x604.**
-
-So **everything taken from a captured session comes from the ECU's raw
-frames**, computed afterwards: `IdleHealth` and the start (`StartCrank`,
-`StartDip`, `StartClt`) by `tools/idledips.py` — `health_summary()` over
-0x280 and 0x288, the oracle 0x604 is diffed against exactly, so the figures
-are the ones the display would have shown. Never ask him to read the display
-during a captured session, and never plan a step on 0x60x being in a
-capture. *Corrected 3/10/2026: this said "0x604 is in the capture, so read
-it from there afterwards", and a plan was written on it.*
-
-**`make -C mplab CAN_MODE=X` and the flash are one step in `flash.py` on
-purpose.** The three hexes differ by one `-D` and nothing else, so a hex
-flashed in the belief that it is a different mode is a correctly programmed
-board doing the wrong thing. The makefile writes the mode to `build/can_mode`
-and depends on that file, so a mode change forces a rebuild and the tool can
-check afterwards that it flashed what it asked for.
-
-`tools/replay.py` is the reference decoder in Python, written against the same
-table as `decode.c` and `compute.c`. `--host-build` runs
-`test/build/replay_host` over the same logs and diffs the totals; the fuel
-counter and the restart count must agree exactly, distance to within a tenth of
-a percent. It is a CI step, so the two cannot drift apart quietly.
-
-`tools/test_replay.py` and `test/test_compute.c` are deliberately twins — same
-fixtures, same expected numbers, one in floats and one in scaled integers.
-**A change to the maths belongs in both.**
-
-`make -C test check-hal` is the counterpart of `check-pure`, pointing the other
-way: it compiles `hal_can.c`, `hal_sys.c` and `main.c` with gcc against
-`test/xc8stub/xc.h`. **That stub is not a device header and proves nothing
-about the hardware** — it declares exactly the registers the code happens to
-name, so it agrees with the code by construction. What it does prove is that
-the C is valid and that `main.c` calls the core correctly, which is worth
-having on a machine with no XC8.
-
-### Numbers in prose — two rules, and `checkdocs.py` enforces both
-
-**What rots in this repository is numbers, not arguments.** A sweep of the
-documents and comments once found nineteen wrong statements and every one of
-them was a figure sitting inside a paragraph that still reasoned correctly
-around it. It rots because one constant moves and a dozen sentences elsewhere
-do not, and it is invisible to search: `grep PERSIST_INTERVAL_MS` finds none of
-them, because "half a millisecond a minute" does not contain the name of the
-constant it was derived from.
-
-So, in order of how much they are worth:
-
-1. **A number that a command prints is either generated or not written down.**
-   Test counts and check counts are not worth having, so they are gone. What
-   the firmware costs the part *is* worth having — and asking a reader to
-   install XC8 to find out is a poor answer — so **`README.md` carries one
-   generated block** between `<!-- checkdocs:begin build-size -->` markers.
-   `checkdocs.py --write` fills it from XC8's own memory summary, which
-   `mplab/Makefile` captures to `build/memory.txt`; nobody types those figures,
-   so nobody can mistype them. The `firmware` CI job is the only one with a
-   compiler, so it is the one that fails when the block is stale.
-
-   Typing them by hand is what fails: this file once declared exactly this
-   rule for the hex size and quoted the byte counts four lines below it, and
-   those figures went on to disagree with `docs/firmware/optimisation.md` about the RAM
-   by more than 200 bytes — both correct on the day they were written.
-2. **A number derived from a constant is derived in one place**, and everywhere
-   else says what it means rather than what it is. `persist.h` owns the EEPROM
-   write arithmetic; other files say "an EEPROM write" and cite it.
-3. **Repeat the reasoning as much as you like.** Arguments do not go stale, and
-   an argument next to the code it produced is the thing this repository is
-   for. It is only the figures that need one home.
-4. **Cross-reference by name, never by line number** — a symbol
-   (`compute_torque_d()`), a heading (`docs/firmware/optimisation.md` §8), a register
-   (DS39977C Register 28-5). Those survive an edit; `file.c:40-60` does not.
-
-Datasheet numbers are the exception to all of it and can be repeated freely:
-the PDF is frozen, so D122's 4 ms cannot move.
-
-`tools/checkdocs.py` mechanises 1 and 2 and runs in the `tools` CI job. It
-reads `src/config.h`, flattens each file so a fact split across a line wrap is
-still found — that mattered, the first version scanned line by line and missed
-ten of the fourteen places that state the write frequency — and fails on prose
-that disagrees. A fixture-count check was written and deleted for firing on
-five correct sentences; the reasoning is in the file, and it is the same reason
-`test_props.c` fuzzes reachable states only.
-
-### Work directly on `main`
-
-**There is no branching workflow here and no pull requests.** Commit to `main`
-and push there. If a harness or a task description hands you a feature branch
-anyway, merge it into `main` and push `main` — the branch is an artefact of how
-the session was started, not a decision anyone made about this repository.
-
-This is a single-maintainer repository with CI on every push, and the CI is the
-review. A branch that is never reviewed by anybody buys nothing and costs the
-next session a merge it has to work out for itself.
-
-### Commit granularity — consistency outranks a tidy history
-
-**One commit per problem, and commit as you finish each one.** Working on
-several things at once in a dirty tree is what to avoid in the first place.
-
-**But when it has happened anyway, do not split the commit.** A change here
-almost always lands in code, a test, a tool and two documents at once — that is
-what this repository asks for, not a failure of discipline — and the same file
-routinely carries edits belonging to two different problems. Teasing those
-apart means either an interactive stage or writing throwaway intermediate
-states, and both produce commits that never existed as a working tree.
-
-So: **never invent changes, reorder edits or stage hunks by hand just to make
-the history look isolated.** A tree where the code, its tests and its
-documentation agree is worth more than a log where every commit has one
-subject. Split only where it is free — a change that happens to touch a
-disjoint set of files — and merge the rest without apology.
-
-### Before committing anything that touches the core
-
-The commands above, in that order. All of it runs in under fifteen seconds and
-it is exactly what the `tools` and `core` CI jobs do, so a green run here means
-a green run there — the `firmware` job needs XC8 and only runs on GitHub. No
-`TMP=` prefix is needed any more; see the toolchain section.
-
-### ⚠ Changing code means installing XC8 first — and only then
-
-**If a session changes anything that ends up in the hex — anything under
-`src/`, or `mplab/Makefile` — install XC8 and run the `firmware` job's two
-gates locally before pushing.** If it only touches documents, tools or tests,
-do not: the toolchain is not needed and the download is not worth it.
-
-**Why this is a rule and not a habit.** Every local check passes on a machine
-without XC8, including `checkdocs.py --check`, because the size block it
-guards is skipped when there is no build to compare against. So a change of
-code size leaves everything green here and turns the `firmware` job red after
-the push, with a symptom that points nowhere near the cause. That is how three
-consecutive runs went red for one missing regeneration.
-
-**Why not always, and why no session hook.** Most sessions here change no code
-at all — they read, they measure, they write documents. Fetching roughly
-120 MB of compiler and device pack on every session start to serve the
-minority is the wrong trade, and a hook would do exactly that.
-
-**Installing it takes about twenty seconds on a fresh container**, and the
-recipe is the one `.github/workflows/ci.yml` runs, so **take both version
-numbers from that file's `env:` block** rather than from here — CI pins them
-and they must agree with each other:
+**Before committing anything that touches the core**: the test commands
+above. **If anything that ends up in the hex changes** (`src/`,
+`mplab/Makefile`), **install XC8 first and run the `firmware` job's gates
+locally** — nothing else catches a stale size block. Take both versions from
+`.github/workflows/ci.yml`'s `env:`:
 
 ```sh
 XC8=4.00; DFP=1.13.292          # <- from .github/workflows/ci.yml
@@ -1584,304 +404,157 @@ make -C mplab DFP="$HOME/packs/PIC18F-K_DFP/$DFP/xc8"
 python tools/cycles.py --check && python tools/checkdocs.py --check
 ```
 
-`checkdocs.py --write` then regenerates `README.md`'s block from the build's
-own memory summary. **Commit that README change with the code change**, not
-after CI complains.
-
-**If it is already red**, the failing job's log carries the summary XC8 just
-printed. Copy it verbatim into `mplab/build/memory.txt` — gitignored scratch —
-and run `checkdocs.py --write`; the figures still come from the compiler's
-output rather than being typed into prose, which is the point of that block.
-**Never edit the table by hand.** Installing the toolchain is the better answer
-whenever the session is going to touch code again.
-
-Adding a `test_*.c` needs no Makefile change — the glob picks it up, builds it
-against all four core sources and runs it.
-
-### Two test files that exist because the others share a blind spot
-
-`test_compute.c`, `test_txframes.c` and `tools/test_replay.py` all compare the
-C core against the Python reference over the same recordings. That is
-a strong check with one hole in it, and the hole cost a **6.4 % error in every
-distance the device would have reported**: the two implementations were written
-from the same table by the same reasoning, so a mistake in the reasoning is a
-mistake in both and the diff stays clean. **Twin implementations do not catch a
-fault they share.** Worse, all of them drive the core off the 0x480 frames, one
-`compute_tick()` per fuel frame ~38 ms apart, while `main.c` calls it every
-~100 µs — so anything that depends on *how often* the core is called was
-invisible by construction.
-
-- **`test_scheduler.c`** (with `sched.h`) drives the core the way `main.c`
-  does: a millisecond clock, the 100 ms and 1 s slots, and the EEPROM write
-  simulated as a 48 ms blocking gap that really loses frames. Its
-  properties are the ones an oracle cannot express — the answers must not
-  depend on the tick rate or on its jitter, `total_ul` must equal an
-  independently computed sum of deltas, and the EEPROM blindness must cost
-  exactly zero microlitres, which `main.c` had asserted in a comment and
-  nothing had ever tested.
-- **`test_props.c`** states things that must be true of the arithmetic itself
-  and attacks them with inputs no fixture contains: ten thousand fuzzed states
-  through every getter (a getter that divides by something reachable-zero does
-  not return a wrong number here, it takes SIGFPE and the test dies), totals
-  that may only move forward unless a refuelling zeroed them, a repeated frame
-  that must add nothing, an invalid speed that must invent no metres.
-
-**Fuzz reachable states only.** The generator builds a torque byte times
-`TORQUE_CNM_PER_BIT` rather than an arbitrary `uint16`, a tank level masked to
-seven bits, a quarter-rpm count `decode.c` could really have written. Going
-beyond that manufactures failures nobody can reach and teaches the next reader
-to ignore the test. The same rule fixes the DLC fuzz at 0..8: `hal_can_receive`
-masks the length to four bits into an eight-byte buffer, so a longer one is not
-something the hardware can hand to `decode_frame()`.
-
-### A verification is only as wide as the call chain it ran
-
-The unit tests take one module and feed it inputs. That is what makes them fast
-and what makes them honest **about that module**, and it is also the whole of
-what they prove. So the moment a conclusion is phrased as *"the device will…"*
-rather than *"this function will…"*, it needs the device's own call chain
-underneath it, and if it does not have one, the sentence has to say so.
-
-The worked example, kept because it reached the maintainer as a wrong answer.
-`persist_save()` was checked against a hand-built `persist_record_t` of zeros,
-it refused to write, and that was reported as **"on a quiet bus the firmware
-writes nothing"**. It writes. On a quiet bus `compute.c` hands `main.c` a
-record with `tank_stable_valid` set, because it had latched a tank baseline out
-of `decode_init()`'s zeroes — trap 5 above. **The input was fabricated at
-exactly the seam the fault lived in**, so no amount of care inside `persist.c`
-could have found it.
-
-- **Do not hand-build a struct another module produces** when the question is
-  what the device does. Drive it `decode_frame()` → `compute_*()` → the
-  consumer. `test/sched.h` and `test_scheduler.c` exist for this, and
-  `test_a_silent_bus_reaches_the_eeprom_not_at_all` is the shape to copy: no
-  frames at all, `main.c`'s slots, and the EEPROM checked at the end.
-- **Report the scope that actually ran.** "`persist_save()` refuses an empty
-  record" and "the firmware writes nothing on a quiet bus" are different
-  claims. The first was cheap; the second needed three modules and was worth
-  the extra ten minutes.
-- **A green isolated test is evidence about a module and a hypothesis about the
-  device.** Say which one you are holding.
-
-It is the same blind spot as the two files above, one level up: those say a
-shared oracle cannot see a shared fault, this says an **assumed input cannot see
-a fault upstream of it**.
-
-**`make -C test sanitize` runs the whole suite again under ASan and UBSan**, so
-those 50,000 malformed frames and 10,000 fabricated states go through a checker
-rather than only through assertions somebody remembered to write. It is
-insurance against the next change and is expected to stay silent — the two
-arrays that could plausibly have been indexed out of range were deleted on
-**It does not run under MSYS2**, whose gcc ships neither `libasan` nor
-`libubsan`, so it is a CI step and `test/Makefile` says so where somebody
-hitting the link error will find it.
+Then `checkdocs.py --write` and commit the README change with the code. A
+session that changes only documents, tools or tests does not install it. If
+CI is already red, copy XC8's summary from the job log into
+`mplab/build/memory.txt` and run `--write`.
 
 ---
 
-## Fixtures
+## Engine health — `docs/engine-health/`
 
-Real logs from the car. **Do not edit them.** The tests reference exact numbers
-from them.
+| file | what | lifetime |
+|---|---|---|
+| `open.md` | symptoms → hypotheses → tests, only what is unresolved; opens with *Where it stands* | ends |
+| `refuted.md` | every hypothesis settled against, every symptom closed; nothing deleted | ends |
+| `plan.md` | the planned fixes in order: **Part 1** bare instructions for the car, **Part 2** why and how it is read — never mixed; a new instruction and its reason land in the same commit (*the maintainer, 8/10*) | ends |
+| `idle-log.md` | the diary of the idle investigation | permanent |
+| `vehicle-history.md` | the service book: parts, dates, distances, nothing more | permanent |
+| `vcds.md` | the VCDS blocks used, their specifications, how to record them | permanent |
 
-⚠ **Only the `_z1` logs have trustworthy time**, recorded with
-`tools/usbtin_capture.py` and the adapter's own timestamps. `06_trip_reset` and
-`07_accel` carry a host application's timestamps and are **wrong by about a
-factor of two**; the other five carry no time at all, and there is no fixed
-frame period from which one could be synthesised — see questions 1 and 9, both
-resolved. Fuel totals are unaffected
-everywhere, because the counter is absolute; it is durations, flows and
-distances that need a clock.
+### Keeping it current — every time, unasked (*the maintainer, 28/10/2026*)
 
-⚠ `02_idle_60s.txt` contains the recording **twice** — both halves are
-identical. It is corrected at read time (`parse_file(..., fix_doubled=True)`)
-and the file itself stays original. Without that, the idle flow comes out doubled.
+**Every change under `docs/engine-health/` — and every report from the
+maintainer about the car — ends with a currency pass over the whole folder,
+in the same commit.** He must never have to ask for it. The pass:
 
-Details and a table of every log: `test/fixtures/README.md`.
+1. **`open.md` *Where it stands***: its date, the closed and open lists, the
+   ranking line and **Next** match the rest of the folder.
+2. **`plan.md`**: a step that is done — by anyone, the maintainer on his own
+   included — leaves **both parts**; Part 1 says what is really next; no
+   "postponed", "booked", "current item" that is no longer true.
+3. **`idle-log.md`**: every completed step or repair has its entry.
+4. **`vehicle-history.md`**: everything fitted, changed, topped up or added
+   (fuel cleaners, oil, adjustments) has its row; the odometer table has any
+   new reading.
+5. **Every symptom and hypothesis the change touches**: no "the next
+   reading will…", "not yet", "tonight", "until X" that has since happened —
+   replace it with what happened; superseded figures corrected where they
+   stand; a settled item moved to `refuted.md`.
+6. Then `grep -n -i "not yet\|next \|tonight\|postpon\|waits\|until"` over
+   the folder and read each hit.
 
----
+**The pass applies to its own edits**: what it changes is checked the same
+way before the commit. A commit that leaves the folder inconsistent with
+itself is not finished.
 
-## Verified values the core reproduces
+### The rules for its content
 
-The C core produces every one of these, and `test_compute.c` asserts them.
-Distance and the fuel totals also match `tools/replay.py` — see the table
-under *Current state*.
+- **`idle-log.md` entries**: a `##` heading with the date and a short title,
+  then three lines in this order — **Repairs** (changed, fitted, adjusted,
+  added), **Tests** (only tested, read, recorded), **Changes after** (split
+  *measured*, *felt*, *not known*) — an empty line left out; then a short
+  detail, no procedure. Analysis and questions that only re-read earlier data
+  are not entries; their findings go to the symptom in `open.md` (*28/10*).
+- **`open.md`**: a new measurement goes into the evidence of the symptom and
+  of every hypothesis it touches, not into a dated section. Mark *owner*,
+  *general* (engine knowledge), *reasoned* (inference). **When the symptom
+  list changes, every hypothesis's fit table gains or loses that column in
+  the same commit and the ranking is re-read**; a symptom left out of the
+  tables says why, once. A ranking change is agreed with the maintainer.
+- **Every new observation the maintainer reports** — a sound, a smell, a
+  leak, a reading — **is flagged: could it be a new symptom, or change one,
+  and why; then ask. He decides**; never add a symptom unasked, never let one
+  pass without asking.
+- **A photograph of the part on the car, or anything he reads directly off
+  it, outranks everything in the repository.** The document is corrected in
+  the same commit and says what it used to say.
+- **Idle smoothness is always on the `IdleHealth` scale** — `idledips
+  --roughness`'s mean step × 50 — never the raw rpm grade (*12/10*). **A
+  warm-stop reading is in two states** (2 min every load off, 2 min every
+  load on; *19/10*), or **the everyday state** (blower 1, one seat heater 1,
+  lights; *23/10*) when there is no time — a figure without a state is in
+  it. Remind him of the two states at the warm idle that ends a session.
+- **The repository is public: nothing that identifies the car or owner** —
+  not the full VIN, not a plate, not an address; photos cropped first
+  (*12/10*). The full VIN is in his private claude.ai artifact *New Beetle
+  VIN*; **the photo album** (Google Photos, every repair since 6/2026) is in
+  the private artifact *New Beetle Photo Album* with how to page it from a
+  cloud session — find both with the Artifact tool's `action: "list"`, never
+  copy either into a file here.
+- The dated log before `open.md` lives only in git
+  (`git show 7c69883:docs/engine-health.md`); nothing cites it.
 
-| Log | Counter total | Duration | Flow | Distance |
-|---|---|---|---|---|
-| `01_ign_only` | 0 µl | — | 0 | 0 |
-| `02_idle_60s` | 18,652 µl | 60.1 s | 310 µl/s = 1.12 l/h | 0 |
-| `03_drive` | 11,424 µl | 35.0 s | 326 µl/s | 54.3 m |
-| `05_rev3000` | 1,940 µl | 1.93 s | 1005 µl/s | 0 |
-| `06_trip_reset` | 51,992 µl | 135.0 s | 385 µl/s | 124.6 m |
-| `07_accel` | 9,752 µl | 15.9 s | 613 µl/s | 27.3 m |
-| `idle` | 487 µl | 1.44 s | 339 µl/s | 0 |
+### Sessions at the car — who runs what
 
-The flow column is the average over the whole log; the sliding window inside
-`compute.c` reports the last second, which is why the two differ on the logs
-where the load changes.
+**Find out where you are running first.** The maintainer's Windows laptop has
+VCDS and the USBtin; a cloud container has neither, and then he is usually on
+his phone. Check the platform and for a VCDS install; if unclear, ask once.
 
-⚠ **The counter column is measured. The other three are not.** Duration, flow
-and distance for these seven all rest on a clock that was either the host's
-(`06`, `07`) or synthesised from a 49.5 ms period that turns out not to exist
-(the rest). They still pin the two implementations against each other, which is
-what the tests use them for, but they are not facts about the car. The
-measured warm idle, taken with adapter timestamps, is:
+- **On the laptop**, propose every time: **you run `usbtin_capture.py`**,
+  started before the ignition, to engine off; **he runs `oilwatch.py`** in a
+  second terminal on the same file; **you run `tools/vcds_log.py`**
+  (`--groups 014 001 003 --out "C:/Users/Luboš/Downloads/<name> 14-1-3
+  YY-MM-DD.CSV"`, in the background). One run does the session: fault memory
+  before, the log (reconnecting into `-2`, `-3` … when the ECU drops), fault
+  memory after, then closes VCDS. **At the end, engine still idling, he says
+  so; you create `<out>.stop`, the tool reads the fault memory (~30 s), you
+  give him the codes — only then does he switch off.** He clicks nothing.
+- **In the cloud**: hand him the commands and read what he uploads.
+- **The fault memory is read after every session with VCDS connected**,
+  without asking (never after a plain drive), saved beside the logs, the codes
+  given to him with their status; **he clears it, by hand**. **Before he
+  clears anything, read the adaptations** (`--groups 032 055 --seconds 20`,
+  saved as `test/fixtures/vcds/vcds-<step>-adaptations-032-055.csv`):
+  clearing resets 032.
+- **After every captured session, without asking**: the capture to its next
+  free `test/fixtures/NN_<name>_z1.txt`; **the whole capture uploaded
+  unfiltered to the GitHub release `raw-captures`** — gzip a copy outside the
+  repo as `YYYY-MM-DD_<name>_unfiltered_z1.txt.gz`, `gh release upload`,
+  download it back and compare the decompressed `sha256sum`, **filter nothing
+  until it matches**, delete the `.gz`; then filter the fixture to
+  `grep -E '^t(1A0|280|288|320|420|480)'`, add it to `FILTERED` in
+  `tools/test_canlog.py`, a row in `test/fixtures/README.md` and its count in
+  `tools/test_coastscan.py`. VCDS logs go to
+  `test/fixtures/vcds/vcds-<step>-<groups>.csv`. A capture stopped early leaves
+  the adapter open: send `C\r`. **Never commit an unfiltered capture** (size:
+  git keeps it for good); fetch one on demand into a temp dir (the scratchpad
+  in the cloud) from
+  `https://github.com/PoJD/canfuel/releases/download/raw-captures/<file>.gz`
+  and delete it after.
+- **Then, every time, the dips' share over the cylinders**:
+  `tools/cutscan.py --shares` on the capture and pooled with every capture
+  since the last repair — the top two slots' share and p against all four
+  alike — reported to him and added to `open.md`, *The dips keep to one
+  slot*; with injector cuts, `--name` too. `--pairs` is history only.
+- **When Claude drives VCDS, it may only read**: measuring blocks, logging,
+  reading the fault memory and saving it. **Nothing that writes to a control
+  unit, ever** — no clearing, coding, adaptation, basic settings, output tests
+  or resets. Scripts click only an allow-list and stop on anything unknown. If
+  a step seems to need a write, stop and ask.
+- **You cannot hear him.** A reading at the car reaches you as text (phone
+  dictation works); align it to the capture by an event it records, never by
+  when the message arrived.
+- **The MFD and the CAN capture are one or the other, and the converter goes
+  with the MFD**: a capture never contains 0x600–0x604. Everything from a
+  captured session is computed from the ECU's raw frames — `IdleHealth` and
+  the start by `tools/idledips.py`'s `health_summary()`, the oracle 0x604 is
+  diffed against. Never ask him to read the display during a capture.
 
-| Log | Counter | Duration | Flow | Conditions |
-|---|---|---|---|---|
-| `09_idle_60s_z1` | 19,561 µl | **60.03 s** | **326 µl/s = 1.17 l/h** | 796 rpm, A/C off |
-| `10_rev2600_z1` | 17,544 µl | 19.76 s | 888 µl/s | 2586 rpm, **A/C on** |
+### Tools for the car
 
----
-
-## The torque calibration, and what is still soft about it
-
-**For what to do next, see `docs/firmware/install.md`** — it is the plan, in order, and
-nothing here restates it. **It deliberately does not say how far along the
-build is**: a procedure that carries its own progress becomes a diary, and a
-diary in a repository goes stale the moment somebody works without updating it.
-Where the build has actually got to is asked, not read.
-
-**No calibration is left.** The drag line on hot oil, question 7, closed on
-15/10/2026: read as `raw − 60`, the oil of its four holds was at 101–106 °C,
-where the engine runs (`docs/firmware/can-decoding.md`, *Resolved questions*).
-
-**The tank was the other one and it is closed, as a decision.** 6 L into a
-nearly empty tank settled at 5 L, which is the sender's own nonlinearity and
-not arithmetic here -- `compute_tank_d()` applies no calibration at all.
-Correcting a float from one point taken near empty would be fitting noise, so
-there is nothing to run. `docs/firmware/install.md` has it. **Do not reopen it as
-outstanding work.**
-
-The rest of this section is why the drag line and the torque scale are what
-they are, because that reasoning has nowhere else to live.
-
-**The drag line is a least-squares fit through the four warm free-revving
-holds `13`–`16`** (oil 101–106 °C, stationary in neutral, so net torque is zero
-and b7 *is* the drag):
+`pyserial` (for `usbtin_capture.py`) and `pywinauto` (for `vcds_log.py`,
+Windows) are the only third-party dependencies; there is no
+`requirements.txt` because CI needs neither.
 
 ```
-drag_b7   = 9.11 + 0.006514 x rpm        the calibration, in bytes
-drag [Nm] = 9.66 + 0.00690  x rpm        the same line at 1.06 Nm/bit
+python tools/usbtin_capture.py --seconds 60 --out idle_z1.txt
+python tools/oilwatch.py idle_z1.txt
+python tools/canlog.py FILE          # per-ID summary; --dump --id 0x480
+python tools/replay.py --every 100 FILE
+python tools/idledips.py --roughness FILE
+python tools/afterpull.py FILE       # the warm idle after high revs
+python tools/cutscan.py --shares FILE...
+python tools/vcds_log.py --faults FILE
+python tools/flash.py --mode loopback | --preserve-eeprom | --identify | --dry-run
 ```
-
-**Fit it on warm oil.** A line fitted on cold oil sits far above this one, and
-since the line is *subtracted* from indicated torque, too high a line
-understates torque and power — mostly at part throttle, where it can display
-zero through half a drive that should show a number.
-
-**`TORQUE_CNM_PER_BIT` = 1.06 and the drag line are one calibration — never
-move one alone.** A factory rating is what b7 reads above the drag, so the
-scale is the rating divided by *b7 minus the drag in bytes*, and a different
-drag line gives a different scale. `DRAG_TORQUE_BASE_CNM` and
-`DRAG_TORQUE_SLOPE_Q16` are the byte line times the scale, recomputed from the
-byte line whenever the scale moves — never rescaled from their old values.
-
-**The idle point is excluded from the fit, and the driving gate covers it.** b7
-falls 24.96 → 18.81 between idle and 1536 rpm before it starts rising, because
-idle is a regulated state with the throttle nearly shut, so no straight line in
-rpm fits both. Idle is therefore *asserted*, not fitted. Raising the intercept
-to compensate puts the line back above all four measured points and restores
-the understatement — do not do it.
-
-### The driving gate — fixed, and not to be relaxed
-
-**Torque and power are shown only while the car is moving *and* the driver is
-asking for torque. Standing still shows zero whatever the pedal does; a
-released pedal shows zero whatever the speed is. This is a requirement, not a
-calibration.** Cold oil or hot, at whatever idle speed the ECU picks, whatever
-a future drag refit does. It lives in `compute_torque_d()` as
-
-```c
-if (speed_mmh <= STANDSTILL_MMH || throttle <= THROTTLE_REST) return 0;
-```
-
-and **eight tests in `test_compute.c` plus two in `test_txframes.c` exist to
-stop it being relaxed by accident** — the latter end to end off the real idle
-logs, including `12_idle_ac_z1` where the air conditioning raises b7 from 25 to
-42 and the display must still read zero. If one of them goes red, the fix is
-the code, not the test.
-
-**It is an OR and it used to be an AND**, and the difference is two states that
-showed a number the car was not in: revving in neutral at a standstill, and the
-last few seconds of every roll to a stop, where the idle governor lifts b7 back
-above the drag line while the pedal never moves. Both are the same fault — the
-drag line is systematically low at idle, 14 against a measured 25 in b7 at
-800 rpm — so idle is asserted rather than fitted, and the assertion has to cover
-**every** state the engine idles in rather than only the parked one. On the
-roll-down the apparent threshold is engine speed returning to idle, not road
-speed; in first gear the two coincide near 4–8 km/h, which makes it look like a
-speed threshold and is a coincidence of gearing.
-
-**It is not free, and the price was accepted rather than overlooked.** Over
-`17_drive_property_z1` the share of samples displaying zero goes 28.4 % →
-58.0 % (peak unmoved at 153.3 Nm) — worst case, since that log is six minutes
-of first-gear pottering with a great deal of coasting. And **pulling away reads
-zero until the car moves**, a median of 0.7 s after the pedal leaves rest, so
-real torque against a slipping clutch is not shown for that time.
-
-Both thresholds are measured, and neither is an equality:
-
-- **A standing car does not send zero.** 0x1A0 raw speed is **1** — 0.005 km/h
-  — in every log while stationary (7953 frames of it in `06_trip_reset`), and
-  the next value that ever appears is above 40. The gate is 0.1 km/h.
-- **0x280 b5 is 38 at rest** on the original throttle body, and the next
-  value above 38 that ever appears is **44**, so nothing occupies 39–43.
-  **The body fitted 2/10/2026 rests at 35** with nothing at 36–44, so the
-  gate at 38 still sits in an empty gap (`config.h` says so beside it). It is the pedal and not the load, which is what lets it gate on its
-  own: a released pedal is a statement about the driver, and what b7 does
-  afterwards is the engine looking after itself.
-
-⚠ **The b7 = 133 spike is not a counter-example, and reading it as one is what
-made the gate an AND in the first place.** b7 does reach 133 at throttle 38 —
-at 4522 rpm, during a gearchange, in a frame where 0x1A0 was not reporting a
-valid speed at all. Bucketed by engine speed, mean b7 at throttle 38 is 14–17
-everywhere above 1000 rpm, which is *below* the drag line; only the idle bucket
-sits above it, at 27.6. **A maximum over a log is not a state the car sits in**
-— that is the general lesson, and it cost a wrong rule.
-
-Supporting evidence, not a specification: SAE J1979 carries actual engine
-percent torque (PID 0x62) and engine friction percent torque (PID 0x8E) as
-separate standard PIDs — exactly indicated-minus-friction — and PID 0x64 gives
-five reference points of which **the first is idle**, so the standard also
-treats idle as its own datum rather than a point on a curve. `docs/firmware/frames.md`
-has the citations.
-
-The drag line was question 7 and is closed: its holds were at 101–106 °C of
-oil and real driving runs at 98–107 °C, so it is fitted where the engine
-runs. Question 10 — whether the oil sender reads right — is closed too,
-by the maintainer on 23/10/2026 and without a warm-end thermometer; a
-thermometer finding the warm end several degrees out would reopen both.
-
-**The scale is measured, off the plateau the engine actually reaches.** 0x280
-b7 is a percentage of a reference torque inside the ECU, not Nm, and nobody
-has the reference. Held full-throttle pulls in 4th (`19_postfix_drive_z1`) put
-b7 at a median of **185 at 2400 rpm** and **191 at 5200**; with the drag held
-in bytes the two factory ratings then give 1.061 and 1.055 Nm/bit, **0.6 %
-apart**, and 1.06 is a decision inside that bracket. At it the display shows
-about 170 Nm and 85.4 kW on such a pull, and
-`test_the_plateau_reproduces_the_rated_torque` / `..._power` pin both to 2 %.
-`docs/firmware/can-decoding.md` question 8 is resolved with the numbers.
-
-⚠ **b7 = 255 is not full scale of anything the engine does, and deriving the
-scale from it read 30 % low.** The old premise — *b7 = 255 is the rated crank
-torque plus the drag* — produced 0.74 and made the two ratings "agree" only
-because both were nailed to 255. The plateau is 185–206, relative load is flat
-at 78–81 % across it, and b7 falls away above 4500 rpm with the pedal on the
-floor. **Nothing in the test suite caught it**; a measurement did.
-
-⚠ **b7 is *indicated* torque**, so a rating is what is left after the drag,
-never b7 itself. Scaling to the crank maximum — "maximum is 172 Nm, so
-172/256" — and then subtracting drag counts the friction twice. The fixtures
-refute that directly: at 2940 rpm in neutral the crank makes nothing and b7
-still reads 37.
-
-**Two caveats, stated rather than resolved**: the intake temperature during the
-pulls was not logged, and b7 carries the ECU's charge normalisation, so a hot
-day reads lower and a frosty one higher; and the engine was not wholly well
-that day, though every fault it had was a low-load one. **Neither is a job for
-`TORQUE_TRIM_PCT`**, which stays 0. See `docs/firmware/frames.md` and the comment in
-`config.h`.
-
-The breadboard phase is skipped — Micro-Fit has a 3.0 mm pitch and does not
-fit a breadboard.

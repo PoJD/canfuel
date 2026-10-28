@@ -77,8 +77,7 @@ litres off the pump.
 
 **The converter does not see the whole tank, and that is filled in
 afterwards** (*decided 17/10/2026*). With the USBtin capturing, the MFD
-is out and the converter unpowered (`CLAUDE.md`, *Recording a session at
-the car*), so a captured drive is missing from `TripDist` and `TripFuel`.
+is out and the converter unpowered (`CLAUDE.md`, *Sessions at the car*), so a captured drive is missing from `TripDist` and `TripFuel`.
 It is not missing from the capture: `tools/replay.py` integrates 0x1A0
 and the 0x480 counter with the same arithmetic, so the captured drives'
 kilometres and microlitres are added to the display's figures by
