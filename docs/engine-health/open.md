@@ -76,7 +76,7 @@ routine, S15 the sputter, S18 cylinder 3 out with a tick (24/10); H9 (crankcase 
   ~2200 rpm).
 
 **Ranked (27/10, agreed with the owner):** **H14, H13, H7, H2, H1**,
-then H0, H8, H3, H15, H4, the timing belt, H16, H17, H18, H11, H12 (*The
+then H0, H8, H3, H15, H4, the timing belt, H16, H17, H19, H18, H11, H12 (*The
 idle's candidates, ranked*). **H8 back down from third to seventh**
 (27/10): 055's two fields sum to the same correction at every warm idle,
 so no reset and no A/C idles it on more air; what is left is S20, and
@@ -1578,6 +1578,62 @@ test does not reach the seals.
 
 ---
 
+### H19. The MAF's curve against the remap — a split trim
+
+*Added 28/10 at the owner's request.* **The shape of 032 since the new
+MAF**: the idle cell negative, the part-load cell positive, on every
+reading since 24/9 (S19). The idle cell is additive, a fixed amount per
+injection that weighs most where the injections are short; the
+part-load cell is multiplicative, a share of every injection (*general*,
+`vcds.md`). So: **a fixed amount of fuel too much at a small flow, a
+share too little at a larger one**. One part that gives both is **a MAF
+whose curve does not match what the map expects** — reading a little
+high at idle flows and low further up (*reasoned*). **The remap of 6/2018
+was made with the 2018 MAF in the car**; the genuine VW one fitted 24/9
+need not read like it, and the tuner may have scaled the MAF curve
+(H14). The rest of 032's causes give one side only: a leak makes the
+idle cell positive, a fixed fuel flow (H16, H17) the idle cell negative
+alone, a low pressure (H7) the part-load cell positive alone.
+
+| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|---|
+| — | — | — | — | — | ~ | — | — | ✔ | — |
+
+- **For: the timing.** The part-load cell was 0.0 (20/8) and +1.6 %
+  (10/9) on the 2018 MAF and has been +1.6 to +5.5 % since the new one,
+  +6.3 to +8.6 % since 25/10.
+- **For: the old MAF did not read like the new one** (`refuted.md` C2).
+  Air per revolution in VCDS 003, at the same engine speed and plate
+  angle (median, g/s per 1000 rpm; `vcds-postfix-drive-003-014.csv`
+  against 10–27/10):
+
+  | | idle | 2000–2500 rpm, plate 6–10° | 2000–2500 rpm, plate 10–15° |
+  |---|---|---|---|
+  | 2018 MAF, 11/8 | 4.5–4.6 | 2.9–3.5 | — |
+  | 2018 MAF, 24/9, the first half of the drive | 4.6 | 3.2 | 5.0 |
+  | 2018 MAF, 24/9, the second half, hot | **5.8** | **4.1** | **5.2** |
+  | new MAF, 10–27/10 | 4.1–4.6 | 3.1–3.4 | 4.5–4.7 |
+
+  Hot on 24/9 it read high **everywhere, by about a quarter to a third at
+  idle and at light part load, less at a wider plate**; on 11/8 and early
+  on 24/9 near the new one. ⚠ Soft across 2/10: the throttle body changed
+  then, so the same plate angle need not pass the same air, and the
+  states (loads, oil) are not matched.
+- **Against: one part cannot be told from two** in 032 alone — a fixed
+  fuel flow at idle (H16, H17) with a lean part load from elsewhere gives
+  the same shape. 6e cleared N80 and the regulator's reference as the
+  source of the idle side (H7, H16), which leaves H17 and the MAF.
+- **S7 ~**: open loop at a cold start, nothing corrects a MAF that reads
+  high at a cranking flow (*reasoned*); the starts were clean for a month
+  on this MAF, so at most a contributor.
+
+**Tests:** **the stock map of 3/11** — 032 resets with it and relearns on
+the original calibration: a split that closes says the map and the MAF
+disagreed; one that comes back says the MAF itself, or the fuel (H17, the
+fill). **032 on the new oil** (`plan.md` 6g) for H17 before that.
+
+---
+
 ## Naming the cylinder
 
 The bus carries no cylinder identification and 014 has no per-cylinder
@@ -1712,9 +1768,10 @@ is in git.
 | 11 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
 | 12 | **H16** the purge valve leaking | here for S7 and S19 only: an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest; not replaced (*owner*, 25/10) | the cold starts, primed and plain (`plan.md` 6h) |
 | 13 | **H17** fuel in the oil | VW's first cause for this car's 032; the oil level has not risen; here for the trim and S19's code, not the idle: roughest cold, when there is nothing to boil off | 032 on the new oil (`plan.md` 6g) |
-| 14 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
-| 15 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
-| 16 | **H12** driveline play | — | done: the clutch minutes cleared it |
+| 14 | **H19** the MAF's curve against the remap | added 28/10, here for S19's split trim only: a map and a sensor that disagree do not fail one firing in hundreds | the stock map (3/11) |
+| 15 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
+| 16 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
+| 17 | **H12** driveline play | — | done: the clutch minutes cleared it |
 
 **Re-read 25/10 with S7 reopened**: the order stands, since the ranking is
 for the idle and S7 is a start; S7 sits with S19 on H7 and H16, and H7's
@@ -1755,6 +1812,12 @@ is not the idle; it fits H12 first, and a tip-in misfire weakly what
 weakens a firing at a small charge (H1, H4, H7, H8, H13, H14, H15). 6k
 gave H8 support without settling it (H8), and the table ranks it third
 already.
+
+**Re-read 28/10 with H19 added** (the MAF's curve against the remap):
+the order above it stands, since the ranking is for the idle and H19
+is for the trim. **For the rich idle trim** it joins H17 as what is
+left, and it is the one that also reads the positive part-load cell; the
+stock map of 3/11 is its test (*agreed with the owner*).
 
 **Re-read 27/10 evening with S12 closed again** (a sticking pedal,
 `refuted.md` D6): the order stands. S12 was never an idle symptom and
