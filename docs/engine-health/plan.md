@@ -20,11 +20,10 @@ The full previous version, before it was condensed on 20/10/2026:
 One at a time; Claude says after each whether the next is needed.
 Claude runs the capture on every drive. **Current: item 6.**
 
-5a. **Postponed: the original map written back** at the tuner, **booked
-   for 3/11**.
+5a. **The original map written back** at the tuner, **booked for 3/11**.
    First the tuner emails both files, the original and his remap;
-   upload them into the chat (never into the repository); a new date
-   after they are read. When it goes ahead:
+   upload them into the chat (never into the repository). If they have
+   not been read by then, the date moves. When it goes ahead:
    - **At the tuner, before he writes**: ask for each file as the
      **whole flash**, not only the maps — **the original** he read before
      the remap, **his remapped version**, and if he will, **a read of the
@@ -57,8 +56,8 @@ Claude runs the capture on every drive. **Current: item 6.**
      hands off**; then drive on. Keep clear of the belt, the fan and the
      HT leads. Write into the chat anything the engine did and at which
      injector.
-6. **This tank: drive normally with the MFD in**, plain fuel; brisk
-   driving once warm is welcome. At a warm stop now and
+6. **Drive normally with the MFD in**; brisk driving once warm is
+   welcome. At a warm stop now and
    then, the two states of the standing items, written into the chat.
    - **No captures for now.** Only **once `IdleHealth` on the MFD is
      clearly better**: one or two warm drives captured, on different
@@ -78,8 +77,6 @@ Claude runs the capture on every drive. **Current: item 6.**
      back under 110. **A tick, a miss or the lamp, lit or flashing: ease
      off at once**.
    - The map at 3/11 goes ahead whatever tank is in.
-   **The flush and the oil change are done** (26/10, `idle-log.md`); the
-   tank is driven out on the new oil.
 6g. **032 on the new oil** (the *before* read 26/10: −8.6 / +7.8 %).
    - After about 200 km on the new oil: 032 and 055, before anything is
      cleared. **Before 3/11**: the map resets 032 again.
@@ -88,11 +85,10 @@ Claude runs the capture on every drive. **Current: item 6.**
    temperature, **caught and died, or ran**, and `StartCrank` and
    `StartDip` off the display. **Never primed.** A few hours parked
    outdoors in the cold counts as a cold start too.
-6i. **The oil level on the new oil.** After the first drive on it, the
-   car on level ground and **at least 5 minutes standing**: the dipstick
-   out, wiped, in, out, and **photographed**; the odometer into the
-   chat. **The same about every 500 km**, always after at least 5 minutes
-   standing on level ground. Any top-up: the litres and the odometer
+6i. **The oil level on the new oil, about every 500 km** from the first
+   reading (27/10, 155,024 km, at the top mark): the car on level ground
+   and **at least 5 minutes standing**, the dipstick out, wiped, in, out,
+   and **photographed**; the odometer into the chat. Any top-up: the litres and the odometer
    into the chat.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
@@ -201,8 +197,8 @@ adds what it does not: the MAF's air and the ignition angle. 10–20
 minutes of idle in all, against the standing item for the converter,
 accepted as an exception. **6g goes first**: the map's reset would clear
 the 032 it waits for.
-**Postponed 20/10** (*owner*): the tuner emails both files to be compared
-first, privately, never in this repository. What each differing table
+**Not on 22/10 but on 3/11** (*owner*, 20/10): the tuner emails both files
+to be compared first, privately, never in this repository. What each differing table
 *is* needs a map definition, so without one it is a guess from its shape
 and is written as one.
 - **The tuner's files.** The ECU is read on the bench, which gives the
@@ -248,10 +244,10 @@ and is written as one.
   cylinder or two*). The cylinder phase holds for minutes at idle, so one
   30 s cut names every dip in the idle run around it up to the moment the
   car moves (`cutscan.py --name`); each stop needs its own cut. The 3
-  untouched minutes give about 20–40 named dips a stop. The question is
-  whether the dips are still on **3 and 4** on the stock map: the same
-  pair → the map was not what weakened them; a different pair or all
-  four alike → the map or the cleaner moved it. Injector 1 rather than 4
+  untouched minutes give about 20–40 named dips a stop. Since the VW leads
+  the dips sit on **all four alike** (`40`, `41`); the question is
+  whether that holds on the stock map — a pair coming back names the
+  cylinders the remap leaves weakest. Injector 1 rather than 4
   so the suspect cylinder runs throughout. Read with `--name` per stop and
   `--shares` pooled. (`cutscan.py`'s verdict rules,
   fixed 9/10 before the first cuts, are in its source.) Never the plug lead instead of the
@@ -306,36 +302,6 @@ against the pump (`docs/firmware/fuel-check.md`, *The fill of
 2026-10-24*); the map going back inside it would mix two calibrations
 in one ratio, and the figures on the day split the tank at the line.
 
-**The strong first tank** (*owner's decision*, 23/10, variant C of the
-research that day). Its source is the BG reseller Red Rider (BG Centrum
-Liberec), not BG: for an engine over 150,000 km, or one that drives
-badly — this one is both — it offers two or three full tanks in a row, three
-cans at once, or one can into about 15 l and a second into a full tank.
-**That is a reseller's practice, claimed over a hundred engines, not a
-specification.** Chosen here at about 25–30 l, between two and three times
-the strength BG's label allows for (one can to 75 l) and milder than their
-15 l, for two risks of this car
-rather than of engines in general: a cleaner that works faster sheds more
-deposit at once, and S18 already looks like **one flake under valve 3's
-exhaust seat after a single can** of another cleaner — a flake held there
-under load can burn a seat; and every misfire heats **the converter fitted
-in 9/2026, whose predecessor came off blocked and burnt through**. The
-strong tank has one property three cans at once lack, which is what
-makes it acceptable: **it can be undone at any pump** — filling up dilutes
-it at once. The can goes in before the fuel so that the fuel mixes it
-(Red Rider). **Aimed at litres in the tank, not at the reserve lamp**
-(*owner*, 23/10): the strength is the can over the litres in the tank,
-whatever was there before, and the MFD shows them. The lamp is bit 0x80 of
-0x320 b2 and the fixtures place it at **8–11 indicated litres**: on through
-8 in `17`, off at 11 in `27`; no capture crosses it, so where in between
-is not known. **The indication reads low**, by a gain of 0.83 near empty
-and 0.905 over most of the travel (`docs/firmware/refuel-reset.md`), so
-25 indicated is somewhat more in the tank (the owner aims at 25 rather
-than 27 for that reason, 23/10), and the strength a little milder; the
-window of 25–30 l is wider than that error. Nothing independent compares the variants; three cans at once
-(their option 2) was rejected for the most shedding at once, three times
-the cost and no evidence of more benefit.
-
 **The Italian tune-up** (*owner's decision*, 23/10) is Red Rider's
 "indiánský způsob" for its strong tank, applied to both: heat and gas
 flow through the chamber while the cleaner is in the fuel. **BG says
@@ -380,165 +346,16 @@ cleaner together, and only those before it read the cleaner alone. If the
 idle improves, which of H13 and H14 did it is left open; the owner chose a
 fix over the answer.
 
-*Done 26/10 (`idle-log.md`); kept below for how its results are read.*
-**The flush and the oil** (*owner's decision*, 21/10, kept with BG's
-product; **twice, variant O3**, 23/10). Two cleaner tanks and hard driving
-put additive and loosened deposit into the oil: additive reaches the
-crankcase past the rings, one PEA chemistry formed varnish at high treat
-rates (SAE 2020-01-2100), and varnish sticks lifters — **hence the change
-straight after the second tank, not later**, and the strong first tank
-makes that more true, not less. **Moved ahead to before the map, with the
-second tank still in** (*owner's decision*, 24/10): the caution was this
-project's, not BG's or any source's; the owner no longer trusts an oil that
-has carried a strong tank, hours above 4000 rpm and loosened carbon; and
-**done now it stands apart from the map of 3/11** (H14, first since 24/10),
-leaving drives between to read it alone, where at the end of the tank the
-two would have fallen together. The cost, accepted: the rest of the second
-tank's additive and loosened deposit goes into the new oil — small, the
-treat rate reaching the crankcase being a fraction of the dose, and the
-first tank showed no harm; a plain change after the tank stays possible,
-not planned. The overlap with 44K reads nothing away: the second tank is
-expected to move nothing (below). **The warm phone recording went first, on
-the old oil** (26/10, `idle-log.md`), because it is the lifters' test and
-after the flush there is nothing left to compare it with. **EPR cleans the oil side** — rings and
-hydraulic lifters — **not valve faces or chambers**, which are the fuel
-cleaner's. **Both of its sides can reach the idle**: the lifters are H1's,
-and a ring stuck with coke costs compression, which tells most at idle,
-where the charge is small. Against rings as the cause: compression **12 bar
-even on all four** (`refuted.md` A4), while the inside differs by cylinder
-(3 > 4 > 2 > 1); the evenness is the strong part, the absolute figure is
-weak (gauge, cranking strokes and throttle not recorded). *This said "it is
-not expected to mend the idle by itself"* (23/10), which the evidence does
-not support; corrected the same day at the owner's question. **The drain
-plug at about 30 Nm** is the owner's figure (23/10), not a VW document. **No compression test before and after**
-(*owner's decision*, 23/10): it would read EPR's effect on the rings, at the
-cost of the leads off twice, which disturbs H15's reading of the new VW
-leads; whether the idle moves is read as for the tanks.
+**The flush and the oil change were done 26/10** (`idle-log.md`), ahead
+of the tank's end; the reasoning and the choices behind them are in
+`git log`. **Later changes**: EPR at every change until the symptoms are
+settled, at most once a year (*owner*, 23/10); the filter `06A 115 561 B`
+(`vehicle-history.md`).
 
-**The oil sample — dropped, 26/10** (*the owner's decision*): not taken.
-H17 is read from 032 alone (6g), with the two blind cases below left
-open, and 6i's level reads oil burnt against fuel gained only together.
-What it was for, kept for the record:
-**The oil sample** (`open.md` H17; *the owner's agreement*, 25/10). The
-dipstick cannot tell fuel coming in from nothing happening when oil is
-burnt at the same time (*the owner's point*), and 032 on the new oil says
-whether, not how much; a laboratory's fuel dilution reads it directly,
-whatever the oil use. **Before the first EPR, not at the drain**: EPR is
-a solvent, and in the oil it reads as fuel to the light-end measurements
-a dilution figure comes from (*reasoned*; how a given laboratory measures
-it, gas chromatography or flash point, is theirs to say). The 44K does
-not matter: what reaches the oil from the fuel carries it either way, at
-a fraction of the dose. **Hot, after a drive**, because that is the oil as
-it is mixed and as the engine sees it; the hot oil has also boiled off
-some fuel, so the figure is a lower bound (*general*). **Taken always,
-sent only if 032 does not settle it** (*the owner's decision*, 25/10):
-032 on the new oil answers for free, but not in two cases — **unchanged**
-while fuel still reaches the oil and refills the new oil within the few
-hundred km before the reading, and **back to zero** where EPR freeing the
-rings cut the blow-by rather than the old oil carrying fuel (H13). A
-sealed bottle keeps for weeks (*general*). **Read**: a
-dilution of a few per cent or more → H17 stands, whatever 032 does next;
-none → H17 to `refuted.md`, and the rich idle trim is the injectors' or
-the MAF's (H7).
-
-**What would have to be wrong for the flush to mend the idle** (*reasoned*,
-24/10, at the owner's question). EPR reaches the idle by three routes only:
-
-- **A lifter on 3 or 4 whose plunger or check ball is varnished** and holds
-  its valve a hair open (H1): compression lost at a small charge, covered by
-  load — the idle's own pattern. Against: compression even, a valve held
-  open shows when cranking; the vacuum gauge steady with no flick per cycle;
-  the idle not worst hot; 18/10's tick never back. A lifter that does not
-  fill would tick all the time, and none does.
-- **A compression ring coked in its groove on 3 or 4** (H13's ring lands):
-  worst where cylinder pressure is lowest, at idle. Against: that is exactly
-  what a compression test finds, and it read even — the strongest point
-  against; the absolute 12 bar is the weak one.
-- **Oil-control rings stuck**, oil burnt on 3 and 4, the deposit and the
-  poorer combustion with it. Against: plug 3 the cleanest, no oil use known;
-  and that would mend over thousands of kilometres, not at a flush.
-
-Not a route: **the AQY has no cam phaser**; fresh, thinner oil lowers the
-friction of all four alike, which `IdleHealth`, a spread between power
-strokes, does not see. **So the flush mends the idle only if a ring or a
-lifter on 3 or 4 is wrong in a way compression and the gauge both missed** —
-possible, against the two best measurements held. Its firm reason is
-maintenance: the additive and the loosened deposit of two strong cleaner
-tanks out of the oil before they varnish a lifter. **The test that told
-first** was the phone recording over each lifter, hot (26/10,
-`idle-log.md`): **all four alike**, so for the idle the flush is an oil
-change with an additive; 3 or 4 sounding unlike 1 and 2 would have given
-it a chance.
-
-**And the fuel cleaner in the tank** (*the owner's point*, 24/10): the strong
-first 44K tank, hours above 4000 rpm and about 450 km left `IdleHealth` at
-70–80, as before, and he expects the second tank to do no more. What it can
-reach on this engine (*reasoned*): the injector nozzles, new in 9/2026; the
-inlet valve backs, only thin lacquer on the borescope; **the chambers and
-exhaust valves, where 3 and 4 do carry more** — slowly, over tanks. For it
-to mend the idle, that chamber deposit would have to be **the cause** of 3
-and 4's poorer combustion rather than its consequence, which the evenness
-of every other cause speaks against (`open.md` H13). So the second tank is
-driven out because the can is in, and read as the last word on H13; the
-idle is not expected to move on it.
-
-**The run time.** BG's data sheet for `109`: for a **3.7–5.6 l** crankcase,
-one can, **10 minutes at 1,200 rpm** after full operating temperature
-(20 for direct injection and small diesels). *This said "45 min at 1,200
-rpm on the product page"*: 45 minutes is the same sheet's figure for a
-9.4–15.1 l crankcase and the 946 ml bottle, not for this engine. BG calls
-10 minutes a minimum ("in as little as 10 minutes"); Red Rider runs
-**30 minutes at about 1,300 rpm**. **30 minutes is chosen** (*decision*):
-standing, without load, the bearings are lightly loaded and the time is
-cheap, while the one way EPR is known to do harm, driving on it, is
-excluded either way. The clock starts at **90 °C of oil** rather than at
-warm coolant, because "full operating temperature" is the oil's.
-
-**Twice in one day.** Red Rider advises EPR at three changes in a row and
-says the first may be done **twice at once**, which BG neither says nor
-forbids. A drain leaves roughly a tenth of the fill behind, so the EPR left
-in the new oil is under one percent of it. The oil between runs standing for
-under an hour, so it needs the viscosity and nothing else; it is **the same oil
-as the final fill**, Total *Quartz 9000 Energy* 5W-40 (*owner*, 23/10), so
-what a drain leaves behind is that oil and EPR and nothing else. *Quartz
-9000* 5W-40 was chosen first; it carries the same ACEA A3/B4 and VW
-502.00/505.00 in TotalEnergies' catalogue, so nothing is lost either way,
-and *Energy 0W-30* was set aside as a different grade. **A filter
-each stage**: the old one is not left to run the second flush in bypass
-with the first flush's debris; the Bosch, crossed by sellers' listings
-only, serves the oil between, and **the VW original serves the interval**
-(*owner*, 23/10), with a new VW drain plug. **The 0.3 l out first**: on
-27/9 the oil stood at the upper mark, and a can on top of that is above it
-(Red Rider's first step). **The optional rinse — dropped, 26/10** (*the
-owner's decision*); the final fill keeps the EPR of one drip, under one
-percent by the estimate below. It would have taken the EPR left in the final fill from under
-one percent to about a tenth of that, by the same tenth-a-drain
-estimate. Neither level is known to harm anything; BG's own single flush
-leaves the first. It needs no oil bought: about 10 l in hand, some 3.5 l
-a fill. It runs at a normal level, never with less oil and EPR in it:
-halving the fill under EPR doubles its strength against BG's one can to
-3.7–5.6 l. Without the rinse about 1.5 l more stays for topping up; with
-it, about 0.5 l. **The lifter after the fill**: a hydraulic lifter
-can tap briefly while it fills from new oil, which is not S18's tick at
-camshaft rate that stays.
-
-BG warns against EPR on a heavily sludged engine; clean amber oil on every
-plug thread on 20/10 (`idle-log.md`) says this one is not. **The oil**
-(*bought 22/10*, mlparts.cz): Total *Quartz 9000 Energy*
-5W-40, whose maker's data sheet lists ACEA A3/B4 and **VW 502.00**/505.00 —
-502.00 is the approval for this engine on fixed-interval changes; the list
-varies by market, hence the check on the can. **No additive in the new oil**
-(*owner*, 22/10): BG's `115` MOA, considered with the cleaners and not
-bought (only the two cleaners were, two cans of each), would stay in the
-oil for the whole interval, its composition is not published, it is about
-8 % of the fill and so changes an oil chosen for its VW approval, and its
-claims (ring and valve carbon) are H13's — a change that would sit in the
-engine for months. **Later changes**: EPR
-at every change until the symptoms are settled, at most once a year
-(*owner*, 23/10). **The VW filter** is `06A 115 561 B` off its box
-(`photos/oil-filter-vw-2026-10-23-box.jpg`), the number the Bosch was
-crossed to, bought at the dealer 23/10 for about 500 Kč against a little
-over 100 at mlparts.cz (*owner*), where the next one comes from.
+**And the second tank** (*the owner's point*, 24/10): the strong first
+44K tank, hours above 4000 rpm and about 450 km left `IdleHealth` at
+70–80, as before, and he expects the second to do no more. It is driven
+out because the can is in, and read as the last word on H13 (`open.md`).
 
 **Episodes on the cleaner's tanks are expected, not a verdict**: under H13
 each tank sheds a layer; under H1 the tick would not depend on the tank.
@@ -549,20 +366,6 @@ reset at 5a makes the drives just after it read low on 014 for another
 reason), and the shares pooled since the last repair. A tank is weeks of
 this car's driving, so the reading is late by design.
 
-**Item 6b — the refit** (*owner's decision*, 20/10/2026). The look of
-19–20/10 is done (`idle-log.md`); lead 2 tore on removal, so the leads are
-replaced and the plugs with them: **VW originals**, the change H15 waits
-for. Both arrive on 21/10 together. With the map postponed, **they are the
-only change on the car** and are read on their own. **What is recorded at
-the refit**: H15 rests on how the NGK ends sat — by grip 2 > 1 > 3 ≈ 4,
-a rubbery click with a faint metallic one (`open.md` H15) — so the old
-ends are compared with the VW ones by eye and by force, cylinder by
-cylinder; resistance was dropped as unlikely to be the difference
-(*owner*). Fitted and first driven 21/10, captured (`idle-log.md`).
-**Read** over several drives against 19/10 and 12–15/10, by how long a
-relief lasts (`open.md` H15): lasting weeks → the leads; a few days, then
-back → the seating, H3 next; the same → H15 refuted.
-
 **Item 6g — fuel in the oil** (`open.md` H17; 25/10/2026, from VW's
 evaluation of block 032, `vcds.md`). VW names oil dilution first for a
 low idle learnt value with part load normal, which is this car's 032,
@@ -571,29 +374,24 @@ test costs one reading either side. (The dipstick part is done: 24/10,
 the level unchanged since the last top-up, `idle-log.md`.) **Read**: 032's idle
 cell close to zero on the new oil → H17 confirmed and the cold idles of
 the captures were feeding it — fewer and shorter standing cold idles
-from then on; unchanged → H16 and H7 carry the trim. **`IdleHealth`
+from then on; unchanged → H19 (the MAF against the map) or an injector carry the
+trim, since 6e cleared N80 and the regulator's reference. **The first
+reading on the new oil** (27/10 evening, relearnt from 0.0 after that
+afternoon's disconnect): −8.6 %, already against H17. **`IdleHealth`
 beside it, cold and warm apart** (the owner's loop, `open.md` H17): fuel
 boils off only from hot oil, so H17 predicts the warm idle calmer and the
 cold one unchanged; a calmer warm idle with 032 unmoved is EPR on the
 rings (H13), not H17. EPR in the flush
 (6a) does not spoil the comparison: it is drained with the old oil.
 
-**Item 6h — the cold start** (`open.md` S7, reopened 25/10). The priming
-asks one question: **did the rail lose its pressure while standing?** With
-the ignition on the pump runs for a moment (*general*), so two goes refill
-a rail that bled down overnight; a start that then catches and stays was
-starved, and the leak is the pump's non-return valve, an injector or the
-regulator (H7; VW's holding test in `vcds.md` names which with a gauge).
-Primed starts that die as well say flooding (H7's injector, H16) or the
-fuel, and the next fill of another brand reads the fuel. Alternate
-mornings, so that plain and primed meet the same weather. **Priming
-dropped** (*the owner's decision*, 28/10): three starts (26/10 plain, bad;
-27/10 primed, hesitant; 28/10 plain, clean) did not follow it, so it has
-answered what it could; plain starts now read the fuel and the cleaner's
-tank running out, and a short stand outdoors is the case of 24/10.
-`StartCrank`
-and `StartDip` because the display carries them and a start the owner
-calls normal may still show a long crank.
+**Item 6h — the cold start** (`open.md` S7, reopened 25/10). **Plain
+starts only** (*the owner's decision*, 28/10): the priming asked whether
+the rail lost its pressure while standing, and three starts (26/10 plain,
+bad; 27/10 primed, hesitant; 28/10 plain, clean) did not follow it, so it
+has answered what it could. Plain starts now read the fuel and the
+cleaner's tank running out; a few hours outdoors in the cold is the case
+of 24/10. `StartCrank` and `StartDip` because the display carries them
+and a start the owner calls normal may still show a long crank.
 
 **Item 6i — the oil level on the new oil** (`open.md` H18, H17; *the
 owner's agreement*, 26/10). Oil burnt past the stem seals or rings lowers
@@ -608,24 +406,6 @@ looked for underneath**: the sump's rear was oily on 26/10 (`open.md`,
 *Other*), and a leak lowers the level exactly as burning does. Five minutes standing and
 level ground because the stick reads the sump only once the oil has run
 back; the photograph because a millimetre is the stick's resolution.
-
-**Item 6l — the 055 reset** (*the owner's decision*, 27/10; **done
-27/10, logged in `idle-log.md`; the logs are read as below**). 055 has
-gone to 0.00 each time 098 really ran after a disconnect (2/10, 4/10);
-on 26/10 and the morning of 27/10, 098 was opened as a measuring block
-and nothing ran (`idle-log.md`). **032 and 055 are read once before
-098 as well** (*the owner's addition*): field 3 already at 0.00 says a
-disconnect of hours resets 055 by itself, where 26/10's minute did not;
-unchanged says it takes 098. Not a repair: 055's two fields sum to
-the same correction at every warm idle (`open.md` H8), so the log is
-expected to show field 2 taking the whole of it at once and handing it
-to field 3 over two to three minutes of warm idle. **Read**: the
-handover's length and where field 3 settles (about −1.1 to −1.3 every
-time so far); 003's air, plate and advance against 4/10 A's; and **014
-quiet afterwards is not an improvement** (`refuted.md` C19) — compare
-it only once 055 has settled and after a drive with lifts from high
-revs. 003 rather than 001 because the comparison with 4/10 is in 003;
-the coolant is on the display.
 
 **Item 7 — the exhaust ahead of the front probe (H2), warm.** A leak that
 draws air in at idle blows out when the outlet is closed, and hisses or

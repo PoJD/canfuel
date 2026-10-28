@@ -36,65 +36,54 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 24 October 2026
+## Where it stands — 28 October 2026
 
-**Closed**, in `refuted.md` §D: S6 the exhaust joint behind the converter,
-S8 the top end, S9 the rich trim, S10 the oil leak at
-the back of the head, S13 the throttle's
-routine, S15 the sputter, S18 cylinder 3 out with a tick (24/10); H9 (crankcase ventilation, A15) and H10 (when
-014 counts, C19).
+**Closed**, in `refuted.md` §D: S6 the exhaust joint behind the
+converter, S8 the top end, S9 the rich trim, S10 the oil leak at the back
+of the head, S12 the jerk on tip-in (a sticking pedal, 27/10), S13 the
+throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
+(24/10); H9 (crankcase ventilation, A15) and H10 (when 014 counts, C19).
 
 **Open:**
 
 - **The idle — S1 (unsettled) and S3 (014 counts at idle).** Every part in
-  the fuel and ignition path has been replaced and both remain. **About two
-  thirds of the dips sat on two neighbouring cylinders, 3 and 4**, on every
-  capture until the VW leads; **on all four alike since** (`40`, `41`; *The
-  dips keep to one slot*). The look inside
-  on 19–20/10 found **3 and 4 worse inside too** — ports, crowns, exhaust
-  valves — and their NGK plug ends the loosest (`idle-log.md`).
-- **Around the idle:** S2 (an occasional puff), S14 (bangs on an unblipped
-  downshift), S11 (a hiss at the back, perhaps the throttle's own air).
+  the fuel and ignition path has been replaced and both remain. Warm,
+  loads off, the idle reads about 55–70 (27/10: 54), level with its best
+  days of 12–15/10 and not past them; **cold it has come down since
+  21/10**. The dips sat two thirds on 3 and 4 until the VW leads, **on
+  all four alike since** (`40`, `41`; *The dips keep to one slot*) — the
+  first of S1's three closing marks.
+- **Around the idle:** S2 (an occasional puff), S14 (bangs on an
+  unblipped downshift), S11 (a hiss at the back, perhaps the throttle's
+  own air).
 - **The cylinder 4 knock window: S4, S5** — its own cluster, not in
   `plan.md` (*owner's decision*, 9/10).
-- **Reopened, 25/10: S7, the cold start** — the first start dies at once,
-  the second runs; twice since the fill of 24/10, and on 26/10 a third
-  that the held starter carried (`StartDip` 218, the deepest on record).
-  Fits H7 and H16.
-- **New, 24/10: S19** — P0172 stored, suspected with the start that died at
-  once; fits H7 and H16 (the purge valve, added 24/10); the code alone
-  also H17 (fuel in the oil, 25/10).
-- **New, 26/10: S20** — engine speed wanders at a constant pedal, on the
-  road since the new throttle of 1–2/10 (*owner*); what the EPR flush
-  showed may be the stick and the ECU's idle control (S20). Not the idle.
-  Fits H8 by its timing.
-- **Closed again, 27/10 evening: S12** — the jerk on tip-in was a
-  sticking accelerator pedal, cured by greasing it (`refuted.md` D6). The
-  014 counts on the road at steady 1800–2200 rpm, 25 % load, outlived it
-  and stay under S3.
+- **S7, the cold start** — caught and died 24 and 25/10, carried by the
+  starter 26/10, hesitant primed 27/10, **clean plain 28/10**. The starts
+  do not follow the priming, which is against a rail draining while
+  standing; flooding and the fuel stay. Priming dropped (28/10).
+- **S19, P0172 and the split trim** — the code once (24/10), not back on
+  any reading since; **032's idle cell at −7.8 to −8.6 % and its
+  part-load cell at +6.3 to +8.6 %** since 25/10, on the new regulator
+  hose and, on 27/10, on the new oil. Fits H19 (the MAF against the map)
+  and H17; 6e cleared N80 and the regulator's reference as its source.
+- **S20, the speed wandering at a constant pedal** (since 1–2/10, on the
+  road) — the cable slackened and the pedal greased on 27/10; whether it
+  outlived them is not yet reported. Not the idle.
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm).
 
 **Ranked (28/10, agreed with the owner):** **H14, H19, H13, H7, H2, H1**,
 then H0, H8, H3, H15, H4, the timing belt, H16, H17, H18, H11, H12 (*The
-idle's candidates, ranked*). **H8 back down from third to seventh**
-(27/10): 055's two fields sum to the same correction at every warm idle,
-so no reset and no A/C idles it on more air; what is left is S20, and
-the cable was slackened (H8). It had gone up on 26/10 for S20 and for
-the wrong learnt idle air of 26/10. **H1 down
-from third**: the hot phone recording found no lifter, and 18/10's tick
-has not come back. **The dips are on all four alike on both captures since
-the VW leads** (`40`, `41`; *The dips keep to one slot*), while the warm idle
-graded no better than the best days on the NGK set: the leads took away 3 and
-4's excess, not the roughness. So what acts on all four leads, and what acts
-on one or two (H3, H15, H4) goes down. **H7 goes down after 6e**: its
-regulator answers, and one injector cannot spread the dips over four.
-H16 stays low, for S7 and S19 only.
+idle's candidates, ranked*). The remap and the MAF read against it lead,
+and share one test; what acts on one or two cylinders (H3, H15, H4) went
+down when the dips spread over all four.
 
-**Next** (`plan.md`): the VW leads `06A 905 409 L` and plugs
-`101 000 033 AA` on 21/10, **the only change on the car**; the first drive
-captured from the laptop. The original map (H14) is postponed until the
-tuner's two files have been compared.
+**Next** (`plan.md`): the second 44K tank driven out on the new oil,
+read off the display; **032 after about 200 km on the new oil** (6g);
+every cold start, plain (6h); the oil level every 500 km (6i); then
+**the original map at the tuner on 3/11** (5a), once his two files have
+been compared.
 
 ---
 
@@ -203,7 +192,8 @@ needs its cluster harness tapped behind the vent, which no owner will allow
 **When S1 closes** (*decided*, 20/10; the owner closes it), read over several
 drives at 95–100 °C of oil: **(1) the dips no longer keep to a pair** —
 `cutscan.py --shares`, pooled since the last repair, consistent with all four
-alike; it needs no target, so it is the strongest mark; **(2) load is no
+alike; it needs no target, so it is the strongest mark — **met since the VW
+leads** (`40`, `41`), to be held over more drives; **(2) load is no
 longer needed** — loads-off `IdleHealth` within about 25 of loads-on (19/10:
 about 100 against 50); **(3) at least the best level shown**, loads off about
 50–60 (12/10, 15/10). Short of all three, the owner may close it as
@@ -365,7 +355,8 @@ before (top two 77 %). **Not an adaptation**: 032 −3.1/+5.5 %, 055 −1.27 g/s
 both inside their history (19/10). The candidates: deposit loosened by the
 cleaner and not yet burnt off (H13), and **a relief after the leads' re-seat
 of 10–12/10 wearing off** (H15, *The idle against every time the leads were
-handled*).
+handled*). **It passed**: 67 on 21/10 (`40`), 54 on 27/10 (display), loads
+off, warm.
 
 ### S2. An occasional puff from the exhaust
 
@@ -546,20 +537,20 @@ cold the engine runs open loop, so nothing takes the extra fuel out in
 those first seconds. **Against**: the crack is from about September and
 the starts were clean for a month until 24/10. Whether this ECU applies
 032's learnt idle value in open loop too, so that the clearing of 24/10
-night took away a correction the start relied on, is not known. **The
-new hose answers it**, read with 6h. **A second reading since 6e**
-(25/10 night): N80 passes a little air without power (H16), so vapour
-while standing is now a cause with a found part behind it; the new valve
-is **not fitted** (*the owner's decision*, 25/10: it helps neither the
-idle nor the trim), so the priming of 6h is what tells starved from
-flooded.
+night took away a correction the start relied on, is not known. **Not the
+hose**: the start of 26/10 was bad on the new one. **A second reading
+since 6e** (25/10 night): N80 passes a little air without power (H16), so
+vapour while standing is a cause with a found part behind it; the valve
+is **not replaced** (*the owner's decision*, 25/10: it helps neither the
+idle nor the trim).
 
 **Read off the display**: `StartCrank` and `StartDip` on 0x604
-(`docs/firmware/frames.md`) for every cold start, failed or not. **The test**
-(`plan.md` 6h): on alternate cold mornings, the ignition on for a few
-seconds twice before cranking, to let the pump fill the rail. **Primed
-starts clean, plain ones die** → pressure lost while standing (H7);
-**both die** → flooding or the fuel.
+(`docs/firmware/frames.md`) for every cold start, failed or not, plain
+(`plan.md` 6h). **The priming test is over** (*the owner's decision*,
+28/10): primed and plain alike were good or bad, so a rail draining while
+standing is not the whole; what is left is flooding or the fuel, read
+by the starts as the 44K tank runs out and at the next fill of another
+brand.
 
 ### S11. A hiss at the back of the engine at a warm idle
 
@@ -609,7 +600,7 @@ one event** (*owner's decision*, 24/10): a flooded start reads the same to
 the driver as a starved one, and an injector or regulator that lets fuel
 into a cylinder while the car stands would give both (*reasoned*). The
 trims behind it were lost to the clearing before 032 was read
-(`CLAUDE.md`); the next reading of 032 is the first evidence. Also in the
+(`CLAUDE.md`). Also in the
 window: the first tank of Orlen Verva 100 and two 170 km drives held at
 5000 rpm. **It cannot be dated more closely** (28/10): this ECU's fault
 memory carries a code and its status only, no mileage, time or freeze
@@ -632,13 +623,16 @@ held only for the higher values (the owner, 28/10).*
 **Not settled that the start set it** (*reasoned*): a start that dies at
 once runs on a cold probe, open loop, and cannot itself trip a trim fault;
 what would link the two is **one cause** that puts in too much fuel, seen
-once at the start and once later in closed loop. **Read by what follows:**
+once at the start and once later in closed loop. **Read by what followed:**
 032's idle trim well negative at the next reading, or P0172 back with no bad
-start, says a standing cause rather than a one-off; P0172 back after
+start, says a standing cause rather than a one-off — **and the idle trim
+has been −7.8 to −8.6 % on every settled reading since (25–27/10)**,
+while P0172 has not come back: a standing cause, below the code's
+threshold; P0172 back after
 fills only would point at the purge path (*general*: a canister flooded by a
 brim-full fill), which 070 found sound on 27/9 (`refuted.md` A6) but not
 since — and 070 shows that the valve opens, not that it seals (H16).
-Tonight's 001, with the stored adaptation still in force, read
+The 001 of 24/10 night, with the stored adaptation still in force, read
 **+15 to +22 %** while warming and about **−3 to +1 %** warm — adding fuel
 cold, near zero warm, which a hard rich fault would not show; weak, since
 it is the trim on top of an adaptation not read. **The misfires make it
@@ -710,15 +704,20 @@ The slow rise to 1300 reads as the oil thinned by EPR and still warming,
 less friction at the same throttle (*reasoned*); the swings and the step
 do not.
 
+**Since 27/10 the cable is slackened and the pedal greased** (S12 closed
+on the pedal, `refuted.md` D6): a pedal that stuck in small jumps near the
+start of its travel holds a plate unsteadily too, so S20 may have been
+the pedal. **Whether it outlived the grease is not yet reported.**
+
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** 0x420's `OilTemp` is `raw − 60` °C (`docs/firmware/can-decoding.md`
 question 10, closed 23/10). A bias moves both sides of every comparison alike.
 
 **The remap.** The ECU was remapped in 6/2018, "mild", the tuner finding
-nothing at the top. Written down as H14 (16/10). **Postponed 20/10** (*owner*):
-not written back on 22/10; the tuner emails the original and his remap to be
-compared first, privately, never in this repository (`plan.md` 5a).
+nothing at the top. Written down as H14 (16/10). Not written back on 22/10 (*owner*,
+20/10); **booked for 3/11**, the tuner's original and remap compared first,
+privately, never in this repository (`plan.md` 5a).
 
 **The brake pedal is soft and long** (*owner*, 9/10): hydraulics, not the
 servo and not the engine — a matter for a garage.
@@ -747,7 +746,7 @@ clean after the change so that fresh oil there shows.
 | S14 ↔ S2 | **likely one mechanism** (*owner*) | a misfire's charge burning in the exhaust, loud when the fuel cut adds air |
 | S14 ↔ S3 | **possible** | 014 is blind on the overrun, so it cannot be aligned |
 | S4 ↔ S5 | **very likely one thing** | same window, same speeds; S5 needs no combustion |
-| S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle; but the dips sit on 3 and 4, and lead 4's end was the loosest (H15) |
+| S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle; the dips sat on 3 and 4 until the VW leads (all four alike since), and lead 4's end was the loosest (H15) |
 | S19 ↔ the bad start of 24/10 | **suspected one event** (*owner*) | same window, both what a cylinder flooded while standing gives (S19) |
 | S7 ↔ S19 | **same window** | both after the fill of 24/10; the 24/10 start is in both |
 | S11 ↔ S1 | **untested** | if the hiss is a leak, H3 or H2; the owner reads it as the throttle's own air |
@@ -831,9 +830,9 @@ about. The valve is closed by its spring; the lifter only removes the gap.
   (`idle-log.md`, 26/10); the valves looked whole on 19–20/10 (which says nothing of
   sealing); 18/10 is explained by 3's flaked deposit without it.
 
-**Tests:** a phone recording over each injector and each lifter, **done part-warm 24/10 and hot 26/10, nothing** (the screwdriver by ear dropped 24/10); **the two EPR flushes** (`plan.md` 6a), which clean the
-feed passages and the plungers' varnish — they run alongside BG 44K, so
-an improvement does not tell H1 from H13; a warm leak-down (**not to be
+**Tests:** a phone recording over each injector and each lifter, **done part-warm 24/10 and hot 26/10, nothing** (the screwdriver by ear dropped 24/10); **the two EPR flushes**, done 26/10 (`idle-log.md`), which clean the
+feed passages and the plungers' varnish — alongside BG 44K, so an
+improvement would not tell H1 from H13; no tick since; a warm leak-down (**not to be
 done**, *owner's decision*, 20/10); the lifters pressed down with the cover
 off. 18/10 coming back, cold, would reopen it (`refuted.md` D10).
 
@@ -1172,7 +1171,8 @@ hard use burns them off (*general*).
   nothing for the idle (24/10).
 
 **Tests:** the cleaner and hard driving (a tank from 15/10, done; two tanks of
-BG 44K, the second from 24/10, then a flush and fresh oil, `plan.md` 6a).
+BG 44K, the second from 24/10 and still being driven, `plan.md` 6a; the
+EPR flushes and fresh oil, done 26/10).
 
 ### H14. The remap of 6/2018 — the idle's ignition, or its margin
 
@@ -1201,7 +1201,7 @@ a constant offset underneath, which only the files' diff can show.
 **The ECU** (`vcds.md`): Bosch M5.9.2, hardware `0261206327`, software
 `1037352075` V04, 256 KB flash. No map definition is public.
 
-**Tests:** (1) **the tuner's two files compared** (postponed 20/10): the diff
+**Tests:** (1) **the tuner's two files compared** (before 3/11): the diff
 — how many bytes, in how many blocks; tables found by shape, written as a
 guess where it is one; **the idle cells of the ignition map against the
 measured idle advance**; whether the detection's thresholds were touched.
@@ -1315,7 +1315,7 @@ Loads off 67 ± 2 hot, **level with 12–15/10 and not better**; 014 next to
 met, the *calmer* is not. **One thing is not yet read the same way**: the
 dips spread out, top two 58 % at p 0.77 — the first capture since 11/8
 where the pair does not show; but 157 dips, one drive, and `24` read
-p 0.4 once before. **The upper plenum gasket was renewed the same day**, so
+p 0.4 once before. **`41` (24/10) spread too** (55 %, p 0.77). **The upper plenum gasket was renewed the same day**, so
 the leads were not the only change. **Kept, demoted**, for a share: if the
 captures after item 6 keep the dips spread, the leads took the pair away
 and left the level — a part, not the whole (*More than one at once*); if the
@@ -1530,8 +1530,12 @@ dilution was planned and dropped, 26/10 (the owner's decision): not
 taken*; **032 before the
 oil change and again on the new oil** after a couple of hundred km, with
 no clearing between unless 032 is read first. A trim that moves to zero
-on fresh oil is VW's own confirmation; one that stays points back at H16
-and H7.
+on fresh oil is VW's own confirmation; one that stays points at H19 (the
+MAF against the map) or an injector, since 6e cleared N80 and the
+regulator's reference. **The first reading on the new oil**: 27/10
+evening, a day after the change, **−8.6 %**, relearnt from 0.0 after the
+disconnect of that afternoon — against H17; 6g's reading at about 200 km
+is still to come.
 
 ### H18. Oil past the valve-stem seals, drawn in at idle
 

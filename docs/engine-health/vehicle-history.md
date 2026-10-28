@@ -42,6 +42,8 @@ symptom in `docs/` is dated after it, with a working lamp.
 | At 13 Sep 2026 | 154,000 km |
 | At 23 Oct 2026 | **154,501 km** (`photos/odometer-2026-10-23.jpg`; the cluster's trip 289.4 km since the fill of 17/10) |
 | At 24 Oct 2026 | **154,755 km** (`photos/odometer-2026-10-24.jpg`; the cluster's trip 543.5 km since the fill of 17/10, zeroed at this fill) |
+| At 26 Oct 2026 | **154,999 km**, the oil change (*owner*) |
+| At 27 Oct 2026 | **155,024 km**, the first oil top-up (*owner*) |
 | **Covered in ownership** | **27,800 km over 9.0 years**, about 3,100 km a year *(derived)* |
 
 Odometer at the start of each year, from the owner's expense sheet
@@ -113,7 +115,7 @@ Owner-supplied from service records or from his own work.
 | Both oxygen sensors (pre- and post-cat) | **10/2017 — never changed since** | ~27,600 km |
 | Timing belt and water pump | **10/2017** | ~27,800 km |
 | Fuel filter | **12/2017**; another bought 10/2022, believed the wrong type and never fitted (no record either way) | 4 or 9 years, **not established** |
-| Chiptuning, described by the owner as mild | 6/2018 — **confirmed by the original order email** (*owner*, 12/10/2026). The tuner kept the original map; writing it back was set for 22/10/2026 and is **postponed** (`plan.md` 5a). *This said "the car is not going back to standard" until 12/10* | — |
+| Chiptuning, described by the owner as mild | 6/2018 — **confirmed by the original order email** (*owner*, 12/10/2026). The tuner kept the original map; writing it back was set for 22/10/2026, postponed, and is **booked for 3/11/2026** (`plan.md` 5a). *This said "the car is not going back to standard" until 12/10* | — |
 | MAF sensor | 7/2018 *(connector cleaned 7/2026)* | not recoverable |
 | Dipstick, cap and a seal recorded as "valve seal", against an oil leak. *Owner's recollection (27/9/2026), not certain:* the dipstick's neck was cracked; the seal probably the rubber it seats in, not the valve cover gasket. Record not kept | **12/7/2018** | — |
 | **Fuel tank** | **replaced inside the ownership, date not recoverable** (*owner certain*). *An earlier revision said the tank had never been touched* | unknown |
@@ -145,6 +147,8 @@ Owner-supplied from service records or from his own work.
 | **Spark plugs and ignition leads, new**: NGK `BKUR6ET-10` at 25–30 Nm (*NGK box*); NGK `RC-VW254` leads, black, printed *"5MB"* (`photos/leads-new-2026-10-10-*.jpg`). New Elring `271.230` under the plenum. Battery left connected | **10/10/2026**, by the owner | ~0 |
 | **Air filter element, new**, Bosch **`S 3714`** = `1 457 433 714` (`photos/air-filter-new-2026-10-12-label.jpg`), replacing one of **1/2023** (*owner's records*; old element `photos/air-filter-old-2026-10-12-*.jpg`). The car stands outdoors all year. **Airbox `1C0 129 607 A`** (element `1J0 129 620`, Mann `C37153`, *read off the lid*, `photos/airbox-2026-10-12-label.jpg`) **found cracked** on the filtered side ahead of the MAF; sealed with putty inside and out, a stopgap (`photos/airbox-crack-2026-10-12-sealed.jpg`, `-sealed-outside.jpg`, `photos/airbox-2026-10-12-detail.jpg`, `photos/airbox-2026-10-12-outlet-maf.jpg`) | **12/10/2026**, by the owner | ~0 |
 | Valve cover nuts **re-tightened**: loosened about 90° to a full turn, all eight tightened with the plenum on | **12/10/2026**, by the owner | ~0 |
+| **Crankcase breather hose, new**, Gates `EMH118`, for the original `06A 103 493 N` (split at its cuff); **the thin hose to the tee by the runners** and **the 8 mm hose to the throttle** renewed; new clips | **14/10/2026**, by the owner | ~0 |
+| **Fuel cleaner**: one can of Liqui Moly *DFI Cleaner* with about 18 l of OMV MaxxMotion 100 | **15/10/2026** | — |
 | Valve cover nuts **re-tightened again** | **the week of 19/10/2026**, by the owner (reported 26/10) | ~0 |
 | **Exhaust manifold** (stainless, double-flow, SSP 233 p. 7) | **original, never replaced** (*owner*: rusty outside; a hole cannot be told from below). `photos/manifold-2026-10-12-*.jpg`, `photos/exhaust-flange-2026-10-12-below-*.jpg` | the car's |
 | **Idle speed adaptation**, 01 channel 01 (login 01283; `vcds.md`) | **128 = 780 rpm, as found 12/10/2026** (`photos/vcds-idle-adapt-2026-10-12-*.jpg`); raised to **133 = 830 rpm** (the most accepted) and **put back to 128** the same day (*owner*; `refuted.md` D9) | — |
@@ -156,6 +160,9 @@ Owner-supplied from service records or from his own work.
 | **Battery disconnected** (every ECM adaptation restarts — *except 055, which a minute's disconnect on 26/10 left alone*) | after the summer heater work, then **23/9, 26/9, 1–2/10, the morning of 4/10, about a minute on 26/10 and from midday 27/10/2026** (several hours); 098 run 2/10 and 4/10 (on 26/10 and the morning of 27/10 it was only read as a measuring block) | — |
 | **Throttle cable slackened** at its detent (*owner*): it had been taken up to the stop on 1–2/10; 054 afterwards about 5° at rest to 90° on the floor | **27/10/2026**, by the owner | — |
 | **Accelerator pedal greased** (*owner*): it stuck near the start of its travel, plate jumping 1–4° at a time; smooth afterwards (`idle-log.md`, 27/10 evening) | **27/10/2026**, by the owner | — |
+| **Fuel cleaner, BG 44K** (`208`): the first can into 23.5 l of OMV MaxxMotion 100; the second into the Orlen fill of 24/10 (row above) | **23/10/2026** at 154,501 km; **24/10/2026** at 154,755 km | — |
+| **Engine oil and filter**: two flushes with **BG EPR** (`109`), each 30 minutes at about 1250 rpm, drained hot, a Bosch `0 451 103 314` filter between; then **VW filter `06A 115 561 B`**, a **new VW drain plug** at about 30 Nm, **Total *Quartz 9000 Energy* 5W-40**, about 4 l. Next changes: EPR each time until the symptoms are settled, at most once a year (*owner*) | **26/10/2026** at 154,999 km, by the owner | 0 |
+| Engine oil **topped up**, about 0.4 l, after the level fell overnight as the oil ran back from the head; at the top mark after the next drive | **27/10/2026** at 155,024 km, by the owner | — |
 
 ### Notes to the table
 
