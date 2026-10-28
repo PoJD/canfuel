@@ -134,7 +134,7 @@ Owner-supplied from service records or from his own work.
 | **Compression, 17/9/2026: 12 bar on all four** (*garage-recorded*; *earlier revisions said 13, misremembered*) | — | — |
 | Injectors `06A 906 031 C` / Bosch `0 280 155 791`, new from the UK | delivered 22/9, **fitted 23/9/2026** by the owner; three not fully home until refitted 1/10/2026 (`idle-log.md`) | ~0 |
 | **Fuel filter, new**, Bosch `0 450 905 318` | **23/9/2026**, with the injectors | ~0 |
-| **MAF sensor, new**, genuine VW `06A 906 461 A` (the 2018 unit kept). Hose to the throttle on the owner's clamps: at the MAF a rubber-lined pipe clamp, **since 9/10/2026 a worm-drive band clamp `W2 50-70mm`** (`photos/maf-clamp-2026-10-09-*.jpg`); a one-screw band clamp at the throttle | **24/9/2026** (`idle-log.md`, *The MAF*) | ~0 |
+| **MAF sensor, new**, genuine VW `06A 906 461 A` (the 2018 unit kept). Hose to the throttle on the owner's clamps: at the MAF a rubber-lined pipe clamp, **since 9/10/2026 a worm-drive band clamp `W2 50-70mm`** (`photos/maf-clamp-2026-10-09-*.jpg`); a one-screw band clamp at the throttle | **24/9/2026** (`idle-log.md`, 24/9) | ~0 |
 | Injectors' air-shroud line: **new 8 mm sleeves** on the rigid pipe | **1/10/2026**, by the owner | ~0 |
 | **Throttle body, new**, Pierburg `7.03703.13.0` (cross-referenced to `06A 133 064 H`, without cruise control), new flange gasket | **2/10/2026**, by the owner; 098 *ADP OK* | ~0 |
 | Throttle vacuum elbow `06A 133 374` — **replaced by a longer plain hose**, **8 mm bore**, on a tee whose other thin leg takes 6 mm (*owner*, 12/10/2026); the old elbow kept | **2/10/2026**, by the owner | ~0 |
@@ -177,8 +177,8 @@ carries name, address and plate), and **12 bar on all four, 17/9/2026**
 — different gauges and garages. What it rules out is `refuted.md` A4.
 
 **The valve cover and throttle job, 1–4/10/2026**: the rows dated 1/10,
-2/10 and 4/10. What it found is `idle-log.md`, *Appendix — the job of
-1–4/10 in detail*.
+2/10 and 4/10. What it found is `idle-log.md`, the entries of
+1–2/10, 3/10 and 4/10.
 
 ---
 

@@ -493,7 +493,7 @@ primed: **the starter held until it caught, about 4 s by the owner's
 count**, and it did not die. Off the display: **`StartCrank` 1.22 s,
 `StartDip` 218 rpm, `StartClt` 24 °C** — the deepest `StartDip` on
 record, against 15–118 on the clean starts of 24/9–3/10 and 141 on
-11/9's near-stall on the old injectors (`idle-log.md`, *The starts
+11/9's near-stall on the old injectors (`idle-log.md`, 4/10, *The starts
 measured from the capture*). Read as (*reasoned*): it fired at 1.22 s
 and fell back about to cranking speed within 2 s — the same catch and
 die, with the starter still turning to carry it. **The slope is not
@@ -657,8 +657,8 @@ rests on the road observation**, not on the flush.
 **Also on the road**
 (*owner*): hard to hold the engine speed steady, **noticed since the job
 of 1–2/10**, which fitted **the new throttle** (Pierburg `7.03703.13.0`)
-and **took up the throttle cable's slack** (`idle-log.md`, *The valve
-cover and throttle job*); the same job renewed the cover gasket, the
+and **took up the throttle cable's slack** (`idle-log.md`, *1–2/10 — the valve
+cover, throttle and breather job*); the same job renewed the cover gasket, the
 plenum gasket and the breather.
 
 **Not S1.** S1 is dips at idle with the idle governor in charge; this is

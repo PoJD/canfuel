@@ -170,7 +170,15 @@ carries a generated block; a figure typed into prose only goes stale.
     measured, and what a repair is *not* known to have achieved; kept
     current until the idle is fixed, then kept as reference for other
     owners) are permanent. **Each step `plan.md` completes adds an entry
-    to `idle-log.md` in the same commit.**
+    to `idle-log.md` in the same commit.** **Every `idle-log.md` entry is
+    a `##` heading with the date and a short title, then the same three
+    lines in this order — `Repairs` (what was changed, fitted, adjusted
+    or added), `Tests` (what was only tested, read or recorded), `Changes
+    after` (split into *measured*, *felt* and *not known*) — with an
+    empty line left out, then a short detail and no procedure.** Analysis
+    and the maintainer's questions that only re-read earlier data are not
+    entries; their findings go to the symptom in `open.md` (*the
+    maintainer, 28/10/2026*).
     **Every new observation the maintainer reports about the car** — a sound,
     a smell, a leak, a reading — **is flagged: say whether it could be a new
     symptom in `open.md` (or change an existing one) and why, then ask. The

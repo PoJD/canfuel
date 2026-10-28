@@ -80,7 +80,7 @@ first stop has no 014 beside it and is left out.
   `19` to 4/10 and the dip count 22 → 11 → 15 → **5.6**; 4/10's hot stop
   is the smoothest since August by both, which is what the owner felt
   (August's one hot hold, 22 s, graded 48; `docs/engine-health/idle-log.md`,
-  *`IdleHealth` against its own 100*). They
+  4/10, *`IdleHealth` against its own 100*). They
   also follow **oil temperature** more than anything else: the middle
   band reads 105–125 on most days.
 
