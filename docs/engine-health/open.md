@@ -624,8 +624,10 @@ is the specification, not the code's condition, and the label file holds
 none. **It is not the idle cell reaching −10 as VCDS shows it**: on 25/10
 night, with the regulator's hose off, the idle cell went to **−12.5 %**
 for about 40 s (`vcds/vcds-step6e-cold-2-001-032-033.csv`) and the fault
-memory was empty afterwards. The part-load cell has sat at +7.8 to +8.6 %
-since 25/10, the other way.
+memory was empty afterwards. The part-load cell is positive, the other way,
+and has been on every reading since the new MAF (24/9): +1.6 to +5.5 %
+up to 23/10, +6.3 to +8.6 % since 25/10. *This said "since 25/10", which
+held only for the higher values (the owner, 28/10).*
 
 **Not settled that the start set it** (*reasoned*): a start that dies at
 once runs on a cold probe, open loop, and cannot itself trip a trim fault;
