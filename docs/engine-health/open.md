@@ -619,6 +619,22 @@ and the 44K together, so it cannot split them; the day on 44K in OMV
 to the Verva. Clean starts on OMV point at the fuel; bad ones point back
 at the engine or the map, which 3/11 then changes alone.
 
+**032 against the fill** (*the owner's question*, 28/10): the idle cell
+read −0.8 to −6.3 % from the MAF to the fill (−3.1 on 23/10, OMV and the
+first 44K) and **−6.3 to −8.6 % on every reading since 25/10**; the
+part-load cell +2.3 to +5.5 % before, **+3.9 to +8.6 %** after
+(`idle-log.md`). So the deeper split began after the Verva fill — but the
+clearing of 24/10 night, the hose of 25/10 and the oil of 26/10 fall in
+the same days, and S19's window opens before the fill. **How a fuel could
+do all three** (*reasoned*): a fuel that evaporates more readily fills
+the canister faster, and N80, which passes a little air unpowered (H16,
+25/10 night), lets that vapour into the intake at idle (the idle cell,
+P0172) and while the car stands (a flooded first start); a fuel with less
+energy per litre raises the part-load cell alone. The cleaner is in the
+fuel, so whatever it does to its evaporation counts with it. How Verva 100
+and OMV MaxxMotion 100 differ in either is not known. **Read**: the starts
+on OMV from 29/10, and 032 once enough of it has run (`plan.md` 6g).
+
 ### S11. A hiss at the back of the engine at a warm idle
 
 *Owner*, from 26/9. It outlived the new breather and cover gasket. Closed
