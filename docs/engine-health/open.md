@@ -59,7 +59,9 @@ throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
 - **The cylinder 4 knock window: S4, S5** — its own cluster, not in
   `plan.md` (*owner's decision*, 9/10).
 - **S7, the cold start** — caught and died 24 and 25/10, carried by the
-  starter 26/10, hesitant primed 27/10, **clean plain 28/10**. The starts
+  starter 26/10, hesitant primed 27/10, **clean plain the morning of
+  28/10, caught and died again that afternoon** after about 6 hours
+  outdoors (`StartCrank` 1.41 s, the longest yet). The starts
   do not follow the priming, which is against a rail draining while
   standing; flooding and the fuel stay. Priming dropped (28/10).
 - **S19, P0172 and the split trim** — the code once (24/10), not back on
@@ -547,7 +549,20 @@ draining while standing**; flooding or the fuel stay. **Not the throttle
 cable** (*owner*): taken up since the throttle's fitting on 1–2/10, with
 three weeks of clean starts after it; *this said the cable, slackened
 27/10, stood beside them*. The owner's reading: the fuel, or deposits
-loosening as the 44K tank runs out.
+loosening as the 44K tank runs out. **28/10, afternoon, plain**, after
+about 6 hours parked outdoors (*owner*; the slope and the outside air not
+given): **caught and died at once**, the starter not held, and the second
+start clean. Off the display, the first: **`StartCrank` 1.41 s, `StartDip`
+254, `StartClt` 18 °C** — longer than any start in `idle-log.md`
+(1.38 s the longest before), and a dip
+saturated: the speed fell at least 254 rpm inside the 2 s, the engine
+stopping; the second: **0.74 s, 0, 18 °C**. Read (*reasoned*): the catch
+and die of 24 and 25/10 with nothing to carry it, where 26/10's held
+starter left 218. **Both bad afternoons followed a few hours outdoors**
+(24/10 and this), and the same morning's start after about 10 hours in the
+garage was clean — two cases, not yet a pattern, and 25/10's died after
+12 hours in the garage (*reasoned*). The coolant
+read 18 °C, 6 °C under 26 and 27/10's 24 °C.
 Closed on 26/9 after the new injectors (`refuted.md` D2): 14 captured
 starts, all clean.
 
