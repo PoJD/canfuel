@@ -157,7 +157,7 @@ error):
 | 26/10 | display | settled | warmed in a jam, gently, under 3000 rpm; then one brisker stretch, revs held up in 2nd downhill on engine braking | **80–100** all through the warm-up, **still at 92 °C** of oil; **60–70** after the brisker stretch; everyday state (*owner*) |
 | 27/10 | display, video | settled | `plan.md` 6k: a gentle drive to about 88 °C of oil, the A/C against the loads (`idle-log.md`) | **~70** everyday state; **35–50** the A/C alone; **54–62** every load but the A/C; **25–35** both |
 | 27/10 eve | display, video | settled (055 reset that afternoon, relearnt to −1.17) | the pedal greased; oil changed 26/10; the second 44K tank about four-fifths used; oil 100 °C | **54** loads off (mean; **35–65** in waves of about 1½ min); **34** every load on with the A/C (26–42, still falling) — **the first stop with loads off within 25 of loads on** (condition 2 below), one stop |
-| 28/10 | display | settled | the last of the Verva tank, 13 l in the morning to 5 l; oil 95–100 °C | **70–100 most of the time, down to 47 at moments**, everyday state; **felt worse** (*owner*) — not lower than 27/10's figures |
+| 28/10 | display | settled | the last of the Verva tank, 13 l in the morning to 5 l; oil 95–100 °C | **70–100 most of the time, down to 47 at moments**, everyday state; **felt worse** (*owner*), and the figures agree: above 27/10's ~70 in the same state, lower being calmer |
 
 **The trend over every capture** (28/10, at the owner's question; every
 standing idle settled 30 s and more, graded as `tools/afterpull.py`'s
@@ -246,7 +246,9 @@ leads** (`40`, `41`), to be held over more drives; **(2) load is no
 longer needed** — loads-off `IdleHealth` within about 25 of loads-on (19/10:
 about 100 against 50); **(3) at least the best level shown**, loads off about
 50–60 (12/10, 15/10). Short of all three, the owner may close it as
-*acceptable, cause known*.
+*acceptable, cause known*. **Since 28/10 the warm stops are read in the
+everyday state only** (`plan.md`, *the owner's decision*), so (2) and (3)
+are not read until he restates them on it.
 
 **Load smooths it.** Every consumer at idle — A/C, lights, blower, heated
 glass — makes the ECU open up the air, and the idle calms (26/9: 35–50 loads

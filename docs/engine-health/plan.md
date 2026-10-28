@@ -52,8 +52,8 @@ Captures only where an item asks for one. **Current: item 6 and 6a–6i;
      or loads. Write each off and on into the chat. A flashing lamp is
      expected; clear the fault memory after the drive.
 6. **Drive normally with the MFD in**; brisk driving once warm is
-   welcome. At a warm stop now and
-   then, the two states of the standing items, written into the chat.
+   welcome. At a warm stop that comes anyway, `IdleHealth` in the
+   everyday state and the oil temperature, written into the chat.
    - **No captures for now.** Only **once `IdleHealth` on the MFD is
      clearly better**: one or two warm drives captured, on different
      days. Claude runs the capture; VCDS on **014, 003, 020**; 055 once
@@ -115,21 +115,11 @@ Captures only where an item asks for one. **Current: item 6 and 6a–6i;
   - After a hard or long drive: switch off on arrival, no idling.
   - **Engine lamp flashing**: ease off at once, stop where safe, engine
     off, write it into the chat.
-- **`IdleHealth` at a warm stop, always in two states** (oil 95–100 °C,
-  neutral, no throttle, nothing else touched), on every drive that reads
-  it, captured or off the display:
-  1. **2 minutes with every load off**, the lights too where the switch
-     allows it (in the dark); whatever cannot be switched off stays on,
-     and say which.
-  2. **Then 2 minutes with every load on**: main beam, both seat heaters,
-     the heated glass, A/C and the blower on full.
-
-  With the laptop, Claude reads both off the capture; with the MFD in,
-  write each state's reading into the chat.
-- **When there is no time for the two states: the everyday state**, and
-  most readings off the display will be in it — **blower on 1, one seat
-  heater on 1, the lights on**, oil warm. A reading in it needs no label;
-  any other state is named.
+- **`IdleHealth` only in the everyday state** — **blower on 1, one seat
+  heater on 1, the lights on** — at warm stops that come anyway (oil
+  95–100 °C, neutral, no throttle), with the oil temperature; any other
+  state is named. **Idling is kept short**: no stop is made or lengthened
+  to read it.
 - **The fault memory after every session with VCDS connected**: read,
   saved, then cleared by the owner by hand. Not after a plain drive.
 
@@ -432,24 +422,19 @@ candidates, ranked*.
   (`open.md` S3, 4/10). **A flashing lamp** is the ECU's own
   converter-damage rate (SSP 175, `vcds.md`); this car's idle counts sit
   below even the 2 % that stores a code, so a flash means something new.
-- **`IdleHealth` in two states** (*owner's decision*, 19/10/2026;
-  `open.md` S1, *Load smooths it*): since the cleaner the partial loads
-  make little difference and only everything on together calms it, so
-  one state is all off and the other all on, with nothing between to
-  argue about. The lights go off where the dark allows. **Two minutes
-  each**: neighbouring 2-minute windows on a steady warm idle differ by
-  4–18 (`24`, `26`, `28`, `30`, `32`, `37`), so one pair shows only a
-  difference of about 25 or more; **pairs pool over drives**. In a
-  capture the switch shows in b7, so the states need no timing in the
-  chat. Four minutes standing is accepted against the converter rule
-  (*owner*).
-- **The everyday state** (*owner's decision*, 23/10/2026): four minutes
-  and main beam at every stop do not fit his driving, so most readings
-  off the display come in one fixed mild-load state. It is a third ruler,
-  not either of the two: it is compared with itself, and shifts in it are
-  watched without conclusions yet (*owner*). It sits between the two
-  states, so it reads neither as calm as every load on nor as rough as
-  every load off.
+- **`IdleHealth` in the everyday state only** (*owner's decision*,
+  28/10/2026). *Until 28/10 a warm stop was read in two states, 2 minutes
+  every load off and 2 minutes every load on (owner's decision, 19/10),
+  and the everyday state only when there was no time.* Every load on read
+  calm every time and 014 counted nothing in it, so the pair stopped
+  telling anything new, and four minutes standing worked against keeping
+  the idling short. The everyday state (*owner's decision*, 23/10) — one
+  fixed mild load, chosen because four minutes and main beam at every stop
+  did not fit his driving — is now the one ruler, compared with itself. It
+  sits between the two old states, calmer than every load off and rougher
+  than every load on. **What it costs**: S1's closing marks (2) and (3) are
+  written in loads off (`open.md`, *When S1 closes*), so they are not read
+  on it.
 - **The fault memory** (*owner*, 18/10/2026): every session starts from
   an empty memory, and the saved file keeps what the session stored.
   Only when VCDS is connected anyway (*owner*, 24/10/2026): a plain
