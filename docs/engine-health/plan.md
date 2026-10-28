@@ -18,7 +18,8 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Claude runs the capture on every drive. **Current: item 6.**
+Captures only where an item asks for one. **Current: item 6 and 6a–6i;
+5a on 3/11.**
 
 5a. **The original map written back** at the tuner, **booked for 3/11**.
    First the tuner emails both files, the original and his remap;
