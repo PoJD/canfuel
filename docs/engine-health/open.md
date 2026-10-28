@@ -512,7 +512,12 @@ lost while standing as the whole** (*owner*): before the new injectors
 priming always cured it, the engine catching at once without a
 hesitation, and today it did not. So primed still hesitates, which is
 the "both die" branch below: flooding or the fuel rather than a rail
-that drained.
+that drained. **28/10, plain**, after about 10 hours: it ran, perhaps a
+slight hesitation in the first second but no fall (*owner*), **`StartCrank`
+0.7 s, `StartDip` 0** — the first cold start after the throttle cable was
+slackened and the battery off for hours (27/10). Three starts that do not
+follow the priming: **against the rail draining while standing**; flooding
+or the fuel stay, and the cable is new beside them (*reasoned*).
 Closed on 26/9 after the new injectors (`refuted.md` D2): 14 captured
 starts, all clean.
 

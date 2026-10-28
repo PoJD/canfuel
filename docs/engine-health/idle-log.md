@@ -815,3 +815,18 @@ counting a rough idle (`open.md` S1, *By ear*). The display's supply 14.1 V
 loads off, 12.5 V loads on. *The two `IdleHealth` means are read off the
 videos (28/10); the owner's glances had given about 45 and 39.* Fault
 memory empty before and after.
+
+## 28/10 — the cold start, plain
+
+- **Tests:** the cold start not primed, after about 10 hours (`plan.md`
+  6h).
+
+**It ran**: perhaps a slight hesitation in the first second, but **no
+fall of the engine speed** as on the mornings before (*owner*).
+**`StartCrank` 0.7 s, `StartDip` 0** — as quick as the clean starts of
+24/9–4/10 (0.70–0.93 s). The temperature was not given. Three starts now
+(26/10 plain, bad; 27/10 primed, hesitant; 28/10 plain, clean) do not
+follow the priming, which is against a rail that drained while standing
+(`open.md` S7). **The first cold start after the throttle cable was
+slackened and the battery off for hours (27/10)**; one start cannot tell
+those apart.
