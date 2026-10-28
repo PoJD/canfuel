@@ -611,7 +611,14 @@ into a cylinder while the car stands would give both (*reasoned*). The
 trims behind it were lost to the clearing before 032 was read
 (`CLAUDE.md`); the next reading of 032 is the first evidence. Also in the
 window: the first tank of Orlen Verva 100 and two 170 km drives held at
-5000 rpm.
+5000 rpm. **It cannot be dated more closely** (28/10): this ECU's fault
+memory carries a code and its status only, no mileage, time or freeze
+frame (`photos/vcds-faults-2026-10-26-after-flush2.jpg`), so the window is
+everything between the empty reading of 23/10 and the night of 24/10 —
+and it **opens before the fill**, with the drive out on the old tank (OMV
+and the first 44K) run down to 0.4–0.7 l. Before the window nothing points
+at it: 032 −3.1 to −6.3 % (19–23/10), the live regulation at a warm idle
+centred on 0 with no excursion past −5.5 % (21/10, VCDS 001).
 
 **Not settled that the start set it** (*reasoned*): a start that dies at
 once runs on a cold probe, open loop, and cannot itself trip a trim fault;
