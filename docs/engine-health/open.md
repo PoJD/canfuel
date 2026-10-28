@@ -604,6 +604,20 @@ standing is not the whole; what is left is flooding or the fuel, read
 by the starts as the 44K tank runs out and at the next fill of another
 brand.
 
+**The map and the fuel together** (*the owner's question*, 28/10;
+*reasoned*): the remap of 6/2018 (H14), and the idle base about 8 % rich
+it may leave against the new MAF (H19, 032's idle cell), cannot be the
+whole — the engine started cleanly on the same map and OMV MaxxMotion 100
+for years and through 24/9–23/10. But a map with little cold-start margin
+would make the start the first thing a different fuel tips over, so the
+two together fit as well as the fuel alone. Whether the remap touched
+the start's fuelling at all is not known (the tuner's files, 3/11). **The
+fill of OMV MaxxMotion 100 planned for 29/10** (*owner*) ends the Verva
+and the 44K together, so it cannot split them; the day on 44K in OMV
+(23–24/10) brought no bad start before the Verva fill, which leans weakly
+to the Verva. Clean starts on OMV point at the fuel; bad ones point back
+at the engine or the map, which 3/11 then changes alone.
+
 ### S11. A hiss at the back of the engine at a warm idle
 
 *Owner*, from 26/9. It outlived the new breather and cover gasket. Closed
