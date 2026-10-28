@@ -586,7 +586,9 @@ control** (0x1A0 reading inferred from this one event); not a symptom
   44K** and 50.88 l of **Orlen Verva 100** at 154,755 km — the first fill of
   another brand since 2017.
 - **Tests:** about 340 km in the day, an hour above 4000 rpm; a phone
-  recording over injectors and cover, part-warm (`plan.md` 6c); a cold
+  recording over injectors and cover, part-warm (`plan.md` 6c), and **the
+  injector loom flexed by hand** while it was made, judged by ear only
+  (*owner*, reported 28/10): no change heard; a cold
   capture with injector 4 cut for 30 s (`41`, `plan.md` 6d, VCDS
   014/001/003).
 - **Changes after:**
@@ -837,12 +839,3 @@ clean for three weeks after that, until 24/10. *This said the cable,
 slackened 27/10, could not be told apart from the battery disconnect.*
 The owner's reading: the fuel, or deposits loosening as the cleaner's
 tank runs out — not known.
-
-## Before 28/10 — the injector loom flexed
-
-- **Tests:** the injector loom and connectors at 3 and 4 flexed by hand at
-  a warm idle (*owner*, reported 28/10, the date not given; off the
-  display, not captured).
-
-**No change** in the idle. H4's loom is cleared as far as a hand can
-clear it (`open.md` H4).
