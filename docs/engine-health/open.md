@@ -514,7 +514,7 @@ hesitation, and today it did not. So primed still hesitates, which is
 the "both die" branch below: flooding or the fuel rather than a rail
 that drained. **28/10, plain**, after about 10 hours: it ran, perhaps a
 slight hesitation in the first second but no fall (*owner*), **`StartCrank`
-0.7 s, `StartDip` 0** . Three starts that do not follow the priming: **against the rail
+0.7 s, `StartDip` 0**. Three starts that do not follow the priming: **against the rail
 draining while standing**; flooding or the fuel stay. **Not the throttle
 cable** (*owner*): taken up since the throttle's fitting on 1–2/10, with
 three weeks of clean starts after it; *this said the cable, slackened
