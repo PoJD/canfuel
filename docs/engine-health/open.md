@@ -1597,8 +1597,23 @@ alone, a low pressure (H7) the part-load cell positive alone.
 
 | S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
 |---|---|---|---|---|---|---|---|---|---|
-| — | — | — | — | — | ~ | — | — | ✔ | — |
+| ~ | — | ~ | — | — | ~ | — | — | ✔ | — |
 
+- **S1 ~ and S3 ~: the MAF reaches the idle beyond the mixture** (*the
+  owner's question*, 28/10). The loop holds a warm idle at λ = 1 whatever
+  the MAF reads, but **the dips halved when the MAF was changed** (13–19 a
+  minute on the 2018 one, 6–14 on every capture since; `refuted.md` C2),
+  with nothing else visible about a dip changing. C2's two routes, both
+  *reasoned*: the load computed from the MAF feeds the idle governor's
+  torque model and the misfire thresholds (014 counted differently after
+  the swap, A11); and the loop's swing is a share of the fuel the MAF
+  asks for, so a base read wrong makes the same swing larger in real
+  fuel. A map made for the 2018 MAF would leave the new one still read
+  off what the map expects — the same routes, smaller. **Against as the
+  whole**: the idle was rough in August on the 2018 MAF reading normal,
+  and for years before; the swap halved the dips and fixed nothing. And
+  the idle advance moved between 11/8 and the morning of 24/9, on the same
+  MAF (H14), so that is not this.
 - **For: the timing.** The part-load cell was 0.0 (20/8) and +1.6 %
   (10/9) on the 2018 MAF and has been +1.6 to +5.5 % since the new one,
   +6.3 to +8.6 % since 25/10.
