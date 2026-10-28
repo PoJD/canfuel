@@ -22,9 +22,7 @@ Captures only where an item asks for one. **Current: item 6 and 6a–6i;
 5a on 3/11.**
 
 5a. **The original map written back** at the tuner, **booked for 3/11**.
-   First the tuner emails both files, the original and his remap;
-   upload them into the chat (never into the repository). If they have
-   not been read by then, the date moves. When it goes ahead:
+   The files come on the day, not before. When it goes ahead:
    - **At the tuner, before he writes**: ask for each file as the
      **whole flash**, not only the maps — **the original** he read before
      the remap, **his remapped version**, and if he will, **a read of the
@@ -191,8 +189,10 @@ adds what it does not: the MAF's air and the ignition angle. 10–20
 minutes of idle in all, against the standing item for the converter,
 accepted as an exception. **6g goes first**: the map's reset would clear
 the 032 it waits for.
-**Not on 22/10 but on 3/11** (*owner*, 20/10): the tuner emails both files
-to be compared first, privately, never in this repository. What each differing table
+**Not on 22/10 but on 3/11** (*owner*, 20/10). **The files come with the
+map, not before** (*owner*, 28/10: the tuner has a busy week), so they are
+compared afterwards, privately, never in this repository; the map goes
+back without the diff in hand. What each differing table
 *is* needs a map definition, so without one it is a guess from its shape
 and is written as one.
 - **The tuner's files.** The ECU is read on the bench, which gives the

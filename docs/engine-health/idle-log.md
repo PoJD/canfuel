@@ -807,6 +807,8 @@ this morning had been read as a measuring block, so no adaptation ran then.
     back where it was on 26/10; 055 −0.97;
   - *felt:* **the throttle could be fed in smoothly, for the first time
     with this car** — **S12 closed** (`refuted.md` D6);
+    the speed wandering at a held pedal (S20) a little better, still
+    there (28/10);
   - *not known:* nothing at idle — the pedal is not touched there.
 
 The pedal stuck in the band where the ECU switches from idle to part load.

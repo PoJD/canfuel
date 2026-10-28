@@ -68,8 +68,8 @@ throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
   hose and, on 27/10, on the new oil. Fits H19 (the MAF against the map)
   and H17; 6e cleared N80 and the regulator's reference as its source.
 - **S20, the speed wandering at a constant pedal** (since 1–2/10, on the
-  road) — the cable slackened and the pedal greased on 27/10; whether it
-  outlived them is not yet reported. Not the idle.
+  road) — **a little better since the cable was slackened and the pedal
+  greased (27/10), still there** (*owner*, 28/10). Not the idle.
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm).
 
@@ -82,8 +82,8 @@ down when the dips spread over all four.
 **Next** (`plan.md`): the second 44K tank driven out on the new oil,
 read off the display; **032 after about 200 km on the new oil** (6g);
 every cold start, plain (6h); the oil level every 500 km (6i); then
-**the original map at the tuner on 3/11** (5a), once his two files have
-been compared.
+**the original map at the tuner on 3/11** (5a); his two files come
+with it and are compared afterwards.
 
 ---
 
@@ -707,7 +707,8 @@ do not.
 **Since 27/10 the cable is slackened and the pedal greased** (S12 closed
 on the pedal, `refuted.md` D6): a pedal that stuck in small jumps near the
 start of its travel holds a plate unsteadily too, so S20 may have been
-the pedal. **Whether it outlived the grease is not yet reported.**
+the pedal. **It outlived them, a little better** (*owner*, 28/10): the
+pedal was part of it at most.
 
 ### Other — not symptoms, but they touch this file
 
@@ -716,7 +717,7 @@ question 10, closed 23/10). A bias moves both sides of every comparison alike.
 
 **The remap.** The ECU was remapped in 6/2018, "mild", the tuner finding
 nothing at the top. Written down as H14 (16/10). Not written back on 22/10 (*owner*,
-20/10); **booked for 3/11**, the tuner's original and remap compared first,
+20/10); **booked for 3/11**, the tuner's original and remap taken on the day and compared afterwards,
 privately, never in this repository (`plan.md` 5a).
 
 **The brake pedal is soft and long** (*owner*, 9/10): hydraulics, not the
@@ -1203,7 +1204,7 @@ a constant offset underneath, which only the files' diff can show.
 **The ECU** (`vcds.md`): Bosch M5.9.2, hardware `0261206327`, software
 `1037352075` V04, 256 KB flash. No map definition is public.
 
-**Tests:** (1) **the tuner's two files compared** (before 3/11): the diff
+**Tests:** (1) **the tuner's two files compared** (they come on 3/11 with the map, *owner*, 28/10): the diff
 — how many bytes, in how many blocks; tables found by shape, written as a
 guess where it is one; **the idle cells of the ignition map against the
 measured idle advance**; whether the detection's thresholds were touched.
@@ -1783,7 +1784,7 @@ is in git.
 | 5 | **H2** a leak ahead of the probe | S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test |
 | 6 | **H1** valve or lifter | **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes (6a) |
 | 7 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
-| 8 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, likely the cable, slackened 27/10; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting follows 055's learnt value (`refuted.md` C19), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
+| 8 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting follows 055's learnt value (`refuted.md` C19), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
 | 9 | **H3** a leak at one runner | the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
 | 10 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
 | 11 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed at a warm idle by the owner, no change** (28/10) | VCDS 004 beside 014 |
