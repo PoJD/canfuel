@@ -1240,6 +1240,10 @@ this one map (H16 has the readings). A map does not change between
 drives, so it cannot be what moves the trim from day to day; at most it is
 a constant offset underneath, which only the files' diff can show.
 
+**The owner's recollection** (28/10, uncertain): the tuner may have
+warned in 2018 that the idle could get worse. Nothing found on the web
+for this engine either way (*What the forums say about this idle*).
+
 **The ECU** (`vcds.md`): Bosch M5.9.2, hardware `0261206327`, software
 `1037352075` V04, 256 KB flash. No map definition is public.
 
@@ -1766,6 +1770,20 @@ been through. What was reported as fixed: a new battery, a new Bosch coil, a
 new lambda probe, **original VW leads instead of aftermarket ones**, rings
 and a head going-over, a sticking bucket tappet, the timing belt a tooth out.
 Most of these are already done here; the belt is not.
+
+**A remap that made the idle worse** (searched 28/10 at the owner's
+request, Czech and English): **no AQY, 2.0 8v or Motronic M5.9.2 case
+found**, and no thread where going back to the stock map was the fix on
+such an engine. What there is, all general and none a source: Czech
+tuners' own pages say a poorly made map can give an uneven idle
+(raziteam.cz, radyprovsechny.cz); a flash clears the adaptations, so the
+idle can read worse for a few drives until they relearn
+(nefariousmotorsports, "Rough idle after remap"); and **HP Tuners'
+material on MAF scaling says a scaling error shows most at idle, where
+the flow is lowest** — the mechanism H19 rests on — with owners of tuned
+cars reporting idle trouble after a MAF of a different make, gone with
+the original. **The owner's recollection** (28/10, uncertain, nearly ten
+years back): the tuner may have warned that the idle could get worse.
 
 **P0172 and a negative idle trim on this engine** (searched 25/10, the
 same languages): **no AQY thread with a reported fix.** The general
