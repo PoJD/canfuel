@@ -252,7 +252,11 @@ stay as they are and the closing itself is read loads off** — for S1 and
 S3 alike — **and probably on the overrun as well** (*the owner's
 decision*, 28/10): the downshift without a blip, where the load reads
 about 10 % (VCDS 014, field 2) and the bangs of S14 come, is the thinnest charge and so the
-strictest test (*owner*).
+strictest test (*owner*). **Read by ear, not by 014** (*owner*): on the overrun 014's
+misfire recognition reads `deaktiv.` — in every 014 log in
+`test/fixtures/vcds/`, every row above 1300 rpm with the load under 20 %
+reads it, none `aktivováno` (counted 28/10) — so the counter cannot move
+there.
 
 **Load smooths it.** Every consumer at idle — A/C, lights, blower, heated
 glass — makes the ECU open up the air, and the idle calms (26/9: 35–50 loads
