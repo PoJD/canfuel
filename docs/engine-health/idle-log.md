@@ -720,6 +720,8 @@ camshaft rate, which the part-warm recording could not say.
     disconnect reset 032 to 0.0 / 0.0 but **not 055**; then **055 learnt
     itself back** over warm idling, −2.78 → **−0.90**, and the next three
     starts were clean, lamp off;
+  - *felt:* the engine livelier overall, revving more willingly (*owner*,
+    28/10, who allows it may be placebo);
   - *not known:* anything for the idle — read on the new oil with 6g's 032
     at about 200 km.
 
@@ -827,6 +829,9 @@ fall of the engine speed** as on the mornings before (*owner*).
 24/9–4/10 (0.70–0.93 s). The temperature was not given. Three starts now
 (26/10 plain, bad; 27/10 primed, hesitant; 28/10 plain, clean) do not
 follow the priming, which is against a rail that drained while standing
-(`open.md` S7). **The first cold start after the throttle cable was
-slackened and the battery off for hours (27/10)**; one start cannot tell
-those apart.
+(`open.md` S7). **The throttle cable does not fit** (*owner*): it was
+taken up from the new throttle's fitting on 1–2/10, and the starts were
+clean for three weeks after that, until 24/10. *This said the cable,
+slackened 27/10, could not be told apart from the battery disconnect.*
+The owner's reading: the fuel, or deposits loosening as the cleaner's
+tank runs out — not known.

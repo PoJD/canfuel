@@ -514,10 +514,12 @@ hesitation, and today it did not. So primed still hesitates, which is
 the "both die" branch below: flooding or the fuel rather than a rail
 that drained. **28/10, plain**, after about 10 hours: it ran, perhaps a
 slight hesitation in the first second but no fall (*owner*), **`StartCrank`
-0.7 s, `StartDip` 0** — the first cold start after the throttle cable was
-slackened and the battery off for hours (27/10). Three starts that do not
-follow the priming: **against the rail draining while standing**; flooding
-or the fuel stay, and the cable is new beside them (*reasoned*).
+0.7 s, `StartDip` 0** . Three starts that do not follow the priming: **against the rail
+draining while standing**; flooding or the fuel stay. **Not the throttle
+cable** (*owner*): taken up since the throttle's fitting on 1–2/10, with
+three weeks of clean starts after it; *this said the cable, slackened
+27/10, stood beside them*. The owner's reading: the fuel, or deposits
+loosening as the 44K tank runs out.
 Closed on 26/9 after the new injectors (`refuted.md` D2): 14 captured
 starts, all clean.
 
