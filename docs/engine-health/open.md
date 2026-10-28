@@ -247,8 +247,12 @@ longer needed** — loads-off `IdleHealth` within about 25 of loads-on (19/10:
 about 100 against 50); **(3) at least the best level shown**, loads off about
 50–60 (12/10, 15/10). Short of all three, the owner may close it as
 *acceptable, cause known*. **Since 28/10 the warm stops are read in the
-everyday state only** (`plan.md`, *the owner's decision*), so (2) and (3)
-are not read until he restates them on it.
+everyday state only** (`plan.md`, *the owner's decision*); **the marks
+stay as they are and the closing itself is read loads off** — for S1 and
+S3 alike — **and probably on the overrun as well** (*the owner's
+decision*, 28/10): the downshift without a blip, where the load reads
+about 10 % and the bangs of S14 come, is the thinnest charge and so the
+strictest test (*owner*).
 
 **Load smooths it.** Every consumer at idle — A/C, lights, blower, heated
 glass — makes the ECU open up the air, and the idle calms (26/9: 35–50 loads

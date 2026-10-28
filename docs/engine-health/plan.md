@@ -432,9 +432,9 @@ candidates, ranked*.
   fixed mild load, chosen because four minutes and main beam at every stop
   did not fit his driving — is now the one ruler, compared with itself. It
   sits between the two old states, calmer than every load off and rougher
-  than every load on. **What it costs**: S1's closing marks (2) and (3) are
-  written in loads off (`open.md`, *When S1 closes*), so they are not read
-  on it.
+  than every load on. **The closing of S1 and S3 is not read on it**: the
+  marks stay in loads off (`open.md`, *When S1 closes*), read when the owner
+  closes them, probably with the overrun too (*owner*, 28/10).
 - **The fault memory** (*owner*, 18/10/2026): every session starts from
   an empty memory, and the saved file keeps what the session stored.
   Only when VCDS is connected anyway (*owner*, 24/10/2026): a plain
