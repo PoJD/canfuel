@@ -86,9 +86,8 @@ Claude runs the capture on every drive. **Current: item 6.**
 6h. **Every cold start, until S7 is placed.** Before turning the key,
    nothing else. Write into the chat: date, how long parked, the outside
    temperature, **caught and died, or ran**, and `StartCrank` and
-   `StartDip` off the display.
-   - **On alternate cold mornings, prime it**: ignition on 3 s, off, on
-     3 s again, then start. Write **primed** beside that start.
+   `StartDip` off the display. **Never primed.** A few hours parked
+   outdoors in the cold counts as a cold start too.
 6i. **The oil level on the new oil.** After the first drive on it, the
    car on level ground and **at least 5 minutes standing**: the dipstick
    out, wiped, in, out, and **photographed**; the odometer into the
@@ -587,7 +586,12 @@ starved, and the leak is the pump's non-return valve, an injector or the
 regulator (H7; VW's holding test in `vcds.md` names which with a gauge).
 Primed starts that die as well say flooding (H7's injector, H16) or the
 fuel, and the next fill of another brand reads the fuel. Alternate
-mornings, so that plain and primed meet the same weather. `StartCrank`
+mornings, so that plain and primed meet the same weather. **Priming
+dropped** (*the owner's decision*, 28/10): three starts (26/10 plain, bad;
+27/10 primed, hesitant; 28/10 plain, clean) did not follow it, so it has
+answered what it could; plain starts now read the fuel and the cleaner's
+tank running out, and a short stand outdoors is the case of 24/10.
+`StartCrank`
 and `StartDip` because the display carries them and a start the owner
 calls normal may still show a long crank.
 
