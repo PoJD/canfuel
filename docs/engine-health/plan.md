@@ -123,6 +123,8 @@ Captures only where an item asks for one. **Current: item 6 and 6a–6i;
 
   With the laptop, Claude reads both off the capture; with the MFD in,
   write each state's reading into the chat.
+- **With every `IdleHealth` reading, the outside temperature** off the
+  mirror console.
 - **When there is no time for the two states: the everyday state**, and
   most readings off the display will be in it — **blower on 1, one seat
   heater on 1, the lights on**, oil warm. A reading in it needs no label;
@@ -435,6 +437,11 @@ candidates, ranked*.
   capture the switch shows in b7, so the states need no timing in the
   chat. Four minutes standing is accepted against the converter rule
   (*owner*).
+- **The outside temperature** (*the owner's question*, 28/10): August
+  was hot and late October is about 10 °C, and nothing on the bus says
+  how much of the idle's trend is the weather (`open.md` S1, *The outside
+  air is not in this trend*). One figure off the mirror console beside
+  each reading lets the trend be split by it from now on.
 - **The everyday state** (*owner's decision*, 23/10/2026): four minutes
   and main beam at every stop do not fit his driving, so most readings
   off the display come in one fixed mild-load state. It is a third ruler,

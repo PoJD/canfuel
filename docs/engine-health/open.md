@@ -179,6 +179,20 @@ down once**, from about 75–95 to about 50–70, **between 10 and 12/10**
 is level with its best, not past it. **Cold it has come down**, and that
 is the clearer change (below, *Temperature*).
 
+**The outside air is not in this trend** (*the owner's question*, 28/10:
+August was hot, late October about 10 °C — is the idle the same and only
+the weather cooler?). Not on the bus (`docs/firmware/can-decoding.md`,
+*What is NOT on the bus*); the intake air is in VCDS 004/006, logged once
+(4/10). Against the weather as the whole (*reasoned*): the calmest hot
+figure is August's, the hottest month; the warm idle moved **in a step**
+between 10 and 12/10 and went up again 17–19/10, not gradually as the
+autumn cooled; and the cold drop of 21/10 came on a start at 24 °C of oil,
+warmer than the others. A small share cannot be ruled out. **From 28/10
+the outside temperature is written beside each reading** (`plan.md`,
+standing items), and the daily temperatures of the capture days are to be
+looked up once a weather archive answers (refused for its daily limit,
+28/10).
+
 **The MAF is the one change that showed at once** (24/9: the dips halved).
 The calmest settled idles, 12/10 and 15/10, came in the days after the new
 leads and lead 4's re-seat; the idle has worsened since (*Why the idle got
