@@ -212,8 +212,9 @@ r = 0.13 (nine days), and days of the same air differ by 20 — 9/10 and
 the calm ones. Within September–October the weather does not explain the
 trend. ⚠ Day temperatures, not the moment of the stop, and the intake air
 under the bonnet at a warm idle is set more by the engine than by the
-weather. **From 28/10 the outside temperature is written beside each
-reading** (`plan.md`, standing items), so later readings carry their own.
+weather. **Not recorded with each reading** (*the owner's decision*,
+28/10): with no relation found it is not worth his time; the weather
+archive can be asked again if a question ever needs it.
 
 **The MAF is the one change that showed at once** (24/9: the dips halved).
 The calmest settled idles, 12/10 and 15/10, came in the days after the new
