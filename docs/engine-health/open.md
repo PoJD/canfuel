@@ -893,7 +893,7 @@ by its result.
 coil's ground and supply for a gross fault, the engine's earth under load,
 the charging; the battery is new (8/2026). **The idle is better with the loads
 on, when the coil's supply sits 1.25 V lower** — a spark limited by supply
-would go the other way. The dips sit on 3 and 4, on separate leads and on
+would go the other way. The dips sat on 3 and 4 until the VW leads, on separate leads and on
 **different coil outputs** (1+4, 2+3), so neither the coil nor its feed can
 pick them. **What is left**: the injector loom where it reaches 3 and 4,
 shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
@@ -903,8 +903,10 @@ shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
 |---|---|---|---|---|---|---|---|---|---|
 | ~ | ~ | ~ | ~ | ~ | ~ | — | ~ | ✘ | — |
 
-**Tests:** the injector loom flexed at 3 and 4 at a warm idle, watching the
-grade (`plan.md` 5a's loom minutes); VCDS 004 (the ECM's supply) beside 014.
+**Tests:** the injector loom flexed at 3 and 4 at a warm idle — **done by
+the owner, no change** (reported 28/10, the date not given; off the
+display, not captured): **cleared as far as a hand can clear it**. What
+is left: VCDS 004 (the ECM's supply) beside 014.
 VW's TSB 01-08-27 (the coil's ground wire, US sister engines) is the joint to
 look at first if the spark side ever comes back.
 
@@ -1784,7 +1786,7 @@ is in git.
 | 8 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, likely the cable, slackened 27/10; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting follows 055's learnt value (`refuted.md` C19), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
 | 9 | **H3** a leak at one runner | the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
 | 10 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
-| 11 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason | flexed at a warm idle |
+| 11 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed at a warm idle by the owner, no change** (28/10) | VCDS 004 beside 014 |
 | 12 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
 | 13 | **H16** the purge valve leaking | here for S7 and S19 only: an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest; not replaced (*owner*, 25/10) | the cold starts, primed and plain (`plan.md` 6h) |
 | 14 | **H17** fuel in the oil | VW's first cause for this car's 032; the oil level has not risen; here for the trim and S19's code, not the idle: roughest cold, when there is nothing to boil off | 032 on the new oil (`plan.md` 6g) |

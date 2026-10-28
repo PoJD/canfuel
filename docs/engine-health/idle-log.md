@@ -835,3 +835,12 @@ clean for three weeks after that, until 24/10. *This said the cable,
 slackened 27/10, could not be told apart from the battery disconnect.*
 The owner's reading: the fuel, or deposits loosening as the cleaner's
 tank runs out — not known.
+
+## Before 28/10 — the injector loom flexed
+
+- **Tests:** the injector loom and connectors at 3 and 4 flexed by hand at
+  a warm idle (*owner*, reported 28/10, the date not given; off the
+  display, not captured).
+
+**No change** in the idle. H4's loom is cleared as far as a hand can
+clear it (`open.md` H4).

@@ -49,13 +49,6 @@ Claude runs the capture on every drive. **Current: item 6.**
      least 3 minutes of idle, nothing touched** — no throttle, steering
      or loads. Write each off and on into the chat. A flashing lamp is
      expected; clear the fault memory after the drive.
-   - **At one of those stops, after the 3 minutes, the loom**, still in
-     neutral, no throttle, timed on a phone from injector 1 going back
-     on: **minute 3–4 flex the loom and connector at injector 3** gently
-     by hand; **4–5 hands off**; **5–6 the same at injector 4**; **6–7
-     hands off**; then drive on. Keep clear of the belt, the fan and the
-     HT leads. Write into the chat anything the engine did and at which
-     injector.
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop now and
    then, the two states of the standing items, written into the chat.
@@ -252,15 +245,6 @@ and is written as one.
   `--shares` pooled. (`cutscan.py`'s verdict rules,
   fixed 9/10 before the first cuts, are in its source.) Never the plug lead instead of the
   connector: that sends fuel to the converter.
-- **The loom** (*owner's decision*, 17/10/2026; `open.md` H4): what is
-  left of the electrical side is the injector loom where it runs to 3
-  and 4, one taped, oily section for the two. A contact that breaks for a
-  moment drops an injection the ECU does not see. After the 3 untouched
-  minutes and before the car moves, so the named run is unbroken; timed
-  from injector 1 going back on because that moment is in the capture.
-  **Read**: dips on 3 per minute with the hand at 3, against the minutes
-  either side, and the same for 4. A clear rise on the cylinder under the
-  hand → that loom; nothing → cleared as far as a hand can clear it.
 
 **Item 6 — the drives** (*decided 10/10/2026*; *the owner, 21/10: the
 tank on the display, the captures after it*). The display follows the
