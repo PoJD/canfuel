@@ -843,14 +843,14 @@ tank runs out — not known.
 
 ## 28/10, afternoon — after 6 hours outdoors, caught and died
 
-- **Tests:** the start not primed, after about 6 hours parked outdoors
-  (`plan.md` 6h).
+- **Tests:** the start not primed, after about 6 hours parked outdoors on
+  the level, about 10 °C outside (*owner*; `plan.md` 6h).
 
 **It caught and died at once**; the starter was not held (*owner*), so
 nothing carried it as on 26/10. The second start was clean. **The first:
 `StartCrank` 1.41 s, longer than any start above, `StartDip` 254 — saturated,
 the engine stopping inside the 2 s — `StartClt` 18 °C. The second: 0.74 s,
 0, 18 °C.** Shortly after, coolant and oil 20 °C, the display's supply
-14.7 V, `VddConv` 5.00 V. The slope and the outside air were not given.
+14.7 V, `VddConv` 5.00 V. On the level, unlike 24/10's nose uphill.
 Like 24/10, an afternoon after a few hours outdoors; the morning's start,
 after about 10 hours in the garage, was clean (`open.md` S7).
