@@ -23,6 +23,9 @@ Captures only where an item asks for one. **Current: item 6 and 6a–6i;
 
 5a. **The original map written back** at the tuner, **booked for 3/11**.
    The files come on the day, not before. When it goes ahead:
+   - **Ask the tuner**: did he warn in 2018 that the idle could get
+     worse; did the remap change the MAF's scaling, the idle advance or
+     the idle speed. His answers into the chat.
    - **At the tuner, before he writes**: ask for each file as the
      **whole flash**, not only the maps — **the original** he read before
      the remap, **his remapped version**, and if he will, **a read of the
@@ -189,6 +192,11 @@ adds what it does not: the MAF's air and the ignition angle. 10–20
 minutes of idle in all, against the standing item for the converter,
 accepted as an exception. **6g goes first**: the map's reset would clear
 the 032 it waits for.
+**The questions for the tuner** (*agreed with the owner*, 28/10): the
+owner half-remembers a warning about the idle (`open.md` H14), and a MAF
+scaling made for the 2018 sensor is H19's mechanism; a tuner's answer
+outweighs anything the web had (`open.md`, *What the forums say about
+this idle*), and arrives before the diff.
 **Not on 22/10 but on 3/11** (*owner*, 20/10). **The files come with the
 map, not before** (*owner*, 28/10: the tuner has a busy week), so they are
 compared afterwards, privately, never in this repository; the map goes
