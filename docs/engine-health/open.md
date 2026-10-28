@@ -157,6 +157,7 @@ error):
 | 26/10 | display | settled | warmed in a jam, gently, under 3000 rpm; then one brisker stretch, revs held up in 2nd downhill on engine braking | **80–100** all through the warm-up, **still at 92 °C** of oil; **60–70** after the brisker stretch; everyday state (*owner*) |
 | 27/10 | display, video | settled | `plan.md` 6k: a gentle drive to about 88 °C of oil, the A/C against the loads (`idle-log.md`) | **~70** everyday state; **35–50** the A/C alone; **54–62** every load but the A/C; **25–35** both |
 | 27/10 eve | display, video | settled (055 reset that afternoon, relearnt to −1.17) | the pedal greased; oil changed 26/10; the second 44K tank about four-fifths used; oil 100 °C | **54** loads off (mean; **35–65** in waves of about 1½ min); **34** every load on with the A/C (26–42, still falling) — **the first stop with loads off within 25 of loads on** (condition 2 below), one stop |
+| 28/10 | display | settled | the last of the Verva tank, 13 l in the morning to 5 l; warm, oil not given | **70–100 most of the time, down to 47 at moments**, everyday state; **felt worse** (*owner*) — not lower than 27/10's figures |
 
 **The trend over every capture** (28/10, at the owner's question; every
 standing idle settled 30 s and more, graded as `tools/afterpull.py`'s
@@ -173,6 +174,15 @@ loads off is b7 ≤ 25 at 93 °C of oil and over):
 | 21/10 (`40`) | 61–67 | 75 |
 | 24/10 (`41`) | — | 87–104, warmed at idle |
 | 27/10 (display) | 54 | — |
+
+**Against the tank's level** (*the owner's question*, 28/10: the Verva
+tank run down to about 5 l): the level off 0x320 in each capture
+(`tools/replay.py`), beside the warm stops above — 50 l on 24/9 (88, 92);
+29→23 l on 3–10/10 (most 75–95); **22 l on 12/10 (63)**; 36→35 l on 15/10
+(48–75); 51 l on 18/10 (68–96); 43→40 l on 21/10 (61–67). **No relation**:
+the calmest and the roughest both sit at about 22–29 l and at 35–51 l, and
+every change of level came with a repair. The display gives no more (28/10:
+70–100 at 13→5 l).
 
 **Before October there is no trend to read**: two days of captures, and
 the one hot figure of August is a 22 s hold. **Warm, the idle stepped
@@ -634,6 +644,14 @@ energy per litre raises the part-load cell alone. The cleaner is in the
 fuel, so whatever it does to its evaporation counts with it. How Verva 100
 and OMV MaxxMotion 100 differ in either is not known. **Read**: the starts
 on OMV from 29/10, and 032 once enough of it has run (`plan.md` 6g).
+
+**Dirt off the tank's bottom** (*the owner's question*, 28/10: the old
+tank was run down to 0.4–0.7 l before the Verva fill, S19): against it
+(*reasoned*), the fuel filter and all four injectors are new since 23/9
+(`vehicle-history.md`), so dirt stops at the filter or the injectors'
+inlet screens; and a part-blocked injector delivers too little — a lean
+cylinder, the trim positive and the dips on one slot — where 032 reads
+rich at idle (P0172) and the dips sit on all four alike.
 
 ### S11. A hiss at the back of the engine at a warm idle
 
