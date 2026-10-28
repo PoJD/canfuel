@@ -618,7 +618,14 @@ everything between the empty reading of 23/10 and the night of 24/10 —
 and it **opens before the fill**, with the drive out on the old tank (OMV
 and the first 44K) run down to 0.4–0.7 l. Before the window nothing points
 at it: 032 −3.1 to −6.3 % (19–23/10), the live regulation at a warm idle
-centred on 0 with no excursion past −5.5 % (21/10, VCDS 001).
+centred on 0 with no excursion past −5.5 % (21/10, VCDS 001). **What sets it is not
+known**: VW's manual gives 032 a range of −10 to +10 % (`vcds.md`), which
+is the specification, not the code's condition, and the label file holds
+none. **It is not the idle cell reaching −10 as VCDS shows it**: on 25/10
+night, with the regulator's hose off, the idle cell went to **−12.5 %**
+for about 40 s (`vcds/vcds-step6e-cold-2-001-032-033.csv`) and the fault
+memory was empty afterwards. The part-load cell has sat at +7.8 to +8.6 %
+since 25/10, the other way.
 
 **Not settled that the start set it** (*reasoned*): a start that dies at
 once runs on a cold probe, open loop, and cannot itself trip a trim fault;
