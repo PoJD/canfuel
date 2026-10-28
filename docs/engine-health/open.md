@@ -157,7 +157,7 @@ error):
 | 26/10 | display | settled | warmed in a jam, gently, under 3000 rpm; then one brisker stretch, revs held up in 2nd downhill on engine braking | **80–100** all through the warm-up, **still at 92 °C** of oil; **60–70** after the brisker stretch; everyday state (*owner*) |
 | 27/10 | display, video | settled | `plan.md` 6k: a gentle drive to about 88 °C of oil, the A/C against the loads (`idle-log.md`) | **~70** everyday state; **35–50** the A/C alone; **54–62** every load but the A/C; **25–35** both |
 | 27/10 eve | display, video | settled (055 reset that afternoon, relearnt to −1.17) | the pedal greased; oil changed 26/10; the second 44K tank about four-fifths used; oil 100 °C | **54** loads off (mean; **35–65** in waves of about 1½ min); **34** every load on with the A/C (26–42, still falling) — **the first stop with loads off within 25 of loads on** (condition 2 below), one stop |
-| 28/10 | display | settled | the last of the Verva tank, 13 l in the morning to 5 l; warm, oil not given | **70–100 most of the time, down to 47 at moments**, everyday state; **felt worse** (*owner*) — not lower than 27/10's figures |
+| 28/10 | display | settled | the last of the Verva tank, 13 l in the morning to 5 l; oil 95–100 °C | **70–100 most of the time, down to 47 at moments**, everyday state; **felt worse** (*owner*) — not lower than 27/10's figures |
 
 **The trend over every capture** (28/10, at the owner's question; every
 standing idle settled 30 s and more, graded as `tools/afterpull.py`'s
@@ -182,7 +182,7 @@ tank run down to about 5 l): the level off 0x320 in each capture
 (48–75); 51 l on 18/10 (68–96); 43→40 l on 21/10 (61–67). **No relation**:
 the calmest and the roughest both sit at about 22–29 l and at 35–51 l, and
 every change of level came with a repair. The display gives no more (28/10:
-70–100 at 13→5 l).
+70–100 at 13→5 l, oil 95–100 °C).
 
 **Before October there is no trend to read**: two days of captures, and
 the one hot figure of August is a 22 s hold. **Warm, the idle stepped
