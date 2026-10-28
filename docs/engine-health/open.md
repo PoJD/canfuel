@@ -905,8 +905,9 @@ shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
 | ~ | ~ | ~ | ~ | ~ | ~ | — | ~ | ✘ | — |
 
 **Tests:** the injector loom flexed at 3 and 4 at a warm idle — **done by
-the owner on 24/10, part-warm, during the first phone recording, judged by
-ear only: no change heard** (reported 28/10). Weaker than the planned
+the owner on 24/10, part-warm, during the first phone recording, above all
+the repaired wire at injector 4, judged by ear only: no change heard**
+(reported 28/10). Weaker than the planned
 read (dips per minute in a capture), which was dropped with it. What
 is left: VCDS 004 (the ECM's supply) beside 014.
 VW's TSB 01-08-27 (the coil's ground wire, US sister engines) is the joint to

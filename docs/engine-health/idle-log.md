@@ -587,8 +587,9 @@ control** (0x1A0 reading inferred from this one event); not a symptom
   another brand since 2017.
 - **Tests:** about 340 km in the day, an hour above 4000 rpm; a phone
   recording over injectors and cover, part-warm (`plan.md` 6c), and **the
-  injector loom flexed by hand** while it was made, judged by ear only
-  (*owner*, reported 28/10): no change heard; a cold
+  injector loom flexed by hand** while it was made, above all the repaired
+  wire at injector 4, judged by ear only (*owner*, reported 28/10): no
+  change heard; a cold
   capture with injector 4 cut for 30 s (`41`, `plan.md` 6d, VCDS
   014/001/003).
 - **Changes after:**
