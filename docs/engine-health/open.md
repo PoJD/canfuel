@@ -251,7 +251,7 @@ everyday state only** (`plan.md`, *the owner's decision*); **the marks
 stay as they are and the closing itself is read loads off** — for S1 and
 S3 alike — **and probably on the overrun as well** (*the owner's
 decision*, 28/10): the downshift without a blip, where the load reads
-about 10 % and the bangs of S14 come, is the thinnest charge and so the
+about 10 % (VCDS 014, field 2) and the bangs of S14 come, is the thinnest charge and so the
 strictest test (*owner*).
 
 **Load smooths it.** Every consumer at idle — A/C, lights, blower, heated
@@ -674,7 +674,9 @@ If it is a leak: behind the throttle it is H3, ahead of the probe H2.
 *Owner*, 4/10: on a downshift **without a throttle blip** a series of small
 bangs, 1–2 s after the clutch comes up; with a blip almost never; warm. Gone
 9–14/10, **back on 15/10, quieter** (*owner*), with the joint behind the
-converter tight — so that joint fed or carried it at most. Read as
+converter tight — so that joint fed or carried it at most. **28/10**:
+on every downshift without a blip, **no more often than before, only more
+muffled since the joint was sealed** (*owner*). Read as
 (*reasoned*): the engine dragged up on a shut throttle is fuelled at its
 thinnest charge; a charge that fails to fire goes out as fuel and air and
 burns when the fuel cut pumps plain air in after it — **a misfire where 014
