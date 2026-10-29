@@ -857,7 +857,7 @@ after about 10 hours in the garage, was clean (`open.md` S7).
 
 ## 29/10 — the second 44K tank run out; OMV; a start that did not fire
 
-- **Repairs:** 50.16 l of OMV at 155,193 km, no cleaner; the Verva and
+- **Repairs:** 50.16 l of OMV MaxxMotion 100 at 155,193 km, no cleaner; the Verva and
   44K tank run down to 2.2 l indicated (`vehicle-history.md`).
 - **Tests:** the cold start, plain; the four figures before the nozzle
   (`docs/firmware/fuel-check.md`, *The fill of 2026-10-29*).
@@ -865,8 +865,8 @@ after about 10 hours in the garage, was clean (`open.md` S7).
 **The start**: **3–4 s of cranking with not one firing**, the key off;
 the second caught a little and died; the third ran (*owner*) — the first
 start in the investigation that did not fire at all (`open.md` S7).
-Before or after the fill, the parking and the display's figures were not
-given.
+In the garage at 17 °C, coolant and oil about 25 °C; the morning's start,
+before the fill. How long parked and the display's figures not given.
 
 **The tank**: 438 km by the odometer, **11.45 l/100 km off the pump**;
 the converter's fuel within 0.6 % of the pump's, its distance 1.2 % over

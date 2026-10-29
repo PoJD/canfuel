@@ -193,8 +193,9 @@ run out (`docs/engine-health/plan.md`). Read before the nozzle went in
 `TripDist` 443.3, `FuelTank` 2.2, Range 19**. **The cluster's trip read
 151.4 km, not the tank's distance**: the battery disconnect of 27/10
 zeroed it at about 155,042 km (`docs/engine-health/vehicle-history.md`),
-so the distance comes from the odometer. The fuel was OMV (*owner*); the
-grade and whether it stopped at the first click were not given.
+so the distance comes from the odometer (the last of several disconnects,
+with the 055 reset, *owner*). The fuel was OMV MaxxMotion 100 (*owner*);
+whether it stopped at the first click was not given.
 
 *(derived)*
 

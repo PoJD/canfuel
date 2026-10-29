@@ -62,7 +62,8 @@ throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
   starter 26/10, hesitant primed 27/10, **clean plain the morning of
   28/10, caught and died again that afternoon** after about 6 hours
   outdoors (`StartCrank` 1.41 s, the longest yet), and **on 29/10 the
-  first start did not fire at all** in 3–4 s of cranking. The starts
+  first start did not fire at all** in 3–4 s of cranking, out of the
+  garage at 17 °C. The starts
   do not follow the priming, which is against a rail draining while
   standing; flooding and the fuel stay. Priming dropped (28/10).
 - **S19, P0172 and the split trim** — the code once (24/10), not back on
@@ -659,10 +660,12 @@ on OMV from 29/10, and 032 once enough of it has run (`plan.md` 6g).
 without a single firing**, the key off; the second start caught a little
 and died; **the third ran**. The first time it did not catch at all —
 which reads as no fuel at the valves, or a charge too rich to light
-(*reasoned*), the two branches S7 already carries. Whether before or
-after that morning's fill, how long parked and where, the outside air
-and the display's figures (the third start's) were not given; **the
-owner means to prime the cold starts again**.
+(*reasoned*), the two branches S7 already carries. **In the garage at
+17 °C, coolant and oil about 25 °C at the start** (*owner*) — the
+morning's start, so on the last of the Verva and 44K before the fill
+(*reasoned*); how long parked and the display's figures not given. **It
+breaks the outdoors pairing above**: like 25/10, a bad start out of the
+garage. **The owner means to prime the cold starts again**.
 
 **Dirt off the tank's bottom** (*the owner's question*, 28/10: the old
 tank was run down to 0.4–0.7 l before the Verva fill, S19): against it
