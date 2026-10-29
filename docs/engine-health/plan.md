@@ -18,11 +18,13 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Current: item 6 and 6a–6i;
+Captures only where an item asks for one. **Current: item 6 and 6g–6i;
 5a on 3/11.**
 
 5a. **The original map written back** at the tuner, **booked for 3/11**.
    The files come on the day, not before. When it goes ahead:
+   - **Before the map goes back**: the cluster's trip, `TripDist`,
+     `FuelAvg`, the odometer, photographed.
    - **Ask the tuner**: did he warn in 2018 that the idle could get
      worse; did the remap change the MAF's scaling, the idle advance or
      the idle speed. His answers into the chat.
@@ -58,20 +60,6 @@ Captures only where an item asks for one. **Current: item 6 and 6a–6i;
      clearly better**: one or two warm drives captured, on different
      days. Claude runs the capture; VCDS on **014, 003, 020**; 055 once
      at the end, warm idle. Write the stops.
-6a. **Two tanks of BG 44K** (BG `208` *44K Platinum*, 325 ml a can).
-   **The second tank is in, from 24/10** (the first ran 23–24/10).
-   - **The second tank**: no refuelling until it is run down. Drive it
-     as item 6. At the next fill, before the nozzle: the cluster's trip,
-     `TripDist`, `FuelAvg`, the odometer; then fill to the click.
-   - **On 3/11, before the map goes back**: the same four figures.
-   - **Italian tune-up**: once the **oil reads 90 °C**,
-     and not in the first 30 km after the pump: **the motorway at the
-     limit, with full-throttle pulls** — slip roads, and 80 to 130 in
-     4th — and an easy stretch after each few; a long climb whenever
-     the route has one. **Oil above 120 °C: ease off** until it is
-     back under 110. **A tick, a miss or the lamp, lit or flashing: ease
-     off at once**.
-   - The map at 3/11 goes ahead whatever tank is in.
 6g. **032 on the new oil** (the *before* read 26/10: −8.6 / +7.8 %).
    - After about 200 km on the new oil: 032 and 055, before anything is
      cleared. **Before 3/11**: the map resets 032 again.
@@ -170,6 +158,10 @@ adaptations are settled (about −1.1 to −1.3), so a comparison holds
 
 **Item 5a — the original map** (*owner's decision*, 12/10/2026, to take
 the remap out of the idle question; `open.md` H14, *The remap*).
+**The four figures before it**: the OMV tank of 29/10 is on the map until
+then, and read on the day they split the tank at the line, so a
+consumption check never mixes two calibrations
+(`docs/firmware/fuel-check.md`, *The fill of 2026-10-29*).
 **The stops on the drive home** (*agreed with the owner*, 26/10, for H8):
 055's learnt value moves **only at a warm standing idle** and holds
 through driving (`idle-log.md`, 26/10), so after the reset it can only
@@ -267,92 +259,10 @@ the refit drive of 21/10 on plain fuel, as that reference; the display
 through the tanks; and the captures once `IdleHealth` moves, which then
 say what moved.
 
-**Item 6a — two tanks of BG 44K** (*owner's decision*, 18/10/2026: S18
-and the idle likely one cause, deposits; *21/10–22/10*: BG 44K for two
-tanks in a row instead of the Liqui Moly Pro-Line `5153` bought on 21/10,
-which is kept for later; **the overlap with the map at 3/11 accepted** —
-*"I mainly want it solved"*). BG's own data sheet for `208` says only that
-one can treats **up to 75 l**; it publishes no chemistry, so that it is PEA
-is said of it, not stated by its maker. BG names injectors, valves and the
-combustion chamber, and on this port-injected engine the fuel washes the
-back of the intake valves, so a fuel-borne cleaner reaches the deposits it
-is meant for.
-
-**The four figures at the second tank's ends, and on 3/11**: the
-second tank is the first that the cluster's trip and the display's
-both cover from a brim, so it is the first real check of `FuelAvg`
-against the pump (`docs/firmware/fuel-check.md`, *The fill of
-2026-10-24*); the map going back inside it would mix two calibrations
-in one ratio, and the figures on the day split the tank at the line.
-
-**The Italian tune-up** (*owner's decision*, 23/10) is Red Rider's
-"indiánský způsob" for its strong tank, applied to both: heat and gas
-flow through the chamber while the cleaner is in the fuel. **BG says
-nothing about driving** (its sheet: add at fill-up); Red Rider calls long
-distances a myth, finds mixed driving better because a standing engine
-gives the cleaner time to soak, and asks for a hard throttle now and
-then; no controlled study of the tune-up itself was found (23/10), only
-forums and a patent's claim of deposit removal near full load. **On oil at
-90 °C** (*decision*) because S18 came cold and the oil is the slower of the two to
-warm; **not in the first 30 km** because the cleaner reaches the
-injectors only after the fuel already in the filter and lines, 10–30 km
-by Red Rider's figure. **A misfire under load costs the converter more
-than one at idle** (more unburnt mixture per second into it), hence
-easing off at the first sign rather than at a flashing lamp alone.
-**The oil temperature** (*decision*, 23/10). No maker states a limit:
-TotalEnergies' catalogue gives none for the *Quartz 9000* oils, and no VW
-figure for this engine was found. What is general and agreed is that oil
-oxidises about twice as fast for every 10 °C (the Arrhenius rule, AMSOIL
-and others); forums put the start of real concern at a sustained 120–130 °C
-and breakdown at 130–150 °C, none from a data sheet. **The owner's
-recollection of 115 °C as critical was not found in any source.** So 120 °C
-is chosen as the point to ease off, held only briefly: 105–110 °C on a hard
-run and 111 °C for a few minutes (*owner*, 23/10) are inside it. *This said
-the oil is changed straight after the second tank, so its oxidation costs
-no interval*; since the flush moved ahead of the tank's end, the rest of the tank is
-driven on the new oil, and brief spells under 120 °C are what a VW 502.00
-oil is rated for. The reading is the instrument cluster's, on
-0x420 (`docs/firmware/can-decoding.md` question 10, closed 23/10 at the
-owner's decision: it reads where a warm engine's oil runs).
-
-**Load, not revs** (*reasoned*, 23/10): what heats the chamber and the
-valves is the fuel burnt per second, which is the power; on the flat at a
-given speed the power is set by the drag whatever the gear, so a lower
-gear adds revs and pumping losses, not heat. Power comes from speed and
-from acceleration, so the motorway gives the steady part and the pulls
-the peaks; the cleaner also washes the intake valves with more fuel the
-higher the load. Twenty minutes of climb is not on the owner's routes,
-and the pulls stand in for it.
-
-**What the overlap costs.** The drives after 3/11 read the map and the
-cleaner together, and only those before it read the cleaner alone. If the
-idle improves, which of H13 and H14 did it is left open; the owner chose a
-fix over the answer.
-
-**The flush and the oil change were done 26/10** (`idle-log.md`), ahead
-of the tank's end; the reasoning and the choices behind them are in
-`git log`. **Later changes**: EPR at every change until the symptoms are
-settled, at most once a year (*owner*, 23/10); the filter `06A 115 561 B`
-(`vehicle-history.md`).
-
-**And the second tank** (*the owner's point*, 24/10): the strong first
-44K tank, hours above 4000 rpm and about 450 km left `IdleHealth` at
-70–80, as before, and he expects the second to do no more. It is driven
-out because the can is in, and read as the last word on H13 (`open.md`).
-
-**Episodes on the cleaner's tanks are expected, not a verdict**: under H13
-each tank sheds a layer; under H1 the tick would not depend on the tank.
-For the converter it is a misfire that matters, not the cleaner — hence
-easing off at one. **Read**: the display through each tank, and the captures
-once `IdleHealth` moves, against `30`, `31`, `33`, `34` and `40`, on settled adaptations (the
-reset at 5a makes the drives just after it read low on 014 for another
-reason), and the shares pooled since the last repair. A tank is weeks of
-this car's driving, so the reading is late by design.
-
 **Item 6g — fuel in the oil** (`open.md` H17; 25/10/2026, from VW's
 evaluation of block 032, `vcds.md`). VW names oil dilution first for a
 low idle learnt value with part load normal, which is this car's 032,
-and says it goes away with an oil change — which 6a does anyway, so the
+and says it goes away with an oil change — done 26/10 anyway, so the
 test costs one reading either side. (The dipstick part is done: 24/10,
 the level unchanged since the last top-up, `idle-log.md`.) **Read**: 032's idle
 cell close to zero on the new oil → H17 confirmed and the cold idles of
@@ -365,14 +275,14 @@ beside it, cold and warm apart** (the owner's loop, `open.md` H17): fuel
 boils off only from hot oil, so H17 predicts the warm idle calmer and the
 cold one unchanged; a calmer warm idle with 032 unmoved is EPR on the
 rings (H13), not H17. EPR in the flush
-(6a) does not spoil the comparison: it is drained with the old oil.
+does not spoil the comparison: it is drained with the old oil.
 
 **Item 6h — the cold start** (`open.md` S7, reopened 25/10). **Plain
 starts only** (*the owner's decision*, 28/10): the priming asked whether
 the rail lost its pressure while standing, and three starts (26/10 plain,
 bad; 27/10 primed, hesitant; 28/10 plain, clean) did not follow it, so it
-has answered what it could. Plain starts now read the fuel and the
-cleaner's tank running out; a few hours outdoors in the cold is the case
+has answered what it could. Plain starts now read the OMV filled 29/10,
+the cleaner's tank run out; a few hours outdoors in the cold is the case
 of 24/10. `StartCrank` and `StartDip` because the display carries them
 and a start the owner calls normal may still show a long crank.
 

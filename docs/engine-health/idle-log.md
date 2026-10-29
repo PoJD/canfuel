@@ -854,3 +854,21 @@ the engine stopping inside the 2 s — `StartClt` 18 °C. The second: 0.74 s,
 14.7 V, `VddConv` 5.00 V. On the level, unlike 24/10's nose uphill.
 Like 24/10, an afternoon after a few hours outdoors; the morning's start,
 after about 10 hours in the garage, was clean (`open.md` S7).
+
+## 29/10 — the second 44K tank run out; OMV; a start that did not fire
+
+- **Repairs:** 50.16 l of OMV at 155,193 km, no cleaner; the Verva and
+  44K tank run down to 2.2 l indicated (`vehicle-history.md`).
+- **Tests:** the cold start, plain; the four figures before the nozzle
+  (`docs/firmware/fuel-check.md`, *The fill of 2026-10-29*).
+
+**The start**: **3–4 s of cranking with not one firing**, the key off;
+the second caught a little and died; the third ran (*owner*) — the first
+start in the investigation that did not fire at all (`open.md` S7).
+Before or after the fill, the parking and the display's figures were not
+given.
+
+**The tank**: 438 km by the odometer, **11.45 l/100 km off the pump**;
+the converter's fuel within 0.6 % of the pump's, its distance 1.2 % over
+the odometer (`fuel-check.md`). **The idle at its end no calmer**: about
+70 everyday on 27/10, 70–100 on 28/10 (`open.md` S1).

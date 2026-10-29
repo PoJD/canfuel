@@ -184,6 +184,46 @@ for the engine. And **the map goes back on 3/11** (`docs/engine-health/plan.md`
 item 5a), likely inside this tank: **read the four figures on the day,
 before the map goes back**, so the tank can be split at it.
 
+### The fill of 2026-10-29 — the 24/10 tank closed
+
+**50.16 litres, off the pump**, at **155,193 km**, the second 44K tank
+run out (`docs/engine-health/plan.md`). Read before the nozzle went in
+(`docs/engine-health/photos/mfd-2026-10-29-before-fill.jpg`,
+`docs/engine-health/photos/odometer-2026-10-29.jpg`): **`FuelAvg` 11.2,
+`TripDist` 443.3, `FuelTank` 2.2, Range 19**. **The cluster's trip read
+151.4 km, not the tank's distance**: the battery disconnect of 27/10
+zeroed it at about 155,042 km (`docs/engine-health/vehicle-history.md`),
+so the distance comes from the odometer. The fuel was OMV (*owner*); the
+grade and whether it stopped at the first click were not given.
+
+*(derived)*
+
+| | |
+|---|---|
+| distance, the odometer, 155,193 − 154,755 | **438 km** (±1 at each end) |
+| petrol, the pump | **50.16 l** |
+| **litres over kilometres, petrol only** | **11.45 l/100 km** |
+| the same with the 44K can (0.325 l) counted as fuel | 11.53 l/100 km |
+| `TripFuel` on the display, 11.2 × 4.433 | **49.65 l** (±0.22 for `FuelAvg`'s rounding) |
+| and the one capture in this tank, `41` (24/10 night, the MFD out) | 0.22 l, off its own 0x480 counter |
+
+- **Fuel: the converter 49.9 l against the pump's 50.16, −0.6 %**
+  (−1.0 % without `41`), inside the brim's own scatter of about a litre
+  (2 %), which this one tank cannot beat. **The first brim-to-brim figure
+  with the converter covering the whole tank**, and it agrees.
+- **Distance: `TripDist` 443.3 against the odometer's 438, +1.2 %**
+  (+0.7 to +1.6 with the odometer's whole kilometres) — the same
+  direction as 24/10's +0.7 % against the cluster's trip. Neither is
+  ground truth; 0x1A0's speed reads a little above the cluster's
+  distance on both tanks.
+- **So `FuelAvg` reads about 2 % under the pump over the odometer**
+  (11.2 against 11.45): the two small errors add, fuel a little low and
+  distance a little high. Not worth a correction on one tank (step 5
+  below).
+
+**The next tank** is OMV on the map until 3/11: **the four figures are
+read on 3/11, before the map goes back**, so the tank can be split at it.
+
 ---
 
 ## What this means for the measurements
