@@ -748,6 +748,24 @@ gauge reads.
 **What would revive it:** fuel or its smell at that hose, or a repeat with
 no step in the regulation.
 
+### C21. "Fuel in the oil, boiled off through the crankcase ventilation, is the rich idle trim" (`open.md` H17) — measured
+
+**Believed:** 25/10/2026, from VW's evaluation of block 032 for this
+engine (`vcds.md`): a low idle learnt value with part load normal names
+oil dilution first, and it goes away after a motorway drive or an oil
+change — this car's 032, on oil about three years old.
+**Refuted by** the oil change of 26/10 (two EPR flushes, fresh oil,
+`idle-log.md`): **032's idle cell relearnt from zero to −8.6 % the next
+evening, and read −8.6 / +5.5 % at about 200 km on the new oil**
+(29/10), where it stood before the change (−8.6 / +7.8 % on 26/10);
+the oil level has not risen on the dipstick either (`plan.md` 6i).
+Moved here at the owner's decision, 29/10.
+**What it does not refute:** a little fuel in the oil that moves no trim,
+or a source that refills the oil within a day — the dipstick would show
+the second.
+**What would revive it:** the level rising on the new oil (`plan.md`
+6i), or the idle cell moving towards zero after a later change.
+
 ---
 
 ## D. Symptoms closed

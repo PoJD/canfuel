@@ -47,7 +47,7 @@ was first recorded counted from the wrong end and corrected on 28/9/2026.
 | **020** | ignition retard of **all four cylinders** in one group | knock control per cylinder (S4); replaces 022 + 023 and frees a slot |
 | **022 / 023** | ignition retard per cylinder, 1–2 and 3–4 | the first cylinder-4 log |
 | **026** | **knock sensor voltage per cylinder**, *amplifier factor included* | S5. Not the raw signal: the ECU scales each cylinder |
-| **032** | lambda adaptations, idle and part load | the rich trim that was the MAF (S9); slightly negative at idle since (`open.md` H16, H17) |
+| **032** | lambda adaptations, idle and part load | the rich trim that was the MAF (S9); slightly negative at idle since (`open.md` H16; `refuted.md` C21) |
 | **055 / 056** | idle regulator, its adaptation, target idle speed | 055 logged once, on the cold start of 11/9 (`vcds-coldstart-014-055.csv`): regulator −0.46 → −0.08 g/s as the engine warmed, adaptation **−0.73 g/s** throughout, load-state bits `0000`. The cold-start baseline for the sessions of 3–4/10 (`open.md` S3) |
 | **070** | evaporative valve test | TEV OK — purge ruled out |
 | **100** | readiness bits, OBD status, time since start | all monitors complete |

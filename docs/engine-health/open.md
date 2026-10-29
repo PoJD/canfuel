@@ -70,7 +70,7 @@ throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
   any reading since; **032's idle cell at −6.3 to −8.6 % and its
   part-load cell at +5.5 to +8.6 %** since 25/10, on the new regulator
   hose and on the new oil (−8.6 / +5.5 at about 200 km on it, 29/10).
-  Fits H19 (the MAF against the map), and H17 less since that reading; 6e cleared N80 and the regulator's reference as its source.
+  Fits H19 (the MAF against the map); H17 refuted by that reading (`refuted.md` C21); 6e cleared N80 and the regulator's reference as its source.
 - **S20, the speed wandering at a constant pedal** (since 1–2/10, on the
   road) — **a little better since the cable was slackened and the pedal
   greased (27/10), still there** (*owner*, 28/10). Not the idle.
@@ -78,7 +78,7 @@ throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
   ~2200 rpm).
 
 **Ranked (29/10, agreed with the owner):** **H14, H19, H7, H2, H13, H1**,
-then H0, H8, H3, H15, H4, the timing belt, H16, H17, H18, H11, H12 (*The
+then H0, H8, H3, H15, H4, the timing belt, H16, H18, H11, H12 (*The
 idle's candidates, ranked*). The remap and the MAF read against it lead,
 and share one test; what acts on one or two cylinders (H3, H15, H4) went
 down when the dips spread over all four.
@@ -158,7 +158,7 @@ error):
 | 26/10 | display | settled | warmed in a jam, gently, under 3000 rpm; then one brisker stretch, revs held up in 2nd downhill on engine braking | **80–100** all through the warm-up, **still at 92 °C** of oil; **60–70** after the brisker stretch; everyday state (*owner*) |
 | 27/10 | display, video | settled | `plan.md` 6k: a gentle drive to about 88 °C of oil, the A/C against the loads (`idle-log.md`) | **~70** everyday state; **35–50** the A/C alone; **54–62** every load but the A/C; **25–35** both |
 | 27/10 eve | display, video | settled (055 reset that afternoon, relearnt to −1.17) | the pedal greased; oil changed 26/10; the second 44K tank about four-fifths used; oil 100 °C | **54** loads off (mean; **35–65** in waves of about 1½ min); **34** every load on with the A/C (26–42, still falling) — **the first stop with loads off within 25 of loads on** (condition 2 below), one stop |
-| 29/10 | display | settled | home from the pump, 5 km driven gently, oil not given; the Verva still in the lines | **90–130, very unsettled**, everyday state (*owner*) |
+| 29/10 | display | settled | home from the pump, 5 km driven gently, oil 87 °C; the Verva still in the lines | **90–130, very unsettled**, everyday state (*owner*) |
 | 28/10 | display | settled | the last of the Verva tank, 13 l in the morning to 5 l; oil 95–100 °C | **70–100 most of the time, down to 47 at moments**, everyday state; **felt worse** (*owner*), and the figures agree: above 27/10's ~70 in the same state, lower being calmer |
 
 **The trend over every capture** (28/10, at the owner's question; every
@@ -361,7 +361,7 @@ the cleaner — *After high revs*, below). ⚠ **Not separated**: no capture
 warms past 92 °C at idle alone, so a few degrees more oil and the drive
 itself always came together. The owner's reading (*hypothesis*): the
 chambers carry something — deposit, oil, moisture — that a working drive
-clears and an idle does not (H13, H17, H18). Settled by a warm-up to 95 °C at idle alone,
+clears and an idle does not (H13, H18; H17 refuted, `refuted.md` C21). Settled by a warm-up to 95 °C at idle alone,
 or by a gentle warm drive straight into an idle.
 
 **What comes before a dip** (`tools/dipcontext.py`, 852 warm dips,
@@ -1154,7 +1154,8 @@ hundred km without a disconnect.
   elsewhere (H16, H17, or the regulator or an injector itself). **Since
   6e** (25/10 night) not H16 and not the regulator's reference: with the
   canister cut off the regulation sat near zero on top of −7.8 (H16), and
-  the regulator answered its hose. Left: **H17, or an injector** — a
+  the regulator answered its hose. Left: **an injector** (H17 refuted
+  29/10, `refuted.md` C21) — a
   regulator holding a high base pressure would scale the fuel alike at
   every load, not take it away at idle alone (*reasoned*).
 
@@ -1236,7 +1237,7 @@ help.
 
 **Tests**: **6g, done 29/10** — 032's idle cell back at −8.6 with 055 at
 −1.11, so the two are independent and the rich idle has its own source
-(H7, H16, H17). **5a** — the ECU comes back from
+(H7, H16; H17 refuted, `refuted.md` C21). **5a** — the ECU comes back from
 the tuner on zeroed adaptations; the drive home, captured with VCDS on
 014, 055 and 003, gives `IdleHealth` second by second against the
 learnt value as it walks down from zero, which 26/10 could not.
@@ -1555,130 +1556,6 @@ the pulses, **no liquid fuel**. **What it leaves:**
   for the starts alone. 6h's priming reads S7 without it: primed starts
   that still die say flooding, which keeps N80 among the causes.
 
-### H17. Fuel in the oil, boiled off through the crankcase ventilation
-
-*Added 25/10, from the owner's question* (does the extra fuel at idle
-belong with the idle and with S19?) *and VW's own list.* **VW's
-evaluation of block 032 for this engine puts it first**: *low learnt
-values at idling with part load normal — possible oil dilution*, which
-goes away after a motorway drive or an oil change (`vcds.md`, block 032).
-That is exactly this car's 032 (H16 has the readings).
-
-**The mechanism** (*general*): fuel washes past the rings while the
-engine runs rich and cold, collects in the oil, and **boils off once the
-oil is hot**, into the crankcase ventilation and the intake, as fuel the
-MAF never saw. The ECU takes it away at idle, where it is the largest
-share. **Mazda's Service Alert SA-026/18** (5/2018, NHTSA's file) gives
-the pattern: many short trips, the oil level rising, **then a longer trip
-fully warm and P0172**, from the fuel boiling off at once; GM's PIP5647A
-(4/2020) the same picture with trims near −20 % and the cure an oil
-change. ⚠ **Both are about direct injection**, and Mazda says outright
-that on a port-injected engine, which the AQY is, fuel is unlikely to
-reach the cylinder walls. **Both also have the oil level rising**, which
-here it has not (below). They show the mechanism; for this engine the
-only source is VW's own list.
-
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | — | — | — | — | — | — | ✔ | ~ |
-
-- **For: S19, the code.** Since 24/9 this engine has stood through cold
-  idles for minutes at a time, session after session, for the captures
-  — open loop, rich, the regime that puts fuel in the oil (*general*).
-  P0172 then set in the window holding **two 170 km drives with 5000 rpm
-  held** and oil to 110 °C. The oil is from 6/2026, after a change three
-  years apart (`vehicle-history.md`).
-- **For: the idle trim**, low at idle and normal-to-positive at part
-  load: VW's own wording for it.
-- **The shape predates the captures' cold idles** (*the owner's photos*,
-  found 25/10): 032 **−5.5 / 0.0 %** on 20/8 and **−4.7 / +1.6 %** on
-  10/9 (`idle-log.md`, *Before September 2026*), two to three months on
-  the oil of 15/6. The captures' sessions did not create it. **But the
-  summer was the same regime** (*owner*, 25/10): the car unregistered,
-  started cold in the garden again and again and left idling with people
-  sitting in it, moved only a little on the property — short cold runs
-  and next to no road driving, the use that puts fuel in the oil and
-  never gets it hot long enough to boil it off (*general*). So the fresh
-  oil of 15/6 had all summer to take fuel up before the first reading.
-  August had the old injectors, the old MAF and the regulator's old hose,
-  so it cannot be compared with the −8.6 of 25/10 in size, only in shape.
-- **Against: the dipstick** (*owner*, 24/10): the level where it was at
-  the last top-up, about 1 mm over the upper mark. Fuel collecting in the
-  oil raises the level (*general*), and it has not risen that far can be
-  read; a millimetre is the stick's resolution, so a small dilution is not
-  excluded. **The smell, 25/10**: "of engine, not plainly of petrol"
-  (*owner*, by nose, not a chemical test) — weak, since a few per cent of
-  dilution is not reliably smelt, least of all on cold oil (*general*);
-  the same as September's dipstick (`refuted.md` C2).
-- **The level may balance** (*the owner's point*, 25/10): fuel coming in
-  and oil being burnt at the same time leave the stick where it was, and
-  an older engine that never needs topping up between changes is the
-  exception rather than the rule. **Worn or stuck rings would do both**
-  (*general*): blow-by carries fuel down past them, and an oil-control
-  ring that does not scrape leaves oil to burn; valve-stem seals are the
-  other usual way oil is burnt. So the unchanged level weakens H17 less
-  than it reads. **Against the rings**: 12 bar on all four
-  (`refuted.md` A4), and the sooted plugs of 20/10 were dry black, not
-  oily. The **wet patches on all four crowns** (`idle-log.md`, 19–20/10)
-  cannot be told apart from fuel or condensed water on a cheap screen
-  with the engine stopped. **How much oil it burns is not known**: the
-  top-ups since 6/2026 include the litre lost at the cover joint (3/10).
-  **No blue smoke seen, ever** (*owner*, 26/10): against burning oil in
-  any quantity, by the rings or the stem seals (H18). Weak: a small
-  consumption is not visible by eye (*general*).
-- **Against: the bad start of 24/10.** Fuel in the oil does not flood a
-  start after standing (*reasoned*); if P0172 and that start are one event
-  (*owner's decision*, S19), H16 and H7 explain both and H17 only the code.
-  Two causes in one window are not excluded.
-- **S1 ~, through a mechanism and not the size.** The ECU's correction is
-  the same for all four cylinders; vapour from the breather need not
-  reach all four alike, so the cylinders that get less of it end up lean
-  by about the trim, a few per cent (*reasoned*). A cylinder at the edge
-  of stable combustion (S1, *Load smooths it*) could be tipped by that.
-  **Against it**: the idle is roughest cold, when there is little to boil
-  off, and it was rough for years, through oil changes. **The change of
-  6/2026**, three-year-old black oil out, **brought nothing the owner
-  noticed in the idle** (*owner*, 25/10) — weak, since that was on the
-  old parts with no `IdleHealth` and no 032 read either side. The same
-  holds for H16's vapour.
-- **How fuel would reach the oil on a port-injected engine**
-  (*general*): cold, part of the injected fuel stays liquid on the port
-  walls and the cold cylinder walls, and some of it is scraped past the
-  rings; **a misfire** sends a whole unburnt charge into the cylinder,
-  some of it down past the rings with the blow-by; a **dripping
-  injector** after switching off wets one cylinder directly (H7); worn
-  rings or stuck ring lands (H13) let more of all of it by. This car has
-  the first two in quantity: long cold idles for the captures, and 014
-  counting at them.
-- **The owner's loop** (25/10): whatever first made it misfire — the old
-  probe, plugs, leads, coil, injectors — put fuel in the oil, and the fuel
-  coming back through the breather now keeps combustion poor, so the fault
-  outlives every part that started it. **What it predicts after the flush
-  and fresh oil (26/10): 032's idle cell near zero, and the *warm*
-  idle calmer** — warm, because the fuel boils off only from hot oil; the
-  cold idle should not move. **Against it**: the oil level has not risen;
-  the change of 6/2026 moved nothing he noticed; compression is 12 bar on
-  all four (`refuted.md` A4), so the rings seal; and a trim of a few per
-  cent is what is left to act on. ⚠ **The flush cannot name it alone**:
-  EPR also cleans the rings (H13), so a calmer warm idle after the flush would be
-  H17 *or* H13; only 032 belongs to H17 alone.
-
-**Tests:** the dipstick, read 24/10 (above), and **its level on the new
-oil** (`plan.md` 6i); *a laboratory analysis of the old oil with fuel
-dilution was planned and dropped, 26/10 (the owner's decision): not
-taken*; **032 before the
-oil change and again on the new oil** after a couple of hundred km, with
-no clearing between unless 032 is read first. A trim that moves to zero
-on fresh oil is VW's own confirmation; one that stays points at H19 (the
-MAF against the map) or an injector, since 6e cleared N80 and the
-regulator's reference. **The first reading on the new oil**: 27/10
-evening, a day after the change, **−8.6 %**, relearnt from 0.0 after the
-disconnect of that afternoon — against H17; **6g's reading at about 200 km
-(29/10, 155,201 km): −8.6 / +5.5 %, 055 −1.11 g/s** — the idle cell where
-it stood before the change (*owner*, VCDS photo in the album). **Against
-H17 a second time**; the fuel in the lines was still the Verva, a few km
-after the fill. Whether it goes to `refuted.md` is the owner's to say.
-
 ### H18. Oil past the valve-stem seals, drawn in at idle
 
 *Added 26/10 at the owner's request*, from his reading of 26/10 (S1,
@@ -1711,14 +1588,14 @@ vacuum falls, the flow stops, and what collected burns away.
   when the vacuum is at its highest and a leaking seal passes the most;
   the drive's load after it would have to burn off more than the coast
   drew in.
-- **Against: the dipstick** (H17): no loss can be read between top-ups.
-  **How much oil it burns is not known** (H17).
+- **Against: the dipstick** (`plan.md` 6i): no loss can be read between
+  top-ups. **How much oil it burns is not known.**
 - **S3 ~** for the same reason as S1: misfires at idle, on all four.
 
 **Tests:** **the oil consumption on the fresh oil** after the change of 26/10,
-read on the dipstick from a photographed level (`plan.md` 6i), which separates this from H17 —
-oil burnt lowers the level, fuel in the oil raises it, and both together
-hide each other (H17, *The level may balance*); **the plugs** at the next
+read on the dipstick from a photographed level (`plan.md` 6i) — oil
+burnt lowers the level, fuel in the oil would raise it (`refuted.md`
+C21); **the plugs** at the next
 change, for oily deposit on the firing end. A compression or leak-down
 test does not reach the seals.
 
@@ -1738,7 +1615,7 @@ high at idle flows and low further up (*reasoned*). **The remap of 6/2018
 was made with the 2018 MAF in the car**; the genuine VW one fitted 24/9
 need not read like it, and the tuner may have scaled the MAF curve
 (H14). The rest of 032's causes give one side only: a leak makes the
-idle cell positive, a fixed fuel flow (H16, H17) the idle cell negative
+idle cell positive, a fixed fuel flow (H16; fuel in the oil, `refuted.md` C21) the idle cell negative
 alone, a low pressure (H7) the part-load cell positive alone.
 
 | S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
@@ -1781,17 +1658,18 @@ alone, a low pressure (H7) the part-load cell positive alone.
   then, so the same plate angle need not pass the same air, and the
   states (loads, oil) are not matched.
 - **Against: one part cannot be told from two** in 032 alone — a fixed
-  fuel flow at idle (H16, H17) with a lean part load from elsewhere gives
+  fuel flow at idle (H16) with a lean part load from elsewhere gives
   the same shape. 6e cleared N80 and the regulator's reference as the
-  source of the idle side (H7, H16), which leaves H17 and the MAF.
+  source of the idle side (H7, H16), and the new oil cleared fuel in it
+  (`refuted.md` C21), which leaves an injector and the MAF.
 - **S7 ~**: open loop at a cold start, nothing corrects a MAF that reads
   high at a cranking flow (*reasoned*); the starts were clean for a month
   on this MAF, so at most a contributor.
 
 **Tests:** **the stock map of 3/11** — 032 resets with it and relearns on
 the original calibration: a split that closes says the map and the MAF
-disagreed; one that comes back says the MAF itself, or the fuel (H17, the
-fill). **032 on the new oil** for H17 before that: −8.6 / +5.5 at about
+disagreed; one that comes back says the MAF itself, or the fuel (the
+fill). **032 on the new oil** before that: −8.6 / +5.5 at about
 200 km (29/10), the idle cell unmoved.
 
 ---
@@ -1887,7 +1765,7 @@ same languages): **no AQY thread with a reported fix.** The general
 lists agree with VW's (`vcds.md`, block 032): a leaking injector, fuel
 pressure too high, a purge valve stuck open, the MAF, the probe, **and
 fuel in the oil** — Mazda SA-026/18 and GM PIP5647A, both for
-direct-injection engines and both with the oil level rising (H17). New Beetle forum leads, unread to their end (the
+direct-injection engines and both with the oil level rising (`refuted.md` C21). New Beetle forum leads, unread to their end (the
 pages refuse automated reading): the short vacuum hose to the fuel
 pressure regulator, N80. Overfilling the tank past the first click is
 named as a way to flood the canister (*general*; H16).
@@ -1944,10 +1822,9 @@ is in git.
 | 11 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
 | 12 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
 | 13 | **H16** the purge valve leaking | here for S7 and S19 only: an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest; not replaced (*owner*, 25/10) | the cold starts, primed and plain (`plan.md` 6h) |
-| 14 | **H17** fuel in the oil | VW's first cause for this car's 032; the oil level has not risen; here for the trim and S19's code, not the idle: roughest cold, when there is nothing to boil off; **032 unchanged at about 200 km on the new oil (29/10)** | done: against it; `refuted.md` is the owner's call |
-| 15 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
-| 16 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
-| 17 | **H12** driveline play | — | done: the clutch minutes cleared it |
+| 14 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
+| 15 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
+| 16 | **H12** driveline play | — | done: the clutch minutes cleared it |
 
 **Re-read 25/10 with S7 reopened**: the order stands, since the ranking is
 for the idle and S7 is a start; S7 sits with S19 on H7 and H16, and H7's
@@ -1961,7 +1838,8 @@ injector would put the dips on its cylinder, while since the VW leads
 they sit on all four alike. What is left of H7 — the rail's holding
 pressure, a dripping injector — is mostly for S7 and S19. H16 keeps its
 place for the starts alone. **For the rich idle trim**, which this table does
-not rank, H17 and an injector are what is left (H7).
+not rank, an injector and the MAF are what is left (H7, H19; H17
+refuted 29/10).
 
 **Re-read 26/10, after the oil change** (*agreed with the owner*): **H8
 from 7 to 3** — S20 dates from this throttle, 014 follows 055's learnt
@@ -1976,10 +1854,10 @@ H2 and H0 keep their substance**; H0 moves from 6 to 7.
 the order stands, since the ranking is for the idle and S20 is not the
 idle. S20 fits H8 by its timing (since the new throttle and the cable's
 slack taken up, 1–2/10, *owner*), weakly what moves the mixture at a held
-plate (H2, H7, H11, H14, H16, H17) and H0.
+plate (H2, H7, H11, H14, H16, H17 since refuted) and H0.
 
 **Re-read 26/10 with H18 added** (oil past the stem seals): the order
-above it stands. H18 enters below H17: it reads the shape of 26/10 but
+above it stands. H18 enters below H17 (refuted 29/10): it reads the shape of 26/10 but
 has no blue smoke, no oily plug and no falling level behind it, and its
 test comes with the fresh oil of 26/10.
 
@@ -1991,7 +1869,7 @@ already.
 
 **Re-read 28/10 with H19 added** (the MAF's curve against the remap):
 the order above it stands, since the ranking is for the idle and H19
-is for the trim. **For the rich idle trim** it joins H17 as what is
+is for the trim. **For the rich idle trim** it joined H17 (refuted 29/10) as what is
 left, and it is the one that also reads the positive part-load cell; the
 stock map of 3/11 is its test (*agreed with the owner*). **The same day, from 14 to 2**
 (*agreed with the owner*): the MAF reaches the idle beyond the mixture,

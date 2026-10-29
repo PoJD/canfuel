@@ -266,15 +266,14 @@ the cleaner's tank run out; a few hours outdoors in the cold is the case
 of 24/10. `StartCrank` and `StartDip` because the display carries them
 and a start the owner calls normal may still show a long crank.
 
-**Item 6i — the oil level on the new oil** (`open.md` H18, H17; *the
+**Item 6i — the oil level on the new oil** (`open.md` H18; `refuted.md` C21; *the
 owner's agreement*, 26/10). Oil burnt past the stem seals or rings lowers
 the level; fuel collecting in the oil raises it (*general*). On the old
 oil neither could be read: no known starting level, and the top-ups
 included the litre lost at the cover joint (3/10). A fresh fill to a
 photographed level gives the start. **Read**: a level falling between
 top-ups → oil burnt, H18 (or the rings) up; a level rising → fuel in the
-oil, H17 up; steady → neither in quantity, or both at once (H17, *The
-level may balance*), which 032 then splits. **A falling level is first
+oil, `refuted.md` C21 revived; steady → neither in quantity. **A falling level is first
 looked for underneath**: the sump's rear was oily on 26/10 (`open.md`,
 *Other*), and a leak lowers the level exactly as burning does. Five minutes standing and
 level ground because the stick reads the sump only once the oil has run
