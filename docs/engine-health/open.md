@@ -619,6 +619,45 @@ vapour while standing is a cause with a found part behind it; the valve
 is **not replaced** (*the owner's decision*, 25/10: it helps neither the
 idle nor the trim).
 
+**Good for a month, then bad — what changed** (*the owner's question*,
+29/10; *reasoned* unless marked). **Better on 23/9**: new injectors and a
+new fuel filter; the old injectors were the bad starts then (`refuted.md`
+C3, D2). **Worse from the afternoon of 24/10**, so the cause was in place
+by then — before the clearing that night, the hose of 25/10, the oil of
+26/10 and the cable and pedal of 27/10, none of which can be the trigger.
+In the order they fit:
+
+1. **The Verva fill**, hours before the first bad start; the 44K was in
+   OMV from 23/10 and the next morning's start was clean. Read by the
+   OMV from 29/10 once the lines hold it.
+2. **The Verva's vapour through N80** (H16): a fuel that evaporates more
+   readily, and a valve found passing air unpowered on 25/10, fill the
+   intake while the car stands; it also gives 032's idle cell. When N80
+   began to pass is not known. Read by the purge hose clamped overnight.
+3. **A new injector held off its seat** by a particle, after the old
+   tank was run down to 0.4–0.7 l and driven hard on 24/10 — S19's
+   window opens on that drive. It floods the start and enriches the idle
+   alike. Against: a filter and screens five weeks new. Read by the rail
+   holding its pressure after switch-off (VW: at least 2.0 bar after ten
+   minutes, `vcds.md`) — the gauge.
+4. **The 44K loosening the deposits**, which soak up a cold start's fuel
+   until they are wet (*general*). Against: Liqui Moly's can of 15/10
+   left the starts clean, and the deposits did not show as the cause of
+   the idle (H13, demoted). Read by the starts recovering slowly once the
+   cleaner is gone, which the OMV cannot be told from.
+5. **The map's margin** (H14) is not a change — it was the same through
+   the good month — but it is the edge any of the above tips over. Read
+   by 3/11.
+
+**Not the change**: the cold (the good starts had 12–17 °C of coolant,
+the bad 18–25 °C, `idle-log.md` 4/10); a rail that drains (primed and
+plain alike); the plugs and leads of 21/10 (the same NGK plug, the starts
+of 22–24/10 clean); the adaptations reset (the first bad start came
+before the clearing, and they were relearnt and the starts stayed bad).
+**Two causes in a row** is possible — the fuel for the first days, a
+part since — and the order of the reads above separates them: the OMV
+first, then the clamp, then the gauge, one at a time.
+
 **Read off the display**: `StartCrank` and `StartDip` on 0x604
 (`docs/firmware/frames.md`) for every cold start, failed or not, plain
 (`plan.md` 6h). **The priming test is over** (*the owner's decision*,
@@ -1811,10 +1850,10 @@ is in git.
 |---|---|---|---|
 | 1 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show; **first since 24/10: the dips on all four alike on `40` and `41`**, the picture it predicts | the files, then the original map (3/11) |
 | 2 | **H19** the MAF's curve against the remap | **up 28/10 from 14** (*agreed with the owner*): the one repair that shows on engine speed, the MAF of 24/9, halved the dips with nothing else about them changing (`refuted.md` C2); a map made for the 2018 MAF would leave the new one read off what it expects; reads 032's split as well (S19); not the whole, the idle was rough in August on a normal-reading MAF | the stock map (3/11), with H14 |
-| 3 | **H7** fuel delivery | never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge, an injector swap |
+| 3 | **H7** fuel delivery | never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10) — and an injector swap |
 | 4 | **H2** a leak ahead of the probe | S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test |
 | 5 | **H13** deposits | **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; none left in the plan |
-| 6 | **H1** valve or lifter | **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes (26/10) |
+| 6 | **H1** valve or lifter | **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | none left in the plan: the EPR flushes done 26/10, the hot recording found no lifter |
 | 7 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
 | 8 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting follows 055's learnt value (`refuted.md` C19), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
 | 9 | **H3** a leak at one runner | the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
