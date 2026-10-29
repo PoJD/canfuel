@@ -67,25 +67,24 @@ throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
   do not follow the priming, which is against a rail draining while
   standing; flooding and the fuel stay. Priming dropped (28/10).
 - **S19, P0172 and the split trim** — the code once (24/10), not back on
-  any reading since; **032's idle cell at −7.8 to −8.6 % and its
-  part-load cell at +6.3 to +8.6 %** since 25/10, on the new regulator
-  hose and, on 27/10, on the new oil. Fits H19 (the MAF against the map)
-  and H17; 6e cleared N80 and the regulator's reference as its source.
+  any reading since; **032's idle cell at −6.3 to −8.6 % and its
+  part-load cell at +5.5 to +8.6 %** since 25/10, on the new regulator
+  hose and on the new oil (−8.6 / +5.5 at about 200 km on it, 29/10).
+  Fits H19 (the MAF against the map), and H17 less since that reading; 6e cleared N80 and the regulator's reference as its source.
 - **S20, the speed wandering at a constant pedal** (since 1–2/10, on the
   road) — **a little better since the cable was slackened and the pedal
   greased (27/10), still there** (*owner*, 28/10). Not the idle.
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm).
 
-**Ranked (28/10, agreed with the owner):** **H14, H19, H13, H7, H2, H1**,
+**Ranked (29/10, agreed with the owner):** **H14, H19, H7, H2, H13, H1**,
 then H0, H8, H3, H15, H4, the timing belt, H16, H17, H18, H11, H12 (*The
 idle's candidates, ranked*). The remap and the MAF read against it lead,
 and share one test; what acts on one or two cylinders (H3, H15, H4) went
 down when the dips spread over all four.
 
 **Next** (`plan.md`): the OMV tank from 29/10, the second 44K tank run
-out that day; **032 after about 200 km on the new oil** (6g);
-every cold start, plain (6h); the oil level every 500 km (6i); then
+out that day; every cold start (6h); the oil level every 500 km (6i); then
 **the original map at the tuner on 3/11** (5a); his two files come
 with it and are compared afterwards.
 
@@ -159,6 +158,7 @@ error):
 | 26/10 | display | settled | warmed in a jam, gently, under 3000 rpm; then one brisker stretch, revs held up in 2nd downhill on engine braking | **80–100** all through the warm-up, **still at 92 °C** of oil; **60–70** after the brisker stretch; everyday state (*owner*) |
 | 27/10 | display, video | settled | `plan.md` 6k: a gentle drive to about 88 °C of oil, the A/C against the loads (`idle-log.md`) | **~70** everyday state; **35–50** the A/C alone; **54–62** every load but the A/C; **25–35** both |
 | 27/10 eve | display, video | settled (055 reset that afternoon, relearnt to −1.17) | the pedal greased; oil changed 26/10; the second 44K tank about four-fifths used; oil 100 °C | **54** loads off (mean; **35–65** in waves of about 1½ min); **34** every load on with the A/C (26–42, still falling) — **the first stop with loads off within 25 of loads on** (condition 2 below), one stop |
+| 29/10 | display | settled | home from the pump, 5 km driven gently, oil not given; the Verva still in the lines | **90–130, very unsettled**, everyday state (*owner*) |
 | 28/10 | display | settled | the last of the Verva tank, 13 l in the morning to 5 l; oil 95–100 °C | **70–100 most of the time, down to 47 at moments**, everyday state; **felt worse** (*owner*), and the figures agree: above 27/10's ~70 in the same state, lower being calmer |
 
 **The trend over every capture** (28/10, at the owner's question; every
@@ -654,7 +654,7 @@ P0172) and while the car stands (a flooded first start); a fuel with less
 energy per litre raises the part-load cell alone. The cleaner is in the
 fuel, so whatever it does to its evaporation counts with it. How Verva 100
 and OMV MaxxMotion 100 differ in either is not known. **Read**: the starts
-on OMV from 29/10, and 032 once enough of it has run (`plan.md` 6g).
+on OMV from 29/10, and 032 once enough of it has run.
 
 **29/10, the worst start yet** (*owner*): plain, **3–4 s of cranking
 without a single firing**, the key off; the second start caught a little
@@ -665,7 +665,12 @@ which reads as no fuel at the valves, or a charge too rich to light
 morning's start, so on the last of the Verva and 44K before the fill
 (*reasoned*); how long parked and the display's figures not given. **It
 breaks the outdoors pairing above**: like 25/10, a bad start out of the
-garage. **The owner means to prime the cold starts again**.
+garage. **The afternoon's start**, after about 4 hours and only the 3 km
+from the pump (*owner*): bad, less than the morning's; **`StartCrank`
+0.80 s, `StartDip` 103 rpm, `StartClt` 22 °C** (album). The fuel at the
+injectors was still the Verva: the filter and lines hold 10–30 km of it
+(Red Rider's figure for a cleaner reaching the injectors, *reasoned*), so the first start on OMV proper is
+the next morning's.
 
 **Dirt off the tank's bottom** (*the owner's question*, 28/10: the old
 tank was run down to 0.4–0.7 l before the Verva fill, S19): against it
@@ -1229,10 +1234,9 @@ idle would run rich and fast, not better. **The exception was 26/10**,
 when 055's −2.78 was learnt wrong against the stick, and undoing it did
 help.
 
-**Tests, both already in the plan**: **6g** — 032 relearns from zero
-after the disconnect of 26/10 while 055 sits at −0.90; 032's idle cell
-back near −8 with 055 unmoved says the two are independent and the rich
-idle has its own source (H7, H16, H17). **5a** — the ECU comes back from
+**Tests**: **6g, done 29/10** — 032's idle cell back at −8.6 with 055 at
+−1.11, so the two are independent and the rich idle has its own source
+(H7, H16, H17). **5a** — the ECU comes back from
 the tuner on zeroed adaptations; the drive home, captured with VCDS on
 014, 055 and 003, gives `IdleHealth` second by second against the
 learnt value as it walks down from zero, which 26/10 could not.
@@ -1669,8 +1673,11 @@ on fresh oil is VW's own confirmation; one that stays points at H19 (the
 MAF against the map) or an injector, since 6e cleared N80 and the
 regulator's reference. **The first reading on the new oil**: 27/10
 evening, a day after the change, **−8.6 %**, relearnt from 0.0 after the
-disconnect of that afternoon — against H17; 6g's reading at about 200 km
-is still to come.
+disconnect of that afternoon — against H17; **6g's reading at about 200 km
+(29/10, 155,201 km): −8.6 / +5.5 %, 055 −1.11 g/s** — the idle cell where
+it stood before the change (*owner*, VCDS photo in the album). **Against
+H17 a second time**; the fuel in the lines was still the Verva, a few km
+after the fill. Whether it goes to `refuted.md` is the owner's to say.
 
 ### H18. Oil past the valve-stem seals, drawn in at idle
 
@@ -1784,7 +1791,8 @@ alone, a low pressure (H7) the part-load cell positive alone.
 **Tests:** **the stock map of 3/11** — 032 resets with it and relearns on
 the original calibration: a split that closes says the map and the MAF
 disagreed; one that comes back says the MAF itself, or the fuel (H17, the
-fill). **032 on the new oil** (`plan.md` 6g) for H17 before that.
+fill). **032 on the new oil** for H17 before that: −8.6 / +5.5 at about
+200 km (29/10), the idle cell unmoved.
 
 ---
 
@@ -1925,9 +1933,9 @@ is in git.
 |---|---|---|---|
 | 1 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show; **first since 24/10: the dips on all four alike on `40` and `41`**, the picture it predicts | the files, then the original map (3/11) |
 | 2 | **H19** the MAF's curve against the remap | **up 28/10 from 14** (*agreed with the owner*): the one repair that shows on engine speed, the MAF of 24/9, halved the dips with nothing else about them changing (`refuted.md` C2); a map made for the 2018 MAF would leave the new one read off what it expects; reads 032's split as well (S19); not the whole, the idle was rough in August on a normal-reading MAF | the stock map (3/11), with H14 |
-| 3 | **H13** deposits | 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | the second 44K tank, **run out 29/10, the idle no calmer** — the owner to agree what that does to the rank |
-| 4 | **H7** fuel delivery | never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge, an injector swap |
-| 5 | **H2** a leak ahead of the probe | S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test |
+| 3 | **H7** fuel delivery | never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge, an injector swap |
+| 4 | **H2** a leak ahead of the probe | S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test |
+| 5 | **H13** deposits | **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; none left in the plan |
 | 6 | **H1** valve or lifter | **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes (26/10) |
 | 7 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
 | 8 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting follows 055's learnt value (`refuted.md` C19), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
@@ -1936,7 +1944,7 @@ is in git.
 | 11 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
 | 12 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
 | 13 | **H16** the purge valve leaking | here for S7 and S19 only: an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest; not replaced (*owner*, 25/10) | the cold starts, primed and plain (`plan.md` 6h) |
-| 14 | **H17** fuel in the oil | VW's first cause for this car's 032; the oil level has not risen; here for the trim and S19's code, not the idle: roughest cold, when there is nothing to boil off | 032 on the new oil (`plan.md` 6g) |
+| 14 | **H17** fuel in the oil | VW's first cause for this car's 032; the oil level has not risen; here for the trim and S19's code, not the idle: roughest cold, when there is nothing to boil off; **032 unchanged at about 200 km on the new oil (29/10)** | done: against it; `refuted.md` is the owner's call |
 | 15 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
 | 16 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 17 | **H12** driveline play | — | done: the clutch minutes cleared it |

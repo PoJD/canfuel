@@ -18,7 +18,7 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Current: item 6 and 6g–6i;
+Captures only where an item asks for one. **Current: item 6, 6h and 6i;
 5a on 3/11.**
 
 5a. **The original map written back** at the tuner, **booked for 3/11**.
@@ -39,9 +39,10 @@ Captures only where an item asks for one. **Current: item 6 and 6g–6i;
      home; VCDS on **014, 055, 003** the whole way; no `oilwatch.py`.
      **A few minutes of cold idle straight after the start**; once warm,
      drive briskly; **once the oil is above 90 °C, three or four stops
-     of 3–5 minutes each**, the everyday state, nothing touched, normal
-     driving between them; **one more stop at home**. Write each stop
-     into the chat.
+     of 3–5 minutes each** — **only if the dips and 014 look different
+     from now; decided together on the drive** — the everyday state,
+     nothing touched, normal driving between them; **one more stop at
+     home**. Write each stop into the chat.
    - **Then one or two ordinary warm drives**, captured; VCDS on
      **014, 003**; 055 once at the end, warm idle. On one of them **one
      held full-throttle pull in 4th**, with VCDS on **014, 003, 020** for
@@ -60,9 +61,6 @@ Captures only where an item asks for one. **Current: item 6 and 6g–6i;
      clearly better**: one or two warm drives captured, on different
      days. Claude runs the capture; VCDS on **014, 003, 020**; 055 once
      at the end, warm idle. Write the stops.
-6g. **032 on the new oil** (the *before* read 26/10: −8.6 / +7.8 %).
-   - After about 200 km on the new oil: 032 and 055, before anything is
-     cleared. **Before 3/11**: the map resets 032 again.
 6h. **Every cold start, until S7 is placed.** Before turning the key,
    nothing else. Write into the chat: date, how long parked, the outside
    temperature, **caught and died, or ran**, and `StartCrank` and
@@ -172,8 +170,8 @@ down — the owner's hypothesis that the regulation narrows the margin
 because the capture carries the oil, the throttle and the speed, and 003
 adds what it does not: the MAF's air and the ignition angle. 10–20
 minutes of idle in all, against the standing item for the converter,
-accepted as an exception. **6g goes first**: the map's reset would clear
-the 032 it waits for.
+accepted as an exception — **and decided on the drive** (*owner*, 29/10):
+if the dips and 014 look as before, the long stops are not made.
 **The questions for the tuner** (*agreed with the owner*, 28/10): the
 owner half-remembers a warning about the idle (`open.md` H14), and a MAF
 scaling made for the 2018 sensor is H19's mechanism; a tuner's answer
@@ -259,24 +257,6 @@ the refit drive of 21/10 on plain fuel, as that reference; the display
 through the tanks; and the captures once `IdleHealth` moves, which then
 say what moved.
 
-**Item 6g — fuel in the oil** (`open.md` H17; 25/10/2026, from VW's
-evaluation of block 032, `vcds.md`). VW names oil dilution first for a
-low idle learnt value with part load normal, which is this car's 032,
-and says it goes away with an oil change — done 26/10 anyway, so the
-test costs one reading either side. (The dipstick part is done: 24/10,
-the level unchanged since the last top-up, `idle-log.md`.) **Read**: 032's idle
-cell close to zero on the new oil → H17 confirmed and the cold idles of
-the captures were feeding it — fewer and shorter standing cold idles
-from then on; unchanged → H19 (the MAF against the map) or an injector carry the
-trim, since 6e cleared N80 and the regulator's reference. **The first
-reading on the new oil** (27/10 evening, relearnt from 0.0 after that
-afternoon's disconnect): −8.6 %, already against H17. **`IdleHealth`
-beside it, cold and warm apart** (the owner's loop, `open.md` H17): fuel
-boils off only from hot oil, so H17 predicts the warm idle calmer and the
-cold one unchanged; a calmer warm idle with 032 unmoved is EPR on the
-rings (H13), not H17. EPR in the flush
-does not spoil the comparison: it is drained with the old oil.
-
 **Item 6h — the cold start** (`open.md` S7, reopened 25/10). **Plain
 starts only** (*the owner's decision*, 28/10): the priming asked whether
 the rail lost its pressure while standing, and three starts (26/10 plain,
@@ -294,7 +274,7 @@ included the litre lost at the cover joint (3/10). A fresh fill to a
 photographed level gives the start. **Read**: a level falling between
 top-ups → oil burnt, H18 (or the rings) up; a level rising → fuel in the
 oil, H17 up; steady → neither in quantity, or both at once (H17, *The
-level may balance*), which 032 (6g) then splits. **A falling level is first
+level may balance*), which 032 then splits. **A falling level is first
 looked for underneath**: the sump's rear was oily on 26/10 (`open.md`,
 *Other*), and a leak lowers the level exactly as burning does. Five minutes standing and
 level ground because the stick reads the sump only once the oil has run

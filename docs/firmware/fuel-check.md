@@ -142,7 +142,7 @@ pump receipt is not kept here: the photograph shows the owner.
 17/10 was filled to full (*owner*); 24/10 took 50.88 into 0.4–0.7
 indicated against 51.47 into 1.1, so the two ends agree to about a
 litre, which is the brim's own scatter (step 5 below) — about 2 % of
-this figure. **Not owner-confirmed as full to the click.**
+this figure. **Full to the click**: always (*owner*, 29/10).
 
 **It is the first post-repair pump figure, and it checks the firmware
 only loosely.** The display's trip covers **the last 254.1 km** of the
@@ -194,8 +194,8 @@ run out (`docs/engine-health/plan.md`). Read before the nozzle went in
 151.4 km, not the tank's distance**: the battery disconnect of 27/10
 zeroed it at about 155,042 km (`docs/engine-health/vehicle-history.md`),
 so the distance comes from the odometer (the last of several disconnects,
-with the 055 reset, *owner*). The fuel was OMV MaxxMotion 100 (*owner*);
-whether it stopped at the first click was not given.
+with the 055 reset, *owner*). The fuel was OMV MaxxMotion 100plus, filled
+to the first click as always (*owner*).
 
 *(derived)*
 
