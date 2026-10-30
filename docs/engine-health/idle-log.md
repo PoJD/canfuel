@@ -880,3 +880,15 @@ before the fill. How long parked and the display's figures not given.
 the converter's fuel within 0.6 % of the pump's, its distance 1.2 % over
 the odometer (`fuel-check.md`). **The idle at its end no calmer**: about
 70 everyday on 27/10, 70–100 on 28/10 (`open.md` S1).
+
+## 30/10 — the first morning on OMV
+
+- **Tests:** the cold start, plain, after about 16 hours in the garage
+  (`plan.md` 6h); `IdleHealth` at a warm stop.
+- **Changes after:**
+  - *measured:* `StartCrank` 0.77 s, `StartDip` 0, `StartClt` 20 °C
+    (oil 24 °C, 17 °C in the garage); `IdleHealth` 80–100 everyday at
+    99 °C of oil;
+  - *felt:* the start clean (*owner*);
+  - *not known:* whether it is the OMV — one start, and the lines held
+    only about 8 km of it.

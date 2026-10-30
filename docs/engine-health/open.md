@@ -36,7 +36,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 29 October 2026
+## Where it stands — 30 October 2026
 
 **Closed**, in `refuted.md` §D: S6 the exhaust joint behind the
 converter, S8 the top end, S9 the rich trim, S10 the oil leak at the back
@@ -63,7 +63,8 @@ throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
   28/10, caught and died again that afternoon** after about 6 hours
   outdoors (`StartCrank` 1.41 s, the longest yet), and **on 29/10 the
   first start did not fire at all** in 3–4 s of cranking, out of the
-  garage at 17 °C. The starts
+  garage at 17 °C; **clean on 30/10**, the first morning after the OMV
+  fill (one start). The starts
   do not follow the priming, which is against a rail draining while
   standing; flooding and the fuel stay. Priming dropped (28/10).
 - **S19, P0172 and the split trim** — the code once (24/10), not back on
@@ -158,6 +159,7 @@ error):
 | 26/10 | display | settled | warmed in a jam, gently, under 3000 rpm; then one brisker stretch, revs held up in 2nd downhill on engine braking | **80–100** all through the warm-up, **still at 92 °C** of oil; **60–70** after the brisker stretch; everyday state (*owner*) |
 | 27/10 | display, video | settled | `plan.md` 6k: a gentle drive to about 88 °C of oil, the A/C against the loads (`idle-log.md`) | **~70** everyday state; **35–50** the A/C alone; **54–62** every load but the A/C; **25–35** both |
 | 27/10 eve | display, video | settled (055 reset that afternoon, relearnt to −1.17) | the pedal greased; oil changed 26/10; the second 44K tank about four-fifths used; oil 100 °C | **54** loads off (mean; **35–65** in waves of about 1½ min); **34** every load on with the A/C (26–42, still falling) — **the first stop with loads off within 25 of loads on** (condition 2 below), one stop |
+| 30/10 | display | settled | the first warm drive on OMV; oil 99 °C | **80–100**, everyday state (*owner*) |
 | 29/10 | display | settled | home from the pump, 5 km driven gently, oil 87 °C; the Verva still in the lines | **90–130, very unsettled**, everyday state (*owner*) |
 | 28/10 | display | settled | the last of the Verva tank, 13 l in the morning to 5 l; oil 95–100 °C | **70–100 most of the time, down to 47 at moments**, everyday state; **felt worse** (*owner*), and the figures agree: above 27/10's ~70 in the same state, lower being calmer |
 
@@ -710,6 +712,14 @@ from the pump (*owner*): bad, less than the morning's; **`StartCrank`
 injectors was still the Verva: the filter and lines hold 10–30 km of it
 (Red Rider's figure for a cleaner reaching the injectors, *reasoned*), so the first start on OMV proper is
 the next morning's.
+
+**30/10, plain, clean** (*owner*, album): about 16 hours in the garage
+at 17 °C, coolant 20 °C and oil 24 °C, the battery 12.5 V; **`StartCrank`
+0.77 s, `StartDip` 0, `StartClt` 20 °C** — as quick as the good month's
+(0.70–0.93 s). About 8 km on OMV since the fill, so the lines held some
+of it and perhaps not all (*reasoned*). **One start**: in favour of the
+fuel (the first of the reads above), not yet a verdict — 28/10's morning
+was clean on the Verva too.
 
 **Dirt off the tank's bottom** (*the owner's question*, 28/10: the old
 tank was run down to 0.4–0.7 l before the Verva fill, S19): against it
