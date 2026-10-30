@@ -67,7 +67,8 @@ throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
   nearly clean** (a slight hesitation, about 8 km of it in the lines) and
   **the afternoon's clean** after about 4 hours in the garage, about
   30 km on OMV — but warm, coolant 38 °C — and **the evening's clean**
-  after another 4 hours or so. The starts
+  after another 4 hours or so. **One clean cold morning on OMV closes
+  it as the fuel** (*the owner's decision*, 30/10). The starts
   do not follow the priming, which is against a rail draining while
   standing; flooding and the fuel stay. Priming dropped (28/10).
 - **S19, P0172 and the split trim** — the code once (24/10), not back on
@@ -88,7 +89,8 @@ and share one test; what acts on one or two cylinders (H3, H15, H4) went
 down when the dips spread over all four.
 
 **Next** (`plan.md`): the OMV tank from 29/10, the second 44K tank run
-out that day; every cold start (6h); the oil level every 500 km (6i); then
+out that day; **the next cold morning start (6h), which decides S7**;
+the oil level every 500 km (6i); then
 **the original map at the tuner on 3/11** (5a); his two files come
 with it and are compared afterwards.
 
@@ -671,6 +673,19 @@ first, then the clamp, then the gauge, one at a time.
 28/10): primed and plain alike were good or bad, so a rail draining while
 standing is not the whole; what is left is flooding or the fuel, read
 by the starts as the 44K tank ran out and on the OMV filled 29/10.
+
+**What closes it** (*the owner's decision*, 30/10): **one more cold start
+after a night, clean**, and S7 closes as the fuel — the Verva or the 44K
+in it, which the OMV fill cannot split. His argument: the starts after a
+few hours were bad on the old fuel too, and are clean now. **The count
+agrees** (*reasoned*): of the eight first starts after a stand on the
+Verva (24/10 afternoon to 29/10 afternoon), six were bad, one hesitant
+(27/10, primed) and one about clean (28/10 morning); on OMV three in a
+row have had no fall. At the Verva's rate that is about a one in fifty
+chance. **Against the full weight**: the bad few-hours starts were at
+18–22 °C of coolant, 30/10 afternoon's at 38 °C. A bad start on OMV,
+then or later, reopens it on the engine or the map, which 3/11 then
+reads alone.
 
 **The map and the fuel together** (*the owner's question*, 28/10;
 *reasoned*): the remap of 6/2018 (H14), and the idle base about 8 % rich
