@@ -66,7 +66,8 @@ throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
   garage at 17 °C; on 30/10, the first day on OMV, **the morning's
   nearly clean** (a slight hesitation, about 8 km of it in the lines) and
   **the afternoon's clean** after about 4 hours in the garage, about
-  30 km on OMV — but warm, coolant 38 °C. The starts
+  30 km on OMV — but warm, coolant 38 °C — and **the evening's clean**
+  after another 4 hours or so. The starts
   do not follow the priming, which is against a rail draining while
   standing; flooding and the fuel stay. Priming dropped (28/10).
 - **S19, P0172 and the split trim** — the code once (24/10), not back on
@@ -634,7 +635,8 @@ In the order they fit:
 1. **The Verva fill**, hours before the first bad start; the 44K was in
    OMV from 23/10 and the next morning's start was clean. Read by the
    OMV from 29/10 once the lines hold it — from the afternoon of 30/10
-   (about 30 km), so far one warm start, clean.
+   (about 30 km), so far two starts after a few hours, both clean, the
+   first of them warm.
 2. **The Verva's vapour through N80** (H16): a fuel that evaporates more
    readily, and a valve found passing air unpowered on 25/10, fill the
    intake while the car stands; it also gives 032's idle cell. When N80
@@ -735,7 +737,12 @@ coolant against their 18–22 °C, and a warm engine evaporates its fuel and
 needs less of it, so it asks less of anything S7 could be. **Two starts on
 OMV, both without a fall**: in favour of the fuel (the first of the reads
 above), not yet a verdict — 28/10's morning was clean on the Verva too,
-and the cold mornings on OMV proper are what read it.
+and the cold mornings on OMV proper are what read it. **The evening's,
+plain, clean** ("again completely clean", *owner*): about 4 hours
+after the afternoon's; the temperatures not read, about the same by his
+estimate, and `StartCrank` and `StartDip` not given — so a third start on
+OMV without a fall, again after a few hours rather than a night, and
+likely warm too (*reasoned*).
 
 **Dirt off the tank's bottom** (*the owner's question*, 28/10: the old
 tank was run down to 0.4–0.7 l before the Verva fill, S19): against it

@@ -885,14 +885,17 @@ the odometer (`fuel-check.md`). **The idle at its end no calmer**: about
 
 - **Tests:** the cold start, plain, after about 16 hours in the garage
   (`plan.md` 6h); `IdleHealth` at a warm stop; the afternoon's start,
-  plain, after about 4 hours in the garage, about 30 km on OMV.
+  plain, after about 4 hours in the garage, about 30 km on OMV; the
+  evening's, plain, after about 4 hours more.
 - **Changes after:**
   - *measured:* the morning's `StartCrank` 0.77 s, `StartDip` 0,
     `StartClt` 20 °C (oil 24 °C, 17 °C in the garage); `IdleHealth`
     80–100 everyday at 99 °C of oil; the afternoon's `StartCrank` 0.70 s,
-    `StartDip` 0, coolant 38 °C and oil 41 °C before it;
+    `StartDip` 0, coolant 38 °C and oil 41 °C before it; the evening's
+    not read;
   - *felt:* the morning's start nearly clean, a slight hesitation; the
-    afternoon's clean, as before 24/10 (*owner*; *the morning's said
+    afternoon's and the evening's clean, as before 24/10 (*owner*; *the morning's said
     "clean" until the afternoon*);
   - *not known:* whether it is the OMV — the morning's lines held only
-    about 8 km of it, and the afternoon's start was warm.
+    about 8 km of it, and the later two came after only a few hours,
+    the afternoon's warm.
