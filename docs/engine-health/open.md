@@ -63,8 +63,10 @@ throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
   28/10, caught and died again that afternoon** after about 6 hours
   outdoors (`StartCrank` 1.41 s, the longest yet), and **on 29/10 the
   first start did not fire at all** in 3–4 s of cranking, out of the
-  garage at 17 °C; **clean on 30/10**, the first morning after the OMV
-  fill (one start). The starts
+  garage at 17 °C; on 30/10, the first day on OMV, **the morning's
+  nearly clean** (a slight hesitation, about 8 km of it in the lines) and
+  **the afternoon's clean** after about 4 hours in the garage, about
+  39 km on OMV — but warm, coolant 38 °C. The starts
   do not follow the priming, which is against a rail draining while
   standing; flooding and the fuel stay. Priming dropped (28/10).
 - **S19, P0172 and the split trim** — the code once (24/10), not back on
@@ -631,7 +633,8 @@ In the order they fit:
 
 1. **The Verva fill**, hours before the first bad start; the 44K was in
    OMV from 23/10 and the next morning's start was clean. Read by the
-   OMV from 29/10 once the lines hold it.
+   OMV from 29/10 once the lines hold it — from the afternoon of 30/10
+   (about 39 km), so far one warm start, clean.
 2. **The Verva's vapour through N80** (H16): a fuel that evaporates more
    readily, and a valve found passing air unpowered on 25/10, fill the
    intake while the car stands; it also gives 032's idle cell. When N80
@@ -713,13 +716,25 @@ injectors was still the Verva: the filter and lines hold 10–30 km of it
 (Red Rider's figure for a cleaner reaching the injectors, *reasoned*), so the first start on OMV proper is
 the next morning's.
 
-**30/10, plain, clean** (*owner*, album): about 16 hours in the garage
-at 17 °C, coolant 20 °C and oil 24 °C, the battery 12.5 V; **`StartCrank`
-0.77 s, `StartDip` 0, `StartClt` 20 °C** — as quick as the good month's
-(0.70–0.93 s). About 8 km on OMV since the fill, so the lines held some
-of it and perhaps not all (*reasoned*). **One start**: in favour of the
-fuel (the first of the reads above), not yet a verdict — 28/10's morning
-was clean on the Verva too.
+**30/10, plain, nearly clean** (*owner*, album): about 16 hours in the
+garage at 17 °C, coolant 20 °C and oil 24 °C, the battery 12.5 V;
+**`StartCrank` 0.77 s, `StartDip` 0, `StartClt` 20 °C** — as quick as the
+good month's (0.70–0.93 s); **not quite clean, a slight hesitation felt**
+(*owner*, that afternoon; *this said "clean" until then*), the kind the
+display does not see (27/10 above). About 8 km on OMV since the fill, so
+the lines held some of it and perhaps not all (*reasoned*). **The
+afternoon's, plain, clean** (*owner*): about 4 hours in the garage, about
+39 km on OMV before it (*owner*), so the first start on OMV proper by the
+10–30 km above; **`StartCrank` 0.70 s, `StartDip` 0** — "exactly as clean
+as before" (*owner*). Before it, ignition on (album, 13:19): **coolant
+38 °C, oil 41 °C**, 12.8 V, 22.5 °C on the mirror's thermometer;
+`StartClt` not given. **A warm start** (*reasoned*): the same few hours
+standing as the bad afternoons of 24, 28 and 29/10, but at 38 °C of
+coolant against their 18–22 °C, and a warm engine evaporates its fuel and
+needs less of it, so it asks less of anything S7 could be. **Two starts on
+OMV, both without a fall**: in favour of the fuel (the first of the reads
+above), not yet a verdict — 28/10's morning was clean on the Verva too,
+and the cold mornings on OMV proper are what read it.
 
 **Dirt off the tank's bottom** (*the owner's question*, 28/10: the old
 tank was run down to 0.4–0.7 l before the Verva fill, S19): against it
