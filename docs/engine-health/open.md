@@ -66,7 +66,7 @@ throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
   garage at 17 °C; on 30/10, the first day on OMV, **the morning's
   nearly clean** (a slight hesitation, about 8 km of it in the lines) and
   **the afternoon's clean** after about 4 hours in the garage, about
-  39 km on OMV — but warm, coolant 38 °C. The starts
+  30 km on OMV — but warm, coolant 38 °C. The starts
   do not follow the priming, which is against a rail draining while
   standing; flooding and the fuel stay. Priming dropped (28/10).
 - **S19, P0172 and the split trim** — the code once (24/10), not back on
@@ -634,7 +634,7 @@ In the order they fit:
 1. **The Verva fill**, hours before the first bad start; the 44K was in
    OMV from 23/10 and the next morning's start was clean. Read by the
    OMV from 29/10 once the lines hold it — from the afternoon of 30/10
-   (about 39 km), so far one warm start, clean.
+   (about 30 km), so far one warm start, clean.
 2. **The Verva's vapour through N80** (H16): a fuel that evaporates more
    readily, and a valve found passing air unpowered on 25/10, fill the
    intake while the car stands; it also gives 032's idle cell. When N80
@@ -724,8 +724,9 @@ good month's (0.70–0.93 s); **not quite clean, a slight hesitation felt**
 display does not see (27/10 above). About 8 km on OMV since the fill, so
 the lines held some of it and perhaps not all (*reasoned*). **The
 afternoon's, plain, clean** (*owner*): about 4 hours in the garage, about
-39 km on OMV before it (*owner*), so the first start on OMV proper by the
-10–30 km above; **`StartCrank` 0.70 s, `StartDip` 0** — "exactly as clean
+30 km on OMV before it (*owner*; *this said 39 until he corrected it*),
+the upper end of the 10–30 km above, so most likely the first start on
+OMV proper (*reasoned*); **`StartCrank` 0.70 s, `StartDip` 0** — "exactly as clean
 as before" (*owner*). Before it, ignition on (album, 13:19): **coolant
 38 °C, oil 41 °C**, 12.8 V, 22.5 °C on the mirror's thermometer;
 `StartClt` not given. **A warm start** (*reasoned*): the same few hours
