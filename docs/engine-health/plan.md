@@ -18,7 +18,7 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Current: item 6, 6h and 6i;
+Captures only where an item asks for one. **Current: item 6 and 6i;
 5a on 3/11.**
 
 5a. **The original map written back** at the tuner, **booked for 3/11**.
@@ -61,11 +61,6 @@ Captures only where an item asks for one. **Current: item 6, 6h and 6i;
      clearly better**: one or two warm drives captured, on different
      days. Claude runs the capture; VCDS on **014, 003, 020**; 055 once
      at the end, warm idle. Write the stops.
-6h. **The next cold start after a night parked — it decides S7.** Before
-   turning the key, nothing else. Write into the chat: date, how long
-   parked, the outside temperature, **caught and died, or ran**, and
-   `StartCrank` and `StartDip` off the display. **Never primed.** After
-   it, only a start that dies or hesitates goes into the chat.
 6i. **The oil level on the new oil, about every 500 km** from the first
    reading (27/10, 155,024 km, at the top mark): the car on level ground
    and **at least 5 minutes standing**, the dipstick out, wiped, in, out,
@@ -256,20 +251,6 @@ reference its tanks would have been read against. What is left: `40`,
 the refit drive of 21/10 on plain fuel, as that reference; the display
 through the tanks; and the captures once `IdleHealth` moves, which then
 say what moved.
-
-**Item 6h — the cold start** (`open.md` S7, reopened 25/10). **Plain
-starts only** (*the owner's decision*, 28/10): the priming asked whether
-the rail lost its pressure while standing, and three starts (26/10 plain,
-bad; 27/10 primed, hesitant; 28/10 plain, clean) did not follow it, so it
-has answered what it could. Plain starts now read the OMV filled 29/10,
-the cleaner's tank run out; a few hours outdoors in the cold is the case
-of 24/10. `StartCrank` and `StartDip` because the display carries them
-and a start the owner calls normal may still show a long crank. **One
-clean cold morning closes S7 as the fuel** (*the owner's decision*,
-30/10): three starts on OMV without a fall after six bad of eight on the
-Verva, and the few-hours starts that were bad on the old fuel now clean
-(`open.md` S7, *What closes it*). Clean → S7 to `refuted.md` §D, and 6h
-leaves this plan; bad → S7 stays, on the engine or the map.
 
 **Item 6i — the oil level on the new oil** (`open.md` H18; `refuted.md` C21; *the
 owner's agreement*, 26/10). Oil burnt past the stem seals or rings lowers

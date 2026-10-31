@@ -797,6 +797,35 @@ Verva 100 (`idle-log.md`, 24/10). **Another → S7 reopens.**
 **25/10/2026: reopened** (*owner*): the cold start of the morning died at
 once again, the second ran. Back in `open.md` as S7; this entry stays as
 its history.
+**31/10/2026: closed again, as the fuel** (*the owner's decision*,
+30/10: one clean cold morning on OMV would close it). **Reopened**: of the
+eight first starts after a stand on Orlen Verva 100 with the second can of
+BG 44K (24/10 afternoon to 29/10 afternoon), six were bad — caught and
+died (24, 25, 28/10 afternoon), carried by a held starter (26/10,
+`StartDip` 218), did not fire at all in 3–4 s (29/10 morning), caught a
+little (29/10 afternoon, `StartDip` 103) — one hesitant (27/10, primed)
+and one about clean (28/10 morning). Primed and plain alike, so not a rail
+draining while standing; after hours outdoors and out of the garage alike.
+**On OMV MaxxMotion 100plus**, filled 29/10, four in a row without a fall:
+30/10 morning after 16 hours (`StartCrank` 0.77 s, `StartDip` 0, coolant
+20 °C; a slight hesitation, about 8 km of OMV in the lines), 30/10
+afternoon (0.70 s, 0, coolant 38 °C, about 30 km on OMV) and evening
+(clean, not read), and **31/10 morning after about 12 hours in the garage,
+cold: about 0.7 s, `StartDip` 0, coolant 22 °C, oil 26 °C, 17 °C in the
+garage, the battery 12.6 V** — in the 18–25 °C band where the Verva's
+starts failed, and clean as before 24/10 (*owner*, album). At the Verva's
+rate four clean in a row is a chance of well under one in a hundred
+(*reasoned*). **The Verva or the 44K in it**: the OMV fill ended both, so
+they are not split; the day on 44K in OMV (23–24/10) had no bad start,
+which leans weakly to the Verva. What the fuel did is not known — the
+reasoning offered while it was open (vapour through N80's small leak,
+H16; deposits wetted by the cleaner, H13) is in the full entry. **Not
+the cause**: the hose of 25/10, the oil of 26/10, the cable and pedal of
+27/10, the clearing of 24/10 night (all after the first bad start); the
+plugs and leads of 21/10 (clean starts until 24/10). The full entry, every
+start with its figures: `git show 3a8121f:docs/engine-health/open.md`,
+S7. **Another bad start on OMV → S7 reopens**, on the engine or the map
+(H14, H7).
 
 ### D3. S8 — "loses breath above 5000 rpm" — closed 4/10/2026
 On the hard drive of 4/10 (`28`) b7 eased from 185 to 181 between 4,000 and

@@ -36,13 +36,15 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 30 October 2026
+## Where it stands — 31 October 2026
 
 **Closed**, in `refuted.md` §D: S6 the exhaust joint behind the
 converter, S8 the top end, S9 the rich trim, S10 the oil leak at the back
 of the head, S12 the jerk on tip-in (a sticking pedal, 27/10), S13 the
 throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
-(24/10); H9 (crankcase ventilation, A15) and H10 (when 014 counts, C19).
+(24/10), **S7 the cold start (31/10: the fuel — four clean starts on
+OMV after six bad of eight on the Verva)**; H9 (crankcase ventilation,
+A15) and H10 (when 014 counts, C19).
 
 **Open:**
 
@@ -58,24 +60,13 @@ throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
   own air).
 - **The cylinder 4 knock window: S4, S5** — its own cluster, not in
   `plan.md` (*owner's decision*, 9/10).
-- **S7, the cold start** — caught and died 24 and 25/10, carried by the
-  starter 26/10, hesitant primed 27/10, **clean plain the morning of
-  28/10, caught and died again that afternoon** after about 6 hours
-  outdoors (`StartCrank` 1.41 s, the longest yet), and **on 29/10 the
-  first start did not fire at all** in 3–4 s of cranking, out of the
-  garage at 17 °C; on 30/10, the first day on OMV, **the morning's
-  nearly clean** (a slight hesitation, about 8 km of it in the lines) and
-  **the afternoon's clean** after about 4 hours in the garage, about
-  30 km on OMV — but warm, coolant 38 °C — and **the evening's clean**
-  after another 4 hours or so. **One clean cold morning on OMV closes
-  it as the fuel** (*the owner's decision*, 30/10). The starts
-  do not follow the priming, which is against a rail draining while
-  standing; flooding and the fuel stay. Priming dropped (28/10).
 - **S19, P0172 and the split trim** — the code once (24/10), not back on
   any reading since; **032's idle cell at −6.3 to −8.6 % and its
   part-load cell at +5.5 to +8.6 %** since 25/10, on the new regulator
   hose and on the new oil (−8.6 / +5.5 at about 200 km on it, 29/10).
   Fits H19 (the MAF against the map); H17 refuted by that reading (`refuted.md` C21); 6e cleared N80 and the regulator's reference as its source.
+  **With S7 closed as the fuel, the fuel is a candidate here too**
+  (S19), read by 032 on the OMV tank before 3/11 resets it.
 - **S20, the speed wandering at a constant pedal** (since 1–2/10, on the
   road) — **a little better since the cable was slackened and the pedal
   greased (27/10), still there** (*owner*, 28/10). Not the idle.
@@ -89,8 +80,7 @@ and share one test; what acts on one or two cylinders (H3, H15, H4) went
 down when the dips spread over all four.
 
 **Next** (`plan.md`): the OMV tank from 29/10, the second 44K tank run
-out that day; **the next cold morning start (6h), which decides S7**;
-the oil level every 500 km (6i); then
+out that day; the oil level every 500 km (6i); then
 **the original map at the tuner on 3/11** (5a); his two files come
 with it and are compared afterwards.
 
@@ -539,234 +529,6 @@ sit on the floor. 1 and 4 reading twice 2 and 3 is explained without a fault
 (`refuted.md` B2). ⚠ 026 includes the ECU's amplifier factor, and 1 and 4 are
 probably on different sensors.
 
-### S7. The first start dies at once — reopened 25/10
-
-*Reopened by the owner, 25/10, under the rule `refuted.md` D2 left: "another
-→ S7 reopens".* **The engine catches and dies at once, as if it had no fuel;
-the next start runs normally** (*owner*). **24/10**, afternoon, after about
-4 hours parked outdoors nose uphill (`idle-log.md`); **25/10**, the cold start
-of the morning **after about 12 hours on the level, in the garage**, "the
-first start always dies" (*owner*). Neither captured. **26/10**, after
-about 10 hours in the garage at about 12 °C (*owner's estimate*), not
-primed: **the starter held until it caught, about 4 s by the owner's
-count**, and it did not die. Off the display: **`StartCrank` 1.22 s,
-`StartDip` 218 rpm, `StartClt` 24 °C** — the deepest `StartDip` on
-record, against 15–118 on the clean starts of 24/9–3/10 and 141 on
-11/9's near-stall on the old injectors (`idle-log.md`, 4/10, *The starts
-measured from the capture*). Read as (*reasoned*): it fired at 1.22 s
-and fell back about to cranking speed within 2 s — the same catch and
-die, with the starter still turning to carry it. **The slope is not
-needed**, so it says nothing either way, and the pickup running dry on a
-hill is out. **27/10, primed** (four times rather than twice, *owner*),
-after about 11 hours in the garage at 18 °C: it ran, **`StartCrank`
-1.18 s, `StartDip` 0, `StartClt` 24 °C** — no fall after the catch,
-against 218 unprimed the day before. **Not a clean start** (*owner*):
-he held the starter longer again, it turned well past the 1.18 s
-before it ran, and it hesitated for a while. The display does not see
-that: `StartCrank` stops at the first 0x280 at 400 rpm and `StartDip`
-looks only 2 s past it, so a first firing that lifts the speed while
-the held starter carries the engine through a stumble reads short and
-dip-free (*reasoned*, `docs/firmware/frames.md`). **Against pressure
-lost while standing as the whole** (*owner*): before the new injectors
-priming always cured it, the engine catching at once without a
-hesitation, and today it did not. So primed still hesitates, which is
-the "both die" branch below: flooding or the fuel rather than a rail
-that drained. **28/10, plain**, after about 10 hours: it ran, perhaps a
-slight hesitation in the first second but no fall (*owner*), **`StartCrank`
-0.7 s, `StartDip` 0**. Three starts that do not follow the priming: **against the rail
-draining while standing**; flooding or the fuel stay. **Not the throttle
-cable** (*owner*): taken up since the throttle's fitting on 1–2/10, with
-three weeks of clean starts after it; *this said the cable, slackened
-27/10, stood beside them*. The owner's reading: the fuel, or deposits
-loosening as the 44K tank runs out. **28/10, afternoon, plain**, after
-about 6 hours parked outdoors on the level, about 10 °C outside (*owner*):
-**caught and died at once**, the starter not held, and the second
-start clean. Off the display, the first: **`StartCrank` 1.41 s, `StartDip`
-254, `StartClt` 18 °C** — longer than any start in `idle-log.md`
-(1.38 s the longest before), and a dip
-saturated: the speed fell at least 254 rpm inside the 2 s, the engine
-stopping; the second: **0.74 s, 0, 18 °C**. Read (*reasoned*): the catch
-and die of 24 and 25/10 with nothing to carry it, where 26/10's held
-starter left 218. **Both bad afternoons followed a few hours outdoors**
-(24/10 and this), and the same morning's start after about 10 hours in the
-garage was clean — two cases, not yet a pattern, and 25/10's died after
-12 hours in the garage (*reasoned*). The coolant
-read 18 °C, 6 °C under 26 and 27/10's 24 °C and still about 8 °C over
-the air. **On the level**, so 24/10's slope is again not needed.
-Closed on 26/9 after the new injectors (`refuted.md` D2): 14 captured
-starts, all clean.
-
-**What changed before it**: **the fill of 24/10**, the first tank of Orlen
-Verva 100 since 2017, with the second can of BG 44K — **both bad starts
-came after it**, and none in about a month before. The fault memory was
-cleared the night of 24/10, resetting 032. The regulator's vacuum hose was
-cut back and turned on 25/10 (H7), **before** that morning's start
-(*owner*). The cutting cannot be both starts' cause, since 24/10's came
-before it; the crack itself was there for both (below).
-
-**How it reads** (*general*): caught, then died, then a clean second start
-is what **a rail that lost its pressure while standing** does — the pump
-refills it on the first attempt (H7: the pump's non-return valve, an
-injector, the regulator; VW: at least 2.0 bar ten minutes after switching
-off, `vcds.md`). **A cylinder flooded while standing** reads the same to the
-driver (H7's dripping injector, H16's vapour). A fuel that starts
-differently cold is the third, from the timing alone. **The cracked
-regulator hose, the owner's reading** (25/10): too much fuel pressure at
-the first idle, and the engine floods. *This said "does not fit", true
-only of the cranking itself.* **For** (*reasoned*): the moment it catches,
-vacuum forms; a hose that does not carry it leaves the rail high, and
-cold the engine runs open loop, so nothing takes the extra fuel out in
-those first seconds. **Against**: the crack is from about September and
-the starts were clean for a month until 24/10. Whether this ECU applies
-032's learnt idle value in open loop too, so that the clearing of 24/10
-night took away a correction the start relied on, is not known. **Not the
-hose**: the start of 26/10 was bad on the new one. **A second reading
-since 6e** (25/10 night): N80 passes a little air without power (H16), so
-vapour while standing is a cause with a found part behind it; the valve
-is **not replaced** (*the owner's decision*, 25/10: it helps neither the
-idle nor the trim).
-
-**Good for a month, then bad — what changed** (*the owner's question*,
-29/10; *reasoned* unless marked). **Better on 23/9**: new injectors and a
-new fuel filter; the old injectors were the bad starts then (`refuted.md`
-C3, D2). **Worse from the afternoon of 24/10**, so the cause was in place
-by then — before the clearing that night, the hose of 25/10, the oil of
-26/10 and the cable and pedal of 27/10, none of which can be the trigger.
-In the order they fit:
-
-1. **The Verva fill**, hours before the first bad start; the 44K was in
-   OMV from 23/10 and the next morning's start was clean. Read by the
-   OMV from 29/10 once the lines hold it — from the afternoon of 30/10
-   (about 30 km), so far two starts after a few hours, both clean, the
-   first of them warm.
-2. **The Verva's vapour through N80** (H16): a fuel that evaporates more
-   readily, and a valve found passing air unpowered on 25/10, fill the
-   intake while the car stands; it also gives 032's idle cell. When N80
-   began to pass is not known. Read by the purge hose clamped overnight.
-3. **A new injector held off its seat** by a particle, after the old
-   tank was run down to 0.4–0.7 l and driven hard on 24/10 — S19's
-   window opens on that drive. It floods the start and enriches the idle
-   alike. Against: a filter and screens five weeks new. Read by the rail
-   holding its pressure after switch-off (VW: at least 2.0 bar after ten
-   minutes, `vcds.md`) — the gauge.
-4. **The 44K loosening the deposits**, which soak up a cold start's fuel
-   until they are wet (*general*). Against: Liqui Moly's can of 15/10
-   left the starts clean, and the deposits did not show as the cause of
-   the idle (H13, demoted). Read by the starts recovering slowly once the
-   cleaner is gone, which the OMV cannot be told from.
-5. **The map's margin** (H14) is not a change — it was the same through
-   the good month — but it is the edge any of the above tips over. Read
-   by 3/11.
-
-**Not the change**: the cold (the good starts had 12–17 °C of coolant,
-the bad 18–25 °C, `idle-log.md` 4/10); a rail that drains (primed and
-plain alike); the plugs and leads of 21/10 (the same NGK plug, the starts
-of 22–24/10 clean); the adaptations reset (the first bad start came
-before the clearing, and they were relearnt and the starts stayed bad).
-**Two causes in a row** is possible — the fuel for the first days, a
-part since — and the order of the reads above separates them: the OMV
-first, then the clamp, then the gauge, one at a time.
-
-**Read off the display**: `StartCrank` and `StartDip` on 0x604
-(`docs/firmware/frames.md`) for every cold start, failed or not, plain
-(`plan.md` 6h). **The priming test is over** (*the owner's decision*,
-28/10): primed and plain alike were good or bad, so a rail draining while
-standing is not the whole; what is left is flooding or the fuel, read
-by the starts as the 44K tank ran out and on the OMV filled 29/10.
-
-**What closes it** (*the owner's decision*, 30/10): **one more cold start
-after a night, clean**, and S7 closes as the fuel — the Verva or the 44K
-in it, which the OMV fill cannot split. His argument: the starts after a
-few hours were bad on the old fuel too, and are clean now. **The count
-agrees** (*reasoned*): of the eight first starts after a stand on the
-Verva (24/10 afternoon to 29/10 afternoon), six were bad, one hesitant
-(27/10, primed) and one about clean (28/10 morning); on OMV three in a
-row have had no fall. At the Verva's rate that is about a one in fifty
-chance. **Against the full weight**: the bad few-hours starts were at
-18–22 °C of coolant, 30/10 afternoon's at 38 °C. A bad start on OMV,
-then or later, reopens it on the engine or the map, which 3/11 then
-reads alone.
-
-**The map and the fuel together** (*the owner's question*, 28/10;
-*reasoned*): the remap of 6/2018 (H14), and the idle base about 8 % rich
-it may leave against the new MAF (H19, 032's idle cell), cannot be the
-whole — the engine started cleanly on the same map and OMV MaxxMotion 100
-for years and through 24/9–23/10. But a map with little cold-start margin
-would make the start the first thing a different fuel tips over, so the
-two together fit as well as the fuel alone. Whether the remap touched
-the start's fuelling at all is not known (the tuner's files, 3/11). **The
-fill of OMV on 29/10** (50.16 l, *owner*) ends the Verva
-and the 44K together, so it cannot split them; the day on 44K in OMV
-(23–24/10) brought no bad start before the Verva fill, which leans weakly
-to the Verva. Clean starts on OMV point at the fuel; bad ones point back
-at the engine or the map, which 3/11 then changes alone.
-
-**032 against the fill** (*the owner's question*, 28/10): the idle cell
-read −0.8 to −6.3 % from the MAF to the fill (−3.1 on 23/10, OMV and the
-first 44K) and **−6.3 to −8.6 % on every reading since 25/10**; the
-part-load cell +2.3 to +5.5 % before, **+3.9 to +8.6 %** after
-(`idle-log.md`). So the deeper split began after the Verva fill — but the
-clearing of 24/10 night, the hose of 25/10 and the oil of 26/10 fall in
-the same days, and S19's window opens before the fill. **How a fuel could
-do all three** (*reasoned*): a fuel that evaporates more readily fills
-the canister faster, and N80, which passes a little air unpowered (H16,
-25/10 night), lets that vapour into the intake at idle (the idle cell,
-P0172) and while the car stands (a flooded first start); a fuel with less
-energy per litre raises the part-load cell alone. The cleaner is in the
-fuel, so whatever it does to its evaporation counts with it. How Verva 100
-and OMV MaxxMotion 100 differ in either is not known. **Read**: the starts
-on OMV from 29/10, and 032 once enough of it has run.
-
-**29/10, the worst start yet** (*owner*): plain, **3–4 s of cranking
-without a single firing**, the key off; the second start caught a little
-and died; **the third ran**. The first time it did not catch at all —
-which reads as no fuel at the valves, or a charge too rich to light
-(*reasoned*), the two branches S7 already carries. **In the garage at
-17 °C, coolant and oil about 25 °C at the start** (*owner*) — the
-morning's start, so on the last of the Verva and 44K before the fill
-(*reasoned*); how long parked and the display's figures not given. **It
-breaks the outdoors pairing above**: like 25/10, a bad start out of the
-garage. **The afternoon's start**, after about 4 hours and only the 3 km
-from the pump (*owner*): bad, less than the morning's; **`StartCrank`
-0.80 s, `StartDip` 103 rpm, `StartClt` 22 °C** (album). The fuel at the
-injectors was still the Verva: the filter and lines hold 10–30 km of it
-(Red Rider's figure for a cleaner reaching the injectors, *reasoned*), so the first start on OMV proper is
-the next morning's.
-
-**30/10, plain, nearly clean** (*owner*, album): about 16 hours in the
-garage at 17 °C, coolant 20 °C and oil 24 °C, the battery 12.5 V;
-**`StartCrank` 0.77 s, `StartDip` 0, `StartClt` 20 °C** — as quick as the
-good month's (0.70–0.93 s); **not quite clean, a slight hesitation felt**
-(*owner*, that afternoon; *this said "clean" until then*), the kind the
-display does not see (27/10 above). About 8 km on OMV since the fill, so
-the lines held some of it and perhaps not all (*reasoned*). **The
-afternoon's, plain, clean** (*owner*): about 4 hours in the garage, about
-30 km on OMV before it (*owner*; *this said 39 until he corrected it*),
-the upper end of the 10–30 km above, so most likely the first start on
-OMV proper (*reasoned*); **`StartCrank` 0.70 s, `StartDip` 0** — "exactly as clean
-as before" (*owner*). Before it, ignition on (album, 13:19): **coolant
-38 °C, oil 41 °C**, 12.8 V, 22.5 °C on the mirror's thermometer;
-`StartClt` not given. **A warm start** (*reasoned*): the same few hours
-standing as the bad afternoons of 24, 28 and 29/10, but at 38 °C of
-coolant against their 18–22 °C, and a warm engine evaporates its fuel and
-needs less of it, so it asks less of anything S7 could be. **Two starts on
-OMV, both without a fall**: in favour of the fuel (the first of the reads
-above), not yet a verdict — 28/10's morning was clean on the Verva too,
-and the cold mornings on OMV proper are what read it. **The evening's,
-plain, clean** ("again completely clean", *owner*): about 4 hours
-after the afternoon's; the temperatures not read, about the same by his
-estimate, and `StartCrank` and `StartDip` not given — so a third start on
-OMV without a fall, again after a few hours rather than a night, and
-likely warm too (*reasoned*).
-
-**Dirt off the tank's bottom** (*the owner's question*, 28/10: the old
-tank was run down to 0.4–0.7 l before the Verva fill, S19): against it
-(*reasoned*), the fuel filter and all four injectors are new since 23/9
-(`vehicle-history.md`), so dirt stops at the filter or the injectors'
-inlet screens; and a part-blocked injector delivers too little — a lean
-cylinder, the trim positive and the dips on one slot — where 032 reads
-rich at idle (P0172) and the dips sit on all four alike.
-
 ### S11. A hiss at the back of the engine at a warm idle
 
 *Owner*, from 26/9. It outlived the new breather and cover gasket. Closed
@@ -858,6 +620,20 @@ carries oxygen to the probe and reads lean, so with 014 counting the
 mixture is if anything richer than the trims say. And **it all but rules
 out a meaningful intake leak** (A7): that would have pushed the other
 way.
+
+**S7 closed 31/10 as the fuel** (`refuted.md` D2), and S19's start of
+24/10 was one of its starts, hours after the Verva fill. **What it
+leaves here** (*reasoned*): if the start and the code were one event,
+the fuel is the first candidate for the code too — a fuel that
+evaporates more readily, through N80's small leak (H16), gives a rich
+idle cell and floods a start alike, and a fuel with less energy per
+litre raises the part-load cell alone; how Verva 100 and OMV MaxxMotion
+100 differ in either is not known. Against: S19's window opens before
+the fill, on the drive out on the old tank. **Read by 032 on the OMV
+tank**: the idle cell back towards the −0.8 to −3.1 % of before the
+Verva says the fuel; still at −6 to −9 % says a standing cause (H7's
+injector, H19's MAF). The map of 3/11 resets 032, so it is read before
+then.
 
 ### S20. Engine speed wanders at a constant pedal
 
@@ -966,7 +742,6 @@ clean after the change so that fresh oil there shows.
 | S4 ↔ S5 | **very likely one thing** | same window, same speeds; S5 needs no combustion |
 | S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle; the dips sat on 3 and 4 until the VW leads (all four alike since), and lead 4's end was the loosest (H15) |
 | S19 ↔ the bad start of 24/10 | **suspected one event** (*owner*) | same window, both what a cylinder flooded while standing gives (S19) |
-| S7 ↔ S19 | **same window** | both after the fill of 24/10; the 24/10 start is in both |
 | S11 ↔ S1 | **untested** | if the hiss is a leak, H3 or H2; the owner reads it as the throttle's own air |
 
 **Two clusters**: **the idle** (S1, S2, S3, S14) and **the cylinder 4
@@ -980,16 +755,17 @@ Each lists what it explains, what speaks against it, and the test that
 settles it. ✔ fits, ~ fits weakly, ✘ does not fit, — says nothing.
 
 **The columns are the open symptoms that bear on the engine**: S1, S2, S3,
-S4, S5, S7 (reopened 25/10), S11, S14, S19, S20 (added 26/10). Left out: S16 (the gearbox side, shown not to touch
+S4, S5, S11, S14, S19, S20 (added 26/10). Left out: S16 (the gearbox side, shown not to touch
 the idle) and S17 (a resonance, not placed); S12 closed again on
-27/10 (`refuted.md` D6) and its column went with it; the closed ones are in
+27/10 (`refuted.md` D6) and S7 on 31/10 (D2), and their columns went
+with them; the closed ones are in
 `refuted.md` §D.
 
 ### H0. The idle is normal for this engine — and there is no fault to find
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ✘ | — | ~ | ✘ | — | ✘ | ✘ | ~ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ✘ | — | ~ | — | ✘ | ✘ | ~ |
 
 - **Against:** 014 reads 12–120 against VW's 0–5; the old converter burned
   through; the dips sit on 3 and 4, the cylinder of the 2019 P0304 and of the
@@ -1017,9 +793,9 @@ or debris holds its valve a hair open, which costs compression and misses
 at a small charge and is covered by load — the case this hypothesis is
 about. The valve is closed by its spring; the lifter only removes the gap.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ✔ | ✔ | — | — | ~ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ✔ | ✔ | — | ~ | — | — |
 
 - **For:** a valve that seals worse at low cylinder pressure misfires at a
   small charge and is covered by load; the tick once per cycle of 18/10 (`refuted.md` D10); one forum
@@ -1060,9 +836,9 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in.
 *General.* The zone is only the **original manifold, its gasket to the head
 and the probe's boss**: the probe sits on the manifold (`vehicle-history.md`).
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | ✔ | ~ | ✘ | ✘ | — | ✔ | ✔ | ✘ | ~ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | ✔ | ~ | ✘ | ✘ | ✔ | ✔ | ✘ | ~ |
 
 - **For:** the puff (S2), the hiss (S11), air for S14's bangs; a 26-year-old
   manifold that has lived through years of misfires.
@@ -1080,9 +856,9 @@ new manifold.
 Air past the MAF leans one cylinder at idle, where air flow is smallest.
 *General.* **The only candidate that predicts *load helps* directly.**
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ~ | ✔ | ~ | ✘ | — | ~ | ✔ | ✘ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ✔ | ~ | ✔ | ~ | ✘ | ~ | ✔ | ✘ | — |
 
 - **For:** the regime; S14 at the thinnest charge; a leak at one runner acts
   on one cylinder, and 3 and 4 are neighbours on the lower manifold.
@@ -1117,9 +893,9 @@ pick them. **What is left**: the injector loom where it reaches 3 and 4,
 shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
 19/10; tape renewed). The plug-end side moved to H15.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | ~ | ~ | — | ~ | ✘ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | ~ | — | ~ | ✘ | — |
 
 **Tests:** the injector loom flexed at 3 and 4 at a warm idle — **done by
 the owner on 24/10, part-warm, during the first phone recording, above all
@@ -1136,9 +912,9 @@ The ECU books anything at cylinder 4's crank angle to cylinder 4: G66, its
 torque or connector; a loose ancillary part buzzing in a speed band; **an arc
 at lead 4's plug end** (H15). Injector 4's click is settled against (B7).
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| — | — | — | ✔ | ✔ | — | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| — | — | — | ✔ | ✔ | — | — | — | — |
 
 **Tests** — not scheduled (*owner's decision*, 9/10): G66's torque and
 connector; a look for a loose bracket at ~3000 rpm in neutral; after the VW
@@ -1152,9 +928,9 @@ hundred km without a disconnect.
 
 ### H7. Fuel delivery at idle: rail pressure, one injector
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | ✔ | — | ~ | ✔ | ~ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | ~ | ✔ | ~ |
 
 - **Against:** four new injectors and a new filter changed nothing in S1; the
   trims near zero; full-load pulls reach ~85 kW, where a weak pump shows first;
@@ -1254,9 +1030,9 @@ swap injector 3 with another if the cylinder stays named.
 
 ### H8. Idle air control and the throttle body
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | ~ | — | — | — | ✔ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | — | — | — | ✔ |
 
 **For: S20, by its timing** (*owner*, 26/10): the speed has been hard
 to hold at a steady pedal since the job of 1–2/10, which fitted this
@@ -1335,9 +1111,9 @@ learnt value as it walks down from zero, which 26/10 could not.
 that it is not argued again.* The probes are from 10/2017, the one part of
 the mixture control not changed.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | — | — | ~ | ~ | ~ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | ~ | ~ | ~ |
 
 **Against:** 032 + 033 near zero on a new MAF and new injectors bound a hidden
 shift to a few per cent, and with the wrong sign (the ECU takes fuel out); a
@@ -1347,9 +1123,9 @@ analyser at the emissions station, warm idle and 2500 rpm. *Not in
 
 ### H12. Driveline play read as misfires
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | ✘ | ~ | ~ | ~ | — | — | ✘ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | ✘ | ~ | ~ | ~ | — | ✘ | — | — |
 
 **Against:** the MAF swap halved the dips; play repeats every 360°, the pairs
 1+4 and 2+3, while the dips sit on 3 and 4, 180° apart; the puffs come with
@@ -1366,9 +1142,9 @@ a sticking pedal (`refuted.md` D6).*
 3000 rpm for at least nine years (*owner*). Gentle use builds deposits where
 hard use burns them off (*general*).
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ~ | ✔ | ~ | — | ~ | — | ~ | ~ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ✔ | ~ | ✔ | ~ | — | — | ~ | ~ | — |
 
 - **The look inside, 19–20/10** (H13 test 3, `idle-log.md`): **no inlet valve
   back is coked** — thin lacquer on all four, so no walnut clean; **the
@@ -1403,9 +1179,9 @@ EPR flushes and fresh oil, done 26/10).
 it narrows the margin until the weakest two show. Fuel at a warm idle is pulled
 back by the lambda loop and would show in 032, which reads small.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | ✘ | ~ | — | ~ | ~ | ~ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | ✘ | — | ~ | ~ | ~ |
 
 **Where a remap could reach the idle**: the idle's base advance (the governor's
 fast actuator); its cold corrections; **the misfire detection's own
@@ -1446,9 +1222,9 @@ has been NGK (the invoice; `vehicle-history.md`), and the owner believes all
 of them since 2018 were. A genuine VW set has never been on the car in his
 time.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ~ | ~ | ~ | — | ✔ | ✘ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ~ | ~ | — | ✔ | ✘ | — |
 
 **What it rests on:**
 
@@ -1570,9 +1346,9 @@ not seal** passes vapour all the time, cold and in open loop, on the
 overrun and **while the car stands**, when vapour from the canister can
 settle in the intake and flood the first start.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | — | — | — | ✔ | — | ~ | ✔ | ~ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | — | — | — | — | — | ~ | ✔ | ~ |
 
 - **For: S19.** A rich code and a start that dies at once after four hours
   standing, in a window that holds a fill, is the textbook picture of a
@@ -1635,13 +1411,14 @@ the pulses, **no liquid fuel**. **What it leaves:**
   *general*). The trim's first *For* above is answered against —
   **cold**; a warm idle with the canister cut off was not run.
 - **The owner's slug variant: no liquid**, on a day after a fill.
-- **Still possible: S7 and S19.** A valve that passes air without power
+- **Still possible: S19.** A valve that passes air without power
   passes vapour while the car stands, which no running test sees; the
-  leak is small, and whether it is enough to flood a start is not
-  known. **The valve is not replaced** (*the owner's decision*, 25/10):
-  a part that helps neither the idle nor the trim is not worth fitting
-  for the starts alone. 6h's priming reads S7 without it: primed starts
-  that still die say flooding, which keeps N80 among the causes.
+  leak is small. **The valve is not replaced** (*the owner's decision*,
+  25/10): a part that helps neither the idle nor the trim is not worth
+  fitting for the starts alone. **S7 closed 31/10 as the fuel**
+  (`refuted.md` D2): if the Verva's vapour came this way, it went with
+  the Verva, and the valve's small leak is left without a symptom of
+  its own (*reasoned*).
 
 ### H18. Oil past the valve-stem seals, drawn in at idle
 
@@ -1654,9 +1431,9 @@ oil run down the valve guide, and the intake's vacuum, highest at idle,
 draws it into the cylinder, where it costs combustion; under load the
 vacuum falls, the flow stops, and what collected burns away.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | — | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | — | — | — | — |
 
 - **For: the shape of 26/10**, worse after idling and gentle driving,
   calmer after work, the calm lasting — what oil collecting at a small
@@ -1705,9 +1482,9 @@ need not read like it, and the tuner may have scaled the MAF curve
 idle cell positive, a fixed fuel flow (H16; fuel in the oil, `refuted.md` C21) the idle cell negative
 alone, a low pressure (H7) the part-load cell positive alone.
 
-| S1 | S2 | S3 | S4 | S5 | S7 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | ~ | — | — | ✔ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | — | — | ✔ | — |
 
 - **S1 ~ and S3 ~: the MAF reaches the idle beyond the mixture** (*the
   owner's question*, 28/10). The loop holds a warm idle at λ = 1 whatever
@@ -1749,10 +1526,6 @@ alone, a low pressure (H7) the part-load cell positive alone.
   the same shape. 6e cleared N80 and the regulator's reference as the
   source of the idle side (H7, H16), and the new oil cleared fuel in it
   (`refuted.md` C21), which leaves an injector and the MAF.
-- **S7 ~**: open loop at a cold start, nothing corrects a MAF that reads
-  high at a cranking flow (*reasoned*); the starts were clean for a month
-  on this MAF, so at most a contributor.
-
 **Tests:** **the stock map of 3/11** — 032 resets with it and relearns on
 the original calibration: a split that closes says the map and the MAF
 disagreed; one that comes back says the MAF itself, or the fuel (the
@@ -1898,7 +1671,7 @@ is in git.
 |---|---|---|---|
 | 1 | **H14** the remap | the one control change never undone; narrows the margin on all four until the weakest show; **first since 24/10: the dips on all four alike on `40` and `41`**, the picture it predicts | the files, then the original map (3/11) |
 | 2 | **H19** the MAF's curve against the remap | **up 28/10 from 14** (*agreed with the owner*): the one repair that shows on engine speed, the MAF of 24/9, halved the dips with nothing else about them changing (`refuted.md` C2); a map made for the 2018 MAF would leave the new one read off what it expects; reads 032's split as well (S19); not the whole, the idle was rough in August on a normal-reading MAF | the stock map (3/11), with H14 |
-| 3 | **H7** fuel delivery | never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10) — and an injector swap |
+| 3 | **H7** fuel delivery | never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10) — and an injector swap |
 | 4 | **H2** a leak ahead of the probe | S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test |
 | 5 | **H13** deposits | **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; none left in the plan |
 | 6 | **H1** valve or lifter | **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | none left in the plan: the EPR flushes done 26/10, the hot recording found no lifter |
@@ -1908,10 +1681,14 @@ is in git.
 | 10 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
 | 11 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
 | 12 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
-| 13 | **H16** the purge valve leaking | here for S7 and S19 only: an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest; not replaced (*owner*, 25/10) | the cold starts, primed and plain (`plan.md` 6h) |
+| 13 | **H16** the purge valve leaking | here for S19 only (S7 closed 31/10 as the fuel): an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest; not replaced (*owner*, 25/10) | 032 and P0172 on the OMV tank (S19) |
 | 14 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
 | 15 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 16 | **H12** driveline play | — | done: the clutch minutes cleared it |
+
+**Re-read 31/10 with S7 closed as the fuel** (`refuted.md` D2): the
+order stands, since the ranking is for the idle. H7 and H16 lose the
+starts; H7 keeps the idle's fuel and S19, H16 S19 alone.
 
 **Re-read 25/10 with S7 reopened**: the order stands, since the ranking is
 for the idle and S7 is a start; S7 sits with S19 on H7 and H16, and H7's

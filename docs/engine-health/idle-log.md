@@ -899,3 +899,16 @@ the odometer (`fuel-check.md`). **The idle at its end no calmer**: about
   - *not known:* whether it is the OMV — the morning's lines held only
     about 8 km of it, and the later two came after only a few hours,
     the afternoon's warm.
+
+## 31/10 — the cold start on OMV; S7 closed
+
+- **Tests:** the cold start, plain, after about 12 hours in the garage
+  (`plan.md` 6h, its last).
+- **Changes after:**
+  - *measured:* `StartCrank` about 0.7 s, `StartDip` 0; before it coolant
+    22 °C, oil 26 °C, 17 °C in the garage, the battery 12.6 V (album);
+  - *felt:* clean (*owner*).
+
+The fourth start on OMV without a fall, and the first cold one with the
+lines full of it: S7 closed as the fuel at the owner's decision of 30/10
+(`refuted.md` D2), and 6h left the plan.
