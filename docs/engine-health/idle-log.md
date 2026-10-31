@@ -933,4 +933,5 @@ is not the fuel (`open.md` S19). The fifth clean start on OMV.
   100plus from a can filled 8/9, at about 81 km on the tank
   (`vehicle-history.md`).
 - **Changes after:**
-  - *not known:* whether the rattle is gone; how the stored fuel starts.
+  - *not known:* whether the rattle is gone — it is S17, the resonance at
+    about 2200 rpm (*owner*); how the stored fuel starts.

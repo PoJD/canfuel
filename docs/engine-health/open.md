@@ -71,8 +71,10 @@ A15) and H10 (when 014 counts, C19).
 - **S20, the speed wandering at a constant pedal** (since 1–2/10, on the
   road) — **a little better since the cable was slackened and the pedal
   greased (27/10), still there** (*owner*, 28/10). Not the idle.
-- **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
-  ~2200 rpm).
+- **S17, the resonance at ~2200 rpm** — **placed: the exhaust's heat
+  shields** (*owner*, 31/10), new clips that day; gone on the next drives
+  → it closes.
+- **Not pursued:** S16 (a tick on the gearbox side).
 
 **Ranked (29/10, agreed with the owner):** **H14, H19, H7, H2, H13, H1**,
 then H0, H8, H3, H15, H4, the timing belt, H16, H18, H11, H12 (*The
@@ -567,6 +569,14 @@ idle graded the same pedal up and down (H12). Out of the fit tables.
 remade joint behind the converter, perhaps nearer the engine. A sound tied to
 one engine speed is a part vibrating, not a leak (*general*), so it bears on
 no hypothesis about the idle. Out of the fit tables until placed.
+
+**Placed 31/10: the sheet-metal heat shields around the exhaust**
+(*owner*: "that is it"). They rattled at certain engine speeds; held
+once before with nuts over the old clips, a stopgap that did not hold,
+so the resonance stayed (*owner*; when not given). **New clips fitted
+31/10** (`vehicle-history.md`). **Read on the next drives**: gone → S17
+closes as the shields; still there → a shield the clips do not reach, or
+the joint behind the converter after all.
 
 ### S19. P0172 stored, too rich — with one start that died at once
 
