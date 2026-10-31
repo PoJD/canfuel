@@ -71,10 +71,9 @@ A15) and H10 (when 014 counts, C19).
 - **S20, the speed wandering at a constant pedal** (since 1–2/10, on the
   road) — **a little better since the cable was slackened and the pedal
   greased (27/10), still there** (*owner*, 28/10). Not the idle.
-- **S17, the resonance at ~2200 rpm** — **placed: the exhaust's heat
-  shields** (*owner*, 31/10), new clips that day; gone on the next drives
-  → it closes.
-- **Not pursued:** S16 (a tick on the gearbox side).
+- **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
+  ~2200 rpm; **not the exhaust's heat shields** — still there after their
+  new clips, 31/10 — perhaps nearer the engine).
 
 **Ranked (29/10, agreed with the owner):** **H14, H19, H7, H2, H13, H1**,
 then H0, H8, H3, H15, H4, the timing belt, H16, H18, H11, H12 (*The
@@ -570,15 +569,19 @@ remade joint behind the converter, perhaps nearer the engine. A sound tied to
 one engine speed is a part vibrating, not a leak (*general*), so it bears on
 no hypothesis about the idle. Out of the fit tables until placed.
 
-**Placed 31/10: the sheet-metal heat shields around the exhaust**
-(*owner*: "that is it"). They rattled at certain engine speeds; held
+**31/10: taken for the sheet-metal heat shields around the exhaust**
+(*owner*: "that is it"), **and still heard after their new clips** the
+same day (*owner*), so not them, or not only them; *this said "placed"
+until then*. They rattled at certain engine speeds; held
 once before with nuts over the old clips, a stopgap that did not hold,
 so the resonance stayed (*owner*; when not given). **The shields were
 loose before the new clips; the joint behind the converter checked and
 "held as if nailed"** (*owner*, 31/10), so not the joint. **New clips
-fitted 31/10** (`vehicle-history.md`). **Read on the next drives**: gone
-→ S17 closes as the shields; still there → a shield the clips do not
-reach.
+fitted 31/10** (`vehicle-history.md`). **Where it is now** (*owner*):
+perhaps nearer the engine, where a lot else resonates, so hard to say.
+Unplaced again, and not pursued. A candidate there (*reasoned*): the
+manifold's own heat shield, which cannot be seen (`plan.md` 7) — a part
+vibrating, not a leak, so still no bearing on the idle.
 
 ### S19. P0172 stored, too rich — with one start that died at once
 

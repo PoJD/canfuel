@@ -935,5 +935,6 @@ is not the fuel (`open.md` S19). The fifth clean start on OMV.
 - **Tests:** the joint behind the converter, by hand: firm; the shields
   loose before the clips (*owner*).
 - **Changes after:**
-  - *not known:* whether the rattle is gone — it is S17, the resonance at
-    about 2200 rpm (*owner*); how the stored fuel starts.
+  - *felt:* S17's resonance at about 2200 rpm still there, perhaps nearer
+    the engine (*owner*);
+  - *not known:* how the stored fuel starts.
