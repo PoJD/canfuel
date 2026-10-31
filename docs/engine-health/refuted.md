@@ -826,9 +826,11 @@ plugs and leads of 21/10 (clean starts until 24/10). The full entry, every
 start with its figures: `git show 3a8121f:docs/engine-health/open.md`,
 S7. **Another bad start on OMV → S7 reopens**, on the engine or the map
 (H14, H7) — with one thing to read first: **5–6 l of the same OMV from a
-can, stored for months, went in on 31/10** after these starts
-(`vehicle-history.md`), about an eighth of the tank, and stale petrol
-loses the light ends a cold start lives on (*general*).
+can, filled 8/9 and so about eight weeks old, went in on 31/10** after
+these starts (`vehicle-history.md`), about an eighth of the tank. Stored
+petrol loses the light ends a cold start lives on (*general*), but eight
+weeks in a closed can diluted eightfold is a weak suspect
+(*reasoned*).
 
 ### D3. S8 — "loses breath above 5000 rpm" — closed 4/10/2026
 On the hard drive of 4/10 (`28`) b7 eased from 185 to 181 between 4,000 and
