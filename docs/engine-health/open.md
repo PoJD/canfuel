@@ -579,7 +579,10 @@ loose before the new clips; the joint behind the converter checked and
 "held as if nailed"** (*owner*, 31/10), so not the joint. **New clips
 fitted 31/10** (`vehicle-history.md`). **Where it is now** (*owner*):
 perhaps nearer the engine, where a lot else resonates, so hard to say.
-Unplaced again, and not pursued. A candidate there (*reasoned*): the
+**Looked over from below again, the engine included** (*owner*, 31/10):
+nothing moves anywhere; a few sheets bent a little, just in case, without
+much faith. He may try to locate it with a second person at the
+throttle. Unplaced again, and not pursued. A candidate there (*reasoned*): the
 manifold's own heat shield, which cannot be seen (`plan.md` 7) — a part
 vibrating, not a leak, so still no bearing on the idle.
 
@@ -750,12 +753,13 @@ servo and not the engine — a matter for a garage.
 looking from below during the oil change; `photos/sump-oil-2026-10-26-*.jpg`):
 an oily film over the sump towards the back, along its flange and on the
 bracket behind it; the gearbox casing drier. **It was there before the
-change** (*owner*), though nobody had looked from below; **whether it is
-what ran down from the cover joint on 3/10 (S10, closed) or a leak of its
-own is not known.** Not pursued for now (*owner's decision*, 26/10). **It
-bears on `plan.md` 6i**: a leak lowers the dipstick level as burning
-does, so a falling level is read against it, and the underside is wiped
-clean after the change so that fresh oil there shows.
+change** (*owner*), though nobody had looked from below. **Settled 31/10
+from right under the engine** (*owner*): **the engine leaks nowhere** —
+the oil there is what is left of the earlier leak at the cover joint
+(S10, closed) — and **the gearbox leaks**, the oil coming from it. *This
+said "whether it is what ran down from the cover joint or a leak of its
+own is not known" until then.* **It bears on `plan.md` 6i**: with no
+engine leak, a falling dipstick level is oil burnt, not lost.
 
 ---
 
@@ -876,7 +880,10 @@ and the probe's boss**: the probe sits on the manifold (`vehicle-history.md`).
   pick a cylinder; no ticking, no exhaust smell (*owner*); just before a dip
   the probe read a little *rich*, not lean; the cold tailpipe test found
   nothing (12/10) and the cold exhaust smoke test nothing (9/10, the exhaust
-  would hardly take pressure).
+  would hardly take pressure); **the manifold seen from close below on
+  31/10: old and rusty, no black soot marks and no holes** (*owner*) —
+  what a leak leaves (`plan.md` 7), though not the part under its heat
+  shield nor its joint to the head.
 
 **Test:** the tailpipe test **warm** (`plan.md` item 7). A found leak means a
 new manifold.
@@ -1150,6 +1157,20 @@ shift to a few per cent, and with the wrong sign (the ECU takes fuel out); a
 shift small enough to hide is too small to misfire. **Test:** a four-gas
 analyser at the emissions station, warm idle and 2500 rpm. *Not in
 `plan.md`.*
+
+**Could they give S19's idle cell?** (*the owner's question*, 31/10;
+*reasoned*.) **The sign, yes**: a front probe that reads richer than the
+mixture is makes the ECU take fuel out, which is a negative idle cell.
+**The split, no**: a probe's offset sits under every load alike, so it
+would pull the part-load cell negative too, where it reads +5.5 to
++8.6 %; at most it is a common part under both, with something else
+still opening the gap. **The step, no**: the idle cell went from −0.8 to
+−6.3 % before 24/10 to −6.3 to −8.6 % after, on the same 2017 probes,
+and a probe ages over thousands of kilometres, not in a day. An aged
+narrowband probe can drift differently at idle's cooler exhaust than
+under load (*general*), which would make a split; which way this one
+would drift is not known. So a contributor at most, not S19's cause;
+the map of 3/11 resets 032 and reads it alongside H19.
 
 ### H12. Driveline play read as misfires
 

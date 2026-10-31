@@ -933,7 +933,10 @@ is not the fuel (`open.md` S19). The fifth clean start on OMV.
   100plus from a can filled 8/9, at about 81 km on the tank
   (`vehicle-history.md`).
 - **Tests:** the joint behind the converter, by hand: firm; the shields
-  loose before the clips (*owner*).
+  loose before the clips; then the underside from right under the
+  engine: nothing loose anywhere, a few sheets bent a little; **the
+  engine dry of fresh oil, the gearbox leaking**; the manifold rusty, no
+  soot marks, no holes (*owner*).
 - **Changes after:**
   - *felt:* S17's resonance at about 2200 rpm still there, perhaps nearer
     the engine (*owner*);

@@ -259,9 +259,10 @@ oil neither could be read: no known starting level, and the top-ups
 included the litre lost at the cover joint (3/10). A fresh fill to a
 photographed level gives the start. **Read**: a level falling between
 top-ups → oil burnt, H18 (or the rings) up; a level rising → fuel in the
-oil, `refuted.md` C21 revived; steady → neither in quantity. **A falling level is first
-looked for underneath**: the sump's rear was oily on 26/10 (`open.md`,
-*Other*), and a leak lowers the level exactly as burning does. Five minutes standing and
+oil, `refuted.md` C21 revived; steady → neither in quantity. **The engine
+does not leak** (*owner*, 31/10, from right under it: the oil on the
+sump is the old cover-joint leak's, and what drips is the gearbox;
+`open.md`, *Other*), so a falling level is oil burnt. Five minutes standing and
 level ground because the stick reads the sump only once the oil has run
 back; the photograph because a millimetre is the stick's resolution.
 
