@@ -925,3 +925,12 @@ lines full of it: S7 closed as the fuel at the owner's decision of 30/10
 
 032 where it sat on the Verva after about 81 km on OMV: the split trim
 is not the fuel (`open.md` S19). The fifth clean start on OMV.
+
+## 31/10 evening — heat-shield clips; a can of old OMV
+
+- **Repairs:** new clips on the exhaust's sheet-metal heat shields, which
+  rattled at certain engine speeds; 5 l, perhaps 6, of OMV MaxxMotion
+  100plus from a can kept for months, at about 81 km on the tank
+  (`vehicle-history.md`).
+- **Changes after:**
+  - *not known:* whether the rattle is gone; how the stored fuel starts.

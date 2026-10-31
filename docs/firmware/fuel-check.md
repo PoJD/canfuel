@@ -225,6 +225,20 @@ to the first click as always (*owner*).
 **The next tank** is OMV on the map until 3/11: **the four figures are
 read on 3/11, before the map goes back**, so the tank can be split at it.
 
+**31/10: 5 l, perhaps 6, poured in from a can** at about 81 km on the
+tank, about 46 l indicated before (*owner*). It costs the next pump
+check its precision, not its meaning: the pump then refills what was
+burnt less what the can added, and the can is known only to a litre —
+about 2 % of a tank, the size of the effect being checked. **Count it as
+5.5 ± 0.5 l**, and read the pump figure against the converter with that
+band. **The trip did not reset, as designed**: the rule wants an
+indicated rise of more than `REFUEL_RISE_L` held for `REFUEL_CONFIRM_S`
+at rest after `REFUEL_ARM_S` of arming (*The rule*, `refuel-reset.md`),
+and 46 + 5 is at or near the sender's top stop, where a rise is clipped, or the
+car moved off inside the arming window. `FuelAvg` is unharmed by the
+missed reset — fuel added is not fuel burnt, so the average since 29/10
+stays right — and `Range` reads the level live.
+
 ---
 
 ## What this means for the measurements
