@@ -882,8 +882,9 @@ and the probe's boss**: the probe sits on the manifold (`vehicle-history.md`).
   nothing (12/10) and the cold exhaust smoke test nothing (9/10, the exhaust
   would hardly take pressure); **the manifold seen from close below on
   31/10: old and rusty, no black soot marks and no holes** (*owner*) —
-  what a leak leaves (`plan.md` 7), though not the part under its heat
-  shield nor its joint to the head.
+  what a leak leaves (`plan.md` 7); **its joint to the head, seen from
+  below, nothing visibly wrong** (*owner*); the part under its heat
+  shield and the joint from above not seen.
 
 **Test:** the tailpipe test **warm** (`plan.md` item 7). A found leak means a
 new manifold.
@@ -1725,7 +1726,7 @@ is in git.
 | 3 | **H7** fuel delivery | never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10) — and an injector swap |
 | 4 | **H13** deposits | **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; none left in the plan |
 | 5 | **H1** valve or lifter | **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | none left in the plan: the EPR flushes done 26/10, the hot recording found no lifter |
-| 6 | **H2** a leak ahead of the probe | **down 31/10 from fourth** (*agreed with the owner*): the manifold seen from close below, rusty but no soot marks and no holes (H2); the part under its heat shield and its joint to the head unseen; S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test (`plan.md` 7) |
+| 6 | **H2** a leak ahead of the probe | **down 31/10 from fourth** (*agreed with the owner*): the manifold seen from close below, rusty but no soot marks and no holes, its joint to the head nothing visibly wrong from below (H2); the part under its heat shield unseen; S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test (`plan.md` 7) |
 | 7 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
 | 8 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting follows 055's learnt value (`refuted.md` C19), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
 | 9 | **H3** a leak at one runner | the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
