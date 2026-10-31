@@ -916,11 +916,12 @@ lines full of it: S7 closed as the fuel at the owner's decision of 30/10
 ## 31/10 afternoon — 032 and 055 on OMV
 
 - **Tests:** the start after about 4 hours; 032 and 055 warm after the
-  drive (coolant 95 °C, oil 75 °C; album).
+  drive (coolant 95 °C, oil 75 °C; album); the fault memory, empty.
 - **Changes after:**
   - *measured:* `StartCrank` 1.02 s, `StartDip` 0; **032 −7.8 / +7.0 %,
     055 −1.17 g/s** at 790 rpm, load bits `0000`;
-  - *not known:* how the start felt; the distance on OMV.
+    about 81 km on OMV (the cluster's trip 81.2 km, `TripDist` 82.3 km);
+  - *felt:* the start clean (*owner*).
 
-032 where it sat on the Verva after more than a day on OMV: the split
-trim is not the fuel (`open.md` S19).
+032 where it sat on the Verva after about 81 km on OMV: the split trim
+is not the fuel (`open.md` S19). The fifth clean start on OMV.

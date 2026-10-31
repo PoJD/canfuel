@@ -646,7 +646,9 @@ driving. **Read** (*reasoned*): 032 relearnt from 0.0 to about −6 to
 by now; it did not. **Against the fuel as S19's cause**, and so against
 the start and the code being one event — S7 was the fuel, the split was
 not. What is left for the split: H7's injector and H19's MAF against the
-map, which 3/11 reads. The distance on OMV at the reading not given.
+map, which 3/11 reads. **About 81 km on OMV** (the cluster's trip
+81.2 km, `TripDist` 82.3 km, *owner*); **the fault memory empty**, so
+P0172 not back.
 
 ### S20. Engine speed wanders at a constant pedal
 
