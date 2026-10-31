@@ -932,6 +932,8 @@ is not the fuel (`open.md` S19). The fifth clean start on OMV.
   rattled at certain engine speeds; 5 l, perhaps 6, of OMV MaxxMotion
   100plus from a can filled 8/9, at about 81 km on the tank
   (`vehicle-history.md`).
+- **Tests:** the joint behind the converter, by hand: firm; the shields
+  loose before the clips (*owner*).
 - **Changes after:**
   - *not known:* whether the rattle is gone — it is S17, the resonance at
     about 2200 rpm (*owner*); how the stored fuel starts.

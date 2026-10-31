@@ -573,10 +573,12 @@ no hypothesis about the idle. Out of the fit tables until placed.
 **Placed 31/10: the sheet-metal heat shields around the exhaust**
 (*owner*: "that is it"). They rattled at certain engine speeds; held
 once before with nuts over the old clips, a stopgap that did not hold,
-so the resonance stayed (*owner*; when not given). **New clips fitted
-31/10** (`vehicle-history.md`). **Read on the next drives**: gone → S17
-closes as the shields; still there → a shield the clips do not reach, or
-the joint behind the converter after all.
+so the resonance stayed (*owner*; when not given). **The shields were
+loose before the new clips; the joint behind the converter checked and
+"held as if nailed"** (*owner*, 31/10), so not the joint. **New clips
+fitted 31/10** (`vehicle-history.md`). **Read on the next drives**: gone
+→ S17 closes as the shields; still there → a shield the clips do not
+reach.
 
 ### S19. P0172 stored, too rich — with one start that died at once
 
