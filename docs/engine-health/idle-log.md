@@ -912,3 +912,15 @@ the odometer (`fuel-check.md`). **The idle at its end no calmer**: about
 The fourth start on OMV without a fall, and the first cold one with the
 lines full of it: S7 closed as the fuel at the owner's decision of 30/10
 (`refuted.md` D2), and 6h left the plan.
+
+## 31/10 afternoon — 032 and 055 on OMV
+
+- **Tests:** the start after about 4 hours; 032 and 055 warm after the
+  drive (coolant 95 °C, oil 75 °C; album).
+- **Changes after:**
+  - *measured:* `StartCrank` 1.02 s, `StartDip` 0; **032 −7.8 / +7.0 %,
+    055 −1.17 g/s** at 790 rpm, load bits `0000`;
+  - *not known:* how the start felt; the distance on OMV.
+
+032 where it sat on the Verva after more than a day on OMV: the split
+trim is not the fuel (`open.md` S19).

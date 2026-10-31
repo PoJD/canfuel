@@ -66,7 +66,8 @@ A15) and H10 (when 014 counts, C19).
   hose and on the new oil (−8.6 / +5.5 at about 200 km on it, 29/10).
   Fits H19 (the MAF against the map); H17 refuted by that reading (`refuted.md` C21); 6e cleared N80 and the regulator's reference as its source.
   **With S7 closed as the fuel, the fuel is a candidate here too**
-  (S19), read by 032 on the OMV tank before 3/11 resets it.
+  (S19), read by 032 on the OMV tank before 3/11 resets it: **31/10,
+  −7.8 / +7.0 %, unmoved** — against the fuel as the split's cause.
 - **S20, the speed wandering at a constant pedal** (since 1–2/10, on the
   road) — **a little better since the cable was slackened and the pedal
   greased (27/10), still there** (*owner*, 28/10). Not the idle.
@@ -633,7 +634,19 @@ the fill, on the drive out on the old tank. **Read by 032 on the OMV
 tank**: the idle cell back towards the −0.8 to −3.1 % of before the
 Verva says the fuel; still at −6 to −9 % says a standing cause (H7's
 injector, H19's MAF). The map of 3/11 resets 032, so it is read before
-then.
+then. **31/10, on OMV** (album; warm, coolant 95 °C, oil 75 °C, after a
+drive): **032 −7.8 / +7.0 %, 055 −1.17 g/s at 790 rpm, load bits
+`0000`** — the idle cell where it sat on the Verva (−7.8 to −8.6 since
+25/10), the part-load cell inside its +5.5 to +8.6, the idle air level
+with 27/10's relearnt −1.17; "the adaptations hardly moved" (*owner*).
+The lines have held OMV since 30/10 afternoon, more than a day of
+driving. **Read** (*reasoned*): 032 relearnt from 0.0 to about −6 to
+−8 % within a day after the clearing of 24/10 (S3, *The clearing of
+24/10*), so a day on a fuel that caused the split would have moved it
+by now; it did not. **Against the fuel as S19's cause**, and so against
+the start and the code being one event — S7 was the fuel, the split was
+not. What is left for the split: H7's injector and H19's MAF against the
+map, which 3/11 reads. The distance on OMV at the reading not given.
 
 ### S20. Engine speed wanders at a constant pedal
 
