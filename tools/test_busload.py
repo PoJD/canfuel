@@ -38,6 +38,13 @@ class TestCapture(unittest.TestCase):
         self.assertTrue(15 < busload.pct(m["car_bps"]) < 18)
         self.assertTrue(0.4 < busload.pct(m["conv_bps"]) < 0.7)
 
+    def test_bursts(self):
+        b = busload.bursts(str(FIXTURES / "09_idle_60s_z1.txt"))
+        self.assertLessEqual(b["longest_gap_ms"], 10)        # nothing is slower
+        self.assertLess(b["peak_pct"][1], 100)
+        self.assertLess(b["densest_plus_tx_pct"], 100)        # still fits the ms
+        self.assertEqual(b["ms_over_80_pct"], 0)
+
     def test_filtered_capture_refused(self):
         with self.assertRaises(ValueError):
             busload.measure(str(FIXTURES / "24_mafswap_drive_z1.txt"))

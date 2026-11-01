@@ -511,6 +511,47 @@ missed is load the car still carried. And the converter's identifiers,
 arbitration the lower identifier wins and the converter loses to every
 frame of the car's: it waits for the car, never the other way.
 
+### Inside the average — silences and bursts
+
+```
+python tools/busload.py --bursts test/fixtures/17_drive_property_z1.txt
+```
+
+At the adapter's one-millisecond resolution, on `09`, `11` and `17` alike:
+
+- **The bus is never quiet for long**: the longest gap between two frames
+  is about 7 ms, though about half of all milliseconds hold no frame at
+  all. The car's fastest frames come about every 10 ms and nothing lets
+  the bus rest longer.
+- **The densest moments**: at most three frames in one millisecond, about
+  two-thirds of it; no millisecond in six minutes of driving over 80 %.
+  Over longer windows the peak falls fast — about half over 2 ms, about
+  two-fifths over 5 ms, about a third over 10 ms, about a quarter over
+  25 ms, to the one-sixth average over 100 ms.
+- **What one of our frames does there.** A frame on the wire is never
+  interrupted, so a car frame that becomes ready while ours is being sent
+  waits for its end: at most one frame time, about a quarter of a
+  millisecond at the worst stuffing, and at most once per transmit slot,
+  since the converter never sends two together. Landed in the car's
+  densest millisecond, the worst-case frame still fits it. That wait is
+  the same the car's own frames impose on each other whenever two or three
+  share a millisecond, which they do in about a fifth of all milliseconds — so
+  the converter adds jitter of the size already there, to about one car
+  frame in two hundred, and no load the bus could feel.
+- **A converter gone wrong** cannot hold the bus: the MCP2562 disables
+  its drivers on a TXD held low (DS20005167C §1.5, *Permanent Dominant
+  Detection*), after tPDT, given only as 1.25 ms **typical** (§2.3 *AC
+  Characteristics*, parameter 11) — so not a guaranteed bound, only the designed one; and a
+  node whose transmissions keep failing takes itself off the bus by CAN's
+  own fault confinement.
+
+**These are floors, and the densest milliseconds most of all.** The
+adapter's MCP2515 has two receive buffers and lost the third frame of a
+fast burst on the bench (`src/config.h`, *timing*), so the moments that
+matter here are the ones most likely undercounted. A frame more in the
+densest millisecond would not change the conclusion: one quarter-
+millisecond wait, once per slot.
+
 ---
 
 ## The one number that is not bounded

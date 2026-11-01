@@ -3,6 +3,7 @@
 
     python tools/busload.py test/fixtures/09_idle_60s_z1.txt
     python tools/busload.py test/fixtures/17_drive_property_z1.txt
+    python tools/busload.py --bursts test/fixtures/17_drive_property_z1.txt
 
 Every frame of a `_z1` capture is counted on the wire exactly as the bus
 carries it: an 11-bit data frame is 44 + 8 * DLC bits from SOF to the end of
@@ -20,11 +21,20 @@ mean of the capture's own 8-byte frames; the worst case is printed beside it.
 Only a capture with every identifier says anything: the later fixtures are
 filtered to the six the converter reads, and this refuses those. And the
 count is a floor -- a frame the adapter missed is load the car still carried.
+
+--bursts looks inside the average, at the adapter's 1 ms resolution: the
+longest silence between two frames, the most bits stamped in one millisecond,
+the peak load over windows of a few milliseconds, and what one converter
+frame does when it lands in the car's densest millisecond. The adapter's
+MCP2515 has two receive buffers and has been seen to lose the third frame of
+a fast burst (`src/config.h`, *timing*), so the densest milliseconds are the
+ones most likely undercounted.
 """
 
 from __future__ import annotations
 
 import argparse
+from collections import Counter
 import re
 import sys
 from pathlib import Path
@@ -123,6 +133,40 @@ def measure(path: str) -> dict:
     }
 
 
+WINDOWS_MS = (1, 2, 5, 10, 25, 100)
+
+
+def bursts(path: str) -> dict:
+    frames = parse_file(path)
+    if not frames or frames[0].ts_ms is None:
+        raise ValueError(f"{path}: needs adapter timestamps (a _z1 capture)")
+    if {f.can_id for f in frames} <= CONVERTER_READS:
+        raise ValueError(f"{path}: filtered to the converter's identifiers")
+    t0, t1 = frames[0].ts_ms, frames[-1].ts_ms
+    per_ms = [0] * (t1 - t0 + 1)
+    for f in frames:
+        per_ms[f.ts_ms - t0] += frame_bits(f.can_id, f.data)
+    peak = {}
+    for w in WINDOWS_MS:
+        run = best = sum(per_ms[:w])
+        for i in range(w, len(per_ms)):
+            run += per_ms[i] - per_ms[i - w]
+            best = max(best, run)
+        peak[w] = 100 * best / (w * BITRATE / 1000)
+    gaps = [b.ts_ms - a.ts_ms for a, b in zip(frames, frames[1:])]
+    worst_tx = 44 + 8 * TX_DLC + 3 + worst_stuff(TX_DLC)
+    return {
+        "longest_gap_ms": max(gaps),
+        "empty_ms_pct": 100 * per_ms.count(0) / len(per_ms),
+        "most_frames_in_1ms": max(Counter(f.ts_ms for f in frames).values()),
+        "peak_pct": peak,
+        "ms_over_80_pct": sum(b > 0.8 * BITRATE / 1000 for b in per_ms),
+        "ms_total": len(per_ms),
+        "tx_worst_us": worst_tx * 1e6 / BITRATE,
+        "densest_plus_tx_pct": 100 * (max(per_ms) + worst_tx) / (BITRATE / 1000),
+    }
+
+
 def pct(bps: float) -> float:
     return 100 * bps / BITRATE
 
@@ -130,8 +174,26 @@ def pct(bps: float) -> float:
 def main(argv: list[str] | None = None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("files", nargs="+")
+    ap.add_argument("--bursts", action="store_true",
+                    help="silences and bursts at 1 ms resolution")
     args = ap.parse_args(argv)
     for path in args.files:
+        if args.bursts:
+            try:
+                b = bursts(path)
+            except ValueError as e:
+                print(e, file=sys.stderr)
+                return 1
+            print(f"{path}:")
+            print(f"  longest silence    {b['longest_gap_ms']} ms between two frames;"
+                  f" {b['empty_ms_pct']:.0f} % of milliseconds empty")
+            print(f"  densest            {b['most_frames_in_1ms']} frames in one ms;"
+                  f" {b['ms_over_80_pct']} of {b['ms_total']} ms over 80 %")
+            print("  peak load          " + ", ".join(
+                f"{w} ms {v:.0f} %" for w, v in b["peak_pct"].items()))
+            print(f"  one converter frame {b['tx_worst_us']:.0f} us at worst; in the"
+                  f" densest ms it makes {b['densest_plus_tx_pct']:.0f} %")
+            continue
         try:
             m = measure(path)
         except ValueError as e:
