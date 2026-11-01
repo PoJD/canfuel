@@ -470,6 +470,49 @@ also inside `RX_POLL_MS`, which it had never been.
 
 ---
 
+## How much of the bus the converter takes
+
+**A sixth of the bus is the car's, and the converter adds about half a
+percentage point to it.** Measured, not estimated, by `tools/busload.py`
+on the two `_z1` captures that carry every identifier on the bus:
+
+```
+python tools/busload.py test/fixtures/09_idle_60s_z1.txt
+python tools/busload.py test/fixtures/17_drive_property_z1.txt
+```
+
+| | warm idle, `09` | driving, `17` |
+|---|---|---|
+| the car alone | about 16 % | about 17 % |
+| the converter added | about 0.5 % | about 0.5 % |
+| 0x603 with JP1 | a few hundredths of a per cent | the same |
+
+**How it is counted.** Every captured frame is put on the wire bit by bit —
+its header, data and CRC-15, the stuff bit after every five equal bits,
+delimiters, EOF and intermission — and the total over the capture's span
+is the load against 500 kbps. The car's traffic is about seven hundred
+frames a second, its heaviest identifiers 0x1A0 and 0x4A0. **The
+converter's frames are not in any capture** — the MFD and the USBtin are
+one or the other — so they are added from the schedule above (*The
+transmit slots*): 0x600 and 0x601 ten times a second, 0x602 and 0x604
+once, 0x603 once with JP1, each 8 bytes, stuffed like the capture's own
+8-byte frames. Even at the worst stuffing an 8-byte frame can carry, the
+converter's share stays under 0.6 %.
+
+**What it means.** Load is not what hurts a CAN bus — arbitration
+serialises any load into delay — but a bus far from full keeps every
+frame's wait short, and this one is about five-sixths idle. The converter
+does not move that. What it could hurt is a receiver, not the bus: hence
+one frame per slot, never a burst (*The transmit slots*).
+
+**Two limits, honestly.** The capture is a floor: a frame the USBtin
+missed is load the car still carried. And the converter's identifiers,
+0x600 to 0x604, are higher than every identifier in the captures, so on
+arbitration the lower identifier wins and the converter loses to every
+frame of the car's: it waits for the car, never the other way.
+
+---
+
 ## The one number that is not bounded
 
 The 48 ms above is **twelve bytes at the 4 ms of DS39977C Table 31-1, D122**,
