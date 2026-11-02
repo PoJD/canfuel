@@ -49,10 +49,11 @@ A15) and H10 (when 014 counts, C19).
 **Open:**
 
 - **The idle — S1 (unsettled) and S3 (014 counts at idle).** Every part in
-  the fuel and ignition path has been replaced and both remain. Warm,
-  loads off, the idle reads about 55–70 (27/10: 54), level with its best
-  days of 12–15/10 and not past them; **cold it has come down since
-  21/10**. The dips sat two thirds on 3 and 4 until the VW leads, **on
+  the fuel and ignition path has been replaced and both remain. Warm, in
+  the everyday state, **about 70 on 27/10, level with its best days of
+  12–15/10, and back up to 80–105 since 28/10** (2/11: 85–105 at about
+  100 °C of oil, *owner*: worse again), on the Verva and on OMV alike;
+  **cold it has come down since 21/10** (2/11: 110–140). The dips sat two thirds on 3 and 4 until the VW leads, **on
   all four alike since** (`40`, `41`; *The dips keep to one slot*) — the
   first of S1's three closing marks.
 - **Around the idle:** S2 (an occasional puff), S14 (bangs on an
@@ -156,9 +157,10 @@ error):
 | 26/10 | display | settled | warmed in a jam, gently, under 3000 rpm; then one brisker stretch, revs held up in 2nd downhill on engine braking | **80–100** all through the warm-up, **still at 92 °C** of oil; **60–70** after the brisker stretch; everyday state (*owner*) |
 | 27/10 | display, video | settled | `plan.md` 6k: a gentle drive to about 88 °C of oil, the A/C against the loads (`idle-log.md`) | **~70** everyday state; **35–50** the A/C alone; **54–62** every load but the A/C; **25–35** both |
 | 27/10 eve | display, video | settled (055 reset that afternoon, relearnt to −1.17) | the pedal greased; oil changed 26/10; the second 44K tank about four-fifths used; oil 100 °C | **54** loads off (mean; **35–65** in waves of about 1½ min); **34** every load on with the A/C (26–42, still falling) — **the first stop with loads off within 25 of loads on** (condition 2 below), one stop |
-| 30/10 | display | settled | the first warm drive on OMV; oil 99 °C | **80–100**, everyday state (*owner*) |
-| 29/10 | display | settled | home from the pump, 5 km driven gently, oil 87 °C; the Verva still in the lines | **90–130, very unsettled**, everyday state (*owner*) |
 | 28/10 | display | settled | the last of the Verva tank, 13 l in the morning to 5 l; oil 95–100 °C | **70–100 most of the time, down to 47 at moments**, everyday state; **felt worse** (*owner*), and the figures agree: above 27/10's ~70 in the same state, lower being calmer |
+| 29/10 | display | settled | home from the pump, 5 km driven gently, oil 87 °C; the Verva still in the lines | **90–130, very unsettled**, everyday state (*owner*) |
+| 30/10 | display | settled | the first warm drive on OMV; oil 99 °C | **80–100**, everyday state (*owner*) |
+| 2/11 | display | settled | OMV, about 85 km in, the can's 5–6 l added 31/10; the day before the map; oil about 100 °C | **85–105**, everyday state; **felt worse again** (*owner*); cold **110–140** |
 
 **The trend over every capture** (28/10, at the owner's question; every
 standing idle settled 30 s and more, graded as `tools/afterpull.py`'s
@@ -189,7 +191,9 @@ every change of level came with a repair. The display gives no more (28/10:
 the one hot figure of August is a 22 s hold. **Warm, the idle stepped
 down once**, from about 75–95 to about 50–70, **between 10 and 12/10**
 (the leads, lead 4 re-seated), rose for 17–19/10 and came back; 27/10
-is level with its best, not past it. **Cold it has come down**, and that
+is level with its best, not past it, and **from 28/10 it is back at
+about 80–105** on the display (to 2/11), the end of the Verva and the
+OMV alike — so not the fuel. **Cold it has come down**, and that
 is the clearer change (below, *Temperature*).
 
 **The outside air is not in this trend** (*the owner's question*, 28/10:
@@ -335,6 +339,7 @@ mean:
 | **21/10 (`40`)** | 24 °C | **77 / 90** | **118 / 145** |
 | 24/10 (6e, display) | cold, under 70 °C | 120–140 (*owner*) | |
 | since (display) | | about 130 at the coldest (*owner*) | |
+| 2/11 (display) | 22 °C | 110–140 (*owner*) | |
 
 `35` (15/10) is left out: it started with every load on. **The first
 capture that reads low cold is 21/10's**, the first drive on the VW plugs

@@ -955,3 +955,13 @@ is not the fuel (`open.md` S19). The fifth clean start on OMV.
 
 The first dip on OMV, the size of the good month's after long cold stands
 (74 and 118 rpm, 26/9 and 24/9); S7 stays closed (`refuted.md` D2).
+
+## 2/11 — the idle on the display, the day before the map
+
+- **Tests:** `IdleHealth` cold and at a warm stop, everyday state.
+- **Changes after:**
+  - *measured:* cold 110–140; warm, oil about 100 °C, 85–105;
+  - *felt:* worse again (*owner*).
+
+The last reading on the remap: the baseline 3/11 is read against
+(`open.md` S1).
