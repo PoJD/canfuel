@@ -47,11 +47,13 @@ Captures only where an item asks for one. **Current: item 6 and 6i;
      4. **Warm stops of 3–5 minutes**, the everyday state, nothing
         touched; **three or four only if the dips and 014 look different
         from now — decided together on the drive**.
-     5. **Near the end, one to three stops with a cut**, oil 95–100 °C,
-        neutral, handbrake on, loads off: **injector 4's connector off
-        for 30 s**, by the connector body with the clip pressed, gloves;
-        back on. **Then at least 3 minutes of idle, nothing touched** — no
-        throttle, steering or loads. A flashing lamp is expected.
+     5. **Only if Claude says so at the warm stops** (the dips on a pair
+        again, not on all four alike): **near the end, one to three stops
+        with a cut**, oil 95–100 °C, neutral, handbrake on, loads off:
+        **injector 4's connector off for 30 s**, by the connector body
+        with the clip pressed, gloves; back on. **Then at least 3 minutes
+        of idle, nothing touched** — no throttle, steering or loads. A
+        flashing lamp is expected.
      6. **One more stop at home.**
 
      Write each stop, pull and cut, off and on, into the chat. After it:
@@ -243,7 +245,13 @@ and is written as one.
   the best access); 1 was preferred while the dips kept to 3 and 4, so
   that the suspect cylinder ran throughout, and since they spread over
   all four that reason is gone. Read with `--name` per stop and
-  `--shares` pooled. (`cutscan.py`'s verdict rules,
+  `--shares` pooled. **Only if the shares call for it** (*agreed with
+  the owner*, 2/11): `--shares` reads the dips' spread over the four
+  slots without a cut, and the cut adds only the names; all four alike,
+  as since the VW leads, needs none, a pair coming back does. Claude
+  reads `--shares` off the capture at the warm stops, on the laptop, and
+  says whether to cut. A cut also costs a fault entry, and clearing it
+  restarts 032 as it relearns on the new map. (`cutscan.py`'s verdict rules,
   fixed 9/10 before the first cuts, are in its source.) Never the plug lead instead of the
   connector: that sends fuel to the converter.
 
