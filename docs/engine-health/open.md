@@ -1748,6 +1748,10 @@ is in git.
 | 15 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 16 | **H12** driveline play | — | done: the clutch minutes cleared it |
 
+**Re-read 2/11, C19's 055 half refuted** (*agreed with the owner*): **H8
+stays eighth** — it loses 014 following the learnt value, and keeps S20
+and the idle air path, which 3/11's drive logs.
+
 **Re-read 31/10, after the look from below** (*agreed with the owner*):
 **H2 from 4 to 6**, below H13 and H1 — the visible manifold shows none
 of the soot a leak leaves.

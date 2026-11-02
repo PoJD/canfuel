@@ -761,6 +761,22 @@ overrun cuts before the sixth minute are not known). **The rule, now**:
 a reset neither quiets 014 nor makes a counting one worse — 014 on fresh
 adaptations compares with settled drives (*reasoned*, from these
 sessions).
+**4/10 A looked at again** (*the owner's question*, 2/11; captures `27`,
+`28`, VCDS `sessionA2`, `sessionA2-hot`). **The detection was on**:
+VCDS read *aktivováno* on 1,069 of 1,084 idle samples of the quiet part,
+as on every counting session. **The engine was not cleaner**: at the
+quiet A3 stop (oil 96–98 °C) dips of 35 rpm and more — about a whole
+stroke lost (`open.md` S1, *What one dip is worth*) — came 0.4 a minute,
+25 and more 2.4; after the hard drive, counting, 1.7 and 4.7; but **on
+12/10 (`32`) and 21/10 (`40`) 014 counted with fewer deep dips than
+4/10 A had while quiet** — 0.06 and 0.00 a minute of 35 and more, 0.9 and
+1.2 of 25 and more (`idledips.py --thresholds 15,25,35` over each hot
+idle). So the quiet was the detector, not the engine. **Nor do the
+overrun cuts separate it**: 3/10 counted at its first warm stop after 17
+cuts, all shut at 2,000–2,900 rpm (`coastscan.py` on `25`), much like 4/10
+A's 13 at 2,000–3,000 that left it quiet; only the hard drive's cuts from
+3,500–5,300 rpm came before 4/10 A counted. What switched it on is not
+known; it stays the one exception.
 
 ### C20. "The fuel pressure regulator does not answer its vacuum reference, or leaks through its diaphragm" (`open.md` H7) — measured
 
