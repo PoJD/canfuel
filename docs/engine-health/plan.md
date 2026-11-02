@@ -41,7 +41,8 @@ Captures only where an item asks for one. **Current: item 6 and 6i;
      this order:
      1. **A few minutes of cold idle straight after the start.**
      2. **Drive briskly until warm.**
-     3. **Oil above 90 °C: a few held full-throttle pulls to the
+     3. **Oil above 90 °C** — the MFD is out, so **Claude reads the oil
+        off the capture and says when**: **a few held full-throttle pulls to the
         limiter**, in 4th where the road allows the speed, otherwise in
         3rd; VCDS on **014, 003, 020** for them, then back.
      4. **Warm stops of 3–5 minutes**, the everyday state, nothing
