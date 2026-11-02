@@ -197,9 +197,10 @@ and is written as one.
   summary of what changed goes in.
 - **The adaptations start from zero**: the ECU comes out of the car,
   which resets them as a battery disconnect does (`refuted.md` C19).
-  Fresh adaptations look better on every ruler, so **the map's verdict
-  is not the drive home**: it is `IdleHealth` on the display once they
-  settle, against 2/11's 85–105, and if that looks solved, a drive with
+  **014 on the drive home already reads the map** (a reset does not
+  quiet it, `refuted.md` C19, 2/11). 032 relearns within about a day, so
+  the mixture and `IdleHealth` are read again once it has: on the
+  display against 2/11's 85–105, and if that looks solved, a drive with
   VCDS on 014 alone.
 - **One drive, not three** (*the owner's decision*, 2/11): the cold idle,
   the pulls, the warm stops and the cuts in one capture, so the MFD is
@@ -208,16 +209,14 @@ and is written as one.
   which the adaptations do not change, and the pulls read knock and the
   torque plateau, which they hardly touch (*reasoned*). VCDS logs three
   groups at a time, so 020 replaces 055 for the pulls only.
-- **The drive home** (*owner's decision*, 18/10/2026) is C19's
-  battery-off test for free. C19 says 014 stays at zero while 055 field 3
-  sits above about −0.93 g/s and counts from about −0.95, by correlation
-  only; so 055 is logged the whole way with 014. **014 starting as field
-  3 crosses −0.95** supports C19; starting elsewhere reopens it.
-  `IdleHealth` from the capture says whether the idle changes then or only
-  the counter. The cold stop is the before, the stop at −0.95 sits on the
-  crossing, the one at home is the after; brisk driving is what preceded
-  the crossing on 4/10. Whether field 3 learns while driving is not
-  known, hence a reading at each stop.
+- **The drive home** (*owner's decision*, 18/10/2026) was to be C19's
+  battery-off test; **27/10 had already run it** — 014 counted on fresh
+  idle air (`refuted.md` C19, 2/11) — so 014 on the drive home compares
+  with settled drives directly. 055 is still logged the whole way, for
+  H8's stops (*The stops on the drive home*, above): the cold stop is
+  the before, the warm ones walk the learnt value down, the one at home
+  is the after. Whether field 3 learns while driving is not known, hence
+  a reading at each stop.
 - **Map told from the cleaner and the adaptations**, on what they cannot
   move: **003's idle advance**; **the overrun fuel cut**
   by `coastscan.py`, against 0.8–1.6 s and 1,300–2,400 rpm; **014 against

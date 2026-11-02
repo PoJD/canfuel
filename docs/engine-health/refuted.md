@@ -695,7 +695,8 @@ near −3 % (*reasoned*, 6/10/2026; VW: a run-in engine sits negative
 anyway).
 **The rule it leaves:** **a quiet 014 after a battery disconnect is not
 evidence of a repair** until 055's learned value has walked past about
-−0.93 again. Compare 014 only on settled adaptations.
+−0.93 again. Compare 014 only on settled adaptations. *Superseded 2/11
+(below): the threshold is refuted; a reset does not reliably quiet it.*
 **What would revive it:** a session with the learned value above about
 −0.93 and 014 counting all the same (other than with a cause of its own,
 as on 3/10), or one with it well past −0.93 and 014 at zero on an
@@ -741,6 +742,25 @@ up and settle 055 at idle with no overrun cut above about 2500 rpm
 (clutch down on every lift), then 014 at a warm idle — quiet with 055
 settled says the tooth errors; then a few cuts from 4000+, and counting
 again confirms it.
+**2/11/2026 — the 055 half refuted, and the quiet day an exception**
+(*the owner's question*: a week ago, on zeroed adaptations, 014 counted
+as before). Re-read of 27/10's drive home after hours off
+(`vcds-step6l-2-014-055-003.csv`, `vcds-step6l-settle-014-055-003.csv`),
+which the 27/10 entry above had not used: **field 3 at 0.00 to −0.28 the
+whole 44-minute drive, and 014 counting all the same** — on the road from
+the sixth minute, and **21 times in 11 minutes of idle**, about 120 an
+idle hour; then **7 more on the settling stops at −0.56 to −0.99**. The
+settled sessions count about 90 to 1,400 an idle hour, most 100–400
+(every 014 log in `test/fixtures/vcds/`). So the condition under *What
+would revive it* is met: **055 above −0.93 does not quiet 014.** Of the
+three sessions on fresh idle air, **3/10 counted** (the hole, S10),
+**27/10 counted**, and **only 4/10 A was quiet** — the owner's reading,
+accepted: an exception, whether the tooth-error adaptation or something
+not known; 27/10 cannot test the tooth errors (no capture, so its
+overrun cuts before the sixth minute are not known). **The rule, now**:
+a reset neither quiets 014 nor makes a counting one worse — 014 on fresh
+adaptations compares with settled drives (*reasoned*, from these
+sessions).
 
 ### C20. "The fuel pressure regulator does not answer its vacuum reference, or leaks through its diaphragm" (`open.md` H7) — measured
 

@@ -120,9 +120,11 @@ next (100 = the engine before the repair, lower is smoother). Offline,
 (*owner's decision*, 12/10): the mean step in rpm × 50. A capture's figure
 is a mean over a window, the display's a running filter of the same
 quantity. **A reading without the oil temperature beside it compares with
-nothing**, and a session on **fresh adaptations** (after a battery
-disconnect) reads calmer on every ruler and is no test of a repair
-(`refuted.md` C19).
+nothing**. **Fresh adaptations** (after a battery disconnect) were held
+to read calmer on every ruler; **014 does not** — it counted on 27/10's
+reset as on settled drives, and only 4/10 A was quiet (`refuted.md` C19,
+2/11) — and `IdleHealth` on fresh ones (3/10 61–68, 4/10 A 72–74, 27/10
+about 50) sits inside the settled range, so it is not shown either way.
 
 **What one dip is worth.** Engine speed on 0x280 is recomputed once per 180°
 of crank, one power stroke (`docs/firmware/can-decoding.md` trap 5), so a dip
@@ -279,8 +281,9 @@ In the relearning log of 26/10
 (`test/fixtures/vcds/vcds-step6a-055-relearn-014-055-001.csv`,
 `idle-log.md`) 055's learnt value read **exactly 0.00 whenever its load
 bits read `0101`** — the A/C and all-loads stretches — and came back the
-moment they returned to `0000`. That learnt value is what 014's counting
-follows in `refuted.md` C19, negative on this engine since September.
+moment they returned to `0000`. That learnt value was once read as what
+switches 014's counting (`refuted.md` C19, refuted 2/11), negative on this
+engine since September.
 So "every load on" may calm the idle not by the load at all but by
 taking the learnt value out of play; and **since the cleaner the partial
 loads hardly matter while everything on together does** — and
@@ -474,8 +477,9 @@ completing rather than load (`refuted.md` C19).
 - **The events are the S1 dips** (`tools/s3align.py`, eleven sessions,
   16/10): half of 014's rises sit on a dip in the 1.5 s before, against 22 %
   by chance; a third of the dips get a rise. Over minutes the two part:
-  **whether it counts is decided by the load and the learned idle air**
-  (`refuted.md` C19), not by how rough the idle is. **The A/C switches it**
+  **whether it counts is decided by the load** (`refuted.md` C19; the
+  learned idle air as the switch refuted 2/11), not by how rough the idle
+  is. **The A/C switches it**
   (*owner*, 16/10): A/C on, 014 at zero for minutes with `IdleHealth` ~70; A/C
   off, it counts and the grade barely moves.
 - **Three properties to keep in mind** (`refuted.md` A11, A12): steps of 12;
@@ -486,8 +490,9 @@ completing rather than load (`refuted.md` C19).
   stops ever with 014 at zero — on fresh adaptations — then counting again
   after five minutes of hard driving. **Session B, 4/10**: counting again,
   055's learned value at −1.0 to −1.2. **Steps 2b and 2c, 9/10**: the first
-  session on kept adaptations, counting at every stop. Read together: the
-  learned idle air (C19).
+  session on kept adaptations, counting at every stop. Read together then
+  as the learned idle air (C19); **refuted 2/11**: 27/10 counted on fresh
+  idle air, and 4/10 A's quiet is the exception.
 - **The drive after the new leads, 10/10** (`31`): 014 at about 9/10's
   rates — better hot, worse cold, no direction. The leads did not fix S3.
 - **The new regulator hose, 25/10** (`plan.md` 6i, 6j): on 6i 014 counted
@@ -512,8 +517,8 @@ completing rather than load (`refuted.md` C19).
   70, and loads on (014's load above 28 %) silence it at any grade.
 - **The clearing of 24/10 reset 032 to 0.0 / 0.0 and left 055 at −1.31
   g/s** (`idle-log.md`), read once: on this ECU the clearing did not
-  restart the learned idle air that C19 ties 014 to, so 6i and 6j count
-  on settled idle air. Whether it restarts the crank-wheel adaptation is
+  restart the learned idle air that C19 then tied 014 to, so 6i and 6j
+  count on settled idle air. Whether it restarts the crank-wheel adaptation is
   not known (`vcds.md`).
 
 ### S4. Knock retard on cylinder 4, and only cylinder 4
@@ -1096,8 +1101,8 @@ charge, and a smaller charge is nearer the edge S1 reads the idle at**
 (*Load smooths it*) — more air, from a load or from the learnt value set
 aside (S1, *A second reading*), calms it (*reasoned*). **For**: on 26/10
 `IdleHealth` off the display fell as the value relearnt from −2.78 to
-−0.90 (`idle-log.md`); 014's counting follows the value in `refuted.md`
-C19; S20 dates from this throttle (*owner*). **Against**: in the same
+−0.90 (`idle-log.md`); 014's counting was read then as following the
+value (`refuted.md` C19, refuted 2/11); S20 dates from this throttle (*owner*). **Against**: in the same
 log **014 counted about as often at −1.0 as at −2.8** (no trend,
 `idle-log.md`); the display readings were single figures across changing
 temperature, loads and time, with no `IdleHealth` in the VCDS log to set
@@ -1733,7 +1738,7 @@ is in git.
 | 5 | **H1** valve or lifter | **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | none left in the plan: the EPR flushes done 26/10, the hot recording found no lifter |
 | 6 | **H2** a leak ahead of the probe | **down 31/10 from fourth** (*agreed with the owner*): the manifold seen from close below, rusty but no soot marks and no holes, its joint to the head nothing visibly wrong from below (H2); the part under its heat shield unseen; S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test (`plan.md` 7) |
 | 7 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
-| 8 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting follows 055's learnt value (`refuted.md` C19), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
+| 8 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
 | 9 | **H3** a leak at one runner | the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
 | 10 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
 | 11 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
