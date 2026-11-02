@@ -34,26 +34,31 @@ Captures only where an item asks for one. **Current: item 6 and 6i;
      ECU as it is now**. Write down the software version off his tool.
      Not the EEPROM. Upload them into the chat. The ECU comes out of the
      car.
-   - **The drive home, captured, not with the MFD.** Capture started
-     **before the first start** at the tuner, running to engine off at
-     home; VCDS on **014, 055, 003** the whole way; no `oilwatch.py`.
-     **A few minutes of cold idle straight after the start**; once warm,
-     drive briskly; **once the oil is above 90 °C, three or four stops
-     of 3–5 minutes each** — **only if the dips and 014 look different
-     from now; decided together on the drive** — the everyday state,
-     nothing touched, normal driving between them; **one more stop at
-     home**. Write each stop into the chat.
-   - **Then one or two ordinary warm drives**, captured; VCDS on
-     **014, 003**; 055 once at the end, warm idle. On one of them **one
-     held full-throttle pull in 4th**, with VCDS on **014, 003, 020** for
-     that drive.
-   - **On one of these drives, two or three stops with a cut**, oil
-     95–100 °C, neutral, handbrake on, loads off: **injector 1's
-     connector off for 30 s** (injector 4 if 1 cannot be reached), by the
-     connector body with the clip pressed, gloves; back on. **Then at
-     least 3 minutes of idle, nothing touched** — no throttle, steering
-     or loads. Write each off and on into the chat. A flashing lamp is
-     expected; clear the fault memory after the drive.
+   - **The drive home: everything in one drive, captured, not with the
+     MFD**, so the MFD goes back in after it. Capture started **before
+     the first start** at the tuner, running to engine off at home; VCDS
+     on **014, 055, 003**, except for the pulls; no `oilwatch.py`. In
+     this order:
+     1. **A few minutes of cold idle straight after the start.**
+     2. **Drive briskly until warm.**
+     3. **Oil above 90 °C: a few held full-throttle pulls to the
+        limiter**, in 4th where the road allows the speed, otherwise in
+        3rd; VCDS on **014, 003, 020** for them, then back.
+     4. **Warm stops of 3–5 minutes**, the everyday state, nothing
+        touched; **three or four only if the dips and 014 look different
+        from now — decided together on the drive**.
+     5. **Near the end, one to three stops with a cut**, oil 95–100 °C,
+        neutral, handbrake on, loads off: **injector 4's connector off
+        for 30 s**, by the connector body with the clip pressed, gloves;
+        back on. **Then at least 3 minutes of idle, nothing touched** — no
+        throttle, steering or loads. A flashing lamp is expected.
+     6. **One more stop at home.**
+
+     Write each stop, pull and cut, off and on, into the chat. After it:
+     the fault memory, 032 and 055 read; then he clears it.
+   - **Afterwards, the MFD back in**: `IdleHealth` at the stops that come
+     anyway (item 6) once the adaptations settle. If the map looks to have
+     solved it, **one more drive with VCDS only**, on **014**.
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
    everyday state and the oil temperature, written into the chat.
@@ -192,8 +197,17 @@ and is written as one.
   summary of what changed goes in.
 - **The adaptations start from zero**: the ECU comes out of the car,
   which resets them as a battery disconnect does (`refuted.md` C19).
-  Fresh adaptations look better on every ruler, so the reading is the
-  last of the drives, against `30`–`32`.
+  Fresh adaptations look better on every ruler, so **the map's verdict
+  is not the drive home**: it is `IdleHealth` on the display once they
+  settle, against 2/11's 85–105, and if that looks solved, a drive with
+  VCDS on 014 alone.
+- **One drive, not three** (*the owner's decision*, 2/11): the cold idle,
+  the pulls, the warm stops and the cuts in one capture, so the MFD is
+  out for one drive only. It costs the cuts and the pulls being read on
+  fresh adaptations rather than settled ones; the cuts name cylinders,
+  which the adaptations do not change, and the pulls read knock and the
+  torque plateau, which they hardly touch (*reasoned*). VCDS logs three
+  groups at a time, so 020 replaces 055 for the pulls only.
 - **The drive home** (*owner's decision*, 18/10/2026) is C19's
   battery-off test for free. C19 says 014 stays at zero while 055 field 3
   sits above about −0.93 g/s and counts from about −0.95, by correlation
@@ -216,7 +230,9 @@ and is written as one.
 - **The pull in 4th** is for the converter: the torque scale was fitted
   so this car's plateau reproduces the stock ratings
   (`docs/firmware/can-decoding.md` question 8); on a stock map the pull
-  says whether it holds.
+  says whether it holds. **3rd does as well** where 4th to the limiter
+  would mean an illegal speed: the plateau is read against engine speed,
+  not road speed; 4th only holds each speed a little longer (*reasoned*).
 - **The stop cuts** (*owner's decision*, 17/10/2026; `open.md`, *One
   cylinder or two*). The cylinder phase holds for minutes at idle, so one
   30 s cut names every dip in the idle run around it up to the moment the
@@ -224,8 +240,10 @@ and is written as one.
   untouched minutes give about 20–40 named dips a stop. Since the VW leads
   the dips sit on **all four alike** (`40`, `41`); the question is
   whether that holds on the stock map — a pair coming back names the
-  cylinders the remap leaves weakest. Injector 1 rather than 4
-  so the suspect cylinder runs throughout. Read with `--name` per stop and
+  cylinders the remap leaves weakest. **Injector 4** (*the owner*, 2/11:
+  the best access); 1 was preferred while the dips kept to 3 and 4, so
+  that the suspect cylinder ran throughout, and since they spread over
+  all four that reason is gone. Read with `--name` per stop and
   `--shares` pooled. (`cutscan.py`'s verdict rules,
   fixed 9/10 before the first cuts, are in its source.) Never the plug lead instead of the
   connector: that sends fuel to the converter.
