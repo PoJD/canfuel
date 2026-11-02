@@ -48,6 +48,19 @@ after ~1,500 km, one visibly worse than the rest — **from which cylinder is
 not known**, since they were not labelled. (This said "1 and 4 the worse pair"
 until 28/9/2026; nothing recorded that pair. See A9.)
 
+**The gap** (*the owner's question*, 2/11/2026: never measured, taken as
+set in the box). How it would act (*general*): a gap closed up leaves a
+small flame kernel that the thin, diluted idle charge lights badly — an
+idle misfire; one opened up needs more voltage and fails under load
+first. **Why it is not the idle** (*reasoned*): three sets from three
+sources — Dakuma's of 17/9, NGK's box of 10/10, VW's of 21/10 — all the
+same `BKUR6ET-10`, whose `-10` is NGK's code for a 1.0 mm gap set at the
+factory (*general*), and the idle the same on every one of them (S1);
+one wrong box is possible, three are not. And the `T` is NGK's code for
+three ground electrodes, a plug made to be fitted as it comes, not bent
+(*general*). Measuring one with a wire gauge would cost the plenum off
+again for a doubt this small; not done.
+
 ### A3. "The ignition coil" — replaced
 
 New in 6/2026, and the idle misfires outlived it. (The historical full-load
