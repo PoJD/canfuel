@@ -849,7 +849,9 @@ in the garage at 16 °C (album, 08:22): **`StartCrank` 0.80 s, `StartDip`
 and inside the good month's own: 74 and 118 rpm on its clean starts after
 10–19 hours at 12–14 °C of coolant (`idle-log.md`, 4/10, *The starts
 measured from the capture*). The longest stand and the coldest coolant
-on OMV so far. How it felt: not given yet.
+on OMV so far. **Felt clean** (*owner*): a slight dip heard, which he
+takes as normal; nothing near a stall, which is what the bad starts did.
+S7 stays closed.
 
 ### D3. S8 — "loses breath above 5000 rpm" — closed 4/10/2026
 On the hard drive of 4/10 (`28`) b7 eased from 185 to 181 between 4,000 and

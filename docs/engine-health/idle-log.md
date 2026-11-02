@@ -950,8 +950,8 @@ is not the fuel (`open.md` S19). The fifth clean start on OMV.
 - **Changes after:**
   - *measured:* `StartCrank` 0.80 s, **`StartDip` 78 rpm**, `StartClt`
     18 °C (oil 22 °C), the battery 12.5 V;
-  - *not known:* how it felt.
+  - *felt:* clean, a slight dip heard and taken as normal; nothing near a
+    stall (*owner*).
 
 The first dip on OMV, the size of the good month's after long cold stands
-(74 and 118 rpm, 26/9 and 24/9); S7 stays closed unless it was felt bad
-(`refuted.md` D2).
+(74 and 118 rpm, 26/9 and 24/9); S7 stays closed (`refuted.md` D2).
