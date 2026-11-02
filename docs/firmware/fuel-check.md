@@ -225,8 +225,10 @@ to the first click as always (*owner*).
 **The next tank** is OMV on the map until 3/11: **the four figures are
 read on 3/11, before the map goes back**, so the tank can be split at it.
 
-**31/10: 5 l, perhaps 6, poured in from a can** at about 81 km on the
-tank, about 46 l indicated before (*owner*). It costs the next pump
+**31/10: 5 l, perhaps 6, poured in from a can** at 83.5 km on the
+cluster's trip (odometer 155,277), about 46 l indicated before (*owner*)
+and **50.0 after; `FuelAvg` 12.5, `TripDist` 84.6, `Range` 400, the
+trip not reset** (album, 20:14, ignition on before the next start). It costs the next pump
 check its precision, not its meaning: the pump then refills what was
 burnt less what the can added, and the can is known only to a litre —
 about 2 % of a tank, the size of the effect being checked. **Count it as

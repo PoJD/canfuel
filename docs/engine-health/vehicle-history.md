@@ -45,6 +45,7 @@ symptom in `docs/` is dated after it, with a working lamp.
 | At 26 Oct 2026 | **154,999 km**, the oil change (*owner*) |
 | At 27 Oct 2026 | **155,024 km**, the first oil top-up (*owner*) |
 | At 29 Oct 2026 | **155,193 km** (`photos/odometer-2026-10-29.jpg`), the fill; the cluster's trip read 151.4 km, zeroed by the battery disconnect of 27/10 at about 155,042 |
+| At 31 Oct 2026 | **155,277 km** (album, 20:14), after the can; the cluster's trip 83.5 km since the fill of 29/10 |
 | **Covered in ownership** | **27,800 km over 9.0 years**, about 3,100 km a year *(derived)* |
 
 Odometer at the start of each year, from the owner's expense sheet
@@ -159,7 +160,7 @@ Owner-supplied from service records or from his own work.
 | **Fuel: OMV MaxxMotion 100**, always (*owner*, 10/10/2026). Before 9/2017 not known. **Until summer 2026 the tank held fuel about three years old** | 9/2017 to 23/10/2026 | ~27,800 km |
 | **Fuel: Orlen Verva 100**, 50.88 l, with the second can of BG 44K; no OMV on the route (*owner*). *This row said "OMV MaxxMotion 100, always" until this fill* | **24/10/2026** at 154,755 km, run down to 2.2 l indicated by 29/10 | 438 km |
 | **Fuel: OMV MaxxMotion 100plus**, the fuel of every year before the Verva, 50.16 l to the first click, no cleaner (*owner*) | **29/10/2026** at 155,193 km | — |
-| **Fuel topped up from a can: 5 l, perhaps 6**, OMV MaxxMotion 100plus **bought into the can on 8/9/2026** (*owner*), so about eight weeks in the cellar; poured in because it smelt there. *This said "from when the car was laid up in the garden" until he gave the date.* About 46 l in the tank before (*owner's recollection*) | **31/10/2026**, about 81 km after the fill of 29/10 | — |
+| **Fuel topped up from a can: 5 l, perhaps 6**, OMV MaxxMotion 100plus **bought into the can on 8/9/2026** (*owner*), so about eight weeks in the cellar; poured in because it smelt there. *This said "from when the car was laid up in the garden" until he gave the date.* About 46 l in the tank before (*owner's recollection*) | **31/10/2026** at 155,277 km, 83.5 km after the fill of 29/10; **50.0 l indicated after** (album) | — |
 | **Exhaust heat shields: new clips** on the sheet-metal shields around the exhaust, which rattled at certain engine speeds (*owner*); `open.md` S17's resonance still heard after them. Held once before with nuts over the old clips, which did not hold (date not given) | **31/10/2026**, by the owner | — |
 | **Battery disconnected** (every ECM adaptation restarts — *except 055, which a minute's disconnect on 26/10 left alone*) | after the summer heater work, then **23/9, 26/9, 1–2/10, the morning of 4/10, about a minute on 26/10 and from midday 27/10/2026** (several hours); 098 run 2/10 and 4/10 (on 26/10 and the morning of 27/10 it was only read as a measuring block) | — |
 | **Throttle cable slackened** at its detent (*owner*): it had been taken up to the stop on 1–2/10; 054 afterwards about 5° at rest to 90° on the floor | **27/10/2026**, by the owner | — |
