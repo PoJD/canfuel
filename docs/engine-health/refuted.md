@@ -843,7 +843,13 @@ can, filled 8/9 and so about eight weeks old, went in on 31/10** after
 these starts (`vehicle-history.md`), about an eighth of the tank. Stored
 petrol loses the light ends a cold start lives on (*general*), but eight
 weeks in a closed can diluted eightfold is a weak suspect
-(*reasoned*).
+(*reasoned*). **The first start with it in, 2/11**, after about 36 hours
+in the garage at 16 °C (album, 08:22): **`StartCrank` 0.80 s, `StartDip`
+78 rpm, `StartClt` 18 °C**, the battery 12.5 V — the first dip on OMV,
+and inside the good month's own: 74 and 118 rpm on its clean starts after
+10–19 hours at 12–14 °C of coolant (`idle-log.md`, 4/10, *The starts
+measured from the capture*). The longest stand and the coldest coolant
+on OMV so far. How it felt: not given yet.
 
 ### D3. S8 — "loses breath above 5000 rpm" — closed 4/10/2026
 On the hard drive of 4/10 (`28`) b7 eased from 185 to 181 between 4,000 and

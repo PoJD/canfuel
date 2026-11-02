@@ -942,3 +942,16 @@ is not the fuel (`open.md` S19). The fifth clean start on OMV.
   - *felt:* S17's resonance at about 2200 rpm still there, perhaps nearer
     the engine (*owner*);
   - *not known:* how the stored fuel starts.
+
+## 2/11 — the start after 36 hours, the can's fuel in
+
+- **Tests:** the start, plain, after about 36 hours in the garage at
+  16 °C (album).
+- **Changes after:**
+  - *measured:* `StartCrank` 0.80 s, **`StartDip` 78 rpm**, `StartClt`
+    18 °C (oil 22 °C), the battery 12.5 V;
+  - *not known:* how it felt.
+
+The first dip on OMV, the size of the good month's after long cold stands
+(74 and 118 rpm, 26/9 and 24/9); S7 stays closed unless it was felt bad
+(`refuted.md` D2).
