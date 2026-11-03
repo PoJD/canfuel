@@ -121,6 +121,8 @@ finding:**
     (`tools/coastscan.py`), is VW's statement plus this car's bus.
     Bosch's patent on the adaptation (US 6,142,011) stores the values
     from the last run and starts from zero on the very first.
+  - **No freeze frame on this ECU** (*owner*, 3/11/2026): a stored code
+    carries its status only, not the engine speed or load it was set at.
   - **Rough roads switch it off** for a set time, on a signal from the
     ABS — so a count is suppressed, never invented, by the road.
 - **Ignition retard per cylinder, 022/023/020: 0–15 °CA while driving** — from

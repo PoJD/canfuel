@@ -1897,9 +1897,9 @@ twice on 10/10 (warm) and once on 24/10 (cold) stored no P0303
 and in that window the ECU named the cylinders it had counted, 3
 among them — real misfires on 3, the five the capture shows, named
 because 4's pushed the window over; on its own 3 would not have set
-it. The lamp at the cut is 4's. The freeze frame, which would have
-given engine speed and load, was lost with the clearing: the fault
-memory was not saved to a file that session.
+it. The lamp at the cut is 4's. **This ECU stores no freeze frame**
+(*owner*, 3/11), so the fault memory holds only the codes and their
+status, and nothing more would have said when it was set.
 
 **Every named capture side by side** (3/11, at the owner's question):
 `31` (10/10, warm, NGK leads): 4 42 %, **3 31 %**, 2 14 %, 1 12 %;
