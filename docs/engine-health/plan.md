@@ -23,7 +23,21 @@ Captures only where an item asks for one. **Current: item 6 and 6i;
 
 5a. **The original map written back** at the tuner, **3/11, under way**
    (the figures before it photographed; the tuner: "the map should not
-   affect the idle"). Still to do:
+   affect the idle").
+   - **The drive home is done and captured, not yet analysed**
+     (`test/fixtures/42_stockmap_drive_z1.txt`, `vcds/vcds-step5a-*`):
+     the cold idle, three pulls, one warm stop, no cut (the shares were
+     not on a pair), fault memory empty throughout; 032/055 zero before,
+     −6.3/+3.1 % and −1.04 at the end. **Next, in the cloud**: run the
+     Python tests (not run before the commit; `coastscan.py` saw fuel
+     back at 5062 rpm, which `test_fuel_comes_back_well_above_idle` may
+     not accept), analyse the drive, and the currency pass over this
+     folder, this list included. **Seen on the drive** (*owner*,
+     confirmed in the 055 log): field 3 did not learn while he sat still;
+     each throttle blip started it about 22 s later, for about 20 s and
+     0.27 g/s, then it stopped again. On b7 the pulls reached 192
+     against 198–206 on the remap.
+   Still to do:
    - **Ask the tuner, if he will say more**: did the remap change the
      MAF's scaling, the idle advance or the idle speed.
    - **At the tuner, before he writes**: ask for each file as the
