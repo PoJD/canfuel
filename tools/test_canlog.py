@@ -190,7 +190,8 @@ class TestFixtureContent(unittest.TestCase):
                 "35_item5_drive_z1.txt", "36_item5_drive2_z1.txt",
                 "37_item5_drive3_z1.txt", "38_item5_gauge_z1.txt",
                 "39_drive_home_z1.txt", "40_refit_drive_z1.txt",
-                "41_item6d_cold_cut_z1.txt", "42_stockmap_drive_z1.txt"}
+                "41_item6d_cold_cut_z1.txt", "42_stockmap_drive_z1.txt",
+                "43_stockmap_drive2_z1.txt"}
     ACCEPTED_IDS = {0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480}
 
     #: The last few milliseconds of 20, as the ignition goes off and the bus

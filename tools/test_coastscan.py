@@ -148,13 +148,13 @@ class AgainstTheFixtures(unittest.TestCase):
         the new plugs and leads, 31, 16 in the drive of step 3 item 1,
         32, 32 and 15 in the two halves of the drive of item 5, 35
         and 36, 67 in the drive home, 37, 47 in the evening drive home, 39,
-        91 in the first drive after the refit, 40, and 63 in the drive home
-        on the original map, 42.
+        91 in the first drive after the refit, 40, 63 in the drive home
+        on the original map, 42, and 41 in the second drive home on it, 43.
 
         Counted per log, so a change to the detector shows where it moved
         rather than only that the total did.
         """
-        self.assertEqual(len(self.cuts), 614)
+        self.assertEqual(len(self.cuts), 655)
         self.assertEqual(self.per_log, {"17_drive_property_z1.txt": 4,
                                         "19_postfix_drive_z1.txt": 72,
                                         "24_mafswap_drive_z1.txt": 33,
@@ -171,7 +171,8 @@ class AgainstTheFixtures(unittest.TestCase):
                                         "37_item5_drive3_z1.txt": 67,
                                         "39_drive_home_z1.txt": 47,
                                         "40_refit_drive_z1.txt": 91,
-                                        "42_stockmap_drive_z1.txt": 63})
+                                        "42_stockmap_drive_z1.txt": 63,
+                                        "43_stockmap_drive2_z1.txt": 41})
 
     def test_the_cut_does_not_engage_the_moment_the_pedal_comes_up(self):
         """0.63-11.06 s after the lift across the corpus, never at once.
