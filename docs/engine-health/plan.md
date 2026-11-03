@@ -56,9 +56,9 @@ decarbonisation.**
    his choice; by its site, 3/11: 70 min for up to 2.5 l, 3,290 Kč).
    **The engine is held at 2,000 rpm throughout; nothing is measured
    before or after** (*owner*, 3/11, from their videos). The owner
-   books it. **The days before**: `IdleHealth` at a warm stop that comes
-   anyway, everyday state, with the oil temperature. **After it**: item 6's
-   drives again, `IdleHealth` the same way.
+   books it. **No reading of its own before it** (*the owner*, 3/11:
+   the weeks before are the baseline). **After it**: item 6's drives
+   again, `IdleHealth` as always.
 
 ## Standing items
 
@@ -199,7 +199,10 @@ gentle use comes back (*reasoned*). **2,000 rpm held, not idle**: an
 hour at a standing idle would be the converter's exposure the standing
 items avoid (122 of 129 counted misfire events began at a standing
 idle, `open.md` S3); held revs are not. **Nothing measured there**, so
-the before and after is `IdleHealth` on the display, and H1's own test
+the before and after is `IdleHealth` on the display — **before** is
+what is already read: 80–105 on the display on the remap (28/10–2/11),
+and on the original map `42`'s 54–77 and `43`'s 48–86 loads off, plus
+whatever item 6's drives give until the appointment — and H1's own test
 (a warm compression or leak-down reading on 3 against the others,
 `refuted.md` A4) stays for afterwards, if the clean does not help. **No injector swap**
 and **no plug change for now** (*his decisions*, 3/11).
