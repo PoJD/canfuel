@@ -1357,7 +1357,9 @@ hard use burns them off (*general*).
 
 - **`43` (3/11 evening): 43 % of the dips on cylinder 3**, the one
   ranked first inside (3 > 4 > 2 > 1): for, though deposits act on all
-  four in kind. **The owner's reading** (3/11): all four alike just
+  four in kind — **and that is the owner's reading of the shares**
+  (3/11): every cylinder dips, 3 the most, so a cause on all four with
+  3 worst (*Every named capture side by side*). He also reads: all four alike just
   after the VW leads and plugs (21/10), 3 worse again two weeks later —
   a cylinder that burns badly and wears its new plug down, the plug a
   consequence and not the cause. *Reasoned against it only in part*:
@@ -1883,6 +1885,23 @@ strokes, twice its rate outside, but 1.3 %, under the 2 % VW sets for a
 code (`vcds.md`), so the code may also hold some of 4's missing
 combustions counted against 3, which fires just before it (*reasoned*).
 Either way the capture names 3.
+
+**Every named capture side by side** (3/11, at the owner's question):
+`31` (10/10, warm, NGK leads): 4 42 %, **3 31 %**, 2 14 %, 1 12 %;
+`41` (24/10, cold, VW leads): **3 31 %**, 2 25 %, 1 24 %, 4 20 %;
+`43` (3/11, warm, original map): **3 43 %**, 2 22 %, 4 18 %, 1 17 %. **3
+is first or second in all three**, 4 led only on the NGK leads (lead 4
+re-seated 12/10, H15), and in none do the other cylinders go without:
+on `43` the three others carry 17–22 % each, about what all four alike
+would give them. **The owner's reading** (3/11): every cylinder dips,
+the dips were spread first and 3 grew worse after, so **a cause common
+to all four, with 3 worst** — beside S18, the only time the ECU itself
+named a cylinder (P0303, 18/10, `refuted.md` D10, with 3's deposit come
+away). The shares agree in form: *one cylinder, the rest alike* fits
+`43` within 0.4 of the best and `42`–`43` pooled within 1.0 (*reasoned*:
+a floor on all four and an excess on one; `41`'s 31 % on 3 was too few
+dips to tell from alike, p 0.77, so "spread first" is not quite
+"3 not leading").
 
 The pair was already there on 11/8, on the 2022 leads and the old injectors.
 `--pairs` is kept for history only: pairs within a run are not independent.
