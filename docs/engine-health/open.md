@@ -1357,7 +1357,9 @@ hard use burns them off (*general*).
 
 - **`43` (3/11 evening): 43 % of the dips on cylinder 3**, the one
   ranked first inside (3 > 4 > 2 > 1): for, though deposits act on all
-  four in kind — **and that is the owner's reading of the shares**
+  four in kind. **A hydrogen decarbonisation was done before**, 10/8/2021
+  (`vehicle-history.md`), its effect not remembered; the deposits of
+  10/2026 built up since — **and that is the owner's reading of the shares**
   (3/11): every cylinder dips, 3 the most, so a cause on all four with
   3 worst (*Every named capture side by side*). He also reads: all four alike just
   after the VW leads and plugs (21/10), 3 worse again two weeks later —

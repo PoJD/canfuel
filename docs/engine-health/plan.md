@@ -51,8 +51,9 @@ decarbonisation.**
      spark or a blue glow; then a fine water mist over one lead at a time
      and the coil, hands and bottle clear. Write anything seen and which
      lead the engine stumbled at.
-8. **The next repair: a professional decarbonisation** (hydrogen, for
-   one; *the owner's decision*, 3/11). The owner finds who does it,
+8. **The next repair: a professional decarbonisation, with hydrogen**
+   (*the owner's decision*, 3/11; a provider such as *Bez karbonu*,
+   his choice). The owner finds who does it,
    what it reaches and the price, and writes them into the chat before
    booking. **The days before**: `IdleHealth` at a warm stop that comes
    anyway, everyday state, with the oil temperature. **After it**: item 6's
@@ -187,7 +188,13 @@ H13 and, if the deposit on 3's seat is what keeps it from sealing, H1.
 ruler as item 6; a capture only once the display shows a change (item
 6). What it reaches is asked first because a clean through the intake
 works on the chambers and crowns, where the borescope found the
-deposit, not on a seat that is worn (*general*). **No injector swap**
+deposit, not on a seat that is worn (*general*). **The car had one
+before**, with hydrogen, on 10/8/2021 (`vehicle-history.md`): its
+effect was not recorded, and the 3,400 km and more since (152,000 at
+1/2022 against 155,357 on 3/11, the odometer table there), most of
+them gentle until 9/2026 and a year laid up, were enough to build what
+the borescope saw in 10/2026 — so a clean is a reset, not a cure, if
+gentle use comes back (*reasoned*). **No injector swap**
 and **no plug change for now** (*his decisions*, 3/11).
 
 ## Standing items — why

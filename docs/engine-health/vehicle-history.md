@@ -94,7 +94,7 @@ given.*
 | 31/8/2018 | A/C, STK, **the intake looked at: no fault found; compression about 13 bar** (below) | Dakuma |
 | 10/10/2018 | oil and oil filter (long-life) | — |
 | 9/1/2020 | service: oil, **plugs**, boots, track-rod ends, **battery, thermostat** | Spei |
-| 10/8/2021 | annual service: arms, brakes, oil, **decarbonisation** (what kind is not recorded), filters | Spei |
+| 10/8/2021 | annual service: arms, brakes, oil, **decarbonisation, with hydrogen** (*owner*, 3/11/2026, found in his records; *this said "what kind is not recorded" until then*), filters; how the car ran after it is not remembered | Spei |
 | 16/8/2022 | oil, STK, brake cleaning | Dakuma |
 | 22/12/2022 | **plugs and leads, NGK** (invoice) | Dakuma |
 | 15/6/2026 | oil and filter, the old fuel drained | the owner |
