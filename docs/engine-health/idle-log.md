@@ -993,9 +993,9 @@ The last reading on the remap: the baseline 3/11 is read against
 
 The map's own channels did not move, 014 did (`open.md` H14, S3).
 
-## 3/11 evening — the second drive home on the original map
+## 3/11 evening — the second drive on the original map, to football
 
-- **Tests:** the drive home captured (`43`, about 46 min): mostly
+- **Tests:** the drive captured (`43`, about 46 min, to football, not home; *owner*; the drive home after it with the MFD in): mostly
   motorway until oil 90 °C, full-throttle pulls on 014/003/020 at oil
   90–99 °C, a warm stop with every load off and **injector 4's
   connector off for 57 s** (the capture; about 30 s as felt at the

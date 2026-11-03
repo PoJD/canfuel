@@ -261,12 +261,14 @@ each capture's own 0x1A0 and 0x480 by `tools/replay.py` (the last row's
 | capture | distance | fuel | the sender, start → end |
 |---|---|---|---|
 | `42`, the drive home from the tuner | 47.94 km | 5.41 l | 43 → 36 l |
-| `43`, the second drive home, 3/11 evening | 38.57 km | 3.82 l | 36 → 33 l |
+| `43`, the evening drive to football | 38.57 km | 3.82 l | 36 → 33 l |
 | **both** | **86.5 km** | **9.23 l** | |
 
 The sender read 43.0 at the tuner before `42` and 36 at both ends of the
 gap between the two captures, so nothing of a litre or more was driven
-uncaptured in between; a shorter drive would not show on it.
+uncaptured in between; a shorter drive would not show on it. `43` ended
+at football, not at home (*owner*), and **the drive home after it ran with
+the MFD in**, so the converter has it.
 
 ---
 

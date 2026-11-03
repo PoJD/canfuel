@@ -149,7 +149,7 @@ class AgainstTheFixtures(unittest.TestCase):
         32, 32 and 15 in the two halves of the drive of item 5, 35
         and 36, 67 in the drive home, 37, 47 in the evening drive home, 39,
         91 in the first drive after the refit, 40, 63 in the drive home
-        on the original map, 42, and 41 in the second drive home on it, 43.
+        on the original map, 42, and 41 in the second drive on it, 43.
 
         Counted per log, so a change to the detector shows where it moved
         rather than only that the total did.

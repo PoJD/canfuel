@@ -59,7 +59,12 @@ factory (*general*), and the idle the same on every one of them (S1);
 one wrong box is possible, three are not. And the `T` is NGK's code for
 three ground electrodes, a plug made to be fitted as it comes, not bent
 (*general*). Measuring one with a wire gauge would cost the plenum off
-again for a doubt this small; not done.
+again for a doubt this small; not done. **3/11 evening, asked again by
+the owner**, after `43` named cylinder 3 (`open.md`, *The dips keep to
+one slot*): the three-boxes argument covers a set, not **one plug on 3**
+closed up in the fitting or knocked on the way in, which would act on
+that cylinder alone; *reasoned*. Still not measured; it would be read
+with plug 3 itself whenever the plenum comes off (`open.md` H13).
 
 ### A3. "The ignition coil" — replaced
 

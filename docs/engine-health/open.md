@@ -53,7 +53,7 @@ changed five tables, only at high speed and the highest load** — less
 fuel, more advance — and nothing at idle (H14). The drive agrees: the
 idle advance, the overrun cut, the full-load advance, air and b7 read as
 on the remap; **014 read zero**, which the files say is not the map's
-(S3). **The second drive home (`43`, 5b, 3/11 evening)
+(S3). **The second drive (`43`, 5b, 3/11 evening, to football)
 was read in a cloud session the same day**: the cut on injector 4
 **names cylinder 3** for 43 % of the dips (*The dips keep to one
 slot*), 014 counts again, and the first full-throttle pulls ran short
@@ -1364,7 +1364,9 @@ hard use burns them off (*general*).
   `40`–`41` were on the remap and settled adaptations, `42`–`43` on the
   original map and fresh ones, so time and the map change together;
   plug 3 beside the others would show it (the 10/10 plugs read 3 the
-  cleanest after nine days, `vehicle-history.md`).
+  cleanest after nine days, `vehicle-history.md`), and **its gap with a
+  wire gauge** at the same time (`refuted.md` A2, reopened for plug 3
+  alone, 3/11). It costs the plenum off.
 - **The look inside, 19–20/10** (H13 test 3, `idle-log.md`): **no inlet valve
   back is coked** — thin lacquer on all four, so no walnut clean; **the
   chambers carry it** — thin layers on every crown, a crust on 4's bowl edge,
