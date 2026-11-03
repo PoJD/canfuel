@@ -1887,9 +1887,10 @@ code (`vcds.md`). **Where it came from** (3/11, at the owner's
 question): the last read before it was empty, at the start of the
 warm VCDS run (17:19, VCDS clock), after the pulls; between it and the
 cut came 16 minutes of driving with full-throttle runs to 6,258 rpm
-(the capture, 17:20–17:24), **014 at 0 on the road throughout**, and
-the stop's idle counts, which never stored a code in any session
-before. So it came with the cut, not with hard driving. **Not the
+(the capture, 17:20–17:24) with **014 at 0 through them and to 17:28**,
+then 12–24 at the town stops and the crawling between them, and the
+warm stop's idle counts — counts like these never stored a code in
+any session before. So it came with the cut, not with hard driving. **Not the
 ECU charging 4's misses to its neighbour by habit**: the same cut on 4
 twice on 10/10 (warm) and once on 24/10 (cold) stored no P0303
 (`idle-log.md`). *Reasoned*: with 4 dead the total ran far over 2 %,
