@@ -18,33 +18,19 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Current: 5b tonight
-(3/11), then item 6 and 6i.**
+Captures only where an item asks for one. **Current: 5c in the cloud,
+and item 6 and 6i at the car from 4/11.**
 
-5b. **Tonight, 3/11, the drive home from work: captured, VCDS
-   connected, the MFD stays out.** Claude runs, on the laptop, before the
-   first start and to engine off at home, both in the background:
-   `python tools/usbtin_capture.py --seconds 7200 --out 43_stockmap_drive2_z1.txt`
-   and `python tools/vcds_log.py --groups 014 055 003 --out "C:/Users/Luboš/Downloads/stockmap2 14-55-3 26-11-03.CSV"`.
-   For the pull the VCDS run is stopped (`<out>.stop`) and restarted on
-   014 003 020 into its own file, then back. In this order:
-   1. **Drive off within half a minute**, normally.
-   2. **Oil above 90 °C** — Claude reads it off the capture and says
-      when: **one held full-throttle pull in 4th, from below 2000 rpm**,
-      as far up as the road allows; VCDS on **014, 003, 020** for it,
-      then back.
-   3. **The warm stops that come anyway**, the everyday state, nothing
-      touched.
-   4. **At one warm stop**,
-      oil 95–100 °C, neutral, handbrake on, loads off: **injector 4's
-      connector off for 30 s**, by the connector body with the clip
-      pressed, gloves; back on. **Then at least 3 minutes of idle,
-      nothing touched** — no throttle, steering or loads. A flashing lamp
-      is expected.
-
-   Write each stop, the pull and the cut, off and on, into the chat.
-   After it: the fault memory, 032 and 055 read; then he clears it.
-   **Afterwards, the MFD back in** (item 6).
+5c. **Claude, in a cloud session, reads `43`** — no car needed:
+   1. `tools/cutscan.py --shares` on `43`, and pooled with `42`; `--name`
+      on the stop with injector 4's cut.
+   2. **014 by stop** on `vcds-step5b-*.csv`: from when it counts again,
+      on which cylinders, at what load; and where **P0303** came from.
+   3. The pulls in 4th (`vcds-step5b-pull-014-003-020.csv`, b7 against
+      engine speed), 020 for S4; `IdleHealth` by stop and oil band.
+   4. The findings into `open.md`; this item out of both parts; the
+      order after it agreed with the owner.
+   **The MFD back in from 4/11** (item 6).
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
    everyday state and the oil temperature, written into the chat.
@@ -141,7 +127,7 @@ the knock window, so it is dropped. **055** once at a warm idle says the
 adaptations are settled (about −1.1 to −1.3), so a comparison holds
 (`refuted.md` C19).
 
-**Item 5b — the second drive on the original map** (*the owner*, 3/11:
+**Items 5b and 5c — the second drive on the original map** (*the owner*, 3/11:
 a capture and VCDS on the way home). **Why again**: 3/11's drive home
 read on fresh adaptations, and 032 had relearnt only part of the way
 (the part-load cell +3.1 %, `open.md` S19); 014's zero came at an idle
@@ -149,7 +135,7 @@ load of about 30 %, near what silences it (S3); and the dips came back
 onto one slot (*The dips keep to one slot*). A second session on a
 partly settled 032 says which of these hold. **The tuner's files (3/11)
 show the remap never touched the idle** (`open.md` H14), so 014 counting
-again tonight would make 3/11's zero the fresh adaptations, as on 4/10
+again on the evening of 3/11 would make its morning's zero the fresh adaptations, as on 4/10
 A; still zero at an everyday load would be a change in the engine. Same groups as 3/11 so the
 two compare directly; 055 is settled now (−1.04), so its stops ask
 nothing new and need not be long.
@@ -173,6 +159,15 @@ nothing new and need not be long.
   access). It costs a fault entry, and clearing it restarts 032, so the
   adaptations are read before the clearing (Standing items). Never the
   plug lead instead of the connector: that sends fuel to the converter.
+- **5c, the reading** (*the owner*, 3/11: the drive was captured and
+  committed in a hurry, the reading left for a cloud session). **P0303
+  came with the cut on 4** and no misfire code was stored before the
+  stop, so cylinder 3 either misfired on its own around the cut or the
+  ECU counted 4's missing fuel against 3 too (*reasoned*); `--name` on
+  the stop and 014's per-cylinder counts say which. **014 counting
+  again** (*owner*, at the warm stop) on a partly relearnt 032 is the
+  reading the paragraph above names: 3/11's zero was the fresh
+  adaptations.
 
 **Item 6 — the drives** (*decided 10/10/2026*; *the owner, 21/10: the
 tank on the display, the captures after it*). The display follows the

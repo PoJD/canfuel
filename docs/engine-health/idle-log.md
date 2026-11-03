@@ -992,3 +992,19 @@ The last reading on the remap: the baseline 3/11 is read against
     until the tuner's files.
 
 The map's own channels did not move, 014 did (`open.md` H14, S3).
+
+## 3/11 evening — the second drive home on the original map
+
+- **Tests:** the drive home captured (`43`, about 46 min): mostly
+  motorway until oil 90 °C, full-throttle pulls on 014/003/020 at oil
+  90–99 °C, a warm stop with every load off and **injector 4's
+  connector off for 30 s**, at least 3 min of idle untouched after it,
+  a stop near home; VCDS 014/055/003 otherwise; the fault memory and
+  032/055 read at the end, then cleared by the owner.
+- **Changes after:**
+  - *measured:* the fault memory empty before every run; after the cut
+    P1240 (N34, open circuit, sporadic), P0300, P0304 and **P0303**;
+    032 −6.3 / +3.9 % (part load from +3.1), 055 790 rpm, 0.02, −1.32;
+  - *felt:* **014 counting again at the warm stop** (*owner*, read off
+    VCDS);
+  - *not known:* everything the capture holds — read in `plan.md` 5c.

@@ -96,10 +96,11 @@ show the remap touched only the corner of highest load, and neither the
 idle nor the MAF's curve (`refuted.md` C22, C23). The order after 5b is
 agreed with the owner once its data are in.
 
-**Next** (`plan.md`): **5b, the drive home on 3/11 evening**, captured
-with VCDS — the second reading on the original map, 032 relearnt a
-little further, and the cut on injector 4 (agreed 3/11); the oil level
-every 500 km (6i).
+**Next** (`plan.md`): **5c, the reading of `43`** (5b, the second
+drive home on the original map, captured 3/11 with the cut on injector
+4; **014 counted again at the warm stop**, *owner*, and the cut left
+P0303 beside 4's codes) in a cloud session; then the MFD back in
+(item 6) and the oil level every 500 km (6i).
 
 ---
 
