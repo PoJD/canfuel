@@ -179,6 +179,20 @@ error):
 | 2/11 | display | settled | OMV, about 85 km in, the can's 5–6 l added 31/10; the day before the map; oil about 100 °C | **85–105**, everyday state; **felt worse again** (*owner*); cold **110–140** |
 | 3/11 | `42` | fresh (reset with the map) | **the original map**; the drive home from the tuner, motorway to 186 km/h, then a stop of about 9 min with throttle blips, oil 103–105 °C; b7 25–29 at idle | **71 ± 3** over every warm window (41–100): **93 ± 2** for the first 3 min after the motorway, **54 ± 3** from the fifth minute (41–67), 63 ± 3 and 77 ± 4 at the two stops near home; cold **98 ± 3** at 50–61 °C of oil |
 
+**The dips themselves on the original map** (3/11, `42` against `24`–`40`;
+standing idles settled 30 s and more, oil 93 °C and over, dips against the
+one-second median): **about 17–20 a minute of 15 rpm and over**, as `32`,
+`37`, `40` (16) and above `38`'s loads-off 9; **of 30 and over 0–0.4 a
+minute**, as `32`–`40` (0.2–0.7); **none of 40 and over in 11 minutes**,
+where `40` had one in 20 and `37` one in 7 — too few to tell apart; the
+deepest 37.8 against 41–59 on `37`–`40`; the median dip 17.2 rpm as
+everywhere. **One thing reads differently**: the spread of engine speed
+inside a stop, **8.5 rpm** standard deviation against 9.8–13.9 on `24`–`40`
+(only `38`'s single stops as low) — less slow wander, not fewer
+stumbles; one drive. The idle speed (794–796 rpm) and 0x280's load byte
+(21) as before. Cold (oil 40–70 °C, loads on): 22 dips a minute, 0.7 of
+30 and over, against `32`'s 38–40 and 1.6–2.1.
+
 **The trend over every capture** (28/10, at the owner's question; every
 standing idle settled 30 s and more, graded as `tools/afterpull.py`'s
 `idle_runs()` grades, the display's filter replayed beside it;
