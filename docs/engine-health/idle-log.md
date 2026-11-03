@@ -1022,3 +1022,13 @@ The map's own channels did not move, 014 did (`open.md` H14, S3).
 Read in a cloud session the same evening (`plan.md` 5c, done): the
 first capture that names one cylinder since the VW leads (`open.md`,
 *The dips keep to one slot*; S3; H14).
+
+## 3/11 night — the idle on the display, the drive home from football
+
+- **Tests:** `IdleHealth` at a warm stop, everyday state, the MFD back in.
+- **Changes after:**
+  - *measured:* **70–95**, oil 101 °C (*owner*).
+
+The first display reading on the original map, 032 relearning since
+the clearing after `43`'s cut; a little under the remap's 80–105
+(`open.md` S1).

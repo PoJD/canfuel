@@ -201,7 +201,8 @@ items avoid (122 of 129 counted misfire events began at a standing
 idle, `open.md` S3); held revs are not. **Nothing measured there**, so
 the before and after is `IdleHealth` on the display — **before** is
 what is already read: 80–105 on the display on the remap (28/10–2/11),
-and on the original map `42`'s 54–77 and `43`'s 48–86 loads off, plus
+and on the original map `42`'s 54–77, `43`'s 48–86 loads off and
+**70–95 on the display** the night of 3/11 (everyday state, oil 101 °C), plus
 whatever item 6's drives give until the appointment — and H1's own test
 (a warm compression or leak-down reading on 3 against the others,
 `refuted.md` A4) stays for afterwards, if the clean does not help. **No injector swap**
