@@ -1384,6 +1384,19 @@ table that advance falls back to; raising it would let more advance stay
 under knock, which fits cylinder 4's deeper retard on the remap
 (*reasoned*, not settled).
 
+**What the remap was worth** (*the owner's question*, 3/11; *reasoned*).
+At full throttle the lambda loop is off, so T1's −5 % did reach the
+mixture there — but **the learnt multiplicative trim (032's part-load
+cell) is applied in open loop too** (*general*, Bosch Motronic), and on
+the remap it had learnt +5.5 to +8.6 %, so at full throttle it gave back
+most or all of what T1 took, as far as that cell was T1's and not the
+MAF's. The added advance lies above the load the engine reaches (T3,
+T5); only T4's +1.5° is reached, if that table is used. **Measured**:
+the same full-load air, advance and b7 plateau on both maps. So **the
+gain was small to nothing on any channel read here**; what is not read
+is the full-load lambda itself (no wideband probe) and T2's inputs, and
+there was no dynamometer.
+
 **Where it still reaches** (*reasoned*):
 - **S4**: more advance and less fuel at full load is what makes knock;
   on the remap cylinder 4 retarded to 11.2°, on the original to 6.0°
