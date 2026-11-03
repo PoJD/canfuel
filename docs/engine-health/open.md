@@ -1883,9 +1883,22 @@ shown (no cut). Against `41`'s all four alike, cold, and `31`'s 4 then 3
 named capture). **P0303 beside 4's codes**: 3 dipped on its own in the
 cut, 5 of the 7 dips there and none on 2 — 5 in about 375 of its
 strokes, twice its rate outside, but 1.3 %, under the 2 % VW sets for a
-code (`vcds.md`), so the code may also hold some of 4's missing
-combustions counted against 3, which fires just before it (*reasoned*).
-Either way the capture names 3.
+code (`vcds.md`). **Where it came from** (3/11, at the owner's
+question): the last read before it was empty, at the start of the
+warm VCDS run (17:19, VCDS clock), after the pulls; between it and the
+cut came 16 minutes of driving with full-throttle runs to 6,258 rpm
+(the capture, 17:20–17:24), **014 at 0 on the road throughout**, and
+the stop's idle counts, which never stored a code in any session
+before. So it came with the cut, not with hard driving. **Not the
+ECU charging 4's misses to its neighbour by habit**: the same cut on 4
+twice on 10/10 (warm) and once on 24/10 (cold) stored no P0303
+(`idle-log.md`). *Reasoned*: with 4 dead the total ran far over 2 %,
+and in that window the ECU named the cylinders it had counted, 3
+among them — real misfires on 3, the five the capture shows, named
+because 4's pushed the window over; on its own 3 would not have set
+it. The lamp at the cut is 4's. The freeze frame, which would have
+given engine speed and load, was lost with the clearing: the fault
+memory was not saved to a file that session.
 
 **Every named capture side by side** (3/11, at the owner's question):
 `31` (10/10, warm, NGK leads): 4 42 %, **3 31 %**, 2 14 %, 1 12 %;
