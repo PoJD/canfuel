@@ -726,7 +726,10 @@ leaves H7's injector; H19's MAF against the map went with the files
 (`refuted.md` C22). The part-load cell
 at +3.1 is below the remap's +5.5 to +8.6 % and inside the +1.6 to
 +5.5 % before 25/10; one drive is not settled, so it is read again on
-5b.
+5b. **The remap took about 5 % of fuel away from 1400 rpm and heavy
+part load up (H14, T1)**, which the loop would learn back into this
+cell: **the part-load cell settling at about +1 to +3 % on the original
+map would confirm it**, and the rest of the split as the new MAF's.
 
 ### S20. Engine speed wanders at a constant pedal
 
@@ -1336,8 +1339,36 @@ the idle region of all five, and every other byte — so not the idle
 speed, the idle advance, the misfire detection (route 6), the limiter,
 the overrun cut or the MAF's curve (`refuted.md` C22). A classic mild
 remap of a naturally aspirated engine. The axes are stored as
-increments, and their units are not known, so where the changed columns
-begin in per cent of load is not known either.
+increments; no map definition for this software is public (searched
+3/11; the image names its source `DAMOS39M / 39M02G3-S`).
+
+**The axes, fitted** (3/11, *reasoned* from measurement): T3 laid over
+the advance VCDS 003 read on the original map (`vcds-step5a-*`, 1,642
+samples without knock retard, 16 full-throttle points at 2500–6250 rpm).
+**Rows: 40 rpm a count** (the full-throttle line fits to 0.85–1.1° RMS;
+part load alone gives 42). **Advance: 0.75° a count, offset about −25°**
+(a free fit gives 0.8–0.9; 0.75 with −24 to −26.5 fits nearly as well,
+and part load alone gives −25). **Load: full throttle sits at about 120
+counts of the column axis** (115–130); at the usual 0.75 % a count
+that is about 90 % relative fill, which is assumed, not fitted. Read
+that way:
+
+| table | the change begins at | full throttle at ≈120 | reached |
+|---|---|---|---|
+| T1 fuel −5 % | 1400 rpm, column 90 | between columns 110 and 130 | **yes, wholly** — and heavy part load (≈108) too |
+| T2 fuel −3 % | other axis types, units not known | — | not known |
+| T3 advance | 1880 rpm; column 130 (+1), 140 (+2), 160 up (+4) | just below 130 | **practically not**, half a count at most |
+| T5 advance | the same columns | just below 130 | **practically not** |
+| T4 advance | 1880 rpm; column 110 (+1), 120 (+2) | on 120 | **yes, +2 counts ≈ +1.5°**, if the ECU uses it |
+
+So **the advance at full throttle reads the same on both maps because
+the added advance lies above the load the engine reaches**; and **T1's
+leaner fuel reaches full throttle and heavy part load**, where the
+lambda loop runs and the multiplicative cell of 032 would learn it back
+— the remap's +5.5 to +8.6 % (S19). T4's lower values fit a knock-safe
+table that advance falls back to; raising it would let more advance stay
+under knock, which fits cylinder 4's deeper retard on the remap
+(*reasoned*, not settled).
 
 **Where it still reaches** (*reasoned*):
 - **S4**: more advance and less fuel at full load is what makes knock;
