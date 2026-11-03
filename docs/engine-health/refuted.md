@@ -64,7 +64,8 @@ the owner**, after `43` named cylinder 3 (`open.md`, *The dips keep to
 one slot*): the three-boxes argument covers a set, not **one plug on 3**
 closed up in the fitting or knocked on the way in, which would act on
 that cylinder alone; *reasoned*. Still not measured; it would be read
-with plug 3 itself whenever the plenum comes off (`open.md` H13).
+with plug 3 itself whenever the plenum comes off (`open.md` H13); no
+plug change for now (*the owner*, 3/11).
 
 ### A3. "The ignition coil" — replaced
 

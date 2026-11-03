@@ -105,8 +105,8 @@ idle nor the MAF's curve (`refuted.md` C22, C23). **After `43`
 (cylinder 3 named) deposits and a valve on 3 lead, H7 fourth.**
 
 **Next** (`plan.md`): the MFD back in from 4/11 (item 6) and the oil
-level every 500 km (6i); **the owner looks into a professional
-decarbonisation** (H13, item 8).
+level every 500 km (6i); **the next repair is a professional
+decarbonisation** (H13, item 8; *the owner's decision*, 3/11).
 
 ---
 
@@ -1368,7 +1368,8 @@ hard use burns them off (*general*).
   plug 3 beside the others would show it (the 10/10 plugs read 3 the
   cleanest after nine days, `vehicle-history.md`), and **its gap with a
   wire gauge** at the same time (`refuted.md` A2, reopened for plug 3
-  alone, 3/11). It costs the plenum off.
+  alone, 3/11). It costs the plenum off; **not for now** (*the owner*,
+  3/11).
 - **The look inside, 19–20/10** (H13 test 3, `idle-log.md`): **no inlet valve
   back is coked** — thin lacquer on all four, so no walnut clean; **the
   chambers carry it** — thin layers on every crown, a crust on 4's bowl edge,
@@ -1984,7 +1985,7 @@ is in git.
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| 1 | **H13** deposits | **up 3/11 evening from second to first** (*agreed with the owner*): `43`'s cut names cylinder 3, where the borescope found the most deposit; **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; **a professional decarbonisation**, hydrogen for one — the owner looks into it (3/11) |
+| 1 | **H13** deposits | **up 3/11 evening from second to first** (*agreed with the owner*): `43`'s cut names cylinder 3, where the borescope found the most deposit; **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; **a professional decarbonisation**, hydrogen for one — **the next repair** (*the owner*, 3/11; `plan.md` 8) |
 | 2 | **H1** valve or lifter | **up 3/11 evening from third to second** (*agreed with the owner*): a valve on 3 that does not seal, with deposit on its seat (H13), fits one cylinder named; **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes done 26/10, the hot recording found no lifter; left: a compression or leak-down reading on 3 against the others (*general*) |
 | 3 | **H3** a leak at one runner | **up 3/11 evening from seventh to third**: one cylinder named again (runner 3); the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
 | 4 | **H7** fuel delivery | **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026, and nothing points at one of them); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10); **no injector swap** (*the owner*, 3/11) |
@@ -2019,8 +2020,8 @@ the injectors are new and nothing points at one being bad (*the
 owner*), and he will not swap them, so the one injector stays
 untested. H2 and the rest keep their order. Claude proposed H7 first
 with an injector swap; the owner put it down. **What follows**: the
-owner looks into a professional decarbonisation, hydrogen for one
-(H13's repair; `plan.md` 8).
+owner decided on a professional decarbonisation, hydrogen for one, as
+the next repair (H13; `plan.md` 8).
 
 **Re-read 2/11, C19's 055 half refuted** (*agreed with the owner*): **H8
 stays eighth** — it loses 014 following the learnt value, and keeps S20

@@ -266,7 +266,8 @@ each capture's own 0x1A0 and 0x480 by `tools/replay.py` (the last row's
 
 The sender read 43.0 at the tuner before `42` and 36 at both ends of the
 gap between the two captures, so nothing of a litre or more was driven
-uncaptured in between; a shorter drive would not show on it. `43` ended
+uncaptured in between, and **no drive was made with the MFD out other
+than these two** (*owner*, 3/11), so the tank is whole. `43` ended
 at football, not at home (*owner*), and **the drive home after it ran with
 the MFD in**, so the converter has it.
 
