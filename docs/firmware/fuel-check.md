@@ -241,6 +241,14 @@ car moved off inside the arming window. `FuelAvg` is unharmed by the
 missed reset — fuel added is not fuel burnt, so the average since 29/10
 stays right — and `Range` reads the level live.
 
+**3/11, the four figures before the map** (at the tuner;
+`docs/engine-health/photos/mfd-2026-11-03-before-map.jpg`,
+`docs/engine-health/photos/odometer-2026-11-03.jpg`): **`FuelAvg` 11.7,
+`TripDist` 166.2 km, `FuelTank` 43.0 l, `Range` 367; the odometer
+155,357 km, the cluster's trip 164.1 km** (zeroed at the fill of 29/10,
+which was at 155,193: 164 km). The tank is split here: 166.2 km on the
+remap, the rest on the stock map.
+
 ---
 
 ## What this means for the measurements

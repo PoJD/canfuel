@@ -46,6 +46,7 @@ symptom in `docs/` is dated after it, with a working lamp.
 | At 27 Oct 2026 | **155,024 km**, the first oil top-up (*owner*) |
 | At 29 Oct 2026 | **155,193 km** (`photos/odometer-2026-10-29.jpg`), the fill; the cluster's trip read 151.4 km, zeroed by the battery disconnect of 27/10 at about 155,042 |
 | At 31 Oct 2026 | **155,277 km** (album, 20:14), after the can; the cluster's trip 83.5 km since the fill of 29/10 |
+| At 3 Nov 2026 | **155,357 km** (`photos/odometer-2026-11-03.jpg`), at the tuner before the map; the cluster's trip 164.1 km since the fill of 29/10 |
 | **Covered in ownership** | **27,800 km over 9.0 years**, about 3,100 km a year *(derived)* |
 
 Odometer at the start of each year, from the owner's expense sheet

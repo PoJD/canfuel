@@ -754,7 +754,11 @@ question 10, closed 23/10). A bias moves both sides of every comparison alike.
 **The remap.** The ECU was remapped in 6/2018, "mild", the tuner finding
 nothing at the top. Written down as H14 (16/10). Not written back on 22/10 (*owner*,
 20/10); **booked for 3/11**, the tuner's original and remap taken on the day and compared afterwards,
-privately, never in this repository (`plan.md` 5a).
+privately, never in this repository (`plan.md` 5a). **3/11, at the tuner**: the ECU out —
+VW `06A 906 018 EJ`, *BENZIN V04*, Bosch `0 261 206 327`, made 15.06.99 in
+Mexico (*owner's photo*); **the tuner: the map should not affect the idle**
+(*owner*); on the MAF's scaling, the idle advance and the idle speed
+nothing yet; the files to come the same day.
 
 **The brake pedal is soft and long** (*owner*, 9/10): hydraulics, not the
 servo and not the engine — a matter for a garage.

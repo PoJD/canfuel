@@ -21,24 +21,27 @@ One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Current: item 6 and 6i;
 5a on 3/11.**
 
-5a. **The original map written back** at the tuner, **booked for 3/11**.
-   The files come on the day, not before. When it goes ahead:
-   - **Before the map goes back**: the cluster's trip, `TripDist`,
-     `FuelAvg`, the odometer, photographed.
-   - **Ask the tuner**: did he warn in 2018 that the idle could get
-     worse; did the remap change the MAF's scaling, the idle advance or
-     the idle speed. His answers into the chat.
+5a. **The original map written back** at the tuner, **3/11, under way**
+   (the figures before it photographed; the tuner: "the map should not
+   affect the idle"). Still to do:
+   - **Ask the tuner, if he will say more**: did the remap change the
+     MAF's scaling, the idle advance or the idle speed.
    - **At the tuner, before he writes**: ask for each file as the
      **whole flash**, not only the maps — **the original** he read before
      the remap, **his remapped version**, and if he will, **a read of the
      ECU as it is now**. Write down the software version off his tool.
-     Not the EEPROM. Upload them into the chat. The ECU comes out of the
-     car.
+     Not the EEPROM. Upload them into the chat (he sends them later the
+     same day).
    - **The drive home: everything in one drive, captured, not with the
      MFD**, so the MFD goes back in after it. Capture started **before
      the first start** at the tuner, running to engine off at home; VCDS
-     on **014, 055, 003**, except for the pulls; no `oilwatch.py`. In
-     this order:
+     on **014, 055, 003**, except for the pulls; no `oilwatch.py`.
+     Claude runs, on the laptop: `python tools/usbtin_capture.py
+     --seconds 7200 --out 42_stockmap_drive_z1.txt` and `python
+     tools/vcds_log.py --groups 014 055 003 --out "C:/Users/Luboš/Downloads/stockmap 14-55-3 26-11-03.CSV"`,
+     both in the background; for the pulls the VCDS run is stopped
+     (`<out>.stop`) and restarted on 014 003 020 into its own file, then
+     back. In this order:
      1. **A few minutes of cold idle straight after the start.**
      2. **Drive briskly until warm.**
      3. **Oil above 90 °C** — the MFD is out, so **Claude reads the oil
