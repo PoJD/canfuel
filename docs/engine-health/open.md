@@ -1114,6 +1114,9 @@ hundred km without a disconnect.
   because the dips then sat on all four alike. **Against, by the owner**
   (3/11): the injectors are new (9/2026) and nothing else points at one;
   **no swap** (*his decision*), so this stays untested. Fourth since.
+  **And the history** (*owner*, 3/11): on the new VW leads and plugs
+  the dips were on all four alike (`40`, `41`), and 3 came back only
+  later; a bad injector would never have been even.
 - **Against:** four new injectors and a new filter changed nothing in S1; the
   trims near zero; full-load pulls reach ~85 kW, where a weak pump shows first;
   the regulator (6/2026, 3 bar) dry at its hose, **no fuel and no smell at
@@ -1354,7 +1357,14 @@ hard use burns them off (*general*).
 
 - **`43` (3/11 evening): 43 % of the dips on cylinder 3**, the one
   ranked first inside (3 > 4 > 2 > 1): for, though deposits act on all
-  four in kind.
+  four in kind. **The owner's reading** (3/11): all four alike just
+  after the VW leads and plugs (21/10), 3 worse again two weeks later —
+  a cylinder that burns badly and wears its new plug down, the plug a
+  consequence and not the cause. *Reasoned against it only in part*:
+  `40`–`41` were on the remap and settled adaptations, `42`–`43` on the
+  original map and fresh ones, so time and the map change together;
+  plug 3 beside the others would show it (the 10/10 plugs read 3 the
+  cleanest after nine days, `vehicle-history.md`).
 - **The look inside, 19–20/10** (H13 test 3, `idle-log.md`): **no inlet valve
   back is coked** — thin lacquer on all four, so no walnut clean; **the
   chambers carry it** — thin layers on every crown, a crust on 4's bowl edge,
