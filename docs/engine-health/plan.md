@@ -53,8 +53,11 @@ decarbonisation.**
      lead the engine stumbled at.
 8. **The next repair: a professional decarbonisation, with hydrogen**
    (*the owner's decision*, 3/11; a provider such as *Bez karbonu*,
-   his choice). The owner finds who does it,
-   what it reaches and the price, and writes them into the chat before
+   his choice; by its site, 3/11: 70 min for up to 2.5 l, 3,290 Kč).
+   The owner calls first and asks: **does the engine idle all the time,
+   or can it be held at about 1,500–2,000 rpm**; **is compression
+   measured on each cylinder, before and after**; what it reaches
+   (chambers, crowns, valves). The answers into the chat before
    booking. **The days before**: `IdleHealth` at a warm stop that comes
    anyway, everyday state, with the oil temperature. **After it**: item 6's
    drives again, `IdleHealth` the same way.
@@ -194,7 +197,13 @@ effect was not recorded, and the 3,400 km and more since (152,000 at
 1/2022 against 155,357 on 3/11, the odometer table there), most of
 them gentle until 9/2026 and a year laid up, were enough to build what
 the borescope saw in 10/2026 — so a clean is a reset, not a cure, if
-gentle use comes back (*reasoned*). **No injector swap**
+gentle use comes back (*reasoned*). **Why the two questions**: an hour
+at a standing idle is the converter's exposure the standing items
+avoid (122 of 129 counted misfire events began at a standing idle,
+`open.md` S3), so a held 1,500–2,000 rpm is asked for; and a compression
+reading on each cylinder before and after is H1's test for free — 3
+low against the others is a seat, level is the deposit (`open.md` H1,
+`refuted.md` A4). **No injector swap**
 and **no plug change for now** (*his decisions*, 3/11).
 
 ## Standing items — why
