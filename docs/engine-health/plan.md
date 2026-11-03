@@ -19,9 +19,7 @@ The full previous version, before it was condensed on 20/10/2026:
 
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Current: item 6 and 6i
-at the car from 4/11**; the ranking after `43` (cylinder 3 named) is
-the owner's to agree, and with it whether a test on cylinder 3 comes
-before item 6's drives (`open.md`, *The idle's candidates, ranked*).
+at the car from 4/11; the owner looks into item 8's decarbonisation.**
 
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
@@ -52,7 +50,9 @@ before item 6's drives (`open.md`, *The idle's candidates, ranked*).
      spark or a blue glow; then a fine water mist over one lead at a time
      and the coil, hands and bottle clear. Write anything seen and which
      lead the engine stumbled at.
-8. **The next repair** — Claude picks it from `open.md` then.
+8. **The next repair** — Claude picks it from `open.md` then. **The
+   owner looks into a professional decarbonisation** (hydrogen, for
+   one) meanwhile: who does it, what it reaches, the price.
 
 ## Standing items
 
@@ -173,7 +173,12 @@ and the mist supplies the moisture a tracking boot or coil needs. Late
 because the coil is from 6/2026 and the leads are new again; it is free.
 
 **Item 8 — the next repair** is chosen then, from `open.md`, *The idle's
-candidates, ranked*.
+candidates, ranked*. **Since 3/11 evening deposits (H13) and a valve on
+3 (H1) lead** (*agreed with the owner*): `43`'s injector cut names
+cylinder 3, the one the borescope found worst. The two 44K tanks moved
+nothing, so a chemical clean through the fuel is spent; a professional
+decarbonisation is what the owner proposes for H13 (*the owner*, 3/11).
+**No injector swap** (*his decision*).
 
 ## Standing items — why
 

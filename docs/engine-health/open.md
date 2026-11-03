@@ -97,16 +97,16 @@ of air (H14).
   ~2200 rpm; **not the exhaust's heat shields** — still there after their
   new clips, 31/10 — perhaps nearer the engine).
 
-**Ranked (3/11, agreed with the owner):** **H7, H13, H1, H2**, then H0,
-H8, H3, H15, H4, the timing belt, H16, H18, H11, H12 (*The idle's
+**Ranked (3/11 evening, agreed with the owner):** **H13, H1, H3, H7**,
+then H2, H0, H8, H15, H4, the timing belt, H16, H18, H11, H12 (*The idle's
 candidates, ranked*). **H14 and H19 left it on 3/11**: the tuner's files
 show the remap touched only the corner of highest load, and neither the
-idle nor the MAF's curve (`refuted.md` C22, C23). **The re-read after
-5c is proposed, not agreed** (*The idle's candidates, ranked*).
+idle nor the MAF's curve (`refuted.md` C22, C23). **After `43`
+(cylinder 3 named) deposits and a valve on 3 lead, H7 fourth.**
 
-**Next** (`plan.md`): **the ranking's re-read after `43`, with the
-owner** — cylinder 3 named; then the MFD back in from 4/11 (item 6)
-and the oil level every 500 km (6i).
+**Next** (`plan.md`): the MFD back in from 4/11 (item 6) and the oil
+level every 500 km (6i); **the owner looks into a professional
+decarbonisation** (H13, item 8).
 
 ---
 
@@ -1111,8 +1111,9 @@ hundred km without a disconnect.
 - **`43` (3/11 evening): the dips named 43 % on cylinder 3** (p 0.004
   against all four alike; *The dips keep to one slot*), and P0303 with the
   cut — **one injector is back in reach**, which 25/10 night took away
-  because the dips then sat on all four alike. An injector swap moves
-  the dips if it is the injector (*reasoned*).
+  because the dips then sat on all four alike. **Against, by the owner**
+  (3/11): the injectors are new (9/2026) and nothing else points at one;
+  **no swap** (*his decision*), so this stays untested. Fourth since.
 - **Against:** four new injectors and a new filter changed nothing in S1; the
   trims near zero; full-load pulls reach ~85 kW, where a weak pump shows first;
   the regulator (6/2026, 3 bar) dry at its hose, **no fuel and no smell at
@@ -1492,8 +1493,10 @@ but not on full air: **the torque scale is neither confirmed nor moved**.
 196–206 later, on 5–11 % more air, `idle-log.md`). **What admits less
 air on the first pulls of a drive is not read**: no group logged has
 the intake air temperature, and a MAF reading low would lower b7 the
-same way, since the ECU computes b7 from its load (*reasoned*). Not the
-idle; whether it is a symptom is the owner's to say.
+same way, since the ECU computes b7 from its load (*reasoned*). **Not
+pursued, not a symptom** (*the owner*, 3/11): perhaps the engine needs
+to be warm for longer before it takes its full air; he felt the pulls
+of this drive weaker too.
 
 **The ECU** (`vcds.md`): Bosch M5.9.2, hardware `0261206327`, software
 `1037352075` V04, 256 KB flash. No map definition is public.
@@ -1950,13 +1953,13 @@ is in git.
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| 1 | **H7** fuel delivery | never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10) — and an injector swap |
-| 2 | **H13** deposits | **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; none left in the plan |
-| 3 | **H1** valve or lifter | **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | none left in the plan: the EPR flushes done 26/10, the hot recording found no lifter |
-| 4 | **H2** a leak ahead of the probe | **down 31/10 from fourth** (*agreed with the owner*): the manifold seen from close below, rusty but no soot marks and no holes, its joint to the head nothing visibly wrong from below (H2); the part under its heat shield unseen; S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test (`plan.md` 7) |
-| 5 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
-| 6 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
-| 7 | **H3** a leak at one runner | the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
+| 1 | **H13** deposits | **up 3/11 evening from second to first** (*agreed with the owner*): `43`'s cut names cylinder 3, where the borescope found the most deposit; **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; **a professional decarbonisation**, hydrogen for one — the owner looks into it (3/11) |
+| 2 | **H1** valve or lifter | **up 3/11 evening from third to second** (*agreed with the owner*): a valve on 3 that does not seal, with deposit on its seat (H13), fits one cylinder named; **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes done 26/10, the hot recording found no lifter; left: a compression or leak-down reading on 3 against the others (*general*) |
+| 3 | **H3** a leak at one runner | **up 3/11 evening from seventh to third**: one cylinder named again (runner 3); the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
+| 4 | **H7** fuel delivery | **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026, and nothing points at one of them); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10); **no injector swap** (*the owner*, 3/11) |
+| 5 | **H2** a leak ahead of the probe | **down 31/10 from fourth** (*agreed with the owner*): the manifold seen from close below, rusty but no soot marks and no holes, its joint to the head nothing visibly wrong from below (H2); the part under its heat shield unseen; S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test (`plan.md` 7) |
+| 6 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
+| 7 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
 | 8 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
 | 9 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
 | 10 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
@@ -1974,18 +1977,19 @@ S4 and S19's part-load cell. The rest keeps its order and moves up two.
 in: the dips back on one slot (`42`) and the idle cell back at once
 (S19) point at what acts on one cylinder and adds fuel.
 
-**Proposed 3/11 evening after `43`, not agreed**: **cylinder 3 named**
-for 43 % of the dips warm, P0303 with the cut, and 014 counting again
-on the original map. What acts on one cylinder regains the ground the
-VW leads took from it on 24/10: **H7 stays first**, with its one
-injector back in reach and the rail gauge the owner would buy "if the
-map does not help" (29/10) — it did not; **H1 to second** (3 carries
-the deposit and had 18/10's tick, S18); **H3 from seventh to third**
-(runner 3); H13 to fourth (deposits act on all four in kind); the rest
-in order. The test that names the part: **injector 3 swapped with
-injector 1** and one capture with a cut — the dips following the
-injector or staying on 3 — then a compression or leak-down reading on
-3 against the others if they stay.
+**Re-read 3/11 evening, after `43`** (*agreed with the owner*):
+**cylinder 3 named** for 43 % of the dips warm, P0303 with the cut, and
+014 counting again on the original map, so what acts on one cylinder
+regains the ground the VW leads took from it on 24/10. **H13 first and
+H1 second** — the deposit worst on 3 (the borescope photographs,
+*owner*), and a valve on 3 that does not quite seal (*the owner*);
+**H3 from seventh to third** (runner 3); **H7 from first to fourth**:
+the injectors are new and nothing points at one being bad (*the
+owner*), and he will not swap them, so the one injector stays
+untested. H2 and the rest keep their order. Claude proposed H7 first
+with an injector swap; the owner put it down. **What follows**: the
+owner looks into a professional decarbonisation, hydrogen for one
+(H13's repair; `plan.md` 8).
 
 **Re-read 2/11, C19's 055 half refuted** (*agreed with the owner*): **H8
 stays eighth** — it loses 014 following the learnt value, and keeps S20

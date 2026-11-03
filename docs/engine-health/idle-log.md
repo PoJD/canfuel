@@ -1014,10 +1014,10 @@ The map's own channels did not move, 014 did (`open.md` H14, S3).
     from 5,000 rpm), b7 155 at 2,400; cylinder 4 retarding alone, to
     4.5°; the start 0.74 s, dip 0, coolant 35 °C;
   - *felt:* **014 counting again at the warm stop** (*owner*, read off
-    VCDS);
+    VCDS); the pulls of this drive weaker (*owner*);
   - *not known:* whether the calm at the end was the cut or the stop
     settling, as `42`'s did by its fifth minute; what limited the air on
-    the first pulls.
+    the first pulls (not pursued, *the owner*).
 
 Read in a cloud session the same evening (`plan.md` 5c, done): the
 first capture that names one cylinder since the VW leads (`open.md`,
