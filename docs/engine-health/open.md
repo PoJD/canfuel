@@ -813,6 +813,23 @@ start of its travel holds a plate unsteadily too, so S20 may have been
 the pedal. **It outlived them, a little better** (*owner*, 28/10): the
 pedal was part of it at most.
 
+**The first capture since the pedal, 3/11** (`42`, the original map; *the
+owner's question*). **With the plate held** (0x280 b5 within ±2 counts
+for 6 s and more, part throttle, above 40 km/h): the speed's scatter
+about its trend **0.14 km/h**, engine speed 0.19 %, against 0.16 / 0.31
+on the old throttle (`19`) and 0.12–0.17 / 0.23–0.26 on the new
+(`31`, `37`, `40`) — **a held plate holds the car, on every throttle**.
+**How still the plate is held** at a cruise (5 s windows, 50–130 km/h):
+the plate's spread **2.8 counts** on `42`, against **3.2–3.5 on the old
+throttle** (`19`, `24`) and **5.5–8.1 on most drives with the new one
+before the pedal was greased** (`30`, `31`, `32`, `37`, `40`; `39` 3.5,
+`26` 1.2 with few windows). **Read** (*reasoned*): S20 lives in the
+pedal, the cable and the plate, not in the engine — the engine holds a
+held plate steady — and since 27/10 the plate is held as still as on
+the old throttle, which fits "a little better". ⚠ `42` is mostly
+motorway, where a foot holds still more easily than in town; one drive.
+The map does not reach this range (H14).
+
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** 0x420's `OilTemp` is `raw − 60` °C (`docs/firmware/can-decoding.md`
