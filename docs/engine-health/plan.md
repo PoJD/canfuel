@@ -18,67 +18,41 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Current: item 6 and 6i;
-5a on 3/11.**
+Captures only where an item asks for one. **Current: 5b tonight
+(3/11), then item 6 and 6i; 5a's files when they come.**
 
-5a. **The original map written back** at the tuner, **3/11, under way**
-   (the figures before it photographed; the tuner: "the map should not
-   affect the idle").
-   - **The drive home is done and captured, not yet analysed**
-     (`test/fixtures/42_stockmap_drive_z1.txt`, `vcds/vcds-step5a-*`):
-     the cold idle, three pulls, one warm stop, no cut (the shares were
-     not on a pair), fault memory empty throughout; 032/055 zero before,
-     −6.3/+3.1 % and −1.04 at the end. **Next, in the cloud**: run the
-     Python tests (not run before the commit; `coastscan.py` saw fuel
-     back at 5062 rpm, which `test_fuel_comes_back_well_above_idle` may
-     not accept), analyse the drive, and the currency pass over this
-     folder, this list included. **Seen on the drive** (*owner*,
-     confirmed in the 055 log): field 3 did not learn while he sat still;
-     each throttle blip started it about 22 s later, for about 20 s and
-     0.27 g/s, then it stopped again. On b7 the pulls reached 192
-     against 198–206 on the remap.
-   Still to do:
+5a. **The original map, written back on 3/11.** Still to do:
    - **Ask the tuner, if he will say more**: did the remap change the
      MAF's scaling, the idle advance or the idle speed.
-   - **At the tuner, before he writes**: ask for each file as the
-     **whole flash**, not only the maps — **the original** he read before
-     the remap, **his remapped version**, and if he will, **a read of the
-     ECU as it is now**. Write down the software version off his tool.
-     Not the EEPROM. Upload them into the chat (he sends them later the
-     same day).
-   - **The drive home: everything in one drive, captured, not with the
-     MFD**, so the MFD goes back in after it. Capture started **before
-     the first start** at the tuner, running to engine off at home; VCDS
-     on **014, 055, 003**, except for the pulls; no `oilwatch.py`.
-     Claude runs, on the laptop: `python tools/usbtin_capture.py
-     --seconds 7200 --out 42_stockmap_drive_z1.txt` and `python
-     tools/vcds_log.py --groups 014 055 003 --out "C:/Users/Luboš/Downloads/stockmap 14-55-3 26-11-03.CSV"`,
-     both in the background; for the pulls the VCDS run is stopped
-     (`<out>.stop`) and restarted on 014 003 020 into its own file, then
-     back. In this order:
-     1. **A few minutes of cold idle straight after the start.**
-     2. **Drive briskly until warm.**
-     3. **Oil above 90 °C** — the MFD is out, so **Claude reads the oil
-        off the capture and says when**: **a few held full-throttle pulls to the
-        limiter**, in 4th where the road allows the speed, otherwise in
-        3rd; VCDS on **014, 003, 020** for them, then back.
-     4. **Warm stops of 3–5 minutes**, the everyday state, nothing
-        touched; **three or four only if the dips and 014 look different
-        from now — decided together on the drive**.
-     5. **Only if Claude says so at the warm stops** (the dips on a pair
-        again, not on all four alike): **near the end, one to three stops
-        with a cut**, oil 95–100 °C, neutral, handbrake on, loads off:
-        **injector 4's connector off for 30 s**, by the connector body
-        with the clip pressed, gloves; back on. **Then at least 3 minutes
-        of idle, nothing touched** — no throttle, steering or loads. A
-        flashing lamp is expected.
-     6. **One more stop at home.**
+   - **His files, when they come**: each as the **whole flash**, not only
+     the maps — **the original** he read before the remap, **his remapped
+     version**, and if he will, **a read of the ECU as it is now**; the
+     software version off his tool. Not the EEPROM. Uploaded into the
+     chat.
+5b. **Tonight, 3/11, the drive home from work: captured, VCDS
+   connected, the MFD stays out.** Claude runs, on the laptop, before the
+   first start and to engine off at home, both in the background:
+   `python tools/usbtin_capture.py --seconds 7200 --out 43_stockmap_drive2_z1.txt`
+   and `python tools/vcds_log.py --groups 014 055 003 --out "C:/Users/Luboš/Downloads/stockmap2 14-55-3 26-11-03.CSV"`.
+   For the pull the VCDS run is stopped (`<out>.stop`) and restarted on
+   014 003 020 into its own file, then back. In this order:
+   1. **Drive off within half a minute**, normally.
+   2. **Oil above 90 °C** — Claude reads it off the capture and says
+      when: **one held full-throttle pull in 4th, from below 2000 rpm**,
+      as far up as the road allows; VCDS on **014, 003, 020** for it,
+      then back.
+   3. **The warm stops that come anyway**, the everyday state, nothing
+      touched.
+   4. **Only if the owner agrees** (asked 3/11): **at one warm stop**,
+      oil 95–100 °C, neutral, handbrake on, loads off: **injector 4's
+      connector off for 30 s**, by the connector body with the clip
+      pressed, gloves; back on. **Then at least 3 minutes of idle,
+      nothing touched** — no throttle, steering or loads. A flashing lamp
+      is expected.
 
-     Write each stop, pull and cut, off and on, into the chat. After it:
-     the fault memory, 032 and 055 read; then he clears it.
-   - **Afterwards, the MFD back in**: `IdleHealth` at the stops that come
-     anyway (item 6) once the adaptations settle. If the map looks to have
-     solved it, **one more drive with VCDS only**, on **014**.
+   Write each stop, the pull and the cut, off and on, into the chat.
+   After it: the fault memory, 032 and 055 read; then he clears it.
+   **Afterwards, the MFD back in** (item 6).
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
    everyday state and the oil temperature, written into the chat.
@@ -138,9 +112,10 @@ Captures only where an item asks for one. **Current: item 6 and 6i;
 **The idle comes first**: the unsettled idle (S1) and the misfires 014
 counts at idle (S3). **S18, cylinder 3 dropping out with a tick, came
 first beside it** from 18/10 until it closed on 24/10, after a week
-without it (`refuted.md` D10); the owner keeps its drive rules as a
-habit until the map goes back, so that a return is caught (they left
-Part 1 on 26/10 at his request: not a step, what he does anyway). So:
+without it (`refuted.md` D10); the owner kept its drive rules as a
+habit until the map went back (3/11), so that a return was caught (they
+left Part 1 on 26/10 at his request: not a step, what he does anyway);
+whether he keeps them since is his. So:
 
 - **Fix, then look.** Each step is a repair; the only readings taken are
   the ones that decide the next step.
@@ -175,103 +150,61 @@ adaptations are settled (about −1.1 to −1.3), so a comparison holds
 (`refuted.md` C19).
 
 **Item 5a — the original map** (*owner's decision*, 12/10/2026, to take
-the remap out of the idle question; `open.md` H14, *The remap*).
-**The four figures before it**: the OMV tank of 29/10 is on the map until
-then, and read on the day they split the tank at the line, so a
-consumption check never mixes two calibrations
-(`docs/firmware/fuel-check.md`, *The fill of 2026-10-29*).
-**The stops on the drive home** (*agreed with the owner*, 26/10, for H8):
-055's learnt value moves **only at a warm standing idle** and holds
-through driving (`idle-log.md`, 26/10), so after the reset it can only
-walk down from zero at stops; three or four warm stops give `IdleHealth`
-off the capture, second by second, against the learnt value on the way
-down — the owner's hypothesis that the regulation narrows the margin
-(`open.md` H8), which 26/10 had no capture for. 003 rather than 001
-because the capture carries the oil, the throttle and the speed, and 003
-adds what it does not: the MAF's air and the ignition angle. 10–20
-minutes of idle in all, against the standing item for the converter,
-accepted as an exception — **and decided on the drive** (*owner*, 29/10):
-if the dips and 014 look as before, the long stops are not made.
+the remap out of the idle question; `open.md` H14, *The remap*). Written
+back on 3/11; the drive home on it is read in `open.md` (H14, test (2)).
 **The questions for the tuner** (*agreed with the owner*, 28/10): the
 owner half-remembers a warning about the idle (`open.md` H14), and a MAF
 scaling made for the 2018 sensor is H19's mechanism; a tuner's answer
 outweighs anything the web had (`open.md`, *What the forums say about
-this idle*), and arrives before the diff.
-**Not on 22/10 but on 3/11** (*owner*, 20/10). **The files come with the
-map, not before** (*owner*, 28/10: the tuner has a busy week), so they are
-compared afterwards, privately, never in this repository; the map goes
-back without the diff in hand. What each differing table
-*is* needs a map definition, so without one it is a guess from its shape
-and is written as one.
+this idle*). After 3/11 they matter more, not less: none of the advance,
+the air or the cut moved with the map (H14), so whatever it changed is
+somewhere the channels read here do not reach.
+**The files** (*owner*, 28/10: they come after the map) are compared
+privately, never in this repository. What each differing table *is*
+needs a map definition, so without one it is a guess from its shape and
+is written as one.
 - **The tuner's files.** The ECU is read on the bench, which gives the
   whole flash, program and calibration. **Original against remap** says
   byte for byte what was changed: idle speed, idle advance, the overrun
-  cut, **misfire detection** — a detection dulled by the remap would make
-  014 understate the engine on every drive (`open.md` H14 route 6).
-  **The whole flash** because only the program can be disassembled, and
-  it holds the torque reference behind 0x280 b7. **The read of the
-  ECU as it is now** shows the remap he kept is the one in the car; the
-  software version ties the original to this ECU (06A 906 018 EJ). **Not
+  cut, **misfire detection** — the one thing 3/11 could not tell from the
+  engine: 014 went to zero with the original map (`open.md` S3, H14
+  route 6). **The whole flash** because only the program can be
+  disassembled, and it holds the torque reference behind 0x280 b7. **The
+  read of the ECU as it is now** shows the original is the one in the
+  car; the software version ties it to this ECU (06A 906 018 EJ). **Not
   the EEPROM**: the immobiliser, nothing needed. **Never in the
   repository, nor on its release**: it is Bosch/VW software; only a
   summary of what changed goes in.
-- **The adaptations start from zero**: the ECU comes out of the car,
-  which resets them as a battery disconnect does (`refuted.md` C19).
-  **014 on the drive home already reads the map** (a reset does not
-  quiet it, `refuted.md` C19, 2/11). 032 relearns within about a day, so
-  the mixture and `IdleHealth` are read again once it has: on the
-  display against 2/11's 85–105, and if that looks solved, a drive with
-  VCDS on 014 alone.
-- **One drive, not three** (*the owner's decision*, 2/11): the cold idle,
-  the pulls, the warm stops and the cuts in one capture, so the MFD is
-  out for one drive only. It costs the cuts and the pulls being read on
-  fresh adaptations rather than settled ones; the cuts name cylinders,
-  which the adaptations do not change, and the pulls read knock and the
-  torque plateau, which they hardly touch (*reasoned*). VCDS logs three
-  groups at a time, so 020 replaces 055 for the pulls only.
-- **The drive home** (*owner's decision*, 18/10/2026) was to be C19's
-  battery-off test; **27/10 had already run it** — 014 counted on fresh
-  idle air (`refuted.md` C19, 2/11) — so 014 on the drive home compares
-  with settled drives directly. 055 is still logged the whole way, for
-  H8's stops (*The stops on the drive home*, above): the cold stop is
-  the before, the warm ones walk the learnt value down, the one at home
-  is the after. Whether field 3 learns while driving is not known, hence
-  a reading at each stop.
-- **Map told from the cleaner and the adaptations**, on what they cannot
-  move: **003's idle advance**; **the overrun fuel cut**
-  by `coastscan.py`, against 0.8–1.6 s and 1,300–2,400 rpm; **014 against
-  `IdleHealth`** (one moving without the other is the detection, not the
-  engine); **014 under load**, new counts per `aktivováno` sample above
-  1500 rpm against 15 in about 4,300 on the remap; **020 on the pull**
-  (S4). A calmer idle with the advance or the cut moved points at the
-  map; with both unchanged, at the cleaner or the adaptations (`open.md`
-  H14 test (2)).
+
+**Item 5b — the second drive on the original map** (*the owner*, 3/11:
+a capture and VCDS on the way home). **Why again**: 3/11's drive home
+read on fresh adaptations, and 032 had relearnt only part of the way
+(the part-load cell +3.1 %, `open.md` S19); 014's zero came at an idle
+load of about 30 %, near what silences it (S3); and the dips came back
+onto one slot (*The dips keep to one slot*). A second session on a
+partly settled 032 says which of these hold. Same groups as 3/11 so the
+two compare directly; 055 is settled now (−1.04), so its stops ask
+nothing new and need not be long.
 - **The pull in 4th** is for the converter: the torque scale was fitted
   so this car's plateau reproduces the stock ratings
-  (`docs/firmware/can-decoding.md` question 8); on a stock map the pull
-  says whether it holds. **3rd does as well** where 4th to the limiter
-  would mean an illegal speed: the plateau is read against engine speed,
-  not road speed; 4th only holds each speed a little longer (*reasoned*).
-- **The stop cuts** (*owner's decision*, 17/10/2026; `open.md`, *One
+  (`docs/firmware/can-decoding.md` question 8), and on the original map
+  that premise is true by construction. **3/11's pulls read the top
+  end** — the plateau from 4000 rpm up within 2–5 counts of the remap's
+  — but every pull in 4th started above 4500 rpm, and **the 170 Nm point
+  at 2400 rpm was read only in 3rd, passed in a second** (b7 169 against
+  the remap's held 185). **From below 2000 in 4th** holds 2400 long
+  enough to read; 020 rides along for S4.
+- **The stop cut** (*owner's decision*, 17/10/2026; `open.md`, *One
   cylinder or two*). The cylinder phase holds for minutes at idle, so one
   30 s cut names every dip in the idle run around it up to the moment the
-  car moves (`cutscan.py --name`); each stop needs its own cut. The 3
-  untouched minutes give about 20–40 named dips a stop. Since the VW leads
-  the dips sit on **all four alike** (`40`, `41`); the question is
-  whether that holds on the stock map — a pair coming back names the
-  cylinders the remap leaves weakest. **Injector 4** (*the owner*, 2/11:
-  the best access); 1 was preferred while the dips kept to 3 and 4, so
-  that the suspect cylinder ran throughout, and since they spread over
-  all four that reason is gone. Read with `--name` per stop and
-  `--shares` pooled. **Only if the shares call for it** (*agreed with
-  the owner*, 2/11): `--shares` reads the dips' spread over the four
-  slots without a cut, and the cut adds only the names; all four alike,
-  as since the VW leads, needs none, a pair coming back does. Claude
-  reads `--shares` off the capture at the warm stops, on the laptop, and
-  says whether to cut. A cut also costs a fault entry, and clearing it
-  restarts 032 as it relearns on the new map. (`cutscan.py`'s verdict rules,
-  fixed 9/10 before the first cuts, are in its source.) Never the plug lead instead of the
-  connector: that sends fuel to the converter.
+  car moves (`cutscan.py --name`). **Agreed 2/11: only if the shares
+  call for it**, and on 3/11 they did not look like a pair; read in the
+  cloud the same day, **45 % fell on one slot** (p 0.023 against all
+  four alike), the first capture since the VW leads not all four alike.
+  A cut names that slot; **injector 4** (*the owner*, 2/11: the best
+  access). It costs a fault entry, and clearing it restarts 032, so the
+  adaptations are read before the clearing (Standing items). Never the
+  plug lead instead of the connector: that sends fuel to the converter.
 
 **Item 6 — the drives** (*decided 10/10/2026*; *the owner, 21/10: the
 tank on the display, the captures after it*). The display follows the

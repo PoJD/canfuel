@@ -593,8 +593,31 @@ scale, and **not** something to chase with `TORQUE_TRIM_PCT`. And the car is
 chipped, so its true ratings are not the stock ones this scale was set against;
 if the remap gained anything, the display under-reads by about that much.
 Returning the ECU to standard would make the premise true by construction, and
-then wants one held pull to check the plateau (`docs/engine-health/open.md`,
-*Other*).
+then wants one held pull to check the plateau. **It was returned on 3/11/2026**
+(`42_stockmap_drive_z1`): in 3rd and 4th from 4000 rpm up the full-throttle
+plateau reads within 2–5 counts of the remap's band by band (3rd, 4000 / 4500 /
+5200 rpm: 185 / 189 / 187 against `40`'s 187 / 192 / 187), and VCDS 003 reads
+the same advance and air at full load on both, so **the top end does not move
+the scale**: 191 at 5200 gives 1.055 Nm/bit on the remap, 187 gives 1.08 on the
+original, inside the scatter below. **The 2400 rpm point is not read yet** —
+every 4th-gear pull started above 4500, and 3rd passed 2400 in a second. The
+scale stays 1.06 until a held pull in 4th from below 2000 reads it.
+
+**b7 moves with the air from one pull to the next, by more than the scale's
+bracket.** On the same drive, in the same gear at 4100–4700 rpm with the pedal on
+the floor, the burst median ran from **163–173** to **200–202**, and VCDS 003
+followed it: about a tenth less air through the MAF than the first pulls in the
+low ones, 5–11 % more in the high ones at the same advance; the load byte (b6)
+read 37 throughout. Neither intake temperature nor
+heat soak was logged. So one pull is not a calibration, and a scale is read off
+the held median of several, which is how `19`'s was.
+
+**The display's ranges hold it.** On the original map the largest the core
+would have sent is about 179 Nm (b7 206 at 4280 rpm) and 89 kW (b7 183 at
+5940 rpm), on the remap 171–180 Nm and 87–88 kW (`40`, `19`). `S-AQY.TRI` sets
+Torque's upper limit at 200.0 and Power's at 100.0, and those columns are
+warning and display limits, not a clamp (`mfd15/docs/tri-format.md`), so
+neither needs to change.
 
 **The obvious derivation is wrong**: b7 = 255 as the rated crank torque plus
 drag gave 0.74 and read **30 % low** (`refuted.md` B12). The engine plateaus
@@ -629,7 +652,8 @@ which is hard over away from stoichiometric. That is an inference from block
 - cranking asks for b7 = 192 below 900 rpm with the throttle at rest — the
   driving gate keeps it off the display;
 - the largest b7 this engine has been seen to **make** is **206, at 4402 rpm
-  in `19`**, 80.8 % of full scale; 198 in `24`;
+  in `19`**, 80.8 % of full scale; 198 in `24`; 206 again, at 4280 rpm, in
+  `42` on the original map;
 - **a maximum is not a plateau**: every pull before `19` was a low-gear sweep
   still climbing when the throttle closed, so earlier maxima compare with
   nothing;

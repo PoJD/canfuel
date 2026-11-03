@@ -118,7 +118,7 @@ Owner-supplied from service records or from his own work.
 | Both oxygen sensors (pre- and post-cat) | **10/2017 — never changed since** | ~27,600 km |
 | Timing belt and water pump | **10/2017** | ~27,800 km |
 | Fuel filter | **12/2017**; another bought 10/2022, believed the wrong type and never fitted (no record either way) | 4 or 9 years, **not established** |
-| Chiptuning, described by the owner as mild | 6/2018 — **confirmed by the original order email** (*owner*, 12/10/2026). The tuner kept the original map; writing it back was set for 22/10/2026, postponed, and is **booked for 3/11/2026** (`plan.md` 5a). *This said "the car is not going back to standard" until 12/10* | — |
+| Chiptuning, described by the owner as mild | 6/2018 — **confirmed by the original order email** (*owner*, 12/10/2026). The tuner kept the original map; writing it back was set for 22/10/2026, postponed, and **was done on 3/11/2026** at 155,357 km, by the same tuner; the adaptations reset with it (032 0.0 / 0.0 %, 055 0.00, `test/fixtures/vcds/vcds-step5a-adaptations-032-055.csv`). *This said "booked for 3/11/2026" until it was done.* *This said "the car is not going back to standard" until 12/10* | — |
 | MAF sensor | 7/2018 *(connector cleaned 7/2026)* | not recoverable |
 | Dipstick, cap and a seal recorded as "valve seal", against an oil leak. *Owner's recollection (27/9/2026), not certain:* the dipstick's neck was cracked; the seal probably the rubber it seats in, not the valve cover gasket. Record not kept | **12/7/2018** | — |
 | **Fuel tank** | **replaced inside the ownership, date not recoverable** (*owner certain*). *An earlier revision said the tank had never been touched* | unknown |

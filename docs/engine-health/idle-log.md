@@ -965,3 +965,30 @@ The first dip on OMV, the size of the good month's after long cold stands
 
 The last reading on the remap: the baseline 3/11 is read against
 (`open.md` S1).
+
+## 3/11 — the original map written back; the drive home captured
+
+- **Repairs:** **the original map written back** by the tuner who made
+  the remap of 6/2018, at 155,357 km; the adaptations reset with it
+  (`vehicle-history.md`).
+- **Tests:** the drive home captured (`42`, 58 min): a cold idle of
+  about 3 min, the drive until warm, five full-throttle pulls to the
+  limiter on 014/003/020, a warm stop of about 9 min with throttle
+  blips, the stops near home; VCDS 014/055/003 throughout; 032/055
+  before and at the end; the fault memory empty before and after.
+- **Changes after:**
+  - *measured:* `IdleHealth` cold 98 ± 3 (oil 50–61 °C); warm 93 for the
+    first 3 min after the motorway, **54 ± 3** settled into the stop,
+    63–77 near home; **014 zero all session**, at an idle load of about
+    30 %; the dips 45 % on one slot (p 0.023); 032 −6.3 / +3.1 %, 055
+    −1.04 g/s at the end; the idle advance, the full-load advance and
+    air, b7 and the overrun cut as on the remap; cylinder 4 retarding
+    alone at full load, to 6.0° against 11.2° on the remap; the start
+    0.70 s, dip 0, coolant 61 °C;
+  - *felt:* the later full-throttle runs stronger than the first
+    (*owner*, 3/11) — b7 196–206 against 181–192, on 5–11 % more air at
+    the same engine speed and the same advance;
+  - *not known:* the idle once 032 has settled; what the map changed,
+    until the tuner's files.
+
+The map's own channels did not move, 014 did (`open.md` H14, S3).
