@@ -775,7 +775,16 @@ map would confirm it**, and the rest of the split as the new MAF's.
 **After the second drive** (3/11 evening,
 `vcds-step5b-adaptations-032-055.csv`, before the owner cleared the
 cut's codes): **−6.3 / +3.9 %** — the idle cell held, the part-load
-cell up 0.8, not yet settled; the clearing restarts both.
+cell up 0.8, not yet settled; the clearing restarts both. **Read 3/11
+night, at the owner's question** (*reasoned*): **not a conclusion yet**.
+The cell was still climbing when the clearing reset it, and +3.9 sits
+inside what the remap itself read up to 23/10 (+1.6 to +5.5), so it
+cannot yet tell the map from what moved it to +6.3–8.6 from 25/10 (the
+regulator's hose, the tanks). It is already above the +1 to +3 that
+would have confirmed T1 as the cause, which leans against T1 doing it
+alone. **A settled reading** is the next 032 taken with VCDS connected
+anyway, a few hundred km on, before anything is cleared (Standing
+items, `plan.md`); no session for it.
 
 ### S20. Engine speed wanders at a constant pedal
 
