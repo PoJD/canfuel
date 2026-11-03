@@ -589,9 +589,10 @@ band by band; neither drive logged its intake temperature (caveat below).
 ⚠ **Two caveats, stated rather than resolved.** The intake temperature was not
 logged during the pulls, and b7 carries the ECU's charge normalisation, so a
 hot day reads lower and a frosty one higher — physics, not an error in the
-scale, and **not** something to chase with `TORQUE_TRIM_PCT`. And the car is
-chipped, so its true ratings are not the stock ones this scale was set against;
-if the remap gained anything, the display under-reads by about that much.
+scale, and **not** something to chase with `TORQUE_TRIM_PCT`. And the car was
+chipped when the scale was set, so its true ratings were not the stock ones;
+the remap changed fuel and advance only at the highest load (less fuel, more
+advance; `docs/engine-health/open.md` H14), which is the top of the plateau.
 Returning the ECU to standard would make the premise true by construction, and
 then wants one held pull to check the plateau. **It was returned on 3/11/2026**
 (`42_stockmap_drive_z1`): in 3rd and 4th from 4000 rpm up the full-throttle

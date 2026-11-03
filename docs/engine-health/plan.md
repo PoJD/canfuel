@@ -19,16 +19,8 @@ The full previous version, before it was condensed on 20/10/2026:
 
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Current: 5b tonight
-(3/11), then item 6 and 6i; 5a's files when they come.**
+(3/11), then item 6 and 6i.**
 
-5a. **The original map, written back on 3/11.** Still to do:
-   - **Ask the tuner, if he will say more**: did the remap change the
-     MAF's scaling, the idle advance or the idle speed.
-   - **His files, when they come**: each as the **whole flash**, not only
-     the maps — **the original** he read before the remap, **his remapped
-     version**, and if he will, **a read of the ECU as it is now**; the
-     software version off his tool. Not the EEPROM. Uploaded into the
-     chat.
 5b. **Tonight, 3/11, the drive home from work: captured, VCDS
    connected, the MFD stays out.** Claude runs, on the laptop, before the
    first start and to engine off at home, both in the background:
@@ -43,7 +35,7 @@ Captures only where an item asks for one. **Current: 5b tonight
       then back.
    3. **The warm stops that come anyway**, the everyday state, nothing
       touched.
-   4. **Only if the owner agrees** (asked 3/11): **at one warm stop**,
+   4. **At one warm stop**,
       oil 95–100 °C, neutral, handbrake on, loads off: **injector 4's
       connector off for 30 s**, by the connector body with the clip
       pressed, gloves; back on. **Then at least 3 minutes of idle,
@@ -149,40 +141,16 @@ the knock window, so it is dropped. **055** once at a warm idle says the
 adaptations are settled (about −1.1 to −1.3), so a comparison holds
 (`refuted.md` C19).
 
-**Item 5a — the original map** (*owner's decision*, 12/10/2026, to take
-the remap out of the idle question; `open.md` H14, *The remap*). Written
-back on 3/11; the drive home on it is read in `open.md` (H14, test (2)).
-**The questions for the tuner** (*agreed with the owner*, 28/10): the
-owner half-remembers a warning about the idle (`open.md` H14), and a MAF
-scaling made for the 2018 sensor is H19's mechanism; a tuner's answer
-outweighs anything the web had (`open.md`, *What the forums say about
-this idle*). After 3/11 they matter more, not less: none of the advance,
-the air or the cut moved with the map (H14), so whatever it changed is
-somewhere the channels read here do not reach.
-**The files** (*owner*, 28/10: they come after the map) are compared
-privately, never in this repository. What each differing table *is*
-needs a map definition, so without one it is a guess from its shape and
-is written as one.
-- **The tuner's files.** The ECU is read on the bench, which gives the
-  whole flash, program and calibration. **Original against remap** says
-  byte for byte what was changed: idle speed, idle advance, the overrun
-  cut, **misfire detection** — the one thing 3/11 could not tell from the
-  engine: 014 went to zero with the original map (`open.md` S3, H14
-  route 6). **The whole flash** because only the program can be
-  disassembled, and it holds the torque reference behind 0x280 b7. **The
-  read of the ECU as it is now** shows the original is the one in the
-  car; the software version ties it to this ECU (06A 906 018 EJ). **Not
-  the EEPROM**: the immobiliser, nothing needed. **Never in the
-  repository, nor on its release**: it is Bosch/VW software; only a
-  summary of what changed goes in.
-
 **Item 5b — the second drive on the original map** (*the owner*, 3/11:
 a capture and VCDS on the way home). **Why again**: 3/11's drive home
 read on fresh adaptations, and 032 had relearnt only part of the way
 (the part-load cell +3.1 %, `open.md` S19); 014's zero came at an idle
 load of about 30 %, near what silences it (S3); and the dips came back
 onto one slot (*The dips keep to one slot*). A second session on a
-partly settled 032 says which of these hold. Same groups as 3/11 so the
+partly settled 032 says which of these hold. **The tuner's files (3/11)
+show the remap never touched the idle** (`open.md` H14), so 014 counting
+again tonight would make 3/11's zero the fresh adaptations, as on 4/10
+A; still zero at an everyday load would be a change in the engine. Same groups as 3/11 so the
 two compare directly; 055 is settled now (−1.04), so its stops ask
 nothing new and need not be long.
 - **The pull in 4th** is for the converter: the torque scale was fitted
@@ -198,10 +166,10 @@ nothing new and need not be long.
   cylinder or two*). The cylinder phase holds for minutes at idle, so one
   30 s cut names every dip in the idle run around it up to the moment the
   car moves (`cutscan.py --name`). **Agreed 2/11: only if the shares
-  call for it**, and on 3/11 they did not look like a pair; read in the
-  cloud the same day, **45 % fell on one slot** (p 0.023 against all
-  four alike), the first capture since the VW leads not all four alike.
-  A cut names that slot; **injector 4** (*the owner*, 2/11: the best
+  call for it; agreed 3/11 that they do**: on 3/11 they did not look
+  like a pair at the stop, and read in the cloud the same day **45 % fell
+  on one slot** (p 0.023 against all four alike), the first capture
+  since the VW leads not all four alike. A cut names that slot; **injector 4** (*the owner*, 2/11: the best
   access). It costs a fault entry, and clearing it restarts 032, so the
   adaptations are read before the clearing (Standing items). Never the
   plug lead instead of the connector: that sends fuel to the converter.

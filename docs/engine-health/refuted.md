@@ -815,6 +815,42 @@ the second.
 **What would revive it:** the level rising on the new oil (`plan.md`
 6i), or the idle cell moving towards zero after a later change.
 
+### C22. "The remap's MAF scaling against the new MAF splits the trim and roughens the idle" (`open.md` H19) — measured
+
+**Believed:** 28/10/2026, at the owner's request: 032's idle cell
+negative and part-load cell positive since the genuine MAF of 24/9 read
+as a MAF curve the remap was scaled for in 2018, with the 2018 sensor in
+the car; ranked second for the idle from 28/10.
+**Refuted by** the tuner's two whole flashes, original and remap,
+compared byte for byte on 3/11: **the remap changed five tables, all at
+high speed and the highest load, and no other byte** (`open.md` H14) —
+no MAF curve; and by the drive on the original map (`42`): **032's idle
+cell back at −6.3 % after one drive**, the full-load air the same on
+both maps. Moved here at the owner's decision, 3/11.
+**What it does not refute:** the MAF itself reading off its own true
+curve, on any map — which is not this hypothesis but a sensor fault, and
+the halved dips of 24/9 (C2) stand as measured.
+**What would revive it:** nothing on the map side; the files settle it.
+
+### C23. "The remap of 6/2018 roughens the idle or narrows its margin" (`open.md` H14, its idle half) — measured
+
+**Believed:** 16/10/2026, at the owner's request, with his recollection
+of a warning from the tuner; ranked first for the idle from 24/10, when
+the dips spread over all four.
+**Refuted by** the same files (C22): **the idle region of every changed
+table untouched**, and the idle speed, the idle advance, the misfire
+detection, the limiter and the overrun cut not touched at all — the
+tuner's "the map should not affect the idle" (*owner*, 3/11) is what the
+bytes say. The drive on the original map agrees on every channel the
+map could move (`open.md` H14, the table). **014 at zero on that drive
+is therefore not the map's** (S3): the fresh adaptations or the day.
+Moved here at the owner's decision, 3/11; **H14 stays in `open.md` for
+full load** (S4, S19's part-load cell), which the remap did change.
+**What it does not refute:** an effect at idle through the adaptations
+learnt on the remap — which the reset of 3/11 cleared anyway.
+**What would revive it:** a read of the ECU showing it does not hold
+the original after all.
+
 ---
 
 ## D. Symptoms closed

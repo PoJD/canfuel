@@ -106,7 +106,7 @@ In this tank so far:
   carries on through it" until the display showed otherwise.*
 
 ⚠ **This tank no longer spans the map going back**: that was set for
-22/10 and is postponed to 3/11 (`docs/engine-health/plan.md` item 5a),
+22/10 and was postponed to 3/11 (done then),
 so the whole tank so far is on the remap. *This said "this tank spans
 the map going back on 22/10" until 23/10.*
 
@@ -180,9 +180,8 @@ between is written down, as above.
 The fuel is **Orlen Verva 100**, not OMV MaxxMotion 100 (no OMV on the
 route, *owner*): a consumption comparison across the brand is fine for
 the firmware, which compares against the same tank's pump, and is noted
-for the engine. And **the map goes back on 3/11** (`docs/engine-health/plan.md`
-item 5a), likely inside this tank: **read the four figures on the day,
-before the map goes back**, so the tank can be split at it.
+for the engine. **The map was to go back on 3/11**, which this tank did
+not reach (it closed 29/10); the split fell in the next one.
 
 ### The fill of 2026-10-29 — the 24/10 tank closed
 
@@ -222,8 +221,8 @@ to the first click as always (*owner*).
   distance a little high. Not worth a correction on one tank (step 5
   below).
 
-**The next tank** is OMV on the map until 3/11: **the four figures are
-read on 3/11, before the map goes back**, so the tank can be split at it.
+**The next tank** is OMV, on the remap until 3/11, and split there by
+the four figures read before the map went back (below).
 
 **31/10: 5 l, perhaps 6, poured in from a can** at 83.5 km on the
 cluster's trip (odometer 155,277), about 46 l indicated before (*owner*)
@@ -247,7 +246,11 @@ stays right — and `Range` reads the level live.
 `TripDist` 166.2 km, `FuelTank` 43.0 l, `Range` 367; the odometer
 155,357 km, the cluster's trip 164.1 km** (zeroed at the fill of 29/10,
 which was at 155,193: 164 km). The tank is split here: 166.2 km on the
-remap, the rest on the stock map.
+remap, the rest on the stock map. **What the split can show**: the remap
+took fuel away only at high speed and the highest load, about 3–5 %
+(`docs/engine-health/open.md` H14), so the two halves differ by the
+share of full-throttle driving and not otherwise; for the converter's
+check against the pump the split changes nothing.
 
 ---
 
