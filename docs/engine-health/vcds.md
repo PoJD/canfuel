@@ -87,7 +87,15 @@ finding:**
   over a window of crank revolutions (1000 in the patents) and reset. So
   014 is **the output of that calculation, not a number of misfired
   combustions** — why it reads in twelves and holds about 3 s here is the
-  calibration, and no public source says. *Reasoned from it:* a threshold
+  calibration, and no public source says. **Measured with one cylinder
+  dead** (injector cuts at a warm idle of about 800 rpm,
+  `vcds-step5-014-055-003.csv` 10/10 and
+  `vcds-step5b-warm-014-055-003.csv` 3/11): the field climbs by **72 at
+  almost every sample** (0.9 s apart), which is 12 for each of the dead
+  cylinder's six missing combustions, and falls back near 1,164–1,188
+  to start again. So with a cylinder fully out, one counted combustion
+  is 12 (*reasoned* from the two cuts); what a partial burn at idle
+  counts is not shown. *Reasoned from it:* a threshold
   that moves with load, and load computed from the MAF, is the likely
   reason the counter's sensitivity changed with the MAF (`refuted.md` A11).
 

@@ -175,6 +175,11 @@ high). What it gave:
   times a minute, median 474–528, peaks 1,152–1,188 — against 12–96 on an
   ordinary idle. About 200 misfires a minute did not make 200 changes a
   minute, so neither its rate of change nor its size is a misfire rate.
+  *Re-read 3/11 with a second cut* (`vcds/vcds-step5b-warm-014-055-003.csv`):
+  in both logs the field climbs by 72 a sample (0.9 s) and starts again
+  near 1,188 — a sawtooth, so the 60 changes a minute are the sample
+  rate and the climb per sample is a rate: about 12 for each missing
+  combustion of the dead cylinder.
 - **On 0x280**: the dead cylinder's slot sits **20–23 rpm** below the
   other three, every stroke, for the whole cut (`cutscan.py --scan`).
   So a single missing combustion at idle is about a 20 rpm step — the

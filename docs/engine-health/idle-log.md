@@ -998,13 +998,27 @@ The map's own channels did not move, 014 did (`open.md` H14, S3).
 - **Tests:** the drive home captured (`43`, about 46 min): mostly
   motorway until oil 90 °C, full-throttle pulls on 014/003/020 at oil
   90–99 °C, a warm stop with every load off and **injector 4's
-  connector off for 30 s**, at least 3 min of idle untouched after it,
+  connector off for 57 s** (the capture; about 30 s as felt at the
+  car), at least 3 min of idle untouched after it,
   a stop near home; VCDS 014/055/003 otherwise; the fault memory and
   032/055 read at the end, then cleared by the owner.
 - **Changes after:**
   - *measured:* the fault memory empty before every run; after the cut
     P1240 (N34, open circuit, sporadic), P0300, P0304 and **P0303**;
     032 −6.3 / +3.9 % (part load from +3.1), 055 790 rpm, 0.02, −1.32;
+    `IdleHealth` at the warm stop, loads off, oil 99 °C: **86 ± 4** the
+    first 3 min, 74 the 2 min after the cut, **48 ± 3** the last 5;
+    014 there 10 episodes in 200 s before the cut, 9 climbing past 12,
+    and **zero the last 2 min**; **the cut named cylinder 3: 43 % of the
+    dips** (p 0.004); the pulls in 4th short of air (flat at 75–76 g/s
+    from 5,000 rpm), b7 155 at 2,400; cylinder 4 retarding alone, to
+    4.5°; the start 0.74 s, dip 0, coolant 35 °C;
   - *felt:* **014 counting again at the warm stop** (*owner*, read off
     VCDS);
-  - *not known:* everything the capture holds — read in `plan.md` 5c.
+  - *not known:* whether the calm at the end was the cut or the stop
+    settling, as `42`'s did by its fifth minute; what limited the air on
+    the first pulls.
+
+Read in a cloud session the same evening (`plan.md` 5c, done): the
+first capture that names one cylinder since the VW leads (`open.md`,
+*The dips keep to one slot*; S3; H14).

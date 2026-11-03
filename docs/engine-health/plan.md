@@ -18,19 +18,11 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Current: 5c in the cloud,
-and item 6 and 6i at the car from 4/11.**
+Captures only where an item asks for one. **Current: item 6 and 6i
+at the car from 4/11**; the ranking after `43` (cylinder 3 named) is
+the owner's to agree, and with it whether a test on cylinder 3 comes
+before item 6's drives (`open.md`, *The idle's candidates, ranked*).
 
-5c. **Claude, in a cloud session, reads `43`** — no car needed:
-   1. `tools/cutscan.py --shares` on `43`, and pooled with `42`; `--name`
-      on the stop with injector 4's cut.
-   2. **014 by stop** on `vcds-step5b-*.csv`: from when it counts again,
-      on which cylinders, at what load; and where **P0303** came from.
-   3. The pulls in 4th (`vcds-step5b-pull-014-003-020.csv`, b7 against
-      engine speed), 020 for S4; `IdleHealth` by stop and oil band.
-   4. The findings into `open.md`; this item out of both parts; the
-      order after it agreed with the owner.
-   **The MFD back in from 4/11** (item 6).
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
    everyday state and the oil temperature, written into the chat.
@@ -126,48 +118,6 @@ cylinder 4's retard (S4). **026** reads its floor at idle and belongs to
 the knock window, so it is dropped. **055** once at a warm idle says the
 adaptations are settled (about −1.1 to −1.3), so a comparison holds
 (`refuted.md` C19).
-
-**Items 5b and 5c — the second drive on the original map** (*the owner*, 3/11:
-a capture and VCDS on the way home). **Why again**: 3/11's drive home
-read on fresh adaptations, and 032 had relearnt only part of the way
-(the part-load cell +3.1 %, `open.md` S19); 014's zero came at an idle
-load of about 30 %, near what silences it (S3); and the dips came back
-onto one slot (*The dips keep to one slot*). A second session on a
-partly settled 032 says which of these hold. **The tuner's files (3/11)
-show the remap never touched the idle** (`open.md` H14), so 014 counting
-again on the evening of 3/11 would make its morning's zero the fresh adaptations, as on 4/10
-A; still zero at an everyday load would be a change in the engine. Same groups as 3/11 so the
-two compare directly; 055 is settled now (−1.04), so its stops ask
-nothing new and need not be long.
-- **The pull in 4th** is for the converter: the torque scale was fitted
-  so this car's plateau reproduces the stock ratings
-  (`docs/firmware/can-decoding.md` question 8), and on the original map
-  that premise is true by construction. **3/11's pulls read the top
-  end** — the plateau from 4000 rpm up within 2–5 counts of the remap's
-  — but every pull in 4th started above 4500 rpm, and **the 170 Nm point
-  at 2400 rpm was read only in 3rd, passed in a second** (b7 169 against
-  the remap's held 185). **From below 2000 in 4th** holds 2400 long
-  enough to read; 020 rides along for S4.
-- **The stop cut** (*owner's decision*, 17/10/2026; `open.md`, *One
-  cylinder or two*). The cylinder phase holds for minutes at idle, so one
-  30 s cut names every dip in the idle run around it up to the moment the
-  car moves (`cutscan.py --name`). **Agreed 2/11: only if the shares
-  call for it; agreed 3/11 that they do**: on 3/11 they did not look
-  like a pair at the stop, and read in the cloud the same day **45 % fell
-  on one slot** (p 0.023 against all four alike), the first capture
-  since the VW leads not all four alike. A cut names that slot; **injector 4** (*the owner*, 2/11: the best
-  access). It costs a fault entry, and clearing it restarts 032, so the
-  adaptations are read before the clearing (Standing items). Never the
-  plug lead instead of the connector: that sends fuel to the converter.
-- **5c, the reading** (*the owner*, 3/11: the drive was captured and
-  committed in a hurry, the reading left for a cloud session). **P0303
-  came with the cut on 4** and no misfire code was stored before the
-  stop, so cylinder 3 either misfired on its own around the cut or the
-  ECU counted 4's missing fuel against 3 too (*reasoned*); `--name` on
-  the stop and 014's per-cylinder counts say which. **014 counting
-  again** (*owner*, at the warm stop) on a partly relearnt 032 is the
-  reading the paragraph above names: 3/11's zero was the fresh
-  adaptations.
 
 **Item 6 — the drives** (*decided 10/10/2026*; *the owner, 21/10: the
 tank on the display, the captures after it*). The display follows the

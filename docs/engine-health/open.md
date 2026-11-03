@@ -53,7 +53,11 @@ changed five tables, only at high speed and the highest load** — less
 fuel, more advance — and nothing at idle (H14). The drive agrees: the
 idle advance, the overrun cut, the full-load advance, air and b7 read as
 on the remap; **014 read zero**, which the files say is not the map's
-(S3).
+(S3). **The second drive home (`43`, 5b, 3/11 evening)
+was read in a cloud session the same day**: the cut on injector 4
+**names cylinder 3** for 43 % of the dips (*The dips keep to one
+slot*), 014 counts again, and the first full-throttle pulls ran short
+of air (H14).
 
 **Open:**
 
@@ -66,9 +70,13 @@ on the remap; **014 read zero**, which the files say is not the map's
   the motorway, then 54 ± 3, and 63–77 at the stops on the way home**;
   cold 98 ± 3 at 50–61 °C of oil, against 110–140 on the display the day
   before. **014 read zero all session**, at an idle load of about 30 %
-  (S3). The dips sat two thirds on 3 and 4 until the VW leads, **on all
-  four alike** on `40` and `41`, and **on `42` one slot again, 45 %**
-  (*The dips keep to one slot*).
+  (S3). **On `43`, one drive later, loads off: 86 for the first 3
+  minutes of the warm stop, 48 ± 3 for its last five** — the best level
+  shown loads off, one stop; **014 counting again** at 26.5 % load, then
+  zero for the last 2 minutes (S3). The dips sat two thirds on 3 and 4
+  until the VW leads, **on all four alike** on `40` and `41`, **on `42`
+  one slot again, 45 %**, and **on `43` named: 43 % on cylinder 3**
+  (p 0.004; *The dips keep to one slot*), with P0303 after the cut.
 - **Around the idle:** S2 (an occasional puff), S14 (bangs on an
   unblipped downshift), S11 (a hiss at the back, perhaps the throttle's
   own air).
@@ -79,9 +87,9 @@ on the remap; **014 read zero**, which the files say is not the map's
 - **S19, P0172 and the split trim** — the code once (24/10), not back on
   any reading since; **032's idle cell at −6.3 to −8.6 % and its
   part-load cell at +5.5 to +8.6 %** from 25/10 on the remap. **On the
-  original map, one drive after the reset: −6.3 / +3.1 %** — the idle
-  cell back where it was, so not the map's; the part-load cell not yet
-  settled (S19).
+  original map, one drive after the reset: −6.3 / +3.1 %, two:
+  −6.3 / +3.9 %** — the idle cell back where it was, so not the map's;
+  the part-load cell not yet settled (S19).
 - **S20, the speed wandering at a constant pedal** (since 1–2/10, on the
   road) — **a little better since the cable was slackened and the pedal
   greased (27/10), still there** (*owner*, 28/10). Not the idle.
@@ -93,14 +101,12 @@ on the remap; **014 read zero**, which the files say is not the map's
 H8, H3, H15, H4, the timing belt, H16, H18, H11, H12 (*The idle's
 candidates, ranked*). **H14 and H19 left it on 3/11**: the tuner's files
 show the remap touched only the corner of highest load, and neither the
-idle nor the MAF's curve (`refuted.md` C22, C23). The order after 5b is
-agreed with the owner once its data are in.
+idle nor the MAF's curve (`refuted.md` C22, C23). **The re-read after
+5c is proposed, not agreed** (*The idle's candidates, ranked*).
 
-**Next** (`plan.md`): **5c, the reading of `43`** (5b, the second
-drive home on the original map, captured 3/11 with the cut on injector
-4; **014 counted again at the warm stop**, *owner*, and the cut left
-P0303 beside 4's codes) in a cloud session; then the MFD back in
-(item 6) and the oil level every 500 km (6i).
+**Next** (`plan.md`): **the ranking's re-read after `43`, with the
+owner** — cylinder 3 named; then the MFD back in from 4/11 (item 6)
+and the oil level every 500 km (6i).
 
 ---
 
@@ -179,6 +185,7 @@ error):
 | 30/10 | display | settled | the first warm drive on OMV; oil 99 °C | **80–100**, everyday state (*owner*) |
 | 2/11 | display | settled | OMV, about 85 km in, the can's 5–6 l added 31/10; the day before the map; oil about 100 °C | **85–105**, everyday state; **felt worse again** (*owner*); cold **110–140** |
 | 3/11 | `42` | fresh (reset with the map) | **the original map**; the drive home from the tuner, motorway to 186 km/h, then a stop of about 9 min with throttle blips, oil 103–105 °C; b7 25–29 at idle | **71 ± 3** over every warm window (41–100): **93 ± 2** for the first 3 min after the motorway, **54 ± 3** from the fifth minute (41–67), 63 ± 3 and 77 ± 4 at the two stops near home; cold **98 ± 3** at 50–61 °C of oil |
+| 3/11 eve | `43` | one drive after the reset (032 −6.3 / +3.9) | the original map, the second drive: mostly motorway to 90 °C of oil, full-throttle pulls, then a warm stop of 11 min **loads off** (b7 21) with a 57 s cut on injector 4, oil 99–100 °C | **86 ± 4** the first 3 min; 74 the 2 min after the cut; **48 ± 3** from then to engine off (5 min, windows 30–67) — `42`'s shape, settling about the sixth minute; cold 129 over only 26 s settled, oil about 47 °C |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -561,6 +568,19 @@ completing rather than load (`refuted.md` C19).
   (H14 route 6) would read the same, **and the tuner's files say it did
   not**: the detection was not touched (H14; `refuted.md` C23).
   Read again on 5b at a similar load; S3's closing mark is loads off.
+- **The second drive on the original map, 3/11 evening** (`43`,
+  `vcds-step5b-*`, 032 relearnt part of the way): **014 counts again**
+  (*owner*, and the logs agree). At the town stops before the warm one,
+  5 rises in 174 idle samples at 30.8 % load (p10–p90 28.5–43.3) — the
+  settled remap's 2–3 per 100 at `42`'s load, so **`42`'s zero was the
+  fresh adaptations, as 4/10 A**, not the load (*reasoned*, one
+  session). At the warm stop, loads off, 26.5 % load (25.7–28.1), oil
+  99 °C: **10 episodes in 200 s before the cut, 9 of them climbing past
+  12** (to 24–48), the highest share read (*How far an episode climbs*);
+  4 in the 80 s after it; then **zero for the last 2 minutes** to engine
+  off, at 25.7 %, while `IdleHealth` read 48 (S1). Two minutes, one day:
+  not S3's mark. **In the cut** the field climbed by 72 every sample, 12
+  for each of cylinder 4's missing combustions (`vcds.md`).
 - **The clearing of 24/10 reset 032 to 0.0 / 0.0 and left 055 at −1.31
   g/s** (`idle-log.md`), read once: on this ECU the clearing did not
   restart the learned idle air that C19 then tied 014 to, so 6i and 6j
@@ -580,7 +600,11 @@ them all, to 11.2, and cylinder 1 in 12 % (to 9.0). **On the original map** (3/1
 `vcds-step5a-pulls-014-003-020.csv`, five pulls to the limiter at
 92–106 °C of oil): **cylinder 4 alone in 41 %**, mean 1.1 °CA, **to 6.0**,
 at 5000–5500 rpm, retarding and walking back in 0.75° steps; cylinders 2
-and 3 once, together with 4, to 3.0 at 6000 rpm; 1 never. So as often on
+and 3 once, together with 4, to 3.0 at 6000 rpm; 1 never. **The second
+drive** (3/11 evening, `vcds-step5b-pull-014-003-020.csv`, two pulls in
+4th to 5,760 rpm at 91–97 °C of oil, short of air, H14): **cylinder 4
+alone in 37 %** of 60 full-load samples above 3000 rpm, mean 0.8 °CA,
+to 4.5 at 4,700–5,640 rpm; 1–3 never. So as often on
 both maps and about half as far on the original: **not the map's** —
 less depth fits a milder full-load advance, but 003 reads the same
 advance at full load on both (H14). *Reasoned*: an arc at lead 4's plug end is
@@ -740,11 +764,15 @@ as it did within a day after 24/10's clearing: **not the map's**, which
 leaves H7's injector; H19's MAF against the map went with the files
 (`refuted.md` C22). The part-load cell
 at +3.1 is below the remap's +5.5 to +8.6 % and inside the +1.6 to
-+5.5 % before 25/10; one drive is not settled, so it is read again on
-5b. **The remap took about 5 % of fuel away from 1400 rpm and heavy
++5.5 % before 25/10; one drive is not settled, so it was read again on
+5b (below). **The remap took about 5 % of fuel away from 1400 rpm and heavy
 part load up (H14, T1)**, which the loop would learn back into this
 cell: **the part-load cell settling at about +1 to +3 % on the original
 map would confirm it**, and the rest of the split as the new MAF's.
+**After the second drive** (3/11 evening,
+`vcds-step5b-adaptations-032-055.csv`, before the owner cleared the
+cut's codes): **−6.3 / +3.9 %** — the idle cell held, the part-load
+cell up 0.8, not yet settled; the clearing restarts both.
 
 ### S20. Engine speed wanders at a constant pedal
 
@@ -931,6 +959,10 @@ about. The valve is closed by its spring; the lifter only removes the gap.
 |---|---|---|---|---|---|---|---|---|
 | ✔ | ✔ | ✔ | ✔ | ✔ | — | ~ | — | — |
 
+- **`43` (3/11 evening): the dips named 43 % on cylinder 3** — one
+  cylinder, the one with the deposit and 18/10's tick (S18; `refuted.md`
+  D10): **for**. A compression or leak-down reading on 3 against the
+  others would show a seat that does not close (*general*).
 - **For:** a valve that seals worse at low cylinder pressure misfires at a
   small charge and is covered by load; the tick once per cycle of 18/10 (`refuted.md` D10); one forum
   AQY case of a sticking bucket tappet (pkw-forum.de, 2003) and one of valves
@@ -998,6 +1030,9 @@ Air past the MAF leans one cylinder at idle, where air flow is smallest.
 |---|---|---|---|---|---|---|---|---|
 | ✔ | ~ | ✔ | ~ | ✘ | ~ | ✔ | ✘ | — |
 
+- **`43` (3/11 evening): the dips named 43 % on cylinder 3** — one
+  cylinder again after `40`–`41`'s all four alike, so the demotion of
+  24/10 loses its ground: **for**, at runner 3.
 - **For:** the regime; S14 at the thinnest charge; a leak at one runner acts
   on one cylinder, and 3 and 4 are neighbours on the lower manifold.
 - **Against:** a large leak is refuted (`refuted.md` A7): idle air 3.1–3.5 g/s
@@ -1035,6 +1070,9 @@ shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
 |---|---|---|---|---|---|---|---|---|
 | ~ | ~ | ~ | ~ | ~ | — | ~ | ✘ | — |
 
+- **`43` (3/11 evening): the dips named 43 % on cylinder 3, 18 % on
+  4** — one cylinder, not the pair the loom feeds: weakly for at 3,
+  against the pair.
 **Tests:** the injector loom flexed at 3 and 4 at a warm idle — **done by
 the owner on 24/10, part-warm, during the first phone recording, above all
 the repaired wire at injector 4, judged by ear only: no change heard**
@@ -1070,6 +1108,11 @@ hundred km without a disconnect.
 |---|---|---|---|---|---|---|---|---|
 | ~ | ~ | ~ | — | — | — | ~ | ✔ | ~ |
 
+- **`43` (3/11 evening): the dips named 43 % on cylinder 3** (p 0.004
+  against all four alike; *The dips keep to one slot*), and P0303 with the
+  cut — **one injector is back in reach**, which 25/10 night took away
+  because the dips then sat on all four alike. An injector swap moves
+  the dips if it is the injector (*reasoned*).
 - **Against:** four new injectors and a new filter changed nothing in S1; the
   trims near zero; full-load pulls reach ~85 kW, where a weak pump shows first;
   the regulator (6/2026, 3 bar) dry at its hose, **no fuel and no smell at
@@ -1308,6 +1351,9 @@ hard use burns them off (*general*).
 |---|---|---|---|---|---|---|---|---|
 | ✔ | ~ | ✔ | ~ | — | — | ~ | ~ | — |
 
+- **`43` (3/11 evening): 43 % of the dips on cylinder 3**, the one
+  ranked first inside (3 > 4 > 2 > 1): for, though deposits act on all
+  four in kind.
 - **The look inside, 19–20/10** (H13 test 3, `idle-log.md`): **no inlet valve
   back is coked** — thin lacquer on all four, so no walnut clean; **the
   chambers carry it** — thin layers on every crown, a crust on 4's bowl edge,
@@ -1421,12 +1467,33 @@ there was no dynamometer.
   (S4). The remap deepened 4's retard; it did not make 4 the one that
   retards.
 - **S19's part-load cell**: +5.5 to +8.6 % on the remap, +3.1 after one
-  drive on the original. If T1/T2's leaner corner reaches loads the
-  lambda loop runs at, the adaptation would have filled it back. Read
-  as 032 settles (`plan.md` 5b).
+  drive on the original, +3.9 after two (S19). If T1/T2's leaner corner
+  reaches loads the lambda loop runs at, the adaptation would have
+  filled it back. Read as 032 settles; the clearing after `43`'s cut
+  restarted it.
 - **Against both**: VCDS 003 reads the same full-load advance on both
   maps (below), so either the engine does not reach those columns, or
   knock control takes the advance back.
+
+**The pulls of the second drive, 3/11 evening** (`43`,
+`vcds-step5b-pull-014-003-020.csv`; the pull in 4th asked for the
+converter, `docs/firmware/can-decoding.md` question 8): two in 4th from
+2,250–2,380 rpm to 5,760 at 91–97 °C of oil, then full-throttle runs in
+2nd–5th at 101–105 °C. **The pulls in 4th were short of air**: 33.6 g/s
+at 2,400, 66 at 4,500, 74 at 5,000 and **flat at 75–76 g/s from 5,000
+up**, against `42`'s 76 / 82–83 / 85–87 and this drive's own later
+runs, 79–81 at 4,500 and 86–89 at 5,200 (`vcds-step5b-warm-014-055-003.csv`);
+the advance 1–5° higher, as a lower load asks. **b7 155 at 2,400 and
+167–171 from 4,000 to 5,200**, against 169 and 183–187 on `42`'s first
+pulls and 185 and 192–198 on `19`; the later runs read 192–196 at
+4,500–5,000, as `42`'s and `19`'s did. So 2,400 rpm was held long enough
+but not on full air: **the torque scale is neither confirmed nor moved**.
+`42` showed the same in kind, smaller (its first runs 181–192 against
+196–206 later, on 5–11 % more air, `idle-log.md`). **What admits less
+air on the first pulls of a drive is not read**: no group logged has
+the intake air temperature, and a MAF reading low would lower b7 the
+same way, since the ECU computes b7 from its load (*reasoned*). Not the
+idle; whether it is a symptom is the owner's to say.
 
 **The ECU** (`vcds.md`): Bosch M5.9.2, hardware `0261206327`, software
 `1037352075` V04, 256 KB flash. No map definition is public.
@@ -1450,7 +1517,8 @@ what the cleaner and the adaptations cannot move:
 remap's to within a VCDS step**, at idle and at full load. **014's zero
 and `IdleHealth` inside the stop are not the map's**: the files show the
 idle region and the detection untouched, so they are the fresh
-adaptations or the engine on the day; 5b reads them again. The idle cell
+adaptations or the engine on the day; 5b read them again: **014 counted
+on `43`** at `42`'s load, so its zero was the fresh adaptations (S3). The idle cell
 of 032 came back at once (S19), so the split is not the map's either.
 
 ### H15. The aftermarket leads (and plugs) — NGK plug ends that grip loosely, on 3 and 4 above all
@@ -1565,8 +1633,10 @@ and left the level — a part, not the whole (*More than one at once*); if the
 pair comes back, H15 goes to `refuted.md`. **`42` (3/11, the original
 map) did not spread**: 45 % on one slot, top two 68 %, p 0.023 — one
 capture, on a changed map, and one slot fitting a little better than a
-pair (*The dips keep to one slot*); not the pair this asks for. 5b reads
-it again, and names the slot if the owner agrees to the cut.
+pair (*The dips keep to one slot*); not the pair this asks for. **`43`
+named the slot** (3/11 evening): **cylinder 3, 43 %**, 4 at 18 % — one
+cylinder on the VW leads, not the pair; against H15's NGK ends (none
+fitted), not against what sits at 3's plug end anyway.
 
 ### H16. The purge valve N80 does not seal — fuel vapour into the intake
 
@@ -1717,8 +1787,9 @@ test does not reach the seals.
 
 The bus carries no cylinder identification and 014 has no per-cylinder
 counter. Two things name cylinders: the **injector cuts** (one connector off
-at a warm idle; `plan.md` 5b), which mark their slot through a long run, and
+at a warm idle), which mark their slot through a long run, and
 the fault codes they leave. **10/10** (`31`): cuts of 1, 4, 4, 1.
+**3/11 evening** (`43`): one cut of 57 s on 4.
 
 **The leads' order on the coil** (*owner-read off the car, 1/10/2026*):
 **1, 4, 2, 3, clockwise from the top tower** — 1 and 4 side by side, 2 and 3
@@ -1761,6 +1832,9 @@ largest shares):
 | **pooled `40`–`41`** | **281** | **56 %** | **0.56** |
 | `42` (3/11), **the original map**, fresh adaptations | 119 | **68 %** | **0.023** |
 | **pooled `40`–`42`** | **400** | **60 %** | **0.06** |
+| `43` (3/11 evening), the original map, one drive later | 71 | **63 %** | **0.015** |
+| **pooled `42`–`43`**, since the map | **190** | **66 %** | **0.0003** |
+| **pooled `40`–`43`** | **471** | **60 %** | **0.002** |
 
 **Named by cylinder** (`--name`, `41`, the run spanning the cut, 137
 dips): **1: 24 %, 3: 31 %, 4: 20 %, 2: 25 %** — all four alike, cold. Two
@@ -1774,7 +1848,26 @@ general, H0) gains (`idle-log.md`, 24/10 night).
 with the rest alike fits within 1.1 of the best, two neighbours within
 2.0, all four alike 4.8 below. **The first capture since the VW leads
 off "all four alike"** — one capture, and one slot rather than the old
-pair; a cut names it (`plan.md` 5b).
+pair. **`43`** (one drive later, no cut in the shares): 47 % on one
+slot, then 16, 21, 16 %; pooled with `42`, 46 % on one slot, p 0.0003
+against all four alike, one cylinder with the rest alike within 1.0 of
+the best, two neighbours 27.7 below.
+
+**`43`, named** (3/11 evening, `--name --order 4`: the warm stop's run
+of 683 s spans the 57 s cut on injector 4; 65 dips outside it):
+**1: 17 %, 3: 43 %, 4: 18 %, 2: 22 %** — p 0.004 that the largest of
+four is this large with all alike. **Cylinder 3**, warm. It holds
+through the stop: 13 of 30 dips before the cut, 9 of 17 in the two
+minutes after, 6 of 18 in the calm five minutes at the end (6.4, 5.5
+and 2.2 dips per 1000 strokes). Whether `42`'s leading slot is 3 is not
+shown (no cut). Against `41`'s all four alike, cold, and `31`'s 4 then 3
+(42 %, 31 %): one cylinder warm on the original map (*reasoned*, one
+named capture). **P0303 beside 4's codes**: 3 dipped on its own in the
+cut, 5 of the 7 dips there and none on 2 — 5 in about 375 of its
+strokes, twice its rate outside, but 1.3 %, under the 2 % VW sets for a
+code (`vcds.md`), so the code may also hold some of 4's missing
+combustions counted against 3, which fires just before it (*reasoned*).
+Either way the capture names 3.
 
 The pair was already there on 11/8, on the 2022 leads and the old injectors.
 `--pairs` is kept for history only: pairs within a run are not independent.
@@ -1880,6 +1973,19 @@ S4 and S19's part-load cell. The rest keeps its order and moves up two.
 **How it is re-read after 5b** is the owner's to agree once its data are
 in: the dips back on one slot (`42`) and the idle cell back at once
 (S19) point at what acts on one cylinder and adds fuel.
+
+**Proposed 3/11 evening after `43`, not agreed**: **cylinder 3 named**
+for 43 % of the dips warm, P0303 with the cut, and 014 counting again
+on the original map. What acts on one cylinder regains the ground the
+VW leads took from it on 24/10: **H7 stays first**, with its one
+injector back in reach and the rail gauge the owner would buy "if the
+map does not help" (29/10) — it did not; **H1 to second** (3 carries
+the deposit and had 18/10's tick, S18); **H3 from seventh to third**
+(runner 3); H13 to fourth (deposits act on all four in kind); the rest
+in order. The test that names the part: **injector 3 swapped with
+injector 1** and one capture with a cut — the dips following the
+injector or staying on 3 — then a compression or leak-down reading on
+3 against the others if they stay.
 
 **Re-read 2/11, C19's 055 half refuted** (*agreed with the owner*): **H8
 stays eighth** — it loses 014 following the learnt value, and keeps S20
