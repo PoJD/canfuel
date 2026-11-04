@@ -44,7 +44,8 @@ of the head, S12 the jerk on tip-in (a sticking pedal, 27/10), S13 the
 throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
 (24/10), **S7 the cold start (31/10: the fuel — four clean starts on
 OMV after six bad of eight on the Verva)**; H9 (crankcase ventilation,
-A15) and H10 (when 014 counts, C19).
+A15), H10 (when 014 counts, C19) and **H15 (the NGK plug ends, C24,
+4/11)**.
 
 **The original map has been in the ECU since 3/11** (`plan.md` 5a), the
 adaptations reset with it; the drive home was captured (`42`) and read
@@ -100,9 +101,10 @@ of air (H14).
   new clips, 31/10 — perhaps nearer the engine).
 
 **Ranked (4/11, agreed with the owner):** **H13, H1, H3, H7**,
-then H2, H0, H8, H15, H4, the timing belt, **H20** (coolant into 3, added
+then H2, H0, H8, H4, the timing belt, **H20** (coolant into 3, added
 4/11, weak), H16, H18, H11, H12 (*The idle's candidates, ranked*; every
-fit table re-read 4/11). **H14 and H19 left it on 3/11**: the tuner's files
+fit table re-read 4/11). **H15 refuted 4/11** (`refuted.md` C24).
+**H14 and H19 left it on 3/11**: the tuner's files
 show the remap touched only the corner of highest load, and neither the
 idle nor the MAF's curve (`refuted.md` C22, C23). **After `43`
 (cylinder 3 named) deposits and a valve on 3 lead, H7 fourth.**
@@ -468,7 +470,7 @@ capture after them, has its dips more concentrated on the pair than any pool
 before (top two 77 %). **Not an adaptation**: 032 −3.1/+5.5 %, 055 −1.27 g/s,
 both inside their history (19/10). The candidates: deposit loosened by the
 cleaner and not yet burnt off (H13), and **a relief after the leads' re-seat
-of 10–12/10 wearing off** (H15, *The idle against every time the leads were
+of 10–12/10 wearing off** (`refuted.md` C24, *The idle against every time the leads were
 handled*). **It passed**: 67 on 21/10 (`40`), 54 on 27/10 (display), loads
 off, warm.
 
@@ -614,7 +616,7 @@ to 4.5 at 4,700–5,640 rpm; 1–3 never. So as often on
 both maps and about half as far on the original: **not the map's** —
 less depth fits a milder full-load advance, but 003 reads the same
 advance at full load on both (H14). *Reasoned*: an arc at lead 4's plug end is
-broadband noise in 4's own window (H15), as is real knock from the crust on
+broadband noise in 4's own window (`refuted.md` C24), as is real knock from the crust on
 4's crown (`idle-log.md`, 19–20/10).
 
 ### S5. Cylinder 4 reads high in group 026 (knock sensor voltage)
@@ -917,7 +919,7 @@ engine leak, a falling dipstick level is oil burnt, not lost.
 | S14 ↔ S2 | **likely one mechanism** (*owner*) | a misfire's charge burning in the exhaust, loud when the fuel cut adds air |
 | S14 ↔ S3 | **possible** | 014 is blind on the overrun, so it cannot be aligned |
 | S4 ↔ S5 | **very likely one thing** | same window, same speeds; S5 needs no combustion |
-| S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle; the dips sat on 3 and 4 until the VW leads (all four alike since), and lead 4's end was the loosest (H15) |
+| S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle; the dips sat on 3 and 4 until the VW leads (all four alike since), and lead 4's end was the loosest (`refuted.md` C24) |
 | S19 ↔ the bad start of 24/10 | **suspected one event** (*owner*) | same window, both what a cylinder flooded while standing gives (S19) |
 | S11 ↔ S1 | **untested** | if the hiss is a leak, H3 or H2; the owner reads it as the throttle's own air |
 
@@ -1101,7 +1103,7 @@ would go the other way. The dips sat on 3 and 4 until the VW leads, on separate 
 **different coil outputs** (1+4, 2+3), so neither the coil nor its feed can
 pick them. **What is left**: the injector loom where it reaches 3 and 4,
 shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
-19/10; tape renewed). The plug-end side moved to H15.
+19/10; tape renewed). The plug-end side moved to H15, refuted 4/11 (`refuted.md` C24).
 
 | S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
 |---|---|---|---|---|---|---|---|---|
@@ -1123,7 +1125,7 @@ look at first if the spark side ever comes back.
 
 The ECU books anything at cylinder 4's crank angle to cylinder 4: G66, its
 torque or connector; a loose ancillary part buzzing in a speed band; **an arc
-at lead 4's plug end** (H15). Injector 4's click is settled against (B7).
+at lead 4's plug end** (`refuted.md` C24). Injector 4's click is settled against (B7).
 
 | S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
 |---|---|---|---|---|---|---|---|---|
@@ -1417,7 +1419,7 @@ hard use burns them off (*general*).
 - **Consequence more than cause** (*the owner's reasoning*, 20/10): every
   cause put forward for deposits acts on all four alike, and 3 and 4 are
   worse — so their extra deposit reads as **years of poorer combustion on 3
-  and 4**, from something that touches those two only (H15). Once there, the
+  and 4**, from something that touches those two only (`refuted.md` C24). Once there, the
   deposit adds to it: a flake under a seat (18/10, `refuted.md` D10), heat and compression for
   knock on 4 (S4).
 - **With a cleaner in, the idle after high revs starts calm and worsens
@@ -1578,122 +1580,7 @@ adaptations or the engine on the day; 5b read them again: **014 counted
 on `43`** at `42`'s load, so its zero was the fresh adaptations (S3). The idle cell
 of 032 came back at once (S19), so the split is not the map's either.
 
-### H15. The aftermarket leads (and plugs) — NGK plug ends that grip loosely, on 3 and 4 above all
-
-*Added 17/10 at the owner's request; retitled 20/10* (it read *a set that fits
-all four slightly wrong*). **The claim**: not one bad lead but **the NGK
-design's fit on these plugs** — every set on the car since at least 12/2022
-has been NGK (the invoice; `vehicle-history.md`), and the owner believes all
-of them since 2018 were. A genuine VW set has never been on the car in his
-time.
-
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
-|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | ~ | — | ~ | ✘ | — |
-
-**What it rests on:**
-
-- **The plug ends of 3 and 4 came off far more easily** (*owner*, 19–20/10):
-  by grip **2 > 1 > 3 ≈ 4**, 2 the tightest this time and on 10/10, 3 and 4
-  almost without force. Oil was on all four threads, so oil does not explain
-  it. The NGK ends click like rubber, with only a faint metallic click
-  (*owner*). Lead 4 felt the least firm on 10/10, 12/10 and 15/10; re-seated
-  on 12/10 it held better, "though not as a lead should", and was loose again
-  by 19/10 (*owner*).
-- **The old plug 4's terminal burnt black and pitted** (1/10), and the old
-  lead 4's insert scored, its terminal set back (10/10) — what arcing at a
-  loose end leaves.
-- **The deposits on 3 and 4 need a cause of their own** (H13): the coil cannot
-  pick them (outputs 1+4, 2+3), nor the crankcase gas (common intake); the
-  plug ends are the only evidence of one.
-- **Forum and search** (leads, not sources): one AQY owner cured by going back
-  to "thick VW originals" (forum.vwgolf.pl t=522030); `06A 905 409 L`, the set
-  ordered, a later revision of the factory `F`, thicker, with extra silicone
-  by the intake (a vwvortex AEG write-up, not confirmed in a catalogue); a
-  Beetle 2.0's Bosch plug end that arced and burnt out (newbeetle.org).
-
-**Why it can still be wrong** (*general* and this car's):
-
-- **The idle-versus-load argument holds only against a voltage fault.** At
-  idle the manifold sits at about 0.35–0.4 bar absolute (the gauge's 18–19
-  inHg), so the gap needs few kV but the thin, cool, diluted charge is hard to
-  light: what it needs is spark **energy and duration**. Under load the gap
-  needs tens of kV and the dense charge lights from almost any spark. So **a
-  voltage fault** (cracked insulation, a damp boot) shows under load and in
-  the damp; **an energy fault** (a loose contact, high resistance) at idle
-  and cold. A loose end is the second kind.
-- **The pattern outlived three NGK sets** — which H15 survives only as the
-  design's fit, not a bad lead. Why the design would fail on 3 and 4 and not
-  on 1 and 2 is not known.
-- **The plug soot does not follow the pair**: 1 and 4 sooted, 2 lighter, 3 the
-  cleanest (*owner's reading*, 20/10).
-- **A once-per-cycle sound on the NGK set, none on the VW one** (*reasoned*,
-  24/10, from two phone recordings): the gauge clip of 14/10 carries a
-  strong component once every 720° (7.7 % of the level, steady across its
-  two halves) besides an eight-per-cycle one; the recording of 24/10, on the
-  VW leads, has neither — only one click per firing, all four alike. An
-  arcing plug end clicks once per cycle (S18's reading). **Not a
-  comparison**: other place, 924 against 810 rpm, a clip of 10 s.
-
-**The idle against every time the leads were handled** (the like-with-like
-table in S1): the calmest settled idles, **12/10 and 15/10, came in the days
-after the new set and lead 4's re-seat**, and it worsened from there — the
-shape of a fresh grip working loose, and also of the cleaner and the
-episodes, on the same days. A hint, not a test.
-
-**The relief after each plug change, and how long it lasts.** *The owner's
-reading*: new plugs help while good, and the poor combustion spoils them (the
-12/2022 set came out eroded at ~1,500 km). *The second* (*reasoned*): every
-plug change re-seats the leads, and a fresh end grips, then works loose.
-**They are told apart by how long a relief lasts.**
-
-**Test:** **the VW set `06A 905 409 L` with VW plugs `101 000 033 AA`**,
-21/10, **the only change on the car** (`plan.md` 6b): at the refit, for each
-cylinder the force each end takes and whether it clicks metal or rubber; the
-first drive captured from the laptop, with the two states at its warm idle;
-then more drives. Read against 19/10 (loads off ~100, on ~50) and 12–15/10
-(~60):
-
-- **calmer, the dips off 3 and 4 (towards a quarter each), 014 counting less,
-  lasting weeks** → it was here; the ends are checked by hand after a few
-  drives;
-- **calmer for a few days, then back**, as after 10/10 → the relief was the
-  seating, not the design: H3 next;
-- **the same** → H15 refuted, and H4's spark side with it.
-
-**Fitted 21/10/2026** (*owner*). **The VW plug is the same NGK
-`BKUR6ET-10` as the set of 10/10** — its box says so — so the plugs are
-only new, not different, and **the leads are the one real change**. The VW
-leads are much stiffer than the NGK
-set, and **each VW plug end carries a small rubber ring inside**, where it
-seats on the plug; the NGK ends have none. A difference in exactly the
-part H15 is about, seen before any drive; what it does to the grip is the
-refit's measurement, not this.
-**The refit** (*owner*, 21/10): every VW end on with about the same
-force, an audible click, and **no play at all**, where the NGK ends had a
-slight play on 3 and 4, perhaps 1 — the cylinders whose dips and deposits
-stand out. The leads routed clear of the plenum, 3's above all.
-
-**The least it predicts** (*owner*): the idle back at least where it was
-before the episodes, loads off about 70–90 at 95–100 °C.
-
-**Read 21/10 (`40`, one drive): not the main cause** (*owner*, 21/10).
-Loads off 67 ± 2 hot, **level with 12–15/10 and not better**; 014 next to
-15/10; loads on and cold the calmest recorded. The least it predicted is
-met, the *calmer* is not. **One thing is not yet read the same way**: the
-dips spread out, top two 58 % at p 0.77 — the first capture since 11/8
-where the pair does not show; but 157 dips, one drive, and `24` read
-p 0.4 once before. **`41` (24/10) spread too** (55 %, p 0.77). **The upper plenum gasket was renewed the same day**, so
-the leads were not the only change. **Kept, demoted**, for a share: if the
-captures after item 6 keep the dips spread, the leads took the pair away
-and left the level — a part, not the whole (*More than one at once*); if the
-pair comes back, H15 goes to `refuted.md`. **`42` (3/11, the original
-map) did not spread**: 45 % on one slot, top two 68 %, p 0.023 — one
-capture, on a changed map, and one slot fitting a little better than a
-pair (*The dips keep to one slot*); not the pair this asks for. **`43`
-named the slot** (3/11 evening): **cylinder 3, 43 %**, 4 at 18 % — one
-cylinder on the VW leads, not the pair; against H15's NGK ends (none
-fitted), not against what sits at 3's plug end anyway.
+### H15. ~~The aftermarket leads (and plugs) — NGK plug ends that grip loosely~~ — refuted 4/11, `refuted.md` C24
 
 ### H16. The purge valve N80 does not seal — fuel vapour into the intake
 
@@ -1974,7 +1861,7 @@ status, and nothing more would have said when it was set.
 `41` (24/10, cold, VW leads): **3 31 %**, 2 25 %, 1 24 %, 4 20 %;
 `43` (3/11, warm, original map): **3 43 %**, 2 22 %, 4 18 %, 1 17 %. **3
 is first or second in all three**, 4 led only on the NGK leads (lead 4
-re-seated 12/10, H15), and in none do the other cylinders go without:
+re-seated 12/10, `refuted.md` C24), and in none do the other cylinders go without:
 on `43` the three others carry 17–22 % each, about what all four alike
 would give them. **The owner's reading** (3/11): every cylinder dips,
 the dips were spread first and 3 grew worse after, so **a cause common
@@ -2096,14 +1983,13 @@ is in git.
 | 5 | **H2** a leak ahead of the probe | **down 31/10 from fourth** (*agreed with the owner*): the manifold seen from close below, rusty but no soot marks and no holes, its joint to the head nothing visibly wrong from below (H2); the part under its heat shield unseen; S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test (`plan.md` 7) |
 | 6 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
 | 7 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
-| 8 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
-| 9 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
-| 10 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
-| 11 | **H20** coolant into cylinder 3 | **added 4/11** (*the owner*, weak): one cylinder at idle, where its pressure is lowest; plug 3 the cleanest of the 10/10 set; against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos | a combustion-gas (CO₂) test of the coolant (`plan.md` 9) |
-| 12 | **H16** the purge valve leaking | here for S19 only (S7 closed 31/10 as the fuel): an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest; not replaced (*owner*, 25/10) | 032 and P0172 on the OMV tank (S19) |
-| 13 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
-| 14 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
-| 15 | **H12** driveline play | — | done: the clutch minutes cleared it |
+| 8 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
+| 9 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
+| 10 | **H20** coolant into cylinder 3 | **added 4/11** (*the owner*, weak): one cylinder at idle, where its pressure is lowest; plug 3 the cleanest of the 10/10 set; against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos | a combustion-gas (CO₂) test of the coolant (`plan.md` 9) |
+| 11 | **H16** the purge valve leaking | here for S19 only (S7 closed 31/10 as the fuel): an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest; not replaced (*owner*, 25/10) | 032 and P0172 on the OMV tank (S19) |
+| 12 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
+| 13 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
+| 14 | **H12** driveline play | — | done: the clutch minutes cleared it |
 
 **Re-read 3/11, after the tuner's files and the drive on the original
 map** (*agreed with the owner*): **H14 and H19 leave the idle's ranking**
@@ -2121,7 +2007,8 @@ S2, S3 and S14 from ✔ to ~** — no NGK end has been on the car since
 21/10 and on the VW leads the dips went back onto one cylinder (`42`,
 `43`), so what H15 names is gone while the symptoms stay; its own test
 said a returning *pair* would refute it, and what returned is one
-cylinder — **whether that moves it to `refuted.md` is the owner's**.
+cylinder — **refuted the same day, at the owner's decision** (`refuted.md`
+C24); H4 and the timing belt and everything below up one.
 **H20 added** (above). **Unchanged, read against the new data**: H0
 (one cylinder named argues against "normal", one capture), H2 (an
 exhaust leak cannot pick a cylinder), H3 (the gasket at runner 3), H4

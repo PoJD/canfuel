@@ -190,7 +190,7 @@ its joint to the head, the owner's standing decision of a new manifold
 (3/10/2026); nothing either way → a garage with a lift. Nothing leaks
 ahead of the probe → H2 refuted for its zone, into `refuted.md`.
 
-**Item 7 — the high-voltage side** (`open.md` H4, H15): the roughest
+**Item 7 — the high-voltage side** (`open.md` H4; `refuted.md` C24): the roughest
 reading on record came on a foggy morning (`open.md` S1, *Temperature*),
 and the mist supplies the moisture a tracking boot or coil needs. Late
 because the coil is from 6/2026 and the leads are new again; it is free.

@@ -866,6 +866,137 @@ the original after all.
 
 ---
 
+### C24. "The NGK leads' plug ends grip loosely, on 3 and 4 above all, and make the idle" (`open.md` H15) — measured
+
+**Refuted 4/11/2026, at the owner's decision.** **The VW leads went on
+21/10** (`vehicle-history.md`), so no NGK plug end has been on the car
+since; on them the dips spread at first (`40`, `41`, all four alike) and
+then **went back onto one cylinder** (`42` 45 % on one slot; `43` named,
+**cylinder 3, 43 %**). What the hypothesis names is gone and the symptom
+stayed. Its own test said a returning *pair* would refute it; what came
+back is one cylinder, on parts it does not describe. **Left over** and
+kept elsewhere: plug 3 itself (its gap, `refuted.md` A2, reopened for
+plug 3 alone, 3/11) and the high-voltage side in the dark (`plan.md`
+item 7, H4). The VW plugs are the same NGK `BKUR6ET-10`; only the leads
+and their ends changed.
+
+**As it stood in `open.md` when it was refuted** (heading: *H15. The aftermarket leads (and plugs) — NGK plug ends that grip loosely, on 3 and 4 above all*):
+
+*Added 17/10 at the owner's request; retitled 20/10* (it read *a set that fits
+all four slightly wrong*). **The claim**: not one bad lead but **the NGK
+design's fit on these plugs** — every set on the car since at least 12/2022
+has been NGK (the invoice; `vehicle-history.md`), and the owner believes all
+of them since 2018 were. A genuine VW set has never been on the car in his
+time.
+
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | ~ | — | ~ | ✘ | — |
+
+**What it rests on:**
+
+- **The plug ends of 3 and 4 came off far more easily** (*owner*, 19–20/10):
+  by grip **2 > 1 > 3 ≈ 4**, 2 the tightest this time and on 10/10, 3 and 4
+  almost without force. Oil was on all four threads, so oil does not explain
+  it. The NGK ends click like rubber, with only a faint metallic click
+  (*owner*). Lead 4 felt the least firm on 10/10, 12/10 and 15/10; re-seated
+  on 12/10 it held better, "though not as a lead should", and was loose again
+  by 19/10 (*owner*).
+- **The old plug 4's terminal burnt black and pitted** (1/10), and the old
+  lead 4's insert scored, its terminal set back (10/10) — what arcing at a
+  loose end leaves.
+- **The deposits on 3 and 4 need a cause of their own** (H13): the coil cannot
+  pick them (outputs 1+4, 2+3), nor the crankcase gas (common intake); the
+  plug ends are the only evidence of one.
+- **Forum and search** (leads, not sources): one AQY owner cured by going back
+  to "thick VW originals" (forum.vwgolf.pl t=522030); `06A 905 409 L`, the set
+  ordered, a later revision of the factory `F`, thicker, with extra silicone
+  by the intake (a vwvortex AEG write-up, not confirmed in a catalogue); a
+  Beetle 2.0's Bosch plug end that arced and burnt out (newbeetle.org).
+
+**Why it can still be wrong** (*general* and this car's):
+
+- **The idle-versus-load argument holds only against a voltage fault.** At
+  idle the manifold sits at about 0.35–0.4 bar absolute (the gauge's 18–19
+  inHg), so the gap needs few kV but the thin, cool, diluted charge is hard to
+  light: what it needs is spark **energy and duration**. Under load the gap
+  needs tens of kV and the dense charge lights from almost any spark. So **a
+  voltage fault** (cracked insulation, a damp boot) shows under load and in
+  the damp; **an energy fault** (a loose contact, high resistance) at idle
+  and cold. A loose end is the second kind.
+- **The pattern outlived three NGK sets** — which H15 survives only as the
+  design's fit, not a bad lead. Why the design would fail on 3 and 4 and not
+  on 1 and 2 is not known.
+- **The plug soot does not follow the pair**: 1 and 4 sooted, 2 lighter, 3 the
+  cleanest (*owner's reading*, 20/10).
+- **A once-per-cycle sound on the NGK set, none on the VW one** (*reasoned*,
+  24/10, from two phone recordings): the gauge clip of 14/10 carries a
+  strong component once every 720° (7.7 % of the level, steady across its
+  two halves) besides an eight-per-cycle one; the recording of 24/10, on the
+  VW leads, has neither — only one click per firing, all four alike. An
+  arcing plug end clicks once per cycle (S18's reading). **Not a
+  comparison**: other place, 924 against 810 rpm, a clip of 10 s.
+
+**The idle against every time the leads were handled** (the like-with-like
+table in S1): the calmest settled idles, **12/10 and 15/10, came in the days
+after the new set and lead 4's re-seat**, and it worsened from there — the
+shape of a fresh grip working loose, and also of the cleaner and the
+episodes, on the same days. A hint, not a test.
+
+**The relief after each plug change, and how long it lasts.** *The owner's
+reading*: new plugs help while good, and the poor combustion spoils them (the
+12/2022 set came out eroded at ~1,500 km). *The second* (*reasoned*): every
+plug change re-seats the leads, and a fresh end grips, then works loose.
+**They are told apart by how long a relief lasts.**
+
+**Test:** **the VW set `06A 905 409 L` with VW plugs `101 000 033 AA`**,
+21/10, **the only change on the car** (`plan.md` 6b): at the refit, for each
+cylinder the force each end takes and whether it clicks metal or rubber; the
+first drive captured from the laptop, with the two states at its warm idle;
+then more drives. Read against 19/10 (loads off ~100, on ~50) and 12–15/10
+(~60):
+
+- **calmer, the dips off 3 and 4 (towards a quarter each), 014 counting less,
+  lasting weeks** → it was here; the ends are checked by hand after a few
+  drives;
+- **calmer for a few days, then back**, as after 10/10 → the relief was the
+  seating, not the design: H3 next;
+- **the same** → H15 refuted, and H4's spark side with it.
+
+**Fitted 21/10/2026** (*owner*). **The VW plug is the same NGK
+`BKUR6ET-10` as the set of 10/10** — its box says so — so the plugs are
+only new, not different, and **the leads are the one real change**. The VW
+leads are much stiffer than the NGK
+set, and **each VW plug end carries a small rubber ring inside**, where it
+seats on the plug; the NGK ends have none. A difference in exactly the
+part H15 is about, seen before any drive; what it does to the grip is the
+refit's measurement, not this.
+**The refit** (*owner*, 21/10): every VW end on with about the same
+force, an audible click, and **no play at all**, where the NGK ends had a
+slight play on 3 and 4, perhaps 1 — the cylinders whose dips and deposits
+stand out. The leads routed clear of the plenum, 3's above all.
+
+**The least it predicts** (*owner*): the idle back at least where it was
+before the episodes, loads off about 70–90 at 95–100 °C.
+
+**Read 21/10 (`40`, one drive): not the main cause** (*owner*, 21/10).
+Loads off 67 ± 2 hot, **level with 12–15/10 and not better**; 014 next to
+15/10; loads on and cold the calmest recorded. The least it predicted is
+met, the *calmer* is not. **One thing is not yet read the same way**: the
+dips spread out, top two 58 % at p 0.77 — the first capture since 11/8
+where the pair does not show; but 157 dips, one drive, and `24` read
+p 0.4 once before. **`41` (24/10) spread too** (55 %, p 0.77). **The upper plenum gasket was renewed the same day**, so
+the leads were not the only change. **Kept, demoted**, for a share: if the
+captures after item 6 keep the dips spread, the leads took the pair away
+and left the level — a part, not the whole (*More than one at once*); if the
+pair comes back, H15 goes to `refuted.md`. **`42` (3/11, the original
+map) did not spread**: 45 % on one slot, top two 68 %, p 0.023 — one
+capture, on a changed map, and one slot fitting a little better than a
+pair (*The dips keep to one slot*); not the pair this asks for. **`43`
+named the slot** (3/11 evening): **cylinder 3, 43 %**, 4 at 18 % — one
+cylinder on the VW leads, not the pair; against H15's NGK ends (none
+fitted), not against what sits at 3's plug end anyway.
+
 ## D. Symptoms closed
 
 Moved out of `open.md` when it was condensed, 20/10/2026. Each was closed at
