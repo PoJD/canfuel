@@ -1023,6 +1023,19 @@ about. The valve is closed by its spring; the lifter only removes the gap.
   the manifold pressure and so cuts the exhaust drawn back past the seat;
   a working drive burns, dries or blows the flake off it for a while, and
   queuing lets it soak and soften again. **For.**
+- **The owner's reading of the photos, 4/11** (`borescope-2026-10-20-cyl3-exhaust-valve*.jpg`):
+  **coarse deposit right up to the edge of 3's exhaust seat**, in the
+  dark band beside the valve's margin. Not conclusive by his own account:
+  the contact line itself is hidden while the valve is closed, so the
+  photos show deposit beside the seat, not under it. **For**, with H13.
+  **How the seat is reached** (*general*, searched 4/11): only with the
+  head off — the valve cannot come out with the head on, the cover gives
+  only the cam and the lifters, the exhaust port only the back of the
+  valve, and a soak through the plug hole (a Kia/Hyundai procedure, TSB
+  23-EM-007H, the nearest maker's one found; none from VW for this engine)
+  lies on the crown, not the roof. So the warm leak-down comes first
+  (`plan.md` 9): the head off for the seat only if it hisses at the
+  tailpipe on 3.
 - **For:** a valve that seals worse at low cylinder pressure misfires at a
   small charge and is covered by load; the tick once per cycle of 18/10 (`refuted.md` D10); one forum
   AQY case of a sticking bucket tappet (pkw-forum.de, 2003) and one of valves
@@ -1463,6 +1476,9 @@ hard use burns them off (*general*).
   both** the calm under load and the calm that lasts after revving
   (H1). **What 9/11 should then show**: loads off nearer loads on, and
   queuing nearer the drive after revving.
+- **4/11, the owner reads coarse deposit up to the edge of 3's exhaust
+  seat** on the photos of 20/10 (H1): for, the contact line itself not
+  seen.
 - **With a cleaner in, the idle after high revs starts calm and worsens
   over minutes; without one, the reverse** (S1, *After high revs*): one capture and one display evening, so far.
 - **18/10 has not come back** in six days of hard driving, a strong 44K
