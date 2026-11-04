@@ -960,7 +960,7 @@ of the grade or of the pair.
 
 A hydraulic lifter that bleeds down, or a valve that seats late or not quite,
 on one or two cylinders. *General.* **Widened 4/11/2026** (*agreed with the
-owner*, after the research of 4/11; `idle-log.md` has none, it is reading):
+owner*, after the research of 4/11):
 **the exhaust seat on 3 the likeliest form** — a small leak there draws
 exhaust back into the cylinder through the intake stroke at idle vacuum,
 which load (a higher manifold pressure) eases and a higher idle speed does
