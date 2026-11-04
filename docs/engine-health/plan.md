@@ -29,16 +29,12 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
      clearly better**: one or two warm drives captured, on different
      days. Claude runs the capture; VCDS on **014, 003, 020**; 055 once
      at the end, warm idle. Write the stops.
-   - **Next session on the laptop, with the car at hand: the converter
-     flashed for `Misfires` and `MisfAvg`** (0x604 layout 2, 4/11) —
-     **Claude flashes** (*the owner's decision*, 4/11), the owner only
-     handles the board: he takes **JP2 off**, Claude runs
-     `python tools/flash.py --preserve-eeprom` from `main` and reads its
-     verification out to him, he puts **JP2 back on**. **The owner
-     uploads `tri/S-AQY.TRI`** from `mfd15` to the display through oDSS
-     himself, then power-cycles before reading 0x603's `Unhealthy` (oDSS
-     sets it, `mfd15/CLAUDE.md`). From then on, at the same warm stops,
-     **`Misfires` and `MisfAvg` beside `IdleHealth`** into the chat.
+   - **The converter carries `Misfires` and `MisfAvg`** (0x604 layout 2,
+     flashed by Claude on 4/11, the stored trip and tank kept). **The
+     owner uploads `tri/S-AQY.TRI`** from `mfd15` to the display through
+     oDSS himself. JP1 stays off (*the owner*, 4/11: no debug needed), so
+     0x603 and the LEDs are dark by design. From then on, at the same warm
+     stops, **`Misfires` and `MisfAvg` beside `IdleHealth`** into the chat.
 6i. **The oil level on the new oil, about every 500 km** from the first
    reading (27/10, 155,024 km, at the top mark): the car on level ground
    and **at least 5 minutes standing**, the dipstick out, wiped, in, out,
@@ -108,7 +104,7 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
   - After a hard or long drive: switch off on arrival, no idling.
   - **Engine lamp flashing**: ease off at once, stop where safe, engine
     off, write it into the chat.
-- **`IdleHealth` (and `Misfires` once flashed) only in the everyday state** — **blower on 1, one seat
+- **`IdleHealth` and `Misfires` only in the everyday state** — **blower on 1, one seat
   heater on 1, the lights on** — at warm stops that come anyway (oil
   95–100 °C, neutral, no throttle), with the oil temperature; any other
   state is named. **Idling is kept short**: no stop is made or lengthened

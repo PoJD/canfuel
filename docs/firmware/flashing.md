@@ -75,9 +75,10 @@ threshold the device carries had to be dug out of the git log
 | date | commit | mode | hex SHA-256 | how known |
 |---|---|---|---|---|
 | 2026-09-24 | the tree of `efe8573` (`src/` as at its parent) | normal, `--preserve-eeprom` | not recorded | `efe8573`'s message: "Used for this flash"; no hash was printed then. Carries `REFUEL_RISE_L` = 4 and 0x604 |
+| 2026-11-04 | `5ace55a` | normal, `--preserve-eeprom`, `--power-from-programmer` (the board out of the car, unpowered) | `5b49d97da3cbb483313c1d737c2b442b6bc7ed61f64175656f33ff0907b34d4c` | `flash.py`'s `flashed:` line; EEData read back identical. 0x604 layout 2 (`Misfires`, `MisfAvg`) |
 
-**No later flash is recorded.** The oil scale moved to `raw − 60` in
-`decode.c` on 15/10 without one; the display reads oil off 0x420 itself.
+The oil scale moved to `raw − 60` in `decode.c` on 15/10 with no flash of
+its own; the display reads oil off 0x420 itself.
 
 ---
 
