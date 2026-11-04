@@ -29,12 +29,16 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
      clearly better**: one or two warm drives captured, on different
      days. Claude runs the capture; VCDS on **014, 003, 020**; 055 once
      at the end, warm idle. Write the stops.
-   - **Next time at the laptop, with the car at hand: the converter
-     flashed and the display updated** for `Misfires` and `MisfAvg`
-     (4/11): `python tools/flash.py --preserve-eeprom` (JP2 off before,
-     on after), then `tri/S-AQY.TRI` from `mfd15` uploaded through oDSS.
-     From then on, at the same warm stops, **`Misfires` and `MisfAvg`
-     beside `IdleHealth`** into the chat.
+   - **Next session on the laptop, with the car at hand: the converter
+     flashed for `Misfires` and `MisfAvg`** (0x604 layout 2, 4/11) —
+     **Claude flashes** (*the owner's decision*, 4/11), the owner only
+     handles the board: he takes **JP2 off**, Claude runs
+     `python tools/flash.py --preserve-eeprom` from `main` and reads its
+     verification out to him, he puts **JP2 back on**. **The owner
+     uploads `tri/S-AQY.TRI`** from `mfd15` to the display through oDSS
+     himself, then power-cycles before reading 0x603's `Unhealthy` (oDSS
+     sets it, `mfd15/CLAUDE.md`). From then on, at the same warm stops,
+     **`Misfires` and `MisfAvg` beside `IdleHealth`** into the chat.
 6i. **The oil level on the new oil, about every 500 km** from the first
    reading (27/10, 155,024 km, at the top mark): the car on level ground
    and **at least 5 minutes standing**, the dipstick out, wiped, in, out,
