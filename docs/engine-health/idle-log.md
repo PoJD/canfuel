@@ -1004,7 +1004,7 @@ The map's own channels did not move, 014 did (`open.md` H14, S3).
   032/055 read at the end, then cleared by the owner.
 - **Changes after:**
   - *measured:* the fault memory empty before every run; after the cut
-    P1240 (N34, open circuit, sporadic), P0300, P0304 and **P0303**;
+    P1240 (N33, injector 4, open circuit, sporadic; *this said N34 until 4/11: VW's table gives P1237–P1240 as N30–N33*), P0300, P0304 and **P0303**;
     032 −6.3 / +3.9 % (part load from +3.1), 055 790 rpm, 0.02, −1.32;
     `IdleHealth` at the warm stop, loads off, oil 99 °C: **86 ± 4** the
     first 3 min, 74 the 2 min after the cut, **48 ± 3** the last 5;
