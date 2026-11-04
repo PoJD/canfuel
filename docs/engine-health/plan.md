@@ -59,7 +59,8 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
    Monday 9/11/2026, 9:45** (*owner*, 4/11). **On the day, ask**: do
    they clear the fault memory or disconnect the battery (if so, Claude
    reads 032/055 first, with VCDS); where the gas goes in (ahead of the
-   MAF or behind it); and that the coolant temperature is watched
+   MAF or behind it); **the machine's output in litres a minute, and
+   whether it makes oxyhydrogen (HHO) or hydrogen alone**; and that the coolant temperature is watched
    through the hour. **No reading of its own before it** (*the owner*,
    3/11: the weeks before are the baseline). **After it**: item 6's
    drives again, `IdleHealth` as always, at several warm stops, **with a
@@ -212,7 +213,10 @@ H13 and, if the deposit on 3's seat is what keeps it from sealing, H1.
 ruler as item 6; a capture only once the display shows a change (item
 6). What it reaches is asked first because a clean through the intake
 works on the chambers and crowns, where the borescope found the
-deposit, not on a seat that is worn (*general*). **The car had one
+deposit, not on a seat that is worn (*general*). **The output** because
+the machines differ about sixfold (280 l/h to 30 l/min), and the one
+independent study ran the large one and found no change (`open.md`,
+*What the forums say*, hydrogen decarbonisation, 4/11). **The car had one
 before**, with hydrogen, on 10/8/2021 (`vehicle-history.md`): its
 effect was not recorded, and the 3,400 km and more since (152,000 at
 1/2022 against 155,357 on 3/11, the odometer table there), most of

@@ -2011,6 +2011,36 @@ exhaust valve face; no burnt margin, no steam-clean crown, no oil-wet
 deposit anywhere; 4's crown-line mark undecided (a deposit edge or a
 crack) — one frame of it again whenever the borescope goes in.
 
+**Hydrogen decarbonisation, searched 4/11 evening** (*the owner's
+request*; EN, DE, PL, CZ; H13, `plan.md` 8). **What the machines make**:
+water split by electrolysis into hydrogen and oxygen, 2 : 1, fed to the
+intake — from about 280 l/h (a German workshop's figures, about 0.8 % of
+hydrogen in the intake air) to 30 l/min, about 1 kg an hour. **The
+vendors' chemistry does not hold** (*general*, *reasoned*): hydrogen
+taking up the carbon as methane (C + 2H₂ → CH₄) needs a catalyst, a
+hydrogen pressure of tens of bar and minutes of contact, where the
+cylinder offers a hundredth of a bar for milliseconds, and at flame
+temperature the equilibrium runs the other way; the water-gas reaction
+(C + H₂O → CO + H₂) needs the carbon at about 600 °C and more, which the
+workshop itself gives as its limit, against a chamber wall of a few
+hundred. **What can act**: hydrogen's flame burns closer to the walls
+than petrol's, and its water may flake deposit (SAE 2000-01-2858); the
+carbon that does leave goes as CO₂ and CO, as from any burning, and
+the ash of the oil's additives, which the deposits carry, does not burn
+at all — it can leave only as flakes. **Independent evidence**: one
+study (Sci. Rep. 2026, s41598-026-54105-y): a 2001 Škoda Fabia 1.4,
+about 1 kg of HHO in an hour, idle alternating with 3,000 rpm — **no
+change** in power, fuel per kWh (287.2 → 287.0 g/kWh), cranking current or
+the idle's HC; deposits not measured. It cites one diesel tractor whose
+exhaust valve's carbon cover went from 65 to 15 % (not read). No ADAC or
+magazine test found; Polish owners split, some mechanics against it on
+engines over 20 years old (a seal may start to leak); the rest is the
+sellers'. **Read for this car** (*reasoned*): the hours above 4000 rpm
+on the 44K tanks heated the chambers more than an hour at 2,000 rpm
+without load and moved nothing, so what the clean adds is hydrogen's
+flame at the wall and the water — expected small, cheap to try, and
+still the one repair that reaches 3's crown without the head off.
+
 ---
 
 ## The idle's candidates, ranked
