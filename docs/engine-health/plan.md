@@ -83,6 +83,9 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
      tank, the next plug hole.
    - With VCDS connected anyway after a stored P030x: **a generic
      OBD-II read** (modes 02 and 06), read only, saved.
+   - **No head off** (*the owner*, 4/11, leaning, not final): if the
+     leak-down names 3's exhaust seat, the car is driven as it is and S1
+     most likely closed as *acceptable, cause known*.
 
 ## Standing items
 
@@ -271,6 +274,17 @@ read** asks whether this ECU keeps what its VW view does not show
 (`open.md`, *What the forums say*, 4/11). *No pinch of the vacuum
 lines*: proposed 4/11 for a line near runner 3 and dropped the same day —
 every line joins the common intake (*owner*, `open.md` H3).
+**The head stays on** (*the owner*, 4/11, leaning): the seat is reached
+only with the head off (`open.md` H1), tens of thousands of crowns, for
+an engine that burns well everywhere but at an idle without load. If
+the leak-down names the seat, S1 closes as *acceptable, cause known*
+(`open.md` S1, *When S1 closes*); if it does not, cleaning can go on
+(a soak through the plug holes reaches the crown). **What would reopen
+it** (*general*, *reasoned*): a leaking exhaust seat can burn over time,
+so 014 climbing, P0303 stored without a cut, or the warm idle getting
+worse beyond its spread are read as a seat getting worse; and the
+converter carries the idle's misfires (`open.md` S3), which is why the
+standing items keep idling short.
 
 ## Standing items — why
 
