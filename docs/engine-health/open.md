@@ -36,7 +36,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 3 November 2026
+## Where it stands — 4 November 2026
 
 **Closed**, in `refuted.md` §D: S6 the exhaust joint behind the
 converter, S8 the top end, S9 the rich trim, S10 the oil leak at the back
@@ -76,6 +76,9 @@ of air (H14).
   shown loads off, one stop; **014 counting again** at 26.5 % load, then
   zero for the last 2 minutes (S3). **On the display the same night**,
   the drive home: **70–95** at 101 °C of oil, everyday state (*owner*).
+  **4/11, display**: **90–110** in queues until the engine was revved,
+  the larger dips felt, **70–90** after; **45–50** with the A/C, the
+  blower full and the rear window (*owner*).
   The dips sat two thirds on 3 and 4
   until the VW leads, **on all four alike** on `40` and `41`, **on `42`
   one slot again, 45 %**, and **on `43` named: 43 % on cylinder 3**
@@ -107,7 +110,9 @@ fit table re-read 4/11). **H15 refuted 4/11** (`refuted.md` C24).
 **H14 and H19 left it on 3/11**: the tuner's files
 show the remap touched only the corner of highest load, and neither the
 idle nor the MAF's curve (`refuted.md` C22, C23). **After `43`
-(cylinder 3 named) deposits and a valve on 3 lead, H7 fourth.**
+(cylinder 3 named) deposits and a valve on 3 lead, H7 fourth.** **Read
+4/11 on the load and revving patterns alone**: H13 with H1's exhaust seat
+on 3 the one reading that fits both; H3 the load only; the order stands.
 
 **Next** (`plan.md`): the MFD back in from 4/11 (item 6) and the oil
 level every 500 km (6i); **the next repair is a professional
@@ -194,6 +199,7 @@ error):
 | 3/11 | `42` | fresh (reset with the map) | **the original map**; the drive home from the tuner, motorway to 186 km/h, then a stop of about 9 min with throttle blips, oil 103–105 °C; b7 25–29 at idle | **71 ± 3** over every warm window (41–100): **93 ± 2** for the first 3 min after the motorway, **54 ± 3** from the fifth minute (41–67), 63 ± 3 and 77 ± 4 at the two stops near home; cold **98 ± 3** at 50–61 °C of oil |
 | 3/11 eve | `43` | one drive after the reset (032 −6.3 / +3.9) | the original map, the second drive: mostly motorway to 90 °C of oil, full-throttle pulls, then a warm stop of 11 min **loads off** (b7 21) with a 57 s cut on injector 4, oil 99–100 °C | **86 ± 4** the first 3 min; 74 the 2 min after the cut; **48 ± 3** from then to engine off (5 min, windows 30–67) — `42`'s shape, settling about the sixth minute; cold 129 over only 26 s settled, oil about 47 °C |
 | 3/11 night | display | relearning (032 cleared after `43`'s cut) | the original map, the drive home from football, MFD in | **70–95**, oil 101 °C, everyday state (*owner*) — the first display reading on the original map, a little under the remap's 80–105 of 28/10–2/11 |
+| 4/11 | display | relearning | the original map; mostly slow driving and queues, then the engine revved; oil about 100 °C | **90–110** until the engine was revved, **the larger dips felt in the seat**; **70–90** after it; everyday state. **45–50** with the A/C and the blower on full and the rear window heated (no main beam, no seat heaters), still falling; the supply down to about 12.4 V at times with everything on (*owner*) |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -320,7 +326,18 @@ so it is the charge, not the volts. **Since the cleaner, the partial loads
 hardly matter** (*owner*, 19/10): lights and blower alone make little
 difference, everything on together still calms it. **The first measured
 pair**, 19/10, oil 101 °C: loads off mostly about 100, every load on mostly
-about 50 — twice what one pair can show by chance. Read as (*reasoned*):
+about 50 — twice what one pair can show by chance. **Again 4/11**
+(display, oil about 100 °C, *owner*): 90–110 in the everyday state
+against **45–50** with the A/C, the blower on full and the rear window
+heated, while the supply fell to about 12.4 V at times — the calmest
+idle on the lowest supply. **Read beside the higher idle of 12/10**
+(`refuted.md` D9; *reasoned*): a load raises the charge of every stroke
+at the same engine speed, and helps; 830 rpm raised the speed on about
+the same charge a stroke, and did not. **So what fails answers to the
+charge a stroke and the cylinder's pressure, not to the air flow or the
+speed** — and a weak spark would go the other way twice over: a higher
+cylinder pressure asks more voltage to break down the gap, and the
+supply is lower (*general*). Read as (*reasoned*):
 **one or more cylinders run at the edge of stable combustion at the idle's
 charge**, and anything that takes a little charge away tips them over.
 **A second reading, from 26/10** (*the owner's hypothesis*, not tested):
@@ -404,7 +421,10 @@ capture from about 15–20 °C would settle it.
 *the owner's observation, checked against the captures*). On 26/10 a
 gentle warm-up in a jam, under 3000 rpm, held `IdleHealth` at 80–100 up
 to 92 °C of oil; it fell to 60–70 only after one brisker stretch (table
-above). The captures agree in kind (`tools/afterpull.py`'s `idle_runs()`,
+above). **The same again 4/11** (display, *owner*): mostly slow driving
+and queues at about 100 °C of oil held **90–110**, with the larger dips
+felt in the seat, until the engine was revved; **70–90** after it. The
+captures agree in kind (`tools/afterpull.py`'s `idle_runs()`,
 graded per minute, 26/10): **warmed at idle, the grade stops at about
 90–110** — `41` ~120 → ~90 over 52–82 °C, `32` 139 → ~95 over 46–78 °C,
 `25`+`26` ~110 at 82–91 °C after a warm-up that never held 3000 rpm —
@@ -997,6 +1017,12 @@ about. The valve is closed by its spring; the lifter only removes the gap.
   cylinder, the one with the deposit and 18/10's tick (S18; `refuted.md`
   D10): **for**. A compression or leak-down reading on 3 against the
   others would show a seat that does not close (*general*).
+- **4/11, the two patterns on their own** (S1, *Load smooths it* and
+  *driving does*; *reasoned*, agreed with the owner): with H13's flake on
+  3's exhaust seat, **the one reading that fits both** — a load raises
+  the manifold pressure and so cuts the exhaust drawn back past the seat;
+  a working drive burns, dries or blows the flake off it for a while, and
+  queuing lets it soak and soften again. **For.**
 - **For:** a valve that seals worse at low cylinder pressure misfires at a
   small charge and is covered by load; the tick once per cycle of 18/10 (`refuted.md` D10); one forum
   AQY case of a sticking bucket tappet (pkw-forum.de, 2003) and one of valves
@@ -1072,6 +1098,11 @@ the lower manifold's gasket at runner 3, never renewed.
 - **`43` (3/11 evening): the dips named 43 % on cylinder 3** — one
   cylinder again after `40`–`41`'s all four alike, so the demotion of
   24/10 loses its ground: **for**, at runner 3.
+- **4/11, the two patterns on their own** (S1; *reasoned*, agreed with
+  the owner): **load, the best of all** — the leak's flow is about fixed
+  at idle vacuum, so its share falls as the charge grows; **the calm after
+  revving, not at all** — a leak does not know what the engine did a
+  minute before. **Against**, on that half.
 - **For:** the regime; S14 at the thinnest charge; a leak at one runner acts
   on one cylinder, and 3 and 4 are neighbours on the lower manifold.
 - **Against:** a large leak is refuted (`refuted.md` A7): idle air 3.1–3.5 g/s
@@ -1112,6 +1143,11 @@ shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
 - **`43` (3/11 evening): the dips named 43 % on cylinder 3, 18 % on
   4** — one cylinder, not the pair the loom feeds: weakly for at 3,
   against the pair.
+- **4/11** (S1, *Load smooths it*): 45–50 with the A/C and the rear
+  window on at about 12.4 V against 90–110 without — a higher cylinder
+  pressure needs more voltage at the gap and the supply is lower, so
+  anything on the spark side, plug 3's gap included, predicts the
+  opposite (*general*). **Against.**
 **Tests:** the injector loom flexed at 3 and 4 at a warm idle — **done by
 the owner on 24/10, part-warm, during the first phone recording, above all
 the repaired wire at injector 4, judged by ear only: no change heard**
@@ -1422,6 +1458,11 @@ hard use burns them off (*general*).
   and 4**, from something that touches those two only (`refuted.md` C24). Once there, the
   deposit adds to it: a flake under a seat (18/10, `refuted.md` D10), heat and compression for
   knock on 4 (S4).
+- **4/11, the two patterns on their own** (S1; *reasoned*, agreed with
+  the owner): with H1's exhaust seat on 3, **the one reading that fits
+  both** the calm under load and the calm that lasts after revving
+  (H1). **What 9/11 should then show**: loads off nearer loads on, and
+  queuing nearer the drive after revving.
 - **With a cleaner in, the idle after high revs starts calm and worsens
   over minutes; without one, the reverse** (S1, *After high revs*): one capture and one display evening, so far.
 - **18/10 has not come back** in six days of hard driving, a strong 44K
@@ -1710,6 +1751,8 @@ vacuum falls, the flow stops, and what collected burns away.
   when the vacuum is at its highest and a leaking seal passes the most;
   the drive's load after it would have to burn off more than the coast
   drew in.
+- **Against, 4/11** (S1, *driving does*): the calm after revving — the
+  overrun on the way draws the most oil past a seal.
 - **Against: the dipstick** (`plan.md` 6i): no loss can be read between
   top-ups. **How much oil it burns is not known.**
 - **S3 ~** for the same reason as S1: misfires at idle, on all four.
@@ -1748,7 +1791,9 @@ at idle on that cylinder, eased by load, and a plug kept clean.
   `refuted.md` C13); compression even (A4, cold); the borescope shows
   **no steam-cleaned crown** on 3 — its crown carries the most deposit,
   not the least (*What the forums say*, the photos read again, 4/11); the warm-up to
-  99–100.5 °C holds; no white smoke reported.
+  99–100.5 °C holds; no white smoke reported; **the calm after revving**
+  (S1, 4/11; *reasoned*): the coolant's pressure is highest after a hard
+  drive, so a weep should be worst then, not best.
 - **Test:** **a combustion-gas (CO₂, "block") test of the coolant**,
   warm — a few hundred Kč at a garage or a kit; `refuted.md` C13 never
   had one. A leak-down (H1's test) watched at the expansion tank for
@@ -1980,7 +2025,7 @@ is in git.
 |---|---|---|---|
 | 1 | **H13** deposits | **up 3/11 evening from second to first** (*agreed with the owner*): `43`'s cut names cylinder 3, where the borescope found the most deposit; **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; **a professional decarbonisation**, hydrogen for one — **the next repair** (*the owner*, 3/11; `plan.md` 8) |
 | 2 | **H1** valve or lifter | **up 3/11 evening from third to second** (*agreed with the owner*): a valve on 3 that does not seal, with deposit on its seat (H13), fits one cylinder named; **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes done 26/10, the hot recording found no lifter; left: **a warm leak-down on all four** and a stethoscope above 3, hot (`plan.md` 9) |
-| 3 | **H3** a leak at one runner | **up 3/11 evening from seventh to third**: one cylinder named again (runner 3); the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
+| 3 | **H3** a leak at one runner | **4/11: explains the calm under load best of all, the calm after revving not at all** (S1; *agreed with the owner*, the order kept); **up 3/11 evening from seventh to third**: one cylinder named again (runner 3); the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
 | 4 | **H7** fuel delivery | **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026, and nothing points at one of them); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10); **no injector swap** (*the owner*, 3/11) |
 | 5 | **H2** a leak ahead of the probe | **down 31/10 from fourth** (*agreed with the owner*): the manifold seen from close below, rusty but no soot marks and no holes, its joint to the head nothing visibly wrong from below (H2); the part under its heat shield unseen; S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test (`plan.md` 7) |
 | 6 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
@@ -2001,6 +2046,17 @@ S4 and S19's part-load cell. The rest keeps its order and moves up two.
 **How it is re-read after 5b** is the owner's to agree once its data are
 in: the dips back on one slot (`42`) and the idle cell back at once
 (S19) point at what acts on one cylinder and adds fuel.
+
+**Re-read 4/11 evening, on the two patterns alone** (*at the owner's
+request, agreed with him*; S1, the display reading of 4/11): what explains
+both that a load calms the idle on a lower supply and that revving calms
+it for a stretch after. **H13 with H1's exhaust seat on 3 is the one
+reading that fits both**; H3 fits the load best and the revving not at
+all; the spark side (H4, plug 3's gap) is against on the load, H20 and
+H18 against on the revving; H7, H8, H16 and H0 weakly at most. **The
+order stands**; H3's row notes it. **What 9/11 should show** if the
+first two are right: loads off nearer loads on (S1's closing mark 2),
+and queuing nearer the drive after revving.
 
 **Every fit table re-read 4/11** (*at the owner's request*, with
 `43` and the research in): **H1's S4 and S5 from ✔ to ~** — the valve

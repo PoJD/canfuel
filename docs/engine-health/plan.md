@@ -62,7 +62,9 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
    MAF or behind it); and that the coolant temperature is watched
    through the hour. **No reading of its own before it** (*the owner*,
    3/11: the weeks before are the baseline). **After it**: item 6's
-   drives again, `IdleHealth` as always, at several warm stops; **an odd
+   drives again, `IdleHealth` as always, at several warm stops, **with a
+   word on what came before each stop** (queuing, or a brisk stretch),
+   and the A/C's figure too whenever it happens to be on; **an odd
    cold misfire or a drop-out on one cylinder in the days after** goes
    into the chat at once. Then **one captured drive with a 30 s cut on
    injector 4** at a warm stop, as on 3/11, above reserve.
@@ -223,8 +225,15 @@ idle, `open.md` S3); held revs are not. **Nothing measured there**, so
 the before and after is `IdleHealth` on the display — **before** is
 what is already read: 80–105 on the display on the remap (28/10–2/11),
 and on the original map `42`'s 54–77, `43`'s 48–86 loads off and
-**70–95 on the display** the night of 3/11 (everyday state, oil 101 °C), plus
-whatever item 6's drives give until the appointment — and H1's own test
+**70–95 on the display** the night of 3/11 (everyday state, oil 101 °C),
+**90–110 after queuing and 70–90 after revving on 4/11, 45–50 with the
+A/C**, plus whatever item 6's drives give until the appointment. **What
+the stops are read for** (`open.md` S1, re-read 4/11 on the load and
+revving patterns): if the deposit on 3's exhaust seat is what the two
+share (H13 with H1), the clean narrows **both gaps** — loads off towards
+the A/C's figure, queuing towards after revving; the gap after queuing
+gone and the load's kept points at H3 instead; both kept, item 9. Hence
+the word on what came before each stop. And H1's own test
 (a warm compression or leak-down reading on 3 against the others,
 `refuted.md` A4) stays for afterwards, if the clean does not help. **No injector swap**
 and **no plug change for now** (*his decisions*, 3/11). **The days after**

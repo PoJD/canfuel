@@ -1032,3 +1032,17 @@ first capture that names one cylinder since the VW leads (`open.md`,
 The first display reading on the original map, 032 relearning since
 the clearing after `43`'s cut; a little under the remap's 80–105
 (`open.md` S1).
+
+## 4/11 — the idle on the display, queues and a revved stretch
+
+- **Tests:** `IdleHealth` at warm stops, oil about 100 °C, everyday
+  state and with the A/C, the blower on full and the rear window heated.
+- **Changes after:**
+  - *measured:* **90–110** after queuing, until the engine was revved;
+    **70–90** after it; **45–50** with the A/C and the rest on, the
+    supply at about 12.4 V at times (*owner*);
+  - *felt:* the larger dips in the seat at 90–110 (*owner*).
+
+Load and revving both calm it, as on 19/10 and 26/10; read against the
+hypotheses on those two patterns alone (`open.md` S1, the ranking's
+re-read of 4/11).
