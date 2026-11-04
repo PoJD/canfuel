@@ -109,7 +109,8 @@ idle nor the MAF's curve (`refuted.md` C22, C23). **After `43`
 **Next** (`plan.md`): the MFD back in from 4/11 (item 6) and the oil
 level every 500 km (6i); **the next repair is a professional
 decarbonisation, with hydrogen, booked for 9/11** (H13, item 8; *the
-owner's decision*, 3/11).
+owner's decision*, 3/11), then a capture with a cut and item 9's tests
+(the pinch, the stethoscope, a warm leak-down).
 
 ---
 
@@ -958,7 +959,24 @@ of the grade or of the pair.
 ### H1. A lifter or valve on one cylinder (valvetrain)
 
 A hydraulic lifter that bleeds down, or a valve that seats late or not quite,
-on one or two cylinders. *General.* The AQY's lifters are hydraulic bucket
+on one or two cylinders. *General.* **Widened 4/11/2026** (*agreed with the
+owner*, after the research of 4/11; `idle-log.md` has none, it is reading):
+**the exhaust seat on 3 the likeliest form** — a small leak there draws
+exhaust back into the cylinder through the intake stroke at idle vacuum,
+which load (a higher manifold pressure) eases and a higher idle speed does
+not (`refuted.md` D9), and cold cranking compression misses (A4); it is
+also where H13's flake would sit (SAE 2000-01-2858, 2003-01-3187: deposit
+flakes trapped under exhaust seats leak and run a cylinder rough, water
+the strongest trigger of flaking). **A stem sticking in its guide** (varnish
+or carbon on the stem, which neither the EPR flushes nor H13's clean
+reach) fits S18's cold hang-up and a mild steady excess after it; **a
+lifter stuck pumped up** holds its valve a hair open with no tick. A
+lifter that bleeds down would tick, and the hot recording of 26/10 found
+none. *General* for these (GM bulletin 19-NA-219, another engine family:
+valve leakage misfires most at idle, compression normal, a leak-down
+finds it). **Test: a warm leak-down on all four**, listening at the
+tailpipe (exhaust seat), the throttle (inlet) and the oil filler (rings);
+**a stethoscope on the cam cover above 3, hot**, against 1, 2, 4. The AQY's lifters are hydraulic bucket
 tappets (*hydrostely*), fed from the head's gallery through a small hole
 each; inside, a plunger and a check ball hold an oil column that takes up
 the lash. They fail two ways (*general*): **one that does not fill** (a
@@ -1038,6 +1056,14 @@ new manifold.
 
 Air past the MAF leans one cylinder at idle, where air flow is smallest.
 *General.* **The only candidate that predicts *load helps* directly.**
+**Widened 4/11/2026** (*agreed with the owner*): **or a line that enters
+the plenum near runner 3** — the brake servo's hose and its check valve,
+the regulator's tube, N80's — since where a source enters a plenum
+decides how it shares out between the runners (*general*), so "a plenum
+source reaches all four alike" holds only upstream of the throttle.
+Where these lines join the plenum is not recorded. **Test: each pinched
+for 60 s at a warm idle, standing, with `IdleHealth` read**, the servo's
+last and with the car held on the handbrake (the brake goes hard).
 
 | S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
 |---|---|---|---|---|---|---|---|---|
@@ -2004,6 +2030,28 @@ sign for non-homogeneous thermal dissipation"* — the amount on this
 engine is not judged against anything, its **unevenness, 3 > 4 > 2 > 1**,
 is the finding (H13).
 
+**Searched again 4/11** (DE, PL, CZ, EN; VW's manual as transcribed,
+Ross-Tech; the notes are not kept here): **still no AQY/AEG thread with a
+confirmed fix for an idle-only misfire on one cylinder**; the confirmed
+idle-only cylinder-3 fixes on other engines were all at the valve (lash,
+a burnt valve, a broken spring; *forum leads*). **VW, read**: compression
+new 10–13 bar, wear limit 7.5, **largest difference 3 bar** — so 12 even
+excludes only a gross loss (`refuted.md` A4); 014 is the total only,
+specified 0–5 at 740–820 rpm and 15–35 % load, with no per-cylinder
+group; **misfires from an ignition output are stored in pairs** (1+4,
+2+3), which no code on this car has done, so neither the coil nor its
+output stage; **P1300 / 17708 is a misfire put down to an empty tank**,
+so captures run above reserve; P1237–P1240 are injectors N30–N33. **Not
+found**: an AQY TSB on the idle, a crank-wheel adaptation procedure.
+**A generic OBD-II read** (VCDS's OBD-II mode, read only) after a stored
+P030x may show mode 02's freeze frame or mode 06's misfire results
+though the VW view shows none; whether M5.9.2 supports either is not
+known. **The photos read again** (the same 37): 3 the only crown whose
+layer has broken into sharp-edged islands (flaking), a raised rim on its
+exhaust valve face; no burnt margin, no steam-clean crown, no oil-wet
+deposit anywhere; 4's crown-line mark undecided (a deposit edge or a
+crack) — one frame of it again whenever the borescope goes in.
+
 ---
 
 ## The idle's candidates, ranked
@@ -2015,7 +2063,7 @@ is in git.
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | 1 | **H13** deposits | **up 3/11 evening from second to first** (*agreed with the owner*): `43`'s cut names cylinder 3, where the borescope found the most deposit; **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; **a professional decarbonisation**, hydrogen for one — **the next repair** (*the owner*, 3/11; `plan.md` 8) |
-| 2 | **H1** valve or lifter | **up 3/11 evening from third to second** (*agreed with the owner*): a valve on 3 that does not seal, with deposit on its seat (H13), fits one cylinder named; **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes done 26/10, the hot recording found no lifter; left: a compression or leak-down reading on 3 against the others (*general*) |
+| 2 | **H1** valve or lifter | **up 3/11 evening from third to second** (*agreed with the owner*): a valve on 3 that does not seal, with deposit on its seat (H13), fits one cylinder named; **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes done 26/10, the hot recording found no lifter; left: **a warm leak-down on all four** and a stethoscope above 3, hot (`plan.md` 9) |
 | 3 | **H3** a leak at one runner | **up 3/11 evening from seventh to third**: one cylinder named again (runner 3); the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
 | 4 | **H7** fuel delivery | **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026, and nothing points at one of them); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10); **no injector swap** (*the owner*, 3/11) |
 | 5 | **H2** a leak ahead of the probe | **down 31/10 from fourth** (*agreed with the owner*): the manifold seen from close below, rusty but no soot marks and no holes, its joint to the head nothing visibly wrong from below (H2); the part under its heat shield unseen; S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test (`plan.md` 7) |
@@ -2037,6 +2085,14 @@ S4 and S19's part-load cell. The rest keeps its order and moves up two.
 **How it is re-read after 5b** is the owner's to agree once its data are
 in: the dips back on one slot (`42`) and the idle cell back at once
 (S19) point at what acts on one cylinder and adds fuel.
+
+**Re-read 4/11, after the research** (*agreed with the owner*): **the
+order stands**; H1 and H3 widened (above, in each): H1 to the exhaust
+seat on 3, a sticking stem and a lifter stuck up, the seat being where
+H13's flake would sit, so the two lead together; H3 to a line entering
+the plenum near runner 3. **A coolant weep into 3 was proposed and not
+taken** (*the owner*: the level would fall, and it does not; `refuted.md`
+C13). The tests after 9/11 are `plan.md` 9.
 
 **Re-read 3/11 evening, after `43`** (*agreed with the owner*):
 **cylinder 3 named** for 43 % of the dips warm, P0303 with the cut, and

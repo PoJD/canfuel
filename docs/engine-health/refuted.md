@@ -77,7 +77,11 @@ misfire it was changed for is gone — C4.)
 **Refuted by:** compression 12 bar, even on all four (garage, 17/9). The
 evenness is the result; the absolute figure is weak. **Does not cover** a valve
 that seats at cranking speed but not on a hot idle — that is H1 in
-`open.md`, and a warm leak-down test is its test.
+`open.md`, and a warm leak-down test is its test. **Weaker than it reads**
+(4/11): VW allows 10–13 bar new and **3 bar between cylinders**, the reading
+was cold, cranking, in whole bar, and taken on 17/9, before the cleaner,
+S18 and the deposit on 3 seen breaking up — so it excludes a gross loss and
+nothing finer.
 
 ### A5. "One bad cylinder dominates the idle roughness" — measured
 
@@ -564,7 +568,10 @@ number.
 **Believed:** never strongly; asked about on 26/9 as the one cause that could
 sit behind S10, S11 and the idle together (it was H10 in `open.md`).
 **Refuted by**, each on its own weak, together decisive:
-- **the coolant level has held for weeks**, and **no milky emulsion** has
+- **the coolant level has held for weeks** (*and still, 4/11/2026, the
+  owner*: no fall seen — the reason a weep into cylinder 3 was not taken
+  up after `43` named it; a combustion-gas test of the coolant was never
+  made), and **no milky emulsion** has
   ever been seen. (*Removed 30/9/2026, the owner's correction:* this also
   read "the underside of the oil filler cap is clean (*owner-observed,
   27/9/2026*)" — the cap was most likely not looked at that day, so it was

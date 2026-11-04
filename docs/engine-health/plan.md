@@ -20,7 +20,7 @@ The full previous version, before it was condensed on 20/10/2026:
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Current: item 6 and 6i
 from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
-9/11 at 9:45.**
+9/11 at 9:45; item 9 after it.**
 
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
@@ -56,9 +56,27 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
    his choice; by its site, 3/11: 70 min for up to 2.5 l, 3,290 Kč).
    **The engine is held at 2,000 rpm throughout; nothing is measured
    before or after** (*owner*, 3/11, from their videos). **Booked for
-   Monday 9/11/2026, 9:45** (*owner*, 4/11). **No reading of its own before it** (*the owner*, 3/11:
-   the weeks before are the baseline). **After it**: item 6's drives
-   again, `IdleHealth` as always.
+   Monday 9/11/2026, 9:45** (*owner*, 4/11). **On the day, ask**: do
+   they clear the fault memory or disconnect the battery (if so, Claude
+   reads 032/055 first, with VCDS); where the gas goes in (ahead of the
+   MAF or behind it); and that the coolant temperature is watched
+   through the hour. **No reading of its own before it** (*the owner*,
+   3/11: the weeks before are the baseline). **After it**: item 6's
+   drives again, `IdleHealth` as always, at several warm stops; **an odd
+   cold misfire or a drop-out on one cylinder in the days after** goes
+   into the chat at once. Then **one captured drive with a 30 s cut on
+   injector 4** at a warm stop, as on 3/11, above reserve.
+9. **After item 8, by what it shows** (Claude says which):
+   - **Each vacuum line pinched for 60 s at a warm idle**, standing,
+     `IdleHealth` read before and during: the regulator's tube, N80's,
+     the brake servo's last, held on the handbrake.
+   - **A stethoscope (or a long screwdriver) on the cam cover above
+     cylinder 3, hot**, against 1, 2 and 4: a tick or a hiss on one.
+   - **A warm leak-down on all four** at a garage, oil at 80 °C or
+     more: the percentages, and where it hisses — tailpipe, throttle or
+     oil filler.
+   - With VCDS connected anyway after a stored P030x: **a generic
+     OBD-II read** (modes 02 and 06), read only, saved.
 
 ## Standing items
 
@@ -206,7 +224,31 @@ and on the original map `42`'s 54–77, `43`'s 48–86 loads off and
 whatever item 6's drives give until the appointment — and H1's own test
 (a warm compression or leak-down reading on 3 against the others,
 `refuted.md` A4) stays for afterwards, if the clean does not help. **No injector swap**
-and **no plug change for now** (*his decisions*, 3/11).
+and **no plug change for now** (*his decisions*, 3/11). **The days after**
+(*reasoned*, from SAE 2000-01-2858: water flakes deposits most): the
+clean burns hydrogen to water vapour, so a flake may come loose and lodge
+under a seat, an 18/10-like drop-out; if one comes, a warm leak-down on 3
+the same day or the next is the one moment it can be told from a seat
+or a guide. **The capture with the cut** (`cutscan.py --shares --name`)
+is the reading that separates: calmer with 3's share near 25 % → the
+deposit on 3 was the excess (H13); calmer with 3 still leading → 3 has
+its own cause (H1, item 9); no change → item 9. The display's own spread
+(48–105 loads off) is as large as the effect looked for, so `IdleHealth`
+alone does not decide it; the capture is the exception item 6's "no
+captures until the display shows a change" makes for a repair (*agreed
+with the owner*, 4/11). Above reserve, because the ECU puts a misfire
+on an empty tank down as P1300 (`open.md`, *What the forums say*).
+
+**Item 9 — after the decarbonisation** (*agreed with the owner*, 4/11,
+after the research): the cheapest tests that name a part on 3 without an
+injector swap or a plug change. **The pinch** for H3's line near runner 3;
+**the stethoscope** for a lifter or valve on 3 (H1); **the warm
+leak-down** decides H1's seat — VW gives no procedure for this engine,
+so the garage's own, the four against each other; **the generic OBD-II
+read** asks whether this ECU keeps what its VW view does not show
+(`open.md`, *What the forums say*, 4/11). The brake servo's hose goes
+last and held on the handbrake because pinching it takes the assist away
+(*general*).
 
 ## Standing items — why
 
