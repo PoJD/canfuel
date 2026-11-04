@@ -72,8 +72,12 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
    - **A stethoscope (or a long screwdriver) on the cam cover above
      cylinder 3, hot**, against 1, 2 and 4: a tick or a hiss on one.
    - **A warm leak-down on all four** at a garage, oil at 80 °C or
-     more: the percentages, and where it hisses — tailpipe, throttle or
-     oil filler.
+     more: the upper intake off and all four plugs out (the same plugs
+     back afterwards; plug 3's gap measured while out); each cylinder at
+     TDC on its compression stroke, firing order 1-3-4-2; the crank held
+     while the air is on. For each: **the percentage, and where it
+     hisses** — tailpipe, throttle, oil filler, bubbles in the coolant
+     tank, the next plug hole.
    - With VCDS connected anyway after a stored P030x: **a generic
      OBD-II read** (modes 02 and 06), read only, saved.
 
@@ -243,7 +247,13 @@ after the research): the cheapest tests that name a part on 3 without an
 injector swap or a plug change. **The CO₂ test** for H20, the cheapest
 of all; **the stethoscope** for a lifter or valve on 3 (H1); **the warm
 leak-down** decides H1's seat — VW gives no procedure for this engine,
-so the garage's own, the four against each other; **the generic OBD-II
+so the garage's own, the four against each other: where it hisses names
+the leak (tailpipe an exhaust valve, throttle an inlet valve, the oil
+filler the rings, bubbles in the tank H20's gasket, the next plug hole
+the gasket between cylinders; *general*), and 3 against the others
+matters more than any absolute figure. Warm because a seat that leaks
+hot can seal cold, which is what A4's cold compression missed. The
+crank held because the air turns the engine; **the generic OBD-II
 read** asks whether this ECU keeps what its VW view does not show
 (`open.md`, *What the forums say*, 4/11). *No pinch of the vacuum
 lines*: proposed 4/11 for a line near runner 3 and dropped the same day —

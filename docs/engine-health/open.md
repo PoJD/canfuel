@@ -1970,7 +1970,9 @@ crack) — one frame of it again whenever the borescope goes in.
 
 ## The idle's candidates, ranked
 
-**A judgement, not a measurement**, for S1, S2, S3 and S14. Re-read after
+**A judgement, not a measurement**, for S1, S2, S3 and S14. **Mirrored in
+Czech on the owner's private page *Pořadí hypotéz volnoběhu***, republished
+with every change here (`CLAUDE.md`, the currency pass). Re-read after
 every test and whenever the symptom list changes; the history of each re-read
 is in git.
 

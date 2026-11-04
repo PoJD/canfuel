@@ -443,6 +443,13 @@ in the same commit.** He must never have to ask for it. The pass:
    stand; a settled item moved to `refuted.md`.
 6. Then `grep -n -i "not yet\|next \|tonight\|postpon\|waits\|until"` over
    the folder and read each hit.
+7. **The owner's private page *Pořadí hypotéz volnoběhu*** (Czech; find it
+   with the Artifact tool's `action: "list"`, `read` it, update and publish
+   to the same URL): whenever the ranking, a hypothesis's for and against,
+   its test or `plan.md`'s order of tests changes, the page is republished
+   in the same session, with its "stav k" date (*the maintainer, 4/11/2026*).
+   It mirrors `open.md`, *The idle's candidates, ranked*, and `plan.md`; it
+   is never the source.
 
 **The pass applies to its own edits**: what it changes is checked the same
 way before the commit. A commit that leaves the folder inconsistent with
