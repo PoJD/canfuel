@@ -136,10 +136,12 @@
  *
  *   b0  IdleHealth   0-200, 100 = the engine before the repair.
  *                    255 = not converged (IdleSec below IDLE_CONVERGE_S)
- *   b1  IdleRough    the raw grade, 1/32 rpm, saturating at 254.
- *                    255 = no settled idle yet this start
+ *   b1  Misfires     dips of IDLE_TRIP_RPM in the last MISF_WINDOW_S s of
+ *                    settled idle, saturating at 254. 255 = no settled idle
+ *                    yet this start
  *   b2  IdleSec      settled idle this start, seconds, saturating at 255
- *   b3  StartHealth  RESERVED, always 255 until a dozen good starts fit it
+ *   b3  MisfAvg      the start's dips per minute of settled idle, 0.1 units,
+ *                    saturating at 254. 255 = under a second of idle
  *   b4  StartCrank   first turn to first firing, 32 ms units, saturating 254
  *   b5  StartDip     rpm lost after first firing, saturating 254
  *   b6  StartClt     coolant at first firing, C + 50
@@ -153,7 +155,7 @@
  * every field that is not known yet publishes 255 rather than zero -- and so
  * does the whole frame while the bus is quiet, where the other frames go to
  * zero. The raw fields saturate at 254 to keep 255 unambiguous. */
-#define HEALTH_LAYOUT_VERSION   1u
+#define HEALTH_LAYOUT_VERSION   2u     /* 2 since 4/11/2026: b1, b3 */
 #define HEALTH_VERSION_SHIFT    5u
 #define HEALTH_UNKNOWN          255u
 #define HEALTH_SAT              254u
@@ -204,6 +206,29 @@
  * grade still a third short of its value -- and an unconverged grade reads
  * HEALTHY, because the filter starts from zero at every start. */
 #define IDLE_CONVERGE_S         30u
+
+/* THE MISFIRE ESTIMATE, b1 and b3 (layout 2, 4/11/2026, the owner's request:
+ * replacing IdleRough, which only restated IdleHealth, and the never-used
+ * StartHealth). dips_cheap() in tools/idledips.py on the idle gate above: an
+ * event is a sample IDLE_TRIP_RPM or more below the baseline, and the next
+ * needs engine speed back within MISF_REARM_RPM of it first. Counted into
+ * MISF_WINDOW_S buckets of one second of SETTLED IDLE, so the window holds
+ * still while the car moves. misfires() in idledips.py is the oracle.
+ *
+ * Why 20 and a minute, measured (docs/firmware/open.md 11, *Misfires*): over
+ * every capture with a VCDS 014 log beside it, warm and standing, no moment
+ * had 014 counting in the previous minute with this window at zero, and it
+ * read zero in about a quarter of the moments 014 was silent. Per event it
+ * misses most of 014's counts, so it is a minute counter or nothing. It is
+ * an ESTIMATE of 014 at a standing idle, not 014; driving it does not count.
+ *
+ * MisfAvg is total * MISF_AVG_SCALE / whole idle seconds, rounded: one
+ * division by a variable a second, in the 1 s health slot. A DECISION: the
+ * alternative, an average of completed minutes, is the same division. */
+#define MISF_REARM_RPM          10u
+#define MISF_WINDOW_S           60u
+#define MISF_AVG_SCALE          600u    /* 0.1 events a minute: 60 s x 10    */
+#define MISF_TOTAL_MAX          65535u
 
 /* THE START. First firing is the first 0x280 at or above START_FIRED_RPM. A
  * DECISION: both recorded starts crank on a plateau of 200-270 rpm and fire

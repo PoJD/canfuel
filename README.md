@@ -40,8 +40,8 @@ hex rather than assumed.
 
 | Space | Used | Of | Share | What it holds |
 |---|---|---|---|---|
-| Program space | 17,712 B | 32,768 B | 54.1 % | the firmware itself |
-| Data space | 402 B | 3,649 B | 11.0 % | RAM |
+| Program space | 18,826 B | 32,768 B | 57.5 % | the firmware itself |
+| Data space | 474 B | 3,649 B | 13.0 % | RAM |
 
 The **data EEPROM is not in that table**, because the compiler
 would report it as empty: the hex initialises none of it. It is written

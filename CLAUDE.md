@@ -283,7 +283,7 @@ the same breath as here** — a mismatch shows plausible wrong numbers, not an
 error. `test/test_txframes.c` pins every offset against the TRI file. Every
 field on the wire is coupled, 0x602 and 0x603 included. **0x603** (CAN
 health) is sent only with JP1, so it reads zero in a closed dashboard by
-design. **0x604** (idle grade and the start) is **not** behind JP1, and its
+design. **0x604** (idle grade, misfire estimate, the start) is **not** behind JP1, and its
 "not known" is 255, never 0. The coupling to `kicad` is the pin table above,
 one-way and frozen.
 
@@ -545,8 +545,8 @@ his phone. Check the platform and for a VCDS install; if unclear, ask once.
   when the message arrived.
 - **The MFD and the CAN capture are one or the other, and the converter goes
   with the MFD**: a capture never contains 0x600–0x604. Everything from a
-  captured session is computed from the ECU's raw frames — `IdleHealth` and
-  the start by `tools/idledips.py`'s `health_summary()`, the oracle 0x604 is
+  captured session is computed from the ECU's raw frames — `IdleHealth`,
+  `Misfires` and the start by `tools/idledips.py`'s `health_summary()`, the oracle 0x604 is
   diffed against. Never ask him to read the display during a capture.
 
 ### Tools for the car

@@ -113,7 +113,8 @@ void txframes_gather_health(tx_values_t *v, const compute_t *c, uint32_t now_ms)
 
     if (!compute_data_live(c, now_ms)) {
         v->health_idle   = HEALTH_UNKNOWN;
-        v->health_rough  = HEALTH_UNKNOWN;
+        v->health_misf   = HEALTH_UNKNOWN;
+        v->health_misf_avg = HEALTH_UNKNOWN;
         v->health_idle_s = HEALTH_UNKNOWN;
         v->health_crank  = HEALTH_UNKNOWN;
         v->health_dip    = HEALTH_UNKNOWN;
@@ -123,7 +124,8 @@ void txframes_gather_health(tx_values_t *v, const compute_t *c, uint32_t now_ms)
     }
 
     v->health_idle   = compute_idle_health(c);
-    v->health_rough  = compute_idle_rough(c);
+    v->health_misf   = compute_misfires(c);
+    v->health_misf_avg = compute_misf_avg(c);
     v->health_idle_s = compute_idle_s(c);
     v->health_crank  = c->health.start_crank;
     v->health_dip    = c->health.start_dip;
@@ -160,9 +162,9 @@ void txframes_diag(const tx_values_t *v, uint8_t *out)
 void txframes_health(const tx_values_t *v, uint8_t *out)
 {
     out[0] = v->health_idle;
-    out[1] = v->health_rough;
+    out[1] = v->health_misf;
     out[2] = v->health_idle_s;
-    out[3] = (uint8_t)HEALTH_UNKNOWN;   /* StartHealth, reserved: see config.h */
+    out[3] = v->health_misf_avg;
     out[4] = v->health_crank;
     out[5] = v->health_dip;
     out[6] = v->health_clt;

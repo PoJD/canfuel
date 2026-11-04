@@ -57,6 +57,15 @@ typedef struct {
     bool     have_prev_rpm;
     bool     idling;            /* settled on the last frame                 */
 
+    /* --- the misfire estimate, misfires() in idledips.py ---------------- */
+    uint8_t  misf_bucket[MISF_WINDOW_S]; /* events per second of idle      */
+    uint32_t misf_next_ms;      /* idle_ms at which the window steps on      */
+    uint16_t misf_sum;          /* the window's total                        */
+    uint16_t misf_total;        /* this start, saturating at MISF_TOTAL_MAX  */
+    uint8_t  misf_idx;          /* the bucket being filled                   */
+    uint8_t  misf_filled;       /* buckets stepped into since the start      */
+    bool     misf_armed;        /* the next dip may count                    */
+
     /* --- the start ------------------------------------------------------ */
     uint8_t  start_phase;       /* HEALTH_START_* in compute.c               */
     bool     start_seen;        /* the current start was watched from rest   */
@@ -169,6 +178,8 @@ void compute_on_engine(compute_t *c, const decode_state_t *st, uint32_t now_ms);
 uint8_t compute_idle_rough(const compute_t *c);     /* 1/32 rpm            */
 uint8_t compute_idle_health(const compute_t *c);    /* 0-200, 100 = before */
 uint8_t compute_idle_s(const compute_t *c);         /* seconds, saturating */
+uint8_t compute_misfires(const compute_t *c);       /* last minute of idle */
+uint8_t compute_misf_avg(const compute_t *c);       /* 0.1 a minute        */
 
 /* False once the bus has gone quiet for longer than DATA_TIMEOUT_MS. The
  * transmitted frames then go to zero rather than freezing at their last

@@ -140,16 +140,16 @@ of which 26.4 are 0x480); the rest are the scheduler's own constants.
 | slot 0: the A/D, the gather and 0x600 | 9,617 | 10 | 96,170 | 2.40 % |
 | slot 1: 0x601 | 771 | 10 | 7,710 | 0.19 % |
 | 0x480 on top of the frame: counter, totals, flow bucket | 2,077 | 26.4 | 54,832 | 1.37 % |
-| 0x280 on top of the frame: the idle grade and the start watch, **upper bound** | 1,544 | 93.9 | 144,982 | 3.62 % |
+| 0x280 on top of the frame: the idle grade, the misfire window and the start watch, **upper bound** | 1,939 | 93.9 | 182,072 | 4.55 % |
 | the millisecond ISR | 34 | 1,000 | 34,000 | 0.85 % |
 | slot 2: the trip totals and 0x602 | 1,582 | 1 | 1,582 | 0.04 % |
 | slot 3: 0x603 | 803 | 1 | 803 | 0.02 % |
-| slot 6: the health gather and 0x604 | 1,652 | 1 | 1,652 | 0.04 % |
+| slot 6: the health gather and 0x604 | 3,325 | 1 | 3,325 | 0.08 % |
 | slot 22: `persist_save` deciding not to write | 625 | 1 | 625 | 0.02 % |
 | the EEPROM write, amortised over its interval | 192,000 | 1 per 20 s | 9,600 | 0.24 % |
 | the tank sample | 890 | 1 | 890 | 0.02 % |
 | the range basis, one completed km at 100 km/h | 553 | 1 per 36 s | 15 | 0.00 % |
-| **total** | | | **801,150** | **20.0 %** |
+| **total** | | | **839,913** | **21.0 %** |
 
 **Four fifths of the machine is idle**, and the shape of what is left is worth
 reading twice:
@@ -157,8 +157,8 @@ reading twice:
 - **The 0x280 row is an upper bound, and a loose one.** `cycles.py` sums every
   branch of a function, and `compute_on_engine()` has two that run once per
   engine start and never again: the coolant conversion, a reciprocal multiply,
-  and the crank time's rotate. The grade itself, `idle_grade()`, is 603 of the
-  1,544. It is costed at the bound anyway, because a bound is what this table
+  and the crank time's rotate. The grade itself, `idle_grade()` with the misfire
+  window (layout 2), is 924 of the 1,939. It is costed at the bound anyway, because a bound is what this table
   is for, and even there it is under four per cent -- the price of stepping
   the grade on every change of the speed field rather than on a timer.
 
@@ -299,7 +299,7 @@ three.
 | 1 | `txframes_engine` + `hal_can_send` | 771 | 193 µs |
 | 2 | `txframes_gather_trip` (the two divisions by 1000), `txframes_trip`, `hal_can_send` | 1,582 | 396 µs |
 | 3 | `txframes_gather_diag`, `txframes_diag`, `hal_can_send` | 803 | 201 µs |
-| 6 | `txframes_gather_health` (one division by 1000, for IdleSec), `txframes_health`, `hal_can_send` | 1,652 | 413 µs |
+| 6 | `txframes_gather_health` (two divisions by 1000, for IdleSec and MisfAvg, and MisfAvg's one `___lldiv` by a variable), `txframes_health`, `hal_can_send` | 3,325 | 831 µs |
 | 22 | `persist_save` deciding not to write | 625 | 156 µs |
 | 22 | `persist_save` **writing**, three times a minute | — | **~48 ms** |
 

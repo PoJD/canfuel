@@ -407,6 +407,8 @@ TOLERANCE = {
     # tools/idledips.py is the oracle here, not this file.
     "idle_rough":  (0, 0.0),
     "idle_ms":     (0, 0.0),
+    "misf_window": (0, 0.0),
+    "misf_total":  (0, 0.0),
     "start_crank": (0, 0.0),
     "start_dip":   (0, 0.0),
     "start_clt":   (0, 0.0),

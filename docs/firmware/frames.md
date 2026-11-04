@@ -238,7 +238,7 @@ the numbers stay plausible. The uptime beside it makes the restart visible and
 this byte says whether it was the watchdog or the car's supply — different
 faults with different fixes.
 
-## 0x604 @ 1 s — engine health: the idle grade and the start
+## 0x604 @ 1 s — engine health: the idle grade, the misfire estimate and the start
 
 **Not JP1-gated.** An ordinary frame like 0x600–0x602, transmitted whenever the
 converter is powered. 0x603 two sections up sets the opposite precedent, and
@@ -248,9 +248,9 @@ while this is for a closed one.
 | Byte | Name | Unit | Notes |
 |---|---|---|---|
 | 0 | IdleHealth | 0–200 | 100 = the engine before the repair. **255 = not converged** |
-| 1 | IdleRough | 1/32 rpm | the raw grade, 0–7.94, saturating at 254. 255 = nothing graded yet this start |
+| 1 | Misfires | count | dips of 20 rpm and more in the **last 60 s of settled idle**, saturating at 254. 255 = no settled idle yet this start. *Layout 2*; was IdleRough |
 | 2 | IdleSec | s | settled idle graded this start, saturating at 255 |
-| 3 | StartHealth | 0–200 | **reserved: always 255** until the constants are fitted |
+| 3 | MisfAvg | 0.1 / min | the start's dips per minute of settled idle, rounded, saturating at 254 (25.4). 255 = under 1 s of idle. *Layout 2*; was StartHealth, reserved |
 | 4 | StartCrank | 32 ms | first turn of the crank to first firing, saturating at 254 (8.1 s) |
 | 5 | StartDip | rpm | first-firing speed minus the lowest in the 2 s after it, saturating at 254 |
 | 6 | StartClt | °C + 50 | coolant at first firing; 255 = no 0x288 had arrived |
@@ -333,6 +333,39 @@ between 10 s windows. **0 is "no measurable step at all"**, which no engine
 reaches, so the index never bottoms out and always has room to show an
 improvement.
 
+### The misfire estimate — Misfires and MisfAvg (layout 2, 4/11/2026)
+
+*Added at the owner's request*: a number that reads **zero whenever VCDS
+014 has not counted in the last minute**, so that the misfire counter can
+be read off the display without connecting VCDS. **It is an estimate of
+014 at a standing idle, not 014**, and it does not count while driving.
+It replaced IdleRough (only IdleHealth restated: the index is
+`IdleRough × 25 >> 4`) and the never-published StartHealth.
+
+**What it counts** is `dips_cheap()` (`tools/idledips.py`) on the idle
+grade's own gate, settle rule and baseline: a sample 20 rpm or more below
+the baseline, counted once until engine speed is back within 10 rpm of it —
+constants frozen before the repair. **Misfires** is the count in the last
+60 buckets of one second of settled idle; the window steps only on idle
+seconds, so it **holds the last minute of idle while the car moves**.
+**MisfAvg** is the start's total over its whole seconds of settled idle,
+× 600, rounded — one division by a variable a second, in this slot.
+`misfires()` is the oracle, diffed exactly like the grade.
+
+**Why a minute and 20 rpm, measured** (`docs/firmware/open.md` 11,
+*Misfires*): over every capture with a 014 log beside it, warm and
+standing, **no moment had 014 counting in the previous minute with the
+window at zero** (0.4 % at 22 rpm, 13 % at 25); when 014 was silent the
+window read zero in about a quarter of the moments. **Per single event it
+misses most of 014's counts**, so a shorter window would not do: the ECU
+times each cylinder off its own crank sensor, while 0x280 carries one
+recomputed speed per 180°. **Not while driving**: in gear the whole car's
+inertia hangs on the crank and a missed stroke barely moves engine speed;
+014's few road counts could not be told from noise.
+
+**Read it as**: zero = 014 most likely did not count in the last minute of
+idle; anything above zero = dips the ECU may or may not have counted.
+
 ### The start
 
 | | `18_coldstart_z1`, before the repair | `19_postfix_drive_z1`, after |
@@ -356,11 +389,10 @@ improvement.
   temperature beside them to be two different columns. It is also the one
   temperature the display *cannot* take off the bus itself, because it is the
   value at a past instant.
-- **StartHealth ships empty.** Two starts anchor nothing, and an index embeds
-  constants that will be revised; a raw number survives the revision. Once a
-  dozen good starts have been recorded the constants are fitted, byte 3 starts
-  being published and the layout version goes up — **the layout does not
-  change**.
+- **StartHealth was never published** and its byte went to MisfAvg in
+  layout 2 (4/11/2026). Two starts anchor nothing, and an index embeds
+  constants that will be revised; the raw bytes 4–6 survive the revision. A
+  start index, if one is ever fitted, needs a byte of its own.
 
 ⚠ **A stall is indistinguishable from a bad start inside the 2 s window**, and
 no frame this firmware accepts carries a clutch switch, so the converter cannot
@@ -369,7 +401,7 @@ stall thirty seconds later is not a start at all. **A single reading is noise;
 the instrument is the distribution over many mornings.**
 
 **The oracle is `tools/idledips.py`** — `roughness()` for the grade,
-`start_fields()` for the start — and `replay.py --host-build` diffs the C
+`misfires()` for the misfire estimate, `start_fields()` for the start — and `replay.py --host-build` diffs the C
 against it over every timestamped fixture, **exactly**: integer arithmetic on
 both sides, the same samples, the same clock, nothing to round.
 

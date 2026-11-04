@@ -485,6 +485,109 @@ def roughness(gated, t_from=None, t_to=None, deadband_rpm=ROUGH_DEADBAND_RPM,
     return mean_rpm, acc >> ROUGH_OUT_SHIFT, len(steps), idle_s
 
 
+# --- the misfire estimate ---------------------------------------------------
+#
+# `Misfires` and `MisfAvg` on 0x604 (docs/firmware/frames.md), added 4/11/2026
+# at the owner's request: a number that reads ZERO whenever VCDS 014 has not
+# counted in the last minute, so that he need not connect VCDS to know. It is
+# dips_cheap() -- the same gate, settle rule, baseline, TRIP_RPM and REARM_RPM,
+# frozen since before the repair -- counted into a sliding window of the last
+# MISF_WINDOW_S seconds of settled idle, plus a total for the start.
+#
+# Why these and not a finer detector (docs/firmware/open.md 11, *Misfires*):
+# over every capture with a 014 log beside it, warm, at a standing idle, no
+# moment had 014 counting in the previous minute with this window at zero
+# (TRIP_RPM 20; 0.4 % at 22, 13 % at 25), and it read zero in about 28 % of
+# the moments 014 was silent. Per single event it misses most of 014's
+# counts -- the ECU times each cylinder off its own crank sensor, the bus
+# carries one recomputed speed per 180 deg -- so it is a minute counter or
+# nothing. ⚠ It is NOT 014 and is not sold as one: a misfire estimate, at a
+# standing idle only. Driving, a missed stroke barely moves engine speed in
+# gear, and 014's few road counts could not be told from noise.
+#
+# The window advances one bucket per whole second of settled idle, counted on
+# the same millisecond idle clock the firmware keeps, so it holds still while
+# the car moves and the display keeps the last minute of idle.
+
+MISF_WINDOW_S = 60       # buckets of one second of settled idle
+MISF_TOTAL_MAX = 65535   # the start's count saturates here (uint16)
+MISF_AVG_SCALE = 600     # MisfAvg in 0.1 events per minute: total * 600 / s
+
+
+def misfires(gated, t_from=None, t_to=None, trip_rpm=TRIP_RPM,
+             rearm_rpm=REARM_RPM, settle_s=SETTLE_S):
+    """The firmware's misfire estimate, line for line with compute.c.
+
+    Returns (window_sum, total, idle_ms): the events in the last
+    MISF_WINDOW_S seconds of settled idle, the events since t_from, and the
+    settled idle in whole milliseconds as the firmware's clock counts it.
+    """
+    trip = int(trip_rpm * 4)
+    rearm = int(rearm_rpm * 4)
+    base = None
+    idle_since = None
+    prev_t = None
+    idle_s = 0.0
+    armed = True
+    buckets = [0] * MISF_WINDOW_S
+    idx = 0
+    wsum = 0
+    filled = 0
+    next_ms = 1000
+    total = 0
+    for t, rpm_q4, throttle, speed_mmh in gated:
+        if (t_from is not None and t < t_from) or (t_to is not None and t >= t_to):
+            continue
+        if speed_mmh > GATE_SPEED_MMH or throttle > GATE_THROTTLE or rpm_q4 == 0:
+            base, idle_since, prev_t = None, None, None
+            armed = True
+            continue
+        if idle_since is None:
+            idle_since = t
+        if base is None:
+            base = rpm_q4 << EWMA_SHIFT
+        baseline = base >> EWMA_SHIFT
+        below = baseline - rpm_q4
+        settled = (t - idle_since) >= settle_s
+        if not settled and below >= trip:
+            idle_since = t
+        if settled:
+            if prev_t is not None:
+                idle_s += t - prev_t
+            if round(idle_s * 1000.0) >= next_ms:
+                next_ms += 1000
+                idx = idx + 1 if idx + 1 < MISF_WINDOW_S else 0
+                if filled >= MISF_WINDOW_S - 1:
+                    wsum -= buckets[idx]
+                else:
+                    filled += 1
+                buckets[idx] = 0
+            if armed and below >= trip:
+                armed = False
+                if buckets[idx] < 255:
+                    buckets[idx] += 1
+                    wsum += 1
+                if total < MISF_TOTAL_MAX:
+                    total += 1
+            elif not armed and below <= rearm:
+                armed = True
+            prev_t = t
+        if not settled:
+            prev_t = t
+        base += rpm_q4 - baseline
+    return wsum, total, round(idle_s * 1000.0)
+
+
+def misf_avg(total, idle_ms):
+    """MisfAvg, 0.1 events per minute of settled idle, as compute.c rounds it;
+    None (the firmware's 255) with less than a second of idle."""
+    s = idle_ms // 1000
+    if s == 0:
+        return None
+    v = (total * MISF_AVG_SCALE + s // 2) // s
+    return 254 if v > 254 else v
+
+
 def idle_index(counts):
     """The 0-200 index from a roughness byte. 100 = the engine before the repair.
 
@@ -607,9 +710,13 @@ def health_summary(path):
     frames = canlog.parse_file(path, fix_doubled=os.path.basename(path).startswith("02"))
     if not frames or frames[0].ts_ms is None:
         return {}
-    _, counts, _, idle_s = roughness(series(path)[3], t_from=last_start_s(frames))
+    gated = series(path)[3]
+    t0 = last_start_s(frames)
+    _, counts, _, idle_s = roughness(gated, t_from=t0)
+    wsum, total, _ = misfires(gated, t_from=t0)
     crank, dip, clt = start_fields(frames)
     return {"idle_rough": counts, "idle_ms": round(idle_s * 1000.0),
+            "misf_window": wsum, "misf_total": total,
             "start_crank": crank, "start_dip": dip, "start_clt": clt}
 
 

@@ -15,8 +15,8 @@
  *   0603;0;3;1 the six flag bits, shift = n and mask = 1 << n
  *   0603;0;4;1 ResetCause (mask 001F)           0603;0;5;1 TxRefused
  *   0603;0;6;2 Uptime
- *   0604;0;0;1 IdleHealth  0604;0;1;1 IdleRough   0604;0;2;1 IdleSec
- *   0604;0;3;1 StartHealth 0604;0;4;1 StartCrank  0604;0;5;1 StartDip
+ *   0604;0;0;1 IdleHealth  0604;0;1;1 Misfires    0604;0;2;1 IdleSec
+ *   0604;0;3;1 MisfAvg     0604;0;4;1 StartCrank  0604;0;5;1 StartDip
  *   0604;0;6;1 StartClt
  *   0604;0;7;1 IdleNow (mask 0001), StartSeen (shift 1, mask 0002),
  *              HealthLive (shift 2, mask 0004)
@@ -434,7 +434,8 @@ static void test_health_frame_offsets(void)
 
     memset(&v, 0, sizeof v);
     v.health_idle   = 0x11u;
-    v.health_rough  = 0x22u;
+    v.health_misf   = 0x22u;
+    v.health_misf_avg = 0x77u;
     v.health_idle_s = 0x33u;
     v.health_crank  = 0x44u;
     v.health_dip    = 0x55u;
@@ -444,9 +445,9 @@ static void test_health_frame_offsets(void)
     txframes_health(&v, out);
 
     TT_EQ(out[0], 0x11u);               /* IdleHealth              */
-    TT_EQ(out[1], 0x22u);               /* IdleRough               */
+    TT_EQ(out[1], 0x22u);               /* Misfires                */
     TT_EQ(out[2], 0x33u);               /* IdleSec                 */
-    TT_EQ(out[3], HEALTH_UNKNOWN);      /* StartHealth, reserved   */
+    TT_EQ(out[3], 0x77u);               /* MisfAvg                 */
     TT_EQ(out[4], 0x44u);               /* StartCrank              */
     TT_EQ(out[5], 0x55u);               /* StartDip                */
     TT_EQ(out[6], 0x66u);               /* StartClt                */
@@ -459,6 +460,7 @@ static void test_health_frame_offsets(void)
     TT_EQ(HEALTH_FLAG_START_SEEN, 0x02u);
     TT_EQ(HEALTH_FLAG_DATA_LIVE, 0x04u);
     TT_EQ(out[7] >> HEALTH_VERSION_SHIFT, HEALTH_LAYOUT_VERSION);
+    TT_EQ(HEALTH_LAYOUT_VERSION, 2u);
 }
 
 /* The opposite of 0x600-0x602, for the same reason they go to zero: every
@@ -480,6 +482,7 @@ static void test_health_reads_unknown_on_a_quiet_bus(void)
     }
     TT_EQ(out[7] & 0x1Fu, 0u);          /* not even HealthLive       */
     TT_EQ(out[7] >> HEALTH_VERSION_SHIFT, HEALTH_LAYOUT_VERSION);
+    TT_EQ(HEALTH_LAYOUT_VERSION, 2u);
 }
 
 /* End to end off the real cold start, as main.c would transmit it at the end
@@ -496,8 +499,10 @@ static void test_the_cold_start_on_the_wire(void)
     txframes_gather_health(&v, &r.cp, r.cp.last_data_ms);
     txframes_health(&v, out);
 
-    TT_EQ(out[1], 85u);                 /* 2.66 rpm                */
+    TT_EQ(compute_idle_rough(&r.cp), 85u); /* 2.66 rpm             */
     TT_EQ(out[0], (85u * 25u) >> 4);    /* 132, the index          */
+    TT_EQ(out[1], 14u);                 /* the last idle minute    */
+    TT_EQ(out[3], 112u);                /* 59 in 315 s: 11.2/min   */
     TT_EQ(out[4], 38u);                 /* 1.22 s of cranking      */
     TT_EQ(out[5], 141u);                /* 451 -> 310 rpm          */
     TT_EQ(out[6], 66u);                 /* 16 C                    */

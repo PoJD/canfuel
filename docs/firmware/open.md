@@ -8,7 +8,8 @@ always used, because code and documents cite them; the answered ones are in
 under *Never resolved but not required*.
 
 **One is open, 11, and it is settled for now** — `IdleHealth` stays as it
-is — and waits on one test after the engine's idle is solved. **7 closed on
+is, with an estimate of 014 beside it since 4/11/2026 (*Misfires*) — and
+waits on one test after the engine's idle is solved. **7 closed on
 15/10/2026**, when 10 decided the scale, and **10 closed on 23/10/2026** at
 the owner's decision (`can-decoding.md`, *Resolved questions*).
 
@@ -228,8 +229,49 @@ stops mixed in. **The decision of 4/10 stands**: on settled adaptations
 `IdleHealth` below 80 says little about 014, and 014 below 80 little
 about the grade.
 
+### Misfires — an estimate of 014 beside the grade, 4/11/2026
+
+*The owner's request, 4/11/2026:* a number on the display that reads
+**zero whenever 014 has not counted** — stricter than 014 rather than
+looser, measured all the time without a settling window, and if it could,
+driving too. **`IdleHealth` stays as it is**; the estimate took IdleRough's
+byte and StartHealth's (`frames.md`, layout 2). Measured the same day over
+every capture with a 014 log beside it (now `24`–`43`, `41`–`43` added; the
+scripts were *ad hoc* and are not kept — `s3align.py` holds the pairing):
+
+- **Per event, deeper dips are counted more often.** Of the dips at a warm
+  standing idle, a 014 rise followed within 1.5 s after 17 % of those of
+  10–15 rpm (a random moment: 13–17 %), 25 % of 15–20, 40 % of 20–25,
+  46 % of 25–30 and 60 % of 30–40. Before a rise there was a dip of 15 rpm
+  or more 74 % of the time (other samples 39 %), of 20 or more 41 % (12.5 %).
+  So **most of 014's counts come with no deep dip on the bus**, and a
+  detector strict enough to miss under 10 % of them fires about 70 times a
+  minute and never reads zero.
+- **Over the last minute it is a different story.** `dips_cheap()` with
+  its frozen 20 rpm trip, counted over a sliding minute of settled idle, at
+  3,431 moments: **014 had counted in the previous minute and the window
+  read zero: 0 %** (at a trip of 16 and 18 also 0 %, at 22 0.4 %, at 25
+  13 %, at 30 52 %); with 014 silent the window read zero 28 % of the time
+  (0 % at 16, 12 % at 18, 37 % at 22). **20 is the strictest trip that still
+  reads zero sometimes.** Windows of 3 s would not do: VCDS itself lags a
+  dip by up to 1.5 s.
+- **With the A/C on** (b7 ≥ 36 over the whole minute, warm, standing): on
+  the one capture since the new MAF that has such a minute, `40` (21/10,
+  120 moments), the window read **zero 79 % of the time, 0.2 dips a
+  minute**, against 0.8 % and about 8 a minute with it off over every
+  capture. 014 is silent with the A/C on (S3) and so, nearly, is this. On
+  the old MAF (`19`, `20`, 24/9) the A/C did not calm it: 20–26 a minute.
+- **Driving: not counted.** At 1,200 rpm and more 014 rose 16 times in all
+  the logs; every detector tried read tens to hundreds of dips a minute of
+  noise there, and in gear the car's inertia hides a missed stroke.
+
+**The decision** (*the owner*, 4/11/2026): **Misfires** (byte 1) = dips of
+20 rpm in the last 60 s of settled idle; **MisfAvg** (byte 3) = the start's
+dips per minute of idle, in tenths. An estimate, read as "zero means 014
+most likely did not count"; VCDS 014 stays the instrument for misfires.
+
 ### How it closes
 
 When the deliberate-misfire test has been run and read: `IdleHealth`
 either gets a scale or an anchor from it, or is confirmed as it is.
-Until then nothing in `src/` changes for this question.
+Until then nothing in `src/` changes for the grade itself.

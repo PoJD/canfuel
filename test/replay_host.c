@@ -80,6 +80,8 @@ int main(int argc, char **argv)
             printf("idle_rough=%lu\n",
                    (unsigned long)(r.cp.health.rough_acc >> ROUGH_OUT_SHIFT));
             printf("idle_ms=%lu\n", (unsigned long)r.cp.health.idle_ms);
+            printf("misf_window=%u\n", r.cp.health.misf_sum);
+            printf("misf_total=%u\n", r.cp.health.misf_total);
             printf("start_crank=%u\n", r.cp.health.start_crank);
             printf("start_dip=%u\n", r.cp.health.start_dip);
             printf("start_clt=%u\n", r.cp.health.start_clt);

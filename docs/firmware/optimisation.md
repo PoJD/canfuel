@@ -313,7 +313,9 @@ the FIFO's 22 ms is the real limit, but it is one fewer thing to explain.
 Three `___lldiv` calls remain and they are not going anywhere: they divide by
 `flow_sum_ms`, `speed_mmh` and `seg_count * 1000`, which are variables. A
 reciprocal would have to be derived at run time, which costs more than the
-division it replaces.
+division it replaces. *A fourth since 4/11/2026*: MisfAvg divides the
+start's misfire estimate by its whole idle seconds, once a second in the
+0x604 slot (`compute_misf_avg()`, `frames.md`), for the same reason.
 
 ---
 

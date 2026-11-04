@@ -47,7 +47,8 @@ typedef struct {
     uint16_t diag_uptime_s;     /* seconds since power-up, saturating      */
     /* 0x604 -- engine health, HEALTH_UNKNOWN (255) wherever not known    */
     uint8_t  health_idle;       /* IdleHealth, 0-200                       */
-    uint8_t  health_rough;      /* IdleRough, 1/32 rpm                     */
+    uint8_t  health_misf;       /* Misfires, the last minute of idle       */
+    uint8_t  health_misf_avg;   /* MisfAvg, 0.1 a minute                   */
     uint8_t  health_idle_s;     /* IdleSec                                 */
     uint8_t  health_crank;      /* StartCrank, 32 ms                       */
     uint8_t  health_dip;        /* StartDip, rpm                           */

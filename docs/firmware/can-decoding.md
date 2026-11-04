@@ -442,7 +442,8 @@ change of 2.75 rpm counts for nothing; one of 15 rpm counts for 12. **Of the
 sixteen frames, five are changes** — which is trap 6 in one table, and why a
 per-frame average would have diluted the grade by three.
 
-At the end of the log the accumulator is 2314, so **IdleRough = 2314 >> 5 = 72**,
+At the end of the log the accumulator is 2314, so **IdleRough = 2314 >> 5 = 72**
+(the grade inside the firmware; on the wire only as IdleHealth since layout 2),
 2.25 rpm, against an exact mean step of 2.117 rpm over the same 1,488 events.
 The two agree to within the filter's memory of the last ten seconds, which is
 what a first-order filter is.

@@ -554,6 +554,13 @@ completing rather than load (`refuted.md` C19).
   off below ~20 % load; its sensitivity per dip moved five- to fiftyfold with
   the MAF. **So 014 is a yes/no witness, not a ruler.** Compare across time
   with engine speed or `IdleHealth`.
+- **An estimate of it on the display since 4/11** (*the owner's request*;
+  `docs/firmware/open.md` 11, *Misfires*): `Misfires` on 0x604, the dips
+  of 20 rpm in the last minute of standing idle. Over every capture with a
+  014 log, warm, **no minute in which 014 counted read zero on it**, and
+  with the A/C on (`40`) it read zero 79 % of the time as 014 does; per
+  single event it misses most of 014's counts, and it does not count
+  driving. Zero there reads "014 most likely silent"; VCDS decides.
 - **Session A, 3/10**, and **Session A after step 1b, 4/10**: the first warm
   stops ever with 014 at zero — on fresh adaptations — then counting again
   after five minutes of hard driving. **Session B, 4/10**: counting again,

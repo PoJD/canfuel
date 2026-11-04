@@ -29,6 +29,12 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
      clearly better**: one or two warm drives captured, on different
      days. Claude runs the capture; VCDS on **014, 003, 020**; 055 once
      at the end, warm idle. Write the stops.
+   - **Next time at the laptop, with the car at hand: the converter
+     flashed and the display updated** for `Misfires` and `MisfAvg`
+     (4/11): `python tools/flash.py --preserve-eeprom` (JP2 off before,
+     on after), then `tri/S-AQY.TRI` from `mfd15` uploaded through oDSS.
+     From then on, at the same warm stops, **`Misfires` and `MisfAvg`
+     beside `IdleHealth`** into the chat.
 6i. **The oil level on the new oil, about every 500 km** from the first
    reading (27/10, 155,024 km, at the top mark): the car on level ground
    and **at least 5 minutes standing**, the dipstick out, wiped, in, out,
@@ -98,7 +104,7 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
   - After a hard or long drive: switch off on arrival, no idling.
   - **Engine lamp flashing**: ease off at once, stop where safe, engine
     off, write it into the chat.
-- **`IdleHealth` only in the everyday state** — **blower on 1, one seat
+- **`IdleHealth` (and `Misfires` once flashed) only in the everyday state** — **blower on 1, one seat
   heater on 1, the lights on** — at warm stops that come anyway (oil
   95–100 °C, neutral, no throttle), with the oil temperature; any other
   state is named. **Idling is kept short**: no stop is made or lengthened
@@ -287,6 +293,14 @@ converter carries the idle's misfires (`open.md` S3), which is why the
 standing items keep idling short.
 
 ## Standing items — why
+
+- **`Misfires` beside `IdleHealth`** (*the owner's request*, 4/11):
+  an estimate of VCDS 014 off the bus — the dips of 20 rpm in the last
+  minute of standing idle, zero whenever 014 had not counted in that
+  minute over every capture with a 014 log, and near zero with the A/C on
+  as 014 is (`docs/firmware/open.md` 11, *Misfires*). It lets a stop say
+  whether 014 is counting without VCDS; VCDS stays the instrument.
+  `--preserve-eeprom` keeps the stored trip and tank (`flashing.md`).
 
 - **Every drive, for the converter** (all from this car's data): **122 of
   129 counted misfire events began at a standing idle** (`open.md` S3),

@@ -9,6 +9,7 @@
 
 #include "compute.h"
 #include "divconst.h"
+#include "fastmul.h"
 
 /* --- helpers ------------------------------------------------------------ */
 
@@ -35,6 +36,21 @@ static uint32_t div_round(uint32_t num, uint32_t den)
 static uint16_t clamp_u16(uint32_t v, uint32_t limit)
 {
     return (uint16_t)(v > limit ? limit : v);
+}
+
+/* The misfire window and count, empty: at power-up and at every new start.
+ * Only the bucket being filled is zeroed; the others are zeroed as the window
+ * steps into them, and misf_filled says until when their contents are stale.
+ * So there is no loop here, and nothing for tools/cycles.py to budget. */
+static void misf_clear(health_t *h)
+{
+    h->misf_bucket[0] = 0u;
+    h->misf_idx = 0u;
+    h->misf_sum = 0u;
+    h->misf_filled = 0u;
+    h->misf_next_ms = 1000u;
+    h->misf_total = 0u;
+    h->misf_armed = true;
 }
 
 /* --- the flow window ---------------------------------------------------- */
@@ -298,6 +314,7 @@ void compute_init(compute_t *c)
     c->health.start_crank = HEALTH_UNKNOWN;
     c->health.start_dip   = HEALTH_UNKNOWN;
     c->health.start_clt   = HEALTH_UNKNOWN;
+    misf_clear(&c->health);
 }
 
 void compute_reset_trip(compute_t *c)
@@ -722,6 +739,7 @@ static void idle_grade(health_t *h, const decode_state_t *st, uint32_t now_ms)
         h->have_prev_ms = false;
         h->have_prev_rpm = false;
         h->idling = false;
+        h->misf_armed = true;
         return;
     }
 
@@ -744,6 +762,35 @@ static void idle_grade(health_t *h, const decode_state_t *st, uint32_t now_ms)
     if (settled) {
         if (h->have_prev_ms) {
             h->idle_ms += elapsed(now_ms, h->prev_ms);
+        }
+        /* The window steps once per whole second of settled idle: once per
+         * frame at most, and frames come every 40 ms at idle, so a step is
+         * never owed for long. */
+        if (h->idle_ms >= h->misf_next_ms) {
+            h->misf_next_ms += 1000u;
+            h->misf_idx = (h->misf_idx + 1u < MISF_WINDOW_S)
+                        ? (uint8_t)(h->misf_idx + 1u) : 0u;
+            if (h->misf_filled >= MISF_WINDOW_S - 1u) {
+                h->misf_sum -= h->misf_bucket[h->misf_idx];
+            } else {
+                h->misf_filled++;
+            }
+            h->misf_bucket[h->misf_idx] = 0u;
+        }
+        /* dips_cheap()'s latch: one count per excursion past the trip, re-armed
+         * only once engine speed is back within MISF_REARM_RPM. */
+        if (h->misf_armed && baseline >= (uint32_t)rpm_q4 + IDLE_TRIP_RPM * 4u) {
+            h->misf_armed = false;
+            if (h->misf_bucket[h->misf_idx] < 255u) {
+                h->misf_bucket[h->misf_idx]++;
+                h->misf_sum++;
+            }
+            if (h->misf_total < MISF_TOTAL_MAX) {
+                h->misf_total++;
+            }
+        } else if (!h->misf_armed &&
+                   baseline <= (uint32_t)rpm_q4 + MISF_REARM_RPM * 4u) {
+            h->misf_armed = true;
         }
         /* One step per CHANGE of the field: a repeated value is the ECU
          * holding its last 180-degree window, not a firing event. */
@@ -801,6 +848,7 @@ static void start_watch(health_t *h, const decode_state_t *st, uint32_t now_ms)
         h->start_clt = HEALTH_UNKNOWN;
         h->rough_acc = 0u;
         h->idle_ms = 0u;
+        misf_clear(h);
     }
 
     if (h->start_phase == HEALTH_START_CRANKING) {
@@ -870,4 +918,24 @@ uint8_t compute_idle_s(const compute_t *c)
     uint32_t s = div_const(c->health.idle_ms, DIVC_1000);
 
     return (s > 255u) ? 255u : (uint8_t)s;
+}
+
+uint8_t compute_misfires(const compute_t *c)
+{
+    if (c->health.idle_ms == 0u) {
+        return (uint8_t)HEALTH_UNKNOWN;
+    }
+    return sat_u8(c->health.misf_sum);
+}
+
+uint8_t compute_misf_avg(const compute_t *c)
+{
+    /* Whole seconds, so the product fits: 65535 x 600 < 2^32. The one
+     * division by a variable is here, once a second (config.h, MisfAvg). */
+    uint32_t s = div_const(c->health.idle_ms, DIVC_1000);
+
+    if (s == 0u) {
+        return (uint8_t)HEALTH_UNKNOWN;
+    }
+    return sat_u8(div_round(mul_u32_u16(c->health.misf_total, MISF_AVG_SCALE), s));
 }

@@ -423,11 +423,16 @@ static void test_the_health_bytes_stay_in_shape(void)
         c.last_data_ms = 1000u;
         c.health.rough_acc = rnd_upto(1ul << 24);
         c.health.idle_ms = rnd_upto(3600000ul);
+        /* Reachable: at most one event per excursion, a few a second. */
+        c.health.misf_sum = (uint16_t)rnd_upto(MISF_WINDOW_S * 10u);
+        c.health.misf_total = (uint16_t)rnd_upto(MISF_TOTAL_MAX);
         txframes_gather_health(&v, &c, 1000u);
         txframes_health(&v, f);
         TT_TRUE(f[0] <= IDLE_INDEX_MAX || f[0] == HEALTH_UNKNOWN);
         TT_TRUE(f[1] <= HEALTH_SAT || f[1] == HEALTH_UNKNOWN);
-        TT_EQ(f[3], HEALTH_UNKNOWN);
+        TT_TRUE(f[3] <= HEALTH_SAT || f[3] == HEALTH_UNKNOWN);
+        TT_EQ(f[1] == HEALTH_UNKNOWN, c.health.idle_ms == 0u);
+        TT_EQ(f[3] == HEALTH_UNKNOWN, c.health.idle_ms < 1000u);
     }
 
     compute_init(&c);
@@ -452,6 +457,23 @@ static void test_the_health_bytes_stay_in_shape(void)
                 c.health.start_dip == HEALTH_UNKNOWN);
         TT_TRUE(c.health.start_crank <= HEALTH_SAT ||
                 c.health.start_crank == HEALTH_UNKNOWN);
+
+        /* The misfire window: its sum is the sum of the buckets it holds --
+         * the one being filled and the misf_filled before it -- and never
+         * of a stale one, whatever the order of stops, starts and gaps. */
+        TT_TRUE(c.health.misf_idx < MISF_WINDOW_S);
+        TT_TRUE(c.health.misf_filled < MISF_WINDOW_S);
+        {
+            uint32_t sum = 0u;
+            unsigned k;
+
+            for (k = 0u; k <= c.health.misf_filled; k++) {
+                sum += c.health.misf_bucket[(c.health.misf_idx + MISF_WINDOW_S - k)
+                                            % MISF_WINDOW_S];
+            }
+            TT_EQ(sum, c.health.misf_sum);
+        }
+        TT_TRUE(c.health.misf_sum <= c.health.misf_total);
     }
     c.have_data = true;
     c.last_data_ms = now;

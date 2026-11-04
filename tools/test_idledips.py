@@ -41,6 +41,8 @@ from idledips import (START_CRANK_SHIFT, START_DIP_MS, START_FIRED_RPM,
                       START_INVALID, START_SAT, EWMA_SHIFT as BASE_SHIFT,
                       SETTLE_S, TRIP_RPM, GATE_SPEED_MMH, health_summary,
                       start_fields)
+from idledips import (MISF_AVG_SCALE, MISF_TOTAL_MAX, MISF_WINDOW_S,
+                      misf_avg, misfires)
 from canlog import Frame
 
 RATE_HZ = 94.0  # what 0x280 actually arrives at; see docs/firmware/can-decoding.md
@@ -200,6 +202,51 @@ class CheapDetector(unittest.TestCase):
                 found, idle_s = dips_cheap(run_down)
                 self.assertEqual(found, [])
                 self.assertGreater(idle_s, 15.0)   # and it still counts as idle
+
+
+class Misfires(unittest.TestCase):
+    """Misfires and MisfAvg on 0x604: dips_cheap() counted into a minute of
+    settled idle, the oracle compute.c is diffed against."""
+
+    def test_it_counts_what_dips_cheap_counts(self):
+        g = gated(50.0, events=[(10.0, 0.1, 40.0), (20.0, 0.1, 40.0),
+                               (30.0, 0.1, 40.0)])
+        wsum, total, _ = misfires(g)
+        self.assertEqual(total, len(dips_cheap(g)[0]))
+        self.assertEqual((wsum, total), (3, 3))
+
+    def test_the_window_forgets_after_a_minute_of_idle(self):
+        g = gated(100.0, events=[(10.0, 0.1, 40.0), (80.0, 0.1, 40.0)])
+        wsum, total, _ = misfires(g)
+        self.assertEqual((wsum, total), (1, 2))
+
+    def test_the_window_holds_while_the_car_moves(self):
+        """The window steps on idle seconds, so a drive leaves the last
+        minute of idle on the display rather than emptying it."""
+        idle = gated(30.0, events=[(10.0, 0.1, 40.0)])
+        moving = [(30.0 + t, r, th, 20000)
+                  for t, r, th, _ in gated(120.0, events=[(50.0, 0.1, 40.0)])]
+        wsum, total, idle_ms = misfires(idle + moving)
+        self.assertEqual((wsum, total), (1, 1))
+        self.assertAlmostEqual(idle_ms, (30.0 - SETTLE_S) * 1000, delta=50)
+
+    def test_the_average(self):
+        self.assertIsNone(misf_avg(5, 999))
+        self.assertEqual(misf_avg(59, 315614), 112)     # 18: 11.2 a minute
+        self.assertEqual(misf_avg(MISF_TOTAL_MAX, 60000), 254)
+        self.assertEqual(misf_avg(0, 600000), 0)
+
+    def test_the_cold_start_reads_as_the_firmware_does(self):
+        h = health_summary(os.path.join(FIXTURES, "18_coldstart_z1.txt"))
+        self.assertEqual((h["misf_window"], h["misf_total"]), (14, 59))
+
+    def test_the_firmware_carries_the_same_constants(self):
+        d = _config_defines()
+        self.assertEqual(int(d["MISF_REARM_RPM"]), REARM_RPM)
+        self.assertEqual(int(d["MISF_WINDOW_S"]), MISF_WINDOW_S)
+        self.assertEqual(int(d["MISF_AVG_SCALE"]), MISF_AVG_SCALE)
+        self.assertEqual(int(d["MISF_TOTAL_MAX"]), MISF_TOTAL_MAX)
+        self.assertEqual(int(d["HEALTH_LAYOUT_VERSION"]), 2)
 
 
 class Depths(unittest.TestCase):
