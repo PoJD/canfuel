@@ -108,7 +108,8 @@ idle nor the MAF's curve (`refuted.md` C22, C23). **After `43`
 
 **Next** (`plan.md`): the MFD back in from 4/11 (item 6) and the oil
 level every 500 km (6i); **the next repair is a professional
-decarbonisation** (H13, item 8; *the owner's decision*, 3/11).
+decarbonisation, with hydrogen, booked for 9/11** (H13, item 8; *the
+owner's decision*, 3/11).
 
 ---
 

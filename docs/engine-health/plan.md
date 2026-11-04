@@ -19,8 +19,8 @@ The full previous version, before it was condensed on 20/10/2026:
 
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Current: item 6 and 6i
-from 4/11, the MFD in; the next repair is item 8, a professional
-decarbonisation.**
+from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
+9/11 at 9:45.**
 
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
@@ -55,8 +55,8 @@ decarbonisation.**
    (*the owner's decision*, 3/11; a provider such as *Bez karbonu*,
    his choice; by its site, 3/11: 70 min for up to 2.5 l, 3,290 Kč).
    **The engine is held at 2,000 rpm throughout; nothing is measured
-   before or after** (*owner*, 3/11, from their videos). The owner
-   books it. **No reading of its own before it** (*the owner*, 3/11:
+   before or after** (*owner*, 3/11, from their videos). **Booked for
+   Monday 9/11/2026, 9:45** (*owner*, 4/11). **No reading of its own before it** (*the owner*, 3/11:
    the weeks before are the baseline). **After it**: item 6's drives
    again, `IdleHealth` as always.
 
