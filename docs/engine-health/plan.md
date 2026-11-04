@@ -67,9 +67,8 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
    into the chat at once. Then **one captured drive with a 30 s cut on
    injector 4** at a warm stop, as on 3/11, above reserve.
 9. **After item 8, by what it shows** (Claude says which):
-   - **Each vacuum line pinched for 60 s at a warm idle**, standing,
-     `IdleHealth` read before and during: the regulator's tube, N80's,
-     the brake servo's last, held on the handbrake.
+   - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
+     a kit.
    - **A stethoscope (or a long screwdriver) on the cam cover above
      cylinder 3, hot**, against 1, 2 and 4: a tick or a hiss on one.
    - **A warm leak-down on all four** at a garage, oil at 80 °C or
@@ -241,14 +240,14 @@ on an empty tank down as P1300 (`open.md`, *What the forums say*).
 
 **Item 9 — after the decarbonisation** (*agreed with the owner*, 4/11,
 after the research): the cheapest tests that name a part on 3 without an
-injector swap or a plug change. **The pinch** for H3's line near runner 3;
-**the stethoscope** for a lifter or valve on 3 (H1); **the warm
+injector swap or a plug change. **The CO₂ test** for H20, the cheapest
+of all; **the stethoscope** for a lifter or valve on 3 (H1); **the warm
 leak-down** decides H1's seat — VW gives no procedure for this engine,
 so the garage's own, the four against each other; **the generic OBD-II
 read** asks whether this ECU keeps what its VW view does not show
-(`open.md`, *What the forums say*, 4/11). The brake servo's hose goes
-last and held on the handbrake because pinching it takes the assist away
-(*general*).
+(`open.md`, *What the forums say*, 4/11). *No pinch of the vacuum
+lines*: proposed 4/11 for a line near runner 3 and dropped the same day —
+every line joins the common intake (*owner*, `open.md` H3).
 
 ## Standing items — why
 

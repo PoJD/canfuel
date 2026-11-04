@@ -569,9 +569,9 @@ number.
 sit behind S10, S11 and the idle together (it was H10 in `open.md`).
 **Refuted by**, each on its own weak, together decisive:
 - **the coolant level has held for weeks** (*and still, 4/11/2026, the
-  owner*: no fall seen — the reason a weep into cylinder 3 was not taken
-  up after `43` named it; a combustion-gas test of the coolant was never
-  made), and **no milky emulsion** has
+  owner*: no fall seen; a weep into cylinder 3 too small to show is
+  `open.md` H20 since 4/11, at his request; a combustion-gas test of the
+  coolant was never made), and **no milky emulsion** has
   ever been seen. (*Removed 30/9/2026, the owner's correction:* this also
   read "the underside of the oil filler cap is clean (*owner-observed,
   27/9/2026*)" — the cap was most likely not looked at that day, so it was

@@ -99,9 +99,10 @@ of air (H14).
   ~2200 rpm; **not the exhaust's heat shields** — still there after their
   new clips, 31/10 — perhaps nearer the engine).
 
-**Ranked (3/11 evening, agreed with the owner):** **H13, H1, H3, H7**,
-then H2, H0, H8, H15, H4, the timing belt, H16, H18, H11, H12 (*The idle's
-candidates, ranked*). **H14 and H19 left it on 3/11**: the tuner's files
+**Ranked (4/11, agreed with the owner):** **H13, H1, H3, H7**,
+then H2, H0, H8, H15, H4, the timing belt, **H20** (coolant into 3, added
+4/11, weak), H16, H18, H11, H12 (*The idle's candidates, ranked*; every
+fit table re-read 4/11). **H14 and H19 left it on 3/11**: the tuner's files
 show the remap touched only the corner of highest load, and neither the
 idle nor the MAF's curve (`refuted.md` C22, C23). **After `43`
 (cylinder 3 named) deposits and a valve on 3 lead, H7 fourth.**
@@ -110,7 +111,7 @@ idle nor the MAF's curve (`refuted.md` C22, C23). **After `43`
 level every 500 km (6i); **the next repair is a professional
 decarbonisation, with hydrogen, booked for 9/11** (H13, item 8; *the
 owner's decision*, 3/11), then a capture with a cut and item 9's tests
-(the pinch, the stethoscope, a warm leak-down).
+(the stethoscope, the coolant's CO₂ test, a warm leak-down).
 
 ---
 
@@ -988,7 +989,7 @@ about. The valve is closed by its spring; the lifter only removes the gap.
 
 | S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
 |---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ✔ | ✔ | — | ~ | — | — |
+| ✔ | ✔ | ✔ | ~ | ~ | — | ~ | — | — |
 
 - **`43` (3/11 evening): the dips named 43 % on cylinder 3** — one
   cylinder, the one with the deposit and 18/10's tick (S18; `refuted.md`
@@ -1056,14 +1057,11 @@ new manifold.
 
 Air past the MAF leans one cylinder at idle, where air flow is smallest.
 *General.* **The only candidate that predicts *load helps* directly.**
-**Widened 4/11/2026** (*agreed with the owner*): **or a line that enters
-the plenum near runner 3** — the brake servo's hose and its check valve,
-the regulator's tube, N80's — since where a source enters a plenum
-decides how it shares out between the runners (*general*), so "a plenum
-source reaches all four alike" holds only upstream of the throttle.
-Where these lines join the plenum is not recorded. **Test: each pinched
-for 60 s at a warm idle, standing, with `IdleHealth` read**, the servo's
-last and with the car held on the handbrake (the brake goes hard).
+*Widened 4/11/2026 to a line entering the plenum near runner 3, and
+withdrawn the same day* (*owner*, off the car): **every line joins the
+intake in its common part, none nearer one runner than another**, so
+whatever enters by a line reaches all four alike; what is left of H3 is
+the lower manifold's gasket at runner 3, never renewed.
 
 | S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
 |---|---|---|---|---|---|---|---|---|
@@ -1591,7 +1589,7 @@ time.
 
 | S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
 |---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ~ | ~ | — | ✔ | ✘ | — |
+| ~ | ~ | ~ | ~ | ~ | — | ~ | ✘ | — |
 
 **What it rests on:**
 
@@ -1840,6 +1838,35 @@ test does not reach the seals.
 
 ### H19. ~~The MAF's curve against the remap~~ — refuted 3/11, `refuted.md` C22
 
+### H20. Coolant into cylinder 3 — a weep at the head gasket or the head
+
+*Added 4/11/2026 at the owner's request*, as a weak candidate after `43`
+named cylinder 3. **The claim** (*general*): a millilitre a day past the
+gasket or a hairline in the head next to 3 enters where the cylinder's
+pressure is lowest, at idle vacuum, and steams the charge — a misfire
+at idle on that cylinder, eased by load, and a plug kept clean.
+
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 |
+|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | ~ | — | — |
+
+- **For:** one cylinder at idle; load helps (a higher manifold pressure
+  draws less in, *reasoned*); **plug 3 the cleanest** of the 10/10 set
+  after nine days (`vehicle-history.md`, the photos), on the cylinder
+  that misfires most; S2's puffs could be steam as well as unburnt
+  charge.
+- **Against:** **the level does not visibly fall** (*owner*, 4/11) —
+  weak against a weep this small, which is why it is kept; **no
+  emulsion** under the cover, on the cam or the dipstick (1/10,
+  `refuted.md` C13); compression even (A4, cold); the borescope shows
+  **no steam-cleaned crown** on 3 — its crown carries the most deposit,
+  not the least (*What the forums say*, the photos read again, 4/11); the warm-up to
+  99–100.5 °C holds; no white smoke reported.
+- **Test:** **a combustion-gas (CO₂, "block") test of the coolant**,
+  warm — a few hundred Kč at a garage or a kit; `refuted.md` C13 never
+  had one. A leak-down (H1's test) watched at the expansion tank for
+  bubbles on 3 says the same.
+
 ---
 
 ## Naming the cylinder
@@ -2072,10 +2099,11 @@ is in git.
 | 8 | **H15** the leads' plug ends | demoted 21/10: VW leads level with the best on NGK; the dips spread on `40` | whether the shares stay spread after item 6 |
 | 9 | **H4** the injector loom at 3 and 4 | shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
 | 10 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
-| 11 | **H16** the purge valve leaking | here for S19 only (S7 closed 31/10 as the fuel): an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest; not replaced (*owner*, 25/10) | 032 and P0172 on the OMV tank (S19) |
-| 12 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
-| 13 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
-| 14 | **H12** driveline play | — | done: the clutch minutes cleared it |
+| 11 | **H20** coolant into cylinder 3 | **added 4/11** (*the owner*, weak): one cylinder at idle, where its pressure is lowest; plug 3 the cleanest of the 10/10 set; against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos | a combustion-gas (CO₂) test of the coolant (`plan.md` 9) |
+| 12 | **H16** the purge valve leaking | here for S19 only (S7 closed 31/10 as the fuel): an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest; not replaced (*owner*, 25/10) | 032 and P0172 on the OMV tank (S19) |
+| 13 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
+| 14 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
+| 15 | **H12** driveline play | — | done: the clutch minutes cleared it |
 
 **Re-read 3/11, after the tuner's files and the drive on the original
 map** (*agreed with the owner*): **H14 and H19 leave the idle's ranking**
@@ -2086,13 +2114,32 @@ S4 and S19's part-load cell. The rest keeps its order and moves up two.
 in: the dips back on one slot (`42`) and the idle cell back at once
 (S19) point at what acts on one cylinder and adds fuel.
 
+**Every fit table re-read 4/11** (*at the owner's request*, with
+`43` and the research in): **H1's S4 and S5 from ✔ to ~** — the valve
+it points at is now 3's, and S4/S5 are 4's knock window; **H15's S1,
+S2, S3 and S14 from ✔ to ~** — no NGK end has been on the car since
+21/10 and on the VW leads the dips went back onto one cylinder (`42`,
+`43`), so what H15 names is gone while the symptoms stay; its own test
+said a returning *pair* would refute it, and what returned is one
+cylinder — **whether that moves it to `refuted.md` is the owner's**.
+**H20 added** (above). **Unchanged, read against the new data**: H0
+(one cylinder named argues against "normal", one capture), H2 (an
+exhaust leak cannot pick a cylinder), H3 (the gasket at runner 3), H4
+(3 named, 4 not: weakly at 3), H5, H7, H8 (the floor on all four),
+H11, H12, H13 (3 worst inside, 4's crust for S4), H14 (the map back,
+the idle the same), H16, H18 (no oil-wet deposit in the photos).
+S16 and S17 stay out of the tables (*Not pursued*).
+
 **Re-read 4/11, after the research** (*agreed with the owner*): **the
 order stands**; H1 and H3 widened (above, in each): H1 to the exhaust
 seat on 3, a sticking stem and a lifter stuck up, the seat being where
-H13's flake would sit, so the two lead together; H3 to a line entering
-the plenum near runner 3. **A coolant weep into 3 was proposed and not
-taken** (*the owner*: the level would fall, and it does not; `refuted.md`
-C13). The tests after 9/11 are `plan.md` 9.
+H13's flake would sit, so the two lead together; H3's widening to a
+line near runner 3 withdrawn the same day (*owner*: every line joins
+the common intake). **H20, a coolant weep into 3, added the same day
+as a weak candidate, eleventh** (*the owner*: the level does not
+visibly fall, but kept); H16, H18, H11, H12 down one. **Every fit table
+re-read 4/11** (*at the owner's request*; below the table). The tests
+after 9/11 are `plan.md` 9.
 
 **Re-read 3/11 evening, after `43`** (*agreed with the owner*):
 **cylinder 3 named** for 43 % of the dips warm, P0303 with the cut, and
