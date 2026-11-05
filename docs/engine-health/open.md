@@ -1330,7 +1330,7 @@ shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
   output stage not to see an open, the ECU finds the circuit good while
   the injector opens late and short and the cylinder runs lean. That is
   what is left of H4, and only a measurement shows it.
-**Tests:** **the circuits measured** (`plan.md` 6m; VW's repair manual, Golf Mk4, *Motronic injection and ignition system (2.0 ltr. engine)*, *Checking injectors* (workshop-manuals.com, read 5/11/2026)):
+**Tests:** **the circuits measured** (`plan.md` 6m among themselves, 6n to the ECU; VW's repair manual, Golf Mk4, *Motronic injection and ignition system (2.0 ltr. engine)*, *Checking injectors* (workshop-manuals.com, read 5/11/2026)):
 the injector itself 14–18 Ω at about 20 °C; each wire, connector to
 connector, at most 1.5 Ω; contact 1 of the 2-pin connector is the
 supply from the fuel pump relay J17, shared by all four, contact 2 the

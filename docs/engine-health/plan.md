@@ -40,18 +40,24 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
    and **at least 5 minutes standing**, the dipstick out, wiped, in, out,
    and **photographed**; the odometer into the chat. Any top-up: the litres and the odometer
    into the chat.
-6m. **The injector circuits, with a multimeter** (the owner's, 5/11), engine
-   off, ignition off, the upper intake off as for item 8's look. First touch
-   the two probes together and note the reading: it is taken off every
-   value. **Supply side, nothing unplugged at the ECU:** the four injector
-   connectors off; from **contact 1 of one connector to contact 1 of each
-   other**, all six pairs; **each injector across its own two pins**, all
-   four. Write every value. **ECU side, later and only with VCDS on the
-   laptop:** 032/055 read first (unplugging the ECU may reset them, as a
-   disconnect does), then the ECU's 80-pin plug off and **from contact 2 of
-   each injector connector to its pin: 73 (cylinder 1), 80 (2), 58 (3),
-   65 (4)**; check the numbers printed on the plug, and probe its sockets
-   only with thin adapter pins, never a meter tip.
+6m. **The injector circuits among themselves, with a multimeter** (the
+   owner's, 5/11), engine off, ignition off; the upper intake off only if
+   the connectors cannot be reached without. First touch the two probes
+   together and note the reading: it is taken off every value. The four
+   injector connectors off; **from contact 1 of one connector to contact
+   1 of each other**, all six pairs; **each injector across its own two
+   pins**, all four. **If the loom has a connector of its own** on the way
+   to the main harness: from contacts 1 and 2 of each injector connector to
+   the pin of that connector it reaches (find it with the beeper), all
+   eight. While each value is on the display, **flex the loom near 3 and
+   4** and watch it. Write every value, and any that moved.
+6n. **The injector circuits to the ECU** — later, only with VCDS on the
+   laptop: 032/055 read first (unplugging the ECU may reset them, as a
+   disconnect does), then the ECU's 80-pin plug off. One extension lead
+   for all four: its own resistance measured end to end and taken off.
+   **From contact 2 of each injector connector to its pin: 73 (cylinder
+   1), 80 (2), 58 (3), 65 (4)**; check the numbers on the plug, and enter
+   its sockets only with a thin pin of the right size, never a meter tip.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
@@ -158,15 +164,19 @@ stands*.
 *When S3 closes*). Otherwise each item decides whether the next is
 needed.
 
-**6m, the injector circuits** (`open.md` H4, *What the loom can and
-cannot do unseen*): a raised resistance in the loom at 3 and 4 makes no
+**6m and 6n, the injector circuits** (`open.md` H4, *What the loom can
+and cannot do unseen*), split so the first needs nothing unplugged at the
+ECU (*the owner*, 5/11): a raised resistance in the loom at 3 and 4 makes no
 code but starves its injector. The manual's figures: injector 14–18 Ω
 at about 20 °C, each wire at most 1.5 Ω, contact 1 the shared supply from
 J17, contact 2 the ECU's output at pins 73/80/58/65. Read as a comparison:
 three alike and one higher (tenths of an ohm on a wire, an ohm on an
 injector) names the joint; all alike clears the supply and that wire.
 Contact 1 to contact 1 runs through the shared splice, so a high pair
-points at one of its two branches and the pairs together at which.
+points at one of its two branches and the pairs together at which. A
+loom connector, if there is one, splits each path into the old taped run
+at the injectors and the rest; a value that moves while the loom is
+flexed is the intermittent joint itself.
 
 **Which VCDS groups** (*decided 11/10/2026*). **014** wherever a stop is
 read for misfires. **001** wherever there is idle: engine speed to align
