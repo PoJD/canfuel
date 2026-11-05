@@ -78,7 +78,8 @@ of air (H14).
   the drive home: **70–95** at 101 °C of oil, everyday state (*owner*).
   **4/11, display**: **90–110** in queues until the engine was revved,
   the larger dips felt, **70–90** after; **45–50** with the A/C, the
-  blower full and the rear window (*owner*).
+  blower full and the rear window (*owner*). **5/11, display, the A/C
+  on**: **60–76**, and the first warm `Misfires`, **2–10** (S3).
   The dips sat two thirds on 3 and 4
   until the VW leads, **on all four alike** on `40` and `41`, **on `42`
   one slot again, 45 %**, and **on `43` named: 43 % on cylinder 3**
@@ -204,6 +205,7 @@ error):
 | 3/11 eve | `43` | one drive after the reset (032 −6.3 / +3.9) | the original map, the second drive: mostly motorway to 90 °C of oil, full-throttle pulls, then a warm stop of 11 min **loads off** (b7 21) with a 57 s cut on injector 4, oil 99–100 °C | **86 ± 4** the first 3 min; 74 the 2 min after the cut; **48 ± 3** from then to engine off (5 min, windows 30–67) — `42`'s shape, settling about the sixth minute; cold 129 over only 26 s settled, oil about 47 °C |
 | 3/11 night | display | relearning (032 cleared after `43`'s cut) | the original map, the drive home from football, MFD in | **70–95**, oil 101 °C, everyday state (*owner*) — the first display reading on the original map, a little under the remap's 80–105 of 28/10–2/11 |
 | 4/11 | display | relearning | the original map; mostly slow driving and queues, then the engine revved; oil about 100 °C | **90–110** until the engine was revved, **the larger dips felt in the seat**; **70–90** after it; everyday state. **45–50** with the A/C and the blower on full and the rear window heated (no main beam, no seat heaters), still falling; the supply down to about 12.4 V at times with everything on (*owner*) |
+| 5/11 | display, photos and a video | relearning | the original map; warm stops on the morning drives, **the A/C on at every one** (*owner*); oil not read | **60–76** with the A/C; `Misfires` **2** at 7:33, **5–10** at 9:05; MisfAvg 7.4 and 9.8–11.6 (the start's mean, its cold part in it) — the first warm readings of `Misfires`; cold the night before 18–23 (*owner*, the album) |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -596,6 +598,13 @@ completing rather than load (`refuted.md` C19).
   with the A/C on (`40`) it read zero 79 % of the time as 014 does; per
   single event it misses most of 014's counts, and it does not count
   driving. Zero there reads "014 most likely silent"; VCDS decides.
+  **The first warm readings, 5/11** (display, the A/C on at every stop,
+  *owner*; S1's table): **2 and 5–10**, falling as the engine warmed
+  (*owner*); cold 18–23. ⚠ **Not the capture's near-zero with the A/C**
+  (`40`: zero 79 % of the time, 0.2 a minute) — that was read on minutes
+  with the compressor's load in b7 (b7 ≥ 36), and the display cannot tell
+  whether the compressor was running; in November it may cycle or stay
+  off. A capture with the A/C on would say which.
 - **Session A, 3/10**, and **Session A after step 1b, 4/10**: the first warm
   stops ever with 014 at zero — on fresh adaptations — then counting again
   after five minutes of hard driving. **Session B, 4/10**: counting again,

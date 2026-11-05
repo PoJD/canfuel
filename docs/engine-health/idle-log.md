@@ -1046,3 +1046,17 @@ the clearing after `43`'s cut; a little under the remap's 80–105
 Load and revving both calm it, as on 19/10 and 26/10; read against the
 hypotheses on those two patterns alone (`open.md` S1, the ranking's
 re-read of 4/11).
+
+## 5/11 — the first warm `Misfires` on the display
+
+- **Tests:** `IdleHealth`, `Misfires` and MisfAvg at warm stops on the
+  morning drives, the A/C on at every one; photos and a video in the
+  album; oil not read.
+- **Changes after:**
+  - *measured:* `IdleHealth` **60–76**; `Misfires` **2** (7:33) and
+    **5–10** (9:05); MisfAvg 7.4 and 9.8–11.6; cold the night before
+    `Misfires` 18–23, `IdleHealth` 121–146 (*owner*, the album);
+  - *felt:* `Misfires` falling as the engine warmed (*owner*).
+
+The A/C's near-zero of the captures (`open.md` S3) not seen; whether the
+compressor ran is not known.
