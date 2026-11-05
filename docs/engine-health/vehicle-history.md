@@ -218,6 +218,7 @@ Scans: `photos/vcds-faults-2018-01.png`, `photos/vcds-faults-2019-05.png`.
 | Headlights, complete: ALKAR `2741128` left / `2742128` right (H1 dipped, H1 main, W5W, levelling motor) | **end of August 2026** | reflectors degraded, water getting in |
 | Light switch, Herth+Buss Elparts, replacing the original `1C0 941 531 A` | **September 2026** | 0.3–0.7 V lost across the old switch |
 | Chafed main positive cable at the battery, wrapped in PVC tape (a stop-gap) | **26/9/2026**, by the owner | bare strands under the heat-shrink |
+| **Contact cleaner** sprayed into injector 4's connector and the injector loom's 3-pin connector T3 (the supply, by cylinder 1; its latch worn) | **5/11/2026** evening, by the owner | both off for a first look at the loom (`open.md` H4); probably done once already this year |
 
 **Voltage drops measured before the switch** (differential, under
 load): 0.9 V at the dipped-beam bulb (1.6–1.9 V with main beam), all on

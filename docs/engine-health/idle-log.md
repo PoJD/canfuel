@@ -1074,6 +1074,9 @@ compressor ran is not known.
 
 ## 5/11 evening — the injector connectors, a first look
 
+- **Repairs:** contact cleaner into injector 4's connector and the loom's
+  3-pin connector T3 while they were off (*owner*; not expected to
+  change anything).
 - **Tests:** which injector connectors can be reached with the upper
   intake on: **1 and 4 only**; from a pin of 4's connector to a pin of the
   loom's 3-pin connector by cylinder 1, about 2 Ω (1.9–3.4, the probe not
@@ -1083,4 +1086,4 @@ compressor ran is not known.
 - **Changes after:**
   - *not known:* whether the 2 Ω is the wire or the probe.
 
-Nothing touched; the rest of `plan.md` 6m waits for item 8's result.
+The rest of `plan.md` 6m waits for item 8's result.
