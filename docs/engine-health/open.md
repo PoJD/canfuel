@@ -1279,6 +1279,15 @@ the lower manifold's gasket at runner 3, never renewed.
   less, and 3 and 4 are neighbours on the lower manifold, so a leak at
   the gasket between their runners fits it; it moves over minutes, as a
   charge effect may (*reasoned*).
+- **5/11 evening, the lower manifold's gasket seen from below** (*owner*;
+  `photos/lower-manifold-gasket-2026-11-05-*.jpg`): **torn at runners 3
+  and 4, whole at 1 and 2** — the pair the steady pattern names. **The
+  owner reads the tears outside the sealing face**, cosmetic, perhaps
+  made by his own hands reaching for the plugs; every sealing face he can
+  see looks whole, the gasket old, perhaps original. *Reasoned*: from
+  below a tear at the outer edge cannot be told from one that runs in
+  across the face, and only a smoke test or the manifold off says which;
+  for H3 in place, not in proof.
 - **Against, 5/11** (*reasoned*): two cylinders running lean would pull
   032's idle cell positive; it reads −6 to −8 % (H4, the same argument;
   medium, the trim carries other inputs).
@@ -2028,7 +2037,14 @@ vacuum falls, the flow stops, and what collected burns away.
 - **Against, 4/11** (S1, *driving does*): the calm after revving — the
   overrun on the way draws the most oil past a seal.
 - **Against: the dipstick** (`plan.md` 6i): no loss can be read between
-  top-ups. **How much oil it burns is not known.**
+  top-ups. **How much oil it burns is not known.** **5/11, the first
+  reading** (*owner*; `photos/dipstick-2026-11-05.jpg`): **0.5–1 mm under
+  the top mark at 155,546 km**, 522 km after it stood at the mark —
+  within what the angle of the car and the draining time can make, so not
+  yet a consumption; the next reading says. **The owner's reading**
+  (5/11): oil past the rings, held by deposit (H13), which the wet-looking
+  patches of the borescope photos might be — against it so far, the plugs
+  dry, no blue smoke, compression even.
 - **S3 ~** for the same reason as S1: misfires at idle, on all four.
 
 **Tests:** **the oil consumption on the fresh oil** after the change of 26/10,

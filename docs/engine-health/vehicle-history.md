@@ -47,6 +47,7 @@ symptom in `docs/` is dated after it, with a working lamp.
 | At 29 Oct 2026 | **155,193 km** (`photos/odometer-2026-10-29.jpg`), the fill; the cluster's trip read 151.4 km, zeroed by the battery disconnect of 27/10 at about 155,042 |
 | At 31 Oct 2026 | **155,277 km** (album, 20:14), after the can; the cluster's trip 83.5 km since the fill of 29/10 |
 | At 3 Nov 2026 | **155,357 km** (`photos/odometer-2026-11-03.jpg`), at the tuner before the map; the cluster's trip 164.1 km since the fill of 29/10 |
+| At 5 Nov 2026 | **155,546 km** (album, 22:07), the oil level read (`open.md` H18); the cluster's trip 190.7 km since the fill of 29/10 |
 | **Covered in ownership** | **27,800 km over 9.0 years**, about 3,100 km a year *(derived)* |
 
 Odometer at the start of each year, from the owner's expense sheet
@@ -321,6 +322,8 @@ out, the plug photographed first). The rest of the 109 frames of that night
 are in the owner's album, not here.
 | `lead2-plug-end-torn-2026-10-20.jpg` | lead 2's plug end, torn on removal |
 | `injector4-loom-2026-10-19.jpg` | injector 4's wires leaving the harness, old tape peeling, insulation whole |
+| `lower-manifold-gasket-2026-11-05-1.jpg`, `-2.jpg` | the lower intake manifold's joint to the head from below, 5/11: the gasket's edge torn at runners 3 and 4 (*owner*: outside the sealing face), whole at 1 and 2 |
+| `dipstick-2026-11-05.jpg` | the dipstick at 155,546 km, a little under the top mark (*owner*) |
 
 ---
 

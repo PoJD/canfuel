@@ -36,7 +36,8 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
      0x603 and the LEDs are dark by design. From then on, at the same warm
      stops, **`Misfires` and `MisfAvg` beside `IdleHealth`** into the chat.
 6i. **The oil level on the new oil, about every 500 km** from the first
-   reading (27/10, 155,024 km, at the top mark): the car on level ground
+   reading (27/10, 155,024 km, at the top mark; 5/11, 155,546 km, 0.5–1 mm
+   under it; **next about 156,050 km**): the car on level ground
    and **at least 5 minutes standing**, the dipstick out, wiped, in, out,
    and **photographed**; the odometer into the chat. Any top-up: the litres and the odometer
    into the chat.
