@@ -79,7 +79,9 @@ of air (H14).
   **4/11, display**: **90–110** in queues until the engine was revved,
   the larger dips felt, **70–90** after; **45–50** with the A/C, the
   blower full and the rear window (*owner*). **5/11, display, the A/C
-  on**: **60–76**, and the first warm `Misfires`, **2–10** (S3).
+  on**: **60–76**, and the first warm `Misfires`, **2–10** (S3); **the
+  drive home, 100 °C of oil, the A/C on**: **51–54**, `Misfires` 3–4 at
+  the end, 1–22 over the hour (S3).
   The dips sat two thirds on 3 and 4
   until the VW leads, **on all four alike** on `40` and `41`, **on `42`
   one slot again, 45 %**, and **on `43` named: 43 % on cylinder 3**
@@ -210,6 +212,7 @@ error):
 | 3/11 night | display | relearning (032 cleared after `43`'s cut) | the original map, the drive home from football, MFD in | **70–95**, oil 101 °C, everyday state (*owner*) — the first display reading on the original map, a little under the remap's 80–105 of 28/10–2/11 |
 | 4/11 | display | relearning | the original map; mostly slow driving and queues, then the engine revved; oil about 100 °C | **90–110** until the engine was revved, **the larger dips felt in the seat**; **70–90** after it; everyday state. **45–50** with the A/C and the blower on full and the rear window heated (no main beam, no seat heaters), still falling; the supply down to about 12.4 V at times with everything on (*owner*) |
 | 5/11 | display, photos and a video | relearning | the original map; stops on two short morning drives, the engine perhaps never fully warm and never revved above 3500 rpm, which always leaves it a little worse (*owner*); **the A/C on at every stop** (*owner*); oil not read | **60–76** with the A/C; `Misfires` **2** at 7:33, **5–10** at 9:05; MisfAvg 7.4 and 9.8–11.6 (the start's mean, its cold part in it) — the first warm readings of `Misfires`; cold the night before 18–23 (*owner*, the album) |
+| 5/11 eve | display, a video | relearning | the drive home, an hour, mostly queues, revved a little at times; the everyday state plus **the A/C and the blower on 2** throughout; oil 100 °C at the end (*owner*) | **51–54** settling from 60–67 in the last 45 s, still the A/C on; `Misfires` **3–4** there, **1–22** over the drive (*owner*); MisfAvg 8.7 → 8.2 |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -689,7 +692,10 @@ completing rather than load (`refuted.md` C19).
   driving. Zero there reads "014 most likely silent"; VCDS decides.
   **The first readings after a warm-up, 5/11** (display, the A/C on at
   every stop; two short drives, perhaps never fully warm, not revved
-  above 3500 rpm, *owner*; S1's table): **2 and 5–10**, falling as the engine warmed
+  above 3500 rpm, *owner*; S1's table): **2 and 5–10**; **the drive home
+  the same evening** (an hour of queues, the A/C and the blower on 2,
+  oil 100 °C): **1–22** over the drive, **3–4** at the end with
+  `IdleHealth` 51–54, falling as the engine warmed
   (*owner*); cold 18–23. ⚠ **Not the capture's near-zero with the A/C**
   (`40`: zero 79 % of the time, 0.2 a minute) — that was read on minutes
   with the compressor's load in b7 (b7 ≥ 36), and the display cannot tell

@@ -1061,3 +1061,13 @@ re-read of 4/11).
 
 The A/C's near-zero of the captures (`open.md` S3) not seen; whether the
 compressor ran is not known.
+
+## 5/11 evening — the drive home on the display
+
+- **Tests:** `IdleHealth`, `Misfires` and MisfAvg over an hour's drive,
+  mostly queues, revved a little at times; the everyday state plus the
+  A/C and the blower on 2 throughout; a video at the end, oil 100 °C.
+- **Changes after:**
+  - *measured:* at the end `IdleHealth` **51–54** (from 60–67 within
+    45 s), `Misfires` **3–4**, MisfAvg 8.7 → 8.2; over the drive
+    `Misfires` **1–22** (*owner*).
