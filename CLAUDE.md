@@ -489,7 +489,12 @@ itself is not finished.
   VIN*; **the photo album** (Google Photos, every repair since 6/2026) is in
   the private artifact *New Beetle Photo Album* with how to page it from a
   cloud session — find both with the Artifact tool's `action: "list"`, never
-  copy either into a file here.
+  copy either into a file here. **The ECU's two whole flash images** (the
+  original calibration and the 2018 remap, 256 KB each, from the tuner
+  3/11) are in the private artifact *Beetle AQY ECU flashes*, base64 with
+  their SHA-256 and how to fetch them into the scratchpad; the comparison
+  is *Beetle AQY remap diff*. **Never commit either image** (VW/Bosch
+  software, and the repository is public).
 - The dated log before `open.md` lives only in git
   (`git show 7c69883:docs/engine-health.md`); nothing cites it.
 
