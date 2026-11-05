@@ -1077,8 +1077,9 @@ compressor ran is not known.
 - **Tests:** which injector connectors can be reached with the upper
   intake on: **1 and 4 only**; from a pin of 4's connector to a pin of the
   loom's 3-pin connector by cylinder 1, about 2 Ω (1.9–3.4, the probe not
-  seated firmly; the probes together read 0); that connector's latch worn,
-  it comes off by pulling (*owner*).
+  seated firmly; the probes together read 0); the figure did not move with
+  the loom flexed at 4; that connector's latch worn, it comes off by
+  pulling (*owner*).
 - **Changes after:**
   - *not known:* whether the 2 Ω is the wire or the probe.
 
