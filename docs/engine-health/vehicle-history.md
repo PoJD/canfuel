@@ -219,6 +219,7 @@ Scans: `photos/vcds-faults-2018-01.png`, `photos/vcds-faults-2019-05.png`.
 | Headlights, complete: ALKAR `2741128` left / `2742128` right (H1 dipped, H1 main, W5W, levelling motor) | **end of August 2026** | reflectors degraded, water getting in |
 | Light switch, Herth+Buss Elparts, replacing the original `1C0 941 531 A` | **September 2026** | 0.3–0.7 V lost across the old switch |
 | Chafed main positive cable at the battery, wrapped in PVC tape (a stop-gap) | **26/9/2026**, by the owner | bare strands under the heat-shrink |
+| **The lower manifold gasket's bent edge at runner 3 straightened** by hand, from below (runner 4's is torn, perhaps into the sealing face) | **5/11/2026** night, by the owner | seen bent on a look from below (`open.md` H3) |
 | **Contact cleaner** sprayed into injector 4's connector and the injector loom's 3-pin connector T3 (the supply, by cylinder 1; its latch worn) | **5/11/2026** evening, by the owner | both off for a first look at the loom (`open.md` H4); probably done once already this year |
 
 **Voltage drops measured before the switch** (differential, under
@@ -322,7 +323,7 @@ out, the plug photographed first). The rest of the 109 frames of that night
 are in the owner's album, not here.
 | `lead2-plug-end-torn-2026-10-20.jpg` | lead 2's plug end, torn on removal |
 | `injector4-loom-2026-10-19.jpg` | injector 4's wires leaving the harness, old tape peeling, insulation whole |
-| `lower-manifold-gasket-2026-11-05-1.jpg`, `-2.jpg` | the lower intake manifold's joint to the head from below, 5/11: the gasket's edge torn at runners 3 and 4 (*owner*: outside the sealing face), whole at 1 and 2 |
+| `lower-manifold-gasket-2026-11-05-1.jpg`, `-2.jpg` | the lower intake manifold's joint to the head from below, 5/11: the gasket's edge torn at runner 4 (perhaps into the sealing face), bent at 3, whole at 1 and 2 (*owner*) |
 | `dipstick-2026-11-05.jpg` | the dipstick at 155,546 km, a little under the top mark (*owner*) |
 
 ---

@@ -1091,14 +1091,16 @@ The rest of `plan.md` 6m waits for item 8's result.
 
 ## 5/11 night — the lower manifold's gasket from below, the oil level
 
+- **Repairs:** the gasket's bent edge at runner 3 straightened by hand
+  (*owner*).
 - **Tests:** the lower intake manifold's joint to the head looked at and
   photographed from below; the oil level read and photographed at
   155,546 km (`plan.md` 6i).
 - **Changes after:**
-  - *measured:* the gasket **torn at runners 3 and 4, whole at 1 and 2**,
-    the tears outside the sealing face by the owner's reading; the oil
+  - *measured:* the gasket **torn at runner 4, the tear perhaps into the
+    sealing face; bent at 3; whole at 1 and 2** (*owner*); the oil
     **0.5–1 mm under the top mark**, 522 km after the mark (*owner*);
-  - *not known:* whether a tear reaches the sealing face; whether the oil
+  - *not known:* whether 4's tear reaches the sealing face; whether the oil
     is consumption or the reading.
 
 `open.md` H3 and H18.

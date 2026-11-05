@@ -1280,11 +1280,13 @@ the lower manifold's gasket at runner 3, never renewed.
   the gasket between their runners fits it; it moves over minutes, as a
   charge effect may (*reasoned*).
 - **5/11 evening, the lower manifold's gasket seen from below** (*owner*;
-  `photos/lower-manifold-gasket-2026-11-05-*.jpg`): **torn at runners 3
-  and 4, whole at 1 and 2** — the pair the steady pattern names. **The
-  owner reads the tears outside the sealing face**, cosmetic, perhaps
-  made by his own hands reaching for the plugs; every sealing face he can
-  see looks whole, the gasket old, perhaps original. *Reasoned*: from
+  `photos/lower-manifold-gasket-2026-11-05-*.jpg`): **at runner 4 torn,
+  and looked at closely the tear may reach into the sealing face; at
+  runner 3 not torn but bent, straightened by the owner the same night;
+  whole at 1 and 2** — the pair the steady pattern names (*owner*; the
+  first look read both as torn outside the face, cosmetic, perhaps from
+  his own hands reaching for the plugs). The gasket old, perhaps
+  original. *Reasoned*: from
   below a tear at the outer edge cannot be told from one that runs in
   across the face, and only a smoke test or the manifold off says which;
   for H3 in place, not in proof.
