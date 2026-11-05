@@ -213,8 +213,10 @@ because the coil is from 6/2026 and the leads are new again; it is free.
 
 **Item 8 — the next repair** is chosen then, from `open.md`, *The idle's
 candidates, ranked*. **Since 3/11 evening deposits (H13) and a valve on
-3 (H1) lead** (*agreed with the owner*): `43`'s injector cut names
-cylinder 3, the one the borescope found worst. The two 44K tanks moved
+3 (H1) led** (*agreed with the owner*): `43`'s injector cut names
+cylinder 3, the one the borescope found worst; **since 5/11 H13, then a
+leak at runners 3–4 (H3), then H1** (the steady pattern names 3 and 4
+alike, `open.md` S1). The two 44K tanks moved
 nothing, so a chemical clean through the fuel is spent; a professional
 decarbonisation is **the next repair** (*the owner's decision*, 3/11), for
 H13 and, if the deposit on 3's seat is what keeps it from sealing, H1.
