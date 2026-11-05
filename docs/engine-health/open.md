@@ -1321,7 +1321,24 @@ shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
   stroke less alike** — the pair the loom feeds, and a loom fault that
   comes and goes would let the pattern move over minutes as it does
   (*reasoned*). **For the loom**, against the spark side as above.
-**Tests:** the injector loom flexed at 3 and 4 at a warm idle — **done by
+- **What the loom can and cannot do unseen** (5/11, *reasoned*, at the
+  owner's question). An **open** circuit — the plug off on 3/11 — is
+  stored at once: P1240, injector 4, open circuit, sporadic. **No
+  P1237–P1240 has ever been stored without a cut**, so a contact that
+  drops out completely, even briefly, is unlikely. **A raised
+  resistance is not stored**: as long as enough current flows for the
+  output stage not to see an open, the ECU finds the circuit good while
+  the injector opens late and short and the cylinder runs lean. That is
+  what is left of H4, and only a measurement shows it.
+**Tests:** **the circuits measured** (`plan.md` 6m; VW's repair manual, Golf Mk4, *Motronic injection and ignition system (2.0 ltr. engine)*, *Checking injectors* (workshop-manuals.com, read 5/11/2026)):
+the injector itself 14–18 Ω at about 20 °C; each wire, connector to
+connector, at most 1.5 Ω; contact 1 of the 2-pin connector is the
+supply from the fuel pump relay J17, shared by all four, contact 2 the
+ECU's output, at the 80-pin connector **pin 73 for cylinder 1, 80 for 2,
+58 for 3, 65 for 4** (test box V.A.G 1598/22, whose sockets carry the
+connector's numbers; the manual's, not yet checked on this car). Three of
+four alike and one tenths of an ohm higher is the reading.
+The injector loom flexed at 3 and 4 at a warm idle — **done by
 the owner on 24/10, part-warm, during the first phone recording, above all
 the repaired wire at injector 4, judged by ear only: no change heard**
 (reported 28/10). Weaker than the planned

@@ -40,6 +40,18 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
    and **at least 5 minutes standing**, the dipstick out, wiped, in, out,
    and **photographed**; the odometer into the chat. Any top-up: the litres and the odometer
    into the chat.
+6m. **The injector circuits, with a multimeter** (the owner's, 5/11), engine
+   off, ignition off, the upper intake off as for item 8's look. First touch
+   the two probes together and note the reading: it is taken off every
+   value. **Supply side, nothing unplugged at the ECU:** the four injector
+   connectors off; from **contact 1 of one connector to contact 1 of each
+   other**, all six pairs; **each injector across its own two pins**, all
+   four. Write every value. **ECU side, later and only with VCDS on the
+   laptop:** 032/055 read first (unplugging the ECU may reset them, as a
+   disconnect does), then the ECU's 80-pin plug off and **from contact 2 of
+   each injector connector to its pin: 73 (cylinder 1), 80 (2), 58 (3),
+   65 (4)**; check the numbers printed on the plug, and probe its sockets
+   only with thin adapter pins, never a meter tip.
 7. **Only if Claude asks after 6:**
    - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
      Outdoors; the tailpipe closed for a few seconds at a time, never
@@ -145,6 +157,16 @@ stands*.
 **Idle solved → stop and record** (`open.md` S1, *When S1 closes*; S3,
 *When S3 closes*). Otherwise each item decides whether the next is
 needed.
+
+**6m, the injector circuits** (`open.md` H4, *What the loom can and
+cannot do unseen*): a raised resistance in the loom at 3 and 4 makes no
+code but starves its injector. The manual's figures: injector 14–18 Ω
+at about 20 °C, each wire at most 1.5 Ω, contact 1 the shared supply from
+J17, contact 2 the ECU's output at pins 73/80/58/65. Read as a comparison:
+three alike and one higher (tenths of an ohm on a wire, an ohm on an
+injector) names the joint; all alike clears the supply and that wire.
+Contact 1 to contact 1 runs through the shared splice, so a high pair
+points at one of its two branches and the pairs together at which.
 
 **Which VCDS groups** (*decided 11/10/2026*). **014** wherever a stop is
 read for misfires. **001** wherever there is idle: engine speed to align
