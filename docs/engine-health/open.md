@@ -115,8 +115,12 @@ idle nor the MAF's curve (`refuted.md` C22, C23). **After `43`
 4/11 on the load and revving patterns alone**: H13 with H1's exhaust seat
 on 3 the one reading that fits both; H3 the load only; the order stands.
 **Re-read 5/11 on the dips' anatomy** (S1, *How many strokes make a
-dip*): a third of the dips are two firings in a row, warm on `43` those
-keep to 3 as well; the order stands.
+dip*): one dip in five is two firings in a row, warm on `43` those lean
+to 3 as well; the order stands. **The fresh look at the data, 5/11** (S1,
+S3): 014 counts misfires per 200 revolutions and partly silences itself
+under load; a steady pattern over the cylinders, 3 and 4 weak and 2
+strong, is about a third of `IdleHealth` (S1, *A steady pattern over the cylinders*); the
+ranking re-read on it with the owner.
 
 **Next** (`plan.md`): the MFD back in from 4/11 (item 6) and the oil
 level every 500 km (6i); **the next repair is a professional
@@ -168,8 +172,8 @@ of crank, one power stroke (`docs/firmware/can-decoding.md` trap 5), so a dip
 is one cylinder's stroke. A stroke that gives nothing costs an estimated
 33–57 rpm; the deepest dips are 37–46, the typical one 20–22 — a partial
 burn. **The dip is the failed combustion itself**, and the recovery is the
-idle governor. **About two dips in three are one weak stroke, and one in
-three two in a row** (*How many strokes make a dip*, below).
+idle governor. **About three dips in four are one weak stroke, one in five
+two in a row** (*How many strokes make a dip*, below).
 
 **Every session since the repairs, like with like** (standing idle, 30 s
 windows, 93–111 °C of oil, heavy-load windows left out; mean ± standard
@@ -456,6 +460,21 @@ beside this file shows one dip stroke by stroke.
 
 ![One idle dip](dip-profile.svg)
 
+**The dips ride a swing of the idle loop at about 0.8 Hz** (5/11, the
+same fresh look). Engine speed at idle oscillates with a period of
+1.2–1.4 s, and the same line stands in b7 and in the injection time.
+Intervals of 1.0–1.25 s between dips come 2.1 times as often as by
+chance, so about one dip in ten is an echo of the one before; averaged
+over 1,093 dips the ECU trims injection and b7 down **twice, 1.6 s and
+0.4 s before**, and speed has a trough 1.2 s before and after. Over
+seconds the dips are otherwise random; **over minutes they come and go**:
+nine dip-free stretches longer than 64 s against 0.3 expected, with no
+regular period. Within warm loads-off stops neither the grade nor the dip
+rate follows oil (80–105 °C), b7, idle speed, time since the start or the
+stop's length. *Reasoned*: a ringing loop decides when a marginal
+cylinder fails — combustion at its edge, not an electrical fault, which
+would not care about the loop's phase.
+
 **What VCDS saw just before a dip** (11/10, `dipcontext.py --vcds`): on two
 sessions the lambda correction was about 0.8 % lower just before a dip than in
 quiet idle — the loop on its lean swing. **Not reproduced on 12/10** (`32`,
@@ -464,34 +483,65 @@ repeat.
 
 **How many strokes make a dip** (`tools/dipshape.py`, 5/11, *at the
 owner's question*; every warm `_z1` idle, oil ≥ 80 °C, cuts left out,
-1,645 dips). A dead stroke is **one step**, not two: on `43`'s cut on 4
-the dead slot reads one step of about −24 rpm and the next window +17. So
-counting the strokes that lose more than 8 rpm inside a dip (the noise is
-±4.9 per step; one step in twenty loses 8 by itself) separates **one weak
-firing (64 %) from two in a row (32 %) and three or more (4 %)** — and two
-in a row are always **two different cylinders**, the next in the firing
-order.
-- **Deeper dips are more often clusters**: 20–25 rpm 72 % single, 25–30
-  55 %, 30–40 47 %; at 40 rpm and more 29 %, but those are mostly slow
+1,870 dips). A dead stroke is **one step**, not two: on the cuts the dead
+slot reads one step of −23 to −29 rpm and the next windows +12 to +18 and
++7 to +11. So counting the strokes that lose more than 8 rpm inside a dip
+— **each against its own cylinder's median step**, since the idle carries
+a steady pattern over the cylinders (*A steady pattern over the
+cylinders*, below) that otherwise names most weak strokes for the low
+slot — separates **one weak firing (75 %) from two in a row (22 %) and
+three or more (3 %)**; two in a row are always **two different
+cylinders**, the next in the firing order. *The figures of the first
+reading that day were taken on raw steps (64 / 32 / 4 %, and "15 of 17"
+clusters on 3 below) and are superseded.*
+- **Deeper dips are more often clusters**: 20–25 rpm 85 % single, 25–30
+  69 %, 30–40 53 %; at 40 rpm and more 29 %, but those are mostly slow
   sags (the largest step a fifth of the drop: a load, the regulator), not
   runs of failed firings. ⚠ Requiring 20 rpm favours clusters by
-  construction (two steps of −12 make a dip, one does not), so the shares
-  are not the rate at which weak firings pair.
-- **Weak firings do come together, about 2½ times as often as by
-  chance**: 5.1 % of all steps lose more than 8 rpm, 12.2 % of those
-  straight after one that did.
-- **Not changed by any repair**: by period the single share is 61–68 % and
-  the follow-on 2.0–3.1 × chance throughout — `19`/`20`/`24` 61 %,
-  `25`–`30` 64 %, `31`/`32` 65 %, `35`–`39` 68 %, `40`/`41` 60 %,
-  `42`/`43` 66 % — while the dips per 1000 strokes fell from 9.9 to
-  3.2–4.6. **The repairs took dips of both kinds away alike.**
-- **Warm, the clusters keep to cylinder 3 too** (`43`, named,
-  `--name --order 4`): of 38 single-stroke dips **23 on 3** (1: 8,
-  2: 4, 4: 3), and **15 of 17 clusters have 3 in them**, on either side —
-  1 then 3 eight times, 3 then 4 seven. Cold (`41`) both spread over all
-  four alike (singles 13–19 each; pairs 8–15 on every neighbour). So
-  warm on the original map a cluster is mostly **3 with the stroke beside
-  it**, not a moment shared by all four. One named capture, 55 dips.
+  construction (two steps of −12 make a dip, one does not).
+- **Weak firings come together, about 3½ times as often as by chance**:
+  3.2 % of all steps lose more than 8 rpm against their cylinder's median,
+  10.9 % of those straight after one that did.
+- **Not changed by any repair**: by period the single share is 73–78 %
+  and the follow-on 2.3–5.7 × chance throughout, while the dips per 1000
+  strokes fell from 9.8 (`19`/`20`/`24`) to 4.9–5.8 (`40`–`43`). **The
+  repairs took dips of both kinds away alike**, and the depth
+  distribution kept its shape (Kolmogorov–Smirnov before against after
+  12/10: D 0.04, p 0.54).
+- **Cold, more clusters**: below 40 °C of oil 60 % single (833 dips)
+  against 75 % warm, at the same depths.
+- **Warm, cylinder 3 leads the single dips, and less clearly the
+  clusters** (`43`, named, `--name --order 4`): of 58 single-stroke dips
+  **24 on 3**, 11–12 on each of the others; of 12 pairs of consecutive
+  weak strokes **9 have 3 in them**, 1 then 3 five times, 3 then 4 four
+  (chance 6 of 12, p 0.07). Cold (`41`) both spread over all four (singles
+  20–25 each, pairs 8–16 on every neighbour). One named capture.
+
+**A steady pattern over the cylinders, apart from the dips** (5/11, the
+owner's request for a fresh look at the data; scripts not kept, the
+reading is described here). The step from one firing to the next carries
+a **period-4 component of 3–6 rpm** (0.2–0.9 with the steps shuffled): a
+steady difference in what each cylinder gives, present with no dip at
+all. **It is about a third of `IdleHealth`**: over 318 warm loads-off
+windows of 30 s from 19 captures the grade averages 78, and 51 with each
+window's four slot means taken out. It is independent of the dips (rank
+correlation 0.21 with dips per 1000 strokes, 0.02 with what is left) and
+**moves over minutes**: in `31` it rose from 1.0 to 5.8 rpm and took the
+grade from 71 to 110 with the dips unchanged; in `43`'s stop the settling
+from 86–114 to 31–55 was mostly this pattern fading. The A/C's load
+(`40`) calms the rest and leaves the pattern as large as loads off. The
+display's swings inside one stop (27/10, *waves of about 1½ min*) can be
+this alone (*reasoned*). **Named by the cuts** (the dead-stroke shape
+fitted to the ordinary idle): `31` (10/10, warm) 1 −2.1, 3 +3.1, 4 +4.1,
+2 −6.0 % of a stroke short; `43` (3/11, warm) 1 −0.9, 3 +3.5, 4 +3.0,
+2 −5.6 %; `41` (cold) near nothing. **Warm, 3 and 4 give the least and
+2 the most**, on two days three weeks and a change of leads and map
+apart. ⚠ The pattern's phase holds for minutes, then drifts or jumps:
+either the stroke count slips across missing 0x280 frames (about 6 % are
+missing) or the weak cylinder really changes, so a name far from a cut
+is uncertain. This is what `refuted.md` A5 saw as slot means of 3.5–5.9
+rpm "with no consistent outlier"; with the cuts naming the slots it is
+consistent.
 
 **After high revs** (*owner*, 23/10 evening, the first 44K tank,
 display, the everyday state): straight after a stretch held at high revs,
@@ -575,8 +625,11 @@ completing rather than load (`refuted.md` C19).
   they went on with no tip-in at all**: five episodes of 12–36 at a steady
   2000–2200 rpm and 25 % load, throttle about 10°, while the jerk the owner
   had tied to them was gone (`refuted.md` D6) — so they are not the
-  pedal's. ⚠ With detection `deaktiv.` the field
-  reads 13, 15, 16, 18 at each lift — not steps of 12, so not misfires. The C4 full-load lamp lit on
+  pedal's. With detection `deaktiv.` the field
+  reads 13, 15, 16, 18 at each lift: **counted misfires after all**, one
+  each, at a weight that grows with load and engine speed, caught in the
+  sample where detection switches off (5/11, *What the number is*; this
+  said "not steps of 12, so not misfires" until then). The C4 full-load lamp lit on
   this map, so detection under load was not off — **unless the remap dulled
   it** (H14 route 6).
 - **The events are the S1 dips** (`tools/s3align.py`, eleven sessions,
@@ -586,7 +639,43 @@ completing rather than load (`refuted.md` C19).
   learned idle air as the switch refuted 2/11), not by how rough the idle
   is. **The A/C switches it**
   (*owner*, 16/10): A/C on, 014 at zero for minutes with `IdleHealth` ~70; A/C
-  off, it counts and the grade barely moves.
+  off, it counts and the grade barely moves. *Partly the detector's own
+  threshold, rising with load* (*What it counts*, below).
+- **What the number is** (5/11, from all 50 014 logs, 31 aligned to the
+  bus; `vcds.md`): **the misfires counted in the current window of 200
+  crank revolutions, times a weight**, reset to zero at the window's end —
+  about 15 s at idle. Between resets the revolutions integrated from the
+  bus are k × 200 in 388 of 388 pairs (about 12 % for one pair by chance);
+  with one cylinder dead the field peaks at 1,164–1,188 = 97–99 × 12,
+  one missed combustion every two revolutions. The weight is **12 per
+  misfire at idle below about 34 % load, 13 above**, more above
+  2000 rpm. So **12 is one misfire in the last ~15 s**, the owner's usual
+  12–48 one to four in 400 combustions (0.25–1 %), and P0300's 2 % per
+  1000 revolutions a reading of about 96 window after window; the worst
+  natural 1000 revolutions on record are 1.95 % (4/10). VW names the
+  200-revolution window for this ECU (SSP 175, catalyst protection). Off
+  (`deaktiv.`) the count and the window's revolutions both freeze; the
+  first window starts about 5 s after the crank. **Off below a load that
+  rises with speed** (about 20 % at idle, 22–25 % at 1400–3000 rpm,
+  27–30 % above) and **while speed falls faster than about 100 rpm/s**; no
+  temperature condition (it counts below 40 °C of coolant).
+- **What it counts** (5/11, the same logs against the bus): **one stroke's
+  loss against the one before**, not the dip's depth — a fitted threshold
+  of about 19 rpm at 28 % load, **rising 0.33 rpm per % of load**, about
+  0.2 s after the stroke; held out one capture at a time it ranks the
+  counted strokes with an AUC of 0.85 (0.91 with load and the neighbouring
+  strokes). **Isolated weak strokes are counted, clusters and sags mostly
+  not** (91 % at a loss of 20 rpm, 10 % when the next stroke keeps
+  losing). Two things follow (*reasoned*): **the A/C's silence is partly
+  the detector's** — its load raises the threshold — though the grade
+  falls with it too (S1); and **`42`'s zero after the map and the reset
+  was the detector's state, not the engine** — the bus predicts 55–80
+  counting windows there and 014 showed none, which fits the threshold
+  Bosch's patents raise until the crank wheel's tooth errors are learnt
+  (`refuted.md` C19). **Open**: on `41`'s cold cut (oil 63 °C, 35 % load)
+  only about 10 % of the dead strokes were counted, against 87–100 % on
+  the warm cuts, though the bus shows the same −25 rpm dead stroke; a warm
+  cut with the A/C on would tell load from temperature.
 - **Three properties to keep in mind** (`refuted.md` A11, A12): steps of 12;
   off below ~20 % load; its sensitivity per dip moved five- to fiftyfold with
   the MAF. **So 014 is a yes/no witness, not a ruler.** Compare across time
@@ -1102,9 +1191,15 @@ about. The valve is closed by its spring; the lifter only removes the gap.
   holding soot looks like after three years (*general*), and the top end
   seen with the cover off on 1/10 carried only a thin golden-brown film,
   no sludge on the cam or the caps (`refuted.md`, the head gasket entry).
-- **For, 5/11: warm, the dips of two strokes keep to 3 too** (S1, *How many strokes make a dip*, 5/11):
-  on `43` 15 of 17 have 3 in them, beside its 23 of 38 single ones — one
-  cylinder, not a moment shared by all four. As much for H13 and H3.
+- **For, 5/11: warm, the dips of two strokes lean to 3 too** (S1, *How many strokes make a dip*, 5/11):
+  on `43` 9 of 12 pairs have 3 in them (chance 6, p 0.07), beside 24 of
+  its 58 single ones.
+- **Against, 5/11: the steady pattern names 3 and 4 alike** (S1,
+  *A steady pattern over the cylinders*): warm, on `31` and `43`, both give 3–4 % of a stroke
+  less and 2 about 6 % more — one seat on 3 would weaken 3 alone — and
+  the pattern moves over minutes, where a fixed leak at a seat would hold
+  still (*reasoned*). Medium confidence: the naming can slip far from a
+  cut.
 - **Against:** compression **13 bar in 2018 and 12 bar even on all four in
   2026** (`vehicle-history.md`) — no cylinder losing; the vacuum gauge
   steady cold and warm, no flick (H3); no ticking before 18/10, and **none on any
@@ -1173,8 +1268,11 @@ the lower manifold's gasket at runner 3, never renewed.
   minute before. **Against**, on that half.
 - **For:** the regime; S14 at the thinnest charge; a leak at one runner acts
   on one cylinder, and 3 and 4 are neighbours on the lower manifold.
-- **For, 5/11: warm, the dips of two strokes keep to 3 too** (S1, *How many strokes make a dip*, 5/11),
-  as H1's.
+- **For, 5/11: the steady pattern names 3 and 4 alike** (S1,
+  *A steady pattern over the cylinders*): warm, on `31` and `43`, both give 3–4 % of a stroke
+  less, and 3 and 4 are neighbours on the lower manifold, so a leak at
+  the gasket between their runners fits it; it moves over minutes, as a
+  charge effect may (*reasoned*).
 - **Against:** a large leak is refuted (`refuted.md` A7): idle air 3.1–3.5 g/s
   against VW's leak mark of 2.0, 055 inside ±1.5, 032's idle cell negative.
   **The intake smoked tight cold** (9/10) after the dipstick guide and the
@@ -1218,6 +1316,11 @@ shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
   pressure needs more voltage at the gap and the supply is lower, so
   anything on the spark side, plug 3's gap included, predicts the
   opposite (*general*). **Against.**
+- **5/11, the steady pattern over the cylinders** (S1, *A steady pattern
+  over the cylinders*): warm, on `31` and `43`, **3 and 4 give 3–4 % of a
+  stroke less alike** — the pair the loom feeds, and a loom fault that
+  comes and goes would let the pattern move over minutes as it does
+  (*reasoned*). **For the loom**, against the spark side as above.
 **Tests:** the injector loom flexed at 3 and 4 at a warm idle — **done by
 the owner on 24/10, part-warm, during the first phone recording, above all
 the repaired wire at injector 4, judged by ear only: no change heard**
@@ -1262,9 +1365,9 @@ hundred km without a disconnect.
   **And the history** (*owner*, 3/11): on the new VW leads and plugs
   the dips were on all four alike (`40`, `41`), and 3 came back only
   later; a bad injector would never have been even.
-- **5/11, the dips of two strokes** (S1, *How many strokes make a dip*, 5/11): warm they keep to 3 —
-  as one injector on 3 would, not as the rail's pressure, which acts on
-  all four.
+- **5/11, the steady pattern over the cylinders** (S1, *A steady pattern over the cylinders*):
+  3 and 4 weak alike — two injectors at once less likely than one, and
+  the rail acts on all four; neutral.
 - **Against:** four new injectors and a new filter changed nothing in S1; the
   trims near zero; full-load pulls reach ~85 kW, where a weak pump shows first;
   the regulator (6/2026, 3 bar) dry at its hose, **no fuel and no smell at
@@ -1373,9 +1476,10 @@ throttle and took up its cable's slack. Not measured; a capture with the
 throttle held still would show whether the plate or the engine moves.
 
 **Against:** a dip is one firing that fails and recovers in a quarter of a
-second, not a hunting loop (two in three; one in three is two firings in a
-row, and warm those keep to cylinder 3 too — S1, *How many strokes make a
-dip*, 5/11); the plate angle in every VCDS log is steady and
+second (three in four; one in five is two firings in a row, and warm
+those lean to cylinder 3 too — S1, *How many strokes make a dip*, 5/11);
+the dips do ride a 0.8 Hz swing of the idle loop (S1, 5/11), but as the
+moment a marginal cylinder fails, not as a hunting loop of its own; the plate angle in every VCDS log is steady and
 the misfires do not ride on it (27/9); the potentiometer track has no dead
 spot or dropout on the bus; the throttle is **new since 2/10** (Pierburg
 `7.03703.13.0`) and the idle fault outlived it; it acts on all four. Kept
@@ -1546,9 +1650,13 @@ hard use burns them off (*general*).
 - **18/10 has not come back** in six days of hard driving, a strong 44K
   tank among them (`refuted.md` D10) — what a flake that burnt off does.
   Weak: one episode, and its absence.
-- **5/11: warm, the dips of two strokes keep to 3 too** (S1, *How many strokes make a dip*, 5/11): one
-  cylinder worst, as above; cold both kinds on all four alike — the
-  owner's floor on all four with 3 worst, in form.
+- **5/11, the steady pattern over the cylinders** (S1, *A steady pattern over the cylinders*):
+  warm 3 and 4 give the least, 2 the most, 1 between — against the
+  borescope's 3 > 4 > 2 > 1 it fits the weak pair, not 2 above 1; and it
+  moves over minutes, as deposit that soaks and gives back fuel would
+  (*reasoned*): for, on the whole. The dips lean to 3 (24 of 58 single
+  ones on `43`); cold both spread over all four — the owner's floor on all
+  four with 3 worst, in form.
 - **Against:** a detergent premium fuel since 2017; compression even;
   **the strong first 44K tank changed nothing** (23–24/10, *owner*): about
   450 km on it, hours above 4000 rpm, and `IdleHealth` at the warm stops
@@ -1750,10 +1858,10 @@ settle in the intake and flood the first start.
   label summary, `vcds.md`). 0.0 % says only that the canister had nothing to
   give at that moment. So 070 refutes a dead valve, not a leaking one.
 - **Against: S1 and S3.** A dip is one firing that fails and recovers in
-  about a quarter of a second (S1; **5/11**: one in three is two firings in
-  a row, weak firings follow each other 2½ times as often as by chance —
+  about a quarter of a second (S1; **5/11**: one in five is two firings in
+  a row, weak firings follow each other 3½ times as often as by chance —
   the one thing a moment of vapour would predict — but warm on `43` those
-  pairs keep to 3, which vapour through the plenum cannot pick: *How many
+  pairs lean to 3, which vapour through the plenum cannot pick: *How many
   strokes make a dip*); vapour comes through the common plenum
   to all four alike as a slow, even flow that the lambda loop follows, so
   it cannot make one firing in hundreds fail and the next succeed. **The
@@ -2005,10 +2113,13 @@ a floor on all four and an excess on one; `41`'s 31 % on 3 was too few
 dips to tell from alike, p 0.77, so "spread first" is not quite
 "3 not leading").
 
-**`43`'s clusters keep to 3 as well** (5/11, `dipshape.py --name`): 15 of
-its 17 dips of two weak strokes in a row have 3 in them, 1 then 3 or 3
-then 4 (S1, *How many strokes make a dip*); cold, on `41`, they spread
-over all four like its single dips.
+**`43`'s clusters lean to 3 as well** (5/11, `dipshape.py --name`, each
+stroke against its own cylinder's median): 9 of its 12 pairs of weak
+strokes in a row have 3 in them, 1 then 3 or 3 then 4 (chance 6, p 0.07;
+S1, *How many strokes make a dip*); cold, on `41`, they spread over all
+four like its single dips. **The steady pattern under the dips names 3
+and 4 alike** (S1, *A steady pattern over the cylinders*): warm, on `31` and `43`, both give
+3–4 % of a stroke less and 2 about 6 % more.
 
 The pair was already there on 11/8, on the 2022 leads and the old injectors.
 `--pairs` is kept for history only: pairs within a run are not independent.
@@ -2161,12 +2272,13 @@ is in git.
 | 14 | **H12** driveline play | — | done: the clutch minutes cleared it |
 
 **Re-read 5/11, after the dips' anatomy** (*at the owner's question*;
-S1, *How many strokes make a dip*): **the order stands**. Two dips in
-three are one weak firing; one in three two in a row, and weak firings do
-follow each other about 2½ times as often as by chance — what a cause
+S1, *How many strokes make a dip*): **the order stands**. Three dips in
+four are one weak firing; one in five two in a row, and weak firings do
+follow each other about 3½ times as often as by chance — what a cause
 shared by all four for a moment would give (H7's rail, H8, H16, H18, H0).
 But the share has not moved with any repair, and **warm on `43` the
-pairs keep to cylinder 3 like the single dips** (15 of 17), so the
+pairs lean to cylinder 3 like the single dips** (9 of 12; *15 of 17 on raw
+steps, superseded the same day*), so the
 clustering adds nothing those hypotheses did not have and takes nothing
 from the three on 3 (H13, H1, H3), which it fits; it does not separate
 them either. Cold (`41`) both spread over all four, as before. One named

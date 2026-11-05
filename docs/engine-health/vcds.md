@@ -86,16 +86,29 @@ finding:**
   engine speed and **load** counts as a misfire; and the counts are summed
   over a window of crank revolutions (1000 in the patents) and reset. So
   014 is **the output of that calculation, not a number of misfired
-  combustions** — why it reads in twelves and holds about 3 s here is the
-  calibration, and no public source says. **Measured with one cylinder
+  combustions**. **Its window, measured 5/11** (all 50 014 logs, 31
+  aligned to the bus; `open.md` S3, *What the number is*): **200 crank
+  revolutions**, about 15 s at idle, the field reset to zero at each
+  window's end — between resets the bus's integrated revolutions are
+  k × 200 in 388 of 388 pairs; VW names the 200-revolution window for this
+  ECU (SSP 175, English New Beetle edition, pp. 45–47:
+  https://www.volkspage.net/technik/ssp/ssp/SSP_175_d2.pdf), the
+  catalyst-protection one. **The weight per misfire is 12 at idle below
+  about 34 % load, 13 above** (`vcds-step6d-cold-cut-014-001-003.csv`, the
+  cut at 35 % load, counts in thirteens), and more above 2000 rpm; why 12,
+  no public source says (a factor the ECU sends the tester is the likeliest
+  reading). While detection reads `deaktiv.` the count and the window's
+  revolutions freeze. *This said "holds about 3 s here" until 5/11.* **Measured with one cylinder
   dead** (injector cuts at a warm idle of about 800 rpm,
   `vcds-step5-014-055-003.csv` 10/10 and
   `vcds-step5b-warm-014-055-003.csv` 3/11): the field climbs by **72 at
   almost every sample** (0.9 s apart), which is 12 for each of the dead
   cylinder's six missing combustions, and falls back near 1,164–1,188
   to start again. So with a cylinder fully out, one counted combustion
-  is 12 (*reasoned* from the two cuts); what a partial burn at idle
-  counts is not shown. *Reasoned from it:* a threshold
+  is 12 (*reasoned* from the two cuts), and the peak of 1,164–1,188 is the
+  window's 100 missed combustions (97–99 × 12); a partial burn counts when
+  its stroke loses about 19 rpm or more against the one before at 28 %
+  load, more at higher load (`open.md` S3, *What it counts*, a fit, 5/11). *Reasoned from it:* a threshold
   that moves with load, and load computed from the MAF, is the likely
   reason the counter's sensitivity changed with the MAF (`refuted.md` A11).
 

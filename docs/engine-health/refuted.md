@@ -106,7 +106,12 @@ the pair figures above were read on runs seconds long and run high; on
 minutes-long runs the dips put about two thirds on **two** neighbours in
 the firing order, and on `31`, where the cuts name the slots, those are
 cylinders 4 and 3 (`open.md`, *One cylinder or two*). Still not four
-alike, and still no outlier in the means.
+alike, and still no outlier in the means. **5/11: an outlier in the
+means after all, once the cuts name the slots** (`open.md` S1, *A steady
+pattern over the cylinders*): warm, on `31` and `43`, 3 and 4 give 3–4 %
+of a stroke less and 2 about 6 % more, and the pattern is about a third
+of `IdleHealth`; the unnamed slot means could not show it because their
+phase is lost between runs.
 
 ### A6. "The evaporative purge" — measured
 
@@ -548,8 +553,10 @@ print is smeared, so a hose of the same bore: **8 mm inside**
 
 ### C10. "Group 014 is a lifetime total" — measured
 
-It is a current count that holds about three seconds and returns to zero,
-specified 0 to 5. The label `(celkovy)` is wrong.
+It is a current count, specified 0 to 5: **the misfires counted in the
+current window of 200 crank revolutions, 12 each at idle**, reset at the
+window's end, about 15 s at idle (5/11, `vcds.md`; this said "holds about
+three seconds" until then). The label `(celkovy)` is wrong.
 
 ### C11. "The engine is down on power" / "the torque display under-reads" — answered
 
@@ -724,6 +731,14 @@ overrun has been driven — and every session above fits that as well:
 the hard drive added cuts from 3,500–5,300 rpm; **3/10 counted at its
 first warm stop after 17 cuts**, which explains H10's one exception
 without the hole. The captures cannot tell the two adaptations apart.
+**5/11, the mechanism in print**: Bosch and Audi's patents on this
+detection (US 5,696,316: the threshold "must be increased relatively
+sharply" until the tooth tolerances are adapted, per speed range; US
+5,955,663: a "comparatively large" threshold until the first stage,
+learnt on the overrun, is done), and on `42` — the map written, every
+adaptation reset — the bus predicts 55–80 counting windows where 014
+showed none (`open.md` S3, *What it counts*). Whether a battery
+disconnect resets the tooth adaptation on this ECU is still not known.
 **The rule above holds either way** — a quiet 014 after a disconnect
 is no evidence — but *which* adaptation turns the counting on is open,
 and "it follows 055's learned value" is the less certain half of this
@@ -1126,7 +1141,9 @@ What `open.md` said while it was open, kept as it stood:
 > them at 06:45 with the coolant at 55 °C (*re-read 27/10*). The gear is not in the log, so that
 > they were tip-ins after a change is the owner's, not the log's. ⚠ The
 > other changes in that field at gearchanges came with detection
-> `deaktiv.` and read 13–18, not steps of 12: not misfires (one 13, at
+> `deaktiv.` and read 13–18, not steps of 12: not misfires (*5/11: they
+are, one each at a load- and speed-dependent weight, `open.md` S3, What the
+number is*) (one 13, at
 > 07:03:44, came with detection still `aktivováno` and cleared 2 s later).
 >
 > **Not settled that it is combustion** (*reasoned*): misfire detection

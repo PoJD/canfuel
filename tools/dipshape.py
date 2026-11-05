@@ -39,6 +39,20 @@ many do. Weak strokes that came independently would follow one another at
 the base rate. (A shuffle of the steps is no null: the shuffled sum
 wanders like a random walk and makes dips of its own.)
 
+Each cylinder against itself
+----------------------------
+
+**The steps are taken against each cylinder's own median step** before
+anything is counted (`slot_level()`). The idle carries a steady pattern
+over the cylinders -- one slot's step sits a few rpm low every cycle
+(docs/engine-health/open.md S1, *A steady pattern over the cylinders*) --
+and on raw steps that slot crosses LOSE_RPM far more often without failing
+at all: on `43` cylinder 3 lost more than 8 rpm in 8.9 % of its raw steps
+against 1.1 % for cylinder 2, which named most weak strokes 3 (found
+5/11/2026; until then the figures in open.md were raw). The median is
+over the run (or the named stretch) the stroke belongs to, so a pattern
+that drifts over minutes is followed only as far as a run lasts.
+
 The two caveats that bound every figure
 ---------------------------------------
 
@@ -90,6 +104,25 @@ DEPTH_BANDS = ((20, 25), (25, 30), (30, 40), (40, 999))
 
 
 # --- the dips --------------------------------------------------------------
+
+def slot_level(run):
+    """The run rebuilt from steps less each slot's median step.
+
+    Slot = position mod 4 within the run: a phase-intact run keeps it, and
+    consecutive positions are consecutive cylinders. The first value stays.
+    """
+    v = [r for _, r in run]
+    if len(v) < 9:
+        return list(run)
+    st = [v[k] - v[k - 1] for k in range(1, len(v))]
+    med = [statistics.median(st[k::4]) for k in range(4)]
+    out = [run[0]]
+    x = v[0]
+    for k in range(1, len(v)):
+        x += st[k - 1] - med[(k - 1) % 4]
+        out.append((run[k][0], x))
+    return out
+
 
 def dips(run, ref=REF_STROKES, depth=DIP_DEPTH_RPM, lose=LOSE_RPM,
          rearm=REARM_RPM):
@@ -220,7 +253,7 @@ def named_clusters(path, order):
         stretches.append(cur)
         for s in stretches:
             idx = [i for _, _, i in s]
-            for d in dips([(t, r) for t, r, _ in s]):
+            for d in dips(slot_level([(t, r) for t, r, _ in s])):
                 w = [idx[k] for k in d["weak"]]
                 if len(w) == 1:
                     singles[cyl(w[0])] += 1
@@ -276,6 +309,7 @@ def main(argv=None):
         "capture", "strokes", "dips", "/1000", "1", "2", "3+", "depth"))
     for cap in args.captures:
         runs = idle_runs(cap, args.min_oil)
+        runs = [slot_level(r) for r in runs]
         ds = [d for r in runs for d in dips(r)]
         strokes = sum(len(r) for r in runs)
         pooled += ds

@@ -62,6 +62,36 @@ class Counting(unittest.TestCase):
         self.assertLess(got[0]["biggest"], 0.2)
 
 
+class EachCylinderAgainstItself(unittest.TestCase):
+
+    def test_a_steady_low_slot_makes_no_weak_strokes(self):
+        # one slot loses 9 every cycle and the other three win it back
+        v, x = [], 800.0
+        for k in range(200):
+            x += -9.0 if k % 4 == 0 else 3.0
+            v.append(x)
+        run = run_of(v)
+        raw = [d for d in dips(run)]
+        _, base_raw, _ = follow_on([run])
+        self.assertGreater(base_raw, 0.2)           # raw: one step in four "loses"
+        _, base, _ = follow_on([dipshape.slot_level(run)])
+        self.assertEqual(base, 0.0)
+        self.assertEqual(dips(dipshape.slot_level(run)), raw)  # no dips either way
+
+    def test_a_real_weak_stroke_survives(self):
+        v, x = [], 800.0
+        for k in range(200):
+            x += -9.0 if k % 4 == 0 else 3.0
+            if k == 120:
+                x -= 25.0
+            if 121 <= k <= 128:
+                x += 25.0 / 8
+            v.append(x)
+        got = dips(dipshape.slot_level(run_of(v)))
+        self.assertEqual(len(got), 1)
+        self.assertEqual(len(got[0]["weak"]), 1)
+
+
 class TheChanceCheck(unittest.TestCase):
 
     def test_independent_weak_strokes_follow_at_the_base_rate(self):
