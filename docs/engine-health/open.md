@@ -1273,6 +1273,9 @@ the lower manifold's gasket at runner 3, never renewed.
   less, and 3 and 4 are neighbours on the lower manifold, so a leak at
   the gasket between their runners fits it; it moves over minutes, as a
   charge effect may (*reasoned*).
+- **Against, 5/11** (*reasoned*): two cylinders running lean would pull
+  032's idle cell positive; it reads −6 to −8 % (H4, the same argument;
+  medium, the trim carries other inputs).
 - **Against:** a large leak is refuted (`refuted.md` A7): idle air 3.1–3.5 g/s
   against VW's leak mark of 2.0, 055 inside ±1.5, 032's idle cell negative.
   **The intake smoked tight cold** (9/10) after the dipstick guide and the
@@ -1321,6 +1324,24 @@ shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
   stroke less alike** — the pair the loom feeds, and a loom fault that
   comes and goes would let the pattern move over minutes as it does
   (*reasoned*). **For the loom**, against the spark side as above.
+- **Why load would help** (5/11, *reasoned*, *general* for the physics): a
+  raised resistance slows the current's rise in the injector's coil, so it
+  opens later by a fixed delay; at idle the pulse is shortest and that
+  delay costs the largest share of the fuel, under load a smaller one.
+  **H4 predicts "worse only at idle, load helps"** on its own. And the
+  trims before a dip (S1, *The dips ride a swing of the idle loop*) fit a
+  cylinder that is lean already and fails when the mixture is trimmed —
+  as much for H3.
+- **Against, 5/11** (*reasoned*): **032's idle cell is negative** (−6 to
+  −8 %): two cylinders 3–4 % lean would make the mixture 1.5–2 % lean, the
+  probe would see it and the trim would add fuel, not take it away — the
+  same against H3. Medium: the trim carries other inputs (the purge, the
+  MAF). **3 and 4 do not behave alike**: weak alike in the steady pattern,
+  but on `43` 3 takes 24 of 58 single dips and 4 only 12, where a shared
+  loom would expect them close — unless each branch's joint differs. **The
+  calm after revving** needs heat to reach the joint, a weak link. **The
+  same pair is the borescope's** (3 > 4 > 2 > 1), so H13 explains it
+  without a wire.
 - **What the loom can and cannot do unseen** (5/11, *reasoned*, at the
   owner's question). An **open** circuit — the plug off on 3/11 — is
   stored at once: P1240, injector 4, open circuit, sporadic. **No
