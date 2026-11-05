@@ -1355,9 +1355,25 @@ shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
   for a whole wire, but the meter's own leads not taken off and the probe
   not seated firmly, so not yet a reading. **That 3-pin connector's latch
   is worn**: it holds, but comes off by pulling without pressing the
-  tongue (*owner*). Which pins it carries is not known (four injectors
-  need five wires, so it is not the whole loom). Left untouched before
-  item 8, so the clean is read alone.
+  tongue (*owner*). **The beeper joins one of its pins to contact 1 of
+  injector 4** (*owner*) — the supply side, so the 3-pin connector carries
+  the injectors' supply at least.
+- **The wiring, from VW's diagram for this engine** (Golf/Bora 2.0 AQY,
+  sheet 55/6; the text of the diagram read only in a garbled preview,
+  eserviceinfo.com and portal-diagnostov.com, 5/11): **one supply for all
+  four** — fuse S232 (No. 32, 10 A), 1.5 mm² red/violet, connection A101
+  (relay terminal 87), connector T10a/5 (10-pin, cable channel left in the
+  engine bay), 1.0 mm² red/violet to the splice **D95** in the harness and
+  on to **contact 1 of each injector**, all red/violet. **Contact 2 to the
+  ECU**, 1.0 mm²: cylinder 1 pin 73 violet, 2 pin 80 violet/green, 3 pin 58
+  violet/red, 4 pin 65 violet/blue — the manual's pins (above). The sheet
+  also lists **T3, a 3-pin connector near the intake manifold**, beside the
+  engine speed sender G28 and the sender earth 220; which of its pins
+  carries what the garbled text does not show, and the owner's beeper puts
+  the supply on one. **So the supply is not split by pairs** (*reasoned*):
+  a poor joint in it, the worn T3 included, would starve all four alike,
+  not 3 and 4 — **against H4 through the supply**; what is left for the
+  pair is their own branches after D95 and their control wires.
 - **What the loom can and cannot do unseen** (5/11, *reasoned*, at the
   owner's question). An **open** circuit — the plug off on 3/11 — is
   stored at once: P1240, injector 4, open circuit, sporadic. **No
