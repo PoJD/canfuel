@@ -1358,7 +1358,11 @@ shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
   part (T3 or D95); 4 alone higher, 4's own branch. **Flexing the loom at
   injector 4 while reading did not move the figure** (*owner*, engine off
   and cooling): no intermittent joint there that a hand can find — against
-  a loose contact in 4's branch, at least cold and still. **That 3-pin connector's latch
+  a loose contact in 4's branch, at least cold and still. **Then, the
+  probes re-zeroed: injector 1's and injector 4's contact 1 to the same
+  T3 pin both 0.001–0.002 Ω** (*owner*); the 1.8–3.4 Ω before was the
+  probes, not the wire. **The supply to 1 and 4 is sound and alike**; 2
+  and 3 and the control wires not measured (the intake on). **That 3-pin connector's latch
   is worn**: it holds, but comes off by pulling without pressing the
   tongue (*owner*). **The beeper joins one of its pins to contact 1 of
   injector 4** (*owner*) — the supply side, so the 3-pin connector carries

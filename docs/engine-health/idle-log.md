@@ -1084,6 +1084,7 @@ compressor ran is not known.
   the loom flexed at 4; that connector's latch worn, it comes off by
   pulling (*owner*).
 - **Changes after:**
-  - *not known:* whether the 2 Ω is the wire or the probe.
+  - *measured:* after re-zeroing, injector 1's and 4's contact 1 to the
+    same T3 pin **0.001–0.002 Ω** each — the 2 Ω was the probes (*owner*).
 
 The rest of `plan.md` 6m waits for item 8's result.
