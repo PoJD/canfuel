@@ -1352,8 +1352,10 @@ shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
   connectors reachable. **From one pin of 4's connector to a pin of the
   loom's own 3-pin connector** (at the end of the loom, by cylinder 1):
   **about 2 Ω, at times 1.9, at times 3.4** — against the manual's 1.5 Ω
-  for a whole wire, but the meter's own leads not taken off and the probe
-  not seated firmly, so not yet a reading. **That 3-pin connector's latch
+  for a whole wire; the meter's probes touched together read 0 (*owner*),
+  so the figure is the path's or the probe's seating, which wandered —
+  **injector 1's contact 1 to the same pin** tells which: alike, the shared
+  part (T3 or D95); 4 alone higher, 4's own branch. **That 3-pin connector's latch
   is worn**: it holds, but comes off by pulling without pressing the
   tongue (*owner*). **The beeper joins one of its pins to contact 1 of
   injector 4** (*owner*) — the supply side, so the 3-pin connector carries
