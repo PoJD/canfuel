@@ -1348,6 +1348,16 @@ shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
   calm after revving** needs heat to reach the joint, a weak link. **The
   same pair is the borescope's** (3 > 4 > 2 > 1), so H13 explains it
   without a wire.
+- **5/11 evening, the first look** (*owner*, plenum on): only 1's and 4's
+  connectors reachable. **From one pin of 4's connector to a pin of the
+  loom's own 3-pin connector** (at the end of the loom, by cylinder 1):
+  **about 2 Ω, at times 1.9, at times 3.4** — against the manual's 1.5 Ω
+  for a whole wire, but the meter's own leads not taken off and the probe
+  not seated firmly, so not yet a reading. **That 3-pin connector's latch
+  is worn**: it holds, but comes off by pulling without pressing the
+  tongue (*owner*). Which pins it carries is not known (four injectors
+  need five wires, so it is not the whole loom). Left untouched before
+  item 8, so the clean is read alone.
 - **What the loom can and cannot do unseen** (5/11, *reasoned*, at the
   owner's question). An **open** circuit — the plug off on 3/11 — is
   stored at once: P1240, injector 4, open circuit, sporadic. **No

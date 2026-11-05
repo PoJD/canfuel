@@ -51,6 +51,10 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
    the pin of that connector it reaches (find it with the beeper), all
    eight. While each value is on the display, **flex the loom near 3 and
    4** and watch it. Write every value, and any that moved.
+   **5/11: only 1 and 4 reachable with the intake on** (*owner*); the rest
+   **only if item 8 changes nothing**, with the upper intake off, **never
+   the same day as item 8**, and the loom's worn 3-pin connector left as
+   it is until then.
 6n. **The injector circuits to the ECU** — later, only with VCDS on the
    laptop: 032/055 read first (unplugging the ECU may reset them, as a
    disconnect does), then the ECU's 80-pin plug off. One extension lead
