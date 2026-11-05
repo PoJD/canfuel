@@ -261,7 +261,7 @@ scripts were *ad hoc* and are not kept — `s3align.py` holds the pairing):
   minute**, against 0.8 % and about 8 a minute with it off over every
   capture. 014 is silent with the A/C on (S3) and so, nearly, is this. On
   the old MAF (`19`, `20`, 24/9) the A/C did not calm it: 20–26 a minute.
-  **On the display, 5/11** (warm, the A/C switched on, *owner*): 2–10 —
+  **On the display, 5/11** (two short drives, the A/C switched on, *owner*): 2–10 —
   with no b7 to say whether the compressor was running
   (`docs/engine-health/open.md` S3, for context).
 - **Driving: not counted.** At 1,200 rpm and more 014 rose 16 times in all

@@ -1047,11 +1047,12 @@ Load and revving both calm it, as on 19/10 and 26/10; read against the
 hypotheses on those two patterns alone (`open.md` S1, the ranking's
 re-read of 4/11).
 
-## 5/11 — the first warm `Misfires` on the display
+## 5/11 — the first `Misfires` after a warm-up, on the display
 
-- **Tests:** `IdleHealth`, `Misfires` and MisfAvg at warm stops on the
-  morning drives, the A/C on at every one; photos and a video in the
-  album; oil not read.
+- **Tests:** `IdleHealth`, `Misfires` and MisfAvg at stops on two short
+  morning drives, the engine perhaps never fully warm and never revved
+  above 3500 rpm (*owner*), the A/C on at every stop; photos and a
+  video in the album; oil not read.
 - **Changes after:**
   - *measured:* `IdleHealth` **60–76**; `Misfires` **2** (7:33) and
     **5–10** (9:05); MisfAvg 7.4 and 9.8–11.6; cold the night before
