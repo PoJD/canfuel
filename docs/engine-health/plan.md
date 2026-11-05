@@ -254,7 +254,9 @@ and **no plug change for now** (*his decisions*, 3/11). **The days after**
 clean burns hydrogen to water vapour, so a flake may come loose and lodge
 under a seat, an 18/10-like drop-out; if one comes, a warm leak-down on 3
 the same day or the next is the one moment it can be told from a seat
-or a guide. **The capture with the cut** (`cutscan.py --shares --name`)
+or a guide. **The capture with the cut** (`cutscan.py --shares --name`,
+and `dipshape.py --name --order 4`: whether 3's dips of two firings in a
+row go with its single ones, `open.md` S1, *How many strokes make a dip*)
 is the reading that separates: calmer with 3's share near 25 % → the
 deposit on 3 was the excess (H13); calmer with 3 still leading → 3 has
 its own cause (H1, item 9); no change → item 9. The display's own spread

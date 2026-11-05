@@ -563,6 +563,7 @@ python tools/replay.py --every 100 FILE
 python tools/idledips.py --roughness FILE
 python tools/afterpull.py FILE       # the warm idle after high revs
 python tools/cutscan.py --shares FILE...
+python tools/dipshape.py FILE...     # one weak firing per dip or several
 python tools/vcds_log.py --faults FILE
 python tools/flash.py --mode loopback | --preserve-eeprom | --identify | --dry-run
 ```

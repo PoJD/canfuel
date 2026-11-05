@@ -36,7 +36,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 4 November 2026
+## Where it stands — 5 November 2026
 
 **Closed**, in `refuted.md` §D: S6 the exhaust joint behind the
 converter, S8 the top end, S9 the rich trim, S10 the oil leak at the back
@@ -113,6 +113,9 @@ idle nor the MAF's curve (`refuted.md` C22, C23). **After `43`
 (cylinder 3 named) deposits and a valve on 3 lead, H7 fourth.** **Read
 4/11 on the load and revving patterns alone**: H13 with H1's exhaust seat
 on 3 the one reading that fits both; H3 the load only; the order stands.
+**Re-read 5/11 on the dips' anatomy** (S1, *How many strokes make a
+dip*): a third of the dips are two firings in a row, warm on `43` those
+keep to 3 as well; the order stands.
 
 **Next** (`plan.md`): the MFD back in from 4/11 (item 6) and the oil
 level every 500 km (6i); **the next repair is a professional
@@ -164,7 +167,8 @@ of crank, one power stroke (`docs/firmware/can-decoding.md` trap 5), so a dip
 is one cylinder's stroke. A stroke that gives nothing costs an estimated
 33–57 rpm; the deepest dips are 37–46, the typical one 20–22 — a partial
 burn. **The dip is the failed combustion itself**, and the recovery is the
-idle governor.
+idle governor. **About two dips in three are one weak stroke, and one in
+three two in a row** (*How many strokes make a dip*, below).
 
 **Every session since the repairs, like with like** (standing idle, 30 s
 windows, 93–111 °C of oil, heavy-load windows left out; mean ± standard
@@ -455,6 +459,37 @@ sessions the lambda correction was about 0.8 % lower just before a dip than in
 quiet idle — the loop on its lean swing. **Not reproduced on 12/10** (`32`,
 001 alone, the session built for it): a direction one session failed to
 repeat.
+
+**How many strokes make a dip** (`tools/dipshape.py`, 5/11, *at the
+owner's question*; every warm `_z1` idle, oil ≥ 80 °C, cuts left out,
+1,645 dips). A dead stroke is **one step**, not two: on `43`'s cut on 4
+the dead slot reads one step of about −24 rpm and the next window +17. So
+counting the strokes that lose more than 8 rpm inside a dip (the noise is
+±4.9 per step; one step in twenty loses 8 by itself) separates **one weak
+firing (64 %) from two in a row (32 %) and three or more (4 %)** — and two
+in a row are always **two different cylinders**, the next in the firing
+order.
+- **Deeper dips are more often clusters**: 20–25 rpm 72 % single, 25–30
+  55 %, 30–40 47 %; at 40 rpm and more 29 %, but those are mostly slow
+  sags (the largest step a fifth of the drop: a load, the regulator), not
+  runs of failed firings. ⚠ Requiring 20 rpm favours clusters by
+  construction (two steps of −12 make a dip, one does not), so the shares
+  are not the rate at which weak firings pair.
+- **Weak firings do come together, about 2½ times as often as by
+  chance**: 5.1 % of all steps lose more than 8 rpm, 12.2 % of those
+  straight after one that did.
+- **Not changed by any repair**: by period the single share is 61–68 % and
+  the follow-on 2.0–3.1 × chance throughout — `19`/`20`/`24` 61 %,
+  `25`–`30` 64 %, `31`/`32` 65 %, `35`–`39` 68 %, `40`/`41` 60 %,
+  `42`/`43` 66 % — while the dips per 1000 strokes fell from 9.9 to
+  3.2–4.6. **The repairs took dips of both kinds away alike.**
+- **Warm, the clusters keep to cylinder 3 too** (`43`, named,
+  `--name --order 4`): of 38 single-stroke dips **23 on 3** (1: 8,
+  2: 4, 4: 3), and **15 of 17 clusters have 3 in them**, on either side —
+  1 then 3 eight times, 3 then 4 seven. Cold (`41`) both spread over all
+  four alike (singles 13–19 each; pairs 8–15 on every neighbour). So
+  warm on the original map a cluster is mostly **3 with the stroke beside
+  it**, not a moment shared by all four. One named capture, 55 dips.
 
 **After high revs** (*owner*, 23/10 evening, the first 44K tank,
 display, the everyday state): straight after a stretch held at high revs,
@@ -1057,6 +1092,9 @@ about. The valve is closed by its spring; the lifter only removes the gap.
   holding soot looks like after three years (*general*), and the top end
   seen with the cover off on 1/10 carried only a thin golden-brown film,
   no sludge on the cam or the caps (`refuted.md`, the head gasket entry).
+- **For, 5/11: warm, the dips of two strokes keep to 3 too** (S1, *How many strokes make a dip*, 5/11):
+  on `43` 15 of 17 have 3 in them, beside its 23 of 38 single ones — one
+  cylinder, not a moment shared by all four. As much for H13 and H3.
 - **Against:** compression **13 bar in 2018 and 12 bar even on all four in
   2026** (`vehicle-history.md`) — no cylinder losing; the vacuum gauge
   steady cold and warm, no flick (H3); no ticking before 18/10, and **none on any
@@ -1125,6 +1163,8 @@ the lower manifold's gasket at runner 3, never renewed.
   minute before. **Against**, on that half.
 - **For:** the regime; S14 at the thinnest charge; a leak at one runner acts
   on one cylinder, and 3 and 4 are neighbours on the lower manifold.
+- **For, 5/11: warm, the dips of two strokes keep to 3 too** (S1, *How many strokes make a dip*, 5/11),
+  as H1's.
 - **Against:** a large leak is refuted (`refuted.md` A7): idle air 3.1–3.5 g/s
   against VW's leak mark of 2.0, 055 inside ±1.5, 032's idle cell negative.
   **The intake smoked tight cold** (9/10) after the dipstick guide and the
@@ -1212,6 +1252,9 @@ hundred km without a disconnect.
   **And the history** (*owner*, 3/11): on the new VW leads and plugs
   the dips were on all four alike (`40`, `41`), and 3 came back only
   later; a bad injector would never have been even.
+- **5/11, the dips of two strokes** (S1, *How many strokes make a dip*, 5/11): warm they keep to 3 —
+  as one injector on 3 would, not as the rail's pressure, which acts on
+  all four.
 - **Against:** four new injectors and a new filter changed nothing in S1; the
   trims near zero; full-load pulls reach ~85 kW, where a weak pump shows first;
   the regulator (6/2026, 3 bar) dry at its hose, **no fuel and no smell at
@@ -1320,7 +1363,9 @@ throttle and took up its cable's slack. Not measured; a capture with the
 throttle held still would show whether the plate or the engine moves.
 
 **Against:** a dip is one firing that fails and recovers in a quarter of a
-second, not a hunting loop; the plate angle in every VCDS log is steady and
+second, not a hunting loop (two in three; one in three is two firings in a
+row, and warm those keep to cylinder 3 too — S1, *How many strokes make a
+dip*, 5/11); the plate angle in every VCDS log is steady and
 the misfires do not ride on it (27/9); the potentiometer track has no dead
 spot or dropout on the bus; the throttle is **new since 2/10** (Pierburg
 `7.03703.13.0`) and the idle fault outlived it; it acts on all four. Kept
@@ -1491,6 +1536,9 @@ hard use burns them off (*general*).
 - **18/10 has not come back** in six days of hard driving, a strong 44K
   tank among them (`refuted.md` D10) — what a flake that burnt off does.
   Weak: one episode, and its absence.
+- **5/11: warm, the dips of two strokes keep to 3 too** (S1, *How many strokes make a dip*, 5/11): one
+  cylinder worst, as above; cold both kinds on all four alike — the
+  owner's floor on all four with 3 worst, in form.
 - **Against:** a detergent premium fuel since 2017; compression even;
   **the strong first 44K tank changed nothing** (23–24/10, *owner*): about
   450 km on it, hours above 4000 rpm, and `IdleHealth` at the warm stops
@@ -1692,7 +1740,11 @@ settle in the intake and flood the first start.
   label summary, `vcds.md`). 0.0 % says only that the canister had nothing to
   give at that moment. So 070 refutes a dead valve, not a leaking one.
 - **Against: S1 and S3.** A dip is one firing that fails and recovers in
-  about a quarter of a second (S1); vapour comes through the common plenum
+  about a quarter of a second (S1; **5/11**: one in three is two firings in
+  a row, weak firings follow each other 2½ times as often as by chance —
+  the one thing a moment of vapour would predict — but warm on `43` those
+  pairs keep to 3, which vapour through the plenum cannot pick: *How many
+  strokes make a dip*); vapour comes through the common plenum
   to all four alike as a slow, even flow that the lambda loop follows, so
   it cannot make one firing in hundreds fail and the next succeed. **The
   dips sat on 3 and 4 for weeks** (*The dips keep to one slot*), which a
@@ -1761,7 +1813,9 @@ vacuum falls, the flow stops, and what collected burns away.
   calmer after work, the calm lasting — what oil collecting at a small
   charge and burnt off under load would give (*reasoned*).
 - **For: all four alike.** The seals age together, and since the VW
-  leads the dips sit on all four alike (*The dips keep to one slot*).
+  leads the dips sat on all four alike (*The dips keep to one slot*).
+  **Against since 3/11**: warm on `43` one cylinder again, its dips of
+  two strokes too (5/11, S1, *How many strokes make a dip*).
 - **For, weakly: what the screen showed** on 19–20/10 (`idle-log.md`):
   a thin lacquer on the back of every inlet valve and wet patches on
   every crown. Oil from the guide would leave both, but so would the
@@ -1941,6 +1995,11 @@ a floor on all four and an excess on one; `41`'s 31 % on 3 was too few
 dips to tell from alike, p 0.77, so "spread first" is not quite
 "3 not leading").
 
+**`43`'s clusters keep to 3 as well** (5/11, `dipshape.py --name`): 15 of
+its 17 dips of two weak strokes in a row have 3 in them, 1 then 3 or 3
+then 4 (S1, *How many strokes make a dip*); cold, on `41`, they spread
+over all four like its single dips.
+
 The pair was already there on 11/8, on the 2022 leads and the old injectors.
 `--pairs` is kept for history only: pairs within a run are not independent.
 **After every captured session** the shares are reported to the owner, alone
@@ -2090,6 +2149,18 @@ is in git.
 | 12 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
 | 13 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 14 | **H12** driveline play | — | done: the clutch minutes cleared it |
+
+**Re-read 5/11, after the dips' anatomy** (*at the owner's question*;
+S1, *How many strokes make a dip*): **the order stands**. Two dips in
+three are one weak firing; one in three two in a row, and weak firings do
+follow each other about 2½ times as often as by chance — what a cause
+shared by all four for a moment would give (H7's rail, H8, H16, H18, H0).
+But the share has not moved with any repair, and **warm on `43` the
+pairs keep to cylinder 3 like the single dips** (15 of 17), so the
+clustering adds nothing those hypotheses did not have and takes nothing
+from the three on 3 (H13, H1, H3), which it fits; it does not separate
+them either. Cold (`41`) both spread over all four, as before. One named
+capture: the next capture with a cut (`plan.md` 8) repeats it.
 
 **Re-read 3/11, after the tuner's files and the drive on the original
 map** (*agreed with the owner*): **H14 and H19 leave the idle's ranking**
