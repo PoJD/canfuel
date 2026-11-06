@@ -2133,7 +2133,13 @@ about early 10/2026, bought for its torn tether (*owner*, 6/11).
 **6/11, the album** (18:42): the number on the part around the valve is
 `051 133 459 A`, EPDM — a seller lists it as the rubber holder of such a
 valve, with a Bosch valve among its cross-references (*general*); so not
-the valve's own number, as the owner read it too.
+the valve's own number, as the owner read it too. **6/11 night, the valve out**
+(`idle-log.md`): **Bosch `0 280 142 353`, VW `1C0 906 517 A`**, date code
+`040`; **no granules, no dirt, no smell of fuel** at its canister-side
+port, the hoses old but sound (*owner*). So **not a canister shedding
+charcoal** and no liquid in the line; what is left for P0440 is the
+valve itself (not opening fully, or leaking so much that opening adds
+little), its wiring, or the line to the intake (*reasoned*).
 
 ### H18. Oil past the valve-stem seals, drawn in at idle
 

@@ -127,25 +127,9 @@ readings; 6m or item 9 after it.**
    into the chat at once.
 8a. **The purge valve N80 replaced** (*the owner's decision*, 6/11),
    **only after item 8's readings**, never in the same days as item 8.
-   - **The part**: the valve's own number, **on the valve body** once it
-     is out of its rubber holder (`051 133 459 A` is the holder, 6/11),
-     most likely a Bosch `0 280 142 …`; VW or Bosch, not aftermarket.
-     **Found by the car (*owner*, 6/11): Bosch `0 280 142 353`**, = VW
-     `1C0 906 517 A`; compare it with the old valve before fitting
-     (ports, hose sizes, the holder), and buy it where it can go back.
-   - **While it is out**: photograph the rubber hose from the canister's
-     side as far as it can be seen, bent, for cracks and hardness, and
-     the thick hose from N80 to the back of the intake; look into the
-     old valve's canister-side port and the hose behind it for **black
-     granules**, and photograph them. **The plastic line under the upper
-     intake to the T at the throttle stays** (looked over with the
-     intake off several times, the smoke test clean; *owner*, 6/11).
-   - **Granules, or a smell of fuel at the canister-side port → the
-     canister is looked at**: follow the tank's vent line (the third of
-     the three under the car) to it, most likely behind a rear wheel
-     arch liner; photograph it; liquid fuel or granules → a new canister
-     and its hoses. Otherwise the canister is not touched.
-   - Rubber hoses cracked or hard → new, the same day.
+   - **The part: Bosch `0 280 142 353`, VW `1C0 906 517 A`** — the same
+     number as the valve on the car; VW or Bosch, not aftermarket.
+   - The hoses stay as they are; the canister is not touched.
    - **Afterwards, warm**: the owner runs **basic setting 070** himself
      and photographs the result (the TEV line and the lambda); then
      item 6's warm stops as always, `IdleHealth`, `Misfires`, MisfAvg,
@@ -385,33 +369,29 @@ on an empty tank down as P1300 (`open.md`, *What the forums say*).
 P0440 and the engine lamp, `open.md` S21 and H16; *this was "not
 replaced", the owner's decision of 25/10, until then*). **After item 8's
 readings** (*the owner*, 6/11): one change at a time, so that the idle
-after each can be put down to it. **What else**: the hoses because a
-cracked one gives the same code, and the granules because a canister
-that sheds charcoal jams the new valve open (*general*). **The part**: Bosch `0 280 142 353`
-is listed by sellers as VW `1C0 906 517 A` (superseding `955 605 517 00`),
-and one lists that for the New Beetle 2.0 from chassis 1C-Y-400 001, a
-split inside model year 2000; this car is a 2000 with a serial above it
-(the VIN), so it should fit (*general*, sellers' lists, not VW's
-catalogue); **Auto Kelly lists it for this car, engine AQY** (*owner*,
-6/11). Whether the valve on the car is already of that kind is
-seen only when it is out, hence the comparison. **The plastic
-line under the upper intake is left** (*the owner*, 6/11): seen whole
-with the intake off several times, the smoke test showed nothing there,
-and changing it means the intake off. **Where the canister is** is not
-settled: on US New Beetles of 1998–2000, with a leak detection pump, a
-rear wheel arch, the right by Chilton's manual, the left by others
-(*general*); a European car need not match, so the tank's vent line is
-followed to it, and only if the valve's port shows granules or fuel.
-**The filler cap
-is not on the list**: it is new from about early 10/2026 (*owner*,
-6/11, `vehicle-history.md`), and this car has no tank pressure sensor and no leak
-detection pump (a European car, the VIN), so the ECU can only open N80
-and watch lambda and idle air (block 070's fields), and a cap cannot fail
-that (*reasoned*). **070 afterwards** is the ECU's own check of a valve
-that opens; it is a basic setting, so the owner runs it, never Claude
+after each can be put down to it. **The part**: the valve taken out on
+6/11 is itself Bosch `0 280 142 353`, VW `1C0 906 517 A`, date code
+`040` (`photos/n80-2026-11-06-label.jpg`); Auto Kelly lists the same
+for this car, engine AQY (*owner*, 6/11), so the new one is the same
+part and fits as it is. **What was looked at, 6/11** (`idle-log.md`):
+no granules and no smell of fuel at the canister-side port, the rubber
+hoses old but sound, so **the canister is not looked at and no hose is
+changed** — a canister that shed charcoal would have jammed the new
+valve open (*general*), and it shows no sign of it. **The plastic line
+under the upper intake is left** (*the owner*, 6/11): seen whole with
+the intake off several times, the smoke test showed nothing there, and
+changing it means the intake off. **The filler cap is not on the list**:
+it is new from about early 10/2026 (*owner*, 6/11, `vehicle-history.md`),
+and this car has no tank pressure sensor and no leak detection pump (a
+European car, the VIN), so the ECU can only open N80 and watch lambda
+and idle air (block 070's fields), and a cap cannot fail that
+(*reasoned*). **070 afterwards** is the ECU's own check of a valve that
+opens; it is a basic setting, so the owner runs it, never Claude
 (`CLAUDE.md`). **No warm A–B–A with the hose plugged before it** (*the
 owner*, 6/11: not needed); so the idle after the swap is read against
-item 8's readings, on the display, with the A/C state named.
+item 8's readings, on the display, with the A/C state named. *Until
+6/11 night this item also had the hoses and the canister checked while
+the valve was out, and the part compared with the old one; done.*
 
 **Item 9 — after the decarbonisation** (*agreed with the owner*, 4/11,
 after the research): the cheapest tests that name a part on 3 without an

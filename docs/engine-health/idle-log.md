@@ -1138,3 +1138,21 @@ gasket edge changed nothing seen.
 The lamp the first the owner has seen in years; the code that of 1/2018.
 No fill on 5/11 or 6/11 and no hose touched around N80 in 5/11's work
 (*owner*). `open.md` S21 (added at the owner's request), H16, S19.
+
+## 6/11 night — the purge valve N80 out, looked at
+
+- **Tests:** N80 taken out of its rubber holder and photographed with
+  both of its ends and the hose from the canister's side (the album,
+  20:01–20:03; `photos/n80-2026-11-06-label.jpg`,
+  `photos/n80-2026-11-06-hose-end.jpg`); the canister-side port and
+  hose looked into and smelt (*owner*).
+- **Changes after:**
+  - *measured:* the valve **Bosch `0 280 142 353`, VW `1C0 906 517 A`,
+    date code `040`**; **no granules, no dirt, no smell of fuel**; the
+    rubber hoses — the same kind as the fuel pressure regulator's — old
+    but sound (*owner*); the hose to the T at the throttle left on the
+    car.
+
+The valve on the car is the part 8a was to buy (`plan.md` 8a); the
+canister is left. `open.md` H16, S21.
+
