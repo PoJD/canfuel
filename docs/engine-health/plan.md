@@ -392,7 +392,8 @@ is listed by sellers as VW `1C0 906 517 A` (superseding `955 605 517 00`),
 and one lists that for the New Beetle 2.0 from chassis 1C-Y-400 001, a
 split inside model year 2000; this car is a 2000 with a serial above it
 (the VIN), so it should fit (*general*, sellers' lists, not VW's
-catalogue). Whether the valve on the car is already of that kind is
+catalogue); **Auto Kelly lists it for this car, engine AQY** (*owner*,
+6/11). Whether the valve on the car is already of that kind is
 seen only when it is out, hence the comparison. **The plastic
 line under the upper intake is left** (*the owner*, 6/11): seen whole
 with the intake off several times, the smoke test showed nothing there,
