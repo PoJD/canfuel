@@ -118,9 +118,10 @@ of air (H14).
   ~2200 rpm; **not the exhaust's heat shields** — still there after their
   new clips, 31/10 — perhaps nearer the engine).
 
-**Ranked (5/11, agreed with the owner):** **H13, H3, H1, H7, H4**,
-then H2, H0, H8, the timing belt, **H20** (coolant into 3, added
-4/11, weak), H16, H18, H11, H12 (*The idle's candidates, ranked*; every
+**Ranked (6/11, agreed with the owner):** **H13, H3, H1, H7, H4**,
+then H2, **H16** (the purge valve, up from eleventh after P0440, S21),
+H0, H8, the timing belt, **H20** (coolant into 3, added 4/11, weak),
+H18, H11, H12 (*The idle's candidates, ranked*; every
 fit table re-read 4/11). **H15 refuted 4/11** (`refuted.md` C24).
 **H14 and H19 left it on 3/11**: the tuner's files
 show the remap touched only the corner of highest load, and neither the
@@ -141,7 +142,8 @@ level every 500 km (6i); **the next repair is a professional
 decarbonisation, with hydrogen, on 9/11** (H13, item 8; *the
 owner's decision*, 3/11), **captured from home to work the same day,
 with a cut on injector 4 before and after** (*the owner's plan*, 6/11);
-then, by what it shows, 6m's injector circuits or item 9's tests (the
+**then the purge valve N80 replaced, after item 8's readings** (H16,
+S21, 8a; *the owner's decision*, 6/11); then, by what it shows, 6m's injector circuits or item 9's tests (the
 stethoscope, the coolant's CO₂ test, a warm leak-down).
 
 ---
@@ -2079,16 +2081,54 @@ the pulses, **no liquid fuel**. **What it leaves:**
 - **The owner's slug variant: no liquid**, on a day after a fill.
 - **Still possible: S19.** A valve that passes air without power
   passes vapour while the car stands, which no running test sees; the
-  leak is small. **The valve is not replaced** (*the owner's decision*,
-  25/10): a part that helps neither the idle nor the trim is not worth
-  fitting for the starts alone. **S7 closed 31/10 as the fuel**
+  leak is small. *The valve was not to be replaced (the owner's
+  decision, 25/10: a part that helps neither the idle nor the trim is
+  not worth fitting for the starts alone) until P0440 came back on
+  6/11, below.* **S7 closed 31/10 as the fuel**
   (`refuted.md` D2): if the Verva's vapour came this way, it went with
   the Verva, and the valve's small leak is left without a symptom of
   its own (*reasoned*). **6/11, P0440 back** (S21): the system has a
   symptom of its own again, a fault code; the valve's leak of 25/10 is
   one candidate for it, not shown to be the cause. The trim's split
   outlived the map (S19, settled 6/11), which this hypothesis was
-  already answered against cold, not warm.
+  already answered against cold, not warm. **The valve is now replaced
+  after item 8's readings** (*the owner's decision*, 6/11, `plan.md`
+  8a; *this said "not replaced" until then*).
+
+**Re-read 6/11, at the owner's question: a common cause of the idle?**
+The owner's reading: not the difference between the cylinders, but the
+common stress that pushes the weakest of them, 3 and 4, over the edge.
+**It does not contradict the cylinder pattern** (*reasoned*): a common
+source sets how many dips there are, the weak cylinders where they fall.
+- **For**: VW lists N80 permanently open among the causes of a low 032
+  idle value (`vcds.md`), and 032's idle cell is −6 to −8 % on both maps;
+  a German workshop reads a negative correction without the valve
+  driven as a leaking or open valve, and names an unsteady idle among
+  its symptoms (*general*, `kfz-dietrich.com`). **Purge comes in phases**:
+  `IdleHealth` in waves of about 1½ min (27/10, S1), the pattern over the
+  cylinders moving over minutes, weak firings in pairs 3½ times as often
+  as by chance (*How many strokes make a dip*) — each what phases of
+  vapour would give (*reasoned*). And now a fault code on the system.
+- **Against**: **the idle is roughest cold**, when the ECU does not
+  drive the valve and a cold fuel gives little vapour; **25/10, cold,
+  the canister closed off, the engine still wanted the same fuel taken
+  away** (above). **A warm idle with the canister closed off was never
+  run** — the gap; not run before the swap either (*the owner*, 6/11: not
+  needed), so the swap itself is the test, read against item 8's
+  readings.
+
+**What P0440 can mean on this car** (*reasoned*, from *general*
+sources; this ECU's own check is not documented here). A European car
+(the VIN) with **no tank pressure sensor and no leak detection pump**:
+the ECU can judge the system only by opening N80 and watching lambda and
+the idle air (block 070's fields: the valve's opening, lambda, the idle
+air valve, OK / not OK; Ross-Tech's list), as Bosch's patents describe
+both. So a malfunction is **no reaction when the valve is opened**: a
+valve that does not open or is fouled, a blocked hose, charcoal granules
+from the canister, or a valve that leaks so much that opening it adds
+little; and **Bosch notes the lambda check is unreliable when the fuel
+hardly evaporates**, as in November. **The filler cap cannot set it
+here**, with nothing to measure the tank's pressure.
 
 ### H18. Oil past the valve-stem seals, drawn in at idle
 
@@ -2447,14 +2487,23 @@ is in git.
 | 4 | **H7** fuel delivery | **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026, and nothing points at one of them); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10); **no injector swap** (*the owner*, 3/11) |
 | 5 | **H4** the injector loom at 3 and 4 | **5/11 up from eighth** (*agreed with the owner*): exactly the pair the steady pattern names, and a fault that comes and goes would move over minutes; the load argument is against the spark side, not the injectors; shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
 | 6 | **H2** a leak ahead of the probe | **down 31/10 from fourth** (*agreed with the owner*): the manifold seen from close below, rusty but no soot marks and no holes, its joint to the head nothing visibly wrong from below (H2); the part under its heat shield unseen; S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test (`plan.md` 7) |
-| 7 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
-| 8 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
-| 9 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
-| 10 | **H20** coolant into cylinder 3 | **added 4/11** (*the owner*, weak): one cylinder at idle, where its pressure is lowest; plug 3 the cleanest of the 10/10 set; against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos | a combustion-gas (CO₂) test of the coolant (`plan.md` 9) |
-| 11 | **H16** the purge valve leaking | here for S19 only (S7 closed 31/10 as the fuel): an even flow to all four cannot fail one firing in hundreds; **6e: no liquid, so no slug, and not the trim's source** (H16); it passes a little air at rest; not replaced (*owner*, 25/10); **P0440 back 6/11** (S21), not the idle | P0440 back after the clearing (S21); the fault memory of 9/11 (`plan.md` 8) |
+| 7 | **H16** the purge valve leaking | **6/11 up from eleventh** (*agreed with the owner*): P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the idle's waves of minutes and the weak firings in pairs do; a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | the valve replaced after item 8's readings (`plan.md` 8a), the idle read against item 8's; P0440 not back |
+| 8 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
+| 9 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
+| 10 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
+| 11 | **H20** coolant into cylinder 3 | **added 4/11** (*the owner*, weak): one cylinder at idle, where its pressure is lowest; plug 3 the cleanest of the 10/10 set; against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos | a combustion-gas (CO₂) test of the coolant (`plan.md` 9) |
 | 12 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
 | 13 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 14 | **H12** driveline play | — | done: the clutch minutes cleared it |
+
+**Re-read 6/11 evening, at the owner's question** (*agreed with the
+owner*): **H16 from eleventh to seventh**, above H0 and below H2; H0,
+H8, the timing belt and H20 one down. A common stress that pushes the
+weakest cylinders over the edge is a fair reading of a purge path, and
+the system now has a fault code; it stays below the five that name 3 and
+4, and below H2, because the idle is roughest cold, when the valve is
+not driven (H16, *a common cause of the idle?*). The swap after item 8
+(`plan.md` 8a) is its test.
 
 **Re-read 6/11 with S21 added** (P0440 and the engine lamp): **the
 order stands**. S21 is not the idle; in the fit tables it is H16's

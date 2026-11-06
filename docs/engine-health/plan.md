@@ -20,7 +20,8 @@ The full previous version, before it was condensed on 20/10/2026:
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Current: item 6 and 6i
 from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
-9:45, captured from home to work; 6m or item 9 after it.**
+9:45, captured from home to work; 8a, the purge valve, after its
+readings; 6m or item 9 after it.**
 
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
@@ -124,6 +125,22 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
    stretch), and the A/C's figure too whenever it happens to be on; **an
    odd cold misfire or a drop-out on one cylinder in the days after** goes
    into the chat at once.
+8a. **The purge valve N80 replaced** (*the owner's decision*, 6/11),
+   **only after item 8's readings**, never in the same days as item 8.
+   - **The part**: read the number off the old valve and buy that, or
+     by the VIN; VW (or Bosch, the maker), not aftermarket.
+   - **While it is out**: photograph both hoses (canister to N80, N80 to
+     the intake) along their length, bent, for cracks and hardness;
+     look into the old valve's canister-side port and the hose behind it
+     for **black granules**, and photograph them. **Granules → the
+     canister is changed too**, and its hoses; a smell of fuel or liquid
+     fuel in the canister → the canister too. Otherwise the canister
+     stays.
+   - Hoses cracked or hard → new, the same day.
+   - **Afterwards, warm**: the owner runs **basic setting 070** himself
+     and photographs the result (the TEV line and the lambda); then
+     item 6's warm stops as always, `IdleHealth`, `Misfires`, MisfAvg,
+     into the chat.
 9. **After item 8, by what it shows** (Claude says which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
      a kit.
@@ -354,6 +371,22 @@ alone does not decide it; the capture is the exception item 6's "no
 captures until the display shows a change" makes for a repair (*agreed
 with the owner*, 4/11). Above reserve, because the ECU puts a misfire
 on an empty tank down as P1300 (`open.md`, *What the forums say*).
+
+**Item 8a — the purge valve** (*the owner's decision*, 6/11, after
+P0440 and the engine lamp, `open.md` S21 and H16; *this was "not
+replaced", the owner's decision of 25/10, until then*). **After item 8's
+readings** (*the owner*, 6/11): one change at a time, so that the idle
+after each can be put down to it. **What else**: the hoses because a
+cracked one gives the same code, and the granules because a canister
+that sheds charcoal jams the new valve open (*general*). **The filler cap
+is not on the list**: this car has no tank pressure sensor and no leak
+detection pump (a European car, the VIN), so the ECU can only open N80
+and watch lambda and idle air (block 070's fields), and a cap cannot fail
+that (*reasoned*). **070 afterwards** is the ECU's own check of a valve
+that opens; it is a basic setting, so the owner runs it, never Claude
+(`CLAUDE.md`). **No warm A–B–A with the hose plugged before it** (*the
+owner*, 6/11: not needed); so the idle after the swap is read against
+item 8's readings, on the display, with the A/C state named.
 
 **Item 9 — after the decarbonisation** (*agreed with the owner*, 4/11,
 after the research): the cheapest tests that name a part on 3 without an
