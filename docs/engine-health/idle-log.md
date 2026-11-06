@@ -1113,7 +1113,8 @@ The rest of `plan.md` 6m waits for item 8's result.
 - **Changes after:**
   - *measured:* `IdleHealth` **65**, `Misfires` **18**, MisfAvg **23.0**
     (*owner*);
-  - *felt:* no change, as expected (*owner*).
+  - *felt:* the engine behaved the same, as expected (*owner*).
 
-The first of `plan.md` 8's baseline readings; 5/11's contact cleaner and
+`Misfires` and MisfAvg above 5/11's because the drive had only about 5
+minutes of idle in all, hardly any of it warm (*owner*). The first of `plan.md` 8's baseline readings; 5/11's contact cleaner and
 gasket edge changed nothing seen.
