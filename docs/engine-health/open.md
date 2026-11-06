@@ -1341,7 +1341,15 @@ of focus, crust at the edge; 1's (02:41:31) unclear; **3 none**, every
 frame of 3 a closed valve or the crown. Which valve of each is open is
 not known from the frame. **So the chamber side neither confirms nor
 clears the inlet seats of 3 and 4**; what stands is the ports' contrast,
-1 and 2 even against 3 and 4 broken, read from above.
+1 and 2 even against 3 and 4 broken, read from above. **The open valves at full
+resolution** (7/11, *the owner's reading*: the inlet head reads light,
+the exhaust dark; he sees 4's seat face uneven, 2's and 1's smoother):
+the sharp frames, 2's (02:25:20) and 1's (02:41:31), show a smooth
+face; **4's only open frame (00:48:24) is out of focus**, and its round
+beads are what blur makes of any edge — 2's own blurred frames
+(02:24:33, 02:25:09) show the same beads along its rim. So the
+difference cannot yet be told from blur (*reasoned*); a sharp frame of
+4's face would decide it.
 **Test: a warm leak-down on all four**, listening at the
 tailpipe (exhaust seat), the throttle (inlet) and the oil filler (rings);
 **a stethoscope on the cam cover above 3, hot**, against 1, 2, 4. The AQY's lifters are hydraulic bucket
