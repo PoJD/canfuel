@@ -129,8 +129,10 @@ readings; 6m or item 9 after it.**
    **only after item 8's readings**, never in the same days as item 8.
    - **The part**: the valve's own number, **on the valve body** once it
      is out of its rubber holder (`051 133 459 A` is the holder, 6/11),
-     most likely a Bosch `0 280 142 …`; buy that, or by the VIN; VW or
-     Bosch, not aftermarket.
+     most likely a Bosch `0 280 142 …`; VW or Bosch, not aftermarket.
+     **Found by the car (*owner*, 6/11): Bosch `0 280 142 353`**, = VW
+     `1C0 906 517 A`; compare it with the old valve before fitting
+     (ports, hose sizes, the holder), and buy it where it can go back.
    - **While it is out**: photograph the rubber hose from the canister's
      side as far as it can be seen, bent, for cracks and hardness, and
      the thick hose from N80 to the back of the intake; look into the
@@ -385,7 +387,13 @@ replaced", the owner's decision of 25/10, until then*). **After item 8's
 readings** (*the owner*, 6/11): one change at a time, so that the idle
 after each can be put down to it. **What else**: the hoses because a
 cracked one gives the same code, and the granules because a canister
-that sheds charcoal jams the new valve open (*general*). **The plastic
+that sheds charcoal jams the new valve open (*general*). **The part**: Bosch `0 280 142 353`
+is listed by sellers as VW `1C0 906 517 A` (superseding `955 605 517 00`),
+and one lists that for the New Beetle 2.0 from chassis 1C-Y-400 001, a
+split inside model year 2000; this car is a 2000 with a serial above it
+(the VIN), so it should fit (*general*, sellers' lists, not VW's
+catalogue). Whether the valve on the car is already of that kind is
+seen only when it is out, hence the comparison. **The plastic
 line under the upper intake is left** (*the owner*, 6/11): seen whole
 with the intake off several times, the smoke test showed nothing there,
 and changing it means the intake off. **Where the canister is** is not
