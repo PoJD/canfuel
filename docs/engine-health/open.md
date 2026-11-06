@@ -126,9 +126,11 @@ on it with the owner: **H3 second, H1 third, H4 fifth**.
 
 **Next** (`plan.md`): the MFD back in from 4/11 (item 6) and the oil
 level every 500 km (6i); **the next repair is a professional
-decarbonisation, with hydrogen, booked for 9/11** (H13, item 8; *the
-owner's decision*, 3/11), then a capture with a cut and item 9's tests
-(the stethoscope, the coolant's CO₂ test, a warm leak-down).
+decarbonisation, with hydrogen, on 9/11** (H13, item 8; *the
+owner's decision*, 3/11), **captured from home to work the same day,
+with a cut on injector 4 before and after** (*the owner's plan*, 6/11);
+then, by what it shows, 6m's injector circuits or item 9's tests (the
+stethoscope, the coolant's CO₂ test, a warm leak-down).
 
 ---
 

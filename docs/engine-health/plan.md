@@ -19,8 +19,8 @@ The full previous version, before it was condensed on 20/10/2026:
 
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Current: item 6 and 6i
-from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
-9/11 at 9:45; item 9 after it.**
+from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
+9:45, captured from home to work; 6m or item 9 after it.**
 
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
@@ -82,26 +82,38 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
      lead the engine stumbled at.
 8. **The next repair: a professional decarbonisation, with hydrogen**
    (*the owner's decision*, 3/11; a provider such as *Bez karbonu*,
-   his choice; by its site, 3/11: 70 min for up to 2.5 l, 3,290 Kč).
-   **The engine is held at 2,000 rpm throughout; nothing is measured
-   before or after** (*owner*, 3/11, from their videos). **Booked for
-   Monday 9/11/2026, 9:45** (*owner*, 4/11). **On the day, ask**: do
-   they clear the fault memory or disconnect the battery (if so, Claude
-   reads 032/055 first, with VCDS); where the gas goes in (ahead of the
-   MAF or behind it); **the machine's output in litres a minute, and
-   whether it makes oxyhydrogen (HHO) or hydrogen alone**; and that the coolant temperature is watched
-   through the hour. **No reading of its own before it** (*the owner*,
-   3/11: the weeks before are the baseline); **the baseline is the
-   display's readings of 6–8/11**, after the contact cleaner and the
-   straightened gasket edge of 5/11, and **no capture before it** (*the
-   owner*, 6/11: swapping the MFD out for the USBtin has left the MFD off
-   the bus now and then). **After it**: item 6's
-   drives again, `IdleHealth` as always, at several warm stops, **with a
-   word on what came before each stop** (queuing, or a brisk stretch),
-   and the A/C's figure too whenever it happens to be on; **an odd
-   cold misfire or a drop-out on one cylinder in the days after** goes
-   into the chat at once. Then **one captured drive with a 30 s cut on
-   injector 4** at a warm stop, as on 3/11, above reserve.
+   his choice; 70 min for up to 2.5 l, 3,290 Kč by its site). **Monday
+   9/11/2026, 9:45.** They do not clear the fault memory, and the gas goes
+   in behind the MAF (*owner*, 6/11). **One captured session from home to
+   work** (*the owner's plan*, 6/11), Claude in a session on the laptop,
+   on the car's 12 V charger; fuel above reserve:
+   1. **At home, before the ignition**: the MFD out, the USBtin in. Claude
+      starts `usbtin_capture.py`, then `vcds_log.py --groups 014 001 003`
+      (fault memory read first).
+   2. **About 30 minutes out, the motorway included**, until the oil is at
+      95 °C or more.
+   3. **A stop on a car park before the provider, not at it**: the A/C
+      off, the same loads as at step 7; 3 minutes' idle, **injector 4's
+      connector off for 30 s** (say when, by the chat), then 3 minutes
+      more.
+   4. **At the provider**: say in the chat when the engine stops and when
+      it starts for the clean; the capture runs on, VCDS is restarted by
+      Claude once it runs. **Ask the machine's output in litres a minute,
+      and whether it makes oxyhydrogen (HHO) or hydrogen alone**, and that
+      the coolant temperature is watched through the hour.
+   5. **After the clean**: a few minutes' idle there, no cut.
+   6. **About 30 minutes on to work**, driven as the morning's was.
+   7. **A stop before work**, as step 3: the A/C off, the same loads, 3
+      minutes, injector 4 off for 30 s, 3 minutes more.
+   8. **At the end, engine idling**: Claude reads the fault memory, then
+      **032/055 before anything is cleared**; the owner clears it by hand.
+   **The baseline before it**: the display's readings of 6–8/11, after the
+   contact cleaner and the straightened gasket edge of 5/11. **After it**:
+   item 6's drives again, `IdleHealth` as always, at several warm stops,
+   **with a word on what came before each stop** (queuing, or a brisk
+   stretch), and the A/C's figure too whenever it happens to be on; **an
+   odd cold misfire or a drop-out on one cylinder in the days after** goes
+   into the chat at once.
 9. **After item 8, by what it shows** (Claude says which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
      a kit.
@@ -251,6 +263,27 @@ ahead of the probe → H2 refuted for its zone, into `refuted.md`.
 reading on record came on a foggy morning (`open.md` S1, *Temperature*),
 and the mist supplies the moisture a tracking boot or coil needs. Late
 because the coil is from 6/2026 and the leads are new again; it is free.
+
+**Item 8's day, why it is read this way** (*agreed with the owner*,
+6/11). **One session, before and after the same day**, because the
+weekend's display gives the level but not the cylinders: only a cut
+names them, and the last one (`43`, 3/11) came before 5/11's changes.
+**Like with like**: the idle is calmer for minutes after a brisk drive
+(`open.md` S1, *After high revs*), and an hour at 2,000 rpm is one, so
+the "before" stop comes after the motorway and the "after" stop after
+the drive to work, not straight after the clean. **The A/C off at both**:
+its load raises 014's threshold (`open.md` S3, *What it counts*) and
+calms the random part of the grade. **Cuts on a car park, not at the
+provider**: a cut stores P1240 and perhaps P030x (3/11), which should
+not mix with their work. **During the clean** the gas enters behind the
+MAF, so the MAF does not see it, and the hose they slip under the intake
+boot lets in unmetered air around it: lambda and 032 will move and
+relearn; 014 is likely deactivated at 2,000 rpm with no load. **Read**:
+`IdleHealth` split into the steady pattern over the cylinders and the
+rest (`open.md` S1, *A steady pattern over the cylinders*), named by
+each cut; `cutscan.py --shares --name`, `dipshape.py --name --order 4`
+and 014 at both stops. 3 and 4's deficit gone after → H13; kept → H3 or
+H4 (item 6m); 3 alone → H1 (item 9).
 
 **Item 8 — the next repair** is chosen then, from `open.md`, *The idle's
 candidates, ranked*. **Since 3/11 evening deposits (H13) and a valve on
