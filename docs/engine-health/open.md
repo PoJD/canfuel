@@ -2128,7 +2128,12 @@ valve that does not open or is fouled, a blocked hose, charcoal granules
 from the canister, or a valve that leaks so much that opening it adds
 little; and **Bosch notes the lambda check is unreliable when the fuel
 hardly evaporates**, as in November. **The filler cap cannot set it
-here**, with nothing to measure the tank's pressure.
+here**, with nothing to measure the tank's pressure — and it is new from
+about early 10/2026, bought for its torn tether (*owner*, 6/11).
+**6/11, the album** (18:42): the number on the part around the valve is
+`051 133 459 A`, EPDM — a seller lists it as the rubber holder of such a
+valve, with a Bosch valve among its cross-references (*general*); so not
+the valve's own number, as the owner read it too.
 
 ### H18. Oil past the valve-stem seals, drawn in at idle
 
