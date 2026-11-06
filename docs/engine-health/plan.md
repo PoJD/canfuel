@@ -102,7 +102,10 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
       and whether it makes oxyhydrogen (HHO) or hydrogen alone**, and that
       the coolant temperature is watched through the hour.
    5. **After the clean**: a few minutes' idle there, no cut.
-   6. **About 30 minutes on to work**, driven as the morning's was.
+   6. **On to work with a brisk motorway run first**, as the provider
+      advises after a clean, about as long and hard as the morning's;
+      **listen for a tick** like 18/10's (a flake under a seat), and say
+      in the chat if one comes.
    7. **A stop before work**, as step 3: the A/C off, the same loads, 3
       minutes, injector 4 off for 30 s, 3 minutes more.
    8. **At the end, engine idling**: Claude reads the fault memory, then
