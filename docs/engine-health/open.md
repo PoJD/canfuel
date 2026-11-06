@@ -118,10 +118,11 @@ of air (H14).
   ~2200 rpm; **not the exhaust's heat shields** — still there after their
   new clips, 31/10 — perhaps nearer the engine).
 
-**Ranked (6/11, agreed with the owner):** **H13, H3, H1, H7, H4**,
-then H2, **H16** (the purge valve, up from eleventh after P0440, S21),
-H0, H8, the timing belt, **H20** (coolant into 3, added 4/11, weak),
-H18, H11, H12 (*The idle's candidates, ranked*; every
+**Ranked (6/11 night, agreed with the owner):** **H13, H3, H1, H7,
+H4**, then H2, H0, H8, the timing belt, **H16** (the purge valve: up to
+seventh after P0440, S21, back to tenth the same night — the valve
+hardly leaks and its pulses do not line up with the dips), **H20**
+(coolant into 3, added 4/11, weak), H18, H11, H12 (*The idle's candidates, ranked*; every
 fit table re-read 4/11). **H15 refuted 4/11** (`refuted.md` C24).
 **H14 and H19 left it on 3/11**: the tuner's files
 show the remap touched only the corner of highest load, and neither the
@@ -2101,6 +2102,41 @@ the pulses, **no liquid fuel**. **What it leaves:**
   8a; *this said "replaced after item 8's readings", his decision of the
   same evening, and before that "not replaced"*).
 
+**The valve's pulses against the dips** (6/11 night, *at the owner's
+question*). The owner heard the valve click **about 4–5 times a second**
+(*owner*); its exact drive frequency is in no source found (the nearest,
+a Bosch purge valve on another make: 16 Hz purging, 8 Hz in its
+diagnosis; *general*). If each pulse could tip a weak firing over, the
+dips would keep time with the pulses. **Read over every settled idle in
+the `_z1` captures** (5½ hours, 29 captures; warm = oil 80 °C and over
+at the window's start, cold = under 50 °C at its end, when the ECU does
+not drive the valve; *an ad-hoc script, not kept*):
+- **Engine speed's spectrum**, 0x280 held at 100 Hz, 10 s blocks: the
+  only lines are the engine's own — the camshaft frequency (6.6–6.7 Hz,
+  one cylinder differing) and twice it; **nothing at 3.5–5.5 Hz, warm
+  or cold** (the warm average there at its continuum, ×1.0). A
+  narrow line at a fixed frequency is no more frequent warm than cold
+  (4–5¼ Hz: 4.2 % of warm blocks, 4.5 % of cold), and spread over the
+  whole band as chance spreads it. **Its reach**: a 4.5 Hz swing of
+  0.5 rpm added to every warm block shows as ×1.5, of 1 rpm in 30 % of
+  them as ×1.6 — so any steady swing there is below about half an rpm,
+  against dips of 20–45.
+- **The dips' timing** (≥ 20 rpm, Rayleigh test per window, averaged,
+  1.5–13 Hz in 0.005 Hz steps): warm, 43 windows, 2025 dips — **the one
+  clear peak is the camshaft frequency, 6.63 Hz (2.9 against 1 by
+  chance)**, the dips keeping to one cylinder (*The dips keep to one
+  slot*), which shows the test can see a rhythm; **3.5–5.5 Hz at most
+  1.4, what the largest of that many chance values reaches**; cold
+  (20 windows, 830 dips) the same, 4.8 Hz at 1.7 by chance. A rhythm
+  above 13 Hz, as the 16 Hz of the other make, folds into this band
+  (one sample per firing) and is not there either.
+**Read** (*reasoned*): the valve's pulses do not set when the dips come.
+What this cannot see: a purge that was off through most of the warm
+windows (the ECU's purge phases are not on the bus), and a rhythm whose
+frequency wanders. A canister giving more now and then would show as
+more dips in some minutes, not as a rhythm; on 6/11 night the valve's
+canister side showed no granules, dirt or fuel (*owner*).
+
 **Re-read 6/11, at the owner's question: a common cause of the idle?**
 The owner's reading: not the difference between the cylinders, but the
 common stress that pushes the weakest of them, 3 and 4, over the edge.
@@ -2504,14 +2540,24 @@ is in git.
 | 4 | **H7** fuel delivery | **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026, and nothing points at one of them); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10); **no injector swap** (*the owner*, 3/11) |
 | 5 | **H4** the injector loom at 3 and 4 | **5/11 up from eighth** (*agreed with the owner*): exactly the pair the steady pattern names, and a fault that comes and goes would move over minutes; the load argument is against the spark side, not the injectors; shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
 | 6 | **H2** a leak ahead of the probe | **down 31/10 from fourth** (*agreed with the owner*): the manifold seen from close below, rusty but no soot marks and no holes, its joint to the head nothing visibly wrong from below (H2); the part under its heat shield unseen; S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test (`plan.md` 7) |
-| 7 | **H16** the purge valve leaking | **6/11 up from eleventh** (*agreed with the owner*): P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the idle's waves of minutes and the weak firings in pairs do; a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | item 8 first; the valve replaced only if P0440 comes back or item 8 changes nothing (`plan.md` 8a); 6/11 night, out of the car, it hardly passed air unpowered |
-| 8 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
-| 9 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
-| 10 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
+| 7 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
+| 8 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
+| 9 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
+| 10 | **H16** the purge valve leaking | **6/11 night down from seventh** (*agreed with the owner*): out of the car the valve hardly passed air unpowered, and its pulses do not line up with the dips (H16, *The valve's pulses against the dips*); before that **6/11 evening up from eleventh**: P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the idle's waves of minutes and the weak firings in pairs do; a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | item 8 first; the valve replaced only if P0440 comes back or item 8 changes nothing (`plan.md` 8a); 6/11 night, out of the car, it hardly passed air unpowered |
 | 11 | **H20** coolant into cylinder 3 | **added 4/11** (*the owner*, weak): one cylinder at idle, where its pressure is lowest; plug 3 the cleanest of the 10/10 set; against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos | a combustion-gas (CO₂) test of the coolant (`plan.md` 9) |
 | 12 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
 | 13 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 14 | **H12** driveline play | — | done: the clutch minutes cleared it |
+
+**Re-read 6/11 night** (*agreed with the owner*): **H16 from seventh
+to tenth**, below the timing belt and above H20; H0, H8 and the belt one
+up. Out of the car the valve passed air unpowered not clearly at all,
+which takes away the leak the hypothesis rested on; P0440 reads more
+likely as too little flow when opened than too much; and, at the
+owner's question, **the dips do not follow any steady rhythm of the
+valve's pulses** in 5½ hours of settled idle (H16, *The valve's pulses
+against the dips*). It is not refuted: a canister giving more now and
+then is not ruled out.
 
 **Re-read 6/11 evening, at the owner's question** (*agreed with the
 owner*): **H16 from eleventh to seventh**, above H0 and below H2; H0,
