@@ -1289,7 +1289,11 @@ the lower manifold's gasket at runner 3, never renewed.
   original. *Reasoned*: from
   below a tear at the outer edge cannot be told from one that runs in
   across the face, and only a smoke test or the manifold off says which;
-  for H3 in place, not in proof.
+  for H3 in place, not in proof. **The smoke test of 9/10 showed no smoke
+  there** (*owner*, 5/11: nothing smoked below; *Against* below) — against
+  a tear that passes air, with the limit that a smoke test pushes a few
+  kPa outward on a cold engine, while a warm idle pulls about two thirds
+  of an atmosphere inward (*reasoned*).
 - **Against, 5/11** (*reasoned*): two cylinders running lean would pull
   032's idle cell positive; it reads −6 to −8 % (H4, the same argument;
   medium, the trim carries other inputs).
