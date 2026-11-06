@@ -877,6 +877,12 @@ decision*, 4/10): worked on only if it outlives S1/S3.
 *Owner*, 12/10: a regular tick at a cold idle in neutral, **gone with the
 pedal down** — the gearbox side. **Not pursued** (*owner's decision*): the
 idle graded the same pedal up and down (H12). Out of the fit tables.
+**A link not looked at before** (6/11, *general*, *reasoned*): rattle
+from a gearbox in neutral with the clutch engaged is excited by the
+crank's unevenness at idle, so the tick could be S1 heard through the
+gearbox rather than a fault of its own. Untested; the owner's ear would
+say it: does the tick follow the felt dips, and does it fade with the
+A/C on, when the idle is calmer (S1)?
 
 ### S17. A new exhaust sound, from a new place
 
@@ -901,6 +907,25 @@ much faith. He may try to locate it with a second person at the
 throttle. Unplaced again, and not pursued. A candidate there (*reasoned*): the
 manifold's own heat shield, which cannot be seen (`plan.md` 7) — a part
 vibrating, not a leak, so still no bearing on the idle.
+**The same band in 014 on the road** (6/11, *at the owner's request
+for new links*; every VCDS log with group 014, detection on, above
+1100 rpm and at 32 % load or less, increases within 20 s taken as one
+episode; *an ad-hoc script, not kept*): **2000–2400 rpm, 35 episodes in
+24 minutes (1.45 a minute), against 13 in 21 minutes (0.63) at
+1600–1800 and 2400–2600** — about 2.3 times, p about 0.005 for so many
+by chance, the band chosen from S17 beforehand; spread over 16 logs,
+not one drive. **What does not follow it**: the bus's stroke-to-stroke
+roughness at steady throttle on the road (second difference of the
+180° speed, 1300–3200 rpm, every `_z1` capture) rises smoothly with
+speed, with no peak at 2200; and S5's excess on cylinder 4 begins
+about 2000 rpm but keeps growing to 3200 (`vcds-neutral-026-003.csv`
+and its clamp log), no peak either. **Read** (*reasoned*): a candidate,
+not a link — a crank-synchronous vibration there could feed both the
+knock sensor's window and the misfire detector, or the detector's own
+thresholds may simply be lowest there. **A test without new kit**: hold
+2200 rpm on the road in two gears, VCDS on 014, and say in the chat
+when the resonance is heard; counts that follow the engine speed and
+the sound, not the gear, would make it one thing.
 
 ### S19. P0172 stored, too rich — with one start that died at once
 
@@ -1188,6 +1213,8 @@ engine leak, a falling dipstick level is oil burnt, not lost.
 | S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle; the dips sat on 3 and 4 until the VW leads (all four alike since), and lead 4's end was the loosest (`refuted.md` C24) |
 | S19 ↔ the bad start of 24/10 | **suspected one event** (*owner*) | same window, both what a cylinder flooded while standing gives (S19) |
 | S21 ↔ S19 | **possible, through H16** (*reasoned*) | both would sit on the purge path; no event links them |
+| S3 on the road ↔ S17, S5 | **possible, one engine-speed band** (6/11) | 014's road episodes at 21–32 % load: 2000–2400 rpm about twice 1600–1800 and 2400–2600 (S17); the bus shows no stroke-to-stroke roughness peak there |
+| S16 ↔ S1 | **untested** (*general*) | a gearbox's rattle in neutral is driven by the crank's unevenness at idle (S16) |
 | S11 ↔ S1 | **untested** | if the hiss is a leak, H3 or H2; the owner reads it as the throttle's own air |
 
 **Two clusters**: **the idle** (S1, S2, S3, S14) and **the cylinder 4
