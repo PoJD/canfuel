@@ -101,8 +101,11 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
       Claude once it runs. **Ask the machine's output in litres a minute,
       and whether it makes oxyhydrogen (HHO) or hydrogen alone**. **The
       coolant and oil temperatures are watched by us** through the hour,
-      on the capture (Claude, 0x288 and 0x420) and the cluster's gauge
-      (*the owner*, 6/11).
+      on the capture (Claude, 0x288 and 0x420; `oilwatch.py` on the
+      laptop) (*the owner*, 6/11). The cluster has no temperature gauge,
+      only a blue lamp while the coolant is cold (below about 60 °C, read
+      against the MFD) and a red one for too hot or too little coolant
+      (*owner*).
    5. **After the clean**: a few minutes' idle there, no cut.
    6. **On to work with a brisk motorway run first**, as the provider
       advises after a clean, about as long and hard as the morning's;
