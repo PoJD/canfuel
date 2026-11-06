@@ -99,8 +99,10 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
    4. **At the provider**: say in the chat when the engine stops and when
       it starts for the clean; the capture runs on, VCDS is restarted by
       Claude once it runs. **Ask the machine's output in litres a minute,
-      and whether it makes oxyhydrogen (HHO) or hydrogen alone**, and that
-      the coolant temperature is watched through the hour.
+      and whether it makes oxyhydrogen (HHO) or hydrogen alone**. **The
+      coolant and oil temperatures are watched by us** through the hour,
+      on the capture (Claude, 0x288 and 0x420) and the cluster's gauge
+      (*the owner*, 6/11).
    5. **After the clean**: a few minutes' idle there, no cut.
    6. **On to work with a brisk motorway run first**, as the provider
       advises after a clean, about as long and hard as the morning's;
