@@ -688,16 +688,16 @@ completing rather than load (`refuted.md` C19).
   `tools/replay.py`; 0.97–1.16), about **8 mg of petrol per combustion**
   at 790 rpm. A misfired charge reaches the converter with its own air,
   so at most it burns there: a share *f* of combustions lost heats the
-  exhaust by about **f × 2,700 K** (petrol's heat per kilogram of a
-  stoichiometric charge over the gas's heat capacity) — the same at idle
+  exhaust by about **f × 2,500 K** (petrol's 43 MJ/kg over the 15.7 kg
+  of a stoichiometric charge, over the gas's 1.1 kJ/kg K) — the same at idle
   and under load, because fuel and exhaust both scale. **This car's idle**:
-  0.25–1 % as 014 reads it (above), **7–27 K**; every dip of 15 rpm and
-  more taken as a whole misfire, about 1.3 %, **35 K**; the worst natural
-  1000 revolutions on record, 1.95 %, **53 K** — against a converter
+  0.25–1 % as 014 reads it (above), **6–25 K**; every dip of 15 rpm and
+  more taken as a whole misfire, about 1.3 %, **33 K**; the worst natural
+  1000 revolutions on record, 1.95 %, **49 K** — against a converter
   that runs at a few hundred °C at idle and ages from about 900–1,000 °C
   (*general*). Cold, before light-off, the charge passes unburnt: an
   emission, not heat. **What does melt one** is a share in the tens of
-  per cent held for minutes — one cylinder dead is 25 %, about 670 K —
+  per cent held for minutes — one cylinder dead is 25 %, about 600 K —
   above all under load, where the converter already runs hot; the old
   converter's "chamber burned right through" (`vehicle-history.md`) is
   that kind of heat, which this idle cannot make. The injector cuts put
