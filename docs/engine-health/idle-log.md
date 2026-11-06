@@ -1104,3 +1104,16 @@ The rest of `plan.md` 6m waits for item 8's result.
     is consumption or the reading.
 
 `open.md` H3 and H18.
+
+## 6/11 — the idle on the display, the day after the small fixes
+
+- **Tests:** `IdleHealth`, `Misfires` and MisfAvg at the end of a drive
+  of about 40 minutes with a few queues; the everyday state plus the A/C
+  and the blower on 2; oil 98 °C; a photo in the album.
+- **Changes after:**
+  - *measured:* `IdleHealth` **65**, `Misfires` **18**, MisfAvg **23.0**
+    (*owner*);
+  - *felt:* no change, as expected (*owner*).
+
+The first of `plan.md` 8's baseline readings; 5/11's contact cleaner and
+gasket edge changed nothing seen.
