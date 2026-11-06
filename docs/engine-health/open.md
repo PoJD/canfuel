@@ -1934,7 +1934,10 @@ hard use burns them off (*general*).
   3, 1 and 2 thin and even. **What the clean of 9/11 can reach**
   (*reasoned*): hydrogen burns in the chamber; the port above a closed
   inlet valve sees only the incoming charge, so deposit on the inlet
-  side, the seat ring's upper edge included, is the least likely to go.
+  side, the seat ring's upper edge included, is the least likely to go. The gas does pass the ports — it goes in behind the MAF
+  (*owner*) — but cold, hydrogen and oxygen do nothing to carbon; what
+  can clean is the flame and its steam, in the chamber (*general*; the
+  vendors' chemistry above).
   So if 3 and 4 stay weak after 9/11, the inlet seats are left standing
   (H1), and the leak-down is the test.
 - **4/11, the two patterns on their own** (S1; *reasoned*, agreed with
