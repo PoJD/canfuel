@@ -1310,7 +1310,30 @@ lifter stuck pumped up** holds its valve a hair open with no tick. A
 lifter that bleeds down would tick, and the hot recording of 26/10 found
 none. *General* for these (GM bulletin 19-NA-219, another engine family:
 valve leakage misfires most at idle, compression normal, a leak-down
-finds it). **Test: a warm leak-down on all four**, listening at the
+finds it). **The inlet seats of 3 and 4** (*the owner's reading* of the
+port photos, 7/11, re-read with him): looking down the ports of 19–20/10
+(album 00:00–00:33; `photos/borescope-2026-10-20-cyl*-inlet-port-*.jpg`),
+**1 and 2 have a thin, even brown band where the throat meets the seat
+ring; 4 a band of white beaded crust along it** (00:03:06–00:03:49),
+**3 a thick, broken crust all round it, with a lump standing out of
+the edge** (00:12:31, the owner's marked frame of 7/11, and
+00:12:44–00:15:44). The camera sees the ring's upper edge with the
+valve a little open; the contact face under the head cannot be seen, so
+whether the crust reaches it is not known (*reasoned*). **What an inlet
+seat that does not quite seal would do** (*general*, *reasoned*): at
+idle, with the manifold at its deepest vacuum, compression and burning
+gas leak back into the port, so the cylinder loses charge and takes in
+hot residual with the next one — worst at the smallest charge, eased by
+load (a higher manifold pressure), not helped by a higher idle speed,
+and missed by a cold cranking compression test, as the exhaust seat's
+form above. **It answers this hypothesis's main against** (*A steady
+pattern over the cylinders*): two crusted inlet seats weaken 3 and 4
+together, where one exhaust seat on 3 would weaken 3 alone; and more
+crust on 3 fits the dips leaning to 3. **Against**: the crust is seen,
+its seal is not; and 3 and 4's ports and chambers are worse alike
+(H13), so it may be where the deposit sits rather than what fails. **The
+leak-down names it**: a hiss at the throttle with the plenum off.
+**Test: a warm leak-down on all four**, listening at the
 tailpipe (exhaust seat), the throttle (inlet) and the oil filler (rings);
 **a stethoscope on the cam cover above 3, hot**, against 1, 2, 4. The AQY's lifters are hydraulic bucket
 tappets (*hydrostely*), fed from the head's gallery through a small hole
@@ -1897,6 +1920,14 @@ hard use burns them off (*general*).
   and 4**, from something that touches those two only (`refuted.md` C24). Once there, the
   deposit adds to it: a flake under a seat (18/10, `refuted.md` D10), heat and compression for
   knock on 4 (S4).
+- **The inlet side, 7/11** (*the owner's reading*, H1): the crust at the
+  seat ring's edge in the ports of 3 and 4, a lump standing out of it on
+  3, 1 and 2 thin and even. **What the clean of 9/11 can reach**
+  (*reasoned*): hydrogen burns in the chamber; the port above a closed
+  inlet valve sees only the incoming charge, so deposit on the inlet
+  side, the seat ring's upper edge included, is the least likely to go.
+  So if 3 and 4 stay weak after 9/11, the inlet seats are left standing
+  (H1), and the leak-down is the test.
 - **4/11, the two patterns on their own** (S1; *reasoned*, agreed with
   the owner): with H1's exhaust seat on 3, **the one reading that fits
   both** the calm under load and the calm that lasts after revving
