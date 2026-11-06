@@ -682,6 +682,29 @@ completing rather than load (`refuted.md` C19).
   rises with speed** (about 20 % at idle, 22–25 % at 1400–3000 rpm,
   27–30 % above) and **while speed falls faster than about 100 rpm/s**; no
   temperature condition (it counts below 40 °C of coolant).
+- **What it costs the converter** (6/11 night, *at the owner's
+  question*; *reasoned*, the materials' figures *general*). A warm idle
+  burns **1.06 l/h** (median over the warm idle of `40`, `42`, `43` on
+  `tools/replay.py`; 0.97–1.16), about **8 mg of petrol per combustion**
+  at 790 rpm. A misfired charge reaches the converter with its own air,
+  so at most it burns there: a share *f* of combustions lost heats the
+  exhaust by about **f × 2,700 K** (petrol's heat per kilogram of a
+  stoichiometric charge over the gas's heat capacity) — the same at idle
+  and under load, because fuel and exhaust both scale. **This car's idle**:
+  0.25–1 % as 014 reads it (above), **7–27 K**; every dip of 15 rpm and
+  more taken as a whole misfire, about 1.3 %, **35 K**; the worst natural
+  1000 revolutions on record, 1.95 %, **53 K** — against a converter
+  that runs at a few hundred °C at idle and ages from about 900–1,000 °C
+  (*general*). Cold, before light-off, the charge passes unburnt: an
+  emission, not heat. **What does melt one** is a share in the tens of
+  per cent held for minutes — one cylinder dead is 25 %, about 670 K —
+  above all under load, where the converter already runs hot; the old
+  converter's "chamber burned right through" (`vehicle-history.md`) is
+  that kind of heat, which this idle cannot make. The injector cuts put
+  no fuel in (the injector is off), so they cost the converter nothing.
+  **Read**: the idle's misfires are not a converter risk; a cylinder
+  dropping out under load (a stored P030x, the lamp flashing) is, and
+  the standing items already stop for it (`plan.md`).
 - **What it counts** (5/11, the same logs against the bus): **one stroke's
   loss against the one before**, not the dip's depth — a fitted threshold
   of about 19 rpm at 28 % load, **rising 0.33 rpm per % of load**, about
