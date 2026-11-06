@@ -553,8 +553,28 @@ correlation 0.21 with dips per 1000 strokes, 0.02 with what is left) and
 grade from 71 to 110 with the dips unchanged; in `43`'s stop the settling
 from 86–114 to 31–55 was mostly this pattern fading. The A/C's load
 (`40`) calms the rest and leaves the pattern as large as loads off. The
-display's swings inside one stop (27/10, *waves of about 1½ min*) can be
-this alone (*reasoned*). **Named by the cuts** (the dead-stroke shape
+display's swings inside one stop (27/10, *waves of about 1½ min*) are
+more likely the radiator fan (below, *The radiator fan's cycle*). *This
+said "can be this alone" until 6/11.*
+
+**The radiator fan's cycle** (6/11, *at the owner's question about the
+waves*; every warm settled stop of 4 minutes and more without an
+injector cut, nine stops in seven captures, 77 minutes; `IdleHealth`
+rebuilt every 2 s over 10 s; *an ad-hoc script, not kept*). **At every
+warm stop the coolant (0x288) climbs to 100.5 °C and falls to 92–97 °C
+again, a cycle of 74–90 s on most stops** (to 170 on a few) — the fan
+switching on and off (*reasoned*; the switch points are not on the
+bus). **The engine's torque (0x280 b7) rises 12–18 s before the coolant
+turns down**, and **`IdleHealth` falls with it**: averaged over the
+nine stops, the correlation with the coolant's fall 12–18 s later is
+**+0.40 for b7 and −0.36 for `IdleHealth`**, against about ±0.06 for
+the same series shifted at random (some 6 standard deviations). The
+fan's load comes first and the coolant answers later, as a fan's would.
+Split crudely by the coolant's slope, `IdleHealth` is about 6 % lower
+while it falls. **Read** (*reasoned*): the waves are mainly the fan, one
+more load that smooths the idle (*Load smooths it*), not a cause inside
+the engine; a reading at a warm stop catches the fan on or off by
+chance, which is part of the display's spread. **Named by the cuts** (the dead-stroke shape
 fitted to the ordinary idle): `31` (10/10, warm) 1 −2.1, 3 +3.1, 4 +4.1,
 2 −6.0 % of a stroke short; `43` (3/11, warm) 1 −0.9, 3 +3.5, 4 +3.0,
 2 −5.6 %; `41` (cold) near nothing. **Warm, 3 and 4 give the least and
@@ -2215,10 +2235,12 @@ source sets how many dips there are, the weak cylinders where they fall.
   a German workshop reads a negative correction without the valve
   driven as a leaking or open valve, and names an unsteady idle among
   its symptoms (*general*, `kfz-dietrich.com`). **Purge comes in phases**:
-  `IdleHealth` in waves of about 1½ min (27/10, S1), the pattern over the
-  cylinders moving over minutes, weak firings in pairs 3½ times as often
-  as by chance (*How many strokes make a dip*) — each what phases of
-  vapour would give (*reasoned*). And now a fault code on the system.
+  the pattern over the cylinders moving over minutes, weak firings in
+  pairs 3½ times as often as by chance (*How many strokes make a dip*) —
+  what phases of vapour would give (*reasoned*). And now a fault code on
+  the system. *This also named `IdleHealth`'s waves of about 1½ min
+  (27/10) until 6/11 night, when they followed the radiator fan (S1,
+  *The radiator fan's cycle*).*
 - **Against**: **the idle is roughest cold**, when the ECU does not
   drive the valve and a cold fuel gives little vapour; **25/10, cold,
   the canister closed off, the engine still wanted the same fuel taken
@@ -2611,7 +2633,7 @@ is in git.
 | 7 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
 | 8 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
 | 9 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
-| 10 | **H16** the purge valve leaking | **6/11 night down from seventh** (*agreed with the owner*): out of the car the valve hardly passed air unpowered, and its pulses do not line up with the dips (H16, *The valve's pulses against the dips*); before that **6/11 evening up from eleventh**: P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the idle's waves of minutes and the weak firings in pairs do; a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | item 8 first; the valve replaced only if P0440 comes back or item 8 changes nothing (`plan.md` 8a); 6/11 night, out of the car, it hardly passed air unpowered |
+| 10 | **H16** the purge valve leaking | **6/11 night down from seventh** (*agreed with the owner*): out of the car the valve hardly passed air unpowered, and its pulses do not line up with the dips (H16, *The valve's pulses against the dips*); before that **6/11 evening up from eleventh**: P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the weak firings in pairs do (the idle's 1½-min waves turned out the radiator fan, S1); a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | item 8 first; the valve replaced only if P0440 comes back or item 8 changes nothing (`plan.md` 8a); 6/11 night, out of the car, it hardly passed air unpowered |
 | 11 | **H20** coolant into cylinder 3 | **added 4/11** (*the owner*, weak): one cylinder at idle, where its pressure is lowest; plug 3 the cleanest of the 10/10 set; against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos | a combustion-gas (CO₂) test of the coolant (`plan.md` 9) |
 | 12 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
 | 13 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
