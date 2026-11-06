@@ -872,6 +872,24 @@ is blind**. The ECU cuts the injectors 0.8–1.6 s after the lift
 (`coastscan.py`). **The owner's to watch, not in `plan.md`** (*owner's
 decision*, 4/10): worked on only if it outlives S1/S3.
 
+**Does it keep to cylinder 3, as the idle's dips do?** (6/11, *at the
+owner's request*; every coast with a fuel cut in the `_z1` captures,
+655, `tools/coastscan.py`'s windows; *an ad-hoc script, not kept*.)
+**It cannot be named**: a cylinder is named only by phase carried from
+an injector cut at idle (`tools/cutscan.py`), and on the road the phase
+is not kept that far. **What the bus does show**: with the pedal up,
+the strokes still fuelled before the cut (from 0.7 s after the lift)
+have the same mean stroke-to-stroke step as the cut ones at the same
+speed — the car, not combustion, holds the crank's speed in gear — but
+**more large steps**: the 95th percentile 13–16 rpm against 9–14 at
+1200–2600 rpm. So the thin charge on the overrun burns unevenly enough
+to be seen, the mechanism S14 is read by (*reasoned*; the ECU's own
+torque reduction before the cut would look the same, not ruled out).
+**Not on one cylinder**: in the 20 fuelled stretches with the phase
+intact and three or more large steps, the top slot holds 45 % of them
+against 49 % by chance (p 0.9). No sign that S14 shares the idle's
+cylinder; nor can it be excluded, with so few strokes per coast.
+
 ### S16. A tick in neutral, cold, with the clutch pedal up
 
 *Owner*, 12/10: a regular tick at a cold idle in neutral, **gone with the
