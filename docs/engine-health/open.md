@@ -36,7 +36,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 6 November 2026
+## Where it stands — 7 November 2026
 
 **Closed**, in `refuted.md` §D: S6 the exhaust joint behind the
 converter, S8 the top end, S9 the rich trim, S10 the oil leak at the back
@@ -118,8 +118,8 @@ of air (H14).
   ~2200 rpm; **not the exhaust's heat shields** — still there after their
   new clips, 31/10 — perhaps nearer the engine).
 
-**Ranked (6/11 night, agreed with the owner):** **H13, H3, H1, H7,
-H4**, then H2, H0, H8, the timing belt, **H16** (the purge valve: up to
+**Ranked (7/11, agreed with the owner):** **H13, H1, H3, H7, H4**
+(H1 up to second for the inlet seats of 3 and 4 in the port photos), then H2, H0, H8, the timing belt, **H16** (the purge valve: up to
 seventh after P0440, S21, back to tenth the same night — the valve
 hardly leaks and its pulses do not line up with the dips), **H20**
 (coolant into 3, added 4/11, weak), H18, H11, H12 (*The idle's candidates, ranked*; every
@@ -2665,8 +2665,8 @@ is in git.
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | 1 | **H13** deposits | **up 3/11 evening from second to first** (*agreed with the owner*): `43`'s cut names cylinder 3, where the borescope found the most deposit; **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; **a professional decarbonisation**, hydrogen for one — **the next repair** (*the owner*, 3/11; `plan.md` 8) |
-| 2 | **H3** a leak at one runner | **5/11 up from third** (*agreed with the owner*): the steady pattern over the cylinders names 3 and 4 alike, neighbours on the lower manifold (S1, *A steady pattern over the cylinders*); **4/11: explains the calm under load best of all, the calm after revving not at all** (S1; *agreed with the owner*, the order kept); **up 3/11 evening from seventh to third**: one cylinder named again (runner 3); the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
-| 3 | **H1** valve or lifter | **5/11 down from second** (*agreed with the owner*): one seat on 3 would weaken 3 alone, and the pattern moves over minutes; still the single dips on 3 and the owner's reading of 3's seat; **up 3/11 evening from third to second** (*agreed with the owner*): a valve on 3 that does not seal, with deposit on its seat (H13), fits one cylinder named; **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes done 26/10, the hot recording found no lifter; left: **a warm leak-down on all four** and a stethoscope above 3, hot (`plan.md` 9) |
+| 2 | **H1** valve or lifter | **7/11 up from third** (*agreed with the owner*): the port photos of 20/10 show crust broken round the inlet seat's edge on 3 and 4, a lump on 3, 1 and 2 even (*the owner's reading*) — an inlet seat that leaks weakens 3 and 4 together, which answers the 5/11 against, and more crust on 3 fits the dips leaning to 3; whether it reaches the contact face is not seen; the clean of 9/11 is the least likely to reach it; **5/11 down from second** (*agreed with the owner*): one seat on 3 would weaken 3 alone, and the pattern moves over minutes; still the single dips on 3 and the owner's reading of 3's seat; **up 3/11 evening from third to second** (*agreed with the owner*): a valve on 3 that does not seal, with deposit on its seat (H13), fits one cylinder named; **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes done 26/10, the hot recording found no lifter; left: **a warm leak-down on all four** and a stethoscope above 3, hot (`plan.md` 9) |
+| 3 | **H3** a leak at one runner | **7/11 down from second** (*agreed with the owner*): H1's inlet-seat form explains the pair as well and has a find behind it; still the one that predicts *load helps* directly; **5/11 up from third** (*agreed with the owner*): the steady pattern over the cylinders names 3 and 4 alike, neighbours on the lower manifold (S1, *A steady pattern over the cylinders*); **4/11: explains the calm under load best of all, the calm after revving not at all** (S1; *agreed with the owner*, the order kept); **up 3/11 evening from seventh to third**: one cylinder named again (runner 3); the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
 | 4 | **H7** fuel delivery | **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026, and nothing points at one of them); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10); **no injector swap** (*the owner*, 3/11) |
 | 5 | **H4** the injector loom at 3 and 4 | **5/11 up from eighth** (*agreed with the owner*): exactly the pair the steady pattern names, and a fault that comes and goes would move over minutes; the load argument is against the spark side, not the injectors; shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
 | 6 | **H2** a leak ahead of the probe | **down 31/10 from fourth** (*agreed with the owner*): the manifold seen from close below, rusty but no soot marks and no holes, its joint to the head nothing visibly wrong from below (H2); the part under its heat shield unseen; S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test (`plan.md` 7) |
@@ -2678,6 +2678,17 @@ is in git.
 | 12 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
 | 13 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 14 | **H12** driveline play | — | done: the clutch minutes cleared it |
+
+**Re-read 7/11** (*agreed with the owner*): **H1 from third to second,
+H3 from second to third.** The owner's reading of the port photos of
+20/10 (H1, *The inlet seats of 3 and 4*): crust broken round the inlet
+seat's edge on 3 and 4, a lump on 3, 1 and 2 even. Two leaking inlet
+seats weaken 3 and 4 together, which was H1's main against since 5/11,
+and more crust on 3 fits the dips leaning to 3; H3 explains the same
+pair and the calm under load best, but has no find behind it. The
+chamber photos neither confirm nor clear it; **the warm leak-down
+decides between them** (a hiss at the throttle against one outside the
+lower manifold). The rest keeps its order.
 
 **Re-read 6/11 night** (*agreed with the owner*): **H16 from seventh
 to tenth**, below the timing belt and above H20; H0, H8 and the belt one
@@ -2716,7 +2727,8 @@ the most deposit, though 2 above 1 does not fit); everything from H2 to
 H12 one down. Medium confidence: two named captures, and the naming can
 slip far from a cut. **What decides it**: the capture with a cut after
 9/11 (`plan.md` 8) — 3 and 4's deficit gone with the clean says H13, kept
-says H3 or H4, 3 alone says H1.
+says H3 or H4, 3 alone says H1. *Since 7/11 "kept" says H1's inlet seats
+too (the re-read of 7/11 above).*
 
 **Re-read 5/11, after the dips' anatomy** (*at the owner's question*;
 S1, *How many strokes make a dip*): **the order stands**. Three dips in

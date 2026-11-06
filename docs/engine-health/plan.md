@@ -293,8 +293,11 @@ relearn; 014 is likely deactivated at 2,000 rpm with no load. **Read**:
 `IdleHealth` split into the steady pattern over the cylinders and the
 rest (`open.md` S1, *A steady pattern over the cylinders*), named by
 each cut; `cutscan.py --shares --name`, `dipshape.py --name --order 4`
-and 014 at both stops. 3 and 4's deficit gone after → H13; kept → H3 or
-H4 (item 6m); 3 alone → H1 (item 9).
+and 014 at both stops. 3 and 4's deficit gone after → H13; kept → H1's
+inlet seats, H3 or H4 (the leak-down of item 9 tells the first two apart,
+6m the third; the clean is the least likely to reach the inlet side,
+`open.md` H13); 3 alone → H1's exhaust seat (item 9). *Until 7/11 "kept"
+read H3 or H4 only.*
 
 **Item 8 — the next repair** is chosen then, from `open.md`, *The idle's
 candidates, ranked*. **Since 3/11 evening deposits (H13) and a valve on
