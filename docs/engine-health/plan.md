@@ -91,7 +91,11 @@ from 4/11, the MFD in; item 8, the decarbonisation, booked for Monday
    MAF or behind it); **the machine's output in litres a minute, and
    whether it makes oxyhydrogen (HHO) or hydrogen alone**; and that the coolant temperature is watched
    through the hour. **No reading of its own before it** (*the owner*,
-   3/11: the weeks before are the baseline). **After it**: item 6's
+   3/11: the weeks before are the baseline); **the baseline is the
+   display's readings of 6–8/11**, after the contact cleaner and the
+   straightened gasket edge of 5/11, and **no capture before it** (*the
+   owner*, 6/11: swapping the MFD out for the USBtin has left the MFD off
+   the bus now and then). **After it**: item 6's
    drives again, `IdleHealth` as always, at several warm stops, **with a
    word on what came before each stop** (queuing, or a brisk stretch),
    and the A/C's figure too whenever it happens to be on; **an odd
