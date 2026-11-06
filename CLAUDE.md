@@ -481,8 +481,9 @@ itself is not finished.
   **lower is calmer**. **A warm-stop reading is in the everyday state**
   (blower 1, one seat heater 1, lights; *23/10*), the only one since
   *28/10*: the two states (every load off, every load on; *19/10*) were
-  dropped, and idling is kept short — never ask for a stop made only to
-  read it. A figure without a state is in it.
+  dropped; never ask for a stop made only to read it. Idling itself is
+  not limited for the converter (*6/11*: tens of kelvin at most, `open.md`
+  S3). A figure without a state is in it.
 - **The repository is public: nothing that identifies the car or owner** —
   not the full VIN, not a plate, not an address; photos cropped first
   (*12/10*). The full VIN is in his private claude.ai artifact *New Beetle

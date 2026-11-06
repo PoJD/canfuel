@@ -148,20 +148,16 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
 
 ## Standing items
 
-- **Every drive, for the converter:**
-  - Drive off within half a minute of starting; never warm it up
-    standing.
-  - Standing at idle: **lights, blower and rear window heater on**, the
-    seat heaters too. Or a touch of throttle.
-  - At a stop longer than a minute or two, where safe: engine off.
-  - After a hard or long drive: switch off on arrival, no idling.
+- **Every drive:**
+  - Idle as the day brings it; minutes are fine, hours are not.
   - **Engine lamp flashing**: ease off at once, stop where safe, engine
     off, write it into the chat.
+  - **Engine lamp steady**: drive on; the fault memory read when VCDS is
+    next connected, the codes into the chat.
 - **`IdleHealth` and `Misfires` only in the everyday state** — **blower on 1, one seat
   heater on 1, the lights on** — at warm stops that come anyway (oil
   95–100 °C, neutral, no throttle), with the oil temperature; any other
-  state is named. **Idling is kept short**: no stop is made or lengthened
-  to read it.
+  state is named. **No stop is made or lengthened only to read it.**
 - **The fault memory after every session with VCDS connected**: read,
   saved, then cleared by the owner by hand. Not after a plain drive.
 
@@ -183,9 +179,10 @@ whether he keeps them since is his. So:
   the ones that decide the next step.
 - **No test for its own sake**, and nothing unrelated to the idle is
   pursued until it is solved — unless it could be related.
-- **Run the engine as little as possible, above all not at idle.** The
-  misfires are an idle phenomenon and the old converter already paid for
-  them once. Warm the engine by driving.
+- **Run the engine as the day needs it.** *This said "as little as
+  possible, above all not at idle", for the converter, until 6/11/2026*:
+  the idle's misfires heat it by tens of kelvin at most (`open.md` S3,
+  *What it costs the converter*).
 
 `open.md`'s tests are reference, **not a to-do list**.
 **The cylinder 4 knock window stays out of this plan** (*owner's
@@ -321,10 +318,8 @@ effect was not recorded, and the 3,400 km and more since (152,000 at
 1/2022 against 155,357 on 3/11, the odometer table there), most of
 them gentle until 9/2026 and a year laid up, were enough to build what
 the borescope saw in 10/2026 — so a clean is a reset, not a cure, if
-gentle use comes back (*reasoned*). **2,000 rpm held, not idle**: an
-hour at a standing idle would be the converter's exposure the standing
-items avoid (122 of 129 counted misfire events began at a standing
-idle, `open.md` S3); held revs are not. **Nothing measured there**, so
+gentle use comes back (*reasoned*). **2,000 rpm held, not idle**: the
+provider's own procedure (*owner*). **Nothing measured there**, so
 the before and after is `IdleHealth` on the display — **before** is
 what is already read: 80–105 on the display on the remap (28/10–2/11),
 and on the original map `42`'s 54–77, `43`'s 48–86 loads off and
@@ -417,9 +412,7 @@ the leak-down names the seat, S1 closes as *acceptable, cause known*
 (a soak through the plug holes reaches the crown). **What would reopen
 it** (*general*, *reasoned*): a leaking exhaust seat can burn over time,
 so 014 climbing, P0303 stored without a cut, or the warm idle getting
-worse beyond its spread are read as a seat getting worse; and the
-converter carries the idle's misfires (`open.md` S3), which is why the
-standing items keep idling short.
+worse beyond its spread are read as a seat getting worse.
 
 ## Standing items — why
 
@@ -431,16 +424,22 @@ standing items keep idling short.
   whether 014 is counting without VCDS; VCDS stays the instrument.
   `--preserve-eeprom` keeps the stored trip and tank (`flashing.md`).
 
-- **Every drive, for the converter** (all from this car's data): **122 of
-  129 counted misfire events began at a standing idle** (`open.md` S3),
-  so the converter's exposure is standing idle, cold warm-ups included.
-  **Loads smooth it** (`open.md` S1, *Load smooths it*), and a dip is
-  likelier when the charge falls (S1, *What comes before a dip*), so an
-  electrical load or a little throttle at idle helps. **After a hard
-  drive** 014 counted at every stop where gentle warm-ups had not
-  (`open.md` S3, 4/10). **A flashing lamp** is the ECU's own
-  converter-damage rate (SSP 175, `vcds.md`); this car's idle counts sit
-  below even the 2 % that stores a code, so a flash means something new.
+- **Every drive** (*the owner's decision*, 6/11/2026). **Idling is not
+  limited for the converter any more**: a share *f* of misfired
+  combustions heats it by about f × 2,500 K, so the idle's 0.25–1 %
+  (2 % at the very worst) is tens of kelvin, against the hundreds a
+  cylinder dead under load would add (`open.md` S3, *What it costs the
+  converter*). Hours are still avoided — wear and fuel, not the
+  converter. *Until 6/11 these items drove off within half a minute,
+  never warmed the engine standing, switched it off at stops over a
+  minute or two and on arrival after a hard drive, and kept loads on
+  at idle, all for the converter, from 122 of 129 counted misfire
+  events beginning at a standing idle (`open.md` S3).* **A flashing
+  lamp** is the ECU's own converter-damage rate, a 200-revolution
+  window weighted by speed and load (SSP 175, `vcds.md`) — the one real
+  converter risk, a cylinder dropping out, above all under load. **A
+  steady lamp** is an emissions fault: P0300 above 2 % over 1000
+  revolutions, or P0440 as on 6/11 (`open.md` S21).
 - **`IdleHealth` in the everyday state only** (*owner's decision*,
   28/10/2026). *Until 28/10 a warm stop was read in two states, 2 minutes
   every load off and 2 minutes every load on (owner's decision, 19/10),
