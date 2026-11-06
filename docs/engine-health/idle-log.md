@@ -1139,8 +1139,10 @@ The lamp the first the owner has seen in years; the code that of 1/2018.
 No fill on 5/11 or 6/11 and no hose touched around N80 in 5/11's work
 (*owner*). `open.md` S21 (added at the owner's request), H16, S19.
 
-## 6/11 night — the purge valve N80 out, looked at
+## 6/11 night — the purge valve N80 out, looked at, refitted
 
+- **Repairs:** the same valve cleaned, its connector's contacts
+  included, and refitted (*owner*).
 - **Tests:** N80 taken out of its rubber holder and photographed with
   both of its ends and the hose from the canister's side (the album,
   20:01–20:03; `photos/n80-2026-11-06-label.jpg`,
@@ -1151,8 +1153,13 @@ No fill on 5/11 or 6/11 and no hose touched around N80 in 5/11's work
     date code `040`**; **no granules, no dirt, no smell of fuel**; the
     rubber hoses — the same kind as the fuel pressure regulator's — old
     but sound (*owner*); the hose to the T at the throttle left on the
-    car.
+    car; **blown through out of the car, unpowered: not clearly at all
+    — at most "really very little"**, and what seemed to pass may have
+    been the hose's grooved end; far less than the old perished hoses at
+    the intake (*owner*).
 
 The valve on the car is the part 8a was to buy (`plan.md` 8a); the
-canister is left. `open.md` H16, S21.
+canister is left. **Not replaced for now** (*the owner's decision*,
+6/11): the part is known, and it is bought if P0440 comes back or item
+8 changes nothing. `open.md` H16, S21.
 

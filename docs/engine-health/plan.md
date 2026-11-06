@@ -20,8 +20,7 @@ The full previous version, before it was condensed on 20/10/2026:
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Current: item 6 and 6i
 from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
-9:45, captured from home to work; 8a, the purge valve, after its
-readings; 6m or item 9 after it.**
+9:45, captured from home to work; 6m or item 9 after it.**
 
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
@@ -125,15 +124,10 @@ readings; 6m or item 9 after it.**
    stretch), and the A/C's figure too whenever it happens to be on; **an
    odd cold misfire or a drop-out on one cylinder in the days after** goes
    into the chat at once.
-8a. **The purge valve N80 replaced** (*the owner's decision*, 6/11),
-   **only after item 8's readings**, never in the same days as item 8.
-   - **The part: Bosch `0 280 142 353`, VW `1C0 906 517 A`** — the same
-     number as the valve on the car; VW or Bosch, not aftermarket.
-   - The hoses stay as they are; the canister is not touched.
-   - **Afterwards, warm**: the owner runs **basic setting 070** himself
-     and photographs the result (the TEV line and the lambda); then
-     item 6's warm stops as always, `IdleHealth`, `Misfires`, MisfAvg,
-     into the chat.
+8a. **The purge valve N80, only if P0440 comes back or item 8 changes
+   nothing**: Bosch `0 280 142 353`, VW `1C0 906 517 A`, the same as the
+   one on the car; the hoses stay; afterwards, warm, the owner runs
+   **basic setting 070** and photographs it; then item 6's warm stops.
 9. **After item 8, by what it shows** (Claude says which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
      a kit.
@@ -365,18 +359,23 @@ captures until the display shows a change" makes for a repair (*agreed
 with the owner*, 4/11). Above reserve, because the ECU puts a misfire
 on an empty tank down as P1300 (`open.md`, *What the forums say*).
 
-**Item 8a — the purge valve** (*the owner's decision*, 6/11, after
-P0440 and the engine lamp, `open.md` S21 and H16; *this was "not
-replaced", the owner's decision of 25/10, until then*). **After item 8's
-readings** (*the owner*, 6/11): one change at a time, so that the idle
-after each can be put down to it. **The part**: the valve taken out on
+**Item 8a — the purge valve, conditional** (*the owner's decision*,
+6/11 night: *this was "replaced after item 8's readings", his decision
+of the same evening, until the valve was out*). Out of the car it
+passed air unpowered not clearly at all, at most "really very little"
+(*owner*), it had no granules or fuel behind it, and it was cleaned with
+its contacts and refitted (`idle-log.md`). The part is known and fits;
+**a code once in eight years is acceptable** (*the owner*), so it is
+bought if P0440 comes back, or if item 8 leaves the idle as it was and
+the purge path is the next candidate. **The part**: the valve taken out on
 6/11 is itself Bosch `0 280 142 353`, VW `1C0 906 517 A`, date code
 `040` (`photos/n80-2026-11-06-label.jpg`); Auto Kelly lists the same
-for this car, engine AQY (*owner*, 6/11), so the new one is the same
-part and fits as it is. **What was looked at, 6/11** (`idle-log.md`):
+for this car, engine AQY (*owner*, 6/11), so a new one is the same
+part and fits as it is (in stock at Auto Kelly, not in Prague on 6/11).
+**What was looked at, 6/11** (`idle-log.md`):
 no granules and no smell of fuel at the canister-side port, the rubber
 hoses old but sound, so **the canister is not looked at and no hose is
-changed** — a canister that shed charcoal would have jammed the new
+changed** — a canister that shed charcoal would have jammed a new
 valve open (*general*), and it shows no sign of it. **The plastic line
 under the upper intake is left** (*the owner*, 6/11): seen whole with
 the intake off several times, the smoke test showed nothing there, and
@@ -388,10 +387,11 @@ and idle air (block 070's fields), and a cap cannot fail that
 (*reasoned*). **070 afterwards** is the ECU's own check of a valve that
 opens; it is a basic setting, so the owner runs it, never Claude
 (`CLAUDE.md`). **No warm A–B–A with the hose plugged before it** (*the
-owner*, 6/11: not needed); so the idle after the swap is read against
-item 8's readings, on the display, with the A/C state named. *Until
-6/11 night this item also had the hoses and the canister checked while
-the valve was out, and the part compared with the old one; done.*
+owner*, 6/11: not needed); so the idle after a swap would be read
+against the readings before it, on the display, with the A/C state
+named. *Until 6/11 night this item also had the hoses and the canister
+checked while the valve was out, and the part compared with the old
+one; done.*
 
 **Item 9 — after the decarbonisation** (*agreed with the owner*, 4/11,
 after the research): the cheapest tests that name a part on 3 without an

@@ -142,8 +142,9 @@ level every 500 km (6i); **the next repair is a professional
 decarbonisation, with hydrogen, on 9/11** (H13, item 8; *the
 owner's decision*, 3/11), **captured from home to work the same day,
 with a cut on injector 4 before and after** (*the owner's plan*, 6/11);
-**then the purge valve N80 replaced, after item 8's readings** (H16,
-S21, 8a; *the owner's decision*, 6/11); then, by what it shows, 6m's injector circuits or item 9's tests (the
+**the purge valve N80 only if P0440 comes back or item 8 changes
+nothing** (H16, S21, 8a; *the owner's decision*, 6/11 night, the valve
+out, clean and refitted); then, by what it shows, 6m's injector circuits or item 9's tests (the
 stethoscope, the coolant's CO₂ test, a warm leak-down).
 
 ---
@@ -2091,9 +2092,14 @@ the pulses, **no liquid fuel**. **What it leaves:**
   symptom of its own again, a fault code; the valve's leak of 25/10 is
   one candidate for it, not shown to be the cause. The trim's split
   outlived the map (S19, settled 6/11), which this hypothesis was
-  already answered against cold, not warm. **The valve is now replaced
-  after item 8's readings** (*the owner's decision*, 6/11, `plan.md`
-  8a; *this said "not replaced" until then*).
+  already answered against cold, not warm. **6/11 night, out of the
+  car** (`idle-log.md`): unpowered it passed air not clearly at all, at
+  most "really very little", perhaps only the hose's grooved end (*owner*)
+  — less than the "really little" of 25/10 — no granules, no fuel; cleaned
+  with its contacts and refitted. **Replaced only if P0440 comes back or
+  item 8 changes nothing** (*the owner's decision*, 6/11 night, `plan.md`
+  8a; *this said "replaced after item 8's readings", his decision of the
+  same evening, and before that "not replaced"*).
 
 **Re-read 6/11, at the owner's question: a common cause of the idle?**
 The owner's reading: not the difference between the cylinders, but the
@@ -2498,7 +2504,7 @@ is in git.
 | 4 | **H7** fuel delivery | **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026, and nothing points at one of them); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10); **no injector swap** (*the owner*, 3/11) |
 | 5 | **H4** the injector loom at 3 and 4 | **5/11 up from eighth** (*agreed with the owner*): exactly the pair the steady pattern names, and a fault that comes and goes would move over minutes; the load argument is against the spark side, not the injectors; shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
 | 6 | **H2** a leak ahead of the probe | **down 31/10 from fourth** (*agreed with the owner*): the manifold seen from close below, rusty but no soot marks and no holes, its joint to the head nothing visibly wrong from below (H2); the part under its heat shield unseen; S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test (`plan.md` 7) |
-| 7 | **H16** the purge valve leaking | **6/11 up from eleventh** (*agreed with the owner*): P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the idle's waves of minutes and the weak firings in pairs do; a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | the valve replaced after item 8's readings (`plan.md` 8a), the idle read against item 8's; P0440 not back |
+| 7 | **H16** the purge valve leaking | **6/11 up from eleventh** (*agreed with the owner*): P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the idle's waves of minutes and the weak firings in pairs do; a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | item 8 first; the valve replaced only if P0440 comes back or item 8 changes nothing (`plan.md` 8a); 6/11 night, out of the car, it hardly passed air unpowered |
 | 8 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
 | 9 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
 | 10 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
@@ -2513,8 +2519,9 @@ H8, the timing belt and H20 one down. A common stress that pushes the
 weakest cylinders over the edge is a fair reading of a purge path, and
 the system now has a fault code; it stays below the five that name 3 and
 4, and below H2, because the idle is roughest cold, when the valve is
-not driven (H16, *a common cause of the idle?*). The swap after item 8
-(`plan.md` 8a) is its test.
+not driven (H16, *a common cause of the idle?*). Its test was to be the
+swap after item 8; since 6/11 night the swap is conditional (`plan.md`
+8a).
 
 **Re-read 6/11 with S21 added** (P0440 and the engine lamp): **the
 order stands**. S21 is not the idle; in the fit tables it is H16's
