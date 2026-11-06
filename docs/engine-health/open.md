@@ -1332,7 +1332,16 @@ together, where one exhaust seat on 3 would weaken 3 alone; and more
 crust on 3 fits the dips leaning to 3. **Against**: the crust is seen,
 its seal is not; and 3 and 4's ports and chambers are worse alike
 (H13), so it may be where the deposit sits rather than what fails. **The
-leak-down names it**: a hiss at the throttle with the plenum off.
+leak-down names it**: a hiss at the throttle with the plenum off. **The
+chamber photos beside them** (7/11, *at the owner's request*; album
+00:43–02:44): a valve stands open in only a few frames — cylinder 2's
+(02:24:33–02:25:20), whose conical seat face reads smooth and even with
+white beads of deposit on the head's rim beside it; 4's (00:48:24), out
+of focus, crust at the edge; 1's (02:41:31) unclear; **3 none**, every
+frame of 3 a closed valve or the crown. Which valve of each is open is
+not known from the frame. **So the chamber side neither confirms nor
+clears the inlet seats of 3 and 4**; what stands is the ports' contrast,
+1 and 2 even against 3 and 4 broken, read from above.
 **Test: a warm leak-down on all four**, listening at the
 tailpipe (exhaust seat), the throttle (inlet) and the oil filler (rings);
 **a stethoscope on the cam cover above 3, hot**, against 1, 2, 4. The AQY's lifters are hydraulic bucket
