@@ -202,8 +202,8 @@ carries name, address and plate), and **12 bar on all four, 17/9/2026**
 
 | When | Stored | Since |
 |---|---|---|
-| **1/2018** | 16824 / P0440, EVAP emission control system, intermittent | **never repaired**; not stored since |
-| **5/2019** | 16556 / P0172, fuel trim too rich; 16684 / P0300, random/multiple misfire; **16688 / P0304, cylinder 4 misfire** — all intermittent | not stored since |
+| **1/2018** | 16824 / P0440, EVAP emission control system, intermittent | **never repaired**; not stored again until **6/11/2026**, the engine lamp lit (`open.md` S21; `photos/vcds-faults-2026-11-06.jpg`), cleared by the owner. *This said "not stored since" until then.* |
+| **5/2019** | 16556 / P0172, fuel trim too rich; 16684 / P0300, random/multiple misfire; **16688 / P0304, cylinder 4 misfire** — all intermittent | P0172 stored again in the window of 23–24/10/2026 (`open.md` S19); the others not stored since. *This said "not stored since" for all three until 6/11/2026.* |
 
 Scans: `photos/vcds-faults-2018-01.png`, `photos/vcds-faults-2019-05.png`.
 

@@ -96,7 +96,7 @@ compares with nothing.
 ## Before September 2026 — the history
 
 - **1/2018** — fault memory (`photos/vcds-faults-2018-01.png`): **16824 /
-  P0440, EVAP**, intermittent; not seen since.
+  P0440, EVAP**, intermittent; not seen again until 6/11/2026 (below).
 - **5/2019** — fault memory (`photos/vcds-faults-2019-05.png`): **P0172 too
   rich, P0300, P0304 cylinder 4**, all intermittent and stored only above a
   2 % misfire rate (`vcds.md`). Not seen again until 24/10/2026. What made
@@ -1118,3 +1118,23 @@ The rest of `plan.md` 6m waits for item 8's result.
 `Misfires` and MisfAvg above 5/11's because the drive had only about 5
 minutes of idle in all, hardly any of it warm (*owner*). The first of `plan.md` 8's baseline readings; 5/11's contact cleaner and
 gasket edge changed nothing seen.
+
+## 6/11 evening — the engine lamp, P0440; the drive home on the display
+
+- **Tests:** `IdleHealth`, `Misfires` and MisfAvg at a warm stop on the
+  drive home, oil 90 °C, the A/C off, the blower on 1; the fault memory,
+  032 and 055 read with VCDS that evening, photographed
+  (`photos/vcds-faults-2026-11-06.jpg`,
+  `photos/vcds-adaptations-2026-11-06.jpg`); the code then cleared by the
+  owner by hand.
+- **Changes after:**
+  - *measured:* **the engine lamp lit, steady**, on the way; **16824 /
+    P0440, evaporative emission system, 35-10, sporadic**, the only
+    code; **032 −7.0 / +6.3 %**, **055 790 rpm, −0.01, −1.24 g/s**, load
+    bits `0000`; `IdleHealth` **73**, `Misfires` **6**, MisfAvg **8.6**
+    (*owner*, the album);
+  - *felt:* the idle "relatively OK" (*owner*).
+
+The lamp the first the owner has seen in years; the code that of 1/2018.
+No fill on 5/11 or 6/11 and no hose touched around N80 in 5/11's work
+(*owner*). `open.md` S21 (added at the owner's request), H16, S19.

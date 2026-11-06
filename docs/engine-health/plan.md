@@ -117,7 +117,8 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
       **032/055 before anything is cleared**; the owner clears it by hand.
    **The baseline before it**: the display's readings of 6–8/11, after the
    contact cleaner and the straightened gasket edge of 5/11 (6/11: 65
-   with the A/C, `Misfires` 18, MisfAvg 23.0, `open.md` S1). **After it**:
+   with the A/C, `Misfires` 18, MisfAvg 23.0; 6/11 evening: 73 with the
+   A/C off, `Misfires` 6, MisfAvg 8.6; `open.md` S1). **After it**:
    item 6's drives again, `IdleHealth` as always, at several warm stops,
    **with a word on what came before each stop** (queuing, or a brisk
    stretch), and the A/C's figure too whenever it happens to be on; **an

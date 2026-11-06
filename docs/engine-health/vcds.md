@@ -49,7 +49,7 @@ was first recorded counted from the wrong end and corrected on 28/9/2026.
 | **026** | **knock sensor voltage per cylinder**, *amplifier factor included* | S5. Not the raw signal: the ECU scales each cylinder |
 | **032** | lambda adaptations, idle and part load | the rich trim that was the MAF (S9); slightly negative at idle since (`open.md` H16; `refuted.md` C21) |
 | **055 / 056** | idle regulator, its adaptation, target idle speed | 055 logged once, on the cold start of 11/9 (`vcds-coldstart-014-055.csv`): regulator −0.46 → −0.08 g/s as the engine warmed, adaptation **−0.73 g/s** throughout, load-state bits `0000`. The cold-start baseline for the sessions of 3–4/10 (`open.md` S3) |
-| **070** | evaporative valve test | TEV OK — purge ruled out |
+| **070** | evaporative valve test | TEV OK (27/9) — the valve opens; whether it seals it cannot show (`refuted.md` A6, `open.md` H16). P0440 stored 6/11 (S21). *This said "purge ruled out" until 6/11.* |
 | **100** | readiness bits, OBD status, time since start | all monitors complete |
 
 **Specifications worth quoting, because they turn an observation into a
