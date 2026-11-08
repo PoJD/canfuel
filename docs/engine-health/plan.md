@@ -93,9 +93,9 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
       to 01), then starts `usbtin_capture.py` with `--seconds` set to run
       **to 15:00** from the moment it starts — generously long (the clean
       starts 10:00 at the latest, an hour or an hour and a half, then
-      about an hour to work); stopped by hand at work once step 8 is
-      done, then `vcds_log.py --groups 014 001 003` (fault memory read
-      first).
+      about an hour to work), then `vcds_log.py --groups 014 001 003`
+      (fault memory read first); the capture is stopped by hand at work
+      once step 8 is done.
    2. **About 30 minutes out, the motorway included**, until the oil is at
       95 °C or more.
    3. **A stop on a car park before the provider, not at it**: the A/C
