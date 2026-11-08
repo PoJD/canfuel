@@ -1308,7 +1308,12 @@ or carbon on the stem, which neither the EPR flushes nor H13's clean
 reach) fits S18's cold hang-up and a mild steady excess after it; **a
 lifter stuck pumped up** holds its valve a hair open with no tick. A
 lifter that bleeds down would tick, and the hot recording of 26/10 found
-none. *General* for these (GM bulletin 19-NA-219, another engine family:
+none. **8/11, the coldest start on record** (about 14 hours outdoors at
+−2.5 °C; `idle-log.md`): **the valvetrain clattered for the first second
+or two, then stopped** (*owner*; not a new symptom, *the owner's
+decision*) — what hydraulic lifters that leaked down overnight do
+until the oil pressure refills them (*general*), so it says nothing for
+a lifter stuck at a warm idle; one that kept ticking warm would. *General* for these (GM bulletin 19-NA-219, another engine family:
 valve leakage misfires most at idle, compression normal, a leak-down
 finds it). **The inlet seats of 3 and 4** (*the owner's reading* of the
 port photos, 7/11, re-read with him): looking down the ports of 19–20/10
