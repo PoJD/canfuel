@@ -98,8 +98,9 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
       once step 8 is done.
    2. **About 30 minutes out, the motorway included**, until the oil is at
       95 °C or more.
-   3. **A stop on a car park before the provider, not at it**: the A/C
-      off, the same loads as at step 7; 3 minutes' idle, **injector 4's
+   3. **A stop on a car park before the provider, not at it**: **the
+      everyday state** — blower on 1, one seat heater on 1, the lights on,
+      the A/C off — the same at step 7; 3 minutes' idle, **injector 4's
       connector off for 30 s** (say when, by the chat), then 3 minutes
       more.
    4. **At the provider**: say in the chat when the engine stops and when
@@ -121,8 +122,8 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
       advises after a clean, about as long and hard as the morning's;
       **listen for a tick** like 18/10's (a flake under a seat), and say
       in the chat if one comes.
-   7. **A stop before work**, as step 3: the A/C off, the same loads, 3
-      minutes, injector 4 off for 30 s, 3 minutes more.
+   7. **A stop before work**, as step 3: the everyday state, the A/C off,
+      3 minutes, injector 4 off for 30 s, 3 minutes more.
    8. **At the end, engine idling**: Claude reads the fault memory, then
       **032/055 before anything is cleared**; the owner clears it by hand.
    **The fault memory through the day** (*the owner*, 8/11): **read, never
