@@ -297,7 +297,15 @@ each cut; `cutscan.py --shares --name`, `dipshape.py --name --order 4`
 and 014 at both stops. 3 and 4's deficit gone after → H13; kept → H1's
 inlet seats, H3 or H4 (the leak-down of item 9 tells the first two apart,
 6m the third; the clean is the least likely to reach the inlet side,
-`open.md` H13); 3 alone → H1's exhaust seat (item 9). *Until 7/11 "kept"
+`open.md` H13); 3 alone → H1's exhaust seat (item 9). **Both at once**
+(*the owner's question*, 8/11): 3 and 4's deficit kept but the dips on
+all four fewer → the clean took a common part (H13 for the level), and
+the pair has a cause of its own (H1's inlet seats, H3, H4 as above). It
+is read on the capture, not the display: the dips per minute on each
+slot and the slot means, stop 3 against stop 7, both after a similar
+brisk run and at the same oil temperature, since a brisk run calms the
+idle by itself for a while (`open.md` S1) and the display's own spread
+is as large as the effect. *Until 7/11 "kept"
 read H3 or H4 only.*
 
 **Item 8 — the next repair** is chosen then, from `open.md`, *The idle's
