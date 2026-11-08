@@ -328,7 +328,11 @@ because a capture found empty at the end costs the whole day. **The fault memory
 and cleared once, at the end**: each read dates what a phase stored (the
 cut's misfire and injector codes, anything the clean leaves), and a
 clearing in between would reset 032 (`CLAUDE.md`), so stop 7 would not
-be read on the same adaptations as stop 3.
+be read on the same adaptations as stop 3. A code stored during the clean
+cannot be told from the cut's by the memory (this ECU keeps no time or
+count), so **misfires during the clean are read off the 014 log and the
+capture**, both timed; a code on another cylinder tells itself apart
+(*agreed with the owner*, 8/11).
 
 **Item 8 — the next repair** is chosen then, from `open.md`, *The idle's
 candidates, ranked*. **Since 3/11 evening deposits (H13) and a valve on
