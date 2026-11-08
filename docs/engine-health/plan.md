@@ -91,9 +91,10 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
       owner says "ready" in the chat. **Claude first runs a short check**
       that both run (`usbtin_capture.py --seconds 10`, and VCDS connects
       to 01), then starts `usbtin_capture.py` with `--seconds` set to run
-      to **13:30** from the moment it starts (the clean starts 10:00 at
-      the latest, an hour or an hour and a half, then about an hour to
-      work), then `vcds_log.py --groups 014 001 003` (fault memory read
+      **to 15:00** from the moment it starts — generously long (the clean
+      starts 10:00 at the latest, an hour or an hour and a half, then
+      about an hour to work); stopped by hand at work once step 8 is
+      done, then `vcds_log.py --groups 014 001 003` (fault memory read
       first).
    2. **About 30 minutes out, the motorway included**, until the oil is at
       95 °C or more.
@@ -316,9 +317,9 @@ brisk run and at the same oil temperature, since a brisk run calms the
 idle by itself for a while (`open.md` S1) and the display's own spread
 is as large as the effect. *Until 7/11 "kept"
 read H3 or H4 only.* **The capture's length is set from the
-clock** (*the owner*, 8/11): a fixed `--seconds` sized for 10:00 plus an
-hour and a half plus an hour's drive, with margin, so it can neither stop
-early nor run on for hours if the end is missed; the short check first
+clock** (*the owner*, 8/11): `--seconds` sized generously past 10:00 plus an
+hour and a half plus an hour's drive, so that it cannot stop before the
+day is over, and stopped by hand at the end; the short check first
 because a capture found empty at the end costs the whole day.
 
 **Item 8 — the next repair** is chosen then, from `open.md`, *The idle's
