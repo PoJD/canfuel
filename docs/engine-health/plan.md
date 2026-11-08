@@ -125,6 +125,10 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
       minutes, injector 4 off for 30 s, 3 minutes more.
    8. **At the end, engine idling**: Claude reads the fault memory, then
       **032/055 before anything is cleared**; the owner clears it by hand.
+   **The fault memory through the day** (*the owner*, 8/11): **read, never
+   cleared, until step 8** — at home before the start, after stop 3's
+   cut, after the clean each time VCDS is restarted, and at the end; each
+   read saved. **One clearing only, at work, after 032/055.**
    **The baseline before it**: the display's readings of 6–8/11, after the
    contact cleaner and the straightened gasket edge of 5/11 (6/11: 65
    with the A/C, `Misfires` 18, MisfAvg 23.0; 6/11 evening: 73 with the
@@ -320,7 +324,11 @@ read H3 or H4 only.* **The capture's length is set from the
 clock** (*the owner*, 8/11): `--seconds` sized generously past 10:00 plus an
 hour and a half plus an hour's drive, so that it cannot stop before the
 day is over, and stopped by hand at the end; the short check first
-because a capture found empty at the end costs the whole day.
+because a capture found empty at the end costs the whole day. **The fault memory is read at every phase
+and cleared once, at the end**: each read dates what a phase stored (the
+cut's misfire and injector codes, anything the clean leaves), and a
+clearing in between would reset 032 (`CLAUDE.md`), so stop 7 would not
+be read on the same adaptations as stop 3.
 
 **Item 8 — the next repair** is chosen then, from `open.md`, *The idle's
 candidates, ranked*. **Since 3/11 evening deposits (H13) and a valve on
