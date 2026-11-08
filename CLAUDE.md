@@ -479,7 +479,8 @@ itself is not finished.
 - **Idle smoothness is always on the `IdleHealth` scale** — `idledips
   --roughness`'s mean step × 50 — never the raw rpm grade (*12/10*);
   **lower is calmer**. **A warm-stop reading is in the everyday state**
-  (blower 1, one seat heater 1, lights; *23/10*), the only one since
+  (blower 1, one seat heater on 2, lights; *23/10*, the seat heater's
+  setting corrected *8/11*), the only one since
   *28/10*: the two states (every load off, every load on; *19/10*) were
   dropped; never ask for a stop made only to read it. Idling itself is
   not limited for the converter (*6/11*: tens of kelvin at most, `open.md`

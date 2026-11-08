@@ -99,7 +99,7 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
    2. **About 30 minutes out, the motorway included**, until the oil is at
       95 °C or more.
    3. **A stop on a car park before the provider, not at it**: **the
-      everyday state** — blower on 1, one seat heater on 1, the lights on,
+      everyday state** — blower on 1, one seat heater on 2, the lights on,
       the A/C off — the same at step 7; 3 minutes' idle, **injector 4's
       connector off for 30 s** (say when, by the chat), then 3 minutes
       more.
@@ -171,7 +171,8 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
   - **Engine lamp steady**: drive on; the fault memory read when VCDS is
     next connected, the codes into the chat.
 - **`IdleHealth` and `Misfires` only in the everyday state** — **blower on 1, one seat
-  heater on 1, the lights on** — at warm stops that come anyway (oil
+  heater on 2, the lights on** (*the owner*, 8/11; *this said the seat heater on 1, the
+  23/10 wording, until then*) — at warm stops that come anyway (oil
   95–100 °C, neutral, no throttle), with the oil temperature; any other
   state is named. **No stop is made or lengthened only to read it.**
 - **The fault memory after every session with VCDS connected**: read,
