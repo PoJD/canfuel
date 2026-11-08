@@ -87,9 +87,14 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
    in behind the MAF (*owner*, 6/11). **One captured session from home to
    work** (*the owner's plan*, 6/11), Claude in a session on the laptop,
    on the car's 12 V charger; fuel above reserve:
-   1. **At home, before the ignition**: the MFD out, the USBtin in. Claude
-      starts `usbtin_capture.py`, then `vcds_log.py --groups 014 001 003`
-      (fault memory read first).
+   1. **At home, before the ignition**: the MFD out, the USBtin in; the
+      owner says "ready" in the chat. **Claude first runs a short check**
+      that both run (`usbtin_capture.py --seconds 10`, and VCDS connects
+      to 01), then starts `usbtin_capture.py` with `--seconds` set to run
+      to **13:30** from the moment it starts (the clean starts 10:00 at
+      the latest, an hour or an hour and a half, then about an hour to
+      work), then `vcds_log.py --groups 014 001 003` (fault memory read
+      first).
    2. **About 30 minutes out, the motorway included**, until the oil is at
       95 °C or more.
    3. **A stop on a car park before the provider, not at it**: the A/C
@@ -97,8 +102,12 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
       connector off for 30 s** (say when, by the chat), then 3 minutes
       more.
    4. **At the provider**: say in the chat when the engine stops and when
-      it starts for the clean; the capture runs on, VCDS is restarted by
-      Claude once it runs. **Ask the machine's output in litres a minute,
+      it starts for the clean; **the engine is likely stopped twice** (to
+      fit the provider's hose, and after the clean to take it off and
+      refit the intake's own hoses); the capture runs on through both,
+      VCDS is restarted by Claude each time the engine runs again. **Ask
+      for an hour and a half** if they offer it on larger engines
+      (*the owner's plan*, 8/11). **Ask the machine's output in litres a minute,
       and whether it makes oxyhydrogen (HHO) or hydrogen alone**. **The
       coolant and oil temperatures are watched by us** through the hour,
       on the capture (Claude, 0x288 and 0x420; `oilwatch.py` on the
@@ -306,7 +315,11 @@ slot and the slot means, stop 3 against stop 7, both after a similar
 brisk run and at the same oil temperature, since a brisk run calms the
 idle by itself for a while (`open.md` S1) and the display's own spread
 is as large as the effect. *Until 7/11 "kept"
-read H3 or H4 only.*
+read H3 or H4 only.* **The capture's length is set from the
+clock** (*the owner*, 8/11): a fixed `--seconds` sized for 10:00 plus an
+hour and a half plus an hour's drive, with margin, so it can neither stop
+early nor run on for hours if the end is missed; the short check first
+because a capture found empty at the end costs the whole day.
 
 **Item 8 — the next repair** is chosen then, from `open.md`, *The idle's
 candidates, ranked*. **Since 3/11 evening deposits (H13) and a valve on
