@@ -286,6 +286,46 @@ pump figure is closed by the OMV fill: **5.5 ± 0.5 l (the can) + 4.76 +
 the OMV litres, over 498 km plus the kilometres from here to the
 pump**.
 
+### The fill of 2026-11-08 — the 29/10 tank closed, and the check with it
+
+**47.61 litres of OMV, to the click**, at **155,707 km** (album, 10:56;
+the cluster's trip 351.1), 16 km after the Efecta part fill.
+
+*(derived)*
+
+| | |
+|---|---|
+| distance, the odometer, 155,707 − 155,193 | **514 km** (±1 at each end) |
+| petrol: the can 5.5 ± 0.5 + Efecta 4.76 + OMV 47.61 | **57.87 l** (±0.5) |
+| **litres over kilometres** | **11.26 l/100 km** (11.16–11.36 with the can's band) |
+| distance, the converter to 155,691: `TripDist` 418.4 + the captures 86.5 | 504.9 km against the odometer's 498, **+1.4 %** |
+
+- **The fuel channel is not checked on this tank**: `FuelAvg` was hidden
+  by glare in the one photo before the part fill, and was not read at
+  the OMV fill. Whether the converter reset its trip at the Efecta fill
+  (4.76 l against `REFUEL_RISE_L`) was not read either.
+- **Distance: +1.4 %**, after +0.7 % (24/10, against the cluster's trip)
+  and +1.2 % (29/10, the odometer): **0x1A0 reads about 1 % above the
+  odometer, every tank, the same direction** (*the owner*: "a few km
+  more a tank, that is fine").
+- **The sender near empty** (*owner*, 8/11): **7.9–8.0 l indicated just
+  after the 4.76**, and the last litres before it went "suspiciously
+  fast". Against the brims *(derived, rough)*: 47.61 into about 6 l
+  indicated (8.0 less about 1.8 l burnt over the 16 km) puts the brim at
+  about 53.7 l, where 24/10 (50.88 into 0.4) and 29/10 (50.16 into 2.2)
+  put it at 51.3 and 52.4 — so **near empty the display reads one to two
+  litres high**, the owner's reading, inside the brims' own litre or
+  two. Data for the sender, not work: **the tank is closed as a
+  decision** (`CLAUDE.md`).
+
+**The check against the pump is closed here** (*the owner's decision*,
+8/11): three brims since the repairs, the fuel channel within 1 % of
+the pump on the one tank it covered whole (29/10, −0.6 %), the distance
+about 1 % high on all three — nothing that asks for a correction
+(step 5 below), so the pump is no longer read tank by tank. A new
+brim is worth reading again only if `FuelAvg` or `Range` drifts from
+what the driving feels like.
+
 ---
 
 ## What this means for the measurements
