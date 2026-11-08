@@ -89,7 +89,11 @@ of air (H14).
   it warm; **the engine behaved the same** (*owner*; S3). **The drive
   home the same day**, oil 90 °C, **the A/C off, the blower on 1**:
   **73**, `Misfires` **6**, MisfAvg **8.6**, the idle "relatively OK" —
-  and the engine lamp, P0440 (S21) (*owner*, the album).
+  and the engine lamp, P0440 (S21) (*owner*, the album). **8/11**, home
+  after the OMV fill, oil 97 °C, the everyday state, about a minute:
+  **70–75**, `Misfires` **9–12**, MisfAvg **12.5** since the start at the
+  pump; most of the drive gentle on the last of the fuel, a little
+  higher revs after the fill (*owner*).
   The dips sat two thirds on 3 and 4
   until the VW leads, **on all four alike** on `40` and `41`, **on `42`
   one slot again, 45 %**, and **on `43` named: 43 % on cylinder 3**
@@ -233,6 +237,7 @@ error):
 | 5/11 eve | display, a video | relearning | the drive home, an hour, mostly queues, revved a little at times; the everyday state plus **the A/C and the blower on 2** throughout; oil 100 °C at the end (*owner*) | **51–54** settling from 60–67 in the last 45 s, still the A/C on; `Misfires` **3–4** there, **1–22** over the drive (*owner*); MisfAvg 8.7 → 8.2 |
 | 6/11 | display, a photo | relearning | the first reading after 5/11's contact cleaner (injector 4, T3) and runner 3's gasket edge straightened; about 40 min with a few queues; the everyday state plus **the A/C and the blower on 2**; oil 98 °C (*owner*) | **65** with the A/C; `Misfires` **18**, MisfAvg **23.0** at the end, higher because **only about 5 min of idle in the drive, hardly any warm**; **the engine behaved the same** (*owner*, the album 9:29) |
 | 6/11 eve | display, a photo | relearning | the drive home; oil 90 °C; **the A/C off, the blower on 1** (*owner*); **the engine lamp came on** on the way, P0440 (S21) | **73**; `Misfires` **6**, MisfAvg **8.6**; the idle "relatively OK" (*owner*, the album 16:40) |
+| 8/11 | display | relearning | home after the OMV fill (about 10 % Efecta 95 in the tank), mostly gentle on the last of the fuel, a little higher revs after the fill; oil 97 °C; the everyday state, about a minute (*owner*) | **70–75**; `Misfires` **9–12**, MisfAvg **12.5** since the start at the pump (*owner*) |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -768,7 +773,9 @@ completing rather than load (`refuted.md` C19).
   last minute of idle is few warm seconds; **the engine behaved the
   same** (*owner*, the album). **The drive home the same day** (the A/C
   off, the blower on 1, oil 90 °C): **6** with `IdleHealth` 73, MisfAvg
-  **8.6**, back to 5/11's level (*owner*, the album). ⚠ **Not the capture's near-zero with the A/C**
+  **8.6**, back to 5/11's level (*owner*, the album). **8/11** (the
+  everyday state, oil 97 °C, about a minute): **9–12**, MisfAvg 12.5
+  (*owner*). ⚠ **Not the capture's near-zero with the A/C**
   (`40`: zero 79 % of the time, 0.2 a minute) — that was read on minutes
   with the compressor's load in b7 (b7 ≥ 36), and the display cannot tell
   whether the compressor was running; in November it may cycle or stay

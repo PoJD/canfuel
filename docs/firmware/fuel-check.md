@@ -300,12 +300,17 @@ the cluster's trip 351.1), 16 km after the Efecta part fill.
 | **litres over kilometres** | **11.26 l/100 km** (11.16–11.36 with the can's band) |
 | distance, the converter to 155,691: `TripDist` 418.4 + the captures 86.5 | 504.9 km against the odometer's 498, **+1.4 %** |
 
-- **The fuel channel is not checked on this tank**: `FuelAvg` was hidden
-  by glare in the one photo before the part fill, and was not read at
-  the OMV fill. Whether the converter reset its trip at the Efecta fill
+- **The fuel channel, read after the OMV fill before the trip reset**
+  (album, 11:07; the trip did not reset at the Efecta fill, so it spans
+  the whole tank): **`FuelAvg` 11.1, `TripDist` 433.8, `FuelTank` 51.0,
+  `Range` 459**. `TripFuel` 11.1 × 4.338 = **48.15 l** (±0.22 for the
+  rounding), and the captures' 9.23 l: **57.38 l against the pump's
+  57.87, −0.8 %** (−1.7 to 0.0 with the can's band). Distance 433.8 +
+  86.5 = 520.3 km against 514, **+1.2 %**. The second whole tank, and
+  it agrees as the first did (−0.6 %). Whether the converter reset its trip at the Efecta fill
   (4.76 l against `REFUEL_RISE_L`): **it did not** (*owner*, 8/11), as on
 31/10's can — not pursued, the check being closed.
-- **Distance: +1.4 %**, after +0.7 % (24/10, against the cluster's trip)
+- **Distance: +1.2 % over the whole tank** (+1.4 % to the part fill), after +0.7 % (24/10, against the cluster's trip)
   and +1.2 % (29/10, the odometer): **0x1A0 reads about 1 % above the
   odometer, every tank, the same direction** (*the owner*: "a few km
   more a tank, that is fine").
@@ -321,7 +326,7 @@ the cluster's trip 351.1), 16 km after the Efecta part fill.
 
 **The check against the pump is closed here** (*the owner's decision*,
 8/11): three brims since the repairs, the fuel channel within 1 % of
-the pump on the one tank it covered whole (29/10, −0.6 %), the distance
+the pump on both tanks it covered whole (29/10 −0.6 %, 8/11 −0.8 %), the distance
 about 1 % high on all three — nothing that asks for a correction
 (step 5 below), so the pump is no longer read tank by tank. A new
 brim is worth reading again only if `FuelAvg` or `Range` drifts from

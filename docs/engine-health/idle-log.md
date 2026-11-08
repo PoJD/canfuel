@@ -1177,3 +1177,16 @@ canister is left. **Not replaced for now** (*the owner's decision*,
     or two the valvetrain clattered, then stopped** — the first time
     the owner has heard it (*owner*).
 
+## 8/11 — the idle on the display, after the OMV fill
+
+- **Repairs:** 47.61 l of OMV to the click at 155,707 km, on top of the
+  4.76 l of Efecta 95 (`vehicle-history.md`).
+- **Tests:** `IdleHealth`, `Misfires` and MisfAvg at home, oil 97 °C, the
+  everyday state, about a minute.
+- **Changes after:**
+  - *measured:* `IdleHealth` **70–75**, `Misfires` **9–12**, MisfAvg
+    **12.5** since the start at the pump (*owner*).
+
+The drive mostly gentle on the last of the fuel, a little higher revs
+after the fill (*owner*). Part of `plan.md` 8's baseline.
+
