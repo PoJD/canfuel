@@ -6,13 +6,15 @@ the car; the logs live in `test/fixtures/`.
 Two levels of confidence are distinguished:
 
 - **Confirmed** — holds across every log and is pinned down by a test in `tools/`.
-- **Open** — written down but not yet proven. The two open questions, 7 and
-  10, are in `open.md`.
+- **Open** — written down but not yet proven. `open.md` holds the open
+  questions; none since 8/11/2026 (7, 10 and 11 closed into *Resolved
+  questions* below). *This said "the two open questions, 7 and 10" until
+  8/11/2026.*
 
 The questions register at the end of this file holds the rest: *Resolved
 questions*, answered with the evidence kept, and **Never resolved but not
 required**, never answered and **not to be worked on again**. The numbering
-runs 1 to 10 across the register and `open.md` and is deliberately not
+runs 1 to 11 across the register and `open.md` and is deliberately not
 contiguous within either, because code and other documents cite the numbers.
 
 ---
@@ -1072,9 +1074,8 @@ high). What it gave:
   holding a cut: a mean step of 3.6–10.7 rpm, the 0–200 index at its
   clamp, against 1.0–2.3 rpm on the same stop with all four firing.
 
-Not yet read into a decision: whether the grade wants a scale or an
-anchor from these is a change to `src/` and its tests, and is its own
-piece of work.
+*This said "not yet read into a decision" until 8/11/2026*; read then:
+no scale or anchor (the closing note at the end of this question).
 
 #### Re-read in stretches, 25/10/2026
 
