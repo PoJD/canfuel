@@ -1163,3 +1163,17 @@ canister is left. **Not replaced for now** (*the owner's decision*,
 6/11): the part is known, and it is bought if P0440 comes back or item
 8 changes nothing. `open.md` H16, S21.
 
+## 8/11 — the coldest start on record, and a part fill of Efecta 95
+
+- **Repairs:** 4.76 l of Orlen Efecta 95 on reserve at 155,691 km
+  (`vehicle-history.md`).
+- **Tests:** the start after about 14 hours outdoors at −2.5 °C, on the
+  display (album, 9:58–9:59).
+- **Changes after:**
+  - *measured:* `StartCrank` **1.47 s**, the longest on record (1.41 on
+    the failed start of 31/10), `StartDip` **0**; coolant 2 °C, oil 5 °C,
+    the display's supply 12.5 V (*owner*, the album);
+  - *felt:* the start a little longer but clean; **for the first second
+    or two the valvetrain clattered, then stopped** — the first time
+    the owner has heard it (*owner*).
+

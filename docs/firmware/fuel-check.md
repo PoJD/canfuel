@@ -271,6 +271,21 @@ than these two** (*owner*, 3/11), so the tank is whole. `43` ended
 at football, not at home (*owner*), and **the drive home after it ran with
 the MFD in**, so the converter has it.
 
+**8/11: 4.76 l of Orlen Efecta 95 on reserve**, at **155,691 km**, the
+cluster's trip 335.8 (zeroed at about 155,355 on 3/11, so not this
+tank's distance; `docs/engine-health/vehicle-history.md`), to reach an
+OMV and fill to the click there (*owner*). Read before the nozzle
+(album, 10:38): **`TripDist` 418.4 km**; `FuelAvg` hidden by glare.
+**The odometer's distance since the brim of 29/10: 498 km**, of which
+the captures `42` and `43` (86.5 km) are missing from `TripDist`: the
+converter 418.4 + 86.5 = 504.9 against 498, **+1.4 %**, the direction
+and size of the last two tanks. ⚠ **4.76 l is above `REFUEL_RISE_L`**,
+so the converter may have reset the trip at this fill (*The rule*,
+`refuel-reset.md`); whether it did is the owner's to read. The tank's
+pump figure is closed by the OMV fill: **5.5 ± 0.5 l (the can) + 4.76 +
+the OMV litres, over 498 km plus the kilometres from here to the
+pump**.
+
 ---
 
 ## What this means for the measurements
