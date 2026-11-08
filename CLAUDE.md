@@ -316,8 +316,8 @@ calibration is closed as a decision; do not reopen it.
 settled-against things go in, nothing is ever deleted. The firmware's
 questions sort four ways: `refuted.md` (settled "no"), `can-decoding.md`
 *Resolved questions* (answered), *Never resolved but not required* (do not
-work on these), `docs/firmware/open.md` (genuinely open: 11, `IdleHealth`
-against 014).
+work on these), `docs/firmware/open.md` (genuinely open: none since 8/11/2026, when 11,
+`IdleHealth` against 014, closed).
 
 ---
 

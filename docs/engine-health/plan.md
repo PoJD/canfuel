@@ -424,7 +424,7 @@ worse beyond its spread are read as a seat getting worse.
   an estimate of VCDS 014 off the bus — the dips of 20 rpm in the last
   minute of standing idle, zero whenever 014 had not counted in that
   minute over every capture with a 014 log, and near zero with the A/C on
-  as 014 is (`docs/firmware/open.md` 11, *Misfires*). It lets a stop say
+  as 014 is (`docs/firmware/can-decoding.md` question 11, *Misfires*). It lets a stop say
   whether 014 is counting without VCDS; VCDS stays the instrument.
   `--preserve-eeprom` keeps the stored trip and tank (`flashing.md`).
 

@@ -752,7 +752,7 @@ completing rather than load (`refuted.md` C19).
   the MAF. **So 014 is a yes/no witness, not a ruler.** Compare across time
   with engine speed or `IdleHealth`.
 - **An estimate of it on the display since 4/11** (*the owner's request*;
-  `docs/firmware/open.md` 11, *Misfires*): `Misfires` on 0x604, the dips
+  `docs/firmware/can-decoding.md` question 11, *Misfires*): `Misfires` on 0x604, the dips
   of 20 rpm in the last minute of standing idle. Over every capture with a
   014 log, warm, **no minute in which 014 counted read zero on it**, and
   with the A/C on (`40`) it read zero 79 % of the time as 014 does; per
@@ -804,7 +804,7 @@ completing rather than load (`refuted.md` C19).
   not change** — about two episodes a minute, as 15/10 and 21/10. The
   hose and the second 44K tank (24/10) cannot be told apart here.
 - **014 against `IdleHealth`, re-read in stretches** (25/10,
-  `tools/s3align.py --windows`; `docs/firmware/open.md` 11, *Re-read in
+  `tools/s3align.py --windows`; `docs/firmware/can-decoding.md` question 11, *Re-read in
   stretches*): **no `IdleHealth` below which 014 is silent at an
   ordinary load** on settled adaptations — a plateau to about 80, more
   above. On fresh adaptations (to 4/10) it did fall silent below about

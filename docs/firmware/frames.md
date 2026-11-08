@@ -352,7 +352,7 @@ seconds, so it **holds the last minute of idle while the car moves**.
 × 600, rounded — one division by a variable a second, in this slot.
 `misfires()` is the oracle, diffed exactly like the grade.
 
-**Why a minute and 20 rpm, measured** (`docs/firmware/open.md` 11,
+**Why a minute and 20 rpm, measured** (`docs/firmware/can-decoding.md` question 11,
 *Misfires*): over every capture with a 014 log beside it, warm and
 standing, **no moment had 014 counting in the previous minute with the
 window at zero** (0.4 % at 22 rpm, 13 % at 25); when 014 was silent the

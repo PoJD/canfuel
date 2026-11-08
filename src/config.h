@@ -215,10 +215,11 @@
  * MISF_WINDOW_S buckets of one second of SETTLED IDLE, so the window holds
  * still while the car moves. misfires() in idledips.py is the oracle.
  *
- * Why 20 and a minute, measured (docs/firmware/open.md 11, *Misfires*): over
- * every capture with a VCDS 014 log beside it, warm and standing, no moment
- * had 014 counting in the previous minute with this window at zero, and it
- * read zero in about a quarter of the moments 014 was silent. Per event it
+ * Why 20 and a minute, measured (docs/firmware/can-decoding.md question 11,
+ * *Misfires*): over every capture with a VCDS 014 log beside it, warm and
+ * standing, no moment had 014 counting in the previous minute with this
+ * window at zero, and it read zero in about a quarter of the moments 014 was
+ * silent. Per event it
  * misses most of 014's counts, so it is a minute counter or nothing. It is
  * an ESTIMATE of 014 at a standing idle, not 014; driving it does not count.
  *

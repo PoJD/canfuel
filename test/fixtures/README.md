@@ -517,7 +517,7 @@ pins exactly that shape so the exclusion cannot swallow a real one.
 **`21`–`23` are three cool-down points**, each a few seconds of whole bus with
 the ignition on and the engine off, taken while the oil filter was read with an
 IR thermometer in the rain. Oil raw 125, 123–124 and 121–122. The readings and
-what they say about the oil scale are `docs/firmware/open.md` question 10.
+what they say about the oil scale are `docs/firmware/can-decoding.md` question 10.
 
 ## `25` and `26` — session A, one session in two files
 
@@ -531,7 +531,7 @@ concatenate; anything run across both treats the second as following
 the first.
 
 **`25` starts before the ignition**, so it holds the 0x1A0 ramp (`0x43`)
-and the cold soak (coolant raw 88, oil raw 81 — `docs/firmware/open.md`
+and the cold soak (coolant raw 88, oil raw 81 — `docs/firmware/can-decoding.md`
 question 10). **`26` ends with the engine stopped and the ignition still
 on**, the only fixture that does: 0x480 drops to zero in the frame where
 engine speed does, and 0x1A0 shows `0x43` for 1.5 s from the same frame

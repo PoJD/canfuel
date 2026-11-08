@@ -203,7 +203,7 @@ finding:**
   070, 077, 098–100 — and every temperature in them is coolant (001, 004, 077,
   099, 100), intake air (004, 006) or catalytic converter (034, 046). So
   `OilTemp` on 0x420 cannot be cross-checked against the ECU
-  (`docs/firmware/open.md`).
+  (`docs/firmware/can-decoding.md` question 10).
 - **No torque in Nm.** Looked for in 2026 and not there; the scale came from
   the full-throttle plateau instead (`docs/firmware/can-decoding.md`
   question 8).

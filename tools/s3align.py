@@ -36,7 +36,7 @@ default        per capture: the share of rises with a dip in the
                new MAF, by `IdleHealth` band in three groups -- fresh
                adaptations (`FRESH`), settled ones, and loads on (014's
                load above `LOAD_PCT`), which have to be read apart
-               (docs/firmware/open.md 11, *Re-read in stretches*).
+               (docs/firmware/can-decoding.md question 11, *Re-read in stretches*).
 """
 import argparse
 import bisect

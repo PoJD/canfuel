@@ -89,7 +89,7 @@ compares with nothing.
   is two recordings on the old parts**: the 60 s warm idle of 11/8 at 85 °C
   of oil (`09`) and the five-minute cold warm-up of 11/9 (`18`), both 106 on
   this scale. And **dips ≥ 20 rpm a minute** (`tools/idledips.py`).
-  **Neither reproduces 014** (`docs/firmware/open.md` question 11).
+  **Neither reproduces 014** (`docs/firmware/can-decoding.md` question 11).
 
 ---
 

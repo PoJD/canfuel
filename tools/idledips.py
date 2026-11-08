@@ -494,7 +494,7 @@ def roughness(gated, t_from=None, t_to=None, deadband_rpm=ROUGH_DEADBAND_RPM,
 # frozen since before the repair -- counted into a sliding window of the last
 # MISF_WINDOW_S seconds of settled idle, plus a total for the start.
 #
-# Why these and not a finer detector (docs/firmware/open.md 11, *Misfires*):
+# Why these and not a finer detector (docs/firmware/can-decoding.md question 11, *Misfires*):
 # over every capture with a 014 log beside it, warm, at a standing idle, no
 # moment had 014 counting in the previous minute with this window at zero
 # (TRIP_RPM 20; 0.4 % at 22, 13 % at 25), and it read zero in about 28 % of

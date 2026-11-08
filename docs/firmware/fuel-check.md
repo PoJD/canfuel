@@ -308,8 +308,11 @@ the cluster's trip 351.1), 16 km after the Efecta part fill.
   57.87, −0.8 %** (−1.7 to 0.0 with the can's band). Distance 433.8 +
   86.5 = 520.3 km against 514, **+1.2 %**. The second whole tank, and
   it agrees as the first did (−0.6 %). Whether the converter reset its trip at the Efecta fill
-  (4.76 l against `REFUEL_RISE_L`): **it did not** (*owner*, 8/11), as on
-31/10's can — not pursued, the check being closed.
+  (4.76 l against `REFUEL_RISE_L`): **it did not** (*owner*, 8/11) —
+**by design**: the owner drove off at once, on purpose, inside the time
+at rest the rule arms for (`REFUEL_ARM_S`, *The rule*, `refuel-reset.md`),
+as 31/10's can may also have been. Closed with the check (*the owner's
+decision*).
 - **Distance: +1.2 % over the whole tank** (+1.4 % to the part fill), after +0.7 % (24/10, against the cluster's trip)
   and +1.2 % (29/10, the odometer): **0x1A0 reads about 1 % above the
   odometer, every tank, the same direction** (*the owner*: "a few km
