@@ -364,7 +364,74 @@ each after a motorway run, each with a 30 s cut on 4:
   step**. So **the calm is the gas burning with the charge, not air the
   MAF missed**: a better-burning charge, not fuel to spare. ⚠ The A/C
   was on in the first stretch, the blower on 4 and the heater full in
-  the second; the 20 s of plain air are one window. Straight after, the hose
+  the second; the 20 s of plain air are one window.
+  **The gas idle taken apart** (9/11 evening, *the owner's question*:
+  does it weaken this file's reading of the engine, and does it point
+  elsewhere; 30 s windows, the steady pattern fitted as in *A steady
+  pattern over the cylinders*, named by taking the strongest slot for 2;
+  *ad-hoc script, not kept*):
+
+  | stretch | grade | with the pattern out | the pattern, rms % of a stroke | its slots, sorted | steps ≤ −8 rpm per 1000 |
+  |---|---|---|---|---|---|
+  | the wait, A/C on 4, no gas | 40–50 | 25–28 | 4.7–5.8 | −8 … +6 | 15–22 |
+  | **the gas rising, A/C on 4** | **22** | **9** | **4.5** | −7 … +4.5 | **1.4** |
+  | **the gas, the clean's end, blower 4** | **29** | **11** | **5.5** | −9 … +4.6 | **8** |
+  | straight after, the hose off | 60 | 38 | 5.9 | −9 … +6 | 34 |
+  | stop 3 before its cut / after it | 89 / 49 | 45 / 33 | 8.6 / 5.2 | −14 … +9 / −8 … +6 | 67 / 28 |
+  | stop 7 before its cut / after it | 60 / 64 | 41 / 41 | 5.5 / 5.9 | −9 … +6 / −9 … +7 | 36 / 39 |
+
+  **The gas took the random part and left the steady one.** The
+  weak strokes and the dips went (steps of −8 rpm and more from 15–39 a
+  thousand to 1–8), and the grade with the pattern out fell to 9–11, a
+  third of the best stop; **the steady difference between the
+  cylinders stayed exactly as it was** — 2 about 8 % strong, 4 about
+  5 % weak, the same size and shape with the gas as without, at the
+  provider and at stops 3 and 7 — **in one unbroken run from before
+  the gas into it (10:16–10:22), 4 stays the weak slot (+4.4 to +7.1 %
+  before, +4.9 to +5.8 % with the gas) while the grade falls from 49–54
+  to 18–23**. The advance hardly moved (3.1° before,
+  2.6–4.9° with it). **Read** (*reasoned*):
+  - **This file's reading holds and sharpens.** The dips are strokes at
+    the edge of stable burning (*What one dip is worth*); a quicker,
+    more easily lit charge (*general*: hydrogen's ignition energy about
+    a tenth of petrol's, its flame several times faster, and it
+    tolerates dilution far better; a few per cent of it is known to
+    cut an engine's cycle-to-cycle variation sharply) takes them away
+    **even on a smaller air charge** (load 25 % against 30). So *"anything
+    that takes a little charge away tips them over"* (*Load smooths
+    it*) is better put as **how easily the charge lights and burns**,
+    of which its size is one part. At a closed throttle the cylinder
+    keeps much of its own exhaust (*general*: residual gas is largest at
+    idle and falls as the manifold pressure rises), which slows and
+    scatters the burn — **a load lowers that dilution, which is why a
+    load calms it, and the gas tolerates it**, which is why the gas
+    calmed it more than any load. Not new physics: the same edge, with
+    the reason it is an edge named.
+  - **Two separate things, then**: **the dips** — a burn that fails
+    now and then, cured by a better charge (the clean's effect on 3 was
+    on this part: 3's rough start and 014's storm); and **the steady
+    pattern** — 4 giving less and 2 more every cycle, which neither the
+    clean nor the gas touched, so **a difference in what each cylinder
+    gets, not in how well it burns**: its share of air or fuel, or of
+    compression. That fits what acts on 4 alone and on quantity — **H3**
+    (runner 4's torn gasket: less charge or a leaner one), **H4/H7**
+    (less fuel into 4), **H1's inlet seat on 4** — and not what acts on
+    ignition (H4's spark side, plug gaps): those would have been rescued
+    by the gas like the dips were.
+  - **What it points at more now**: for the dips, **anything that
+    raises the residual gas or slows the burn at idle on all four** —
+    a valve that does not quite close on the exhaust side (H1, H13's
+    seat), deposit (H13), and **the cam's timing against the crank**:
+    a belt a tooth out changes the valves' overlap and with it the
+    exhaust kept at idle, with compression even and the full-load
+    power nearly intact (*general*) — the one candidate this reading
+    lifts that sits low in the ranking (ninth; its marks are cheap to
+    check). And **H0**, an AQY that idles near its dilution limit by
+    design, is not weakened: every engine is calmer on hydrogen.
+  - ⚠ The gas idles are two stretches of 3 and 2½ minutes, with the
+    A/C on in one and the blower on 4 in the other; the pattern named
+    by its strongest slot, as at work.
+ Straight after, the hose
   off: 60 and 2.6 dips a thousand again. **Read** (*reasoned*): a
   faster-burning, more easily lit charge (*general*: hydrogen's wide
   limits and quick flame) **cures the weak strokes outright, even on a
