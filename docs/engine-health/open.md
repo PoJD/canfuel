@@ -2325,6 +2325,19 @@ were not, and leaves 2, 3 and 4 standing — **the swap rules out parts,
 not mechanisms**. A new rear probe that sinks alike rules out the old
 rear probe's own fault as well.
 
+**Against, the A/C** (10/11, *agreed with the owner*; *reasoned*): **the
+A/C calmed the idle but did not lift the rear probe** — `IdleHealth`
+130–140 loads off against 90–100 with it (*owner*, the display), the
+rear probe 0.30 V in both phases (the log; the owner's 0.6 with the A/C
+read during the warming idle, before the logged phases). If the lean
+idle made the roughness, a load that calms it should have made the idle
+less lean too; it did not, so **the A/C's calm comes from elsewhere** —
+the fuller charge (S1) — and the link "a lean idle, so a rough one" is
+not shown. One reading at VCDS's ~1 s and coolant still climbing
+(88–92 °C with the A/C, 78–86 before it); the reading after the swap
+repeats the phase. The rear probe is from 2017 as well, and may sit a
+little lean of its own; its swing (0.07–0.76 V) says it works.
+
 **How a probe can read rich at idle only** (9/11 night, *the owner's
 question*; *general* mechanisms, which of them, if any, *not known*):
 - **A slow probe, slower one way.** A narrowband probe's reading is only
@@ -3253,7 +3266,11 @@ The rear probe's sinking means a lean mean behind the front probe, of
 a size it cannot read, from one of four causes; **H2 widened to the
 zone between the probes**, which gives that reading in full but not
 032 or the dips, so not moved (*the owner* agreeing). **Both probes to
-be replaced, no analyser** (*the owner's decision*).
+be replaced, no analyser** (*the owner's decision*). **H11 kept third**
+(*agreed with the owner*): it passed a test it could have failed, but
+the reading does not separate it from the other three causes, and
+**the A/C calmed the idle without lifting the rear probe** — an against
+added (H11, *Against, the A/C*); the swap decides.
 
 **Re-read 9/11 night, after the probe reading** (`plan.md` 8c, before
 the swap): **the order stands**. The rear probe sinking towards lean at
