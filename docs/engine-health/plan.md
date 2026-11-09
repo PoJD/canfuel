@@ -18,8 +18,8 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Current: 8c, the front
-probe replaced and the probes read again — needs no driving** (the
+Captures only where an item asks for one. **Current: 8c, both
+probes replaced and the probes read again — needs no driving** (the
 Beetle stands outside on summer tyres from 9/11, the owner driving
 another car while snow is expected; *owner*); **item 6 and 6i, 8b (a
 second captured warm stop with a cut on 4) and 6m for cylinder 4 when
@@ -77,7 +77,8 @@ the Beetle is driven again** (*agreed with the owner*, 9/11 evening;
      longer. The phone records at the manifold; mark each closure aloud on
      the recording; listen back and report engine bay or underbody.
      Photograph the flange, the front pipe and 3 and 4's pipes from below
-     for soot. **Leaks there → a new manifold**: new gasket to the head,
+     for soot, and **the joint ahead of the converter and the old probe
+     plugging the boss**. **Leaks there → a new manifold**: new gasket to the head,
      new nuts, new outlet gasket, the probe refitted with anti-seize. Part
      `06A 253 031` + suffix: read the number cast into the manifold, or
      ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
@@ -101,12 +102,18 @@ the Beetle is driven again** (*agreed with the owner*, 9/11 evening;
    connector off for 30 s** (say when, by the chat), 3 minutes more.
    At the end, engine idling: the fault memory, then 032/055; the owner
    clears it by hand.
-8c. **The front probe replaced, then the probes read again** (*the
-   owner's decision*, 9/11; the reading before it done 9/11 night).
-   1. **The front probe replaced** (the part read off the old one, or
-      by the VIN; the connector and the thread with anti-seize as the
-      new one comes), engine cold, battery left connected.
-   2. **The same reading as on 9/11 night**, Claude in a session on the
+8c. **Both probes replaced, then the probes read again** (*the
+   owner's decision*, 9/11, both since 10/11; the reading before it
+   done 9/11 night).
+   1. **Before buying: the numbers off both old probes** (VW and
+      Bosch, on the body or the lead), or the counter asked by the VIN
+      with the position named; send them to Claude.
+   2. **Both probes replaced**, engine cold, battery left connected:
+      the thread with anti-seize as the new one comes, the lead routed
+      and tied as the old one was. **The old probe plugging the boss
+      ahead of the converter stays**; photograph it and the joint ahead
+      of the converter while underneath.
+   3. **The same reading as on 9/11 night**, Claude in a session on the
       laptop, VCDS measuring blocks only, **001 033 036 logged from a cold
       start**, standing in neutral: idle until coolant about 78 °C; then
       about 3 minutes with every load off; about 3 minutes with the A/C
@@ -248,7 +255,11 @@ sump is the old cover-joint leak's, and what drips is the gearbox;
 level ground because the stick reads the sump only once the oil has run
 back; the photograph because a millimetre is the stick's resolution.
 
-**Item 7 — the exhaust ahead of the front probe (H2), warm.** A leak that
+**Item 7 — the exhaust ahead of the converter (H2), warm.** Both of
+H2's zones (widened 10/11): ahead of the front probe, and between it
+and the converter, where air reaches only the rear probe — so after 8c
+a rear probe that still sinks at idle is a reason for Claude to ask for
+it. A leak that
 draws air in at idle blows out when the outlet is closed, and hisses or
 puffs; a crack in cast iron may only open hot (*general*). **Cold found
 nothing on 12/10** (`idle-log.md`), so warm is what is left. Each closure shows
@@ -257,8 +268,10 @@ says only engine bay or underbody; **the photographs locate** (a leak
 leaves soot), though the manifold under its heat shield cannot be seen. **Read**: soot below → that
 joint; louder from the engine bay with nothing below → the manifold or
 its joint to the head, the owner's standing decision of a new manifold
-(3/10/2026); nothing either way → a garage with a lift. Nothing leaks
-ahead of the probe → H2 refuted for its zone, into `refuted.md`.
+(3/10/2026); soot at the joint ahead of the converter or round the
+plugging probe → that joint or the boss resealed; nothing either way →
+a garage with a lift. Nothing leaks ahead of the converter → H2
+refuted, into `refuted.md`.
 
 **Item 7 — the high-voltage side** (`open.md` H4; `refuted.md` C24): the roughest
 reading on record came on a foggy morning (`open.md` S1, *Temperature*),
@@ -281,22 +294,34 @@ measuring block; behind a working converter a rear probe sits at about
 0.6–0.75 V when the mixture is right and low, about 0.1–0.3 V, when it
 is lean (*general*). **The reading before** (9/11 night; `open.md` H11,
 *The reading before the swap*): at every idle the rear probe sank
-towards lean over the minutes, heaters good, 032/055 unchanged — for
-H11, not proof, since a converter's oxygen store filling at idle looks
-alike. **The reading after is the reading before, step for step**,
+towards lean over the minutes, heaters good, 032/055 unchanged — a lean
+mean behind the front probe, of a size it cannot read and from one of
+four causes (`open.md` H11, *What the rear probe can and cannot say*);
+*until 10/11 this said a converter's store filling at idle looked alike,
+which it does not.* **The reading after is the reading before, step for step**,
 because only the same order, lengths and coolant make the two
 comparable: it was **shortened at the owner's decision** (a housing
 estate near midnight; 1,500 rpm for 1 minute, not 2,500 for 3), and
 that shortened form is now the one; **the cold start logged** because
 the rear probe's slow sinking only shows from the start of each idle;
 **the A/C** because it calmed the display though it did not lift the
-rear probe; **041 again** for the new probe's heater. **The swap rather
-than an analyser** is the owner's decision (about 2,000 Kč, near the
-analyser's price, and the probe is from 2017): the reading before and
-after decides — **036 holding about 0.6 V at idle loads off and the
-dips fewer after it** says the probe; no change says the probe was not it, and
-the common cause is dilution or fuel (H13, H7; `open.md` S1, *The gas
-idle taken apart*). The battery stays connected so that 032 and 055
+rear probe; **041 again** for the new probe's heater. **Both probes rather
+than an analyser** is the owner's decision (the front one 9/11, both
+10/11: both are from 2017, and he wants to avoid the analyser, which
+alone would read the lean mean's size): the reading before and after
+decides **between the old probes and the rest** — **036 holding about
+0.6 V at idle loads off, 032's idle cell falling and the dips fewer**
+says the old probes; the same sinking rules them out (the new rear one's
+own fault with them) and leaves hydrogen from unequal cylinders, air
+between the probes (item 7) and a lean bias the rear loop does not trim
+at idle, with the dips' common cause dilution or fuel (H13, H7;
+`open.md` S1, *The gas idle taken apart*). **The numbers off the old
+probes first** because the shop's listing does not say which part is
+the front one and which the rear (10/11: of the two parts the owner
+found, both are sold as post-converter probes in some catalogues, and
+one comes with a lead whose connector "may need adjusting"); **the old
+probe in the boss stays** because a new plug would change the second
+zone before it is tested. The battery stays connected so that 032 and 055
 are read on the same adaptations; 032's idle cell then relearns from
 where it is — **a fall towards zero after the swap is itself the
 answer**. **The capture beside it is optional** (*the owner*, 9/11): it
