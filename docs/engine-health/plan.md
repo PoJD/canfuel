@@ -116,6 +116,8 @@ the Beetle is driven again** (*agreed with the owner*, 9/11 evening;
       new one comes), engine cold, battery left connected.
    4. **The same reading again**, warmed the same way; the fault memory
       read at the end, the owner clears it by hand after 032/055.
+   **Optional, the owner decides at the car**: `usbtin_capture.py` beside
+   both readings, the MFD out.
 9. **After the clean of 9/11, by what the next stops show** (Claude says
    which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
@@ -293,7 +295,9 @@ the common cause is dilution or fuel (H13, H7; `open.md` S1, *The gas
 idle taken apart*). The battery stays connected so that 032 and 055
 are read on the same adaptations; 032's idle cell then relearns from
 where it is — **a fall towards zero after the swap is itself the
-answer**.
+answer**. **The capture beside it is optional** (*the owner*, 9/11): it
+gives `IdleHealth` and the dips before and after the swap exactly, where
+the display gives only its running figure.
 
 **8b, the second captured stop**, because the rough start is what
 varies most between stops: stop 3's own second half read like stop 7,
