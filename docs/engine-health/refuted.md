@@ -1313,6 +1313,16 @@ is louder; **the stethoscope above each cylinder, hot** (`plan.md` 9);
 and the capture's crank speed at the same moments, which shows one
 cylinder's combustion and not a lifter's tick.
 
+**Heard again 9/11 night, standing** (*owner*; `plan.md` 8c's reading
+before the swap, coolant 78–95 °C, not filmed): **the valves' ticking at
+idle with every load off**, quieter than during the clean; **not with the
+A/C on**; less, then probably again, in the loads-off minutes after it.
+`IdleHealth` 130–140 loads off against 90–100 with the A/C on the
+display at the same time. **Added here at the owner's decision, not
+reopened** (it was standing, not in normal driving). *Reasoned*: it
+follows the idle's roughness, as the combustion reading above would
+have it; a lifter's tick would hardly change with the A/C's few rpm.
+
 ### D9. "A higher idle quiets the misfires" — measured, 12/10/2026
 The specified idle raised from 780 to 830 rpm, the ECU's limit (VW's
 procedure, login 01283): 014 kept counting and `IdleHealth` rose slightly with

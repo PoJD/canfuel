@@ -18,8 +18,8 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Current: 8c, the lambda
-probes read and the front probe replaced — needs no driving** (the
+Captures only where an item asks for one. **Current: 8c, the front
+probe replaced and the probes read again — needs no driving** (the
 Beetle stands outside on summer tyres from 9/11, the owner driving
 another car while snow is expected; *owner*); **item 6 and 6i, 8b (a
 second captured warm stop with a cut on 4) and 6m for cylinder 4 when
@@ -101,23 +101,21 @@ the Beetle is driven again** (*agreed with the owner*, 9/11 evening;
    connector off for 30 s** (say when, by the chat), 3 minutes more.
    At the end, engine idling: the fault memory, then 032/055; the owner
    clears it by hand.
-8c. **The lambda probes read, then the front probe replaced** (*the
-   owner's decision*, 9/11). Claude in a session on the laptop, **VCDS
-   measuring blocks only**:
-   1. **Warm the engine standing**: idle in neutral, the everyday state,
-      until **coolant 85 °C or more** (001 field 2), then **2,500 rpm
-      held for 3 minutes**, then idle.
-   2. **Read 001, 033, 036 and 041 together where VCDS allows, else in
-      turns**: 3 minutes' idle with every load off; 3 minutes with the
-      A/C on; 2 minutes at 2,500 rpm; 3 minutes' idle again. Say in the
-      chat when each starts. Then 032 and 055 once.
-   3. **The front probe replaced** (the part read off the old one, or
+8c. **The front probe replaced, then the probes read again** (*the
+   owner's decision*, 9/11; the reading before it done 9/11 night).
+   1. **The front probe replaced** (the part read off the old one, or
       by the VIN; the connector and the thread with anti-seize as the
       new one comes), engine cold, battery left connected.
-   4. **The same reading again**, warmed the same way; the fault memory
-      read at the end, the owner clears it by hand after 032/055.
+   2. **The same reading as on 9/11 night**, Claude in a session on the
+      laptop, VCDS measuring blocks only, **001 033 036 logged from a cold
+      start**, standing in neutral: idle until coolant about 78 °C; then
+      about 3 minutes with every load off; about 3 minutes with the A/C
+      on; about 3½ minutes with every load off; 1 minute at 1,500 rpm;
+      at least 1 minute's idle, loads off. Say in the chat when each
+      starts. Then **041 032 055** for 20 s, the fault memory read at the
+      end; the owner clears it by hand only if there is a code.
    **Optional, the owner decides at the car**: `usbtin_capture.py` beside
-   both readings, the MFD out.
+   it, the MFD out.
 9. **After the clean of 9/11, by what the next stops show** (Claude says
    which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
@@ -281,16 +279,22 @@ dips follows. **036's first field is the rear probe's voltage** and its
 block is not a basic setting (`vcds.md`), so it is read like any
 measuring block; behind a working converter a rear probe sits at about
 0.6–0.75 V when the mixture is right and low, about 0.1–0.3 V, when it
-is lean (*general*). **Warm** because the claim is about a warm idle and
-the rear probe means nothing until the converter is hot (034 and 046
-gate on 352 °C); **2,500 rpm first** heats the converter quickly
-without driving; **the A/C** because a load that heats the exhaust
-should move a lazy probe's reading back; **041** because a heater
-that does not heat leaves the probe coldest at idle. **The swap rather
+is lean (*general*). **The reading before** (9/11 night; `open.md` H11,
+*The reading before the swap*): at every idle the rear probe sank
+towards lean over the minutes, heaters good, 032/055 unchanged — for
+H11, not proof, since a converter's oxygen store filling at idle looks
+alike. **The reading after is the reading before, step for step**,
+because only the same order, lengths and coolant make the two
+comparable: it was **shortened at the owner's decision** (a housing
+estate near midnight; 1,500 rpm for 1 minute, not 2,500 for 3), and
+that shortened form is now the one; **the cold start logged** because
+the rear probe's slow sinking only shows from the start of each idle;
+**the A/C** because it calmed the display though it did not lift the
+rear probe; **041 again** for the new probe's heater. **The swap rather
 than an analyser** is the owner's decision (about 2,000 Kč, near the
 analyser's price, and the probe is from 2017): the reading before and
-after decides — **036 at idle up to about 0.6 V and the dips fewer
-after it** says the probe; no change says the probe was not it, and
+after decides — **036 holding about 0.6 V at idle loads off and the
+dips fewer after it** says the probe; no change says the probe was not it, and
 the common cause is dilution or fuel (H13, H7; `open.md` S1, *The gas
 idle taken apart*). The battery stays connected so that 032 and 055
 are read on the same adaptations; 032's idle cell then relearns from

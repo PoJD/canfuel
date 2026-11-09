@@ -1,0 +1,30 @@
+Úterý,10,Listopad,2026,00:03:07:64014-VCID:6E8118302988A59A6CF-4B28,VCDS verze: SVO 25.3.2,Verze dat: 20260130 DS365.0
+06A 906 018 EJ,,2.0l R4/2V  MOTR HS V04,
+
+,Skupina A:,'041,,,,Skupina B:,'032,,,,Skupina C:,'055
+,,resistence,podminky zahrivani,resistence,podminky zahrivani,,Lambda (volnobeh),Lambda (castecne), , ,,otáèky motoru,regulator volnobehu,volnobeh stabilizace,zatizeni Stav
+,ÈAS,rada valcu 1 snimac 1,,rada valcu 1 snimac 2,,ÈAS,vlastni-Pøizpùsobení,vlastni-Pøizpùsobení,,,ÈAS,,,vlastni-Pøizpùsobení,
+Znaèení,ZNAÈKA,,,,,ZNAÈKA, %, %,,,ZNAÈKA, /min, g/s, g/s,
+,0.89,30.9,kattop1zap,24.2,kattop2zap,0.29,-7.8,7.0, , ,0.59,780,0.00,-1.17,0000    
+,1.79,30.9,kattop1zap,24.2,kattop2zap,1.19,-7.8,7.0, , ,1.49,790,0.00,-1.17,0000    
+,2.67,30.9,kattop1zap,24.2,kattop2zap,2.09,-7.8,7.0, , ,2.37,780,0.00,-1.17,0000    
+,3.57,30.9,kattop1zap,24.2,kattop2zap,2.97,-7.8,7.0, , ,3.27,790,0.00,-1.17,0000    
+,4.47,30.9,kattop1zap,24.2,kattop2zap,3.86,-7.8,7.0, , ,4.17,790,0.00,-1.17,0000    
+,5.37,30.9,kattop1zap,24.2,kattop2zap,4.77,-7.8,7.0, , ,5.07,780,0.01,-1.17,0000    
+,6.26,30.9,kattop1zap,24.2,kattop2zap,5.67,-7.8,7.0, , ,5.96,790,0.01,-1.17,0000    
+,7.17,30.9,kattop1zap,24.2,kattop2zap,6.56,-7.8,7.0, , ,6.87,790,0.01,-1.17,0000    
+,8.06,30.9,kattop1zap,24.2,kattop2zap,7.46,-7.8,7.0, , ,7.76,790,0.01,-1.17,0000    
+,8.96,30.9,kattop1zap,24.2,kattop2zap,8.36,-7.8,7.0, , ,8.66,800,0.01,-1.17,0000    
+,9.86,30.9,kattop1zap,24.2,kattop2zap,9.26,-7.8,7.0, , ,9.56,780,0.01,-1.17,0000    
+,10.76,30.9,kattop1zap,24.2,kattop2zap,10.16,-7.8,7.0, , ,10.46,790,0.01,-1.17,0000    
+,11.66,30.9,kattop1zap,24.2,kattop2zap,11.06,-7.8,7.0, , ,11.36,790,0.01,-1.17,0000    
+,12.56,30.9,kattop1zap,24.2,kattop2zap,11.96,-7.8,7.0, , ,12.26,790,0.02,-1.17,0000    
+,13.46,30.9,kattop1zap,24.2,kattop2zap,12.86,-7.8,7.0, , ,13.16,790,0.02,-1.17,0000    
+,14.36,30.9,kattop1zap,24.2,kattop2zap,13.76,-7.8,7.0, , ,14.06,790,0.02,-1.17,0000    
+,15.26,30.9,kattop1zap,24.2,kattop2zap,14.65,-7.8,7.0, , ,14.96,780,0.02,-1.17,0000    
+,16.16,26.8,kattop1zap,24.2,kattop2zap,15.56,-7.8,7.0, , ,15.86,800,0.00,-1.17,0000    
+,17.05,26.8,kattop1zap,21.7,kattop2zap,16.46,-7.8,7.0, , ,16.76,790,0.00,-1.17,0000    
+,17.95,26.8,kattop1zap,21.7,kattop2zap,17.35,-7.8,7.0, , ,17.65,800,0.00,-1.17,0000    
+,18.85,26.8,kattop1zap,21.7,kattop2zap,18.25,-7.8,7.0, , ,18.55,790,0.00,-1.17,0000    
+,19.74,26.8,kattop1zap,21.7,kattop2zap,19.14,-7.8,7.0, , ,19.44,800,0.00,-1.17,0000    
+,20.64,26.8,kattop1zap,21.7,kattop2zap,20.04,-7.8,7.0, , ,20.34,800,0.00,-1.17,0000    

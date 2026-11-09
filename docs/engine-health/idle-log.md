@@ -1223,3 +1223,23 @@ same evening as the clean's own sound (`refuted.md` D11). The capture's `--name`
 read was found to slip far from a cut and was followed by the steady
 pattern instead (`open.md` S1, *A steady pattern over the cylinders*);
 `43`'s naming of 3 holds under it.
+
+
+## 9/11 night — the lambda probes read, before the front probe's swap
+
+- **Tests:** standing outside from a cold start, VCDS 001/033/036 from
+  coolant 73 °C (23:47–00:02): the warming idle, then loads off, the A/C,
+  loads off, 1,500 rpm for 1 minute, idle — shortened at the owner's
+  decision (a housing estate near midnight); 041/032/055 once; the fault
+  memory before and after, empty (`plan.md` 8c, the reading before).
+- **Changes after:**
+  - *measured:* the rear probe sinking towards lean at every idle, below
+    0.2 V by the third, back near 0.6 V after 1,500 rpm; not lifted by
+    the A/C; heaters 27–31 Ω front, 22–24 Ω rear; 032 −7.8 / +7.0 %, 055
+    −1.17 g/s unchanged; `IdleHealth` on the display 130–140 loads off,
+    90–100 with the A/C (*owner*);
+  - *felt:* the valves' ticking loads off, not with the A/C; a puff into
+    the exhaust loads off (*owner*).
+
+Read the same night (`open.md` H11, *The reading before the swap*; S2;
+`refuted.md` D11 for the tick, not reopened).
