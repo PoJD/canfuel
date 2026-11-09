@@ -2201,6 +2201,36 @@ loads off, then with the A/C, then at 2,500 rpm — steady low (about
 front probe misleads; about 0.6–0.75 V throughout says not (*general*).
 **And a four-gas analyser**: λ, CO, HC, O₂ at the same three points.
 
+**How a probe can read rich at idle only** (9/11 night, *the owner's
+question*; *general* mechanisms, which of them, if any, *not known*):
+- **A slow probe, slower one way.** A narrowband probe's reading is only
+  as good as its speed, and at idle its gas is coolest and its flow
+  smallest. If an aged probe turns from rich to lean more slowly than
+  back, it shows "rich" longer each cycle, the ECU keeps leaning longer,
+  and the mean mixture runs lean — worst where the probe is slowest, at
+  idle. **SSP 175 (p. 28): a change in reaction time "can be acquired,
+  stored and displayed but cannot be compensated for"** — only a shift of
+  the curve is, by the rear probe's loop.
+- **Hydrogen in the exhaust and unequal cylinders.** The probe's electrode
+  sees hydrogen, which diffuses through its protective layer faster than
+  oxygen, so exhaust that carries hydrogen reads richer than it is. A
+  mix of richer and leaner cylinders makes exactly such exhaust, and the
+  ECU then leans the whole engine — the reason engines since 2011 carry
+  an imbalance monitor (*general*). This car has a steady imbalance (S1:
+  4 weak, 2 strong); **if part of it is mixture — air at runner 4 (H3) —
+  it is largest at idle**, where a fixed leak is the largest share of the
+  air, and so would be the probe's error: a link between H3 and H11.
+- **Poisoning.** Silicone, oil ash or fuel additives coat the electrode
+  and slow it. **The idle cell's step came in the window of the two BG
+  44K tanks (23–24/10)** and the hours of hard driving on them
+  (`vehicle-history.md`) — what answers the
+  *against* that a probe ages slowly; a coincidence until the probe is
+  read.
+- **A weak heater** leaves the probe coolest at idle; 041 reads its
+  resistance.
+Misfires push the other way (their unburnt oxygen reads lean), as does
+an exhaust leak ahead of the probe (H2).
+
 ### H12. Driveline play read as misfires
 
 | S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
