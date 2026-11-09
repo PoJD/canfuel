@@ -317,13 +317,14 @@ says the old probes; the same sinking rules them out (the new rear one's
 own fault with them) and leaves hydrogen from unequal cylinders, air
 between the probes (item 7) and a lean bias the rear loop does not trim
 at idle, with the dips' common cause dilution or fuel (H13, H7;
-`open.md` S1, *The gas idle taken apart*). **Each new probe compared with the old one
-before it goes in** because the catalogues disagree: the shop gives
-`0 258 006 978` as the front probe and `0 258 010 032` as the rear
-(*the owner*, 10/11), while some list `0 258 006 978` as a diagnostic
-(post-converter) probe with a 1,760 mm lead whose connector "may need
-adjusting" — a front probe that needs its connector reworked is not
-wanted, and the old probe's number settles it; **the old
+`open.md` S1, *The gas idle taken apart*). **The parts are TecDoc's for the AQY** (10/11; the Octavia I's page at
+autorozvody.cz, the same engine): `0 258 006 978` the regulating probe
+ahead of the converter (AEG, APK, AQY; 1,760 mm overall),
+`0 258 010 032` the diagnostic probe behind it (APK, AQY; 760 mm).
+Shops that list `0 258 006 978` as post-converter mean other engines.
+**Each still compared with the old one before it goes in** because one
+listing says the connector "may need adjusting", and a front probe
+whose connector needs reworking is not wanted; **the old
 probe in the boss stays** because a new plug would change the second
 zone before it is tested. The battery stays connected so that 032 and 055
 are read on the same adaptations; 032's idle cell then relearns from
