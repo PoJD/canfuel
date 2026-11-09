@@ -189,6 +189,19 @@ finding:**
 - **Idle speed**, every block that carries it: 740–820 rpm, target 780
   (050/056).
 - **Supply voltage, block 004 field 2: 12.0–14.5 V.**
+- **The lambda probes, read 9/11 from the label file** (the owner's copy;
+  `CLAUDE.md`, the private artifact *VCDS label 06A-906-018-AQY*):
+  **033** field 1 the front loop's live regulation (−10.0 to +10.0 %),
+  field 2 **the front probe's voltage (0.00–1.00 V)**; **036** field 1
+  **the rear probe's voltage (0.00–1.00 V)**, field 2 its availability
+  verdict — **036's title names no basic setting**, so its voltage reads
+  as an ordinary measuring block; **037** (basic setting) field 3
+  *"Lambda Regulator, klidová perioda"*, −1200 to +1200 ms, the field
+  most likely to be the rear probe's correction of the front loop (SSP
+  175 p. 28 describes that second loop; *reasoned*, not labelled so);
+  **041** the heater resistance of the front (field 1) and rear (field
+  3) probe, **6.4–47.5 Ω**, and whether each heater is on; **030** both
+  probes' status bits (heater on, ready, regulation active), 111 each.
 - ⚠ **020 and 026 are not in this ECU's label file** — it defines 022/023 for
   the retard. They are on Ross-Tech's general list and this ECU answers them
   (both were logged in September 2026), so the fields are read without a
@@ -210,7 +223,9 @@ finding:**
 
 ## Basic settings: the verdict blocks
 
-**034, 036, 037, 046, 060, 070, 098 and 099 are *basic setting* blocks**: they
+**034, 037, 046, 060, 070, 098 and 099 are *basic setting* blocks** (036 is
+listed with them until 9/11; its title in the label file names no basic
+setting, and its first field is the rear probe's voltage): they
 run a routine and report a verdict rather than a state. The catalytic
 converter temperature in them is a **gate** that has to be met before the
 verdict means anything, not a reading to interpret.

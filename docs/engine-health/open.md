@@ -2169,6 +2169,34 @@ would drift is not known. So a contributor at most, not S19's cause;
 the map of 3/11 reset 032, and **the idle cell was back at −6.3 after one
 drive** (S19), on the same probes.
 
+**Re-read 9/11 evening: a fault at idle only** (*the owner's suspicion*;
+*reasoned*). The *against* above was written on 10/10, when 032 sat near
+zero; it has stood at −6.3 to −8.6 % at idle since 24/10, and the gas
+idle of 9/11 shows how close to the edge the burn sits (dips are
+preceded by about 1 % less injection; S1, *The gas idle taken apart*),
+so a few per cent matter. **The form not yet argued: the front probe
+reads richer than the mixture only at idle** — the coolest, slowest
+exhaust, where a probe of 2017 is at its laziest — and right under load.
+The ECU then leans the idle (the negative idle cell) while part load is
+untouched (the split), and **the real idle mixture is lean**: worse
+after queuing, better after a brisk drive, calmed by a load that heats
+the exhaust, cured by hydrogen's wide lean limit — every pattern of S1 —
+and P0172 once, the ECU's "too rich", fits a probe that reads rich. **The
+rear probe need not catch it**: SSP 175 (p. 28) has M5.9.2 correct a
+shift of the front probe's curve through a second loop on the rear
+probe, *"within a defined framework"*, but says nothing of a correction
+by load, and behind the converter at idle's small flow the rear probe
+answers slowly (*general*). **Against**: the step of the idle cell
+around 24/10 (a probe ages over thousands of kilometres) still stands;
+033's front probe voltage at warm idle swings 0.03–0.72 V (p10–p90,
+`vcds-step6i-warm-idle-2`, `vcds-step2b`), which VCDS's ~1 s sampling
+cannot judge. **Test, free, read only** (*proposed*, 9/11): **036 field 1,
+the rear probe's voltage**, with 033 and 041 (`vcds.md`), at a warm idle
+loads off, then with the A/C, then at 2,500 rpm — steady low (about
+0.1–0.3 V) at idle and normal at 2,500 says the idle runs lean and the
+front probe misleads; about 0.6–0.75 V throughout says not (*general*).
+**And a four-gas analyser**: λ, CO, HC, O₂ at the same three points.
+
 ### H12. Driveline play read as misfires
 
 | S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |

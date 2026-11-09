@@ -54,7 +54,9 @@ included.
   one line and carry on.
 - ⚠ **The VCDS label file is deliberately not kept here** (Ross-Tech's,
   commercial). This project keeps its own summary of the blocks it uses, in
-  `docs/engine-health/vcds.md`.
+  `docs/engine-health/vcds.md`; the owner's copy (06A-906-018-AQY, Czech) is
+  in his private artifact *VCDS label 06A-906-018-AQY* (find it with the
+  Artifact tool's `action: "list"`), never copied here.
 
 Facts about the *car* (signal table, frame periods, the bus already
 terminated) are settled by measurement and marked as measured in
