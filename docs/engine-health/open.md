@@ -120,7 +120,11 @@ sound (`refuted.md` D11). One stop each side.
   one slot again, 45 %**, and **on `43` named: 43 % on cylinder 3**
   (p 0.004; *The dips keep to one slot*), with P0303 after the cut;
   **on `44`, before the clean, 48 % on 3; on `46`, after it, all four
-  alike** (p 0.01 that 3's share fell by chance).
+  alike** (p 0.01 that 3's share fell by chance). **Named by the
+  strongest slot (9/11 evening), 3 led the warm dips in every period
+  since 24/9, `40` included (55 %); `46` is the first capture with no
+  leader** (*The dips keep to one slot*, *Every capture named by its
+  strongest slot*).
 - **Around the idle:** S2 (an occasional puff), S14 (bangs on an
   unblipped downshift), S11 (a hiss at the back, perhaps the throttle's
   own air).
@@ -2821,6 +2825,44 @@ minutes of the cut, where no slip can enter); **after it 1: 9, 3: 8, 4:
 Unnamed, `46` fits exactly a quarter on each slot. **Before the clean
 3 led the way `43` showed; after it, nothing leads** (S1, *The clean of
 9/11*).
+
+**Every capture named by its strongest slot** (9/11 evening, *the
+owner's idea*: with no cut, take the strongest slot for 2, as the cuts
+of `31`, `43`, `44` and `46` all name it; every warm 30 s window, oil
+80 °C and more, cuts left out; a window counts only if one slot is
+clearly the strongest — 4 % of a stroke and 3 % ahead of the next;
+*ad-hoc script, not kept*). **Checked against the cuts**: stop 3 of `44`
+named this way gives 1: 7, 3: 29, 4: 12, 2: 11 against the cut's 7, 29,
+12, 12; stop 7 of `46` 9, 8, 7, 9 against 9, 8, 7, 11; `31` 4 first as
+its cuts said. **One slot stands out in 80–100 % of the warm windows of
+every capture since 24/9**: the steady pattern is not new.
+
+| captures | the pattern, % of a stroke (1 / 3 / 4 / 2) | dips named 1 / 3 / 4 / 2 | leader |
+|---|---|---|---|
+| `19`–`20` (24/9, the old MAF) | −1 / +5 / +10 / −13 | 25 / 64 / **96** / 27 | **4, 45 %** (p 10⁻¹⁰) |
+| `24`–`30` (24/9–9/10) | −1 / +6 / +7 / −12 | 74 / **225** / 132 / 69 | **3, 45 %** (p 10⁻²²) |
+| `31` (10/10, NGK leads) | −1 / +4 / +8 / −11 | 13 / 24 / **36** / 10 | **4, 43 %** |
+| `32`–`39` (12–18/10) | −1 / +4 / +6 / −10 | 47 / **156** / 109 / 59 | **3, 42 %** (p 10⁻¹³) |
+| `40`–`41` (21–24/10, VW leads) | 0 / +4 / +5 / −10 | 20 / **76** / 26 / 14 | **3, 56 %** (p 10⁻¹⁴) |
+| `42`–`43` (3/11, the original map) | +2 / +4 / +4 / −10 | 24 / **68** / 36 / 27 | **3, 44 %** (p 10⁻⁷) |
+| `44` (9/11, before the clean, the A/C wait included) | +1 / +3 / +6 / −10 | 22 / **51** / 37 / 34 | 3, 35 % |
+| **`46` (9/11, after the clean)** | +2 / +3 / +6 / −11 | 26 / 28 / 23 / 21 | **none: 3 29 %** (p 0.24) |
+
+**Read** (*reasoned*): **warm, 3 has led the dips in every period since
+the new MAF, 4 before it and on the NGK leads, and both every time ahead
+of 1 and 2**; the steady pattern, 2 strong and 4 then 3 weak, has stood
+since 24/9 and grown a little smaller. **`46` is the first capture in
+which no cylinder leads** — 3's share fell from 44 % on `42`–`43` to 29 %
+(p 0.01). ⚠ **This corrects the reading of 21–24/10**: `40`'s unnamed
+shares (58 %, p 0.77) were read as the dips spread over all four after
+the VW leads, but named this way `40` puts 55 % on 3 — the unnamed method
+loses each run's phase and with it most of its power; only `41`, cold
+and named by its cut, was spread. So *"spread first, 3 worse after"*
+(the owner's reading of 3/11) loses its first half: 3 led warm
+throughout. **Within the day after the clean** 3 stayed near a quarter
+— 7 of 25 straight after it, 8 of 33 at stop 7, 8 of 23 at work — but
+at work the dips were back at 4.2 a thousand strokes, stop 3's rate;
+whether it lasts is `plan.md` 8b.
 
 **Every named capture side by side** (3/11, at the owner's question):
 `31` (10/10, warm, NGK leads): 4 42 %, **3 31 %**, 2 14 %, 1 12 %;
