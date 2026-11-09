@@ -105,9 +105,11 @@ the Beetle is driven again** (*agreed with the owner*, 9/11 evening;
 8c. **Both probes replaced, then the probes read again** (*the
    owner's decision*, 9/11, both since 10/11; the reading before it
    done 9/11 night).
-   1. **Before buying: the numbers off both old probes** (VW and
-      Bosch, on the body or the lead), or the counter asked by the VIN
-      with the position named; send them to Claude.
+   1. **The parts** (*the owner*, 10/11, by the engine code at Auto
+      Kelly): **front Bosch `0 258 006 978`, rear Bosch `0 258 010 032`**.
+      Before fitting, each new probe against the old one it replaces:
+      the lead's length, the connector, the number of wires; the
+      numbers off both old probes sent to Claude.
    2. **Both probes replaced**, engine cold, battery left connected:
       the thread with anti-seize as the new one comes, the lead routed
       and tied as the old one was. **The old probe plugging the boss
@@ -315,11 +317,13 @@ says the old probes; the same sinking rules them out (the new rear one's
 own fault with them) and leaves hydrogen from unequal cylinders, air
 between the probes (item 7) and a lean bias the rear loop does not trim
 at idle, with the dips' common cause dilution or fuel (H13, H7;
-`open.md` S1, *The gas idle taken apart*). **The numbers off the old
-probes first** because the shop's listing does not say which part is
-the front one and which the rear (10/11: of the two parts the owner
-found, both are sold as post-converter probes in some catalogues, and
-one comes with a lead whose connector "may need adjusting"); **the old
+`open.md` S1, *The gas idle taken apart*). **Each new probe compared with the old one
+before it goes in** because the catalogues disagree: the shop gives
+`0 258 006 978` as the front probe and `0 258 010 032` as the rear
+(*the owner*, 10/11), while some list `0 258 006 978` as a diagnostic
+(post-converter) probe with a 1,760 mm lead whose connector "may need
+adjusting" — a front probe that needs its connector reworked is not
+wanted, and the old probe's number settles it; **the old
 probe in the boss stays** because a new plug would change the second
 zone before it is tested. The battery stays connected so that 032 and 055
 are read on the same adaptations; 032's idle cell then relearns from
