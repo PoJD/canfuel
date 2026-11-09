@@ -36,7 +36,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 8 November 2026
+## Where it stands — 9 November 2026
 
 **Closed**, in `refuted.md` §D: S6 the exhaust joint behind the
 converter, S8 the top end, S9 the rich trim, S10 the oil leak at the back
@@ -118,6 +118,11 @@ of air (H14).
 - **S20, the speed wandering at a constant pedal** (since 1–2/10, on the
   road) — **a little better since the cable was slackened and the pedal
   greased (27/10), still there** (*owner*, 28/10). Not the idle.
+- **S22, a tick once per engine cycle, warm, off idle** (9/11, added at
+  the owner's request): recorded during the clean at about 1,800–2,100
+  rpm, one source on one cylinder, which one not known; a lifter (H1),
+  one exhaust port's joint (H2) or the knock window's noise (H5), or
+  one cylinder's combustion heard (S1). Recorded again after the clean.
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm; **not the exhaust's heat shields** — still there after their
   new clips, 31/10 — perhaps nearer the engine).
@@ -143,10 +148,11 @@ strong, is about a third of `IdleHealth` (S1, *A steady pattern over the cylinde
 on it with the owner: **H3 second, H1 third, H4 fifth**.
 
 **Next** (`plan.md`): the MFD back in from 4/11 (item 6) and the oil
-level every 500 km (6i); **the next repair is a professional
-decarbonisation, with hydrogen, on 9/11** (H13, item 8; *the
-owner's decision*, 3/11), **captured from home to work the same day,
-with a cut on injector 4 before and after** (*the owner's plan*, 6/11);
+level every 500 km (6i); **the professional decarbonisation, with
+hydrogen, under way on 9/11** (H13, item 8; *the owner's decision*,
+3/11), **captured from home to work, with a cut on injector 4 before
+and after** (*the owner's plan*, 6/11), and S22's tick recorded at the
+stop after it;
 **the purge valve N80 only if P0440 comes back or item 8 changes
 nothing** (H16, S21, 8a; *the owner's decision*, 6/11 night, the valve
 out, clean and refitted); then, by what it shows, 6m's injector circuits or item 9's tests (the
@@ -1212,6 +1218,55 @@ days before. **Read by what follows**: the code back after the clearing
 says a standing fault, not back says a one-off; the fault memory is read
 on 9/11 anyway (`plan.md` 8).
 
+### S22. A tick once per engine cycle, warm, off idle
+
+*Added 9/11 at the owner's request.* **During the hydrogen clean of 9/11**
+(`plan.md` 8), oil 97–102 °C, the provider's machine holding the engine
+at about 1,750–2,150 rpm, the bonnet open: **a regular tick from the
+engine** (*owner*). **He hears it at other times too, more under load**,
+and reads it as the valves (*owner*). It never stops; **only its
+loudness changes** (*owner*, and the recordings agree).
+
+**What the recordings show** (four phone videos at the engine bay,
+album 10:25:26, 10:25:54, 10:31:22 and 10:39:18, 9–35 s each; the
+envelope of the sound at 2–12 kHz against the engine speed on the
+capture at the same moment; *an ad-hoc script, not kept*): **the
+strongest rhythm in every one is once per two crank revolutions** —
+17.1 Hz at about 2,050 rpm, 15.3 Hz at about 1,840 and 14.7 Hz at about
+1,770, each the camshaft's frequency to within the engine speed's
+reading. Following the engine speed, it is the engine, not the machine.
+Across 3 s windows it stands **3 to 10 times above the spectrum's
+median and never drops out**, rising and falling over seconds.
+**It comes in bursts** (*owner*, 10:50: "in cycles, perhaps two a
+second, audible in one and not in the next"): measured cycle by cycle
+on the videos of 10:39 and 10:50 (a fifth, 33 s at about 1,960 rpm),
+the tick is loud in about a third of the cycles, **in stretches of a
+median 0.3 s (about five cycles) with quiet ones of 0.3–0.7 s between**,
+and those bunch into episodes of several seconds; the stretches are
+irregular, with no fixed period (the tick's strength correlates with
+itself only out to about half a second).
+
+**Read** (*reasoned*): **one source, once per cycle** — one valve's
+lifter, one injector, one cylinder's exhaust port leaking at its
+joint, or one cylinder's combustion different from the others (S1's
+steady pattern, *A steady pattern over the cylinders*, gives that
+rhythm too). The band, 2–12 kHz, is where a mechanical tick sits
+rather than the exhaust's beat, which leans to a part, but the sound
+alone cannot exclude combustion. **One microphone cannot say which
+cylinder.** **Not the same as** S16 (in neutral, cold, gone with the
+clutch pedal down: the gearbox side) or 8/11's cold clatter of the
+first two seconds (H1); 18/10's tick (`refuted.md` D10) came with
+cylinder 3 out and did not come back. **The hot recording of 26/10
+found no lifter at idle** (H1); this one was off idle.
+
+**Tests**: the same recording **after the clean**, at the same engine
+speed, against these four — a deposit's tick (H13) would change, a
+lifter's would not; **the phone close to the cam cover above 1, then
+above 4**, the same distance, engine at about 1,800 rpm, for which end
+is louder; **the stethoscope above each cylinder, hot** (`plan.md` 9);
+and the capture's crank speed at the same moments, which shows one
+cylinder's combustion and not a lifter's tick.
+
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** 0x420's `OilTemp` is `raw − 60` °C (`docs/firmware/can-decoding.md`
@@ -1226,6 +1281,16 @@ Mexico (*owner's photo*); **the tuner: the map should not affect the idle**
 (*owner*); on the MAF's scaling, the idle advance and the idle speed
 nothing; **the files came the same day and were compared** — only full
 load changed (H14). **The drive home on it** is read under H14 too.
+
+**Water under the tailpipe during the clean** (*owner*, 9/11, photo
+10:56): a wet patch of clear water, darker only with soot or rust from
+the pipe, after about half an hour of the hydrogen clean at 2,000 rpm
+with no load. Expected (*general*): combustion makes water, the
+oxyhydrogen almost nothing else, and an exhaust run without load never
+gets hot enough at the back to carry it off as vapour, so it condenses
+in the silencer and drips. **Not a symptom** (*the owner's decision*);
+it would bear on H20 only if water kept dripping after a long warm
+drive.
 
 **The brake pedal is soft and long** (*owner*, 9/10): hydraulics, not the
 servo and not the engine — a matter for a garage.
@@ -1261,9 +1326,12 @@ engine leak, a falling dipstick level is oil burnt, not lost.
 | S3 on the road ↔ S17, S5 | **possible, one engine-speed band** (6/11) | 014's road episodes at 21–32 % load: 2000–2400 rpm about twice 1600–1800 and 2400–2600 (S17); the bus shows no stroke-to-stroke roughness peak there |
 | S16 ↔ S1 | **untested** (*general*) | a gearbox's rattle in neutral is driven by the crank's unevenness at idle (S16) |
 | S11 ↔ S1 | **untested** | if the hiss is a leak, H3 or H2; the owner reads it as the throttle's own air |
+| S22 ↔ S1 | **untested** (*reasoned*) | one cylinder's weaker combustion gives the same once-per-cycle rhythm as a tick (S22); the capture's crank speed at the recordings tells them apart |
+| S22 ↔ S5 | **possible** (*reasoned*) | a mechanical noise once per cycle from about 2000 rpm is what S5 reads on cylinder 4 in the knock sensor, with no combustion needed; which cylinder ticks is not known |
 
 **Two clusters**: **the idle** (S1, S2, S3, S14) and **the cylinder 4
-window** (S4, S5). S11 sits beside the idle, unplaced; S19 and S21 beside
+window** (S4, S5). S11 sits beside the idle, unplaced, and S22, a tick
+once per cycle, between the two; S19 and S21 beside
 it, the trims and the evaporative system.
 
 ---
@@ -1274,7 +1342,8 @@ Each lists what it explains, what speaks against it, and the test that
 settles it. ✔ fits, ~ fits weakly, ✘ does not fit, — says nothing.
 
 **The columns are the open symptoms that bear on the engine**: S1, S2, S3,
-S4, S5, S11, S14, S19, S20 (added 26/10), S21 (added 6/11). Left out: S16 (the gearbox side, shown not to touch
+S4, S5, S11, S14, S19, S20 (added 26/10), S21 (added 6/11), S22 (added
+9/11). Left out: S16 (the gearbox side, shown not to touch
 the idle) and S17 (a resonance, not placed); S12 closed again on
 27/10 (`refuted.md` D6) and S7 on 31/10 (D2), and their columns went
 with them; the closed ones are in
@@ -1282,9 +1351,9 @@ with them; the closed ones are in
 
 ### H0. The idle is normal for this engine — and there is no fault to find
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ✘ | — | ~ | — | ✘ | ✘ | ~ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ✘ | — | ~ | — | ✘ | ✘ | ~ | — | ~ |
 
 - **Against:** 014 reads 12–120 against VW's 0–5; the old converter burned
   through; the dips sit on 3 and 4, the cylinder of the 2019 P0304 and of the
@@ -1315,7 +1384,9 @@ or carbon on the stem, which neither the EPR flushes nor H13's clean
 reach) fits S18's cold hang-up and a mild steady excess after it; **a
 lifter stuck pumped up** holds its valve a hair open with no tick. A
 lifter that bleeds down would tick, and the hot recording of 26/10 found
-none. **8/11, the coldest start on record** (about 14 hours outdoors at
+none at idle; **9/11, off idle at about 1,800–2,100 rpm, a tick once per
+cycle** (S22), one source, which cylinder not known — what one lifter
+that does not fill would give, though not only that. **8/11, the coldest start on record** (about 14 hours outdoors at
 −2.5 °C; `idle-log.md`): **the valvetrain clattered for the first second
 or two, then stopped** (*owner*; not a new symptom, *the owner's
 decision*) — what hydraulic lifters that leaked down overnight do
@@ -1374,9 +1445,9 @@ or debris holds its valve a hair open, which costs compression and misses
 at a small charge and is covered by load — the case this hypothesis is
 about. The valve is closed by its spring; the lifter only removes the gap.
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
-|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ~ | ~ | — | ~ | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ~ | ~ | — | ~ | — | — | — | ✔ |
 
 - **`43` (3/11 evening): the dips named 43 % on cylinder 3** — one
   cylinder, the one with the deposit and 18/10's tick (S18; `refuted.md`
@@ -1449,9 +1520,9 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in.
 *General.* The zone is only the **original manifold, its gasket to the head
 and the probe's boss**: the probe sits on the manifold (`vehicle-history.md`).
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | ✔ | ~ | ✘ | ✘ | ✔ | ✔ | ✘ | ~ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ✔ | ~ | ✘ | ✘ | ✔ | ✔ | ✘ | ~ | — | ~ |
 
 - **For:** the puff (S2), the hiss (S11), air for S14's bangs; a 26-year-old
   manifold that has lived through years of misfires.
@@ -1478,9 +1549,9 @@ intake in its common part, none nearer one runner than another**, so
 whatever enters by a line reaches all four alike; what is left of H3 is
 the lower manifold's gasket at runner 3, never renewed.
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
-|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ~ | ✔ | ~ | ✘ | ~ | ✔ | ✘ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ~ | ✔ | ~ | ✘ | ~ | ✔ | ✘ | — | — | — |
 
 - **`43` (3/11 evening): the dips named 43 % on cylinder 3** — one
   cylinder again after `40`–`41`'s all four alike, so the demotion of
@@ -1546,9 +1617,9 @@ pick them. **What is left**: the injector loom where it reaches 3 and 4,
 shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
 19/10; tape renewed). The plug-end side moved to H15, refuted 4/11 (`refuted.md` C24).
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | ~ | — | ~ | ✘ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | ~ | — | ~ | ✘ | — | — | — |
 
 - **`43` (3/11 evening): the dips named 43 % on cylinder 3, 18 % on
   4** — one cylinder, not the pair the loom feeds: weakly for at 3,
@@ -1648,9 +1719,9 @@ The ECU books anything at cylinder 4's crank angle to cylinder 4: G66, its
 torque or connector; a loose ancillary part buzzing in a speed band; **an arc
 at lead 4's plug end** (`refuted.md` C24). Injector 4's click is settled against (B7).
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
-|---|---|---|---|---|---|---|---|---|---|
-| — | — | — | ✔ | ✔ | — | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| — | — | — | ✔ | ✔ | — | — | — | — | — | ~ |
 
 **Tests** — not scheduled (*owner's decision*, 9/10): G66's torque and
 connector; a look for a loose bracket at ~3000 rpm in neutral; after the VW
@@ -1664,9 +1735,9 @@ hundred km without a disconnect.
 
 ### H7. Fuel delivery at idle: rail pressure, one injector
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | — | ~ | ✔ | ~ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | ~ | ✔ | ~ | — | ~ |
 
 - **`43` (3/11 evening): the dips named 43 % on cylinder 3** (p 0.004
   against all four alike; *The dips keep to one slot*), and P0303 with the
@@ -1778,9 +1849,9 @@ swap injector 3 with another if the cylinder stays named.
 
 ### H8. Idle air control and the throttle body
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | — | — | — | ✔ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | — | — | — | ✔ | — | — |
 
 **For: S20, by its timing** (*owner*, 26/10): the speed has been hard
 to hold at a steady pedal since the job of 1–2/10, which fitted this
@@ -1871,9 +1942,9 @@ any more: 5b's stops are on a settled value.
 that it is not argued again.* The probes are from 10/2017, the one part of
 the mixture control not changed.
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | — | ~ | ~ | ~ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | ~ | ~ | ~ | — | — |
 
 **Against:** 032 + 033 near zero on a new MAF and new injectors bound a hidden
 shift to a few per cent, and with the wrong sign (the ECU takes fuel out); a
@@ -1898,9 +1969,9 @@ drive** (S19), on the same probes.
 
 ### H12. Driveline play read as misfires
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | ✘ | ~ | ~ | ~ | — | ✘ | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ✘ | ~ | ~ | ~ | — | ✘ | — | — | — | — |
 
 **Against:** the MAF swap halved the dips; play repeats every 360°, the pairs
 1+4 and 2+3, while the dips sit on 3 and 4, 180° apart; the puffs come with
@@ -1917,9 +1988,9 @@ a sticking pedal (`refuted.md` D6).*
 3000 rpm for at least nine years (*owner*). Gentle use builds deposits where
 hard use burns them off (*general*).
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
-|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ~ | ✔ | ~ | — | — | ~ | ~ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ~ | ✔ | ~ | — | — | ~ | ~ | — | — | ~ |
 
 - **`43` (3/11 evening): 43 % of the dips on cylinder 3**, the one
   ranked first inside (3 > 4 > 2 > 1): for, though deposits act on all
@@ -1998,9 +2069,9 @@ EPR flushes and fresh oil, done 26/10).
 original map (`refuted.md` C23, *agreed with the owner*). What is left is
 what the remap did change: the corner of highest load.
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
-|---|---|---|---|---|---|---|---|---|---|
-| ✘ | ✘ | ✘ | ~ | ✘ | — | ✘ | ~ | ✘ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ✘ | ✘ | ✘ | ~ | ✘ | — | ✘ | ~ | ✘ | — | — |
 
 **What the remap changed** (the two whole flashes from the tuner, 3/11;
 compared byte for byte, the files not kept here; the tables with every
@@ -2157,9 +2228,9 @@ not seal** passes vapour all the time, cold and in open loop, on the
 overrun and **while the car stands**, when vapour from the canister can
 settle in the intake and flood the first start.
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | — | — | — | — | ~ | ✔ | ~ | ✔ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | — | — | — | — | ~ | ✔ | ~ | ✔ | — |
 
 - **For: S19.** A rich code and a start that dies at once after four hours
   standing, in a window that holds a fill, is the textbook picture of a
@@ -2347,9 +2418,9 @@ oil run down the valve guide, and the intake's vacuum, highest at idle,
 draws it into the cylinder, where it costs combustion; under load the
 vacuum falls, the flow stops, and what collected burns away.
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | — | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | — | — | — | — | — | — |
 
 - **For: the shape of 26/10**, worse after idling and gentle driving,
   calmer after work, the calm lasting — what oil collecting at a small
@@ -2402,9 +2473,9 @@ gasket or a hairline in the head next to 3 enters where the cylinder's
 pressure is lowest, at idle vacuum, and steams the charge — a misfire
 at idle on that cylinder, eased by load, and a plug kept clean.
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 |
-|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | — | ~ | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | ~ | — | — | — | — |
 
 - **For:** one cylinder at idle; load helps (a higher manifold pressure
   draws less in, *reasoned*); **plug 3 the cleanest** of the 10/10 set
@@ -2701,6 +2772,13 @@ is in git.
 | 12 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
 | 13 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 14 | **H12** driveline play | — | done: the clutch minutes cleared it |
+
+**Re-read 9/11 with S22 added** (a tick once per cycle, off idle;
+*agreed with the owner*): **the order stands** until the recording after the clean says whether the tick
+changed with it. S22 fits H1 (one lifter); H2 (one port's joint), H5 (a noise in
+4's window, if the tick is on 4) and H13 (a flake under a seat) weakly; a combustion rhythm would fit S1's
+candidates alike. It answers H1's "the hot recording found no lifter"
+only off idle.
 
 **Re-read 7/11** (*agreed with the owner*): **H1 from third to second,
 H3 from second to third.** The owner's reading of the port photos of

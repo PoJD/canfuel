@@ -123,7 +123,13 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
       **listen for a tick** like 18/10's (a flake under a seat), and say
       in the chat if one comes.
    7. **A stop before work**, as step 3: the everyday state, the A/C off,
-      3 minutes, injector 4 off for 30 s, 3 minutes more.
+      3 minutes, injector 4 off for 30 s, 3 minutes more. **Then the
+      tick (`open.md` S22), bonnet open, neutral**: a phone video of
+      15–30 s at idle and one held at about 1,800 rpm, from where the
+      clean's were taken; then at 1,800 rpm **the phone close to the cam
+      cover above cylinder 1, then above 4**, the same distance, 15 s
+      each; say in the chat when each starts. Hands and phone clear of
+      the belt.
    8. **At the end, engine idling**: Claude reads the fault memory, then
       **032/055 before anything is cleared**; the owner clears it by hand.
    **The fault memory through the day** (*the owner*, 8/11): **read, never
@@ -148,7 +154,8 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
      a kit.
    - **A stethoscope (or a long screwdriver) on the cam cover above
-     cylinder 3, hot**, against 1, 2 and 4: a tick or a hiss on one.
+     cylinder 3, hot**, against 1, 2 and 4: a tick or a hiss on one;
+     **also at about 1,800 rpm**, where the tick of 9/11 is (S22).
    - **A warm leak-down on all four** at a garage, oil at 80 °C or
      more: the upper intake off and all four plugs out (the same plugs
      back afterwards; plug 3's gap measured while out); each cylinder at
@@ -393,6 +400,12 @@ alone does not decide it; the capture is the exception item 6's "no
 captures until the display shows a change" makes for a repair (*agreed
 with the owner*, 4/11). Above reserve, because the ECU puts a misfire
 on an empty tank down as P1300 (`open.md`, *What the forums say*).
+**The tick at step 7** (`open.md` S22, added 9/11 during the clean):
+four videos from the clean show one rhythm once per cycle at 1,750–2,150
+rpm, one source; recorded again at the same engine speed after the
+clean, a change points at deposit (H13), none at a part (H1's lifter,
+H2's port); the phone at each end of the cam cover is the cheapest way
+to say which end, before item 9's stethoscope says which cylinder.
 
 **Item 8a — the purge valve, conditional** (*the owner's decision*,
 6/11 night: *this was "replaced after item 8's readings", his decision
