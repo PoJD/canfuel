@@ -19,10 +19,9 @@ The full previous version, before it was condensed on 20/10/2026:
 
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Current: item 6 and 6i,
-the MFD in. The hydrogen clean (item 8) was done on 9/11 and read the
-same day; what follows it is proposed by Claude and waits on the
-owner's word: a second captured warm stop with a cut on 4 on another
-day, and 6m for cylinder 4** (`open.md` S1, *The clean of 9/11*).
+the MFD in; then 8b, a second captured warm stop with a cut on 4; then
+6m for cylinder 4, not the same day** (*agreed with the owner*, 9/11
+evening; `open.md` S1, *The clean of 9/11*).
 
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
@@ -59,8 +58,8 @@ day, and 6m for cylinder 4** (`open.md` S1, *The clean of 9/11*).
    eight. While each value is on the display, **flex the loom near 3 and
    4** and watch it. Write every value, and any that moved.
    **5/11: only 1 and 4 reachable with the intake on** (*owner*); the rest
-   with the upper intake off — **proposed by Claude 9/11 for 4's
-   deficit, which the clean left; waits on the owner's word**. (5/11: contact cleaner went into 4's
+   with the upper intake off — **next after 8b, for 4's deficit, which
+   the clean left** (*agreed with the owner*, 9/11 evening). (5/11: contact cleaner went into 4's
    connector and T3 at the first look, `vehicle-history.md`.)
 6n. **The injector circuits to the ECU** — later, only with VCDS on the
    laptop: 032/055 read first (unplugging the ECU may reset them, as a
@@ -89,14 +88,22 @@ day, and 6m for cylinder 4** (`open.md` S1, *The clean of 9/11*).
 8a. **The purge valve N80, only if P0440 comes back**: Bosch `0 280 142 353`, VW `1C0 906 517 A`, the same as the
    one on the car; the hoses stay; afterwards, warm, the owner runs
    **basic setting 070** and photographs it; then item 6's warm stops.
+8b. **A second captured warm stop with a cut on 4**, on another day,
+   Claude in a session on the laptop, fuel above reserve: the USBtin in
+   and the MFD out before the ignition; `usbtin_capture.py` from before
+   the start to engine off, `vcds_log.py --groups 014 001 003` (fault
+   memory read first). **A brisk run with a motorway stretch until the
+   oil is at 95 °C or more**, then **a stop on a car park in the
+   everyday state, the A/C off**: 3 minutes' idle, **injector 4's
+   connector off for 30 s** (say when, by the chat), 3 minutes more.
+   At the end, engine idling: the fault memory, then 032/055; the owner
+   clears it by hand.
 9. **After the clean of 9/11, by what the next stops show** (Claude says
    which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
      a kit.
    - **A stethoscope (or a long screwdriver) on the cam cover above
-     cylinder 3, hot**, against 1, 2 and 4: a tick or a hiss on one;
-     **also at idle and at about 1,800 rpm**: the tick of 9/11 was there
-     at 1,750–2,150 rpm in the clean, at idle and 1,120 rpm after it (S22).
+     cylinder 3, hot**, against 1, 2 and 4: a tick or a hiss on one, at idle.
    - **A warm leak-down on all four** at a garage, oil at 80 °C or
      more: the upper intake off and all four plugs out (the same plugs
      back afterwards; plug 3's gap measured while out); each cylinder at
@@ -240,14 +247,14 @@ reading on record came on a foggy morning (`open.md` S1, *Temperature*),
 and the mist supplies the moisture a tracking boot or coil needs. Late
 because the coil is from 6/2026 and the leads are new again; it is free.
 
-**After the clean of 9/11 — why the next steps are these** (proposed by
-Claude 9/11; the clean itself, done, is `idle-log.md` and `open.md` S1,
+**After the clean of 9/11 — why the next steps are these** (*agreed
+with the owner*, 9/11 evening; the clean itself, done, is `idle-log.md` and `open.md` S1,
 *The clean of 9/11*; how its day was planned and read: `git show
 c11dc75:docs/engine-health/plan.md`, item 8). **What it showed**: 3's
 excess — its share of the dips, its steady deficit, the rough first
 minutes of a warm stop and 014's storm — was not there at stop 7, which
 is the H13 branch for 3; **4's steady deficit and the settled level were
-kept**. **The second captured stop** because the rough start is what
+kept**. **8b, the second captured stop**, because the rough start is what
 varies most between stops: stop 3's own second half read like stop 7,
 and straight after the clean 3 was still short, so one stop each side
 does not say the clean's effect lasts; a warm stop after a similar run

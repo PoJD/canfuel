@@ -1211,6 +1211,108 @@ the cause. **Heard or seen again, above all cold → it reopens in
 *(26/10: they left `plan.md` at the owner's request — he keeps them as a
 habit until the map goes back, not as a step.)*
 
+### D11. S22 — a tick once per engine cycle, heard during the hydrogen clean — closed 9/11/2026
+**Closed at the owner's decision, 9/11 evening, as the clean's own
+sound**: he heard it clearly only during the clean, before it only now
+and then while driving, and standing it did not tick much before or
+after; the once-per-cycle part of the sound is in every engine-bay
+recording since 12/10 at about the size it had in the clean, and stood
+out only on 18/10 (D10). *Reasoned*: oxyhydrogen in the charge burns
+faster and peaks harder, so the cylinders' usual small difference
+(`open.md` S1, *A steady pattern over the cylinders*) is heard louder.
+**Heard again in normal driving, clearly → it reopens in `open.md`.**
+The entry as it stood in `open.md`:
+
+*Added 9/11 at the owner's request.* **During the hydrogen clean of 9/11**
+(`plan.md` 8), oil 97–102 °C, the provider's machine holding the engine
+at about 1,750–2,150 rpm, the bonnet open: **a regular tick from the
+engine** (*owner*). **He hears it at other times too, more under load**,
+and reads it as the valves (*owner*). It never stops; **only its
+loudness changes** (*owner*, and the recordings agree).
+
+**What the recordings show** (four phone videos at the engine bay,
+album 10:25:26, 10:25:54, 10:31:22 and 10:39:18, 9–35 s each; the
+envelope of the sound at 2–12 kHz against the engine speed on the
+capture at the same moment; *an ad-hoc script, not kept*): **the
+strongest rhythm in every one is once per two crank revolutions** —
+17.1 Hz at about 2,050 rpm, 15.3 Hz at about 1,840 and 14.7 Hz at about
+1,770, each the camshaft's frequency to within the engine speed's
+reading. Following the engine speed, it is the engine, not the machine.
+Across 3 s windows it stands **3 to 10 times above the spectrum's
+median and never drops out**, rising and falling over seconds.
+**It comes in bursts** (*owner*, 10:50: "in cycles, perhaps two a
+second, audible in one and not in the next"): measured cycle by cycle
+on the videos of 10:39 and 10:50 (a fifth, 33 s at about 1,960 rpm),
+the tick is loud in about a third of the cycles, **in stretches of a
+median 0.3 s (about five cycles) with quiet ones of 0.3–0.7 s between**,
+and those bunch into episodes of several seconds; the stretches are
+irregular, with no fixed period (the tick's strength correlates with
+itself only out to about half a second).
+
+**Read** (*reasoned*): **one source, once per cycle** — one valve's
+lifter, one injector, one cylinder's exhaust port leaking at its
+joint, or one cylinder's combustion different from the others (S1's
+steady pattern, *A steady pattern over the cylinders*, gives that
+rhythm too). The band, 2–12 kHz, is where a mechanical tick sits
+rather than the exhaust's beat, which leans to a part, but the sound
+alone cannot exclude combustion. **One microphone cannot say which
+cylinder.** **Not the same as** S16 (in neutral, cold, gone with the
+clutch pedal down: the gearbox side) or 8/11's cold clatter of the
+first two seconds (H1); 18/10's tick (`refuted.md` D10) came with
+cylinder 3 out and did not come back. **The hot recording of 26/10
+found no lifter at idle** (H1); this one was off idle.
+
+**After the clean** (9/11, stop 7, bonnet open, neutral, oil 101 °C;
+album 12:06:57, 112 s at idle, and 12:09:20, 62 s, 13 s at idle then
+about 45 s at **about 1,120 rpm** — not 1,800, the capture says; the
+same envelope against the capture's engine speed; *ad-hoc script, not
+kept*): **the once-per-cycle rhythm is still there, as strong** —
+its amplitude at the camshaft's frequency **7.8 times the envelope
+spectrum's median at idle and 8.2 at 1,120 rpm**, against **4.1–10.7**
+in the eight videos of the clean at 1,770–2,060 rpm by the same
+measure. **It is there at idle too**, which the clean's recordings did
+not test. **The idle video moves the phone along the top of the plenum,
+A-B-C-D twice** (read off the frames; the last place beside the throttle
+body, as he described cylinder 4 at the clean's dictaphone recording,
+so *reasoned* 1-2-3-4): the rhythm 10–17 times the median at every
+place and the level within 2 dB — **no place louder**. The plenum sits
+over the cam cover, so the phone was not on it (*reasoned*). **Read**
+(*reasoned*): the tick did not go with the clean, which is a part's
+(H1's lifter, H2's port) or one cylinder's steady difference in burn
+(S1: 4 short and 2 strong were kept), not a deposit's; which cylinder
+is still not said — the stethoscope on the cam cover, hot (`plan.md`
+9), and at idle is enough now.
+
+**Against the earlier engine-bay recordings at idle** (9/11 evening, *the
+owner's question*; every album video with the bonnet open and a clear
+firing line; the same measure, engine speed from the sound's own firing
+line; *ad-hoc script, not kept*): the once-per-cycle part **7.1** on
+15/10 (the vacuum gauge, warm, 3½ min), **1.7 and 4.9** on 14/10 (the
+gauge, cold), **3.3–4.2** on 12/10 (the cold exhaust test), **16.4 on
+18/10** (cylinder 3 out with its tick, `refuted.md` D10), and **7.8**
+after the clean. **So the rhythm is in every recording, at about
+today's size, and stood out once — 18/10**; the clean's videos at
+1,750–2,150 rpm (4.1–10.7) are not above it either. ⚠ The phone's place
+and distance differ from video to video, and with all four cylinders
+firing a little unequally (S1's steady pattern) a once-per-cycle
+part is expected in any recording; this measure cannot tell a tick
+from that. **The owner** (9/11 evening): he heard the tick clearly during
+the clean, before it only now and then while driving, and standing it
+does not tick much now — nor did it before; **the clean's sound he takes
+for an anomaly of the clean itself**, its extra hydrogen and oxygen in
+the intake. *Reasoned*: a charge with oxyhydrogen in it burns faster and
+peaks harder, so one cylinder's difference becomes louder; the
+recordings neither confirm nor refute it. **Whether S22 stays a symptom
+is the owner's to decide** (asked 9/11 evening).
+
+**Tests**: the same recording **after the clean**, at the same engine
+speed, against these four — a deposit's tick (H13) would change, a
+lifter's would not; **the phone close to the cam cover above 1, then
+above 4**, the same distance, engine at about 1,800 rpm, for which end
+is louder; **the stethoscope above each cylinder, hot** (`plan.md` 9);
+and the capture's crank speed at the same moments, which shows one
+cylinder's combustion and not a lifter's tick.
+
 ### D9. "A higher idle quiets the misfires" — measured, 12/10/2026
 The specified idle raised from 780 to 830 rpm, the ECU's limit (VW's
 procedure, login 01283): 014 kept counting and `IdleHealth` rose slightly with

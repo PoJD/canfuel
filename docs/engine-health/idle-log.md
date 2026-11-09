@@ -1218,7 +1218,8 @@ after the fill (*owner*). Part of `plan.md` 8's baseline.
   - *not known:* whether 3's calm start lasts — one stop each side.
 
 Read in a cloud session the same day (`open.md` S1, *The clean of
-9/11*; S3; S22; *The dips keep to one slot*). The capture's `--name`
+9/11*; S3; *The dips keep to one slot*); S22, the tick, closed the
+same evening as the clean's own sound (`refuted.md` D11). The capture's `--name`
 read was found to slip far from a cut and was followed by the steady
 pattern instead (`open.md` S1, *A steady pattern over the cylinders*);
 `43`'s naming of 3 holds under it.
