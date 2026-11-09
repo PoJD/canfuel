@@ -140,7 +140,7 @@ class AgainstTheFixtures(unittest.TestCase):
     def test_a_log_without_timestamps_is_skipped_rather_than_guessed_at(self):
         self.assertEqual(samples(os.path.join(FIXTURES, "03_drive.txt")), [])
 
-    def test_the_corpus_holds_614_overrun_fuel_cuts(self):
+    def test_the_corpus_holds_758_overrun_fuel_cuts(self):
         """Four in 17_drive_property_z1, 72 in the hour of 19, 33 in 24,
         17 and 15 in the two halves of session A, 25 and 26, and 13 and 26
         in the two halves of its second run, 27 and 28, 22 in session B,
@@ -149,12 +149,14 @@ class AgainstTheFixtures(unittest.TestCase):
         32, 32 and 15 in the two halves of the drive of item 5, 35
         and 36, 67 in the drive home, 37, 47 in the evening drive home, 39,
         91 in the first drive after the refit, 40, 63 in the drive home
-        on the original map, 42, and 41 in the second drive on it, 43.
+        on the original map, 42, 41 in the second drive on it, 43, and
+        38 and 65 in the day of the hydrogen clean before and after it,
+        44 and 46 (the clean itself, 45, has none).
 
         Counted per log, so a change to the detector shows where it moved
         rather than only that the total did.
         """
-        self.assertEqual(len(self.cuts), 655)
+        self.assertEqual(len(self.cuts), 758)
         self.assertEqual(self.per_log, {"17_drive_property_z1.txt": 4,
                                         "19_postfix_drive_z1.txt": 72,
                                         "24_mafswap_drive_z1.txt": 33,
@@ -172,7 +174,9 @@ class AgainstTheFixtures(unittest.TestCase):
                                         "39_drive_home_z1.txt": 47,
                                         "40_refit_drive_z1.txt": 91,
                                         "42_stockmap_drive_z1.txt": 63,
-                                        "43_stockmap_drive2_z1.txt": 41})
+                                        "43_stockmap_drive2_z1.txt": 41,
+                                        "44_decarb_before_z1.txt": 38,
+                                        "46_decarb_after_z1.txt": 65})
 
     def test_the_cut_does_not_engage_the_moment_the_pedal_comes_up(self):
         """0.63-11.06 s after the lift across the corpus, never at once.
