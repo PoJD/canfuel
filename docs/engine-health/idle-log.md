@@ -1087,7 +1087,7 @@ compressor ran is not known.
   - *measured:* after re-zeroing, injector 1's and 4's contact 1 to the
     same T3 pin **0.001–0.002 Ω** each — the 2 Ω was the probes (*owner*).
 
-The rest of `plan.md` 6m waits for item 8's result.
+The rest of `plan.md` 6m waits for item 8's result. *9/11: the clean left 4's deficit; 6m proposed next for 4.*
 
 ## 5/11 night — the lower manifold's gasket from below, the oil level
 
@@ -1190,3 +1190,35 @@ canister is left. **Not replaced for now** (*the owner's decision*,
 The drive mostly gentle on the last of the fuel, a little higher revs
 after the fill (*owner*). Part of `plan.md` 8's baseline.
 
+
+## 9/11 — the hydrogen decarbonisation, captured from home to work
+
+- **Repairs:** a hydrogen decarbonisation at Bez Karbonu, Prague
+  (oxyhydrogen, a machine of 800 l/h run at about 60 %): the gas into
+  the intake behind the MAF, the engine held at 1,750–2,150 rpm by the
+  provider for about an hour, oil 97–106 °C, the last two minutes at
+  idle (`vehicle-history.md`; `plan.md` item 8, done).
+- **Tests:** one capture from home to work (`44`–`46`) with 014/001/003
+  throughout, a warm stop in the everyday state with a 30 s cut on 4
+  before the clean (stop 3) and after it (stop 7); 032/055 four times;
+  the fault memory at every phase, cleared by the owner at the end;
+  S22's tick filmed during the clean and at stop 7 (at idle and about
+  1,120 rpm).
+- **Changes after:**
+  - *measured:* stop 3 `IdleHealth` **90** for five minutes, then **50**;
+    stop 7 **57–63** throughout. **Cylinder 3's excess gone at stop 7**
+    — its share of the dips 48 % → 23 %, its steady deficit 7–14 % →
+    0–3.6 %, 014 1.03 % → 0.12–0.14 % of combustions; **4's deficit
+    (5–8 %) and the settled level kept**. With the gas flowing at idle,
+    **no dips at all** and `IdleHealth` 14–29. The tick unchanged. No
+    code but the cut's; 032 −7.8 / +6.3 % unchanged, 055 −1.13 → −1.05;
+  - *felt:* more unsettled at the provider straight after the clean,
+    014 still counting (*owner*, 11:26); **"a little calmer"** on the way
+    on, which he no longer trusts himself to judge (*owner*);
+  - *not known:* whether 3's calm start lasts — one stop each side.
+
+Read in a cloud session the same day (`open.md` S1, *The clean of
+9/11*; S3; S22; *The dips keep to one slot*). The capture's `--name`
+read was found to slip far from a cut and was followed by the steady
+pattern instead (`open.md` S1, *A steady pattern over the cylinders*);
+`43`'s naming of 3 holds under it.

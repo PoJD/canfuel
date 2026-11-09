@@ -60,6 +60,20 @@ was read in a cloud session the same day**: the cut on injector 4
 slot*), 014 counts again, and the first full-throttle pulls ran short
 of air (H14).
 
+**The hydrogen clean of 9/11 is done** (`plan.md` item 8; captured
+`44`–`46`, read the same day in a cloud session; S1, *The clean of
+9/11*). **Stop 3 before it** began as `42` and `43` did — `IdleHealth`
+about 90 for five minutes, **cylinder 3 giving 7–14 % of a stroke
+less, 014 at 1.03 % of combustions, the most of any warm stop on
+record** — and settled after its cut to about 50, 3 near the others,
+014 near zero. **Stop 7 after it** read about 60 from its first minute
+to its last: **no rough start, 3 level with 1, 014 at 0.12–0.14 %, and
+the dips on all four alike** (25 % on 3 against 48 % at stop 3), **but
+not below stop 3's settled level**; 4's steady deficit (5–8 %) and 2's
+strength are as before. **With the provider's gas flowing at idle the
+idle had no dips at all** (8,700 strokes, `IdleHealth` 14–29), and S22's
+tick was still there after the clean. One stop each side.
+
 **Open:**
 
 - **The idle — S1 (unsettled) and S3 (014 counts at idle).** Every part in
@@ -93,11 +107,18 @@ of air (H14).
   after the OMV fill, oil 97 °C, the everyday state, about a minute:
   **70–75**, `Misfires` **9–12**, MisfAvg **12.5** since the start at the
   pump; most of the drive gentle on the last of the fuel, a little
-  higher revs after the fill (*owner*).
+  higher revs after the fill (*owner*). **9/11, the clean's day**
+  (`44`–`46`, the everyday state, A/C off, oil 101–103 °C): **stop 3
+  before it 90 then 50**, **stop 7 after it 57–63** (S1, *The clean of
+  9/11*); felt **"a little calmer" after it**, which he says he no
+  longer trusts himself (*owner*), and more unsettled at the provider
+  straight after the clean (*owner*, 11:26).
   The dips sat two thirds on 3 and 4
   until the VW leads, **on all four alike** on `40` and `41`, **on `42`
   one slot again, 45 %**, and **on `43` named: 43 % on cylinder 3**
-  (p 0.004; *The dips keep to one slot*), with P0303 after the cut.
+  (p 0.004; *The dips keep to one slot*), with P0303 after the cut;
+  **on `44`, before the clean, 48 % on 3; on `46`, after it, all four
+  alike** (p 0.01 that 3's share fell by chance).
 - **Around the idle:** S2 (an occasional puff), S14 (bangs on an
   unblipped downshift), S11 (a hiss at the back, perhaps the throttle's
   own air).
@@ -122,7 +143,9 @@ of air (H14).
   the owner's request): recorded during the clean at about 1,800–2,100
   rpm, one source on one cylinder, which one not known; a lifter (H1),
   one exhaust port's joint (H2) or the knock window's noise (H5), or
-  one cylinder's combustion heard (S1). Recorded again after the clean.
+  one cylinder's combustion heard (S1). **Recorded again after the
+  clean, at idle and about 1,120 rpm: still there, as strong**, and no
+  place over the plenum louder than another (S22).
 - **Not pursued:** S16 (a tick on the gearbox side), S17 (a resonance at
   ~2200 rpm; **not the exhaust's heat shields** — still there after their
   new clips, 31/10 — perhaps nearer the engine).
@@ -147,16 +170,16 @@ under load; a steady pattern over the cylinders, 3 and 4 weak and 2
 strong, is about a third of `IdleHealth` (S1, *A steady pattern over the cylinders*); re-ranked
 on it with the owner: **H3 second, H1 third, H4 fifth**.
 
-**Next** (`plan.md`): the MFD back in from 4/11 (item 6) and the oil
-level every 500 km (6i); **the professional decarbonisation, with
-hydrogen, under way on 9/11** (H13, item 8; *the owner's decision*,
-3/11), **captured from home to work, with a cut on injector 4 before
-and after** (*the owner's plan*, 6/11), and S22's tick recorded at the
-stop after it;
-**the purge valve N80 only if P0440 comes back or item 8 changes
-nothing** (H16, S21, 8a; *the owner's decision*, 6/11 night, the valve
-out, clean and refitted); then, by what it shows, 6m's injector circuits or item 9's tests (the
-stethoscope, the coolant's CO₂ test, a warm leak-down).
+**Next** (`plan.md`): the MFD in (item 6, back in since 9/11) and the
+oil level every 500 km (6i); **after the clean, item 6's warm stops on
+the display with a word on what came before each**; **what follows is
+proposed by Claude, 9/11, and waits on the owner's word** (S1, *The
+clean of 9/11*, *What it leaves*): a second captured warm stop with a
+cut on 4 on another day, to see whether 3's rough start stays gone,
+and **6m's injector circuits** for 4's kept deficit; **the purge valve
+N80 only if P0440 comes back** (H16, S21, 8a); item 9's tests (the
+stethoscope, also for S22's tick; the coolant's CO₂ test; a warm
+leak-down) by what those show.
 
 ---
 
@@ -244,6 +267,9 @@ error):
 | 6/11 | display, a photo | relearning | the first reading after 5/11's contact cleaner (injector 4, T3) and runner 3's gasket edge straightened; about 40 min with a few queues; the everyday state plus **the A/C and the blower on 2**; oil 98 °C (*owner*) | **65** with the A/C; `Misfires` **18**, MisfAvg **23.0** at the end, higher because **only about 5 min of idle in the drive, hardly any warm**; **the engine behaved the same** (*owner*, the album 9:29) |
 | 6/11 eve | display, a photo | relearning | the drive home; oil 90 °C; **the A/C off, the blower on 1** (*owner*); **the engine lamp came on** on the way, P0440 (S21) | **73**; `Misfires` **6**, MisfAvg **8.6**; the idle "relatively OK" (*owner*, the album 16:40) |
 | 8/11 | display | relearning | home after the OMV fill (about 10 % Efecta 95 in the tank), mostly gentle on the last of the fuel, a little higher revs after the fill; oil 97 °C; the everyday state, about a minute (*owner*) | **70–75**; `Misfires` **9–12**, MisfAvg **12.5** since the start at the pump (*owner*) |
+| 9/11 | `44` | relearning (032 −7.8 / +6.3) | stop 3 **before the hydrogen clean**, after about 50 min of driving with a motorway stretch; the everyday state, the A/C off; 30 s cut on 4; oil 103 °C | **90** the 5 min up to the cut (76–107), **50** the 5 min after it (37–64); 014 1.03 % then 0.02 % of combustions (S1, *The clean of 9/11*) |
+| 9/11 | `44`, `45` | relearning | **the provider's gas flowing at idle**: 10:19–10:22 with the A/C and the blower on 4, and the clean's last 2 min with the blower on 4 and the heater full; oil 97–106 °C | **20** and **14–29**, **no dip at all** in 8,700 strokes (S1, *The clean of 9/11*) |
+| 9/11 | `46` | relearning | **straight after the clean**, the hose off with the engine running, oil 104 °C; then stop 7 after a motorway run, the everyday state, the A/C off, a 30 s cut on 4, oil 101 °C | **60** straight after; **57** the 3½ min up to stop 7's cut, **63** the 6 min after it; 014 0.12–0.14 %; at work after the short drive on, 93 → 54–79 over 4 min |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -258,6 +284,93 @@ inside a stop, **8.5 rpm** standard deviation against 9.8–13.9 on `24`–`40`
 stumbles; one drive. The idle speed (794–796 rpm) and 0x280's load byte
 (21) as before. Cold (oil 40–70 °C, loads on): 22 dips a minute, 0.7 of
 30 and over, against `32`'s 38–40 and 1.6–2.1.
+
+**The clean of 9/11** (`plan.md` item 8, done; `44`–`46` and their
+014/001/003 logs; read 9/11 in a cloud session; `idledips --roughness
+--windows 30`, `cutscan.py --shares --name`, `dipshape.py --name`, and
+*ad-hoc scripts, not kept*, for the steady pattern, the named dips
+followed across the stroke count's slips (below) and 014 per stop).
+Both stops in the everyday state with the A/C off, oil 101–103 °C,
+each after a motorway run, each with a 30 s cut on 4:
+
+| | stop 3, before (`44`) | stop 7, after (`46`) |
+|---|---|---|
+| `IdleHealth`, up to the cut | **90** (76–107, 5 min) | **57** (48–65, 3½ min) |
+| `IdleHealth`, after the cut | **50** (37–64, 5 min) | **63** (57–76, 6 min) |
+| the same with the steady pattern taken out | 45, then 33 | 40, then 41 |
+| cylinder 3's steady deficit, % of a stroke | **7–14**, rising to the cut; then 0–2.5 | **0–3.6** throughout |
+| cylinder 4's | 2–6; then 5–7 | 2–10, mostly 5–8 |
+| cylinder 2, % more than the mean | 13–15; then 7–10 | 9–13 |
+| dips per 1000 strokes | 4.8, then 2.7 | 2.6, 2.6 |
+| the dips named, 3's share | **29 of 60, 48 %** (p 8×10⁻⁵ against all alike) | **8 of 35, 23 %** (1: 9, 4: 7, 2: 11) |
+| 014, % of combustions | **1.03** (to 132 in one window), then 0.02 | 0.12, then 0.14 (to 36) |
+
+- **Stop 3 began as `42` and `43` began**: rough for about five
+  minutes, then calm. **The rough part is cylinder 3's steady deficit
+  and 3's dips**: 13 of the 14 strokes that lost 19 rpm or more in its
+  first five minutes were on 3, and 014 counted up to eleven misfires
+  in a window of 200 revolutions — **the highest stop on record**
+  (S3). **`43` re-read the same way**: 3 gave 4–10 % less in its rough
+  first five minutes (69–97) and about nothing in its calm end — its
+  settling was this (*A steady pattern over the cylinders*).
+- **Stop 7 had no rough start**: about 60 from the first window, 3
+  within 0–3.6 % of the others throughout, the dips on all four alike
+  (`cutscan --shares`, 106 dips: exactly a quarter each, p 1; `40`
+  and `41` were the last with no slot leading), 014 low.
+  **3's share of the dips fell from 48 % to 23 % (p 0.01)**.
+- **But stop 7 was not calmer than stop 3's settled half**: 57–63
+  against 50, the rest after the pattern 40 against 33, the dips 2.6
+  against 2.7 a thousand. **4's steady deficit (5–8 %) and 2's strength
+  stayed as they were**, as on `31` and `43`.
+- **Around it, the same capture**: **straight after the clean**, the
+  hose off with the engine running, oil 104 °C: about 60, and **3 still
+  6–7 % short for the first 2½ minutes**, 3 % for the next five (named
+  as at work, below); 014 counted (*owner*: more unsettled there, 11:26). **At work**, after a
+  short drive on from stop 7: 93 → 54–79 over four minutes, its rough
+  first minute **on 4 (10–12 %), not 3** (*reasoned*: named by taking
+  the strongest slot for 2, as at both cuts; no cut in that run).
+- **With the provider's gas flowing at idle the idle had no dips at
+  all.** Twice: 10:19–10:22, the hose fitted with the engine running,
+  the A/C and the blower on 4 — **`IdleHealth` about 20, 0 dips in
+  4,877 strokes against 0.9 a thousand in the same state before it**
+  (4.4 expected, p 0.01); and the clean's last two minutes at idle, the
+  blower on 4 and the heater full — **14–29, 0 dips in 3,815**. The
+  lowest grades on record. With it the throttle closed (3.0° → 1.3–2.2°),
+  the MAF fell (3.1 → 2.4–2.8 g/s) and the lambda correction went
+  negative (to −1.6 to −5.5 %): **what came in burns, and the ECU took
+  air and fuel away for it** (*reasoned*; whether the machine ran before
+  its noted start, 10:23:40, is not recorded, and nothing else explains
+  a closing throttle with fuel taken away). Straight after, the hose
+  off: 60 and 2.6 dips a thousand again. **Read** (*reasoned*): a
+  faster-burning, more easily lit charge (*general*: hydrogen's wide
+  limits and quick flame) **cures the weak strokes outright, even on a
+  smaller air charge** — **the failure is in the burn, lighting or
+  spreading**, not a mechanical event; it fits every cause that leaves a
+  charge hard to light or slow to burn (H13's deposit, H3's lean runner,
+  H4's spark, H7's fuel), and not a part that taps or a stroke that
+  loses its charge outright. It does not name which.
+- **014 was `deaktiv.` through the whole clean** (load about 19 % at
+  1,750–2,150 rpm): it saw nothing there.
+- **The fault memory** read at every phase (`vcds/vcds-step8-faults.txt`):
+  empty at the start; after stop 3's cut **P1240 (injector 4, open,
+  sporadic), P0300, P0304** — the cut's own — and nothing more after
+  the clean or stop 7's cut; cleared by the owner at work after 032/055
+  (032 −7.8 / +6.3 % at every read, 055 −1.13 before the clean and
+  −1.05 after).
+
+**What it leaves** (*reasoned*; *plan.md*'s reading, Part 2 *Step 3*):
+**3's excess** — its share of the dips, its steady deficit, the rough
+first minutes and 014's storm — **was not there after the clean**, which
+is the H13 branch for 3 (the deposit that `43` and the borescope put on 3
+was what made 3 the worst). **4's deficit and the settled level were
+kept**: the clean took the part that came and went with the minutes, not
+the floor; 4 has a cause of its own — H3 at runner 4 (its gasket edge
+torn, 5/11), H4 in 4's circuit, H1's inlet seat on 4. ⚠ **One stop each
+side, and the rough start is the thing that varies most between stops**:
+stop 3's own second half read like stop 7, and straight after the clean
+3 was still short. **What would settle it**: a second captured warm stop
+with a cut on 4, on another day, after a similar run — a rough start on
+3 again says the clean did not take it.
 
 **The trend over every capture** (28/10, at the owner's question; every
 standing idle settled 30 s and more, graded as `tools/afterpull.py`'s
@@ -596,6 +709,18 @@ missing) or the weak cylinder really changes, so a name far from a cut
 is uncertain. This is what `refuted.md` A5 saw as slot means of 3.5–5.9
 rpm "with no consistent outlier"; with the cuts naming the slots it is
 consistent.
+**The slips are the stroke count's, not the cylinders'** (9/11, the
+clean's captures; *ad-hoc script, not kept*). Followed window by window
+from the cut, the pattern keeps its shape and jumps by one or two
+strokes at a time (the shifted pattern correlates 0.9–1.0 with the
+cut's), so the bridged run's count slips while the cylinders stay put.
+**Named only next to the cut, the pattern is larger than the figures
+above**, which were averaged across slips: `43` 3 +8, 4 +7, 1 −1,
+2 −14 % (90 s each side of the cut). **`cutscan.py --name` keeps the
+cut's phase for the whole run**, so far from a cut it names some dips
+two slots off: `44` 22 of 60 on 3 at the fixed phase, 29 followed;
+`46` 10 of 40 and 8 of 35; **`43` 28 of 65 and 25 of 61, so its
+naming of 3 holds**. The tool itself is not changed.
 
 **After high revs** (*owner*, 23/10 evening, the first 44K tank,
 display, the everyday state): straight after a stretch held at high revs,
@@ -753,6 +878,20 @@ completing rather than load (`refuted.md` C19).
   only about 10 % of the dead strokes were counted, against 87–100 % on
   the warm cuts, though the bus shows the same −25 rpm dead stroke; a warm
   cut with the A/C on would tell load from temperature.
+- **Every warm stop with 014 beside the bus, as a share of
+  combustions** (9/11, after the clean; the window's counts summed over
+  every warm standing stretch of 150 s and more, oil ≥ 90 °C, detection
+  on, cuts left out; *ad-hoc script, not kept*): `24` 0.63 %, `28`
+  0.60, `31` 0.26, `32` 0.28, `37` 0.20, `39` 0.47, `40` 0.11, 0.46
+  and 0.16, `43` 0.12 (after its cut); **`44` (stop 3, before the
+  clean) 1.03 up to the cut — the highest on record — then 0.02**, the
+  provider's wait with the A/C 0.00; **`46` (stop 7, after it) 0.12
+  and 0.14**. Load 22–31 % throughout. **Stop 7 sits with the lowest
+  of the settled stops**; stop 3's settled half lower still. **During
+  the clean 014 was off** (load about 19 % at 1,750–2,150 rpm), and at
+  idle with the gas flowing too (21–23 %). One stop each side: 014's
+  storm at the start of stop 3 and its absence at stop 7 are S1's rough
+  start on 3 and its absence (S1, *The clean of 9/11*).
 - **Three properties to keep in mind** (`refuted.md` A11, A12): steps of 12;
   off below ~20 % load; its sensitivity per dip moved five- to fiftyfold with
   the MAF. **So 014 is a yes/no witness, not a ruler.** Compare across time
@@ -1216,7 +1355,8 @@ drive, at a warm stop, read `IdleHealth` **73**, `Misfires` **6**,
 MisfAvg **8.6** (S1; the A/C off, the blower on 1), in the range of the
 days before. **Read by what follows**: the code back after the clearing
 says a standing fault, not back says a one-off; the fault memory is read
-on 9/11 anyway (`plan.md` 8).
+on 9/11 anyway (`plan.md` 8). **Read 9/11 at every phase: no P0440**,
+only the cut's codes (`vcds/vcds-step8-faults.txt`).
 
 ### S22. A tick once per engine cycle, warm, off idle
 
@@ -1258,6 +1398,27 @@ clutch pedal down: the gearbox side) or 8/11's cold clatter of the
 first two seconds (H1); 18/10's tick (`refuted.md` D10) came with
 cylinder 3 out and did not come back. **The hot recording of 26/10
 found no lifter at idle** (H1); this one was off idle.
+
+**After the clean** (9/11, stop 7, bonnet open, neutral, oil 101 °C;
+album 12:06:57, 112 s at idle, and 12:09:20, 62 s, 13 s at idle then
+about 45 s at **about 1,120 rpm** — not 1,800, the capture says; the
+same envelope against the capture's engine speed; *ad-hoc script, not
+kept*): **the once-per-cycle rhythm is still there, as strong** —
+its amplitude at the camshaft's frequency **7.8 times the envelope
+spectrum's median at idle and 8.2 at 1,120 rpm**, against **4.1–10.7**
+in the eight videos of the clean at 1,770–2,060 rpm by the same
+measure. **It is there at idle too**, which the clean's recordings did
+not test. **The idle video moves the phone along the top of the plenum,
+A-B-C-D twice** (read off the frames; the last place beside the throttle
+body, as he described cylinder 4 at the clean's dictaphone recording,
+so *reasoned* 1-2-3-4): the rhythm 10–17 times the median at every
+place and the level within 2 dB — **no place louder**. The plenum sits
+over the cam cover, so the phone was not on it (*reasoned*). **Read**
+(*reasoned*): the tick did not go with the clean, which is a part's
+(H1's lifter, H2's port) or one cylinder's steady difference in burn
+(S1: 4 short and 2 strong were kept), not a deposit's; which cylinder
+is still not said — the stethoscope on the cam cover, hot (`plan.md`
+9), and at idle is enough now.
 
 **Tests**: the same recording **after the clean**, at the same engine
 speed, against these four — a deposit's tick (H13) would change, a
@@ -1449,6 +1610,14 @@ about. The valve is closed by its spring; the lifter only removes the gap.
 |---|---|---|---|---|---|---|---|---|---|---|
 | ✔ | ✔ | ✔ | ~ | ~ | — | ~ | — | — | — | ✔ |
 
+- **9/11, after the clean** (S1, *The clean of 9/11*; S22): 3's excess
+  gone at stop 7 — **against an exhaust seat on 3 that leaks as a part**
+  (the clean cannot reseat a worn seat, *general*), for one that a
+  deposit held open; **4's deficit kept**, which an inlet seat on 4 fits
+  (the side the clean reaches least); **S22's tick unchanged**, as a
+  lifter's would be (for); and with the gas flowing **no dip at all**,
+  which a stroke that loses its charge through a seat would not obviously
+  give (*reasoned*, against in part).
 - **`43` (3/11 evening): the dips named 43 % on cylinder 3** — one
   cylinder, the one with the deposit and 18/10's tick (S18; `refuted.md`
   D10): **for**. A compression or leak-down reading on 3 against the
@@ -1553,6 +1722,11 @@ the lower manifold's gasket at runner 3, never renewed.
 |---|---|---|---|---|---|---|---|---|---|---|
 | ✔ | ~ | ✔ | ~ | ✘ | ~ | ✔ | ✘ | — | — | — |
 
+- **9/11** (S1, *The clean of 9/11*): **4's steady deficit kept after the
+  clean** (5–8 % at stop 7, as on `31` and `43`), the runner whose
+  gasket edge is torn (5/11): for, on 4; **the gas cured the weak strokes
+  outright**, as a richer, quicker-burning charge would in a lean runner
+  (*reasoned*): for in kind.
 - **`43` (3/11 evening): the dips named 43 % on cylinder 3** — one
   cylinder again after `40`–`41`'s all four alike, so the demotion of
   24/10 loses its ground: **for**, at runner 3.
@@ -1621,6 +1795,9 @@ shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
 |---|---|---|---|---|---|---|---|---|---|---|
 | ~ | ~ | ~ | ~ | ~ | — | ~ | ✘ | — | — | — |
 
+- **9/11** (S1, *The clean of 9/11*): 4's steady deficit kept after the
+  clean, 3's gone: for 4's own circuit (6m); with the gas flowing no dip
+  at all — hydrogen lights on less energy (*general*): for in kind.
 - **`43` (3/11 evening): the dips named 43 % on cylinder 3, 18 % on
   4** — one cylinder, not the pair the loom feeds: weakly for at 3,
   against the pair.
@@ -1992,6 +2169,15 @@ hard use burns them off (*general*).
 |---|---|---|---|---|---|---|---|---|---|---|
 | ✔ | ~ | ✔ | ~ | — | — | ~ | ~ | — | — | ~ |
 
+- **9/11, the clean** (S1, *The clean of 9/11*): **after it 3's excess
+  was gone at stop 7** — its share of the dips 48 % → 23 % (p 0.01),
+  its steady deficit 7–14 % → 0–3.6 %, the rough first minutes and
+  014's storm absent — **for, on 3**; **4's deficit and the settled level
+  kept** — the clean did not take a floor on all four, and 4's has
+  another cause: against H13 as the whole story. **With its gas flowing
+  the idle had no dips at all**: the weak strokes are a burn that fails,
+  which deposit makes (*general*) but not it alone. ⚠ One stop each
+  side; straight after the clean 3 was still short for minutes.
 - **`43` (3/11 evening): 43 % of the dips on cylinder 3**, the one
   ranked first inside (3 > 4 > 2 > 1): for, though deposits act on all
   four in kind. **A hydrogen decarbonisation was done before**, 10/8/2021
@@ -2030,12 +2216,15 @@ hard use burns them off (*general*).
   can clean is the flame and its steam, in the chamber (*general*; the
   vendors' chemistry above).
   So if 3 and 4 stay weak after 9/11, the inlet seats are left standing
-  (H1), and the leak-down is the test.
+  (H1), and the leak-down is the test. **9/11: 3 not weak at stop 7, 4
+  still is** (S1, *The clean of 9/11*) — the inlet seat left standing is
+  4's.
 - **4/11, the two patterns on their own** (S1; *reasoned*, agreed with
   the owner): with H1's exhaust seat on 3, **the one reading that fits
   both** the calm under load and the calm that lasts after revving
   (H1). **What 9/11 should then show**: loads off nearer loads on, and
-  queuing nearer the drive after revving.
+  queuing nearer the drive after revving. *Not read 9/11: no stop after
+  the clean had the A/C or a queue; the display's stops will.*
 - **4/11, the owner reads coarse deposit up to the edge of 3's exhaust
   seat** on the photos of 20/10 (H1): for, the contact line itself not
   seen.
@@ -2322,7 +2511,8 @@ the pulses, **no liquid fuel**. **What it leaves:**
   with its contacts and refitted. **Replaced only if P0440 comes back or
   item 8 changes nothing** (*the owner's decision*, 6/11 night, `plan.md`
   8a; *this said "replaced after item 8's readings", his decision of the
-  same evening, and before that "not replaced"*).
+  same evening, and before that "not replaced"*) **9/11: the clean changed
+  cylinder 3 and no P0440 was stored, so now only if P0440 comes back.**
 
 **The valve's pulses against the dips** (6/11 night, *at the owner's
 question*). The owner heard the valve click **about 4–5 times a second**
@@ -2550,6 +2740,9 @@ largest shares):
 | `43` (3/11 evening), the original map, one drive later | 71 | **63 %** | **0.015** |
 | **pooled `42`–`43`**, since the map | **190** | **66 %** | **0.0003** |
 | **pooled `40`–`43`** | **471** | **60 %** | **0.002** |
+| `44` (9/11), before the clean | 192 | 58 % | 0.14 |
+| **pooled `42`–`44`**, the map to the clean | **382** | **62 %** | **5×10⁻⁵** |
+| **`46` (9/11), after the clean — pooled since the last repair** | **106** | **50 %** | **1** |
 
 **Named by cylinder** (`--name`, `41`, the run spanning the cut, 137
 dips): **1: 24 %, 3: 31 %, 4: 20 %, 2: 25 %** — all four alike, cold. Two
@@ -2597,6 +2790,18 @@ because 4's pushed the window over; on its own 3 would not have set
 it. The lamp at the cut is 4's. **This ECU stores no freeze frame**
 (*owner*, 3/11), so the fault memory holds only the codes and their
 status, and nothing more would have said when it was set.
+
+**`44` and `46`, named** (9/11, the clean's day; each stop's run spans
+its 30 s cut on 4; the phase followed across the count's slips, *A steady
+pattern over the cylinders*): **before the clean 1: 7, 3: 29, 4: 12, 2:
+12 — 48 % on 3** (p 8×10⁻⁵ against all alike; 15 of 27 within two
+minutes of the cut, where no slip can enter); **after it 1: 9, 3: 8, 4:
+7, 2: 11 — all four alike**; 3's share fell, p 0.01 (one-sided Fisher).
+`cutscan.py --name` at the cut's phase gives 22 of 60 and 10 of 40 on
+3; `dipshape.py --name`, singles 3: 18 of 55 before and 14 of 54 after.
+Unnamed, `46` fits exactly a quarter on each slot. **Before the clean
+3 led the way `43` showed; after it, nothing leads** (S1, *The clean of
+9/11*).
 
 **Every named capture side by side** (3/11, at the owner's question):
 `31` (10/10, warm, NGK leads): 4 42 %, **3 31 %**, 2 14 %, 1 12 %;
@@ -2745,6 +2950,11 @@ on the 44K tanks heated the chambers more than an hour at 2,000 rpm
 without load and moved nothing, so what the clean adds is hydrogen's
 flame at the wall and the water — expected small, cheap to try, and
 still the one repair that reaches 3's crown without the head off.
+**Done 9/11** (an 800 l/h machine at about 60 %, about 8 l a minute of
+the mixture): 3's excess gone at the stop after it, 4's and the settled
+level kept (S1, *The clean of 9/11*) — not "no change", one stop each
+side. **At idle the gas itself made the idle the calmest on record**,
+which the study's idle HC could not show.
 
 ---
 
@@ -2758,7 +2968,7 @@ is in git.
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| 1 | **H13** deposits | **up 3/11 evening from second to first** (*agreed with the owner*): `43`'s cut names cylinder 3, where the borescope found the most deposit; **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; **a professional decarbonisation**, hydrogen for one — **the next repair** (*the owner*, 3/11; `plan.md` 8) |
+| 1 | **H13** deposits | **up 3/11 evening from second to first** (*agreed with the owner*): `43`'s cut names cylinder 3, where the borescope found the most deposit; **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; **the hydrogen clean done 9/11**: 3's excess gone at stop 7, 4's deficit and the settled level kept (S1, *The clean of 9/11*); a second captured warm stop with a cut says whether it lasts |
 | 2 | **H1** valve or lifter | **7/11 up from third** (*agreed with the owner*): the port photos of 20/10 show crust broken round the inlet seat's edge on 3 and 4, a lump on 3, 1 and 2 even (*the owner's reading*) — an inlet seat that leaks weakens 3 and 4 together, which answers the 5/11 against, and more crust on 3 fits the dips leaning to 3; whether it reaches the contact face is not seen; the clean of 9/11 is the least likely to reach it; **5/11 down from second** (*agreed with the owner*): one seat on 3 would weaken 3 alone, and the pattern moves over minutes; still the single dips on 3 and the owner's reading of 3's seat; **up 3/11 evening from third to second** (*agreed with the owner*): a valve on 3 that does not seal, with deposit on its seat (H13), fits one cylinder named; **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes done 26/10, the hot recording found no lifter; left: **a warm leak-down on all four** and a stethoscope above 3, hot (`plan.md` 9) |
 | 3 | **H3** a leak at one runner | **7/11 down from second** (*agreed with the owner*): H1's inlet-seat form explains the pair as well and has a find behind it; still the one that predicts *load helps* directly; **5/11 up from third** (*agreed with the owner*): the steady pattern over the cylinders names 3 and 4 alike, neighbours on the lower manifold (S1, *A steady pattern over the cylinders*); **4/11: explains the calm under load best of all, the calm after revving not at all** (S1; *agreed with the owner*, the order kept); **up 3/11 evening from seventh to third**: one cylinder named again (runner 3); the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
 | 4 | **H7** fuel delivery | **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026, and nothing points at one of them); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10); **no injector swap** (*the owner*, 3/11) |
@@ -2767,15 +2977,25 @@ is in git.
 | 7 | **H0** normal for this engine | no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
 | 8 | **H8** throttle and idle control | **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
 | 9 | **the timing belt a tooth out** | belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against |
-| 10 | **H16** the purge valve leaking | **6/11 night down from seventh** (*agreed with the owner*): out of the car the valve hardly passed air unpowered, and its pulses do not line up with the dips (H16, *The valve's pulses against the dips*); before that **6/11 evening up from eleventh**: P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the weak firings in pairs do (the idle's 1½-min waves turned out the radiator fan, S1); a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | item 8 first; the valve replaced only if P0440 comes back or item 8 changes nothing (`plan.md` 8a); 6/11 night, out of the car, it hardly passed air unpowered |
+| 10 | **H16** the purge valve leaking | **6/11 night down from seventh** (*agreed with the owner*): out of the car the valve hardly passed air unpowered, and its pulses do not line up with the dips (H16, *The valve's pulses against the dips*); before that **6/11 evening up from eleventh**: P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the weak firings in pairs do (the idle's 1½-min waves turned out the radiator fan, S1); a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | the valve replaced only if P0440 comes back (`plan.md` 8a; the clean of 9/11 changed 3, so not "nothing"); 6/11 night, out of the car, it hardly passed air unpowered |
 | 11 | **H20** coolant into cylinder 3 | **added 4/11** (*the owner*, weak): one cylinder at idle, where its pressure is lowest; plug 3 the cleanest of the 10/10 set; against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos | a combustion-gas (CO₂) test of the coolant (`plan.md` 9) |
 | 12 | **H18** oil past the stem seals | added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
 | 13 | **H11** both probes shifted | 2017 probes | a four-gas analyser |
 | 14 | **H12** driveline play | — | done: the clutch minutes cleared it |
 
+**Re-read 9/11 after the clean — proposed by Claude, not yet agreed;
+the order above stands until the owner says** (S1, *The clean of
+9/11*; S22): 3's excess went with the clean, 4's deficit and the settled
+level did not, the tick did not change, and the gas cured the weak
+strokes outright. **Proposed: H13 first** (it took 3's part), **then
+what acts on 4 alone — H3 second** (runner 4's torn gasket edge),
+**H4 third** (4's own circuit; 6m is the cheapest test), **H1 fourth**
+(4's inlet seat, and S22 kept as a lifter's would be), H7 fifth, the
+rest as they are.
+
 **Re-read 9/11 with S22 added** (a tick once per cycle, off idle;
 *agreed with the owner*): **the order stands** until the recording after the clean says whether the tick
-changed with it. S22 fits H1 (one lifter); H2 (one port's joint), H5 (a noise in
+changed with it. *It did not (S22, after the clean).* S22 fits H1 (one lifter); H2 (one port's joint), H5 (a noise in
 4's window, if the tick is on 4) and H13 (a flake under a seat) weakly; a combustion rhythm would fit S1's
 candidates alike. It answers H1's "the hot recording found no lifter"
 only off idle.
@@ -2829,7 +3049,8 @@ H12 one down. Medium confidence: two named captures, and the naming can
 slip far from a cut. **What decides it**: the capture with a cut after
 9/11 (`plan.md` 8) — 3 and 4's deficit gone with the clean says H13, kept
 says H3 or H4, 3 alone says H1. *Since 7/11 "kept" says H1's inlet seats
-too (the re-read of 7/11 above).*
+too (the re-read of 7/11 above).* **Read 9/11: 3's gone, 4's kept** (S1,
+*The clean of 9/11*; the re-read after the clean, above).
 
 **Re-read 5/11, after the dips' anatomy** (*at the owner's question*;
 S1, *How many strokes make a dip*): **the order stands**. Three dips in
@@ -2842,7 +3063,9 @@ steps, superseded the same day*), so the
 clustering adds nothing those hypotheses did not have and takes nothing
 from the three on 3 (H13, H1, H3), which it fits; it does not separate
 them either. Cold (`41`) both spread over all four, as before. One named
-capture: the next capture with a cut (`plan.md` 8) repeats it.
+capture: the next capture with a cut (`plan.md` 8) repeats it. *9/11:
+`dipshape.py --name` on `44` and `46` — singles 3: 18 of 55 before the
+clean, 14 of 54 after; pairs too few to lean.*
 
 **Re-read 3/11, after the tuner's files and the drive on the original
 map** (*agreed with the owner*): **H14 and H19 leave the idle's ranking**
@@ -2862,7 +3085,8 @@ all; the spark side (H4, plug 3's gap) is against on the load, H20 and
 H18 against on the revving; H7, H8, H16 and H0 weakly at most. **The
 order stands**; H3's row notes it. **What 9/11 should show** if the
 first two are right: loads off nearer loads on (S1's closing mark 2),
-and queuing nearer the drive after revving.
+and queuing nearer the drive after revving. *Not read 9/11: no stop
+after the clean had the A/C or a queue.*
 
 **Every fit table re-read 4/11** (*at the owner's request*, with
 `43` and the research in): **H1's S4 and S5 from ✔ to ~** — the valve
@@ -2890,7 +3114,8 @@ the common intake). **H20, a coolant weep into 3, added the same day
 as a weak candidate, eleventh** (*the owner*: the level does not
 visibly fall, but kept); H16, H18, H11, H12 down one. **Every fit table
 re-read 4/11** (*at the owner's request*; below the table). The tests
-after 9/11 are `plan.md` 9.
+after 9/11 are `plan.md` 9 (proposed 9/11, the re-read after the
+clean).
 
 **Re-read 3/11 evening, after `43`** (*agreed with the owner*):
 **cylinder 3 named** for 43 % of the dips warm, P0303 with the cut, and

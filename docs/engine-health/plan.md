@@ -18,9 +18,11 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Current: item 6 and 6i
-from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
-9:45, captured from home to work; 6m or item 9 after it.**
+Captures only where an item asks for one. **Current: item 6 and 6i,
+the MFD in. The hydrogen clean (item 8) was done on 9/11 and read the
+same day; what follows it is proposed by Claude and waits on the
+owner's word: a second captured warm stop with a cut on 4 on another
+day, and 6m for cylinder 4** (`open.md` S1, *The clean of 9/11*).
 
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
@@ -35,6 +37,10 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
      oDSS himself. JP1 stays off (*the owner*, 4/11: no debug needed), so
      0x603 and the LEDs are dark by design. From then on, at the same warm
      stops, **`Misfires` and `MisfAvg` beside `IdleHealth`** into the chat.
+   - **After the clean of 9/11**: at several warm stops, **a word on what
+     came before each stop** (queuing, or a brisk stretch), and the A/C's
+     figure too whenever it happens to be on; **an odd cold misfire or a
+     drop-out on one cylinder** goes into the chat at once.
 6i. **The oil level on the new oil, about every 500 km** from the first
    reading (27/10, 155,024 km, at the top mark; 5/11, 155,546 km, 0.5–1 mm
    under it; **next about 156,050 km**): the car on level ground
@@ -53,8 +59,8 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
    eight. While each value is on the display, **flex the loom near 3 and
    4** and watch it. Write every value, and any that moved.
    **5/11: only 1 and 4 reachable with the intake on** (*owner*); the rest
-   **only if item 8 changes nothing**, with the upper intake off, **never
-   the same day as item 8**. (5/11: contact cleaner went into 4's
+   with the upper intake off — **proposed by Claude 9/11 for 4's
+   deficit, which the clean left; waits on the owner's word**. (5/11: contact cleaner went into 4's
    connector and T3 at the first look, `vehicle-history.md`.)
 6n. **The injector circuits to the ECU** — later, only with VCDS on the
    laptop: 032/055 read first (unplugging the ECU may reset them, as a
@@ -80,82 +86,17 @@ from 4/11, the MFD in; item 8, the decarbonisation, Monday 9/11 at
      spark or a blue glow; then a fine water mist over one lead at a time
      and the coil, hands and bottle clear. Write anything seen and which
      lead the engine stumbled at.
-8. **The next repair: a professional decarbonisation, with hydrogen**
-   (*the owner's decision*, 3/11; a provider such as *Bez karbonu*,
-   his choice; 70 min for up to 2.5 l, 3,290 Kč by its site). **Monday
-   9/11/2026, 9:45.** They do not clear the fault memory, and the gas goes
-   in behind the MAF (*owner*, 6/11). **One captured session from home to
-   work** (*the owner's plan*, 6/11), Claude in a session on the laptop,
-   on the car's 12 V charger; fuel above reserve:
-   1. **At home, before the ignition**: the MFD out, the USBtin in; the
-      owner says "ready" in the chat. **Claude first runs a short check**
-      that both run (`usbtin_capture.py --seconds 10`, and VCDS connects
-      to 01), then starts `usbtin_capture.py` with `--seconds` set to run
-      **to 15:00** from the moment it starts — generously long (the clean
-      starts 10:00 at the latest, an hour or an hour and a half, then
-      about an hour to work), then `vcds_log.py --groups 014 001 003`
-      (fault memory read first); the capture is stopped by hand at work
-      once step 8 is done.
-   2. **About 30 minutes out, the motorway included**, until the oil is at
-      95 °C or more.
-   3. **A stop on a car park before the provider, not at it**: **the
-      everyday state** — blower on 1, one seat heater on 2, the lights on,
-      the A/C off — the same at step 7; 3 minutes' idle, **injector 4's
-      connector off for 30 s** (say when, by the chat), then 3 minutes
-      more.
-   4. **At the provider**: say in the chat when the engine stops and when
-      it starts for the clean; **the engine is likely stopped twice** (to
-      fit the provider's hose, and after the clean to take it off and
-      refit the intake's own hoses); the capture runs on through both,
-      VCDS is restarted by Claude each time the engine runs again. **Ask
-      for an hour and a half** if they offer it on larger engines
-      (*the owner's plan*, 8/11). **Ask the machine's output in litres a minute,
-      and whether it makes oxyhydrogen (HHO) or hydrogen alone**. **The
-      coolant and oil temperatures are watched by us** through the hour,
-      on the capture (Claude, 0x288 and 0x420; `oilwatch.py` on the
-      laptop) (*the owner*, 6/11). The cluster has no temperature gauge,
-      only a blue lamp while the coolant is cold (below about 60 °C, read
-      against the MFD) and a red one for too hot or too little coolant
-      (*owner*).
-   5. **After the clean**: a few minutes' idle there, no cut.
-   6. **On to work with a brisk motorway run first**, as the provider
-      advises after a clean, about as long and hard as the morning's;
-      **listen for a tick** like 18/10's (a flake under a seat), and say
-      in the chat if one comes.
-   7. **A stop before work**, as step 3: the everyday state, the A/C off,
-      3 minutes, injector 4 off for 30 s, 3 minutes more. **Then the
-      tick (`open.md` S22), bonnet open, neutral**: a phone video of
-      15–30 s at idle and one held at about 1,800 rpm, from where the
-      clean's were taken; then at 1,800 rpm **the phone close to the cam
-      cover above cylinder 1, then above 4**, the same distance, 15 s
-      each; say in the chat when each starts. Hands and phone clear of
-      the belt.
-   8. **At the end, engine idling**: Claude reads the fault memory, then
-      **032/055 before anything is cleared**; the owner clears it by hand.
-   **The fault memory through the day** (*the owner*, 8/11): **read, never
-   cleared, until step 8** — at home before the start, after stop 3's
-   cut, after the clean each time VCDS is restarted, and at the end; each
-   read saved. **One clearing only, at work, after 032/055.**
-   **The baseline before it**: the display's readings of 6–8/11, after the
-   contact cleaner and the straightened gasket edge of 5/11 (6/11: 65
-   with the A/C, `Misfires` 18, MisfAvg 23.0; 6/11 evening: 73 with the
-   A/C off, `Misfires` 6, MisfAvg 8.6; 8/11: 70–75, `Misfires` 9–12,
-   MisfAvg 12.5; `open.md` S1). **After it**:
-   item 6's drives again, `IdleHealth` as always, at several warm stops,
-   **with a word on what came before each stop** (queuing, or a brisk
-   stretch), and the A/C's figure too whenever it happens to be on; **an
-   odd cold misfire or a drop-out on one cylinder in the days after** goes
-   into the chat at once.
-8a. **The purge valve N80, only if P0440 comes back or item 8 changes
-   nothing**: Bosch `0 280 142 353`, VW `1C0 906 517 A`, the same as the
+8a. **The purge valve N80, only if P0440 comes back**: Bosch `0 280 142 353`, VW `1C0 906 517 A`, the same as the
    one on the car; the hoses stay; afterwards, warm, the owner runs
    **basic setting 070** and photographs it; then item 6's warm stops.
-9. **After item 8, by what it shows** (Claude says which):
+9. **After the clean of 9/11, by what the next stops show** (Claude says
+   which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
      a kit.
    - **A stethoscope (or a long screwdriver) on the cam cover above
      cylinder 3, hot**, against 1, 2 and 4: a tick or a hiss on one;
-     **also at about 1,800 rpm**, where the tick of 9/11 is (S22).
+     **also at idle and at about 1,800 rpm**: the tick of 9/11 was there
+     at 1,750–2,150 rpm in the clean, at idle and 1,120 rpm after it (S22).
    - **A warm leak-down on all four** at a garage, oil at 80 °C or
      more: the upper intake off and all four plugs out (the same plugs
      back afterwards; plug 3's gap measured while out); each cylinder at
@@ -299,113 +240,30 @@ reading on record came on a foggy morning (`open.md` S1, *Temperature*),
 and the mist supplies the moisture a tracking boot or coil needs. Late
 because the coil is from 6/2026 and the leads are new again; it is free.
 
-**Item 8's day, why it is read this way** (*agreed with the owner*,
-6/11). **One session, before and after the same day**, because the
-weekend's display gives the level but not the cylinders: only a cut
-names them, and the last one (`43`, 3/11) came before 5/11's changes.
-**Like with like**: the idle is calmer for minutes after a brisk drive
-(`open.md` S1, *After high revs*), and an hour at 2,000 rpm is one, so
-the "before" stop comes after the motorway and the "after" stop after
-the drive to work, not straight after the clean. **The A/C off at both**:
-its load raises 014's threshold (`open.md` S3, *What it counts*) and
-calms the random part of the grade. **Cuts on a car park, not at the
-provider**: a cut stores P1240 and perhaps P030x (3/11), which should
-not mix with their work. **During the clean** the gas enters behind the
-MAF, so the MAF does not see it, and the hose they slip under the intake
-boot lets in unmetered air around it: lambda and 032 will move and
-relearn; 014 is likely deactivated at 2,000 rpm with no load. **Read**:
-`IdleHealth` split into the steady pattern over the cylinders and the
-rest (`open.md` S1, *A steady pattern over the cylinders*), named by
-each cut; `cutscan.py --shares --name`, `dipshape.py --name --order 4`
-and 014 at both stops. 3 and 4's deficit gone after → H13; kept → H1's
-inlet seats, H3 or H4 (the leak-down of item 9 tells the first two apart,
-6m the third; the clean is the least likely to reach the inlet side,
-`open.md` H13); 3 alone → H1's exhaust seat (item 9). **Both at once**
-(*the owner's question*, 8/11): 3 and 4's deficit kept but the dips on
-all four fewer → the clean took a common part (H13 for the level), and
-the pair has a cause of its own (H1's inlet seats, H3, H4 as above). It
-is read on the capture, not the display: the dips per minute on each
-slot and the slot means, stop 3 against stop 7, both after a similar
-brisk run and at the same oil temperature, since a brisk run calms the
-idle by itself for a while (`open.md` S1) and the display's own spread
-is as large as the effect. *Until 7/11 "kept"
-read H3 or H4 only.* **The capture's length is set from the
-clock** (*the owner*, 8/11): `--seconds` sized generously past 10:00 plus an
-hour and a half plus an hour's drive, so that it cannot stop before the
-day is over, and stopped by hand at the end; the short check first
-because a capture found empty at the end costs the whole day. **The fault memory is read at every phase
-and cleared once, at the end**: each read dates what a phase stored (the
-cut's misfire and injector codes, anything the clean leaves), and a
-clearing in between would reset 032 (`CLAUDE.md`), so stop 7 would not
-be read on the same adaptations as stop 3. A code stored during the clean
-cannot be told from the cut's by the memory (this ECU keeps no time or
-count), so **misfires during the clean are read off the 014 log and the
-capture**, both timed; a code on another cylinder tells itself apart
-(*agreed with the owner*, 8/11).
-
-**Item 8 — the next repair** is chosen then, from `open.md`, *The idle's
-candidates, ranked*. **Since 3/11 evening deposits (H13) and a valve on
-3 (H1) led** (*agreed with the owner*): `43`'s injector cut names
-cylinder 3, the one the borescope found worst; **since 5/11 H13, then a
-leak at runners 3–4 (H3), then H1** (the steady pattern names 3 and 4
-alike, `open.md` S1). The two 44K tanks moved
-nothing, so a chemical clean through the fuel is spent; a professional
-decarbonisation is **the next repair** (*the owner's decision*, 3/11), for
-H13 and, if the deposit on 3's seat is what keeps it from sealing, H1.
-**Read**: `IdleHealth` in the everyday state before and after, the same
-ruler as item 6; a capture only once the display shows a change (item
-6). What it reaches is asked first because a clean through the intake
-works on the chambers and crowns, where the borescope found the
-deposit, not on a seat that is worn (*general*). **The output** because
-the machines differ about sixfold (280 l/h to 30 l/min), and the one
-independent study ran the large one and found no change (`open.md`,
-*What the forums say*, hydrogen decarbonisation, 4/11). **The car had one
-before**, with hydrogen, on 10/8/2021 (`vehicle-history.md`): its
-effect was not recorded, and the 3,400 km and more since (152,000 at
-1/2022 against 155,357 on 3/11, the odometer table there), most of
-them gentle until 9/2026 and a year laid up, were enough to build what
-the borescope saw in 10/2026 — so a clean is a reset, not a cure, if
-gentle use comes back (*reasoned*). **2,000 rpm held, not idle**: the
-provider's own procedure (*owner*). **Nothing measured there**, so
-the before and after is `IdleHealth` on the display — **before** is
-what is already read: 80–105 on the display on the remap (28/10–2/11),
-and on the original map `42`'s 54–77, `43`'s 48–86 loads off and
-**70–95 on the display** the night of 3/11 (everyday state, oil 101 °C),
-**90–110 after queuing and 70–90 after revving on 4/11, 45–50 with the
-A/C**, plus whatever item 6's drives give until the appointment. **What
-the stops are read for** (`open.md` S1, re-read 4/11 on the load and
-revving patterns): if the deposit on 3's exhaust seat is what the two
-share (H13 with H1), the clean narrows **both gaps** — loads off towards
-the A/C's figure, queuing towards after revving; the gap after queuing
-gone and the load's kept points at H3 instead; both kept, item 9. Hence
-the word on what came before each stop. And H1's own test
-(a warm compression or leak-down reading on 3 against the others,
-`refuted.md` A4) stays for afterwards, if the clean does not help. **No injector swap**
-and **no plug change for now** (*his decisions*, 3/11). **The days after**
-(*reasoned*, from SAE 2000-01-2858: water flakes deposits most): the
-clean burns hydrogen to water vapour, so a flake may come loose and lodge
-under a seat, an 18/10-like drop-out; if one comes, a warm leak-down on 3
-the same day or the next is the one moment it can be told from a seat
-or a guide. **The capture with the cut** (`cutscan.py --shares --name`,
-and `dipshape.py --name --order 4`: whether 3's dips of two firings in a
-row go with its single ones, `open.md` S1, *How many strokes make a dip*;
-and `IdleHealth` split into the steady pattern over the cylinders and the
-rest, named by the cut, `open.md` S1, *A steady pattern over the
-cylinders*: whether the clean took 3 and 4's deficit, the dips, or both)
-is the reading that separates: calmer with 3's share near 25 % → the
-deposit on 3 was the excess (H13); calmer with 3 still leading → 3 has
-its own cause (H1, item 9); no change → item 9. The display's own spread
-(48–105 loads off) is as large as the effect looked for, so `IdleHealth`
-alone does not decide it; the capture is the exception item 6's "no
-captures until the display shows a change" makes for a repair (*agreed
-with the owner*, 4/11). Above reserve, because the ECU puts a misfire
-on an empty tank down as P1300 (`open.md`, *What the forums say*).
-**The tick at step 7** (`open.md` S22, added 9/11 during the clean):
-four videos from the clean show one rhythm once per cycle at 1,750–2,150
-rpm, one source; recorded again at the same engine speed after the
-clean, a change points at deposit (H13), none at a part (H1's lifter,
-H2's port); the phone at each end of the cam cover is the cheapest way
-to say which end, before item 9's stethoscope says which cylinder.
+**After the clean of 9/11 — why the next steps are these** (proposed by
+Claude 9/11; the clean itself, done, is `idle-log.md` and `open.md` S1,
+*The clean of 9/11*; how its day was planned and read: `git show
+c11dc75:docs/engine-health/plan.md`, item 8). **What it showed**: 3's
+excess — its share of the dips, its steady deficit, the rough first
+minutes of a warm stop and 014's storm — was not there at stop 7, which
+is the H13 branch for 3; **4's steady deficit and the settled level were
+kept**. **The second captured stop** because the rough start is what
+varies most between stops: stop 3's own second half read like stop 7,
+and straight after the clean 3 was still short, so one stop each side
+does not say the clean's effect lasts; a warm stop after a similar run
+with a 30 s cut on 4, on another day, does — a rough start on 3 again
+says it did not. **6m for 4** because 4 is now the cylinder with a
+deficit of its own, and its injector circuit is the cheapest of the
+three causes that act on 4 alone (H4; H3's runner gasket and H1's inlet
+seat cost the intake off or a leak-down). **The display's stops** with a
+word on what came before each, because a brisk run calms the idle by
+itself for a while (`open.md` S1, *After high revs*) and the display's
+spread is as large as the effect; the A/C's figure for `open.md` S1's
+closing mark 2. **The days after** (*reasoned*, from SAE 2000-01-2858:
+water flakes deposits most): the clean burns hydrogen to water vapour,
+so a flake may come loose and lodge under a seat, an 18/10-like
+drop-out; if one comes, a warm leak-down on that cylinder the same day
+or the next is the one moment it can be told from a seat or a guide.
 
 **Item 8a — the purge valve, conditional** (*the owner's decision*,
 6/11 night: *this was "replaced after item 8's readings", his decision
@@ -414,8 +272,9 @@ passed air unpowered not clearly at all, at most "really very little"
 (*owner*), it had no granules or fuel behind it, and it was cleaned with
 its contacts and refitted (`idle-log.md`). The part is known and fits;
 **a code once in eight years is acceptable** (*the owner*), so it is
-bought if P0440 comes back, or if item 8 leaves the idle as it was and
-the purge path is the next candidate. **The part**: the valve taken out on
+bought if P0440 comes back. *Until 9/11 also "or if item 8 leaves the
+idle as it was and the purge path is the next candidate"*: the clean
+changed cylinder 3, and P0440 was not stored that day. **The part**: the valve taken out on
 6/11 is itself Bosch `0 280 142 353`, VW `1C0 906 517 A`, date code
 `040` (`photos/n80-2026-11-06-label.jpg`); Auto Kelly lists the same
 for this car, engine AQY (*owner*, 6/11), so a new one is the same
