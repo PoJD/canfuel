@@ -2190,11 +2190,19 @@ rear probe need not catch it**: SSP 175 (p. 28) has M5.9.2 correct a
 shift of the front probe's curve through a second loop on the rear
 probe, *"within a defined framework"*, but says nothing of a correction
 by load, and behind the converter at idle's small flow the rear probe
-answers slowly (*general*). **Against**: the step of the idle cell
-around 24/10 (a probe ages over thousands of kilometres) still stands;
-033's front probe voltage at warm idle swings 0.03–0.72 V (p10–p90,
+answers slowly (*general*). **The idle cell over time** (9/11 night,
+*the owner's question*; every reading in `idle-log.md`): **−5.5 % on
+20/8 and −4.7 % on 10/9**, on the old injectors and the old MAF;
+−0.8 % on 4/10, relearning after the battery disconnects; −4.7, −3.1,
+−6.3, −3.1 % from 15/10 to 23/10; **−8.6 % on 25/10** and −6.3 to −8.6
+on every reading since (−6.3 one drive after the reset of 3/11). **So
+it is no step but a cell that has been negative since August, a few
+points more since 24/10** — the *step* above was overdrawn, and
+negative before any repair, as a probe bias would be. **Not telling
+either way**: 033's front probe voltage at warm idle swings 0.03–0.72 V (p10–p90,
 `vcds-step6i-warm-idle-2`, `vcds-step2b`), which VCDS's ~1 s sampling
-cannot judge. **Test, free, read only** (*proposed*, 9/11): **036 field 1,
+cannot judge. **Test, free, read only** (`plan.md` 8c, *agreed with the
+owner*, 9/11): **036 field 1,
 the rear probe's voltage**, with 033 and 041 (`vcds.md`), at a warm idle
 loads off, then with the A/C, then at 2,500 rpm — steady low (about
 0.1–0.3 V) at idle and normal at 2,500 says the idle runs lean and the
@@ -2221,11 +2229,10 @@ question*; *general* mechanisms, which of them, if any, *not known*):
   it is largest at idle**, where a fixed leak is the largest share of the
   air, and so would be the probe's error: a link between H3 and H11.
 - **Poisoning.** Silicone, oil ash or fuel additives coat the electrode
-  and slow it. **The idle cell's step came in the window of the two BG
-  44K tanks (23–24/10)** and the hours of hard driving on them
-  (`vehicle-history.md`) — what answers the
-  *against* that a probe ages slowly; a coincidence until the probe is
-  read.
+  and slow it. The idle cell's few extra points came in the window of
+  the two BG 44K tanks (23–24/10) and the hours of hard driving on them
+  (`vehicle-history.md`); the cell itself was negative since August, so
+  poisoning would at most have added to an older offset.
 - **A weak heater** leaves the probe coolest at idle; 041 reads its
   resistance.
 Misfires push the other way (their unburnt oxygen reads lean), as does
