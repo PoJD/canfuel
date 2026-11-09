@@ -2863,6 +2863,19 @@ throughout. **Within the day after the clean** 3 stayed near a quarter
 — 7 of 25 straight after it, 8 of 33 at stop 7, 8 of 23 at work — but
 at work the dips were back at 4.2 a thousand strokes, stop 3's rate;
 whether it lasts is `plan.md` 8b.
+**Before 24/9** (the owner's question; the old injectors, leads and
+MAF): only short idles exist, and in two of them the strongest slot is
+not clear. **`11`** (A/C off, 25 s): 2 −5, 3 +7, 1 −2.5, 4 0, no dip;
+**`12`** (A/C on): the same shape at half the size; **`17`** (11 s of
+idle): 3 +8, 4 +6, but 1 nearly as strong as 2 (−6.8 against −7.3), so
+the naming may be one slot off; **`09`** (11/8, 60 s): two neighbours
+strong and two weak (−7, −6 against +6, +7), 2 and 4 too close to tell
+which is the strongest — 3 and 1 weak, or 3 and 4 weak; its dips, 11 of
+20, sit on the slot that is either 4 or 2. **`18`** (11/9, cold start,
+oil 16–64 °C): **2 strong, 4 weak by 8–24 %**, the weakest cold reading
+of any slot on record, and 4 first of the dips (8 of 22). **Read**: a
+strong 2 and a weak pair on 3–4 were there in August and September too,
+cold 4 most; the dips too few to name.
 
 **Every named capture side by side** (3/11, at the owner's question):
 `31` (10/10, warm, NGK leads): 4 42 %, **3 31 %**, 2 14 %, 1 12 %;
