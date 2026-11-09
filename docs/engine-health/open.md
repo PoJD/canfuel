@@ -1420,6 +1420,28 @@ over the cam cover, so the phone was not on it (*reasoned*). **Read**
 is still not said — the stethoscope on the cam cover, hot (`plan.md`
 9), and at idle is enough now.
 
+**Against the earlier engine-bay recordings at idle** (9/11 evening, *the
+owner's question*; every album video with the bonnet open and a clear
+firing line; the same measure, engine speed from the sound's own firing
+line; *ad-hoc script, not kept*): the once-per-cycle part **7.1** on
+15/10 (the vacuum gauge, warm, 3½ min), **1.7 and 4.9** on 14/10 (the
+gauge, cold), **3.3–4.2** on 12/10 (the cold exhaust test), **16.4 on
+18/10** (cylinder 3 out with its tick, `refuted.md` D10), and **7.8**
+after the clean. **So the rhythm is in every recording, at about
+today's size, and stood out once — 18/10**; the clean's videos at
+1,750–2,150 rpm (4.1–10.7) are not above it either. ⚠ The phone's place
+and distance differ from video to video, and with all four cylinders
+firing a little unequally (S1's steady pattern) a once-per-cycle
+part is expected in any recording; this measure cannot tell a tick
+from that. **The owner** (9/11 evening): he heard the tick clearly during
+the clean, before it only now and then while driving, and standing it
+does not tick much now — nor did it before; **the clean's sound he takes
+for an anomaly of the clean itself**, its extra hydrogen and oxygen in
+the intake. *Reasoned*: a charge with oxyhydrogen in it burns faster and
+peaks harder, so one cylinder's difference becomes louder; the
+recordings neither confirm nor refute it. **Whether S22 stays a symptom
+is the owner's to decide** (asked 9/11 evening).
+
 **Tests**: the same recording **after the clean**, at the same engine
 speed, against these four — a deposit's tick (H13) would change, a
 lifter's would not; **the phone close to the cam cover above 1, then
