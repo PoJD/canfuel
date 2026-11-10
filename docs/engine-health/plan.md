@@ -101,12 +101,15 @@ captured warm stop with a cut on 4) and 6m for cylinder 4 after them
 8d. **The relearn after the battery disconnect** (disconnected by the
    owner on 10/11 after parking at work). Claude in a session on the
    laptop, VCDS only; **no CAN capture**: the MFD in.
-   1. **Before the start**, ignition on, engine off: the fault memory
-      read; **032 055 for 20 s**. Then **the owner runs 098 under basic
-      settings** himself, as on 27/10, and photographs the result.
+   1. **On reconnecting the battery, the owner runs 098 under basic
+      settings** himself, as on 27/10, and photographs the result. Then,
+      ignition on, engine off: the fault memory read; **032 055 for
+      20 s**.
    2. **The drive home: 014 032 036 logged** from the start to engine
       off; the laptop not touched while driving. Drive as the day brings
-      it.
+      it. **At every warm stop on the way, `IdleHealth` and `Misfires`
+      into the chat with the time** — the first ones are the idle with
+      032 near zero.
    3. **At the end, a warm stop in the everyday state, the A/C off, 3
       minutes**; `IdleHealth` and `Misfires` into the chat as it goes.
       Then **032 055 for 20 s** and the fault memory, engine still
@@ -312,7 +315,11 @@ disconnect (`vcds.md`); it is a basic setting, so the owner runs it,
 never Claude (`CLAUDE.md`). **The warm stop at the end** is read with
 055 settled — it relearns within the first few entries into a warm idle
 (`idle-log.md`, 27/10) — and is the second of the three stops H11's
-marks ask for. **No CAN capture** (*the owner*, 10/11), so the dips'
+marks ask for. **The stops on the way** because the idle cell starts at
+zero and learns at idle: they read the idle with 032 near zero, the
+owner's test of whether the learnt cell itself made the idle rough
+(`open.md` H11, *The owner's hypothesis for the relearn*). **The order
+of the hypotheses is re-read after this drive** (*the owner*, 10/11). **No CAN capture** (*the owner*, 10/11), so the dips'
 share over the cylinders waits for 8b.
 
 **8e, the probes' tightness**: they were tightened by hand to about 50

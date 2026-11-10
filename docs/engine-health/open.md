@@ -216,7 +216,7 @@ under load; a steady pattern over the cylinders, 3 and 4 weak and 2
 strong, is about a third of `IdleHealth` (S1, *A steady pattern over the cylinders*); re-ranked
 on it with the owner: **H3 second, H1 third, H4 fifth**. **Re-read
 10/11 midday, after the reading after the swap: the order kept until
-the owner decides; proposed, H11 from third to seventh** (its idle form
+the owner decides after the relearn drive (8d); proposed, H11 from third to seventh** (its idle form
 has lost its link — the lean mean went with the old probes, the
 roughness stayed; *The idle's candidates, ranked*).
 
@@ -2450,6 +2450,22 @@ disconnect is no evidence (`refuted.md` C19's rule), and 055 relearns
 at the first warm stops, so the stop at the end is read with 055
 settled.
 
+**The owner's hypothesis for the relearn** (10/11): the idle is a burn
+at the edge, and **the negative idle cell the old probe taught may
+itself keep the mixture lean**, so the idle may settle only once 032 is
+near zero — which one drive on kept adaptations did not reach. **Against
+it** (*reasoned*): in closed loop the learnt value only sets where the
+live regulation starts; the mixture follows the probe. On 10/11 at idle,
+with the cell at −7.8 %, **001's live correction centred on −0.1 %**
+(−4.7 to +3.9, 11:47–11:56) and the new rear probe sat flat at 0.60 V,
+so the mixture the new front probe asked for was reached, and the idle
+was rough at it. The learnt value acts directly only where the loop is
+open: the first 40–100 s after a cold start and the return from an
+overrun cut. **The drive tests it either way**: the idle cell starts at
+zero, so the first warm stops are the idle with 032 near zero; **rough
+there as well, and the cell sinking again**, says the cell is not the
+idle's cause (*the owner's criterion*, 10/11).
+
 **What the rear probe can and cannot say** (10/11, *the owner's
 question*; *general* and *reasoned*). **The oxygen a converter stores
 grows with (λ − 1) × the exhaust's mass flow** (the integral the
@@ -3609,7 +3625,10 @@ is in git.
 | 14 | **H12** driveline play | — | done: the clutch minutes cleared it |
 
 **Re-read 10/11 midday, after the reading after the swap** (H11, *The
-reading after the swap*): **the order kept until the owner decides.
+reading after the swap*): **the order kept until the owner decides —
+he decides after the relearn drive of 10/11 afternoon** (*the owner*:
+re-ranked then if 032 sinks again and the idle stays rough with the
+cell near zero at the start).
 Proposed: H11 from third to seventh**, H4 to the timing belt one up. Its idle form
 asked for one link — a lean idle, so a rough one — and the reading
 after broke it from both sides: the lean mean went with the old probes
