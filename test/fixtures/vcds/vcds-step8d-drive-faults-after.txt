@@ -1,0 +1,4 @@
+2026-11-10 17:33:27  01-Motor, fault memory after (read by vcds_log.py)
+1 nalezena chyba:
+16521 - rada valcu 1 - sonda 2 
+            P0137 - 35-10 - signal prilis maly - Sporadická
