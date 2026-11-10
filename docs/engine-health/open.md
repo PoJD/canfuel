@@ -222,6 +222,7 @@ roughness stayed; *The idle's candidates, ranked*).
 
 **Next** (`plan.md`; *the owner*, 10/11): **8d, the relearn after the
 battery disconnect** — the drive from work with VCDS on 014 032 036
+and a CAN capture (the MFD out; 8b's cut at the end if the drive was brisk)
 (032/055 and the fault memory before the start, the owner's 098, a warm
 stop at the end), then 032 at every VCDS session until it settles;
 **8e, the new probes' tightness** at the next cold engine; then the MFD in (item 6) and the oil level every 500 km (6i); **item 6's warm stops on
@@ -2419,6 +2420,37 @@ empty before, after and at the end.
 4. **032** moved two steps towards zero in one drive. Mark 1 is not read
    yet; the battery disconnect that followed makes it a clean relearn
    (*The relearn after the battery disconnect*, below).
+
+**What else could have shaped it** (10/11 midday, *the owner's
+question*; *reasoned*, each with what the next drive says):
+- **032 still at the old probe's −7.8 %** — the owner's hypothesis
+  (below, after the relearn); against it, the live correction centred
+  on zero; the relearn reads it.
+- **The display read by eye and one warm stop.** `IdleHealth` off the
+  display is a running figure, and one stop is within the spread
+  between stops (S1's table: 48–93 settled on the same day); the dips'
+  share and the steady pattern were not read at all. The capture of 8d
+  reads them.
+- **The standing phases on part-warm oil**: 54 °C at the start of loads
+  off, coolant 78–99 °C, against 9/11 night's start at 73 °C of coolant
+  (oil not read then); the idle is roughest cold (S1, *Temperature*), so
+  those phases compare with 9/11 night only, never with a warm stop.
+- **New probes run in**: whether a new probe reads differently over its
+  first hours is *not known* for these parts; the rear one's flat 0.60 V
+  in the first 18 minutes argues it worked from the start.
+- **The rear probe's switch at 11:54:45** — nothing in 001 or 033 at the
+  sample: the live correction moved from about −0.3 to −0.6 %, within
+  its noise; the front's switching unchanged. Left: **the converter
+  cooling over a long idle** (its storage falls with temperature, and
+  the switch passed rich and lean alike, ended by the 1,500 rpm and
+  returned only after 1½ minutes at the hot stop — which fits the cold
+  standing better than the hot stop); **purge** (N80 opens on a warm
+  engine, its vapour reads rich), not visible in 001 at VCDS's ~1 s; the
+  ECU's own check of the rear probe (036 field 2's `zap.` → `OK`); a
+  probe seated loose (8e). None told apart.
+- **The day before**: the hydrogen clean of 9/11 changed cylinder 3, so
+  a stop on 10/11 compares with stop 7 (57–63), not with stops before
+  the clean.
 
 **The five marks at the first stop** (12:27): **1** not yet (−6.3 %);
 **2** met in the first loads-off phase and, at its limits, at the stop

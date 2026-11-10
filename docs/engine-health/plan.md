@@ -92,7 +92,8 @@ captured warm stop with a cut on 4) and 6m for cylinder 4 after them
    Claude in a session on the laptop, fuel above reserve: the USBtin in
    and the MFD out before the ignition; `usbtin_capture.py` from before
    the start to engine off, `vcds_log.py --groups 014 001 003` (fault
-   memory read first). **A brisk run with a motorway stretch until the
+   memory read first); **done within 8d when its drive allows**.
+   **A brisk run with a motorway stretch until the
    oil is at 95 °C or more**, then **a stop on a car park in the
    everyday state, the A/C off**: 3 minutes' idle, **injector 4's
    connector off for 30 s** (say when, by the chat), 3 minutes more.
@@ -100,20 +101,23 @@ captured warm stop with a cut on 4) and 6m for cylinder 4 after them
    clears it by hand.
 8d. **The relearn after the battery disconnect** (disconnected by the
    owner on 10/11 after parking at work). Claude in a session on the
-   laptop, VCDS only; **no CAN capture**: the MFD in.
+   laptop; **VCDS and a CAN capture** (*the owner*, 10/11): **the
+   USBtin in and the MFD out** before the ignition.
    1. **On reconnecting the battery, the owner runs 098 under basic
       settings** himself, as on 27/10, and photographs the result. Then,
       ignition on, engine off: the fault memory read; **032 055 for
       20 s**.
-   2. **The drive home: 014 032 036 logged** from the start to engine
-      off; the laptop not touched while driving. Drive as the day brings
-      it. **At every warm stop on the way, `IdleHealth` and `Misfires`
-      into the chat with the time** — the first ones are the idle with
-      032 near zero.
-   3. **At the end, a warm stop in the everyday state, the A/C off, 3
-      minutes**; `IdleHealth` and `Misfires` into the chat as it goes.
-      Then **032 055 for 20 s** and the fault memory, engine still
-      idling; the owner clears it by hand only if there is a code.
+   2. **`usbtin_capture.py` started before the ignition**, to engine
+      off; **014 032 036 logged** from the start to engine off; the
+      laptop not touched while driving. Drive as the day brings it; at
+      the stops nothing to read — a word in the chat on what came before
+      each is enough.
+   3. **At the end, a warm stop in the everyday state, the A/C off**:
+      3 minutes' idle; **if the drive had a brisk stretch to 95 °C of
+      oil or more, injector 4's connector off for 30 s** (said in the
+      chat), then 3 minutes more — 8b's stop; otherwise 3 minutes and no
+      cut. Then **032 055 for 20 s** and the fault memory, engine still
+      idling; the owner clears it by hand (a cut leaves its code).
    4. **After that, 032 for 20 s at every session with VCDS connected**,
       until both cells have held for three drives.
 8e. **The new probes' tightness**, at the next cold engine after 8d:
@@ -319,8 +323,15 @@ marks ask for. **The stops on the way** because the idle cell starts at
 zero and learns at idle: they read the idle with 032 near zero, the
 owner's test of whether the learnt cell itself made the idle rough
 (`open.md` H11, *The owner's hypothesis for the relearn*). **The order
-of the hypotheses is re-read after this drive** (*the owner*, 10/11). **No CAN capture** (*the owner*, 10/11), so the dips'
-share over the cylinders waits for 8b.
+of the hypotheses is re-read after this drive** (*the owner*, 10/11). **The CAN capture** (*the owner*, 10/11 midday:
+*this said "no CAN capture" until then*) because the reading after the
+swap rested on the display read by eye and on one stop: the capture
+gives `IdleHealth`, `Misfires` and the start from the ECU's own frames
+(`tools/idledips.py`), minute by minute against 032 in the VCDS log,
+and the dips' share and the steady pattern over the cylinders, which
+the display cannot. **The cut at the end only after a brisk run**,
+because then the stop is 8b's own, comparable with stops 3 and 7 of
+9/11; after a gentle drive it would not be, and the cut is left out.
 
 **8e, the probes' tightness**: they were tightened by hand to about 50
 Nm estimated, without a torque wrench (`vehicle-history.md`), and the
