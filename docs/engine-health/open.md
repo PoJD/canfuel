@@ -1787,7 +1787,21 @@ had tucked them into that morning, the old ones having hung loose):
   connector not latched would let the front probe's contacts move —
   for H21 at the front, and for nothing measured yet.
 
-**What it touches**: **H11's mark 2 from 16:57 on 10/11** (unreadable)
+**Does the rear probe touch the mixture** (*the owner's question*, 10/11
+night): **a little and slowly, yes** — this ECU runs a second loop on
+it, which shifts where the front probe's loop sits (SSP 175, the
+second loop; 037 field 3, ±1200 ms, `vcds.md`), within limits; and it
+is what the converter's and its own diagnosis read, so it can set a
+code and in time the lamp (P0137 was stored sporadic and lit nothing;
+the lamp stayed out on the bus while the engine ran). **So 032's end
+value on 10/11 is likely bent by S23** (*reasoned*): the idle cell
+reached −6.3 % at 16:58, as the fault began, and came back to −3.9 %
+over 17:10–17:24 while the rear probe lay low — the second loop asking
+for fuel, the cell following; **−6.3 % is the cleaner reading of the
+relearn**, −3.9 % not.
+
+**What it touches**: **H11's mark 1 on 10/11** (the end value, above);
+**H11's mark 2 from 16:57 on 10/11** (unreadable)
 and **the warm stop at the end**, run with the ECU seeing a lean rear
 probe — how far the rear loop moves the front's set point at idle on
 this ECU is *not known*. **Not the idle**: the idle was as rough before
