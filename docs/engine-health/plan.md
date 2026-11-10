@@ -130,8 +130,8 @@ cold engine, with the rear probe's lead and both probes' sockets**,
    side's signal pin (the one the probe's black wire meets) and the
    body, the reading into the chat. Then the owner moves each probe's lead and connector and the
    loom towards the ECU by hand, a few seconds each, saying in the chat
-   which and when. **Only if nothing moves**: the same at a warm idle,
-   the engine running, nothing unplugged. After it, the fault memory.
+   which and when. **Never with the engine running**: nothing under the
+   car or by the exhaust while it runs. After it, the fault memory.
 9. **After the clean of 9/11, by what the next stops show** (Claude says
    which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
@@ -340,8 +340,13 @@ idea*, 10/11 night) — so **a leak to earth or a short, S23's kind,
 pulls it off that value as a lead is moved**, with no heat and nothing
 running under the car. **What it cannot show** (*reasoned*): a
 resistance in series, or a break, with the probe cold and no current
-through it the ECU reads its own bias either way; for those the probe
-must be hot and switching, hence the warm idle after. **Whether the
+through it the ECU reads its own bias either way; those would show only
+with the probe hot and switching, and **the flexing is not done with
+the engine running** (*the owner's decision*, 10/11 night: the exhaust
+hot, and nobody under a running car) — so they are left to the
+multimeter, each wire end to end with the ECU's plug off (6n). *Until
+then this asked for the same flexing at a warm idle if nothing moved
+with the ignition on.* **Whether the
 readings are live at all** (*the owner's question*, 10/11): the rear
 one is — with its probe cold it reads 0.425–0.44 V with the ignition on
 or the engine running, a step of the converter either way, and slid
@@ -350,8 +355,8 @@ away from 0.44 V as the probe warmed on 10/11 morning
 told from the logs**, exactly 0.435 V in all 230 engine-off samples
 over five sessions and both probes, which a substitute value would
 also give. A value that moves when its connector is off is live; one
-that does not, for the front, makes its half of 8g a warm-idle test
-only. The multimeter on the harness side's signal pin with the
+that does not, for the front, leaves the front's circuit to the
+multimeter alone. The multimeter on the harness side's signal pin with the
 ignition on shows whether the ECU puts a bias on the line at all (a
 few hundred mV says it does; *general*: many ECUs bias the signal
 through a high resistance). Unplugging may store a circuit code for
