@@ -3229,7 +3229,27 @@ split 4 s**. Full throttle (open loop, never rough) carries the load
 the same way. **Not telling either way**; the comparison that does —
 the reading after the swap, 10/11 — found the idle as rough with the
 rear probe flat as with it sinking (*The reading after the swap*,
-above). *Not recommended now*: unplugging the front
+above). **Re-read 11/11 with the idle target decoded** (0x288 b5,
+`docs/firmware/can-decoding.md`; *the owner's question* after the cold
+start of 11/11; six standing cold starts, `18`, `25`, `27`, `31`, `32`,
+`33`, in 10 s windows, `IdleHealth` as the mean step with no smoothing;
+*ad-hoc script, not kept*): **the catalyst-heating idle ends on a timer,
+100 s after the start every time** — the target 900 → 830 → 810 rpm,
+the engine 930 → 820 within 10 s, the injection time down a step, b7
+unchanged. **The roughness does not follow it at once**: the window
+110–120 s, the speed already down, reads 42–83 (four of six under 70,
+as calm as before the step); **it builds over the next 20–40 s**, to
+95–171 by 130–150 s, every time. And the first 40 s after the start,
+at 930–1000 rpm and the richest, were rough (100–170) — so speed and
+charge alone do not make it calm. *Reasoned*: a fuller, slower charge
+calms at once when it comes and roughens at once when it goes; this
+roughening lags the drop by tens of seconds, as the closed loop takes
+over (about 105–110 s) and its swing grows — **for the lean-edge family**
+(a lean cylinder or a mis-read mixture the loop's swing pushes over:
+H3, H4, H13, H11/H21) **and against a pure dilution at the lower speed**
+(H1's exhaust seat, the belt's overlap), which would show at once. One
+kind of event, six times; a slower change (the exhaust cooling after
+the retarded burn) is not ruled out. *Not recommended now*: unplugging the front
 probe at a warm idle would open the loop at the same charge, but the
 ECU then runs on 032's learnt value, which a misreading probe set, and
 it stores a code.
