@@ -1761,9 +1761,18 @@ had tucked them into that morning, the old ones having hung loose):
   terminal, in both sockets, shows the two springs of a V** — as if both
   springs had split. A broken spring presses weakly on its pin: a
   contact whose resistance moves with heat and shaking (*general*).
-  **Which wire enters that cavity** — the blue heater lead or the one
-  meeting the probe's black signal at the other end — *not known*; the
-  front socket latched fully on the second try (*owner*).
+  **It is the cavity that meets the probe's black wire** (*owner*,
+  10/11 night) — **the rear probe's signal**, by Bosch's usual colours
+  (*general*). The front socket latched fully on the second try
+  (*owner*).
+- **Read** (*reasoned*): **the likeliest cause of S23.** A weak, broken
+  contact on the signal itself explains the reading moving with heat
+  and shaking; and **0.000 V exactly** is what the signal reads when it
+  is joined to its own earth — the next terminal carries the signal
+  earth (the probe's grey), so a loose piece of a split spring touching
+  it, or corrosion bridging them, would give it, where an open contact
+  would leave the ECU reading its bias, about 0.44 V (*the bias*:
+  `plan.md` 8g's evidence). Not proven until the terminal is out.
 - **Why on 10/11** (*owner*, 10/11 night): that morning he tucked the
   new probes' spare lead into the box with the harness, where the old
   probes' leads had hung outside — so the wires were pressed together
