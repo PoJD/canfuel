@@ -422,6 +422,12 @@ each after a motorway run, each with a 30 s cut on 4:
   short drive on from stop 7: 93 → 54–79 over four minutes, its rough
   first minute **on 4 (10–12 %), not 3** (*reasoned*: named by taking
   the strongest slot for 2, as at both cuts; no cut in that run).
+- **The day after** (10/11 evening, `47`; H11, *The four calm minutes
+  read closely*): **the dips back at 5.6 per 1000 strokes at the queue
+  stops and 7.8 at the warm stop**, against 1.7–3.8 at every warm stop
+  of 9/11 after the clean, and **3 leading them again**. The provider
+  said the clean's effect shows over a few hundred km (*owner*, 10/11);
+  one day reads the other way, the coming weeks' stops decide.
 - **With the provider's gas flowing at idle the idle had no dips at
   all.** Twice: 10:19–10:22, the hose fitted with the engine running,
   the A/C and the blower on 4 — **`IdleHealth` about 20, 0 dips in
@@ -2733,6 +2739,62 @@ did not bring the calm.
   **0–0.58 % of combustions at the queue stops, 0.24 % over them, 0.15 %
   at the stop at the end**; on the road single counts of 12–26 at
   lifts, as always (S3).
+
+**The four calm minutes read closely** (10/11 night, *the owner's
+request*: chance, or the clean working late — the provider said its
+effect shows over a few hundred km, *owner*; `47`–`48` and their
+unfiltered captures, *ad-hoc scripts, not kept*; 014 was not logged
+then, its log ended 17:33:15). The stop in phases, all at 795–798 rpm,
+the hazard lights on throughout, the A/C off (0x288 b2 16, below):
+
+| 10/11 | `IdleHealth` | dips / 1000 strokes | `Misfires` | named 1 / 3 / 4 / 2 | steady pattern, rpm (1 / 3 / 4 / 2) | b7 | fuel µl/s |
+|---|---|---|---|---|---|---|---|
+| 17:30:15–17:33:00 | 56 | 7.0 | 17 | 9 / 8 / 9 / 3 | +0.1 / −1.5 / −0.5 / +1.9 | 22.8 | 300 |
+| 17:33:00–17:35:20 | 59 | 8.8 | 17 | 7 / 11 / 4 / 5 | +0.3 / −1.6 / −0.6 / +1.9 | 22.4 | 299 |
+| 17:35:20–17:37:40, rough | 78 | 8.2 | 23 | 2 / **16** / 6 / 6 | +0.9 / **−2.6** / −1.0 / +2.7 | 25.4 | 316 |
+| **17:37:40–17:39:50** | **46** | 7.1 | 13 | 6 / 10 / 3 / 4 | 0.0 / −0.8 / −0.5 / +1.3 | 25.6 | 315 |
+| **17:39:51–17:42:50** | **38** | **4.1** | 7 | 3 / **0** / 3 / 7 | +0.1 / −0.3 / −0.9 / +1.1 | 23.8 | 310 |
+| 17:46:20–17:47:57, basic settings | 51 | 8.4 | 6 | 3 / 11 / 2 / 6 | +0.1 / −1.1 / −1.4 / +2.2 | 27.1 | 344 |
+
+- **Two steps, not one**: the grade fell at 17:37:40 (10 s windows 80
+  → 29, then 35–66) with 3 still leading the dips and the dips as
+  frequent; **only from about 17:39:50 did 3's dips stop and the dips
+  halve**, the steady pattern at about half — to the revs at 17:42:50.
+  **It came straight after the roughest part of the stop**, in which
+  3's deficit was the largest of the stop (−2.6 rpm) — the shape of
+  `42`–`44`'s rough start and settling, late (*reasoned*).
+- **Nothing on the bus moved with it.** Engine speed 795–797 rpm;
+  coolant cycling 96.8–100.5 °C about once a minute through the whole
+  stop, the radiator fan's rhythm, unchanged; the fuel flow and b7 as
+  in the stop's first minutes, so no sign of a cleaner burn taking
+  fuel away (on the gas of 9/11 it did); **a load step at 17:36:18**
+  (b7 23 → 27–29, 0x288 b6 37 → 41, the fuel +5 %) **lasting to about
+  17:39:48** — under the rough part and the first calm step alike, so
+  not the cause; what it was is *not known* (the A/C was off, the fan
+  shows smaller; the owner asked). Every other identifier of the
+  unfiltered capture checked byte by byte: no change at 17:37–17:40
+  but VCDS's own session frames (0x200 and 0x5D0 b0, 17:38:23).
+  **0x488 b3** pulsed 0x8D → 0x8C 32 times, 17:29:19–17:35:17 and at
+  no other time of 47–48, around the rear probe's fault (036 `neOK`
+  17:29) and the fault-memory read — meaning *not known*
+  (`docs/firmware/can-decoding.md`); it had stopped 2½ minutes before.
+- **VCDS around it**: 033 at 17:37:21–17:37:42, just before: the front
+  probe switching 0.06–0.73 V, its correction −2.3 to +1.6 % — the loop
+  normal; 036 0.03–0.14 V (S23) through all of it; 041 17:38:39–17:39:00,
+  heaters 25.5 / 22.9 Ω, inside the calm.
+- **The clean's late effect** (the provider's claim): **by dips the day
+  after is worse, not better** — the queue stops 5.6 and this stop 7.8
+  per 1000 strokes against **1.7–3.8 at every warm stop of 9/11 after
+  the clean** and 0.7–4.4 on `40`–`46` (S1, *The clean of 9/11*); even
+  the calm's 4.1 is above stop 7's 1.7. A cleaning that keeps working
+  would show as later stops calmer than earlier ones, with 3's share
+  falling; one day says the reverse. *Not ruled out* over hundreds of
+  km — item 6's stops over the coming weeks, and a capture (8b), read it.
+- **Read** (*reasoned*): **chance, or this stop's own late settling** —
+  the best four minutes on record in the everyday state, but neither
+  the clear (17:40:05 at the earliest) nor the tests, nor any load or
+  temperature the bus shows, came with them, and the clean's effect is
+  read the other way by the same evening's dips.
 
 **Read** (*reasoned*): **the idle cell came back on the new probes as
 on the old, so mark 1 is gone; marks 3–5 failed again; mark 2 is

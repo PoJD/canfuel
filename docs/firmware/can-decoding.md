@@ -547,9 +547,26 @@ sixty-second recording on a live bus.
 
 ---
 
+## Flags read on the captures of 10/11/2026
+
+Measured, not used by the firmware (`docs/engine-health/open.md` H11,
+*The relearn drive*):
+
+| ID, byte | value | what it follows |
+|---|---|---|
+| 0x288 b2 | `0x10`, **`0x18` with the A/C on** | `11_idle_noac` all `0x10`, `12_idle_ac` all `0x18`; on `47` `0x18` until 17:27:06, the end of the A/C stretch the owner gave (17:22–17:27), and on `48` 17:47:57–17:49:51 (bit 3) |
+| 0x320 b1 | **`0x02` parked** | set while the car stood at work before the drive and from the stop at the end to driving off; *reasoned* the parking brake |
+| 0x480 b1 | **`0x20`** | for a moment at every crank, and 17:41:44–17:47:58 on `48`, while VCDS ran basic settings (034, 046, 037); `20` carries it for 137 s after VCDS was reconnected; *reasoned*: the ECU's own state in basic settings, or a request it makes in it (the A/C came on the moment it ended) |
+| 0x5D0 b0 | `0x02` for one frame | with each 0x200 on `47`–`48`, VCDS opening a session (above; not on `20`) |
+
 ## What is NOT on the bus
 
-- **Lambda** — 0x488 is constant `ff ff ff 8d ff ff ff ff` in every log.
+- **Lambda** — 0x488 is constant `ff ff ff 8d ff ff ff ff` in every log
+  but one: in the unfiltered capture of 10/11/2026 (release
+  `raw-captures`, `2026-11-10_step8d_relearn_*`) b3 drops to `8c` for
+  one frame 32 times, 17:29:19–17:35:17 local, around the ECU flagging
+  the rear oxygen sensor (P0137, `docs/engine-health/open.md` S23) and
+  a fault-memory read; *not known* what bit 0 is.
 - **Battery voltage** — searched systematically, nothing. Solved with the
   display's internal sensor instead.
 - **Ambient temperature** — 0x420 b1 and b2 are both zero, so it is not on
