@@ -124,7 +124,11 @@ cold engine, with the rear probe's lead and both probes' sockets**,
 8g. **The probes' loom flexed with the ignition on, engine off**, Claude
    in a session on the laptop, VCDS on **033 036** logged (the fault
    memory read first); best together with 8e, the car already on its
-   place for it. The owner moves each probe's lead and connector and the
+   place for it. **First, whether the readings are live**: each probe's
+   connector off for about 10 s and back on, one at a time, said in the
+   chat; with the front one off, the multimeter between the harness
+   side's signal pin (the one the probe's black wire meets) and the
+   body, the reading into the chat. Then the owner moves each probe's lead and connector and the
    loom towards the ECU by hand, a few seconds each, saying in the chat
    which and when. **Only if nothing moves**: the same at a warm idle,
    the engine running, nothing unplugged. After it, the fault memory.
@@ -337,7 +341,21 @@ pulls it off that value as a lead is moved**, with no heat and nothing
 running under the car. **What it cannot show** (*reasoned*): a
 resistance in series, or a break, with the probe cold and no current
 through it the ECU reads its own bias either way; for those the probe
-must be hot and switching, hence the warm idle after. A socket seen
+must be hot and switching, hence the warm idle after. **Whether the
+readings are live at all** (*the owner's question*, 10/11): the rear
+one is — with its probe cold it reads 0.425–0.44 V with the ignition on
+or the engine running, a step of the converter either way, and slid
+away from 0.44 V as the probe warmed on 10/11 morning
+(`vcds-step8c-after-2-001-033-036.csv`); **the front one cannot be
+told from the logs**, exactly 0.435 V in all 230 engine-off samples
+over five sessions and both probes, which a substitute value would
+also give. A value that moves when its connector is off is live; one
+that does not, for the front, makes its half of 8g a warm-idle test
+only. The multimeter on the harness side's signal pin with the
+ignition on shows whether the ECU puts a bias on the line at all (a
+few hundred mV says it does; *general*: many ECUs bias the signal
+through a high resistance). Unplugging may store a circuit code for
+that probe: read after, cleared by the owner. A socket seen
 damp or green, or a jump in 033 or 036 as one lead is moved, is the find; both clean and
 steady leave the new rear probe itself for S23. The wires to the ECU
 are measured only with its plug off, so with 6n.
