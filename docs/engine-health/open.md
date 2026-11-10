@@ -1785,6 +1785,11 @@ had tucked them into that morning, the old ones having hung loose):
   drive, fits a fault that appeared on the first long drive after it
   and went at a cooler idle; S19's idle cell, older than that, would
   need the front signal earth to have been poor before.
+- **The harness runs up through the engine bay into the cabin to the
+  ECU, with no earth point on the way** (*owner*, 10/11 late night): the
+  probes' signal earths close inside the ECU, at its plug. The battery
+  taken out again that night, so 032 relearns from zero on the
+  repaired harness (`plan.md` 8f).
 - **Taped by the owner the same night**, everything he could see
   (`plan.md` 8e), so the drives after are a before-and-after test: S23
   coming back or not, and where 032 relearns (`plan.md` 8f). A front
