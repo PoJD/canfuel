@@ -20,7 +20,7 @@ The full previous version, before it was condensed on 20/10/2026:
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Current: 8e at the next
 cold engine, with the rear probe's lead and both probes' sockets**,
-8g at the next laptop session, and 8f at every VCDS session; item 6 and 6i, 8b (a second captured warm stop with a cut on
+8g with it at a laptop session (ignition only), and 8f at every VCDS session; item 6 and 6i, 8b (a second captured warm stop with a cut on
 4) and 6m for cylinder 4 after them (*the owner*, 10/11; `open.md` H11,
 *The relearn drive*, S23).
 
@@ -121,12 +121,13 @@ cold engine, with the rear probe's lead and both probes' sockets**,
      undone.
 8f. **032 for 20 s at every session with VCDS connected**, until both
    cells have held for three drives.
-8g. **The probes' loom flexed at a warm idle**, Claude in a session on
-   the laptop, VCDS on **033 036** logged (the fault memory read first):
-   the engine idling warm in the everyday state, the owner moves each
-   probe's lead and connector and the loom towards the ECU by hand, a
-   few seconds each, saying in the chat which and when; nothing
-   unplugged with the engine running. After it, the fault memory.
+8g. **The probes' loom flexed with the ignition on, engine off**, Claude
+   in a session on the laptop, VCDS on **033 036** logged (the fault
+   memory read first); best together with 8e, the car already on its
+   place for it. The owner moves each probe's lead and connector and the
+   loom towards the ECU by hand, a few seconds each, saying in the chat
+   which and when. **Only if nothing moves**: the same at a warm idle,
+   the engine running, nothing unplugged. After it, the fault memory.
 9. **After the clean of 9/11, by what the next stops show** (Claude says
    which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
@@ -327,8 +328,17 @@ load, 014, and from a capture the cylinder (`open.md` S12).
 **8e's sockets and 8g, the probes' circuit** (`open.md` H21, added
 10/11 evening at the owner's request): the swap changed the probes and
 their own plugs, not the harness side, so a fault there survives it —
-S23 in full, S19's idle cell perhaps. A socket seen damp or green, or a
-jump in 033 or 036 as one lead is moved, is the find; both clean and
+S23 in full, S19's idle cell perhaps. **With the ignition on and the
+engine off the ECU reads both probes at a steady bias** — 033 0.435 V
+and 036 0.425–0.44 V on 10/11 (`vcds-step8c-after-001-033-036.csv`,
+`vcds-step8d-drive-014-032-036.csv`, before the start; *the owner's
+idea*, 10/11 night) — so **a leak to earth or a short, S23's kind,
+pulls it off that value as a lead is moved**, with no heat and nothing
+running under the car. **What it cannot show** (*reasoned*): a
+resistance in series, or a break, with the probe cold and no current
+through it the ECU reads its own bias either way; for those the probe
+must be hot and switching, hence the warm idle after. A socket seen
+damp or green, or a jump in 033 or 036 as one lead is moved, is the find; both clean and
 steady leave the new rear probe itself for S23. The wires to the ECU
 are measured only with its plug off, so with 6n.
 

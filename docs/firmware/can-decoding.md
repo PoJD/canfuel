@@ -550,7 +550,9 @@ sixty-second recording on a live bus.
 ## Flags read on the captures of 10/11/2026
 
 Measured, not used by the firmware (`docs/engine-health/open.md` H11,
-*The relearn drive*):
+*The relearn drive*); `tools/canlog.py --states` prints the first three
+as intervals, so the owner no longer reports the A/C or the parking
+brake (*the owner*, 10/11):
 
 | ID, byte | value | what it follows |
 |---|---|---|

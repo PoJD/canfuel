@@ -744,3 +744,36 @@ class TestCli(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class TestStates(unittest.TestCase):
+    """canlog.states(): the switches the owner no longer reports.
+
+    Pinned against what he did report: the A/C on 17:06-17:09 and
+    17:22-17:27 on 10/11 (47 starts 16:15:18.84 local, so 17:06:13 is
+    3054 s), the car parked at work before it and on the parking brake
+    from the warm stop (17:30:14) to the end; 12 is the A/C hold of
+    August, 11 the same hold without it.
+    """
+
+    @classmethod
+    def setUpClass(cls):
+        cls.s47 = canlog.states(parse_file(FIXTURES / "47_relearn_drive_z1.txt"))
+
+    def spans(self, states, name):
+        return [(round(a), round(b)) for n, a, b in states if n == name]
+
+    def test_the_ac_is_read_where_the_owner_had_it_on(self):
+        self.assertEqual(self.spans(self.s47, "A/C on"), [(3054, 3260), (4044, 4308)])
+
+    def test_the_parking_brake_is_on_parked_and_off_driving(self):
+        self.assertEqual(self.spans(self.s47, "parking brake"), [(0, 485), (4496, 5072)])
+
+    def test_the_august_holds_differ_by_the_ac_alone(self):
+        on = canlog.states(parse_file(FIXTURES / "12_idle_ac_z1.txt"))
+        off = canlog.states(parse_file(FIXTURES / "11_idle_noac_z1.txt"))
+        self.assertEqual([n for n, _, _ in on if n == "A/C on"], ["A/C on"])
+        self.assertEqual([n for n, _, _ in off if n == "A/C on"], [])
+
+    def test_a_log_without_timestamps_gives_nothing(self):
+        self.assertEqual(canlog.states([Frame(None, 0x288, bytes(8))]), [])

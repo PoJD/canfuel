@@ -549,6 +549,11 @@ his phone. Check the platform and for a VCDS install; if unclear, ask once.
   unit, ever** — no clearing, coding, adaptation, basic settings, output tests
   or resets. Scripts click only an allow-list and stop on anything unknown. If
   a step seems to need a write, stop and ask.
+- **The A/C and the parking brake are on the bus** (0x288 b2 bit 3,
+  0x320 b1 bit 1; `tools/canlog.py --states`, which survives the
+  filter): read them from the capture, never ask him for them (*the
+  maintainer*, 10/11). He reports only what the bus lacks — the blower,
+  the seat heater, the lights, the hazard lights.
 - **You cannot hear him.** A reading at the car reaches you as text (phone
   dictation works); align it to the capture by an event it records, never by
   when the message arrived.
@@ -567,7 +572,7 @@ Windows) are the only third-party dependencies; there is no
 ```
 python tools/usbtin_capture.py --seconds 60 --out idle_z1.txt
 python tools/oilwatch.py idle_z1.txt
-python tools/canlog.py FILE          # per-ID summary; --dump --id 0x480
+python tools/canlog.py FILE          # per-ID summary; --dump --id 0x480; --states
 python tools/replay.py --every 100 FILE
 python tools/idledips.py --roughness FILE
 python tools/afterpull.py FILE       # the warm idle after high revs

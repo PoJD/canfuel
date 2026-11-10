@@ -308,6 +308,47 @@ def oil_c(byte: int) -> Optional[float]:
     return None if byte == 0xFF else byte - 60.0
 
 
+#: Switches the car reports on the bus, so the owner need not
+#: (docs/firmware/can-decoding.md, *Flags read on the captures of
+#: 10/11/2026*). (name, ID, byte, mask). All three IDs survive the filter
+#: the fixtures are cut to (CLAUDE.md, *Sessions at the car*).
+STATES = (
+    ("A/C on", 0x288, 2, 0x08),
+    ("parking brake", 0x320, 1, 0x02),
+    ("0x480 b1 0x20: crank, basic settings", 0x480, 1, 0x20),
+)
+
+
+def states(frames: list[Frame]) -> list[tuple[str, float, float]]:
+    """Every interval each switch in STATES was set: (name, from s, to s).
+
+    Seconds from the first frame of the log, as idledips.series() counts
+    them; an interval still open at the end closes at the last frame. A
+    log with no timestamps gives nothing.
+    """
+    if not frames or frames[0].ts_ms is None:
+        return []
+    t0 = frames[0].ts_ms
+    t_end = (frames[-1].ts_ms - t0) / 1000.0
+    out = []
+    for name, can_id, byte, mask in STATES:
+        since = None
+        for f in frames:
+            if f.can_id != can_id or len(f.data) <= byte:
+                continue
+            t = (f.ts_ms - t0) / 1000.0
+            on = bool(f.data[byte] & mask)
+            if on and since is None:
+                since = t
+            elif not on and since is not None:
+                out.append((name, since, t))
+                since = None
+        if since is not None:
+            out.append((name, since, t_end))
+    out.sort(key=lambda x: x[1])
+    return out
+
+
 def _summary(path: str, frames: list[Frame]) -> None:
     if not frames:
         print(f"{path}: no frames")
@@ -417,6 +458,9 @@ def main(argv: Optional[list[str]] = None) -> int:
                     help="report the interval between frames of each ID -- the "
                          "measurement that resolved questions 1 and 9. Needs a "
                          "log with timestamps; add --id for a histogram of one ID.")
+    ap.add_argument("--states", action="store_true",
+                    help="when the A/C, the parking brake and 0x480 b1 0x20 "
+                         "were on, from the bus (seconds from the first frame)")
     ap.add_argument("--strict", action="store_true", help="fail on the first damaged line")
     ap.add_argument("--fix-doubled", action="store_true",
                     help="drop the second copy when the file holds the recording twice")
@@ -426,6 +470,11 @@ def main(argv: Optional[list[str]] = None) -> int:
 
     for path in args.files:
         frames = parse_file(path, strict=args.strict, fix_doubled=args.fix_doubled)
+        if args.states:
+            print(path)
+            for name, a, b in states(frames):
+                print(f"  {name:26s} {a:9.1f} - {b:9.1f} s  ({b - a:7.1f} s)")
+            continue
         if args.gaps:
             # Deliberately before the --id filter: gaps are computed per ID
             # anyway, and dropping other IDs first would throw away nothing
