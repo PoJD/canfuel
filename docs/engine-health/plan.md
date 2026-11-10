@@ -105,11 +105,12 @@ the Beetle is driven again** (*agreed with the owner*, 9/11 evening;
 8c. **Both probes replaced, then the probes read again** (*the
    owner's decision*, 9/11, both since 10/11; the reading before it
    done 9/11 night).
-   1. **The parts** (*the owner*, 10/11, by the engine code at Auto
-      Kelly): **front Bosch `0 258 006 978`, rear Bosch `0 258 010 032`**.
-      Before fitting, each new probe against the old one it replaces:
-      the lead's length, the connector, the number of wires; the
-      numbers off both old probes sent to Claude.
+   1. **The parts, bought 10/11, checked against the VIN at the
+      shop** (*the owner*): **front Bosch `0 258 006 978`, rear Bosch
+      `0 258 010 032`**. Before fitting, each new probe against the old
+      one it replaces: the lead's length, the connector, the number of
+      wires; the numbers off both old probes sent to Claude; **the old
+      probes kept**.
    2. **Both probes replaced**, engine cold, battery left connected:
       the thread with anti-seize as the new one comes, the lead routed
       and tied as the old one was. **The old probe plugging the boss
