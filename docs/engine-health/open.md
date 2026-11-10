@@ -359,7 +359,7 @@ error):
 | 10/11 | display, VCDS | kept (032 −7.8 / +7.0) | **the first idle on both new probes** (H11, *The reading after the swap*): a cold start standing, then loads off, the A/C, loads off, 1,500 rpm, idle; coolant 78–99 °C, oil 54 °C at the start of loads off | **120–140, then 112–120** loads off; **70, then 66–75** with the A/C; 98–120 loads off; 70–99 after 1,500 rpm; `Misfires` 13–14, 3–4, 8–12, 7 → 5 (*owner*) — as on 9/11 night with the old probes (130–140, 90–100) |
 | 10/11 | display, VCDS 014 | 032 −6.3 / +5.5 after it | the drive on to work, about 29 min; a warm stop at the end, the everyday state, the A/C off, oil 101–102 °C | **60–70, 55, 70, 50–55, 48, then 80–90**; `Misfires` 7, 5, 3 (*owner*); 014 0.24 % of combustions |
 | 10/11 eve | `47`, VCDS 014 032 036 | **relearning from zero** (the battery off; −6.3 / +6.3 by 16:58, −3.9 / +7.0 at the end) | `plan.md` 8d, the drive home from work; queue stops 16:51–17:17 in the everyday state, oil 99–103 °C; one with the A/C | **63, 91, 82, 92, 63, 49, 55, 71** loads off; **52** with the A/C; 014 0.24 % over the stops; cold at 44–46 °C of oil with 032 at zero 91–104 (H11, *The relearn drive*) |
-| 10/11 eve | `47`, `48` | −3.9 / +7.0 (reset by the clear of P0137, 17:39–17:41:44, after the calm began) | the warm stop after a brisk stretch, the everyday state, the A/C off, **no cut**, oil 102–104 °C; **the rear probe reading zero** (S23) | **59, 57, 52, 54, 65, 66, 84, 70** a minute for 8 min (014 0.15 %); **then 45, 43, 38, 39, 36 — the calmest warm idle on record without the provider's gas**, 3 with no named dip, to the revs for 034 at 17:42:50; 40–66 in the basic settings after (H11, *The relearn drive*) |
+| 10/11 eve | `47`, `48` | −3.9 / +7.0 (reset by the clear of P0137, 17:39–17:41:44, after the calm began) | the warm stop after a brisk stretch, the everyday state **plus the hazard lights from arrival** (*owner*), the A/C off, **no cut**, oil 102–104 °C; **the rear probe reading zero** (S23) | **59, 57, 52, 54, 65, 66, 84, 70** a minute for 8 min (014 0.15 %); **then 45, 43, 38, 39, 36 — the calmest warm idle on record without the provider's gas**, 3 with no named dip, to the revs for 034 at 17:42:50; 40–66 in the basic settings after (H11, *The relearn drive*) |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -2617,7 +2617,16 @@ memory empty, **032 and 055 all zero before the start** (the battery
 off for hours); started 16:21:36; a mild drive in the everyday state,
 queues 16:29–16:41 and 16:51–17:17, **the A/C on 17:06–17:09 and
 17:22–17:27**, a brisk stretch to about 5,000 rpm 17:23–17:29, the warm
-stop from 17:30, the A/C off, **no cut** (the engine cover on).
+stop from 17:30, the A/C off, **the hazard lights on from arrival**
+(*owner*, said after the reading), **no cut** (the engine cover on).
+**The hazard lights show in the stop's engine speed**: a line at
+1.27–1.28 Hz, the flasher's rate, absent at the queue stops, about
+1.5 rpm over the stop's first seven minutes and 5 rpm in its calm end
+(a sine fitted to the detrended speed; *ad-hoc script, not kept*); a
+swing that size moves engine speed by about 0.3–1.6 rpm between two
+0x280 updates, under `IdleHealth`'s 3 rpm dead band, so it adds little
+to the grade (*reasoned*), and it was on from the first minute, so it
+did not bring the calm.
 
 | 10/11 (local) | oil °C | 032 idle / part, % | `IdleHealth` | rear probe (036) |
 |---|---|---|---|---|

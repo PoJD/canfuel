@@ -1303,7 +1303,8 @@ its `-2` file.
 - **Tests:** 032/055 and the fault memory before the start (all zero,
   empty); **the drive home from work captured** (`47`, the MFD out)
   with VCDS 014 032 036 throughout; queues, the A/C twice, a brisk
-  stretch, a warm stop of about 10 minutes in the everyday state, the
+  stretch, a warm stop of about 10 minutes in the everyday state with
+  the hazard lights on as well (*owner*), the
   A/C off, no cut; the fault memory, 032/055, 030/033/036 and 041 at
   the stop; then **034, 046 and 037 under basic settings by the owner**
   (`48`, photographed), the fault memory again (`plan.md` 8d, done).
