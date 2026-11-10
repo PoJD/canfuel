@@ -3761,7 +3761,19 @@ the radiator fan, the largest load at a stop, runs while the coolant
 falls; over the queue stops of 16:55–17:27 on `47` the rear probe read
 a median **0.29 V with the coolant falling (386 samples) and 0.29 V
 with it rising (475)** — the fan's current moved nothing (*ad-hoc
-script, not kept*). **Measurable cheaply**: the voltage between the
+script, not kept*). **A second, on the bus** (10/11 night, *the
+owner's question*: correlate every voltage that could share an earth):
+the coolant is read twice — the ECU's sender on 0x288 b1 and the
+gauge's own on 0x420 b4, a separate circuit
+(`docs/firmware/can-decoding.md`, question 10) — so a load that lifts
+the ECU's sensor earth would step their difference. On `47` it held
+**8.6–9.2 °C with the A/C off and on, twice**, and 9.3 against 9.7 °C
+with the radiator fan off and running at the warm stop: within half a
+bit (0.75 °C). An NTC sender reads a few mV as a degree or more at its
+hot end (*general*), so an earth that moved with these loads by more
+than a few mV would have shown — **against, for the ECU's sensor
+earth**; whether the probes' signal earths share it is *not known*.
+**Measurable cheaply**: the voltage between the
 ECU's earth and the engine block, and between each probe's signal-earth
 pin on the harness side and the ECU's earth, at a warm idle with every
 load on — a few tens of mV is an earth fault (*general*).
