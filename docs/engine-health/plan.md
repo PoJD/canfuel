@@ -292,9 +292,11 @@ kept**. **8c, the probes** (*agreed with the owner*, 9/11 late evening;
 only at idle, the real idle mixture is lean, and every pattern of the
 dips follows. **036's first field is the rear probe's voltage** and its
 block is not a basic setting (`vcds.md`), so it is read like any
-measuring block; behind a working converter a rear probe sits at about
-0.6–0.75 V when the mixture is right and low, about 0.1–0.3 V, when it
-is lean (*general*). **The reading before** (9/11 night; `open.md` H11,
+measuring block; behind a working converter a rear probe sits steady in
+the upper half, often 0.6–0.75 V, when the mixture is right, and sinks
+to about 0.1–0.3 V when it is lean (*general*; no figure is published
+for this engine, so the trend is read, not a value: `open.md` H11, *Why
+the criterion is a trend, not 0.6 V*). **The reading before** (9/11 night; `open.md` H11,
 *The reading before the swap*): at every idle the rear probe sank
 towards lean over the minutes, heaters good, 032/055 unchanged — a lean
 mean behind the front probe, of a size it cannot read and from one of
@@ -311,8 +313,9 @@ rear probe; **041 again** for the new probe's heater. **Both probes rather
 than an analyser** is the owner's decision (the front one 9/11, both
 10/11: both are from 2017, and he wants to avoid the analyser, which
 alone would read the lean mean's size): the reading before and after
-decides **between the old probes and the rest** — **036 holding about
-0.6 V at idle loads off, 032's idle cell falling and the dips fewer**
+decides **between the old probes and the rest** — **036 not sinking,
+steady above 0.45 V through every idle loads off, 032's idle cell
+falling and the dips fewer**
 says the old probes; the same sinking rules them out (the new rear one's
 own fault with them) and leaves hydrogen from unequal cylinders, air
 between the probes (item 7) and a lean bias the rear loop does not trim

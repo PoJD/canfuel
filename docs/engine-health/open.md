@@ -2318,14 +2318,33 @@ minutes on a mean only 0.1–0.2 % lean, as on one 5 % lean, faster.
 Misfires give the opposite (*below*), and **1,500 rpm standing is not
 load**: the rear probe read 0.26–0.38 V there too, so "normal under
 load" has not been measured. **What replacing both probes decides**
-(`plan.md` 8c; *the owner's decision*, 10/11): the rear probe holding
-about 0.6 V at idle loads off, and 032's idle cell falling towards zero,
-say the old probes were it (1); the same sinking says the old probes
+(`plan.md` 8c; *the owner's decision*, 10/11): the rear probe **not
+sinking** — steady in the upper half (above the 0.45 V switching point)
+through every idle loads off — and 032's idle cell falling towards
+zero, say the old probes were it (1); the same sinking says the old probes
 were not, and leaves 2, 3 and 4 standing — **the swap rules out parts,
 not mechanisms**. A new rear probe that sinks alike rules out the old
 rear probe's own fault as well.
 
-**Against, the A/C** (10/11, *agreed with the owner*; *reasoned*): **the
+**Why the criterion is a trend, not 0.6 V** (10/11, *the owner's
+question*). **No healthy rear-probe voltage is published for this
+engine**: the label file gives 036 field 1 only its range, 0.00–1.00 V,
+and 037 a verdict; VW's procedures for later engines say *"fluctuates"*
+between limits not public; Bosch's service rule is only the sides, warm
+*rich above 0.6 V, lean below 0.4 V*; a Bosch patent on two-sensor
+control starts the rear set point at **750 mV** (US 11 428 143). **Why
+the upper half** (*general*): a two-step zirconia probe reads which side
+of λ = 1 the gas is on, not how far — about 0.05–0.2 V with oxygen
+left, 0.7–0.9 V with none, a steep step at λ = 1 — and a converter
+converts all three gases best just rich of λ = 1, so the rear set point
+is chosen above the step; **where this ECU puts it is not known**. So
+0.6–0.75 V is experience, not a specification, and **a rear probe that
+sinks to 0.15–0.24 V and stays there is on the lean side whatever the
+set point** (if it reads true). Its wide swing (0.07–0.76 V) fits a
+converter full of oxygen, no longer smoothing the front loop's
+oscillation (*reasoned*). **The new probes' first reading becomes this
+car's own reference**; 036 was never logged before 9/11.
+ (10/11, *agreed with the owner*; *reasoned*): **the
 A/C calmed the idle but did not lift the rear probe** — `IdleHealth`
 130–140 loads off against 90–100 with it (*owner*, the display), the
 rear probe 0.30 V in both phases (the log; the owner's 0.6 with the A/C
