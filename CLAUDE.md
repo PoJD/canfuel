@@ -451,7 +451,9 @@ in the same commit.** He must never have to ask for it. The pass:
    its test or `plan.md`'s order of tests changes, the page is republished
    in the same session, with its "stav k" date (*the maintainer, 4/11/2026*).
    It mirrors `open.md`, *The idle's candidates, ranked*, and `plan.md`; it
-   is never the source.
+   is never the source. **Updating it needs no prompt** (*the maintainer*,
+   10/11): `.claude/settings.json` allows reading artifacts and
+   `edit_version`; use them for this page, not for anything else.
 
 **The pass applies to its own edits**: what it changes is checked the same
 way before the commit. A commit that leaves the folder inconsistent with

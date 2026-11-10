@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude-artifacts__list_artifacts",
+      "mcp__claude-artifacts__get_artifact",
+      "mcp__claude-artifacts__read_artifact",
+      "mcp__claude-artifacts__edit_version"
+    ]
+  }
+}
