@@ -1724,6 +1724,27 @@ the dips; *ad-hoc scripts, not kept*):
   except that no gas reads 0.000 V at full load. H21 (*A shared
   earth*) and `plan.md` 8g read it.
 
+**Found at the harness, 10/11 evening** (*owner*, the album
+21:32–21:36; the probes' leads and connectors under the black cover he
+had tucked them into that morning, the old ones having hung loose):
+- **On the rear probe's harness side, a blue wire's insulation cracked
+  right behind the connector, with a pale green crust on the copper
+  showing through** (verdigris, *general*: copper corroding in damp) —
+  strands starting to show; perhaps a red wire beside it too (*owner*:
+  hard to tell).
+- **The rear probe's connector: one pin bent a little, and the pins of
+  different colours** — yellow, silvery and copper-coloured — which may
+  be oxidation (*owner*); contact spray went in that morning.
+- **The front probe's connector did not latch fully** when it was put
+  back that morning (*owner*).
+- **Read** (*reasoned*): a cracked, corroding wire next to others is
+  where a damp leak to a neighbour or to earth would be, and it is on
+  the rear probe's side — **for S23 being the circuit, and the place
+  H21 looked for**; which of the four wires is blue (signal, signal
+  earth or a heater lead) is *not known* yet (`plan.md` 8e). A front
+  connector not latched would let the front probe's contacts move —
+  for H21 at the front, and for nothing measured yet.
+
 **What it touches**: **H11's mark 2 from 16:57 on 10/11** (unreadable)
 and **the warm stop at the end**, run with the ECU seeing a lean rear
 probe — how far the rear loop moves the front's set point at idle on

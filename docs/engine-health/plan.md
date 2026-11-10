@@ -112,6 +112,18 @@ sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and
      connector off, both halves looked into for green, water or a pushed-back
      pin, and back on until it clicks. **Photographs** of the run and
      of anything found; into the chat.
+   - **The rear probe's cracked blue wire** (found 10/11 evening): which
+     of the probe's four wires it meets — the connector off, the blue
+     wire followed into its cavity, and the colour of the probe's own
+     wire in the same position on the other half (photographed). Then
+     cut back to bright copper on both sides of the crack and joined
+     with a crimp or solder sleeve under heat-shrink (VW's wiring
+     repair or any sealed butt connector); PVC tape only as a stopgap,
+     the joint dry first. The red wire beside it looked at the same way.
+   - **The rear connector's bent pin** straightened so it seats like
+     the others; both connectors cleaned and dried again, then **pushed
+     until each latches with a click** — the front one included, which
+     did not latch on 10/11 morning.
    - **Both probes' harness on to the ECU** (the owner's own look,
      10/11): from each probe's connector along the loom as far as it
      can be followed — where it runs, what it is tied to, anything it
@@ -348,6 +360,14 @@ new probe itself (a warranty matter). Cold, so it can be touched.
 request): the bus cannot show a jerk at a crawl, so only its time
 lets a capture or a VCDS log be read at that moment — the stroke, the
 load, 014, and from a capture the cylinder (`open.md` S12).
+
+**8e's cracked wire and latches** (`open.md` S23, *Found at the
+harness*): a copper strand corroding in a crack is a resistance and, in
+the damp, a leak to whatever touches it; tape over it keeps the damp
+in, so the corroded length is cut out. Which wire it is tells what it
+explains: the signal or its earth fits S23 directly, a heater lead only
+through a shared path. A connector that does not latch lets its
+contacts move with the engine — it is redone before any reading.
 
 **8e's route of the harness** (*the owner*, 10/11 night: the
 connectors are very likely sound and the leads well tucked in, so he
