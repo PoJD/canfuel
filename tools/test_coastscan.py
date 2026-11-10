@@ -182,7 +182,7 @@ class AgainstTheFixtures(unittest.TestCase):
                                         "47_relearn_drive_z1.txt": 77})
 
     def test_the_cut_does_not_engage_the_moment_the_pedal_comes_up(self):
-        """0.63-11.06 s after the lift across the corpus, never at once.
+        """0.63-14.01 s after the lift across the corpus, never at once.
 
         17's four sat at 1.2-1.3 s, which once read as a fixed delay; the
         drives show it is not one, and the shortest is still most of a second.
@@ -190,12 +190,16 @@ class AgainstTheFixtures(unittest.TestCase):
         a single coast in 26; until it the corpus topped out at 4.27 s. It
         was not looked into, so the bound moved with it rather than the
         coast being explained away -- and so did 29's single 11.06 s, the
-        longest since, on the gentle drive home of session B. The floor moved
-        the same way: 0.71 s until 30, whose shortest is 0.63 s.
+        longest since, on the gentle drive home of session B -- and so did
+        47's single 14.01 s (the relearn drive of 10/11): the pedal at rest
+        at 9-13 km/h in first, the engine climbing slowly from about 1,250 to
+        1,780 rpm on a downhill roll with the fuel on, and the cut only at
+        the top. The floor moved the same way: 0.71 s until 30, whose
+        shortest is 0.63 s.
         """
         delays = [c[0][0] - w[0][0] for w, c in self.cuts]
         self.assertGreater(min(delays), 0.6)
-        self.assertLess(max(delays), 12.0)
+        self.assertLess(max(delays), 15.0)
 
     def test_fuel_comes_back_well_above_idle(self):
         """1,380-5,100 rpm across the corpus, and never near idle.

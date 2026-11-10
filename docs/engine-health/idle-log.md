@@ -1287,10 +1287,43 @@ probes seen*).
     +5.5 %** over the drive, 055 −1.06 → −1.18 g/s; heaters 26.8 /
     21.7 Ω, on; no code;
   - *not known:* where 032 settles from zero on the new probes
-    (`plan.md` 8d).
+    (`plan.md` 8d) — *read that evening: back to −6.3 % within 37
+    minutes (below)*.
 
 Read in a cloud session the same day (`open.md` H11, *The reading after
 the swap*): the old probes carried most of the lean mean, the idle was
 as rough without it. The radiator fan not heard at the rear probe's
 switch, 11:54 (*owner*). VCDS dropped at the start; the log continues in
 its `-2` file.
+
+## 10/11 evening — the relearn drive after the battery disconnect
+
+- **Repairs:** **098 run by the owner** on reconnecting the battery;
+  **P0137 cleared by the owner** at the end, which resets 032.
+- **Tests:** 032/055 and the fault memory before the start (all zero,
+  empty); **the drive home from work captured** (`47`, the MFD out)
+  with VCDS 014 032 036 throughout; queues, the A/C twice, a brisk
+  stretch, a warm stop of about 10 minutes in the everyday state, the
+  A/C off, no cut; the fault memory, 032/055, 030/033/036 and 041 at
+  the stop; then **034, 046 and 037 under basic settings by the owner**
+  (`48`, photographed), the fault memory again (`plan.md` 8d, done).
+- **Changes after:**
+  - *measured:* **032 0.0 / 0.0 → −6.3 / +6.3 % within 37 minutes**,
+    −3.9 / +7.0 at the end; 055 0.00 → −0.91 g/s; `IdleHealth` at the
+    queue stops 49–92, the warm stop 52–84 a minute for 8 minutes,
+    **then 36–45 for four** (17:38–17:42); 014 0.15–0.24 %; **cylinder
+    3 leading the dips again, 41 %**; **the rear probe's signal falling
+    under load from 16:57 and 0.000 V at full load from 17:29, P0137
+    sporadic**; at the stop the front probe switching 0.06–0.73 V, the
+    rear 0.03–0.14 V, heaters 25.5 / 22.9 Ω; 034, 046, 037 OK, the rear
+    probe back at 0.535–0.575 V by 17:48; the fault memory empty at
+    17:50;
+  - *felt:* in the queue at 100–102 °C of oil the seat jerks "as always
+    when the idle is unsettled" (*owner*);
+  - *not known:* when in 17:37–17:42 P0137 was cleared, and so whether
+    the calm came with 032 at zero; what failed on the rear probe's
+    signal (`plan.md` 8e).
+
+Read in a cloud session the same evening (`open.md` H11, *The relearn
+drive*; S19; S23, added at the owner's request): the split is not the
+old probes'; the idle and 3's lead as before the clean.

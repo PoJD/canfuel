@@ -36,7 +36,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 10 November 2026
+## Where it stands — 10 November 2026 (evening)
 
 **Closed**, in `refuted.md` §D: S6 the exhaust joint behind the
 converter, S8 the top end, S9 the rich trim, S10 the oil leak at the back
@@ -113,6 +113,24 @@ without it** — H11's mark 2 met, marks 3 and 4 failed at the first stop.
 at −6.3 % after one drive both times it was reset (H11, *The relearn
 after the battery disconnect*).
 
+**The relearn drive, 10/11 evening** (`plan.md` 8d, done; captured
+`47`–`48`, read in a cloud session the same evening; H11, *The relearn
+drive*): **032 from zero to −6.3 / +6.3 % within 37 minutes**, −3.9 /
++7.0 at the end — **the split back on new probes in one drive, so not
+the old probes'** (mark 1 failed; S19). **The idle as before**: queue
+stops 49–92, the warm stop at the end 52–84 a minute, 014 0.15–0.24 %;
+**cylinder 3 leads the dips again, 41 %** (28 % the day after the
+clean, p 0.015) — **the clean's effect on 3 lasted a day** (*The dips
+keep to one slot*). **New, S23** (*the owner's decision*): **the new
+rear probe's signal fell under load from 16:57 and read 0.000 V at full
+load from 17:29, P0137 sporadic** — the lead, the connector or the part,
+not the gas; normal again at the basic settings after it (034, 046, 037
+all OK). **Unexplained: the last four minutes of the warm stop,
+17:38–17:42, read 36–45, the calmest warm idle on record without the
+provider's gas**, 3 with no named dip — around the time the owner
+cleared P0137, which resets 032; whether the clear came before the calm
+is the owner's to say (H11, *The relearn drive*).
+
 **Open:**
 
 - **The idle — S1 (unsettled) and S3 (014 counts at idle).** Every part in
@@ -155,7 +173,10 @@ after the battery disconnect*).
   probes** (H11, *The reading after the swap*): standing, loads off
   **112–140**, the A/C **66–75**; the warm stop after a drive of 29
   minutes, the everyday state, A/C off, oil 101–102 °C: **48–90**,
-  `Misfires` 3–7 — no change.
+  `Misfires` 3–7 — no change. **10/11 evening** (`47`, the relearn
+  drive, 032 relearning from zero): queue stops **49–92**, the warm
+  stop at the end **52–84** a minute for 8 minutes, **then 36–45 for
+  four** (unexplained; H11, *The relearn drive*).
   The dips sat two thirds on 3 and 4
   until the VW leads, **on all four alike** on `40` and `41`, **on `42`
   one slot again, 45 %**, and **on `43` named: 43 % on cylinder 3**
@@ -164,8 +185,8 @@ after the battery disconnect*).
   alike** (p 0.01 that 3's share fell by chance). **Named by the
   strongest slot (9/11 evening), 3 led the warm dips in every period
   since 24/9, `40` included (55 %); `46` is the first capture with no
-  leader** (*The dips keep to one slot*, *Every capture named by its
-  strongest slot*).
+  leader**; **`47`, a day later, 3 leads again, 41 %** (*The dips keep
+  to one slot*, *Every capture named by its strongest slot*).
 - **Around the idle:** S2 (an occasional puff), S14 (bangs on an
   unblipped downshift), S11 (a hiss at the back, perhaps the throttle's
   own air).
@@ -179,12 +200,18 @@ after the battery disconnect*).
   original map, one drive after the reset: −6.3 / +3.1 %, two:
   −6.3 / +3.9 %, settled on 6/11: −7.0 / +6.3 %** — neither cell is the
   map's (S19). **On the new probes, 10/11: −7.8 / +7.0 → −6.3 / +5.5 %
-  in one drive, then reset by the battery disconnect** (the relearn is
-  `plan.md` 8d).
+  in one drive, then reset by the battery disconnect; relearnt from
+  zero on 10/11 evening to −6.3 / +6.3 within 37 minutes, −3.9 / +7.0
+  at the end** — the split is not the old probes' (S19); reset again by
+  the clear of P0137 (`plan.md` 8f).
 - **S21, P0440 and the engine lamp, steady** (6/11, added at the
   owner's request): the evaporative system, the code of 1/2018 back; no
   fill and no hose touched before it; cleared by the owner (H16). Not
   the idle.
+- **S23, the new rear probe's signal falling to zero under load**
+  (10/11 evening, added at the owner's request): P0137 sporadic,
+  cleared; normal again minutes later. The lead, the connector or the
+  part (`plan.md` 8e). Not the idle.
 - **S20, the speed wandering at a constant pedal** (since 1–2/10, on the
   road) — **a little better since the cable was slackened and the pedal
   greased (27/10), still there** (*owner*, 28/10). Not the idle.
@@ -218,17 +245,23 @@ on it with the owner: **H3 second, H1 third, H4 fifth**. **Re-read
 10/11 midday, after the reading after the swap: the order kept until
 the owner decides after the relearn drive (8d); proposed, H11 from third to seventh** (its idle form
 has lost its link — the lean mean went with the old probes, the
-roughness stayed; *The idle's candidates, ranked*).
+roughness stayed; *The idle's candidates, ranked*). **Re-read 10/11
+evening, after the relearn drive: proposed, not agreed** — H11 from
+third to seventh as proposed at midday, its marks 1, 3, 4 and 5 failed;
+H13's "the clean took 3's excess" weakened, 3 leading again a day
+later; the order otherwise kept until the owner decides (*The idle's
+candidates, ranked*).
 
-**Next** (`plan.md`; *the owner*, 10/11): **8d, the relearn after the
-battery disconnect** — the drive from work with VCDS on 014 032 036
-and a CAN capture (the MFD out; 8b's cut at the end if the drive was brisk)
-(032/055 and the fault memory before the start, the owner's 098, a warm
-stop at the end), then 032 at every VCDS session until it settles;
-**8e, the new probes' tightness** at the next cold engine; then the MFD in (item 6) and the oil level every 500 km (6i); **item 6's warm stops on
-the display with a word on what came before each**; **8b, a second
-captured warm stop with a cut on 4 on another day**, to see whether 3's
-rough start stays gone; **6m's injector circuits** for 4's kept deficit;
+**Next** (`plan.md`; *the owner*, 10/11): **8e at the next cold
+engine — the new probes' tightness and the rear probe's lead and
+connector** (S23); **8f, 032 at every VCDS session** until both cells
+have held for three drives (reset again by the clear of P0137); then
+the MFD in (item 6) and the oil level every 500 km (6i); **item 6's
+warm stops on the display with a word on what came before each**;
+**8b, a second captured warm stop with a cut on 4 on another day** —
+its question, whether 3's rough start stays gone, answered without a
+cut on `47` (it came back), so the cut now only confirms the naming;
+**6m's injector circuits** for 4's kept deficit;
 **the purge valve N80 only if P0440 comes back** (H16, S21, 8a); item
 9's tests (the stethoscope, the coolant's CO₂ test, a warm leak-down)
 by what those show.
@@ -324,6 +357,8 @@ error):
 | 9/11 | `46` | relearning | **straight after the clean**, the hose off with the engine running, oil 104 °C; then stop 7 after a motorway run, the everyday state, the A/C off, a 30 s cut on 4, oil 101 °C | **60** straight after; **57** the 3½ min up to stop 7's cut, **63** the 6 min after it; 014 0.12–0.14 %; at work after the short drive on, 93 → 54–79 over 4 min |
 | 10/11 | display, VCDS | kept (032 −7.8 / +7.0) | **the first idle on both new probes** (H11, *The reading after the swap*): a cold start standing, then loads off, the A/C, loads off, 1,500 rpm, idle; coolant 78–99 °C, oil 54 °C at the start of loads off | **120–140, then 112–120** loads off; **70, then 66–75** with the A/C; 98–120 loads off; 70–99 after 1,500 rpm; `Misfires` 13–14, 3–4, 8–12, 7 → 5 (*owner*) — as on 9/11 night with the old probes (130–140, 90–100) |
 | 10/11 | display, VCDS 014 | 032 −6.3 / +5.5 after it | the drive on to work, about 29 min; a warm stop at the end, the everyday state, the A/C off, oil 101–102 °C | **60–70, 55, 70, 50–55, 48, then 80–90**; `Misfires` 7, 5, 3 (*owner*); 014 0.24 % of combustions |
+| 10/11 eve | `47`, VCDS 014 032 036 | **relearning from zero** (the battery off; −6.3 / +6.3 by 16:58, −3.9 / +7.0 at the end) | `plan.md` 8d, the drive home from work; queue stops 16:51–17:17 in the everyday state, oil 99–103 °C; one with the A/C | **63, 91, 82, 92, 63, 49, 55, 71** loads off; **52** with the A/C; 014 0.24 % over the stops; cold at 44–46 °C of oil with 032 at zero 91–104 (H11, *The relearn drive*) |
+| 10/11 eve | `47`, `48` | −3.9 / +7.0 (then perhaps reset by the clear of P0137) | the warm stop after a brisk stretch, the everyday state, the A/C off, **no cut**, oil 102–104 °C; **the rear probe reading zero** (S23) | **59, 57, 52, 54, 65, 66, 84, 70** a minute for 8 min (014 0.15 %); **then 45, 43, 38, 39, 36 — the calmest warm idle on record without the provider's gas**, 3 with no named dip, to the revs for 034 at 17:42:50; 40–66 in the basic settings after (H11, *The relearn drive*) |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -1050,7 +1085,13 @@ completing rather than load (`refuted.md` C19).
   alone, the warm stop after the drive on both new probes** (H11, *The
   reading after the swap*): **0.24 %** — twelve misfires in about 3
   minutes at 32–35 % load, the windows' counts summed the same way —
-  between the settled stops, no lower for the probes.
+  between the settled stops, no lower for the probes. **10/11 evening,
+  the relearn drive** (`47`, the battery off for hours before it; H11,
+  *The relearn drive*): **counting from 16:33, twelve minutes after the
+  start** — so not quiet after a disconnect this time; the queue stops
+  16:51–17:17 (shorter than 150 s, so summed per stop) **0–0.58 %, 0.24 %
+  over them**, the stop at the end **0.15 %** at 25–26 % load, with the
+  rear probe reading zero (S23).
 - **Three properties to keep in mind** (`refuted.md` A11, A12): steps of 12;
   off below ~20 % load; its sensitivity per dip moved five- to fiftyfold with
   the MAF. **So 014 is a yes/no witness, not a ruler.** Compare across time
@@ -1335,9 +1376,10 @@ relearn after the battery disconnect*): **−7.8 / +7.0 → −6.3 / +5.5 %
 over one drive** on kept adaptations — the split narrowed by about
 three points — **then both cells reset by the owner's battery
 disconnect after parking**. Where the idle cell goes from zero on the
-new probes is the test of whether the old front probe made it
+new probes was the test of whether the old front probe made it
 (`plan.md` 8d): on the old probes it was back at −6.3 % after one drive
-from every reset.
+from every reset — and on the new ones too (below, *On the new probes,
+from zero*).
 
 **S7 closed 31/10 as the fuel** (`refuted.md` D2), and S19's start of
 24/10 was one of its starts, hours after the Verva fill. **What it
@@ -1400,6 +1442,18 @@ did not make it, and the whole split outlived the map; what moved it to
 H16). P0172 not back; P0440 instead (S21). The clearing restarts both
 cells. *This said "a settled reading is the next 032 … no session for
 it" until 6/11.*
+**On the new probes, from zero** (10/11 evening, the relearn drive after
+the battery disconnect; `vcds/vcds-step8d-drive-014-032-036-2.csv`;
+H11, *The relearn drive*): **the part-load cell moved first** — +3.9 %
+five minutes into the drive, +6.3 % by 16:46, **+7.0 %** from 17:24 —
+and **the idle cell followed it to −6.3 % within 37 minutes**, held
+there for about ten, then **−3.9 to −4.7 %** to the end: **−3.9 / +7.0
+%** at the stop, 055 **−0.91 g/s**. **The split came back on new probes
+in one drive**, as on the old ones after both resets, so **neither cell
+is the old probes'** (H11's mark 1). P0172 not back; P0137 instead,
+the new rear probe's (S23), cleared by the owner — which resets 032
+again (S3, *The clearing of 24/10*), so the next VCDS reading starts
+from a fresh relearn.
 
 ### S20. Engine speed wanders at a constant pedal
 
@@ -1526,6 +1580,57 @@ says a standing fault, not back says a one-off; the fault memory is read
 on 9/11 anyway (`plan.md` 8). **Read 9/11 at every phase: no P0440**,
 only the cut's codes (`vcds/vcds-step8-faults.txt`).
 
+### S23. The new rear probe's signal falls to zero under load — P0137
+
+*Added 10/11 evening at the owner's request.* **On the relearn drive of
+10/11** (`47`, `vcds/vcds-step8d-drive-014-032-036-2.csv`, 036 field 1 at
+VCDS's ~1 s), the rear probe fitted that morning:
+
+| 10/11 (local) | at idle | under load (the highest in each minute) |
+|---|---|---|
+| 16:26–16:50, on the road | 0.5–0.6 V at the stops | **0.67–0.76 V** at every high load; 0.00 on every overrun (the fuel cut) |
+| 16:51–16:56 | 0.48–0.54 V, flat | 0.59–0.63 V |
+| **16:57–17:22** | **sinking, 0.39 → 0.24 V** at every queue stop | **never above 0.44 V**, even at 75–97 % load |
+| **17:23–17:28** | — | 0.00–0.41 V, means 0.02–0.12 |
+| **17:29 to the stop's end** | **0.000 V**, then 0.03–0.14 at 17:37 | **0.000 V at 93 % load** |
+
+036 field 2 read `neOK` 17:29–17:30, then `OK` again. **The fault memory
+after the drive (17:33:27): 16521 / P0137, bank 1 sensor 2, signal too
+low, sporadic**. At the stop (17:37, `vcds-step8d-end-probes-030-033-036.csv`):
+**the front probe switching 0.06–0.73 V**, 033's correction within
+±2.3 %, **the rear 0.03–0.14 V**; 030 111 / 111; **041 25.5 / 22.9 Ω**,
+both heaters on. **The owner cleared P0137**; then **034, 046 and 037
+under basic settings, all OK** (the album, 17:44–17:48), **037 reading
+the rear probe at 0.535 V and 036 at 0.575 V, `OK`** (17:47:45,
+17:48:46) — back to normal within minutes of a cooler idle; the fault
+memory empty at 17:50 (`vcds-step8d-end-faults-after-cattests.txt`).
+The owner will look under the car at the rear probe's lead once it is
+cold (`plan.md` 8e).
+
+**What it is** (*reasoned*; the probe's behaviour *general*): a
+zirconia probe in the rich gas of full load reads 0.7 V and more, so
+**0.000 V at 93 % load is not the gas** — the signal did not reach the
+ECU whole: **the signal lead shorted to ground or to its own earth, the
+connector, or the new probe failing**. **The ceiling falling from
+16:57**, with the idle sinking, reads as the same fault beginning, not
+as the mixture. That it came back at a cooler idle points at heat: **a
+lead too close to the exhaust**, the new probe's lead tidied by the
+owner that morning (`vehicle-history.md`), or the connector. **The old
+rear probe's sinking (9/11 night) was a different shape**: it rose back
+to 0.6 V at 1,500 rpm and was never zero under load (H11, *The reading
+before the swap*). **The switch of 10/11 morning to the front's swing**
+(11:54:45, swinging to 0.78 V) **was not this either** — it passed rich
+gas.
+
+**What it touches**: **H11's mark 2 from 16:57 on 10/11** (unreadable)
+and **the warm stop at the end**, run with the ECU seeing a lean rear
+probe — how far the rear loop moves the front's set point at idle on
+this ECU is *not known*. **Not the idle**: the idle was as rough before
+16:57, with the rear probe flat, as after (H11, *The relearn drive*).
+**Left out of the hypotheses' fit tables**: none of H0–H20 is about the
+rear probe's own signal; it is a fault of the part or its lead, settled
+by the look under the car.
+
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** 0x420's `OilTemp` is `raw − 60` °C (`docs/firmware/can-decoding.md`
@@ -1582,13 +1687,15 @@ engine leak, a falling dipstick level is oil burnt, not lost.
 | S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle; the dips sat on 3 and 4 until the VW leads (all four alike since), and lead 4's end was the loosest (`refuted.md` C24) |
 | S19 ↔ the bad start of 24/10 | **suspected one event** (*owner*) | same window, both what a cylinder flooded while standing gives (S19) |
 | S21 ↔ S19 | **possible, through H16** (*reasoned*) | both would sit on the purge path; no event links them |
+| S23 ↔ S1, S19 | **none measured** (*reasoned*) | the idle as rough before the rear probe's fault began (16:57, 10/11) as after; 032's idle cell at −6.3 % before it and −3.9 % during it (S23) |
 | S3 on the road ↔ S17, S5 | **possible, one engine-speed band** (6/11) | 014's road episodes at 21–32 % load: 2000–2400 rpm about twice 1600–1800 and 2400–2600 (S17); the bus shows no stroke-to-stroke roughness peak there |
 | S16 ↔ S1 | **untested** (*general*) | a gearbox's rattle in neutral is driven by the crank's unevenness at idle (S16) |
 | S11 ↔ S1 | **untested** | if the hiss is a leak, H3 or H2; the owner reads it as the throttle's own air |
 
 **Two clusters**: **the idle** (S1, S2, S3, S14) and **the cylinder 4
 window** (S4, S5). S11 sits beside the idle, unplaced; S19 and S21 beside
-it, the trims and the evaporative system.
+it, the trims and the evaporative system; S23 apart, the new rear probe's
+signal.
 
 ---
 
@@ -1601,7 +1708,9 @@ settles it. ✔ fits, ~ fits weakly, ✘ does not fit, — says nothing.
 S4, S5, S11, S14, S19, S20 (added 26/10), S21 (added 6/11); S22
 (added 9/11) closed the same evening (`refuted.md` D11) and its column
 went with it. Left out: S16 (the gearbox side, shown not to touch
-the idle) and S17 (a resonance, not placed); S12 closed again on
+the idle), S17 (a resonance, not placed) and **S23** (added 10/11
+evening: the new rear probe's own signal, which no hypothesis here is
+about; S23); S12 closed again on
 27/10 (`refuted.md` D6) and S7 on 31/10 (D2), and their columns went
 with them; the closed ones are in
 `refuted.md` §D.
@@ -2417,9 +2526,9 @@ empty before, after and at the end.
    rough with no lean mean behind the front probe as with one** — the
    A/C's against (*Against, the A/C*, below) now holds on both sides:
    **the lean idle of 9/11 was not the roughness's cause.**
-4. **032** moved two steps towards zero in one drive. Mark 1 is not read
-   yet; the battery disconnect that followed makes it a clean relearn
-   (*The relearn after the battery disconnect*, below).
+4. **032** moved two steps towards zero in one drive. Mark 1 was not
+   read then; the battery disconnect that followed made it a clean
+   relearn, read that evening: it failed (*The relearn drive*, below).
 
 **What else could have shaped it** (10/11 midday, *the owner's
 question*; *reasoned*, each with what the next drive says):
@@ -2430,7 +2539,8 @@ question*; *reasoned*, each with what the next drive says):
   display is a running figure, and one stop is within the spread
   between stops (S1's table: 48–93 settled on the same day); the dips'
   share and the steady pattern were not read at all. The capture of 8d
-  reads them.
+  read them: no change, and 3 leading again (*The relearn drive*,
+  below).
 - **The standing phases on part-warm oil**: 54 °C at the start of loads
   off, coolant 78–99 °C, against 9/11 night's start at 73 °C of coolant
   (oil not read then); the idle is roughest cold (S1, *Temperature*), so
@@ -2452,7 +2562,7 @@ question*; *reasoned*, each with what the next drive says):
   a stop on 10/11 compares with stop 7 (57–63), not with stops before
   the clean.
 
-**The five marks at the first stop** (12:27): **1** not yet (−6.3 %);
+**The five marks at the first stop** (12:27): **1** not read then (−6.3 %; failed on the relearn drive, below);
 **2** met in the first loads-off phase and, at its limits, at the stop
 (0.09 V lower at the end, a mean of 0.48, jumps 15 %), failed in the
 last 1½ minutes of the second loads-off phase; **3 failed** (48–90, not
@@ -2498,6 +2608,105 @@ zero, so the first warm stops are the idle with 032 near zero; **rough
 there as well, and the cell sinking again**, says the cell is not the
 idle's cause (*the owner's criterion*, 10/11).
 
+**The relearn drive, 10/11 evening** (`plan.md` 8d, done; `47`, `48`,
+`vcds/vcds-step8d-*`; read in a cloud session the same evening;
+`idledips.roughness()` per stop and per minute, `cutscan.py --shares`,
+*ad-hoc scripts, not kept*, for the rest). 098 by the owner, the fault
+memory empty, **032 and 055 all zero before the start** (the battery
+off for hours); started 16:21:36; a mild drive in the everyday state,
+queues 16:29–16:41 and 16:51–17:17, **the A/C on 17:06–17:09 and
+17:22–17:27**, a brisk stretch to about 5,000 rpm 17:23–17:29, the warm
+stop from 17:30, the A/C off, **no cut** (the engine cover on).
+
+| 10/11 (local) | oil °C | 032 idle / part, % | `IdleHealth` | rear probe (036) |
+|---|---|---|---|---|
+| cold start, 16:21:36–16:23:25 | 44–46 | 0.0 / 0.0 | **91, then 104** | 0.44 (heater warming) |
+| the queue, 16:29–16:41 | 77–98 | −0.8 → −3.9 / +4.7 | no settled idle (creeping) | 0.5–0.6 at the stops, 0.00–0.76 driving |
+| queue stops, 16:51–16:56 | 99–102 | −4.7 / +6.3 | 63, 91 | 0.48–0.54, flat |
+| queue stops, 16:57–17:05 | 102 | **−5.5 → −6.3** / +6.3 | 82, 92, 63, 49, 55 | **sinking, 0.39 → 0.24** |
+| the A/C, 17:07:42–17:08:31 | 102 | −6.3 / +6.3 | 52 | 0.55 |
+| queue stop, 17:16:17–17:17:11 | 102–103 | −4.7 / +6.3 | 71 | 0.25 |
+| the warm stop, 17:30–17:38, per minute | 104 → 102 | −3.9 / +7.0 | **59, 57, 52, 54, 65, 66, 84, 70** (64 over it) | **0.00–0.14** (S23) |
+| the same stop, 17:38–17:42:50 | 102 | not read after 17:34 | **45, 43, 38, 39, 36** | not read |
+
+- **Mark 1 failed: the idle cell is not the old front probe's.** From
+  zero it went to −3.1 % in 12 minutes, **−6.3 % at 16:58, 37 minutes
+  in**, held there to 17:09, then −3.9 to −4.7 % to the end; the
+  part-load cell moved first and furthest, **+7.0 %** from 17:24.
+  **−3.9 / +7.0 %** at the stop (17:34), 055 **−0.91 g/s**. As on the
+  old probes after both resets on record — so the split of S19 does
+  not come from the old probes; what is left for it is cause 2 (the
+  hydrogen of unequal cylinders), H7 and H16 (*The relearn after the
+  battery disconnect*, above).
+- **The owner's hypothesis was not reached warm.** The cell was at
+  −4.7 % before the first settled warm idle (16:51); at zero only the
+  cold start ran, **91–104 at 44–46 °C of oil**, as `42`'s 98 ± 3 at
+  50–61 °C. **Rough there, and the cell sinking again** — his
+  criterion's "rough and sinking" holds, but on a cold idle, which is
+  rough anyway (S1, *Temperature*). But see the calm at the end, below.
+- **Mark 3 failed**: the warm stops 49–92, the stop at the end 52–84
+  per minute, against 57–63 at stop 7 of 9/11 and 48–90 on the display
+  that morning — no change. **Mark 4, one stop**: the A/C read 52
+  against 49 and 55 at the loads-off stops either side, **the first
+  time it did not calm the idle** — but those stops were already at
+  the level the A/C usually brings it to (S1's table: 45–65), so it
+  says load brings the idle to about 50, not that the margin is back
+  (*reasoned*). A stop after the queues (49–92) and after the brisk
+  stretch (52–66 for its first six minutes) do not differ by more than
+  the stops among themselves.
+- **Mark 5 failed: cylinder 3 leads the dips again** (*The dips keep
+  to one slot*, `47`): 41 % of the warm dips named by the strongest
+  slot (p 0.0003 against all alike), 42 % at the queue stops, 40 % at
+  the stop at the end, against 28 % on `46` (p 0.015); its steady
+  deficit back level with 4's. **The clean's effect on 3 lasted a
+  day** — the question `plan.md` 8b was to ask with a cut.
+- **Mark 2 cannot be read from 16:57.** The rear probe held 0.48–0.54 V
+  flat at the first queue stops, then sank at every idle — **but its
+  ceiling fell with it, under load as well** (S23): from 16:57 it never
+  read above 0.44 V, even at 75–97 % load, where before 16:50 it reached
+  0.67–0.76 V at every high load, and from 17:29 it read 0.000 V at 93 %
+  load. A probe in rich full-load gas cannot read zero (*general*), so
+  the signal itself failed (S23); **its readings from 16:57 say nothing
+  of the mixture**, and the warm stop ran with the ECU seeing a lean
+  rear probe (how this ECU's rear loop answers that at idle is *not
+  known*).
+- **The calm at the end of the stop** (`47`'s last two minutes and
+  `48`'s first three): in 20 s windows `IdleHealth` **73, 55, 55, 41,
+  47, 42, 42, 35** from 17:37:18, then **31–43** to 17:42:50, when the
+  revs for 034 began — **the calmest warm idle on record without the
+  provider's gas** (S1), `Misfires` 0–3 a minute; **cylinder 3 gave
+  no named dip** in 17:39:51–17:42:50 (0 of 13), the dips 4.1 per 1000
+  strokes against 8.1 in the stop's first eight minutes, the steady
+  pattern about half. Nothing in the frames changed with it: idle
+  speed 790–800 rpm, 0x280's load 24–27, coolant 97–100 °C, as before.
+  **The VCDS reads around it**: 030/033/036 17:37:21–17:37:42, 041
+  17:38:39–17:39:00; **P0137 was cleared by the owner in this stretch,
+  at a time not recorded, and clearing resets 032** (`CLAUDE.md`). **If
+  the clear fell between 17:37:42 and 17:38:39, the calm came with the
+  idle cell at zero — the owner's hypothesis exactly; if after 17:39,
+  the calm came first** and is the stop settling late, as `42`–`44`
+  settled after five or six minutes (*not known* which; *the owner*
+  asked). Against reading much into it: after the revs, in the basic
+  settings (034 17:44:31, 046 17:46:50, 037 17:47:45, all OK, the
+  album), `IdleHealth` was back at 40–66 and 3 led again (29 of 60) —
+  with 032 at most a few minutes from zero, if the clear reset it; but
+  basic settings drive the mixture themselves (046 its test), so those
+  minutes compare with nothing.
+- **014** counted from 16:33, twelve minutes after the start — not
+  quiet after the disconnect (`refuted.md` C19's rule did not apply);
+  **0–0.58 % of combustions at the queue stops, 0.24 % over them, 0.15 %
+  at the stop at the end**; on the road single counts of 12–26 at
+  lifts, as always (S3).
+
+**Read** (*reasoned*): **the idle cell came back on the new probes as
+on the old, so mark 1 is gone; marks 3–5 failed again; mark 2 is
+spoilt by the rear probe's own fault (S23).** H11's idle form has no
+mark left standing except the calm of 17:38–17:42, which needs the time
+of the clear before it can be read for or against the owner's
+hypothesis. **The rear probe fault (S23) is new and the new probe's
+own** — a lead, a connector or the part — not evidence that the old
+one was right.
+
 **What the rear probe can and cannot say** (10/11, *the owner's
 question*; *general* and *reasoned*). **The oxygen a converter stores
 grows with (λ − 1) × the exhaust's mass flow** (the integral the
@@ -2539,7 +2748,8 @@ rear probe's own fault as well. **Read 10/11** (*The reading after the swap*,
 above): neither outcome cleanly — the new rear probe did not sink for 18
 minutes, then switched to the front's swing; 032's idle cell moved two
 steps towards zero in a drive and was then reset by the battery
-disconnect, so its answer is the relearn.
+disconnect, so its answer is the relearn — **which brought it back to
+−6.3 % in 37 minutes** (*The relearn drive*, above).
 
 **The old probes seen, 10/11** (both replaced that morning, `plan.md`
 8c; `photos/lambda-front-old-tip-2026-11-10.jpg`,
@@ -3364,7 +3574,10 @@ largest shares):
 | **pooled `40`–`43`** | **471** | **60 %** | **0.002** |
 | `44` (9/11), before the clean | 192 | 58 % | 0.14 |
 | **pooled `42`–`44`**, the map to the clean | **382** | **62 %** | **5×10⁻⁵** |
-| **`46` (9/11), after the clean — pooled since the last repair** | **106** | **50 %** | **1** |
+| `46` (9/11), after the clean | 106 | 50 % | 1 |
+| `47` (10/11 evening, the relearn drive; no cut) | 299 | 60 % | 0.34 |
+| **pooled `47`–`48`, since the last repair** (both probes, 10/11) | **382** | **62 %** | **0.13** |
+| pooled `46`–`47`, since the clean | 405 | 57 % | 0.66 |
 
 **Named by cylinder** (`--name`, `41`, the run spanning the cut, 137
 dips): **1: 24 %, 3: 31 %, 4: 20 %, 2: 25 %** — all four alike, cold. Two
@@ -3446,6 +3659,7 @@ every capture since 24/9**: the steady pattern is not new.
 | `42`–`43` (3/11, the original map) | +2 / +4 / +4 / −10 | 24 / **68** / 36 / 27 | **3, 44 %** (p 10⁻⁷) |
 | `44` (9/11, before the clean, the A/C wait included) | +1 / +3 / +6 / −10 | 22 / **51** / 37 / 34 | 3, 35 % |
 | **`46` (9/11, after the clean)** | +2 / +3 / +6 / −11 | 26 / 28 / 23 / 21 | **none: 3 29 %** (p 0.24) |
+| **`47` (10/11 evening, the relearn drive)** | 3 and 4 alike, 2 strong (below) | 55 / **100** / 58 / 33 | **3, 41 %** (p 0.0003) |
 
 **Read** (*reasoned*): **warm, 3 has led the dips in every period since
 the new MAF, 4 before it and on the NGK leads, and both every time ahead
@@ -3460,8 +3674,21 @@ and named by its cut, was spread. So *"spread first, 3 worse after"*
 (the owner's reading of 3/11) loses its first half: 3 led warm
 throughout. **Within the day after the clean** 3 stayed near a quarter
 — 7 of 25 straight after it, 8 of 33 at stop 7, 8 of 23 at work — but
-at work the dips were back at 4.2 a thousand strokes, stop 3's rate;
-whether it lasts is `plan.md` 8b.
+at work the dips were back at 4.2 a thousand strokes, stop 3's rate.
+**It did not last** (`47`, 10/11 evening, the relearn drive, a day
+after the clean; *ad-hoc script, not kept*, the naming above
+reproduced first: `44` 23 / 53 / 32 / 30 and `46` 26 / 28 / 26 / 21
+against the table's 22 / 51 / 37 / 34 and 26 / 28 / 23 / 21): **3 led
+again with 41 % of the warm dips** (100 of 246; p 0.0003 against all
+alike; **against `46`'s 28 %, p 0.015**, one-sided Fisher), 42 % at the
+queue stops and 40 % at the stop at the end; the steady pattern, in rpm
+off the detrended mean (1 / 3 / 4 / 2), **+0.35 / −1.35 / −1.38 /
++2.35** against `46`'s +0.51 / −0.86 / −1.83 / +2.15 — **3's deficit
+back level with 4's**, 2 as strong (the unit differs from the table's
+per cent of a stroke; the two are compared within this method only).
+Unnamed, `47` fits all four alike (above): the naming carries the phase
+that the shares lose. *This said "whether it lasts is `plan.md` 8b"
+until then.*
 **Before 24/9** (the owner's question; the old injectors, leads and
 MAF): only short idles exist, and in two of them the strongest slot is
 not clear. **`11`** (A/C off, 25 s): 2 −5, 3 +7, 1 −2.5, 4 0, no dip;
@@ -3643,7 +3870,7 @@ is in git.
 |---|---|---|---|
 | 1 | **H13** deposits | **9/11, after the clean, kept first** (*agreed with the owner*): it took 3's excess — share of the dips, steady deficit, rough start, 014's storm; **up 3/11 evening from second to first** (*agreed with the owner*): `43`'s cut names cylinder 3, where the borescope found the most deposit; **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; **the hydrogen clean done 9/11**: 3's excess gone at stop 7, 4's deficit and the settled level kept (S1, *The clean of 9/11*); a second captured warm stop with a cut says whether it lasts |
 | 2 | **H3** a leak at one runner | **9/11 up from third** (*agreed with the owner*): 4's steady deficit kept after the clean, runner 4's gasket edge torn (5/11), and the gas's cure fits a lean runner in kind; **7/11 down from second** (*agreed with the owner*): H1's inlet-seat form explains the pair as well and has a find behind it; still the one that predicts *load helps* directly; **5/11 up from third** (*agreed with the owner*): the steady pattern over the cylinders names 3 and 4 alike, neighbours on the lower manifold (S1, *A steady pattern over the cylinders*); **4/11: explains the calm under load best of all, the calm after revving not at all** (S1; *agreed with the owner*, the order kept); **up 3/11 evening from seventh to third**: one cylinder named again (runner 3); the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
-| 3 | **H11** both probes shifted | **9/11 late evening up from thirteenth** (*agreed with the owner*): in its idle-only form — the front probe reading rich at idle's cool exhaust only, so the real idle mixture lean — it fits every pattern of S1 (queuing worse, a brisk drive better, a load calming, hydrogen curing), the negative idle cell with part load untouched, and P0172 once (H11, *Re-read 9/11 evening*); 2017 probes | **036 read 9/11 night**: the rear probe sinks towards lean at every idle, heaters good — for, not proof (H11, *The reading before the swap*); **both probes replaced** (*the owner's decision*, 10/11; no analyser, which he declines) and the same reading after it (`plan.md` 8c) — it rules out the old probes, not the mechanisms (H11, *What the rear probe can and cannot say*); **read after, 10/11**: the new rear probe flat for 18 minutes of idle, then the front's swing; **the idle unchanged** — mark 2 met, marks 3 and 4 failed at the first stop (H11, *The reading after the swap*); mark 1 by the relearn after the battery disconnect (`plan.md` 8d) |
+| 3 | **H11** both probes shifted | **9/11 late evening up from thirteenth** (*agreed with the owner*): in its idle-only form — the front probe reading rich at idle's cool exhaust only, so the real idle mixture lean — it fits every pattern of S1 (queuing worse, a brisk drive better, a load calming, hydrogen curing), the negative idle cell with part load untouched, and P0172 once (H11, *Re-read 9/11 evening*); 2017 probes | **036 read 9/11 night**: the rear probe sinks towards lean at every idle, heaters good — for, not proof (H11, *The reading before the swap*); **both probes replaced** (*the owner's decision*, 10/11; no analyser, which he declines) and the same reading after it (`plan.md` 8c) — it rules out the old probes, not the mechanisms (H11, *What the rear probe can and cannot say*); **read after, 10/11**: the new rear probe flat for 18 minutes of idle, then the front's swing; **the idle unchanged** — mark 2 met, marks 3 and 4 failed at the first stop (H11, *The reading after the swap*); **mark 1 failed on the relearn drive, 10/11 evening** (032's idle cell back to −6.3 % within 37 minutes), marks 3–5 failed again, mark 2 spoilt by the rear probe's own fault (H11, *The relearn drive*; S23) |
 | 4 | **H4** the injector loom at 3 and 4 | **9/11 late evening one down** (H11 above it); **9/11 up from fifth** (*agreed with the owner*): 4's deficit kept, 3's gone — 4's own circuit, and 6m the cheapest test of the three that act on 4 alone; **5/11 up from eighth** (*agreed with the owner*): exactly the pair the steady pattern names, and a fault that comes and goes would move over minutes; the load argument is against the spark side, not the injectors; shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
 | 5 | **H1** valve or lifter | **9/11 late evening one down** (H11 above it); **9/11 down from second** (*agreed with the owner*): the clean took 3's part, which a seat that leaks as a part would have kept; left for 4's inlet seat, the side the clean reaches least; **7/11 up from third** (*agreed with the owner*): the port photos of 20/10 show crust broken round the inlet seat's edge on 3 and 4, a lump on 3, 1 and 2 even (*the owner's reading*) — an inlet seat that leaks weakens 3 and 4 together, which answers the 5/11 against, and more crust on 3 fits the dips leaning to 3; whether it reaches the contact face is not seen; the clean of 9/11 is the least likely to reach it; **5/11 down from second** (*agreed with the owner*): one seat on 3 would weaken 3 alone, and the pattern moves over minutes; still the single dips on 3 and the owner's reading of 3's seat; **up 3/11 evening from third to second** (*agreed with the owner*): a valve on 3 that does not seal, with deposit on its seat (H13), fits one cylinder named; **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes done 26/10, the hot recording found no lifter; left: **a warm leak-down on all four** and a stethoscope above 3, hot (`plan.md` 9) |
 | 6 | **H7** fuel delivery | **9/11 late evening one down** (H11 above it); **9/11 down from fourth** (*agreed with the owner*): H3 and H4 above it for 4; **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026, and nothing points at one of them); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10); **no injector swap** (*the owner*, 3/11) |
@@ -3656,6 +3883,21 @@ is in git.
 | 13 | **H18** oil past the stem seals | **9/11 late evening one down** (H11 above it); added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
 | 14 | **H12** driveline play | — | done: the clutch minutes cleared it |
 
+**Re-read 10/11 evening, after the relearn drive** (H11, *The relearn
+drive*; `47`–`48`): **proposed, awaiting the owner**; the order above
+stands until the owner decides. **H11 from third to seventh**, as at
+midday, now on the drive itself: mark 1 failed (032's idle cell back to
+−6.3 % within 37 minutes on the new probes), marks 3–5 failed (the stops
+49–92, the A/C no help where the idle was already near 50, 3 leading
+the dips again); mark 2 spoilt by the rear probe's own fault (S23).
+What keeps it above the belt is only the calm of 17:38–17:42, which
+waits on the time of the clear. **H13 kept first, its for weakened**:
+the clean took 3's excess for a day, and 3 led again on `47` (41 %);
+deposits do not grow back in a day, so either the clean moved something
+that came back (*reasoned*: a flake, a deposit on a seat) or stop 7's
+quarter was the stop, not the clean. **H1's form on 3** (an exhaust or
+inlet seat on 3) gains by the same reading — not moved, one drive.
+
 **Re-read 10/11 midday, after the reading after the swap** (H11, *The
 reading after the swap*): **the order kept until the owner decides —
 he decides after the relearn drive of 10/11 afternoon** (*the owner*:
@@ -3667,7 +3909,8 @@ after broke it from both sides: the lean mean went with the old probes
 (the new rear probe flat at 0.59–0.60 V for 18 minutes) and the idle
 stayed as rough, and the A/C still calmed it by about 50 with nothing
 lean to widen. What is left of it is S19's idle cell, which the relearn
-after the battery disconnect reads (`plan.md` 8d) and which does not
+after the battery disconnect read that evening — back to −6.3 %, not
+the old probes' (`plan.md` 8d) — and which does not
 make the idle (*owner*: rough at −4.7 % in the summer too). Not below
 H2: the rear probe's switch to the front's swing after 18 minutes
 is not explained, and H2's second zone and the new probes'

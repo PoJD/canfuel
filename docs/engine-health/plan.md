@@ -18,10 +18,11 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Current: 8d, the relearn after the battery disconnect of 10/11**
-(the drive from work), **then 8e**; item 6 and 6i, 8b (a second
-captured warm stop with a cut on 4) and 6m for cylinder 4 after them
-(*the owner*, 10/11; `open.md` H11, *The reading after the swap*).
+Captures only where an item asks for one. **Current: 8e at the next
+cold engine, with the rear probe's lead**, and 8f at every VCDS
+session; item 6 and 6i, 8b (a second captured warm stop with a cut on
+4) and 6m for cylinder 4 after them (*the owner*, 10/11; `open.md` H11,
+*The relearn drive*, S23).
 
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
@@ -92,38 +93,27 @@ captured warm stop with a cut on 4) and 6m for cylinder 4 after them
    Claude in a session on the laptop, fuel above reserve: the USBtin in
    and the MFD out before the ignition; `usbtin_capture.py` from before
    the start to engine off, `vcds_log.py --groups 014 001 003` (fault
-   memory read first); **done within 8d when its drive allows**.
+   memory read first).
    **A brisk run with a motorway stretch until the
    oil is at 95 °C or more**, then **a stop on a car park in the
    everyday state, the A/C off**: 3 minutes' idle, **injector 4's
    connector off for 30 s** (say when, by the chat), 3 minutes more.
    At the end, engine idling: the fault memory, then 032/055; the owner
    clears it by hand.
-8d. **The relearn after the battery disconnect** (disconnected by the
-   owner on 10/11 after parking at work). Claude in a session on the
-   laptop; **VCDS and a CAN capture** (*the owner*, 10/11): **the
-   USBtin in and the MFD out** before the ignition.
-   1. **On reconnecting the battery, the owner runs 098 under basic
-      settings** himself, as on 27/10, and photographs the result. Then,
-      ignition on, engine off: the fault memory read; **032 055 for
-      20 s**.
-   2. **`usbtin_capture.py` started before the ignition**, to engine
-      off; **014 032 036 logged** from the start to engine off; the
-      laptop not touched while driving. Drive as the day brings it; at
-      the stops nothing to read — a word in the chat on what came before
-      each is enough.
-   3. **At the end, a warm stop in the everyday state, the A/C off**:
-      3 minutes' idle; **if the drive had a brisk stretch to 95 °C of
-      oil or more, injector 4's connector off for 30 s** (said in the
-      chat), then 3 minutes more — 8b's stop; otherwise 3 minutes and no
-      cut. Then **032 055 for 20 s** and the fault memory, engine still
-      idling; the owner clears it by hand (a cut leaves its code).
-   4. **After that, 032 for 20 s at every session with VCDS connected**,
-      until both cells have held for three drives.
-8e. **The new probes' tightness**, at the next cold engine after 8d:
-   with the spanner they were fitted with, whether either turns further
-   at the effort they were tightened with. Which, and about how far,
-   into the chat; nothing undone.
+8e. **At the next cold engine, from below**:
+   - **The rear probe's lead, all the way to its connector**: where it
+     runs, whether it touches or lies within a finger's width of the
+     exhaust or the converter, any melted, shiny or hardened
+     insulation; the connector latched and its seal in place; then the
+     connector off, both halves looked into for green, water or a pushed-back
+     pin, and back on until it clicks. **Photographs** of the run and
+     of anything found; into the chat.
+   - **The new probes' tightness**: with the spanner they were fitted
+     with, whether either turns further at the effort they were
+     tightened with. Which, and about how far, into the chat; nothing
+     undone.
+8f. **032 for 20 s at every session with VCDS connected**, until both
+   cells have held for three drives.
 9. **After the clean of 9/11, by what the next stops show** (Claude says
    which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
@@ -294,44 +284,12 @@ kept**. **8c, the probes read before and after both were replaced, is done**
 for 18 minutes of idle where the old one sank, and the idle as rough as
 before.
 
-**8d, the relearn after the battery disconnect** (*the owner's
-decision*, 10/11: whether 032 goes back to its large negative values on
-the new probes, and whether that moves the idle; `open.md` H11, *The
-relearn after the battery disconnect*). **Why it is the test of H11's
-mark 1**: 032 starts from 0.0 / 0.0, and on the old probes its idle
-cell was back at −6.3 % after one drive from both resets on record
-(27/10 and the map of 3/11), so where it gets to in one or two drives
-on the new ones says whether the old front probe made it — back at
-about −6 % says not, within ±3 % over three drives says it did. **The
-idle is read separately** (marks 3 and 4), because the owner's idle was
-rough at −4.7 % in the summer too. **032 logged through the drive**,
-not only at the end, to see when each cell moves; **036** for the
-rear probe at the stops and a second time under load, and whether its
-switch to the front's swing after 18 minutes of idle comes back;
-**014** for the misfires, though **a quiet 014 after a disconnect is no
-evidence** (`refuted.md` C19's rule: the crank wheel's tooth errors may
-have to be learnt again on the overrun). 001 and 033 are dropped: 014
-carries engine speed and load, and 033's regulation stayed within ±2 %
-on 10/11. **032/055 before the start** to see the reset itself (a
-minute's disconnect leaves 055, hours reset it: `idle-log.md`, 26/10
-and 27/10). **098** because VW asks for the throttle adaptation after a
-disconnect (`vcds.md`); it is a basic setting, so the owner runs it,
-never Claude (`CLAUDE.md`). **The warm stop at the end** is read with
-055 settled — it relearns within the first few entries into a warm idle
-(`idle-log.md`, 27/10) — and is the second of the three stops H11's
-marks ask for. **The stops on the way** because the idle cell starts at
-zero and learns at idle: they read the idle with 032 near zero, the
-owner's test of whether the learnt cell itself made the idle rough
-(`open.md` H11, *The owner's hypothesis for the relearn*). **The order
-of the hypotheses is re-read after this drive** (*the owner*, 10/11). **The CAN capture** (*the owner*, 10/11 midday:
-*this said "no CAN capture" until then*) because the reading after the
-swap rested on the display read by eye and on one stop: the capture
-gives `IdleHealth`, `Misfires` and the start from the ECU's own frames
-(`tools/idledips.py`), minute by minute against 032 in the VCDS log,
-and the dips' share and the steady pattern over the cylinders, which
-the display cannot. **The cut at the end only after a brisk run**,
-because then the stop is 8b's own, comparable with stops 3 and 7 of
-9/11; after a gentle drive it would not be, and the cut is left out.
+**8d, the relearn after the battery disconnect, is done** (10/11
+evening; `open.md` H11, *The relearn drive*, S23; how it was planned
+and why: `git show d4aeca3:docs/engine-health/plan.md`, item 8d): 032
+back to −6.3 / +6.3 % within 37 minutes on the new probes, the idle as
+before, 3 leading the dips again, and the new rear probe's signal
+falling to zero under load (P0137).
 
 **8e, the probes' tightness**: they were tightened by hand to about 50
 Nm estimated, without a torque wrench (`vehicle-history.md`), and the
@@ -340,14 +298,30 @@ after 18 minutes of idle and in spells at the warm stop; a probe seated
 loose lets air into the exhaust at idle's pulses, the second zone of
 H2 of its own making (*reasoned*). Cold, because the exhaust then is at
 the temperature they were fitted at. Checked before the warm tailpipe
-test (item 7), which it would otherwise confuse.
+test (item 7), which it would otherwise confuse. **The rear probe's
+lead** (`open.md` S23): 0.000 V at full load is not the gas, so the
+signal failed on its way to the ECU, and it came back at a cooler idle
+— heat on a lead or a connector the likeliest (*reasoned*); the lead was
+tidied by the owner when the probe was fitted, so its run is looked at
+first, the connector second; a lead and connector found sound leave the
+new probe itself (a warranty matter). Cold, so it can be touched.
+
+**8f, 032 at every session**: the idle cell came back to −6.3 % in one
+drive on the new probes (`open.md` S19), so what is left to read is
+where both cells settle; **the clear of P0137 at the end of 8d reset
+032 again** (`open.md` S3, *The clearing of 24/10*), so the relearn
+starts once more. Read, never cleared by Claude; three drives because
+the cells moved by one VCDS step at a time.
 
 **8b, the second captured stop**, because the rough start is what
 varies most between stops: stop 3's own second half read like stop 7,
 and straight after the clean 3 was still short, so one stop each side
 does not say the clean's effect lasts; a warm stop after a similar run
 with a 30 s cut on 4, on another day, does — a rough start on 3 again
-says it did not. **6m for 4** because 4 is now the cylinder with a
+says it did not. **`47` (10/11 evening) answered it without a cut**: 3
+led the dips again, 41 %, named by the strongest slot (`open.md`, *The
+dips keep to one slot*); the cut now confirms that naming on a stop of
+its own. **6m for 4** because 4 is now the cylinder with a
 deficit of its own, and its injector circuit is the cheapest of the
 three causes that act on 4 alone (H4; H3's runner gasket and H1's inlet
 seat cost the intake off or a leak-down). **The display's stops** with a
