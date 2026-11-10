@@ -2478,6 +2478,31 @@ converter (new on 10/9, block 046 OK on 24/9). Hence criterion 2's
 three parts and their figures (*decisions*): the trend, the floor and
 the flatness, each against what this log showed.
 
+**The idle without the lambda loop** (10/11, *the owner's idea*: if the
+probes made the dips, the idle should be calm whenever the ECU does not
+use them). **Where the loop is off at idle, from every VCDS log with
+group 001** (field 3 held at 0.0): **only the first 40–100 s after a
+cold start** (`vcds-item5-drive-…-1`, `-step3-1-drive-`, `-step3-2-gauge-cold-`,
+`-step6b-drive-2-`, `-step6k-2-`, `-step8-home-2-`; the loop closes at
+28–42 °C of coolant), **and during every injector cut** (6d, 8b's
+kind, the clean's stops) — the cut itself the larger change, so those
+say nothing. **The cold-start window is calmer**: on the standing cold
+starts `31`, `32`, `33` `IdleHealth` reads about 45–65 with the loop
+off and jumps to about 80–110 within the next half minute, at 33–35 °C,
+every time. **But the loop is not the only thing that changes then**:
+on `vcds-step3-2-gauge-cold` the ECU holds a catalyst-heating idle — 920
+rpm, the MAF at 5–6.5 g/s, the advance retarded to −2…−11° — and ends
+it at 93 s (800 rpm, 4.2 g/s, the advance back to 0…+8°); **the loop
+closes 4 s later**. A fuller charge, a faster idle and a later burn are
+what calm this idle anyway (S1, the load helping), so **the calm window
+fits H11 and the charge alike, and `IdleHealth`'s ~10 s smoothing cannot
+split 4 s**. Full throttle (open loop, never rough) carries the load
+the same way. **Not telling either way**; the comparison that does is
+the reading after the swap. *Not recommended now*: unplugging the front
+probe at a warm idle would open the loop at the same charge, but the
+ECU then runs on 032's learnt value, which a misreading probe set, and
+it stores a code.
+
 **Against, the A/C** (10/11, *agreed with the owner*; *reasoned*): **the
 A/C calmed the idle but did not lift the rear probe** — `IdleHealth`
 130–140 loads off against 90–100 with it (*owner*, the display), the
