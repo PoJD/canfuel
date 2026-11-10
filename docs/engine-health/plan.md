@@ -320,7 +320,14 @@ says the old probes; the same sinking rules them out (the new rear one's
 own fault with them) and leaves hydrogen from unequal cylinders, air
 between the probes (item 7) and a lean bias the rear loop does not trim
 at idle, with the dips' common cause dilution or fuel (H13, H7;
-`open.md` S1, *The gas idle taken apart*). **The parts are TecDoc's for the AQY** (10/11; the Octavia I's page at
+`open.md` S1, *The gas idle taken apart*). **The probes are confirmed
+as the idle's cause only by all five marks** of `open.md` H11, *What
+would confirm the probes as the idle's cause* — 032's idle cell within
+±3 %, the rear probe not sinking, `IdleHealth` at or below 40 at three
+warm stops on different days, the queue and the A/C no longer making a
+difference, the dips on all four alike; **if the swap changes nothing,
+032's idle cell decides what is left** (*If the swap changes
+nothing*). **The parts are TecDoc's for the AQY** (10/11; the Octavia I's page at
 autorozvody.cz, the same engine): `0 258 006 978` the regulating probe
 ahead of the converter (AEG, APK, AQY; 1,760 mm overall),
 `0 258 010 032` the diagnostic probe behind it (APK, AQY; 760 mm).

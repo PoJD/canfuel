@@ -1748,7 +1748,9 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in.
   leads cut off** (`vehicle-history.md`). The front probe sees the true
   mixture, so the fuelling, 032 and the cylinders are untouched; the
   converter gets the air besides, and **the rear probe reads lean, most
-  at idle's small flow** — the 036 reading of 9/11 night in full (H11,
+  at idle's small flow**, and sinks over minutes as any lean excess does
+  once the converter's store is full (H11, *The sinking is the
+  converter's shape*) — the 036 reading of 9/11 night in full (H11,
   *What the rear probe can and cannot say*). Nothing else in the table:
   air there reaches neither a cylinder nor the front probe, so the fit
   below is the first zone's.
@@ -2317,7 +2319,10 @@ minutes on a mean only 0.1–0.2 % lean, as on one 5 % lean, faster.
 
 Misfires give the opposite (*below*), and **1,500 rpm standing is not
 load**: the rear probe read 0.26–0.38 V there too, so "normal under
-load" has not been measured. **What replacing both probes decides**
+load" has not been measured — **nor does that low reading say the
+mixture at 1,500 was lean**: a full store stays full on a mean of
+λ = 1, and only a rich spell empties it (*The sinking is the
+converter's shape*, below; corrected 10/11). **What replacing both probes decides**
 (`plan.md` 8c; *the owner's decision*, 10/11): the rear probe **not
 sinking** — steady in the upper half (above the 0.45 V switching point)
 through every idle loads off — and 032's idle cell falling towards
@@ -2344,7 +2349,77 @@ set point** (if it reads true). Its wide swing (0.07–0.76 V) fits a
 converter full of oxygen, no longer smoothing the front loop's
 oscillation (*reasoned*). **The new probes' first reading becomes this
 car's own reference**; 036 was never logged before 9/11.
- (10/11, *agreed with the owner*; *reasoned*): **the
+
+**The sinking is the converter's shape, not the cause's** (10/11,
+*the owner's question*: would a leak not read lean all the time?;
+*general* and *reasoned*). While its store has room the converter takes
+up any oxygen to spare and the gas behind it stays near λ = 1, so the
+rear probe reads high; once the store is full the oxygen passes and the
+probe falls. **Every one of the four causes feeds a steady excess of
+oxygen, so every one gives the same shape** — high, then down over the
+minutes — and differs only in how fast, which VCDS's ~1 s sampling and
+a converter of unknown capacity cannot read. A leak would read lean all
+the time only on a store already full; this one was emptied by the cold
+start's enrichment (the warming idle at 0.51 V, 70 % above 0.45) and,
+*reasoned*, by the fuel that leaves the inlet walls when the throttle
+shuts after 1,500 rpm (the rise to 0.58 V back at idle).
+
+**If the swap changes nothing** (*reasoned*): the old probes are out
+(1), and three causes are left, of which **only one has to do with the
+idle**:
+
+| cause | 032's idle cell | tied to the rough idle | how it is told |
+|---|---|---|---|
+| 2, hydrogen from unequal cylinders | stays negative | **yes**, through the cylinders' difference | only by removing the difference (H3 runner 4's gasket, H4 injector 4's circuit): the cell and the sinking shrink with it |
+| 3, air between the probes (H2) | untouched | **no**, the rear probe only | the warm tailpipe test (`plan.md` 7), soot at the joint ahead of the converter or round the plugging probe |
+| 4, a lean bias the rear loop leaves at idle | untouched | **no**, likely every AQY's normal state | 037 field 3 (a basic setting the owner runs, not Claude): whether the rear loop acts at idle at all |
+
+So **032's idle cell is the key**: unchanged with the same sinking
+leaves, of what touches the idle, only hydrogen — back to the
+cylinders' difference (H3, H4), not the probes; the other two would
+explain the rear probe and nothing of the idle, and the sinking would
+stop being a clue.
+
+**What would confirm the probes as the idle's cause** (10/11, *the
+owner's request*; the thresholds are *decisions*, set against the
+readings before the swap). A new probe can be right and the idle still
+rough — a real fault, not the idle's — so **the mechanism and the idle
+are each read, and the idle's change must be the one the mechanism
+predicts**. All five, over at least **three warm stops on different
+days** in the everyday state, oil 95–100 °C, the A/C off, within the
+first weeks:
+1. **The mixture was corrected at idle**: 032's idle cell from −7.8 %
+   to within **±3 %** after a few drives, the part-load cell where it
+   was — the split closes (S19). This is the front probe's own mark;
+   the new rear probe cannot fake it.
+2. **The idle no longer runs lean**: 036 not sinking, steady above
+   0.45 V through each idle loads off of 3 minutes or more (*Why the
+   criterion is a trend, not 0.6 V*).
+3. **The idle is better**: `IdleHealth` at every stop **at or below 40
+   from its first minute to its last** — below the best settled level
+   so far (48 ± 3 on `43`, 50–63 on 9/11) and without the rough first
+   minutes (86–93 on `42`, `43`); `Misfires` at the end of each stop
+   near zero, 014 within VW's 0–5 when VCDS is on (S3).
+4. **The patterns that a lean idle explained are gone**: a stop after a
+   queue no worse than one after a brisk run (within about 10), and the
+   A/C no longer calming it by more than about 10 — the load helped by
+   widening a lean margin, so with the margin back it has little left
+   to do. **If load still calms it as much, the lean idle was not the
+   reason**, whatever 1–3 say.
+5. **The dips no longer lean to one cylinder** in a capture with a cut
+   (`cutscan.py --shares`, 8b's kind), and the steady pattern over the
+   cylinders smaller — a correct mixture leaves a weak cylinder less
+   often over the edge; *if the steady pattern is kept with the dips
+   gone, the probes were the dips' cause and the cylinders' difference
+   is left as this engine's spread*.
+
+**Read**: 1–5 → the probes were S1's cause, S1 and S3 closed as such;
+1–2 without 3–4 → the probes were faulty but not the idle's cause; 3–4
+without 1 → something else changed (the fuel, the weather), not
+confirmed; 1–4 with the steady pattern kept → the dips' cause found,
+the spread left (5's note).
+
+**Against, the A/C** (10/11, *agreed with the owner*; *reasoned*): **the
 A/C calmed the idle but did not lift the rear probe** — `IdleHealth`
 130–140 loads off against 90–100 with it (*owner*, the display), the
 rear probe 0.30 V in both phases (the log; the owner's 0.6 with the A/C
