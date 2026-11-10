@@ -18,12 +18,10 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Current: 8c, the probes
-read again after both were replaced on 10/11** (the Beetle driven again
-from 10/11 while the weather allows summer tyres; *owner*); **item 6 and 6i, 8b (a
-second captured warm stop with a cut on 4) and 6m for cylinder 4 when
-the Beetle is driven again** (*agreed with the owner*, 9/11 evening;
-`open.md` S1, *The clean of 9/11*; H11).
+Captures only where an item asks for one. **Current: 8d, the relearn after the battery disconnect of 10/11**
+(the drive from work), **then 8e**; item 6 and 6i, 8b (a second
+captured warm stop with a cut on 4) and 6m for cylinder 4 after them
+(*the owner*, 10/11; `open.md` H11, *The reading after the swap*).
 
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
@@ -100,25 +98,25 @@ the Beetle is driven again** (*agreed with the owner*, 9/11 evening;
    connector off for 30 s** (say when, by the chat), 3 minutes more.
    At the end, engine idling: the fault memory, then 032/055; the owner
    clears it by hand.
-8c. **The probes read again** (both replaced 10/11, `vehicle-history.md`;
-   the reading before done 9/11 night). Claude in a session on the laptop, VCDS measuring blocks
-   only; **no CAN capture** (*the owner*, 10/11): the MFD in, and the
-   owner says `IdleHealth` and `Misfires` in the chat at each phase.
-   1. **Standing, the same as 9/11 night** (about 20 minutes): the fault
-      memory read first; **001 033 036 logged from the start**, in
-      neutral, **outdoors or with the garage door open and the tailpipe
-      outside, never in a closed garage**: idle until coolant about
-      78 °C; then about 3 minutes with every load off; about 3 minutes
-      with the A/C on; about 3½ minutes with every load off; 1 minute at
-      1,500 rpm; at least 1 minute's idle, loads off. Say in the chat when
-      each starts. Then **041 032 055** for 20 s.
-   2. **The drive on, the same morning**: **014 033 036** logged from
-      pulling away to engine off; the laptop not touched while driving.
-      **At the end, a warm stop in the everyday state, the A/C off, 3
-      minutes**; then **032 055** for 20 s and the fault memory, engine
-      still idling; the owner clears it by hand only if there is a code.
-   If there is no time for 1, only 2; 1 then waits for the next cold
-   morning.
+8d. **The relearn after the battery disconnect** (disconnected by the
+   owner on 10/11 after parking at work). Claude in a session on the
+   laptop, VCDS only; **no CAN capture**: the MFD in.
+   1. **Before the start**, ignition on, engine off: the fault memory
+      read; **032 055 for 20 s**. Then **the owner runs 098 under basic
+      settings** himself, as on 27/10, and photographs the result.
+   2. **The drive home: 014 032 036 logged** from the start to engine
+      off; the laptop not touched while driving. Drive as the day brings
+      it.
+   3. **At the end, a warm stop in the everyday state, the A/C off, 3
+      minutes**; `IdleHealth` and `Misfires` into the chat as it goes.
+      Then **032 055 for 20 s** and the fault memory, engine still
+      idling; the owner clears it by hand only if there is a code.
+   4. **After that, 032 for 20 s at every session with VCDS connected**,
+      until both cells have held for three drives.
+8e. **The new probes' tightness**, at the next cold engine after 8d:
+   with the spanner they were fitted with, whether either turns further
+   at the effort they were tightened with. Which, and about how far,
+   into the chat; nothing undone.
 9. **After the clean of 9/11, by what the next stops show** (Claude says
    which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
@@ -253,9 +251,10 @@ back; the photograph because a millimetre is the stick's resolution.
 
 **Item 7 — the exhaust ahead of the converter (H2), warm.** Both of
 H2's zones (widened 10/11): ahead of the front probe, and between it
-and the converter, where air reaches only the rear probe — so after 8c
-a rear probe that still sinks at idle is a reason for Claude to ask for
-it. A leak that
+and the converter, where air reaches only the rear probe — so the new
+rear probe's switch to the front's swing after 18 minutes of idle on
+10/11 (`open.md` H11, *The reading after the swap*) is a reason for
+Claude to ask for it once 8e has found both probes tight. A leak that
 draws air in at idle blows out when the outlet is closed, and hisses or
 puffs; a crack in cast iron may only open hot (*general*). **Cold found
 nothing on 12/10** (`idle-log.md`), so warm is what is left. Each closure shows
@@ -281,67 +280,49 @@ c11dc75:docs/engine-health/plan.md`, item 8). **What it showed**: 3's
 excess — its share of the dips, its steady deficit, the rough first
 minutes of a warm stop and 014's storm — was not there at stop 7, which
 is the H13 branch for 3; **4's steady deficit and the settled level were
-kept**. **8c, the probes** (*agreed with the owner*, 9/11 late evening;
-`open.md` H11, *Re-read 9/11 evening*): if the front probe reads rich
-only at idle, the real idle mixture is lean, and every pattern of the
-dips follows. **036's first field is the rear probe's voltage** and its
-block is not a basic setting (`vcds.md`), so it is read like any
-measuring block; behind a working converter a rear probe sits steady in
-the upper half, often 0.6–0.75 V, when the mixture is right, and sinks
-to about 0.1–0.3 V when it is lean (*general*; no figure is published
-for this engine, so the trend is read, not a value: `open.md` H11, *Why
-the criterion is a trend, not 0.6 V*). **The reading before** (9/11 night; `open.md` H11,
-*The reading before the swap*): at every idle the rear probe sank
-towards lean over the minutes, heaters good, 032/055 unchanged — a lean
-mean behind the front probe, of a size it cannot read and from one of
-four causes (`open.md` H11, *What the rear probe can and cannot say*);
-*until 10/11 this said a converter's store filling at idle looked alike,
-which it does not.* **The reading after is the reading before, step for step**,
-because only the same order, lengths and coolant make the two
-comparable: it was **shortened at the owner's decision** (a housing
-estate near midnight; 1,500 rpm for 1 minute, not 2,500 for 3), and
-that shortened form is now the one; **the cold start logged** because
-the rear probe's slow sinking only shows from the start of each idle
-— and since the 9/11 log itself began at 73 °C of coolant, the two are
-compared from there, so the short move into the garage before the
-swap, an hour or more before the reading, does not spoil it (10/11);
-**the A/C** because it calmed the display though it did not lift the
-rear probe; **041 again** for the new probe's heater. **Both probes rather
-than an analyser** is the owner's decision (the front one 9/11, both
-10/11: both are from 2017, and he wants to avoid the analyser, which
-alone would read the lean mean's size): the reading before and after
-decides **between the old probes and the rest** — **036 not sinking,
-steady above 0.45 V through every idle loads off, 032's idle cell
-falling and the dips fewer**
-says the old probes; the same sinking rules them out (the new rear one's
-own fault with them) and leaves hydrogen from unequal cylinders, air
-between the probes (item 7) and a lean bias the rear loop does not trim
-at idle, with the dips' common cause dilution or fuel (H13, H7;
-`open.md` S1, *The gas idle taken apart*). **The probes are confirmed
-as the idle's cause only by all five marks** of `open.md` H11, *What
-would confirm the probes as the idle's cause* — 032's idle cell within
-±3 %, the rear probe not sinking, its mean near 0.45 V or above and
-flat, `IdleHealth` at or below 40 at three
-warm stops on different days, the queue and the A/C no longer making a
-difference, the dips on all four alike; **if the swap changes nothing,
-032's idle cell decides what is left** (*If the swap changes
-nothing*). The battery stays connected so that 032 and 055
-are read on the same adaptations; 032's idle cell then relearns from
-where it is — **a fall towards zero after the swap is itself the
-answer**. **No CAN capture** (*the owner*, 10/11), so `IdleHealth` comes off the
-display as a running figure, not exactly; the dips' share over the
-cylinders waits for 8b.
+kept**. **8c, the probes read before and after both were replaced, is done**
+(9/11 night and 10/11; `open.md` H11, *The reading before the swap*,
+*The reading after the swap*; how it was planned and why: `git show
+1040e9e:docs/engine-health/plan.md`, item 8c): the new rear probe flat
+for 18 minutes of idle where the old one sank, and the idle as rough as
+before.
 
-**8c's reading in two parts** (10/11): **standing, step for step
-as 9/11 night**, because only that is comparable with the reading
-before; **then the drive with 014 033 036**, because the rear probe has
-never been read under real load (1,500 rpm standing is not load,
-`open.md` H11), 014 counts the misfires the swap should take away, and
-033 shows the front loop beside the rear probe; **the warm stop at the
-end** is the first of the three that H11's five marks ask for. **If the
-rear probe sinks at idle again, the new probes' tightness is checked
-first**: they were tightened by hand, and air drawn in at a loose rear
-probe reaches it and reads lean, the same as the second zone of H2.
+**8d, the relearn after the battery disconnect** (*the owner's
+decision*, 10/11: whether 032 goes back to its large negative values on
+the new probes, and whether that moves the idle; `open.md` H11, *The
+relearn after the battery disconnect*). **Why it is the test of H11's
+mark 1**: 032 starts from 0.0 / 0.0, and on the old probes its idle
+cell was back at −6.3 % after one drive from both resets on record
+(27/10 and the map of 3/11), so where it gets to in one or two drives
+on the new ones says whether the old front probe made it — back at
+about −6 % says not, within ±3 % over three drives says it did. **The
+idle is read separately** (marks 3 and 4), because the owner's idle was
+rough at −4.7 % in the summer too. **032 logged through the drive**,
+not only at the end, to see when each cell moves; **036** for the
+rear probe at the stops and a second time under load, and whether its
+switch to the front's swing after 18 minutes of idle comes back;
+**014** for the misfires, though **a quiet 014 after a disconnect is no
+evidence** (`refuted.md` C19's rule: the crank wheel's tooth errors may
+have to be learnt again on the overrun). 001 and 033 are dropped: 014
+carries engine speed and load, and 033's regulation stayed within ±2 %
+on 10/11. **032/055 before the start** to see the reset itself (a
+minute's disconnect leaves 055, hours reset it: `idle-log.md`, 26/10
+and 27/10). **098** because VW asks for the throttle adaptation after a
+disconnect (`vcds.md`); it is a basic setting, so the owner runs it,
+never Claude (`CLAUDE.md`). **The warm stop at the end** is read with
+055 settled — it relearns within the first few entries into a warm idle
+(`idle-log.md`, 27/10) — and is the second of the three stops H11's
+marks ask for. **No CAN capture** (*the owner*, 10/11), so the dips'
+share over the cylinders waits for 8b.
+
+**8e, the probes' tightness**: they were tightened by hand to about 50
+Nm estimated, without a torque wrench (`vehicle-history.md`), and the
+reading after showed the rear probe switching to the front's swing
+after 18 minutes of idle and in spells at the warm stop; a probe seated
+loose lets air into the exhaust at idle's pulses, the second zone of
+H2 of its own making (*reasoned*). Cold, because the exhaust then is at
+the temperature they were fitted at. Checked before the warm tailpipe
+test (item 7), which it would otherwise confuse.
 
 **8b, the second captured stop**, because the rough start is what
 varies most between stops: stop 3's own second half read like stop 7,

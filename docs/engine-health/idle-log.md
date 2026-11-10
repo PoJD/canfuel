@@ -1257,8 +1257,40 @@ Read the same night (`open.md` H11, *The reading before the swap*; S2;
   borescope: light grey, the cells regular, nothing melted or sooted
   (`photos/converter-outlet-borescope-2026-11-10.jpg`).
 - **Changes after:**
-  - *not known:* everything — the reading after the swap is next
-    (`plan.md` 8c).
+  - *measured:* the reading after the swap, the same day (next entry).
+    *This said "not known: everything — the reading after the swap is
+    next" until it was read.*
 
 Read in a cloud session the same morning (`open.md` H11, *The old
 probes seen*).
+
+## 10/11 — the probes read after the swap; the battery disconnected
+
+- **Repairs:** **the battery disconnected** by the owner after parking
+  at work, every adaptation to relearn (`plan.md` 8d).
+- **Tests:** from a cold start after about 3½ hours standing, the
+  garage door open, VCDS 001/033/036 through the phases of 9/11 night
+  (the warming idle, loads off, the A/C, loads off, 1,500 rpm for 1
+  minute, idle); 041/032/055 once; then the drive on to work, about 29
+  minutes, VCDS 014/033/036, and a warm stop at the end in the everyday
+  state, the A/C off, oil 101–102 °C; 032/055 and the fault memory
+  before, between and at the end (`plan.md` 8c, done).
+- **Changes after:**
+  - *measured:* **the new rear probe flat at 0.59–0.60 V for 18
+    minutes of idle** (9/11: sinking within the first phase), **then in
+    one sample the front's swing**, 0.07–0.78 V, until the 1,500 rpm;
+    flat again at the last idle and for the first 1½ minutes of the warm
+    stop, spells of the swing after; on the road 0.51–0.59 V in the
+    steadier minutes; `IdleHealth` loads off **112–140**, the A/C
+    **66–75**, the warm stop **48–90**, `Misfires` 3–7 there (*owner*);
+    014 0.24 % of combustions at the stop; **032 −7.8 / +7.0 → −6.3 /
+    +5.5 %** over the drive, 055 −1.06 → −1.18 g/s; heaters 26.8 /
+    21.7 Ω, on; no code;
+  - *not known:* where 032 settles from zero on the new probes
+    (`plan.md` 8d).
+
+Read in a cloud session the same day (`open.md` H11, *The reading after
+the swap*): the old probes carried most of the lean mean, the idle was
+as rough without it. The radiator fan not heard at the rear probe's
+switch, 11:54 (*owner*). VCDS dropped at the start; the log continues in
+its `-2` file.

@@ -202,6 +202,13 @@ finding:**
   **041** the heater resistance of the front (field 1) and rear (field
   3) probe, **6.4–47.5 Ω**, and whether each heater is on; **030** both
   probes' status bits (heater on, ready, regulation active), 111 each.
+- **036 field 2 as read on this car** (9/11 and 10/11): `R1-S2 vyp.`
+  for about the first 75 s from a cold start, then `R1-S2 zap.`, then
+  `R1-S2 OK` — after about 7 minutes from 73 °C of coolant on 9/11,
+  after about 20 minutes from a cold start on 10/11 (once the 1,500 rpm
+  had run), and `OK` throughout a drive. **What the ECU checks between
+  `zap.` and `OK` is not known**; the label file names the field only
+  the probe's availability.
 - ⚠ **020 and 026 are not in this ECU's label file** — it defines 022/023 for
   the retard. They are on Ross-Tech's general list and this ECU answers them
   (both were logged in September 2026), so the fields are read without a
