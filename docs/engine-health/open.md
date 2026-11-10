@@ -1790,6 +1790,22 @@ had tucked them into that morning, the old ones having hung loose):
   probes' signal earths close inside the ECU, at its plug. The battery
   taken out again that night, so 032 relearns from zero on the
   repaired harness (`plan.md` 8f).
+- **The first start after the tape** (11/11 00:05, a cold start after
+  about six hours, idling only; `vcds/vcds-harness-taped-cold-030-033-036.csv`,
+  the album 00:06 and 00:10): the front probe read lean (0.015–0.025 V)
+  through the secondary air's first 100 s, then switched 0.08–0.78 V
+  with its correction within −5.5 to +2.3 %; **the rear probe at 0.425–
+  0.44 V while its heater warmed (`vyp.` to 135 s), then rising flat
+  to 0.535–0.575 V by 160–220 s — the healthy shape — and from 222 s
+  moving between 0.31 and 0.61 V with the front's swing**, never under
+  0.3 V; 030 111 for the front, 010 / 110 for the rear (ready, its
+  heater cycling, its regulation not yet on — it read 111 at the hot
+  stop of 10/11). **No zero** — no sign of S23 cold. 032 0.0 / 0.0
+  (reset), 055 −1.12 / 0.00 g/s at 830 rpm; `IdleHealth` **64** on
+  the MFD at 1–2 minutes (*owner*: about 70 with the secondary air,
+  rising after), `Misfires` 1. The rear probe joining the front's
+  swing on a converter a few minutes from cold is what a store not yet
+  working gives (*reasoned*); the hot drives decide S23.
 - **Taped by the owner the same night**, everything he could see
   (`plan.md` 8e), so the drives after are a before-and-after test: S23
   coming back or not, and where 032 relearns (`plan.md` 8f). A front

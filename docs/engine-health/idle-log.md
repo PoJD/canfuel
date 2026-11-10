@@ -1345,3 +1345,18 @@ old probes'; the idle and 3's lead as before the clean.
 
 Found that evening (`open.md` S23, *Found at the harness*); the leads
 had been tucked into the box with the harness that morning.
+
+## 11/11 just after midnight — the first start after the harness was taped
+
+- **Repairs:** the battery back in, **098 run, OK** (*owner*).
+- **Tests:** a cold start and a few minutes' idle, VCDS 030/033/036
+  logged (`vcds/vcds-harness-taped-cold-030-033-036.csv`); 032/055 read
+  once; the MFD watched.
+- **Changes after:**
+  - *measured:* the rear probe healthy-shaped after warming (0.535–0.575
+    V flat), then 0.31–0.61 V with the front's swing, never zero; the
+    front switching normally; 032 0.0 / 0.0, 055 −1.12 / 0.00 g/s;
+    `IdleHealth` 64 at 1–2 minutes, `Misfires` 1 (*owner*, the MFD);
+  - *not known:* whether S23 stays away on a hot drive.
+
+Read the same night (`open.md` S23, *The first start after the tape*).
