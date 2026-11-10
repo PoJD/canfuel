@@ -40,7 +40,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 **Closed**, in `refuted.md` §D: S6 the exhaust joint behind the
 converter, S8 the top end, S9 the rich trim, S10 the oil leak at the back
-of the head, S12 the jerk on tip-in (a sticking pedal, 27/10), S13 the
+of the head, S13 the
 throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
 (24/10), **S22 the tick heard during the hydrogen clean (9/11 evening:
 the clean's own sound, D11)**, **S7 the cold start (31/10: the fuel — four clean starts on
@@ -209,6 +209,9 @@ so neither made it (H11, *The relearn drive*).
   owner's request): the evaporative system, the code of 1/2018 back; no
   fill and no hose touched before it; cleared by the owner (H16). Not
   the idle.
+- **S12, a sudden jerk at a crawl and on moving off** (reopened 10/11
+  night at the owner's request; not the pedal): not on the bus at a
+  crawl; 014 counted single misfires in moving-offs on 10/11.
 - **S23, the new rear probe's signal falling to zero under load**
   (10/11 evening, added at the owner's request): P0137 sporadic,
   cleared; normal again minutes later. The lead, the connector or the
@@ -1239,6 +1242,36 @@ by the hoses. Moving the hose and covering places by hand changed nothing.
 under manifold vacuum (*general*). Kept open with that note; no test planned.
 If it is a leak: behind the throttle it is H3, ahead of the probe H2.
 
+### S12. A sudden jerk at a crawl and on moving off
+
+*Reopened 10/11 night at the owner's request*, in a new form; its
+history, closed twice as play (4/10) and as a sticking pedal (27/10), is
+`refuted.md` D6. **Now** (*owner*): **now and then, creeping gently, the
+car gives one hard jerk, as if someone had let go of the throttle
+abruptly; and the same when moving off. Not every time. Not the
+pedal**, which has moved smoothly since it was greased (27/10).
+
+**Looked for on `47`** (10/11 evening, about 40 moving-offs and long
+crawls in the queues; *ad-hoc scripts, not kept*): **nothing that can be
+named a jerk**, and none of the times is known. (1) Engine speed at a
+steady pedal: every fall of 60 rpm and more in 0.3 s at under 25 km/h
+lies at a gearchange or a lift (the pedal at rest, b7 falling), a
+clutch the bus cannot see. (2) The car's own speed: 0x1A0 below about
+10 km/h moves in steps held for tenths of a second, so its derivative
+makes false decelerations of 1–2 m/s² at every step; at the candidate
+moments engine speed showed no stumble. **The bus cannot show this
+symptom at a crawl** (*reasoned*). (3) **014 counted at moving off**:
+seven single misfires on the road (12–18, `aktivováno`) at 43–57 % load
+— 16:34:33, 16:46:01, 16:47:35, **17:15:52** (0–8 km/h, 757–1,114 rpm in
+the 15 s before), **17:19:30** (0–6 km/h), 17:23:02, 17:26:00 — and
+**each window held a moving-off from standstill**; a misfire under load
+in first gear is a torque step the driver feels (*reasoned*). Whether
+he felt one then is *not known*.
+
+**To catch it**: say "teď" (now) in the chat the moment it happens on a
+captured drive, or note the clock; a capture with a word at the time
+names the stroke, the load and the cylinder.
+
 ### S14. Bangs from the exhaust on a downshift without a blip
 
 *Owner*, 4/10: on a downshift **without a throttle blip** a series of small
@@ -1697,6 +1730,7 @@ engine leak, a falling dipstick level is oil burnt, not lost.
 | S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle; the dips sat on 3 and 4 until the VW leads (all four alike since), and lead 4's end was the loosest (`refuted.md` C24) |
 | S19 ↔ the bad start of 24/10 | **suspected one event** (*owner*) | same window, both what a cylinder flooded while standing gives (S19) |
 | S21 ↔ S19 | **possible, through H16** (*reasoned*) | both would sit on the purge path; no event links them |
+| S12 ↔ S3 | **possible** (*reasoned*) | 014 counted seven single misfires on `47`, each in a window holding a moving-off (S12) |
 | S23 ↔ S1, S19 | **none measured** (*reasoned*) | the idle as rough before the rear probe's fault began (16:57, 10/11) as after; 032's idle cell at −6.3 % before it and −3.9 % during it (S23) |
 | S3 on the road ↔ S17, S5 | **possible, one engine-speed band** (6/11) | 014's road episodes at 21–32 % load: 2000–2400 rpm about twice 1600–1800 and 2400–2600 (S17); the bus shows no stroke-to-stroke roughness peak there |
 | S16 ↔ S1 | **untested** (*general*) | a gearbox's rattle in neutral is driven by the crank's unevenness at idle (S16) |
@@ -1715,21 +1749,21 @@ Each lists what it explains, what speaks against it, and the test that
 settles it. ✔ fits, ~ fits weakly, ✘ does not fit, — says nothing.
 
 **The columns are the open symptoms that bear on the engine**: S1, S2, S3,
-S4, S5, S11, S14, S19, S20 (added 26/10), S21 (added 6/11); S22
+S4, S5, S11, **S12** (reopened 10/11 night, the jerk at a crawl), S14,
+S19, S20 (added 26/10), S21 (added 6/11); S22
 (added 9/11) closed the same evening (`refuted.md` D11) and its column
 went with it; **S23** (added 10/11 evening, the rear probe's signal;
 a column since H21 was added the same evening, — everywhere but there).
 Left out: S16 (the gearbox side, shown not to touch
-the idle) and S17 (a resonance, not placed); S12 closed again on
-27/10 (`refuted.md` D6) and S7 on 31/10 (D2), and their columns went
-with them; the closed ones are in
+the idle) and S17 (a resonance, not placed); S7 closed on 31/10 (D2)
+and its column went with it; the closed ones are in
 `refuted.md` §D.
 
 ### H0. The idle is normal for this engine — and there is no fault to find
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ✘ | — | ~ | — | ✘ | ✘ | ~ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ✘ | — | ~ | — | ~ | ✘ | ✘ | ~ | — | — |
 
 - **Against:** 014 reads 12–120 against VW's 0–5; the old converter burned
   through; the dips sit on 3 and 4, the cylinder of the 2019 P0304 and of the
@@ -1821,9 +1855,9 @@ or debris holds its valve a hair open, which costs compression and misses
 at a small charge and is covered by load — the case this hypothesis is
 about. The valve is closed by its spring; the lifter only removes the gap.
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ~ | ~ | — | ~ | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ~ | ~ | — | ~ | ~ | — | — | — | — |
 
 - **9/11, after the clean** (S1, *The clean of 9/11*; S22): 3's excess
   gone at stop 7 — **against an exhaust seat on 3 that leaks as a part**
@@ -1920,9 +1954,9 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in.
   air there reaches neither a cylinder nor the front probe, so the fit
   below is the first zone's.
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ✔ | ~ | ✘ | ✘ | ✔ | ✔ | ✘ | ~ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ✔ | ~ | ✘ | ✘ | ✔ | — | ✔ | ✘ | ~ | — | — |
 
 - **For:** the puff (S2), the hiss (S11), air for S14's bangs; a 26-year-old
   manifold that has lived through years of misfires; **for the second zone,
@@ -1964,9 +1998,9 @@ intake in its common part, none nearer one runner than another**, so
 whatever enters by a line reaches all four alike; what is left of H3 is
 the lower manifold's gasket at runner 3, never renewed.
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ~ | ✔ | ~ | ✘ | ~ | ✔ | ✘ | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ~ | ✔ | ~ | ✘ | ~ | ~ | ✔ | ✘ | — | — | — |
 
 - **9/11** (S1, *The clean of 9/11*): **4's steady deficit kept after the
   clean** (5–8 % at stop 7, as on `31` and `43`), the runner whose
@@ -2037,9 +2071,9 @@ pick them. **What is left**: the injector loom where it reaches 3 and 4,
 shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
 19/10; tape renewed). The plug-end side moved to H15, refuted 4/11 (`refuted.md` C24).
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | ~ | — | ~ | ✘ | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | ~ | — | ✔ | ~ | ✘ | — | — | — |
 
 - **9/11** (S1, *The clean of 9/11*): 4's steady deficit kept after the
   clean, 3's gone: for 4's own circuit (6m); with the gas flowing no dip
@@ -2142,9 +2176,9 @@ The ECU books anything at cylinder 4's crank angle to cylinder 4: G66, its
 torque or connector; a loose ancillary part buzzing in a speed band; **an arc
 at lead 4's plug end** (`refuted.md` C24). Injector 4's click is settled against (B7).
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| — | — | — | ✔ | ✔ | — | — | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| — | — | — | ✔ | ✔ | — | — | — | — | — | — | — |
 
 **Tests** — not scheduled (*owner's decision*, 9/10): G66's torque and
 connector; a look for a loose bracket at ~3000 rpm in neutral; after the VW
@@ -2158,9 +2192,9 @@ hundred km without a disconnect.
 
 ### H7. Fuel delivery at idle: rail pressure, one injector
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | — | ~ | ✔ | ~ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | ~ | ~ | ✔ | ~ | — | — |
 
 - **`43` (3/11 evening): the dips named 43 % on cylinder 3** (p 0.004
   against all four alike; *The dips keep to one slot*), and P0303 with the
@@ -2272,9 +2306,9 @@ swap injector 3 with another if the cylinder stays named.
 
 ### H8. Idle air control and the throttle body
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | — | — | — | ✔ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | — | ~ | — | — | ✔ | — | — |
 
 **For: S20, by its timing** (*owner*, 26/10): the speed has been hard
 to hold at a steady pedal since the job of 1–2/10, which fitted this
@@ -2365,9 +2399,9 @@ any more: 5b's stops are on a settled value.
 that it is not argued again.* The probes are from 10/2017, the one part of
 the mixture control not changed.
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | — | ~ | ~ | ~ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | — | ~ | ~ | ~ | — | — |
 
 **Against:** 032 + 033 near zero on a new MAF and new injectors bound a hidden
 shift to a few per cent, and with the wrong sign (the ECU takes fuel out); a
@@ -3075,9 +3109,9 @@ behind the converter only (H2's second zone).
 
 ### H12. Driveline play read as misfires
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ✘ | ~ | ~ | ~ | — | ✘ | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ✘ | ~ | ~ | ~ | — | ✔ | ✘ | — | — | — | — |
 
 **Against:** the MAF swap halved the dips; play repeats every 360°, the pairs
 1+4 and 2+3, while the dips sit on 3 and 4, 180° apart; the puffs come with
@@ -3094,9 +3128,9 @@ a sticking pedal (`refuted.md` D6).*
 3000 rpm for at least nine years (*owner*). Gentle use builds deposits where
 hard use burns them off (*general*).
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ~ | ✔ | ~ | — | — | ~ | ~ | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ~ | ✔ | ~ | — | — | ~ | ~ | ~ | — | — | — |
 
 - **9/11, the clean** (S1, *The clean of 9/11*): **after it 3's excess
   was gone at stop 7** — its share of the dips 48 % → 23 % (p 0.01),
@@ -3187,9 +3221,9 @@ EPR flushes and fresh oil, done 26/10).
 original map (`refuted.md` C23, *agreed with the owner*). What is left is
 what the remap did change: the corner of highest load.
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ✘ | ✘ | ✘ | ~ | ✘ | — | ✘ | ~ | ✘ | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✘ | ✘ | ✘ | ~ | ✘ | — | ✘ | ✘ | ~ | ✘ | — | — |
 
 **What the remap changed** (the two whole flashes from the tuner, 3/11;
 compared byte for byte, the files not kept here; the tables with every
@@ -3346,9 +3380,9 @@ not seal** passes vapour all the time, cold and in open loop, on the
 overrun and **while the car stands**, when vapour from the canister can
 settle in the intake and flood the first start.
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | — | — | — | — | ~ | ✔ | ~ | ✔ | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | — | — | — | — | ~ | ~ | ✔ | ~ | ✔ | — |
 
 - **For: S19.** A rich code and a start that dies at once after four hours
   standing, in a window that holds a fill, is the textbook picture of a
@@ -3537,9 +3571,9 @@ oil run down the valve guide, and the intake's vacuum, highest at idle,
 draws it into the cylinder, where it costs combustion; under load the
 vacuum falls, the flow stops, and what collected burns away.
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | — | — | — | — | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | — | — | — | — | — | — | — | — | — |
 
 - **For: the shape of 26/10**, worse after idling and gentle driving,
   calmer after work, the calm lasting — what oil collecting at a small
@@ -3592,9 +3626,9 @@ gasket or a hairline in the head next to 3 enters where the cylinder's
 pressure is lowest, at idle vacuum, and steams the charge — a misfire
 at idle on that cylinder, eased by load, and a plug kept clean.
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | — | — | — | ~ | — | — | — | — |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | — | — | — | — | ~ | — | — | — | — |
 
 - **For:** one cylinder at idle; load helps (a higher manifold pressure
   draws less in, *reasoned*); **plug 3 the cleanest** of the 10/10 set
@@ -3625,9 +3659,9 @@ right for a while). Both probes were replaced on 10/11 with their own
 leads and plugs; **the sockets on the harness side, the wires to the
 ECU and their earths are the car's** (`vehicle-history.md`).
 
-| S1 | S2 | S3 | S4 | S5 | S11 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | — | — | — | — | — | ~ | — | — | ✔ |
+| S1 | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | — | — | — | — | ~ | — | ~ | — | — | ✔ |
 
 - **For, S23** (*reasoned*): a leak to earth in a damp or oxidised
   socket pulls the signal down in proportion, so the ceiling falls under
@@ -3647,11 +3681,29 @@ ECU and their earths are the car's** (`vehicle-history.md`).
   at idle, where the exhaust is coolest (*general*), so the shift would
   be largest there. Whether the signal and heater earths share a path
   on M5.9.2 is *not known*.
-- **Against, for the idle (S1)**: on 10/11 morning the new rear probe
-  read flat at 0.59–0.60 V, the healthy shape, for 18 minutes, and the
-  idle was as rough and the A/C calmed it as much (H11, *The reading
-  after the swap*) — the same against that moved H11 down; a wrong
-  mixture is at most a part of the idle.
+- **For, the idle (S1), and S12** (*the owner*, 10/11 night): a
+  resistance that comes and goes in the **front** probe's circuit makes
+  the ECU see false rich or lean, and it moves the mixture of all four
+  cylinders after it; the idle is where the engine runs nearest its
+  edge (the gas idle of 9/11, S1), so a mixture thrown about would show
+  there first — and a step of it at a crawl or a moving-off would be a
+  jerk (S12). *Reasoned*, and fair: nothing below rules out glitches
+  shorter than VCDS's sample.
+- **Against, for the idle (S1)**: (1) **the front probe's own trace**:
+  033 at a warm idle, about one sample a second, 9/11 night (664
+  samples, the old probe) and 10/11 morning (741, the new): **switching
+  regularly between 0.06–0.08 and 0.74–0.77 V, never more than 6 s on
+  one side, the correction within −4.7 to +3.9 %** — no dropout, no
+  stuck value, no excursion of the correction (*ad-hoc script, not
+  kept*); a glitch under a second would not show. (2) On 10/11 morning
+  the new rear probe read flat at 0.59–0.60 V, the healthy shape, for 18
+  minutes, and the idle was as rough and the A/C calmed it as much (H11,
+  *The reading after the swap*) — the mixture behind the converter was
+  right while the idle was rough. (3) A mixture moves all four
+  cylinders alike; the idle's dips lean to 3 and its steady pattern
+  names 3, 4 and 2 (*The dips keep to one slot*), which a mixture does
+  not make. **So a part of the idle at most** — its four-alike share,
+  not the cylinders' difference (*reasoned*).
 - **Against, S23 as the circuit**: the new probe failing early is not
   ruled out; a lead and socket found sound leave the part.
 

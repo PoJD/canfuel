@@ -41,6 +41,9 @@ cold engine, with the rear probe's lead and both probes' sockets**,
      came before each stop** (queuing, or a brisk stretch), and the A/C's
      figure too whenever it happens to be on; **an odd cold misfire or a
      drop-out on one cylinder** goes into the chat at once.
+   - **A hard jerk at a crawl or on moving off** (`open.md` S12): the
+     clock time into the chat as soon as it is safe, with the gear and
+     roughly the speed; on a captured drive, **"teď"** at once.
 6i. **The oil level on the new oil, about every 500 km** from the first
    reading (27/10, 155,024 km, at the top mark; 5/11, 155,546 km, 0.5–1 mm
    under it; **next about 156,050 km**): the car on level ground
@@ -315,6 +318,11 @@ signal failed on its way to the ECU, and it came back at a cooler idle
 tidied by the owner when the probe was fitted, so its run is looked at
 first, the connector second; a lead and connector found sound leave the
 new probe itself (a warranty matter). Cold, so it can be touched.
+
+**S12's jerk by the clock** (reopened 10/11 night at the owner's
+request): the bus cannot show a jerk at a crawl, so only its time
+lets a capture or a VCDS log be read at that moment — the stroke, the
+load, 014, and from a capture the cylinder (`open.md` S12).
 
 **8e's sockets and 8g, the probes' circuit** (`open.md` H21, added
 10/11 evening at the owner's request): the swap changed the probes and

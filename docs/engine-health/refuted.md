@@ -1104,12 +1104,17 @@ the ventilation nor the gasket was the idle (A15). The re-tightening stays in
 owner in the week of 19/10, hundreds of km on the gasket by then; the item
 left the standing items at his request.)*
 
-### D6. S12 — a hesitation on tip-in and after a gearchange — closed 4/10/2026
+### D6. S12 — a hesitation on tip-in and after a gearchange — closed 4/10/2026 (reopened 10/11/2026 in a new form, `open.md` S12)
 Withdrawn by the owner after watching for it: in his judgement mechanical play
 in the mounting or the driveline, and the hesitation itself no longer felt.
 *Reopened 27/10 at the owner's request (`open.md` S12): felt all along,
 and 014 counted on the road at such moments. Whether play or combustion
 is open there.*
+
+**Reopened 10/11/2026 night at the owner's request, in a new form**
+(`open.md` S12): a sudden hard jerk now and then at a crawl and on
+moving off, as if the throttle were let go — not the pedal. What
+follows stays as it was.
 
 **Closed again 27/10/2026 evening, by the owner: the accelerator pedal
 was sticking, and greasing it cured the jerk.** On the drive after it
