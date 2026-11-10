@@ -39,7 +39,10 @@ symptom in `docs/` is dated after it, with a working lamp.
 | | |
 |---|---|
 | At purchase, 25 Sep 2017 | 126,200 km |
-| At 13 Sep 2026 | 154,000 km |
+| At 11 Aug 2026 | **153,032 km** (the bus, 0x520, captures `08`–`17`) |
+| At 11 Sep 2026 | **153,088 km** (the bus, capture `18`) |
+| At 13 Sep 2026 | about 154,000 km — *a round figure: the bus read 153,088 two days before and 153,569 on 24/9* |
+| At 24 Sep 2026 | **153,569 km** (the bus, capture `20`) |
 | At 23 Oct 2026 | **154,501 km** (`photos/odometer-2026-10-23.jpg`; the cluster's trip 289.4 km since the fill of 17/10) |
 | At 24 Oct 2026 | **154,755 km** (`photos/odometer-2026-10-24.jpg`; the cluster's trip 543.5 km since the fill of 17/10, zeroed at this fill) |
 | At 26 Oct 2026 | **154,999 km**, the oil change (*owner*) |
@@ -50,7 +53,8 @@ symptom in `docs/` is dated after it, with a working lamp.
 | At 5 Nov 2026 | **155,546 km** (album, 22:07), the oil level read (`open.md` H18); the cluster's trip 190.7 km, zeroed at about 155,355 — at the tuner on 3/11, most likely the ECU's work (*reasoned*). *This said "since the fill of 29/10" until 8/11.* |
 | At 8 Nov 2026 | **155,691 km** (album, 10:38), on reserve, before the part fill below; the cluster's trip 335.8 km, zeroed at about 155,355 as above |
 | At 8 Nov 2026, the fill | **155,707 km** (album, 10:56), the cluster's trip 351.1 km |
-| At 9 Nov 2026 | about **156,000 km**, the hydrogen clean (the provider's certificate, rounded) |
+| At 9 Nov 2026 | about **156,000 km**, the hydrogen clean (the provider's certificate, rounded; the bus read 155,834 the next afternoon, so about 155,8xx) |
+| At 10 Nov 2026 | **155,834 → 155,853 km**, the relearn drive home (the bus, 0x520, the unfiltered capture of `47`) |
 | **Covered in ownership** | **27,800 km over 9.0 years**, about 3,100 km a year *(derived)* |
 
 Odometer at the start of each year, from the owner's expense sheet

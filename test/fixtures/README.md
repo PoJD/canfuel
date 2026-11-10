@@ -291,8 +291,8 @@ ever moves; use the holds for anything that needs a number.
 **What it settled:** 0x288 b5 is not ignition advance. Above 1900 rpm the
 advance ranges over 19.5° while b5 is 152 in all 2,161 samples — a comparison
 of two ranges over the same six minutes, needing no clock alignment. See
-question 3, now parked under *Never resolved but not required* in
-`docs/firmware/can-decoding.md`.
+question 3 in `docs/firmware/can-decoding.md`, answered 10/11/2026: b5
+is the idle speed target.
 
 **Why its pairing is weak.** The two clocks align by cross-correlating engine
 speed at a lag of 44.0 s with r = 0.9896, but that is a single offset across

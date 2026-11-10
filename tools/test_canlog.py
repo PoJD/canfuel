@@ -775,5 +775,29 @@ class TestStates(unittest.TestCase):
         self.assertEqual([n for n, _, _ in on if n == "A/C on"], ["A/C on"])
         self.assertEqual([n for n, _, _ in off if n == "A/C on"], [])
 
+    def test_the_engine_lamp_lights_with_each_injector_cut(self):
+        """0x480 b1 bit 3: on with the ignition, off a few seconds after the
+        start, and on again within seconds of 44's cut on injector 4
+        (09:30:41, about 3,513 s) until the end of the capture."""
+        s44 = canlog.states(parse_file(FIXTURES / "44_decarb_before_z1.txt"))
+        mil = self.spans(s44, "engine lamp (MIL)")
+        self.assertEqual(mil[0][0], 0)
+        self.assertLess(mil[0][1], 140)
+        self.assertEqual(len(mil), 2)
+        self.assertTrue(3505 <= mil[1][0] <= 3520, mil)
+
+    def test_the_lights_come_on_after_the_start(self):
+        """0x420 b5, the dash dimmer: 0 parked, on from 16:22:08 (410 s)."""
+        lights = self.spans(self.s47, "lights (dash dimmer)")
+        self.assertEqual(lights[0][0], 410)
+
+    def test_the_odometer_is_kombi_3s(self):
+        """0x520 b5-b7: 153,029 km in August, 153,569 km on 24/9."""
+        self.assertEqual(canlog.odometer_km(parse_file(FIXTURES / "09_idle_60s_z1.txt")),
+                         (153032, 153032))
+        self.assertEqual(canlog.odometer_km(parse_file(FIXTURES / "20_postfix_final_z1.txt")),
+                         (153569, 153569))
+        self.assertIsNone(canlog.odometer_km(parse_file(FIXTURES / "47_relearn_drive_z1.txt")))
+
     def test_a_log_without_timestamps_gives_nothing(self):
         self.assertEqual(canlog.states([Frame(None, 0x288, bytes(8))]), [])

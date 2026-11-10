@@ -155,8 +155,8 @@ Byte 1 of frame 0x1A0 is a **bit field**, not a single value. Measured states:
 | b1 | Meaning | Speed |
 |---|---|---|
 | 0x40 | base valid state | valid |
-| 0x48 | valid, with another flag set | **valid** |
-| 0x50 | valid, with another flag set | **valid** |
+| 0x48 | valid, **the brake pedal pressed** (bit 3; *The bus byte by byte*) | **valid** |
+| 0x50 | valid, a pressure-switch status set (bit 4, dbc) | **valid** |
 | 0x43 | post-ignition init ramp | discard |
 | 0x42 | same thing, only 2 frames | discard |
 
@@ -547,28 +547,94 @@ sixty-second recording on a live bus.
 
 ---
 
-## Flags read on the captures of 10/11/2026
+## The bus byte by byte (10/11/2026)
 
-Measured, not used by the firmware (`docs/engine-health/open.md` H11,
-*The relearn drive*); `tools/canlog.py --states` prints the first three
-as intervals, so the owner no longer reports the A/C or the parking
-brake (*the owner*, 10/11):
+Every byte of the fourteen periodic IDs, surveyed at the maintainer's
+request over the whole-bus fixtures (`01`–`23`) and the unfiltered
+capture of 10/11/2026 (release `raw-captures`,
+`2026-11-10_step8d_relearn_*`), against **opendbc's `vw_pq.dbc`**
+(commaai/opendbc, the PQ platform's message names: the source here as
+`Kombi_2` already was for question 10) and the OpenStreetMap wiki's
+*VW-CAN* page. **A dbc name is a lead, not a fact**: a row is
+*confirmed* only where this car's own data was checked against it, and
+the check is said. `tools/canlog.py --states` prints the switches below
+as intervals and `odometer_km()` reads the odometer, so the owner no
+longer reports them (*the owner*, 10/11; `CLAUDE.md`).
 
-| ID, byte | value | what it follows |
+**Ours, decoded before** (signal table above): 0x1A0 b2–b3 speed,
+0x280 b2–b3 engine speed, b5 throttle, b6, b7; 0x288 b1 coolant, b6
+injection time; 0x320 b2 fuel; 0x420 b3 oil; 0x480 b2–b3 fuel counter;
+0x4A0 wheel speeds; 0x5A0 b0 lateral acceleration.
+
+**Confirmed on this car on 10/11** (the dbc's name, then the check):
+
+| ID, byte | what | checked how |
 |---|---|---|
-| 0x288 b2 | `0x10`, **`0x18` with the A/C on** | `11_idle_noac` all `0x10`, `12_idle_ac` all `0x18`; on `47` `0x18` until 17:27:06, the end of the A/C stretch the owner gave (17:22–17:27), and on `48` 17:47:57–17:49:51 (bit 3) |
-| 0x320 b1 | **`0x02` parked** | set while the car stood at work before the drive and from the stop at the end to driving off; *reasoned* the parking brake |
-| 0x480 b1 | **`0x20`** | for a moment at every crank, and 17:41:44–17:47:58 on `48`, while VCDS ran basic settings (034, 046, 037); `20` carries it for 137 s after VCDS was reconnected; *reasoned*: the ECU's own state in basic settings, or a request it makes in it (the A/C came on the moment it ended) |
-| 0x5D0 b0 | `0x02` for one frame | with each 0x200 on `47`–`48`, VCDS opening a session (above; not on `20`) |
+| 0x288 b2 bit 3 | **A/C on** (`MO2_Sta_Klima`) | `11` all `0x10`, `12` all `0x18`; on `47` exactly the owner's A/C stretches |
+| 0x288 b2 bit 4 | set whenever the engine runs (`MO2_Sta_No_Bet`?) | 0 only at the crank; meaning *not known* |
+| 0x288 b3 | **road speed as the ECU has it**, about 1.3 km/h a bit | b3 × 1.31 against 0x1A0's speed over `47` (0.3 % at 46–67 km/h); the dbc puts flags here — this ECU does not |
+| **0x288 b5** | **the idle speed target, × 10 rpm** (`MO2_LL_Solldz`) | 90 cold → 80 → 79 → **78 warm**, the engine 15–25 rpm above it (`18`, `41`, `47`); 78 = 780 rpm = VCDS's idle adaptation 128 (`docs/engine-health/vcds.md`); rises off idle to a ceiling of 152 — **question 3 answered** |
+| 0x320 b0 bit 0 | driver's door open | the doors row above |
+| 0x320 b0 bit 2 | **oil pressure present** (`Oeldruck`) | 0 with the ignition on, 4 from the first firing (`47`, 16:21:36) |
+| 0x320 b1 bit 1 | **parking brake** (`Bremsinfo`) | on parked at work and from the warm stop to driving off (`47`) |
+| 0x320 b1 bit 7 | `Tankstop`, with the reserve | `0x82` only on the low tanks |
+| 0x320 b3–b4 | speed the cluster shows (15 bits, × 0.01 km/h) | follows 0x1A0 |
+| 0x320 b5 bits 6–7, b6 | displayed speed, 10 bits × 0.32 km/h | follows 0x1A0; **b5 bits 4–5, the turn signals in the dbc, are never set** (the hazard lights of 10/11 not on this bus) |
+| 0x420 b0 bit 0 | outside temperature in error — always | so b1, b2 (outside temperature) are 0 (`refuted.md` B11) |
+| 0x420 b0 bit 1 | oil temperature in error | with the engine off, beside b3 = 0xFF |
+| 0x420 b4 | coolant as the cluster shows it (× 0.75 − 48) | follows 0x288 b1 |
+| 0x420 b5 | **the dash dimmer, %: the lights** (`Klemme 58d`) | 0 parked; 93–95 from 16:22:08 on `47`, the lights switched on after the start |
+| 0x480 b1 bit 3 | **the engine lamp (MIL)** | on with the ignition, off seconds after the start, **on again 2–5 s into every injector cut** (`41`, `43`, `44`) and until the clear (`46`) |
+| 0x480 b1 bit 5 | **the ECU cutting the A/C compressor** (`MO5_KlimaKompr`) | at every crank and through basic settings (`48`, `20`); the A/C came on the moment it ended |
+| 0x488 b3 | the dbc's **altitude correction** (`Hoeheninfo`, × 0.00787) | 0x8D nearly always, 0 with the engine off; its 32 one-frame drops to 0x8C on `47` (17:29–17:35) are a slow factor stepping between two values, which the name explains and a fault would not (*reasoned*; not checked against an altitude) — *this said "around the ECU flagging P0137" until the survey* |
+| 0x520 b5–b7 | **the odometer, km** (`Kilometerstand`, 20 bits) | 153,029–153,033 in August, 153,569 on 24/9, **155,834 → 155,853 on 10/11** — the owner's figures in the same range (`docs/engine-health/vehicle-history.md`) |
+| 0x520 b2 | key information (`Schluesselinfo`) | 3 always |
+| 0x5D0 b0 bit 1 | **the powertrain bus in diagnosis** | one frame with each 0x200, VCDS opening a session |
+| 0x1A0 b1 bit 3 | **the brake pedal** (`BR1_Lichtschalt`) | Trap 1's `0x48`; on in every slowing to a stop of `47` |
+
+**Named by the dbc, consistent with this car, not checked further**
+(none bears on the engine): 0x050 Airbag_1 (b1 the belt switches and the
+airbag lamp, b2 a counter, b3 a checksum); 0x0C2 steering angle and
+rate, its counter and CRC; 0x1A0 b0 ABS/ASR/EBD interventions, b1 bits
+0–1 the ABS/ASR lamps (Trap 1's ramp), bit 4 a pressure-switch status
+(`0x50`), b4–b5 an ASR torque request (`0xFE` = none), b7 a counter;
+0x280 b0 bit 0 the pedal at rest (`Leergasinformation`; the clutch bit
+3 never set); 0x5A0 b1–b2 mean wheel speed, b3–b4 a time stamp, b5–b6
+path pulses, b7 = `0x80 | 43` pulses per revolution; 0x5D0 b1–b5 and
+0x5D8 the car's identity and installed-module list, constant.
+
+**What the dbc names otherwise, from this car's data**: **0x280 b6 is
+`mechanisches Motor-Verlustmoment`**, the engine's own friction torque,
+and **b7 `Fahrerwunschmoment`**, the torque the driver asks for, with
+b1 and b4 the inner torque with and without interventions. This file
+has called b6 *engine load* and b7 *indicated torque*: **b7's 1.06
+Nm/bit and the drag line were measured, not named** (question 8,
+`frames.md`), so nothing in `src/` changes; the names are recorded so
+that the next reading of b6 starts from friction, not load.
+
+**Constant or not populated on this car**: 0x050 b0; 0x0C2 b4 (170),
+b6; 0x1A0 b6; 0x288 b4, b7; 0x320 b7; 0x420 b1, b2, b6 (255), b7; 0x480
+b4 (the dbc's radiator fan, % — always 0: the AQY's fan runs off a
+thermo switch), b5–b7; 0x488 b0–b2, b4–b7 (255: no automatic gearbox);
+0x520 b7 high nibble; 0x5D0 b1–b5; 0x5D8.
+
+**Not known** — the list for the next person, searched in the dbc and
+the forums (OSM wiki *VW-CAN*, the dbc, forum and bulletin searches,
+10/11) without an answer:
+
+| ID, byte | what is seen |
+|---|---|
+| 0x288 b0 | four values in rotation (0x05, 0x5D, 0x8F, 0xDA), one per frame; a multiplex counter or a check byte — the OSM page sees the same, unnamed |
+| 0x480 b0 | the same kind: four values in rotation (0x11, 0x5A, 0x94, 0xF2) |
+| 0x520 b0–b1 | four value pairs in rotation, about one a second; not in the dbc's Kombi_3 |
+| 0x520 b3–b4 | the dbc's `Standzeit`, × 4 s: steady within a log (660 s on 10/11 after the battery was off for hours; 60,124 and 62,660 s on 24/9) and fitting no soak the owner gave — *not trusted* |
+| 0x288 b2 bit 5 | `0x30` in some old logs; *not looked into* |
+| 0x420 b0 bit 7 and 0x480 b1 bits 1–2, 4, 6–7 | named in the dbc (cluster fault entry; glow, E-gas, overheat lamp, fan, A/C reduce), **never set on this car**, so nothing to check |
 
 ## What is NOT on the bus
 
-- **Lambda** — 0x488 is constant `ff ff ff 8d ff ff ff ff` in every log
-  but one: in the unfiltered capture of 10/11/2026 (release
-  `raw-captures`, `2026-11-10_step8d_relearn_*`) b3 drops to `8c` for
-  one frame 32 times, 17:29:19–17:35:17 local, around the ECU flagging
-  the rear oxygen sensor (P0137, `docs/engine-health/open.md` S23) and
-  a fault-memory read; *not known* what bit 0 is.
+- **Lambda** — 0x488 is `ff ff ff 8d ff ff ff ff` in every log; b3 is
+  the altitude correction, not lambda (*The bus byte by byte*).
 - **Battery voltage** — searched systematically, nothing. Solved with the
   display's internal sensor instead.
 - **Ambient temperature** — 0x420 b1 and b2 are both zero, so it is not on
@@ -584,17 +650,17 @@ brake (*the owner*, 10/11):
 
 ## Open questions
 
-**One is open, 11 (what `IdleHealth` should measure), and it lives in
-`open.md`** with what closing it takes. The numbering is unchanged across the register because code and
+**None is open** since 11 closed on 8/11/2026 (*this said "one is open,
+11" until 10/11/2026*). The numbering is unchanged across the register because code and
 documents cite it, so it is not contiguous in any one section: renumbering
 would silently break every `question 7` in the tree.
 
-The rest of the register is below: **Resolved** holds 1, 2, 4, 5, 6, 7, 8, 9 and 10,
-kept with their evidence because a closed question that does not say how it
-was closed reopens itself; **Never resolved but not required** holds 3, never
-answered and not to be worked on again. The two are kept apart on purpose: the
-first says what the answer is, the second says there is no answer and none is
-wanted.
+The register is below: **Resolved** holds 1 to 11, kept with their
+evidence because a closed question that does not say how it was closed
+reopens itself; **Never resolved but not required** is empty since
+10/11/2026, when 3 was reopened by the maintainer and answered. The two
+are kept apart on purpose: the first says what the answer is, the second
+says there is no answer and none is wanted.
 
 The engine's own faults are not in this register at all; they are
 `docs/engine-health/open.md`.
@@ -646,6 +712,101 @@ The specification quotes 13247 → 22622 while the file starts at 12870.
 **Confirmed exactly**: the counter reaches 13247 at 0x480 frame #23 of 290,
 1.14 s in, and the fuel between is 377 µl to the microlitre. The specification
 was computed from 1.14 s in. No discrepancy exists.
+
+### 3. ~~0x288 b5 and b6~~ — **closed 10/11/2026: b6 is injection time, b5 the idle speed target**
+
+**Reopened and answered 10/11/2026, at the maintainer's request** (a
+survey of every byte on the bus, *The bus byte by byte*): **b5 is the
+idle speed target in tens of rpm**, opendbc's `MO2_LL_Solldz` checked on
+this car — 90 at a cold start (the engine at 926 rpm), 80, 79 and **78
+warm** (the engine 795 rpm), and 78 is the 780 rpm of VCDS's idle
+adaptation 128 (`docs/engine-health/vcds.md`). Off idle it rises with
+the engine to a ceiling of 152 — the "pins at 152" below, a target and
+not an advance; "78 to 126 within 900–1100 rpm" is the target moving at
+a crawl and after a lift. *Until then this sat under "Never resolved but
+not required", with the text below as it stood.*
+
+**Why it is here.** Nothing in the firmware reads either byte. `decode.c`'s
+`CAN_ID_COOLANT` case takes b1 and stops there, no transmitted frame carries
+b5 or b6, and no test asserts anything about them. (Do not confuse them with
+0x280 b5 and b6, which *are* decoded — those are throttle and load.) This was
+curiosity with a use — an air mass would have let
+a proper torque model replace the two-point drag line — and the air-mass
+candidate is precisely the one that was eliminated. So the use is gone and the
+curiosity is what remains.
+
+b6 came out of it decoded, which is a genuine result. b5 is exhausted in the
+sense that matters: all three candidates anyone had are refuted, and there is
+no fourth to test. Another session would be a fishing trip, not an experiment.
+
+The session happened, recorded as `docs/engine-health/vcds.md` describes;
+`test/fixtures/11`–`16` and `test/fixtures/vcds/` are the data.
+
+**b6 is injection time.** Across six holds:
+
+```
+b6 = 12.51 x injection_time_ms - 0.63      r = 0.9954
+```
+
+The intercept is effectively zero, so the scale is about **0.08 ms per bit**
+and residuals stay inside ±2 counts. Nothing in the firmware wants it, but it
+is decoded now rather than a candidate.
+
+**b5 follows ignition advance and then stops following it.** Below roughly 16°
+it fits `b5 = 4.22 x advance + 82`; from 1838 rpm upwards it sits on exactly
+**152** while the advance keeps climbing 18.1 → 22.5 → 23.3°. Two things are
+true at once and only one of them is explained.
+
+**That hypothesis was tested the same afternoon and is refuted.**
+`17_drive_property_z1.txt` and `vcds/vcds-ride-002-003.csv` are six minutes of
+driving on private land, engine speed 537–4986, b7 from 7 to 185, throttle from
+closed to 85°. Above 1900 rpm:
+
+| | over the drive, rpm > 1900 |
+|---|---|
+| ignition advance, VCDS | **+3.0 to +22.5 °BTDC** — a spread of 19.5° |
+| throttle angle | 3.5° to 85.1° |
+| **0x288 b5, CAN** | **152 in all 2,161 samples. One distinct value.** |
+
+The advance moved through nineteen and a half degrees and b5 did not move by a
+bit. **b5 is not ignition advance.**
+
+**This comparison needs no clock alignment**, which is why it is the one to
+trust: it is two ranges over the same six minutes, not a sample-by-sample
+pairing. That matters because the pairing was attempted and is unreliable —
+see below.
+
+**All three original candidates are now exhausted.** Mass air flow was
+eliminated by the stationary sweep, injection time is b6, and advance is
+refuted. b5 is something nobody has guessed yet.
+
+What is known about it, and it is not much:
+
+- it rises with engine speed to about 1900 rpm and then **pins at exactly 152**
+- it is bounded below at **78**, which is its idle value in every recording
+- below the ceiling it does vary at constant engine speed — 78 to 126 within
+  the 900–1100 rpm band — so it is not a pure function of speed either
+
+**Why the drive could not settle more than that.** VCDS samples about 1.7 times
+a second, polls its two groups at different instants, and injection time swings
+between 1.6 and 11.9 ms while driving. Cross-correlating the two engine-speed
+traces aligns them at a lag of 44.0 s with r = 0.9896, but that is one number
+for six minutes and it cannot track drift. Filtering down to samples where the
+engine speed is locally steady leaves **27 of 902**, nearly all of them idle,
+because a short piece of private land has no steady state above idle. The
+stationary holds are the trustworthy dataset and the drive is the wide one; for
+anything that changes fast, only the holds can be paired.
+
+The same caution applies to **b6's scale**: the six holds give 0.08 ms/bit at
+r = 0.9954, the drive pairing gives 0.147, and the holds win for the reason
+above. Comparing the two ranges instead does not help either — VCDS took 902
+samples where the adapter took 29,658, so the extremes it never sampled are not
+evidence of anything.
+
+**One candidate is eliminated outright and it cost nothing.** Mass air flow
+rises 4.44 → 5.13 → 6.72 → 8.19 g/s across holds 3–6 while b5 sits on 152 and
+b6 barely moves, and at the two idle holds the compressor raises the air mass
+while b5 does not shift a bit. Neither byte is the air mass.
 
 ### 4. ~~Is 0x420 b3 oil or IAT?~~ — **closed: it is oil, from a real sensor**
 
@@ -1203,107 +1364,7 @@ misfire being read into a decision" until then.*
 
 ## Never resolved but not required
 
-One question in this file was never answered, and it is not going to be.
-**Do not come back to it.** Not "while the car is on the ramp anyway", not "it
-is only ten minutes with VCDS running". It has already cost a trip to the car,
-came back with less than was hoped, and blocks not a single line of firmware.
-(Question 8 used to sit here too; a measurement arrived and it moved to
-*Resolved*, which is how this chapter is supposed to be left.)
-
-It is kept rather than deleted for the same reason `docs/firmware/refuted.md`
-exists: a question that leaves no trace gets asked again by the next person, who
-then repeats the session that did not answer it. The difference between that
-file and this chapter is that `refuted.md` holds ideas that were settled
-*against*, while these were never settled at all.
-
-**What would reopen one.** The maintainer saying so — this chapter is a
-decision about where to spend effort, not a discovery about the bus, and a
-decision can be changed the same way it was made. If that happens, write it
-inside the entry rather than quietly starting work, so the next reader can see
-which rule is in force.
-
----
-
-### 3. 0x288 b5 and b6 — **b6 decoded, b5 unexplained, parked**
-
-**Why it is here.** Nothing in the firmware reads either byte. `decode.c`'s
-`CAN_ID_COOLANT` case takes b1 and stops there, no transmitted frame carries
-b5 or b6, and no test asserts anything about them. (Do not confuse them with
-0x280 b5 and b6, which *are* decoded — those are throttle and load.) This was
-curiosity with a use — an air mass would have let
-a proper torque model replace the two-point drag line — and the air-mass
-candidate is precisely the one that was eliminated. So the use is gone and the
-curiosity is what remains.
-
-b6 came out of it decoded, which is a genuine result. b5 is exhausted in the
-sense that matters: all three candidates anyone had are refuted, and there is
-no fourth to test. Another session would be a fishing trip, not an experiment.
-
-The session happened, recorded as `docs/engine-health/vcds.md` describes;
-`test/fixtures/11`–`16` and `test/fixtures/vcds/` are the data.
-
-**b6 is injection time.** Across six holds:
-
-```
-b6 = 12.51 x injection_time_ms - 0.63      r = 0.9954
-```
-
-The intercept is effectively zero, so the scale is about **0.08 ms per bit**
-and residuals stay inside ±2 counts. Nothing in the firmware wants it, but it
-is decoded now rather than a candidate.
-
-**b5 follows ignition advance and then stops following it.** Below roughly 16°
-it fits `b5 = 4.22 x advance + 82`; from 1838 rpm upwards it sits on exactly
-**152** while the advance keeps climbing 18.1 → 22.5 → 23.3°. Two things are
-true at once and only one of them is explained.
-
-**That hypothesis was tested the same afternoon and is refuted.**
-`17_drive_property_z1.txt` and `vcds/vcds-ride-002-003.csv` are six minutes of
-driving on private land, engine speed 537–4986, b7 from 7 to 185, throttle from
-closed to 85°. Above 1900 rpm:
-
-| | over the drive, rpm > 1900 |
-|---|---|
-| ignition advance, VCDS | **+3.0 to +22.5 °BTDC** — a spread of 19.5° |
-| throttle angle | 3.5° to 85.1° |
-| **0x288 b5, CAN** | **152 in all 2,161 samples. One distinct value.** |
-
-The advance moved through nineteen and a half degrees and b5 did not move by a
-bit. **b5 is not ignition advance.**
-
-**This comparison needs no clock alignment**, which is why it is the one to
-trust: it is two ranges over the same six minutes, not a sample-by-sample
-pairing. That matters because the pairing was attempted and is unreliable —
-see below.
-
-**All three original candidates are now exhausted.** Mass air flow was
-eliminated by the stationary sweep, injection time is b6, and advance is
-refuted. b5 is something nobody has guessed yet.
-
-What is known about it, and it is not much:
-
-- it rises with engine speed to about 1900 rpm and then **pins at exactly 152**
-- it is bounded below at **78**, which is its idle value in every recording
-- below the ceiling it does vary at constant engine speed — 78 to 126 within
-  the 900–1100 rpm band — so it is not a pure function of speed either
-
-**Why the drive could not settle more than that.** VCDS samples about 1.7 times
-a second, polls its two groups at different instants, and injection time swings
-between 1.6 and 11.9 ms while driving. Cross-correlating the two engine-speed
-traces aligns them at a lag of 44.0 s with r = 0.9896, but that is one number
-for six minutes and it cannot track drift. Filtering down to samples where the
-engine speed is locally steady leaves **27 of 902**, nearly all of them idle,
-because a short piece of private land has no steady state above idle. The
-stationary holds are the trustworthy dataset and the drive is the wide one; for
-anything that changes fast, only the holds can be paired.
-
-The same caution applies to **b6's scale**: the six holds give 0.08 ms/bit at
-r = 0.9954, the drive pairing gives 0.147, and the holds win for the reason
-above. Comparing the two ranges instead does not help either — VCDS took 902
-samples where the adapter took 29,658, so the extremes it never sampled are not
-evidence of anything.
-
-**One candidate is eliminated outright and it cost nothing.** Mass air flow
-rises 4.44 → 5.13 → 6.72 → 8.19 g/s across holds 3–6 while b5 sits on 152 and
-b6 barely moves, and at the two idle holds the compressor raises the air mass
-while b5 does not shift a bit. Neither byte is the air mass.
+**Empty since 10/11/2026**: its one question, 3, was reopened by the
+maintainer and answered (*Resolved questions*). The rule of this chapter
+stands for the next one put here: a question parked here is not worked
+on again unless the maintainer says so, and the entry says when he did.

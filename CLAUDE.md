@@ -549,11 +549,13 @@ his phone. Check the platform and for a VCDS install; if unclear, ask once.
   unit, ever** — no clearing, coding, adaptation, basic settings, output tests
   or resets. Scripts click only an allow-list and stop on anything unknown. If
   a step seems to need a write, stop and ask.
-- **The A/C and the parking brake are on the bus** (0x288 b2 bit 3,
-  0x320 b1 bit 1; `tools/canlog.py --states`, which survives the
-  filter): read them from the capture, never ask him for them (*the
-  maintainer*, 10/11). He reports only what the bus lacks — the blower,
-  the seat heater, the lights, the hazard lights.
+- **The A/C, the parking brake, the brake pedal, the lights, the
+  engine lamp and the driver's door are on the bus**, and the odometer
+  in an unfiltered capture (`tools/canlog.py --states`;
+  `docs/firmware/can-decoding.md`, *The bus byte by byte*): read them
+  from the capture, never ask him for them (*the maintainer*, 10/11).
+  He reports only what the bus lacks — the blower, the seat heater, the
+  hazard lights.
 - **You cannot hear him.** A reading at the car reaches you as text (phone
   dictation works); align it to the capture by an event it records, never by
   when the message arrived.

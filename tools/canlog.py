@@ -309,14 +309,30 @@ def oil_c(byte: int) -> Optional[float]:
 
 
 #: Switches the car reports on the bus, so the owner need not
-#: (docs/firmware/can-decoding.md, *Flags read on the captures of
-#: 10/11/2026*). (name, ID, byte, mask). All three IDs survive the filter
-#: the fixtures are cut to (CLAUDE.md, *Sessions at the car*).
+#: (docs/firmware/can-decoding.md, *The bus byte by byte*). (name, ID,
+#: byte, mask): on while (byte & mask) != 0. Every ID here survives the
+#: filter the fixtures are cut to (CLAUDE.md, *Sessions at the car*).
 STATES = (
     ("A/C on", 0x288, 2, 0x08),
     ("parking brake", 0x320, 1, 0x02),
-    ("0x480 b1 0x20: crank, basic settings", 0x480, 1, 0x20),
+    ("brake pedal", 0x1A0, 1, 0x08),
+    ("lights (dash dimmer)", 0x420, 5, 0x7F),
+    ("engine lamp (MIL)", 0x480, 1, 0x08),
+    ("A/C cut by the ECU", 0x480, 1, 0x20),
+    ("driver's door open", 0x320, 0, 0x01),
 )
+
+
+def odometer_km(frames: list[Frame]) -> Optional[tuple[int, int]]:
+    """(first, last) odometer reading in km off 0x520 b5-b7, or None.
+
+    Kombi_3's 20-bit Kilometerstand (opendbc vw_pq.dbc), checked against
+    the readings the owner gave (can-decoding.md). 0x520 is not in the
+    filtered fixtures; only an unfiltered capture carries it.
+    """
+    km = [f.data[5] | f.data[6] << 8 | (f.data[7] & 0x0F) << 16
+          for f in frames if f.can_id == 0x520 and len(f.data) >= 8]
+    return (km[0], km[-1]) if km else None
 
 
 def states(frames: list[Frame]) -> list[tuple[str, float, float]]:
@@ -459,8 +475,9 @@ def main(argv: Optional[list[str]] = None) -> int:
                          "measurement that resolved questions 1 and 9. Needs a "
                          "log with timestamps; add --id for a histogram of one ID.")
     ap.add_argument("--states", action="store_true",
-                    help="when the A/C, the parking brake and 0x480 b1 0x20 "
-                         "were on, from the bus (seconds from the first frame)")
+                    help="when the A/C, the brakes, the lights, the engine lamp "
+                         "and the door were on, from the bus (seconds from the "
+                         "first frame), and the odometer where 0x520 is kept")
     ap.add_argument("--strict", action="store_true", help="fail on the first damaged line")
     ap.add_argument("--fix-doubled", action="store_true",
                     help="drop the second copy when the file holds the recording twice")
@@ -474,6 +491,9 @@ def main(argv: Optional[list[str]] = None) -> int:
             print(path)
             for name, a, b in states(frames):
                 print(f"  {name:26s} {a:9.1f} - {b:9.1f} s  ({b - a:7.1f} s)")
+            km = odometer_km(frames)
+            if km:
+                print(f"  odometer                   {km[0]} - {km[1]} km")
             continue
         if args.gaps:
             # Deliberately before the --id filter: gaps are computed per ID

@@ -2808,10 +2808,10 @@ the hazard lights on throughout, the A/C off (0x288 b2 16, below):
   shows smaller; the owner does not remember what he did then). Every other identifier of the
   unfiltered capture checked byte by byte: no change at 17:37–17:40
   but VCDS's own session frames (0x200 and 0x5D0 b0, 17:38:23).
-  **0x488 b3** pulsed 0x8D → 0x8C 32 times, 17:29:19–17:35:17 and at
-  no other time of 47–48, around the rear probe's fault (036 `neOK`
-  17:29) and the fault-memory read — meaning *not known*
-  (`docs/firmware/can-decoding.md`); it had stopped 2½ minutes before.
+  **0x488 b3** stepped 0x8D → 0x8C 32 times, 17:29:19–17:35:17 — the
+  ECU's altitude correction by opendbc's name, not the rear probe
+  (`docs/firmware/can-decoding.md`, *The bus byte by byte*; *this said
+  "around the rear probe's fault, meaning not known" until the survey*).
 - **VCDS around it**: 033 at 17:37:21–17:37:42, just before: the front
   probe switching 0.06–0.73 V, its correction −2.3 to +1.6 % — the loop
   normal; 036 0.03–0.14 V (S23) through all of it; 041 17:38:39–17:39:00,
