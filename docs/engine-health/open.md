@@ -1773,6 +1773,10 @@ had tucked them into that morning, the old ones having hung loose):
   it, or corrosion bridging them, would give it, where an open contact
   would leave the ECU reading its bias, about 0.44 V (*the bias*:
   `plan.md` 8g's evidence). Not proven until the terminal is out.
+- **The terminals after** (the album 22:18): a turquoise tinge on the
+  springs of several terminals in both sockets, not only the broken one
+  — verdigris starting, as far as a photograph shows (*reasoned*);
+  cleaning does not undo it, new terminals do.
 - **Why on 10/11** (*owner*, 10/11 night): that morning he tucked the
   new probes' spare lead into the box with the harness, where the old
   probes' leads had hung outside — so the wires were pressed together
@@ -2098,6 +2102,11 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in.
   manifold that has lived through years of misfires; **for the second zone,
   the rear probe sinking towards lean at every idle** (9/11 night, H11),
   and a boss closed by a probe that was never meant as a plug.
+- **The plugged boss, 10/11 night** (*owner*, the album 22:45–22:47):
+  the cut-off old probe in it **would not turn further — tight**; the
+  boss's weld on the pipe rusty and lumpy, a darker patch at one edge
+  that a photograph cannot tell from soot (*reasoned*) — for the warm
+  tailpipe test to look at (`plan.md` 7).
 - **Against:** air outside the cylinder does not stop one firing, and cannot
   pick a cylinder; no ticking, no exhaust smell (*owner*); just before a dip
   the probe read a little *rich*, not lean; the cold tailpipe test found
