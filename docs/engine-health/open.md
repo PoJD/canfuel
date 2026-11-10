@@ -3743,6 +3743,29 @@ ECU and their earths are the car's** (`vehicle-history.md`).
 - **Against, S23 as the circuit**: the new probe failing early is not
   ruled out; a lead and socket found sound leave the part.
 
+**A shared earth, linking it to H4** (10/11 night, *the owner's
+question*: could one earth fault tie the probes to the idle; *reasoned*
+unless marked). An earth that both the probes' signal returns and other
+circuits share would carry their currents and shift every reading
+referred to it, **alike for both probes** — H11's literal form, which
+the swap could not test — and, if the crankshaft sender G28 and the
+knock sensors share it (VW's diagram for this engine lists a **sender
+earth, 220**, beside G28 and T3; which senders it carries the garbled
+text does not show, H4), noise there would reach 014's misfire count
+(S3) and the knock window (S4, S5) as well. **What is known**: the
+engine's earth under load measured clean (H4); the rear probe has been
+read under load twice, the old one never (10/11 morning fine, 10/11
+evening S23), and the front only at VCDS's ~1 s, so noise faster than
+that has never been seen. **One test in the data, against at idle**:
+the radiator fan, the largest load at a stop, runs while the coolant
+falls; over the queue stops of 16:55–17:27 on `47` the rear probe read
+a median **0.29 V with the coolant falling (386 samples) and 0.29 V
+with it rising (475)** — the fan's current moved nothing (*ad-hoc
+script, not kept*). **Measurable cheaply**: the voltage between the
+ECU's earth and the engine block, and between each probe's signal-earth
+pin on the harness side and the ECU's earth, at a warm idle with every
+load on — a few tens of mV is an earth fault (*general*).
+
 **Tests:** the sockets of both probes looked into from the harness side
 at the next cold engine, with the rear lead's run (`plan.md` 8e); the
 probes' loom and both connectors flexed with 033 and 036 logged, with
