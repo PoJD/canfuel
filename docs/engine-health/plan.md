@@ -111,14 +111,17 @@ the Beetle is driven again** (*agreed with the owner*, 9/11 evening;
       one it replaces: the lead's length, the connector, the number of
       wires; the numbers off both old probes sent to Claude; **the old
       probes kept**.
-   2. **Both probes replaced**, engine cold, battery left connected:
+   2. **Both probes replaced** in the garage (the Beetle driven the
+      20 m in from outside first and switched off at once; *the owner*,
+      10/11), engine cold, battery left connected:
       the thread with anti-seize as the new one comes, the lead routed
       and tied as the old one was. **The old probe plugging the boss
       ahead of the converter stays**; photograph it and the joint ahead
       of the converter while underneath.
    3. **The same reading as on 9/11 night**, Claude in a session on the
       laptop, VCDS measuring blocks only, **001 033 036 logged from a cold
-      start**, standing in neutral: idle until coolant about 78 °C; then
+      start**, standing in neutral, **outdoors or with the garage door
+      open and the tailpipe outside, never in a closed garage**: idle until coolant about 78 °C; then
       about 3 minutes with every load off; about 3 minutes with the A/C
       on; about 3½ minutes with every load off; 1 minute at 1,500 rpm;
       at least 1 minute's idle, loads off. Say in the chat when each
@@ -308,7 +311,10 @@ because only the same order, lengths and coolant make the two
 comparable: it was **shortened at the owner's decision** (a housing
 estate near midnight; 1,500 rpm for 1 minute, not 2,500 for 3), and
 that shortened form is now the one; **the cold start logged** because
-the rear probe's slow sinking only shows from the start of each idle;
+the rear probe's slow sinking only shows from the start of each idle
+— and since the 9/11 log itself began at 73 °C of coolant, the two are
+compared from there, so the short move into the garage before the
+swap, an hour or more before the reading, does not spoil it (10/11);
 **the A/C** because it calmed the display though it did not lift the
 rear probe; **041 again** for the new probe's heater. **Both probes rather
 than an analyser** is the owner's decision (the front one 9/11, both
