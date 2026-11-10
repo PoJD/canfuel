@@ -103,18 +103,24 @@ the Beetle is driven again** (*agreed with the owner*, 9/11 evening;
    clears it by hand.
 8c. **The probes read again** (both replaced 10/11, `vehicle-history.md`;
    the reading before done 9/11 night). Still owed: the numbers off the
-   old probes.
-   **The same reading as on 9/11 night**, Claude in a session on the
-      laptop, VCDS measuring blocks only, **001 033 036 logged from a cold
-      start**, standing in neutral, **outdoors or with the garage door
-      open and the tailpipe outside, never in a closed garage**: idle until coolant about 78 °C; then
-      about 3 minutes with every load off; about 3 minutes with the A/C
-      on; about 3½ minutes with every load off; 1 minute at 1,500 rpm;
-      at least 1 minute's idle, loads off. Say in the chat when each
-      starts. Then **041 032 055** for 20 s, the fault memory read at the
-      end; the owner clears it by hand only if there is a code.
-   **No CAN capture** (*the owner*, 10/11): the MFD in, `IdleHealth`
-   read off it.
+   old probes. Claude in a session on the laptop, VCDS measuring blocks
+   only; **no CAN capture** (*the owner*, 10/11): the MFD in, and the
+   owner says `IdleHealth` and `Misfires` in the chat at each phase.
+   1. **Standing, the same as 9/11 night** (about 20 minutes): the fault
+      memory read first; **001 033 036 logged from the start**, in
+      neutral, **outdoors or with the garage door open and the tailpipe
+      outside, never in a closed garage**: idle until coolant about
+      78 °C; then about 3 minutes with every load off; about 3 minutes
+      with the A/C on; about 3½ minutes with every load off; 1 minute at
+      1,500 rpm; at least 1 minute's idle, loads off. Say in the chat when
+      each starts. Then **041 032 055** for 20 s.
+   2. **The drive on, the same morning**: **014 033 036** logged from
+      pulling away to engine off; the laptop not touched while driving.
+      **At the end, a warm stop in the everyday state, the A/C off, 3
+      minutes**; then **032 055** for 20 s and the fault memory, engine
+      still idling; the owner clears it by hand only if there is a code.
+   If there is no time for 1, only 2; 1 then waits for the next cold
+   morning.
 9. **After the clean of 9/11, by what the next stops show** (Claude says
    which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
@@ -327,6 +333,17 @@ where it is — **a fall towards zero after the swap is itself the
 answer**. **No CAN capture** (*the owner*, 10/11), so `IdleHealth` comes off the
 display as a running figure, not exactly; the dips' share over the
 cylinders waits for 8b.
+
+**8c's reading in two parts** (10/11): **standing, step for step
+as 9/11 night**, because only that is comparable with the reading
+before; **then the drive with 014 033 036**, because the rear probe has
+never been read under real load (1,500 rpm standing is not load,
+`open.md` H11), 014 counts the misfires the swap should take away, and
+033 shows the front loop beside the rear probe; **the warm stop at the
+end** is the first of the three that H11's five marks ask for. **If the
+rear probe sinks at idle again, the new probes' tightness is checked
+first**: they were tightened by hand, and air drawn in at a loose rear
+probe reaches it and reads lean, the same as the second zone of H2.
 
 **8b, the second captured stop**, because the rough start is what
 varies most between stops: stop 3's own second half read like stop 7,
