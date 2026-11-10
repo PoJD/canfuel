@@ -1694,6 +1694,36 @@ before the swap*). **The switch of 10/11 morning to the front's swing**
 (11:54:45, swinging to 0.78 V) **was not this either** — it passed rich
 gas.
 
+**What moved with it** (10/11 night, *the owner's question*: anything
+in VCDS or on the bus; every 036 sample of `47` against engine speed,
+b7, throttle, 014's load, the fuel flow, coolant, oil, the A/C, the
+brake, 032 and time, and 30 s idle windows against `IdleHealth` and
+the dips; *ad-hoc scripts, not kept*):
+- **The A/C lifts it at idle.** Switched on at 17:06:13, the rear probe
+  went from 0.28–0.38 to **0.50–0.56 V within 15 s** and held there
+  while the compressor ran (b7 23 → 30–50, the fuel 290 → 340–530
+  µl/s); switched off at 17:09:39, it slid back over about a minute to
+  0.30. Over the A/C-off idles of 16:57–17:22 it leant a little lower
+  with a higher coolant (r −0.32), nothing with the fuel or b7. **On 9/11
+  night the old rear probe did not rise with the A/C** (H11, *The
+  reading before the swap*).
+- **The collapse came with the second A/C stretch and the brisk end**:
+  the A/C on at 17:22:42, the rear probe's mean 0.27 → 0.10 V in the next
+  minute while the drive turned brisk (to 97 % load), 0.000 from 17:29.
+- **Nothing with the idle**: over 14 idle windows of 30 s before 17:23
+  the rear probe and `IdleHealth` or the dips show no relation worth the
+  name (if anything rougher with the probe higher, the opposite of a
+  lean idle's prediction).
+- **Read** (*reasoned*): a leak from the signal to earth reads more as
+  the probe's own resistance rises, and a zirconia probe's resistance
+  rises as it cools; **more load means hotter gas at the rear probe**,
+  so a leak would read less with the A/C on — as seen — and most at a
+  long idle, which is where it sank. A heat-sensitive leak that later
+  became a short fits all three phases; so would, on a sound circuit, a
+  converter that passes lean gas at idle and less of it under load —
+  except that no gas reads 0.000 V at full load. H21 (*A shared
+  earth*) and `plan.md` 8g read it.
+
 **What it touches**: **H11's mark 2 from 16:57 on 10/11** (unreadable)
 and **the warm stop at the end**, run with the ECU seeing a lean rear
 probe — how far the rear loop moves the front's set point at idle on
