@@ -1755,6 +1755,15 @@ had tucked them into that morning, the old ones having hung loose):
   signal earth** is H21's own mechanism: a resistance or a leak there
   shifts the front reading, most at idle where the heater draws most —
   **the one candidate here for S19's idle cell surviving the swap**.
+- **A broken terminal, suspected** (*owner*, 10/11 night; the album
+  21:32:45 bears it out): in the rear probe's harness-side socket **one
+  outer terminal shows four pieces in a cross where every other
+  terminal, in both sockets, shows the two springs of a V** — as if both
+  springs had split. A broken spring presses weakly on its pin: a
+  contact whose resistance moves with heat and shaking (*general*).
+  **Which wire enters that cavity** — the blue heater lead or the one
+  meeting the probe's black signal at the other end — *not known*; the
+  front socket latched fully on the second try (*owner*).
 - **Why on 10/11** (*owner*, 10/11 night): that morning he tucked the
   new probes' spare lead into the box with the harness, where the old
   probes' leads had hung outside — so the wires were pressed together

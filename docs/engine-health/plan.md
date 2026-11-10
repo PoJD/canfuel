@@ -120,6 +120,10 @@ sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and
      sealed butt connector). The red wire beside the blue looked at the
      same way. *Taped and the bundle wrapped by the owner 10/11 night*;
      the splice is what is left of this point.
+   - **The rear socket's broken-looking outer terminal**: which wire
+     colour enters that cavity (into the chat); the terminal replaced —
+     a VW repair terminal crimped on, or the socket half with its
+     pigtail — before anything else is measured on that wire.
    - **The rear connector's bent pin** straightened so it seats like
      the others; both connectors cleaned and dried again, then **pushed
      until each latches with a click** — the front one included, which
