@@ -76,8 +76,7 @@ the Beetle is driven again** (*agreed with the owner*, 9/11 evening;
      longer. The phone records at the manifold; mark each closure aloud on
      the recording; listen back and report engine bay or underbody.
      Photograph the flange, the front pipe and 3 and 4's pipes from below
-     for soot, and **the joint ahead of the converter and the old probe
-     plugging the boss**. **Leaks there → a new manifold**: new gasket to the head,
+     for soot. **Leaks there → a new manifold**: new gasket to the head,
      new nuts, new outlet gasket, the probe refitted with anti-seize. Part
      `06A 253 031` + suffix: read the number cast into the manifold, or
      ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
@@ -102,8 +101,7 @@ the Beetle is driven again** (*agreed with the owner*, 9/11 evening;
    At the end, engine idling: the fault memory, then 032/055; the owner
    clears it by hand.
 8c. **The probes read again** (both replaced 10/11, `vehicle-history.md`;
-   the reading before done 9/11 night). Still owed: the numbers off the
-   old probes. Claude in a session on the laptop, VCDS measuring blocks
+   the reading before done 9/11 night). Claude in a session on the laptop, VCDS measuring blocks
    only; **no CAN capture** (*the owner*, 10/11): the MFD in, and the
    owner says `IdleHealth` and `Misfires` in the chat at each phase.
    1. **Standing, the same as 9/11 night** (about 20 minutes): the fault
@@ -266,8 +264,8 @@ says only engine bay or underbody; **the photographs locate** (a leak
 leaves soot), though the manifold under its heat shield cannot be seen. **Read**: soot below → that
 joint; louder from the engine bay with nothing below → the manifold or
 its joint to the head, the owner's standing decision of a new manifold
-(3/10/2026); soot at the joint ahead of the converter or round the
-plugging probe → that joint or the boss resealed; nothing either way →
+(3/10/2026); soot on the front pipe ahead of the converter → that
+joint or its boss resealed; nothing either way →
 a garage with a lift. Nothing leaks ahead of the converter → H2
 refuted, into `refuted.md`.
 
