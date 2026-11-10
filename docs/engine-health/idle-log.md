@@ -1329,3 +1329,18 @@ its `-2` file.
 Read in a cloud session the same evening (`open.md` H11, *The relearn
 drive*; S19; S23, added at the owner's request): the split is not the
 old probes'; the idle and 3's lead as before the clean.
+
+## 10/11 night — the probes' harness found damaged and taped
+
+- **Repairs:** the rear probe's heater lead and the front probe's signal
+  earth, each cracked on the harness side inside the black box under the
+  car, wrapped in PVC tape, then the whole bundle wrapped so it cannot
+  move or be pressed (*owner*).
+- **Tests:** the connectors and leads looked at under the box; which
+  wire meets which of the probe's own (*owner*, photographs).
+- **Changes after:**
+  - *not known:* whether S23 comes back and where 032 relearns — the
+    drives after read it (`plan.md` 8f).
+
+Found that evening (`open.md` S23, *Found at the harness*); the leads
+had been tucked into the box with the harness that morning.

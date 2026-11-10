@@ -118,7 +118,8 @@ sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and
      back to bright copper on both sides of the damage and joined with a
      crimp or solder sleeve under heat-shrink (VW's wiring repair or any
      sealed butt connector). The red wire beside the blue looked at the
-     same way. What was done, and where, into the chat with photographs.
+     same way. *Taped and the bundle wrapped by the owner 10/11 night*;
+     the splice is what is left of this point.
    - **The rear connector's bent pin** straightened so it seats like
      the others; both connectors cleaned and dried again, then **pushed
      until each latches with a click** — the front one included, which

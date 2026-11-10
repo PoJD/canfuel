@@ -232,6 +232,7 @@ Scans: `photos/vcds-faults-2018-01.png`, `photos/vcds-faults-2019-05.png`.
 | Light switch, Herth+Buss Elparts, replacing the original `1C0 941 531 A` | **September 2026** | 0.3–0.7 V lost across the old switch |
 | Chafed main positive cable at the battery, wrapped in PVC tape (a stop-gap) | **26/9/2026**, by the owner | bare strands under the heat-shrink |
 | **The lower manifold gasket's bent edge at runner 3 straightened** by hand, from below (runner 4's is torn, perhaps into the sealing face) | **5/11/2026** night, by the owner | seen bent on a look from below (`open.md` H3) |
+| **The oxygen probes' harness, taped** (a stopgap): the rear probe's heater lead (blue on the harness side, the probe's outer white) cracked and corroding behind its connector, and the front probe's signal earth (brown, the probe's grey) worn and cracked, each wrapped in PVC tape; then the whole bundle wrapped so it cannot move or be pressed; both inside the black plastic box under the car where the leads run. Spliced under heat-shrink later | **10/11/2026** night, by the owner | found under the box that evening (`open.md` S23, *Found at the harness*); the photographs in the album, 21:32–21:50 |
 | **Contact cleaner** sprayed into injector 4's connector and the injector loom's 3-pin connector T3 (the supply, by cylinder 1; its latch worn) | **5/11/2026** evening, by the owner | both off for a first look at the loom (`open.md` H4); probably done once already this year |
 
 **Voltage drops measured before the switch** (differential, under
