@@ -1803,7 +1803,11 @@ had tucked them into that morning, the old ones having hung loose):
   stop of 10/11). **No zero** — no sign of S23 cold. 032 0.0 / 0.0
   (reset), 055 −1.12 / 0.00 g/s at 830 rpm; `IdleHealth` **64** on
   the MFD at 1–2 minutes (*owner*: about 70 with the secondary air,
-  rising after), `Misfires` 1. The rear probe joining the front's
+  rising after), `Misfires` 1. **Not an exception**: every captured cold start
+  reads calmer in its first two minutes than after — 58–98 at 60–120 s,
+  then 110–160 at 2–5 minutes (`18`–`44`, coolant 10–27 °C; *ad-hoc
+  script, not kept*) — the window H11, *The idle without the lambda
+  loop*, already describes. The rear probe joining the front's
   swing on a converter a few minutes from cold is what a store not yet
   working gives (*reasoned*); the hot drives decide S23.
 - **Taped by the owner the same night**, everything he could see
