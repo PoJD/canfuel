@@ -3772,7 +3772,10 @@ ECU and their earths are the car's** (`vehicle-history.md`).
   not make. **So a part of the idle at most** — its four-alike share,
   not the cylinders' difference (*reasoned*).
 - **Against, S23 as the circuit**: the new probe failing early is not
-  ruled out; a lead and socket found sound leave the part.
+  ruled out; a lead and socket found sound leave the part. **The
+  owner's own view** (10/11 night): the connectors are very likely
+  sound and the leads well tucked in; he follows the harness on to the
+  ECU and its earths instead (`plan.md` 8e).
 
 **A shared earth, linking it to H4** (10/11 night, *the owner's
 question*: could one earth fault tie the probes to the idle; *reasoned*

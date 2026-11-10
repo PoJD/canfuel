@@ -112,6 +112,12 @@ sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and
      connector off, both halves looked into for green, water or a pushed-back
      pin, and back on until it clicks. **Photographs** of the run and
      of anything found; into the chat.
+   - **Both probes' harness on to the ECU** (the owner's own look,
+     10/11): from each probe's connector along the loom as far as it
+     can be followed — where it runs, what it is tied to, anything it
+     rubs on, and **every earth point met on the way** (an eyelet on
+     the block, the gearbox or the body): tight, clean, no green. A
+     photograph of the route and of each earth point.
    - **Both probes' sockets on the harness side** (the front one too):
      each connector off, the harness half looked into for green, water,
      a pin pushed back or loose in its cavity; photographed; back on
@@ -342,6 +348,12 @@ new probe itself (a warranty matter). Cold, so it can be touched.
 request): the bus cannot show a jerk at a crawl, so only its time
 lets a capture or a VCDS log be read at that moment — the stroke, the
 load, 014, and from a capture the cylinder (`open.md` S12).
+
+**8e's route of the harness** (*the owner*, 10/11 night: the
+connectors are very likely sound and the leads well tucked in, so he
+follows the harness instead): a leak or a poor earth is as likely
+anywhere on the way as at a connector, and an earth eyelet the
+probes' returns share is H21's shared earth itself.
 
 **8e's sockets and 8g, the probes' circuit** (`open.md` H21, added
 10/11 evening at the owner's request): the swap changed the probes and
