@@ -1737,11 +1737,24 @@ had tucked them into that morning, the old ones having hung loose):
   be oxidation (*owner*); contact spray went in that morning.
 - **The front probe's connector did not latch fully** when it was put
   back that morning (*owner*).
+- **Which wires** (*owner*, the album 21:49–21:50): the probe's own
+  half is numbered 1–4 with **white, white, grey, black**; **the
+  cracked blue wire meets the outer white — a heater lead of the rear
+  probe**, not its signal. **A second damaged place: a brown wire to the
+  front probe, its insulation worn dark and cracked, meeting the front
+  probe's grey** — by Bosch's usual colours black the signal, grey the
+  signal earth, white the heater (*general*, not read off this probe's
+  sheet). Both lie inside the black plastic box the leads are tucked
+  into.
 - **Read** (*reasoned*): a cracked, corroding wire next to others is
-  where a damp leak to a neighbour or to earth would be, and it is on
-  the rear probe's side — **for S23 being the circuit, and the place
-  H21 looked for**; which of the four wires is blue (signal, signal
-  earth or a heater lead) is *not known* yet (`plan.md` 8e). A front
+  where a damp leak to a neighbour or to earth would be. **The rear
+  probe's heater lead** reaches S23 only through a leak into the
+  signal beside it — a heater lead carries 12 V switched, so a damp
+  path from it would push the signal up, not down, unless the leak is
+  from the heater's earth side; *not known*. **The front probe's
+  signal earth** is H21's own mechanism: a resistance or a leak there
+  shifts the front reading, most at idle where the heater draws most —
+  **the one candidate here for S19's idle cell surviving the swap**. A front
   connector not latched would let the front probe's contacts move —
   for H21 at the front, and for nothing measured yet.
 
@@ -3760,6 +3773,11 @@ ECU and their earths are the car's** (`vehicle-history.md`).
   circuit, two probes, three days**: the old rear probe sank at every
   idle on 9/11 night, the new one switched to the front's swing after
   18 minutes on 10/11 morning and failed under load that evening.
+- **For, found 10/11 evening** (S23, *Found at the harness*): the
+  front probe's signal-earth wire (grey at the probe, brown on the
+  harness side) worn and cracked inside the box the leads run through,
+  and the rear probe's heater lead cracked and corroding beside its
+  signal — both on the harness side the swap did not change.
 - **For, S19's idle cell** (*reasoned*, the wiring of this car not in
   these files): the cell came back to −6.3 % on new probes (H11, *The
   relearn drive*), so whatever makes the front probe read rich at idle

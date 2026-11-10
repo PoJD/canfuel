@@ -112,14 +112,13 @@ sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and
      connector off, both halves looked into for green, water or a pushed-back
      pin, and back on until it clicks. **Photographs** of the run and
      of anything found; into the chat.
-   - **The rear probe's cracked blue wire** (found 10/11 evening): which
-     of the probe's four wires it meets — the connector off, the blue
-     wire followed into its cavity, and the colour of the probe's own
-     wire in the same position on the other half (photographed). Then
-     cut back to bright copper on both sides of the crack and joined
-     with a crimp or solder sleeve under heat-shrink (VW's wiring
-     repair or any sealed butt connector); PVC tape only as a stopgap,
-     the joint dry first. The red wire beside it looked at the same way.
+   - **The two damaged wires** (found 10/11 evening: the rear probe's
+     blue, its outer white, a heater lead; the front probe's brown, its
+     grey): dried and taped for now (*the owner*); for good, each cut
+     back to bright copper on both sides of the damage and joined with a
+     crimp or solder sleeve under heat-shrink (VW's wiring repair or any
+     sealed butt connector). The red wire beside the blue looked at the
+     same way. What was done, and where, into the chat with photographs.
    - **The rear connector's bent pin** straightened so it seats like
      the others; both connectors cleaned and dried again, then **pushed
      until each latches with a click** — the front one included, which
