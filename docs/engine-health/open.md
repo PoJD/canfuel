@@ -2392,9 +2392,17 @@ first weeks:
    to within **±3 %** after a few drives, the part-load cell where it
    was — the split closes (S19). This is the front probe's own mark;
    the new rear probe cannot fake it.
-2. **The idle no longer runs lean**: 036 not sinking, steady above
-   0.45 V through each idle loads off of 3 minutes or more (*Why the
-   criterion is a trend, not 0.6 V*).
+2. **The idle no longer runs lean**: in each idle loads off of 3
+   minutes or more, read from 036 at VCDS's ~1 s — **(a) no sinking**:
+   the last minute's mean no more than about 0.1 V below the first's;
+   **(b) the phase's mean at about 0.45 V or above**, short dips below
+   allowed, **never lying under 0.2 V** for more than a few seconds;
+   **(c) flat**: a jump of more than 0.2 V between successive samples in
+   at most about 15 % of them (*How a healthy rear probe looks, and the
+   9/11 log minute by minute*). *Until 10/11 this said "steady above
+   0.45 V through each idle", which a healthy probe need not meet: it
+   may dip with the front loop and transients, and where this ECU sets
+   its target is not known.*
 3. **The idle is better**: `IdleHealth` at every stop **at or below 40
    from its first minute to its last** — below the best settled level
    so far (48 ± 3 on `43`, 50–63 on 9/11) and without the rough first
@@ -2418,6 +2426,38 @@ first weeks:
 without 1 → something else changed (the fuel, the weather), not
 confirmed; 1–4 with the steady pattern kept → the dips' cause found,
 the spread left (5's note).
+
+**How a healthy rear probe looks, and the 9/11 log minute by minute**
+(10/11, *the owner's request*). **No manufacturer's figure was found**
+(VW: none public for M5.9.2; Bosch's lambda brochure only the probe's
+range, about 20–900 mV, and the ECU's 450 mV reference). **What the
+other sources agree on is the shape, not a number** (*general*; shop
+references and forums, not sources in the datasheet sense): behind a
+working converter the rear probe is **nearly flat, with slow, lazy
+movements**, at 0.65–0.85 V in shop references, 0.35–0.65 V or "about
+half a volt" in forum reports, one Golf IV 1.6 reading 0.756 V in 036;
+**a rear trace that switches like the front one is the warning** — a
+converter that no longer buffers. **Per minute of the 9/11 night log**
+(`vcds-step8c-before-001-033-036.csv`; *jumps* the share of successive
+~1 s samples more than 0.2 V apart):
+
+| minutes | phase | rear mean V | p10–p90 V | above 0.45 V | jumps |
+|---|---|---|---|---|---|
+| 0–1 | warming idle, store emptied by the cold start | 0.54–0.56 | 0.26–0.63 | 76–85 % | 9–15 % |
+| 2–4 | loads off | 0.35 → 0.27 | 0.10–0.63 | 24 → 2–10 % | 3–14 % |
+| 5–7 | the A/C | 0.30–0.32 | 0.10–0.65 | 32–39 % | **58–60 %** |
+| 8–11 | loads off | 0.18–0.23 | 0.09–0.63 | 10–21 % | 21–45 % |
+| 12 | 1,500 rpm | 0.33 | 0.09–0.67 | 39 % | 42 % |
+| 13–14 | idle, loads off | 0.53 → 0.45 | 0.10–0.67 | 81 → 69 % | 32–48 % |
+
+**Read** (*reasoned*): **the first two minutes are this car's nearest
+thing to the healthy shape** — about 0.55 V, flat, few jumps — while
+the store still had room; **once it sank, the rear probe began to
+follow the front loop** (jumps from about 15 % to 35–60 %), which is
+the full store passing the front's swing through, not a failing
+converter (new on 10/9, block 046 OK on 24/9). Hence criterion 2's
+three parts and their figures (*decisions*): the trend, the floor and
+the flatness, each against what this log showed.
 
 **Against, the A/C** (10/11, *agreed with the owner*; *reasoned*): **the
 A/C calmed the idle but did not lift the rear probe** — `IdleHealth`

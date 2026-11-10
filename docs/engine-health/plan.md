@@ -323,7 +323,8 @@ at idle, with the dips' common cause dilution or fuel (H13, H7;
 `open.md` S1, *The gas idle taken apart*). **The probes are confirmed
 as the idle's cause only by all five marks** of `open.md` H11, *What
 would confirm the probes as the idle's cause* — 032's idle cell within
-±3 %, the rear probe not sinking, `IdleHealth` at or below 40 at three
+±3 %, the rear probe not sinking, its mean near 0.45 V or above and
+flat, `IdleHealth` at or below 40 at three
 warm stops on different days, the queue and the A/C no longer making a
 difference, the dips on all four alike; **if the swap changes nothing,
 032's idle cell decides what is left** (*If the swap changes
