@@ -1335,7 +1335,8 @@ old probes'; the idle and 3's lead as before the clean.
 - **Repairs:** the rear probe's heater lead and the front probe's signal
   earth, each cracked on the harness side inside the black box under the
   car, wrapped in PVC tape, then the whole bundle wrapped so it cannot
-  move or be pressed (*owner*).
+  move or be pressed, Tesa fabric tape over all of it; the probes'
+  spare lead left outside the box (*owner*).
 - **Tests:** the connectors and leads looked at under the box; which
   wire meets which of the probe's own (*owner*, photographs).
 - **Changes after:**
