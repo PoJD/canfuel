@@ -126,7 +126,7 @@ rear probe's signal fell under load from 16:57 and read 0.000 V at full
 load from 17:29, P0137 sporadic** — the lead, the connector or the part,
 not the gas; normal again at the basic settings after it (034, 046, 037
 all OK). **Unexplained: the last four minutes of the warm stop,
-17:38–17:42, read 36–45, the calmest warm idle on record without the
+17:38–17:42, read 36–45, the calmest warm idle captured outside the
 provider's gas**, 3 with no named dip — at a plain idle, before both the
 clear of P0137 and the basic settings (the bus marks them from 17:41:44),
 so neither made it (H11, *The relearn drive*).
@@ -359,7 +359,7 @@ error):
 | 10/11 | display, VCDS | kept (032 −7.8 / +7.0) | **the first idle on both new probes** (H11, *The reading after the swap*): a cold start standing, then loads off, the A/C, loads off, 1,500 rpm, idle; coolant 78–99 °C, oil 54 °C at the start of loads off | **120–140, then 112–120** loads off; **70, then 66–75** with the A/C; 98–120 loads off; 70–99 after 1,500 rpm; `Misfires` 13–14, 3–4, 8–12, 7 → 5 (*owner*) — as on 9/11 night with the old probes (130–140, 90–100) |
 | 10/11 | display, VCDS 014 | 032 −6.3 / +5.5 after it | the drive on to work, about 29 min; a warm stop at the end, the everyday state, the A/C off, oil 101–102 °C | **60–70, 55, 70, 50–55, 48, then 80–90**; `Misfires` 7, 5, 3 (*owner*); 014 0.24 % of combustions |
 | 10/11 eve | `47`, VCDS 014 032 036 | **relearning from zero** (the battery off; −6.3 / +6.3 by 16:58, −3.9 / +7.0 at the end) | `plan.md` 8d, the drive home from work; queue stops 16:51–17:17 in the everyday state, oil 99–103 °C; one with the A/C | **63, 91, 82, 92, 63, 49, 55, 71** loads off; **52** with the A/C; 014 0.24 % over the stops; cold at 44–46 °C of oil with 032 at zero 91–104 (H11, *The relearn drive*) |
-| 10/11 eve | `47`, `48` | −3.9 / +7.0 (reset by the clear of P0137, 17:39–17:41:44, after the calm began) | the warm stop after a brisk stretch, the everyday state **plus the hazard lights from arrival** (*owner*), the A/C off, **no cut**, oil 102–104 °C; **the rear probe reading zero** (S23) | **59, 57, 52, 54, 65, 66, 84, 70** a minute for 8 min (014 0.15 %); **then 45, 43, 38, 39, 36 — the calmest warm idle on record without the provider's gas**, 3 with no named dip, to the revs for 034 at 17:42:50; 40–66 in the basic settings after (H11, *The relearn drive*) |
+| 10/11 eve | `47`, `48` | −3.9 / +7.0 (reset by the clear of P0137, 17:40:05–17:41:44, after the calm began) | the warm stop after a brisk stretch, the everyday state **plus the hazard lights from arrival** (*owner*), the A/C off, **no cut**, oil 102–104 °C; **the rear probe reading zero** (S23) | **59, 57, 52, 54, 65, 66, 84, 70** a minute for 8 min (014 0.15 %); **then 45, 43, 38, 39, 36 — the calmest warm idle captured outside the provider's gas** (the display touched 37 once, 23/10 evening), 3 with no named dip, to the revs for 034 at 17:42:50; 40–66 in the basic settings after (H11, *The relearn drive*) |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -2683,31 +2683,41 @@ did not bring the calm.
 - **The calm at the end of the stop** (`47`'s last two minutes and
   `48`'s first three): in 20 s windows `IdleHealth` **73, 55, 55, 41,
   47, 42, 42, 35** from 17:37:18, then **31–43** to 17:42:50, when the
-  revs for 034 began — **the calmest warm idle on record without the
-  provider's gas** (S1), `Misfires` 0–3 a minute; **cylinder 3 gave
+  revs for 034 began — **the calmest warm idle captured outside the
+  provider's gas** — the display once touched 37 in the everyday state,
+  for a moment (23/10 evening, S1's table); here it held for four
+  minutes (S1), `Misfires` 0–3 a minute; **cylinder 3 gave
   no named dip** in 17:39:51–17:42:50 (0 of 13), the dips 4.1 per 1000
   strokes against 8.1 in the stop's first eight minutes, the steady
   pattern about half. Nothing in the frames changed with it: idle
   speed 790–800 rpm, 0x280's load 24–27, coolant 97–100 °C, as before.
   **The VCDS reads around it**: 030/033/036 17:37:21–17:37:42, 041
-  17:38:39–17:39:00. **The owner cleared P0137 before the basic
-  settings** (*owner*, 10/11 evening), and **the bus marks the basic
-  settings**: 0x480 b1 carries 0x20 from **17:41:44 to 17:47:58** in
-  `48` and at no other time of 47–48 but the crank (*reasoned*: it
-  begins at a plain idle a minute before the revs for 034, whose photo
-  is 17:44:31, and ends between 037's photo, 17:47:45, and 036's as a
-  measuring block, 17:48:46; `20` carries it too, after VCDS was
-  reconnected; whether it is the basic-settings state itself or a lamp
-  it lights is *not known*). So **the clear fell between 17:39:00 and
-  17:41:44, and the calm began earlier, at 17:37:40, at a plain idle
-  with 032 still at −3.9 / +7.0** — **not the reset of 032 and not the
-  tests** (*reasoned*; *the owner* asked whether the catalyst test had
-  changed something). The calm ran on into the first minute of the
+  17:38:39–17:39:00. **When P0137 was cleared, from the bus**: the
+  owner remembered it as in 17:38–17:42, before the tests, not surely
+  (*owner*, 10/11 evening). **VCDS sends 0x200 each time it opens a
+  session with the ECU** (`docs/firmware/can-decoding.md`), and the
+  unfiltered capture (release `raw-captures`) carries one at every
+  connection: 17:34:03.9, 17:36:59.0 and 17:38:23.0, 16–22 s before
+  the tool's three files; **17:40:04.7, a session no file of the tool's
+  belongs to — the owner's, by hand, for the clear and then the basic
+  settings**; 17:49:57.9 before the fault memory read at 17:50:25. No
+  session opened between 17:38:23 and 17:40:04. **The basic settings
+  show on the bus too**: 0x480 b1 carries 0x20 from **17:41:44 to
+  17:47:58** in `48` and at no other time of 47–48 but the crank
+  (*reasoned*: it begins at a plain idle a minute before the revs for
+  034, whose photo is 17:44:31, and ends between 037's photo, 17:47:45,
+  and 036's as a measuring block, 17:48:46; `20` carries it too, after
+  VCDS was reconnected; whether it is the basic-settings state itself
+  or a lamp it lights is *not known*). So **the clear fell in
+  17:40:05–17:41:44, and the calm began at 17:37:40, two and a half
+  minutes earlier, at a plain idle with 032 still at −3.9 / +7.0** —
+  **not the reset of 032 and not the tests** (*reasoned*; *the owner*
+  asked whether the catalyst test had changed something). The calm ran on into the first minute of the
   basic settings, at idle, and ended with the revs; **after the tests
   the idle was 40–66 again**, so they left nothing calmer behind. What
   made the four minutes is *not known*; the stop settling late, as
   `42`–`44` settled after five or six minutes, is the plain reading.
-  *Until the owner's answer this said the clear's time was not
+  *Until the 0x200 frames were read this said the clear's time was not
   recorded and might have brought the calm.*
 - **014** counted from 16:33, twelve minutes after the start — not
   quiet after the disconnect (`refuted.md` C19's rule did not apply);

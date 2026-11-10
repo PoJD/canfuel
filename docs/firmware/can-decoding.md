@@ -44,7 +44,12 @@ in the whole corpus, DLC 3, payload `01 c0 80` every time: three in
 was being reconnected to the ECU**: in 18 by accident, after the session fell
 over, and in 20 on purpose, as the test proposed below. Every other log with
 VCDS attached and logging has none. So it is VCDS opening a session, not the
-car. The firmware's six hardware filters do not accept it and nothing needs
+car. **Confirmed on the unfiltered captures of 10/11/2026** (release
+`raw-captures`, `2026-11-10_step8d_*`; the filtered `47`–`48` drop it):
+0x200 at every session `tools/vcds_log.py` opened, 16–22 s before the
+time stamped in its file, and once at a session opened by hand — so a
+capture dates each VCDS connection, which `docs/engine-health/open.md`
+used to time a fault-memory clear. The firmware's six hardware filters do not accept it and nothing needs
 it; `test_0x200_is_a_one_off_too` pins where it appears.
 
 **It does not travel alone, and that is the part worth keeping.** `0x5D0`

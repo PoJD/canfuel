@@ -1322,7 +1322,7 @@ its `-2` file.
   - *felt:* in the queue at 100–102 °C of oil the seat jerks "as always
     when the idle is unsettled" (*owner*);
   - *not known:* what made the calm of 17:38–17:42 — it began before
-    the clear of P0137 (17:39–17:41:44, *owner*: before the tests) and
+    the clear of P0137 (17:40:05–17:41:44, VCDS's 0x200 on the bus) and
     the basic settings (from 17:41:44 on the bus); what failed on the
     rear probe's signal (`plan.md` 8e).
 
