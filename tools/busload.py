@@ -19,7 +19,7 @@ once a second only with JP1 (`src/config.h`, *timing*). Their stuffing is the
 mean of the capture's own 8-byte frames; the worst case is printed beside it.
 
 Only a capture with every identifier says anything: the later fixtures are
-filtered to the six the converter reads, and this refuses those. And the
+filtered to the six the converter reads (and 0x520), and this refuses those. And the
 count is a floor -- a frame the adapter missed is load the car still carried.
 
 --bursts looks inside the average, at the adapter's 1 ms resolution: the
@@ -46,6 +46,8 @@ BITRATE = 500_000
 TX_DLC = 8
 # A filtered fixture carries only these; a full capture carries more.
 CONVERTER_READS = {0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480}
+# ...and from 10/11/2026 the capture filter keeps 0x520 too, the odometer.
+FILTER_KEEPS = CONVERTER_READS | {0x520}
 
 
 def config_int(name: str) -> int:
@@ -106,7 +108,7 @@ def measure(path: str) -> dict:
     if not frames or frames[0].ts_ms is None:
         raise ValueError(f"{path}: needs adapter timestamps (a _z1 capture)")
     ids = {f.can_id for f in frames}
-    if ids <= CONVERTER_READS:
+    if ids <= FILTER_KEEPS:
         raise ValueError(f"{path}: filtered to the converter's identifiers")
     span_s = (frames[-1].ts_ms - frames[0].ts_ms) / 1000
     total = 0
@@ -140,7 +142,7 @@ def bursts(path: str) -> dict:
     frames = parse_file(path)
     if not frames or frames[0].ts_ms is None:
         raise ValueError(f"{path}: needs adapter timestamps (a _z1 capture)")
-    if {f.can_id for f in frames} <= CONVERTER_READS:
+    if {f.can_id for f in frames} <= FILTER_KEEPS:
         raise ValueError(f"{path}: filtered to the converter's identifiers")
     t0, t1 = frames[0].ts_ms, frames[-1].ts_ms
     per_ms = [0] * (t1 - t0 + 1)

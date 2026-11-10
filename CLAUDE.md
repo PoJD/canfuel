@@ -530,7 +530,8 @@ his phone. Check the platform and for a VCDS install; if unclear, ask once.
   repo as `YYYY-MM-DD_<name>_unfiltered_z1.txt.gz`, `gh release upload`,
   download it back and compare the decompressed `sha256sum`, **filter nothing
   until it matches**, delete the `.gz`; then filter the fixture to
-  `grep -E '^t(1A0|280|288|320|420|480)'`, add it to `FILTERED` in
+  `grep -E '^t(1A0|280|288|320|420|480|520)'` (0x520, the odometer, kept
+  since 10/11), add it to `FILTERED` in
   `tools/test_canlog.py`, a row in `test/fixtures/README.md` and its count in
   `tools/test_coastscan.py`. VCDS logs go to
   `test/fixtures/vcds/vcds-<step>-<groups>.csv`. A capture stopped early leaves
@@ -539,6 +540,11 @@ his phone. Check the platform and for a VCDS install; if unclear, ask once.
   in the cloud) from
   `https://github.com/PoJD/canfuel/releases/download/raw-captures/<file>.gz`
   and delete it after.
+- **Then, every time, the engine lamp from the bus** (`canlog.py
+  --states`, 0x480 b1 bit 3; *the maintainer*, 10/11): every time it lit
+  with the engine running, reported to him with the times and set
+  against the fault memory read — a lamp lit with no injector cut is
+  said at once, and its time dates the fault the memory does not.
 - **Then, every time, the dips' share over the cylinders**:
   `tools/cutscan.py --shares` on the capture and pooled with every capture
   since the last repair — the top two slots' share and p against all four

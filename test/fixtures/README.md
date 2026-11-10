@@ -492,7 +492,9 @@ documents: the torque scale in `docs/firmware/can-decoding.md` question 8, 0x200
 
 **`19`, `24` and `25`–`31` are filtered** to the six identifiers the firmware accepts —
 0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480 — to keep an hour of driving to a size
-a repository can hold. The unfiltered captures behind `19`, `24` and
+a repository can hold. **From 10/11/2026 the filter keeps 0x520 too**, once a
+second, for the odometer (`docs/firmware/can-decoding.md`, *The bus byte by
+byte*); fixtures cut before then carry the six alone. The unfiltered captures behind `19`, `24` and
 `27`–`38` (`19`'s is 65 MB) are kept outside the repository, gzipped on
 the GitHub release `raw-captures`; the one behind `25` and `26` was not
 on the laptop when the release was made. **They say nothing about what else is on the bus**, and

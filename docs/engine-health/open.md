@@ -922,6 +922,34 @@ two slots off: `44` 22 of 60 on 3 at the fixed phase, 29 followed;
 `46` 10 of 40 and 8 of 35; **`43` 28 of 65 and 25 of 61, so its
 naming of 3 holds**. The tool itself is not changed.
 
+**The idle speed target** (0x288 b5, decoded 10/11 at the owner's
+request, `docs/firmware/can-decoding.md`, *The bus byte by byte*; *the
+owner's question*: does the target follow anything, did it come down
+with the hydrogen, and is a lower idle a calmer one — his feeling).
+Over every capture with a time base, 30 s windows of settled idle,
+coolant 85 °C and over (434 windows; *ad-hoc script, not kept*):
+- **The target is fixed warm: 780 rpm in 410 of 434 windows**; the
+  other 24 are `32`'s idle-adaptation steps (800, 820, 830 rpm). Cold
+  it starts at 900 and steps down to 780 as the coolant warms (`18`,
+  `41`, `47`). **It did not move on the gas of 9/11**, nor at any warm
+  stop since August — so it carries nothing about the idle's quality.
+- **The engine sits 15–18 rpm above it** at every warm idle (794–798
+  rpm, every capture), the governor's own offset.
+- **The actual speed does not tell a calm idle from a rough one**:
+  loads off, A/C off, the 343 windows at 785–805 rpm show no relation
+  between speed and `IdleHealth` (r 0.07; medians 70–71 in every 5-rpm
+  band); the few above 805 rpm were rougher, 84–93, too few to say.
+  **The gas idle**: 788–797 rpm in the clean's last two minutes (one of
+  the lowest), but 796–805 with the gas and the A/C at the provider —
+  at 14–27 either way.
+- **Raising the target leaves the grade where it was**: `32`'s steps
+  put the engine at 798, 819, 835 and 848 rpm and `IdleHealth` read 66,
+  66, 66 and 67 (`refuted.md` D9, measured the same way).
+- **Read** (*reasoned*): **a lower idle is not by itself a calmer one**
+  on this engine; what the owner feels as calmer at a lower speed is
+  more likely a different shake at a different frequency than a
+  different combustion. Not a symptom, not a test.
+
 **After high revs** (*owner*, 23/10 evening, the first 44K tank,
 display, the everyday state): straight after a stretch held at high revs,
 `IdleHealth` **37**, the lowest yet in that state, then **slowly back to 50
@@ -2314,6 +2342,12 @@ swap injector 3 with another if the cylinder stays named.
 to hold at a steady pedal since the job of 1–2/10, which fitted this
 throttle and took up its cable's slack. Not measured; a capture with the
 throttle held still would show whether the plate or the engine moves.
+
+**Against, the target** (10/11, 0x288 b5; S1, *The idle speed
+target*): the ECU's idle speed target is 780 rpm at every warm idle on
+record and the engine holds 15–18 rpm above it every time; raising the
+target to 830 left `IdleHealth` at 66. The governor's set point is
+steady and met.
 
 **Against:** a dip is one firing that fails and recovers in a quarter of a
 second (three in four; one in five is two firings in a row, and warm

@@ -178,7 +178,8 @@ class TestFixtureContent(unittest.TestCase):
 
     #: Recorded through the adapter's filter rather than off the whole bus, to
     #: keep an hour of driving to a size a repository can hold. They carry
-    #: exactly the six identifiers the firmware accepts and nothing else, so
+    #: exactly the six identifiers the firmware accepts (and 0x520 in those
+    #: cut from 10/11/2026 on) and nothing else, so
     #: they say nothing about what else is on the bus -- and must not be read
     #: as evidence that the other eight have gone quiet.
     FILTERED = {"19_postfix_drive_z1.txt", "24_mafswap_drive_z1.txt",
@@ -195,6 +196,10 @@ class TestFixtureContent(unittest.TestCase):
                 "45_decarb_clean_z1.txt", "46_decarb_after_z1.txt",
                 "47_relearn_drive_z1.txt", "48_cattests_z1.txt"}
     ACCEPTED_IDS = {0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480}
+    #: From 10/11/2026 the filter keeps 0x520 as well, for the odometer
+    #: (the maintainer's request; docs/firmware/can-decoding.md, *The bus
+    #: byte by byte*). Fixtures cut before it carry the six alone.
+    KEPT_FROM_10_11 = {0x520}
 
     #: The last few milliseconds of 20, as the ignition goes off and the bus
     #: dies under the capture: 0x000, 0x058, 0x078 and a 29-bit 0x143B7BA, all
@@ -216,13 +221,14 @@ class TestFixtureContent(unittest.TestCase):
 
         Exceptions: 0x520 is slow enough that it misses short logs, the
         one-shot IDs are not periodic frames at all, the filtered logs carry
-        only what the filter let through, and the switch-off burst in 20 is
+        only what the filter let through (the six, and 0x520 from 10/11), and the switch-off burst in 20 is
         excluded for the reason given beside SWITCH_OFF_IDS.
         """
         for name, frames in self.frames.items():
             seen = {f.can_id for f in self._without_switch_off(name, frames)}
             if name in self.FILTERED:
-                self.assertEqual(seen, self.ACCEPTED_IDS, name)
+                self.assertIn(seen, (self.ACCEPTED_IDS,
+                                     self.ACCEPTED_IDS | self.KEPT_FROM_10_11), name)
                 continue
             unexpected = seen - self.REGULAR_IDS - self.ONE_SHOT_IDS
             self.assertEqual(unexpected, set(), f"{name}: unknown IDs")

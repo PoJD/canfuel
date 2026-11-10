@@ -575,7 +575,7 @@ injection time; 0x320 b2 fuel; 0x420 b3 oil; 0x480 b2–b3 fuel counter;
 | 0x288 b3 | **road speed as the ECU has it**, about 1.3 km/h a bit | b3 × 1.31 against 0x1A0's speed over `47` (0.3 % at 46–67 km/h); the dbc puts flags here — this ECU does not |
 | **0x288 b5** | **the idle speed target, × 10 rpm** (`MO2_LL_Solldz`) | 90 cold → 80 → 79 → **78 warm**, the engine 15–25 rpm above it (`18`, `41`, `47`); 78 = 780 rpm = VCDS's idle adaptation 128 (`docs/engine-health/vcds.md`); rises off idle to a ceiling of 152 — **question 3 answered** |
 | 0x320 b0 bit 0 | driver's door open | the doors row above |
-| 0x320 b0 bit 2 | **oil pressure present** (`Oeldruck`) | 0 with the ignition on, 4 from the first firing (`47`, 16:21:36) |
+| 0x320 b0 bit 2 | **oil pressure present** (`Oeldruck`) — **a switch's state, not a pressure** | 0 with the ignition on, 4 from the first firing (`47`, 16:21:36); bit 3, the dbc's dynamic oil-pressure warning, never set; no byte carries a pressure value |
 | 0x320 b1 bit 1 | **parking brake** (`Bremsinfo`) | on parked at work and from the warm stop to driving off (`47`) |
 | 0x320 b1 bit 7 | `Tankstop`, with the reserve | `0x82` only on the low tanks |
 | 0x320 b3–b4 | speed the cluster shows (15 bits, × 0.01 km/h) | follows 0x1A0 |
@@ -584,7 +584,7 @@ injection time; 0x320 b2 fuel; 0x420 b3 oil; 0x480 b2–b3 fuel counter;
 | 0x420 b0 bit 1 | oil temperature in error | with the engine off, beside b3 = 0xFF |
 | 0x420 b4 | coolant as the cluster shows it (× 0.75 − 48) | follows 0x288 b1 |
 | 0x420 b5 | **the dash dimmer, %: the lights** (`Klemme 58d`) | 0 parked; 93–95 from 16:22:08 on `47`, the lights switched on after the start |
-| 0x480 b1 bit 3 | **the engine lamp (MIL)** | on with the ignition, off seconds after the start, **on again 2–5 s into every injector cut** (`41`, `43`, `44`) and until the clear (`46`) |
+| 0x480 b1 bit 3 | **the engine lamp (MIL)** | on with the ignition, off seconds after the start, **on again 2–5 s into every injector cut** (`31`, `41`, `43`, `44`) and until the clear (`46`), and with the engine stopped and the ignition left on (`26`, `33`, `37`, `39`). **Lit with the engine running through every capture of early August** (`01`–`07`, 153,029–153,031 km), off from 11/8 (`08`–`17`); no other lit lamp with the engine running in any capture since |
 | 0x480 b1 bit 5 | **the ECU cutting the A/C compressor** (`MO5_KlimaKompr`) | at every crank and through basic settings (`48`, `20`); the A/C came on the moment it ended |
 | 0x488 b3 | the dbc's **altitude correction** (`Hoeheninfo`, × 0.00787) | 0x8D nearly always, 0 with the engine off; its 32 one-frame drops to 0x8C on `47` (17:29–17:35) are a slow factor stepping between two values, which the name explains and a fault would not (*reasoned*; not checked against an altitude) — *this said "around the ECU flagging P0137" until the survey* |
 | 0x520 b5–b7 | **the odometer, km** (`Kilometerstand`, 20 bits) | 153,029–153,033 in August, 153,569 on 24/9, **155,834 → 155,853 on 10/11** — the owner's figures in the same range (`docs/engine-health/vehicle-history.md`) |
