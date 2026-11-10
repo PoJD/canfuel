@@ -261,7 +261,8 @@ leading again a day later (*The idle's candidates, ranked*).
 engine — the new probes' tightness, the rear probe's lead and both
 probes' sockets on the harness side** (S23, H21); **8g, the probes'
 loom flexed with the ignition on, engine off, 033/036 logged**, with 8e
-at a laptop session; **8f, 032 at every VCDS session** until both cells
+at a laptop session; **8h, the loads against the sensors' voltages**,
+VCDS at a warm idle, at a laptop session; **8f, 032 at every VCDS session** until both cells
 have held for three drives (reset again by the clear of P0137); then
 the MFD in (item 6) and the oil level every 500 km (6i); **item 6's
 warm stops on the display with a word on what came before each**;
@@ -3776,7 +3777,12 @@ earth**; whether the probes' signal earths share it is *not known*.
 **Measurable cheaply**: the voltage between the
 ECU's earth and the engine block, and between each probe's signal-earth
 pin on the harness side and the ECU's earth, at a warm idle with every
-load on — a few tens of mV is an earth fault (*general*).
+load on — a few tens of mV is an earth fault (*general*). **And VCDS**
+(*the owner's request*, 10/11 night; `plan.md` 8h): the largest loads
+switched from the seat at a warm idle, each against 004's supply, the
+probes, the temperatures, the throttle's sensor voltage, the air mass,
+the knock sensors and the heaters' resistance — what moves with a load
+besides the supply shares its earth.
 
 **Tests:** the sockets of both probes looked into from the harness side
 at the next cold engine, with the rear lead's run (`plan.md` 8e); the

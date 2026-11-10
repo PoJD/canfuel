@@ -20,7 +20,8 @@ The full previous version, before it was condensed on 20/10/2026:
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Current: 8e at the next
 cold engine, with the rear probe's lead and both probes' sockets**,
-8g with it at a laptop session (ignition only), and 8f at every VCDS session; item 6 and 6i, 8b (a second captured warm stop with a cut on
+8g with it at a laptop session (ignition only), 8h (the loads against the
+sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and 6i, 8b (a second captured warm stop with a cut on
 4) and 6m for cylinder 4 after them (*the owner*, 10/11; `open.md` H11,
 *The relearn drive*, S23).
 
@@ -132,6 +133,19 @@ cold engine, with the rear probe's lead and both probes' sockets**,
    loom towards the ECU by hand, a few seconds each, saying in the chat
    which and when. **Never with the engine running**: nothing under the
    car or by the exhaust while it runs. After it, the fault memory.
+8h. **The loads against the sensors' voltages**, Claude in a session on
+   the laptop (with 8g's if it falls the same day), a warm engine after
+   a drive, the car standing, the owner in the driver's seat:
+   `usbtin_capture.py` running; the fault memory read first.
+   - **Idle, the everyday state, every load off that can be**; then, 30 s
+     each, on and off again with 30 s between: **the A/C, the rear window
+     heater, main beam, the blower on 4**, one at a time; the rear window,
+     main beam and the blower said in the chat as each goes on and off
+     (the A/C and the lights Claude reads off the bus).
+   - The whole sequence three times, VCDS logging a different set each
+     time: **004 033 036**, then **004 060 002**, then **004 026 041**.
+   - Nothing under the bonnet or the car while the engine runs. After it,
+     the fault memory.
 9. **After the clean of 9/11, by what the next stops show** (Claude says
    which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
@@ -364,6 +378,26 @@ that probe: read after, cleared by the owner. A socket seen
 damp or green, or a jump in 033 or 036 as one lead is moved, is the find; both clean and
 steady leave the new rear probe itself for S23. The wires to the ECU
 are measured only with its plug off, so with 6n.
+
+**8h, the loads against the sensors' voltages** (*the owner's request*,
+10/11 night; `open.md` H21, *A shared earth*): an earth that the probes'
+signal returns, the senders and the ECU share would move every voltage
+referred to it when a load switches; a sound one lets only the supply
+(004) dip. So each load step is read against what should not move:
+the coolant and intake-air temperatures (004, NTC senders, a few mV a
+degree when hot, *general*), the front and rear probes (033, 036), the
+throttle's second sensor in volts at a fixed angle (060 field 2,
+G188 — 060 read as a measuring block only; its basic setting is the
+owner's, never Claude's), the air mass (002), the knock sensors (026)
+and the heaters' resistance (041); and the sensors against one another.
+The bus beside it marks the A/C and the lights, carries the engine
+speed and both coolant readings at 10 ms (the ECU's and the gauge's,
+already tested on `47`: steady to half a bit). **What it cannot see**
+(*reasoned*): VCDS samples about once a second, so a load's step is
+caught but noise faster than that is not; three groups at a time, so
+the sets are run one after another, the sequence repeated. Four loads
+because they are the largest the driver can switch from the seat, and
+none needs anyone at the engine.
 
 **8f, 032 at every session**: the idle cell came back to −6.3 % in one
 drive on the new probes (`open.md` S19), so what is left to read is
