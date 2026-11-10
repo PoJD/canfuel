@@ -127,9 +127,9 @@ load from 17:29, P0137 sporadic** — the lead, the connector or the part,
 not the gas; normal again at the basic settings after it (034, 046, 037
 all OK). **Unexplained: the last four minutes of the warm stop,
 17:38–17:42, read 36–45, the calmest warm idle on record without the
-provider's gas**, 3 with no named dip — around the time the owner
-cleared P0137, which resets 032; whether the clear came before the calm
-is the owner's to say (H11, *The relearn drive*).
+provider's gas**, 3 with no named dip — at a plain idle, before both the
+clear of P0137 and the basic settings (the bus marks them from 17:41:44),
+so neither made it (H11, *The relearn drive*).
 
 **Open:**
 
@@ -176,7 +176,8 @@ is the owner's to say (H11, *The relearn drive*).
   `Misfires` 3–7 — no change. **10/11 evening** (`47`, the relearn
   drive, 032 relearning from zero): queue stops **49–92**, the warm
   stop at the end **52–84** a minute for 8 minutes, **then 36–45 for
-  four** (unexplained; H11, *The relearn drive*).
+  four**, before the clear and the tests (unexplained; H11, *The
+  relearn drive*).
   The dips sat two thirds on 3 and 4
   until the VW leads, **on all four alike** on `40` and `41`, **on `42`
   one slot again, 45 %**, and **on `43` named: 43 % on cylinder 3**
@@ -358,7 +359,7 @@ error):
 | 10/11 | display, VCDS | kept (032 −7.8 / +7.0) | **the first idle on both new probes** (H11, *The reading after the swap*): a cold start standing, then loads off, the A/C, loads off, 1,500 rpm, idle; coolant 78–99 °C, oil 54 °C at the start of loads off | **120–140, then 112–120** loads off; **70, then 66–75** with the A/C; 98–120 loads off; 70–99 after 1,500 rpm; `Misfires` 13–14, 3–4, 8–12, 7 → 5 (*owner*) — as on 9/11 night with the old probes (130–140, 90–100) |
 | 10/11 | display, VCDS 014 | 032 −6.3 / +5.5 after it | the drive on to work, about 29 min; a warm stop at the end, the everyday state, the A/C off, oil 101–102 °C | **60–70, 55, 70, 50–55, 48, then 80–90**; `Misfires` 7, 5, 3 (*owner*); 014 0.24 % of combustions |
 | 10/11 eve | `47`, VCDS 014 032 036 | **relearning from zero** (the battery off; −6.3 / +6.3 by 16:58, −3.9 / +7.0 at the end) | `plan.md` 8d, the drive home from work; queue stops 16:51–17:17 in the everyday state, oil 99–103 °C; one with the A/C | **63, 91, 82, 92, 63, 49, 55, 71** loads off; **52** with the A/C; 014 0.24 % over the stops; cold at 44–46 °C of oil with 032 at zero 91–104 (H11, *The relearn drive*) |
-| 10/11 eve | `47`, `48` | −3.9 / +7.0 (then perhaps reset by the clear of P0137) | the warm stop after a brisk stretch, the everyday state, the A/C off, **no cut**, oil 102–104 °C; **the rear probe reading zero** (S23) | **59, 57, 52, 54, 65, 66, 84, 70** a minute for 8 min (014 0.15 %); **then 45, 43, 38, 39, 36 — the calmest warm idle on record without the provider's gas**, 3 with no named dip, to the revs for 034 at 17:42:50; 40–66 in the basic settings after (H11, *The relearn drive*) |
+| 10/11 eve | `47`, `48` | −3.9 / +7.0 (reset by the clear of P0137, 17:39–17:41:44, after the calm began) | the warm stop after a brisk stretch, the everyday state, the A/C off, **no cut**, oil 102–104 °C; **the rear probe reading zero** (S23) | **59, 57, 52, 54, 65, 66, 84, 70** a minute for 8 min (014 0.15 %); **then 45, 43, 38, 39, 36 — the calmest warm idle on record without the provider's gas**, 3 with no named dip, to the revs for 034 at 17:42:50; 40–66 in the basic settings after (H11, *The relearn drive*) |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -2680,18 +2681,25 @@ stop from 17:30, the A/C off, **no cut** (the engine cover on).
   pattern about half. Nothing in the frames changed with it: idle
   speed 790–800 rpm, 0x280's load 24–27, coolant 97–100 °C, as before.
   **The VCDS reads around it**: 030/033/036 17:37:21–17:37:42, 041
-  17:38:39–17:39:00; **P0137 was cleared by the owner in this stretch,
-  at a time not recorded, and clearing resets 032** (`CLAUDE.md`). **If
-  the clear fell between 17:37:42 and 17:38:39, the calm came with the
-  idle cell at zero — the owner's hypothesis exactly; if after 17:39,
-  the calm came first** and is the stop settling late, as `42`–`44`
-  settled after five or six minutes (*not known* which; *the owner*
-  asked). Against reading much into it: after the revs, in the basic
-  settings (034 17:44:31, 046 17:46:50, 037 17:47:45, all OK, the
-  album), `IdleHealth` was back at 40–66 and 3 led again (29 of 60) —
-  with 032 at most a few minutes from zero, if the clear reset it; but
-  basic settings drive the mixture themselves (046 its test), so those
-  minutes compare with nothing.
+  17:38:39–17:39:00. **The owner cleared P0137 before the basic
+  settings** (*owner*, 10/11 evening), and **the bus marks the basic
+  settings**: 0x480 b1 carries 0x20 from **17:41:44 to 17:47:58** in
+  `48` and at no other time of 47–48 but the crank (*reasoned*: it
+  begins at a plain idle a minute before the revs for 034, whose photo
+  is 17:44:31, and ends between 037's photo, 17:47:45, and 036's as a
+  measuring block, 17:48:46; `20` carries it too, after VCDS was
+  reconnected; whether it is the basic-settings state itself or a lamp
+  it lights is *not known*). So **the clear fell between 17:39:00 and
+  17:41:44, and the calm began earlier, at 17:37:40, at a plain idle
+  with 032 still at −3.9 / +7.0** — **not the reset of 032 and not the
+  tests** (*reasoned*; *the owner* asked whether the catalyst test had
+  changed something). The calm ran on into the first minute of the
+  basic settings, at idle, and ended with the revs; **after the tests
+  the idle was 40–66 again**, so they left nothing calmer behind. What
+  made the four minutes is *not known*; the stop settling late, as
+  `42`–`44` settled after five or six minutes, is the plain reading.
+  *Until the owner's answer this said the clear's time was not
+  recorded and might have brought the calm.*
 - **014** counted from 16:33, twelve minutes after the start — not
   quiet after the disconnect (`refuted.md` C19's rule did not apply);
   **0–0.58 % of combustions at the queue stops, 0.24 % over them, 0.15 %
@@ -2701,9 +2709,8 @@ stop from 17:30, the A/C off, **no cut** (the engine cover on).
 **Read** (*reasoned*): **the idle cell came back on the new probes as
 on the old, so mark 1 is gone; marks 3–5 failed again; mark 2 is
 spoilt by the rear probe's own fault (S23).** H11's idle form has no
-mark left standing except the calm of 17:38–17:42, which needs the time
-of the clear before it can be read for or against the owner's
-hypothesis. **The rear probe fault (S23) is new and the new probe's
+mark left standing: the calm of 17:38–17:42 came before the clear that
+reset 032, so it is not the owner's hypothesis at work. **The rear probe fault (S23) is new and the new probe's
 own** — a lead, a connector or the part — not evidence that the old
 one was right.
 
@@ -3890,8 +3897,9 @@ midday, now on the drive itself: mark 1 failed (032's idle cell back to
 −6.3 % within 37 minutes on the new probes), marks 3–5 failed (the stops
 49–92, the A/C no help where the idle was already near 50, 3 leading
 the dips again); mark 2 spoilt by the rear probe's own fault (S23).
-What keeps it above the belt is only the calm of 17:38–17:42, which
-waits on the time of the clear. **H13 kept first, its for weakened**:
+The calm of 17:38–17:42 came before the clear of P0137 (the bus marks
+the basic settings from 17:41:44), so it is not the owner's hypothesis
+at work, and nothing is left to hold H11 above the belt. **H13 kept first, its for weakened**:
 the clean took 3's excess for a day, and 3 led again on `47` (41 %);
 deposits do not grow back in a day, so either the clean moved something
 that came back (*reasoned*: a flake, a deposit on a seat) or stop 7's

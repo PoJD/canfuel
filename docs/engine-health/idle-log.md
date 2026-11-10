@@ -1320,9 +1320,10 @@ its `-2` file.
     17:50;
   - *felt:* in the queue at 100–102 °C of oil the seat jerks "as always
     when the idle is unsettled" (*owner*);
-  - *not known:* when in 17:37–17:42 P0137 was cleared, and so whether
-    the calm came with 032 at zero; what failed on the rear probe's
-    signal (`plan.md` 8e).
+  - *not known:* what made the calm of 17:38–17:42 — it began before
+    the clear of P0137 (17:39–17:41:44, *owner*: before the tests) and
+    the basic settings (from 17:41:44 on the bus); what failed on the
+    rear probe's signal (`plan.md` 8e).
 
 Read in a cloud session the same evening (`open.md` H11, *The relearn
 drive*; S19; S23, added at the owner's request): the split is not the
