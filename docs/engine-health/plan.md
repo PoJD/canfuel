@@ -144,8 +144,7 @@ sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and
      tightened with. Which, and about how far, into the chat; nothing
      undone.
 8f. **032 for 20 s at every session with VCDS connected**, until both
-   cells have held for three drives. **On reconnecting the battery
-   (taken out 10/11 late night), the owner runs 098** as before.
+   cells have held for three drives.
 8g. **The probes' loom flexed with the ignition on, engine off**, Claude
    in a session on the laptop, VCDS on **033 036** logged (the fault
    memory read first); best together with 8e, the car already on its
@@ -438,8 +437,8 @@ because they are the largest the driver can switch from the seat, and
 none needs anyone at the engine.
 
 **8f after the harness** (10/11 late night): the battery out once more
-after the probes' harness was taped, so 032 relearns from zero on a
-repaired harness — a clean before and after against the −6.3 % of the
+after the probes' harness was taped (098 run on reconnecting, OK), so
+032 relearns from zero on a repaired harness — a clean before and after against the −6.3 % of the
 relearn drive; and the rear probe's signal (S23) read beside it.
 
 **8f, 032 at every session**: the idle cell came back to −6.3 % in one
