@@ -87,9 +87,11 @@ the rear probe can and cannot say*): **a lean mean behind the front
 probe at idle, its size not read, from one of four causes** — the
 front probe reading rich, hydrogen from unequal cylinders, **air drawn
 in between the probes (H2, widened to that zone 10/11)**, or a lean
-bias the rear loop does not trim at idle. **Both probes are to be
-replaced** (*the owner's decision*, 10/11; no analyser): that rules out
-the old probes, not the other three. S22's tick heard again at
+bias the rear loop does not trim at idle. **Both probes replaced
+10/11** (*the owner's decision*; no analyser): **the old front probe's
+tip coated in a cracked grey-beige layer, the rear's clean** (H11, *The
+old probes seen*); the swap rules out the old probes, not the other
+three, and the reading after decides by H11's five marks. S22's tick heard again at
 that idle loads off, not with the A/C — added to D11 at the owner's
 decision, not reopened.
 
@@ -191,7 +193,7 @@ strong, is about a third of `IdleHealth` (S1, *A steady pattern over the cylinde
 on it with the owner: **H3 second, H1 third, H4 fifth**.
 
 **Next** (`plan.md`; *agreed with the owner*, 9/11 evening): **first
-8c, both probes replaced (10/11) and the probes read again as on 9/11
+8c, the probes read again after both were replaced on 10/11 as on 9/11
 night, standing** (the reading before it done) — the Beetle stays outside on summer
 tyres from 9/11 (*owner*), so what needs driving waits for the roads;
 then the MFD in (item 6) and the oil level every 500 km (6i); **item 6's warm stops on
@@ -2331,6 +2333,24 @@ were not, and leaves 2, 3 and 4 standing — **the swap rules out parts,
 not mechanisms**. A new rear probe that sinks alike rules out the old
 rear probe's own fault as well.
 
+**The old probes seen, 10/11** (both replaced that morning, `plan.md`
+8c; `photos/lambda-front-old-tip-2026-11-10.jpg`,
+`photos/lambda-rear-old-tip-2026-11-10.jpg`; *owner* for which is
+which). **The front probe's inner protective tube is coated in a
+continuous grey-beige layer, cracked like dried mud**; not white or
+gritty. **The rear probe's tip is dark and clean.** Neither sooted
+(rich) nor glazed (lead). *General*: such a layer is usually ash from
+additives in the fuel or from oil burnt; a layer over the tube's holes
+slows how fast the gas reaches the electrode — the poisoning mechanism
+below (*How a probe can read rich at idle only*), worst where the probe
+is slowest, at idle. **For H11, not proof**: where the layer came from
+(the BG 44K tanks, oil, eight years) and whether it slowed the probe
+the photo cannot say; the reading after and the five marks decide. The
+difference between the two fits the converter between them, the front
+probe meeting raw exhaust. **The converter's outlet face**, through the
+rear boss with the borescope: light grey, regular cells, nothing melted
+or sooted (`photos/converter-outlet-borescope-2026-11-10.jpg`).
+
 **Why the criterion is a trend, not 0.6 V** (10/11, *the owner's
 question*). **No healthy rear-probe voltage is published for this
 engine**: the label file gives 036 field 1 only its range, 0.00–1.00 V,
@@ -2492,7 +2512,8 @@ question*; *general* mechanisms, which of them, if any, *not known*):
   it is largest at idle**, where a fixed leak is the largest share of the
   air, and so would be the probe's error: a link between H3 and H11.
 - **Poisoning.** Silicone, oil ash or fuel additives coat the electrode
-  and slow it. The idle cell's few extra points came in the window of
+  and slow it — **the old front probe came out with its tip coated**
+  (10/11, *The old probes seen*). The idle cell's few extra points came in the window of
   the two BG 44K tanks (23–24/10) and the hours of hard driving on them
   (`vehicle-history.md`); the cell itself was negative since August, so
   poisoning would at most have added to an older offset.

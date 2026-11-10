@@ -18,10 +18,9 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Current: 8c, both
-probes replaced and the probes read again — needs no driving** (the
-Beetle stands outside on summer tyres from 9/11, the owner driving
-another car while snow is expected; *owner*); **item 6 and 6i, 8b (a
+Captures only where an item asks for one. **Current: 8c, the probes
+read again after both were replaced on 10/11** (the Beetle driven again
+from 10/11 while the weather allows summer tyres; *owner*); **item 6 and 6i, 8b (a
 second captured warm stop with a cut on 4) and 6m for cylinder 4 when
 the Beetle is driven again** (*agreed with the owner*, 9/11 evening;
 `open.md` S1, *The clean of 9/11*; H11).
@@ -102,23 +101,10 @@ the Beetle is driven again** (*agreed with the owner*, 9/11 evening;
    connector off for 30 s** (say when, by the chat), 3 minutes more.
    At the end, engine idling: the fault memory, then 032/055; the owner
    clears it by hand.
-8c. **Both probes replaced, then the probes read again** (*the
-   owner's decision*, 9/11, both since 10/11; the reading before it
-   done 9/11 night).
-   1. **The parts, bought 10/11, checked against the VIN at the
-      shop** (*the owner*): **front Bosch `0 258 006 978`, rear Bosch
-      `0 258 010 032`**. Before fitting, each new probe against the old
-      one it replaces: the lead's length, the connector, the number of
-      wires; the numbers off both old probes sent to Claude; **the old
-      probes kept**.
-   2. **Both probes replaced** in the garage (the Beetle driven the
-      20 m in from outside first and switched off at once; *the owner*,
-      10/11), engine cold, battery left connected:
-      the thread with anti-seize as the new one comes, the lead routed
-      and tied as the old one was. **The old probe plugging the boss
-      ahead of the converter stays**; photograph it and the joint ahead
-      of the converter while underneath.
-   3. **The same reading as on 9/11 night**, Claude in a session on the
+8c. **The probes read again** (both replaced 10/11, `vehicle-history.md`;
+   the reading before done 9/11 night). Still owed: the numbers off the
+   old probes.
+   **The same reading as on 9/11 night**, Claude in a session on the
       laptop, VCDS measuring blocks only, **001 033 036 logged from a cold
       start**, standing in neutral, **outdoors or with the garage door
       open and the tailpipe outside, never in a closed garage**: idle until coolant about 78 °C; then
@@ -127,8 +113,8 @@ the Beetle is driven again** (*agreed with the owner*, 9/11 evening;
       at least 1 minute's idle, loads off. Say in the chat when each
       starts. Then **041 032 055** for 20 s, the fault memory read at the
       end; the owner clears it by hand only if there is a code.
-   **Optional, the owner decides at the car**: `usbtin_capture.py` beside
-   it, the MFD out.
+   **No CAN capture** (*the owner*, 10/11): the MFD in, `IdleHealth`
+   read off it.
 9. **After the clean of 9/11, by what the next stops show** (Claude says
    which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
@@ -335,21 +321,12 @@ flat, `IdleHealth` at or below 40 at three
 warm stops on different days, the queue and the A/C no longer making a
 difference, the dips on all four alike; **if the swap changes nothing,
 032's idle cell decides what is left** (*If the swap changes
-nothing*). **The parts are TecDoc's for the AQY** (10/11; the Octavia I's page at
-autorozvody.cz, the same engine): `0 258 006 978` the regulating probe
-ahead of the converter (AEG, APK, AQY; 1,760 mm overall),
-`0 258 010 032` the diagnostic probe behind it (APK, AQY; 760 mm).
-Shops that list `0 258 006 978` as post-converter mean other engines.
-**Each still compared with the old one before it goes in** because one
-listing says the connector "may need adjusting", and a front probe
-whose connector needs reworking is not wanted; **the old
-probe in the boss stays** because a new plug would change the second
-zone before it is tested. The battery stays connected so that 032 and 055
+nothing*). The battery stays connected so that 032 and 055
 are read on the same adaptations; 032's idle cell then relearns from
 where it is — **a fall towards zero after the swap is itself the
-answer**. **The capture beside it is optional** (*the owner*, 9/11): it
-gives `IdleHealth` and the dips before and after the swap exactly, where
-the display gives only its running figure.
+answer**. **No CAN capture** (*the owner*, 10/11), so `IdleHealth` comes off the
+display as a running figure, not exactly; the dips' share over the
+cylinders waits for 8b.
 
 **8b, the second captured stop**, because the rough start is what
 varies most between stops: stop 3's own second half read like stop 7,

@@ -1243,3 +1243,22 @@ pattern instead (`open.md` S1, *A steady pattern over the cylinders*);
 
 Read the same night (`open.md` H11, *The reading before the swap*; S2;
 `refuted.md` D11 for the tick, not reopened).
+
+## 10/11 — both lambda probes replaced
+
+- **Repairs:** both probes replaced by the owner in the garage, front
+  Bosch `0 258 006 978`, rear `0 258 010 032`, tightened by hand to
+  about 50 Nm estimated; the leads below tidied; the plugged spare boss
+  left as it was; the battery left connected (`vehicle-history.md`;
+  `plan.md` 8c).
+- **Tests:** the old probes' tips photographed — **the front's coated in
+  a cracked grey-beige layer, the rear's dark and clean**; the
+  converter's outlet face seen through the rear probe's boss with the
+  borescope: light grey, the cells regular, nothing melted or sooted
+  (`photos/converter-outlet-borescope-2026-11-10.jpg`).
+- **Changes after:**
+  - *not known:* everything — the reading after the swap is next
+    (`plan.md` 8c).
+
+Read in a cloud session the same morning (`open.md` H11, *The old
+probes seen*).
