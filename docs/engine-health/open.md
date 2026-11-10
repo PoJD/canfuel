@@ -1754,7 +1754,18 @@ had tucked them into that morning, the old ones having hung loose):
   from the heater's earth side; *not known*. **The front probe's
   signal earth** is H21's own mechanism: a resistance or a leak there
   shifts the front reading, most at idle where the heater draws most —
-  **the one candidate here for S19's idle cell surviving the swap**. A front
+  **the one candidate here for S19's idle cell surviving the swap**.
+- **Why on 10/11** (*owner*, 10/11 night): that morning he tucked the
+  new probes' spare lead into the box with the harness, where the old
+  probes' leads had hung outside — so the wires were pressed together
+  there for the first time, the cracked ones included. *Reasoned*:
+  pressure that closes a crack against a neighbour, warmed by the
+  drive, fits a fault that appeared on the first long drive after it
+  and went at a cooler idle; S19's idle cell, older than that, would
+  need the front signal earth to have been poor before.
+- **Taped by the owner the same night**, everything he could see
+  (`plan.md` 8e), so the drives after are a before-and-after test: S23
+  coming back or not, and where 032 relearns (`plan.md` 8f). A front
   connector not latched would let the front probe's contacts move —
   for H21 at the front, and for nothing measured yet.
 
