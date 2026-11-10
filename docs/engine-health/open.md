@@ -1717,8 +1717,8 @@ the dips; *ad-hoc scripts, not kept*):
 - **Read** (*reasoned*): a leak from the signal to earth reads more as
   the probe's own resistance rises, and a zirconia probe's resistance
   rises as it cools; **more load means hotter gas at the rear probe**,
-  so a leak would read less with the A/C on — as seen — and most at a
-  long idle, which is where it sank. A heat-sensitive leak that later
+  so a leak would pull it down less with the A/C on — as seen — and
+  most at a long idle, which is where it sank. A heat-sensitive leak that later
   became a short fits all three phases; so would, on a sound circuit, a
   converter that passes lean gas at idle and less of it under load —
   except that no gas reads 0.000 V at full load. H21 (*A shared
