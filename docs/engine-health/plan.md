@@ -530,7 +530,9 @@ or the next is the one moment it can be told from a seat or a guide.
 
 **Item 8a — the purge valve, conditional** (*the owner's decision*,
 6/11 night: *this was "replaced after item 8's readings", his decision
-of the same evening, until the valve was out*). Out of the car it
+of the same evening, until the valve was out*; **kept so 11/11**, after
+the second research, *the owner's decision*: no swap and no pinched hose
+at 8b). Out of the car it
 passed air unpowered not clearly at all, at most "really very little"
 (*owner*), it had no granules or fuel behind it, and it was cleaned with
 its contacts and refitted (`idle-log.md`). The part is known and fits;
