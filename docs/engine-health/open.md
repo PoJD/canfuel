@@ -1822,8 +1822,12 @@ his time by his own account, so an earlier owner's, perhaps when the
 tank was replaced (`vehicle-history.md`; *reasoned*), perhaps for a
 leaking canister, as the fuel filter was once only taped (*owner*).
 Dried white runs down the canister's side; what they are, not known.
-Its number, read off it: `… 201 813`, `PP5` (17:25:23; the first group
-not clear on the photograph). **What it means** (*reasoned*, from how
+Its number, read off it out of the car: **`1HM 201 801 B`** on its end,
+the housing `171 201 813` (the album, 18:06–18:23); no longer sold
+under that number by the owner's search. **Out of the car** (*owner*,
+the borescope): nothing rattles; inside the ports a plastic grid and
+spring plate, whole and dry to the eye; one of its two top ports small
+and short — whether broken off, not known. **What it means** (*reasoned*, from how
 the system works, *general*): the tank's vapour reaches N80 **with no
 charcoal and no opening to the air** between. So **the tank is sealed
 whenever N80 is closed** — the summer overpressure at the cap above —
