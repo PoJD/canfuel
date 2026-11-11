@@ -115,6 +115,11 @@ start of a warm stop*).
        may let it pass one way only — say which);
      - into the vent → in at the canister.
      Which passed easily, hard, or not at all, into the chat.
+   - **The borescope into each port and each hose end** (*the owner*,
+     11/11), the canister left in place: clean and dry, its tip pushed
+     in only as far as it goes freely and nothing poked; what is seen —
+     the filter mesh or foam whole or torn, charcoal granules whole and
+     dry, crumbled to dust, or wet with fuel — photographed.
    - **Shaken gently**, if it can be: a rattle inside said in the chat.
    - Every hose back as photographed, each pushed fully on; the cap
      closed until it clicks; the liner and the wheel back, the bolts
