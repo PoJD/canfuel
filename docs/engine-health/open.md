@@ -1852,12 +1852,14 @@ simply have been tilted. **If it is closed upright**, it seals the tank
 on its own and starves the purge whatever the canister: the summer
 overpressure and P0440 both, a second time over (*reasoned*). Its test:
 blown through held exactly as fitted (`plan.md` 8j). **Done 11/11
-evening** (*owner*; the number read clear, the album 18:31:11): **upright
-or tilted the same — nothing passes either way unless it is shaken
-hard**. So it is closed when it should be open: **stuck** (*reasoned*;
-its neighbours in VW's numbering, `… 201 751`/`752`, are sold as gravity
-valves, *general*). It alone would have sealed the tank even with the
-canister in. To be replaced with the canister.
+evening** (*owner*; the number read clear, the album 18:31:11): **held as it
+sits on the car it passes; upside down nothing passes either way unless
+it is shaken** (*owner*). A gravity or roll-over valve, working: closed
+when inverted or flooded, so that liquid fuel cannot reach the canister
+(its neighbours in VW's numbering, `… 201 751`/`752`, are sold as
+gravity valves, *general*). **Not the cause**: the summer overpressure is
+the bypass alone. *This said "stuck" for a quarter of an hour: the first
+test had held it upside down.*
 
 ### S23. The new rear probe's signal falls to zero under load — P0137
 

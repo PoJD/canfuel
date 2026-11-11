@@ -1368,9 +1368,9 @@ had been tucked into the box with the harness that morning.
     engine: with N80 on it nothing, or hardly; off at N80 it passes,
     not easily (a long line under the car) — **not blocked**; the
     canister has its vent to the air at the bottom (*owner*);
-  - *measured, later that evening:* the valve held upright as fitted
-    and tilted alike — **nothing passes either way unless it is shaken
-    hard**: stuck (*owner*); the canister out, **`1HM 201 801 B`**,
+  - *measured, later that evening:* the valve **passes held as it sits
+    on the car**; upside down nothing passes unless it is shaken — a
+    gravity valve, working (*owner*; the first try had it upside down); the canister out, **`1HM 201 801 B`**,
     nothing rattling, dry inside to the borescope (*owner*);
   - *not known:* who bypassed the canister and when — not in the
     owner's time.
