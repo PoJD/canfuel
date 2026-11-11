@@ -1827,7 +1827,8 @@ the housing `171 201 813` (the album, 18:06–18:23); no longer sold
 under that number by the owner's search. **Out of the car** (*owner*,
 the borescope): nothing rattles; inside the ports a plastic grid and
 spring plate, whole and dry to the eye. **Sound**: the line across its
-top is **the mould's parting line**, not a crack — cleaned and
+top is **a seam from manufacture**, not a crack — two halves joined,
+as the owner reads it off the part (a parting line or a weld) — cleaned and
 photographed close (the album, 18:55), it runs straight on along both
 ports and through the moulding's gate mark; and **with both top ports
 closed nothing passes when blown in at the vent** (*owner*). Both ports
