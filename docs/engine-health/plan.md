@@ -18,7 +18,9 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Current: 8i (the timing
+Captures only where an item asks for one. **Next: 8k, the reading
+before the first drive on the canister — the laptop session of 11/11
+evening.** Then **8i (the timing
 belt's marks) at the next cold engine**, 8h (the loads against the
 sensors' voltages) at a laptop session, and 8f at every VCDS session
 (032, and 036 now and then); item 6 and 6i; **8j done 11/11 evening** (the
@@ -94,6 +96,23 @@ start of a warm stop*).
      spark or a blue glow; then a fine water mist over one lead at a time
      and the coil, hands and bottle clear. Write anything seen and which
      lead the engine stumbled at.
+8k. **The reading after the canister went back** (from 11/11 evening):
+   - **Now, on the laptop, before the first drive**: the engine started
+     and left idling; **Claude runs**
+     `python tools/vcds_log.py --groups 032 055 --seconds 20 --out
+     "C:/Users/Luboš/Downloads/8k-before 32-55 26-11-11.CSV"`
+     — the fault memory is read before and after by the same run.
+     Nothing else at this session; no CAN capture (the MFD stays in).
+     Claude reads the faults out to him with their status; the files
+     into `test/fixtures/vcds/` as `vcds-step8k-before-adaptations-032-055.csv`
+     and `vcds-step8k-before-faults*.txt`.
+   - **Then drive normally with the MFD in** (item 6): at each warm stop
+     that comes anyway, `IdleHealth` and `Misfires` in the everyday
+     state, with a word on what came before.
+   - **032 again after the first two drives** (8f), at the next laptop
+     session.
+   - **On the first hot day**: the fuel filler cap opened — a hiss or
+     not, into the chat.
 8j. **The charcoal canister: found bypassed 11/11 — plumbed back, before
    8a** (*the owner*, 11/11). **Done 11/11 evening** (the album, 19:21–
    19:45): each line on its own port with a new rubber piece; the tank's
@@ -570,6 +589,15 @@ water flakes deposits most): the clean burns hydrogen to water vapour,
 so a flake may come loose and lodge under a seat, an 18/10-like
 drop-out; if one comes, a warm leak-down on that cylinder the same day
 or the next is the one moment it can be told from a seat or a guide.
+
+**8k, the reading after the canister** (*the owner*, 11/11: 032 on the
+laptop, the rest on the MFD): 032 now is the cell **before** any drive
+with the canister in, so the drives after it name what the plumbing
+did; the cells change only with driving, so the engine need not be
+warm. The fault memory goes with every VCDS session (`CLAUDE.md`). No
+capture: the MFD and a capture are one or the other. The filler cap on
+a hot day is the one check of the overpressure, which a November day
+cannot give.
 
 **8j, the canister — found bypassed** (*the owner*, 11/11, `open.md`
 S21, *The canister is not in the circuit*): the tank's line joined
