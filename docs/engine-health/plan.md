@@ -18,12 +18,14 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Current: 8e at the next
-cold engine, with the rear probe's lead and both probes' sockets**,
+Captures only where an item asks for one. **Current: 8i (the timing
+belt's marks) and 8e at the next cold engine, with the rear probe's lead
+and both probes' sockets**,
 8g with it at a laptop session (ignition only), 8h (the loads against the
-sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and 6i, 8b (a second captured warm stop with a cut on
-4) and 6m for cylinder 4 after them (*the owner*, 10/11; `open.md` H11,
-*The relearn drive*, S23).
+sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and 6i, 8b (two captured warm stops, a cut on
+4 at about minute 10) and 6m for cylinder 4 after them (*the owner*, 10/11
+and 11/11; `open.md` H11, *The relearn drive*, S23; S1, *The rough
+start of a warm stop*).
 
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
@@ -93,17 +95,20 @@ sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and
 8a. **The purge valve N80, only if P0440 comes back**: Bosch `0 280 142 353`, VW `1C0 906 517 A`, the same as the
    one on the car; the hoses stay; afterwards, warm, the owner runs
    **basic setting 070** and photographs it; then item 6's warm stops.
-8b. **A second captured warm stop with a cut on 4**, on another day,
-   Claude in a session on the laptop, fuel above reserve: the USBtin in
-   and the MFD out before the ignition; `usbtin_capture.py` from before
-   the start to engine off, `vcds_log.py --groups 014 001 003` (fault
-   memory read first).
-   **A brisk run with a motorway stretch until the
-   oil is at 95 °C or more**, then **a stop on a car park in the
-   everyday state, the A/C off**: 3 minutes' idle, **injector 4's
-   connector off for 30 s** (say when, by the chat), 3 minutes more.
-   At the end, engine idling: the fault memory, then 032/055; the owner
-   clears it by hand.
+8b. **Two captured warm stops with a cut on 4**, on two different days,
+   Claude in a session on the laptop each time, fuel above reserve: the
+   USBtin in and the MFD out before the ignition; `usbtin_capture.py`
+   from before the start to engine off, `vcds_log.py --groups 001 003
+   055` (fault memory read first).
+   - **Day one: a brisk run with high revs** (a motorway stretch, revs
+     above 4,000 more than once) **until the oil is at 95 °C or more**.
+   - **Day two: a gentle drive** to the same oil temperature, never
+     above 3,000 rpm.
+   - Each time **a stop on a car park in the everyday state, the A/C
+     off: 10 minutes' idle, then injector 4's connector off for 30 s**
+     (say when, by the chat), **2 minutes more**.
+   - At the end, engine idling: the fault memory, then 032/055; the
+     owner clears it by hand.
 8e. **At the next cold engine, from below**:
    - **The rear probe's lead, all the way to its connector**: where it
      runs, whether it touches or lies within a finger's width of the
@@ -126,9 +131,13 @@ sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and
      a VW repair terminal crimped on, or the socket half with its
      pigtail — before anything else is measured on that wire.
    - **The rear connector's bent pin** straightened so it seats like
-     the others; both connectors cleaned and dried again, then **pushed
+     the others; both connectors dried again, then **pushed
      until each latches with a click** — the front one included, which
      did not latch on 10/11 morning.
+   - **Nothing sprayed or greased into either probe's connector**, ever
+     again — no contact cleaner, no dielectric grease; **the probe's own
+     lead and its connector never sealed airtight** (no heat-shrink with
+     glue, no silicone over them). The tape over the harness side stays.
    - **Both probes' harness on to the ECU** (the owner's own look,
      10/11): from each probe's connector along the loom as far as it
      can be followed — where it runs, what it is tied to, anything it
@@ -143,6 +152,13 @@ sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and
      with, whether either turns further at the effort they were
      tightened with. Which, and about how far, into the chat; nothing
      undone.
+8i. **The timing belt's marks, at a cold engine** (with 8e if it falls
+   the same day): the upper belt guard off; the crank turned by hand in
+   the direction of rotation until cylinder 1 is at TDC, **the notch on
+   the crankshaft pulley against its mark** (within about 5 mm); then
+   **the camshaft sprocket's mark against its mark** on the cover or the
+   head. **A photograph of each mark, square on**, into the chat; nothing
+   loosened. Then the guard back on.
 8f. **032 for 20 s at every session with VCDS connected**, until both
    cells have held for three drives.
 8g. **The probes' loom flexed with the ignition on, engine off**, Claude
@@ -175,13 +191,25 @@ sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and
      a kit.
    - **A stethoscope (or a long screwdriver) on the cam cover above
      cylinder 3, hot**, against 1, 2 and 4: a tick or a hiss on one, at idle.
-   - **A warm leak-down on all four** at a garage, oil at 80 °C or
-     more: the upper intake off and all four plugs out (the same plugs
-     back afterwards; plug 3's gap measured while out); each cylinder at
-     TDC on its compression stroke, firing order 1-3-4-2; the crank held
-     while the air is on. For each: **the percentage, and where it
-     hisses** — tailpipe, throttle, oil filler, bubbles in the coolant
-     tank, the next plug hole.
+   - **One garage session with the upper intake off, straight after a
+     drive** (oil at 80 °C or more), in this order:
+     - **a warm leak-down on all four**: all four plugs out (the same
+       plugs back afterwards; plug 3's gap measured while out); each
+       cylinder at TDC on its compression stroke, firing order 1-3-4-2;
+       the crank held while the air is on. For each: **the percentage,
+       and where it hisses** — tailpipe, throttle, oil filler, bubbles
+       in the coolant tank, the next plug hole. **Cylinder 3 twice**:
+       the crank turned two full turns between the two readings;
+     - **a warm compression test on all four** straight after, the
+       throttle held open;
+     - **the cam cover off: VW's tappet check** — the cam of each tappet
+       pointing up, the play felt; more than 0.2 mm, the tappet renewed;
+       otherwise each pressed down with a plastic or wooden wedge and a
+       0.2 mm feeler tried between cam and tappet; the eight results
+       into the chat;
+     - **6m's injector circuits** while the intake is off;
+     - **the lower manifold's gasket**: renewed if the garage takes
+       the lower manifold off as well (the tear at runner 4).
    - With VCDS connected anyway after a stored P030x: **a generic
      OBD-II read** (modes 02 and 06), read only, saved.
    - **No head off** (*the owner*, 4/11, leaning, not final): if the
@@ -436,6 +464,27 @@ the sets are run one after another, the sequence repeated. Four loads
 because they are the largest the driver can switch from the seat, and
 none needs anyone at the engine.
 
+**8e, no spray and no seal on the probes' connectors** (`open.md` S23,
+*The contact spray*; the research of 11/11): Bosch, Denso and Saab
+forbid contact spray and grease on a lambda probe's connector, because
+the probe takes its reference air along its own lead, and a solvent
+drawn in lowers its curve; it went into the rear connector on the
+morning of 10/11, the day the rear probe sank. Sealing the probe's own
+lead airtight could starve it the same way; the fabric tape over the
+harness side is not a seal.
+
+**8i, the timing belt's marks** (*agreed with the owner*, 11/11): the
+belt sits sixth for the idle, but its check costs a quarter of an hour
+and no part, so it goes before the tests that cost a garage. VW's fault
+table has 16725 / P0341 for a camshaft sender signal out of place, which
+an empty fault memory makes less likely but does not exclude (`open.md`,
+*What the forums say*, 11/11); a mark a tooth out (roughly 18° of crank,
+*reasoned* from a sprocket of about 40 teeth; the AQY's not counted)
+is visible at the sprocket. **Read**: both marks on — the belt is
+refuted for the idle; one off — the belt is reset before anything else.
+The 5 mm tolerance at the crank is from VW's text for the Mk4 2.0;
+nothing of the AQY's own was read.
+
 **8f after the harness** (10/11 late night): the battery out once more
 after the probes' harness was taped (098 run on reconnecting, OK), so
 032 relearns from zero on a repaired harness — a clean before and after against the −6.3 % of the
@@ -448,15 +497,25 @@ where both cells settle; **the clear of P0137 at the end of 8d reset
 starts once more. Read, never cleared by Claude; three drives because
 the cells moved by one VCDS step at a time.
 
-**8b, the second captured stop**, because the rough start is what
-varies most between stops: stop 3's own second half read like stop 7,
-and straight after the clean 3 was still short, so one stop each side
-does not say the clean's effect lasts; a warm stop after a similar run
-with a 30 s cut on 4, on another day, does — a rough start on 3 again
-says it did not. **`47` (10/11 evening) answered it without a cut**: 3
-led the dips again, 41 %, named by the strongest slot (`open.md`, *The
-dips keep to one slot*); the cut now confirms that naming on a stop of
-its own. **6m for 4** because 4 is now the cylinder with a
+**8b, the two captured stops** (*agreed with the owner*, 11/11, after
+the second research): **a long warm stop after high revs starts rough on
+3 and settles within 5–8 minutes; after a gentle drive it does not**
+(`open.md` S1, *The rough start of a warm stop*). The old 8b put its cut
+at minute 3, inside the very window it was to watch, and 3's share
+changes inside a stop, so a cut there cannot tell whether it settled by
+itself. **The cut at minute 10** names the slots after the settling,
+and the same run carries the phase back over the rough minutes, so the
+early dips are named too. **The two days** separate the drive from the
+day: a rough start on 3 after the brisk run and none after the gentle
+one says the fault is worst hot on 3 (H1's exhaust seat, H13's flake);
+a rough start after both says it is the stop itself (H8's regulator
+converging, the governor). **001 003 055** because 055 converged over
+the same minutes on `42` and `43`, and 003's air and advance and 001's
+lambda are what would move with a governor or a mixture; 014 is not
+needed where the capture names the dips. *Until 11/11 this was one stop
+after a brisk run with the cut at minute 3, its question whether 3's
+rough start stays gone after the clean — answered without a cut on
+`47`.* **6m for 4** because 4 is now the cylinder with a
 deficit of its own, and its injector circuit is the cheapest of the
 three causes that act on 4 alone (H4; H3's runner gasket and H1's inlet
 seat cost the intake off or a leak-down). **The display's stops** with a
@@ -503,6 +562,20 @@ against the readings before it, on the display, with the A/C state
 named. *Until 6/11 night this item also had the hoses and the canister
 checked while the valve was out, and the part compared with the old
 one; done.*
+
+**Item 9's garage session** (*agreed with the owner*, 11/11, after the
+second research): everything that needs the upper intake off in one
+visit, warm. **Cylinder 3's leak-down twice, two crank turns apart**,
+because a flake under the exhaust seat (SAE 2000-01-2858: trapped by
+chance) moves between readings where a worn seat does not; **a warm
+compression test** straight after, because a tappet stuck pumped up
+holds its valve a hair open and only shows there or in the leak-down;
+**VW's tappet check** (the 2-valve 2.0's procedure: a wedge and a
+0.2 mm feeler) because it finds a tappet gone soft, and VW calls a
+cold-start clatter like 8/11's normal, so only the check says more.
+The engine cools while the intake comes off, so **a tight 3 there does
+not clear a seat that leaks hot** (`open.md` S1, *The rough start of a
+warm stop*). 6m and the gasket because the intake is off anyway.
 
 **Item 9 — after the decarbonisation** (*agreed with the owner*, 4/11,
 after the research): the cheapest tests that name a part on 3 without an
