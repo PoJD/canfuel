@@ -1362,15 +1362,18 @@ had been tucked into the box with the harness that morning.
     N80** through a rubber elbow with a worm clamp; **the canister's
     port open, nothing on it**; dried white runs on its side (*owner*,
     the album);
-  - *measured:* **the valve at the filler neck, VW `1C0 201 75…`** (the
+  - *measured:* **the valve at the filler neck, VW `1C0 201 756`** (the
     last digit not clear; the album, 17:45:43): **by mouth nothing
     passes either way unless it is moved** (*owner*); the line to the
     engine: with N80 on it nothing, or hardly; off at N80 it passes,
     not easily (a long line under the car) — **not blocked**; the
     canister has its vent to the air at the bottom (*owner*);
-  - *not known:* who did it and when — not in the owner's time;
-    whether the valve is closed because of how it was held (a
-    roll-over or gravity valve closes when tilted, *general*) or stuck.
+  - *measured, later that evening:* the valve held upright as fitted
+    and tilted alike — **nothing passes either way unless it is shaken
+    hard**: stuck (*owner*); the canister out, **`1HM 201 801 B`**,
+    nothing rattling, dry inside to the borescope (*owner*);
+  - *not known:* who bypassed the canister and when — not in the
+    owner's time.
 
 What 25/10 and 6/11 called the canister's side of N80 was the tank's
 line. `open.md` S21, H16; the summer overpressure at the filler cap reported

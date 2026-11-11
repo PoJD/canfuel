@@ -1844,14 +1844,20 @@ stops against the readings before.
 **The same evening, the parts around it** (*owner*): the line to the
 engine free (passes with N80 off it; with N80 on, nothing — the valve
 seals closed, as on 6/11). **The valve at the top of the filler neck,
-VW `1C0 201 75…`** (the album, 17:45:43): **by mouth nothing passes
+VW `1C0 201 756`** (the album, 17:45:43): **by mouth nothing passes
 either way unless it is moved**. What it is, is not in these files; a
 valve there is commonly a gravity or roll-over valve, open upright and
 closing when tilted or flooded (*general*) — held in the hand it may
 simply have been tilted. **If it is closed upright**, it seals the tank
 on its own and starves the purge whatever the canister: the summer
 overpressure and P0440 both, a second time over (*reasoned*). Its test:
-blown through held exactly as fitted (`plan.md` 8j).
+blown through held exactly as fitted (`plan.md` 8j). **Done 11/11
+evening** (*owner*; the number read clear, the album 18:31:11): **upright
+or tilted the same — nothing passes either way unless it is shaken
+hard**. So it is closed when it should be open: **stuck** (*reasoned*;
+its neighbours in VW's numbering, `… 201 751`/`752`, are sold as gravity
+valves, *general*). It alone would have sealed the tank even with the
+canister in. To be replaced with the canister.
 
 ### S23. The new rear probe's signal falls to zero under load — P0137
 

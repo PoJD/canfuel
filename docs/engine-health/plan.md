@@ -101,10 +101,15 @@ start of a warm stop*).
    chat, the new one bought by that number, then fitted with every hose
    to its own port, **new 8 mm fuel hose pieces with clips** where the
    elbow was cut (*owner*). **The valve from the top of the filler neck
-   (`1C0 201 75…`)**: blown through gently by mouth **held exactly as it
+   (`1C0 201 756`)**: blown through gently by mouth **held exactly as it
    sat on the car**, round top up, each way; then tilted on its side.
    Passes upright and stops tilted — refitted; nothing upright — a new
-   one with the canister. The last digit of its number into the chat. *What follows was the look of 11/11, done up to the
+   one with the canister. **Done 11/11: nothing passes in any position —
+   a new one** (`1C0 201 756`, by the VIN at VW, or a used one tested
+   the same way before it is fitted). **The canister** (`1HM 201 801 B`,
+   dry inside): blown through by mouth from each top port to the vent
+   at the bottom; passes and no smell of fuel — refitted; otherwise a
+   replacement. The last digit of its number into the chat. *What follows was the look of 11/11, done up to the
    finding:*
 8j-old. **The charcoal canister looked at and blown through, before 8a**
    (*the owner*, 11/11), the engine cold:
