@@ -95,11 +95,6 @@ start of a warm stop*).
 8a. **The purge valve N80, the new one ordered by the owner (11/11)**:
    Bosch `0 280 142 353`, VW `1C0 906 517 A`, the same as the one on the
    car; the hoses stay. In this order, the day it is fitted:
-   - **Optional, the owner's choice: the old valve tested warm on the
-     car**: after a drive, engine idling, N80's connector off, the hose
-     from the canister off N80, the vacuum gauge on N80's canister-side
-     port for a minute. Any vacuum on the needle: it leaks. The reading
-     into the chat; the hose and the connector back.
    - **032/055 and the fault memory read with VCDS** just before the swap.
    - The swap; **the old valve kept**, not thrown away.
    - While it is out: **a photograph of its two hoses to where they
@@ -554,8 +549,9 @@ that already leaks while closed would give. **The tests so far were
 weak**: blown by mouth (about 0.1–0.19 bar at most) against 0.6–0.7 bar
 of vacuum across it at idle, and 25/10's canister cut off cold only.
 **The gauge on the canister-side port, warm, N80 unplugged** is VW's own
-test (TSB 2034072, written for US cars), so it is offered, not planned:
-the owner declined a warm A–B–A with the hose plugged on 6/11. **032
+test (TSB 2034072, written for US cars); **declined 11/11** (*the
+owner*: the gauge is out of reach for weeks), so the old valve is not
+tested before the swap and 032 before and after is what reads it. **032
 before and after** says what the valve carried: an idle cell still at
 −6 to −9 % with a tight new valve clears it of the standing offset.
 **The photographs** because whether N112 and N80 share a vacuum tap is
