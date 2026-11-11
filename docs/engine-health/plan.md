@@ -22,7 +22,8 @@ Captures only where an item asks for one. **Current: 8i (the timing
 belt's marks) at the next cold engine**, 8h (the loads against the
 sensors' voltages) at a laptop session, and 8f at every VCDS session
 (032, and 036 now and then); item 6 and 6i; 8a (the new N80, ordered
-11/11) as soon as it arrives, 8j (the canister) before it; then item 9, 6m inside its garage session;
+11/11) as soon as it arrives, **8j (the canister, found bypassed 11/11: a new
+one, plumbed back) before it**; then item 9, 6m inside its garage session;
 **8e postponed to the end** and 8g dropped (*the owner*, 10/11
 and 11/11; `open.md` H11, *The relearn drive*, S23; S1, *The rough
 start of a warm stop*).
@@ -93,7 +94,14 @@ start of a warm stop*).
      spark or a blue glow; then a fine water mist over one lead at a time
      and the coil, hands and bottle clear. Write anything seen and which
      lead the engine stumbled at.
-8j. **The charcoal canister looked at and blown through, before 8a**
+8j. **The charcoal canister: found bypassed 11/11 — a new one, plumbed
+   back, before 8a** (*the owner*, 11/11). Until it is fitted, **the
+   joined hoses stay joined as found** — never the line to N80 left
+   open. Next: the number off the old canister and its ports into the
+   chat, the new one bought by that number, then fitted with every hose
+   to its own port. *What follows was the look of 11/11, done up to the
+   finding:*
+8j-old. **The charcoal canister looked at and blown through, before 8a**
    (*the owner*, 11/11), the engine cold:
    - **The car safe first**: on level ground, the handbrake on, a chock
      at a front wheel, **on an axle stand, never on the jack alone**;
@@ -547,7 +555,16 @@ so a flake may come loose and lodge under a seat, an 18/10-like
 drop-out; if one comes, a warm leak-down on that cylinder the same day
 or the next is the one moment it can be told from a seat or a guide.
 
-**8j, the canister** (*the owner*, 11/11; `open.md` S21, *The
+**8j, the canister — found bypassed** (*the owner*, 11/11, `open.md`
+S21, *The canister is not in the circuit*): the tank's line joined
+straight to N80's line, so the tank sealed while N80 is closed and raw
+vapour when it opens. **The canister replaced, not only reconnected**
+(*the owner's decision*): out of the circuit for years, with an open
+port. **The hoses stay joined until then**, because a line to N80 left
+open is a leak of unmetered air at every purge. **Fitted before the
+new N80** so that 032's reading after names the plumbing, not the valve;
+if both go in together, the reading names the two at once.
+*The look as planned* (*the owner*, 11/11; `open.md` S21, *The
 canister itself*): the original charcoal; a canister that holds or
 passes too little gives the purge check a small answer (P0440) without
 any fault in N80, and a flooded one sends granules towards the valve.
@@ -606,7 +623,8 @@ part and fits as it is (in stock at Auto Kelly, not in Prague on 6/11).
 **What was looked at, 6/11** (`idle-log.md`):
 no granules and no smell of fuel at the canister-side port, the rubber
 hoses old but sound, so **the canister is not looked at and no hose is
-changed** — a canister that shed charcoal would have jammed a new
+changed** (*superseded 11/11: the canister was looked at and found
+bypassed, 8j*) — a canister that shed charcoal would have jammed a new
 valve open (*general*), and it shows no sign of it. **The plastic line
 under the upper intake is left** (*the owner*, 6/11): seen whole with
 the intake off several times, the smoke test showed nothing there, and

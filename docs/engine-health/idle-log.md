@@ -676,7 +676,8 @@ died**, the second ran — so 24/10's slope was not needed. S7 reopened
 **N80 passes "really little"** blown through at rest — by 6e's rule a valve
 that does not seal — but with the engine running a finger on its port felt
 no suction until the pulses came, and no liquid fuel. **With the canister
-cut off the regulation sat at −0.7 % with 032's −7.8 still in force**: the
+cut off** (*the tank's line, in truth: the canister was found bypassed
+11/11*) **the regulation sat at −0.7 % with 032's −7.8 still in force**: the
 fuel behind the negative idle trim does not come through N80, at least
 that night. **The regulator's hose off**: the regulation went to −8.6 and
 −10.2 % within seconds, +3 to +8.6 % back on — the step the regulator owes
@@ -1345,6 +1346,22 @@ old probes'; the idle and 3's lead as before the clean.
 
 Found that evening (`open.md` S23, *Found at the harness*); the leads
 had been tucked into the box with the harness that morning.
+
+## 11/11 evening — the charcoal canister found bypassed
+
+- **Tests:** the right rear wheel and the wheel arch liner off; the
+  canister and its hoses looked at and photographed (the album,
+  17:02–17:27) (*owner*).
+- **Changes after:**
+  - *measured:* **the line from the tank joined straight to the line to
+    N80** through a rubber elbow with a worm clamp; **the canister's
+    port open, nothing on it**; dried white runs on its side (*owner*,
+    the album);
+  - *not known:* who did it and when — not in the owner's time.
+
+What 25/10 and 6/11 called the canister's side of N80 was the tank's
+line. `open.md` S21, H16; the summer overpressure at the filler cap reported
+the same afternoon. The canister to be replaced (`plan.md` 8j).
 
 ## 11/11 just after midnight — the first start after the harness was taped
 

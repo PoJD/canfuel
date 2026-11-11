@@ -223,7 +223,9 @@ owner**: H1 to second; H21 above H11; S1s added to the fit tables.
   owner's request): the evaporative system, the code of 1/2018 back; no
   fill and no hose touched before it; cleared by the owner (H16). Not
   the idle. **The tank lets out a strong overpressure at the filler
-  cap in summer** (*owner*, 11/11): the path to the canister, 8j.
+  cap in summer** (*owner*, 11/11), and **that evening the canister
+  was found bypassed** — the tank's line joined straight to N80's, by
+  an earlier owner (8j).
 - **S12, a sudden jerk at a crawl and on moving off** (reopened 10/11
   night at the owner's request; not the pedal): not on the bus at a
   crawl; 014 counted single misfires in moving-offs on 10/11.
@@ -284,7 +286,8 @@ the MFD in (item 6) and the oil level every 500 km (6i); **item 6's
 warm stops on the display with a word on what came before each**;
 **8b dropped 11/11** (*the owner*: the fix first, fewer tests);
 **6m's injector circuits** for 4's kept deficit;
-**the charcoal canister looked at and blown through (8j), then the
+**the charcoal canister, found bypassed 11/11, replaced and plumbed
+back (8j), then the
 purge valve N80, ordered 11/11 by the owner, fitted when it
 arrives, 032 read before and after** (H16, S21, 8a); item
 9's tests (the coolant's CO₂ test, the stethoscope, then one garage
@@ -1755,6 +1758,7 @@ under 16556 and 16824 alike, and a valve that leaks a little while
 closed would feed vapour the idle trim takes up (rich) and leave
 little to answer when opened (P0440) (*reasoned*). **Against or not
 shown**: the canister cut off on 25/10 left the idle cell as it was
+(*the tank's line, in truth: the canister was found bypassed 11/11*)
 (cold only); out of the car N80 hardly passed air — by mouth, about 0.1–
 0.19 bar at most against 0.6–0.7 bar of vacuum across it at idle, so
 weak; P0440 not back on 9/11; and neither explains the positive
@@ -1803,6 +1807,36 @@ canister's vent; it is not that. Not N80 (H16), which sits after the
 canister. Heard with the old cap; the new one (about early 10/2026) has
 not met a summer. Tested in `plan.md` 8j: the tank's line off at the
 canister before the cap is opened, and how it takes air.
+*Explained the same evening by the finding below.*
+
+**11/11 evening: the canister is not in the circuit** (*owner*, at the
+car, the right rear wheel arch, the liner off; the album, 17:02–17:27).
+**The line from the tank is joined straight to the line to N80**: the
+thick cream hose from the valve at the top of the filler neck (white
+body, black rubber top, *owner*) goes into a black rubber elbow, held by
+a worm clamp, and on into the thin cream line printed `1C0 201 …` that
+runs forward to the engine; **the canister's port on top stands open,
+nothing on it**, a small hole beside it (the album, 17:18:22). The owner
+sees only two ports on it. **When and by whom not known** — not done in
+his time by his own account, so an earlier owner's, perhaps when the
+tank was replaced (`vehicle-history.md`; *reasoned*), perhaps for a
+leaking canister, as the fuel filter was once only taped (*owner*).
+Dried white runs down the canister's side; what they are, not known.
+Its number, read off it: `… 201 813`, `PP5` (17:25:23; the first group
+not clear on the photograph). **What it means** (*reasoned*, from how
+the system works, *general*): the tank's vapour reaches N80 **with no
+charcoal and no opening to the air** between. So **the tank is sealed
+whenever N80 is closed** — the summer overpressure at the cap above —
+and **each time N80 opens, the intake draws raw tank vapour**, rich
+when the fuel is warm and hardly anything when it is cold, instead of
+air drawn through the charcoal. That fits **P0440 in winter** (both
+of them: the check opens N80 and little answers), and it **takes back
+"it would not give P0172"** above: in warm weather each purge is
+straight vapour the trim has to take away. The negative idle cell
+(S19) is a candidate for it only warm — 25/10's test, which closed the
+line at N80, was cold (H16, *corrected*). **The test is the repair**:
+the canister plumbed back (`plan.md` 8j), then 032 and item 6's warm
+stops against the readings before.
 
 ### S23. The new rear probe's signal falls to zero under load — P0137
 
@@ -3779,7 +3813,8 @@ the idle's vacuum; the new valve is ordered (`plan.md` 8a).
 
 **How the system works** (*general*, not from this ECU's documentation):
 the tank vents into a charcoal canister; N80 sits between the canister and
-the intake and is **closed without power**. The ECU pulses it open only in
+the intake (*on this car, until the repair of 8j, the canister was
+bypassed and N80 drew straight from the tank: S21, 11/11*) and is **closed without power**. The ECU pulses it open only in
 closed-loop lambda control, warm, so that the probe sees what the vapour
 does and the injection is corrected. A pause after the start, then pulses,
 is the valve working as designed (the owner saw exactly that, 25–27/9).
@@ -3857,7 +3892,8 @@ through N80 towards the intake **passed, "but really little"**
 the pulses, **no liquid fuel**. **What it leaves:**
 
 - **Not the rich idle trim.** With the port closed by the finger the
-  canister had no way in, and the regulation still sat at −0.7 % on top
+  canister had no way in (*the tank, in truth: the canister was found
+  bypassed 11/11, S21*), and the regulation still sat at −0.7 % on top
   of 032's −7.8: the engine wanted the same fuel taken away with N80 out
   of the circuit (*reasoned*; the learnt value applied cold is
   *general*). The trim's first *For* above is answered against —
