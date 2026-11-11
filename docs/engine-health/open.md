@@ -1773,6 +1773,17 @@ new one (the old valve under the gauge declined 11/11, *the owner*).
 is set in the captures with the lamp lit and clear in `41` with P0172
 stored — perhaps the ECU's lamp request; not decoded, nothing rests on
 it.
+**The canister itself** (*the owner's question*, 11/11; *reasoned*,
+*general*): never replaced, so its charcoal is the original. A canister
+that holds less with age gives less to purge, so the ECU's check sees
+a smaller answer when it opens N80 — **P0440 without a faulty valve**,
+likelier in the cold when the tank gives little vapour (both P0440s,
+1/2018 and 6/11, came in winter) — **but it would not give P0172**,
+which a canister flooded with liquid would (rich purge, and granules
+into N80). Its signs: a fuel smell near it when the tank is warm,
+granules rattling or in its hoses (none on 6/11, `idle-log.md`), a
+crack, a vent blocked by dirt or a stone. Looked at when N80 is changed
+(`plan.md` 8a); replaced only if P0440 comes back with the new valve.
 
 ### S23. The new rear probe's signal falls to zero under load — P0137
 

@@ -101,6 +101,10 @@ start of a warm stop*).
    - While it is out: **a photograph of its two hoses to where they
      join** (the T at the throttle) and of the vacuum hose of the
      secondary-air valve N112 to where it joins.
+   - **The charcoal canister looked at** (the owner's wish, 11/11; where
+     it sits is found by following N80's canister-side hose): a crack,
+     its vent blocked by dirt or a stone, granules in its hoses, a smell
+     of fuel; **a photograph of it and its label** into the chat.
    - Afterwards, warm, the owner runs **basic setting 070** and
      photographs it; then item 6's warm stops, and **032 read after the
      first two drives** (8f).
