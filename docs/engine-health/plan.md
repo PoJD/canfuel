@@ -97,9 +97,9 @@ start of a warm stop*).
 8j. **The charcoal canister: found bypassed 11/11 — plumbed back, before
    8a** (*the owner*, 11/11). **Done 11/11 evening** (the album, 19:21–
    19:45): each line on its own port with a new rubber piece; the tank's
-   line bent back with heat, its joint under a slight bend — **watched:
-   the joint looked at and pulled on at the next wheel off, and a clip
-   or a cable tie added if it has crept**. **The old one is sound and goes back**: it
+   line bent back with heat and tied above its joint so the rubber does
+   not carry the bend, a clip on every end (19:59–20:02) — **the joints
+   looked at and pulled on at the next wheel off**. **The old one is sound and goes back**: it
    passes everywhere, holds with its top ports closed, and the line on
    its top is the mould's (*this said "a new one", then "cracked, back
    for now", the same evening*). Until it is back, **the

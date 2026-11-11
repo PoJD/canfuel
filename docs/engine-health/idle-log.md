@@ -1353,8 +1353,9 @@ had been tucked into the box with the harness that morning.
   **the canister plumbed back** — the line from the filler neck's valve
   to the canister's large port, the line to N80 to its small port, each
   with a new rubber piece, eased on with a heat gun; the tank's line,
-  set crooked by years joined, bent back with heat; clips on all but
-  one end, which holds tight (*owner*; the album, 19:21–19:45).
+  set crooked by years joined, bent back with heat; **a clip on every
+  end**, and the tank's line tied above the joint so the rubber does not
+  carry its bend (*owner*; the album, 19:21–20:02).
 - **Tests:** the right rear wheel and the wheel arch liner off; the
   canister and its hoses looked at and photographed (the album,
   17:02–17:27); the valve at the top of the filler neck taken out and
