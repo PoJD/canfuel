@@ -18,9 +18,8 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next: 8k, the reading
-before the first drive on the canister — the laptop session of 11/11
-evening.** Then **8i (the timing
+Captures only where an item asks for one. **Next: 8k, the first drive
+on the canister logged from the laptop — 11/11 evening.** Then **8i (the timing
 belt's marks) at the next cold engine**, 8h (the loads against the
 sensors' voltages) at a laptop session, and 8f at every VCDS session
 (032, and 036 now and then); item 6 and 6i; **8j done 11/11 evening** (the
