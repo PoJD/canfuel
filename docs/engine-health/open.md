@@ -1830,7 +1830,8 @@ spring plate, whole and dry to the eye. **Its top is cracked** (the album,
 18:46:33): **a crack right across the top face**, from the base of the
 large port through the small one to the rim, the small port broken
 short at its base — *this said "whether broken off, not known" until
-the photographs of 18:46*. Most likely why it was bypassed
+the photographs of 18:46*. **The owner is not sure it is not a moulding
+edge** (11/11); it is sealed over before it goes back either way. Most likely why it was bypassed
 (*reasoned*): a cracked top leaks vapour, and smells, at the wheel arch.
 Through the crack the charcoal is open to the air beside its vent; to
 the engine that is harmless (*reasoned*), the vapour it lets out is not
