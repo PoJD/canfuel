@@ -1372,14 +1372,17 @@ had been tucked into the box with the harness that morning.
     on the car**; upside down nothing passes unless it is shaken — a
     gravity valve, working (*owner*; the first try had it upside down);
     **the canister passes**: in at either top port, out at the other,
-    and with that one closed out at the vent, a little harder (*owner*); the canister out, **`1HM 201 801 B`**,
+    and with that one closed out at the vent, a little harder (*owner*);
+    **its top cracked right across, through both ports, the small one
+    broken short** (the album, 18:46:33); the canister out, **`1HM 201 801 B`**,
     nothing rattling, dry inside to the borescope (*owner*);
   - *not known:* who bypassed the canister and when — not in the
     owner's time.
 
 What 25/10 and 6/11 called the canister's side of N80 was the tank's
 line. `open.md` S21, H16; the summer overpressure at the filler cap reported
-the same afternoon. The canister goes back, plumbed in (`plan.md` 8j).
+the same afternoon. The cracked canister goes back, plumbed in, until a
+sound one is found (`plan.md` 8j).
 
 ## 11/11 just after midnight — the first start after the harness was taped
 

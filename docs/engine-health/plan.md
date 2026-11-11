@@ -95,8 +95,12 @@ start of a warm stop*).
      and the coil, hands and bottle clear. Write anything seen and which
      lead the engine stumbled at.
 8j. **The charcoal canister: found bypassed 11/11 — plumbed back, before
-   8a** (*the owner*, 11/11; the old one passes, so it goes back; *this
-   said "a new one" until it was blown through*). Until it is back, **the
+   8a** (*the owner*, 11/11). **Its top is cracked across, the small port
+   broken short** (the album, 18:46): a replacement is looked for
+   (`1HM 201 801 B` no longer sold; by the VIN at VW, or a used one from
+   a New Beetle 2.0, blown through and its top looked at first); until
+   then the cracked one goes back in (*this said "a new one", then "the
+   old one passes, so it goes back", the same evening*). Until it is back, **the
    line to N80 joined or plugged** — never left open. Next: the canister
    back in its place, every hose to its own port (the valve to the
    canister, the canister to N80, the vent at the bottom free), **new 8 mm fuel hose pieces with clips** where the
@@ -568,9 +572,11 @@ or the next is the one moment it can be told from a seat or a guide.
 **8j, the canister — found bypassed** (*the owner*, 11/11, `open.md`
 S21, *The canister is not in the circuit*): the tank's line joined
 straight to N80's line, so the tank sealed while N80 is closed and raw
-vapour when it opens. **The old canister goes back**: blown through 11/11
-it passes everywhere, so its charcoal was spared rather than spent
-(*reasoned*); *this said "replaced, not only reconnected" until then*.
+vapour when it opens. **The cracked canister goes back for now**: it passes
+everywhere and is dry, and plumbed in it lets the tank breathe and the
+purge draw air through charcoal, which the bypass did not; the crack
+only lets vapour out at the wheel arch (*reasoned*). Replaced when a
+sound one is found.
 **The line to N80 joined or plugged until then**, because a line to N80 left
 open is a leak of unmetered air at every purge. **Fitted before the
 new N80** so that 032's reading after names the plumbing, not the valve;
