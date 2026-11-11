@@ -97,22 +97,27 @@ start of a warm stop*).
      and the coil, hands and bottle clear. Write anything seen and which
      lead the engine stumbled at.
 8k. **The reading after the canister went back** (from 11/11 evening):
-   - **Now, on the laptop, before the first drive**: the engine started
-     and left idling; **Claude runs**
-     `python tools/vcds_log.py --groups 032 055 014 --seconds 120 --out
-     "C:/Users/Luboš/Downloads/8k-before 32-55-14 26-11-11.CSV"`
-     — the fault memory is read before and after by the same run; 014
-     added by the owner (11/11) to watch the misfires beside the
-     adaptations; the oil temperature at the start into the chat.
-     Nothing else at this session; no CAN capture (the MFD stays in).
+   - **Now, on the laptop, the whole first drive** (*the owner*, 11/11:
+     about an hour, cut short after 30 min if nothing moves): **Claude
+     runs, in the background, before the engine is started**
+     `python tools/vcds_log.py --groups 032 055 014 --seconds 5400 --out
+     "C:/Users/Luboš/Downloads/8k-drive 32-55-14 26-11-11.CSV"`
+     — the fault memory before and after by the same run, reconnecting by
+     itself into `-2`, `-3` … if the ECU drops; the first seconds are the
+     cells **before** any drive with the canister in. 014 added by the
+     owner to watch the misfires beside the adaptations, cold and warm
+     idles and the road. The oil temperature at the start into the chat.
+     **At the end, engine still idling, he says so; Claude creates
+     `<out>.stop`**, the tool reads the fault memory, the codes go to him,
+     then he switches off. No CAN capture (the MFD stays in): the warm
+     stops' `IdleHealth` and `Misfires` off the display, said in the chat
+     as they come, with the state.
      Claude reads the faults out to him with their status; the files
-     into `test/fixtures/vcds/` as `vcds-step8k-before-032-055-014.csv`
-     and `vcds-step8k-before-faults*.txt`.
-   - **Then drive normally with the MFD in** (item 6): at each warm stop
-     that comes anyway, `IdleHealth` and `Misfires` in the everyday
-     state, with a word on what came before.
-   - **032 again after the first two drives** (8f), at the next laptop
-     session.
+     into `test/fixtures/vcds/` as `vcds-step8k-drive-032-055-014.csv`
+     (parts `-2` …) and `vcds-step8k-drive-faults*.txt`.
+   - **Then drive normally with the MFD in** (item 6).
+   - **032 again after the next drive** (8f), at the next laptop
+     session — two drives with the canister in.
    - **On the first hot day**: the fuel filler cap opened — a hiss or
      not, into the chat.
 8j. **The charcoal canister: found bypassed 11/11 — plumbed back, before
@@ -593,10 +598,10 @@ drop-out; if one comes, a warm leak-down on that cylinder the same day
 or the next is the one moment it can be told from a seat or a guide.
 
 **8k, the reading after the canister** (*the owner*, 11/11: 032 on the
-laptop, the rest on the MFD): 032 now is the cell **before** any drive
-with the canister in, so the drives after it name what the plumbing
-did; the cells change only with driving, so the engine need not be
-warm. **014** (*the owner*): the misfires beside the adaptations; a cold
+laptop, the rest on the MFD; logged over the whole first drive at his
+request): the log's first seconds are the cells **before** any drive
+with the canister in, and the drive shows where they move — the purge
+works only warm, so the warm part is the one that names the plumbing. **014** (*the owner*): the misfires beside the adaptations; a cold
 engine's count is not a warm stop's, so it is read against the cold
 idles before, and the warm stops are the MFD's. The fault memory goes with every VCDS session (`CLAUDE.md`). No
 capture: the MFD and a capture are one or the other. The filler cap on
