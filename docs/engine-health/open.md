@@ -222,7 +222,8 @@ owner**: H1 to second; H21 above H11; S1s added to the fit tables.
 - **S21, P0440 and the engine lamp, steady** (6/11, added at the
   owner's request): the evaporative system, the code of 1/2018 back; no
   fill and no hose touched before it; cleared by the owner (H16). Not
-  the idle.
+  the idle. **The tank lets out a strong overpressure at the filler
+  cap in summer** (*owner*, 11/11): the path to the canister, 8j.
 - **S12, a sudden jerk at a crawl and on moving off** (reopened 10/11
   night at the owner's request; not the pedal): not on the bus at a
   crawl; 014 counted single misfires in moving-offs on 10/11.
@@ -1785,6 +1786,23 @@ into N80). Its signs: a fuel smell near it when the tank is warm,
 granules rattling or in its hoses (none on 6/11, `idle-log.md`), a
 crack, a vent blocked by dirt or a stone. Looked at and blown through before N80 is changed
 (`plan.md` 8j, 11/11); replaced only if P0440 comes back with the new valve.
+**The tank under pressure at the filler cap** (*owner*, 11/11, from
+past summers): in summer, a hot one above all, **every time the fuel
+filler cap is opened the tank lets out an overpressure, clearly more
+than a faint psst** — pressure, not a vacuum; whether his other cars
+do it he is not sure. *General*: a sealed tank that breathes only
+through the canister builds some pressure in heat, and a short puff is
+common; whether this car has a valve that holds a pressure on purpose
+is not in these files. *Reasoned*: a strong one says the tank's path
+to the canister passes vapour too slowly — the valve at the tank or
+the filler neck, or the line kinked or blocked — so the canister gets
+less to purge and the ECU's check a smaller answer (fits P0440);
+against, both P0440s came in winter, when there is little vapour
+anyway, and it would not give P0172. A vacuum would have named the
+canister's vent; it is not that. Not N80 (H16), which sits after the
+canister. Heard with the old cap; the new one (about early 10/2026) has
+not met a summer. Tested in `plan.md` 8j: the tank's line off at the
+canister before the cap is opened, and how it takes air.
 
 ### S23. The new rear probe's signal falls to zero under load — P0137
 

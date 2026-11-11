@@ -105,9 +105,11 @@ start of a warm stop*).
    - **Looked at**: a crack, a stone or dirt on it, the vent's opening
      blocked, a hose cracked or soft, granules of charcoal in a hose or a
      port, a smell of fuel.
-   - **The hoses off one at a time**, about three (from the tank, to
-     N80, the vent); N80's hose off at N80 as well; **the filler cap
-     open**. Blown through **by mouth or a low-pressure hand pump, never
+   - **The hose from the tank off first, the filler cap still
+     closed**: a puff out of it or not, into the chat. Then the cap
+     open, listening — a hiss or not.
+   - **The other hoses off one at a time** (to N80, the vent); N80's
+     hose off at N80 as well; **the filler cap open**. Blown through **by mouth or a low-pressure hand pump, never
      compressed air**, and **never sucked on**:
      - in at N80's port → it should come out at the vent;
      - in at the tank's port → out at the vent; the line to the tank
@@ -555,7 +557,11 @@ starves the purge, and P0440 is what this ECU's check stores for too
 little answer; a free path everywhere leaves the valve. **The tank's
 line may pass one way only** (a roll-over or gravity valve, *general*:
 on many cars), so a line that will not take air towards the tank is not
-a fault by itself. **No compressed air**: it can break the charcoal or
+a fault by itself. **The tank's hose first, the cap closed** (*owner*,
+11/11, `open.md` S21): the tank lets out a strong overpressure at the
+cap in summer; a puff at the hose says the tank holds pressure up to
+the canister, none in November says little (cold fuel hardly
+evaporates). **No compressed air**: it can break the charcoal or
 drive it into the lines. **Never sucked on**: fuel vapour. Its place,
 the right rear wheel arch, from the forum leads of 11/11 and the
 owner's videos, not from VW's documentation.
