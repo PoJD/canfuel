@@ -1349,15 +1349,28 @@ had been tucked into the box with the harness that morning.
 
 ## 11/11 evening — the charcoal canister found bypassed
 
+- **Repairs:** the rubber elbow that joined the two lines cut off; it
+  is to be replaced by new 8 mm hose pieces with clips at both ends
+  (*owner*).
 - **Tests:** the right rear wheel and the wheel arch liner off; the
   canister and its hoses looked at and photographed (the album,
-  17:02–17:27) (*owner*).
+  17:02–17:27); the valve at the top of the filler neck taken out and
+  blown through; the line to the engine blown through with N80 on it
+  and off it (*owner*).
 - **Changes after:**
   - *measured:* **the line from the tank joined straight to the line to
     N80** through a rubber elbow with a worm clamp; **the canister's
     port open, nothing on it**; dried white runs on its side (*owner*,
     the album);
-  - *not known:* who did it and when — not in the owner's time.
+  - *measured:* **the valve at the filler neck, VW `1C0 201 75…`** (the
+    last digit not clear; the album, 17:45:43): **by mouth nothing
+    passes either way unless it is moved** (*owner*); the line to the
+    engine: with N80 on it nothing, or hardly; off at N80 it passes,
+    not easily (a long line under the car) — **not blocked**; the
+    canister has its vent to the air at the bottom (*owner*);
+  - *not known:* who did it and when — not in the owner's time;
+    whether the valve is closed because of how it was held (a
+    roll-over or gravity valve closes when tilted, *general*) or stuck.
 
 What 25/10 and 6/11 called the canister's side of N80 was the tank's
 line. `open.md` S21, H16; the summer overpressure at the filler cap reported

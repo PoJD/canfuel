@@ -1837,6 +1837,17 @@ straight vapour the trim has to take away. The negative idle cell
 line at N80, was cold (H16, *corrected*). **The test is the repair**:
 the canister plumbed back (`plan.md` 8j), then 032 and item 6's warm
 stops against the readings before.
+**The same evening, the parts around it** (*owner*): the line to the
+engine free (passes with N80 off it; with N80 on, nothing — the valve
+seals closed, as on 6/11). **The valve at the top of the filler neck,
+VW `1C0 201 75…`** (the album, 17:45:43): **by mouth nothing passes
+either way unless it is moved**. What it is, is not in these files; a
+valve there is commonly a gravity or roll-over valve, open upright and
+closing when tilted or flooded (*general*) — held in the hand it may
+simply have been tilted. **If it is closed upright**, it seals the tank
+on its own and starves the purge whatever the canister: the summer
+overpressure and P0440 both, a second time over (*reasoned*). Its test:
+blown through held exactly as fitted (`plan.md` 8j).
 
 ### S23. The new rear probe's signal falls to zero under load — P0137
 

@@ -99,7 +99,12 @@ start of a warm stop*).
    joined hoses stay joined as found** — never the line to N80 left
    open. Next: the number off the old canister and its ports into the
    chat, the new one bought by that number, then fitted with every hose
-   to its own port. *What follows was the look of 11/11, done up to the
+   to its own port, **new 8 mm fuel hose pieces with clips** where the
+   elbow was cut (*owner*). **The valve from the top of the filler neck
+   (`1C0 201 75…`)**: blown through gently by mouth **held exactly as it
+   sat on the car**, round top up, each way; then tilted on its side.
+   Passes upright and stops tilted — refitted; nothing upright — a new
+   one with the canister. The last digit of its number into the chat. *What follows was the look of 11/11, done up to the
    finding:*
 8j-old. **The charcoal canister looked at and blown through, before 8a**
    (*the owner*, 11/11), the engine cold:
