@@ -22,7 +22,7 @@ Captures only where an item asks for one. **Current: 8i (the timing
 belt's marks) at the next cold engine**, 8h (the loads against the
 sensors' voltages) at a laptop session, and 8f at every VCDS session
 (032, and 036 now and then); item 6 and 6i; 8a (the new N80, ordered
-11/11) as soon as it arrives; then item 9, 6m inside its garage session;
+11/11) as soon as it arrives, 8j (the canister) before it; then item 9, 6m inside its garage session;
 **8e postponed to the end** and 8g dropped (*the owner*, 10/11
 and 11/11; `open.md` H11, *The relearn drive*, S23; S1, *The rough
 start of a warm stop*).
@@ -93,6 +93,32 @@ start of a warm stop*).
      spark or a blue glow; then a fine water mist over one lead at a time
      and the coil, hands and bottle clear. Write anything seen and which
      lead the engine stumbled at.
+8j. **The charcoal canister looked at and blown through, before 8a**
+   (*the owner*, 11/11), the engine cold:
+   - **The car safe first**: on level ground, the handbrake on, a chock
+     at a front wheel, **on an axle stand, never on the jack alone**;
+     the right rear wheel off, the wheel arch liner back as far as
+     needed. No flame, no smoking, nothing that sparks near it.
+   - **Photographs before anything is touched**: the canister in place,
+     its label, each hose where it joins — so each goes back where it
+     was. A piece of tape with a number on each hose helps.
+   - **Looked at**: a crack, a stone or dirt on it, the vent's opening
+     blocked, a hose cracked or soft, granules of charcoal in a hose or a
+     port, a smell of fuel.
+   - **The hoses off one at a time**, about three (from the tank, to
+     N80, the vent); N80's hose off at N80 as well; **the filler cap
+     open**. Blown through **by mouth or a low-pressure hand pump, never
+     compressed air**, and **never sucked on**:
+     - in at N80's port → it should come out at the vent;
+     - in at the tank's port → out at the vent; the line to the tank
+       blown towards the tank, the cap open (a valve on the tank's side
+       may let it pass one way only — say which);
+     - into the vent → in at the canister.
+     Which passed easily, hard, or not at all, into the chat.
+   - **Shaken gently**, if it can be: a rattle inside said in the chat.
+   - Every hose back as photographed, each pushed fully on; the cap
+     closed until it clicks; the liner and the wheel back, the bolts
+     tightened to the wheel's torque.
 8a. **The purge valve N80, the new one ordered by the owner (11/11)**:
    Bosch `0 280 142 353`, VW `1C0 906 517 A`, the same as the one on the
    car; the hoses stay. In this order, the day it is fitted:
@@ -101,10 +127,6 @@ start of a warm stop*).
    - While it is out: **a photograph of its two hoses to where they
      join** (the T at the throttle) and of the vacuum hose of the
      secondary-air valve N112 to where it joins.
-   - **The charcoal canister looked at** (the owner's wish, 11/11; where
-     it sits is found by following N80's canister-side hose): a crack,
-     its vent blocked by dirt or a stone, granules in its hoses, a smell
-     of fuel; **a photograph of it and its label** into the chat.
    - Afterwards, warm, the owner runs **basic setting 070** and
      photographs it; then item 6's warm stops, and **032 read after the
      first two drives** (8f).
@@ -517,6 +539,21 @@ water flakes deposits most): the clean burns hydrogen to water vapour,
 so a flake may come loose and lodge under a seat, an 18/10-like
 drop-out; if one comes, a warm leak-down on that cylinder the same day
 or the next is the one moment it can be told from a seat or a guide.
+
+**8j, the canister** (*the owner*, 11/11; `open.md` S21, *The
+canister itself*): the original charcoal; a canister that holds or
+passes too little gives the purge check a small answer (P0440) without
+any fault in N80, and a flooded one sends granules towards the valve.
+Looked at before 8a so that a canister fault is not mistaken for the
+valve's. **Blown through** because a blocked vent or a blocked port
+starves the purge, and P0440 is what this ECU's check stores for too
+little answer; a free path everywhere leaves the valve. **The tank's
+line may pass one way only** (a roll-over or gravity valve, *general*:
+on many cars), so a line that will not take air towards the tank is not
+a fault by itself. **No compressed air**: it can break the charcoal or
+drive it into the lines. **Never sucked on**: fuel vapour. Its place,
+the right rear wheel arch, from the forum leads of 11/11 and the
+owner's videos, not from VW's documentation.
 
 **Item 8a, from 11/11** (*the owner*: the part ordered "to be sure",
 after the research of 11/11 on P0172 and P0440; `open.md` S21, *Read

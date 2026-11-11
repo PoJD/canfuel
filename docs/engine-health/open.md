@@ -283,7 +283,8 @@ the MFD in (item 6) and the oil level every 500 km (6i); **item 6's
 warm stops on the display with a word on what came before each**;
 **8b dropped 11/11** (*the owner*: the fix first, fewer tests);
 **6m's injector circuits** for 4's kept deficit;
-**the purge valve N80, ordered 11/11 by the owner, fitted when it
+**the charcoal canister looked at and blown through (8j), then the
+purge valve N80, ordered 11/11 by the owner, fitted when it
 arrives, 032 read before and after** (H16, S21, 8a); item
 9's tests (the coolant's CO₂ test, the stethoscope, then one garage
 session with the upper intake off: a warm leak-down with 3 twice, a
@@ -1782,8 +1783,8 @@ likelier in the cold when the tank gives little vapour (both P0440s,
 which a canister flooded with liquid would (rich purge, and granules
 into N80). Its signs: a fuel smell near it when the tank is warm,
 granules rattling or in its hoses (none on 6/11, `idle-log.md`), a
-crack, a vent blocked by dirt or a stone. Looked at when N80 is changed
-(`plan.md` 8a); replaced only if P0440 comes back with the new valve.
+crack, a vent blocked by dirt or a stone. Looked at and blown through before N80 is changed
+(`plan.md` 8j, 11/11); replaced only if P0440 comes back with the new valve.
 
 ### S23. The new rear probe's signal falls to zero under load — P0137
 
