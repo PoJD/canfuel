@@ -94,18 +94,19 @@ start of a warm stop*).
      spark or a blue glow; then a fine water mist over one lead at a time
      and the coil, hands and bottle clear. Write anything seen and which
      lead the engine stumbled at.
-8j. **The charcoal canister: found bypassed 11/11 — a new one, plumbed
-   back, before 8a** (*the owner*, 11/11). Until it is fitted, **the
-   joined hoses stay joined as found** — never the line to N80 left
-   open. Next: the number off the old canister and its ports into the
-   chat, the new one bought by that number, then fitted with every hose
-   to its own port, **new 8 mm fuel hose pieces with clips** where the
+8j. **The charcoal canister: found bypassed 11/11 — plumbed back, before
+   8a** (*the owner*, 11/11; the old one passes, so it goes back; *this
+   said "a new one" until it was blown through*). Until it is back, **the
+   line to N80 joined or plugged** — never left open. Next: the canister
+   back in its place, every hose to its own port (the valve to the
+   canister, the canister to N80, the vent at the bottom free), **new 8 mm fuel hose pieces with clips** where the
    elbow was cut (*owner*). **The valve from the top of the filler neck
    (`1C0 201 756`)**: blown through gently by mouth **held exactly as it
    sat on the car**, round top up, each way; then tilted on its side.
    Passes upright and stops tilted — refitted; nothing upright — a new
    one with the canister. **Done 11/11: passes as fitted, closed upside
-   down — a working gravity valve, refitted.** **The canister** (`1HM 201 801 B`,
+   down — a working gravity valve, refitted.** **The canister passes
+   everywhere (11/11): refitted**, no new one needed. **The canister** (`1HM 201 801 B`,
    dry inside): blown through by mouth from each top port to the vent
    at the bottom; passes and no smell of fuel — refitted; otherwise a
    replacement. The last digit of its number into the chat. *What follows was the look of 11/11, done up to the
@@ -567,9 +568,10 @@ or the next is the one moment it can be told from a seat or a guide.
 **8j, the canister — found bypassed** (*the owner*, 11/11, `open.md`
 S21, *The canister is not in the circuit*): the tank's line joined
 straight to N80's line, so the tank sealed while N80 is closed and raw
-vapour when it opens. **The canister replaced, not only reconnected**
-(*the owner's decision*): out of the circuit for years, with an open
-port. **The hoses stay joined until then**, because a line to N80 left
+vapour when it opens. **The old canister goes back**: blown through 11/11
+it passes everywhere, so its charcoal was spared rather than spent
+(*reasoned*); *this said "replaced, not only reconnected" until then*.
+**The line to N80 joined or plugged until then**, because a line to N80 left
 open is a leak of unmetered air at every purge. **Fitted before the
 new N80** so that 032's reading after names the plumbing, not the valve;
 if both go in together, the reading names the two at once.
