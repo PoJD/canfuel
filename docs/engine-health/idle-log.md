@@ -1349,9 +1349,12 @@ had been tucked into the box with the harness that morning.
 
 ## 11/11 evening — the charcoal canister found bypassed
 
-- **Repairs:** the rubber elbow that joined the two lines cut off; it
-  is to be replaced by new 8 mm hose pieces with clips at both ends
-  (*owner*).
+- **Repairs:** the rubber elbow that joined the two lines cut off;
+  **the canister plumbed back** — the line from the filler neck's valve
+  to the canister's large port, the line to N80 to its small port, each
+  with a new rubber piece, eased on with a heat gun; the tank's line,
+  set crooked by years joined, bent back with heat; clips on all but
+  one end, which holds tight (*owner*; the album, 19:21–19:45).
 - **Tests:** the right rear wheel and the wheel arch liner off; the
   canister and its hoses looked at and photographed (the album,
   17:02–17:27); the valve at the top of the filler neck taken out and

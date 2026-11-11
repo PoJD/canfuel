@@ -286,8 +286,8 @@ the MFD in (item 6) and the oil level every 500 km (6i); **item 6's
 warm stops on the display with a word on what came before each**;
 **8b dropped 11/11** (*the owner*: the fix first, fewer tests);
 **6m's injector circuits** for 4's kept deficit;
-**the charcoal canister, found bypassed 11/11, plumbed back
-(8j; it passes, so the old one), then the
+**the charcoal canister, found bypassed 11/11, plumbed back the same
+evening (8j; the old one, sound); then 032 and the warm stops; then the
 purge valve N80, ordered 11/11 by the owner, fitted when it
 arrives, 032 read before and after** (H16, S21, 8a); item
 9's tests (the coolant's CO₂ test, the stethoscope, then one garage

@@ -21,9 +21,9 @@ One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Current: 8i (the timing
 belt's marks) at the next cold engine**, 8h (the loads against the
 sensors' voltages) at a laptop session, and 8f at every VCDS session
-(032, and 036 now and then); item 6 and 6i; 8a (the new N80, ordered
-11/11) as soon as it arrives, **8j (the canister, found bypassed 11/11: a new
-one, plumbed back) before it**; then item 9, 6m inside its garage session;
+(032, and 036 now and then); item 6 and 6i; **8j done 11/11 evening** (the
+canister, found bypassed, plumbed back: 032 and item 6's warm stops
+read it); then 8a (the new N80, ordered 11/11) when it arrives; then item 9, 6m inside its garage session;
 **8e postponed to the end** and 8g dropped (*the owner*, 10/11
 and 11/11; `open.md` H11, *The relearn drive*, S23; S1, *The rough
 start of a warm stop*).
@@ -95,7 +95,11 @@ start of a warm stop*).
      and the coil, hands and bottle clear. Write anything seen and which
      lead the engine stumbled at.
 8j. **The charcoal canister: found bypassed 11/11 — plumbed back, before
-   8a** (*the owner*, 11/11). **The old one is sound and goes back**: it
+   8a** (*the owner*, 11/11). **Done 11/11 evening** (the album, 19:21–
+   19:45): each line on its own port with a new rubber piece; the tank's
+   line bent back with heat, its joint under a slight bend — **watched:
+   the joint looked at and pulled on at the next wheel off, and a clip
+   or a cable tie added if it has crept**. **The old one is sound and goes back**: it
    passes everywhere, holds with its top ports closed, and the line on
    its top is the mould's (*this said "a new one", then "cracked, back
    for now", the same evening*). Until it is back, **the
