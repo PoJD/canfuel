@@ -283,13 +283,10 @@ VCDS at a warm idle, at a laptop session; **8f, 032 at every VCDS session** unti
 have held for three drives (reset again by the clear of P0137); then
 the MFD in (item 6) and the oil level every 500 km (6i); **item 6's
 warm stops on the display with a word on what came before each**;
-**8b, two captured warm stops on two days, one after a brisk run and
-one after a gentle drive, the cut on 4 at about minute 10** — whether
-3's rough start follows the drive before it (S1, *The rough start of a
-warm stop*);
+**8b dropped 11/11** (*the owner*: the fix first, fewer tests);
 **6m's injector circuits** for 4's kept deficit;
-**the purge valve N80, ordered 11/11 by the owner, fitted after 8b with
-032 read before and after** (H16, S21, 8a); item
+**the purge valve N80, ordered 11/11 by the owner, fitted when it
+arrives, 032 read before and after** (H16, S21, 8a); item
 9's tests (the coolant's CO₂ test, the stethoscope, then one garage
 session with the upper intake off: a warm leak-down with 3 twice, a
 warm compression, VW's tappet check, 6m, the gasket) by what those show.
@@ -3161,7 +3158,7 @@ the hazard lights on throughout, the A/C off (0x288 b2 16, below):
   the calm's 4.1 is above stop 7's 1.7. A cleaning that keeps working
   would show as later stops calmer than earlier ones, with 3's share
   falling; one day says the reverse. *Not ruled out* over hundreds of
-  km — item 6's stops over the coming weeks, and a capture (8b), read it.
+  km — item 6's stops over the coming weeks read it (8b's capture dropped 11/11).
 - **Read** (*reasoned*; *the owner*, 10/11 night: left as an anomaly,
   a few calm minutes, not pursued): **chance, or this stop's own late
   settling** —
@@ -3851,7 +3848,7 @@ the pulses, **no liquid fuel**. **What it leaves:**
   same evening, and before that "not replaced"*) **9/11: the clean changed
   cylinder 3 and no P0440 was stored, so now only if P0440 comes back.**
 **11/11: ordered all the same** (*the owner*, "to be sure", after the
-research on P0172 and P0440; S21, *Read 11/11*), fitted after 8b with
+research on P0172 and P0440; S21, *Read 11/11*), fitted when it arrives with
 032 read before and after (`plan.md` 8a).
 
 **The valve's pulses against the dips** (6/11 night, *at the owner's
@@ -4564,7 +4561,7 @@ is in git.
 | 9 | **H2** a leak ahead of the converter | **10/11 evening one down** (H21 added above it); **10/11 widened, not moved** (*the owner* agreeing): the zone between the front probe and the converter added — the joint, the flex, the plugged boss — which gives the rear probe's lean idle in full but not 032 or the dips (H2); **9/11 late evening one down** (H11 above it); **9/11 evening one down** (the belt above it); **down 31/10 from fourth** (*agreed with the owner*): the manifold seen from close below, rusty but no soot marks and no holes, its joint to the head nothing visibly wrong from below (H2); the part under its heat shield unseen; S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test (`plan.md` 7), both zones |
 | 10 | **H0** normal for this engine | **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **9/11 evening one down**; no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
 | 11 | **H8** throttle and idle control | **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **9/11 evening one down**; **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
-| 12 | **H16** the purge valve leaking | **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **6/11 night down from seventh** (*agreed with the owner*): out of the car the valve hardly passed air unpowered, and its pulses do not line up with the dips (H16, *The valve's pulses against the dips*); before that **6/11 evening up from eleventh**: P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the weak firings in pairs do (the idle's 1½-min waves turned out the radiator fan, S1); a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | the valve ordered 11/11 (*the owner*), fitted after 8b with 032 before and after (`plan.md` 8a); 6/11 night, out of the car, it hardly passed air unpowered |
+| 12 | **H16** the purge valve leaking | **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **6/11 night down from seventh** (*agreed with the owner*): out of the car the valve hardly passed air unpowered, and its pulses do not line up with the dips (H16, *The valve's pulses against the dips*); before that **6/11 evening up from eleventh**: P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the weak firings in pairs do (the idle's 1½-min waves turned out the radiator fan, S1); a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | the valve ordered 11/11 (*the owner*), fitted when it arrives, 032 before and after (`plan.md` 8a); 6/11 night, out of the car, it hardly passed air unpowered |
 | 13 | **H20** coolant into cylinder 3 | **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **added 4/11** (*the owner*, weak): one cylinder at idle, where its pressure is lowest; plug 3 the cleanest of the 10/10 set; against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos | a combustion-gas (CO₂) test of the coolant (`plan.md` 9) |
 | 14 | **H18** oil past the stem seals | **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
 | 15 | **H12** driveline play | — | done: the clutch minutes cleared it |

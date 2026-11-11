@@ -22,8 +22,8 @@ Captures only where an item asks for one. **Current: 8i (the timing
 belt's marks) and 8e at the next cold engine, with the rear probe's lead
 and both probes' sockets**,
 8g with it at a laptop session (ignition only), 8h (the loads against the
-sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and 6i, 8b (two captured warm stops, a cut on
-4 at about minute 10), then 8a (the new N80, ordered 11/11) and 6m for cylinder 4 after them (*the owner*, 10/11
+sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and 6i; 8a (the new N80, ordered 11/11) as soon as it
+arrives; then item 9, 6m inside its garage session (*the owner*, 10/11
 and 11/11; `open.md` H11, *The relearn drive*, S23; S1, *The rough
 start of a warm stop*).
 
@@ -65,8 +65,9 @@ start of a warm stop*).
    eight. While each value is on the display, **flex the loom near 3 and
    4** and watch it. Write every value, and any that moved.
    **5/11: only 1 and 4 reachable with the intake on** (*owner*); the rest
-   with the upper intake off — **next after 8b, for 4's deficit, which
-   the clean left** (*agreed with the owner*, 9/11 evening). (5/11: contact cleaner went into 4's
+   with the upper intake off — **in item 9's garage session, for 4's
+   deficit, which the clean left** (*agreed with the owner*, 9/11
+   evening; the session since 11/11). (5/11: contact cleaner went into 4's
    connector and T3 at the first look, `vehicle-history.md`.)
 6n. **The injector circuits to the ECU** — later, only with VCDS on the
    laptop: 032/055 read first (unplugging the ECU may reset them, as a
@@ -103,24 +104,10 @@ start of a warm stop*).
    - Afterwards, warm, the owner runs **basic setting 070** and
      photographs it; then item 6's warm stops, and **032 read after the
      first two drives** (8f).
-   - **Best after both of 8b's stops**, so they read the old valve.
+   - **Fitted when it arrives**; nothing to read before it but the line above.
    - **At any engine lamp from now on**: the odometer, the tank's needle
      and the outside temperature into the chat, and 032 read before the
      code is cleared.
-8b. **Two captured warm stops with a cut on 4**, on two different days,
-   Claude in a session on the laptop each time, fuel above reserve: the
-   USBtin in and the MFD out before the ignition; `usbtin_capture.py`
-   from before the start to engine off, `vcds_log.py --groups 001 003
-   055` (fault memory read first).
-   - **Day one: a brisk run with high revs** (a motorway stretch, revs
-     above 4,000 more than once) **until the oil is at 95 °C or more**.
-   - **Day two: a gentle drive** to the same oil temperature, never
-     above 3,000 rpm.
-   - Each time **a stop on a car park in the everyday state, the A/C
-     off: 10 minutes' idle, then injector 4's connector off for 30 s**
-     (say when, by the chat), **2 minutes more**.
-   - At the end, engine idling: the fault memory, then 032/055; the
-     owner clears it by hand.
 8e. **At the next cold engine, from below**:
    - **The rear probe's lead, all the way to its connector**: where it
      runs, whether it touches or lies within a finger's width of the
@@ -509,25 +496,16 @@ where both cells settle; **the clear of P0137 at the end of 8d reset
 starts once more. Read, never cleared by Claude; three drives because
 the cells moved by one VCDS step at a time.
 
-**8b, the two captured stops** (*agreed with the owner*, 11/11, after
-the second research): **a long warm stop after high revs starts rough on
-3 and settles within 5–8 minutes; after a gentle drive it does not**
-(`open.md` S1, *The rough start of a warm stop*). The old 8b put its cut
-at minute 3, inside the very window it was to watch, and 3's share
-changes inside a stop, so a cut there cannot tell whether it settled by
-itself. **The cut at minute 10** names the slots after the settling,
-and the same run carries the phase back over the rough minutes, so the
-early dips are named too. **The two days** separate the drive from the
-day: a rough start on 3 after the brisk run and none after the gentle
-one says the fault is worst hot on 3 (H1's exhaust seat, H13's flake);
-a rough start after both says it is the stop itself (H8's regulator
-converging, the governor). **001 003 055** because 055 converged over
-the same minutes on `42` and `43`, and 003's air and advance and 001's
-lambda are what would move with a governor or a mixture; 014 is not
-needed where the capture names the dips. *Until 11/11 this was one stop
-after a brisk run with the cut at minute 3, its question whether 3's
-rough start stays gone after the clean — answered without a cut on
-`47`.* **6m for 4** because 4 is now the cylinder with a
+**8b, dropped 11/11** (*the owner's decision*): **the goal is the
+fix, not the root cause** — "even if it went, I do not care whether it
+was the probes or N80"; fewer tests, a repair where one is cheap. Its
+two captured stops (after a brisk and a gentle drive, the cut at minute
+10) would have named the settled cylinder and given N80 a reading
+before; the captures `40`–`48` and the display's stops already show the
+rough start after high revs (`open.md` S1, *The rough start of a warm
+stop*), and item 9's leak-down decides between H1 and H3 anyway. *Until
+11/11 morning 8b was one stop after a brisk run with the cut at minute
+3.* **6m for 4** because 4 is now the cylinder with a
 deficit of its own, and its injector circuit is the cheapest of the
 three causes that act on 4 alone (H4; H3's runner gasket and H1's inlet
 seat cost the intake off or a leak-down). **The display's stops** with a
@@ -555,7 +533,8 @@ tested before the swap and 032 before and after is what reads it. **032
 before and after** says what the valve carried: an idle cell still at
 −6 to −9 % with a tight new valve clears it of the standing offset.
 **The photographs** because whether N112 and N80 share a vacuum tap is
-not recorded. **After 8b** so that both captured stops read one valve.
+not recorded. **Fitted when it arrives** (*the owner*, 11/11: the
+fix comes first; 8b dropped).
 **The details at a lamp** because this ECU keeps no freeze frame; with
 them the next code can be set against fills, tank and weather.
 
