@@ -258,17 +258,19 @@ first warm stop, reopened** (*the owner's decision*).
   (10/11 evening, added at the owner's request): P0137 sporadic,
   cleared; normal again minutes later; **back 11/11 night, stored before
   and after the drive, and 0.000 V at a warm idle too** — the tape did
-  not cure it. The new probe or the harness: the old probe back in, or
-  the signal wire's continuity cold (`plan.md` 8e). Not the idle, but
-  it bends 032's idle cell.
+  not cure it. **Both probes sound cold (12/11, heater 8.3 / 9.2 Ω, the
+  rest open); the old rear probe refitted**, so the next hot drive
+  names the part or the harness (`plan.md` 8e). Not the idle, but it
+  bends 032's idle cell.
 - **S22, a tick once per engine cycle** (9/11, closed the same evening,
   **reopened 11/11 night** at the owner's decision): heard again warm
   with no clean, the same pattern quieter; recorded, not read. H1's
   lifter, an injector, a port, or one cylinder's burn.
 - **S24, the coolant reading dropping fast and P0118 sporadic** (11/11
-  night, added at the owner's decision): G62's circuit (a contact
-  resistance reads colder; open, P0118), and the reading about 6 °C
-  above any capture; the coolant's level first.
+  night, added at the owner's decision): **oil found standing round
+  G62's pins, cleaned the same night**; the coolant's level fine; the
+  reading about 6 °C above any capture not explained. Whether P0118
+  comes back.
 - **S20, the speed wandering at a constant pedal** (since 1–2/10, on the
   road) — **a little better since the cable was slackened and the pedal
   greased (27/10), still there** (*owner*, 28/10). Not the idle.
@@ -315,8 +317,9 @@ leading again a day later (*The idle's candidates, ranked*). **Re-read
 S22's ✔ goes to H1, already first with H13; H16's part-load reading is
 one drive; S24 sits outside the tables.
 
-**Next** (`plan.md`; *the owner*, 10/11 and 11/11): **the coolant's
-level, cold, and G62's connector looked at** (S24); **8i, the timing
+**Next** (`plan.md`; *the owner*, 10/11 and 11/11): **the next hot
+drive on the old rear probe and the cleaned G62** — P0137 and P0118
+back or not, read at the next VCDS session (S23, S24); **8i, the timing
 belt's marks, at the next cold engine**; **8e (the probes' harness)
 postponed to the end and 8g dropped** (*the owner*, 11/11; S23, H21),
 the rear probe watched through 036 at VCDS sessions (8f); **8h, the loads against the sensors' voltages**,
@@ -2203,6 +2206,18 @@ one under the car with the engine on, and the pins not probed (*the
 owner*, 11/11). **What it bends**: 032's idle cell, by the second loop
 (above) — 8k's idle cell is read with that in mind.
 
+**Both rear probes measured cold, 12/11 just after midnight** (*owner*,
+a multimeter on the probe's own four pins, out of the car): **the new
+one 8.3 Ω across the two whites (the heater), every other pair and
+every pin to the body open**; **the old one 9.2 Ω, the rest open**. So
+**no short between the new probe's signal and its signal earth cold** —
+not the 0.000 V by itself; a fault that opens only hot cannot be seen
+this way. Both tips dark grey and dry (the album 00:29). **The old rear
+probe refitted the same night**, so the next hot drive tells the part
+from the harness: **zero again with the old probe → the harness**
+(the broken terminal, the wire); **no zero → the new probe**, back to
+the seller.
+
 ### S24. The coolant reading drops fast, and P0118 sporadic
 
 *Added 11/11 night at the owner's decision.* **On the drive of 8k**
@@ -2266,6 +2281,23 @@ difference, a hotter engine moves both; whether the fan runs when the
 MFD reads about 105–110, and whether the red lamp lights or flashes.
 **Both codes cleared by the owner after the session** (11/11 night,
 032/055 read first): which comes back, and when, is the next reading.
+
+**Found, 11/11 late night** (*owner*, the album 23:55–00:13): **the
+coolant's level fine, as for weeks**; **old engine oil from the earlier
+leak at the back of the head (S10) caked round G62's connector**, the
+one place it stayed, and it softens and runs when warm (*owner*).
+**Inside, on the sensor's own socket, a film of oil standing round the
+pins** (23:55); on the harness side the four contacts bright and clean
+but **a brown ring of oil round the purple seal and up the shroud**
+(23:56, 23:59). No green, no loose terminal. **Cleaned** with a rag
+and contact spray, both halves and the harness round it; the sensor
+pulled from its housing to clean it (about 10 ml of coolant lost), its
+O-ring whole and greased, back to its stop, the clip in, the connector
+latched (00:11). **Read** (*reasoned*): oil between the pins is a leak
+path across the NTC's divider that moves with heat — **it fits the
+fast drops and P0118 better than a contact did**, which the photographs
+do not show; the higher plateau it does not explain. The next warm
+drives say whether P0118 comes back.
 
 ### Other — not symptoms, but they touch this file
 

@@ -1436,3 +1436,19 @@ Read the same night (`open.md` S23, *The first start after the tape*).
 `open.md` S21, *The first drive on the canister*; S22 reopened; S23,
 *Back, and steady*; S24 added. **Both codes cleared by the owner after
 the session** (032/055 read first, 22:49), to see which comes back.
+
+## 12/11 just after midnight — G62 cleaned, the old rear probe back
+
+- **Repairs:** **G62's connector and the sensor's socket cleaned of old
+  oil**, the sensor out and back with its O-ring and clip; **the old rear
+  probe refitted** in place of the new one (*owner*; the album
+  23:55–00:29).
+- **Tests:** the coolant's level looked at; both rear probes measured
+  cold with a multimeter.
+- **Changes after:**
+  - *measured:* the coolant's level fine; oil standing round G62's pins;
+    the new rear probe's heater 8.3 Ω, the old one's 9.2 Ω, every other
+    pair and every pin to the body open on both (*owner*);
+  - *not known:* whether P0118 and P0137 come back on the next hot drive.
+
+`open.md` S23, *Both rear probes measured cold*; S24, *Found*.

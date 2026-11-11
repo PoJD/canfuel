@@ -18,9 +18,10 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next: 8l (the coolant's
-level and G62's connector) and 8i (the timing belt's marks) at the
-next cold engine**; drives with the MFD in (item 6) and 6i; 8f at
+Captures only where an item asks for one. **Next: drives with the MFD
+in on the old rear probe and the cleaned G62** (the codes read at the
+next VCDS session, 8f); **8i (the timing belt's marks) at the next cold
+engine**; drives with the MFD in (item 6) and 6i; 8f at
 every VCDS session (032 after drives without a reset, 036 now and then)
 and 8h at a laptop session; **8j and its first drive done 11/11**
 (the canister plumbed back; `idle-log.md`); then 8a (the new N80, ordered 11/11) when it arrives; then item 9, 6m inside its garage session;
@@ -94,15 +95,6 @@ start of a warm stop*).
      spark or a blue glow; then a fine water mist over one lead at a time
      and the coil, hands and bottle clear. Write anything seen and which
      lead the engine stumbled at.
-8l. **The coolant and G62** (`open.md` S24), at a cold engine:
-   - **The coolant's level** in the expansion tank, against its marks;
-     the reading and a photograph into the chat. Any top-up: what and how
-     much.
-   - **G62's connector** at the coolant outlet on the head, looked at
-     and photographed: green, a loose or pushed-back terminal, a cracked
-     housing; off and back on until it clicks. **Nothing sprayed into it.**
-   - When the MFD's coolant reads about 105–110 at a stop: whether the
-     radiator fan is heard running, into the chat.
 8m. **On the first hot day**: the fuel filler cap opened — a hiss or
    not, into the chat.
 8j. **The canister's joints looked at and pulled on at the next wheel
@@ -180,13 +172,13 @@ start of a warm stop*).
      leak-down names 3's exhaust seat, the car is driven as it is and S1
      most likely closed as *acceptable, cause known*.
 
-8e. **Postponed to the end** (*the owner*, 11/11). **The rear probe
-   first, either way**: the old one back in for a drive, if it is still
-   to be had (*the owner*, 11/11: perhaps thrown out); or, cold and the
-   ignition off, the connector off and **the signal wire from the
-   harness-side socket to the ECU's pin** read for continuity and for a
-   leak to earth, the lead flexed by the exhaust while the value is on
-   the display. Nothing measured with the engine running, nobody under
+8e. **Postponed to the end** (*the owner*, 11/11). **The old rear
+   probe is back in** (12/11): if P0137 or a zero in 036 comes back with
+   it, the harness — cold and the ignition off, the connector off and
+   **the signal wire from the harness-side socket to the ECU's pin** read
+   for continuity and for a leak to earth, the lead flexed by the exhaust
+   while the value is on the display; if not, the new probe goes back to
+   the seller. Nothing measured with the engine running, nobody under
    the car with it on. Then, at a cold engine, from below:
    - **The rear probe's lead, all the way to its connector**: where it
      runs, whether it touches or lies within a finger's width of the
@@ -542,14 +534,6 @@ so a flake may come loose and lodge under a seat, an 18/10-like
 drop-out; if one comes, a warm leak-down on that cylinder the same day
 or the next is the one moment it can be told from a seat or a guide.
 
-**8l, the coolant and G62** (`open.md` S24): the fast drops and P0118
-are what a contact in G62's circuit gives, and the reading about 6 °C
-above every capture is not; a low coolant is the one cause of the two
-that hurts the engine, so its level goes first, and costs nothing. The
-connector is looked at, not sprayed: a terminal that is the fault is
-replaced, and a cleaner on it only hides it. Whether the fan runs at
-the highest readings says whether the ECU or the radiator's own switch
-drives it — *not known* here.
 **8m, the filler cap on a hot day** (from 8k): the one check of the
 summer overpressure (`open.md` S21), which a November day cannot give.
 
