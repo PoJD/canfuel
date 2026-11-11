@@ -1226,6 +1226,9 @@ out only on 18/10 (D10). *Reasoned*: oxyhydrogen in the charge burns
 faster and peaks harder, so the cylinders' usual small difference
 (`open.md` S1, *A steady pattern over the cylinders*) is heard louder.
 **Heard again in normal driving, clearly → it reopens in `open.md`.**
+**Reopened 11/11/2026 night** (*the owner's decision*): heard again at a
+warm stop after a hard motorway run, no clean, "the same pattern, or
+nearly, only quieter" — `open.md` S22. Kept here, as everything is.
 The entry as it stood in `open.md`:
 
 *Added 9/11 at the owner's request.* **During the hydrogen clean of 9/11**

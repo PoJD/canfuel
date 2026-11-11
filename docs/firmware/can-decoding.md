@@ -993,8 +993,12 @@ byte 3 as `Oeltemperatur_4_1 : 24|8@1+ (1,-60)`. It is in `src/decode.c`
   and 2 at zero — the cluster saying it has no ambient sensor, which
   `refuted.md` B11 found the hard way (the mirror's thermometer is its own).
   Byte 4, `Kuehlmitteltemp__4_1__Kombi_2_ (0.75, −48)`, is the cluster's
-  coolant and tracks 0x288's 3–10 °C below it — the gauge's own sender
-  (*general*: these engines carry one for the ECU and one for the gauge);
+  coolant and tracks 0x288's 3–10 °C below it — the cluster's own sender
+  (*general*: these engines carry one for the ECU and one for the
+  cluster). **This cluster has no coolant needle** (*owner*): only a blue
+  lamp while cold (below about 62 °C) and a red one, lit when too hot and
+  flashing when the coolant is low — so byte 4 is the one place its
+  sender can be read;
 - the German names with their `_4_1` suffixes are VW's message-matrix
   style, so it reads as taken from VW's matrix rather than fitted to a log
   (*a judgement*);

@@ -1,0 +1,6 @@
+2026-11-11 22:43:30  01-Motor, fault memory after (read by vcds_log.py)
+2 závad nalezeno.
+16521 - rada valcu 1 - sonda 2 
+            P0137 - 35-10 - signal prilis maly - Sporadická
+16502 - snimac teploty chladici kapaliny (G62) 
+            P0118 - 35-10 - signal prilis velky - Sporadická

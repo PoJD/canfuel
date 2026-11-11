@@ -18,13 +18,12 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next: 8k, the first drive
-on the canister logged from the laptop — 11/11 evening.** Then **8i (the timing
-belt's marks) at the next cold engine**, 8h (the loads against the
-sensors' voltages) at a laptop session, and 8f at every VCDS session
-(032, and 036 now and then); item 6 and 6i; **8j done 11/11 evening** (the
-canister, found bypassed, plumbed back: 032 and item 6's warm stops
-read it); then 8a (the new N80, ordered 11/11) when it arrives; then item 9, 6m inside its garage session;
+Captures only where an item asks for one. **Next: 8l (the coolant's
+level and G62's connector) and 8i (the timing belt's marks) at the
+next cold engine**; drives with the MFD in (item 6) and 6i; 8f at
+every VCDS session (032 after drives without a reset, 036 now and then)
+and 8h at a laptop session; **8j and its first drive done 11/11**
+(the canister plumbed back; `idle-log.md`); then 8a (the new N80, ordered 11/11) when it arrives; then item 9, 6m inside its garage session;
 **8e postponed to the end** and 8g dropped (*the owner*, 10/11
 and 11/11; `open.md` H11, *The relearn drive*, S23; S1, *The rough
 start of a warm stop*).
@@ -95,86 +94,21 @@ start of a warm stop*).
      spark or a blue glow; then a fine water mist over one lead at a time
      and the coil, hands and bottle clear. Write anything seen and which
      lead the engine stumbled at.
-8k. **The reading after the canister went back** (from 11/11 evening):
-   - **Now, on the laptop, the whole first drive** (*the owner*, 11/11:
-     about an hour, cut short after 30 min if nothing moves): **Claude
-     runs, in the background, before the engine is started**
-     `python tools/vcds_log.py --groups 032 055 014 --seconds 5400 --out
-     "C:/Users/Luboš/Downloads/8k-drive 32-55-14 26-11-11.CSV"`
-     — the fault memory before and after by the same run, reconnecting by
-     itself into `-2`, `-3` … if the ECU drops; the first seconds are the
-     cells **before** any drive with the canister in. 014 added by the
-     owner to watch the misfires beside the adaptations, cold and warm
-     idles and the road. The oil temperature at the start into the chat.
-     **At the end, engine still idling, he says so; Claude creates
-     `<out>.stop`**, the tool reads the fault memory, the codes go to him,
-     then he switches off. No CAN capture (the MFD stays in): the warm
-     stops' `IdleHealth` and `Misfires` off the display, said in the chat
-     as they come, with the state.
-     Claude reads the faults out to him with their status; the files
-     into `test/fixtures/vcds/` as `vcds-step8k-drive-032-055-014.csv`
-     (parts `-2` …) and `vcds-step8k-drive-faults*.txt`.
-   - **Then drive normally with the MFD in** (item 6).
-   - **032 again after the next drive** (8f), at the next laptop
-     session — two drives with the canister in.
-   - **On the first hot day**: the fuel filler cap opened — a hiss or
-     not, into the chat.
-8j. **The charcoal canister: found bypassed 11/11 — plumbed back, before
-   8a** (*the owner*, 11/11). **Done 11/11 evening** (the album, 19:21–
-   19:45): each line on its own port with a new rubber piece; the tank's
-   line bent back with heat and tied above its joint so the rubber does
-   not carry the bend, a clip on every end (19:59–20:02) — **the joints
-   looked at and pulled on at the next wheel off**. **The old one is sound and goes back**: it
-   passes everywhere, holds with its top ports closed, and the line on
-   its top is the mould's (*this said "a new one", then "cracked, back
-   for now", the same evening*). Until it is back, **the
-   line to N80 joined or plugged** — never left open. Next: the canister
-   back in its place, every hose to its own port (the valve to the
-   canister, the canister to N80, the vent at the bottom free), **new 8 mm fuel hose pieces with clips** where the
-   elbow was cut (*owner*). **The valve from the top of the filler neck
-   (`1C0 201 756`)**: blown through gently by mouth **held exactly as it
-   sat on the car**, round top up, each way; then tilted on its side.
-   Passes upright and stops tilted — refitted; nothing upright — a new
-   one with the canister. **Done 11/11: passes as fitted, closed upside
-   down — a working gravity valve, refitted.** **The canister passes
-   everywhere (11/11): refitted**, no new one needed. **The canister** (`1HM 201 801 B`,
-   dry inside): blown through by mouth from each top port to the vent
-   at the bottom; passes and no smell of fuel — refitted; otherwise a
-   replacement. The last digit of its number into the chat. *What follows was the look of 11/11, done up to the
-   finding:*
-8j-old. **The charcoal canister looked at and blown through, before 8a**
-   (*the owner*, 11/11), the engine cold:
-   - **The car safe first**: on level ground, the handbrake on, a chock
-     at a front wheel, **on an axle stand, never on the jack alone**;
-     the right rear wheel off, the wheel arch liner back as far as
-     needed. No flame, no smoking, nothing that sparks near it.
-   - **Photographs before anything is touched**: the canister in place,
-     its label, each hose where it joins — so each goes back where it
-     was. A piece of tape with a number on each hose helps.
-   - **Looked at**: a crack, a stone or dirt on it, the vent's opening
-     blocked, a hose cracked or soft, granules of charcoal in a hose or a
-     port, a smell of fuel.
-   - **The hose from the tank off first, the filler cap still
-     closed**: a puff out of it or not, into the chat. Then the cap
-     open, listening — a hiss or not.
-   - **The other hoses off one at a time** (to N80, the vent); N80's
-     hose off at N80 as well; **the filler cap open**. Blown through **by mouth or a low-pressure hand pump, never
-     compressed air**, and **never sucked on**:
-     - in at N80's port → it should come out at the vent;
-     - in at the tank's port → out at the vent; the line to the tank
-       blown towards the tank, the cap open (a valve on the tank's side
-       may let it pass one way only — say which);
-     - into the vent → in at the canister.
-     Which passed easily, hard, or not at all, into the chat.
-   - **The borescope into each port and each hose end** (*the owner*,
-     11/11), the canister left in place: clean and dry, its tip pushed
-     in only as far as it goes freely and nothing poked; what is seen —
-     the filter mesh or foam whole or torn, charcoal granules whole and
-     dry, crumbled to dust, or wet with fuel — photographed.
-   - **Shaken gently**, if it can be: a rattle inside said in the chat.
-   - Every hose back as photographed, each pushed fully on; the cap
-     closed until it clicks; the liner and the wheel back, the bolts
-     tightened to the wheel's torque.
+8l. **The coolant and G62** (`open.md` S24), at a cold engine:
+   - **The coolant's level** in the expansion tank, against its marks;
+     the reading and a photograph into the chat. Any top-up: what and how
+     much.
+   - **G62's connector** at the coolant outlet on the head, looked at
+     and photographed: green, a loose or pushed-back terminal, a cracked
+     housing; off and back on until it clicks. **Nothing sprayed into it.**
+   - When the MFD's coolant reads about 105–110 at a stop: whether the
+     radiator fan is heard running, into the chat.
+8m. **On the first hot day**: the fuel filler cap opened — a hiss or
+   not, into the chat.
+8j. **The canister's joints looked at and pulled on at the next wheel
+   off** (the canister plumbed back 11/11 evening, `idle-log.md`): each
+   rubber piece and its clip, the tank's line where it was bent; a
+   photograph into the chat.
 8a. **The purge valve N80, the new one ordered by the owner (11/11)**:
    Bosch `0 280 142 353`, VW `1C0 906 517 A`, the same as the one on the
    car; the hoses stay. In this order, the day it is fitted:
@@ -199,7 +133,9 @@ start of a warm stop*).
 8f. **032 for 20 s at every session with VCDS connected**, until both
    cells have held for three drives; **and 036 for a minute** at a warm
    idle and on the road when VCDS is on anyway (the rear probe watched
-   now and then, *the owner*, 11/11).
+   now and then, *the owner*, 11/11). **032 read first, before any code
+   is cleared**; **on a logged drive, 001 in place of 055** (G62's
+   reading, S24).
 8h. **The loads against the sensors' voltages**, Claude in a session on
    the laptop, a warm engine after
    a drive, the car standing, the owner in the driver's seat:
@@ -244,8 +180,14 @@ start of a warm stop*).
      leak-down names 3's exhaust seat, the car is driven as it is and S1
      most likely closed as *acceptable, cause known*.
 
-8e. **Postponed to the end** (*the owner*, 11/11). When it is done, at a
-   cold engine, from below:
+8e. **Postponed to the end** (*the owner*, 11/11). **The rear probe
+   first, either way**: the old one back in for a drive, if it is still
+   to be had (*the owner*, 11/11: perhaps thrown out); or, cold and the
+   ignition off, the connector off and **the signal wire from the
+   harness-side socket to the ECU's pin** read for continuity and for a
+   leak to earth, the lead flexed by the exhaust while the value is on
+   the display. Nothing measured with the engine running, nobody under
+   the car with it on. Then, at a cold engine, from below:
    - **The rear probe's lead, all the way to its connector**: where it
      runs, whether it touches or lies within a finger's width of the
      exhaust or the converter, any melted, shiny or hardened
@@ -304,6 +246,10 @@ start of a warm stop*).
   state is named. **No stop is made or lengthened only to read it.**
 - **The fault memory after every session with VCDS connected**: read,
   saved, then cleared by the owner by hand. Not after a plain drive.
+- **A code in the memory before a logged drive pauses it** (*the owner*,
+  11/11): Claude stops the log and says the codes; the drive starts
+  only after the owner has cleared them or the fault is repaired, on a
+  fresh log.
 
 ---
 
@@ -533,7 +479,7 @@ G188 — 060 read as a measuring block only; its basic setting is the
 owner's, never Claude's), the air mass (002), the knock sensors (026)
 and the heaters' resistance (041); and the sensors against one another.
 The bus beside it marks the A/C and the lights, carries the engine
-speed and both coolant readings at 10 ms (the ECU's and the gauge's,
+speed and both coolant readings at 10 ms (the ECU's and the cluster's,
 already tested on `47`: steady to half a bit). **What it cannot see**
 (*reasoned*): VCDS samples about once a second, so a load's step is
 caught but noise faster than that is not; three groups at a time, so
@@ -596,45 +542,21 @@ so a flake may come loose and lodge under a seat, an 18/10-like
 drop-out; if one comes, a warm leak-down on that cylinder the same day
 or the next is the one moment it can be told from a seat or a guide.
 
-**8k, the reading after the canister** (*the owner*, 11/11: 032 on the
-laptop, the rest on the MFD; logged over the whole first drive at his
-request): the log's first seconds are the cells **before** any drive
-with the canister in, and the drive shows where they move — the purge
-works only warm, so the warm part is the one that names the plumbing. **014** (*the owner*): the misfires beside the adaptations; a cold
-engine's count is not a warm stop's, so it is read against the cold
-idles before, and the warm stops are the MFD's. The fault memory goes with every VCDS session (`CLAUDE.md`). No
-capture: the MFD and a capture are one or the other. The filler cap on
-a hot day is the one check of the overpressure, which a November day
-cannot give.
+**8l, the coolant and G62** (`open.md` S24): the fast drops and P0118
+are what a contact in G62's circuit gives, and the reading about 6 °C
+above every capture is not; a low coolant is the one cause of the two
+that hurts the engine, so its level goes first, and costs nothing. The
+connector is looked at, not sprayed: a terminal that is the fault is
+replaced, and a cleaner on it only hides it. Whether the fan runs at
+the highest readings says whether the ECU or the radiator's own switch
+drives it — *not known* here.
+**8m, the filler cap on a hot day** (from 8k): the one check of the
+summer overpressure (`open.md` S21), which a November day cannot give.
 
-**8j, the canister — found bypassed** (*the owner*, 11/11, `open.md`
-S21, *The canister is not in the circuit*): the tank's line joined
-straight to N80's line, so the tank sealed while N80 is closed and raw
-vapour when it opens. **The old canister goes back**: it passes everywhere,
-is dry, and holds with its top ports closed; out of the circuit for
-years, its charcoal was spared rather than spent (*reasoned*).
-**The line to N80 joined or plugged until then**, because a line to N80 left
-open is a leak of unmetered air at every purge. **Fitted before the
-new N80** so that 032's reading after names the plumbing, not the valve;
-if both go in together, the reading names the two at once.
-*The look as planned* (*the owner*, 11/11; `open.md` S21, *The
-canister itself*): the original charcoal; a canister that holds or
-passes too little gives the purge check a small answer (P0440) without
-any fault in N80, and a flooded one sends granules towards the valve.
-Looked at before 8a so that a canister fault is not mistaken for the
-valve's. **Blown through** because a blocked vent or a blocked port
-starves the purge, and P0440 is what this ECU's check stores for too
-little answer; a free path everywhere leaves the valve. **The tank's
-line may pass one way only** (a roll-over or gravity valve, *general*:
-on many cars), so a line that will not take air towards the tank is not
-a fault by itself. **The tank's hose first, the cap closed** (*owner*,
-11/11, `open.md` S21): the tank lets out a strong overpressure at the
-cap in summer; a puff at the hose says the tank holds pressure up to
-the canister, none in November says little (cold fuel hardly
-evaporates). **No compressed air**: it can break the charcoal or
-drive it into the lines. **Never sucked on**: fuel vapour. Its place,
-the right rear wheel arch, from the forum leads of 11/11 and the
-owner's videos, not from VW's documentation.
+**8j, the canister's joints** (`open.md` S21): rubber on a line bent
+back with heat can creep off its port, and a joint that lets go is a
+leak of unmetered air at every purge and P0440 again; the wheel coming
+off for anything else is the free moment to look.
 
 **Item 8a, from 11/11** (*the owner*: the part ordered "to be sure",
 after the research of 11/11 on P0172 and P0440; `open.md` S21, *Read
@@ -776,6 +698,11 @@ worse beyond its spread are read as a seat getting worse.
   closes them, probably with the overrun too (*owner*, 28/10).
 - **The fault memory** (*owner*, 18/10/2026): every session starts from
   an empty memory, and the saved file keeps what the session stored.
+  **A code before a logged drive pauses it** (*the owner*, 11/11/2026,
+  at 8k, P0137 stored before the first drive on the canister): every
+  drive starts from a clean engine. The clear resets 032 (`open.md` S3,
+  *The clearing of 24/10*), so 032 and 055 are read first — a running
+  log of them counts — and 8f's three drives count from the clear.
   Only when VCDS is connected anyway (*owner*, 24/10/2026): a plain
   drive is not worth a laptop, and a lit or flashing lamp is the
   backstop for what it would have caught.

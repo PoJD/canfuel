@@ -42,8 +42,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 converter, S8 the top end, S9 the rich trim, S10 the oil leak at the back
 of the head, S13 the
 throttle's routine, S15 the sputter, S18 cylinder 3 out with a tick
-(24/10), **S22 the tick heard during the hydrogen clean (9/11 evening:
-the clean's own sound, D11)**, **S7 the cold start (31/10: the fuel — four clean starts on
+(24/10), **S7 the cold start (31/10: the fuel — four clean starts on
 OMV after six bad of eight on the Verva)**; H9 (crankcase ventilation,
 A15), H10 (when 014 counts, C19) and **H15 (the NGK plug ends, C24,
 4/11)**.
@@ -74,7 +73,7 @@ not below stop 3's settled level**; 4's steady deficit (5–8 %) and 2's
 strength are as before. **With the provider's gas flowing at idle the
 idle had no dips at all** (8,700 strokes, `IdleHealth` 14–29); S22's
 tick, heard during the clean, was closed that evening as the clean's own
-sound (`refuted.md` D11). One stop each side.
+sound (`refuted.md` D11) and reopened 11/11 night. One stop each side.
 
 **The probes read before the swap, 9/11 night** (`plan.md` 8c, standing,
 shortened at the owner's decision; H11, *The reading before the swap*):
@@ -145,6 +144,25 @@ sinking fits the contact spray of 10/11 morning** (Bosch forbids it on a
 probe's connector), its zero the broken terminal. **Re-ranked with the
 owner**: H1 to second; H21 above H11; S1s added to the fit tables.
 
+**The first drive on the canister, 11/11 night** (8k, `idle-log.md` 11/11 night,
+done; VCDS 032 055 014 over 65 minutes, then 001 with 033 and 036 at
+the last warm stop; MFD in, no capture): **P0137 stored before it**,
+cleared by the owner, so 032 relearnt from zero — **−3.9 / +2.3 % at
+the end, −3.1 / +2.3 after the long last stop**, against −6.3 / +6.3
+and −3.9 / +7.0 on 10/11's relearn with the bypass: **the part-load
+cell a third of what it was, the first sign of the canister** (S21,
+H16); the idle cell bent towards zero by S23. **The warm stops on the
+display** (the everyday state): after a hard motorway run, oil 102 °C,
+about 80 → **100–119** → 70–89, `Misfires` 13–15 → 1–3; every load
+with the A/C **35–50**, `Misfires` 4 → 0; near home, oil 97 °C, **90–110
+→ 45–50, waves of 40–80, then 25–40 for minutes at 100 °C, the calmest
+warm stop on record** (*owner*), 014 at zero through the four minutes
+logged. **But S23 came back and stayed**, the rear probe at 0.000 V at
+idle, and **a new code, P0118 (G62, sporadic)**, with the coolant on
+the MFD higher than any capture and dropping fast (**S24**, new) — the
+record stop is read with G62 in doubt. **S22's tick heard again at the
+first warm stop, reopened** (*the owner's decision*).
+
 **Open:**
 
 - **The idle — S1 (unsettled) and S3 (014 counts at idle).** Every part in
@@ -191,7 +209,10 @@ owner**: H1 to second; H21 above H11; S1s added to the fit tables.
   drive, 032 relearning from zero): queue stops **49–92**, the warm
   stop at the end **52–84** a minute for 8 minutes, **then 36–45 for
   four**, before the clear and the tests (unexplained; H11, *The
-  relearn drive*).
+  relearn drive*). **11/11 night, on the canister** (8k, above): the
+  stop after the motorway 100–119 settling to 70–89; **near home 25–40
+  for minutes**, oil and coolant 100 °C, the calmest on record — with
+  G62 in doubt (S24).
   The dips sat two thirds on 3 and 4
   until the VW leads, **on all four alike** on `40` and `41`, **on `42`
   one slot again, 45 %**, and **on `43` named: 43 % on cylinder 3**
@@ -218,21 +239,36 @@ owner**: H1 to second; H21 above H11; S1s added to the fit tables.
   in one drive, then reset by the battery disconnect; relearnt from
   zero on 10/11 evening to −6.3 / +6.3 within 37 minutes, −3.9 / +7.0
   at the end** — the split is not the old probes' (S19); reset again by
-  the clear of P0137 (`plan.md` 8f).
+  the clear of P0137 (`plan.md` 8f). **On the canister, 11/11 night:
+  −3.9 / +2.3 % in one drive, −3.1 / +2.3 after a long stop** — the
+  part-load cell a third of the bypass's (S19, S21).
 - **S21, P0440 and the engine lamp, steady** (6/11, added at the
   owner's request): the evaporative system, the code of 1/2018 back; no
   fill and no hose touched before it; cleared by the owner (H16). Not
   the idle. **The tank lets out a strong overpressure at the filler
   cap in summer** (*owner*, 11/11), and **that evening the canister
   was found bypassed** — the tank's line joined straight to N80's, by
-  an earlier owner (8j).
+  an earlier owner (8j), and plumbed back the same evening; **the first
+  drive on it, 032's part-load cell +2.3 % where it read +6.3 to +7.0**
+  (S21, *The first drive on the canister*).
 - **S12, a sudden jerk at a crawl and on moving off** (reopened 10/11
   night at the owner's request; not the pedal): not on the bus at a
   crawl; 014 counted single misfires in moving-offs on 10/11.
 - **S23, the new rear probe's signal falling to zero under load**
   (10/11 evening, added at the owner's request): P0137 sporadic,
-  cleared; normal again minutes later. The lead, the connector or the
-  part (`plan.md` 8e). Not the idle.
+  cleared; normal again minutes later; **back 11/11 night, stored before
+  and after the drive, and 0.000 V at a warm idle too** — the tape did
+  not cure it. The new probe or the harness: the old probe back in, or
+  the signal wire's continuity cold (`plan.md` 8e). Not the idle, but
+  it bends 032's idle cell.
+- **S22, a tick once per engine cycle** (9/11, closed the same evening,
+  **reopened 11/11 night** at the owner's decision): heard again warm
+  with no clean, the same pattern quieter; recorded, not read. H1's
+  lifter, an injector, a port, or one cylinder's burn.
+- **S24, the coolant reading dropping fast and P0118 sporadic** (11/11
+  night, added at the owner's decision): G62's circuit (a contact
+  resistance reads colder; open, P0118), and the reading about 6 °C
+  above any capture; the coolant's level first.
 - **S20, the speed wandering at a constant pedal** (since 1–2/10, on the
   road) — **a little better since the cable was slackened and the pedal
   greased (27/10), still there** (*owner*, 28/10). Not the idle.
@@ -274,20 +310,25 @@ roughness stayed; *The idle's candidates, ranked*). **Re-read 10/11
 evening, after the relearn drive, agreed with the owner**: H11 from
 third to seventh, its marks 1, 3, 4 and 5 failed; **H21 added eighth**,
 the probes' wiring; H13's "the clean took 3's excess" weakened, 3
-leading again a day later (*The idle's candidates, ranked*).
+leading again a day later (*The idle's candidates, ranked*). **Re-read
+11/11 night, after 8k, S22 reopened and S24 added: the order kept** —
+S22's ✔ goes to H1, already first with H13; H16's part-load reading is
+one drive; S24 sits outside the tables.
 
-**Next** (`plan.md`; *the owner*, 10/11 and 11/11): **8i, the timing
+**Next** (`plan.md`; *the owner*, 10/11 and 11/11): **the coolant's
+level, cold, and G62's connector looked at** (S24); **8i, the timing
 belt's marks, at the next cold engine**; **8e (the probes' harness)
 postponed to the end and 8g dropped** (*the owner*, 11/11; S23, H21),
 the rear probe watched through 036 at VCDS sessions (8f); **8h, the loads against the sensors' voltages**,
 VCDS at a warm idle, at a laptop session; **8f, 032 at every VCDS session** until both cells
-have held for three drives (reset again by the clear of P0137); then
+have held for three drives (reset again by the clears of P0137, 10/11 and 11/11); then
 the MFD in (item 6) and the oil level every 500 km (6i); **item 6's
 warm stops on the display with a word on what came before each**;
 **8b dropped 11/11** (*the owner*: the fix first, fewer tests);
 **6m's injector circuits** for 4's kept deficit;
 **the charcoal canister, found bypassed 11/11, plumbed back the same
-evening (8j; the old one, sound); then 032 and the warm stops; then the
+evening (8j) and its first drive logged (8k, done 11/11 night); then
+032 after the next drive without a reset, and the warm stops; then the
 purge valve N80, ordered 11/11 by the owner, fitted when it
 arrives, 032 read before and after** (H16, S21, 8a); item
 9's tests (the coolant's CO₂ test, the stethoscope, then one garage
@@ -1610,6 +1651,11 @@ is the old probes'** (H11's mark 1). P0172 not back; P0137 instead,
 the new rear probe's (S23), cleared by the owner — which resets 032
 again (S3, *The clearing of 24/10*), so the next VCDS reading starts
 from a fresh relearn.
+**On the canister, from zero** (11/11 night, the first drive with the
+canister back, 8k, `idle-log.md` 11/11 night; S21, *The first drive on the canister*):
+**−3.9 / +2.3 %** at the end, **−3.1 / +2.3** after the long warm
+stop, 055 −1.04 g/s — **the part-load cell a third of the bypass's**,
+the idle cell bent towards zero by S23. P0172 not back.
 
 ### S20. Engine speed wanders at a constant pedal
 
@@ -1875,6 +1921,52 @@ owner's guesses — at the same time as the leaking fuel filter was
 taped, or a cracked rubber piece at one port joined straight across
 rather than replaced (11/11) — cannot be checked.
 
+**The first drive on the canister, 11/11 night** (8k, `idle-log.md` 11/11 night; 032
+logged over 65 minutes, `vcds/vcds-step8k-*`): 032 read **−7.0 /
++7.0 %** before it (21:17, the bypass's last value), was reset by the
+clear of P0137, and **relearnt from zero to −3.9 / +2.3 % by the end
+of the drive, −3.1 / +2.3 after the long warm stop** (22:49;
+`vcds-step8k-end-adaptations-032-055.csv`) — against **−6.3 / +6.3
+within 37 minutes and −3.9 / +7.0 at the end** on 10/11's relearn,
+with the bypass. **Read** (*reasoned*): **the part-load cell is the
+reading** — it learnt +3.9 early, touched +6.3 once, and sat at +2.3
+for the last half hour, where it held +6.3 to +7.0 with the bypass;
+part load is where the purge flows, and S23's second loop (S23, *Does
+the rear probe touch the mixture*) would push it up, not down. **The
+idle cell is not clean**: P0137 stored on this drive and the rear
+probe at zero at the stop after it (036 was not logged on the road),
+which pulls the idle cell towards zero as on 10/11. **One drive**;
+8f's next readings without a reset decide.
+
+### S22. A tick once per engine cycle — reopened 11/11 night
+
+*Added 9/11 at the owner's request, closed that evening as the hydrogen
+clean's own sound (`refuted.md` D11, which keeps the entry as it stood:
+the recordings, the burst pattern, the read), **reopened 11/11 night at
+the owner's decision**.* **Heard again warm with no clean**: on 10/11 at
+an idle loads off, and **on 11/11 night at the warm stop after a hard
+motorway run** (oil 102 °C, the everyday state, bonnet down, from the
+driver's seat), **"the same pattern, or nearly, only quieter" than
+during the clean** (*owner*); recorded at the engine bay (the album,
+11/11 about 22:00), not yet read.
+
+**Read** (*reasoned*): with no oxyhydrogen in the charge, D11's
+explanation — the clean's faster burn making a usual difference louder
+— does not reach it; what stays is D11's own list: **one valve's lifter
+(H1), one injector (H7), one cylinder's port leaking at its joint
+(H2), or one cylinder's combustion different from the others** (S1, *A
+steady pattern over the cylinders*). Louder during the clean fits a
+part whose tick the faster burn masked less, or one cylinder's burn —
+the recordings did not tell them apart then either. **A lifter that
+ticks warm after a hard drive** is what H1 predicts and what the hot
+recording of 26/10 did not find.
+
+**Tests**: the album's recording of 11/11 by D11's measure — the
+rhythm at the camshaft's frequency against the engine speed, its size
+against D11's 1.7–16.4; **the stethoscope on the cam cover above each
+cylinder, hot** (`plan.md` 9); VW's tappet check in item 9's garage
+session.
+
 ### S23. The new rear probe's signal falls to zero under load — P0137
 
 *Added 10/11 evening at the owner's request.* **On the relearn drive of
@@ -2091,6 +2183,90 @@ this ECU is *not known*. **Not the idle**: the idle was as rough before
 request the same evening): ✔ there, — everywhere else; the look under
 the car and at the sockets settles it.
 
+**Back, and steady, 11/11 night** (8k, `idle-log.md` 11/11 night; the first hot drive
+since the tape): **P0137 stored before the drive** (21:17, sporadic,
+from a drive since the clear of 10/11 17:50; `vcds/vcds-step8k-precold-faults-before.txt`),
+cleared by the owner; **stored again on the drive and present at its
+end** (22:29, 35-00, no "sporadic"; `vcds-step8k-drive-faults-after.txt`).
+**At the warm stop after it, 036 read 0.000 V for all four minutes**
+(22:39–22:43, oil and coolant about 100 °C, the everyday state; its
+result `OK` and `neOK` by turns; `vcds-step8k-warmstop-001-036-014.csv`)
+— **zero at idle too now**, where 10/11 had it only under load and
+then at the stop's end. **The tape did not cure it**, and a warm
+engine now holds it: the broken terminal, the wire or the part
+(*reasoned*). **The new probe or the harness** — the old rear probe
+back in for a drive tells them apart, if it is still to be had (the
+owner thinks he threw it out); otherwise the signal wire's continuity
+and its leak to earth, cold, from the probe's connector to the ECU's
+pin while the lead is flexed (`plan.md` 8e). Not measured running: no
+one under the car with the engine on, and the pins not probed (*the
+owner*, 11/11). **What it bends**: 032's idle cell, by the second loop
+(above) — 8k's idle cell is read with that in mind.
+
+### S24. The coolant reading drops fast, and P0118 sporadic
+
+*Added 11/11 night at the owner's decision.* **On the drive of 8k**
+(8k, `idle-log.md` 11/11 night, 21:24–22:29) **the MFD's coolant rose to about 110 °C in
+places and fell back fast — once from about 107 to 90 °C within a few
+seconds** (*owner*), faster than an engine's coolant cools (*general*).
+**The fault memory after it: 16502 / P0118, G62, signal too high,
+sporadic** (22:29, `vcds/vcds-step8k-drive-faults-after.txt`; not there
+at 21:23) — a signal too high on an NTC sensor is the open-circuit
+end, the ECU seeing a very cold engine (*general*).
+
+**What VCDS saw at the warm stop after it** (001, 22:37–22:43,
+`vcds-step8k-warmstop-001-033-014.csv`, `…-001-036-014.csv`, about one
+sample a second): **99–106.5 °C, rising and falling smoothly in steps
+of 1.5 °C over cycles of about a minute**, no jump — the radiator
+fan's cycle (S1, *The radiator fan's cycle*), not a dropout. **Against
+every capture**: the MFD's coolant is 0x288 b1, the ECU's own reading
+(`docs/firmware/can-decoding.md`); **over all 41 `_z1` fixtures it
+never read above 102.8 °C**, and at warm stops it cycles between 92–97
+and 100.5 (*an ad-hoc script, not kept*). **So 11/11 night read about
+6 °C higher than any capture before** — the cycle at 99–106.5 in VCDS,
+about 110 on the MFD — as well as dropping fast.
+
+**Read** (*reasoned*): **two things**. The fast drops and P0118 fit **a
+contact resistance in G62's circuit** — its connector, its wire or the
+sensor: a series resistance on an NTC divider reads colder, and an open
+one reads the coldest and stores P0118. The higher plateau is not
+explained by it (a contact reads colder, not hotter): **the engine
+running hotter** — the coolant's level, the thermostat or the fan — or
+the sensor's own curve. *Not known*: whether this car's fan is switched
+by the ECU from G62 or by its own switch in the radiator. **The
+cluster has no coolant needle** (*owner*: a blue lamp below about
+62 °C, a red one when too hot or, flashing, when the coolant is low);
+**its own sender**, a separate circuit, reads on 0x420 b4
+(`docs/firmware/can-decoding.md`, question 10; 8.6–9.7 °C under the
+ECU's on `47`, H21, *A second, on the bus*): a fault in G62's ECU
+circuit alone steps their difference, which a capture reads.
+
+**The owner's reading** (11/11 night): **perhaps all linked** — the
+idle cell nearer zero takes less fuel away at idle, the mixture burns
+better, the idle is calmer. *Reasoned*: it fits the second research's
+"a mixture or dilution limit rather than a spark limit" (S1, *How the
+weak strokes follow each other*), whichever moved the cell — the
+canister or S23's second loop; it is read by setting 032's idle cell
+against `IdleHealth` over the next drives (8f), and G62 adds its own
+correction on top.
+
+**What it touches**: the ECU corrects fuel, ignition and idle by G62,
+so **a warm stop read while G62 reads wrongly is not a clean reading**;
+and if the fan follows G62, a fan held on adds electrical load, which
+calms the idle (S1, *load*). **8k's record warm stop (`IdleHealth`
+25–40, everyday state, oil and coolant 100 °C) is read with that
+open.** Not in the fit tables (*The open hypotheses*).
+
+**Tests**: **the coolant's level, cold**, at once; G62's connector
+looked at, cold (green, a loose terminal, a cracked housing); **001 on
+the next logged drive** in place of 055 (`plan.md` 8f); **and a
+capture on a drive with the MFD out**, which reads 0x288 and 0x420 b4
+far faster than VCDS — a dropout of G62's circuit is a step in their
+difference, a hotter engine moves both; whether the fan runs when the
+MFD reads about 105–110, and whether the red lamp lights or flashes.
+**Both codes cleared by the owner after the session** (11/11 night,
+032/055 read first): which comes back, and when, is the next reading.
+
 ### Other — not symptoms, but they touch this file
 
 **Oil temperature.** 0x420's `OilTemp` is `raw − 60` °C (`docs/firmware/can-decoding.md`
@@ -2151,6 +2327,7 @@ engine leak, a falling dipstick level is oil burnt, not lost.
 | S12 ↔ S3 | **possible** (*reasoned*) | 014 counted seven single misfires on `47`, each in a window holding a moving-off (S12) |
 | S23 ↔ S1, S19 | **none measured** (*reasoned*) | the idle as rough before the rear probe's fault began (16:57, 10/11) as after; 032's idle cell at −6.3 % before it and −3.9 % during it (S23) |
 | S3 on the road ↔ S17, S5 | **possible, one engine-speed band** (6/11) | 014's road episodes at 21–32 % load: 2000–2400 rpm about twice 1600–1800 and 2400–2600 (S17); the bus shows no stroke-to-stroke roughness peak there |
+| S24 ↔ S1 | **possible, as a bias** (*reasoned*, 11/11) | the ECU trims fuel, ignition and idle by G62, and a fan it may hold on is load; 8k's calmest warm stop came with G62 at its highest and dropping out (S24) |
 | S16 ↔ S1 | **untested** (*general*) | a gearbox's rattle in neutral is driven by the crank's unevenness at idle (S16) |
 | S11 ↔ S1 | **untested** | if the hiss is a leak, H3 or H2; the owner reads it as the throttle's own air |
 
@@ -2168,9 +2345,11 @@ settles it. ✔ fits, ~ fits weakly, ✘ does not fit, — says nothing.
 
 **The columns are the open symptoms that bear on the engine**: S1, S2, S3,
 S4, S5, S11, **S12** (reopened 10/11 night, the jerk at a crawl), S14,
-S19, S20 (added 26/10), S21 (added 6/11); S22
-(added 9/11) closed the same evening (`refuted.md` D11) and its column
-went with it; **S23** (added 10/11 evening, the rear probe's signal;
+S19, S20 (added 26/10), S21 (added 6/11); **S22** (added 9/11, closed
+the same evening, `refuted.md` D11, **reopened 11/11 night** at the
+owner's decision, its column back: ✔ for H1's lifter, ~ where a part
+or one cylinder's burn could tick once per cycle — H0, H2's port, H7's
+injector, H13); **S23** (added 10/11 evening, the rear probe's signal;
 a column since H21 was added the same evening, — everywhere but there);
 **S1s** (added 11/11, *agreed with the owner*): not a symptom but S1's
 rough start of a warm stop after a hot drive, cylinder 3's and settled
@@ -2178,15 +2357,18 @@ in 5–8 minutes (S1, *The rough start of a warm stop*) — ✔ where a fault
 worst hot on 3 fits it (H1's exhaust seat, H13's flake), ✘ where the
 hypothesis expects the drive to calm it at once (H18).
 Left out: S16 (the gearbox side, shown not to touch
-the idle) and S17 (a resonance, not placed); S7 closed on 31/10 (D2)
+the idle), S17 (a resonance, not placed) and **S24** (added 11/11
+night, G62's dropout: a sensor's own fault, which no hypothesis here
+explains; it reaches the idle only as a bias in the readings, through
+the fan — S24, *What it touches*); S7 closed on 31/10 (D2)
 and its column went with it; the closed ones are in
 `refuted.md` §D.
 
 ### H0. The idle is normal for this engine — and there is no fault to find
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ✘ | — | ~ | — | ~ | ✘ | ✘ | ~ | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ✘ | — | ~ | — | ~ | ✘ | ✘ | ~ | — | ~ | — |
 
 - **Against:** 014 reads 12–120 against VW's 0–5; the old converter burned
   through; the dips sit on 3 and 4, the cylinder of the 2019 P0304 and of the
@@ -2278,9 +2460,9 @@ or debris holds its valve a hair open, which costs compression and misses
 at a small charge and is covered by load — the case this hypothesis is
 about. The valve is closed by its spring; the lifter only removes the gap.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ✔ | ~ | ~ | — | ~ | ~ | — | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ✔ | ~ | ~ | — | ~ | ~ | — | — | — | ✔ | — |
 
 - **9/11, after the clean** (S1, *The clean of 9/11*; S22): 3's excess
   gone at stop 7 — **against an exhaust seat on 3 that leaks as a part**
@@ -2386,9 +2568,9 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in.
   air there reaches neither a cylinder nor the front probe, so the fit
   below is the first zone's.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ✔ | ~ | ✘ | ✘ | ✔ | — | ✔ | ✘ | ~ | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ✔ | ~ | ✘ | ✘ | ✔ | — | ✔ | ✘ | ~ | — | ~ | — |
 
 - **For:** the puff (S2), the hiss (S11), air for S14's bangs; a 26-year-old
   manifold that has lived through years of misfires; **for the second zone,
@@ -2435,9 +2617,9 @@ intake in its common part, none nearer one runner than another**, so
 whatever enters by a line reaches all four alike; what is left of H3 is
 the lower manifold's gasket at runner 3, never renewed.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ~ | ~ | ✔ | ~ | ✘ | ~ | ~ | ✔ | ✘ | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ~ | ~ | ✔ | ~ | ✘ | ~ | ~ | ✔ | ✘ | — | — | — | — |
 
 - **9/11** (S1, *The clean of 9/11*): **4's steady deficit kept after the
   clean** (5–8 % at stop 7, as on `31` and `43`), the runner whose
@@ -2508,9 +2690,9 @@ pick them. **What is left**: the injector loom where it reaches 3 and 4,
 shared by the two, taped and oily — its wires at 4 whole outwardly (*owner*,
 19/10; tape renewed). The plug-end side moved to H15, refuted 4/11 (`refuted.md` C24).
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | ~ | ~ | — | ✔ | ~ | ✘ | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | ~ | ~ | — | ✔ | ~ | ✘ | — | — | — | — |
 
 - **9/11** (S1, *The clean of 9/11*): 4's steady deficit kept after the
   clean, 3's gone: for 4's own circuit (6m); with the gas flowing no dip
@@ -2613,9 +2795,9 @@ The ECU books anything at cylinder 4's crank angle to cylinder 4: G66, its
 torque or connector; a loose ancillary part buzzing in a speed band; **an arc
 at lead 4's plug end** (`refuted.md` C24). Injector 4's click is settled against (B7).
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| — | — | — | — | ✔ | ✔ | — | — | — | — | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| — | — | — | — | ✔ | ✔ | — | — | — | — | — | — | — | — |
 
 **Tests** — not scheduled (*owner's decision*, 9/10): G66's torque and
 connector; a look for a loose bracket at ~3000 rpm in neutral; after the VW
@@ -2629,9 +2811,9 @@ hundred km without a disconnect.
 
 ### H7. Fuel delivery at idle: rail pressure, one injector
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | — | — | — | ~ | ~ | ✔ | ~ | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | — | — | — | ~ | ~ | ✔ | ~ | — | ~ | — |
 
 - **`43` (3/11 evening): the dips named 43 % on cylinder 3** (p 0.004
   against all four alike; *The dips keep to one slot*), and P0303 with the
@@ -2743,9 +2925,9 @@ swap injector 3 with another if the cylinder stays named.
 
 ### H8. Idle air control and the throttle body
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | — | ~ | — | — | — | ~ | — | — | ✔ | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | — | ~ | — | — | — | ~ | — | — | ✔ | — | — | — |
 
 **For: S20, by its timing** (*owner*, 26/10): the speed has been hard
 to hold at a steady pedal since the job of 1–2/10, which fitted this
@@ -2842,9 +3024,9 @@ any more: 5b's stops are on a settled value.
 that it is not argued again.* The probes are from 10/2017, the one part of
 the mixture control not changed.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | ~ | — | — | — | — | ~ | ~ | ~ | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | ~ | — | — | — | — | ~ | ~ | ~ | — | — | — |
 
 **Against:** 032 + 033 near zero on a new MAF and new injectors bound a hidden
 shift to a few per cent, and with the wrong sign (the ECU takes fuel out); a
@@ -3577,9 +3759,9 @@ behind the converter only (H2's second zone).
 
 ### H12. Driveline play read as misfires
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ✘ | ~ | ~ | ~ | — | ✔ | ✘ | — | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | ✘ | ~ | ~ | ~ | — | ✔ | ✘ | — | — | — | — | — |
 
 **Against:** the MAF swap halved the dips; play repeats every 360°, the pairs
 1+4 and 2+3, while the dips sit on 3 and 4, 180° apart; the puffs come with
@@ -3596,9 +3778,9 @@ a sticking pedal (`refuted.md` D6).*
 3000 rpm for at least nine years (*owner*). Gentle use builds deposits where
 hard use burns them off (*general*).
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ~ | ✔ | ~ | — | — | ~ | ~ | ~ | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ~ | ✔ | ~ | — | — | ~ | ~ | ~ | — | — | ~ | — |
 
 - **11/11, the second research**: the clean's relief lasted a day
   (`47`), and **no source gives seat deposit forming again in a day** —
@@ -3697,9 +3879,9 @@ EPR flushes and fresh oil, done 26/10).
 original map (`refuted.md` C23, *agreed with the owner*). What is left is
 what the remap did change: the corner of highest load.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ✘ | — | ✘ | ✘ | ~ | ✘ | — | ✘ | ✘ | ~ | ✘ | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✘ | — | ✘ | ✘ | ~ | ✘ | — | ✘ | ✘ | ~ | ✘ | — | — | — |
 
 **What the remap changed** (the two whole flashes from the tuner, 3/11;
 compared byte for byte, the files not kept here; the tables with every
@@ -3847,6 +4029,10 @@ meter**, and a fixed amount shows most where the air is least, at idle
 table names N80 under both P0172 and P0440, the one part it does; the
 tests behind the "against" below were cold or by mouth, never warm under
 the idle's vacuum; the new valve is ordered (`plan.md` 8a).
+**11/11 night, the first drive on the canister** (S21, *The first
+drive on the canister*): the part-load cell relearnt to +2.3 % where
+it held +6.3 to +7.0 with the bypass — **for H16's purge path**, one
+drive; the idle cell bent by S23, so the idle side is unread.
 
 **How the system works** (*general*, not from this ECU's documentation):
 the tank vents into a charcoal canister; N80 sits between the canister and
@@ -3860,9 +4046,9 @@ not seal** passes vapour all the time, cold and in open loop, on the
 overrun and **while the car stands**, when vapour from the canister can
 settle in the intake and flood the first start.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | — | — | — | — | — | ~ | ~ | ✔ | ~ | ✔ | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | — | — | — | — | — | ~ | ~ | ✔ | ~ | ✔ | — | — |
 
 - **For: S19.** A rich code and a start that dies at once after four hours
   standing, in a window that holds a fill, is the textbook picture of a
@@ -4055,9 +4241,9 @@ oil run down the valve guide, and the intake's vacuum, highest at idle,
 draws it into the cylinder, where it costs combustion; under load the
 vacuum falls, the flow stops, and what collected burns away.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ✘ | — | ~ | — | — | — | — | — | — | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ✘ | — | ~ | — | — | — | — | — | — | — | — | — | — |
 
 - **For: the shape of 26/10**, worse after idling and gentle driving,
   calmer after work, the calm lasting — what oil collecting at a small
@@ -4110,9 +4296,9 @@ gasket or a hairline in the head next to 3 enters where the cylinder's
 pressure is lowest, at idle vacuum, and steams the charge — a misfire
 at idle on that cylinder, eased by load, and a plug kept clean.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | — | — | — | — | ~ | — | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | — | — | — | — | ~ | — | — | — | — | — |
 
 - **For:** one cylinder at idle; load helps (a higher manifold pressure
   draws less in, *reasoned*); **plug 3 the cleanest** of the 10/10 set
@@ -4143,9 +4329,9 @@ right for a while). Both probes were replaced on 10/11 with their own
 leads and plugs; **the sockets on the harness side, the wires to the
 ECU and their earths are the car's** (`vehicle-history.md`).
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S23 |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | — | — | — | — | — | ~ | — | ~ | — | — | ✔ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | — | — | — | — | — | ~ | — | ~ | — | — | — | ✔ |
 
 - **For, S23** (*reasoned*): a leak to earth in a damp or oxidised
   socket pulls the signal down in proportion, so the ceiling falls under
@@ -4220,7 +4406,7 @@ with it rising (475)** — the fan's current moved nothing (*ad-hoc
 script, not kept*). **A second, on the bus** (10/11 night, *the
 owner's question*: correlate every voltage that could share an earth):
 the coolant is read twice — the ECU's sender on 0x288 b1 and the
-gauge's own on 0x420 b4, a separate circuit
+cluster's own on 0x420 b4, a separate circuit
 (`docs/firmware/can-decoding.md`, question 10) — so a load that lifts
 the ECU's sensor earth would step their difference. On `47` it held
 **8.6–9.2 °C with the A/C off and on, twice**, and 9.3 against 9.7 °C
@@ -4661,11 +4847,11 @@ is in git.
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | 1 | **H13** deposits | **11/11, after the second research, kept first and read with H1** (*agreed with the owner*): the rough start of a warm stop after a hot drive is 3's (S1, *The rough start of a warm stop*), and a day's relief fits a flake moved, not deposit regrown (SAE 2000-01-2858); **9/11, after the clean, kept first** (*agreed with the owner*): it took 3's excess — share of the dips, steady deficit, rough start, 014's storm; **up 3/11 evening from second to first** (*agreed with the owner*): `43`'s cut names cylinder 3, where the borescope found the most deposit; **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; **the hydrogen clean done 9/11**: 3's excess gone at stop 7, 4's deficit and the settled level kept (S1, *The clean of 9/11*); a second captured warm stop with a cut says whether it lasts |
-| 2 | **H1** valve or lifter | **11/11 up from fourth** (*agreed with the owner*): 3's exhaust seat, leaking hot or holding a flake, is the form that fits the rough start after a hot drive that settles in 5–8 minutes; the weak strokes come in spells of seconds on one cylinder, at a mixture or dilution limit (S1, *How the weak strokes follow each other*); VW calls the cold clatter of 8/11 normal; **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 down from second** (*agreed with the owner*): the clean took 3's part, which a seat that leaks as a part would have kept; left for 4's inlet seat, the side the clean reaches least; **7/11 up from third** (*agreed with the owner*): the port photos of 20/10 show crust broken round the inlet seat's edge on 3 and 4, a lump on 3, 1 and 2 even (*the owner's reading*) — an inlet seat that leaks weakens 3 and 4 together, which answers the 5/11 against, and more crust on 3 fits the dips leaning to 3; whether it reaches the contact face is not seen; the clean of 9/11 is the least likely to reach it; **5/11 down from second** (*agreed with the owner*): one seat on 3 would weaken 3 alone, and the pattern moves over minutes; still the single dips on 3 and the owner's reading of 3's seat; **up 3/11 evening from third to second** (*agreed with the owner*): a valve on 3 that does not seal, with deposit on its seat (H13), fits one cylinder named; **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes done 26/10, the hot recording found no lifter; left: **a warm leak-down on all four** and a stethoscope above 3, hot (`plan.md` 9) |
+| 2 | **H1** valve or lifter | **11/11 night, kept**: S22 reopened, a tick once per cycle heard warm after a hard drive with no clean — what a lifter would give, and what 26/10's hot recording did not find; not yet read off the recording (S22); **11/11 up from fourth** (*agreed with the owner*): 3's exhaust seat, leaking hot or holding a flake, is the form that fits the rough start after a hot drive that settles in 5–8 minutes; the weak strokes come in spells of seconds on one cylinder, at a mixture or dilution limit (S1, *How the weak strokes follow each other*); VW calls the cold clatter of 8/11 normal; **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 down from second** (*agreed with the owner*): the clean took 3's part, which a seat that leaks as a part would have kept; left for 4's inlet seat, the side the clean reaches least; **7/11 up from third** (*agreed with the owner*): the port photos of 20/10 show crust broken round the inlet seat's edge on 3 and 4, a lump on 3, 1 and 2 even (*the owner's reading*) — an inlet seat that leaks weakens 3 and 4 together, which answers the 5/11 against, and more crust on 3 fits the dips leaning to 3; whether it reaches the contact face is not seen; the clean of 9/11 is the least likely to reach it; **5/11 down from second** (*agreed with the owner*): one seat on 3 would weaken 3 alone, and the pattern moves over minutes; still the single dips on 3 and the owner's reading of 3's seat; **up 3/11 evening from third to second** (*agreed with the owner*): a valve on 3 that does not seal, with deposit on its seat (H13), fits one cylinder named; **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes done 26/10, the hot recording found no lifter; left: **a warm leak-down on all four** and a stethoscope above 3, hot (`plan.md` 9) |
 | 3 | **H3** a leak at one runner | **11/11 one down** (H1 above it, *agreed with the owner*); still the settled floor and 4's deficit, which the clean and the gas did not touch; **9/11 up from third** (*agreed with the owner*): 4's steady deficit kept after the clean, runner 4's gasket edge torn (5/11), and the gas's cure fits a lean runner in kind; **7/11 down from second** (*agreed with the owner*): H1's inlet-seat form explains the pair as well and has a find behind it; still the one that predicts *load helps* directly; **5/11 up from third** (*agreed with the owner*): the steady pattern over the cylinders names 3 and 4 alike, neighbours on the lower manifold (S1, *A steady pattern over the cylinders*); **4/11: explains the calm under load best of all, the calm after revving not at all** (S1; *agreed with the owner*, the order kept); **up 3/11 evening from seventh to third**: one cylinder named again (runner 3); the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
 | 4 | **H4** the injector loom at 3 and 4 | **11/11 one down** (H1 above it, *agreed with the owner*); **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 up from fifth** (*agreed with the owner*): 4's deficit kept, 3's gone — 4's own circuit, and 6m the cheapest test of the three that act on 4 alone; **5/11 up from eighth** (*agreed with the owner*): exactly the pair the steady pattern names, and a fault that comes and goes would move over minutes; the load argument is against the spark side, not the injectors; shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
 | 5 | **H7** fuel delivery | **11/11 kept** (*agreed with the owner*): a hot rail after a hot drive fits the rough start's time, not its one cylinder; **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 down from fourth** (*agreed with the owner*): H3 and H4 above it for 4; **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026, and nothing points at one of them); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10); **no injector swap** (*the owner*, 3/11) |
-| 6 | **H16** the purge path (the valve, the canister bypassed) | **11/11 evening up from twelfth** (*agreed with the owner*): the canister found bypassed, the tank's line straight to N80 (S21) — raw tank vapour at every purge, rich when warm: P0440 in winter and a warm rich source fit it; it still cannot pick one cylinder; **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **6/11 night down from seventh** (*agreed with the owner*): out of the car the valve hardly passed air unpowered, and its pulses do not line up with the dips (H16, *The valve's pulses against the dips*); before that **6/11 evening up from eleventh**: P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the weak firings in pairs do (the idle's 1½-min waves turned out the radiator fan, S1); a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | **the canister plumbed back first** (`plan.md` 8j), 032 and the warm stops after; then the valve ordered 11/11 (*the owner*), 032 before and after (`plan.md` 8a); 6/11 night, out of the car, it hardly passed air unpowered |
+| 6 | **H16** the purge path (the valve, the canister bypassed) | **11/11 night, kept**: the first drive on the canister relearnt 032's part-load cell to +2.3 % where the bypass held +6.3 to +7.0 — for it, one drive; the idle cell unread under S23 (S21, *The first drive on the canister*); **11/11 evening up from twelfth** (*agreed with the owner*): the canister found bypassed, the tank's line straight to N80 (S21) — raw tank vapour at every purge, rich when warm: P0440 in winter and a warm rich source fit it; it still cannot pick one cylinder; **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **6/11 night down from seventh** (*agreed with the owner*): out of the car the valve hardly passed air unpowered, and its pulses do not line up with the dips (H16, *The valve's pulses against the dips*); before that **6/11 evening up from eleventh**: P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the weak firings in pairs do (the idle's 1½-min waves turned out the radiator fan, S1); a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | **the canister plumbed back, done 11/11, its first drive read** (S21); 032 after drives without a reset (`plan.md` 8f); then the valve ordered 11/11 (*the owner*), 032 before and after (`plan.md` 8a); 6/11 night, out of the car, it hardly passed air unpowered |
 | 7 | **the timing belt a tooth out** | **11/11 kept, but its marks looked at first, being free** (*agreed with the owner*); VW's fault table has 16725 / P0341 for a G40 signal out of place, so an empty memory is weak evidence against (*What the forums say*, 11/11); **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 evening up from ninth** (*agreed with the owner*): the gas idle names the dips a burn at the dilution edge, and the cam's timing sets the exhaust kept at idle through where the valves' overlap falls against the piston (one camshaft, so its length cannot change), with compression even and the full-load power nearly intact (S1, *The gas idle taken apart*); belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against; **the ECU would not necessarily say** (*the owner's question*, 9/11): the AQY has a Hall sender G40 on the camshaft, which SSP 175 (p. 49) describes only as identifying cylinder 1, with the advance retarded as an emergency function if it fails — no check of the cam's angle against the crank is described, unlike engines with variable cam timing; so a tooth off may store nothing, and no G40 code has been read on any session since 9/2026 |
 | 8 | **H21** the probes' wiring and connectors | **11/11 one up** (H11 below it, *agreed with the owner*): S23 explained by the broken terminal and, for its sinking, the contact spray (S23); **added 10/11 evening** (*agreed with the owner*): the harness side was not changed with the probes, so what the swap could not rule out lives here — **S23 in full** (the new rear probe's signal pulled down under load and to zero, then back), and **S19's idle cell** if a signal earth carries heater current, which is highest at idle (*reasoned*); **for the idle itself weak**: on 10/11 morning the new rear probe read healthy for 18 minutes and the idle was as rough (H21) | the connectors seen from the harness side cold (`plan.md` 8e, postponed to the end 11/11); 036 watched at VCDS sessions (8f; 8g dropped 11/11, *the owner*); each wire to the ECU's pin with the plug off (with 6n) |
 | 9 | **H11** both probes shifted | **11/11 one down** (*agreed with the owner*): the rear probe's state never tracked `IdleHealth`, and its failure leaves the front loop running (SSP 175); **10/11 evening down from third to seventh** (*agreed with the owner*): on the relearn drive its marks 1, 3, 4 and 5 failed and mark 2 was spoilt by the rear probe's own fault; the calm of 17:38 came before the clear (H11, *The relearn drive*); what is left of it, the probes' circuit, is H21; **9/11 late evening up from thirteenth** (*agreed with the owner*): in its idle-only form — the front probe reading rich at idle's cool exhaust only, so the real idle mixture lean — it fits every pattern of S1 (queuing worse, a brisk drive better, a load calming, hydrogen curing), the negative idle cell with part load untouched, and P0172 once (H11, *Re-read 9/11 evening*); 2017 probes | **036 read 9/11 night**: the rear probe sinks towards lean at every idle, heaters good — for, not proof (H11, *The reading before the swap*); **both probes replaced** (*the owner's decision*, 10/11; no analyser, which he declines) and the same reading after it (`plan.md` 8c) — it rules out the old probes, not the mechanisms (H11, *What the rear probe can and cannot say*); **read after, 10/11**: the new rear probe flat for 18 minutes of idle, then the front's swing; **the idle unchanged** — mark 2 met, marks 3 and 4 failed at the first stop (H11, *The reading after the swap*); **mark 1 failed on the relearn drive, 10/11 evening** (032's idle cell back to −6.3 % within 37 minutes), marks 3–5 failed again, mark 2 spoilt by the rear probe's own fault (H11, *The relearn drive*; S23) |

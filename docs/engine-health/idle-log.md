@@ -1405,3 +1405,34 @@ the same afternoon. The canister goes back, plumbed in (`plan.md` 8j).
   - *not known:* whether S23 stays away on a hot drive.
 
 Read the same night (`open.md` S23, *The first start after the tape*).
+
+## 11/11 night — the first drive on the canister (8k)
+
+- **Repairs:** none; P0137 (sporadic) found before the drive and
+  cleared by the owner, which reset 032.
+- **Tests:** VCDS 032 055 014 for 1½ minutes before the clear, then over
+  the whole drive, 21:23–22:29 (`vcds/vcds-step8k-precold-*`,
+  `vcds/vcds-step8k-drive-*`); at the last stop 001 033 014 and 001 036
+  014 (`vcds/vcds-step8k-warmstop-*`); 032/055 at the end
+  (`vcds/vcds-step8k-end-adaptations-032-055.csv`); the MFD at every
+  stop; the engine bay recorded at the first warm stop (the album).
+- **Changes after:**
+  - *measured:* 032 −7.0 / +7.0 % before the clear; **from zero to
+    −3.9 / +2.3 % at the drive's end, −3.1 / +2.3 after the last stop**;
+    `IdleHealth` (the everyday state) 80 → 100–119 → 70–89 after the
+    motorway (oil 102 °C), 35–50 with every load and the A/C, near home
+    90–110 → 25–40 at 100 °C of oil and coolant; 014 zero through the
+    last four minutes logged; **the rear probe 0.000 V at the last stop**;
+    G62 cycling 99–106.5 °C there; **after the drive P0137 present and
+    P0118 (G62) sporadic** (*owner* for the MFD figures);
+  - *felt:* a tick once per cycle at the first warm stop, as during the
+    clean but quieter; the idle calming and dropping a little in speed
+    every so often, taken by the owner for the radiator fan; the MFD's
+    coolant up to about 110 °C and once down from about 107 to 90 within
+    seconds (*owner*);
+  - *not known:* how far the canister and how far G62 made the calm last
+    stop.
+
+`open.md` S21, *The first drive on the canister*; S22 reopened; S23,
+*Back, and steady*; S24 added. **Both codes cleared by the owner after
+the session** (032/055 read first, 22:49), to see which comes back.
