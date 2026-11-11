@@ -1826,16 +1826,15 @@ Its number, read off it out of the car: **`1HM 201 801 B`** on its end,
 the housing `171 201 813` (the album, 18:06–18:23); no longer sold
 under that number by the owner's search. **Out of the car** (*owner*,
 the borescope): nothing rattles; inside the ports a plastic grid and
-spring plate, whole and dry to the eye. **Its top is cracked** (the album,
-18:46:33): **a crack right across the top face**, from the base of the
-large port through the small one to the rim, the small port broken
-short at its base — *this said "whether broken off, not known" until
-the photographs of 18:46*. **The owner is not sure it is not a moulding
-edge** (11/11); it is sealed over before it goes back either way. Most likely why it was bypassed
-(*reasoned*): a cracked top leaks vapour, and smells, at the wheel arch.
-Through the crack the charcoal is open to the air beside its vent; to
-the engine that is harmless (*reasoned*), the vapour it lets out is not
-burnt. **What it means** (*reasoned*, from how
+spring plate, whole and dry to the eye. **Sound**: the line across its
+top is **the mould's parting line**, not a crack — cleaned and
+photographed close (the album, 18:55), it runs straight on along both
+ports and through the moulding's gate mark; and **with both top ports
+closed nothing passes when blown in at the vent** (*owner*). Both ports
+whole, the small one a barbed nipple. *For about an hour this said "its
+top is cracked across, the small port broken short", from an end-on
+photograph; the owner doubted it and the close-ups settled it.*
+**What it means** (*reasoned*, from how
 the system works, *general*): the tank's vapour reaches N80 **with no
 charcoal and no opening to the air** between. So **the tank is sealed
 whenever N80 is closed** — the summer overpressure at the cap above —
@@ -1869,11 +1868,10 @@ gravity valves, *general*). **Not the cause**: the summer overpressure is
 the bypass alone. *This said "stuck" for a quarter of an hour: the first
 test had held it upside down.* **The canister blown through** (*owner*,
 11/11): in at either top port, out at the other; with that one closed,
-out at the vent at the bottom, a little harder — **it passes everywhere**
-(with the crack, part of what came out at the vent may have left
-through the top). Why it was bypassed: the crack, most likely (below);
-the owner's guess, at the same time as the leaking fuel filter was
-taped, cannot be dated.
+out at the vent at the bottom, a little harder — **it passes everywhere**.
+Why it was bypassed is not known: the canister shows no fault; the
+owner's guess, at the same time as the leaking fuel filter was taped,
+cannot be dated.
 
 ### S23. The new rear probe's signal falls to zero under load — P0137
 
