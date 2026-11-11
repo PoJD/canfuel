@@ -19,11 +19,11 @@ The full previous version, before it was condensed on 20/10/2026:
 
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Current: 8i (the timing
-belt's marks) and 8e at the next cold engine, with the rear probe's lead
-and both probes' sockets**,
-8g with it at a laptop session (ignition only), 8h (the loads against the
-sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and 6i; 8a (the new N80, ordered 11/11) as soon as it
-arrives; then item 9, 6m inside its garage session (*the owner*, 10/11
+belt's marks) at the next cold engine**, 8h (the loads against the
+sensors' voltages) at a laptop session, and 8f at every VCDS session
+(032, and 036 now and then); item 6 and 6i; 8a (the new N80, ordered
+11/11) as soon as it arrives; then item 9, 6m inside its garage session;
+**8e postponed to the end** and 8g dropped (*the owner*, 10/11
 and 11/11; `open.md` H11, *The relearn drive*, S23; S1, *The rough
 start of a warm stop*).
 
@@ -108,7 +108,62 @@ start of a warm stop*).
    - **At any engine lamp from now on**: the odometer, the tank's needle
      and the outside temperature into the chat, and 032 read before the
      code is cleared.
-8e. **At the next cold engine, from below**:
+8i. **The timing belt's marks, at a cold engine**: the upper belt guard off; the crank turned by hand in
+   the direction of rotation until cylinder 1 is at TDC, **the notch on
+   the crankshaft pulley against its mark** (within about 5 mm); then
+   **the camshaft sprocket's mark against its mark** on the cover or the
+   head. **A photograph of each mark, square on**, into the chat; nothing
+   loosened. Then the guard back on.
+8f. **032 for 20 s at every session with VCDS connected**, until both
+   cells have held for three drives; **and 036 for a minute** at a warm
+   idle and on the road when VCDS is on anyway (the rear probe watched
+   now and then, *the owner*, 11/11).
+8h. **The loads against the sensors' voltages**, Claude in a session on
+   the laptop, a warm engine after
+   a drive, the car standing, the owner in the driver's seat:
+   `usbtin_capture.py` running; the fault memory read first.
+   - **Idle, the everyday state, every load off that can be**; then, 30 s
+     each, on and off again with 30 s between: **the A/C, the rear window
+     heater, main beam, the blower on 4**, one at a time; the rear window,
+     main beam and the blower said in the chat as each goes on and off
+     (the A/C and the lights Claude reads off the bus).
+   - The whole sequence three times, VCDS logging a different set each
+     time: **004 033 036**, then **004 060 002**, then **004 026 041**.
+   - Nothing under the bonnet or the car while the engine runs. After it,
+     the fault memory.
+9. **After the clean of 9/11, by what the next stops show** (Claude says
+   which):
+   - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
+     a kit.
+   - **A stethoscope (or a long screwdriver) on the cam cover above
+     cylinder 3, hot**, against 1, 2 and 4: a tick or a hiss on one, at idle.
+   - **One garage session with the upper intake off, straight after a
+     drive** (oil at 80 °C or more), in this order:
+     - **a warm leak-down on all four**: all four plugs out (the same
+       plugs back afterwards; plug 3's gap measured while out); each
+       cylinder at TDC on its compression stroke, firing order 1-3-4-2;
+       the crank held while the air is on. For each: **the percentage,
+       and where it hisses** — tailpipe, throttle, oil filler, bubbles
+       in the coolant tank, the next plug hole. **Cylinder 3 twice**:
+       the crank turned two full turns between the two readings;
+     - **a warm compression test on all four** straight after, the
+       throttle held open;
+     - **the cam cover off: VW's tappet check** — the cam of each tappet
+       pointing up, the play felt; more than 0.2 mm, the tappet renewed;
+       otherwise each pressed down with a plastic or wooden wedge and a
+       0.2 mm feeler tried between cam and tappet; the eight results
+       into the chat;
+     - **6m's injector circuits** while the intake is off;
+     - **the lower manifold's gasket**: renewed if the garage takes
+       the lower manifold off as well (the tear at runner 4).
+   - With VCDS connected anyway after a stored P030x: **a generic
+     OBD-II read** (modes 02 and 06), read only, saved.
+   - **No head off** (*the owner*, 4/11, leaning, not final): if the
+     leak-down names 3's exhaust seat, the car is driven as it is and S1
+     most likely closed as *acceptable, cause known*.
+
+8e. **Postponed to the end** (*the owner*, 11/11). When it is done, at a
+   cold engine, from below:
    - **The rear probe's lead, all the way to its connector**: where it
      runs, whether it touches or lies within a finger's width of the
      exhaust or the converter, any melted, shiny or hardened
@@ -151,69 +206,6 @@ start of a warm stop*).
      with, whether either turns further at the effort they were
      tightened with. Which, and about how far, into the chat; nothing
      undone.
-8i. **The timing belt's marks, at a cold engine** (with 8e if it falls
-   the same day): the upper belt guard off; the crank turned by hand in
-   the direction of rotation until cylinder 1 is at TDC, **the notch on
-   the crankshaft pulley against its mark** (within about 5 mm); then
-   **the camshaft sprocket's mark against its mark** on the cover or the
-   head. **A photograph of each mark, square on**, into the chat; nothing
-   loosened. Then the guard back on.
-8f. **032 for 20 s at every session with VCDS connected**, until both
-   cells have held for three drives.
-8g. **The probes' loom flexed with the ignition on, engine off**, Claude
-   in a session on the laptop, VCDS on **033 036** logged (the fault
-   memory read first); best together with 8e, the car already on its
-   place for it. **First, whether the readings are live**: each probe's
-   connector off for about 10 s and back on, one at a time, said in the
-   chat; with the front one off, the multimeter between the harness
-   side's signal pin (the one the probe's black wire meets) and the
-   body, the reading into the chat. Then the owner moves each probe's lead and connector and the
-   loom towards the ECU by hand, a few seconds each, saying in the chat
-   which and when. **Never with the engine running**: nothing under the
-   car or by the exhaust while it runs. After it, the fault memory.
-8h. **The loads against the sensors' voltages**, Claude in a session on
-   the laptop (with 8g's if it falls the same day), a warm engine after
-   a drive, the car standing, the owner in the driver's seat:
-   `usbtin_capture.py` running; the fault memory read first.
-   - **Idle, the everyday state, every load off that can be**; then, 30 s
-     each, on and off again with 30 s between: **the A/C, the rear window
-     heater, main beam, the blower on 4**, one at a time; the rear window,
-     main beam and the blower said in the chat as each goes on and off
-     (the A/C and the lights Claude reads off the bus).
-   - The whole sequence three times, VCDS logging a different set each
-     time: **004 033 036**, then **004 060 002**, then **004 026 041**.
-   - Nothing under the bonnet or the car while the engine runs. After it,
-     the fault memory.
-9. **After the clean of 9/11, by what the next stops show** (Claude says
-   which):
-   - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
-     a kit.
-   - **A stethoscope (or a long screwdriver) on the cam cover above
-     cylinder 3, hot**, against 1, 2 and 4: a tick or a hiss on one, at idle.
-   - **One garage session with the upper intake off, straight after a
-     drive** (oil at 80 °C or more), in this order:
-     - **a warm leak-down on all four**: all four plugs out (the same
-       plugs back afterwards; plug 3's gap measured while out); each
-       cylinder at TDC on its compression stroke, firing order 1-3-4-2;
-       the crank held while the air is on. For each: **the percentage,
-       and where it hisses** — tailpipe, throttle, oil filler, bubbles
-       in the coolant tank, the next plug hole. **Cylinder 3 twice**:
-       the crank turned two full turns between the two readings;
-     - **a warm compression test on all four** straight after, the
-       throttle held open;
-     - **the cam cover off: VW's tappet check** — the cam of each tappet
-       pointing up, the play felt; more than 0.2 mm, the tappet renewed;
-       otherwise each pressed down with a plastic or wooden wedge and a
-       0.2 mm feeler tried between cam and tappet; the eight results
-       into the chat;
-     - **6m's injector circuits** while the intake is off;
-     - **the lower manifold's gasket**: renewed if the garage takes
-       the lower manifold off as well (the tear at runner 4).
-   - With VCDS connected anyway after a stored P030x: **a generic
-     OBD-II read** (modes 02 and 06), read only, saved.
-   - **No head off** (*the owner*, 4/11, leaning, not final): if the
-     leak-down names 3's exhaust seat, the car is driven as it is and S1
-     most likely closed as *acceptable, cause known*.
 
 ## Standing items
 
@@ -407,7 +399,11 @@ follows the harness instead): a leak or a poor earth is as likely
 anywhere on the way as at a connector, and an earth eyelet the
 probes' returns share is H21's shared earth itself.
 
-**8e's sockets and 8g, the probes' circuit** (`open.md` H21, added
+**8e's sockets and 8g, the probes' circuit** — *8g dropped and 8e
+postponed 11/11 (*the owner*: the rear probe has no direct hand in the
+mixture, no probe code was ever stored before 10/11, the broken-looking
+terminal may be how it was made; the probes are watched through 8f's
+036 instead); kept for what it argued* (`open.md` H21, added
 10/11 evening at the owner's request): the swap changed the probes and
 their own plugs, not the harness side, so a fault there survives it —
 S23 in full, S19's idle cell perhaps. **With the ignition on and the
