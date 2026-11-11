@@ -1871,8 +1871,9 @@ test had held it upside down.* **The canister blown through** (*owner*,
 11/11): in at either top port, out at the other; with that one closed,
 out at the vent at the bottom, a little harder — **it passes everywhere**.
 Why it was bypassed is not known: the canister shows no fault; the
-owner's guess, at the same time as the leaking fuel filter was taped,
-cannot be dated.
+owner's guesses — at the same time as the leaking fuel filter was
+taped, or a cracked rubber piece at one port joined straight across
+rather than replaced (11/11) — cannot be checked.
 
 ### S23. The new rear probe's signal falls to zero under load — P0137
 
