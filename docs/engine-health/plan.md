@@ -99,12 +99,14 @@ start of a warm stop*).
 8k. **The reading after the canister went back** (from 11/11 evening):
    - **Now, on the laptop, before the first drive**: the engine started
      and left idling; **Claude runs**
-     `python tools/vcds_log.py --groups 032 055 --seconds 20 --out
-     "C:/Users/Luboš/Downloads/8k-before 32-55 26-11-11.CSV"`
-     — the fault memory is read before and after by the same run.
+     `python tools/vcds_log.py --groups 032 055 014 --seconds 120 --out
+     "C:/Users/Luboš/Downloads/8k-before 32-55-14 26-11-11.CSV"`
+     — the fault memory is read before and after by the same run; 014
+     added by the owner (11/11) to watch the misfires beside the
+     adaptations; the oil temperature at the start into the chat.
      Nothing else at this session; no CAN capture (the MFD stays in).
      Claude reads the faults out to him with their status; the files
-     into `test/fixtures/vcds/` as `vcds-step8k-before-adaptations-032-055.csv`
+     into `test/fixtures/vcds/` as `vcds-step8k-before-032-055-014.csv`
      and `vcds-step8k-before-faults*.txt`.
    - **Then drive normally with the MFD in** (item 6): at each warm stop
      that comes anyway, `IdleHealth` and `Misfires` in the everyday
@@ -594,7 +596,9 @@ or the next is the one moment it can be told from a seat or a guide.
 laptop, the rest on the MFD): 032 now is the cell **before** any drive
 with the canister in, so the drives after it name what the plumbing
 did; the cells change only with driving, so the engine need not be
-warm. The fault memory goes with every VCDS session (`CLAUDE.md`). No
+warm. **014** (*the owner*): the misfires beside the adaptations; a cold
+engine's count is not a warm stop's, so it is read against the cold
+idles before, and the warm stops are the MFD's. The fault memory goes with every VCDS session (`CLAUDE.md`). No
 capture: the MFD and a capture are one or the other. The filler cap on
 a hot day is the one check of the overpressure, which a November day
 cannot give.
