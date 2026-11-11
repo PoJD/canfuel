@@ -1350,8 +1350,11 @@ had been tucked into the box with the harness that morning.
 ## 11/11 evening — the charcoal canister found bypassed
 
 - **Repairs:** the rubber elbow that joined the two lines cut off;
-  **the canister plumbed back** — the line from the filler neck's valve
-  to the canister's large port, the line to N80 to its small port, each
+  **the canister plumbed back** — the line to N80 (the thin one with the
+  red mark) to the canister's wider port, the line from the filler neck's
+  valve to its narrower one, as the lines reach (*owner*; which port VW
+  meant for which was not found; the two top ports pass freely into
+  each other, so the canister works either way, *reasoned*), each
   with a new rubber piece, eased on with a heat gun; the tank's line,
   set crooked by years joined, bent back with heat; **a clip on every
   end**, and the tank's line tied above the joint so the rubber does not
