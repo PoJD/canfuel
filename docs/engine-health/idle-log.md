@@ -1374,8 +1374,9 @@ had been tucked into the box with the harness that morning.
     **the canister passes**: in at either top port, out at the other,
     and with that one closed out at the vent, a little harder (*owner*);
     with both top ports closed nothing passes from the vent; the line
-    across its top the mould's, not a crack (the album, 18:55); the canister out, **`1HM 201 801 B`**,
-    nothing rattling, dry inside to the borescope (*owner*);
+    across its top the mould's, not a crack (the album, 18:55); the
+    canister out, **`1HM 201 801 B`**, nothing rattling, dry inside to
+    the borescope (*owner*);
   - *not known:* who bypassed the canister and when — not in the
     owner's time.
 
