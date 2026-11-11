@@ -23,7 +23,7 @@ belt's marks) and 8e at the next cold engine, with the rear probe's lead
 and both probes' sockets**,
 8g with it at a laptop session (ignition only), 8h (the loads against the
 sensors' voltages) at a laptop session, and 8f at every VCDS session; item 6 and 6i, 8b (two captured warm stops, a cut on
-4 at about minute 10) and 6m for cylinder 4 after them (*the owner*, 10/11
+4 at about minute 10), then 8a (the new N80, ordered 11/11) and 6m for cylinder 4 after them (*the owner*, 10/11
 and 11/11; `open.md` H11, *The relearn drive*, S23; S1, *The rough
 start of a warm stop*).
 
@@ -92,9 +92,26 @@ start of a warm stop*).
      spark or a blue glow; then a fine water mist over one lead at a time
      and the coil, hands and bottle clear. Write anything seen and which
      lead the engine stumbled at.
-8a. **The purge valve N80, only if P0440 comes back**: Bosch `0 280 142 353`, VW `1C0 906 517 A`, the same as the
-   one on the car; the hoses stay; afterwards, warm, the owner runs
-   **basic setting 070** and photographs it; then item 6's warm stops.
+8a. **The purge valve N80, the new one ordered by the owner (11/11)**:
+   Bosch `0 280 142 353`, VW `1C0 906 517 A`, the same as the one on the
+   car; the hoses stay. In this order, the day it is fitted:
+   - **Optional, the owner's choice: the old valve tested warm on the
+     car**: after a drive, engine idling, N80's connector off, the hose
+     from the canister off N80, the vacuum gauge on N80's canister-side
+     port for a minute. Any vacuum on the needle: it leaks. The reading
+     into the chat; the hose and the connector back.
+   - **032/055 and the fault memory read with VCDS** just before the swap.
+   - The swap; **the old valve kept**, not thrown away.
+   - While it is out: **a photograph of its two hoses to where they
+     join** (the T at the throttle) and of the vacuum hose of the
+     secondary-air valve N112 to where it joins.
+   - Afterwards, warm, the owner runs **basic setting 070** and
+     photographs it; then item 6's warm stops, and **032 read after the
+     first two drives** (8f).
+   - **Best after both of 8b's stops**, so they read the old valve.
+   - **At any engine lamp from now on**: the odometer, the tank's needle
+     and the outside temperature into the chat, and 032 read before the
+     code is cleared.
 8b. **Two captured warm stops with a cut on 4**, on two different days,
    Claude in a session on the laptop each time, fuel above reserve: the
    USBtin in and the MFD out before the ignition; `usbtin_capture.py`
@@ -528,7 +545,25 @@ so a flake may come loose and lodge under a seat, an 18/10-like
 drop-out; if one comes, a warm leak-down on that cylinder the same day
 or the next is the one moment it can be told from a seat or a guide.
 
-**Item 8a — the purge valve, conditional** (*the owner's decision*,
+**Item 8a, from 11/11** (*the owner*: the part ordered "to be sure",
+after the research of 11/11 on P0172 and P0440; `open.md` S21, *Read
+11/11*): N80 is the one part VW's fault table for this engine names
+under both codes, and the Bosch check behind P0440 opens the valve at
+idle and fails when lambda and the idle air hardly answer — what a valve
+that already leaks while closed would give. **The tests so far were
+weak**: blown by mouth (about 0.1–0.19 bar at most) against 0.6–0.7 bar
+of vacuum across it at idle, and 25/10's canister cut off cold only.
+**The gauge on the canister-side port, warm, N80 unplugged** is VW's own
+test (TSB 2034072, written for US cars), so it is offered, not planned:
+the owner declined a warm A–B–A with the hose plugged on 6/11. **032
+before and after** says what the valve carried: an idle cell still at
+−6 to −9 % with a tight new valve clears it of the standing offset.
+**The photographs** because whether N112 and N80 share a vacuum tap is
+not recorded. **After 8b** so that both captured stops read one valve.
+**The details at a lamp** because this ECU keeps no freeze frame; with
+them the next code can be set against fills, tank and weather.
+
+**Item 8a — the purge valve, conditional until 11/11** (*the owner's decision*,
 6/11 night: *this was "replaced after item 8's readings", his decision
 of the same evening, until the valve was out*; **kept so 11/11**, after
 the second research, *the owner's decision*: no swap and no pinched hose
@@ -536,8 +571,9 @@ at 8b). Out of the car it
 passed air unpowered not clearly at all, at most "really very little"
 (*owner*), it had no granules or fuel behind it, and it was cleaned with
 its contacts and refitted (`idle-log.md`). The part is known and fits;
-**a code once in eight years is acceptable** (*the owner*), so it is
-bought if P0440 comes back. *Until 9/11 also "or if item 8 leaves the
+**a code once in eight years is acceptable** (*the owner*), so it was
+to be bought if P0440 came back — *until 11/11, when he ordered it all
+the same (above)*. *Until 9/11 also "or if item 8 leaves the
 idle as it was and the purge path is the next candidate"*: the clean
 changed cylinder 3, and P0440 was not stored that day. **The part**: the valve taken out on
 6/11 is itself Bosch `0 280 142 353`, VW `1C0 906 517 A`, date code

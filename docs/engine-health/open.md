@@ -288,7 +288,8 @@ one after a gentle drive, the cut on 4 at about minute 10** — whether
 3's rough start follows the drive before it (S1, *The rough start of a
 warm stop*);
 **6m's injector circuits** for 4's kept deficit;
-**the purge valve N80 only if P0440 comes back** (H16, S21, 8a); item
+**the purge valve N80, ordered 11/11 by the owner, fitted after 8b with
+032 read before and after** (H16, S21, 8a); item
 9's tests (the coolant's CO₂ test, the stethoscope, then one garage
 session with the upper intake off: a warm leak-down with 3 twice, a
 warm compression, VW's tappet check, 6m, the gasket) by what those show.
@@ -1734,6 +1735,49 @@ days before. **Read by what follows**: the code back after the clearing
 says a standing fault, not back says a one-off; the fault memory is read
 on 9/11 anyway (`plan.md` 8). **Read 9/11 at every phase: no P0440**,
 only the cut's codes (`vcds/vcds-step8-faults.txt`).
+
+**Read 11/11, with P0172 and every recent code** (*the owner's
+question*: one cause, or only the car driven more? the research of
+11/11; scripts not kept). **Of eleven codes since August three came by
+themselves** — P0303 (18/10), P0172 (23–24/10), P0440 (6/11); P0411 and
+P0137 follow found faults (the torn secondary-air hose, the rear
+probe's harness), the rest were provoked (cuts, a hose pulled, the
+stick on the pedal). **The car is driven far more**: about 75 km a day
+since 23/10 against 2–14 km a day in every year since 2018; the one
+period like it, 9/2017–2/2018 (about 68 km a day), holds the first
+P0440. *Reasoned*: the purge check runs at every warm idle, so a system
+near its threshold shows a sporadic code more often the more the car is
+driven — **it explains P0440 coming back well, P0172 less** (5/2019 came
+in a year of little use). **How the check works** (VW's manual for the
+2.0 in the Golf IV; Bosch patents US5243853, US5604305): with no leak
+detection pump it is a flow check — at a warm idle without load N80 is
+opened and the lambda correction and the idle air watched; too little
+answer is the fault, and a load on the idle weakens the answer. **One
+part fits both codes**: VW's fault table for this engine names N80
+under 16556 and 16824 alike, and a valve that leaks a little while
+closed would feed vapour the idle trim takes up (rich) and leave
+little to answer when opened (P0440) (*reasoned*). **Against or not
+shown**: the canister cut off on 25/10 left the idle cell as it was
+(cold only); out of the car N80 hardly passed air — by mouth, about 0.1–
+0.19 bar at most against 0.6–0.7 bar of vacuum across it at idle, so
+weak; P0440 not back on 9/11; and neither explains the positive
+part-load cell. **Separate causes fit as well**: P0172 from the
+regulator's cracked vacuum hose found in its window, P0440 from N80, its
+line or the canister's vent. **The car's own data**: no step in 032 at
+any fill (none larger than one VCDS step); live 001 at a warm idle
+−1.6 to +0.6 % in every session; the warm idle's fuel flow on 0x480 no
+different with the tank full or low beyond about 3 %; both codes of 2026
+in the bottom third of a tank (two cases). **The one odd record is 24/10
+night** (`41`, P0172 still stored, its adaptation in force): +20.5 %
+while warming, against −2.6 to +6.2 % in nine other cold sessions — the
+stored cell was taking away fuel the engine no longer needed, so
+P0172's rich source was passing and gone at a cold idle, when nothing
+is purged. The tests left are `plan.md` 8a's: the old valve warm under
+the gauge (offered), 032 before and after the new one.
+⚠ 0x288 b2 bit 5 (*not looked into* in `docs/firmware/can-decoding.md`)
+is set in the captures with the lamp lit and clear in `41` with P0172
+stored — perhaps the ECU's lamp request; not decoded, nothing rests on
+it.
 
 ### S23. The new rear probe's signal falls to zero under load — P0137
 
@@ -3694,7 +3738,10 @@ every reading since the MAF was replaced on 24/9 (−3.1, −0.8, −2.3, 0.0,
 clearing's reset), while the part-load cell reads +2 to +6 %.
 **Somewhere a fixed amount of fuel joins the charge that the ECU did not
 meter**, and a fixed amount shows most where the air is least, at idle
-(*reasoned*). Nothing in these files has said where it comes from.
+(*reasoned*). Nothing in these files has said where it comes from. **11/11** (S21, *Read 11/11*): VW's fault
+table names N80 under both P0172 and P0440, the one part it does; the
+tests behind the "against" below were cold or by mouth, never warm under
+the idle's vacuum; the new valve is ordered (`plan.md` 8a).
 
 **How the system works** (*general*, not from this ECU's documentation):
 the tank vents into a charcoal canister; N80 sits between the canister and
@@ -3803,6 +3850,9 @@ the pulses, **no liquid fuel**. **What it leaves:**
   8a; *this said "replaced after item 8's readings", his decision of the
   same evening, and before that "not replaced"*) **9/11: the clean changed
   cylinder 3 and no P0440 was stored, so now only if P0440 comes back.**
+**11/11: ordered all the same** (*the owner*, "to be sure", after the
+research on P0172 and P0440; S21, *Read 11/11*), fitted after 8b with
+032 read before and after (`plan.md` 8a).
 
 **The valve's pulses against the dips** (6/11 night, *at the owner's
 question*). The owner heard the valve click **about 4–5 times a second**
@@ -4514,7 +4564,7 @@ is in git.
 | 9 | **H2** a leak ahead of the converter | **10/11 evening one down** (H21 added above it); **10/11 widened, not moved** (*the owner* agreeing): the zone between the front probe and the converter added — the joint, the flex, the plugged boss — which gives the rear probe's lean idle in full but not 032 or the dips (H2); **9/11 late evening one down** (H11 above it); **9/11 evening one down** (the belt above it); **down 31/10 from fourth** (*agreed with the owner*): the manifold seen from close below, rusty but no soot marks and no holes, its joint to the head nothing visibly wrong from below (H2); the part under its heat shield unseen; S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test (`plan.md` 7), both zones |
 | 10 | **H0** normal for this engine | **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **9/11 evening one down**; no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
 | 11 | **H8** throttle and idle control | **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **9/11 evening one down**; **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
-| 12 | **H16** the purge valve leaking | **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **6/11 night down from seventh** (*agreed with the owner*): out of the car the valve hardly passed air unpowered, and its pulses do not line up with the dips (H16, *The valve's pulses against the dips*); before that **6/11 evening up from eleventh**: P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the weak firings in pairs do (the idle's 1½-min waves turned out the radiator fan, S1); a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | the valve replaced only if P0440 comes back (`plan.md` 8a; the clean of 9/11 changed 3, so not "nothing"); 6/11 night, out of the car, it hardly passed air unpowered |
+| 12 | **H16** the purge valve leaking | **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **6/11 night down from seventh** (*agreed with the owner*): out of the car the valve hardly passed air unpowered, and its pulses do not line up with the dips (H16, *The valve's pulses against the dips*); before that **6/11 evening up from eleventh**: P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the weak firings in pairs do (the idle's 1½-min waves turned out the radiator fan, S1); a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | the valve ordered 11/11 (*the owner*), fitted after 8b with 032 before and after, the old one warm under the gauge if he chooses (`plan.md` 8a); 6/11 night, out of the car, it hardly passed air unpowered |
 | 13 | **H20** coolant into cylinder 3 | **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **added 4/11** (*the owner*, weak): one cylinder at idle, where its pressure is lowest; plug 3 the cleanest of the 10/10 set; against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos | a combustion-gas (CO₂) test of the coolant (`plan.md` 9) |
 | 14 | **H18** oil past the stem seals | **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); added 26/10: worse after idling, calm after a working drive; all four alike; **no blue smoke ever**, plugs dry | the oil level on the fresh oil (`plan.md` 6i) |
 | 15 | **H12** driveline play | — | done: the clutch minutes cleared it |
