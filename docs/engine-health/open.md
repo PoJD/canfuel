@@ -1107,7 +1107,7 @@ strokes — a step 12 rpm or more under the cylinder's own median — per
 | `44` (9/11, before the clean) | +4 | **−11** | −1 | +8 | 1 / 4 / 2 / 0 | 58 % |
 | `45` (the gas, the clean's last idle) | +6 | **−13** | +1 | +6 | 0 / 1 / 0 / 0 | one weak stroke in 4,400 |
 | `46` (9/11, after the clean) | +3 | **−10** | −3 | +10 | 3 / 6 / 6 / 1 | 38 % |
-| `47`, `48` (10/11 evening) | +5, +4 | **−15, −14** | +4, +4 | +6, +6 | 3 / 16 / 2 / 1 | 73 %, 61 % |
+| `47`, `48` (10/11 evening) | +5, +4 | **−15, −14** | +4, +4 | +6, +6 | 3 / 16 / 2 / 1 and 2 / 6 / 2 / 0 | 73 %, 61 % |
 
 - **Cylinder 3 is the weak one in every warm idle on record, 10–20 %
   under the mean** — from 24/9 on (`19`, the first warm idle long
