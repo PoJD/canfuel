@@ -74,8 +74,13 @@ finding:**
   be put to a cylinder by VCDS**. The only per-cylinder readings it has
   are the knock ones — 020 and 022/023 (timing retard) and 026 (knock
   sensor voltage) — and those see the engine under load, not at idle.
-  Engine speed on the bus cannot name a cylinder either
-  (`open.md`, *Naming the cylinder*).
+  **The bus does name them, since 12/11**: `tools/cylscan.py --vcds LOG
+  CAPTURE` puts each rise of 014 at a standing idle to the cylinder of
+  the weakest stroke before it — 1,135 rises so far, 80 % on cylinder 3
+  since 21/10 (`open.md` S3, *What 014 counts, by cylinder*; *Naming
+  the cylinder*). *This said "engine speed on the bus cannot name a
+  cylinder either" until then.* It needs a capture beside the log, so
+  not a drive with the MFD in.
 
   **What the number is** — Bosch's patents on misfire detection
   (DE19547058B4, DE19622448B4, DE19814732A1, DE10010459; read 3/10/2026),

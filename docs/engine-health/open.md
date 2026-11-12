@@ -72,8 +72,9 @@ record** — and settled after its cut to about 50, 3 near the others,
 to its last: **no rough start, 3 level with 1, 014 at 0.12–0.14 %, and
 the dips on all four alike** (25 % on 3 against 48 % at stop 3), **but
 not below stop 3's settled level**; 4's steady deficit (5–8 %) and 2's
-strength are as before. **With the provider's gas flowing at idle the
-idle had no dips at all** (8,700 strokes, `IdleHealth` 14–29); S22's
+strength are as before (*4's deficit was the crank wheel's and 3's is
+steady: the third research, 12/11, below*). **With the provider's gas
+flowing at idle the idle had no dips at all** (8,700 strokes, `IdleHealth` 14–29); S22's
 tick, heard during the clean, was closed that evening as the clean's own
 sound (`refuted.md` D11) and reopened 11/11 night. One stop each side.
 
@@ -137,7 +138,8 @@ forums say*, 11/11; S1, *The rough start of a warm stop*, *How the weak
 strokes follow each other*; S23): **two things on top of each other** —
 **cylinder 3 weak in the first 5–8 minutes of a warm stop after a hot
 drive** (the early dips on one slot, p 8 × 10⁻⁵; settled, hardly), and
-**a settled floor of about 40–55 loads off with 4's steady deficit**,
+**a settled floor of about 40–55 loads off with 4's steady deficit**
+(*3's, read 12/11: the third research, below*),
 which neither the clean nor the gas touched; **the probes are out of
 the idle**. The weak strokes come in spells of seconds on one cylinder,
 and the stroke after a weak one in the same cylinder is less often weak
@@ -186,6 +188,34 @@ the session at the car called it the settling seen before, which holds
 for the level alone). **New: P0300 and P0303
 stored on the drive, no cut, the lamp not seen** (S3); the limiter
 touched once. Cleared by the owner.
+
+**The third research, 12/11** (*the owner's request*: the idle and what
+014 counts, read again from the raw captures; `tools/cylscan.py`, kept;
+S1, *Every stroke named*; S3, *What 014 counts, by cylinder*; *Naming
+the cylinder*, *The count that does not slip*). **Three things in how
+the bus was read were wrong, and they hid one cylinder.** The stroke
+count slipped (cylinders named at a cut were two slots off minutes
+later); **the crank wheel itself alternates by 0.217 % of engine speed**
+— 1.7 rpm at idle, measured on the overrun with no fuel, cylinders 2 and
+3 reading high — and **that alternation was "cylinder 4's steady
+deficit"**; and a stroke's loss shows a quarter in the slot before its
+own. With all three taken out: **cylinder 3 gives 10–20 % of a stroke
+less than the mean in every warm idle on record (from 24/9), and cold,
+with the A/C and on the provider's gas; cylinder 4 is level warm since
+October; 2 and 1 are above.** **What 014 counts is cylinder 3**: of 1,135 rises
+of 014 at a standing idle put to a cylinder, **65 % on 3 and 30 % on 4
+up to 18/10, 80 % on 3 since the VW leads** (85 % without `46`), 1 and 2
+together 5–6 % throughout. **Cold, 4 is weak with 3** (the weak strokes
+3 > 4 > 1 > 2, the borescope's order of the deposit but for 1 and 2).
+**And 3's state moves over minutes**: at an unloaded warm idle its
+deficit grows from about −14 to −26 % with its misfires, **then falls in
+one step to a floor of about −9 %** — after an injector cut, with the
+A/C, or by itself (10/11's "four calm minutes" are that step, 17:38);
+the idle's grade follows it (r −0.6 over 205 warm windows). **The small
+steps of a few rpm are on all four** (3 a fifth more than 1 and 4, 2 the
+least); the misfires are not. **Proposed to the owner, not decided**:
+list B before list A; H3, H4 and 6m read for 3, not 4 (*The idle's
+candidates, ranked*).
 
 **Open:**
 
@@ -357,11 +387,19 @@ order kept** — P0303 without a cut names 3 again, where H13 and H1
 already sit; H16's part-load cell held on a second drive. **12/11, H16
 from sixth to third** (*the owner's decision*): the two calm nights on
 the canister; H3, H4, H7 one down.
+**Re-read 12/11, the third research: proposed, the owner decides** —
+the misfires and the steady deficit are cylinder 3's, so list B (H13 and
+H1 on 3) before list A; "4's deficit" gone from H3, H4 and H7's one
+injector, which are read for 3; H16 kept where it is until the captured
+stop on the canister is read by cylinder (*The idle's candidates,
+ranked*).
 
 **Next** (`plan.md`; *the owner*, 10/11–12/11): **a warm drive
 captured, the MFD out, ending in a warm stop of 10 minutes or more** —
 which part of the idle the canister lowered (item 6; *The idle's
-candidates, ranked*); **the new rear probe
+candidates, ranked*), **read with `tools/cylscan.py --minutes`: 3's
+deficit and weak strokes minute by minute against every stop before the
+canister**; **the new rear probe
 back to the seller and a new one fitted**; **014 in every logged
 drive** (P0303, S3); **8i, the timing
 belt's marks, at the next cold engine**; **8e (the probes' harness)
@@ -528,6 +566,12 @@ each after a motorway run, each with a 30 s cut on 4:
   against 50, the rest after the pattern 40 against 33, the dips 2.6
   against 2.7 a thousand. **4's steady deficit (5–8 %) and 2's strength
   stayed as they were**, as on `31` and `43`.
+  ⚠ *Re-read 12/11* (*Every stroke named*): "4's steady deficit" in
+  this table and these bullets is the crank wheel's alternation; **3's
+  deficit was −18 to −27 % in stop 3's rough minutes, −9 % settled, and
+  −7 to −9 % through stop 7** — not gone after the clean, at its floor;
+  014's rises at stop 7 fell on 4 (16 of 25), the one capture where
+  they did.
 - **Around it, the same capture**: **straight after the clean**, the
   hose off with the engine running, oil 104 °C: about 60, and **3 still
   6–7 % short for the first 2½ minutes**, 3 % for the next five (named
@@ -608,7 +652,9 @@ each after a motorway run, each with a 30 s cut on 4:
   the gas into it (10:16–10:22), 4 stays the weak slot (+4.4 to +7.1 %
   before, +4.9 to +5.8 % with the gas) while the grade falls from 49–54
   to 18–23**. The advance hardly moved (3.1° before,
-  2.6–4.9° with it). **Read** (*reasoned*):
+  2.6–4.9° with it). ⚠ *Re-read 12/11*: the slot that stayed is the
+  crank wheel's alternation with **3's deficit** under it (−9 to −13 %
+  with the gas, *Every stroke named*); "4" here is 3. **Read** (*reasoned*):
   - **This file's reading holds and sharpens.** The dips are strokes at
     the edge of stable burning (*What one dip is worth*); a quicker,
     more easily lit charge (*general*: hydrogen's ignition energy about
@@ -675,7 +721,9 @@ is the H13 branch for 3 (the deposit that `43` and the borescope put on 3
 was what made 3 the worst). **4's deficit and the settled level were
 kept**: the clean took the part that came and went with the minutes, not
 the floor; 4 has a cause of its own — H3 at runner 4 (its gasket edge
-torn, 5/11), H4 in 4's circuit, H1's inlet seat on 4. ⚠ **One stop each
+torn, 5/11), H4 in 4's circuit, H1's inlet seat on 4. ⚠ *Re-read 12/11*
+(*Every stroke named*): 4 has no steady deficit warm; **the floor's
+one-cylinder part is 3's too**, −9 % at its best. ⚠ **One stop each
 side, and the rough start is the thing that varies most between stops**:
 stop 3's own second half read like stop 7, and straight after the clean
 3 was still short. **What would settle it**: a second captured warm stop
@@ -976,7 +1024,11 @@ clusters on 3 below) and are superseded.*
 
 **A steady pattern over the cylinders, apart from the dips** (5/11, the
 owner's request for a fresh look at the data; scripts not kept, the
-reading is described here). The step from one firing to the next carries
+reading is described here). ⚠ **Re-read 12/11** (*Every stroke named*,
+below): the pattern is real, but **1.7 rpm of it is the crank wheel's
+own alternation**, and with that out the weak cylinder is **3 alone**,
+4 level and 2 and 1 above; the figures here stand as measured, their
+names for 4 do not. The step from one firing to the next carries
 a **period-4 component of 3–6 rpm** (0.2–0.9 with the steps shuffled): a
 steady difference in what each cylinder gives, present with no dip at
 all. **It is about a third of `IdleHealth`**: over 318 warm loads-off
@@ -1026,11 +1078,102 @@ strokes at a time (the shifted pattern correlates 0.9–1.0 with the
 cut's), so the bridged run's count slips while the cylinders stay put.
 **Named only next to the cut, the pattern is larger than the figures
 above**, which were averaged across slips: `43` 3 +8, 4 +7, 1 −1,
-2 −14 % (90 s each side of the cut). **`cutscan.py --name` keeps the
+2 −14 % (90 s each side of the cut). *Superseded 12/11 by `tools/cylscan.py`, whose
+count does not slip and which takes the wheel out: `43` 1 +5, 3 −13,
+4 +2, 2 +6 %.* **`cutscan.py --name` keeps the
 cut's phase for the whole run**, so far from a cut it names some dips
 two slots off: `44` 22 of 60 on 3 at the fixed phase, 29 followed;
 `46` 10 of 40 and 8 of 35; **`43` 28 of 65 and 25 of 61, so its
 naming of 3 holds**. The tool itself is not changed.
+
+**Every stroke named: one weak cylinder, and it is 3** (12/11, the
+third research, *the owner's request*; `tools/cylscan.py`, kept, with
+its tests; how the count, the wheel and the spread were found is in
+*Naming the cylinder*, *The count that does not slip*). Every standing
+idle of every `_z1` capture, each stroke on its cylinder for the whole
+run, the crank wheel's alternation taken out, each stroke's loss
+gathered from the two slots it shows in. **Per cent of one stroke's
+work against the four's mean** (a cylinder out is −100), and the weak
+strokes — a step 12 rpm or more under the cylinder's own median — per
+1000 of its strokes:
+
+| captures, warm (oil ≥ 85 °C) | 1 | 3 | 4 | 2 | weak per 1000: 1 / 3 / 4 / 2 | 3's share of the weak |
+|---|---|---|---|---|---|---|
+| `19` (24/9, the old MAF) | +8 | **−13** | −11 | +16 | 5 / 26 / 38 / 6 | 35 % |
+| `24`–`31` (24/9–10/10) | +6 to +13 | **−11 to −18** | −7 to +1 | +1 to +13 | 1–7 / 13–32 / 5–16 / 0–5 | 48–75 % |
+| `32`–`39` (12–18/10) | +4 to +11 | **−10 to −20** | −4 to +3 | +7 to +9 | 0–3 / 6–37 / 2–7 / 0–2 | 55–77 % |
+| `40` (21/10, VW leads) | +6 | **−14** | +1 | +7 | 5 / 15 / 3 / 1 | 64 % |
+| `42`, `43` (3/11, the original map) | +2, +5 | **−14, −13** | +1, +2 | +10, +6 | 5 / 15 / 4 / 1 | 58 %, 62 % |
+| `44` (9/11, before the clean) | +4 | **−11** | −1 | +8 | 1 / 4 / 2 / 0 | 58 % |
+| `45` (the gas, the clean's last idle) | +6 | **−13** | +1 | +6 | 0 / 1 / 0 / 0 | one weak stroke in 4,400 |
+| `46` (9/11, after the clean) | +3 | **−10** | −3 | +10 | 3 / 6 / 6 / 1 | 38 % |
+| `47`, `48` (10/11 evening) | +5, +4 | **−15, −14** | +4, +4 | +6, +6 | 3 / 16 / 2 / 1 | 73 %, 61 % |
+
+- **Cylinder 3 is the weak one in every warm idle on record, 10–20 %
+  under the mean** — from 24/9 on (`19`, the first warm idle long
+  enough to read), on three sets of plugs and of leads, two MAFs and
+  both maps; **the injectors were changed once, before `19`, so this
+  does not clear injector 3**. **Cylinder 4 was weak on 24/9 (−11 %)
+  and is level warm since early October**; 2 and 1 give more than the
+  mean throughout. On the one earlier cold start (`18`, 11/9, the old
+  injectors) 4 was the weakest, −14 %, and 3 −5 %. *This file said "3 and 4 weak, 2
+  strong" and "4's steady deficit, 5–8 %" until 12/11*: the crank
+  wheel's alternation reads cylinders 1 and 4 low by 1.7 rpm at idle
+  and 3 and 2 high, which took 3's deficit for 4's.
+- **3's deficit is there in every state**: cold (−11 to −17 % under
+  60 °C of oil), warm, **with the A/C on (−10 %, its weak strokes
+  nearly gone: 1.6 per 1000 against 12)** and **on the provider's gas
+  (−9 to −13 %, one weak stroke in 4,400)**. So the gas and a load take the
+  misfires and leave the deficit: *reasoned*, 3 gets or keeps less
+  charge than the others all the time — its air, its fuel, or what it
+  holds through compression — and that same shortage puts it nearest
+  the edge at the smallest charge, where its strokes fail.
+- **Cold, 4 is weak with 3**: under 60 °C of oil 4 gives 6–14 % less
+  (`18`–`41`) and the weak strokes fall **3 > 4 > 1 > 2** (45 / 34 /
+  15 / 6 % of 1,700 on `24`–`39`; 54 / 23 / 16 / 7 % of 310 on
+  `40`–`47`) — **the borescope's order of the deposit, 3 > 4 > 2 > 1,
+  but for the last two** (H13). Warm, 4's weak strokes fell from 38
+  per 1000 (`19`) to 2–7 from 12/10 on: what the leads and the MAF
+  cured was mostly 4's.
+- **3's deficit moves over minutes, and falls in a step**
+  (`--minutes`; per cent, and 3's weak strokes in each minute):
+  `44` stop 3, after the motorway: **−18, −19, −19, −23, −27** with
+  11, 12, 3, 12, 12 weak strokes, the 30 s cut on 4, then **−10, −9,
+  −8, −9, −9** with 0–1; `43`: −14, −18, −18 up to its cut, −7 to −10
+  after, climbing back to −14 by the tenth minute; `47`, **no cut**:
+  −15, −15, −14, −14, −17, −20, **−26, −22**, then **−9, −10** from
+  17:38 — *the four calm minutes that were "unexplained"*; `40`: −14
+  with 22 weak strokes in the first minute, **the A/C on: −9 to −11
+  with none**, the A/C off: −11 climbing to −22 over seven minutes.
+  So **"a warm stop starts rough and settles" is 3's state**, it is
+  not tied to the stop's first minutes (`40`, `47`), and **what ends it
+  is a jolt — a cylinder cut, a load, or nothing seen** — not time.
+  Over 205 warm loads-off windows of 30 s since 21/10 the grade
+  correlates −0.6 with 3's deficit; 3's weak strokes go from 0.6 a
+  window at −8 % to 4.8 at −22 %, the other three's stay at 1.2–1.7.
+- **The small steps are on all four.** With each cylinder's own
+  median taken out, the scatter of a stroke is 3.5 rpm rms on 1 and 4,
+  4.2 on 3 and 2.9 on 2 (`40`–`47`, warm, 146,000 strokes): the
+  everyday unevenness under the misfires is common, 3 a fifth above,
+  2 a sixth below — the strongest cylinder is the steadiest. That
+  part is what "the common part" of the two lists measures; **the
+  misfires that 014 counts are not in it** (S3).
+- **What it does not say**: why 3 is short. Not its plug or its lead,
+  each changed twice with 3 unchanged, and not the coil, whose other
+  tower fires 2, the strongest; **left for 3 alone: its valves, seats,
+  guides and lifters (H1), the deposit on them (H13), its runner's
+  joint (H3), its injector — one of the set fitted before 24/9, never
+  swapped — and its wiring (H7, H4), coolant (H20)**. A slow growth
+  ended by a jolt fits something that settles and is shaken off — a
+  valve not quite seating on its deposit until it turns or a flake
+  moves, a lifter — better than a leak, a wire or a short injector,
+  which have no reason to mend at a cut on another cylinder
+  (*reasoned*, weakly: the mean mixture did not differ between the
+  swell and the calm at `44`'s stop 3, 001's regulation −0.2 % in
+  both, so it is not the trim creeping).
+  ⚠ The deficit's scale rests on the cuts (a dead stroke is 34 rpm of
+  step); the names on the strongest slot being 2's, which held at all
+  eight cuts and puts 014's misfires where the ECU's own P0303 does.
 
 **The idle speed target** (0x288 b5, decoded 10/11 at the owner's
 request, `docs/firmware/can-decoding.md`, *The bus byte by byte*; *the
@@ -1122,6 +1265,10 @@ coolant weep into 3 would fit the pressure after a hot drive (H20).
 ⚠ Older captures show swells every 4–6 minutes rather than one rough
 start (`31`, `32`, `28`); whether they are the same thing in stops of
 another length is not known.
+**Read 12/11** (*Every stroke named*): they are — 3's deficit swelling
+and falling back in a step; the "rough start" is a swell that happens
+to be under way on arrival, and `40` and `47` show one starting minutes
+into a stop.
 
 **How the weak strokes follow each other** (11/11, *the research*;
 `dipshape.py`'s warm runs, each step against its cylinder's median,
@@ -1307,6 +1454,43 @@ completing rather than load (`refuted.md` C19).
   16:51–17:17 (shorter than 150 s, so summed per stop) **0–0.58 %, 0.24 %
   over them**, the stop at the end **0.15 %** at 25–26 % load, with the
   rear probe reading zero (S23).
+- **What 014 counts, by cylinder** (12/11, the third research;
+  `tools/cylscan.py --vcds`, kept). The ECU has no per-cylinder counter
+  (`vcds.md`), but the bus names the stroke: each rise of 014 between
+  two samples at a standing idle, recognition on, is put to the cylinder
+  of the weakest stroke in the interval before it (the rise shows about
+  0.2 s after its stroke; the log set against the capture on engine
+  speed to 0.05 s; cuts left out). **1,135 rises** in 27 logs beside 16
+  captures:
+
+  | | rises | 1 | 3 | 4 | 2 |
+  |---|---|---|---|---|---|
+  | `24`–`39` (24/9–18/10) | 840 | 26 | **544 (65 %)** | 252 (30 %) | 18 |
+  | of them `31`, `32` (10–12/10, the NGK leads) | 329 | 13 | 162 | 146 | 7 |
+  | `40`–`47` (21/10–10/11, the VW leads) | 295 | 13 | **237 (80 %)** | 40 (14 %) | 5 |
+  | of them `41` (cold, oil 52–63 °C) | 49 | 3 | 36 | 8 | 2 |
+  | `43` (3/11) | 31 | 1 | 29 | 0 | 1 |
+  | `44` (9/11, stop 3's storm and the stops before) | 78 | 5 | 63 | 9 | 1 |
+  | `46` (9/11, after the clean) | 25 | 2 | 7 | **16** | 0 |
+  | `47` (10/11 evening) | 37 | 1 | 35 | 0 | 1 |
+
+  Where the weakest stroke is at least 12 rpm under its median — the
+  name is surest there — 3 has 63 % and 4 34 % of 580 up to 18/10, **3
+  has 82 % and 4 15 % of 197 since**; 1 and 2 together 3 %. **So 014's
+  count at idle is cylinder 3's misfires, with 4's beside them until
+  the leads of 10–21/10** — on the NGK leads 4 had as many as 3 — and
+  **1 and 2 are next to never counted**. The ECU's own name agrees:
+  P0303 on 18/10, after `43`'s cut and on 12/11. `46` is the one
+  capture where 4 leads, at stop 7 after the clean and round its cut on
+  4. **How deep a stroke is counted** (the same rises; warm, 16,000
+  sample intervals): at 20–28 % load a stroke 20 rpm and more under its
+  median is counted about two times in three, 17–20 rpm one in two,
+  14–17 one in three, 11–14 one in seven; at 31–36 % load one in three
+  at best — the threshold that rises with load (*What it counts*).
+  *Reasoned*: a count of 12 is a real, nearly whole misfire of one
+  cylinder (a dead stroke reads 24–33 rpm in its own slot at a cut's
+  first stroke), not the idle's general unevenness; **S3 closes when
+  cylinder 3 stops misfiring**.
 - **Three properties to keep in mind** (`refuted.md` A11, A12): steps of 12;
   off below ~20 % load; its sensitivity per dip moved five- to fiftyfold with
   the MAF. **So 014 is a yes/no witness, not a ruler.** Compare across time
@@ -2368,7 +2552,7 @@ engine leak, a falling dipstick level is oil burnt, not lost.
 | S14 ↔ S2 | **likely one mechanism** (*owner*) | a misfire's charge burning in the exhaust, loud when the fuel cut adds air |
 | S14 ↔ S3 | **possible** | 014 is blind on the overrun, so it cannot be aligned |
 | S4 ↔ S5 | **very likely one thing** | same window, same speeds; S5 needs no combustion |
-| S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle; the dips sat on 3 and 4 until the VW leads (all four alike since), and lead 4's end was the loosest (`refuted.md` C24) |
+| S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle; 014's misfires sat on 3 and 4 until the VW leads and on 3 since (S3, *What 014 counts, by cylinder*; *this said "all four alike since" until 12/11*), and lead 4's end was the loosest (`refuted.md` C24) |
 | S19 ↔ the bad start of 24/10 | **suspected one event** (*owner*) | same window, both what a cylinder flooded while standing gives (S19) |
 | S21 ↔ S19 | **possible, through H16** (*reasoned*) | both would sit on the purge path; no event links them |
 | S12 ↔ S3 | **possible** (*reasoned*) | 014 counted seven single misfires on `47`, each in a window holding a moving-off (S12) |
@@ -2411,6 +2595,14 @@ and its column went with it; the closed ones are in
 
 ### H0. The idle is normal for this engine — and there is no fault to find
 
+**Re-read 12/11, the third research** (S1, *Every stroke named*; S3,
+*What 014 counts, by cylinder*): **against.** The misfires are one
+cylinder's — 80 % of 014's rises on 3 since 21/10, 1 and 2 next to
+never — and 3 gives 10–20 % less than the mean at every warm idle; an
+engine idling at its limit by design would spread them over four.
+What is left for H0 is the small unevenness on all four (about 3.5 rpm
+rms a stroke), which no repair has moved.
+
 | S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | ~ | ~ | ~ | ✘ | — | ~ | — | ~ | ✘ | ✘ | ~ | — | ~ | — |
@@ -2429,6 +2621,19 @@ loads off — whether a sound engine of this family also counts above VW's
 of the grade or of the pair.
 
 ### H1. A lifter or valve on one cylinder (valvetrain)
+
+**Re-read 12/11, the third research** (S1, *Every stroke named*):
+**for, and the cylinder is 3 by every measure** — its steady deficit
+(−9 % at its floor), its misfires (80 % of 014's rises), and a state
+that **swells over minutes of unloaded idle to −26 % and falls back in
+one step** at a jolt (a cut on 4, the A/C coming on, or nothing seen):
+what a valve that does not quite seat until it turns or sheds a flake,
+or a lifter, gives, and what a leak, a wire or a short injector has no
+reason to. Against a valve that leaks all the time: the cold
+compression (A4), and on the overrun 3's slot reads level with the
+others' (0.0 ± 0.13 rpm) — a closed throttle hardly loads a seat, so
+weak. **The warm leak-down with 3 twice (item 9) is the test of the
+cylinder now named.**
 
 A hydraulic lifter that bleeds down, or a valve that seats late or not quite,
 on one or two cylinders. *General.* **Widened 4/11/2026** (*agreed with the
@@ -2654,6 +2859,17 @@ their check first (`plan.md` 8e) and the warm tailpipe test after it.
 
 ### H3. A small unmetered air leak at one intake runner
 
+**Re-read 12/11, the third research** (S1, *Every stroke named*): **the
+runner is 3's, not 4's.** "4's steady deficit", which runner 4's torn
+gasket edge was held to explain, was the crank wheel's alternation;
+warm, 4 is level. What is left is what this entry already names: **the
+lower manifold's gasket at runner 3, never renewed.** For: 3 short in
+every state and nearest the edge at the smallest charge; cold, 4 weak
+beside it — two neighbouring runners and a joint that closes on one
+as it warms (*reasoned*). Against: 032's idle cell is negative where
+a leak asks for fuel, the smoke test showed nothing (9/10), and a
+leak has no reason to swell over minutes and mend in a step.
+
 Air past the MAF leans one cylinder at idle, where air flow is smallest.
 *General.* **The only candidate that predicts *load helps* directly.**
 *Widened 4/11/2026 to a line entering the plenum near runner 3, and
@@ -2724,6 +2940,12 @@ gasket renewed** and the injector O-rings looked at — a repair that tests
 by its result.
 
 ### H4. Weak spark from what feeds the parts (earth, wiring, coil feed)
+
+**Re-read 12/11, the third research** (S1, *Every stroke named*): what
+is left of it is read **for 3**: the injector loom where it reaches 3
+(6m, flexed while measured). 3 alone carries the deficit and the
+misfires since the VW leads; 4's share went with the leads. A wire has
+no reason to cost a steady 9 % in every state, so weak.
 
 **Much weakened, kept last of the electrical side.** Measured clean: the
 coil's ground and supply for a gross fault, the engine's earth under load,
@@ -2855,6 +3077,22 @@ Explains how S4 changed between logs, not S5. **Test:** 020 + 026 after a few
 hundred km without a disconnect.
 
 ### H7. Fuel delivery at idle: rail pressure, one injector
+
+**Re-read 12/11, the third research** (S1, *Every stroke named*):
+**the one-injector form is injector 3's.** Cylinder 3 gives 10–20 %
+less than the mean at every warm idle since this set was fitted
+(before 24/9), in every state, the provider's gas included — and a
+short injector does exactly that, since less fuel is less work however
+well it lights; plug 3 is the cleanest. The set was changed once,
+before the first warm capture, so nothing has cleared injector 3.
+Against: a short injector does not swell over minutes and mend in a
+step; the mean mixture did not move between swell and calm (001). **It
+is the one cause on 3 that can be tested without opening the engine:
+injectors 3 and 2 exchanged** — the weakest cylinder's for the
+strongest's — and one captured warm idle read with `cylscan.py`: the
+deficit moves to 2 or stays on 3. *The owner put an injector swap down when Claude
+first proposed it (*The idle's candidates, ranked*, the re-reads);
+proposed again 12/11 with the cylinder named, his to decide.*
 
 | S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -3819,6 +4057,15 @@ a sticking pedal (`refuted.md` D6).*
 
 ### H13. Deposits after years of gentle driving — inlet valves, chambers, ring lands
 
+**Re-read 12/11, the third research** (S1, *Every stroke named*):
+**for.** Cold, the weak strokes fall 3 > 4 > 1 > 2 and 4 is weak beside
+3 — the borescope's order of the deposit (3 > 4 > 2 > 1) but for the
+last two — and warm it is 3 alone, the cylinder with the most. A
+deposit that soaks fuel cold fits both cylinders cold; a seat or a
+stem that carries it fits 3 warm, its swell and its step (H1).
+Against: the clean left 3's floor where it was (−9 % before its cut at
+stop 3's end and −7 to −9 % at stop 7) and 3 led again a day later.
+
 *Added 15/10 at the owner's request.* The engine seldom saw more than
 3000 rpm for at least nine years (*owner*). Gentle use builds deposits where
 hard use burns them off (*general*).
@@ -4062,6 +4309,16 @@ of 032 came back at once (S19), so the split is not the map's either.
 ### H15. ~~The aftermarket leads (and plugs) — NGK plug ends that grip loosely~~ — refuted 4/11, `refuted.md` C24
 
 ### H16. The purge valve N80 does not seal — fuel vapour into the intake
+
+**Re-read 12/11, the third research** (S1, *Every stroke named*; S3):
+**the misfires 014 counts are cylinder 3's, and every line joins the
+intake in its common part** (H3, *owner*, 4/11), so the purge path
+cannot make them by itself; what it can do is move the mixture of all
+four and tip the one cylinder that is already 9 % short. **So the two
+calm nights on the canister are read by cylinder**: if the captured
+stop shows 3's deficit at its floor with no swell, the canister took
+away what tips 3; if 3 swells as before and the stop is calm all the
+same, the calm is in the small steps on all four.
 
 *Added 24/10 at the owner's request.* For **the rich idle trim, S19 and,
 since 6/11, S21**, not for the idle itself. 032's idle cell has read at or below zero in
@@ -4387,6 +4644,12 @@ test does not reach the seals.
 
 ### H20. Coolant into cylinder 3 — a weep at the head gasket or the head
 
+**Re-read 12/11, the third research** (S1, *Every stroke named*): 3 is
+the cylinder by every measure, which this entry needs; a weep would be
+worst after a hot drive, as the swells often are, but they also start
+minutes into a stop and end in a step (`40`, `47`), which pressure
+falling slowly does not give. Its test stands (the CO₂ test, item 9).
+
 *Added 4/11/2026 at the owner's request*, as a weak candidate after `43`
 named cylinder 3. **The claim** (*general*): a millilitre a day past the
 gasket or a hairline in the head next to 3 enters where the cylinder's
@@ -4539,7 +4802,9 @@ first).
 The bus carries no cylinder identification and 014 has no per-cylinder
 counter. Two things name cylinders: the **injector cuts** (one connector off
 at a warm idle), which mark their slot through a long run, and
-the fault codes they leave. **10/10** (`31`): cuts of 1, 4, 4, 1.
+the fault codes they leave; **and since 12/11 a third, with no cut: the
+strongest slot is cylinder 2's** (*The count that does not slip*,
+below; `tools/cylscan.py`). **10/10** (`31`): cuts of 1, 4, 4, 1.
 **3/11 evening** (`43`): one cut of 57 s on 4.
 
 **The leads' order on the coil** (*owner-read off the car, 1/10/2026*):
@@ -4548,6 +4813,60 @@ side by side, the two pairs the coil fires together in the firing order
 1-3-4-2. Which tower the coil itself calls which cylinder is not read.
 *Dropped by the condensation of 20/10 and put back 21/10, when the leads
 were changed.*
+
+### The count that does not slip, the wheel, and the spread
+
+*12/11, the third research; `tools/cylscan.py`, kept, and
+`tools/test_cylscan.py`.* Three corrections to how a stroke is put to a
+cylinder; **every share and pattern below this section was read without
+them** and is kept as measured, its names superseded where they differ
+(S1, *Every stroke named*; S3, *What 014 counts, by cylinder*).
+
+- **The count.** `cutscan.bridged_runs()` counts strokes by how long a
+  value was held and loses one at two equal neighbours or a missing
+  frame — the slips of 9/11. Engine speed integrated over time is crank
+  angle, one stroke per 180°; `cylscan.track()` rounds that to a stroke
+  index and lets every change of 0x280's value correct the phase a
+  twentieth of its error. The rounding error stays under half a stroke
+  (99.9 % of changes within ±0.42 on `09`, `31`, `43`); **on `31` one run of 883 s holds the four
+  cuts (1, 4, 4, 1) on their own two slots**, and no run slips.
+- **The crank wheel alternates, and it is not combustion.** Successive
+  strokes read alternately high and low: cylinders **2 and 3 high, 1
+  and 4 low** — the two pairs that share a half of the wheel.
+  **Measured where nothing burns**, on the overrun with the fuel
+  counter standing (`--wheel`, 850 windows of 40 strokes): **0.216–0.226 %
+  of engine speed in each of thirteen captures** from 24/9 to 10/11
+  (0.216–0.222 in the ten with twenty windows or more), and the same in every band
+  from 1450 to 2500 rpm (3.2 rpm at 1500, 5.4 at 2400) — proportional
+  to speed, as an angle error of about 0.2° of crank is and a
+  combustion difference is not. The neutral holds of August (`10`,
+  `15`: 0.22–0.23 %) and the clean's 55 minutes at 1,850 rpm (4.1 rpm,
+  steady to ±0.05 from window to window) read the same. **Named**: followed from the clean's 1,850 rpm down
+  into the idle after it in one count, and from twelve overruns into
+  the idles after them, the high slots are 2's and 3's, and with the
+  alternation taken out each cylinder's slot on the overrun reads
+  **0.0 ± 0.13 rpm** (*ad-hoc script, not kept; the tool measures the
+  size*). At idle it is **1.7 rpm** — as large as the pattern over the
+  cylinders it sits under. It lowered 4 and 1 and raised 3 and 2:
+  **"4 weak, 3 hardly" was 3 weak, 4 level.** VW says the ECU learns
+  the same error on the overrun for its own misfire detection (SSP 175,
+  `vcds.md`); the speed it sends on the bus is not corrected.
+- **The spread.** A stroke's loss shows in two values: about a quarter
+  in the one before its own slot. The first dead stroke of each cut
+  reads −7 to −18 rpm and then −24 to −33 (`31`, `41`, `43`, `44`,
+  `46`); 6,000 isolated weak strokes read 0.22–0.33 of their own step
+  already in the value before. In a steady cut the three live cylinders' gain
+  hides it, which is why the cuts never showed it.
+  `cylscan.deviation()` undoes it with the wheel.
+- **The names.** With no cut in a run, the strongest slot is taken for
+  2 (*the owner's idea*, 9/11): it is 2's at all eight cuts, and it
+  puts 014's rises on the cylinder the ECU's own P0303 names.
+- **What it changes below**: `41`, cold, is not "all four alike" —
+  3 has 56 % of its weak strokes and 36 of 014's 49 rises; `40` to
+  `47` put 58–73 % of the weak strokes on 3 where the dips' shares
+  read 41–48 %; the "pattern, % of a stroke" columns carry the wheel
+  (4 too low, 3 too high by about 5 % of a stroke each, 2 too high and
+  1 too low likewise).
 
 ### One cylinder or two
 
@@ -4944,7 +5263,8 @@ is in git.
 **Two lists since 12/11** (*the owner's decision*, the lists proposed by
 Claude): the idle is two things on top of each other, and they are
 measured apart. **The steady pattern over the cylinders** — 3 and 4
-weak, 2 strong — **is about a third of `IdleHealth`**: over 318 warm
+weak, 2 strong (*3 alone weak, read 12/11: the re-read below*) — **is
+about a third of `IdleHealth`**: over 318 warm
 loads-off windows the grade averages 78, and 51 with each window's four
 slot means taken out (S1, *A steady pattern over the cylinders*); the
 rough start of a warm stop after a hot drive is mostly that pattern
@@ -4974,7 +5294,9 @@ reach the four runners alike, so H16 is not ruled out of list B either.
 
 **B. One cylinder — what makes 3 (or 4) worse than the rest**
 (the steady pattern over the cylinders and the rough start of a warm
-stop after a hot drive, about a third of `IdleHealth`):
+stop after a hot drive, about a third of `IdleHealth`; ⚠ *read 12/11:
+the cylinder is 3 alone, and "4's deficit" in the rows below was the
+crank wheel's alternation — the re-read under the tables*):
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
@@ -4990,6 +5312,29 @@ stop after a hot drive, about a third of `IdleHealth`):
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | — | **H12** driveline play | — | done: the clutch minutes cleared it |
+
+**Re-read 12/11, the third research — proposed, the owner decides**
+(S1, *Every stroke named*; S3, *What 014 counts, by cylinder*;
+`tools/cylscan.py`). The two lists stand, but what each one holds is
+not what the split assumed:
+- **List B is the misfire and the swell, and its cylinder is 3 only.**
+  80 % of what 014 counts since 21/10, the 10–20 % deficit at every
+  warm idle, and the minutes when the grade doubles are all 3's.
+  "3 (or 4)" in its heading, and "4's deficit" in the rows of H3, H4
+  and H7, were the crank wheel's alternation: **H3 is runner 3's lower
+  gasket, H4 the loom at 3, H7 injector 3.**
+- **List A is the small unevenness on all four** — about 3.5 rpm rms a
+  stroke, 3 a fifth above — and nothing 014 counts. It is most of
+  `IdleHealth`'s floor and none of S3.
+- **Proposed order**: B before A, since S3 and the grade's swings are
+  B's; inside B: **H13 and H1 on 3** first as now, **H7's injector 3
+  second** (the one cause on 3 testable with no dismantling, by
+  exchanging injectors 3 and 2), H3's runner 3, H20, H4. Inside A as
+  it is, **H16 first until the captured stop on the canister is read
+  by cylinder** (H16, above).
+- **What would be read first**, in this order of cost: the captured
+  warm stop already planned (which list the canister moved); injectors
+  3 and 2 exchanged; item 9's warm leak-down with 3 twice.
 
 **Re-read 12/11, H16 from sixth to third** (*the owner's decision*,
 the place proposed by Claude; H16, *12/11 night*): the stops near home

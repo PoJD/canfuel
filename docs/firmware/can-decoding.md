@@ -489,6 +489,22 @@ smooth recordings differ from the rough ones there, not in the tail past
 anchors, which is the engine investigation's finding in one row: the repair did
 not make the idle smooth.
 
+
+**Third, two things ride on that value, measured on this car 12/11/2026**
+(`tools/cylscan.py`; argued in `docs/engine-health/open.md`, *The count
+that does not slip, the wheel, and the spread*). **Successive values
+alternate by 0.217 % of engine speed** — 1.7 rpm at idle, 4 rpm at
+1,850 — high for the strokes of cylinders 2 and 3, low for 1 and 4,
+with the fuel cut and nothing burning as much as at idle: the two
+halves of the crank wheel a segment is timed over are not quite equal,
+and the speed on the bus is not corrected for it. And **a stroke's loss
+shows about a quarter in the value before its own**. Neither changes a
+constant here: `IdleHealth` grades the step from one value to the next
+whatever makes it, and its deadband (`ROUGH_DEADBAND_RPM`) is above the
+alternation; but **anything that puts a step to a cylinder has to take
+both out first**, and a period-4 pattern in this value is not by itself
+a difference between cylinders.
+
 ---
 
 ## VCDS measuring blocks

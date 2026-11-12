@@ -40,7 +40,9 @@ start of a warm stop*).
      014, 020, 033 over the whole drive and the stop**; 032 and 055 for
      20 s before the drive and after the stop (8f). Once the oil is at
      90 °C or more, **two or three full-throttle pulls** in 3rd or 4th
-     to about 5,500 rpm where it is safe. Write the stops.
+     to about 5,500 rpm where it is safe. Write the stops. **No
+     injector cut**: Claude names the cylinders from the capture
+     (`tools/cylscan.py`).
    - **The converter carries `Misfires` and `MisfAvg`** (0x604 layout 2,
      flashed by Claude on 4/11, the stored trip and tank kept). **The
      owner uploads `tri/S-AQY.TRI`** from `mfd15` to the display through
@@ -72,9 +74,10 @@ start of a warm stop*).
    eight. While each value is on the display, **flex the loom near 3 and
    4** and watch it. Write every value, and any that moved.
    **5/11: only 1 and 4 reachable with the intake on** (*owner*); the rest
-   with the upper intake off — **in item 9's garage session, for 4's
-   deficit, which the clean left** (*agreed with the owner*, 9/11
-   evening; the session since 11/11). (5/11: contact cleaner went into 4's
+   with the upper intake off — **in item 9's garage session; injector
+   3's circuit is the one to watch and to flex** (12/11; *this said
+   "for 4's deficit, which the clean left", agreed 9/11 evening, until
+   then*). (5/11: contact cleaner went into 4's
    connector and T3 at the first look, `vehicle-history.md`.)
 6n. **The injector circuits to the ECU** — later, only with VCDS on the
    laptop: 032/055 read first (unplugging the ECU may reset them, as a
@@ -344,7 +347,17 @@ part fell** — `idledips.py --roughness` for the whole and
 steady pattern over the cylinders*; the 5/11 script that took the slot
 means out was not kept, so the split is computed again on the
 capture). The common part down and 3's and 4's pattern as before is
-list A's, H16 first; the pattern gone too is list B's as well. The stop
+list A's, H16 first; the pattern gone too is list B's as well.
+**Read by cylinder since 12/11** (`tools/cylscan.py --minutes`, kept;
+`open.md` S1, *Every stroke named*): the part with a cylinder is **3's
+deficit and 3's weak strokes** minute by minute — a floor of about −9 %
+of a stroke and swells to −26 % with up to twelve weak strokes a minute
+on every stop before the canister — and "4's pattern" was the crank
+wheel's alternation. **3 at its floor with no swell through ten minutes
+is list B's part gone; 3 swelling as before under a calm grade is list
+A's.** **No injector cut in these captures**: the cut was there to name
+the slots, the strongest slot names them now, and a cut is one of the
+things that ends a swell, so it would spoil the reading. The stop
 of 10 minutes because the settling takes 3–8.
 
 **The groups on the captured drive** (12/11, three at a time): **014**
@@ -404,7 +417,9 @@ c11dc75:docs/engine-health/plan.md`, item 8). **What it showed**: 3's
 excess — its share of the dips, its steady deficit, the rough first
 minutes of a warm stop and 014's storm — was not there at stop 7, which
 is the H13 branch for 3; **4's steady deficit and the settled level were
-kept**. **8c, the probes read before and after both were replaced, is done**
+kept** (*re-read 12/11: the steady deficit is 3's, −9 % at its floor
+before and after the clean, and "4's" was the crank wheel's
+alternation — `open.md` S1, *Every stroke named**). **8c, the probes read before and after both were replaced, is done**
 (9/11 night and 10/11; `open.md` H11, *The reading before the swap*,
 *The reading after the swap*; how it was planned and why: `git show
 1040e9e:docs/engine-health/plan.md`, item 8c): the new rear probe flat
@@ -554,10 +569,14 @@ before; the captures `40`–`48` and the display's stops already show the
 rough start after high revs (`open.md` S1, *The rough start of a warm
 stop*), and item 9's leak-down decides between H1 and H3 anyway. *Until
 11/11 morning 8b was one stop after a brisk run with the cut at minute
-3.* **6m for 4** because 4 is now the cylinder with a
-deficit of its own, and its injector circuit is the cheapest of the
+3.* **6m for 4** because 4 was held to be the cylinder with a
+deficit of its own, and its injector circuit the cheapest of the
 three causes that act on 4 alone (H4; H3's runner gasket and H1's inlet
-seat cost the intake off or a leak-down). **The display's stops** with a
+seat cost the intake off or a leak-down). **Since 12/11 it is read for
+3**: the deficit and the misfires are cylinder 3's (`open.md` S1,
+*Every stroke named*; S3, *What 014 counts, by cylinder*), 4 is level
+warm, and the measurement is the same six pairs and four coils with
+the loom flexed at 3. **The display's stops** with a
 word on what came before each, because a brisk run calms the idle by
 itself for a while (`open.md` S1, *After high revs*) and the display's
 spread is as large as the effect; the A/C's figure for `open.md` S1's
