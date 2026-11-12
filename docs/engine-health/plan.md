@@ -18,7 +18,8 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next, until the new N80
+Captures only where an item asks for one. **Now, 12/11 evening: 6q,
+the queue drive**, Claude on the laptop. **Next, until the new N80
 is fitted (expected the weekend of 14–15/11)**: **the MFD stays out
 and the drives are captured** (item 6, *the owner*, 12/11), each with
 **014** and **032 read before and after** — the old valve's 032 against
@@ -62,6 +63,44 @@ S1, *The rough start of a warm stop*). *Done: 8j and its first drive
    - **A hard jerk at a crawl or on moving off** (`open.md` S12): the
      clock time into the chat as soon as it is safe, with the gear and
      roughly the speed; on a captured drive, **"teď"** at once.
+6q. **The queue drive of 12/11 evening** (*the owner*: about an hour,
+   much of it queuing, a laptop session, the USBtin and VCDS wholly
+   Claude's — any block, any interval, changed as the drive goes).
+   **The owner**: drives as the traffic lets him; the A/C off, the
+   everyday state; tells the chat only a change of the blower or the
+   seat heater. **At the last stop the engine idles on as long as he
+   has time, up to about 15 minutes**, nothing touched, no throttle;
+   6p's phone there if Claude says 3 is swelling. He says when he wants
+   to end; Claude reads the fault memory; then the engine off.
+   **Claude**, on the laptop:
+   - **Before the ignition**: `usbtin_capture.py` started, `livewatch.py`
+     on it, its line to the owner every minute. VCDS: the fault memory,
+     then **032 055 for 20 s** (8f). A code in the memory pauses the
+     drive (*Standing items*).
+   - **Phase A, from the start until the oil is at 90 °C and the first
+     queue**: **014 004 003** — the baseline, with the intake air's
+     temperature and the ECM's supply, never logged on a drive.
+   - **Phase B, the queue, about 15 minutes: 003 alone** — mass air,
+     throttle angle and advance at three rows a second.
+   - **Phase C, the queue, about 15 minutes: 001 alone** — the lambda
+     regulation at three rows a second.
+   - **Phase D, about 10 minutes: 014 alone** — every rise of the count
+     within two engine cycles.
+   - **The last stop**: **003 alone** from its start, through any swell
+     of 3's and two minutes past its fall (or 8 minutes with none);
+     then **001 alone** for 4 minutes; then **004 055 014** to the end.
+   - **Changed as it goes**: a stop that looks like lasting (a level
+     crossing, a closed road) with 3 swelling by `livewatch.py` is
+     treated as the last stop; a phase cut short by open road is taken
+     up again at the next queue; a group is never changed during a
+     swell. Each change is one stop of `vcds_log.py` and a new run, its
+     file named for the phase; the times of every change into the chat.
+   - **After the engine is off**: 032 055 for 20 s before anything is
+     cleared; the fault memory; then the capture as every captured
+     session (`CLAUDE.md`: the raw upload, the fixture `50_queue_drive`,
+     the lamp, `cylscan.py --minutes` and `--vcds`), and
+     `swellscan.py --series --falls` on it. VCDS logs as
+     `vcds-step6q-<phase>-<groups>.csv`.
 6p. **The phone through a swell** (agreed 12/11 evening), at a
    captured warm stop where Claude says 3 is swelling: the car in
    neutral, the parking brake on, nothing touched under the bonnet.
@@ -598,6 +637,44 @@ drawn in lowers its curve; it went into the rear connector on the
 morning of 10/11, the day the rear probe sank. Sealing the probe's own
 lead airtight could starve it the same way; the fabric tape over the
 harness side is not a seal.
+
+**6q, the queue drive** (*the owner's offer*, 12/11 evening: new data,
+faster sampling with one group, new connections; `IdleHealth` first but
+not only). The ECU answers about 3.35 blocks a second whatever is asked
+(`vcds.md`), so **one group alone is read three times as often as one
+of three, and that is the only speed there is**; every group chosen
+carries engine speed, which sets its log against the capture with no
+clock (`cylscan.align()`); 033 has none and is left out. What each
+phase is for (`open.md` S1, *The swell's shape, and what the common
+part follows*):
+- **003 alone** — the air, the throttle and the spark are what the ECU
+  gives the engine and none is on the bus. **For the common part**: the
+  idle control trims the advance stroke by stroke; whether the scatter
+  of the advance in a 10 s window goes with the common part in the same
+  window (H8: the regulation itself narrowing the margin) or not (H0,
+  the belt). **For 3's swell**: a seat that leaks costs charge, and the
+  governor makes it up — mass air creeping up with 3's deficit and
+  stepping down at its fall is for a seat (H1 with H13); level through
+  both is for a reading that only dilutes.
+- **001 alone** — the regulation read the same in the swell and on the
+  floor at 1.1 rows a second, twice; at three a second its swing's
+  period and size are read as well: a mixture that moves under all four
+  (H16, H11, H21) shows there or nowhere.
+- **014 alone** — a rise is put to a cylinder by the weakest stroke in
+  the interval before it (`cylscan.py --vcds`); at a third of the
+  interval, 2 cycles instead of 6, the name stops being a judgement.
+- **004** — the intake air warms through a queue under a closed bonnet,
+  minute by minute, as 3's swell grows; nothing else known to the ECU
+  drifts on that time. Set against 3's deficit within each stop. The
+  supply voltage beside it for H4.
+- **A queue drive is a gentle one**: the stops before now were read
+  after brisk drives or at one long stop; here the swell is read where
+  the high revs before are none (r −0.32 with them, the one relation
+  found), over many stops of every length.
+- **Read**: nothing found in any of it is a result too — it leaves
+  3's swell inside the cylinder and the common part with H0 and the
+  belt, where the bus alone already put them.
+*Done, it leaves both parts; its findings go to S1.*
 
 **6p, the phone through a swell** (*agreed with the owner*, 12/11
 evening; `open.md` S1, *The swell's shape, and what the common part

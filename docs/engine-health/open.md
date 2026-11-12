@@ -464,7 +464,10 @@ shape and the common part): **list A: the belt, H0, H16, then as
 before**; list B as it was, the swell read first as a seat on 3 that
 fouls and burns clean (H1 with H13).
 
-**Next** (`plan.md`; *the owner*, 10/11–12/11): **until the new N80
+**Next** (`plan.md`; *the owner*, 10/11–12/11): **now, 12/11 evening,
+6q: a captured queue drive of about an hour from the laptop, VCDS one
+group at a time** (003, 001, 014 alone, 004 beside them) for what the
+ECU sees through 3's swell and under the common part; **until the new N80
 (expected the weekend of 14–15/11) the MFD stays out and the drives are
 captured**, each with 014 and 032 before and after, gentle or brisk
 read off the capture — the old valve's baseline for H16, *The owner's reading, 12/11*
