@@ -69,8 +69,9 @@ Usage
 
     python dipshape.py CAPTURE...                  # warm (oil >= 80 C) idle
     python dipshape.py --min-oil 0 CAPTURE...      # every settled idle
-    python dipshape.py --name --order 4 CAPTURE    # a capture with a cut:
-                                                   # which cylinders cluster
+
+Which cylinder a weak stroke is on is cylscan.py's to say; `--name` here
+did it until 12/11/2026 on cutscan's bridged runs, whose count slipped.
 
 Injector cuts (`cutscan.find_cuts`) are left out with a 5 s margin, so a
 capture with a cut reads its ordinary idle only.
@@ -209,62 +210,6 @@ def idle_runs(path, min_oil=WARM_OIL_C):
     return out
 
 
-# --- naming ------------------------------------------------------------------
-
-def named_clusters(path, order):
-    """In a capture with cuts: the cylinder of every weak stroke.
-
-    Returns (singles {cyl: n}, cluster starts {cyl: n}, pairs {(a, b): n}).
-    Uses cutscan's bridged runs and its rule for naming a run by its cuts;
-    a stretch is cut wherever the bridge skipped a stroke, so a pair is
-    always two strokes that were both seen.
-    """
-    gated = idledips.series(path)[3]
-    cuts = cutscan.find_cuts(cutscan.stroke_runs(gated))
-    if len(cuts) != len(order):
-        raise SystemExit("found %d cuts, the order names %d"
-                         % (len(cuts), len(order)))
-    singles, starts, pairs = (collections.Counter() for _ in range(3))
-    for run in cutscan.bridged_runs(gated):
-        slot_of = []
-        for (a, b), cyl in zip(cuts, order):
-            w = [(i, r) for t, r, i in run if a + 5 <= t < b - 5]
-            if len(w) < 100:
-                continue
-            med = [statistics.median([r for i, r in w if i % 4 == k])
-                   for k in range(4)]
-            dead = min(range(4), key=lambda k: med[k])
-            slot_of.append((dead - cutscan.FIRING_ORDER.index(cyl)) % 4)
-        if len(set(slot_of)) != 1:
-            continue
-        base = slot_of[0]
-
-        def cyl(i):
-            return cutscan.FIRING_ORDER[(i - base) % 4]
-
-        keep = [p for p in run if not any(
-            a - CUT_MARGIN_S <= p[0] <= b + CUT_MARGIN_S for a, b in cuts)]
-        stretches, cur = [], []
-        for p in keep:
-            if cur and p[2] != cur[-1][2] + 1:
-                stretches.append(cur)
-                cur = []
-            cur.append(p)
-        stretches.append(cur)
-        for s in stretches:
-            idx = [i for _, _, i in s]
-            for d in dips(slot_level([(t, r) for t, r, _ in s])):
-                w = [idx[k] for k in d["weak"]]
-                if len(w) == 1:
-                    singles[cyl(w[0])] += 1
-                    continue
-                starts[cyl(w[0])] += 1
-                for a, b in zip(w, w[1:]):
-                    if b == a + 1:
-                        pairs[(cyl(a), cyl(b))] += 1
-    return singles, starts, pairs
-
-
 # --- the report ----------------------------------------------------------------
 
 def shape(ds):
@@ -283,26 +228,7 @@ def main(argv=None):
     ap.add_argument("captures", nargs="+")
     ap.add_argument("--min-oil", type=float, default=WARM_OIL_C,
                     help="oil at the start of a run, C (0 = every idle)")
-    ap.add_argument("--name", action="store_true",
-                    help="a capture with cuts: the cylinders of the weak strokes")
-    ap.add_argument("--order", default="4", help="the cut order, as cutscan's")
     args = ap.parse_args(argv)
-
-    if args.name:
-        order = [int(x) for x in args.order.split(",")]
-        for cap in args.captures:
-            singles, starts, pairs = named_clusters(cap, order)
-            print(cap.split("/")[-1])
-            print("  single-stroke dips by cylinder: %s (%d)" % (
-                " ".join("%d:%d" % (c, singles[c]) for c in (1, 2, 3, 4)),
-                sum(singles.values())))
-            print("  clusters by first weak cylinder: %s (%d)" % (
-                " ".join("%d:%d" % (c, starts[c]) for c in (1, 2, 3, 4)),
-                sum(starts.values())))
-            print("  consecutive weak pairs, in firing order: %s" % " ".join(
-                "%d>%d:%d" % (a, b, pairs[(a, b)])
-                for a, b in ((1, 3), (3, 4), (4, 2), (2, 1))))
-        return 0
 
     pooled, all_runs = [], []
     print("%-30s %7s %5s %6s %5s %5s %5s %6s" % (

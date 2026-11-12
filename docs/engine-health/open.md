@@ -214,9 +214,12 @@ A/C, or by itself (10/11's "four calm minutes" are that step, 17:38);
 the idle's grade follows it (r −0.6 over 205 warm windows). **The small
 steps of a few rpm are on all four** (3 a fifth more than 1 and 4, 2 the
 least); the misfires are not. **Agreed with the owner the same day**:
-list B before list A; H3, H4, H7 and 6m read for 3, not 4; **injectors
-3 and 2 exchanged as H7's test (`plan.md` 6o)**; no injector cut at the
-captured stop (*The idle's candidates, ranked*).
+list B before list A; H3, H4, H7 and 6m read for 3, not 4; no injector
+cut at the captured stop. **The injector itself is unlikely** (*the
+owner's argument*, the same day): 3 was the weak one on the old
+injectors in August too, so an exchange of injectors 3 and 2, agreed
+earlier, was withdrawn and H7's one injector put last in B
+(*The idle's candidates, ranked*).
 
 **Open:**
 
@@ -390,7 +393,7 @@ from sixth to third** (*the owner's decision*): the two calm nights on
 the canister; H3, H4, H7 one down.
 **Re-read 12/11, the third research, agreed with the owner** — the
 misfires and the steady deficit are cylinder 3's, so **list B before
-list A: H13 and H1 on 3, H7's injector 3, H3's runner 3, H20, H4**;
+list A: H13 and H1 on 3, H3's runner 3, H20, H4, H7's injector 3**;
 "4's deficit" gone from H3, H4 and H7; list A as it was, H16 first until
 the captured stop on the canister is read by cylinder (*The idle's
 candidates, ranked*).
@@ -400,8 +403,7 @@ captured, the MFD out, ending in a warm stop of 10 minutes or more** —
 which part of the idle the canister lowered (item 6; *The idle's
 candidates, ranked*), **read with `tools/cylscan.py --minutes`: 3's
 deficit and weak strokes minute by minute against every stop before the
-canister**, with no injector cut; **then injectors 3 and 2 exchanged and
-a warm idle captured (6o)**; **the new rear probe
+canister**, with no injector cut; **the new rear probe
 back to the seller and a new one fitted**; **014 in every logged
 drive** (P0303, S3); **8i, the timing
 belt's marks, at the next cold engine**; **8e (the probes' harness)
@@ -817,10 +819,14 @@ needs its cluster harness tapped behind the vent, which no owner will allow
 (*owner*, 21/10).
 
 **When S1 closes** (*decided*, 20/10; the owner closes it), read over several
-drives at 95–100 °C of oil: **(1) the dips no longer keep to a pair** —
-`cutscan.py --shares`, pooled since the last repair, consistent with all four
-alike; it needs no target, so it is the strongest mark — **met since the VW
-leads** (`40`, `41`), to be held over more drives; **(2) load is no
+drives at 95–100 °C of oil: **(1) the weak strokes no longer keep to one cylinder** —
+`tools/cylscan.py`, pooled since the last repair: no cylinder with
+more than its quarter of the weak strokes and of 014's rises beyond
+chance; it needs no target, so it is the strongest mark. **Not met**:
+3 has 58–73 % of the weak strokes on `40`–`47` and 80 % of 014's rises.
+*This read "the dips no longer keep to a pair — `cutscan.py --shares`"
+and "met since the VW leads (`40`, `41`)" until 12/11: that tool lost
+the phase and was removed (*Naming the cylinder*);* **(2) load is no
 longer needed** — loads-off `IdleHealth` within about 25 of loads-on (19/10:
 about 100 against 50); **(3) at least the best level shown**, loads off about
 50–60 (12/10, 15/10). Short of all three, the owner may close it as
@@ -1114,11 +1120,16 @@ strokes — a step 12 rpm or more under the cylinder's own median — per
 - **Cylinder 3 is the weak one in every warm idle on record, 10–20 %
   under the mean** — from 24/9 on (`19`, the first warm idle long
   enough to read), on three sets of plugs and of leads, two MAFs and
-  both maps; **the injectors were changed once, before `19`, so this
-  does not clear injector 3**. **Cylinder 4 was weak on 24/9 (−11 %)
-  and is level warm since early October**; 2 and 1 give more than the
-  mean throughout. On the one earlier cold start (`18`, 11/9, the old
-  injectors) 4 was the weakest, −14 %, and 3 −5 %. *This file said "3 and 4 weak, 2
+  both maps. **And before the injectors were changed (23/9), as far as
+  the short idles of August can say** (*the owner's question*, 12/11:
+  did 3 lead on the old set too): `09` (11/8, 60 s warm) **3 −19 %**,
+  `12` (25 s, the A/C on) **−11 %**, `17` (11 s) **−23 %**, `11` (25 s)
+  −21 % with the strongest slot too close to name; only the cold start
+  of 11/9 (`18`) had 4 the weakest, −14 %, and 3 −5 %. ⚠ Seconds, not
+  minutes, and the names rest on the strongest slot being 2's, which no
+  cut checked on the old injectors. **Cylinder 4 was weak on 24/9
+  (−11 %) and is level warm since early October**; 2 and 1 give more
+  than the mean throughout. *This file said "3 and 4 weak, 2
   strong" and "4's steady deficit, 5–8 %" until 12/11*: the crank
   wheel's alternation reads cylinders 1 and 4 low by 1.7 rpm at idle
   and 3 and 2 high, which took 3's deficit for 4's.
@@ -1161,11 +1172,13 @@ strokes — a step 12 rpm or more under the cylinder's own median — per
   part is what "the common part" of the two lists measures; **the
   misfires that 014 counts are not in it** (S3).
 - **What it does not say**: why 3 is short. Not its plug or its lead,
-  each changed twice with 3 unchanged, and not the coil, whose other
-  tower fires 2, the strongest; **left for 3 alone: its valves, seats,
-  guides and lifters (H1), the deposit on them (H13), its runner's
-  joint (H3), its injector — one of the set fitted before 24/9, never
-  swapped — and its wiring (H7, H4), coolant (H20)**. A slow growth
+  each changed twice with 3 unchanged; not the coil, whose other
+  tower fires 2, the strongest; **and hardly its injector**: 3 was the
+  weak one on the old set in August and on the new one since, and the
+  same place failing in two sets is unlikely (*the owner's argument*,
+  12/11). **Left for 3 alone: its valves, seats, guides and lifters
+  (H1), the deposit on them (H13), its runner's joint (H3), its
+  injector's wiring, which stayed (H4), coolant (H20)**. A slow growth
   ended by a jolt fits something that settles and is shaken off — a
   valve not quite seating on its deposit until it turns or a flake
   moves, a lifter — better than a leak, a wire or a short injector,
@@ -3081,20 +3094,15 @@ hundred km without a disconnect.
 ### H7. Fuel delivery at idle: rail pressure, one injector
 
 **Re-read 12/11, the third research** (S1, *Every stroke named*):
-**the one-injector form is injector 3's.** Cylinder 3 gives 10–20 %
-less than the mean at every warm idle since this set was fitted
-(before 24/9), in every state, the provider's gas included — and a
-short injector does exactly that, since less fuel is less work however
-well it lights; plug 3 is the cleanest. The set was changed once,
-before the first warm capture, so nothing has cleared injector 3.
-Against: a short injector does not swell over minutes and mend in a
-step; the mean mixture did not move between swell and calm (001). **It
-is the one cause on 3 that can be tested without opening the engine:
-injectors 3 and 2 exchanged** — the weakest cylinder's for the
-strongest's — and one captured warm idle read with `cylscan.py`: the
-deficit moves to 2 or stays on 3. *The owner put an injector swap down when Claude
-first proposed it (*The idle's candidates, ranked*, the re-reads);
-**agreed 12/11**, with the cylinder named: `plan.md` 6o.*
+the one-injector form would be injector 3's — 3 gives 10–20 % less at
+every warm idle, in every state, which a short injector does. **But 3
+was the weak one before the injectors were changed too** (`09`, `12`,
+`17` of August, −11 to −23 %, seconds each), **so the injector itself
+is unlikely: the same place would have to be bad in the old set and in
+the new** (*the owner's argument*, 12/11). An exchange of injectors 3
+and 2 was agreed earlier that day as its test and **withdrawn
+on this** (`plan.md` 6o, removed). What stays with the cylinder through
+a change of injectors is its wiring and the ECU's driver (H4, 6m, 6n).
 
 | S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 | S23 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -4873,6 +4881,15 @@ them** and is kept as measured, its names superseded where they differ
 
 ### One cylinder or two
 
+⚠ **This subsection and the next are the record of a method that is no
+longer in the tree.** `cutscan.py --shares`, `--name` and `--pairs` and
+`dipshape.py --name` counted strokes on a count that slipped and left
+the crank wheel's alternation in (*The count that does not slip*,
+above); **removed 12/11 at the owner's decision** (`git show
+f16bfd8:tools/cutscan.py`). Their figures stand as what was read then;
+every share and name here is superseded by S1, *Every stroke named*,
+and S3, *What 014 counts, by cylinder*.
+
 `cutscan.py --shares` fits the shares of the four firing slots to every run of
 three or more dips, each run's phase unknown; **bridged runs** keep the phase
 across held values (`cutscan.HOLD_SPLIT` = 1.75 stroke-times, read off the
@@ -5066,8 +5083,9 @@ and 4 alike** (S1, *A steady pattern over the cylinders*): warm, on `31` and `43
 
 The pair was already there on 11/8, on the 2022 leads and the old injectors.
 `--pairs` is kept for history only: pairs within a run are not independent.
-**After every captured session** the shares are reported to the owner, alone
-and pooled since the last repair (`CLAUDE.md`).
+**After every captured session** each cylinder's deficit, weak strokes
+and 014's rises are reported to the owner from `tools/cylscan.py`
+(`CLAUDE.md`; *this said "the shares" until 12/11*).
 
 ---
 
@@ -5290,10 +5308,10 @@ below was the crank wheel's alternation, the re-read under the tables):
 |---|---|---|---|
 | B1 | **H13** deposits | **12/11, the third research** (*agreed with the owner*): kept first, with H1, and for 3 by every measure — its steady deficit, 80 % of 014's rises, the swell and the step; **12/11, the idle split in two** (*the owner's decision*): 3's exhaust seat or a flake, read with H1; **11/11, after the second research, kept first and read with H1** (*agreed with the owner*): the rough start of a warm stop after a hot drive is 3's (S1, *The rough start of a warm stop*), and a day's relief fits a flake moved, not deposit regrown (SAE 2000-01-2858); **9/11, after the clean, kept first** (*agreed with the owner*): it took 3's excess — share of the dips, steady deficit, rough start, 014's storm; **up 3/11 evening from second to first** (*agreed with the owner*): `43`'s cut names cylinder 3, where the borescope found the most deposit; **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; **the hydrogen clean done 9/11**: 3's excess gone at stop 7, 4's deficit and the settled level kept (S1, *The clean of 9/11*); a second captured warm stop with a cut says whether it lasts |
 | B2 | **H1** valve or lifter | **12/11, the third research** (*agreed with the owner*): kept, read with H13 on 3; **12/11, the idle split in two** (*the owner's decision*): **11/11 night, kept**: S22 reopened, a tick once per cycle heard warm after a hard drive with no clean — what a lifter would give, and what 26/10's hot recording did not find; **read 12/11: the usual once-per-cycle part at its usual size (about 7 times the median in 3 s windows, 18/10's 16.4 not reached), no lifter's jump after the hard drive** (S22); **11/11 up from fourth** (*agreed with the owner*): 3's exhaust seat, leaking hot or holding a flake, is the form that fits the rough start after a hot drive that settles in 5–8 minutes; the weak strokes come in spells of seconds on one cylinder, at a mixture or dilution limit (S1, *How the weak strokes follow each other*); VW calls the cold clatter of 8/11 normal; **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 down from second** (*agreed with the owner*): the clean took 3's part, which a seat that leaks as a part would have kept; left for 4's inlet seat, the side the clean reaches least; **7/11 up from third** (*agreed with the owner*): the port photos of 20/10 show crust broken round the inlet seat's edge on 3 and 4, a lump on 3, 1 and 2 even (*the owner's reading*) — an inlet seat that leaks weakens 3 and 4 together, which answers the 5/11 against, and more crust on 3 fits the dips leaning to 3; whether it reaches the contact face is not seen; the clean of 9/11 is the least likely to reach it; **5/11 down from second** (*agreed with the owner*): one seat on 3 would weaken 3 alone, and the pattern moves over minutes; still the single dips on 3 and the owner's reading of 3's seat; **up 3/11 evening from third to second** (*agreed with the owner*): a valve on 3 that does not seal, with deposit on its seat (H13), fits one cylinder named; **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes done 26/10, the hot recording found no lifter; left: **a warm leak-down on all four** and a stethoscope above 3, hot (`plan.md` 9) |
-| B3 | **H7** fuel delivery — one injector, 3's | **12/11, the third research** (*agreed with the owner*): **up from fifth, and it is injector 3**: the one cause on 3 that needs no dismantling to test — injectors 3 and 2 exchanged (`plan.md` 6o); **12/11, the idle split in two** (*the owner's decision*): its one-injector form — the same entry as A4; **12/11 one down** (H16 above it, *the owner's decision*); **11/11 kept** (*agreed with the owner*): a hot rail after a hot drive fits the rough start's time, not its one cylinder; **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 down from fourth** (*agreed with the owner*): H3 and H4 above it for 4; **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026, and nothing points at one of them); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10); **no injector swap** (*the owner*, 3/11); **agreed 12/11: injectors 3 and 2 exchanged, then a warm idle captured (`plan.md` 6o)** |
-| B4 | **H3** a leak at one runner, 3's | **12/11, the third research** (*agreed with the owner*): one down, and **runner 3's lower gasket, not runner 4's**: 4's deficit was the crank wheel's; **12/11, the idle split in two** (*the owner's decision*): 4's runner; **12/11 one down** (H16 above it, *the owner's decision*); **11/11 one down** (H1 above it, *agreed with the owner*); still the settled floor and 4's deficit, which the clean and the gas did not touch; **9/11 up from third** (*agreed with the owner*): 4's steady deficit kept after the clean, runner 4's gasket edge torn (5/11), and the gas's cure fits a lean runner in kind; **7/11 down from second** (*agreed with the owner*): H1's inlet-seat form explains the pair as well and has a find behind it; still the one that predicts *load helps* directly; **5/11 up from third** (*agreed with the owner*): the steady pattern over the cylinders names 3 and 4 alike, neighbours on the lower manifold (S1, *A steady pattern over the cylinders*); **4/11: explains the calm under load best of all, the calm after revving not at all** (S1; *agreed with the owner*, the order kept); **up 3/11 evening from seventh to third**: one cylinder named again (runner 3); the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
-| B5 | **H20** coolant into cylinder 3 | **12/11, the third research** (*agreed with the owner*): one up, H4 below it; **12/11, the idle split in two** (*the owner's decision*): coolant into 3; **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **added 4/11** (*the owner*, weak): one cylinder at idle, where its pressure is lowest; plug 3 the cleanest of the 10/10 set; against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos | a combustion-gas (CO₂) test of the coolant (`plan.md` 9) |
-| B6 | **H4** the injector loom at 3 | **12/11, the third research** (*agreed with the owner*): last: the loom at 3, and a wire has no reason to cost a steady 9 % in every state; **12/11, the idle split in two** (*the owner's decision*): the looms at 3 and 4; **12/11 one down** (H16 above it, *the owner's decision*); **11/11 one down** (H1 above it, *agreed with the owner*); **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 up from fifth** (*agreed with the owner*): 4's deficit kept, 3's gone — 4's own circuit, and 6m the cheapest test of the three that act on 4 alone; **5/11 up from eighth** (*agreed with the owner*): exactly the pair the steady pattern names, and a fault that comes and goes would move over minutes; the load argument is against the spark side, not the injectors; shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
+| B3 | **H3** a leak at one runner, 3's | **12/11, later the same day** (*the owner's argument*): one up, H7 below it; **12/11, the third research** (*agreed with the owner*): one down, and **runner 3's lower gasket, not runner 4's**: 4's deficit was the crank wheel's; **12/11, the idle split in two** (*the owner's decision*): 4's runner; **12/11 one down** (H16 above it, *the owner's decision*); **11/11 one down** (H1 above it, *agreed with the owner*); still the settled floor and 4's deficit, which the clean and the gas did not touch; **9/11 up from third** (*agreed with the owner*): 4's steady deficit kept after the clean, runner 4's gasket edge torn (5/11), and the gas's cure fits a lean runner in kind; **7/11 down from second** (*agreed with the owner*): H1's inlet-seat form explains the pair as well and has a find behind it; still the one that predicts *load helps* directly; **5/11 up from third** (*agreed with the owner*): the steady pattern over the cylinders names 3 and 4 alike, neighbours on the lower manifold (S1, *A steady pattern over the cylinders*); **4/11: explains the calm under load best of all, the calm after revving not at all** (S1; *agreed with the owner*, the order kept); **up 3/11 evening from seventh to third**: one cylinder named again (runner 3); the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
+| B4 | **H20** coolant into cylinder 3 | **12/11, later the same day** (*the owner's argument*): one up; **12/11, the third research** (*agreed with the owner*): one up, H4 below it; **12/11, the idle split in two** (*the owner's decision*): coolant into 3; **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **added 4/11** (*the owner*, weak): one cylinder at idle, where its pressure is lowest; plug 3 the cleanest of the 10/10 set; against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos | a combustion-gas (CO₂) test of the coolant (`plan.md` 9) |
+| B5 | **H4** the injector loom at 3 | **12/11, later the same day** (*the owner's argument*): one up; the wiring is what stays with the cylinder through a change of injectors; **12/11, the third research** (*agreed with the owner*): last: the loom at 3, and a wire has no reason to cost a steady 9 % in every state; **12/11, the idle split in two** (*the owner's decision*): the looms at 3 and 4; **12/11 one down** (H16 above it, *the owner's decision*); **11/11 one down** (H1 above it, *agreed with the owner*); **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 up from fifth** (*agreed with the owner*): 4's deficit kept, 3's gone — 4's own circuit, and 6m the cheapest test of the three that act on 4 alone; **5/11 up from eighth** (*agreed with the owner*): exactly the pair the steady pattern names, and a fault that comes and goes would move over minutes; the load argument is against the spark side, not the injectors; shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
+| B6 | **H7** fuel delivery — one injector, 3's | **12/11, later the same day** (*the owner's argument*): **from third to last**: 3 was the weak one on the old injectors in August too, so the injector itself is unlikely, and the exchange of 3 and 2 is withdrawn; **12/11, the third research** (*agreed with the owner*): **up from fifth, and it is injector 3**: the one cause on 3 that needs no dismantling to test — injectors 3 and 2 exchanged (`plan.md` 6o); **12/11, the idle split in two** (*the owner's decision*): its one-injector form — the same entry as A4; **12/11 one down** (H16 above it, *the owner's decision*); **11/11 kept** (*agreed with the owner*): a hot rail after a hot drive fits the rough start's time, not its one cylinder; **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 down from fourth** (*agreed with the owner*): H3 and H4 above it for 4; **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026, and nothing points at one of them); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10); **no injector swap** (*the owner*, 3/11; agreed and withdrawn 12/11) |
 
 **A. The common part — what makes every cylinder alike rougher**
 (the small unevenness on all four, most of `IdleHealth`'s floor and
@@ -5331,14 +5349,15 @@ not what the split assumed:
   stroke, 3 a fifth above — and nothing 014 counts. It is most of
   `IdleHealth`'s floor and none of S3.
 - **The order**: B before A, since S3 and the grade's swings are
-  B's; inside B: **H13 and H1 on 3** first as before, **H7's injector 3
-  third** (the one cause on 3 testable with no dismantling of the
-  engine, by exchanging injectors 3 and 2: `plan.md` 6o), H3's runner
-  3, H20, H4. Inside A as it was, **H16 first until the captured stop
+  B's; inside B: **H13 and H1 on 3** first as before, H3's runner 3,
+  H20, H4, **H7's injector 3 last** (*placed third earlier that day with an
+  exchange of injectors 3 and 2 as its test; put last and the exchange
+  withdrawn the same day, the owner's argument: 3 was weak on the old
+  injectors too* — H7). Inside A as it was, **H16 first until the captured stop
   on the canister is read by cylinder** (H16, above).
 - **What would be read first**, in this order of cost: the captured
-  warm stop already planned (which list the canister moved); injectors
-  3 and 2 exchanged; item 9's warm leak-down with 3 twice.
+  warm stop already planned (which list the canister moved); item 9's
+  stethoscope above 3 and its warm leak-down with 3 twice.
 
 **Re-read 12/11, H16 from sixth to third** (*the owner's decision*,
 the place proposed by Claude; H16, *12/11 night*): the stops near home

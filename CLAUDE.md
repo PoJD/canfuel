@@ -547,13 +547,10 @@ his phone. Check the platform and for a VCDS install; if unclear, ask once.
   with the engine running, reported to him with the times and set
   against the fault memory read — a lamp lit with no injector cut is
   said at once, and its time dates the fault the memory does not.
-- **Then, every time, the dips' share over the cylinders**:
-  `tools/cutscan.py --shares` on the capture and pooled with every capture
-  since the last repair — the top two slots' share and p against all four
-  alike — reported to him and added to `open.md`, *The dips keep to one
-  slot*; with injector cuts, `--name` too. `--pairs` is history only.
 - **Then, every time, each cylinder by name** (*the maintainer*,
-  12/11): `tools/cylscan.py --minutes` on the capture — cylinder 3's
+  12/11; `cutscan.py --shares` did this until then, on a stroke count
+  that slipped, and was removed): `tools/cylscan.py --minutes` on the
+  capture — cylinder 3's
   deficit and weak strokes minute by minute against the others' — and
   `--vcds` with the session's 014 log, 014's rises by cylinder;
   reported to him and added to `open.md` S1, *Every stroke named*, and
@@ -594,7 +591,6 @@ python tools/canlog.py FILE          # per-ID summary; --dump --id 0x480; --stat
 python tools/replay.py --every 100 FILE
 python tools/idledips.py --roughness FILE
 python tools/afterpull.py FILE       # the warm idle after high revs
-python tools/cutscan.py --shares FILE...
 python tools/cylscan.py --minutes FILE   # every stroke on its cylinder; --vcds LOG: 014 by cylinder
 python tools/dipshape.py FILE...     # one weak firing per dip or several
 python tools/vcds_log.py --faults FILE
