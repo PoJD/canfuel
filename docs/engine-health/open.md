@@ -324,8 +324,11 @@ reading, 12/11*).
   own air).
 - **The cylinder 4 knock window: S4, S5** — its own cluster, not in
   `plan.md` (*owner's decision*, 9/10). **On the original map cylinder 4
-  still retards alone**, as often as on the remap and about half as far
-  (S4).
+  retarded alone on 3/11**, as often as on the remap and about half as
+  far; **on 12/11 as far as on the remap (to 12.7° at full load), and
+  above 5,300 rpm with 2 beside it** in 57 % of the samples — **2, the
+  strongest cylinder at idle**; the heading changed with it (S4, *Since
+  12/11*; no fit-table symbol moved).
 - **S19, P0172 and the split trim** — the code once (24/10), not back on
   any reading since; **032's idle cell at −6.3 to −8.6 % and its
   part-load cell at +5.5 to +8.6 %** from 25/10 on the remap. **On the
@@ -1745,9 +1748,11 @@ completing rather than load (`refuted.md` C19).
   deficit and 014's rises do. Cleared by the owner after the stop, 032/055 read
   first.
 
-### S4. Knock retard on cylinder 4, and only cylinder 4
+### S4. Knock retard on cylinder 4 — and near the limiter on 2 beside it
 
-Groups 022/023 and 020: cylinders 1–3 read zero in almost every sample;
+*The heading said "and only cylinder 4" until 12/11* (*the owner*: the
+captured drive's 020 changes the symptom, not only its data; *Since
+12/11, below*). Groups 022/023 and 020: cylinders 1–3 read zero in almost every sample;
 cylinder 4 retards in steps up to 13.5 °CA, mostly on a tip-in after a coast
 or gearchange and on hard pulls, **never at idle**. Within VW's 0–15 °CA while
 driving. 9/10: still cylinder 4 alone with all injectors seated (`refuted.md`
@@ -1781,10 +1786,71 @@ field (not known). **Not the band alone**: 3/11's two drives had 40
 full-load samples at 3,500–4,600 rpm and 4 retarded in one, this drive
 54 of 156 — **on the original map 4 now retards there as on the remap**
 (`40`: to 11.2); 2 beside 4 near the limiter is new in these logs.
-**Recorded as an observation of S4, the symptom itself unchanged**
-(*the owner*, 12/11). *Reasoned*: an arc at lead 4's plug end is
+**The symptom changed with it** (*the owner*, 12/11; the heading and
+*Since 12/11*, below). *Reasoned*: an arc at lead 4's plug end is
 broadband noise in 4's own window (`refuted.md` C24), as is real knock from the crust on
 4's crown (`idle-log.md`, 19–20/10).
+
+**Since 12/11: by speed, and cylinder 2 beside 4** (every 020 log
+with 014's speed and load beside it; full load = 014 at 80 % and over;
+the share of samples in which each cylinder retards, and its most):
+
+| log | 3,000–4,700 rpm | 4,700–5,300 rpm | above 5,300 rpm |
+|---|---|---|---|
+| 12/10 (`vcds-step3-1-drive-*`, NGK leads) | 4 41 %, to 11.2; 1 8 % | 4 in all 4 | 4 in all 4 |
+| 21/10 (`40`, the remap) | **4 31 %, to 11.2; 1 17 %, to 11.2** | 4 40 %; 1 10 % | 4 11 %; 1 22 % (9 samples) |
+| 3/11 (`vcds-step5a-*`, the original map) | none in 15 | 4 47 %, to 6.0 | 4 45 %; **2 9 %, 3 7 %, to 3.0** |
+| 3/11 evening (`vcds-step5b-*`) | 4 1 of 57 | 4 46 %, to 4.5 | 4 93 %, to 3.0 |
+| **12/11** (`vcds-step6w-*-2`) | **4 29 %, to 12.7**; 1 1 % | 4 53 %, to 12.7 | **4 84 %, to 7.5; 2 57 %, to 6.0**; 1 and 3 9 % |
+
+- **2 retards only above 5,300 rpm and never without 4** (0 of 43
+  samples on its own); 1 and 3 there in one sample in eleven. On 3/11's
+  pulls to the same speeds 2 was in 9 %. So at the limiter all four
+  retard a little on 12/11, 4 and 2 the most — **and 2 is the strongest
+  cylinder at a warm idle** (S1, *Every stroke named*: +3 to +10 % of a
+  stroke, the steadiest), which is what makes it odd (*the owner*).
+- **Not odd for knock itself** (*reasoned*, the physics *general*):
+  knock comes where the cylinder's pressure and the end gas's heat are
+  highest; a cylinder that fills and burns best — 2 at idle — makes the
+  highest peak pressure at full load too, so the strongest cylinder is
+  the first after 4 to knock. A cylinder that gives least (3) is the
+  least likely, and 3 retards least. **Odd for a fault in 4's window**:
+  a noise booked to 4 alone (H5) does not put retard on 2, unless the
+  noise at 6,000 rpm is long enough to reach the next window (2 fires
+  180° after 4, 5 ms at 6,000 rpm) or one sender hears both — which
+  sender serves which cylinder is not recorded here.
+- **4 deeper in the middle band than on 3/11** (29 % to 12.7 against
+  none in 15 and 1 in 57), as on the remap, where the advance at
+  3,500 rpm is the same on both maps (H14, *The drive on the original map, 3/11*: 19.5° on both).
+  **What differs from 3/11**, none measured against it: the hydrogen
+  clean (9/11), the battery disconnect and the clears since (H6), and
+  **about a tenth of Orlen Efecta 95 in the tank since 8/11**
+  (`vehicle-history.md`); the November air is colder, which goes the
+  other way (*general*).
+
+**What it changes in the hypotheses** (12/11, at the owner's request;
+*reasoned*; **no fit-table symbol changes**, each said why):
+- **H5** (something in 4's window that is not combustion): ✔ stays —
+  4 alone below 5,300 rpm, as always; **weakened at the top**, where 2
+  beside 4 points to combustion or a noise heard in more than one
+  window.
+- **H13** (deposits): ~ stays. The crust on 4's crown (the borescope)
+  is a reason for 4 to knock; **2's crown has a thin layer only**, so
+  not for 2; and a clean that took deposit away (9/11) was followed by
+  more retard on 4, not less — weakly against H13's form for S4.
+- **H14** (the remap): ~ stays. **The middle band is not the remap's**
+  — 4 retards there on the original map as on the remap, at the same
+  advance; above 5,300 rpm, where the remap did differ, `40` has too
+  few samples to compare.
+- **H6** (knock control relearning after a disconnect): fits that S4
+  changes between logs; 3/11 was the day of the flash and 12/11 two
+  days after the disconnect, both on young adaptations — not telling.
+- **H4 / H21's shared earth** (S4, S5 through a common sender earth):
+  noise there would reach all four windows, which the small retard on
+  1 and 3 at the limiter allows; ~ as it was.
+- **H1, H3** (3's valve, runner 3): nothing — 3 retards least.
+- **The idle's ranking is untouched**: S4 is outside it (*owner's
+  decision*, 9/10) and its column moved no symbol.
 
 ### S5. Cylinder 4 reads high in group 026 (knock sensor voltage)
 
@@ -4445,9 +4511,11 @@ there was no dynamometer.
 
 **Where it still reaches** (*reasoned*):
 - **S4**: more advance and less fuel at full load is what makes knock;
-  on the remap cylinder 4 retarded to 11.2°, on the original to 6.0°
-  (S4). The remap deepened 4's retard; it did not make 4 the one that
-  retards.
+  on the remap cylinder 4 retarded to 11.2°, on the original to 6.0° on
+  3/11 — **and to 12.7° on 12/11**, mostly at 3,500–4,600 rpm where the
+  two maps' advance is the same (S4, *Since 12/11*). *This said "the
+  remap deepened 4's retard" until 12/11*: the depth is not the map's;
+  it did not make 4 the one that retards either.
 - **S19's part-load cell**: +5.5 to +8.6 % on the remap, +3.1 after one
   drive on the original, +3.9 after two, **+6.3 on 6/11, settled**
   (S19). If T1/T2's leaner corner reached loads the lambda loop runs at,
