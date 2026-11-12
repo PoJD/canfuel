@@ -56,6 +56,7 @@ symptom in `docs/` is dated after it, with a working lamp.
 | At 9 Nov 2026 | about **156,000 km**, the hydrogen clean (the provider's certificate, rounded; the bus read 155,834 the next afternoon, so about 155,8xx) |
 | At 10 Nov 2026 | **155,834 → 155,853 km**, the relearn drive home (the bus, 0x520, the unfiltered capture of `47`) |
 | At 12 Nov 2026 | **155,969 → 156,011 km**, the captured warm drive (the bus, 0x520, capture `49`) |
+| At 12 Nov 2026, evening | **156,011 → 156,030 km**, the queue drive (the bus, 0x520, capture `50`) |
 | **Covered in ownership** | **29,800 km over 9.1 years** (to 12 Nov 2026), about 3,300 km a year *(derived)* |
 
 Odometer at the start of each year, from the owner's expense sheet

@@ -544,12 +544,15 @@ class TestFixtureContent(unittest.TestCase):
         35_item5_drive_z1, which stops at a petrol station and starts again,
         and 37_item5_drive3_z1, whose engine stops with the key left on for
         VCDS to read 055, and 39_drive_home_z1, in its last second as the
-        engine stops.
+        engine stops, and 50_queue_drive_z1, whose engine stops with the key
+        left on for VCDS to read 032 and 055: 1.6 s of it from the frame the
+        engine speed reads zero.
         """
         boundary = ("01_ign_only.txt", "06_trip_reset.txt",
                     "25_sessionA_cold_z1.txt", "26_sessionA_warm_z1.txt",
                     "33_step3_gauge_cold_z1.txt", "35_item5_drive_z1.txt",
-                    "37_item5_drive3_z1.txt", "39_drive_home_z1.txt")
+                    "37_item5_drive3_z1.txt", "39_drive_home_z1.txt",
+                    "50_queue_drive_z1.txt")
         for name, frames in self.frames.items():
             gates = {f.data[1] for f in frames if f.can_id == 0x1A0}
             if name in boundary:

@@ -269,6 +269,17 @@ agree. The offset with the smallest mean |Δrpm| is the alignment; on the
 23–36 rpm, and on the cold start at 129.3 s with 19.1 rpm RMS. No clocks
 have to agree.
 
+⚠ **Not for a log taken wholly at a standing idle** (12/11 evening, `50`):
+VCDS reads the idle as 760 or 800 rpm, and a flat trace fits anywhere —
+003 at the last stop fitted five and a half minutes late with the same
+error as in its place, and 001's queue log missed `cutscan.align()`'s
+40 rpm bound altogether. **Set such a log by the clock in its header**:
+a driving log of the same session gives the capture's start as its header's
+time less its offset (16:19:07.5 on 12/11, from two logs to 0.05 s), and
+the standing log is then trimmed within a few seconds on engine speed.
+`cylscan.py --vcds` has no option for it; check the offset it prints
+against the clock before believing a stop's 014 by cylinder.
+
 - **The two tools do not interfere.** VCDS is on the OBD socket and this
   engine diagnoses over K-line; the USBtin is on the CAN pair at the cluster,
   in listen-only mode.

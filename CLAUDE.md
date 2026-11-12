@@ -486,7 +486,9 @@ itself is not finished.
   (blower 1, one seat heater on 2, lights; *23/10*, the seat heater's
   setting corrected *8/11*), the only one since
   *28/10*: the two states (every load off, every load on; *19/10*) were
-  dropped; never ask for a stop made only to read it. Idling itself is
+  dropped; never ask for a stop made only to read the display (a
+  five-minute stop on a captured drive may be asked for, *12/11 night*,
+  *Sessions at the car*). Idling itself is
   not limited for the converter (*6/11*: tens of kelvin at most, `open.md`
   S3). A figure without a state is in it.
 - **The repository is public: nothing that identifies the car or owner** —
@@ -520,18 +522,45 @@ his phone. Check the platform and for a VCDS install; if unclear, ask once.
   (`--groups 014 001 003 --out "C:/Users/Luboš/Downloads/<name> 14-1-3
   YY-MM-DD.CSV"`, in the background). One run does the session: fault memory
   before, the log (reconnecting into `-2`, `-3` … when the ECU drops), fault
-  memory after, then closes VCDS. **At the end, engine still idling, he says
-  so; you create `<out>.stop`, the tool reads the fault memory (~30 s), you
-  give him the codes — only then does he switch off.** He clicks nothing.
-- **In the cloud**: hand him the commands and read what he uploads.
+  memory after, then closes VCDS. He clicks nothing.
+- **A laptop session ends fast and does no desk work** (*the maintainer*,
+  12/11 night, after waiting nearly ten minutes at the laptop). On the
+  laptop Claude **only runs the tools and gets the recordings to GitHub**:
+  **no tests, no analysis, no fixes, no documents, no currency pass — not
+  even when CI will be red.** All of that is a cloud session's, from what
+  the laptop pushed.
+  - **He says "konec"** — typically at the last idle before home, up to
+    about five minutes before the garage — **and everything closes at
+    once**: `<out>.stop` (the tool reads the fault memory, ~30 s; the codes
+    to him), 032 055 for 20 s, VCDS closed, the capture stopped (`C\r`).
+    **The capture need not reach engine off**; the last minutes home go
+    unrecorded.
+  - **While he drives on**: the raw upload and its checksum, the filtered
+    fixture, the VCDS logs, **one commit and one push**. The commit message
+    carries what only that session knows — the clock time of every log and
+    phase, what he reported and when, the fault codes, 032/055 — because
+    the cloud session has nothing else to go by.
+  - **When he parks, the session is done**, or says in one line what is
+    still uploading. Nothing waits for him, and nothing is asked of him.
+- **In the cloud**: hand him the commands and read what he uploads. **A
+  cloud session that finds a capture pushed and unread does the rest
+  unasked**: `FILTERED` in `tools/test_canlog.py`, the row in
+  `test/fixtures/README.md`, the count in `tools/test_coastscan.py`, any
+  test the capture breaks, then the lamp, the cylinders, the reading and
+  the currency pass (below).
+- **A queue crawls, it seldom stands** (*the maintainer*, 12/11 night; `50`:
+  23 standing idles of 10–58 s in an hour). **On a captured drive Claude
+  may ask for one stop of about five minutes** — he pulls in at a petrol
+  station — when a reading needs a standing idle the traffic will not give.
 - **The fault memory is read after every session with VCDS connected**,
   without asking (never after a plain drive), saved beside the logs, the codes
   given to him with their status; **he clears it, by hand**. **Before he
   clears anything, read the adaptations** (`--groups 032 055 --seconds 20`,
   saved as `test/fixtures/vcds/vcds-<step>-adaptations-032-055.csv`):
   clearing resets 032.
-- **After every captured session, without asking**: the capture to its next
-  free `test/fixtures/NN_<name>_z1.txt`; **the whole capture uploaded
+- **After every captured session, without asking** (the laptop: up to the
+  filtered fixture and the logs, committed; the cloud: the rest): the
+  capture to its next free `test/fixtures/NN_<name>_z1.txt`; **the whole capture uploaded
   unfiltered to the GitHub release `raw-captures`** — gzip a copy outside the
   repo as `YYYY-MM-DD_<name>_unfiltered_z1.txt.gz`, `gh release upload`,
   download it back and compare the decompressed `sha256sum`, **filter nothing
@@ -573,6 +602,10 @@ his phone. Check the platform and for a VCDS install; if unclear, ask once.
   from the capture, never ask him for them (*the maintainer*, 10/11).
   He reports only what the bus lacks — the blower, the seat heater, the
   hazard lights.
+- **A VCDS log taken wholly at a standing idle is set by its header's
+  clock**, not by engine speed (`docs/engine-health/vcds.md`, *Recording
+  VCDS and the CAN bus together*; `50`'s 003 fitted 5½ minutes late):
+  the capture's start comes from a driving log of the same session.
 - **You cannot hear him.** A reading at the car reaches you as text (phone
   dictation works); align it to the capture by an event it records, never by
   when the message arrived.

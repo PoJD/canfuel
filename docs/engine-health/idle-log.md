@@ -1522,3 +1522,31 @@ was the fault, one drive; S3, *P0300 and P0303*.
   - *not known:* whether the canister keeps the floor longer — fourteen
     minutes here with no second swell, one stop; settled it was no calmer
     than `44` and `48` before the canister (H16).
+
+## 12/11 evening — the queue drive, VCDS one group at a time (6q)
+
+- **Tests:** a 70-minute capture with the MFD out (`50`), 19 km, the
+  A/C off, the everyday state; VCDS 014 004 003 while warming, then 003
+  alone, 001 alone, and at the last stop 003, 001, then 004 055 014
+  (`vcds/vcds-step6q-*`); 032/055 before and after; the fault memory
+  before, at the stop and after; a last stop of 14.8 minutes slightly
+  uphill, oil 100–101 °C, **no injector cut**; the phone at the
+  tailpipe through it (6p, two recordings, not yet read).
+- **Changes after:**
+  - *measured:* in the queue cylinder 3 at −9.5 to −15 % of a stroke
+    at every standing idle, `IdleHealth` 72; **at the last stop three
+    swells of 3's to −23 or −24 % and two falls to −5 and −6 % with no
+    cut**, the falls 108 and about 80 s, the bottoms 5½ minutes apart,
+    `IdleHealth` 82–86 at the peaks and 36–48 at the bottoms, no settled
+    floor; **mass air, the advance and the lambda regulation the same
+    through swell, fall and floor** (under 1 % of air; the regulation's
+    swing 1.5 s and about 5 % throughout); 014 19 rises in the stop's
+    last 84 s, 16 on 3; 032 −7.0 / +8.6 → **−4.7 / +6.3 %**, 055 −0.93 →
+    −0.97 g/s; no fault code; the engine lamp lit only with the engine
+    off (`open.md` S1, *The queue drive, and what the ECU sees through a
+    swell*);
+  - *felt:* an exhaust puff heard at the tailpipe at about 17:20, in
+    the second swell's deepest minute (*owner*; S2);
+  - *not known:* what the phone's recordings show through the two
+    falls; why this stop kept no floor where the morning's held
+    fourteen minutes.
