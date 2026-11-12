@@ -293,8 +293,13 @@ and 4 cost there is about 1–2 %**. **The car's own acceleration needs
 0.95 of the torque b7 claims** (76 pulls, half of them 0.89–1.04; the
 registration's 1,303 kg, the resistances assumed), so the engine gives
 its rated torque to within a tenth. **014's split by cylinder is set against chance since** (S3):
-83 % on 3 against 50 % in control windows, not against 25 %. The
-ranking is not touched; what it bears on is in *Off idle*.
+83 % on 3 against 50 % in control windows, not against 25 %. **Agreed
+with the owner the same night: H4 above H20 in list B**, H1 read as a
+seat that dilutes at vacuum rather than one that loses compression, and
+**6m (injector 3's circuit) before item 9's garage session**; **his
+reading added to H3** — a leak at runner 3 *and* a mixture the ECU
+trims lean at idle for another reason, which takes 032's negative idle
+cell out of the case against H3.
 
 **Open:**
 
@@ -434,9 +439,11 @@ before and after it), H8, **H7's rail pressure**, **H21**, **H11**, H2
 (the zone between the probes), H18. **B, one
 cylinder**, cylinder 3's, **first since 12/11** (the third research,
 *agreed with the owner*): **H13 and H1** (3's deposit, its exhaust seat
-or a flake, its lifter), **H3** (runner 3's lower gasket), **H20**
-(coolant into 3), **H4** (the injector loom at 3), **H7's one injector**
-last (3 was weak on the old injectors too). H12 done. **Which part 11/11's and 12/11's calm stops lowered:
+or a flake, its lifter), **H3** (runner 3's lower gasket), **H4**
+(the injector loom at 3; *above H20 since 12/11 night, agreed with the
+owner*: 3's deficit is an amount at a small charge, not a share, which
+an injector opening late gives), **H20** (coolant into 3), **H7's one
+injector** last (3 was weak on the old injectors too). H12 done. **Which part 11/11's and 12/11's calm stops lowered:
 neither, by the captured stop of 12/11** (`49`) — 3's swell as before,
 the settled floor no lower than before the canister; **H16 down list
 A proposed 12/11 and declined by the owner** until the new N80, **then
@@ -488,6 +495,9 @@ drive (`50`, 6q): the order kept** — nothing the ECU measures or
 commands moved with 3's swell or with the common part (S1, *The queue
 drive, and what the ECU sees through a swell*), which leaves both
 lists where the bus alone had put them; no change proposed.
+**Re-read 12/11 night, off idle, agreed with the owner**: **H4 above
+H20** — list B is H13 and H1, H3, H4, H20, H7's injector (*The idle's
+candidates, ranked*).
 
 **Read 12/11 night, 6p's
 recordings at the tailpipe: the order kept** — 3's exhaust pulse grows
@@ -513,7 +523,9 @@ memory before, 070 after, then one gentle and one brisk drive captured
 with 032 after each (H16, S19, S21); **then 8o, two captured drives
 with N80's hose shut**; **8h, the loads against the
 sensors' voltages**, at a laptop session; **8f, 032 at every VCDS
-session**; **6m's injector circuits**, read for 3, and item 9's tests
+session**; **6m's injector circuits**, read for 3, **at the owner's
+next evening with the upper intake off, ahead of the garage session**
+(*agreed 12/11 night*), and item 9's tests
 (the coolant's CO₂ test, the stethoscope, then one garage session with
 the upper intake off: a warm leak-down with 3 twice, the engine
 switched off in a swell, a warm
@@ -3323,7 +3335,11 @@ about. The valve is closed by its spring; the lifter only removes the gap.
   load. **For**: a seat's leak is set by time, and fades with speed.
   **Against**: at idle speed it falls from −24 to −9 % when the engine
   pulls (b7 27 → 57) — more charge at the same time per stroke, which
-  a leak would follow (*reasoned*).
+  a leak would follow (*reasoned*). **What is left of the seat is its
+  dilution form** (*agreed with the owner*, 12/11 night): an exhaust
+  seat that lets burnt gas back into 3 at the idle's vacuum, or a flake
+  that holds it off; a seat that loses compression is not what the
+  load shows, nor what 12 bar on all four showed.
 - **Against:** compression **13 bar in 2018 and 12 bar even on all four in
   2026** (`vehicle-history.md`) — no cylinder losing; the vacuum gauge
   steady cold and warm, no flick (H3); no ticking before 18/10, and **none on any
@@ -3475,11 +3491,36 @@ the lower manifold's gasket at runner 3, never renewed.
   pulling at idle speed, −2 to −5 % at part load, −1 to −3 % at full,
   at every speed to 5,200 rpm — a deficit that follows the manifold's
   vacuum, as a leak at the runner does. H18 and H20 predict the same.
+- **The owner's reading, 12/11 night: two causes at once** (*owner*;
+  the rest *reasoned*). A leak at runner 3 **and** something that
+  makes all four rich at idle (N80 passing vapour, H16; or whatever
+  S19's is): the ECU trims the idle 6–8 % lean for the four together,
+  and 3, already lean by its leak, is leaner by that again — at the
+  edge where it misfires. **It answers the strongest point against
+  H3**: 032's negative idle cell no longer speaks against a leak at
+  3, because the trim is the other cause's; one cylinder's leak asks
+  for about a quarter of its own size the other way and would be
+  buried in −6 to −8. **And it fits the load**: both the leak and a
+  fixed flow of vapour are large against the idle's air and nothing
+  against full load's. **His second half, the swell as N80 letting
+  vapour through in waves, is not what VCDS showed**: the regulation
+  (001, three rows a second, `50`) read −0.4, −0.5, −0.3 and +0.2 %
+  at −23 %, through the fall, at −5 % and growing again, swinging the
+  same throughout, and the injection time moved 1.5 % (S1, *The queue
+  drive, and what the ECU sees through a swell*) — a wave of vapour
+  under all four would have pushed the regulation lean by its own
+  size, since the learnt value (032) is too slow to take it. *The one
+  way round that*: vapour reaching mostly runner 3, which the single
+  front probe sees a quarter of. **What tells**: 8a's new N80 and
+  8o's hose shut — if the rich idle trim goes with the valve, 3 loses
+  the second cause and should calm even with its leak; 001 and 032
+  beside 014 at every one of those stops, as planned (8f).
 - **Against, 5/11** (*reasoned*): a cylinder running lean would pull
   032's idle cell positive; it reads −6 to −8 % (H4, the same argument;
   medium, the trim carries other inputs). *It said "two cylinders" until
   12/11*; one cylinder's leak pulls it a quarter as far, so this is
-  weaker than it was.
+  weaker than it was — **and weaker again with a second cause for the
+  trim** (*The owner's reading, 12/11 night*, above).
 - **Against:** a large leak is refuted (`refuted.md` A7): idle air 3.1–3.5 g/s
   against VW's leak mark of 2.0, 055 inside ±1.5, 032's idle cell negative.
   **The intake smoked tight cold** (9/10) after the dipstick guide and the
@@ -5743,15 +5784,23 @@ drives, `19`–`50`; warm (oil 80 °C and over).*
   beyond the 1–2 % of 3 and 4 — a few per cent common to all four is
   neither shown nor excluded. *What would tighten it*: the car on a
   weighbridge as driven, and a pull each way on the same stretch.
-- **What it bears on** (*reasoned*; **no fit-table symbol changes and
-  no ranking change** — the owner's to agree): **H3** (a leak at
+- **What it bears on** (*reasoned*; **no fit-table symbol changes**;
+  **the ranking: H4 above H20, agreed with the owner the same night**,
+  *The idle's candidates, ranked*): **H3** (a leak at
   runner 3) and **H18** (oil at idle vacuum) predict exactly this
   fading with manifold pressure; **H7**'s one-injector form fits if
   the injector is short only at its smallest quantities, not if it is
   short by a share; **H1** (a seat on 3) fits the fading with speed
-  but not the lift by load at idle speed; **H4**'s weak spark on 3 is
+  but not the lift by load at idle speed — unless the seat acts by
+  dilution, an exhaust seat that lets burnt gas back at the idle's
+  vacuum, rather than by lost compression, which 12 bar on all four
+  already spoke against; **H4**'s weak spark on 3 is
   against — the spark is hardest to make at full charge, where 3 is
-  within 1–3 % of 2; **H13** stays as it was (a flake on a seat acts
+  within 1–3 % of 2 — **and its injector branch gains the most**: an
+  injector that opens late loses the same fuel at every injection, a
+  large share of the idle's and next to none of full load's, which is
+  the shape measured, where "a steady 9 % in every state" had been
+  held against it; **H13** stays as it was (a flake on a seat acts
   like H1's leak; a crust that dilutes the idle's small charge fades
   with load). Cylinder 4's 2–4 % is S4's to carry.
 
@@ -6044,10 +6093,10 @@ tables):
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | B1 | **H13** deposits | **12/11 night, the phone at the tailpipe, kept with H1**: 3's exhaust pulse +11 % at −23 % and −7 % at −5 %, on its steady strokes too — the swell is 3's combustion on every stroke; a seat and a dilution both give it (S1, *The phone at the tailpipe through a swell and a fall*); **12/11 night, the queue drive, kept with H1**: three swells in one stop, the falls 80–108 s, the air, the spark and the regulation the same through them — still inside 3 (S1, *The queue drive, and what the ECU sees through a swell*); **12/11, the third research** (*agreed with the owner*): first, with H1, and for 3 by every measure — its steady deficit at every warm idle, 80 % of 014's rises, the swell and its step; the borescope's most deposit on 3 (3 > 4 > 2 > 1), and cold 4 weak beside it in that order; **12/11, the idle split in two** (*the owner's decision*): 3's exhaust seat or a flake, read with H1; **11/11, after the second research** (*agreed with the owner*): the rough start of a warm stop after a hot drive is 3's swell (S1, *The rough start of a warm stop*), and a day's relief fits a flake moved, not deposit regrown (SAE 2000-01-2858); **9/11, the clean**: it took 3's swell for a day and left its floor (S1, *The clean of 9/11*); **24/10**: its own test, the strong 44K tank and ~450 hard km, moved nothing, and the deposit reads as a consequence as much as a cause (H13). *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`); those of 3/11–9/11 rested on the dip shares withdrawn 12/11.* | both 44K tanks done; **the hydrogen clean done 9/11**: the swell gone for a day, 3's floor and the settled level kept (S1, *The clean of 9/11*); with H1, a warm leak-down with 3 twice (`plan.md` 9) |
-| B2 | **H1** valve or lifter | **12/11, the third research** (*agreed with the owner*): with H13 on 3 — a seat on 3 that leaks (the floor) or holds a flake (the swell), or a lifter; the steady pattern is 3's alone, as one seat gives; **12/11, the idle split in two** (*the owner's decision*); **11/11 night, kept**: S22 reopened, a tick once per cycle heard warm after a hard drive; **read 12/11: the usual once-per-cycle part at its usual size, no lifter's jump** (S22); **11/11 up from fourth** (*agreed with the owner*): 3's exhaust seat, leaking hot or holding a flake, fits the rough start after a hot drive that settles in 5–8 minutes; the weak strokes come in spells of seconds on one cylinder, at a mixture or dilution limit (S1, *How the weak strokes follow each other*); VW calls the cold clatter of 8/11 normal; **7/11**: the port photos of 20/10 show crust broken round the inlet seat's edge on 3 and 4, a lump on 3, 1 and 2 even (*the owner's reading*); **26/10**: the hot phone recording found no lifter, 18/10's tick not back. *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`); those of 3/11–9/11 that weighed 3 against 4 rested on the dip shares withdrawn 12/11.* | the EPR flushes done 26/10, the hot recording found no lifter; left: **a warm leak-down on all four** and a stethoscope above 3, hot (`plan.md` 9) |
-| B3 | **H3** a leak at one runner, 3's | **12/11, later the same day** (*the owner's argument*): one up, H7 below it; **12/11, the third research** (*agreed with the owner*): **runner 3's lower gasket**, never renewed — the one cause that predicts *load helps* directly; 3 short in every state, cold 4 weak beside it, the neighbouring runner; runner 3's gasket edge bent and straightened by the owner on 5/11, runner 4's torn; against: 032's idle cell negative, the smoke test of 9/10 clean, and a leak has no reason to swell and mend in a step; **4/11**: the calm under load best of all, the calm after revving not at all (S1). *Until 12/11 it was read for runner 4 ("4's deficit") and demoted 24/10 for "the dips no longer keep to 3 and 4" — both on the dip shares withdrawn 12/11.* *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`).* | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
-| B4 | **H20** coolant into cylinder 3 | **12/11, later the same day** (*the owner's argument*): one up; **12/11, the third research** (*agreed with the owner*): one up, H4 below it; **12/11, the idle split in two** (*the owner's decision*): coolant into 3; **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **added 4/11** (*the owner*, weak): one cylinder at idle, where its pressure is lowest; plug 3 the cleanest of the 10/10 set; against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos | a combustion-gas (CO₂) test of the coolant (`plan.md` 9) |
-| B5 | **H4** the injector loom at 3 | **12/11, later the same day** (*the owner's argument*): one up; the wiring is what stays with the cylinder through a change of injectors; **12/11, the third research** (*agreed with the owner*): the loom at 3 (its own branch after D95, its control wire to pin 58); a wire has no reason to cost a steady 9 % in every state or to swell and mend in a step; the load argument is against the spark side, not the injectors; **24/10**: flexed part-warm by the owner, by ear, no change. *Read for 4's circuit and for "the pair the steady pattern names" until 12/11, on the dip shares withdrawn then.* *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`).* | VCDS 004 beside 014; the circuits measured (`plan.md` 6m, 6n) |
+| B2 | **H1** valve or lifter | **12/11 night, off idle** (*agreed with the owner*; *Naming the cylinder*, *Off idle*): kept, **read as a seat that dilutes at the idle's vacuum, not one that loses compression** — 3 is within 1–3 % of 2 at full load and load lifts its deficit at idle speed; **12/11, the third research** (*agreed with the owner*): with H13 on 3 — a seat on 3 that leaks (the floor) or holds a flake (the swell), or a lifter; the steady pattern is 3's alone, as one seat gives; **12/11, the idle split in two** (*the owner's decision*); **11/11 night, kept**: S22 reopened, a tick once per cycle heard warm after a hard drive; **read 12/11: the usual once-per-cycle part at its usual size, no lifter's jump** (S22); **11/11 up from fourth** (*agreed with the owner*): 3's exhaust seat, leaking hot or holding a flake, fits the rough start after a hot drive that settles in 5–8 minutes; the weak strokes come in spells of seconds on one cylinder, at a mixture or dilution limit (S1, *How the weak strokes follow each other*); VW calls the cold clatter of 8/11 normal; **7/11**: the port photos of 20/10 show crust broken round the inlet seat's edge on 3 and 4, a lump on 3, 1 and 2 even (*the owner's reading*); **26/10**: the hot phone recording found no lifter, 18/10's tick not back. *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`); those of 3/11–9/11 that weighed 3 against 4 rested on the dip shares withdrawn 12/11.* | the EPR flushes done 26/10, the hot recording found no lifter; left: **a warm leak-down on all four** and a stethoscope above 3, hot (`plan.md` 9) |
+| B3 | **H3** a leak at one runner, 3's | **12/11 night, off idle** (*agreed with the owner*; *Naming the cylinder*, *Off idle*): kept third, **strengthened**: *load helps* measured, −21 to −26 % of a stroke at idle and with the pedal light, −1 to −3 % at full load; **the owner's reading** — a second cause that makes all four rich takes 032's negative idle cell out of the case against it (H3); **12/11, later the same day** (*the owner's argument*): one up, H7 below it; **12/11, the third research** (*agreed with the owner*): **runner 3's lower gasket**, never renewed — the one cause that predicts *load helps* directly; 3 short in every state, cold 4 weak beside it, the neighbouring runner; runner 3's gasket edge bent and straightened by the owner on 5/11, runner 4's torn; against: 032's idle cell negative, the smoke test of 9/10 clean, and a leak has no reason to swell and mend in a step; **4/11**: the calm under load best of all, the calm after revving not at all (S1). *Until 12/11 it was read for runner 4 ("4's deficit") and demoted 24/10 for "the dips no longer keep to 3 and 4" — both on the dip shares withdrawn 12/11.* *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`).* | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
+| B4 | **H4** the injector loom at 3 | **12/11 night, off idle** (*agreed with the owner*; *Naming the cylinder*, *Off idle*): **up one, above H20**: 3's deficit is an amount at a small charge and not a share — what an injector that opens late through a raised resistance gives, and the opposite of the "steady 9 % in every state" held against it; the spark side against, 3 level at full load; 6m ahead of the garage session; **12/11, later the same day** (*the owner's argument*): one up; the wiring is what stays with the cylinder through a change of injectors; **12/11, the third research** (*agreed with the owner*): the loom at 3 (its own branch after D95, its control wire to pin 58); a wire has no reason to cost a steady 9 % in every state or to swell and mend in a step; the load argument is against the spark side, not the injectors; **24/10**: flexed part-warm by the owner, by ear, no change. *Read for 4's circuit and for "the pair the steady pattern names" until 12/11, on the dip shares withdrawn then.* *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`).* | VCDS 004 beside 014; the circuits measured (`plan.md` 6m, 6n) |
+| B5 | **H20** coolant into cylinder 3 | **12/11 night, off idle** (*agreed with the owner*; *Naming the cylinder*, *Off idle*): one down, H4 above it; it predicts the fading with load as H3 does, with the level and the crown against it as before; **12/11, later the same day** (*the owner's argument*): one up; **12/11, the third research** (*agreed with the owner*): one up, H4 below it; **12/11, the idle split in two** (*the owner's decision*): coolant into 3; **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **added 4/11** (*the owner*, weak): one cylinder at idle, where its pressure is lowest; plug 3 the cleanest of the 10/10 set; against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos | a combustion-gas (CO₂) test of the coolant (`plan.md` 9) |
 | B6 | **H7** fuel delivery — one injector, 3's | **12/11, later the same day** (*the owner's argument*): **from third to last**: 3 was the weak one on the old injectors in August too, so the injector itself is unlikely, and the exchange of injectors 3 and 2, agreed earlier that day (`plan.md` 6o), is withdrawn; **12/11, the idle split in two** (*the owner's decision*): its one-injector form, the rail's in A4; plug 3 the cleanest; S19's side is A4's and H16's. *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`).* | **no injector swap** (*the owner*, 3/11; agreed and withdrawn 12/11); a rail gauge (A4) |
 
 **A. The common part — what makes every cylinder alike rougher**
@@ -6071,6 +6120,24 @@ nothing 014 counts; second since 12/11):
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | — | **H12** driveline play | — | done: the clutch minutes cleared it |
+
+**Re-read 12/11 night, off idle — agreed with the owner the same
+night** (*Naming the cylinder*, *Off idle*; `tools/drivescan.py`).
+Cylinder 3's deficit is the idle's and the light pedal's: a fifth to a
+quarter of a stroke there, 9 % as soon as the engine pulls at idle
+speed, 1–3 % at full load. **It follows the size of the charge, not
+the time a stroke takes**, and it is an amount, not a share. So in
+list B: **H13 and H1 stay first**, the only two that give the swell,
+with H1's seat read as one that dilutes at vacuum (a seat that loses
+compression would cost its share at full load too); **H3 stays third,
+stronger** — and with the owner's reading of two causes at once, 032's
+negative idle cell no longer counts against it (H3); **H4 goes above
+H20**, its injector branch being the one cause that gives a fixed
+amount by itself; **H7's injector stays last**, a share being what it
+would give. None of them explains the swell better than before.
+**6m, injector 3's circuit, is brought ahead of item 9's garage
+session** (`plan.md`). List A is not touched: nothing here reads the
+common part.
 
 **Re-read 12/11 evening, the swell's shape and the common part —
 agreed with the owner the same evening** (*the owner's questions*; S1,

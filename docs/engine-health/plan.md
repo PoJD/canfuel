@@ -28,7 +28,8 @@ fitted** (8e). **Then 8a, the new N80**: 032/055 and the fault memory
 before, the swap, 070, then one gentle and one brisk drive, captured,
 032 after each; **then 8o, two more captured drives with N80's hose
 shut**. **6p's second half, the phone above cylinder 3, at the next
-captured stop that swells.** Then item 9, 6m inside its garage session; 8h at a
+captured stop that swells.** **6m for injector 3, at the next evening
+with the upper intake off** (agreed 12/11 night), ahead of item 9; then item 9; 8h at a
 laptop session; **8e's harness at the end**, 8g dropped (*the owner*,
 10/11 and 11/11; `open.md` H11, *The relearn drive*; `refuted.md` D13;
 S1, *The rough start of a warm stop*). *Done: 8j and its first drive
@@ -98,8 +99,11 @@ S1, *The rough start of a warm stop*). *Done: 8j and its first drive
    eight. While each value is on the display, **flex the loom near 3 and
    4** and watch it. Write every value, and any that moved.
    **5/11: only 1 and 4 reachable with the intake on** (*owner*); the rest
-   with the upper intake off — **in item 9's garage session; injector
-   3's circuit is the one to watch and to flex** (12/11; *this said
+   with the upper intake off — **at the owner's next evening with the
+   upper intake off, not waiting for item 9's garage session** (agreed
+   12/11 night; *"in item 9's garage session" until then*); **injector
+   3's circuit is the one to watch and to flex**; with the intake off,
+   **photograph runner 3's joint to the lower manifold** as well (12/11; *this said
    "for 4's deficit, which the clean left", agreed 9/11 evening, until
    then*). (5/11: contact cleaner went into 4's
    connector and T3 at the first look, `vehicle-history.md`.)
@@ -215,7 +219,8 @@ S1, *The rough start of a warm stop*). *Done: 8j and its first drive
        otherwise each pressed down with a plastic or wooden wedge and a
        0.2 mm feeler tried between cam and tappet; the eight results
        into the chat;
-     - **6m's injector circuits** while the intake is off;
+     - **6m's injector circuits** while the intake is off, if not done
+       before (12/11 night);
      - **the lower manifold's gasket**: renewed if the garage takes
        the lower manifold off as well (the tear at runner 4; **runner
        3's joint is the one the idle points at**, 12/11).
@@ -685,7 +690,13 @@ stop*), and item 9's leak-down decides between H1 and H3 anyway. *Until
 3.* **6m for 4** because 4 was held to be the cylinder with a
 deficit of its own, and its injector circuit the cheapest of the
 three causes that act on 4 alone (H4; H3's runner gasket and H1's inlet
-seat cost the intake off or a leak-down). **Since 12/11 it is read for
+seat cost the intake off or a leak-down). **Brought ahead of item 9, 12/11 night** (*agreed with the
+owner*): off idle 3's deficit is an amount at a small charge and not a
+share (`open.md`, *Naming the cylinder*, *Off idle*), which is what an
+injector opening late through a raised resistance gives, so H4 went
+above H20 and its test, the cheapest that can confirm or clear a cause
+of that shape, no longer waits for the garage; the photograph because
+H3's joint is in reach with the same cover off. **Since 12/11 it is read for
 3**: the deficit and the misfires are cylinder 3's (`open.md` S1,
 *Every stroke named*; S3, *What 014 counts, by cylinder*), 4 is level
 warm, and the measurement is the same six pairs and four coils with
