@@ -18,27 +18,32 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next: the new rear probe
-back to the seller and a new one fitted** (8e); drives with the MFD in,
-**014 in every logged drive** (8f); **8i (the timing belt's marks) at
-the next cold engine**; drives with the MFD in (item 6) and 6i; 8f at
-every VCDS session (032 after drives without a reset, 036 now and then)
-and 8h at a laptop session; **8j and its first drive done 11/11**
-(the canister plumbed back; `idle-log.md`); **item 6's first captured
-drive done 12/11** (`49`); then 8a (the new N80, ordered 11/11) when it
-arrives, **and one captured warm drive after it**; then item 9, 6m inside its garage session;
-**8e postponed to the end** and 8g dropped (*the owner*, 10/11
-and 11/11; `open.md` H11, *The relearn drive*, S23; S1, *The rough
-start of a warm stop*).
+Captures only where an item asks for one. **Next, until the new N80
+is fitted (expected the weekend of 14–15/11)**: **the MFD stays out
+and the drives are captured** (item 6, *the owner*, 12/11), each with
+**014** and **032 read before and after**, and **which drives were
+gentle and which brisk** into the chat — the old valve's 032 against
+the drive, before the swap; **6i's oil level now**, the odometer at
+156,011 km on 12/11; **8i (the timing belt's marks) at the next cold
+engine**; **the new rear probe back to the seller and a new one
+fitted** (8e). **Then 8a, the new N80**: 032/055 and the fault memory
+before, the swap, 070, then one gentle and one brisk drive, captured,
+032 after each. Then item 9, 6m inside its garage session; 8h at a
+laptop session; **8e's harness at the end**, 8g dropped (*the owner*,
+10/11 and 11/11; `open.md` H11, *The relearn drive*; `refuted.md` D13;
+S1, *The rough start of a warm stop*). *Done: 8j and its first drive
+11/11, item 6's first captured drive 12/11 (`49`).*
 
-6. **Drive normally with the MFD in**; brisk driving once warm is
-   welcome. At a warm stop that comes anyway, `IdleHealth` in the
-   everyday state and the oil temperature, written into the chat.
-   - **Captures** (*the first done 12/11*, `49`): **the next one after
-     8a's new N80**, a warm drive ending in a warm stop of 10 minutes or
-     more. Claude runs the capture; **VCDS on
-     014, 020, 033 over the whole drive and the stop**; 032 and 055 for
-     20 s before the drive and after the stop (8f). Once the oil is at
+6. **Drive normally; the MFD out from 12/11** (*the owner*), so the
+   drives can be captured — the converter goes with the MFD, so no
+   `IdleHealth` on the display meanwhile; Claude gives it from the
+   capture (`livewatch.py`). Brisk driving once warm is welcome.
+   - **Captures** (*the first done 12/11*, `49`): **as many drives as
+     the laptop can ride along**, each ending in a warm stop where one
+     comes; **the gentle and the brisk named in the chat**. Claude runs
+     the capture; **VCDS on 014 always** (with 020 and 033 on a drive
+     with pulls), 032 and 055 for 20 s before the drive and after the
+     stop (8f). Once the oil is at
      90 °C or more, **two or three full-throttle pulls** in 3rd or 4th
      to about 5,500 rpm where it is safe. Write the stops. **No
      injector cut**: Claude names the cylinders from the capture
@@ -184,7 +189,9 @@ start of a warm stop*).
      leak-down names 3's exhaust seat, the car is driven as it is and S1
      most likely closed as *acceptable, cause known*.
 
-8e. **Postponed to the end** (*the owner*, 11/11). **The new rear
+8e. **The probe now, the harness at the end** (*the owner*, 11/11 and
+   12/11; S23 closed 12/11 as the new probe's fault, `refuted.md` D13).
+   **The new rear
    probe goes back to the seller, a new one in its place** (*the owner*,
    12/11: the old one, refitted, read healthy with no P0137). The new one
    is fitted as the first was: Bosch's paste on the thread only, nothing
@@ -373,6 +380,16 @@ part were those of the calmest floors before the canister — so **a
 second captured drive now would only repeat the canister's reading**,
 and the next is after **8a's new N80**, the one change left on H16's
 path, read the same way against `49`.
+**The MFD out and every drive captured until the swap** (*the owner*,
+12/11 evening, so that there are more captures and more 014): what
+the drives before the swap add is not another reading of the canister
+but **the old valve's baseline for the owner's reading of H16**
+(`open.md` H16, *The owner's reading, 12/11*) — 032 before and after
+each drive, named gentle or brisk, should follow the drive on the old
+valve (−14.8 after the gentle morning, −7.0 after the brisk drive) and
+stop following it on the new one. Each captured warm stop is read by
+`cylscan.py --minutes` as `49` was, so 3's swell and floor get more
+stops on both valves.
 
 **The groups on the captured drive** (12/11, three at a time): **014**
 always (8f; P0303's time, the stop's count); **020**, cylinder 4's knock
@@ -456,7 +473,7 @@ loose lets air into the exhaust at idle's pulses, the second zone of
 H2 of its own making (*reasoned*). Cold, because the exhaust then is at
 the temperature they were fitted at. Checked before the warm tailpipe
 test (item 7), which it would otherwise confuse. **The rear probe's
-lead** (`open.md` S23): 0.000 V at full load is not the gas, so the
+lead** (`refuted.md` D13 (S23)): 0.000 V at full load is not the gas, so the
 signal failed on its way to the ECU, and it came back at a cooler idle
 — heat on a lead or a connector the likeliest (*reasoned*); the lead was
 tidied by the owner when the probe was fitted, so its run is looked at
@@ -468,7 +485,7 @@ request): the bus cannot show a jerk at a crawl, so only its time
 lets a capture or a VCDS log be read at that moment — the stroke, the
 load, 014, and from a capture the cylinder (`open.md` S12).
 
-**8e's cracked wire and latches** (`open.md` S23, *Found at the
+**8e's cracked wire and latches** (`refuted.md` D13 (S23), *Found at the
 harness*): a copper strand corroding in a crack is a resistance and, in
 the damp, a leak to whatever touches it; tape over it keeps the damp
 in, so the corroded length is cut out. Which wire it is tells what it
@@ -542,7 +559,7 @@ the sets are run one after another, the sequence repeated. Four loads
 because they are the largest the driver can switch from the seat, and
 none needs anyone at the engine.
 
-**8e, no spray and no seal on the probes' connectors** (`open.md` S23,
+**8e, no spray and no seal on the probes' connectors** (`refuted.md` D13 (S23),
 *The contact spray*; the research of 11/11): Bosch, Denso and Saab
 forbid contact spray and grease on a lambda probe's connector, because
 the probe takes its reference air along its own lead, and a solvent

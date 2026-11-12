@@ -1495,6 +1495,283 @@ paragraph's "the settling of a long warm stop, as on `43` and 10/11
 evening" holds for the level alone — **the length and 014 were new**
 (`open.md` S1, the warm stops' table, 12/11 night).
 
+### D13. S23 — the new rear probe's signal falls to zero under load, P0137 — closed 12/11/2026
+**Closed at the owner's decision, 12/11, to be reopened if P0137 or a
+zero at idle or under load comes back**: **the new rear probe's own
+fault**. The old rear probe, refitted on the same harness 12/11 after
+midnight, read healthy on two drives — 12/11 night (0.575 V at a warm
+idle, zero only on the overrun's fuel cut) and the captured drive of
+12/11 (`49`; at the long stop 0.59–0.61 V sinking towards 0.2 V as the
+old probes always did, never zero) — with **no P0137** and the fault
+memory empty before, between and after. The new probe goes back to the
+seller and a new one replaces it (`plan.md` 8e); the harness's broken
+terminal and the cracked wires found on 10/11 stay as found and are
+mended in 8e. **It comes back as P0137, or 036 at 0.000 V outside the
+overrun** — that reopens it, in `open.md`.
+**The entry as it stood in `open.md`:**
+
+*Added 10/11 evening at the owner's request.* **On the relearn drive of
+10/11** (`47`, `vcds/vcds-step8d-drive-014-032-036-2.csv`, 036 field 1 at
+VCDS's ~1 s), the rear probe fitted that morning:
+
+| 10/11 (local) | at idle | under load (the highest in each minute) |
+|---|---|---|
+| 16:26–16:50, on the road | 0.5–0.6 V at the stops | **0.67–0.76 V** at every high load; 0.00 on every overrun (the fuel cut) |
+| 16:51–16:56 | 0.48–0.54 V, flat | 0.59–0.63 V |
+| **16:57–17:22** | **sinking, 0.39 → 0.24 V** at every queue stop | **never above 0.44 V**, even at 75–97 % load |
+| **17:23–17:28** | — | 0.00–0.41 V, means 0.02–0.12 |
+| **17:29 to the stop's end** | **0.000 V**, then 0.03–0.14 at 17:37 | **0.000 V at 93 % load** |
+
+036 field 2 read `neOK` 17:29–17:30, then `OK` again. **The fault memory
+after the drive (17:33:27): 16521 / P0137, bank 1 sensor 2, signal too
+low, sporadic**. At the stop (17:37, `vcds-step8d-end-probes-030-033-036.csv`):
+**the front probe switching 0.06–0.73 V**, 033's correction within
+±2.3 %, **the rear 0.03–0.14 V**; 030 111 / 111; **041 25.5 / 22.9 Ω**,
+both heaters on. **The owner cleared P0137**; then **034, 046 and 037
+under basic settings, all OK** (the album, 17:44–17:48), **037 reading
+the rear probe at 0.535 V and 036 at 0.575 V, `OK`** (17:47:45,
+17:48:46) — back to normal within minutes of a cooler idle; the fault
+memory empty at 17:50 (`vcds-step8d-end-faults-after-cattests.txt`).
+The owner will look under the car at the rear probe's lead once it is
+cold (`plan.md` 8e).
+
+**What it is** (*reasoned*; the probe's behaviour *general*): a
+zirconia probe in the rich gas of full load reads 0.7 V and more, so
+**0.000 V at 93 % load is not the gas** — the signal did not reach the
+ECU whole: **the signal lead shorted to ground or to its own earth, the
+connector, or the new probe failing**. **The ceiling falling from
+16:57**, with the idle sinking, reads as the same fault beginning, not
+as the mixture. That it came back at a cooler idle points at heat: **a
+lead too close to the exhaust**, the new probe's lead tidied by the
+owner that morning (`vehicle-history.md`), or the connector. **The old
+rear probe's sinking (9/11 night) was a different shape**: it rose back
+to 0.6 V at 1,500 rpm and was never zero under load (H11, *The reading
+before the swap*). **The switch of 10/11 morning to the front's swing**
+(11:54:45, swinging to 0.78 V) **was not this either** — it passed rich
+gas.
+
+**What moved with it** (10/11 night, *the owner's question*: anything
+in VCDS or on the bus; every 036 sample of `47` against engine speed,
+b7, throttle, 014's load, the fuel flow, coolant, oil, the A/C, the
+brake, 032 and time, and 30 s idle windows against `IdleHealth` and
+the dips; *ad-hoc scripts, not kept*):
+- **The A/C lifts it at idle.** Switched on at 17:06:13, the rear probe
+  went from 0.28–0.38 to **0.50–0.56 V within 15 s** and held there
+  while the compressor ran (b7 23 → 30–50, the fuel 290 → 340–530
+  µl/s); switched off at 17:09:39, it slid back over about a minute to
+  0.30. Over the A/C-off idles of 16:57–17:22 it leant a little lower
+  with a higher coolant (r −0.32), nothing with the fuel or b7. **On 9/11
+  night the old rear probe did not rise with the A/C** (H11, *The
+  reading before the swap*).
+- **The collapse came with the second A/C stretch and the brisk end**:
+  the A/C on at 17:22:42, the rear probe's mean 0.27 → 0.10 V in the next
+  minute while the drive turned brisk (to 97 % load), 0.000 from 17:29.
+- **Nothing with the idle**: over 14 idle windows of 30 s before 17:23
+  the rear probe and `IdleHealth` or the dips show no relation worth the
+  name (if anything rougher with the probe higher, the opposite of a
+  lean idle's prediction).
+- **Read** (*reasoned*): a leak from the signal to earth reads more as
+  the probe's own resistance rises, and a zirconia probe's resistance
+  rises as it cools; **more load means hotter gas at the rear probe**,
+  so a leak would pull it down less with the A/C on — as seen — and
+  most at a long idle, which is where it sank. A heat-sensitive leak that later
+  became a short fits all three phases; so would, on a sound circuit, a
+  converter that passes lean gas at idle and less of it under load —
+  except that no gas reads 0.000 V at full load. H21 (*A shared
+  earth*) and `plan.md` 8g read it.
+
+**Found at the harness, 10/11 evening** (*owner*, the album
+21:32–21:36; the probes' leads and connectors under the black cover he
+had tucked them into that morning, the old ones having hung loose):
+- **On the rear probe's harness side, a blue wire's insulation cracked
+  right behind the connector, with a pale green crust on the copper
+  showing through** (verdigris, *general*: copper corroding in damp) —
+  strands starting to show; perhaps a red wire beside it too (*owner*:
+  hard to tell).
+- **The rear probe's connector: one pin bent a little, and the pins of
+  different colours** — yellow, silvery and copper-coloured — which may
+  be oxidation (*owner*); contact spray went in that morning.
+- **The front probe's connector did not latch fully** when it was put
+  back that morning (*owner*).
+- **Which wires** (*owner*, the album 21:49–21:50): the probe's own
+  half is numbered 1–4 with **white, white, grey, black**; **the
+  cracked blue wire meets the outer white — a heater lead of the rear
+  probe**, not its signal. **A second damaged place: a brown wire to the
+  front probe, its insulation worn dark and cracked, meeting the front
+  probe's grey** — by Bosch's usual colours black the signal, grey the
+  signal earth, white the heater (*general*, not read off this probe's
+  sheet). Both lie inside the black plastic box the leads are tucked
+  into.
+- **Read** (*reasoned*): a cracked, corroding wire next to others is
+  where a damp leak to a neighbour or to earth would be. **The rear
+  probe's heater lead** reaches S23 only through a leak into the
+  signal beside it — a heater lead carries 12 V switched, so a damp
+  path from it would push the signal up, not down, unless the leak is
+  from the heater's earth side; *not known*. **The front probe's
+  signal earth** is H21's own mechanism: a resistance or a leak there
+  shifts the front reading, most at idle where the heater draws most —
+  **the one candidate here for S19's idle cell surviving the swap**.
+- **A broken terminal, suspected** (*owner*, 10/11 night; the album
+  21:32:45 bears it out): in the rear probe's harness-side socket **one
+  outer terminal shows four pieces in a cross where every other
+  terminal, in both sockets, shows the two springs of a V** — as if both
+  springs had split. A broken spring presses weakly on its pin: a
+  contact whose resistance moves with heat and shaking (*general*).
+  **It is the cavity that meets the probe's black wire** (*owner*,
+  10/11 night) — **the rear probe's signal**, by Bosch's usual colours
+  (*general*). The front socket latched fully on the second try
+  (*owner*).
+- **Read** (*reasoned*): **the likeliest cause of S23.** A weak, broken
+  contact on the signal itself explains the reading moving with heat
+  and shaking; and **0.000 V exactly** is what the signal reads when it
+  is joined to its own earth — the next terminal carries the signal
+  earth (the probe's grey), so a loose piece of a split spring touching
+  it, or corrosion bridging them, would give it, where an open contact
+  would leave the ECU reading its bias, about 0.44 V (*the bias*:
+  `plan.md` 8g's evidence). Not proven until the terminal is out.
+  **Doubted by the owner, 11/11**: the split looked too symmetrical, as
+  if made so, though odd that one socket's terminal had it and the
+  other's not; and whether the falling voltage itself can be trusted.
+  *Reasoned*: P0137 stored says the ECU's own input saw it, so the low
+  reading was real at the ECU, wherever it came from — the probe, the
+  spray, the terminal or the wire. **Left open**: 8e postponed to the
+  end, 8g dropped (*the owner*); the rear probe watched through 036 at
+  VCDS sessions (`plan.md` 8f) — it has no direct hand in the mixture
+  (SSP 175), and no probe code was stored before 10/11.
+- **The terminals after** (the album 22:18): a turquoise tinge on the
+  springs of several terminals in both sockets, not only the broken one
+  — verdigris starting, as far as a photograph shows (*reasoned*);
+  cleaning does not undo it, new terminals do.
+- **The contact spray, a second mechanism** (the research of 11/11):
+  **Bosch, Denso and Saab all forbid contact spray or grease on a
+  probe's connector** — Bosch: *"ambient air is required for the
+  operation of lambda sensors"* (*Lambda sensors* brochure); a probe of
+  this kind takes its reference air in along its own lead, between the
+  strands and the insulation, and a solvent drawn in with it lowers the
+  probe's whole curve, a false lean (*trade press*; the patents call it
+  a characteristic shift down). It went into this probe's connector
+  that morning: **it fits the sinking phase** — the ceiling falling
+  under load from 16:57, back after cooling and the basic settings'
+  revs — **and not the exact 0.000 V at 93 % load**, which VW's own
+  table reads as the signal joined to earth: the broken terminal
+  spring. So both may have acted. Whether these two Bosch parts breathe
+  through their connector or only at the probe's own grommet is not
+  known from the sources; **the tape over the harness side is not
+  expected to starve them** (fabric tape, not a seal) — the rule from now
+  on: nothing sprayed or greased into either probe's connector, and the
+  probe's own lead and connector never sealed airtight (`plan.md` 8e).
+  A rear probe that sinks slowly on a hot drive without reaching zero
+  would point at the spray or the air; a zero at the terminal.
+- **Why on 10/11** (*owner*, 10/11 night): that morning he tucked the
+  new probes' spare lead into the box with the harness, where the old
+  probes' leads had hung outside — so the wires were pressed together
+  there for the first time, the cracked ones included. *Reasoned*:
+  pressure that closes a crack against a neighbour, warmed by the
+  drive, fits a fault that appeared on the first long drive after it
+  and went at a cooler idle; S19's idle cell, older than that, would
+  need the front signal earth to have been poor before.
+- **The harness runs up through the engine bay into the cabin to the
+  ECU, with no earth point on the way** (*owner*, 10/11 late night): the
+  probes' signal earths close inside the ECU, at its plug. The battery
+  taken out again that night, so 032 relearns from zero on the
+  repaired harness (`plan.md` 8f).
+- **The first start after the tape** (11/11 00:05, a cold start after
+  about six hours, idling only; `vcds/vcds-harness-taped-cold-030-033-036.csv`,
+  the album 00:06 and 00:10): the front probe read lean (0.015–0.025 V)
+  through the secondary air's first 100 s, then switched 0.08–0.78 V
+  with its correction within −5.5 to +2.3 %; **the rear probe at 0.425–
+  0.44 V while its heater warmed (`vyp.` to 135 s), then rising flat
+  to 0.535–0.575 V by 160–220 s — the healthy shape — and from 222 s
+  moving between 0.31 and 0.61 V with the front's swing**, never under
+  0.3 V; 030 111 for the front, 010 / 110 for the rear (ready, its
+  heater cycling, its regulation not yet on — it read 111 at the hot
+  stop of 10/11). **No zero** — no sign of S23 cold. 032 0.0 / 0.0
+  (reset), 055 −1.12 / 0.00 g/s at 830 rpm; `IdleHealth` **64** on
+  the MFD at 1–2 minutes (*owner*: about 70 with the secondary air,
+  rising after), `Misfires` 1. **Not an exception**: every captured cold start
+  reads calmer in its first two minutes than after — 58–98 at 60–120 s,
+  then 110–160 at 2–5 minutes (`18`–`44`, coolant 10–27 °C; *ad-hoc
+  script, not kept*) — the window H11, *The idle without the lambda
+  loop*, already describes. The rear probe joining the front's
+  swing on a converter a few minutes from cold is what a store not yet
+  working gives (*reasoned*); the hot drives decide S23.
+- **Taped by the owner the same night**, everything he could see
+  (`plan.md` 8e), so the drives after are a before-and-after test: S23
+  coming back or not, and where 032 relearns (`plan.md` 8f). A front
+  connector not latched would let the front probe's contacts move —
+  for H21 at the front, and for nothing measured yet.
+
+**Does the rear probe touch the mixture** (*the owner's question*, 10/11
+night): **a little and slowly, yes** — this ECU runs a second loop on
+it, which shifts where the front probe's loop sits (SSP 175, the
+second loop; 037 field 3, ±1200 ms, `vcds.md`), within limits; and it
+is what the converter's and its own diagnosis read, so it can set a
+code and in time the lamp (P0137 was stored sporadic and lit nothing;
+the lamp stayed out on the bus while the engine ran). **So 032's end
+value on 10/11 is likely bent by S23** (*reasoned*): the idle cell
+reached −6.3 % at 16:58, as the fault began, and came back to −3.9 %
+over 17:10–17:24 while the rear probe lay low — the second loop asking
+for fuel, the cell following; **−6.3 % is the cleaner reading of the
+relearn**, −3.9 % not.
+
+**What it touches**: **H11's mark 1 on 10/11** (the end value, above);
+**H11's mark 2 from 16:57 on 10/11** (unreadable)
+and **the warm stop at the end**, run with the ECU seeing a lean rear
+probe — how far the rear loop moves the front's set point at idle on
+this ECU is *not known*. **Not the idle**: the idle was as rough before
+16:57, with the rear probe flat, as after (H11, *The relearn drive*).
+**In the fit tables since H21** (the probes' wiring, added at the owner's
+request the same evening): ✔ there, — everywhere else; the look under
+the car and at the sockets settles it.
+
+**Back, and steady, 11/11 night** (8k, `idle-log.md` 11/11 night; the first hot drive
+since the tape): **P0137 stored before the drive** (21:17, sporadic,
+from a drive since the clear of 10/11 17:50; `vcds/vcds-step8k-precold-faults-before.txt`),
+cleared by the owner; **stored again on the drive and present at its
+end** (22:29, 35-00, no "sporadic"; `vcds-step8k-drive-faults-after.txt`).
+**At the warm stop after it, 036 read 0.000 V for all four minutes**
+(22:39–22:43, oil and coolant about 100 °C, the everyday state; its
+result `OK` and `neOK` by turns; `vcds-step8k-warmstop-001-036-014.csv`)
+— **zero at idle too now**, where 10/11 had it only under load and
+then at the stop's end. **The tape did not cure it**, and a warm
+engine now holds it: the broken terminal, the wire or the part
+(*reasoned*). **The new probe or the harness** — the old rear probe
+back in for a drive tells them apart, if it is still to be had (the
+owner thinks he threw it out); otherwise the signal wire's continuity
+and its leak to earth, cold, from the probe's connector to the ECU's
+pin while the lead is flexed (`plan.md` 8e). Not measured running: no
+one under the car with the engine on, and the pins not probed (*the
+owner*, 11/11). **What it bends**: 032's idle cell, by the second loop
+(above) — 8k's idle cell is read with that in mind.
+
+**Both rear probes measured cold, 12/11 just after midnight** (*owner*,
+a multimeter on the probe's own four pins, out of the car): **the new
+one 8.3 Ω across the two whites (the heater), every other pair and
+every pin to the body open**; **the old one 9.2 Ω, the rest open**. So
+**no short between the new probe's signal and its signal earth cold** —
+not the 0.000 V by itself; a fault that opens only hot cannot be seen
+this way. Both tips dark grey and dry (the album 00:29). **The old rear
+probe refitted the same night**, to tell the part
+from the harness: **zero again with the old probe → the harness**
+(the broken terminal, the wire); **no zero → the new probe**, back to
+the seller.
+
+**The drive on the old rear probe, 12/11 night** (`vcds/vcds-step8n-drive-032-036-001.csv`,
+52 minutes with a brisk motorway stretch, then a warm stop): **036 at
+a warm idle a median 0.575 V** — the healthy level behind a converter,
+not rich; **zero only in 48 short stretches, the longest 31 s, every one
+at 1,100–5,300 rpm** — the overrun's fuel cut; **never at idle or under
+load, and no P0137**. **So the new rear probe was the fault**, not the
+harness (*the owner's decision*: it goes back to the seller and a new
+one replaces it). The broken terminal and the cracked wires stay as
+found (`plan.md` 8e). **At long warm stops the old probe sinks**
+(`vcds-step8n-stop-014-001-036.csv`; 12/11's `vcds-step6w-stop-014-032-036.csv`;
+read 12/11): at 12/11 night's stop a median 0.14 V (0.085–0.65); at
+the captured stop of 12/11 0.59–0.61 V for eight minutes with short
+drops to 0.09–0.1 V, the drops growing, a median 0.19 V from 11:31 —
+**the sinking at idle the old probes showed on 9/11 night** (H11, *The
+reading before the swap*), never at zero and no P0137.
+
 ### D9. "A higher idle quiets the misfires" — measured, 12/10/2026
 The specified idle raised from 780 to 830 rpm, the ECU's limit (VW's
 procedure, login 01283): 014 kept counting and `IdleHealth` rose slightly with
