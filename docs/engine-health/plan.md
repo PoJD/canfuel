@@ -18,8 +18,7 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next: the owner's word on
-020's reading** (Claude's question of 12/11); **the new rear probe
+Captures only where an item asks for one. **Next: the new rear probe
 back to the seller and a new one fitted** (8e); drives with the MFD in,
 **014 in every logged drive** (8f); **8i (the timing belt's marks) at
 the next cold engine**; drives with the MFD in (item 6) and 6i; 8f at

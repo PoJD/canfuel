@@ -238,8 +238,8 @@ of S1) are that floor's small dips, **on all four cylinders**, not 3's
 misfires. **032 went −14.8 / +2.3 → −7.0 / +8.6 %**: the part-load
 cell back at the bypass's level (S19, S21, H16). **020: cylinder 4 to
 12.7° at full load and 14.2° on a tip-in, now at 3,500–4,600 rpm as on
-the remap, and 2 beside it near the limiter** — whether a shift of S4
-is put to the owner. The fault memory empty throughout; the engine
+the remap, and 2 beside it near the limiter** — recorded in S4 as an
+observation (*the owner*, 12/11). The fault memory empty throughout; the engine
 lamp only at its check before the start. **H16 stays first in list A
 until the new N80** (*the owner*, 12/11; Claude had proposed it down):
 his reading — a valve still leaking canister vapour, a gentle morning
@@ -436,8 +436,7 @@ candidates, ranked*). **Read 12/11** (`49`, above): **H16 from first of
 list A to fifth proposed; the owner kept it first until the new
 N80**.
 
-**Next** (`plan.md`; *the owner*, 10/11–12/11): **the owner's word on
-020's reading (S4)**; **H16 first in A until the new N80** (*the
+**Next** (`plan.md`; *the owner*, 10/11–12/11): **H16 first in A until the new N80** (*the
 owner*, 12/11); **the new rear probe
 back to the seller and a new one fitted**; **8a, the new N80, when it
 arrives, then one warm drive captured and read as `49` was** — 3's
@@ -1782,8 +1781,8 @@ field (not known). **Not the band alone**: 3/11's two drives had 40
 full-load samples at 3,500–4,600 rpm and 4 retarded in one, this drive
 54 of 156 — **on the original map 4 now retards there as on the remap**
 (`40`: to 11.2); 2 beside 4 near the limiter is new in these logs.
-**Whether this is a shift of S4 is the owner's to decide** (put to him
-12/11). *Reasoned*: an arc at lead 4's plug end is
+**Recorded as an observation of S4, the symptom itself unchanged**
+(*the owner*, 12/11). *Reasoned*: an arc at lead 4's plug end is
 broadband noise in 4's own window (`refuted.md` C24), as is real knock from the crust on
 4's crown (`idle-log.md`, 19–20/10).
 
