@@ -60,8 +60,8 @@ one wrong box is possible, three are not. And the `T` is NGK's code for
 three ground electrodes, a plug made to be fitted as it comes, not bent
 (*general*). Measuring one with a wire gauge would cost the plenum off
 again for a doubt this small; not done. **3/11 evening, asked again by
-the owner**, after `43` named cylinder 3 (`open.md`, *The dips keep to
-one slot*): the three-boxes argument covers a set, not **one plug on 3**
+the owner**, after `43` named cylinder 3 (`open.md` S1, *Every stroke
+named*: 3 the weak one at every warm idle on record): the three-boxes argument covers a set, not **one plug on 3**
 closed up in the fitting or knocked on the way in, which would act on
 that cylinder alone; *reasoned*. Still not measured; it would be read
 with plug 3 itself whenever the plenum comes off (`open.md` H13); no
@@ -93,8 +93,8 @@ in the rough ones (13.4× against 13.1×), and the four phase slots differ by
 the idle grade gives, and confounded with temperature.
 **Limit:** four cylinders equally bad leave nothing periodic, so "all four
 together" is neither confirmed nor refuted.
-**Partly un-refuted, 9/10/2026** (`open.md`, *Naming the cylinder*, *The
-dips keep to one slot*). The slot **means** still show no outlier, and that
+**Partly un-refuted, 9/10/2026** (`open.md`, *Naming the cylinder*,
+*What the dip shares said, and what stands*). The slot **means** still show no outlier, and that
 stands. But the **dips** — the events this hypothesis was about — keep to
 one slot: 256 of 720 pairs of dips in one phase-intact run fall on the same
 slot, against a quarter by chance (p ≈ 2×10⁻¹⁰). A cylinder that stumbles
@@ -105,13 +105,24 @@ one cylinder, by a model fit — but not four alike either. Back in
 the pair figures above were read on runs seconds long and run high; on
 minutes-long runs the dips put about two thirds on **two** neighbours in
 the firing order, and on `31`, where the cuts name the slots, those are
-cylinders 4 and 3 (`open.md`, *One cylinder or two*). Still not four
+cylinders 4 and 3 (then `open.md`, *One cylinder or two*; withdrawn
+12/11, below). Still not four
 alike, and still no outlier in the means. **5/11: an outlier in the
 means after all, once the cuts name the slots** (`open.md` S1, *A steady
 pattern over the cylinders*): warm, on `31` and `43`, 3 and 4 give 3–4 %
 of a stroke less and 2 about 6 % more, and the pattern is about a third
 of `IdleHealth`; the unnamed slot means could not show it because their
-phase is lost between runs.
+phase is lost between runs. **12/11: one cylinder after all, and it is
+3** (`open.md` S1, *Every stroke named*; `tools/cylscan.py`): with a
+stroke count that does not slip and the crank wheel's own alternation
+taken out, **3 gives 10–20 % of a stroke less than the mean at every
+warm idle since 24/9, has 35–77 % of the weak strokes and 80 % of
+014's rises since the VW leads**; 4 is level warm. The dip shares
+above ("two thirds on two neighbours", "4 and 3", "3 and 4 give 3–4 %
+less") came from a count that slipped with the alternation left in,
+which read 4 low and 3 high; the tools behind them were removed 12/11.
+"Dominates" still overstates it — the common part is most of
+`IdleHealth` — but the outlier this entry denied is there.
 
 ### A6. "The evaporative purge" — measured
 
@@ -894,6 +905,15 @@ kept elsewhere: plug 3 itself (its gap, `refuted.md` A2, reopened for
 plug 3 alone, 3/11) and the high-voltage side in the dark (`plan.md`
 item 7, H4). The VW plugs are the same NGK `BKUR6ET-10`; only the leads
 and their ends changed.
+**Re-read 12/11 with `tools/cylscan.py`** (`open.md` S1, *Every stroke
+named*): the dip shares above ("spread at first", "45 % on one slot")
+came from a count that slipped and are withdrawn, **but the refutation
+holds, on firmer ground**: cylinder 3 gave the same deficit on the NGK
+leads and on the VW ones (`31` −15 %, `40` −14 %), so the leads were
+never 3's cause. What the NGK ends may have cost is **4's**: its weak
+strokes fell from 38 per 1000 on `19` (24/9) to 5–16 on `24`–`31` and
+2–7 from 12/10, when lead 4 was re-seated — gone with the leads, so
+nothing of it is left to test.
 
 **As it stood in `open.md` when it was refuted** (heading: *H15. The aftermarket leads (and plugs) — NGK plug ends that grip loosely, on 3 and 4 above all*):
 

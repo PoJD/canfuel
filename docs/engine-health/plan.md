@@ -32,21 +32,6 @@ and 8h at a laptop session; **8j and its first drive done 11/11**
 and 11/11; `open.md` H11, *The relearn drive*, S23; S1, *The rough
 start of a warm stop*).
 
-**For Claude at the next session, before anything else** (*the owner*,
-12/11, at the end of the third research's session; each is removed when
-done):
-1. **The closing marks rewritten: S1 and S3 close when cylinder 3 is
-   in order** — S1's by the bus (`tools/cylscan.py`: 3's deficit and
-   weak strokes level with the other three), S3's by group 014 (its
-   rises no longer 3's, and zero as decided 20/10). `open.md`, *When S1
-   closes* and *When S3 closes*; the wording shown to the owner.
-2. **The sections that hold the old dip shares** (`open.md`, *One
-   cylinder or two*, *The dips keep to one slot*, and what cites them
-   in S1): removed, or rewritten on `cylscan.py`'s figures.
-3. **The private page *Pořadí hypotéz volnoběhu***: the hypothesis
-   cards put in the order agreed 12/11 (list B first; H13, H1, H3, H20,
-   H4, H7), and its old dip shares brought in line with 2.
-
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
    everyday state and the oil temperature, written into the chat.
@@ -309,7 +294,7 @@ needed.
 
 **6m and 6n, the injector circuits** (`open.md` H4, *What the loom can
 and cannot do unseen*), split so the first needs nothing unplugged at the
-ECU (*the owner*, 5/11): a raised resistance in the loom at 3 and 4 makes no
+ECU (*the owner*, 5/11): a raised resistance in the loom at 3 makes no
 code but starves its injector. The manual's figures: injector 14–18 Ω
 at about 20 °C, each wire at most 1.5 Ω, contact 1 the shared supply from
 J17, contact 2 the ECU's output at pins 73/80/58/65. Read as a comparison:
@@ -335,12 +320,14 @@ adaptations are settled (about −1.1 to −1.3), so a comparison holds
 
 **Item 6 — the drives** (*decided 10/10/2026*; *the owner, 21/10: the
 tank on the display, the captures after it*). The display follows the
-idle through the tank; the captures read where it got to. The dips' shares need
-several drives pooled, and they cost nothing. **Read**: `cutscan.py
---shares` on the idles, alone and pooled since the last repair — the
-share the top two carry and p against all four alike (`open.md`, *The
-dips keep to one slot*); `--name` too if a capture has cuts. 014 by stop
-and `IdleHealth` by oil band against `open.md` S1 and S3. **003** says
+idle through the tank; the captures read where it got to. **Read**:
+`tools/cylscan.py` and `--minutes` on the idles, alone and pooled since
+the last repair — 3's deficit and weak strokes against the other three
+(`open.md`, *When S1 closes*), and `--vcds` with the drive's 014 log —
+014's rises by cylinder (*When S3 closes*). *Until 12/11 this read the
+dips' shares with `cutscan.py --shares`, removed with the count it
+rested on.* 014 by stop and `IdleHealth` by oil band against `open.md`
+S1 and S3. **003** says
 whether anything sealed or opened; **020** is data, not a step: whether
 cylinder 4's retard, nearly gone with the new leads on 10/10, stays gone
 (S4).
@@ -363,8 +350,10 @@ part fell** — `idledips.py --roughness` for the whole and
 `--cylinders` for the period-4 part, set against S1's 78 and 51 (*A
 steady pattern over the cylinders*; the 5/11 script that took the slot
 means out was not kept, so the split is computed again on the
-capture). The common part down and 3's and 4's pattern as before is
-list A's, H16 first; the pattern gone too is list B's as well.
+capture; about an eighth of the grade is the crank wheel's own
+alternation, which no repair moves). The common part down and 3's
+pattern as before is list A's, H16 first; the pattern gone too is list
+B's as well.
 **Read by cylinder since 12/11** (`tools/cylscan.py --minutes`, kept;
 `open.md` S1, *Every stroke named*): the part with a cylinder is **3's
 deficit and 3's weak strokes** minute by minute — a floor of about −9 %
@@ -430,13 +419,14 @@ because the coil is from 6/2026 and the leads are new again; it is free.
 **After the clean of 9/11 — why the next steps are these** (*agreed
 with the owner*, 9/11 evening; the clean itself, done, is `idle-log.md` and `open.md` S1,
 *The clean of 9/11*; how its day was planned and read: `git show
-c11dc75:docs/engine-health/plan.md`, item 8). **What it showed**: 3's
-excess — its share of the dips, its steady deficit, the rough first
-minutes of a warm stop and 014's storm — was not there at stop 7, which
-is the H13 branch for 3; **4's steady deficit and the settled level were
-kept** (*re-read 12/11: the steady deficit is 3's, −9 % at its floor
-before and after the clean, and "4's" was the crank wheel's
-alternation — `open.md` S1, *Every stroke named**). **8c, the probes read before and after both were replaced, is done**
+c11dc75:docs/engine-health/plan.md`, item 8). **What it showed**
+(re-read 12/11 with `tools/cylscan.py`): 3's swell — its deficit
+beyond its floor, its weak strokes, the rough first minutes of a warm
+stop and 014's storm — was not there at stop 7, which is the H13 branch
+for 3; **3's floor, about −9 %, and the settled level were kept**, and
+the swell was back a day later (`47`; `open.md` S1, *The clean of
+9/11*). *Until 12/11 this read "its share of the dips … gone, 4's
+steady deficit kept"; "4's" was the crank wheel's alternation.* **8c, the probes read before and after both were replaced, is done**
 (9/11 night and 10/11; `open.md` H11, *The reading before the swap*,
 *The reading after the swap*; how it was planned and why: `git show
 1040e9e:docs/engine-health/plan.md`, item 8c): the new rear probe flat
@@ -447,7 +437,7 @@ before.
 evening; `open.md` H11, *The relearn drive*, S23; how it was planned
 and why: `git show d4aeca3:docs/engine-health/plan.md`, item 8d): 032
 back to −6.3 / +6.3 % within 37 minutes on the new probes, the idle as
-before, 3 leading the dips again, and the new rear probe's signal
+before, 3 with most of the weak strokes again (73 %, `cylscan.py`), and the new rear probe's signal
 falling to zero under load (P0137).
 
 **8e, the probes' tightness**: they were tightened by hand to about 50
@@ -596,8 +586,9 @@ warm, and the measurement is the same six pairs and four coils with
 the loom flexed at 3. **The display's stops** with a
 word on what came before each, because a brisk run calms the idle by
 itself for a while (`open.md` S1, *After high revs*) and the display's
-spread is as large as the effect; the A/C's figure for `open.md` S1's
-closing mark 2. **The days after** (*reasoned*, from SAE 2000-01-2858:
+spread is as large as the effect; the A/C's figure for how much load
+still calms it (`open.md` S1, *Load smooths it*; *"for S1's closing mark
+2" until 12/11, when the marks became cylinder 3's*). **The days after** (*reasoned*, from SAE 2000-01-2858:
 water flakes deposits most): the clean burns hydrogen to water vapour,
 so a flake may come loose and lodge under a seat, an 18/10-like
 drop-out; if one comes, a warm leak-down on that cylinder the same day

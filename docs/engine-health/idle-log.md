@@ -359,8 +359,11 @@ close behind the engine** heard: S15 (`refuted.md` D8).
 - **Changes after:**
   - *measured:* **014 still counts** — 3.6 a minute cold, 9.4 at 81–84 °C,
     6.0 hot; `IdleHealth` hot 77 (against 89), the same mid, cold 120
-    (against 95); the dips no longer kept to one slot (26 % of pairs, and
-    far fewer); cylinder 4's retard nearly gone, on a gentler drive;
+    (against 95); cylinder 3 the weak one, −15 % of a stroke with 54 %
+    of the weak strokes, 4 −3 % with 35 % (`tools/cylscan.py`, 12/11;
+    *this read "the dips no longer kept to one slot, 26 % of pairs"
+    until then, on a count since withdrawn*); cylinder 4's retard nearly
+    gone, on a gentler drive;
   - *not known:* whether the leads did anything — the intake gasket changed
     the same day.
 
@@ -386,8 +389,9 @@ moving again: S6 reopened.
   - *measured:* **the warm idle calmer than any day before** at the same
     oil — `IdleHealth` 50 and 61 against 77–89 on 9/10 and 10/10; 014 5.3
     rises a minute hot, 40 % of samples (9/10: 8.8, 58 %); 055 −1.18 to
-    −1.21; 032 0.0 / +2.3 %; the dips kept to one slot again (38 %, p =
-    0.0011); the joint not heard (S6 closed, the sputter S15 with it);
+    −1.21; 032 0.0 / +2.3 %; cylinder 3 at −9 to −15 % with 55 % of the
+    weak strokes (`cylscan.py`, 12/11; *"the dips kept to one slot again,
+    38 %" until then*); the joint not heard (S6 closed, the sputter S15 with it);
   - *not known:* whether the calmer idle is the filter and the airbox, the
     weather or chance.
 
@@ -548,9 +552,11 @@ The camera cannot show whether a valve seals.
     settled idle since 24/9 **level with 12–15/10**, and every load on the
     calmest recorded (37, 0.7 dips a minute); cold 94, against 109–137;
     014 at warm idle 2.7 and 4.6 rises a minute (26 % and 43 % of
-    samples), a hard zero every load on; **the dips spread over all four**
-    (top two 58 %, p 0.77) — the first capture since `24` not keeping to a
-    pair; 032 −6.3 / +5.5 %, 055 −1.42 to −1.37 g/s; nothing the MAF can
+    samples), a hard zero every load on; **cylinder 3 as weak as before
+    the leads**, −14 to −15 % with 64 % of the weak strokes
+    (`cylscan.py`, 12/11; *this read "the dips spread over all four, top
+    two 58 %, the first capture not keeping to a pair" until then, on a
+    count since withdrawn*); 032 −6.3 / +5.5 %, 055 −1.42 to −1.37 g/s; nothing the MAF can
     see changed;
   - *felt:* calmer, with longer quiet stretches, though not always; full
     throttle a touch livelier — nothing measured shows it, nor contradicts
@@ -619,8 +625,10 @@ P0172, too rich**, the first since 5/2019; after the cut **17648 / P1240,
 injector 4 open circuit**, and no P0304 — 014 counted through the cut
 regardless, and counts cold (12 to 72 in the first five minutes). Both
 cleared by the owner, so the trims behind P0172 were lost: 032 read 0.0 /
-0.0 % after, 055 −1.31 g/s. **The dips: all four alike** (top two 55 %,
-p = 0.77; by name 1: 24 %, 3: 31 %, 4: 20 %, 2: 25 %).
+0.0 % after, 055 −1.31 g/s. **Cold, 3 the weak one with 4 beside it**:
+3 −16 %, 4 −6 %, the weak strokes 56 % on 3 and 22 % on 4
+(`cylscan.py`, 12/11; *this read "the dips: all four alike, 3 31 %"
+until then*).
 
 ## 25/10 — the regulator's vacuum hose found cracked and renewed
 
@@ -981,7 +989,9 @@ The last reading on the remap: the baseline 3/11 is read against
   - *measured:* `IdleHealth` cold 98 ± 3 (oil 50–61 °C); warm 93 for the
     first 3 min after the motorway, **54 ± 3** settled into the stop,
     63–77 near home; **014 zero all session**, at an idle load of about
-    30 %; the dips 45 % on one slot (p 0.023); 032 −6.3 / +3.1 %, 055
+    30 %; cylinder 3 at −10 to −18 % with 58 % of the weak strokes
+    (`cylscan.py`, 12/11; *"the dips 45 % on one slot" until then*);
+    032 −6.3 / +3.1 %, 055
     −1.04 g/s at the end; the idle advance, the full-load advance and
     air, b7 and the overrun cut as on the remap; cylinder 4 retarding
     alone at full load, to 6.0° against 11.2° on the remap; the start
@@ -1010,8 +1020,9 @@ The map's own channels did not move, 014 did (`open.md` H14, S3).
     `IdleHealth` at the warm stop, loads off, oil 99 °C: **86 ± 4** the
     first 3 min, 74 the 2 min after the cut, **48 ± 3** the last 5;
     014 there 10 episodes in 200 s before the cut, 9 climbing past 12,
-    and **zero the last 2 min**; **the cut named cylinder 3: 43 % of the
-    dips** (p 0.004); the pulls in 4th short of air (flat at 75–76 g/s
+    and **zero the last 2 min**; **cylinder 3 the weak one, −13 % with
+    62 % of the weak strokes** (`cylscan.py`, 12/11; *"the cut named
+    cylinder 3: 43 % of the dips" until then*); the pulls in 4th short of air (flat at 75–76 g/s
     from 5,000 rpm), b7 155 at 2,400; cylinder 4 retarding alone, to
     4.5°; the start 0.74 s, dip 0, coolant 35 °C;
   - *felt:* **014 counting again at the warm stop** (*owner*, read off
@@ -1021,8 +1032,9 @@ The map's own channels did not move, 014 did (`open.md` H14, S3).
     the first pulls (not pursued, *the owner*).
 
 Read in a cloud session the same evening (`plan.md` 5c, done): the
-first capture that names one cylinder since the VW leads (`open.md`,
-*The dips keep to one slot*; S3; H14).
+cut on injector 4 names cylinder 3 (`open.md`, *Naming the cylinder*;
+S3; H14). *It read "the first capture that names one cylinder since the
+VW leads" until 12/11: by `cylscan.py` every capture since 24/9 names 3.*
 
 ## 3/11 night — the idle on the display, the drive home from football
 
@@ -1088,7 +1100,7 @@ compressor ran is not known.
   - *measured:* after re-zeroing, injector 1's and 4's contact 1 to the
     same T3 pin **0.001–0.002 Ω** each — the 2 Ω was the probes (*owner*).
 
-The rest of `plan.md` 6m waits for item 8's result. *9/11: the clean left 4's deficit; 6m proposed next for 4.*
+The rest of `plan.md` 6m waits for item 8's result. *9/11: the clean left 4's deficit; 6m proposed next for 4. 12/11: that deficit was the crank wheel's alternation; 6m is read for 3 (`open.md` S1, *Every stroke named*).*
 
 ## 5/11 night — the lower manifold's gasket from below, the oil level
 
@@ -1207,23 +1219,24 @@ after the fill (*owner*). Part of `plan.md` 8's baseline.
   1,120 rpm).
 - **Changes after:**
   - *measured:* stop 3 `IdleHealth` **90** for five minutes, then **50**;
-    stop 7 **57–63** throughout. **Cylinder 3's excess gone at stop 7**
-    — its share of the dips 48 % → 23 %, its steady deficit 7–14 % →
-    0–3.6 %, 014 1.03 % → 0.12–0.14 % of combustions; **4's deficit
-    (5–8 %) and the settled level kept**. With the gas flowing at idle,
+    stop 7 **57–63** throughout. **Cylinder 3's swell gone at stop 7** —
+    its weak strokes 25 → 5 per 1000, 014 1.03 % → 0.12–0.14 % of
+    combustions; **3's floor (−9 % after stop 3's cut, −8 to −9 % at
+    stop 7) and the settled level kept** (`cylscan.py`, 12/11; *this
+    read "its share of the dips 48 % → 23 %, its steady deficit 7–14 % →
+    0–3.6 %; 4's deficit (5–8 %) kept" until then*). With the gas flowing at idle,
     **no dips at all** and `IdleHealth` 14–29. The tick unchanged. No
     code but the cut's; 032 −7.8 / +6.3 % unchanged, 055 −1.13 → −1.05;
   - *felt:* more unsettled at the provider straight after the clean,
     014 still counting (*owner*, 11:26); **"a little calmer"** on the way
     on, which he no longer trusts himself to judge (*owner*);
-  - *not known:* whether 3's calm start lasts — one stop each side.
+  - *not known:* whether 3's calm start lasts — one stop each side. *Answered 10/11 evening (`47`): it did not, the swell back on 3 a day later.*
 
 Read in a cloud session the same day (`open.md` S1, *The clean of
-9/11*; S3; *The dips keep to one slot*); S22, the tick, closed the
-same evening as the clean's own sound (`refuted.md` D11). The capture's `--name`
-read was found to slip far from a cut and was followed by the steady
-pattern instead (`open.md` S1, *A steady pattern over the cylinders*);
-`43`'s naming of 3 holds under it.
+9/11*; S3); S22, the tick, closed the
+same evening as the clean's own sound (`refuted.md` D11). The capture's
+cylinders were re-read 12/11 with `tools/cylscan.py`, whose count does
+not slip (`open.md`, *Naming the cylinder*).
 
 
 ## 9/11 night — the lambda probes read, before the front probe's swap
@@ -1314,7 +1327,9 @@ its `-2` file.
     −3.9 / +7.0 at the end; 055 0.00 → −0.91 g/s; `IdleHealth` at the
     queue stops 49–92, the warm stop 52–84 a minute for 8 minutes,
     **then 36–45 for four** (17:38–17:42); 014 0.15–0.24 %; **cylinder
-    3 leading the dips again, 41 %**; **the rear probe's signal falling
+    3 with 73 % of the weak strokes again**, its deficit falling in one
+    step from −22 to −9 % at 17:38 (`cylscan.py`, 12/11; *"3 leading
+    the dips again, 41 %" until then*); **the rear probe's signal falling
     under load from 16:57 and 0.000 V at full load from 17:29, P0137
     sporadic**; at the stop the front probe switching 0.06–0.73 V, the
     rear 0.03–0.14 V, heaters 25.5 / 22.9 Ω; 034, 046, 037 OK, the rear

@@ -7,10 +7,10 @@ the owner's request for a third fresh look at the idle and at what group
 readings it replaces were *ad-hoc scripts, not kept*, and three things they
 could not do decide how the idle is read.
 
-1. **The stroke count does not slip.** cutscan.bridged_runs() counts strokes
-   by how long a value was held, and loses one where two neighbours read the
-   same or a frame is missing, so a cylinder named at an injector cut is
-   named two slots off a few minutes later. Here the count is a phase-locked
+1. **The stroke count does not slip.** cutscan.bridged_runs() (removed
+   12/11/2026) counted strokes by how long a value was held, and lost one
+   where two neighbours read the same or a frame was missing, so a cylinder
+   named at an injector cut was named two slots off a few minutes later. Here the count is a phase-locked
    loop: engine speed integrated over time is crank angle, one stroke per
    180 degrees, and every change of 0x280's value corrects the phase a
    little (`track`). On `31` one run of 883 s holds all four cuts (1, 4, 4,
