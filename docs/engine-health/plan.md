@@ -36,8 +36,11 @@ start of a warm stop*).
    everyday state and the oil temperature, written into the chat.
    - **Captures now** (`IdleHealth` clearly better since 11/11): one or
      two warm drives captured, on different days, each ending in a warm
-     stop of 10 minutes or more. Claude runs the capture; VCDS on **014, 003, 020**; 055 once
-     at the end, warm idle. Write the stops.
+     stop of 10 minutes or more. Claude runs the capture; **VCDS on
+     014, 020, 033 over the whole drive and the stop**; 032 and 055 for
+     20 s before the drive and after the stop (8f). Once the oil is at
+     90 °C or more, **two or three full-throttle pulls** in 3rd or 4th
+     to about 5,500 rpm where it is safe. Write the stops.
    - **The converter carries `Misfires` and `MisfAvg`** (0x604 layout 2,
      flashed by Claude on 4/11, the stored trip and tank kept). **The
      owner uploads `tri/S-AQY.TRI`** from `mfd15` to the display through
@@ -129,7 +132,8 @@ start of a warm stop*).
    idle and on the road when VCDS is on anyway (the rear probe watched
    now and then, *the owner*, 11/11). **032 read first, before any code
    is cleared**; **on a logged drive, 001 in place of 055** (G62's
-   reading: S24 closed 12/11, reopened if its dither comes back) **and 014 always** (P0303 stored on 12/11 with no cut:
+   reading: S24 closed 12/11, reopened if its dither comes back; on a
+   captured drive the capture reads it, 001 not needed) **and 014 always** (P0303 stored on 12/11 with no cut:
    its time is what the log gives).
 8h. **The loads against the sensors' voltages**, Claude in a session on
    the laptop, a warm engine after
@@ -342,6 +346,18 @@ means out was not kept, so the split is computed again on the
 capture). The common part down and 3's and 4's pattern as before is
 list A's, H16 first; the pattern gone too is list B's as well. The stop
 of 10 minutes because the settling takes 3–8.
+
+**The groups on the captured drive** (12/11, three at a time): **014**
+always (8f; P0303's time, the stop's count); **020**, cylinder 4's knock
+retard (`open.md` S4), last read on 3/11's pulls — since then the
+hydrogen clean of 9/11, which a retard from the crust on 4's crown
+would follow and an arc at lead 4's end would not; it shows only on
+pulls above 3,000 rpm warm, hence the pulls; **033**, the front loop's
+live regulation, which swings with the mixture it chases — H16's
+mechanism (`open.md` H16, *How it would make the idle rougher*) against
+the stops logged with 033 on the bypass. **001 is left out** because the
+capture carries the coolant (0x288) far faster; **003** this once
+too.
 
 **Item 6i — the oil level on the new oil** (`open.md` H18; `refuted.md` C21; *the
 owner's agreement*, 26/10). Oil burnt past the stem seals or rings lowers
