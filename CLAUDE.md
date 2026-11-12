@@ -511,7 +511,11 @@ VCDS and the USBtin; a cloud container has neither, and then he is usually on
 his phone. Check the platform and for a VCDS install; if unclear, ask once.
 
 - **On the laptop**, propose every time: **you run `usbtin_capture.py`**,
-  started before the ignition, to engine off; **he runs `oilwatch.py`** in a
+  started before the ignition, to engine off; **you run
+  `tools/livewatch.py`** on the same file as a monitor from the capture's
+  start, and **give him its line every minute** — oil, coolant, and at a
+  stop `IdleHealth` and `Misfires`, which the MFD would have shown (*the
+  maintainer*, 12/11); **he runs `oilwatch.py`** in a
   second terminal on the same file; **you run `tools/vcds_log.py`**
   (`--groups 014 001 003 --out "C:/Users/Luboš/Downloads/<name> 14-1-3
   YY-MM-DD.CSV"`, in the background). One run does the session: fault memory
@@ -587,6 +591,7 @@ Windows) are the only third-party dependencies; there is no
 ```
 python tools/usbtin_capture.py --seconds 60 --out idle_z1.txt
 python tools/oilwatch.py idle_z1.txt
+python tools/livewatch.py idle_z1.txt   # a line a minute: temperatures; IdleHealth, Misfires at a stop
 python tools/canlog.py FILE          # per-ID summary; --dump --id 0x480; --states
 python tools/replay.py --every 100 FILE
 python tools/idledips.py --roughness FILE
