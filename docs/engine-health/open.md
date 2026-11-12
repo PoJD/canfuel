@@ -827,41 +827,29 @@ with the fault present, and **none will be**: a CAN capture of another car
 needs its cluster harness tapped behind the vent, which no owner will allow
 (*owner*, 21/10).
 
-**When S1 closes** (*the owner's decision*, 12/11; he closes it): **when
-cylinder 3 is in order, read on the bus** — `tools/cylscan.py` over
-the warm stops (oil 95–100 °C) of several drives since the last
-repair, **3's deficit and weak strokes level with the other three's**:
-- **its deficit no deeper than the weakest of the other three's**, give
-  or take 3 % of a stroke (the scatter from stop to stop), pooled over
-  each drive's warm stops — **at every warm stop on record it is 3 to
-  20 % deeper** (S1, *Every stroke named*) — **and no swell left**
-  minute by minute (`--minutes`: no minute under −15 %, against −15 to
-  −27 % in the swells of `40`–`47`);
-- **its weak strokes per 1000 no more than the most of the other
-  three's**, pooled the same way — **1.5 to 6 times as many on every
-  capture since October**, all but `46` (after the clean, level with
-  4's).
-
-It needs no healthy target, which nobody has (above). *The 3 %, the
-−15 % and "the most of the other three" are Claude's reading of
-"level" (12/11), shown to the owner.* Short of it, the owner may close S1 as
-
-*acceptable, cause known*. **What it no longer asks**: until 12/11 the
-marks were three — the dips no longer keeping to a pair (`cutscan.py
---shares`, removed with its count), loads-off `IdleHealth` within about
-25 of loads-on, and at least the best level shown, about 50–60 loads
-off (decided 20/10). `IdleHealth` carries the common part as well (and
-about an eighth of it is the crank wheel's own alternation, *A steady
-pattern over the cylinders*), which is not one cylinder; the common
-part stays ranked as list A (*The idle's candidates, ranked*) but is no
-closing mark. **Since 28/10 the warm stops are read in the
-everyday state only** (`plan.md`, *the owner's decision*); **the
-closing itself is read loads off** — for S1 and
-
-S3 alike — **and probably on the overrun as well** (*the owner's
-decision*, 28/10): the downshift without a blip, where the load reads
-about 10 % (VCDS 014, field 2) and the bangs of S14 come, is the thinnest charge and so the
-strictest test (*owner*). **Read by ear, not by 014** (*owner*): on the overrun 014's
+**When S1 closes** (*the owner's decision*, 12/11; he closes it):
+**`IdleHealth` steadily under 30 at a warm idle, never above it, in the
+everyday state and with every load off alike**, oil 95–100 °C, after
+the adaptations have settled (032 and 055 not freshly reset), over
+**three drives on different days**. It asks for what the idle needs:
+cylinder 3 level with the others (S1, *Every stroke named*) **and** the
+common part gone (*The idle's candidates, ranked*, lists B and A) —
+only both together get the grade that low; **the provider's gas did it
+once**, with the A/C or the blower on (14–29, 9/11); nothing else has. *Reasoned*: about 8 of the
+grade is the crank wheel's own alternation (*A steady pattern over the
+cylinders*), which every engine with this wheel carries, so under 30 is
+strict but within reach of a healthy idle. `tools/cylscan.py` is read
+beside it to say which part moved, but is no mark of its own. Short of
+it, the owner may close S1 as *acceptable, cause known*. *Until 12/11
+the marks were three — the dips no longer keeping to a pair
+(`cutscan.py --shares`, removed), loads-off `IdleHealth` within about 25
+of loads-on, at least the best level shown, about 50–60 loads off
+(decided 20/10); on 12/11 for a few hours they were cylinder 3 level
+by `cylscan.py` alone, and the same day the owner replaced them with
+this.* **Probably on the overrun as well** (*the owner's decision*,
+28/10): the downshift without a blip, where the load reads about 10 %
+(VCDS 014, field 2) and the bangs of S14 come, is the thinnest charge
+and so the strictest test (*owner*). strictest test (*owner*). **Read by ear, not by 014** (*owner*): on the overrun 014's
 misfire recognition reads `deaktiv.` — in every 014 log in
 `test/fixtures/vcds/`, every row above 1300 rpm with the load under 20 %
 reads it, none `aktivováno` (counted 28/10) — so the counter cannot move
@@ -1379,16 +1367,16 @@ first logged. No fault code is stored (the ECU stores P0300 only above 2 %
 over 1000 revolutions, `vcds.md`); **it once did**: P0304 and P0172 in an
 old scan of 5/2019 (`vehicle-history.md`).
 
-**When S3 closes** (*decided*, 20/10; **cylinder 3 added 12/11**, *the
-owner's decision*): **when cylinder 3 is in order by group 014** — 014
-reads **0** at a warm idle with loads off, oil 95–100 °C, for 3–5
-minutes, **on three sessions on different days**, **and what it still
-counts on those drives is no longer 3's** (`tools/cylscan.py --vcds`:
-3 with no more than its quarter of the rises, against 80 % since the VW
-leads; *What 014 counts, by cylinder*, below). The counter steps in
-twelves, so zero is the only reading inside the specification. *This also asked for one session straight after a hard
-
-drive* (20/10), dropped 23/10 at the owner's decision: what that rested
+**When S3 closes** (*the owner's decision*, 12/11): **no count at all —
+014 at 0 at a warm idle in the everyday state, on three drives on
+different days, after the adaptations have settled**, oil 95–100 °C,
+the whole idle long; not one rise, on any cylinder. Strict, by his
+choice: the counter steps in twelves, so zero is the only reading
+inside VW's specification. *Until 12/11 this read "0 at a warm idle
+with loads off for 3–5 minutes, on three sessions" (decided 20/10),
+and for a few hours that day "and what it still counts no longer 3's".
+It also asked for one session straight after a hard drive* (20/10),
+dropped 23/10 at the owner's decision: what that rested
 on, 014 counting only after the hard drive of 4/10, was an adaptation
 completing rather than load (`refuted.md` C19).
 
@@ -1744,7 +1732,6 @@ kept that far. *Since 12/11 `cylscan.py --wheel` carries one stroke
 count from an overrun into the standing idle after it (13 overruns),
 which could name the fuelled strokes of such a coast; not read — S14 is
 the owner's to watch.* **What the bus does show**: with the pedal up,
-
 the strokes still fuelled before the cut (from 0.7 s after the lift)
 have the same mean stroke-to-stroke step as the cut ones at the same
 speed — the car, not combustion, holds the crank's speed in gear — but

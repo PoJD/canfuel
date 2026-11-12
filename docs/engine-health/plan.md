@@ -322,9 +322,10 @@ adaptations are settled (about −1.1 to −1.3), so a comparison holds
 tank on the display, the captures after it*). The display follows the
 idle through the tank; the captures read where it got to. **Read**:
 `tools/cylscan.py` and `--minutes` on the idles, alone and pooled since
-the last repair — 3's deficit and weak strokes against the other three
-(`open.md`, *When S1 closes*), and `--vcds` with the drive's 014 log —
-014's rises by cylinder (*When S3 closes*). *Until 12/11 this read the
+the last repair — 3's deficit and weak strokes against the other three,
+and `--vcds` with the drive's 014 log — 014's rises by cylinder; beside
+`IdleHealth` and 014 themselves, which are the closing marks (`open.md`,
+*When S1 closes*, *When S3 closes*). *Until 12/11 this read the
 dips' shares with `cutscan.py --shares`, removed with the count it
 rested on.* 014 by stop and `IdleHealth` by oil band against `open.md`
 S1 and S3. **003** says
@@ -737,9 +738,10 @@ worse beyond its spread are read as a seat getting worse.
   fixed mild load, chosen because four minutes and main beam at every stop
   did not fit his driving — is now the one ruler, compared with itself. It
   sits between the two old states, calmer than every load off and rougher
-  than every load on. **The closing of S1 and S3 is not read on it**: the
-  marks stay in loads off (`open.md`, *When S1 closes*), read when the owner
-  closes them, probably with the overrun too (*owner*, 28/10).
+  than every load on. **The closing reads it** (*the owner*, 12/11): S3 on
+  it alone, S1 on it and with every load off besides (`open.md`, *When S1
+  closes*, *When S3 closes*), probably with the overrun too (*owner*, 28/10).
+  *Until 12/11 both closings were read loads off only.*
 - **The fault memory** (*owner*, 18/10/2026): every session starts from
   an empty memory, and the saved file keeps what the session stored.
   **A code before a logged drive pauses it** (*the owner*, 11/11/2026,
