@@ -22,9 +22,9 @@ could not do decide how the idle is read.
    wheel a segment is timed over are not quite equal (about 0.2 deg of
    crank). Measured where nothing burns, on the overrun fuel cut (`--wheel`):
    0.210-0.225 % of engine speed in every band from 1450 to 2500 rpm, 850
-   windows of 13 captures from 24/9 to 10/11; and named through to the
-   idle after it, each cylinder's slot reads 0.0 +- 0.13 rpm once it is
-   taken out. At idle it is 1.7 rpm, as large as the pattern it
+   windows of 13 captures from 24/9 to 10/11; and by cylinder, over the
+   13 overruns that run into an idle in one count, -0.219, +0.217,
+   -0.218 and +0.219 % for 1, 3, 4, 2: nothing is left once it is out. At idle it is 1.7 rpm, as large as the pattern it
    sits under, and it is what made cylinder 4 look weak.
 
 3. **A stroke's loss shows in two slots.** About a quarter of it is in the
@@ -43,7 +43,9 @@ default     every standing idle run (warm ones, or ``--all``): each
             the ECU's own misfire count by cylinder, which the ECU does not
             give (no groups 015/016, docs/engine-health/vcds.md).
 ``--wheel`` the alternation on the overrun fuel cut, the measurement behind
-            `WHEEL_ALT`.
+            `WHEEL_ALT`; and, for every overrun that runs into a standing
+            idle, the same steps by cylinder -- which cylinders read high,
+            and that nothing else is left where nothing burns.
 
 How a cylinder gets its name: with no cut in the run, **the strongest slot
 is cylinder 2** -- true at every injector cut in the corpus (`31`, `41`,
@@ -116,6 +118,14 @@ ALIGN_FINE_S = 0.05
 OVERRUN_MIN_S = 2.0
 OVERRUN_RPM = (1300.0, 2500.0)
 WHEEL_WINDOW = 40
+#: `--wheel`, the names: an overrun is linked to the standing idle that
+#: begins within `LINK_S` of its end, if that idle gives `LINK_IDLE_SAMPLES`
+#: frames under `LINK_IDLE_RPM` and its strongest slot stands
+#: `LINK_MARGIN_RPM` clear.
+LINK_S = 45.0
+LINK_IDLE_RPM = 950.0
+LINK_IDLE_SAMPLES = 1400
+LINK_MARGIN_RPM = 2.0
 
 
 # --- reading ----------------------------------------------------------------
@@ -426,13 +436,11 @@ def misfires_014(vcds_path, data, runs):
 
 # --- the wheel --------------------------------------------------------------
 
-def wheel_windows(data):
-    """[(rpm, |alternation| in rpm)] per `WHEEL_WINDOW` strokes of overrun
-    fuel cut: the mean step of the even strokes less the odd ones', halved,
-    a straight line taken out first."""
+def _overruns(data):
+    """(i0, i1, end time) of every stretch of 0x280 samples with the fuel
+    counter standing `OVERRUN_MIN_S` and the engine inside `OVERRUN_RPM`."""
     e, fuel = data["e"], data["fuel"]
     et = [x[0] for x in e]
-    out = []
     i, n = 0, len(fuel) - 1
     while i < n:
         if fuel[i + 1][1] != fuel[i][1]:
@@ -449,24 +457,87 @@ def wheel_windows(data):
         rs = [x[1] for x in e[i0:i1]]
         if len(rs) < 50 or min(rs) < OVERRUN_RPM[0] or max(rs) > OVERRUN_RPM[1]:
             continue
-        ev = track(e, i0, i1)
-        seq = [(ev[m][2], ev[m][1] - ev[m - 1][1], ev[m][1])
-               for m in range(1, len(ev)) if ev[m][2] - ev[m - 1][2] == 1]
-        w = WHEEL_WINDOW
-        for q in range(0, len(seq) - w + 1, w):
-            ks = [s[0] for s in seq[q:q + w]]
-            ss = [s[1] for s in seq[q:q + w]]
-            xm, ym = (w - 1) / 2.0, sum(ss) / w
-            slope = (sum((x - xm) * (y - ym) for x, y in enumerate(ss))
-                     / sum((x - xm) ** 2 for x in range(w)))
-            res = [y - ym - slope * (x - xm) for x, y in enumerate(ss)]
-            ev_, od_ = ([r for k, r in zip(ks, res) if k % 2 == 0],
-                        [r for k, r in zip(ks, res) if k % 2 == 1])
+        yield i0, i1, b
+
+
+def _steps(ev):
+    """[(stroke index, step, rpm)] for events one stroke apart."""
+    return [(ev[m][2], ev[m][1] - ev[m - 1][1], ev[m][1])
+            for m in range(1, len(ev)) if ev[m][2] - ev[m - 1][2] == 1]
+
+
+def _detrended(seq):
+    """Windows of `WHEEL_WINDOW` steps, a straight line taken out of each:
+    [[(stroke index, residual step, rpm)]]."""
+    w = WHEEL_WINDOW
+    out = []
+    for q in range(0, len(seq) - w + 1, w):
+        ss = [s[1] for s in seq[q:q + w]]
+        xm, ym = (w - 1) / 2.0, sum(ss) / w
+        slope = (sum((x - xm) * (y - ym) for x, y in enumerate(ss))
+                 / sum((x - xm) ** 2 for x in range(w)))
+        out.append([(s[0], y - ym - slope * (x - xm), s[2])
+                    for x, (s, y) in enumerate(zip(seq[q:q + w], ss))])
+    return out
+
+
+def wheel_windows(data):
+    """[(rpm, |alternation| in rpm)] per `WHEEL_WINDOW` strokes of overrun
+    fuel cut: the mean step of the even strokes less the odd ones', halved,
+    a straight line taken out first."""
+    out = []
+    for i0, i1, _ in _overruns(data):
+        for win in _detrended(_steps(track(data["e"], i0, i1))):
+            ev_ = [r for k, r, _ in win if k % 2 == 0]
+            od_ = [r for k, r, _ in win if k % 2 == 1]
             if len(ev_) < 8 or len(od_) < 8:
                 continue
             alt = (sum(ev_) / len(ev_) - sum(od_) / len(od_)) / 2.0
-            out.append((sum(s[2] for s in seq[q:q + w]) / w, abs(alt)))
+            out.append((sum(x[2] for x in win) / len(win), abs(alt)))
     return out
+
+
+def wheel_named(data):
+    """({cylinder: [step / rpm, ...]}, overruns linked): the overrun's steps
+    by cylinder, for every overrun that runs into a standing idle within
+    `LINK_S` in one stroke count -- the idle's strongest slot names the
+    cylinders, the overrun's strokes before it keep the names. With
+    nothing burning, what each cylinder's slot reads is the wheel's and
+    nothing else: +WHEEL_ALT for 2 and 3, -WHEEL_ALT for 1 and 4."""
+    e = data["e"]
+    et = [x[0] for x in e]
+    got = {c: [] for c in FIRING_ORDER}
+    linked = 0
+    for i0, i1, b in _overruns(data):
+        j1 = bisect.bisect_right(et, b + LINK_S)
+        after = e[i1:j1]
+        if (not after or max(x[1] for x in after) > OVERRUN_RPM[1]
+                or min(x[1] for x in after) < 500.0):
+            continue
+        idle = [m for m, x in enumerate(after)
+                if x[1] < LINK_IDLE_RPM and x[3] <= GATE_SPEED_MMH]
+        if len(idle) < LINK_IDLE_SAMPLES:
+            continue
+        t_idle = after[idle[0]][0] + 2.0
+        seq = _steps(track(e, i0, i1 + idle[-1] + 1))
+        tk = {ev[2]: ev[0] for ev in track(e, i0, i1 + idle[-1] + 1)}
+        sums, cnt = [0.0] * 4, [0] * 4
+        for k, s, r in seq:
+            if tk[k] >= t_idle and r < LINK_IDLE_RPM:
+                sums[k % 4] += s
+                cnt[k % 4] += 1
+        if min(cnt) < 60:
+            continue
+        means = [a / c for a, c in zip(sums, cnt)]
+        order = sorted(range(4), key=lambda q: means[q])
+        if means[order[-1]] - means[order[-2]] < LINK_MARGIN_RPM:
+            continue
+        slot2 = order[-1]
+        linked += 1
+        for win in _detrended([x for x in seq if tk[x[0]] <= b]):
+            for k, res, r in win:
+                got[(2, 1, 3, 4)[(k - slot2) % 4]].append(res / r)
+    return got, linked
 
 
 # --- reports ----------------------------------------------------------------
@@ -548,8 +619,15 @@ def report_014(vcds_path, data, runs, out=sys.stdout):
 
 def report_wheel(paths, out=sys.stdout):
     rows = []
+    named = {c: [] for c in FIRING_ORDER}
+    linked = 0
     for p in paths:
-        w = wheel_windows(read(p))
+        data = read(p)
+        w = wheel_windows(data)
+        got, n = wheel_named(data)
+        linked += n
+        for c in FIRING_ORDER:
+            named[c] += got[c]
         rows += w
         if w:
             print(f"{os.path.basename(p)}: {len(w)} windows, "
@@ -568,6 +646,18 @@ def report_wheel(paths, out=sys.stdout):
         print(f"  all: {len(rows)} windows, "
               f"{100 * statistics.median(a / r for r, a in rows):.3f} % "
               f"(WHEEL_ALT is {100 * WHEEL_ALT:.3f} %)", file=out)
+    if linked:
+        print(f"  by cylinder, {linked} overruns followed into the idle after "
+              f"them (step / engine speed, %; what is left with the wheel "
+              f"out, rpm at 800):", file=out)
+        sign = {1: -1, 3: 1, 4: -1, 2: 1}
+        for c in FIRING_ORDER:
+            v = named[c]
+            m = sum(v) / len(v)
+            se = statistics.pstdev(v) / len(v) ** 0.5
+            print(f"    {c}: {100 * m:+.3f} +- {100 * se:.3f} %, "
+                  f"{len(v)} strokes; left {800 * (m - sign[c] * WHEEL_ALT):+.2f} rpm",
+                  file=out)
     return rows
 
 

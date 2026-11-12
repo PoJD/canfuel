@@ -20,7 +20,8 @@ The full previous version, before it was condensed on 20/10/2026:
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Next: item 6's captured
 warm drive, now** — the MFD out, a drive warm, then a warm stop of 10
-minutes or more in the everyday state, captured; **the new rear probe
+minutes or more in the everyday state, captured, **no injector cut**;
+**then 6o, injectors 3 and 2 exchanged**; **the new rear probe
 back to the seller and a new one fitted** (8e); drives with the MFD in,
 **014 in every logged drive** (8f); **8i (the timing belt's marks) at
 the next cold engine**; drives with the MFD in (item 6) and 6i; 8f at
@@ -79,6 +80,18 @@ start of a warm stop*).
    "for 4's deficit, which the clean left", agreed 9/11 evening, until
    then*). (5/11: contact cleaner went into 4's
    connector and T3 at the first look, `vehicle-history.md`.)
+6o. **Injectors 3 and 2 exchanged** (*agreed with the owner*, 12/11),
+   after item 6's captured warm stop, which is its "before". Engine
+   cold, the upper intake off as far as the rail needs; each injector
+   marked with its cylinder before it comes out; **3's into 2's place
+   and 2's into 3's**, 1 and 4 untouched, each connector back on its
+   own cylinder; the O-rings looked at and oiled, a torn one renewed.
+   Ignition on and off a few times and the rail looked at for a leak
+   before the start. Photographs into the album. **Then one drive
+   warm and a warm idle of 10 minutes captured, the MFD out, the
+   everyday state, no injector cut**; Claude runs the capture and reads
+   it. The injectors stay exchanged until Claude says. With the intake
+   off anyway: **6m**, and runner 3's joint looked at.
 6n. **The injector circuits to the ECU** — later, only with VCDS on the
    laptop: 032/055 read first (unplugging the ECU may reset them, as a
    disconnect does), then the ECU's 80-pin plug off. One extension lead
@@ -175,7 +188,8 @@ start of a warm stop*).
        into the chat;
      - **6m's injector circuits** while the intake is off;
      - **the lower manifold's gasket**: renewed if the garage takes
-       the lower manifold off as well (the tear at runner 4).
+       the lower manifold off as well (the tear at runner 4; **runner
+       3's joint is the one the idle points at**, 12/11).
    - With VCDS connected anyway after a stored P030x: **a generic
      OBD-II read** (modes 02 and 06), read only, saved.
    - **No head off** (*the owner*, 4/11, leaning, not final): if the
@@ -289,6 +303,24 @@ stands*.
 **Idle solved → stop and record** (`open.md` S1, *When S1 closes*; S3,
 *When S3 closes*). Otherwise each item decides whether the next is
 needed.
+
+**6o, injectors 3 and 2 exchanged** (*agreed with the owner*, 12/11;
+`open.md` S1, *Every stroke named*; H7). Cylinder 3 gives 10–20 % of a
+stroke less than the mean at every warm idle since this set of
+injectors went in, and 2 is the strongest; plug and lead on 3 were
+changed twice with nothing moved, the injector never. **Exchanging the
+weakest cylinder's injector for the strongest's gives the largest
+difference to read**: `tools/cylscan.py --minutes` on the warm idle
+after it against item 6's stop before it. **3's deficit on 2 and 3
+level: the injector**, a new one (or the set looked at) closes S3's
+cause. **3 still short and 2 still strong: not the injector**, H7's
+one-injector form goes to `refuted.md`, and what is left on 3 is the
+valves and their deposit (H1, H13), runner 3's joint (H3) and coolant
+(H20) — item 9's leak-down. **Both moved a little: both**, read by how
+much. Ten minutes and no cut, because 3's deficit swells and falls by
+itself and one minute of it says little, and a cut is one of the things
+that ends a swell. The connectors stay on their cylinders so that 6m's
+wiring is not exchanged with the injectors.
 
 **6m and 6n, the injector circuits** (`open.md` H4, *What the loom can
 and cannot do unseen*), split so the first needs nothing unplugged at the

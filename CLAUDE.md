@@ -552,6 +552,14 @@ his phone. Check the platform and for a VCDS install; if unclear, ask once.
   since the last repair — the top two slots' share and p against all four
   alike — reported to him and added to `open.md`, *The dips keep to one
   slot*; with injector cuts, `--name` too. `--pairs` is history only.
+- **Then, every time, each cylinder by name** (*the maintainer*,
+  12/11): `tools/cylscan.py --minutes` on the capture — cylinder 3's
+  deficit and weak strokes minute by minute against the others' — and
+  `--vcds` with the session's 014 log, 014's rises by cylinder;
+  reported to him and added to `open.md` S1, *Every stroke named*, and
+  S3, *What 014 counts, by cylinder*. **No injector cut is asked for to
+  name cylinders**: the strongest slot names them, and a cut ends a
+  swell of cylinder 3's.
 - **When Claude drives VCDS, it may only read**: measuring blocks, logging,
   reading the fault memory and saving it. **Nothing that writes to a control
   unit, ever** — no clearing, coding, adaptation, basic settings, output tests

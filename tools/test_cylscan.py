@@ -181,6 +181,14 @@ class Corpus(unittest.TestCase):
         rel = sorted(a / r for r, a in rows)
         self.assertAlmostEqual(rel[len(rel) // 2], WHEEL_ALT, delta=0.0002)
 
+    def test_the_wheel_reads_two_and_three_high_and_nothing_else(self):
+        data = cylscan.read(os.path.join(FIXTURES, "37_item5_drive3_z1.txt"))
+        got, linked = cylscan.wheel_named(data)
+        self.assertGreaterEqual(linked, 1)
+        for c, sign in ((1, -1), (3, 1), (4, -1), (2, 1)):
+            mean = sum(got[c]) / len(got[c])
+            self.assertAlmostEqual(mean, sign * WHEEL_ALT, delta=0.0004)
+
 
 if __name__ == "__main__":
     unittest.main()
