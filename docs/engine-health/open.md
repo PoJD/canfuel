@@ -36,7 +36,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 11 November 2026
+## Where it stands — 12 November 2026
 
 **Closed**, in `refuted.md` §D: S6 the exhaust joint behind the
 converter, S8 the top end, S9 the rich trim, S10 the oil leak at the back
@@ -283,13 +283,17 @@ touched once. Cleared by the owner.
   8e). Not the idle, but it bent 032's idle cell.
 - **S22, a tick once per engine cycle** (9/11, closed the same evening,
   **reopened 11/11 night** at the owner's decision): heard again warm
-  with no clean, the same pattern quieter; recorded, not read. H1's
-  lifter, an injector, a port, or one cylinder's burn.
+  with no clean, the same pattern quieter; **the recording read 12/11:
+  the once-per-cycle rhythm at the size of every warm idle recording
+  since 15/10, not 18/10's** — nothing new in it, which a lifter that
+  bleeds down hot would have shown. H1's lifter, an injector, a port,
+  or one cylinder's burn; the stethoscope, hot (`plan.md` 9).
 - **S24, the coolant reading dropping fast and P0118 sporadic** (11/11
   night, added at the owner's decision): **oil found standing round
   G62's pins, cleaned the same night**; on 12/11's drive no P0118, no
-  step, the plateau back at 100.5 °C — **cured by the cleaning, one
-  drive**; closed after a few more without P0118.
+  step, the plateau back at 100.5 °C, **and the sample-to-sample
+  dither of 11/11's stop gone** (VCDS and the MFD's video, read 12/11) —
+  **cured by the cleaning, one drive**; closed after a few more without P0118.
 - **S20, the speed wandering at a constant pedal** (since 1–2/10, on the
   road) — **a little better since the cable was slackened and the pedal
   greased (27/10), still there** (*owner*, 28/10). Not the idle.
@@ -1991,7 +1995,7 @@ an idle loads off, and **on 11/11 night at the warm stop after a hard
 motorway run** (oil 102 °C, the everyday state, bonnet down, from the
 driver's seat), **"the same pattern, or nearly, only quieter" than
 during the clean** (*owner*); recorded at the engine bay (the album,
-11/11 about 22:00), not yet read.
+11/11 21:55), read 12/11 (below). *This said "not yet read" until then.*
 
 **Read** (*reasoned*): with no oxyhydrogen in the charge, D11's
 explanation — the clean's faster burn making a usual difference louder
@@ -2004,9 +2008,31 @@ the recordings did not tell them apart then either. **A lifter that
 ticks warm after a hard drive** is what H1 predicts and what the hot
 recording of 26/10 did not find.
 
-**Tests**: the album's recording of 11/11 by D11's measure — the
-rhythm at the camshaft's frequency against the engine speed, its size
-against D11's 1.7–16.4; **the stethoscope on the cam cover above each
+**The recording of 11/11 read** (12/11, a cloud session; album
+21:55:11, 40 s, the phone held close over the plenum's cast runners,
+neutral, warm, just after the motorway run; *an ad-hoc script, not
+kept*): the envelope of the sound at 2–12 kHz, the engine speed from
+its own firing line — **about 800 rpm throughout** — and the envelope
+spectrum's amplitude at the camshaft's frequency over its median in
+3–100 Hz. **In 3 s windows the once-per-cycle rhythm stands 5.5–9.6
+times the median, about 7 in the middle**; the firing line itself
+13–18. That is **D11's own range for 3 s windows (3–10) and the size of
+9/11's idle after the clean (7.8) and 15/10's warm idle (7.1)**, not
+18/10's 16.4 with cylinder 3 out. Folded on the cycle, **one of the
+four firings is 1.2–1.4 times the mean of the four in every window**,
+and **it is loud** (above 1.5 times the other three) **in about a
+quarter of the 251 cycles**, mostly single cycles, a few runs of 3–9
+(0.5–1.4 s) — D11's bursts, at idle. *D11 does not record its window
+for the per-video figures, so those compare in order of size, not to
+the decimal.* **Read** (*reasoned*): **the tick he heard is the same
+once-per-cycle part every engine-bay recording has carried since
+12/10, at its usual size** — it did not grow after the hard drive,
+which **a lifter bleeding down hot would have shown as a jump towards
+18/10's**. It does not say which cylinder: one
+microphone cannot. It leaves H1's lifter where it was — not found by
+the sound, not excluded — and the stethoscope as the test.
+
+**Tests**: **the stethoscope on the cam cover above each
 cylinder, hot** (`plan.md` 9); VW's tappet check in item 9's garage
 session.
 
@@ -2297,7 +2323,8 @@ sensor: a series resistance on an NTC divider reads colder, and an open
 one reads the coldest and stores P0118. The higher plateau is not
 explained by it (a contact reads colder, not hotter): **the engine
 running hotter** — the coolant's level, the thermostat or the fan — or
-the sensor's own curve. *Not known*: whether this car's fan is switched
+the sensor's own curve. *Superseded 12/11: the plateau went with the
+oil (below).* *Not known*: whether this car's fan is switched
 by the ECU from G62 or by its own switch in the radiator. **The
 cluster has no coolant needle** (*owner*: a blue lamp below about
 62 °C, a red one when too hot or, flashing, when the coolant is low);
@@ -2323,15 +2350,16 @@ calms the idle (S1, *load*). **8k's record warm stop (`IdleHealth`
 open; 12/11's stop with G62 sound settled to 34–50 (below)**, so G62
 made at most the last few points. Not in the fit tables (*The open hypotheses*).
 
-**Tests**: **the coolant's level, cold**, at once; G62's connector
-looked at, cold (green, a loose terminal, a cracked housing); **001 on
-the next logged drive** in place of 055 (`plan.md` 8f); **and a
-capture on a drive with the MFD out**, which reads 0x288 and 0x420 b4
-far faster than VCDS — a dropout of G62's circuit is a step in their
-difference, a hotter engine moves both; whether the fan runs when the
-MFD reads about 105–110, and whether the red lamp lights or flashes.
-**Both codes cleared by the owner after the session** (11/11 night,
-032/055 read first): which comes back, and when, is the next reading.
+**Tests**: *done 11/11 late night and 12/11*: the coolant's level,
+cold (fine); G62's connector looked at, cold (the oil, below); 001 on
+the next logged drive (12/11, below). **Left**: 001 on every logged
+drive (`plan.md` 8f) — **the dither** (a step up and back between two
+samples) is the early sign, before any code; **a capture on a drive
+with the MFD out**, which reads 0x288 and 0x420 b4 far faster than
+VCDS — a fault in G62's circuit is a step in their difference, a hotter
+engine moves both. **Both codes cleared by the owner after the
+session** (11/11 night, 032/055 read first); **on 12/11's drive
+neither came back** (P0300 and P0303 did, S3).
 
 **Found, 11/11 late night** (*owner*, the album 23:55–00:13): **the
 coolant's level fine, as for weeks**; **old engine oil from the earlier
@@ -2347,14 +2375,46 @@ O-ring whole and greased, back to its stop, the clip in, the connector
 latched (00:11). **Read** (*reasoned*): oil between the pins is a leak
 path across the NTC's divider that moves with heat — **it fits the
 fast drops and P0118 better than a contact did**, which the photographs
-do not show; the higher plateau it does not explain.
+do not show. *This added "the higher plateau it does not explain"
+until 12/11*: a film is not one fault but a leak between whichever pins
+it bridges — **across the sensor's own pair it lowers the resistance
+the ECU reads, which an NTC reads as hotter; from a pin at a higher
+potential into the signal it raises it, colder, up to P0118**
+(*reasoned*; which of G62's four pins is which is not in this
+repository). Both directions are open to oil round all four, so the
+film can carry the plateau too — and the drive after took both away
+(below).
 
 **The first drive after the cleaning, 12/11 night** (001 over 52
 minutes, `vcds/vcds-step8n-drive-032-036-001.csv`): **39–100.5 °C, no
 step of 3 °C or more, the plateau back at 100.5** as in every capture;
 **no P0118**; the sensor dry at 80 °C and after the motorway (*owner*).
 **So the oil was it, and the 106.5 of 11/11 was G62 misreading, not a
-hotter engine** (*reasoned*, one drive). **The calm stop is not G62's**:
+hotter engine** (*reasoned*, one drive).
+
+**The same sensor sample by sample, before and after** (12/11, a cloud
+session; 001's coolant at VCDS's 0.9 s, *an ad-hoc script, not kept*).
+**Before**, the warm stop of 11/11 (22:39–22:43,
+`vcds-step8k-warmstop-001-036-014.csv`, 281 samples): 99–106.5 °C, **a
+step of 1.5 °C in 86 of 280 intervals and 32 reversals** — the reading
+**dithering a step up and back from one sample to the next** (100.5 102
+100.5 …) on top of the fan's cycle; the stop before it
+(`…-001-033-014.csv`, 62 samples) has 21 steps, 10 reversals and **two
+steps of 3 °C**. **After**, the stop of 12/11 (01:52–02:00,
+`vcds-step8n-stop-014-001-036.csv`, 516 samples): 94.5–99 °C, **24
+steps and no reversal at all** — the fan's cycle, 96 → 97.5 → 99 and
+back, each level held for tens of samples; the 52-minute drive before
+it, 139 steps in 3,481 intervals. **The MFD at 22:33 on 11/11** (the
+album, a 72 s video of the display at that stop, read once a second):
+CLT 100–106, **flicking by 1–3 °C from one second to the next** (104
+106 104 105 104 106), OilTemp a steady 100 — the same dither on 0x288,
+where 0x288's step is 0.75 °C (`docs/firmware/can-decoding.md`), so
+it is the signal, not the rounding. **Read** (*reasoned*): before the
+cleaning G62's reading was noisy at every sample and 4–6 °C high; after
+it, quiet and on its old plateau. **The film did all three — the
+noise, the plateau, P0118 — and nothing points at the thermostat or
+the fan.** A fault still in the circuit would show the dither again
+before any code. **The calm stop is not G62's**:
 the stop near home on 12/11, the same place and as long, read 90–120
 → **34–50, mostly about 40** with G62 sound (*owner*) — the settling of
 a long warm stop, as on `43` and 10/11 evening, not a fan held on.
@@ -4939,7 +4999,7 @@ is in git.
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | 1 | **H13** deposits | **11/11, after the second research, kept first and read with H1** (*agreed with the owner*): the rough start of a warm stop after a hot drive is 3's (S1, *The rough start of a warm stop*), and a day's relief fits a flake moved, not deposit regrown (SAE 2000-01-2858); **9/11, after the clean, kept first** (*agreed with the owner*): it took 3's excess — share of the dips, steady deficit, rough start, 014's storm; **up 3/11 evening from second to first** (*agreed with the owner*): `43`'s cut names cylinder 3, where the borescope found the most deposit; **down 29/10 from third** (*agreed with the owner*): the second 44K tank, run out 29/10, left the idle no calmer, as the first did; 3 > 4 > 2 > 1 inside; 3's deposit coming away and 18/10 not back (`refuted.md` D10); the rise to ~100 and back to 67 follows the cleaner and the hard driving, not the parts; **demoted 24/10 from first: its own test, the strong 44K tank and ~450 hard km, moved nothing**, and the deposit reads as a consequence (H13) | both 44K tanks done; **the hydrogen clean done 9/11**: 3's excess gone at stop 7, 4's deficit and the settled level kept (S1, *The clean of 9/11*); a second captured warm stop with a cut says whether it lasts |
-| 2 | **H1** valve or lifter | **11/11 night, kept**: S22 reopened, a tick once per cycle heard warm after a hard drive with no clean — what a lifter would give, and what 26/10's hot recording did not find; not yet read off the recording (S22); **11/11 up from fourth** (*agreed with the owner*): 3's exhaust seat, leaking hot or holding a flake, is the form that fits the rough start after a hot drive that settles in 5–8 minutes; the weak strokes come in spells of seconds on one cylinder, at a mixture or dilution limit (S1, *How the weak strokes follow each other*); VW calls the cold clatter of 8/11 normal; **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 down from second** (*agreed with the owner*): the clean took 3's part, which a seat that leaks as a part would have kept; left for 4's inlet seat, the side the clean reaches least; **7/11 up from third** (*agreed with the owner*): the port photos of 20/10 show crust broken round the inlet seat's edge on 3 and 4, a lump on 3, 1 and 2 even (*the owner's reading*) — an inlet seat that leaks weakens 3 and 4 together, which answers the 5/11 against, and more crust on 3 fits the dips leaning to 3; whether it reaches the contact face is not seen; the clean of 9/11 is the least likely to reach it; **5/11 down from second** (*agreed with the owner*): one seat on 3 would weaken 3 alone, and the pattern moves over minutes; still the single dips on 3 and the owner's reading of 3's seat; **up 3/11 evening from third to second** (*agreed with the owner*): a valve on 3 that does not seal, with deposit on its seat (H13), fits one cylinder named; **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes done 26/10, the hot recording found no lifter; left: **a warm leak-down on all four** and a stethoscope above 3, hot (`plan.md` 9) |
+| 2 | **H1** valve or lifter | **11/11 night, kept**: S22 reopened, a tick once per cycle heard warm after a hard drive with no clean — what a lifter would give, and what 26/10's hot recording did not find; **read 12/11: the usual once-per-cycle part at its usual size (about 7 times the median in 3 s windows, 18/10's 16.4 not reached), no lifter's jump after the hard drive** (S22); **11/11 up from fourth** (*agreed with the owner*): 3's exhaust seat, leaking hot or holding a flake, is the form that fits the rough start after a hot drive that settles in 5–8 minutes; the weak strokes come in spells of seconds on one cylinder, at a mixture or dilution limit (S1, *How the weak strokes follow each other*); VW calls the cold clatter of 8/11 normal; **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 down from second** (*agreed with the owner*): the clean took 3's part, which a seat that leaks as a part would have kept; left for 4's inlet seat, the side the clean reaches least; **7/11 up from third** (*agreed with the owner*): the port photos of 20/10 show crust broken round the inlet seat's edge on 3 and 4, a lump on 3, 1 and 2 even (*the owner's reading*) — an inlet seat that leaks weakens 3 and 4 together, which answers the 5/11 against, and more crust on 3 fits the dips leaning to 3; whether it reaches the contact face is not seen; the clean of 9/11 is the least likely to reach it; **5/11 down from second** (*agreed with the owner*): one seat on 3 would weaken 3 alone, and the pattern moves over minutes; still the single dips on 3 and the owner's reading of 3's seat; **up 3/11 evening from third to second** (*agreed with the owner*): a valve on 3 that does not seal, with deposit on its seat (H13), fits one cylinder named; **down 26/10 from third**: 18/10's tick, a seat that nearly closes — on 3 one with deposit on it (H13); weakened 24/10, the tick did not come back; **the hot phone recording of 26/10 found no lifter** | the EPR flushes done 26/10, the hot recording found no lifter; left: **a warm leak-down on all four** and a stethoscope above 3, hot (`plan.md` 9) |
 | 3 | **H3** a leak at one runner | **11/11 one down** (H1 above it, *agreed with the owner*); still the settled floor and 4's deficit, which the clean and the gas did not touch; **9/11 up from third** (*agreed with the owner*): 4's steady deficit kept after the clean, runner 4's gasket edge torn (5/11), and the gas's cure fits a lean runner in kind; **7/11 down from second** (*agreed with the owner*): H1's inlet-seat form explains the pair as well and has a find behind it; still the one that predicts *load helps* directly; **5/11 up from third** (*agreed with the owner*): the steady pattern over the cylinders names 3 and 4 alike, neighbours on the lower manifold (S1, *A steady pattern over the cylinders*); **4/11: explains the calm under load best of all, the calm after revving not at all** (S1; *agreed with the owner*, the order kept); **up 3/11 evening from seventh to third**: one cylinder named again (runner 3); the only one that predicts *load helps* directly; the lower gasket never renewed; **demoted 24/10: it acts on one runner, and the dips no longer keep to 3 and 4** (`40`, `41`) | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
 | 4 | **H4** the injector loom at 3 and 4 | **11/11 one down** (H1 above it, *agreed with the owner*); **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 up from fifth** (*agreed with the owner*): 4's deficit kept, 3's gone — 4's own circuit, and 6m the cheapest test of the three that act on 4 alone; **5/11 up from eighth** (*agreed with the owner*): exactly the pair the steady pattern names, and a fault that comes and goes would move over minutes; the load argument is against the spark side, not the injectors; shared by the two, old and taped; demoted 24/10 with H3, for the same reason; **flexed part-warm by the owner on 24/10, by ear, no change** | VCDS 004 beside 014 |
 | 5 | **H7** fuel delivery | **11/11 kept** (*agreed with the owner*): a hot rail after a hot drive fits the rough start's time, not its one cylinder; **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 down from fourth** (*agreed with the owner*): H3 and H4 above it for 4; **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026, and nothing points at one of them); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20), a high base pressure does not fit 032's positive part load, and one injector does not fit dips on all four alike, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; plug 3 the cleanest; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10); **no injector swap** (*the owner*, 3/11) |
