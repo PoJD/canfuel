@@ -32,6 +32,21 @@ and 8h at a laptop session; **8j and its first drive done 11/11**
 and 11/11; `open.md` H11, *The relearn drive*, S23; S1, *The rough
 start of a warm stop*).
 
+**For Claude at the next session, before anything else** (*the owner*,
+12/11, at the end of the third research's session; each is removed when
+done):
+1. **The closing marks rewritten: S1 and S3 close when cylinder 3 is
+   in order** — S1's by the bus (`tools/cylscan.py`: 3's deficit and
+   weak strokes level with the other three), S3's by group 014 (its
+   rises no longer 3's, and zero as decided 20/10). `open.md`, *When S1
+   closes* and *When S3 closes*; the wording shown to the owner.
+2. **The sections that hold the old dip shares** (`open.md`, *One
+   cylinder or two*, *The dips keep to one slot*, and what cites them
+   in S1): removed, or rewritten on `cylscan.py`'s figures.
+3. **The private page *Pořadí hypotéz volnoběhu***: the hypothesis
+   cards put in the order agreed 12/11 (list B first; H13, H1, H3, H20,
+   H4, H7), and its old dip shares brought in line with 2.
+
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
    everyday state and the oil temperature, written into the chat.
