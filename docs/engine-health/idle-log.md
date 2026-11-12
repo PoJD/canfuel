@@ -1378,8 +1378,13 @@ had been tucked into the box with the harness that morning.
   canister and its hoses looked at and photographed (the album,
   17:02–17:27); the valve at the top of the filler neck taken out and
   blown through; the line to the engine blown through with N80 on it
-  and off it (*owner*).
+  and off it (*owner*); **the oil level read and photographed**, the car
+  standing in the garage (the album, 20:51:55; `plan.md` 6i).
 - **Changes after:**
+  - *measured:* **the oil about another 0.5–1 mm lower than on 5/11**,
+    a little under the top mark (*owner*, given 12/11; the photo agrees:
+    the film ends a few millimetres short of the mark); the odometer not
+    noted, between 155,853 (10/11) and 155,969 km (12/11) by the bus;
   - *measured:* **the line from the tank joined straight to the line to
     N80** through a rubber elbow with a worm clamp; **the canister's
     port open, nothing on it**; dried white runs on its side (*owner*,

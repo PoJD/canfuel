@@ -434,11 +434,12 @@ N80**.
 
 **Next** (`plan.md`; *the owner*, 10/11–12/11): **until the new N80
 (expected the weekend of 14–15/11) the MFD stays out and the drives are
-captured**, each with 014 and 032 before and after, named gentle or
-brisk — the old valve's baseline for H16, *The owner's reading, 12/11*
+captured**, each with 014 and 032 before and after, gentle or brisk
+read off the capture — the old valve's baseline for H16, *The owner's reading, 12/11*
 (**H16 first in A until the new N80**, *the owner*, 12/11), and more
 warm stops read by `cylscan.py --minutes` as `49` was; **6i's oil level
-now** (due about 156,050 km; 156,011 on 12/11); **8i, the timing
+next about 156,400 km** (read 11/11 evening: another 0.5–1 mm lower,
+H18); **8i, the timing
 belt's marks, at the next cold engine**; **the new rear probe back to
 the seller and a new one fitted** (S23 closed 12/11 as its fault,
 `refuted.md` D13); **then 8a, the new N80**: 032/055 and the fault
@@ -4728,7 +4729,14 @@ vacuum falls, the flow stops, and what collected burns away.
   reading** (*owner*; `photos/dipstick-2026-11-05.jpg`): **0.5–1 mm under
   the top mark at 155,546 km**, 522 km after it stood at the mark —
   within what the angle of the car and the draining time can make, so not
-  yet a consumption; the next reading says. **The owner's reading**
+  a consumption by itself. **11/11 evening, the second** (*owner*, given
+  12/11; the album 20:51:55, the car standing in the garage): **about
+  another 0.5–1 mm lower**, the film ending a few millimetres short of
+  the mark, at between 155,853 and 155,969 km — **some 850–950 km since
+  the mark, two readings falling the same way: a small consumption**
+  (*owner*: "it eats a little oil, nothing terrible"). How much in
+  litres is not read off a dipstick without its span, which is not
+  recorded here; no top-up yet. **The owner's reading**
   (5/11): oil past the rings, held by deposit (H13), which the wet-looking
   patches of the borescope photos might be — against it so far, the plugs
   dry, no blue smoke, compression even.

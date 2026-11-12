@@ -21,10 +21,8 @@ One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Next, until the new N80
 is fitted (expected the weekend of 14–15/11)**: **the MFD stays out
 and the drives are captured** (item 6, *the owner*, 12/11), each with
-**014** and **032 read before and after**, and **which drives were
-gentle and which brisk** into the chat — the old valve's 032 against
-the drive, before the swap; **6i's oil level now**, the odometer at
-156,011 km on 12/11; **8i (the timing belt's marks) at the next cold
+**014** and **032 read before and after** — the old valve's 032 against
+the drive, before the swap, gentle or brisk read off the capture; **8i (the timing belt's marks) at the next cold
 engine**; **the new rear probe back to the seller and a new one
 fitted** (8e). **Then 8a, the new N80**: 032/055 and the fault memory
 before, the swap, 070, then one gentle and one brisk drive, captured,
@@ -40,7 +38,8 @@ S1, *The rough start of a warm stop*). *Done: 8j and its first drive
    capture (`livewatch.py`). Brisk driving once warm is welcome.
    - **Captures** (*the first done 12/11*, `49`): **as many drives as
      the laptop can ride along**, each ending in a warm stop where one
-     comes; **the gentle and the brisk named in the chat**. Claude runs
+     comes; Claude reads from the capture whether a drive was gentle
+     or brisk (*the owner*, 12/11: nothing to report). Claude runs
      the capture; **VCDS on 014 always** (with 020 and 033 on a drive
      with pulls), 032 and 055 for 20 s before the drive and after the
      stop (8f). Once the oil is at
@@ -63,7 +62,8 @@ S1, *The rough start of a warm stop*). *Done: 8j and its first drive
      roughly the speed; on a captured drive, **"teď"** at once.
 6i. **The oil level on the new oil, about every 500 km** from the first
    reading (27/10, 155,024 km, at the top mark; 5/11, 155,546 km, 0.5–1 mm
-   under it; **next about 156,050 km**): the car on level ground
+   under it; 11/11 evening, about another 0.5–1 mm lower, the album
+   20:51; **next about 156,400 km**): the car on level ground
    and **at least 5 minutes standing**, the dipstick out, wiped, in, out,
    and **photographed**; the odometer into the chat. Any top-up: the litres and the odometer
    into the chat.
@@ -124,8 +124,8 @@ S1, *The rough start of a warm stop*). *Done: 8j and its first drive
      secondary-air valve N112 to where it joins.
    - Afterwards, warm, the owner runs **basic setting 070** and
      photographs it; then item 6's warm stops, and **032 read after the
-     first two drives** (8f) — **one of them gentle, one brisk**, and
-     which was which into the chat.
+     first two drives** (8f) — **one of them gentle, one brisk**, both
+     captured.
    - **Fitted when it arrives**; nothing to read before it but the line above.
    - **At any engine lamp from now on**: the odometer, the tank's needle
      and the outside temperature into the chat, and 032 read before the
@@ -385,7 +385,7 @@ path, read the same way against `49`.
 the drives before the swap add is not another reading of the canister
 but **the old valve's baseline for the owner's reading of H16**
 (`open.md` H16, *The owner's reading, 12/11*) — 032 before and after
-each drive, named gentle or brisk, should follow the drive on the old
+each drive, gentle or brisk as the capture shows, should follow the drive on the old
 valve (−14.8 after the gentle morning, −7.0 after the brisk drive) and
 stop following it on the new one. Each captured warm stop is read by
 `cylscan.py --minutes` as `49` was, so 3's swell and floor get more
