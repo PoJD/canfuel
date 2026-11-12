@@ -80,7 +80,13 @@ finding:**
   since 21/10 (`open.md` S3, *What 014 counts, by cylinder*; *Naming
   the cylinder*). *This said "engine speed on the bus cannot name a
   cylinder either" until then.* It needs a capture beside the log, so
-  not a drive with the MFD in.
+  not a drive with the MFD in. **Set the split against chance** (12/11
+  night): the same pick with no rise puts 50 % on 3, so 80 % is a lead
+  of 83 to 50, not of 80 to 25. **Off idle**, `tools/drivescan.py
+  --vcds LOG CAPTURE` does the same through the whole drive with those
+  control windows beside it: 014 counts while crawling as it does
+  standing and next to never under load (`open.md`, *Naming the
+  cylinder*, *Off idle*).
 
   **What the number is** — Bosch's patents on misfire detection
   (DE19547058B4, DE19622448B4, DE19814732A1, DE10010459; read 3/10/2026),

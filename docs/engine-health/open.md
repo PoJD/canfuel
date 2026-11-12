@@ -276,6 +276,26 @@ off in a swell (item 9); and **list A re-ordered: the belt and H0 at
 its head, H16 third** (*The idle's candidates, ranked*). The reading
 is `tools/swellscan.py`, kept at his request.
 
+**Off idle, 12/11 night** (*the owner's questions*; `tools/drivescan.py`,
+kept; *Naming the cylinder*, *Off idle*). **The stroke count now holds
+through a whole drive**, to the limiter: above about 2,800 rpm, where a
+stroke is shorter than a frame, the crank wheel's alternation says
+which stroke a frame shows — cylinder 2 on the same slot at all 124
+named idles of sixteen captures. **Cylinder 3 is the idle's and the
+light pedal's**: a fifth to a quarter of a stroke under 2 standing and
+crawling, under 9 % as soon as the engine pulls, **1–3 % at full
+load** — load helps, measured. **Cylinder 4 gives 2–4 % less than 1 at
+every load from 1,600 rpm up** (S4). **At full throttle no stroke
+misfires or half-fires** (100,000 strokes; the excess of weak over
+strong is nothing, to about 0.3 % of the power) and 014 agrees — 59
+rises above 1,200 rpm in 24 driving logs, one above 2,820; **what 3
+and 4 cost there is about 1–2 %**. **The car's own acceleration needs
+1.00 of the torque b7 claims** (76 pulls, half of them 0.93–1.10; the
+car's weight assumed), so the engine gives its rated torque to within a
+tenth. **014's split by cylinder is set against chance since** (S3):
+83 % on 3 against 50 % in control windows, not against 25 %. The
+ranking is not touched; what it bears on is in *Off idle*.
+
 **Open:**
 
 - **The idle — S1 (unsettled) and S3 (014 counts at idle).** Every part in
@@ -2068,6 +2088,23 @@ completing rather than load (`refuted.md` C19).
   cylinder (a dead stroke reads 24–33 rpm in its own slot at a cut's
   first stroke), not the idle's general unevenness; **S3 closes when
   cylinder 3 stops misfiring**.
+  **Against chance, 12/11 night** (asked for by the session before,
+  `git show c2e9e19:handoff/README.md`): the
+  weakest stroke of any few strokes is cylinder 3's more often than one
+  time in four, because 3 has most of the weak strokes — so the split
+  is to be set against the same pick with no rise, not against 25 %.
+  The same pick in the windows 5 s before and 5 s after each rise
+  (`cylscan.misfires_014()` with the log shifted; the 24 driving logs
+  that line up, their standing idles): **since the VW leads 83 % of
+  286 rises on 3 against 50 % of 558 control windows, 1 and 2 together
+  5 % against 28 %**; up to 18/10 62 % on 3 against 45 %, 4 34 %
+  against 31 %, 1 and 2 4 % against 23 %. Where the stroke is 12 rpm
+  and more down: 84 % against 73 % since, 60 % against 53 % before.
+  **So the names stand — a rise is next to never 1's or 2's — but 3's
+  lead over chance is 83 to 50, not 80 to 25**, and 4's share before
+  the VW leads is hardly above what its own weak strokes give by
+  chance. **Off idle** (*Naming the cylinder*, *Off idle*): 014 counts
+  while crawling as it does standing, and next to never under load.
 - **Three properties to keep in mind** (`refuted.md` A11, A12): steps of 12;
   off below ~20 % load; its sensitivity per dip moved five- to fiftyfold with
   the MAF. **So 014 is a yes/no witness, not a ruler.** Compare across time
@@ -2273,6 +2310,18 @@ the share of samples in which each cylinder retards, and its most):
   its documentation here; Motronic of the time usually cuts injection
   (*general*), and with a cable throttle that is what it has besides the
   spark.
+
+**What cylinder 4 gives under load, from the bus** (12/11 night;
+`tools/drivescan.py`; *Naming the cylinder*, *Off idle*): **4 gives
+2–4 % of a stroke less than 1** — the two cylinders the crank wheel
+reads alike — from 1,600 rpm up, at every load from part to full, on
+sixteen drives, `19`–`50`: +1.2 to +2.5 % at 2,100–3,300 rpm
+and full load, +2.6 to +3.2 at 3,300–4,200, +3.8 to +4.4 at
+4,200–5,200 (±0.2 to ±0.8). **It is there at part load too** (+2.6 to
++3.5 % at 1,600–2,600 rpm, b7 about 62), where 020 reads no retard, so
+the retard is not all of it; where 4 does retard, a few degrees cost
+about this much (*general*). At idle 1 less 4 is +5 % since the VW
+leads and was +10 % before. *Not a symptom until the owner says so.*
 
 **What it changes in the hypotheses** (12/11, at the owner's request;
 *reasoned*; **no fit-table symbol changes**, each said why):
@@ -3237,6 +3286,12 @@ about. The valve is closed by its spring; the lifter only removes the gap.
   3's swell; its floor holds still, as a fixed leak would (*reasoned*).
   *This was "against, 5/11: the steady pattern names 3 and 4 alike" until
   12/11*, on a count that slipped with the wheel left in.
+- **Off idle, 12/11 night** (*Naming the cylinder*, *Off idle*): 3's
+  deficit against 2 is a fifth of a stroke at idle and 1–3 % at full
+  load. **For**: a seat's leak is set by time, and fades with speed.
+  **Against**: at idle speed it falls from −24 to −9 % when the engine
+  pulls (b7 27 → 57) — more charge at the same time per stroke, which
+  a leak would follow (*reasoned*).
 - **Against:** compression **13 bar in 2018 and 12 bar even on all four in
   2026** (`vehicle-history.md`) — no cylinder losing; the vacuum gauge
   steady cold and warm, no flick (H3); no ticking before 18/10, and **none on any
@@ -3382,6 +3437,12 @@ the lower manifold's gasket at runner 3, never renewed.
   a tear that passes air, with the limit that a smoke test pushes a few
   kPa outward on a cold engine, while a warm idle pulls about two thirds
   of an atmosphere inward (*reasoned*).
+- **For, 12/11 night: *load helps*, measured** (*Naming the cylinder*,
+  *Off idle*; `tools/drivescan.py`): 3 less 2 is −21 to −26 % of a
+  stroke standing, crawling and to 1,600 rpm with the pedal light, −9 %
+  pulling at idle speed, −2 to −5 % at part load, −1 to −3 % at full,
+  at every speed to 5,200 rpm — a deficit that follows the manifold's
+  vacuum, as a leak at the runner does. H18 and H20 predict the same.
 - **Against, 5/11** (*reasoned*): a cylinder running lean would pull
   032's idle cell positive; it reads −6 to −8 % (H4, the same argument;
   medium, the trim carries other inputs). *It said "two cylinders" until
@@ -3443,6 +3504,11 @@ the injector loom where it reaches 3 (and 4), taped and oily — its wires at 4 
   pressure needs more voltage at the gap and the supply is lower, so
   anything on the spark side, plug 3's gap included, predicts the
   opposite (*general*). **Against.**
+- **12/11 night, off idle** (*Naming the cylinder*, *Off idle*): **at
+  full load 3 is within 1–3 % of 2, and no stroke of 100,000 there
+  misfires** — where the spark is hardest to make. **Against** the
+  spark side on 3; the injector-branch form (short only at the
+  smallest quantities) is not touched by it.
 - **5/11, the steady pattern over the cylinders**, re-read 12/11 (S1,
   *Every stroke named*): **3 alone gives 10–20 % less** warm, 4 level;
   a raised resistance in 3's branch would give a steady deficit, but no
@@ -3589,6 +3655,11 @@ revs as after none and the same on every day, within 5 %.
   *"#3 was much cleaner … replaced #3 injector as it was washing that plug"*):
   plug 3 is the cleanest here too. Weak, for the reasons above; a reason not
   to read plug soot as combustion quality.
+- **12/11 night, off idle** (*Naming the cylinder*, *Off idle*): 3's
+  deficit is not a share of its fuel — a fifth of a stroke at idle,
+  1–3 % at full load. **Against** an injector on 3 that flows short in
+  proportion; **not against** one short only at the idle's smallest
+  quantities (or its wiring, H4).
 - **For, since 24/10: S19.** A dripping injector or a regulator that does
   not hold gives a rich code and a start that floods after standing; the
   only hypothesis that predicts both. Every lean-side one (H2, H3, H4,
@@ -5211,6 +5282,10 @@ vacuum falls, the flow stops, and what collected burns away.
   every crown. Oil from the guide would leave both, but so would the
   breather's oil mist, fuel or condensed water; a cheap screen with the
   engine stopped cannot tell them apart.
+- **For, 12/11 night** (the one-valve form on 3): load helps, measured
+  — 3's deficit a fifth of a stroke at idle and with the pedal light,
+  1–3 % at full load (*Naming the cylinder*, *Off idle*); H3 and H20
+  predict the same.
 - **Against: no blue smoke seen**, ever (*owner*, 26/10), and the plugs of
   20/10 dry black, not oily. The oil on every plug's thread is from the
   cover side and says nothing about the chamber.
@@ -5275,6 +5350,10 @@ at idle on that cylinder, eased by load, and a plug kept clean.
   after nine days (`vehicle-history.md`, the photos), on the cylinder
   that misfires most; S2's puffs could be steam as well as unburnt
   charge.
+- **For, 12/11 night**: load helps, measured — 3's deficit −21 to
+  −26 % of a stroke at idle and with the pedal light, −1 to −3 % at
+  full load (*Naming the cylinder*, *Off idle*); H3 and H18 predict
+  the same.
 - **Against:** **the level does not visibly fall** (*owner*, 4/11) —
   weak against a weep this small, which is why it is kept; **no
   emulsion** under the cover, on the cam or the dipstick (1/10,
@@ -5426,7 +5505,8 @@ below; `tools/cylscan.py`). **The cuts, eight in all**: **10/10**
 (`31`) 1, 4, 4, 1; **24/10** (`41`, cold) one on 4; **3/11 evening**
 (`43`) one of 57 s on 4; **9/11** (`44`, `46`) one of 30 s on 4 at each
 stop. No cut is asked for any more to name the cylinders (*the owner*,
-12/11; `CLAUDE.md`).
+12/11; `CLAUDE.md`). **Off idle** the names are carried through a
+whole drive by one stroke count (*Off idle*, below; `tools/drivescan.py`).
 
 **The leads' order on the coil** (*owner-read off the car, 1/10/2026*):
 **1, 4, 2, 3, clockwise from the top tower** — 1 and 4 side by side, 2 and 3
@@ -5490,6 +5570,153 @@ dip shares said, and what stands*, below; S1, *Every stroke named*; S3,
   3 too high by about 5 % of a stroke each, 2 too high and 1 too low
   likewise). The rest is in the table below.
 
+
+### Off idle — the count through a whole drive, and what the cylinders give under load
+
+*12/11 night, at the owner's questions after the third research;
+`tools/drivescan.py`, kept, and `tools/test_drivescan.py`. Sixteen
+drives, `19`–`50`; warm (oil 80 °C and over).*
+
+- **The ceiling of about 2,800 rpm was the method's, not the bus's.**
+  `cylscan.track()` corrects its phase by *when* 0x280's value changes;
+  0x280 comes every 10.65 ms, so from about 2,820 rpm a stroke is
+  shorter than a frame and the moment of a change says nothing. One
+  count from one standing idle to the next held in **38 of 38** drives
+  that stayed under about 2,850 rpm and slipped in **16 of 28** above
+  3,000 (by one or two strokes; moving off, gear changes, queues and
+  the overrun were never the problem — speed was). **What a frame
+  *reads* still names its stroke**: the crank wheel's alternation (2
+  and 3 high, 1 and 4 low) grows with engine speed — 6 rpm between
+  neighbours at 3,000, some 25 at 5,000 — so every frame says whether
+  its stroke is an even or an odd one. `drivescan.track_drive()` lets
+  the integral of engine speed carry the count, corrects it by the
+  timing below 2,600 rpm and by that parity above, and learns the
+  parity's sign where both work. **Cylinder 2 is on the same slot at
+  every named standing idle of every engine run: 124 idles in sixteen
+  captures, to 6,440 rpm, none slipped** (`--count`); in `35`, which
+  has too little above 1,900 rpm to learn the sign, the count is
+  restarted past 2,850 rpm instead of trusted. And the sign learned
+  under load agreed with the idle's name in 16 of 16: **the pair that
+  reads high at 2,000–2,500 rpm is the pair of the idle's strongest
+  cylinder**, the wheel's.
+- **What can be read off idle: two differences.** On the overrun, with
+  nothing burning, the alternation left after `cylscan.WHEEL_ALT` is
+  nothing up to about 2,400 rpm and then grows — 0.04 % of engine
+  speed at 2,600, 0.13 % at 3,800, 0.27 % at 5,000 (13 rpm) — so the
+  wheel is not one number at speed, and the pair 2 and 3 against the
+  pair 1 and 4 is not read above 2,400. **3 less 2 and 1 less 4 carry
+  none of it** (the wheel moves each pair alike): on the overrun they
+  read −0.04 to −0.5 and +0.03 to +0.25 rpm in every band to 5,200
+  (5,700 windows of 40 strokes), which is the floor of what follows.
+- **The scale.** A whole stroke is 34 rpm of step at idle
+  (`cylscan.STROKE_RPM`); the same work lifts a faster crank less and
+  a loaded cylinder does more of it, so off idle it is taken as
+  `34 × (b7 / 25) × (800 / rpm)` — 60 rpm at 2,950 rpm and b7 160, 42
+  at 4,700 and 180. **A decision, good to about a quarter**: b7 is the
+  ECU's model (at idle it reads 26–29 with the friction byte at 21),
+  and the crank inertia that standing revs give (0.2–0.3 kg m² by b7
+  less b6) is the idle figure's only to that. Every per cent of a
+  stroke below carries it; the rpm of step do not.
+- **A. The idle's pattern off idle: 3's deficit fades with load, 4's
+  does not.** Per cent of a stroke, `19`–`37` | `39`–`50`:
+
+  | | b7 | **3 less 2** | **1 less 4** |
+  |---|---|---|---|
+  | standing idle | 26 | −25.8 \| −20.6 | +10.2 \| +5.0 |
+  | moving, to 1,150 rpm, the pedal light | 27 | −20.5 \| −23.9 | +8.5 \| +6.7 |
+  | the same, pulling (moving off, a crawl uphill) | 57 | −8.6 \| −8.9 | +6.1 \| +2.9 |
+  | 1,150–1,600, light | 20 | −22.1 \| −25.4 | +12.5 \| +6.8 |
+  | 1,150–1,600, part load | 62 | −3.3 \| −4.8 | +1.9 \| +0.9 |
+  | 1,600–2,600, part load | 62 | −1.8 to −4.0 \| −2.2 to −3.6 | +2.6 to +3.5 \| +2.6 to +2.7 |
+  | 1,600–2,600, b7 90–140 | 105 | −1.5 to −2.0 \| −0.9 to −2.3 | +2.2 to +2.5 \| +1.5 to +2.2 |
+  | 2,100–3,300, b7 140 and over | 160 | −1.8 to −1.9 \| −1.1 to −1.3 | +1.8 to +2.1 \| +1.2 to +2.5 |
+  | 3,300–4,200, the same | 175 | −2.1 \| −1.6 | +3.2 \| +2.6 |
+  | 4,200–5,200, the same | 185 | −0.3 \| −3.0 | +4.4 \| +3.8 |
+
+  (errors ±0.2 to ±0.7 under load, ±1 at the top in `19`–`37`; the
+  light-pedal bands above 1,600 rpm read −6 to −15 and +5 to +13, on a
+  scale of 10–15 rpm with a noise of a quarter to a half of a stroke —
+  not to be leaned on.) **Cylinder 3 is the idle's and the light
+  pedal's**: a fifth to a quarter of a stroke under 2 standing,
+  crawling and to 1,600 rpm with the pedal light; **under 9 % as soon
+  as the engine pulls at idle speed, 2–5 % at part load, 1–3 % at
+  full**, at every speed to 5,200 and in both periods. In rpm of step
+  it goes from −7 to −8 at idle to −0.4 to −1.5 under load; as work
+  (step × speed) from the idle's to a quarter to a half of it through
+  the middle. **So it is not a share of the charge that 3 loses** — a
+  cylinder short of compression or of fuel in proportion would stay a
+  fifth short — **and load at the same speed lifts it** (idle speed,
+  b7 27 → 57: −24 → −9 %), which a leak past a seat, set by time and
+  pressure, would not do. *Load helps*, measured. **Cylinder 4 is the
+  other way round**: 2–4 % under 1 from 1,600 rpm up at every load
+  from part to full, in both periods, growing a little to the top
+  (+0.8 to +2.1 rpm of step at full load against the overrun's +0.03
+  to +0.25) — **a share, not an amount** (S4).
+- **B. What weak strokes cost at full throttle: nothing that shows,
+  and the standing difference about 1–2 %.** `--weak`: every stroke's
+  step against its neighbours, 100,000 strokes at b7 140 and over.
+  Noise is as often over as under; a misfire is only ever under. The
+  noise there is 3–5 % of a stroke (2 rpm against a stroke's 45–70),
+  so half a stroke lost would stand out twenty-fold: **strokes a half
+  under 0.1–6 per 1,000, a half over 0.7–6 per 1,000** in every band
+  (most of both are gear changes and the pedal coming on inside a
+  window); **the excess under is −0.1 to −0.8 % of the work — none**.
+  At part load the same (±0.2 % in every band of 10,000 strokes and
+  more; the one small band that stands out — `19`–`37`, 2,820–4,200
+  rpm at b7 90–140, 72 strokes of 4,456 a half under against 10 over —
+  is bursts inside single seconds on all four cylinders, the driveline
+  at a gear change or the pedal lifting, not a cylinder). At a standing idle the same measure
+  reads +0.4 to +0.5 %: 17–27 strokes per 1,000 a quarter under
+  against 8–14 over. **So at full throttle no stroke misfires or
+  half-fires, on any cylinder**, to within about 0.3 % of the power.
+  What is there is the standing difference: if 3 gave what 2 gives and
+  4 what 1 gives, the engine would give (1 to 3 + 2 to 4) / 4 =
+  **about 1–2 % more**, on the scale above. *What all four might lack
+  alike cannot be seen this way* — D.
+- **C. Against 014** (`--vcds`, 24 driving logs beside their captures;
+  the pick's control 5 s before and after each rise, S3, *Against
+  chance*): **moving at up to 1,200 rpm** — crawling, moving off —
+  **014 counts what it counts standing**: since the VW leads 24 of 36
+  rises on 3 (67 %, the control 36 %), 4 22 %, 1 and 2 6 % each; up to
+  18/10 3 and 4 alike (17 and 16 of 38), as at the idles then.
+  **Above 1,200 rpm it hardly counts**: 59 rises in all the logs, 20
+  of them with the engine pulling (b7 45 and over), **one above
+  2,820 rpm**. The 20 are real — the stroke before them 40–57 % of a
+  stroke down, the control's 16–18 % — and they are nobody's: 8 on 1,
+  7 on 3, 2 on 4, 3 on 2. So the ECU's count and the bus agree off
+  idle too: next to no misfire under load. (*The session before's "smears
+  onto 1 above 1,200 rpm" was 82 rises on a cruder measure; with the
+  scale and the count above it is 4 of 9 since the leads — too few to
+  name.*)
+- **D. Whether b7's maxima are a healthy engine's** (`--pulls`). b7
+  cannot say: it is the ECU's model from air and spark, and its scale
+  here was *set* so that the full-throttle plateau reads the rated
+  torque (`docs/firmware/frames.md`, *The scale*). **The car's own
+  acceleration can**: 76 full-throttle pulls in 3rd and 4th, each
+  second's acceleration turned into crank torque with an assumed car
+  (1,400 kg with the driver, CdA 0.84 m², rolling 0.012, driveline
+  0.92 — **none read off this car**) against b7 less the drag line ×
+  1.06: **the median pull needs 1.00 of what b7 claims, half of them
+  0.93–1.10** (the spread is the road's slope; by capture 0.87–1.22);
+  band by band 156–166 Nm at 2,000–5,000 rpm, 137–143 at 5,000–6,000.
+  The assumptions are worth about a tenth (50 kg is 3.5 %). **So the
+  engine gives its rated torque to within a tenth; a fifth missing
+  would show, a twentieth would not.** With B: nothing found that a
+  healthy AQY would do better at full throttle beyond the 1–2 % of 3
+  and 4. *What would tighten it*: the car's weight off a weighbridge
+  slip or the registration's kerb weight, and a pull each way on the
+  same stretch.
+- **What it bears on** (*reasoned*; **no fit-table symbol changes and
+  no ranking change** — the owner's to agree): **H3** (a leak at
+  runner 3) and **H18** (oil at idle vacuum) predict exactly this
+  fading with manifold pressure; **H7**'s one-injector form fits if
+  the injector is short only at its smallest quantities, not if it is
+  short by a share; **H1** (a seat on 3) fits the fading with speed
+  but not the lift by load at idle speed; **H4**'s weak spark on 3 is
+  against — the spark is hardest to make at full charge, where 3 is
+  within 1–3 % of 2; **H13** stays as it was (a flake on a seat acts
+  like H1's leak; a crust that dilutes the idle's small charge fades
+  with load). Cylinder 4's 2–4 % is S4's to carry.
 
 ### What the dip shares said, and what stands
 

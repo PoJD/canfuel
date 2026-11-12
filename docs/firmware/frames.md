@@ -674,6 +674,20 @@ much closer to an air meter dressed as a torque gauge than to a dynamometer,
 and on an unhealthy engine they most likely over-read. That makes no difference
 on a healthy one — it is the quantity the ECU steers the car with.
 
+**Checked against the car's own acceleration, 12/11/2026** (`python
+tools/drivescan.py --pulls`): 76 full-throttle pulls in 3rd and 4th
+over fourteen drives, each second's acceleration turned into crank
+torque for an **assumed** car — 1,400 kg with the driver, a drag area
+of 0.84 m², rolling resistance 0.012, a driveline efficiency of 0.92,
+none of them read off this car — against b7 less the drag line at
+1.06 Nm/bit. **The median pull needs 1.00 of what b7 claims, half of
+them 0.93–1.10**; the spread is the road's slope. The assumptions are
+worth about a tenth (50 kg is 3.5 %), so this does not refine the
+scale: it says the scale is not a fifth out, and that at full throttle
+the model is not over-reading by more than that on this engine. The
+check is independent of how the scale was set — that used the rated
+figures, this uses the road.
+
 At **full load** specifically the lambda in the model cannot be a measured
 one: enrichment there is open loop, and the pre-cat sensor is a switching one
 (block 034's ageing test is a *period*, which only a switching sensor has),
