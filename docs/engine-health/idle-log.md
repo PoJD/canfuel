@@ -1531,7 +1531,8 @@ was the fault, one drive; S3, *P0300 and P0303*.
   (`vcds/vcds-step6q-*`); 032/055 before and after; the fault memory
   before, at the stop and after; a last stop of 14.8 minutes slightly
   uphill, oil 100–101 °C, **no injector cut**; the phone at the
-  tailpipe through it (6p, two recordings, not yet read).
+  tailpipe through it (6p's first half, three recordings, read that
+  night).
 - **Changes after:**
   - *measured:* in the queue cylinder 3 at −9.5 to −15 % of a stroke
     at every standing idle, `IdleHealth` 72; **at the last stop three
@@ -1544,9 +1545,15 @@ was the fault, one drive; S3, *P0300 and P0303*.
     last 84 s, 16 on 3; 032 −7.0 / +8.6 → **−4.7 / +6.3 %**, 055 −0.93 →
     −0.97 g/s; no fault code; the engine lamp lit only with the engine
     off (`open.md` S1, *The queue drive, and what the ECU sees through a
-    swell*);
+    swell*); **at the tailpipe every weak stroke is a louder pulse**
+    (+15 to +22 % for one 12 rpm down), and **3's pulse grows with its
+    deficit and drops with the fall** — +11 % at −23 %, −7 % at −5 %,
+    on its steady strokes too (S1, *The phone at the tailpipe through a
+    swell and a fall*);
   - *felt:* an exhaust puff heard at the tailpipe at about 17:20, in
-    the second swell's deepest minute (*owner*; S2);
-  - *not known:* what the phone's recordings show through the two
-    falls; why this stop kept no floor where the morning's held
-    fourteen minutes.
+    the second swell's deepest minute (*owner*; S2) — on the recording
+    the loudest pulse, +77 %, is at 17:19:48.9, two firings after 3's
+    deepest stroke;
+  - *not known:* whether a seat or a dilution makes 3 burn late — the
+    sound fits both; why this stop kept no floor where the morning's
+    held fourteen minutes.

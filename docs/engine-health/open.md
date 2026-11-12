@@ -269,8 +269,8 @@ with 3's wave — what H0 or a fixed fault on all four gives (the belt's
 marks, 8i), not a source that changes by the day (H16's leak, H7's
 rail, H18, H11, H21). **Agreed with the owner the same evening, all
 four**: the phone's recording through a swell beside a capture
-(`plan.md` 6p; the tailpipe half recorded 12/11 evening at `50`'s
-stop, to be read); N80's hose shut for two captured drives, after the new
+(`plan.md` 6p; the tailpipe half done 12/11 evening at `50`'s
+stop); N80's hose shut for two captured drives, after the new
 valve's own two (8o); the warm leak-down made on an engine switched
 off in a swell (item 9); and **list A re-ordered: the belt and H0 at
 its head, H16 third** (*The idle's candidates, ranked*). The reading
@@ -469,17 +469,21 @@ commands moved with 3's swell or with the common part (S1, *The queue
 drive, and what the ECU sees through a swell*), which leaves both
 lists where the bus alone had put them; no change proposed.
 
-**Next** (`plan.md`; *the owner*, 10/11–12/11): **6p's two phone
-recordings of 12/11 evening into a chat, to be read against `50`**;
-**until the new N80
+**Read 12/11 night, 6p's
+recordings at the tailpipe: the order kept** — 3's exhaust pulse grows
+with its deficit and drops with the fall, on every stroke; it puts the
+swell in 3's combustion and does not choose between a seat and a
+dilution (S1, *The phone at the tailpipe through a swell and a fall*).
+
+**Next** (`plan.md`; *the owner*, 10/11–12/11): **until the new N80
 (expected the weekend of 14–15/11) the MFD stays out and the drives are
 captured**, each with 014 and 032 before and after, gentle or brisk
 read off the capture — the old valve's baseline for H16, *The owner's reading, 12/11*
 (H16 third in A since 12/11 evening; the baseline stands), and more
 warm stops read by `cylscan.py --minutes` and `swellscan.py` as `49`
 was; **6p's second half, the phone above cylinder 3**, at the next
-captured stop that swells (the tailpipe half recorded at `50`'s stop,
-through two falls); **6i's oil level
+captured stop that swells (the tailpipe half done at `50`'s stop);
+**6i's oil level
 next about 156,400 km** (read 11/11 evening: another 0.5–1 mm lower,
 H18); **8i, the timing
 belt's marks, at the next cold engine**; **the new rear probe back to
@@ -1596,6 +1600,10 @@ warm stops**, captured — a swell with the hose shut ends the fourth;
 with 3 twice for the first — ⚠ made with the engine stopped, so on
 whatever state 3 was left in; a stop switched off in a swell (the
 display above 75) is the one worth testing.
+*(a)'s tailpipe half was done that evening at `50`'s stop: 3's pulse
+grows and drops with the swell, which does not tell a seat from a
+dilution (*The phone at the tailpipe through a swell and a
+fall*); the cam cover is left.*
 
 *The common part* (cylinder 2's scatter about its own median, rpm rms
 of step):
@@ -1724,8 +1732,8 @@ was off.
   12.0–14.5).
 - **A puff from the exhaust heard at about 17:20** (*owner*, at the
   tailpipe with 6p's phone): that minute is the second swell's peak,
-  3 at −21 to −23 % with eight weak strokes in 20 s (S2). **6p's two
-  recordings are not in the repository and not yet read**; the door on
+  3 at −21 to −23 % with eight weak strokes in 20 s (S2). **6p's
+  recordings are read in the next section**; the door on
   the bus for them: open 17:15:48–17:16:23, shut three times
   17:22:49–17:22:59, and 17:24:22–17:24:30.
 - ⚠ **A log taken wholly at a standing idle does not set itself
@@ -1745,6 +1753,67 @@ was off.
   it. The seat that fouls and burns clean (H1 with H13) still fits —
   a slower fall is a slower burn-off; a trap that fills and empties
   (H18 for one valve) fits a period of 5½ minutes at least as well.
+
+**The phone at the tailpipe through a swell and a fall** (`plan.md`
+6p's first half, done; recorded 12/11 evening at `50`'s last stop, read
+that night in a cloud session; three recordings of the owner's phone,
+243 s from 17:16:13, 148 s from 17:20:20 and 81 s from 17:22:57 — **not
+kept in the repository**; *ad-hoc scripts, not kept*). The first and
+the third set by the door's shut on the bus (17:16:23, and the last of
+three at 17:22:59), the second by its file's time; then each trimmed on
+the strokes themselves, below. They cover 3 growing from −11 to −23 %,
+the second fall to −5 %, and the growth to −20 % after it.
+- **Every firing is found on the recording.** The firing line (26.5 Hz,
+  795–800 rpm, the capture's speed to the rpm) gives each firing's
+  start; the sound's energy at 35–400 Hz in each firing, against the
+  40 round it, is one pulse's strength. Set against the capture's step
+  for the same stroke it correlates **−0.35, −0.68 and −0.34** on the
+  three recordings, at one lag each and nothing a stroke either side
+  (the two door-set recordings agree on the lag to 7 ms).
+- **A weak stroke is a louder pulse**, by how weak: 3's strokes 12 rpm
+  and more down **+15 to +22 %**, 6–12 down +15 to +20 %, 0–6 down +3
+  to +9 %, above their median −8 to +3 %; the few weak strokes of 1, 4
+  and 2 the same, +13 to +38 %. *Reasoned*: a charge that burns late is
+  still burning when the exhaust valve opens and goes out with more
+  pressure; a stroke's weakness on the bus and its pulse at the
+  tailpipe are one event. **S1's dips and S2's sound are on one
+  recording at last** (S2).
+- **3's pulse grows with its deficit and drops with the fall — on its
+  steady strokes too.** In 20 s windows, the pulse of 3's firing
+  against the four's mean: **−1 % at −11 %, +5 % at −15 to −17 %, +11 %
+  at −23 %** (the first recording); **+1 % at −15 %, −7 % at −5.5 %,
+  back to +2 % at −15 %** (the second, through the fall and after);
+  −1, +7 and +9 % at −17 to −20 % (the third's three windows). **r −0.95 and −0.99 with 3's
+  deficit** within a recording (11 and 7 windows), −0.92 and −0.94 with
+  every stroke 6 rpm and more down left out — about 0.9 % of pulse for
+  each per cent of deficit. The other three give it back between
+  them; the sound's level does not change (r −0.2, +0.1).
+  Folded on the cycle (the second recording, the clean one), **the gain
+  sits in about 105° of crank at the front of 3's pulse**, 1.2–1.7
+  times the floor's, the same with every cycle that holds a weak stroke
+  left out.
+- **By 6p's rule as it was written** — growing with the swell and
+  dropping at its fall is for the seat (H1 with H13), the same through
+  both for what only dilutes — **this is for the seat. *Reasoned*, the
+  rule does not hold**: every stroke that burns later sounds stronger
+  at the tailpipe (the weak strokes above), and a charge diluted by
+  oil, coolant or burnt gas burns later as surely as one that lost
+  compression past a seat. A seat that leaked into the exhaust would
+  rather be heard between the pulses, during 3's compression, and the
+  gain is on the pulse. **What it does settle**: the swell is in 3's
+  combustion on every stroke — graded, there on the steady strokes,
+  gone with the fall — where the bus alone could not tell work lost in
+  the cylinder from, say, friction; and it is not the microphone's
+  place (two placings, one slope). ⚠ One microphone, a telephone's,
+  through speech compression; which 105° of 3's event (blowdown or
+  before) is not known — the lag was fitted, not measured.
+- **The loudest pulse of the first recording, +77 % at 17:19:48.9**
+  (3:37 into it), **came two firings after the deepest stroke of 3's
+  in those four minutes, −27 rpm** — nearly a dead stroke; the three
+  strokes of 20 rpm and more down average +7 % in their own pulse,
+  +22 % in the next and +53 % in the one after. *Reasoned*: a whole
+  misfire's charge going off in the exhaust — **the owner's puff of
+  "about 17:20"** (S2), by his ear to confirm at 3:37.
 
 **How the weak strokes follow each other** (11/11, *the research*;
 `dipshape.py`'s warm runs, each step against its cylinder's median,
@@ -1813,6 +1882,15 @@ capture** — in the minute of cylinder 3's second swell at its deepest,
 −21 to −23 % with eight weak strokes in 20 s (S1, *The queue drive,
 and what the ECU sees through a swell*). "About" a minute is too wide
 to name the stroke; the phone's recording, set by the door, can.
+**Read that night** (S1, *The phone at the tailpipe through a swell
+and a fall*): **every weak stroke on the bus is a louder pulse at the
+tailpipe**, +15 to +22 % for a stroke 12 rpm down, so S1's dips and the
+exhaust's sound are aligned stroke for stroke, as 26/10's recording
+could not show; and **the loudest pulse of the four minutes, +77 % at
+17:19:48.9 (3:37 into the first recording), came two firings after
+cylinder 3's deepest stroke, −27 rpm** — the owner's reading of S2, a
+misfire's charge going off in the exhaust, seen once. Whether that is
+the puff he heard is his to say from the recording.
 
 ### S3. Misfires counted by the ECU at idle
 
@@ -5698,7 +5776,7 @@ tables):
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| B1 | **H13** deposits | **12/11 night, the queue drive, kept with H1**: three swells in one stop, the falls 80–108 s, the air, the spark and the regulation the same through them — still inside 3 (S1, *The queue drive, and what the ECU sees through a swell*); **12/11, the third research** (*agreed with the owner*): first, with H1, and for 3 by every measure — its steady deficit at every warm idle, 80 % of 014's rises, the swell and its step; the borescope's most deposit on 3 (3 > 4 > 2 > 1), and cold 4 weak beside it in that order; **12/11, the idle split in two** (*the owner's decision*): 3's exhaust seat or a flake, read with H1; **11/11, after the second research** (*agreed with the owner*): the rough start of a warm stop after a hot drive is 3's swell (S1, *The rough start of a warm stop*), and a day's relief fits a flake moved, not deposit regrown (SAE 2000-01-2858); **9/11, the clean**: it took 3's swell for a day and left its floor (S1, *The clean of 9/11*); **24/10**: its own test, the strong 44K tank and ~450 hard km, moved nothing, and the deposit reads as a consequence as much as a cause (H13). *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`); those of 3/11–9/11 rested on the dip shares withdrawn 12/11.* | both 44K tanks done; **the hydrogen clean done 9/11**: the swell gone for a day, 3's floor and the settled level kept (S1, *The clean of 9/11*); with H1, a warm leak-down with 3 twice (`plan.md` 9) |
+| B1 | **H13** deposits | **12/11 night, the phone at the tailpipe, kept with H1**: 3's exhaust pulse +11 % at −23 % and −7 % at −5 %, on its steady strokes too — the swell is 3's combustion on every stroke; a seat and a dilution both give it (S1, *The phone at the tailpipe through a swell and a fall*); **12/11 night, the queue drive, kept with H1**: three swells in one stop, the falls 80–108 s, the air, the spark and the regulation the same through them — still inside 3 (S1, *The queue drive, and what the ECU sees through a swell*); **12/11, the third research** (*agreed with the owner*): first, with H1, and for 3 by every measure — its steady deficit at every warm idle, 80 % of 014's rises, the swell and its step; the borescope's most deposit on 3 (3 > 4 > 2 > 1), and cold 4 weak beside it in that order; **12/11, the idle split in two** (*the owner's decision*): 3's exhaust seat or a flake, read with H1; **11/11, after the second research** (*agreed with the owner*): the rough start of a warm stop after a hot drive is 3's swell (S1, *The rough start of a warm stop*), and a day's relief fits a flake moved, not deposit regrown (SAE 2000-01-2858); **9/11, the clean**: it took 3's swell for a day and left its floor (S1, *The clean of 9/11*); **24/10**: its own test, the strong 44K tank and ~450 hard km, moved nothing, and the deposit reads as a consequence as much as a cause (H13). *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`); those of 3/11–9/11 rested on the dip shares withdrawn 12/11.* | both 44K tanks done; **the hydrogen clean done 9/11**: the swell gone for a day, 3's floor and the settled level kept (S1, *The clean of 9/11*); with H1, a warm leak-down with 3 twice (`plan.md` 9) |
 | B2 | **H1** valve or lifter | **12/11, the third research** (*agreed with the owner*): with H13 on 3 — a seat on 3 that leaks (the floor) or holds a flake (the swell), or a lifter; the steady pattern is 3's alone, as one seat gives; **12/11, the idle split in two** (*the owner's decision*); **11/11 night, kept**: S22 reopened, a tick once per cycle heard warm after a hard drive; **read 12/11: the usual once-per-cycle part at its usual size, no lifter's jump** (S22); **11/11 up from fourth** (*agreed with the owner*): 3's exhaust seat, leaking hot or holding a flake, fits the rough start after a hot drive that settles in 5–8 minutes; the weak strokes come in spells of seconds on one cylinder, at a mixture or dilution limit (S1, *How the weak strokes follow each other*); VW calls the cold clatter of 8/11 normal; **7/11**: the port photos of 20/10 show crust broken round the inlet seat's edge on 3 and 4, a lump on 3, 1 and 2 even (*the owner's reading*); **26/10**: the hot phone recording found no lifter, 18/10's tick not back. *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`); those of 3/11–9/11 that weighed 3 against 4 rested on the dip shares withdrawn 12/11.* | the EPR flushes done 26/10, the hot recording found no lifter; left: **a warm leak-down on all four** and a stethoscope above 3, hot (`plan.md` 9) |
 | B3 | **H3** a leak at one runner, 3's | **12/11, later the same day** (*the owner's argument*): one up, H7 below it; **12/11, the third research** (*agreed with the owner*): **runner 3's lower gasket**, never renewed — the one cause that predicts *load helps* directly; 3 short in every state, cold 4 weak beside it, the neighbouring runner; runner 3's gasket edge bent and straightened by the owner on 5/11, runner 4's torn; against: 032's idle cell negative, the smoke test of 9/10 clean, and a leak has no reason to swell and mend in a step; **4/11**: the calm under load best of all, the calm after revving not at all (S1). *Until 12/11 it was read for runner 4 ("4's deficit") and demoted 24/10 for "the dips no longer keep to 3 and 4" — both on the dip shares withdrawn 12/11.* *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`).* | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
 | B4 | **H20** coolant into cylinder 3 | **12/11, later the same day** (*the owner's argument*): one up; **12/11, the third research** (*agreed with the owner*): one up, H4 below it; **12/11, the idle split in two** (*the owner's decision*): coolant into 3; **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **added 4/11** (*the owner*, weak): one cylinder at idle, where its pressure is lowest; plug 3 the cleanest of the 10/10 set; against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos | a combustion-gas (CO₂) test of the coolant (`plan.md` 9) |

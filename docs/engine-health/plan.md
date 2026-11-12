@@ -18,8 +18,7 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Now: 6p's two phone
-recordings of 12/11 evening into a chat.** **Next, until the new N80
+Captures only where an item asks for one. **Next, until the new N80
 is fitted (expected the weekend of 14–15/11)**: **the MFD stays out
 and the drives are captured** (item 6, *the owner*, 12/11), each with
 **014** and **032 read before and after** — the old valve's 032 against
@@ -34,7 +33,7 @@ laptop session; **8e's harness at the end**, 8g dropped (*the owner*,
 10/11 and 11/11; `open.md` H11, *The relearn drive*; `refuted.md` D13;
 S1, *The rough start of a warm stop*). *Done: 8j and its first drive
 11/11, item 6's first captured drive 12/11 (`49`), 6q the queue drive
-12/11 evening (`50`).*
+12/11 evening (`50`), 6p's tailpipe half at its stop.*
 
 6. **Drive normally; the MFD out from 12/11** (*the owner*), so the
    drives can be captured — the converter goes with the MFD, so no
@@ -69,20 +68,17 @@ S1, *The rough start of a warm stop*). *Done: 8j and its first drive
    - **A hard jerk at a crawl or on moving off** (`open.md` S12): the
      clock time into the chat as soon as it is safe, with the gear and
      roughly the speed; on a captured drive, **"teď"** at once.
-6p. **The phone through a swell** (agreed 12/11 evening), at a
-   captured warm stop where Claude says 3 is swelling: the car in
-   neutral, the parking brake on, nothing touched under the bonnet.
-   **Start the phone's recording, then shut the driver's door once,
-   firmly** — the door is on the bus and on the recording, and sets the
-   two against each other. **The phone on the ground by the tailpipe,
-   about 20 cm from it, out of the gas stream**; left there until
-   Claude says 3 has fallen back and two minutes more. No throttle, no
-   A/C, no switch touched meanwhile. The file into the chat.
-   *Recorded 12/11 evening at `50`'s last stop, two files, through two
-   falls; the files into a chat.* **At
-   another such stop the same with the bonnet open before the door is
-   shut and the phone lying on the cam cover above cylinder 3**, clear
-   of the belt side.
+6p. **The phone above cylinder 3 through a swell** (agreed 12/11
+   evening; the tailpipe half done 12/11 at `50`'s stop), at a captured
+   warm stop where Claude says 3 is swelling: the car in neutral, the
+   parking brake on, **the bonnet open**. **Start the phone's
+   recording, then shut the driver's door once, firmly** — the door is
+   on the bus and on the recording, and sets the two against each
+   other. **The phone lying on the cam cover above cylinder 3**, clear
+   of the belt side; left there until Claude says 3 has fallen back and
+   two minutes more. **One recording, not stopped and restarted.** No
+   throttle, no A/C, no switch touched meanwhile. The file into the
+   chat.
 6i. **The oil level on the new oil, about every 500 km** from the first
    reading (27/10, 155,024 km, at the top mark; 5/11, 155,546 km, 0.5–1 mm
    under it; 11/11 evening, about another 0.5–1 mm lower, the album
@@ -616,19 +612,19 @@ morning of 10/11, the day the rear probe sank. Sealing the probe's own
 lead airtight could starve it the same way; the fabric tape over the
 harness side is not a seal.
 
-**6p, the phone through a swell** (*agreed with the owner*, 12/11
-evening; `open.md` S1, *The swell's shape, and what the common part
-follows*): 3's swell reads best as a seat on 3 that fouls at idle and
-burns itself clean, and a seat that leaks more blows more past it once
-per cycle. **Read**: the once-per-cycle part of the recording (S22's
-tick; the camshaft frequency, about 6.6 Hz, and its sharpness) set
-against 3's deficit minute by minute (`tools/swellscan.py --series`) —
-**growing with the swell and dropping at its fall is for the seat**
-(H1 with H13); the same through both is for the readings that only
-dilute (oil at 3's inlet valve, coolant, the purge). At the tailpipe
-for an exhaust seat, on the cam cover for the valve gear and an inlet
-seat. The door because a message's arrival time aligns nothing
-(`CLAUDE.md`). One swell is one reading; two agree or it is repeated.
+**6p, the phone above cylinder 3** (*agreed with the owner*, 12/11
+evening; `open.md` S1, *The phone at the tailpipe through a swell and
+a fall*). The tailpipe half showed 3's exhaust pulse growing with its
+deficit and dropping with the fall, which a seat and a dilution both
+give — the rule written for it did not separate them. **On the cam
+cover the question is the valve gear's**: a once-per-cycle tick at 3's
+place (S22) that grows with the swell and drops at its fall is for a
+valve held off its seat or a lifter (H1); the same tick through both
+leaves the swell to the charge. Read as the tailpipe's was: each firing
+found on the recording by the firing line, set on the capture's strokes
+by the door and then by the weak strokes themselves. One recording
+because a restart costs the door's mark (12/11: the second file had to
+be set by its clock).
 
 **8o, N80's hose shut** (*agreed with the owner*, 12/11 evening;
 `open.md` S1, the same section; H16): the ECU's purge is the one thing
