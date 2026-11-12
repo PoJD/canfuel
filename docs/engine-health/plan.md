@@ -18,7 +18,9 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next: the new rear probe
+Captures only where an item asks for one. **Next: item 6's captured
+warm drive, now** — the MFD out, a drive warm, then a warm stop of 10
+minutes or more in the everyday state, captured; **the new rear probe
 back to the seller and a new one fitted** (8e); drives with the MFD in,
 **014 in every logged drive** (8f); **8i (the timing belt's marks) at
 the next cold engine**; drives with the MFD in (item 6) and 6i; 8f at
@@ -32,9 +34,9 @@ start of a warm stop*).
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
    everyday state and the oil temperature, written into the chat.
-   - **No captures for now.** Only **once `IdleHealth` on the MFD is
-     clearly better**: one or two warm drives captured, on different
-     days. Claude runs the capture; VCDS on **014, 003, 020**; 055 once
+   - **Captures now** (`IdleHealth` clearly better since 11/11): one or
+     two warm drives captured, on different days, each ending in a warm
+     stop of 10 minutes or more. Claude runs the capture; VCDS on **014, 003, 020**; 055 once
      at the end, warm idle. Write the stops.
    - **The converter carries `Misfires` and `MisfAvg`** (0x604 layout 2,
      flashed by Claude on 4/11, the stored trip and tank kept). **The
@@ -328,6 +330,18 @@ reference its tanks would have been read against. What is left: `40`,
 the refit drive of 21/10 on plain fuel, as that reference; the display
 through the tanks; and the captures once `IdleHealth` moves, which then
 say what moved.
+
+**It moved on 11/11 and 12/11** (the two calm stops near home on the
+canister, the MFD in; `open.md` S1, the warm stops' table), so the
+captures are due. **What they settle first** (*the owner*, 12/11, the
+idle split in two; `open.md`, *The idle's candidates, ranked*): **which
+part fell** — `idledips.py --roughness` for the whole and
+`--cylinders` for the period-4 part, set against S1's 78 and 51 (*A
+steady pattern over the cylinders*; the 5/11 script that took the slot
+means out was not kept, so the split is computed again on the
+capture). The common part down and 3's and 4's pattern as before is
+list A's, H16 first; the pattern gone too is list B's as well. The stop
+of 10 minutes because the settling takes 3–8.
 
 **Item 6i — the oil level on the new oil** (`open.md` H18; `refuted.md` C21; *the
 owner's agreement*, 26/10). Oil burnt past the stem seals or rings lowers
