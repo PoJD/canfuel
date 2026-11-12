@@ -192,7 +192,8 @@ S1, *The rough start of a warm stop*). *Done: 8j and its first drive
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
      a kit.
    - **A stethoscope (or a long screwdriver) on the cam cover above
-     cylinder 3, hot**, against 1, 2 and 4: a tick or a hiss on one, at idle.
+     cylinder 3 and above cylinder 4, hot**, against 1 and 2: a tick or
+     a hiss on one, at idle.
    - **One garage session with the upper intake off, straight after a
      drive** (oil at 80 °C or more), in this order:
      - **a warm leak-down on all four**: all four plugs out (the same
@@ -787,7 +788,7 @@ warm stop*). 6m and the gasket because the intake is off anyway.
 **Item 9 — after the decarbonisation** (*agreed with the owner*, 4/11,
 after the research): the cheapest tests that name a part on 3 without an
 injector swap or a plug change. **The CO₂ test** for H20, the cheapest
-of all; **the stethoscope** for a lifter or valve on 3 (H1); **the warm
+of all; **the stethoscope** for a lifter or valve on 3 (H1), **and on 4 since 12/11 night** (`open.md` S4, *Why 4*: 4 gives 2–4 % less than 1 at every load and has a noise in its knock window in neutral, which a valve, lifter or lobe on 4 would give together; the tappet check already covers all eight); **the warm
 leak-down** decides H1's seat — VW gives no procedure for this engine,
 so the garage's own, the four against each other: where it hisses names
 the leak (tailpipe an exhaust valve, throttle an inlet valve, the oil

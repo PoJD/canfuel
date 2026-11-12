@@ -55,10 +55,10 @@ default     3 less 2 and 1 less 4 by engine speed and load (b7), warm, in
 ``--count`` the check of 1: the slot the strongest cylinder has at each
             named standing idle through the capture.
 ``--pulls`` full-throttle pulls: the torque the car's own acceleration
-            needs against the torque b7 claims. The car's mass and
-            resistances are assumptions (`CAR_*`), so the ratio is good
-            to about a tenth -- enough to see a fifth missing, not a
-            twentieth.
+            needs against the torque b7 claims. The car's mass is the
+            registration's; its resistances are assumptions (`CAR_*`), so
+            the ratio is good to about a tenth -- enough to see a fifth
+            missing, not a twentieth.
 
     python drivescan.py FILE [FILE ...]
     python drivescan.py --weak FILE [FILE ...]
@@ -134,10 +134,14 @@ PULL_B7 = 140
 PULL_MIN_S = 2.0
 PULL_SKIP_S = 0.5
 PULL_WINDOW_S = 1.0
-#: `--pulls`, **assumptions, none read off this car**: mass with the driver,
-#: drag area, rolling resistance, driveline efficiency, the engine's and the
-#: four wheels' inertia, the tyre's rolling radius (205/55 R16).
-CAR_MASS_KG = 1400.0
+#: `--pulls`: the mass is the registration certificate's mass in running
+#: order (field G, *the owner's photograph*, 12/11/2026), which by the EU's
+#: definition holds a 75 kg driver and a tank nine tenths full; on a
+#: captured drive the car also carries the laptop. **The rest are
+#: assumptions, none read off this car**: drag area, rolling resistance,
+#: driveline efficiency, the engine's and the four wheels' inertia, the
+#: tyre's rolling radius (205/55 R16).
+CAR_MASS_KG = 1303.0
 CAR_CDA_M2 = 0.84
 CAR_CRR = 0.012
 CAR_ETA = 0.92
@@ -799,7 +803,7 @@ def report_pulls(rows_by_file, out=sys.stdout):
     """`rows_by_file`: [(name, pulls())]. Returns the median over the pulls
     in 3rd and 4th of each pull's median ratio."""
     print(f"full throttle: the torque the acceleration needs over the torque "
-          f"b7 claims ({CAR_MASS_KG:.0f} kg, CdA {CAR_CDA_M2}, assumed)",
+          f"b7 claims ({CAR_MASS_KG:.0f} kg; CdA {CAR_CDA_M2}, assumed)",
           file=out)
     per_pull = {}
     for name, rows in rows_by_file:

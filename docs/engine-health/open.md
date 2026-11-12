@@ -290,9 +290,9 @@ misfires or half-fires** (100,000 strokes; the excess of weak over
 strong is nothing, to about 0.3 % of the power) and 014 agrees — 59
 rises above 1,200 rpm in 24 driving logs, one above 2,820; **what 3
 and 4 cost there is about 1–2 %**. **The car's own acceleration needs
-1.00 of the torque b7 claims** (76 pulls, half of them 0.93–1.10; the
-car's weight assumed), so the engine gives its rated torque to within a
-tenth. **014's split by cylinder is set against chance since** (S3):
+0.95 of the torque b7 claims** (76 pulls, half of them 0.89–1.04; the
+registration's 1,303 kg, the resistances assumed), so the engine gives
+its rated torque to within a tenth. **014's split by cylinder is set against chance since** (S3):
 83 % on 3 against 50 % in control windows, not against 25 %. The
 ranking is not touched; what it bears on is in *Off idle*.
 
@@ -2214,11 +2214,13 @@ completing rather than load (`refuted.md` C19).
   deficit and 014's rises do. Cleared by the owner after the stop, 032/055 read
   first.
 
-### S4. Knock retard on cylinder 4 — and near the limiter on 2 beside it
+### S4. Knock retard on cylinder 4 — near the limiter on 2 beside it — and 4 a little short under load
 
 *The heading said "and only cylinder 4" until 12/11* (*the owner*: the
 captured drive's 020 changes the symptom, not only its data; *Since
-12/11, below*). Groups 022/023 and 020: cylinders 1–3 read zero in almost every sample;
+12/11, below*); **widened 12/11 night** (*the owner's decision*: an
+extension of S4, not a new symptom) by what 4 gives under load, read
+off the bus (*What cylinder 4 gives under load*, below). Groups 022/023 and 020: cylinders 1–3 read zero in almost every sample;
 cylinder 4 retards in steps up to 13.5 °CA, mostly on a tip-in after a coast
 or gearchange and on hard pulls, **never at idle**. Within VW's 0–15 °CA while
 driving. 9/10: still cylinder 4 alone with all injectors seated (`refuted.md`
@@ -2321,7 +2323,37 @@ and full load, +2.6 to +3.2 at 3,300–4,200, +3.8 to +4.4 at
 +3.5 % at 1,600–2,600 rpm, b7 about 62), where 020 reads no retard, so
 the retard is not all of it; where 4 does retard, a few degrees cost
 about this much (*general*). At idle 1 less 4 is +5 % since the VW
-leads and was +10 % before. *Not a symptom until the owner says so.*
+leads and was +10 % before. **Part of S4** (*the owner*, 12/11 night).
+
+**Why 4, and why the other way round from 3** (*the owner's question*,
+12/11 night; *reasoned*, nothing here measured beyond what is cited).
+**It is not the other way round**: 4 is a few per cent under 1 in
+every state — 5 % at idle, 2–4 % under load, a share; 3 has something
+on top of that only where the charge is small, an amount. Two
+different things, not one cause with two signs. **For 4, three
+readings**:
+- **Real knock from the crust on 4's crown** (H13): retard costs
+  torque, so 4 is short where it retards. Against it as the whole:
+  4 is as short at part load, where 020 reads no retard; 3 has more
+  deposit than 4 and retards least; and the clean of 9/11 was followed
+  by more retard, not less.
+- **4 fills or burns a few per cent less at every load** — the crust
+  round the inlet seat's edge on 4 (the port photos of 20/10), runner
+  4's torn gasket edge, or less lift at one of its valves. A share, as
+  measured. On its own it would make 4 the *least* likely to knock, so
+  it does not explain the retard.
+- **Something mechanical at 4 that does both** — a valve, lifter or
+  cam lobe on 4 that lifts short and is heard: less filling at every
+  load (the share), **a noise in 4's window with no load at all** (S5:
+  026 reads 4 20–70 % over 1 in neutral, which knock cannot be) that
+  the ECU books as knock (H5), and a tick once per cycle (S22, on a
+  cylinder no recording has named). **The one reading that takes S4's
+  retard, S5 and the 2–4 % together**, and it is H5 with a part named.
+  Against: 2 beside 4 near the limiter (above) is not explained by it.
+**What would tell**: the stethoscope on the cam cover above each
+cylinder, hot, and VW's tappet check (`plan.md` 9, there for 3) —
+**listened to and checked on 4 as well**; 026 in neutral again after
+any work on 4's valve gear.
 
 **What it changes in the hypotheses** (12/11, at the owner's request;
 *reasoned*; **no fit-table symbol changes**, each said why):
@@ -5693,19 +5725,24 @@ drives, `19`–`50`; warm (oil 80 °C and over).*
   here was *set* so that the full-throttle plateau reads the rated
   torque (`docs/firmware/frames.md`, *The scale*). **The car's own
   acceleration can**: 76 full-throttle pulls in 3rd and 4th, each
-  second's acceleration turned into crank torque with an assumed car
-  (1,400 kg with the driver, CdA 0.84 m², rolling 0.012, driveline
-  0.92 — **none read off this car**) against b7 less the drag line ×
-  1.06: **the median pull needs 1.00 of what b7 claims, half of them
-  0.93–1.10** (the spread is the road's slope; by capture 0.87–1.22);
-  band by band 156–166 Nm at 2,000–5,000 rpm, 137–143 at 5,000–6,000.
-  The assumptions are worth about a tenth (50 kg is 3.5 %). **So the
-  engine gives its rated torque to within a tenth; a fifth missing
-  would show, a twentieth would not.** With B: nothing found that a
-  healthy AQY would do better at full throttle beyond the 1–2 % of 3
-  and 4. *What would tighten it*: the car's weight off a weighbridge
-  slip or the registration's kerb weight, and a pull each way on the
-  same stretch.
+  second's acceleration turned into crank torque against b7 less the
+  drag line × 1.06. **The car's mass is the registration
+  certificate's, 1,303 kg in running order** (*the owner's photograph*,
+  12/11 night; by the EU's definition with a 75 kg driver and the tank
+  nine tenths full; *1,400 kg was assumed until then, and read 1.00*);
+  the rest is assumed, none read off this car — CdA 0.84 m², rolling
+  0.012, driveline 0.92. **The median pull needs 0.95 of what b7
+  claims, half of them 0.89–1.04** (the spread is the road's slope; by
+  capture 0.82–1.15); band by band 147–156 Nm at 2,000–5,000 rpm,
+  130–137 at 5,000–6,000. Every 50 kg the car carries over the
+  certificate (a heavier driver, the laptop, the boot) is 3.5 % more,
+  and the assumed resistances are worth some 5 % either way. **So the
+  engine gives its rated torque to within a tenth, and nearer a
+  twentieth under than over; a fifth missing would show.** With B:
+  nothing found that a healthy AQY would do better at full throttle
+  beyond the 1–2 % of 3 and 4 — a few per cent common to all four is
+  neither shown nor excluded. *What would tighten it*: the car on a
+  weighbridge as driven, and a pull each way on the same stretch.
 - **What it bears on** (*reasoned*; **no fit-table symbol changes and
   no ranking change** — the owner's to agree): **H3** (a leak at
   runner 3) and **H18** (oil at idle vacuum) predict exactly this
