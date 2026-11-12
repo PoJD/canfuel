@@ -130,10 +130,12 @@ LINK_MARGIN_RPM = 2.0
 
 # --- reading ----------------------------------------------------------------
 
-def read(path):
+def read(path, frames=None):
     """{e: [(t, rpm, throttle, speed mm/h)], fuel: [(t, counter)],
-    oil: [(t, degC)], ac: [(t, on)]} -- one pass over a `_z1` capture."""
-    frames = canlog.parse_file(path)
+    oil: [(t, degC)], ac: [(t, on)]} -- one pass over a `_z1` capture
+    (`frames`: the capture already parsed, for a caller that reads more)."""
+    if frames is None:
+        frames = canlog.parse_file(path)
     if not frames or frames[0].ts_ms is None:
         raise SystemExit(f"{path}: no adapter timestamps; only the _z1 logs "
                          "can be read for this")

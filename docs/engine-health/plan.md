@@ -26,7 +26,9 @@ the drive, before the swap, gentle or brisk read off the capture; **8i (the timi
 engine**; **the new rear probe back to the seller and a new one
 fitted** (8e). **Then 8a, the new N80**: 032/055 and the fault memory
 before, the swap, 070, then one gentle and one brisk drive, captured,
-032 after each. Then item 9, 6m inside its garage session; 8h at a
+032 after each; **then 8o, two more captured drives with N80's hose
+shut**. **6p, the phone through a swell, at the first captured stop
+that swells.** Then item 9, 6m inside its garage session; 8h at a
 laptop session; **8e's harness at the end**, 8g dropped (*the owner*,
 10/11 and 11/11; `open.md` H11, *The relearn drive*; `refuted.md` D13;
 S1, *The rough start of a warm stop*). *Done: 8j and its first drive
@@ -60,6 +62,18 @@ S1, *The rough start of a warm stop*). *Done: 8j and its first drive
    - **A hard jerk at a crawl or on moving off** (`open.md` S12): the
      clock time into the chat as soon as it is safe, with the gear and
      roughly the speed; on a captured drive, **"teď"** at once.
+6p. **The phone through a swell** (agreed 12/11 evening), at a
+   captured warm stop where Claude says 3 is swelling: the car in
+   neutral, the parking brake on, nothing touched under the bonnet.
+   **Start the phone's recording, then shut the driver's door once,
+   firmly** — the door is on the bus and on the recording, and sets the
+   two against each other. **The phone on the ground by the tailpipe,
+   about 20 cm from it, out of the gas stream**; left there until
+   Claude says 3 has fallen back and two minutes more. No throttle, no
+   A/C, no switch touched meanwhile. The file into the chat. **At
+   another such stop the same with the bonnet open before the door is
+   shut and the phone lying on the cam cover above cylinder 3**, clear
+   of the belt side.
 6i. **The oil level on the new oil, about every 500 km** from the first
    reading (27/10, 155,024 km, at the top mark; 5/11, 155,546 km, 0.5–1 mm
    under it; 11/11 evening, about another 0.5–1 mm lower, the album
@@ -130,6 +144,17 @@ S1, *The rough start of a warm stop*). *Done: 8j and its first drive
    - **At any engine lamp from now on**: the odometer, the tank's needle
      and the outside temperature into the chat, and 032 read before the
      code is cleared.
+8o. **Two captured drives with N80's hose shut** (agreed 12/11
+   evening), **only after 8a's gentle and brisk drives are read**.
+   Engine off and cold: **the rubber hose between N80 and the T at the
+   throttle pinched shut with a hose clamp** (a plastic line is never
+   pinched: there the hose is pulled off N80 and both open ends
+   plugged); a photograph of it. Then item 6's drive, captured, to a
+   warm stop of ten minutes or more, twice, on different days. After
+   each: the fault memory (a purge code is expected and is said as
+   such), **032 read but not counted for 8f**. After the second: the
+   clamp off, the hose looked at where it was pinched, the fault memory
+   cleared by the owner, and 032's next reading taken as a fresh start.
 8i. **The timing belt's marks, at a cold engine**: the upper belt guard off; the crank turned by hand in
    the direction of rotation until cylinder 1 is at TDC, **the notch on
    the crankshaft pulley against its mark** (within about 5 mm); then
@@ -171,7 +196,12 @@ S1, *The rough start of a warm stop*). *Done: 8j and its first drive
        the crank held while the air is on. For each: **the percentage,
        and where it hisses** — tailpipe, throttle, oil filler, bubbles
        in the coolant tank, the next plug hole. **Cylinder 3 twice**:
-       the crank turned two full turns between the two readings;
+       the crank turned two full turns between the two readings.
+       **The engine switched off in a swell** (agreed 12/11 evening):
+       on the way in it idles until Claude, from the capture, says 3
+       is swelling — or, with the MFD in, `IdleHealth` has stood above
+       75 for a minute with every load off — and is switched off then,
+       not after it has calmed;
      - **a warm compression test on all four** straight after, the
        throttle held open;
      - **the cam cover off: VW's tappet check** — the cam of each tappet
@@ -360,7 +390,8 @@ steady pattern over the cylinders*; the 5/11 script that took the slot
 means out was not kept, so the split is computed again on the
 capture; about an eighth of the grade is the crank wheel's own
 alternation, which no repair moves). The common part down and 3's
-pattern as before is list A's, H16 first; the pattern gone too is list
+pattern as before is list A's (the belt and H0 at its head since 12/11
+evening, H16 third); the pattern gone too is list
 B's as well.
 **Read by cylinder since 12/11** (`tools/cylscan.py --minutes`, kept;
 `open.md` S1, *Every stroke named*): the part with a cylinder is **3's
@@ -568,8 +599,44 @@ morning of 10/11, the day the rear probe sank. Sealing the probe's own
 lead airtight could starve it the same way; the fabric tape over the
 harness side is not a seal.
 
-**8i, the timing belt's marks** (*agreed with the owner*, 11/11): the
-belt sits sixth for the idle, but its check costs a quarter of an hour
+**6p, the phone through a swell** (*agreed with the owner*, 12/11
+evening; `open.md` S1, *The swell's shape, and what the common part
+follows*): 3's swell reads best as a seat on 3 that fouls at idle and
+burns itself clean, and a seat that leaks more blows more past it once
+per cycle. **Read**: the once-per-cycle part of the recording (S22's
+tick; the camshaft frequency, about 6.6 Hz, and its sharpness) set
+against 3's deficit minute by minute (`tools/swellscan.py --series`) —
+**growing with the swell and dropping at its fall is for the seat**
+(H1 with H13); the same through both is for the readings that only
+dilute (oil at 3's inlet valve, coolant, the purge). At the tailpipe
+for an exhaust seat, on the cam cover for the valve gear and an inlet
+seat. The door because a message's arrival time aligns nothing
+(`CLAUDE.md`). One swell is one reading; two agree or it is repeated.
+
+**8o, N80's hose shut** (*agreed with the owner*, 12/11 evening;
+`open.md` S1, the same section; H16): the ECU's purge is the one thing
+known to run a slow ramp with a quick shut-off by the minute, the
+swell's shape, and its phases are not on the bus or in any measuring
+block. **Read**: a swell of 3's at either stop with the hose shut —
+the purge is not the swell's cause, the weakest of its four readings
+gone; no swell at two stops after brisk drives, where `43`, `44`, `47`
+and `49` all swelled — for it, and the stops are repeated with the
+hose open. The common part is read beside it (2.7–3.1 rpm rms at every
+warm idle since 24/9): a step in it with the hose shut would be the
+first thing that moved it. After 8a, because a drive with the purge
+shut teaches 032 nothing about either valve.
+
+**Item 9's leak-down on an engine switched off in a swell** (*agreed
+with the owner*, 12/11 evening): straight after a fall 3 is nearly
+level with the others (−1 to −5 %), so a leak-down made then tests a
+seat at its tightest; the engine cools while the intake comes off as
+it is, and a film on a seat may not last that either — a tight 3 there
+still clears nothing, a leaking one names it.
+
+**8i, the timing belt's marks** (*agreed with the owner*, 11/11;
+**first of list A since 12/11 evening**, the one test in the plan that
+bears on the common part): the
+belt sat sixth for the idle then, but its check costs a quarter of an hour
 and no part, so it goes before the tests that cost a garage. VW's fault
 table has 16725 / P0341 for a camshaft sender signal out of place, which
 an empty fault memory makes less likely but does not exclude (`open.md`,
