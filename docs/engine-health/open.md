@@ -1391,6 +1391,30 @@ part of the idle the canister lowered.
   The two calm stops of 11/11 and 12/11 night on the display read as
   this floor (*owner*: 25–40 and 35–50 for minutes), reached without a
   cut.
+- **The grade taken apart** (12/11 evening, *the owner's question*:
+  what part is 3, what the common part, what the wheel; per stroke,
+  30 s windows; *ad-hoc script, not kept*). The wheel's alternation
+  taken out alone, then each cylinder's mean step; what is left split
+  by slot, **slot 2 the clean reference** — 3's weak stroke spills into
+  1's slot before it and 4's recovery after, 2's is the farthest from
+  both:
+
+  | `49` | grade | the wheel | the steady pattern (3's deficit, 2's surplus) | 3's weak strokes and their spill | common (as slot 2) |
+  |---|---|---|---|---|---|
+  | the swell, 11:16–11:19:30 | 78 | 5 | 27 | about 25 | about 21 |
+  | the floor, 11:20–11:34 | 37 | 4 | 4 | about 3 | about 26 |
+
+  **So the stop calms because 3 does** — its deficit and its weak
+  strokes together are about 52 of 78 in the swell and about 7 of 37 on
+  the floor — **while the common part stays where it is, about 20–26 in
+  both**; the same at the floors before the canister (slot 2: `44` after
+  its cut 19, `48` 30, `43` 24). ⚠ Not exactly additive (each step's
+  dead band); the wheel's share moves from window to window (−1 to 12
+  here; about 8 over 497 windows, *A steady pattern over the
+  cylinders*). *Reasoned*: **the floor of about 37 is about 30 of wheel
+  and common part with 3 nearly level** — so S1's mark of under 30
+  (*When S1 closes*) needs the common part lower as well, not only 3
+  mended.
 
 **How the weak strokes follow each other** (11/11, *the research*;
 `dipshape.py`'s warm runs, each step against its cylinder's median,
