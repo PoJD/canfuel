@@ -223,6 +223,26 @@ injectors in August too, so an exchange of injectors 3 and 2, agreed
 earlier, was withdrawn and H7's one injector put last in B
 (*The idle's candidates, ranked*).
 
+**The captured warm drive on the canister, 12/11** (`plan.md` item 6,
+the first of its captures; `49`, read in a cloud session the same day;
+S1, *The first captured stop on the canister*): 30 minutes with five
+full-throttle pulls, then **a warm stop of 18 minutes with no cut**.
+**It began with 3's swell** — `IdleHealth` 76–89, 3 to −23 %, 014 at
+0.69 % with 37 of 40 rises on 3 — **then 3 stepped to its floor by
+itself** (11:19:30) and the stop held **30–44 for fourteen minutes**,
+014 one count. **Settled, as calm as `44` after its cut and `48`
+before the canister, and no calmer**, the common part the same: **the
+canister lowered neither part at this stop**; only the floor's length
+was new. **The seat shudders felt at 35–40** (*owner*, ruled a shift
+of S1) are that floor's small dips, **on all four cylinders**, not 3's
+misfires. **032 went −14.8 / +2.3 → −7.0 / +8.6 %**: the part-load
+cell back at the bypass's level (S19, S21, H16). **020: cylinder 4 to
+12.7° at full load and 14.2° on a tip-in, now at 3,500–4,600 rpm as on
+the remap, and 2 beside it near the limiter** — whether a shift of S4
+is put to the owner. The fault memory empty throughout; the engine
+lamp only at its check before the start. **Proposed, not agreed**: H16
+down list A (*The idle's candidates, ranked*).
+
 **Open:**
 
 - **The idle — S1 (unsettled) and S3 (014 counts at idle).** Every part in
@@ -280,12 +300,14 @@ earlier, was withdrawn and H7's one injector put last in B
   12/11 at the owner's question; the session at the car had called it
   the settling of 10/11 evening, which held 36–45 for four minutes after
   eight at 52–84); **P0303 stored on the
-  drive** (S3).
+  drive** (S3). **12/11, captured** (`49`, above): 76–89 for four
+  minutes on 3's swell, then **30–44 for fourteen**, no cut, 014 one
+  count — settled as `44` after its cut and `48`, no calmer.
   **By cylinder** (`tools/cylscan.py`, 12/11; S1, *Every stroke
   named*): **3 is the weak one at every warm idle since 24/9, 10–20 %
   of a stroke under the mean, with 35–77 % of the weak strokes** —
   on every set of plugs and leads, both MAFs and both maps, before and
-  after the clean (`44` 58 %, `46` 38 %, `47` 73 %); 4 was weak with
+  after the clean (`44` 58 %, `46` 38 %, `47` 73 %, `49` 54 %); 4 was weak with
   it on 24/9 and is level warm since October. **014's rises are 3's**,
   80 % since the VW leads (S3, *What 014 counts, by cylinder*); P0303
   after `43`'s cut and on 12/11 without one. *The dip shares this
@@ -313,7 +335,9 @@ earlier, was withdrawn and H7's one injector put last in B
   −3.9 / +2.3 % in one drive, −3.1 / +2.3 after a long stop** — the
   part-load cell a third of the bypass's (S19, S21); **12/11 night,
   the old rear probe: −5.5 / +2.3** — the part-load cell held, the idle
-  cell back near −6.
+  cell back near −6; **12/11, the captured drive: −14.8 / +2.3 before
+  (one MFD drive after the clear), −7.0 / +8.6 after** — the part-load
+  cell back at the bypass's level in one brisk drive (H16).
 - **S21, P0440 and the engine lamp, steady** (6/11, added at the
   owner's request): the evaporative system, the code of 1/2018 back; no
   fill and no hose touched before it; cleared by the owner (H16). Not
@@ -363,8 +387,10 @@ cylinder**, cylinder 3's, **first since 12/11** (the third research,
 *agreed with the owner*): **H13 and H1** (3's deposit, its exhaust seat
 or a flake, its lifter), **H3** (runner 3's lower gasket), **H20**
 (coolant into 3), **H4** (the injector loom at 3), **H7's one injector**
-last (3 was weak on the old injectors too). H12 done. **Which part 11/11's and 12/11's calm stops lowered is
-not known** — no capture; one warm stop captured after a drive says it.
+last (3 was weak on the old injectors too). H12 done. **Which part 11/11's and 12/11's calm stops lowered:
+neither, by the captured stop of 12/11** (`49`) — 3's swell as before,
+the settled floor no lower than before the canister; **H16 down list
+A proposed 12/11, not agreed**.
 *Before the split, 11/11–12/11*: H13 and H1, H16, H3, H4, H7, the belt,
 H21, H11, H2, H0, H8, H20, H18, H12 (every
 fit table re-read 4/11). **H15 refuted 4/11** (`refuted.md` C24).
@@ -401,15 +427,15 @@ misfires and the steady deficit are cylinder 3's, so **list B before
 list A: H13 and H1 on 3, H3's runner 3, H20, H4, H7's injector 3**;
 "4's deficit" gone from H3, H4 and H7; list A as it was, H16 first until
 the captured stop on the canister is read by cylinder (*The idle's
-candidates, ranked*).
+candidates, ranked*). **Read 12/11** (`49`, above): **H16 from first of
+list A to fifth proposed to the owner, not agreed**.
 
-**Next** (`plan.md`; *the owner*, 10/11–12/11): **a warm drive
-captured, the MFD out, ending in a warm stop of 10 minutes or more** —
-which part of the idle the canister lowered (item 6; *The idle's
-candidates, ranked*), **read with `tools/cylscan.py --minutes`: 3's
-deficit and weak strokes minute by minute against every stop before the
-canister**, with no injector cut; **the new rear probe
-back to the seller and a new one fitted**; **014 in every logged
+**Next** (`plan.md`; *the owner*, 10/11–12/11): **the owner's word on
+H16's move down list A and on 020's reading (S4)**; **the new rear probe
+back to the seller and a new one fitted**; **8a, the new N80, when it
+arrives, then one warm drive captured and read as `49` was** — 3's
+swell and floor by `cylscan.py --minutes`, the common part against the
+floors before (item 6; *the captured drive of 12/11 done*); **014 in every logged
 drive** (P0303, S3); **8i, the timing
 belt's marks, at the next cold engine**; **8e (the probes' harness)
 postponed to the end and 8g dropped** (*the owner*, 11/11; S23, H21),
@@ -443,7 +469,17 @@ lower (*owner*, 23/10/2026: about 50 between, higher with each).
 **On the new regulator hose, 25/10, no jerk was felt** with `IdleHealth`
 about 90 loads off and 120–130 straight after a start and after the loads
 went off (*owner*) — so a high grade did not come from felt jerks that
-time. One idle, oil about 80 °C; whether the grade's make-up changed
+time.
+**12/11, at the captured warm stop** (*owner*; **a shift of S1, not the
+engine mounts**, his ruling the same day): **frequent small shudders in
+the seat at `IdleHealth` 35–40**, one minute holding 38 dips of 10 rpm
+and more, 8 of 15 and 1 of 20 — felt below the "about 15 rpm" of 23/10.
+**On the bus** (`49`, the stop's settled fourteen minutes): 28–50 dips
+of 10 rpm and more a minute, 3–14 of 15, 0–4 of 20, **spread over all
+four cylinders** — of 10 rpm and more 1 34 %, 3 25 %, 4 20 %, 2 20 %;
+of 15 and more 1 35 %, 3 29 %, 2 22 %, 4 14 % — with 014 silent: **the
+common part's steps, not 3's misfires** (*The first captured stop on
+the canister*). One idle, oil about 80 °C; whether the grade's make-up changed
 (more small steps, fewer deep dips) needs a capture.
 **By ear, 25/10 evening** (*owner*, warm, the everyday state): **in the
 calmer stretches the engine speed drops a little and holds there**. Not
@@ -524,6 +560,7 @@ error):
 | 10/11 eve | `47`, `48` | −3.9 / +7.0 (reset by the clear of P0137, 17:40:05–17:41:44, after the calm began) | the warm stop after a brisk stretch, the everyday state **plus the hazard lights from arrival** (*owner*), the A/C off, **no cut**, oil 102–104 °C; **the rear probe reading zero** (S23) | **59, 57, 52, 54, 65, 66, 84, 70** a minute for 8 min (014 0.15 %); **then 45, 43, 38, 39, 36 — the calmest warm idle captured outside the provider's gas** (the display touched 37 once, 23/10 evening), 3's deficit stepped from −22 to −9 % (`cylscan.py`, 12/11), to the revs for 034 at 17:42:50; 40–66 in the basic settings after (H11, *The relearn drive*) |
 | 11/11 night | display, VCDS 014 at the stops | **relearning from zero** (−3.9 / +2.3, then −3.1 / +2.3) | 8k, **the first drive on the canister**; the rear probe at zero (S23), G62 misreading (S24, closed); after a hard motorway run, oil 102 °C, then near home, oil 97 °C | after the motorway **100–119 → 70–89**, `Misfires` 13–15 → 1–3; near home **90–110 → 45–50, waves of 40–80, then 25–40 for minutes**; **014: no count in 4.2 min logged** (22:39–22:43) (*owner*; 8k) |
 | 12/11 night | display, VCDS 014 at the last stop | **relearning from zero** (−5.5 / +2.3 at the end) | 8n, the second drive on the canister; **the old rear probe sound, G62 cleaned**; 52 min with a motorway stretch and the limiter touched; the stop near home 01:46–02:02, coolant 94.5–99 °C | **120 (01:46) → 80–90 → 60–70 → 30–60 by 01:48**, then **35–50 for about 13 minutes, mostly about 40** (lowest 34 at 02:02, highest 58), `Misfires` 9–10 → 2–6 → **3**; **014: five counts of one misfire in 7.7 min logged (01:52–02:00), 0.04 % of combustions** (*owner*, times as sent; 8n) |
+| 12/11 | `49`, VCDS 014 020 033, then 014 032 036 | 032 −14.8 / +2.3 before (one MFD drive after the clear of the night), **−7.0 / +8.6 after** | `plan.md` item 6, **the first captured warm drive on the canister**: 30 min with five full-throttle pulls, then a warm stop of 18 min, the everyday state but **the seat heater off until about 11:31**, the A/C off, **no cut**, oil 102 °C | **77, 89, 84, 76** a minute for the first four minutes (014 0.69 %), then from 11:20 **47, 52, 40, 35, 40, 44, 36, 34, 39, 33, 30, 37, 39, 37, 37** (014 one count in 13 min) — 3's swell and its step with no cut (*The first captured stop on the canister*) |
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
 one-second median): **about 17–20 a minute of 15 rpm and over**, as `32`,
@@ -1127,6 +1164,7 @@ strokes — a step 12 rpm or more under the cylinder's own median — per
 | `45` (the gas, the clean's last idle) | +6 | **−13** | +1 | +6 | 0 / 1 / 0 / 0 | one weak stroke in 4,400 |
 | `46` (9/11, after the clean) | +3 | **−10** | −3 | +10 | 3 / 6 / 6 / 1 | 38 % |
 | `47`, `48` (10/11 evening) | +5, +4 | **−15, −14** | +4, +4 | +6, +6 | 3 / 16 / 2 / 1 and 2 / 6 / 2 / 0 | 73 %, 61 % |
+| `49` (12/11, the canister) | +2 | **−9** | +4 | +3 | 3 / 7 / 2 / 1 | 54 % |
 
 - **Cylinder 3 is the weak one in every warm idle on record, 10–20 %
   under the mean** — from 24/9 on (`19`, the first warm idle long
@@ -1168,7 +1206,10 @@ strokes — a step 12 rpm or more under the cylinder's own median — per
   −15, −15, −14, −14, −17, −20, **−26, −22**, then **−9, −10** from
   17:38 — *the four calm minutes that were "unexplained"*; `40`: −14
   with 22 weak strokes in the first minute, **the A/C on: −9 to −11
-  with none**, the A/C off: −11 climbing to −22 over seven minutes.
+  with none**, the A/C off: −11 climbing to −22 over seven minutes;
+  `49` (12/11, the canister), **no cut**: −14, −19, −23, −13 with 12,
+  17, 9, 6, then **−5 to −8 for fourteen minutes** with 0–3, the step
+  inside 40 s at 11:19:30 and no second swell.
   So **"a warm stop starts rough and settles" is 3's state**, it is
   not tied to the stop's first minutes (`40`, `47`), and **what ends it
   is a jolt — a cylinder cut, a load, or nothing seen** — not time.
@@ -1261,7 +1302,7 @@ more at oil ≥ 85 °C, `afterpull.idle_runs()` graded, scripts not kept).
 within 5–8 minutes**: `42` 90–96 → 54, `43` 81–91 → 41–50, `44` stop 3
 79–98 → 45–53; graded 0–3 minutes against the rest, **`40` 72 → 58 (63 s
 above 4000 rpm in the 15 minutes before), `43` 86 → 55 (215 s), `44`
-83 → 62 (75 s)**. **After a gentle drive it does not**: `24` 85/83, `28`
+83 → 62 (75 s), `49` 85 → 40 (339 s, 12/11, no cut)**. **After a gentle drive it does not**: `24` 85/83, `28`
 65/76, `30` 89/97, `31` 75/79, `32` 55/62 and 57/68, `40`'s second stop
 63/69, `47` 56/62, `48` 51/68 (0–26 s above 4000) — level or slowly
 worse, as queuing is. The exceptions: **`46` stop 7**, after the most
@@ -1299,6 +1340,61 @@ another length is not known.
 and falling back in a step; the "rough start" is a swell that happens
 to be under way on arrival, and `40` and `47` show one starting minutes
 into a stop.
+
+**The first captured stop on the canister** (12/11, `49`; `plan.md`
+item 6; `cylscan.py --minutes` and `--vcds`, the rest *ad-hoc scripts,
+not kept*). A warm drive of 30 minutes with five full-throttle pulls
+(40.7 s above 4,000 rpm in the five minutes before the stop), then 18
+minutes standing, 11:16:04–11:34:28, oil 102 °C, the everyday state but
+the seat heater off until about 11:31 (*owner*), the A/C off, **no
+cut**. The question it was captured for (H16, *Re-read 12/11*): which
+part of the idle the canister lowered.
+- **The swell came as before.** 11:16–11:19:30: 3 from −11 to −23 % of
+  a stroke in 20 s windows, 12, 17, 9 and 6 weak strokes a minute,
+  `IdleHealth` 76–89, **014 at 0.69 % of combustions** (0.46–1.05 % a
+  minute) with **37 of its 40 rises on 3** — `44` stop 3's storm
+  (−18 to −27 %, 1.03 %) at a smaller size.
+- **Then a step with nothing seen**: 3 from −21 to −6 % between
+  11:19:25 and 11:19:45 — no cut, the A/C off throughout, the throttle
+  byte the same; 033's regulation −0.4 to −1.1 % in every 30 s before
+  and after (sd 1.0–1.1), so the mean mixture did not move with it, as
+  at `44` (001's −0.2 % in both).
+- **The floor held fourteen minutes** with no second swell — where
+  `43` climbed back to −14 % by its tenth minute and `40` to −22 over
+  seven: 3 at −5 to −8 % a minute, 0–3 weak strokes, `IdleHealth`
+  30–44, **014 one count in 19,400 combustions** (on 4, 11:33:56), at
+  29–33 % load — the load where it counts less (S3), but it counted
+  0.69 % at the same 29–31 % in the swell. The small dips there are on
+  all four (S1, *What is seen*: the seat shudders), each cylinder's
+  scatter 3.1–3.4 rpm rms with 3 no longer above. The seat heater's
+  last three minutes read 37–39, 3 at −8 %: nothing to tell on three
+  minutes.
+- **Against the settled floors before the canister** (warm, loads off,
+  the A/C off, the last four minutes of each stop; the grade rebuilt
+  per stroke, and with each 30 s window's four slot means out — the
+  common part):
+
+  | stop | `IdleHealth` | per stroke | slot means out | 3 | 2 | steps ≤ −10 rpm a minute, 3's share |
+  |---|---|---|---|---|---|---|
+  | `43` (3/11, after its cut) | 48 | 47 | 36 | −10 | +3 | 12.5, 70 % |
+  | `44` stop 3 (9/11, after its cut) | 47 | 46 | 28 | −9 | +6 | 8.2, 30 % |
+  | `46` stop 7 (9/11, after the clean) | 64 | 62 | 36 | −9 | +9 | 13.2, 32 % |
+  | `47` (10/11 evening, before the calm) | 64 | 66 | 42 | −18 | +4 | 16.5, 73 % |
+  | `48` (10/11 evening, the calm's end) | 39 | 37 | 31 | −9 | −1 | 8.3, 44 % |
+  | **`49` (12/11, the canister)** | **37** | **36** | **30** | **−8** | **−1** | **8.2, 18 %** |
+
+- **Read** (*reasoned*): **settled, this stop is as calm as `44`
+  after its cut and `48` — the calmest floors before the canister — and
+  no calmer**: the same grade, the same common part, the same small
+  steps a minute; 3's floor a point or two smaller and 2's surplus gone,
+  as at `48`. **So by H16's own test the canister did not take away
+  what tips 3** — it swelled after the hot drive as before — **and the
+  calm is in the floor all four share, which was there before the
+  canister too.** What this stop has that the earlier ones did not is
+  the floor's length, fourteen minutes without a second swell; one stop.
+  The two calm stops of 11/11 and 12/11 night on the display read as
+  this floor (*owner*: 25–40 and 35–50 for minutes), reached without a
+  cut.
 
 **How the weak strokes follow each other** (11/11, *the research*;
 `dipshape.py`'s warm runs, each step against its cylinder's median,
@@ -1490,7 +1586,12 @@ completing rather than load (`refuted.md` C19).
   start** — so not quiet after a disconnect this time; the queue stops
   16:51–17:17 (shorter than 150 s, so summed per stop) **0–0.58 %, 0.24 %
   over them**, the stop at the end **0.15 %** at 25–26 % load, with the
-  rear probe reading zero (S23).
+  rear probe reading zero (S23). **12/11, `49`, the first captured stop
+  on the canister** (S1, *The first captured stop on the canister*):
+  **0.69 %** over its first four minutes (0.46–1.05 % a minute), 3's
+  swell, then **0.01 %** — one count in thirteen minutes — on 3's
+  floor, at 29–33 % load throughout; on the road five counts of one at
+  2,240–3,240 rpm; no code stored.
 - **What 014 counts, by cylinder** (12/11, the third research;
   `tools/cylscan.py --vcds`, kept). The ECU has no per-cylinder counter
   (`vcds.md`), but the bus names the stroke: each rise of 014 between
@@ -1510,6 +1611,7 @@ completing rather than load (`refuted.md` C19).
   | `44` (9/11, stop 3's storm and the stops before) | 78 | 5 | 63 | 9 | 1 |
   | `46` (9/11, after the clean) | 25 | 2 | 7 | **16** | 0 |
   | `47` (10/11 evening) | 37 | 1 | 35 | 0 | 1 |
+  | `49` (12/11, the canister; after the count above) | 41 | 0 | **37** | 3 | 1 |
 
   Where the weakest stroke is at least 12 rpm under its median — the
   name is surest there — 3 has 63 % and 4 34 % of 580 up to 18/10, **3
@@ -1657,7 +1759,24 @@ alone in 37 %** of 60 full-load samples above 3000 rpm, mean 0.8 °CA,
 to 4.5 at 4,700–5,640 rpm; 1–3 never. So as often on
 both maps and about half as far on the original: **not the map's** —
 less depth fits a milder full-load advance, but 003 reads the same
-advance at full load on both (H14). *Reasoned*: an arc at lead 4's plug end is
+advance at full load on both (H14). **The captured warm drive, 12/11**
+(`vcds-step6w-drive-014-020-033-2.csv`, the original map, five pulls
+to 6,000–6,320 rpm and full load at 3,500–4,600 rpm, oil about
+100 °C): **cylinder 4 in 47 %** of 335 samples above 3000 rpm at 80 %
+load and over, mean 2.2 °CA, **to 12.7 there and to 14.2 on a tip-in
+at 3,920 rpm and 16 % load** (11:10:01) — inside VW's 15 — **most of
+it at 3,500–4,600 rpm** (54 of 156 full-load samples there, 9–13°),
+where the drives of 3/11 had 1 of 40; at the limiter 1.5–6°. **And
+cylinder 2 in 14 %** (to 6.0, every one at 5,300–6,300 rpm and with
+4), 1 in 4 % (to 5.2), 3 in 2 % (to 3.0), all at the limiter. The
+owner read 15–17 on the screen (*owner*); the log's highest is 14.2,
+so the screen's figure fell between the logged samples or on another
+field (not known). **Not the band alone**: 3/11's two drives had 40
+full-load samples at 3,500–4,600 rpm and 4 retarded in one, this drive
+54 of 156 — **on the original map 4 now retards there as on the remap**
+(`40`: to 11.2); 2 beside 4 near the limiter is new in these logs.
+**Whether this is a shift of S4 is the owner's to decide** (put to him
+12/11). *Reasoned*: an arc at lead 4's plug end is
 broadband noise in 4's own window (`refuted.md` C24), as is real knock from the crust on
 4's crown (`idle-log.md`, 19–20/10).
 
@@ -1942,7 +2061,14 @@ from a fresh relearn.
 canister back, 8k, `idle-log.md` 11/11 night; S21, *The first drive on the canister*):
 **−3.9 / +2.3 %** at the end, **−3.1 / +2.3** after the long warm
 stop, 055 −1.04 g/s — **the part-load cell a third of the bypass's**,
-the idle cell bent towards zero by S23. P0172 not back.
+the idle cell bent towards zero by S23. P0172 not back. **12/11 night**
+(the old rear probe): −5.5 / +2.3. **12/11, the captured drive**
+(`49`; reset by the clear after 12/11 night, then a 40-minute MFD drive
+that morning): **−14.8 / +2.3 % before** — the idle cell past VW's
+−10 with no code, a shift of S21 and H16 and not a new symptom (*the
+owner*, 12/11) — and **−7.0 / +8.6 after** the brisk drive, 055 −0.84
+→ −0.98 g/s: **the part-load cell back at the bypass's level and
+above** (H16, *Read 12/11, the captured stop*). P0172 not back.
 
 ### S20. Engine speed wanders at a constant pedal
 
@@ -2228,6 +2354,17 @@ drive, 12/11 night, on the old rear probe** (healthy, no P0137;
 **the part-load cell +2.3 on both drives — the canister's**; the idle
 cell back near the bypass's −6 to −7, **so the idle side was S23's and
 the canister did not move it**.
+**The third and fourth drives, 12/11** (032 reset by the clear after
+the second): a 40-minute MFD drive that morning, then the captured
+brisk drive (`49`, `vcds/vcds-step6w-*`): **−14.8 / +2.3 % after the
+first, −7.0 / +8.6 after the second**, 055 −0.84 → −0.98 g/s, no code.
+**The part-load cell is not the canister's after all**: +2.3 on three
+drives, +8.6 after the fourth, with its five full-throttle pulls
+(*reasoned*: the cell learns where the
+drive spends its part load, and a purge gas that changes with how hot
+and how full the canister is moves it with the drive; H16, *Read 12/11,
+the captured stop*). The owner's reading: the canister emptied by the
+brisk drive (*owner*, 12/11; *reasoned*, not measured).
 
 ### S22. A tick once per engine cycle — reopened 11/11 night
 
@@ -2536,7 +2673,13 @@ at 1,100–5,300 rpm** — the overrun's fuel cut; **never at idle or under
 load, and no P0137**. **So the new rear probe was the fault**, not the
 harness (*the owner's decision*: it goes back to the seller and a new
 one replaces it). The broken terminal and the cracked wires stay as
-found (`plan.md` 8e).
+found (`plan.md` 8e). **At long warm stops the old probe sinks**
+(`vcds-step8n-stop-014-001-036.csv`; 12/11's `vcds-step6w-stop-014-032-036.csv`;
+read 12/11): at 12/11 night's stop a median 0.14 V (0.085–0.65); at
+the captured stop of 12/11 0.59–0.61 V for eight minutes with short
+drops to 0.09–0.1 V, the drops growing, a median 0.19 V from 11:31 —
+**the sinking at idle the old probes showed on 9/11 night** (H11, *The
+reading before the swap*), never at zero and no P0137.
 
 ### Other — not symptoms, but they touch this file
 
@@ -2587,7 +2730,7 @@ engine leak, a falling dipstick level is oil burnt, not lost.
 | S1 ↔ S3 | **the same events, but 014 is switched** | half of 014's rises sit on a dip; whether it counts follows load and the learned idle air, not the grade (S3) |
 | S1 ↔ oil temperature | **strong** | roughest cold, calmest hot, every session |
 | S1 ↔ load | **strong** | every load on calms it (S1) |
-| S1 ↔ the drive before a warm stop | **medium, 11/11** | three captures of four after high revs (`46` the exception), nine after gentle drives: after high revs the stop starts rough on 3 and settles in 5–8 minutes, after a gentle drive it is level or slowly worse (S1, *The rough start of a warm stop*) |
+| S1 ↔ the drive before a warm stop | **medium, 11/11** | four captures of five after high revs (`46` the exception; `49` 12/11), nine after gentle drives: after high revs the stop starts rough on 3 and settles in 5–8 minutes, after a gentle drive it is level or slowly worse (S1, *The rough start of a warm stop*) |
 | S2 ↔ S3 | **likely** | the owner heard the puffs come with the dips (12/10); never aligned |
 | S14 ↔ S2 | **likely one mechanism** (*owner*) | a misfire's charge burning in the exhaust, loud when the fuel cut adds air |
 | S14 ↔ S3 | **possible** | 014 is blind on the overrun, so it cannot be aligned |
@@ -4370,6 +4513,23 @@ stop shows 3's deficit at its floor with no swell, the canister took
 away what tips 3; if 3 swells as before and the stop is calm all the
 same, the calm is in the small steps on all four.
 
+**Read 12/11, the captured stop** (`49`; S1, *The first captured stop
+on the canister*): **3 swelled as before** after the hot drive (to
+−23 %, 014 0.69 %, 37 of 40 rises on 3), stepped to its floor by
+itself and held it fourteen minutes; **settled, the stop was as calm
+as `44` after its cut and `48`, before the canister, and no calmer** —
+the grade 37, the common part 30 against 28 and 31. **So neither part
+was lowered at this stop**; the canister's one sign left at the idle is
+the floor's length, one stop. **And 032's part-load cell went back up**:
++2.3 % after the morning's MFD drive, **+8.6 % after this one** — the
+bypass's level (+6.3 to +7.0) and above, where two drives on the
+canister had read +2.3; the idle cell −14.8 → −7.0 (S19). *Reasoned*:
+the part-load "for" below rested on +2.3 holding; a cell that moves
+from +2.3 to +8.6 in one brisk drive says the purge gas's make-up still
+moves it, or that +2.3 was not the canister's. **Against H16 as the
+common part's first, on both counts** — a re-rank proposed to the owner
+12/11 (*The idle's candidates, ranked*), not agreed.
+
 *Added 24/10 at the owner's request.* For **the rich idle trim, S19 and,
 since 6/11, S21**, not for the idle itself. 032's idle cell has read at or below zero in
 every reading since the MAF was replaced on 24/9 (−3.1, −0.8, −2.3, 0.0,
@@ -4416,8 +4576,10 @@ moves faster than that, or irregularly, goes through; 032 learns only
 the long mean. A mixture moving under all four cylinders alike is **the
 common part** (list A). **For**: the part-load cell, +7 → +2.3 % with the
 canister back — a lean source gone where the purge flow is largest,
-which air drawn through the tank fits; P0440; the summer overpressure at
-the cap (S21); the two calm stops. **Against or not known**: **the idle
+which air drawn through the tank fits (*+8.6 % again after the captured
+drive of 12/11, above*); P0440; the summer overpressure at
+the cap (S21); the two calm stops (*the captured one of 12/11 no calmer
+settled than the floors before the canister, above*). **Against or not known**: **the idle
 cell did not move** (−6 before, −5.5 after), so at idle the mean
 mixture was the same and only its swings could have changed — not
 measured, the front probe is not on the bus; **the dips do not keep time
@@ -4426,7 +4588,9 @@ not pulse by pulse; **the idle is roughest cold**, when the valve is
 not driven at all, so the cold roughness has another cause; two stops.
 **What would show it**: a captured warm stop (the common part against
 the slot means, `plan.md` item 6) and 033 at the same stop, whose
-regulation value swings with the mixture the loop is chasing.
+regulation value swings with the mixture the loop is chasing. *Read
+12/11 (above): the common part no lower than before; 033 steady,
+sd 1.0–1.1 %, through the swell and its step.*
 
 **How the system works** (*general*, not from this ECU's documentation):
 the tank vents into a charcoal canister; N80 sits between the canister and
@@ -5191,11 +5355,16 @@ the same section); the rough start of a warm stop after a hot drive is
 3's swell (`43`, `44`). **The rest, about 51 of 78, has no pattern over the
 cylinders**: the common part. A hypothesis goes in the list whose part
 it can make; H7 has a form in each. **Which part the calm stops of
-11/11 and 12/11 lowered is not known** — the MFD was in, no capture —
-and the owner's reading is the common part, the canister (*owner*,
-12/11): one warm stop captured after a drive says it, by
-`cylscan.py --minutes` (3's deficit and swell) and the grade with the
-slot means out (the common part).
+11/11 and 12/11 night lowered** — the owner's reading was the common
+part, the canister (*owner*, 12/11) — **was read on the captured stop
+of 12/11 (`49`; S1, *The first captured stop on the canister*):
+neither.** 3 swelled after the hot drive as before and stepped to its
+floor by itself; settled, the grade (37) and the common part (30) were
+those of `44` after its cut and `48`, before the canister; only the
+floor's length, fourteen minutes, was new. And 032's part-load cell
+went back to +8.6 % (H16, S21). **Proposed to the owner 12/11, not
+agreed**: H16 from first of list A to fifth, behind the belt, H8,
+H7's rail pressure and H21; list B as it is.
 *Reasoned*: purge vapour enters the intake at one point and need not
 reach the four runners alike, so H16 is not ruled out of list B either.
 
@@ -5256,10 +5425,13 @@ not what the split assumed:
   exchange of injectors 3 and 2 as its test; put last and the exchange
   withdrawn the same day, the owner's argument: 3 was weak on the old
   injectors too* — H7). Inside A as it was, **H16 first until the captured stop
-  on the canister is read by cylinder** (H16, above).
+  on the canister is read by cylinder** (H16, above). **Read 12/11
+  (`49`): neither part lower; H16 from first of A to fifth proposed,
+  not agreed** (above).
 - **What would be read first**, in this order of cost: the captured
-  warm stop already planned (which list the canister moved); item 9's
-  stethoscope above 3 and its warm leak-down with 3 twice.
+  warm stop already planned (which list the canister moved; *read 12/11,
+  neither*); item 9's stethoscope above 3 and its warm leak-down with 3
+  twice.
 
 **Re-read 12/11, H16 from sixth to third** (*the owner's decision*,
 the place proposed by Claude; H16, *12/11 night*): the stops near home

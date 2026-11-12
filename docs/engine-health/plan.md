@@ -18,16 +18,17 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next: item 6's captured
-warm drive, now** — the MFD out, a drive warm, then a warm stop of 10
-minutes or more in the everyday state, captured, **no injector cut**;
-**the new rear probe
+Captures only where an item asks for one. **Next: the owner's word on
+H16's move down list A and on 020's reading** (Claude's questions of
+12/11); **the new rear probe
 back to the seller and a new one fitted** (8e); drives with the MFD in,
 **014 in every logged drive** (8f); **8i (the timing belt's marks) at
 the next cold engine**; drives with the MFD in (item 6) and 6i; 8f at
 every VCDS session (032 after drives without a reset, 036 now and then)
 and 8h at a laptop session; **8j and its first drive done 11/11**
-(the canister plumbed back; `idle-log.md`); then 8a (the new N80, ordered 11/11) when it arrives; then item 9, 6m inside its garage session;
+(the canister plumbed back; `idle-log.md`); **item 6's first captured
+drive done 12/11** (`49`); then 8a (the new N80, ordered 11/11) when it
+arrives, **and one captured warm drive after it**; then item 9, 6m inside its garage session;
 **8e postponed to the end** and 8g dropped (*the owner*, 10/11
 and 11/11; `open.md` H11, *The relearn drive*, S23; S1, *The rough
 start of a warm stop*).
@@ -35,9 +36,9 @@ start of a warm stop*).
 6. **Drive normally with the MFD in**; brisk driving once warm is
    welcome. At a warm stop that comes anyway, `IdleHealth` in the
    everyday state and the oil temperature, written into the chat.
-   - **Captures now** (`IdleHealth` clearly better since 11/11): one or
-     two warm drives captured, on different days, each ending in a warm
-     stop of 10 minutes or more. Claude runs the capture; **VCDS on
+   - **Captures** (*the first done 12/11*, `49`): **the next one after
+     8a's new N80**, a warm drive ending in a warm stop of 10 minutes or
+     more. Claude runs the capture; **VCDS on
      014, 020, 033 over the whole drive and the stop**; 032 and 055 for
      20 s before the drive and after the stop (8f). Once the oil is at
      90 °C or more, **two or three full-throttle pulls** in 3rd or 4th
@@ -366,6 +367,13 @@ A's.** **No injector cut in these captures**: the cut was there to name
 the slots, the strongest slot names them now, and a cut is one of the
 things that ends a swell, so it would spoil the reading. The stop
 of 10 minutes because the settling takes 3–8.
+**Read on the first, 12/11** (`49`; `open.md` S1, *The first captured
+stop on the canister*): **neither part fell** — 3 swelled as before
+and stepped to its floor by itself; settled, the grade and the common
+part were those of the calmest floors before the canister — so **a
+second captured drive now would only repeat the canister's reading**,
+and the next is after **8a's new N80**, the one change left on H16's
+path, read the same way against `49`.
 
 **The groups on the captured drive** (12/11, three at a time): **014**
 always (8f; P0303's time, the stop's count); **020**, cylinder 4's knock

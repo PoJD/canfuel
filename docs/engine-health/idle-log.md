@@ -1490,3 +1490,30 @@ the session** (032/055 read first, 22:49), to see which comes back.
 The new rear probe goes back to the seller (`open.md` S23); S24's oil
 was the fault, one drive; S3, *P0300 and P0303*.
 
+
+## 12/11 — the captured warm drive on the canister (item 6)
+
+- **Tests:** a 50-minute capture with the MFD out (`49`), VCDS 014 020
+  033 over the drive and the first four minutes of the stop, 014 032 036
+  for the rest (`vcds/vcds-step6w-*`); 032/055 before and after; the
+  fault memory before, between and after; five full-throttle pulls to
+  6,000–6,320 rpm; a warm stop of 18 minutes, oil 102 °C, the everyday
+  state with the seat heater off until about 11:31, **no injector cut**.
+- **Changes after:**
+  - *measured:* the stop began rough — `IdleHealth` 76–89 for four
+    minutes, **cylinder 3 swelling to −23 % of a stroke**, 014 at 0.69 %
+    of combustions, 37 of its 40 rises on 3 — **then 3 stepped to −6 to
+    −8 % at 11:19:30 with no cut, no load and no throttle**, and the
+    stop held **30–44** for the last fourteen minutes, 014 silent but for
+    one count on 4 at the end; the small dips there on all four
+    (`cylscan.py`; `open.md` S1, *The first captured stop on the
+    canister*); 032 −14.8 / +2.3 → **−7.0 / +8.6 %**, 055 −0.84 →
+    −0.98 g/s; 020: cylinder 4 in 47 % of the full-load samples above
+    3,000 rpm, to 12.7° there and 14.2° on a tip-in, 2 in 14 % to 6.0°
+    near the limiter (S4); no fault code; the engine lamp lit only for
+    its check before the start;
+  - *felt:* frequent small shudders in the seat at 35–40 (*owner*; S1,
+    his ruling the same day);
+  - *not known:* whether the canister keeps the floor longer — fourteen
+    minutes here with no second swell, one stop; settled it was no calmer
+    than `44` and `48` before the canister (H16).

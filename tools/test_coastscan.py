@@ -140,7 +140,7 @@ class AgainstTheFixtures(unittest.TestCase):
     def test_a_log_without_timestamps_is_skipped_rather_than_guessed_at(self):
         self.assertEqual(samples(os.path.join(FIXTURES, "03_drive.txt")), [])
 
-    def test_the_corpus_holds_835_overrun_fuel_cuts(self):
+    def test_the_corpus_holds_889_overrun_fuel_cuts(self):
         """Four in 17_drive_property_z1, 72 in the hour of 19, 33 in 24,
         17 and 15 in the two halves of session A, 25 and 26, and 13 and 26
         in the two halves of its second run, 27 and 28, 22 in session B,
@@ -153,12 +153,13 @@ class AgainstTheFixtures(unittest.TestCase):
         38 and 65 in the day of the hydrogen clean before and after it,
         44 and 46 (the clean itself, 45, has none), and 77 in the
         relearn drive after the battery disconnect, 47 (the catalyst tests
-        after it, 48, have none).
+        after it, 48, have none), and 54 in the captured warm drive of
+        12/11 with its five pulls, 49.
 
         Counted per log, so a change to the detector shows where it moved
         rather than only that the total did.
         """
-        self.assertEqual(len(self.cuts), 835)
+        self.assertEqual(len(self.cuts), 889)
         self.assertEqual(self.per_log, {"17_drive_property_z1.txt": 4,
                                         "19_postfix_drive_z1.txt": 72,
                                         "24_mafswap_drive_z1.txt": 33,
@@ -179,7 +180,8 @@ class AgainstTheFixtures(unittest.TestCase):
                                         "43_stockmap_drive2_z1.txt": 41,
                                         "44_decarb_before_z1.txt": 38,
                                         "46_decarb_after_z1.txt": 65,
-                                        "47_relearn_drive_z1.txt": 77})
+                                        "47_relearn_drive_z1.txt": 77,
+                                        "49_warm_drive_z1.txt": 54})
 
     def test_the_cut_does_not_engage_the_moment_the_pedal_comes_up(self):
         """0.63-14.01 s after the lift across the corpus, never at once.
@@ -202,7 +204,7 @@ class AgainstTheFixtures(unittest.TestCase):
         self.assertLess(max(delays), 15.0)
 
     def test_fuel_comes_back_well_above_idle(self):
-        """1,380-5,100 rpm across the corpus, and never near idle.
+        """1,380-5,310 rpm across the corpus, and never near idle.
 
         There is no single resume speed: it moves with gear and road speed, so
         17's 1,700-1,754 in first gear was one corner of a range and not the
@@ -213,11 +215,13 @@ class AgainstTheFixtures(unittest.TestCase):
         drive home on the original map at up to 186 km/h, put it at 5,062:
         a 4.4 s lift at 183 km/h whose cut ended when the pedal went down
         again, so it is where he pressed rather than a resume speed; the
-        ceiling moved again.
+        ceiling moved again. 49, the captured warm drive of 12/11, put it at
+        5,305 the same way: a 5.2 s lift at 161 km/h whose 3.95 s cut ended
+        when the pedal went down again; it moved once more.
         """
         back = [c[-1][1] for _, c in self.cuts]
         self.assertGreater(min(back), 1300)
-        self.assertLess(max(back), 5200)
+        self.assertLess(max(back), 5400)
 
     def test_a_log_where_the_car_never_moves_has_no_coasts_at_all(self):
         cold = samples(os.path.join(FIXTURES, "18_coldstart_z1.txt"))
