@@ -4142,7 +4142,17 @@ settle in the intake and flood the first start.
   leaking purge valve (*general*). **H7 is no longer the only hypothesis
   that predicts both.**
 - **For: the idle trim** negative at idle, positive at part load — the
-  shape of a fixed fuel flow rather than a scale error.
+  shape of a fixed fuel flow rather than a scale error. **Re-read 12/11
+  after two drives on the canister** (*the owner's question*): the
+  part-load cell fell (+7 → +2.3 %), so with the bypass **the purge gas
+  at part load was lean, not rich** — the ECU added fuel to make up for
+  it — which air drawn in through the tank's vent fits, once a large
+  purge flow had emptied the vapour space; with the canister back, the
+  same flow carries the vapour the charcoal stored (*reasoned*). **The
+  idle cell did not move** (−6 → −5.5), so **the bypass was not the
+  idle's rich source**; a valve that passes vapour shut would still be
+  (the new N80, `plan.md` 8a, reads it: 032's idle cell before and
+  after).
 - **For: the history.** P0440, EVAP, stored in 1/2018 and never repaired
   (`vehicle-history.md`). **And back on 6/11** (S21): the same code,
   the engine lamp lit, sporadic, with no fill and no hose touched
