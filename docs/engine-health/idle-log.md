@@ -1551,7 +1551,7 @@ was the fault, one drive; S3, *P0300 and P0303*.
     on its steady strokes too (S1, *The phone at the tailpipe through a
     swell and a fall*);
   - *felt:* an exhaust puff heard at the tailpipe at about 17:20, in
-    the second swell's deepest minute (*owner*; S2) — on the recording
+    the second swell's deepest minute, the puff he knows (*owner*; S2) — on the recording
     the loudest pulse, +77 %, is at 17:19:48.9, two firings after 3's
     deepest stroke;
   - *not known:* whether a seat or a dilution makes 3 burn late — the

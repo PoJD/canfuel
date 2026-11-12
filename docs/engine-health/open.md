@@ -1813,7 +1813,8 @@ the second fall to −5 %, and the growth to −20 % after it.
   strokes of 20 rpm and more down average +7 % in their own pulse,
   +22 % in the next and +53 % in the one after. *Reasoned*: a whole
   misfire's charge going off in the exhaust — **the owner's puff of
-  "about 17:20"** (S2), by his ear to confirm at 3:37.
+  "about 17:20"** (S2: the symptom he knows, *owner*, 12/11 night;
+  the pulse at 3:37 itself not confirmed by ear).
 
 **How the weak strokes follow each other** (11/11, *the research*;
 `dipshape.py`'s warm runs, each step against its cylinder's median,
@@ -1889,8 +1890,10 @@ exhaust's sound are aligned stroke for stroke, as 26/10's recording
 could not show; and **the loudest pulse of the four minutes, +77 % at
 17:19:48.9 (3:37 into the first recording), came two firings after
 cylinder 3's deepest stroke, −27 rpm** — the owner's reading of S2, a
-misfire's charge going off in the exhaust, seen once. Whether that is
-the puff he heard is his to say from the recording.
+misfire's charge going off in the exhaust, seen once. **The puff he
+heard that evening was this symptom, the one he knows** (*owner*,
+12/11 night); whether the pulse at 3:37 is the very one he heard he
+has not said.
 
 ### S3. Misfires counted by the ECU at idle
 
