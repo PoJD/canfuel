@@ -213,7 +213,8 @@ together 5–6 % throughout. **Cold, 4 is weak with 3** (the weak strokes
 3 > 4 > 1 > 2, the borescope's order of the deposit but for 1 and 2).
 **And 3's state moves over minutes**: at an unloaded warm idle its
 deficit grows from about −14 to −26 % with its misfires, **then falls in
-one step to a floor of about −9 %** — after an injector cut, with the
+one step to a floor of about −9 %** (*over 30–45 s, read 12/11
+evening, below; the A/C masks it rather than ends it*) — after an injector cut, with the
 A/C, or by itself (10/11's "four calm minutes" are that step, 17:38);
 the idle's grade follows it (r −0.6 over 205 warm windows). **The small
 steps of a few rpm are on all four** (3 a fifth more than 1 and 4, 2 the
@@ -248,6 +249,27 @@ his reading — a valve still leaking canister vapour, a gentle morning
 drive leaving the canister loaded (−14.8), the brisk one drying it
 (+8.6) — fits all four 032 readings on the canister (H16, *The owner's
 reading, 12/11*).
+
+**The two parts read again, 12/11 evening** (*the owner's questions*;
+S1, *The swell's shape, and what the common part follows*). **3's wave
+is a sawtooth**: its deficit grows 1.5–3 % a minute for 3–8 minutes to
+−21 to −28 %, then falls to −1 to −8 % **over 30–45 s, not in a step**,
+with nothing on the bus at the fall; every stroke of 3's is weaker in
+it, not only the misfires; a load masks it without ending it; the
+mixture and the injection time do not move. **So not 3's air or fuel,
+not its spark, not a flake blown out**; *reasoned*, in the order they
+fit: **a seat on 3 that fouls at idle and burns itself clean** (H1 with
+H13), oil gathering at 3's inlet valve (H18, one valve), coolant (H20),
+the ECU's purge phases (H16). **The common part is a constant**:
+2.7–3.1 rpm rms at every warm idle since 24/9, within 5 %, through
+every repair; it moves only with a load (a fifth less), the provider's
+gas (two fifths less) and temperature (a fifth more cold), and not
+with 3's wave — what H0 or a fixed fault on all four gives (the belt's
+marks, 8i), not a source that changes by the day (H16's leak, H7's
+rail, H18, H11, H21). **Proposed, not agreed**: the phone's recording
+through a swell beside a capture; N80's hose clamped for whole warm
+stops; the warm leak-down made on a stop switched off in a swell; and
+list A re-read on it (*The idle's candidates, ranked*).
 
 **Open:**
 
@@ -1210,6 +1232,9 @@ strokes — a step 12 rpm or more under the cylinder's own median — per
   So **"a warm stop starts rough and settles" is 3's state**, it is
   not tied to the stop's first minutes (`40`, `47`), and **what ends it
   is a jolt — a cylinder cut, a load, or nothing seen** — not time.
+  *Read again 12/11 evening (*The swell's shape*, below): the fall
+  with nothing seen takes 30–45 s, and a load masks the swell without
+  ending it — a sawtooth, not a jolt.*
   Over 205 warm loads-off windows of 30 s since 21/10 the grade
   correlates −0.6 with 3's deficit; 3's weak strokes go from 0.6 a
   window at −8 % to 4.8 at −22 %, the other three's stay at 1.2–1.7.
@@ -1416,6 +1441,166 @@ part of the idle the canister lowered.
   and common part with 3 nearly level** — so S1's mark of under 30
   (*When S1 closes*) needs the common part lower as well, not only 3
   mended.
+
+**The swell's shape, and what the common part follows** (12/11 evening,
+*the owner's questions*: what could make 3's waves — why the idle is
+first rougher and then falls — and whether the common part moves with
+anything; every standing idle of `24`–`49` in 30 s windows, 437 warm
+ones loads off, each with 3's deficit, each cylinder's scatter about its
+own median — **cylinder 2's taken as the common part**, the slot farthest
+from 3's spill — and what the bus carries beside them: oil, coolant, b7,
+b6, the injection time, the fuel counter, the lights, the brake, the
+tank, the time into the stop, the seconds above 4,000 rpm before it;
+the steps again in 8 s windows; *ad-hoc scripts, not kept*).
+
+*Cylinder 3's wave:*
+- **It is a sawtooth.** 3's deficit grows by **1.5–3 % of a stroke a
+  minute for 3–8 minutes**, to −21 to −28 %, and then falls to −1 to
+  −8 % — three times at `32`'s last two stops, the last stop's two
+  falls 6½ minutes apart (−11 → −23, −7 → −21, −6 → −19 at the
+  capture's end), `47` −15 → −28,
+  `49` −13 → −23, `31` −12 → −22 up to its cuts.
+- **The fall is not a jolt: it takes 30–45 s**, some 200–300 of 3's
+  strokes, at all five falls with no cut (`32` three, `47`, `49`; 8 s
+  windows: `49` −22, −20, −15, −11, −13, −9, −6, −4; `47` −25, −22, −19
+  held for 20 s, −13, −9, −7), twice in two stages. *This file said
+  "in one step" and "what ends it is a jolt"*; the 20–40 s it gave for
+  `49` was right, the word was not.
+- **Nothing on the bus shares the fall's time**: the coolant was rising
+  at three and at its low or its peak at the others, so not the fan; b7
+  rose by 5 a minute before two of them (`32`'s first, `47`) and not
+  before the other three; engine speed, the injection time, the lights
+  and the brake did not move. Within a stop 3's deficit correlates with
+  none of them (|r| ≤ 0.06 for the coolant, b7, the injection time, the
+  fuel counter, the lights, the brake; −0.18 with the oil); **only the
+  seconds above 4,000 rpm in the fifteen minutes before, r −0.32** — the
+  deficit is deeper after high revs, as *The rough start of a warm stop*
+  found by stops.
+- **Every stroke of 3's is weaker in the swell, not only the weak ones**:
+  `49`, the raw step of 3's slot, the median −3.0 rpm in the swell and
+  +0.5 on the floor, its ninth decile +2.5 against +4.5 — the whole
+  distribution moves. Twelve weak strokes a minute of about 400 could
+  not make 18 % by themselves.
+- **A load masks it and does not end it**: `40`, −14 % before the A/C,
+  −9 % at once with it, −13 and −14 % in the first minute after it and
+  growing on to −22; the lights' load (b7 +5) took −15 to −10 while
+  it lasted. A cut, by contrast, is usually followed by the floor
+  (`44`, `43`, `31`'s second; not `31`'s first).
+- **Straight after the fall 3 is nearly level**, −1 to −5 % (`32`, `43`,
+  `49`), and settles to −7 to −9 % within two minutes: the "floor" may
+  be the wave's first stage as much as a fixed part.
+- **What follows the fall differs**: it grows again at once on `32`
+  (12/10), `40` (21/10) and `43` (3/11); it did not in `49`'s fourteen
+  minutes (12/11), in `44`'s 4½ after its cut, nor at any time at `46`'s
+  stops the day of the clean.
+- On `32`, as 3 came back, **4 fell to −11 and −12 %** (twice; the
+  others' share of the mean's shift would be about −5); on `47` and
+  `49` the three shared it evenly. 12/10 was before 4 went level warm.
+- **The mean mixture does not move with it**: the injection time and
+  the fuel counter are the same in the swell and on the floor (r 0.01
+  within a stop), beside 001's and 033's regulation (*Every stroke
+  named*, *The first captured stop on the canister*).
+
+**Read** (*reasoned*; nothing here is measured inside the engine).
+**What the shape rules out as the wave's cause** (not as the floor's):
+**a quantity of air or fuel into 3** — a leak at its runner (H3), its
+injector or its loom (H7, H4), purge gas going its way (H16): a
+cylinder 18 % short through its mixture would be a fifth lean or rich
+and move the loop's regulation by about 5 %, which read the same within
+1 % at both stops where it was logged; **the spark** (H4), which a
+load makes harder, not easier; and **a flake blown out or a valve
+turning**, which would mend in a stroke, not in 250. **What it asks
+for**: something in 3 that builds steadily at a closed throttle, costs
+every stroke — a slower burn or charge lost, with the air and the fuel
+as before — counts for less the moment the manifold pressure rises, and
+clears itself in half a minute once it has grown to a certain size.
+In the order they fit:
+1. **A seat on 3 that fouls and burns itself clean** (H1 with H13; the
+   exhaust seat or the inlet's, whose crust the port photos show broken
+   on 3). At idle a film of soot and oil builds on a seat that already
+   closes on a deposit; the leak grows, 3 keeps less charge and more
+   burnt gas, every stroke weakens and the weakest fail; when the gap
+   is large enough the flame through it burns the film off in a few
+   hundred strokes and the seat closes on what is left. It fits the
+   steady growth, the fall's half minute, 3 nearly level straight after
+   it, the load (the same gap matters less at a larger charge), the
+   mixture not moving, the gas curing the misfires and not the deficit,
+   the clean taking the swell for a day, and S22's tick once per cycle.
+   Weak points: nobody has seen it, and the cold compression is even.
+2. **Liquid that gathers at 3's inlet valve and is drawn in at once** —
+   oil down 3's inlet guide or from the breather, pulled hardest at the
+   idle's vacuum (H18, for one valve). A trap that fills and empties is
+   the commonest sawtooth there is; against, no blue smoke ever, the
+   plugs dry, and a load should not lift it at once.
+3. **Coolant into 3** (H20): steam dilutes without moving the mixture
+   and the system's pressure is highest after a hot drive; but nothing
+   in it fills and empties, and it grows again in a stop's fifteenth
+   minute as in its first.
+4. **The ECU's purge phases** (H16): the one thing known to run a slow
+   ramp and a quick shut-off by the minute, and not on the bus. It
+   would need the purge gas to go mostly into runner 3 and to be
+   neither rich nor lean; the injection time gives no sign of it.
+   Kept because its test is the cheapest.
+A lifter is inside the first: one that sags shortens the overlap and
+calms an idle, so it would have to be one that holds a valve off its
+seat, with the same picture as a fouled seat (*general*).
+
+**What would tell them apart** (*proposed 12/11 evening, not agreed*):
+(a) **the phone's recording through a swell and its fall**, at the
+tailpipe and above 3, beside a capture — a seat that leaks more makes
+S22's once-per-cycle part grow with 3's deficit and drop with the fall;
+the other three leave it as it is; (b) **N80's hose clamped for whole
+warm stops**, captured — a swell with the hose shut ends the fourth;
+(c) item 9 as planned: the CO₂ test for the third, the warm leak-down
+with 3 twice for the first — ⚠ made with the engine stopped, so on
+whatever state 3 was left in; a stop switched off in a swell (the
+display above 75) is the one worth testing.
+
+*The common part* (cylinder 2's scatter about its own median, rpm rms
+of step):
+- **It is the same at every warm idle since 24/9**: the stops' means by
+  capture, loads off, **2.7–3.1** (ten captures of eight windows and
+  more, sd 0.13, under 5 %) — on both MAFs, three sets of plugs and of
+  leads, both maps, before and after the clean, the probes and the
+  canister (`49` 3.0, `48` 3.1, `44` 2.8, `32` 2.8). A window's own
+  spread is 11 %, of which 7 % is what 100 strokes give by chance.
+- **It does not follow 3's wave**: 2.9 at −24 % as at −8 % (r 0.05).
+- **Three things move it**: **a load** — the A/C 2.3, a fifth less;
+  **the provider's gas** — 1.8, nearly two fifths less, the lowest
+  measured; **temperature** — 3.5 under 60 °C of oil, a fifth more,
+  falling to its warm level by about 85 °C.
+- **Small**: the first 30 s of a stop a tenth higher (3.1); the
+  coolant's peak, where the fan runs, a twentieth lower (2.74 at 99–100.5 °C
+  against 2.90 at 95–97; r −0.41 within a stop, *The radiator fan's
+  cycle*); between stops, more fuel at idle goes with more scatter
+  (r +0.28 with the fuel counter, +0.24 with the injection time; within
+  a stop none).
+- **Nothing else**: the oil once warm, the time into the stop past its
+  first half minute, the tank's level (14–51 l), the lights, the
+  brake, the high revs before, the date.
+- ⚠ Its size as combustion is not known: the gas's 1.8 is an upper
+  bound on what the measurement adds by itself, so at least 2.3 of the
+  2.9 is the engine's — some 7–10 % of a stroke's work from one stroke
+  to the next.
+
+**Read** (*reasoned*): **the common part is a constant of this engine
+as it stands**, answering only to what every engine's stroke-to-stroke
+scatter answers to — how full the charge is, how easily it burns, how
+warm it is — and to no repair and no day. That is what **H0** predicts,
+and what **a fixed fault on all four** would give as well (the belt a
+tooth out, the cam's timing: more burnt gas kept at idle on every
+cylinder, all the time). **It is not what a source that changes from
+day to day gives**: a purge path leaking canister vapour by how loaded
+the canister is (H16, *The owner's reading, 12/11*) would move the
+common part between a gentle day and a brisk one, between the bypass
+and the canister, and it stayed within 5 %; so with the probes and
+their wiring (H11, H21: both probes changed, the same 3.0), the rail's
+pressure after a hot drive (H7: the high revs before, nothing) and oil
+past the seals after idling (H18: the time into the stop, nothing).
+**No healthy AQY has been measured**, so whether 2.9 is this engine
+type's or this engine's is what the list cannot yet say; **8i, the
+belt's marks, is the one test in the plan that bears on it**, and the
+new N80 will show once more whether the common part moves at all.
 
 **How the weak strokes follow each other** (11/11, *the research*;
 `dipshape.py`'s warm runs, each step against its cylinder's median,
@@ -2621,6 +2806,13 @@ never — and 3 gives 10–20 % less than the mean at every warm idle; an
 engine idling at its limit by design would spread them over four.
 What is left for H0 is the small unevenness on all four (about 3.5 rpm
 rms a stroke), which no repair has moved.
+**12/11 evening, for, in that part** (S1, *The swell's shape, and what
+the common part follows*): the common part is the same at every warm
+idle since 24/9 — 2.7–3.1 rpm rms by capture, within 5 % — and moves
+only with a load (a fifth less), the provider's gas (two fifths less)
+and temperature (a fifth more cold): a constant answering to the
+charge alone, as an engine's own scatter does. A fixed fault on all
+four would read the same; no healthy AQY says which.
 
 | S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -2659,6 +2851,16 @@ compression (A4), and on the overrun 3's slot reads level with the
 others' (nothing left with the wheel out, `--wheel`) — a closed
 throttle hardly loads a seat, so weak. **The warm leak-down with 3 twice (item 9) is the test of the
 cylinder now named.**
+**12/11 evening** (S1, *The swell's shape*): the swell is a sawtooth —
+1.5–3 % a minute up, 30–45 s down, with nothing on the bus at the
+fall — and every stroke of 3's is weaker in it; a load masks it and
+does not end it; the mixture does not move. **For a seat on 3 that
+fouls at idle and burns itself clean**, the reading that fits most of
+it; **against a flake blown out or a valve turning**, which this entry
+named and which would mend in a stroke, not in 250. A lifter only if
+it holds a valve off its seat. *Proposed, not agreed*: the phone's
+recording through a swell and its fall beside a capture; the warm
+leak-down made on a stop switched off in a swell.
 
 A hydraulic lifter that bleeds down, or a valve that seats late or not quite,
 on one or two cylinders. *General.* **Widened 4/11/2026** (*agreed with the
@@ -2894,6 +3096,11 @@ beside it — two neighbouring runners and a joint that closes on one
 as it warms (*reasoned*). Against: 032's idle cell is negative where
 a leak asks for fuel, the smoke test showed nothing (9/10), and a
 leak has no reason to swell over minutes and mend in a step.
+**12/11 evening** (S1, *The swell's shape*): **against, for the
+swell**: a cylinder 18 % short through its air would be a fifth lean
+and move the loop's regulation by about 5 %, and it read the same in
+the swell and on the floor; the injection time did not move either.
+What is left for a leak is 3's floor.
 
 Air past the MAF leans one cylinder at idle, where air flow is smallest.
 *General.* **The only candidate that predicts *load helps* directly.**
@@ -2973,6 +3180,9 @@ is left of it is read **for 3**: the injector loom where it reaches 3
 (6m, flexed while measured). 3 alone carries the deficit and the
 misfires since the VW leads; 4's share went with the leads. A wire has
 no reason to cost a steady 9 % in every state, so weak.
+**12/11 evening** (S1, *The swell's shape*): against, for the swell —
+the mixture and the injection time do not move with it, and a load
+masks it at once, where a load makes a weak spark worse.
 
 **Much weakened, kept last of the electrical side.** Measured clean: the
 coil's ground and supply for a gross fault, the engine's earth under load,
@@ -3115,6 +3325,11 @@ the new** (*the owner's argument*, 12/11). An exchange of injectors 3
 and 2 was agreed earlier that day as its test and **withdrawn
 on this** (`plan.md` 6o, removed). What stays with the cylinder through
 a change of injectors is its wiring and the ECU's driver (H4, 6m, 6n).
+**12/11 evening** (S1, *The swell's shape, and what the common part
+follows*): **against both forms.** One injector: the swell moves
+neither the loop's regulation nor the injection time, so it is not
+3's fuel. The rail's pressure: the common part is the same after high
+revs as after none and the same on every day, within 5 %.
 
 | S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
@@ -4091,6 +4306,11 @@ deposit that soaks fuel cold fits both cylinders cold; a seat or a
 stem that carries it fits 3 warm, its swell and its step (H1).
 Against: the clean left 3's floor where it was (−9 % before its cut at
 stop 3's end and −7 to −9 % at stop 7) and 3 led again a day later.
+**12/11 evening** (S1, *The swell's shape*): the swell read as a seat
+on 3 fouling at idle and burning itself clean (H1) is this entry's
+deposit at work — it fits the clean taking the swell for a day and
+`46`'s stops showing no growth at all; against "a flake moved", the
+fall takes 30–45 s.
 
 *Added 15/10 at the owner's request.* The engine seldom saw more than
 3000 rpm for at least nine years (*owner*). Gentle use builds deposits where
@@ -4350,6 +4570,18 @@ calm nights on the canister are read by cylinder**: if the captured
 stop shows 3's deficit at its floor with no swell, the canister took
 away what tips 3; if 3 swells as before and the stop is calm all the
 same, the calm is in the small steps on all four.
+
+**12/11 evening, the common part by capture** (S1, *The swell's shape,
+and what the common part follows*): **2.7–3.1 rpm rms at every warm
+idle since 24/9, within 5 %** — the bypass and the canister alike
+(`48` 3.1, `49` 3.0), gentle days and brisk. **Against the purge path
+as the common part's cause** in the form of *The owner's reading,
+12/11* below: a leak that follows the canister's load would move it
+from day to day. **For 3's swell the purge phases are kept as a weak
+fourth reading** — the one slow ramp with a quick shut-off the ECU is
+known to run, not on the bus; the injection time shows no sign of it —
+with a cheap test, *proposed, not agreed*: N80's hose clamped for whole
+warm stops, captured. The order in list A is the owner's (below).
 
 **Read 12/11, the captured stop** (`49`; S1, *The first captured stop
 on the canister*): **3 swelled as before** after the hot drive (to
@@ -4687,6 +4919,15 @@ little), its wiring, or the line to the intake (*reasoned*).
 
 ### H18. Oil past the valve-stem seals, drawn in at idle
 
+**12/11 evening** (S1, *The swell's shape, and what the common part
+follows*): **for one valve, 3's inlet, as the swell's second reading** —
+oil gathering at idle's vacuum and drawn in at once is a trap that
+fills and empties, the sawtooth's shape; against, no blue smoke, the
+plugs dry, and a load lifts the swell at once. **Against it as the
+common part's cause**: the common part does not grow with the time
+into a stop (r −0.09), which this entry's "worse after idling" asks
+for.
+
 *Added 26/10 at the owner's request*, from his reading of 26/10 (S1,
 *Temperature*): the warm idle stays at 90–110 through a gentle warm-up
 and calms only after a drive in which the engine works, and stays calm
@@ -4760,6 +5001,9 @@ the cylinder by every measure, which this entry needs; a weep would be
 worst after a hot drive, as the swells often are, but they also start
 minutes into a stop and end in a step (`40`, `47`), which pressure
 falling slowly does not give. Its test stands (the CO₂ test, item 9).
+**12/11 evening** (S1, *The swell's shape*): steam fits the mixture
+not moving and every stroke weaker; nothing in a weep fills and empties
+by the minute, and `32` grew three times over in one long idle.
 
 *Added 4/11/2026 at the owner's request*, as a weak candidate after `43`
 named cylinder 3. **The claim** (*general*): a millilitre a day past the
@@ -5307,6 +5551,23 @@ nothing 014 counts; second since 12/11):
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | — | **H12** driveline play | — | done: the clutch minutes cleared it |
+
+**Re-read 12/11 evening, the swell's shape and the common part —
+proposed, not agreed** (*the owner's questions*; S1, *The swell's
+shape, and what the common part follows*). The order stands until the
+owner decides. **What the reading says for list B**: the swell is not
+3's air, fuel or spark, so **H3, H4 and H7's injector explain at most
+3's floor**; H13 with H1 fits most of it as a seat that fouls and
+burns clean; H18 enters B for one valve; H20 fits the mixture and not
+the sawtooth. **For list A**: the common part has been the same within
+5 % at every warm idle since 24/9 and answers only to the charge — a
+load, the gas, temperature — so it is **H0's or a fixed fault's on all
+four** (the belt, A2), and the entries that vary by the day or the
+drive have nothing in it to explain: **H16** (A1), **H7's rail** (A4),
+**H21** and **H11** (A5, A6), **H18** (A8). *Proposed*: the belt and
+H0 to the head of A, H16 below them — **the owner has H16 first until
+the new N80** (12/11), and the new valve is the test either way: the
+common part by capture before and after it.
 
 **Re-read 12/11, the third research — agreed with the owner the same
 day** (S1, *Every stroke named*; S3, *What 014 counts, by cylinder*;
