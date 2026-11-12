@@ -4092,6 +4092,35 @@ canister. **Moved up from sixth to third on it, 12/11** (*the owner's
 decision*), and **first of the common part's list** when the idle was
 split in two the same day (*The idle's candidates, ranked*).
 
+**How it would make the idle rougher** (*reasoned*, 12/11, at the
+owner's question; the mechanism is not measured). **Not a steady flow**:
+N80 is closed without power and hardly passed air out of the car (6/11),
+so vapour came in only while the ECU purged — warm, in closed loop, at
+idle too at a small rate. **What the bypass changed is the purge gas's
+make-up.** The charcoal is a buffer: it takes the tank's vapour in, gives
+it back steadily, and its own vent lets fresh air through it. Drawn
+straight from the tank's vapour space, the gas follows the tank —
+nearly pure fuel vapour while the tank is warm and pressed, air through
+the cap's vent once the purge has drawn the pressure off — and that
+changes over seconds with no buffer to smooth it. **The lambda loop
+corrects the mean, slowly**: at idle one swing of the front probe takes
+a second or more, plus the gas's way to the probe, so a mixture that
+moves faster than that, or irregularly, goes through; 032 learns only
+the long mean. A mixture moving under all four cylinders alike is **the
+common part** (list A). **For**: the part-load cell, +7 → +2.3 % with the
+canister back — a lean source gone where the purge flow is largest,
+which air drawn through the tank fits; P0440; the summer overpressure at
+the cap (S21); the two calm stops. **Against or not known**: **the idle
+cell did not move** (−6 before, −5.5 after), so at idle the mean
+mixture was the same and only its swings could have changed — not
+measured, the front probe is not on the bus; **the dips do not keep time
+with the valve's 4–5 Hz** (*The valve's pulses against the dips*), so
+not pulse by pulse; **the idle is roughest cold**, when the valve is
+not driven at all, so the cold roughness has another cause; two stops.
+**What would show it**: a captured warm stop (the common part against
+the slot means, `plan.md` item 6) and 033 at the same stop, whose
+regulation value swings with the mixture the loop is chasing.
+
 **How the system works** (*general*, not from this ECU's documentation):
 the tank vents into a charcoal canister; N80 sits between the canister and
 the intake (*on this car, until the repair of 8j, the canister was
