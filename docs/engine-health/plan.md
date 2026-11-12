@@ -18,10 +18,10 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next: drives with the MFD
-in on the old rear probe and the cleaned G62** (the codes read at the
-next VCDS session, 8f); **8i (the timing belt's marks) at the next cold
-engine**; drives with the MFD in (item 6) and 6i; 8f at
+Captures only where an item asks for one. **Next: the new rear probe
+back to the seller and a new one fitted** (8e); drives with the MFD in,
+**014 in every logged drive** (8f); **8i (the timing belt's marks) at
+the next cold engine**; drives with the MFD in (item 6) and 6i; 8f at
 every VCDS session (032 after drives without a reset, 036 now and then)
 and 8h at a laptop session; **8j and its first drive done 11/11**
 (the canister plumbed back; `idle-log.md`); then 8a (the new N80, ordered 11/11) when it arrives; then item 9, 6m inside its garage session;
@@ -127,7 +127,8 @@ start of a warm stop*).
    idle and on the road when VCDS is on anyway (the rear probe watched
    now and then, *the owner*, 11/11). **032 read first, before any code
    is cleared**; **on a logged drive, 001 in place of 055** (G62's
-   reading, S24).
+   reading, S24) **and 014 always** (P0303 stored on 12/11 with no cut:
+   its time is what the log gives).
 8h. **The loads against the sensors' voltages**, Claude in a session on
    the laptop, a warm engine after
    a drive, the car standing, the owner in the driver's seat:
@@ -172,13 +173,15 @@ start of a warm stop*).
      leak-down names 3's exhaust seat, the car is driven as it is and S1
      most likely closed as *acceptable, cause known*.
 
-8e. **Postponed to the end** (*the owner*, 11/11). **The old rear
-   probe is back in** (12/11): if P0137 or a zero in 036 comes back with
-   it, the harness — cold and the ignition off, the connector off and
-   **the signal wire from the harness-side socket to the ECU's pin** read
-   for continuity and for a leak to earth, the lead flexed by the exhaust
-   while the value is on the display; if not, the new probe goes back to
-   the seller. Nothing measured with the engine running, nobody under
+8e. **Postponed to the end** (*the owner*, 11/11). **The new rear
+   probe goes back to the seller, a new one in its place** (*the owner*,
+   12/11: the old one, refitted, read healthy with no P0137). The new one
+   is fitted as the first was: Bosch's paste on the thread only, nothing
+   in the connector, the lead clear of the exhaust and not pressed into
+   the harness box. If P0137 comes back with it, the harness — cold and
+   the ignition off, the connector off and **the signal wire from the
+   harness-side socket to the ECU's pin** read for continuity and for a
+   leak to earth, the lead flexed by the exhaust. Nothing measured with the engine running, nobody under
    the car with it on. Then, at a cold engine, from below:
    - **The rear probe's lead, all the way to its connector**: where it
      runs, whether it touches or lies within a finger's width of the

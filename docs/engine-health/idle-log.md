@@ -1452,3 +1452,26 @@ the session** (032/055 read first, 22:49), to see which comes back.
   - *not known:* whether P0118 and P0137 come back on the next hot drive.
 
 `open.md` S23, *Both rear probes measured cold*; S24, *Found*.
+
+## 12/11 night — the drive on the old rear probe and the cleaned G62
+
+- **Repairs:** none; P0300 and P0303 cleared by the owner after the stop.
+- **Tests:** VCDS 032 036 001 over a 52-minute drive with a brisk
+  motorway stretch (`vcds/vcds-step8n-drive-*`), 014 001 036 at the warm
+  stop near home (`vcds-step8n-stop-014-001-036.csv`), 032/055 at the end
+  (`vcds-step8n-end-adaptations-032-055.csv`); G62 looked at three times
+  for a leak; the MFD at every stop.
+- **Changes after:**
+  - *measured:* **no P0137, no P0118**; the old rear probe 0.575 V at a
+    warm idle, zero only on the overrun; G62 39–100.5 °C, no step; 032
+    from zero to **−5.5 / +2.3 %**; **P0300 and P0303 stored, 35-00**;
+    the limiter once (6,280 rpm); at the stop near home 014 +12 six times
+    in 7.7 minutes; `IdleHealth` (the everyday state) 80–90 at 92–95 °C,
+    70–90 after the motorway, near home 90–120 → 34–50 (*owner*);
+  - *felt:* G62 dry throughout; the idle rougher than the night before
+    until the long stop settled (*owner*);
+  - *not known:* when P0303 was set, and whether the limiter set it.
+
+The new rear probe goes back to the seller (`open.md` S23); S24's oil
+was the fault, one drive; S3, *P0300 and P0303*.
+

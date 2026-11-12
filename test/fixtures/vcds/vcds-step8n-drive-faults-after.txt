@@ -1,0 +1,6 @@
+2026-11-12 01:51:05  01-Motor, fault memory after (read by vcds_log.py)
+2 závad nalezeno.
+16684 - zjisteno vynechavani zapalovani - nepravidelne / vicenasobne 
+            P0300 - 35-00 - 
+16687 - valec 3 zjisteno vynechavani zazehu 
+            P0303 - 35-00 - 
