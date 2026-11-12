@@ -1331,6 +1331,150 @@ reopened** (it was standing, not in normal driving). *Reasoned*: it
 follows the idle's roughness, as the combustion reading above would
 have it; a lifter's tick would hardly change with the A/C's few rpm.
 
+### D12. S24 — the coolant reading dropping fast, and P0118 sporadic — closed 12/11/2026
+**Closed at the owner's decision, 12/11, to be reopened if it comes
+back**: **old engine oil standing round G62's pins**, from the earlier
+leak at the back of the head (S10, D5), found and cleaned 11/11 late
+night; the drive after it (12/11 night) stored no P0118, read 39–100.5
+°C with no step and the plateau back where every capture has it, and
+**the sample-to-sample dither of 11/11's warm stop** — in VCDS's 001 and
+on the MFD's video — **was gone**: a clean fan cycle, 96–99 °C, with no
+reversal. *Reasoned*: the film carried the noise, the 4–6 °C higher
+plateau and P0118; the thermostat and the fan are not in it. **It comes
+back as the dither** (a step up and back between two 001 samples, or the
+MFD's CLT flicking by degrees from second to second) **before any
+code** — that reopens it, in `open.md`. 001 stays in the logged drives
+(`plan.md` 8f).
+**The entry as it stood in `open.md`:**
+
+*Added 11/11 night at the owner's decision.* **On the drive of 8k**
+(8k, `idle-log.md` 11/11 night, 21:24–22:29) **the MFD's coolant rose to about 110 °C in
+places and fell back fast — once from about 107 to 90 °C within a few
+seconds** (*owner*), faster than an engine's coolant cools (*general*).
+**The fault memory after it: 16502 / P0118, G62, signal too high,
+sporadic** (22:29, `vcds/vcds-step8k-drive-faults-after.txt`; not there
+at 21:23) — a signal too high on an NTC sensor is the open-circuit
+end, the ECU seeing a very cold engine (*general*).
+
+**What VCDS saw at the warm stop after it** (001, 22:37–22:43,
+`vcds-step8k-warmstop-001-033-014.csv`, `…-001-036-014.csv`, about one
+sample a second): **99–106.5 °C, rising and falling smoothly in steps
+of 1.5 °C over cycles of about a minute**, no jump — the radiator
+fan's cycle (S1, *The radiator fan's cycle*), not a dropout. **Against
+every capture**: the MFD's coolant is 0x288 b1, the ECU's own reading
+(`docs/firmware/can-decoding.md`); **over all 41 `_z1` fixtures it
+never read above 102.8 °C**, and at warm stops it cycles between 92–97
+and 100.5 (*an ad-hoc script, not kept*). **So 11/11 night read about
+6 °C higher than any capture before** — the cycle at 99–106.5 in VCDS,
+about 110 on the MFD — as well as dropping fast.
+
+**Read** (*reasoned*): **two things**. The fast drops and P0118 fit **a
+contact resistance in G62's circuit** — its connector, its wire or the
+sensor: a series resistance on an NTC divider reads colder, and an open
+one reads the coldest and stores P0118. The higher plateau is not
+explained by it (a contact reads colder, not hotter): **the engine
+running hotter** — the coolant's level, the thermostat or the fan — or
+the sensor's own curve. *Superseded 12/11: the plateau went with the
+oil (below).* *Not known*: whether this car's fan is switched
+by the ECU from G62 or by its own switch in the radiator. **The
+cluster has no coolant needle** (*owner*: a blue lamp below about
+62 °C, a red one when too hot or, flashing, when the coolant is low);
+**its own sender**, a separate circuit, reads on 0x420 b4
+(`docs/firmware/can-decoding.md`, question 10; 8.6–9.7 °C under the
+ECU's on `47`, H21, *A second, on the bus*): a fault in G62's ECU
+circuit alone steps their difference, which a capture reads.
+
+**The owner's reading** (11/11 night): **perhaps all linked** — the
+idle cell nearer zero takes less fuel away at idle, the mixture burns
+better, the idle is calmer. *Reasoned*: it fits the second research's
+"a mixture or dilution limit rather than a spark limit" (S1, *How the
+weak strokes follow each other*), whichever moved the cell — the
+canister or S23's second loop; it is read by setting 032's idle cell
+against `IdleHealth` over the next drives (8f), and G62 adds its own
+correction on top.
+
+**What it touches**: the ECU corrects fuel, ignition and idle by G62,
+so **a warm stop read while G62 reads wrongly is not a clean reading**;
+and if the fan follows G62, a fan held on adds electrical load, which
+calms the idle (S1, *load*). **8k's record warm stop (`IdleHealth`
+25–40, everyday state, oil and coolant 100 °C) was read with that
+open; 12/11's stop with G62 sound settled to 34–50 (below)**, so G62
+made at most the last few points. Not in the fit tables (*The open hypotheses*).
+
+**Tests**: *done 11/11 late night and 12/11*: the coolant's level,
+cold (fine); G62's connector looked at, cold (the oil, below); 001 on
+the next logged drive (12/11, below). **Left**: 001 on every logged
+drive (`plan.md` 8f) — **the dither** (a step up and back between two
+samples) is the early sign, before any code; **a capture on a drive
+with the MFD out**, which reads 0x288 and 0x420 b4 far faster than
+VCDS — a fault in G62's circuit is a step in their difference, a hotter
+engine moves both. **Both codes cleared by the owner after the
+session** (11/11 night, 032/055 read first); **on 12/11's drive
+neither came back** (P0300 and P0303 did, S3).
+
+**Found, 11/11 late night** (*owner*, the album 23:55–00:13): **the
+coolant's level fine, as for weeks**; **old engine oil from the earlier
+leak at the back of the head (S10) caked round G62's connector**, the
+one place it stayed, and it softens and runs when warm (*owner*).
+**Inside, on the sensor's own socket, a film of oil standing round the
+pins** (23:55); on the harness side the four contacts bright and clean
+but **a brown ring of oil round the purple seal and up the shroud**
+(23:56, 23:59). No green, no loose terminal. **Cleaned** with a rag
+and contact spray, both halves and the harness round it; the sensor
+pulled from its housing to clean it (about 10 ml of coolant lost), its
+O-ring whole and greased, back to its stop, the clip in, the connector
+latched (00:11). **Read** (*reasoned*): oil between the pins is a leak
+path across the NTC's divider that moves with heat — **it fits the
+fast drops and P0118 better than a contact did**, which the photographs
+do not show. *This added "the higher plateau it does not explain"
+until 12/11*: a film is not one fault but a leak between whichever pins
+it bridges — **across the sensor's own pair it lowers the resistance
+the ECU reads, which an NTC reads as hotter; from a pin at a higher
+potential into the signal it raises it, colder, up to P0118**
+(*reasoned*; which of G62's four pins is which is not in this
+repository). Both directions are open to oil round all four, so the
+film can carry the plateau too — and the drive after took both away
+(below).
+
+**The first drive after the cleaning, 12/11 night** (001 over 52
+minutes, `vcds/vcds-step8n-drive-032-036-001.csv`): **39–100.5 °C, no
+step of 3 °C or more, the plateau back at 100.5** as in every capture;
+**no P0118**; the sensor dry at 80 °C and after the motorway (*owner*).
+**So the oil was it, and the 106.5 of 11/11 was G62 misreading, not a
+hotter engine** (*reasoned*, one drive).
+
+**The same sensor sample by sample, before and after** (12/11, a cloud
+session; 001's coolant at VCDS's 0.9 s, *an ad-hoc script, not kept*).
+**Before**, the warm stop of 11/11 (22:39–22:43,
+`vcds-step8k-warmstop-001-036-014.csv`, 281 samples): 99–106.5 °C, **a
+step of 1.5 °C in 86 of 280 intervals and 32 reversals** — the reading
+**dithering a step up and back from one sample to the next** (100.5 102
+100.5 …) on top of the fan's cycle; the stop before it
+(`…-001-033-014.csv`, 62 samples) has 21 steps, 10 reversals and **two
+steps of 3 °C**. **After**, the stop of 12/11 (01:52–02:00,
+`vcds-step8n-stop-014-001-036.csv`, 516 samples): 94.5–99 °C, **24
+steps and no reversal at all** — the fan's cycle, 96 → 97.5 → 99 and
+back, each level held for tens of samples; the 52-minute drive before
+it, 139 steps in 3,481 intervals. **The MFD at 22:33 on 11/11** (the
+album, a 72 s video of the display at that stop, read once a second):
+CLT 100–106, **flicking by 1–3 °C from one second to the next** (104
+106 104 105 104 106), OilTemp a steady 100 — the same dither on 0x288,
+where 0x288's step is 0.75 °C (`docs/firmware/can-decoding.md`), so
+it is the signal, not the rounding. **Read** (*reasoned*): before the
+cleaning G62's reading was noisy at every sample and 4–6 °C high; after
+it, quiet and on its old plateau. **The film did all three — the
+noise, the plateau, P0118 — and nothing points at the thermostat or
+the fan.** A fault still in the circuit would show the dither again
+before any code. **The calm stop is not G62's**:
+the stop near home on 12/11, the same place and as long, read 90–120
+→ **34–50, mostly about 40** with G62 sound (*owner*) — the settling of
+a long warm stop, as on `43` and 10/11 evening, not a fan held on.
+
+*Re-read 12/11 (a cloud session, the owner's question)*: the last
+paragraph's "the settling of a long warm stop, as on `43` and 10/11
+evening" holds for the level alone — **the length and 014 were new**
+(`open.md` S1, the warm stops' table, 12/11 night).
+
 ### D9. "A higher idle quiets the misfires" — measured, 12/10/2026
 The specified idle raised from 780 to 830 rpm, the ECU's limit (VW's
 procedure, login 01283): 014 kept counting and `IdleHealth` rose slightly with

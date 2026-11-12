@@ -127,7 +127,7 @@ start of a warm stop*).
    idle and on the road when VCDS is on anyway (the rear probe watched
    now and then, *the owner*, 11/11). **032 read first, before any code
    is cleared**; **on a logged drive, 001 in place of 055** (G62's
-   reading, S24) **and 014 always** (P0303 stored on 12/11 with no cut:
+   reading: S24 closed 12/11, reopened if its dither comes back) **and 014 always** (P0303 stored on 12/11 with no cut:
    its time is what the log gives).
 8h. **The loads against the sensors' voltages**, Claude in a session on
    the laptop, a warm engine after
