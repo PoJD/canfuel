@@ -1828,6 +1828,23 @@ the share of samples in which each cylinder retards, and its most):
   (`vehicle-history.md`); the November air is colder, which goes the
   other way (*general*).
 
+- **Not the rev limiter** (12/11, *the owner's question*: with the
+  throttle wide open, the ECU could hold the speed down only by
+  retarding). Three things say no: **2's retard starts at 5,300–5,500
+  rpm while the engine is still climbing freely** — on the pulls of
+  11:00:43 and 11:08:41 the speed rose 5,750 → 6,300 and 5,900 → 6,350
+  at a steady 80–89 µl of fuel per revolution until the driver lifted
+  (`49`, 0x280 and 0x480 in half-second steps), so nothing was being
+  held; **020 is knock control's retard, cylinder by cylinder** (`vcds.md`),
+  in the 0.75° steps it walks back in, with 4 at 3.0 while 2 is at 6.0
+  in the same sample — a limit on speed would act on all four alike and
+  belong to the base advance (003), not to this group; and **the limiter
+  sits at about 6,300 rpm** (12/11 night, 6,280), which these pulls
+  reached for half a second at most. How this ECU limits speed is not in
+  its documentation here; Motronic of the time usually cuts injection
+  (*general*), and with a cable throttle that is what it has besides the
+  spark.
+
 **What it changes in the hypotheses** (12/11, at the owner's request;
 *reasoned*; **no fit-table symbol changes**, each said why):
 - **H5** (something in 4's window that is not combustion): ✔ stays —
