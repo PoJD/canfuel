@@ -240,8 +240,12 @@ cell back at the bypass's level (S19, S21, H16). **020: cylinder 4 to
 12.7° at full load and 14.2° on a tip-in, now at 3,500–4,600 rpm as on
 the remap, and 2 beside it near the limiter** — whether a shift of S4
 is put to the owner. The fault memory empty throughout; the engine
-lamp only at its check before the start. **Proposed, not agreed**: H16
-down list A (*The idle's candidates, ranked*).
+lamp only at its check before the start. **H16 stays first in list A
+until the new N80** (*the owner*, 12/11; Claude had proposed it down):
+his reading — a valve still leaking canister vapour, a gentle morning
+drive leaving the canister loaded (−14.8), the brisk one drying it
+(+8.6) — fits all four 032 readings on the canister (H16, *The owner's
+reading, 12/11*).
 
 **Open:**
 
@@ -390,7 +394,8 @@ or a flake, its lifter), **H3** (runner 3's lower gasket), **H20**
 last (3 was weak on the old injectors too). H12 done. **Which part 11/11's and 12/11's calm stops lowered:
 neither, by the captured stop of 12/11** (`49`) — 3's swell as before,
 the settled floor no lower than before the canister; **H16 down list
-A proposed 12/11, not agreed**.
+A proposed 12/11 and declined by the owner** until the new N80 (H16,
+*The owner's reading, 12/11*).
 *Before the split, 11/11–12/11*: H13 and H1, H16, H3, H4, H7, the belt,
 H21, H11, H2, H0, H8, H20, H18, H12 (every
 fit table re-read 4/11). **H15 refuted 4/11** (`refuted.md` C24).
@@ -428,10 +433,12 @@ list A: H13 and H1 on 3, H3's runner 3, H20, H4, H7's injector 3**;
 "4's deficit" gone from H3, H4 and H7; list A as it was, H16 first until
 the captured stop on the canister is read by cylinder (*The idle's
 candidates, ranked*). **Read 12/11** (`49`, above): **H16 from first of
-list A to fifth proposed to the owner, not agreed**.
+list A to fifth proposed; the owner kept it first until the new
+N80**.
 
 **Next** (`plan.md`; *the owner*, 10/11–12/11): **the owner's word on
-H16's move down list A and on 020's reading (S4)**; **the new rear probe
+020's reading (S4)**; **H16 first in A until the new N80** (*the
+owner*, 12/11); **the new rear probe
 back to the seller and a new one fitted**; **8a, the new N80, when it
 arrives, then one warm drive captured and read as `49` was** — 3's
 swell and floor by `cylscan.py --minutes`, the common part against the
@@ -4526,9 +4533,56 @@ bypass's level (+6.3 to +7.0) and above, where two drives on the
 canister had read +2.3; the idle cell −14.8 → −7.0 (S19). *Reasoned*:
 the part-load "for" below rested on +2.3 holding; a cell that moves
 from +2.3 to +8.6 in one brisk drive says the purge gas's make-up still
-moves it, or that +2.3 was not the canister's. **Against H16 as the
-common part's first, on both counts** — a re-rank proposed to the owner
-12/11 (*The idle's candidates, ranked*), not agreed.
+moves it, or that +2.3 was not the canister's. *Claude proposed H16
+down list A on both counts the same day*; **the owner kept it first
+until the new N80 is fitted** (12/11, below: the canister is back, the
+valve is not changed yet).
+
+**The owner's reading, 12/11** (*owner*; the mechanism *reasoned*, not
+measured). **With the bypass** N80 drew straight from the tank: under
+load a large purge emptied the vapour space and drew nearly clean air
+through the cap's vent — the part-load cell's +6.3 to +7.0 — while at
+idle the small flow still carried vapour — the idle cell's −6 to −8.
+**With the canister back and N80 still not sealing**, the purge gas is
+the charcoal's, steadier: the part-load cell fell to +2.3 on three
+drives, the idle cell hardly moved, **because a valve that leaks shut
+lets a little canister vapour in all the time**, most felt at idle.
+**This morning's gentle 40-minute drive** purged little, the canister
+stayed loaded and leaked on at idle — **the idle cell to −14.8 %**, the
+most on record; **the brisk drive after it** purged the canister nearly
+dry — the part-load cell to **+8.6** on air through dry charcoal, the
+idle cell back to **−7.0** with less to leak.
+- **For**: it explains all four readings on the canister with one
+  valve, and the bypass's split as well. **The part-load cell moves
+  with the drive within a drive**, not only between drives: on 11/11
+  night's log it climbed from +2.3 to +6.3 in eleven seconds at
+  51 minutes and was back at +2.3 two minutes later (`vcds-step8k-
+  drive-032-055-014.csv`); a purge gas whose make-up changes does that,
+  a fixed fault does not. **And at 11/11 night's long warm stop the
+  idle cell came back from −5.5 to −3.9 %** (the log's end) — less
+  vapour to leak as the stop draws the canister down, which this reading
+  predicts (S23 bent that drive's idle cell, so weakly). A leak sized at
+  0.6–0.7 bar of idle vacuum was never tested (*Tested 25/10 night*:
+  by mouth, 0.1–0.2 bar; 6/11 out of the car, cold).
+- **Against or not fitting yet**: **12/11 night's drive was brisk too**
+  — a motorway stretch, the limiter touched — and ended at +2.3, not
+  +8.6; full-throttle pulls run open loop with the purge shut
+  (*general*), so what dried the canister this morning would have to be
+  the part load around them. Out of the car on 6/11 the valve passed
+  "really very little", unpowered. A drive's fuel and temperature are
+  in it too: November's cold tank gives little vapour, so what loads
+  the canister overnight is not known. **And it is about the trim, not
+  the roughness**: today's stop was no calmer settled at −7.0 than the
+  floors before at −6 to −8 (S1, *The first captured stop on the
+  canister*); whether a less negative idle cell brings a calmer idle
+  is not shown — one stop.
+- **What decides it — the new N80** (`plan.md` 8a, ordered): **032
+  read after a gentle drive and after a brisk one on the new valve**.
+  This reading predicts the idle cell nearer zero and no longer
+  following the drive (−14.8 after a gentle one could not come back);
+  the part-load cell may still move with the purge, which is the
+  system working. **No change → the leak was not the valve**, and
+  the idle cell's rich source is elsewhere (H7, S19).
 
 *Added 24/10 at the owner's request.* For **the rich idle trim, S19 and,
 since 6/11, S21**, not for the idle itself. 032's idle cell has read at or below zero in
@@ -5362,9 +5416,11 @@ neither.** 3 swelled after the hot drive as before and stepped to its
 floor by itself; settled, the grade (37) and the common part (30) were
 those of `44` after its cut and `48`, before the canister; only the
 floor's length, fourteen minutes, was new. And 032's part-load cell
-went back to +8.6 % (H16, S21). **Proposed to the owner 12/11, not
-agreed**: H16 from first of list A to fifth, behind the belt, H8,
-H7's rail pressure and H21; list B as it is.
+went back to +8.6 % (H16, S21). *Claude proposed H16 from first of A
+to fifth the same day*; **the owner kept it first** (12/11): the
+canister is back but N80 itself is not changed, and a valve leaking
+canister vapour explains the four 032 readings on the canister (H16,
+*The owner's reading, 12/11*) — the new N80 decides.
 *Reasoned*: purge vapour enters the intake at one point and need not
 reach the four runners alike, so H16 is not ruled out of list B either.
 
@@ -5426,8 +5482,8 @@ not what the split assumed:
   withdrawn the same day, the owner's argument: 3 was weak on the old
   injectors too* — H7). Inside A as it was, **H16 first until the captured stop
   on the canister is read by cylinder** (H16, above). **Read 12/11
-  (`49`): neither part lower; H16 from first of A to fifth proposed,
-  not agreed** (above).
+  (`49`): neither part lower; H16 kept first by the owner until the new
+  N80** (above).
 - **What would be read first**, in this order of cost: the captured
   warm stop already planned (which list the canister moved; *read 12/11,
   neither*); item 9's stethoscope above 3 and its warm leak-down with 3

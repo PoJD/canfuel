@@ -19,8 +19,7 @@ The full previous version, before it was condensed on 20/10/2026:
 
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Next: the owner's word on
-H16's move down list A and on 020's reading** (Claude's questions of
-12/11); **the new rear probe
+020's reading** (Claude's question of 12/11); **the new rear probe
 back to the seller and a new one fitted** (8e); drives with the MFD in,
 **014 in every logged drive** (8f); **8i (the timing belt's marks) at
 the next cold engine**; drives with the MFD in (item 6) and 6i; 8f at
@@ -121,7 +120,8 @@ start of a warm stop*).
      secondary-air valve N112 to where it joins.
    - Afterwards, warm, the owner runs **basic setting 070** and
      photographs it; then item 6's warm stops, and **032 read after the
-     first two drives** (8f).
+     first two drives** (8f) — **one of them gentle, one brisk**, and
+     which was which into the chat.
    - **Fitted when it arrives**; nothing to read before it but the line above.
    - **At any engine lamp from now on**: the odometer, the tank's needle
      and the outside temperature into the chat, and 032 read before the
@@ -624,7 +624,11 @@ test (TSB 2034072, written for US cars); **declined 11/11** (*the
 owner*: the gauge is out of reach for weeks), so the old valve is not
 tested before the swap and 032 before and after is what reads it. **032
 before and after** says what the valve carried: an idle cell still at
-−6 to −9 % with a tight new valve clears it of the standing offset.
+−6 to −9 % with a tight new valve clears it of the standing offset. **One gentle drive and one brisk** (12/11, the owner's reading of the
+four readings on the canister, `open.md` H16, *The owner's reading,
+12/11*): on the leaking valve the idle cell went to −14.8 % after a
+gentle drive and to −7.0 after a brisk one; on a tight one it should no
+longer follow the drive.
 **The photographs** because whether N112 and N80 share a vacuum tap is
 not recorded. **Fitted when it arrives** (*the owner*, 11/11: the
 fix comes first; 8b dropped).
