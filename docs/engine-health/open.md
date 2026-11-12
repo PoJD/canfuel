@@ -831,7 +831,9 @@ needs its cluster harness tapped behind the vent, which no owner will allow
 **`IdleHealth` steadily under 30 at a warm idle, never above it, in the
 everyday state and with every load off alike**, oil 95–100 °C, after
 the adaptations have settled (032 and 055 not freshly reset), over
-**three drives on different days**. It asks for what the idle needs:
+**three drives on different days**. **Warm only** (*the owner*, 12/11):
+a rough cold idle is no part of the mark — it may be this engine's
+own (H0). It asks for what the idle needs:
 cylinder 3 level with the others (S1, *Every stroke named*) **and** the
 common part gone (*The idle's candidates, ranked*, lists B and A) —
 only both together get the grade that low; **the provider's gas did it
