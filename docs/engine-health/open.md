@@ -418,7 +418,8 @@ or a flake, its lifter), **H3** (runner 3's lower gasket), **H20**
 last (3 was weak on the old injectors too). H12 done. **Which part 11/11's and 12/11's calm stops lowered:
 neither, by the captured stop of 12/11** (`49`) — 3's swell as before,
 the settled floor no lower than before the canister; **H16 down list
-A proposed 12/11 and declined by the owner** until the new N80 (H16,
+A proposed 12/11 and declined by the owner** until the new N80, **then
+agreed that evening on the common part's own reading, third** (H16,
 *The owner's reading, 12/11*).
 *Before the split, 11/11–12/11*: H13 and H1, H16, H3, H4, H7, the belt,
 H21, H11, H2, H0, H8, H20, H18, H12 (every
@@ -4696,7 +4697,8 @@ neither — and a purge path that no longer sends raw tank vapour fits a
 calmer warm idle; **against**, two stops, a different place from most
 warm stops, and 10/11 evening's four calm minutes came before the
 canister. **Moved up from sixth to third on it, 12/11** (*the owner's
-decision*), and **first of the common part's list** when the idle was
+decision*), and **first of the common part's list** (*third since
+12/11 evening*) when the idle was
 split in two the same day (*The idle's candidates, ranked*).
 
 **How it would make the idle rougher** (*reasoned*, 12/11, at the
@@ -5614,7 +5616,8 @@ not what the split assumed:
   injectors too* — H7). Inside A as it was (*re-ordered that evening,
   above*), **H16 first until the captured stop
   on the canister is read by cylinder** (H16, above). **Read 12/11
-  (`49`): neither part lower; H16 kept first by the owner until the new
+  (`49`): neither part lower; H16 kept first by the owner (*third since
+  that evening*) until the new
   N80** (above).
 - **What would be read first**, in this order of cost: the captured
   warm stop already planned (which list the canister moved; *read 12/11,
