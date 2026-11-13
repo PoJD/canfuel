@@ -18,12 +18,11 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next, until the new N80
-is fitted (in hand since 13/11, to go in about the weekend of
-14–15/11)**: **the MFD stays out
-and the drives are captured** (item 6, *the owner*, 12/11), each with
-**014** and **032 read before and after** — the old valve's 032 against
-the drive, before the swap, gentle or brisk read off the capture; **8q, the timing belt at a garage, once it
+Captures only where an item asks for one. **Next, the new N80
+(in hand since 13/11, to go in about the weekend of
+14–15/11)**: **no further captured drive before the swap** (*the owner*,
+13/11: the captures of 12/11 and before are enough for the old valve);
+**8q, the timing belt at a garage, once it
 has a date** (the garage chosen, a date asked for 13/11), never on the same day as the new N80; **the new rear probe's
 replacement fitted when the seller sends it** (8e; the probe sent back
 13/11, the old rear probe on the car meanwhile). **Then 8a, the new N80**: 032/055 and the fault memory
@@ -440,7 +439,9 @@ second captured drive now would only repeat the canister's reading**,
 and the next is after **8a's new N80**, the one change left on H16's
 path, read the same way against `49`.
 **The MFD out and every drive captured until the swap** (*the owner*,
-12/11 evening, so that there are more captures and more 014): what
+12/11 evening, so that there are more captures and more 014; **closed
+13/11 by the owner**: no further captured drive before the swap, the
+baseline is what `49`, `50` and the drives before them hold): what
 the drives before the swap add is not another reading of the canister
 but **the old valve's baseline for the owner's reading of H16**
 (`open.md` H16, *The owner's reading, 12/11*) — 032 before and after

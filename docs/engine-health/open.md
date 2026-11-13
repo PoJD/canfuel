@@ -544,12 +544,10 @@ swell in 3's combustion and does not choose between a seat and a
 dilution (S1, *The phone at the tailpipe through a swell and a fall*).
 
 **Next** (`plan.md`; *the owner*, 10/11–13/11): **until the new N80
-(in hand since 13/11, to be fitted about the weekend of 14–15/11) the MFD stays out and the drives are
-captured**, each with 014 and 032 before and after, gentle or brisk
-read off the capture — the old valve's baseline for H16, *The owner's reading, 12/11*
-(H16 third in A since 12/11 evening; the baseline stands), and more
-warm stops read by `cylscan.py --minutes` and `swellscan.py` as `49`
-was; **6p's second half, the phone above cylinder 3**, at the next
+(in hand since 13/11, to be fitted about the weekend of 14–15/11) no further
+captured drive** (*the owner*, 13/11): the old valve's baseline for H16,
+*The owner's reading, 12/11*, is what `49`, `50` and the drives before
+them hold (H16 third in A since 12/11 evening; the baseline stands); **6p's second half, the phone above cylinder 3**, at the next
 captured stop that swells (the tailpipe half done at `50`'s stop);
 **6i's oil level
 next about 156,400 km** (read 11/11 evening: another 0.5–1 mm lower,
