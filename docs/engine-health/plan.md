@@ -164,8 +164,8 @@ marks 13/11 morning.*
       `TEV ne OK`), photographs it, says the verdict and closes it;
       **then again, up to three runs, a minute or two of plain idle
       between** (*the owner*, 13/11), the phone filming VCDS's screen
-      through each run, and **"start" / "konec 070" into the chat** at
-      each run's start and end.
+      through each run, and **"070 start" / "070 stop" into the chat** at
+      each run's start and end (never "konec", which ends the session).
    9. **Claude starts the VCDS log again.**
    10. **The owner drives on**, gentle or brisk as it comes (Claude
        reads which from the capture); "konec" ends it as in item 6:
