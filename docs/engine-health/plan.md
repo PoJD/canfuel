@@ -19,12 +19,14 @@ The full previous version, before it was condensed on 20/10/2026:
 
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Next, until the new N80
-is fitted (expected the weekend of 14–15/11)**: **the MFD stays out
+is fitted (in hand since 13/11, to go in about the weekend of
+14–15/11)**: **the MFD stays out
 and the drives are captured** (item 6, *the owner*, 12/11), each with
 **014** and **032 read before and after** — the old valve's 032 against
 the drive, before the swap, gentle or brisk read off the capture; **8q, the timing belt at a garage, once it
-has a date**, never on the same day as the new N80; **the new rear probe back to the seller and a new one
-fitted** (8e). **Then 8a, the new N80**: 032/055 and the fault memory
+has a date** (the garage chosen, a date asked for 13/11), never on the same day as the new N80; **the new rear probe's
+replacement fitted when the seller sends it** (8e; the probe sent back
+13/11, the old rear probe on the car meanwhile). **Then 8a, the new N80**: 032/055 and the fault memory
 before, the swap, 070, then one gentle and one brisk drive, captured,
 032 after each; **then 8o, two more captured drives with N80's hose
 shut**. **6p's second half, the phone above cylinder 3, at the next
@@ -150,7 +152,8 @@ marks 13/11 morning.*
      photographs it; then item 6's warm stops, and **032 read after the
      first two drives** (8f) — **one of them gentle, one brisk**, both
      captured.
-   - **Fitted when it arrives**; nothing to read before it but the line above.
+   - **Fitted about the weekend of 14–15/11** (the part in hand 13/11);
+     nothing to read before it but the line above.
    - **At any engine lamp from now on**: the odometer, the tank's needle
      and the outside temperature into the chat, and 032 read before the
      code is cleared.
@@ -166,7 +169,7 @@ marks 13/11 morning.*
    clamp off, the hose looked at where it was pinched, the fault memory
    cleared by the owner, and 032's next reading taken as a fresh start.
 8q. **The timing belt renewed at a garage** (*the owner's decision*,
-   13/11): the belt, its tensioner and idler, and the water pump.
+   13/11; the garage chosen by the owner, a date asked for 13/11): the belt, its tensioner and idler, and the water pump.
    **Before the old belt is loosened**, the mechanic sets the crank to
    TDC of cylinder 1 and says how many teeth the camshaft sprocket's
    mark is off its mark, which way, and photographs both marks; the
@@ -238,8 +241,9 @@ marks 13/11 morning.*
 8e. **The probe now, the harness at the end** (*the owner*, 11/11 and
    12/11; S23 closed 12/11 as the new probe's fault, `refuted.md` D13).
    **The new rear
-   probe goes back to the seller, a new one in its place** (*the owner*,
-   12/11: the old one, refitted, read healthy with no P0137). The new one
+   probe went back to the seller under warranty, 13/11; a new one in its place
+   when it comes** (*the owner*, 12/11: the old one, refitted, read healthy
+   with no P0137; until then the car runs on the old rear probe). The new one
    is fitted as the first was: Bosch's paste on the thread only, nothing
    in the connector, the lead clear of the exhaust and not pressed into
    the harness box. If P0137 comes back with it, the harness — cold and
@@ -749,8 +753,8 @@ four readings on the canister, `open.md` H16, *The owner's reading,
 gentle drive and to −7.0 after a brisk one; on a tight one it should no
 longer follow the drive.
 **The photographs** because whether N112 and N80 share a vacuum tap is
-not recorded. **Fitted when it arrives** (*the owner*, 11/11: the
-fix comes first; 8b dropped).
+not recorded. **Fitted as soon as it is in hand** (*the owner*, 11/11: the
+fix comes first; 8b dropped; in hand 13/11, the swap about the weekend).
 **The details at a lamp** because this ECU keeps no freeze frame; with
 them the next code can be set against fills, tank and weather.
 
