@@ -180,9 +180,10 @@ marks 13/11 morning.*
    is TDC of 4: once more round). Then **the camshaft sprocket's mark
    against its mark**: a photograph of each square on, and if apart,
    **the sprocket's teeth between them counted** and which way. Nothing
-   loosened; the plug back in. **The crank pulley's diameter measured**
-   (or its rim with a tape) and the gap from 8i's notch to its groove
-   in cm. Into the chat.
+   loosened; the plug back in. **The crank pulley's diameter measured**,
+   to a centimetre or so (the gap between 8i's marks not measured: it
+   cannot be reached without taking parts off, *the owner*, 13/11).
+   Into the chat.
 8q. **The timing belt renewed at a garage** (*the owner's decision*,
    13/11; the garage chosen by the owner, a date asked for 13/11): the belt, its tensioner and idler, and the water pump.
    **Before the old belt is loosened**, the mechanic sets the crank to
@@ -693,7 +694,9 @@ right and 8i's 30–60° was the wrong marks or a misjudged angle; the
 cam turns once for two of the crank, so TDC of 1 is the turn with the
 cam's mark near its own, half a turn of the sprocket off on the other.
 **The pulley's diameter** turns the owner's 2–3 cm or more on its rim
-(13/11 evening) into degrees: 15–25° at 14–16 cm (*reasoned*), a tooth
+(13/11 evening) into degrees: 15–25° at 14–16 cm (*reasoned*; a
+centimetre on the diameter moves it by about 7 %, far less than the
+gap's own 2–3 cm), a tooth
 — where the 30–60° by eye were 1.5–3; and if the flywheel and the cam
 agree while the pulley's notch does not, the pulley sits turned on its
 sprocket (*the owner*). Where the window
