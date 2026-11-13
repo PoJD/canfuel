@@ -662,7 +662,9 @@ after 8i): 8i read the cam's OT mark set and the crank pulley's one
 notch 30–60° of crank from the groove on the block by eye
 (`open.md`, *Where it stands*, the row A1) — 1.5–3 teeth with the cam
 advanced if those are the true marks (the direction the owner's, read
-off the part), which the flat full-load pulls argue against; the
+off the part), which the flat full-load pulls and the air the engine takes at full
+throttle argue against (485 mg a stroke at 5,200 rpm against 496 at
+2,400, 85–90 g/s at the top; the row A1); the
 piston at plug 1 that would have settled it was declined. The belt
 is nine years old (10/2017), so renewing it loses nothing either way,
 and the owner leaves the work to a garage. **What makes it a test**:
