@@ -22,8 +22,8 @@ Captures only where an item asks for one. **Next, until the new N80
 is fitted (expected the weekend of 14–15/11)**: **the MFD stays out
 and the drives are captured** (item 6, *the owner*, 12/11), each with
 **014** and **032 read before and after** — the old valve's 032 against
-the drive, before the swap, gentle or brisk read off the capture; **8i (the timing belt's marks) at the next cold
-engine**; **the new rear probe back to the seller and a new one
+the drive, before the swap, gentle or brisk read off the capture; **8q, the timing belt at a garage, once it
+has a date**, never on the same day as the new N80; **the new rear probe back to the seller and a new one
 fitted** (8e). **Then 8a, the new N80**: 032/055 and the fault memory
 before, the swap, 070, then one gentle and one brisk drive, captured,
 032 after each; **then 8o, two more captured drives with N80's hose
@@ -34,7 +34,8 @@ laptop session; **8e's harness at the end**, 8g dropped (*the owner*,
 10/11 and 11/11; `open.md` H11, *The relearn drive*; `refuted.md` D13;
 S1, *The rough start of a warm stop*). *Done: 8j and its first drive
 11/11, item 6's first captured drive 12/11 (`49`), 6q the queue drive
-12/11 evening (`50`), 6p's tailpipe half at its stop.*
+12/11 evening (`50`), 6p's tailpipe half at its stop, 8i the belt's
+marks 13/11 morning.*
 
 6. **Drive normally; the MFD out from 12/11** (*the owner*), so the
    drives can be captured — the converter goes with the MFD, so no
@@ -164,12 +165,16 @@ S1, *The rough start of a warm stop*). *Done: 8j and its first drive
    such), **032 read but not counted for 8f**. After the second: the
    clamp off, the hose looked at where it was pinched, the fault memory
    cleared by the owner, and 032's next reading taken as a fresh start.
-8i. **The timing belt's marks, at a cold engine**: the upper belt guard off; the crank turned by hand in
-   the direction of rotation until cylinder 1 is at TDC, **the notch on
-   the crankshaft pulley against its mark** (within about 5 mm); then
-   **the camshaft sprocket's mark against its mark** on the cover or the
-   head. **A photograph of each mark, square on**, into the chat; nothing
-   loosened. Then the guard back on.
+8q. **The timing belt renewed at a garage** (*the owner's decision*,
+   13/11): the belt, its tensioner and idler, and the water pump.
+   **Before the old belt is loosened**, the mechanic sets the crank to
+   TDC of cylinder 1 and says how many teeth the camshaft sprocket's
+   mark is off its mark, which way, and photographs both marks; the
+   answer into the chat. Before the garage: a captured drive to a warm
+   stop with 014, 032/055 and the fault memory read. After it: the
+   fault memory read, 032/055 for 20 s, and a captured drive to a warm
+   stop of ten minutes. **Not on the same day as the new N80 (8a)**: a
+   captured drive between the two.
 8f. **032 for 20 s at every session with VCDS connected**, until both
    cells have held for three drives; **and 036 for a minute** at a warm
    idle and on the road when VCDS is on anyway (the rear probe watched
@@ -652,19 +657,22 @@ seat at its tightest; the engine cools while the intake comes off as
 it is, and a film on a seat may not last that either — a tight 3 there
 still clears nothing, a leaking one names it.
 
-**8i, the timing belt's marks** (*agreed with the owner*, 11/11;
-**first of list A since 12/11 evening**, the one test in the plan that
-bears on the common part): the
-belt sat sixth for the idle then, but its check costs a quarter of an hour
-and no part, so it goes before the tests that cost a garage. VW's fault
-table has 16725 / P0341 for a camshaft sender signal out of place, which
-an empty fault memory makes less likely but does not exclude (`open.md`,
-*What the forums say*, 11/11); a mark a tooth out (roughly 18° of crank,
-*reasoned* from a sprocket of about 40 teeth; the AQY's not counted)
-is visible at the sprocket. **Read**: both marks on — the belt is
-refuted for the idle; one off — the belt is reset before anything else.
-The 5 mm tolerance at the crank is from VW's text for the Mk4 2.0;
-nothing of the AQY's own was read.
+**8q, the timing belt at a garage** (*the owner's decision*, 13/11,
+after 8i): 8i read the cam's OT mark set and the crank pulley's one
+notch 30–60° of crank from the groove on the block by eye
+(`open.md`, *Where it stands*, the row A1) — 1.5–3 teeth if those are
+the true marks, which the flat full-load pulls argue against; the
+piston at plug 1 that would have settled it was declined. The belt
+is nine years old (10/2017), so renewing it loses nothing either way,
+and the owner leaves the work to a garage. **What makes it a test**:
+the mechanic's count of teeth before the old belt comes off says
+whether 8i's reading was true; the captured warm stop before and
+after says whether the common part (list A) moved — down by a clear
+step if the cam was out, unchanged if it was not (H0 then gains).
+**Kept apart from the new N80** so that each has a captured drive of
+its own; which comes first is the dates'. Nothing in 8i was loosened;
+VW's 5 mm at the crank was for the Mk4 2.0, nothing of the AQY's own
+was read.
 
 **8f after the harness** (10/11 late night): the battery out once more
 after the probes' harness was taped (098 run on reconnecting, OK), so

@@ -36,7 +36,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 12 November 2026
+## Where it stands — 13 November 2026
 
 **Closed**, in `refuted.md` §D: S6 the exhaust joint behind the
 converter, S8 the top end, S9 the rich trim, S10 the oil leak at the back
@@ -50,6 +50,24 @@ P0137 (12/11, D13: the new probe's own fault — the old one refitted read
 healthy on two drives with no P0137; the owner's decision)**; H9 (crankcase ventilation,
 A15), H10 (when 014 counts, C19) and **H15 (the NGK plug ends, C24,
 4/11)**.
+
+**The timing belt's marks were read 13/11 morning, cold** (`plan.md`
+8i, done; the row A1): **the camshaft sprocket's OT mark set against
+its mark** (*owner*), a tooth of the sprocket painted white, most likely
+at the belt change of 10/2017 (album 9:42); **the one narrow notch on
+the crankshaft pulley's rim then stood 30–60° of crank from the groove
+on the block, behind it** (*owner*, by eye and by the borescope with a
+finger on the notch, album 10:12–10:39; first given as about 45°) —
+1.5–3 teeth of the cam if both marks are the right ones (*reasoned*).
+No other notch on the pulley; the two wide cut-outs at 4 and 9 o'clock
+read as balancing cuts (*reasoned*). **Not settled**: the direction
+from below through a borescope may be mirrored, and 2–3 teeth sit
+badly with the full-load pulls (A1); **the piston of cylinder 1 at its
+plug hole, which would have settled both, declined** (*the owner*: not
+taking a plug out). **The owner's decision: the belt and the water
+pump renewed at a garage** (`plan.md` 8q) — nine years on the belt,
+nothing lost if it was right; the mechanic reads the old belt's marks
+before it comes off.
 
 **The original map has been in the ECU since 3/11** (`plan.md` 5a), the
 adaptations reset with it; the drive home was captured (`42`) and read
@@ -266,7 +284,7 @@ the ECU's purge phases (H16). **The common part is a constant**:
 every repair; it moves only with a load (a fifth less), the provider's
 gas (two fifths less) and temperature (a fifth more cold), and not
 with 3's wave — what H0 or a fixed fault on all four gives (the belt's
-marks, 8i), not a source that changes by the day (H16's leak, H7's
+marks, 8i, read 13/11 and not settled; the belt renewed, 8q), not a source that changes by the day (H16's leak, H7's
 rail, H18, H11, H21). **Agreed with the owner the same evening, all
 four**: the phone's recording through a swell beside a capture
 (`plan.md` 6p; the tailpipe half done 12/11 evening at `50`'s
@@ -432,7 +450,9 @@ steady pattern over the cylinders and the rough start after a hot
 drive, about a third. **A, common** (*re-ordered 12/11 evening, agreed
 with the owner*: the common part is a constant, S1, *The swell's shape,
 and what the common part follows*): **the timing belt a tooth out**
-(its marks, 8i, the one test in the plan that bears on it), **H0**,
+(its marks read 13/11, 8i: the crank's notch 30–60° from its groove by
+eye, not settled; the belt renewed at a garage, 8q, *the owner's
+decision*), **H0**,
 **H16** (the purge path, the valve and the canister; first until that
 evening; the new N80 still to fit, 8a — the common part by capture
 before and after it), H8, **H7's rail pressure**, **H21**, **H11**, H2
@@ -515,8 +535,10 @@ was; **6p's second half, the phone above cylinder 3**, at the next
 captured stop that swells (the tailpipe half done at `50`'s stop);
 **6i's oil level
 next about 156,400 km** (read 11/11 evening: another 0.5–1 mm lower,
-H18); **8i, the timing
-belt's marks, at the next cold engine**; **the new rear probe back to
+H18); **8q, the timing
+belt and water pump renewed at a garage** (*the owner's decision*, 13/11,
+after 8i), the old belt's marks read by the mechanic before it comes
+off, with a captured drive between it and the new N80; **the new rear probe back to
 the seller and a new one fitted** (S23 closed 12/11 as its fault,
 `refuted.md` D13); **then 8a, the new N80**: 032/055 and the fault
 memory before, 070 after, then one gentle and one brisk drive captured
@@ -1680,8 +1702,11 @@ pressure after a hot drive (H7: the high revs before, nothing) and oil
 past the seals after idling (H18: the time into the stop, nothing).
 **No healthy AQY has been measured**, so whether 2.9 is this engine
 type's or this engine's is what the list cannot yet say; **8i, the
-belt's marks, is the one test in the plan that bears on it**, and the
-new N80 will show once more whether the common part moves at all.
+belt's marks, was the one test in the plan that bore on it**; read
+13/11, the crank's notch stood 30–60° from its groove by eye, not
+settled (the row A1), and **the belt's renewal (8q) is now the test**:
+the common part by capture before and after it, as the new N80 will
+show once more whether it moves at all.
 
 **The queue drive, and what the ECU sees through a swell** (12/11
 evening, `50`; `plan.md` 6q, done; *the owner's offer*: VCDS one group
@@ -5876,7 +5901,8 @@ be read to its end stops unresolved after the same parts list this car has
 been through. What was reported as fixed: a new battery, a new Bosch coil, a
 new lambda probe, **original VW leads instead of aftermarket ones**, rings
 and a head going-over, a sticking bucket tappet, the timing belt a tooth out.
-Most of these are already done here; the belt is not.
+Most of these are already done here; the belt's marks were read 13/11
+(not settled) and the belt is to be renewed (`plan.md` 8q).
 
 **A remap that made the idle worse** (searched 28/10 at the owner's
 request, Czech and English): **no AQY, 2.0 8v or Motronic M5.9.2 case
@@ -6110,7 +6136,7 @@ nothing 014 counts; second since 12/11):
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| A1 | **the timing belt a tooth out** | **12/11 night, off idle, kept** (*the owner's question*; *Naming the cylinder*, *Off idle*): what this session read is one cylinder against another, and a belt moves all four alike, so 3's and 4's figures say nothing for or against it; **two things do bear on it, both weakly against**: at full throttle the car's acceleration needs 0.91–1.04 of what b7 claims in every band from 2,000 to 6,000 rpm, **with no tilt from low speed to high**, where a cam a tooth out moves the filling from one end to the other (*general*), and the whole is within a tenth of the rated torque; a tenth is also about what a tooth could cost, so the marks (8i) still decide; **12/11 evening up from second to first** (*agreed with the owner*): the common part is a constant — the same within 5 % at every warm idle since 24/9, answering only to a load, the gas and temperature — which a fixed fault on all four gives and a source that varies by the day does not (S1, *The swell's shape, and what the common part follows*); **12/11, the idle split in two** (*the owner's decision*): all four cylinders' timing alike; **11/11 kept, but its marks looked at first, being free** (*agreed with the owner*); VW's fault table has 16725 / P0341 for a G40 signal out of place, so an empty memory is weak evidence against (*What the forums say*, 11/11); **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 evening up from ninth** (*agreed with the owner*): the gas idle names the dips a burn at the dilution edge, and the cam's timing sets the exhaust kept at idle through where the valves' overlap falls against the piston (one camshaft, so its length cannot change), with compression even and the full-load power nearly intact (S1, *The gas idle taken apart*); belt from 10/2017; a forum fix | its marks; even compression and the full plateau argue against; **the ECU would not necessarily say** (*the owner's question*, 9/11): the AQY has a Hall sender G40 on the camshaft, which SSP 175 (p. 49) describes only as identifying cylinder 1, with the advance retarded as an emergency function if it fails — no check of the cam's angle against the crank is described, unlike engines with variable cam timing; so a tooth off may store nothing, and no G40 code has been read on any session since 9/2026 |
+| A1 | **the timing belt a tooth out** | **13/11, its marks read (8i), kept first** (*the owner*; the paragraph under *Where it stands*): the cam's OT mark set, **the crank pulley's only notch 30–60° of crank behind the groove on the block**, by eye and borescope — **for it if both marks are the true ones**, 1.5–3 teeth; but the direction may be mirrored from below, and 2–3 teeth sit badly with the flat full-load pulls below, so read as unsettled; the piston at plug 1, which settles it, declined (*the owner*); **the belt renewed at a garage** (8q, *the owner's decision*), the mechanic to read the old marks before it comes off; **12/11 night, off idle, kept** (*the owner's question*; *Naming the cylinder*, *Off idle*): what this session read is one cylinder against another, and a belt moves all four alike, so 3's and 4's figures say nothing for or against it; **two things do bear on it, both weakly against**: at full throttle the car's acceleration needs 0.91–1.04 of what b7 claims in every band from 2,000 to 6,000 rpm, **with no tilt from low speed to high**, where a cam a tooth out moves the filling from one end to the other (*general*), and the whole is within a tenth of the rated torque; a tenth is also about what a tooth could cost, so the marks (8i) still decide; **12/11 evening up from second to first** (*agreed with the owner*): the common part is a constant — the same within 5 % at every warm idle since 24/9, answering only to a load, the gas and temperature — which a fixed fault on all four gives and a source that varies by the day does not (S1, *The swell's shape, and what the common part follows*); **12/11, the idle split in two** (*the owner's decision*): all four cylinders' timing alike; **11/11 kept, but its marks looked at first, being free** (*agreed with the owner*); VW's fault table has 16725 / P0341 for a G40 signal out of place, so an empty memory is weak evidence against (*What the forums say*, 11/11); **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 evening up from ninth** (*agreed with the owner*): the gas idle names the dips a burn at the dilution edge, and the cam's timing sets the exhaust kept at idle through where the valves' overlap falls against the piston (one camshaft, so its length cannot change), with compression even and the full-load power nearly intact (S1, *The gas idle taken apart*); belt from 10/2017; a forum fix | its marks, read 13/11 (8i): the crank's notch 30–60° off by eye, not settled; **the old belt's marks read by the mechanic before it comes off, and the common part by capture before and after the new belt** (`plan.md` 8q); even compression and the full plateau argue against; **the ECU would not necessarily say** (*the owner's question*, 9/11): the AQY has a Hall sender G40 on the camshaft, which SSP 175 (p. 49) describes only as identifying cylinder 1, with the advance retarded as an emergency function if it fails — no check of the cam's angle against the crank is described, unlike engines with variable cam timing; so a tooth off may store nothing, and no G40 code has been read on any session since 9/2026 |
 | A2 | **H0** normal for this engine | **12/11 evening up from ninth to second** (*agreed with the owner*): a common part that no repair, day or drive has moved, and that answers only to the charge, is what an engine's own scatter looks like; a fixed fault reads the same and no healthy AQY says which (S1, *The swell's shape, and what the common part follows*); **12/11, the idle split in two** (*the owner's decision*): the floor left when every fault is gone; **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **9/11 evening one down**; no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
 | A3 | **H16** the purge path (the valve, the canister bypassed) | **12/11 night, the queue drive, kept**: 001 at three rows a second swung the same through 3's swell, its fall and the floor; 032 moved towards zero on a gentle hour, against the owner's reading's gentle half; `49`'s long floor did not come again on the same hardware (H16); **12/11 evening down from first to third** (*agreed with the owner*): the common part read 2.7–3.1 rpm rms by capture on the bypass and on the canister alike, gentle days and brisk, where a leak following the canister's load would move it (S1, *The swell's shape, and what the common part follows*); the purge phases kept as a weak reading of 3's swell, tested by 8o; **12/11, the idle split in two** (*the owner's decision*): the common part's first: the two calm nights on the canister; **12/11 up from sixth to third** (*the owner's decision*: "H16 higher"; third proposed by Claude): the two calmest warm stops on record outside the gas came on the two nights since the canister went back, the only change they share — the one hypothesis with a change that moved the settled floor, so above H3, H4 and H7, which explain the one cylinder's part but have had no change that moved anything; below H13 and H1 because it cannot pick a cylinder; **the new N80 not yet fitted** (`plan.md` 8a), the valve half of it untested warm; **11/11 night, kept**: the first drive on the canister relearnt 032's part-load cell to +2.3 % where the bypass held +6.3 to +7.0 — for it, **held on 12/11's second drive (−5.5 / +2.3)**; the idle cell back near −6, not moved by the canister (S21, *The first drive on the canister*); **both nights' stops near home the calmest on record outside the gas, 12/11's for about 13 minutes with 014 at 0.04 % — the canister the one change they share** (two stops; H16, *12/11 night*); **11/11 evening up from twelfth** (*agreed with the owner*): the canister found bypassed, the tank's line straight to N80 (S21) — raw tank vapour at every purge, rich when warm: P0440 in winter and a warm rich source fit it; it still cannot pick one cylinder; **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **6/11 night down from seventh** (*agreed with the owner*): out of the car the valve hardly passed air unpowered, and its pulses do not line up with the dips (H16, *The valve's pulses against the dips*); before that **6/11 evening up from eleventh**: P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the weak firings in pairs do (the idle's 1½-min waves turned out the radiator fan, S1); a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | **the canister plumbed back, done 11/11, its first drive read** (S21); 032 after drives without a reset (`plan.md` 8f); then the valve ordered 11/11 (*the owner*), 032 before and after (`plan.md` 8a); 6/11 night, out of the car, it hardly passed air unpowered |
 | A4 | **H8** throttle and idle control | **12/11 night, the queue drive, kept**: 003 at three rows a second — the advance's scatter does not go with the common part (H8); **12/11, the idle split in two** (*the owner's decision*): the air and the idle regulation, all four alike; **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **9/11 evening one down**; **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |

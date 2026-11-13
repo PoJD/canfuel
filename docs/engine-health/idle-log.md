@@ -1557,3 +1557,23 @@ was the fault, one drive; S3, *P0300 and P0303*.
   - *not known:* whether a seat or a dilution makes 3 burn late — the
     sound fits both; why this stop kept no floor where the morning's
     held fourteen minutes.
+
+## 13/11 morning — the timing belt's marks (8i)
+
+- **Tests:** a cold engine, the upper belt guard off, the crank turned
+  by hand; the camshaft sprocket's OT mark set against its mark
+  (*owner*; a tooth painted white beside it); the crankshaft pulley
+  looked at from below and through the borescope; nothing loosened.
+- **Changes after:**
+  - *measured:* **the pulley's one narrow notch 30–60° of crank behind
+    the groove on the block** (*owner*, by eye, a finger on the notch;
+    first given as about 45°); no other notch, two wide cut-outs at 4
+    and 9 o'clock read as balancing cuts;
+  - *not known:* whether that is the belt out by 1.5–3 teeth or the
+    marks misread — the direction may be mirrored from below, and the
+    flat full-load pulls argue against so many teeth; the piston at
+    plug 1 was not looked at (*the owner*: not taking a plug out).
+
+The owner decided to have the belt and the water pump renewed at a
+garage (`plan.md` 8q), the mechanic to read the old marks first
+(`open.md` A1).
