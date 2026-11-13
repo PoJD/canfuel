@@ -26,9 +26,9 @@ Captures only where an item asks for one. **Next, the new N80
 window**, before the garage; **8q, the timing belt at a garage, once it
 has a date** (the garage chosen, a date asked for 13/11), never on the same day as the new N80; **the new rear probe's
 replacement fitted when the seller sends it** (8e; the probe sent back
-13/11, the old rear probe on the car meanwhile). **Then 8a, the new N80**: 032/055 and the fault memory
-before, the swap, 070, then one gentle and one brisk drive, captured,
-032 after each; **then 8o, two more captured drives with N80's hose
+13/11, the old rear probe on the car meanwhile). **Then 8a, the new N80, one laptop session** (032/055 and
+the fault memory before, the swap, a captured drive with 070 at a stop
+on the way, 032 after; a second drive another day); **then 8o, two more captured drives with N80's hose
 shut**. **6p's second half, the phone above cylinder 3, at the next
 captured stop that swells.** **6m for injector 3, at the next evening
 with the upper intake off** (agreed 12/11 night), ahead of item 9; then item 9; 8h at a
@@ -140,20 +140,34 @@ marks 13/11 morning.*
    off** (the canister plumbed back 11/11 evening, `idle-log.md`): each
    rubber piece and its clip, the tank's line where it was bent; a
    photograph into the chat.
-8a. **The purge valve N80, the new one ordered by the owner (11/11)**:
-   Bosch `0 280 142 353`, VW `1C0 906 517 A`, the same as the one on the
-   car; the hoses stay. In this order, the day it is fitted:
-   - **032/055 and the fault memory read with VCDS** just before the swap.
-   - The swap; **the old valve kept**, not thrown away.
-   - While it is out: **a photograph of its two hoses to where they
-     join** (the T at the throttle) and of the vacuum hose of the
-     secondary-air valve N112 to where it joins.
-   - Afterwards, warm, the owner runs **basic setting 070** and
-     photographs it; then item 6's warm stops, and **032 read after the
-     first two drives** (8f) — **one of them gentle, one brisk**, both
-     captured.
-   - **Fitted about the weekend of 14–15/11** (the part in hand 13/11);
-     nothing to read before it but the line above.
+8a. **The purge valve N80, the new one, one laptop session** (*the owner*,
+   13/11; the part in hand, about the weekend of 14–15/11): Bosch
+   `0 280 142 353`, VW `1C0 906 517 A`, the same as the one on the car;
+   the hoses stay. Claude runs the laptop as in item 6 (he clicks
+   nothing but 070). In this order:
+   1. **The owner reads 032/055 for 20 s and the fault memory** with
+      VCDS, the old valve still connected; saved beside the logs.
+   2. **The owner swaps the valve**; **the old one kept**. While it is
+      out: **a photograph of its two hoses to where they join** (the T
+      at the throttle) and of the vacuum hose of the secondary-air valve
+      N112 to where it joins.
+   3. **Claude starts the capture and the VCDS log** (014 and 001; the
+      third group Claude's choice on the day), before the ignition.
+   4. **The owner drives.**
+   5. **Claude says in the chat when 070 can run**: coolant over 80 °C,
+      001 field 4 at `111111` (the gate for every basic setting), the
+      A/C off (from the bus).
+   6. **The owner parks somewhere and says so**, the engine idling,
+      the A/C off, no throttle.
+   7. **Claude stops the VCDS log; the capture runs on.**
+   8. **The owner runs basic setting 070** to its verdict (`TEV OK` /
+      `TEV ne OK`), photographs it, says the verdict and closes it.
+   9. **Claude starts the VCDS log again.**
+   10. **The owner drives on**, gentle or brisk as it comes (Claude
+       reads which from the capture); "konec" ends it as in item 6:
+       032/055 for 20 s and the fault memory after.
+   - **The second drive on the new valve** another day, the other kind
+     of the two (gentle or brisk), captured, 032 after (8f).
    - **At any engine lamp from now on**: the odometer, the tank's needle
      and the outside temperature into the chat, and 032 read before the
      code is cleared.
@@ -779,6 +793,23 @@ summer overpressure (`open.md` S21), which a November day cannot give.
 back with heat can creep off its port, and a joint that lets go is a
 leak of unmetered air at every purge and P0440 again; the wheel coming
 off for anything else is the free moment to look.
+
+**Item 8a as one laptop session** (*the owner*, 13/11): Claude drives
+the laptop, the owner the car and VCDS's 070. **070 is a test, not an
+adaptation** (the label's verdict `TEV OK` / `TEV ne OK`, nothing
+stored; unlike 060 and 098, the throttle's `ADP OK`), so the car needs
+none of it; it is run for the new valve's own reading — the ECU opens
+it and its fields give the duty, the lambda controller's deviation and
+the flow — against which a later P0440 can be read; 27/9 kept only the
+verdict. **Its gate** is 001 field 4 (the label's "basic setting
+requirements": coolant over 80 °C, under 2,000 rpm, throttle closed,
+lambda control in order, idle, the A/C compressor off — `111111`; the
+Czech label reads "pod 80 °C", a slip of translation for over), so it
+cannot run cold before the start. **The VCDS log stops** because one
+VCDS holds the control unit; **the capture runs on** because the stop
+is a warm idle with N80 driven open on purpose — the idle's answer to
+the purge, recorded (H16). Claude never starts a basic setting
+(`CLAUDE.md`), so 070 is the owner's click.
 
 **Item 8a, from 11/11** (*the owner*: the part ordered "to be sure",
 after the research of 11/11 on P0172 and P0440; `open.md` S21, *Read

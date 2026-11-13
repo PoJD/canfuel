@@ -563,9 +563,11 @@ off, with a captured drive between it and the new N80 (the garage chosen, a
 date asked for 13/11, none yet); **the new rear probe sent back to the
 seller under warranty 13/11, its replacement fitted when it comes, the
 old rear probe on the car meanwhile** (S23 closed 12/11 as its fault,
-`refuted.md` D13); **then 8a, the new N80**: 032/055 and the fault
-memory before, 070 after, then one gentle and one brisk drive captured
-with 032 after each (H16, S19, S21); **then 8o, two captured drives
+`refuted.md` D13); **then 8a, the new N80, one laptop session** (*the owner*,
+13/11): 032/055 and the fault memory before, the swap, a captured drive
+with 070 at a warm stop on the way (a test, not an adaptation; the
+capture runs through it), 032 after; a second drive another day, one
+gentle and one brisk between them (H16, S19, S21); **then 8o, two captured drives
 with N80's hose shut**; **8h, the loads against the
 sensors' voltages**, at a laptop session; **8f, 032 at every VCDS
 session**; **6m's injector circuits**, read for 3, **at the owner's
