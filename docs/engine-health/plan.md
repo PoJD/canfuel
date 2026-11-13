@@ -161,7 +161,11 @@ marks 13/11 morning.*
       the A/C off, no throttle.
    7. **Claude stops the VCDS log; the capture runs on.**
    8. **The owner runs basic setting 070** to its verdict (`TEV OK` /
-      `TEV ne OK`), photographs it, says the verdict and closes it.
+      `TEV ne OK`), photographs it, says the verdict and closes it;
+      **then again, up to three runs, a minute or two of plain idle
+      between** (*the owner*, 13/11), the phone filming VCDS's screen
+      through each run, and **"start" / "konec 070" into the chat** at
+      each run's start and end.
    9. **Claude starts the VCDS log again.**
    10. **The owner drives on**, gentle or brisk as it comes (Claude
        reads which from the capture); "konec" ends it as in item 6:
@@ -808,7 +812,18 @@ Czech label reads "pod 80 °C", a slip of translation for over), so it
 cannot run cold before the start. **The VCDS log stops** because one
 VCDS holds the control unit; **the capture runs on** because the stop
 is a warm idle with N80 driven open on purpose — the idle's answer to
-the purge, recorded (H16). Claude never starts a basic setting
+the purge, recorded (H16). **Several runs** (*the owner*, 13/11):
+each opens N80 on purpose at a warm idle, and the question is whether
+cylinder 3's swell follows the openings — one run could fall on a
+swell by chance, three in turn with plain idle between can be set
+against it; the screen filmed for 070's field 2 (the lambda
+controller's deviation, which the purge moves at once where 032 moves
+slowly), the chat's start and end for the capture. *Whether the
+idle's own control behaves as in plain idle while a basic setting
+runs is not known for this ECU* (*general*: some VW ECUs hold the
+ignition or the idle controller in basic settings), so a swell during
+a run is read against the minutes between runs, not against other
+days. Claude never starts a basic setting
 (`CLAUDE.md`), so 070 is the owner's click.
 
 **Item 8a, from 11/11** (*the owner*: the part ordered "to be sure",
