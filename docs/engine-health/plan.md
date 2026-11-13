@@ -181,7 +181,7 @@ marks 13/11 morning.*
    Then, **after 8a's two drives are read and the new valve found
    tight**: engine off, **N80's electrical connector unplugged** (*the
    owner*, 13/11: nothing pinched or left by the hose, just above the
-   belt's pulley; *a hose clamp until then*), the connector tucked
+   belt's pulley; and the lines could not be pinched anyway — the one to the canister is hard plastic, those nearer the engine rubber gone very stiff, *the owner*, 13/11; *a hose clamp until then*), the connector tucked
    clear of anything that turns; a photograph. Item 6's drive, captured,
    to a warm stop of ten minutes or more, twice, on different days.
    After each: the fault memory (a code for N80's circuit or the purge
