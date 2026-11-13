@@ -28,8 +28,8 @@ has a date** (the garage chosen, a date asked for 13/11), never on the same day 
 replacement fitted when the seller sends it** (8e; the probe sent back
 13/11, the old rear probe on the car meanwhile). **Then 8a, the new N80, one laptop session** (032/055 and
 the fault memory before, the swap, a captured drive with 070 at a stop
-on the way, 032 after; a second drive another day); **then 8o, two more captured drives with N80's hose
-shut**. **6p's second half, the phone above cylinder 3, at the next
+on the way, 032 after; a second drive another day); **then 8o, two captured drives with N80 unplugged, only if
+8a's 070 runs leave the purge's part in 3's swell open**. **6p's second half, the phone above cylinder 3, at the next
 captured stop that swells.** **6m for injector 3, at the next evening
 with the upper intake off** (agreed 12/11 night), ahead of item 9; then item 9; 8h at a
 laptop session; **8e's harness at the end**, 8g dropped (*the owner*,
@@ -175,17 +175,20 @@ marks 13/11 morning.*
    - **At any engine lamp from now on**: the odometer, the tank's needle
      and the outside temperature into the chat, and 032 read before the
      code is cleared.
-8o. **Two captured drives with N80's hose shut** (agreed 12/11
-   evening), **only after 8a's gentle and brisk drives are read**.
-   Engine off and cold: **the rubber hose between N80 and the T at the
-   throttle pinched shut with a hose clamp** (a plastic line is never
-   pinched: there the hose is pulled off N80 and both open ends
-   plugged); a photograph of it. Then item 6's drive, captured, to a
-   warm stop of ten minutes or more, twice, on different days. After
-   each: the fault memory (a purge code is expected and is said as
-   such), **032 read but not counted for 8f**. After the second: the
-   clamp off, the hose looked at where it was pinched, the fault memory
-   cleared by the owner, and 032's next reading taken as a fresh start.
+8o. **Two captured drives with the purge shut — only if 8a's 070 runs
+   leave it open** (*the owner*, 13/11: the capture of 8a read straight
+   after the drive, in a cloud session, against 3's swells first).
+   Then, **after 8a's two drives are read and the new valve found
+   tight**: engine off, **N80's electrical connector unplugged** (*the
+   owner*, 13/11: nothing pinched or left by the hose, just above the
+   belt's pulley; *a hose clamp until then*), the connector tucked
+   clear of anything that turns; a photograph. Item 6's drive, captured,
+   to a warm stop of ten minutes or more, twice, on different days.
+   After each: the fault memory (a code for N80's circuit or the purge
+   is expected, and the engine lamp may light: said as such), **032
+   read but not counted for 8f**. After the second: the connector back
+   on, the fault memory cleared by the owner, and 032's next reading
+   taken as a fresh start.
 8r. **The flywheel's mark through the gearbox window** (*the owner*,
    13/11: before the garage, to be sure), at a cold engine, the key out:
    the window's plug out; the crank turned by its pulley's bolt, **only
@@ -677,16 +680,22 @@ by the door and then by the weak strokes themselves. One recording
 because a restart costs the door's mark (12/11: the second file had to
 be set by its clock).
 
-**8o, N80's hose shut** (*agreed with the owner*, 12/11 evening;
+**8o, the purge shut** (*agreed with the owner*, 12/11 evening; **by
+the connector since 13/11**, *the owner*: nothing pinched just above
+the belt's pulley — N80 is closed unpowered, *general*, so the new
+valve shuts the purge as a clamp would, which the old, which leaked
+closed, could not; **conditional since 13/11**: 8a's 070 runs open the
+purge on purpose at a warm stop, three times with idle between, and
+may answer the same question first;
 `open.md` S1, the same section; H16): the ECU's purge is the one thing
 known to run a slow ramp with a quick shut-off by the minute, the
 swell's shape, and its phases are not on the bus or in any measuring
-block. **Read**: a swell of 3's at either stop with the hose shut —
+block. **Read**: a swell of 3's at either stop with the purge shut —
 the purge is not the swell's cause, the weakest of its four readings
 gone; no swell at two stops after brisk drives, where `43`, `44`, `47`
 and `49` all swelled — for it, and the stops are repeated with the
 hose open. The common part is read beside it (2.7–3.1 rpm rms at every
-warm idle since 24/9): a step in it with the hose shut would be the
+warm idle since 24/9): a step in it with the purge shut would be the
 first thing that moved it. After 8a, because a drive with the purge
 shut teaches 032 nothing about either valve.
 

@@ -308,8 +308,9 @@ marks, 8i, read 13/11 and not settled — the full-throttle air against 30–60�
 rail, H18, H11, H21). **Agreed with the owner the same evening, all
 four**: the phone's recording through a swell beside a capture
 (`plan.md` 6p; the tailpipe half done 12/11 evening at `50`'s
-stop); N80's hose shut for two captured drives, after the new
-valve's own two (8o); the warm leak-down made on an engine switched
+stop); the purge shut for two captured drives, after the new
+valve's own two (8o; *since 13/11 by N80's connector, not the hose, and
+only if 8a's three 070 runs at a warm stop leave it open*, the owner); the warm leak-down made on an engine switched
 off in a swell (item 9); and **list A re-ordered: the belt and H0 at
 its head, H16 third** (*The idle's candidates, ranked*). The reading
 is `tools/swellscan.py`, kept at his request.
@@ -567,8 +568,9 @@ old rear probe on the car meanwhile** (S23 closed 12/11 as its fault,
 13/11): 032/055 and the fault memory before, the swap, a captured drive
 with 070 at a warm stop on the way (a test, not an adaptation; the
 capture runs through it), 032 after; a second drive another day, one
-gentle and one brisk between them (H16, S19, S21); **then 8o, two captured drives
-with N80's hose shut**; **8h, the loads against the
+gentle and one brisk between them (H16, S19, S21); **8a's capture read straight after the drive** (a cloud session) for 3's
+swells against the three 070 runs; **then 8o, two captured drives with
+N80 unplugged, only if that leaves it open**; **8h, the loads against the
 sensors' voltages**, at a laptop session; **8f, 032 at every VCDS
 session**; **6m's injector circuits**, read for 3, **at the owner's
 next evening with the upper intake off, ahead of the garage session**
@@ -1673,8 +1675,12 @@ with the owner the same evening*; `plan.md` 6p, 8o, item 9):
 (a) **the phone's recording through a swell and its fall**, at the
 tailpipe and above 3, beside a capture — a seat that leaks more makes
 S22's once-per-cycle part grow with 3's deficit and drop with the fall;
-the other three leave it as it is; (b) **N80's hose clamped for whole
-warm stops**, captured — a swell with the hose shut ends the fourth;
+the other three leave it as it is; (b) **the purge opened on purpose by 070, three runs at one warm stop
+with idle between (8a, *the owner*, 13/11), and only if that leaves it
+open the purge shut for whole warm stops** — by N80's connector since
+13/11, not a clamp — captured; a swell with the purge shut ends the
+fourth, swells that follow the runs and not the minutes between them
+name it;
 (c) item 9 as planned: the CO₂ test for the third, the warm leak-down
 with 3 twice for the first — ⚠ made with the engine stopped, so on
 whatever state 3 was left in; a stop switched off in a swell (the
@@ -3561,8 +3567,8 @@ the lower manifold's gasket at runner 3, never renewed.
   under all four would have pushed the regulation lean by its own
   size, since the learnt value (032) is too slow to take it. *The one
   way round that*: vapour reaching mostly runner 3, which the single
-  front probe sees a quarter of. **What tells**: 8a's new N80 and
-  8o's hose shut — if the rich idle trim goes with the valve, 3 loses
+  front probe sees a quarter of. **What tells**: 8a's new N80, its 070 runs at a
+  warm stop, and 8o's purge shut if still needed — if the rich idle trim goes with the valve, 3 loses
   the second cause and should calm even with its leak; 001 and 032
   beside 014 at every one of those stops, as planned (8f).
 - **Against, 5/11** (*reasoned*): a cylinder running lean would pull
@@ -5014,9 +5020,11 @@ as the common part's cause** in the form of *The owner's reading,
 from day to day. **For 3's swell the purge phases are kept as a weak
 fourth reading** — the one slow ramp with a quick shut-off the ECU is
 known to run, not on the bus; the injection time shows no sign of it —
-with a cheap test, *agreed with the owner the same evening*: N80's
-hose shut for two captured drives, after the new valve's own two
-(`plan.md` 8o). **Third in list A since that evening**, below the belt
+with a cheap test, *agreed with the owner the same evening*: the purge
+shut for two captured drives, after the new valve's own two
+(`plan.md` 8o); **since 13/11 first 070 run three times at 8a's warm
+stop, 8o by N80's connector and only if that leaves it open** (*the
+owner*). **Third in list A since that evening**, below the belt
 and H0 (*agreed with the owner*; *The idle's candidates, ranked*); the
 new valve stays its test — the common part by capture before and after
 it.
