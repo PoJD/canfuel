@@ -693,10 +693,10 @@ directly, where the ring gear's teeth would have needed its tooth count
 right and 8i's 30–60° was the wrong marks or a misjudged angle; the
 cam turns once for two of the crank, so TDC of 1 is the turn with the
 cam's mark near its own, half a turn of the sprocket off on the other.
-**The pulley's diameter** turns the owner's 2–3 cm or more on its rim
-(13/11 evening) into degrees: 15–25° at 14–16 cm (*reasoned*; a
+**The pulley's diameter** turns the owner's 2–3 cm at least, not over 5, on its rim
+(13/11 evening) into degrees: 15–40° at 14–16 cm (*reasoned*; a
 centimetre on the diameter moves it by about 7 %, far less than the
-gap's own 2–3 cm), a tooth
+gap's own 2–5 cm), one to two teeth
 — where the 30–60° by eye were 1.5–3; and if the flywheel and the cam
 agree while the pulley's notch does not, the pulley sits turned on its
 sprocket (*the owner*). Where the window

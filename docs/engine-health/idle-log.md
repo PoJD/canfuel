@@ -1567,9 +1567,9 @@ was the fault, one drive; S3, *P0300 and P0303*.
 - **Changes after:**
   - *measured:* **the pulley's one narrow notch 30–60° of crank behind
     the groove on the block** (*owner*, by eye, a finger on the notch;
-    first given as about 45°; **the same evening: at least 2–3 cm along
+    first given as about 45°; **the same evening: 2–3 cm at least, more likely more, not over 5, along
     the rim, not misjudged**, the pulley's diameter not measured — about
-    15–25° if it is 14–16 cm across, *reasoned*); no other notch, two wide cut-outs at 4
+    15–40° if it is 14–16 cm across, *reasoned*); no other notch, two wide cut-outs at 4
     and 9 o'clock read as balancing cuts;
   - *not known:* whether that is the belt out by 1.5–3 teeth or the
     marks misread — the direction is settled (*owner*: the crank
