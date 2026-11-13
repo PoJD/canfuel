@@ -172,12 +172,15 @@ marks 13/11 morning.*
    13/11: before the garage, to be sure), at a cold engine, the key out:
    the window's plug out; the crank turned by its pulley's bolt, **only
    in the direction of rotation** (clockwise from the belt side; past
-   the mark, round again twice, never back), until **the camshaft
-   sprocket's OT mark stands on its mark**, as in 8i. Then **the
-   flywheel's mark against the window's pointer or edge**: a
-   photograph square on, and if they are apart, **the teeth of the
-   starter ring counted between them** and which way. Nothing loosened;
-   the plug back in. Into the chat.
+   the mark, round again twice, never back), **both marks watched in
+   turn while closing in**, until **the flywheel's mark stands on the
+   window's pointer** (*the owner*, 13/11: set by the flywheel, so the
+   cam's error reads in teeth) — on the turn where the camshaft
+   sprocket's OT mark is near its own mark, not half a turn away (that
+   is TDC of 4: once more round). Then **the camshaft sprocket's mark
+   against its mark**: a photograph of each square on, and if apart,
+   **the sprocket's teeth between them counted** and which way. Nothing
+   loosened; the plug back in. Into the chat.
 8q. **The timing belt renewed at a garage** (*the owner's decision*,
    13/11; the garage chosen by the owner, a date asked for 13/11): the belt, its tensioner and idler, and the water pump.
    **Before the old belt is loosened**, the mechanic sets the crank to
@@ -678,12 +681,15 @@ others who found odd marks on the pulley; `open.md` A1, *What the
 forums say*, the timing belt): Motor magazine names the camshaft
 sprocket's OT and **the flywheel's mark in the gearbox window** as the
 marks to set on this family; the pulley's notch and the groove read in
-8i are not confirmed as the AQY's timing marks. With the cam at OT, the
-flywheel's mark on its pointer says the belt is right to a few degrees
-and 8i's 30–60° was the wrong marks or a misjudged angle; apart, the
-ring's teeth give the angle — about 2.7° of crank a tooth if the ring
-has about 130 (*general*, from memory, not counted on this car), so a
-belt tooth (16–20° of crank) is six or seven of them. Where the window
+8i are not confirmed as the AQY's timing marks. **Set by the
+flywheel** (*the owner*, 13/11, in place of the cam first): with the
+crank at its true TDC, the camshaft sprocket's offset counts in its own
+teeth, each one belt tooth — the figure the garage would give, read
+directly, where the ring gear's teeth would have needed its tooth count
+(*reasoned*). The sprocket's mark on its own mark says the belt is
+right and 8i's 30–60° was the wrong marks or a misjudged angle; the
+cam turns once for two of the crank, so TDC of 1 is the turn with the
+cam's mark near its own, half a turn of the sprocket off on the other. Where the window
 is and what its mark looks like was not looked up in VW's manual (the
 owner found it on the web). **Turned only forward** because turning
 back lets the belt's slack side jump and misreads the cam; by the
