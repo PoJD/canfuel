@@ -660,8 +660,9 @@ still clears nothing, a leaking one names it.
 **8q, the timing belt at a garage** (*the owner's decision*, 13/11,
 after 8i): 8i read the cam's OT mark set and the crank pulley's one
 notch 30–60° of crank from the groove on the block by eye
-(`open.md`, *Where it stands*, the row A1) — 1.5–3 teeth if those are
-the true marks, which the flat full-load pulls argue against; the
+(`open.md`, *Where it stands*, the row A1) — 1.5–3 teeth with the cam
+advanced if those are the true marks (the direction the owner's, read
+off the part), which the flat full-load pulls argue against; the
 piston at plug 1 that would have settled it was declined. The belt
 is nine years old (10/2017), so renewing it loses nothing either way,
 and the owner leaves the work to a garage. **What makes it a test**:

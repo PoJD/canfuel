@@ -1570,8 +1570,9 @@ was the fault, one drive; S3, *P0300 and P0303*.
     first given as about 45°); no other notch, two wide cut-outs at 4
     and 9 o'clock read as balancing cuts;
   - *not known:* whether that is the belt out by 1.5–3 teeth or the
-    marks misread — the direction may be mirrored from below, and the
-    flat full-load pulls argue against so many teeth; the piston at
+    marks misread — the direction is settled (*owner*: the crank
+    clockwise, the notch short of the groove, so the cam advanced), the
+    size is not: the flat full-load pulls argue against so many teeth; the piston at
     plug 1 was not looked at (*the owner*: not taking a plug out).
 
 The owner decided to have the belt and the water pump renewed at a
