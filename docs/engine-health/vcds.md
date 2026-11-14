@@ -283,7 +283,8 @@ looks — the controller following (−3.9, then −7.8 %) and the flow 0.10,
 - **As a measuring block it has not been read.** With the test off in
   basic settings field 1 moved with the throttle (*owner*, 14/11), so
   the fields may show the ECU's own purge; `plan.md` 8a's second drive
-  logs 070 beside 014 and 004 to find out.
+  logs 070 beside 014 and 004 to find out — over the warm drive, not
+  one minute: the purge runs only warm and in phases.
 - **On the bus** a basic setting is 0x480 b1 bit 5 (the ECU cutting the
   A/C compressor, `docs/firmware/can-decoding.md`): set from the moment
   a group is engaged in basic settings, whether or not its test starts.

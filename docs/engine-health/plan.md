@@ -139,9 +139,11 @@ owner*: no window to be seen at the gearbox).*
      (no full throttle, under about 3,500 rpm), captured as item 6, to a
      warm stop of ten minutes or more. **VCDS 014 070 004, logged by
      Claude through the whole drive and stop** — 070 as an ordinary
-     measuring block, **no basic setting, nothing clicked**; in the
-     first warm minute Claude says whether 070's fields move at all,
-     and if they do not, the log goes on as 014 001 004. 032 after (8f).
+     measuring block, **no basic setting, nothing clicked**. **Claude
+     says before the warm stop whether 070's fields have moved at all
+     since the coolant passed 80 °C**; only if they stayed at zero
+     through ten warm minutes of driving does the log go on as
+     014 001 004. 032 after (8f).
    - **At any engine lamp from now on**: the odometer, the tank's needle
      and the outside temperature into the chat, and 032 read before the
      code is cleared.
@@ -752,8 +754,11 @@ moved with the throttle on 14/11 — so it most likely shows what the
 ECU does with the valve by itself. If it does, the purge's phases are
 at last readable against 3's swell, with nothing unplugged and no code
 stored, and 8o is needed only if they leave it open; *whether the
-fields live outside basic settings is not known* — a minute at a warm
-idle tells. **004**: the supply voltage and the intake air's
+fields live outside basic settings is not known*. **Not judged cold or
+on one minute** (*the owner*, 14/11 night): the ECU purges only on a
+warm engine in closed loop and then in phases (*general*), so the
+fields are read over the warm part of the drive — ten warm minutes at
+zero on the road, where the purge runs most, say they do not live. **004**: the supply voltage and the intake air's
 temperature, read so far only on the road and for 84 s standing — the
 voltage for H4 (an injector circuit with a raised resistance opens
 later at a lower voltage), the intake temperature for a swell that
