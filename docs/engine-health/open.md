@@ -2068,6 +2068,42 @@ new), six in the weeks before (`42`–`48`), eleven older.
   with the throttle angle dipping to 1.3° — and after the fill −0.05
   and 1.4 again. One idle of 100 s; recorded, not read.
 
+- **A step, not a drift — in the floor's level** (*the owner's
+  question*, 14/11: a slow improvement from much driving and many revs
+  that happened to tip over round the canister?). The floor read −8.5 %
+  on `32` (12/10) and −8.1 to −9.0 on all six of 3–10/11, with no
+  slope, and −6.3 to −6.8 from 12/11: flat for a month, then two
+  points in the 36 hours between `48` and `49`. **The clean of 9/11,
+  the strongest thing ever done to 3's deposit, left the floor at
+  −8.1** (`46`). **What does drift** is how much of a warm idle is
+  floor at all — none on `24`–`31` and `36`–`40`, 17–35 % on `42`–`48`
+  — and the weak strokes and 014's share, both falling since late
+  October; that slow part can well be the driving.
+- **But four things changed in those 36 hours, and two hard drives fall
+  in them**: the harness taped (10/11 night), the canister plumbed back
+  (11/11 evening), G62 cleaned and the old rear probe refitted (12/11
+  after midnight); and 11/11 night's motorway run and 12/11 night's
+  drive to the limiter. The bus does not tell them apart: the warm
+  coolant reads 97–98.5 °C before and after, so the cleaned G62 changed
+  nothing the floor sees; the rear probe does not steer the idle's
+  mixture (SSP 175). The canister is the likeliest of the four, not
+  the only one.
+- **How the canister could do it** (*reasoned*, nothing measured): on
+  the bypass an open N80 drew straight from the tank's vapour space —
+  in November mostly air — so every purge phase at idle was a small
+  unmetered air leak into the plenum, and 3, the cylinder at its limit,
+  showed it most; through the charcoal the flow is throttled and what
+  it carries is steadier. **Against**: 070's purge, 7.8 % rich, did not
+  move 3 in 20 s; the lambda controller's scatter at idle is the same
+  on the bypass and on the canister; 032's idle cell is no nearer zero.
+- **What would tell** (not planned; *for the owner to decide*): **8a's
+  second, gentle drive** — a floor still at −6 to −7 % after gentle
+  days speaks for the hardware, one back at −8 to −9 for the driving;
+  **8o** — with N80 unplugged a floor shallower still would put the
+  purge flow itself under 3's deficit; and the one clean test, the
+  canister bypassed again for one captured drive, which nobody has
+  asked for.
+
 **Read** (*reasoned*). The canister took nothing from either part of
 the idle; **with it 3 sits a little nearer the others between swells
 and stays there longer**, which fits vapour through the canister being
