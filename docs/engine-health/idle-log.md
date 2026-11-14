@@ -1589,10 +1589,36 @@ garage (`plan.md` 8q), the mechanic to read the old marks first
   N80 to the plastic line back to the canister renewed, the old one well
   worn; the hose on N80's other side left on, too awkward to reach.
 - **Tests:** before the swap, the fault memory read (empty) and 032/055
-  photographed (the album).
+  photographed (the album, 14:25): −9.4 / +7.8 %, −1.24 g/s.
 - **Changes after:**
-  - *not known:* everything — the engine not yet run on the new valve;
-    the captured drive with 070 at a warm stop is 8a's next step.
+  - *measured:* on the first drive the same evening, nothing at the
+    idle (the next entry).
 
 Done cold, by the owner, ahead of the laptop session; photographs of the
 valve, its hoses and N112's vacuum hose in the album.
+
+## 14/11 evening — the first drive on the new N80, with 070 (8a)
+
+- **Tests:** a captured drive of 20 km (`51`, 16:39–18:19, the MFD out,
+  the everyday state) with VCDS 014 001 003 in three logs, the fault
+  memory before and after each (empty every time), 032/055 at the end;
+  basic setting 070 at both warm stops, the screen filmed.
+- **Changes after:**
+  - *measured:* cylinder 3 swelled four times at the two warm stops, to
+    −19 to −26 % of a stroke, and fell to a floor of −2 to −9 % twice —
+    as on the old valve; the common part 2.97 rpm rms (`49` 3.01, `50`
+    2.94); 014 at 0.29 % of combustions at the pump's idle and one
+    count in 7.7 minutes on the second stop's floor; 032 −9.4 / +7.8 %
+    before the swap, −8.6 / +7.8 after the drive, 055 −1.24 → −1.19 g/s.
+  - *felt:* 014 counting less than before, at zero from about 18:03 to
+    18:10; small shakes in the seat at about 18:08 (*owner*).
+  - *not known:* 014 through three of the four swells (VCDS was closed
+    for 070); 032 after a gentle drive on the new valve.
+
+070 would not start at the first warm stop, on the tank's reserve
+(`Test OFF` for half an hour, 001 field 4 at `111111`; 034, 036 and 037
+ran); after the fill it ran at the first try — the valve to 23.4 %, the
+lambda controller to −7.8 %, 0.24 g/s, `TEV OK` — and did not run again
+at two more tries. 003's throttle angle read under 2° at the pump's
+idle (*owner*); it has before (`open.md`, *Where it stands*). Read in
+`open.md` S1 and S3, *The first drive on the new N80*, and H16.

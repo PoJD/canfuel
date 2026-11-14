@@ -195,7 +195,8 @@ class TestFixtureContent(unittest.TestCase):
                 "43_stockmap_drive2_z1.txt", "44_decarb_before_z1.txt",
                 "45_decarb_clean_z1.txt", "46_decarb_after_z1.txt",
                 "47_relearn_drive_z1.txt", "48_cattests_z1.txt",
-                "49_warm_drive_z1.txt", "50_queue_drive_z1.txt"}
+                "49_warm_drive_z1.txt", "50_queue_drive_z1.txt",
+                "51_n80_drive_z1.txt"}
     ACCEPTED_IDS = {0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480}
     #: From 10/11/2026 the filter keeps 0x520 as well, for the odometer
     #: (the maintainer's request; docs/firmware/can-decoding.md, *The bus
@@ -546,13 +547,14 @@ class TestFixtureContent(unittest.TestCase):
         VCDS to read 055, and 39_drive_home_z1, in its last second as the
         engine stops, and 50_queue_drive_z1, whose engine stops with the key
         left on for VCDS to read 032 and 055: 1.6 s of it from the frame the
-        engine speed reads zero.
+        engine speed reads zero, and 51_n80_drive_z1, started before the
+        ignition and keyed off and on twice at its stops.
         """
         boundary = ("01_ign_only.txt", "06_trip_reset.txt",
                     "25_sessionA_cold_z1.txt", "26_sessionA_warm_z1.txt",
                     "33_step3_gauge_cold_z1.txt", "35_item5_drive_z1.txt",
                     "37_item5_drive3_z1.txt", "39_drive_home_z1.txt",
-                    "50_queue_drive_z1.txt")
+                    "50_queue_drive_z1.txt", "51_n80_drive_z1.txt")
         for name, frames in self.frames.items():
             gates = {f.data[1] for f in frames if f.can_id == 0x1A0}
             if name in boundary:

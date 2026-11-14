@@ -606,6 +606,11 @@ his phone. Check the platform and for a VCDS install; if unclear, ask once.
   clock**, not by engine speed (`docs/engine-health/vcds.md`, *Recording
   VCDS and the CAN bus together*; `50`'s 003 fitted 5½ minutes late):
   the capture's start comes from a driving log of the same session.
+- **A capture's clock loses whole minutes over a key-off longer than a
+  minute** (the adapter's timestamp wraps in the silence; `51` reads
+  240 s short after its fill): every VCDS log of a session gets its own
+  offset, and a clock time after such a gap is corrected
+  (`docs/engine-health/vcds.md`, the same section).
 - **You cannot hear him.** A reading at the car reaches you as text (phone
   dictation works); align it to the capture by an event it records, never by
   when the message arrived.

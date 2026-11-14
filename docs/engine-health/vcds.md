@@ -49,7 +49,7 @@ was first recorded counted from the wrong end and corrected on 28/9/2026.
 | **026** | **knock sensor voltage per cylinder**, *amplifier factor included* | S5. Not the raw signal: the ECU scales each cylinder |
 | **032** | lambda adaptations, idle and part load | the rich trim that was the MAF (S9); slightly negative at idle since (`open.md` H16; `refuted.md` C21) |
 | **055 / 056** | idle regulator, its adaptation, target idle speed | 055 logged once, on the cold start of 11/9 (`vcds-coldstart-014-055.csv`): regulator −0.46 → −0.08 g/s as the engine warmed, adaptation **−0.73 g/s** throughout, load-state bits `0000`. The cold-start baseline for the sessions of 3–4/10 (`open.md` S3) |
-| **070** | evaporative valve test | TEV OK (27/9) — the valve opens; whether it seals it cannot show (`refuted.md` A6, `open.md` H16). P0440 stored 6/11 (S21). *This said "purge ruled out" until 6/11.* |
+| **070** | evaporative valve test | TEV OK (27/9, the old valve, lambda deviation 0.0 %; **14/11, the new one: the valve to 23.4 %, the lambda controller to −7.8 %, 0.24 g/s**, *070 on this ECU* below) — the valve opens; whether it seals it cannot show (`refuted.md` A6, `open.md` H16). P0440 stored 6/11 (S21). *This said "purge ruled out" until 6/11.* |
 | **100** | readiness bits, OBD status, time since start | all monitors complete |
 
 **Specifications worth quoting, because they turn an observation into a
@@ -257,6 +257,30 @@ verdict means anything, not a reading to interpret.
 On 24/9/2026, at a hot idle, every one of them reported OK at once, with no
 rpm hold needed.
 
+**070 on this ECU** (14/11, `51`; the owner's clicks, the album's films
+of the screen). Its four fields: the valve's opening in %, the lambda
+controller's deviation in %, the flow in g/s, the verdict. A run takes
+about 20 s: `test běží` with the fields at zero for some ten seconds,
+then the valve stepped open — 2.0, 3.5, 6.3, 18.4, 23.4 % at two-second
+looks — the controller following (−3.9, then −7.8 %) and the flow 0.10,
+0.24 g/s, `TEV OK`, and the valve closing with the last figures kept.
+- **001 field 4 at `111111` is not its whole gate.** At the first warm
+  stop (coolant 94–99 °C, field 4 `111111`, the A/C off) 070 showed
+  `Test OFF` at every try for half an hour — after login 01283, a
+  restart and the A/C on and off — while 034, 036 and 037 ran. After a
+  fill it ran at the first try. **The tank was on its reserve before**
+  (0x320: 5–6 l indicated, the reserve lamp's bit set) **and at 51 l
+  after**. *Reasoned, not from a source*: a fuel-level condition on the
+  test, which this project's label notes do not name; one day.
+- **It runs once.** Started again two and four minutes later, the
+  screen showed the first run's figures with the valve at 0.0 %, and
+  the bus showed no second purge (the fuel counter's rate did not dip,
+  where the first run took 8 % off it for 40 s). Whether a key cycle
+  re-arms it was not tried.
+- **On the bus** a basic setting is 0x480 b1 bit 5 (the ECU cutting the
+  A/C compressor, `docs/firmware/can-decoding.md`): set from the moment
+  a group is engaged in basic settings, whether or not its test starts.
+
 **Basic settings is not the output test**, and the two are easy to confuse.
 `Akční členy` steps through actuators with START/DALŠÍ with the engine
 stopped. Basic settings is the **`Přepnout na základní nastavení`** button
@@ -285,6 +309,15 @@ time less its offset (16:19:07.5 on 12/11, from two logs to 0.05 s), and
 the standing log is then trimmed within a few seconds on engine speed.
 `cylscan.py --vcds` has no option for it; check the offset it prints
 against the clock before believing a stop's 014 by cylinder.
+
+⚠ **A capture's clock is short by whole minutes after a key-off of more
+than a minute** (14/11, `51`): the adapter's timestamp wraps every
+60.001 s, and with the bus silent the wraps in between are lost — the
+fill's 291.7 s read 51.7 s. The driving logs find it: those before the
+fill put the capture's start at 16:39:21, those after at 16:43:21, 240 s
+apart. **Give every log of a session its own offset**, and correct any
+clock time taken from capture time after such a gap
+(`test/fixtures/README.md`, `51`'s row).
 
 - **The two tools do not interfere.** VCDS is on the OBD socket and this
   engine diagnoses over K-line; the USBtin is on the CAN pair at the cluster,

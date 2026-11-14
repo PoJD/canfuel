@@ -140,7 +140,7 @@ class AgainstTheFixtures(unittest.TestCase):
     def test_a_log_without_timestamps_is_skipped_rather_than_guessed_at(self):
         self.assertEqual(samples(os.path.join(FIXTURES, "03_drive.txt")), [])
 
-    def test_the_corpus_holds_949_overrun_fuel_cuts(self):
+    def test_the_corpus_holds_1005_overrun_fuel_cuts(self):
         """Four in 17_drive_property_z1, 72 in the hour of 19, 33 in 24,
         17 and 15 in the two halves of session A, 25 and 26, and 13 and 26
         in the two halves of its second run, 27 and 28, 22 in session B,
@@ -155,12 +155,13 @@ class AgainstTheFixtures(unittest.TestCase):
         relearn drive after the battery disconnect, 47 (the catalyst tests
         after it, 48, have none), and 54 in the captured warm drive of
         12/11 with its five pulls, 49, and 60 in the queue drive of the
-        same evening, 50.
+        same evening, 50, and 56 in the first drive on the new purge
+        valve, 51.
 
         Counted per log, so a change to the detector shows where it moved
         rather than only that the total did.
         """
-        self.assertEqual(len(self.cuts), 949)
+        self.assertEqual(len(self.cuts), 1005)
         self.assertEqual(self.per_log, {"17_drive_property_z1.txt": 4,
                                         "19_postfix_drive_z1.txt": 72,
                                         "24_mafswap_drive_z1.txt": 33,
@@ -183,7 +184,8 @@ class AgainstTheFixtures(unittest.TestCase):
                                         "46_decarb_after_z1.txt": 65,
                                         "47_relearn_drive_z1.txt": 77,
                                         "49_warm_drive_z1.txt": 54,
-                                        "50_queue_drive_z1.txt": 60})
+                                        "50_queue_drive_z1.txt": 60,
+                                        "51_n80_drive_z1.txt": 56})
 
     def test_the_cut_does_not_engage_the_moment_the_pedal_comes_up(self):
         """0.63-14.01 s after the lift across the corpus, never at once.
