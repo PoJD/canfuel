@@ -393,9 +393,9 @@ to 13–19 by 2,400–2,800 (`vcds.md`).
 **Before and after each repair, read 14/11 night** (*the owner's
 question*: the cleaners, the oil, the MAF, the plugs and leads; S1,
 *Before and after each repair*). **The idle moved twice, both at a
-repair**: the MAF (24/9: the grade 111 → 89, cylinder 4 up from −10 to
-−3 %) and the plugs, leads and intake gasket of 10/10 (3's weak strokes
-halved, the grade to 62–74). **Since 12/10 the mean is flat at 61–67**
+repair**: the MAF (24/9: the grade 113 → 91, cylinder 4 up from −9 to
+−4 %) and the plugs, leads and intake gasket of 10/10 (3's weak strokes
+halved, the grade to 62–76). **Since 12/10 the mean is flat at 61–67**
 through the DFI can, both 44K tanks, the flushes and the oil, the
 hydrogen and the canister; **no cleaner shows on the bus**, and across
 the 44K week only 014's share halved (0.20–0.33 % → 0.07–0.15),
@@ -2135,10 +2135,12 @@ owner's question*: did the three fuel cleaners and the oil flush move
 anything, and the MAF and the plugs and leads; and does the idle move
 at all where 014 and `IdleHealth` do not show it. The warm standing
 idle of `19`–`51`, oil 90 °C and more, the A/C off, cuts left out, in
-the 30 s windows of the section above; 014 from every log at an idle
-of 650–950 rpm with detection on, not sorted by warmth; scripts not
-kept). The grade here is the stroke steps' own (the dead-banded step
-× 50 over a window), near `IdleHealth` but not the display's byte.
+the 30 s windows of the section above — `swellscan.py --floors`, each
+row below its pooled line over the captures named; 014 from every log
+at a standing idle with detection on, not sorted by warmth —
+`misfshare.py`). The grade here is the stroke steps' own (the
+dead-banded step × 50 over a window), near `IdleHealth` but not the
+display's byte.
 
 | | windows | the grade | dips a minute | 3's weak strokes per 1000 | the others' | the common part | 3 / 4 / 1 / 2, % of a stroke | floor, share of windows |
 |---|---|---|---|---|---|---|---|---|
@@ -2155,13 +2157,14 @@ kept). The grade here is the stroke steps' own (the dead-banded step
 | `49`–`51`, the canister | 166 | 61 | 4.3 | 13 | 3.0 | 2.97 | −12 / +1 / +5 / +6 | 42 % |
 
 - **The idle moved twice, and both times at a repair.** **The MAF**
-  (24/9, `19` against `24` the same day): the grade 111 → 89, dips of
-  20 rpm 26 → 12 a minute, and **cylinder 4 came up from −10 to −3 %**
-  with its weak strokes halved (33 → 15 per 1000) — on the old MAF 4
-  was weak beside 3; 3 itself did not move (25 → 30) and the common
-  part did not (3.3 → 3.2). **The plugs, leads and intake gasket of
+  (24/9, `19` against `24` the same day): the grade 113 → 91, dips of
+  20 rpm 26 → 12 a minute, and **cylinder 4 came up from −9 to −4 %**
+  with the other three's weak strokes halved (14 → 7 per 1000, most of
+  them 4's, `cylscan.py`) — on the old MAF 4 was weak beside 3; 3
+  itself did not move (25 → 30) and the common part did not (3.3 →
+  3.2). **The plugs, leads and intake gasket of
   10/10** (`30` against `31` the next day, then `32`): 3's weak strokes
-  23 → 13 → 11 per 1000, the grade 87 → 74 → 62, the dips 5.3 → 2.0 →
+  23 → 13 → 11 per 1000, the grade 87 → 76 → 62, the dips 5.3 → 2.0 →
   0.7 a minute; the common part 2.9 on all three. The three parts
   cannot be told apart, nor 12/10's shim and air filter from them.
 - **Since 12/10 the mean has not moved**: the grade 61–67 on every
@@ -2174,7 +2177,7 @@ kept). The grade here is the stroke steps' own (the dead-banded step
   canister — and **the swells between are as rough as September's**.
   At an equal deficit of 3's (−16 to −23 %) its weak strokes were
   22–28 per 1000 on `24`–`30`, **13–14 on `31` and `32`**, and are
-  **21–28 again on `42`–`44` and `49`–`51`**; a swell window's grade
+  **21–30 again on `42`–`44` and `49`–`51`**; a swell window's grade
   85, 69, 86, 80. **The gain of 10/10 inside a swell has gone**; it
   holds only where 3 is shallow (−13 to −10 %: 27, 12, and 11–12
   since). When it went the captures do not date closer than between
@@ -2198,7 +2201,7 @@ kept). The grade here is the stroke steps' own (the dead-banded step
   the cleaner, the hose and the oil. The display read 45–90 through
   all of it (the table above).
 - **The hydrogen** (`44` against `46`, one day, one tank, one map):
-  3's floor −8.7 → −8.1 %, the floor's grade 46 → 63 and its dips
+  3's floor −8.6 → −8.1 %, the floor's grade 46 → 63 and its dips
   0 → 4.5 a minute, the common part 2.72 → 2.86; the swells that
   afternoon shallower and calmer (to −19 % against −29; 11 weak strokes
   per 1000 against 25, seven windows) and as before the next day
@@ -5170,7 +5173,7 @@ fall takes 30–45 s.
 **14/11 night, every cleaner set against the bus** (S1, *Before and
 after each repair*): **against** — the DFI can, both 44K tanks and the
 hydrogen left 3's weak strokes in a swell where September had them
-(21–28 per 1000 at −16 to −23 %) and the grade's mean at 61–67 since
+(21–30 per 1000 at −16 to −23 %) and the grade's mean at 61–67 since
 12/10; the hydrogen gave one afternoon of shallower swells. For: 014's
 share halved in the week of the 44K tanks — with the regulator's hose
 and the oil in the same week. Another can in the tank is not planned

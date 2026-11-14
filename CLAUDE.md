@@ -638,6 +638,8 @@ python tools/afterpull.py FILE       # the warm idle after high revs
 python tools/cylscan.py --minutes FILE   # every stroke on its cylinder; --vcds LOG: 014 by cylinder
 python tools/drivescan.py FILE          # the same through a whole drive: 3 less 2, 1 less 4 by speed and load; --weak, --vcds LOG, --count, --pulls
 python tools/swellscan.py --series --falls FILE   # cylinder 3's swell and the common part; --corr over many
+python tools/swellscan.py --floors FILE...   # floor and swell: shares, the longest floor, grade, dips, weak strokes; a pooled line
+python tools/misfshare.py LOG...     # 014 at a standing idle, log by log: share, episodes, the longest silence
 python tools/dipshape.py FILE...     # one weak firing per dip or several
 python tools/vcds_log.py --faults FILE
 python tools/flash.py --mode loopback | --preserve-eeprom | --identify | --dry-run

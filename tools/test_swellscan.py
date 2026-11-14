@@ -87,6 +87,66 @@ class Numbers(unittest.TestCase):
         self.assertTrue(warm_off(row(-9)))
 
 
+def frow(d3, w3=0, grade=50.0, dips=0, n=400):
+    r = {"d3": d3, "oil": 100.0, "ac": 0.0, "n": n, "grade": grade,
+         "dips": dips, "common": 3.0, "w1": 0, "w3": w3, "w4": 0, "w2": 0}
+    r.update(d1=5.0, d4=0.0, d2=5.0)
+    return r
+
+
+class Floors(unittest.TestCase):
+
+    def test_a_window_is_floor_swell_or_neither(self):
+        self.assertTrue(swellscan.is_floor(frow(-10.0)))
+        self.assertFalse(swellscan.is_floor(frow(-10.1)))
+        self.assertTrue(swellscan.is_swell(frow(-15.0)))
+        self.assertFalse(swellscan.is_swell(frow(-14.9)))
+
+    def test_the_longest_floor_is_broken_by_a_swell_a_cut_and_a_new_stop(self):
+        f, s = frow(-7.0), frow(-20.0)
+        self.assertEqual(swellscan.longest_floor([[f, f, s, f, f, f]]), 3)
+        self.assertEqual(swellscan.longest_floor([[f, f, None, f, f]]), 2)
+        self.assertEqual(swellscan.longest_floor([[f, f], [f, f, f]]), 3)
+        self.assertEqual(swellscan.longest_floor([[s, s]]), 0)
+
+    def test_a_cold_window_or_the_air_conditioning_breaks_it_too(self):
+        cold = dict(frow(-7.0), oil=swellscan.FLOORS_OIL_C - 1.0)
+        ac = dict(frow(-7.0), ac=1.0)
+        rows = swellscan.floor_rows([(None, [frow(-7.0), cold, ac, frow(-7.0)])])
+        self.assertEqual([r is None for r in rows[0]], [False, True, True, False])
+
+    def test_weak_strokes_are_per_thousand_of_the_cylinders_own(self):
+        # 400 strokes are 100 of each cylinder's
+        self.assertAlmostEqual(swellscan.weak_per_1000([frow(-20, w3=2)]), 20.0)
+        self.assertAlmostEqual(
+            swellscan.weak_per_1000([frow(-20, w3=2)], (1, 4, 2)), 0.0)
+        self.assertTrue(math.isnan(swellscan.weak_per_1000([])))
+
+    def test_the_summary_reads_each_part_apart(self):
+        rows = [[frow(-7.0, grade=40.0), frow(-8.0, grade=44.0),
+                 frow(-12.0, grade=60.0),
+                 frow(-20.0, w3=3, grade=80.0, dips=4)]]
+        f = swellscan.floors(rows)
+        self.assertEqual(f["windows"], 4)
+        self.assertAlmostEqual(f["floor_share"], 50.0)
+        self.assertAlmostEqual(f["swell_share"], 25.0)
+        self.assertAlmostEqual(f["longest_floor_min"], 1.0)
+        self.assertAlmostEqual(f["floor_d3"], -7.5)
+        self.assertAlmostEqual(f["deepest"], -20.0)
+        self.assertAlmostEqual(f["floor_grade"], 42.0)
+        self.assertAlmostEqual(f["swell_grade"], 80.0)
+        self.assertAlmostEqual(f["swell_dips"], 8.0)      # 4 in half a minute
+        self.assertAlmostEqual(f["swell_weak3"], 30.0)
+        self.assertAlmostEqual(f["floor_weak3"], 0.0)
+        self.assertIsNone(swellscan.floors([[None]]))
+
+    def test_the_grade_is_on_the_displays_scale(self):
+        # a step of 5 rpm is 2 past the deadband: 100, as IdleHealth has it
+        self.assertAlmostEqual(swellscan.grade([5.0, -5.0, None]), 100.0)
+        self.assertAlmostEqual(swellscan.grade([2.0, -3.0]), 0.0)
+        self.assertTrue(math.isnan(swellscan.grade([])))
+
+
 class TheStopOfTwelveEleven(unittest.TestCase):
     """`49`: 18 minutes standing after a hot drive, no cut, the A/C off."""
 
@@ -126,6 +186,16 @@ class TheStopOfTwelveEleven(unittest.TestCase):
         mean = lambda rs: sum(r["common"] for r in rs) / len(rs)  # noqa: E731
         self.assertLess(abs(mean(swell) - mean(floor)), 0.4)
         self.assertTrue(2.5 < mean(floor) < 3.4)
+
+    def test_most_of_it_is_floor_and_the_floor_is_the_longest_on_record(self):
+        # open.md S1, *Before and after the canister and the new valve*
+        f = swellscan.floors(swellscan.floor_rows(swellscan.stops(self.cap)))
+        self.assertTrue(75.0 < f["floor_share"] < 87.0)
+        self.assertAlmostEqual(f["longest_floor_min"], 14.5)
+        self.assertTrue(-7.3 < f["floor_d3"] < -6.3)
+        self.assertLess(f["deepest"], -20.0)
+        self.assertLess(f["floor_grade"], f["swell_grade"] - 25.0)
+        self.assertGreater(f["swell_weak3"], 5 * f["floor_weak3"])
 
 
 if __name__ == "__main__":

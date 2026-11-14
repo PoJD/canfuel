@@ -33,11 +33,18 @@ default     one line a capture: the warm loads-off windows, the common part
             `FINE_S` windows: how long it takes, and what the bus did.
 ``--corr``    what 3's deficit and the common part go with, over every file
             given: pooled, and within a stop (each stop's mean taken out).
+``--floors``  one line a capture, and one for all of them pooled: how much
+            of the warm idle is floor (`FLOOR_FROM` and shallower) and how
+            much swell (`SWELL_FROM` and deeper), the longest unbroken
+            floor, and the grade, the dips and the weak strokes in each;
+            then 3's weak strokes at an equal deficit (`DEFICIT_BANDS`).
+            What open.md's S1 reads before and after a repair.
 ``--csv OUT`` the windows, one row each.
 
     python swellscan.py test/fixtures/4?_*_z1.txt
     python swellscan.py --series --falls test/fixtures/49_warm_drive_z1.txt
     python swellscan.py --corr test/fixtures/[234]?_*_z1.txt
+    python swellscan.py --floors test/fixtures/49_*_z1.txt test/fixtures/5?_*_z1.txt
 """
 from __future__ import annotations
 
@@ -52,6 +59,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import canlog  # noqa: E402
 import cylscan  # noqa: E402
+import dipshape  # noqa: E402
+import idledips  # noqa: E402
 
 #: The window everything is read in; 30 s holds about 100 strokes a cylinder.
 WINDOW_S = 30.0
@@ -75,6 +84,22 @@ FINE_BEFORE_S = 30.0
 FINE_AFTER_S = 120.0
 #: The fall's duration is read between these shares of its drop.
 FALL_SHARES = (0.2, 0.8)
+
+#: `--floors`: a window is floor with 3's deficit this shallow or shallower,
+#: swell with it this deep or deeper, and neither between. Decisions of
+#: 14/11/2026: every floor on record sits at -6 to -9 %, a swell passes -15.
+FLOOR_FROM = -10.0
+SWELL_FROM = -15.0
+#: `--floors` reads windows with the oil at this and over: the tables of
+#: open.md S1 are on it, a little warmer than `WARM_OIL_C`.
+FLOORS_OIL_C = 90.0
+#: `--floors`: 3's weak strokes are compared at an equal deficit, in these.
+DEFICIT_BANDS = ((-13.0, -10.0), (-16.0, -13.0), (-19.0, -16.0),
+                 (-23.0, -19.0), (-100.0, -23.0))
+#: A window's grade: the mean dead-banded step, on `IdleHealth`'s scale
+#: (`idledips.IDLE_ROUGH_100` thirty-seconds of an rpm read 100). Computed
+#: over the strokes of the window, so near the display's byte, not it.
+GRADE_PER_RPM = 100.0 * 32 / idledips.IDLE_ROUGH_100
 
 #: What a window carries beside the cylinders; `--corr` reads these.
 COVARIATES = ("oil", "cool", "b7", "b6", "inj", "fuel", "rpm", "dim",
@@ -156,6 +181,21 @@ class Capture:
         return ((fuel[j][1] - fuel[i][1]) % 32768) / (fuel[j][0] - fuel[i][0])
 
 
+def dip_times(run):
+    """When each dip of `dipshape.dips()` crossed, over the whole run; kept
+    on the run, since every window of it asks."""
+    if getattr(run, "_dip_t", None) is None:
+        run._dip_t = sorted(d["t"] for d in dipshape.dips(list(zip(run.T, run.R))))
+    return run._dip_t
+
+
+def grade(steps):
+    """The grade of a list of stroke steps, rpm; NaN with none."""
+    v = [max(abs(s) - idledips.ROUGH_DEADBAND_RPM, 0.0)
+         for s in steps if s is not None]
+    return GRADE_PER_RPM * sum(v) / len(v) if v else math.nan
+
+
 def window(cap, run, t0, t1):
     """One window of a run as a row; None where a cut or too few strokes
     leave nothing to read."""
@@ -171,7 +211,10 @@ def window(cap, run, t0, t1):
         if run.E[i] is not None:
             E[run.cyl(i)].append(run.E[i])
     row = {"cap": cap.name, "t": t0, "into": t0 - run.T[1],
-           "common": rms(E[2]),
+           "common": rms(E[2]), "n": i1 - i0,
+           "grade": grade(run.S[max(i0, 1):i1]),
+           "dips": (bisect.bisect_left(dip_times(run), t1)
+                    - bisect.bisect_left(dip_times(run), t0)),
            "rpm": sum(run.R[i0:i1]) / (i1 - i0),
            "fuel": cap.fuel_rate(t0, t1),
            "high": cap.high_s(t0 - HIGH_LOOK_S, t0)}
@@ -315,6 +358,118 @@ def report_summary(caps_stops, out=sys.stdout):
               f"{_mean(rows, 'oil'):5.0f} {_mean(rows, 'b7'):4.0f}", file=out)
 
 
+# --- floors and swells --------------------------------------------------------
+
+def is_floor(row):
+    return row["d3"] >= FLOOR_FROM
+
+
+def is_swell(row):
+    return row["d3"] <= SWELL_FROM
+
+
+def floor_rows(st, min_oil=FLOORS_OIL_C):
+    """[[row or None, ...] per stop]: every window that is not warm at
+    `min_oil` with the loads off made None, so a floor is broken by it."""
+    return [[r if warm_off(r) and r["oil"] >= min_oil else None for r in rows]
+            for _, rows in st]
+
+
+def longest_floor(stops_rows):
+    """The longest run of floor windows next to one another, in windows."""
+    best = 0
+    for rows in stops_rows:
+        cur = 0
+        for r in rows:
+            cur = cur + 1 if r is not None and is_floor(r) else 0
+            best = max(best, cur)
+    return best
+
+
+def weak_per_1000(rows, cyls=(3,)):
+    """Weak strokes per 1000 of a cylinder's own, the mean over `cyls`."""
+    strokes = sum(r["n"] for r in rows) / 4.0
+    if not strokes:
+        return math.nan
+    return 1000.0 * sum(r[f"w{c}"] for r in rows for c in cyls) / strokes / len(cyls)
+
+
+def floors(stops_rows):
+    """What `--floors` prints for one capture or several pooled; None with
+    no window to read."""
+    rows = [r for rs in stops_rows for r in rs if r is not None]
+    if not rows:
+        return None
+    fl = [r for r in rows if is_floor(r)]
+    sw = [r for r in rows if is_swell(r)]
+    per_min = 60.0 / WINDOW_S
+    out = {"windows": len(rows), "minutes": len(rows) / per_min,
+           "floor_share": 100.0 * len(fl) / len(rows),
+           "swell_share": 100.0 * len(sw) / len(rows),
+           "longest_floor_min": longest_floor(stops_rows) / per_min,
+           "floor_d3": statistics.median(r["d3"] for r in fl) if fl else math.nan,
+           "deepest": min(r["d3"] for r in rows),
+           "common": _mean(rows, "common")}
+    for c in cylscan.FIRING_ORDER:
+        out[f"d{c}"] = _mean(rows, f"d{c}")
+    for name, part in (("", rows), ("floor_", fl), ("swell_", sw)):
+        out[name + "grade"] = _mean(part, "grade")
+        out[name + "dips"] = (per_min * sum(r["dips"] for r in part) / len(part)
+                              if part else math.nan)
+        out[name + "weak3"] = weak_per_1000(part)
+    out["weak_others"] = weak_per_1000(rows, (1, 4, 2))
+    out["bands"] = []
+    for lo, hi in DEFICIT_BANDS:
+        b = [r for r in rows if lo <= r["d3"] < hi]
+        out["bands"].append((len(b), weak_per_1000(b), _mean(b, "grade")))
+    return out
+
+
+def _num(x, width, digits=0):
+    return " " * (width - 1) + "." if x != x else f"{x:{width}.{digits}f}"
+
+
+def report_floors(caps_stops, out=sys.stdout):
+    print(f"warm (oil {FLOORS_OIL_C:.0f} degC and over), the A/C off, cuts "
+          f"left out; floor: 3 at {FLOOR_FROM:.0f} % and shallower, swell: "
+          f"at {SWELL_FROM:.0f} % and deeper", file=out)
+    print("cap   min floor% swell% longest  floor deepest |    grade      |"
+          "   dips/min    | 3's weak/1000  others | common |"
+          "    3     4     1     2", file=out)
+    print("                          min     d3      d3  |  all  fl   sw |"
+          "  all   fl   sw |  all   fl   sw        |", file=out)
+    named = [(cap.name, floor_rows(st)) for cap, st in caps_stops]
+    if len(named) > 1:
+        named.append(("all", [rs for _, x in named for rs in x]))
+    got = []
+    for name, sr in named:
+        f = floors(sr)
+        got.append((name, f))
+        if f is None:
+            print(f"{name:4s} no warm loads-off window", file=out)
+            continue
+        print(f"{name:4s}{f['minutes']:5.1f} {f['floor_share']:5.0f} "
+              f"{f['swell_share']:6.0f} {f['longest_floor_min']:7.1f} "
+              f"{_num(f['floor_d3'], 6, 1)} {f['deepest']:7.1f} | "
+              f"{_num(f['grade'], 4)} {_num(f['floor_grade'], 4)} "
+              f"{_num(f['swell_grade'], 4)} | {_num(f['dips'], 4, 1)} "
+              f"{_num(f['floor_dips'], 4, 1)} {_num(f['swell_dips'], 4, 1)} | "
+              f"{_num(f['weak3'], 4)} {_num(f['floor_weak3'], 4)} "
+              f"{_num(f['swell_weak3'], 4)} {_num(f['weak_others'], 7, 1)} | "
+              f"{f['common']:6.2f} | {f['d3']:5.1f} {f['d4']:5.1f} "
+              f"{f['d1']:5.1f} {f['d2']:5.1f}", file=out)
+    print("\n3's weak strokes per 1000 (and the grade, and the windows) at "
+          "an equal deficit of 3's", file=out)
+    print("cap  " + "".join(f"  {max(lo, -40):4.0f}..{hi:<4.0f}      "
+                            for lo, hi in reversed(DEFICIT_BANDS)), file=out)
+    for name, f in got:
+        if f is None:
+            continue
+        print(f"{name:4s} " + "".join(
+            "         .        " if n < 3 else f"  {w:4.0f} {g:4.0f} ({n:3d})  "
+            for n, w, g in reversed(f["bands"])), file=out)
+
+
 def report_series(cap, st, out=sys.stdout):
     for run, rows in st:
         read = [r for r in rows if r is not None]
@@ -398,13 +553,16 @@ def main(argv=None):
                     help="each fall of cylinder 3's deficit, in fine windows")
     ap.add_argument("--corr", action="store_true",
                     help="what the deficit and the common part go with")
+    ap.add_argument("--floors", action="store_true",
+                    help="how much is floor and how much swell, and what "
+                         "each is like; one line a capture and one pooled")
     ap.add_argument("--csv", metavar="OUT", help="write the windows")
     args = ap.parse_args(argv)
     caps_stops = []
     for path in args.files:
         cap = Capture(path)
         caps_stops.append((cap, stops(cap)))
-    if not (args.series or args.falls or args.corr):
+    if not (args.series or args.falls or args.corr or args.floors):
         report_summary(caps_stops)
     for cap, st in caps_stops:
         if args.series:
@@ -413,6 +571,8 @@ def main(argv=None):
             report_falls(cap, st)
     if args.corr:
         report_corr(caps_stops)
+    if args.floors:
+        report_floors(caps_stops)
     if args.csv:
         write_csv(args.csv, caps_stops)
     return 0
