@@ -18,15 +18,12 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next, the new N80
-(in hand since 13/11, to go in about the weekend of
-14–15/11)**: **no further captured drive before the swap** (*the owner*,
-13/11: the captures of 12/11 and before are enough for the old valve);
+Captures only where an item asks for one. **Next, 8a's captured drive on the new N80**
+(the valve fitted 14/11, steps 1–2 done):
 **8q, the timing belt at a garage, once it
 has a date** (the garage chosen, a date asked for 13/11), never on the same day as the new N80; **the new rear probe's
 replacement fitted when the seller sends it** (8e; the probe sent back
-13/11, the old rear probe on the car meanwhile). **Then 8a, the new N80, one laptop session** (032/055 and
-the fault memory before, the swap, a captured drive with 070 at a stop
+13/11, the old rear probe on the car meanwhile). **8a from step 3, one laptop session** (a captured drive with 070 at a stop
 on the way, 032 after; a second drive another day); **then 8o, two captured drives with N80 unplugged, only if
 8a's 070 runs leave the purge's part in 3's swell open**. **6p's second half, the phone above cylinder 3, at the next
 captured stop that swells.** **6m for injector 3, at the next evening
@@ -138,20 +135,13 @@ owner*: no window to be seen at the gearbox).*
 8m. **On the first hot day**: the fuel filler cap opened — a hiss or
    not, into the chat.
 8a. **The purge valve N80, the new one, one laptop session** (*the owner*,
-   13/11; the part in hand, about the weekend of 14–15/11): Bosch
+   13/11; fitted 14/11): Bosch
    `0 280 142 353`, VW `1C0 906 517 A`, the same as the one on the car;
    the hoses stay. Claude runs the laptop as in item 6 (he clicks
    nothing but 070). In this order:
-   1. **The owner reads 032/055 for 20 s and the fault memory** with
-      VCDS, the old valve still connected; saved beside the logs.
-   2. **The owner swaps the valve**; **the old one kept**. While it is
-      out: **a photograph of its two hoses to where they join** (the T
-      at the throttle) and of the vacuum hose of the secondary-air valve
-      N112 to where it joins.
-      **The lines round N80 stay** (*the owner*, 13/11: moulded ends,
-      not plain hose, hard to replace); **the small one from the
-      canister's pipe to N80 renewed if it can be**, the owner's call
-      with the valve out.
+   *Steps 1–2 done 14/11 by the owner: the fault memory empty, 032/055
+   photographed, the valve swapped, the small hose to the canister's
+   line renewed (`idle-log.md`, 14/11).*
    3. **Claude starts the capture and the VCDS log** (014 and 001; the
       third group Claude's choice on the day), before the ignition.
    4. **The owner drives.**
@@ -810,7 +800,7 @@ gentle drive and to −7.0 after a brisk one; on a tight one it should no
 longer follow the drive.
 **The photographs** because whether N112 and N80 share a vacuum tap is
 not recorded. **Fitted as soon as it is in hand** (*the owner*, 11/11: the
-fix comes first; 8b dropped; in hand 13/11, the swap about the weekend).
+fix comes first; 8b dropped; in hand 13/11, fitted 14/11).
 **The details at a lamp** because this ECU keeps no freeze frame; with
 them the next code can be set against fills, tank and weather.
 

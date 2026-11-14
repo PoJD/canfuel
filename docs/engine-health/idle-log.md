@@ -1581,3 +1581,18 @@ was the fault, one drive; S3, *P0300 and P0303*.
 The owner decided to have the belt and the water pump renewed at a
 garage (`plan.md` 8q), the mechanic to read the old marks first
 (`open.md` A1).
+
+## 14/11 — the new N80 fitted (8a, steps 1–2)
+
+- **Repairs:** the purge valve N80 replaced with a new one of the same
+  part (Bosch `0 280 142 353`), the old one kept; the small hose from
+  N80 to the plastic line back to the canister renewed, the old one well
+  worn; the hose on N80's other side left on, too awkward to reach.
+- **Tests:** before the swap, the fault memory read (empty) and 032/055
+  photographed (the album).
+- **Changes after:**
+  - *not known:* everything — the engine not yet run on the new valve;
+    the captured drive with 070 at a warm stop is 8a's next step.
+
+Done cold, by the owner, ahead of the laptop session; photographs of the
+valve, its hoses and N112's vacuum hose in the album.
