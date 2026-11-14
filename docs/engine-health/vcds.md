@@ -284,7 +284,14 @@ looks — the controller following (−3.9, then −7.8 %) and the flow 0.10,
   basic settings field 1 moved with the throttle (*owner*, 14/11), so
   the fields may show the ECU's own purge; `plan.md` 8a's second drive
   logs 070 beside 014 and 004 to find out — over the warm drive, not
-  one minute: the purge runs only warm and in phases.
+  one minute: the purge runs only warm and in phases. *The owner's
+  guess* (14/11 night): the ECU's own purge needs what the test needs,
+  001 field 4. *Reasoned*: warm and lambda control in order, most
+  likely yes; the idle bits (throttle closed, under 2,000 rpm) cannot
+  be conditions of a purge that also runs on the road (*general*), and
+  on 14/11 field 1 stayed at zero through half an hour of idle and
+  moved only with the throttle — on the reserve, in basic settings, so
+  not yet a reading. All of field 4 but the lambda bit is on the bus.
 - **On the bus** a basic setting is 0x480 b1 bit 5 (the ECU cutting the
   A/C compressor, `docs/firmware/can-decoding.md`): set from the moment
   a group is engaged in basic settings, whether or not its test starts.
