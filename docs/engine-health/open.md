@@ -2085,8 +2085,8 @@ new), six in the weeks before (`42`–`48`), eleven older.
   after midnight); and 11/11 night's motorway run and 12/11 night's
   drive to the limiter. The bus does not tell them apart: the warm
   coolant reads 97–98.5 °C before and after, so the cleaned G62 changed
-  nothing the floor sees; the rear probe does not steer the idle's
-  mixture (SSP 175). The canister is the likeliest of the four, not
+  nothing the floor sees; the front loop runs whatever the rear
+  probe does (SSP 175; H11). The canister is the likeliest of the four, not
   the only one.
 - **How the canister could do it** (*reasoned*, nothing measured): on
   the bypass an open N80 drew straight from the tank's vapour space —
