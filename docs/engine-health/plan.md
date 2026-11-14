@@ -22,8 +22,7 @@ Captures only where an item asks for one. **Next, the new N80
 (in hand since 13/11, to go in about the weekend of
 14–15/11)**: **no further captured drive before the swap** (*the owner*,
 13/11: the captures of 12/11 and before are enough for the old valve);
-**8r, the flywheel's mark through the gearbox
-window**, before the garage; **8q, the timing belt at a garage, once it
+**8q, the timing belt at a garage, once it
 has a date** (the garage chosen, a date asked for 13/11), never on the same day as the new N80; **the new rear probe's
 replacement fitted when the seller sends it** (8e; the probe sent back
 13/11, the old rear probe on the car meanwhile). **Then 8a, the new N80, one laptop session** (032/055 and
@@ -38,7 +37,8 @@ S1, *The rough start of a warm stop*). *Done: 8j and its first drive
 11/11 (its look at the next wheel off dropped 13/11, *the owner*: the
 joints seen whole and tight on his visit the day before), item 6's first captured drive 12/11 (`49`), 6q the queue drive
 12/11 evening (`50`), 6p's tailpipe half at its stop, 8i the belt's
-marks 13/11 morning.*
+marks 13/11 morning; 8r, the flywheel's mark, dropped 14/11 (*the
+owner*: no window to be seen at the gearbox).*
 
 6. **Drive normally; the MFD out from 12/11** (*the owner*), so the
    drives can be captured — the converter goes with the MFD, so no
@@ -190,22 +190,6 @@ marks 13/11 morning.*
    read but not counted for 8f**. After the second: the connector back
    on, the fault memory cleared by the owner, and 032's next reading
    taken as a fresh start.
-8r. **The flywheel's mark through the gearbox window** (*the owner*,
-   13/11: before the garage, to be sure), at a cold engine, the key out:
-   the window's plug out; the crank turned by its pulley's bolt, **only
-   in the direction of rotation** (clockwise from the belt side; past
-   the mark, round again twice, never back), **both marks watched in
-   turn while closing in**, until **the flywheel's mark stands on the
-   window's pointer** (*the owner*, 13/11: set by the flywheel, so the
-   cam's error reads in teeth) — on the turn where the camshaft
-   sprocket's OT mark is near its own mark, not half a turn away (that
-   is TDC of 4: once more round). Then **the camshaft sprocket's mark
-   against its mark**: a photograph of each square on, and if apart,
-   **the sprocket's teeth between them counted** and which way. Nothing
-   loosened; the plug back in. **The crank pulley's diameter measured**,
-   to a centimetre or so (the gap between 8i's marks not measured: it
-   cannot be reached without taking parts off, *the owner*, 13/11).
-   Into the chat.
 8q. **The timing belt renewed at a garage** (*the owner's decision*,
    13/11; the garage chosen by the owner, a date asked for 13/11): the belt, its tensioner and idler, and the water pump.
    **Before the old belt is loosened**, the mechanic sets the crank to
@@ -707,34 +691,6 @@ seat at its tightest; the engine cools while the intake comes off as
 it is, and a film on a seat may not last that either — a tight 3 there
 still clears nothing, a leaking one names it.
 
-**8r, the flywheel's mark** (*the owner*, 13/11, after reading of
-others who found odd marks on the pulley; `open.md` A1, *What the
-forums say*, the timing belt): Motor magazine names the camshaft
-sprocket's OT and **the flywheel's mark in the gearbox window** as the
-marks to set on this family; the pulley's notch and the groove read in
-8i are not confirmed as the AQY's timing marks. **Set by the
-flywheel** (*the owner*, 13/11, in place of the cam first): with the
-crank at its true TDC, the camshaft sprocket's offset counts in its own
-teeth, each one belt tooth — the figure the garage would give, read
-directly, where the ring gear's teeth would have needed its tooth count
-(*reasoned*). The sprocket's mark on its own mark says the belt is
-right and 8i's 30–60° was the wrong marks or a misjudged angle; the
-cam turns once for two of the crank, so TDC of 1 is the turn with the
-cam's mark near its own, half a turn of the sprocket off on the other.
-**The pulley's diameter** turns the owner's 2–3 cm at least, not over 5, on its rim
-(13/11 evening) into degrees: 15–40° at 14–16 cm (*reasoned*; a
-centimetre on the diameter moves it by about 7 %, far less than the
-gap's own 2–5 cm), one to two teeth
-— where the 30–60° by eye were 1.5–3; and if the flywheel and the cam
-agree while the pulley's notch does not, the pulley sits turned on its
-sprocket (*the owner*). Where the window
-is and what its mark looks like was not looked up in VW's manual (the
-owner found it on the web). **Turned only forward** because turning
-back lets the belt's slack side jump and misreads the cam; by the
-crank, never by the camshaft's bolt. **The belt is renewed either
-way** (*the owner*, 13/11: "for peace of mind"); 8r settles whether
-8q's tooth count is expected to find anything.
-
 **8q, the timing belt at a garage** (*the owner's decision*, 13/11,
 after 8i): 8i read the cam's OT mark set and the crank pulley's one
 notch 30–60° of crank from the groove on the block by eye
@@ -747,7 +703,10 @@ piston at plug 1 that would have settled it was declined. The belt
 is nine years old (10/2017), so renewing it loses nothing either way,
 and the owner leaves the work to a garage. **What makes it a test**:
 the mechanic's count of teeth before the old belt comes off says
-whether 8i's reading was true; the captured warm stop before and
+whether 8i's reading was true — **the only reading of the true marks
+left**, the flywheel's mark through the gearbox window (8r) dropped
+14/11 (*the owner*: no window to be seen there, most likely hidden
+deeper behind other parts); the captured warm stop before and
 after says whether the common part (list A) moved — down by a clear
 step if the cam was out, unchanged if it was not (H0 then gains).
 **Kept apart from the new N80** so that each has a captured drive of
