@@ -390,6 +390,21 @@ stops longer than most before; a difference in 3's floor, not a repair.
 misfires at speed: the weight per misfire is 12 to 1,500 rpm and grows
 to 13–19 by 2,400–2,800 (`vcds.md`).
 
+**Before and after each repair, read 14/11 night** (*the owner's
+question*: the cleaners, the oil, the MAF, the plugs and leads; S1,
+*Before and after each repair*). **The idle moved twice, both at a
+repair**: the MAF (24/9: the grade 111 → 89, cylinder 4 up from −10 to
+−3 %) and the plugs, leads and intake gasket of 10/10 (3's weak strokes
+halved, the grade to 62–74). **Since 12/10 the mean is flat at 61–67**
+through the DFI can, both 44K tanks, the flushes and the oil, the
+hydrogen and the canister; **no cleaner shows on the bus**, and across
+the 44K week only 014's share halved (0.20–0.33 % → 0.07–0.15),
+unshared between the cleaner, the regulator's hose and the oil. What
+moves is the make-up: more of a stop is floor since 3/11, and **the
+swells are as rough as September's again** — 10/10's gain inside a
+swell has gone. For another can in the tank the record gives no ground
+(*reasoned*).
+
 **Open:**
 
 - **The idle — S1 (unsettled) and S3 (014 counts at idle).** Every part in
@@ -2114,6 +2129,92 @@ steadier than raw tank vapour (H16, *The owner's reading, 12/11*) as a
 small help to a cylinder already short — and does not touch why 3 is
 short or why it swells. The new valve added nothing to that on its
 first day.
+
+**Before and after each repair, 24/9 to 14/11** (14/11 night, *the
+owner's question*: did the three fuel cleaners and the oil flush move
+anything, and the MAF and the plugs and leads; and does the idle move
+at all where 014 and `IdleHealth` do not show it. The warm standing
+idle of `19`–`51`, oil 90 °C and more, the A/C off, cuts left out, in
+the 30 s windows of the section above; 014 from every log at an idle
+of 650–950 rpm with detection on, not sorted by warmth; scripts not
+kept). The grade here is the stroke steps' own (the dead-banded step
+× 50 over a window), near `IdleHealth` but not the display's byte.
+
+| | windows | the grade | dips a minute | 3's weak strokes per 1000 | the others' | the common part | 3 / 4 / 1 / 2, % of a stroke | floor, share of windows |
+|---|---|---|---|---|---|---|---|---|
+| `19`, 24/9 morning, the old MAF | 10 | 113 | 26 | 25 | 14 | 3.28 | −13 / −9 / +7 / +15 | 10 % |
+| `24`–`30`, 24/9–9/10 | 64 | 83 | 6.9 | 23 | 4.2 | 3.08 | −17 / −1 / +8 / +10 | 2 % |
+| `31`, `32`, 10–12/10, the NGK plugs and leads, the intake gasket | 85 | 65 | 1.0 | 12 | 3.2 | 2.84 | −14 / −2 / +8 / +8 | 15 % |
+| `36`–`38`, 15/10, the DFI can in | 24 | 61 | 6.0 | 13 | 1.6 | 2.66 | −13 / −3 / +8 / +8 | 0 |
+| `39`, 18/10, the day of the episodes | 10 | 79 | 14 | 37 | 3.8 | 2.91 | −19 / +2 / +10 / +7 | 0 |
+| `40`, 21/10, the VW plugs and leads | 33 | 65 | 3.8 | 18 | 3.2 | 2.82 | −15 / +2 / +6 / +7 | 0 |
+| `42`, `43`, 3/11, after both 44K tanks, the flushes and the oil, on the original map | 42 | 67 | 5.4 | 14 | 3.7 | 3.03 | −13 / +2 / +3 / +8 | 29 % |
+| `44`, 9/11, before the hydrogen | 33 | 62 | 0.7 | 10 | 2.1 | 2.72 | −13 / 0 / +4 / +9 | 58 % |
+| `46`, 9/11, after it | 43 | 63 | 5.6 | 7 | 3.1 | 2.86 | −11 / −2 / +4 / +10 | 47 % |
+| `47`, `48`, 10/11 | 49 | 62 | 8.2 | 13 | 2.0 | 3.09 | −14 / +4 / +4 / +6 | 24 % |
+| `49`–`51`, the canister | 166 | 61 | 4.3 | 13 | 3.0 | 2.97 | −12 / +1 / +5 / +6 | 42 % |
+
+- **The idle moved twice, and both times at a repair.** **The MAF**
+  (24/9, `19` against `24` the same day): the grade 111 → 89, dips of
+  20 rpm 26 → 12 a minute, and **cylinder 4 came up from −10 to −3 %**
+  with its weak strokes halved (33 → 15 per 1000) — on the old MAF 4
+  was weak beside 3; 3 itself did not move (25 → 30) and the common
+  part did not (3.3 → 3.2). **The plugs, leads and intake gasket of
+  10/10** (`30` against `31` the next day, then `32`): 3's weak strokes
+  23 → 13 → 11 per 1000, the grade 87 → 74 → 62, the dips 5.3 → 2.0 →
+  0.7 a minute; the common part 2.9 on all three. The three parts
+  cannot be told apart, nor 12/10's shim and air filter from them.
+- **Since 12/10 the mean has not moved**: the grade 61–67 on every
+  group of captures but `39`, through the DFI can, the VW plugs and
+  leads (`37`, `38` against `40`: 61 → 65, 3's weak strokes 13 → 18),
+  both 44K tanks, the two flushes and the new oil, the original map,
+  the hydrogen, the probes, the canister and the new valve.
+- **What has moved since is how the idle is made up**: a floor in 0 %
+  of the warm windows on `36`–`40`, 24–58 % from 3/11, 42 % on the
+  canister — and **the swells between are as rough as September's**.
+  At an equal deficit of 3's (−16 to −23 %) its weak strokes were
+  22–28 per 1000 on `24`–`30`, **13–14 on `31` and `32`**, and are
+  **21–28 again on `42`–`44` and `49`–`51`**; a swell window's grade
+  85, 69, 86, 80. **The gain of 10/10 inside a swell has gone**; it
+  holds only where 3 is shallow (−13 to −10 %: 27, 12, and 11–12
+  since). When it went the captures do not date closer than between
+  `40` (mixed) and `42`. *A finding of this reading, not explained.*
+- **The DFI can** (15/10): with it in, the grade 61 against 65 before,
+  3's weak strokes 13 against 12, the common part 2.66 against 2.84 —
+  the one figure that stood out, a day after every hose was renewed,
+  and 2.82 again on `40`; 014's share of combustions 0.27–0.62 % on
+  12/10, 0.12–0.22 on 15/10, 0.53 on 18/10. **Nothing that lasted.**
+- **The two 44K tanks, the regulator's hose, the flushes and the oil**
+  (23–27/10) have no capture between them: `40` before, `42` after,
+  with the original map and fresh adaptations on top. Across the lot
+  the grade is 65 → 67, 3's weak strokes 18 → 14 (within their
+  scatter), the common part 2.82 → 3.03, **cylinder 1 down from +6.0
+  to +3.5 %** (±0.4 each; the others taking it up) and the floor
+  there. **014 is the only reading inside the bundle**: 0.20–0.33 %
+  of combustions on 21/10, 0.14–0.21 on 25/10 (the second can in, the
+  hose renewed that day), 0.29 on 26/10 with 055 off, **0.07–0.15 on
+  27/10** on the new oil, and 0.06–0.18 on 9–10/11 — **halved inside
+  that week and held a fortnight**, and not to be shared out between
+  the cleaner, the hose and the oil. The display read 45–90 through
+  all of it (the table above).
+- **The hydrogen** (`44` against `46`, one day, one tank, one map):
+  3's floor −8.7 → −8.1 %, the floor's grade 46 → 63 and its dips
+  0 → 4.5 a minute, the common part 2.72 → 2.86; the swells that
+  afternoon shallower and calmer (to −19 % against −29; 11 weak strokes
+  per 1000 against 25, seven windows) and as before the next day
+  (`47`, `48`: 20). **A day's relief in the swell, nothing kept** — as
+  H13 has it.
+
+**Read** (*reasoned*). **No cleaner shows on the bus**: not the DFI
+can, with a clean pair; not the hydrogen, with the cleanest pair there
+is; the 44K tanks cannot be read apart from four other changes, and
+what sits across them is 014's share halving and cylinder 1 coming
+down — neither is 3's deficit, which in a swell is what it was in
+September. **For another can in the tank the record gives no ground**
+(*reasoned*; the injectors are new since 23/9, and the strongest clean
+of the chambers left 3 where it was). **And the idle does move where
+014 and the display do not show it** — in how much of a stop is floor,
+which the mean hides because the swells have grown rougher again.
 
 **Each cylinder against the idle's 0.8 Hz swing** (14/11 night, *agreed
 with the owner*: is 3 more sensitive to the mixture than the others —
@@ -5066,6 +5167,14 @@ on 3 fouling at idle and burning itself clean (H1) is this entry's
 deposit at work — it fits the clean taking the swell for a day and
 `46`'s stops showing no growth at all; against "a flake moved", the
 fall takes 30–45 s.
+**14/11 night, every cleaner set against the bus** (S1, *Before and
+after each repair*): **against** — the DFI can, both 44K tanks and the
+hydrogen left 3's weak strokes in a swell where September had them
+(21–28 per 1000 at −16 to −23 %) and the grade's mean at 61–67 since
+12/10; the hydrogen gave one afternoon of shallower swells. For: 014's
+share halved in the week of the 44K tanks — with the regulator's hose
+and the oil in the same week. Another can in the tank is not planned
+(*reasoned*; for the owner to decide).
 
 *Added 15/10 at the owner's request.* The engine seldom saw more than
 3000 rpm for at least nine years (*owner*). Gentle use builds deposits where
@@ -6543,7 +6652,7 @@ tables):
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| B1 | **H13** deposits | **12/11 night, the phone at the tailpipe, kept with H1**: 3's exhaust pulse +11 % at −23 % and −7 % at −5 %, on its steady strokes too — the swell is 3's combustion on every stroke; a seat and a dilution both give it (S1, *The phone at the tailpipe through a swell and a fall*); **12/11 night, the queue drive, kept with H1**: three swells in one stop, the falls 80–108 s, the air, the spark and the regulation the same through them — still inside 3 (S1, *The queue drive, and what the ECU sees through a swell*); **12/11, the third research** (*agreed with the owner*): first, with H1, and for 3 by every measure — its steady deficit at every warm idle, 80 % of 014's rises, the swell and its step; the borescope's most deposit on 3 (3 > 4 > 2 > 1), and cold 4 weak beside it in that order; **12/11, the idle split in two** (*the owner's decision*): 3's exhaust seat or a flake, read with H1; **11/11, after the second research** (*agreed with the owner*): the rough start of a warm stop after a hot drive is 3's swell (S1, *The rough start of a warm stop*), and a day's relief fits a flake moved, not deposit regrown (SAE 2000-01-2858); **9/11, the clean**: it took 3's swell for a day and left its floor (S1, *The clean of 9/11*); **24/10**: its own test, the strong 44K tank and ~450 hard km, moved nothing, and the deposit reads as a consequence as much as a cause (H13). *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`); those of 3/11–9/11 rested on the dip shares withdrawn 12/11.* | both 44K tanks done; **the hydrogen clean done 9/11**: the swell gone for a day, 3's floor and the settled level kept (S1, *The clean of 9/11*); with H1, a warm leak-down with 3 twice (`plan.md` 9) |
+| B1 | **H13** deposits | **14/11 night, kept**: no fuel cleaner and not the hydrogen moved 3's weak strokes in a swell or the grade's mean; 014's share halved in the 44K week, unshared with the hose and the oil (S1, *Before and after each repair*); **12/11 night, the phone at the tailpipe, kept with H1**: 3's exhaust pulse +11 % at −23 % and −7 % at −5 %, on its steady strokes too — the swell is 3's combustion on every stroke; a seat and a dilution both give it (S1, *The phone at the tailpipe through a swell and a fall*); **12/11 night, the queue drive, kept with H1**: three swells in one stop, the falls 80–108 s, the air, the spark and the regulation the same through them — still inside 3 (S1, *The queue drive, and what the ECU sees through a swell*); **12/11, the third research** (*agreed with the owner*): first, with H1, and for 3 by every measure — its steady deficit at every warm idle, 80 % of 014's rises, the swell and its step; the borescope's most deposit on 3 (3 > 4 > 2 > 1), and cold 4 weak beside it in that order; **12/11, the idle split in two** (*the owner's decision*): 3's exhaust seat or a flake, read with H1; **11/11, after the second research** (*agreed with the owner*): the rough start of a warm stop after a hot drive is 3's swell (S1, *The rough start of a warm stop*), and a day's relief fits a flake moved, not deposit regrown (SAE 2000-01-2858); **9/11, the clean**: it took 3's swell for a day and left its floor (S1, *The clean of 9/11*); **24/10**: its own test, the strong 44K tank and ~450 hard km, moved nothing, and the deposit reads as a consequence as much as a cause (H13). *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`); those of 3/11–9/11 rested on the dip shares withdrawn 12/11.* | both 44K tanks done; **the hydrogen clean done 9/11**: the swell gone for a day, 3's floor and the settled level kept (S1, *The clean of 9/11*); with H1, a warm leak-down with 3 twice (`plan.md` 9) |
 | B2 | **H1** valve or lifter | **12/11 night, off idle** (*agreed with the owner*; *Naming the cylinder*, *Off idle*): kept, **read as a seat that dilutes at the idle's vacuum, not one that loses compression** — 3 is within 1–3 % of 2 at full load and load lifts its deficit at idle speed; **12/11, the third research** (*agreed with the owner*): with H13 on 3 — a seat on 3 that leaks (the floor) or holds a flake (the swell), or a lifter; the steady pattern is 3's alone, as one seat gives; **12/11, the idle split in two** (*the owner's decision*); **11/11 night, kept**: S22 reopened, a tick once per cycle heard warm after a hard drive; **read 12/11: the usual once-per-cycle part at its usual size, no lifter's jump** (S22); **11/11 up from fourth** (*agreed with the owner*): 3's exhaust seat, leaking hot or holding a flake, fits the rough start after a hot drive that settles in 5–8 minutes; the weak strokes come in spells of seconds on one cylinder, at a mixture or dilution limit (S1, *How the weak strokes follow each other*); VW calls the cold clatter of 8/11 normal; **7/11**: the port photos of 20/10 show crust broken round the inlet seat's edge on 3 and 4, a lump on 3, 1 and 2 even (*the owner's reading*); **26/10**: the hot phone recording found no lifter, 18/10's tick not back. *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`); those of 3/11–9/11 that weighed 3 against 4 rested on the dip shares withdrawn 12/11.* | the EPR flushes done 26/10, the hot recording found no lifter; left: **a warm leak-down on all four** and a stethoscope above 3, hot (`plan.md` 9) |
 | B3 | **H3** a leak at one runner, 3's | **12/11 night, off idle** (*agreed with the owner*; *Naming the cylinder*, *Off idle*): kept third, **strengthened**: *load helps* measured, −21 to −26 % of a stroke at idle and with the pedal light, −1 to −3 % at full load; **the owner's reading** — a second cause that makes all four rich takes 032's negative idle cell out of the case against it (H3); **12/11, later the same day** (*the owner's argument*): one up, H7 below it; **12/11, the third research** (*agreed with the owner*): **runner 3's lower gasket**, never renewed — the one cause that predicts *load helps* directly; 3 short in every state, cold 4 weak beside it, the neighbouring runner; runner 3's gasket edge bent and straightened by the owner on 5/11, runner 4's torn; against: 032's idle cell negative, the smoke test of 9/10 clean, and a leak has no reason to swell and mend in a step; **4/11**: the calm under load best of all, the calm after revving not at all (S1). *Until 12/11 it was read for runner 4 ("4's deficit") and demoted 24/10 for "the dips no longer keep to 3 and 4" — both on the dip shares withdrawn 12/11.* *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`).* | no test in place (the brake cleaner cannot reach, 24/10); the lower manifold off and its gasket renewed |
 | B4 | **H4** the injector loom at 3 | **12/11 night, off idle** (*agreed with the owner*; *Naming the cylinder*, *Off idle*): **up one, above H20**: 3's deficit is an amount at a small charge and not a share — what an injector that opens late through a raised resistance gives, and the opposite of the "steady 9 % in every state" held against it; the spark side against, 3 level at full load; 6m ahead of the garage session; **12/11, later the same day** (*the owner's argument*): one up; the wiring is what stays with the cylinder through a change of injectors; **12/11, the third research** (*agreed with the owner*): the loom at 3 (its own branch after D95, its control wire to pin 58); a wire has no reason to cost a steady 9 % in every state or to swell and mend in a step; the load argument is against the spark side, not the injectors; **24/10**: flexed part-warm by the owner, by ear, no change. *Read for 4's circuit and for "the pair the steady pattern names" until 12/11, on the dip shares withdrawn then.* *Older re-reads in git (`git show 296a5d7:docs/engine-health/open.md`).* | VCDS 004 beside 014; the circuits measured (`plan.md` 6m, 6n) |
