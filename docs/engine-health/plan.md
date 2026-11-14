@@ -35,7 +35,8 @@ with the upper intake off** (agreed 12/11 night), ahead of item 9; then item 9; 
 laptop session; **8e's harness at the end**, 8g dropped (*the owner*,
 10/11 and 11/11; `open.md` H11, *The relearn drive*; `refuted.md` D13;
 S1, *The rough start of a warm stop*). *Done: 8j and its first drive
-11/11, item 6's first captured drive 12/11 (`49`), 6q the queue drive
+11/11 (its look at the next wheel off dropped 13/11, *the owner*: the
+joints seen whole and tight on his visit the day before), item 6's first captured drive 12/11 (`49`), 6q the queue drive
 12/11 evening (`50`), 6p's tailpipe half at its stop, 8i the belt's
 marks 13/11 morning.*
 
@@ -136,10 +137,6 @@ marks 13/11 morning.*
      lead the engine stumbled at.
 8m. **On the first hot day**: the fuel filler cap opened — a hiss or
    not, into the chat.
-8j. **The canister's joints looked at and pulled on at the next wheel
-   off** (the canister plumbed back 11/11 evening, `idle-log.md`): each
-   rubber piece and its clip, the tank's line where it was bent; a
-   photograph into the chat.
 8a. **The purge valve N80, the new one, one laptop session** (*the owner*,
    13/11; the part in hand, about the weekend of 14–15/11): Bosch
    `0 280 142 353`, VW `1C0 906 517 A`, the same as the one on the car;
@@ -151,6 +148,10 @@ marks 13/11 morning.*
       out: **a photograph of its two hoses to where they join** (the T
       at the throttle) and of the vacuum hose of the secondary-air valve
       N112 to where it joins.
+      **The lines round N80 stay** (*the owner*, 13/11: moulded ends,
+      not plain hose, hard to replace); **the small one from the
+      canister's pipe to N80 renewed if it can be**, the owner's call
+      with the valve out.
    3. **Claude starts the capture and the VCDS log** (014 and 001; the
       third group Claude's choice on the day), before the ignition.
    4. **The owner drives.**
@@ -801,11 +802,6 @@ or the next is the one moment it can be told from a seat or a guide.
 
 **8m, the filler cap on a hot day** (from 8k): the one check of the
 summer overpressure (`open.md` S21), which a November day cannot give.
-
-**8j, the canister's joints** (`open.md` S21): rubber on a line bent
-back with heat can creep off its port, and a joint that lets go is a
-leak of unmetered air at every purge and P0440 again; the wheel coming
-off for anything else is the free moment to look.
 
 **Item 8a as one laptop session** (*the owner*, 13/11): Claude drives
 the laptop, the owner the car and VCDS's 070. **070 is a test, not an
