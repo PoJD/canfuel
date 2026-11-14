@@ -280,6 +280,10 @@ looks — the controller following (−3.9, then −7.8 %) and the flow 0.10,
   the bus showed no second purge (the fuel counter's rate did not dip,
   where the first run took 8 % off it for 40 s). Whether a key cycle
   re-arms it was not tried.
+- **As a measuring block it has not been read.** With the test off in
+  basic settings field 1 moved with the throttle (*owner*, 14/11), so
+  the fields may show the ECU's own purge; `plan.md` 8a's second drive
+  logs 070 beside 014 and 004 to find out.
 - **On the bus** a basic setting is 0x480 b1 bit 5 (the ECU cutting the
   A/C compressor, `docs/firmware/can-decoding.md`): set from the moment
   a group is engaged in basic settings, whether or not its test starts.

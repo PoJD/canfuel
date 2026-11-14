@@ -601,7 +601,9 @@ swell in 3's combustion and does not choose between a seat and a
 dilution (S1, *The phone at the tailpipe through a swell and a fall*).
 
 **Next** (`plan.md`; *the owner*, 10/11–14/11): **8a's second drive on the new N80, a gentle one, captured, another
-day, 032 after** (the first, 14/11, read: 3 swells as before, 032's
+day, VCDS 014 070 004 through it (070 as a measuring block, for the
+purge's phases; 004 for the voltage and the intake temperature;
+*agreed with the owner*, 14/11 night), 032 after** (the first, 14/11, read: 3 swells as before, 032's
 idle cell not moved; its 032 came after a brisk leg; H16, *What decides
 it*); **6p's second half, the phone above cylinder 3**, at the next
 captured stop that swells (the tailpipe half done at `50`'s stop);
@@ -616,8 +618,8 @@ date asked for 13/11, none yet); **the new rear probe sent back to the
 seller under warranty 13/11, its replacement fitted when it comes, the
 old rear probe on the car meanwhile** (S23 closed 12/11 as its fault,
 `refuted.md` D13); **then 8o, two captured drives with
-N80 unplugged** — 8a's one 070 run left the purge's timing open (S1,
-*The first drive on the new N80*); **8h, the loads against the
+N80 unplugged, if 070's fields on that drive leave the purge's timing
+open** — 8a's one 070 run did (S1, *The first drive on the new N80*); **8h, the loads against the
 sensors' voltages**, at a laptop session; **8f, 032 at every VCDS
 session**; **6m's injector circuits**, read for 3, **at the owner's
 next evening with the upper intake off, ahead of the garage session**
@@ -1200,7 +1202,8 @@ beside this file shows one dip stroke by stroke.
 ![One idle dip](dip-profile.svg)
 
 **The dips ride a swing of the idle loop at about 0.8 Hz** (5/11, the
-same fresh look). Engine speed at idle oscillates with a period of
+same fresh look). *The lambda controller has the same period,
+read 14/11 (Each cylinder against the idle's 0.8 Hz swing, below).* Engine speed at idle oscillates with a period of
 1.2–1.4 s, and the same line stands in b7 and in the injection time.
 Intervals of 1.0–1.25 s between dips come 2.1 times as often as by
 chance, so about one dip in ten is an echo of the one before; averaged
@@ -2111,6 +2114,41 @@ steadier than raw tank vapour (H16, *The owner's reading, 12/11*) as a
 small help to a cylinder already short — and does not touch why 3 is
 short or why it swells. The new valve added nothing to that on its
 first day.
+
+**Each cylinder against the idle's 0.8 Hz swing** (14/11 night, *agreed
+with the owner*: is 3 more sensitive to the mixture than the others —
+lean, H3, H4, H7's injector — or not — diluted, H1, H13, H20; `50`'s
+queue idles, where VCDS read one group alone at 3.3 rows a second and
+the log sets against the capture on engine speed to 0.05 s: 001 for
+the lambda controller, 003 for the air mass, the advance and the
+throttle angle; each named stroke's residual against the signal's place
+about its own 6 s mean, the signal shifted from 0.8 s after the stroke
+to 1.2 s before; scripts not kept).
+- **The lambda controller swings with a period of 1.2 s at idle**
+  (243 s of `50`'s last stop, 1.3 % of scatter) — **the period of *The
+  dips ride a swing of the idle loop*, above**. Air mass, advance,
+  throttle angle and the controller all carry it, and every cylinder's
+  strokes ride it: about 1 rpm weaker in the half with the controller
+  below its mean, or the air mass below its mean, within 0.1 s, and
+  as much stronger half a period away.
+- **3 answers no more than the others**: with the controller in its
+  lean half 3's strokes are −1.1 to −1.2 rpm, 1's and 2's −0.9, 4's
+  −0.5 to −0.7 (± 0.2, 2,300 strokes a cylinder); on the air mass −1.1
+  against −0.7 to −0.9 and −0.5.
+- **The misfires keep to the small-charge half, on 3 most**: of 3's
+  strokes 12 rpm and more down, 21 of 27 fell with the air mass below
+  its mean (16 of 24 with the controller below its mean); the other
+  three's together 10 of 16 and 16 of 23.
+- **It does not tell lean from diluted.** The controller's lean half
+  and the low-air half are the same half of one swing, so the mixture
+  and the charge cannot be parted here; the swing's size (about 3 % of
+  a stroke) is what the governor's advance alone gives at 3–6° before
+  TDC (*general*), so nothing in it says the engine is unusually
+  mixture-sensitive. One capture, six minutes of idle a log; the bus's
+  own injection time and fuel counter follow the air, not the
+  controller (r 0.2 against 001), so the other captures cannot be read
+  this way. *Reasoned*: 3 misfires where its charge is smallest, which
+  *Off idle* already had; no route to H3 against H1 through the bus.
 
 **How the weak strokes follow each other** (11/11, *the research*;
 `dipshape.py`'s warm runs, each step against its cylinder's median,

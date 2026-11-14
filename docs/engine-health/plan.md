@@ -18,12 +18,12 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next, 8a's second drive on the new N80, a gentle one, captured**
+Captures only where an item asks for one. **Next, 8a's second drive on the new N80, a gentle one, captured, with VCDS 014 070 004**
 (the valve fitted and its first drive made 14/11, `51`):
 **8q, the timing belt at a garage, once it
 has a date** (the garage chosen, a date asked for 13/11), never on the same day as the new N80; **the new rear probe's
 replacement fitted when the seller sends it** (8e; the probe sent back
-13/11, the old rear probe on the car meanwhile). **After 8a's second drive, 8o: two captured drives with N80 unplugged** (8a's one 070 run left the purge's timing open). **6p's second half, the phone above cylinder 3, at the next
+13/11, the old rear probe on the car meanwhile). **After 8a's second drive, 8o: two captured drives with N80 unplugged, if Claude says so on that drive's 070** (8a's one 070 run left the purge's timing open). **6p's second half, the phone above cylinder 3, at the next
 captured stop that swells.** **6m for injector 3, at the next evening
 with the upper intake off** (agreed 12/11 night), ahead of item 9; then item 9; 8h at a
 laptop session; **8e's harness at the end**, 8g dropped (*the owner*,
@@ -137,13 +137,17 @@ owner*: no window to be seen at the gearbox).*
    made the same day, `51`):
    - **The second drive on the new valve, another day, a gentle one**
      (no full throttle, under about 3,500 rpm), captured as item 6, to a
-     warm stop of ten minutes or more with 014 logged through it; 032
-     after (8f). No 070.
+     warm stop of ten minutes or more. **VCDS 014 070 004, logged by
+     Claude through the whole drive and stop** — 070 as an ordinary
+     measuring block, **no basic setting, nothing clicked**; in the
+     first warm minute Claude says whether 070's fields move at all,
+     and if they do not, the log goes on as 014 001 004. 032 after (8f).
    - **At any engine lamp from now on**: the odometer, the tank's needle
      and the outside temperature into the chat, and 032 read before the
      code is cleared.
 8o. **Two captured drives with the purge shut**, after 8a's second
-   drive: engine off, **N80's electrical connector unplugged** (*the
+   drive **and only if Claude says so on its reading** (070's fields
+   may already show the purge's phases against 3's swell): engine off, **N80's electrical connector unplugged** (*the
    owner*, 13/11: nothing pinched or left by the hose, just above the
    belt's pulley; and the lines could not be pinched anyway — the one to the canister is hard plastic, those nearer the engine rubber gone very stiff, *the owner*, 13/11; *a hose clamp until then*), the connector tucked
    clear of anything that turns; a photograph. Item 6's drive, captured,
@@ -740,6 +744,21 @@ one. **No 070 on it**: the run answers nothing more (it runs once, and
 3 did not move with it), it needs VCDS closed, and that cost the first
 drive 014 through three of its four swells. **014 through the whole
 stop** for that reason.
+**070 and 004 beside it** (*agreed with the owner*, 14/11 night).
+**070 read as a measuring block**: its fields are the valve's opening
+in %, the lambda controller's deviation and the flow in g/s (the
+owner's label file), and in basic settings with the test off field 1
+moved with the throttle on 14/11 — so it most likely shows what the
+ECU does with the valve by itself. If it does, the purge's phases are
+at last readable against 3's swell, with nothing unplugged and no code
+stored, and 8o is needed only if they leave it open; *whether the
+fields live outside basic settings is not known* — a minute at a warm
+idle tells. **004**: the supply voltage and the intake air's
+temperature, read so far only on the road and for 84 s standing — the
+voltage for H4 (an injector circuit with a raised resistance opens
+later at a lower voltage), the intake temperature for a swell that
+follows the heat soak of a stop. 001 and 003 are left out: both were
+read through swells on `50` and moved with neither part.
 
 **Item 8a, from 11/11** (*the owner*: the part ordered "to be sure",
 after the research of 11/11 on P0172 and P0440; `open.md` S21, *Read
