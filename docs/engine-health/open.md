@@ -2101,8 +2101,8 @@ new), six in the weeks before (`42`–`48`), eleven older.
   days speaks for the hardware, one back at −8 to −9 for the driving;
   **8o** — with N80 unplugged a floor shallower still would put the
   purge flow itself under 3's deficit; and the one clean test, the
-  canister bypassed again for one captured drive, which nobody has
-  asked for.
+  canister bypassed again for one captured drive — **declined** (*the
+  owner*, 14/11).
 
 **Read** (*reasoned*). The canister took nothing from either part of
 the idle; **with it 3 sits a little nearer the others between swells
