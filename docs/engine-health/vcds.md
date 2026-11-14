@@ -106,7 +106,10 @@ finding:**
   https://www.volkspage.net/technik/ssp/ssp/SSP_175_d2.pdf), the
   catalyst-protection one. **The weight per misfire is 12 at idle below
   about 34 % load, 13 above** (`vcds-step6d-cold-cut-014-001-003.csv`, the
-  cut at 35 % load, counts in thirteens), and more above 2000 rpm; why 12,
+  cut at 35 % load, counts in thirteens), and more with engine speed —
+  **the first rise from zero in every log, 14/11: 12 to 1,500 rpm, 12–15
+  at 1,500–2,000, 12–16 at 2,000–2,400, 13–19 at 2,400–2,800, 15–19
+  above**, so a 16 or an 18 on the road is one misfire; why 12,
   no public source says (a factor the ECU sends the tester is the likeliest
   reading). While detection reads `deaktiv.` the count and the window's
   revolutions freeze. *This said "holds about 3 s here" until 5/11.* **Measured with one cylinder

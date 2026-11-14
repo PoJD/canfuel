@@ -368,9 +368,27 @@ stopped. *The owner at the car*: 003's throttle angle under 2° at the
 pump's idle ("not sure I have ever seen that") — **it has read under
 2° at a warm idle before**, 1.3–1.7° in 17–60 % of the idle samples on
 24/9, 25/9, 21/10 and 3/11 evening, and in 5 % of them here; small
-shakes in the seat at about 18:08 — the floor's, as at `49`. **No
-re-ranking made**; Claude proposes H16 down list A for the idle (it
-stays S19's and S21's), for the owner to decide.
+shakes in the seat at about 18:08 — the floor's, as at `49`. **H16
+from third to fifth in list A the same evening** (*the owner's
+decision*; it stays S19's and S21's).
+
+**Before and after the canister and the new valve, read 14/11 evening**
+(*the owner's question*; `24`–`48` against `49`–`51`, and every 014
+log; S1, *Before and after the canister and the new valve*; S3, *By
+era*). **What did not move**: the common part, the swell's depth, the
+dips' depth, length and make-up, the grade of a floor, 014 on the
+road, the fuel and the load at idle. **What did**: **3's floor is two
+points of a stroke shallower** (−6.3 to −6.8 % on `49`, `50`, `51`
+against −8.1 to −9.0 on the six captures before) **and has lasted
+longer** (14.5 and 9.5 minutes against 5.5 at most), and **014's idle
+has split in two** — the longest silences on record (12.2 minutes on
+12/11, 7.1 on 14/11) and, in the swells, the highest share of episodes
+climbing past 12 (74 % on 11–12/11). **The owner's "the 014 records
+are from these days"** (*owner*) holds both ways. Three captures, the
+stops longer than most before; a difference in 3's floor, not a repair.
+**014's odd values** (*the owner*: 16 and the like on 14/11) are single
+misfires at speed: the weight per misfire is 12 to 1,500 rpm and grows
+to 13–19 by 2,400–2,800 (`vcds.md`).
 
 **Open:**
 
@@ -509,9 +527,10 @@ and what the common part follows*): **the timing belt a tooth out**
 eye, which the air the engine takes at full throttle speaks against,
 the row A1; the belt renewed at a garage, 8q, *the owner's
 decision*), **H0**,
-**H16** (the purge path, the valve and the canister; first until that
-evening; **the new N80 fitted 14/11: the common part 2.97 by capture
-after it, 2.94–3.01 before**), H8, **H7's rail pressure**, **H21**, **H11**, H2
+H8, **H7's rail pressure**, **H16** (the purge path, the valve and the
+canister; first until 12/11 evening, third until 14/11, **fifth since**,
+*the owner's decision*: the canister and the new N80 moved neither the
+common part nor 3's swell), **H21**, **H11**, H2
 (the zone between the probes), H18. **B, one
 cylinder**, cylinder 3's, **first since 12/11** (the third research,
 *agreed with the owner*): **H13 and H1** (3's deposit, its exhaust seat
@@ -2000,6 +2019,63 @@ felt at about 18:08** fall in the second stop's floor (3 at −6 to −8 %,
 floor's small dips on all four, as at `49` (*The first captured stop on
 the canister*), not 3's misfires.
 
+**Before and after the canister and the new valve** (14/11 evening,
+*the owner's question*: do the drives on the canister and on the new
+N80 differ from those before, from every angle the bus gives; the
+warm standing idle of `24`–`51`, oil 90 °C and more, the A/C off, cuts
+left out — 30 s windows from `swellscan.py --csv`, and the grade, the
+dips and the steps by minute from a script not kept). Three captures
+after (`49` and `50` on the canister with the old valve, `51` on the
+new), six in the weeks before (`42`–`48`), eleven older.
+
+| | `42`–`48` (3–10/11, the bypass) | `49`, `50` (the canister) | `51` (the new N80) |
+|---|---|---|---|
+| the common part, rpm rms | 2.72–3.23 | 3.01, 2.94 | 2.96 |
+| 3's deepest window | −18 to −29 % | −23, −23 % | −26 % |
+| **3's floor** (windows at −10 % and shallower), median | **−8.1 to −9.0 %** | **−6.8, −6.3 %** | **−6.5 %** |
+| **the longest unbroken floor** | 1–5.5 min | **14.5**, 0.5 min | **9.5 min** |
+| the grade of a floor minute | 38–62 | 37, 49 | 52 |
+| the grade of a swell minute | 66–89 | 90, 77 | 86 |
+| dips of 20 rpm a minute, floor / swell | 2.8–5.0 / 4–11 | 1.7, 4.0 / 10, 8.8 | 2.7 / 8.4 |
+| a dip's median depth, its length | 22–23.5 rpm, 8–11 strokes | 23, 23 rpm; 9, 8 | 23 rpm, 8 |
+| dips of one weak stroke | 62–89 % | 58, 70 % | 69 % |
+| steps of −12 rpm per 1000 strokes | 4.2–11.4 | 5.3, 11.0 | 10.3 |
+| fuel counts a second, b7 | 274–324, 22–27 | 298, 311; 23, 24 | 306, 26 |
+
+- **Nothing in the common part, the swell or the dips moved** — with
+  the canister or with the valve. A dip is what it was on 24/9: 23 rpm
+  deep, back within 5 rpm of its level after 8–10 strokes, two in three
+  of them one weak stroke. How rough a minute reads is decided by
+  whether 3 is in a swell or on its floor, as before.
+- **3's floor is about two points shallower since the canister**: the
+  six captures before all read −8.1 to −9.0 % (and `32`, −8.5), the
+  three since −6.3 to −6.8 — every one of the three above every one of
+  the six, which chance gives one time in 84. And **it has held
+  longer**: 14.5 minutes on `49` and 9.5 on `51`, where the longest
+  before was 5.5 (`46`, the day of the clean), on stops as long (`32`
+  33 minutes of warm idle, floor 1.5; `40` 16 minutes, none). **Not on
+  `50`**, the queue: three swells and half a minute of floor.
+- **Against reading much into it**: three captures; `49`'s and `51`'s
+  stops were made long on purpose; a floor's grade is no lower (37–52
+  against 38–62), so the idle in a floor feels the same; and the
+  swells are as deep and, on `50` and `51`, as frequent.
+- **The lambda controller at a warm idle** (001, every log with field
+  4 at `111111`): −0.8 to +0.6 % in the mean with a scatter of 1.1–1.9
+  on every day from 12/10 to 12/11, bypass and canister alike (24/10's
+  cut, 25/10's loads switched on and off and the clean's gas apart). **At
+  the pump on 14/11, on the reserve, straight after the brisk leg:
+  −1.7 % with a scatter of 2.3** — the widest of those plain warm idles,
+  with the throttle angle dipping to 1.3° — and after the fill −0.05
+  and 1.4 again. One idle of 100 s; recorded, not read.
+
+**Read** (*reasoned*). The canister took nothing from either part of
+the idle; **with it 3 sits a little nearer the others between swells
+and stays there longer**, which fits vapour through the canister being
+steadier than raw tank vapour (H16, *The owner's reading, 12/11*) as a
+small help to a cylinder already short — and does not touch why 3 is
+short or why it swells. The new valve added nothing to that on its
+first day.
+
 **How the weak strokes follow each other** (11/11, *the research*;
 `dipshape.py`'s warm runs, each step against its cylinder's median,
 `24`–`47` without `36`, `45`, `48`, 401,718 strokes, 2.65 % losing more
@@ -2408,6 +2484,40 @@ completing rather than load (`refuted.md` C19).
   counting less in general** (*owner*, 18:03–18:10): what he watched
   was a floor; the swells went unlogged. The fault memory empty at
   every read; no code.
+
+- **By era** (14/11 evening, *the owner's question*: "the 014 records
+  are from these days"; every 014 log at a warm idle below 34 % load,
+  detection on, logs with a cut, the silent sessions on fresh
+  adaptations (4/10's first, 3/11) and the clean's gas left out; a
+  script not kept):
+
+  | | idle logged | share of combustions | episodes a minute | climbing past 12 | the longest silence |
+  |---|---|---|---|---|---|
+  | 11/9–18/10 | 156 min | 0.38 % | 2.4 | 59 % | 4.1 min |
+  | 21/10–10/11 (the VW leads, the bypass) | 150 min | 0.17 % | 1.6 | 42 % | 7.4 min (27/10) |
+  | 11–12/11 (the canister, the old valve) | 56 min | 0.35 % | 1.6 | **74 %** | **12.2 min** (12/11) |
+  | 14/11 (the new valve; three of four swells not logged) | 14 min | 0.08 % | 1.1 | 13 % | 7.1 min |
+
+  **Both records are the canister's days**: the longest silences —
+  12.2 minutes on `49`'s floor, 7.1 on `51`'s, 4.2 on 11/11 night —
+  and the stormiest plain idle since early October: 11/11 night's
+  drive, 224 misfires in 24 minutes of idle, 50 of 65 episodes
+  climbing, and the last 84 s of `50`'s stop at 1.02 %. **014's idle
+  has split in two with 3's swell and floor** (S1, *Before and after
+  the canister and the new valve*): how often an episode starts is
+  what it was (1.6 a minute), but it either climbs or does not come at
+  all. On the road nothing moved: 4–9 rises in ten minutes in every
+  era. *14/11's row is biased low*: the swells went unlogged.
+- **The values that are not twelves** (14/11, *the owner*: 16 and the
+  like seen on the drive; the first rise from zero in every log, 1,279
+  of them): **the weight of one misfire grows with engine speed** — 12
+  (24 for two) in all but 17 of 985 below 1,500 rpm (13 above about 34 %
+  load); 12–15 at 1,500–2,000; 12–16 at 2,000–2,400; **13–19 at 2,400–2,800**; 15–19
+  above. So 16 is one misfire at about 2,200–2,700 rpm, and 13, 15, 17
+  and 18 the same thing at other speeds; three quarters of the odd
+  values on the road are caught in the sample where detection switches off at a lift.
+  14/11 showed more of them than most days because 014 was open on the
+  road and closed, for 070, at most of the idle (`vcds.md`).
 
 ### S4. Knock retard on cylinder 4 — near the limiter on 2 beside it — and 4 a little short under load
 
@@ -5155,7 +5265,7 @@ with a cheap test, *agreed with the owner the same evening*: the purge
 shut for two captured drives, after the new valve's own two
 (`plan.md` 8o); **since 13/11 first 070 run three times at 8a's warm
 stop, 8o by N80's connector and only if that leaves it open** (*the
-owner*; **14/11: it ran once and left it open**, below). **Third in list A since that evening**, below the belt
+owner*; **14/11: it ran once and left it open**, below). **Third in list A since that evening** (*fifth since 14/11, the owner's decision*), below the belt
 and H0 (*agreed with the owner*; *The idle's candidates, ranked*); the
 new valve stays its test — the common part by capture before and after
 it.
@@ -5204,6 +5314,16 @@ drive on the new N80*; `vcds.md`, *070 on this ECU*). Three readings.
   and a brisk one; this one's 032 came after its brisk leg, so **the
   gentle one is next**. As it stands, the reading "a valve that leaks
   shut feeds the idle cell" predicted a move towards zero and got 0.8.
+- **Set against everything before** (S1, *Before and after the canister
+  and the new valve*): the canister and the valve left the common part,
+  the swell, the dips and the road's 014 where they were; with the
+  canister 3's floor came two points shallower and longer and 014's
+  silences longer — one thing of 3's that moved with the purge path,
+  not the fault and not the common part.
+- **Down from third to fifth in list A, 14/11** (*the owner's
+  decision*; the place Claude's): below H8 and H7's rail, above the
+  probes' two. It stays S19's and S21's hypothesis, and 8o still tests
+  the purge's timing against 3's swell.
 
 **The owner's reading, 12/11** (*owner*; the mechanism *reasoned*, not
 measured). **With the bypass** N80 drew straight from the tank: under
@@ -6334,6 +6454,9 @@ since that evening, the re-read below*): the
 canister is back but N80 itself is not changed, and a valve leaking
 canister vapour explains the four 032 readings on the canister (H16,
 *The owner's reading, 12/11*) — the new N80 decides.
+**14/11, the new N80 fitted and its first drive read: fifth** (*the
+owner's decision*; S1, *Before and after the canister and the new
+valve*) — neither the canister nor the valve moved the common part.
 *Reasoned*: purge vapour enters the intake at one point and need not
 reach the four runners alike, so H16 is not ruled out of list B either.
 
@@ -6361,9 +6484,9 @@ nothing 014 counts; second since 12/11):
 |---|---|---|---|
 | A1 | **the timing belt a tooth out** | **13/11 evening, the marks' gap by the owner** (**the owner, 13/11 evening: not misjudged — the two marks at least 2–3 cm apart along the pulley's rim, more likely more, certainly not over 5 cm** (estimated with his fingers); its diameter not measured, so the angle is open: about 15–40° of crank, one to two teeth, if the pulley is 14–16 cm across (*reasoned*, the diameter a guess), against the 30–60° by eye; **or a pulley bolted on turned against its sprocket**, the marks then not aligned at fitting (*the owner*) — whether the pulley can go on more than one way was not looked up): one to two teeth — one the full-throttle air does not exclude, two it argues against — so for it more than the 30–60° was; **13/11, the marks' 30–60° set against the air and the acceleration** (*the owner's question*: whether the ECU would know, b7 being its own belief): b7 is computed from the measured air, so it follows what the cam does to the filling and misses only what the cam does to the work got from it — and the acceleration reads that; **settled full throttle (the throttle at 80° or more for 1.5 s, every 003 log but the short-of-air pulls of 3/11): 504 mg of air a stroke at 2,000 rpm, 496 at 2,400, 484 at 3,200, 520 at 3,600–4,400, 502 at 4,800, 485 at 5,200, 452 at 5,600, 418 at 6,000 — 5,200 within 2 % of 2,400, 85–90 g/s at the top**; the acceleration in 3rd and 4th needs 145–152 Nm in every band from 2,000 to 5,000 rpm and 130–137 from 5,000 to 6,000 (83 pulls, 0.94 of b7; rated 170 and 156 at 5,200); the warm idle takes 3.1–3.5 g/s at 2–4° of advance, as specified; **against 1.5–3 teeth outright** — that much advance would take the top of the filling away (*general*) — **and no lift of the low end against the top that one tooth of advance would give, though with no healthy AQY measured a tooth or less is not excluded**; so the notch read on 13/11 or the groove it was set against is not the timing mark, **or the angle was misjudged** (*the owner*, the same day: the marks are the web's, the borescope and a hand in a cramped place may well have made 30° of less; and a slip would have gone the other way — *What the forums say*, the timing belt: Motor magazine has the ABA running smoothly one or two teeth off but short of power and very likely with P0341, and a slipped belt retards the cam) (*reasoned*); where the true mark is was not looked up — a flywheel mark through the gearbox window or the pulley's notch against the lower belt cover are usual on these engines (*general*, from memory, not checked against VW's manual), neither of them a groove on the block; by gear, the acceleration against b7: 3rd 0.96, 0.97, 0.92, 0.94 and 4th 0.90, 0.97, 1.04, 1.00 in the bands from 2,000, 3,000, 4,000 and 5,000 rpm — no tilt (`drivescan.py --pulls`, all fifty captures); the air by log, at 5,000–5,500 rpm: 84–90 g/s in sixteen logs from 9/2026 to 9/11 (medians by 500 rpm band), lower in two — the short-of-air pulls of 3/11 (76) and `vcds-step8-home-2-014-001-003.csv` (78–83, nine samples, not read further) — so nothing moved over the autumn either; **kept first by the owner after this reading** (13/11, asked whether it should go below H0: no, until the belt is renewed); **13/11, its marks read (8i), kept first** (*the owner*; the paragraph under *Where it stands*): the cam's OT mark set, **the crank pulley's only notch 30–60° of crank behind the groove on the block**, by eye and borescope — **for it if both marks are the true ones**, 1.5–3 teeth, **the cam advanced** (the direction the owner's, read off the part: the crank clockwise, the notch short of the groove; *until his word, "may be mirrored from below"*) — only if those are the true marks, or the direction is open too (*the owner*, 14/11); against, 2–3 teeth of advance would lift the low end and cost the top, and the full-load pulls below are flat, so the size is unsettled; the piston at plug 1, which settles it, declined (*the owner*); **the belt renewed at a garage** (8q, *the owner's decision*), the mechanic to read the old marks before it comes off; **12/11 night, off idle, kept** (*the owner's question*; *Naming the cylinder*, *Off idle*): what this session read is one cylinder against another, and a belt moves all four alike, so 3's and 4's figures say nothing for or against it; **two things do bear on it, both weakly against**: at full throttle the car's acceleration needs 0.91–1.04 of what b7 claims in every band from 2,000 to 6,000 rpm, **with no tilt from low speed to high**, where a cam a tooth out moves the filling from one end to the other (*general*), and the whole is within a tenth of the rated torque; a tenth is also about what a tooth could cost, so the marks (8i) still decide; **12/11 evening up from second to first** (*agreed with the owner*): the common part is a constant — the same within 5 % at every warm idle since 24/9, answering only to a load, the gas and temperature — which a fixed fault on all four gives and a source that varies by the day does not (S1, *The swell's shape, and what the common part follows*); **12/11, the idle split in two** (*the owner's decision*): all four cylinders' timing alike; **11/11 kept, but its marks looked at first, being free** (*agreed with the owner*); VW's fault table has 16725 / P0341 for a G40 signal out of place, so an empty memory is weak evidence against (*What the forums say*, 11/11); **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 evening up from ninth** (*agreed with the owner*): the gas idle names the dips a burn at the dilution edge, and the cam's timing sets the exhaust kept at idle through where the valves' overlap falls against the piston (one camshaft, so its length cannot change), with compression even and the full-load power nearly intact (S1, *The gas idle taken apart*); belt from 10/2017; a forum fix | its marks, read 13/11 (8i): the crank's notch 30–60° off by eye, not settled; the flywheel's mark in the gearbox window (`plan.md` 8r) dropped 14/11 (*the owner*: no window to be seen); **the old belt's marks read by the mechanic before it comes off, and the common part by capture before and after the new belt** (`plan.md` 8q); even compression and the full plateau argue against; **the ECU would not necessarily say** (*the owner's question*, 9/11): the AQY has a Hall sender G40 on the camshaft, which SSP 175 (p. 49) describes only as identifying cylinder 1, with the advance retarded as an emergency function if it fails — no check of the cam's angle against the crank is described, unlike engines with variable cam timing; so a tooth off may store nothing, and no G40 code has been read on any session since 9/2026 |
 | A2 | **H0** normal for this engine | **12/11 evening up from ninth to second** (*agreed with the owner*): a common part that no repair, day or drive has moved, and that answers only to the charge, is what an engine's own scatter looks like; a fixed fault reads the same and no healthy AQY says which (S1, *The swell's shape, and what the common part follows*); **12/11, the idle split in two** (*the owner's decision*): the floor left when every fault is gone; **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **9/11 evening one down**; no healthy AQY recorded; 014 far above VW's 0–5 against it | 014 on a healthy AQY, VCDS only; a capture is not obtainable |
-| A3 | **H16** the purge path (the valve, the canister bypassed) | **14/11, the first drive on the new N80, kept** (a move down for the idle proposed to the owner, not made): 3 swelled four times as deep as on the old valve, the common part 2.97 as before, 014 unchanged where logged; 070's purge, 7.8 % rich, did not move 3 while open; 032's idle cell −9.4 → −8.6 % (H16, *The first drive on the new N80, 14/11*); **12/11 night, the queue drive, kept**: 001 at three rows a second swung the same through 3's swell, its fall and the floor; 032 moved towards zero on a gentle hour, against the owner's reading's gentle half; `49`'s long floor did not come again on the same hardware (H16); **12/11 evening down from first to third** (*agreed with the owner*): the common part read 2.7–3.1 rpm rms by capture on the bypass and on the canister alike, gentle days and brisk, where a leak following the canister's load would move it (S1, *The swell's shape, and what the common part follows*); the purge phases kept as a weak reading of 3's swell, tested by 8o; **12/11, the idle split in two** (*the owner's decision*): the common part's first: the two calm nights on the canister; **12/11 up from sixth to third** (*the owner's decision*: "H16 higher"; third proposed by Claude): the two calmest warm stops on record outside the gas came on the two nights since the canister went back, the only change they share — the one hypothesis with a change that moved the settled floor, so above H3, H4 and H7, which explain the one cylinder's part but have had no change that moved anything; below H13 and H1 because it cannot pick a cylinder; **the new N80 not yet fitted** then (`plan.md` 8a; fitted 14/11, above); **11/11 night, kept**: the first drive on the canister relearnt 032's part-load cell to +2.3 % where the bypass held +6.3 to +7.0 — for it, **held on 12/11's second drive (−5.5 / +2.3)**; the idle cell back near −6, not moved by the canister (S21, *The first drive on the canister*); **both nights' stops near home the calmest on record outside the gas, 12/11's for about 13 minutes with 014 at 0.04 % — the canister the one change they share** (two stops; H16, *12/11 night*); **11/11 evening up from twelfth** (*agreed with the owner*): the canister found bypassed, the tank's line straight to N80 (S21) — raw tank vapour at every purge, rich when warm: P0440 in winter and a warm rich source fit it; it still cannot pick one cylinder; **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **6/11 night down from seventh** (*agreed with the owner*): out of the car the valve hardly passed air unpowered, and its pulses do not line up with the dips (H16, *The valve's pulses against the dips*); before that **6/11 evening up from eleventh**: P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the weak firings in pairs do (the idle's 1½-min waves turned out the radiator fan, S1); a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | **the canister plumbed back, done 11/11, its first drive read** (S21); 032 after drives without a reset (`plan.md` 8f); then the valve ordered 11/11 (*the owner*), in hand 13/11, fitted 14/11, 032 before and after (`plan.md` 8a); 6/11 night, out of the car, it hardly passed air unpowered |
-| A4 | **H8** throttle and idle control | **12/11 night, the queue drive, kept**: 003 at three rows a second — the advance's scatter does not go with the common part (H8); **12/11, the idle split in two** (*the owner's decision*): the air and the idle regulation, all four alike; **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **9/11 evening one down**; **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
-| A5 | **H7** fuel delivery — the rail's pressure | **12/11 evening** (*agreed with the owner*): against — the common part is the same after high revs as after none; one down, H0 above it; **12/11, the idle split in two** (*the owner's decision*): its rail-pressure form, all four alike; **12/11 one down** (H16 above it, *the owner's decision*); **11/11 kept** (*agreed with the owner*): a hot rail after a hot drive fits the rough start's time, not its one cylinder; **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 down from fourth** (*agreed with the owner*): H3 and H4 above it; **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20) and a high base pressure does not fit 032's positive part load, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10) |
+| A3 | **H8** throttle and idle control | **14/11 one up** (H16 below it, *the owner's decision*), nothing new for it; **12/11 night, the queue drive, kept**: 003 at three rows a second — the advance's scatter does not go with the common part (H8); **12/11, the idle split in two** (*the owner's decision*): the air and the idle regulation, all four alike; **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **9/11 evening one down**; **down 27/10 from third** (*agreed with the owner*): 055's two fields sum to the same correction at every warm idle, so a reset or the A/C gives no more air and the regulation half has no mechanism (H8); what is left is S20, a little better since the cable and the pedal (27/10) and still there; before that **up 26/10 from seventh**: S20 dates from this throttle (*owner*); 014's counting read as following 055's learnt value (`refuted.md` C19, **refuted 2/11**), and 26/10 showed a wrong learnt value spoiling the idle and the starts; the owner's hypothesis that the regulation itself narrows the margin (H8); all four alike | 055 against `IdleHealth` from zeroed adaptations (`plan.md` 5a); 6k (27/10) showed the A/C's calm with the learnt value aside, but not as the whole |
+| A4 | **H7** fuel delivery — the rail's pressure | **14/11 one up** (H16 below it, *the owner's decision*), nothing new for it; **12/11 evening** (*agreed with the owner*): against — the common part is the same after high revs as after none; one down, H0 above it; **12/11, the idle split in two** (*the owner's decision*): its rail-pressure form, all four alike; **12/11 one down** (H16 above it, *the owner's decision*); **11/11 kept** (*agreed with the owner*): a hot rail after a hot drive fits the rough start's time, not its one cylinder; **10/11 evening one up** (H11 down, *agreed with the owner*); **9/11 late evening one down** (H11 above it); **9/11 down from fourth** (*agreed with the owner*): H3 and H4 above it; **down 3/11 evening from first to fourth** (*the owner*: the injectors are new, 9/2026); never gauged; **demoted 25/10 night from second**: the regulator answers its reference (`refuted.md` C20) and a high base pressure does not fit 032's positive part load, so what is left of it is mostly for the starts — **closed 31/10 as the fuel** (`refuted.md` D2), which leaves S19; **S19 fits it** (24/10), shared since with H16; one code so far | a rail gauge — **the owner buys one if the map does not help** (29/10) |
+| A5 | **H16** the purge path (the valve, the canister bypassed) | **14/11 down from third to fifth** (*the owner's decision*, "H16 down"; the place Claude's): the canister and then a new valve changed neither the common part (2.94–3.01 rpm rms on the canister, 2.97 on the new valve, 2.7–3.3 before) nor 3's swell (to −22 to −26 %, as before), the dips' depth and length, or 014 on the road; what did move with the canister — 3's floor two points shallower and longer, 032's part-load cell for three drives — is 3's and the trim's, not the common part's (S1, *Before and after the canister and the new valve*); it keeps S19 and S21, and the purge's timing as a weak reading of 3's swell, 8o; **14/11, the first drive on the new N80**: 3 swelled four times as deep as on the old valve, the common part 2.97 as before, 014 unchanged where logged; 070's purge, 7.8 % rich, did not move 3 while open; 032's idle cell −9.4 → −8.6 % (H16, *The first drive on the new N80, 14/11*); **12/11 night, the queue drive, kept**: 001 at three rows a second swung the same through 3's swell, its fall and the floor; 032 moved towards zero on a gentle hour, against the owner's reading's gentle half; `49`'s long floor did not come again on the same hardware (H16); **12/11 evening down from first to third** (*agreed with the owner*): the common part read 2.7–3.1 rpm rms by capture on the bypass and on the canister alike, gentle days and brisk, where a leak following the canister's load would move it (S1, *The swell's shape, and what the common part follows*); the purge phases kept as a weak reading of 3's swell, tested by 8o; **12/11, the idle split in two** (*the owner's decision*): the common part's first: the two calm nights on the canister; **12/11 up from sixth to third** (*the owner's decision*: "H16 higher"; third proposed by Claude): the two calmest warm stops on record outside the gas came on the two nights since the canister went back, the only change they share — the one hypothesis with a change that moved the settled floor, so above H3, H4 and H7, which explain the one cylinder's part but have had no change that moved anything; below H13 and H1 because it cannot pick a cylinder; **the new N80 not yet fitted** then (`plan.md` 8a; fitted 14/11, above); **11/11 night, kept**: the first drive on the canister relearnt 032's part-load cell to +2.3 % where the bypass held +6.3 to +7.0 — for it, **held on 12/11's second drive (−5.5 / +2.3)**; the idle cell back near −6, not moved by the canister (S21, *The first drive on the canister*); **both nights' stops near home the calmest on record outside the gas, 12/11's for about 13 minutes with 014 at 0.04 % — the canister the one change they share** (two stops; H16, *12/11 night*); **11/11 evening up from twelfth** (*agreed with the owner*): the canister found bypassed, the tank's line straight to N80 (S21) — raw tank vapour at every purge, rich when warm: P0440 in winter and a warm rich source fit it; it still cannot pick one cylinder; **10/11 evening one down** (H21 added above it); **9/11 late evening one down** (H11 above it); **6/11 night down from seventh** (*agreed with the owner*): out of the car the valve hardly passed air unpowered, and its pulses do not line up with the dips (H16, *The valve's pulses against the dips*); before that **6/11 evening up from eleventh**: P0440 and the engine lamp (S21), the system's own fault code; VW lists N80 open among the causes of 032's low idle value; purge comes in phases, as the weak firings in pairs do (the idle's 1½-min waves turned out the radiator fan, S1); a common stress on the weakest cylinders, not their difference (H16, *a common cause of the idle?*). Against: roughest cold, when the valve is not driven; 25/10 cold, the canister closed off, the trim unchanged; no liquid (6e) | **the canister plumbed back, done 11/11, its first drive read** (S21); 032 after drives without a reset (`plan.md` 8f); then the valve ordered 11/11 (*the owner*), in hand 13/11, fitted 14/11, 032 before and after (`plan.md` 8a); 6/11 night, out of the car, it hardly passed air unpowered |
 | A6 | **H21** the probes' wiring and connectors | **12/11, the idle split in two** (*the owner's decision*): the probes' readings steer all four alike; **11/11 one up** (H11 below it, *agreed with the owner*): S23 explained by the broken terminal and, for its sinking, the contact spray (S23); **added 10/11 evening** (*agreed with the owner*): the harness side was not changed with the probes, so what the swap could not rule out lives here — **S23 in full** (the new rear probe's signal pulled down under load and to zero, then back), and **S19's idle cell** if a signal earth carries heater current, which is highest at idle (*reasoned*); **for the idle itself weak**: on 10/11 morning the new rear probe read healthy for 18 minutes and the idle was as rough (H21) | the connectors seen from the harness side cold (`plan.md` 8e, postponed to the end 11/11); 036 watched at VCDS sessions (8f; 8g dropped 11/11, *the owner*); each wire to the ECU's pin with the plug off (with 6n) |
 | A7 | **H11** both probes shifted | **12/11, the idle split in two** (*the owner's decision*): as H21; **11/11 one down** (*agreed with the owner*): the rear probe's state never tracked `IdleHealth`, and its failure leaves the front loop running (SSP 175); **10/11 evening down from third to seventh** (*agreed with the owner*): on the relearn drive its marks 1, 3, 4 and 5 failed and mark 2 was spoilt by the rear probe's own fault; the calm of 17:38 came before the clear (H11, *The relearn drive*); what is left of it, the probes' circuit, is H21; **9/11 late evening up from thirteenth** (*agreed with the owner*): in its idle-only form — the front probe reading rich at idle's cool exhaust only, so the real idle mixture lean — it fits every pattern of S1 (queuing worse, a brisk drive better, a load calming, hydrogen curing), the negative idle cell with part load untouched, and P0172 once (H11, *Re-read 9/11 evening*); 2017 probes | **036 read 9/11 night**: the rear probe sinks towards lean at every idle, heaters good — for, not proof (H11, *The reading before the swap*); **both probes replaced** (*the owner's decision*, 10/11; no analyser, which he declines) and the same reading after it (`plan.md` 8c) — it rules out the old probes, not the mechanisms (H11, *What the rear probe can and cannot say*); **read after, 10/11**: the new rear probe flat for 18 minutes of idle, then the front's swing; **the idle unchanged** — mark 2 met, marks 3 and 4 failed at the first stop (H11, *The reading after the swap*); **mark 1 failed on the relearn drive, 10/11 evening** (032's idle cell back to −6.3 % within 37 minutes), marks 3–5 failed again, mark 2 spoilt by the rear probe's own fault (H11, *The relearn drive*; S23) |
 | A8 | **H2** a leak ahead of the converter | **12/11, the idle split in two** (*the owner's decision*): in its widened form, air between the probes, all four alike; **10/11 evening one down** (H21 added above it); **10/11 widened, not moved** (*the owner* agreeing): the zone between the front probe and the converter added — the joint, the flex, the plugged boss — which gives the rear probe's lean idle in full but not 032 or the dips (H2); **9/11 late evening one down** (H11 above it); **9/11 evening one down** (the belt above it); **down 31/10 from fourth** (*agreed with the owner*): the manifold seen from close below, rusty but no soot marks and no holes, its joint to the head nothing visibly wrong from below (H2); the part under its heat shield unseen; S2, S11, S14's air; cannot pick a cylinder | the warm tailpipe test (`plan.md` 7), both zones |

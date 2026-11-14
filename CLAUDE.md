@@ -438,7 +438,8 @@ in the same commit.** He must never have to ask for it. The pass:
 3. **`idle-log.md`**: every completed step or repair has its entry.
 4. **`vehicle-history.md`**: everything fitted, changed, topped up or added
    (fuel cleaners, oil, adjustments) has its row; the odometer table has any
-   new reading.
+   new reading. **Fuel fills are not recorded** (*the maintainer*, 14/11:
+   he keeps them himself; OMV MaxxMotion 100plus unless he says otherwise).
 5. **Every symptom and hypothesis the change touches**: no "the next
    reading will…", "not yet", "tonight", "until X" that has since happened —
    replace it with what happened; superseded figures corrected where they

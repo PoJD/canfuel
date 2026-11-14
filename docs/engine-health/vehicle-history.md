@@ -57,7 +57,7 @@ symptom in `docs/` is dated after it, with a working lamp.
 | At 10 Nov 2026 | **155,834 → 155,853 km**, the relearn drive home (the bus, 0x520, the unfiltered capture of `47`) |
 | At 12 Nov 2026 | **155,969 → 156,011 km**, the captured warm drive (the bus, 0x520, capture `49`) |
 | At 12 Nov 2026, evening | **156,011 → 156,030 km**, the queue drive (the bus, 0x520, capture `50`) |
-| At 14 Nov 2026 | **156,069 → 156,089 km**, the first drive on the new N80 (the bus, 0x520, capture `51`); the fill at 156,086 km |
+| At 14 Nov 2026 | **156,069 → 156,089 km**, the first drive on the new N80 (the bus, 0x520, capture `51`) |
 | **Covered in ownership** | **29,800 km over 9.1 years** (to 12 Nov 2026), about 3,300 km a year *(derived)* |
 
 Odometer at the start of each year, from the owner's expense sheet
@@ -188,9 +188,13 @@ Owner-supplied from service records or from his own work.
 | Engine oil **topped up**, about 0.4 l, after the level fell overnight as the oil ran back from the head; at the top mark after the next drive | **27/10/2026** at 155,024 km, by the owner | — |
 | **Decarbonisation, with hydrogen**, Bez Karbonu (HPower s.r.o.), Prague: oxyhydrogen from a machine of 800 l/h run at about 60 % (*owner*), into the intake behind the MAF, the engine held at 1,750–2,150 rpm by the provider for about an hour and at idle for the last two minutes, never stopped; a certificate given. The second such clean (the first 10/8/2021, above) | **9/11/2026** at about 156,000 km (the certificate's rounding) | — |
 | **Purge valve N80, new**: Bosch `0 280 142 353`, VW `1C0 906 517 A`, the same part as the old one, which is kept (*owner*); **the small rubber hose from N80 to the plastic line back to the canister and tank renewed** — the old one well worn; the hose on N80's other side left on, too awkward to reach (*owner*); photographs in the album (*owner*) | **14/11/2026** at 156,069 km, by the owner (`plan.md` 8a); the fault memory empty and 032/055 photographed just before (*owner*): −9.4 / +7.8 %, −1.24 g/s | ~0 |
-| **Fuel: a fill** on the first drive on the new N80, from the reserve (5–6 l indicated, the reserve lamp on) to 51 l indicated (the bus, 0x320); the station, the fuel and the litres not given yet | **14/11/2026** at 156,086 km | — |
 
 ### Notes to the table
+
+**Fuel fills are not recorded here from 14/11/2026** (*the owner*: he
+keeps them himself, and the converter's reset at a fill is verified).
+The fuel is OMV MaxxMotion 100plus every time; the exceptions are the
+rows above (24/10, 8/11).
 
 **The converter of 10/2017 came off blocked, 9/2026**: cracked outside,
 blocked inside, one chamber burned right through (as shown to the

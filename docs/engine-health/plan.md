@@ -404,7 +404,7 @@ means out was not kept, so the split is computed again on the
 capture; about an eighth of the grade is the crank wheel's own
 alternation, which no repair moves). The common part down and 3's
 pattern as before is list A's (the belt and H0 at its head since 12/11
-evening, H16 third); the pattern gone too is list
+evening, H16 fifth since 14/11); the pattern gone too is list
 B's as well.
 **Read by cylinder since 12/11** (`tools/cylscan.py --minutes`, kept;
 `open.md` S1, *Every stroke named*): the part with a cylinder is **3's
