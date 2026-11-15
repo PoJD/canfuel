@@ -2789,7 +2789,7 @@ perhaps nearer the engine, where a lot else resonates, so hard to say.
 nothing moves anywhere; a few sheets bent a little, just in case, without
 much faith. He may try to locate it with a second person at the
 throttle. Unplaced again, and not pursued. A candidate there (*reasoned*): the
-manifold's own heat shield, which cannot be seen (`plan.md` 7) — a part
+manifold's own heat shield, which cannot be seen — a part
 vibrating, not a leak, so still no bearing on the idle.
 **The same band in 014 on the road** (6/11, *at the owner's request
 for new links*; every VCDS log with group 014, detection on, above
@@ -3471,8 +3471,7 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in.
 - **The plugged boss, 10/11 night** (*owner*, the album 22:45–22:47):
   the cut-off old probe in it **would not turn further — tight**; the
   boss's weld on the pipe rusty and lumpy, a darker patch at one edge
-  that a photograph cannot tell from soot (*reasoned*) — for the warm
-  tailpipe test to look at (`plan.md` 7).
+  that a photograph cannot tell from soot (*reasoned*).
 - **Against:** air outside the cylinder does not stop one firing, and cannot
   pick a cylinder; no ticking, no exhaust smell (*owner*); just before a dip
   the probe read a little *rich*, not lean; the cold tailpipe test found
@@ -3480,14 +3479,26 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in.
   the cold exhaust smoke test nothing (9/10, the exhaust
   would hardly take pressure); **the manifold seen from close below on
   31/10: old and rusty, no black soot marks and no holes** (*owner*) —
-  what a leak leaves (`plan.md` 7); **its joint to the head, seen from
+  what a leak leaves; **its joint to the head, seen from
   below, nothing visibly wrong** (*owner*); the part under its heat
   shield and the joint from above not seen. The second zone cannot give
   032's idle cell or the dips.
 
-**Test:** the tailpipe test **warm** (`plan.md` item 7), which covers both
-zones. A leak in the first zone means a new
-manifold; in the second, that joint or the boss resealed.
+**Against, read 15/11 (*the owner's* reading, agreed)**: **032's idle
+cell at −6 to −9 %** — the ECU takes fuel away at idle, where air drawn
+in ahead of the front probe would read lean and make it add fuel; **the
+front loop holds through 3's swells** (`50`'s 001, `49`'s 033; S1, *8h's
+plain idle and its loads*), so the swell is not made in the exhaust;
+**the rear probe's sinking was the old probe's**: the new one flat for
+18 minutes (10/11), the rear probe switching about 0.45 V through a
+whole stop on `53`. What none of it reaches: a crack that opens only
+hot, and the manifold under its heat shield.
+
+**Test:** none planned. **The warm tailpipe test was dropped 15/11**
+(*the owner*): the cold one and the smoke test found nothing, and the
+readings above speak against a leak in either zone. A leak in the
+first zone would mean a new manifold; in the second, that joint or the
+boss resealed.
 
 **After the probes, 10/11** (H11, *The reading after the swap*;
 *reasoned*): the new rear probe held flat for 18 minutes of idle and
@@ -3497,7 +3508,7 @@ the lean side only, so **the reading after fits the second zone less
 well than 9/11's did**; it does not rule it out. The new probes were
 tightened by hand without a torque wrench (`vehicle-history.md`), and a
 probe seated loose is a leak in this zone of its own making, hence
-their check first (`plan.md` 8e) and the warm tailpipe test after it.
+their check (`plan.md` 8e).
 
 ### H3. A small unmetered air leak at one intake runner
 
@@ -4606,7 +4617,7 @@ idle**:
 | cause | 032's idle cell | tied to the rough idle | how it is told |
 |---|---|---|---|
 | 2, hydrogen from unequal cylinders | stays negative | **yes**, through the cylinders' difference | only by removing the difference (H3 runner 4's gasket, H4 injector 4's circuit): the cell and the sinking shrink with it |
-| 3, air between the probes (H2) | untouched | **no**, the rear probe only | the warm tailpipe test (`plan.md` 7) |
+| 3, air between the probes (H2) | untouched | **no**, the rear probe only | none planned (the warm tailpipe test dropped 15/11) |
 | 4, a lean bias the rear loop leaves at idle | untouched | **no**, likely every AQY's normal state | 037 field 3 (a basic setting the owner runs, not Claude): whether the rear loop acts at idle at all |
 
 So **032's idle cell is the key**: unchanged with the same sinking
@@ -6433,7 +6444,7 @@ small unevenness on all four, most of `IdleHealth`'s floor and nothing
 | A3 | **H8** throttle and idle control | The air and the idle regulation act on all four alike, and S20 dates from this throttle (*owner*). Against: 055's two fields sum to the same correction at every warm idle (27/10), so a reset or the A/C gives no more air; the advance's scatter does not go with the common part (003, 12/11); 014 does not follow 055's learnt value (`refuted.md` C19); the regulator holds through 3's swells on 18 stops (15/11) | no test left for the idle; S20 keeps it |
 | A4 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it, shared with H16. Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
 | A5 | **H11** both probes shifted | What is left is the idle-only form — the front probe reading rich in the idle's cool exhaust, so the true mixture lean; it fits 032's negative idle cell with part load untouched. Against: both probes replaced 10/11 and the idle as rough; on the relearn drive its marks 1, 3, 4 and 5 failed (H11, *The relearn drive*); the rear probe's state never tracked `IdleHealth` | nothing planned; 036 watched at VCDS sessions (`plan.md` 8f) |
-| A6 | **H2** a leak ahead of the converter | Widened 10/11 to the zone between the probes (the joint, the flex, the plugged boss), which gives a lean rear probe at idle but not 032 or the dips; S2, S11 and S14's air. Against: the visible manifold has no soot and no holes (31/10); the part under its heat shield unseen; cannot pick a cylinder | the warm tailpipe test, both zones (`plan.md` 7, only if Claude asks) |
+| A6 | **H2** a leak ahead of the converter | Widened 10/11 to the zone between the probes (the joint, the flex, the plugged boss), which gives a lean rear probe at idle but not 032 or the dips; S2, S11 and S14's air. Against: the cold tailpipe and smoke tests found nothing; the visible manifold has no soot and no holes (31/10); 032's idle cell takes fuel away, where air ahead of the front probe would add it; the front loop holds through 3's swell; the rear probe's sinking was the old probe's; cannot pick a cylinder. Untested: a crack open only hot, the part under the heat shield | none planned (the warm tailpipe test dropped 15/11, *the owner*) |
 | A7 | **H18** oil past the stem seals | All four alike: worse after idling, calm after a working drive; for one valve it is the swell's second reading (list B's matter, S1, *The swell's shape*). Against: it does not grow with the time into a stop; **no blue smoke ever**, the plugs dry | the oil level on the fresh oil (`plan.md` 6i); the plugs at the next change (8v) |
 | A8 | **H21** the front probe's signal-earth wire | What is left after 8h (`53`, 15/11: only the supply stepped with a load, `refuted.md` C26): the front probe's damaged signal-earth wire, which reaches the common part only through a mixture; S19's idle cell if a signal earth carries heater current (*reasoned*). Weak for the idle: the new rear probe read healthy for 18 minutes and the idle was as rough | 8e's harness at the end; each wire to the ECU's pin with the plug off (with 6n) |
 | A9 | **H16** the purge path | Nothing measured is left of it for the idle: the canister and the new valve moved neither the common part nor 3's swell; the purge opened on purpose did not move 3 (14/11); the ECU's own phases do not time the swell, on `52` by 070 and on 15 older stops by b7 (`refuted.md` C25); 032's idle cell not the valve's (15/11). It keeps S19. **Last since 15/11** (*the owner's decision*) | none for the idle; 8f's 032 for S19 and S21 |

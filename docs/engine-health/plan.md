@@ -93,17 +93,6 @@ its sockets only with a thin pin of the right size, never a meter tip.
 
 **7. Only if Claude asks after 6:**
 
-- **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
-  Outdoors; the tailpipe closed for a few seconds at a time, never
-  longer. The phone records at the manifold; mark each closure aloud on
-  the recording; listen back and report engine bay or underbody.
-  Photograph the flange, the front pipe and 3 and 4's pipes from below
-  for soot. **Leaks there → a new manifold**: new gasket to the head,
-  new nuts, new outlet gasket, the probe refitted with anti-seize. Part
-  `06A 253 031` + suffix: read the number cast into the manifold, or
-  ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
-  Penetrating oil on the studs the days before; a snapped stud goes to
-  a garage.
 - **The high-voltage side in the dark**, a damp evening, warm idle:
   bonnet open, lights off, look along the leads and the coil for a
   spark or a blue glow; then a fine water mist over one lead at a time
@@ -368,24 +357,11 @@ sump is the old cover-joint leak's, and what drips is the gearbox;
 level ground because the stick reads the sump only once the oil has run
 back; the photograph because a millimetre is the stick's resolution.
 
-**Item 7 — the exhaust ahead of the converter (H2), warm.** Both of
-H2's zones (widened 10/11): ahead of the front probe, and between it
-and the converter, where air reaches only the rear probe — so the new
-rear probe's switch to the front's swing after 18 minutes of idle on
-10/11 (`open.md` H11, *The reading after the swap*) is a reason for
-Claude to ask for it once 8e has found both probes tight. A leak that
-draws air in at idle blows out when the outlet is closed, and hisses or
-puffs; a crack in cast iron may only open hot (*general*). **Cold found
-nothing on 12/10** (`idle-log.md`), so warm is what is left. Each closure shows
-as a dip in engine speed, which places it in time but not in space. The sound
-says only engine bay or underbody; **the photographs locate** (a leak
-leaves soot), though the manifold under its heat shield cannot be seen. **Read**: soot below → that
-joint; louder from the engine bay with nothing below → the manifold or
-its joint to the head, the owner's standing decision of a new manifold
-(3/10/2026); soot on the front pipe ahead of the converter → that
-joint or its boss resealed; nothing either way →
-a garage with a lift. Nothing leaks ahead of the converter → H2
-refuted, into `refuted.md`.
+*The warm exhaust test (H2) was dropped 15/11 (*the owner*): the cold
+tailpipe and smoke tests found nothing, the manifold shows no soot,
+032's idle cell takes fuel away where air ahead of the front probe
+would make the ECU add it, the front loop holds through 3's swell, and
+the rear probe's sinking went with the old probe (`open.md` H2).*
 
 **Item 7 — the high-voltage side** (`open.md` H4; `refuted.md` C24): the roughest
 reading on record came on a foggy morning (`open.md` S1, *Temperature*),
@@ -398,8 +374,7 @@ rear probe switched to the front's swing after 18 minutes of idle on
 10/11; a probe seated
 loose lets air into the exhaust at idle's pulses, the second zone of
 H2 of its own making (*reasoned*). Cold, because the exhaust then is at
-the temperature they were fitted at. Checked before the warm tailpipe
-test (item 7), which it would otherwise confuse. **The rear probe's
+the temperature they were fitted at. **The rear probe's
 lead** (`refuted.md` D13 (S23)): 0.000 V at full load is not the gas, so the
 signal failed on its way to the ECU, and it came back at a cooler idle
 — heat on a lead or a connector the likeliest (*reasoned*); the lead was
