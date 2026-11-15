@@ -3177,7 +3177,10 @@ learnt. Three things they do say.
     a contact VW's page does not describe — an ECU input held up
     while nothing answers it, by its look (*reasoned*); what it is,
     the wiring diagram says. Nothing wrong at zero current, as
-    expected. **No running reading** (16/11): the plug's back cannot
+    expected. **Every contact in the car's half holds** when pressed
+    from the front (*the owner*, 16/11), so the broken lock has not
+    let one sit back; what is left of the find is the pieces keeping
+    the halves from seating. **No running reading** (16/11): the plug's back cannot
     be probed without breaking it (*the owner*); the plug cleaned and
     seated is read by 032's idle cell over the next drives (`plan.md`
     8y).

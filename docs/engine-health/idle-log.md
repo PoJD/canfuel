@@ -1709,8 +1709,9 @@ supply as the ECU sees it, against the battery*.
   the engine not running.
 - **Changes after:**
   - *measured:* contact 4 to the engine's earth 5.002 V, 4 to 3 the
-    same; 1 to 3 4.6 V; 2 to 3 40 mV; 5 to 3 9.8 mV.
-  - *not known:* whether a contact in the car's half sits back.
+    same; 1 to 3 4.6 V; 2 to 3 40 mV; 5 to 3 9.8 mV; every contact
+    in the car's half holds when pressed from the front (*owner*,
+    16/11).
 
 **The red lock in the car's half of the plug is broken** — its lower
 edge chipped and its end at the last contact gone

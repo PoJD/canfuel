@@ -152,11 +152,9 @@ of this plan, *the owner's decision* of 9/10):
 the gauge if the evening allows). A multimeter; the meter's 5-pin
 plug.
 
-- **The red lock in the car's half of the plug**: the loose pieces out
-  of both halves (a plastic pick, then contact cleaner), and each of
-  the five contacts in the car's half pressed gently from the front
-  with a plastic point — one that moves back is loose. What was found,
-  and a photograph, into the chat.
+- **The loose pieces of the red lock out of both halves** (a plastic
+  pick, then contact cleaner). *The contacts were pressed 16/11 and
+  all hold (the owner).*
 - **Then the plug back on, firmly home, and drive as usual**: 032
   read at the next VCDS session (8f) — the idle cell is the measuring
   instrument. *Probing from behind was dropped 16/11: the plug's back
