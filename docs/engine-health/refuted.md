@@ -1032,6 +1032,28 @@ named the slot** (3/11 evening): **cylinder 3, 43 %**, 4 at 18 % — one
 cylinder on the VW leads, not the pair; against H15's NGK ends (none
 fitted), not against what sits at 3's plug end anyway.
 
+### C25. "The ECU's own purge phases time cylinder 3's swell" (`open.md` H16, its reading of the swell; the fourth of S1's four) — measured
+
+**Settled 15/11/2026 on `52`** (`open.md` S1, *The second drive on the
+new N80*; Claude's reading, as `plan.md` 8o left it to that drive's
+070, and put to the owner the same day). The purge was the one thing
+the ECU is known to run as a slow ramp with a quick shut-off, the
+swell's shape, and until 15/11 its phases were on no measuring block
+read on this car. **Group 070 logged as a measuring block shows them
+in field 1**, the valve's opening. At a warm stop of 18½ minutes the
+ECU purged twice, and **cylinder 3 swelled on arrival with the valve
+shut (to −20 %), held −10 to −14 % through the whole first ramp, fell
+from −24 to −4 % with the valve held at 20 %, began its third swell
+at a constant 20 % and deepened to −24 % after the valve shut**; r
++0.06 between the opening and 3's deficit over 55 windows of 20 s.
+One onset, the second swell's, falls in the same quarter of a minute
+as a ramp's first step. With 14/11's two readings (`51`: a new valve
+and the same swells; 070's run, 7.8 % rich, and 3 unmoved) nothing of
+the purge is left for the swell. **`plan.md` 8o, two drives with N80
+unplugged, dropped with it.** ⚠ One stop; field 1 is the commanded
+opening, not the flow. **Left over** and kept in `open.md`: H16 for
+S19 and S21, and its place in list A, the owner's to decide.
+
 ## D. Symptoms closed
 
 Moved out of `open.md` when it was condensed, 20/10/2026. Each was closed at

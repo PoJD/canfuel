@@ -49,7 +49,7 @@ was first recorded counted from the wrong end and corrected on 28/9/2026.
 | **026** | **knock sensor voltage per cylinder**, *amplifier factor included* | S5. Not the raw signal: the ECU scales each cylinder |
 | **032** | lambda adaptations, idle and part load | the rich trim that was the MAF (S9); slightly negative at idle since (`open.md` H16; `refuted.md` C21) |
 | **055 / 056** | idle regulator, its adaptation, target idle speed | 055 logged once, on the cold start of 11/9 (`vcds-coldstart-014-055.csv`): regulator −0.46 → −0.08 g/s as the engine warmed, adaptation **−0.73 g/s** throughout, load-state bits `0000`. The cold-start baseline for the sessions of 3–4/10 (`open.md` S3) |
-| **070** | evaporative valve test | TEV OK (27/9, the old valve, lambda deviation 0.0 %; **14/11, the new one: the valve to 23.4 %, the lambda controller to −7.8 %, 0.24 g/s**, *070 on this ECU* below) — the valve opens; whether it seals it cannot show (`refuted.md` A6, `open.md` H16). P0440 stored 6/11 (S21). *This said "purge ruled out" until 6/11.* |
+| **070** | evaporative valve test | TEV OK (27/9, the old valve, lambda deviation 0.0 %; **14/11, the new one: the valve to 23.4 %, the lambda controller to −7.8 %, 0.24 g/s**; **15/11, run by the ECU itself on a drive: 39.1 %, +7.8 %, 0.08 g/s**; **read as a measuring block, field 1 is the ECU's own purge**, *070 on this ECU* below) — the valve opens; whether it seals it cannot show (`refuted.md` A6, `open.md` H16). P0440 stored 6/11 (S21). *This said "purge ruled out" until 6/11.* |
 | **100** | readiness bits, OBD status, time since start | all monitors complete |
 
 **Specifications worth quoting, because they turn an observation into a
@@ -280,18 +280,24 @@ looks — the controller following (−3.9, then −7.8 %) and the flow 0.10,
   the bus showed no second purge (the fuel counter's rate did not dip,
   where the first run took 8 % off it for 40 s). Whether a key cycle
   re-arms it was not tried.
-- **As a measuring block it has not been read.** With the test off in
-  basic settings field 1 moved with the throttle (*owner*, 14/11), so
-  the fields may show the ECU's own purge; `plan.md` 8a's second drive
-  logs 070 beside 014 and 004 to find out — over the warm drive, not
-  one minute: the purge runs only warm and in phases. *The owner's
-  guess* (14/11 night): the ECU's own purge needs what the test needs,
-  001 field 4. *Reasoned*: warm and lambda control in order, most
-  likely yes; the idle bits (throttle closed, under 2,000 rpm) cannot
-  be conditions of a purge that also runs on the road (*general*), and
-  on 14/11 field 1 stayed at zero through half an hour of idle and
-  moved only with the throttle — on the reserve, in basic settings, so
-  not yet a reading. All of field 4 but the lambda bit is on the bus.
+- **As a measuring block field 1 lives; fields 2–4 are the test's**
+  (15/11, `52`, 014 070 004 logged through a whole drive, nothing
+  clicked; `open.md` S1, *The second drive on the new N80*). **Field 1
+  is the ECU's own purge**: zero cold, first off zero at 63 °C of
+  coolant (to 3.9 % at a cold idle), on the warm road in bursts up to
+  99.6 %, and at a warm standing idle in phases — a ramp from zero to
+  about 20 % over 100 s, held there for up to 8½ minutes, shut within
+  a quarter of a minute, 2½ minutes shut between two. **Fields 2–4
+  stay at zero and `test vyp.` until the ECU runs the test by
+  itself** — 15/11 at a standing idle on the way, coolant 91.5–93 °C:
+  `test běží` for 17 s, the valve stepped to 39.1 %, the controller to
+  +7.8 %, 0.08 g/s, `TEV OK`; a try two minutes earlier ended when the
+  car moved off — **and then keep that run's figures to the end of the
+  log**. **On the bus the purge is b7 at a standing idle**: 29.0 with
+  the valve shut, 24.3 with it over 15 % open (r −0.92). *The owner's
+  guess* (14/11 night) that the ECU's own purge needs what the test
+  needs, 001 field 4, was not read: 001 was not logged beside it.
+  Until 15/11 this entry said the block had not been read this way.
 - **On the bus** a basic setting is 0x480 b1 bit 5 (the ECU cutting the
   A/C compressor, `docs/firmware/can-decoding.md`): set from the moment
   a group is engaged in basic settings, whether or not its test starts.

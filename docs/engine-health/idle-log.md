@@ -1626,3 +1626,34 @@ lambda controller to −7.8 %, 0.24 g/s, `TEV OK` — and did not run again
 at two more tries. 003's throttle angle read under 2° at the pump's
 idle (*owner*); it has before (`open.md`, *Where it stands*). Read in
 `open.md` S1 and S3, *The first drive on the new N80*, and H16.
+
+## 15/11 — the second drive on the new N80, gentle, with 014 070 004 (8a); the phone on the cam cover (6p)
+
+- **Tests:** a captured drive of 15 km (`52`, 10:49–11:40, the MFD out,
+  the everyday state, the A/C off) with VCDS 014 070 004 through it,
+  070 as a measuring block; the fault memory before and after every
+  log (empty every time); 032/055 before and at the end; the owner's
+  phone on the cam cover above cylinder 3 for ten minutes of the warm
+  stop (11:17:41–11:28:07); the fuel filler cap opened at the stop.
+- **Changes after:**
+  - *measured:* 070's field 1 shows the ECU's own purge; at the warm
+    stop of 18½ minutes it ran two phases, and cylinder 3's three
+    swells (to −20, −24 and −24 % of a stroke) came with the valve shut
+    and open alike; b7 falls from 29 to 24 with the valve open; 014 at
+    0.31 % of combustions over the stop, 0.78 % in the second swell,
+    91 % of its standing rises on 3; the common part 2.63 rpm rms; 3's
+    floor −8.2 %, a minute at the longest; 032 −8.6 / +7.8 % before,
+    −9.4 / +5.5 % at the end (read while driving), 055 −1.18 →
+    −1.31 g/s; the supply 13.4 → 13.1 V and the intake air 13.5 →
+    30 °C through the stop, neither with the swell; on the recording
+    no tick at 3's place, in the swell or out of it.
+  - *felt:* the cold idle "cleaner" at about 10:57, oil about 24 °C;
+    no hiss at the filler cap (*owner*).
+
+The ECU ran the purge valve's test by itself at an idle on the way
+(11:06:51–11:07:08: the valve to 39.1 %, the lambda controller to
++7.8 %, 0.08 g/s, `TEV OK`). The radiator fan came on at about
+11:20:15, coolant 99 °C (*owner*). 8o, the drives with N80 unplugged,
+dropped on this drive's 070. Read in `open.md` S1, *The second drive
+on the new N80* and *The phone on the cam cover through a swell and a
+fall*, S3 and H16.

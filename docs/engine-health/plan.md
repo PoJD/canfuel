@@ -18,22 +18,24 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next, 8a's second drive on the new N80, a gentle one, captured, with VCDS 014 070 004**
-(the valve fitted and its first drive made 14/11, `51`):
-**8q, the timing belt at a garage, once it
-has a date** (the garage chosen, a date asked for 13/11), never on the same day as the new N80; **the new rear probe's
-replacement fitted when the seller sends it** (8e; the probe sent back
-13/11, the old rear probe on the car meanwhile). **After 8a's second drive, 8o: two captured drives with N80 unplugged, if Claude says so on that drive's 070** (8a's one 070 run left the purge's timing open). **6p's second half, the phone above cylinder 3, at the next
-captured stop that swells.** **6m for injector 3, at the next evening
-with the upper intake off** (agreed 12/11 night), ahead of item 9; then item 9; 8h at a
-laptop session; **8e's harness at the end**, 8g dropped (*the owner*,
-10/11 and 11/11; `open.md` H11, *The relearn drive*; `refuted.md` D13;
-S1, *The rough start of a warm stop*). *Done: 8j and its first drive
-11/11 (its look at the next wheel off dropped 13/11, *the owner*: the
-joints seen whole and tight on his visit the day before), item 6's first captured drive 12/11 (`49`), 6q the queue drive
-12/11 evening (`50`), 6p's tailpipe half at its stop, 8i the belt's
-marks 13/11 morning, 8a's swap and its first drive with 070 14/11 (`51`); 8r, the flywheel's mark, dropped 14/11 (*the
-owner*: no window to be seen at the gearbox).*
+Captures only where an item asks for one. **Next: 8q, the timing belt
+at a garage, once it has a date** (the garage chosen, a date asked for
+13/11); **the new rear probe's replacement fitted when the seller
+sends it** (8e; the probe sent back 13/11, the old rear probe on the
+car meanwhile). **6m for injector 3, at the next evening with the
+upper intake off** (agreed 12/11 night), ahead of item 9; then item 9;
+8h at a laptop session; **8e's harness at the end**, 8g dropped (*the
+owner*, 10/11 and 11/11; `open.md` H11, *The relearn drive*;
+`refuted.md` D13; S1, *The rough start of a warm stop*). *Done: 8j and
+its first drive 11/11 (its look at the next wheel off dropped 13/11,
+*the owner*: the joints seen whole and tight on his visit the day
+before), item 6's first captured drive 12/11 (`49`), 6q the queue
+drive 12/11 evening (`50`), 6p's tailpipe half at its stop, 8i the
+belt's marks 13/11 morning, 8a's swap and its first drive with 070
+14/11 (`51`), **8a's second, gentle drive with 014 070 004 and 6p's
+phone on the cam cover 15/11 (`52`)**; 8r, the flywheel's mark,
+dropped 14/11 (*the owner*: no window to be seen at the gearbox);
+**8o, the purge shut, dropped 15/11** (Claude, on `52`'s 070).*
 
 6. **Drive normally; the MFD out from 12/11** (*the owner*), so the
    drives can be captured — the converter goes with the MFD, so no
@@ -68,17 +70,6 @@ owner*: no window to be seen at the gearbox).*
    - **A hard jerk at a crawl or on moving off** (`open.md` S12): the
      clock time into the chat as soon as it is safe, with the gear and
      roughly the speed; on a captured drive, **"teď"** at once.
-6p. **The phone above cylinder 3 through a swell** (agreed 12/11
-   evening; the tailpipe half done 12/11 at `50`'s stop), at a captured
-   warm stop where Claude says 3 is swelling: the car in neutral, the
-   parking brake on, **the bonnet open**. **Start the phone's
-   recording, then shut the driver's door once, firmly** — the door is
-   on the bus and on the recording, and sets the two against each
-   other. **The phone lying on the cam cover above cylinder 3**, clear
-   of the belt side; left there until Claude says 3 has fallen back and
-   two minutes more. **One recording, not stopped and restarted.** No
-   throttle, no A/C, no switch touched meanwhile. The file into the
-   chat.
 6i. **The oil level on the new oil, about every 500 km** from the first
    reading (27/10, 155,024 km, at the top mark; 5/11, 155,546 km, 0.5–1 mm
    under it; 11/11 evening, about another 0.5–1 mm lower, the album
@@ -132,43 +123,19 @@ owner*: no window to be seen at the gearbox).*
      lead the engine stumbled at.
 8m. **On the first hot day**: the fuel filler cap opened — a hiss or
    not, into the chat.
-8a. **The purge valve N80, the new one** (fitted 14/11, Bosch
-   `0 280 142 353`, the same part; its first captured drive, with 070,
-   made the same day, `51`):
-   - **The second drive on the new valve, another day, a gentle one**
-     (no full throttle, under about 3,500 rpm), captured as item 6, to a
-     warm stop of ten minutes or more. **VCDS 014 070 004, logged by
-     Claude through the whole drive and stop** — 070 as an ordinary
-     measuring block, **no basic setting, nothing clicked**. **Claude
-     says before the warm stop whether 070's fields have moved at all
-     since the coolant passed 80 °C**; only if they stayed at zero
-     through ten warm minutes of driving does the log go on as
-     014 001 004. 032 after (8f).
-   - **At any engine lamp from now on**: the odometer, the tank's needle
-     and the outside temperature into the chat, and 032 read before the
-     code is cleared.
-8o. **Two captured drives with the purge shut**, after 8a's second
-   drive **and only if Claude says so on its reading** (070's fields
-   may already show the purge's phases against 3's swell): engine off, **N80's electrical connector unplugged** (*the
-   owner*, 13/11: nothing pinched or left by the hose, just above the
-   belt's pulley; and the lines could not be pinched anyway — the one to the canister is hard plastic, those nearer the engine rubber gone very stiff, *the owner*, 13/11; *a hose clamp until then*), the connector tucked
-   clear of anything that turns; a photograph. Item 6's drive, captured,
-   to a warm stop of ten minutes or more, twice, on different days.
-   After each: the fault memory (a code for N80's circuit or the purge
-   is expected, and the engine lamp may light: said as such), **032
-   read but not counted for 8f**. After the second: the connector back
-   on, the fault memory cleared by the owner, and 032's next reading
-   taken as a fresh start.
+8a. **At any engine lamp from now on** (the new N80 fitted 14/11, its
+   two drives made): the odometer, the tank's needle and the outside
+   temperature into the chat, and 032 read before the code is cleared.
 8q. **The timing belt renewed at a garage** (*the owner's decision*,
    13/11; the garage chosen by the owner, a date asked for 13/11): the belt, its tensioner and idler, and the water pump.
    **Before the old belt is loosened**, the mechanic sets the crank to
    TDC of cylinder 1 and says how many teeth the camshaft sprocket's
    mark is off its mark, which way, and photographs both marks; the
    answer into the chat. Before the garage: a captured drive to a warm
-   stop with 014, 032/055 and the fault memory read. After it: the
+   stop with 014, 032/055 and the fault memory read — `52` (15/11)
+   counts if nothing is changed on the car before the garage. After it: the
    fault memory read, 032/055 for 20 s, and a captured drive to a warm
-   stop of ten minutes. **Not on the same day as the new N80 (8a)**: a
-   captured drive between the two.
+   stop of ten minutes.
 8f. **032 for 20 s at every session with VCDS connected**, until both
    cells have held for three drives; **and 036 for a minute** at a warm
    idle and on the road when VCDS is on anyway (the rear probe watched
@@ -429,9 +396,9 @@ and stepped to its floor by itself; settled, the grade and the common
 part were those of the calmest floors before the canister — so **a
 second captured drive now would only repeat the canister's reading**,
 and the next is after **8a's new N80**, the one change left on H16's
-path, read the same way against `49` — **made 14/11 (`51`): neither
-part fell on the new valve either** (`open.md` S1, *The first drive on
-the new N80*).
+path, read the same way against `49` — **made 14/11 (`51`) and 15/11
+(`52`): neither part fell on the new valve either** (`open.md` S1,
+*The first drive on the new N80*, *The second drive on the new N80*).
 **The MFD out and every drive captured until the swap** (*the owner*,
 12/11 evening, so that there are more captures and more 014; **closed
 13/11 by the owner**: no further captured drive before the swap, the
@@ -622,42 +589,6 @@ morning of 10/11, the day the rear probe sank. Sealing the probe's own
 lead airtight could starve it the same way; the fabric tape over the
 harness side is not a seal.
 
-**6p, the phone above cylinder 3** (*agreed with the owner*, 12/11
-evening; `open.md` S1, *The phone at the tailpipe through a swell and
-a fall*). The tailpipe half showed 3's exhaust pulse growing with its
-deficit and dropping with the fall, which a seat and a dilution both
-give — the rule written for it did not separate them. **On the cam
-cover the question is the valve gear's**: a once-per-cycle tick at 3's
-place (S22) that grows with the swell and drops at its fall is for a
-valve held off its seat or a lifter (H1); the same tick through both
-leaves the swell to the charge. Read as the tailpipe's was: each firing
-found on the recording by the firing line, set on the capture's strokes
-by the door and then by the weak strokes themselves. One recording
-because a restart costs the door's mark (12/11: the second file had to
-be set by its clock).
-
-**8o, the purge shut** (*agreed with the owner*, 12/11 evening; **by
-the connector since 13/11**, *the owner*: nothing pinched just above
-the belt's pulley — N80 is closed unpowered, *general*, so the new
-valve shuts the purge as a clamp would, which the old, which leaked
-closed, could not; **conditional since 13/11**: 8a's 070 runs open the
-purge on purpose at a warm stop, three times with idle between, and
-may answer the same question first — **14/11: it ran once, 3 did not
-move while the valve was open, a swell began 45 s after and three
-others came with no run, so it is left open and 8o is made**
-(`open.md` S1, *The first drive on the new N80*);
-`open.md` S1, the same section; H16): the ECU's purge is the one thing
-known to run a slow ramp with a quick shut-off by the minute, the
-swell's shape, and its phases are not on the bus or in any measuring
-block. **Read**: a swell of 3's at either stop with the purge shut —
-the purge is not the swell's cause, the weakest of its four readings
-gone; no swell at two stops after brisk drives, where `43`, `44`, `47`
-and `49` all swelled — for it, and the stops are repeated with the
-hose open. The common part is read beside it (2.7–3.1 rpm rms at every
-warm idle since 24/9): a step in it with the purge shut would be the
-first thing that moved it. After 8a, because a drive with the purge
-shut teaches 032 nothing about either valve.
-
 **Item 9's leak-down on an engine switched off in a swell** (*agreed
 with the owner*, 12/11 evening): straight after a fall 3 is nearly
 level with the others (−1 to −5 %), so a leak-down made then tests a
@@ -736,97 +667,12 @@ or the next is the one moment it can be told from a seat or a guide.
 **8m, the filler cap on a hot day** (from 8k): the one check of the
 summer overpressure (`open.md` S21), which a November day cannot give.
 
-**Item 8a's second drive, a gentle one** (14/11, after the first was
-read): 032 on the first drive was read after a brisk leg, a fill and
-two long stops, and came out at −8.6 / +7.8 % against −9.4 / +7.8
-before the swap; *What decides it* (`open.md` H16) asks for one gentle
-drive and one brisk on the new valve, because the old one's idle cell
-went to −14.8 % after a gentle drive and back to −7.0 after a brisk
-one. **No 070 on it**: the run answers nothing more (it runs once, and
-3 did not move with it), it needs VCDS closed, and that cost the first
-drive 014 through three of its four swells. **014 through the whole
-stop** for that reason.
-**070 and 004 beside it** (*agreed with the owner*, 14/11 night).
-**070 read as a measuring block**: its fields are the valve's opening
-in %, the lambda controller's deviation and the flow in g/s (the
-owner's label file), and in basic settings with the test off field 1
-moved with the throttle on 14/11 — so it most likely shows what the
-ECU does with the valve by itself. If it does, the purge's phases are
-at last readable against 3's swell, with nothing unplugged and no code
-stored, and 8o is needed only if they leave it open; *whether the
-fields live outside basic settings is not known*. **Not judged cold or
-on one minute** (*the owner*, 14/11 night): the ECU purges only on a
-warm engine in closed loop and then in phases (*general*), so the
-fields are read over the warm part of the drive — ten warm minutes at
-zero on the road, where the purge runs most, say they do not live. **004**: the supply voltage and the intake air's
-temperature, read so far only on the road and for 84 s standing — the
-voltage for H4 (an injector circuit with a raised resistance opens
-later at a lower voltage), the intake temperature for a swell that
-follows the heat soak of a stop. 001 and 003 are left out: both were
-read through swells on `50` and moved with neither part.
-
-**Item 8a, from 11/11** (*the owner*: the part ordered "to be sure",
-after the research of 11/11 on P0172 and P0440; `open.md` S21, *Read
-11/11*): N80 is the one part VW's fault table for this engine names
-under both codes, and the Bosch check behind P0440 opens the valve at
-idle and fails when lambda and the idle air hardly answer — what a valve
-that already leaks while closed would give. **The tests so far were
-weak**: blown by mouth (about 0.1–0.19 bar at most) against 0.6–0.7 bar
-of vacuum across it at idle, and 25/10's canister cut off cold only.
-**The gauge on the canister-side port, warm, N80 unplugged** is VW's own
-test (TSB 2034072, written for US cars); **declined 11/11** (*the
-owner*: the gauge is out of reach for weeks), so the old valve is not
-tested before the swap and 032 before and after is what reads it. **032
-before and after** says what the valve carried: an idle cell still at
-−6 to −9 % with a tight new valve clears it of the standing offset. **One gentle drive and one brisk** (12/11, the owner's reading of the
-four readings on the canister, `open.md` H16, *The owner's reading,
-12/11*): on the leaking valve the idle cell went to −14.8 % after a
-gentle drive and to −7.0 after a brisk one; on a tight one it should no
-longer follow the drive.
-**The photographs** because whether N112 and N80 share a vacuum tap is
-not recorded. **Fitted as soon as it is in hand** (*the owner*, 11/11: the
-fix comes first; 8b dropped; in hand 13/11, fitted 14/11).
-**The details at a lamp** because this ECU keeps no freeze frame; with
-them the next code can be set against fills, tank and weather.
-
-**Item 8a — the purge valve, conditional until 11/11** (*the owner's decision*,
-6/11 night: *this was "replaced after item 8's readings", his decision
-of the same evening, until the valve was out*; **kept so 11/11**, after
-the second research, *the owner's decision*: no swap and no pinched hose
-at 8b). Out of the car it
-passed air unpowered not clearly at all, at most "really very little"
-(*owner*), it had no granules or fuel behind it, and it was cleaned with
-its contacts and refitted (`idle-log.md`). The part is known and fits;
-**a code once in eight years is acceptable** (*the owner*), so it was
-to be bought if P0440 came back — *until 11/11, when he ordered it all
-the same (above)*. *Until 9/11 also "or if item 8 leaves the
-idle as it was and the purge path is the next candidate"*: the clean
-changed cylinder 3, and P0440 was not stored that day. **The part**: the valve taken out on
-6/11 is itself Bosch `0 280 142 353`, VW `1C0 906 517 A`, date code
-`040` (`photos/n80-2026-11-06-label.jpg`); Auto Kelly lists the same
-for this car, engine AQY (*owner*, 6/11), so a new one is the same
-part and fits as it is (in stock at Auto Kelly, not in Prague on 6/11).
-**What was looked at, 6/11** (`idle-log.md`):
-no granules and no smell of fuel at the canister-side port, the rubber
-hoses old but sound, so **the canister is not looked at and no hose is
-changed** (*superseded 11/11: the canister was looked at and found
-bypassed, 8j*) — a canister that shed charcoal would have jammed a new
-valve open (*general*), and it shows no sign of it. **The plastic line
-under the upper intake is left** (*the owner*, 6/11): seen whole with
-the intake off several times, the smoke test showed nothing there, and
-changing it means the intake off. **The filler cap is not on the list**:
-it is new from about early 10/2026 (*owner*, 6/11, `vehicle-history.md`),
-and this car has no tank pressure sensor and no leak detection pump (a
-European car, the VIN), so the ECU can only open N80 and watch lambda
-and idle air (block 070's fields), and a cap cannot fail that
-(*reasoned*). **070 afterwards** is the ECU's own check of a valve that
-opens; it is a basic setting, so the owner runs it, never Claude
-(`CLAUDE.md`). **No warm A–B–A with the hose plugged before it** (*the
-owner*, 6/11: not needed); so the idle after a swap would be read
-against the readings before it, on the display, with the A/C state
-named. *Until 6/11 night this item also had the hoses and the canister
-checked while the valve was out, and the part compared with the old
-one; done.*
+**8a, the details at a lamp**: this ECU keeps no freeze frame; with
+the odometer, the tank and the weather the next code can be set
+against fills and temperature, and 032 is reset by a clear. *The new
+N80's own reasons left with its two drives (14/11, 15/11; `open.md`
+H16); the part is Bosch `0 280 142 353`, VW `1C0 906 517 A`
+(`vehicle-history.md`).*
 
 **Item 9's garage session** (*agreed with the owner*, 11/11, after the
 second research): everything that needs the upper intake off in one
