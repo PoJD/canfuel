@@ -672,7 +672,10 @@ date asked for 13/11, none yet); **the new rear probe sent back to the
 seller under warranty 13/11, its replacement fitted when it comes, the
 old rear probe on the car meanwhile** (S23 closed 12/11 as its fault,
 `refuted.md` D13); **8h, the loads against the
-sensors' voltages**, at a laptop session; **8f, 032 at every VCDS
+sensors' voltages, next, at a laptop session** (*the owner*, 15/11),
+with ten minutes of plain idle on 014 055 036 before its loads; **8s,
+the purge's phases read from b7 on the older captures, at the desk
+later**; **8f, 032 at every VCDS
 session**; **6m's injector circuits**, read for 3, **at the owner's
 next evening with the upper intake off, ahead of the garage session**
 (*agreed 12/11 night*), and item 9's tests

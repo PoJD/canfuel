@@ -24,7 +24,7 @@ at a garage, once it has a date** (the garage chosen, a date asked for
 sends it** (8e; the probe sent back 13/11, the old rear probe on the
 car meanwhile). **6m for injector 3, at the next evening with the
 upper intake off** (agreed 12/11 night), ahead of item 9; then item 9;
-8h at a laptop session; **8e's harness at the end**, 8g dropped (*the
+8h at a laptop session, **the next one** (*the owner*, 15/11), ten minutes of plain idle on 014 055 036 before its loads; 8s at the desk later; **8e's harness at the end**, 8g dropped (*the
 owner*, 10/11 and 11/11; `open.md` H11, *The relearn drive*;
 `refuted.md` D13; S1, *The rough start of a warm stop*). *Done: 8j and
 its first drive 11/11 (its look at the next wheel off dropped 13/11,
@@ -148,6 +148,8 @@ dropped 14/11 (*the owner*: no window to be seen at the gearbox);
    the laptop, a warm engine after
    a drive, the car standing, the owner in the driver's seat:
    `usbtin_capture.py` running; the fault memory read first.
+   - **First, ten minutes of plain idle in the everyday state, nothing
+     switched, VCDS 014 055 036** (agreed 15/11).
    - **Idle, the everyday state, every load off that can be**; then, 30 s
      each, on and off again with 30 s between: **the A/C, the rear window
      heater, main beam, the blower on 4**, one at a time; the rear window,
@@ -157,6 +159,9 @@ dropped 14/11 (*the owner*: no window to be seen at the gearbox);
      time: **004 033 036**, then **004 060 002**, then **004 026 041**.
    - Nothing under the bonnet or the car while the engine runs. After it,
      the fault memory.
+8s. **At the desk, no car** (Claude, a cloud session, when the owner
+   says; agreed 15/11): the purge's phases read from b7 at every warm
+   standing idle of the older captures, set against cylinder 3's swells.
 9. **After the clean of 9/11, by what the next stops show** (Claude says
    which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
@@ -578,7 +583,25 @@ already tested on `47`: steady to half a bit). **What it cannot see**
 caught but noise faster than that is not; three groups at a time, so
 the sets are run one after another, the sequence repeated. Four loads
 because they are the largest the driver can switch from the seat, and
-none needs anyone at the engine.
+none needs anyone at the engine. **The ten minutes of plain idle
+first, on 014 055 036** (*agreed with the owner*, 15/11): the idle
+regulator (055) has been logged only in 20 s pieces, and it and the
+rear probe (036) are the last things the ECU measures to set against
+a named swell of 3's — the air, the advance, the regulation, the
+injection time, the purge, the supply and the intake air have been,
+and none moved with it (`open.md` S1); before the loads because a
+load masks a swell.
+
+**8s, the purge on the older captures** (*agreed with the owner*,
+15/11; `open.md` S1, *The second drive on the new N80*): on `52` b7
+at a standing idle read 29.0 with the purge valve shut and 24.3 with
+it open (r −0.92), so the phases 070 showed on one stop may be
+readable on every warm stop captured since 24/9, and C25's "the
+purge does not time the swell" set against many stops, not one. ⚠ b7
+moves with every electrical load and the radiator fan too, so a step
+is a purge only where the shape is the purge's — a ramp of about
+100 s and a shut within a quarter of a minute; whether that can be
+told apart is the first thing to find out.
 
 **8e, no spray and no seal on the probes' connectors** (`refuted.md` D13 (S23),
 *The contact spray*; the research of 11/11): Bosch, Denso and Saab
