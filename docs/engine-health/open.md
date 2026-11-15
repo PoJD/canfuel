@@ -3106,14 +3106,22 @@ learnt. Three things they do say.
   - **The trade's reading of opposite signs**: the air mass meter
     (MOTOR magazine, *Fuel Trim Data: A Powerful Diagnostic Tool*;
     Bavarian Technic's wiki, *Engine Mixture Adaptations*), a fuel
-    pressure regulator as its imitator. Here the meter's element was
-    changed with the idle cell at −5.5 % before and negative after;
-    what both meters share — the air's path to them, the plug, its
-    earth and 5 V, the ECU's input — is untested (`refuted.md` C22,
-    *What it does not refute*). Sellers list 06A 906 461 A as Bosch
-    0 280 218 002 for the AEG; whether the AQY takes the same
-    revision is not checked against VW's catalogue — the 2018 unit's
-    label, kept, would say what the car had.
+    pressure regulator as its imitator. **The meter's type is
+    right**: the new one was bought at VW by the VIN (*owner*, 15/11),
+    06A 906 461 A, and the 2018 unit it replaced reads Bosch
+    0 280 218 002 on its housing and F 00C 2G2 032 on its insert (the
+    album, 24/9, 10:43 and 11:07) — the number sellers give for
+    461 A. **And it is on both meters, the new one from its first
+    hour**: the old unit had the idle cell at −5.5 and −4.7 % on 20/8
+    and 10/9 with its part-load cell at 0.0 and +1.6 %, before it
+    over-read (`refuted.md` C2: −16.4 / −13.3 % on 24/9, both cells,
+    a meter's multiplicative shape); on the new one the idle cell
+    went 0.0 → −1.6 → −3.1 % in the first 21 minutes of idling on the
+    day it was fitted (the album, 24/9, 13:17, 13:18, 13:38). So not
+    the element, and not a new meter soiling over the weeks. What
+    both meters share — the air's path to them, the plug, its earth
+    and 5 V, the ECU's input — is untested (`refuted.md` C22, *What
+    it does not refute*).
   - **The supply as the ECU sees it, tested at the desk the same
     night** (`vcds/vcds-step8h-loads1-004-033-036.csv`, 004 beside
     the regulation through `53`'s load steps): the regulation's mean
@@ -3130,7 +3138,8 @@ learnt. Three things they do say.
     (`plan.md` 8u).
   - **Read together** (*reasoned*): the idle takes about 8 % less
     fuel than the ECU reckons, a fixed amount, learnt with the purge
-    shut, on either set of injectors, either air mass meter, either
+    shut, on either set of injectors (the same part number, C2),
+    either air mass meter, either
     pair of probes, either map and fresh oil. Left: a drip or the
     return (8u), the air's path to the meter and its wiring, and the
     ECU's own reckoning of a short injection.
