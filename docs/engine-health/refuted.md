@@ -1055,6 +1055,27 @@ opening, not the flow. **Left over** and kept in `open.md`: H16 for
 S19 and S21; in list A it went from fifth to last the same day (*the
 owner's decision*).
 
+### C26. "One earth shared by the probes' signals and the ECU's senders shifts them with every load, and ties the probes to H4 and the idle" (`open.md` H21, its shared-earth form) — measured
+
+**Settled 15/11/2026 on `53`** (`open.md` H21, *8h, the loads at a warm
+stop*; `plan.md` 8h; Claude's reading, accepted by the owner the same
+evening). At a warm stop the A/C, the rear window heater, main beam and
+the blower on 4 were switched one at a time, three rounds, VCDS on
+004 033 036, 004 060 002 and 004 026 041. **Only the supply stepped
+with every load** (−0.25 to −0.63 V). The ECU's coolant sender moved
+only with the cluster's own sender beside it, a separate circuit, their
+difference within a bit and no step at a switching edge; the throttle's
+second sensor moved only against the first as the idle control opened
+it; the air mass and the knock sensors only with the A/C's load; the
+front probe not at all (under a quarter of its sample scatter, either
+sign). 041's front heater figure moved one count with the supply, as a
+figure reckoned from it would. ⚠ VCDS's one sample a second: noise
+faster than that is unseen; the rear probe's +0.02 to +0.07 V, upwards
+in all five steps, was not resolved either way. **Left over** and kept
+in `open.md`: H21 for the front probe's damaged signal-earth wire
+(S19's idle cell, S12's ~), from fifth to eighth in list A the same
+evening; H4's ~ for S4 and S5 on its other paths.
+
 ## D. Symptoms closed
 
 Moved out of `open.md` when it was condensed, 20/10/2026. Each was closed at

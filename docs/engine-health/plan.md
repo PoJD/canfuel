@@ -37,11 +37,12 @@ phone on the cam cover 15/11 (`52`)**; 8r, the flywheel's mark,
 dropped 14/11 (*the owner*: no window to be seen at the gearbox);
 **8o, the purge shut, dropped 15/11** (Claude, on `52`'s 070); **8h, the loads against the sensors' voltages, 15/11 (`53`)**.*
 
-6. **Drive normally; the MFD out from 12/11** (*the owner*), so the
-   drives can be captured — the converter goes with the MFD, so no
-   `IdleHealth` on the display meanwhile; Claude gives it from the
-   capture (`livewatch.py`). Brisk driving once warm is welcome.
-   - **Captures** (*the first done 12/11*, `49`): **as many drives as
+6. **Drive normally; the MFD back in from 15/11** (*the owner*, after
+   8h): `IdleHealth` and `Misfires` on the display again, **no captures
+   until 8q's warm stop after the belt** (the one before it is `53`).
+   Brisk driving once warm is welcome. When captures resume, the MFD
+   comes out for them — the converter goes with the MFD.
+   - **Captures** (*the first done 12/11*, `49`; *paused from 15/11*): **as many drives as
      the laptop can ride along**, each ending in a warm stop where one
      comes; Claude reads from the capture whether a drive was gentle
      or brisk (*the owner*, 12/11: nothing to report). Claude runs
@@ -401,6 +402,13 @@ valve (−14.8 after the gentle morning, −7.0 after the brisk drive) and
 stop following it on the new one. Each captured warm stop is read by
 `cylscan.py --minutes` as `49` was, so 3's swell and floor get more
 stops on both valves.
+
+**The MFD back in from 15/11** (*the owner*, after 8h): the new N80
+has its two drives (`51`, `52`) and 8h its stop (`53`), and what is
+left before the belt is no reading a capture gives that these do not;
+the next capture that says something is 8q's warm stop after the belt,
+set against `52` and `53`. Meanwhile the display gives `IdleHealth`
+and `Misfires` at every stop with no laptop.
 
 **The groups on the captured drive** (12/11, three at a time): **014**
 always (8f; P0303's time, the stop's count); **020**, cylinder 4's knock
