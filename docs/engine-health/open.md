@@ -1768,6 +1768,12 @@ stop*).
   0.49–0.61 V, the A/C's own step. ⚠ The rear window, main beam and
   the blower were switched in the same minutes (+0.02 to +0.07 V each,
   under the sample's scatter); one swell; 055 not logged through it.
+  **The only 036 through a swell on record** (every log with 036 set
+  against the captures, 15/11 evening, *the owner's question*): `49`'s
+  stop log begins after its fall (the floor only, the old probe's slow
+  sinking, 0.53 → 0.34 V over twelve minutes); `47`'s is the faulty new
+  rear probe, flat and then at zero (S23); the others have no capture
+  to name a swell by.
 - **The swells came with the loads**: to −20, −20 and −22 % in
   minutes 17, 25 and 31 of the stop, the bottoms about seven minutes
   apart, each 2–5 minutes after its round's A/C step and running on
