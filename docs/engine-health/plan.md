@@ -24,7 +24,7 @@ at a garage, once it has a date** (the garage chosen, a date asked for
 sends it** (8e; the probe sent back 13/11, the old rear probe on the
 car meanwhile). **6m for injector 3, at the next evening with the
 upper intake off** (agreed 12/11 night), ahead of item 9; then item 9;
-8s at the desk when the owner says; **8e's harness at the end**, 8g dropped (*the
+**8e's harness at the end**, 8g dropped (*the
 owner*, 10/11 and 11/11; `open.md` H11, *The relearn drive*;
 `refuted.md` D13; S1, *The rough start of a warm stop*). *Done: 8j and
 its first drive 11/11 (its look at the next wheel off dropped 13/11,
@@ -35,7 +35,7 @@ belt's marks 13/11 morning, 8a's swap and its first drive with 070
 14/11 (`51`), **8a's second, gentle drive with 014 070 004 and 6p's
 phone on the cam cover 15/11 (`52`)**; 8r, the flywheel's mark,
 dropped 14/11 (*the owner*: no window to be seen at the gearbox);
-**8o, the purge shut, dropped 15/11** (Claude, on `52`'s 070); **8h, the loads against the sensors' voltages, 15/11 (`53`)**.*
+**8o, the purge shut, dropped 15/11** (Claude, on `52`'s 070); **8h, the loads against the sensors' voltages, 15/11 (`53`)**; **8s, the purge's phases on the older captures, at the desk 15/11**.*
 
 6. **Drive normally; the MFD back in from 15/11** (*the owner*, after
    8h): `IdleHealth` and `Misfires` on the display again, **no captures
@@ -145,9 +145,6 @@ dropped 14/11 (*the owner*: no window to be seen at the gearbox);
    reading: S24 closed 12/11, reopened if its dither comes back; on a
    captured drive the capture reads it, 001 not needed) **and 014 always** (P0303 stored on 12/11 with no cut:
    its time is what the log gives).
-8s. **At the desk, no car** (Claude, a cloud session, when the owner
-   says; agreed 15/11): the purge's phases read from b7 at every warm
-   standing idle of the older captures, set against cylinder 3's swells.
 9. **After the clean of 9/11, by what the next stops show** (Claude says
    which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
@@ -557,17 +554,6 @@ that probe: read after, cleared by the owner. A socket seen
 damp or green, or a jump in 033 or 036 as one lead is moved, is the find; both clean and
 steady leave the new rear probe itself for S23. The wires to the ECU
 are measured only with its plug off, so with 6n.
-
-**8s, the purge on the older captures** (*agreed with the owner*,
-15/11; `open.md` S1, *The second drive on the new N80*): on `52` b7
-at a standing idle read 29.0 with the purge valve shut and 24.3 with
-it open (r −0.92), so the phases 070 showed on one stop may be
-readable on every warm stop captured since 24/9, and C25's "the
-purge does not time the swell" set against many stops, not one. ⚠ b7
-moves with every electrical load and the radiator fan too, so a step
-is a purge only where the shape is the purge's — a ramp of about
-100 s and a shut within a quarter of a minute; whether that can be
-told apart is the first thing to find out.
 
 **8e, no spray and no seal on the probes' connectors** (`refuted.md` D13 (S23),
 *The contact spray*; the research of 11/11): Bosch, Denso and Saab

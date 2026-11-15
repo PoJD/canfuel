@@ -1051,7 +1051,14 @@ as a ramp's first step. With 14/11's two readings (`51`: a new valve
 and the same swells; 070's run, 7.8 % rich, and 3 unmoved) nothing of
 the purge is left for the swell. **`plan.md` 8o, two drives with N80
 unplugged, dropped with it.** ⚠ One stop; field 1 is the commanded
-opening, not the flow. **Left over** and kept in `open.md`: H16 for
+opening, not the flow. **Set against 15 more stops the same day**
+(`plan.md` 8s, at the desk; `open.md` S1, *The purge's phases on the
+older captures*): `52` showed the purge in 0x280 b7 (a shut b7 up by
+2–4 within 10 s), and on the 15 of 40 warm stops in `24`–`51` where
+b7 shows a shut apart from the radiator fan, 3's deficit read −12.5 %
+with the purge open and −15.3 % with it shut, no fall came within 30 s
+of a shut and one onset came 15 s after one, with the swell already
+growing. ⚠ Read from b7, not 070; 25 stops show no phase. **Left over** and kept in `open.md`: H16 for
 S19 and S21; in list A it went from fifth to last the same day (*the
 owner's decision*).
 
