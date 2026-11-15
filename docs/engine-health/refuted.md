@@ -1059,7 +1059,7 @@ b7 shows a shut apart from the radiator fan, 3's deficit read −12.5 %
 with the purge open and −15.3 % with it shut, no fall came within 30 s
 of a shut and one onset came 15 s after one, with the swell already
 growing. ⚠ Read from b7, not 070; 25 stops show no phase. **Left over** and kept in `open.md`: H16 for
-S19 and S21; in list A it went from fifth to last the same day (*the
+S19 and S21 (S21 closed 15/11, D14); in list A it went from fifth to last the same day (*the
 owner's decision*).
 
 ### C26. "One earth shared by the probes' signals and the ECU's senders shifts them with every load, and ties the probes to H4 and the idle" (`open.md` H21, its shared-earth form) — measured
@@ -1822,6 +1822,246 @@ the captured stop of 12/11 0.59–0.61 V for eight minutes with short
 drops to 0.09–0.1 V, the drops growing, a median 0.19 V from 11:31 —
 **the sinking at idle the old probes showed on 9/11 night** (H11, *The
 reading before the swap*), never at zero and no P0137.
+
+### D14. S21 — P0440 stored and the engine lamp lit, the evaporative system — closed 15/11/2026
+
+**Closed at the owner's decision, 15/11, to be reopened if P0440 comes
+back or the tank lets out a strong overpressure at the filler cap on a
+hot day**: **the canister had been bypassed** by an earlier owner, the
+tank's line joined straight to N80's (found 11/11, below), so the tank
+was sealed whenever N80 was shut — the summer overpressure — and the
+ECU's flow check found too little answer when it opened N80 in winter —
+P0440, 1/2018 and 6/11. **Repaired**: the canister plumbed back 11/11
+(sound, it passes everywhere), the old N80 replaced 14/11 (Bosch
+`0 280 142 353`, `vehicle-history.md`). **Since**: no P0440 on any
+reading from 6/11 to 15/11; basic setting 070 `TEV OK` on 14/11 (the
+valve to 23.4 %, the lambda controller −7.8 %, 0.24 g/s); **the ECU ran
+the check itself on 15/11 and passed it** (`TEV OK`, +7.8 %, 0.08 g/s;
+`open.md` S1, *The second drive on the new N80*); no hiss at the cap
+at a warm stop on 15/11 (one cool day). ⚠ The summer overpressure has
+not met a summer since the repair. What the trims made of the purge
+path (the idle cell, the part-load cell) stays with S19 and H16 in
+`open.md`. The entry as it stood in `open.md` until the close:
+
+*Added 6/11 at the owner's request.* **On the drive home of 6/11 the
+engine lamp came on, steady**, the first time in years; oil at 90 °C,
+the idle "relatively OK" (*owner*). **The fault memory read that
+evening** (`photos/vcds-faults-2026-11-06.jpg`): one code, **16824 /
+P0440, evaporative emission system, 35-10, malfunction, sporadic**. 032
+and 055 were read before the owner cleared it by hand
+(`photos/vcds-adaptations-2026-11-06.jpg`; S19). **The same code as
+1/2018** (`vehicle-history.md`, *Fault memory*), never repaired and not
+stored on any reading since, until now.
+
+**What was ruled out at once** (*owner*, 6/11): **no fill on 5/11 or
+6/11**, so not a filler cap left loose after a fill; **the hoses around
+N80 not touched** in 5/11's work at the injector connectors and the
+gasket's edge (`idle-log.md`).
+
+**What sets it is not known.** These files hold no description of how
+this ECU checks the system; block 070 opens N80 and reads the lambda
+(`refuted.md` A6), but whether the ECU runs a check of its own while
+driving, and what fails it, is not in `vcds.md`. The fault memory keeps
+no freeze frame (S19), so when in the drive it was stored is known only
+by the lamp. **A steady lamp** is the ECU flagging an emissions fault,
+not the flashing misfire lamp of the standing items (*general*);
+**sporadic** says the fault was not present when it was read (*general*,
+VCDS's status). The ordinary causes of P0440 are N80 sticking or not
+sealing, a cracked or loose hose, the canister, and the filler cap
+(*general*).
+
+**Read with H16** (*reasoned*): N80 passed "really little" air at rest
+on 25/10, and P0440 of 2018 was already that hypothesis's history; the
+code back is the first sign of the evaporative system that is a fault
+code and not an inference from the trims. **Not the idle**: the same
+drive, at a warm stop, read `IdleHealth` **73**, `Misfires` **6**,
+MisfAvg **8.6** (S1; the A/C off, the blower on 1), in the range of the
+days before. **Read by what follows**: the code back after the clearing
+says a standing fault, not back says a one-off; the fault memory is read
+on 9/11 anyway (`plan.md` 8). **Read 9/11 at every phase: no P0440**,
+only the cut's codes (`vcds/vcds-step8-faults.txt`).
+
+**Read 11/11, with P0172 and every recent code** (*the owner's
+question*: one cause, or only the car driven more? the research of
+11/11; scripts not kept). **Of eleven codes since August three came by
+themselves** — P0303 (18/10), P0172 (23–24/10), P0440 (6/11); P0411 and
+P0137 follow found faults (the torn secondary-air hose, the rear
+probe's harness), the rest were provoked (cuts, a hose pulled, the
+stick on the pedal). **The car is driven far more**: about 75 km a day
+since 23/10 against 2–14 km a day in every year since 2018; the one
+period like it, 9/2017–2/2018 (about 68 km a day), holds the first
+P0440. *Reasoned*: the purge check runs at every warm idle, so a system
+near its threshold shows a sporadic code more often the more the car is
+driven — **it explains P0440 coming back well, P0172 less** (5/2019 came
+in a year of little use). **How the check works** (VW's manual for the
+2.0 in the Golf IV; Bosch patents US5243853, US5604305): with no leak
+detection pump it is a flow check — at a warm idle without load N80 is
+opened and the lambda correction and the idle air watched; too little
+answer is the fault, and a load on the idle weakens the answer. **One
+part fits both codes**: VW's fault table for this engine names N80
+under 16556 and 16824 alike, and a valve that leaks a little while
+closed would feed vapour the idle trim takes up (rich) and leave
+little to answer when opened (P0440) (*reasoned*). **Against or not
+shown**: the canister cut off on 25/10 left the idle cell as it was
+(*the tank's line, in truth: the canister was found bypassed 11/11*)
+(cold only); out of the car N80 hardly passed air — by mouth, about 0.1–
+0.19 bar at most against 0.6–0.7 bar of vacuum across it at idle, so
+weak; P0440 not back on 9/11; and neither explains the positive
+part-load cell. **Separate causes fit as well**: P0172 from the
+regulator's cracked vacuum hose found in its window, P0440 from N80, its
+line or the canister's vent. **The car's own data**: no step in 032 at
+any fill (none larger than one VCDS step); live 001 at a warm idle
+−1.6 to +0.6 % in every session; the warm idle's fuel flow on 0x480 no
+different with the tank full or low beyond about 3 %; both codes of 2026
+in the bottom third of a tank (two cases). **The one odd record is 24/10
+night** (`41`, P0172 still stored, its adaptation in force): +20.5 %
+while warming, against −2.6 to +6.2 % in nine other cold sessions — the
+stored cell was taking away fuel the engine no longer needed, so
+P0172's rich source was passing and gone at a cold idle, when nothing
+is purged. The test left is `plan.md` 8a's: 032 before and after the
+new one (the old valve under the gauge declined 11/11, *the owner*) —
+**14/11, the first drive: −9.4 / +7.8 % before, −8.6 / +7.8 % after;
+15/11, the gentle second: −9.4 / +5.5 %** — the idle cell not moved
+by the valve (H16, *What decides it*).
+⚠ 0x288 b2 bit 5 (*not looked into* in `docs/firmware/can-decoding.md`)
+is set in the captures with the lamp lit and clear in `41` with P0172
+stored — perhaps the ECU's lamp request; not decoded, nothing rests on
+it.
+**The canister itself** (*the owner's question*, 11/11; *reasoned*,
+*general*): never replaced, so its charcoal is the original. A canister
+that holds less with age gives less to purge, so the ECU's check sees
+a smaller answer when it opens N80 — **P0440 without a faulty valve**,
+likelier in the cold when the tank gives little vapour (both P0440s,
+1/2018 and 6/11, came in winter) — **but it would not give P0172**,
+which a canister flooded with liquid would (rich purge, and granules
+into N80). Its signs: a fuel smell near it when the tank is warm,
+granules rattling or in its hoses (none on 6/11, `idle-log.md`), a
+crack, a vent blocked by dirt or a stone. Looked at and blown through before N80 is changed
+(`plan.md` 8j, 11/11); replaced only if P0440 comes back with the new valve.
+**The cap opened at a warm stop in November: no hiss** (*owner*,
+15/11, at `52`'s stop, at about 11:23; the tank near full after
+14/11's fill, about 10–13 °C outside by the intake air on the road;
+if it was at about 11:23 the ECU was purging, the valve 20 % open —
+S1, *The second drive on the new N80*). One cool day with the purge
+running; `plan.md` 8m's hot day is still the check. **Not a symptom**
+(*the owner's decision*, 15/11).
+
+**The tank under pressure at the filler cap** (*owner*, 11/11, from
+past summers): in summer, a hot one above all, **every time the fuel
+filler cap is opened the tank lets out an overpressure, clearly more
+than a faint psst** — pressure, not a vacuum; whether his other cars
+do it he is not sure. *General*: a sealed tank that breathes only
+through the canister builds some pressure in heat, and a short puff is
+common; whether this car has a valve that holds a pressure on purpose
+is not in these files. *Reasoned*: a strong one says the tank's path
+to the canister passes vapour too slowly — the valve at the tank or
+the filler neck, or the line kinked or blocked — so the canister gets
+less to purge and the ECU's check a smaller answer (fits P0440);
+against, both P0440s came in winter, when there is little vapour
+anyway, and it would not give P0172. A vacuum would have named the
+canister's vent; it is not that. Not N80 (H16), which sits after the
+canister. Heard with the old cap; the new one (about early 10/2026) has
+not met a summer. Tested in `plan.md` 8j: the tank's line off at the
+canister before the cap is opened, and how it takes air.
+*Explained the same evening by the finding below.*
+
+**11/11 evening: the canister is not in the circuit** (*owner*, at the
+car, the right rear wheel arch, the liner off; the album, 17:02–17:27).
+**The line from the tank is joined straight to the line to N80**: the
+thick cream hose from the valve at the top of the filler neck (white
+body, black rubber top, *owner*) goes into a black rubber elbow, held by
+a worm clamp, and on into the thin cream line printed `1C0 201 …` that
+runs forward to the engine; **the canister's port on top stands open,
+nothing on it**, a small hole beside it (the album, 17:18:22). The owner
+sees only two ports on it. **When and by whom not known** — not done in
+his time by his own account, so an earlier owner's, perhaps when the
+tank was replaced (`vehicle-history.md`; *reasoned*), perhaps for a
+leaking canister, as the fuel filter was once only taped (*owner*).
+Dried white runs down the canister's side; what they are, not known.
+Its number, read off it out of the car: **`1HM 201 801 B`** on its end,
+the housing `171 201 813` (the album, 18:06–18:23); no longer sold
+under that number by the owner's search. **Out of the car** (*owner*,
+the borescope): nothing rattles; inside the ports a plastic grid and
+spring plate, whole and dry to the eye. **Sound**: the line across its
+top is **a seam from manufacture**, not a crack — two halves joined,
+as the owner reads it off the part (a parting line or a weld) — cleaned and
+photographed close (the album, 18:55), it runs straight on along both
+ports and through the moulding's gate mark; and **with both top ports
+closed nothing passes when blown in at the vent** (*owner*). Both ports
+whole, the small one a barbed nipple. *For about an hour this said "its
+top is cracked across, the small port broken short", from an end-on
+photograph; the owner doubted it and the close-ups settled it.*
+**What it means** (*reasoned*, from how
+the system works, *general*): the tank's vapour reaches N80 **with no
+charcoal and no opening to the air** between. So **the tank is sealed
+whenever N80 is closed** — the summer overpressure at the cap above —
+and **each time N80 opens, the intake draws raw tank vapour**, rich
+when the fuel is warm and hardly anything when it is cold, instead of
+air drawn through the charcoal. That fits **P0440 in winter** (both
+of them: the check opens N80 and little answers), and it **takes back
+"it would not give P0172"** above: in warm weather each purge is
+straight vapour the trim has to take away. The negative idle cell
+(S19) is a candidate for it only warm — 25/10's test, which closed the
+line at N80, was cold (H16, *corrected*). **The test is the repair**:
+the canister plumbed back (`plan.md` 8j), then 032 and item 6's warm
+stops against the readings before.
+**The same evening, the parts around it** (*owner*): the line to the
+engine free (passes with N80 off it; with N80 on, nothing — the valve
+seals closed, as on 6/11). **The valve at the top of the filler neck,
+VW `1C0 201 756`** (the album, 17:45:43): **by mouth nothing passes
+either way unless it is moved**. What it is, is not in these files; a
+valve there is commonly a gravity or roll-over valve, open upright and
+closing when tilted or flooded (*general*) — held in the hand it may
+simply have been tilted. **If it is closed upright**, it seals the tank
+on its own and starves the purge whatever the canister: the summer
+overpressure and P0440 both, a second time over (*reasoned*). Its test:
+blown through held exactly as fitted (`plan.md` 8j). **Done 11/11
+evening** (*owner*; the number read clear, the album 18:31:11): **held as it
+sits on the car it passes; upside down nothing passes either way unless
+it is shaken** (*owner*). A gravity or roll-over valve, working: closed
+when inverted or flooded, so that liquid fuel cannot reach the canister
+(its neighbours in VW's numbering, `… 201 751`/`752`, are sold as
+gravity valves, *general*). **Not the cause**: the summer overpressure is
+the bypass alone. *This said "stuck" for a quarter of an hour: the first
+test had held it upside down.* **The canister blown through** (*owner*,
+11/11): in at either top port, out at the other; with that one closed,
+out at the vent at the bottom, a little harder — **it passes everywhere**.
+Why it was bypassed is not known: the canister shows no fault; the
+owner's guesses — at the same time as the leaking fuel filter was
+taped, or a cracked rubber piece at one port joined straight across
+rather than replaced (11/11) — cannot be checked.
+
+**The first drive on the canister, 11/11 night** (8k, `idle-log.md` 11/11 night; 032
+logged over 65 minutes, `vcds/vcds-step8k-*`): 032 read **−7.0 /
++7.0 %** before it (21:17, the bypass's last value), was reset by the
+clear of P0137, and **relearnt from zero to −3.9 / +2.3 % by the end
+of the drive, −3.1 / +2.3 after the long warm stop** (22:49;
+`vcds-step8k-end-adaptations-032-055.csv`) — against **−6.3 / +6.3
+within 37 minutes and −3.9 / +7.0 at the end** on 10/11's relearn,
+with the bypass. **Read** (*reasoned*): **the part-load cell is the
+reading** — it learnt +3.9 early, touched +6.3 once, and sat at +2.3
+for the last half hour, where it held +6.3 to +7.0 with the bypass;
+part load is where the purge flows, and S23's second loop (S23, *Does
+the rear probe touch the mixture*) would push it up, not down. **The
+idle cell is not clean**: P0137 stored on this drive and the rear
+probe at zero at the stop after it (036 was not logged on the road),
+which pulls the idle cell towards zero as on 10/11. **The second
+drive, 12/11 night, on the old rear probe** (healthy, no P0137;
+`vcds/vcds-step8n-*`), relearnt from zero again to **−5.5 / +2.3 %**:
+**the part-load cell +2.3 on both drives — the canister's**; the idle
+cell back near the bypass's −6 to −7, **so the idle side was S23's and
+the canister did not move it**.
+**The third and fourth drives, 12/11** (032 reset by the clear after
+the second): a 40-minute MFD drive that morning, then the captured
+brisk drive (`49`, `vcds/vcds-step6w-*`): **−14.8 / +2.3 % after the
+first, −7.0 / +8.6 after the second**, 055 −0.84 → −0.98 g/s, no code.
+**The part-load cell is not the canister's after all**: +2.3 on three
+drives, +8.6 after the fourth, with its five full-throttle pulls
+(*reasoned*: the cell learns where the
+drive spends its part load, and a purge gas that changes with how hot
+and how full the canister is moves it with the drive; H16, *Read 12/11,
+the captured stop*). The owner's reading: the canister emptied by the
+brisk drive (*owner*, 12/11; *reasoned*, not measured).
 
 ### D9. "A higher idle quiets the misfires" — measured, 12/10/2026
 The specified idle raised from 780 to 830 rpm, the ECU's limit (VW's

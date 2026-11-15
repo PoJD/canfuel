@@ -22,7 +22,8 @@ Captures only where an item asks for one. **Next: 8q, the timing belt
 at a garage, once it has a date** (a date asked for 13/11); **6m for
 injector 3, at the next evening with the upper intake off**, ahead of
 item 9; then item 9; **the new rear probe when the seller sends it**
-(8e), **its harness at the end**. *What is done is `idle-log.md` and
+(8e), **its harness at the end**; **8t, 8u, 8v, 8w by opportunity**
+(*the owner*, 15/11). *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
 
 6. **Drive normally; the MFD back in from 15/11** (*the owner*, after
@@ -102,10 +103,40 @@ item 9; then item 9; **the new rear probe when the seller sends it**
      spark or a blue glow; then a fine water mist over one lead at a time
      and the coil, hands and bottle clear. Write anything seen and which
      lead the engine stumbled at.
-8m. **On the first hot day**: the fuel filler cap opened — a hiss or
-   not, into the chat.
 8a. **At any engine lamp**: the odometer, the tank's needle and the outside
    temperature into the chat, and 032 read before the code is cleared.
+8t. **055 and 036 through a swell** (*the owner*, 15/11): at the next
+   warm stop of ten minutes or more with VCDS connected anyway — 8q's
+   captured stop after the belt at the latest — **014 055 036 logged
+   for the whole stop**, every load off but the everyday state, no
+   throttle. With the MFD in, `IdleHealth` by the minute into the chat
+   as well; with a capture, nothing more.
+8u. **The fuel pressure** (*the owner*, 15/11): a fuel pressure gauge
+   bought and teed in where VW's procedure for this engine puts it
+   (Claude reads the procedure out of the manual before the gauge is
+   bought, so it fits). Warm, at idle: **the pressure with the
+   regulator's vacuum hose on, then off; then the engine switched off
+   and the pressure after ten minutes**. Each figure into the chat. Rags
+   under the joint, no smoking, the engine cold before the gauge comes
+   off.
+8v. **The plugs at their next change** (*the owner*, 15/11): before the
+   new ones go in, the four old ones laid out in firing order and
+   **photographed close on their firing ends**, plug 3 beside the
+   others; oily, wet or sooty on one, into the chat.
+8w. **The cylinder 4 knock window** (*the owner*, 15/11; until then out
+   of this plan, *the owner's decision* of 9/10):
+   - **G66, the knock sensor at 3 and 4**: its connector off, looked
+     into, back on until it clicks; the sensor's bolt checked with a
+     torque wrench at VW's figure (Claude reads it out of the manual
+     first). What was found into the chat.
+   - **A loose part at about 3,000 rpm in neutral**, warm, the bonnet
+     open: someone holds 3,000 rpm while the other listens and feels
+     along the brackets, the heat shields and the ancillaries for a
+     buzz.
+   - **026 in neutral and 020 on a drive with pulls**, with VCDS
+     connected anyway (020 with 8t or 8q's captured drive): 026 from
+     idle to about 3,500 rpm in neutral, slowly; 020 on two or three
+     full-throttle pulls in 3rd or 4th.
 8q. **The timing belt renewed at a garage** (*the owner's decision*,
    13/11; a date asked for 13/11): the belt, its tensioner and idler, and the water pump.
    **Before the old belt is loosened**, the mechanic sets the crank to
@@ -249,9 +280,9 @@ counts at idle (S3). So:
 - **Run the engine as the day needs it**: the idle's misfires heat it by tens of kelvin at most (`open.md` S3,
   *What it costs the converter*).
 
-`open.md`'s tests are reference, **not a to-do list**.
-**The cylinder 4 knock window stays out of this plan** (*owner's
-decision, 9/10/2026*): G66 and the rest of H5's tests stay in `open.md`.
+`open.md`'s tests are reference, **not a to-do list**; what goes into
+this plan is the owner's choice (*15/11*: 8t, 8u, 8v and the cylinder 4
+knock window, 8w, which stayed out from 9/10 until then).
 Where the work stands is in `idle-log.md` and `open.md`, *Where it
 stands*.
 
@@ -479,12 +510,41 @@ each, because a brisk run calms the idle by itself for a while
 as the effect; the A/C's figure for how much load still calms it
 (`open.md` S1, *Load smooths it*).
 
-**8m, the filler cap on a hot day**: the one check of the
-summer overpressure (`open.md` S21), which a November day cannot give.
-
 **8a, the details at a lamp**: this ECU keeps no freeze frame; with
 the odometer, the tank and the weather the next code can be set
 against fills and temperature, and 032 is reset by a clear.
+
+**8t, 055 and 036 through a swell** (`open.md` S1, *8h's plain idle
+and its loads*): 055 (the idle air's learnt value and its regulation)
+and 036 (the rear probe) have been read only where cylinder 3 sat at
+its floor; whether either moves as 3 swells and falls is not known,
+and any warm stop with VCDS on 014 055 036 gives it. 014 so that the
+swell is seen in the log itself when there is no capture.
+
+**8u, the fuel pressure** (`open.md` H7, the row A4; S19): VW's
+figures for this engine are about 2.5 bar at idle with the
+regulator's hose on, about 3.0 with it off, and at least 2.0 bar ten
+minutes after switching off (`vcds.md`). A high base pressure on all
+four is the rail's form of H7 in list A; the pressure held after
+switching off is S19's question — a rail that bleeds into a cylinder
+while standing floods it, the bad start of 24/10 and P0172 (S19); a
+fall below 2.0 is read by VW's order: the pump's non-return valve,
+then the regulator, then the O-rings. Never gauged on this car.
+
+**8v, the plugs at their change** (`open.md` H18, the row A7): oil
+past the valve-stem seals leaves an oily deposit on the firing end,
+and a wet or sooty plug on 3 alone would point at 3's charge (list
+B); the photograph because the plugs go in the bin.
+
+**8w, the cylinder 4 knock window** (`open.md` S4, S5, H5): the ECU
+books anything at cylinder 4's crank angle to cylinder 4 — G66 loose
+or its contact poor, a part buzzing in a speed band, an arc at a
+plug's end — and S5's excess shows in neutral with no combustion, so
+it is not knock. G66's bolt because a knock sensor reads by its
+contact with the block and VW gives it a torque; 026 in neutral
+because that is where S5 lives, against
+`vcds/vcds-neutral-026-003.csv`; 020 on pulls because 4's retard shows
+only there, against `vcds/vcds-step2c-020-026-003.csv`.
 
 **Item 9's garage session** (*agreed with the owner*, 11/11): everything that needs the upper intake off in one
 visit, warm. **Cylinder 3's leak-down twice, two crank turns apart**,
@@ -543,7 +603,7 @@ worse beyond its spread are read as a seat getting worse.
   window weighted by speed and load (SSP 175, `vcds.md`) — the one real
   converter risk, a cylinder dropping out, above all under load. **A
   steady lamp** is an emissions fault: P0300 above 2 % over 1000
-  revolutions, or P0440 as on 6/11 (`open.md` S21).
+  revolutions, or P0440 as on 6/11 (`refuted.md` D14).
 - **`IdleHealth` in the everyday state only** (*owner's decision*,
   28/10/2026). Two states (every load off, every load on) were read
   until then; every load on read

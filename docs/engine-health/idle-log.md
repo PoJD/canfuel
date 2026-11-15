@@ -1154,7 +1154,7 @@ gasket edge changed nothing seen.
 
 The lamp the first the owner has seen in years; the code that of 1/2018.
 No fill on 5/11 or 6/11 and no hose touched around N80 in 5/11's work
-(*owner*). `open.md` S21 (added at the owner's request), H16, S19.
+(*owner*). `refuted.md` D14 (S21) (added at the owner's request), H16, S19.
 
 ## 6/11 night — the purge valve N80 out, looked at, refitted
 
@@ -1412,7 +1412,7 @@ had been tucked into the box with the harness that morning.
     owner's time.
 
 What 25/10 and 6/11 called the canister's side of N80 was the tank's
-line. `open.md` S21, H16; the summer overpressure at the filler cap reported
+line. `refuted.md` D14 (S21), H16; the summer overpressure at the filler cap reported
 the same afternoon. The canister goes back, plumbed in (`plan.md` 8j).
 
 ## 11/11 just after midnight — the first start after the harness was taped
@@ -1457,7 +1457,7 @@ Read the same night (`open.md` S23, *The first start after the tape*).
   - *not known:* how far the canister and how far G62 made the calm last
     stop.
 
-`open.md` S21, *The first drive on the canister*; S22 reopened; S23,
+`refuted.md` D14 (S21), *The first drive on the canister*; S22 reopened; S23,
 *Back, and steady*; S24 added. **Both codes cleared by the owner after
 the session** (032/055 read first, 22:49), to see which comes back.
 
