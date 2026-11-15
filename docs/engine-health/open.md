@@ -2961,6 +2961,96 @@ owner*, 12/11) — and **−7.0 / +8.6 after** the brisk drive, 055 −0.84
 → −0.98 g/s: **the part-load cell back at the bypass's level and
 above** (H16, *Read 12/11, the captured stop*). P0172 not back.
 
+**The old logs re-read for the split's form** (15/11 night, at the desk,
+*the owner's question*: is there an explanation other than the rail's
+pressure, and does the split belong to the idle; *ad-hoc scripts, not
+kept*). Asked of them: does the idle's extra fuel arrive **per unit of
+time** (a leak, vapour, the return line's pressure) or **per injection**
+(the injector's opening time against the supply the ECU sees, its
+characteristic) — the first fades with engine speed at no load, the
+second does not. **They cannot say**: no log holds a steady engine
+speed with no load (the two "gauge" logs of 14–15/10 are blips), and
+the logs with air mass beside the regulation were taken with the cells
+learnt. Three things they do say.
+- **With the cells learnt the regulation is flat everywhere.** The 16
+  logs with 001 beside 003 or 002 (15/10–15/11), warm, sorted by engine
+  speed and air per stroke, the overrun left out: of 99 cells of 30
+  samples and more, **85 have a mean regulation within ±1.0 %**, the
+  widest −2.2 and +2.5 % but for two idles (+1.7, 14/11; +3.2, the cut
+  of 24/10). So an offset and a slope describe the whole error — no
+  third shape, such as a kink in the MAF's curve at one air flow
+  (*reasoned*) — and logs with the cells learnt hold nothing more.
+- **The idle cell is worth its figure.** On 8n's relearn drive
+  (`vcds/vcds-step8n-drive-032-036-001.csv`, 12/11 night, from 0.0 /
+  0.0, the MFD in) the cell went from −2.3 to −5.5 % in 80 s of a
+  standing idle while the regulation ran at −3.3 % and came back to
+  −0.4 %: cell and regulation together −5.6 before the cell took it
+  over and −5.9 after. So **−8 % in the idle cell is about 8 % of the
+  idle's fuel**, not a figure on some other scale.
+- **The idle's extra fuel is not a fixed amount — it stepped in.** The
+  same drive, cell and regulation added, at its three standing idles:
+  **−2.1 to −3.2 %** at the first (7–12 minutes after a start at 39 °C
+  of coolant, coolant 92–96 °C); at the second, after 16 minutes of
+  brisk driving, **−2.4 % for the first 80 s, then −5.9 % within a
+  minute and a half and held for six minutes**; at the third **−7.8 %
+  for the first minute, −6.5 the next two, −6.0 the last four**. The
+  shape of 25/10 (H7, *the first idle on the new hose*: "about 3 points
+  of fuel arriving on their own" two minutes into the idle), then on
+  the bypass, here on the canister. **Read** (*reasoned*): **against
+  everything that is there from the idle's first second** — a rail
+  pressure that is simply high, an injector's characteristic or its
+  opening time against the supply, a probe's offset — as the whole of
+  the idle cell; each could still be the −2 to −3 % under the step.
+  **What steps inside a minute at a steady idle is the ECU's own
+  purge** (`vcds.md`, *070 on this ECU*), and it can push either way:
+  air through an empty canister leans (the ECU's own test of 15/11,
+  the controller to +7.8 %), vapour enriches (14/11, −7.8 %), and at
+  idle a sixth of b7 goes with the valve (`idle-log.md`, 15/11: 29 to
+  24). **Which state is the −6 % is not known**: purge shut, and the
+  rich offset is the engine's own with the purge's air hiding half of
+  it for the first minute; or purge open, and the idle cell learns the
+  canister's vapour — which a new valve that seals would not change,
+  as it did not (H16, *The second drive on the new N80*). No log holds
+  070 beside 001 and 032. **What decides it**: 001, 032 and 070 in one
+  log through a drive and a warm stop of five minutes, a capture
+  beside it — cell and regulation against the valve, read only.
+- **Whether it is the idle's** (*reasoned*): the adaptation itself, no
+  — the loop holds the mean mixture at λ = 1 with it or without (H8,
+  *Do 055 and 032 belong together?*). A shared cause, possibly: fuel or
+  air that reaches the cylinders unevenly leaves some lean and some
+  rich at a mean of 1, and a mixture that steps by 3–4 % inside a
+  minute is a step the loop takes seconds to follow. Against it for
+  cylinder 3's part: the swell moves neither the regulation nor the
+  injection time (S1, *The swell's shape, and what the common part
+  follows*), and it comes with the purge shut and open alike
+  (`refuted.md` C25).
+- **Other forms argued the same night, none measured** (*reasoned*):
+  the part-load cell need not be a second fault — an idle correction
+  carried into part load is answered by the other cell, and a few per
+  cent of lean under every load (the parts' tolerance, the oxygenates
+  of a 100-octane fuel) with a fixed rich amount at idle gives this
+  split, the fixed amount then nearer −12 % than −8; **the supply as
+  the ECU sees it** (H4, *The supply as the ECU sees it, against the
+  battery*) — an ECU that reads half a volt less than the injectors get
+  lengthens every injection by a fixed time, which counts only at the
+  idle's short ones and moves with the electrical loads, a part of the
+  cell at most; **an imbalance between the cylinders** — one cylinder
+  rich among lean ones biases a narrowband probe rich (*general*),
+  and 3 is short at idle and not under load, the split's shape, but the
+  regulation does not follow 3's swell; **the return line or the
+  regulator of 6/2026 holding the rail high only at idle**, where
+  nearly all the pump's flow returns — a form of H7's rail that 6e's
+  hose test does not see and 8u's gauge does.
+- **The cell over the three months** (*the owner's observation*: more
+  negative as the repairs go on): −5.5 % on 20/8 and −4.7 % on 10/9
+  (H11, *The idle cell over time*), −6.3 to −8.6 from 25/10, −9.4
+  twice on 14–15/11, −5.5 at the end of `53`'s 39-minute stop. Every
+  reading stands a different distance from a reset and after a
+  different drive, and by 8n's three idles the figure depends on the
+  minute it is read in; a drift of one step (0.8) in the low end is
+  not shown by that. **No repair moved it towards zero** — that
+  stands.
+
 ### S20. Engine speed wanders at a constant pedal
 
 *Added 26/10 at the owner's request.* **During the first EPR flush**
@@ -3950,6 +4040,14 @@ revs as after none and the same on every day, within 5 %.
   29/10, `refuted.md` C21) — a
   regulator holding a high base pressure would scale the fuel alike at
   every load, not take it away at idle alone (*reasoned*).
+
+- **15/11 night, the old logs** (S19, *The old logs re-read for the
+  split's form*): on 8n's relearn drive the idle's correction stood at
+  −2.4 % for the first 80 s of a warm stop and at −5.9 % a minute and
+  a half later. **Against a rail pressure that is simply high as the
+  whole of the idle cell** — it would be there from the first second;
+  not against it as the −2 to −3 % under the step, nor against a
+  pressure that rises only at idle through the return (8u reads both).
 
 **Tests:** a rail pressure gauge (`plan.md` 8u, *the owner*, 15/11;
 not bought from 10/10 until then; VW's figures: 2.5 bar at idle, 3.0 with the regulator's hose
@@ -5205,6 +5303,16 @@ readings.
   at idle is not the valve's leak. Two readings on the new valve;
   whether the cell would still swing after a clear was not tried. The
   part-load cell moved with the purge, +7.8 → +5.5.
+- **15/11 night, the old logs** (S19, *The old logs re-read for the
+  split's form*): the idle's correction steps by about 3.5 points
+  inside a minute and a half of a warm stop (8n, 12/11 night; 25/10 on
+  the bypass), the timescale of the ECU's own purge phases. **Not the
+  valve's leak, which is settled above, but the purge the ECU opens on
+  purpose**: whether the idle cell is learnt with the valve shut (the
+  offset the engine's own) or open (the canister's vapour learnt into
+  the cell) is not known — 070 has never been logged beside 001 and
+  032. For S19 only; the idle's two parts are not touched by it
+  (`refuted.md` C25).
 - **The ECU passed the valve's test by itself on the way**: `TEV OK`
   at 11:07:08, the valve to 39.1 %, the lambda controller to +7.8 %,
   0.08 g/s — air from the canister after a gentle cold leg, where
