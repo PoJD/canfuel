@@ -118,7 +118,8 @@ test, the stethoscope, the garage session with the intake off);
 the end; standing: **8f** at every VCDS session, **6i** the oil level
 about 156,400 km, the MFD's `IdleHealth` and `Misfires` at warm stops;
 by opportunity (*the owner*, 15/11): **8u** the fuel pressure, **8v** the plugs at their change,
-**8w** the cylinder 4 knock window.
+**8w** the cylinder 4 knock window; at the next session with the
+laptop: **8x**, 001, 032 and 070 in one log (S19).
 
 ---
 
@@ -3013,7 +3014,9 @@ learnt. Three things they do say.
   as it did not (H16, *The second drive on the new N80*). No log holds
   070 beside 001 and 032. **What decides it**: 001, 032 and 070 in one
   log through a drive and a warm stop of five minutes, a capture
-  beside it — cell and regulation against the valve, read only.
+  beside it — cell and regulation against the valve, read only
+  (`plan.md` 8x, *the owner*, 15/11 night: at the next session with
+  the laptop, which may be after the timing belt).
   **Put together from what there is** (the same night, *the owner's
   question*: are those blocks not on record already; 070 is, only on
   15/11's two logs, beside 014 and 004): b7 on the bus for the valve

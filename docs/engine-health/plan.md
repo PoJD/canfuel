@@ -23,7 +23,7 @@ at a garage, once it has a date** (a date asked for 13/11); **6m for
 injector 3, at the next evening with the upper intake off**, ahead of
 item 9; then item 9; **the new rear probe when the seller sends it**
 (8e), **its harness at the end**; **8u, 8v, 8w by opportunity**
-(*the owner*, 15/11). *What is done is `idle-log.md` and
+(*the owner*, 15/11); **8x at the next session with the laptop**. *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
 
 **6. Drive normally; the MFD back in from 15/11** (*the owner*, after
@@ -131,6 +131,14 @@ of this plan, *the owner's decision* of 9/10):
   connected anyway (020 on 8q's captured drive or any drive with VCDS on): 026 from
   idle to about 3,500 rpm in neutral, slowly; 020 on two or three
   full-throttle pulls in 3rd or 4th.
+
+**8x. 001, 032 and 070 in one log** (*the owner*, 15/11 night), **at
+the next session with the laptop — that may be 8q's captured drive
+after the belt**: Claude logs the three groups over the drive's last
+ten minutes and the first five of the warm stop at its end, the
+capture running beside it, the everyday state; the rest of the drive
+and of the stop stay on 8f's groups, 014 among them. Nothing to do at
+the car beyond the drive and the stop.
 
 **8q. The timing belt renewed at a garage** (*the owner's decision*,
 13/11; a date asked for 13/11): the belt, its tensioner and idler, and the water pump.
@@ -523,6 +531,20 @@ contact with the block and VW gives it a torque; 026 in neutral
 because that is where S5 lives, against
 `vcds/vcds-neutral-026-003.csv`; 020 on pulls because 4's retard shows
 only there, against `vcds/vcds-step2c-020-026-003.csv`.
+
+**8x, 001, 032 and 070 together** (`open.md` S19, *The old logs
+re-read for the split's form*): the idle's correction — the idle cell
+and the live regulation added — stood at −2.4 % for the first 80 s of
+a warm stop and at −5.9 % a minute and a half later (8n, 12/11
+night), the timescale of the ECU's own purge, and 070 has never been
+logged beside the other two. With the valve's duty (070's field 1)
+beside the cell and the regulation: **the cell learnt and the −6 %
+standing with the valve shut** says the rich idle is the engine's own
+and the purge only hides part of it — 8u's gauge is then its next
+test; **with the valve open** says the cell holds the canister's
+vapour and S19's split is the purge working. `47`'s cells against b7
+lean to the first, on one clean event. Read only; it waits for the
+laptop because the MFD is in until then (item 6).
 
 **Item 9's garage session** (*agreed with the owner*, 11/11): everything that needs the upper intake off in one
 visit, warm. **Cylinder 3's leak-down twice, two crank turns apart**,
