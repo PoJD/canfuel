@@ -3133,6 +3133,30 @@ learnt. Three things they do say.
     way — **with the idle cell negative before it and after**. Nothing
     on record speaks for the air's path; the plug, its earth and 5 V
     and the ECU's input are what is left of this group.
+  - **The meter's plug and its earth, the electrical side** (*the
+    owner's question*, 15/11 night). VW's check (*Checking air mass
+    meter*, this engine; contacts of the 5-pin plug): 2 the supply
+    from the fuel pump relay, 11–15 V with the engine running; 4 the
+    ECU's reference, 4.5–5.5 V with the ignition on; 3 the earth and
+    5 the signal, each to the ECU at 1.5 Ω at most — all read with the
+    plug off, so a contact of a few tenths of an ohm passes, since no
+    current flows through it. **Why it could be this** (*reasoned*,
+    not measured): contact 3 is the meter's only earth and carries its
+    heater's current back to the ECU; resistance in that path lifts
+    the meter's earth, and its signal with it, against the ECU, which
+    then reckons more air than the engine takes, meters more fuel and
+    has the loop take it back — a fixed offset, largest against the
+    idle's smallest flow: 032's shape. Shared by both meters, as the
+    car's half of the plug is. **One sign of the plug on record**:
+    after it was cleaned in 7/2026 the bad cold starts went for about
+    two weeks and came back (`idle-log.md`, *Before September 2026 — the history*;
+    *the owner*, recalled 15/11). A cold start runs open loop on the
+    meter's reading, so a contact that cleans and tarnishes again
+    over weeks would show there first (*reasoned*); weak — one
+    recollection, months later, in a summer of other changes (fresh
+    fuel, the old injectors), and S7 closed on the injectors and the
+    fuel (`refuted.md` D2). The wiggle test of 4/10 moved nothing
+    (`idle-log.md`), which a steady resistance would not either.
   - **The supply as the ECU sees it, tested at the desk the same
     night** (`vcds/vcds-step8h-loads1-004-033-036.csv`, 004 beside
     the regulation through `53`'s load steps): the regulation's mean

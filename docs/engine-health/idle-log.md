@@ -113,7 +113,9 @@ compares with nothing.
   inspected: clean.
 - **6/2026** — new fuel pressure regulator (*owner*, 25/10/2026; *this
   said 7/2026 until then*).
-- **7/2026** — MAF connector cleaned.
+- **7/2026** — MAF connector cleaned. **The bad cold starts went for
+  about two weeks after it, then came back** (*owner*, recalled
+  15/11/2026).
 - **Summer 2026** — heater replaced; **battery off more than a week**, every
   adaptation restarted. A secondary-air hose torn off in the work (P0411,
   11/8) and refitted.
