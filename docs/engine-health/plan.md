@@ -23,7 +23,8 @@ at a garage, once it has a date** (a date asked for 13/11); **6m for
 injector 3, at the next evening with the upper intake off**, ahead of
 item 9; then item 9; **the new rear probe when the seller sends it**
 (8e), **its harness at the end**; **8u, 8v, 8w by opportunity**
-(*the owner*, 15/11); **8x at the next session with the laptop**. *What is done is `idle-log.md` and
+(*the owner*, 15/11); **8y, the air mass meter's plug, first**;
+**8x at the next session with the laptop**. *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
 
 **6. Drive normally; the MFD back in from 15/11** (*the owner*, after
@@ -146,6 +147,23 @@ of this plan, *the owner's decision* of 9/10):
   connected anyway (020 on 8q's captured drive or any drive with VCDS on): 026 from
   idle to about 3,500 rpm in neutral, slowly; 020 on two or three
   full-throttle pulls in 3rd or 4th.
+
+**8y. The air mass meter's plug** (*the owner*, 15/11 night; before
+the gauge if the evening allows). A multimeter; the meter's 5-pin
+plug.
+
+- **First, the plug off, the ignition on, the engine not running**:
+  contact 4 to the engine's earth, then contact 4 to contact 3 (in
+  the plug). Contact 2 shows nothing with the engine off — that is
+  normal (it is fed from the fuel pump relay). The figures into the
+  chat.
+- **Then, only if the first finds nothing: the plug on, the engine
+  warm at idle**, probing from behind along the wire's seal with a
+  thin pin, never through the insulation: contact 3 to the battery's
+  minus; contact 4 to contact 3; contact 2 to contact 3. **Each with
+  main beam off, then on.** The figures into the chat.
+- If the engine lamp lights after the first part: 032/055 read before
+  the code is cleared (8a).
 
 **8x. 001, 032 and 070 in one log** (*the owner*, 15/11 night), **at
 the next session with the laptop — that may be 8q's captured drive
@@ -595,6 +613,27 @@ contact with the block and VW gives it a torque; 026 in neutral
 because that is where S5 lives, against
 `vcds/vcds-neutral-026-003.csv`; 020 on pulls because 4's retard shows
 only there, against `vcds/vcds-step2c-020-026-003.csv`.
+
+**8y, the meter's plug** (`open.md` S19, *The meter's plug and its
+earth, the electrical side*): VW's own check (*Checking air mass
+meter*, this engine) reads 11–15 V on contact 2 with the engine
+running, 4.5–5.5 V on contact 4 with the ignition on, and contacts 3,
+4, 5 to the ECU at 1.5 Ω at most — **all with the plug off, where no
+current flows, so it finds a broken wire and not a contact of a few
+tenths of an ohm**. The first part is VW's and is expected to pass.
+The second reads the meter's earth under its own current: contact 3
+against the battery's minus is the offset the ECU's reckoning would
+carry. VW gives no figure for it; **a few tens of millivolts or less
+is read as clean, more, or a value that moves with main beam, is
+followed to the ECU's earth** (Claude's threshold, not VW's). Whether
+pulling the plug with the ignition on stores a code is not known for
+this ECU; VW's own check pulls it with the engine running. **How it
+would show**: a steady resistance moves 032's idle cell, not the idle
+— the loop holds the mean mixture either way; only a contact that
+flickers would move the mixture fast enough to reach the common part.
+**Cleaning the contacts afterwards** is the repeat of 7/2026 and its
+own test: the idle cell nearer zero over the next drives says the
+plug; it is the owner's call, after the measuring.
 
 **8x, 001, 032 and 070 together** (`open.md` S19, *The old logs
 re-read for the split's form*): the idle's correction — the idle cell

@@ -119,7 +119,8 @@ the end; standing: **8f** at every VCDS session, **6i** the oil level
 about 156,400 km, the MFD's `IdleHealth` and `Misfires` at warm stops;
 by opportunity (*the owner*, 15/11): **8u** the fuel pressure, **8v** the plugs at their change,
 **8w** the cylinder 4 knock window; at the next session with the
-laptop: **8x**, 001, 032 and 070 in one log (S19).
+laptop: **8x**, 001, 032 and 070 in one log (S19); first of all
+**8y**, the air mass meter's plug measured (S19).
 
 ---
 
@@ -3157,6 +3158,9 @@ learnt. Three things they do say.
     fuel, the old injectors), and S7 closed on the injectors and the
     fuel (`refuted.md` D2). The wiggle test of 4/10 moved nothing
     (`idle-log.md`), which a steady resistance would not either.
+    **Its test**: `plan.md` 8y (*the owner*, 15/11 night) — the plug
+    off with the ignition on first, then probed from behind with the
+    engine running, main beam off and on.
   - **The supply as the ECU sees it, tested at the desk the same
     night** (`vcds/vcds-step8h-loads1-004-033-036.csv`, 004 beside
     the regulation through `53`'s load steps): the regulation's mean
