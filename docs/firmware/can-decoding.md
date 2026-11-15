@@ -655,7 +655,9 @@ the forums (OSM wiki *VW-CAN*, the dbc, forum and bulletin searches,
   display's internal sensor instead. ⚠ **That sensor reads high**: 14.0 V
   on the MFD against 13.57 V on a multimeter at the battery's terminals,
   13.7 against 13.50 with main beam (measured, the owner, 15/11/2026,
-  engine running, warm) — 0.2–0.4 V, not a fixed offset.
+  engine running, warm) — 0.2–0.4 V, 12.9 against 12.41 with the ignition
+  only. **Calibrated the same day in `mfd15`** (`S-AQY.TRI`'s DisplayVolt
+  maps raw 1023 to 54 V, not the official 56; `mfd15/docs/sensors.md`).
 - **Ambient temperature** — 0x420 b1 and b2 are both zero, so it is not on
   those bytes. ⚠ **This used to read "the car has no sensor" and that was
   wrong**: the car displays the outside temperature next to the clock in the
