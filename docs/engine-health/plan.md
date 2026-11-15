@@ -19,30 +19,18 @@ The full previous version, before it was condensed on 20/10/2026:
 
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Next: 8q, the timing belt
-at a garage, once it has a date** (the garage chosen, a date asked for
-13/11); **the new rear probe's replacement fitted when the seller
-sends it** (8e; the probe sent back 13/11, the old rear probe on the
-car meanwhile). **6m for injector 3, at the next evening with the
-upper intake off** (agreed 12/11 night), ahead of item 9; then item 9;
-**8e's harness at the end**, 8g dropped (*the
-owner*, 10/11 and 11/11; `open.md` H11, *The relearn drive*;
-`refuted.md` D13; S1, *The rough start of a warm stop*). *Done: 8j and
-its first drive 11/11 (its look at the next wheel off dropped 13/11,
-*the owner*: the joints seen whole and tight on his visit the day
-before), item 6's first captured drive 12/11 (`49`), 6q the queue
-drive 12/11 evening (`50`), 6p's tailpipe half at its stop, 8i the
-belt's marks 13/11 morning, 8a's swap and its first drive with 070
-14/11 (`51`), **8a's second, gentle drive with 014 070 004 and 6p's
-phone on the cam cover 15/11 (`52`)**; 8r, the flywheel's mark,
-dropped 14/11 (*the owner*: no window to be seen at the gearbox);
-**8o, the purge shut, dropped 15/11** (Claude, on `52`'s 070); **8h, the loads against the sensors' voltages, 15/11 (`53`)**; **8s, the purge's phases on the older captures, at the desk 15/11**.*
+at a garage, once it has a date** (a date asked for 13/11); **6m for
+injector 3, at the next evening with the upper intake off**, ahead of
+item 9; then item 9; **the new rear probe when the seller sends it**
+(8e), **its harness at the end**. *What is done is `idle-log.md` and
+`vehicle-history.md`; a step leaves this file when it is done.*
 
 6. **Drive normally; the MFD back in from 15/11** (*the owner*, after
    8h): `IdleHealth` and `Misfires` on the display again, **no captures
    until 8q's warm stop after the belt** (the one before it is `53`).
    Brisk driving once warm is welcome. When captures resume, the MFD
    comes out for them — the converter goes with the MFD.
-   - **Captures** (*the first done 12/11*, `49`; *paused from 15/11*): **as many drives as
+   - **Captures, when they resume**: **as many drives as
      the laptop can ride along**, each ending in a warm stop where one
      comes; Claude reads from the capture whether a drive was gentle
      or brisk (*the owner*, 12/11: nothing to report). Claude runs
@@ -58,13 +46,10 @@ dropped 14/11 (*the owner*: no window to be seen at the gearbox);
      Claude closes the capture and VCDS at once and uploads while the
      drive goes on; at the garage, switch off and go. **A stop of about
      five minutes** (a petrol station) when Claude asks for one.
-   - **The converter carries `Misfires` and `MisfAvg`** (0x604 layout 2,
-     flashed by Claude on 4/11, the stored trip and tank kept). **The
-     owner uploads `tri/S-AQY.TRI`** from `mfd15` to the display through
-     oDSS himself. JP1 stays off (*the owner*, 4/11: no debug needed), so
-     0x603 and the LEDs are dark by design. From then on, at the same warm
-     stops, **`Misfires` and `MisfAvg` beside `IdleHealth`** into the chat.
-   - **After the clean of 9/11**: at several warm stops, **a word on what
+   - **At the same warm stops, `Misfires` and `MisfAvg` beside
+     `IdleHealth`** into the chat (0x604; JP1 stays off, so 0x603 and the
+     LEDs are dark by design).
+   - At several warm stops, **a word on what
      came before each stop** (queuing, or a brisk stretch), and the A/C's
      figure too whenever it happens to be on; **an odd cold misfire or a
      drop-out on one cylinder** goes into the chat at once.
@@ -72,9 +57,8 @@ dropped 14/11 (*the owner*: no window to be seen at the gearbox);
      clock time into the chat as soon as it is safe, with the gear and
      roughly the speed; on a captured drive, **"teď"** at once.
 6i. **The oil level on the new oil, about every 500 km** from the first
-   reading (27/10, 155,024 km, at the top mark; 5/11, 155,546 km, 0.5–1 mm
-   under it; 11/11 evening, about another 0.5–1 mm lower, the album
-   20:51; **next about 156,400 km**): the car on level ground
+   reading (27/10, 155,024 km, at the top mark; 11/11 evening about
+   1–2 mm under it; **next about 156,400 km**): the car on level ground
    and **at least 5 minutes standing**, the dipstick out, wiped, in, out,
    and **photographed**; the odometer into the chat. Any top-up: the litres and the odometer
    into the chat.
@@ -89,15 +73,11 @@ dropped 14/11 (*the owner*: no window to be seen at the gearbox);
    the pin of that connector it reaches (find it with the beeper), all
    eight. While each value is on the display, **flex the loom near 3 and
    4** and watch it. Write every value, and any that moved.
-   **5/11: only 1 and 4 reachable with the intake on** (*owner*); the rest
-   with the upper intake off — **at the owner's next evening with the
-   upper intake off, not waiting for item 9's garage session** (agreed
-   12/11 night; *"in item 9's garage session" until then*); **injector
-   3's circuit is the one to watch and to flex**; with the intake off,
-   **photograph runner 3's joint to the lower manifold** as well (12/11; *this said
-   "for 4's deficit, which the clean left", agreed 9/11 evening, until
-   then*). (5/11: contact cleaner went into 4's
-   connector and T3 at the first look, `vehicle-history.md`.)
+   **Only 1 and 4 are reachable with the intake on** (*owner*, 5/11), so
+   **at the owner's next evening with the upper intake off, not waiting
+   for item 9's garage session**; **injector 3's circuit is the one to
+   watch and to flex**; with the intake off, **photograph runner 3's
+   joint to the lower manifold** as well.
 6n. **The injector circuits to the ECU** — later, only with VCDS on the
    laptop: 032/055 read first (unplugging the ECU may reset them, as a
    disconnect does), then the ECU's 80-pin plug off. One extension lead
@@ -124,17 +104,16 @@ dropped 14/11 (*the owner*: no window to be seen at the gearbox);
      lead the engine stumbled at.
 8m. **On the first hot day**: the fuel filler cap opened — a hiss or
    not, into the chat.
-8a. **At any engine lamp from now on** (the new N80 fitted 14/11, its
-   two drives made): the odometer, the tank's needle and the outside
+8a. **At any engine lamp**: the odometer, the tank's needle and the outside
    temperature into the chat, and 032 read before the code is cleared.
 8q. **The timing belt renewed at a garage** (*the owner's decision*,
-   13/11; the garage chosen by the owner, a date asked for 13/11): the belt, its tensioner and idler, and the water pump.
+   13/11; a date asked for 13/11): the belt, its tensioner and idler, and the water pump.
    **Before the old belt is loosened**, the mechanic sets the crank to
    TDC of cylinder 1 and says how many teeth the camshaft sprocket's
    mark is off its mark, which way, and photographs both marks; the
-   answer into the chat. Before the garage: a captured drive to a warm
-   stop with 014, 032/055 and the fault memory read — `52` (15/11)
-   counts if nothing is changed on the car before the garage. After it: the
+   answer into the chat. Before the garage: `52` and `53` (15/11) are
+   the captured warm stops, if nothing is changed on the car before it.
+   After it: the
    fault memory read, 032/055 for 20 s, and a captured drive to a warm
    stop of ten minutes.
 8f. **032 for 20 s at every session with VCDS connected**, until both
@@ -142,11 +121,9 @@ dropped 14/11 (*the owner*: no window to be seen at the gearbox);
    idle and on the road when VCDS is on anyway (the rear probe watched
    now and then, *the owner*, 11/11). **032 read first, before any code
    is cleared**; **on a logged drive, 001 in place of 055** (G62's
-   reading: S24 closed 12/11, reopened if its dither comes back; on a
-   captured drive the capture reads it, 001 not needed) **and 014 always** (P0303 stored on 12/11 with no cut:
-   its time is what the log gives).
-9. **After the clean of 9/11, by what the next stops show** (Claude says
-   which):
+   reading; on a captured drive the capture reads it) **and 014
+   always** (a P0303 stored with no cut: its time is what the log gives).
+9. **By what 6m and 8q leave** (Claude says which):
    - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
      a kit.
    - **A stethoscope (or a long screwdriver) on the cam cover above
@@ -174,7 +151,7 @@ dropped 14/11 (*the owner*: no window to be seen at the gearbox);
        0.2 mm feeler tried between cam and tappet; the eight results
        into the chat;
      - **6m's injector circuits** while the intake is off, if not done
-       before (12/11 night);
+       before;
      - **the lower manifold's gasket**: renewed if the garage takes
        the lower manifold off as well (the tear at runner 4; **runner
        3's joint is the one the idle points at**, 12/11).
@@ -184,12 +161,10 @@ dropped 14/11 (*the owner*: no window to be seen at the gearbox);
      leak-down names 3's exhaust seat, the car is driven as it is and S1
      most likely closed as *acceptable, cause known*.
 
-8e. **The probe now, the harness at the end** (*the owner*, 11/11 and
-   12/11; S23 closed 12/11 as the new probe's fault, `refuted.md` D13).
-   **The new rear
-   probe went back to the seller under warranty, 13/11; a new one in its place
-   when it comes** (*the owner*, 12/11: the old one, refitted, read healthy
-   with no P0137; until then the car runs on the old rear probe). The new one
+8e. **The probe when it comes, the harness at the end** (*the owner*,
+   11/11 and 12/11; `refuted.md` D13). **The new rear probe went back to
+   the seller under warranty 13/11; its replacement fitted when it
+   comes**, the old rear probe on the car meanwhile. The new one
    is fitted as the first was: Bosch's paste on the thread only, nothing
    in the connector, the lead clear of the exhaust and not pressed into
    the harness box. If P0137 comes back with it, the harness — cold and
@@ -210,8 +185,8 @@ dropped 14/11 (*the owner*: no window to be seen at the gearbox);
      back to bright copper on both sides of the damage and joined with a
      crimp or solder sleeve under heat-shrink (VW's wiring repair or any
      sealed butt connector). The red wire beside the blue looked at the
-     same way. *Taped and the bundle wrapped by the owner 10/11 night*;
-     the splice is what is left of this point.
+     same way. They are taped and the bundle wrapped (*the owner*, 10/11
+     night); the splice is what is left.
    - **The rear socket's broken-looking outer terminal**, on the rear
      probe's signal (the cavity meeting the probe's black wire): the
      terminal replaced —
@@ -219,8 +194,7 @@ dropped 14/11 (*the owner*: no window to be seen at the gearbox);
      pigtail — before anything else is measured on that wire.
    - **The rear connector's bent pin** straightened so it seats like
      the others; both connectors dried again, then **pushed
-     until each latches with a click** — the front one included, which
-     did not latch on 10/11 morning.
+     until each latches with a click** — the front one included.
    - **Nothing sprayed or greased into either probe's connector**, ever
      again — no contact cleaner, no dielectric grease; **the probe's own
      lead and its connector never sealed airtight** (no heat-shrink with
@@ -249,8 +223,7 @@ dropped 14/11 (*the owner*: no window to be seen at the gearbox);
   - **Engine lamp steady**: drive on; the fault memory read when VCDS is
     next connected, the codes into the chat.
 - **`IdleHealth` and `Misfires` only in the everyday state** — **blower on 1, one seat
-  heater on 2, the lights on** (*the owner*, 8/11; *this said the seat heater on 1, the
-  23/10 wording, until then*) — at warm stops that come anyway (oil
+  heater on 2, the lights on** (*the owner*, 8/11) — at warm stops that come anyway (oil
   95–100 °C, neutral, no throttle), with the oil temperature; any other
   state is named. **No stop is made or lengthened only to read it.**
 - **The fault memory after every session with VCDS connected**: read,
@@ -267,20 +240,13 @@ dropped 14/11 (*the owner*: no window to be seen at the gearbox);
 ## The rule — the owner's decision, 27/9/2026, amended 18/10/2026
 
 **The idle comes first**: the unsettled idle (S1) and the misfires 014
-counts at idle (S3). **S18, cylinder 3 dropping out with a tick, came
-first beside it** from 18/10 until it closed on 24/10, after a week
-without it (`refuted.md` D10); the owner kept its drive rules as a
-habit until the map went back (3/11), so that a return was caught (they
-left Part 1 on 26/10 at his request: not a step, what he does anyway);
-whether he keeps them since is his. So:
+counts at idle (S3). So:
 
 - **Fix, then look.** Each step is a repair; the only readings taken are
   the ones that decide the next step.
 - **No test for its own sake**, and nothing unrelated to the idle is
   pursued until it is solved — unless it could be related.
-- **Run the engine as the day needs it.** *This said "as little as
-  possible, above all not at idle", for the converter, until 6/11/2026*:
-  the idle's misfires heat it by tens of kelvin at most (`open.md` S3,
+- **Run the engine as the day needs it**: the idle's misfires heat it by tens of kelvin at most (`open.md` S3,
   *What it costs the converter*).
 
 `open.md`'s tests are reference, **not a to-do list**.
@@ -321,103 +287,31 @@ the knock window, so it is dropped. **055** once at a warm idle says the
 adaptations are settled (about −1.1 to −1.3), so a comparison holds
 (`refuted.md` C19).
 
-**Item 6 — the drives** (*decided 10/10/2026*; *the owner, 21/10: the
-tank on the display, the captures after it*). The display follows the
-idle through the tank; the captures read where it got to. **Read**:
-`tools/cylscan.py` and `--minutes` on the idles, alone and pooled since
-the last repair — 3's deficit and weak strokes against the other three,
-and `--vcds` with the drive's 014 log — 014's rises by cylinder; beside
-`IdleHealth` and 014 themselves, which are the closing marks (`open.md`,
-*When S1 closes*, *When S3 closes*). *Until 12/11 this read the
-dips' shares with `cutscan.py --shares`, removed with the count it
-rested on.* 014 by stop and `IdleHealth` by oil band against `open.md`
-S1 and S3. **003** says
-whether anything sealed or opened; **020** is data, not a step: whether
-cylinder 4's retard, nearly gone with the new leads on 10/10, stays gone
-(S4).
+**Item 6 — the drives.** The display follows the idle at every warm
+stop; the captures read where it got to. **Read**: `tools/cylscan.py
+--minutes` on the idles — **3's deficit and 3's weak strokes** minute
+by minute against the other three, and `--vcds` with the drive's 014
+log, 014's rises by cylinder (`open.md` S1, *Every stroke named*);
+`tools/swellscan.py --floors` for floor and swell; beside `IdleHealth`
+and 014 themselves, which are the closing marks (`open.md`, *When S1
+closes*, *When S3 closes*). **3 at its floor with no swell through ten
+minutes is list B's part gone; 3 swelling as before under a calm grade
+is list A's.** **No injector cut**: the strongest slot names the
+cylinders, and a cut is one of the things that ends a swell. The stop
+of 10 minutes because the settling takes 3–8. **The groups**: **014**
+always; **020** on a drive with pulls, cylinder 4's knock retard (S4),
+which shows only on pulls above 3,000 rpm warm, hence the pulls;
+**033**, the front loop's live regulation. **001 is left out** on a
+captured drive because the capture carries the coolant (0x288) far
+faster. **The MFD back in from 15/11** (*the owner*, after 8h): what is
+left before the belt is no reading a capture gives that `49`–`53` do
+not; the next capture that says something is 8q's warm stop after the
+belt, set against `52` and `53`.
 **"Konec" and the five-minute stop** (*the owner*, 12/11 night): the
-session of 12/11 evening kept him at the laptop nearly ten minutes
-after the drive; from now the laptop only records and uploads, the
-reading is a cloud session's (`CLAUDE.md`, *Sessions at the car*), and
-the capture's last minutes home are given up for it. A queue crawls
-more than it stands (`50`: no standing idle over a minute in the
-queue), so a stop long enough for a swell is asked for, not waited
-for.
-
-**No captures until the display shows a change** (*owner's decision*,
-23/10/2026), and **the hard run dropped** with them: it was planned because on
-4/10 014 counted only at the stop after a hard drive, and that was an
-adaptation completing rather than load (`refuted.md` C19).
-What it costs: a capture on plain fuel just before the cleaner, the
-reference its tanks would have been read against. What is left: `40`,
-the refit drive of 21/10 on plain fuel, as that reference; the display
-through the tanks; and the captures once `IdleHealth` moves, which then
-say what moved.
-
-**It moved on 11/11 and 12/11** (the two calm stops near home on the
-canister, the MFD in; `open.md` S1, the warm stops' table), so the
-captures are due. **What they settle first** (*the owner*, 12/11, the
-idle split in two; `open.md`, *The idle's candidates, ranked*): **which
-part fell** — `idledips.py --roughness` for the whole and
-`--cylinders` for the period-4 part, set against S1's 78 and 51 (*A
-steady pattern over the cylinders*; the 5/11 script that took the slot
-means out was not kept, so the split is computed again on the
-capture; about an eighth of the grade is the crank wheel's own
-alternation, which no repair moves). The common part down and 3's
-pattern as before is list A's (the belt and H0 at its head since 12/11
-evening, H16 fifth since 14/11); the pattern gone too is list
-B's as well.
-**Read by cylinder since 12/11** (`tools/cylscan.py --minutes`, kept;
-`open.md` S1, *Every stroke named*): the part with a cylinder is **3's
-deficit and 3's weak strokes** minute by minute — a floor of about −9 %
-of a stroke and swells to −26 % with up to twelve weak strokes a minute
-on every stop before the canister — and "4's pattern" was the crank
-wheel's alternation. **3 at its floor with no swell through ten minutes
-is list B's part gone; 3 swelling as before under a calm grade is list
-A's.** **No injector cut in these captures**: the cut was there to name
-the slots, the strongest slot names them now, and a cut is one of the
-things that ends a swell, so it would spoil the reading. The stop
-of 10 minutes because the settling takes 3–8.
-**Read on the first, 12/11** (`49`; `open.md` S1, *The first captured
-stop on the canister*): **neither part fell** — 3 swelled as before
-and stepped to its floor by itself; settled, the grade and the common
-part were those of the calmest floors before the canister — so **a
-second captured drive now would only repeat the canister's reading**,
-and the next is after **8a's new N80**, the one change left on H16's
-path, read the same way against `49` — **made 14/11 (`51`) and 15/11
-(`52`): neither part fell on the new valve either** (`open.md` S1,
-*The first drive on the new N80*, *The second drive on the new N80*).
-**The MFD out and every drive captured until the swap** (*the owner*,
-12/11 evening, so that there are more captures and more 014; **closed
-13/11 by the owner**: no further captured drive before the swap, the
-baseline is what `49`, `50` and the drives before them hold): what
-the drives before the swap add is not another reading of the canister
-but **the old valve's baseline for the owner's reading of H16**
-(`open.md` H16, *The owner's reading, 12/11*) — 032 before and after
-each drive, gentle or brisk as the capture shows, should follow the drive on the old
-valve (−14.8 after the gentle morning, −7.0 after the brisk drive) and
-stop following it on the new one. Each captured warm stop is read by
-`cylscan.py --minutes` as `49` was, so 3's swell and floor get more
-stops on both valves.
-
-**The MFD back in from 15/11** (*the owner*, after 8h): the new N80
-has its two drives (`51`, `52`) and 8h its stop (`53`), and what is
-left before the belt is no reading a capture gives that these do not;
-the next capture that says something is 8q's warm stop after the belt,
-set against `52` and `53`. Meanwhile the display gives `IdleHealth`
-and `Misfires` at every stop with no laptop.
-
-**The groups on the captured drive** (12/11, three at a time): **014**
-always (8f; P0303's time, the stop's count); **020**, cylinder 4's knock
-retard (`open.md` S4), last read on 3/11's pulls — since then the
-hydrogen clean of 9/11, which a retard from the crust on 4's crown
-would follow and an arc at lead 4's end would not; it shows only on
-pulls above 3,000 rpm warm, hence the pulls; **033**, the front loop's
-live regulation, which swings with the mixture it chases — H16's
-mechanism (`open.md` H16, *How it would make the idle rougher*) against
-the stops logged with 033 on the bypass. **001 is left out** because the
-capture carries the coolant (0x288) far faster; **003** this once
-too.
+laptop only records and uploads, the reading is a cloud session's
+(`CLAUDE.md`, *Sessions at the car*), and the capture's last minutes
+home are given up for it. A queue crawls more than it stands (`50`),
+so a stop long enough for a swell is asked for, not waited for.
 
 **Item 6i — the oil level on the new oil** (`open.md` H18; `refuted.md` C21; *the
 owner's agreement*, 26/10). Oil burnt past the stem seals or rings lowers
@@ -457,34 +351,10 @@ reading on record came on a foggy morning (`open.md` S1, *Temperature*),
 and the mist supplies the moisture a tracking boot or coil needs. Late
 because the coil is from 6/2026 and the leads are new again; it is free.
 
-**After the clean of 9/11 — why the next steps are these** (*agreed
-with the owner*, 9/11 evening; the clean itself, done, is `idle-log.md` and `open.md` S1,
-*The clean of 9/11*; how its day was planned and read: `git show
-c11dc75:docs/engine-health/plan.md`, item 8). **What it showed**
-(re-read 12/11 with `tools/cylscan.py`): 3's swell — its deficit
-beyond its floor, its weak strokes, the rough first minutes of a warm
-stop and 014's storm — was not there at stop 7, which is the H13 branch
-for 3; **3's floor, about −9 %, and the settled level were kept**, and
-the swell was back a day later (`47`; `open.md` S1, *The clean of
-9/11*). *Until 12/11 this read "its share of the dips … gone, 4's
-steady deficit kept"; "4's" was the crank wheel's alternation.* **8c, the probes read before and after both were replaced, is done**
-(9/11 night and 10/11; `open.md` H11, *The reading before the swap*,
-*The reading after the swap*; how it was planned and why: `git show
-1040e9e:docs/engine-health/plan.md`, item 8c): the new rear probe flat
-for 18 minutes of idle where the old one sank, and the idle as rough as
-before.
-
-**8d, the relearn after the battery disconnect, is done** (10/11
-evening; `open.md` H11, *The relearn drive*, S23; how it was planned
-and why: `git show d4aeca3:docs/engine-health/plan.md`, item 8d): 032
-back to −6.3 / +6.3 % within 37 minutes on the new probes, the idle as
-before, 3 with most of the weak strokes again (73 %, `cylscan.py`), and the new rear probe's signal
-falling to zero under load (P0137).
-
 **8e, the probes' tightness**: they were tightened by hand to about 50
 Nm estimated, without a torque wrench (`vehicle-history.md`), and the
-reading after showed the rear probe switching to the front's swing
-after 18 minutes of idle and in spells at the warm stop; a probe seated
+rear probe switched to the front's swing after 18 minutes of idle on
+10/11; a probe seated
 loose lets air into the exhaust at idle's pulses, the second zone of
 H2 of its own making (*reasoned*). Cold, because the exhaust then is at
 the temperature they were fitted at. Checked before the warm tailpipe
@@ -496,8 +366,7 @@ tidied by the owner when the probe was fitted, so its run is looked at
 first, the connector second; a lead and connector found sound leave the
 new probe itself (a warranty matter). Cold, so it can be touched.
 
-**S12's jerk by the clock** (reopened 10/11 night at the owner's
-request): the bus cannot show a jerk at a crawl, so only its time
+**S12's jerk by the clock**: the bus cannot show a jerk at a crawl, so only its time
 lets a capture or a VCDS log be read at that moment — the stroke, the
 load, 014, and from a capture the cylinder (`open.md` S12).
 
@@ -515,14 +384,14 @@ follows the harness instead): a leak or a poor earth is as likely
 anywhere on the way as at a connector, and an earth eyelet the
 probes' returns share is H21's shared earth itself.
 
-**8e's sockets and 8g, the probes' circuit** — *8g dropped and 8e
-postponed 11/11 (*the owner*: the rear probe has no direct hand in the
-mixture, no probe code was ever stored before 10/11, the broken-looking
-terminal may be how it was made; the probes are watched through 8f's
-036 instead); kept for what it argued* (`open.md` H21, added
-10/11 evening at the owner's request): the swap changed the probes and
+**8e's sockets** (`open.md` H21): the swap changed the probes and
 their own plugs, not the harness side, so a fault there survives it —
-S23 in full, S19's idle cell perhaps. **With the ignition on and the
+S19's idle cell perhaps. **At the end** (*the owner*, 11/11): the rear
+probe has no direct hand in the mixture, no probe code was stored
+before 10/11, the broken-looking terminal may be how it was made; the
+probes are watched through 8f's 036 meanwhile. *The flexing with the
+ignition on (8g) was dropped 11/11; what it argued is kept below for
+the sockets' reading.* **With the ignition on and the
 engine off the ECU reads both probes at a steady bias** — 033 0.435 V
 and 036 0.425–0.44 V on 10/11 (`vcds-step8c-after-001-033-036.csv`,
 `vcds-step8d-drive-014-032-036.csv`, before the start; *the owner's
@@ -534,9 +403,7 @@ through it the ECU reads its own bias either way; those would show only
 with the probe hot and switching, and **the flexing is not done with
 the engine running** (*the owner's decision*, 10/11 night: the exhaust
 hot, and nobody under a running car) — so they are left to the
-multimeter, each wire end to end with the ECU's plug off (6n). *Until
-then this asked for the same flexing at a warm idle if nothing moved
-with the ignition on.* **Whether the
+multimeter, each wire end to end with the ECU's plug off (6n). **Whether the
 readings are live at all** (*the owner's question*, 10/11): the rear
 one is — with its probe cold it reads 0.425–0.44 V with the ignition on
 or the engine running, a step of the converter either way, and slid
@@ -574,7 +441,7 @@ still clears nothing, a leaking one names it.
 **8q, the timing belt at a garage** (*the owner's decision*, 13/11,
 after 8i): 8i read the cam's OT mark set and the crank pulley's one
 notch 30–60° of crank from the groove on the block by eye
-(`open.md`, *Where it stands*, the row A1) — 1.5–3 teeth with the cam
+(`open.md`, the row A1) — 1.5–3 teeth with the cam
 advanced if those are the true marks (the direction the owner's, read
 off the part), which the flat full-load pulls and the air the engine takes at full
 throttle argue against (485 mg a stroke at 5,200 rpm against 496 at
@@ -584,73 +451,42 @@ is nine years old (10/2017), so renewing it loses nothing either way,
 and the owner leaves the work to a garage. **What makes it a test**:
 the mechanic's count of teeth before the old belt comes off says
 whether 8i's reading was true — **the only reading of the true marks
-left**, the flywheel's mark through the gearbox window (8r) dropped
-14/11 (*the owner*: no window to be seen there, most likely hidden
-deeper behind other parts); the captured warm stop before and
-after says whether the common part (list A) moved — down by a clear
-step if the cam was out, unchanged if it was not (H0 then gains).
-**Kept apart from the new N80** so that each has a captured drive of
-its own; which comes first is the dates'. Nothing in 8i was loosened;
+left** (no gearbox window to be seen, *the owner*, 14/11); the captured
+warm stop before and after says whether the common part (list A)
+moved — down by a clear step if the cam was out, unchanged if it was
+not (H0 then gains). Nothing in 8i was loosened;
 VW's 5 mm at the crank was for the Mk4 2.0, nothing of the AQY's own
 was read.
 
-**8f after the harness** (10/11 late night): the battery out once more
-after the probes' harness was taped (098 run on reconnecting, OK), so
-032 relearns from zero on a repaired harness — a clean before and after against the −6.3 % of the
-relearn drive; and the rear probe's signal (S23) read beside it.
+**8f, 032 at every session**: the battery was out once more after the
+probes' harness was taped (10/11 late night), and the clear of P0137
+reset 032 again, so it relearns on a repaired harness and the new
+valve; what is left to read is where both cells settle (`open.md`
+S19). Read, never cleared by Claude; three drives because the cells
+moved by one VCDS step at a time.
 
-**8f, 032 at every session**: the idle cell came back to −6.3 % in one
-drive on the new probes (`open.md` S19), so what is left to read is
-where both cells settle; **the clear of P0137 at the end of 8d reset
-032 again** (`open.md` S3, *The clearing of 24/10*), so the relearn
-starts once more. Read, never cleared by Claude; three drives because
-the cells moved by one VCDS step at a time.
+**6m before item 9** (*agreed with the owner*, 12/11 night): off idle
+3's deficit is an amount at a small charge and not a share (`open.md`,
+*Naming the cylinder*, *Off idle*), which is what an injector opening
+late through a raised resistance gives (H4); its test is the cheapest
+that can confirm or clear a cause of that shape, so it does not wait
+for the garage; the photograph because H3's joint is in reach with the
+same cover off. It is read for 3: the deficit and the misfires are
+cylinder 3's (`open.md` S1, *Every stroke named*; S3, *What 014 counts,
+by cylinder*). **The display's stops** with a word on what came before
+each, because a brisk run calms the idle by itself for a while
+(`open.md` S1, *After high revs*) and the display's spread is as large
+as the effect; the A/C's figure for how much load still calms it
+(`open.md` S1, *Load smooths it*).
 
-**8b, dropped 11/11** (*the owner's decision*): **the goal is the
-fix, not the root cause** — "even if it went, I do not care whether it
-was the probes or N80"; fewer tests, a repair where one is cheap. Its
-two captured stops (after a brisk and a gentle drive, the cut at minute
-10) would have named the settled cylinder and given N80 a reading
-before; the captures `40`–`48` and the display's stops already show the
-rough start after high revs (`open.md` S1, *The rough start of a warm
-stop*), and item 9's leak-down decides between H1 and H3 anyway. *Until
-11/11 morning 8b was one stop after a brisk run with the cut at minute
-3.* **6m for 4** because 4 was held to be the cylinder with a
-deficit of its own, and its injector circuit the cheapest of the
-three causes that act on 4 alone (H4; H3's runner gasket and H1's inlet
-seat cost the intake off or a leak-down). **Brought ahead of item 9, 12/11 night** (*agreed with the
-owner*): off idle 3's deficit is an amount at a small charge and not a
-share (`open.md`, *Naming the cylinder*, *Off idle*), which is what an
-injector opening late through a raised resistance gives, so H4 went
-above H20 and its test, the cheapest that can confirm or clear a cause
-of that shape, no longer waits for the garage; the photograph because
-H3's joint is in reach with the same cover off. **Since 12/11 it is read for
-3**: the deficit and the misfires are cylinder 3's (`open.md` S1,
-*Every stroke named*; S3, *What 014 counts, by cylinder*), 4 is level
-warm, and the measurement is the same six pairs and four coils with
-the loom flexed at 3. **The display's stops** with a
-word on what came before each, because a brisk run calms the idle by
-itself for a while (`open.md` S1, *After high revs*) and the display's
-spread is as large as the effect; the A/C's figure for how much load
-still calms it (`open.md` S1, *Load smooths it*; *"for S1's closing mark
-2" until 12/11, when the marks became cylinder 3's*). **The days after** (*reasoned*, from SAE 2000-01-2858:
-water flakes deposits most): the clean burns hydrogen to water vapour,
-so a flake may come loose and lodge under a seat, an 18/10-like
-drop-out; if one comes, a warm leak-down on that cylinder the same day
-or the next is the one moment it can be told from a seat or a guide.
-
-**8m, the filler cap on a hot day** (from 8k): the one check of the
+**8m, the filler cap on a hot day**: the one check of the
 summer overpressure (`open.md` S21), which a November day cannot give.
 
 **8a, the details at a lamp**: this ECU keeps no freeze frame; with
 the odometer, the tank and the weather the next code can be set
-against fills and temperature, and 032 is reset by a clear. *The new
-N80's own reasons left with its two drives (14/11, 15/11; `open.md`
-H16); the part is Bosch `0 280 142 353`, VW `1C0 906 517 A`
-(`vehicle-history.md`).*
+against fills and temperature, and 032 is reset by a clear.
 
-**Item 9's garage session** (*agreed with the owner*, 11/11, after the
-second research): everything that needs the upper intake off in one
+**Item 9's garage session** (*agreed with the owner*, 11/11): everything that needs the upper intake off in one
 visit, warm. **Cylinder 3's leak-down twice, two crank turns apart**,
 because a flake under the exhaust seat (SAE 2000-01-2858: trapped by
 chance) moves between readings where a worn seat does not; **a warm
@@ -663,8 +499,7 @@ The engine cools while the intake comes off, so **a tight 3 there does
 not clear a seat that leaks hot** (`open.md` S1, *The rough start of a
 warm stop*). 6m and the gasket because the intake is off anyway.
 
-**Item 9 — after the decarbonisation** (*agreed with the owner*, 4/11,
-after the research): the cheapest tests that name a part on 3 without an
+**Item 9's other tests** (*agreed with the owner*, 4/11): the cheapest tests that name a part on 3 without an
 injector swap or a plug change. **The CO₂ test** for H20, the cheapest
 of all; **the stethoscope** for a lifter or valve on 3 (H1), **and on 4 since 12/11 night** (`open.md` S4, *Why 4*: 4 gives 2–4 % less than 1 at every load and has a noise in its knock window in neutral, which a valve, lifter or lobe on 4 would give together; the tappet check already covers all eight); **the warm
 leak-down** decides H1's seat — VW gives no procedure for this engine,
@@ -676,9 +511,7 @@ matters more than any absolute figure. Warm because a seat that leaks
 hot can seal cold, which is what A4's cold compression missed. The
 crank held because the air turns the engine; **the generic OBD-II
 read** asks whether this ECU keeps what its VW view does not show
-(`open.md`, *What the forums say*, 4/11). *No pinch of the vacuum
-lines*: proposed 4/11 for a line near runner 3 and dropped the same day —
-every line joins the common intake (*owner*, `open.md` H3).
+(`open.md`, *What the forums say*, 4/11).
 **The head stays on** (*the owner*, 4/11, leaning): the seat is reached
 only with the head off (`open.md` H1), tens of thousands of crowns, for
 an engine that burns well everywhere but at an idle without load. If
@@ -705,20 +538,15 @@ worse beyond its spread are read as a seat getting worse.
   (2 % at the very worst) is tens of kelvin, against the hundreds a
   cylinder dead under load would add (`open.md` S3, *What it costs the
   converter*). Hours are still avoided — wear and fuel, not the
-  converter. *Until 6/11 these items drove off within half a minute,
-  never warmed the engine standing, switched it off at stops over a
-  minute or two and on arrival after a hard drive, and kept loads on
-  at idle, all for the converter, from 122 of 129 counted misfire
-  events beginning at a standing idle (`open.md` S3).* **A flashing
+  converter. **A flashing
   lamp** is the ECU's own converter-damage rate, a 200-revolution
   window weighted by speed and load (SSP 175, `vcds.md`) — the one real
   converter risk, a cylinder dropping out, above all under load. **A
   steady lamp** is an emissions fault: P0300 above 2 % over 1000
   revolutions, or P0440 as on 6/11 (`open.md` S21).
 - **`IdleHealth` in the everyday state only** (*owner's decision*,
-  28/10/2026). *Until 28/10 a warm stop was read in two states, 2 minutes
-  every load off and 2 minutes every load on (owner's decision, 19/10),
-  and the everyday state only when there was no time.* Every load on read
+  28/10/2026). Two states (every load off, every load on) were read
+  until then; every load on read
   calm every time and 014 counted nothing in it, so the pair stopped
   telling anything new, and four minutes standing worked against keeping
   the idling short. The everyday state (*owner's decision*, 23/10) — one
@@ -728,11 +556,9 @@ worse beyond its spread are read as a seat getting worse.
   than every load on. **The closing reads it** (*the owner*, 12/11): S3 on
   it alone, S1 on it and with every load off besides (`open.md`, *When S1
   closes*, *When S3 closes*), probably with the overrun too (*owner*, 28/10).
-  *Until 12/11 both closings were read loads off only.*
 - **The fault memory** (*owner*, 18/10/2026): every session starts from
   an empty memory, and the saved file keeps what the session stored.
-  **A code before a logged drive pauses it** (*the owner*, 11/11/2026,
-  at 8k, P0137 stored before the first drive on the canister): every
+  **A code before a logged drive pauses it** (*the owner*, 11/11/2026): every
   drive starts from a clean engine. The clear resets 032 (`open.md` S3,
   *The clearing of 24/10*), so 032 and 055 are read first — a running
   log of them counts — and 8f's three drives count from the clear.
