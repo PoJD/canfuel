@@ -226,7 +226,11 @@ seats, the back of the intake, the breather). Never proven.
 ## 1–2/10 — the valve cover, throttle and breather job
 
 - **Repairs:** injectors refitted one by one, all four home (rail at
-  10 Nm, cylinder 2's O-ring replaced); new valve cover gasket (⚠ the
+  10 Nm; cylinder 2's manifold-end O-ring, found pinched, replaced by
+  one off an old injector — *this said only "cylinder 2's O-ring
+  replaced" until the owner's account of 15/11*: the rail-end rings are
+  new on all four, the manifold-end ones those supplied on the new
+  injectors on 1, 3 and 4); new valve cover gasket (⚠ the
   wrong part, 3/10); new upper plenum gasket; new crankcase breather (Febi
   `32452`), a new ring `100690` in the old filler cap; new throttle body
   (Pierburg `7.03703.13.0`); the vacuum elbow replaced by a longer hose;

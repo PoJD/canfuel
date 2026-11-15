@@ -36,7 +36,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 14 November 2026
+## Where it stands — 15 November 2026
 
 **Closed**, in `refuted.md` §D: S6 the exhaust joint behind the
 converter, S8 the top end, S9 the rich trim, S10 the oil leak at the back
@@ -1369,7 +1369,14 @@ strokes — a step 12 rpm or more under the cylinder's own median — per
   −21 % with the strongest slot too close to name; only the cold start
   of 11/9 (`18`) had 4 the weakest, −14 %, and 3 −5 %. ⚠ Seconds, not
   minutes, and the names rest on the strongest slot being 2's, which no
-  cut checked on the old injectors. **Cylinder 4 was weak on 24/9
+  cut checked on the old injectors. **The crank wheel checks half of it
+  in `17`** (*the owner's question*, 15/11: could the pattern have lain
+  otherwise before the injectors; *Naming the cylinder*, *The names
+  before the injectors*): the weak slot there is one of the two the
+  wheel reads high, so **it was 2 or 3, not 1 or 4**; and read as 3 the
+  whole pattern is the one of the weeks after the change (1 +18, 3 −22,
+  4 +3, 2 +1), read as 2 it is that pattern turned half a cycle on the
+  day the injectors went in. **Cylinder 4 was weak on 24/9
   (−11 %) and is level warm since early October**; 2 and 1 give more
   than the mean throughout. *This file said "3 and 4 weak, 2
   strong" and "4's steady deficit, 5–8 %" until 12/11*: the crank
@@ -4015,6 +4022,20 @@ reach. What is left is the plenum and the lower manifold off, **the lower
 gasket renewed** and the injector O-rings looked at — a repair that tests
 by its result.
 
+**The injectors' lower O-rings** (*the owner's question*, 15/11). What
+is fitted (*owner*, 15/11): at the rail, four new rings; **in the
+manifold, the rings the new injectors came with** — new, under plastic
+caps, how long in stock not known — **on 1, 3 and 4, and on 2 a ring
+off one of the old injectors**, put there on 1/10 when the second look
+found 2's pinched. His question: is 2 the strongest only because it
+alone has a ring that is known to seal? *Reasoned*: **not as a set** —
+1 and 4 sit on the same supplied rings as 3 and give as much as 2 (`50`:
++5, +4, +7, 3 −16); **3's own ring could still leak**, and nothing in
+place tests it (above). Against that too: 3 was 10–20 % short in
+August on the old injectors and their rings (S1, *Every stroke
+named*), so two different rings would have had to leak in the same
+bore — which points at the bore or the runner rather than the ring.
+
 ### H4. Weak spark from what feeds the parts (earth, wiring, coil feed)
 
 **Re-read 12/11, the third research** (S1, *Every stroke named*): what
@@ -4168,7 +4189,10 @@ every warm idle, in every state, which a short injector does. **But 3
 was the weak one before the injectors were changed too** (`09`, `12`,
 `17` of August, −11 to −23 %, seconds each), **so the injector itself
 is unlikely: the same place would have to be bad in the old set and in
-the new** (*the owner's argument*, 12/11). An exchange of injectors 3
+the new** (*the owner's argument*, 12/11; **15/11**: by the crank wheel
+the weak cylinder of `17` was 2 or 3, and read as 2 the whole pattern
+would have turned half a cycle with the injectors — *Naming the
+cylinder*, *The names before the injectors*). An exchange of injectors 3
 and 2 was agreed earlier that day as its test and **withdrawn
 on this** (`plan.md` 6o, removed). What stays with the cylinder through
 a change of injectors is its wiring and the ECU's driver (H4, 6m, 6n).
@@ -6160,6 +6184,31 @@ dip shares said, and what stands*, below; S1, *Every stroke named*; S3,
 - **The names.** With no cut in a run, the strongest slot is taken for
   2 (*the owner's idea*, 9/11): it is 2's at all eight cuts, and it
   puts 014's rises on the cylinder the ECU's own P0303 names.
+- **The names before the injectors** (*the owner's question*, 15/11:
+  every cut is from 10/10 on, on the new injectors — could the pattern
+  have lain otherwise on the old set; ad-hoc script, not kept). The
+  wheel is the one name that owes nothing to combustion, injectors or
+  seals: 2 and 3 read high. **`17` (August, the old injectors) is the
+  one capture before 23/9 where a drive and a standing idle share a
+  stroke count** — `09`, `11` and `12` are idles alone, the holds `10`,
+  `13`–`16` have no idle. `cylscan.track()` over the whole 360 s: **75
+  windows of 60 strokes above 1,300 rpm, the same two slots high in all
+  75** (0.20 % of engine speed), so the count does not slip. With
+  those two slots taken for the wheel's high pair, the standing idle at
+  the start (217 strokes, three parts of it alike) reads, slot by slot
+  in firing order, **−22, +3, +1, +18 % of a stroke, the weak slot one
+  of the high pair**. So **the weak cylinder of August was 2 or 3 and
+  not 1 or 4**, on the wheel alone. Between the two the wheel cannot
+  choose: as **3** the pattern is 1 +18, 3 −22, 4 +3, 2 +1 — the one
+  of `24`–`31` on the new injectors (1 +6 to +13, 3 −11 to −18, 4 −7 to
+  +1, 2 +1 to +13); as **2** it is 2 −22, 1 +3, 3 +1, 4 +18, and the
+  change of injectors would have had to mend 2, break 3 by the same
+  depth and exchange 1 and 4 on one day (*reasoned*: unlikely, not
+  excluded). ⚠ One capture, some ten seconds of idle; the short stops
+  later in it pooled with the first read the same way round (−17, 0,
+  +4, +14, 730 strokes). By the deviation the strongest there is 1,
+  not 2, as in several captures since; the rule takes the strongest
+  slot of the raw steps, wheel in, and it took 2's.
 - **What it changes**: `41`, cold, is not "all four alike" — 3 has
   56 % of its weak strokes and 36 of 014's 49 rises; `40` to `47` put
   58–73 % of the weak strokes on 3 where the dips' shares read 41–48 %;
