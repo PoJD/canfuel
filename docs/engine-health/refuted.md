@@ -1036,7 +1036,7 @@ fitted), not against what sits at 3's plug end anyway.
 
 **Settled 15/11/2026 on `52`** (`open.md` S1, *The second drive on the
 new N80*; Claude's reading, as `plan.md` 8o left it to that drive's
-070, and put to the owner the same day). The purge was the one thing
+070; accepted by the owner the same day). The purge was the one thing
 the ECU is known to run as a slow ramp with a quick shut-off, the
 swell's shape, and until 15/11 its phases were on no measuring block
 read on this car. **Group 070 logged as a measuring block shows them
@@ -1052,7 +1052,8 @@ and the same swells; 070's run, 7.8 % rich, and 3 unmoved) nothing of
 the purge is left for the swell. **`plan.md` 8o, two drives with N80
 unplugged, dropped with it.** ⚠ One stop; field 1 is the commanded
 opening, not the flow. **Left over** and kept in `open.md`: H16 for
-S19 and S21, and its place in list A, the owner's to decide.
+S19 and S21; in list A it went from fifth to last the same day (*the
+owner's decision*).
 
 ## D. Symptoms closed
 
