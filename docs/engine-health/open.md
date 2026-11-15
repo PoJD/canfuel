@@ -1754,6 +1754,20 @@ stop*).
   +0.35 (the rear probe) with 3's deficit, on a range of six points.
   014: 18 rises, 0.12 % of combustions, 11 on 3 and the three surest
   all 3's (S3).
+- **036 through the first swell** (read 15/11 evening at the owner's
+  request; the first loads log, 004 033 036, 14:20:13–14:27:39, set on
+  the capture by its header's clock from the plain idle's log, which
+  engine speed places — engine speed alone placed it 16 minutes late,
+  the idle being flat; the A/C's supply step falls on the bus's A/C
+  windows; *a script not kept*): 3 went from −6 to −9 % to **−22.4 %
+  at 17.4 minutes** and was at −16 % when the log ended. **The rear
+  probe did not move with it**: over 19 windows of 20 s with the A/C
+  off, 0.464 V in the six at −15 % and deeper against 0.467 V in the
+  six at −10 % and shallower, r 0.0, switching through every window
+  (sd 0.19–0.23 V, as in the plain idle's 0.45 V mean); with the A/C
+  0.49–0.61 V, the A/C's own step. ⚠ The rear window, main beam and
+  the blower were switched in the same minutes (+0.02 to +0.07 V each,
+  under the sample's scatter); one swell; 055 not logged through it.
 - **The swells came with the loads**: to −20, −20 and −22 % in
   minutes 17, 25 and 31 of the stop, the bottoms about seven minutes
   apart, each 2–5 minutes after its round's A/C step and running on
@@ -1770,8 +1784,13 @@ stop*).
 
 **Read** (*reasoned*). The plain idle sat near 3's floor for ten
 minutes, so it reads 055 and 036 only where nothing happens: there,
-neither moves. A named swell beside them is still to come: `plan.md` 8t (*the
-owner*, 15/11), any warm stop with VCDS on 014 055 036.
+neither moves. **036 went through one swell, with loads switched, and
+did not move**: the swell does not shift the mixture behind the
+converter that the rear probe sees, as the injection time and the
+front loop's regulation showed before it (*The swell's shape*). **055
+through a swell, and 036 through one with no load switched, are still
+to come**: `plan.md` 8t (*the owner*, 15/11: kept in the plan as it
+is), any warm stop with VCDS on 014 055 036.
 
 **Before and after the canister and the new valve** (14/11 evening,
 *the owner's question*: do the drives on the canister and on the new
