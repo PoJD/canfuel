@@ -1701,3 +1701,23 @@ at a warm stop*, and S1, *8h's plain idle and its loads*.
 The MFD reads 0.2–0.4 V high; the battery barely moves for main beam,
 where 004 fell 0.54–0.63 V at `53`'s stop. Read in `open.md` H4, *The
 supply as the ECU sees it, against the battery*.
+
+## 15 November 2026 night — the air mass meter's plug (8y, first part)
+
+- **Tests:** the meter's plug off, looked into and photographed (the
+  album, 23:47–23:59); the car's half measured with the ignition on,
+  the engine not running.
+- **Changes after:**
+  - *measured:* contact 4 to the engine's earth 5.002 V, 4 to 3 the
+    same; 1 to 3 4.6 V; 2 to 3 40 mV; 5 to 3 9.8 mV.
+  - *not known:* whether a contact in the car's half sits back.
+
+**The red lock in the car's half of the plug is broken** — its lower
+edge chipped and its end at the last contact gone
+(`photos/maf-plug-2026-11-15-harness-lock.jpg`) — **and pieces of it lie
+in the meter's half, in the recess under contacts 2 and 1**
+(`-debris.jpg`, `-meter-side.jpg`); the gold pins clean and straight.
+The owner is getting them out. VW's figures for the plug off are met
+(4.5–5.5 V on 4; 2 dead with the engine off, as it should be). Read in
+`open.md` S19, *The meter's plug and its earth*.
+

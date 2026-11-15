@@ -3161,6 +3161,23 @@ learnt. Three things they do say.
     **Its test**: `plan.md` 8y (*the owner*, 15/11 night) — the plug
     off with the ignition on first, then probed from behind with the
     engine running, main beam off and on.
+    **Found 15/11 night** (*the owner*; `idle-log.md`;
+    `photos/maf-plug-2026-11-15-*.jpg`): **the red lock in the car's
+    half of the plug is broken, and pieces of it lie in the meter's
+    half under contacts 2 and 1**; the pins clean. Plastic, so no
+    short. **What it can do** (*reasoned*): the lock holds each
+    contact forward against the pin's push, so a contact it no longer
+    holds can sit back and grip the pin's tip only, and pieces in the
+    recess can keep the halves from seating fully — either a contact
+    resistance, which a reading with the plug off cannot see. **The
+    plug-off readings** (ignition on, engine off, the car's half):
+    4 to the engine's earth 5.002 V, 4 to 3 the same — VW's
+    4.5–5.5 V, and the earth wire whole; 2 to 3 40 mV, dead as it
+    should be with the engine off; 5 to 3 9.8 mV; **1 to 3 4.6 V**,
+    a contact VW's page does not describe — an ECU input held up
+    while nothing answers it, by its look (*reasoned*); what it is,
+    the wiring diagram says. Nothing wrong at zero current, as
+    expected; the running readings decide.
   - **The supply as the ECU sees it, tested at the desk the same
     night** (`vcds/vcds-step8h-loads1-004-033-036.csv`, 004 beside
     the regulation through `53`'s load steps): the regulation's mean
