@@ -157,10 +157,10 @@ plug.
   the five contacts in the car's half pressed gently from the front
   with a plastic point — one that moves back is loose. What was found,
   and a photograph, into the chat.
-- **Then the plug on, the engine warm at idle**, probing from behind along the wire's seal with a
-  thin pin, never through the insulation: contact 3 to the battery's
-  minus; contact 4 to contact 3; contact 2 to contact 3. **Each with
-  main beam off, then on.** The figures into the chat.
+- **Then the plug back on, firmly home, and drive as usual**: 032
+  read at the next VCDS session (8f) — the idle cell is the measuring
+  instrument. *Probing from behind was dropped 16/11: the plug's back
+  cannot be reached without breaking it (the owner).*
 - If the engine lamp lights at the next start (the plug was off with
   the ignition on): 032/055 read before the code is cleared (8a).
 
@@ -622,11 +622,14 @@ current flows, so it finds a broken wire and not a contact of a few
 tenths of an ohm**. The plug-off part, VW's, passed on 15/11 night (`idle-log.md`), as
 expected; it was then that the car's half was found with its red
 lock broken, pieces of it in the meter's half (`open.md` S19).
-The second reads the meter's earth under its own current: contact 3
-against the battery's minus is the offset the ECU's reckoning would
-carry. VW gives no figure for it; **a few tens of millivolts or less
-is read as clean, more, or a value that moves with main beam, is
-followed to the ECU's earth** (Claude's threshold, not VW's). Whether
+A reading under current, from behind, cannot be had without breaking
+the plug (the owner, 16/11), and the plug off with the engine running
+adds only contact 2's supply (VW's 11–15 V) and a stored code, not the
+contact's resistance — so **the plug cleaned and seated is read by
+032**: the idle cell relearns within a drive from wherever it stands
+(S19), so after two or three drives **an idle cell nearer zero than
+its −5.5 to −9.4 % since 25/10 says the plug**; one where it was says
+not this plug. Whether
 pulling the plug with the ignition on stores a code is not known for
 this ECU; VW's own check pulls it with the engine running. **How it
 would show**: a steady resistance moves 032's idle cell, not the idle

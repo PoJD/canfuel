@@ -3177,7 +3177,10 @@ learnt. Three things they do say.
     a contact VW's page does not describe — an ECU input held up
     while nothing answers it, by its look (*reasoned*); what it is,
     the wiring diagram says. Nothing wrong at zero current, as
-    expected; the running readings decide.
+    expected. **No running reading** (16/11): the plug's back cannot
+    be probed without breaking it (*the owner*); the plug cleaned and
+    seated is read by 032's idle cell over the next drives (`plan.md`
+    8y).
   - **The supply as the ECU sees it, tested at the desk the same
     night** (`vcds/vcds-step8h-loads1-004-033-036.csv`, 004 beside
     the regulation through `53`'s load steps): the regulation's mean
