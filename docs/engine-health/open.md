@@ -4388,7 +4388,12 @@ fuse box (~0.09 Ω)**, with the chafed main positive cable at the
 battery (`vehicle-history.md`, *Electrical work, 2026*): about 9 A of
 main beam through 0.09 Ω is 0.8 V. Whether the ECU's supply (the main
 relay) is fed through that same part is *not known* (the wiring
-diagram is not in these files). **It does not pick a cylinder**: the
+diagram is not in these files). **The MFD, calibrated against the
+battery the same evening** (`mfd15`, DisplayVolt's column 17 = 27.3; 12.4
+against 12.36 V, 13.7 against 13.7), **then read 11.7 V with main beam,
+the engine stopped, against 12.12 V at the battery** — 0.4 V lost
+between the battery and the dashboard's feed for main beam's current
+alone (*measured*), the same shape as 004's step. **It does not pick a cylinder**: the
 same supply feeds all four, and the idle is calmer with the loads on.
 **Measurable cheaply**: with main beam on, the drop from the battery's
 plus to the ECU's supply pin and from the battery's minus to the ECU's

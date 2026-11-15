@@ -1686,10 +1686,15 @@ at a warm stop*, and S1, *8h's plain idle and its loads*.
 ## 15 November 2026 evening — the supply at the battery against the MFD
 
 - **Tests:** a multimeter on the battery's terminals beside the MFD,
-  warm, the engine running, about 20 minutes after the drive home.
+  warm, the engine running, about 20 minutes after the drive home; the
+  MFD's DisplayVolt calibrated against it (four uploads) and read again,
+  the ignition on and the engine running, and with main beam.
 - **Changes after:**
   - *measured:* 13.57 V at the battery with the MFD at 14.0; 13.50 V
-    with main beam, the MFD at 13.7.
+    with main beam, the MFD at 13.7; then, the MFD calibrated against
+    the battery (DisplayVolt's column 17 = 27.3, `mfd15`: 12.4 against
+    12.36 V, 13.7 against 13.7), 11.7 V on the MFD against 12.12 V at
+    the battery with main beam and the engine stopped.
 
 The MFD reads 0.2–0.4 V high; the battery barely moves for main beam,
 where 004 fell 0.54–0.63 V at `53`'s stop. Read in `open.md` H4, *The
