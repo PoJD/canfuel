@@ -3066,6 +3066,30 @@ learnt. Three things they do say.
   regulator of 6/2026 holding the rail high only at idle**, where
   nearly all the pump's flow returns — a form of H7's rail that 6e's
   hose test does not see and 8u's gauge does.
+- **Whether the split was ever researched on its own** (*the owner's
+  question*, 15/11 night): no — VW's evaluation of 032 (`vcds.md`) and
+  the forums on the idle only. A first search the same night, general
+  sources and none on M5.9.2 or this engine: Ross-Tech's wiki (*Fuel
+  Trim Info*) gives the additive cell to the idle and the
+  multiplicative to every speed and says nothing of opposite signs;
+  **the one cause the trade sources name for a rich idle with a lean
+  part load is the air mass meter** (MOTOR magazine, *Fuel Trim Data: A
+  Powerful Diagnostic Tool*; Bavarian Technic's wiki, *Engine Mixture
+  Adaptations*: "contradicting" adaptations mean the meter), with a
+  fuel pressure regulator named as its imitator. **Here the meter was
+  changed for a genuine one on 24/9 and the idle cell stood at −5.5 %
+  before and stands after**, so not the element; what both meters
+  share is the air's path to them (box, filter, duct), the plug, its
+  earth and 5 V, and the ECU's input (`refuted.md` C22, *What it does
+  not refute*) — none of it tested for this, and 8h's loads moved the
+  air mass only with the A/C (H21), against an earth that shifts with
+  the loads. **And the regulator's reference is not it** (*the
+  owner*, the same night): 6e's hose off took the regulation to −8.6
+  and −10.2 %, the whole step, so the regulator had its vacuum
+  (`refuted.md` C20); a pressure high under every load contradicts the
+  part-load cell. Of the rail, an injector that drips is left for
+  the idle cell, and the return's form above, which nothing has
+  tested (`plan.md` 8u).
 - **The cell over the three months** (*the owner's observation*: more
   negative as the repairs go on): −5.5 % on 20/8 and −4.7 % on 10/9
   (H11, *The idle cell over time*), −6.3 to −8.6 from 25/10, −9.4

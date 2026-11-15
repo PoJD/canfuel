@@ -544,9 +544,12 @@ and a 10 bar workshop gauge is not. **How it is read**:
   2.0 and over at ten**: the rail is out, in every form — H7's row A4
   goes to `refuted.md`, the idle cell is left to 8x.
 - **High at idle, right with the hose off** (2.8 and over against
-  3.0; the difference smaller than the vacuum): the regulator does not
-  get the intake's vacuum — its port or hose. **032's shape exactly**,
-  rich at idle only; 6e saw the regulator answer, not by how much.
+  3.0; the difference smaller than the vacuum): the regulator not
+  getting the intake's vacuum. **Not expected** (*the owner*, 15/11
+  night; `refuted.md` C20): on 6e the hose off took the regulation to
+  −8.6 and −10.2 %, the whole step a regulator owes its reference, so
+  it had its vacuum, and he feels the vacuum at the port with a
+  finger. *This stood here as a live reading until he pointed at 6e.*
 - **High both ways** (2.9 and 3.4, say): the regulator's own setting
   (the part of 6/2026) or a return that does not flow freely. It
   would pull both cells down alike, which 032 does not show; a return
@@ -555,9 +558,16 @@ and a 10 bar workshop gauge is not. **How it is read**:
   the step of S19 (*The old logs re-read for the split's form*) is the
   rail's, not the purge's.
 - **A needle that trembles or wanders at idle**: a regulator hunting
-  moves the mixture under all four faster than the loop follows — the
-  one reading here that reaches the idle's common part (list A)
-  rather than 032 alone.
+  moves the mixture under all four faster than the loop follows — it
+  would reach the idle's common part (list A) **and not 032**: a
+  swing about the same mean learns no negative cell (*the owner*,
+  15/11 night).
+- **So two readings are left that could give 032's idle cell**: the
+  fall after switch-off, below, and a return that throttles (high at
+  idle, less so on the blip). The owner's reading, agreed: a
+  pressure high at idle alone is refuted, a pressure high everywhere
+  contradicts the part-load cell. The gauge is bought to close H7's
+  rail and S19's start, with little expected of it.
 - **Falling after switch-off**: with the tap shut and still falling,
   the pump's non-return valve — a long crank, nothing for the mixture.
   Holding with the tap shut, so lost on the engine's side: the
