@@ -3121,7 +3121,18 @@ learnt. Three things they do say.
     the element, and not a new meter soiling over the weeks. What
     both meters share — the air's path to them, the plug, its earth
     and 5 V, the ECU's input — is untested (`refuted.md` C22, *What
-    it does not refute*).
+    it does not refute*). **The air's path, as far as it is on
+    record** (*the owner's question*, 15/11 night): a meter reads a
+    sample of the stream and is calibrated for the flow its own box
+    hands it, so a disturbed stream misreads most at the idle's small
+    flow (*general*). Here the box is the car's own (`1C0 129 607 A`),
+    the grid ahead of the element is whole
+    (`photos/airbox-2026-10-12-outlet-maf.jpg`), the element new, and
+    the crack beside the meter's seat was sealed on 12/10
+    (`vehicle-history.md`) — air ahead of the meter is metered either
+    way — **with the idle cell negative before it and after**. Nothing
+    on record speaks for the air's path; the plug, its earth and 5 V
+    and the ECU's input are what is left of this group.
   - **The supply as the ECU sees it, tested at the desk the same
     night** (`vcds/vcds-step8h-loads1-004-033-036.csv`, 004 beside
     the regulation through `53`'s load steps): the regulation's mean
