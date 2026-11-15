@@ -1657,3 +1657,28 @@ The ECU ran the purge valve's test by itself at an idle on the way
 dropped on this drive's 070. Read in `open.md` S1, *The second drive
 on the new N80* and *The phone on the cam cover through a swell and a
 fall*, S3 and H16.
+
+## 15 November 2026 — 8h, the loads against the sensors' voltages
+
+- **Tests:** a captured drive (`53`) with full pulls on the motorway,
+  then a warm stop of 39 minutes, oil 101 °C, the everyday state:
+  ten minutes of plain idle on VCDS 014 055 036, then the A/C (with
+  blower 1), the rear window heater, main beam and the blower on 4,
+  about 45 s each, three rounds on 004 033 036, 004 060 002 and
+  004 026 041 (the blower on 3 in the first, redone on 4); the fault
+  memory before and after every log (empty every time); 032/055 at the
+  end.
+- **Changes after:**
+  - *measured:* only the supply steps with a load (−0.25 to
+    −0.63 V); the ECU's coolant sender moved only with the cluster's,
+    the throttle's second sensor only with the first, the air mass and
+    the knock sensors only with the A/C's load, the front probe not at
+    all; the front heater's resistance figure one count down with the
+    supply; the rear probe +0.02 to +0.07 V, not resolved. No swell in
+    the ten minutes of plain idle (cylinder 3 at −12 to −6 % of a
+    stroke), 055 and 036 steady through them; three swells, to −20,
+    −20 and −22 %, with the loads. 014 at 0.12 % of combustions in the
+    plain idle; 032 −5.5 / +6.3 %, 055 −1.54 g/s at the end.
+
+The drive home was not recorded. Read in `open.md` H21, *8h, the loads
+at a warm stop*, and S1, *8h's plain idle and its loads*.

@@ -59,6 +59,7 @@ symptom in `docs/` is dated after it, with a working lamp.
 | At 12 Nov 2026, evening | **156,011 → 156,030 km**, the queue drive (the bus, 0x520, capture `50`) |
 | At 14 Nov 2026 | **156,069 → 156,089 km**, the first drive on the new N80 (the bus, 0x520, capture `51`) |
 | At 15 Nov 2026 | **156,089 → 156,104 km**, the second, gentle drive on the new N80 (the bus, 0x520, capture `52`) |
+| At 15 Nov 2026 | **156,105 → 156,137 km**, the drive to 8h's loads and its stop (the bus, 0x520, capture `53`) |
 | **Covered in ownership** | **29,800 km over 9.1 years** (to 12 Nov 2026), about 3,300 km a year *(derived)* |
 
 Odometer at the start of each year, from the owner's expense sheet

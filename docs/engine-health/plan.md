@@ -24,7 +24,7 @@ at a garage, once it has a date** (the garage chosen, a date asked for
 sends it** (8e; the probe sent back 13/11, the old rear probe on the
 car meanwhile). **6m for injector 3, at the next evening with the
 upper intake off** (agreed 12/11 night), ahead of item 9; then item 9;
-8h at a laptop session, **the next one** (*the owner*, 15/11), ten minutes of plain idle on 014 055 036 before its loads; 8s at the desk later; **8e's harness at the end**, 8g dropped (*the
+8s at the desk when the owner says; **8e's harness at the end**, 8g dropped (*the
 owner*, 10/11 and 11/11; `open.md` H11, *The relearn drive*;
 `refuted.md` D13; S1, *The rough start of a warm stop*). *Done: 8j and
 its first drive 11/11 (its look at the next wheel off dropped 13/11,
@@ -35,7 +35,7 @@ belt's marks 13/11 morning, 8a's swap and its first drive with 070
 14/11 (`51`), **8a's second, gentle drive with 014 070 004 and 6p's
 phone on the cam cover 15/11 (`52`)**; 8r, the flywheel's mark,
 dropped 14/11 (*the owner*: no window to be seen at the gearbox);
-**8o, the purge shut, dropped 15/11** (Claude, on `52`'s 070).*
+**8o, the purge shut, dropped 15/11** (Claude, on `52`'s 070); **8h, the loads against the sensors' voltages, 15/11 (`53`)**.*
 
 6. **Drive normally; the MFD out from 12/11** (*the owner*), so the
    drives can be captured — the converter goes with the MFD, so no
@@ -144,21 +144,6 @@ dropped 14/11 (*the owner*: no window to be seen at the gearbox);
    reading: S24 closed 12/11, reopened if its dither comes back; on a
    captured drive the capture reads it, 001 not needed) **and 014 always** (P0303 stored on 12/11 with no cut:
    its time is what the log gives).
-8h. **The loads against the sensors' voltages**, Claude in a session on
-   the laptop, a warm engine after
-   a drive, the car standing, the owner in the driver's seat:
-   `usbtin_capture.py` running; the fault memory read first.
-   - **First, ten minutes of plain idle in the everyday state, nothing
-     switched, VCDS 014 055 036** (agreed 15/11).
-   - **Idle, the everyday state, every load off that can be**; then, 30 s
-     each, on and off again with 30 s between: **the A/C, the rear window
-     heater, main beam, the blower on 4**, one at a time; the rear window,
-     main beam and the blower said in the chat as each goes on and off
-     (the A/C and the lights Claude reads off the bus).
-   - The whole sequence three times, VCDS logging a different set each
-     time: **004 033 036**, then **004 060 002**, then **004 026 041**.
-   - Nothing under the bonnet or the car while the engine runs. After it,
-     the fault memory.
 8s. **At the desk, no car** (Claude, a cloud session, when the owner
    says; agreed 15/11): the purge's phases read from b7 at every warm
    standing idle of the older captures, set against cylinder 3's swells.
@@ -564,33 +549,6 @@ that probe: read after, cleared by the owner. A socket seen
 damp or green, or a jump in 033 or 036 as one lead is moved, is the find; both clean and
 steady leave the new rear probe itself for S23. The wires to the ECU
 are measured only with its plug off, so with 6n.
-
-**8h, the loads against the sensors' voltages** (*the owner's request*,
-10/11 night; `open.md` H21, *A shared earth*): an earth that the probes'
-signal returns, the senders and the ECU share would move every voltage
-referred to it when a load switches; a sound one lets only the supply
-(004) dip. So each load step is read against what should not move:
-the coolant and intake-air temperatures (004, NTC senders, a few mV a
-degree when hot, *general*), the front and rear probes (033, 036), the
-throttle's second sensor in volts at a fixed angle (060 field 2,
-G188 — 060 read as a measuring block only; its basic setting is the
-owner's, never Claude's), the air mass (002), the knock sensors (026)
-and the heaters' resistance (041); and the sensors against one another.
-The bus beside it marks the A/C and the lights, carries the engine
-speed and both coolant readings at 10 ms (the ECU's and the cluster's,
-already tested on `47`: steady to half a bit). **What it cannot see**
-(*reasoned*): VCDS samples about once a second, so a load's step is
-caught but noise faster than that is not; three groups at a time, so
-the sets are run one after another, the sequence repeated. Four loads
-because they are the largest the driver can switch from the seat, and
-none needs anyone at the engine. **The ten minutes of plain idle
-first, on 014 055 036** (*agreed with the owner*, 15/11): the idle
-regulator (055) has been logged only in 20 s pieces, and it and the
-rear probe (036) are the last things the ECU measures to set against
-a named swell of 3's — the air, the advance, the regulation, the
-injection time, the purge, the supply and the intake air have been,
-and none moved with it (`open.md` S1); before the loads because a
-load masks a swell.
 
 **8s, the purge on the older captures** (*agreed with the owner*,
 15/11; `open.md` S1, *The second drive on the new N80*): on `52` b7

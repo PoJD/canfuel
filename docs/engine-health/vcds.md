@@ -214,7 +214,10 @@ finding:**
   most likely to be the rear probe's correction of the front loop (SSP
   175 p. 28 describes that second loop; *reasoned*, not labelled so);
   **041** the heater resistance of the front (field 1) and rear (field
-  3) probe, **6.4–47.5 Ω**, and whether each heater is on; **030** both
+  3) probe, **6.4–47.5 Ω**, and whether each heater is on — **on this
+  car the figure moves one count with the supply** (15/11, `53`: the
+  front's 26.8 at 13.2 V and over, 25.5 at 13.0 V and under, in the same
+  second), so a step in it at a load is not the heater; **030** both
   probes' status bits (heater on, ready, regulation active), 111 each.
 - **036 field 2 as read on this car** (9/11 and 10/11): `R1-S2 vyp.`
   for about the first 75 s from a cold start, then `R1-S2 zap.`, then
