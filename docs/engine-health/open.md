@@ -3066,30 +3066,74 @@ learnt. Three things they do say.
   regulator of 6/2026 holding the rail high only at idle**, where
   nearly all the pump's flow returns — a form of H7's rail that 6e's
   hose test does not see and 8u's gauge does.
-- **Whether the split was ever researched on its own** (*the owner's
-  question*, 15/11 night): no — VW's evaluation of 032 (`vcds.md`) and
-  the forums on the idle only. A first search the same night, general
-  sources and none on M5.9.2 or this engine: Ross-Tech's wiki (*Fuel
-  Trim Info*) gives the additive cell to the idle and the
-  multiplicative to every speed and says nothing of opposite signs;
-  **the one cause the trade sources name for a rich idle with a lean
-  part load is the air mass meter** (MOTOR magazine, *Fuel Trim Data: A
-  Powerful Diagnostic Tool*; Bavarian Technic's wiki, *Engine Mixture
-  Adaptations*: "contradicting" adaptations mean the meter), with a
-  fuel pressure regulator named as its imitator. **Here the meter was
-  changed for a genuine one on 24/9 and the idle cell stood at −5.5 %
-  before and stands after**, so not the element; what both meters
-  share is the air's path to them (box, filter, duct), the plug, its
-  earth and 5 V, and the ECU's input (`refuted.md` C22, *What it does
-  not refute*) — none of it tested for this, and 8h's loads moved the
-  air mass only with the A/C (H21), against an earth that shifts with
-  the loads. **And the regulator's reference is not it** (*the
-  owner*, the same night): 6e's hose off took the regulation to −8.6
-  and −10.2 %, the whole step, so the regulator had its vacuum
-  (`refuted.md` C20); a pressure high under every load contradicts the
-  part-load cell. Of the rail, an injector that drips is left for
-  the idle cell, and the return's form above, which nothing has
-  tested (`plan.md` 8u).
+- **The split researched on its own** (15/11 night, *the owner's
+  request*; never done before — VW's evaluation of 032 in `vcds.md`
+  and the forums on the idle only). Nothing found is written for
+  M5.9.2 or the AQY; the vwvortex and newbeetle.org threads on a rich
+  idle on the AEG are behind a paywall and were read as search
+  extracts only.
+  - **Bosch's own sorting of mixture errors** (patent WO 02/18767 A1,
+    Robert Bosch GmbH, the background): an air mass meter's error
+    acts **multiplicatively**; leak air acts **additively per unit of
+    time**; **an error in compensating the injectors' pick-up delay
+    acts additively per injection**. Ross-Tech's wiki (*Fuel Trim
+    Info*) has the additive value hold the injectors open "a fixed
+    amount longer or shorter". So an additive cell that takes fuel
+    out is, in Bosch's terms, fuel arriving by itself per unit of
+    time, or every injection a fixed time too long.
+  - **What the idle cell is worth off idle** (*reasoned*, on the
+    assumption that this ECU applies it as a fixed time at every
+    load, which no source confirms for M5.9.2): the idle's injection
+    is 3.39 ms (002, `53`'s stop), so −8 % is about −0.27 ms; where
+    the injection is twice as long that is −4 %, and a part-load cell
+    of +6 % leaves about +2 %. **The split is then mostly one error
+    seen twice**, a fixed amount too much at idle, with a small lean
+    remainder under load — not a rich fault and a lean fault.
+  - **Purge and adaptation** (Bosch patent DE 35 02 573 C2, 1985, a
+    principle and not this ECU's calibration): the two exclude each
+    other — the purge is shut while the adaptation learns, phases of
+    minutes each, and the purge may be barred at idle. SSP 175
+    (pp. 35–36): an empty canister leans the mixture when the valve
+    opens, a full one enriches it. With `47`'s one clean event
+    (above): **the idle cell is learnt with the valve shut, so the
+    −6 % is not the canister's vapour**; 8x reads it directly.
+  - **VW's own list for an idle value low with part load normal**
+    (`vcds.md`): oil dilution (`refuted.md` C21), N80 open (the new
+    valve, H16), the air mass meter (a genuine new one, 24/9), the
+    probe or its heating (both new, 10/11), **a leaking injector and
+    fuel pressure too high — the two left, and both are 8u's
+    gauge**.
+  - **The trade's reading of opposite signs**: the air mass meter
+    (MOTOR magazine, *Fuel Trim Data: A Powerful Diagnostic Tool*;
+    Bavarian Technic's wiki, *Engine Mixture Adaptations*), a fuel
+    pressure regulator as its imitator. Here the meter's element was
+    changed with the idle cell at −5.5 % before and negative after;
+    what both meters share — the air's path to them, the plug, its
+    earth and 5 V, the ECU's input — is untested (`refuted.md` C22,
+    *What it does not refute*). Sellers list 06A 906 461 A as Bosch
+    0 280 218 002 for the AEG; whether the AQY takes the same
+    revision is not checked against VW's catalogue — the 2018 unit's
+    label, kept, would say what the car had.
+  - **The supply as the ECU sees it, tested at the desk the same
+    night** (`vcds/vcds-step8h-loads1-004-033-036.csv`, 004 beside
+    the regulation through `53`'s load steps): the regulation's mean
+    −0.4 % at 13.2–13.4 V, −0.6 to −0.8 % at 12.8–13.0 V, −1.2 % in
+    the 19 samples at 12.6 V. **Half a point for half a volt at
+    most**, and the A/C's load sits in the same samples: not the idle
+    cell.
+  - **The regulator's reference is not it** (*the owner*, the same
+    night): 6e's hose off took the regulation to −8.6 and −10.2 %,
+    the whole step, so the regulator had its vacuum (`refuted.md`
+    C20); a pressure high under every load contradicts the part-load
+    cell. Of the rail, an injector that drips is left for the idle
+    cell, and the return's form above, which nothing has tested
+    (`plan.md` 8u).
+  - **Read together** (*reasoned*): the idle takes about 8 % less
+    fuel than the ECU reckons, a fixed amount, learnt with the purge
+    shut, on either set of injectors, either air mass meter, either
+    pair of probes, either map and fresh oil. Left: a drip or the
+    return (8u), the air's path to the meter and its wiring, and the
+    ECU's own reckoning of a short injection.
 - **The cell over the three months** (*the owner's observation*: more
   negative as the repairs go on): −5.5 % on 20/8 and −4.7 % on 10/9
   (H11, *The idle cell over time*), −6.3 to −8.6 from 25/10, −9.4
