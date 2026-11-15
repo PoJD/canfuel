@@ -3014,6 +3014,28 @@ learnt. Three things they do say.
   070 beside 001 and 032. **What decides it**: 001, 032 and 070 in one
   log through a drive and a warm stop of five minutes, a capture
   beside it — cell and regulation against the valve, read only.
+  **Put together from what there is** (the same night, *the owner's
+  question*: are those blocks not on record already; 070 is, only on
+  15/11's two logs, beside 014 and 004): b7 on the bus for the valve
+  (S1, *The purge's phases on the older captures*, with its warnings —
+  the fan, a load and the drive's settling share the shape) against
+  the cells logged through `47`'s relearn drive
+  (`vcds/vcds-step8d-drive-014-032-036-2.csv`). **The idle cell stepped
+  at a standing idle six times (five down, one up), every time with b7 at its upper level
+  (25–29), and in none of the windows at the lower one (21–24)**, the
+  last 170 s of the drive among them. One of the six is clean: 70 s
+  into a stop b7 rose from 23 to 28.6 inside 10 s — a shut's shape —
+  and the cell went from −4.7 to −6.3 % in the 40 s after it; the
+  other five sit in a stop's first half minute, where b7 is high
+  anyway. **Leans to "learnt with the valve shut", so to the −6 %
+  being the engine's own and not the canister's vapour**; one event,
+  and b7 is not 070. Not against it: `49`'s stop held b7 at 25–28 for
+  three minutes with the cell still at −7.0 (nothing left to learn),
+  and at `50`'s stop the regulation stayed within ±0.8 % while b7 moved
+  between 20 and 27. Between the standing idles the cell moved
+  **towards zero while driving** (−5.5 → −3.9 % in 80 s of road, −4.7
+  → −3.9 % in under three minutes): the cell is learnt off idle too, where less is
+  taken out, so its figure also depends on how the drive ended.
 - **Whether it is the idle's** (*reasoned*): the adaptation itself, no
   — the loop holds the mean mixture at λ = 1 with it or without (H8,
   *Do 055 and 032 belong together?*). A shared cause, possibly: fuel or
