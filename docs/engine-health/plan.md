@@ -152,18 +152,17 @@ of this plan, *the owner's decision* of 9/10):
 the gauge if the evening allows). A multimeter; the meter's 5-pin
 plug.
 
-- **First, the plug off, the ignition on, the engine not running**:
-  contact 4 to the engine's earth, then contact 4 to contact 3 (in
-  the plug). Contact 2 shows nothing with the engine off — that is
-  normal (it is fed from the fuel pump relay). The figures into the
-  chat.
-- **Then, only if the first finds nothing: the plug on, the engine
-  warm at idle**, probing from behind along the wire's seal with a
+- **The red lock in the car's half of the plug**: the loose pieces out
+  of both halves (a plastic pick, then contact cleaner), and each of
+  the five contacts in the car's half pressed gently from the front
+  with a plastic point — one that moves back is loose. What was found,
+  and a photograph, into the chat.
+- **Then the plug on, the engine warm at idle**, probing from behind along the wire's seal with a
   thin pin, never through the insulation: contact 3 to the battery's
   minus; contact 4 to contact 3; contact 2 to contact 3. **Each with
   main beam off, then on.** The figures into the chat.
-- If the engine lamp lights after the first part: 032/055 read before
-  the code is cleared (8a).
+- If the engine lamp lights at the next start (the plug was off with
+  the ignition on): 032/055 read before the code is cleared (8a).
 
 **8x. 001, 032 and 070 in one log** (*the owner*, 15/11 night), **at
 the next session with the laptop — that may be 8q's captured drive
@@ -620,7 +619,9 @@ meter*, this engine) reads 11–15 V on contact 2 with the engine
 running, 4.5–5.5 V on contact 4 with the ignition on, and contacts 3,
 4, 5 to the ECU at 1.5 Ω at most — **all with the plug off, where no
 current flows, so it finds a broken wire and not a contact of a few
-tenths of an ohm**. The first part is VW's and is expected to pass.
+tenths of an ohm**. The plug-off part, VW's, passed on 15/11 night (`idle-log.md`), as
+expected; it was then that the car's half was found with its red
+lock broken, pieces of it in the meter's half (`open.md` S19).
 The second reads the meter's earth under its own current: contact 3
 against the battery's minus is the offset the ECU's reckoning would
 carry. VW gives no figure for it; **a few tens of millivolts or less
