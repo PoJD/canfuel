@@ -117,8 +117,7 @@ test, the stethoscope, the garage session with the intake off);
 **8e**, the new rear probe when the seller sends it, the harness at
 the end; standing: **8f** at every VCDS session, **6i** the oil level
 about 156,400 km, the MFD's `IdleHealth` and `Misfires` at warm stops;
-by opportunity (*the owner*, 15/11): **8t** 055 and 036 through a
-swell, **8u** the fuel pressure, **8v** the plugs at their change,
+by opportunity (*the owner*, 15/11): **8u** the fuel pressure, **8v** the plugs at their change,
 **8w** the cylinder 4 knock window.
 
 ---
@@ -1813,8 +1812,11 @@ with loads switched, 055 on eighteen stops — the idle air and its
 regulation hold while 3 swells and falls, and the mixture behind the
 converter with them, as the injection time, the advance and the front
 loop's regulation showed before (*The swell's shape*; *The queue
-drive, and what the ECU sees through a swell*). What is left of
-`plan.md` 8t is 036 through a swell with no load switched.
+drive, and what the ECU sees through a swell*). What was left of it,
+`plan.md` 8t, 036 through a swell with no load switched, was **dropped
+the same evening** (*the owner*, at Claude's proposal): 055, the air,
+the injection time and the front loop already say that nothing the ECU
+measures moves with the swell, so one more 036 would decide nothing.
 
 **Before and after the canister and the new valve** (14/11 evening,
 *the owner's question*: do the drives on the canister and on the new

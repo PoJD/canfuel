@@ -22,7 +22,7 @@ Captures only where an item asks for one. **Next: 8q, the timing belt
 at a garage, once it has a date** (a date asked for 13/11); **6m for
 injector 3, at the next evening with the upper intake off**, ahead of
 item 9; then item 9; **the new rear probe when the seller sends it**
-(8e), **its harness at the end**; **8t, 8u, 8v, 8w by opportunity**
+(8e), **its harness at the end**; **8u, 8v, 8w by opportunity**
 (*the owner*, 15/11). *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
 
@@ -105,12 +105,6 @@ item 9; then item 9; **the new rear probe when the seller sends it**
      lead the engine stumbled at.
 8a. **At any engine lamp**: the odometer, the tank's needle and the outside
    temperature into the chat, and 032 read before the code is cleared.
-8t. **055 and 036 through a swell** (*the owner*, 15/11): at the next
-   warm stop of ten minutes or more with VCDS connected anyway — 8q's
-   captured stop after the belt at the latest — **014 055 036 logged
-   for the whole stop**, every load off but the everyday state, no
-   throttle. With the MFD in, `IdleHealth` by the minute into the chat
-   as well; with a capture, nothing more.
 8u. **The fuel pressure** (*the owner*, 15/11): a fuel pressure gauge
    bought and teed in where VW's procedure for this engine puts it
    (Claude reads the procedure out of the manual before the gauge is
@@ -134,7 +128,7 @@ item 9; then item 9; **the new rear probe when the seller sends it**
      along the brackets, the heat shields and the ancillaries for a
      buzz.
    - **026 in neutral and 020 on a drive with pulls**, with VCDS
-     connected anyway (020 with 8t or 8q's captured drive): 026 from
+     connected anyway (020 on 8q's captured drive or any drive with VCDS on): 026 from
      idle to about 3,500 rpm in neutral, slowly; 020 on two or three
      full-throttle pulls in 3rd or 4th.
 8q. **The timing belt renewed at a garage** (*the owner's decision*,
@@ -281,7 +275,7 @@ counts at idle (S3). So:
   *What it costs the converter*).
 
 `open.md`'s tests are reference, **not a to-do list**; what goes into
-this plan is the owner's choice (*15/11*: 8t, 8u, 8v and the cylinder 4
+this plan is the owner's choice (*15/11*: 8u, 8v and the cylinder 4
 knock window, 8w, which stayed out from 9/10 until then).
 Where the work stands is in `idle-log.md` and `open.md`, *Where it
 stands*.
@@ -513,15 +507,6 @@ as the effect; the A/C's figure for how much load still calms it
 **8a, the details at a lamp**: this ECU keeps no freeze frame; with
 the odometer, the tank and the weather the next code can be set
 against fills and temperature, and 032 is reset by a clear.
-
-**8t, 055 and 036 through a swell** (`open.md` S1, *8h's plain idle
-and its loads*): 055 (the idle air's learnt value and its regulation)
-and 036 (the rear probe) have been read at 3's floor; through swells,
-055 on 18 warm stops of the older captures (no move) and 036 once with
-loads being switched (`53`, no move); 036 through a swell on a plain
-idle is what is left,
-and any warm stop with VCDS on 014 055 036 gives it. 014 so that the
-swell is seen in the log itself when there is no capture.
 
 **8u, the fuel pressure** (`open.md` H7, the row A4; S19): VW's
 figures for this engine are about 2.5 bar at idle with the
