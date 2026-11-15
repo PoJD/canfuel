@@ -102,14 +102,29 @@ its sockets only with a thin pin of the right size, never a meter tip.
 **8a. At any engine lamp**: the odometer, the tank's needle and the outside
 temperature into the chat, and 032 read before the code is cleared.
 
-**8u. The fuel pressure** (*the owner*, 15/11): a fuel pressure gauge
-bought and teed in where VW's procedure for this engine puts it
-(Claude reads the procedure out of the manual before the gauge is
-bought, so it fits). Warm, at idle: **the pressure with the
-regulator's vacuum hose on, then off; then the engine switched off
-and the pressure after ten minutes**. Each figure into the chat. Rags
-under the joint, no smoking, the engine cold before the gauge comes
-off.
+**8u. The fuel pressure** (*the owner*, 15/11; the gauge being
+ordered 15/11 night): a gauge **with a shut-off tap, a scale of 0–4 or
+0–6 bar and good to 0.1 bar** (class 1.6 or better), teed into **the
+supply line where it meets the rail** — before ordering, a photograph
+of that joint into the chat, so the adapter fits. Fitted on a cold
+engine, the system let down first: a rag round the joint, loosened
+slowly. Then, the tap open, the vacuum gauge on the intake beside it:
+
+- **From the cold start to the radiator fan, at idle**: the pressure
+  and the needle (steady, trembling, wandering) every few minutes.
+- **Warm: three minutes without touching anything**, eyes on the
+  needle — whether it moves, when, and by how much.
+- **The regulator's vacuum hose off, then on again**: both pressures,
+  and the intake's vacuum.
+- **A blip of the throttle**: where the needle goes and how fast it
+  comes back.
+- **Engine off, the tap left open: the pressure at once, after one
+  minute and after ten.** Under 2.0 bar at ten: start again, let it
+  build, switch off and shut the tap in the same moment, and read
+  again after ten.
+
+Every figure into the chat. No smoking, the engine cold before the
+gauge comes off.
 
 **8v. The plugs at their next change** (*the owner*, 15/11): before the
 new ones go in, the four old ones laid out in firing order and
@@ -516,6 +531,45 @@ switching off is S19's question — a rail that bleeds into a cylinder
 while standing floods it, the bad start of 24/10 and P0172 (S19); a
 fall below 2.0 is read by VW's order: the pump's non-return valve,
 then the regulator, then the O-rings. Never gauged on this car.
+**VW's procedure** (*Checking fuel pressure regulator and holding
+pressure*, `vcds.md`, read again 15/11 night): V.A.G 1318 with its
+adapters in the supply line, a shut-off tap in the gauge; the page
+does not name the union, hence the photograph. **What a figure is
+worth** (*reasoned*: the flow goes with the square root of the
+pressure across the injector, 3.0 bar by design): 3 % of fuel is
+0.2 bar, 6 % is 0.4, 8 % is 0.5 — so the gauge has to be good to 0.1,
+and a 10 bar workshop gauge is not. **How it is read**:
+- **2.4–2.6 at idle, 2.9–3.1 with the hose off, the difference equal
+  to the intake's vacuum, the needle still through the three minutes,
+  2.0 and over at ten**: the rail is out, in every form — H7's row A4
+  goes to `refuted.md`, the idle cell is left to 8x.
+- **High at idle, right with the hose off** (2.8 and over against
+  3.0; the difference smaller than the vacuum): the regulator does not
+  get the intake's vacuum — its port or hose. **032's shape exactly**,
+  rich at idle only; 6e saw the regulator answer, not by how much.
+- **High both ways** (2.9 and 3.4, say): the regulator's own setting
+  (the part of 6/2026) or a return that does not flow freely. It
+  would pull both cells down alike, which 032 does not show; a return
+  that throttles would show more at idle than on the blip.
+- **The needle rising by 0.2 bar or more inside the three minutes**:
+  the step of S19 (*The old logs re-read for the split's form*) is the
+  rail's, not the purge's.
+- **A needle that trembles or wanders at idle**: a regulator hunting
+  moves the mixture under all four faster than the loop follows — the
+  one reading here that reaches the idle's common part (list A)
+  rather than 032 alone.
+- **Falling after switch-off**: with the tap shut and still falling,
+  the pump's non-return valve — a long crank, nothing for the mixture.
+  Holding with the tap shut, so lost on the engine's side: the
+  regulator or **an injector that drips** — fuel per unit of time,
+  most at idle, into one cylinder, which runs rich while the loop
+  leans the other three: **the one finding that would give 032's idle
+  cell, S19's flooded start and an uneven idle together**. Against it
+  beforehand: the injectors are new and their tips were dry on the
+  borescope, and 3 was weak on the old set.
+- **Not read by this test**: the part-load cell. Low pressure under
+  load shows only with the engine pulling, and the gauge does not go
+  on a drive.
 
 **8v, the plugs at their change** (`open.md` H18, the row A7): oil
 past the valve-stem seals leaves an oily deposit on the firing end,
