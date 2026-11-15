@@ -1745,9 +1745,9 @@ stop*).
 
 - **The ten minutes of plain idle brought no swell**: cylinder 3 at
   −12 to −10 % with 1–13 weak strokes a minute, easing to −6 to −8 %
-  by the eleventh to thirteenth minute. **So 055 and 036 have still not
-  been read through a named swell** — the question the ten minutes were
-  for. Through what came: the idle regulator (055 field 2) within
+  by the eleventh to thirteenth minute — no swell for the ten minutes
+  to read 055 and 036 through (*055 had been, on older stops, below*).
+  Through what came: the idle regulator (055 field 2) within
   −0.13 to +0.07 g/s (mean −0.02), its adaptation −1.32 g/s held
   (−1.27 to −1.37), the rear probe switching 0.09–0.67 V about a mean
   of 0.45; over the 21 windows of 30 s, r −0.24 (the regulator) and
@@ -1782,15 +1782,33 @@ stop*).
   −1.54 g/s. The fault memory empty before and after every log; the
   lamp only before the start.
 
+- **055 through the swells of the older captures** (read 15/11
+  evening, *the owner's question*: "was 055 really never logged through
+  a swell?" — it was, and never read so; every VCDS log with 055 set on
+  its capture by engine speed, `50`'s stop log by its header's clock
+  from the drive's; 3's deficit and 055 in windows of 20 s at every
+  standing idle with oil 80 °C and over, each idle's first window left
+  out; *a script not kept*): **18 warm stops in 8 captures** (`26`,
+  `28`, `29`, `30`, `31`, `42`, `43`, `50`, 10/2026–12/11), 100
+  windows, 3 down to −28.9 %. **The idle regulator (055 field 2) does
+  not follow the swell**: −0.06 g/s in the 63 windows at −15 % and
+  deeper against −0.05 g/s in the 16 at −10 % and shallower, r 0.02
+  within a stop; **`43`'s fall with no cut** (3 from −25.4 to −1.8 %
+  in about 100 s, 3/11) passed with the regulator at −0.07 to −0.02.
+  The learnt value (field 3) only creeps, as an adaptation does. Left
+  out: `26`'s first stop, where the learnt value had just been reset
+  and the regulator carried −0.9 to −1.3 g/s; the jumps of +0.3 to
+  +0.5 g/s come in a stop's first window, the arrival.
+
 **Read** (*reasoned*). The plain idle sat near 3's floor for ten
 minutes, so it reads 055 and 036 only where nothing happens: there,
-neither moves. **036 went through one swell, with loads switched, and
-did not move**: the swell does not shift the mixture behind the
-converter that the rear probe sees, as the injection time and the
-front loop's regulation showed before it (*The swell's shape*). **055
-through a swell, and 036 through one with no load switched, are still
-to come**: `plan.md` 8t (*the owner*, 15/11: kept in the plan as it
-is), any warm stop with VCDS on 014 055 036.
+neither moves. **Through the swells neither moves either**: 036 on one
+with loads switched, 055 on eighteen stops — the idle air and its
+regulation hold while 3 swells and falls, and the mixture behind the
+converter with them, as the injection time, the advance and the front
+loop's regulation showed before (*The swell's shape*; *The queue
+drive, and what the ECU sees through a swell*). What is left of
+`plan.md` 8t is 036 through a swell with no load switched.
 
 **Before and after the canister and the new valve** (14/11 evening,
 *the owner's question*: do the drives on the canister and on the new
@@ -3925,6 +3943,10 @@ swap injector 3 with another if the cylinder stays named.
 | S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | ~ | ~ | — | ~ | — | — | — | ~ | — | — | ✔ | — |
+
+**Against, the swell** (15/11, S1, *8h's plain idle and its loads*):
+the idle regulator (055 field 2) holds through cylinder 3's swells and
+falls on 18 warm stops, r 0.02 within a stop.
 
 **For: S20, by its timing** (*owner*, 26/10): the speed has been hard
 to hold at a steady pedal since the job of 1–2/10, which fitted this
@@ -6400,7 +6422,7 @@ small unevenness on all four, most of `IdleHealth`'s floor and nothing
 |---|---|---|---|
 | A1 | **the timing belt a tooth out** | The common part is a constant — the same within 5 % at every warm idle since 24/9, answering only to a load, the gas and temperature — which a fixed fault on all four gives and a source that varies by the day does not (S1, *The swell's shape*); the cam's timing sets the burnt gas kept at idle. **The marks, 8i (13/11)**: the cam's OT mark set; the crank pulley's only notch 30–60° of crank behind the groove on the block by eye and borescope, **2–3 cm along the rim, more likely more, not over 5 cm** by the owner's fingers the same evening (about 15–40°, one to two teeth, if the pulley is 14–16 cm across — the diameter a guess); the cam advanced if both are the true marks (the direction the owner's, read off the part), and if they are not, the direction is open too (*the owner*, 14/11); **or a pulley bolted on turned against its sprocket** (*the owner*); where the true mark is was not looked up. **Against more than about a tooth**: settled full throttle takes 496 mg of air a stroke at 2,400 rpm, 520 at 3,600–4,400, 485 at 5,200, 452 at 5,600 (85–90 g/s at the top, every 003 log; 84–90 g/s at 5,000–5,500 in sixteen logs from 9/2026 to 9/11), and the acceleration needs 0.94 of b7 with no tilt by gear or band (83 pulls; `drivescan.py --pulls`) — 1.5–3 teeth of advance would take the top of the filling away (*general*); a tooth or less is not excluded with no healthy AQY to set it against. The ECU would not necessarily say: G40 only identifies cylinder 1 (SSP 175, p. 49), though VW lists 16725 / P0341 for its signal out of place, never stored here. Belt from 10/2017. **Kept first by the owner until the belt is renewed** (13/11) | **8q**: the mechanic's count of teeth before the old belt comes off, and the common part by capture before (`52`, `53`) and after the new belt (`plan.md` 8q) |
 | A2 | **H0** normal for this engine | A common part that no repair, day or drive has moved, and that answers only to the charge, is what an engine's own scatter looks like; a fixed fault reads the same, and no healthy AQY says which. Against: 014 far above VW's 0–5 — but that is 3's, list B | 014 on a healthy AQY, VCDS only (a capture is not obtainable) |
-| A3 | **H8** throttle and idle control | The air and the idle regulation act on all four alike, and S20 dates from this throttle (*owner*). Against: 055's two fields sum to the same correction at every warm idle (27/10), so a reset or the A/C gives no more air; the advance's scatter does not go with the common part (003, 12/11); 014 does not follow 055's learnt value (`refuted.md` C19) | no test left for the idle; S20 keeps it |
+| A3 | **H8** throttle and idle control | The air and the idle regulation act on all four alike, and S20 dates from this throttle (*owner*). Against: 055's two fields sum to the same correction at every warm idle (27/10), so a reset or the A/C gives no more air; the advance's scatter does not go with the common part (003, 12/11); 014 does not follow 055's learnt value (`refuted.md` C19); the regulator holds through 3's swells on 18 stops (15/11) | no test left for the idle; S20 keeps it |
 | A4 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it, shared with H16. Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
 | A5 | **H11** both probes shifted | What is left is the idle-only form — the front probe reading rich in the idle's cool exhaust, so the true mixture lean; it fits 032's negative idle cell with part load untouched. Against: both probes replaced 10/11 and the idle as rough; on the relearn drive its marks 1, 3, 4 and 5 failed (H11, *The relearn drive*); the rear probe's state never tracked `IdleHealth` | nothing planned; 036 watched at VCDS sessions (`plan.md` 8f) |
 | A6 | **H2** a leak ahead of the converter | Widened 10/11 to the zone between the probes (the joint, the flex, the plugged boss), which gives a lean rear probe at idle but not 032 or the dips; S2, S11 and S14's air. Against: the visible manifold has no soot and no holes (31/10); the part under its heat shield unseen; cannot pick a cylinder | the warm tailpipe test, both zones (`plan.md` 7, only if Claude asks) |

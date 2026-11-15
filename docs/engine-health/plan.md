@@ -516,9 +516,10 @@ against fills and temperature, and 032 is reset by a clear.
 
 **8t, 055 and 036 through a swell** (`open.md` S1, *8h's plain idle
 and its loads*): 055 (the idle air's learnt value and its regulation)
-and 036 (the rear probe) have been read at 3's floor; 036 once through
-a swell with loads being switched (`53`, no move), 055 never; whether
-either moves as 3 swells and falls on a plain idle is not known,
+and 036 (the rear probe) have been read at 3's floor; through swells,
+055 on 18 warm stops of the older captures (no move) and 036 once with
+loads being switched (`53`, no move); 036 through a swell on a plain
+idle is what is left,
 and any warm stop with VCDS on 014 055 036 gives it. 014 so that the
 swell is seen in the log itself when there is no capture.
 
