@@ -26,218 +26,234 @@ item 9; then item 9; **the new rear probe when the seller sends it**
 (*the owner*, 15/11). *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
 
-6. **Drive normally; the MFD back in from 15/11** (*the owner*, after
-   8h): `IdleHealth` and `Misfires` on the display again, **no captures
-   until 8q's warm stop after the belt** (the one before it is `53`).
-   Brisk driving once warm is welcome. When captures resume, the MFD
-   comes out for them — the converter goes with the MFD.
-   - **Captures, when they resume**: **as many drives as
-     the laptop can ride along**, each ending in a warm stop where one
-     comes; Claude reads from the capture whether a drive was gentle
-     or brisk (*the owner*, 12/11: nothing to report). Claude runs
-     the capture; **VCDS on 014 always** (with 020 and 033 on a drive
-     with pulls), 032 and 055 for 20 s before the drive and after the
-     stop (8f). Once the oil is at
-     90 °C or more, **two or three full-throttle pulls** in 3rd or 4th
-     to about 5,500 rpm where it is safe. Write the stops. **No
-     injector cut**: Claude names the cylinders from the capture
-     (`tools/cylscan.py`).
-   - **To end a captured drive: "konec" into the chat** — at the last
-     idle before home, or up to about five minutes before the garage.
-     Claude closes the capture and VCDS at once and uploads while the
-     drive goes on; at the garage, switch off and go. **A stop of about
-     five minutes** (a petrol station) when Claude asks for one.
-   - **At the same warm stops, `Misfires` and `MisfAvg` beside
-     `IdleHealth`** into the chat (0x604; JP1 stays off, so 0x603 and the
-     LEDs are dark by design).
-   - At several warm stops, **a word on what
-     came before each stop** (queuing, or a brisk stretch), and the A/C's
-     figure too whenever it happens to be on; **an odd cold misfire or a
-     drop-out on one cylinder** goes into the chat at once.
-   - **A hard jerk at a crawl or on moving off** (`open.md` S12): the
-     clock time into the chat as soon as it is safe, with the gear and
-     roughly the speed; on a captured drive, **"teď"** at once.
-6i. **The oil level on the new oil, about every 500 km** from the first
-   reading (27/10, 155,024 km, at the top mark; 11/11 evening about
-   1–2 mm under it; **next about 156,400 km**): the car on level ground
-   and **at least 5 minutes standing**, the dipstick out, wiped, in, out,
-   and **photographed**; the odometer into the chat. Any top-up: the litres and the odometer
-   into the chat.
-6m. **The injector circuits among themselves, with a multimeter** (the
-   owner's, 5/11), engine off, ignition off; the upper intake off only if
-   the connectors cannot be reached without. First touch the two probes
-   together and note the reading: it is taken off every value. The four
-   injector connectors off; **from contact 1 of one connector to contact
-   1 of each other**, all six pairs; **each injector across its own two
-   pins**, all four. **If the loom has a connector of its own** on the way
-   to the main harness: from contacts 1 and 2 of each injector connector to
-   the pin of that connector it reaches (find it with the beeper), all
-   eight. While each value is on the display, **flex the loom near 3 and
-   4** and watch it. Write every value, and any that moved.
-   **Only 1 and 4 are reachable with the intake on** (*owner*, 5/11), so
-   **at the owner's next evening with the upper intake off, not waiting
-   for item 9's garage session**; **injector 3's circuit is the one to
-   watch and to flex**; with the intake off, **photograph runner 3's
-   joint to the lower manifold** as well.
-6n. **The injector circuits to the ECU** — later, only with VCDS on the
-   laptop: 032/055 read first (unplugging the ECU may reset them, as a
-   disconnect does), then the ECU's 80-pin plug off. One extension lead
-   for all four: its own resistance measured end to end and taken off.
-   **From contact 2 of each injector connector to its pin: 73 (cylinder
-   1), 80 (2), 58 (3), 65 (4)**; check the numbers on the plug, and enter
-   its sockets only with a thin pin of the right size, never a meter tip.
-7. **Only if Claude asks after 6:**
-   - **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
-     Outdoors; the tailpipe closed for a few seconds at a time, never
-     longer. The phone records at the manifold; mark each closure aloud on
-     the recording; listen back and report engine bay or underbody.
-     Photograph the flange, the front pipe and 3 and 4's pipes from below
-     for soot. **Leaks there → a new manifold**: new gasket to the head,
-     new nuts, new outlet gasket, the probe refitted with anti-seize. Part
-     `06A 253 031` + suffix: read the number cast into the manifold, or
-     ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
-     Penetrating oil on the studs the days before; a snapped stud goes to
-     a garage.
-   - **The high-voltage side in the dark**, a damp evening, warm idle:
-     bonnet open, lights off, look along the leads and the coil for a
-     spark or a blue glow; then a fine water mist over one lead at a time
-     and the coil, hands and bottle clear. Write anything seen and which
-     lead the engine stumbled at.
-8a. **At any engine lamp**: the odometer, the tank's needle and the outside
-   temperature into the chat, and 032 read before the code is cleared.
-8u. **The fuel pressure** (*the owner*, 15/11): a fuel pressure gauge
-   bought and teed in where VW's procedure for this engine puts it
-   (Claude reads the procedure out of the manual before the gauge is
-   bought, so it fits). Warm, at idle: **the pressure with the
-   regulator's vacuum hose on, then off; then the engine switched off
-   and the pressure after ten minutes**. Each figure into the chat. Rags
-   under the joint, no smoking, the engine cold before the gauge comes
-   off.
-8v. **The plugs at their next change** (*the owner*, 15/11): before the
-   new ones go in, the four old ones laid out in firing order and
-   **photographed close on their firing ends**, plug 3 beside the
-   others; oily, wet or sooty on one, into the chat.
-8w. **The cylinder 4 knock window** (*the owner*, 15/11; until then out
-   of this plan, *the owner's decision* of 9/10):
-   - **G66, the knock sensor at 3 and 4**: its connector off, looked
-     into, back on until it clicks; the sensor's bolt checked with a
-     torque wrench at VW's figure (Claude reads it out of the manual
-     first). What was found into the chat.
-   - **A loose part at about 3,000 rpm in neutral**, warm, the bonnet
-     open: someone holds 3,000 rpm while the other listens and feels
-     along the brackets, the heat shields and the ancillaries for a
-     buzz.
-   - **026 in neutral and 020 on a drive with pulls**, with VCDS
-     connected anyway (020 on 8q's captured drive or any drive with VCDS on): 026 from
-     idle to about 3,500 rpm in neutral, slowly; 020 on two or three
-     full-throttle pulls in 3rd or 4th.
-8q. **The timing belt renewed at a garage** (*the owner's decision*,
-   13/11; a date asked for 13/11): the belt, its tensioner and idler, and the water pump.
-   **Before the old belt is loosened**, the mechanic sets the crank to
-   TDC of cylinder 1 and says how many teeth the camshaft sprocket's
-   mark is off its mark, which way, and photographs both marks; the
-   answer into the chat. Before the garage: `52` and `53` (15/11) are
-   the captured warm stops, if nothing is changed on the car before it.
-   After it: the
-   fault memory read, 032/055 for 20 s, and a captured drive to a warm
-   stop of ten minutes.
-8f. **032 for 20 s at every session with VCDS connected**, until both
-   cells have held for three drives; **and 036 for a minute** at a warm
-   idle and on the road when VCDS is on anyway (the rear probe watched
-   now and then, *the owner*, 11/11). **032 read first, before any code
-   is cleared**; **on a logged drive, 001 in place of 055** (G62's
-   reading; on a captured drive the capture reads it) **and 014
-   always** (a P0303 stored with no cut: its time is what the log gives).
-9. **By what 6m and 8q leave** (Claude says which):
-   - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
-     a kit.
-   - **A stethoscope (or a long screwdriver) on the cam cover above
-     cylinder 3 and above cylinder 4, hot**, against 1 and 2: a tick or
-     a hiss on one, at idle.
-   - **One garage session with the upper intake off, straight after a
-     drive** (oil at 80 °C or more), in this order:
-     - **a warm leak-down on all four**: all four plugs out (the same
-       plugs back afterwards; plug 3's gap measured while out); each
-       cylinder at TDC on its compression stroke, firing order 1-3-4-2;
-       the crank held while the air is on. For each: **the percentage,
-       and where it hisses** — tailpipe, throttle, oil filler, bubbles
-       in the coolant tank, the next plug hole. **Cylinder 3 twice**:
-       the crank turned two full turns between the two readings.
-       **The engine switched off in a swell** (agreed 12/11 evening):
-       on the way in it idles until Claude, from the capture, says 3
-       is swelling — or, with the MFD in, `IdleHealth` has stood above
-       75 for a minute with every load off — and is switched off then,
-       not after it has calmed;
-     - **a warm compression test on all four** straight after, the
-       throttle held open;
-     - **the cam cover off: VW's tappet check** — the cam of each tappet
-       pointing up, the play felt; more than 0.2 mm, the tappet renewed;
-       otherwise each pressed down with a plastic or wooden wedge and a
-       0.2 mm feeler tried between cam and tappet; the eight results
-       into the chat;
-     - **6m's injector circuits** while the intake is off, if not done
-       before;
-     - **the lower manifold's gasket**: renewed if the garage takes
-       the lower manifold off as well (the tear at runner 4; **runner
-       3's joint is the one the idle points at**, 12/11).
-   - With VCDS connected anyway after a stored P030x: **a generic
-     OBD-II read** (modes 02 and 06), read only, saved.
-   - **No head off** (*the owner*, 4/11, leaning, not final): if the
-     leak-down names 3's exhaust seat, the car is driven as it is and S1
-     most likely closed as *acceptable, cause known*.
+**6. Drive normally; the MFD back in from 15/11** (*the owner*, after
+8h): `IdleHealth` and `Misfires` on the display again, **no captures
+until 8q's warm stop after the belt** (the one before it is `53`).
+Brisk driving once warm is welcome. When captures resume, the MFD
+comes out for them — the converter goes with the MFD.
 
-8e. **The probe when it comes, the harness at the end** (*the owner*,
-   11/11 and 12/11; `refuted.md` D13). **The new rear probe went back to
-   the seller under warranty 13/11; its replacement fitted when it
-   comes**, the old rear probe on the car meanwhile. The new one
-   is fitted as the first was: Bosch's paste on the thread only, nothing
-   in the connector, the lead clear of the exhaust and not pressed into
-   the harness box. If P0137 comes back with it, the harness — cold and
-   the ignition off, the connector off and **the signal wire from the
-   harness-side socket to the ECU's pin** read for continuity and for a
-   leak to earth, the lead flexed by the exhaust. Nothing measured with the engine running, nobody under
-   the car with it on. Then, at a cold engine, from below:
-   - **The rear probe's lead, all the way to its connector**: where it
-     runs, whether it touches or lies within a finger's width of the
-     exhaust or the converter, any melted, shiny or hardened
-     insulation; the connector latched and its seal in place; then the
-     connector off, both halves looked into for green, water or a pushed-back
-     pin, and back on until it clicks. **Photographs** of the run and
-     of anything found; into the chat.
-   - **The two damaged wires** (found 10/11 evening: the rear probe's
-     blue, its outer white, a heater lead; the front probe's brown, its
-     grey): dried and taped for now (*the owner*); for good, each cut
-     back to bright copper on both sides of the damage and joined with a
-     crimp or solder sleeve under heat-shrink (VW's wiring repair or any
-     sealed butt connector). The red wire beside the blue looked at the
-     same way. They are taped and the bundle wrapped (*the owner*, 10/11
-     night); the splice is what is left.
-   - **The rear socket's broken-looking outer terminal**, on the rear
-     probe's signal (the cavity meeting the probe's black wire): the
-     terminal replaced —
-     a VW repair terminal crimped on, or the socket half with its
-     pigtail — before anything else is measured on that wire.
-   - **The rear connector's bent pin** straightened so it seats like
-     the others; both connectors dried again, then **pushed
-     until each latches with a click** — the front one included.
-   - **Nothing sprayed or greased into either probe's connector**, ever
-     again — no contact cleaner, no dielectric grease; **the probe's own
-     lead and its connector never sealed airtight** (no heat-shrink with
-     glue, no silicone over them). The tape over the harness side stays.
-   - **Both probes' harness on to the ECU** (the owner's own look,
-     10/11): from each probe's connector along the loom as far as it
-     can be followed — where it runs, what it is tied to, anything it
-     rubs on, and **every earth point met on the way** (an eyelet on
-     the block, the gearbox or the body): tight, clean, no green. A
-     photograph of the route and of each earth point.
-   - **Both probes' sockets on the harness side** (the front one too):
-     each connector off, the harness half looked into for green, water,
-     a pin pushed back or loose in its cavity; photographed; back on
-     until it clicks.
-   - **The new probes' tightness**: with the spanner they were fitted
-     with, whether either turns further at the effort they were
-     tightened with. Which, and about how far, into the chat; nothing
-     undone.
+- **Captures, when they resume**: **as many drives as
+  the laptop can ride along**, each ending in a warm stop where one
+  comes; Claude reads from the capture whether a drive was gentle
+  or brisk (*the owner*, 12/11: nothing to report). Claude runs
+  the capture; **VCDS on 014 always** (with 020 and 033 on a drive
+  with pulls), 032 and 055 for 20 s before the drive and after the
+  stop (8f). Once the oil is at
+  90 °C or more, **two or three full-throttle pulls** in 3rd or 4th
+  to about 5,500 rpm where it is safe. Write the stops. **No
+  injector cut**: Claude names the cylinders from the capture
+  (`tools/cylscan.py`).
+- **To end a captured drive: "konec" into the chat** — at the last
+  idle before home, or up to about five minutes before the garage.
+  Claude closes the capture and VCDS at once and uploads while the
+  drive goes on; at the garage, switch off and go. **A stop of about
+  five minutes** (a petrol station) when Claude asks for one.
+- **At the same warm stops, `Misfires` and `MisfAvg` beside
+  `IdleHealth`** into the chat (0x604; JP1 stays off, so 0x603 and the
+  LEDs are dark by design).
+- At several warm stops, **a word on what
+  came before each stop** (queuing, or a brisk stretch), and the A/C's
+  figure too whenever it happens to be on; **an odd cold misfire or a
+  drop-out on one cylinder** goes into the chat at once.
+- **A hard jerk at a crawl or on moving off** (`open.md` S12): the
+  clock time into the chat as soon as it is safe, with the gear and
+  roughly the speed; on a captured drive, **"teď"** at once.
+
+**6i. The oil level on the new oil, about every 500 km** from the first
+reading (27/10, 155,024 km, at the top mark; 11/11 evening about
+1–2 mm under it; **next about 156,400 km**): the car on level ground
+and **at least 5 minutes standing**, the dipstick out, wiped, in, out,
+and **photographed**; the odometer into the chat. Any top-up: the litres and the odometer
+into the chat.
+
+**6m. The injector circuits among themselves, with a multimeter** (the
+owner's, 5/11), engine off, ignition off; the upper intake off only if
+the connectors cannot be reached without. First touch the two probes
+together and note the reading: it is taken off every value. The four
+injector connectors off; **from contact 1 of one connector to contact
+1 of each other**, all six pairs; **each injector across its own two
+pins**, all four. **If the loom has a connector of its own** on the way
+to the main harness: from contacts 1 and 2 of each injector connector to
+the pin of that connector it reaches (find it with the beeper), all
+eight. While each value is on the display, **flex the loom near 3 and
+4** and watch it. Write every value, and any that moved.
+**Only 1 and 4 are reachable with the intake on** (*owner*, 5/11), so
+**at the owner's next evening with the upper intake off, not waiting
+for item 9's garage session**; **injector 3's circuit is the one to
+watch and to flex**; with the intake off, **photograph runner 3's
+joint to the lower manifold** as well.
+
+**6n. The injector circuits to the ECU** — later, only with VCDS on the
+laptop: 032/055 read first (unplugging the ECU may reset them, as a
+disconnect does), then the ECU's 80-pin plug off. One extension lead
+for all four: its own resistance measured end to end and taken off.
+**From contact 2 of each injector connector to its pin: 73 (cylinder
+1), 80 (2), 58 (3), 65 (4)**; check the numbers on the plug, and enter
+its sockets only with a thin pin of the right size, never a meter tip.
+
+**7. Only if Claude asks after 6:**
+
+- **The exhaust test again, warm**, after a drive to 95–100 °C of oil.
+  Outdoors; the tailpipe closed for a few seconds at a time, never
+  longer. The phone records at the manifold; mark each closure aloud on
+  the recording; listen back and report engine bay or underbody.
+  Photograph the flange, the front pipe and 3 and 4's pipes from below
+  for soot. **Leaks there → a new manifold**: new gasket to the head,
+  new nuts, new outlet gasket, the probe refitted with anti-seize. Part
+  `06A 253 031` + suffix: read the number cast into the manifold, or
+  ask by VIN. New from VW about €350–490, used 700–1,500 Kč.
+  Penetrating oil on the studs the days before; a snapped stud goes to
+  a garage.
+- **The high-voltage side in the dark**, a damp evening, warm idle:
+  bonnet open, lights off, look along the leads and the coil for a
+  spark or a blue glow; then a fine water mist over one lead at a time
+  and the coil, hands and bottle clear. Write anything seen and which
+  lead the engine stumbled at.
+
+**8a. At any engine lamp**: the odometer, the tank's needle and the outside
+temperature into the chat, and 032 read before the code is cleared.
+
+**8u. The fuel pressure** (*the owner*, 15/11): a fuel pressure gauge
+bought and teed in where VW's procedure for this engine puts it
+(Claude reads the procedure out of the manual before the gauge is
+bought, so it fits). Warm, at idle: **the pressure with the
+regulator's vacuum hose on, then off; then the engine switched off
+and the pressure after ten minutes**. Each figure into the chat. Rags
+under the joint, no smoking, the engine cold before the gauge comes
+off.
+
+**8v. The plugs at their next change** (*the owner*, 15/11): before the
+new ones go in, the four old ones laid out in firing order and
+**photographed close on their firing ends**, plug 3 beside the
+others; oily, wet or sooty on one, into the chat.
+
+**8w. The cylinder 4 knock window** (*the owner*, 15/11; until then out
+of this plan, *the owner's decision* of 9/10):
+
+- **G66, the knock sensor at 3 and 4**: its connector off, looked
+  into, back on until it clicks; the sensor's bolt checked with a
+  torque wrench at VW's figure (Claude reads it out of the manual
+  first). What was found into the chat.
+- **A loose part at about 3,000 rpm in neutral**, warm, the bonnet
+  open: someone holds 3,000 rpm while the other listens and feels
+  along the brackets, the heat shields and the ancillaries for a
+  buzz.
+- **026 in neutral and 020 on a drive with pulls**, with VCDS
+  connected anyway (020 on 8q's captured drive or any drive with VCDS on): 026 from
+  idle to about 3,500 rpm in neutral, slowly; 020 on two or three
+  full-throttle pulls in 3rd or 4th.
+
+**8q. The timing belt renewed at a garage** (*the owner's decision*,
+13/11; a date asked for 13/11): the belt, its tensioner and idler, and the water pump.
+**Before the old belt is loosened**, the mechanic sets the crank to
+TDC of cylinder 1 and says how many teeth the camshaft sprocket's
+mark is off its mark, which way, and photographs both marks; the
+answer into the chat. Before the garage: `52` and `53` (15/11) are
+the captured warm stops, if nothing is changed on the car before it.
+After it: the
+fault memory read, 032/055 for 20 s, and a captured drive to a warm
+stop of ten minutes.
+
+**8f. 032 for 20 s at every session with VCDS connected**, until both
+cells have held for three drives; **and 036 for a minute** at a warm
+idle and on the road when VCDS is on anyway (the rear probe watched
+now and then, *the owner*, 11/11). **032 read first, before any code
+is cleared**; **on a logged drive, 001 in place of 055** (G62's
+reading; on a captured drive the capture reads it) **and 014
+always** (a P0303 stored with no cut: its time is what the log gives).
+
+**9. By what 6m and 8q leave** (Claude says which):
+
+- **A CO₂ ("block") test of the coolant**, warm, at a garage or with
+  a kit.
+- **A stethoscope (or a long screwdriver) on the cam cover above
+  cylinder 3 and above cylinder 4, hot**, against 1 and 2: a tick or
+  a hiss on one, at idle.
+- **One garage session with the upper intake off, straight after a
+  drive** (oil at 80 °C or more), in this order:
+  - **a warm leak-down on all four**: all four plugs out (the same
+    plugs back afterwards; plug 3's gap measured while out); each
+    cylinder at TDC on its compression stroke, firing order 1-3-4-2;
+    the crank held while the air is on. For each: **the percentage,
+    and where it hisses** — tailpipe, throttle, oil filler, bubbles
+    in the coolant tank, the next plug hole. **Cylinder 3 twice**:
+    the crank turned two full turns between the two readings.
+    **The engine switched off in a swell** (agreed 12/11 evening):
+    on the way in it idles until Claude, from the capture, says 3
+    is swelling — or, with the MFD in, `IdleHealth` has stood above
+    75 for a minute with every load off — and is switched off then,
+    not after it has calmed;
+  - **a warm compression test on all four** straight after, the
+    throttle held open;
+  - **the cam cover off: VW's tappet check** — the cam of each tappet
+    pointing up, the play felt; more than 0.2 mm, the tappet renewed;
+    otherwise each pressed down with a plastic or wooden wedge and a
+    0.2 mm feeler tried between cam and tappet; the eight results
+    into the chat;
+  - **6m's injector circuits** while the intake is off, if not done
+    before;
+  - **the lower manifold's gasket**: renewed if the garage takes
+    the lower manifold off as well (the tear at runner 4; **runner
+    3's joint is the one the idle points at**, 12/11).
+- With VCDS connected anyway after a stored P030x: **a generic
+  OBD-II read** (modes 02 and 06), read only, saved.
+- **No head off** (*the owner*, 4/11, leaning, not final): if the
+  leak-down names 3's exhaust seat, the car is driven as it is and S1
+  most likely closed as *acceptable, cause known*.
+
+**8e. The probe when it comes, the harness at the end** (*the owner*,
+11/11 and 12/11; `refuted.md` D13). **The new rear probe went back to
+the seller under warranty 13/11; its replacement fitted when it
+comes**, the old rear probe on the car meanwhile. The new one
+is fitted as the first was: Bosch's paste on the thread only, nothing
+in the connector, the lead clear of the exhaust and not pressed into
+the harness box. If P0137 comes back with it, the harness — cold and
+the ignition off, the connector off and **the signal wire from the
+harness-side socket to the ECU's pin** read for continuity and for a
+leak to earth, the lead flexed by the exhaust. Nothing measured with the engine running, nobody under
+the car with it on. Then, at a cold engine, from below:
+
+- **The rear probe's lead, all the way to its connector**: where it
+  runs, whether it touches or lies within a finger's width of the
+  exhaust or the converter, any melted, shiny or hardened
+  insulation; the connector latched and its seal in place; then the
+  connector off, both halves looked into for green, water or a pushed-back
+  pin, and back on until it clicks. **Photographs** of the run and
+  of anything found; into the chat.
+- **The two damaged wires** (found 10/11 evening: the rear probe's
+  blue, its outer white, a heater lead; the front probe's brown, its
+  grey): dried and taped for now (*the owner*); for good, each cut
+  back to bright copper on both sides of the damage and joined with a
+  crimp or solder sleeve under heat-shrink (VW's wiring repair or any
+  sealed butt connector). The red wire beside the blue looked at the
+  same way. They are taped and the bundle wrapped (*the owner*, 10/11
+  night); the splice is what is left.
+- **The rear socket's broken-looking outer terminal**, on the rear
+  probe's signal (the cavity meeting the probe's black wire): the
+  terminal replaced —
+  a VW repair terminal crimped on, or the socket half with its
+  pigtail — before anything else is measured on that wire.
+- **The rear connector's bent pin** straightened so it seats like
+  the others; both connectors dried again, then **pushed
+  until each latches with a click** — the front one included.
+- **Nothing sprayed or greased into either probe's connector**, ever
+  again — no contact cleaner, no dielectric grease; **the probe's own
+  lead and its connector never sealed airtight** (no heat-shrink with
+  glue, no silicone over them). The tape over the harness side stays.
+- **Both probes' harness on to the ECU** (the owner's own look,
+  10/11): from each probe's connector along the loom as far as it
+  can be followed — where it runs, what it is tied to, anything it
+  rubs on, and **every earth point met on the way** (an eyelet on
+  the block, the gearbox or the body): tight, clean, no green. A
+  photograph of the route and of each earth point.
+- **Both probes' sockets on the harness side** (the front one too):
+  each connector off, the harness half looked into for green, water,
+  a pin pushed back or loose in its cavity; photographed; back on
+  until it clicks.
+- **The new probes' tightness**: with the spanner they were fitted
+  with, whether either turns further at the effort they were
+  tightened with. Which, and about how far, into the chat; nothing
+  undone.
 
 ## Standing items
 
