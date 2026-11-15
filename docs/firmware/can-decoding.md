@@ -652,7 +652,10 @@ the forums (OSM wiki *VW-CAN*, the dbc, forum and bulletin searches,
 - **Lambda** — 0x488 is `ff ff ff 8d ff ff ff ff` in every log; b3 is
   the altitude correction, not lambda (*The bus byte by byte*).
 - **Battery voltage** — searched systematically, nothing. Solved with the
-  display's internal sensor instead.
+  display's internal sensor instead. ⚠ **That sensor reads high**: 14.0 V
+  on the MFD against 13.57 V on a multimeter at the battery's terminals,
+  13.7 against 13.50 with main beam (measured, the owner, 15/11/2026,
+  engine running, warm) — 0.2–0.4 V, not a fixed offset.
 - **Ambient temperature** — 0x420 b1 and b2 are both zero, so it is not on
   those bytes. ⚠ **This used to read "the car has no sensor" and that was
   wrong**: the car displays the outside temperature next to the clock in the

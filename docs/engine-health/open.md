@@ -4371,6 +4371,30 @@ neither the coil nor its feed can pick it (*this said "the dips sat on
 the injector loom where it reaches 3 (and 4), taped and oily — its wires at 4 whole outwardly (*owner*,
 19/10; tape renewed). The plug-end side moved to H15, refuted 4/11 (`refuted.md` C24).
 
+**The supply as the ECU sees it, against the battery** (15/11 evening,
+*the owner's* observation and measurement; *not a symptom* — no
+decision on that asked for yet). The MFD read 14.2 V after the start
+and 13.5–14.0 V with the loads, never near the 12.6–13.4 V that 004
+read at `53`'s stop. **A multimeter on the battery's terminals beside
+the MFD**, warm, the engine running, about 20 minutes after the drive:
+**13.57 V with the MFD at 14.0; 13.50 V with main beam, the MFD at
+13.7** — so **the MFD reads 0.2–0.4 V high**, and the battery itself
+dropped only 0.07 V for main beam. At `53`'s stop main beam dropped
+004 by 0.54–0.63 V. *Reasoned*, the two not measured at the same
+moment: most of that step is lost between the battery and the ECU, in
+a path main beam's current shares — which fits the loss the owner
+measured in September, **about half of the headlights' drop before the
+fuse box (~0.09 Ω)**, with the chafed main positive cable at the
+battery (`vehicle-history.md`, *Electrical work, 2026*): about 9 A of
+main beam through 0.09 Ω is 0.8 V. Whether the ECU's supply (the main
+relay) is fed through that same part is *not known* (the wiring
+diagram is not in these files). **It does not pick a cylinder**: the
+same supply feeds all four, and the idle is calmer with the loads on.
+**Measurable cheaply**: with main beam on, the drop from the battery's
+plus to the ECU's supply pin and from the battery's minus to the ECU's
+earth, then to the fuse box's input — tenths of a volt on either side
+names the side.
+
 | S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S21 | S22 |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
 | ~ | ~ | ~ | ~ | ~ | ~ | — | ✔ | ~ | ✘ | — | — | — |
