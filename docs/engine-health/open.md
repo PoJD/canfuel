@@ -4057,11 +4057,13 @@ sees through a swell*):
 - **Oil soaked into the joint** (*the owner's suspicion*, 16/11: oil
   from the valve cover onto the lower gasket, S10; he cleaned round it
   at the cover's change, the gasket itself out of reach; could a
-  soaked gasket, working with heat, give the swell?). **Seen running
-  at 3 and 4 only on the wrong cover gasket, 2–3/10**
-  (`photos/cover-leak-2026-10-03-cyl4-end.jpg`); under the hardened
-  original before it, *not known* (*owner*, 16/11). *It said "for
-  years" until the owner corrected it the same day.*
+  soaked gasket, working with heat, give the swell?). **The hardened
+  original cover gasket leaked onto the lower gasket for years — at
+  least the ten of his ownership, never changed — and only at 3 and
+  4** (*owner*, 16/11, his clarification the same day; the wrong
+  gasket of 2–3/10 leaked there too,
+  `photos/cover-leak-2026-10-03-cyl4-end.jpg`). *For a while that day
+  this read "before 2/10 not known", a misreading of his words.*
   *Reasoned*: **as air, no** — a joint that breathes with heat changes
   3's air, which the regulation would have shown (above). **As oil,
   it is the swell's second reading** (S1, *The swell's shape*, 2: a
@@ -4071,11 +4073,18 @@ sees through a swell*):
   moving the mixture the probe sees — a few milligrams are nothing
   to lambda and much to a flame (*general*). **Against**: the cover
   has been dry since 4/10 (`refuted.md` D5) and the swells are as
-  they were six weeks on; 3 was weak already in August and swelling
-  from 24/9,
-  before the leak that was seen, so the oil would have to be the old
-  gasket's, which nobody knows; no blue smoke ever, the plugs dry; a load
-  should not lift a pool at once, and it does. **8z sees it**: oil on
+  they were six weeks on (a soaked joint may hold oil long after);
+  no blue smoke ever, the plugs dry; a load should not lift a pool at
+  once, and it does. **For, and the stronger point** (*reasoned*):
+  **the oil fell on 3 and 4, and 3 and 4 are where the engine is
+  worst inside** — the borescope's deposit 3 > 4 > 2 > 1 (H13), the
+  inlet seats' crust thick and broken on 3, beaded on 4, an even
+  band on 1 and 2 (H1), cold 4 weak beside 3. Ten years of oil drawn
+  through the joint at 3 and 4 at every idle would lay that deposit
+  where it lies — **a cause for H13 and H1's crust**, which until now
+  had none but gentle driving, the same on all four. If so, the swell
+  can outlive the leak: the deposit the oil laid stays when the oil
+  stops. **8z sees it**: oil on
   the old gasket's land at 3 or wet in runner 3 against the others
   (`plan.md` 8z); the gasket goes either way. Against that too: 3 was 10–20 % short in
 August on the old injectors and their rings (S1, *Every stroke
