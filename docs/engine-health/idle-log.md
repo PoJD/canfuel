@@ -1788,4 +1788,7 @@ the earth point were not its cause (`refuted.md` C27).
 The second without an injector cut in four days (`open.md` S3). The
 same day the owner set the belt for 7/12 and decided to renew the
 lower manifold's gasket and the injectors' lower O-rings himself
-before it, with VW's parts (`plan.md` 8z).
+before it, with VW's parts (`plan.md` 8z). **The hiss (S11) heard
+lower down** the same day: hardly above the cam cover, clearly a head's
+height below it, to his ear a fault — perhaps placebo, *owner*
+(`open.md` S11).

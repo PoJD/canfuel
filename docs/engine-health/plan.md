@@ -245,8 +245,9 @@ goes into the chat by cylinder; **3 always beside one of the others**.
 *After:*
 
 - **The battery back on, the ignition on for a minute before the
-  start**; at the first start, a fuel smell or a wet joint first, then
-  a hiss.
+  start**; at the first start, a fuel smell or a wet joint first.
+- **S11's hiss at the first warm idles**, listened for as on 16/11 — a
+  head's height below the cam cover — and whether it is still there.
 - **`IdleHealth` and `Misfires` at the first warm stops**, the
   everyday state, into the chat; anything felt.
 - **032 for 20 s at every session with VCDS** (8f), the fault memory.
@@ -625,6 +626,9 @@ between two captures could not be told apart.
   battery is off throughout, so a dripping injector is left to 8u's
   gauge (*Falling after switch-off*); the smoke test and the vacuum
   gauge can be done at any time after, and are not part of the step.
+- **S11's hiss after the gasket** (`open.md` S11, 16/11: heard a
+  head's height below the cam cover, by the owner's ear a fault): gone
+  is H3's joint; still there leaves it the throttle's own air.
 - **The ports open**: the inlet valves were last seen on 20/10, from
   above past the stems, before the cleaners, the hydrogen clean and
   the gas (`open.md` H13); the same order makes the frames comparable.

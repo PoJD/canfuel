@@ -2708,6 +2708,18 @@ by the hoses. Moving the hose and covering places by hand changed nothing.
 under manifold vacuum (*general*). Kept open with that note; no test planned.
 If it is a leak: behind the throttle it is H3, ahead of the probe H2.
 
+**16/11, heard again lower down** (*owner*, by his own words perhaps
+placebo, nothing conclusive): above the cam cover hardly, **a head's
+height lower clearly** — so it could come from the lower intake
+manifold; and to his ear **certainly a fault, not the engine's own
+sound**, which withdraws his "may be normal" of 14/10. *Reasoned*: the
+lower manifold's joint to the head lies below the cover's level, the
+throttle and the MAF hose above it, so a lower source points at H3's
+joint rather than the throttle's own air; the ear cannot place a hiss
+to a runner. **Its test is 8z**: a hiss gone after the gasket is H3's
+(`plan.md` 8z). Whether this changes S11 in the fit tables (H3's ~) is
+the owner's to decide; unchanged until then.
+
 ### S12. A sudden jerk at a crawl and on moving off
 
 *Reopened 10/11 night at the owner's request*, in a new form; its
