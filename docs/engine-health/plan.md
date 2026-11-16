@@ -167,10 +167,11 @@ goes into the chat by cylinder; **3 always beside one of the others**.
 
 *Before anything is undone:*
 
-- With VCDS: the fault memory saved, **032 and 055 read** — **the
-  battery stays disconnected for the whole job** (*the owner*, 16/11),
-  which resets both.
-- The odometer into the chat.
+- **The battery stays disconnected for the whole job** (*the owner*,
+  16/11), which resets 032 and 055. No VCDS read before and no
+  odometer (*the owner*, 16/11): the fault memory was read before home
+  that day, the odometer comes off the bus, and the last 032 is 03:19's
+  −5.5 / +5.5 %.
 - The system let down: a rag round the supply joint, loosened slowly,
   cold engine; no flame, no lamp that can spark.
 
@@ -255,9 +256,12 @@ goes into the chat by cylinder; **3 always beside one of the others**.
   rags counted in and out**; no blade that scores the faces.
 - **The new gasket dry**, nothing on it, unless VW's part says
   otherwise; the right way up and round, each port open through it.
-- **The bolts from the middle outwards, in two passes, to VW's
-  figure** — asked for at the parts counter with the parts, or Claude
-  reads it out of the manual when told the evening.
+- **The lower manifold to the head: 20 Nm**, from the middle
+  outwards, in two passes; **the rail: 10 Nm; the upper to the lower:
+  10 Nm** (VW's manual for the AEG, the same 2.0 8V, *Intake Manifold:
+  Specifications* and *Lower Section, Disassembling and Assembling*, as
+  transcribed on workshop-manuals.com, read 16/11; no page of the
+  AQY's own was found).
 - **Injectors 2 and 3 swapped** (*the owner's offer*, 16/11): before
   they come out of the rail, each marked with tape — the cylinder it
   came from; **the one from 3 goes into 2, the one from 2 into 3**, 1
@@ -266,7 +270,10 @@ goes into the chat by cylinder; **3 always beside one of the others**.
 - **The new gasket's ports matched to the head's**: each opening has a
   bulge to one side; it lies over the port's own shape, nothing of the
   gasket standing into a port.
-- **The lower rings stay on their injectors**, each looked at first
+- **The lower rings stay on their injectors** — ⚠ **VW says "always
+  replace"** for the injectors' O-rings (the same manual page); none
+  were to be had (*the owner*, 16/11), so this is a deliberate
+  deviation — each looked at first
   (above) and refitted only whole and soft, with a drop of clean
   engine oil; **any other one replaced by a ring off an old injector**,
   and which cylinder's into the chat. Each
@@ -279,7 +286,9 @@ goes into the chat by cylinder; **3 always beside one of the others**.
 - **The MFD out, the laptop in** (*the owner*, 16/11): **the first
   start and the first drive are captured, with VCDS, as Claude runs
   them** (`CLAUDE.md`, *Sessions at the car*): the capture started
-  before the ignition; 032 and 055 for 20 s before the start (at zero
+  before the ignition; the fault memory read first (a code stored
+  before the battery went pauses the drive until it is cleared,
+  *Standing items*); 032 and 055 for 20 s before the start (at zero
   after the battery); 014 from the cold start through the drive; **8x
   over the drive's last ten minutes and the first five of the stop**;
   014 for the rest of **a warm stop of ten minutes**, the everyday
