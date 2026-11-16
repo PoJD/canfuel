@@ -4268,7 +4268,7 @@ not bought from 10/10 until then; VW's figures: 2.5 bar at idle, 3.0 with the re
 off, **2.0 bar or more ten minutes after switching off**, the last being
 S19's question — `vcds.md`);
 **injectors 2 and 3 swapped in 8z** (*the owner*, 16/11): the deficit
-going to 2 names the injector (or its ring, if the old rings stay);
+going to 2 names the injector (or its ring, which stays on it);
 staying on 3 clears it.
 
 ### H8. Idle air control and the throttle body

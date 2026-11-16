@@ -158,9 +158,10 @@ the car beyond the drive and the stop.
 (*the owner's decision*, 16/11), **by the owner, before 7/12**. **Bought
 16/11** (the album, 15:29): the lower gasket **Elring `165.210`**, one
 piece over all four ports, metal with a soft coating, made in Germany;
-the upper **Elring `271.230`**, as every time before. **The lower
-O-rings not found yet** (*owner*): if none come before the evening,
-the rings on the injectors stay. The upper intake, the rail with the injectors and the loom
+the upper **Elring `271.230`**, as every time before. **No new lower
+O-rings to be had** (*owner*, 16/11): the rings on the injectors stay;
+**one found pinched, nicked or hard is replaced by a ring off one of the
+old injectors** (as on 2 since 1/10). The upper intake, the rail with the injectors and the loom
 off, then the lower manifold. Everything below is photographed and
 goes into the chat by cylinder; **3 always beside one of the others**.
 
@@ -233,14 +234,13 @@ goes into the chat by cylinder; **3 always beside one of the others**.
 - **The new gasket's ports matched to the head's**: each opening has a
   bulge to one side; it lies over the port's own shape, nothing of the
   gasket standing into a port.
-- **The lower rings, new if they came**, with a drop of clean engine
-  oil; **if the old ones stay**, each looked at first (above) and
-  refitted only whole and soft, a drop of oil too. Each
+- **The lower rings stay on their injectors**, each looked at first
+  (above) and refitted only whole and soft, with a drop of clean
+  engine oil; **any other one replaced by a ring off an old injector**,
+  and which cylinder's into the chat. Each
   injector pushed straight and **fully home**: the four at the same
   height against the rail, each clip in, each turning a little by
   hand; each plug clicked.
-- **The new rings' part number off the bag** into the chat, if they
-  came.
 
 *After:*
 
@@ -642,22 +642,22 @@ between two captures could not be told apart.
   and it tells the injector from everything that stays with cylinder
   3 — the bore, the runner, the head, the loom. 2 because it is the
   strongest at idle (`open.md` S1, *Every stroke named*). The ring on
-  the injector goes with it if the old rings stay. **Read with the
+  the injector goes with it (the old rings stay). **Read with the
   gasket** on 8z's captured stop (`cylscan.py --minutes`):
   - **3's deficit stays on 3, 2 as before**: not the injector (H7's
     injector form to `refuted.md`); with the gasket renewed and the
     deficit still there, not the gasket either — what is left of B is
     the bore, the seat, the deposits, the coolant, the loom.
   - **The deficit moves to 2** (2 now short, 3 level): **the injector**
-    — or, if the old rings stayed, its ring; H7 B6 goes to the top,
+    — or its ring, which travels with it; H7 B6 goes to the top,
     and H3's gasket is out.
   - **Both level, 3's floor gone**: not the injector (it would have
     taken the deficit to 2); the gasket, or the injector seated
     better, as before.
   - **Both short**: two causes, one going with the injector, one
     staying.
-- **The old lower rings kept if no new ones come** (*the owner*,
-  16/11): then the gasket alone is changed, and a floor of 3's that
+- **The old lower rings kept** (*the owner*, 16/11: none to be had;
+  a damaged one replaced from the old injectors): then the gasket alone is changed, and a floor of 3's that
   goes names the gasket; one that stays leaves 3's ring and its bore
   as the one part of H3 not renewed, which the bores' and rings'
   photographs then speak to.
