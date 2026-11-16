@@ -18,17 +18,18 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next: 8q, the timing belt
-at a garage, once it has a date** (a date asked for 13/11); **6m for
-injector 3, at the next evening with the upper intake off**, ahead of
-item 9; then item 9; **the new rear probe when the seller sends it**
+Captures only where an item asks for one. **Next: 8z, the lower
+manifold's gasket and the injectors' lower O-rings, by the owner,
+before the belt** (*the owner's decision*, 16/11), **6m done in the
+same evening**; **then 8q, the timing belt at a garage, 7/12**; then
+item 9; **the new rear probe when the seller sends it**
 (8e), **its harness at the end**; **8u, 8v, 8w by opportunity**
 (*the owner*, 15/11); **8x at the next session with the laptop**. *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
 
 **6. Drive normally; the MFD back in from 15/11** (*the owner*, after
 8h): `IdleHealth` and `Misfires` on the display again, **no captures
-until 8q's warm stop after the belt** (the one before it is `53`).
+until 8z's warm stop after the gasket** (the one before it is `53`).
 Brisk driving once warm is welcome. When captures resume, the MFD
 comes out for them — the converter goes with the MFD.
 
@@ -78,10 +79,8 @@ the pin of that connector it reaches (find it with the beeper), all
 eight. While each value is on the display, **flex the loom near 3 and
 4** and watch it. Write every value, and any that moved.
 **Only 1 and 4 are reachable with the intake on** (*owner*, 5/11), so
-**at the owner's next evening with the upper intake off, not waiting
-for item 9's garage session**; **injector 3's circuit is the one to
-watch and to flex**; with the intake off, **photograph runner 3's
-joint to the lower manifold** as well.
+**in 8z's evening, with the upper intake and the loom off**;
+**injector 3's circuit is the one to watch and to flex**.
 
 **6n. The injector circuits to the ECU** — later, only with VCDS on the
 laptop: 032/055 read first (unplugging the ECU may reset them, as a
@@ -155,14 +154,118 @@ capture running beside it, the everyday state; the rest of the drive
 and of the stop stay on 8f's groups, 014 among them. Nothing to do at
 the car beyond the drive and the stop.
 
-**8q. The timing belt renewed at a garage** (*the owner's decision*,
-13/11; a date asked for 13/11): the belt, its tensioner and idler, and the water pump.
+**8z. The lower manifold's gasket and the injectors' lower O-rings**
+(*the owner's decision*, 16/11; VW's own parts), **by the owner, before
+7/12**. The upper intake, the rail with the injectors and the loom
+off, then the lower manifold. Everything below is photographed and
+goes into the chat by cylinder; **3 always beside one of the others**.
+
+*Before anything is undone:*
+
+- With VCDS: the fault memory saved, **032 and 055 read** (the battery
+  off resets them).
+- The odometer into the chat.
+- The system let down: a rag round the supply joint, loosened slowly,
+  cold engine; no flame, no lamp that can spark.
+
+*With the upper intake off, nothing else touched yet:*
+
+- **Runner 3's joint and the four injector seats from above**: each
+  seat photographed as it is — a wet seat, a washed-clean track, or a
+  dark line of dust drawn in under an injector or along the joint.
+- **Each bolt and nut of the lower manifold and of the rail as it is
+  undone**: any that was loose or came off with little effort, and
+  which one.
+
+*The rail lifted out with the injectors still in it and the fuel lines
+still on, if the hoses let it; the injector plugs off:*
+
+- **The drip test**: the four tips over clean paper, the ignition
+  switched on three times a few seconds apart (the pump runs each
+  time), then **the tips watched for two minutes**: which tip forms a
+  drop, and how many. A fire extinguisher in reach, the paper outside
+  afterwards.
+
+*The loom and the injectors on the bench:*
+
+- **6m, all of it**: the six pairs, each injector across its pins, the
+  loom flexed at 3 and 4 with the meter on.
+- **The loom at 3**: its two wires from the plug back to the taped run
+  — chafed, hard, green under the tape's end, a contact loose in the
+  plug when pulled gently.
+- **Each old lower O-ring as it comes off, kept in order 1–4**: flat on
+  one side, nicked, pinched, hard, swollen; the four laid in a row and
+  photographed. **Each injector's tip** beside it: dry, wet, sooted,
+  crusted.
+- **The four bores in the lower manifold**, where the lower rings sit:
+  a score, a burr, corrosion, a casting flaw, a crack, a step a nail
+  catches on; photographed from above, straight down each.
+
+*The lower manifold off:*
+
+- **The old gasket before it is peeled**, on whichever face it stays,
+  then both its sides: **a dark or washed track across the sealing
+  land at 3**, and whether 4's tear runs into the land. Kept, marked
+  which end was 1.
+- **The manifold's flange**: a steel rule's edge across each runner
+  and along the whole flange, against the light or with a feeler
+  gauge; the gap and where. **Runner 3 inside and out** for a crack;
+  whether its wall is wet, and with what.
+- **The head's face** round each port: pitted, corroded, a ridge of
+  old gasket.
+- **The four inlet ports, open now**: the back of each inlet valve,
+  its stem and guide, photographed (the phone or the borescope), in
+  order 4-3-2-1 as on 20/10: the crust, a wet or oily stem, a port
+  washed clean or wet where the others are dry.
+- **If plug 3 comes out**: its firing end photographed beside one
+  other plug (8v), its gap measured; the borescope on 3's crown and
+  on the exhaust valve, as on 20/10.
+- **The inlet seat of 3, only if the owner wants it** (plug 3 out):
+  the crank turned by hand half a turn on from cylinder 1's TDC mark,
+  so that the inlet valves of 3 and 1 are both shut; a teaspoon of
+  petrol into port 3 and into port 1; five minutes; which port's
+  petrol has gone, and whether the borescope through plug hole 3
+  shows it wet under the inlet valve. The engine turned over by hand
+  two turns with the plug out before it is started.
+
+*Going back together:*
+
+- **The ports stuffed with clean rag while the faces are cleaned, the
+  rags counted in and out**; no blade that scores the faces.
+- **The new gasket dry**, nothing on it, unless VW's part says
+  otherwise; the right way up and round, each port open through it.
+- **The bolts from the middle outwards, in two passes, to VW's
+  figure** — asked for at the parts counter with the parts, or Claude
+  reads it out of the manual when told the evening.
+- **The new lower rings** with a drop of clean engine oil, each
+  injector pushed straight and **fully home**: the four at the same
+  height against the rail, each clip in, each turning a little by
+  hand; each plug clicked.
+- **The part numbers off the bags** into the chat.
+- **Before the upper intake goes on**: the ignition on three times,
+  every rail joint and every injector seat looked at and felt for
+  fuel.
+
+*After:*
+
+- **The first start**: fuel smell or a wet seat first; then a hiss;
+  the vacuum gauge at a warm idle (18–19 inHg before).
+- **The smoke test again**, cold, if the tester is at hand: the lower
+  joint and the injector seats.
+- **`IdleHealth` and `Misfires` at the first warm stops**, the
+  everyday state, into the chat; anything felt.
+- **032 for 20 s at every session with VCDS** (8f), the fault memory.
+- **One captured drive to a warm stop of ten minutes, before 7/12**,
+  VCDS on 014: Claude runs it (item 6).
+
+**8q. The timing belt renewed at a garage, 7/12** (*the owner's decision*,
+13/11; the date *the owner*, 16/11): the belt, its tensioner and idler, and the water pump.
 **Before the old belt is loosened**, the mechanic sets the crank to
 TDC of cylinder 1 and says how many teeth the camshaft sprocket's
 mark is off its mark, which way, and photographs both marks; the
-answer into the chat. Before the garage: `52` and `53` (15/11) are
-the captured warm stops, if nothing is changed on the car before it.
-After it: the
+answer into the chat. Before the garage: **8z's captured warm stop**
+is the one the belt is set against (`52` and `53`, 15/11, are from
+before the gasket). After it: the
 fault memory read, 032/055 for 20 s, and a captured drive to a warm
 stop of ten minutes.
 
@@ -174,7 +277,7 @@ is cleared**; **on a logged drive, 001 in place of 055** (G62's
 reading; on a captured drive the capture reads it) **and 014
 always** (a P0303 stored with no cut: its time is what the log gives).
 
-**9. By what 6m and 8q leave** (Claude says which):
+**9. By what 8z, 6m and 8q leave** (Claude says which):
 
 - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
   a kit.
@@ -203,10 +306,7 @@ always** (a P0303 stored with no cut: its time is what the log gives).
     0.2 mm feeler tried between cam and tappet; the eight results
     into the chat;
   - **6m's injector circuits** while the intake is off, if not done
-    before;
-  - **the lower manifold's gasket**: renewed if the garage takes
-    the lower manifold off as well (the tear at runner 4; **runner
-    3's joint is the one the idle points at**, 12/11).
+    before.
 - With VCDS connected anyway after a stored P030x: **a generic
   OBD-II read** (modes 02 and 06), read only, saved.
 - **No head off** (*the owner*, 4/11, leaning, not final): if the
@@ -359,7 +459,8 @@ captured drive because the capture carries the coolant (0x288) far
 faster. **The MFD back in from 15/11** (*the owner*, after 8h): what is
 left before the belt is no reading a capture gives that `49`–`53` do
 not; the next capture that says something is 8q's warm stop after the
-belt, set against `52` and `53`.
+gasket (8z), set against `52` and `53`; the belt's (8q) is then set
+against 8z's.
 **"Konec" and the five-minute stop** (*the owner*, 12/11 night): the
 laptop only records and uploads, the reading is a cloud session's
 (`CLAUDE.md`, *Sessions at the car*), and the capture's last minutes
@@ -477,7 +578,7 @@ seat at its tightest; the engine cools while the intake comes off as
 it is, and a film on a seat may not last that either — a tight 3 there
 still clears nothing, a leaking one names it.
 
-**8q, the timing belt at a garage** (*the owner's decision*, 13/11,
+**8q, the timing belt at a garage, 7/12** (*the owner's decision*, 13/11,
 after 8i): 8i read the cam's OT mark set and the crank pulley's one
 notch 30–60° of crank from the groove on the block by eye
 (`open.md`, the row A1) — 1.5–3 teeth with the cam
@@ -504,13 +605,69 @@ valve; what is left to read is where both cells settle (`open.md`
 S19). Read, never cleared by Claude; three drives because the cells
 moved by one VCDS step at a time.
 
+**8z, the lower gasket and the lower O-rings** (`open.md` H3; *the
+owner's decision*, 16/11, after a cylinder 3 code stored with no lamp
+the same day, S3). H3 has no test in place: the repair is the test,
+and what is seen with the parts off is the only look the joint ever
+gets, so everything is photographed by cylinder before it is cleaned.
+**Before the belt**, so that each repair has its own captured stop:
+`52`/`53` → the gasket → 8z's stop → the belt → 8q's stop; two repairs
+between two captures could not be told apart.
+- **The seats and the track on the gasket**: air drawn in past a ring
+  or across a land carries dust and oil mist and leaves a line; fuel
+  weeping out washes one clean (*general*). A track at 3 and none at
+  the others is H3 seen.
+- **The loose bolt**: a joint that leaks at one runner is as often a
+  fastener as a gasket.
+- **The bores**: 3 was short on the old injectors and their rings and
+  on the new ones (`open.md` H3, *The injectors' lower O-rings*), so
+  two different rings would have had to leak in one bore — the bore or
+  the runner is where that points, and it is seen only now.
+- **The flange against a rule**: a new gasket on a face that is not
+  flat leaks as the old one did.
+- **The drip test** (`open.md` S19, H7; Part 2, 8u, *Falling after
+  switch-off*): an injector that drips is the one finding that would
+  give 032's idle cell, S19's flooded start and an uneven idle
+  together, and with the rail out it is seen directly, without the
+  gauge. VW's own allowance for a tip was not read; any drop inside
+  two minutes on one tip and none on the others is reported as that.
+  The pump runs for a moment at each switching-on, enough to bring the
+  rail to pressure (*general*); if the hoses do not let the rail out,
+  the test is left to 8u's gauge.
+- **The ports open**: the inlet valves were last seen on 20/10, from
+  above past the stems, before the cleaners, the hydrogen clean and
+  the gas (`open.md` H13); the same order makes the frames comparable.
+  An oily stem is H18's, a port washed clean or wet on 3 alone H20's
+  or the injector's.
+- **The petrol on the seat** (*general*; optional, *the owner's to
+  choose*): a shut inlet valve holds petrol for minutes; one that lets
+  it through names 3's inlet seat (H1), where the photos of 20/10 show
+  the crust broken. Cold and by gravity, so **a seat that holds clears
+  nothing** — the swell is warm, and the exhaust seat is not reached
+  at all. 3 and 1 because half a turn after cylinder 1's firing TDC
+  (firing order 1-3-4-2) 3 is at its own firing TDC and 1 at the
+  bottom of its power stroke, both inlets shut; 2 is at overlap then.
+- **The injectors fully home**: three of four were not, 23/9–1/10
+  (`vehicle-history.md`).
+- **How the capture is read** (`tools/cylscan.py --minutes`,
+  `swellscan.py --floors`): **3's floor** (−6 to −9 % of a stroke at
+  every warm idle since 24/9) **gone or halved is H3**, at the gasket
+  or the ring, whichever showed the track; **the floor as before** puts
+  H3 in `refuted.md` whole. **The swell** is not expected to move — a
+  leak has no reason to swell and mend (`open.md` H3) — so a swell as
+  before under a floor that went is two causes told apart, and item 9
+  is then for the swell alone. 032 says little either way: one
+  runner's leak moves the idle cell by about a quarter of its own
+  size, inside the cell's own spread. The MFD's `IdleHealth` between
+  is read as before, with its spread.
+
 **6m before item 9** (*agreed with the owner*, 12/11 night): off idle
 3's deficit is an amount at a small charge and not a share (`open.md`,
 *Naming the cylinder*, *Off idle*), which is what an injector opening
 late through a raised resistance gives (H4); its test is the cheapest
 that can confirm or clear a cause of that shape, so it does not wait
-for the garage; the photograph because H3's joint is in reach with the
-same cover off. It is read for 3: the deficit and the misfires are
+for the garage and is done in 8z's evening, the loom on the bench. It
+is read for 3: the deficit and the misfires are
 cylinder 3's (`open.md` S1, *Every stroke named*; S3, *What 014 counts,
 by cylinder*). **The display's stops** with a word on what came before
 each, because a brisk run calms the idle by itself for a while

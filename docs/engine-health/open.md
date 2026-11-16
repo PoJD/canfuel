@@ -36,7 +36,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 15 November 2026
+## Where it stands — 16 November 2026
 
 *What was done and measured, day by day, is `idle-log.md`; each result
 is in the evidence of its symptom and hypotheses below. This section
@@ -51,8 +51,10 @@ rear probe's signal at zero (the probe's own fault), S24 the coolant
 reading (oil round G62's pins), S21 P0440 and the summer overpressure
 (the canister found bypassed, plumbed back 11/11, the new N80 14/11,
 the ECU's own check passed 15/11). **Hypotheses settled**: H9, H10, H14,
-H15, H17, H19, and the forms C25 (the purge times the swell) and C26
-(a shared earth under the probes and senders); H12 done.
+H15, H17, H19, and the forms C25 (the purge times the swell), C26
+(a shared earth under the probes and senders) and C27 (the air mass
+meter's plug or the earth point by the ECU makes 032's idle cell);
+H12 done.
 
 **What is known about the idle** (S1, *Every stroke named*, *The
 swell's shape, and what the common part follows*; S3; *Naming the
@@ -109,10 +111,12 @@ this engine, H8 the throttle and idle control, H7 the rail's pressure,
 H11 both probes, H2 a leak ahead of the converter, H18 the stem seals,
 H21 the front probe's signal-earth wire, H16 the purge path.
 
-**Next** (`plan.md`): **8q**, the timing belt and water pump at a
-garage (a date asked for 13/11), the old marks read first; **6m**,
-injector 3's circuit, at the owner's next evening with the upper
-intake off; then **item 9** by what those show (the coolant's CO₂
+**Next** (`plan.md`): **8z**, the lower manifold's gasket and the
+injectors' lower O-rings, by the owner before the belt (*his
+decision*, 16/11, VW's parts), with everything the open joint shows
+and **6m**, injector 3's circuit, in the same evening, then a captured
+warm stop; **8q**, the timing belt and water pump at a garage on
+**7/12**, the old marks read first; then **item 9** by what those show (the coolant's CO₂
 test, the stethoscope, the garage session with the intake off);
 **8e**, the new rear probe when the seller sends it, the harness at
 the end; standing: **8f** at every VCDS session, **6i** the oil level
@@ -2420,6 +2424,20 @@ completing rather than load (`refuted.md` C19).
   cut as misfire is not known; a code on 3 fits H1 and H13 as 3's
   deficit and 014's rises do. Cleared by the owner after the stop, 032/055 read
   first.
+- **A cylinder 3 code again, 16/11, on a drive with no cut** (*owner*:
+  "a cylinder 3 fault again today"; **the engine lamp neither lit nor
+  flashing**, so set while driving by his reading; his photograph of
+  the read not in the album when this was written, so the code's
+  number and status are his word, and which drive, the odometer and
+  whether the memory was cleared are not recorded). The memory read 0
+  on 014 at 03:19 the same night after the gentle drive of 8y
+  (`idle-log.md`). **The second in four days without a cut** (12/11
+  above), where the eight weeks before had one, on 18/10. *Reasoned*:
+  no lamp fits a code stored on its first trip — a steady lamp needs
+  the fault confirmed, a flashing one the converter-damage rate
+  (`plan.md`, *Standing items — why*). It names 3 as everything since
+  12/11 does and tells nothing between list B's causes. After it the
+  owner brought the lower gasket forward (`plan.md` 8z; H3).
 
 - **The first drive on the new N80, 14/11** (`51`, three logs of 014
   001 003; S1, *The first drive on the new N80*; the counts per phase
@@ -3500,8 +3518,8 @@ four would read the same; no healthy AQY says which.
 
 - **Against:** 014 reads 12–120 against VW's 0–5; the old converter burned
   through; the misfires and the steady deficit are 3's (S1, *Every
-  stroke named*; S3), and P0303 has been stored three times (18/10, after
-  `43`'s cut, 12/11 without one); the 2019 P0304 and the noisy knock
+  stroke named*; S3), and P0303 has been stored four times (18/10, after
+  `43`'s cut, 12/11 and 16/11 without one); the 2019 P0304 and the noisy knock
   window are 4's; the inside of 3 and 4 is worse. *This said "the dips
   sit on 3 and 4" until 12/11.*
 - **For, 12/11: about an eighth of `IdleHealth` is the crank wheel's own
@@ -3907,7 +3925,13 @@ joint and injector seat was the plan, and it **cannot be done in place**
 (*owner*, 24/10): no room past the coil at 4, the runners of 2 and 3 out of
 reach. What is left is the plenum and the lower manifold off, **the lower
 gasket renewed** and the injector O-rings looked at — a repair that tests
-by its result.
+by its result. **Decided 16/11** (*owner*; VW's own gasket and lower
+rings, the part numbers from the dealer): he does it himself before the
+belt of 7/12 — `plan.md` 8z, with what is looked at while the joint is
+open (the seats, the old gasket's track at 3, the bores, the flange,
+the ports) and how the captured stop after it is read: **3's floor
+gone or halved is H3; the floor as before refutes it**; the swell is
+not H3's either way.
 
 **The injectors' lower O-rings** (*the owner's question*, 15/11). What
 is fitted (*owner*, 15/11): at the rail, four new rings; **in the
@@ -3918,7 +3942,9 @@ found 2's pinched. His question: is 2 the strongest only because it
 alone has a ring that is known to seal? *Reasoned*: **not as a set** —
 1 and 4 sit on the same supplied rings as 3 and give as much as 2 (`50`:
 +5, +4, +7, 3 −16); **3's own ring could still leak**, and nothing in
-place tests it (above). Against that too: 3 was 10–20 % short in
+place tests it (above); **all four lower rings are renewed with the
+gasket** (`plan.md` 8z, *the owner*, 16/11), the old ones and the bores
+looked at by cylinder. Against that too: 3 was 10–20 % short in
 August on the old injectors and their rings (S1, *Every stroke
 named*), so two different rings would have had to leak in the same
 bore — which points at the bore or the runner rather than the ring.
@@ -4122,7 +4148,7 @@ revs as after none and the same on every day, within 5 %.
 |---|---|---|---|---|---|---|---|---|---|---|---|
 | ~ | ~ | ~ | ~ | — | — | — | ~ | ~ | ✔ | ~ | ~ |
 
-- **3 the one cylinder throughout, P0303 three times** (S1, *Every
+- **3 the one cylinder throughout, P0303 four times** (S1, *Every
   stroke named*; S3) — one injector in reach by the cylinder; 25/10
   night's "the dips then sat on all four alike" (`40`, `41`) was a count
   that slipped: 3 led there too. **Against, by the owner** (3/11): the
@@ -6471,8 +6497,8 @@ the ECU named the cylinders it had counted, 3 among them — real
 misfires on 3, named because 4's pushed the window over; on its own 3
 would not have set it. The lamp at the cut is 4's. **This ECU stores
 no freeze frame** (*owner*, 3/11), so the fault memory holds only the
-codes and their status. *On 12/11 P0303 was stored without any cut*
-(S3).
+codes and their status. *On 12/11 and on 16/11 P0303 was stored
+without any cut* (S3).
 
 **After every captured session** each cylinder's deficit, weak strokes
 and 014's rises are reported to the owner from `tools/cylscan.py`
@@ -6723,8 +6749,8 @@ and the grade's swings are B's.
 |---|---|---|---|
 | B1 | **H13** deposits | Fits 3 by every measure: the borescope's most deposit on 3 (3 > 4 > 2 > 1), cold 4 weak beside it in that order; the clean of 9/11 took 3's swell for a day and left its floor, which a flake moved fits better than deposit regrown (SAE 2000-01-2858). Against: no cleaner and not the hydrogen moved 3's swell or the grade's mean (S1, *Before and after each repair*); the deposit reads as a consequence as much as a cause. Read with H1 | with H1, item 9's warm leak-down with 3 twice (`plan.md` 9) |
 | B2 | **H1** a seat or lifter on 3 | The swell's best fit: **a seat on 3 that fouls at idle and burns itself clean** (with H13; S1, *The swell's shape*), diluting at the idle's vacuum rather than losing compression — 3 is within 1–3 % of 2 at full load (*Off idle*); the port photos show crust broken round 3's inlet seat (*the owner's reading*, 7/11). Against the lifter: no once-per-cycle tick at 3's place on the cam cover (15/11) and S22's tick at its usual size (12/11); a seat that leaks need not tick | item 9: the warm leak-down with 3 twice, the engine switched off in a swell; the stethoscope above 3, hot; VW's tappet check (`plan.md` 9) |
-| B3 | **H3** a leak at runner 3 | **Runner 3's lower gasket**, never renewed — the one cause that predicts *load helps* directly (−21 to −26 % of a stroke at idle, −1 to −3 % at full load); its edge bent and straightened 5/11, runner 4's torn; with the owner's reading (a second cause making all four rich), 032's negative idle cell no longer counts against it. Against: the smoke test of 9/10 clean; a leak has no reason to swell and mend, so it explains at most the floor | no test in place; the lower manifold off and its gasket renewed (`plan.md` 9) |
-| B4 | **H4** the injector loom at 3 | 3's deficit is an amount at a small charge, not a share — what an injector opening late through a raised resistance gives; the wiring is what stays with the cylinder through a change of injectors. Against: the supply steady through a whole stop, no step at a swell (004, 15/11); a wire has no reason to swell and mend, so the floor at most; the spark side against, 3 level at full load | the circuits measured (`plan.md` 6m, 6n) |
+| B3 | **H3** a leak at runner 3 | **Runner 3's lower gasket**, never renewed — the one cause that predicts *load helps* directly (−21 to −26 % of a stroke at idle, −1 to −3 % at full load); its edge bent and straightened 5/11, runner 4's torn; with the owner's reading (a second cause making all four rich), 032's negative idle cell no longer counts against it. Against: the smoke test of 9/10 clean; a leak has no reason to swell and mend, so it explains at most the floor | **8z** (*the owner*, 16/11): the gasket and the injectors' lower rings renewed by the owner before the belt, the joint read while open; 3's floor on the captured warm stop after it (`plan.md` 8z) |
+| B4 | **H4** the injector loom at 3 | 3's deficit is an amount at a small charge, not a share — what an injector opening late through a raised resistance gives; the wiring is what stays with the cylinder through a change of injectors. Against: the supply steady through a whole stop, no step at a swell (004, 15/11); a wire has no reason to swell and mend, so the floor at most; the spark side against, 3 level at full load | the circuits measured (`plan.md` 6m, in 8z's evening; 6n) |
 | B5 | **H20** coolant into 3 | Fits one cylinder at idle, where the cylinder's pressure is lowest, and the fading with load; plug 3 the cleanest of the 10/10 set (*the owner*, 4/11, weak). Against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos; nothing in it fills and empties | the CO₂ test of the coolant; bubbles at the tank in the leak-down (`plan.md` 9) |
 | B6 | **H7** injector 3 | Last: 3 was the weak one on the old injectors in August too, so the injector itself is unlikely (*the owner's argument*, 12/11); a share is what it would give, and 3's deficit is an amount; plug 3 the cleanest | **no injector swap** (*the owner*); a rail gauge for its other form (A4, `plan.md` 8u) |
 
@@ -6734,7 +6760,7 @@ small unevenness on all four, most of `IdleHealth`'s floor and nothing
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| A1 | **the timing belt a tooth out** | The common part is a constant — the same within 5 % at every warm idle since 24/9, answering only to a load, the gas and temperature — which a fixed fault on all four gives and a source that varies by the day does not (S1, *The swell's shape*); the cam's timing sets the burnt gas kept at idle. **The marks, 8i (13/11)**: the cam's OT mark set; the crank pulley's only notch 30–60° of crank behind the groove on the block by eye and borescope, **2–3 cm along the rim, more likely more, not over 5 cm** by the owner's fingers the same evening (about 15–40°, one to two teeth, if the pulley is 14–16 cm across — the diameter a guess); the cam advanced if both are the true marks (the direction the owner's, read off the part), and if they are not, the direction is open too (*the owner*, 14/11); **or a pulley bolted on turned against its sprocket** (*the owner*); where the true mark is was not looked up. **Against more than about a tooth**: settled full throttle takes 496 mg of air a stroke at 2,400 rpm, 520 at 3,600–4,400, 485 at 5,200, 452 at 5,600 (85–90 g/s at the top, every 003 log; 84–90 g/s at 5,000–5,500 in sixteen logs from 9/2026 to 9/11), and the acceleration needs 0.94 of b7 with no tilt by gear or band (83 pulls; `drivescan.py --pulls`) — 1.5–3 teeth of advance would take the top of the filling away (*general*); a tooth or less is not excluded with no healthy AQY to set it against. The ECU would not necessarily say: G40 only identifies cylinder 1 (SSP 175, p. 49), though VW lists 16725 / P0341 for its signal out of place, never stored here. Belt from 10/2017. **Kept first by the owner until the belt is renewed** (13/11) | **8q**: the mechanic's count of teeth before the old belt comes off, and the common part by capture before (`52`, `53`) and after the new belt (`plan.md` 8q) |
+| A1 | **the timing belt a tooth out** | The common part is a constant — the same within 5 % at every warm idle since 24/9, answering only to a load, the gas and temperature — which a fixed fault on all four gives and a source that varies by the day does not (S1, *The swell's shape*); the cam's timing sets the burnt gas kept at idle. **The marks, 8i (13/11)**: the cam's OT mark set; the crank pulley's only notch 30–60° of crank behind the groove on the block by eye and borescope, **2–3 cm along the rim, more likely more, not over 5 cm** by the owner's fingers the same evening (about 15–40°, one to two teeth, if the pulley is 14–16 cm across — the diameter a guess); the cam advanced if both are the true marks (the direction the owner's, read off the part), and if they are not, the direction is open too (*the owner*, 14/11); **or a pulley bolted on turned against its sprocket** (*the owner*); where the true mark is was not looked up. **Against more than about a tooth**: settled full throttle takes 496 mg of air a stroke at 2,400 rpm, 520 at 3,600–4,400, 485 at 5,200, 452 at 5,600 (85–90 g/s at the top, every 003 log; 84–90 g/s at 5,000–5,500 in sixteen logs from 9/2026 to 9/11), and the acceleration needs 0.94 of b7 with no tilt by gear or band (83 pulls; `drivescan.py --pulls`) — 1.5–3 teeth of advance would take the top of the filling away (*general*); a tooth or less is not excluded with no healthy AQY to set it against. The ECU would not necessarily say: G40 only identifies cylinder 1 (SSP 175, p. 49), though VW lists 16725 / P0341 for its signal out of place, never stored here. Belt from 10/2017. **Kept first by the owner until the belt is renewed** (13/11) | **8q**: the mechanic's count of teeth before the old belt comes off, and the common part by capture before (8z's warm stop, after the gasket) and after the new belt, 7/12 (`plan.md` 8q) |
 | A2 | **H0** normal for this engine | A common part that no repair, day or drive has moved, and that answers only to the charge, is what an engine's own scatter looks like; a fixed fault reads the same, and no healthy AQY says which. Against: 014 far above VW's 0–5 — but that is 3's, list B | 014 on a healthy AQY, VCDS only (a capture is not obtainable) |
 | A3 | **H8** throttle and idle control | The air and the idle regulation act on all four alike, and S20 dates from this throttle (*owner*). Against: 055's two fields sum to the same correction at every warm idle (27/10), so a reset or the A/C gives no more air; the advance's scatter does not go with the common part (003, 12/11); 014 does not follow 055's learnt value (`refuted.md` C19); the regulator holds through 3's swells on 18 stops (15/11) | no test left for the idle; S20 keeps it |
 | A4 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it, shared with H16. Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
