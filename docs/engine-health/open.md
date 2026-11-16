@@ -4054,10 +4054,14 @@ sees through a swell*):
 - **8z tells**: floor and swell both smaller or gone is the leak as
   the swell's condition; the floor gone alone is two causes; both as
   before refutes H3 (`plan.md` 8z, Part 2).
-- **Oil soaked into the joint** (*the owner's suspicion*, 16/11: the
-  old valve cover leaked onto the lower gasket for years, S10; he
-  cleaned round it at the cover's change, the gasket itself out of
-  reach; could a soaked gasket, working with heat, give the swell?).
+- **Oil soaked into the joint** (*the owner's suspicion*, 16/11: oil
+  from the valve cover onto the lower gasket, S10; he cleaned round it
+  at the cover's change, the gasket itself out of reach; could a
+  soaked gasket, working with heat, give the swell?). **Seen running
+  at 3 and 4 only on the wrong cover gasket, 2–3/10**
+  (`photos/cover-leak-2026-10-03-cyl4-end.jpg`); under the hardened
+  original before it, *not known* (*owner*, 16/11). *It said "for
+  years" until the owner corrected it the same day.*
   *Reasoned*: **as air, no** — a joint that breathes with heat changes
   3's air, which the regulation would have shown (above). **As oil,
   it is the swell's second reading** (S1, *The swell's shape*, 2: a
@@ -4067,7 +4071,9 @@ sees through a swell*):
   moving the mixture the probe sees — a few milligrams are nothing
   to lambda and much to a flame (*general*). **Against**: the cover
   has been dry since 4/10 (`refuted.md` D5) and the swells are as
-  they were six weeks on; no blue smoke ever, the plugs dry; a load
+  they were six weeks on; 3 swelled already on 24/9 and in August,
+  before the leak that was seen, so the oil would have to be the old
+  gasket's, which nobody knows; no blue smoke ever, the plugs dry; a load
   should not lift a pool at once, and it does. **8z sees it**: oil on
   the old gasket's land at 3 or wet in runner 3 against the others
   (`plan.md` 8z); the gasket goes either way. Against that too: 3 was 10–20 % short in
