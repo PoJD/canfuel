@@ -2424,14 +2424,13 @@ completing rather than load (`refuted.md` C19).
   cut as misfire is not known; a code on 3 fits H1 and H13 as 3's
   deficit and 014's rises do. Cleared by the owner after the stop, 032/055 read
   first.
-- **A cylinder 3 code again, 16/11, on a drive with no cut** (*owner*:
-  "a cylinder 3 fault again today"; **the engine lamp neither lit nor
-  flashing**, so set while driving by his reading; his photograph of
-  the read not in the album when this was written, so the code's
-  number and status are his word, and which drive, the odometer and
-  whether the memory was cleared are not recorded). The memory read 0
-  on 014 at 03:19 the same night after the gentle drive of 8y
-  (`idle-log.md`). **The second in four days without a cut** (12/11
+- **P0300 and P0303 again, 16/11, on a drive with no cut** (the
+  album, 13:56: **16684 P0300 35-00 and 16687 P0303 35-00**, neither
+  sporadic — the same pair as 12/11; **the engine lamp neither lit
+  nor flashing**, *owner*, so set while driving by his reading). Which
+  drive is not recorded: the battery was off until the night of 16/11,
+  so after it — the gentle drive of 8y (014 read 0 at its end, 03:19)
+  or the day's driving. **The second in four days without a cut** (12/11
   above), where the eight weeks before had one, on 18/10. *Reasoned*:
   no lamp fits a code stored on its first trip — a steady lamp needs
   the fault confirmed, a flashing one the converter-damage rate

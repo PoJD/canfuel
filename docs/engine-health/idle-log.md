@@ -1775,16 +1775,15 @@ after two or three drives (`plan.md` 8y).
 The idle cell back where it relearns to after every reset: the plug and
 the earth point were not its cause (`refuted.md` C27).
 
-## 16 November 2026 — a cylinder 3 code stored on a drive, no lamp
+## 16 November 2026 — P0300 and P0303 stored on a drive, no lamp
 
 - **Tests:** the fault memory read by the owner after the day's
-  driving (his photograph of it not in the album when this was
-  written).
+  driving (the album, 13:56).
 - **Changes after:**
-  - *measured:* a cylinder 3 fault stored (*owner*); the engine lamp
-    neither lit nor flashing (*owner*);
-  - *not known:* the code's number and status, on which drive and at
-    what odometer, whether it was cleared.
+  - *measured:* **16684 P0300 35-00, 16687 P0303 35-00**; the engine
+    lamp neither lit nor flashing (*owner*);
+  - *not known:* on which drive, at what odometer, whether it was
+    cleared.
 
 The second without an injector cut in four days (`open.md` S3). The
 same day the owner set the belt for 7/12 and decided to renew the

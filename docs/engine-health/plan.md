@@ -162,8 +162,9 @@ goes into the chat by cylinder; **3 always beside one of the others**.
 
 *Before anything is undone:*
 
-- With VCDS: the fault memory saved, **032 and 055 read** (the battery
-  off resets them).
+- With VCDS: the fault memory saved, **032 and 055 read** — **the
+  battery stays disconnected for the whole job** (*the owner*, 16/11),
+  which resets both.
 - The odometer into the chat.
 - The system let down: a rag round the supply joint, loosened slowly,
   cold engine; no flame, no lamp that can spark.
@@ -176,15 +177,6 @@ goes into the chat by cylinder; **3 always beside one of the others**.
 - **Each bolt and nut of the lower manifold and of the rail as it is
   undone**: any that was loose or came off with little effort, and
   which one.
-
-*The rail lifted out with the injectors still in it and the fuel lines
-still on, if the hoses let it; the injector plugs off:*
-
-- **The drip test**: the four tips over clean paper, the ignition
-  switched on three times a few seconds apart (the pump runs each
-  time), then **the tips watched for two minutes**: which tip forms a
-  drop, and how many. A fire extinguisher in reach, the paper outside
-  afterwards.
 
 *The loom and the injectors on the bench:*
 
@@ -220,13 +212,15 @@ still on, if the hoses let it; the injector plugs off:*
 - **If plug 3 comes out**: its firing end photographed beside one
   other plug (8v), its gap measured; the borescope on 3's crown and
   on the exhaust valve, as on 20/10.
-- **The inlet seat of 3, only if the owner wants it** (plug 3 out):
-  the crank turned by hand half a turn on from cylinder 1's TDC mark,
-  so that the inlet valves of 3 and 1 are both shut; a teaspoon of
-  petrol into port 3 and into port 1; five minutes; which port's
-  petrol has gone, and whether the borescope through plug hole 3
-  shows it wet under the inlet valve. The engine turned over by hand
-  two turns with the plug out before it is started.
+- **The inlet valve of 3 holding petrol, only if the owner wants it**
+  (plugs 3 and 1 out): the crank turned by hand to cylinder 1's TDC
+  mark, then **half a turn further**, so that the inlet valves of 3
+  and 1 are both shut; **a teaspoon of petrol poured into port 3, and
+  one into port 1**, each lying on its closed valve; five minutes;
+  **whether the petrol still stands in each port**, and the borescope
+  down plug hole 3 and plug hole 1: **is the chamber under the valve
+  wet**. Before the start, the crank turned two full turns by hand
+  with the plugs out, so any petrol that got through is blown out.
 
 *Going back together:*
 
@@ -242,16 +236,12 @@ still on, if the hoses let it; the injector plugs off:*
   height against the rail, each clip in, each turning a little by
   hand; each plug clicked.
 - **The part numbers off the bags** into the chat.
-- **Before the upper intake goes on**: the ignition on three times,
-  every rail joint and every injector seat looked at and felt for
-  fuel.
 
 *After:*
 
-- **The first start**: fuel smell or a wet seat first; then a hiss;
-  the vacuum gauge at a warm idle (18–19 inHg before).
-- **The smoke test again**, cold, if the tester is at hand: the lower
-  joint and the injector seats.
+- **The battery back on, the ignition on for a minute before the
+  start**; at the first start, a fuel smell or a wet joint first, then
+  a hiss.
 - **`IdleHealth` and `Misfires` at the first warm stops**, the
   everyday state, into the chat; anything felt.
 - **032 for 20 s at every session with VCDS** (8f), the fault memory.
@@ -625,24 +615,22 @@ between two captures could not be told apart.
   the runner is where that points, and it is seen only now.
 - **The flange against a rule**: a new gasket on a face that is not
   flat leaks as the old one did.
-- **The drip test** (`open.md` S19, H7; Part 2, 8u, *Falling after
-  switch-off*): an injector that drips is the one finding that would
-  give 032's idle cell, S19's flooded start and an uneven idle
-  together, and with the rail out it is seen directly, without the
-  gauge. VW's own allowance for a tip was not read; any drop inside
-  two minutes on one tip and none on the others is reported as that.
-  The pump runs for a moment at each switching-on, enough to bring the
-  rail to pressure (*general*); if the hoses do not let the rail out,
-  the test is left to 8u's gauge.
+- **No drip test, no smoke or vacuum test in 8z** (*the owner*,
+  16/11): the fuel hoses cannot stay on with the rail out, and the
+  battery is off throughout, so a dripping injector is left to 8u's
+  gauge (*Falling after switch-off*); the smoke test and the vacuum
+  gauge can be done at any time after, and are not part of the step.
 - **The ports open**: the inlet valves were last seen on 20/10, from
   above past the stems, before the cleaners, the hydrogen clean and
   the gas (`open.md` H13); the same order makes the frames comparable.
   An oily stem is H18's, a port washed clean or wet on 3 alone H20's
   or the injector's.
-- **The petrol on the seat** (*general*; optional, *the owner's to
-  choose*): a shut inlet valve holds petrol for minutes; one that lets
-  it through names 3's inlet seat (H1), where the photos of 20/10 show
-  the crust broken. Cold and by gravity, so **a seat that holds clears
+- **The petrol on the inlet valve** (*general*; optional, *the owner's
+  to choose*, explained to him 16/11): a shut inlet valve that seals
+  holds the petrol in its port for minutes, and the chamber below
+  stays dry; one that leaks lets it through — the port empties, the
+  chamber under it is wet. 1 beside 3 as the yardstick. A leak names
+  3's inlet seat (H1), where the photos of 20/10 show the crust broken. Cold and by gravity, so **a seat that holds clears
   nothing** — the swell is warm, and the exhaust seat is not reached
   at all. 3 and 1 because half a turn after cylinder 1's firing TDC
   (firing order 1-3-4-2) 3 is at its own firing TDC and 1 at the
