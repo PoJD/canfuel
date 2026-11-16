@@ -914,6 +914,10 @@ never 3's cause. What the NGK ends may have cost is **4's**: its weak
 strokes fell from 38 per 1000 on `19` (24/9) to 5–16 on `24`–`31` and
 2–7 from 12/10, when lead 4 was re-seated — gone with the leads, so
 nothing of it is left to test.
+**The VW leads' plug ends after 26 days** (*owner*, 16/11, the leads off
+for `plan.md` 8z; one photographed): **all four equally clean inside,
+none black** — where the NGK ends of 3 and 4 came off with black ends.
+What blackened those two ends has not come back on the VW leads.
 
 **As it stood in `open.md` when it was refuted** (heading: *H15. The aftermarket leads (and plugs) — NGK plug ends that grip loosely, on 3 and 4 above all*):
 
@@ -1201,7 +1205,9 @@ The valve cover gasket: the hardened original, then a wrong part on 2/10
 the ventilation nor the gasket was the idle (A15). The re-tightening stays in
 `plan.md`'s standing items. *(26/10: re-tightened again by the
 owner in the week of 19/10, hundreds of km on the gasket by then; the item
-left the standing items at his request.)*
+left the standing items at his request.)* *(16/11, the upper intake off for
+the lower gasket, `plan.md` 8z: the cover's nuts tried by the owner, all
+tight, none turned.)*
 
 ### D6. S12 — a hesitation on tip-in and after a gearchange — closed 4/10/2026 (reopened 10/11/2026 in a new form, `open.md` S12)
 Withdrawn by the owner after watching for it: in his judgement mechanical play

@@ -184,10 +184,6 @@ goes into the chat by cylinder; **3 always beside one of the others**.
 - **Each bolt and nut of the lower manifold and of the rail as it is
   undone**: any that was loose or came off with little effort, and
   which one.
-- **The valve cover's nuts** (*the owner*, 16/11; checked once before,
-  `refuted.md` D5): each tried for tightness while the cover is in
-  reach; any that turned, which and about how far, into the chat; the
-  joint looked at for fresh oil, 3 and 4's end especially.
 
 *The loom and the injectors on the bench:*
 
@@ -702,9 +698,6 @@ between two captures could not be told apart.
   onto it at 3 and 4 for at least ten years; oil on the old gasket's land at 3, or runner 3 wet with
   oil where the others are dry, is oil drawn into 3 at the idle's
   vacuum — the swell's second reading — and is said as such.
-- **The cover's nuts**: the cover leaked onto the lower joint at 3 and
-  4 for years (`open.md` H3, *Oil soaked into the joint*); a nut that
-  has backed off lets it start again onto the new gasket.
 - **No cleaning of the head's ports in 8z** (above): the stop after 8z
   is read for the gasket, the joint's oil and the swap; a fourth
   change would leave it unable to say which. The lower manifold is
@@ -959,4 +952,3 @@ worse beyond its spread are read as a seat getting worse.
   Only when VCDS is connected anyway (*owner*, 24/10/2026): a plain
   drive is not worth a laptop, and a lit or flashing lamp is the
   backstop for what it would have caught.
-- **The cover's nuts**: the gasket settles (`refuted.md` D5).

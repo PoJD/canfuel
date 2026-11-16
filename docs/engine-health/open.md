@@ -4075,7 +4075,8 @@ sees through a swell*):
   idle's vacuum and pooling in runner 3 slows 3's burn without
   moving the mixture the probe sees — a few milligrams are nothing
   to lambda and much to a flame (*general*). **Against**: the cover
-  has been dry since 4/10 (`refuted.md` D5) and the swells are as
+  has been dry since 4/10 (`refuted.md` D5), its nuts found tight
+  on 16/11 with the upper intake off (*owner*), and the swells are as
   they were six weeks on (a soaked joint may hold oil long after);
   no blue smoke ever, the plugs dry; a load should not lift a pool at
   once, and it does. **For, and the stronger point** (*reasoned*):
