@@ -4053,7 +4053,24 @@ sees through a swell*):
   3 is deeper after high revs (r −0.32), which a leak does not know.
 - **8z tells**: floor and swell both smaller or gone is the leak as
   the swell's condition; the floor gone alone is two causes; both as
-  before refutes H3 (`plan.md` 8z, Part 2). Against that too: 3 was 10–20 % short in
+  before refutes H3 (`plan.md` 8z, Part 2).
+- **Oil soaked into the joint** (*the owner's suspicion*, 16/11: the
+  old valve cover leaked onto the lower gasket for years, S10; he
+  cleaned round it at the cover's change, the gasket itself out of
+  reach; could a soaked gasket, working with heat, give the swell?).
+  *Reasoned*: **as air, no** — a joint that breathes with heat changes
+  3's air, which the regulation would have shown (above). **As oil,
+  it is the swell's second reading** (S1, *The swell's shape*, 2: a
+  liquid that gathers at 3's inlet valve and is drawn in at once, the
+  commonest sawtooth there is): oil drawn through the joint at the
+  idle's vacuum and pooling in runner 3 slows 3's burn without
+  moving the mixture the probe sees — a few milligrams are nothing
+  to lambda and much to a flame (*general*). **Against**: the cover
+  has been dry since 4/10 (`refuted.md` D5) and the swells are as
+  they were six weeks on; no blue smoke ever, the plugs dry; a load
+  should not lift a pool at once, and it does. **8z sees it**: oil on
+  the old gasket's land at 3 or wet in runner 3 against the others
+  (`plan.md` 8z); the gasket goes either way. Against that too: 3 was 10–20 % short in
 August on the old injectors and their rings (S1, *Every stroke
 named*), so two different rings would have had to leak in the same
 bore — which points at the bore or the runner rather than the ring.

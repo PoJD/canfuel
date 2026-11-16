@@ -207,7 +207,8 @@ goes into the chat by cylinder; **3 always beside one of the others**.
 - **The manifold's flange**: a steel rule's edge across each runner
   and along the whole flange, against the light or with a feeler
   gauge; the gap and where. **Runner 3 inside and out** for a crack;
-  whether its wall is wet, and with what.
+  whether its wall is wet, and with what — **oil especially** (wiped
+  with a white cloth, 3 beside 2, photographed).
 - **The head's face** round each port: pitted, corroded, a ridge of
   old gasket.
 - **The four inlet ports, open now**: the back of each inlet valve,
@@ -653,6 +654,11 @@ between two captures could not be told apart.
   stop after the gasket and the swap is the reading, and the cold
   start on the new joint is S19's and the gasket's both; 032 relearns
   from zero, so 8x watches the idle cell being learnt.
+- **Oil at the joint** (`open.md` H3, *Oil soaked into the joint*,
+  the owner's suspicion of 16/11): the old cover leaked for years
+  above it; oil on the old gasket's land at 3, or runner 3 wet with
+  oil where the others are dry, is oil drawn into 3 at the idle's
+  vacuum — the swell's second reading — and is said as such.
 - **S11's hiss after the gasket** (`open.md` S11, 16/11: heard a
   head's height below the cam cover, by the owner's ear a fault): gone
   is H3's joint; still there leaves it the throttle's own air.
