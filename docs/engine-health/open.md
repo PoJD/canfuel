@@ -1968,7 +1968,9 @@ display's byte.
   canister — and **the swells between are as rough as September's**.
   At an equal deficit of 3's (−16 to −23 %) its weak strokes were
   22–28 per 1000 on `24`–`30`, **13–14 on `31` and `32`**, and are
-  **21–30 again on `42`–`44` and `49`–`51`**; a swell window's grade
+  **21–30 again on `42`–`44` and `49`–`51`**, and 22 and 24 on `52`
+  and `53` (15/11; `swellscan.py --csv`, warm, the A/C off, ×4 for
+  3's own strokes) — level since 3/11, neither better nor worse; a swell window's grade
   85, 69, 86, 80. **The gain of 10/10 inside a swell has gone**; it
   holds only where 3 is shallow (−13 to −10 %: 27, 12, and 11–12
   since). When it went the captures do not date closer than between
