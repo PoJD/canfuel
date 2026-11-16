@@ -225,6 +225,11 @@ goes into the chat by cylinder; **3 always beside one of the others**.
 - **The bolts from the middle outwards, in two passes, to VW's
   figure** — asked for at the parts counter with the parts, or Claude
   reads it out of the manual when told the evening.
+- **Injectors 2 and 3 swapped** (*the owner's offer*, 16/11): before
+  they come out of the rail, each marked with tape — the cylinder it
+  came from; **the one from 3 goes into 2, the one from 2 into 3**, 1
+  and 4 back where they were. Which went where into the chat, with a
+  photograph of the marks in place.
 - **The new gasket's ports matched to the head's**: each opening has a
   bulge to one side; it lies over the port's own shape, nothing of the
   gasket standing into a port.
@@ -631,6 +636,26 @@ between two captures could not be told apart.
   change nothing; the photographs of the open ports stay.
 - **The injectors fully home**: three of four were not, 23/9–1/10
   (`vehicle-history.md`).
+- **Injectors 2 and 3 swapped** (*the owner's offer*, 16/11; it
+  withdraws his "no swap" of 12/11, which held while the rail had to
+  come out for it alone): the rail is out anyway, so it costs nothing,
+  and it tells the injector from everything that stays with cylinder
+  3 — the bore, the runner, the head, the loom. 2 because it is the
+  strongest at idle (`open.md` S1, *Every stroke named*). The ring on
+  the injector goes with it if the old rings stay. **Read with the
+  gasket** on 8z's captured stop (`cylscan.py --minutes`):
+  - **3's deficit stays on 3, 2 as before**: not the injector (H7's
+    injector form to `refuted.md`); with the gasket renewed and the
+    deficit still there, not the gasket either — what is left of B is
+    the bore, the seat, the deposits, the coolant, the loom.
+  - **The deficit moves to 2** (2 now short, 3 level): **the injector**
+    — or, if the old rings stayed, its ring; H7 B6 goes to the top,
+    and H3's gasket is out.
+  - **Both level, 3's floor gone**: not the injector (it would have
+    taken the deficit to 2); the gasket, or the injector seated
+    better, as before.
+  - **Both short**: two causes, one going with the injector, one
+    staying.
 - **The old lower rings kept if no new ones come** (*the owner*,
   16/11): then the gasket alone is changed, and a floor of 3's that
   goes names the gasket; one that stays leaves 3's ring and its bore

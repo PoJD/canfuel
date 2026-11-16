@@ -4152,7 +4152,9 @@ revs as after none and the same on every day, within 5 %.
   night's "the dips then sat on all four alike" (`40`, `41`) was a count
   that slipped: 3 led there too. **Against, by the owner** (3/11): the
   injectors are new (9/2026); **no swap** (*his decision*, agreed 12/11
-  and withdrawn the same day, above), so this stays untested. *The
+  and withdrawn the same day, above), so this stayed untested — **until
+  16/11: injectors 2 and 3 swapped in 8z** (*the owner's offer*; the
+  rail is out for the gasket anyway; `plan.md` 8z, its reading). *The
   owner's history of 3/11 — "on the new VW leads the dips were on all
   four alike and 3 came back only later; a bad injector would never
   have been even" — rested on those shares; by `cylscan.py` 3 was never
@@ -4265,7 +4267,9 @@ revs as after none and the same on every day, within 5 %.
 not bought from 10/10 until then; VW's figures: 2.5 bar at idle, 3.0 with the regulator's hose
 off, **2.0 bar or more ten minutes after switching off**, the last being
 S19's question — `vcds.md`);
-swap injector 3 with another if the cylinder stays named.
+**injectors 2 and 3 swapped in 8z** (*the owner*, 16/11): the deficit
+going to 2 names the injector (or its ring, if the old rings stay);
+staying on 3 clears it.
 
 ### H8. Idle air control and the throttle body
 
@@ -6751,7 +6755,7 @@ and the grade's swings are B's.
 | B3 | **H3** a leak at runner 3 | **Runner 3's lower gasket**, never renewed — the one cause that predicts *load helps* directly (−21 to −26 % of a stroke at idle, −1 to −3 % at full load); its edge bent and straightened 5/11, runner 4's torn; with the owner's reading (a second cause making all four rich), 032's negative idle cell no longer counts against it. Against: the smoke test of 9/10 clean; a leak has no reason to swell and mend, so it explains at most the floor | **8z** (*the owner*, 16/11): the gasket and the injectors' lower rings renewed by the owner before the belt, the joint read while open; 3's floor on the captured warm stop after it (`plan.md` 8z) |
 | B4 | **H4** the injector loom at 3 | 3's deficit is an amount at a small charge, not a share — what an injector opening late through a raised resistance gives; the wiring is what stays with the cylinder through a change of injectors. Against: the supply steady through a whole stop, no step at a swell (004, 15/11); a wire has no reason to swell and mend, so the floor at most; the spark side against, 3 level at full load | the circuits measured (`plan.md` 6m, in 8z's evening; 6n) |
 | B5 | **H20** coolant into 3 | Fits one cylinder at idle, where the cylinder's pressure is lowest, and the fading with load; plug 3 the cleanest of the 10/10 set (*the owner*, 4/11, weak). Against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos; nothing in it fills and empties | the CO₂ test of the coolant; bubbles at the tank in the leak-down (`plan.md` 9) |
-| B6 | **H7** injector 3 | Last: 3 was the weak one on the old injectors in August too, so the injector itself is unlikely (*the owner's argument*, 12/11); a share is what it would give, and 3's deficit is an amount; plug 3 the cleanest | **no injector swap** (*the owner*); a rail gauge for its other form (A4, `plan.md` 8u) |
+| B6 | **H7** injector 3 | Last: 3 was the weak one on the old injectors in August too, so the injector itself is unlikely (*the owner's argument*, 12/11); a share is what it would give, and 3's deficit is an amount; plug 3 the cleanest | **injectors 2 and 3 swapped in 8z** (*the owner*, 16/11): the deficit moving to 2 names it, staying on 3 clears it; a rail gauge for its other form (A4, `plan.md` 8u) |
 
 **A. The common part — what makes every cylinder alike rougher** (the
 small unevenness on all four, most of `IdleHealth`'s floor and nothing
