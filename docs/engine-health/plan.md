@@ -155,8 +155,12 @@ and of the stop stay on 8f's groups, 014 among them. Nothing to do at
 the car beyond the drive and the stop.
 
 **8z. The lower manifold's gasket and the injectors' lower O-rings**
-(*the owner's decision*, 16/11; VW's own parts), **by the owner, before
-7/12**. The upper intake, the rail with the injectors and the loom
+(*the owner's decision*, 16/11), **by the owner, before 7/12**. **Bought
+16/11** (the album, 15:29): the lower gasket **Elring `165.210`**, one
+piece over all four ports, metal with a soft coating, made in Germany;
+the upper **Elring `271.230`**, as every time before. **The lower
+O-rings not found yet** (*owner*): if none come before the evening,
+the rings on the injectors stay. The upper intake, the rail with the injectors and the loom
 off, then the lower manifold. Everything below is photographed and
 goes into the chat by cylinder; **3 always beside one of the others**.
 
@@ -221,11 +225,17 @@ goes into the chat by cylinder; **3 always beside one of the others**.
 - **The bolts from the middle outwards, in two passes, to VW's
   figure** — asked for at the parts counter with the parts, or Claude
   reads it out of the manual when told the evening.
-- **The new lower rings** with a drop of clean engine oil, each
+- **The new gasket's ports matched to the head's**: each opening has a
+  bulge to one side; it lies over the port's own shape, nothing of the
+  gasket standing into a port.
+- **The lower rings, new if they came**, with a drop of clean engine
+  oil; **if the old ones stay**, each looked at first (above) and
+  refitted only whole and soft, a drop of oil too. Each
   injector pushed straight and **fully home**: the four at the same
   height against the rail, each clip in, each turning a little by
   hand; each plug clicked.
-- **The part numbers off the bags** into the chat.
+- **The new rings' part number off the bag** into the chat, if they
+  came.
 
 *After:*
 
@@ -621,6 +631,11 @@ between two captures could not be told apart.
   change nothing; the photographs of the open ports stay.
 - **The injectors fully home**: three of four were not, 23/9–1/10
   (`vehicle-history.md`).
+- **The old lower rings kept if no new ones come** (*the owner*,
+  16/11): then the gasket alone is changed, and a floor of 3's that
+  goes names the gasket; one that stays leaves 3's ring and its bore
+  as the one part of H3 not renewed, which the bores' and rings'
+  photographs then speak to.
 - **How the capture is read** (`tools/cylscan.py --minutes`,
   `swellscan.py --floors`): **3's floor** (−6 to −9 % of a stroke at
   every warm idle since 24/9) **gone or halved is H3**, at the gasket
