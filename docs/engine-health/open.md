@@ -3970,7 +3970,35 @@ cylinders, where an even leak makes a mixture the loop corrects. Not
 excluded: a leak small and uneven between 1, 2 and 4. **8z's stop
 reads it** (`plan.md` 8z): the common part against `52` and `53`; a
 clear step down would put this form in list A. Not ranked until then
-(*the owner*, 16/11). Against that too: 3 was 10–20 % short in
+(*the owner*, 16/11).
+
+**The swell with a leak** (*the owner's question*, 16/11: is there no
+logical way a leak at 3 gives the swell?). *Reasoned*, on what is
+measured (S1, *The swell's shape*; *The queue drive, and what the ECU
+sees through a swell*):
+- **The leak cannot be what changes in a swell.** Any way the leak
+  itself grows — the joint opening as the manifold heat-soaks at a
+  standstill, the leak's jet disturbing injector 3's spray, fuel
+  stored in a film in runner 3 and released — changes 3's mixture,
+  and the regulation (001, three rows a second, `50`) did not move
+  through a swell of −23 % (−0.4 to +0.2 %), nor did the injection
+  time; a fifth lean on one cylinder would move it about 5 %.
+- **It can be what makes 3 the one that swells.** In the swell every
+  stroke of 3's is weaker, not a few missing — a slower burn at the
+  same mixture. A cylinder kept a little lean burns more slowly and
+  is far more sensitive than the others to whatever slows a burn
+  (*general*): burnt gas left in it, a film or deposit on its valve,
+  its chamber's temperature. So a fixed leak and a slow change that
+  reaches all four, or 3's own seat, would show as a swell on 3 alone.
+  *A conjecture*: nothing measured tells it from H1/H13 on their own.
+- **Against it**: straight after a fall 3 is nearly level (−1 to −5 %)
+  before settling to −7 to −9 % in two minutes, so for that time 3
+  runs as well as the others with the leak in place — the leak's own
+  share is small, and the floor may be the swell's first stage; and
+  3 is deeper after high revs (r −0.32), which a leak does not know.
+- **8z tells**: floor and swell both smaller or gone is the leak as
+  the swell's condition; the floor gone alone is two causes; both as
+  before refutes H3 (`plan.md` 8z, Part 2). Against that too: 3 was 10–20 % short in
 August on the old injectors and their rings (S1, *Every stroke
 named*), so two different rings would have had to leak in the same
 bore — which points at the bore or the runner rather than the ring.

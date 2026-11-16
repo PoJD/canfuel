@@ -696,10 +696,13 @@ between two captures could not be told apart.
   `swellscan.py --floors`): **3's floor** (−6 to −9 % of a stroke at
   every warm idle since 24/9) **gone or halved is H3**, at the gasket
   or the ring, whichever showed the track; **the floor as before** puts
-  H3 in `refuted.md` whole. **The swell** is not expected to move — a
-  leak has no reason to swell and mend (`open.md` H3) — so a swell as
-  before under a floor that went is two causes told apart, and item 9
-  is then for the swell alone. 032 says little either way: one
+  H3 in `refuted.md` whole. **The swell**: the leak cannot be what
+  varies in it (3's mixture did not move through a swell), but it may
+  be what puts 3 at the edge where a slower burn shows (`open.md` H3,
+  *The swell with a leak*, 16/11) — so **floor and swell both smaller
+  or gone** is the leak as the swell's condition; **the floor gone and
+  the swell as before** is two causes told apart, and item 9 is then
+  for the swell alone. 032 says little either way: one
   runner's leak moves the idle cell by about a quarter of its own
   size, inside the cell's own spread. The MFD's `IdleHealth` between
   is read as before, with its spread.
