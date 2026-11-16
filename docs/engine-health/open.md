@@ -123,7 +123,9 @@ the end; standing: **8f** at every VCDS session, **6i** the oil level
 about 156,400 km, the MFD's `IdleHealth` and `Misfires` at warm stops;
 by opportunity (*the owner*, 15/11): **8u** the fuel pressure, **8v** the plugs at their change,
 **8w** the cylinder 4 knock window; at the next session with the
-laptop: **8x**, 001, 032 and 070 in one log (S19).
+laptop: **8x**, 001, 032 and 070 in one log (S19) — not on 8z's
+first drive, which runs 014, 032 and 070 from the cold start and 014
+alone at the warm stop.
 
 ---
 
