@@ -23,8 +23,7 @@ at a garage, once it has a date** (a date asked for 13/11); **6m for
 injector 3, at the next evening with the upper intake off**, ahead of
 item 9; then item 9; **the new rear probe when the seller sends it**
 (8e), **its harness at the end**; **8u, 8v, 8w by opportunity**
-(*the owner*, 15/11); **8y, the air mass meter's plug, first**;
-**8x at the next session with the laptop**. *What is done is `idle-log.md` and
+(*the owner*, 15/11); **8x at the next session with the laptop**. *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
 
 **6. Drive normally; the MFD back in from 15/11** (*the owner*, after
@@ -147,29 +146,6 @@ of this plan, *the owner's decision* of 9/10):
   connected anyway (020 on 8q's captured drive or any drive with VCDS on): 026 from
   idle to about 3,500 rpm in neutral, slowly; 020 on two or three
   full-throttle pulls in 3rd or 4th.
-
-**8y. The air mass meter's plug** (*the owner*, 15/11 night; before
-the gauge if the evening allows). A multimeter; the meter's 5-pin
-plug.
-
-- **The loose pieces of the red lock out of both halves** (a plastic
-  pick, then contact cleaner). *The contacts were pressed 16/11 and
-  all hold (the owner).*
-- **The earth point by the ECU** (found corroded 16/11): with the
-  battery reconnected and the engine warm at idle, before it is taken
-  apart if that is still possible, the voltage between each ring (on
-  a scraped spot) and the battery's minus post, main beam off and on;
-  then the rings and the stud cleaned to bare metal, a ring whose crimp
-  is green cut off and a new one crimped on, the same voltages again.
-  The figures and a photograph into the chat.
-- After the battery is reconnected: the ignition on for about a
-  minute before the first start (the throttle learns its stops).
-- **Then the plug back on, firmly home, and drive as usual**: 032
-  read at the next VCDS session (8f) — the idle cell is the measuring
-  instrument. *Probing from behind was dropped 16/11: the plug's back
-  cannot be reached without breaking it (the owner).*
-- If the engine lamp lights at the next start: 032/055 read before
-  the code is cleared (8a).
 
 **8x. 001, 032 and 070 in one log** (*the owner*, 15/11 night), **at
 the next session with the laptop — that may be 8q's captured drive
@@ -619,43 +595,6 @@ contact with the block and VW gives it a torque; 026 in neutral
 because that is where S5 lives, against
 `vcds/vcds-neutral-026-003.csv`; 020 on pulls because 4's retard shows
 only there, against `vcds/vcds-step2c-020-026-003.csv`.
-
-**8y, the meter's plug** (`open.md` S19, *The meter's plug and its
-earth, the electrical side*): VW's own check (*Checking air mass
-meter*, this engine) reads 11–15 V on contact 2 with the engine
-running, 4.5–5.5 V on contact 4 with the ignition on, and contacts 3,
-4, 5 to the ECU at 1.5 Ω at most — **all with the plug off, where no
-current flows, so it finds a broken wire and not a contact of a few
-tenths of an ohm**. The plug-off part, VW's, passed on 15/11 night (`idle-log.md`), as
-expected; it was then that the car's half was found with its red
-lock broken, pieces of it in the meter's half (`open.md` S19).
-A reading under current, from behind, cannot be had without breaking
-the plug (the owner, 16/11), and the plug off with the engine running
-adds only contact 2's supply (VW's 11–15 V) and a stored code, not the
-contact's resistance — so **the plug cleaned and seated is read by
-032**: the idle cell relearns within a drive from wherever it stands
-(S19), so after two or three drives **an idle cell nearer zero than
-its −5.5 to −9.4 % since 25/10 says the plug**; one where it was says
-not this plug. Whether
-pulling the plug with the ignition on stores a code is not known for
-this ECU; VW's own check pulls it with the engine running. **How it
-would show**: a steady resistance moves 032's idle cell, not the idle
-— the loop holds the mean mixture either way; only a contact that
-flickers would move the mixture fast enough to reach the common part.
-**Cleaning the contacts afterwards** is the repeat of 7/2026 and its
-own test: the idle cell nearer zero over the next drives says the
-plug; it is the owner's call, after the measuring. **16/11**: VW's
-third part done with the ECU unplugged — the meter's wires 0.2–0.5 Ω
-with the leads' own 0.2–0.5, whole — and **an earth point by the ECU
-found corroded**. Its resistance cannot be read with an ohmmeter
-through the corrosion on its surface; the voltage under current can,
-since a voltmeter's reading does not depend on the probe's contact.
-A few tens of millivolts or less is clean (Claude's threshold, not
-VW's). **Read by 032 from zero**: the battery was disconnected, and
-from every reset so far the idle cell was back at −5.5 to −6.3 %
-within one drive; staying nearer zero after two or three drives says
-the plug or the earth — **the two were changed together and cannot be
-told apart** (the owner's evening; *reasoned*).
 
 **8x, 001, 032 and 070 together** (`open.md` S19, *The old logs
 re-read for the split's form*): the idle's correction — the idle cell

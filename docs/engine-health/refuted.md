@@ -1083,6 +1083,34 @@ in `open.md`: H21 for the front probe's damaged signal-earth wire
 (S19's idle cell, S12's ~), from fifth to eighth in list A the same
 evening; H4's ~ for S4 and S5 on its other paths.
 
+### C27. "The air mass meter's plug, or the earth point by the ECU, makes S19's idle cell" (`open.md` S19, its electrical form) — measured
+
+**Believed:** 15/11/2026 night, at the owner's question: an offset on
+the meter's signal against the ECU — a contact resistance in the
+plug, or an earth the ECU's reference moves with — reads more air than
+the engine takes, a fixed amount, largest against the idle's small
+flow: 032's shape, and shared by both meters. Weighted by the owner's
+recollection that the bad cold starts went for two weeks after the
+plug was cleaned in 7/2026.
+**Found** (`idle-log.md`, 15–16/11 night; `plan.md` 8y, done): the
+car's half of the plug with its red lock broken and pieces in the
+meter's half (out but one), every contact holding; VW's plug-off
+readings met (4 at 5.002 V); the meter's three wires to the ECU 0.2–0.5
+Ω with the leads' own 0.2–0.5, whole; **an earth point by the ECU
+corroded**, cleaned to bare metal (not re-crimped).
+**Refuted by** 032 from zero: the battery was disconnected for the
+earth, and after the plug and the earth were cleaned **one gentle drive
+of about 30 minutes put the idle cell back at −5.5 % (+5.5 at part
+load; 055 −1.11 → −1.22 g/s)** (the album, 16/11 03:18–03:19), as
+after every reset before — so neither made the cell. Moved here at the
+owner's report, 16/11.
+**What it does not refute:** a part of the cell under a point; the
+earth's crimps, green outside and not renewed; a contact that
+flickers, which moves the mixture faster than 032 learns.
+**What would revive it:** the idle cell nearer zero after the crimps
+are renewed, or a voltage under current at that earth of more than a
+few tens of millivolts.
+
 ## D. Symptoms closed
 
 Moved out of `open.md` when it was condensed, 20/10/2026. Each was closed at

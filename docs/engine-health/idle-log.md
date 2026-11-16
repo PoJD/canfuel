@@ -1764,3 +1764,14 @@ meter's display, which reads 000.5 Ω (the album, 01:39).*
 A cold reading says nothing about 8y: its reading is 032's idle cell
 after two or three drives (`plan.md` 8y).
 
+## 16 November 2026 night — the first drive after the plug and the earth (8y's reading)
+
+- **Tests:** a gentle drive of about 30 minutes with the MFD; 032,
+  055 and 014 read at the end (the album, 03:18–03:19).
+- **Changes after:**
+  - *measured:* **032 −5.5 / +5.5 %** from zero; 055 −0.12 / −1.11 →
+    −0.02 / −1.22 g/s at 800 rpm, load bits `0000`; 014 0.
+
+The idle cell back where it relearns to after every reset: the plug and
+the earth point were not its cause (`refuted.md` C27).
+

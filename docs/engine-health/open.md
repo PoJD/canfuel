@@ -119,8 +119,7 @@ the end; standing: **8f** at every VCDS session, **6i** the oil level
 about 156,400 km, the MFD's `IdleHealth` and `Misfires` at warm stops;
 by opportunity (*the owner*, 15/11): **8u** the fuel pressure, **8v** the plugs at their change,
 **8w** the cylinder 4 knock window; at the next session with the
-laptop: **8x**, 001, 032 and 070 in one log (S19); first of all
-**8y**, the air mass meter's plug measured (S19).
+laptop: **8x**, 001, 032 and 070 in one log (S19).
 
 ---
 
@@ -3158,7 +3157,7 @@ learnt. Three things they do say.
     fuel, the old injectors), and S7 closed on the injectors and the
     fuel (`refuted.md` D2). The wiggle test of 4/10 moved nothing
     (`idle-log.md`), which a steady resistance would not either.
-    **Its test**: `plan.md` 8y (*the owner*, 15/11 night) — the plug
+    **Its test** (`plan.md` 8y, done 16/11; `refuted.md` C27) — the plug
     off with the ignition on first, then probed from behind with the
     engine running, main beam off and on.
     **Found 15/11 night** (*the owner*; `idle-log.md`;
@@ -3194,9 +3193,11 @@ learnt. Three things they do say.
     ECU's reference moves with it (*reasoned*); C26 measured no sender
     moving with the loads at `53`'s stop, which is against a large
     shift, not against a fixed one. Its voltage under current, before
-    and after cleaning, is in 8y; the battery's disconnect reset 032,
-    so the idle cell's relearn from zero reads the plug and the earth
-    together.
+    and after cleaning, was not measured. **Settled 16/11**: the
+    plug and the earth cleaned, the battery's disconnect reset 032,
+    and **one gentle drive put the idle cell back at −5.5 %** (+5.5;
+    055 −1.22 g/s), as from every reset — neither made it
+    (`refuted.md` C27).
   - **The supply as the ECU sees it, tested at the desk the same
     night** (`vcds/vcds-step8h-loads1-004-033-036.csv`, 004 beside
     the regulation through `53`'s load steps): the regulation's mean
@@ -3215,9 +3216,18 @@ learnt. Three things they do say.
     fuel than the ECU reckons, a fixed amount, learnt with the purge
     shut, on either set of injectors (the same part number, C2),
     either air mass meter, either
-    pair of probes, either map and fresh oil. Left: a drip or the
-    return (8u), the air's path to the meter and its wiring, and the
-    ECU's own reckoning of a short injection.
+    pair of probes, either map and fresh oil, and (16/11) with the
+    meter's plug and the earth by the ECU cleaned (`refuted.md` C27).
+    Left: a drip or a return that throttles (8u), and the ECU's own
+    reckoning of a short injection. **The return's form** (*reasoned*):
+    a restriction between the regulator and the tank backs the rail up
+    by what the returning flow costs it, and the returning flow is
+    largest at idle, where the engine takes least — so the pressure
+    stands highest above the regulator's setting at idle and less under
+    load: the split's shape. 6e's hose test does not see it (the
+    regulator still answers its vacuum); VW's own pinching of the
+    return in the holding-pressure check shows how it reads on the
+    gauge.
 - **The cell over the three months** (*the owner's observation*: more
   negative as the repairs go on): −5.5 % on 20/8 and −4.7 % on 10/9
   (H11, *The idle cell over time*), −6.3 to −8.6 from 25/10, −9.4
