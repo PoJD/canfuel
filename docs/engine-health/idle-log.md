@@ -1744,3 +1744,21 @@ around it. The ECU's plug and pins clean. The meter's three wires to
 the ECU are whole. *The figures were first read 0.002–0.005 Ω off the
 meter's display, which reads 000.5 Ω (the album, 01:39).*
 
+## 16 November 2026 night — the earth point by the ECU cleaned; the first start after it
+
+- **Repairs:** the earth point by the ECU cleaned to bare metal
+  (*owner*; whether a ring was re-crimped, not known); the battery
+  reconnected.
+- **Tests:** a cold start, idling (the MFD in).
+- **Changes after:**
+  - *measured:* `IdleHealth` **50–60** while the secondary air ran,
+    then **up to over 150** after it (*owner*) — every captured cold
+    start reads calmer in its first two minutes and 110–160 after
+    (`refuted.md`, S23's first start after the tape), so the shape of
+    every cold start, at its top.
+  - *not known:* the earth's voltage under current, before or after
+    (not measured); 032, from zero after the battery's disconnect.
+
+A cold reading says nothing about 8y: its reading is 032's idle cell
+after two or three drives (`plan.md` 8y).
+
