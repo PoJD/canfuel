@@ -1746,9 +1746,11 @@ meter's display, which reads 000.5 Ω (the album, 01:39).*
 
 ## 16 November 2026 night — the earth point by the ECU cleaned; the first start after it
 
-- **Repairs:** the earth point by the ECU cleaned to bare metal
-  (*owner*; whether a ring was re-crimped, not known); the battery
-  reconnected.
+- **Repairs:** the earth point by the ECU cleaned — both rings, the
+  stud and its nut sanded to bare metal, **the rings not re-crimped**
+  (no spare rings), the crimps green on the outside left as they are
+  (*owner*; `photos/earth-point-by-ecu-2026-11-16-before.jpg`,
+  `-cleaned.jpg`); the battery reconnected.
 - **Tests:** a cold start, idling (the MFD in).
 - **Changes after:**
   - *measured:* `IdleHealth` **50–60** while the secondary air ran,
