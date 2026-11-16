@@ -2750,6 +2750,59 @@ he felt one then is *not known*.
 captured drive, or note the clock; a capture with a word at the time
 names the stroke, the load and the cylinder.
 
+**16/11, the owner's reading and two new forms** (*owner*): he holds the
+jerk to be cylinder 3's — 3 has a charge above which it hardly misfires,
+and **every moving-off, above all from the overrun into an ordinary
+pull at a light pedal, crosses it**; and **the traction control has
+cut in where it has no business**, once **between 3rd and 4th on a
+dry road** at full throttle, power the car does not have to spin a
+wheel; is it the same thing, a stupid traction control at a light
+moving-off as well, or 3's burning fooling it? *Looked for*
+(`47`, `49`–`53`, and every `_z1` capture for 0x1A0; three unfiltered
+captures from the release for the wheel speeds, 0x4A0; *ad-hoc
+scripts, not kept*):
+- **The overrun into a pull** (`drivescan.py`'s windows, warm, 1,150–
+  2,600 rpm, b7 30–140; 292 windows in the 3 s after an overrun of a
+  second or more, against 3,366 in steady driving): **3 less 2 −2.9 ±
+  1.7 % of a stroke after the overrun, −5.8 ± 0.3 % in steady
+  driving** — 3 no weaker there. Strokes half a stroke under their
+  neighbours **four times as many after the overrun (about 11 per
+  1000 against 3), and on all four alike** (1: 10.6, 3: 11.3, 4: 10.2,
+  2: 11.3): the shunt of a load reversal through the driveline, not a
+  cylinder. And 3's deficit fades with the charge gradually (*Naming
+  the cylinder*, *Off idle*: −24 % at a light pedal, −9 % pulling at
+  idle speed, −2 to −5 % at part load), with no step to cross.
+- **At a crawl and moving off, up to 1,200 rpm**, 014 counts what it
+  counts standing — two thirds of its rises on 3 (*Off idle*, C), and
+  on `47` seven single misfires each in a window holding a
+  moving-off (above). **There the owner's reading stands**: one
+  stroke in four missing in first gear is a torque step he would feel,
+  and it is 3's. Not shown is that a felt jerk was one.
+- **The traction control, 0x1A0** (opendbc's `Bremse_1`: b0 bit 0 the
+  ASR's request, b4–b5 its torque limit, bit 2 ABS braking, bit 3 EDS,
+  bit 4 ESP): **the torque request twice since September** (`40`, 21/10
+  and `46`, 9/11), **both at a full-throttle change from 1st to 2nd**
+  at 45–50 km/h and 3,200–3,900 rpm, the torque held to 39–54 % for
+  1.0–1.6 s; on 9/11 the front wheels ran 5–6 km/h ahead of the rear
+  (13 %) as the clutch bit — **real wheelspin, rightly caught**; the
+  rest on private land in 1st (`17`, August). **Never at a light
+  pedal, never at 3→4** in any capture; ESP's bit never set. **EDS
+  once at a crawl** (`31`, 10/10: 0.4 s at 3 km/h, the pedal at 21 %,
+  lifted at once after) — EDS brakes a spinning front wheel, which is
+  felt; its cause there is not on the filtered bus. **ABS braking
+  flagged for 10 ms, about 30 times, with no brake pressed**, each at
+  a one-sample dip of 2–4 km/h on a rear wheel (six of six checked,
+  four of them the left rear) — a bump or the sensor; with no brake
+  applied it acts on nothing.
+- **Can 3's burning fool it**: *reasoned*, no — the traction control
+  reads the four wheels' speeds against each other, and a misfire
+  takes torque away, which spins no wheel. A rear wheel's speed
+  dipping for a sample, as above, makes the fronts look ahead of it
+  for that moment: **if anything gives a traction cut at 3→4 on a dry
+  road, it is that** (*reasoned*, not seen).
+- **To catch either**: "teď" on a captured drive — the unfiltered
+  upload keeps 0x4A0, so a cut is read wheel by wheel.
+
 ### S14. Bangs from the exhaust on a downshift without a blip
 
 *Owner*, 4/10: on a downshift **without a throttle blip** a series of small

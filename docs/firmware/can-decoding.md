@@ -607,13 +607,16 @@ injection time; 0x320 b2 fuel; 0x420 b3 oil; 0x480 b2–b3 fuel counter;
 | 0x520 b2 | key information (`Schluesselinfo`) | 3 always |
 | 0x5D0 b0 bit 1 | **the powertrain bus in diagnosis** | one frame with each 0x200, VCDS opening a session |
 | 0x1A0 b1 bit 3 | **the brake pedal** (`BR1_Lichtschalt`) | Trap 1's `0x48`; on in every slowing to a stop of `47` |
+| 0x1A0 b0 bit 0, b4–b5 | **the traction control's torque request** (`BR1_ASR_Anf`, `BR1_ASRMo_sl`/`_fa`, × 0.39 %; `0xFE` = none) | set with b4 = b5 at 39–54 % for 1.0–1.6 s at full-throttle changes from 1st to 2nd (`40`, `46`); on 9/11 the front wheels 5–6 km/h ahead of the rear in 0x4A0 (the unfiltered capture) — wheelspin (16/11) |
+| 0x1A0 b0 bit 2 | ABS braking (`BR1_ABS_Brems`) | 1–3 frames at a time with no brake pressed, each at a one-sample dip of a rear wheel in 0x4A0 (16/11) |
 
 **Named by the dbc, consistent with this car, not checked further**
 (none bears on the engine): 0x050 Airbag_1 (b1 the belt switches and the
 airbag lamp, b2 a counter, b3 a checksum); 0x0C2 steering angle and
-rate, its counter and CRC; 0x1A0 b0 ABS/ASR/EBD interventions, b1 bits
+rate, its counter and CRC; 0x1A0 b0's other interventions (bit 3 EDS,
+bit 4 ESP — never set, bit 7 EBV), b1 bits
 0–1 the ABS/ASR lamps (Trap 1's ramp), bit 4 a pressure-switch status
-(`0x50`), b4–b5 an ASR torque request (`0xFE` = none), b7 a counter;
+(`0x50`), b7 a counter;
 0x280 b0 bit 0 the pedal at rest (`Leergasinformation`; the clutch bit
 3 never set); 0x5A0 b1–b2 mean wheel speed, b3–b4 a time stamp, b5–b6
 path pulses, b7 = `0x80 | 43` pulses per revolution; 0x5D0 b1–b5 and
