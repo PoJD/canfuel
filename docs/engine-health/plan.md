@@ -230,6 +230,21 @@ goes into the chat by cylinder; **3 always beside one of the others**.
   photographed beside plug 2 while it is out (8v). The other ports
   covered while the crank turns.
 
+*Cleaning* (*Claude's recommendation*, 16/11; the owner's to decide):
+
+- **The lower manifold, off the car, may be washed whole** — its
+  runners and flange in technical benzine with a brush, rinsed, and
+  **dried completely** before it goes back; photographed first, inside
+  each runner, 3 beside 2.
+- **The ports in the head are photographed, not cleaned, in 8z**:
+  cleaning them is a fourth change in one step, after the gasket, the
+  joint's oil and the swapped injectors, and the stop after could not
+  say which did it; and anything loosened there goes into the
+  cylinder. If they are cleaned later, as a step of its own: that
+  cylinder's inlet valve shut (the crank turned until it is), a
+  lint-free cloth only, a plastic pick or nylon brush, never metal at
+  the seat, the loosened dirt vacuumed out, nothing left in a port.
+
 *Going back together:*
 
 - **The ports stuffed with clean rag while the faces are cleaned, the
@@ -659,6 +674,11 @@ between two captures could not be told apart.
   onto it at 3 and 4 for at least ten years; oil on the old gasket's land at 3, or runner 3 wet with
   oil where the others are dry, is oil drawn into 3 at the idle's
   vacuum — the swell's second reading — and is said as such.
+- **No cleaning of the head's ports in 8z** (above): the stop after 8z
+  is read for the gasket, the joint's oil and the swap; a fourth
+  change would leave it unable to say which. The lower manifold is
+  washed on the bench because it comes off anyway and its oil is the
+  joint's.
 - **S11's hiss after the gasket** (`open.md` S11, 16/11: heard a
   head's height below the cam cover, by the owner's ear a fault): gone
   is H3's joint; still there leaves it the throttle's own air.

@@ -4084,7 +4084,20 @@ sees through a swell*):
   where it lies — **a cause for H13 and H1's crust**, which until now
   had none but gentle driving, the same on all four. If so, the swell
   can outlive the leak: the deposit the oil laid stays when the oil
-  stops. **8z sees it**: oil on
+  stops.
+- **The soaked gasket as a seal** (*the owner's question*, 16/11:
+  could the oil in it have sealed the joint, so that it leaks more
+  since it dried?). *General*: oil filling a soft gasket's pores does
+  seal small paths, and a soft gasket that dries shrinks. *Reasoned*:
+  **one finding fits it** — 3's weak strokes inside a swell fell after
+  10/10 (13–14 per 1000 on `31`, `32`) and came back to September's
+  21–30 between `40` (21/10) and `42` (3/11), *a finding not
+  explained* (S1, *Before and after each repair*), some weeks after
+  the leak stopped on 4/10, which is when a joint would have dried.
+  Weak: the same weeks also brought the 44K tanks, the hose, the
+  flushes, the oil and the original map, and nothing on the bus
+  dates the change closer. The new gasket is metal with a coating
+  and seals without oil. **8z sees it**: oil on
   the old gasket's land at 3 or wet in runner 3 against the others
   (`plan.md` 8z); the gasket goes either way. Against that too: 3 was 10–20 % short in
 August on the old injectors and their rings (S1, *Every stroke
