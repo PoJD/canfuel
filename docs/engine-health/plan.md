@@ -703,6 +703,16 @@ between two captures could not be told apart.
   runner's leak moves the idle cell by about a quarter of its own
   size, inside the cell's own spread. The MFD's `IdleHealth` between
   is read as before, with its spread.
+- **The common part read too** (*the owner's question*, 16/11): the
+  gasket is old at every runner, so the same stop gives the common
+  part (2.6–3.1 rpm rms at every warm idle since 24/9) against `52` and
+  `53`. *Reasoned*, beforehand: a leak shared by all four is not
+  expected — it would lean all four alike, which the front probe sees
+  whole and 032's idle cell would answer with fuel added (it takes
+  6–9 % away), and the vacuum gauge on the plenum, which sees the sum
+  of every leak, read 18–19 inHg steady. A common part that falls by
+  a clear step after the gasket is that leak all the same, and puts
+  H3 in list A as well.
 
 **6m before item 9** (*agreed with the owner*, 12/11 night): off idle
 3's deficit is an amount at a small charge and not a share (`open.md`,

@@ -3955,7 +3955,22 @@ alone has a ring that is known to seal? *Reasoned*: **not as a set** —
 +5, +4, +7, 3 −16); **3's own ring could still leak**, and nothing in
 place tests it (above); **all four lower rings are renewed with the
 gasket** (`plan.md` 8z, *the owner*, 16/11), the old ones and the bores
-looked at by cylinder. Against that too: 3 was 10–20 % short in
+looked at by cylinder.
+
+**A leak on all four runners, the common part** (*the owner's
+question*, 16/11: the gasket is original at every runner, so it could
+harm all four). *Reasoned*: **against, more than against 3's form** —
+a leak shared by the four leans them alike, the front probe sees it
+whole (not a quarter), and 032's idle cell would add fuel where it
+takes 6–9 % away; the vacuum gauge on the plenum sees the sum of all
+leaks and read 18–19 inHg steady (14–15/10); idle air 3.1–3.5 g/s
+against VW's leak mark of 2.0 (`refuted.md` A7). And the common part is
+an unevenness from stroke to stroke with no pattern over the
+cylinders, where an even leak makes a mixture the loop corrects. Not
+excluded: a leak small and uneven between 1, 2 and 4. **8z's stop
+reads it** (`plan.md` 8z): the common part against `52` and `53`; a
+clear step down would put this form in list A. Not ranked until then
+(*the owner*, 16/11). Against that too: 3 was 10–20 % short in
 August on the old injectors and their rings (S1, *Every stroke
 named*), so two different rings would have had to leak in the same
 bore — which points at the bore or the runner rather than the ring.
