@@ -2802,6 +2802,8 @@ scripts, not kept*):
   road, it is that** (*reasoned*, not seen).
 - **To catch either**: "teď" on a captured drive — the unfiltered
   upload keeps 0x4A0, so a cut is read wheel by wheel.
+- **The traction cut at 3→4 is a note to S12, not a symptom of its
+  own** (*the owner's decision*, 16/11).
 
 ### S14. Bangs from the exhaust on a downshift without a blip
 
