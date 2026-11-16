@@ -148,10 +148,11 @@ of this plan, *the owner's decision* of 9/10):
   full-throttle pulls in 3rd or 4th.
 
 **8x. 001, 032 and 070 in one log** (*the owner*, 15/11 night), **at
-the next session with the laptop — 8z's first drive**: Claude logs the three groups over the drive's last
-ten minutes and the first five of the warm stop at its end, the
-capture running beside it, the everyday state; the rest of the drive
-and of the stop stay on 8f's groups, 014 among them. Nothing to do at
+the next session with the laptop — 8z's first drive**: Claude logs the
+three groups **from the cold start until the engine is warm** (*the
+owner*, 16/11: 032 starts from zero after the battery, so its learning
+is watched from the start), the capture running beside it; the warm
+stop after is 014's. Nothing to do at
 the car beyond the drive and the stop.
 
 **8z. The lower manifold's gasket and the injectors' lower O-rings**
@@ -289,10 +290,12 @@ goes into the chat by cylinder; **3 always beside one of the others**.
   before the ignition; the fault memory read first (a code stored
   before the battery went pauses the drive until it is cleared,
   *Standing items*); 032 and 055 for 20 s before the start (at zero
-  after the battery); 014 from the cold start through the drive; **8x
-  over the drive's last ten minutes and the first five of the stop**;
-  014 for the rest of **a warm stop of ten minutes**, the everyday
-  state; 032, 055 and the fault memory after; "konec" as usual.
+  after the battery); **8x — 001, 032 and 070 — from the cold start
+  until the engine is warm** (*the owner*, 16/11: 032 learns from zero,
+  so it is watched from the start); **014 for the whole of a warm stop
+  of ten minutes**, the everyday state; then, where it is safe, **two
+  or three full-throttle pulls on 014 and 020**; 032, 055 and the
+  fault memory after; "konec" as usual.
 - **The battery back on, the ignition on for a minute before the
   start**; at the first start, a fuel smell or a wet joint first.
 - **S11's hiss at the first warm idle**, listened for as on 16/11 — a
@@ -681,7 +684,10 @@ between two captures could not be told apart.
 - **The first drive captured at once** (*the owner*, 16/11): the
   stop after the gasket and the swap is the reading, and the cold
   start on the new joint is S19's and the gasket's both; 032 relearns
-  from zero, so 8x watches the idle cell being learnt.
+  from zero, so 8x watches the idle cell being learnt **from the
+  start** (*the owner's order*, 16/11: 8x to warm, 014 the whole warm
+  stop, pulls last) — 014 counts little on a cold leg, and the warm
+  stop is where its count by cylinder is read against the swap.
 - **Oil at the joint** (`open.md` H3, *Oil soaked into the joint*,
   the owner's suspicion of 16/11): the original cover gasket leaked
   onto it at 3 and 4 for at least ten years; oil on the old gasket's land at 3, or runner 3 wet with
