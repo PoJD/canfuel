@@ -29,7 +29,8 @@ item 9; **the new rear probe when the seller sends it**
 
 **6. Drive normally; the MFD back in from 15/11** (*the owner*, after
 8h): `IdleHealth` and `Misfires` on the display again, **no captures
-until 8z's warm stop after the gasket** (the one before it is `53`).
+until 8z's first start after the gasket** (the one before it is `53`);
+**the MFD comes out as 8z is finished** (*the owner*, 16/11).
 Brisk driving once warm is welcome. When captures resume, the MFD
 comes out for them — the converter goes with the MFD.
 
@@ -147,8 +148,7 @@ of this plan, *the owner's decision* of 9/10):
   full-throttle pulls in 3rd or 4th.
 
 **8x. 001, 032 and 070 in one log** (*the owner*, 15/11 night), **at
-the next session with the laptop — that may be 8q's captured drive
-after the belt**: Claude logs the three groups over the drive's last
+the next session with the laptop — 8z's first drive**: Claude logs the three groups over the drive's last
 ten minutes and the first five of the warm stop at its end, the
 capture running beside it, the everyday state; the rest of the drive
 and of the stop stay on 8f's groups, 014 among them. Nothing to do at
@@ -214,9 +214,20 @@ goes into the chat by cylinder; **3 always beside one of the others**.
   its stem and guide, photographed (the phone or the borescope), in
   order 4-3-2-1 as on 20/10: the crust, a wet or oily stem, a port
   washed clean or wet where the others are dry.
-- **If plug 3 comes out**: its firing end photographed beside one
-  other plug (8v), its gap measured; the borescope on 3's crown and
-  on the exhaust valve, as on 20/10.
+- **3's valves at full lift, both seats in view** (*the owner*, 16/11;
+  no plug gap, he has no gauge for the three-electrode plug): plug 3
+  out, the crank turned by hand in its running direction, slowly:
+  - **the inlet**: watched down the open port 3 until the valve stands
+    lowest (fully open) — its sealing face, the bevelled ring at the
+    edge of its head, and the seat it closes on, photographed; the
+    same on port 2 for comparison;
+  - **the exhaust**: the borescope through plug hole 3, turning on
+    until the exhaust valve stands fully open — its face and the seat
+    ring, photographed; plug 2's hole the same.
+  A burnt notch, a pitted or broken face, a crust on the face or on
+  the seat, one side brighter than the other: into the chat. Plug 3
+  photographed beside plug 2 while it is out (8v). The other ports
+  covered while the crank turns.
 
 *Going back together:*
 
@@ -245,15 +256,19 @@ goes into the chat by cylinder; **3 always beside one of the others**.
 
 *After:*
 
+- **The MFD out, the laptop in** (*the owner*, 16/11): **the first
+  start and the first drive are captured, with VCDS, as Claude runs
+  them** (`CLAUDE.md`, *Sessions at the car*): the capture started
+  before the ignition; 032 and 055 for 20 s before the start (at zero
+  after the battery); 014 from the cold start through the drive; **8x
+  over the drive's last ten minutes and the first five of the stop**;
+  014 for the rest of **a warm stop of ten minutes**, the everyday
+  state; 032, 055 and the fault memory after; "konec" as usual.
 - **The battery back on, the ignition on for a minute before the
   start**; at the first start, a fuel smell or a wet joint first.
-- **S11's hiss at the first warm idles**, listened for as on 16/11 — a
+- **S11's hiss at the first warm idle**, listened for as on 16/11 — a
   head's height below the cam cover — and whether it is still there.
-- **`IdleHealth` and `Misfires` at the first warm stops**, the
-  everyday state, into the chat; anything felt.
-- **032 for 20 s at every session with VCDS** (8f), the fault memory.
-- **One captured drive to a warm stop of ten minutes, before 7/12**,
-  VCDS on 014: Claude runs it (item 6).
+- **032 for 20 s at every session with VCDS after** (8f).
 
 **8q. The timing belt renewed at a garage, 7/12** (*the owner's decision*,
 13/11; the date *the owner*, 16/11): the belt, its tensioner and idler, and the water pump.
@@ -627,6 +642,17 @@ between two captures could not be told apart.
   battery is off throughout, so a dripping injector is left to 8u's
   gauge (*Falling after switch-off*); the smoke test and the vacuum
   gauge can be done at any time after, and are not part of the step.
+- **3's valves at full lift** (`open.md` H1, H13): the seats were last
+  seen only from above past the stems (20/10); open, the faces are in
+  view. A burnt or broken exhaust face names H1's seat, which closes S1
+  as *acceptable, cause known* by item 9's rule (*No head off*); a
+  crust on a face is H13's. A clean face clears nothing — a film that
+  fouls at idle and burns off is not seen cold. 2 because it is the
+  strongest.
+- **The first drive captured at once** (*the owner*, 16/11): the
+  stop after the gasket and the swap is the reading, and the cold
+  start on the new joint is S19's and the gasket's both; 032 relearns
+  from zero, so 8x watches the idle cell being learnt.
 - **S11's hiss after the gasket** (`open.md` S11, 16/11: heard a
   head's height below the cam cover, by the owner's ear a fault): gone
   is H3's joint; still there leaves it the throttle's own air.
