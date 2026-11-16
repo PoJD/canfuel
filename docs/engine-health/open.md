@@ -4071,7 +4071,8 @@ sees through a swell*):
   moving the mixture the probe sees — a few milligrams are nothing
   to lambda and much to a flame (*general*). **Against**: the cover
   has been dry since 4/10 (`refuted.md` D5) and the swells are as
-  they were six weeks on; 3 swelled already on 24/9 and in August,
+  they were six weeks on; 3 was weak already in August and swelling
+  from 24/9,
   before the leak that was seen, so the oil would have to be the old
   gasket's, which nobody knows; no blue smoke ever, the plugs dry; a load
   should not lift a pool at once, and it does. **8z sees it**: oil on
