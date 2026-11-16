@@ -3184,6 +3184,19 @@ learnt. Three things they do say.
     be probed without breaking it (*the owner*); the plug cleaned and
     seated is read by 032's idle cell over the next drives (`plan.md`
     8y).
+    **16/11, the ECU unplugged** (`idle-log.md`): the meter's wires
+    to the ECU's plug 0.2–0.5 Ω, the leads' own figure, so whole (VW
+    1.5 Ω); **an earth point by the ECU found corroded** — green on
+    the crimps, one ring white
+    (`photos/earth-point-by-ecu-2026-11-16.jpg`); whose earth it is
+    the wiring diagram says. A corroded earth under the ECU shifts
+    everything the ECU measures against its own earth only if the
+    ECU's reference moves with it (*reasoned*); C26 measured no sender
+    moving with the loads at `53`'s stop, which is against a large
+    shift, not against a fixed one. Its voltage under current, before
+    and after cleaning, is in 8y; the battery's disconnect reset 032,
+    so the idle cell's relearn from zero reads the plug and the earth
+    together.
   - **The supply as the ECU sees it, tested at the desk the same
     night** (`vcds/vcds-step8h-loads1-004-033-036.csv`, 004 beside
     the regulation through `53`'s load steps): the regulation's mean

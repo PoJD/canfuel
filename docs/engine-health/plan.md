@@ -155,12 +155,21 @@ plug.
 - **The loose pieces of the red lock out of both halves** (a plastic
   pick, then contact cleaner). *The contacts were pressed 16/11 and
   all hold (the owner).*
+- **The earth point by the ECU** (found corroded 16/11): with the
+  battery reconnected and the engine warm at idle, before it is taken
+  apart if that is still possible, the voltage between each ring (on
+  a scraped spot) and the battery's minus post, main beam off and on;
+  then the rings and the stud cleaned to bare metal, a ring whose crimp
+  is green cut off and a new one crimped on, the same voltages again.
+  The figures and a photograph into the chat.
+- After the battery is reconnected: the ignition on for about a
+  minute before the first start (the throttle learns its stops).
 - **Then the plug back on, firmly home, and drive as usual**: 032
   read at the next VCDS session (8f) — the idle cell is the measuring
   instrument. *Probing from behind was dropped 16/11: the plug's back
   cannot be reached without breaking it (the owner).*
-- If the engine lamp lights at the next start (the plug was off with
-  the ignition on): 032/055 read before the code is cleared (8a).
+- If the engine lamp lights at the next start: 032/055 read before
+  the code is cleared (8a).
 
 **8x. 001, 032 and 070 in one log** (*the owner*, 15/11 night), **at
 the next session with the laptop — that may be 8q's captured drive
@@ -635,7 +644,18 @@ would show**: a steady resistance moves 032's idle cell, not the idle
 flickers would move the mixture fast enough to reach the common part.
 **Cleaning the contacts afterwards** is the repeat of 7/2026 and its
 own test: the idle cell nearer zero over the next drives says the
-plug; it is the owner's call, after the measuring.
+plug; it is the owner's call, after the measuring. **16/11**: VW's
+third part done with the ECU unplugged — the meter's wires 0.2–0.5 Ω
+with the leads' own 0.2–0.5, whole — and **an earth point by the ECU
+found corroded**. Its resistance cannot be read with an ohmmeter
+through the corrosion on its surface; the voltage under current can,
+since a voltmeter's reading does not depend on the probe's contact.
+A few tens of millivolts or less is clean (Claude's threshold, not
+VW's). **Read by 032 from zero**: the battery was disconnected, and
+from every reset so far the idle cell was back at −5.5 to −6.3 %
+within one drive; staying nearer zero after two or three drives says
+the plug or the earth — **the two were changed together and cannot be
+told apart** (the owner's evening; *reasoned*).
 
 **8x, 001, 032 and 070 together** (`open.md` S19, *The old logs
 re-read for the split's form*): the idle's correction — the idle cell

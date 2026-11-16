@@ -1722,3 +1722,25 @@ The owner is getting them out. VW's figures for the plug off are met
 (4.5–5.5 V on 4; 2 dead with the engine off, as it should be). Read in
 `open.md` S19, *The meter's plug and its earth*.
 
+## 16 November 2026 just after midnight — the ECU unplugged, an earth point by it found corroded (8y)
+
+- **Tests:** the battery disconnected (032 and 055 reset with it); the
+  ECU's plug off and looked at (the album, 01:09); the earth point by
+  the ECU looked at (01:10); the meter's wires measured to the ECU's
+  plug, VW's third part (an OWON B35T on its lowest Ω range).
+- **Changes after:**
+  - *measured:* contact 3 to pin 12 0.2 Ω, 4 to 11 0.4 Ω, 5 to 13
+    0.5 Ω, with the leads alone 0.2–0.5 Ω — inside VW's 1.5 Ω; the
+    earth point's rings and stud read nothing steady (open to 5–10 Ω
+    on the bare surface, the leads' figure where the probe was scraped
+    through).
+  - *not known:* the earth point's resistance under current; whose
+    earth it is.
+
+**The earth point is corroded**
+(`photos/earth-point-by-ecu-2026-11-16.jpg`): green verdigris on the
+crimps and the wires behind them, one ring white with corrosion, dirt
+around it. The ECU's plug and pins clean. The meter's three wires to
+the ECU are whole. *The figures were first read 0.002–0.005 Ω off the
+meter's display, which reads 000.5 Ω (the album, 01:39).*
+
