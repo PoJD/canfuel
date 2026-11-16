@@ -217,6 +217,7 @@ goes into the chat by cylinder; **3 always beside one of the others**.
 - **If plug 3 comes out**: its firing end photographed beside one
   other plug (8v), its gap measured; the borescope on 3's crown and
   on the exhaust valve, as on 20/10.
+
 *Going back together:*
 
 - **The ports stuffed with clean rag while the faces are cleaned, the
