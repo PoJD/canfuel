@@ -212,16 +212,6 @@ goes into the chat by cylinder; **3 always beside one of the others**.
 - **If plug 3 comes out**: its firing end photographed beside one
   other plug (8v), its gap measured; the borescope on 3's crown and
   on the exhaust valve, as on 20/10.
-- **The inlet valve of 3 holding petrol, only if the owner wants it**
-  (plugs 3 and 1 out): the crank turned by hand to cylinder 1's TDC
-  mark, then **half a turn further**, so that the inlet valves of 3
-  and 1 are both shut; **a teaspoon of petrol poured into port 3, and
-  one into port 1**, each lying on its closed valve; five minutes;
-  **whether the petrol still stands in each port**, and the borescope
-  down plug hole 3 and plug hole 1: **is the chamber under the valve
-  wet**. Before the start, the crank turned two full turns by hand
-  with the plugs out, so any petrol that got through is blown out.
-
 *Going back together:*
 
 - **The ports stuffed with clean rag while the faces are cleaned, the
@@ -625,16 +615,10 @@ between two captures could not be told apart.
   the gas (`open.md` H13); the same order makes the frames comparable.
   An oily stem is H18's, a port washed clean or wet on 3 alone H20's
   or the injector's.
-- **The petrol on the inlet valve** (*general*; optional, *the owner's
-  to choose*, explained to him 16/11): a shut inlet valve that seals
-  holds the petrol in its port for minutes, and the chamber below
-  stays dry; one that leaks lets it through — the port empties, the
-  chamber under it is wet. 1 beside 3 as the yardstick. A leak names
-  3's inlet seat (H1), where the photos of 20/10 show the crust broken. Cold and by gravity, so **a seat that holds clears
-  nothing** — the swell is warm, and the exhaust seat is not reached
-  at all. 3 and 1 because half a turn after cylinder 1's firing TDC
-  (firing order 1-3-4-2) 3 is at its own firing TDC and 1 at the
-  bottom of its power stroke, both inlets shut; 2 is at overlap then.
+- **No petrol test on the inlet valve** (*the owner's decision*,
+  16/11): a leaking inlet seat is repaired only with the head off,
+  which he is not doing (item 9, *No head off*), so a finding would
+  change nothing; the photographs of the open ports stay.
 - **The injectors fully home**: three of four were not, 23/9–1/10
   (`vehicle-history.md`).
 - **How the capture is read** (`tools/cylscan.py --minutes`,
