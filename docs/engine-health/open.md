@@ -2964,6 +2964,17 @@ and the oil in the same week. *Another can was not planned until
 15/10 (S1, *The floor and the common part read apart*), so **two more
 cans of BG 44K Platinum** (`plan.md` 6t, *the owner's decision*).
 
+**The ring form, for the floor** (17/11 evening, *the owner's
+question*; *reasoned*): carbon in 3's ring grooves keeping a ring
+sluggish. A ring seals by gas pressure, so it leaks most at the idle's
+low pressure and less under load — a share that falls with load, which
+can read as the fixed amount the floor is (S1, *The floor and the
+common part read apart*); the EPR flushes, aimed at ring-groove
+deposit, fell in the week the time on the floor rose. Against: 12 bar
+even cold, little oil burnt, the plugs dry; it gives no swell. **Its
+test**: the leak-down hissing at the oil filler on 3 (item 9), a dry and
+a wet compression on 3 against the others; its cure an EPR flush or
+the ring soak of Kia/Hyundai's TSB 23-EM-007H.
 *Added 15/10 at the owner's request.* The engine seldom saw more than
 3000 rpm for at least nine years (*owner*). Gentle use builds deposits where
 hard use burns them off (*general*).
