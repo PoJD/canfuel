@@ -112,8 +112,8 @@ H11 both probes, H2 a leak ahead of the converter, H18 the stem seals,
 H21 the front probe's signal-earth wire, H16 the purge path.
 
 **The lower manifold's gasket renewed by the owner, 17/11** (Elring
-`165.210`; `idle-log.md`), and **6m measured: the injectors and their
-supply side sound, 3 no different** (H4). The open joint showed oil
+`165.210`; `idle-log.md`), **injectors 2 and 3 swapped** (H7), and **6m measured: the
+injectors and their supply side sound, 3 no different** (H4). The open joint showed oil
 along the flange, the original gasket whole round every port, a brown
 liquid round the backs of inlet valves 2, 3 and 4 (H3, H18) and
 **nothing that marks 3 out**; the ranking is unchanged.
@@ -4017,9 +4017,10 @@ alone has a ring that is known to seal? *Reasoned*: **not as a set** —
 1 and 4 sit on the same supplied rings as 3 and give as much as 2 (`50`:
 +5, +4, +7, 3 −16); **3's own ring could still leak**, and nothing in
 place tests it (above). **No new lower rings were to be had, so the
-old ones went back with the new gasket on 17/11**, looked at first
-(*the owner*; what he found on them was not reported to the session
-that recorded the night — `plan.md` 8z asks). The bores: an oil film,
+old ones went back with the new gasket on 17/11**, looked at first:
+**all four sound, none replaced, each oiled; injector 4's collar
+sound** (*the owner*; the split Claude read off the frame of 00:43:45
+was not one). The bores: an oil film,
 most in 4's, then 3's (*Oil soaked into the joint*, below).
 
 **A leak on all four runners, the common part** (*the owner's
@@ -4097,7 +4098,9 @@ sees through a swell*):
   manifold's injector bores, most in 4's (00:42:11), less in 3's
   (00:42:05), pale in 1's, 2's dry**; the lower rings of 3 and 4 wet
   and dark, 1's and 2's less so; and on injector 4 (00:43:45) what
-  looks like a split in the grey collar that holds the lower ring.
+  looked like a split in the grey collar that holds the lower ring
+  (**not one**: the collar and all four rings sound at refitting,
+  *owner*).
   **It is oil** (*owner*, at the part, 17/11), **perhaps what ran
   down from the wrongly fitted cover gasket of 2–3/10** (*his
   reading*); the bores wiped dry by him. Whether it lay above the
@@ -4389,9 +4392,9 @@ revs as after none and the same on every day, within 5 %.
   injectors are new (9/2026); **no swap** (*his decision*, agreed 12/11
   and withdrawn the same day, above), so this stayed untested — **until
   16/11: injectors 2 and 3 to be swapped in 8z** (*the owner's offer*;
-  `plan.md` 8z, its reading). **The injectors went back on 17/11;
-  whether swapped was not reported to the session that recorded the
-  night**, and the first drive's session asks before it reads the stop. *The
+  `plan.md` 8z, its reading). **Done 17/11** (*owner*): the injector from 3 is in 2,
+  the one from 2 in 3, each on its own old ring; 1 and 4 where they
+  were. *The
   owner's history of 3/11 — "on the new VW leads the dips were on all
   four alike and 3 came back only later; a bad injector would never
   have been even" — rested on those shares; by `cylscan.py` 3 was never
@@ -4504,8 +4507,7 @@ revs as after none and the same on every day, within 5 %.
 not bought from 10/10 until then; VW's figures: 2.5 bar at idle, 3.0 with the regulator's hose
 off, **2.0 bar or more ten minutes after switching off**, the last being
 S19's question — `vcds.md`);
-**injectors 2 and 3 swapped in 8z** (*the owner's offer*, 16/11;
-whether done on 17/11 is asked before the first drive, above): the
+**injectors 2 and 3 swapped in 8z, done 17/11** (*the owner*): the
 deficit going to 2 names the injector (or its ring, which stays on
 it); staying on 3 clears it.
 
@@ -7003,7 +7005,7 @@ and the grade's swings are B's.
 | B3 | **H3** a leak at runner 3 | **Runner 3's lower gasket**, never renewed — the one cause that predicts *load helps* directly (−21 to −26 % of a stroke at idle, −1 to −3 % at full load); its edge bent and straightened 5/11, runner 4's torn; with the owner's reading (a second cause making all four rich), 032's negative idle cell no longer counts against it. Against: the smoke test of 9/10 clean; a leak has no reason to swell and mend, so it explains at most the floor. **The joint open, 17/11**: the original gasket whole round every port, only its lower strap torn; oil along the flange's edge at every runner, across the land at 4, layers at 2 and 3; every bolt stiff; nothing that marks 3 out | **8z's captured warm stop** on the gasket fitted 17/11: 3's floor gone or halved is H3, as before refutes it (`plan.md` 8z) |
 | B4 | **H4** the injector loom at 3 | 3's deficit is an amount at a small charge, not a share — what an injector opening late through a raised resistance gives; the wiring is what stays with the cylinder through a change of injectors. Against: the supply steady through a whole stop, no step at a swell (004, 15/11); a wire has no reason to swell and mend, so the floor at most; the spark side against, 3 level at full load | **6m, 17/11**: each injector 16.0–16.1 Ω, the supply side 0.2 Ω on every pair, flexing moved nothing — the coil and the supply cleared, cold and at rest. Left: the control wire to the ECU's pin 58 (`plan.md` 6n) |
 | B5 | **H20** coolant into 3 | Fits one cylinder at idle, where the cylinder's pressure is lowest, and the fading with load; plug 3 the cleanest of the 10/10 set (*the owner*, 4/11, weak). Against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos; nothing in it fills and empties | the CO₂ test of the coolant; bubbles at the tank in the leak-down (`plan.md` 9) |
-| B6 | **H7** injector 3 | Last: 3 was the weak one on the old injectors in August too, so the injector itself is unlikely (*the owner's argument*, 12/11); a share is what it would give, and 3's deficit is an amount; plug 3 the cleanest | **injectors 2 and 3 swapped in 8z** (*the owner's offer*, 16/11; whether done on 17/11 is asked before the first drive): the deficit moving to 2 names it, staying on 3 clears it; a rail gauge for its other form (A4, `plan.md` 8u) |
+| B6 | **H7** injector 3 | Last: 3 was the weak one on the old injectors in August too, so the injector itself is unlikely (*the owner's argument*, 12/11); a share is what it would give, and 3's deficit is an amount; plug 3 the cleanest | **injectors 2 and 3 swapped on 17/11** (*the owner*), read on 8z's captured warm stop: the deficit moving to 2 names it, staying on 3 clears it; a rail gauge for its other form (A4, `plan.md` 8u) |
 
 **A. The common part — what makes every cylinder alike rougher** (the
 small unevenness on all four, most of `IdleHealth`'s floor and nothing
