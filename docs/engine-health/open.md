@@ -826,6 +826,22 @@ something else; scripts not kept).
   does — the loop trims a constant shortfall into the idle cell, so the
   unmoved mean says nothing against it; the provider's gas leaving the
   floor fits missing fuel too. 6r reads it directly.
+- **The floor's level has not moved since 24/9** (`swellscan.py
+  --floors`, every capture with a warm floor window): −8.1 % on `19`
+  (the old MAF), −7.1 to −8.5 on `26`–`43`, −8.1 to −9.0 on `44`–`48`,
+  −6.3 to −8.6 on `49`–`54` — through the leads, the cleaners, 18/10's
+  flake (`39`, 18/10 evening, had no floor at all: 90 % swell, the
+  deepest −25.7 %), the map, the hydrogen and the gasket. **What moved
+  is the time spent on it**: 0–20 % of the warm windows before 3/11
+  (none on `28`–`30`, `36`–`40`), 21–81 % since. *Reasoned*, at the
+  owner's question (17/11): deposit is not excluded for the floor — a
+  burn slowed by a crust costs a share that shrinks as load speeds the
+  burn, which can read as a fixed amount too, and the floor gains a
+  little from the spark; against it, nothing that cleaned (the
+  cleaners, the hydrogen) moved the level by a point, and the gas that
+  took every misfire left it. The fixed amount tells a leak (it would
+  shrink or grow with load) from the rest; it does not tell fuel short
+  from a burn slowed by deposit.
 - **The floor burns a little slower too**: the governor's spark event by
   event with dips of 9 rpm and more (35,125 lag rows, 109 runs), 3 gains
   more than the others on the floor, +0.028 rpm per rpm of dip (95 %
