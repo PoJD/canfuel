@@ -4118,6 +4118,11 @@ sees through a swell*):
   everywhere on the flange**; the old gasket dirty with oil all over
   and flaking in places, so small leaks are imaginable and cannot be
   judged from the part — tenths of a millimetre are not to be seen.
+  **Corrected by him minutes later**: the rule is a square's blade,
+  and laid along the manifold's flange to the head **it may not sit
+  quite flat — a gap of perhaps a tenth of a millimetre or less, as if
+  2 and 3 stood a little off from 1 and 4**; too small for him to
+  judge. No feeler gauge was put in it.
   **the oil fell on 3 and 4, and 3 and 4 are where the engine is
   worst inside** — the borescope's deposit 3 > 4 > 2 > 1 (H13), the
   inlet seats' crust thick and broken on 3, beaded on 4, an even
