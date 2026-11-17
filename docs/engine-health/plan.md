@@ -442,8 +442,9 @@ still clears nothing, a leaking one names it.
 **8q, the timing belt at a garage, 7/12** (*the owner's decision*, 13/11,
 after 8i): 8i read the cam's OT mark set and the crank pulley's one
 notch 30–60° of crank from the groove on the block by eye
-(`open.md`, the row A1) — 1.5–3 teeth with the cam
-advanced if those are the true marks (the direction the owner's, read
+(`open.md`, the row A1) — 2.2–4.3 teeth of 13.85° (1.0–3.0 by the
+owner's fingers) with the cam advanced if those are the true marks;
+the groove is not one of VW's references (the same row, 17/11) (the direction the owner's, read
 off the part), which the flat full-load pulls and the air the engine takes at full
 throttle argue against (485 mg a stroke at 5,200 rpm against 496 at
 2,400, 85–90 g/s at the top; the row A1); the
@@ -452,12 +453,15 @@ is nine years old (10/2017), so renewing it loses nothing either way,
 and the owner leaves the work to a garage. **What makes it a test**:
 the mechanic's count of teeth before the old belt comes off says
 whether 8i's reading was true — **the only reading of the true marks
-left** (no gearbox window to be seen, *the owner*, 14/11); the captured
+left** (no gearbox window to be seen, *the owner*, 14/11; VW checks
+the flywheel's mark in that window before the belt comes off and
+after, so it is most likely hidden, not absent: `open.md`, *What the
+forums say*, searched again 17/11); the captured
 warm stop before and after says whether the common part (list A)
 moved — down by a clear step if the cam was out, unchanged if it was
 not (H0 then gains). Nothing in 8i was loosened;
-VW's 5 mm at the crank was for the Mk4 2.0, nothing of the AQY's own
-was read.
+VW's 5 mm at the crank was for the Mk4 2.0; VW's own procedure for
+the AQY's family was read 17/11 (the same section).
 
 **8f, 032 at every session**: the battery was out once more after the
 probes' harness was taped (10/11 late night), and the clear of P0137

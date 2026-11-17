@@ -135,6 +135,18 @@ knock as before; the exhaust puffs (S2) and the hiss (S11) heard as
 before (*owner*). **The ranking re-read 17/11** (*agreed with the
 owner*): H3 and H7's injector form out of list B.
 
+**The fourth research, 17/11** (*the owner's request*; *What the forums
+say*, searched again 17/11; S1, *The advance, the cold fast idle, a
+warm engine-off and a coast-down*): **VW's own belt procedure for the
+AQY has no mark on the block** — the damper against the bottom belt
+guard and the flywheel in the gearbox window — and a tooth is 13.85°
+of crank, so 8i's two readings meet only at two teeth, which the air
+and the empty fault memory argue against (A1); **3 gains more than the
+others from the governor's spark** (a burn phased later), **is level
+through the cold fast idle** and drops within a minute of its end,
+and **is not reset by a warm engine-off**. A re-ranking is proposed to
+the owner and not yet agreed (*The idle's candidates, ranked*).
+
 **Next** (`plan.md`): **8q**, the timing belt and water pump at a
 garage on **7/12**, the old marks read first, `54`'s stop the one it is
 set against; then **item 9** by what those show (the coolant's CO₂
@@ -419,7 +431,10 @@ strokes — a step 12 rpm or more under the cylinder's own median — per
   did 3 lead on the old set too): `09` (11/8, 60 s warm) **3 −19 %**,
   `12` (25 s, the A/C on) **−11 %**, `17` (11 s) **−23 %**, `11` (25 s)
   −21 % with the strongest slot too close to name; only the cold start
-  of 11/9 (`18`) had 4 the weakest, −14 %, and 3 −5 %. ⚠ Seconds, not
+  of 11/9 (`18`) had 4 the weakest, −14 %, and 3 −5 % — *the pattern of
+  the cold fast idle in every cold start since, found 17/11 (The
+  advance, the cold fast idle, a warm engine-off and a coast-down,
+  below)*. ⚠ Seconds, not
   minutes, and the names rest on the strongest slot being 2's, which no
   cut checked on the old injectors. **The crank wheel checks half of it
   in `17`** (*the owner's question*, 15/11: could the pattern have lain
@@ -681,6 +696,72 @@ pulls to the limiter in 2nd and 3rd (*owner*), **a second stop
   with the cylinder is its head: the seat, the deposits on it, the
   stems (H1, H13, H18's one-valve form), coolant (H20), and the
   injector's wiring past the connector (H4, 6n).
+
+**The advance, the cold fast idle, a warm engine-off and a coast-down**
+(17/11, the fourth research, *the owner's request*; scripts not kept;
+`cylscan.py`'s and `drivescan.py`'s stroke counts over the `_z1`
+captures, warm meaning oil 85 °C and over, the A/C, basic settings and
+cuts left out).
+- **3 gains more than the others from the idle governor's spark.** At
+  a standing warm idle 003's advance is the governor's output — it
+  follows engine speed within 0.1 s (−0.20° per rpm, r −0.76; 8,561
+  samples in 18 captures) — so a regression on 003 is no test (the
+  other cylinders read as large). Read by event instead: after an
+  isolated weak stroke on 1, 2 or 4 the governor advances the strokes
+  that follow, and every cylinder at the same lag sees the same speed.
+  **3 gains 1.2–1.4 times what the others gain** (+0.05 rpm of step per
+  rpm of the dip, 95 % CI +0.03 to +0.07; 1,027 events in 109 runs of
+  27 captures, `19`–`54`; a placebo gives a tenth of it) — **clear in a
+  swell** (+0.07, +0.04 to +0.11), **borderline on the floor** (+0.03,
+  −0.01 to +0.07); about +0.8 % of a stroke per degree over the others'
+  1.8 %, a scale good to about two. *Reasoned*: a cylinder short of a
+  normally burning charge would gain less (about −0.02); a burn phased
+  later — slow, diluted or lean — gains more. Two cautions: most causes
+  of a short charge slow the idle's burn too (a leaking seat raises the
+  residual), and the healthy cylinders differ the same way among
+  themselves, ordered against their work (2, the strongest, gains
+  least).
+- **The cold fast idle keeps 3 level, and its end drops 3 within a
+  minute.** In the first 60–150 s after a cold start (930–1,000 rpm,
+  003 at −4.8 to −0.7°, about 10 % more air a stroke) **3 is within
+  about 5 % of the mean (−5.4 % over 15 cold starts) and 4 is the weak
+  one** (−8 to −31 % in the first minute); when the fast idle ends 3
+  drops to about −15 % with 23 weak strokes per 1000 — **at the same
+  coolant (30–40 °C) and b7 (37–39): −5.6 % with none against −15.4 %
+  with 22.6** — in 8 of the 9 cold starts with both phases (`18`, on
+  the old injectors, −2 → −7 %). From there to 110 °C of oil 3 sits at
+  −13 to −16 % with no trend; at matched b7 (36–40) the cold idle is
+  about 5 points deeper than the warm (−15.3 against −10.2 %) with 3–5
+  times the weak strokes. **4's cold weakness fades with the oil on its
+  own course**: −8 % at 30–40 °C, −4.5 at 70–90, −1.6 at 90–100, +1
+  above 100. *Reasoned*: the fast idle moves speed, spark, air and the
+  after-start enrichment together (the enrichment not measured: the
+  loop is open cold); a later spark should hurt a slow burner, so what
+  helps 3 is the speed, the denser charge or the enrichment — a mixture
+  or dilution limit rather than a fixed loss of compression, and more
+  than the vacuum's change alone would give (10 % more air, a stroke
+  13 % shorter). What makes 4 weak cold does not set 3's deficit.
+- **The radiator fan's cycle does not pick 3** (27 stops of 300 s and
+  more in 17 captures): +0.18 % of a stroke per °C of coolant (+0.05 to
+  +0.32), the fan running against not −0.13 % (−0.40 to +0.12), the
+  others moving as much.
+- **A warm engine-off does not reset 3** (four restarts: `54`'s 30 s,
+  `51`'s 22 s key-off and its 4.9-minute fill, `37` → `38`'s 4.7
+  minutes): the first 30 s after within about ±5 points of the last 30 s
+  before (`54` −9.7 → −7.8 %, `51` −10.5 → −12.8 and −13.6 → −8.9,
+  `37` → `38` −15.2 → −13.4), and twice 3 began to deepen 1.5–2.5
+  minutes after the restart — after `51`'s fill to −26 % within five.
+  It bounds an effect the size of a fall, not one of 2–3 points; no warm
+  restart after 5–30 minutes is on record. *Reasoned*: what builds the
+  swell survives minutes without combustion — a layer, a seat held off,
+  a pool — which item 9's leak-down on an engine switched off in a
+  swell relies on.
+- **Nothing of 3's own after a coast-down** (12 warm stops in 9
+  captures, standing 8–30 s after the fuel returns): 3's deficit in the
+  first 15 s as a minute later (−0.0 %, −1.7 to +1.7); the first 15 s
+  rougher on all four alike (3's weak strokes 35 against 16.5 per 1000,
+  the others' 13 against 2.6). The overrun's deepest vacuum leaves
+  nothing on 3 that shows.
 
 **Before and after the canister and the new valve** (14/11 evening;
 condensed 17/11, the full text in `git show 5e1ddf2:docs/engine-health/open.md`, this heading). Nothing in the
@@ -1614,6 +1695,16 @@ plug, the supply — in `git show 5741dfa:docs/engine-health/open.md`, this head
   the regulator and the tank backs the rail up most at idle, where most
   fuel returns — the split's shape, which 6e's hose test cannot see.
   The ECU's own reckoning of a short injection is not excluded.
+  **Re-reckoned 17/11** (the fourth research, *reasoned*; *What the
+  forums say*, searched again 17/11): the pump delivers an order more
+  than the engine burns at idle or at part load, so a return
+  restriction or a high base pressure raises the rail nearly alike in
+  both and would pull both cells negative — **the return's form
+  weakened**, the gauge (8u) still its test. How M5.9.2 combines the
+  additive idle cell with the multiplicative part-load factor at idle
+  is not documented; if both act there, the net learnt correction at
+  idle is near zero. A front probe weighting a rich 3 (CARB's case)
+  fits the sign, a point or two in size.
 
 ### S20. Engine speed wanders at a constant pedal
 
@@ -1885,6 +1976,9 @@ four would read the same; no healthy AQY says which.
   alternation** (S1, *A steady pattern over the cylinders*) — no
   combustion, there on any engine with this wheel, nothing to find.
 - **For:** no code is stored (2 % threshold: *under 2 %*, not *healthy*).
+- **17/11, the fourth research** (*What the forums say*, searched again
+  17/11): still no healthy M5.9.2 log of 014 or 032, and no statement
+  that the family idles unevenly by design — nothing for or against.
 
 **Test:** ~~a USBtin capture of a healthy AQY~~ — **not obtainable**
 (*owner*, 21/10): the bus is reached only at the cluster harness behind the
@@ -1920,6 +2014,21 @@ evening*: the phone's recording through a swell and its fall beside a
 capture (`plan.md` 6p; the tailpipe 12/11, the cam cover 15/11, both
 read in S1); the warm leak-down made on an engine switched off in a
 swell (item 9).
+**17/11, the fourth research** (S1, *The advance, the cold fast idle,
+a warm engine-off and a coast-down*; *What the forums say*, searched
+again 17/11): **for the dilution form** — 3 gains more than the others
+from the governor's spark, as a burn phased later does (clear in a
+swell, borderline on the floor); the swell survives a warm engine-off
+of 25 s to 5 minutes; INA names a warm exhaust seat that "sucks in
+exhaust gas", and Mercedes (LI01.30-P-072328) one leaking seat with
+no code stored, the leakage test its gate. **Against the lifter
+form**: a pumped-up element comes on suddenly and sinks over minutes
+(INA), the swell's mirror. *Reasoned*, pulling the other way: the cold
+fast idle keeps 3 level, and its end drops 3 by ten points within a
+minute at the same coolant and load — more than the vacuum's change
+alone gives, so part of 3's floor answers to the mixture or the
+speed; and a seat that dilutes 3 should move the mean mixture at a
+swell, which it does not (S1, *The queue drive*).
 
 A hydraulic lifter that bleeds down, or a valve that seats late or not quite,
 on one or two cylinders. *General.* **Widened 4/11/2026** (*agreed with the
@@ -2321,6 +2430,17 @@ names the side.
   contact 2 runs only to the ECU, so open is what it should read.
   **It says nothing of 3.** Not measured by this: contact 2 of each
   connector to the ECU (6n).
+- **17/11, the fourth research** (S1, *The advance, the cold fast idle,
+  a warm engine-off and a coast-down*; *What the forums say*, searched
+  again 17/11): the advance does not exclude it — a lean cylinder burns
+  slowly too; weakly against (*reasoned*): the cold idle after the
+  fast idle, enriched and on longer pulses, is worse at matched load
+  than the warm, where a fixed opening delay would cost a smaller
+  share. **The direct test is the injector's voltage and current, 3
+  against 2, warm and running**: a raised resistance or a weak output
+  stage shows as a late opening and a higher on-voltage, and an output
+  stage of the TLE6220 kind diagnoses no raised resistance — closer to
+  the fault than 6n's ohms at rest.
 **Tests:** **the circuits measured** (among themselves on 17/11, above; `plan.md` 6n to the ECU; VW's repair manual, Golf Mk4, *Motronic injection and ignition system (2.0 ltr. engine)*, *Checking injectors* (workshop-manuals.com, read 5/11/2026)):
 the injector itself 14–18 Ω at about 20 °C; each wire, connector to
 connector, at most 1.5 Ω; contact 1 of the 2-pin connector is the
@@ -2707,6 +2827,16 @@ on 3 fouling at idle and burning itself clean (H1) is this entry's
 deposit at work — it fits the clean taking the swell for a day and
 `46`'s stops showing no growth at all; against "a flake moved", the
 fall takes 30–45 s.
+**17/11, the fourth research** (*What the forums say*, searched again
+17/11; S1, *The advance, the cold fast idle, a warm engine-off and a
+coast-down*): CARB's 2006 staff report gives a car whose intake valve
+deposits on one cylinder made it rich by an EGR effect, the front
+probe weighting it, the loop leaning all four and the rear probe lean
+throughout — the first source tying one cylinder's deposit to the sign
+of 032's idle cell; its size here a point or two of the cell
+(*reasoned*). Read with H1, as what holds a seat off. The cold form
+splits: 4's cold weakness fades steadily with the oil, 3's deficit
+does not follow temperature after the fast idle.
 **14/11 night, every cleaner set against the bus** (S1, *Before and
 after each repair*): **against** — the DFI can, both 44K tanks and the
 hydrogen left 3's weak strokes in a swell where September had them
@@ -3041,6 +3171,11 @@ vacuum falls, the flow stops, and what collected burns away.
   (5/11): oil past the rings, held by deposit (H13), which the wet-looking
   patches of the borescope photos might be — against it so far, the plugs
   dry, no blue smoke, compression even.
+- **Against, 17/11** (S1, *The advance, the cold fast idle, a warm
+  engine-off and a coast-down*): 3's deficit in the first 15 s after a
+  coast-down — the deepest vacuum, where a seal passes the most — is
+  what it is a minute later; nothing of 3's own is drawn in on the
+  overrun.
 - **S3 ~** for the same reason as S1: misfires at idle, on all four.
 
 **Tests:** **the oil consumption on the fresh oil** after the change of 26/10,
@@ -3091,6 +3226,15 @@ at idle on that cylinder, eased by load, and a plug kept clean.
   99–100.5 °C holds; no white smoke reported; **the calm after revving**
   (S1, 4/11; *reasoned*): the coolant's pressure is highest after a hard
   drive, so a weep should be worst then, not best.
+- **17/11, the fourth research** (S1; *What the forums say*, searched
+  again 17/11): weakly against — with the warmer coolant of the fan's
+  cycle 3 is a little better, not worse (+0.18 % of a stroke per °C),
+  where a weep driven by the system's pressure would go the other way
+  (*reasoned*); one AQY forum lead, 3 missing under about 800 rpm after
+  a coolant stop-leak (not read to its end; no stop-leak recorded on
+  this car). **The CO₂ test can miss a small weep** and tests the
+  other direction; the system held at the cap's pressure for hours and
+  the borescope in 3 read it better (a lead).
 - **Test:** **a combustion-gas (CO₂, "block") test of the coolant**,
   warm — a few hundred Kč at a garage or a kit; `refuted.md` C13 never
   had one. A leak-down (H1's test) watched at the expansion tank for
@@ -3770,7 +3914,9 @@ new:
   to trigger a P0341" — one shop puts nine in ten P0341 on these engines
   down to a stretched or misfitted belt. Forum reports on the ABA and
   AEG agree in kind: a tooth advanced, "lots of low end, no top end"; a
-  tooth retarded, a bog at low speed; a tooth given as about 8° of cam.
+  tooth retarded, a bog at low speed; a tooth given as about 8° of cam
+  (*on the AQY 6.92° of cam, 13.85° of crank: searched again 17/11,
+  below*).
   **No measured case of two teeth or more was found**, on a dynamometer
   or otherwise. **The marks**: the same article names the camshaft
   sprocket's OT against the arrow on the rear cover and **the flywheel's
@@ -3780,6 +3926,8 @@ new:
   line on the lower belt cover — whether the AQY carries a mark on the
   block as well was not confirmed either way (*the owner*: the web
   shows the notch on the pulley and one on the block, as he found).
+  *Answered 17/11 (below): VW's procedure for the AQY names the lower
+  belt guard's mark and the flywheel's, none on the block.*
   **Which way a belt slips** (*reasoned*; the search gave anecdotes both
   ways): the crank drives, so a belt that jumps or stretches leaves the
   cam behind — retarded, the pulley's notch past its mark with the cam
@@ -3824,6 +3972,130 @@ new:
   coolant (green-white, grainy), oil (dark), fuel additives (red or
   white) — the cleaners explain it as well as coolant does.
 
+**Searched again 17/11** (*the owner's request*, the fourth deep
+research, after H3 and injector 3 went out; DE, PL, CZ, EN; motor-talk.de,
+vwvortex, golf4.de and forum.newbeetle.pl refused automated reading and
+vwaudiforum.co.uk was outside the session's network, so forums are
+search extracts and leads; the notes are not kept here). **Still no
+healthy M5.9.2 log** of 014, 032, 055 or 001 at a warm idle, no VW or
+dealer statement that this family idles unevenly by design, and no
+count of P030x by cylinder that singles out 3 (H0). What is new:
+- **VW's own belt procedure for this engine** (Škoda's Octavia Mk1
+  workshop manual, *2.0 ltr./85 kW engine*, engine codes AEG, APK, AQY,
+  AZH and AZJ, the AQY there with M5.9.2, 10.5 : 1 and no cam
+  adjustment; its text and drawings A15-0024 and S13-0164 read on
+  workshop-manuals.com — the New Beetle's own edition not read). Three
+  references at TDC of cylinder 1: **the cam sprocket's mark against
+  the cylinder-head cover's** (the camshaft chapter: the arrow on the
+  belt guard), **the vibration damper's mark against the mark on the
+  bottom part of the belt guard**, at the top of the damper in the
+  drawing, and **the flywheel's TDC mark in the gearbox's window**,
+  checked before the belt comes off and again after it is on. **No mark
+  on the block anywhere.** The damper, the crank sprocket and the
+  flywheel fit one way only (holes offset), the cam sprocket sits on a
+  Woodruff key — so **a pulley bolted on turned is excluded by design**;
+  what can move the damper's notch alone is its outer ring slipped on
+  the rubber (a newbeetle.org lead) or a damper that is not the
+  original. **The window on the 02J** (forum leads): on top of the bell
+  housing under a rubber plug about 25 mm across (02A 301 115 A), often
+  under hoses or the air box.
+- **A tooth is 13.85° of crank**: the cam sprocket has 52 teeth (Topran
+  118 512 / 06A 109 105 D, listed for the AQY and AZJ by parts sellers;
+  about 52 counted on VW's drawing), so the crank sprocket 26 and the
+  belt 06A 109 119 C 138 (Gates' listing, 1,104 mm). 8i's 30–60° by eye
+  is 2.2–4.3 teeth, its 2–5 cm along a rim of 14–16 cm (the diameter
+  a guess) 1.0–3.0; with the cam's mark set the error is a whole number
+  of teeth, so **the two readings meet only at two** (27.7°), which the
+  full-throttle air, the acceleration and the empty fault memory argue
+  against (*reasoned*; the row A1).
+- **The ECU compares the cam's phase with the crank's**: VW's fault
+  table for the family lists **16724 / P0340 and 17748 / P1340,
+  "Camshaft position/crankshaft position sensor – Incorrect
+  assignment"**, beside 16725 / P0341 (Ross-Tech names a misfitted belt
+  for 17748); the table covers M5.9.2 and ME7.5 together and gives no
+  tolerance, and VW's list of measuring blocks has no phase. *SSP 175's
+  "G40 only identifies cylinder 1" (the row A1) did not say the ECU
+  never compares them.* An empty memory weighs more against two teeth
+  than against one (*reasoned*).
+- **What a tooth does at idle**, the direction only (Ford's work on cam
+  timing, Jankovic and Magner, IFAC 2002): retarded, more residual at
+  low load, a worse idle and a higher manifold pressure for the same
+  air; advanced, exhaust back into the inlet and more charge trapped at
+  low speed. **No measured idle figure for a whole cam moved 14° or 28°
+  on a fixed-cam 2-valve engine.** The idle control would show a
+  changed trapped volume as air — the throttle, the manifold's vacuum,
+  055 — not in 032, since the fuel follows the MAF (*reasoned*).
+- **The head's modes** (INA, *Valve Train Components*, failure
+  diagnosis): "the exhaust valve sucks in exhaust gas" through a seat
+  that closes improperly "when the engine is warm" — H1's dilution form,
+  driven by the idle's vacuum and so an amount that fades with load; a
+  hydraulic element pumped up sinks over minutes (2–10 min at ambient)
+  after a sudden onset, **the mirror of 3's swell** (H1's lifter form,
+  against). Valve rotation small even at speed and falling with hotter
+  oil (Jelenschi, 2012), none on one bucket-tappet rig at about 600
+  engine rpm (Al-Jeboori, 2018): a spot on a seat may stay where it is
+  at a hot idle (*reasoned*).
+- **A maker's case of one leaking seat**: Mercedes LI01.30-P-072328
+  (2/2026, M260/M264): rough running, per-cylinder mixture codes
+  ("cylinder 3 is irregular" among them), and "it is possible that no
+  fault codes are stored"; the gate is a cylinder leakage test naming
+  inlet or exhaust, then a new head. **GM PIP5029F**: diagnosis may miss
+  sticking valves "depending on whether the intake/exhaust valves are
+  sticking at the time of the diagnosis" — item 9's switch-off in a
+  swell. GM's cleaner procedure (PIP5029F, 16-NA-383: cleaner drawn in
+  warm at about 2,000 rpm, a hot soak of 2.5–3 h, repeated if improved;
+  too much at low speed can hydrolock) is the one documented aim at
+  valve carbon short of the head; no maker gives a recovery rate. *The
+  Kia/Hyundai TSB 23-EM-007H quoted in H1 aims at the ring grooves and
+  oil consumption, not the seats.*
+- **One cylinder's deposit setting the whole engine's trim**: CARB's
+  staff report for the 2006 OBD II amendments (pp. 17–19) — intake valve
+  deposits on one cylinder gave it an EGR effect and made it rich, the
+  front sensor was "oversensitive to the malfunctioning cylinder", the
+  loop leaned all four, and the rear sensor read lean throughout. The
+  mechanism is in patents (hydrogen from a rich cylinder reaches the
+  probe's electrode faster than oxygen: US 8,600,647, WO 96/35048,
+  US 5,492,612). **Its size here is small** (*reasoned*, a model not
+  kept): one cylinder 15–20 % short of fresh air at the same fuel moves
+  the loop by about −2 to −3.5 %, a slow but complete burn by under 1 %
+  — a point or two of 032's idle cell, not −6 to −9 % (S19); and the
+  loop does not move with the swell (S1).
+- **S19's return, re-reckoned** (*reasoned*; the pump's delivery not
+  read): a return system's pump delivers an order more than the engine
+  burns at idle or at part load, so a restriction in the return or a
+  high base pressure raises the rail nearly alike at both and would pull
+  **both cells negative**, not −7 / +7. And how M5.9.2 combines the
+  additive idle cell with the multiplicative part-load factor at idle
+  is not documented; if both act there, the net learnt correction at
+  idle is near zero (S19).
+- **Tests that read the cylinder with the head on** (Pico's guided
+  tests; Bernie Thompson's rules on diag.net; Motor magazine 7/1999,
+  1/2005, 2/2007): **an in-cylinder pressure transducer** (WPS500X) in
+  plug 3 with the engine running on three — the expansion pocket and
+  the exhaust ramp read 3's sealing unfired, the ramps the cam's timing
+  ("a 1-tooth exhaust cam error is hard to see during cranking… check
+  the idle exhaust plateau ramps"; Motor read a tooth as 21.5° on
+  another engine), best the same reading before and after the belt;
+  **an injector's voltage and current, 3 against 2, warm and running**
+  — a resistance fault delays the opening (one case 1.9 ms, "one-third
+  the fuel"), a MOSFET switch drops 0.2–0.3 V, and an output stage of
+  the TLE6220 kind diagnoses open load, a short and overload, not a
+  raised resistance (that M5.9.2 carries it is not confirmed);
+  **secondary ignition per lead** — a high, short spark line lean or
+  diluted, low kV with hash a leaking valve, each power spark against
+  its own waste spark; **G28 and G40 on two channels** before and after
+  the belt. The CO₂ test may miss a small weep and tests the other
+  direction; the cooling system held at the cap's pressure for hours and
+  the borescope in 3 read a weep better (a lead). In the Czech Republic
+  Bosch Car Service's FSA carries the ignition scope, the secondary
+  pickups and a leak-down tester (EFAW 210 A); no workshop was found
+  offering the running in-cylinder test, so it is asked for by name.
+- **One AQY lead with 3's shape** (vwaudiforum.co.uk, a search extract
+  only): P0303 and P0300 at idle in traffic, 3 missing under about
+  800 rpm and never above, from about six months after a coolant
+  stop-leak and a new radiator; unresolved (H20). No stop-leak is
+  recorded on this car.
+
 ---
 
 ## The idle's candidates, ranked
@@ -3856,15 +4128,21 @@ of B is what stays with the cylinder's head: the seat and its deposit,
 the stems, coolant, the injector's wire past the connector. **List A
 loses H16** (A9, the purge path; `refuted.md` C30, *the owner*, 17/11);
 its belt is read against `54`'s stop.
+**Proposed 17/11, not agreed** (the fourth research): B — H1 above
+H13, the seat's dilution form the one reading that fits the spark, the
+swell's survival of a warm engine-off and a maker's case of one seat
+with no code; A — H0 above the belt, the marks read against no VW
+reference, and H11 above H7, the return's form weakened (S19). The
+order below stands until the owner decides.
 
 **B. One cylinder — what makes 3 worse than the rest:**
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| B1 | **H13** deposits | Fits 3 by every measure: the borescope's most deposit on 3 (3 > 4 > 2 > 1), cold 4 weak beside it in that order; the clean of 9/11 took 3's swell for a day and left its floor, which a flake moved fits better than deposit regrown (SAE 2000-01-2858). Against: no cleaner and not the hydrogen moved 3's swell or the grade's mean (S1, *Before and after each repair*); the deposit reads as a consequence as much as a cause. **Where it came from, perhaps** (16/11): the original cover gasket leaked onto the lower joint at 3 and 4 for at least ten years (*owner*), the order of the deposit (`refuted.md` C28, *Oil soaked into the joint*); **17/11**: the joint renewed and the swell as before, as a deposit laid by that oil would stay (*reasoned*). Read with H1 | with H1, item 9's warm leak-down with 3 twice (`plan.md` 9) |
-| B2 | **H1** a seat or lifter on 3 | The swell's best fit: **a seat on 3 that fouls at idle and burns itself clean** (with H13; S1, *The swell's shape*), diluting at the idle's vacuum rather than losing compression — 3 is within 1–3 % of 2 at full load (*Off idle*); the port photos show crust broken round 3's inlet seat (*the owner's reading*, 7/11). Against the lifter: no once-per-cycle tick at 3's place on the cam cover (15/11) and S22's tick at its usual size (12/11); a seat that leaks need not tick. **17/11**: with the joint and the injector cleared, the first of B | item 9: the warm leak-down with 3 twice, the engine switched off in a swell; the stethoscope above 3, hot; VW's tappet check (`plan.md` 9) |
-| B3 | **H4** the injector loom at 3 | 3's deficit is an amount at a small charge, not a share — what an injector opening late through a raised resistance gives; the wiring is what stays with the cylinder through a change of injectors. Against: the supply steady through a whole stop, no step at a swell (004, 15/11); a wire has no reason to swell and mend, so the floor at most; the spark side against, 3 level at full load | **6m, 17/11**: each injector 16.0–16.1 Ω, the supply side 0.2 Ω on every pair, flexing moved nothing — the coil and the supply cleared, cold and at rest. Left: the control wire to the ECU's pin 58 (`plan.md` 6n) |
-| B4 | **H20** coolant into 3 | Fits one cylinder at idle, where the cylinder's pressure is lowest, and the fading with load; plug 3 the cleanest of the 10/10 set (*the owner*, 4/11, weak). Against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos; nothing in it fills and empties | the CO₂ test of the coolant; bubbles at the tank in the leak-down (`plan.md` 9) |
+| B1 | **H13** deposits | Fits 3 by every measure: the borescope's most deposit on 3 (3 > 4 > 2 > 1), cold 4 weak beside it in that order; the clean of 9/11 took 3's swell for a day and left its floor, which a flake moved fits better than deposit regrown (SAE 2000-01-2858). Against: no cleaner and not the hydrogen moved 3's swell or the grade's mean (S1, *Before and after each repair*); the deposit reads as a consequence as much as a cause. **Where it came from, perhaps** (16/11): the original cover gasket leaked onto the lower joint at 3 and 4 for at least ten years (*owner*), the order of the deposit (`refuted.md` C28, *Oil soaked into the joint*); **17/11**: the joint renewed and the swell as before, as a deposit laid by that oil would stay (*reasoned*). **17/11, the fourth research**: CARB's 2006 case of one cylinder's intake-valve deposit making it rich and the loop leaning all four — the sign of 032's idle cell, a point or two in size here. Read with H1 | with H1, item 9's warm leak-down with 3 twice (`plan.md` 9) |
+| B2 | **H1** a seat or lifter on 3 | The swell's best fit: **a seat on 3 that fouls at idle and burns itself clean** (with H13; S1, *The swell's shape*), diluting at the idle's vacuum rather than losing compression — 3 is within 1–3 % of 2 at full load (*Off idle*); the port photos show crust broken round 3's inlet seat (*the owner's reading*, 7/11). Against the lifter: no once-per-cycle tick at 3's place on the cam cover (15/11) and S22's tick at its usual size (12/11); a seat that leaks need not tick. **17/11**: with the joint and the injector cleared, the first of B. **17/11, the fourth research**: for the dilution form — 3 gains more from the governor's spark (a later burn), the swell survives a warm engine-off, INA's warm exhaust seat that "sucks in exhaust gas", Mercedes' one leaking seat with no code; against the lifter, whose pump-up runs the swell's course backwards (INA); against in part, the cold fast idle levels 3 within a minute | item 9: the warm leak-down with 3 twice, the engine switched off in a swell; the stethoscope above 3, hot; VW's tappet check (`plan.md` 9) |
+| B3 | **H4** the injector loom at 3 | 3's deficit is an amount at a small charge, not a share — what an injector opening late through a raised resistance gives; the wiring is what stays with the cylinder through a change of injectors. Against: the supply steady through a whole stop, no step at a swell (004, 15/11); a wire has no reason to swell and mend, so the floor at most; the spark side against, 3 level at full load. **17/11, the fourth research**: weakly against, the enriched cold idle worse at matched load than the warm | **6m, 17/11**: each injector 16.0–16.1 Ω, the supply side 0.2 Ω on every pair, flexing moved nothing — the coil and the supply cleared, cold and at rest. Left: the control wire to the ECU's pin 58 (`plan.md` 6n); closer to the fault, injector 3's voltage and current against 2's, warm and running (the fourth research, 17/11) |
+| B4 | **H20** coolant into 3 | Fits one cylinder at idle, where the cylinder's pressure is lowest, and the fading with load; plug 3 the cleanest of the 10/10 set (*the owner*, 4/11, weak). Against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos; nothing in it fills and empties; **17/11**: 3 a little better, not worse, with the warmer coolant of the fan's cycle (weak) | the CO₂ test of the coolant (it can miss a small weep, 17/11); bubbles at the tank in the leak-down (`plan.md` 9); the system held at the cap's pressure and the borescope in 3 (a lead, 17/11) |
 
 **A. The common part — what makes every cylinder alike rougher** (the
 small unevenness on all four, most of `IdleHealth`'s floor and nothing
@@ -3872,13 +4150,13 @@ small unevenness on all four, most of `IdleHealth`'s floor and nothing
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
-| A1 | **the timing belt a tooth out** | The common part is a constant — the same within 5 % at every warm idle since 24/9, answering only to a load, the gas and temperature — which a fixed fault on all four gives and a source that varies by the day does not (S1, *The swell's shape*); the cam's timing sets the burnt gas kept at idle. **The marks, 8i (13/11)**: the cam's OT mark set; the crank pulley's only notch 30–60° of crank behind the groove on the block by eye and borescope, **2–3 cm along the rim, more likely more, not over 5 cm** by the owner's fingers the same evening (about 15–40°, one to two teeth, if the pulley is 14–16 cm across — the diameter a guess); the cam advanced if both are the true marks (the direction the owner's, read off the part), and if they are not, the direction is open too (*the owner*, 14/11); **or a pulley bolted on turned against its sprocket** (*the owner*); where the true mark is was not looked up. **Against more than about a tooth**: settled full throttle takes 496 mg of air a stroke at 2,400 rpm, 520 at 3,600–4,400, 485 at 5,200, 452 at 5,600 (85–90 g/s at the top, every 003 log; 84–90 g/s at 5,000–5,500 in sixteen logs from 9/2026 to 9/11), and the acceleration needs 0.94 of b7 with no tilt by gear or band (83 pulls; `drivescan.py --pulls`) — 1.5–3 teeth of advance would take the top of the filling away (*general*); a tooth or less is not excluded with no healthy AQY to set it against. The ECU would not necessarily say: G40 only identifies cylinder 1 (SSP 175, p. 49), though VW lists 16725 / P0341 for its signal out of place, never stored here. Belt from 10/2017. **Kept first by the owner until the belt is renewed** (13/11) | **8q**: the mechanic's count of teeth before the old belt comes off, and the common part by capture before (`54`'s warm stop, 17/11, after the gasket: 2.96 rpm rms) and after the new belt, 7/12 (`plan.md` 8q) |
-| A2 | **H0** normal for this engine | A common part that no repair, day or drive has moved, and that answers only to the charge, is what an engine's own scatter looks like; a fixed fault reads the same, and no healthy AQY says which. Against: 014 far above VW's 0–5 — but that is 3's, list B | 014 on a healthy AQY, VCDS only (a capture is not obtainable) |
+| A1 | **the timing belt a tooth out** | The common part is a constant — the same within 5 % at every warm idle since 24/9, answering only to a load, the gas and temperature — which a fixed fault on all four gives and a source that varies by the day does not (S1, *The swell's shape*); the cam's timing sets the burnt gas kept at idle. **The marks, 8i (13/11)**: the cam's OT mark set; the crank pulley's only notch 30–60° of crank behind the groove on the block by eye and borescope, **2–3 cm along the rim, more likely more, not over 5 cm** by the owner's fingers the same evening (14–41°, if the pulley is 14–16 cm across — the diameter a guess); the cam advanced if both are the true marks (the direction the owner's, read off the part), and if they are not, the direction is open too (*the owner*, 14/11). **VW's references, read 17/11** (*What the forums say*, searched again 17/11): the damper's mark against the bottom belt guard's, the flywheel's in the gearbox window, **none on the block** — so the groove 8i read against is not one of VW's, unless it was the guard's; **a pulley bolted on turned** (*the owner*) is excluded by design, the damper and crank sprocket fitting one way only, but not the damper's outer ring slipped on its rubber. **A tooth is 13.85° of crank**: 30–60° is 2.2–4.3 teeth and 14–41° 1.0–3.0, the two meeting only at two. **Against more than about a tooth**: settled full throttle takes 496 mg of air a stroke at 2,400 rpm, 520 at 3,600–4,400, 485 at 5,200, 452 at 5,600 (85–90 g/s at the top, every 003 log; 84–90 g/s at 5,000–5,500 in sixteen logs from 9/2026 to 9/11), and the acceleration needs 0.94 of b7 with no tilt by gear or band (83 pulls; `drivescan.py --pulls`) — two teeth of advance or more would take the top of the filling away (*general*); a tooth or less is not excluded with no healthy AQY to set it against. The ECU compares the phases: VW's fault table for the family lists 16724 / P0340 and 17748 / P1340, the cam and crank senders' incorrect assignment, beside 16725 / P0341 for G40's signal out of place — none ever stored here; no tolerance is published, so one tooth may pass where two would not (*reasoned*). Belt from 10/2017. **Kept first by the owner until the belt is renewed** (13/11) | **8q**: the mechanic's count of teeth before the old belt comes off, against VW's references (the flywheel's mark or the piston at plug 1), and the common part by capture before (`54`'s warm stop, 17/11, after the gasket: 2.96 rpm rms) and after the new belt, 7/12 (`plan.md` 8q) |
+| A2 | **H0** normal for this engine | A common part that no repair, day or drive has moved, and that answers only to the charge, is what an engine's own scatter looks like; a fixed fault reads the same, and no healthy AQY says which. Against: 014 far above VW's 0–5 — but that is 3's, list B. **17/11, the fourth research**: still no healthy M5.9.2 log found; it gains only as the belt loses | 014 on a healthy AQY, VCDS only (a capture is not obtainable) |
 | A3 | **H8** throttle and idle control | The air and the idle regulation act on all four alike, and S20 dates from this throttle (*owner*). Against: 055's two fields sum to the same correction at every warm idle (27/10), so a reset or the A/C gives no more air; the advance's scatter does not go with the common part (003, 12/11); 014 does not follow 055's learnt value (`refuted.md` C19); the regulator holds through 3's swells on 18 stops (15/11) | no test left for the idle; S20 keeps it |
-| A4 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it (shared with H16 until 17/11, `refuted.md` C30). Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
+| A4 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it (shared with H16 until 17/11, `refuted.md` C30). Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; **17/11**: nor a return restriction, which would pull both cells negative (S19, *re-reckoned*); the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
 | A5 | **H11** both probes shifted | What is left is the idle-only form — the front probe reading rich in the idle's cool exhaust, so the true mixture lean; it fits 032's negative idle cell with part load untouched. Against: both probes replaced 10/11 and the idle as rough; on the relearn drive its marks 1, 3, 4 and 5 failed (H11, *The relearn drive*); the rear probe's state never tracked `IdleHealth` | nothing planned; 036 watched at VCDS sessions (`plan.md` 8f) |
 | A6 | **H2** a leak ahead of the converter | Widened 10/11 to the zone between the probes (the joint, the flex, the plugged boss), which gives a lean rear probe at idle but not 032 or the dips; S2, S11 and S14's air. Against: the cold tailpipe and smoke tests found nothing; the visible manifold has no soot and no holes (31/10); 032's idle cell takes fuel away, where air ahead of the front probe would add it; the front loop holds through 3's swell; the rear probe's sinking was the old probe's; cannot pick a cylinder. Untested: a crack open only hot, the part under the heat shield | none planned (the warm tailpipe test dropped 15/11, *the owner*) |
-| A7 | **H18** oil past the stem seals | All four alike: worse after idling, calm after a working drive; for one valve it is the swell's second reading (list B's matter, S1, *The swell's shape*). **For, 17/11**: a brown liquid stood round the backs of inlet valves 2, 3 and 4 with the manifold off, there before the wash (*owner*) — the first direct sight of oil at the valves, though the old joint left the same and it does not pick 3; **17/11 (`54`)**: the joint new and the swell as before, so the joint's oil was not it (`refuted.md` C28). Against: it does not grow with the time into a stop; **no blue smoke ever**, the plugs dry | the oil level on the fresh oil (`plan.md` 6i); the plugs at the next change (8v) |
+| A7 | **H18** oil past the stem seals | All four alike: worse after idling, calm after a working drive; for one valve it is the swell's second reading (list B's matter, S1, *The swell's shape*). **For, 17/11**: a brown liquid stood round the backs of inlet valves 2, 3 and 4 with the manifold off, there before the wash (*owner*) — the first direct sight of oil at the valves, though the old joint left the same and it does not pick 3; **17/11 (`54`)**: the joint new and the swell as before, so the joint's oil was not it (`refuted.md` C28). Against: it does not grow with the time into a stop; **no blue smoke ever**, the plugs dry; **17/11**: 3 no worse in the first seconds after a coast-down, the deepest vacuum | the oil level on the fresh oil (`plan.md` 6i); the plugs at the next change (8v) |
 | A8 | **H21** the front probe's signal-earth wire | What is left after 8h (`53`, 15/11: only the supply stepped with a load, `refuted.md` C26): the front probe's damaged signal-earth wire, which reaches the common part only through a mixture; S19's idle cell if a signal earth carries heater current (*reasoned*). Weak for the idle: the new rear probe read healthy for 18 minutes and the idle was as rough | 8e's harness at the end; each wire to the ECU's pin with the plug off (with 6n) |
 
 **More than one at once** (*the owner's point*, 12/10): each repair may help
