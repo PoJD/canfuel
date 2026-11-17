@@ -4110,9 +4110,14 @@ sees through a swell*):
   the head below port 4** (01:29:58); the sludge in the runners is on
   all four (01:32:20–30), not on 3 alone. After the faces were
   washed, **a dark brown liquid stands round the backs of inlet valves
-  2, 3 and 4** (01:44:27–01:45:06) — oil, or the benzine of the wash
-  with what it dissolved: not known. Nothing in the frames marks 3
-  out from 4.
+  2, 3 and 4** (01:44:27–01:45:06) — **not from the wash, it was there**
+  (*owner*, asked the same night). Nothing in the frames marks 3
+  out from 4. *Owner, as it went back together*: **the layers on the
+  flange at 2 and 3 caught a nail** before they were cleaned off;
+  **every bolt came undone stiffly, none loose; a steel rule sits
+  everywhere on the flange**; the old gasket dirty with oil all over
+  and flaking in places, so small leaks are imaginable and cannot be
+  judged from the part — tenths of a millimetre are not to be seen.
   **the oil fell on 3 and 4, and 3 and 4 are where the engine is
   worst inside** — the borescope's deposit 3 > 4 > 2 > 1 (H13), the
   inlet seats' crust thick and broken on 3, beaded on 4, an even
