@@ -451,6 +451,10 @@ in the same commit.** He must never have to ask for it. The pass:
    to the same URL): whenever the ranking, a hypothesis's for and against,
    its test or `plan.md`'s order of tests changes, the page is republished
    in the same session, with its "stav k" date (*the maintainer, 4/11/2026*).
+   **Its header carries only the latest change** — one dated line of what
+   this republish changed, replacing the one before, never a running log
+   (*the maintainer*, 17/11); older states are the page's version history.
+   A hypothesis or test that leaves the page is deleted from it, not hidden.
    It mirrors `open.md`, *The idle's candidates, ranked*, and `plan.md`; it
    is never the source. **Updating it needs no prompt** (*the maintainer*,
    10/11): `.claude/settings.json` allows reading artifacts and
