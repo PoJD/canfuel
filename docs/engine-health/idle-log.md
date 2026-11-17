@@ -1809,8 +1809,8 @@ height below it, to his ear a fault — perhaps placebo, *owner*
   - *measured:* each injector 16.1, 16.1, 16.0, 16.0 Ω (leads 0.1 Ω);
     contact 1 to contact 1 0.2 Ω on all six pairs and to T3's supply
     pin; flexing the loom moved nothing;
-  - *not known:* everything about how it runs — the first start is
-    the next session's, captured.
+  - *measured, the next morning* (`54`, the entry below): 3's deficit,
+    floor and swell as before, 2 still the strongest.
 
 Nothing found that marks cylinder 3 out. The cover's nuts tight and its
 joint dry; the VW leads' ends all clean inside; every manifold bolt
@@ -1820,7 +1820,37 @@ at 4, an oil film in the injector bores (most at 4, then 3), layers of
 oil and sludge at 2 and 3; the flange rocks on a square by a hair in
 the middle. **A brown liquid stood round the backs of inlet valves 2,
 3 and 4 before anything was washed** — entered as evidence for H18 and
-H3, not a symptom (*the owner's decision*). Inlet seat 3, open, looks
+H3, not a symptom (*the owner's decision*); H3 refuted the next
+morning (`refuted.md` C28). Inlet seat 3, open, looks
 sound as far as it shows. `open.md` H3 (*Oil soaked into the joint*),
 H18, H4.
 
+## 17 November 2026 — the first start and drive on the new gasket, captured (8z, 8x)
+
+- **Tests:** the capture `54` from before the ignition, the MFD out;
+  VCDS 032/055 before and after, 001 032 070 from the cold start, 014
+  032 070 through the warm stop, 014 020 033 on the pulls, 014 001 003
+  home; the fault memory before and after every log; the hiss and the
+  puffs listened for (*owner*).
+- **Changes after:**
+  - *measured:* **3 −12 and −10 %, 2 +6 and +5 %** at the two warm
+    stops — the deficit did not follow injector 3 to 2; 3's floor
+    −8.6 %, its swell to −22 %, the common part 2.96 rpm rms, the
+    grade 63, all as on `49`–`53`; 014 zero until 07:13 (fresh
+    adaptations), then 88 % of its rises on 3; 032 from 0.0 / 0.0 to
+    −6.3 / +7.8 %, the idle cell learnt with 070's valve shut, 055
+    −1.16 g/s; cylinder 4's knock as before; the acceleration on the
+    pulls as before, within a tenth; no fault stored, the engine lamp
+    lit only with the engine stopped;
+  - *felt:* the idle the same; the exhaust puffs and the hiss still
+    there; it pulls better to high revs, by his own reading perhaps
+    placebo or the cold air (*owner*), not shown by the pulls;
+  - *not known:* whether the pull was better at a like intake air
+    temperature (004 not logged).
+
+No fuel leak at the start. The first crank caught and died, the second
+started it — as after every time the rail has been out (*owner*). The
+limiter held in 2nd and 3rd, by his account the first time so, with no
+misfire counted under load. **The gasket and the injector are cleared**
+(`refuted.md` C28, C29); the ranking re-read with the owner.
+`open.md` S1, *The first stop on the new gasket*; S3, S4, S19.

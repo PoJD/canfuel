@@ -18,18 +18,15 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next: the first start and drive on
-the new lower gasket (8z, fitted 17/11), captured with VCDS on the
-laptop**; **then 8q, the timing belt at a garage, 7/12**; then
-item 9; **the new rear probe when the seller sends it**
-(8e), **its harness at the end**; **8u, 8v, 8w by opportunity**
-(*the owner*, 15/11); **8x on that first drive**. *What is done is `idle-log.md` and
+Captures only where an item asks for one. **Next: 8q, the timing belt
+at a garage, 7/12**; then item 9; **the new rear probe when the seller
+sends it** (8e), **its harness at the end**; **8u, 8v, 8w by
+opportunity** (*the owner*, 15/11). *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
 
 **6. Drive normally; the MFD back in from 15/11** (*the owner*, after
-8h): `IdleHealth` and `Misfires` on the display again; **the MFD is out
-for 8z's first start and drive, which are captured** (the capture
-before the gasket is `53`), and goes back in after.
+8h): `IdleHealth` and `Misfires` on the display again, **back in after
+8z's captured drive** (17/11, `54`) until 8q's captured drive.
 Brisk driving once warm is welcome. When captures resume, the MFD
 comes out for them — the converter goes with the MFD.
 
@@ -131,44 +128,13 @@ of this plan, *the owner's decision* of 9/10):
   idle to about 3,500 rpm in neutral, slowly; 020 on two or three
   full-throttle pulls in 3rd or 4th.
 
-**8x. 001, 032 and 070 in one log** (*the owner*, 15/11 night), **on
-8z's first drive** (*the owner's order*, 16/11): 001, 032 and 070 from
-the cold start until warm, then 014, 032 and 070 through the warm stop
-— the cell and the valve watched from zero to the end of the stop,
-the capture beside them. Nothing to do at the car beyond the drive and
-the stop. Nothing to do at
-the car beyond the drive and the stop.
-
-**8z. The first start and drive on the new lower gasket** (fitted
-17/11 by the owner, **injectors 2 and 3 swapped**, the throttle's
-adaptation (098) run after the battery; `idle-log.md`), **captured,
-on the laptop**:
-
-- **The MFD out, the laptop in** (*the owner*, 16/11): **the first
-  start and the first drive are captured, with VCDS, as Claude runs
-  them** (`CLAUDE.md`, *Sessions at the car*): the capture started
-  before the ignition; the fault memory read first (a code stored
-  before the battery went pauses the drive until it is cleared,
-  *Standing items*); 032 and 055 for 20 s before the start (at zero
-  after the battery); **001, 032 and 070 from the cold start until the
-  engine is warm** (032 learns from zero, so it is watched from the
-  start); **014, 032 and 070 for the whole of a warm stop of ten
-  minutes**, the everyday state (*the owner's order*, 16/11); then, where it is safe, **two
-  or three full-throttle pulls on 014 and 020**; 032, 055 and the
-  fault memory after; "konec" as usual.
-- **At the first start, a fuel smell or a wet joint first.**
-- **S11's hiss at the first warm idle**, listened for as on 16/11 — a
-  head's height below the cam cover — and whether it is still there.
-- **032 for 20 s at every session with VCDS after** (8f).
-
 **8q. The timing belt renewed at a garage, 7/12** (*the owner's decision*,
 13/11; the date *the owner*, 16/11): the belt, its tensioner and idler, and the water pump.
 **Before the old belt is loosened**, the mechanic sets the crank to
 TDC of cylinder 1 and says how many teeth the camshaft sprocket's
 mark is off its mark, which way, and photographs both marks; the
-answer into the chat. Before the garage: **8z's captured warm stop**
-is the one the belt is set against (`52` and `53`, 15/11, are from
-before the gasket). After it: the
+answer into the chat. Before the garage: **`54`'s warm stop** (17/11,
+after the gasket) is the one the belt is set against. After it: the
 fault memory read, 032/055 for 20 s, and a captured drive to a warm
 stop of ten minutes.
 
@@ -180,7 +146,7 @@ is cleared**; **on a logged drive, 001 in place of 055** (G62's
 reading; on a captured drive the capture reads it) **and 014
 always** (a P0303 stored with no cut: its time is what the log gives).
 
-**9. By what 8z's stop and 8q leave** (Claude says which):
+**9. By what 8q leaves** (Claude says which):
 
 - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
   a kit.
@@ -353,10 +319,9 @@ which shows only on pulls above 3,000 rpm warm, hence the pulls;
 **033**, the front loop's live regulation. **001 is left out** on a
 captured drive because the capture carries the coolant (0x288) far
 faster. **The MFD back in from 15/11** (*the owner*, after 8h): what is
-left before the belt is no reading a capture gives that `49`–`53` do
-not; the next capture that says something is 8q's warm stop after the
-gasket (8z), set against `52` and `53`; the belt's (8q) is then set
-against 8z's.
+left before the belt is no reading a capture gives that `49`–`54` do
+not; `54` (17/11) is the stop after the gasket, and the belt's (8q)
+is set against it.
 **"Konec" and the five-minute stop** (*the owner*, 12/11 night): the
 laptop only records and uploads, the reading is a cloud session's
 (`CLAUDE.md`, *Sessions at the car*), and the capture's last minutes
@@ -501,88 +466,6 @@ valve; what is left to read is where both cells settle (`open.md`
 S19). Read, never cleared by Claude; three drives because the cells
 moved by one VCDS step at a time.
 
-**8z's first drive** (`open.md` H3; the gasket renewed 17/11 on *the
-owner's decision* of 16/11, what the open joint showed is in H3 and
-H18). **Before the belt**, so that each repair has its own captured
-stop: `52`/`53` → the gasket → 8z's stop → the belt → 8q's stop; two
-repairs between two captures could not be told apart.
-- **055 starts from an adaptation** (098, run by the owner on 17/11
-  after the battery), not from a bare reset as on 16/11.
-- **The first drive captured at once** (*the owner*, 16/11): the
-  stop after the gasket and the swap is the reading, and the cold
-  start on the new joint is S19's and the gasket's both; 032 relearns
-  from zero, so 8x watches the idle cell being learnt **from the
-  start** (*the owner's order*, 16/11: 001, 032 and 070 to warm, then
-  014, 032 and 070 through the warm stop, pulls last). Three groups
-  give each about a row a second where one alone gives about three:
-  enough for 032's slow cells and 070's duty, and for 014's count; a
-  014 rise is put to a cylinder by the weakest stroke before it, which
-  a slower row leaves less sharp, so the capture's own weak strokes by
-  cylinder carry the swap's reading as much as 014. 8x's question —
-  the idle cell learnt with the valve shut or open — is read on the
-  stop from 032 and 070; 001's live regulation is there only on the
-  cold leg. The warm stop keeps 014 alone, because its rises
-  are put to a cylinder by the stroke just before them, and a slower
-  row blurs which.
-- **Oil at the joint and at the valves** (`open.md` H3, *The lower
-  manifold off*; H18): oil lay along the flange and a brown liquid
-  round the backs of inlet valves 2, 3 and 4. The joint is new and
-  the manifold washed, the head's ports left as they were: **the
-  swell gone on the stop is the joint's oil; the swell as before
-  leaves the stems** (H18) and the seat.
-- **S11's hiss after the gasket** (`open.md` S11, 16/11: heard a
-  head's height below the cam cover, by the owner's ear a fault): gone
-  is H3's joint; still there leaves it the throttle's own air.
-- **Injectors 2 and 3 swapped** (*the owner's offer*, 16/11; it
-  withdraws his "no swap" of 12/11, which held while the rail had to
-  come out for it alone): the rail is out anyway, so it costs nothing,
-  and it tells the injector from everything that stays with cylinder
-  3 — the bore, the runner, the head, the loom. 2 because it is the
-  strongest at idle (`open.md` S1, *Every stroke named*). The ring on
-  the injector goes with it (the old rings stay). **Read with the
-  gasket** on 8z's captured stop (`cylscan.py --minutes`):
-  - **3's deficit stays on 3, 2 as before**: not the injector (H7's
-    injector form to `refuted.md`); with the gasket renewed and the
-    deficit still there, not the gasket either — what is left of B is
-    the bore, the seat, the deposits, the coolant, the loom.
-  - **The deficit moves to 2** (2 now short, 3 level): **the injector**
-    — or its ring, which travels with it; H7 B6 goes to the top,
-    and H3's gasket is out.
-  - **Both level, 3's floor gone**: not the injector (it would have
-    taken the deficit to 2); the gasket, or the injector seated
-    better, as before.
-  - **Both short**: two causes, one going with the injector, one
-    staying.
-- **The old lower rings kept** (*the owner*, 16/11: none to be had;
-  a damaged one replaced from the old injectors): then the gasket alone is changed, and a floor of 3's that
-  goes names the gasket; one that stays leaves 3's ring and its bore
-  as the one part of H3 not renewed, which the bores' and rings'
-  photographs then speak to.
-- **How the capture is read** (`tools/cylscan.py --minutes`,
-  `swellscan.py --floors`): **3's floor** (−6 to −9 % of a stroke at
-  every warm idle since 24/9) **gone or halved is H3**, at the gasket
-  or the ring, whichever showed the track; **the floor as before** puts
-  H3 in `refuted.md` whole. **The swell**: the leak cannot be what
-  varies in it (3's mixture did not move through a swell), but it may
-  be what puts 3 at the edge where a slower burn shows (`open.md` H3,
-  *The swell with a leak*, 16/11) — so **floor and swell both smaller
-  or gone** is the leak as the swell's condition; **the floor gone and
-  the swell as before** is two causes told apart, and item 9 is then
-  for the swell alone. 032 says little either way: one
-  runner's leak moves the idle cell by about a quarter of its own
-  size, inside the cell's own spread. The MFD's `IdleHealth` between
-  is read as before, with its spread.
-- **The common part read too** (*the owner's question*, 16/11): the
-  gasket is old at every runner, so the same stop gives the common
-  part (2.6–3.1 rpm rms at every warm idle since 24/9) against `52` and
-  `53`. *Reasoned*, beforehand: a leak shared by all four is not
-  expected — it would lean all four alike, which the front probe sees
-  whole and 032's idle cell would answer with fuel added (it takes
-  6–9 % away), and the vacuum gauge on the plenum, which sees the sum
-  of every leak, read 18–19 inHg steady. A common part that falls by
-  a clear step after the gasket is that leak all the same, and puts
-  H3 in list A as well.
-
 **The display's stops** with a word on what came before
 each, because a brisk run calms the idle by itself for a while
 (`open.md` S1, *After high revs*) and the display's spread is as large
@@ -613,7 +496,8 @@ and a 10 bar workshop gauge is not. **How it is read**:
 - **2.4–2.6 at idle, 2.9–3.1 with the hose off, the difference equal
   to the intake's vacuum, the needle still through the three minutes,
   2.0 and over at ten**: the rail is out, in every form — H7's row A4
-  goes to `refuted.md`, the idle cell is left to 8x.
+  goes to `refuted.md`, the idle cell is left as 8x read it (17/11:
+  learnt with 070's valve shut, `open.md` S19).
 - **High at idle, right with the hose off** (2.8 and over against
   3.0; the difference smaller than the vacuum): the regulator not
   getting the intake's vacuum. **Not expected** (*the owner*, 15/11
@@ -666,20 +550,6 @@ contact with the block and VW gives it a torque; 026 in neutral
 because that is where S5 lives, against
 `vcds/vcds-neutral-026-003.csv`; 020 on pulls because 4's retard shows
 only there, against `vcds/vcds-step2c-020-026-003.csv`.
-
-**8x, 001, 032 and 070 together** (`open.md` S19, *The old logs
-re-read for the split's form*): the idle's correction — the idle cell
-and the live regulation added — stood at −2.4 % for the first 80 s of
-a warm stop and at −5.9 % a minute and a half later (8n, 12/11
-night), the timescale of the ECU's own purge, and 070 has never been
-logged beside the other two. With the valve's duty (070's field 1)
-beside the cell and the regulation: **the cell learnt and the −6 %
-standing with the valve shut** says the rich idle is the engine's own
-and the purge only hides part of it — 8u's gauge is then its next
-test; **with the valve open** says the cell holds the canister's
-vapour and S19's split is the purge working. `47`'s cells against b7
-lean to the first, on one clean event. Read only; it waits for the
-laptop because the MFD is in until then (item 6).
 
 **Item 9's garage session** (*agreed with the owner*, 11/11): everything that needs the upper intake off in one
 visit, warm. **Cylinder 3's leak-down twice, two crank turns apart**,
