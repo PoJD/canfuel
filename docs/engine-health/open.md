@@ -54,7 +54,8 @@ reading (oil round G62's pins), S21 P0440 and the summer overpressure
 (the canister found bypassed, plumbed back 11/11, the new N80 14/11,
 the ECU's own check passed 15/11). **Hypotheses settled**: H3 (`refuted.md` C28: the lower
 manifold's gasket renewed 17/11 and 3's floor and swell as before),
-H9, H10, H14, H15, H17, H19, and the forms C25 (the purge times the
+H16 (C30: the canister plumbed back and N80 renewed, and neither the
+idle nor S19's split moved; *the owner*, 17/11), H9, H10, H14, H15, H17, H19, and the forms C25 (the purge times the
 swell), C26 (a shared earth under the probes and senders), C27 (the
 air mass meter's plug or the earth point by the ECU makes 032's idle
 cell) and C29 (H7's injector 3: injectors 2 and 3 swapped 17/11 and
@@ -118,7 +119,7 @@ owner*).
 **A, the common part** — the timing belt a tooth out, H0 normal for
 this engine, H8 the throttle and idle control, H7 the rail's pressure,
 H11 both probes, H2 a leak ahead of the converter, H18 the stem seals,
-H21 the front probe's signal-earth wire, H16 the purge path.
+H21 the front probe's signal-earth wire.
 
 **The lower manifold's gasket renewed by the owner, 17/11** (Elring
 `165.210`; `idle-log.md`), **injectors 2 and 3 swapped**, and **6m
@@ -3991,50 +3992,6 @@ adaptations or the engine on the day; 5b read them again: **014 counted
 on `43`** at `42`'s load, so its zero was the fresh adaptations (S3). The idle cell
 of 032 came back at once (S19), so the split is not the map's either.
 
-### H16. The purge valve N80 does not seal — fuel vapour into the intake
-
-*Condensed 17/11*; the owner's readings of 12/11, the slug variant, the
-pulses against the dips and every drive's figures are in `git show 5e1ddf2:docs/engine-health/open.md`, this
-heading.
-
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | — | — | — | — | — | ~ | ~ | ✔ | ~ | — |
-
-**The claim**: vapour from the canister, through a valve that does not
-seal or through the ECU's own purge, is a fixed amount of fuel the ECU
-did not meter — largest against the idle's small air, so a negative
-idle cell with part load untouched (S19), and enough to tip the one
-cylinder already short. Every line joins the intake in its common part,
-so it cannot pick 3 by itself. **For**: S19 — VW's fault table names
-N80 under both P0172 and P0440; P0440 stored from 1/2018 (the canister
-found bypassed 11/11, `refuted.md` D14).
-
-**What the idle has had of it, measured:**
-- **25/10** (6e): engine off, a blow through N80 passed "really little";
-  on the cold start no suction at its tank-side port and no liquid
-  fuel; with the port closed the regulation still sat at −0.7 % on top
-  of −7.8: **not the rich idle trim, cold**.
-- **6/11**: the valve's pulses do not set when the dips come (engine
-  speed's spectrum, the dips' timing).
-- **The canister plumbed back, 11/11, and the new N80, 14/11**: neither
-  moved the common part (2.7–3.1 rpm rms throughout) nor 3's swell
-  (S1, *The first captured stop on the canister*, *The first drive on
-  the new N80*); 3's floor read two points shallower for two days and
-  was back on `52`.
-- **The purge opened on purpose** (070, 14/11, 7.8 % vapour) did not
-  deepen 3; **the ECU's own phases do not time the swell** (070 as a
-  measuring block on `52`, b7 on 15 older stops; `refuted.md` C25).
-  `TEV OK` by the ECU on 15/11.
-- **032's idle cell is not the valve's**: −9.4 % after a gentle drive on
-  the new valve (15/11); **learnt with 070's valve shut** on `54`
-  (17/11, 8x; S19).
-
-**What is left**: S19 only — a valve that passes vapour while the car
-stands, which no running test sees, and the rich start after standing.
-**Last in list A since 15/11** (*the owner's decision*); for the idle,
-nothing planned; 032 at every VCDS session (8f).
-
 ### H18. Oil past the valve-stem seals, drawn in at idle
 
 **12/11 evening** (S1, *The swell's shape, and what the common part
@@ -4927,8 +4884,9 @@ new gasket*): the lower gasket renewed and injectors 2 and 3 swapped,
 and 3's deficit, floor and swell as before — **H3 (B3) and H7's
 injector 3 (B6) leave list B** (`refuted.md` C28, C29). What is left
 of B is what stays with the cylinder's head: the seat and its deposit,
-the stems, coolant, the injector's wire past the connector. List A
-unchanged; its belt is read against `54`'s stop.
+the stems, coolant, the injector's wire past the connector. **List A
+loses H16** (A9, the purge path; `refuted.md` C30, *the owner*, 17/11);
+its belt is read against `54`'s stop.
 
 **B. One cylinder — what makes 3 worse than the rest:**
 
@@ -4948,12 +4906,11 @@ small unevenness on all four, most of `IdleHealth`'s floor and nothing
 | A1 | **the timing belt a tooth out** | The common part is a constant — the same within 5 % at every warm idle since 24/9, answering only to a load, the gas and temperature — which a fixed fault on all four gives and a source that varies by the day does not (S1, *The swell's shape*); the cam's timing sets the burnt gas kept at idle. **The marks, 8i (13/11)**: the cam's OT mark set; the crank pulley's only notch 30–60° of crank behind the groove on the block by eye and borescope, **2–3 cm along the rim, more likely more, not over 5 cm** by the owner's fingers the same evening (about 15–40°, one to two teeth, if the pulley is 14–16 cm across — the diameter a guess); the cam advanced if both are the true marks (the direction the owner's, read off the part), and if they are not, the direction is open too (*the owner*, 14/11); **or a pulley bolted on turned against its sprocket** (*the owner*); where the true mark is was not looked up. **Against more than about a tooth**: settled full throttle takes 496 mg of air a stroke at 2,400 rpm, 520 at 3,600–4,400, 485 at 5,200, 452 at 5,600 (85–90 g/s at the top, every 003 log; 84–90 g/s at 5,000–5,500 in sixteen logs from 9/2026 to 9/11), and the acceleration needs 0.94 of b7 with no tilt by gear or band (83 pulls; `drivescan.py --pulls`) — 1.5–3 teeth of advance would take the top of the filling away (*general*); a tooth or less is not excluded with no healthy AQY to set it against. The ECU would not necessarily say: G40 only identifies cylinder 1 (SSP 175, p. 49), though VW lists 16725 / P0341 for its signal out of place, never stored here. Belt from 10/2017. **Kept first by the owner until the belt is renewed** (13/11) | **8q**: the mechanic's count of teeth before the old belt comes off, and the common part by capture before (`54`'s warm stop, 17/11, after the gasket: 2.96 rpm rms) and after the new belt, 7/12 (`plan.md` 8q) |
 | A2 | **H0** normal for this engine | A common part that no repair, day or drive has moved, and that answers only to the charge, is what an engine's own scatter looks like; a fixed fault reads the same, and no healthy AQY says which. Against: 014 far above VW's 0–5 — but that is 3's, list B | 014 on a healthy AQY, VCDS only (a capture is not obtainable) |
 | A3 | **H8** throttle and idle control | The air and the idle regulation act on all four alike, and S20 dates from this throttle (*owner*). Against: 055's two fields sum to the same correction at every warm idle (27/10), so a reset or the A/C gives no more air; the advance's scatter does not go with the common part (003, 12/11); 014 does not follow 055's learnt value (`refuted.md` C19); the regulator holds through 3's swells on 18 stops (15/11) | no test left for the idle; S20 keeps it |
-| A4 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it, shared with H16. Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
+| A4 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it (shared with H16 until 17/11, `refuted.md` C30). Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
 | A5 | **H11** both probes shifted | What is left is the idle-only form — the front probe reading rich in the idle's cool exhaust, so the true mixture lean; it fits 032's negative idle cell with part load untouched. Against: both probes replaced 10/11 and the idle as rough; on the relearn drive its marks 1, 3, 4 and 5 failed (H11, *The relearn drive*); the rear probe's state never tracked `IdleHealth` | nothing planned; 036 watched at VCDS sessions (`plan.md` 8f) |
 | A6 | **H2** a leak ahead of the converter | Widened 10/11 to the zone between the probes (the joint, the flex, the plugged boss), which gives a lean rear probe at idle but not 032 or the dips; S2, S11 and S14's air. Against: the cold tailpipe and smoke tests found nothing; the visible manifold has no soot and no holes (31/10); 032's idle cell takes fuel away, where air ahead of the front probe would add it; the front loop holds through 3's swell; the rear probe's sinking was the old probe's; cannot pick a cylinder. Untested: a crack open only hot, the part under the heat shield | none planned (the warm tailpipe test dropped 15/11, *the owner*) |
 | A7 | **H18** oil past the stem seals | All four alike: worse after idling, calm after a working drive; for one valve it is the swell's second reading (list B's matter, S1, *The swell's shape*). **For, 17/11**: a brown liquid stood round the backs of inlet valves 2, 3 and 4 with the manifold off, there before the wash (*owner*) — the first direct sight of oil at the valves, though the old joint left the same and it does not pick 3; **17/11 (`54`)**: the joint new and the swell as before, so the joint's oil was not it (`refuted.md` C28). Against: it does not grow with the time into a stop; **no blue smoke ever**, the plugs dry | the oil level on the fresh oil (`plan.md` 6i); the plugs at the next change (8v) |
 | A8 | **H21** the front probe's signal-earth wire | What is left after 8h (`53`, 15/11: only the supply stepped with a load, `refuted.md` C26): the front probe's damaged signal-earth wire, which reaches the common part only through a mixture; S19's idle cell if a signal earth carries heater current (*reasoned*). Weak for the idle: the new rear probe read healthy for 18 minutes and the idle was as rough | 8e's harness at the end; each wire to the ECU's pin with the plug off (with 6n) |
-| A9 | **H16** the purge path | Nothing measured is left of it for the idle: the canister and the new valve moved neither the common part nor 3's swell; the purge opened on purpose did not move 3 (14/11); the ECU's own phases do not time the swell, on `52` by 070 and on 15 older stops by b7 (`refuted.md` C25); 032's idle cell not the valve's (15/11). It keeps S19. **Last since 15/11** (*the owner's decision*) | none for the idle; 8f's 032 for S19 and S21 |
 
 **More than one at once** (*the owner's point*, 12/10): each repair may help
 only in part; a partial improvement is read as a share, not a miss.

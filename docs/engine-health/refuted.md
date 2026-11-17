@@ -1450,6 +1450,71 @@ the ECU's driver for 3, which stayed with the cylinder (`open.md` H4,
 **What would revive it:** the deficit moving to 2 on later stops, as
 a fault that took a drive to show might.
 
+### C30. "The purge valve N80 does not seal, or the ECU's purge, puts fuel vapour into the intake and makes the idle or S19's split" (`open.md` H16) — replaced
+
+**Believed:** from 24/10 as the one cheap cause that predicted both
+P0172 and the rich idle cell; P0440 stored since 1/2018.
+**Replaced:** the canister found bypassed and plumbed back (11/11),
+N80 renewed (14/11; `refuted.md` D14). **Measured on the idle**: neither
+moved the common part nor 3's swell (`49`–`54`); the purge opened on
+purpose did not deepen 3 (14/11); the ECU's own phases do not time the
+swell (C25); the valve's pulses do not set the dips (6/11). **On S19**:
+032's idle cell −9.4 % on the new valve after a gentle drive (15/11)
+and **learnt to −7.0 % with 070's valve shut** on `54` (17/11) — the
+split is not the purge's. `TEV OK` by the ECU itself on 15/11.
+Moved here at the owner's word, 17/11 ("everything changed, several
+drives and tests, and no correlation with the purge found").
+**What it does not refute:** a new valve that fails in its turn; a
+rich start after a long stand, which no running test sees (none seen
+on the new valve).
+**What would revive it:** P0440 or P0172 back, or 032's idle cell
+moving with the purge's state in a log of 070 beside it.
+
+**The entry as it stood in `open.md` until 17/11** (condensed the same
+day; the long form in `git show 5e1ddf2:docs/engine-health/open.md`):
+
+*Condensed 17/11*; the owner's readings of 12/11, the slug variant, the
+pulses against the dips and every drive's figures are in `git show 5e1ddf2:docs/engine-health/open.md`, this
+heading.
+
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | — | — | — | — | — | ~ | ~ | ✔ | ~ | — |
+
+**The claim**: vapour from the canister, through a valve that does not
+seal or through the ECU's own purge, is a fixed amount of fuel the ECU
+did not meter — largest against the idle's small air, so a negative
+idle cell with part load untouched (S19), and enough to tip the one
+cylinder already short. Every line joins the intake in its common part,
+so it cannot pick 3 by itself. **For**: S19 — VW's fault table names
+N80 under both P0172 and P0440; P0440 stored from 1/2018 (the canister
+found bypassed 11/11, `refuted.md` D14).
+
+**What the idle has had of it, measured:**
+- **25/10** (6e): engine off, a blow through N80 passed "really little";
+  on the cold start no suction at its tank-side port and no liquid
+  fuel; with the port closed the regulation still sat at −0.7 % on top
+  of −7.8: **not the rich idle trim, cold**.
+- **6/11**: the valve's pulses do not set when the dips come (engine
+  speed's spectrum, the dips' timing).
+- **The canister plumbed back, 11/11, and the new N80, 14/11**: neither
+  moved the common part (2.7–3.1 rpm rms throughout) nor 3's swell
+  (S1, *The first captured stop on the canister*, *The first drive on
+  the new N80*); 3's floor read two points shallower for two days and
+  was back on `52`.
+- **The purge opened on purpose** (070, 14/11, 7.8 % vapour) did not
+  deepen 3; **the ECU's own phases do not time the swell** (070 as a
+  measuring block on `52`, b7 on 15 older stops; `refuted.md` C25).
+  `TEV OK` by the ECU on 15/11.
+- **032's idle cell is not the valve's**: −9.4 % after a gentle drive on
+  the new valve (15/11); **learnt with 070's valve shut** on `54`
+  (17/11, 8x; S19).
+
+**What is left**: S19 only — a valve that passes vapour while the car
+stands, which no running test sees, and the rich start after standing.
+**Last in list A since 15/11** (*the owner's decision*); for the idle,
+nothing planned; 032 at every VCDS session (8f).
+
 ## D. Symptoms closed
 
 Moved out of `open.md` when it was condensed, 20/10/2026. Each was closed at
