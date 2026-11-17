@@ -79,8 +79,13 @@ before 8q). A warm idle, oil 90 °C or more, the everyday state; the
 probes only back-probed into the connectors from behind, nothing
 pierced, nothing written to the ECU:
 
-- **Injector 3 against injector 2**: one channel on contact 2 of each
-  (the ECU's side), the scope's earth at the battery's minus; a few
+- **Injector 3 against injector 4** (with the upper intake on only
+  these two are reached; *the owner*, 17/11): one channel on contact 2
+  of each — the ECU's side, 4's violet/blue wire, 3's violet/red; the
+  supply wire is the one 0.2 Ω from its neighbour's — by a fine pin
+  pushed under the insulation if back-probing is not possible, the
+  hole sealed afterwards, the probes held clear of metal; the scope's
+  earth at the battery's minus; a few
   seconds with every load off and a few with the A/C on; if a capture
   runs, a few more in a swell when Claude says so. A current clamp on
   one injector's wire as well, if one is to hand.
