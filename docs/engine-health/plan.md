@@ -102,8 +102,9 @@ evening): the same product as in October, **208** and "Platinum" on the
 can. The first into 15–20 l, the second into a full tank after it;
 each tank driven briskly, with revs. Nothing else changed meanwhile —
 no oil change, no other cleaner. **At the end of the second tank, before
-7/12, a captured drive** to a warm stop of at least ten minutes, the
-everyday state, as 6's captures. Each can into the chat when it goes
+7/12, two captured drives** (or one with two stops), each to a warm stop
+of at least ten minutes, the everyday state, as 6's captures: **one
+after a brisk stretch, one after a gentle one or a queue**. Each can into the chat when it goes
 in, with the odometer.
 
 **6s. The valves' carbon cleaned from the intake, GM's way** (*the
@@ -553,8 +554,14 @@ and not after the Liqui Moly can of 15/10, which the flake of 18/10
 followed. The same product, so the result compares with October's;
 nothing else changed, so it is the fuel's side alone; the capture before
 8q, so the belt's comparison starts from it and the two do not merge.
-Read against `54` (the floor 34 % of the time, its level −8.6 %): the
-time on the floor, its level, the swells' depth. If it moves nothing,
+Read against the stops of the same kind on `44`–`54`, not against one
+(*the owner's point*, 17/11: the time on the floor runs 8–81 % by
+capture, 28 % pooled over `44`–`54` and 10 % over `19`–`43`; after a
+brisk drive `49` 81 %, `44` 58 %, `51` 41 %, `54` 34 %; after a gentle
+one or a queue `50` 8 %, `52` 14 %): the time on the floor, its level,
+the swells' depth and share. **Only a change past that spread counts**
+— the floor above about 80 % at more than one stop, or the swells
+clearly shallower and rarer. If it moves nothing,
 the oil's side (an EPR flush with the next oil change) is what is left
 of that week.
 
