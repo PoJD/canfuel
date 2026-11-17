@@ -42,8 +42,9 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 is in the evidence of its symptom and hypotheses below. This section
 holds only the current state (condensed 15/11/2026 at the owner's
 request; the dated version is in git, `git show 1780e07:docs/engine-health/open.md`).
-Condensed again 17/11 at the owner's request — S1's session-by-session
-sections, H11 and H16 — the full text in `git show 5e1ddf2:docs/engine-health/open.md`.*
+Condensed again 17/11 at the owner's request — S1, S3, S19, H11 and H16;
+the full text in `git show 5e1ddf2:docs/engine-health/open.md` and, for
+the second pass over S1, S3 and S19, `git show 5741dfa:docs/engine-health/open.md`.*
 
 **Closed**, in `refuted.md` §D: S6 the exhaust joint behind the
 converter, S7 the cold start (the fuel), S8 the top end, S9 the rich
@@ -289,89 +290,17 @@ each with a 30 s cut on 4.
   cut: P1240, P0300, P0304, the cut's own; 032 −7.8 / +6.3 % at every
   read.
 
-**The trend over every capture** (28/10, at the owner's question; every
-standing idle settled 30 s and more, graded as `tools/afterpull.py`'s
-`idle_runs()` grades, the display's filter replayed beside it;
-loads off is b7 ≤ 25 at 93 °C of oil and over):
-
-| | warm, loads off: stop means | middle band, ~77–88 °C |
-|---|---|---|
-| 11/8 (`09`, `11`) | 48, one 22 s hold | 106 |
-| 24/9 (`24`, new MAF) | 88, 92 | 84 |
-| 3–10/10 (`26`–`31`) | 67–103, most 75–95 | 90–111 |
-| 12–15/10 (`32`, `37`, `38`) | **48–75**, most 55–66 | 93 |
-| 18/10 (`39`) | 68–96 | — |
-| 21/10 (`40`) | 61–67 | 75 |
-| 24/10 (`41`) | — | 87–104, warmed at idle |
-| 27/10 (display) | 54 | — |
-| 3/11 (`42`, the original map, fresh adaptations) | 93 → 54 over one stop, 63 and 77 near home | — |
-
-**Against the tank's level** (*the owner's question*, 28/10: the Verva
-tank run down to about 5 l): the level off 0x320 in each capture
-(`tools/replay.py`), beside the warm stops above — 50 l on 24/9 (88, 92);
-29→23 l on 3–10/10 (most 75–95); **22 l on 12/10 (63)**; 36→35 l on 15/10
-(48–75); 51 l on 18/10 (68–96); 43→40 l on 21/10 (61–67). **No relation**:
-the calmest and the roughest both sit at about 22–29 l and at 35–51 l, and
-every change of level came with a repair. The display gives no more (28/10:
-70–100 at 13→5 l, oil 95–100 °C).
-
-**Before October there is no trend to read**: two days of captures, and
-the one hot figure of August is a 22 s hold. **Warm, the idle stepped
-down once**, from about 75–95 to about 50–70, **between 10 and 12/10**
-(the leads, lead 4 re-seated), rose for 17–19/10 and came back; 27/10
-is level with its best, not past it, and **from 28/10 it is back at
-about 80–105** on the display (to 2/11), the end of the Verva and the
-OMV alike — so not the fuel. **On the original map (3/11, `42`)**
-54 ± 3 settled into a stop and 63–77 near home, on fresh adaptations:
-back inside the 50–70 band, one drive. **Cold it has come down**, and
-that is the clearer change (below, *Temperature*).
-
-**The outside air is not in this trend** (*the owner's question*, 28/10:
-August was hot, late October about 10 °C — is the idle the same and only
-the weather cooler?). Not on the bus (`docs/firmware/can-decoding.md`,
-*What is NOT on the bus*); the intake air is in VCDS 004/006, logged once
-(4/10). Against the weather as the whole (*reasoned*): the calmest hot
-figure is August's, the hottest month; the warm idle moved **in a step**
-between 10 and 12/10 and went up again 17–19/10, not gradually as the
-autumn cooled; and the cold drop of 21/10 came on a start at 24 °C of oil,
-warmer than the others. **Measured against the weather, 28/10**: the
-air temperature of each capture day, 07–19 local, from the SYNOP reports of
-Praha-Ruzyně (WMO 11518, via OGIMET), against every warm loads-off stop
-(oil ≥ 93 °C, b7 ≤ 25, settled 30 s and more; `tools/afterpull.py`'s
-`idle_runs()`):
-
-| day | air, mean (min–max) | stops | `IdleHealth`, each stop |
-|---|---|---|---|
-| 24/9 (`24`) | 12.6 (10.4–15.1) | 2 | 88, 92 |
-| 3/10 (`26`) | 16.0 (11.1–21.2) | 1 | 67 |
-| 4/10 (`28`, `29`) | 15.0 (6.0–19.3) | 5 | 72, 80, 77, 95, 93 |
-| 9/10 (`30`) | 9.7 (6.0–12.2) | 5 | 93, 75, 77, 82, 75 |
-| 10/10 (`31`) | 11.6 (10.3–12.6) | 3 | 78, 89, 103 |
-| 12/10 (`32`) | 9.7 (5.4–12.9) | 4 | 72, 48, 59, 66 |
-| 15/10 (`36`–`38`) | 11.0 (4.8–15.3) | 6 | 66, 55, 69, 75, 58, 58 |
-| 18/10 (`39`) | 10.1 (7.9–11.9) | 3 | 68, 81, 96 |
-| 21/10 (`40`) | 10.8 (4.9–13.9) | 3 | 61, 67, 66 |
-| 27/10 (display), evening | about 7 | 1 | 54 |
-
-**No relation**: the day means against the day's mean grade correlate at
-r = 0.13 (nine days), and days of the same air differ by 20 — 9/10 and
-12/10 both 9.7 °C, 80 against 61; the warmest October day, 3/10, is among
-the calm ones. Within September–October the weather does not explain the
-trend. ⚠ Day temperatures, not the moment of the stop, and the intake air
-under the bonnet at a warm idle is set more by the engine than by the
-weather. **Not recorded with each reading** (*the owner's decision*,
-28/10): with no relation found it is not worth his time; the weather
-archive can be asked again if a question ever needs it.
-
-**The MAF is the one change that showed at once** (24/9: the dips halved).
-The calmest settled idles, 12/10 and 15/10, came in the days after the new
-leads and lead 4's re-seat; the idle has worsened since (*Why the idle got
-worse*, below).
-
-**What is not known: the healthy target.** Every recording is of this engine
-with the fault present, and **none will be**: a CAN capture of another car
-needs its cluster harness tapped behind the vent, which no owner will allow
-(*owner*, 21/10).
+**The trend over every capture** (28/10, the display's filter replayed;
+condensed 17/11, the table and the weather's figures in `git show 5741dfa:docs/engine-health/open.md`, this
+heading). Before October there is no trend to read. **Warm, the idle
+stepped down once**, from about 75–95 to 50–70, between 10 and 12/10
+(the leads), and has wandered inside 50–105 since; **cold it has come
+down**, the clearer change (*Temperature*). **No relation** with the
+tank's level, the fuel brand or the outside air, measured 28/10.
+**The MAF is the one change that showed at once** (24/9, the dips
+halved). **What is not known: the healthy target** — every recording is
+of this engine, and none of a healthy AQY will be. The grade by repair
+since is the table in *Before and after each repair*, below.
 
 **When S1 closes** (*the owner's decision*, 12/11; he closes it):
 **`IdleHealth` steadily under 30 at a warm idle, never above it, in the
@@ -403,254 +332,57 @@ misfire recognition reads `deaktiv.` — in every 014 log in
 reads it, none `aktivováno` (counted 28/10) — so the counter cannot move
 there.
 
-**Load smooths it.** Every consumer at idle — A/C, lights, blower, heated
-glass — makes the ECU open up the air, and the idle calms (26/9: 35–50 loads
-on against 70–80 off, *owner*). The supply voltage is 1.25 V *lower* then,
-so it is the charge, not the volts. **Since the cleaner, the partial loads
-hardly matter** (*owner*, 19/10): lights and blower alone make little
-difference, everything on together still calms it. **The first measured
-pair**, 19/10, oil 101 °C: loads off mostly about 100, every load on mostly
-about 50 — twice what one pair can show by chance. **Again 4/11**
-(display, oil about 100 °C, *owner*): 90–110 in the everyday state
-against **45–50** with the A/C, the blower on full and the rear window
-heated, while the supply fell to about 12.4 V at times — the calmest
-idle on the lowest supply. **Read beside the higher idle of 12/10**
-(`refuted.md` D9; *reasoned*): a load raises the charge of every stroke
-at the same engine speed, and helps; 830 rpm raised the speed on about
-the same charge a stroke, and did not. **So what fails answers to the
-charge a stroke and the cylinder's pressure, not to the air flow or the
-speed** — and a weak spark would go the other way twice over: a higher
-cylinder pressure asks more voltage to break down the gap, and the
-supply is lower (*general*). Read as (*reasoned*):
-**one or more cylinders run at the edge of stable combustion at the idle's
-charge**, and anything that takes a little charge away tips them over.
-**A second reading, from 26/10** (*the owner's hypothesis*, not tested):
-**with the A/C and every load on, the ECU sets its learnt idle air aside.**
-In the relearning log of 26/10
-(`test/fixtures/vcds/vcds-step6a-055-relearn-014-055-001.csv`,
-`idle-log.md`) 055's learnt value read **exactly 0.00 whenever its load
-bits read `0101`** — the A/C and all-loads stretches — and came back the
-moment they returned to `0000`. That learnt value was once read as what
-switches 014's counting (`refuted.md` C19, refuted 2/11), negative on this
-engine since September.
-So "every load on" may calm the idle not by the load at all but by
-taking the learnt value out of play; and **since the cleaner the partial
-loads hardly matter while everything on together does** — and
-everything on is the one state with the A/C in it. **What would test
-it**: at a warm stop, a minute of the everyday state with the A/C alone
-against a minute of every load but the A/C, `IdleHealth` and 055 field 3
-read in each; and a log of 055 with 014 across such a switch. ⚠ Which of
-the bits is the A/C was not separated, and whether the ECU uses another
-learnt value with the A/C on, or none, is not known. **Ross-Tech's list
-of groups 050–059** describes a variant of 055 *"with separation for rear
-window defroster/A/C readiness"* (searched 26/10): **a separate learnt
-value for that state** would read 0.00 too if the disconnect of 26/10
-reset it and it had not relearnt yet. So the 0.00 may be a second learnt
-value at zero rather than none. **Read it at the next A/C stop**: field 3
-staying at 0.00 over minutes of A/C idle says none or not shown; moving
-away from 0 says a learnt value of its own.
-**Read at the A/C stop of 27/10** (the done `plan.md` 6k, `idle-log.md`; oil about
-90 °C, warm; `vcds/vcds-step6k-2-014-055-001.csv`): **`0101` is the A/C** —
-every load but the A/C left the bits at `0000`. **Field 3 held 0.00 for
-eight minutes of A/C idle and a drive**, never moving, while field 2, the
-live correction, went to about −1.0 g/s, the learnt value's size: **with
-the A/C on the ECU sets the learnt value aside and corrects live**, and
-no second learnt value showed. `IdleHealth` off the owner's video, the
-everyday state about **70**; **the A/C alone 35–50** from its second
-minute, 014 silent; **every load but the A/C about 57**, the learnt
-value *not* set aside but walking from −1.04 to −0.77 while it ran, and
-37 at its end; **both together 25–35**. ⚠ Against the learnt value alone:
-in the A/C's sixth minute, field 3 still at 0.00, the grade climbed back
-to 56–75. **Read as** (*reasoned*, one stop): both act — the A/C's calm
-is the larger and the quicker, and the loads calm the idle without the
-learnt value set aside, as it moves towards zero. Neither of `plan.md`'s
-clean outcomes; neighbouring 2-minute windows differ by 4–18.
+**Load smooths it** (condensed 17/11; every reading in `git show 5741dfa:docs/engine-health/open.md`, this
+heading). Every consumer at idle makes the ECU open up the air, and the
+idle calms — 19/10 loads off about 100, every load on about 50; 4/11
+90–110 against 45–50 with the A/C, the blower on full and the rear
+window, on the lowest supply. A higher idle (830 rpm, `refuted.md` D9)
+did not help. **So what fails answers to the charge a stroke, not to
+the air flow, the speed or the volts**: *reasoned*, one cylinder runs
+at the edge of stable combustion at the idle's charge. **The A/C stop
+of 27/10**: with the A/C on (055's load bits `0101`) the ECU sets the
+learnt idle air aside (field 3 at 0.00 for eight minutes) and corrects
+live; the A/C alone 35–50, every load but the A/C about 57, both
+together 25–35 against 70 — both act, the A/C the more.
 
 **Temperature.** Roughest cold, calmer as the oil warms, calmest hot, in every
 session since 24/9. Every engine idles roughest cold (*general*), so this
 says nothing about the fault on its own. The roughest reading yet, ~186, came
 cold on the dampest, foggiest morning (26/9, *owner*).
 
-**The cold idle has come down since 21/10** (*the owner's observation*,
-28/10: over 100 now only after a start, about 130 at the coldest, nothing
-near 200; checked against every capture with a cold start, the same day).
-The display's highest in the first idle after a start, and the stop's
-mean:
+**The cold idle has come down since 21/10** (*the owner's
+observation*; condensed 17/11, the figures in `git show 5741dfa:docs/engine-health/open.md`, this heading): the
+first capture that reads low cold is `40`, two days before the first
+44K tank. **But warm oil alone does not bring the calm idle; driving
+does** (26/10, 4/11): warmed at idle the grade stops at about 90–110;
+every calm warm idle came after a drive, and not necessarily a brisk
+one. ⚠ Not separated: no capture warms past 92 °C at idle alone. The
+owner's reading (*hypothesis*): the chambers carry something a working
+drive clears and an idle does not (H13, H18).
 
-| start | oil at the start | first idle: mean / display's highest | the idle after it, 23–39 °C |
-|---|---|---|---|
-| 11/9 (`18`) | 21 °C | 108 / 157 | — |
-| 24/9 (`19`) | 17 °C | 111 / 179 | 134 / 160 |
-| 26/9 (display) | cold | ~186 (*owner*) | |
-| 3/10 (`25`), fresh adaptations | 21 °C | 127 / **196** | 161 / **196** |
-| 4/10 (`27`), fresh adaptations | 19 °C | 112 / 185 | 160 / 181 |
-| 9/10 (`30`) | 17 °C | 107 / 148 | 114 / 140 |
-| 10/10 (`31`) | 18 °C | 105 / 165 | 147 / 184 |
-| 12/10 (`32`) | 15 °C | 121 / 178 | |
-| 14/10 (`33`) | 20 °C | 103 / 150 | |
-| **21/10 (`40`)** | 24 °C | **77 / 90** | **118 / 145** |
-| 24/10 (6e, display) | cold, under 70 °C | 120–140 (*owner*) | |
-| since (display) | | about 130 at the coldest (*owner*) | |
-| 2/11 (display) | 22 °C | 110–140 (*owner*) | |
-
-`35` (15/10) is left out: it started with every load on. **The first
-capture that reads low cold is 21/10's**, the first drive on the VW plugs
-and leads and the new plenum gasket, **two days before the first 44K
-tank** — so the cold drop is not the cleaner's, whatever else it may be.
-⚠ One capture: 21/10 started at 24 °C of oil, warmer than the 15–21 °C
-of the others, and the display since is the owner's glances. A cold
-capture from about 15–20 °C would settle it.
-
-**But warm oil alone does not bring the calm idle; driving does** (26/10,
-*the owner's observation, checked against the captures*). On 26/10 a
-gentle warm-up in a jam, under 3000 rpm, held `IdleHealth` at 80–100 up
-to 92 °C of oil; it fell to 60–70 only after one brisker stretch (table
-above). **The same again 4/11** (display, *owner*): mostly slow driving
-and queues at about 100 °C of oil held **90–110**, with the larger dips
-felt in the seat, until the engine was revved; **70–90** after it. The
-captures agree in kind (`tools/afterpull.py`'s `idle_runs()`,
-graded per minute, 26/10): **warmed at idle, the grade stops at about
-90–110** — `41` ~120 → ~90 over 52–82 °C, `32` 139 → ~95 over 46–78 °C,
-`25`+`26` ~110 at 82–91 °C after a warm-up that never held 3000 rpm —
-and **every calm warm idle came after a drive**. **What the drive needs is
-not high revs**: `26` read 67 at 96 °C after a drive home under
-3000 rpm, `35` 38–55 at 91–94 °C after one that touched 3292; and high
-revs do not reliably calm it (`19` 57 → 104–143 after 6000 rpm, before
-the cleaner — *After high revs*, below). ⚠ **Not separated**: no capture
-warms past 92 °C at idle alone, so a few degrees more oil and the drive
-itself always came together. The owner's reading (*hypothesis*): the
-chambers carry something — deposit, oil, moisture — that a working drive
-clears and an idle does not (H13, H18; H17 refuted, `refuted.md` C21). Settled by a warm-up to 95 °C at idle alone,
-or by a gentle warm drive straight into an idle.
-
-**What comes before a dip** (`tools/dipcontext.py`, 852 warm dips,
-10/10). **The ECU has trimmed the charge just before a dip** — injection time
-0.33 and indicated torque 0.35 counts lower 0.4–0.1 s before, about 1 %, and
-engine speed a few rpm higher: the idle overshoots a little, the governor
-takes a little air or advance away, and a weak cylinder fails in the next
-cycles. A dip follows a trim down 1.6–3.5 times as often as a trim up. ⚠ An
-average, under one count; no single dip shows it. The figure `dip-profile.svg`
-beside this file shows one dip stroke by stroke.
-
-![One idle dip](dip-profile.svg)
-
-**The dips ride a swing of the idle loop at about 0.8 Hz** (5/11, the
-same fresh look). *The lambda controller has the same period,
-read 14/11 (Each cylinder against the idle's 0.8 Hz swing, below).* Engine speed at idle oscillates with a period of
-1.2–1.4 s, and the same line stands in b7 and in the injection time.
-Intervals of 1.0–1.25 s between dips come 2.1 times as often as by
-chance, so about one dip in ten is an echo of the one before; averaged
-over 1,093 dips the ECU trims injection and b7 down **twice, 1.6 s and
-0.4 s before**, and speed has a trough 1.2 s before and after. Over
-seconds the dips are otherwise random; **over minutes they come and go**:
-nine dip-free stretches longer than 64 s against 0.3 expected, with no
-regular period. Within warm loads-off stops neither the grade nor the dip
-rate follows oil (80–105 °C), b7, idle speed, time since the start or the
-stop's length. *Reasoned*: a ringing loop decides when a marginal
-cylinder fails — combustion at its edge, not an electrical fault, which
-would not care about the loop's phase.
-
-**What VCDS saw just before a dip** (11/10, `dipcontext.py --vcds`): on two
-sessions the lambda correction was about 0.8 % lower just before a dip than in
-quiet idle — the loop on its lean swing. **Not reproduced on 12/10** (`32`,
-001 alone, the session built for it): a direction one session failed to
-repeat.
-
-**How many strokes make a dip** (`tools/dipshape.py`, 5/11, *at the
-owner's question*; every warm `_z1` idle, oil ≥ 80 °C, cuts left out,
-1,870 dips). A dead stroke is **one step**, not two: on the cuts the dead
-slot reads one step of −23 to −29 rpm and the next windows +12 to +18 and
-+7 to +11. So counting the strokes that lose more than 8 rpm inside a dip
-— **each against its own cylinder's median step**, since the idle carries
-a steady pattern over the cylinders (*A steady pattern over the
-cylinders*, below) that otherwise names most weak strokes for the low
-slot — separates **one weak firing (75 %) from two in a row (22 %) and
-three or more (3 %)**; two in a row are always **two different
-cylinders**, the next in the firing order. *The figures of the first
-reading that day were taken on raw steps (64 / 32 / 4 %, and "15 of 17"
-clusters on 3 below) and are superseded.*
-- **Deeper dips are more often clusters**: 20–25 rpm 85 % single, 25–30
-  69 %, 30–40 53 %; at 40 rpm and more 29 %, but those are mostly slow
-  sags (the largest step a fifth of the drop: a load, the regulator), not
-  runs of failed firings. ⚠ Requiring 20 rpm favours clusters by
-  construction (two steps of −12 make a dip, one does not).
-- **Weak firings come together, about 3½ times as often as by chance**:
-  3.2 % of all steps lose more than 8 rpm against their cylinder's median,
-  10.9 % of those straight after one that did.
-- **Not changed by any repair**: by period the single share is 73–78 %
-  and the follow-on 2.3–5.7 × chance throughout, while the dips per 1000
-  strokes fell from 9.8 (`19`/`20`/`24`) to 4.9–5.8 (`40`–`43`). **The
-  repairs took dips of both kinds away alike**, and the depth
-  distribution kept its shape (Kolmogorov–Smirnov before against after
-  12/10: D 0.04, p 0.54).
-- **Cold, more clusters**: below 40 °C of oil 60 % single (833 dips)
-  against 75 % warm, at the same depths.
-- **Which cylinder**: the weak strokes are 3's, warm and cold (S1,
-  *Every stroke named*: 58–73 % on `40`–`47` warm, 56 % on `41` cold).
-  *This bullet named them with `dipshape.py --name` until 12/11 — on
-  `43` 24 of 58 single dips on 3, 9 of 12 pairs with 3 in them, and
-  "cold, `41`, spread over all four" — on a count that slipped; that
-  option was removed with it (Naming the cylinder).*
-
-**A steady pattern over the cylinders, apart from the dips** (5/11, the
-owner's request for a fresh look at the data; scripts not kept, the
-reading is described here). ⚠ **Re-read 12/11** (*Every stroke named*,
-below): the pattern is real, but **1.7 rpm of it is the crank wheel's
-own alternation**, and with that out the weak cylinder is **3 alone**,
-4 level and 2 and 1 above. **Split again 12/11** (`cylscan.py`'s
-stroke count and wheel, the grade rebuilt per stroke over 497 warm
-30 s windows of 20 captures, the A/C off at the start of the run;
-*ad-hoc script, not kept*): of a grade of about 68, **about 8 is the
-crank wheel's alternation** — no combustion in it, a floor no repair
-can lower, which the display carries on every engine with this wheel
-(*reasoned*) — **about 22 is the cylinders' steady differences**,
-mostly 3's, and **about 38 is what is left** with each window's four
-slot means out. So "about a third" holds for the pattern as measured,
-**but an eighth of the grade is the wheel's, not the engine's.** The
-step from one firing to the next carries
-a **period-4 component of 3–6 rpm** (0.2–0.9 with the steps shuffled): a
-steady difference in what each cylinder gives, present with no dip at
-all. **It is about a third of `IdleHealth`**: over 318 warm loads-off
-windows of 30 s from 19 captures the grade averages 78, and 51 with each
-window's four slot means taken out. It is independent of the dips (rank
-correlation 0.21 with dips per 1000 strokes, 0.02 with what is left) and
-**moves over minutes**: in `31` it rose from 1.0 to 5.8 rpm and took the
-grade from 71 to 110 with the dips unchanged; in `43`'s stop the settling
-from 86–114 to 31–55 was mostly this pattern fading. The A/C's load
-(`40`) calms the rest and leaves the pattern as large as loads off. The
-display's swings inside one stop (27/10, *waves of about 1½ min*) are
-more likely the radiator fan (below, *The radiator fan's cycle*). *This
-said "can be this alone" until 6/11.* *It named the slots by the cuts
-too, until 12/11: "warm, 3 and 4 give the least and 2 the most" (`31`
-1 −2.1, 3 +3.1, 4 +4.1, 2 −6.0 % of a stroke short; `43` alike), with
-the crank wheel's alternation in and on a count that slipped; by
-`cylscan.py` `31` reads 1 +8, 3 −15, 4 −3, 2 +11 and `43` 1 +5, 3 −13,
-4 +2, 2 +6 % (S1, *Every stroke named*; Naming the cylinder). The
-"pattern's phase holds for minutes, then drifts or jumps" it noted was
-that count slipping, as 9/11 found (the shifted pattern correlating
-0.9–1.0 with the cut's); `refuted.md` A5's slot means of 3.5–5.9 rpm
-"with no consistent outlier" were the same pattern read on runs whose
-phase was lost.*
-
-
-**The radiator fan's cycle** (6/11, *at the owner's question about the
-waves*; every warm settled stop of 4 minutes and more without an
-injector cut, nine stops in seven captures, 77 minutes; `IdleHealth`
-rebuilt every 2 s over 10 s; *an ad-hoc script, not kept*). **At every
-warm stop the coolant (0x288) climbs to 100.5 °C and falls to 92–97 °C
-again, a cycle of 74–90 s on most stops** (to 170 on a few) — the fan
-switching on and off (*reasoned*; the switch points are not on the
-bus). **The engine's torque (0x280 b7) rises 12–18 s before the coolant
-turns down**, and **`IdleHealth` falls with it**: averaged over the
-nine stops, the correlation with the coolant's fall 12–18 s later is
-**+0.40 for b7 and −0.36 for `IdleHealth`**, against about ±0.06 for
-the same series shifted at random (some 6 standard deviations). The
-fan's load comes first and the coolant answers later, as a fan's would.
-Split crudely by the coolant's slope, `IdleHealth` is about 6 % lower
-while it falls. **Read** (*reasoned*): the waves are mainly the fan, one
-more load that smooths the idle (*Load smooths it*), not a cause inside
-the engine; a reading at a warm stop catches the fan on or off by
-chance, which is part of the display's spread.
+**What comes before a dip, and what a dip is** (`dipcontext.py`,
+`dipshape.py`; 10/10–6/11; condensed 17/11, every figure in `git show 5741dfa:docs/engine-health/open.md`,
+under *What comes before a dip* to *The radiator fan's cycle*):
+- **The ECU has trimmed the charge just before a dip** (about 1 % less
+  injection), and **the dips ride a swing of the idle loop at about
+  0.8 Hz** — the lambda controller's period at idle is 1.2 s; 3 answers
+  the swing no more than the others (*Each cylinder against the idle's
+  0.8 Hz swing*, below).
+- **How many strokes make a dip**: one weak firing in 75 %, two in a row
+  in 22 % (a pair mostly on two different cylinders), three or more in
+  3 %; weak firings come together about 3½ times as often as by chance;
+  deeper dips more often clusters, cold more clusters. No repair changed
+  the mix.
+- **A steady pattern over the cylinders, apart from the dips** (5/11,
+  split again 12/11): of a typical grade of about 68, **about 8 is the
+  crank wheel's own alternation** (1.7 rpm, reading 1 and 4 low), **about
+  22 the cylinders' steady differences — 3 alone** — and about 38 the
+  common part. 3's part is about a third of `IdleHealth` and moves over
+  minutes.
+- **The radiator fan's cycle** (6/11): the coolant cycles 92–100.5 °C
+  every 74–90 s at a warm stop; b7 rises 12–18 s before the coolant
+  turns down and the grade falls with it (r +0.40 and −0.36) — the fan's
+  load, a small effect.
 
 **Every stroke named: one weak cylinder, and it is 3** (12/11, the
 third research, *the owner's request*; `tools/cylscan.py`, kept, with
@@ -775,104 +507,26 @@ strokes — a step 12 rpm or more under the cylinder's own median — per
   step); the names on the strongest slot being 2's, which held at all
   eight cuts and puts 014's misfires where the ECU's own P0303 does.
 
-**The idle speed target** (0x288 b5, decoded 10/11 at the owner's
-request, `docs/firmware/can-decoding.md`, *The bus byte by byte*; *the
-owner's question*: does the target follow anything, did it come down
-with the hydrogen, and is a lower idle a calmer one — his feeling).
-Over every capture with a time base, 30 s windows of settled idle,
-coolant 85 °C and over (434 windows; *ad-hoc script, not kept*):
-- **The target is fixed warm: 780 rpm in 410 of 434 windows**; the
-  other 24 are `32`'s idle-adaptation steps (800, 820, 830 rpm). Cold
-  it starts at 900 and steps down to 780 as the coolant warms (`18`,
-  `41`, `47`). **It did not move on the gas of 9/11**, nor at any warm
-  stop since August — so it carries nothing about the idle's quality.
-- **The engine sits 15–18 rpm above it** at every warm idle (794–798
-  rpm, every capture), the governor's own offset.
-- **The actual speed does not tell a calm idle from a rough one**:
-  loads off, A/C off, the 343 windows at 785–805 rpm show no relation
-  between speed and `IdleHealth` (r 0.07; medians 70–71 in every 5-rpm
-  band); the few above 805 rpm were rougher, 84–93, too few to say.
-  **The gas idle**: 788–797 rpm in the clean's last two minutes (one of
-  the lowest), but 796–805 with the gas and the A/C at the provider —
-  at 14–27 either way.
-- **Raising the target leaves the grade where it was**: `32`'s steps
-  put the engine at 798, 819, 835 and 848 rpm and `IdleHealth` read 66,
-  66, 66 and 67 (`refuted.md` D9, measured the same way).
-- **Read** (*reasoned*): **a lower idle is not by itself a calmer one**
-  on this engine; what the owner feels as calmer at a lower speed is
-  more likely a different shake at a different frequency than a
-  different combustion. Not a symptom, not a test.
+**The idle speed target** (0x288 b5; condensed 17/11, the figures in
+`git show 5741dfa:docs/engine-health/open.md`, this heading): **fixed warm at 780 rpm** (410 of 434 windows),
+unmoved on the gas; the engine sits 15–18 rpm above it; **the actual
+speed does not tell a calm idle from a rough one** (r 0.07), and raising
+the target left the grade where it was (D9). *Reasoned*: a lower idle
+is not by itself a calmer one. Not a symptom, not a test.
 
-**After high revs** (*owner*, 23/10 evening, the first 44K tank,
-display, the everyday state): straight after a stretch held at high revs,
-`IdleHealth` **37**, the lowest yet in that state, then **slowly back to 50
-within about a minute and above it after another**; stretches of plain idle
-without revving go back to 70–80. **New to him**, though he watches the
-display and drives hard most days now: after hard driving before, the
-lowest came only after about half a minute. **The captures agree that it is
-new** (`tools/afterpull.py`, 23/10): engine speed held above 4000 rpm at
-any load — sustained revs, a light foot in second as often as full
-throttle (*the owner's correction*) — in the five minutes before a warm
-stop, the grade in bins from the moment the idle settles. Without a
-cleaner the idle after high revs **starts rough and calms over 1–3
-minutes** — `30` 98 → 56 (33 s above 4000), `40` 100 → 54 (30 s), `39`
-87 → 69, `28` 92 → 70; the one capture with a cleaner in the tank and high
-revs before a stop, `37` (Liqui Moly, 15/10), **starts calm and rises** —
-57, 44, then 60, and 64, 54, 77, 76 at the next stop. One capture, two
-short stops, against a bin-to-bin scatter of ±20 in a single idle; **no
-capture after high revs on a 44K tank** (the tanks ended 29/10), and none holds more than 18 s above 4000 at a
-stretch, far less than the owner drives now.
-Read as (*reasoned*), if it is the cleaner: what the cleaner has loosened
-and not yet removed (H13) costs combustion at idle on the cylinders that
-carry it, and the heat and gas flow of high revs clear or dry it for a
-while — flakes under 3's exhaust seat blown out (*the owner's reading*), or
-softened deposit that soaks up fuel at a cool idle and is dried hot.
-
-**The rough start of a warm stop is cylinder 3's** (11/11, the research
-of 11/11, *agreed with the owner*; every warm `_z1` stop of 3 minutes or
-more at oil ≥ 85 °C, `afterpull.idle_runs()` graded, scripts not kept).
-**After a drive with high revs a long warm stop starts rough and settles
-within 5–8 minutes**: `42` 90–96 → 54, `43` 81–91 → 41–50, `44` stop 3
-79–98 → 45–53; graded 0–3 minutes against the rest, **`40` 72 → 58 (63 s
-above 4000 rpm in the 15 minutes before), `43` 86 → 55 (215 s), `44`
-83 → 62 (75 s), `49` 85 → 40 (339 s, 12/11, no cut)**. **After a gentle drive it does not**: `24` 85/83, `28`
-65/76, `30` 89/97, `31` 75/79, `32` 55/62 and 57/68, `40`'s second stop
-63/69, `47` 56/62, `48` 51/68 (0–26 s above 4000) — level or slowly
-worse, as queuing is. The exceptions: **`46` stop 7**, after the most
-high revs of the week (234 s) and 40 minutes after the clean, **58/66,
-no rough start**, and `37` (gentle, 64 → 41). **The rough minutes are
-3's swell** (`cylscan.py --minutes`, 12/11; *Every stroke named*):
-`44` stop 3 3 at −18 to −27 % with up to 12 weak strokes a minute,
-then −8 to −10 % with 0–1; `43` −14 to −18 %, then −7 to −10 %; `42`'s
-first stop −18 % with 27 weak strokes per 1000, the next four about
-−10 % with 0–11, and −16 % with 22 at the last; and the dip rate falls
-with it. So **"3 is worst" and
-"a warm stop starts rough" are one observation**, and the cylinders
-are compared between captures on the settled part, or minute by
-minute. *This read "the dips of the first 8 minutes keep to one slot"
-(top two 68 %, p 8 × 10⁻⁵) and "3's 7–14 % deficit is the rough
-minutes', 0–2.5 % settled" until 12/11: a count that slipped, the
-alternation left in (Naming the cylinder).* **The cuts did not make the
-settling**: `42` and `47` settled without one.
-
-Nothing on the bus shares its time: coolant (94.5–100.5 °C, cycling about
-once a minute), the fan, oil, the idle target (780), the plate and b6 the
-same in rough and calm minutes; b7 and the fuel rise with the roughness
-about 20 s after it, the governor answering; 055 converging over the same
-minutes on `42` and `43`, but its two fields' sum hardly moving (H8). The
-radiator fan and the rear probe never tracked it. *Reasoned*: a seal on
-3 that leaks hot, or a flake the drive loosens and the idle seats or
-burns away (H13 with H1's exhaust seat), fits a fault that is worst
-right after a hot drive and fades as the head cools to idle; a heat
-soak of the fuel rail would fit the time but not one cylinder (H7); a
-coolant weep into 3 would fit the pressure after a hot drive (H20).
-⚠ Older captures show swells every 4–6 minutes rather than one rough
-start (`31`, `32`, `28`); whether they are the same thing in stops of
-another length is not known.
-**Read 12/11** (*Every stroke named*): they are — 3's deficit swelling
-and falling back in a step; the "rough start" is a swell that happens
-to be under way on arrival, and `40` and `47` show one starting minutes
-into a stop.
+**After high revs, and the rough start of a warm stop** (*owner*,
+23/10; 11/11–12/11; condensed 17/11, every stop's figures in `git show 5741dfa:docs/engine-health/open.md`, under
+*After high revs* and *The rough start of a warm stop is cylinder 3's*).
+After a drive with high revs **a long warm stop starts rough and settles
+within 5–8 minutes** (`40` 72 → 58, `43` 86 → 55, `44` 83 → 62, `49`
+85 → 40); after a gentle drive it does not, as a rule. **The rough
+minutes are 3's swell** (*Every stroke named*), so **"3 is worst" and "a
+warm stop starts rough" are one observation**; the cuts did not make the
+settling (`42`, `47` settled without one), and the swell also starts
+minutes into a stop. Nothing else on the bus shares its time.
+*Reasoned*: a seal or a flake on 3 that is worst right after a hot drive
+fits; the swell's depth goes weakly with the seconds above 4,000 rpm
+before (r −0.32).
 
 **The first captured stop on the canister** (12/11, `49`; condensed
 17/11, the full text in `git show 5e1ddf2:docs/engine-health/open.md`, this heading). 18 minutes standing after
@@ -884,184 +538,31 @@ the calmest floors before the canister and no calmer: **by H16's test
 the canister did not take away what tips 3**. Taken apart, the stop
 calms because 3 does; the common part stays (20–26 of the grade).
 
-**The swell's shape, and what the common part follows** (12/11 evening,
-*the owner's questions*: what could make 3's waves — why the idle is
-first rougher and then falls — and whether the common part moves with
-anything; every standing idle of `24`–`49` in 30 s windows, 437 warm
-ones loads off, each with 3's deficit, each cylinder's scatter about its
-own median — **cylinder 2's taken as the common part**, the slot farthest
-from 3's spill — and what the bus carries beside them: oil, coolant, b7,
-b6, the injection time, the fuel counter, the lights, the brake, the
-tank, the time into the stop, the seconds above 4,000 rpm before it;
-the steps again in 8 s windows; **`tools/swellscan.py`, kept at the
-owner's request** with its tests — `--series`, `--falls`, `--corr`; the
-first reading was by scripts not kept, and the tool gives the same
-figures).
-
-*Cylinder 3's wave:*
-- **It is a sawtooth.** 3's deficit grows by **1.5–3 % of a stroke a
-  minute for 3–8 minutes**, to −21 to −28 %, and then falls to −1 to
-  −8 % — three times at `32`'s last two stops, the last stop's two
-  falls 6½ minutes apart (−11 → −23, −7 → −21, −6 → −19 at the
-  capture's end), `47` −15 → −28,
-  `49` −13 → −23, `31` −12 → −22 up to its cuts; **`50`, three times
-  in one stop of fifteen minutes**: −12 → −24, −6 → −23, −5 → −24 at
-  its end, growing by 3.3–4.3 % a minute, the two bottoms 5½ minutes
-  apart (*The queue drive, and what the ECU sees through a swell*).
-- **The fall is not a jolt: it takes 30–45 s**, some 200–300 of 3's
-  strokes, at all five falls with no cut (`32` three, `47`, `49`; 8 s
-  windows: `49` −22, −20, −15, −11, −13, −9, −6, −4; `47` −25, −22, −19
-  held for 20 s, −13, −9, −7), twice in two stages; between a fifth
-  and four fifths of the drop, 16–36 s (`swellscan.py --falls`). *This file said
-  "in one step" and "what ends it is a jolt"*; the 20–40 s it gave for
-  `49` was right, the word was not. **At `50` both falls were slower:
-  108 s and about 80 s** between the same fifths (−24 to −5 and −24 to
-  −5 in 8 s windows), each gradual, the last quarter of the second
-  inside 8 s — so half a minute to nearly two.
-- **Nothing on the bus shares the fall's time**: the coolant was rising
-  at three and at its low or its peak at the others, so not the fan; b7
-  rose by 5 a minute before two of them (`32`'s first, `47`) and not
-  before the other three; engine speed, the injection time, the lights
-  and the brake did not move. Within a stop 3's deficit correlates with
-  none of them (|r| ≤ 0.06 for the coolant, b7, the injection time, the
-  fuel counter, the lights, the brake; −0.18 with the oil); **only the
-  seconds above 4,000 rpm in the fifteen minutes before, r −0.32** — the
-  deficit is deeper after high revs, as *The rough start of a warm stop*
-  found by stops.
-- **Every stroke of 3's is weaker in the swell, not only the weak ones**:
-  `49`, the raw step of 3's slot, the median −3.0 rpm in the swell and
-  +0.5 on the floor, its ninth decile +2.5 against +4.5 — the whole
-  distribution moves. Twelve weak strokes a minute of about 400 could
-  not make 18 % by themselves.
-- **A load masks it and does not end it**: `40`, −14 % before the A/C,
-  −9 % at once with it, −13 and −14 % in the first minute after it and
-  growing on to −22; the lights' load (b7 +5) took −15 to −10 while
-  it lasted. A cut, by contrast, is usually followed by the floor
-  (`44`, `43`, `31`'s second; not `31`'s first).
-- **Straight after the fall 3 is nearly level**, −1 to −5 % (`32`, `43`,
-  `49`), and settles to −7 to −9 % within two minutes: the "floor" may
-  be the wave's first stage as much as a fixed part.
-- **What follows the fall differs**: it grows again at once on `32`
-  (12/10), `40` (21/10), `43` (3/11) and **`50` (12/11 evening, twice,
-  within 40 s of each bottom)**; it did not in `49`'s fourteen
-  minutes (12/11 morning — the same day, the same canister and valve),
-  in `44`'s 4½ after its cut, nor at any time at `46`'s
-  stops the day of the clean.
-- On `32`, as 3 came back, **4 fell to −11 and −12 %** (twice; the
-  others' share of the mean's shift would be about −5); on `47` and
-  `49` the three shared it evenly. 12/10 was before 4 went level warm.
-- **The mean mixture does not move with it**: the injection time and
-  the fuel counter are the same in the swell and on the floor (r 0.01
-  within a stop), beside 001's and 033's regulation (*Every stroke
-  named*, *The first captured stop on the canister*).
-
-**Read** (*reasoned*; nothing here is measured inside the engine).
-**What the shape rules out as the wave's cause** (not as the floor's):
-**a quantity of air or fuel into 3** — a leak at its runner (H3), its
-injector or its loom (H7, H4), purge gas going its way (H16): a
-cylinder 18 % short through its mixture would be a fifth lean or rich
-and move the loop's regulation by about 5 %, which read the same within
-1 % at both stops where it was logged; **the spark** (H4), which a
-load makes harder, not easier; and **a flake blown out or a valve
-turning**, which would mend in a stroke, not in 250. **What it asks
-for**: something in 3 that builds steadily at a closed throttle, costs
-every stroke — a slower burn or charge lost, with the air and the fuel
-as before — counts for less the moment the manifold pressure rises, and
-clears itself in half a minute once it has grown to a certain size.
-In the order they fit:
-1. **A seat on 3 that fouls and burns itself clean** (H1 with H13; the
-   exhaust seat or the inlet's, whose crust the port photos show broken
-   on 3). At idle a film of soot and oil builds on a seat that already
-   closes on a deposit; the leak grows, 3 keeps less charge and more
-   burnt gas, every stroke weakens and the weakest fail; when the gap
-   is large enough the flame through it burns the film off in a few
-   hundred strokes and the seat closes on what is left. It fits the
-   steady growth, the fall's half minute, 3 nearly level straight after
-   it, the load (the same gap matters less at a larger charge), the
-   mixture not moving, the gas curing the misfires and not the deficit,
-   the clean taking the swell for a day, and S22's tick once per cycle.
-   Weak points: nobody has seen it, and the cold compression is even.
-2. **Liquid that gathers at 3's inlet valve and is drawn in at once** —
-   oil down 3's inlet guide or from the breather, pulled hardest at the
-   idle's vacuum (H18, for one valve). A trap that fills and empties is
-   the commonest sawtooth there is; against, no blue smoke ever, the
-   plugs dry, and a load should not lift it at once.
-3. **Coolant into 3** (H20): steam dilutes without moving the mixture
-   and the system's pressure is highest after a hot drive; but nothing
-   in it fills and empties, and it grows again in a stop's fifteenth
-   minute as in its first.
-4. **The ECU's purge phases** (H16): the one thing known to run a slow
-   ramp and a quick shut-off by the minute, and not on the bus. It
-   would need the purge gas to go mostly into runner 3 and to be
-   neither rich nor lean; the injection time gives no sign of it.
-   Kept because its test is the cheapest.
-A lifter is inside the first: one that sags shortens the overlap and
-calms an idle, so it would have to be one that holds a valve off its
-seat, with the same picture as a fouled seat (*general*).
-
-**What would tell them apart** (*proposed 12/11 evening and agreed
-with the owner the same evening*). Two of the three are done: **the
-phone through a swell and its fall** — at the tailpipe (12/11, `50`)
-3's pulse grows and drops with the swell, which does not tell a seat
-from a dilution; on the cam cover above 3 (15/11, `52`) no
-once-per-cycle tick at 3's place (*The phone at the tailpipe through
-a swell and a fall*, *The phone on the cam cover through a swell and a
-fall*); **the purge** — its phases do not time the
-swell, on `52` by 070 and on 15 older stops by b7, so the fourth reading
-is out (`refuted.md` C25). **Left: item 9** (`plan.md`): the CO₂ test
-for the third, the warm leak-down with 3 twice for the first — ⚠ made
-with the engine stopped, so on whatever state 3 was left in; a stop
-switched off in a swell (the display above 75) is the one worth
-testing.
-
-*The common part* (cylinder 2's scatter about its own median, rpm rms
-of step):
-- **It is the same at every warm idle since 24/9**: the stops' means by
-  capture, loads off, **2.7–3.1** (ten captures of eight windows and
-  more, sd 0.13, under 5 %) — on both MAFs, three sets of plugs and of
-  leads, both maps, before and after the clean, the probes and the
-  canister (`49` 3.0, `48` 3.1, `44` 2.8, `32` 2.8). A window's own
-  spread is 11 %, of which 7 % is what 100 strokes give by chance.
-- **It does not follow 3's wave**: 2.9 at −24 % as at −8 % (r 0.05).
-- **Three things move it**: **a load** — the A/C 2.3, a fifth less;
-  **the provider's gas** — 1.8, nearly two fifths less, the lowest
-  measured; **temperature** — 3.5 under 60 °C of oil, a fifth more,
-  falling to its warm level by about 85 °C.
-- **Small**: the first 30 s of a stop a tenth higher (3.1); the
-  coolant's peak, where the fan runs, a twentieth lower (2.74 at 99–100.5 °C
-  against 2.90 at 95–97; r −0.41 within a stop, *The radiator fan's
-  cycle*); between stops, more fuel at idle goes with more scatter
-  (r +0.28 with the fuel counter, +0.24 with the injection time; within
-  a stop none).
-- **Nothing else**: the oil once warm, the time into the stop past its
-  first half minute, the tank's level (14–51 l), the lights, the
-  brake, the high revs before, the date.
-- ⚠ Its size as combustion is not known: the gas's 1.8 is an upper
-  bound on what the measurement adds by itself, so at least 2.3 of the
-  2.9 is the engine's — some 7–10 % of a stroke's work from one stroke
-  to the next.
-
-**Read** (*reasoned*): **the common part is a constant of this engine
-as it stands**, answering only to what every engine's stroke-to-stroke
-scatter answers to — how full the charge is, how easily it burns, how
-warm it is — and to no repair and no day. That is what **H0** predicts,
-and what **a fixed fault on all four** would give as well (the belt a
-tooth out, the cam's timing: more burnt gas kept at idle on every
-cylinder, all the time). **It is not what a source that changes from
-day to day gives**: a purge path leaking canister vapour by how loaded
-the canister is (H16, *The owner's reading, 12/11*) would move the
-common part between a gentle day and a brisk one, between the bypass
-and the canister, and it stayed within 5 %; so with the probes and
-their wiring (H11, H21: both probes changed, the same 3.0), the rail's
-pressure after a hot drive (H7: the high revs before, nothing) and oil
-past the seals after idling (H18: the time into the stop, nothing).
-**No healthy AQY has been measured**, so whether 2.9 is this engine
-type's or this engine's is what the list cannot yet say; **8i, the
-belt's marks, was the one test in the plan that bore on it**; read
-13/11, the crank's notch stood 30–60° from its groove by eye, not
-settled, and the air at full throttle says not so far (the row A1), and **the belt's renewal (8q) is now the test**:
-the common part by capture before and after it, as the new N80 will
-show once more whether it moves at all.
+**The swell's shape, and what the common part follows** (12/11
+evening; `tools/swellscan.py`, cylinder 2 taken as the reference;
+condensed 17/11, the full argument in `git show 5741dfa:docs/engine-health/open.md`, this heading).
+- **It is a sawtooth**: 3 deepens by 1.5–3 % of a stroke a minute for
+  3–8 minutes, then **falls in 30–45 s** (80–108 s at `50`), not a jolt;
+  up to three times a stop. **Every stroke of 3's is weaker in the
+  swell**, not only the weak ones. **A load masks it and does not end
+  it.** Straight after a fall 3 is nearly level (−1 to −5 %) and settles
+  to its floor in about two minutes. **Nothing on the bus shares the
+  fall's time**, and **the mean mixture does not move with it**.
+- **What the shape rules out as the swell's cause** (*reasoned*): a
+  quantity of air or fuel into 3 (the mixture would move), the spark,
+  a flake blown out or a valve turning in one go (the fall is gradual).
+  **What it asks for**: a seat on 3 that fouls and burns itself clean;
+  a liquid that gathers at 3's inlet valve and is drawn in at once
+  (oil, H18; coolant, H20). The ECU's purge phases, once on the list,
+  do not time it (`refuted.md` C25). **Left to tell them apart: item 9.**
+- **The common part**: 2.6–3.2 rpm rms at every warm idle since 24/9; it
+  does not follow 3's swell; **three things move it — a load, the
+  provider's gas and temperature** — and nothing else, no repair and no
+  day (`54`, 17/11: 2.96). **Read**: a constant of this engine as it
+  stands — what H0 predicts and what a fixed fault on all four gives
+  (the belt a tooth out); not a source that changes by the day (the
+  probes, the purge, the rail after a hot drive, the stems all tried).
+  **The belt's renewal (8q) is its test.**
 
 **The queue drive, and what the ECU sees through a swell** (12/11
 evening, `50`; condensed 17/11, the full text in `git show 5e1ddf2:docs/engine-health/open.md`, this heading).
@@ -1283,81 +784,20 @@ of the chambers left 3 where it was). **And the idle does move where
 014 and the display do not show it** — in how much of a stop is floor,
 which the mean hides because the swells have grown rougher again.
 
-**Each cylinder against the idle's 0.8 Hz swing** (14/11 night, *agreed
-with the owner*: is 3 more sensitive to the mixture than the others —
-lean, H3, H4, H7's injector — or not — diluted, H1, H13, H20; `50`'s
-queue idles, where VCDS read one group alone at 3.3 rows a second and
-the log sets against the capture on engine speed to 0.05 s: 001 for
-the lambda controller, 003 for the air mass, the advance and the
-throttle angle; each named stroke's residual against the signal's place
-about its own 6 s mean, the signal shifted from 0.8 s after the stroke
-to 1.2 s before; scripts not kept).
-- **The lambda controller swings with a period of 1.2 s at idle**
-  (243 s of `50`'s last stop, 1.3 % of scatter) — **the period of *The
-  dips ride a swing of the idle loop*, above**. Air mass, advance,
-  throttle angle and the controller all carry it, and every cylinder's
-  strokes ride it: about 1 rpm weaker in the half with the controller
-  below its mean, or the air mass below its mean, within 0.1 s, and
-  as much stronger half a period away.
-- **3 answers no more than the others**: with the controller in its
-  lean half 3's strokes are −1.1 to −1.2 rpm, 1's and 2's −0.9, 4's
-  −0.5 to −0.7 (± 0.2, 2,300 strokes a cylinder); on the air mass −1.1
-  against −0.7 to −0.9 and −0.5.
-- **The misfires keep to the small-charge half, on 3 most**: of 3's
-  strokes 12 rpm and more down, 21 of 27 fell with the air mass below
-  its mean (16 of 24 with the controller below its mean); the other
-  three's together 10 of 16 and 16 of 23.
-- **It does not tell lean from diluted.** The controller's lean half
-  and the low-air half are the same half of one swing, so the mixture
-  and the charge cannot be parted here; the swing's size (about 3 % of
-  a stroke) is what the governor's advance alone gives at 3–6° before
-  TDC (*general*), so nothing in it says the engine is unusually
-  mixture-sensitive. One capture, six minutes of idle a log; the bus's
-  own injection time and fuel counter follow the air, not the
-  controller (r 0.2 against 001), so the other captures cannot be read
-  this way. *Reasoned*: 3 misfires where its charge is smallest, which
-  *Off idle* already had; no route to H3 against H1 through the bus.
+**Each cylinder against the idle's 0.8 Hz swing, and how the weak
+strokes follow each other** (11/11–14/11; condensed 17/11, the figures
+in `git show 5741dfa:docs/engine-health/open.md`, these headings). The lambda controller swings with a period of
+1.2 s at idle; **3 answers no more than the others**, and the misfires
+keep to the swing's small-charge half, on 3 most — it does not tell
+lean from diluted. **A weak stroke comes in a spell of seconds on one
+cylinder** (the same cylinder two to six cycles later 1.9–2.5 × as often
+weak), and inside the spell the stroke right after a weak one in the
+same cylinder is less often weak (0.87 ×): *reasoned*, the weak cylinder
+sits at a mixture or dilution limit, not a spark limit.
 
-**How the weak strokes follow each other** (11/11, *the research*;
-`dipshape.py`'s warm runs, each step against its cylinder's median,
-`24`–`47` without `36`, `45`, `48`, 401,718 strokes, 2.65 % losing more
-than 8 rpm). The chance of a weak stroke k strokes after a weak one,
-against the base rate: **k = 1: 3.95 ×** (the pairs, above); **k = 2–6:
-0.75–0.99 ×**, a lull of about one cycle; **k = 4, the same cylinder one
-cycle later: 0.87 ×**; **k = 8, 12, 16, 20, 24, the same cylinder two to
-six cycles later: 2.5, 2.1, 2.0, 2.0, 1.9 ×**, the strokes between them
-1.0–1.5 ×. The same in 17 of the 20 captures with a warm idle read one by one
-(k = 4 under k = 8; not in `25`, `35`, `38`, few weak strokes or the
-gauge's).
-*Read* (*reasoned*, against the published work on cyclic variability:
-Daw, Finney, Wagner, ORNL): **a weak stroke
-comes in a spell of seconds on one cylinder** — that cylinder is
-weaker for a while, which a slowly changing seal, mixture or deposit on
-it gives and a random failure of the spark does not — **and inside the
-spell the stroke right after a weak one in the same cylinder is less
-often weak**, about 2½ times less than the spell would give: what a
-partial burn leaves behind (unburnt fuel and less burnt gas in the
-residual) feeding the next cycle, the coupling published near the lean
-and dilution limits. So **the weak cylinder sits at a mixture or
-dilution limit, not at a spark limit** — weakly, since a missed spark
-also leaves fuel behind. The lull at k = 2–6 on the other cylinders may
-be the ECU's answer to the dip (*What comes before a dip*) or the
-measure itself.
-
-**Why the idle got worse** (19/10, *reasoned*; display readings, loads off or
-lights only, warm): 50–61 on 12/10, ~54 on 15/10, 70–90 on 17/10, 80–90 on
-18/10 afternoon, ~100 on 19/10; with every load on it has hardly moved (~40–50).
-**The rise began about 16–17/10, with the cleaner and the hard driving**, not
-with the episodes of 18/10 (`refuted.md` D10); it is worse only at a small charge; and `39`, the first
-capture after them, has more of its weak strokes on cylinder 3 than any
-capture before or since — 77 %, 3 at −17 to −23 % (`cylscan.py`, 12/11;
-*this said "the dips more concentrated on the pair, top two 77 %" until
-then*). **Not an adaptation**: 032 −3.1/+5.5 %, 055 −1.27 g/s,
-both inside their history (19/10). The candidates: deposit loosened by the
-cleaner and not yet burnt off (H13), and **a relief after the leads' re-seat
-of 10–12/10 wearing off** (`refuted.md` C24, *The idle against every time the leads were
-handled*). **It passed**: 67 on 21/10 (`40`), 54 on 27/10 (display), loads
-off, warm.
+**Why the idle got worse in October** (19/10, *reasoned*): the rise
+began about 16–17/10, with the cleaner and the hard driving, not an
+adaptation; it passed (S1's table, *Every session since the repairs*).
 
 ### S2. An occasional puff from the exhaust
 
@@ -1466,29 +906,13 @@ completing rather than load (`refuted.md` C19).
   rises with speed** (about 20 % at idle, 22–25 % at 1400–3000 rpm,
   27–30 % above) and **while speed falls faster than about 100 rpm/s**; no
   temperature condition (it counts below 40 °C of coolant).
-- **What it costs the converter** (6/11 night, *at the owner's
-  question*; *reasoned*, the materials' figures *general*). A warm idle
-  burns **1.06 l/h** (median over the warm idle of `40`, `42`, `43` on
-  `tools/replay.py`; 0.97–1.16), about **8 mg of petrol per combustion**
-  at 790 rpm. A misfired charge reaches the converter with its own air,
-  so at most it burns there: a share *f* of combustions lost heats the
-  exhaust by about **f × 2,500 K** (petrol's 43 MJ/kg over the 15.7 kg
-  of a stoichiometric charge, over the gas's 1.1 kJ/kg K) — the same at idle
-  and under load, because fuel and exhaust both scale. **This car's idle**:
-  0.25–1 % as 014 reads it (above), **6–25 K**; every dip of 15 rpm and
-  more taken as a whole misfire, about 1.3 %, **33 K**; the worst natural
-  1000 revolutions on record, 1.95 %, **49 K** — against a converter
-  that runs at a few hundred °C at idle and ages from about 900–1,000 °C
-  (*general*). Cold, before light-off, the charge passes unburnt: an
-  emission, not heat. **What does melt one** is a share in the tens of
-  per cent held for minutes — one cylinder dead is 25 %, about 600 K —
-  above all under load, where the converter already runs hot; the old
-  converter's "chamber burned right through" (`vehicle-history.md`) is
-  that kind of heat, which this idle cannot make. The injector cuts put
-  no fuel in (the injector is off), so they cost the converter nothing.
-  **Read**: the idle's misfires are not a converter risk; a cylinder
-  dropping out under load (a stored P030x, the lamp flashing) is, and
-  the standing items already stop for it (`plan.md`).
+- **What it costs the converter** (6/11 night, *the owner's question*;
+  *reasoned*, condensed 17/11, the arithmetic in `git show 5741dfa:docs/engine-health/open.md`, this heading):
+  at idle 1.06 l/h is about 8 mg of petrol a combustion; burnt in the
+  converter, a misfire rate f heats it by about f × 2,500 K — **this
+  car's idle 6–25 K, 33 K at the worst minute, 49 K at a cut on one
+  cylinder**, against the hundreds of kelvin that melt a substrate.
+  Not limited for the converter (*the owner*, 6/11).
 - **What it counts** (5/11, the same logs against the bus): **one stroke's
   loss against the one before**, not the dip's depth — a fitted threshold
   of about 19 rpm at 28 % load, **rising 0.33 rpm per % of load**, about
@@ -1598,90 +1022,21 @@ completing rather than load (`refuted.md` C19).
   off below ~20 % load; its sensitivity per dip moved five- to fiftyfold with
   the MAF. **So 014 is a yes/no witness, not a ruler.** Compare across time
   with engine speed or `IdleHealth`.
-- **An estimate of it on the display since 4/11** (*the owner's request*;
-  `docs/firmware/can-decoding.md` question 11, *Misfires*): `Misfires` on 0x604, the dips
-  of 20 rpm in the last minute of standing idle. Over every capture with a
-  014 log, warm, **no minute in which 014 counted read zero on it**, and
-  with the A/C on (`40`) it read zero 79 % of the time as 014 does; per
-  single event it misses most of 014's counts, and it does not count
-  driving. Zero there reads "014 most likely silent"; VCDS decides.
-  **The first readings after a warm-up, 5/11** (display, the A/C on at
-  every stop; two short drives, perhaps never fully warm, not revved
-  above 3500 rpm, *owner*; S1's table): **2 and 5–10**; **the drive home
-  the same evening** (an hour of queues, the A/C and the blower on 2,
-  oil 100 °C): **1–22** over the drive, **3–4** at the end with
-  `IdleHealth` 51–54, falling as the engine warmed
-  (*owner*); cold 18–23. **6/11**, after 5/11's contact cleaner and
-  straightened gasket edge (40 minutes with queues, the A/C and the
-  blower on 2, oil 98 °C): **18** at the end with `IdleHealth` 65,
-  MisfAvg **23.0**, about twice to three times 5/11's 7.4–11.6 — but
-  **only about 5 minutes of idle in the whole drive, hardly any of it
-  warm** (*owner*), so the start's mean is mostly the cold part and the
-  last minute of idle is few warm seconds; **the engine behaved the
-  same** (*owner*, the album). **The drive home the same day** (the A/C
-  off, the blower on 1, oil 90 °C): **6** with `IdleHealth` 73, MisfAvg
-  **8.6**, back to 5/11's level (*owner*, the album). **8/11** (the
-  everyday state, oil 97 °C, about a minute): **9–12**, MisfAvg 12.5
-  (*owner*). ⚠ **Not the capture's near-zero with the A/C**
-  (`40`: zero 79 % of the time, 0.2 a minute) — that was read on minutes
-  with the compressor's load in b7 (b7 ≥ 36), and the display cannot tell
-  whether the compressor was running; in November it may cycle or stay
-  off. A capture with the A/C on would say which.
-- **Session A, 3/10**, and **Session A after step 1b, 4/10**: the first warm
-  stops ever with 014 at zero — on fresh adaptations — then counting again
-  after five minutes of hard driving. **Session B, 4/10**: counting again,
-  055's learned value at −1.0 to −1.2. **Steps 2b and 2c, 9/10**: the first
-  session on kept adaptations, counting at every stop. Read together then
-  as the learned idle air (C19); **refuted 2/11**: 27/10 counted on fresh
-  idle air, and 4/10 A's quiet is the exception.
-- **The drive after the new leads, 10/10** (`31`): 014 at about 9/10's
-  rates — better hot, worse cold, no direction. The leads did not fix S3.
-- **The new regulator hose, 25/10** (`plan.md` 6i, 6j): on 6i 014 counted
-  loads off at 80 °C of oil and read 0 loads on; **a drive later, at
-  96 °C of oil in the everyday state, it counted at 12 ten times in
-  4.7 minutes, 24 and 36 near the end**, and 0 through a 34 s stop at a
-  light (`idle-log.md`). The hose did not fix S3.
-- **How far an episode climbs** (25/10): the counter's floor is 12, so
-  how often it counts says less than whether an episode stops at 12 or
-  climbs to 24, 36 and more. Warm idles, coolant ≥ 88 °C: **6j 2 of 16
-  episodes climbed (12 %)**, 6i 2 of 9; 12/10 25 of 47, 15/10 10 of 31
-  and 12 of 41, 18/10 24 of 37, 21/10 8 of 20. 6j against the four
-  before the hose, pooled: one-sided p ≈ 0.06, episodes of one stop not
-  independent, and 6j in the everyday state. **How often it counts did
-  not change** — about two episodes a minute, as 15/10 and 21/10. The
-  hose and the second 44K tank (24/10) cannot be told apart here.
-- **014 against `IdleHealth`, re-read in stretches** (25/10,
-  `tools/s3align.py --windows`; `docs/firmware/can-decoding.md` question 11, *Re-read in
-  stretches*): **no `IdleHealth` below which 014 is silent at an
-  ordinary load** on settled adaptations — a plateau to about 80, more
-  above. On fresh adaptations (to 4/10) it did fall silent below about
-  70, and loads on (014's load above 28 %) silence it at any grade.
-- **The original map, 3/11** (`42`, fresh adaptations; the three VCDS
-  logs `vcds-step5a-*`): **014 never left 0** — 2,563 `aktivováno`
-  samples at idle and on the road, 1,071 of them at idle, and none
-  of 1,388 above 1500 rpm against 15 in about 4,300 on the remap. **Two
-  things stop it reading as S3 closed.** The idle load sat at **30 %**
-  (p10–p90 27.7–32.4, the everyday state), against 26.5–29.3 % on the
-  settled remap sessions, which is near the 28 % above which loads
-  silence it; but 6k (28.5 %) and 6l (28.9–29.3 %) counted at about
-  2–3 per 100 samples. And 4/10 A on fresh adaptations was quiet too,
-  the one exception C19 found. A map that set the detection differently
-  (H14 route 6) would read the same, **and the tuner's files say it did
-  not**: the detection was not touched (H14; `refuted.md` C23).
-  Read again on 5b at a similar load; S3's closing mark is loads off.
-- **The second drive on the original map, 3/11 evening** (`43`,
-  `vcds-step5b-*`, 032 relearnt part of the way): **014 counts again**
-  (*owner*, and the logs agree). At the town stops before the warm one,
-  5 rises in 174 idle samples at 30.8 % load (p10–p90 28.5–43.3) — the
-  settled remap's 2–3 per 100 at `42`'s load, so **`42`'s zero was the
-  fresh adaptations, as 4/10 A**, not the load (*reasoned*, one
-  session). At the warm stop, loads off, 26.5 % load (25.7–28.1), oil
-  99 °C: **10 episodes in 200 s before the cut, 9 of them climbing past
-  12** (to 24–48), the highest share read (*How far an episode climbs*);
-  4 in the 80 s after it; then **zero for the last 2 minutes** to engine
-  off, at 25.7 %, while `IdleHealth` read 48 (S1). Two minutes, one day:
-  not S3's mark. **In the cut** the field climbed by 72 every sample, 12
-  for each of cylinder 4's missing combustions (`vcds.md`).
+- **An estimate of it on the display since 4/11** (`Misfires` on 0x604,
+  *the owner's request*; condensed 17/11, the readings in `git show 5741dfa:docs/engine-health/open.md`, this
+  heading): no minute in which 014 counted read zero on it; warm stops
+  2–22, drives with little warm idle near zero. ⚠ Not the capture's
+  near-zero with the A/C (`40`), read with the compressor's load in b7.
+- **By session, 3/10–3/11** (condensed 17/11; every session's counts,
+  how far its episodes climbed and the re-read in stretches are in `git show 5741dfa:docs/engine-health/open.md`,
+  this list): 014 quiet only on fresh adaptations (3/10 and 4/10 A, and
+  `42` on the original map, 3/11), counting again after a hard drive
+  (`43`: 10 episodes in 200 s at the warm stop, 9 climbing past 12);
+  **no repair of those weeks stopped it** — not the leads (10/10), not the
+  regulator hose (25/10, 6i, 6j), not the map. About two episodes a
+  minute at a warm idle throughout; **no `IdleHealth` below which 014 is
+  silent** at an ordinary load on settled adaptations; loads on (014's
+  load above 28 %) silence it at any grade (`refuted.md` C19).
 - **The clearing of 24/10 reset 032 to 0.0 / 0.0 and left 055 at −1.31
   g/s** (`idle-log.md`), read once: on this ECU the clearing did not
   restart the learned idle air that C19 then tied 014 to, so 6i and 6j
@@ -1733,53 +1088,12 @@ completing rather than load (`refuted.md` C19).
   owner brought the lower gasket forward (`plan.md` 8z, done 17/11,
   and it moved nothing; `refuted.md` C28).
 
-- **The first drive on the new N80, 14/11** (`51`, three logs of 014
-  001 003; S1, *The first drive on the new N80*; the counts per phase
-  by a script not kept). **Where it counted**:
-  - **the cold leg** (16:41–16:51, coolant 21 → 92 °C): nine single
-    misfires on the road at 2,000–2,600 rpm, at weights of 12–18, five
-    of them in the sample where detection switches off at a lift;
-  - **rolling into the first stop and standing** (16:51:48–16:52:14):
-    two, then VCDS was closed for 070 — **the first stop's 37 minutes,
-    with three of the day's four swells, have no 014**;
-  - **the brisk leg to the pump** (17:30–17:45): ten on the road, three
-    of them crawling at idle speed, none above 2,820 rpm;
-  - **the pump's idle** (17:45:55–17:47:38, 3 at −11 to −15 %, 28–29 %
-    load): **eight in 103 s, 0.29 % of combustions**, twice two in one
-    window;
-  - **the second stop** logged from 18:02:42, after its swell had
-    fallen: **one count in 7.7 minutes (18:09:48), 0.02 %**, at 28–29 %
-    load — the owner's "a clean zero from about 18:03 to 18:10" (*owner*);
-  - **home** (18:10–18:17): six, at moving-offs and lifts, two of them at
-    the last standing idle.
-
-  By cylinder (`cylscan.py --vcds`): 10 standing rises put to a
-  cylinder, **7 on 3, 3 on 4**, none on 1 or 2. On the road 0.9–1.6
-  rises per 100 samples, inside the 0–2.3 of every driving log since
-  10/10. **Read**: nothing in 014 moved with the valve — the floor's
-  near-zero is `49`'s (0.01 %), the pump's 0.29 % sits among the
-  settled stops (0.11–0.63 %), the road as before. **The owner felt 014
-  counting less in general** (*owner*, 18:03–18:10): what he watched
-  was a floor; the swells went unlogged. The fault memory empty at
-  every read; no code.
-
-- **The second drive on the new N80, 15/11** (`52`, one log of 014 070
-  004 through the drive and the whole stop — the first stop on the new
-  valve with 014 through its swells; S1, *The second drive on the new
-  N80*; `misfshare.py`, `cylscan.py --vcds`, the phases by a script
-  not kept). **The warm stop: 89 misfires in 18.4 minutes, 0.31 % of
-  combustions**, at 30–33 % load, 39 episodes, the longest silence 2.1
-  minutes: **0.13 % from the arrival to the second swell (6.2
-  minutes), 0.78 % in that swell (3.5 minutes, 43 misfires), 0.16 % in
-  the five minutes after its fall, 0.38 % in the third swell**. The
-  count goes with 3's swell, not with the purge valve: the ten minutes
-  of the second purge phase hold both the 0.78 and the 0.16. **By
-  cylinder: 89 standing rises, 81 on 3 (91 %)**, 5 on 4, 2 on 1, 1 on
-  2; of the 59 with a stroke 12 rpm and more down, 55 on 3. The cold
-  idle two misfires (0.08 %). On the road 28 single misfires at
-  1,560–2,720 rpm and 12–33 % load, at weights of 12–18, 25 of them
-  before the stop. The fault memory empty before and after; no code.
-
+- **On the new N80** (14–15/11, `51`, `52`; condensed 17/11, the phases
+  in `git show 5741dfa:docs/engine-health/open.md`, this list): at the pump's idle 0.29 % of combustions, at the
+  second stop one count in 7.7 minutes; the next day's warm stop **89
+  misfires in 18.4 minutes, 0.31 %**, 0.78 % inside a swell and 0.13–0.16 %
+  on the floor; **81 of 89 standing rises on 3 (91 %)**. The valve did not
+  stop it.
 - **By era** (14/11 evening, *the owner's question*: "the 014 records
   are from these days"; every 014 log at a warm idle below 34 % load,
   detection on, logs with a cut, the silent sessions on fresh
@@ -2255,396 +1569,51 @@ mixture is if anything richer than the trims say. And **it all but rules
 out a meaningful intake leak** (A7): that would have pushed the other
 way.
 
-**The new probes, 10/11** (H11, *The reading after the swap*, *The
-relearn after the battery disconnect*): **−7.8 / +7.0 → −6.3 / +5.5 %
-over one drive** on kept adaptations — the split narrowed by about
-three points — **then both cells reset by the owner's battery
-disconnect after parking**. Where the idle cell goes from zero on the
-new probes was the test of whether the old front probe made it
-(`plan.md` 8d): on the old probes it was back at −6.3 % after one drive
-from every reset — and on the new ones too (below, *On the new probes,
-from zero*).
+**032 after every reset and repair, and on the new lower gasket, from
+zero** (idle cell / part-load cell, %;
+condensed 17/11, each reading's circumstances and argument in `git show 5741dfa:docs/engine-health/open.md`,
+under *The new probes, 10/11* to *The cell over the three months*):
 
-**S7 closed 31/10 as the fuel** (`refuted.md` D2), and S19's start of
-24/10 was one of its starts, hours after the Verva fill. **What it
-leaves here** (*reasoned*): if the start and the code were one event,
-the fuel is the first candidate for the code too — a fuel that
-evaporates more readily, through N80's small leak (H16), gives a rich
-idle cell and floods a start alike, and a fuel with less energy per
-litre raises the part-load cell alone; how Verva 100 and OMV MaxxMotion
-100 differ in either is not known. Against: S19's window opens before
-the fill, on the drive out on the old tank. **Read by 032 on the OMV
-tank**: the idle cell back towards the −0.8 to −3.1 % of before the
-Verva says the fuel; still at −6 to −9 % says a standing cause (H7's
-injector, H19's MAF). The map of 3/11 reset 032, so it was read before
-it. **31/10, on OMV** (album; warm, coolant 95 °C, oil 75 °C, after a
-drive): **032 −7.8 / +7.0 %, 055 −1.17 g/s at 790 rpm, load bits
-`0000`** — the idle cell where it sat on the Verva (−7.8 to −8.6 since
-25/10), the part-load cell inside its +5.5 to +8.6, the idle air level
-with 27/10's relearnt −1.17; "the adaptations hardly moved" (*owner*).
-The lines have held OMV since 30/10 afternoon, more than a day of
-driving. **Read** (*reasoned*): 032 relearnt from 0.0 to about −6 to
-−8 % within a day after the clearing of 24/10 (S3, *The clearing of
-24/10*), so a day on a fuel that caused the split would have moved it
-by now; it did not. **Against the fuel as S19's cause**, and so against
-the start and the code being one event — S7 was the fuel, the split was
-not. What is left for the split: H7's injector and H19's MAF against the
-map, which 3/11 read (below). **About 81 km on OMV** (the cluster's trip
-81.2 km, `TripDist` 82.3 km, *owner*); **the fault memory empty**, so
-P0172 not back.
-**On the original map, 3/11** (reset to 0.0 / 0.0 with it,
-`vcds-step5a-end-adaptations-032-055.csv`, after the 58 min drive home,
-warm): **032 −6.3 / +3.1 %**, 055 −1.04 g/s; the fault memory empty
-before and after. **The idle cell relearnt to −6.3 within one drive**,
-as it did within a day after 24/10's clearing: **not the map's**, which
-leaves H7's injector; H19's MAF against the map went with the files
-(`refuted.md` C22). The part-load cell
-at +3.1 is below the remap's +5.5 to +8.6 % and inside the +1.6 to
-+5.5 % before 25/10; one drive is not settled, so it was read again on
-5b (below). **The remap took about 5 % of fuel away from 1400 rpm and heavy
-part load up (H14, T1)**, which the loop would learn back into this
-cell: **the part-load cell settling at about +1 to +3 % on the original
-map would confirm it**, and the rest of the split as the new MAF's.
-**After the second drive** (3/11 evening,
-`vcds-step5b-adaptations-032-055.csv`, before the owner cleared the
-cut's codes): **−6.3 / +3.9 %** — the idle cell held, the part-load
-cell up 0.8, not yet settled; the clearing restarts both. **Read 3/11
-night, at the owner's question** (*reasoned*): **not a conclusion yet**.
-The cell was still climbing when the clearing reset it, and +3.9 sits
-inside what the remap itself read up to 23/10 (+1.6 to +5.5), so it
-cannot yet tell the map from what moved it to +6.3–8.6 from 25/10 (the
-regulator's hose, the tanks). It is already above the +1 to +3 that
-would have confirmed T1 as the cause, which leans against T1 doing it
-alone. **The settled reading, 6/11** (`photos/vcds-adaptations-2026-11-06.jpg`,
-warm, read before the owner cleared S21's P0440): **032 −7.0 / +6.3 %**,
-055 **−1.24 g/s** at 790 rpm, load bits `0000`. The idle cell where it
-has sat since 25/10; **the part-load cell back at +6.3, inside the
-remap's +5.5 to +8.6** after three days on the original map. **Read**
-(*reasoned*): **the part-load cell is not the map's either** — T1's fuel
-did not make it, and the whole split outlived the map; what moved it to
-+6.3–8.6 from 25/10 is left with the idle cell's cause (H7's injector,
-H16). P0172 not back; P0440 instead (S21, `refuted.md` D14). The clearing restarts both
-cells. *This said "a settled reading is the next 032 … no session for
-it" until 6/11.*
-**On the new probes, from zero** (10/11 evening, the relearn drive after
-the battery disconnect; `vcds/vcds-step8d-drive-014-032-036-2.csv`;
-H11, *The relearn drive*): **the part-load cell moved first** — +3.9 %
-five minutes into the drive, +6.3 % by 16:46, **+7.0 %** from 17:24 —
-and **the idle cell followed it to −6.3 % within 37 minutes**, held
-there for about ten, then **−3.9 to −4.7 %** to the end: **−3.9 / +7.0
-%** at the stop, 055 **−0.91 g/s**. **The split came back on new probes
-in one drive**, as on the old ones after both resets, so **neither cell
-is the old probes'** (H11's mark 1). P0172 not back; P0137 instead,
-the new rear probe's (S23), cleared by the owner — which resets 032
-again (S3, *The clearing of 24/10*), so the next VCDS reading starts
-from a fresh relearn.
-**On the canister, from zero** (11/11 night, the first drive with the
-canister back, 8k, `idle-log.md` 11/11 night; `refuted.md` D14 (S21), *The first drive on the canister*):
-**−3.9 / +2.3 %** at the end, **−3.1 / +2.3** after the long warm
-stop, 055 −1.04 g/s — **the part-load cell a third of the bypass's**,
-the idle cell bent towards zero by S23. P0172 not back. **12/11 night**
-(the old rear probe): −5.5 / +2.3. **12/11, the captured drive**
-(`49`; reset by the clear after 12/11 night, then a 40-minute MFD drive
-that morning): **−14.8 / +2.3 % before** — the idle cell past VW's
-−10 with no code, a shift of S19 and H16 and not a new symptom (*the
-owner*, 12/11) — and **−7.0 / +8.6 after** the brisk drive, 055 −0.84
-→ −0.98 g/s: **the part-load cell back at the bypass's level and
-above** (H16, *Read 12/11, the captured stop*). P0172 not back.
+| when | what changed | 032 |
+|---|---|---|
+| 20/8, 10/9 | before the repairs, old injectors and MAF | −5.5, −4.7 idle |
+| 31/10 | the OMV tank (S7 closed as the fuel, `refuted.md` D2) | −7.8 / +7.0 |
+| 3/11 | **the original map**, reset to zero | −6.3 / +3.1 in one drive, **−7.0 / +6.3 settled (6/11)** — neither cell the map's |
+| 10/11 | **both probes new**, reset by the battery | −6.3 / +7.0 within 37 min, −3.9 / +7.0 at the end — neither cell the old probes' |
+| 11–12/11 | **the canister plumbed back**, from zero | −3.9 / +2.3, then −7.0 / +8.6 after a brisk drive |
+| 14–15/11 | **the new N80** (−9.4 / +7.8 on the old valve before it) | −8.6 / +7.8, then −9.4 / +5.5 after a gentle drive |
+| 16/11 | **the MAF's plug and the ECU's earth cleaned** (C27) | −5.5 / +5.5 after one drive |
+| 17/11 | **the lower gasket, injectors 2 and 3 swapped** (`54`) | −7.0 in the warm stop, −6.3 / +7.8 at the end, learnt with 070's valve shut |
 
-**On the new lower gasket, from zero** (17/11, `54`; `plan.md` 8x,
-done: 001 032 070 from the cold start, then 014 032 070 through the
-warm stop; `vcds/vcds-step8z-*`). From 0.0 / 0.0 after the battery
-and 098, **the part-load cell learnt first**, +0.8 → +3.9 % between
-06:32:28 and 06:33:29 at 72–78 °C of coolant; **the idle cell** −0.8 at
-06:33:42, −1.6 just after 070's purge check (06:35:55, `TEV OK`), −4.7
-by 06:44:54, **−7.0 at 06:59:31 in the warm stop**, **−6.3 / +7.8 % at
-the end**, 055 0.00 → −1.16 g/s. **070's valve read 0 % throughout but
-its own check**, so the idle cell was learnt with the valve shut, as
-`47`'s event said (*The purge's phases*, below; *reasoned*: 070 read
-as a measuring block may show the check's figure rather than the
-running duty, so "shut" is 070's word, not a measured duty). **The
-split came back in one drive, as after every reset** — not the joint,
-whose leak would have asked for fuel. P0172 not back; the fault memory
-empty at all twelve reads.
+**No repair moved the idle cell towards zero** (*the owner's
+observation* that it grows more negative is not shown: each reading
+stands a different distance from a reset). The part-load cell learns
+first, the idle cell follows within a drive.
 
-**The old logs re-read for the split's form** (15/11 night, at the desk,
-*the owner's question*: is there an explanation other than the rail's
-pressure, and does the split belong to the idle; *ad-hoc scripts, not
-kept*). Asked of them: does the idle's extra fuel arrive **per unit of
-time** (a leak, vapour, the return line's pressure) or **per injection**
-(the injector's opening time against the supply the ECU sees, its
-characteristic) — the first fades with engine speed at no load, the
-second does not. **They cannot say**: no log holds a steady engine
-speed with no load (the two "gauge" logs of 14–15/10 are blips), and
-the logs with air mass beside the regulation were taken with the cells
-learnt. Three things they do say.
-- **With the cells learnt the regulation is flat everywhere.** The 16
-  logs with 001 beside 003 or 002 (15/10–15/11), warm, sorted by engine
-  speed and air per stroke, the overrun left out: of 99 cells of 30
-  samples and more, **85 have a mean regulation within ±1.0 %**, the
-  widest −2.2 and +2.5 % but for two idles (+1.7, 14/11; +3.2, the cut
-  of 24/10). So an offset and a slope describe the whole error — no
-  third shape, such as a kink in the MAF's curve at one air flow
-  (*reasoned*) — and logs with the cells learnt hold nothing more.
-- **The idle cell is worth its figure.** On 8n's relearn drive
-  (`vcds/vcds-step8n-drive-032-036-001.csv`, 12/11 night, from 0.0 /
-  0.0, the MFD in) the cell went from −2.3 to −5.5 % in 80 s of a
-  standing idle while the regulation ran at −3.3 % and came back to
-  −0.4 %: cell and regulation together −5.6 before the cell took it
-  over and −5.9 after. So **−8 % in the idle cell is about 8 % of the
-  idle's fuel**, not a figure on some other scale.
-- **The idle's extra fuel is not a fixed amount — it stepped in.** The
-  same drive, cell and regulation added, at its three standing idles:
-  **−2.1 to −3.2 %** at the first (7–12 minutes after a start at 39 °C
-  of coolant, coolant 92–96 °C); at the second, after 16 minutes of
-  brisk driving, **−2.4 % for the first 80 s, then −5.9 % within a
-  minute and a half and held for six minutes**; at the third **−7.8 %
-  for the first minute, −6.5 the next two, −6.0 the last four**. The
-  shape of 25/10 (H7, *the first idle on the new hose*: "about 3 points
-  of fuel arriving on their own" two minutes into the idle), then on
-  the bypass, here on the canister. **Read** (*reasoned*): **against
-  everything that is there from the idle's first second** — a rail
-  pressure that is simply high, an injector's characteristic or its
-  opening time against the supply, a probe's offset — as the whole of
-  the idle cell; each could still be the −2 to −3 % under the step.
-  **What steps inside a minute at a steady idle is the ECU's own
-  purge** (`vcds.md`, *070 on this ECU*), and it can push either way:
-  air through an empty canister leans (the ECU's own test of 15/11,
-  the controller to +7.8 %), vapour enriches (14/11, −7.8 %), and at
-  idle a sixth of b7 goes with the valve (`idle-log.md`, 15/11: 29 to
-  24). **Which state is the −6 % is not known**: purge shut, and the
-  rich offset is the engine's own with the purge's air hiding half of
-  it for the first minute; or purge open, and the idle cell learns the
-  canister's vapour — which a new valve that seals would not change,
-  as it did not (H16, *The second drive on the new N80*). No log holds
-  070 beside 001 and 032. **What decides it**: 001, 032 and 070 in one
-  log through a drive and a warm stop of five minutes, a capture
-  beside it — cell and regulation against the valve, read only
-  (`plan.md` 8x, *the owner*, 15/11 night: at the next session with
-  the laptop, which may be after the timing belt; **done 17/11**, `54`,
-  *On the new lower gasket, from zero*, above).
-  **Put together from what there is** (the same night, *the owner's
-  question*: are those blocks not on record already; 070 is, only on
-  15/11's two logs, beside 014 and 004): b7 on the bus for the valve
-  (S1, *The purge's phases on the older captures*, with its warnings —
-  the fan, a load and the drive's settling share the shape) against
-  the cells logged through `47`'s relearn drive
-  (`vcds/vcds-step8d-drive-014-032-036-2.csv`). **The idle cell stepped
-  at a standing idle six times (five down, one up), every time with b7 at its upper level
-  (25–29), and in none of the windows at the lower one (21–24)**, the
-  last 170 s of the drive among them. One of the six is clean: 70 s
-  into a stop b7 rose from 23 to 28.6 inside 10 s — a shut's shape —
-  and the cell went from −4.7 to −6.3 % in the 40 s after it; the
-  other five sit in a stop's first half minute, where b7 is high
-  anyway. **Leans to "learnt with the valve shut", so to the −6 %
-  being the engine's own and not the canister's vapour**; one event,
-  and b7 is not 070. Not against it: `49`'s stop held b7 at 25–28 for
-  three minutes with the cell still at −7.0 (nothing left to learn),
-  and at `50`'s stop the regulation stayed within ±0.8 % while b7 moved
-  between 20 and 27. Between the standing idles the cell moved
-  **towards zero while driving** (−5.5 → −3.9 % in 80 s of road, −4.7
-  → −3.9 % in under three minutes): the cell is learnt off idle too, where less is
-  taken out, so its figure also depends on how the drive ended.
-- **Whether it is the idle's** (*reasoned*): the adaptation itself, no
-  — the loop holds the mean mixture at λ = 1 with it or without (H8,
-  *Do 055 and 032 belong together?*). A shared cause, possibly: fuel or
-  air that reaches the cylinders unevenly leaves some lean and some
-  rich at a mean of 1, and a mixture that steps by 3–4 % inside a
-  minute is a step the loop takes seconds to follow. Against it for
-  cylinder 3's part: the swell moves neither the regulation nor the
-  injection time (S1, *The swell's shape, and what the common part
-  follows*), and it comes with the purge shut and open alike
-  (`refuted.md` C25).
-- **Other forms argued the same night, none measured** (*reasoned*):
-  the part-load cell need not be a second fault — an idle correction
-  carried into part load is answered by the other cell, and a few per
-  cent of lean under every load (the parts' tolerance, the oxygenates
-  of a 100-octane fuel) with a fixed rich amount at idle gives this
-  split, the fixed amount then nearer −12 % than −8; **the supply as
-  the ECU sees it** (H4, *The supply as the ECU sees it, against the
-  battery*) — an ECU that reads half a volt less than the injectors get
-  lengthens every injection by a fixed time, which counts only at the
-  idle's short ones and moves with the electrical loads, a part of the
-  cell at most; **an imbalance between the cylinders** — one cylinder
-  rich among lean ones biases a narrowband probe rich (*general*),
-  and 3 is short at idle and not under load, the split's shape, but the
-  regulation does not follow 3's swell; **the return line or the
-  regulator of 6/2026 holding the rail high only at idle**, where
-  nearly all the pump's flow returns — a form of H7's rail that 6e's
-  hose test does not see and 8u's gauge does.
-- **The split researched on its own** (15/11 night, *the owner's
-  request*; never done before — VW's evaluation of 032 in `vcds.md`
-  and the forums on the idle only). Nothing found is written for
-  M5.9.2 or the AQY; the vwvortex and newbeetle.org threads on a rich
-  idle on the AEG are behind a paywall and were read as search
-  extracts only.
-  - **Bosch's own sorting of mixture errors** (patent WO 02/18767 A1,
-    Robert Bosch GmbH, the background): an air mass meter's error
-    acts **multiplicatively**; leak air acts **additively per unit of
-    time**; **an error in compensating the injectors' pick-up delay
-    acts additively per injection**. Ross-Tech's wiki (*Fuel Trim
-    Info*) has the additive value hold the injectors open "a fixed
-    amount longer or shorter". So an additive cell that takes fuel
-    out is, in Bosch's terms, fuel arriving by itself per unit of
-    time, or every injection a fixed time too long.
-  - **What the idle cell is worth off idle** (*reasoned*, on the
-    assumption that this ECU applies it as a fixed time at every
-    load, which no source confirms for M5.9.2): the idle's injection
-    is 3.39 ms (002, `53`'s stop), so −8 % is about −0.27 ms; where
-    the injection is twice as long that is −4 %, and a part-load cell
-    of +6 % leaves about +2 %. **The split is then mostly one error
-    seen twice**, a fixed amount too much at idle, with a small lean
-    remainder under load — not a rich fault and a lean fault.
-  - **Purge and adaptation** (Bosch patent DE 35 02 573 C2, 1985, a
-    principle and not this ECU's calibration): the two exclude each
-    other — the purge is shut while the adaptation learns, phases of
-    minutes each, and the purge may be barred at idle. SSP 175
-    (pp. 35–36): an empty canister leans the mixture when the valve
-    opens, a full one enriches it. With `47`'s one clean event
-    (above): **the idle cell is learnt with the valve shut, so the
-    −6 % is not the canister's vapour**; 8x reads it directly
-    (**17/11**, `54`: the cell learnt to −7.0 with 070's valve at 0 %,
-    above).
-  - **VW's own list for an idle value low with part load normal**
-    (`vcds.md`): oil dilution (`refuted.md` C21), N80 open (the new
-    valve, H16), the air mass meter (a genuine new one, 24/9), the
-    probe or its heating (both new, 10/11), **a leaking injector and
-    fuel pressure too high — the two left, and both are 8u's
-    gauge**.
-  - **The trade's reading of opposite signs**: the air mass meter
-    (MOTOR magazine, *Fuel Trim Data: A Powerful Diagnostic Tool*;
-    Bavarian Technic's wiki, *Engine Mixture Adaptations*), a fuel
-    pressure regulator as its imitator. **The meter's type is
-    right**: the new one was bought at VW by the VIN (*owner*, 15/11),
-    06A 906 461 A, and the 2018 unit it replaced reads Bosch
-    0 280 218 002 on its housing and F 00C 2G2 032 on its insert (the
-    album, 24/9, 10:43 and 11:07) — the number sellers give for
-    461 A. **And it is on both meters, the new one from its first
-    hour**: the old unit had the idle cell at −5.5 and −4.7 % on 20/8
-    and 10/9 with its part-load cell at 0.0 and +1.6 %, before it
-    over-read (`refuted.md` C2: −16.4 / −13.3 % on 24/9, both cells,
-    a meter's multiplicative shape); on the new one the idle cell
-    went 0.0 → −1.6 → −3.1 % in the first 21 minutes of idling on the
-    day it was fitted (the album, 24/9, 13:17, 13:18, 13:38). So not
-    the element, and not a new meter soiling over the weeks. What
-    both meters share — the air's path to them, the plug, its earth
-    and 5 V, the ECU's input — is untested (`refuted.md` C22, *What
-    it does not refute*). **The air's path, as far as it is on
-    record** (*the owner's question*, 15/11 night): a meter reads a
-    sample of the stream and is calibrated for the flow its own box
-    hands it, so a disturbed stream misreads most at the idle's small
-    flow (*general*). Here the box is the car's own (`1C0 129 607 A`),
-    the grid ahead of the element is whole
-    (`photos/airbox-2026-10-12-outlet-maf.jpg`), the element new, and
-    the crack beside the meter's seat was sealed on 12/10
-    (`vehicle-history.md`) — air ahead of the meter is metered either
-    way — **with the idle cell negative before it and after**. Nothing
-    on record speaks for the air's path; the plug, its earth and 5 V
-    and the ECU's input are what is left of this group.
-  - **The meter's plug and its earth, the electrical side** (*the
-    owner's question*, 15/11 night). VW's check (*Checking air mass
-    meter*, this engine; contacts of the 5-pin plug): 2 the supply
-    from the fuel pump relay, 11–15 V with the engine running; 4 the
-    ECU's reference, 4.5–5.5 V with the ignition on; 3 the earth and
-    5 the signal, each to the ECU at 1.5 Ω at most — all read with the
-    plug off, so a contact of a few tenths of an ohm passes, since no
-    current flows through it. **Why it could be this** (*reasoned*,
-    not measured): contact 3 is the meter's only earth and carries its
-    heater's current back to the ECU; resistance in that path lifts
-    the meter's earth, and its signal with it, against the ECU, which
-    then reckons more air than the engine takes, meters more fuel and
-    has the loop take it back — a fixed offset, largest against the
-    idle's smallest flow: 032's shape. Shared by both meters, as the
-    car's half of the plug is. **One sign of the plug on record**:
-    after it was cleaned in 7/2026 the bad cold starts went for about
-    two weeks and came back (`idle-log.md`, *Before September 2026 — the history*;
-    *the owner*, recalled 15/11). A cold start runs open loop on the
-    meter's reading, so a contact that cleans and tarnishes again
-    over weeks would show there first (*reasoned*); weak — one
-    recollection, months later, in a summer of other changes (fresh
-    fuel, the old injectors), and S7 closed on the injectors and the
-    fuel (`refuted.md` D2). The wiggle test of 4/10 moved nothing
-    (`idle-log.md`), which a steady resistance would not either.
-    **Its test** (`plan.md` 8y, done 16/11; `refuted.md` C27) — the plug
-    off with the ignition on first, then probed from behind with the
-    engine running, main beam off and on.
-    **Found 15/11 night** (*the owner*; `idle-log.md`;
-    `photos/maf-plug-2026-11-15-*.jpg`): **the red lock in the car's
-    half of the plug is broken, and pieces of it lie in the meter's
-    half under contacts 2 and 1**; the pins clean. Plastic, so no
-    short. **What it can do** (*reasoned*): the lock holds each
-    contact forward against the pin's push, so a contact it no longer
-    holds can sit back and grip the pin's tip only, and pieces in the
-    recess can keep the halves from seating fully — either a contact
-    resistance, which a reading with the plug off cannot see. **The
-    plug-off readings** (ignition on, engine off, the car's half):
-    4 to the engine's earth 5.002 V, 4 to 3 the same — VW's
-    4.5–5.5 V, and the earth wire whole; 2 to 3 40 mV, dead as it
-    should be with the engine off; 5 to 3 9.8 mV; **1 to 3 4.6 V**,
-    a contact VW's page does not describe — an ECU input held up
-    while nothing answers it, by its look (*reasoned*); what it is,
-    the wiring diagram says. Nothing wrong at zero current, as
-    expected. **Every contact in the car's half holds** when pressed
-    from the front (*the owner*, 16/11), so the broken lock has not
-    let one sit back; what is left of the find is the pieces keeping
-    the halves from seating. **No running reading** (16/11): the plug's back cannot
-    be probed without breaking it (*the owner*); the plug cleaned and
-    seated is read by 032's idle cell over the next drives (`plan.md`
-    8y).
-    **16/11, the ECU unplugged** (`idle-log.md`): the meter's wires
-    to the ECU's plug 0.2–0.5 Ω, the leads' own figure, so whole (VW
-    1.5 Ω); **an earth point by the ECU found corroded** — green on
-    the crimps, one ring white
-    (`photos/earth-point-by-ecu-2026-11-16.jpg`); whose earth it is
-    the wiring diagram says. A corroded earth under the ECU shifts
-    everything the ECU measures against its own earth only if the
-    ECU's reference moves with it (*reasoned*); C26 measured no sender
-    moving with the loads at `53`'s stop, which is against a large
-    shift, not against a fixed one. Its voltage under current, before
-    and after cleaning, was not measured. **Settled 16/11**: the
-    plug and the earth cleaned, the battery's disconnect reset 032,
-    and **one gentle drive put the idle cell back at −5.5 %** (+5.5;
-    055 −1.22 g/s), as from every reset — neither made it
-    (`refuted.md` C27).
-  - **The supply as the ECU sees it, tested at the desk the same
-    night** (`vcds/vcds-step8h-loads1-004-033-036.csv`, 004 beside
-    the regulation through `53`'s load steps): the regulation's mean
-    −0.4 % at 13.2–13.4 V, −0.6 to −0.8 % at 12.8–13.0 V, −1.2 % in
-    the 19 samples at 12.6 V. **Half a point for half a volt at
-    most**, and the A/C's load sits in the same samples: not the idle
-    cell.
-  - **The regulator's reference is not it** (*the owner*, the same
-    night): 6e's hose off took the regulation to −8.6 and −10.2 %,
-    the whole step, so the regulator had its vacuum (`refuted.md`
-    C20); a pressure high under every load contradicts the part-load
-    cell. Of the rail, an injector that drips is left for the idle
-    cell, and the return's form above, which nothing has tested
-    (`plan.md` 8u).
-  - **Read together** (*reasoned*): the idle takes about 8 % less
-    fuel than the ECU reckons, a fixed amount, learnt with the purge
-    shut, on either set of injectors (the same part number, C2),
-    either air mass meter, either
-    pair of probes, either map and fresh oil, and (16/11) with the
-    meter's plug and the earth by the ECU cleaned (`refuted.md` C27).
-    Left: a drip or a return that throttles (8u), and the ECU's own
-    reckoning of a short injection. **The return's form** (*reasoned*):
-    a restriction between the regulator and the tank backs the rail up
-    by what the returning flow costs it, and the returning flow is
-    largest at idle, where the engine takes least — so the pressure
-    stands highest above the regulator's setting at idle and less under
-    load: the split's shape. 6e's hose test does not see it (the
-    regulator still answers its vacuum); VW's own pinching of the
-    return in the holding-pressure check shows how it reads on the
-    gauge.
-- **The cell over the three months** (*the owner's observation*: more
-  negative as the repairs go on): −5.5 % on 20/8 and −4.7 % on 10/9
-  (H11, *The idle cell over time*), −6.3 to −8.6 from 25/10, −9.4
-  twice on 14–15/11, −5.5 at the end of `53`'s 39-minute stop. Every
-  reading stands a different distance from a reset and after a
-  different drive, and by 8n's three idles the figure depends on the
-  minute it is read in; a drift of one step (0.8) in the low end is
-  not shown by that. **No repair moved it towards zero** — that
-  stands.
+**The old logs re-read for the split's form, and what the split is**
+(15/11 night and after; condensed
+17/11, the research — Bosch's sorting of mixture errors, the purge and
+adaptation patent, the trade's reading of opposite signs, the MAF's
+plug, the supply — in `git show 5741dfa:docs/engine-health/open.md`, this heading):
+- **With the cells learnt the regulation is flat everywhere** (16 logs
+  by speed and air per stroke: 85 of 99 cells within ±1.0 %), and **the idle cell is worth its figure**:
+  −8 % is about 8 % of the idle's fuel.
+- **The idle's extra fuel stepped in at a standing idle**: on 8n −2.4 %
+  for the first 80 s, then −5.9 % within a minute and a half — the
+  timescale of the ECU's purge; **learnt with the valve shut** (b7 on
+  the old logs, 070 on `54`), so **the −6 % is the engine's own, not the
+  canister's vapour** (H16 refuted, `refuted.md` C30).
+- **Ruled out by repair or test**: the injectors (both sets), either
+  MAF, either pair of probes, either map, the fuel, the regulator's
+  vacuum reference (C20), the purge (C30), the MAF's plug and the
+  ECU's earth (C27), the supply as the ECU sees it (half a point for
+  half a volt at most).
+- **Left — VW's own list for an idle value low with part load normal**:
+  **a leaking injector and fuel pressure too high**, both read by 8u's
+  gauge; and **the return's form** (*reasoned*): a restriction between
+  the regulator and the tank backs the rail up most at idle, where most
+  fuel returns — the split's shape, which 6e's hose test cannot see.
+  The ECU's own reckoning of a short injection is not excluded.
 
 ### S20. Engine speed wanders at a constant pedal
 
