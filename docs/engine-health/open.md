@@ -4091,8 +4091,10 @@ sees through a swell*):
   (00:42:05), pale in 1's, 2's dry**; the lower rings of 3 and 4 wet
   and dark, 1's and 2's less so; and on injector 4 (00:43:45) what
   looks like a split in the grey collar that holds the lower ring.
-  Whether the film is engine oil, the fitting oil or petrol's residue
-  is not known from a photograph.
+  **It is oil** (*owner*, at the part, 17/11), **perhaps what ran
+  down from the wrongly fitted cover gasket of 2–3/10** (*his
+  reading*); the bores wiped dry by him. Whether it lay above the
+  lower rings only or below them too is not known.
   **the oil fell on 3 and 4, and 3 and 4 are where the engine is
   worst inside** — the borescope's deposit 3 > 4 > 2 > 1 (H13), the
   inlet seats' crust thick and broken on 3, beaded on 4, an even
