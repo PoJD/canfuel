@@ -21,7 +21,8 @@ One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Next: 8q, the timing belt
 at a garage, 7/12**; then item 9; **the new rear probe when the seller
 sends it** (8e), **its harness at the end**; **8u, 8v, 8w by
-opportunity** (*the owner*, 15/11). *What is done is `idle-log.md` and
+opportunity** (*the owner*, 15/11), and **6r**, the owner's scope, best
+before 8q (17/11). *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
 
 **6. Drive normally; the MFD back in from 15/11** (*the owner*, after
@@ -71,6 +72,24 @@ for all four: its own resistance measured end to end and taken off.
 **From contact 2 of each injector connector to its pin: 73 (cylinder
 1), 80 (2), 58 (3), 65 (4)**; check the numbers on the plug, and enter
 its sockets only with a thin pin of the right size, never a meter tip.
+
+**6r. The oscilloscope on injectors 3 and 2 and on the two senders**
+(*the owner*, 17/11 evening: his own scope; by opportunity, best
+before 8q). A warm idle, oil 90 °C or more, the everyday state; the
+probes only back-probed into the connectors from behind, nothing
+pierced, nothing written to the ECU:
+
+- **Injector 3 against injector 2**: one channel on contact 2 of each
+  (the ECU's side), the scope's earth at the battery's minus; a few
+  seconds with every load off and a few with the A/C on; if a capture
+  runs, a few more in a swell when Claude says so. A current clamp on
+  one injector's wire as well, if one is to hand.
+- **G28 and G40 together**, one channel on each sender's signal wire
+  (Claude says which before), 30 s of warm idle; the same again with
+  the same settings after the new belt (8q).
+
+The files, or screenshots showing the time base and the volts per
+division, into the chat.
 
 **7. Only if Claude asks after 6:**
 
@@ -131,7 +150,9 @@ of this plan, *the owner's decision* of 9/10):
 **8q. The timing belt renewed at a garage, 7/12** (*the owner's decision*,
 13/11; the date *the owner*, 16/11): the belt, its tensioner and idler, and the water pump.
 **Before the old belt is loosened**, the mechanic sets the crank to
-TDC of cylinder 1 and says how many teeth the camshaft sprocket's
+TDC of cylinder 1 — by the flywheel's mark in the gearbox window
+(VW's reference) or the piston at plug 1, not by the pulley's notch —
+and says how many teeth the camshaft sprocket's
 mark is off its mark, which way, and photographs both marks; the
 answer into the chat. Before the garage: **`54`'s warm stop** (17/11,
 after the gasket) is the one the belt is set against. After it: the
@@ -176,6 +197,12 @@ always** (a P0303 stored with no cut: its time is what the log gives).
     into the chat;
 - With VCDS connected anyway after a stored P030x: **a generic
   OBD-II read** (modes 02 and 06), read only, saved.
+- **Kept, not now** (*the owner*, 17/11 evening): the warm leak-down
+  above done at 8q's visit instead, before the old belt is loosened;
+  and, at a garage that has them, **a running in-cylinder pressure
+  trace on 3** (a transducer in plug 3's hole, injector 3 unplugged,
+  cylinder 2 as the reference) before and after the belt, and **the
+  secondary ignition lead by lead**.
 - **No head off** (*the owner*, 4/11, leaning, not final): if the
   leak-down names 3's exhaust seat, the car is driven as it is and S1
   most likely closed as *acceptable, cause known*.
@@ -442,12 +469,12 @@ still clears nothing, a leaking one names it.
 **8q, the timing belt at a garage, 7/12** (*the owner's decision*, 13/11,
 after 8i): 8i read the cam's OT mark set and the crank pulley's one
 notch 30–60° of crank from the groove on the block by eye
-(`open.md`, the row A1) — 2.2–4.3 teeth of 13.85° (1.0–3.0 by the
+(`open.md`, the row A2) — 2.2–4.3 teeth of 13.85° (1.0–3.0 by the
 owner's fingers) with the cam advanced if those are the true marks;
 the groove is not one of VW's references (the same row, 17/11) (the direction the owner's, read
 off the part), which the flat full-load pulls and the air the engine takes at full
 throttle argue against (485 mg a stroke at 5,200 rpm against 496 at
-2,400, 85–90 g/s at the top; the row A1); the
+2,400, 85–90 g/s at the top; the row A2); the
 piston at plug 1 that would have settled it was declined. The belt
 is nine years old (10/2017), so renewing it loses nothing either way,
 and the owner leaves the work to a garage. **What makes it a test**:
@@ -462,6 +489,32 @@ moved — down by a clear step if the cam was out, unchanged if it was
 not (H0 then gains). Nothing in 8i was loosened;
 VW's 5 mm at the crank was for the Mk4 2.0; VW's own procedure for
 the AQY's family was read 17/11 (the same section).
+
+**Why the flywheel or the piston, not the pulley** (the fourth
+research, 17/11; `open.md`, *What the forums say*, searched again
+17/11): VW sets the crank by the damper's mark against the bottom belt
+guard and checks it by the flywheel's mark; the damper's outer ring can
+slip on its rubber, so the notch alone could carry 8i's error into the
+mechanic's count.
+
+**6r, the scope** (the fourth research, 17/11; `open.md` H4 and the
+row A2): a raised resistance in 3's control wire or a weak output
+stage delays the opening and leaves a higher voltage across the
+switch, which an output stage of the usual kind does not diagnose;
+every other cause predicts 3 and 2 alike, and 6n's ohms at rest cannot
+see a fault under current. G28 against G40 puts the cam's phase on the
+crank's wheel with no marks read, so a tooth shows as 13.85° between
+before and after the belt; no trace of a healthy AQY was found, so it
+is read before against after.
+
+**Item 9's options kept** (*the owner*, 17/11 evening; the fourth
+research): at 8q's visit the engine is hot and the plugs may come out
+anyway, which is why the leak-down could move there; a running
+pressure trace reads 3's sealing unfired and the cam's timing from its
+ramps (Pico's guided tests; a tooth hard to see cranking, plain at
+idle); the secondary ignition reads a lean or diluted cylinder as a
+high, short spark line and a leaking valve as low kV with hash. A seat
+that leaks only while 3 fires hot may pass both static tests.
 
 **8f, 032 at every session**: the battery was out once more after the
 probes' harness was taped (10/11 late night), and the clear of P0137
