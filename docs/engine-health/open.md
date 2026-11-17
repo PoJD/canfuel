@@ -158,7 +158,8 @@ the end; standing: **8f** at every VCDS session, **6i** the oil level
 about 156,400 km, the MFD's `IdleHealth` and `Misfires` at warm stops;
 by opportunity (*the owner*, 15/11): **8u** the fuel pressure, **8v** the plugs at their change,
 **8w** the cylinder 4 knock window, and (17/11) **6r** the owner's scope
-on injectors 3 and 4 and on G28/G40, best before 8q, and **6s** GM's
+on injectors 3 and 4 and on G28/G40, best before 8q; **6t** two cans of
+BG 44K Platinum and a captured drive at their end, before 8q; and **6s** GM's
 cleaner drawn in for the valves' carbon (the head stays on, *the
 owner*).
 
@@ -963,9 +964,11 @@ can, with a clean pair; not the hydrogen, with the cleanest pair there
 is; the 44K tanks cannot be read apart from four other changes, and
 what sits across them is 014's share halving and cylinder 1 coming
 down — neither is 3's deficit, which in a swell is what it was in
-September. **For another can in the tank the record gives no ground**
+September. **For another can in the tank the record gave no ground**
 (*reasoned*; the injectors are new since 23/9, and the strongest clean
-of the chambers left 3 where it was). **And the idle does move where
+of the chambers left 3 where it was) — *until 17/11 evening, when the
+time on the floor was read by capture: it rose across the 44K week, so
+6t repeats it*. **And the idle does move where
 014 and the display do not show it** — in how much of a stop is floor,
 which the mean hides because the swells have grown rougher again.
 
@@ -2955,8 +2958,11 @@ hydrogen left 3's weak strokes in a swell where September had them
 (21–30 per 1000 at −16 to −23 %) and the grade's mean at 61–67 since
 12/10; the hydrogen gave one afternoon of shallower swells. For: 014's
 share halved in the week of the 44K tanks — with the regulator's hose
-and the oil in the same week. Another can in the tank is not planned
-(*reasoned*; for the owner to decide).
+and the oil in the same week. *Another can was not planned until
+17/11 evening*: the time 3 spends on its floor rose from 0–20 % to
+21–81 % across that same week, and not after the Liqui Moly can of
+15/10 (S1, *The floor and the common part read apart*), so **two more
+cans of BG 44K Platinum** (`plan.md` 6t, *the owner's decision*).
 
 *Added 15/10 at the owner's request.* The engine seldom saw more than
 3000 rpm for at least nine years (*owner*). Gentle use builds deposits where

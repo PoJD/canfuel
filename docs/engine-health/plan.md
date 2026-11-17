@@ -22,7 +22,8 @@ Captures only where an item asks for one. **Next: 8q, the timing belt
 at a garage, 7/12**; then item 9; **the new rear probe when the seller
 sends it** (8e), **its harness at the end**; **8u, 8v, 8w by
 opportunity** (*the owner*, 15/11), and **6r**, the owner's scope, best
-before 8q, and **6s**, the cleaner drawn in (17/11). *What is done is `idle-log.md` and
+before 8q, **6t**, two cans of BG 44K Platinum and a captured drive before 8q,
+and **6s**, the cleaner drawn in (17/11). *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
 
 **6. Drive normally; the MFD back in from 15/11** (*the owner*, after
@@ -95,6 +96,15 @@ pierced, nothing written to the ECU:
 
 The files, or screenshots showing the time base and the volts per
 division, into the chat.
+
+**6t. Two cans of BG 44K Platinum, before 8q** (*the owner*, 17/11
+evening): the same product as in October, **208** and "Platinum" on the
+can. The first into 15–20 l, the second into a full tank after it;
+each tank driven briskly, with revs. Nothing else changed meanwhile —
+no oil change, no other cleaner. **At the end of the second tank, before
+7/12, a captured drive** to a warm stop of at least ten minutes, the
+everyday state, as 6's captures. Each can into the chat when it goes
+in, with the odometer.
 
 **6s. The valves' carbon cleaned from the intake, GM's way** (*the
 owner*, 17/11 evening; by opportunity). Outdoors, the engine warm:
@@ -533,6 +543,20 @@ common part read apart*). G28 against G40 puts the cam's phase on the
 crank's wheel with no marks read, so a tooth shows as 13.85° between
 before and after the belt; no trace of a healthy AQY was found, so it
 is read before against after.
+
+**6t, the 44K again** (*the owner's decision*, 17/11 evening;
+`open.md` S1, *The floor and the common part read apart*): the level of
+3's floor has not moved since 24/9, but the time 3 spends on it rose
+from 0–20 % of the warm idle to 21–81 % across the week of 23–29/10 —
+two tanks of 44K, the regulator's hose, the EPR flushes and new oil —
+and not after the Liqui Moly can of 15/10, which the flake of 18/10
+followed. The same product, so the result compares with October's;
+nothing else changed, so it is the fuel's side alone; the capture before
+8q, so the belt's comparison starts from it and the two do not merge.
+Read against `54` (the floor 34 % of the time, its level −8.6 %): the
+time on the floor, its level, the swells' depth. If it moves nothing,
+the oil's side (an EPR flush with the next oil change) is what is left
+of that week.
 
 **6s, the cleaner drawn in** (*the owner*, 17/11 evening; the fourth
 research, `open.md`, *What the forums say*, searched again 17/11): GM's
