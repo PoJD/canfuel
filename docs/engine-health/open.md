@@ -864,6 +864,17 @@ something else; scripts not kept).
   flame vary on all four is burnt gas kept (the cam's timing, the
   belt), a lean or uneven mixture, or this engine's design (H0); the
   data do not choose.
+- **The common part by cylinder** (each cylinder's step about its own
+  median, weak strokes and two either side out, warm, 26 captures;
+  the engine's own share after the bus's 1.8 rpm is taken out in
+  quadrature): **3 > 4 ≈ 1 > 2 at every capture** — 3 about 3.4–3.7 rpm
+  since mid-October (4.0–4.2 in September), 4 2.6–3.0 (4.1 on `19`,
+  the old MAF), 1 2.5–3.1, 2 1.8–2.6, steadiest; on the provider's gas
+  3 2.0, 4 1.5, 1 1.2, 2 0.6. So it is not alike on all four: it
+  follows the cylinders' order of the cold weak strokes (3 > 4 > 1 > 2)
+  and nearly the deposit's (3 > 4 > 2 > 1), and since 10/10 moved only
+  where 4 came down. ⚠ The bus's noise is assumed the same on every
+  slot.
 - **The mixture's swing cannot be read per stroke**: the injection
   time on 0x288 b6 moves in steps of 2 counts, about 5 %, against the
   loop's ±2.5 %, and VCDS is too slow and too loosely aligned.
