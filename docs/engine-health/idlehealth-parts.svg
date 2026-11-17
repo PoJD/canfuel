@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 562" width="100%" style="max-width:780px" font-family="Helvetica,Arial,sans-serif" role="img" aria-label="What IdleHealth is made of">
+<rect width="780" height="562" fill="#fcfcfb"/>
+<text x="40" y="30" font-size="18" font-weight="bold" fill="#111">What IdleHealth is made of</text>
+<text x="40" y="50" font-size="12" fill="#555">A typical warm standing idle, the everyday state: about 68 (the mean since 12/10 is 61–67). Lower is calmer.</text>
+<text x="40" y="82" font-size="13" font-weight="bold" fill="#111">How a typical 68 splits (12/11, 497 warm windows of 20 captures)</text>
+<rect x="40.0" y="92" width="46.7" height="34" fill="#9a9994"/>
+<rect x="86.7" y="92" width="128.3" height="34" fill="#c0503a"/>
+<rect x="215.0" y="92" width="221.7" height="34" fill="#2f6fb0"/>
+<text x="86.7" y="140" font-size="11" fill="#555" text-anchor="middle">8</text>
+<text x="215.0" y="140" font-size="11" fill="#555" text-anchor="middle">30</text>
+<text x="436.7" y="140" font-size="11" fill="#555" text-anchor="middle">68</text>
+<rect x="40" y="150" width="12" height="12" fill="#9a9994"/>
+<text x="60" y="160" font-size="13" font-weight="bold" fill="#111">the crank wheel</text>
+<text x="60" y="175" font-size="11.5" fill="#444">≈ 8 · no repair lowers it</text>
+<rect x="40" y="184" width="12" height="12" fill="#c0503a"/>
+<text x="60" y="194" font-size="13" font-weight="bold" fill="#111">B · cylinder 3's steady deficit</text>
+<text x="60" y="209" font-size="11.5" fill="#444">≈ 22 · plus its weak strokes (the misfires 014 counts) inside the rest</text>
+<rect x="40" y="218" width="12" height="12" fill="#2f6fb0"/>
+<text x="60" y="228" font-size="13" font-weight="bold" fill="#111">A · the common part, on all four</text>
+<text x="60" y="243" font-size="11.5" fill="#444">≈ 38 · 2.6–3.2 rpm rms a stroke, moved by no repair</text>
+<text x="40" y="280" font-size="13" font-weight="bold" fill="#111">What has been measured</text>
+<rect x="121.7" y="294" width="87.5" height="12" rx="2" fill="#5b6b63"/>
+<text x="226.8" y="304" font-size="11.5" fill="#222" text-anchor="start">the provider's gas, 9/11 14–29</text>
+<rect x="250.0" y="314" width="52.5" height="12" rx="2" fill="#5b6b63"/>
+<text x="308.5" y="324" font-size="11.5" fill="#222" text-anchor="start">calmest floor stops 36–45</text>
+<rect x="395.8" y="334" width="35.0" height="12" rx="2" fill="#5b6b63"/>
+<text x="436.8" y="344" font-size="11.5" fill="#222" text-anchor="start">the mean since 12/10 61–67</text>
+<rect x="442.5" y="354" width="99.2" height="12" rx="2" fill="#5b6b63"/>
+<text x="547.7" y="364" font-size="11.5" fill="#222" text-anchor="start">inside a swell of 3's 69–86</text>
+<rect x="681.7" y="374" width="35.0" height="12" rx="2" fill="#5b6b63"/>
+<text x="675.7" y="384" font-size="11.5" fill="#222" text-anchor="end">the old MAF, 24/9 110–116</text>
+<line x1="215.0" x2="215.0" y1="288" y2="396" stroke="#1f6f5c" stroke-width="2" stroke-dasharray="5,3"/>
+<text x="219.0" y="408" font-size="11.5" fill="#1f6f5c" font-weight="bold">S1 closes: under 30</text>
+<text x="40.0" y="424" font-size="10" fill="#888" text-anchor="middle">0</text>
+<text x="156.7" y="424" font-size="10" fill="#888" text-anchor="middle">20</text>
+<text x="273.3" y="424" font-size="10" fill="#888" text-anchor="middle">40</text>
+<text x="390.0" y="424" font-size="10" fill="#888" text-anchor="middle">60</text>
+<text x="506.7" y="424" font-size="10" fill="#888" text-anchor="middle">80</text>
+<text x="623.3" y="424" font-size="10" fill="#888" text-anchor="middle">100</text>
+<text x="740.0" y="424" font-size="10" fill="#888" text-anchor="middle">120</text>
+<line x1="40" x2="740" y1="413" y2="413" stroke="#ccc"/>
+<text x="40" y="446" font-size="13" font-weight="bold" fill="#111">What each part could give (reasoned)</text>
+<rect x="261.7" y="462" width="46.7" height="12" rx="2" fill="#c0503a" fill-opacity="0.55"/>
+<text x="314.3" y="472" font-size="11.5" fill="#222">3 made level (B gone): ≈ 38–46</text>
+<rect x="84.7" y="482" width="4" height="12" fill="#2f6fb0"/>
+<text x="94.7" y="492" font-size="11.5" fill="#222">A gone as well: 8 + a healthy engine's own scatter, not known</text>
+<rect x="84.7" y="502" width="4" height="12" fill="#9a9994"/>
+<text x="94.7" y="512" font-size="11.5" fill="#222">the wheel: ≈ 8 stays on every engine with this wheel</text>
+<text x="40" y="536" font-size="10.5" fill="#555">The parts do not add exactly: the grade counts steps above a dead-band, so with less of A, 3's deficit counts less too</text>
+<text x="40" y="550" font-size="10.5" fill="#555">(on the provider's gas 14–29 with 3 still at −9 to −13 %). 014 sees only B's misfires — neither A nor the wheel.</text>
+</svg>

@@ -211,6 +211,25 @@ reset as on settled drives, and only 4/10 A was quiet (`refuted.md` C19,
 2/11) — and `IdleHealth` on fresh ones (3/10 61–68, 4/10 A 72–74, 27/10
 about 50) sits inside the settled range, so it is not shown either way.
 
+**What `IdleHealth` is made of** (17/11, *the owner's request* to have
+it in one place; the split of 12/11, *A steady pattern over the
+cylinders*, below; drawn in `idlehealth-parts.svg` and in
+`idle-log.md`). Of a typical warm grade of about 68 (497 warm 30 s
+windows of 20 captures): **about 8 the crank wheel's alternation** — no
+combustion, on every engine with this wheel, nothing lowers it; **about
+22 the cylinders' steady differences, 3's** — list B, with 3's weak
+strokes, the misfires 014 counts, a few points more inside the rest
+(*reasoned*: about five a minute on the floor, more in a swell); **about
+38 the rest, the common part** — list A, 2.6–3.2 rpm rms a stroke on
+all four, which 014 does not count. **What each could give**
+(*reasoned*): 3 level, about 38–46; the common part gone as well, the
+wheel's 8 and a healthy engine's own scatter, which no recording here
+gives. The parts do not add exactly: the grade counts steps above a
+dead-band, so less of A makes 3's deficit count less too — **the
+provider's gas gave 14–29 with 3 still 9–13 % short** (*The clean of
+9/11*). Measured for scale: the calmest floor stops 36–45, the mean
+since 12/10 61–67, a swell's windows 69–86, the old MAF 113.
+
 **What one dip is worth.** Engine speed on 0x280 is recomputed once per 180°
 of crank, one power stroke (`docs/firmware/can-decoding.md` trap 5), so a dip
 is one cylinder's stroke. A stroke that gives nothing costs an estimated
@@ -4117,11 +4136,10 @@ re-reads before 12/11, `git show 296a5d7:docs/engine-health/open.md`).
 **Two lists since 12/11** (*the owner's decision*, the lists proposed by
 Claude): the idle is two things on top of each other, measured apart
 (*Where it stands*). **Cylinder 3's part** — its steady deficit, its
-swells and 014's misfires — is about a third of `IdleHealth`, of which
-about an eighth of the whole grade is the crank wheel's own alternation,
-not combustion (S1, *A steady pattern over the cylinders*). **The rest,
-about two thirds, is the common part**, with no pattern over the
-cylinders. A hypothesis goes in the list whose part it can make; H7 had
+swells and 014's misfires — is about a third of `IdleHealth`; **the
+crank wheel's own alternation** is about an eighth more, not
+combustion; **the rest, a little over half, is the common part**, with
+no pattern over the cylinders (S1, *What `IdleHealth` is made of*). A hypothesis goes in the list whose part it can make; H7 had
 a form in each until 17/11. List B before list A (*agreed with the
 owner*, 12/11): S3 and the grade's swings are B's.
 

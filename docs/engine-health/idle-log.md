@@ -55,6 +55,38 @@ four hundred of them, read off the CAN bus (`open.md` S1).
 **The ECU regulates correctly; the engine has lost the margin** to absorb a
 charge one per cent smaller than usual. Where it went is the open question.
 
+## What the idle is made of, in one picture
+
+![What IdleHealth is made of](idlehealth-parts.svg)
+
+*Added 17/11/2026, at the owner's request; the source is `open.md` S1,
+under the heading of the same name.* The idle is **two things on top of each
+other, and a third that is not the engine at all**. Of a typical warm
+`IdleHealth` of about 68:
+
+1. **The crank wheel, about 8.** The toothed wheel the ECU reads engine
+   speed from makes cylinders 1 and 4 read 1.7 rpm low at idle and 2 and
+   3 high. No combustion is in it; every engine with this wheel shows it
+   on the display, and no repair can lower it.
+2. **B — cylinder 3, about 22**, and a few more inside the rest. Cylinder
+   3 gives less than the others at every warm idle since at least
+   August: a floor of about −6 to −9 % of a stroke that swells over
+   minutes to −20 to −28 % and falls back. Its weak strokes are **the
+   misfires group 014 counts** — 80–90 % of them are 3's. This is list B
+   in `open.md`; fixed, the grade would drop to roughly 38–46
+   (*reasoned*).
+3. **A — the common part, about 38.** A small unevenness on all four
+   cylinders, 2.6–3.2 rpm rms a stroke at every warm idle since 24/9,
+   moved only by a load, the provider's gas and temperature, never by a
+   repair. 014 does not count it. This is list A; whether a healthy AQY
+   has less is not known (H0).
+
+The three do not add exactly: the grade counts the steps above a
+dead-band, so a smaller common part also makes 3's deficit count less —
+**the provider's gas made 14–29 with 3 still 9–13 % short** (9/11).
+S1 closes under 30 (*the owner*, 12/11): that needs B gone and most of
+A, since the wheel's 8 stays.
+
 ---
 
 ## The car, the symptoms, and the instruments
