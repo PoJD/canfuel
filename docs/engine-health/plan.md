@@ -73,7 +73,7 @@ for all four: its own resistance measured end to end and taken off.
 1), 80 (2), 58 (3), 65 (4)**; check the numbers on the plug, and enter
 its sockets only with a thin pin of the right size, never a meter tip.
 
-**6r. The oscilloscope on injectors 3 and 2 and on the two senders**
+**6r. The oscilloscope on injectors 3 and 4 and on the two senders**
 (*the owner*, 17/11 evening: his own scope; by opportunity, best
 before 8q). A warm idle, oil 90 °C or more, the everyday state; the
 probes only back-probed into the connectors from behind, nothing
@@ -525,7 +525,7 @@ mechanic's count.
 row A2): a raised resistance in 3's control wire or a weak output
 stage delays the opening and leaves a higher voltage across the
 switch, which an output stage of the usual kind does not diagnose;
-every other cause predicts 3 and 2 alike, and 6n's ohms at rest cannot
+every other cause predicts 3 and 4 alike, and 6n's ohms at rest cannot
 see a fault under current; **since 17/11 evening the floor's own
 test** — 3's floor is a fixed amount that load does not shrink, as
 fuel short by a fixed amount is (`open.md` S1, *The floor and the
