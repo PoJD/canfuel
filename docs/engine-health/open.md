@@ -4095,6 +4095,24 @@ sees through a swell*):
   down from the wrongly fitted cover gasket of 2–3/10** (*his
   reading*); the bores wiped dry by him. Whether it lay above the
   lower rings only or below them too is not known.
+  **The lower manifold off, 17/11** (the album, 01:28–01:59, each set
+  1-2-3-4): *owner* — **no finding of consequence**; the old gasket
+  certainly the original and much worn, black composite, **torn only
+  at its lower strap**, so 4's ring held about half on once the
+  manifold was off; **layers of oil with sludge in places on the
+  manifold, at 2 and 3**; the one thing 3 may have worst, by eye, is
+  **the gasket's imprint in the flange by the upper bolt**; all washed
+  in benzine; inlet valve 3 stood open and its seat, as far as it
+  shows, looks sound (01:47:08). *Claude's reading of the frames*:
+  before the wash, **a yellow-brown line of oil along the outer edge
+  of the flange at every runner, and at 4 a streak across the land
+  from the edge to the port** (01:32:13), **brown oil running down
+  the head below port 4** (01:29:58); the sludge in the runners is on
+  all four (01:32:20–30), not on 3 alone. After the faces were
+  washed, **a dark brown liquid stands round the backs of inlet valves
+  2, 3 and 4** (01:44:27–01:45:06) — oil, or the benzine of the wash
+  with what it dissolved: not known. Nothing in the frames marks 3
+  out from 4.
   **the oil fell on 3 and 4, and 3 and 4 are where the engine is
   worst inside** — the borescope's deposit 3 > 4 > 2 > 1 (H13), the
   inlet seats' crust thick and broken on 3, beaded on 4, an even
