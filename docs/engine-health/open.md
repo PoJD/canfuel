@@ -602,6 +602,22 @@ condensed 17/11, the full argument in `git show 5741dfa:docs/engine-health/open.
   (the belt a tooth out); not a source that changes by the day (the
   probes, the purge, the rail after a hot drive, the stems all tried).
   **The belt's renewal (8q) is its test.**
+- **What the shape allows, read together 17/11** (*the owner's
+  request*; *reasoned*): a relaxation — slow build, a fall that leaves
+  3 better than its floor for two minutes — of **something physical**
+  (it survives a warm engine-off), **driven by the idle's vacuum** (a
+  load masks it), **that slows 3's burn** (the advance, the louder
+  pulse) **and adds neither air nor fuel the MAF misses** (the mean
+  unmoved). That is **a seat holding burnt gas** — the exhaust seat's
+  soft deposit fouling and burnt off, or the inlet seat's crust — with
+  a stem that sticks and frees as the next; oil or coolant pooling at
+  3, a lifter bleeding down (it would tick) and a deposit soaking fuel
+  (the mean would move) fit worse. **Electrical causes fit the swell
+  badly**: fuel short on 3 would move the mean, the supply is flat
+  through it, the spark is ruled out at full load, and nothing
+  electrical would be cleaned by the hydrogen or run better than the
+  floor after a fall. 6r in a swell settles the injector's side; the
+  floor is a separate question (H4).
 
 **The queue drive, and what the ECU sees through a swell** (12/11
 evening, `50`; condensed 17/11, the full text in `git show 5e1ddf2:docs/engine-health/open.md`, this heading).
