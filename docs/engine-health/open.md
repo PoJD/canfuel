@@ -874,7 +874,8 @@ something else; scripts not kept).
   follows the cylinders' order of the cold weak strokes (3 > 4 > 1 > 2)
   and nearly the deposit's (3 > 4 > 2 > 1), and since 10/10 moved only
   where 4 came down. ⚠ The bus's noise is assumed the same on every
-  slot.
+  slot. Drawn with what each cylinder gives in
+  `cylinders-share.svg` (`idle-log.md`).
 - **The mixture's swing cannot be read per stroke**: the injection
   time on 0x288 b6 moves in steps of 2 counts, about 5 %, against the
   loop's ±2.5 %, and VCDS is too slow and too loosely aligned.

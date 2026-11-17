@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 571" width="100%" style="max-width:780px" font-family="Helvetica,Arial,sans-serif" role="img" aria-label="What each cylinder gives, and how much it wobbles">
+<rect width="780" height="571" fill="#fcfcfb"/>
+<text x="20" y="28" font-size="18" font-weight="bold" fill="#111">What each cylinder gives, and how much it wobbles</text>
+<rect x="20" y="40" width="14" height="4" fill="#5b7fa6"/><text x="38" y="46" font-size="12" fill="#222">cylinder 1</text>
+<rect x="110" y="40" width="14" height="4" fill="#c0503a"/><text x="128" y="46" font-size="12" fill="#222">cylinder 3</text>
+<rect x="200" y="40" width="14" height="4" fill="#d08a1a"/><text x="218" y="46" font-size="12" fill="#222">cylinder 4</text>
+<rect x="290" y="40" width="14" height="4" fill="#2e8b57"/><text x="308" y="46" font-size="12" fill="#222">cylinder 2</text>
+<text x="20" y="78" font-size="12.5" font-weight="bold" fill="#111">A · each cylinder against the four's mean, % of a stroke's work (warm idle, by repair)</text>
+<line x1="60" x2="740" y1="265.0" y2="265.0" stroke="#e3e3e3"/><text x="54" y="269.0" font-size="10" fill="#666" text-anchor="end">-20</text>
+<line x1="60" x2="740" y1="217.8" y2="217.8" stroke="#e3e3e3"/><text x="54" y="221.8" font-size="10" fill="#666" text-anchor="end">-10</text>
+<line x1="60" x2="740" y1="170.6" y2="170.6" stroke="#999"/><text x="54" y="174.6" font-size="10" fill="#666" text-anchor="end">0</text>
+<line x1="60" x2="740" y1="123.3" y2="123.3" stroke="#e3e3e3"/><text x="54" y="127.3" font-size="10" fill="#666" text-anchor="end">+10</text>
+<polyline points="75.0,231.9 147.2,250.8 219.4,236.7 291.7,231.9 363.9,260.3 436.1,241.4 508.3,231.9 580.6,229.6 652.8,227.2 725.0,227.2" fill="none" stroke="#c0503a" stroke-width="2"/>
+<polyline points="75.0,213.1 147.2,175.3 219.4,180.0 291.7,184.7 363.9,161.1 436.1,161.1 508.3,161.1 580.6,165.8 652.8,165.8 725.0,161.1" fill="none" stroke="#d08a1a" stroke-width="2"/>
+<polyline points="75.0,137.5 147.2,132.8 219.4,132.8 291.7,132.8 363.9,123.3 436.1,142.2 508.3,156.4 580.6,151.7 652.8,146.9 725.0,151.7" fill="none" stroke="#5b7fa6" stroke-width="2"/>
+<polyline points="75.0,99.7 147.2,123.3 219.4,132.8 291.7,132.8 363.9,137.5 436.1,137.5 508.3,132.8 580.6,132.8 652.8,142.2 725.0,137.5" fill="none" stroke="#2e8b57" stroke-width="2"/>
+<text transform="translate(75.0,277) rotate(30)" font-size="9.5" fill="#555">24/9 old MAF</text>
+<text transform="translate(147.2,277) rotate(30)" font-size="9.5" fill="#555">24/9–9/10</text>
+<text transform="translate(219.4,277) rotate(30)" font-size="9.5" fill="#555">10–12/10 leads</text>
+<text transform="translate(291.7,277) rotate(30)" font-size="9.5" fill="#555">15/10 LM can</text>
+<text transform="translate(363.9,277) rotate(30)" font-size="9.5" fill="#555">18/10 flake</text>
+<text transform="translate(436.1,277) rotate(30)" font-size="9.5" fill="#555">21/10 VW leads</text>
+<text transform="translate(508.3,277) rotate(30)" font-size="9.5" fill="#555">3/11</text>
+<text transform="translate(580.6,277) rotate(30)" font-size="9.5" fill="#555">9–10/11</text>
+<text transform="translate(652.8,277) rotate(30)" font-size="9.5" fill="#555">12–14/11</text>
+<text transform="translate(725.0,277) rotate(30)" font-size="9.5" fill="#555">17/11 gasket</text>
+<text x="20" y="338" font-size="12.5" font-weight="bold" fill="#111">B · how much each stroke wobbles about the cylinder's own mean (rpm rms, the bus's noise out), capture by capture</text>
+<line x1="60" x2="740" y1="505.0" y2="505.0" stroke="#e3e3e3"/><text x="54" y="509.0" font-size="10" fill="#666" text-anchor="end">0</text>
+<line x1="60" x2="740" y1="472.4" y2="472.4" stroke="#e3e3e3"/><text x="54" y="476.4" font-size="10" fill="#666" text-anchor="end">1</text>
+<line x1="60" x2="740" y1="439.8" y2="439.8" stroke="#e3e3e3"/><text x="54" y="443.8" font-size="10" fill="#666" text-anchor="end">2</text>
+<line x1="60" x2="740" y1="407.2" y2="407.2" stroke="#e3e3e3"/><text x="54" y="411.2" font-size="10" fill="#666" text-anchor="end">3</text>
+<line x1="60" x2="740" y1="374.6" y2="374.6" stroke="#e3e3e3"/><text x="54" y="378.6" font-size="10" fill="#666" text-anchor="end">4</text>
+<polyline points="75.0,395.8 98.8,412.7 122.5,414.7 146.2,417.3 170.0,402.6 193.8,409.8 217.5,422.2 241.2,431.0 265.0,405.5 288.8,422.8 312.5,425.1 336.2,416.6 360.0,403.6 383.8,404.2 407.5,411.7 431.2,417.0 455.0,417.0 478.8,407.2 502.5,413.7 526.2,411.7 550.0,412.7 573.8,410.4 597.5,415.3 621.2,417.0 645.0,404.9" fill="none" stroke="#5b7fa6" stroke-width="2"/>
+<polyline points="75.0,370.3 98.8,368.4 122.5,373.6 146.2,378.5 170.0,371.3 193.8,375.9 217.5,385.7 241.2,392.5 265.0,383.7 288.8,392.8 312.5,402.9 336.2,361.5 360.0,381.7 383.8,388.9 407.5,382.7 431.2,399.0 455.0,402.9 478.8,388.3 502.5,396.4 526.2,407.2 550.0,388.3 573.8,391.2 597.5,391.8 621.2,393.8 645.0,386.0" fill="none" stroke="#c0503a" stroke-width="2"/>
+<polyline points="75.0,370.0 98.8,394.1 122.5,395.1 146.2,405.9 170.0,389.9 193.8,399.0 217.5,402.3 241.2,408.8 265.0,402.3 288.8,417.9 312.5,421.5 336.2,404.2 360.0,413.0 383.8,407.5 407.5,409.1 431.2,410.1 455.0,409.1 478.8,414.3 502.5,415.7 526.2,420.5 550.0,410.1 573.8,400.7 597.5,420.2 621.2,406.5 645.0,416.3" fill="none" stroke="#d08a1a" stroke-width="2"/>
+<polyline points="75.0,421.5 98.8,423.5 122.5,418.6 146.2,429.7 170.0,409.1 193.8,432.0 217.5,432.9 241.2,435.9 265.0,427.7 288.8,443.0 312.5,446.3 336.2,434.6 360.0,436.2 383.8,431.0 407.5,424.5 431.2,439.5 455.0,434.9 478.8,426.7 502.5,418.6 526.2,427.4 550.0,430.3 573.8,429.7 597.5,442.7 621.2,421.8 645.0,431.3" fill="none" stroke="#2e8b57" stroke-width="2"/>
+<text x="75.0" y="518" font-size="9" fill="#666" text-anchor="middle">19</text>
+<text x="98.8" y="518" font-size="9" fill="#666" text-anchor="middle">24</text>
+<text x="122.5" y="518" font-size="9" fill="#666" text-anchor="middle">26</text>
+<text x="146.2" y="518" font-size="9" fill="#666" text-anchor="middle">28</text>
+<text x="170.0" y="518" font-size="9" fill="#666" text-anchor="middle">29</text>
+<text x="193.8" y="518" font-size="9" fill="#666" text-anchor="middle">30</text>
+<text x="217.5" y="518" font-size="9" fill="#666" text-anchor="middle">31</text>
+<text x="241.2" y="518" font-size="9" fill="#666" text-anchor="middle">32</text>
+<text x="265.0" y="518" font-size="9" fill="#666" text-anchor="middle">36</text>
+<text x="288.8" y="518" font-size="9" fill="#666" text-anchor="middle">37</text>
+<text x="312.5" y="518" font-size="9" fill="#666" text-anchor="middle">38</text>
+<text x="336.2" y="518" font-size="9" fill="#666" text-anchor="middle">39</text>
+<text x="360.0" y="518" font-size="9" fill="#666" text-anchor="middle">40</text>
+<text x="383.8" y="518" font-size="9" fill="#666" text-anchor="middle">42</text>
+<text x="407.5" y="518" font-size="9" fill="#666" text-anchor="middle">43</text>
+<text x="431.2" y="518" font-size="9" fill="#666" text-anchor="middle">44</text>
+<text x="455.0" y="518" font-size="9" fill="#666" text-anchor="middle">46</text>
+<text x="478.8" y="518" font-size="9" fill="#666" text-anchor="middle">47</text>
+<text x="502.5" y="518" font-size="9" fill="#666" text-anchor="middle">48</text>
+<text x="526.2" y="518" font-size="9" fill="#666" text-anchor="middle">49</text>
+<text x="550.0" y="518" font-size="9" fill="#666" text-anchor="middle">50</text>
+<text x="573.8" y="518" font-size="9" fill="#666" text-anchor="middle">51</text>
+<text x="597.5" y="518" font-size="9" fill="#666" text-anchor="middle">52</text>
+<text x="621.2" y="518" font-size="9" fill="#666" text-anchor="middle">53</text>
+<text x="645.0" y="518" font-size="9" fill="#666" text-anchor="middle">54</text>
+<circle cx="700" cy="465.5" r="4" fill="#5b7fa6"/>
+<circle cx="700" cy="440.4" r="4" fill="#c0503a"/>
+<circle cx="700" cy="457.7" r="4" fill="#d08a1a"/>
+<circle cx="700" cy="487.1" r="4" fill="#2e8b57"/>
+<text x="718" y="368.0" font-size="9.5" fill="#444" text-anchor="end">on the provider's gas (9/11)</text>
+<text x="20" y="545" font-size="10.5" fill="#555">A is relative: the four sum to zero, so 1, 2 and 4 read above zero mostly because 3 pulls the mean down;</text><text x="20" y="559" font-size="10.5" fill="#555">against 1, 2 and 4 alone, 3 is about −16 %, 4 −3 %, 1 0 %, 2 +3 %. B's order 3 > 4 ≈ 1 > 2 holds at every capture.</text>
+</svg>

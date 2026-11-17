@@ -83,6 +83,26 @@ other, and a third that is not the engine at all**. Of a typical warm
    measurement noise**; the rest is the flame varying from stroke to
    stroke, which the provider's gas took almost entirely (17/11).
 
+**Cylinder by cylinder** (17/11, *the owner's request*;
+`cylinders-share.svg`; the source is `open.md` S1, *Every stroke named*
+and *The common part by cylinder*). Two different things are read per
+cylinder:
+
+![What each cylinder gives, and how much it wobbles](cylinders-share.svg)
+
+- **What each gives** against the four's mean: 3 is 11–19 % of a
+  stroke short at every warm idle (−6 to −9 % on its floor, −20 to
+  −28 % in a swell), 4 was 9 % short on the old MAF and is level since
+  the leads, 1 came down from +6–8 to +3–5 % in the week of the 44K
+  tanks, 2 gives the most throughout. The four sum to zero, so against
+  1, 2 and 4 alone 3 is about −16 %, 4 −3 %, 1 0 %, 2 +3 %; what a
+  healthy cylinder gives is not known.
+- **How much each wobbles** stroke to stroke about its own mean (the
+  common part): **3 > 4 ≈ 1 > 2 at every capture**, the order of the
+  cold weak strokes and nearly of the deposit; stable since
+  mid-October, 4 the one that came down. The provider's gas took most
+  of it on all four and kept the order.
+
 The three do not add exactly: the grade counts the steps above a
 dead-band, so a smaller common part also makes 3's deficit count less —
 **the provider's gas made 14–29 with 3 still 9–13 % short** (9/11).
