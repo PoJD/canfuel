@@ -140,13 +140,10 @@ the stop. Nothing to do at
 the car beyond the drive and the stop.
 
 **8z. The first start and drive on the new lower gasket** (fitted
-17/11 by the owner with the injectors' lower rings looked at and 6m
-measured; `idle-log.md`), **captured, on the laptop**:
+17/11 by the owner, **injectors 2 and 3 swapped**, the throttle's
+adaptation (098) run after the battery; `idle-log.md`), **captured,
+on the laptop**:
 
-- **Into the chat before the start**: whether injectors 2 and 3 went
-  back swapped; what injector 4's grey collar and the four lower rings
-  were found like, and any ring replaced; whether the throttle's
-  adaptation (098) was run after the battery.
 - **The MFD out, the laptop in** (*the owner*, 16/11): **the first
   start and the first drive are captured, with VCDS, as Claude runs
   them** (`CLAUDE.md`, *Sessions at the car*): the capture started
@@ -509,9 +506,8 @@ owner's decision* of 16/11, what the open joint showed is in H3 and
 H18). **Before the belt**, so that each repair has its own captured
 stop: `52`/`53` → the gasket → 8z's stop → the belt → 8q's stop; two
 repairs between two captures could not be told apart.
-- **What is asked before the start**: the swap and the rings decide
-  how the stop is read (below), and an adaptation run on the throttle
-  changes what 055 starts from.
+- **055 starts from an adaptation** (098, run by the owner on 17/11
+  after the battery), not from a bare reset as on 16/11.
 - **The first drive captured at once** (*the owner*, 16/11): the
   stop after the gasket and the swap is the reading, and the cold
   start on the new joint is S19's and the gasket's both; 032 relearns
