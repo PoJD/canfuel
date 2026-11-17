@@ -4076,10 +4076,23 @@ sees through a swell*):
   moving the mixture the probe sees — a few milligrams are nothing
   to lambda and much to a flame (*general*). **Against**: the cover
   has been dry since 4/10 (`refuted.md` D5), its nuts found tight
-  on 16/11 with the upper intake off (*owner*), and the swells are as
+  and its joint dry, no fresh oil, on 16/11 with the upper intake off
+  (*owner*), and the swells are as
   they were six weeks on (a soaked joint may hold oil long after);
   no blue smoke ever, the plugs dry; a load should not lift a pool at
   once, and it does. **For, and the stronger point** (*reasoned*):
+  **The injectors out, 17/11** (`plan.md` 8z; the album, 00:31–00:43,
+  each set in the order 1-2-3-4, all before any WD-40 went on the
+  manifold's bolts at about 01:00): *owner* — nothing suspect anywhere,
+  the injectors a little oily, which may be the oil he wiped on their
+  rings when they went in. *Claude's reading of the frames, not yet
+  checked by him at the part*: **an amber film on the wall of the
+  manifold's injector bores, most in 4's (00:42:11), less in 3's
+  (00:42:05), pale in 1's, 2's dry**; the lower rings of 3 and 4 wet
+  and dark, 1's and 2's less so; and on injector 4 (00:43:45) what
+  looks like a split in the grey collar that holds the lower ring.
+  Whether the film is engine oil, the fitting oil or petrol's residue
+  is not known from a photograph.
   **the oil fell on 3 and 4, and 3 and 4 are where the engine is
   worst inside** — the borescope's deposit 3 > 4 > 2 > 1 (H13), the
   inlet seats' crust thick and broken on 3, beaded on 4, an even
