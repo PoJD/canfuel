@@ -4307,8 +4307,8 @@ names the side.
   pins, 0.8 kΩ to the other**; to contact 2, open everywhere. **The
   connector is T3**, the loom's 3-pin one by the regulator (*owner*;
   the 5/11 entry above, where one of its pins read 0.001–0.002 Ω to
-  contact 1); whether that third pin was read again on 17/11 is not
-  known. *Reasoned*: kilohms are not a
+  contact 1), **and on 17/11 that third pin 0.2 Ω, as the pairs**
+  (*owner*). *Reasoned*: kilohms are not a
   wire but a path through other parts on J17's supply, the same for
   all four because their contacts 1 are one node (0.1 Ω apart), and
   contact 2 runs only to the ECU, so open is what it should read.
