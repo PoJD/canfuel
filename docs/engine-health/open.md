@@ -158,7 +158,9 @@ the end; standing: **8f** at every VCDS session, **6i** the oil level
 about 156,400 km, the MFD's `IdleHealth` and `Misfires` at warm stops;
 by opportunity (*the owner*, 15/11): **8u** the fuel pressure, **8v** the plugs at their change,
 **8w** the cylinder 4 knock window, and (17/11) **6r** the owner's scope
-on injectors 3 and 2 and on G28/G40, best before 8q.
+on injectors 3 and 2 and on G28/G40, best before 8q, and **6s** GM's
+cleaner drawn in for the valves' carbon (the head stays on, *the
+owner*).
 
 ---
 

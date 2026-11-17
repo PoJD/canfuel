@@ -22,7 +22,7 @@ Captures only where an item asks for one. **Next: 8q, the timing belt
 at a garage, 7/12**; then item 9; **the new rear probe when the seller
 sends it** (8e), **its harness at the end**; **8u, 8v, 8w by
 opportunity** (*the owner*, 15/11), and **6r**, the owner's scope, best
-before 8q (17/11). *What is done is `idle-log.md` and
+before 8q, and **6s**, the cleaner drawn in (17/11). *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
 
 **6. Drive normally; the MFD back in from 15/11** (*the owner*, after
@@ -90,6 +90,21 @@ pierced, nothing written to the ECU:
 
 The files, or screenshots showing the time base and the volts per
 division, into the chat.
+
+**6s. The valves' carbon cleaned from the intake, GM's way** (*the
+owner*, 17/11 evening; by opportunity). Outdoors, the engine warm:
+
+- A combustion-chamber cleaner sold for drawing in through the intake;
+  its label and the hose to draw it in by into the chat first (Claude
+  says which vacuum port behind the throttle).
+- At about 2,000 rpm, held by hand, the cleaner drawn in slowly in a
+  thin stream, the amount the label gives for a 2.0 l engine, never a
+  gulp; if the engine stumbles, less.
+- Engine off at once; **a hot soak of 2.5–3 hours, not longer.**
+- Start (smoke is expected), drive briskly about 15 minutes, **then the
+  oil changed**.
+- The next warm stops on the MFD, or a captured drive; if it improved
+  but did not cure, once more.
 
 **7. Only if Claude asks after 6:**
 
@@ -506,6 +521,21 @@ see a fault under current. G28 against G40 puts the cam's phase on the
 crank's wheel with no marks read, so a tooth shows as 13.85° between
 before and after the belt; no trace of a healthy AQY was found, so it
 is read before against after.
+
+**6s, the cleaner drawn in** (*the owner*, 17/11 evening; the fourth
+research, `open.md`, *What the forums say*, searched again 17/11): GM's
+PIP5029F and its successor 16-NA-383 are the one documented procedure
+aimed at carbon on the valves short of the head off — drawn in warm at
+about 2,000 rpm, a hot soak of 2.5–3 hours (longer and the deposit
+hardens again), repeated if it improved; too much at low speed can
+hydrolock the engine and bend a rod, hence the thin stream. The head
+stays on (*the owner*: the belt job does not take it off, and the head
+is not to come off), so this is what is left that reaches a seat on 3
+from above. No maker gives a rate of success; the hydrogen took 3's
+swell for a day and left its floor, so a step rather than a cure is
+what to expect (*reasoned*). The oil change after because the cleaner
+reaches the sump past the rings. What it does to the new probes and
+the converter is not known; the label is read first for that.
 
 **Item 9's options kept** (*the owner*, 17/11 evening; the fourth
 research): at 8q's visit the engine is hot and the plugs may come out
