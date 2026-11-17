@@ -1,0 +1,2 @@
+2026-11-17 07:31:23  01-Motor, fault memory before (read by vcds_log.py)
+Nenalezena žádná chyba.
