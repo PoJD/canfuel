@@ -501,7 +501,11 @@ after, so it is most likely hidden, not absent: `open.md`, *What the
 forums say*, searched again 17/11); the captured
 warm stop before and after says whether the common part (list A)
 moved — down by a clear step if the cam was out, unchanged if it was
-not (H0 then gains). Nothing in 8i was loosened;
+not (H0 then gains) — **and whether 3's floor, its swells' depth and
+number and 014 moved** (*the owner's question*, 17/11): a tooth adds
+or removes burnt gas on all four alike, but a cylinder already at its
+edge may answer to it far more than the others (*reasoned*), so the
+belt may move list B as well. Nothing in 8i was loosened;
 VW's 5 mm at the crank was for the Mk4 2.0; VW's own procedure for
 the AQY's family was read 17/11 (the same section).
 
@@ -517,7 +521,10 @@ row A2): a raised resistance in 3's control wire or a weak output
 stage delays the opening and leaves a higher voltage across the
 switch, which an output stage of the usual kind does not diagnose;
 every other cause predicts 3 and 2 alike, and 6n's ohms at rest cannot
-see a fault under current. G28 against G40 puts the cam's phase on the
+see a fault under current; **since 17/11 evening the floor's own
+test** — 3's floor is a fixed amount that load does not shrink, as
+fuel short by a fixed amount is (`open.md` S1, *The floor and the
+common part read apart*). G28 against G40 puts the cam's phase on the
 crank's wheel with no marks read, so a tooth shows as 13.85° between
 before and after the belt; no trace of a healthy AQY was found, so it
 is read before against after.

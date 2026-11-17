@@ -79,7 +79,9 @@ other, and a third that is not the engine at all**. Of a typical warm
    cylinders, 2.6–3.2 rpm rms a stroke at every warm idle since 24/9,
    moved only by a load, the provider's gas and temperature, never by a
    repair. 014 does not count it. This is list A; whether a healthy AQY
-   has less is not known (H0).
+   has less is not known (H0). **About 4 of it is the bus's own
+   measurement noise**; the rest is the flame varying from stroke to
+   stroke, which the provider's gas took almost entirely (17/11).
 
 The three do not add exactly: the grade counts the steps above a
 dead-band, so a smaller common part also makes 3's deficit count less —

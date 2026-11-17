@@ -221,7 +221,9 @@ combustion, on every engine with this wheel, nothing lowers it; **about
 strokes, the misfires 014 counts, a few points more inside the rest
 (*reasoned*: about five a minute on the floor, more in a swell); **about
 38 the rest, the common part** — list A, 2.6–3.2 rpm rms a stroke on
-all four, which 014 does not count. **What each could give**
+all four, which 014 does not count. Of the 38, about 4 is the bus's own
+measurement noise (*The floor and the common part read apart*,
+below), as fixed as the wheel's 8. **What each could give**
 (*reasoned*): 3 level, about 38–46; the common part gone as well, the
 wheel's 8 and a healthy engine's own scatter, which no recording here
 gives. The parts do not add exactly: the grade counts steps above a
@@ -802,6 +804,52 @@ cuts left out).
   rougher on all four alike (3's weak strokes 35 against 16.5 per 1000,
   the others' 13 against 2.6). The overrun's deepest vacuum leaves
   nothing on 3 that shows.
+
+**The floor and the common part read apart** (17/11 evening, *the
+owner's request*: what each is — mixture, burn at its edge, or
+something else; scripts not kept).
+- **The floor is a fixed amount at idle speed, not a share, and the
+  manifold's vacuum does not set it.** In rpm of step, at 700–1,150
+  rpm, warm, the A/C off: 3 less 2 is −6.8 to −8.3 from b7 18 to 60
+  (−4.4 above 60), and 3's own median −3.3 to −4.6 from b7 18 to 100
+  (93,521 windows of 40 strokes, 33 captures) — where b7 roughly
+  doubles and the vacuum behind a seat would fall by a third or more.
+  *Off idle's "load at the same speed lifts it, −24 → −9 %" was per
+  cent of a stroke that grows with load; in rpm it hardly moves.* The
+  loss falls with speed (a quarter to a half by 2,000 rpm), not with
+  load. **The swell is the other kind**: a load removes it (the A/C,
+  3 at −10 % with no swell). *Reasoned*: two mechanisms — **the swell
+  driven by the vacuum** (a seat, H1), **the floor a fixed amount per
+  stroke** that a leak of charge (it would grow with load) or of burnt
+  gas (it would shrink) does not give, and that **fuel short by a fixed
+  amount** (H4's wire or the ECU's output; injector 3 itself is out)
+  does — the loop trims a constant shortfall into the idle cell, so the
+  unmoved mean says nothing against it; the provider's gas leaving the
+  floor fits missing fuel too. 6r reads it directly.
+- **The floor burns a little slower too**: the governor's spark event by
+  event with dips of 9 rpm and more (35,125 lag rows, 109 runs), 3 gains
+  more than the others on the floor, +0.028 rpm per rpm of dip (95 %
+  +0.005 to +0.042), in a swell +0.044 (+0.020 to +0.066) — a lean
+  cylinder and a diluted one alike; cylinder 4 gains as much as 3 at
+  some lags, so weakly.
+- **About two fifths of the common part's variance is the bus's own
+  measurement.** On the overrun, nothing burning, a step's residual
+  about its slot is 1.7–1.8 rpm rms at 1,600–2,400 rpm (1,500 windows;
+  2.1 at the edges); at a warm idle the common part is 2.96 (26
+  captures), **on the provider's gas 1.88 — at the bus's floor**. So the
+  engine's own share is about 2.3–2.4 rpm rms, near 7 % of a stroke's
+  work, and **the gas took nearly all of it**: cycle-to-cycle variation
+  of the early flame on all four, which a flame easier to light cures.
+  **The spark does not move it** inside the idle's 0–6°: −0.01 rpm rms
+  per degree, nothing with engine speed held (8,559 samples of 003). The
+  bus's noise alone makes about 4 of the grade (*reasoned*, by
+  simulation), beside the wheel's 8. *Reasoned*: what makes an early
+  flame vary on all four is burnt gas kept (the cam's timing, the
+  belt), a lean or uneven mixture, or this engine's design (H0); the
+  data do not choose.
+- **The mixture's swing cannot be read per stroke**: the injection
+  time on 0x288 b6 moves in steps of 2 counts, about 5 %, against the
+  loop's ±2.5 %, and VCDS is too slow and too loosely aligned.
 
 **Before and after the canister and the new valve** (14/11 evening;
 condensed 17/11, the full text in `git show 5e1ddf2:docs/engine-health/open.md`, this heading). Nothing in the
@@ -2481,7 +2529,10 @@ names the side.
   slowly too; weakly against (*reasoned*): the cold idle after the
   fast idle, enriched and on longer pulses, is worse at matched load
   than the warm, where a fixed opening delay would cost a smaller
-  share. **The direct test is the injector's voltage and current, 3
+  share. **For the floor, 17/11 evening** (S1, *The floor and the
+  common part read apart*): at idle speed 3's loss is a fixed amount
+  that load does not shrink — what fuel short by a fixed amount gives,
+  and a leak does not; the swell is H1's, the floor may be this. **The direct test is the injector's voltage and current, 3
   against 2, warm and running**: a raised resistance or a weak output
   stage shows as a late opening and a higher on-voltage, and an output
   stage of the TLE6220 kind diagnoses no raised resistance — closer to
@@ -4196,7 +4247,7 @@ small unevenness on all four, most of `IdleHealth`'s floor and nothing
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
 | A1 | **H0** normal for this engine | A common part that no repair, day or drive has moved, and that answers only to the charge, is what an engine's own scatter looks like; a fixed fault reads the same, and no healthy AQY says which. Against: 014 far above VW's 0–5 — but that is 3's, list B. **17/11, the fourth research**: still no healthy M5.9.2 log found; it gains only as the belt loses | 014 on a healthy AQY, VCDS only (a capture is not obtainable) |
-| A2 | **the timing belt a tooth out** | The common part is a constant — the same within 5 % at every warm idle since 24/9, answering only to a load, the gas and temperature — which a fixed fault on all four gives and a source that varies by the day does not (S1, *The swell's shape*); the cam's timing sets the burnt gas kept at idle. **The marks, 8i (13/11)**: the cam's OT mark set; the crank pulley's only notch 30–60° of crank behind the groove on the block by eye and borescope, **2–3 cm along the rim, more likely more, not over 5 cm** by the owner's fingers the same evening (14–41°, if the pulley is 14–16 cm across — the diameter a guess); the cam advanced if both are the true marks (the direction the owner's, read off the part), and if they are not, the direction is open too (*the owner*, 14/11). **VW's references, read 17/11** (*What the forums say*, searched again 17/11): the damper's mark against the bottom belt guard's, the flywheel's in the gearbox window, **none on the block** — so the groove 8i read against is not one of VW's, unless it was the guard's; **a pulley bolted on turned** (*the owner*) is excluded by design, the damper and crank sprocket fitting one way only, but not the damper's outer ring slipped on its rubber. **A tooth is 13.85° of crank**: 30–60° is 2.2–4.3 teeth and 14–41° 1.0–3.0, the two meeting only at two. **Against more than about a tooth**: settled full throttle takes 496 mg of air a stroke at 2,400 rpm, 520 at 3,600–4,400, 485 at 5,200, 452 at 5,600 (85–90 g/s at the top, every 003 log; 84–90 g/s at 5,000–5,500 in sixteen logs from 9/2026 to 9/11), and the acceleration needs 0.94 of b7 with no tilt by gear or band (83 pulls; `drivescan.py --pulls`) — two teeth of advance or more would take the top of the filling away (*general*); a tooth or less is not excluded with no healthy AQY to set it against. The ECU compares the phases: VW's fault table for the family lists 16724 / P0340 and 17748 / P1340, the cam and crank senders' incorrect assignment, beside 16725 / P0341 for G40's signal out of place — none ever stored here; no tolerance is published, so one tooth may pass where two would not (*reasoned*). Belt from 10/2017. Kept first by the owner from 13/11 until **17/11 evening, when he agreed H0 above it** (the fourth research: the marks read against no VW reference) | **8q**: the mechanic's count of teeth before the old belt comes off, against VW's references (the flywheel's mark or the piston at plug 1), and the common part by capture before (`54`'s warm stop, 17/11, after the gasket: 2.96 rpm rms) and after the new belt, 7/12 (`plan.md` 8q) |
+| A2 | **the timing belt a tooth out** | The common part is a constant — the same within 5 % at every warm idle since 24/9, answering only to a load, the gas and temperature — which a fixed fault on all four gives and a source that varies by the day does not (S1, *The swell's shape*); the cam's timing sets the burnt gas kept at idle. **The marks, 8i (13/11)**: the cam's OT mark set; the crank pulley's only notch 30–60° of crank behind the groove on the block by eye and borescope, **2–3 cm along the rim, more likely more, not over 5 cm** by the owner's fingers the same evening (14–41°, if the pulley is 14–16 cm across — the diameter a guess); the cam advanced if both are the true marks (the direction the owner's, read off the part), and if they are not, the direction is open too (*the owner*, 14/11). **VW's references, read 17/11** (*What the forums say*, searched again 17/11): the damper's mark against the bottom belt guard's, the flywheel's in the gearbox window, **none on the block** — so the groove 8i read against is not one of VW's, unless it was the guard's; **a pulley bolted on turned** (*the owner*) is excluded by design, the damper and crank sprocket fitting one way only, but not the damper's outer ring slipped on its rubber. **A tooth is 13.85° of crank**: 30–60° is 2.2–4.3 teeth and 14–41° 1.0–3.0, the two meeting only at two. **Against more than about a tooth**: settled full throttle takes 496 mg of air a stroke at 2,400 rpm, 520 at 3,600–4,400, 485 at 5,200, 452 at 5,600 (85–90 g/s at the top, every 003 log; 84–90 g/s at 5,000–5,500 in sixteen logs from 9/2026 to 9/11), and the acceleration needs 0.94 of b7 with no tilt by gear or band (83 pulls; `drivescan.py --pulls`) — two teeth of advance or more would take the top of the filling away (*general*); a tooth or less is not excluded with no healthy AQY to set it against. The ECU compares the phases: VW's fault table for the family lists 16724 / P0340 and 17748 / P1340, the cam and crank senders' incorrect assignment, beside 16725 / P0341 for G40's signal out of place — none ever stored here; no tolerance is published, so one tooth may pass where two would not (*reasoned*). Belt from 10/2017. Kept first by the owner from 13/11 until **17/11 evening, when he agreed H0 above it** (the fourth research: the marks read against no VW reference) | **8q**: the mechanic's count of teeth before the old belt comes off, against VW's references (the flywheel's mark or the piston at plug 1), and the common part by capture before (`54`'s warm stop, 17/11, after the gasket: 2.96 rpm rms) and after the new belt, 7/12 (`plan.md` 8q) — and 3's floor and swells beside it, a cylinder at its edge perhaps answering to a tooth more than the rest (*the owner's question*, 17/11) |
 | A3 | **H8** throttle and idle control | The air and the idle regulation act on all four alike, and S20 dates from this throttle (*owner*). Against: 055's two fields sum to the same correction at every warm idle (27/10), so a reset or the A/C gives no more air; the advance's scatter does not go with the common part (003, 12/11); 014 does not follow 055's learnt value (`refuted.md` C19); the regulator holds through 3's swells on 18 stops (15/11) | no test left for the idle; S20 keeps it |
 | A4 | **H11** both probes shifted | What is left is the idle-only form — the front probe reading rich in the idle's cool exhaust, so the true mixture lean; it fits 032's negative idle cell with part load untouched. Against: both probes replaced 10/11 and the idle as rough; on the relearn drive its marks 1, 3, 4 and 5 failed (H11, *The relearn drive*); the rear probe's state never tracked `IdleHealth` | nothing planned; 036 watched at VCDS sessions (`plan.md` 8f) |
 | A5 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it (shared with H16 until 17/11, `refuted.md` C30). Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; **17/11**: nor a return restriction, which would pull both cells negative (S19, *re-reckoned*); the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
