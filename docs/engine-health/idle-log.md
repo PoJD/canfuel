@@ -1792,3 +1792,35 @@ before it, with VW's parts (`plan.md` 8z). **The hiss (S11) heard
 lower down** the same day: hardly above the cam cover, clearly a head's
 height below it, to his ear a fault — perhaps placebo, *owner*
 (`open.md` S11).
+
+## 16–17 November 2026 night — the lower manifold's gasket renewed (8z); the injector circuits measured (6m)
+
+- **Repairs:** the lower intake manifold off and back on a new Elring
+  `165.210`, the upper on a new Elring `271.230`; the manifold, its
+  injector bores and the faces washed in benzine; the injectors back
+  on their old lower rings; the battery off throughout.
+- **Tests:** the valve cover's nuts tried; the plug leads' ends, the
+  injector seats and bores, the old gasket, the flange against a
+  square, the inlet ports and valve 3 open, looked at and photographed
+  (the album, 00:00–01:59, each set 1-2-3-4); 6m with a multimeter.
+- **Changes after:**
+  - *measured:* each injector 16.1, 16.1, 16.0, 16.0 Ω (leads 0.1 Ω);
+    contact 1 to contact 1 0.2 Ω on all six pairs and to T3's supply
+    pin; flexing the loom moved nothing;
+  - *not known:* everything about how it runs — the first start is
+    the next session's, captured; whether injectors 2 and 3 went back
+    swapped, and what the lower rings and injector 4's collar were
+    found like.
+
+Nothing found that marks cylinder 3 out. The cover's nuts tight and its
+joint dry; the VW leads' ends all clean inside; every manifold bolt
+stiff. The original gasket whole round each port, only its lower strap
+torn; oil along the flange's edge at every runner and across the land
+at 4, an oil film in the injector bores (most at 4, then 3), layers of
+oil and sludge at 2 and 3; the flange rocks on a square by a hair in
+the middle. **A brown liquid stood round the backs of inlet valves 2,
+3 and 4 before anything was washed** — entered as evidence for H18 and
+H3, not a symptom (*the owner's decision*). Inlet seat 3, open, looks
+sound as far as it shows. `open.md` H3 (*Oil soaked into the joint*),
+H18, H4.
+

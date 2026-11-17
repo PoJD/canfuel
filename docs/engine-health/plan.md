@@ -18,19 +18,18 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Next: 8z, the lower
-manifold's gasket and the injectors' lower O-rings, by the owner,
-before the belt** (*the owner's decision*, 16/11), **6m done in the
-same evening**; **then 8q, the timing belt at a garage, 7/12**; then
+Captures only where an item asks for one. **Next: the first start and drive on
+the new lower gasket (8z, fitted 17/11), captured with VCDS on the
+laptop**; **then 8q, the timing belt at a garage, 7/12**; then
 item 9; **the new rear probe when the seller sends it**
 (8e), **its harness at the end**; **8u, 8v, 8w by opportunity**
-(*the owner*, 15/11); **8x at the next session with the laptop**. *What is done is `idle-log.md` and
+(*the owner*, 15/11); **8x on that first drive**. *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
 
 **6. Drive normally; the MFD back in from 15/11** (*the owner*, after
-8h): `IdleHealth` and `Misfires` on the display again, **no captures
-until 8z's first start after the gasket** (the one before it is `53`);
-**the MFD comes out as 8z is finished** (*the owner*, 16/11).
+8h): `IdleHealth` and `Misfires` on the display again; **the MFD is out
+for 8z's first start and drive, which are captured** (the capture
+before the gasket is `53`), and goes back in after.
 Brisk driving once warm is welcome. When captures resume, the MFD
 comes out for them — the converter goes with the MFD.
 
@@ -67,21 +66,6 @@ reading (27/10, 155,024 km, at the top mark; 11/11 evening about
 and **at least 5 minutes standing**, the dipstick out, wiped, in, out,
 and **photographed**; the odometer into the chat. Any top-up: the litres and the odometer
 into the chat.
-
-**6m. The injector circuits among themselves, with a multimeter** (the
-owner's, 5/11), engine off, ignition off; the upper intake off only if
-the connectors cannot be reached without. First touch the two probes
-together and note the reading: it is taken off every value. The four
-injector connectors off; **from contact 1 of one connector to contact
-1 of each other**, all six pairs; **each injector across its own two
-pins**, all four. **If the loom has a connector of its own** on the way
-to the main harness: from contacts 1 and 2 of each injector connector to
-the pin of that connector it reaches (find it with the beeper), all
-eight. While each value is on the display, **flex the loom near 3 and
-4** and watch it. Write every value, and any that moved.
-**Only 1 and 4 are reachable with the intake on** (*owner*, 5/11), so
-**in 8z's evening, with the upper intake and the loom off**;
-**injector 3's circuit is the one to watch and to flex**.
 
 **6n. The injector circuits to the ECU** — later, only with VCDS on the
 laptop: 032/055 read first (unplugging the ECU may reset them, as a
@@ -155,131 +139,14 @@ the capture beside them. Nothing to do at the car beyond the drive and
 the stop. Nothing to do at
 the car beyond the drive and the stop.
 
-**8z. The lower manifold's gasket and the injectors' lower O-rings**
-(*the owner's decision*, 16/11), **by the owner, before 7/12**. **Bought
-16/11** (the album, 15:29): the lower gasket **Elring `165.210`**, one
-piece over all four ports, metal with a soft coating, made in Germany;
-the upper **Elring `271.230`**, as every time before. **No new lower
-O-rings to be had** (*owner*, 16/11): the rings on the injectors stay;
-**one found pinched, nicked or hard is replaced by a ring off one of the
-old injectors** (as on 2 since 1/10). The upper intake, the rail with the injectors and the loom
-off, then the lower manifold. Everything below is photographed and
-goes into the chat by cylinder; **3 always beside one of the others**.
+**8z. The first start and drive on the new lower gasket** (fitted
+17/11 by the owner with the injectors' lower rings looked at and 6m
+measured; `idle-log.md`), **captured, on the laptop**:
 
-*Before anything is undone:*
-
-- **The battery stays disconnected for the whole job** (*the owner*,
-  16/11), which resets 032 and 055. No VCDS read before and no
-  odometer (*the owner*, 16/11): the fault memory was read before home
-  that day, the odometer comes off the bus, and the last 032 is 03:19's
-  −5.5 / +5.5 %.
-- The system let down: a rag round the supply joint, loosened slowly,
-  cold engine; no flame, no lamp that can spark.
-
-*With the upper intake off, nothing else touched yet:*
-
-- **Runner 3's joint and the four injector seats from above**: each
-  seat photographed as it is — a wet seat, a washed-clean track, or a
-  dark line of dust drawn in under an injector or along the joint.
-- **Each bolt and nut of the lower manifold and of the rail as it is
-  undone**: any that was loose or came off with little effort, and
-  which one.
-
-*The loom and the injectors on the bench:*
-
-- **6m, all of it**: the six pairs, each injector across its pins, the
-  loom flexed at 3 and 4 with the meter on.
-- **The loom at 3**: its two wires from the plug back to the taped run
-  — chafed, hard, green under the tape's end, a contact loose in the
-  plug when pulled gently.
-- **Each old lower O-ring as it comes off, kept in order 1–4**: flat on
-  one side, nicked, pinched, hard, swollen; the four laid in a row and
-  photographed. **Each injector's tip** beside it: dry, wet, sooted,
-  crusted.
-- **The four bores in the lower manifold**, where the lower rings sit:
-  a score, a burr, corrosion, a casting flaw, a crack, a step a nail
-  catches on; photographed from above, straight down each.
-
-*The lower manifold off:*
-
-- **The old gasket before it is peeled**, on whichever face it stays,
-  then both its sides: **a dark or washed track across the sealing
-  land at 3**, and whether 4's tear runs into the land. Kept, marked
-  which end was 1.
-- **The manifold's flange**: a steel rule's edge across each runner
-  and along the whole flange, against the light or with a feeler
-  gauge; the gap and where. **Runner 3 inside and out** for a crack;
-  whether its wall is wet, and with what — **oil especially** (wiped
-  with a white cloth, 3 beside 2, photographed).
-- **The head's face** round each port: pitted, corroded, a ridge of
-  old gasket.
-- **The four inlet ports, open now**: the back of each inlet valve,
-  its stem and guide, photographed (the phone or the borescope), in
-  order 4-3-2-1 as on 20/10: the crust, a wet or oily stem, a port
-  washed clean or wet where the others are dry.
-- **3's valves at full lift, both seats in view** (*the owner*, 16/11;
-  no plug gap, he has no gauge for the three-electrode plug): plug 3
-  out, the crank turned by hand in its running direction, slowly:
-  - **the inlet**: watched down the open port 3 until the valve stands
-    lowest (fully open) — its sealing face, the bevelled ring at the
-    edge of its head, and the seat it closes on, photographed; the
-    same on port 2 for comparison;
-  - **the exhaust**: the borescope through plug hole 3, turning on
-    until the exhaust valve stands fully open — its face and the seat
-    ring, photographed; plug 2's hole the same.
-  A burnt notch, a pitted or broken face, a crust on the face or on
-  the seat, one side brighter than the other: into the chat. Plug 3
-  photographed beside plug 2 while it is out (8v). The other ports
-  covered while the crank turns.
-
-*Cleaning* (*Claude's recommendation*, 16/11; the owner's to decide):
-
-- **The lower manifold, off the car, may be washed whole** — its
-  runners and flange in technical benzine with a brush, rinsed, and
-  **dried completely** before it goes back; photographed first, inside
-  each runner, 3 beside 2.
-- **The ports in the head are photographed, not cleaned, in 8z**:
-  cleaning them is a fourth change in one step, after the gasket, the
-  joint's oil and the swapped injectors, and the stop after could not
-  say which did it; and anything loosened there goes into the
-  cylinder. If they are cleaned later, as a step of its own: that
-  cylinder's inlet valve shut (the crank turned until it is), a
-  lint-free cloth only, a plastic pick or nylon brush, never metal at
-  the seat, the loosened dirt vacuumed out, nothing left in a port.
-
-*Going back together:*
-
-- **The ports stuffed with clean rag while the faces are cleaned, the
-  rags counted in and out**; no blade that scores the faces.
-- **The new gasket dry**, nothing on it, unless VW's part says
-  otherwise; the right way up and round, each port open through it.
-- **The lower manifold to the head: 20 Nm**, from the middle
-  outwards, in two passes; **the rail: 10 Nm; the upper to the lower:
-  10 Nm** (VW's manual for the AEG, the same 2.0 8V, *Intake Manifold:
-  Specifications* and *Lower Section, Disassembling and Assembling*, as
-  transcribed on workshop-manuals.com, read 16/11; no page of the
-  AQY's own was found).
-- **Injectors 2 and 3 swapped** (*the owner's offer*, 16/11): before
-  they come out of the rail, each marked with tape — the cylinder it
-  came from; **the one from 3 goes into 2, the one from 2 into 3**, 1
-  and 4 back where they were. Which went where into the chat, with a
-  photograph of the marks in place.
-- **The new gasket's ports matched to the head's**: each opening has a
-  bulge to one side; it lies over the port's own shape, nothing of the
-  gasket standing into a port.
-- **The lower rings stay on their injectors** — ⚠ **VW says "always
-  replace"** for the injectors' O-rings (the same manual page); none
-  were to be had (*the owner*, 16/11), so this is a deliberate
-  deviation — each looked at first
-  (above) and refitted only whole and soft, with a drop of clean
-  engine oil; **any other one replaced by a ring off an old injector**,
-  and which cylinder's into the chat. Each
-  injector pushed straight and **fully home**: the four at the same
-  height against the rail, each clip in, each turning a little by
-  hand; each plug clicked.
-
-*After:*
-
+- **Into the chat before the start**: whether injectors 2 and 3 went
+  back swapped; what injector 4's grey collar and the four lower rings
+  were found like, and any ring replaced; whether the throttle's
+  adaptation (098) was run after the battery.
 - **The MFD out, the laptop in** (*the owner*, 16/11): **the first
   start and the first drive are captured, with VCDS, as Claude runs
   them** (`CLAUDE.md`, *Sessions at the car*): the capture started
@@ -292,8 +159,7 @@ goes into the chat by cylinder; **3 always beside one of the others**.
   minutes**, the everyday state (*the owner's order*, 16/11); then, where it is safe, **two
   or three full-throttle pulls on 014 and 020**; 032, 055 and the
   fault memory after; "konec" as usual.
-- **The battery back on, the ignition on for a minute before the
-  start**; at the first start, a fuel smell or a wet joint first.
+- **At the first start, a fuel smell or a wet joint first.**
 - **S11's hiss at the first warm idle**, listened for as on 16/11 — a
   head's height below the cam cover — and whether it is still there.
 - **032 for 20 s at every session with VCDS after** (8f).
@@ -317,7 +183,7 @@ is cleared**; **on a logged drive, 001 in place of 055** (G62's
 reading; on a captured drive the capture reads it) **and 014
 always** (a P0303 stored with no cut: its time is what the log gives).
 
-**9. By what 8z, 6m and 8q leave** (Claude says which):
+**9. By what 8z's stop and 8q leave** (Claude says which):
 
 - **A CO₂ ("block") test of the coolant**, warm, at a garage or with
   a kit.
@@ -345,8 +211,6 @@ always** (a P0303 stored with no cut: its time is what the log gives).
     otherwise each pressed down with a plastic or wooden wedge and a
     0.2 mm feeler tried between cam and tappet; the eight results
     into the chat;
-  - **6m's injector circuits** while the intake is off, if not done
-    before.
 - With VCDS connected anyway after a stored P030x: **a generic
   OBD-II read** (modes 02 and 06), read only, saved.
 - **No head off** (*the owner*, 4/11, leaning, not final): if the
@@ -454,19 +318,14 @@ stands*.
 *When S3 closes*). Otherwise each item decides whether the next is
 needed.
 
-**6m and 6n, the injector circuits** (`open.md` H4, *What the loom can
-and cannot do unseen*), split so the first needs nothing unplugged at the
-ECU (*the owner*, 5/11): a raised resistance in the loom at 3 makes no
-code but starves its injector. The manual's figures: injector 14–18 Ω
+**6n, the injector circuits to the ECU** (`open.md` H4, *What the loom
+can and cannot do unseen*; the supply side and the injectors
+themselves were measured sound on 17/11, 6m): a raised resistance in
+3's control wire makes no code but starves its injector. The manual's figures: injector 14–18 Ω
 at about 20 °C, each wire at most 1.5 Ω, contact 1 the shared supply from
 J17, contact 2 the ECU's output at pins 73/80/58/65. Read as a comparison:
-three alike and one higher (tenths of an ohm on a wire, an ohm on an
-injector) names the joint; all alike clears the supply and that wire.
-Contact 1 to contact 1 runs through the shared splice, so a high pair
-points at one of its two branches and the pairs together at which. A
-loom connector, if there is one, splits each path into the old taped run
-at the injectors and the rest; a value that moves while the loom is
-flexed is the intermittent joint itself.
+three alike and one higher (tenths of an ohm on a wire) names the
+joint; all alike clears that wire.
 
 **Which VCDS groups** (*decided 11/10/2026*). **014** wherever a stop is
 read for misfires. **001** wherever there is idle: engine speed to align
@@ -645,38 +504,14 @@ valve; what is left to read is where both cells settle (`open.md`
 S19). Read, never cleared by Claude; three drives because the cells
 moved by one VCDS step at a time.
 
-**8z, the lower gasket and the lower O-rings** (`open.md` H3; *the
-owner's decision*, 16/11, after a cylinder 3 code stored with no lamp
-the same day, S3). H3 has no test in place: the repair is the test,
-and what is seen with the parts off is the only look the joint ever
-gets, so everything is photographed by cylinder before it is cleaned.
-**Before the belt**, so that each repair has its own captured stop:
-`52`/`53` → the gasket → 8z's stop → the belt → 8q's stop; two repairs
-between two captures could not be told apart.
-- **The seats and the track on the gasket**: air drawn in past a ring
-  or across a land carries dust and oil mist and leaves a line; fuel
-  weeping out washes one clean (*general*). A track at 3 and none at
-  the others is H3 seen.
-- **The loose bolt**: a joint that leaks at one runner is as often a
-  fastener as a gasket.
-- **The bores**: 3 was short on the old injectors and their rings and
-  on the new ones (`open.md` H3, *The injectors' lower O-rings*), so
-  two different rings would have had to leak in one bore — the bore or
-  the runner is where that points, and it is seen only now.
-- **The flange against a rule**: a new gasket on a face that is not
-  flat leaks as the old one did.
-- **No drip test, no smoke or vacuum test in 8z** (*the owner*,
-  16/11): the fuel hoses cannot stay on with the rail out, and the
-  battery is off throughout, so a dripping injector is left to 8u's
-  gauge (*Falling after switch-off*); the smoke test and the vacuum
-  gauge can be done at any time after, and are not part of the step.
-- **3's valves at full lift** (`open.md` H1, H13): the seats were last
-  seen only from above past the stems (20/10); open, the faces are in
-  view. A burnt or broken exhaust face names H1's seat, which closes S1
-  as *acceptable, cause known* by item 9's rule (*No head off*); a
-  crust on a face is H13's. A clean face clears nothing — a film that
-  fouls at idle and burns off is not seen cold. 2 because it is the
-  strongest.
+**8z's first drive** (`open.md` H3; the gasket renewed 17/11 on *the
+owner's decision* of 16/11, what the open joint showed is in H3 and
+H18). **Before the belt**, so that each repair has its own captured
+stop: `52`/`53` → the gasket → 8z's stop → the belt → 8q's stop; two
+repairs between two captures could not be told apart.
+- **What is asked before the start**: the swap and the rings decide
+  how the stop is read (below), and an adaptation run on the throttle
+  changes what 055 starts from.
 - **The first drive captured at once** (*the owner*, 16/11): the
   stop after the gasket and the swap is the reading, and the cold
   start on the new joint is S19's and the gasket's both; 032 relearns
@@ -693,30 +528,15 @@ between two captures could not be told apart.
   cold leg. The warm stop keeps 014 alone, because its rises
   are put to a cylinder by the stroke just before them, and a slower
   row blurs which.
-- **Oil at the joint** (`open.md` H3, *Oil soaked into the joint*,
-  the owner's suspicion of 16/11): the original cover gasket leaked
-  onto it at 3 and 4 for at least ten years; oil on the old gasket's land at 3, or runner 3 wet with
-  oil where the others are dry, is oil drawn into 3 at the idle's
-  vacuum — the swell's second reading — and is said as such.
-- **No cleaning of the head's ports in 8z** (above): the stop after 8z
-  is read for the gasket, the joint's oil and the swap; a fourth
-  change would leave it unable to say which. The lower manifold is
-  washed on the bench because it comes off anyway and its oil is the
-  joint's.
+- **Oil at the joint and at the valves** (`open.md` H3, *The lower
+  manifold off*; H18): oil lay along the flange and a brown liquid
+  round the backs of inlet valves 2, 3 and 4. The joint is new and
+  the manifold washed, the head's ports left as they were: **the
+  swell gone on the stop is the joint's oil; the swell as before
+  leaves the stems** (H18) and the seat.
 - **S11's hiss after the gasket** (`open.md` S11, 16/11: heard a
   head's height below the cam cover, by the owner's ear a fault): gone
   is H3's joint; still there leaves it the throttle's own air.
-- **The ports open**: the inlet valves were last seen on 20/10, from
-  above past the stems, before the cleaners, the hydrogen clean and
-  the gas (`open.md` H13); the same order makes the frames comparable.
-  An oily stem is H18's, a port washed clean or wet on 3 alone H20's
-  or the injector's.
-- **No petrol test on the inlet valve** (*the owner's decision*,
-  16/11): a leaking inlet seat is repaired only with the head off,
-  which he is not doing (item 9, *No head off*), so a finding would
-  change nothing; the photographs of the open ports stay.
-- **The injectors fully home**: three of four were not, 23/9–1/10
-  (`vehicle-history.md`).
 - **Injectors 2 and 3 swapped** (*the owner's offer*, 16/11; it
   withdraws his "no swap" of 12/11, which held while the rail had to
   come out for it alone): the rail is out anyway, so it costs nothing,
@@ -767,15 +587,7 @@ between two captures could not be told apart.
   a clear step after the gasket is that leak all the same, and puts
   H3 in list A as well.
 
-**6m before item 9** (*agreed with the owner*, 12/11 night): off idle
-3's deficit is an amount at a small charge and not a share (`open.md`,
-*Naming the cylinder*, *Off idle*), which is what an injector opening
-late through a raised resistance gives (H4); its test is the cheapest
-that can confirm or clear a cause of that shape, so it does not wait
-for the garage and is done in 8z's evening, the loom on the bench. It
-is read for 3: the deficit and the misfires are
-cylinder 3's (`open.md` S1, *Every stroke named*; S3, *What 014 counts,
-by cylinder*). **The display's stops** with a word on what came before
+**The display's stops** with a word on what came before
 each, because a brisk run calms the idle by itself for a while
 (`open.md` S1, *After high revs*) and the display's spread is as large
 as the effect; the A/C's figure for how much load still calms it
@@ -884,7 +696,7 @@ holds its valve a hair open and only shows there or in the leak-down;
 cold-start clatter like 8/11's normal, so only the check says more.
 The engine cools while the intake comes off, so **a tight 3 there does
 not clear a seat that leaks hot** (`open.md` S1, *The rough start of a
-warm stop*). 6m and the gasket because the intake is off anyway.
+warm stop*).
 
 **Item 9's other tests** (*agreed with the owner*, 4/11): the cheapest tests that name a part on 3 without an
 injector swap or a plug change. **The CO₂ test** for H20, the cheapest
