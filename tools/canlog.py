@@ -102,11 +102,25 @@ class Frame:
     """A single CAN frame from a log.
 
     ts_ms is None for format A, which carries no timestamps.
+
+    Slotted (written out, so it works before Python 3.10 too): the test
+    suite holds the whole fixture corpus in memory (`fixturecache.py`),
+    tens of millions of frames, and a per-instance __dict__ took that past
+    the CI runner's 16 GB.
     """
+
+    __slots__ = ("ts_ms", "can_id", "data")
 
     ts_ms: Optional[int]
     can_id: int
     data: bytes
+
+    def __getstate__(self):
+        return (self.ts_ms, self.can_id, self.data)
+
+    def __setstate__(self, state):
+        for name, value in zip(self.__slots__, state):
+            object.__setattr__(self, name, value)
 
     @property
     def dlc(self) -> int:

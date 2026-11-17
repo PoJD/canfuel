@@ -18,8 +18,8 @@ Three rules keep it honest:
   log and parses it gets the real parser every time;
 * the key carries every argument and the file's modification time, so a
   different option or a changed file is a different entry;
-* the frames are frozen dataclasses, and each call returns a fresh list over
-  them, so a test that reorders or trims its list cannot disturb another's.
+* each call builds a fresh list of frames from a packed copy, so a test
+  that reorders or trims its list cannot disturb another's.
 
 It is never imported by a tool. A command-line run parses what it is given
 once, and holding the whole corpus in memory would only cost it.
@@ -27,6 +27,7 @@ once, and holding the whole corpus in memory would only cost it.
 
 from __future__ import annotations
 
+import array
 import os
 import sys
 
@@ -44,11 +45,38 @@ def parse_file(path, *, strict: bool = False, fix_doubled: bool = False):
     if os.path.dirname(full) != FIXTURES:
         return _original(path, strict=strict, fix_doubled=fix_doubled)
     key = (full, strict, fix_doubled, os.path.getmtime(full))
-    frames = _cache.get(key)
-    if frames is None:
-        frames = _cache[key] = tuple(
-            _original(path, strict=strict, fix_doubled=fix_doubled))
-    return list(frames)
+    packed = _cache.get(key)
+    if packed is None:
+        frames = _original(path, strict=strict, fix_doubled=fix_doubled)
+        _cache[key] = _pack(frames)
+        return frames
+    return _unpack(packed)
+
+
+# The corpus is held packed, not as Frame objects: tens of millions of them
+# took the suite past the CI runner's 16 GB (17/11/2026). Packed it is about
+# 16 bytes and a few of data a frame, and rebuilding a file's frames costs
+# about half of parsing it again, so the cache still pays.
+
+def _pack(frames):
+    ts = [f.ts_ms for f in frames]
+    if any(t is None for t in ts):
+        ts = tuple(ts)                  # format A carries no timestamps
+    else:
+        ts = array.array("q", ts)
+    return (ts, array.array("l", (f.can_id for f in frames)),
+            b"".join(f.data for f in frames),
+            bytes(len(f.data) for f in frames))
+
+
+def _unpack(packed):
+    ts, ids, data, lens = packed
+    frame = canlog.Frame
+    out, at = [], 0
+    for t, i, n in zip(ts, ids, lens):
+        out.append(frame(t, i, data[at:at + n]))
+        at += n
+    return out
 
 
 parse_file.__wrapped__ = _original
