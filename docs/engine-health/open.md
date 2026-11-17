@@ -4301,8 +4301,16 @@ names the side.
   digit; **contact 1 to contact 1, all six pairs, 0.2 Ω** — 0.1 Ω of
   wire, against VW's 1.5 Ω at most. **The shared supply side of the
   loom and the four coils are sound and 3 is no different**, cold and
-  at rest. Not measured by this: contact 2 of each connector to the
-  ECU (6n).
+  at rest. **The loom flexed with the meter on: no change.** *Also
+  read by him*: from "the common connector" to contact 1 of each
+  injector connector, the same on all four — **3.05 kΩ to one of its
+  pins, 0.8 kΩ to the other**; to contact 2, open everywhere. Which
+  connector that is, is not yet known; *reasoned*: kilohms are not a
+  wire but a path through other parts on J17's supply, the same for
+  all four because their contacts 1 are one node (0.1 Ω apart), and
+  contact 2 runs only to the ECU, so open is what it should read.
+  **It says nothing of 3.** Not measured by this: contact 2 of each
+  connector to the ECU (6n).
 **Tests:** **the circuits measured** (`plan.md` 6m among themselves, 6n to the ECU; VW's repair manual, Golf Mk4, *Motronic injection and ignition system (2.0 ltr. engine)*, *Checking injectors* (workshop-manuals.com, read 5/11/2026)):
 the injector itself 14–18 Ω at about 20 °C; each wire, connector to
 connector, at most 1.5 Ω; contact 1 of the 2-pin connector is the
