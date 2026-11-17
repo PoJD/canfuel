@@ -2051,8 +2051,13 @@ form**: a pumped-up element comes on suddenly and sinks over minutes
 fast idle keeps 3 level, and its end drops 3 by ten points within a
 minute at the same coolant and load — more than the vacuum's change
 alone gives, so part of 3's floor answers to the mixture or the
-speed; and a seat that dilutes 3 should move the mean mixture at a
-swell, which it does not (S1, *The queue drive*).
+speed. *It also read "a seat that dilutes 3 should move the mean
+mixture at a swell" until the same evening — wrong*: burnt gas drawn
+back is neither air nor fuel the MAF misses, so 3 runs rich by its
+shortfall, the others lean by a third of it, and the mean stays put;
+only the probe's weighting of 3 could show it, a point or two at most.
+What an unmoved mean rules out is a swell of unmetered air or of fuel
+short on 3 (*reasoned*).
 
 A hydraulic lifter that bleeds down, or a valve that seats late or not quite,
 on one or two cylinders. *General.* **Widened 4/11/2026** (*agreed with the
