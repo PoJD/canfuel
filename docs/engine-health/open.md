@@ -4294,6 +4294,15 @@ names the side.
   output stage not to see an open, the ECU finds the circuit good while
   the injector opens late and short and the cylinder runs lean. That is
   what is left of H4, and only a measurement shows it.
+- **6m measured, 17/11** (*owner*, `plan.md` 8z's night, the rail and
+  the loom off, cold, the meter's leads 0.1 Ω to be taken off):
+  **each injector across its pins 16.1, 16.1, 16.0, 16.0 Ω** in the
+  order 1-2-3-4 — inside VW's 14–18 Ω and alike to the meter's last
+  digit; **contact 1 to contact 1, all six pairs, 0.2 Ω** — 0.1 Ω of
+  wire, against VW's 1.5 Ω at most. **The shared supply side of the
+  loom and the four coils are sound and 3 is no different**, cold and
+  at rest. Not measured by this: contact 2 of each connector to the
+  ECU (6n).
 **Tests:** **the circuits measured** (`plan.md` 6m among themselves, 6n to the ECU; VW's repair manual, Golf Mk4, *Motronic injection and ignition system (2.0 ltr. engine)*, *Checking injectors* (workshop-manuals.com, read 5/11/2026)):
 the injector itself 14–18 Ω at about 20 °C; each wire, connector to
 connector, at most 1.5 Ω; contact 1 of the 2-pin connector is the
