@@ -82,8 +82,16 @@ A larger fuse is not called for unless a 200 mA one actually blows (it
 then stays open). The display's limit of 0.5 A is what the rating
 protects.
 
+**The LED found, 18/11 evening** (*owner*): a cold joint on a resistor
+by JP1 — moving it starts an LED blinking; left alone it is quiet and
+the converter is not in debug. By `kicad`'s parts list
+(`implementation-plan.md`) R2 is RA0's 10 kΩ pull-down: with its joint
+open RA0 floats, reads high now and then, and the LEDs and 0x603 follow
+(*reasoned*). **If it is R1** (MCLR's 10 kΩ pull-up) instead, a floating
+MCLR resets the part, and that would be a cause of the restarts too.
+
 **The owner's view**: the board itself, cold joints, or the fuse's
-contact. **The tests**: the new fuse over the next few days; then the
+contact; a second board is to be built in any case, as a spare. **The tests**: the new fuse over the next few days; then the
 second board he plans to build — if the drop-outs stop on it, the first
 board's assembly was the cause. Not worked on with Claude (*owner*: the
 engine and the idle first); recorded so it is not lost.
