@@ -209,8 +209,11 @@ always** (a P0303 stored with no cut: its time is what the log gives).
   cylinder 3 and above cylinder 4, hot**, against 1 and 2: a tick or
   a hiss on one, at idle.
 - **One garage session with the upper intake off, straight after a
-  drive** (oil at 80 °C or more), in this order:
-  - **a warm leak-down on all four**: all four plugs out (the same
+  drive** — the leak-down at the earliest about half an hour after the
+  engine stops, the time the intake, the lead, the plug and the
+  tester take (*the owner*, 18/11; 3's plug is reached only with the
+  intake off) — in this order:
+  - **a leak-down on all four, as warm as that allows**: all four plugs out (the same
     plugs back afterwards; plug 3's gap measured while out); each
     cylinder at TDC on its compression stroke, firing order 1-3-4-2;
     the crank held while the air is on. For each: **the percentage,
@@ -706,9 +709,14 @@ holds its valve a hair open and only shows there or in the leak-down;
 **VW's tappet check** (the 2-valve 2.0's procedure: a wedge and a
 0.2 mm feeler) because it finds a tappet gone soft, and VW calls a
 cold-start clatter like 8/11's normal, so only the check says more.
-The engine cools while the intake comes off, so **a tight 3 there does
-not clear a seat that leaks hot** (`open.md` S1, *The rough start of a
-warm stop*).
+The engine cools while the intake comes off — **at least half an hour
+on this engine** before plug 3 is out and the tester in (*the owner*,
+18/11; 1 and 4 are reached sooner, and are no use alone) — so **a tight
+3 there does not clear a seat that leaks hot** (`open.md` S1, *The
+rough start of a warm stop*), and **a leak-down hot, or one after a hard
+drive against one after a gentle drive, cannot be made**: what tells a
+seat that leaks hot from a deposit that soaks fuel has to come from
+outside the cylinder (the stethoscope, the capture, 6r).
 
 **Item 9's other tests** (*agreed with the owner*, 4/11): the cheapest tests that name a part on 3 without an
 injector swap or a plug change. **The CO₂ test** for H20, the cheapest
