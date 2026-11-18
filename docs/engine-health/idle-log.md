@@ -92,15 +92,19 @@ cylinder:
 
 - **What each gives** (*redrawn 18/11 at the owner's request*: it
   showed 3's mean over each period, which moves with how much of a stop
-  was floor and how much swell; now capture by capture, against the
-  mean of 1, 2 and 4, **3's floor and 3's swell drawn apart**, and 1, 2
-  and 4 while 3 is on its floor; `swellscan.py --series --csv`, warm,
-  the A/C off, the median window). **3's floor −8 to −12 %, its swell
-  −20 to −27 %, both steady since September**; before 3/11 3 was almost
-  never on its floor (above −10 % against the four), so only its swell
-  shows there. 1, 2 and 4 wander a few per cent about each other, 4 the
-  lowest most often (−7 to +2 %) — each cylinder a floor of its own
-  (`open.md`, list A). What a healthy cylinder gives is not known.
+  was floor and how much swell; now capture by capture against the mean
+  of 1, 2 and 4, the events that moved something named under the axis;
+  1, 2 and 4 over every warm window, **3's floor and 3's swell drawn
+  apart**; `swellscan.py --series --csv`, warm, the A/C off, the median
+  window; the provider's gas, 9/11, at the right). **3's floor −8 to
+  −12 %, its swell −20 to −27 %, both steady since September**; before
+  3/11 3 was almost never on its floor (above −10 % against the four),
+  so only its swell shows there. **4 was −15 % on the old MAF, −5 to
+  −10 % through October and level since the VW leads (21/10)**; 1 and 2
+  wander a few per cent about each other — each cylinder a floor of its
+  own (`open.md`, list A). On the provider's gas 3 −17, 4 −3, 1 and 2
+  +1 to +2 %: the gas calmed the common part, not 3's deficit. What a
+  healthy cylinder gives is not known.
 - **How much each wobbles** stroke to stroke about its own mean (the
   common part): **3 > 4 ≈ 1 > 2 at every capture**, the order of the
   cold weak strokes and nearly of the deposit; stable since
