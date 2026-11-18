@@ -1337,6 +1337,19 @@ completing rather than load (`refuted.md` C19).
   owner brought the lower gasket forward (`plan.md` 8z, done 17/11,
   and it moved nothing; `refuted.md` C28).
 
+- **014 on 3's floor and in its swell** (18/11, *the owner's question*;
+  each warm 30 s window of `swellscan.py` by 3's state, the 014 logs
+  beside the captures on one clock as `cylscan.py --vcds` puts them,
+  standing idle with recognition on; script not kept, logs that did not
+  line up left out). **Since 10/11 (`47`–`54`): on the floor 16 rises
+  in 34 min, about 0.5 a minute, 0.03 % of combustions; in the swell
+  148 in 19 min, about 8 a minute, 0.5 %** — sixteen times the floor's
+  rate. Over all 26 captures from `24`: floor 0.06 % (53 rises, 56 min,
+  most of them `32` and `46`, the morning after the hydrogen, where 4
+  led), between 0.19 %, swell 0.56 % (575 rises, 65 min). **So 014
+  counts on the floor too, rarely**; `42` counted nothing at all,
+  fresh from the map's reset. What 014 counts is 3's swell above all.
+
 - **On the new N80** (14–15/11, `51`, `52`; condensed 17/11, the phases
   in `git show 5741dfa:docs/engine-health/open.md`, this list): at the pump's idle 0.29 % of combustions, at the
   second stop one count in 7.7 minutes; the next day's warm stop **89
