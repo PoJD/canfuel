@@ -572,6 +572,12 @@ minutes into a stop. Nothing else on the bus shares its time.
 *Reasoned*: a seal or a flake on 3 that is worst right after a hot drive
 fits; the swell's depth goes weakly with the seconds above 4,000 rpm
 before (r −0.32).
+**18/11 evening, on the first 44K can** (display, *owner*): the stops
+of a queue home at 25–40 with short swells to 60; after ten minutes of
+brisker driving the stop **started at 40–50, rose within a minute to
+70–90** and was back at 50–60 in about three — the start the one
+capture with a cleaner in (`37`) showed, calm and rising, not rough and
+settling (H13, *With a cleaner in*).
 
 **The first captured stop on the canister** (12/11, `49`; condensed
 17/11, the full text in `git show 5e1ddf2:docs/engine-health/open.md`, this heading). 18 minutes standing after
@@ -3069,7 +3075,7 @@ hard use burns them off (*general*).
   seat** on the photos of 20/10 (H1): for, the contact line itself not
   seen.
 - **With a cleaner in, the idle after high revs starts calm and worsens
-  over minutes; without one, the reverse** (S1, *After high revs*): one capture and one display evening, so far.
+  over minutes; without one, the reverse** (S1, *After high revs*): one capture and two display evenings, so far (the second 18/11, on 6t's first can: 40–50, then 70–90 within a minute).
 - **18/10 has not come back** in six days of hard driving, a strong 44K
   tank among them (`refuted.md` D10) — what a flake that burnt off does.
   Weak: one episode, and its absence.
