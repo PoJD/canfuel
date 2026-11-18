@@ -3815,6 +3815,26 @@ drives, `19`–`50`; warm (oil 80 °C and over).*
   beyond the 1–2 % of 3 and 4 — a few per cent common to all four is
   neither shown nor excluded. *What would tighten it*: the car on a
   weighbridge as driven, and a pull each way on the same stretch.
+- **E. Over time, capture by capture** (*the owner's question*, 18/11:
+  the car feels better at high revs than in the summer; `drivescan.py`
+  default and `--weak` on every capture with pulls, `19`–`54`; group
+  003 at full throttle in every VCDS log): **nothing moves from 24/9 to
+  17/11.** 3 less 2 at b7 140 and over −4 to +1.5 % of a stroke in
+  every capture and band but one (`37`, above 4,200 rpm, +5 ± 1.6),
+  `19` (24/9) −1.4 to −2.8, `54` (17/11) −2.7 to −3.7; 1 less 4 +1 to +3, a few +5 to +10 above 3,300 rpm on
+  windows of ±1–2; the excess of weak strokes at full load −0.8 to
+  +0.03 % of the work in every capture — none; `--pulls` 0.82–1.15 by
+  capture with no trend (`19` 1.04, `54` 0.99); **the air at full
+  throttle 495–528 mg a stroke at 4,000–5,000 rpm** in the 003 logs
+  from 24/9 (the new MAF) to 17/11, 85–93 g/s at the top (two short
+  logs lower, 3/11 `step5b-pull` and 9/11 `step8-home-2`, 441–444). **What
+  cannot be read is the summer**: the first pull on the bus is `19`
+  (24/9), after the blocked converter (10/9), the plugs (17/9) and the
+  injectors (23/9), and August's 002/003 logs (`vcds-01`, `vcds-ride`,
+  the old MAF) hold no full throttle. So the owner's feeling and the
+  record agree as far as the record goes: whatever came back at high
+  revs came back before 24/9 — the converter the likeliest by size
+  (*reasoned*) — and nothing since has moved it either way.
 - **What it bears on** (*reasoned*; **no fit-table symbol changes**;
   **the ranking: H4 above H20, agreed with the owner the same night**,
   *The idle's candidates, ranked*): **H3** (a leak at
