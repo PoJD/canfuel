@@ -1943,7 +1943,8 @@ was not run down further first. `open.md` S1, the display table.
     about five minutes and restarted warm: 60–70 after the start, then
     50–60, `Misfires` 0**; **then about ten minutes of brisker
     driving and a stop: 40–50, within a minute 70–90, in about three
-    minutes 50–60 and slowly falling** (*owner*);
+    minutes 50–60 and slowly falling, at moments towards 40, then
+    holding about 50–60** (*owner*);
   - *felt:* small shudders in the seat even at 35–37 (*owner*), as at
     12/11's stop; after the brisker stretch "more like before" (*owner*);
   - *not known:* whether the cleaner made the calm — one drive, the
