@@ -1939,7 +1939,9 @@ was not run down further first. `open.md` S1, the display table.
     at 35–37, **then 25–29** about ten minutes into the stop, **then
     another swell, 50–60, about half a minute, then under 40 again**, further swells to 60 at most,
     each falling straight back; **nothing above 73 over the whole
-    drive**, 73 only at the start, not yet fully warm (*owner*);
+    drive**, 73 only at the start, not yet fully warm; **then the engine off
+    about five minutes and restarted warm: 60–70 after the start, then
+    50–60, `Misfires` 0** (*owner*);
   - *felt:* small shudders in the seat even at 35–37 (*owner*), as at
     12/11's stop;
   - *not known:* whether the cleaner made the calm — one drive, the
