@@ -1935,7 +1935,10 @@ was not run down further first. `open.md` S1, the display table.
     mostly 34–45, lowest 32**, `Misfires` **3**; at the stop **3's
     swell after about three minutes, 60–70**, `Misfires` **4**, **then
     back to about 35 ± 2**, fairly steady, `Misfires` **2**, **then 31–32
-    at the lowest and 35–40 again**, `Misfires` **1** (*owner*);
+    at the lowest and 35–40 again**, `Misfires` **1**, then 30–40, steady
+    at 35–37, and **then 25–29** (*owner*);
+  - *felt:* small shudders in the seat even at 35–37 (*owner*), as at
+    12/11's stop;
   - *not known:* whether the cleaner made the calm — one drive, the
     same range read on 10/11 evening and 12/11 night with no cleaner,
     and the swell came as at every warm stop; 6t reads it at the end of
