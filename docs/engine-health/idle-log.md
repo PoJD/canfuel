@@ -1931,7 +1931,7 @@ was not run down further first. `open.md` S1, the display table.
   103 °C, the everyday state (*owner*).
 - **Changes after:**
   - *measured:* `IdleHealth` **60–70** at the first stops, **then 30–50,
-    mostly 34–45**; `Misfires` **3**, MisfAvg **5.9** (*owner*);
+    mostly 34–45, lowest 32**; `Misfires` **3**, MisfAvg **5.9** (*owner*);
   - *not known:* whether the cleaner made it — one drive, and the same
     range was read on 10/11 evening and 12/11 night with no cleaner; 6t
     reads it at the end of the second tank.
