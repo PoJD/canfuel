@@ -73,6 +73,8 @@
 <text transform="translate(286.8,290) rotate(40)" font-size="9" fill="#444">15/10 LM can</text>
 <text transform="translate(334.2,290) rotate(40)" font-size="9" fill="#444">18/10 flake</text>
 <text transform="translate(358.0,290) rotate(40)" font-size="9" fill="#444">21/10 VW leads</text>
+<line x1="371.9" x2="371.9" y1="92" y2="268" stroke="#c9b8e8" stroke-dasharray="3,3"/>
+<text transform="translate(369.9,290) rotate(40)" font-size="9" fill="#6a4fa3">23–24/10 BG 44K ×2</text>
 <text transform="translate(381.8,290) rotate(40)" font-size="9" fill="#444">3/11 original map</text>
 <text transform="translate(429.2,290) rotate(40)" font-size="9" fill="#444">9/11 before H₂</text>
 <text transform="translate(453.0,290) rotate(40)" font-size="9" fill="#444">after H₂</text>
