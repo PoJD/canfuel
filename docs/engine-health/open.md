@@ -121,7 +121,9 @@ owner*).
 **A, the common part** — H0 normal for this engine, the timing belt a
 tooth out, H8 the throttle and idle control, H11 both probes, H7 the
 rail's pressure, H2 a leak ahead of the converter, H18 the stem seals,
-H21 the front probe's signal-earth wire.
+H21 the front probe's signal-earth wire. **18/11**: every cylinder has a
+floor of its own (3 −9.7, 4 −4.4, 1 +1.6, 2 +2.8 % against 1, 2 and 4),
+only 3 swells; kept as A and B, not split (*agreed with the owner*).
 
 **The lower manifold's gasket renewed by the owner, 17/11** (Elring
 `165.210`; `idle-log.md`), **injectors 2 and 3 swapped**, and **6m
@@ -4338,6 +4340,20 @@ weakened (S19).
 **A. The common part — what makes every cylinder alike rougher** (the
 small unevenness on all four, most of `IdleHealth`'s floor and nothing
 014 counts):
+
+**Every cylinder has a floor of its own** (18/11, *the owner's
+reading*; S1, *Every cylinder at 3's floor and in its swell*). On 3's
+floor, against the mean of 1, 2 and 4: **3 −9.7, 4 −4.4, 1 +1.6,
+2 +2.8 %** of a stroke, and the stroke-to-stroke scatter 3 > 4 ≈ 1 > 2
+— nearly the borescope's order of deposit (3 > 4 > 2 > 1). Only 3
+swells. So the floors may be **one cause on all four in different
+measure** — deposit everywhere, most on 3 and 4 — or a different thing
+on each; part of 1's and 4's place is the crank wheel's. **Kept as two
+lists** (*agreed with the owner*, 18/11): 3's swell, and what puts its
+floor below the others' spread, is B; the spread itself, and the
+scatter on all four, is A. *Proposed the same evening and dropped: a
+list C for 3's floor apart from its swell — the floor reads as A's in
+3's measure as much as B's.*
 
 | rank | hypothesis | why here | what settles it |
 |---|---|---|---|
