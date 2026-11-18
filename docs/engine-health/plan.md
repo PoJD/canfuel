@@ -563,9 +563,12 @@ the intake valve at every load, so the intake side gets the cleaner
 however the car is driven (*general*); the exhaust valve and its seat
 see only what survives the burn, and a misfiring stroke on 3 at idle
 passes its charge, the cleaner in it, out unburnt (*reasoned*; how
-much that cleans is not known). What it costs: October's two tanks were
-driven briskly, so the comparison with them loses one like-for-like
-condition; the reading against `44`–`54` by kind of stop stands.
+much that cleans is not known). What it costs little: October's two tanks were
+not revved throughout either — much of the first on the motorway (*the
+owner*, 18/11 evening) — so the comparison with them is about as like
+for like as before; the reading against `44`–`54` by kind of stop stands.
+*This said October's tanks were driven briskly until the owner's
+correction the same evening.*
 Read against the stops of the same kind on `44`–`54`, not against one
 (*the owner's point*, 17/11: the time on the floor runs 8–81 % by
 capture, 28 % pooled over `44`–`54` and 10 % over `19`–`43`; after a
