@@ -89,7 +89,12 @@ MFD's body always brought it back**, which is pressing on the fuse
 holder behind it. The holder was wrapped over in fabric tape
 (`kicad`, `canfuel/docs/harness.md` D2) on a section of loom bent hard;
 the tape may have pulled on the holder's cap and slackened the spring
-inside. **The new fuse now sits in the holder with no tape over it.**
+inside. **The new fuse now sits in the holder with no tape over its body**; the
+loom was re-taped the same evening up to and over the holder's ends, so
+nothing bare shows, and everything looked stable after (*owner*). Over
+the last few days a light touch on the display had been enough to drop
+the converter (*owner*): the spring in the holder must be well seated,
+and the tape's pressure over it upset it (*owner*'s reading).
 The old fuse is kept; three spares in hand. This makes the holder's
 contact the leading explanation of the drop-outs (*reasoned*), the
 board's joints the other.
