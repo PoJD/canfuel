@@ -38,7 +38,52 @@ MisfAvg first, the start bytes, the trip — is short of the drive when it
 restarts. **MisfAvg is not reported from the car until this is
 settled** (*owner*).
 
-**The owner's view**: the board itself, cold joints. **The test**: the
+**The harness fuse, 18/11 evening** (*owner*, the display and converter
+out of the car). Across the loom's connector CAN and ground read 0.2 Ω;
+the 5 V line starts the same and creeps up to **2.7 Ω**. The line
+carries the harness fuse (`kicad`, `canfuel/docs/implementation-plan.md`
+§9.2: SIBA 179120.0.2, 200 mA time-lag glass, in an inline K23411
+holder). Two spares read **1.9–2.0 Ω** once the meter settles. Nothing
+visible on the old one under a loupe. **The fuse was replaced**; the
+test is the next few days in the car.
+
+What the datasheet says (SIBA G79120-30 Rev. 0, quoted in §9.2): 500 mV
+drop at the rated 200 mA, 2.5 Ω hot; I²t 0.7 A²s; at 1.5 In = 0.30 A at
+least 1 h before it opens, at 2.1 In = 0.42 A between 600 ms and 2 min.
+What follows (*reasoned*):
+- **A fuse that was opening would have stayed open.** The converter came
+  back every time, so what broke the supply was a contact that opened
+  and closed again — inside the fuse's end caps or the holder's cap and
+  springs. The old fuse's extra 0.7 Ω is not it: at the converter's
+  ~30 mA average (§9.2) that is about 20 mV, and the transceiver's
+  dominant-bit peaks come from C6 downstream.
+- **A momentary open is enough to restart the part.** At ~30 mA the
+  ~10 µF behind the fuse loses a volt in about a third of a millisecond,
+  so an open of about a millisecond takes VDD under the 3.0 V brown-out
+  (`BORV = 0`, `pic_config.h`).
+- **An overcurrent has nowhere to come from.** The board's inrush is
+  about 10⁻³ A²s against 0.7 A²s (§9.2), and a fault on the 5 V side
+  big enough to age the element would have to hold far above 0.30 A.
+  Whether a glass fuse's resistance rises with use is not in the
+  datasheet; the spares' 1.9–2.0 Ω against 2.7 Ω through the old one
+  and its holder does not separate the fuse from the holder.
+- **A shorter open can take the CAN link alone.** The MCP2562 lets go
+  of the bus when its VDD falls under its POR comparator's low level,
+  3.4–4.0 V (DS20005167C §1.6, VPORL), and comes back above 3.8–4.3 V
+  (VPORH) — above the PIC's 3.0 V brown-out. An open that takes VDD
+  under about 4 V but not under 3 V drops the converter off the bus,
+  frames cut mid-way among them (the MFD's red, *reasoned*), and the
+  part runs on with its values kept. **So one intermittent contact in
+  the 5 V line accounts for all three things seen**; the CAN pair's
+  own contacts or the board remain the other explanation for the
+  CAN-only ones.
+
+A larger fuse is not called for unless a 200 mA one actually blows (it
+then stays open). The display's limit of 0.5 A is what the rating
+protects.
+
+**The owner's view**: the board itself, cold joints, or the fuse's
+contact. **The tests**: the new fuse over the next few days; then the
 second board he plans to build — if the drop-outs stop on it, the first
 board's assembly was the cause. Not worked on with Claude (*owner*: the
 engine and the idle first); recorded so it is not lost.
