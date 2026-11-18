@@ -1941,9 +1941,11 @@ was not run down further first. `open.md` S1, the display table.
     each falling straight back; **nothing above 73 over the whole
     drive**, 73 only at the start, not yet fully warm; **then the engine off
     about five minutes and restarted warm: 60–70 after the start, then
-    50–60, `Misfires` 0** (*owner*);
+    50–60, `Misfires` 0**; **then about ten minutes of brisker
+    driving and a stop: 40–50, within a minute 70–90, in about three
+    minutes 50–60 and slowly falling** (*owner*);
   - *felt:* small shudders in the seat even at 35–37 (*owner*), as at
-    12/11's stop;
+    12/11's stop; after the brisker stretch "more like before" (*owner*);
   - *not known:* whether the cleaner made the calm — one drive, the
     same range read on 10/11 evening and 12/11 night with no cleaner,
     and the swell came as at every warm stop; 6t reads it at the end of
