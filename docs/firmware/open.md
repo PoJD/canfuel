@@ -35,8 +35,15 @@ number, 13.
 
 **What it costs**: every figure the converter keeps since its start —
 MisfAvg first, the start bytes, the trip — is short of the drive when it
-restarts. **MisfAvg is not reported from the car until this is
-settled** (*owner*).
+restarts. **MisfAvg is read from the car only when StartCrank shows a
+value** (*the owner's rule*, 18/11). It holds in the code: a converter
+that restarts with the engine turning finds it already running
+(`start_watch()`, `HEALTH_START_UNKNOWN` → `RUNNING`), so the start is
+not seen and StartCrank stays 255 until the next start from a
+standstill, and the start's totals are cleared only at such a start. A
+quiet bus does not fake one: `start_watch()` runs only when a 0x280
+arrives. A CAN-only drop-out leaves the totals as they were, and the
+idle it hid is in neither half of the mean.
 
 **The harness fuse, 18/11 evening** (*owner*, the display and converter
 out of the car). Across the loom's connector CAN and ground read 0.2 Ω;
