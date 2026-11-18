@@ -361,7 +361,10 @@ grade is the crank wheel's own alternation (*A steady pattern over the
 cylinders*), which every engine with this wheel carries, so under 30 is
 strict but within reach of a healthy idle. `tools/cylscan.py` is read
 beside it to say which part moved, but is no mark of its own. Short of
-it, the owner may close S1 as *acceptable, cause known*. *Until 12/11
+it, the owner may close S1 as *acceptable, cause known*. **A note,
+not a mark** (*the owner*, 18/11): if the belt (8q) moves neither part,
+S1 may be closed with the swells of 3's gone altogether, even with the
+grade above 30; the mark above stays as it is until he says otherwise. *Until 12/11
 the marks were three — the dips no longer keeping to a pair
 (`cutscan.py --shares`, removed), loads-off `IdleHealth` within about 25
 of loads-on, at least the best level shown, about 50–60 loads off
