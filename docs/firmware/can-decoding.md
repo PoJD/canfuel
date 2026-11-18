@@ -7,8 +7,9 @@ Two levels of confidence are distinguished:
 
 - **Confirmed** — holds across every log and is pinned down by a test in `tools/`.
 - **Open** — written down but not yet proven. `open.md` holds the open
-  questions; none since 8/11/2026 (7, 10 and 11 closed into *Resolved
-  questions* below). *This said "the two open questions, 7 and 10" until
+  questions; 12 since 18/11/2026, the converter dropping out in the car
+  (7, 10 and 11 closed into *Resolved questions* below; *this said
+  "none since 8/11/2026" until 18/11/2026*). *This said "the two open questions, 7 and 10" until
   8/11/2026.*
 
 The questions register at the end of this file holds the rest: *Resolved
@@ -676,8 +677,10 @@ the forums (OSM wiki *VW-CAN*, the dbc, forum and bulletin searches,
 
 ## Open questions
 
-**None is open** since 11 closed on 8/11/2026 (*this said "one is open,
-11" until 10/11/2026*). The numbering is unchanged across the register because code and
+**One is open, 12** (18/11/2026), the converter dropping out in the car —
+not a question about what the bus carries, so its record is in `open.md`
+alone. None was open from 8/11/2026, when 11 closed (*this said "one is
+open, 11" until 10/11/2026, and "none is open" until 18/11/2026*). The numbering is unchanged across the register because code and
 documents cite it, so it is not contiguous in any one section: renumbering
 would silently break every `question 7` in the tree.
 

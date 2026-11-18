@@ -1334,7 +1334,7 @@ the numbers and is resolved. The VCDS session once planned for it found that
 this ECU has no torque measuring block at all — **do not plan that session
 again.**
 
-`docs/firmware/open.md` holds what is still open — none since 8/11/2026; none of it was a calibration.
+`docs/firmware/open.md` holds what is still open — 12, the converter dropping out in the car (18/11/2026), a board fault by the owner's view; none of it was a calibration. *This said "none since 8/11/2026" until 18/11/2026.*
 
 ---
 

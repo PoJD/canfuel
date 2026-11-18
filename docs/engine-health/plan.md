@@ -48,8 +48,9 @@ comes out for them — the converter goes with the MFD.
   Claude closes the capture and VCDS at once and uploads while the
   drive goes on; at the garage, switch off and go. **A stop of about
   five minutes** (a petrol station) when Claude asks for one.
-- **At the same warm stops, `Misfires` and `MisfAvg` beside
-  `IdleHealth`** into the chat (0x604; JP1 stays off, so 0x603 and the
+- **At the same warm stops, `Misfires` beside `IdleHealth`** into the
+  chat; **not MisfAvg until the converter's drop-outs are settled**
+  (*the owner*, 18/11; `docs/firmware/open.md` 12) (0x604; JP1 stays off, so 0x603 and the
   LEDs are dark by design).
 - At several warm stops, **a word on what
   came before each stop** (queuing, or a brisk stretch), and the A/C's

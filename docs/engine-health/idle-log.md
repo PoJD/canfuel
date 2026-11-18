@@ -1933,7 +1933,8 @@ was not run down further first. `open.md` S1, the display table.
 - **Changes after:**
   - *measured:* `IdleHealth` **60–70** at the first stops, **then 30–50,
     mostly 34–45, lowest 32**, `Misfires` **3**; at the stop **3's
-    swell after about three minutes, 60–70**, `Misfires` **4** (*owner*);
+    swell after about three minutes, 60–70**, `Misfires` **4**, **then
+    back to about 35 ± 2**, fairly steady, `Misfires` **2** (*owner*);
   - *not known:* whether the cleaner made the calm — one drive, the
     same range read on 10/11 evening and 12/11 night with no cleaner,
     and the swell came as at every warm stop; 6t reads it at the end of
@@ -1941,5 +1942,5 @@ was not run down further first. `open.md` S1, the display table.
 
 MisfAvg is not used: the converter or its wiring dropped out now and
 then on the drive, so its mean since the start did not cover it
-(*owner*). The calmest queue on the display (5/11 evening 51–54 with
+(*owner*; `docs/firmware/open.md` 12). The calmest queue on the display (5/11 evening 51–54 with
 the A/C, `50`'s queue 72 on the bus). `open.md` S1, the display table.
