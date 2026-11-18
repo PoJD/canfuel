@@ -912,6 +912,20 @@ capture (−3.8 to +4.4 against the mean of four at 3's floor), and part
 of 1's and 4's place is the wheel's (they read low, *Naming the
 cylinder*). 3's floor is a little over twice 4's.
 
+**2 and 4 change places on 3's long floors** (18/11, *the owner's
+question*: 2 second weakest at `48`; the same windows). At the end of
+`47`, the moment 3 stepped from −26 to −12 % (the calm of 10/11
+evening), 2 slid from about 0 to −3 to −4 % and 4 rose to +1 to +2
+against the mean of 1, 2 and 4, and stayed so into `48` until the
+revs for 034, after which 2 was back at +2 and 3 back in a swell. `49`
+did the same after its fall at about 11:20: over the fourteen minutes
+on the floor 2 went from +3 to −3 or −4, 4 from −2 to +3 or +4. So 2
+is the weaker of the pair only on 3's long, calm floors, and settles
+there over minutes; nothing else on the bus marks it. Read
+(*reasoned*, not settled): it rides on 3's floor, not on any repair or
+event; whether it is a real shift of 2's and 4's burn or how the slots
+are weighed when 3 is level is not known.
+
 **Before and after the canister and the new valve** (14/11 evening;
 condensed 17/11, the full text in `git show 5e1ddf2:docs/engine-health/open.md`, this heading). Nothing in the
 common part, the swell or the dips moved. **3's floor read about two
