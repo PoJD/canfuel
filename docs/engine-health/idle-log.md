@@ -1908,3 +1908,18 @@ limiter held in 2nd and 3rd, by his account the first time so, with no
 misfire counted under load. **The gasket and the injector are cleared**
 (`refuted.md` C28, C29); the ranking re-read with the owner.
 `open.md` S1, *The first stop on the new gasket*; S3, S4, S19.
+
+## 18 November 2026 — the first can of BG 44K Platinum (6t)
+
+- **Repairs:** the first of 6t's two cans of BG 44K Platinum (`208`),
+  poured in at a 4 l top-up of OMV at 156,365 km, about 25 l in the tank
+  with it (21 l indicated before, 24–25 after; *owner*).
+- **Tests:** `IdleHealth` on the MFD at the day's warm stops, the
+  everyday state: **50–70, 70–90 in the waves** (*owner*).
+- **Changes after:**
+  - *felt:* the idle as on the days before (*owner*);
+  - *not known:* whether the stops came before or after the can, and
+    the cleaner's effect — 6t reads it at the end of the second tank.
+
+The can went into about 25 l, not the 15–20 l the plan named: the tank
+was not run down further first. `open.md` S1, the display table.

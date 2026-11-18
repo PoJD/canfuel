@@ -22,7 +22,7 @@ Captures only where an item asks for one. **Next: 8q, the timing belt
 at a garage, 7/12**; then item 9; **the new rear probe when the seller
 sends it** (8e), **its harness at the end**; **8u, 8v, 8w by
 opportunity** (*the owner*, 15/11), and **6r**, the owner's scope, best
-before 8q, **6t**, two cans of BG 44K Platinum and a captured drive before 8q,
+before 8q, **6t**, the second can of BG 44K Platinum and a captured drive before 8q,
 and **6s**, the cleaner drawn in (17/11). *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
 
@@ -99,13 +99,14 @@ division, into the chat.
 
 **6t. Two cans of BG 44K Platinum, before 8q** (*the owner*, 17/11
 evening): the same product as in October, **208** and "Platinum" on the
-can. The first into 15–20 l, the second into a full tank after it;
-each tank driven briskly, with revs. Nothing else changed meanwhile —
+can. *The first is in (18/11, about 25 l).* **The second into a full
+tank when this one is low**; each tank driven briskly, with revs. Nothing else changed meanwhile —
 no oil change, no other cleaner. **At the end of the second tank, before
 7/12, two captured drives** (or one with two stops), each to a warm stop
 of at least ten minutes, the everyday state, as 6's captures: **one
 after a brisk stretch, one after a gentle one or a queue**. Each can into the chat when it goes
-in, with the odometer.
+in, with the odometer. A capture before then is welcome
+(6's captures) and is not 6t's reading.
 
 **6s. The valves' carbon cleaned from the intake, GM's way** (*the
 owner*, 17/11 evening; by opportunity). Outdoors, the engine warm:

@@ -36,7 +36,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 17 November 2026
+## Where it stands — 18 November 2026
 
 *What was done and measured, day by day, is `idle-log.md`; each result
 is in the evidence of its symptom and hypotheses below. This section
@@ -159,7 +159,8 @@ about 156,400 km, the MFD's `IdleHealth` and `Misfires` at warm stops;
 by opportunity (*the owner*, 15/11): **8u** the fuel pressure, **8v** the plugs at their change,
 **8w** the cylinder 4 knock window, and (17/11) **6r** the owner's scope
 on injectors 3 and 4 and on G28/G40, best before 8q; **6t** two cans of
-BG 44K Platinum and a captured drive at their end, before 8q; and **6s** GM's
+BG 44K Platinum and a captured drive at their end, before 8q (the
+first can in 18/11 at 156,365 km, into about 25 l); and **6s** GM's
 cleaner drawn in for the valves' carbon (the head stays on, *the
 owner*).
 
@@ -291,6 +292,7 @@ error):
 | 12/11 night | display, VCDS 014 at the last stop | **relearning from zero** (−5.5 / +2.3 at the end) | 8n, the second drive on the canister; **the old rear probe sound, G62 cleaned**; 52 min with a motorway stretch and the limiter touched; the stop near home 01:46–02:02, coolant 94.5–99 °C | **120 (01:46) → 80–90 → 60–70 → 30–60 by 01:48**, then **35–50 for about 13 minutes, mostly about 40** (lowest 34 at 02:02, highest 58), `Misfires` 9–10 → 2–6 → **3**; **014: five counts of one misfire in 7.7 min logged (01:52–02:00), 0.04 % of combustions** (*owner*, times as sent; 8n) |
 | 12/11 | `49`, VCDS 014 020 033, then 014 032 036 | 032 −14.8 / +2.3 before (one MFD drive after the clear of the night), **−7.0 / +8.6 after** | `plan.md` item 6, **the first captured warm drive on the canister**: 30 min with five full-throttle pulls, then a warm stop of 18 min, the everyday state but **the seat heater off until about 11:31**, the A/C off, **no cut**, oil 102 °C | **77, 89, 84, 76** a minute for the first four minutes (014 0.69 %), then from 11:20 **47, 52, 40, 35, 40, 44, 36, 34, 39, 33, 30, 37, 39, 37, 37** (014 one count in 13 min) — 3's swell and its step with no cut (*The first captured stop on the canister*) |
 | 12/11 eve | `50`, VCDS one group at a time (003, 001, 014; 004 beside) | 032 −7.0 / +8.6 before, **−4.7 / +6.3 after** | `plan.md` 6q, **the queue drive**: 19 km in 67 min from coolant 39 °C, gentle (3 s above 4,000 rpm in its first 39 min, then 30 s in 17:01–17:07, to 6,440 rpm), 23 warm standing idles of 10–58 s, then a stop of 14.8 min slightly uphill, the everyday state, the A/C off, **no cut**, oil 100–101 °C | **72** over the queue's standing idles; the last stop a minute at a time **69, 64, 86, 82, 48, 60, 66, 74, 83, 63, 36, 47, 71, 71, 82** — three swells of 3's and two falls with no cut (*The queue drive, and what the ECU sees through a swell*); 014 19 rises in the stop's last 84 s, 16 on 3 |
+| 18/11 | display | settled | the day of 6t's first 44K Platinum can, into about 25 l at 156,365 km; whether the stops came before or after it not said | **50–70, 70–90 in the waves**, everyday state; the idle unchanged (*owner*) |
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
 one-second median): **about 17–20 a minute of 15 rpm and over**, as `32`,
