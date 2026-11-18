@@ -1937,8 +1937,8 @@ was not run down further first. `open.md` S1, the display table.
     back to about 35 ± 2**, fairly steady, `Misfires` **2**, **then 31–32
     at the lowest and 35–40 again**, `Misfires` **1**, then 30–40, steady
     at 35–37, **then 25–29** about ten minutes into the stop, **then
-    another swell, 50–60, about half a minute, then under 40 again**
-    (*owner*);
+    another swell, 50–60, about half a minute, then under 40 again**; **nothing above 73 over the whole
+    drive**, 73 only at the start, not yet fully warm (*owner*);
   - *felt:* small shudders in the seat even at 35–37 (*owner*), as at
     12/11's stop;
   - *not known:* whether the cleaner made the calm — one drive, the
