@@ -98,7 +98,7 @@ def measure(path):
     for c in (1, 4, 2):
         rec[f"a{c}"] = _median([_rel(r, c) for r in warm])
     for c, v in dev.items():
-        if len(warm) >= MIN_WINDOWS and v:
+        if warm and v:          # panel B as drawn before: any warm window
             r = math.sqrt(sum(x * x for x in v) / len(v))
             rec[f"b{c}"] = math.sqrt(max(r * r - BUS_NOISE_RPM ** 2, 0.0))
         else:
@@ -188,7 +188,7 @@ TEXT = {
 }
 
 A_TOP, A_BOT, A_MAX, A_MIN = 92.0, 268.0, 10.0, -35.0
-B_TOP, B_BOT, B_MAX, B_MIN = 454.6, 585.0, 4.0, 0.0
+B_TOP, B_BOT, B_MAX, B_MIN = 438.3, 585.0, 4.5, 0.0
 X0, X1 = 75.0, 645.0
 GAS_X = 700.0
 
