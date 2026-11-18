@@ -889,6 +889,27 @@ something else; scripts not kept).
   time on 0x288 b6 moves in steps of 2 counts, about 5 %, against the
   loop's ±2.5 %, and VCDS is too slow and too loosely aligned.
 
+**Every cylinder at 3's floor and in its swell** (18/11, *the owner's
+question*; `swellscan.py --series --csv` over `44`, `46`, `47`, `49`–`54`,
+warm, the A/C off, the median window; each cylinder's work per stroke
+against the mean of four, the crank wheel's alternation left in):
+
+| 3's state | windows | 3 | 4 | 1 | 2 | stroke-to-stroke, rpm rms 3 / 4 / 1 / 2 |
+|---|---|---|---|---|---|---|
+| floor (3 above −10 %) | 166 | −7.5 | −2.2 | +3.8 | +5.0 | 3.46 / 3.44 / 3.25 / 2.88 |
+| between | 146 | −12.2 | −0.1 | +5.0 | +7.5 | 4.24 / 3.56 / 3.48 / 2.90 |
+| swell (3 at −15 % and under) | 118 | −18.7 | +3.8 | +6.2 | +9.1 | 4.84 / 3.50 / 3.55 / 2.96 |
+
+Against the mean of 1, 2 and 4 alone: **on the floor 3 −9.7, 4 −4.4,
+1 +1.6, 2 +2.8; in the swell 3 −25.1, 4 −2.6, 1 −0.2, 2 +2.7.** So **only
+3 swells**: 1, 2 and 4 keep their order and their spread of about 7 %
+through it, and their stroke-to-stroke scatter does not move, while 3's
+rises by two fifths. **4 holds a small floor of its own on 3's floor**,
+−4.4 against the other two, but it is not steady from capture to
+capture (−3.8 to +4.4 against the mean of four at 3's floor), and part
+of 1's and 4's place is the wheel's (they read low, *Naming the
+cylinder*). 3's floor is a little over twice 4's.
+
 **Before and after the canister and the new valve** (14/11 evening;
 condensed 17/11, the full text in `git show 5e1ddf2:docs/engine-health/open.md`, this heading). Nothing in the
 common part, the swell or the dips moved. **3's floor read about two
