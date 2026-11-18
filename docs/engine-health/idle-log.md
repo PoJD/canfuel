@@ -90,13 +90,17 @@ cylinder:
 
 ![What each cylinder gives, and how much it wobbles](cylinders-share.svg)
 
-- **What each gives** against the four's mean: 3 is 11–19 % of a
-  stroke short at every warm idle (−6 to −9 % on its floor, −20 to
-  −28 % in a swell), 4 was 9 % short on the old MAF and is level since
-  the leads, 1 came down from +6–8 to +3–5 % in the week of the 44K
-  tanks, 2 gives the most throughout. The four sum to zero, so against
-  1, 2 and 4 alone 3 is about −16 %, 4 −3 %, 1 0 %, 2 +3 %; what a
-  healthy cylinder gives is not known.
+- **What each gives** (*redrawn 18/11 at the owner's request*: it
+  showed 3's mean over each period, which moves with how much of a stop
+  was floor and how much swell; now capture by capture, against the
+  mean of 1, 2 and 4, **3's floor and 3's swell drawn apart**, and 1, 2
+  and 4 while 3 is on its floor; `swellscan.py --series --csv`, warm,
+  the A/C off, the median window). **3's floor −8 to −12 %, its swell
+  −20 to −27 %, both steady since September**; before 3/11 3 was almost
+  never on its floor (above −10 % against the four), so only its swell
+  shows there. 1, 2 and 4 wander a few per cent about each other, 4 the
+  lowest most often (−7 to +2 %) — each cylinder a floor of its own
+  (`open.md`, list A). What a healthy cylinder gives is not known.
 - **How much each wobbles** stroke to stroke about its own mean (the
   common part): **3 > 4 ≈ 1 > 2 at every capture**, the order of the
   cold weak strokes and nearly of the deposit; stable since

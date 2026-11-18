@@ -5,25 +5,117 @@
 <rect x="110" y="40" width="14" height="4" fill="#c0503a"/><text x="128" y="46" font-size="12" fill="#222">cylinder 3</text>
 <rect x="200" y="40" width="14" height="4" fill="#d08a1a"/><text x="218" y="46" font-size="12" fill="#222">cylinder 4</text>
 <rect x="290" y="40" width="14" height="4" fill="#2e8b57"/><text x="308" y="46" font-size="12" fill="#222">cylinder 2</text>
-<text x="20" y="78" font-size="12.5" font-weight="bold" fill="#111">A · each cylinder against the four's mean, % of a stroke's work (warm idle, by repair)</text>
-<line x1="60" x2="740" y1="265.0" y2="265.0" stroke="#e3e3e3"/><text x="54" y="269.0" font-size="10" fill="#666" text-anchor="end">-20</text>
-<line x1="60" x2="740" y1="217.8" y2="217.8" stroke="#e3e3e3"/><text x="54" y="221.8" font-size="10" fill="#666" text-anchor="end">-10</text>
-<line x1="60" x2="740" y1="170.6" y2="170.6" stroke="#999"/><text x="54" y="174.6" font-size="10" fill="#666" text-anchor="end">0</text>
-<line x1="60" x2="740" y1="123.3" y2="123.3" stroke="#e3e3e3"/><text x="54" y="127.3" font-size="10" fill="#666" text-anchor="end">+10</text>
-<polyline points="75.0,231.9 147.2,250.8 219.4,236.7 291.7,231.9 363.9,260.3 436.1,241.4 508.3,231.9 580.6,229.6 652.8,227.2 725.0,227.2" fill="none" stroke="#c0503a" stroke-width="2"/>
-<polyline points="75.0,213.1 147.2,175.3 219.4,180.0 291.7,184.7 363.9,161.1 436.1,161.1 508.3,161.1 580.6,165.8 652.8,165.8 725.0,161.1" fill="none" stroke="#d08a1a" stroke-width="2"/>
-<polyline points="75.0,137.5 147.2,132.8 219.4,132.8 291.7,132.8 363.9,123.3 436.1,142.2 508.3,156.4 580.6,151.7 652.8,146.9 725.0,151.7" fill="none" stroke="#5b7fa6" stroke-width="2"/>
-<polyline points="75.0,99.7 147.2,123.3 219.4,132.8 291.7,132.8 363.9,137.5 436.1,137.5 508.3,132.8 580.6,132.8 652.8,142.2 725.0,137.5" fill="none" stroke="#2e8b57" stroke-width="2"/>
-<text transform="translate(75.0,277) rotate(30)" font-size="9.5" fill="#555">24/9 old MAF</text>
-<text transform="translate(147.2,277) rotate(30)" font-size="9.5" fill="#555">24/9–9/10</text>
-<text transform="translate(219.4,277) rotate(30)" font-size="9.5" fill="#555">10–12/10 leads</text>
-<text transform="translate(291.7,277) rotate(30)" font-size="9.5" fill="#555">15/10 LM can</text>
-<text transform="translate(363.9,277) rotate(30)" font-size="9.5" fill="#555">18/10 flake</text>
-<text transform="translate(436.1,277) rotate(30)" font-size="9.5" fill="#555">21/10 VW leads</text>
-<text transform="translate(508.3,277) rotate(30)" font-size="9.5" fill="#555">3/11</text>
-<text transform="translate(580.6,277) rotate(30)" font-size="9.5" fill="#555">9–10/11</text>
-<text transform="translate(652.8,277) rotate(30)" font-size="9.5" fill="#555">12–14/11</text>
-<text transform="translate(725.0,277) rotate(30)" font-size="9.5" fill="#555">17/11 gasket</text>
+<text x="20" y="78" font-size="12.5" font-weight="bold" fill="#111">A · each cylinder against the mean of 1, 2 and 4, % of a stroke's work (warm idle), capture by capture</text>
+<line x1="60" x2="740" y1="92.0" y2="92.0" stroke="#e3e3e3"/><text x="54" y="96.0" font-size="10" fill="#666" text-anchor="end">+10</text>
+<line x1="60" x2="740" y1="131.1" y2="131.1" stroke="#999"/><text x="54" y="135.1" font-size="10" fill="#666" text-anchor="end">0</text>
+<line x1="60" x2="740" y1="170.2" y2="170.2" stroke="#e3e3e3"/><text x="54" y="174.2" font-size="10" fill="#666" text-anchor="end">-10</text>
+<line x1="60" x2="740" y1="209.3" y2="209.3" stroke="#e3e3e3"/><text x="54" y="213.3" font-size="10" fill="#666" text-anchor="end">-20</text>
+<line x1="60" x2="740" y1="248.4" y2="248.4" stroke="#e3e3e3"/><text x="54" y="252.4" font-size="10" fill="#666" text-anchor="end">-30</text>
+<polyline points="383.8,140.2 407.5,123.9 431.2,124.6 455.0,134.5 478.8,141.9 502.5,122.5 526.2,132.7 550.0,129.3 573.8,120.5 597.5,127.4 621.2,112.2 645.0,128.7" fill="none" stroke="#5b7fa6" stroke-width="2"/>
+<circle cx="241.2" cy="112.9" r="2.4" fill="#5b7fa6"/>
+<circle cx="383.8" cy="140.2" r="2.4" fill="#5b7fa6"/>
+<circle cx="407.5" cy="123.9" r="2.4" fill="#5b7fa6"/>
+<circle cx="431.2" cy="124.6" r="2.4" fill="#5b7fa6"/>
+<circle cx="455.0" cy="134.5" r="2.4" fill="#5b7fa6"/>
+<circle cx="478.8" cy="141.9" r="2.4" fill="#5b7fa6"/>
+<circle cx="502.5" cy="122.5" r="2.4" fill="#5b7fa6"/>
+<circle cx="526.2" cy="132.7" r="2.4" fill="#5b7fa6"/>
+<circle cx="550.0" cy="129.3" r="2.4" fill="#5b7fa6"/>
+<circle cx="573.8" cy="120.5" r="2.4" fill="#5b7fa6"/>
+<circle cx="597.5" cy="127.4" r="2.4" fill="#5b7fa6"/>
+<circle cx="621.2" cy="112.2" r="2.4" fill="#5b7fa6"/>
+<circle cx="645.0" cy="128.7" r="2.4" fill="#5b7fa6"/>
+<polyline points="383.8,175.2 407.5,173.3 431.2,176.1 455.0,173.4 478.8,178.3 502.5,177.7 526.2,166.6 550.0,163.9 573.8,165.2 597.5,173.7 621.2,168.8 645.0,176.0" fill="none" stroke="#c0503a" stroke-width="2"/>
+<circle cx="241.2" cy="175.6" r="2.4" fill="#c0503a"/>
+<circle cx="383.8" cy="175.2" r="2.4" fill="#c0503a"/>
+<circle cx="407.5" cy="173.3" r="2.4" fill="#c0503a"/>
+<circle cx="431.2" cy="176.1" r="2.4" fill="#c0503a"/>
+<circle cx="455.0" cy="173.4" r="2.4" fill="#c0503a"/>
+<circle cx="478.8" cy="178.3" r="2.4" fill="#c0503a"/>
+<circle cx="502.5" cy="177.7" r="2.4" fill="#c0503a"/>
+<circle cx="526.2" cy="166.6" r="2.4" fill="#c0503a"/>
+<circle cx="550.0" cy="163.9" r="2.4" fill="#c0503a"/>
+<circle cx="573.8" cy="165.2" r="2.4" fill="#c0503a"/>
+<circle cx="597.5" cy="173.7" r="2.4" fill="#c0503a"/>
+<circle cx="621.2" cy="168.8" r="2.4" fill="#c0503a"/>
+<circle cx="645.0" cy="176.0" r="2.4" fill="#c0503a"/>
+<polyline points="383.8,135.7 407.5,134.0 431.2,150.8 455.0,156.6 478.8,132.2 502.5,125.1 526.2,121.7 550.0,147.9 573.8,154.8 597.5,146.2 621.2,150.5 645.0,128.6" fill="none" stroke="#d08a1a" stroke-width="2"/>
+<circle cx="241.2" cy="159.2" r="2.4" fill="#d08a1a"/>
+<circle cx="383.8" cy="135.7" r="2.4" fill="#d08a1a"/>
+<circle cx="407.5" cy="134.0" r="2.4" fill="#d08a1a"/>
+<circle cx="431.2" cy="150.8" r="2.4" fill="#d08a1a"/>
+<circle cx="455.0" cy="156.6" r="2.4" fill="#d08a1a"/>
+<circle cx="478.8" cy="132.2" r="2.4" fill="#d08a1a"/>
+<circle cx="502.5" cy="125.1" r="2.4" fill="#d08a1a"/>
+<circle cx="526.2" cy="121.7" r="2.4" fill="#d08a1a"/>
+<circle cx="550.0" cy="147.9" r="2.4" fill="#d08a1a"/>
+<circle cx="573.8" cy="154.8" r="2.4" fill="#d08a1a"/>
+<circle cx="597.5" cy="146.2" r="2.4" fill="#d08a1a"/>
+<circle cx="621.2" cy="150.5" r="2.4" fill="#d08a1a"/>
+<circle cx="645.0" cy="128.6" r="2.4" fill="#d08a1a"/>
+<polyline points="383.8,110.7 407.5,133.2 431.2,118.5 455.0,105.9 478.8,119.3 502.5,145.5 526.2,139.0 550.0,125.4 573.8,117.6 597.5,116.5 621.2,132.4 645.0,130.7" fill="none" stroke="#2e8b57" stroke-width="2"/>
+<circle cx="241.2" cy="118.5" r="2.4" fill="#2e8b57"/>
+<circle cx="383.8" cy="110.7" r="2.4" fill="#2e8b57"/>
+<circle cx="407.5" cy="133.2" r="2.4" fill="#2e8b57"/>
+<circle cx="431.2" cy="118.5" r="2.4" fill="#2e8b57"/>
+<circle cx="455.0" cy="105.9" r="2.4" fill="#2e8b57"/>
+<circle cx="478.8" cy="119.3" r="2.4" fill="#2e8b57"/>
+<circle cx="502.5" cy="145.5" r="2.4" fill="#2e8b57"/>
+<circle cx="526.2" cy="139.0" r="2.4" fill="#2e8b57"/>
+<circle cx="550.0" cy="125.4" r="2.4" fill="#2e8b57"/>
+<circle cx="573.8" cy="117.6" r="2.4" fill="#2e8b57"/>
+<circle cx="597.5" cy="116.5" r="2.4" fill="#2e8b57"/>
+<circle cx="621.2" cy="132.4" r="2.4" fill="#2e8b57"/>
+<circle cx="645.0" cy="130.7" r="2.4" fill="#2e8b57"/>
+<polyline points="193.8,227.3 217.5,224.8 241.2,218.5" fill="none" stroke="#c0503a" stroke-width="2" stroke-dasharray="5,3"/>
+<polyline points="288.8,210.6 312.5,216.6 336.2,222.8 360.0,214.1 383.8,232.7 407.5,224.1 431.2,233.9 455.0,218.8 478.8,225.9" fill="none" stroke="#c0503a" stroke-width="2" stroke-dasharray="5,3"/>
+<polyline points="526.2,228.0 550.0,229.0 573.8,236.0 597.5,231.1 621.2,234.3 645.0,221.7" fill="none" stroke="#c0503a" stroke-width="2" stroke-dasharray="5,3"/>
+<circle cx="98.8" cy="218.0" r="2.4" fill="#c0503a"/>
+<circle cx="146.2" cy="226.9" r="2.4" fill="#c0503a"/>
+<circle cx="193.8" cy="227.3" r="2.4" fill="#c0503a"/>
+<circle cx="217.5" cy="224.8" r="2.4" fill="#c0503a"/>
+<circle cx="241.2" cy="218.5" r="2.4" fill="#c0503a"/>
+<circle cx="288.8" cy="210.6" r="2.4" fill="#c0503a"/>
+<circle cx="312.5" cy="216.6" r="2.4" fill="#c0503a"/>
+<circle cx="336.2" cy="222.8" r="2.4" fill="#c0503a"/>
+<circle cx="360.0" cy="214.1" r="2.4" fill="#c0503a"/>
+<circle cx="383.8" cy="232.7" r="2.4" fill="#c0503a"/>
+<circle cx="407.5" cy="224.1" r="2.4" fill="#c0503a"/>
+<circle cx="431.2" cy="233.9" r="2.4" fill="#c0503a"/>
+<circle cx="455.0" cy="218.8" r="2.4" fill="#c0503a"/>
+<circle cx="478.8" cy="225.9" r="2.4" fill="#c0503a"/>
+<circle cx="526.2" cy="228.0" r="2.4" fill="#c0503a"/>
+<circle cx="550.0" cy="229.0" r="2.4" fill="#c0503a"/>
+<circle cx="573.8" cy="236.0" r="2.4" fill="#c0503a"/>
+<circle cx="597.5" cy="231.1" r="2.4" fill="#c0503a"/>
+<circle cx="621.2" cy="234.3" r="2.4" fill="#c0503a"/>
+<circle cx="645.0" cy="221.7" r="2.4" fill="#c0503a"/>
+<text x="75.0" y="282" font-size="9" fill="#666" text-anchor="middle">19</text>
+<text x="98.8" y="282" font-size="9" fill="#666" text-anchor="middle">24</text>
+<text x="122.5" y="282" font-size="9" fill="#666" text-anchor="middle">26</text>
+<text x="146.2" y="282" font-size="9" fill="#666" text-anchor="middle">28</text>
+<text x="170.0" y="282" font-size="9" fill="#666" text-anchor="middle">29</text>
+<text x="193.8" y="282" font-size="9" fill="#666" text-anchor="middle">30</text>
+<text x="217.5" y="282" font-size="9" fill="#666" text-anchor="middle">31</text>
+<text x="241.2" y="282" font-size="9" fill="#666" text-anchor="middle">32</text>
+<text x="265.0" y="282" font-size="9" fill="#666" text-anchor="middle">36</text>
+<text x="288.8" y="282" font-size="9" fill="#666" text-anchor="middle">37</text>
+<text x="312.5" y="282" font-size="9" fill="#666" text-anchor="middle">38</text>
+<text x="336.2" y="282" font-size="9" fill="#666" text-anchor="middle">39</text>
+<text x="360.0" y="282" font-size="9" fill="#666" text-anchor="middle">40</text>
+<text x="383.8" y="282" font-size="9" fill="#666" text-anchor="middle">42</text>
+<text x="407.5" y="282" font-size="9" fill="#666" text-anchor="middle">43</text>
+<text x="431.2" y="282" font-size="9" fill="#666" text-anchor="middle">44</text>
+<text x="455.0" y="282" font-size="9" fill="#666" text-anchor="middle">46</text>
+<text x="478.8" y="282" font-size="9" fill="#666" text-anchor="middle">47</text>
+<text x="502.5" y="282" font-size="9" fill="#666" text-anchor="middle">48</text>
+<text x="526.2" y="282" font-size="9" fill="#666" text-anchor="middle">49</text>
+<text x="550.0" y="282" font-size="9" fill="#666" text-anchor="middle">50</text>
+<text x="573.8" y="282" font-size="9" fill="#666" text-anchor="middle">51</text>
+<text x="597.5" y="282" font-size="9" fill="#666" text-anchor="middle">52</text>
+<text x="621.2" y="282" font-size="9" fill="#666" text-anchor="middle">53</text>
+<text x="645.0" y="282" font-size="9" fill="#666" text-anchor="middle">54</text>
+<text x="20" y="300" font-size="10.5" fill="#555">Solid: each cylinder while 3 is on its floor (3 above −10 %); dashed: 3 in its swell (3 at −15 % and under). Median window.</text>
 <text x="20" y="338" font-size="12.5" font-weight="bold" fill="#111">B · how much each stroke wobbles about the cylinder's own mean (rpm rms, the bus's noise out), capture by capture</text>
 <line x1="60" x2="740" y1="505.0" y2="505.0" stroke="#e3e3e3"/><text x="54" y="509.0" font-size="10" fill="#666" text-anchor="end">0</text>
 <line x1="60" x2="740" y1="472.4" y2="472.4" stroke="#e3e3e3"/><text x="54" y="476.4" font-size="10" fill="#666" text-anchor="end">1</text>
@@ -64,5 +156,5 @@
 <circle cx="700" cy="457.7" r="4" fill="#d08a1a"/>
 <circle cx="700" cy="487.1" r="4" fill="#2e8b57"/>
 <text x="718" y="368.0" font-size="9.5" fill="#444" text-anchor="end">on the provider's gas (9/11)</text>
-<text x="20" y="545" font-size="10.5" fill="#555">A is relative: the four sum to zero, so 1, 2 and 4 read above zero mostly because 3 pulls the mean down;</text><text x="20" y="559" font-size="10.5" fill="#555">against 1, 2 and 4 alone, 3 is about −16 %, 4 −3 %, 1 0 %, 2 +3 %. B's order 3 > 4 ≈ 1 > 2 holds at every capture.</text>
+<text x="20" y="545" font-size="10.5" fill="#555">A: before 3/11 cylinder 3 was almost never on its floor, so only its swell shows there. 3's floor −8 to −12 %, its swell −20 to −27 %, both</text><text x="20" y="559" font-size="10.5" fill="#555">steady since September; 1, 2 and 4 wander a few per cent about each other, 4 lowest most often. B: 3 &gt; 4 ≈ 1 &gt; 2 at every capture.</text>
 </svg>
