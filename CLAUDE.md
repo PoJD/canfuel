@@ -595,6 +595,13 @@ his phone. Check the platform and for a VCDS install; if unclear, ask once.
   S3, *What 014 counts, by cylinder*. **No injector cut is asked for to
   name cylinders**: the strongest slot names them, and a cut ends a
   swell of cylinder 3's.
+- **Then, every time, the cylinder figure** (*the maintainer*, 18/11):
+  `tools/cylshare.py add` on the new capture only (`--event-en` /
+  `--event-cs` when something was changed since the last capture),
+  `cylshare.py render` for `cylinders-share.svg`, and `render --lang cs`
+  into the scratchpad for the owner's page, whose *Válec po válci*
+  figure is replaced with it. The old captures are not read again:
+  `docs/engine-health/cylinders-share.csv` keeps their rows.
 - **When Claude drives VCDS, it may only read**: measuring blocks, logging,
   reading the fault memory and saving it. **Nothing that writes to a control
   unit, ever** — no clearing, coding, adaptation, basic settings, output tests
@@ -640,6 +647,7 @@ python tools/replay.py --every 100 FILE
 python tools/idledips.py --roughness FILE
 python tools/afterpull.py FILE       # the warm idle after high revs
 python tools/cylscan.py --minutes FILE   # every stroke on its cylinder; --vcds LOG: 014 by cylinder
+python tools/cylshare.py add FILE --event-en ".." --event-cs ".."; render [--lang cs --out X]   # the cylinder figure, one capture at a time
 python tools/drivescan.py FILE          # the same through a whole drive: 3 less 2, 1 less 4 by speed and load; --weak, --vcds LOG, --count, --pulls
 python tools/swellscan.py --series --falls FILE   # cylinder 3's swell and the common part; --corr over many
 python tools/swellscan.py --floors FILE...   # floor and swell: shares, the longest floor, grade, dips, weak strokes; a pooled line
