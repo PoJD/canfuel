@@ -1923,3 +1923,19 @@ misfire counted under load. **The gasket and the injector are cleared**
 
 The can went into about 25 l, not the 15–20 l the plan named: the tank
 was not run down further first. `open.md` S1, the display table.
+
+## 18 November 2026, evening — the first drive home on the 44K can
+
+- **Tests:** `IdleHealth`, `Misfires` and MisfAvg on the MFD through the
+  drive home, a queue with much slow crawling and a few standstills, oil
+  103 °C, the everyday state (*owner*).
+- **Changes after:**
+  - *measured:* `IdleHealth` **60–70** at the first stops, **then 30–50,
+    mostly 34–45**; `Misfires` **3**, MisfAvg **5.9** (*owner*);
+  - *not known:* whether the cleaner made it — one drive, and the same
+    range was read on 10/11 evening and 12/11 night with no cleaner; 6t
+    reads it at the end of the second tank.
+
+The lowest MisfAvg the display has given, and the calmest queue on it
+(5/11 evening 51–54 with the A/C, `50`'s queue 72 on the bus).
+`open.md` S1, the display table.
