@@ -82,6 +82,18 @@ A larger fuse is not called for unless a 200 mA one actually blows (it
 then stays open). The display's limit of 0.5 A is what the rating
 protects.
 
+**The holder, 18/11 evening** (*owner*): now and then, rarely, the
+converter seemed not to run at all while the bus did — the ECU's own
+values on the display, zeros from the converter — and **pressing on the
+MFD's body always brought it back**, which is pressing on the fuse
+holder behind it. The holder was wrapped over in fabric tape
+(`kicad`, `canfuel/docs/harness.md` D2) on a section of loom bent hard;
+the tape may have pulled on the holder's cap and slackened the spring
+inside. **The new fuse now sits in the holder with no tape over it.**
+The old fuse is kept; three spares in hand. This makes the holder's
+contact the leading explanation of the drop-outs (*reasoned*), the
+board's joints the other.
+
 **The LED found, 18/11 evening** (*owner*): a cold joint on a resistor
 by JP1 — moving it starts an LED blinking; left alone it is quiet and
 the converter is not in debug. By `kicad`'s parts list
