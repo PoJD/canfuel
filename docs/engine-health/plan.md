@@ -101,7 +101,7 @@ division, into the chat.
 **6t. Two cans of BG 44K Platinum, before 8q** (*the owner*, 17/11
 evening): the same product as in October, **208** and "Platinum" on the
 can. *The first is in (18/11, about 25 l).* **The second into a full
-tank when this one is low**; each tank driven briskly, with revs. Nothing else changed meanwhile —
+tank when this one is low**; each tank driven as usual, mixed — revved at times, some longer idles (*the owner*, 18/11 evening; until then briskly throughout). Nothing else changed meanwhile —
 no oil change, no other cleaner. **At the end of the second tank, before
 7/12, two captured drives** (or one with two stops), each to a warm stop
 of at least ten minutes, the everyday state, as 6's captures: **one
@@ -556,6 +556,16 @@ and not after the Liqui Moly can of 15/10, which the flake of 18/10
 followed. The same product, so the result compares with October's;
 nothing else changed, so it is the fuel's side alone; the capture before
 8q, so the belt's comparison starts from it and the two do not merge.
+**Driven mixed, not briskly throughout** (*the owner's decision*, 18/11
+evening): his reasoning, that the cleaner may act better where the burn
+is less complete. On this engine the injector sprays onto the back of
+the intake valve at every load, so the intake side gets the cleaner
+however the car is driven (*general*); the exhaust valve and its seat
+see only what survives the burn, and a misfiring stroke on 3 at idle
+passes its charge, the cleaner in it, out unburnt (*reasoned*; how
+much that cleans is not known). What it costs: October's two tanks were
+driven briskly, so the comparison with them loses one like-for-like
+condition; the reading against `44`–`54` by kind of stop stands.
 Read against the stops of the same kind on `44`–`54`, not against one
 (*the owner's point*, 17/11: the time on the floor runs 8–81 % by
 capture, 28 % pooled over `44`–`54` and 10 % over `19`–`43`; after a
