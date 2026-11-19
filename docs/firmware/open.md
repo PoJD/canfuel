@@ -7,7 +7,7 @@ always used, because code and documents cite them; the answered ones are in
 `can-decoding.md` under *Resolved questions*, and the ones not worth answering
 under *Never resolved but not required*.
 
-**One is open, 12** (18/11/2026). **11** (`IdleHealth` against VCDS 014)
+**One is open, 12** (18/11/2026; updated 19/11). **11** (`IdleHealth` against VCDS 014)
 **closed on 8/11/2026** at the owner's decision — the grade stays as it
 is, with `Misfires` beside it — and moved to `can-decoding.md`, *Resolved
 questions*, with its whole record; **7 closed on 15/10/2026** and **10 on
@@ -115,9 +115,20 @@ open RA0 floats, reads high now and then, and the LEDs and 0x603 follow
 MCLR resets the part, and that would be a cause of the restarts too.
 
 **The owner's view**: the board itself, cold joints, or the fuse's
-contact; a second board is to be built in any case, as a spare. **The tests**: the new fuse over the next few days; then the
-second board he plans to build — if the drop-outs stop on it, the first
-board's assembly was the cause. Not worked on with Claude (*owner*: the
-engine and the idle first); recorded so it is not lost.
+contact; a second board is to be built in any case, as a spare.
+
+**The second board, 19/11** (*owner*): assembled, left to dry, not yet
+flashed. Its joints are, by the owner's reading, sounder throughout than
+the first board's, and its LED pads are undamaged — on the first board
+they are not. Photos are in the owner's album, not in the repository.
+
+**The tests, one change at a time**: the harness was repaired on 18/11
+(new fuse, holder re-taped, above), and **the first board goes back into
+the car on its own first**, so the harness repair is tested alone. If the
+drop-outs stop, the holder was the cause. Then the second board replaces
+it once flashed (`docs/firmware/flashing.md`); if drop-outs that
+survived the harness repair stop on it, the first board's assembly was
+the cause. Not worked on with Claude (*owner*: the engine and the idle
+first); recorded so it is not lost.
 
 The engine's own faults are not here; they are `docs/engine-health/open.md`.
