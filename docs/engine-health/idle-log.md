@@ -1980,11 +1980,11 @@ Before the start the MFD showed the converter's bus fault again; moving
 the display brought it back and it held the whole drive
 (`docs/firmware/open.md` 12). `open.md` S1, the display table.
 
-## 19 November 2026 evening — home on the 44K can, revs held high at times
+## 19 November 2026 evening — home on the 44K can, high revs at light load
 
 - **Tests:** `IdleHealth`, `Misfires` and MisfAvg on the MFD through
-  the drive home, about 50 min: queues, and at times the revs held high
-  in a lower gear, never quite full throttle; then about 10 min of
+  the drive home, about 50 min: queues, and long stretches in 2nd at
+  high revs but light load, the pedal gentle; then about 10 min of
   standing idle; the everyday state (*owner*).
 - **Changes after:**
   - *measured:* **mostly 40–50**, waves to **62** at most, lowest
