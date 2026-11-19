@@ -1989,7 +1989,8 @@ the display brought it back and it held the whole drive
 - **Changes after:**
   - *measured:* **mostly 40–50**, waves to **62** at most, lowest
     **35**; `Misfires` 1–6; **MisfAvg 4.1** with StartCrank shown;
-    oil 101 °C (*owner*);
+    oil 101 °C; three more minutes of the stop **35–46**, `Misfires` 0,
+    MisfAvg 3.9 (*owner*);
   - *not known:* the cleaner's effect — 6t reads it at the end of the
     second tank.
 
