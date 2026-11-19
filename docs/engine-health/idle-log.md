@@ -1993,6 +1993,9 @@ the display brought it back and it held the whole drive
     over about ten minutes, 35–46 at times, `Misfires` 0–2, MisfAvg
     3.9, then **3.3**, still 3.3 at engine off; a wave of 45–54 about
     the fifteenth minute, the radiator fan cycling then (*owner*);
+    after about 10 min off, a warm restart, standing: **40–60**,
+    `Misfires` 1–2, MisfAvg 2.9 since that start, not comparable
+    (*owner*);
   - *not known:* the cleaner's effect — 6t reads it at the end of the
     second tank.
 
