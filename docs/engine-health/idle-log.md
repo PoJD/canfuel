@@ -1984,13 +1984,14 @@ the display brought it back and it held the whole drive
 
 - **Tests:** `IdleHealth`, `Misfires` and MisfAvg on the MFD through
   the drive home, about 50 min: queues, and long stretches in 2nd at
-  high revs but light load, the pedal gentle; then about 10 min of
-  standing idle; the everyday state (*owner*).
+  high revs but light load, the pedal gentle; then about 10 min and
+  more of standing idle; the everyday state (*owner*).
 - **Changes after:**
   - *measured:* **mostly 40–50**, waves to **62** at most, lowest
     **35**; `Misfires` 1–6; **MisfAvg 4.1** with StartCrank shown;
-    oil 101 °C; three more minutes of the stop **35–46**, `Misfires` 0,
-    MisfAvg 3.9 (*owner*);
+    oil 101 °C; the waves to 62 only at the stop's start, then **55** at most
+    over about ten minutes, 35–46 at times, `Misfires` 0–2, MisfAvg
+    3.9, then **3.3** (*owner*);
   - *not known:* the cleaner's effect — 6t reads it at the end of the
     second tank.
 
