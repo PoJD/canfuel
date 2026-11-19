@@ -7,7 +7,7 @@ always used, because code and documents cite them; the answered ones are in
 `can-decoding.md` under *Resolved questions*, and the ones not worth answering
 under *Never resolved but not required*.
 
-**One is open, 12** (18/11/2026; updated 19/11). **11** (`IdleHealth` against VCDS 014)
+**One is open, 12** (18/11/2026; updated 19/11, the morning's drop-out). **11** (`IdleHealth` against VCDS 014)
 **closed on 8/11/2026** at the owner's decision — the grade stays as it
 is, with `Misfires` beside it — and moved to `can-decoding.md`, *Resolved
 questions*, with its whole record; **7 closed on 15/10/2026** and **10 on
@@ -130,5 +130,19 @@ it once flashed (`docs/firmware/flashing.md`); if drop-outs that
 survived the harness repair stop on it, the first board's assembly was
 the cause. Not worked on with Claude (*owner*: the engine and the idle
 first); recorded so it is not lost.
+
+**The first morning on the repaired harness, 19/11** (*owner*; the first
+board in the car, the harness's fuse and holder as repaired on 18/11):
+**before the start the MFD showed the bus fault again; moving the MFD
+brought it back**, and it then held the whole drive to work, through
+switching the display's screens too. So the harness repair alone did not
+stop it. A contact the MFD's movement works is still the explanation —
+the holder, the MFD's own plug or the board's joints through the loom's
+pull (*reasoned*); **the owner's reading: perhaps not only the harness
+but the board too.** **Next, the owner's**: the second board flashed and
+fitted over the coming days (`docs/firmware/flashing.md`); the first
+board's joints repaired some time later. A printed enclosure that takes
+the loom's pull off J1/J2 is proposed alongside (`kicad`,
+`canfuel/enclosure/`; `refuted.md` D2).
 
 The engine's own faults are not here; they are `docs/engine-health/open.md`.

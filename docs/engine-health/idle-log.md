@@ -1964,3 +1964,18 @@ MisfAvg is not used: the converter or its wiring dropped out now and
 then on the drive, so its mean since the start did not cover it
 (*owner*; `docs/firmware/open.md` 12). The calmest queue on the display (5/11 evening 51–54 with
 the A/C, `50`'s queue 72 on the bus). `open.md` S1, the display table.
+
+## 19 November 2026 — a gentle drive to work on the 44K can
+
+- **Tests:** `IdleHealth` on the MFD through the drive to work, very
+  gentle, never over 3,000 rpm, no long standing idle; the everyday
+  state (*owner*).
+- **Changes after:**
+  - *measured:* **about 100** shortly after the start, cold; **50–60**
+    at the traffic lights; **about 100** at arrival, oil 100 °C (*owner*);
+  - *not known:* the cleaner's effect — 6t reads it at the end of the
+    second tank.
+
+Before the start the MFD showed the converter's bus fault again; moving
+the display brought it back and it held the whole drive
+(`docs/firmware/open.md` 12). `open.md` S1, the display table.
