@@ -1979,3 +1979,19 @@ the A/C, `50`'s queue 72 on the bus). `open.md` S1, the display table.
 Before the start the MFD showed the converter's bus fault again; moving
 the display brought it back and it held the whole drive
 (`docs/firmware/open.md` 12). `open.md` S1, the display table.
+
+## 19 November 2026 evening — home on the 44K can, revs held high at times
+
+- **Tests:** `IdleHealth`, `Misfires` and MisfAvg on the MFD through
+  the drive home, about 50 min: queues, and at times the revs held high
+  in a lower gear, never quite full throttle; then about 10 min of
+  standing idle; the everyday state (*owner*).
+- **Changes after:**
+  - *measured:* **mostly 40–50**, waves to **62** at most, lowest
+    **35**; `Misfires` 1–6; **MisfAvg 4.1** with StartCrank shown;
+    oil 101 °C (*owner*);
+  - *not known:* the cleaner's effect — 6t reads it at the end of the
+    second tank.
+
+No drop-out of the converter all day after the morning's fault
+(`docs/firmware/open.md` 12). `open.md` S1, the display table.

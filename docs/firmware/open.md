@@ -7,7 +7,7 @@ always used, because code and documents cite them; the answered ones are in
 `can-decoding.md` under *Resolved questions*, and the ones not worth answering
 under *Never resolved but not required*.
 
-**One is open, 12** (18/11/2026; updated 19/11, the morning's drop-out). **11** (`IdleHealth` against VCDS 014)
+**One is open, 12** (18/11/2026; updated 19/11, the morning's drop-out and the evening without one). **11** (`IdleHealth` against VCDS 014)
 **closed on 8/11/2026** at the owner's decision — the grade stays as it
 is, with `Misfires` beside it — and moved to `can-decoding.md`, *Resolved
 questions*, with its whole record; **7 closed on 15/10/2026** and **10 on
@@ -144,5 +144,11 @@ fitted over the coming days (`docs/firmware/flashing.md`); the first
 board's joints repaired some time later. A printed enclosure that takes
 the loom's pull off J1/J2 is proposed alongside (`kicad`,
 `canfuel/enclosure/`; `refuted.md` D2).
+
+**The evening of 19/11** (*owner*): the drive home, about 50 minutes,
+**no drop-out**, and StartCrank shown at the end, so the converter ran
+from the start to the stop and MisfAvg (4.1) covers the drive. One day
+without a drop-out after the MFD was moved in the morning; not yet a
+test of anything, the harness and the board both unchanged since.
 
 The engine's own faults are not here; they are `docs/engine-health/open.md`.
