@@ -21,7 +21,7 @@ One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Next: 8q, the timing belt
 at a garage, 7/12**; then item 9; **the new rear probe when the seller
 sends it** (8e), **its harness at the end**; **8u, 8v, 8w by
-opportunity** (*the owner*, 15/11), **6u**, load against revs before a stop (19/11), and **6r**, the owner's scope, best
+opportunity** (*the owner*, 15/11), and **6r**, the owner's scope, best
 before 8q, **6t**, the second can of BG 44K Platinum and a captured drive before 8q,
 and **6s**, the cleaner drawn in (17/11). *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
@@ -109,20 +109,6 @@ of at least ten minutes, the everyday state, as 6's captures: **one
 after a brisk stretch, one after a gentle one or a queue**. Each can into the chat when it goes
 in, with the odometer. A capture before then is welcome
 (6's captures) and is not 6t's reading.
-
-**6u. Load against revs before a warm stop** (*the owner*, 19/11
-evening; by opportunity, on the MFD or a capture). Two warm stops of
-at least ten minutes, the everyday state, on different drives or one:
-- **one after a loaded stretch**: a few minutes of firm throttle, or a
-  pull in 3rd or 4th to about 5,500 rpm where it is safe, then straight
-  to the stop;
-- **one after high revs at light load**: a few minutes in 2nd at high
-  revs, the pedal gentle, as on 19/11 evening, then straight to the
-  stop.
-
-Into the chat for each: what came just before it, `IdleHealth` in the
-first minutes and after, `Misfires`, and the radiator fan when it
-cycles.
 
 **6s. The valves' carbon cleaned from the intake, GM's way** (*the
 owner*, 17/11 evening; by opportunity). Outdoors, the engine warm:
@@ -597,21 +583,6 @@ the swells' depth and share. **Only a change past that spread counts**
 clearly shallower and rarer. If it moves nothing,
 the oil's side (an EPR flush with the next oil change) is what is left
 of that week.
-
-**6u, load against revs** (*the owner*, 19/11 evening; `open.md`
-S1, *After high revs*). A warm stop after high revs starts rough and
-settles, after a gentle drive it does not, as a rule; the swell's
-depth goes only weakly with the seconds above 4,000 rpm (r −0.32).
-19/11 evening, high revs in 2nd at light load, the stop started at 62
-at most, no 70–90; 18/11 evening, ten minutes of brisker driving, 70–90
-within a minute. *Reasoned*: if what tips 3 at the stop's start is the
-heat of the burn under load and not the revs, the loaded stop rises
-and the light-load one does not. The two stops tell that apart; one
-pair is a hint, not a reading. The radiator fan is noted because it is
-a large electrical load cutting in about a quarter of an hour into a
-warm stop (*general*) and can make a wave of its own; a capture tells
-the two apart by the time (*agreed with the owner*, 19/11: a
-circumstance, not a symptom).
 
 **6s, the cleaner drawn in** (*the owner*, 17/11 evening; the fourth
 research, `open.md`, *What the forums say*, searched again 17/11): GM's

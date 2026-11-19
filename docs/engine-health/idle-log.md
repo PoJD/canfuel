@@ -1996,6 +1996,9 @@ the display brought it back and it held the whole drive
     after about 10 min off, a warm restart, standing: **40–60**,
     `Misfires` 1–2, MisfAvg 2.9 since that start, not comparable
     (*owner*);
+    a drive on, high revs at light load again, and a stop: **90–110**
+    for about three minutes, then 50 for a moment, then waves of
+    60–70 (*owner*: no correlation with the drive before);
   - *not known:* the cleaner's effect — 6t reads it at the end of the
     second tank.
 
