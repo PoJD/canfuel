@@ -7,7 +7,7 @@ always used, because code and documents cite them; the answered ones are in
 `can-decoding.md` under *Resolved questions*, and the ones not worth answering
 under *Never resolved but not required*.
 
-**One is open, 12** (18/11/2026; updated 20/11: the board side closed, the harness's CAN wiring left). **11** (`IdleHealth` against VCDS 014)
+**One is open, 12** (18/11/2026; updated 20/11: the board side closed for now, the harness's CAN wiring left). **11** (`IdleHealth` against VCDS 014)
 **closed on 8/11/2026** at the owner's decision — the grade stays as it
 is, with `Misfires` beside it — and moved to `can-decoding.md`, *Resolved
 questions*, with its whole record; **7 closed on 15/10/2026** and **10 on
@@ -161,7 +161,7 @@ that way for now, because it shows the drop-outs at the converter too.
   the last few days smaller than before the harness repair, so the old
   fuse or its holder was part of it (*owner*).
 - **Seen together at one drop-out, with the loom moved**: the MFD's
-  black CAN icon and, at the same moment, **the converter's yellow LED
+  red CAN icon and, at the same moment, **the converter's yellow LED
   blinking**. Yellow is D2, LED_CAN, whose 2.5 Hz blink means frames
   still arriving with an error counter above zero (`main.c`, *the LEDs*):
   **the converter's own CAN module saw bus errors**, at the same moment
@@ -172,7 +172,8 @@ that way for now, because it shows the drop-outs at the converter too.
   this). Left: **a CAN wire, a crimp on one or a connector's contact in
   the harness**, the owner's reading.
 
-**Where it stands, 20/11** (*the owner*): **the board side is closed** —
+**Where it stands, 20/11** (*the owner*): **the board side is closed for
+now** —
 the new board in its enclosure; the old board kept as the spare. **Next,
 only if the drop-outs come back**: ring out every CAN wire of the
 harness end to end, flexing the loom along its length while the meter
