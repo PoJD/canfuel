@@ -2014,7 +2014,10 @@ No drop-out of the converter all day after the morning's fault
   - *measured:* **80–100 all day, never under 70**, warm, the morning
     included; in the evening's queue **80–100** before the revs,
     **mostly 60–89** after them, at moments **50**, at moments **100**;
-    oil 104 °C (*owner*: worse today);
+    oil 104 °C (*owner*: worse today); about five minutes into a stop
+    **40–45**, `Misfires` 0, MisfAvg **6.0**; the morning's cold start
+    **160** after the secondary air stopped (*owner*: not seen for a
+    long time) — the top of every captured cold start's 110–160;
   - *not known:* the cleaner's effect — 6t reads it at the end of the
     second tank.
 
