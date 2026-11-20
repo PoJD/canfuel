@@ -2004,3 +2004,19 @@ the display brought it back and it held the whole drive
 
 No drop-out of the converter all day after the morning's fault
 (`docs/firmware/open.md` 12). `open.md` S1, the display table.
+
+## 20 November 2026 — a restless day on the 44K can
+
+- **Tests:** `IdleHealth` on the MFD through the morning drive and the
+  evening's, the evening's a queue with the engine revved now and then;
+  the everyday state (*owner*).
+- **Changes after:**
+  - *measured:* **80–100 all day, never under 70**, warm, the morning
+    included; in the evening's queue **80–100** before the revs,
+    **mostly 60–89** after them, at moments **50**, at moments **100**;
+    oil 104 °C (*owner*: worse today);
+  - *not known:* the cleaner's effect — 6t reads it at the end of the
+    second tank.
+
+`open.md` S1, the display table and *After high revs*; H13, *With a
+cleaner in*.
