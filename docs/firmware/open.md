@@ -7,7 +7,7 @@ always used, because code and documents cite them; the answered ones are in
 `can-decoding.md` under *Resolved questions*, and the ones not worth answering
 under *Never resolved but not required*.
 
-**One is open, 12** (18/11/2026; updated 20/11: the board side closed for now, the harness's CAN wiring left). **11** (`IdleHealth` against VCDS 014)
+**One is open, 12** (18/11/2026; updated 20/11: now the CAN link alone — the supply has held since the fuse; the board side closed for now, the harness's CAN wiring left). **11** (`IdleHealth` against VCDS 014)
 **closed on 8/11/2026** at the owner's decision — the grade stays as it
 is, with `Misfires` beside it — and moved to `can-decoding.md`, *Resolved
 questions*, with its whole record; **7 closed on 15/10/2026** and **10 on
@@ -16,9 +16,22 @@ number, 13.
 
 ---
 
-## 12. The converter drops out in the car now and then
+## 12. Now and then the CAN link drops or errs, in the car
 
-**What is seen** (*owner*, 18/11/2026; it has recurred over weeks):
+**What is open now is the CAN link alone** (*the owner*, 20/11/2026).
+**Since the fuse was replaced (18/11) the converter's supply has not
+dropped once**: StartCrank has shown a value at every start, even a
+quick one with the engine running before the MFD has finished booting —
+the converter comes up faster and sees the crank. What still happens is
+**drop-outs of and errors on the CAN bus only**: the MFD's red CAN icon,
+the converter's LED_CAN blinking with it (below), the values held. **They
+come after a cold night**, and on 20/11, cold outside all day, again and
+again: a weak joint somewhere, moved by the cold (*the owner*). The
+restarts, the supply and the LED blinking without JP1 below are the
+question's history, answered by the fuse and holder and by the first
+board's cold joint; they are kept as they were written.
+
+**What was seen** (*owner*, 18/11/2026; it had recurred over weeks):
 - **Sometimes only the CAN link goes**: the MFD loses the converter's
   frames and comes back with its values kept.
 - **Sometimes the converter's supply goes too**: the start's figures
@@ -171,11 +184,15 @@ that way for now, because it shows the drop-outs at the converter too.
   cause (*reasoned*; the first board's cold joints were real but not
   this). Left: **a CAN wire, a crimp on one or a connector's contact in
   the harness**, the owner's reading.
+- **Only after cold nights, and all day on a cold day** (*owner*, 20/11):
+  a contact that opens as it contracts, which fits a crimp or a
+  connector's contact rather than a wire (*reasoned*).
 
 **Where it stands, 20/11** (*the owner*): **the board side is closed for
 now** —
-the new board in its enclosure; the old board kept as the spare. **Next,
-only if the drop-outs come back**: ring out every CAN wire of the
+the new board in its enclosure; the old board kept as the spare. **Next, if
+the CAN drop-outs keep coming** — on a cold morning, when they show:
+ring out every CAN wire of the
 harness end to end, flexing the loom along its length while the meter
 is on it (`kicad`, `canfuel/docs/harness.md`, the loom and its
 connectors). While JP1 stays on, 0x603's latched `DIAG_FLAG_UNHEALTHY`
