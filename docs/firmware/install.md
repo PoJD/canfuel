@@ -22,7 +22,7 @@ git repository, so run git inside one of the three.
 A PIC18F25K80 on a 55 × 45 mm board, mounted behind an aftermarket multi-function
 display, taking 5 V from the display's own plug and hanging off the vehicle's
 powertrain CAN at 500 kbps. It reads six frames from the ECU, computes
-consumption, range, torque and power, and sends them back on frames 0x600–0x603
+consumption, range, torque and power, and sends them back on frames 0x600–0x604
 for the display to render.
 
 **Scope.** The frame layout and the signal decoding are specific to the VW PQ34
@@ -55,6 +55,7 @@ owns.
 | **Multimeter** | 3, 5, 7 | ringing out the loom, confirming 5 V before the board is ever plugged in, and measuring the bench bus termination in step 7 |
 | **Crimping tools and loom parts** | 3 | listed in `kicad/canfuel/docs/harness.md`, which is where that list belongs |
 | **A breadboard** | 7 only | to build a short bench bus. No resistors needed if the adapters have switchable termination — two terminators give 60 Ω, the middle of the transceiver's specified 50–65 Ω range |
+| **A 3D printer** *(optional)* | 11 | for the printed enclosure, `kicad/canfuel/enclosure/`: PETG, about 26 g. Plus four M3 × 25 screws and a cable tie. Without it, nylon M3 standoffs do. *(Tested on an Original Prusa MK4S, 0.4 high-flow nozzle.)* |
 | **A diagnostic tool for the vehicle** | calibration only | **optional.** Not needed to build or run anything. *(Tested with VCDS.)* |
 | **The vehicle** | 8, 9, 10 | a VW PQ34 car with the AQY engine. Other PQ34 cars share much of the bus but nothing here is verified against them |
 
@@ -87,7 +88,7 @@ cheapest test of the CAN driver there is.
 | 8 | Listen only, in the vehicle | the vehicle | `canfuel` |
 | 9 | Transmit, in the vehicle | the vehicle | `canfuel` |
 | 10 | Check it against the raw counter | a drive | — |
-| 11 | Close it up | standoffs, tape | — |
+| 11 | Close it up | standoffs and tape, or *(optional)* the printed enclosure | `kicad` for the enclosure |
 
 Steps 1 to 4 are independent of each other and can be done in any order or in
 parallel — **none of them needs a board**, which is why step 4 sits where it
@@ -1258,10 +1259,13 @@ The last step, and the only one that is undone by doing it.
 3. **Check the display still reads.** Removing JP1 must change nothing except
    the LEDs — if the converter's channels go dead, the jumper was doing
    something it should not have been.
-4. **Mount the board.** Four nylon M3 standoffs into H1–H4, feet on the floor
-   of the vent with automotive-grade double-sided tape. **Not PVC or fabric
-   tape wrapped round the board** — a dashboard reaches 50–60 °C and the
+4. **Mount the board**, one of two ways. **Not PVC or fabric tape wrapped
+   round the board** either way — a dashboard reaches 50–60 °C and the
    adhesive creeps into the sockets. The reasoning is in `kicad`.
+   - **Standoffs**: four nylon M3 standoffs into H1–H4, feet on the floor
+     of the vent with automotive-grade double-sided tape (3M VHB or equal).
+   - ***(optional)* The printed enclosure** — *11.1* below. It also takes
+     the loom's pull off J1/J2's solder joints.
 5. **Close the dashboard and drive.**
 
 **What you give up by closing it**, and it is worth knowing before you do:
@@ -1270,6 +1274,43 @@ Both are behind that jumper now. To read the counters again — after a fault, o
 just out of curiosity — the dashboard comes apart, JP1 goes back on, and a
 USBtin reads 0x603. That is deliberate: nothing in the car should light up or
 add traffic for a device that is working.
+
+### 11.1 *(optional)* Print the enclosure
+
+A two-part PETG box the board is screwed into at its four holes, with a
+slot for J1/J2 and a ledge to tie the loom to. **The design, its reasons
+and the full print settings are `kicad/canfuel/enclosure/README.md`**;
+this is the order of work. It fits the tested car's vent (*owner*,
+20/11/2026), slanted or flat.
+
+1. **Print `bottom.stl` and `lid.stl`** from `kicad/canfuel/enclosure/`,
+   as they are — both are already the right way up. Slice by hand in
+   PrusaSlicer for the printer actually used: its own printer profile
+   and nozzle (on the tested printer *Original Prusa MK4S HF0.4 nozzle*),
+   *0.20mm STRUCTURAL*, **PETG, not PLA** (PLA softens at dashboard
+   temperatures), supports none, infill 20 %. About 1 h 25 min for both.
+2. **Check the lid before anything else**: `canfuel` reads normally on
+   its roof, and the connector slot is at the same end as the bottom's
+   ledge. (A mirrored lid was printed once, 20/11, from an earlier
+   model.)
+3. **Board into the bottom**, components up, J1/J2 to the ledge.
+4. **Lid on**, its slot down over J1/J2, **four M3 × 25 screws** (or 3.0 ×
+   25 plastic screws) through the lid into the bottom's posts. They cut
+   their own thread: gently the first time, snug, not tight — the board
+   is clamped, not crushed.
+5. **Plug in**, and **a cable tie through the ledge's tunnel round the
+   plug** or the loom just behind it, tight. That tie is what keeps a pull
+   on the loom off the solder joints.
+6. **Double-sided tape (3M VHB or equal) on the floor and the ledge**, into
+   the vent.
+
+The LEDs show through the two holes over them, so JP1's debug state reads
+without opening the box. **To work on the board, four screws** — the box
+stays taped in the vent.
+
+**Watch the first summer**: PETG's heat deflection (Prusament PETG, 68 °C)
+is above the dashboard's 50–60 °C but not by much in a car parked in the
+sun; if the box or its posts sag, reprint it in ASA.
 
 ### Everything that needs the board again needs the dashboard open
 
