@@ -1280,8 +1280,8 @@ add traffic for a device that is working.
 A two-part PETG box the board is screwed into at its four holes, with a
 slot for J1/J2 and a ledge to tie the loom to. **The design, its reasons
 and the full print settings are `kicad/canfuel/enclosure/README.md`**;
-this is the order of work. It fits the tested car's vent (*owner*,
-20/11/2026), slanted or flat.
+this is the order of work. **Printed and fitting the tested car's vent**
+(*owner*, 20/11/2026).
 
 1. **Print `bottom.stl` and `lid.stl`** from `kicad/canfuel/enclosure/`,
    as they are — both are already the right way up. Slice by hand in

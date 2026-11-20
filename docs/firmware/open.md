@@ -141,9 +141,10 @@ the holder, the MFD's own plug or the board's joints through the loom's
 pull (*reasoned*); **the owner's reading: perhaps not only the harness
 but the board too.** **Next, the owner's**: the second board flashed and
 fitted over the coming days (`docs/firmware/flashing.md`); the first
-board's joints repaired some time later. A printed enclosure that takes
-the loom's pull off J1/J2 is proposed alongside (`kicad`,
-`canfuel/enclosure/`; `refuted.md` D2).
+board's joints repaired some time later. **A printed enclosure that takes
+the loom's pull off J1/J2** (`kicad`, `canfuel/enclosure/`; `refuted.md`
+D2) **was printed on 20/11 and fits the vent** (*owner*); the second board
+is flashed and goes into it the same evening.
 
 **The evening of 19/11** (*owner*): the drive home, about 50 minutes,
 **no drop-out**, and StartCrank shown at the end, so the converter ran
