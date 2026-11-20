@@ -7,7 +7,7 @@ always used, because code and documents cite them; the answered ones are in
 `can-decoding.md` under *Resolved questions*, and the ones not worth answering
 under *Never resolved but not required*.
 
-**One is open, 12** (18/11/2026; updated 19/11, the morning's drop-out and the evening without one). **11** (`IdleHealth` against VCDS 014)
+**One is open, 12** (18/11/2026; updated 20/11: the board side closed, the harness's CAN wiring left). **11** (`IdleHealth` against VCDS 014)
 **closed on 8/11/2026** at the owner's decision — the grade stays as it
 is, with `Misfires` beside it — and moved to `can-decoding.md`, *Resolved
 questions*, with its whole record; **7 closed on 15/10/2026** and **10 on
@@ -143,13 +143,41 @@ but the board too.** **Next, the owner's**: the second board flashed and
 fitted over the coming days (`docs/firmware/flashing.md`); the first
 board's joints repaired some time later. **A printed enclosure that takes
 the loom's pull off J1/J2** (`kicad`, `canfuel/enclosure/`; `refuted.md`
-D2) **was printed on 20/11 and fits the vent** (*owner*); the second board
-is flashed and goes into it the same evening.
+D2) **was printed on 20/11 and fits the vent** (*owner*).
 
 **The evening of 19/11** (*owner*): the drive home, about 50 minutes,
 **no drop-out**, and StartCrank shown at the end, so the converter ran
 from the start to the stop and MisfAvg (4.1) covers the drive. One day
-without a drop-out after the MFD was moved in the morning; not yet a
-test of anything, the harness and the board both unchanged since.
+without a drop-out after the MFD was moved in the morning; no test of
+anything, the harness and the board both unchanged then.
+
+**The second board, in the car from the evening of 20/11** (*owner*):
+flashed and screwed into the printed enclosure, the plugs held by the
+cable tie on its ledge, the box fixed in the vent in a new position.
+**JP1 was left on by mistake**, so the converter runs in debug — its
+LEDs lit through the box's holes and 0x603 on the bus — and it is kept
+that way for now, because it shows the drop-outs at the converter too.
+- **The drop-outs go on, on the new board, as on the old one** — over
+  the last few days smaller than before the harness repair, so the old
+  fuse or its holder was part of it (*owner*).
+- **Seen together at one drop-out, with the loom moved**: the MFD's
+  black CAN icon and, at the same moment, **the converter's yellow LED
+  blinking**. Yellow is D2, LED_CAN, whose 2.5 Hz blink means frames
+  still arriving with an error counter above zero (`main.c`, *the LEDs*):
+  **the converter's own CAN module saw bus errors**, at the same moment
+  as the display (*reasoned*). Whether the red LED (LED_PWR, the loop
+  running) stayed steady, so the part did not restart, was not said.
+- **Two boards behaving the same** take the board's assembly out as the
+  cause (*reasoned*; the first board's cold joints were real but not
+  this). Left: **a CAN wire, a crimp on one or a connector's contact in
+  the harness**, the owner's reading.
+
+**Where it stands, 20/11** (*the owner*): **the board side is closed** —
+the new board in its enclosure; the old board kept as the spare. **Next,
+only if the drop-outs come back**: ring out every CAN wire of the
+harness end to end, flexing the loom along its length while the meter
+is on it (`kicad`, `canfuel/docs/harness.md`, the loom and its
+connectors). While JP1 stays on, 0x603's latched `DIAG_FLAG_UNHEALTHY`
+and its error counters record a drop-out nobody watched (`frames.md`).
 
 The engine's own faults are not here; they are `docs/engine-health/open.md`.
