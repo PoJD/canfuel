@@ -7,7 +7,7 @@ always used, because code and documents cite them; the answered ones are in
 `can-decoding.md` under *Resolved questions*, and the ones not worth answering
 under *Never resolved but not required*.
 
-**One is open, 12**, the CAN link (18/11/2026; condensed 20/11 to the current problem). **11** (`IdleHealth` against VCDS 014)
+**One is open, 12**, the CAN link (18/11/2026; condensed 20/11 to the current problem; a reversed crimp found and the MFD's board tightened 21/11, watched for a few days). **11** (`IdleHealth` against VCDS 014)
 **closed on 8/11/2026** at the owner's decision — the grade stays as it
 is, with `Misfires` beside it — and moved to `can-decoding.md`, *Resolved
 questions*, with its whole record; **7 closed on 15/10/2026** and **10 on
@@ -45,7 +45,7 @@ they were; the display misses its frames while it lasts.
 
 **Next, if it keeps coming** (*owner*): when it shows, ring out every CAN wire of the harness end to end, flexing the
 loom along its length with the meter on it (`kicad`,
-`canfuel/docs/harness.md`). **JP1 is on since 20/11** (left on, kept so):
+`canfuel/docs/harness.md`). **JP1 is on since 20/11** (kept on for good, 21/11):
 LED_CAN shows a drop-out at the converter, and 0x603's latched
 `DIAG_FLAG_UNHEALTHY` and error counters record one nobody watched
 (`frames.md`). The first board is the spare.
@@ -112,17 +112,45 @@ the drop-outs on switching screens stop, the fault is at that
 connector, and whether in the plug or inside the MFD is then the
 question, the display opened only if it comes to that.
 
-**The owner's decision, 20/11 night**: not the wedge test — **the MFD
-opened and repaired properly**. His suspicion: a joint of the
-connector inside the display has loosened from the plug being pulled
-out and pushed back so often (for the USBtin among others). The joints
-checked inside and resoldered, and **the connector bedded in adhesive
-round it, so the loom's pull is taken by the adhesive, not the
-solder**. *General*: an acetic-cure silicone gives off acid that
-corrodes copper and solder; a neutral-cure one or an epoxy does not;
-the mating face and the latch kept clear. **The test after**: the
-screens switched and the display touched as before — a drop-out then
-puts the fault back in the loom (the short cable, its sockets, ringing
-out with a pin in, above).
+**The owner's decision, 20/11 night**: not the wedge test — the MFD
+opened and repaired properly, on his suspicion that a joint of the
+connector inside the display had loosened from the plug being pulled
+and pushed so often (for the USBtin among others). *This said, until
+21/11, that the joints were resoldered and the connector bedded in
+adhesive; that was the plan, not what was done* (below).
+
+**What was found, 21/11/2026** (*owner*; photos before and after in the
+album): **inside the MFD the connectors hold and look sound; what was
+loose was the whole board inside the display's body**, so the play
+felt at the connector was all three connectors moving with the board.
+**Nothing soldered**: the display put back together and **the two
+screws found loose tightened**, and nothing moves now. Then **every
+crimp of the loom examined, and in the MFD's plug C one — CAN-L, he
+thinks — sat deeper than the others: in its cavity turned 180°**. Taken
+out, turned and pushed back, it now sits fully home like the other
+three. The short cable re-wrapped in Tesa tape, and **at plug C a cable
+tie over the loom**, so any pull is carried by all four wires wrapped
+there, not by one crimp; the converter's end is already tied to the
+enclosure's base, as designed. Plug B of the MFD carries a far thinner
+bundle and takes no pull. *Reasoned*: a terminal turned in its cavity
+does not latch, so its contact with the header's pin is only as good as
+the push the loom gives it — open now and then, closed by a touch on
+the display; that fits everything above, the touch and the switching
+of screens included, and a meter on the cable alone would not see it.
+
+**The test after, 21/11**: the loom and the display moved every way —
+**no drop-out**; the MFD's CAN icon green throughout, LED_CAN not
+blinking at all. **Not closed yet** (*the owner*): **left open a few
+days of ordinary driving**. JP1 stays on, **for good** (*the owner*: the
+two LEDs and 0x603 are worth keeping, and its frames cost nothing), so
+the check is the display's **`Unhealthy`** channel (0x603 byte 3 bit 2,
+`DIAG_FLAG_UNHEALTHY`, latched since the converter's power-up) read at
+the end of each drive, before the ignition goes off: 0 means no CAN
+error and no FIFO overflow since that start. Beside it `Uptime` and
+`ResetCause` say the start it counts from was the ignition's. One
+thing sets it that is not this fault: operating the display through
+oDSS (`frames.md`, *What has actually set it, in the car*). **Closes**
+when it stays 0 through those days; a 1 puts the fault back in the
+loom (the short cable's sockets, rung out with a pin in, above).
 
 The engine's own faults are not here; they are `docs/engine-health/open.md`.
