@@ -50,9 +50,9 @@ comes out for them — the converter goes with the MFD.
   five minutes** (a petrol station) when Claude asks for one.
 - **At the same warm stops, `Misfires` beside `IdleHealth`** into the
   chat; **MisfAvg too whenever StartCrank shows a value** — then the
-  converter has run since the engine started (*the owner*, 18/11;
-  `docs/firmware/open.md` 12) (0x604; JP1 stays off, so 0x603 and the
-  LEDs are dark by design).
+  converter has run since the engine started (*the owner*, 18/11)
+  (0x604, sent with or without JP1; JP1 has been on since 20/11,
+  `docs/firmware/open.md` 12).
 - At several warm stops, **a word on what
   came before each stop** (queuing, or a brisk stretch), and the A/C's
   figure too whenever it happens to be on; **an odd cold misfire or a
