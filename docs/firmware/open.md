@@ -34,7 +34,9 @@ board — the second board, in the printed enclosure since 20/11
 
 **Left**: **a CAN wire, a crimp on one or a connector's contact in the
 harness** (*owner*); one that opens as it contracts in the cold fits a
-crimp or a contact rather than a wire (*reasoned*).
+crimp or a contact rather than a wire (*reasoned*). **Narrowed on the evening of 20/11
+to the MFD's side** — the short cable from the converter to the MFD or
+the MFD's connector (below).
 
 **What it costs**: a CAN-only drop-out leaves the converter's totals as
 they were; the display misses its frames while it lasts.
@@ -63,11 +65,10 @@ what was lost was the MFD's side. **The owner's reading: the fault is
 not on the converter's side, where the connector was just redone, but
 in the short cable from the converter to the MFD or in the MFD's own
 connector, where the USBtin is always plugged in.** That fits the touch
-on the MFD and the MFD's red (its own bus errors) better than the fuse
-holder or the board. A restart of the converter would not show in the
-jump: the trip is restored from the EEPROM, at most `PERSIST_INTERVAL_MS`
-short, so the jump does not say the supply held; it says the receive
-path did.
+on the MFD. LED_CAN blinking at the same moments does not argue
+against it (*reasoned*): a contact that bounces on a stub disturbs
+frames for every node on the bus, while the converter goes on
+receiving between the errors, as the trip shows.
 
 **Whether the USBtin's DuPont jumpers opened the sockets.** Molex
 SD-43045-001 (the Micro-Fit 3.0 header, `kicad`,
