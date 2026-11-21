@@ -88,4 +88,16 @@ spare cable used only with the MFD, does the same from the other end).
 Whether the sockets in the MFD's plug C are of a family a 0.64 mm pin
 fits is not known here.
 
+**The short cable rung out, 20/11 night** (*owner*): both CAN lines
+with the multimeter, the cable flexed — **nothing**. *Reasoned*, what
+that does not rule out: an open of milliseconds, which a meter's
+display does not catch (its beeper is quicker, and the bus needs only
+a bit's worth); a socket's grip on a mated pin, which probing the
+cable end does not load; and a fault that comes only in the cold, as
+the drop-outs do. **Decision**: the sockets are tested with a pin in
+— a 0.64 mm pin (a Micro-Fit pin or the header) in each, the meter on
+the beeper through it and the cable, pin and cable wiggled — and the
+ringing repeated on a cold morning when the fault shows, as *Next*
+says.
+
 The engine's own faults are not here; they are `docs/engine-health/open.md`.
