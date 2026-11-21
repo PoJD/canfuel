@@ -1962,7 +1962,7 @@ was not run down further first. `open.md` S1, the display table.
 
 MisfAvg is not used: the converter or its wiring dropped out now and
 then on the drive, so its mean since the start did not cover it
-(*owner*; `docs/firmware/open.md` 12). The calmest queue on the display (5/11 evening 51–54 with
+(*owner*). The calmest queue on the display (5/11 evening 51–54 with
 the A/C, `50`'s queue 72 on the bus). `open.md` S1, the display table.
 
 ## 19 November 2026 — a gentle drive to work on the 44K can
@@ -1977,8 +1977,7 @@ the A/C, `50`'s queue 72 on the bus). `open.md` S1, the display table.
     second tank.
 
 Before the start the MFD showed the converter's bus fault again; moving
-the display brought it back and it held the whole drive
-(`docs/firmware/open.md` 12). `open.md` S1, the display table.
+the display brought it back and it held the whole drive. `open.md` S1, the display table.
 
 ## 19 November 2026 evening — home on the 44K can, high revs at light load
 
@@ -2002,8 +2001,7 @@ the display brought it back and it held the whole drive
   - *not known:* the cleaner's effect — 6t reads it at the end of the
     second tank.
 
-No drop-out of the converter all day after the morning's fault
-(`docs/firmware/open.md` 12). `open.md` S1, the display table.
+No drop-out of the converter all day after the morning's fault. `open.md` S1, the display table.
 
 ## 20 November 2026 — a restless day on the 44K can
 
@@ -2037,5 +2035,5 @@ cleaner in*.
   - *not known:* the stop's start; the cleaner's effect — 6t reads it
     at the end of the second tank.
 
-The converter's drop-outs went on (`docs/firmware/open.md` 12).
+The converter's drop-outs went on.
 `open.md` S1, the display table.

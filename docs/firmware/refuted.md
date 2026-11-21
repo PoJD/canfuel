@@ -647,7 +647,7 @@ standoffs buy better. The space could not be measured properly anyway, because
 the MFD15 is in the way.
 **Do not reopen it.**
 **Reopened by the owner, 19/11/2026**, for a reason this entry never
-weighed: the drop-outs in the car (`open.md` 12) — the loom's pull on
+weighed: the drop-outs in the car — the loom's pull on
 J1/J2's joints and knocks to the board. A printed two-part box with a
 cable-tie ledge was printed on 20/11 and fits the vent (`kicad`,
 `canfuel/enclosure/`). What is

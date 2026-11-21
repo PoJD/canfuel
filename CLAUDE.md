@@ -318,11 +318,7 @@ calibration is closed as a decision; do not reopen it.
 settled-against things go in, nothing is ever deleted. The firmware's
 questions sort four ways: `refuted.md` (settled "no"), `can-decoding.md`
 *Resolved questions* (answered), *Never resolved but not required* (do not
-work on these), `docs/firmware/open.md` (genuinely open: 12, the CAN link dropping
-or erring now and then in the car, since 18/11/2026; the supply has held
-since the fuse, the board ruled out by a second one; 21/11 a crimp found turned 180° in
-the MFD's plug C and the MFD's loose board tightened, watched a few days
-on 0x603's `Unhealthy` before it closes).
+work on these), `docs/firmware/open.md` (genuinely open: none since 21/11/2026).
 
 ---
 
