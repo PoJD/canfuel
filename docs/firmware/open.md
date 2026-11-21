@@ -23,8 +23,11 @@ number, 13.
 the values kept; at the same moment **the converter's LED_CAN (D2,
 yellow) blinks** — frames still arriving with an error counter above
 zero (`main.c`, *the LEDs*), so the converter's own CAN module sees the
-bus errors too (*reasoned*). **Only after a cold night**, and on 20/11,
-cold all day, again and again. The car's control units store nothing.
+bus errors too (*reasoned*). **Warm too**: the cold was chance (*the
+owner's correction*, 20/11 night; *this read "only after a cold night"
+until then*) — with the car warm it drops out, **sometimes only on
+switching the MFD's screen**, which means touching the display. The
+car's control units store nothing.
 
 **Ruled out**: the supply — since the harness fuse was replaced (18/11)
 the converter has not restarted once, StartCrank showing a value at
@@ -33,16 +36,14 @@ board — the second board, in the printed enclosure since 20/11
 (`kicad`, `canfuel/enclosure/`), behaves as the first.
 
 **Left**: **a CAN wire, a crimp on one or a connector's contact in the
-harness** (*owner*); one that opens as it contracts in the cold fits a
-crimp or a contact rather than a wire (*reasoned*). **Narrowed on the evening of 20/11
+harness** (*owner*). **Narrowed on the evening of 20/11
 to the MFD's side** — the short cable from the converter to the MFD or
-the MFD's connector (below).
+the MFD's connector, which has play (below).
 
 **What it costs**: a CAN-only drop-out leaves the converter's totals as
 they were; the display misses its frames while it lasts.
 
-**Next, if it keeps coming** (*owner*): on a cold morning, when it
-shows, ring out every CAN wire of the harness end to end, flexing the
+**Next, if it keeps coming** (*owner*): when it shows, ring out every CAN wire of the harness end to end, flexing the
 loom along its length with the meter on it (`kicad`,
 `canfuel/docs/harness.md`). **JP1 is on since 20/11** (left on, kept so):
 LED_CAN shows a drop-out at the converter, and 0x603's latched
@@ -93,11 +94,22 @@ with the multimeter, the cable flexed — **nothing**. *Reasoned*, what
 that does not rule out: an open of milliseconds, which a meter's
 display does not catch (its beeper is quicker, and the bus needs only
 a bit's worth); a socket's grip on a mated pin, which probing the
-cable end does not load; and a fault that comes only in the cold, as
-the drop-outs do. **Decision**: the sockets are tested with a pin in
+cable end does not load. **Decision**: the sockets are tested with a pin in
 — a 0.64 mm pin (a Micro-Fit pin or the header) in each, the meter on
 the beeper through it and the cable, pin and cable wiggled — and the
-ringing repeated on a cold morning when the fault shows, as *Next*
-says.
+ringing repeated at once when the fault shows, as *Next* says.
+
+**The MFD's own connector, 20/11 night** (*owner*): **it has play and
+moves on the display.** Moved by hand with the loom held fixed, it did
+not make a drop-out. *Reasoned*: a connector that wobbles on the
+display's body can be the plug loose in its header, or the header loose
+on the display's board — **its solder joints or its anchoring inside the
+MFD**, which a press on the display's buttons flexes and a hand on the
+plug alone may not; one failed attempt does not clear it. **Decision**:
+the play taken up (the plug pushed fully home and wedged or taped to the
+display's body so it cannot rock) and the display used as before; if
+the drop-outs on switching screens stop, the fault is at that
+connector, and whether in the plug or inside the MFD is then the
+question, the display opened only if it comes to that.
 
 The engine's own faults are not here; they are `docs/engine-health/open.md`.

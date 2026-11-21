@@ -321,7 +321,7 @@ questions sort four ways: `refuted.md` (settled "no"), `can-decoding.md`
 work on these), `docs/firmware/open.md` (genuinely open: 12, the CAN link dropping
 or erring now and then in the car, since 18/11/2026; the supply has held
 since the fuse, the board ruled out by a second one, the harness's CAN
-wiring left — the owner's).
+wiring and the MFD's connector left — the owner's).
 
 ---
 
