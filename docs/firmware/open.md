@@ -105,21 +105,9 @@ not make a drop-out. *Reasoned*: a connector that wobbles on the
 display's body can be the plug loose in its header, or the header loose
 on the display's board — **its solder joints or its anchoring inside the
 MFD**, which a press on the display's buttons flexes and a hand on the
-plug alone may not; one failed attempt does not clear it. **Decision**:
-the play taken up (the plug pushed fully home and wedged or taped to the
-display's body so it cannot rock) and the display used as before; if
-the drop-outs on switching screens stop, the fault is at that
-connector, and whether in the plug or inside the MFD is then the
-question, the display opened only if it comes to that.
+plug alone may not; one failed attempt does not clear it.
 
-**The owner's decision, 20/11 night**: not the wedge test — the MFD
-opened and repaired properly, on his suspicion that a joint of the
-connector inside the display had loosened from the plug being pulled
-and pushed so often (for the USBtin among others). *This said, until
-21/11, that the joints were resoldered and the connector bedded in
-adhesive; that was the plan, not what was done* (below).
-
-**What was found, 21/11/2026** (*owner*; photos before and after in the
+**The MFD opened, 21/11/2026** (*owner*; photos before and after in the
 album): **inside the MFD the connectors hold and look sound; what was
 loose was the whole board inside the display's body**, so the play
 felt at the connector was all three connectors moving with the board.
