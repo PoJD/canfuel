@@ -112,4 +112,17 @@ the drop-outs on switching screens stop, the fault is at that
 connector, and whether in the plug or inside the MFD is then the
 question, the display opened only if it comes to that.
 
+**The owner's decision, 20/11 night**: not the wedge test — **the MFD
+opened and repaired properly**. His suspicion: a joint of the
+connector inside the display has loosened from the plug being pulled
+out and pushed back so often (for the USBtin among others). The joints
+checked inside and resoldered, and **the connector bedded in adhesive
+round it, so the loom's pull is taken by the adhesive, not the
+solder**. *General*: an acetic-cure silicone gives off acid that
+corrodes copper and solder; a neutral-cure one or an epoxy does not;
+the mating face and the latch kept clear. **The test after**: the
+screens switched and the display touched as before — a drop-out then
+puts the fault back in the loom (the short cable, its sockets, ringing
+out with a pin in, above).
+
 The engine's own faults are not here; they are `docs/engine-health/open.md`.
