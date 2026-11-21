@@ -2026,3 +2026,16 @@ No drop-out of the converter all day after the morning's fault
 
 `open.md` S1, the display table and *After high revs*; H13, *With a
 cleaner in*.
+
+## 21 November 2026 night — a short drive on empty roads, revved a little
+
+- **Tests:** `IdleHealth` on the MFD at a standing idle after a short
+  drive on empty roads, the engine revved a little; the everyday state
+  (*owner*).
+- **Changes after:**
+  - *measured:* **40–60** about ten minutes into the stop (*owner*);
+  - *not known:* the stop's start; the cleaner's effect — 6t reads it
+    at the end of the second tank.
+
+The converter's drop-outs went on (`docs/firmware/open.md` 12).
+`open.md` S1, the display table.

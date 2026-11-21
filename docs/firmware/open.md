@@ -152,4 +152,40 @@ from the start to the stop and MisfAvg (4.1) covers the drive. One day
 without a drop-out after the MFD was moved in the morning; not yet a
 test of anything, the harness and the board both unchanged since.
 
+**The evening of 20/11** (*owner*): **a crimp on the car side** of the
+loom, on the CAN wires, long distrusted, **was redone** (photos in the
+owner's album) — **and the drop-outs go on**. **A light touch on the
+MFD still brings the bus back.** Left dropped out for a while on a
+drive, **TripDist jumped by about 0.4 km when it came back**, the
+distance driven in the gap. *Reasoned*: the trip is integrated from
+the car's speed frames (`compute_tick()`), so **through the gap the
+converter was powered and receiving the car** on the CAN pair, and
+what was lost was the MFD's side. **The owner's reading: the fault is
+not on the converter's side, where the connector was just redone, but
+in the short cable from the converter to the MFD or in the MFD's own
+connector, where the USBtin is always plugged in.** That fits the touch
+on the MFD and the MFD's red (its own bus errors) better than the fuse
+holder or the board. A restart of the converter would not show in the
+jump: the trip is restored from the EEPROM, at most `PERSIST_INTERVAL_MS`
+short, so the jump does not say the supply held; it says the receive
+path did.
+
+**Whether the USBtin's DuPont jumpers opened the sockets.** Molex
+SD-43045-001 (the Micro-Fit 3.0 header, `kicad`,
+`canfuel/docs/micro-fit-43045-datasheet.pdf`) gives the mating pin as
+**0.64 mm square** (.025 SQ TYP); the 43030 socket is made for that.
+The jumpers' pins have no datasheet here; the usual 2.54 mm jumper pin
+is nominally the same 0.64 mm square, so by size alone it should not
+open a 43030 socket — but **a jumper is not latched and is levered
+sideways at every touch**, and a cheap pin may be oversize or burred.
+**Decision** (not a datasheet fact): measure a jumper pin with
+calipers; a socket that lets a 0.64 mm pin fall out under its own
+weight is opened. A socket that is suspect is re-crimped with a new
+43030 terminal (spares in hand) rather than bent back, and **the USBtin
+gets its own adapter with a real Micro-Fit plug**, so nothing but
+Micro-Fit pins enters the loom's sockets again (the owner's idea, a
+spare cable used only with the MFD, does the same from the other end).
+Whether the sockets in the MFD's plug C are of a family a 0.64 mm pin
+fits is not known here.
+
 The engine's own faults are not here; they are `docs/engine-health/open.md`.
