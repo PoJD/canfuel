@@ -101,7 +101,7 @@ division, into the chat.
 **6t. Two cans of BG 44K Platinum, before 8q** (*the owner*, 17/11
 evening): the same product as in October, **208** and "Platinum" on the
 can. *Both are in: the first 18/11 into about 25 l, the second 22/11 evening into a
-full tank at 156,539 km.* Each tank driven as usual, mixed — revved at times, some longer idles (*the owner*, 18/11 evening; until then briskly throughout). Nothing else changed meanwhile —
+full tank of 51.38 l at 156,539 km.* Each tank driven as usual, mixed — revved at times, some longer idles (*the owner*, 18/11 evening; until then briskly throughout). Nothing else changed meanwhile —
 no oil change, no other cleaner. **At the end of the second tank, before
 7/12, two captured drives** (or one with two stops), each to a warm stop
 of at least ten minutes, the everyday state, as 6's captures: **one

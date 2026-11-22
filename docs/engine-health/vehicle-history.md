@@ -194,7 +194,7 @@ Owner-supplied from service records or from his own work.
 | **Decarbonisation, with hydrogen**, Bez Karbonu (HPower s.r.o.), Prague: oxyhydrogen from a machine of 800 l/h run at about 60 % (*owner*), into the intake behind the MAF, the engine held at 1,750–2,150 rpm by the provider for about an hour and at idle for the last two minutes, never stopped; a certificate given. The second such clean (the first 10/8/2021, above) | **9/11/2026** at about 156,000 km (the certificate's rounding) | — |
 | **Purge valve N80, new**: Bosch `0 280 142 353`, VW `1C0 906 517 A`, the same part as the old one, which is kept (*owner*); **the small rubber hose from N80 to the plastic line back to the canister and tank renewed** — the old one well worn; the hose on N80's other side left on, too awkward to reach (*owner*); photographs in the album (*owner*) | **14/11/2026** at 156,069 km, by the owner (`plan.md` 8a); the fault memory empty and 032/055 photographed just before (*owner*): −9.4 / +7.8 %, −1.24 g/s | ~0 |
 | **Fuel cleaner, BG 44K Platinum** (`208`), the first of `plan.md` 6t's two cans, poured in at a 4 l top-up of OMV: about **25 l in the tank** with it (21 l indicated before, 24–25 after; *owner*) | **18/11/2026** at 156,365 km, by the owner | — |
-| **Fuel cleaner, BG 44K Platinum** (`208`), the second of `plan.md` 6t's two cans, into a full tank (0.2 l indicated before, the album 23:16; *owner*) | **22/11/2026** evening at 156,539 km, by the owner | — |
+| **Fuel cleaner, BG 44K Platinum** (`208`), the second of `plan.md` 6t's two cans, into a full tank: **51.38 l** to the click, 0.2 l indicated before (the album 23:16), 51 l on the MFD after (*owner*) | **22/11/2026** evening at 156,539 km, by the owner | — |
 
 ### Notes to the table
 
