@@ -59,6 +59,9 @@ typedef struct {
     uint8_t  cyl_weak;          /* CylWeak, 1-4                            */
     uint8_t  cyl_blocks;        /* CylBlocks, this start                   */
     uint8_t  cyl_flags;         /* CYL_FLAG_* in config.h                  */
+    /* 0x606 and 0x607 -- a drive's warm idles, one at a time             */
+    hist_record_t hist;
+    uint8_t  hist_flags;        /* HIST_FLAG_* in config.h                 */
 } tx_values_t;
 
 /* Read everything out of the core into transmit units.
@@ -104,6 +107,14 @@ void txframes_gather_health(tx_values_t *v, const compute_t *c, uint32_t now_ms)
  * quiet bus publishes 255 in every field. config.h, 0x605. */
 void txframes_gather_cyl(tx_values_t *v, const compute_t *c, uint32_t now_ms);
 
+/* 0x606, this drive's warm idles, and 0x607, the previous drive's as the
+ * EEPROM held it at power-up (stored false: none). Call each immediately
+ * before txframes_hist(); a quiet bus publishes 255 everywhere and IdleS 0,
+ * as 0x604 does. config.h, 0x606. */
+void txframes_gather_drive(tx_values_t *v, const compute_t *c, uint32_t now_ms);
+void txframes_gather_prev(tx_values_t *v, const compute_t *c,
+                          const hist_record_t *prev, bool stored, uint32_t now_ms);
+
 /* Each writes exactly TXFRAME_DLC bytes. */
 void txframes_fuel(const tx_values_t *v, uint8_t *out);     /* 0x600, 100 ms */
 void txframes_engine(const tx_values_t *v, uint8_t *out);   /* 0x601, 100 ms */
@@ -111,5 +122,6 @@ void txframes_trip(const tx_values_t *v, uint8_t *out);     /* 0x602, 1 s    */
 void txframes_diag(const tx_values_t *v, uint8_t *out);     /* 0x603, 1 s    */
 void txframes_health(const tx_values_t *v, uint8_t *out);   /* 0x604, 1 s    */
 void txframes_cyl(const tx_values_t *v, uint8_t *out);      /* 0x605, 1 s    */
+void txframes_hist(const tx_values_t *v, uint8_t *out);     /* 0x606, 0x607  */
 
 #endif /* TXFRAMES_H */

@@ -1,4 +1,4 @@
-/* test_txframes.c -- the byte layout of 0x600 to 0x605.
+/* test_txframes.c -- the byte layout of 0x600 to 0x607.
  *
  * These offsets are not an internal detail: mfd15/tri/S-AQY.TRI has already
  * been uploaded to a real display and reads exactly these bytes. Getting one
@@ -24,11 +24,14 @@
  *              (x 0.5, offset -64)
  *   0605;0;4;1 CylWeak  0605;0;5;1 CylBlocks
  *   0605;0;7;1 CylNamed (mask 0001)
+ *   0606;0;0;2 DrvIdleS  0606;0;2;1 DrvHealth  0606;0;3;1 DrvMisf
+ *   0606;0;4;1 DrvWeak   0606;0;5;1 DrvWeakCyl
+ *   0607: the same five as Prv*, and 0607;0;7;1 PrvStored (mask 0001)
  *
  * The third column is the format: 0 is big endian, and every one of our own
  * sensors carries a 0 while the car's carry a 1.
  *
- * ALL SIX FRAMES ARE READ BY THE DISPLAY NOW. 0x602 and 0x603 used to be
+ * ALL EIGHT FRAMES ARE READ BY THE DISPLAY NOW. 0x602 and 0x603 used to be
  * ours to change freely because nothing consumed them; they have rows in the
  * TRI file, so a layout change here is a change there in the same breath.
  */
@@ -569,6 +572,76 @@ static void test_cylinder_three_on_the_wire(void)
     TT_TRUE(out[7] & CYL_FLAG_DATA_LIVE);
 }
 
+/* 0x606 and 0x607 share one layout, pinned against the TRI rows above. */
+static void test_drive_frame_offsets(void)
+{
+    tx_values_t v;
+    uint8_t out[TXFRAME_DLC];
+
+    memset(&v, 0, sizeof v);
+    v.hist.idle_s = 0x1234u;
+    v.hist.health = 0x43u;
+    v.hist.misf = 0x47u;
+    v.hist.weak = 0x68u;
+    v.hist.weak_cyl = 3u;
+    v.hist_flags = HIST_FLAG_DATA_LIVE | HIST_FLAG_STORED;
+    txframes_hist(&v, out);
+
+    TT_EQ(be16(out), 0x1234u);          /* IdleS, big endian       */
+    TT_EQ(out[2], 0x43u);               /* Health                  */
+    TT_EQ(out[3], 0x47u);               /* Misf                    */
+    TT_EQ(out[4], 0x68u);               /* Weak                    */
+    TT_EQ(out[5], 3u);                  /* WeakCyl                 */
+    TT_EQ(out[6], HEALTH_UNKNOWN);
+    TT_EQ(out[7] & 0x01u, HIST_FLAG_STORED);
+    TT_EQ(HIST_FLAG_STORED, 0x01u);
+    TT_EQ(out[7] >> HEALTH_VERSION_SHIFT, HIST_LAYOUT_VERSION);
+}
+
+static void test_drive_frames_read_unknown_on_a_quiet_bus(void)
+{
+    compute_t c;
+    tx_values_t v;
+    hist_record_t prev;
+    uint8_t out[TXFRAME_DLC];
+
+    compute_init(&c);
+    prev.idle_s = 500u;
+    prev.health = 60u;
+    prev.misf = 50u;
+    prev.weak = 100u;
+    prev.weak_cyl = 3u;
+    memset(&v, 0, sizeof v);
+    txframes_gather_drive(&v, &c, 10u * DATA_TIMEOUT_MS);
+    txframes_hist(&v, out);
+    TT_EQ(be16(out), 0u);
+    TT_EQ(out[2], HEALTH_UNKNOWN);
+    TT_EQ(out[5], HEALTH_UNKNOWN);
+    txframes_gather_prev(&v, &c, &prev, true, 10u * DATA_TIMEOUT_MS);
+    txframes_hist(&v, out);
+    TT_EQ(out[2], HEALTH_UNKNOWN);
+    TT_EQ(out[7] & 0x1Fu, 0u);
+}
+
+/* End to end off `54`: the whole drive's warm idles, the oracle's numbers. */
+static void test_the_drive_on_the_wire(void)
+{
+    replay_result_t r;
+    tx_values_t v;
+    uint8_t out[TXFRAME_DLC];
+
+    TT_TRUE(replay_log("54_8z_first_drive_z1.txt", &r));
+    memset(&v, 0, sizeof v);
+    txframes_gather_drive(&v, &r.cp, r.cp.last_data_ms);
+    txframes_hist(&v, out);
+    TT_EQ(be16(out), 1356u);            /* 22.6 min of warm idle   */
+    TT_EQ(out[2], 67u);                 /* IdleHealth, the mean    */
+    TT_EQ(out[3], 71u);                 /* 7.1 a minute            */
+    TT_EQ(out[4], 104u);                /* weakest -12.0 %         */
+    TT_EQ(out[5], 3u);
+    TT_TRUE(out[7] & HIST_FLAG_DATA_LIVE);
+}
+
 /* End to end off the real cold start, as main.c would transmit it at the end
  * of the log: the start the owner remembers as nearly dying, in the bytes the
  * display will show. The oracle's numbers, through txframes. */
@@ -618,5 +691,8 @@ int main(void)
     TT_RUN(test_cyl_frame_offsets);
     TT_RUN(test_cyl_reads_unknown_before_a_block_and_on_a_quiet_bus);
     TT_RUN(test_cylinder_three_on_the_wire);
+    TT_RUN(test_drive_frame_offsets);
+    TT_RUN(test_drive_frames_read_unknown_on_a_quiet_bus);
+    TT_RUN(test_the_drive_on_the_wire);
     return TT_SUMMARY();
 }

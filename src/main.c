@@ -12,7 +12,8 @@
  *    every pass   drain the CAN receive FIFO, offer the clock to the core
  *                 (which integrates distance on its own DIST_TICK_MS step)
  *    every 25 ms  one transmit slot, and AT MOST ONE FRAME in it -- 0x600
- *                 to 0x605, and the EEPROM in a slot that sends nothing.
+ *                 to 0x607, and the two EEPROM writes in slots that send
+ *                 nothing.
  *                 config.h has the measurement that forced that.
  */
 #include "pic_config.h"     /* #pragma config ... and then <xc.h> */
@@ -33,6 +34,12 @@
 static decode_state_t st;
 static compute_t      cp;
 static persist_t      ps;
+static hist_store_t   hs;
+/* The previous drive's warm idles, as the EEPROM held them at power-up, for
+ * 0x607. Read once; this drive's own record replaces it in the EEPROM, not
+ * here. */
+static hist_record_t  prev_drive;
+static bool           prev_stored;
 static tx_values_t    tx;
 
 /* --- the LEDs ------------------------------------------------------------ */
@@ -173,6 +180,10 @@ int main(void)
         compute_restore(&cp, rec.total_ul, rec.total_mm,
                         rec.tank_stable_l, rec.tank_stable_valid);
     }
+
+    /* The previous drive, or nothing on a part that has never had a warm
+     * idle: 0x607 then says so with HIST_FLAG_STORED clear. */
+    prev_stored = hist_load(&hs, &hal_eeprom_backend, &prev_drive);
 
     /* CAN_START_MODE is HAL_CAN_MODE_NORMAL unless the build said otherwise;
      * see config.h. A silent build still receives, still decodes and still
@@ -352,6 +363,32 @@ int main(void)
                 txframes_cyl(&tx, buf);
                 if (!hal_can_send(CAN_ID_TX_CYL, buf, TXFRAME_DLC)) {
                     tx_fail_count();
+                }
+            } else if (slot == (uint8_t)TX_SLOT_DRIVE) {
+                /* 0x606, this drive's warm idles so far. */
+                txframes_gather_drive(&tx, &cp, now);
+                txframes_hist(&tx, buf);
+                if (!hal_can_send(CAN_ID_TX_DRIVE, buf, TXFRAME_DLC)) {
+                    tx_fail_count();
+                }
+            } else if (slot == (uint8_t)TX_SLOT_PREV) {
+                /* 0x607, the previous drive's, from the EEPROM. */
+                txframes_gather_prev(&tx, &cp, &prev_drive, prev_stored, now);
+                txframes_hist(&tx, buf);
+                if (!hal_can_send(CAN_ID_TX_PREV, buf, TXFRAME_DLC)) {
+                    tx_fail_count();
+                }
+            } else if (slot == (uint8_t)TX_SLOT_HIST) {
+                /* The drive's record, in a slot that sends nothing, for the
+                 * trip record's reason (slot 22): the write blocks for
+                 * HIST_RECORD_BYTES x 4 ms. hist_save() keeps the five-minute
+                 * rule and refuses an unchanged or empty record. The overflow
+                 * the block causes is forgiven the same way. */
+                hist_record_t now_drive;
+
+                compute_hist(&cp, &now_drive);
+                if (hist_save(&hs, &now_drive, now)) {
+                    pardon_overflow = true;
                 }
             } else if (slot == (uint8_t)TX_SLOT_PERSIST) {
                 rec.total_ul          = cp.total_ul;

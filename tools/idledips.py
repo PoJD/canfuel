@@ -863,6 +863,178 @@ def last_start_s(frames):
     return (t_start - frames[0].ts_ms) / 1000.0
 
 
+# --- the drive's warm idles, 0x606 --------------------------------------------
+#
+# DrvIdleS, DrvHealth, DrvMisf, DrvWeak and DrvWeakCyl on 0x606
+# (docs/firmware/frames.md), the owner's request of 22/11/2026. A drive is one
+# power-up, so this runs over the WHOLE log, through every engine restart, the
+# way compute.c's idle_grade() and start_watch() do: a restart clears the grade,
+# the idle clock, the misfire window and the cylinder block, and nothing of the
+# drive's sums. Everything 0x604 and 0x605 do is redone here frame by frame
+# because the drive's figures are taken from inside them; test_idledips.py holds
+# the parts against roughness(), misfires() and cylinders().
+
+HIST_WARM_OIL_C = 85             # src/config.h HIST_WARM_OIL_C100 / 100
+IDLE_CONVERGE_S = 30             # src/config.h, the same name
+
+
+def drive_summary(frames):
+    """(idle_s, health, misf, weak, weak_cyl) -- 0x606 at the end of the
+    log, 255 where not known -- from a timestamped log's frames."""
+    trip, rearm = TRIP_RPM * 4, REARM_RPM * 4
+    speed = 0
+    oil = None
+    phase = _UNKNOWN
+    in_gate = False
+    base = idle_since = prev_ms = prev_rpm = None
+    rough = idle_ms = 0
+    next_ms = 1000
+    armed = True
+    warm_ms = hsum = hn = misf = wsum = wn = 0
+    wcount = [0, 0, 0, 0]
+    cyl = {"lock": 0, "ph": 0, "rprev": 0, "rcur": 0, "slot": 0,
+           "sums": [0, 0, 0, 0], "rs": 0, "n": 0}
+
+    def drop():
+        cyl.update(lock=0, sums=[0, 0, 0, 0], rs=0, n=0)
+
+    def commit(slot, now_q4, before_q4, r_q4, warm):
+        nonlocal wsum, wn
+        step = max(-CYL_STEP_CLAMP_Q4, min(CYL_STEP_CLAMP_Q4, now_q4 - before_q4))
+        cyl["sums"][slot & 3] += step + CYL_STEP_CLAMP_Q4
+        cyl["rs"] += r_q4
+        cyl["n"] += 1
+        if cyl["n"] >= CYL_BLOCK_STROKES:
+            dev, weak, _ = _cyl_finish(cyl["sums"], cyl["rs"])
+            if warm:
+                wsum += dev[weak - 1]
+                wn += 1
+                wcount[weak - 1] += 1
+            cyl.update(n=0, sums=[0, 0, 0, 0], rs=0)
+
+    def anchor(rq):
+        cyl.update(lock=1, ph=CYL_HALF_PH, rcur=rq, slot=0)
+
+    def cyl_frame(rq, dt, changed, warm):
+        if dt > CYL_MAX_DT_MS:
+            drop()
+        if cyl["lock"] == 0:
+            if changed:
+                anchor(rq)
+            return
+        cyl["ph"] += rq * dt
+        if not changed:
+            return
+        m = 0
+        while cyl["ph"] >= CYL_STROKE_PH and m <= CYL_MAX_SKIP:
+            cyl["ph"] -= CYL_STROKE_PH
+            m += 1
+        if m > CYL_MAX_SKIP:
+            drop()
+            anchor(rq)
+            return
+        if m == 0:
+            cyl["rcur"] = rq
+        else:
+            if cyl["lock"] == 2:
+                commit(cyl["slot"], cyl["rcur"], cyl["rprev"], cyl["rcur"], warm)
+            for j in range(1, m):
+                commit(cyl["slot"] + j, cyl["rcur"], cyl["rcur"], cyl["rcur"], warm)
+            cyl["rprev"], cyl["rcur"] = cyl["rcur"], rq
+            cyl["slot"] = (cyl["slot"] + m) & 3
+            cyl["lock"] = 2
+        ph = cyl["ph"]
+        if ph >= CYL_HALF_PH:
+            e = ph - CYL_HALF_PH
+            cyl["ph"] = CYL_HALF_PH + e - (e >> CYL_PLL_SHIFT)
+        else:
+            e = CYL_HALF_PH - ph
+            cyl["ph"] = CYL_HALF_PH - (e - (e >> CYL_PLL_SHIFT))
+
+    for f in frames:
+        d = f.data
+        if f.can_id == 0x1A0 and len(d) >= 4:
+            if (d[1] & 0x40) != 0 and (d[1] & 0x03) == 0:
+                speed = (d[2] | (d[3] << 8)) * 5
+            continue
+        if f.can_id == 0x420 and len(d) >= 4:
+            oil = None if d[3] == 0xFF else d[3] - 60
+            continue
+        if f.can_id != 0x280 or len(d) < 8 or f.ts_ms is None:
+            continue
+        now = f.ts_ms
+        rq = d[2] | (d[3] << 8)
+        # start_watch(): only the reset matters here
+        if rq == 0:
+            phase = _STOPPED
+        elif phase == _UNKNOWN:
+            phase = _RUNNING
+        elif phase == _STOPPED:
+            phase = _RUNNING
+            rough = idle_ms = 0
+            next_ms = 1000
+            armed = True
+            drop()
+        # idle_grade()
+        if speed > GATE_SPEED_MMH or d[5] > GATE_THROTTLE or rq == 0:
+            in_gate = False
+            prev_ms = prev_rpm = None
+            armed = True
+            drop()
+            continue
+        if not in_gate:
+            in_gate = True
+            idle_since = now
+            base = rq << EWMA_SHIFT
+        baseline = base >> EWMA_SHIFT
+        settled = now - idle_since >= round(SETTLE_S * 1000)
+        if not settled and baseline >= rq + trip:
+            idle_since = now
+        warm = oil is not None and oil >= HIST_WARM_OIL_C
+        if settled:
+            cyl_frame(rq, now - prev_ms if prev_ms is not None else 0,
+                      prev_rpm is not None and rq != prev_rpm, warm)
+            if prev_ms is not None:
+                idle_ms += now - prev_ms
+                if warm:
+                    warm_ms += now - prev_ms
+            if idle_ms >= next_ms:
+                next_ms += 1000
+                if warm and idle_ms >= IDLE_CONVERGE_S * 1000:
+                    hsum += min((min(rough >> ROUGH_OUT_SHIFT, 254) * 25) >> 4,
+                                IDLE_INDEX_MAX)
+                    hn += 1
+            if armed and baseline >= rq + trip:
+                armed = False
+                if warm:
+                    misf += 1
+            elif not armed and baseline <= rq + rearm:
+                armed = True
+            if prev_rpm is not None and rq != prev_rpm:
+                step = max(abs(rq - prev_rpm) - ROUGH_DEADBAND_RPM * 4, 0)
+                rough += step - (rough >> ROUGH_SHIFT)
+        else:
+            drop()
+        prev_ms = now
+        if prev_rpm is None or rq != prev_rpm:
+            prev_rpm = rq
+        base += rq - baseline
+
+    def rnd(num, den):
+        return (num + den // 2) // den
+
+    secs = warm_ms // 1000
+    q = 0
+    for i in (1, 2, 3):
+        if wcount[i] > wcount[q]:
+            q = i
+    return (min(secs, 65535),
+            min(rnd(hsum, hn), 254) if hn else 255,
+            min(rnd(misf * MISF_AVG_SCALE, secs), 254) if secs else 255,
+            min(rnd(wsum, wn), 254) if wn else 255,
+            q + 1 if wn else 255)
+
+
 def health_summary(path):
     """What `replay.py --host-build` compares against test/build/replay_host.
 
@@ -885,7 +1057,9 @@ def health_summary(path):
             "misf_window": wsum, "misf_total": total,
             "start_crank": crank, "start_dip": dip, "start_clt": clt,
             "cyl1": dev[0], "cyl2": dev[1], "cyl3": dev[2], "cyl4": dev[3],
-            "cyl_weak": weak, "cyl_blocks": blocks, "cyl_named": int(named)}
+            "cyl_weak": weak, "cyl_blocks": blocks, "cyl_named": int(named),
+            **dict(zip(("drv_idle_s", "drv_health", "drv_misf", "drv_weak",
+                        "drv_weak_cyl"), drive_summary(frames)))}
 
 
 # --- per-cylinder structure ------------------------------------------------

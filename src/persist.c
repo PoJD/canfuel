@@ -211,3 +211,129 @@ bool persist_save(persist_t *p, const persist_record_t *rec, uint32_t now_ms)
     p->have_write_ms = true;
     return true;
 }
+
+/* --- the drive's warm idles ---------------------------------------------- */
+
+#define HIST_CRC_OFFSET 7u
+
+#if PERSIST_SLOTS * PERSIST_RECORD_BYTES > HIST_BASE_ADDR
+#error "The trip ring has grown into the drive record's EEPROM."
+#endif
+#if HIST_BASE_ADDR + 2u * HIST_SLOT_BYTES > 1024u
+#error "The drive record runs past the 1,024 bytes of data EEPROM (DS39977C)."
+#endif
+#if HIST_RECORD_BYTES > HIST_SLOT_BYTES || HIST_CRC_OFFSET + 2u != HIST_RECORD_BYTES
+#error "The drive record's layout and HIST_RECORD_BYTES disagree."
+#endif
+
+static void hist_unknown(hist_record_t *r)
+{
+    r->idle_s = 0u;
+    r->health = HEALTH_UNKNOWN;
+    r->misf = HEALTH_UNKNOWN;
+    r->weak = HEALTH_UNKNOWN;
+    r->weak_cyl = HEALTH_UNKNOWN;
+}
+
+static void hist_slot_read(const persist_backend_t *be, uint8_t slot, uint8_t *buf)
+{
+    uint16_t base = (uint16_t)(HIST_BASE_ADDR + (uint16_t)slot * HIST_SLOT_BYTES);
+    uint8_t i;
+
+    for (i = 0; i < HIST_RECORD_BYTES; i++) {
+        buf[i] = be->read((uint16_t)(base + i), be->ctx);
+    }
+}
+
+static bool hist_decode(const uint8_t *buf, hist_record_t *r, uint8_t *seq)
+{
+    uint16_t crc = (uint16_t)(buf[HIST_CRC_OFFSET] | ((uint16_t)buf[HIST_CRC_OFFSET + 1u] << 8));
+
+    if (persist_crc16(buf, HIST_CRC_OFFSET) != crc) {
+        return false;
+    }
+    r->idle_s = (uint16_t)(buf[0] | ((uint16_t)buf[1] << 8));
+    r->health = buf[2];
+    r->misf = buf[3];
+    r->weak = buf[4];
+    r->weak_cyl = buf[5];
+    *seq = buf[6];
+    return r->idle_s != 0u;     /* never written empty: a zero is not ours */
+}
+
+bool hist_load(hist_store_t *h, const persist_backend_t *be, hist_record_t *out)
+{
+    uint8_t buf[HIST_RECORD_BYTES];
+    hist_record_t r0, r1;
+    uint8_t s0 = 0u, s1 = 0u;
+    bool ok0, ok1;
+
+    memset(h, 0, sizeof *h);
+    h->be = be;
+    hist_unknown(out);
+
+    hist_slot_read(be, 0u, buf);
+    ok0 = hist_decode(buf, &r0, &s0);
+    hist_slot_read(be, 1u, buf);
+    ok1 = hist_decode(buf, &r1, &s1);
+
+    if (!ok0 && !ok1) {
+        return false;
+    }
+    /* Newer is a difference under half the range, as in the trip ring. */
+    if (ok0 && (!ok1 || (uint8_t)(s0 - s1) < 0x80u)) {
+        *out = r0;
+        h->next_slot = 1u;
+        h->next_seq = (uint8_t)(s0 + 1u);
+    } else {
+        *out = r1;
+        h->next_slot = 0u;
+        h->next_seq = (uint8_t)(s1 + 1u);
+    }
+    /* "Only on change" is about this drive's record: the previous drive's
+     * is not the one being compared against, so have_last stays false. */
+    return true;
+}
+
+bool hist_save(hist_store_t *h, const hist_record_t *rec, uint32_t now_ms)
+{
+    uint8_t buf[HIST_RECORD_BYTES];
+    uint16_t base, crc;
+    uint8_t i;
+
+    if (h->be == NULL || rec->idle_s == 0u) {
+        return false;
+    }
+    if (h->have_write_ms && (uint32_t)(now_ms - h->last_write_ms) < HIST_INTERVAL_MS) {
+        return false;
+    }
+    if (h->have_last && h->last.idle_s == rec->idle_s &&
+        h->last.health == rec->health && h->last.misf == rec->misf &&
+        h->last.weak == rec->weak && h->last.weak_cyl == rec->weak_cyl) {
+        return false;
+    }
+
+    buf[0] = (uint8_t)(rec->idle_s & 0xFFu);
+    buf[1] = (uint8_t)(rec->idle_s >> 8);
+    buf[2] = rec->health;
+    buf[3] = rec->misf;
+    buf[4] = rec->weak;
+    buf[5] = rec->weak_cyl;
+    buf[6] = h->next_seq;
+    crc = persist_crc16(buf, HIST_CRC_OFFSET);
+    buf[HIST_CRC_OFFSET] = (uint8_t)(crc & 0xFFu);
+    buf[HIST_CRC_OFFSET + 1u] = (uint8_t)(crc >> 8);
+
+    base = (uint16_t)(HIST_BASE_ADDR + (uint16_t)h->next_slot * HIST_SLOT_BYTES);
+    for (i = 0; i < HIST_RECORD_BYTES; i++) {
+        h->be->write((uint16_t)(base + i), buf[i], h->be->ctx);
+    }
+
+    h->next_slot = (uint8_t)(h->next_slot ^ 1u);
+    h->next_seq = (uint8_t)(h->next_seq + 1u);
+    h->last = *rec;
+    h->have_last = true;
+    h->last_write_ms = now_ms;
+    h->have_write_ms = true;
+    return true;
+}

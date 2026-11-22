@@ -16,41 +16,12 @@ the converter, the display and the board.
 
 - **Each cylinder's share of a standing idle, live** — frame 0x605, built
   22/11/2026. `frames.md`, *0x605*.
+- **A summary of every drive's warm idles, kept in the EEPROM** — the
+  owner's idea, frames 0x606 (this drive) and 0x607 (the previous one),
+  built 22/11/2026: warm idle time, mean `IdleHealth`, misfires a minute,
+  the weakest cylinder's mean deviation. `frames.md`, *0x606 and 0x607*.
 
-## Proposed, in software only
-
-### A short history of the warm idles, in the EEPROM
-
-*The owner's idea, 22/11/2026; its shape is agreed in outline, not built.*
-
-So that every drive can be reported with a handful of numbers and drives can
-be compared with each other, without a capture: over the **warm** standing
-idles of the current start (oil warm, the 0x604 gate and settle rule),
-
-- the **total warm idle time**, which with `Uptime` (0x603) says how much of
-  the drive the figures rest on;
-- the **mean `IdleHealth`**, the **misfire rate** (the `MisfAvg` arithmetic
-  restricted to warm idle) and the **mean deficit of the weakest cylinder**
-  from 0x605's blocks;
-
-kept in the EEPROM and written **at most once in five minutes, and only when
-a value changed**, so that a start survives the ignition going off and the
-next drive can show the last one beside its own.
-
-What it would take, and what is still to decide:
-
-- **Its own EEPROM area.** The trip ring uses bytes 0–767 (`persist.h`);
-  256 are free. A handful of starts at a few bytes each fits, with the same
-  CRC discipline as the trip record. At one write in five minutes the
-  endurance figure DS39977C gives (`config.h`, `persist.h`) is not
-  approached.
-- **Mean or median.** A mean is a sum and a count and costs nothing; a median
-  needs the values kept. A mean is the natural first choice for a few bytes
-  of EEPROM.
-- **Where "warm" starts** — an oil temperature threshold; `tools/cylscan.py`
-  uses 85 °C for its warm runs.
-- **How it reaches the display**: a frame of its own (0x606) or a page of
-  values cycling on one, with rows appended to `mfd15/tri/S-AQY.TRI`.
+## Declined
 
 ### Not done: the engine lamp on 0x604
 

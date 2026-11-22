@@ -346,6 +346,8 @@ static void test_never_two_frames_in_one_pass(void)
     TT_TRUE(r.sends_by[SCHED_TX_DIAG]   > seconds - 2u);
     TT_TRUE(r.sends_by[SCHED_TX_HEALTH] > seconds - 2u);
     TT_TRUE(r.sends_by[SCHED_TX_CYL]    > seconds - 2u);
+    TT_TRUE(r.sends_by[SCHED_TX_DRIVE]  > seconds - 2u);
+    TT_TRUE(r.sends_by[SCHED_TX_PREV]   > seconds - 2u);
 
     /* And the gap that the whole arrangement exists to create. One slot, less
      * whatever the tick quantises away. */

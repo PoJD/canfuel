@@ -122,6 +122,15 @@ LOOPS = {
     # each cylinder's byte the >> 20, two byte moves and a 4-step rotate.
     "_cyl_finish":           [(None, 4,                  "the four slots")],
     "_cyl_out":              [(None, 4,                  "rotate, >> 20 after two byte moves")],
+    # 0x606/0x607. A warm second's IdleHealth sample takes the grade to
+    # 1/32 rpm as compute_idle_health() does; the drive record is
+    # HIST_RECORD_BYTES read or written a byte at a time, and the copy of it
+    # kept for "only on change" is the six bytes of hist_record_t.
+    "_idle_grade":           [("ROUGH_OUT_SHIFT", None,   "rotate, a warm second's IdleHealth sample")],
+    "_hist_slot_read":       [("HIST_RECORD_BYTES", None, "")],
+    "_hist_save":            [("HIST_RECORD_BYTES", None, "the record, a byte a write"),
+                              (None, 6,                   "the record kept for only-on-change")],
+    "_txframes_gather_prev": [(None, 6,                   "the previous drive's record copied")],
 }
 
 # Loops that spin waiting for a peripheral, not for the CPU. Their duration is
@@ -170,6 +179,9 @@ NOT_LOOPS = {
     # what is left is the phase correction's >> CYL_PLL_SHIFT (4), a rotate on
     # a 32-bit value in each of two branches, about 30 cycles a change.
     "_cyl_frame",
+    # Start-up only, once: two six-byte record copies after reading the two
+    # slots, which hist_slot_read() costs.
+    "_hist_load",
     "_can_set_filter",
     # hal_can_send searches three transmit buffers and the search is three
     # explicit ifs, not a loop. Its backward branches are XC8 merging the
@@ -209,6 +221,9 @@ BUDGETS = {
     "slot_diag":    ("slot 3: 0x603", 600.0),
     "slot_health":  ("slot 6: the health gather and 0x604", 1200.0),
     "slot_cyl":     ("slot 10: a finished block and 0x605", 3600.0),
+    "slot_drive":   ("slot 14: the drive's figures and 0x606", 2000.0),
+    "slot_prev":    ("slot 18: 0x607", 600.0),
+    "slot_hist":    ("slot 26: hist_save, excluding the EEPROM write", 3000.0),
     "slot_persist": ("slot 22: persist_save, excluding the EEPROM write", 1200.0),
 }
 
@@ -401,6 +416,15 @@ def budgets(words, calls, loops, constants):
     slot_cyl = (cost("_compute_cyl_update") + cost("_txframes_gather_cyl")
                 + cost("_txframes_cyl") + cost("_hal_can_send"))
 
+    # The drive's figures: three runtime divisions, once a second.
+    slot_drive = (cost("_txframes_gather_drive") + cost("_txframes_hist")
+                  + cost("_hal_can_send"))
+    slot_prev = (cost("_txframes_gather_prev") + cost("_txframes_hist")
+                 + cost("_hal_can_send"))
+    # The same figures again and the decision whether to write; the write
+    # itself is EEPROM time, analysed in docs/firmware/timing.md.
+    slot_hist = cost("_compute_hist") + cost("_hist_save")
+
     slot_persist = cost("_persist_save")
 
     return {
@@ -409,6 +433,9 @@ def budgets(words, calls, loops, constants):
         "slot_fuel": slot_fuel,
         "slot_engine": slot_engine,
         "slot_cyl": slot_cyl,
+        "slot_drive": slot_drive,
+        "slot_prev": slot_prev,
+        "slot_hist": slot_hist,
         "slot_trip": slot_trip,
         "slot_diag": slot_diag,
         "slot_health": slot_health,

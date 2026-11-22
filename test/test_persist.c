@@ -349,6 +349,128 @@ static void test_a_known_tank_level_is_enough_to_be_saved(void)
     TT_TRUE(out.tank_stable_valid);
 }
 
+/* --- the drive record, 0x606/0x607 -------------------------------------- */
+
+static uint8_t  full[1024];
+static uint32_t full_writes[1024];
+
+static uint8_t full_read(uint16_t addr, void *ctx)
+{
+    (void)ctx;
+    return addr < sizeof full ? full[addr] : 0xFFu;
+}
+
+static void full_write(uint16_t addr, uint8_t value, void *ctx)
+{
+    (void)ctx;
+    if (addr < sizeof full) {
+        full[addr] = value;
+        full_writes[addr]++;
+    }
+}
+
+static persist_backend_t full_be = { full_read, full_write, NULL };
+
+static void full_erase(void)
+{
+    memset(full, 0xFF, sizeof full);
+    memset(full_writes, 0, sizeof full_writes);
+}
+
+static hist_record_t drive(uint16_t s, uint8_t health)
+{
+    hist_record_t r;
+    r.idle_s = s;
+    r.health = health;
+    r.misf = 71u;
+    r.weak = 104u;
+    r.weak_cyl = 3u;
+    return r;
+}
+
+static void test_a_virgin_part_has_no_previous_drive(void)
+{
+    hist_store_t h;
+    hist_record_t prev;
+
+    full_erase();
+    TT_FALSE(hist_load(&h, &full_be, &prev));
+    TT_EQ(prev.idle_s, 0u);
+    TT_EQ(prev.health, HEALTH_UNKNOWN);
+    TT_EQ(prev.weak_cyl, HEALTH_UNKNOWN);
+}
+
+static void test_a_drive_survives_the_next_power_up(void)
+{
+    hist_store_t h;
+    hist_record_t prev, d = drive(1356u, 67u);
+
+    full_erase();
+    (void)hist_load(&h, &full_be, &prev);
+    TT_TRUE(hist_save(&h, &d, 1000u));
+    TT_TRUE(hist_load(&h, &full_be, &prev));
+    TT_EQ(prev.idle_s, 1356u);
+    TT_EQ(prev.health, 67u);
+    TT_EQ(prev.misf, 71u);
+    TT_EQ(prev.weak, 104u);
+    TT_EQ(prev.weak_cyl, 3u);
+}
+
+static void test_an_empty_drive_is_never_written(void)
+{
+    hist_store_t h;
+    hist_record_t prev, d = drive(0u, HEALTH_UNKNOWN);
+    size_t i;
+    uint32_t total = 0;
+
+    full_erase();
+    (void)hist_load(&h, &full_be, &prev);
+    TT_FALSE(hist_save(&h, &d, 1000u));
+    for (i = 0; i < sizeof full; i++) {
+        total += full_writes[i];
+    }
+    TT_EQ(total, 0u);
+}
+
+static void test_five_minutes_between_writes_and_only_on_change(void)
+{
+    hist_store_t h;
+    hist_record_t prev, d = drive(100u, 70u);
+
+    full_erase();
+    (void)hist_load(&h, &full_be, &prev);
+    TT_TRUE(hist_save(&h, &d, 0u));             /* the first, at once */
+    d.idle_s = 200u;
+    TT_FALSE(hist_save(&h, &d, HIST_INTERVAL_MS - 1u));
+    TT_TRUE(hist_save(&h, &d, HIST_INTERVAL_MS));
+    TT_FALSE(hist_save(&h, &d, 3u * HIST_INTERVAL_MS));   /* unchanged */
+}
+
+static void test_the_slots_alternate_and_a_torn_one_falls_back(void)
+{
+    hist_store_t h;
+    hist_record_t prev, d = drive(100u, 70u);
+
+    full_erase();
+    (void)hist_load(&h, &full_be, &prev);
+    TT_TRUE(hist_save(&h, &d, 0u));             /* slot 0 */
+    d.idle_s = 200u;
+    TT_TRUE(hist_save(&h, &d, HIST_INTERVAL_MS));   /* slot 1 */
+    TT_EQ(full_writes[HIST_BASE_ADDR], 1u);
+    TT_EQ(full_writes[HIST_BASE_ADDR + HIST_SLOT_BYTES], 1u);
+    TT_TRUE(hist_load(&h, &full_be, &prev));
+    TT_EQ(prev.idle_s, 200u);
+
+    /* The ignition goes off in the middle of the newer slot's write. */
+    full[HIST_BASE_ADDR + HIST_SLOT_BYTES + 3u] ^= 0x5Au;
+    TT_TRUE(hist_load(&h, &full_be, &prev));
+    TT_EQ(prev.idle_s, 100u);
+
+    /* And the trip ring's bytes were never touched. */
+    TT_EQ(full_writes[0], 0u);
+    TT_EQ(full_writes[HIST_BASE_ADDR - 1u], 0u);
+}
+
 int main(void)
 {
     printf("test_persist\n");
@@ -367,5 +489,10 @@ int main(void)
     TT_RUN(test_the_first_real_value_is_not_delayed);
     TT_RUN(test_distance_alone_is_enough_to_be_saved);
     TT_RUN(test_a_known_tank_level_is_enough_to_be_saved);
+    TT_RUN(test_a_virgin_part_has_no_previous_drive);
+    TT_RUN(test_a_drive_survives_the_next_power_up);
+    TT_RUN(test_an_empty_drive_is_never_written);
+    TT_RUN(test_five_minutes_between_writes_and_only_on_change);
+    TT_RUN(test_the_slots_alternate_and_a_torn_one_falls_back);
     return TT_SUMMARY();
 }

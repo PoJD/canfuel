@@ -84,6 +84,18 @@ typedef struct {
     uint8_t  cyl_blocks;        /* blocks this start, saturating            */
     bool     cyl_named;
 
+    /* --- the drive's warm idles, 0x606 ----------------------------------
+     * Per power-up: an engine restart clears none of it. */
+    uint32_t hist_warm_ms;      /* warm settled idle                         */
+    uint32_t hist_health_sum;   /* IdleHealth, once a warm converged second  */
+    uint16_t hist_health_n;
+    uint16_t hist_misf;         /* misfire-estimate events while warm        */
+    uint32_t hist_weak_sum;     /* the weakest cylinder's byte, warm blocks  */
+    uint16_t hist_weak_n;
+    uint16_t hist_weak_count[4];
+    bool     hist_warm;         /* this frame is warm                        */
+    bool     cyl_done_warm;     /* the waiting block finished warm           */
+
     /* --- the start ------------------------------------------------------ */
     uint8_t  start_phase;       /* HEALTH_START_* in compute.c               */
     bool     start_seen;        /* the current start was watched from rest   */
@@ -94,6 +106,16 @@ typedef struct {
     uint8_t  start_dip;         /* HEALTH_UNKNOWN until measured             */
     uint8_t  start_clt;
 } health_t;
+
+/* One drive's warm idles, as 0x606 and 0x607 carry them and as the EEPROM
+ * keeps them (persist.h); config.h, 0x606, has the units. 255 = not known. */
+typedef struct {
+    uint16_t idle_s;
+    uint8_t  health;
+    uint8_t  misf;
+    uint8_t  weak;
+    uint8_t  weak_cyl;
+} hist_record_t;
 
 typedef struct {
     /* --- the trip accumulators, cleared on refuelling and persisted ----- */
@@ -204,6 +226,9 @@ uint8_t compute_misf_avg(const compute_t *c);       /* 0.1 a minute        */
  * it is the one piece of the cylinder frame that costs milliseconds, and a
  * block fills once in about 19 s. A no-op when nothing is waiting. */
 void compute_cyl_update(compute_t *c);
+
+/* This drive's warm idles so far, in wire units. config.h, 0x606. */
+void compute_hist(const compute_t *c, hist_record_t *out);
 
 /* The cylinder frame's bytes, held from the last finished block of this
  * start; HEALTH_UNKNOWN before the first. cyl is 1-4. config.h, 0x605. */

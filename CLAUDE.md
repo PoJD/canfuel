@@ -3,7 +3,7 @@
 A fuel consumption converter for VW PQ34 cars with the AQY engine (2.0 l /
 85 kW), developed and verified on a 2.0 AQY. It reads the powertrain CAN bus
 (500 kbps), computes consumption, range, torque and power, and sends them back
-onto the bus in frames 0x600–0x605. A CANchecked MFD15 Gen2 display renders
+onto the bus in frames 0x600–0x607. A CANchecked MFD15 Gen2 display renders
 them from its own TRI file (repo `mfd15`). MCU: PIC18F25K80, 16 MHz, XC8. The
 board lives in the `kicad` repo.
 
@@ -117,7 +117,7 @@ they need; engine-health points at firmware freely.
 
 - **`docs/firmware/`** — `install.md` (**the procedure**; it deliberately
   carries no progress — where the build is, is asked, not read),
-  `can-decoding.md`, `frames.md` (all six frames and the torque/driving-gate
+  `can-decoding.md`, `frames.md` (all eight frames and the torque/driving-gate
   reasoning), `refuel-reset.md`, `timing.md`, `optimisation.md`,
   `flashing.md`, `fuel-check.md`, `refuted.md`, `open.md`, `ideas.md`
   (extensions proposed, built or declined), `datasheets/`.
@@ -180,6 +180,11 @@ txframes_gather_health(&tx, &cp, now_ms);   /* 0x604 always */
 txframes_health(&tx, buf); hal_can_send(CAN_ID_TX_HEALTH, buf, TXFRAME_DLC);
 txframes_gather_cyl(&tx, &cp, now_ms);      /* 0x605 always */
 txframes_cyl(&tx, buf);    hal_can_send(CAN_ID_TX_CYL, buf, TXFRAME_DLC);
+txframes_gather_drive(&tx, &cp, now_ms);    /* 0x606 this drive */
+txframes_hist(&tx, buf);   hal_can_send(CAN_ID_TX_DRIVE, buf, TXFRAME_DLC);
+txframes_gather_prev(&tx, &cp, &prev, stored, now_ms);  /* 0x607 */
+txframes_hist(&tx, buf);   hal_can_send(CAN_ID_TX_PREV, buf, TXFRAME_DLC);
+compute_hist(&cp, &drv); hist_save(&hs, &drv, now_ms);  /* own slot */
 persist_save(&ps, &rec, now_ms);            /* decides itself whether to write */
 ```
 
@@ -256,7 +261,8 @@ to a specification without opening the PDF.
   (`VDD_NUMERATOR_C`); read a mean, never one frame.
 - **Timer2 makes the millisecond** with no remainder; the clock is read
   atomically, restoring rather than forcing `GIE`.
-- **EEPROM**: the ring uses 0..767; D120's 100 K is the limit, **D124 is not
+- **EEPROM**: the ring uses 0..767, the drive record (0x606/0x607) two
+  slots from 768; D120's 100 K is the limit, **D124 is not
   a ceiling** (`config.h`, `persist.h`). **One deliberate deviation**:
   `hal_eeprom_write()` restores `GIE` the instant `WR` is set instead of
   holding it across the 4 ms poll (`hal_sys.c` argues why), and never clears
@@ -282,14 +288,15 @@ every backward branch.
 
 ## The coupling to `mfd15` and `kicad`
 
-**The layout of all six frames, 0x600–0x605**, defined in
+**The layout of all eight frames, 0x600–0x607**, defined in
 `docs/firmware/frames.md` and read by `mfd15/tri/S-AQY.TRI`, **changes there in
 the same breath as here** — a mismatch shows plausible wrong numbers, not an
 error. `test/test_txframes.c` pins every offset against the TRI file. Every
 field on the wire is coupled, 0x602 and 0x603 included. **0x603** (CAN
 health) is sent only with JP1, so it reads zero in a closed dashboard by
 design. **0x604** (idle grade, misfire estimate, the start) and **0x605**
-(each cylinder's share at a standing idle, 22/11/2026) are **not** behind JP1,
+(each cylinder's share at a standing idle, 22/11/2026) and **0x606/0x607**
+(this drive's and the previous drive's warm idles) are **not** behind JP1,
 and their "not known" is 255, never 0. The coupling to `kicad` is the pin table above,
 one-way and frozen.
 
@@ -630,10 +637,10 @@ his phone. Check the platform and for a VCDS install; if unclear, ask once.
   dictation works); align it to the capture by an event it records, never by
   when the message arrived.
 - **The MFD and the CAN capture are one or the other, and the converter goes
-  with the MFD**: a capture never contains 0x600–0x605. Everything from a
+  with the MFD**: a capture never contains 0x600–0x607. Everything from a
   captured session is computed from the ECU's raw frames — `IdleHealth`,
-  `Misfires`, the start and the cylinders by `tools/idledips.py`'s
-  `health_summary()`, the oracle 0x604 and 0x605 are diffed against. Never ask him to read the display during a capture.
+  `Misfires`, the start, the cylinders and the drive by `tools/idledips.py`'s
+  `health_summary()`, the oracle 0x604 to 0x606 are diffed against. Never ask him to read the display during a capture.
 
 ### Tools for the car
 

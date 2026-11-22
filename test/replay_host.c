@@ -92,6 +92,15 @@ int main(int argc, char **argv)
             printf("cyl_weak=%u\n", compute_cyl_weak(&r.cp));
             printf("cyl_blocks=%u\n", compute_cyl_blocks(&r.cp));
             printf("cyl_named=%d\n", compute_cyl_named(&r.cp) ? 1 : 0);
+            {
+                hist_record_t h;
+                compute_hist(&r.cp, &h);
+                printf("drv_idle_s=%u\n", h.idle_s);
+                printf("drv_health=%u\n", h.health);
+                printf("drv_misf=%u\n", h.misf);
+                printf("drv_weak=%u\n", h.weak);
+                printf("drv_weak_cyl=%u\n", h.weak_cyl);
+            }
         }
 
         /* The bytes as they would leave the transceiver, so a mismatch in the

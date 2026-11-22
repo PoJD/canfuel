@@ -883,3 +883,32 @@ class Cylinders(unittest.TestCase):
         dev, weak, blocks, named = i.cylinders([])
         self.assertEqual(dev, [255, 255, 255, 255])
         self.assertEqual((weak, blocks, named), (255, 0, False))
+
+
+class DriveSummary(unittest.TestCase):
+    """0x606: drive_summary() is compute.c's oracle for the drive's warm
+    idles, across every restart of one power-up."""
+
+    def test_the_firmware_carries_these_constants(self):
+        import idledips as i
+        d = _config_defines()
+        self.assertEqual(int(d["HIST_WARM_OIL_C100"]), i.HIST_WARM_OIL_C * 100)
+        self.assertEqual(int(d["IDLE_CONVERGE_S"]), i.IDLE_CONVERGE_S)
+
+    def test_warm_is_cylscans_warm(self):
+        import cylscan
+        import idledips as i
+        self.assertEqual(float(i.HIST_WARM_OIL_C), cylscan.WARM_OIL_C)
+
+    def test_a_cold_drive_knows_nothing(self):
+        import canlog
+        import idledips as i
+        frames = canlog.parse_file(os.path.join(FIXTURES, "18_coldstart_z1.txt"))
+        self.assertEqual(i.drive_summary(frames), (0, 255, 255, 255, 255))
+
+    def test_the_first_drive_on_the_new_gasket(self):
+        """`54`: 22.6 minutes of warm idle, cylinder 3 the weakest."""
+        import canlog
+        import idledips as i
+        frames = canlog.parse_file(os.path.join(FIXTURES, "54_8z_first_drive_z1.txt"))
+        self.assertEqual(i.drive_summary(frames), (1356, 67, 71, 104, 3))

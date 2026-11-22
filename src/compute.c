@@ -848,6 +848,15 @@ static void cyl_finish(health_t *h)
     if (h->cyl_dev[3] < h->cyl_dev[weak]) { weak = 3u; }
     h->cyl_weak = (uint8_t)(weak + 1u);
 
+    /* 0x606: the weakest cylinder of a block that finished warm. */
+    if (h->cyl_done_warm && h->hist_weak_n < 0xFFFFu) {
+        h->hist_weak_sum += h->cyl_dev[weak];
+        h->hist_weak_n++;
+        if (h->hist_weak_count[weak] < 0xFFFFu) {
+            h->hist_weak_count[weak]++;
+        }
+    }
+
     if (h->cyl_blocks < HEALTH_SAT) {
         h->cyl_blocks++;
     }
@@ -881,6 +890,7 @@ static void cyl_commit(health_t *h, uint8_t slot, uint16_t now_q4,
         h->cyl_done[2] = h->cyl_sum[2];
         h->cyl_done[3] = h->cyl_sum[3];
         h->cyl_done_rpm = h->cyl_rpm_sum;
+        h->cyl_done_warm = h->hist_warm;
         h->cyl_pending = true;
         h->cyl_n = 0u;
         h->cyl_sum[0] = 0u;
@@ -1018,11 +1028,16 @@ static void idle_grade(health_t *h, const decode_state_t *st, uint32_t now_ms)
         h->idle_since_ms = now_ms;
     }
 
+    h->hist_warm = st->oil_c100 != DECODE_TEMP_INVALID &&
+                   st->oil_c100 >= (int16_t)HIST_WARM_OIL_C100;
     if (settled) {
         cyl_frame(h, rpm_q4, h->have_prev_ms ? elapsed(now_ms, h->prev_ms) : 0u,
                   h->have_prev_rpm && rpm_q4 != h->prev_rpm_q4);
         if (h->have_prev_ms) {
             h->idle_ms += elapsed(now_ms, h->prev_ms);
+            if (h->hist_warm) {
+                h->hist_warm_ms += elapsed(now_ms, h->prev_ms);
+            }
         }
         /* The window steps once per whole second of settled idle: once per
          * frame at most, and frames come every 40 ms at idle, so a step is
@@ -1037,6 +1052,17 @@ static void idle_grade(health_t *h, const decode_state_t *st, uint32_t now_ms)
                 h->misf_filled++;
             }
             h->misf_bucket[h->misf_idx] = 0u;
+            /* 0x606: one sample of IdleHealth per warm second, once the
+             * grade has converged -- compute_idle_health()'s arithmetic on
+             * the grade as it stands before this frame's step. */
+            if (h->hist_warm && h->idle_ms >= (uint32_t)IDLE_CONVERGE_S * 1000u) {
+                uint16_t idx = (uint16_t)(((uint16_t)sat_u8(h->rough_acc >> ROUGH_OUT_SHIFT)
+                                           * 25u) >> 4);
+                h->hist_health_sum += (idx > IDLE_INDEX_MAX) ? IDLE_INDEX_MAX : idx;
+                if (h->hist_health_n < 0xFFFFu) {
+                    h->hist_health_n++;
+                }
+            }
         }
         /* dips_cheap()'s latch: one count per excursion past the trip, re-armed
          * only once engine speed is back within MISF_REARM_RPM. */
@@ -1048,6 +1074,9 @@ static void idle_grade(health_t *h, const decode_state_t *st, uint32_t now_ms)
             }
             if (h->misf_total < MISF_TOTAL_MAX) {
                 h->misf_total++;
+            }
+            if (h->hist_warm && h->hist_misf < 0xFFFFu) {
+                h->hist_misf++;
             }
         } else if (!h->misf_armed &&
                    baseline <= (uint32_t)rpm_q4 + MISF_REARM_RPM * 4u) {
@@ -1210,6 +1239,25 @@ void compute_cyl_update(compute_t *c)
         c->health.cyl_pending = false;
         cyl_finish(&c->health);
     }
+}
+
+void compute_hist(const compute_t *c, hist_record_t *out)
+{
+    const health_t *h = &c->health;
+    uint32_t s = div_const(h->hist_warm_ms, DIVC_1000);
+    uint8_t q = 0u;
+
+    out->idle_s = (uint16_t)((s > 0xFFFFu) ? 0xFFFFu : s);
+    out->health = (h->hist_health_n == 0u) ? (uint8_t)HEALTH_UNKNOWN
+                : sat_u8(div_round(h->hist_health_sum, h->hist_health_n));
+    out->misf = (s == 0u) ? (uint8_t)HEALTH_UNKNOWN
+              : sat_u8(div_round(mul_u32_u16(h->hist_misf, MISF_AVG_SCALE), s));
+    out->weak = (h->hist_weak_n == 0u) ? (uint8_t)HEALTH_UNKNOWN
+              : sat_u8(div_round(h->hist_weak_sum, h->hist_weak_n));
+    if (h->hist_weak_count[1] > h->hist_weak_count[q]) { q = 1u; }
+    if (h->hist_weak_count[2] > h->hist_weak_count[q]) { q = 2u; }
+    if (h->hist_weak_count[3] > h->hist_weak_count[q]) { q = 3u; }
+    out->weak_cyl = (h->hist_weak_n == 0u) ? (uint8_t)HEALTH_UNKNOWN : (uint8_t)(q + 1u);
 }
 
 uint8_t compute_cyl_dev(const compute_t *c, uint8_t cyl)

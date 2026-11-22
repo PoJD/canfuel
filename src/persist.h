@@ -89,6 +89,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#include "compute.h"
 #include "config.h"
 
 /* The EEPROM, abstracted down to the two operations that exist. */
@@ -133,6 +134,30 @@ bool persist_save(persist_t *p, const persist_record_t *rec, uint32_t now_ms);
 
 /* Write unconditionally. Useful at shutdown and in tests. */
 bool persist_save_now(persist_t *p, const persist_record_t *rec);
+
+/* --- the drive's warm idles, 0x606/0x607 ---------------------------------
+ *
+ * A second, separate record: config.h, 0x606, has the layout, the two
+ * alternating slots at HIST_BASE_ADDR and why it is written at most once in
+ * HIST_INTERVAL_MS. Same backend, same CRC, nothing shared with the ring. */
+typedef struct {
+    const persist_backend_t *be;
+    uint8_t  next_slot;         /* 0 or 1                                   */
+    uint8_t  next_seq;
+    hist_record_t last;         /* what is stored, for "only on change"     */
+    bool     have_last;
+    uint32_t last_write_ms;
+    bool     have_write_ms;
+} hist_store_t;
+
+/* The newer intact slot into out, true; false and out all 255 (idle_s 0)
+ * when neither slot holds a record. */
+bool hist_load(hist_store_t *h, const persist_backend_t *be, hist_record_t *out);
+
+/* Write when HIST_INTERVAL_MS has passed since the last write of this
+ * power-up (the first may come at once), the record changed, and it is not
+ * empty (idle_s zero). True when it wrote. */
+bool hist_save(hist_store_t *h, const hist_record_t *rec, uint32_t now_ms);
 
 /* Exposed for the tests. CRC-16/CCITT-FALSE: poly 0x1021, init 0xFFFF. */
 uint16_t persist_crc16(const uint8_t *data, uint8_t len);

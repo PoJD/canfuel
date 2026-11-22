@@ -87,14 +87,14 @@ typedef struct {
     /* The transmit schedule, which is a correctness property of its own --
      * see the header comment and config.h. */
     size_t         sends;           /* frames the schedule would have sent   */
-    size_t         sends_by[6];     /* 0x600, 0x601, 0x602, 0x603, 0x604, 0x605 */
+    size_t         sends_by[8];     /* 0x600 to 0x607                         */
     size_t         two_in_one_pass; /* MUST stay zero                        */
     uint32_t       min_send_gap_ms; /* the closest two frames ever came      */
     uint32_t       last_send_ms;
 } sched_result_t;
 
 enum { SCHED_TX_FUEL = 0, SCHED_TX_ENGINE, SCHED_TX_TRIP, SCHED_TX_DIAG,
-       SCHED_TX_HEALTH, SCHED_TX_CYL };
+       SCHED_TX_HEALTH, SCHED_TX_CYL, SCHED_TX_DRIVE, SCHED_TX_PREV };
 
 /* One frame leaves the scheduler. `in_pass' counts the frames this pass has
  * already emitted, so the second one is the finding rather than the gap that
@@ -234,6 +234,11 @@ static inline bool sched_run(const char *name, sched_opts_t o,
                 compute_cyl_update(&r->cp);
                 txframes_gather_cyl(&r->tx, &r->cp, now);
                 sched_sent(r, SCHED_TX_CYL, now, &in_pass);
+            } else if (slot == (uint8_t)TX_SLOT_DRIVE) {
+                txframes_gather_drive(&r->tx, &r->cp, now);
+                sched_sent(r, SCHED_TX_DRIVE, now, &in_pass);
+            } else if (slot == (uint8_t)TX_SLOT_PREV) {
+                sched_sent(r, SCHED_TX_PREV, now, &in_pass);
             }
 
             slot++;

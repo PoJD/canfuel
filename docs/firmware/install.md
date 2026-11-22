@@ -22,7 +22,7 @@ git repository, so run git inside one of the three.
 A PIC18F25K80 on a 55 × 45 mm board, mounted behind an aftermarket multi-function
 display, taking 5 V from the display's own plug and hanging off the vehicle's
 powertrain CAN at 500 kbps. It reads six frames from the ECU, computes
-consumption, range, torque and power, and sends them back on frames 0x600–0x605
+consumption, range, torque and power, and sends them back on frames 0x600–0x607
 for the display to render.
 
 **Scope.** The frame layout and the signal decoding are specific to the VW PQ34

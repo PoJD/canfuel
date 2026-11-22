@@ -32,6 +32,8 @@
 #define CAN_ID_TX_DIAG          0x603u  /*   1 s  */
 #define CAN_ID_TX_HEALTH        0x604u  /*   1 s  */
 #define CAN_ID_TX_CYL           0x605u  /*   1 s  */
+#define CAN_ID_TX_DRIVE         0x606u  /*   1 s  */
+#define CAN_ID_TX_PREV          0x607u  /*   1 s  */
 
 /* --- the diagnostic frame, 0x603 ---------------------------------------- */
 
@@ -347,6 +349,66 @@
 #define CYL_FLAG_NAMED          0x01u   /* the strongest stood the margin clear */
 #define CYL_FLAG_DATA_LIVE      0x04u   /* frames are arriving right now        */
 
+/* --- the drive's warm idles, 0x606 and 0x607, and their EEPROM record --- */
+
+/* A SUMMARY OF EVERY DRIVE'S WARM IDLES. The owner's request, 22/11/2026:
+ * a handful of numbers per drive that he can report, so that drives can be
+ * compared without a capture. A drive is one power-up of the converter, i.e.
+ * one ignition cycle; an engine restart inside it does not start a new one.
+ *
+ * Over the settled standing idle of the drive with the oil at or above
+ * HIST_WARM_OIL_C100 -- the 0x604 gate and settle rule, warm:
+ *
+ *   IdleS     seconds of warm settled idle, saturating at 65535
+ *   Health    the mean of IdleHealth, sampled once per second of warm
+ *             settled idle once the grade has converged (IDLE_CONVERGE_S)
+ *   Misf      the misfire estimate's events (0x604's Misfires) per minute
+ *             of warm idle, 0.1 units: MisfAvg's arithmetic, warm only
+ *   Weak      the mean of the weakest cylinder's 0x605 byte over the blocks
+ *             that finished warm, same units: shown = raw x 0.5 - 64 %
+ *   WeakCyl   the cylinder that was the weakest in most of those blocks
+ *
+ * 255 is "not known" in each, as on 0x604. 0x606 is this drive's, live,
+ * FROM ZERO AT EVERY POWER-UP and never seeded from the EEPROM (the owner,
+ * 22/11/2026); 0x607 is the previous drive's, as the EEPROM held it at
+ * power-up. The two
+ * frames have the same layout:
+ *
+ *   b0-b1  IdleS, big endian     b2  Health     b3  Misf
+ *   b4     Weak                  b5  WeakCyl    b6  reserved, 255
+ *   b7     HIST_FLAG_* in bits 4-0, HIST_LAYOUT_VERSION in bits 7-5
+ *
+ * DECISIONS, the owner's of 22/11/2026: a MEAN, not a median (a sum and a
+ * count, no values kept); the current drive and the one before, not more.
+ * Mine: warm is oil at 85 C, tools/cylscan.py's WARM_OIL_C, so a drive's
+ * figure and a capture's warm runs mean the same thing.
+ *
+ * THE RECORD, HIST_RECORD_BYTES at HIST_BASE_ADDR, two slots HIST_SLOT_BYTES
+ * apart, written alternately so that a write torn by the ignition leaves the
+ * other intact; the sequence number says which is newer. In the 256 bytes the
+ * trip ring leaves free (persist.h):
+ *
+ *   0-1 IdleS   2 Health   3 Misf   4 Weak   5 WeakCyl   6 seq   7-8 CRC-16
+ *
+ * WRITTEN AT MOST ONCE IN HIST_INTERVAL_MS, ONLY WHEN IT CHANGED, AND NEVER
+ * EMPTY (IdleS zero): a drive with no warm idle leaves the last one that had
+ * some in place. The first write of a drive may come at once. Endurance: the
+ * data EEPROM is specified for 100 K erase/write cycles a byte minimum
+ * (DS39977C Table 31-1, D120); two slots at one write in five minutes is
+ * 200 K writes, over 16,000 hours of the converter powered. A write is
+ * HIST_RECORD_BYTES x 4 ms typical (D122) of blocking, in a slot of its own
+ * that sends nothing, as the trip record's is. Up to HIST_INTERVAL_MS of the
+ * drive is lost at ignition-off; for a summary of a drive that is the
+ * design, not a fault. */
+#define HIST_WARM_OIL_C100      8500    /* oil at 85 C                       */
+#define HIST_INTERVAL_MS        300000UL /* five minutes                     */
+#define HIST_BASE_ADDR          768u
+#define HIST_SLOT_BYTES         16u
+#define HIST_RECORD_BYTES       9u
+#define HIST_LAYOUT_VERSION     1u
+#define HIST_FLAG_DATA_LIVE     0x04u   /* frames are arriving right now     */
+#define HIST_FLAG_STORED        0x01u   /* 0x607: a record was found         */
+
 /* --- which ECAN mode the firmware starts in ----------------------------- */
 
 /* One of the HAL_CAN_MODE_* names from hal_can.h, which is where the three
@@ -486,7 +548,10 @@
  *   slot == 3       0x603, once a second (with JP1 fitted)
  *   slot == 6       0x604, once a second
  *   slot == 10      0x605, once a second
+ *   slot == 14      0x606, once a second
+ *   slot == 18      0x607, once a second
  *   slot == 22      the EEPROM slot, 550 ms, in a slot that sends nothing
+ *   slot == 26      the drive summary's EEPROM slot, 650 ms, the same way
  *
  * Nothing on the wire changes rate: both fast frames are still 10 Hz and the
  * slow ones 1 Hz. */
@@ -496,6 +561,9 @@
 #define TX_SLOT_DIAG            3       /* 0x603 at 75 ms                     */
 #define TX_SLOT_HEALTH          6       /* 0x604 at 150 ms; (6 & 3) == 2      */
 #define TX_SLOT_CYL             10      /* 0x605 at 250 ms; (10 & 3) == 2     */
+#define TX_SLOT_DRIVE           14      /* 0x606 at 350 ms; (14 & 3) == 2     */
+#define TX_SLOT_PREV            18      /* 0x607 at 450 ms; (18 & 3) == 2     */
+#define TX_SLOT_HIST            26      /* 650 ms, and sends nothing          */
 #define TX_SLOT_PERSIST         22      /* 550 ms, and sends nothing          */
 
 #define TX_FAST_MS              100     /* 0x600 and 0x601, four slots apart  */

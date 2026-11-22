@@ -1,7 +1,7 @@
 # Frames transmitted by the converter
 
-Six frames of our own on free IDs. Every whole-bus log confirms that nobody
-else uses 0x600–0x605 (`test_target_ids_are_free`).
+Eight frames of our own on free IDs. Every whole-bus log confirms that nobody
+else uses 0x600–0x607 (`test_target_ids_are_free`).
 
 **Everything is unsigned big endian.** The car uses little endian, we use big
 endian — deliberately, so the two cannot be confused, and the MFD15 handles
@@ -464,12 +464,56 @@ every cylinder of 18 runs; `test_idledips.py`, `Cylinders`, holds two of the
 captures to 1.5. On `54`, the first drive on the new gasket, the last block
 reads cylinder 3 at −14.5 %, 2 at +9.5, 4 at +4.0 and 1 at +1.5.
 
+## 0x606 and 0x607 @ 1 s — this drive's warm idles, and the previous drive's
+
+**Added 22/11/2026 at the owner's request**, not JP1-gated: a handful of
+numbers per drive that can be reported and compared, without a capture. A
+**drive is one power-up** of the converter, one ignition cycle; an engine
+restart inside it does not start a new one. Everything is taken over the
+drive's **warm** settled standing idle: the 0x604 gate and settle rule with
+the oil at 85 °C or more (`HIST_WARM_OIL_C100`, `cylscan.py`'s warm).
+0x606 is this drive, live; 0x607 is the previous drive, as the EEPROM held
+it at power-up. One layout:
+
+| Byte | Name | Unit | Notes |
+|---|---|---|---|
+| 0–1 | IdleS | s, big endian | warm settled idle of the drive, saturating at 65535 |
+| 2 | Health | 0–200 | the mean of IdleHealth, one sample a second of warm idle once the grade has converged |
+| 3 | Misf | 0.1 / min | the misfire estimate's events per minute of warm idle, `MisfAvg`'s arithmetic |
+| 4 | Weak | 0.5 %, 128 = the mean | the mean of the weakest cylinder's 0x605 byte over the blocks that finished warm |
+| 5 | WeakCyl | 1–4 | the cylinder weakest in most of those blocks |
+| 6 | — | | reserved, 255 |
+| 7 | flags, layout version | | bit 0 `HIST_FLAG_STORED` (0x607: a record was found), bit 2 live; bits 7–5 `HIST_LAYOUT_VERSION` (1) |
+
+255 is "not known" in bytes 2–5, IdleS is 0, as on 0x604; a quiet bus
+publishes the same.
+
+**The EEPROM record** (`src/config.h`, 0x606; `persist.h`): nine bytes in
+two alternating slots at 768, in the 256 bytes the trip ring leaves free,
+each with a sequence number and a CRC-16, so a write torn by the ignition
+leaves the other slot. **Written at most once in five minutes, only when it
+changed, and never empty**: a drive with no warm idle leaves the last one
+that had some, which is then what 0x607 shows. Up to five minutes of a drive
+can miss the EEPROM at ignition-off; for a summary that is the design. The
+write blocks for nine bytes' worth of EEPROM cycles in slot 26, which sends
+nothing, as the trip record's slot 22 does.
+
+**Decisions** (the owner's, 22/11/2026): a mean, not a median — a sum and a
+count, no values kept — and this drive and the one before, no more.
+
+**How far it is trusted.** `tools/idledips.py`, `drive_summary()`, is the
+oracle over the whole log, restarts included; `replay.py --host-build` holds
+the C to it **exactly** on every timestamped fixture. `54`, the first drive on
+the new gasket: 1356 s of warm idle, Health 67, Misf 7.1 a minute, the weakest
+−12.0 %, cylinder 3.
+
 ## The frames are spaced out, and it is not tidiness
 
 **One frame leaves every 25 ms and never two together.** 0x600 at 0 ms, 0x601
 at 25, 0x602 at 50, 0x603 at 75, 0x604 at 150 — slot 6, the first one
-free of the two fast frames' pattern — and 0x605 at 250 (slot 10), with the
-EEPROM write in the slot at 550 ms because that one sends nothing. Both fast frames are 10 Hz and the slow
+free of the two fast frames' pattern — 0x605 at 250 (slot 10), 0x606 at 350
+and 0x607 at 450, with the trip record's EEPROM write in the slot at 550 ms
+and the drive record's at 650, because those send nothing. Both fast frames are 10 Hz and the slow
 ones 1 Hz.
 
 **It is bought with a bench measurement, not with reasoning.** The frames used

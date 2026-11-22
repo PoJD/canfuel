@@ -164,6 +164,37 @@ void txframes_gather_cyl(tx_values_t *v, const compute_t *c, uint32_t now_ms)
                               (compute_cyl_named(c) ? CYL_FLAG_NAMED : 0u));
 }
 
+static void hist_quiet(tx_values_t *v)
+{
+    v->hist.idle_s   = 0u;
+    v->hist.health   = HEALTH_UNKNOWN;
+    v->hist.misf     = HEALTH_UNKNOWN;
+    v->hist.weak     = HEALTH_UNKNOWN;
+    v->hist.weak_cyl = HEALTH_UNKNOWN;
+    v->hist_flags    = 0u;
+}
+
+void txframes_gather_drive(tx_values_t *v, const compute_t *c, uint32_t now_ms)
+{
+    if (!compute_data_live(c, now_ms)) {
+        hist_quiet(v);
+        return;
+    }
+    compute_hist(c, &v->hist);
+    v->hist_flags = HIST_FLAG_DATA_LIVE;
+}
+
+void txframes_gather_prev(tx_values_t *v, const compute_t *c,
+                          const hist_record_t *prev, bool stored, uint32_t now_ms)
+{
+    if (!compute_data_live(c, now_ms)) {
+        hist_quiet(v);
+        return;
+    }
+    v->hist = *prev;
+    v->hist_flags = (uint8_t)(HIST_FLAG_DATA_LIVE | (stored ? HIST_FLAG_STORED : 0u));
+}
+
 void txframes_trip(const tx_values_t *v, uint8_t *out)
 {
     put_be32(out + 0, v->trip_ml);
@@ -206,4 +237,17 @@ void txframes_cyl(const tx_values_t *v, uint8_t *out)
     out[6] = HEALTH_UNKNOWN;            /* reserved */
     out[7] = (uint8_t)((v->cyl_flags & 0x1Fu) |
                        (CYL_LAYOUT_VERSION << HEALTH_VERSION_SHIFT));
+}
+
+void txframes_hist(const tx_values_t *v, uint8_t *out)
+{
+    out[0] = (uint8_t)(v->hist.idle_s >> 8);
+    out[1] = (uint8_t)(v->hist.idle_s & 0xFFu);
+    out[2] = v->hist.health;
+    out[3] = v->hist.misf;
+    out[4] = v->hist.weak;
+    out[5] = v->hist.weak_cyl;
+    out[6] = HEALTH_UNKNOWN;            /* reserved */
+    out[7] = (uint8_t)((v->hist_flags & 0x1Fu) |
+                       (HIST_LAYOUT_VERSION << HEALTH_VERSION_SHIFT));
 }

@@ -420,6 +420,12 @@ TOLERANCE = {
     "cyl_weak":    (0, 0.0),
     "cyl_blocks":  (0, 0.0),
     "cyl_named":   (0, 0.0),
+    # The drive's warm idles, 0x606: idledips.drive_summary(), the whole log.
+    "drv_idle_s":   (0, 0.0),
+    "drv_health":   (0, 0.0),
+    "drv_misf":     (0, 0.0),
+    "drv_weak":     (0, 0.0),
+    "drv_weak_cyl": (0, 0.0),
 }
 
 

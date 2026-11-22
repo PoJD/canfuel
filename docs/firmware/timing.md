@@ -140,28 +140,35 @@ of which 26.4 are 0x480); the rest are the scheduler's own constants.
 | slot 0: the A/D, the gather and 0x600 | 9,617 | 10 | 96,170 | 2.40 % |
 | slot 1: 0x601 | 771 | 10 | 7,710 | 0.19 % |
 | 0x480 on top of the frame: counter, totals, flow bucket | 2,077 | 26.4 | 54,832 | 1.37 % |
-| 0x280 on top of the frame: the idle grade, the misfire window, the start watch and the 0x605 stroke count, **upper bound** | 4,239 | 93.9 | 398,042 | 9.95 % |
+| 0x280 on top of the frame: the idle grade, the misfire window, the start watch, the 0x605 stroke count and the drive's warm sums, **upper bound** | 4,589 | 93.9 | 430,907 | 10.77 % |
 | the millisecond ISR | 34 | 1,000 | 34,000 | 0.85 % |
 | slot 2: the trip totals and 0x602 | 1,582 | 1 | 1,582 | 0.04 % |
 | slot 3: 0x603 | 803 | 1 | 803 | 0.02 % |
 | slot 6: the health gather and 0x604 | 3,325 | 1 | 3,325 | 0.08 % |
 | slot 10: a finished block and 0x605, **upper bound** (a block finishes once in about 19 s of idle) | 9,800 | 1 | 9,800 | 0.25 % |
+| slot 14: the drive's figures and 0x606 | 5,124 | 1 | 5,124 | 0.13 % |
+| slot 18: 0x607 | 947 | 1 | 947 | 0.02 % |
 | slot 22: `persist_save` deciding not to write | 625 | 1 | 625 | 0.02 % |
+| slot 26: the drive's figures again and `hist_save` deciding, **upper bound** | 8,050 | 1 | 8,050 | 0.20 % |
 | the EEPROM write, amortised over its interval | 192,000 | 1 per 20 s | 9,600 | 0.24 % |
+| the drive record's write, nine bytes, amortised | 144,000 | 1 per 300 s | 480 | 0.01 % |
 | the tank sample | 890 | 1 | 890 | 0.02 % |
 | the range basis, one completed km at 100 km/h | 553 | 1 per 36 s | 15 | 0.00 % |
-| **total** | | | **839,913** | **21.0 %** |
+| **total** | | | **1,113,148** | **27.8 %** |
 
-**Four fifths of the machine is idle**, and the shape of what is left is worth
-reading twice:
+**Nearly three quarters of the machine is idle** — it was four fifths before
+0x605 to 0x607, whose stroke count on every 0x280 is most of the difference —
+and the shape of what is left is worth reading twice:
 
 - **The 0x280 row is an upper bound, and a loose one.** `cycles.py` sums every
   branch of a function, and `compute_on_engine()` has two that run once per
   engine start and never again: the coolant conversion, a reciprocal multiply,
   and the crank time's rotate. The grade itself, `idle_grade()` with the misfire
-  window (layout 2), is 924 of the 1,939. It is costed at the bound anyway, because a bound is what this table
-  is for, and even there it is under four per cent -- the price of stepping
-  the grade on every change of the speed field rather than on a timer.
+  window (layout 2), was 924 of the 1,939 before 0x605; the stroke count and
+  the drive's warm sums took the bound to 4,589. It is costed at the bound
+  anyway, because a bound is what this table is for, and even there it is
+  under eleven per cent -- the price of following every change of the speed
+  field rather than a timer.
 
 - **The most expensive thing in the firmware is receiving frames**, not
   arithmetic. Seven per cent of the CPU is `hal_can_receive` and
@@ -448,6 +455,32 @@ second:
 A quarter fewer, which is the least interesting number on this page: the loss
 is dominated by the EEPROM and no amount of arithmetic will change that.
 
+### Two EEPROM writes, and why they never add up to one longer gap
+
+Since 22/11/2026 there are two records: the trip record in slot 22 (twelve
+bytes, the ~48 ms above) and the drive record of 0x606/0x607 in slot 26 (nine
+bytes, ~36 ms, at most once in five minutes). **They cannot run back to back.**
+`main.c` serves at most one slot a pass, each write is the whole of its slot,
+and the slot clock is missed rather than caught up, so after the trip write
+the loop drains the FIFO and serves slots 23, 24 and 25 — 75 ms of ordinary
+passes at least — before slot 26 can write. Each write is its own gap, and
+the FIFO starts each one empty.
+
+**The worst second** is the one in which both write: the trip record's ~12
+frames lost as tabled above, then the drive record's — a worst pass of about
+36 + 6.5 = 42.5 ms against the FIFO's 22 ms, ~15 frames arriving and ~7 of
+them lost, about two of them 0x280. About 19 frames in that second, against
+357; it happens at most once in five minutes, and at most every twentieth trip
+write. What each loss costs is the list below, and for 0x605 a lost 0x280 is
+at worst a stroke filled with a step of zero — `test_scheduler.c` drives the
+cylinder frame through the trip writes and holds it within two per cent of a
+stroke of the uninterrupted replay.
+
+⚠ **4 ms a byte is D122's typical, and D122 has no maximum** (DS39977C
+Table 31-1: "—, 4, —"). Every gap on this page is typical, not guaranteed; a
+part that writes slower loses proportionally more frames in the same two
+slots, and nothing else.
+
 None of that costs anything, which is the analysis already written out in
 `main.c` and is worth repeating here because this is where the numbers are:
 
@@ -508,7 +541,7 @@ one frame per slot, never a burst (*The transmit slots*).
 
 **Two limits, honestly.** The capture is a floor: a frame the USBtin
 missed is load the car still carried. And the converter's identifiers,
-0x600 to 0x605, are higher than every identifier in the captures, so on
+0x600 to 0x607, are higher than every identifier in the captures, so on
 arbitration the lower identifier wins and the converter loses to every
 frame of the car's: it waits for the car, never the other way.
 
@@ -580,13 +613,16 @@ any of these goes over its ceiling:
 
 | Budget | Now | Ceiling |
 |---|---|---|
-| one received frame, decoded and accumulated | 1.26 ms | 1.5 ms |
+| one received frame, decoded and accumulated | 1.35 ms | 1.5 ms |
 | `compute_tick`, worst case | 0.64 ms | 1.0 ms |
 | slot 0: the A/D, the gather and 0x600 | 2.40 ms | 3.6 ms |
 | slot 1: 0x601 | 0.19 ms | 0.5 ms |
 | slot 2: the trip totals and 0x602 | 0.40 ms | 1.2 ms |
 | slot 3: 0x603 | 0.20 ms | 0.6 ms |
-| slot 10: a finished block and 0x605 | 2.45 ms | 3.6 ms |
+| slot 10: a finished block and 0x605 | 2.47 ms | 3.6 ms |
+| slot 14: the drive's figures and 0x606 | 1.28 ms | 2.0 ms |
+| slot 18: 0x607 | 0.24 ms | 0.6 ms |
+| slot 26: `hist_save`, excluding the EEPROM write | 2.01 ms | 3.0 ms |
 | slot 22: `persist_save`, excluding the EEPROM write | 0.81 ms | 1.2 ms |
 
 **The cylinder frame (22/11/2026) raised the receive ceiling from 1.0 to
@@ -598,6 +634,12 @@ commits a frame can make. The half a millisecond that adds is an upper bound
 on a path that is far shorter on almost every frame. The one expensive piece,
 making a block's four sums into four deviations, is **not** in the receive
 path: `compute_cyl_update()` does it in slot 10, once in about 19 s of idle.
+The drive summary of 0x606/0x607 added a little more to the same path —
+a warm second's `IdleHealth` sample and three sums — and its divisions run
+in slots 14 and 26, once a second. **The drive record's EEPROM write** is
+nine bytes at 4 ms typical (DS39977C D122), 36 ms of blocked receive, at most
+once in five minutes, in slot 26, which sends nothing: the trip record's
+argument, a quarter shorter and fifteen times rarer.
 
 **The ceilings sit about 1.5x above what the code costs today**, and they have
 come down as the algorithms underneath them got cheaper: 1.4 -> 1.0, 1.7 -> 1.0
