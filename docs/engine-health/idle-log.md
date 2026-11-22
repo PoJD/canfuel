@@ -2046,11 +2046,13 @@ The converter's drop-outs went on.
 - **Changes after:**
   - *measured:* **70–90 most of the idling, at moments under 60**, both
     drives alike; **about 100** three minutes into the standing idle,
-    oil 72 °C (*owner*);
+    oil 72 °C; **then 80–90 at oil 78 °C, `Misfires` 11, MisfAvg 8.9**
+    (*owner*);
   - *felt:* the idle unchanged (*owner*);
   - *not known:* where the standing idle settles once warm; the
     cleaner's effect — 6t reads it at the end of the second tank.
 
 The converter ran both drives without a drop-out, 0x603's Unhealthy at
-0 (*owner*). About 6 l of the first can's tank left. `open.md` S1, the
-display table.
+0 (*owner*). MisfAvg ran from a cold start about 1½ hours after the
+previous short drive, so it holds the cold part. About 6 l of the first
+can's tank left. `open.md` S1, the display table.
