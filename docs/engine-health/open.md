@@ -1378,7 +1378,12 @@ completing rather than load (`refuted.md` C19).
   above), where the eight weeks before had one, on 18/10. *Reasoned*:
   no lamp fits a code stored on its first trip — a steady lamp needs
   the fault confirmed, a flashing one the converter-damage rate
-  (`plan.md`, *Standing items — why*). It names 3 as everything since
+  (`plan.md`, *Standing items — why*). **On this car the lamp has come on
+  on the drive after a static code** — the secondary air, the coolant
+  sensor, a probe — **and not for a sporadic one** (*owner*, 22/11). Both
+  P0303s were cleared before a second drive (12/11 after the stop, 16/11
+  with the battery off for the gasket), so whether a repeat would light
+  it was never seen; on 22/11 the lamp was off, the memory not yet read. It names 3 as everything since
   12/11 does and tells nothing between list B's causes. After it the
   owner brought the lower gasket forward (`plan.md` 8z, done 17/11,
   and it moved nothing; `refuted.md` C28).
