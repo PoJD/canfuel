@@ -370,7 +370,7 @@ unnecessary for it.
 this project has recorded, five in the whole-bus fixtures (`18`, `20`) and
 the ones at each VCDS session in the unfiltered captures of 10/11/2026, is the
 same three bytes, `01 c0 80`, and **no frame answers it**: across the
-whole-bus fixtures `01`–`29` nothing in 0x201–0x2FF appears apart from the
+whole-bus fixtures `01`–`23` nothing in 0x201–0x2FF appears apart from the
 periodic 0x280 and 0x288, and nothing new appears around any 0x200
 (`can-decoding.md`, *IDs present on the bus*). 0x200 with a first byte of
 0x01 is a TP 2.0 channel request addressed to the engine (*general*: VW TP 2.0
