@@ -79,7 +79,7 @@ cheapest test of the CAN driver there is.
 | # | Step | Needs | Repository |
 |---|---|---|---|
 | 1 | Build and test on a PC | gcc, make, Python | `canfuel` |
-| 2 | Upload the display configuration | the display and its configuration tool | `mfd15` |
+| 2 | Upload the display configuration, and *(optional)* a start image | the display and its configuration tool | `mfd15` |
 | 3 | Make up the harness | crimping tools, the loom parts | `kicad` |
 | 4 | Prove the programmer, with no board | a programmer, a USB port, MPLAB X | `canfuel` |
 | 5 | Populate and programme a board | programmer, XC8, an iron | `canfuel` |
@@ -192,6 +192,19 @@ either:
   with no RPM cannot be blaming anything this firmware did. Uploading the TRI
   file again fixes it every time, so upload it again as a matter of course
   after any page change rather than waiting to notice.
+
+### 2.1 *(optional)* A start image
+
+The display shows a picture at power-up, and it can be any picture — your own
+car, a logo, anything. Nothing depends on it. **Follow `mfd15/README.md`,
+*The start image***; the display's conditions, from its manual (§6.3, §9.5):
+
+- **a 24-bit BMP** — not PNG or JPEG, and a renamed PNG is not a BMP;
+- **128 × 128 pixels**;
+- **named exactly `logo.bmp`**, uploaded through oDSS's *Upload File*.
+
+It appears at the next power-up. The panel is square and the boot text covers
+its bottom rows; `mfd15/logo/logo.bmp` is the tested car's, as an example.
 
 ---
 
