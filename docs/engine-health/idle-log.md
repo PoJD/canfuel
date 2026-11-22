@@ -2085,3 +2085,21 @@ the secondary air ended, then 3, as at every cold start since 17/11.
 settings in oDSS (two sensors' Max, the rev LED off), the error counters
 at 0 (`mfd15` CLAUDE.md, *Operating oDSS puts errors on the CAN bus*).
 `open.md` S1, the display table and *The swell's shape*.
+
+## 22 November 2026 night — the second can's first drive and stop
+
+- **Tests:** 24.5 km on the new tank, the limiter several times and a
+  motorway stretch, then a warm standing idle of about 25 minutes near
+  home, read on the MFD and photographed (the album 23:56–00:27); at
+  home the fault memory and 032/055 with VCDS (*owner*, the album 00:29).
+- **Changes after:**
+  - *measured:* 4 the weakest for the first four minutes (to −15 %),
+    then 3's floor and its first swell after about 12 minutes (to
+    −20 %), a second straight after; the drive's warm idle at 25.2 min:
+    Health 61, Misf 3.8 a minute, the weakest −11.0 %, cylinder 3; the
+    fault memory empty, 032 −4.7 / +7.8 %, 055 −1.28 g/s;
+  - *not known:* the second can's effect — 6t's captures read it.
+
+0x607 at power-up held the evening's drive (Health 48, Misf 2.5, the
+weakest −10.5), so the converter's drive record works on the car. 4's
+early weakness is not new: `open.md` S1, *4's own short spells*.
