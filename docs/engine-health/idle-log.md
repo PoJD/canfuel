@@ -2046,8 +2046,8 @@ The converter's drop-outs went on.
 - **Changes after:**
   - *measured:* **70–90 most of the idling, at moments under 60**, both
     drives alike; **about 100** three minutes into the standing idle,
-    oil 72 °C; **then 80–90 at oil 78 °C, `Misfires` 11, MisfAvg 8.9**
-    (*owner*);
+    oil 72 °C; **then 80–100 at oil 78 °C, `Misfires` 11, MisfAvg 8.9**
+    (*owner*; *this read 80–90 until he corrected it minutes later*);
   - *felt:* the idle unchanged (*owner*);
   - *not known:* where the standing idle settles once warm; the
     cleaner's effect — 6t reads it at the end of the second tank.
