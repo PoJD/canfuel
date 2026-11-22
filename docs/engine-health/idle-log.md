@@ -2042,14 +2042,17 @@ The converter's drop-outs went on.
 
 - **Tests:** `IdleHealth` on the MFD at the idles of two short drives,
   the engine never fully warm, oil 66 °C at most, then a longer standing
-  idle after them; the everyday state (*owner*).
+  idle after them, held at 2,000 rpm to warm the oil to 93 °C; the
+  everyday state (*owner*).
 - **Changes after:**
   - *measured:* **70–90 most of the idling, at moments under 60**, both
     drives alike; **about 100** three minutes into the standing idle,
     oil 72 °C; **then 80–100 at oil 78 °C, `Misfires` 11, MisfAvg 8.9**
     (*owner*; *this read 80–90 until he corrected it minutes later*);
     **then, oil 83 °C, falling to 60–79, at moments holding at 60,
-    `Misfires` 3, MisfAvg 7.1** (*owner*);
+    `Misfires` 3, MisfAvg 7.1**; then held at 2,000 rpm to warm the
+    oil, and **a minute after the pedal was released, oil 93 °C: 40–55,
+    `Misfires` 5, MisfAvg 6.5** (*owner*);
   - *felt:* the idle unchanged (*owner*);
   - *not known:* where the standing idle settles once warm; the
     cleaner's effect — 6t reads it at the end of the second tank.
