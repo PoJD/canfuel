@@ -100,7 +100,7 @@ division, into the chat.
 
 **6t. Two cans of BG 44K Platinum, before 8q** (*the owner*, 17/11
 evening): the same product as in October, **208** and "Platinum" on the
-can. *The first is in (18/11, about 25 l).* **The second into a full
+can. *The first is in (18/11, about 25 l); about 6 l of it left 22/11.* **The second into a full
 tank when this one is low**; each tank driven as usual, mixed — revved at times, some longer idles (*the owner*, 18/11 evening; until then briskly throughout). Nothing else changed meanwhile —
 no oil change, no other cleaner. **At the end of the second tank, before
 7/12, two captured drives** (or one with two stops), each to a warm stop

@@ -2037,3 +2037,19 @@ cleaner in*.
 
 The converter's drop-outs went on.
 `open.md` S1, the display table.
+
+## 22 November 2026 — two short drives on the 44K can, not warm
+
+- **Tests:** `IdleHealth` on the MFD at the idles of two short drives,
+  the engine never fully warm, oil 66 °C at most; the everyday state
+  (*owner*).
+- **Changes after:**
+  - *measured:* **70–90 most of the idling, at moments under 60**, both
+    drives alike (*owner*);
+  - *felt:* the idle unchanged (*owner*);
+  - *not known:* the cleaner's effect — 6t reads it at the end of the
+    second tank.
+
+The converter ran both drives without a drop-out, 0x603's Unhealthy at
+0 (*owner*). About 6 l of the first can's tank left. `open.md` S1, the
+display table.
