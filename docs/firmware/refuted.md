@@ -380,6 +380,16 @@ with KWP-1281** (`docs/engine-health/vcds.md`, *Turbo*), at the 3.35 blocks a
 second that protocol allows. So 0x200 is VCDS asking whether the engine
 speaks CAN diagnostics, getting no answer, and falling back.
 
+**Nor does the cluster carry it across as a gateway.** The other
+plausible route, raised by the owner the same day: VCDS talks K-line to the
+instrument cluster, and the cluster forwards the requests to the engine over
+CAN. Then every block VCDS reads would cross this bus as a request and an
+answer, some three times a second. It does not: the whole-bus captures taken
+**while VCDS was logging** — `11`–`16` (the six holds) and `18` (the cold
+start, `vcds-coldstart-014-055.csv`) — hold the fourteen periodic IDs and
+`18`'s three 0x200 at its reconnection, and nothing else. The K-line goes
+from the socket to the engine's ECU without touching this bus.
+
 ⚠ **This is B11's lesson applied the other way round.** It is not "the bus
 does not carry 014": it is a request this ECU was asked, on this bus, six
 times and more, and never answered.
