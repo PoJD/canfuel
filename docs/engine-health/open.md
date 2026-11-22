@@ -305,7 +305,7 @@ error):
 | 21/11 night | display | settled | a short drive on empty roads, **the engine revved a little**, then a standing idle; 6t's first can; the everyday state (no other said) | **40–60 about ten minutes into the stop** (*owner*); its start not read; `Misfires` not read. **One drive, not 6t's reading** |
 | 22/11 | display | settled | two short drives on 6t's first can, about 6 l of the tank left; **the engine never fully warm, oil 66 °C at most**; the everyday state (no other said); **the converter ran both without a drop-out**, 0x603's Unhealthy at 0 (*owner*) | **70–90 most of the idling, at moments under 60**, both drives alike (*owner*: unchanged) — the band of 20/11 and of 3/11 night, but at oil 66 °C, so beside the warm stops, not among them; **Then a standing idle after them: about 100 three minutes in, oil 72 °C** (*owner*) — higher than the drives' idles, as a not-yet-warm engine reads (19/11's about 100 shortly after a start); **later 80–100 at oil 78 °C, `Misfires` 11, MisfAvg 8.9** (*owner*; *this read 80–90 until he corrected it minutes later*) — MisfAvg since a cold start about 1½ hours after the previous short drive, the cold part in it, so not comparable with 19/11 eve's 3.3–4.1; `Misfires` 11 as 8/11's 9–12, above this can's warm stops (0–6), at a stop not yet warm; **then, oil 83 °C, falling to 60–79, at moments holding at 60, `Misfires` 3, MisfAvg 7.1** (*owner*) — the grade and the count falling as the oil warms; **then held at 2,000 rpm to warm it, and a minute after the pedal was released, oil 93 °C: 40–55, `Misfires` 5, MisfAvg 6.5** (*owner*) — warm now, and in the band of this can's warm evenings (18/11 eve 30–50, 19/11 eve 40–50), below 20/11's 80–100. **One day, not 6t's reading** |
 | 22/11 eve | display, 0x605/0x606 (photos, the album 21:29–23:17) | settled | **the end of 6t's first can** (0.2 l indicated before the fill): a cold start, then a standing idle at a petrol station of **about 40 min warm** (oil 85 °C from about 22:33, 95–100 °C after), the everyday state (no other said); **the first stop read on the converter's 0x605 and 0x606** | on 3's floor (−7 to −9.5 %) **32–39 at 22:45–22:47, 35–59 later**; **in the swells 56–67**; `Misfires` **1–6** throughout; the drive's warm idle (0x606, 38.7 min at 23:16): **Health 48, Misf 2.5 a minute, the weakest −11.0 %** — against `54`'s 67, 7.1 and −12.0 (`docs/firmware/frames.md`); **the first swell only after about 24 min of warm idle**, then every 6–7 min (*The swell's shape*, 22/11). **One stop, not 6t's reading** |
-| 22/11 night | display, 0x605/0x606 (photos, the album 23:56–00:27), VCDS 032/055 | settled | **the first drive on 6t's second can**: 24.5 km, the limiter several times and a motorway stretch (*owner*), then a warm standing idle of about 25 min near home, oil 97–98 °C; the everyday state (no other said); 0x607 showed the previous drive as 48 / 2.5 / −10.5 (the EEPROM's record, its last minutes short of the live −11.0) | **the first 4 min 64–87, 4 the weakest** (to −15 %, 3 at −3.5 to −6); then 3's floor (−5.5 to −7) at 43–76; **3's first swell after about 12 min** (to −20 %) and a second straight after (to −20 %), 60–79 in them; at the end 50–85 with 3 at −11 to −13; the drive's warm idle (0x606, 25.2 min): **Health 61, Misf 3.8 a minute, the weakest −11.0 %**; the fault memory empty after it, 032 **−4.7 / +7.8**, 055 −1.28 g/s (*owner*, the album 00:29). **One stop, not 6t's reading** |
+| 22/11 night | display, 0x605/0x606 (photos, the album 23:56–00:27), VCDS 032/055 | settled | **the first drive on 6t's second can**: 24.5 km, the limiter several times and a motorway stretch (*owner*), then a warm standing idle of about 25 min near home, oil 97–98 °C; the everyday state (no other said); 0x607 showed the previous drive as 48 / 2.5 / −10.5 (the EEPROM's record, its last minutes short of the live −11.0) | **the first 4 min 64–87, 4 the weakest** (to −15 %, 3 at −3.5 to −6; a note to this stop, whether it is S4's not known — the captures' warm stops show such spells of 4 before 21/10, to −10 to −17 % for 1–3 min, and since then rarer and shallower, `46`, `51`, `53`, `54`, with or without high revs before; script not kept); then 3's floor (−5.5 to −7) at 43–76; **3's first swell after about 12 min** (to −20 %) and a second straight after (to −20 %), 60–79 in them; at the end 50–85 with 3 at −11 to −13; the drive's warm idle (0x606, 25.2 min): **Health 61, Misf 3.8 a minute, the weakest −11.0 %**; the fault memory empty after it, 032 **−4.7 / +7.8**, 055 −1.28 g/s (*owner*, the album 00:29). **One stop, not 6t's reading** |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -685,8 +685,7 @@ condensed 17/11, the full argument in `git show 5741dfa:docs/engine-health/open.
 - **22/11 night, the second can's first stop** (the display; *owner*):
   after 24.5 km with the limiter and a motorway stretch, **3's first swell
   after about 12 minutes** (to −20 %) and a second straight after it —
-  the usual start, so the 24 minutes of the evening did not repeat. 4 the
-  weakest for its first four minutes (*4's own short spells*).
+  the usual start, so the 24 minutes of the evening did not repeat.
 
 **The queue drive, and what the ECU sees through a swell** (12/11
 evening, `50`; condensed 17/11, the full text in `git show 5e1ddf2:docs/engine-health/open.md`, this heading).
@@ -980,24 +979,6 @@ there over minutes; nothing else on the bus marks it. Read
 (*reasoned*, not settled): it rides on 3's floor, not on any repair or
 event; whether it is a real shift of 2's and 4's burn or how the slots
 are weighed when 3 is level is not known.
-
-**4's own short spells** (23/11 night, *the owner's question*: 4 the
-weakest for the first minutes of the warm stop of 22/11 night, to −15 %,
-then level — is that new; every warm stop of the captures, 0x605's
-blocks replayed with `idledips.cylinder_blocks()`, oil 85 °C and over;
-script not kept). **Not new.** Before the VW leads (21/10) 4 fell to
-−10 to −17 % for 1–3 minutes at many warm stops (`19`, `20`, `24`,
-`26`, `37`), then came back to its floor or above it. **Since
-21/10 it is rarer and shallower**: `46` (−10.5 and −8 at a stop's start,
-then +3 to +6), `51` (−8 to −9 for two minutes, no revs before), `53`
-(−10 to −12.5 for about a minute and a half, 144 s after high revs) and
-`54` (−8.5 three minutes in); 22/11 night's −15 is the deepest since
-21/10. **Not tied to high revs**: `51`'s came with none before, `46`'s
-nearly 20 minutes after them. 3 is no weaker meanwhile and often a
-little better (−3.5 to −6 on 22/11 night). Read (*reasoned*): 4 has
-short weak spells of its own, as 3 has swells, rarer and shallower since
-the leads; whether they are S4's knock window (4's retard after a pull)
-is not known — no capture has 020 through one.
 
 **Before and after the canister and the new valve** (14/11 evening;
 condensed 17/11, the full text in `git show 5e1ddf2:docs/engine-health/open.md`, this heading). Nothing in the

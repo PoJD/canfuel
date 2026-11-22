@@ -2102,4 +2102,5 @@ at 0 (`mfd15` CLAUDE.md, *Operating oDSS puts errors on the CAN bus*).
 
 0x607 at power-up held the evening's drive (Health 48, Misf 2.5, the
 weakest −10.5), so the converter's drive record works on the car. 4's
-early weakness is not new: `open.md` S1, *4's own short spells*.
+early weakness is a note to this stop; whether it is S4's is not known
+(`open.md` S1, the display table).
