@@ -76,6 +76,7 @@ threshold the device carries had to be dug out of the git log
 |---|---|---|---|---|
 | 2026-09-24 | the tree of `efe8573` (`src/` as at its parent) | normal, `--preserve-eeprom` | not recorded | `efe8573`'s message: "Used for this flash"; no hash was printed then. Carries `REFUEL_RISE_L` = 4 and 0x604 |
 | 2026-11-04 | `5ace55a` | normal, `--preserve-eeprom`, `--power-from-programmer` (the board out of the car, unpowered) | `5b49d97da3cbb483313c1d737c2b442b6bc7ed61f64175656f33ff0907b34d4c` | `flash.py`'s `flashed:` line; EEData read back identical. 0x604 layout 2 (`Misfires`, `MisfAvg`) |
+| 2026-11-22 | `32a8ff4` | normal, `--preserve-eeprom`, `--power-from-programmer` (the board out of the car, unpowered) | `8c9d5e2155c46b2360e2c8858d0d34fd78b31c4691acfe593d56789efaf80f6b` | `flash.py`'s `flashed:` line, read off the owner's photograph; `PASS`. 0x605 (the cylinders), 0x606/0x607 (the drive record), board 2's `VDD_NUMERATOR_C`. On the display straight after: VddConv 5.00, the trip, average and tank as before the flash, 0x605-0x607 at "not known" |
 
 The oil scale moved to `raw − 60` in `decode.c` on 15/10 with no flash of
 its own; the display reads oil off 0x420 itself.
