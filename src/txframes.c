@@ -141,6 +141,29 @@ void txframes_gather_health(tx_values_t *v, const compute_t *c, uint32_t now_ms)
     v->health_flags = flags;
 }
 
+void txframes_gather_cyl(tx_values_t *v, const compute_t *c, uint32_t now_ms)
+{
+    if (!compute_data_live(c, now_ms)) {
+        v->cyl_dev[0] = HEALTH_UNKNOWN;
+        v->cyl_dev[1] = HEALTH_UNKNOWN;
+        v->cyl_dev[2] = HEALTH_UNKNOWN;
+        v->cyl_dev[3] = HEALTH_UNKNOWN;
+        v->cyl_weak   = HEALTH_UNKNOWN;
+        v->cyl_blocks = HEALTH_UNKNOWN;
+        v->cyl_flags  = 0u;
+        return;
+    }
+
+    v->cyl_dev[0] = compute_cyl_dev(c, 1u);
+    v->cyl_dev[1] = compute_cyl_dev(c, 2u);
+    v->cyl_dev[2] = compute_cyl_dev(c, 3u);
+    v->cyl_dev[3] = compute_cyl_dev(c, 4u);
+    v->cyl_weak   = compute_cyl_weak(c);
+    v->cyl_blocks = compute_cyl_blocks(c);
+    v->cyl_flags  = (uint8_t)(CYL_FLAG_DATA_LIVE |
+                              (compute_cyl_named(c) ? CYL_FLAG_NAMED : 0u));
+}
+
 void txframes_trip(const tx_values_t *v, uint8_t *out)
 {
     put_be32(out + 0, v->trip_ml);
@@ -170,4 +193,17 @@ void txframes_health(const tx_values_t *v, uint8_t *out)
     out[6] = v->health_clt;
     out[7] = (uint8_t)((v->health_flags & 0x1Fu) |
                        (HEALTH_LAYOUT_VERSION << HEALTH_VERSION_SHIFT));
+}
+
+void txframes_cyl(const tx_values_t *v, uint8_t *out)
+{
+    out[0] = v->cyl_dev[0];
+    out[1] = v->cyl_dev[1];
+    out[2] = v->cyl_dev[2];
+    out[3] = v->cyl_dev[3];
+    out[4] = v->cyl_weak;
+    out[5] = v->cyl_blocks;
+    out[6] = HEALTH_UNKNOWN;            /* reserved */
+    out[7] = (uint8_t)((v->cyl_flags & 0x1Fu) |
+                       (CYL_LAYOUT_VERSION << HEALTH_VERSION_SHIFT));
 }

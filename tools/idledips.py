@@ -578,6 +578,171 @@ def misfires(gated, t_from=None, t_to=None, trip_rpm=TRIP_RPM,
     return wsum, total, round(idle_s * 1000.0)
 
 
+# --- each cylinder's share, 0x605 --------------------------------------------
+#
+# Cyl1-Cyl4, CylWeak and CylBlocks on 0x605 (docs/firmware/frames.md), added
+# 22/11/2026 at the owner's request: tools/cylscan.py's reading of each
+# cylinder's share of a standing idle, cut down to what the firmware can carry
+# and made causal. src/config.h, 0x605, argues every constant; they are copied
+# here, and test_idledips.py holds this against cylscan.deviation() on the
+# captures. This is the oracle replay.py --host-build diffs compute.c against.
+
+CYL_STROKE_PH = 120000     # rpm_q4 x ms in one stroke
+CYL_HALF_PH = 60000
+CYL_PLL_SHIFT = 4
+CYL_MAX_DT_MS = 200
+CYL_MAX_SKIP = 3
+CYL_STEP_CLAMP_Q4 = 400
+CYL_BLOCK_STROKES = 512
+CYL_WHEEL_Q16 = 142
+CYL_K = (3943, -1178, 352, -105)
+CYL_NAME_MARGIN = 768
+CYL_D_MAX = 380000
+CYL_UNKNOWN = 255
+
+
+def _cyl_finish(sums, rpm_sum):
+    """(bytes for cylinders 1-4, weak 1-4, named) from one block's sums --
+    cyl_finish() in compute.c."""
+    off = CYL_STEP_CLAMP_Q4 * (CYL_BLOCK_STROKES // 4)
+    p = [x - off for x in sums]
+    s2 = 0
+    for q in (1, 2, 3):
+        if p[q] > p[s2]:
+            s2 = q
+    second = max(p[q] for q in range(4) if q != s2)
+    named = p[s2] - second >= CYL_NAME_MARGIN
+    tot = sum(p)
+    w = ((rpm_sum >> 8) * CYL_WHEEL_Q16) >> 8
+    d = []
+    for o in range(4):
+        q = 4 * p[(s2 + o) & 3] - tot
+        v = q + w if o & 1 else q - w
+        d.append(max(-CYL_D_MAX, min(CYL_D_MAX, v)))
+    f = [d[1], d[2], d[3], d[0]]          # cylinders 1, 3, 4, 2
+
+    def out(k):
+        t = sum(CYL_K[j] * f[(k + j) & 3] for j in range(4))
+        t += (128 << 20) + (1 << 19)
+        return 0 if t < 0 else min(t >> 20, 254)
+
+    dev = [out(0), out(3), out(1), out(2)]   # cylinders 1, 2, 3, 4
+    weak = 0
+    for q in (1, 2, 3):
+        if dev[q] < dev[weak]:
+            weak = q
+    return dev, weak + 1, named
+
+
+def cylinders(gated, t_from=None, t_to=None, settle_s=SETTLE_S):
+    """The firmware's cylinder frame, line for line with compute.c.
+
+    Returns (dev, weak, blocks, named): the bytes for cylinders 1-4 (0.5 %
+    of a stroke, 128 the four's mean) and the weakest, as the last finished
+    block left them -- 255 before the first -- the number of blocks, and
+    whether the last one's strongest slot stood the margin clear.
+    cylinder_blocks() gives the block-by-block series."""
+    res = _cylinders(gated, t_from, t_to, settle_s)
+    if not res:
+        return [CYL_UNKNOWN] * 4, CYL_UNKNOWN, 0, False
+    _, dev, weak, named = res[-1]
+    return dev, weak, min(len(res), 254), named
+
+
+def cylinder_blocks(gated, t_from=None, t_to=None, settle_s=SETTLE_S):
+    """[(t, dev, weak, named)] for every finished block, in order."""
+    return _cylinders(gated, t_from, t_to, settle_s)
+
+
+def _cylinders(gated, t_from, t_to, settle_s):
+    trip = int(TRIP_RPM * 4)
+    base = idle_since = prev_ms = prev_rpm = None
+    st = {"lock": 0, "ph": 0, "rprev": 0, "rcur": 0, "slot": 0,
+          "sums": [0, 0, 0, 0], "rs": 0, "n": 0}
+    blocks = []
+
+    def drop():
+        st["lock"] = 0
+        st["sums"] = [0, 0, 0, 0]
+        st["rs"] = 0
+        st["n"] = 0
+
+    def anchor(rq):
+        st["lock"], st["ph"], st["rcur"], st["slot"] = 1, CYL_HALF_PH, rq, 0
+
+    def commit(t, slot, now_q4, before_q4, r_q4):
+        step = max(-CYL_STEP_CLAMP_Q4, min(CYL_STEP_CLAMP_Q4, now_q4 - before_q4))
+        st["sums"][slot & 3] += step + CYL_STEP_CLAMP_Q4
+        st["rs"] += r_q4
+        st["n"] += 1
+        if st["n"] >= CYL_BLOCK_STROKES:
+            dev, weak, named = _cyl_finish(st["sums"], st["rs"])
+            blocks.append((t, dev, weak, named))
+            st["n"] = 0
+            st["sums"] = [0, 0, 0, 0]
+            st["rs"] = 0
+
+    for t, rpm_q4, throttle, speed_mmh in gated:
+        if (t_from is not None and t < t_from) or (t_to is not None and t >= t_to):
+            continue
+        ms = round(t * 1000.0)
+        if speed_mmh > GATE_SPEED_MMH or throttle > GATE_THROTTLE or rpm_q4 == 0:
+            base, idle_since, prev_ms, prev_rpm = None, None, None, None
+            drop()
+            continue
+        if idle_since is None:
+            idle_since = t
+        if base is None:
+            base = rpm_q4 << EWMA_SHIFT
+        baseline = base >> EWMA_SHIFT
+        settled = (t - idle_since) >= settle_s
+        if not settled and baseline - rpm_q4 >= trip:
+            idle_since = t
+        if settled:
+            dt = ms - prev_ms if prev_ms is not None else 0
+            changed = prev_rpm is not None and rpm_q4 != prev_rpm
+            if dt > CYL_MAX_DT_MS:
+                drop()
+            if st["lock"] == 0:
+                if changed:
+                    anchor(rpm_q4)
+            else:
+                st["ph"] += rpm_q4 * dt
+                if changed:
+                    m = 0
+                    while st["ph"] >= CYL_STROKE_PH and m <= CYL_MAX_SKIP:
+                        st["ph"] -= CYL_STROKE_PH
+                        m += 1
+                    if m > CYL_MAX_SKIP:
+                        drop()
+                        anchor(rpm_q4)
+                    else:
+                        if m == 0:
+                            st["rcur"] = rpm_q4
+                        else:
+                            if st["lock"] == 2:
+                                commit(t, st["slot"], st["rcur"], st["rprev"], st["rcur"])
+                            for j in range(1, m):
+                                commit(t, st["slot"] + j, st["rcur"], st["rcur"], st["rcur"])
+                            st["rprev"], st["rcur"] = st["rcur"], rpm_q4
+                            st["slot"] = (st["slot"] + m) & 3
+                            st["lock"] = 2
+                        ph = st["ph"]
+                        if ph >= CYL_HALF_PH:
+                            e = ph - CYL_HALF_PH
+                            st["ph"] = CYL_HALF_PH + e - (e >> CYL_PLL_SHIFT)
+                        else:
+                            e = CYL_HALF_PH - ph
+                            st["ph"] = CYL_HALF_PH - (e - (e >> CYL_PLL_SHIFT))
+        else:
+            drop()
+        prev_ms = ms
+        if prev_rpm is None or rpm_q4 != prev_rpm:
+            prev_rpm = rpm_q4
+        base += rpm_q4 - baseline
+    return blocks
+
+
 def misf_avg(total, idle_ms):
     """MisfAvg, 0.1 events per minute of settled idle, as compute.c rounds it;
     None (the firmware's 255) with less than a second of idle."""
@@ -715,9 +880,12 @@ def health_summary(path):
     _, counts, _, idle_s = roughness(gated, t_from=t0)
     wsum, total, _ = misfires(gated, t_from=t0)
     crank, dip, clt = start_fields(frames)
+    dev, weak, blocks, named = cylinders(gated, t_from=t0)
     return {"idle_rough": counts, "idle_ms": round(idle_s * 1000.0),
             "misf_window": wsum, "misf_total": total,
-            "start_crank": crank, "start_dip": dip, "start_clt": clt}
+            "start_crank": crank, "start_dip": dip, "start_clt": clt,
+            "cyl1": dev[0], "cyl2": dev[1], "cyl3": dev[2], "cyl4": dev[3],
+            "cyl_weak": weak, "cyl_blocks": blocks, "cyl_named": int(named)}
 
 
 # --- per-cylinder structure ------------------------------------------------

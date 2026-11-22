@@ -140,11 +140,12 @@ of which 26.4 are 0x480); the rest are the scheduler's own constants.
 | slot 0: the A/D, the gather and 0x600 | 9,617 | 10 | 96,170 | 2.40 % |
 | slot 1: 0x601 | 771 | 10 | 7,710 | 0.19 % |
 | 0x480 on top of the frame: counter, totals, flow bucket | 2,077 | 26.4 | 54,832 | 1.37 % |
-| 0x280 on top of the frame: the idle grade, the misfire window and the start watch, **upper bound** | 1,939 | 93.9 | 182,072 | 4.55 % |
+| 0x280 on top of the frame: the idle grade, the misfire window, the start watch and the 0x605 stroke count, **upper bound** | 4,239 | 93.9 | 398,042 | 9.95 % |
 | the millisecond ISR | 34 | 1,000 | 34,000 | 0.85 % |
 | slot 2: the trip totals and 0x602 | 1,582 | 1 | 1,582 | 0.04 % |
 | slot 3: 0x603 | 803 | 1 | 803 | 0.02 % |
 | slot 6: the health gather and 0x604 | 3,325 | 1 | 3,325 | 0.08 % |
+| slot 10: a finished block and 0x605, **upper bound** (a block finishes once in about 19 s of idle) | 9,800 | 1 | 9,800 | 0.25 % |
 | slot 22: `persist_save` deciding not to write | 625 | 1 | 625 | 0.02 % |
 | the EEPROM write, amortised over its interval | 192,000 | 1 per 20 s | 9,600 | 0.24 % |
 | the tank sample | 890 | 1 | 890 | 0.02 % |
@@ -507,7 +508,7 @@ one frame per slot, never a burst (*The transmit slots*).
 
 **Two limits, honestly.** The capture is a floor: a frame the USBtin
 missed is load the car still carried. And the converter's identifiers,
-0x600 to 0x604, are higher than every identifier in the captures, so on
+0x600 to 0x605, are higher than every identifier in the captures, so on
 arbitration the lower identifier wins and the converter loses to every
 frame of the car's: it waits for the car, never the other way.
 
@@ -579,13 +580,24 @@ any of these goes over its ceiling:
 
 | Budget | Now | Ceiling |
 |---|---|---|
-| one received frame, decoded and accumulated | 0.71 ms | 1.0 ms |
+| one received frame, decoded and accumulated | 1.26 ms | 1.5 ms |
 | `compute_tick`, worst case | 0.64 ms | 1.0 ms |
 | slot 0: the A/D, the gather and 0x600 | 2.40 ms | 3.6 ms |
 | slot 1: 0x601 | 0.19 ms | 0.5 ms |
 | slot 2: the trip totals and 0x602 | 0.40 ms | 1.2 ms |
 | slot 3: 0x603 | 0.20 ms | 0.6 ms |
+| slot 10: a finished block and 0x605 | 2.45 ms | 3.6 ms |
 | slot 22: `persist_save`, excluding the EEPROM write | 0.81 ms | 1.2 ms |
+
+**The cylinder frame (22/11/2026) raised the receive ceiling from 1.0 to
+1.5 ms, and that is intended.** 0x605's stroke count has to run on every
+0x280 — a change of engine speed is a stroke, and a stroke skipped is a
+cylinder misnamed — so it sits in the receive path, where the tool counts
+every instruction of `cyl_frame()`, both arms of each `if`, and all three
+commits a frame can make. The half a millisecond that adds is an upper bound
+on a path that is far shorter on almost every frame. The one expensive piece,
+making a block's four sums into four deviations, is **not** in the receive
+path: `compute_cyl_update()` does it in slot 10, once in about 19 s of idle.
 
 **The ceilings sit about 1.5x above what the code costs today**, and they have
 come down as the algorithms underneath them got cheaper: 1.4 -> 1.0, 1.7 -> 1.0

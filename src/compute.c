@@ -53,6 +53,9 @@ static void misf_clear(health_t *h)
     h->misf_armed = true;
 }
 
+/* The cylinder frame's state, empty; defined with the rest of 0x605 below. */
+static void cyl_clear(health_t *h);
+
 /* --- the flow window ---------------------------------------------------- */
 
 static void flow_clear(compute_t *c)
@@ -315,6 +318,7 @@ void compute_init(compute_t *c)
     c->health.start_dip   = HEALTH_UNKNOWN;
     c->health.start_clt   = HEALTH_UNKNOWN;
     misf_clear(&c->health);
+    cyl_clear(&c->health);
 }
 
 void compute_reset_trip(compute_t *c)
@@ -719,6 +723,260 @@ static uint8_t sat_u8(uint32_t v)
     return (v > HEALTH_SAT) ? (uint8_t)HEALTH_SAT : (uint8_t)v;
 }
 
+/* --- each cylinder's share, 0x605 --------------------------------------- *
+ *
+ * cylinders() in tools/idledips.py, line for line; config.h, 0x605, has the
+ * reasoning and every constant. Three pieces: the phase-locked stroke count
+ * on every gated 0x280 (cyl_frame), the per-slot sums (cyl_commit), and once
+ * per block the four sums made into four deviations (cyl_finish). */
+
+/* The block in progress and the lock, forgotten: at every gap, every exit
+ * from settled idle and every lost count. The last finished block's values
+ * are not touched -- they are what the display holds. */
+static void cyl_drop(health_t *h)
+{
+    h->cyl_lock = 0u;
+    h->cyl_n = 0u;
+    h->cyl_sum[0] = 0u;
+    h->cyl_sum[1] = 0u;
+    h->cyl_sum[2] = 0u;
+    h->cyl_sum[3] = 0u;
+    h->cyl_rpm_sum = 0u;
+}
+
+/* Nothing known: at power-up and at every new start. */
+static void cyl_clear(health_t *h)
+{
+    cyl_drop(h);
+    h->cyl_dev[0] = HEALTH_UNKNOWN;
+    h->cyl_dev[1] = HEALTH_UNKNOWN;
+    h->cyl_dev[2] = HEALTH_UNKNOWN;
+    h->cyl_dev[3] = HEALTH_UNKNOWN;
+    h->cyl_weak = HEALTH_UNKNOWN;
+    h->cyl_blocks = 0u;
+    h->cyl_named = false;
+    h->cyl_pending = false;
+}
+
+/* A signed value times one of the small constants, through fastmul.h: the
+ * magnitudes are multiplied and the sign put back. Once per block, so the
+ * branch costs nothing that matters. */
+static int32_t cyl_mul(int32_t v, uint16_t k)
+{
+    return (v < 0) ? -(int32_t)mul_u32_u16((uint32_t)(-v), k)
+                   : (int32_t)mul_u32_u16((uint32_t)v, k);
+}
+
+/* One cylinder's byte: invert() in tools/cylscan.py over the four values in
+ * firing order, starting at index k, in half per cents of a stroke, offset
+ * to CYL_RAW_MEAN and saturated to 0-254. */
+static uint8_t cyl_out(const int32_t *f, uint8_t k)
+{
+    int32_t t = cyl_mul(f[k], CYL_K0) - cyl_mul(f[(k + 1u) & 3u], CYL_K1)
+              + cyl_mul(f[(k + 2u) & 3u], CYL_K2) - cyl_mul(f[(k + 3u) & 3u], CYL_K3)
+              + (CYL_RAW_MEAN << 20) + (1L << 19);
+    uint32_t raw;
+
+    if (t < 0) {
+        return 0u;
+    }
+    raw = (uint32_t)t >> 20;
+    return (raw > HEALTH_SAT) ? (uint8_t)HEALTH_SAT : (uint8_t)raw;
+}
+
+/* A value clamped to +-CYL_D_MAX, so that the four products of cyl_out()
+ * cannot leave 32 bits whatever the sums hold. Nothing at an idle comes near
+ * it: that is tens of rpm of step in every stroke of the block. */
+#define CYL_D_MAX   380000L
+static int32_t cyl_clampd(int32_t v)
+{
+    return (v > CYL_D_MAX) ? CYL_D_MAX : ((v < -CYL_D_MAX) ? -CYL_D_MAX : v);
+}
+
+/* A full block: four sums into four deviations. */
+static void cyl_finish(health_t *h)
+{
+    const int32_t off = (int32_t)CYL_STEP_CLAMP_Q4 * (int32_t)(CYL_BLOCK_STROKES / 4u);
+    int32_t p0 = (int32_t)h->cyl_done[0] - off;
+    int32_t p1 = (int32_t)h->cyl_done[1] - off;
+    int32_t p2 = (int32_t)h->cyl_done[2] - off;
+    int32_t p3 = (int32_t)h->cyl_done[3] - off;
+    int32_t p[4];
+    int32_t d[4];
+    int32_t f[4];
+    int32_t tot, w, best, second;
+    uint8_t s2, o, weak;
+
+    p[0] = p0; p[1] = p1; p[2] = p2; p[3] = p3;
+
+    /* The strongest slot is cylinder 2; the lowest index wins a tie. */
+    s2 = 0u;
+    best = p0;
+    if (p1 > best) { s2 = 1u; best = p1; }
+    if (p2 > best) { s2 = 2u; best = p2; }
+    if (p3 > best) { s2 = 3u; best = p3; }
+    second = (s2 == 0u) ? p1 : p0;
+    if (s2 != 1u && p1 > second) { second = p1; }
+    if (s2 != 2u && p2 > second) { second = p2; }
+    if (s2 != 3u && p3 > second) { second = p3; }
+    h->cyl_named = (best - second) >= CYL_NAME_MARGIN;
+
+    /* Four times each slot's deviation from the four's mean, and the wheel's
+     * alternation in the same units: cylinders 2 and 3 (offsets 0 and 2 from
+     * the strongest) read high by it, 1 and 4 low. */
+    tot = p0 + p1 + p2 + p3;
+    w = (int32_t)(mul_u32_u16(h->cyl_done_rpm >> 8, CYL_WHEEL_Q16) >> 8);
+    for (o = 0u; o < 4u; o++) {
+        int32_t q = p[(s2 + o) & 3u];
+        q = q + q + q + q - tot;
+        d[o] = cyl_clampd((o & 1u) ? q + w : q - w);
+    }
+
+    /* Firing order 1-3-4-2 from offset 1: cylinder 1, 3, 4, 2. */
+    f[0] = d[1];
+    f[1] = d[2];
+    f[2] = d[3];
+    f[3] = d[0];
+    h->cyl_dev[0] = cyl_out(f, 0u);     /* cylinder 1 */
+    h->cyl_dev[2] = cyl_out(f, 1u);     /* cylinder 3 */
+    h->cyl_dev[3] = cyl_out(f, 2u);     /* cylinder 4 */
+    h->cyl_dev[1] = cyl_out(f, 3u);     /* cylinder 2 */
+
+    weak = 0u;
+    if (h->cyl_dev[1] < h->cyl_dev[weak]) { weak = 1u; }
+    if (h->cyl_dev[2] < h->cyl_dev[weak]) { weak = 2u; }
+    if (h->cyl_dev[3] < h->cyl_dev[weak]) { weak = 3u; }
+    h->cyl_weak = (uint8_t)(weak + 1u);
+
+    if (h->cyl_blocks < HEALTH_SAT) {
+        h->cyl_blocks++;
+    }
+}
+
+/* One stroke's step, from the stroke before, into its slot. All unsigned:
+ * the step is clamped to +-CYL_STEP_CLAMP_Q4 and offset by it. */
+static void cyl_commit(health_t *h, uint8_t slot, uint16_t now_q4,
+                       uint16_t before_q4, uint16_t r_q4)
+{
+    uint16_t step;
+
+    if (now_q4 >= before_q4) {
+        step = (uint16_t)(now_q4 - before_q4);
+        step = (uint16_t)(CYL_STEP_CLAMP_Q4 +
+                          ((step > CYL_STEP_CLAMP_Q4) ? CYL_STEP_CLAMP_Q4 : step));
+    } else {
+        step = (uint16_t)(before_q4 - now_q4);
+        step = (uint16_t)(CYL_STEP_CLAMP_Q4 -
+                          ((step > CYL_STEP_CLAMP_Q4) ? CYL_STEP_CLAMP_Q4 : step));
+    }
+    h->cyl_sum[slot & 3u] += step;
+    h->cyl_rpm_sum += r_q4;
+    h->cyl_n++;
+    if (h->cyl_n >= CYL_BLOCK_STROKES) {
+        /* Handed over, not finished here: cyl_finish() is milliseconds and
+         * this runs on a received frame. compute_cyl_update() does it in the
+         * 0x605 slot. */
+        h->cyl_done[0] = h->cyl_sum[0];
+        h->cyl_done[1] = h->cyl_sum[1];
+        h->cyl_done[2] = h->cyl_sum[2];
+        h->cyl_done[3] = h->cyl_sum[3];
+        h->cyl_done_rpm = h->cyl_rpm_sum;
+        h->cyl_pending = true;
+        h->cyl_n = 0u;
+        h->cyl_sum[0] = 0u;
+        h->cyl_sum[1] = 0u;
+        h->cyl_sum[2] = 0u;
+        h->cyl_sum[3] = 0u;
+        h->cyl_rpm_sum = 0u;
+    }
+}
+
+/* cyl_frame() writes the stroke count out for exactly this bound. */
+#if CYL_MAX_SKIP != 3u
+#error "cyl_frame() unrolls the stroke count for CYL_MAX_SKIP == 3; rewrite it."
+#endif
+
+/* Start counting strokes at this change of the field. */
+static void cyl_anchor(health_t *h, uint16_t rpm_q4)
+{
+    h->cyl_lock = 1u;
+    h->cyl_ph = CYL_HALF_PH;
+    h->cyl_r_cur = rpm_q4;
+    h->cyl_slot = 0u;
+}
+
+/* One gated 0x280 frame of SETTLED idle. dt_ms is the time since the
+ * previous gated frame, zero for the first; changed says the speed field
+ * differs from the frame before. track() in tools/cylscan.py, causal. */
+static void cyl_frame(health_t *h, uint16_t rpm_q4, uint32_t dt_ms, bool changed)
+{
+    uint8_t m;
+    uint32_t e;
+
+    if (dt_ms > CYL_MAX_DT_MS) {
+        cyl_drop(h);
+    }
+    if (h->cyl_lock == 0u) {
+        if (changed) {
+            cyl_anchor(h, rpm_q4);
+        }
+        return;
+    }
+
+    /* Crank angle: rpm_q4 x ms is CYL_STROKE_PH a stroke. dt is at most
+     * CYL_MAX_DT_MS here, so it fits the uint16 the multiply takes. */
+    h->cyl_ph += mul_u32_u16(rpm_q4, (uint16_t)dt_ms);
+    if (!changed) {
+        return;
+    }
+
+    /* How many strokes since the last change: the phase rounded. Written
+     * out rather than looped, one comparison per stroke up to
+     * CYL_MAX_SKIP + 1, so that tools/cycles.py has no loop to bound here. */
+    m = 0u;
+    if (h->cyl_ph >= CYL_STROKE_PH) { h->cyl_ph -= CYL_STROKE_PH; m++; }
+    if (h->cyl_ph >= CYL_STROKE_PH) { h->cyl_ph -= CYL_STROKE_PH; m++; }
+    if (h->cyl_ph >= CYL_STROKE_PH) { h->cyl_ph -= CYL_STROKE_PH; m++; }
+    if (h->cyl_ph >= CYL_STROKE_PH) { m++; }
+    if (m > CYL_MAX_SKIP) {
+        cyl_drop(h);
+        cyl_anchor(h, rpm_q4);
+        return;
+    }
+
+    if (m == 0u) {
+        h->cyl_r_cur = rpm_q4;          /* the same stroke, read again */
+    } else {
+        if (h->cyl_lock == 2u) {
+            cyl_commit(h, h->cyl_slot, h->cyl_r_cur, h->cyl_r_prev, h->cyl_r_cur);
+        }
+        /* A held value hid these strokes: each reads the value before it,
+         * a step of zero, as cylscan's Run fills them. At most
+         * CYL_MAX_SKIP - 1 = 2 of them, written out for the same reason. */
+        if (m >= 2u) {
+            cyl_commit(h, (uint8_t)(h->cyl_slot + 1u), h->cyl_r_cur,
+                       h->cyl_r_cur, h->cyl_r_cur);
+        }
+        if (m >= 3u) {
+            cyl_commit(h, (uint8_t)(h->cyl_slot + 2u), h->cyl_r_cur,
+                       h->cyl_r_cur, h->cyl_r_cur);
+        }
+        h->cyl_r_prev = h->cyl_r_cur;
+        h->cyl_r_cur = rpm_q4;
+        h->cyl_slot = (uint8_t)((h->cyl_slot + m) & 3u);
+        h->cyl_lock = 2u;
+    }
+
+    /* The phase error, taken in by 1/2**CYL_PLL_SHIFT. */
+    if (h->cyl_ph >= CYL_HALF_PH) {
+        e = h->cyl_ph - CYL_HALF_PH;
+        h->cyl_ph = CYL_HALF_PH + e - (e >> CYL_PLL_SHIFT);
+    } else {
+        e = CYL_HALF_PH - h->cyl_ph;
+        h->cyl_ph = CYL_HALF_PH - (e - (e >> CYL_PLL_SHIFT));
+    }
+}
+
 /* THE IDLE GRADE. roughness() in tools/idledips.py, line for line, and the
  * order of the lines matters as much as their content -- the host diff holds
  * the two to the same byte over every timestamped fixture. config.h, 0x604,
@@ -740,6 +998,7 @@ static void idle_grade(health_t *h, const decode_state_t *st, uint32_t now_ms)
         h->have_prev_rpm = false;
         h->idling = false;
         h->misf_armed = true;
+        cyl_drop(h);
         return;
     }
 
@@ -760,6 +1019,8 @@ static void idle_grade(health_t *h, const decode_state_t *st, uint32_t now_ms)
     }
 
     if (settled) {
+        cyl_frame(h, rpm_q4, h->have_prev_ms ? elapsed(now_ms, h->prev_ms) : 0u,
+                  h->have_prev_rpm && rpm_q4 != h->prev_rpm_q4);
         if (h->have_prev_ms) {
             h->idle_ms += elapsed(now_ms, h->prev_ms);
         }
@@ -802,6 +1063,8 @@ static void idle_grade(health_t *h, const decode_state_t *st, uint32_t now_ms)
                           ? (uint16_t)(diff - ROUGH_DEADBAND_RPM * 4u) : 0u;
             h->rough_acc = h->rough_acc + step - (h->rough_acc >> ROUGH_SHIFT);
         }
+    } else {
+        cyl_drop(h);
     }
     h->prev_ms = now_ms;
     h->have_prev_ms = true;
@@ -849,6 +1112,7 @@ static void start_watch(health_t *h, const decode_state_t *st, uint32_t now_ms)
         h->rough_acc = 0u;
         h->idle_ms = 0u;
         misf_clear(h);
+        cyl_clear(h);
     }
 
     if (h->start_phase == HEALTH_START_CRANKING) {
@@ -938,4 +1202,32 @@ uint8_t compute_misf_avg(const compute_t *c)
         return (uint8_t)HEALTH_UNKNOWN;
     }
     return sat_u8(div_round(mul_u32_u16(c->health.misf_total, MISF_AVG_SCALE), s));
+}
+
+void compute_cyl_update(compute_t *c)
+{
+    if (c->health.cyl_pending) {
+        c->health.cyl_pending = false;
+        cyl_finish(&c->health);
+    }
+}
+
+uint8_t compute_cyl_dev(const compute_t *c, uint8_t cyl)
+{
+    return (cyl >= 1u && cyl <= 4u) ? c->health.cyl_dev[cyl - 1u] : HEALTH_UNKNOWN;
+}
+
+uint8_t compute_cyl_weak(const compute_t *c)
+{
+    return c->health.cyl_weak;
+}
+
+uint8_t compute_cyl_blocks(const compute_t *c)
+{
+    return c->health.cyl_blocks;
+}
+
+bool compute_cyl_named(const compute_t *c)
+{
+    return c->health.cyl_named;
 }

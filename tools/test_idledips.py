@@ -821,3 +821,65 @@ class HealthAgainstTheFixtures(unittest.TestCase):
         self.assertAlmostEqual(fixed["start_crank"] * 0.032, 0.83, delta=0.032)
         self.assertAlmostEqual(cold["start_dip"], 140, delta=1)
         self.assertEqual(fixed["start_dip"], 118)
+
+
+class Cylinders(unittest.TestCase):
+    """0x605: cylinders() is compute.c's oracle, and it has to read as
+    tools/cylscan.py reads -- the measurement it was cut down from."""
+
+    def test_the_firmware_carries_these_constants(self):
+        import idledips as i
+        d = _config_defines()
+        for name in ("CYL_STROKE_PH", "CYL_HALF_PH", "CYL_PLL_SHIFT",
+                     "CYL_MAX_DT_MS", "CYL_MAX_SKIP", "CYL_STEP_CLAMP_Q4",
+                     "CYL_BLOCK_STROKES", "CYL_WHEEL_Q16", "CYL_NAME_MARGIN"):
+            self.assertEqual(int(d[name]), getattr(i, name), name)
+        self.assertEqual(
+            (int(d["CYL_K0"]), -int(d["CYL_K1"]), int(d["CYL_K2"]),
+             -int(d["CYL_K3"])), i.CYL_K)
+
+    def test_the_constants_come_from_cylscan(self):
+        """Derived, not copied: the inverse of OWN_SHARE over STROKE_RPM in
+        half per cents of the block sums' units, and WHEEL_ALT in 2**-16."""
+        import cylscan
+        import idledips as i
+        a, b = cylscan.OWN_SHARE, 1.0 - cylscan.OWN_SHARE
+        c = [a ** 3, -a * a * b, a * b * b, -b ** 3]
+        den = a ** 4 - b ** 4
+        # A block sum is 128 steps of 0.25 rpm, four of them less their total
+        # is four times that: 2048 counts an rpm. Half per cents: x 200.
+        scale = 200.0 / cylscan.STROKE_RPM / 2048.0 * 2 ** 20
+        self.assertEqual(tuple(round(x / den * scale) for x in c), i.CYL_K)
+        self.assertEqual(round(cylscan.WHEEL_ALT * 2 ** 16), i.CYL_WHEEL_Q16)
+        self.assertEqual(round(cylscan.NAME_MARGIN_RPM * 512), i.CYL_NAME_MARGIN)
+        self.assertEqual(i.CYL_BLOCK_STROKES // 4, 128)
+
+    def test_it_reads_as_cylscan_does(self):
+        """Every standing idle of two captures that holds three blocks or
+        more: the blocks' mean against cylscan.deviation() over the run,
+        every cylinder within a per cent and a half of a stroke. Measured
+        when this was written: within 1.2 over the 18 runs of `50`-`54`."""
+        import cylscan
+        import idledips as i
+        for name in ("53_8h_loads_z1.txt", "54_8z_first_drive_z1.txt"):
+            path = os.path.join(FIXTURES, name)
+            blocks = i.cylinder_blocks(read_log(path)[3])
+            runs = 0
+            for run in cylscan.idle_runs(cylscan.read(path)):
+                dev = cylscan.deviation(run)
+                inside = [x for x in blocks if run.T[1] <= x[0] <= run.T[-1]]
+                if dev is None or len(inside) < 3:
+                    continue
+                runs += 1
+                for cyl in (1, 2, 3, 4):
+                    mean = sum((x[1][cyl - 1] - 128) / 2.0
+                               for x in inside) / len(inside)
+                    self.assertAlmostEqual(mean, dev[cyl], delta=1.5,
+                                           msg=f"{name} {run.T[1]:.0f} s c{cyl}")
+            self.assertGreater(runs, 0, name)
+
+    def test_nothing_is_known_before_a_block(self):
+        import idledips as i
+        dev, weak, blocks, named = i.cylinders([])
+        self.assertEqual(dev, [255, 255, 255, 255])
+        self.assertEqual((weak, blocks, named), (255, 0, False))

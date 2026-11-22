@@ -80,6 +80,11 @@ static inline bool replay_log(const char *name, replay_result_t *r)
          * would grade the synthesis. tools/idledips.py skips the same logs. */
         if (f->can_id == CAN_ID_ENGINE && r->timestamped) {
             compute_on_engine(&r->cp, &r->st, (uint32_t)f->ts_ms);
+            /* A filled block is finished at once here, where main.c does it
+             * in the next 0x605 slot: the oracle finishes it at once, and
+             * nothing else reads it in between. test_scheduler.c drives the
+             * slot the way main.c does. */
+            compute_cyl_update(&r->cp);
         }
 
         if (f->can_id != CAN_ID_FUEL) {

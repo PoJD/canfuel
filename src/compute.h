@@ -66,6 +66,24 @@ typedef struct {
     uint8_t  misf_filled;       /* buckets stepped into since the start      */
     bool     misf_armed;        /* the next dip may count                    */
 
+    /* --- each cylinder's share, cylinders() in idledips.py, for 0x605 ---- */
+    uint32_t cyl_ph;            /* crank phase, CYL_HALF_PH = on a stroke   */
+    uint32_t cyl_sum[4];        /* the block's steps per slot, offset by
+                                 * CYL_STEP_CLAMP_Q4 so they stay unsigned */
+    uint32_t cyl_rpm_sum;       /* engine speed over the block, quarter rpm */
+    uint16_t cyl_r_prev;        /* the stroke before the current one        */
+    uint16_t cyl_r_cur;         /* the current stroke, not yet committed    */
+    uint16_t cyl_n;             /* strokes committed into the block         */
+    uint8_t  cyl_slot;          /* the current stroke's slot, 0-3           */
+    uint8_t  cyl_lock;          /* 0 none, 1 one stroke, 2 a step to commit */
+    uint32_t cyl_done[4];       /* a full block's sums, waiting for the     */
+    uint32_t cyl_done_rpm;      /* 0x605 slot to make them deviations       */
+    bool     cyl_pending;
+    uint8_t  cyl_dev[4];        /* the last block, cylinders 1-4, as sent   */
+    uint8_t  cyl_weak;          /* 1-4, HEALTH_UNKNOWN before a block       */
+    uint8_t  cyl_blocks;        /* blocks this start, saturating            */
+    bool     cyl_named;
+
     /* --- the start ------------------------------------------------------ */
     uint8_t  start_phase;       /* HEALTH_START_* in compute.c               */
     bool     start_seen;        /* the current start was watched from rest   */
@@ -180,6 +198,19 @@ uint8_t compute_idle_health(const compute_t *c);    /* 0-200, 100 = before */
 uint8_t compute_idle_s(const compute_t *c);         /* seconds, saturating */
 uint8_t compute_misfires(const compute_t *c);       /* last minute of idle */
 uint8_t compute_misf_avg(const compute_t *c);       /* 0.1 a minute        */
+
+/* A full block waiting since the last call becomes the four deviations.
+ * Called from the 0x605 slot, once a second, and NOT from the receive path:
+ * it is the one piece of the cylinder frame that costs milliseconds, and a
+ * block fills once in about 19 s. A no-op when nothing is waiting. */
+void compute_cyl_update(compute_t *c);
+
+/* The cylinder frame's bytes, held from the last finished block of this
+ * start; HEALTH_UNKNOWN before the first. cyl is 1-4. config.h, 0x605. */
+uint8_t compute_cyl_dev(const compute_t *c, uint8_t cyl); /* 0.5 %, 128 = mean */
+uint8_t compute_cyl_weak(const compute_t *c);       /* 1-4                 */
+uint8_t compute_cyl_blocks(const compute_t *c);     /* blocks this start   */
+bool    compute_cyl_named(const compute_t *c);
 
 /* False once the bus has gone quiet for longer than DATA_TIMEOUT_MS. The
  * transmitted frames then go to zero rather than freezing at their last

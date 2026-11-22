@@ -11,9 +11,9 @@
  *
  *    every pass   drain the CAN receive FIFO, offer the clock to the core
  *                 (which integrates distance on its own DIST_TICK_MS step)
- *    every 25 ms  one transmit slot, and AT MOST ONE FRAME in it -- 0x600,
- *                 0x601, 0x602, 0x603, and the EEPROM in a slot that sends
- *                 nothing. config.h has the measurement that forced that.
+ *    every 25 ms  one transmit slot, and AT MOST ONE FRAME in it -- 0x600
+ *                 to 0x605, and the EEPROM in a slot that sends nothing.
+ *                 config.h has the measurement that forced that.
  */
 #include "pic_config.h"     /* #pragma config ... and then <xc.h> */
 
@@ -340,6 +340,17 @@ int main(void)
                 txframes_gather_health(&tx, &cp, now);
                 txframes_health(&tx, buf);
                 if (!hal_can_send(CAN_ID_TX_HEALTH, buf, TXFRAME_DLC)) {
+                    tx_fail_count();
+                }
+            } else if (slot == (uint8_t)TX_SLOT_CYL) {
+                /* 0x605, each cylinder's share. Like 0x604, not behind the
+                 * jumper and once a second. A block of idle that filled
+                 * since the last pass is made into the four deviations here,
+                 * not on the frame that filled it: compute.h says why. */
+                compute_cyl_update(&cp);
+                txframes_gather_cyl(&tx, &cp, now);
+                txframes_cyl(&tx, buf);
+                if (!hal_can_send(CAN_ID_TX_CYL, buf, TXFRAME_DLC)) {
                     tx_fail_count();
                 }
             } else if (slot == (uint8_t)TX_SLOT_PERSIST) {

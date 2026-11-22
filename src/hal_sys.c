@@ -67,7 +67,7 @@ static volatile uint32_t g_millis = 0;
  * - 1.024 V appears in DS39977C only in the channel list. There is no
  *   tolerance, no min and no max anywhere in Section 31.0 for it, so the
  *   nominal arithmetic above cannot be an absolute reading and was 4.1 % out
- *   on the one board measured. VDD_CAL_* in config.h is the per-unit
+ *   on the one board measured. VDD_NUMERATOR_C in config.h is the per-unit
  *   calibration that closes that, and it is a measurement against a meter
  *   rather than a specification: only as good as the meter, and only true for
  *   the board it was taken on. A part with no calibration of its own is still
@@ -77,8 +77,9 @@ static volatile uint32_t g_millis = 0;
  *   also why the brown-out trip point in pic_config.h is 3.0 V.
  */
 /* VDD_NUMERATOR_C is in config.h with the recipe that produced it. It is this
- * unit's, measured against a meter, and it is the only calibration this
- * reading can have. */
+ * unit's -- board 2's, scaled by the owner's decision to read 5.00 V rather
+ * than measured against a meter (config.h says how) -- and it is the only
+ * calibration this reading can have. */
 
 /* Anything above this is not a supply voltage, it is a broken conversion.
  * The MCP2562 and the K80 are both 5 V parts; 20 V is well past absurd. */

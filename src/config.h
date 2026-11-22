@@ -31,6 +31,7 @@
 #define CAN_ID_TX_TRIP          0x602u  /*   1 s  */
 #define CAN_ID_TX_DIAG          0x603u  /*   1 s  */
 #define CAN_ID_TX_HEALTH        0x604u  /*   1 s  */
+#define CAN_ID_TX_CYL           0x605u  /*   1 s  */
 
 /* --- the diagnostic frame, 0x603 ---------------------------------------- */
 
@@ -255,6 +256,97 @@
 #define START_DIP_MS            2000u
 #define START_CRANK_SHIFT       5u
 
+/* --- the cylinder frame, 0x605 ------------------------------------------ */
+
+/* EACH CYLINDER'S SHARE OF THE IDLE, LIVE. Added 22/11/2026 at the owner's
+ * request: the measurement the engine-health investigation turns on --
+ * cylinder 3's deficit and its swell (docs/engine-health/open.md S1) -- was
+ * available only from a capture through tools/cylscan.py. This is that
+ * reading, cut down to what a PIC18 can carry, at a standing idle only.
+ *
+ * WHAT IT DOES. Every change of 0x280's engine speed is one 180-degree window,
+ * one power stroke (docs/firmware/can-decoding.md, trap 6). Engine speed
+ * integrated over time is crank angle, so a phase-locked count puts every
+ * change on its stroke and every stroke in one of four slots; the step from
+ * the stroke before is summed per slot over a block of CYL_BLOCK_STROKES
+ * strokes of settled idle -- CYL_BLOCK_STROKES / 4 per slot, about 19 s at
+ * 800 rpm. At the end of a block the four sums become each cylinder's
+ * deviation from the four's mean, in per cent of one stroke's work, the way
+ * cylscan.deviation() does it: the crank wheel's alternation taken out
+ * (CYL_WHEEL_Q16), a quarter of each stroke's loss given back from the slot
+ * before (CYL_K*), and the slots named by the strongest being cylinder 2 and
+ * the firing order 1-3-4-2. tools/idledips.py, cylinders(), is the oracle,
+ * line for line; its test holds it against cylscan on the captures.
+ *
+ * ⚠ THE NAMES ARE A CONVENTION OF THIS CAR, not cylinder identification.
+ * Nothing on this bus carries camshaft phase. "The strongest slot is
+ * cylinder 2" held at every injector cut in the corpus (tools/cylscan.py);
+ * CYL_FLAG_NAMED says whether this block's strongest stood CYL_NAME_MARGIN
+ * clear of the next. A block that was not named still carries the four
+ * values under the same rule, and the flag says how far to trust them.
+ *
+ *   b0-b3  Cyl1-Cyl4  deviation, 0.5 % of a stroke, 128 = the mean:
+ *                     shown = raw x 0.5 - 64. Saturates at 0 and 254.
+ *   b4     CylWeak    the weakest of the four, 1-4
+ *   b5     CylBlocks  blocks finished this start, saturating at 254
+ *   b6     reserved, 255
+ *   b7     CYL_FLAG_* in bits 4-0, CYL_LAYOUT_VERSION in bits 7-5
+ *
+ * 255 is "not known" in every byte, as on 0x604: before the first block of
+ * a start, and on a quiet bus. A finished block's values are HELD until the
+ * next block or the next start, so the display keeps the last stop's reading
+ * through the drive that follows.
+ *
+ * The constants below that are not a unit are DECISIONS, each against
+ * cylscan's floating-point reading on the captures:
+ *
+ *   CYL_PLL_SHIFT     the phase correction per change, 1/16 against
+ *                     cylscan's 0.05: a shift, not a multiply. cylscan's
+ *                     look-ahead of 0.75 stroke is left out -- it cannot be
+ *                     done causally, and at a standing idle engine speed
+ *                     moves a few per cent, so it is worth a fiftieth of a
+ *                     stroke of phase.
+ *   CYL_MAX_DT_MS     a gap between two 0x280 frames longer than this drops
+ *                     the lock and the block; cylscan ends a run at 100 ms
+ *                     and the EEPROM write alone blocks for about 48.
+ *   CYL_MAX_SKIP      more strokes than this between two changes is a lost
+ *                     count, not held values: the block starts again.
+ *   CYL_STEP_CLAMP_Q4 one step is clamped to +-100 rpm, far outside any idle
+ *                     step (a dead stroke is -24 to -33 rpm), so it keeps the
+ *                     sums unsigned and changes nothing real.
+ *   CYL_BLOCK_STROKES 512: a power of two, so that the four sums are four
+ *                     means without a division; about 19 s, short enough for
+ *                     a stop in a queue and long enough to hold cylinder 3's
+ *                     floor to about a per cent.
+ *
+ * And the three carried over from tools/cylscan.py, where each is measured:
+ *
+ *   CYL_WHEEL_Q16     WHEEL_ALT, 0.00217 of engine speed, x 2**16 = 142.
+ *   CYL_K0..CYL_K3    the inverse of OWN_SHARE = 0.77, the stroke's loss in
+ *                     its own slot, already divided by STROKE_RPM = 34 rpm
+ *                     of step for a whole stroke and scaled to half per
+ *                     cents of the units the sums are in, x 2**20. K1 and K3
+ *                     are negative; their magnitudes are here.
+ *   CYL_NAME_MARGIN   NAME_MARGIN_RPM, 1.5 rpm, in the sums' 1/512 rpm. */
+#define CYL_STROKE_PH           120000UL /* rpm_q4 x ms in one stroke: 30000 x 4 */
+#define CYL_HALF_PH             60000UL
+#define CYL_PLL_SHIFT           4u
+#define CYL_MAX_DT_MS           200u
+#define CYL_MAX_SKIP            3u
+#define CYL_STEP_CLAMP_Q4       400u
+#define CYL_BLOCK_STROKES       512u
+#define CYL_WHEEL_Q16           142u
+#define CYL_K0                  3943u
+#define CYL_K1                  1178u    /* negative */
+#define CYL_K2                  352u
+#define CYL_K3                  105u     /* negative */
+#define CYL_NAME_MARGIN         768L
+#define CYL_RAW_MEAN            128L     /* the byte for a cylinder at the mean */
+
+#define CYL_LAYOUT_VERSION      1u
+#define CYL_FLAG_NAMED          0x01u   /* the strongest stood the margin clear */
+#define CYL_FLAG_DATA_LIVE      0x04u   /* frames are arriving right now        */
+
 /* --- which ECAN mode the firmware starts in ----------------------------- */
 
 /* One of the HAL_CAN_MODE_* names from hal_can.h, which is where the three
@@ -287,7 +379,9 @@
  * measured, the nominal arithmetic was out by 4.1 %, which is 0.20 V on a 5 V
  * rail and quite enough to send somebody chasing a supply fault.
  *
- * THE VALUE BELOW IS BOARD 1's. If you are building from docs/firmware/install.md it is
+ * THE VALUE BELOW IS BOARD 2's, the board in the car since November 2026,
+ * and it is a DECISION rather than a measurement (below). If you are building
+ * from docs/firmware/install.md it is
  * somebody else's part and somebody else's band gap. Recalibrate, or accept a
  * few per cent -- nothing downstream of VddConv is a decision, so an
  * uncalibrated reading is untidy rather than dangerous.
@@ -316,10 +410,18 @@
  * minute is the reading to use.
  *
  * Board 1: mean 4.876 shown against 4.89-4.90 on the meter, both with the bus
- * running. The reading is not more precise than the scatter, and there is no
- * point pretending otherwise -- what this buys is the 4.1 % systematic error
- * gone, not a third decimal place. */
-#define VDD_NUMERATOR_C         436344UL
+ * running, which made the numerator 436344. The reading is not more precise
+ * than the scatter, and there is no point pretending otherwise -- what this
+ * buys is the 4.1 % systematic error gone, not a third decimal place.
+ *
+ * Board 2, 22/11/2026, A DECISION WITHOUT A METER (the owner's): with board
+ * 1's 436344 it shows a steady 5.12-5.13 V in the car, about 2.5 % above the
+ * 5.00 V board 1 settled around on the same supply, which is the display's.
+ * The rail was not measured again; the owner chose to scale board 2 to read
+ * 5.00 like board 1 did, since nothing downstream of VddConv is a decision:
+ * 436344 x 5.00 / 5.125 = 425701. If a meter ever disagrees, step 2 above
+ * starts from this value. */
+#define VDD_NUMERATOR_C         425701UL
 
 /* VddConv IS FILTERED, because the A/D's scatter is bigger than its LSB.
  *
@@ -383,6 +485,7 @@
  *   slot == 2       0x602, once a second
  *   slot == 3       0x603, once a second (with JP1 fitted)
  *   slot == 6       0x604, once a second
+ *   slot == 10      0x605, once a second
  *   slot == 22      the EEPROM slot, 550 ms, in a slot that sends nothing
  *
  * Nothing on the wire changes rate: both fast frames are still 10 Hz and the
@@ -392,6 +495,7 @@
 #define TX_SLOT_TRIP            2       /* 0x602 at 50 ms                     */
 #define TX_SLOT_DIAG            3       /* 0x603 at 75 ms                     */
 #define TX_SLOT_HEALTH          6       /* 0x604 at 150 ms; (6 & 3) == 2      */
+#define TX_SLOT_CYL             10      /* 0x605 at 250 ms; (10 & 3) == 2     */
 #define TX_SLOT_PERSIST         22      /* 550 ms, and sends nothing          */
 
 #define TX_FAST_MS              100     /* 0x600 and 0x601, four slots apart  */

@@ -1,7 +1,7 @@
 # Frames transmitted by the converter
 
-Five frames of our own on free IDs. Every whole-bus log confirms that nobody
-else uses 0x600–0x604 (`test_target_ids_are_free`).
+Six frames of our own on free IDs. Every whole-bus log confirms that nobody
+else uses 0x600–0x605 (`test_target_ids_are_free`).
 
 **Everything is unsigned big endian.** The car uses little endian, we use big
 endian — deliberately, so the two cannot be confused, and the MFD15 handles
@@ -407,12 +407,69 @@ both sides, the same samples, the same clock, nothing to round.
 
 ---
 
+## 0x605 @ 1 s — each cylinder's share of a standing idle
+
+**Added 22/11/2026 at the owner's request**, and not JP1-gated, like 0x604.
+The measurement the engine-health investigation turns on — cylinder 3 short
+of the others at every warm idle, and its swell
+(`docs/engine-health/open.md` S1) — came only from a capture through
+`tools/cylscan.py`. This is that reading, live, cut down to what the PIC
+carries.
+
+| Byte | Name | Unit | Notes |
+|---|---|---|---|
+| 0–3 | Cyl1–Cyl4 | 0.5 % of a stroke, 128 = the four's mean | the cylinder's deviation, `raw × 0.5 − 64` %; saturates at 0 and 254 |
+| 4 | CylWeak | 1–4 | the weakest of the four |
+| 5 | CylBlocks | count | blocks finished since the start, saturating at 254 |
+| 6 | — | | reserved, 255 |
+| 7 | flags, layout version | | bits 4–0 `CYL_FLAG_*`, bits 7–5 `CYL_LAYOUT_VERSION` (1) |
+
+| Flag | Bit | Meaning |
+|---|---|---|
+| `CylNamed` | 0 | the last block's strongest slot stood `CYL_NAME_MARGIN` (1.5 rpm) clear of the next |
+| — | 2 | frames are arriving; with it clear every other byte reads 255 (no TRI row: `HealthLive` on 0x604 says the same) |
+
+**How it is computed** (`src/config.h`, 0x605, has every constant and why;
+`compute.c`, `cyl_frame()`): each change of 0x280's engine speed is one 180°
+window, one power stroke (`can-decoding.md`, *Trap 6*). Engine speed
+integrated over time is crank angle, so a phase-locked count puts every change
+on its stroke and every stroke in one of four slots, and the step from the
+stroke before is summed per slot over a **block of 512 strokes of settled
+idle**, 128 a cylinder, about 19 s at 800 rpm. A block's four sums become four
+deviations the way `cylscan.deviation()` makes them: the crank wheel's
+alternation taken out, a quarter of each stroke's loss given back from the
+slot before, and the slots named by the strongest being cylinder 2 in the
+firing order 1-3-4-2.
+
+- **Only at a standing idle**, the 0x604 gate and settle rule: a gap, the
+  car moving or the pedal pressed drops the block in progress. **A stop
+  shorter than about 25 s finishes no block.**
+- **A finished block is held** until the next block or the next start, so the
+  display keeps the last stop's reading through the drive after it.
+- **255 is "not known"**, as on 0x604: before the first block of a start and
+  on a quiet bus. On the display the four cylinder rows then read +63.5.
+
+⚠ **The names are this car's convention, not cylinder identification.**
+Nothing on this bus carries camshaft phase (*Trap 6*). "The strongest slot is
+cylinder 2" held at every injector cut in the corpus (`cylscan.py`); if a
+repair changed which cylinder is strongest, every name would shift with it,
+and `CylNamed` clear says a block could not tell.
+
+**How far it is trusted.** `tools/idledips.py`, `cylinders()`, is the oracle,
+line for line; `replay.py --host-build` holds the C to it **exactly** on every
+timestamped fixture. Against `cylscan.deviation()` — floating point, the
+whole run at once, a look-ahead the firmware cannot have — the blocks' mean
+over each standing idle of `50`–`54` came within **1.2 %** of a stroke on
+every cylinder of 18 runs; `test_idledips.py`, `Cylinders`, holds two of the
+captures to 1.5. On `54`, the first drive on the new gasket, the last block
+reads cylinder 3 at −14.5 %, 2 at +9.5, 4 at +4.0 and 1 at +1.5.
+
 ## The frames are spaced out, and it is not tidiness
 
 **One frame leaves every 25 ms and never two together.** 0x600 at 0 ms, 0x601
-at 25, 0x602 at 50, 0x603 at 75 and 0x604 at 150 — slot 6, the first one
-free of the two fast frames' pattern — with the EEPROM write in the slot at
-550 ms because that one sends nothing. Both fast frames are 10 Hz and the slow
+at 25, 0x602 at 50, 0x603 at 75, 0x604 at 150 — slot 6, the first one
+free of the two fast frames' pattern — and 0x605 at 250 (slot 10), with the
+EEPROM write in the slot at 550 ms because that one sends nothing. Both fast frames are 10 Hz and the slow
 ones 1 Hz.
 
 **It is bought with a bench measurement, not with reasoning.** The frames used

@@ -54,6 +54,11 @@ typedef struct {
     uint8_t  health_dip;        /* StartDip, rpm                           */
     uint8_t  health_clt;        /* StartClt, C + 50                        */
     uint8_t  health_flags;      /* HEALTH_FLAG_* in config.h               */
+    /* 0x605 -- each cylinder's share, HEALTH_UNKNOWN (255) where not known */
+    uint8_t  cyl_dev[4];        /* Cyl1-Cyl4, 0.5 % of a stroke, 128 = mean */
+    uint8_t  cyl_weak;          /* CylWeak, 1-4                            */
+    uint8_t  cyl_blocks;        /* CylBlocks, this start                   */
+    uint8_t  cyl_flags;         /* CYL_FLAG_* in config.h                  */
 } tx_values_t;
 
 /* Read everything out of the core into transmit units.
@@ -94,11 +99,17 @@ void txframes_gather_diag(tx_values_t *v, uint8_t rx_err, uint8_t tx_err,
  * smooth engine and a zero-second crank. */
 void txframes_gather_health(tx_values_t *v, const compute_t *c, uint32_t now_ms);
 
+/* The cylinder frame's contents, out of the core, under the same rules as
+ * the health gather above: call it immediately before txframes_cyl(), and a
+ * quiet bus publishes 255 in every field. config.h, 0x605. */
+void txframes_gather_cyl(tx_values_t *v, const compute_t *c, uint32_t now_ms);
+
 /* Each writes exactly TXFRAME_DLC bytes. */
 void txframes_fuel(const tx_values_t *v, uint8_t *out);     /* 0x600, 100 ms */
 void txframes_engine(const tx_values_t *v, uint8_t *out);   /* 0x601, 100 ms */
 void txframes_trip(const tx_values_t *v, uint8_t *out);     /* 0x602, 1 s    */
 void txframes_diag(const tx_values_t *v, uint8_t *out);     /* 0x603, 1 s    */
 void txframes_health(const tx_values_t *v, uint8_t *out);   /* 0x604, 1 s    */
+void txframes_cyl(const tx_values_t *v, uint8_t *out);      /* 0x605, 1 s    */
 
 #endif /* TXFRAMES_H */

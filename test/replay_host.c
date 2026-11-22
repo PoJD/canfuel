@@ -85,6 +85,13 @@ int main(int argc, char **argv)
             printf("start_crank=%u\n", r.cp.health.start_crank);
             printf("start_dip=%u\n", r.cp.health.start_dip);
             printf("start_clt=%u\n", r.cp.health.start_clt);
+            printf("cyl1=%u\n", compute_cyl_dev(&r.cp, 1u));
+            printf("cyl2=%u\n", compute_cyl_dev(&r.cp, 2u));
+            printf("cyl3=%u\n", compute_cyl_dev(&r.cp, 3u));
+            printf("cyl4=%u\n", compute_cyl_dev(&r.cp, 4u));
+            printf("cyl_weak=%u\n", compute_cyl_weak(&r.cp));
+            printf("cyl_blocks=%u\n", compute_cyl_blocks(&r.cp));
+            printf("cyl_named=%d\n", compute_cyl_named(&r.cp) ? 1 : 0);
         }
 
         /* The bytes as they would leave the transceiver, so a mismatch in the

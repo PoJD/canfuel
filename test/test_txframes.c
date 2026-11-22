@@ -1,4 +1,4 @@
-/* test_txframes.c -- the byte layout of 0x600 to 0x604.
+/* test_txframes.c -- the byte layout of 0x600 to 0x605.
  *
  * These offsets are not an internal detail: mfd15/tri/S-AQY.TRI has already
  * been uploaded to a real display and reads exactly these bytes. Getting one
@@ -20,11 +20,15 @@
  *   0604;0;6;1 StartClt
  *   0604;0;7;1 IdleNow (mask 0001), StartSeen (shift 1, mask 0002),
  *              HealthLive (shift 2, mask 0004)
+ *   0605;0;0;1 Cyl1  0605;0;1;1 Cyl2  0605;0;2;1 Cyl3  0605;0;3;1 Cyl4
+ *              (x 0.5, offset -64)
+ *   0605;0;4;1 CylWeak  0605;0;5;1 CylBlocks
+ *   0605;0;7;1 CylNamed (mask 0001)
  *
  * The third column is the format: 0 is big endian, and every one of our own
  * sensors carries a 0 while the car's carry a 1.
  *
- * ALL FIVE FRAMES ARE READ BY THE DISPLAY NOW. 0x602 and 0x603 used to be
+ * ALL SIX FRAMES ARE READ BY THE DISPLAY NOW. 0x602 and 0x603 used to be
  * ours to change freely because nothing consumed them; they have rows in the
  * TRI file, so a layout change here is a change there in the same breath.
  */
@@ -485,6 +489,86 @@ static void test_health_reads_unknown_on_a_quiet_bus(void)
     TT_EQ(HEALTH_LAYOUT_VERSION, 2u);
 }
 
+/* 0x605, pinned against the TRI rows in the header above. */
+static void test_cyl_frame_offsets(void)
+{
+    tx_values_t v;
+    uint8_t out[TXFRAME_DLC];
+
+    memset(&v, 0, sizeof v);
+    v.cyl_dev[0] = 0x11u;
+    v.cyl_dev[1] = 0x22u;
+    v.cyl_dev[2] = 0x33u;
+    v.cyl_dev[3] = 0x44u;
+    v.cyl_weak   = 3u;
+    v.cyl_blocks = 0x55u;
+    v.cyl_flags  = CYL_FLAG_NAMED | CYL_FLAG_DATA_LIVE;
+    txframes_cyl(&v, out);
+
+    TT_EQ(out[0], 0x11u);               /* Cyl1                    */
+    TT_EQ(out[1], 0x22u);               /* Cyl2                    */
+    TT_EQ(out[2], 0x33u);               /* Cyl3                    */
+    TT_EQ(out[3], 0x44u);               /* Cyl4                    */
+    TT_EQ(out[4], 3u);                  /* CylWeak                 */
+    TT_EQ(out[5], 0x55u);               /* CylBlocks               */
+    TT_EQ(out[6], HEALTH_UNKNOWN);      /* reserved                */
+    TT_EQ(out[7] & 0x01u, CYL_FLAG_NAMED);
+    TT_EQ(CYL_FLAG_NAMED, 0x01u);
+    TT_EQ((out[7] & 0x04u) >> 2, 1u);
+    TT_EQ(out[7] >> HEALTH_VERSION_SHIFT, CYL_LAYOUT_VERSION);
+    TT_EQ(CYL_LAYOUT_VERSION, 1u);
+}
+
+/* As 0x604: before anything is known, and on a quiet bus, 255 everywhere. */
+static void test_cyl_reads_unknown_before_a_block_and_on_a_quiet_bus(void)
+{
+    compute_t c;
+    tx_values_t v;
+    uint8_t out[TXFRAME_DLC];
+    size_t i;
+
+    compute_init(&c);
+    memset(&v, 0, sizeof v);
+    txframes_gather_cyl(&v, &c, 10u * DATA_TIMEOUT_MS);
+    txframes_cyl(&v, out);
+    for (i = 0; i < 7u; i++) {
+        TT_EQ(out[i], HEALTH_UNKNOWN);
+    }
+    TT_EQ(out[7] & 0x1Fu, 0u);
+
+    /* Live but no block yet: the four and CylWeak still unknown. */
+    TT_EQ(compute_cyl_dev(&c, 1u), HEALTH_UNKNOWN);
+    TT_EQ(compute_cyl_dev(&c, 4u), HEALTH_UNKNOWN);
+    TT_EQ(compute_cyl_dev(&c, 0u), HEALTH_UNKNOWN);
+    TT_EQ(compute_cyl_dev(&c, 5u), HEALTH_UNKNOWN);
+    TT_EQ(compute_cyl_weak(&c), HEALTH_UNKNOWN);
+    TT_EQ(compute_cyl_blocks(&c), 0u);
+}
+
+/* End to end off the first drive on the new gasket, `54`: cylinder 3 the
+ * weakest when the log ends, as tools/cylscan.py names it at every warm stop
+ * of that drive (docs/engine-health/open.md S1). */
+static void test_cylinder_three_on_the_wire(void)
+{
+    replay_result_t r;
+    tx_values_t v;
+    uint8_t out[TXFRAME_DLC];
+
+    TT_TRUE(replay_log("54_8z_first_drive_z1.txt", &r));
+    memset(&v, 0, sizeof v);
+    txframes_gather_cyl(&v, &r.cp, r.cp.last_data_ms);
+    txframes_cyl(&v, out);
+
+    TT_EQ(out[4], 3u);                  /* CylWeak                 */
+    TT_EQ(out[2], 99u);                 /* cylinder 3, -14.5 %     */
+    TT_EQ(out[0], 131u);                /* cylinder 1, +1.5 %      */
+    TT_EQ(out[1], 147u);                /* cylinder 2, +9.5 %      */
+    TT_EQ(out[3], 136u);                /* cylinder 4, +4.0 %      */
+    TT_EQ(out[5], 32u);                 /* blocks since the last start */
+    TT_TRUE(out[7] & CYL_FLAG_NAMED);
+    TT_TRUE(out[7] & CYL_FLAG_DATA_LIVE);
+}
+
 /* End to end off the real cold start, as main.c would transmit it at the end
  * of the log: the start the owner remembers as nearly dying, in the bytes the
  * display will show. The oracle's numbers, through txframes. */
@@ -531,5 +615,8 @@ int main(void)
     TT_RUN(test_health_frame_offsets);
     TT_RUN(test_health_reads_unknown_on_a_quiet_bus);
     TT_RUN(test_the_cold_start_on_the_wire);
+    TT_RUN(test_cyl_frame_offsets);
+    TT_RUN(test_cyl_reads_unknown_before_a_block_and_on_a_quiet_bus);
+    TT_RUN(test_cylinder_three_on_the_wire);
     return TT_SUMMARY();
 }

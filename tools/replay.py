@@ -412,6 +412,14 @@ TOLERANCE = {
     "start_crank": (0, 0.0),
     "start_dip":   (0, 0.0),
     "start_clt":   (0, 0.0),
+    # The cylinder frame, 0x605, the same way: tools/idledips.py, cylinders().
+    "cyl1":        (0, 0.0),
+    "cyl2":        (0, 0.0),
+    "cyl3":        (0, 0.0),
+    "cyl4":        (0, 0.0),
+    "cyl_weak":    (0, 0.0),
+    "cyl_blocks":  (0, 0.0),
+    "cyl_named":   (0, 0.0),
 }
 
 

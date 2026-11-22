@@ -118,6 +118,10 @@ LOOPS = {
     "_compute_idle_rough":   [("ROUGH_OUT_SHIFT", None,   "rotate, grade to 1/32 rpm")],
     "_compute_idle_health":  [("ROUGH_OUT_SHIFT", None,   "rotate, grade to 1/32 rpm")],
     "_start_watch":          [("START_CRANK_SHIFT", None, "rotate, crank ms to 32 ms")],
+    # 0x605. Once a block, about every 19 s of idle: the four slots, and in
+    # each cylinder's byte the >> 20, two byte moves and a 4-step rotate.
+    "_cyl_finish":           [(None, 4,                  "the four slots")],
+    "_cyl_out":              [(None, 4,                  "rotate, >> 20 after two byte moves")],
 }
 
 # Loops that spin waiting for a peripheral, not for the CPU. Their duration is
@@ -162,6 +166,10 @@ NOT_LOOPS = {
     # -- which is the trade this table exists to make explicit.
     "_tank_rest_filter",
     "_compute_torque_d",
+    # cyl_frame writes its stroke count out rather than looping (compute.c);
+    # what is left is the phase correction's >> CYL_PLL_SHIFT (4), a rotate on
+    # a 32-bit value in each of two branches, about 30 cycles a change.
+    "_cyl_frame",
     "_can_set_filter",
     # hal_can_send searches three transmit buffers and the search is three
     # explicit ifs, not a loop. Its backward branches are XC8 merging the
@@ -184,7 +192,11 @@ NOT_LOOPS = {
 # enough to hide a millisecond arriving by accident. The real hardware limits
 # are in docs/firmware/timing.md; these are a regression alarm, not a deadline.
 BUDGETS = {
-    "rx_frame": ("one received frame, decoded and accumulated", 1000.0),
+    # 1.5 ms since 22/11/2026: the 0x605 stroke count runs on every 0x280 and
+    # added about 0.5 ms to this figure, which counts every instruction of
+    # cyl_frame -- both arms of each if -- and its three possible commits.
+    # docs/firmware/timing.md, *The cylinder frame*, has the argument.
+    "rx_frame": ("one received frame, decoded and accumulated", 1500.0),
     "compute_tick": ("compute_tick, worst case (with the tank sample)", 1000.0),
     # The transmit slots. Each is TX_SLOT_MS = 25 ms wide and holds one frame,
     # so the ceilings are about what the work costs rather than about the slot:
@@ -196,6 +208,7 @@ BUDGETS = {
     "slot_trip":    ("slot 2: the trip totals and 0x602", 1200.0),
     "slot_diag":    ("slot 3: 0x603", 600.0),
     "slot_health":  ("slot 6: the health gather and 0x604", 1200.0),
+    "slot_cyl":     ("slot 10: a finished block and 0x605", 3600.0),
     "slot_persist": ("slot 22: persist_save, excluding the EEPROM write", 1200.0),
 }
 
@@ -383,6 +396,11 @@ def budgets(words, calls, loops, constants):
     slot_health = (cost("_txframes_gather_health") + cost("_txframes_health")
                    + cost("_hal_can_send"))
 
+    # Once in about 19 s of idle a block waits, and compute_cyl_update() makes
+    # it four deviations here; every other second it is one test.
+    slot_cyl = (cost("_compute_cyl_update") + cost("_txframes_gather_cyl")
+                + cost("_txframes_cyl") + cost("_hal_can_send"))
+
     slot_persist = cost("_persist_save")
 
     return {
@@ -390,6 +408,7 @@ def budgets(words, calls, loops, constants):
         "compute_tick": cost("_compute_tick"),
         "slot_fuel": slot_fuel,
         "slot_engine": slot_engine,
+        "slot_cyl": slot_cyl,
         "slot_trip": slot_trip,
         "slot_diag": slot_diag,
         "slot_health": slot_health,

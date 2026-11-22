@@ -26,6 +26,7 @@
 #include "config.h"
 #include "decode.h"
 #include "persist.h"
+#include "replay_core.h"
 #include "sched.h"
 #include "tt.h"
 
@@ -306,6 +307,29 @@ static void test_a_silent_bus_reaches_the_eeprom_not_at_all(void)
  *
  * Rates are checked alongside it because the cheap way to pass the first half
  * is to stop sending things. */
+/* 0x605 the way main.c drives it: the stroke count on every pass, the block
+ * finished in its slot, and the EEPROM write blinding the receiver every
+ * PERSIST_INTERVAL_MS -- which loses frames, and so strokes, in the middle of
+ * a block. On `54`, the first drive on the new gasket, the last block has to
+ * name the same weakest cylinder as the replay, and every cylinder within two
+ * per cent of a stroke of it. */
+static void test_the_cylinder_frame_survives_the_scheduler(void)
+{
+    sched_result_t s = run("54_8z_first_drive_z1.txt", 1, true);
+    replay_result_t r;
+    uint8_t cyl;
+
+    TT_TRUE(replay_log("54_8z_first_drive_z1.txt", &r));
+    compute_cyl_update(&s.cp);
+    TT_TRUE(s.frames_lost > 0u);
+    TT_EQ(compute_cyl_weak(&s.cp), compute_cyl_weak(&r.cp));
+    TT_EQ(compute_cyl_weak(&s.cp), 3u);
+    TT_TRUE(compute_cyl_blocks(&s.cp) > 0u);
+    for (cyl = 1u; cyl <= 4u; cyl++) {
+        TT_NEAR(compute_cyl_dev(&s.cp, cyl), compute_cyl_dev(&r.cp, cyl), 4u);
+    }
+}
+
 static void test_never_two_frames_in_one_pass(void)
 {
     sched_result_t r = run(DRIVE, 1, true);
@@ -321,6 +345,7 @@ static void test_never_two_frames_in_one_pass(void)
     TT_TRUE(r.sends_by[SCHED_TX_TRIP]   > seconds - 2u);
     TT_TRUE(r.sends_by[SCHED_TX_DIAG]   > seconds - 2u);
     TT_TRUE(r.sends_by[SCHED_TX_HEALTH] > seconds - 2u);
+    TT_TRUE(r.sends_by[SCHED_TX_CYL]    > seconds - 2u);
 
     /* And the gap that the whole arrangement exists to create. One slot, less
      * whatever the tick quantises away. */
@@ -338,6 +363,7 @@ int main(void)
     TT_RUN(test_every_gather_stays_inside_the_gauges);
     TT_RUN(test_a_pass_with_no_time_in_it_changes_nothing);
     TT_RUN(test_never_two_frames_in_one_pass);
+    TT_RUN(test_the_cylinder_frame_survives_the_scheduler);
     TT_RUN(test_a_silent_bus_reaches_the_eeprom_not_at_all);
     return TT_SUMMARY();
 }
