@@ -357,6 +357,47 @@ correction beside it.
 
 ---
 
+### B13. "VCDS block 014 could be read over CAN, by the display or the converter, without VCDS"
+
+**Believed:** proposed on 22/11/2026. CANchecked's changelog for the MFD15
+mentions **TP2** (VW's transport protocol for diagnostics over CAN), and VCDS
+visibly announces itself on this bus with 0x200. So the display, or the
+converter, might open a diagnostic channel to the engine now and then and
+read the ECU's own misfire counter in 014, making `Misfires` exact and VCDS
+unnecessary for it.
+
+**Refuted by the bus itself: the engine never answers on CAN.** Every 0x200
+this project has recorded, five in the whole-bus fixtures (`18`, `20`) and
+the ones at each VCDS session in the unfiltered captures of 10/11/2026, is the
+same three bytes, `01 c0 80`, and **no frame answers it**: across the
+whole-bus fixtures `01`–`29` nothing in 0x201–0x2FF appears apart from the
+periodic 0x280 and 0x288, and nothing new appears around any 0x200
+(`can-decoding.md`, *IDs present on the bus*). 0x200 with a first byte of
+0x01 is a TP 2.0 channel request addressed to the engine (*general*: VW TP 2.0
+as publicly described, not checked against a VW specification); an ECU that
+spoke TP 2.0 would answer on 0x201. VCDS then reaches this ECU over **K-line
+with KWP-1281** (`docs/engine-health/vcds.md`, *Turbo*), at the 3.35 blocks a
+second that protocol allows. So 0x200 is VCDS asking whether the engine
+speaks CAN diagnostics, getting no answer, and falling back.
+
+⚠ **This is B11's lesson applied the other way round.** It is not "the bus
+does not carry 014": it is a request this ECU was asked, on this bus, six
+times and more, and never answered.
+
+**What is left, and what it would take** (*reasoned*, not built): 014 is
+only reachable over **K-line** (OBD pin 7), with KWP-1281. That needs a
+K-line transceiver the frozen board does not have, so a new board or a
+separate device. KWP-1281 is a point-to-point session that a tester has to
+keep alive block by block and must open with a slow initialisation, so
+"now and then" means opening a session, reading, and closing it. **Only one
+tester can hold the session**: the device would have to stay off the line
+whenever VCDS is used — a switch, or detecting VCDS's initialisation and
+backing off — and K-line traffic of any kind is diagnostic traffic to the
+ECU, which the converter so far has never sent.
+
+**Cost:** an evening's question, nothing built. The worth is that the next
+person who reads "TP2" in a display's changelog does not plan a feature on it.
+
 ## C. The firmware
 
 ### C1. "`piclib` will be added as a submodule"
