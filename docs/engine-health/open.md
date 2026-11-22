@@ -980,6 +980,22 @@ there over minutes; nothing else on the bus marks it. Read
 event; whether it is a real shift of 2's and 4's burn or how the slots
 are weighed when 3 is level is not known.
 
+**1 and 2 against each other** (23/11 night, *the owner's question*:
+do 1 and 2 only seem to move because the mean moves with 3 and 4;
+0x605's blocks replayed with `idledips.cylinder_blocks()` over every
+warm stop of `40`–`54` of eight blocks or more with the name set, 28
+stops, 672 blocks; script not kept). 1 − 2 owes nothing to the mean.
+**It is not steady**: its spread within a stop is 3.1 % of a stroke
+against 1.7 from one block to the next alone, so about 2.5 % moves
+slowly, over minutes; and its level differs by stop, from 2 ahead by
+9.8 to 1 ahead by 5.9 — "1 sometimes stronger than 2" on the display
+(22/11). 3 against the mean of 1 and 2 spreads 4.7 % with its swells.
+Within a stop 1 − 2 goes weakly with 3 (r 0.20) and with 4 (r 0.36),
+3 or 4 weaker with 2 ahead of 1 — how much of that is the slots' spread
+undone (*The count that does not slip*) is not known. Read: 1 and 2
+have no swells of 3's size, but they are not still; their slow drift
+against each other is part of the common part (A).
+
 **Before and after the canister and the new valve** (14/11 evening;
 condensed 17/11, the full text in `git show 5e1ddf2:docs/engine-health/open.md`, this heading). Nothing in the
 common part, the swell or the dips moved. **3's floor read about two
