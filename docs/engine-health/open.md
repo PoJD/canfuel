@@ -161,9 +161,11 @@ about 156,400 km, the MFD's `IdleHealth` and `Misfires` at warm stops;
 by opportunity (*the owner*, 15/11): **8u** the fuel pressure, **8v** the plugs at their change,
 **8w** the cylinder 4 knock window, and (17/11) **6r** the owner's scope
 on injectors 3 and 4 and on G28/G40, best before 8q; **6t** two cans of
-BG 44K Platinum and a captured drive at their end, before 8q (the
-first can in 18/11 at 156,365 km, into about 25 l; about 6 l
-of it left 22/11); and **6s** GM's
+BG 44K Platinum and two captured drives at the second tank's end, before 8q (the
+first can in 18/11 at 156,365 km, into about 25 l; **the second 22/11
+evening into a full tank at 156,539 km**; the first tank's last stop: 3's
+first swell only after about 24 minutes of warm idle, S1, *The swell's
+shape*); and **6s** GM's
 cleaner drawn in for the valves' carbon (the head stays on, *the
 owner*).
 
@@ -302,6 +304,7 @@ error):
 | 20/11 | display | settled | the third day on 6t's first can: the morning drive and the evening's, the evening's a queue with the engine revved now and then; the everyday state (no other said); oil 104 °C | **80–100 all day, never under 70**, the morning's included, warm; in the evening's queue **80–100 before the revs**, **after them mostly 60–89, at moments down to 50 and at moments up to 100** (*owner*: worse today, the opposite of the two evenings before) — the band of 28/10–2/11 (80–105) and of 4/11 (90–110 until revved, 70–90 after), above 18/11 eve's 30–50 and 19/11 eve's 40–50 on the same can; **lower after the revs, not higher**, as 4/11 without a cleaner; **then about 5 min into a stop 40–45, `Misfires` 0, MisfAvg 6.0**, later **at moments 30–35**, back to about 55, then **oscillating about 50** (*owner*: after the longer standing it still does not climb as high). **Nothing else different that day** (*owner*). **The morning's cold start: 150 after the secondary air stopped** (*owner*: not seen for a long time, even cold; *this read 160 until the owner corrected it the same evening*) — inside every captured cold start's 110–160 after the secondary air, as 16/11 night's "over 150" (`idle-log.md`). **One day, not 6t's reading** |
 | 21/11 night | display | settled | a short drive on empty roads, **the engine revved a little**, then a standing idle; 6t's first can; the everyday state (no other said) | **40–60 about ten minutes into the stop** (*owner*); its start not read; `Misfires` not read. **One drive, not 6t's reading** |
 | 22/11 | display | settled | two short drives on 6t's first can, about 6 l of the tank left; **the engine never fully warm, oil 66 °C at most**; the everyday state (no other said); **the converter ran both without a drop-out**, 0x603's Unhealthy at 0 (*owner*) | **70–90 most of the idling, at moments under 60**, both drives alike (*owner*: unchanged) — the band of 20/11 and of 3/11 night, but at oil 66 °C, so beside the warm stops, not among them; **Then a standing idle after them: about 100 three minutes in, oil 72 °C** (*owner*) — higher than the drives' idles, as a not-yet-warm engine reads (19/11's about 100 shortly after a start); **later 80–100 at oil 78 °C, `Misfires` 11, MisfAvg 8.9** (*owner*; *this read 80–90 until he corrected it minutes later*) — MisfAvg since a cold start about 1½ hours after the previous short drive, the cold part in it, so not comparable with 19/11 eve's 3.3–4.1; `Misfires` 11 as 8/11's 9–12, above this can's warm stops (0–6), at a stop not yet warm; **then, oil 83 °C, falling to 60–79, at moments holding at 60, `Misfires` 3, MisfAvg 7.1** (*owner*) — the grade and the count falling as the oil warms; **then held at 2,000 rpm to warm it, and a minute after the pedal was released, oil 93 °C: 40–55, `Misfires` 5, MisfAvg 6.5** (*owner*) — warm now, and in the band of this can's warm evenings (18/11 eve 30–50, 19/11 eve 40–50), below 20/11's 80–100. **One day, not 6t's reading** |
+| 22/11 eve | display, 0x605/0x606 (photos, the album 21:29–23:17) | settled | **the end of 6t's first can** (0.2 l indicated before the fill): a cold start, then a standing idle at a petrol station of **about 40 min warm** (oil 85 °C from about 22:33, 95–100 °C after), the everyday state (no other said); **the first stop read on the converter's 0x605 and 0x606** | on 3's floor (−7 to −9.5 %) **32–39 at 22:45–22:47, 35–59 later**; **in the swells 56–67**; `Misfires` **1–6** throughout; the drive's warm idle (0x606, 38.7 min at 23:16): **Health 48, Misf 2.5 a minute, the weakest −11.0 %** — against `54`'s 67, 7.1 and −12.0 (`docs/firmware/frames.md`); **the first swell only after about 24 min of warm idle**, then every 6–7 min (*The swell's shape*, 22/11). **One stop, not 6t's reading** |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -665,6 +668,19 @@ condensed 17/11, the full argument in `git show 5741dfa:docs/engine-health/open.
   electrical would be cleaned by the hydrogen or run better than the
   floor after a fall. 6r in a swell settles the injector's side; the
   floor is a separate question (H4).
+- **22/11 evening, the end of 6t's first can** (the display, 0x605 a block of
+  about 19 s at a time, photographed; *owner*): a warm standing idle of about
+  40 minutes. **3 held its floor, −7 to −9.5 %, for the first ~24 minutes of
+  warm idle** (the converter's count; −10.5 at most, *owner*); then **three
+  swells, to −22, −23.5 and −15 % (the last still deepening when he left)**,
+  about 6–7 minutes apart, building at about 3 % a minute, and after the
+  first a block at **−4.5 %** (*owner*) — the sawtooth above in every part
+  but its start. `53` had ten minutes of plain idle with no swell (*8h's
+  plain idle and its loads*); 24 is the longest wait for a first swell
+  read so far. 1 read above 2 in about half the blocks with `CylNamed`
+  set, which the naming allows (the wheel is taken out after the strongest
+  raw slot is named 2; *Naming the cylinder*). **One stop on the display,
+  not 6t's reading.**
 
 **The queue drive, and what the ECU sees through a swell** (12/11
 evening, `50`; condensed 17/11, the full text in `git show 5e1ddf2:docs/engine-health/open.md`, this heading).
@@ -3159,6 +3175,13 @@ hard use burns them off (*general*).
   seen.
 - **With a cleaner in, the idle after high revs starts calm and worsens
   over minutes; without one, the reverse** (S1, *After high revs*): one capture and two display evenings, so far (the second 18/11, on 6t's first can: 40–50, then 70–90 within a minute). 19/11 evening on the same can, after high revs at light load (not brisk), one stop to 62 at most, the next after the same kind of drive at 90–110 (*owner*: no correlation, not predictable): neither for nor against. 20/11 on the same can, a queue at 80–100 before the revs and mostly 60–89 after them (*owner*): the reverse of the pattern, against, one evening; the stop then 40–45 after about five minutes.
+- **The end of 6t's first can, 22/11 evening** (S1, *The swell's shape*):
+  3 on its floor for the first ~24 minutes of a warm stop, then swells
+  every 6–7 minutes as before; the drive's warm idle Health 48, Misf 2.5
+  a minute, the weakest −11.0 % against `54`'s 67, 7.1, −12.0. Weakly for
+  (the floor held longer and the misfires fewer), one stop: `53` held ten
+  minutes with no swell before any cleaner, and the swells' depth did
+  not move. 6t's captures read it.
 - **18/10 has not come back** in six days of hard driving, a strong 44K
   tank among them (`refuted.md` D10) — what a flake that burnt off does.
   Weak: one episode, and its absence.

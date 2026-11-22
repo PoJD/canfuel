@@ -2061,3 +2061,27 @@ The converter ran both drives without a drop-out, 0x603's Unhealthy at
 0 (*owner*). MisfAvg ran from a cold start about 1½ hours after the
 previous short drive, so it holds the cold part. About 6 l of the first
 can's tank left. `open.md` S1, the display table.
+
+## 22 November 2026 evening — the first can's last stop, the second can in
+
+- **Repairs:** the second can of BG 44K Platinum (`plan.md` 6t) into a
+  full tank at 156,539 km, the first tank run down to 0.2 l indicated.
+- **Tests:** a standing idle of about 40 minutes warm at the petrol
+  station before the fill, the everyday state, read on the MFD — the
+  first stop on the converter's 0x605 (each cylinder) and 0x606 (the
+  drive's warm idles), photographed (the album 21:29–23:17).
+- **Changes after:**
+  - *measured:* 3 on its floor, −7 to −9.5 %, `IdleHealth` 32–39 at its
+    calmest, for the first ~24 minutes of warm idle; then swells to −22,
+    −23.5 and −15 % about 6–7 minutes apart, `IdleHealth` 56–67 in them;
+    the drive's warm idle at 38.7 min: Health 48, Misf 2.5 a minute, the
+    weakest −11.0 %, cylinder 3 (`54`: 67, 7.1, −12.0);
+  - *not known:* the second can's effect — 6t's two captures at the end
+    of its tank read it.
+
+Cold, 4 was the weakest (−30 % in the first block, oil 26 °C) until
+the secondary air ended, then 3, as at every cold start since 17/11.
+0x603's Unhealthy latched at the end from changing the display's
+settings in oDSS (two sensors' Max, the rev LED off), the error counters
+at 0 (`mfd15` CLAUDE.md, *Operating oDSS puts errors on the CAN bus*).
+`open.md` S1, the display table and *The swell's shape*.
