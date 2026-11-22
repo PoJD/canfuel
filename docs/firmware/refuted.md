@@ -390,6 +390,30 @@ start, `vcds-coldstart-014-055.csv`) — hold the fourteen periodic IDs and
 `18`'s three 0x200 at its reconnection, and nothing else. The K-line goes
 from the socket to the engine's ECU without touching this bus.
 
+**And the ECU's own flash says the same** (22/11/2026, the original image
+in the owner's private artifact *Beetle AQY ECU flashes*, read and deleted
+again; nothing of it is copied here). It holds the initial images of the
+CAN message objects as a table of eight 8-byte entries — control `95 55`,
+arbitration, configuration — in the layout of the C167/82527 CAN module.
+Decoded (arbitration byte 0 = ID bits 10–3, byte 1 bits 7–5 = ID bits 2–0;
+configuration bit 3 = transmit, bits 7–4 = DLC):
+
+| object | ID | direction | DLC | what it is on this car |
+|---|---|---|---|---|
+| 1–4 | 0x280, 0x288, 0x480, 0x488 | transmit | 8 | the ECU's four frames, exactly the set seen on the bus |
+| 5 | 0x440 | receive | 8 | the automatic gearbox's frame (`Getriebe_1` in the dbc); absent on this manual car |
+| 6 | 0x1A0 | receive | 8 | ABS (`Bremse_1`) |
+| 7 | 0x320 | receive | 8 | cluster (`Kombi_1`) |
+| 8 | 0x050 | receive | 4 | airbag (`Airbag_1`) |
+
+**No object is set up for 0x200, 0x201, the 0x7xx range or any other
+diagnostic identifier**, and the transmit half matching the bus exactly is
+what says the table was read right. What was **not** traced is the code
+that loads the table, the module's other seven objects and its global
+masks: a mask left open, or object 15 configured elsewhere, could receive
+more. Nothing in the bus data suggests either, and the ECU answering
+nothing is consistent with neither — but it is said, not proven.
+
 ⚠ **This is B11's lesson applied the other way round.** It is not "the bus
 does not carry 014": it is a request this ECU was asked, on this bus, six
 times and more, and never answered.
