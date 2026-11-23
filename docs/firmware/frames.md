@@ -463,6 +463,11 @@ over each standing idle of `50`–`54` came within **1.2 %** of a stroke on
 every cylinder of 18 runs; `test_idledips.py`, `Cylinders`, holds two of the
 captures to 1.5. On `54`, the first drive on the new gasket, the last block
 reads cylinder 3 at −14.5 %, 2 at +9.5, 4 at +4.0 and 1 at +1.5.
+**On the car from 22/11/2026** (the flash of that day, `flashing.md`): two
+drives with warm stops of 25–40 minutes read off the display, block by block —
+3 the weakest at every warm block, 4 at the cold start and briefly early in a
+warm stop, `CylNamed` set in all but a few blocks, 0x603's error counters at 0
+throughout (`docs/engine-health/open.md` S1, the display table).
 
 ## 0x606 and 0x607 @ 1 s — this drive's warm idles, and the previous drive's
 
@@ -506,6 +511,10 @@ oracle over the whole log, restarts included; `replay.py --host-build` holds
 the C to it **exactly** on every timestamped fixture. `54`, the first drive on
 the new gasket: 1356 s of warm idle, Health 67, Misf 7.1 a minute, the weakest
 −12.0 %, cylinder 3.
+**On the car from 22/11/2026**: 0x606 filled from the warm idle of two drives
+(38.7 and 25.2 minutes), and at the power-up between them 0x607 showed the
+first drive as the EEPROM held it (Health 48, Misf 2.5, the weakest −10.5 %
+against the live −11.0 of its last minutes).
 
 ## The frames are spaced out, and it is not tidiness
 
