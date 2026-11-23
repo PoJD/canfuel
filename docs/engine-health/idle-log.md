@@ -2124,10 +2124,11 @@ first did (`open.md` S1, the display table and *The swell's shape*).
 ## 23 November 2026 afternoon — two long stops, swells to −24.5 and −26.5
 
 - **Tests:** two power-ups read on the MFD and photographed (the album
-  14:27–16:20), the everyday state (no other said): a drive with a
+  14:27–16:44), the everyday state (no other said): a drive with a
   standing idle at the end, about 19 min of it warm (0x606; about 30 in
   all, *owner*), the engine off; then a second power-up with about 50 min
-  of warm idle, a drive of about 3 min, and about 45 min more of idle.
+  of warm idle, a drive of about 3 min, about 45 min more of idle, then
+  the drive on with a few minutes' idle in it.
 - **Changes after:**
   - *measured:* oil 95–101 °C, coolant 95–99 °C, the supply 13.0–13.5 V;
     the first stop 3 at −8.5 to −10.5 %, `IdleHealth` 51–71; the second
@@ -2135,8 +2136,10 @@ first did (`open.md` S1, the display table and *The swell's shape*).
     `IdleHealth` 32–50, `Misfires` 0–3, and **swells to −24.5 % (14:58,
     `IdleHealth` 71) and −20.0 % (15:30, 107)**; after the short drive 3
     at −11 to −14 %, 59–62; **−26.5 % after 16:20** (*owner*, not
-    photographed); 0x606 over 95.4 min: Health 60, Misf 3.4 a minute, the
-    weakest −13.0 %;
+    photographed); after the drive on, the last block (16:44) **4 the
+    weakest at −7.0 %, 3 at −6.0** (1 and 2 +6.5, named), `IdleHealth`
+    60–62, `Misfires` 3; 0x606 at the end, 103 min: **Health 61, Misf
+    3.5 a minute, the weakest −13.0 %**;
   - *not known:* the second can's effect — 6t's captures read it.
 
 `CylNamed` clear on the shallow floor is the naming at work, not a fault:
