@@ -165,8 +165,8 @@ BG 44K Platinum and two captured drives at the second tank's end, before 8q (the
 first can in 18/11 at 156,365 km, into about 25 l; **the second 22/11
 evening into a full tank at 156,539 km**; the first tank's last stop: 3's
 first swell only after about 24 minutes of warm idle, the second can's
-first after about 12, as before, and on 23/11's drive inside 11.5
-minutes of warm idle, S1, *The swell's shape*); and **6s** GM's
+first after about 12, as before, on 23/11's morning drive inside 11.5
+minutes of warm idle and in the afternoon by about 17, S1, *The swell's shape*); and **6s** GM's
 cleaner drawn in for the valves' carbon (the head stays on, *the
 owner*).
 
@@ -308,6 +308,7 @@ error):
 | 22/11 eve | display, 0x605/0x606 (photos, the album 21:29–23:17) | settled | **the end of 6t's first can** (0.2 l indicated before the fill): a cold start, then a standing idle at a petrol station of **about 40 min warm** (oil 85 °C from about 22:33, 95–100 °C after), the everyday state (no other said); **the first stop read on the converter's 0x605 and 0x606** | on 3's floor (−7 to −9.5 %) **32–39 at 22:45–22:47, 35–59 later**; **in the swells 56–67**; `Misfires` **1–6** throughout; the drive's warm idle (0x606, 38.7 min at 23:16): **Health 48, Misf 2.5 a minute, the weakest −11.0 %** — against `54`'s 67, 7.1 and −12.0 (`docs/firmware/frames.md`); **the first swell only after about 24 min of warm idle**, then every 6–7 min (*The swell's shape*, 22/11). **One stop, not 6t's reading** |
 | 22/11 night | display, 0x605/0x606 (photos, the album 23:56–00:27), VCDS 032/055 | settled | **the first drive on 6t's second can**: 24.5 km, the limiter several times and a motorway stretch (*owner*), then a warm standing idle of about 25 min near home, oil 97–98 °C; the everyday state (no other said); 0x607 showed the previous drive as 48 / 2.5 / −10.5 (the EEPROM's record, its last minutes short of the live −11.0) | **the first 4 min 64–87, 4 the weakest** (to −15 %, 3 at −3.5 to −6; a note to this stop, whether it is S4's not known — the captures' warm stops show such spells of 4 before 21/10, to −10 to −17 % for 1–3 min, and since then rarer and shallower, `46`, `51`, `53`, `54`, with or without high revs before; script not kept); then 3's floor (−5.5 to −7) at 43–76; **3's first swell after about 12 min** (to −20 %) and a second straight after (to −20 %), 60–79 in them; at the end 50–85 with 3 at −11 to −13; the drive's warm idle (0x606, 25.2 min): **Health 61, Misf 3.8 a minute, the weakest −11.0 %**; the fault memory empty after it, 032 **−4.7 / +7.8**, 055 −1.28 g/s (*owner*, the album 00:29). **One stop, not 6t's reading** |
 | 23/11 | display, 0x605–0x607 (photos, the album 09:59) | settled | **the second can's second drive**, the morning drive to work: about 2 min of warm standing idle on the way, then **about 10 min left idling at the end**, oil 101 °C, coolant 99 °C; the everyday state (no other said); the supply 13.3 V | **3's swell came and was falling at the photographs: 3 −21.0 then −18.5 %** (1 +6.5, 2 +9.5, 4 +3.0, `CylNamed` set), **`IdleHealth` 84–87 in it**, `Misfires` 4; the drive's warm idle (0x606, 11.5 min): **Health 74, Misf 6.2 a minute, the weakest −11.5 %**; 0x607 the night's drive as the EEPROM held it, **61 / 3.8 / −11.0**, the live values exactly (*owner*). The swell within about 12 min of warm idle, as the night's; the floor not read. **One stop, not 6t's reading** |
+| 23/11 afternoon | display, 0x605–0x607 (photos, the album 14:27–16:20) | settled | **two power-ups, three long stops**: a drive to a standing idle of about 19 min warm (0x606; about 30 in all, *owner*), the engine off; then about 50 min warm, a drive of about 3 min, about 45 min more; oil 95–101 °C, coolant 95–99 °C; the everyday state (no other said); the supply 13.0–13.5 V; 0x607 at each power-up the drive before, its minutes after the last photographs in it (75 / 6.4 / −10.5, then 74 / 7.0 / −11.5) | **the first stop**: 3 at −8.5 to −10.5 % (`CylNamed` set), **51–71**, `Misfires` 4, 0x606 69 / 6.2 / −10.5 at 14.5 min; **the second, 6–41 min warm: 3's floor at −2 to −4.5 %, `CylNamed` clear in every such block photographed, 32–50**, `Misfires` 0–3, the strong slot +8 to +10 (1, or 4 if the names are two off: *Naming the cylinder*); **swells to −24.5 % at about 17 min (14:58, 71; 1 +14, 2 +3.5, 4 +7) and −20.0 % at about 48 (15:30, 107; 2 +14.5)**; after the short drive 3 at −11 to −14 % (named) at 59–62, **−26.5 % after 16:20** (*owner*, not photographed) — **the deepest read on the display**, inside the captures' −27 to −30; 0x606 at 95.4 min: **Health 60, Misf 3.4 a minute, the weakest −13.0 %**. **A floor this shallow had not been read on the display** (22/11: −5.5 to −9.5); in the captures 25 of 1,286 warm blocks between −5 and −3 % (`49`, `53`, `54` among them). **One day, not 6t's reading** |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -694,6 +695,14 @@ condensed 17/11, the full argument in `git show 5741dfa:docs/engine-health/open.
   −21.0 and falling to −18.5 % at the photographs, `IdleHealth` 84–87 —
   again within about 12 minutes, so the first can's late 24 stays the
   one exception. When it began was not read.
+- **23/11 afternoon** (the display; *owner*): in about 95 minutes of
+  warm idle on one power-up, **3's floor at −2 to −4.5 % until a swell to
+  −24.5 at about 17 minutes**, back to −2.5 to −3 by 40, **−20.0 at
+  about 48**, and after a 3-minute drive −11 to −14 and **−26.5** — the
+  sawtooth again, its first swell inside 17 minutes; a block of −10 at
+  about 8 minutes may have been its start. The shallow readings may be
+  the level straight after a fall (−1 to −5, above) as much as a floor;
+  the photographs cannot tell.
 
 **The queue drive, and what the ECU sees through a swell** (12/11
 evening, `50`; condensed 17/11, the full text in `git show 5e1ddf2:docs/engine-health/open.md`, this heading).
@@ -3792,6 +3801,14 @@ dip shares said, and what stands*, below; S1, *Every stroke named*; S3,
 - **The names.** With no cut in a run, the strongest slot is taken for
   2 (*the owner's idea*, 9/11): it is 2's at all eight cuts, and it
   puts 014's rises on the cylinder the ECU's own P0303 names.
+  **When 3 is nearly level the names can fail** (*the owner's
+  question*, 23/11): 3's slot is raised by the wheel as 2's is, so with
+  little loss it comes as close; on the captures' blocks it was the close
+  second in 32 of 37 unnamed blocks, and warm blocks were named 99–100 %
+  with 3 at −7 % or deeper, 88 % at −7 to −5 and 56 % at −5 to −3
+  (ad-hoc script, not kept). A wrong name there swaps 2 with 3 and 1 with
+  4, so 3's own value is one of the two middle readings and the strong
+  slot is 1 or 4 (`docs/firmware/frames.md`, 0x605).
 - **The names before the injectors** (*the owner's question*, 15/11:
   every cut is from 10/10 on, on the new injectors — could the pattern
   have lain otherwise on the old set; ad-hoc script, not kept). The

@@ -455,6 +455,19 @@ cylinder 2" held at every injector cut in the corpus (`cylscan.py`); if a
 repair changed which cylinder is strongest, every name would shift with it,
 and `CylNamed` clear says a block could not tell.
 
+**When `CylNamed` clears.** 3's slot is raised by the crank wheel as 2's
+is, so it is 3's own loss that keeps 2's slot ahead; with 3 nearly level
+the two come within the margin. Over the timestamped captures' blocks
+the close second was 3's slot in 32 of 37 unnamed ones, and warm blocks
+were named in 99–100 % with 3 at −7 % or deeper, 88 % at −7 to −5 and
+56 % at −5 to −3 (ad-hoc script over `idledips.cylinder_blocks()`, not
+kept). A clear flag is therefore expected on a shallow floor and says
+nothing about the converter. If the name is wrong it is two slots off,
+which swaps 2 with 3 and 1 with 4 and leaves the four values themselves
+as they are: 3 is then one of the two middle readings, and the strong one
+is 1 or 4. On the car the flag cleared on every block photographed with
+3 at −2 to −4.5 % (23/11; `docs/engine-health/open.md` S1).
+
 **How far it is trusted.** `tools/idledips.py`, `cylinders()`, is the oracle,
 line for line; `replay.py --host-build` holds the C to it **exactly** on every
 timestamped fixture. Against `cylscan.deviation()` — floating point, the
