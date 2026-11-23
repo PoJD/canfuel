@@ -2132,7 +2132,9 @@ first did (`open.md` S1, the display table and *The swell's shape*).
 - **Changes after:**
   - *measured:* oil 95–101 °C, coolant 95–99 °C, the supply 13.0–13.5 V;
     the first stop 3 at −8.5 to −10.5 %, `IdleHealth` 51–71; the second
-    power-up **3's floor at −2 to −4.5 % with `CylNamed` clear**,
+    power-up **3 at −2 to −4.5 % with `CylNamed` clear in the blocks
+    photographed at 6–7, 13.5 and 40–41.5 min of warm idle** (not
+    watched between: the owner on calls),
     `IdleHealth` 32–50, `Misfires` 0–3, and **swells to −24.5 % (14:58,
     `IdleHealth` 71) and −20.0 % (15:30, 107)**; after the short drive 3
     at −11 to −14 %, 59–62; **−26.5 % after 16:20** (*owner*, not
