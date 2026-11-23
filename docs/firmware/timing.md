@@ -506,8 +506,8 @@ also inside `RX_POLL_MS`, which it had never been.
 
 ## How much of the bus the converter takes
 
-**A sixth of the bus is the car's, and the converter adds about half a
-percentage point to it.** Measured, not estimated, by `tools/busload.py`
+**A sixth of the bus is the car's, and the converter adds about six tenths
+of a percentage point to it.** Measured, not estimated, by `tools/busload.py`
 on the two `_z1` captures that carry every identifier on the bus:
 
 ```
@@ -515,11 +515,17 @@ python tools/busload.py test/fixtures/09_idle_60s_z1.txt
 python tools/busload.py test/fixtures/17_drive_property_z1.txt
 ```
 
-| | warm idle, `09` | driving, `17` |
-|---|---|---|
-| the car alone | about 16 % | about 17 % |
-| the converter added | about 0.5 % | about 0.5 % |
-| 0x603 with JP1 | a few hundredths of a per cent | the same |
+| | frames/s | warm idle, `09` | driving, `17` |
+|---|---|---|---|
+| the car alone | about 700 | about 16.2 % | about 17.0 % |
+| + 0x600–0x602, 0x604 (to 21/11/2026) | 22 | + about 0.5 % | + about 0.5 % |
+| + 0x600–0x602, 0x604–0x607 (from 22/11/2026) | 25 | + about 0.6 % | + about 0.6 % |
+| + 0x603 with JP1 | 1 | + a few hundredths | the same |
+| the worst stuffing an 8-byte frame can carry, all 26 | 26 | under 0.7 % | the same |
+
+0x605, 0x606 and 0x607 (22/11/2026) added three frames a second to
+twenty-two, so about a tenth of a percentage point: the converter is about
+one frame in thirty on the bus.
 
 **How it is counted.** Every captured frame is put on the wire bit by bit —
 its header, data and CRC-15, the stuff bit after every five equal bits,
@@ -528,10 +534,10 @@ is the load against 500 kbps. The car's traffic is about seven hundred
 frames a second, its heaviest identifiers 0x1A0 and 0x4A0. **The
 converter's frames are not in any capture** — the MFD and the USBtin are
 one or the other — so they are added from the schedule above (*The
-transmit slots*): 0x600 and 0x601 ten times a second, 0x602 and 0x604
-once, 0x603 once with JP1, each 8 bytes, stuffed like the capture's own
-8-byte frames. Even at the worst stuffing an 8-byte frame can carry, the
-converter's share stays under 0.6 %.
+transmit slots*): 0x600 and 0x601 ten times a second, 0x602 and 0x604 to
+0x607 once, 0x603 once with JP1, each 8 bytes, stuffed like the capture's
+own 8-byte frames. Even at the worst stuffing an 8-byte frame can carry, the
+converter's share stays under 0.7 %.
 
 **What it means.** Load is not what hurts a CAN bus — arbitration
 serialises any load into delay — but a bus far from full keeps every
@@ -570,8 +576,17 @@ At the adapter's one-millisecond resolution, on `09`, `11` and `17` alike:
   densest millisecond, the worst-case frame still fits it. That wait is
   the same the car's own frames impose on each other whenever two or three
   share a millisecond, which they do in about a fifth of all milliseconds — so
-  the converter adds jitter of the size already there, to about one car
-  frame in two hundred, and no load the bus could feel.
+  the converter adds jitter of the size already there, to under one car
+  frame in a hundred and fifty (the share of the time ours are on the
+  wire), and no load the bus could feel.
+- **The worst wait, counted.** An 8-byte frame is 44 + 64 bits, at most
+  24 stuff bits, and 3 of intermission: 135 bits, 270 µs at 500 kbps
+  (`busload.py` prints it). Ours lose every arbitration (*Two limits*
+  above), so a frame of ours that fails — an error, a lost arbitration —
+  is retried only behind every car frame already waiting: no car frame
+  waits for two of ours. A bus error during ours adds at most an error
+  frame, 6 to 12 bits of flag, 8 of delimiter and 3 of intermission, about
+  46 µs; the same error in a car frame costs the car the same.
 - **A converter gone wrong** cannot hold the bus: the MCP2562 disables
   its drivers on a TXD held low (DS20005167C §1.5, *Permanent Dominant
   Detection*), after tPDT, given only as 1.25 ms **typical** (§2.3 *AC

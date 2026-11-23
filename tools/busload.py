@@ -14,8 +14,8 @@ total over the capture's span, against 500,000 bit/s.
 
 The converter's own frames are not in any capture (the MFD and the USBtin are
 one or the other), so they are added from the schedule: two fast frames each
-at `TX_SLOTS_PER_SEC / 4` a second, 0x602 and 0x604 once a second, and 0x603
-once a second only with JP1 (`src/config.h`, *timing*). Their stuffing is the
+at `TX_SLOTS_PER_SEC / 4` a second, 0x602 and 0x604 to 0x607 once a second
+(0x605 to 0x607 since 22/11/2026), and 0x603 once a second only with JP1 (`src/config.h`, *timing*). Their stuffing is the
 mean of the capture's own 8-byte frames; the worst case is printed beside it.
 
 Only a capture with every identifier says anything: the later fixtures are
@@ -98,9 +98,16 @@ def worst_stuff(dlc: int) -> int:
     return (34 + 8 * dlc - 1) // 4
 
 
+# The once-a-second frames sent without JP1: 0x602, 0x604, 0x605, 0x606, 0x607.
+SLOW_ALWAYS = ("TX_SLOT_TRIP", "TX_SLOT_HEALTH", "TX_SLOT_CYL",
+               "TX_SLOT_DRIVE", "TX_SLOT_PREV")
+
+
 def converter_rates() -> dict[str, float]:
     fast = config_int("TX_SLOTS_PER_SEC") / 4
-    return {"always": 2 * fast + 2, "jp1": 1}
+    for name in SLOW_ALWAYS:                 # each must still be a slot
+        config_int(name)
+    return {"always": 2 * fast + len(SLOW_ALWAYS), "jp1": 1}
 
 
 def measure(path: str) -> dict:

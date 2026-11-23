@@ -28,7 +28,7 @@ class TestBits(unittest.TestCase):
 
     def test_converter_schedule_from_config(self):
         rates = busload.converter_rates()
-        self.assertEqual(rates["always"], 22)   # 2 x 10 Hz + 0x602 + 0x604
+        self.assertEqual(rates["always"], 25)   # 2 x 10 Hz + 0x602, 0x604-0x607
         self.assertEqual(rates["jp1"], 1)
 
 
