@@ -2104,3 +2104,19 @@ at 0 (`mfd15` CLAUDE.md, *Operating oDSS puts errors on the CAN bus*).
 weakest −10.5), so the converter's drive record works on the car. 4's
 early weakness is a note to this stop; whether it is S4's is not known
 (`open.md` S1, the display table).
+
+## 23 November 2026 — the second can's second drive, a swell at the end
+
+- **Tests:** the morning drive to work, about 2 minutes of warm standing
+  idle on the way, then about 10 minutes left idling at the end, the
+  everyday state, read on the MFD and photographed (the album 09:59).
+- **Changes after:**
+  - *measured:* oil 101 °C, coolant 99 °C; a swell of 3's, −21.0 then
+    −18.5 % and falling at the photographs (1 +6.5, 2 +9.5, 4 +3.0),
+    `IdleHealth` 84–87 in it, `Misfires` 4; the drive's warm idle at
+    11.5 min: Health 74, Misf 6.2 a minute, the weakest −11.5 %;
+  - *not known:* the second can's effect — 6t's captures read it.
+
+0x607 held the night's drive exactly as it was shown live (61, 3.8,
+−11.0). The swell came within 11.5 minutes of warm idle, as the night's
+first did (`open.md` S1, the display table and *The swell's shape*).

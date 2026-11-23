@@ -165,7 +165,8 @@ BG 44K Platinum and two captured drives at the second tank's end, before 8q (the
 first can in 18/11 at 156,365 km, into about 25 l; **the second 22/11
 evening into a full tank at 156,539 km**; the first tank's last stop: 3's
 first swell only after about 24 minutes of warm idle, the second can's
-first after about 12, as before, S1, *The swell's shape*); and **6s** GM's
+first after about 12, as before, and on 23/11's drive inside 11.5
+minutes of warm idle, S1, *The swell's shape*); and **6s** GM's
 cleaner drawn in for the valves' carbon (the head stays on, *the
 owner*).
 
@@ -306,6 +307,7 @@ error):
 | 22/11 | display | settled | two short drives on 6t's first can, about 6 l of the tank left; **the engine never fully warm, oil 66 °C at most**; the everyday state (no other said); **the converter ran both without a drop-out**, 0x603's Unhealthy at 0 (*owner*) | **70–90 most of the idling, at moments under 60**, both drives alike (*owner*: unchanged) — the band of 20/11 and of 3/11 night, but at oil 66 °C, so beside the warm stops, not among them; **Then a standing idle after them: about 100 three minutes in, oil 72 °C** (*owner*) — higher than the drives' idles, as a not-yet-warm engine reads (19/11's about 100 shortly after a start); **later 80–100 at oil 78 °C, `Misfires` 11, MisfAvg 8.9** (*owner*; *this read 80–90 until he corrected it minutes later*) — MisfAvg since a cold start about 1½ hours after the previous short drive, the cold part in it, so not comparable with 19/11 eve's 3.3–4.1; `Misfires` 11 as 8/11's 9–12, above this can's warm stops (0–6), at a stop not yet warm; **then, oil 83 °C, falling to 60–79, at moments holding at 60, `Misfires` 3, MisfAvg 7.1** (*owner*) — the grade and the count falling as the oil warms; **then held at 2,000 rpm to warm it, and a minute after the pedal was released, oil 93 °C: 40–55, `Misfires` 5, MisfAvg 6.5** (*owner*) — warm now, and in the band of this can's warm evenings (18/11 eve 30–50, 19/11 eve 40–50), below 20/11's 80–100. **One day, not 6t's reading** |
 | 22/11 eve | display, 0x605/0x606 (photos, the album 21:29–23:17) | settled | **the end of 6t's first can** (0.2 l indicated before the fill): a cold start, then a standing idle at a petrol station of **about 40 min warm** (oil 85 °C from about 22:33, 95–100 °C after), the everyday state (no other said); **the first stop read on the converter's 0x605 and 0x606** | on 3's floor (−7 to −9.5 %) **32–39 at 22:45–22:47, 35–59 later**; **in the swells 56–67**; `Misfires` **1–6** throughout; the drive's warm idle (0x606, 38.7 min at 23:16): **Health 48, Misf 2.5 a minute, the weakest −11.0 %** — against `54`'s 67, 7.1 and −12.0 (`docs/firmware/frames.md`); **the first swell only after about 24 min of warm idle**, then every 6–7 min (*The swell's shape*, 22/11). **One stop, not 6t's reading** |
 | 22/11 night | display, 0x605/0x606 (photos, the album 23:56–00:27), VCDS 032/055 | settled | **the first drive on 6t's second can**: 24.5 km, the limiter several times and a motorway stretch (*owner*), then a warm standing idle of about 25 min near home, oil 97–98 °C; the everyday state (no other said); 0x607 showed the previous drive as 48 / 2.5 / −10.5 (the EEPROM's record, its last minutes short of the live −11.0) | **the first 4 min 64–87, 4 the weakest** (to −15 %, 3 at −3.5 to −6; a note to this stop, whether it is S4's not known — the captures' warm stops show such spells of 4 before 21/10, to −10 to −17 % for 1–3 min, and since then rarer and shallower, `46`, `51`, `53`, `54`, with or without high revs before; script not kept); then 3's floor (−5.5 to −7) at 43–76; **3's first swell after about 12 min** (to −20 %) and a second straight after (to −20 %), 60–79 in them; at the end 50–85 with 3 at −11 to −13; the drive's warm idle (0x606, 25.2 min): **Health 61, Misf 3.8 a minute, the weakest −11.0 %**; the fault memory empty after it, 032 **−4.7 / +7.8**, 055 −1.28 g/s (*owner*, the album 00:29). **One stop, not 6t's reading** |
+| 23/11 | display, 0x605–0x607 (photos, the album 09:59) | settled | **the second can's second drive**, the morning drive to work: about 2 min of warm standing idle on the way, then **about 10 min left idling at the end**, oil 101 °C, coolant 99 °C; the everyday state (no other said); the supply 13.3 V | **3's swell came and was falling at the photographs: 3 −21.0 then −18.5 %** (1 +6.5, 2 +9.5, 4 +3.0, `CylNamed` set), **`IdleHealth` 84–87 in it**, `Misfires` 4; the drive's warm idle (0x606, 11.5 min): **Health 74, Misf 6.2 a minute, the weakest −11.5 %**; 0x607 the night's drive as the EEPROM held it, **61 / 3.8 / −11.0**, the live values exactly (*owner*). The swell within about 12 min of warm idle, as the night's; the floor not read. **One stop, not 6t's reading** |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -686,6 +688,12 @@ condensed 17/11, the full argument in `git show 5741dfa:docs/engine-health/open.
   after 24.5 km with the limiter and a motorway stretch, **3's first swell
   after about 12 minutes** (to −20 %) and a second straight after it —
   the usual start, so the 24 minutes of the evening did not repeat.
+- **23/11 morning, the second can's second drive** (the display;
+  *owner*): about 2 minutes of warm idle on the way and about 10 left
+  idling at the end, 11.5 in all (0x606); **a swell of 3's inside them**,
+  −21.0 and falling to −18.5 % at the photographs, `IdleHealth` 84–87 —
+  again within about 12 minutes, so the first can's late 24 stays the
+  one exception. When it began was not read.
 
 **The queue drive, and what the ECU sees through a swell** (12/11
 evening, `50`; condensed 17/11, the full text in `git show 5e1ddf2:docs/engine-health/open.md`, this heading).
@@ -1404,7 +1412,7 @@ completing rather than load (`refuted.md` C19).
   sensor, a probe — **and not for a sporadic one** (*owner*, 22/11). Both
   P0303s were cleared before a second drive (12/11 after the stop, 16/11
   with the battery off for the gasket), so whether a repeat would light
-  it was never seen; on 22/11 the lamp was off, the memory not yet read. It names 3 as everything since
+  it was never seen; on 22/11 the lamp was off and the memory empty after the night's drive (the album 00:29). It names 3 as everything since
   12/11 does and tells nothing between list B's causes. After it the
   owner brought the lower gasket forward (`plan.md` 8z, done 17/11,
   and it moved nothing; `refuted.md` C28).
