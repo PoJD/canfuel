@@ -2149,3 +2149,19 @@ the strongest slot is called 2 only when it stands clear, and with 3
 nearly level 3's slot comes as close as 2's (`docs/firmware/frames.md`,
 0x605). −26.5 % is the deepest read on the display; the captures reach
 −27 to −30 (`open.md` S1, the display table and *The swell's shape*).
+
+## 24 November 2026 night — the earth point by the ECU brushed clean
+
+- **Repairs:** the earth point by the ECU taken apart again: the two
+  original brass rings (one brown wire from each of the ECU's two
+  connectors, the smaller connector's ring the lower, as found), the
+  verdigris on their crimps brushed off with a fine wire brush, tiny bits
+  left under the strands, the same rings refitted on the flanged bolt;
+  the ECU's two big connectors and its sockets sprayed with contact
+  spray (*owner*; the album 22:40–23:07).
+- **Changes after:**
+  - *not known:* everything — no drive yet.
+
+Not re-crimped: the only spare rings at home were solder-type, and a
+soldered ring on an earth stiffens the wire where it vibrates
+(*general*). What this leaves of `refuted.md` C27 is said there.

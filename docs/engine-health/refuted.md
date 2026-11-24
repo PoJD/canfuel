@@ -1109,7 +1109,9 @@ load; 055 −1.11 → −1.22 g/s)** (the album, 16/11 03:18–03:19), as
 after every reset before — so neither made the cell. Moved here at the
 owner's report, 16/11.
 **What it does not refute:** a part of the cell under a point; the
-earth's crimps, green outside and not renewed; a contact that
+earth's crimps, green outside and not renewed (*24/11*: the verdigris
+brushed off the crimps with a fine wire brush, tiny bits left under the
+strands; the crimps still the original ones, `idle-log.md`); a contact that
 flickers, which moves the mixture faster than 032 learns.
 **What would revive it:** the idle cell nearer zero after the crimps
 are renewed, or a voltage under current at that earth of more than a
