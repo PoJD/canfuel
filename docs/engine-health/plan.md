@@ -22,7 +22,8 @@ Captures only where an item asks for one. **Next: 8q, the timing belt
 at a garage, 7/12**; then item 9; **8e**, **the new rear probe when
 it comes (bought 24/11, due by 29/11)**, its harness **only after 8q and
 only if the idle is unchanged**; **8u, 8v, 8w by
-opportunity** (*the owner*, 15/11), and **6r**, the owner's scope, best
+opportunity** (*the owner*, 15/11), **8aa** the contacts measured
+before anything is renewed (*the owner*, 24/11), and **6r**, the owner's scope, best
 before 8q, **6t**, the second tank of BG 44K Platinum driven down and two captured drives at its end, before 8q,
 and **6s**, the cleaner drawn in (17/11). *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
@@ -179,6 +180,34 @@ of this plan, *the owner's decision* of 9/10):
   connected anyway (020 on 8q's captured drive or any drive with VCDS on): 026 from
   idle to about 3,500 rpm in neutral, slowly; 020 on two or three
   full-throttle pulls in 3rd or 4th.
+
+**8aa. The contacts measured, not renewed blind** (*the owner*, 24/11;
+by opportunity). Nothing is replaced until its measurement says so.
+
+- **The earth point by the ECU, with a bulb's current**: the ignition
+  off; a 55 W headlamp bulb, a 10 A fuse in its lead, from the
+  battery's plus to a wire of that earth just past its crimp (a pin
+  under the insulation, sealed again after); **never the plus to
+  earth without the bulb**. With it lit, the millivolts **from the
+  eyelet to the wire just past the crimp**, then **from the eyelet to
+  the body beside the bolt**, each while the wire is moved; **every
+  crimp on the point the same way**. The figures into the chat.
+- **The rear probe's socket, with the refused probe as a test plug**:
+  its lead cut a little behind its connector, the four wires stripped,
+  the connector latched into the car's socket. With 6n (the ECU's plug
+  off, the ignition off): **each wire to its ECU pin** while the
+  connector and the harness are moved (the meter's MIN/MAX or beeper),
+  and **each wire to every other and to earth**, the black (signal) to
+  the grey (signal earth) first. Then **each cavity's grip** felt with
+  a pin of the probe's own connector, against the others. Never a
+  meter tip into a socket.
+- **The rear probe on the road**: 036 logged on the first drive on the
+  new rear probe (8e).
+- **The air mass meter's plug, running**: the plug held with a cable
+  tie meanwhile. A warm idle, VCDS on 002 or 003 logging; the plug and
+  its lead moved by hand at the meter (above, in the engine bay; nobody
+  under the car); with the scope (6r) on contact 5 against 3 from the
+  back of the plug, the same.
 
 **8q. The timing belt renewed at a garage, 7/12** (*the owner's decision*,
 13/11; the date *the owner*, 16/11): the belt, its tensioner and idler, and the water pump.
@@ -710,6 +739,26 @@ contact with the block and VW gives it a torque; 026 in neutral
 because that is where S5 lives, against
 `vcds/vcds-neutral-026-003.csv`; 020 on pulls because 4's retard shows
 only there, against `vcds/vcds-step2c-020-026-003.csv`.
+
+**8aa, the contacts measured** (*the owner*, 24/11: nothing renewed
+blind). A poor crimp or a split socket spring reads tenths of an ohm
+at rest on a meter's milliamps and shows only under current, heat or
+movement, so each test supplies one of those. **The bulb**: a known
+current of about 4.5 A with the engine off, so the drop is the crimp's
+alone (millivolts ÷ 4.5 A); the crimps on the same point are each
+other's reference — a few millivolts is a sound crimp, one an order
+above its neighbours is the bad one (*general*). It tests what
+`refuted.md` C27 left: the earth's crimps, green outside, never
+renewed. **The refused probe's connector** is the one plug made for
+that socket, so the contacts are measured through their own spring;
+the black-to-grey insulation is the 0.000 V mechanism of D13 (a split
+spring bridging the signal to its earth). **The meter's plug** lost its
+lock (15/11) and every contact held when pressed; a plug that works
+loose shows only running, as a jump in the air mass. **What each can
+and cannot say** (*reasoned*): none of these is expected to be the
+idle — 032's idle cell came back after the meter's plug and the earth
+were cleaned (C27), and the loads at a warm stop stepped only the
+supply (C26); they decide whether a contact is worth renewing.
 
 **Item 9's garage session** (*agreed with the owner*, 11/11): everything that needs the upper intake off in one
 visit, warm. **Cylinder 3's leak-down twice, two crank turns apart**,

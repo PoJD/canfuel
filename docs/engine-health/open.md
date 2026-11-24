@@ -160,7 +160,9 @@ warranty for the failed one refused, the same part bought elsewhere,
 due by 29/11), its harness only after 8q and only if the idle is
 unchanged; standing: **8f** at every VCDS session, **6i** the oil level
 about 156,400 km, the MFD's `IdleHealth` and `Misfires` at warm stops;
-by opportunity (*the owner*, 15/11): **8u** the fuel pressure, **8v** the plugs at their change,
+by opportunity (*the owner*, 15/11): **8aa** the contacts measured
+before anything is renewed (the ECU's earth with a bulb, the rear
+probe's socket, the meter's plug running; 24/11), **8u** the fuel pressure, **8v** the plugs at their change,
 **8w** the cylinder 4 knock window, and (17/11) **6r** the owner's scope
 on injectors 3 and 4 and on G28/G40, best before 8q; **6t** two cans of
 BG 44K Platinum and two captured drives at the second tank's end, before 8q (the
