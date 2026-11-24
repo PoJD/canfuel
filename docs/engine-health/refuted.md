@@ -1989,9 +1989,12 @@ idle, zero only on the overrun's fuel cut) and the captured drive of
 12/11 (`49`; at the long stop 0.59–0.61 V sinking towards 0.2 V as the
 old probes always did, never zero) — with **no P0137** and the fault
 memory empty before, between and after. The new probe goes back to the
-seller and a new one replaces it (`plan.md` 8e); the harness's broken
+seller and a new one replaces it (`plan.md` 8e) — **superseded 24/11**:
+the warranty claim was refused (no company registration number for a
+professional fitting), no new rear probe is bought and the old one
+stays on the car (*the owner*); the harness's broken
 terminal and the cracked wires found on 10/11 stay as found and are
-mended in 8e. **It comes back as P0137, or 036 at 0.000 V outside the
+mended in 8e, after 8q and only if the idle is unchanged. **It comes back as P0137, or 036 at 0.000 V outside the
 overrun** — that reopens it, in `open.md`.
 **The entry as it stood in `open.md`:**
 

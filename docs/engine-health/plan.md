@@ -19,8 +19,8 @@ The full previous version, before it was condensed on 20/10/2026:
 
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Next: 8q, the timing belt
-at a garage, 7/12**; then item 9; **the new rear probe when the seller
-sends it** (8e), **its harness at the end**; **8u, 8v, 8w by
+at a garage, 7/12**; then item 9; **8e**, the rear probe and its
+harness, **only after 8q and only if the idle is unchanged**; **8u, 8v, 8w by
 opportunity** (*the owner*, 15/11), and **6r**, the owner's scope, best
 before 8q, **6t**, the second tank of BG 44K Platinum driven down and two captured drives at its end, before 8q,
 and **6s**, the cleaner drawn in (17/11). *What is done is `idle-log.md` and
@@ -242,10 +242,10 @@ always** (a P0303 stored with no cut: its time is what the log gives).
   leak-down names 3's exhaust seat, the car is driven as it is and S1
   most likely closed as *acceptable, cause known*.
 
-**8e. The probe when it comes, the harness at the end** (*the owner*,
-11/11 and 12/11; `refuted.md` D13). **The new rear probe went back to
-the seller under warranty 13/11; its replacement fitted when it
-comes**, the old rear probe on the car meanwhile. The new one
+**8e. The rear probe and its harness — only after 8q, and only if the
+idle is unchanged** (*the owner*, 11/11, 12/11 and 24/11; `refuted.md`
+D13). **The old rear probe stays on the car; no new one is bought.**
+If 8e is done, a new rear probe
 is fitted as the first was: Bosch's paste on the thread only, nothing
 in the connector, the lead clear of the exhaust and not pressed into
 the harness box. If P0137 comes back with it, the harness — cold and
@@ -427,7 +427,16 @@ signal failed on its way to the ECU, and it came back at a cooler idle
 — heat on a lead or a connector the likeliest (*reasoned*); the lead was
 tidied by the owner when the probe was fitted, so its run is looked at
 first, the connector second; a lead and connector found sound leave the
-new probe itself (a warranty matter). Cold, so it can be touched.
+new probe itself. Cold, so it can be touched.
+
+**8e only after 8q, and only if the idle is unchanged** (*the owner*,
+24/11): the warranty claim for the failed new rear probe was refused
+24/11 (no company registration number for a professional fitting), and
+no new one is bought. The old rear probe has read healthy since it was
+refitted 12/11 — no P0137, never zero outside the overrun — and its
+sinking at long warm stops is the one sign against it (`refuted.md`
+D13); the rear probe has no direct hand in the idle's mixture, so it
+waits for what the belt shows.
 
 **S12's jerk by the clock**: the bus cannot show a jerk at a crawl, so only its time
 lets a capture or a VCDS log be read at that moment — the stroke, the
