@@ -151,7 +151,9 @@ and **is not reset by a warm engine-off**. **Re-ranked the same
 evening** (*agreed with the owner*): H1 above H13 in B, H0 above the
 belt and H11 above H7 in A.
 
-**Next** (`plan.md`): **8q**, the timing belt and water pump at a
+**Next** (`plan.md`): **8aa** now, a short relearn drive after the
+earth point by the ECU was cleaned again and the ECU unplugged for an
+hour (24/11 night; 032 and 055 reset); then **8q**, the timing belt and water pump at a
 garage on **7/12**, the old marks read first, `54`'s stop the one it is
 set against; then **item 9** by what those show (the coolant's CO₂
 test, the stethoscope, the garage session with the intake off);
