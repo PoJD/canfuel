@@ -19,8 +19,9 @@ The full previous version, before it was condensed on 20/10/2026:
 
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Next: 8q, the timing belt
-at a garage, 7/12**; then item 9; **8e**, the rear probe and its
-harness, **only after 8q and only if the idle is unchanged**; **8u, 8v, 8w by
+at a garage, 7/12**; then item 9; **8e**, **the new rear probe when
+it comes (bought 24/11, due by 29/11)**, its harness **only after 8q and
+only if the idle is unchanged**; **8u, 8v, 8w by
 opportunity** (*the owner*, 15/11), and **6r**, the owner's scope, best
 before 8q, **6t**, the second tank of BG 44K Platinum driven down and two captured drives at its end, before 8q,
 and **6s**, the cleaner drawn in (17/11). *What is done is `idle-log.md` and
@@ -242,10 +243,11 @@ always** (a P0303 stored with no cut: its time is what the log gives).
   leak-down names 3's exhaust seat, the car is driven as it is and S1
   most likely closed as *acceptable, cause known*.
 
-**8e. The rear probe and its harness — only after 8q, and only if the
-idle is unchanged** (*the owner*, 11/11, 12/11 and 24/11; `refuted.md`
-D13). **The old rear probe stays on the car; no new one is bought.**
-If 8e is done, a new rear probe
+**8e. The new rear probe when it comes; the harness only after 8q, and
+only if the idle is unchanged** (*the owner*, 11/11, 12/11 and 24/11;
+`refuted.md` D13). **A new rear probe, Bosch `0 258 010 032`, bought
+24/11 from another shop, due by 29/11**; the old rear probe on the car
+until then. 032 and 055 read before it goes in (8f). It
 is fitted as the first was: Bosch's paste on the thread only, nothing
 in the connector, the lead clear of the exhaust and not pressed into
 the harness box. If P0137 comes back with it, the harness — cold and
@@ -429,14 +431,16 @@ tidied by the owner when the probe was fitted, so its run is looked at
 first, the connector second; a lead and connector found sound leave the
 new probe itself. Cold, so it can be touched.
 
-**8e only after 8q, and only if the idle is unchanged** (*the owner*,
-24/11): the warranty claim for the failed new rear probe was refused
-24/11 (no company registration number for a professional fitting), and
-no new one is bought. The old rear probe has read healthy since it was
-refitted 12/11 — no P0137, never zero outside the overrun — and its
-sinking at long warm stops is the one sign against it (`refuted.md`
-D13); the rear probe has no direct hand in the idle's mixture, so it
-waits for what the belt shows.
+**8e's new probe now, its harness after 8q** (*the owner*, 24/11): the
+warranty claim for the failed new rear probe was refused 24/11 (no
+company registration number for a professional fitting); the same part
+was then bought elsewhere at about half the price. The old rear probe
+has read healthy since it was refitted 12/11 — no P0137, never zero
+outside the overrun — and its sinking at long warm stops is the one
+sign against it (`refuted.md` D13). The rear probe has no direct hand
+in the idle's mixture, so fitting it before 8q does not blur the belt's
+before-and-after; 032 read before and after (8f) shows any shift its
+trim makes. The harness waits for what the belt shows.
 
 **S12's jerk by the clock**: the bus cannot show a jerk at a crawl, so only its time
 lets a capture or a VCDS log be read at that moment — the stroke, the

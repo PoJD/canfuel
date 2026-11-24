@@ -155,9 +155,10 @@ belt and H11 above H7 in A.
 garage on **7/12**, the old marks read first, `54`'s stop the one it is
 set against; then **item 9** by what those show (the coolant's CO₂
 test, the stethoscope, the garage session with the intake off);
-**8e**, the rear probe and its harness, only after 8q and only if
-the idle is unchanged (*the owner*, 24/11: the warranty for the new
-rear probe refused, no new one bought, the old one stays); standing: **8f** at every VCDS session, **6i** the oil level
+**8e**, a new rear probe when it comes (*the owner*, 24/11: the
+warranty for the failed one refused, the same part bought elsewhere,
+due by 29/11), its harness only after 8q and only if the idle is
+unchanged; standing: **8f** at every VCDS session, **6i** the oil level
 about 156,400 km, the MFD's `IdleHealth` and `Misfires` at warm stops;
 by opportunity (*the owner*, 15/11): **8u** the fuel pressure, **8v** the plugs at their change,
 **8w** the cylinder 4 knock window, and (17/11) **6r** the owner's scope

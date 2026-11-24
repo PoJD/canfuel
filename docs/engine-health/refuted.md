@@ -1991,8 +1991,8 @@ old probes always did, never zero) — with **no P0137** and the fault
 memory empty before, between and after. The new probe goes back to the
 seller and a new one replaces it (`plan.md` 8e) — **superseded 24/11**:
 the warranty claim was refused (no company registration number for a
-professional fitting), no new rear probe is bought and the old one
-stays on the car (*the owner*); the harness's broken
+professional fitting), and the same part was bought elsewhere the same
+day, due by 29/11 (*the owner*); the harness's broken
 terminal and the cracked wires found on 10/11 stay as found and are
 mended in 8e, after 8q and only if the idle is unchanged. **It comes back as P0137, or 036 at 0.000 V outside the
 overrun** — that reopens it, in `open.md`.
