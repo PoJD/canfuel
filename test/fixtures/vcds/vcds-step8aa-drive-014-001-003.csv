@@ -1,0 +1,19 @@
+Úterý,24,Listopad,2026,23:58:04:64014-VCID:6E8118302988A59A6CF-4B28,VCDS verze: SVO 25.3.2,Verze dat: 20260130 DS365.0
+06A 906 018 EJ,,2.0l R4/2V  MOTR HS V04,
+
+,Skupina A:,'014,,,,Skupina B:,'001,,,,Skupina C:,'003
+,,otáèky motoru,Motor zatizeni,vypadky horeni,vypadky horeni,,otáèky motoru,chladící kapalina,Lambda,Základní nastavení,,otáèky motoru,hmotn.nasav.vzduchu,klapka Pohon,uhel
+,ÈAS,,,(celkovy),Rozpoznani,ÈAS,,teplota,ridici jednotka,pozadavky,ÈAS,,,snimac uhlu 1,predstihu
+Znaèení,ZNAÈKA, /min, %,,,ZNAÈKA, /min,*C, %,,ZNAÈKA, /min, g/s,*, *BTDC
+,0.01,0,99.5,0,deaktiv.,0.30,0,46.5,0.0,  110010,0.60,0,2.78,5.6,0.0
+,0.90,0,99.5,0,deaktiv.,1.20,0,46.5,0.0,  110010,1.50,0,2.78,5.6,0.0
+,1.80,0,99.5,0,deaktiv.,2.10,0,46.5,0.0,  110010,2.40,0,2.78,5.6,0.0
+,2.70,0,99.5,0,deaktiv.,3.00,0,46.5,0.0,  110010,3.31,0,2.78,5.6,0.0
+,3.61,0,99.5,0,deaktiv.,3.91,0,46.5,0.0,  110010,4.21,0,2.78,5.6,0.0
+,4.51,0,99.5,0,deaktiv.,4.81,0,46.5,0.0,  110010,5.11,0,2.78,5.6,0.0
+,5.40,0,99.5,0,deaktiv.,5.70,0,46.5,0.0,  110010,6.00,0,2.78,5.6,0.0
+,6.31,0,99.5,0,deaktiv.,6.61,0,46.5,0.0,  110010,6.91,0,2.78,5.6,0.0
+,7.21,0,99.5,0,deaktiv.,7.51,0,46.5,0.0,  110010,7.81,0,2.78,5.6,0.0
+,8.11,0,99.5,0,deaktiv.,8.40,0,46.5,0.0,  110010,8.71,0,2.78,5.6,0.0
+,9.01,0,99.5,0,deaktiv.,9.30,0,46.5,0.0,  110010,9.61,0,2.78,5.6,0.0
+,9.91,0,99.5,0,deaktiv.,10.20,0,46.5,0.0,  110010,10.51,0,2.78,5.6,0.0
