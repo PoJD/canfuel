@@ -2158,9 +2158,11 @@ nearly level 3's slot comes as close as 2's (`docs/firmware/frames.md`,
   verdigris on their crimps brushed off with a fine wire brush, tiny bits
   left under the strands, the same rings refitted on the flanged bolt;
   the ECU's two big connectors and its sockets sprayed with contact
-  spray (*owner*; the album 22:40–23:07).
+  spray (*owner*; the album 22:40–23:07). The battery stayed on; the
+  ECU unplugged for about an hour.
 - **Changes after:**
-  - *not known:* everything — no drive yet.
+  - *not known:* whether 032 and 055 survived the hour unplugged (read
+    before the next drive, `plan.md` 8f); everything else — no drive yet.
 
 Not re-crimped: the only spare rings at home were solder-type, and a
 soldered ring on an earth stiffens the wire where it vibrates
