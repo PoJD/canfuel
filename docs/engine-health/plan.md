@@ -281,8 +281,13 @@ the harness box. Then, cold, the ignition off, from below:
 - **Both sockets on the harness side photographed first**, each
   cavity's wire colour readable.
 - **Every wire of both sockets on a new terminal** (VW repair wires
-  bought 25/11, a terminal crimped at each end, cut in the middle:
-  four make the eight): **one wire at a time** — the harness wire cut
+  `000 979 021 EA`, bought 25/11, a terminal crimped at each end, cut
+  in the middle: four make the eight). **Before the first cut**, a new
+  terminal beside an old one out of the socket: the same shape and
+  size, and **the same plating** — gold where the old one is gold,
+  tin where it is tin (the photographs of 10/11 22:18 show both in
+  these sockets); if not, nothing is cut and the part goes back.
+  **One wire at a time** — the harness wire cut
   back past any damage to bright copper (the rear's blue and the
   front's brown, taped 10/11, past their cracks), joined to the half
   repair wire with a butt crimp sleeve, heat-shrink over it; the
@@ -468,7 +473,11 @@ which mended it; and the front's brown wire is its signal earth (H21),
 which can reach S19's idle cell — so a move of 032 after 8e is not
 8ab's. Hence after 8ab's two drives of 032, and 032 again after 8e.
 The belt's before-and-after is not blurred: 8q's reading is the
-idle's floor and swell on 3, which neither probe makes. **One wire at
+idle's floor and swell on 3, which neither probe makes. **The plating**: a tinned terminal on a
+gold-plated mating pin wears by fretting and corrodes at the touch
+(*general*), the very fault 8e mends; the probes' signal contacts are
+often gold for their millivolts. The bag says only *wires*; the counter
+picked it by the catalogue. **One wire at
 a time and the same cavity**: eight wires cut at once in a dark
 under-body is how a heater lead ends on a signal pin. A butt sleeve
 under heat-shrink on the harness side seals nothing the probe
