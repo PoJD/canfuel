@@ -181,6 +181,11 @@ of this plan, *the owner's decision* of 9/10):
   connected anyway (020 on 8q's captured drive or any drive with VCDS on): 026 from
   idle to about 3,500 rpm in neutral, slowly; 020 on two or three
   full-throttle pulls in 3rd or 4th.
+- **4's spells at a warm stop** (*the owner*, 25/11), on the first
+  captured drives once the USBtin's harness is made: a long or brisk
+  drive to a warm standing idle of ten minutes or more, **020 logged
+  with 014 through the whole stop** (VCDS, beside the capture); the
+  capture says afterwards when 4 led.
 
 **8ab. The earth point by the ECU on new rings** (*the owner*, 25/11).
 1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
@@ -798,6 +803,20 @@ contact with the block and VW gives it a torque; 026 in neutral
 because that is where S5 lives, against
 `vcds/vcds-neutral-026-003.csv`; 020 on pulls because 4's retard shows
 only there, against `vcds/vcds-step2c-020-026-003.csv`.
+
+**8w, 4's spells at a warm stop** (*the owner*, 25/11): four times
+since 22/11 — 22/11 night, 23/11 afternoon, 24–25/11 night, 25/11
+midday (`open.md` S1's table) — 4 has led the weakness at a warm stop
+after a long or brisk drive, to −12 or −13 % with 3 on its floor.
+**Kept a note, not a symptom, and not S4's** until measured (*the
+owner's decision*): that the ECU retards 4 at idle too is a theory.
+**The reading**: 020 showing retard on 4 during its spells puts them
+under S4 (and 8w's G66 first); no retard on 4 while it is the weakest
+leaves them with S1 and S3. **And whether 4 always did it** (*the
+owner*): with 3's swells shorter and shallower lately, a weakness of
+4's that was always there may only show more; Claude reads 4's spells
+after a drive in the old captures (`cylscan.py --minutes`) against
+the new ones before calling it new.
 
 **Item 9's garage session** (*agreed with the owner*, 11/11): everything that needs the upper intake off in one
 visit, warm. **Cylinder 3's leak-down twice, two crank turns apart**,
