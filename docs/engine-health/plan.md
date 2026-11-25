@@ -539,7 +539,8 @@ a finding or nothing; after the cut it is gone.
 a probe's fault shows most at a light load*; *the owner*, 25/11): the
 stroke-to-stroke scatter by load (`drivescan.py --cylinders`) and 032's
 idle cell are the before and after of the probes' sockets; the before
-is `19`–`54` and 032's −1.6 / +3.9 of 24–25/11. A light pedal is where
+is `19`–`54`, and for 032 the reading taken just before the change
+(8f) — 24–25/11's −1.6 / +3.9 may have been chance (*the owner*). A light pedal is where
 a probe's fault weighs most and where the scatter is largest, so the
 drive needs it; the steady stretch is the load where nothing should
 move.
