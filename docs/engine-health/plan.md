@@ -338,6 +338,10 @@ the harness box. Then, cold, the ignition off, from below:
   with, whether either turns further at the effort they were
   tightened with. Which, and about how far, into the chat; nothing
   undone.
+- **After it, one captured drive** (the MFD out, the capture in, as
+  usual): warm, some town at a light pedal, some steady driving out of
+  town, a warm stop at the end; 032 and 055 read at home (8f). The
+  before is already in hand.
 
 ## Standing items
 
@@ -530,6 +534,15 @@ for its terminal or its seal is — a crimp that never closed, strands
 lost, damp in — and it moves the mixture of all four, the common part
 (`open.md` *Off idle*, F). Seen and photographed before the cut, it is
 a finding or nothing; after the cut it is gone.
+
+**8e's captured drive after** (`open.md` *Off idle*, F, and H21, *Why
+a probe's fault shows most at a light load*; *the owner*, 25/11): the
+stroke-to-stroke scatter by load (`drivescan.py --cylinders`) and 032's
+idle cell are the before and after of the probes' sockets; the before
+is `19`–`54` and 032's −1.6 / +3.9 of 24–25/11. A light pedal is where
+a probe's fault weighs most and where the scatter is largest, so the
+drive needs it; the steady stretch is the load where nothing should
+move.
 
 **S12's hopping at a light pedal by the clock** (`open.md` S12 and
 *Off idle*, F): off idle the scatter from stroke to stroke is the same
