@@ -1736,8 +1736,8 @@ lambda control runs, and not at full throttle, where the engine goes on
 its map and runs well. **Read against the captures** (*Naming the
 cylinder*, *Off idle*, F): the scatter from stroke to stroke is largest
 at a light pedal and **the same on all four cylinders** — the common
-part, not cylinder 3; whether it moves with the probe's swing is the
-test there.
+part, not cylinder 3; whether the probes' circuit is in it is read
+after 8e (F; H21, *Why a probe's fault shows most at a light load*).
 
 
 *Reopened 10/11 night at the owner's request*, in a new form; its
@@ -3792,6 +3792,33 @@ hopping (S12) — a mixture thrown about would do that; so would a light
 charge's ordinary burn and the driveline's play. Not settled; the test
 is in F.
 
+**Why a probe's fault shows most at a light load** (*the owner's
+question*, 25/11: a bad probe on other cars drove well on the throttle
+and made the idle terrible — does that hold here; *general*, with this
+car's figures where marked): (1) a small charge burns slowest and
+nearest its lean limit — much residual gas at the manifold's vacuum —
+so the same error of a few per cent in lambda costs the most
+smoothness there; (2) the loop is slowest there: the gas takes longest
+from the valve to the probe at the smallest flow (about 3 g/s at a warm
+idle against 85–93 at the top, 003), and the exhaust is coolest, the
+probe leaning most on its heater — a poor joint in the heater's feed or
+the signal slows it most there, and a slower loop swings the mixture
+wider; (3) at full load the loop is open (F: 001's correction stands
+still from b7 180) and the probe is not heard; (4) at idle there is no
+torque in reserve and no car's inertia to smooth a step. **So the
+owner's experience is the physics**, for a slow probe and for one
+reading a little off alike. **What this car shows at idle** (*ad-hoc
+script, not kept*): the front probe switches at least as fast as VCDS
+samples — 033 at a warm idle (389 samples on 25/10, 62 on 11/11, about
+0.9 s apart) crossing 0.45 V after a median of one to two samples, the
+longest 5.4 s — and 001's correction swings less at idle (sd 1.6 %)
+than at part load (2.7 %); the common part at a standing idle is 5.1–5.4
+rpm whichever way the correction stands. **Not the slow, wide swing of a
+failing probe; a small offset (S19's idle cell) and anything faster
+than a second are not excluded** — a mild form, if any, which fits the
+owner's "it reminds me of it, but not so bad". The proof is 8e's before
+and after (F).
+
 **A note, not a finding** (*the owner*, 25/11, before opening the loom
 at 8e): VW's repair wires (000 979 021 EA) are as thin as the probes'
 own leads, **thinner than the harness wires they will be joined to**,
@@ -4191,11 +4218,12 @@ drives, `19`–`50`; warm (oil 80 °C and over).*
     (H11, H21) would do that; so would an engine's ordinarily slower,
     more diluted burn at a light charge and the driveline's play at a
     small torque (H0, H12). No healthy AQY's figure is here to set it
-    against. **What would split them**: a captured drive at a light
-    pedal where the hopping is felt, with VCDS on 001 or 033 alone at
-    its fastest — the hopping in step with the probe's swing is the
-    mixture; and **this table read again after 8e** (the probes' sockets
-    on new terminals), the before being `19`–`54`.
+    against. **What would split them**: **this table read again after
+    8e** (the probes' sockets on new terminals), the before being
+    `19`–`54`, beside 032's idle cell. *VCDS on 001 or 033 alone was
+    proposed and dropped* (*the owner*, 25/11): at about a sample a
+    second it sees only a probe that switches slowly, which this one
+    does not (H21, *Why a probe's fault shows most at a light load*).
 
 ### What the dip shares said, and what stands
 
