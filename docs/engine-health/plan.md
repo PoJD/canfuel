@@ -821,18 +821,22 @@ the new ones before calling it new. **Read 25/11** (`cylscan.py
 the four and at −5 % or under): **6 of about 410 warm minutes**, and
 only in `19` (the old MAF, 4 to −16 %, ahead of 3's −10 to −12) clearly
 ahead of 3; in `32`, `46` and `53` level with 3 within half a point.
-**4's deepest warm minute** was −16 / −11 % on 24/9 (`19`, `24`),
-−8.5 to −10 % to 21/10, **since the VW leads −10.9 % at most** (`53`;
-`46` −9.1, every other capture −6.5 or shallower). On the display since
-22/11: **−15, −13, −12 %**, 4 ahead of 3 by 4 to 9 points. So **not
-only 3's shallower swells uncovering an old weakness**: 4 itself reads
-deeper than in any capture since 21/10 (*reasoned*, with two caveats:
-the display is photographed samples, and no capture since 17/11 to read
-the same stop both ways). What changed since `54`: the 44K cleaner
-(6t, from 18/11; the spells from 22/11 night, the first drive on the
-second can) and 8aa (24/11); a cleaner loosening deposits on 4, second
-in the borescope's order (H13), would fit (*reasoned*, not tested).
-The next capture settles which instrument it is.
+**The reference** (*the owner*, 25/11): the display's bytes and
+`cylscan`'s deviations are against **the four's mean, 3 included**, and
+nothing measures a cylinder's own torque; a shallower 3 lifts the mean
+and pushes the other three down with it. Read against **the mean of 1
+and 2 alone**, which 3 does not move: 4's warm minutes in the captures
+reach **−29 / −24 % on 24/9** (`19`, `24`), −17 to −24 % to 21/10, and
+**since the VW leads −21.5 % at most** (`53`; `46` −19.0, `47` −17.9).
+25/11 midday on the display: **−21.8 %** (4 −12.0 against 1 +4.0 and
+2 +15.5) — at the deepest edge of the captures since 21/10, not beyond
+it; 25/11 morning −8.5. *This said until the owner's objection that 4
+read deeper on the display than in any capture since 21/10, on the
+four's mean.* **So the old captures do not say 4 has got weaker**: what
+is new is how often 4 leads 3, and that fits 3's shallower floor and
+swells (*the owner's reading*); even against 1 and 2 it stays relative
+— 1 and 2 stronger reads the same as 4 weaker. 020 at the stop is the
+one measurement that is not relative to the other cylinders.
 
 **Item 9's garage session** (*agreed with the owner*, 11/11): everything that needs the upper intake off in one
 visit, warm. **Cylinder 3's leak-down twice, two crank turns apart**,
