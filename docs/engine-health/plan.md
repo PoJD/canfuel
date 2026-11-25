@@ -816,7 +816,23 @@ leaves them with S1 and S3. **And whether 4 always did it** (*the
 owner*): with 3's swells shorter and shallower lately, a weakness of
 4's that was always there may only show more; Claude reads 4's spells
 after a drive in the old captures (`cylscan.py --minutes`) against
-the new ones before calling it new.
+the new ones before calling it new. **Read 25/11** (`cylscan.py
+--minutes` on `19`–`54`; a minute counted where 4 is the weakest of
+the four and at −5 % or under): **6 of about 410 warm minutes**, and
+only in `19` (the old MAF, 4 to −16 %, ahead of 3's −10 to −12) clearly
+ahead of 3; in `32`, `46` and `53` level with 3 within half a point.
+**4's deepest warm minute** was −16 / −11 % on 24/9 (`19`, `24`),
+−8.5 to −10 % to 21/10, **since the VW leads −10.9 % at most** (`53`;
+`46` −9.1, every other capture −6.5 or shallower). On the display since
+22/11: **−15, −13, −12 %**, 4 ahead of 3 by 4 to 9 points. So **not
+only 3's shallower swells uncovering an old weakness**: 4 itself reads
+deeper than in any capture since 21/10 (*reasoned*, with two caveats:
+the display is photographed samples, and no capture since 17/11 to read
+the same stop both ways). What changed since `54`: the 44K cleaner
+(6t, from 18/11; the spells from 22/11 night, the first drive on the
+second can) and 8aa (24/11); a cleaner loosening deposits on 4, second
+in the borescope's order (H13), would fit (*reasoned*, not tested).
+The next capture settles which instrument it is.
 
 **Item 9's garage session** (*agreed with the owner*, 11/11): everything that needs the upper intake off in one
 visit, warm. **Cylinder 3's leak-down twice, two crank turns apart**,
