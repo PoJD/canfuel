@@ -2161,9 +2161,44 @@ nearly level 3's slot comes as close as 2's (`docs/firmware/frames.md`,
   spray (*owner*; the album 22:40–23:07). The battery stayed on; the
   ECU unplugged for about an hour.
 - **Changes after:**
-  - *not known:* whether 032 and 055 survived the hour unplugged (read
-    before the next drive, `plan.md` 8f); everything else — no drive yet.
+  - *measured:* 032 and 055 all zero before the next drive (24/11
+    23:56): the hour unplugged reset them; the drive is the next entry.
 
 Not re-crimped: the only spare rings at home were solder-type, and a
 soldered ring on an earth stiffens the wire where it vibrates
 (*general*). What this leaves of `refuted.md` C27 is said there.
+
+## 24–25 November 2026 night — the relearn drive after the earth (8aa)
+
+- **Tests:** 032 and 055 cold before the drive; a drive of about 27 minutes
+  with a motorway stretch and full-throttle pulls, then a warm standing
+  idle of about 30 minutes (from about 00:25), VCDS 014 001 003 through
+  it; 036 for a minute and 032/055 at the warm stop, 032/055 again over
+  throttle blips and at home; the fault memory before and after each
+  log; the MFD read and photographed (the album 00:29–01:14), the
+  everyday state (no other said). No CAN capture.
+- **Changes after:**
+  - *measured:* 032 and 055 all zero before the drive (the hour
+    unplugged reset them); **032 −2.3 / +3.9 % at the stop, −1.6 / +3.9
+    after the blips and at home** — the idle cell nearest zero of any
+    reading since 8/2026; 055 −0.28 → about −1.1 to −1.37 g/s; 036 R1-S2
+    OK; the fault memory empty every time; 014 at the stop 53 in 31 min,
+    0.11 % of combustions, its largest rise at the swell's start; oil
+    98–101 °C; 3 at −3.5 to −8.5 % outside the swells, **swells from
+    about 24 min of warm idle, to −17 and then −20.5 %** (00:49–00:57);
+    a spell of 4's at −13 % at about 10 min (00:35–00:36, 3 at −4.5);
+    `IdleHealth` 43–84 through the stop, **26–37 at its end**; 0x606 at
+    18.7 min 62 / 3.7 / −6.5 %, **at home, 41.0 min: Health 56, Misf 3.4
+    a minute, the weakest −7.5 %**; 0x607 (the drive before) 67 / 5.1 /
+    −12.0;
+  - *felt:* a very calm idle at the end, by this car's standard (*owner*);
+  - *not known:* whether the cell's move is the earth or only the
+    reset — the next drives' 032 tell (`plan.md` 8f, 8ab).
+
+The calm stretch at the end is not new: 23/11 afternoon, before the
+earth and on the same tank, read 3 at −2 to −4.5 % and `IdleHealth`
+32–50. 3's swells came as before. What the earth may have changed is
+032's idle cell (`refuted.md` C27). The owner's "1 the strongest, 3 and 4
+alternating as the weakest" is partly the naming: the blocks where 4 read
++9 % had `CylNamed` clear (`docs/firmware/frames.md`, 0x605). Recorded
+as one stop, not as a change of S1 (*agreed with the owner*, 25/11).

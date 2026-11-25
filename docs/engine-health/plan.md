@@ -18,8 +18,8 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Now: 8aa**, the short
-relearn drive after the earth (24/11 night). **Next: 8q, the timing belt
+Captures only where an item asks for one. **Now: 8ab**, the earth
+point by the ECU on new rings (*the owner*, 25/11). **Next: 8q, the timing belt
 at a garage, 7/12**; then item 9; **8e**, **the new rear probe when
 it comes (bought 24/11, due by 29/11)**, its harness **only after 8q and
 only if the idle is unchanged**; **8u, 8v, 8w by
@@ -181,20 +181,19 @@ of this plan, *the owner's decision* of 9/10):
   idle to about 3,500 rpm in neutral, slowly; 020 on two or three
   full-throttle pulls in 3rd or 4th.
 
-**8aa. The relearn drive after the earth** (*the owner*, 24/11 night;
-the ECU out for about an hour, 032 and 055 read zero after it). A short
-drive, **no CAN capture, the MFD in**; on the laptop, Claude runs VCDS
-and nothing else; the files `test/fixtures/vcds/vcds-step8aa-…`.
-
-1. **Before the drive**, the engine cold, the ignition on: the fault
-   memory read and saved; **032 and 055 for 20 s**.
-2. **The drive: `--groups 014 001 003`**, as always. Normal driving,
-   a brisk stretch if it comes.
-3. **At the warm stop at the end**: **036 for a minute** (the old rear
-   probe on the cleaned earth), then **032 and 055 for 20 s**, then the
-   fault memory, read and saved; the codes into the chat.
-4. **The MFD**: `IdleHealth` and `Misfires` at warm stops as always.
-5. "konec" closes it as on any laptop session; one commit, one push.
+**8ab. The earth point by the ECU on new rings** (*the owner*, 25/11).
+1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
+   the fault memory read and saved.
+2. New crimp rings, non-insulated, for the two brown wires; the old
+   rings and their crimps cut off back to bright copper, if the wires
+   are long enough (if not, say so first); crimped with a
+   crimping tool, not soldered; both on the flanged bolt to bare metal,
+   the smaller connector's ring the lower, as now. Photographs of the
+   new crimps.
+3. **A relearn drive**, VCDS only, no capture: the drive with `--groups 014 001 003`, a warm stop,
+   **032 and 055 for 20 s at its end**, the fault memory read and saved;
+   the MFD's `IdleHealth` and `Misfires` at the stop.
+4. **032 for 20 s on the next two drives after it** (8f).
 
 **8q. The timing belt renewed at a garage, 7/12** (*the owner's decision*,
 13/11; the date *the owner*, 16/11): the belt, its tensioner and idler, and the water pump.
@@ -717,16 +716,19 @@ past the valve-stem seals leaves an oily deposit on the firing end,
 and a wet or sooty plug on 3 alone would point at 3's charge (list
 B); the photograph because the plugs go in the bin.
 
-**8aa, the relearn drive** (*the owner*, 24/11 night): the earth point
-by the ECU cleaned again and the ECU unplugged for an hour reset 032 and
-055, so the drive starts from zero, as on 16/11 after the first
-cleaning, when about 30 minutes put the idle cell at −5.5 % and the part
-load at +5.5 (`refuted.md` C27). **032 at the end against that** is the
-reading: a cell much nearer zero says the crimps' verdigris was part of
-it; the same says it was not. 003 is the first air-mass log on the
-cleaned earth; 036 gives the old rear probe's level before the new one
-goes in (8e). The display figures are read loosely while the mixture
-relearns.
+**8ab, the earth on new rings** (*the owner*, 25/11): on
+the brushed crimps the relearn drive of 24–25/11 night (`idle-log.md`) put 032's idle cell at −2.3, then −1.6 % — nearer
+zero than any reading since 8/2026, on the same tank and cleaner as
+22/11's −4.7 (`open.md` S19; `refuted.md` C27). One drive cannot tell the
+earth from the reset itself, and the crimps were only brushed, with bits
+left under the strands. New rings crimped on bright copper take the
+crimps out of the question. **The reading**: if the idle cell settles
+near −2 % over the drives after it, the earth was part of the cell and
+C27's crimp form is revived; back at −5 % or deeper, it was the reset.
+Not soldered: a soldered ring stiffens the wire where it vibrates
+(*general*, as `idle-log.md` 24/11). The idle itself is not expected to
+move with it: 3's swells came as before on the brushed earth
+(`open.md` S1), and C26 measured no shared earth under them.
 
 **8w, the cylinder 4 knock window** (`open.md` S4, S5, H5): the ECU
 books anything at cylinder 4's crank angle to cylinder 4 — G66 loose

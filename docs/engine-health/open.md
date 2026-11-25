@@ -36,7 +36,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 24 November 2026
+## Where it stands — 25 November 2026
 
 *What was done and measured, day by day, is `idle-log.md`; each result
 is in the evidence of its symptom and hypotheses below. This section
@@ -106,7 +106,8 @@ cylinder*):
   near the limiter), S5 4 high in 026 in neutral — its tests in
   `plan.md` 8w since 15/11 (*the owner*; out of the plan from 9/10).
 - **The mixture**: S19 P0172 once and 032's
-  split (idle cell −6 to −9 %, part-load +2 to +9 %).
+  split (idle cell −6 to −9 %, part-load +2 to +9 %;
+  −1.6 / +3.9 on the first drive after the earth was brushed, 25/11).
 - **The drive**: S12 a hard jerk at a crawl and on moving off; S20 the
   speed wandering at a constant pedal (better since the pedal, 27/10).
 - **S22** a tick once per engine cycle, warm.
@@ -151,9 +152,13 @@ and **is not reset by a warm engine-off**. **Re-ranked the same
 evening** (*agreed with the owner*): H1 above H13 in B, H0 above the
 belt and H11 above H7 in A.
 
-**Next** (`plan.md`): **8aa** now, a short relearn drive after the
-earth point by the ECU was cleaned again and the ECU unplugged for an
-hour (24/11 night; 032 and 055 reset); then **8q**, the timing belt and water pump at a
+**8aa done** (24–25/11 night, VCDS and the display, no capture;
+`idle-log.md`): **032 −1.6 / +3.9 %, the idle cell nearest zero of any
+reading** (S19; `refuted.md` C27, not revived on one drive, *agreed with
+the owner*); the idle calm at the stop's end (26–37), 0x606 the weakest
+−7.5 %, but 3's swells as before, from about 24 minutes. **Next**
+(`plan.md`): **8ab**, the earth point by the ECU re-crimped on new rings
+(*the owner*, 25/11), and 032 over the drives after it (8f); then **8q**, the timing belt and water pump at a
 garage on **7/12**, the old marks read first, `54`'s stop the one it is
 set against; then **item 9** by what those show (the coolant's CO₂
 test, the stethoscope, the garage session with the intake off);
@@ -170,7 +175,7 @@ first can in 18/11 at 156,365 km, into about 25 l; **the second 22/11
 evening into a full tank at 156,539 km**; the first tank's last stop: 3's
 first swell only after about 24 minutes of warm idle, the second can's
 first after about 12, as before, on 23/11's morning drive inside 11.5
-minutes of warm idle and in the afternoon by about 17, S1, *The swell's shape*); and **6s** GM's
+minutes of warm idle and in the afternoon by about 17, on 24–25/11 night after about 24, S1, *The swell's shape*); and **6s** GM's
 cleaner drawn in for the valves' carbon (the head stays on, *the
 owner*).
 
@@ -313,6 +318,7 @@ error):
 | 22/11 night | display, 0x605/0x606 (photos, the album 23:56–00:27), VCDS 032/055 | settled | **the first drive on 6t's second can**: 24.5 km, the limiter several times and a motorway stretch (*owner*), then a warm standing idle of about 25 min near home, oil 97–98 °C; the everyday state (no other said); 0x607 showed the previous drive as 48 / 2.5 / −10.5 (the EEPROM's record, its last minutes short of the live −11.0) | **the first 4 min 64–87, 4 the weakest** (to −15 %, 3 at −3.5 to −6; a note to this stop, whether it is S4's not known — the captures' warm stops show such spells of 4 before 21/10, to −10 to −17 % for 1–3 min, and since then rarer and shallower, `46`, `51`, `53`, `54`, with or without high revs before; script not kept); then 3's floor (−5.5 to −7) at 43–76; **3's first swell after about 12 min** (to −20 %) and a second straight after (to −20 %), 60–79 in them; at the end 50–85 with 3 at −11 to −13; the drive's warm idle (0x606, 25.2 min): **Health 61, Misf 3.8 a minute, the weakest −11.0 %**; the fault memory empty after it, 032 **−4.7 / +7.8**, 055 −1.28 g/s (*owner*, the album 00:29). **One stop, not 6t's reading** |
 | 23/11 | display, 0x605–0x607 (photos, the album 09:59) | settled | **the second can's second drive**, the morning drive to work: about 2 min of warm standing idle on the way, then **about 10 min left idling at the end**, oil 101 °C, coolant 99 °C; the everyday state (no other said); the supply 13.3 V | **3's swell came and was falling at the photographs: 3 −21.0 then −18.5 %** (1 +6.5, 2 +9.5, 4 +3.0, `CylNamed` set), **`IdleHealth` 84–87 in it**, `Misfires` 4; the drive's warm idle (0x606, 11.5 min): **Health 74, Misf 6.2 a minute, the weakest −11.5 %**; 0x607 the night's drive as the EEPROM held it, **61 / 3.8 / −11.0**, the live values exactly (*owner*). The swell within about 12 min of warm idle, as the night's; the floor not read. **One stop, not 6t's reading** |
 | 23/11 afternoon | display, 0x605–0x607 (photos, the album 14:27–16:44) | settled | **two power-ups, three long stops**: a drive to a standing idle of about 19 min warm (0x606; about 30 in all, *owner*), the engine off; then about 50 min warm, a drive of about 3 min, about 45 min more; oil 95–101 °C, coolant 95–99 °C; the everyday state (no other said); the supply 13.0–13.5 V; 0x607 at each power-up the drive before, its minutes after the last photographs in it (75 / 6.4 / −10.5, then 74 / 7.0 / −11.5) | **the first stop**: 3 at −8.5 to −10.5 % (`CylNamed` set), **51–71**, `Misfires` 4, 0x606 69 / 6.2 / −10.5 at 14.5 min; **the second: 3 at −2 to −4.5 %, `CylNamed` clear, 32–50, in the blocks photographed at 6–7, 13.5 and 40–41.5 min of warm idle** — samples, not watched between (*owner*: on calls), `Misfires` 0–3, the strong slot +8 to +10 (1, or 4 if the names are two off: *Naming the cylinder*); **swells to −24.5 % at about 17 min (14:58, 71; 1 +14, 2 +3.5, 4 +7) and −20.0 % at about 48 (15:30, 107; 2 +14.5)**; after the short drive 3 at −11 to −14 % (named) at 59–62, **−26.5 % after 16:20** (*owner*, not photographed) — **the deepest read on the display**, inside the captures' −27 to −30; after the drive on, the last block (16:44) **4 the weakest at −7.0 %, 3 at −6.0** (1 and 2 +6.5, named), 60–62, `Misfires` 3 — a spell of 4's after a drive, as 22/11 night's, a note to this stop; 0x606 at the end, 103 min: **Health 61, Misf 3.5 a minute, the weakest −13.0 %**. **A floor this shallow had not been read on the display** (22/11: −5.5 to −9.5); in the captures 25 of 1,286 warm blocks between −5 and −3 % (`49`, `53`, `54` among them). **One day, not 6t's reading** |
+| 24–25/11 night | display, 0x605–0x607 (photos, the album 00:29–01:14), VCDS 014 001 003 | **relearning from zero** (the ECU unplugged an hour; −2.3 / +3.9 at the stop, −1.6 / +3.9 at home) | `plan.md` 8aa, **the first drive on the earth brushed clean**: about 27 min with a motorway stretch and full-throttle pulls, then a warm standing idle of about 30 min (from about 00:25), oil 98–101 °C; the everyday state (no other said); the second can of 6t | 3 at −3.5 to −8.5 % outside the swells (named); **a spell of 4's at −13 % at about 10 min** (00:35–00:36, 3 at −4.5, 70–84) — after a brisk drive, as 22/11 night's and 23/11 afternoon's; **3's first swell at about 24 min, to −17 %, and a second to −20.5** (00:49–00:57); **43–84 through the stop, 26–37 at its end** — 26 the lowest photographed on the display; `Misfires` 1–8; 0x606 at 18.7 min 62 / 3.7 / −6.5, **at home (41.0 min) Health 56, Misf 3.4 a minute, the weakest −7.5 %** — the shallowest weakest on 0x606 so far; 014 0.11 % at the stop. The owner's "1 the strongest, 3 and 4 alternating" partly the naming (4 at +9 only with `CylNamed` clear). **One stop, not a change of S1** (*agreed with the owner*, 25/11) |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -707,6 +713,13 @@ condensed 17/11, the full argument in `git show 5741dfa:docs/engine-health/open.
   about 8 minutes may have been its start. The shallow readings may be
   the level straight after a fall (−1 to −5, above) as much as a floor;
   the photographs cannot tell, nor how long either lasted.
+- **24–25/11 night, the first stop on the earth brushed clean** (the
+  display and VCDS; *owner*): after a brisk drive of about 27 minutes,
+  about 30 minutes of warm idle; **3's first swell at about 24 minutes**
+  (to −16 and −17 %, 00:49–00:51), a block at −1 to −6.5 with `CylNamed`
+  clear, then **a second to −20.5 %** (00:55–00:57) and back to −5.5;
+  014's largest rise at the first swell's start. As 22/11 evening's late
+  first swell; the swells themselves as before.
 
 **The queue drive, and what the ECU sees through a swell** (12/11
 evening, `50`; condensed 17/11, the full text in `git show 5e1ddf2:docs/engine-health/open.md`, this heading).
@@ -1940,8 +1953,9 @@ under *The new probes, 10/11* to *The cell over the three months*):
 | 16/11 | **the MAF's plug and the ECU's earth cleaned** (C27) | −5.5 / +5.5 after one drive |
 | 17/11 | **the lower gasket, injectors 2 and 3 swapped** (`54`) | −7.0 in the warm stop, −6.3 / +7.8 at the end, learnt with 070's valve shut |
 | 22/11 | five days of driving on 6t's first can, the second's first drive (the album 00:29) | **−4.7 / +7.8**, the fault memory empty |
+| 24–25/11 | **the earth point by the ECU brushed clean, the ECU unplugged an hour** (8aa; `refuted.md` C27) | **−2.3 / +3.9** after a brisk drive and 30 min of warm idle, **−1.6 / +3.9** after the blips and at home — the idle cell nearest zero of any reading; the earth or only the reset, the next drives tell |
 
-**No repair moved the idle cell towards zero** (*the owner's
+**No repair before 24/11 moved the idle cell towards zero** (*the owner's
 observation* that it grows more negative is not shown: each reading
 stands a different distance from a reset). The part-load cell learns
 first, the idle cell follows within a drive.

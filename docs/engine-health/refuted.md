@@ -1116,6 +1116,14 @@ flickers, which moves the mixture faster than 032 learns.
 **What would revive it:** the idle cell nearer zero after the crimps
 are renewed, or a voltage under current at that earth of more than a
 few tens of millivolts.
+**25/11** (the relearn drive, 8aa; `idle-log.md`, 24–25/11 night): after the crimps were brushed and the
+ECU unplugged an hour, one brisk drive and 30 minutes of warm idle put
+the idle cell at **−2.3 %, −1.6 after the blips and at home** (+3.9 at
+part load) — nearer zero than any reading before, on the same tank and cleaner
+as 22/11's −4.7. Not revived on one drive (*agreed
+with the owner*, 25/11): the crimps were brushed, not renewed, and the
+cell has moved by a few steps between drives before. The owner renews
+the rings (`plan.md` 8ab); 032 over the drives after it settles it.
 
 ### C28. "A small unmetered air leak at runner 3 — the lower manifold's gasket — makes cylinder 3's floor" (`open.md` H3) — replaced
 
