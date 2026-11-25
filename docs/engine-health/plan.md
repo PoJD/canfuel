@@ -287,7 +287,8 @@ the harness box. Then, cold, the ignition off, from below:
   terminal beside an old one out of the socket: the same shape and
   size, or nothing is cut and the part goes back. **The pins on the
   probes' side** (the new rear probe's plug, the front probe's plug):
-  gold or tin, into the chat before the first cut.
+  gold or tin, into the chat before the first cut (**the old front
+  probe's plug: all four gold**, *the owner*, 25/11).
   **One wire at a time** — the harness wire cut
   back past any damage to bright copper (the rear's blue and the
   front's brown, taped 10/11, past their cracks), joined to the half
@@ -482,7 +483,9 @@ contact for a probe's millivolts; **gold against tin is the pairing
 connector makers advise against** (*general*: the tin wears and
 oxidises at the touch by fretting, and the gold gains nothing), and
 tin against tin is how the car was built. So the probes' own pins
-decide it: gold there, the new terminals are an improvement; tin
+decide it (**the old front probe's: all gold**, *the owner*, 25/11, so
+the car was built gold against tin at least there, and the probes now
+on it are most likely the same): gold there, the new terminals are an improvement; tin
 there, the owner decides between them and the tinned kind ordered.
 The bag says only *wires*; the counter picked it by the catalogue. **One wire at
 a time and the same cavity**: eight wires cut at once in a dark
