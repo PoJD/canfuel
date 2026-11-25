@@ -2004,7 +2004,9 @@ the warranty claim was refused (no company registration number for a
 professional fitting), and the same part was bought elsewhere the same
 day, due by 29/11 (*the owner*); the harness's broken
 terminal and the cracked wires found on 10/11 stay as found and are
-mended in 8e, after 8q and only if the idle is unchanged. **It comes back as P0137, or 036 at 0.000 V outside the
+mended in 8e with the new probe: both sockets on new VW terminals, the
+cracked lengths cut away (*the owner*, 25/11; first written to wait
+for 8q). **It comes back as P0137, or 036 at 0.000 V outside the
 overrun** — that reopens it, in `open.md`.
 **The entry as it stood in `open.md`:**
 

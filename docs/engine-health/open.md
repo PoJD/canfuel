@@ -158,14 +158,16 @@ reading** (S19; `refuted.md` C27, not revived on one drive, *agreed with
 the owner*); the idle calm at the stop's end (26–37), 0x606 the weakest
 −7.5 %, but 3's swells as before, from about 24 minutes. **Next**
 (`plan.md`): **8ab**, the earth point by the ECU re-crimped on new rings
-(*the owner*, 25/11), and 032 over the drives after it (8f); then **8q**, the timing belt and water pump at a
+(*the owner*, 25/11; the rings from GME, VW has none), and 032 over the
+drives after it (8f); then **8e**, a new rear probe when it comes (*the
+owner*, 24/11: the warranty for the failed one refused, the same part
+bought elsewhere, due by 29/11) and **both probes' sockets on new VW
+terminals with it**, the damaged wires cut away (*the owner*, 25/11; the
+repair wires bought); then **8q**, the timing belt and water pump at a
 garage on **7/12**, the old marks read first, `54`'s stop the one it is
 set against; then **item 9** by what those show (the coolant's CO₂
 test, the stethoscope, the garage session with the intake off);
-**8e**, a new rear probe when it comes (*the owner*, 24/11: the
-warranty for the failed one refused, the same part bought elsewhere,
-due by 29/11), its harness only after 8q and only if the idle is
-unchanged; standing: **8f** at every VCDS session, **6i** the oil level
+standing: **8f** at every VCDS session, **6i** the oil level
 about 156,400 km, the MFD's `IdleHealth` and `Misfires` at warm stops;
 by opportunity (*the owner*, 15/11): **8u** the fuel pressure, **8v** the plugs at their change,
 **8w** the cylinder 4 knock window, and (17/11) **6r** the owner's scope
@@ -4519,7 +4521,7 @@ list C for 3's floor apart from its swell — the floor reads as A's in
 | A5 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it (shared with H16 until 17/11, `refuted.md` C30). Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; **17/11**: nor a return restriction, which would pull both cells negative (S19, *re-reckoned*); the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
 | A6 | **H2** a leak ahead of the converter | Widened 10/11 to the zone between the probes (the joint, the flex, the plugged boss), which gives a lean rear probe at idle but not 032 or the dips; S2, S11 and S14's air. Against: the cold tailpipe and smoke tests found nothing; the visible manifold has no soot and no holes (31/10); 032's idle cell takes fuel away, where air ahead of the front probe would add it; the front loop holds through 3's swell; the rear probe's sinking was the old probe's; cannot pick a cylinder. Untested: a crack open only hot, the part under the heat shield | none planned (the warm tailpipe test dropped 15/11, *the owner*) |
 | A7 | **H18** oil past the stem seals | All four alike: worse after idling, calm after a working drive; for one valve it is the swell's second reading (list B's matter, S1, *The swell's shape*). **For, 17/11**: a brown liquid stood round the backs of inlet valves 2, 3 and 4 with the manifold off, there before the wash (*owner*) — the first direct sight of oil at the valves, though the old joint left the same and it does not pick 3; **17/11 (`54`)**: the joint new and the swell as before, so the joint's oil was not it (`refuted.md` C28). Against: it does not grow with the time into a stop; **no blue smoke ever**, the plugs dry; **17/11**: 3 no worse in the first seconds after a coast-down, the deepest vacuum | the oil level on the fresh oil (`plan.md` 6i); the plugs at the next change (8v) |
-| A8 | **H21** the front probe's signal-earth wire | What is left after 8h (`53`, 15/11: only the supply stepped with a load, `refuted.md` C26): the front probe's damaged signal-earth wire, which reaches the common part only through a mixture; S19's idle cell if a signal earth carries heater current (*reasoned*). Weak for the idle: the new rear probe read healthy for 18 minutes and the idle was as rough | 8e's harness, after 8q if the idle is unchanged; each wire to the ECU's pin with the plug off (with 6n) |
+| A8 | **H21** the front probe's signal-earth wire | What is left after 8h (`53`, 15/11: only the supply stepped with a load, `refuted.md` C26): the front probe's damaged signal-earth wire, which reaches the common part only through a mixture; S19's idle cell if a signal earth carries heater current (*reasoned*). Weak for the idle: the new rear probe read healthy for 18 minutes and the idle was as rough | 8e's sockets on new terminals with the new rear probe, the damaged wires cut away (*the owner*, 25/11); each wire to the ECU's pin with the plug off (with 6n) |
 
 **More than one at once** (*the owner's point*, 12/10): each repair may help
 only in part; a partial improvement is read as a share, not a miss.

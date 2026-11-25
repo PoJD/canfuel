@@ -19,10 +19,11 @@ The full previous version, before it was condensed on 20/10/2026:
 
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Now: 8ab**, the earth
-point by the ECU on new rings (*the owner*, 25/11). **Next: 8q, the timing belt
-at a garage, 7/12**; then item 9; **8e**, **the new rear probe when
-it comes (bought 24/11, due by 29/11)**, its harness **only after 8q and
-only if the idle is unchanged**; **8u, 8v, 8w by
+point by the ECU on new rings (*the owner*, 25/11; the rings not to be
+had at VW, from GME). **Then 8e**, **the new rear probe when
+it comes (bought 24/11, due by 29/11)** **and both probes' sockets on
+new VW terminals with it** (*the owner*, 25/11); **8q, the timing belt
+at a garage, 7/12**; then item 9; **8u, 8v, 8w by
 opportunity** (*the owner*, 15/11), and **6r**, the owner's scope, best
 before 8q, **6t**, the second tank of BG 44K Platinum driven down and two captured drives at its end, before 8q,
 and **6s**, the cleaner drawn in (17/11). *What is done is `idle-log.md` and
@@ -191,7 +192,8 @@ of this plan, *the owner's decision* of 9/10):
    the two rings (the metal barrel, not the bolt), then on bare metal
    beside the bolt; each figure written down with which ring it is
    (the smaller connector's or the larger's). Photographed.
-3. New crimp rings, non-insulated, for the two brown wires; the old
+3. New crimp rings, non-insulated, for the two brown wires (not to be
+   had at VW 25/11, which sells only the whole ECU harness; from GME); the old
    rings and their crimps cut off back to bright copper, if the wires
    are long enough (if not, say so first); crimped with a
    crimping tool, not soldered; both on the flanged bolt to bare metal,
@@ -266,42 +268,40 @@ always** (a P0303 stored with no cut: its time is what the log gives).
   leak-down names 3's exhaust seat, the car is driven as it is and S1
   most likely closed as *acceptable, cause known*.
 
-**8e. The new rear probe when it comes; the harness only after 8q, and
-only if the idle is unchanged** (*the owner*, 11/11, 12/11 and 24/11;
-`refuted.md` D13). **A new rear probe, Bosch `0 258 010 032`, bought
+**8e. The new rear probe when it comes, and both probes' sockets on new
+terminals** (*the owner*, 11/11, 12/11, 24/11 and 25/11; `refuted.md`
+D13). **A new rear probe, Bosch `0 258 010 032`, bought
 24/11 from another shop, due by 29/11**; the old rear probe on the car
-until then. 032 and 055 read before it goes in (8f). It
+until then. **After 8ab's two drives of 032** where the dates allow. 032
+and 055 read before it goes in (8f). It
 is fitted as the first was: Bosch's paste on the thread only, nothing
 in the connector, the lead clear of the exhaust and not pressed into
-the harness box. If P0137 comes back with it, the harness — cold and
-the ignition off, the connector off and **the signal wire from the
-harness-side socket to the ECU's pin** read for continuity and for a
-leak to earth, the lead flexed by the exhaust. Nothing measured with the engine running, nobody under
-the car with it on. Then, at a cold engine, from below:
+the harness box. Then, cold, the ignition off, from below:
 
+- **Both sockets on the harness side photographed first**, each
+  cavity's wire colour readable.
+- **Every wire of both sockets on a new terminal** (VW repair wires
+  bought 25/11, a terminal crimped at each end, cut in the middle:
+  four make the eight): **one wire at a time** — the harness wire cut
+  back past any damage to bright copper (the rear's blue and the
+  front's brown, taped 10/11, past their cracks), joined to the half
+  repair wire with a butt crimp sleeve, heat-shrink over it; the
+  joints staggered a few centimetres so the bundle does not swell in
+  one place; the new terminal pushed into **the same cavity** until it
+  latches, then a gentle pull on the wire. The red wire beside the
+  blue looked at on the way.
+- **Both connectors pushed until each latches with a click**; the
+  bundle wrapped again as on 10/11 night. Photographs of the joints and
+  the sockets into the chat.
 - **The rear probe's lead, all the way to its connector**: where it
   runs, whether it touches or lies within a finger's width of the
   exhaust or the converter, any melted, shiny or hardened
-  insulation; the connector latched and its seal in place; then the
-  connector off, both halves looked into for green, water or a pushed-back
-  pin, and back on until it clicks. **Photographs** of the run and
-  of anything found; into the chat.
-- **The two damaged wires** (found 10/11 evening: the rear probe's
-  blue, its outer white, a heater lead; the front probe's brown, its
-  grey): dried and taped for now (*the owner*); for good, each cut
-  back to bright copper on both sides of the damage and joined with a
-  crimp or solder sleeve under heat-shrink (VW's wiring repair or any
-  sealed butt connector). The red wire beside the blue looked at the
-  same way. They are taped and the bundle wrapped (*the owner*, 10/11
-  night); the splice is what is left.
-- **The rear socket's broken-looking outer terminal**, on the rear
-  probe's signal (the cavity meeting the probe's black wire): the
-  terminal replaced —
-  a VW repair terminal crimped on, or the socket half with its
-  pigtail — before anything else is measured on that wire.
-- **The rear connector's bent pin** straightened so it seats like
-  the others; both connectors dried again, then **pushed
-  until each latches with a click** — the front one included.
+  insulation. **Photographs** of the run and of anything found.
+- **If P0137 comes back after**, cold and the ignition off: the
+  connector off and **the signal wire from the harness-side socket to
+  the ECU's pin** read for continuity and for a leak to earth, the
+  lead flexed by the exhaust. Nothing measured with the engine
+  running, nobody under the car with it on.
 - **Nothing sprayed or greased into either probe's connector**, ever
   again — no contact cleaner, no dielectric grease; **the probe's own
   lead and its connector never sealed airtight** (no heat-shrink with
@@ -312,10 +312,6 @@ the car with it on. Then, at a cold engine, from below:
   rubs on, and **every earth point met on the way** (an eyelet on
   the block, the gearbox or the body): tight, clean, no green. A
   photograph of the route and of each earth point.
-- **Both probes' sockets on the harness side** (the front one too):
-  each connector off, the harness half looked into for green, water,
-  a pin pushed back or loose in its cavity; photographed; back on
-  until it clicks.
 - **The new probes' tightness**: with the spanner they were fitted
   with, whether either turns further at the effort they were
   tightened with. Which, and about how far, into the chat; nothing
@@ -454,7 +450,7 @@ tidied by the owner when the probe was fitted, so its run is looked at
 first, the connector second; a lead and connector found sound leave the
 new probe itself. Cold, so it can be touched.
 
-**8e's new probe now, its harness after 8q** (*the owner*, 24/11): the
+**8e's new probe, and its harness with it** (*the owner*, 24/11 and 25/11): the
 warranty claim for the failed new rear probe was refused 24/11 (no
 company registration number for a professional fitting); the same part
 was then bought elsewhere at about half the price. The old rear probe
@@ -463,7 +459,21 @@ outside the overrun — and its sinking at long warm stops is the one
 sign against it (`refuted.md` D13). The rear probe has no direct hand
 in the idle's mixture, so fitting it before 8q does not blur the belt's
 before-and-after; 032 read before and after (8f) shows any shift its
-trim makes. The harness waits for what the belt shows.
+trim makes. **The sockets with it** (*the owner*, 25/11: VW sells
+repair wires with the terminal crimped on, so every terminal is renewed
+and the damaged lengths cut away rather than mended in place; first
+written to wait for the belt). What it costs (*reasoned*): the probe and
+the sockets change together, so a P0137 that stays away does not say
+which mended it; and the front's brown wire is its signal earth (H21),
+which can reach S19's idle cell — so a move of 032 after 8e is not
+8ab's. Hence after 8ab's two drives of 032, and 032 again after 8e.
+The belt's before-and-after is not blurred: 8q's reading is the
+idle's floor and swell on 3, which neither probe makes. **One wire at
+a time and the same cavity**: eight wires cut at once in a dark
+under-body is how a heater lead ends on a signal pin. A butt sleeve
+under heat-shrink on the harness side seals nothing the probe
+breathes through: its reference air comes along its own lead, on the
+other side of the connector.
 
 **S12's jerk by the clock**: the bus cannot show a jerk at a crawl, so only its time
 lets a capture or a VCDS log be read at that moment — the stroke, the
@@ -485,7 +495,8 @@ probes' returns share is H21's shared earth itself.
 
 **8e's sockets** (`open.md` H21): the swap changed the probes and
 their own plugs, not the harness side, so a fault there survives it —
-S19's idle cell perhaps. **At the end** (*the owner*, 11/11): the rear
+S19's idle cell perhaps; renewed terminals take the harness side's
+contacts out of it (25/11). **At the end** (*the owner*, 11/11): the rear
 probe has no direct hand in the mixture, no probe code was stored
 before 10/11, the broken-looking terminal may be how it was made; the
 probes are watched through 8f's 036 meanwhile. *The flexing with the
