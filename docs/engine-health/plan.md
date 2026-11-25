@@ -184,16 +184,24 @@ of this plan, *the owner's decision* of 9/10):
 **8ab. The earth point by the ECU on new rings** (*the owner*, 25/11).
 1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
    the fault memory read and saved.
-2. New crimp rings, non-insulated, for the two brown wires; the old
+2. **The voltage drop, before anything is undone**: the engine at a
+   warm idle, the everyday state plus the headlights and the rear
+   window heater; a multimeter on DC volts, the black lead on the
+   battery's minus post, the red lead in turn on the crimp of each of
+   the two rings (the metal barrel, not the bolt), then on bare metal
+   beside the bolt; each figure written down with which ring it is
+   (the smaller connector's or the larger's). Photographed.
+3. New crimp rings, non-insulated, for the two brown wires; the old
    rings and their crimps cut off back to bright copper, if the wires
    are long enough (if not, say so first); crimped with a
    crimping tool, not soldered; both on the flanged bolt to bare metal,
    the smaller connector's ring the lower, as now. Photographs of the
    new crimps.
-3. **A relearn drive**, VCDS only, no capture: the drive with `--groups 014 001 003`, a warm stop,
+4. **The same voltage drop again** on the new rings, the same way.
+5. **A relearn drive**, VCDS only, no capture: the drive with `--groups 014 001 003`, a warm stop,
    **032 and 055 for 20 s at its end**, the fault memory read and saved;
    the MFD's `IdleHealth` and `Misfires` at the stop.
-4. **032 for 20 s on the next two drives after it** (8f).
+6. **032 for 20 s on the next two drives after it** (8f).
 
 **8q. The timing belt renewed at a garage, 7/12** (*the owner's decision*,
 13/11; the date *the owner*, 16/11): the belt, its tensioner and idler, and the water pump.
@@ -725,6 +733,25 @@ left under the strands. New rings crimped on bright copper take the
 crimps out of the question. **The reading**: if the idle cell settles
 near −2 % over the drives after it, the earth was part of the cell and
 C27's crimp form is revived; back at −5 % or deeper, it was the reset.
+**The voltage drop** (*the owner*, 25/11) reads the crimps under
+current and settles faster than 032's drive-to-drive spread (the cell
+has moved three and four VCDS steps between drives before). The
+idle cell is additive, a fixed amount of fuel, so an electrical cause
+would be an offset on the meter's signal or an error in the injectors'
+dead time, not the probes (*reasoned*). Two forms (*reasoned*, the
+pin assignment of the two brown wires not known here): (a) a contact
+in the ECU's connector on the meter's ground, which carries the meter's
+own current and lifts its signal — the meter over-reads, the cell takes
+fuel away; the connectors were sprayed on 24/11, and C27's 0.2–0.5 Ω
+were measured without current; (b) a difference between the two brown
+wires, if one is the injectors' power earth and the other the
+electronics' reference: a worse reference earth makes the ECU read a
+lower supply, lengthen the dead-time compensation and add fuel, which
+the cell takes back; a worse power earth gives the opposite sign.
+**The reading**: tens of millivolts on each ring is a sound earth;
+hundreds on one ring and not the other is (b) and revives C27 at once;
+the bare metal beside the bolt against the rings tells the bolt's
+contact from the crimps'.
 Not soldered: a soldered ring stiffens the wire where it vibrates
 (*general*, as `idle-log.md` 24/11). The idle itself is not expected to
 move with it: 3's swells came as before on the brushed earth
