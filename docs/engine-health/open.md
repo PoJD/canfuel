@@ -158,12 +158,12 @@ reading** (S19; `refuted.md` C27, not revived on one drive, *agreed with
 the owner*); the idle calm at the stop's end (26–37), 0x606 the weakest
 −7.5 %, but 3's swells as before, from about 24 minutes. **Next**
 (`plan.md`): **8ab**, the earth point by the ECU re-crimped on new rings
-(*the owner*, 25/11; the rings from GME, VW has none), and 032 over the
+(*the owner*, 25/11; the rings bought at GME, VW had none), and 032 over the
 drives after it (8f); then **8e**, a new rear probe when it comes (*the
 owner*, 24/11: the warranty for the failed one refused, the same part
-bought elsewhere, due by 29/11) and **both probes' sockets on new VW
+bought elsewhere, expected 26/11) and **both probes' sockets on new VW
 terminals with it**, the damaged wires cut away (*the owner*, 25/11; the
-repair wires bought); then **8q**, the timing belt and water pump at a
+gold repair wires and the butt sleeves bought); then **8q**, the timing belt and water pump at a
 garage on **7/12**, the old marks read first, `54`'s stop the one it is
 set against; then **item 9** by what those show (the coolant's CO₂
 test, the stethoscope, the garage session with the intake off);

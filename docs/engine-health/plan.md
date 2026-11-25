@@ -19,9 +19,9 @@ The full previous version, before it was condensed on 20/10/2026:
 
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Now: 8ab**, the earth
-point by the ECU on new rings (*the owner*, 25/11; the rings not to be
-had at VW, from GME). **Then 8e**, **the new rear probe when
-it comes (bought 24/11, due by 29/11)** **and both probes' sockets on
+point by the ECU on new rings (*the owner*, 25/11; the rings bought at GME,
+VW had none). **Then 8e**, **the new rear probe when
+it comes (bought 24/11, expected 26/11)** **and both probes' sockets on
 new VW terminals with it** (*the owner*, 25/11); **8q, the timing belt
 at a garage, 7/12**; then item 9; **8u, 8v, 8w by
 opportunity** (*the owner*, 15/11), and **6r**, the owner's scope, best
@@ -193,7 +193,8 @@ of this plan, *the owner's decision* of 9/10):
    beside the bolt; each figure written down with which ring it is
    (the smaller connector's or the larger's). Photographed.
 3. New crimp rings, non-insulated, for the two brown wires (not to be
-   had at VW 25/11, which sells only the whole ECU harness; from GME); the old
+   had at VW 25/11, which sells only the whole ECU harness; bought at
+   GME the same day); the old
    rings and their crimps cut off back to bright copper, if the wires
    are long enough (if not, say so first); crimped with a
    crimping tool, not soldered; both on the flanged bolt to bare metal,
@@ -271,7 +272,8 @@ always** (a P0303 stored with no cut: its time is what the log gives).
 **8e. The new rear probe when it comes, and both probes' sockets on new
 terminals** (*the owner*, 11/11, 12/11, 24/11 and 25/11; `refuted.md`
 D13). **A new rear probe, Bosch `0 258 010 032`, bought
-24/11 from another shop, due by 29/11**; the old rear probe on the car
+24/11 from another shop, expected 26/11** (*the owner*, 25/11); the butt
+sleeves bought at GME 25/11; the old rear probe on the car
 until then. **After 8ab's two drives of 032** where the dates allow. 032
 and 055 read before it goes in (8f). It
 is fitted as the first was: Bosch's paste on the thread only, nothing
