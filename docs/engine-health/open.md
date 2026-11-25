@@ -76,6 +76,11 @@ cylinder*):
 - **Load helps 3**: a fifth to a quarter of a stroke short at idle,
   1–3 % at full load; no misfire at full throttle, and the car's
   acceleration needs the rated torque to within a tenth (*Off idle*).
+  **Set by load, not by the lambda control** (25/11, *Off idle*, F):
+  the step lies at b7 35–55 at every speed — a light pedal in town is
+  on the idle's side — and is the same with the loop closed and open.
+  **The common part off idle**: the stroke-to-stroke scatter the same
+  on all four, 1 and 2 too, largest at a light pedal (S12's hopping).
 - **Not the swell's cause**, measured: 3's air or fuel as a quantity,
   its spark, the supply voltage, the old probes, the purge's phases
   (`refuted.md` C25), a shared earth (C26); **nor its floor**: injector
@@ -108,8 +113,11 @@ cylinder*):
 - **The mixture**: S19 P0172 once and 032's
   split (idle cell −6 to −9 %, part-load +2 to +9 %;
   −1.6 / +3.9 on the first drive after the earth was brushed, 25/11).
-- **The drive**: S12 a hard jerk at a crawl and on moving off; S20 the
-  speed wandering at a constant pedal (better since the pedal, 27/10).
+- **The drive**: S12, one symptom since 25/11 (*the owner*): a hard
+  jerk at a crawl and on moving off, the speed wandering at a constant
+  pedal (S20 until then; better since the pedal, 27/10), and a hopping
+  at a light pedal (*owner*, 25/11) — off idle the stroke-to-stroke
+  scatter is largest there and the same on all four (*Off idle*, F).
 - **S22** a tick once per engine cycle, warm.
 - **Not pursued**: S16 a tick in neutral, cold, clutch up; S17 a
   resonance at about 2,200 rpm.
@@ -1711,7 +1719,26 @@ to a runner. **Its test is the first warm idle on the new gasket**
 whose fit table went with it); what is left is the throttle's own air
 or a leak ahead of the probe (H2).
 
-### S12. A sudden jerk at a crawl and on moving off
+### S12. The drive's unevenness — a jerk at a crawl and on moving off, the speed wandering at a held pedal, a hopping at a light pedal
+
+**One symptom since 25/11** (*the owner's decision*: "I think it is the
+same thing"): until then S12 was the jerk and **S20** the speed wandering
+at a constant pedal; S20's text is below, under *The speed wandering at
+a held pedal*, and its column in the fit tables went into S12's, each
+hypothesis keeping **the stronger of its two marks** (✔ over ~ over ✘
+over —; H2, H8 and H11 took S20's, H4 and H12 kept S12's ✔). **The
+ranking re-read the same day: unchanged** (no hypothesis gained or lost
+a mark it did not already hold in one of the two columns).
+**The hopping at a light pedal** (*owner*, 25/11): a small hopping of
+the car at a light, steady pedal, which reminds him of how a bad lambda
+probe drives, though milder; he holds the trouble to be wherever the
+lambda control runs, and not at full throttle, where the engine goes on
+its map and runs well. **Read against the captures** (*Naming the
+cylinder*, *Off idle*, F): the scatter from stroke to stroke is largest
+at a light pedal and **the same on all four cylinders** — the common
+part, not cylinder 3; whether it moves with the probe's swing is the
+test there.
+
 
 *Reopened 10/11 night at the owner's request*, in a new form; its
 history, closed twice as play (4/10) and as a sticking pedal (27/10), is
@@ -1795,6 +1822,91 @@ scripts, not kept*):
   upload keeps 0x4A0, so a cut is read wheel by wheel.
 - **The traction cut at 3→4 is a note to S12, not a symptom of its
   own** (*the owner's decision*, 16/11).
+
+**The speed wandering at a held pedal** (S20 until 25/11)
+
+*Added 26/10 at the owner's request, as S20.* **During the first EPR flush**
+(26/10, `idle-log.md`), standing in neutral, the pedal held by a stick of wood:
+the speed swung a little at first, held about 1250, then rose slowly to
+about 1300 by itself, and **"it just fluctuates"** (*owner*). **His
+9 s video** of it, read from its sound (the firing rate in the clicks
+above 3 kHz, 1 s windows): **1266–1294 rpm for 4 s, then a step down to
+1215–1241** for the rest, ±10–15 rpm within each. **Over the flush**
+(*owner*, off the display): mostly swinging **1250–1300**, now and then
+settling at about **1230**; **the stick does not move at all**. **A 3-minute
+recording** at about minute 22–25 of the flush, read the same way (1 s
+windows): median **1260**, mostly 1240–1290, swinging 10–20 rpm over
+seconds; **once a lower, calmer stretch of about 28 s at 1195–1222**,
+entered by a drop of about 45 rpm within 2 s and left by a rise, and
+one shorter dip to about 1205. **Two states, then: lower and calm,
+higher and swinging** — the video's 1266–1294 → 1215–1241 the same
+pattern. What switches between them is not known; an on/off load such as
+the radiator fan, or the purge valve's cycles (H16), would give a step at
+a held plate (*reasoned*); the sound shows no fan switching clearly.
+**The flush's part is weak since** (*owner*, 26/10, in the second
+flush): setting the stick so that it did not move turned out hard, and
+the swing may have been the stick after all; set again, it sits at
+1250–1300. **And the ECU was in it** (*reasoned*): **P0507** set in the
+first flush and **055's learnt value went to −2.10 g/s**, so the ECU took
+the held engine for an idle running high and worked its idle control
+against it; with the plate near its stop, a controller pushing against a
+held pedal could itself give a speed that swings and steps. **So this part
+rests on the road observation**, not on the flush.
+**Also on the road**
+(*owner*): hard to hold the engine speed steady, **noticed since the job
+of 1–2/10**, which fitted **the new throttle** (Pierburg `7.03703.13.0`)
+and **took up the throttle cable's slack** (`idle-log.md`, *1–2/10 — the valve
+cover, throttle and breather job*); the same job renewed the cover gasket, the
+plenum gasket and the breather.
+
+**Not S1.** S1 is dips at idle with the idle governor in charge; this is
+above idle with the pedal held. **The pedal works the throttle by a
+cable** (*owner*, 26/10, off the car; *this said the pedal was a sensor
+and the ECU moved the throttle — wrong*), so with the pedal held the plate
+is held, and what wanders is the engine's torque at that plate, or the
+plate itself through the cable and the idle stop. ⚠ **Soft**: it was
+seen with EPR, a solvent, in the oil. The stick is not it (*owner*: it
+does not move).
+
+**The captures show no change with the new throttle at part throttle**
+(26/10). Every stretch of at least 2 s with 0x280 b5 not moving by one
+count, above 15 km/h, in one gear, oil above 80 °C; the rpm's scatter
+about its straight-line trend in each: **1500–2500 rpm, part throttle,
+5.3 rpm on the old throttle (`19`, `24`, 84 stretches) against 4.1 on
+the new (`26`–`40`, 137)**; 2500–3500 4.3 against 4.2. Only full
+throttle above 3500 rpm reads higher on the new, 9.0 against 5.9 — pulls,
+far more and harder after 2/10, not a held speed. ⚠ What this cannot
+see: a wander slower than a few seconds, which on the road the gradient
+hides, and a standing hold above idle, which no capture since 2/10
+holds. *An ad-hoc script, not kept.* A capture tells them apart:
+0x280 b5 is the throttle, so stretches where it holds still show whether
+the speed wanders anyway.
+The slow rise to 1300 reads as the oil thinned by EPR and still warming,
+less friction at the same throttle (*reasoned*); the swings and the step
+do not.
+
+**Since 27/10 the cable is slackened and the pedal greased** (the jerk's earlier form closed
+on the pedal, `refuted.md` D6): a pedal that stuck in small jumps near the
+start of its travel holds a plate unsteadily too, so this part may have
+been the pedal. **It outlived them, a little better** (*owner*, 28/10): the
+pedal was part of it at most.
+
+**The first capture since the pedal, 3/11** (`42`, the original map; *the
+owner's question*). **With the plate held** (0x280 b5 within ±2 counts
+for 6 s and more, part throttle, above 40 km/h): the speed's scatter
+about its trend **0.14 km/h**, engine speed 0.19 %, against 0.16 / 0.31
+on the old throttle (`19`) and 0.12–0.17 / 0.23–0.26 on the new
+(`31`, `37`, `40`) — **a held plate holds the car, on every throttle**.
+**How still the plate is held** at a cruise (5 s windows, 50–130 km/h):
+the plate's spread **2.8 counts** on `42`, against **3.2–3.5 on the old
+throttle** (`19`, `24`) and **5.5–8.1 on most drives with the new one
+before the pedal was greased** (`30`, `31`, `32`, `37`, `40`; `39` 3.5,
+`26` 1.2 with few windows). **Read** (*reasoned*): this part lives in the
+pedal, the cable and the plate, not in the engine — the engine holds a
+held plate steady — and since 27/10 the plate is held as still as on
+the old throttle, which fits "a little better". ⚠ `42` is mostly
+motorway, where a foot holds still more easily than in town; one drive.
+The map does not reach this range (H14).
 
 ### S14. Bangs from the exhaust on a downshift without a blip
 
@@ -1999,91 +2111,6 @@ plug, the supply — in `git show 5741dfa:docs/engine-health/open.md`, this head
   idle is near zero. A front probe weighting a rich 3 (CARB's case)
   fits the sign, a point or two in size.
 
-### S20. Engine speed wanders at a constant pedal
-
-*Added 26/10 at the owner's request.* **During the first EPR flush**
-(26/10, `idle-log.md`), standing in neutral, the pedal held by a stick of wood:
-the speed swung a little at first, held about 1250, then rose slowly to
-about 1300 by itself, and **"it just fluctuates"** (*owner*). **His
-9 s video** of it, read from its sound (the firing rate in the clicks
-above 3 kHz, 1 s windows): **1266–1294 rpm for 4 s, then a step down to
-1215–1241** for the rest, ±10–15 rpm within each. **Over the flush**
-(*owner*, off the display): mostly swinging **1250–1300**, now and then
-settling at about **1230**; **the stick does not move at all**. **A 3-minute
-recording** at about minute 22–25 of the flush, read the same way (1 s
-windows): median **1260**, mostly 1240–1290, swinging 10–20 rpm over
-seconds; **once a lower, calmer stretch of about 28 s at 1195–1222**,
-entered by a drop of about 45 rpm within 2 s and left by a rise, and
-one shorter dip to about 1205. **Two states, then: lower and calm,
-higher and swinging** — the video's 1266–1294 → 1215–1241 the same
-pattern. What switches between them is not known; an on/off load such as
-the radiator fan, or the purge valve's cycles (H16), would give a step at
-a held plate (*reasoned*); the sound shows no fan switching clearly.
-**The flush's part is weak since** (*owner*, 26/10, in the second
-flush): setting the stick so that it did not move turned out hard, and
-the swing may have been the stick after all; set again, it sits at
-1250–1300. **And the ECU was in it** (*reasoned*): **P0507** set in the
-first flush and **055's learnt value went to −2.10 g/s**, so the ECU took
-the held engine for an idle running high and worked its idle control
-against it; with the plate near its stop, a controller pushing against a
-held pedal could itself give a speed that swings and steps. **So S20
-rests on the road observation**, not on the flush.
-**Also on the road**
-(*owner*): hard to hold the engine speed steady, **noticed since the job
-of 1–2/10**, which fitted **the new throttle** (Pierburg `7.03703.13.0`)
-and **took up the throttle cable's slack** (`idle-log.md`, *1–2/10 — the valve
-cover, throttle and breather job*); the same job renewed the cover gasket, the
-plenum gasket and the breather.
-
-**Not S1.** S1 is dips at idle with the idle governor in charge; this is
-above idle with the pedal held. **The pedal works the throttle by a
-cable** (*owner*, 26/10, off the car; *this said the pedal was a sensor
-and the ECU moved the throttle — wrong*), so with the pedal held the plate
-is held, and what wanders is the engine's torque at that plate, or the
-plate itself through the cable and the idle stop. ⚠ **Soft**: it was
-seen with EPR, a solvent, in the oil. The stick is not it (*owner*: it
-does not move).
-
-**The captures show no change with the new throttle at part throttle**
-(26/10). Every stretch of at least 2 s with 0x280 b5 not moving by one
-count, above 15 km/h, in one gear, oil above 80 °C; the rpm's scatter
-about its straight-line trend in each: **1500–2500 rpm, part throttle,
-5.3 rpm on the old throttle (`19`, `24`, 84 stretches) against 4.1 on
-the new (`26`–`40`, 137)**; 2500–3500 4.3 against 4.2. Only full
-throttle above 3500 rpm reads higher on the new, 9.0 against 5.9 — pulls,
-far more and harder after 2/10, not a held speed. ⚠ What this cannot
-see: a wander slower than a few seconds, which on the road the gradient
-hides, and a standing hold above idle, which no capture since 2/10
-holds. *An ad-hoc script, not kept.* A capture tells them apart:
-0x280 b5 is the throttle, so stretches where it holds still show whether
-the speed wanders anyway.
-The slow rise to 1300 reads as the oil thinned by EPR and still warming,
-less friction at the same throttle (*reasoned*); the swings and the step
-do not.
-
-**Since 27/10 the cable is slackened and the pedal greased** (S12 closed
-on the pedal, `refuted.md` D6): a pedal that stuck in small jumps near the
-start of its travel holds a plate unsteadily too, so S20 may have been
-the pedal. **It outlived them, a little better** (*owner*, 28/10): the
-pedal was part of it at most.
-
-**The first capture since the pedal, 3/11** (`42`, the original map; *the
-owner's question*). **With the plate held** (0x280 b5 within ±2 counts
-for 6 s and more, part throttle, above 40 km/h): the speed's scatter
-about its trend **0.14 km/h**, engine speed 0.19 %, against 0.16 / 0.31
-on the old throttle (`19`) and 0.12–0.17 / 0.23–0.26 on the new
-(`31`, `37`, `40`) — **a held plate holds the car, on every throttle**.
-**How still the plate is held** at a cruise (5 s windows, 50–130 km/h):
-the plate's spread **2.8 counts** on `42`, against **3.2–3.5 on the old
-throttle** (`19`, `24`) and **5.5–8.1 on most drives with the new one
-before the pedal was greased** (`30`, `31`, `32`, `37`, `40`; `39` 3.5,
-`26` 1.2 with few windows). **Read** (*reasoned*): S20 lives in the
-pedal, the cable and the plate, not in the engine — the engine holds a
-held plate steady — and since 27/10 the plate is held as still as on
-the old throttle, which fits "a little better". ⚠ `42` is mostly
-motorway, where a foot holds still more easily than in town; one drive.
-The map does not reach this range (H14).
-
 ### S22. A tick once per engine cycle — reopened 11/11 night
 
 *Added 9/11 at the owner's request, closed that evening as the hydrogen
@@ -2218,8 +2245,9 @@ Each lists what it explains, what speaks against it, and the test that
 settles it. ✔ fits, ~ fits weakly, ✘ does not fit, — says nothing.
 
 **The columns are the open symptoms that bear on the engine**: S1, S2, S3,
-S4, S5, S11, **S12** (reopened 10/11 night, the jerk at a crawl), S14,
-S19, S20 (added 26/10); S21 (added 6/11, its column dropped when it
+S4, S5, S11, **S12** (reopened 10/11 night, the jerk at a crawl; since
+25/11 with S20, added 26/10, merged into it, each row keeping the
+stronger of its two marks), S14, S19; S21 (added 6/11, its column dropped when it
 closed 15/11, `refuted.md` D14); **S22** (added 9/11, closed
 the same evening, `refuted.md` D11, **reopened 11/11 night** at the
 owner's decision, its column back: ✔ for H1's lifter, ~ where a part
@@ -2255,9 +2283,9 @@ and temperature (a fifth more cold): a constant answering to the
 charge alone, as an engine's own scatter does. A fixed fault on all
 four would read the same; no healthy AQY says which.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ✘ | — | ~ | — | ~ | ✘ | ✘ | ~ | ~ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ✘ | — | ~ | — | ~ | ✘ | ✘ | ~ |
 
 - **Against:** 014 reads 12–120 against VW's 0–5; the old converter burned
   through; the misfires and the steady deficit are 3's (S1, *Every
@@ -2403,9 +2431,9 @@ or debris holds its valve a hair open, which costs compression and misses
 at a small charge and is covered by load — the case this hypothesis is
 about. The valve is closed by its spring; the lifter only removes the gap.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ✔ | ~ | ~ | — | ~ | ~ | — | — | ✔ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ✔ | ~ | ~ | — | ~ | ~ | — | ✔ |
 
 - **9/11, after the clean** (S1, *The clean of 9/11*; S22): 3's swell
   gone at stop 7 and its floor kept (−8 to −9 %), the swell back a day
@@ -2480,6 +2508,12 @@ about. The valve is closed by its spring; the lifter only removes the gap.
   seat that lets burnt gas back into 3 at the idle's vacuum, or a flake
   that holds it off; a seat that loses compression is not what the
   load shows, nor what 12 bar on all four showed.
+- **For, 25/11, load in finer steps** (*Naming the cylinder*, *Off
+  idle*, F): 3's deficit follows the load at every speed — from b7 35
+  to 55 it goes from the idle's fifth to a few per cent — and **not the
+  lambda control**: the same with the loop closed and open at full
+  load, and not with the correction's swing. A dilution set by the
+  manifold's vacuum is that shape (*reasoned*).
 - **Against:** compression **13 bar in 2018 and 12 bar even on all four in
   2026** (`vehicle-history.md`) — no cylinder losing; the vacuum gauge
   steady cold and warm, no flick (H3); no ticking before 18/10, and **none on any
@@ -2521,9 +2555,9 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in.
   air there reaches neither a cylinder nor the front probe, so the fit
   below is the first zone's.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ✔ | ~ | ✘ | ✘ | ✔ | — | ✔ | ✘ | ~ | ~ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ✔ | ~ | ✘ | ✘ | ✔ | ~ | ✔ | ✘ | ~ |
 
 - **For:** the puff (S2), the hiss (S11), air for S14's bangs; a 26-year-old
   manifold that has lived through years of misfires; **for the second zone,
@@ -2622,9 +2656,9 @@ plus to the ECU's supply pin and from the battery's minus to the ECU's
 earth, then to the fuse box's input — tenths of a volt on either side
 names the side.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | ~ | ~ | — | ✔ | ~ | ✘ | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | ~ | ~ | — | ✔ | ~ | ✘ | — |
 
 - **9/11** (S1, *The clean of 9/11*): 3's floor kept after the clean,
   its swell gone for a day: for 3's own circuit in the floor (its supply side and coil since measured sound, 6m of 17/11; the control wire is 6n's); with
@@ -2765,9 +2799,9 @@ The ECU books anything at cylinder 4's crank angle to cylinder 4: G66, its
 torque or connector; a loose ancillary part buzzing in a speed band; **an arc
 at lead 4's plug end** (`refuted.md` C24). Injector 4's click is settled against (B7).
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| — | — | — | — | ✔ | ✔ | — | — | — | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| — | — | — | — | ✔ | ✔ | — | — | — | — | — |
 
 **Tests** — `plan.md` 8w since 15/11 (*the owner*; not scheduled from
 9/10): G66's torque and connector; a look for a loose bracket at ~3000
@@ -2807,9 +2841,9 @@ neither the loop's regulation nor the injection time, so it is not
 3's fuel. The rail's pressure: the common part is the same after high
 revs as after none and the same on every day, within 5 %.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | — | — | — | ~ | ~ | ✔ | ~ | ~ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | — | — | — | ~ | ~ | ✔ | ~ |
 
 - **3 the one cylinder throughout, P0303 four times** (S1, *Every
   stroke named*; S3) — one injector in reach by the cylinder; 25/10
@@ -2937,15 +2971,15 @@ cleared the injector form (`refuted.md` C29).
 
 ### H8. Idle air control and the throttle body
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | — | ~ | — | — | — | ~ | — | — | ✔ | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | — | ~ | — | — | — | ✔ | — | — | — |
 
 **Against, the swell** (15/11, S1, *8h's plain idle and its loads*):
 the idle regulator (055 field 2) holds through cylinder 3's swells and
 falls on 18 warm stops, r 0.02 within a stop.
 
-**For: S20, by its timing** (*owner*, 26/10): the speed has been hard
+**For: S12's wandering speed (S20 until 25/11), by its timing** (*owner*, 26/10): the speed has been hard
 to hold at a steady pedal since the job of 1–2/10, which fitted this
 throttle and took up its cable's slack. Not measured; a capture with the
 throttle held still would show whether the plate or the engine moves.
@@ -2974,7 +3008,7 @@ charge, and a smaller charge is nearer the edge S1 reads the idle at**
 aside (S1, *A second reading*), calms it (*reasoned*). **For**: on 26/10
 `IdleHealth` off the display fell as the value relearnt from −2.78 to
 −0.90 (`idle-log.md`); 014's counting was read then as following the
-value (`refuted.md` C19, refuted 2/11); S20 dates from this throttle (*owner*). **Against**: in the same
+value (`refuted.md` C19, refuted 2/11); S12's wandering speed dates from this throttle (*owner*). **Against**: in the same
 log **014 counted about as often at −1.0 as at −2.8** (no trend,
 `idle-log.md`); the display readings were single figures across changing
 temperature, loads and time, with no `IdleHealth` in the VCDS log to set
@@ -3048,9 +3082,9 @@ that it is not argued again.* *Condensed 17/11*; every reading, the five
 marks, the relearn drive minute by minute and the four calm minutes of
 10/11 are in `git show 5e1ddf2:docs/engine-health/open.md`, this heading.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | ~ | — | — | — | — | ~ | ~ | ~ | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | ~ | — | — | — | ~ | ~ | ~ | — |
 
 **What is left: the idle-only form** (*the owner's suspicion*, 9/11;
 *reasoned*): the front probe reads richer than the mixture only at
@@ -3100,9 +3134,9 @@ at VCDS sessions (`plan.md` 8f). Ranked A5.
 
 ### H12. Driveline play read as misfires
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ✘ | ~ | ~ | ~ | — | ✔ | ✘ | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | ✘ | ~ | ~ | ~ | — | ✔ | ✘ | — | — |
 
 **Against:** the MAF swap halved the dips; play repeats every 360°, the pairs
 1+4 and 2+3, while the dips sit on 3 and 4, 180° apart; the puffs come with
@@ -3165,9 +3199,9 @@ the ring soak of Kia/Hyundai's TSB 23-EM-007H.
 3000 rpm for at least nine years (*owner*). Gentle use builds deposits where
 hard use burns them off (*general*).
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ~ | ✔ | ~ | — | — | ~ | ~ | ~ | — | ~ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ~ | ✔ | ~ | — | — | ~ | ~ | ~ | ~ |
 
 - **11/11, the second research**: the clean's relief lasted a day
   (`47`), and **no source gives seat deposit forming again in a day** —
@@ -3260,6 +3294,11 @@ hard use burns them off (*general*).
   deposit that soaks and gives back fuel would (*reasoned*): for. *It
   read "warm 3 and 4 give the least", and "cold both spread over all
   four", until 12/11.*
+- **25/11, load in finer steps** (*Naming the cylinder*, *Off idle*,
+  F): 3's deficit follows the load, not the speed nor the lambda
+  control; a crust that dilutes or wets the small charge fits it as
+  H1's dilution does, and 1, 2 and 4 show no such step — **no change
+  to its marks**.
 - **Against:** a detergent premium fuel since 2017; compression even;
   **the strong first 44K tank changed nothing** (23–24/10, *owner*): about
   450 km on it, hours above 4000 rpm, and `IdleHealth` at the warm stops
@@ -3278,9 +3317,9 @@ EPR flushes and fresh oil, done 26/10).
 original map (`refuted.md` C23, *agreed with the owner*). What is left is
 what the remap did change: the corner of highest load.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ✘ | — | ✘ | ✘ | ~ | ✘ | — | ✘ | ✘ | ~ | ✘ | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ✘ | — | ✘ | ✘ | ~ | ✘ | — | ✘ | ✘ | ~ | — |
 
 **What the remap changed** (the two whole flashes from the tuner, 3/11;
 compared byte for byte, the files not kept here; the tables with every
@@ -3435,9 +3474,9 @@ oil run down the valve guide, and the intake's vacuum, highest at idle,
 draws it into the cylinder, where it costs combustion; under load the
 vacuum falls, the flow stops, and what collected burns away.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ✘ | — | ~ | — | — | — | — | — | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ✘ | — | ~ | — | — | — | — | — | — | — |
 
 - **For: the shape of 26/10**, worse after idling and gentle driving,
   calmer after work, the calm lasting — what oil collecting at a small
@@ -3528,9 +3567,9 @@ gasket or a hairline in the head next to 3 enters where the cylinder's
 pressure is lowest, at idle vacuum, and steams the charge — a misfire
 at idle on that cylinder, eased by load, and a plug kept clean.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | — | — | — | — | ~ | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | — | — | — | — | ~ | — | — |
 
 - **For:** one cylinder at idle; load helps (a higher manifold pressure
   draws less in, *reasoned*); **plug 3 the cleanest** of the 10/10 set
@@ -3574,9 +3613,9 @@ right for a while). Both probes were replaced on 10/11 with their own
 leads and plugs; **the sockets on the harness side, the wires to the
 ECU and their earths are the car's** (`vehicle-history.md`).
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S20 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | — | — | — | — | — | ~ | — | ~ | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | — | — | — | — | — | ~ | — | ~ | — |
 
 **S23 closed 12/11** (`refuted.md` D13; *the owner's decision*): the
 new rear probe's own fault, the old one healthy on the same harness on
@@ -3741,6 +3780,35 @@ earth wire, from fifth to eighth in list A** (*agreed with the owner*,
 15/11 evening; the place Claude's): what is left reaches the common
 part only through a mixture, which the front probe's own trace has
 never shown thrown about.
+
+**25/11, the lambda control against the cylinders** (*Naming the
+cylinder*, *Off idle*, F; *the owner's view*: the trouble is wherever
+the lambda control runs). **Against, for cylinder 3**: its deficit is
+the same with the loop closed and open at full load and does not follow
+the correction's swing. **What is left is the common part**: off idle
+the stroke-to-stroke scatter is the same on all four, 1 and 2 too, and
+largest at a light pedal, where the loop runs and the owner feels the
+hopping (S12) — a mixture thrown about would do that; so would a light
+charge's ordinary burn and the driveline's play. Not settled; the test
+is in F.
+
+**A note, not a finding** (*the owner*, 25/11, before opening the loom
+at 8e): VW's repair wires (000 979 021 EA) are as thin as the probes'
+own leads, **thinner than the harness wires they will be joined to**,
+and **a wrapped tape at the end of the loom** — he half suspects the
+harness was repaired once before, thicker wire on thinner. To be seen
+when it is opened. *Reasoned* (general electrical knowledge, no
+datasheet of these terminals here): the thicker wire is not itself a
+resistance — its copper is a few tens of mΩ a metre, and the probe's
+signal feeds an input of high impedance, where even 100 Ω in series is
+nothing — but **a wire too thick for its terminal or seal** is: a crimp
+that does not close or has lost strands, a seal that does not close
+round it, damp in, the copper oxidised — a contact that comes and goes
+with heat and vibration, a leak on the signal (read lean) or a drop in
+the heater's feed (a cooler, slower probe at idle). Either moves the
+mixture of all four alike, the common part, not 3's deficit. **What to
+look at when it is opened**: the crimps (tight, every strand in), green
+under the insulation, the seals.
 
 **Tests:** the sockets of both probes looked into from the harness side
 at the next cold engine, with the rear lead's run (`plan.md` 8e); the
@@ -4048,6 +4116,86 @@ drives, `19`–`50`; warm (oil 80 °C and over).*
   all four alike, which a comparison between cylinders cannot see.
   D alone touches the belt, weakly against (no tilt of the full-load
   torque from low speed to high; the row A2, A1 until 17/11).
+
+- **F. Load in finer steps, each cylinder by itself, and the lambda
+  control** (*the owner's questions*, 25/11: is the trouble wherever the
+  lambda control runs — the engine runs well at full throttle, on its
+  map — does part load sit nearer full load or the idle, and does the
+  common part show on 1 and 2, the healthier pair; `drivescan.py
+  --cylinders` on `19`–`54`, warm, some 110,000 windows; the lambda part
+  on the 001 logs beside `35`, `39` and `40`, about 1,800 windows,
+  *an ad-hoc script, not kept*).
+  - **3's deficit is set by load, hardly by speed.** 3 less 2, per cent
+    of a stroke (default scale, warm, moving):
+
+    | b7 | to 1,150 rpm | 1,150–1,600 | 1,600–2,100 | 2,100–2,600 | 2,600–3,300 |
+    |---|---|---|---|---|---|
+    | 10–27 | −24 to −31 | −26 to −30 | −11 to −12 | −14 to −20 | −19 |
+    | 27–35 | −20 | −15 | −9 | −17 | −15 |
+    | 35–45 | −17 | −9 | −6 | −9 | −7 |
+    | 45–55 | −12 | −6 | −3 | −6 | −4 |
+    | 55–70 | −7 | −3 | −2 | −4 | −1.5 |
+    | 70–140 | −5 | −2 to −3 | −2 | −1.3 to −2.3 | −1 |
+    | 140 and over | | | −2.6 | −1.7 | −1.6 |
+
+    (standing −22; errors ±0.1–0.5 from b7 45, ±1–3 below.) **The step
+    from the idle's pattern to the loaded one lies between b7 35 and 55
+    at every speed.** Where the car is driven (warm, 1,150–3,300 rpm,
+    b7's quartiles): 26/47/66 at 3–30 km/h, 36/54/76 at 30–60, 50/68/96
+    at 60–90, 55/72/89 above — a third of the time at 30–60 km/h under
+    b7 45. **A light pedal in town is on the idle's side, a steady
+    cruise out of town on full load's.**
+  - **The lambda control does not set it.** 001's correction changes
+    from one sample to the next in 70–90 % of the samples at b7 20–180
+    and stands still in 71 % at b7 180 and over — the closed loop and,
+    above it, the map's enrichment (*reasoned*: where M5.9.2 opens the
+    loop is in no source here). At the same speed 3 less 2 reads −1.6 to
+    −3.4 % at b7 140–180 and −1.5 to −2.2 % at 180 and over (2,100–5,200
+    rpm, every warm capture) — **the same with the control on and off** —
+    while within the control's range it goes from about −25 to −2 %.
+    Nor does 3 follow the correction's swing: at part load (b7 35–115)
+    −1 to −4 ± 1–2 % in each bin of the correction from under −2.5 %
+    to over +2.5 %, at a standing idle −22 to −24 ± 0.6–0.8 (the
+    leanest bin, 28 windows, −16.5 ± 2.4). **So "wherever the lambda
+    runs" coincides with where 3 is weak because the control runs at
+    the low loads; what 3 follows is the load, the manifold's vacuum**
+    (*reasoned*).
+  - **Each cylinder's level** (below 2,400 rpm, against the four's mean;
+    3's deficit lifts the other three by a third of it): **only 3 moves
+    with load** — −13 standing, −17 to −20 at b7 10–27 up to 1,600 rpm,
+    −2 to −3 at b7 90 and over. **1 and 2 stay within about 3 % of each
+    other at every load, with no step at b7 35–55** (2 the stronger
+    standing, by 3.4; 1 by 2–4 from b7 55 at 1,150–2,400 rpm, within
+    what the wheel's remainder allows, not leaned on). 4 −1 to −3 at
+    light loads up to 1,150 rpm and at 2,100–2,400, level from b7 55
+    (A's 1 less 4 above 2,000 rpm stands).
+  - **The stroke-to-stroke scatter is the four's alike.** Each
+    cylinder's steps, the overrun's scatter at the same speed taken out,
+    per cent of a stroke — at every band to 3,300 rpm the four within a
+    point or two: at 1,600–2,100 rpm **60–63 at b7 10–27, 29–30 at
+    27–35, 27–28 at 35–45, 18 at 45–55, 10–11 at 55–70, 7 at 90–140**;
+    the same fall at every speed. **Standing it is 1 9, 2 7, 4 9, 3 12**
+    — the only place 3 scatters more, with most of the weak strokes (a
+    quarter under less a quarter over: 3 +17 per 1,000, 4 +12, 1 +8,
+    2 +5). In rpm the scatter moves far less (about 7 at a light load
+    to 2–3 at full, beside the overrun's 2–2.3): an unevenness about one
+    size in rpm, large against a light stroke.
+  - **What it bears on** (*reasoned*; **no fit-table mark changes, the
+    ranking as it was**): **3's part** is out of the lambda control's
+    reach and fades with vacuum, as A–E read it — for the forms set by
+    the charge (H1's dilution, H13's crust, H18, H4's injector branch).
+    **The common part off idle is read here for the first time, and 1
+    and 2 carry as much of it as 3 and 4** — so it belongs to all four
+    (list A), largest at the light pedal where the owner feels the
+    hopping (S12). A mixture thrown about by the probes or their wiring
+    (H11, H21) would do that; so would an engine's ordinarily slower,
+    more diluted burn at a light charge and the driveline's play at a
+    small torque (H0, H12). No healthy AQY's figure is here to set it
+    against. **What would split them**: a captured drive at a light
+    pedal where the hopping is felt, with VCDS on 001 or 033 alone at
+    its fastest — the hopping in step with the probe's swing is the
+    mixture; and **this table read again after 8e** (the probes' sockets
+    on new terminals), the before being `19`–`54`.
 
 ### What the dip shares said, and what stands
 
@@ -4518,7 +4666,7 @@ list C for 3's floor apart from its swell — the floor reads as A's in
 |---|---|---|---|
 | A1 | **H0** normal for this engine | A common part that no repair, day or drive has moved, and that answers only to the charge, is what an engine's own scatter looks like; a fixed fault reads the same, and no healthy AQY says which. Against: 014 far above VW's 0–5 — but that is 3's, list B. **17/11, the fourth research**: still no healthy M5.9.2 log found; it gains only as the belt loses | 014 on a healthy AQY, VCDS only (a capture is not obtainable) |
 | A2 | **the timing belt a tooth out** | The common part is a constant — the same within 5 % at every warm idle since 24/9, answering only to a load, the gas and temperature — which a fixed fault on all four gives and a source that varies by the day does not (S1, *The swell's shape*); the cam's timing sets the burnt gas kept at idle. **The marks, 8i (13/11)**: the cam's OT mark set; the crank pulley's only notch 30–60° of crank behind the groove on the block by eye and borescope, **2–3 cm along the rim, more likely more, not over 5 cm** by the owner's fingers the same evening (14–41°, if the pulley is 14–16 cm across — the diameter a guess); the cam advanced if both are the true marks (the direction the owner's, read off the part), and if they are not, the direction is open too (*the owner*, 14/11). **VW's references, read 17/11** (*What the forums say*, searched again 17/11): the damper's mark against the bottom belt guard's, the flywheel's in the gearbox window, **none on the block** — so the groove 8i read against is not one of VW's, unless it was the guard's; **a pulley bolted on turned** (*the owner*) is excluded by design, the damper and crank sprocket fitting one way only, but not the damper's outer ring slipped on its rubber. **A tooth is 13.85° of crank**: 30–60° is 2.2–4.3 teeth and 14–41° 1.0–3.0, the two meeting only at two. **Against more than about a tooth**: settled full throttle takes 496 mg of air a stroke at 2,400 rpm, 520 at 3,600–4,400, 485 at 5,200, 452 at 5,600 (85–90 g/s at the top, every 003 log; 84–90 g/s at 5,000–5,500 in sixteen logs from 9/2026 to 9/11), and the acceleration needs 0.94 of b7 with no tilt by gear or band (83 pulls; `drivescan.py --pulls`) — two teeth of advance or more would take the top of the filling away (*general*); a tooth or less is not excluded with no healthy AQY to set it against. The ECU compares the phases: VW's fault table for the family lists 16724 / P0340 and 17748 / P1340, the cam and crank senders' incorrect assignment, beside 16725 / P0341 for G40's signal out of place — none ever stored here; no tolerance is published, so one tooth may pass where two would not (*reasoned*). Belt from 10/2017. Kept first by the owner from 13/11 until **17/11 evening, when he agreed H0 above it** (the fourth research: the marks read against no VW reference) | **8q**: the mechanic's count of teeth before the old belt comes off, against VW's references (the flywheel's mark or the piston at plug 1), and the common part by capture before (`54`'s warm stop, 17/11, after the gasket: 2.96 rpm rms) and after the new belt, 7/12 (`plan.md` 8q) — and 3's floor and swells beside it, a cylinder at its edge perhaps answering to a tooth more than the rest (*the owner's question*, 17/11) |
-| A3 | **H8** throttle and idle control | The air and the idle regulation act on all four alike, and S20 dates from this throttle (*owner*). Against: 055's two fields sum to the same correction at every warm idle (27/10), so a reset or the A/C gives no more air; the advance's scatter does not go with the common part (003, 12/11); 014 does not follow 055's learnt value (`refuted.md` C19); the regulator holds through 3's swells on 18 stops (15/11) | no test left for the idle; S20 keeps it |
+| A3 | **H8** throttle and idle control | The air and the idle regulation act on all four alike, and S12's wandering speed (S20 until 25/11) dates from this throttle (*owner*). Against: 055's two fields sum to the same correction at every warm idle (27/10), so a reset or the A/C gives no more air; the advance's scatter does not go with the common part (003, 12/11); 014 does not follow 055's learnt value (`refuted.md` C19); the regulator holds through 3's swells on 18 stops (15/11) | no test left for the idle; S12's wandering speed keeps it |
 | A4 | **H11** both probes shifted | What is left is the idle-only form — the front probe reading rich in the idle's cool exhaust, so the true mixture lean; it fits 032's negative idle cell with part load untouched. Against: both probes replaced 10/11 and the idle as rough; on the relearn drive its marks 1, 3, 4 and 5 failed (H11, *The relearn drive*); the rear probe's state never tracked `IdleHealth` | nothing planned; 036 watched at VCDS sessions (`plan.md` 8f) |
 | A5 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it (shared with H16 until 17/11, `refuted.md` C30). Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; **17/11**: nor a return restriction, which would pull both cells negative (S19, *re-reckoned*); the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
 | A6 | **H2** a leak ahead of the converter | Widened 10/11 to the zone between the probes (the joint, the flex, the plugged boss), which gives a lean rear probe at idle but not 032 or the dips; S2, S11 and S14's air. Against: the cold tailpipe and smoke tests found nothing; the visible manifold has no soot and no holes (31/10); 032's idle cell takes fuel away, where air ahead of the front probe would add it; the front loop holds through 3's swell; the rear probe's sinking was the old probe's; cannot pick a cylinder. Untested: a crack open only hot, the part under the heat shield | none planned (the warm tailpipe test dropped 15/11, *the owner*) |

@@ -61,9 +61,10 @@ comes out for them — the converter goes with the MFD.
   came before each stop** (queuing, or a brisk stretch), and the A/C's
   figure too whenever it happens to be on; **an odd cold misfire or a
   drop-out on one cylinder** goes into the chat at once.
-- **A hard jerk at a crawl or on moving off** (`open.md` S12): the
-  clock time into the chat as soon as it is safe, with the gear and
-  roughly the speed; on a captured drive, **"teď"** at once.
+- **A hard jerk at a crawl or on moving off, or the hopping at a light
+  pedal** (`open.md` S12): the clock time into the chat as soon as it
+  is safe, with the gear and roughly the speed; on a captured drive,
+  **"teď"** at once.
 
 **6i. The oil level on the new oil, about every 500 km** from the first
 reading (27/10, 155,024 km, at the top mark; 11/11 evening about
@@ -289,6 +290,11 @@ the harness box. Then, cold, the ignition off, from below:
 
 - **Both sockets on the harness side photographed first**, each
   cavity's wire colour readable.
+- **The tape at the end of the loom unwound before anything is cut**:
+  what is under it photographed — an old joint, a wire of another
+  thickness than the probe's lead, a crimp that moves when the wire is
+  pulled gently, green under the insulation, a seal that does not
+  close round its wire; into the chat.
 - **Every wire of both sockets on a new terminal** (VW repair wires
   `000 979 021 EA`, bought 25/11, a terminal crimped at each end, cut
   in the middle: four make the eight; **gold-plated**, the tinned kind
@@ -514,6 +520,21 @@ in, so the corroded length is cut out. Which wire it is tells what it
 explains: the signal or its earth fits S23 directly, a heater lead only
 through a shared path. A connector that does not latch lets its
 contacts move with the engine — it is redone before any reading.
+
+**8e's tape at the end of the loom** (*the owner*, 25/11; `open.md`
+H21, *A note, not a finding*): the repair wires are as thin as the
+probes' own leads and thinner than the harness wires they join, and
+the loom ends in a wrap of tape, so the harness may have been repaired
+before. A thicker wire is no resistance by itself; a wire too thick
+for its terminal or its seal is — a crimp that never closed, strands
+lost, damp in — and it moves the mixture of all four, the common part
+(`open.md` *Off idle*, F). Seen and photographed before the cut, it is
+a finding or nothing; after the cut it is gone.
+
+**S12's hopping at a light pedal by the clock** (`open.md` S12 and
+*Off idle*, F): off idle the scatter from stroke to stroke is the same
+on all four and largest at a light pedal, so a time when it is felt
+lets a capture be read at that moment against the probe's swing.
 
 **8e's route of the harness** (*the owner*, 10/11 night: the
 connectors are very likely sound and the leads well tucked in, so he

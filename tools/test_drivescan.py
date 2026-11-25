@@ -7,7 +7,8 @@ through engine speeds where a stroke is shorter than a frame, by the parity
 of the crank wheel's alternation; the two differences the wheel does not
 touch; the scale of a stroke off idle. One real capture holds the count
 from idle to idle through 5,800 rpm, and what the corpus is read by: off
-idle cylinder 3 gives next to what 2 does under load, and 4 less than 1.
+idle cylinder 3 gives next to what 2 does under load, and 4 less than 1;
+and the stroke-to-stroke scatter, the same on all four.
 """
 
 from __future__ import annotations
@@ -225,6 +226,23 @@ class Corpus(unittest.TestCase):
         self.assertTrue(loaded)
         for v in loaded:
             self.assertGreater(v[1], -6.0)
+
+    def test_the_four_scatter_alike_and_more_at_a_light_load(self):
+        # open.md *Off idle*, E: the common part is on all four, 1 and 2 too
+        got = drivescan.report_cylinders([(self.drive, self.ws)],
+                                         out=io.StringIO())
+        self.assertEqual(min(got["standing idle"][2],
+                             key=got["standing idle"][2].get), 3)
+        driving = [v for k, v in got.items() if k != "standing idle"
+                   and v[0] >= 50]
+        self.assertGreaterEqual(len(driving), 6)
+        for n, b7, level, scat, weak in driving:
+            mean = sum(scat.values()) / 4.0
+            self.assertLessEqual(max(scat.values()) - min(scat.values()),
+                                 max(8.0, 0.2 * mean))
+        light = got["2400-3300, b7 10-27"][3]
+        heavy = got["2400-3300, b7 90-140"][3]
+        self.assertGreater(sum(light.values()), 3.0 * sum(heavy.values()))
 
 
 if __name__ == "__main__":

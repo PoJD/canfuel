@@ -54,6 +54,13 @@ default     3 less 2 and 1 less 4 by engine speed and load (b7), warm, in
             cylinder wins that pick by chance, so only the excess counts.
 ``--count`` the check of 1: the slot the strongest cylinder has at each
             named standing idle through the capture.
+``--cylinders`` each cylinder by itself, band by band in finer steps of
+            load: its level against the four's mean (below `LEVEL_MAX_RPM`,
+            where the wheel is `cylscan.WHEEL_ALT`) and the scatter of its
+            strokes' steps with the overrun's scatter at the same speed
+            taken out (nothing burns there: what is left of it is the
+            instrument's), both in per cent of a stroke; and per 1000
+            strokes those a quarter under less those a quarter over.
 ``--pulls`` full-throttle pulls: the torque the car's own acceleration
             needs against the torque b7 claims. The car's mass is the
             registration's; its resistances are assumptions (`CAR_*`), so
@@ -64,6 +71,7 @@ default     3 less 2 and 1 less 4 by engine speed and load (b7), warm, in
     python drivescan.py --weak FILE [FILE ...]
     python drivescan.py --vcds LOG.csv FILE
     python drivescan.py --count FILE [FILE ...]
+    python drivescan.py --cylinders FILE [FILE ...]
     python drivescan.py --pulls FILE [FILE ...]
 """
 from __future__ import annotations
@@ -124,6 +132,15 @@ RPM_BANDS = ((600, 1150), (1150, 1600), (1600, 2100), (2100, 2600),
              (2600, 3300), (3300, 4200), (4200, 5200), (5200, 6500))
 B7_BANDS = ((0, 45), (45, 90), (90, 140), (140, 256))
 MIN_WINDOWS = 25
+#: `--cylinders`: the finer load bands (the step from the idle's pattern to
+#: the loaded one lies between b7 35 and 55, open.md *Off idle*, E), and
+#: the speed below which the four levels are read, not only 3 less 2 and
+#: 1 less 4 (the overrun's alternation is the idle's up to about 2,400 rpm).
+CYL_B7_BANDS = ((10, 27), (27, 35), (35, 45), (45, 55), (55, 70), (70, 90),
+                (90, 140), (140, 256))
+CYL_RPM_BANDS = ((650, 1150), (1150, 1600), (1600, 2100), (2100, 2400),
+                 (2400, 3300))
+LEVEL_MAX_RPM = 2400.0
 MOVING_KMH = 3.0
 #: `--vcds`: cylscan's lags, and where the control windows sit.
 CONTROL_S = 5.0
@@ -660,6 +677,86 @@ def report_weak(d_ws, out=sys.stdout):
     return got
 
 
+def report_cylinders(d_ws, out=sys.stdout):
+    """`d_ws`: [(Drive, [Window])]. Each cylinder by itself, band by band.
+    Returns {label: (windows, mean b7, {cylinder: level or None},
+    {cylinder: scatter}, {cylinder: weak excess per 1000})}, all in per
+    cent of a stroke at the band's speed and load."""
+    rows = []           # (kind, Window, {cylinder: [step]})
+    for d, ws in d_ws:
+        for w in ws:
+            if not _warm(w):
+                continue
+            kind = ("idle" if _standing(w) else "cut" if w.cut > 0.95
+                    else "drive" if w.cut < 0.02 and w.v > MOVING_KMH else None)
+            if kind is None:
+                continue
+            st = {1: [], 2: [], 3: [], 4: []}
+            for m, s in w.steps(d):
+                st[d.cyl(m)].append(s)
+            rows.append((kind, w, st))
+
+    def floor(rb):
+        xs = [s for k, w, st in rows if k == "cut" and rb[0] <= w.rpm < rb[1]
+              for c in (1, 2, 3, 4) for s in st[c]]
+        return statistics.pstdev(xs) if len(xs) > 200 else 0.0
+
+    got = {}
+
+    def line(label, sel, fl, levels):
+        if len(sel) < MIN_WINDOWS:
+            return
+        lv = {c: [] for c in (1, 2, 3, 4)}
+        sc = {c: [] for c in (1, 2, 3, 4)}
+        wk = {c: [0, 0, 0] for c in (1, 2, 3, 4)}
+        for _, w, st in sel:
+            k = stroke_rpm(w.rpm, max(w.b7, 1.0))
+            dv = w.deviation()
+            for c in (1, 2, 3, 4):
+                lv[c].append(100.0 * dv[c] / k)
+                for s in st[c]:
+                    sc[c].append(s / k)
+                    wk[c][0] += 1
+                    wk[c][1] += s < -0.25 * k
+                    wk[c][2] += s > 0.25 * k
+        k0 = sum(stroke_rpm(w.rpm, max(w.b7, 1.0)) for _, w, _ in sel) / len(sel)
+        f = fl / k0
+        level = {c: (sum(lv[c]) / len(lv[c]) if levels else None)
+                 for c in (1, 2, 3, 4)}
+        scat = {c: 100.0 * math.sqrt(max(statistics.pstdev(sc[c]) ** 2 - f * f,
+                                         0.0)) for c in (1, 2, 3, 4)}
+        weak = {c: 1000.0 * (wk[c][1] - wk[c][2]) / max(wk[c][0], 1)
+                for c in (1, 2, 3, 4)}
+        b7 = sum(w.b7 for _, w, _ in sel) / len(sel)
+        got[label] = (len(sel), b7, level, scat, weak)
+        text = f"  {label:24s} {len(sel):5d} windows, b7 {b7:3.0f} |"
+        if levels:
+            text += " level " + " ".join("%d %+5.1f" % (c, level[c])
+                                         for c in (1, 2, 4, 3)) + " |"
+        text += (" scatter " + " ".join("%d %3.0f" % (c, scat[c])
+                                        for c in (1, 2, 4, 3))
+                 + " (floor %2.0f) |" % (100.0 * f)
+                 + " weak " + " ".join("%d %+3.0f" % (c, weak[c])
+                                       for c in (1, 2, 4, 3)))
+        print(text, file=out)
+
+    print("each cylinder, warm, % of a stroke: the level against the four's "
+          f"mean (below {LEVEL_MAX_RPM:.0f} rpm), the scatter of its steps "
+          "less the overrun's, and per 1000 strokes a quarter under less a "
+          "quarter over", file=out)
+    line("standing idle", [r for r in rows if r[0] == "idle"],
+         floor(CYL_RPM_BANDS[1]), True)
+    for rb in CYL_RPM_BANDS:
+        fl = floor(rb if rb[0] >= CYL_RPM_BANDS[1][0] else CYL_RPM_BANDS[1])
+        print(f"  -- {rb[0]}-{rb[1]} rpm, the overrun's scatter {fl:.1f} rpm",
+              file=out)
+        for bb in CYL_B7_BANDS:
+            line("%d-%d, b7 %d-%d" % (rb + bb),
+                 [r for r in rows if r[0] == "drive" and rb[0] <= r[1].rpm < rb[1]
+                  and bb[0] <= r[1].b7 < bb[1]], fl, rb[1] <= LEVEL_MAX_RPM)
+    return got
+
+
 def rises_014(vcds_path, data, d, ws):
     """([rise], [control]): (t, cylinder, the weakest step as a share of a
     stroke, rpm, b7, km/h) for every rise of 014 between two samples with
@@ -852,6 +949,8 @@ def main(argv=None):
                     help="the slot of the strongest cylinder at every idle")
     ap.add_argument("--pulls", action="store_true",
                     help="full throttle: acceleration against b7")
+    ap.add_argument("--cylinders", action="store_true",
+                    help="each cylinder's level and scatter by load")
     args = ap.parse_args(argv)
     if args.vcds and len(args.captures) != 1:
         ap.error("--vcds reads one capture")
@@ -877,6 +976,8 @@ def main(argv=None):
     print(", ".join(os.path.basename(p) for p in args.captures) + ":")
     if args.weak:
         report_weak(d_ws)
+    elif args.cylinders:
+        report_cylinders(d_ws)
     else:
         report_pattern([w for _, ws in d_ws for w in ws])
     return 0
