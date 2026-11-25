@@ -30,7 +30,9 @@ and **6s**, the cleaner drawn in (17/11). *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
 
 **6. Drive normally; the MFD back in from 15/11** (*the owner*, after
-8h): `IdleHealth` and `Misfires` on the display again, **back in after
+8h): **one photograph of the display after each drive** into the
+album (*the owner*, 25/11: no more hundreds), more only when something
+is worth it; `IdleHealth` and `Misfires` on the display again, **back in after
 8z's captured drive** (17/11, `54`) until 8q's captured drive.
 Brisk driving once warm is welcome. When captures resume, the MFD
 comes out for them — the converter goes with the MFD.
