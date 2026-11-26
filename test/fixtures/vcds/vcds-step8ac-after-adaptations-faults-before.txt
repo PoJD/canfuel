@@ -1,0 +1,4 @@
+2026-11-26 05:46:42  01-Motor, fault memory before (read by vcds_log.py)
+V paměti závad řídící jednotky nejsou uloženy žádné chyby.
+  nebo paměť závad není podporována jednotkou
+  nebo nastala chyba komunikace, nebo závadu nelze vymazat.
