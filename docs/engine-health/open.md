@@ -207,7 +207,9 @@ second drive of 032 agreed before is not waited for. H11 is read again
 after 8e's new rear probe (*the owner*). **Next** (`plan.md`): **8ab**, the
 earth point by the ECU re-crimped on new rings (*the owner*, 25/11; the
 rings bought at GME, VW had none), and 032 over the drives after it
-(8f); then **8e**'s new rear probe when it comes (*the owner*, 24/11:
+(8f); then **8ae**, the air mass meter's plug renewed (the parts
+ordered 26/11, about 1/12; the battery and the ECU left connected, so
+032 is not reset), with 032 over the days after it; then **8e**'s new rear probe when it comes (*the owner*, 24/11:
 the warranty for the failed one refused, the same part bought
 elsewhere, expected 26/11); then **8q**, the timing belt and water pump at a
 garage on **7/12**, the old marks read first, `54`'s stop the one it is

@@ -21,7 +21,9 @@ One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Now: 8ab**,
 the earth point by the ECU on new rings (*the owner*, 25/11; the rings bought at GME, VW
 had none) — the second drive of 032 before it dropped 26/11, when
-H21 was settled against (*the owner*). **Then 8e**, **the new rear probe when it comes (bought
+H21 was settled against (*the owner*). **Then 8ae**, the air mass
+meter's plug renewed (the parts ordered 26/11, expected about 1/12),
+once 8ab's days of 032 are read. **Then 8e**, **the new rear probe when it comes (bought
 24/11, expected 26/11)**; **8q, the timing belt
 at a garage, 7/12**; then item 9; **8u, 8v, 8w by
 opportunity** (*the owner*, 15/11), and **6r**, the owner's scope, best
@@ -280,6 +282,31 @@ always** (a P0303 stored with no cut: its time is what the log gives).
 - **No head off** (*the owner*, 4/11, leaning, not final): if the
   leak-down names 3's exhaust seat, the car is driven as it is and S1
   most likely closed as *acceptable, cause known*.
+
+**8ae. The air mass meter's plug renewed** (*the owner*, 26/11; the
+parts ordered 26/11: the housing `1J0 973 999 A` and three repair
+wires `000 979 026 E`, `vehicle-history.md`). **After 8ab's three or
+four days of 032**, never on the same day as another change.
+1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
+   the fault memory read and saved.
+2. **The battery and the ECU stay connected** (*the owner*: it can be
+   done so); the ignition off and the key out.
+3. **The old plug photographed** from the wire side and from the front,
+   **each wire's colour against its pin number** written down before
+   anything is cut.
+4. **One wire at a time**: cut the old wire about 10 cm from the plug,
+   cut a repair wire in half, join it with a butt sleeve and
+   heat-shrink, the joints staggered as on the probes' sockets, the
+   terminal pushed into the new housing at the same pin number until
+   it clicks; then the next wire. The red contact lock pressed home
+   last; each wire pulled gently to check it holds.
+5. **The colour of the new terminals** (gold or tin) into the chat,
+   and a photograph of the new plug.
+6. **Plugged onto the meter until it clicks**, the engine started, the
+   fault memory read.
+7. **032 and 055 for 20 s at the end of every drive for the next three
+   or four days** (8f), the date and the kind of drive with each, as
+   after 8ab.
 
 **8e. The new rear probe when it comes** (*the owner*, 11/11, 12/11,
 24/11 and 25/11; `refuted.md` D13; **both probes' sockets renewed
@@ -779,6 +806,27 @@ Not soldered: a soldered ring stiffens the wire where it vibrates
 (*general*, as `idle-log.md` 24/11). The idle itself is not expected to
 move with it: 3's swells came as before on the brushed earth
 (`open.md` S1), and C26 measured no shared earth under them.
+
+**8ae, the air mass meter's plug** (*the owner*, 26/11): the meter's
+renewal on 24/9 is one of the two repairs that ever moved the idle
+(`open.md` S1), and its plug was found with its contact lock broken and
+pieces of it inside (15–16/11, `refuted.md` C27); the contacts were
+measured then only without current (0.2–0.5 Ω, the leads' own), so a
+contact resistance under the meter's own current, which C27's plug form
+needs, is not excluded. **A renewed plug takes it out.** What it can
+move is 032's idle cell (S19) — an offset on the meter's signal reads
+as more air at idle's small flow — not cylinder 3 (*reasoned*: one
+meter for all four). **Kept apart from 8ab**: with the battery and the
+ECU connected the adaptations are not reset, so a step in 032 after it
+is the plug's, against 8ab's days of 032 before it. **One wire at a
+time** so that no two pins swap; the meter's pins are gold-plated, so
+the new terminals' plating is recorded — on the rear probe's old socket the
+gold-coloured contacts were clean and the tin-coloured ones corroded
+(`vehicle-history.md`, its photographs), and tin against gold is a
+pairing that corrodes (*general*), which matters over years, not for
+this reading. **The reading**: 032's idle cell nearer zero and staying
+there over the days after it revives C27's plug form; as before
+leaves the plug out.
 
 **8w, the cylinder 4 knock window** (`open.md` S4, S5, H5): the ECU
 books anything at cylinder 4's crank angle to cylinder 4 — G66 loose
