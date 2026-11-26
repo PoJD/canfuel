@@ -3850,9 +3850,19 @@ loom's wrap; **every pin and both housings corroded all over, the
 heater's outer pin the worst in both sockets** (whether it is the
 heater's feed or its earth he does not know), **the front's housing and
 crimps worse than the rear's**, the copper corroded inside most harness
-wires once stripped, and one of the rear's crimps broken in half (or
-made so — the album shows it). All eight now on VW repair wires and
-the new housings; the old rear probe on. *Reasoned*: a corroded heater
+wires once stripped. **Read from the album** (26/11, 00:09–04:18;
+`vehicle-history.md`, the photographs): **the blue wire with the red
+seal is green with verdigris from the seal to the tip in both
+sockets**, the worst contact in each; in the rear socket two contacts
+gold-coloured and clean, two tin-coloured and corroded — gold does not
+corrode, tin does (*general*); whether the gold colour is plating or
+the base metal where tin wore through a photo cannot say. **The
+terminal the owner took for broken in half is split by design** (two
+straight parallel tines, the ends level, the gap even, the same fork
+on other old terminals; *his reading until then*: broken, or made so).
+The rear's blue had a crack in its insulation found 10/11, so damp had
+a way in along it. All eight now on VW repair wires and the new
+housings; the old rear probe on. *Reasoned*: a corroded heater
 contact is the form that weighs most at idle (*Why a probe's fault
 shows most at a light load*, (2)); what it did is read by `plan.md`
 8ac.

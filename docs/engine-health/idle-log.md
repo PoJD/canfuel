@@ -2215,7 +2215,9 @@ as one stop, not as a change of S1 (*agreed with the owner*, 25/11).
 - **Tests:** the parts looked at as they came apart (the album): every
   pin and both housings corroded, the heater's outer pin the worst in
   both, the front worse than the rear, the copper corroded inside most
-  harness wires; one rear crimp broken in half; **no earlier repair**
+  harness wires; **the blue wire (red seal) green with verdigris end to
+  end in both sockets**; the terminal taken for broken in half split by
+  design (read from the album, 26/11); **no earlier repair**
   (the owner's suspicion of 25/11 not confirmed).
 - **Changes after:**
   - *not known:* whether either probe or 032 moves — the captured drive
