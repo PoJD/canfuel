@@ -140,6 +140,25 @@ wires.
   connected.
 - **The laptop on its own battery**, not on its charger, while the
   analyser's earth is on the car.
+- **Where it stands, 26/11 night** (*the owner*, from the cloud
+  session): the divider built with **10 kΩ in series and 1 kΩ to
+  earth** (no 100 kΩ to hand; the same 1:11, ten times the current,
+  about 1.3 mA at 14 V, nothing for the injector); the long rails used
+  the other way round — **row 10 the input, the + rail the middle
+  point with the wire to 1ACH, the − rail earth**; the 9 V battery
+  found dead (it sank to 0 V under the divider's load), so the
+  analyser's own **5V pin (4.5 V; the 3V pin 3.3 V)** fed row 10 with
+  its GND on the − rail: **0.41 V on the + rail, a ratio of about 11**;
+  1ACH connected. **Next, on the laptop**: PulseView, `sigrok-cli` and
+  Zadig's WinUSB driver installed, the analyser found by fx2lafw, the
+  same 0.41 V read on 1ACH and the ratio taken from it; then **the 5V
+  pin's wire taken off row 10** before the car — in the car row 10
+  takes only the wire from the needle on injector 3's contact 2
+  (violet/red), pierced through the insulation (the connector is not
+  reached with the upper intake on; *the owner*), the needle taped
+  clear of metal, the hole sealed with liquid insulation or
+  self-amalgamating tape afterwards; the − rail to the battery's minus;
+  the injectors only, the senders another day.
 
 **6t. Two cans of BG 44K Platinum, before 8q** (*the owner*, 17/11
 evening): the same product as in October, **208** and "Platinum" on the
