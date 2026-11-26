@@ -70,7 +70,9 @@ comes out for them — the converter goes with the MFD.
 
 **6i. The oil level on the new oil, about every 500 km** from the first
 reading (27/10, 155,024 km, at the top mark; 11/11 evening about
-1–2 mm under it; **next about 156,400 km**): the car on level ground
+1–2 mm under it; **26/11 about 1 mm under it, as the week before**
+(*the owner*; the odometer from 8ad's capture, 0x520); **next about
+500 km after that**): the car on level ground
 and **at least 5 minutes standing**, the dipstick out, wiped, in, out,
 and **photographed**; the odometer into the chat. Any top-up: the litres and the odometer
 into the chat.
@@ -198,14 +200,14 @@ MFD out, the USBtin in plug C in its place. **One drive for every item
 that waited for the USBtin**: the first of the two drives of 032
 before 8ab, the capture the sockets' drive (26/11) lacked, 6's
 captured drive with its pulls, and from 8w 020 on the pulls, 4's
-spells at a warm stop and 026 in neutral; 6i's oil level at home
-(about 156,400 km is past).
+spells at a warm stop and 026 in neutral.
 **The owner touches no tool**: Claude runs VCDS, the capture and
 livewatch, and tells him only when to start the engine.
 
 **The owner, before his message**: the harness in plug C, the
 ignition off, a multimeter on ohms across the USBtin's H and L
-terminals — **about 60 Ω** goes; about 40 Ω is the USBtin's own
+terminals — **about 60 Ω** goes (**measured 60 Ω, 26/11**, *the
+owner*); about 40 Ω is the USBtin's own
 terminator on, switched off first; open or 0 Ω, no drive. White (C7)
 on H, yellow (C8) on L, ⊥ free. The USBtin and VCDS's cable plugged
 into the laptop; then the ignition on, the engine **not** started.
@@ -215,14 +217,18 @@ zapalování zapnuté, jedeme 8ad"*. If the figure is not about 60 Ω,
 Claude stops there and says why.
 
 **Claude, in this order, with no further question**:
+**Everything runs before the engine starts** (*the owner*, 26/11):
+the capture, livewatch and the drive's VCDS log are all running
+before Claude says "nastartuj".
 1. **The capture started at once** (`tools/usbtin_capture.py`, the
    next free fixture, `55`), and `tools/livewatch.py` on it. Frames
    within 10 s, or H and L are swapped: the capture stopped, the owner
    told to swap the two wires, started again.
 2. **Cold, the engine off**: the fault memory, 032 and 055 for 20 s,
    the fault memory again (`vcds_log.py --groups 032 055 --seconds 20`).
-3. **"Nastartuj"** to the owner; the drive log started at once,
-   **014 020 033**, in the background, reconnecting by itself.
+3. **The drive log started**, **014 020 033**, in the background,
+   reconnecting by itself (the ECU drops at the crank; the log goes on
+   into `-2`); **once it logs, "nastartuj"** to the owner.
 4. **Through the drive**, to the owner once a minute: livewatch's
    line — oil, coolant, and at a stop `IdleHealth` and `Misfires`.
    **The drive** (his): warm, some town at a light pedal, some steady
@@ -241,9 +247,6 @@ Claude stops there and says why.
    032 and 055 for 20 s, VCDS closed, the capture stopped.
 6. **While he drives on**: the laptop session's upload, one commit
    and one push (`CLAUDE.md`, *Sessions at the car*).
-7. **At home** (his): 6i — the car on level ground, at least 5
-   minutes standing, the dipstick photographed, the odometer into the
-   chat.
 
 *Left of 8w for another day*: G66's connector and bolt, and the loose
 part at 3,000 rpm (it needs a second person).
@@ -539,8 +542,8 @@ so H and L swapped disturb nothing on the bus and only give no frames.
 (*the owner*, 26/11): the pulls are 6's and 8w's 020 under load (S4,
 read with 014 and the capture's strokes), and 033 keeps the front
 probe in view through them; 026 in neutral at the stop is 8w's S5,
-warm and standing, with 014 beside it; the oil level (6i) is due —
-156,400 km was its mark and the car is past it.
+warm and standing, with 014 beside it. The oil level (6i) was read
+the same day before the drive (*the owner*), so it is not in 8ad.
 The capture starts with the ignition already on (*the owner*, 26/11:
 one message, then nothing to run): it loses only the bus waking up,
 not the engine's start, which waits for Claude's "nastartuj".

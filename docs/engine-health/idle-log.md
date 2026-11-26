@@ -2263,3 +2263,9 @@ One drive. 032's −3.9 is inside what the cell has read with nothing
 changed (−3.9 to −9.4 since 10/11), so one reading does not show the
 wiring's hand (`open.md` S19); the display's figures are those of 8aa's stop
 (24–25/11 night) and 3's swell came as before (`open.md` S1).
+
+## 26 November 2026 — the oil level
+
+- **Tests:** the oil level read on the dipstick (*the owner*): **about
+  1 mm under the top mark**, as the week before; the odometer from
+  `plan.md` 8ad's capture (0x520).

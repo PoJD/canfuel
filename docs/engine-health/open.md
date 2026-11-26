@@ -197,7 +197,7 @@ garage on **7/12**, the old marks read first, `54`'s stop the one it is
 set against; then **item 9** by what those show (the coolant's CO₂
 test, the stethoscope, the garage session with the intake off);
 standing: **8f** at every VCDS session, **6i** the oil level
-about 156,400 km, the MFD's `IdleHealth` and `Misfires` at warm stops;
+every 500 km (26/11 about 1 mm under the top mark, as the week before), the MFD's `IdleHealth` and `Misfires` at warm stops;
 by opportunity (*the owner*, 15/11): **8u** the fuel pressure, **8v** the plugs at their change,
 **8w** the cylinder 4 knock window, and (17/11) **6r** the owner's scope
 on injectors 3 and 4 and on G28/G40, best before 8q; **6t** two cans of
