@@ -647,7 +647,8 @@ his phone. Check the platform and for a VCDS install; if unclear, ask once.
 ### Tools for the car
 
 `pyserial` (for `usbtin_capture.py`) and `pywinauto` (for `vcds_log.py`,
-Windows) are the only third-party dependencies; there is no
+Windows) are the only third-party dependencies (`injscope.py` calls
+`sigrok-cli`, a program, not a Python package); there is no
 `requirements.txt` because CI needs neither.
 
 ```
@@ -666,5 +667,6 @@ python tools/swellscan.py --floors FILE...   # floor and swell: shares, the long
 python tools/misfshare.py LOG...     # 014 at a standing idle, log by log: share, episodes, the longest silence
 python tools/dipshape.py FILE...     # one weak firing per dip or several
 python tools/vcds_log.py --faults FILE
+python tools/injscope.py cal --volts V | capture --label X --out-dir D | read FILE...   # the LHT00SU1 under sigrok (6r), Windows
 python tools/flash.py --mode loopback | --preserve-eeprom | --identify | --dry-run
 ```

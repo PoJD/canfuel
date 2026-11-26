@@ -27,8 +27,8 @@ once 8ab is done (at once if its rings read sound and stay; after
 its days of 032 if they are renewed). **Then 8e**, **the new rear probe when it comes (bought
 24/11, expected 26/11)**; **8q, the timing belt
 at a garage, 7/12**; then item 9; **8u, 8v, 8w by
-opportunity** (*the owner*, 15/11), and **6r**, the owner's scope, best
-before 8q, **6t**, the second tank of BG 44K Platinum driven down and two captured drives at its end, before 8q,
+opportunity** (*the owner*, 15/11), and **6r**, the owner's scope on
+G28 and G40 another day, best before 8q, **6t**, the second tank of BG 44K Platinum driven down and two captured drives at its end, before 8q,
 and **6s**, the cleaner drawn in (17/11). *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
 
@@ -87,78 +87,37 @@ for all four: its own resistance measured end to end and taken off.
 1), 80 (2), 58 (3), 65 (4)**; check the numbers on the plug, and enter
 its sockets only with a thin pin of the right size, never a meter tip.
 
-**6r. The oscilloscope on injectors 3 and 4 and on the two senders**
-(*the owner*, 17/11 evening: his own scope; by opportunity, best
-before 8q). A warm idle, oil 90 °C or more, the everyday state; the
-probes only back-probed into the connectors from behind, nothing
-pierced, nothing written to the ECU:
+**6r. The scope on the two senders, G28 and G40** (*the owner*, 17/11
+evening: his own scope; another day, best before 8q). A warm idle, oil
+90 °C or more, the everyday state; the probes only back-probed into
+the connectors from behind, nothing pierced, nothing written to the
+ECU:
 
-- **Injector 3 against injector 4** (with the upper intake on only
-  these two are reached; *the owner*, 17/11): one channel on contact 2
-  of each — the ECU's side, 4's violet/blue wire, 3's violet/red; the
-  supply wire is the one 0.2 Ω from its neighbour's — by a fine pin
-  pushed under the insulation if back-probing is not possible, the
-  hole sealed afterwards, the probes held clear of metal; the scope's
-  earth at the battery's minus; a few
-  seconds with every load off and a few with the A/C on; if a capture
-  runs, a few more in a swell when Claude says so. A current clamp on
-  one injector's wire as well, if one is to hand.
-- **G28 and G40 together** (*another day*: the injectors first, *the
-  owner*, 26/11 night), one channel on each sender's signal wire
+- **G28 and G40 together**, one channel on each sender's signal wire
   (Claude says which before), 30 s of warm idle; the same again with
   the same settings after the new belt (8q).
 
-The files, or screenshots showing the time base and the volts per
-division, into the chat.
-
 **The instrument** (*the owner*, 26/11 night): his **LHT00SU1** USB
 analyser — under sigrok one analog channel (**1ACH**, ±10 V) and eight
-digital ones (0–5.3 V). **One analog channel**, so injectors 3 and 4 one
-after the other, not side by side; for G28 and G40, G28 on 1ACH and G40
-on a digital channel. **A laptop session; Claude sets it up and runs it**
-with sigrok's command line, on the desk with a 9 V battery first, then
-in the car (*the owner*, 26/11 night); the owner only connects the
-wires.
-- **Never straight onto the car**: the injector's contact 2 sits at
-  the supply's 12–14 V and kicks higher when it closes. **A divider on
-  the breadboard**: row 1 the wire from the injector and one leg of a
-  **100 kΩ**; row 2 the 100 kΩ's other leg, one leg of a **10 kΩ** and
-  the wire to **1ACH**; row 3 the 10 kΩ's other leg, the wire to the
-  analyser's **GND** and **a second wire to the battery's minus** (or
-  the engine's earth). The same divider for G28. **G40** on a digital
-  channel only after its signal has been read with the multimeter: at
-  5 V or under, through a 1 kΩ straight in; above, a divider of about
-  1:3 (20 kΩ and 10 kΩ), never 1:11, which would bring it under the
-  1.4 V threshold.
-- **Checked on the desk first**: a 9 V battery's plus to row 1 and
-  minus to row 3; the multimeter from row 3: row 1 about 9 V, **row 2
-  about 0.8 V**; then the analyser on rows 2 and 3, the same 0.8 V in
-  PulseView — the battery's volts over the shown volts is the ratio,
-  written down.
-- **Which header pins are GND**: checked with the multimeter's
-  continuity against the USB plug's metal shell before anything is
-  connected.
+digital ones (0–5.3 V); G28 on 1ACH, G40 on a digital channel. **A
+laptop session; Claude runs it** with `tools/injscope.py` (*the
+owner*); the owner only connects the wires. **Ready on the laptop
+since 26/11 night**: the analyser on another USB cable (its own is
+faulty), Zadig's WinUSB, `sigrok-cli` and PulseView installed,
+fx2lafw finding it.
+- **Never straight onto the car**: **the breadboard divider, 10 kΩ in
+  series and 1 kΩ to earth** — row 10 the input, the + rail the middle
+  point with the wire to 1ACH, the − rail earth, with the analyser's
+  GND and **a second wire to the battery's minus**. Its ratio is
+  **10.94** (the desk, 26/11 night); **the zero is read again at each
+  session** with the input on earth (`injscope.py cal`). **G40** on a
+  digital channel only after its signal has been read with the
+  multimeter: at 5 V or under, through a 1 kΩ straight in; above, a
+  divider of about 1:3 (20 kΩ and 10 kΩ), never 1:11, which would
+  bring it under the 1.4 V threshold.
+- **The 5V pin's wire off row 10** before the car.
 - **The laptop on its own battery**, not on its charger, while the
   analyser's earth is on the car.
-- **Where it stands, 26/11 night** (*the owner*, from the cloud
-  session): the divider built with **10 kΩ in series and 1 kΩ to
-  earth** (no 100 kΩ to hand; the same 1:11, ten times the current,
-  about 1.3 mA at 14 V, nothing for the injector); the long rails used
-  the other way round — **row 10 the input, the + rail the middle
-  point with the wire to 1ACH, the − rail earth**; the 9 V battery
-  found dead (it sank to 0 V under the divider's load), so the
-  analyser's own **5V pin (4.5 V; the 3V pin 3.3 V)** fed row 10 with
-  its GND on the − rail: **0.41 V on the + rail, a ratio of about 11**;
-  1ACH connected. **Next, on the laptop**: PulseView, `sigrok-cli` and
-  Zadig's WinUSB driver installed, the analyser found by fx2lafw, the
-  same 0.41 V read on 1ACH and the ratio taken from it; then **the 5V
-  pin's wire taken off row 10** before the car — in the car row 10
-  takes only the wire from the needle on injector 3's contact 2
-  (violet/red), pierced through the insulation (the connector is not
-  reached with the upper intake on; *the owner*), the needle taped
-  clear of metal, the hole sealed with liquid insulation or
-  self-amalgamating tape afterwards; the − rail to the battery's minus;
-  the injectors only, the senders another day.
 
 **6t. Two cans of BG 44K Platinum, before 8q** (*the owner*, 17/11
 evening): the same product as in October, **208** and "Platinum" on the
@@ -666,35 +625,43 @@ slip on its rubber, so the notch alone could carry 8i's error into the
 mechanic's count.
 
 **6r, the scope** (the fourth research, 17/11; `open.md` H4 and the
-row A2): a raised resistance in 3's control wire or a weak output
-stage delays the opening and leaves a higher voltage across the
-switch, which an output stage of the usual kind does not diagnose;
-every other cause predicts 3 and 4 alike, and 6n's ohms at rest cannot
-see a fault under current; **since 17/11 evening the floor's own
-test** — 3's floor is a fixed amount that load does not shrink, as
-fuel short by a fixed amount is (`open.md` S1, *The floor and the
-common part read apart*). G28 against G40 puts the cam's phase on the
-crank's wheel with no marks read, so a tooth shows as 13.85° between
-before and after the belt; no trace of a healthy AQY was found, so it
-is read before against after.
+row A2): G28 against G40 puts the cam's phase on the crank's wheel with
+no marks read, so a tooth shows as 13.85° between before and after the
+belt; no trace of a healthy AQY was found, so it is read before against
+after. **Injectors 3 and 4 dropped** (*the owner's decision*, 26/11
+night, at the engine): contact 2 sits towards the middle and on 2 and 3
+cannot be reached at all with the upper intake on, only on 1 and 4,
+which he judges brings nothing; taking the intake off to lead a wire
+out and seal it again is not worth the small chance of a finding.
+Back-probing 3's wire at the ECU's connector was mentioned to him and
+not taken up. What it would have read — a late opening or a higher
+on-voltage through a raised resistance in 3's control wire, which an
+output stage of the usual kind does not diagnose — is left to 6n's
+ohms at rest (`open.md` H4). *This test stood first in 6r from 17/11
+until then.*
 **The LHT00SU1 and its divider** (*the owner*, 26/11 night; the sigrok
 wiki, *Noname LHT00SU1*: supported by fx2lafw, eight digital channels
 and one analog, ±10 V, the second analog input not selectable): its
-inputs take ±10 V and 0–5.3 V, and an injector's control wire stands at
-the supply's voltage when closed and swings above it as the coil's
-field collapses (*general*; this ECU's clamp voltage is not in these
-files), so the divider is not optional. About 1:11 brings 14 V to
-about 1.3 V and leaves the closing spike room under 10 V; the ratio is
-measured, not assumed, because the analyser's own input resistance is
-not documented and loads the 10 kΩ. The laptop runs on its battery so
-that the analyser's earth, which is the laptop's through USB, meets
-the car's at one point only. **An exception to `CLAUDE.md`'s
-laptop rule** (*the owner*, 26/11 night: that rule is for the CAN and
-VCDS sessions in the car): the scope's laptop session sets up and
-builds its tools there — the drivers, `sigrok-cli`, a capture to a
-file and a reader for the injector's opening time, the closing spike
-and its hump, 3 against 4 — checked on the desk with the 9 V battery
-first, the laptop then off its charger and to the car.
+inputs take ±10 V and 0–5.3 V, and an inductive sender's output grows
+with speed (*general*), so the divider stays. A0 reads ±10 V in eight
+bits, a step of 0.078 V, about 0.86 V at the car through the divider;
+there is no range to choose. The ratio is measured, not assumed,
+because the analyser's own input resistance is not documented and
+loads the divider: on the desk, the analyser's 5V pin as the source,
+A0 straight on 4.773 V (multimeter) read 4.800 V, the whole chain at
+4.853 V in read 0.548 V against 0.105 V with the input on earth —
+10.94; the zero read 0.089 V a few minutes later, so it moves and is
+read at each session. Single-sample glitches near 9 V, about one in
+10⁵, go to a three-sample median. `sigrok-cli` 0.7.2 (libsigrok 0.5.2)
+stops after about 0.19 s at any sample rate, so `injscope.py` takes a
+series of 0.19 s snippets, about 2.3 s apart with start-up (40 in
+about 90 s). The laptop runs on its battery so that the analyser's
+earth, which is the laptop's through USB, meets the car's at one point
+only. **An exception to `CLAUDE.md`'s laptop rule** (*the owner*, 26/11
+night: that rule is for the CAN and VCDS sessions in the car): the
+scope's laptop session set up and built its tools there, and committed
+them for the cloud session to read. The battery's calibration in the
+car was not done on 26/11.
 
 **6t, the 44K again** (*the owner's decision*, 17/11 evening;
 `open.md` S1, *The floor and the common part read apart*): the level of
@@ -992,7 +959,7 @@ on this engine** before plug 3 is out and the tester in (*the owner*,
 rough start of a warm stop*), and **a leak-down hot, or one after a hard
 drive against one after a gentle drive, cannot be made**: what tells a
 seat that leaks hot from a deposit that soaks fuel has to come from
-outside the cylinder (the stethoscope, the capture, 6r).
+outside the cylinder (the stethoscope, the capture).
 
 **Item 9's other tests** (*agreed with the owner*, 4/11): the cheapest tests that name a part on 3 without an
 injector swap or a plug change. **The CO₂ test** for H20, the cheapest

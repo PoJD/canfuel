@@ -2317,3 +2317,19 @@ The first of the two drives of 032 before 8ab. 3's floor and swell, 014
 on 3 and the common part as before; the sockets moved neither the
 scatter by load nor the idle; H21 settled against the same evening
 (`refuted.md` C31, *the owner*).
+
+## 26 November 2026 night — the scope set up on the desk; 6r's injectors dropped
+
+- **Tests:** the owner's LHT00SU1 analyser set up on the laptop (its own
+  USB cable faulty, another one enumerating it; WinUSB, `sigrok-cli`,
+  PulseView) and the breadboard divider (10 kΩ in series, 1 kΩ to earth)
+  calibrated on the desk off the analyser's own 5V pin: **a ratio of
+  10.94**, the zero 0.105 V and 0.089 V a few minutes later; the owner
+  looked at injectors 2 and 3 at the engine. Nothing measured on the car.
+
+Contact 2 of the injector connectors sits towards the middle and on 2 and
+3 is not reached with the upper intake on, only on 1 and 4; taking the
+intake off for it is not worth the small chance of a finding (*the
+owner's decision*), so 6r's injectors 3 and 4 were dropped and back-probing
+3's wire at the ECU's connector not taken up. The scope stays for G28 and
+G40 another day; `tools/injscope.py` written for it.

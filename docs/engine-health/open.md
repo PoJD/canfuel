@@ -219,7 +219,8 @@ standing: **8f** at every VCDS session, **6i** the oil level
 every 500 km (26/11 about 1 mm under the top mark, as the week before), the MFD's `IdleHealth` and `Misfires` at warm stops;
 by opportunity (*the owner*, 15/11): **8u** the fuel pressure, **8v** the plugs at their change,
 **8w** the cylinder 4 knock window, and (17/11) **6r** the owner's scope
-on injectors 3 and 4 and on G28/G40, best before 8q; **6t** two cans of
+on G28/G40 another day, best before 8q (its injectors 3 and 4 dropped 26/11
+night: 3's contact 2 not reached with the upper intake on, *the owner*); **6t** two cans of
 BG 44K Platinum and two captured drives at the second tank's end, before 8q (the
 first can in 18/11 at 156,365 km, into about 25 l; **the second 22/11
 evening into a full tank at 156,539 km**; the first tank's last stop: 3's
@@ -836,8 +837,9 @@ condensed 17/11, the full argument in `git show 5741dfa:docs/engine-health/open.
   badly**: fuel short on 3 would move the mean, the supply is flat
   through it, the spark is ruled out at full load, and nothing
   electrical would be cleaned by the hydrogen or run better than the
-  floor after a fall. 6r in a swell settles the injector's side; the
-  floor is a separate question (H4).
+  floor after a fall. 6r in a swell would have settled the injector's
+  side, and was dropped (26/11 night, *the owner*: 3's contact 2 not
+  reached with the upper intake on); the floor is a separate question (H4).
 - **22/11 evening, the end of 6t's first can** (the display, 0x605 a block of
   about 19 s at a time, photographed; *owner*): a warm standing idle of about
   40 minutes. **3 held its floor, −7 to −9.5 %, for the first ~24 minutes of
@@ -1081,7 +1083,9 @@ something else; scripts not kept).
   amount** (H4's wire or the ECU's output; injector 3 itself is out)
   does — the loop trims a constant shortfall into the idle cell, so the
   unmoved mean says nothing against it; the provider's gas leaving the
-  floor fits missing fuel too. 6r reads it directly.
+  floor fits missing fuel too. 6r would have read it directly; it was
+  dropped 26/11 night (*the owner*: 3's contact 2 not reached with the
+  upper intake on), so 6n's ohms at rest are what is left on the wire.
 - **The floor's level has not moved since 24/9** (`swellscan.py
   --floors`, every capture with a warm floor window): −8.1 % on `19`
   (the old MAF), −7.1 to −8.5 on `26`–`43`, −8.1 to −9.0 on `44`–`48`,
@@ -3006,7 +3010,12 @@ names the side.
   against 2, warm and running**: a raised resistance or a weak output
   stage shows as a late opening and a higher on-voltage, and an output
   stage of the TLE6220 kind diagnoses no raised resistance — closer to
-  the fault than 6n's ohms at rest.
+  the fault than 6n's ohms at rest. **Dropped 26/11 night** (*the
+  owner's decision*, at the engine): contact 2 sits towards the middle
+  and on 2 and 3 cannot be reached with the upper intake on, and the
+  intake off to lead a wire out is not worth the small chance of a
+  finding; back-probing 3's wire at the ECU's connector was not taken
+  up (`plan.md`, *6r, the scope*). 6n is what is left.
 **Tests:** **the circuits measured** (among themselves on 17/11, above; `plan.md` 6n to the ECU; VW's repair manual, Golf Mk4, *Motronic injection and ignition system (2.0 ltr. engine)*, *Checking injectors* (workshop-manuals.com, read 5/11/2026)):
 the injector itself 14–18 Ω at about 20 °C; each wire, connector to
 connector, at most 1.5 Ω; contact 1 of the 2-pin connector is the
@@ -4685,7 +4694,7 @@ weakened (S19).
 |---|---|---|---|
 | B1 | **H1** a seat or lifter on 3 | The swell's best fit: **a seat on 3 that fouls at idle and burns itself clean** (with H13; S1, *The swell's shape*), diluting at the idle's vacuum rather than losing compression — 3 is within 1–3 % of 2 at full load (*Off idle*); the port photos show crust broken round 3's inlet seat (*the owner's reading*, 7/11). Against the lifter: no once-per-cycle tick at 3's place on the cam cover (15/11) and S22's tick at its usual size (12/11); a seat that leaks need not tick. **17/11**: with the joint and the injector cleared, the first of B. **17/11, the fourth research**: for the dilution form — 3 gains more from the governor's spark (a later burn), the swell survives a warm engine-off, INA's warm exhaust seat that "sucks in exhaust gas", Mercedes' one leaking seat with no code; against the lifter, whose pump-up runs the swell's course backwards (INA); against in part, the cold fast idle levels 3 within a minute | item 9: the warm leak-down with 3 twice, the engine switched off in a swell; the stethoscope above 3, hot; VW's tappet check (`plan.md` 9) |
 | B2 | **H13** deposits | Fits 3 by every measure: the borescope's most deposit on 3 (3 > 4 > 2 > 1), cold 4 weak beside it in that order; the clean of 9/11 took 3's swell for a day and left its floor, which a flake moved fits better than deposit regrown (SAE 2000-01-2858). Against: no cleaner and not the hydrogen moved 3's swell or the grade's mean (S1, *Before and after each repair*); the deposit reads as a consequence as much as a cause. **Where it came from, perhaps** (16/11): the original cover gasket leaked onto the lower joint at 3 and 4 for at least ten years (*owner*), the order of the deposit (`refuted.md` C28, *Oil soaked into the joint*); **17/11**: the joint renewed and the swell as before, as a deposit laid by that oil would stay (*reasoned*). **17/11, the fourth research**: CARB's 2006 case of one cylinder's intake-valve deposit making it rich and the loop leaning all four — the sign of 032's idle cell, a point or two in size here. Read with H1 | with H1, item 9's warm leak-down with 3 twice (`plan.md` 9) |
-| B3 | **H4** the injector loom at 3 | 3's deficit is an amount at a small charge, not a share — what an injector opening late through a raised resistance gives; the wiring is what stays with the cylinder through a change of injectors. Against: the supply steady through a whole stop, no step at a swell (004, 15/11); a wire has no reason to swell and mend, so the floor at most; the spark side against, 3 level at full load. **17/11, the fourth research**: weakly against, the enriched cold idle worse at matched load than the warm | **6m, 17/11**: each injector 16.0–16.1 Ω, the supply side 0.2 Ω on every pair, flexing moved nothing — the coil and the supply cleared, cold and at rest. Left: the control wire to the ECU's pin 58 (`plan.md` 6n); closer to the fault, injector 3's voltage and current against 4's, warm and running (the fourth research, 17/11) |
+| B3 | **H4** the injector loom at 3 | 3's deficit is an amount at a small charge, not a share — what an injector opening late through a raised resistance gives; the wiring is what stays with the cylinder through a change of injectors. Against: the supply steady through a whole stop, no step at a swell (004, 15/11); a wire has no reason to swell and mend, so the floor at most; the spark side against, 3 level at full load. **17/11, the fourth research**: weakly against, the enriched cold idle worse at matched load than the warm | **6m, 17/11**: each injector 16.0–16.1 Ω, the supply side 0.2 Ω on every pair, flexing moved nothing — the coil and the supply cleared, cold and at rest. Left: the control wire to the ECU's pin 58 (`plan.md` 6n); injector 3's voltage and current against 4's, warm and running (the fourth research, 17/11), closer to the fault, dropped 26/11 night (*the owner*: 3's contact 2 not reached with the upper intake on) |
 | B4 | **H20** coolant into 3 | Fits one cylinder at idle, where the cylinder's pressure is lowest, and the fading with load; plug 3 the cleanest of the 10/10 set (*the owner*, 4/11, weak). Against: the level holds (*owner*), no emulsion, no steam-cleaned crown in the photos; nothing in it fills and empties; **17/11**: 3 a little better, not worse, with the warmer coolant of the fan's cycle (weak) | the CO₂ test of the coolant (it can miss a small weep, 17/11); bubbles at the tank in the leak-down (`plan.md` 9); the system held at the cap's pressure and the borescope in 3 (a lead, 17/11) |
 
 **A. The common part — what makes every cylinder alike rougher** (the
