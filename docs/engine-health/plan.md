@@ -110,6 +110,34 @@ pierced, nothing written to the ECU:
 The files, or screenshots showing the time base and the volts per
 division, into the chat.
 
+**The instrument** (*the owner*, 26/11 night): his **LHT00SU1** USB
+analyser — under sigrok one analog channel (**1ACH**, ±10 V) and eight
+digital ones (0–5.3 V). **One analog channel**, so injectors 3 and 4 one
+after the other, not side by side; for G28 and G40, G28 on 1ACH and G40
+on a digital channel. **A laptop session; Claude runs it** with
+sigrok's command line, the owner only connects the wires.
+- **Never straight onto the car**: the injector's contact 2 sits at
+  the supply's 12–14 V and kicks higher when it closes. **A divider on
+  the breadboard**: row 1 the wire from the injector and one leg of a
+  **100 kΩ**; row 2 the 100 kΩ's other leg, one leg of a **10 kΩ** and
+  the wire to **1ACH**; row 3 the 10 kΩ's other leg, the wire to the
+  analyser's **GND** and **a second wire to the battery's minus** (or
+  the engine's earth). The same divider for G28. **G40** on a digital
+  channel only after its signal has been read with the multimeter: at
+  5 V or under, through a 1 kΩ straight in; above, a divider of about
+  1:3 (20 kΩ and 10 kΩ), never 1:11, which would bring it under the
+  1.4 V threshold.
+- **Checked on the desk first**: a 9 V battery's plus to row 1 and
+  minus to row 3; the multimeter from row 3: row 1 about 9 V, **row 2
+  about 0.8 V**; then the analyser on rows 2 and 3, the same 0.8 V in
+  PulseView — the battery's volts over the shown volts is the ratio,
+  written down.
+- **Which header pins are GND**: checked with the multimeter's
+  continuity against the USB plug's metal shell before anything is
+  connected.
+- **The laptop on its own battery**, not on its charger, while the
+  analyser's earth is on the car.
+
 **6t. Two cans of BG 44K Platinum, before 8q** (*the owner*, 17/11
 evening): the same product as in October, **208** and "Platinum" on the
 can. *Both are in: the first 18/11 into about 25 l, the second 22/11 evening into a
@@ -627,6 +655,22 @@ common part read apart*). G28 against G40 puts the cam's phase on the
 crank's wheel with no marks read, so a tooth shows as 13.85° between
 before and after the belt; no trace of a healthy AQY was found, so it
 is read before against after.
+**The LHT00SU1 and its divider** (*the owner*, 26/11 night; the sigrok
+wiki, *Noname LHT00SU1*: supported by fx2lafw, eight digital channels
+and one analog, ±10 V, the second analog input not selectable): its
+inputs take ±10 V and 0–5.3 V, and an injector's control wire stands at
+the supply's voltage when closed and swings above it as the coil's
+field collapses (*general*; this ECU's clamp voltage is not in these
+files), so the divider is not optional. About 1:11 brings 14 V to
+about 1.3 V and leaves the closing spike room under 10 V; the ratio is
+measured, not assumed, because the analyser's own input resistance is
+not documented and loads the 10 kΩ. The laptop runs on its battery so
+that the analyser's earth, which is the laptop's through USB, meets
+the car's at one point only. **The tools are prepared in a cloud
+session beforehand** (`CLAUDE.md`, *Sessions at the car*: a laptop
+session only runs them and gets the files to GitHub): a capture
+through `sigrok-cli` to a file and a reader for the injector's opening
+time, the closing spike and its hump, 3 against 4.
 
 **6t, the 44K again** (*the owner's decision*, 17/11 evening;
 `open.md` S1, *The floor and the common part read apart*): the level of
