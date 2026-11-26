@@ -197,7 +197,8 @@ class TestFixtureContent(unittest.TestCase):
                 "47_relearn_drive_z1.txt", "48_cattests_z1.txt",
                 "49_warm_drive_z1.txt", "50_queue_drive_z1.txt",
                 "51_n80_drive_z1.txt", "52_n80_gentle_drive_z1.txt",
-                "53_8h_loads_z1.txt", "54_8z_first_drive_z1.txt"}
+                "53_8h_loads_z1.txt", "54_8z_first_drive_z1.txt",
+                "55_8ad_harness_drive_z1.txt"}
     ACCEPTED_IDS = {0x1A0, 0x280, 0x288, 0x320, 0x420, 0x480}
     #: From 10/11/2026 the filter keeps 0x520 as well, for the odometer
     #: (the maintainer's request; docs/firmware/can-decoding.md, *The bus

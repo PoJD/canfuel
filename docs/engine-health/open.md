@@ -114,7 +114,8 @@ cylinder*):
   split (idle cell −6 to −9 %, part-load +2 to +9 %;
   −1.6 / +3.9 on the first drive after the earth was brushed, 25/11,
   back to −6.3 / +7.8 by 26/11; −3.9 / +4.7 after one drive on the
-  probes' new sockets, 26/11).
+  probes' new sockets, 26/11; −4.7 cold and **−5.5 / +7.0** after 8ad's
+  drive the same afternoon).
 - **The drive**: S12, one symptom since 25/11 (*the owner*): a hard
   jerk at a crawl and on moving off, the speed wandering at a constant
   pedal (S20 until then; better since the pedal, 27/10), and a hopping
@@ -180,13 +181,22 @@ OK; **032 −6.3 / +7.8 cold before, −3.9 / +4.7 after one drive**,
 both cells towards zero but inside what they have read with nothing
 changed; 014 and the display as at 8aa's stop, 4 the weakest for the
 first 8 minutes, **3's swell at about 20 min as before**. The scatter
-by load (*Off idle*, F) is not read without a capture. **Next**
-(`plan.md`): **8ad**, a captured drive on the USBtin's new harness
-(26/11) with VCDS 014 020 033, full-throttle pulls, a warm stop of
-ten minutes and 026 in neutral at its end — the scatter by load after
-the sockets, 8w's 020 on the pulls, 4's spells and 026, and the first of
-**032 on the next two drives, before 8ab** — back at −6 %
-or deeper and the sockets' form goes to `refuted.md` and H21 closes
+by load (*Off idle*, F) is not read without a capture. **8ad done**
+(26/11 afternoon, `55`, the captured drive on the USBtin's new harness;
+`idle-log.md`; H21, *The captured drive on the sockets*): **the scatter
+by load as before**, the four alike — the sockets took neither the
+common part nor 3's away; **032 −4.7 / +6.3 cold, −5.5 / +7.0 after**,
+moving back towards −6 %; the fault memory empty, the lamp never lit
+running; at a 29-minute warm stop 3's floor and two swells as before,
+**1 the strongest (+10) and at the house 4 the weakest for minutes
+(−6)**, the most apart since mid-October (S1); 014 89 % on 3, none on
+the pulls (S3); **020 at the limiter: 4 half as often as on 12/11 and
+17/11, 2 as often as 4, and 2 for the first time without 4; 4 to 15.0
+°CA on tip-ins at part load** (S4); 026 in neutral as before (S5); the
+hopping at a light pedal with the pedal at the edge of its rest (S12).
+**Next** (`plan.md`): **the second of the two drives of 032 before
+8ab** — any drive with 032 read at its end (8f); back at −6 % or
+deeper and the sockets' form goes to `refuted.md` and H21 closes
 (*agreed with the owner*, 26/11); then **8ab**, the
 earth point by the ECU re-crimped on new rings (*the owner*, 25/11; the
 rings bought at GME, VW had none), and 032 over the drives after it
@@ -353,6 +363,7 @@ error):
 | 25/11 morning | display, 0x604–0x607 (photos, the album 07:26 and 08:52) | relearning (the second and third drive on the brushed earth; 032 not read) | **two relatively slow morning drives, each ending in a warm standing idle of about 4 min** (*owner*); oil 96 °C, coolant 99 °C; the supply 13.3 V; the everyday state (no other said) | the first stop at 4.1 min: **`IdleHealth` 67 and 62, `Misfires` 6**, `CylWeak` 3; **3 −9.5, 4 −2.5, 1 +4.0, 2 +8.0 %** (`CylNamed`) — 3 on its floor, no swell in 4 min; 0x606 at the end of the first drive **85 / 7.6 a minute / −9.5 %**, the second **64 / 5.2 / −9.5 %**; 0x607 at the first stop held the night's 56 / 3.3 / −7.5. **Short stops on the floor, as before the earth**; nothing for 8aa or 8ab without 032 |
 | 25/11 midday | display, 0x604–0x607 (photos, the album 11:59–12:00) | relearning (after 8aa; 032 not read) | **a long drive with breaks, and long standing idles after them** (*owner*); the photographs at **42.5 min of warm idle in the drive** (`DrvIdleMin`); oil 100 °C, coolant 99 °C; the supply 13.6 V; the everyday state (no other said) | **`IdleHealth` 96 and 95, `Misfires` 8 (14 the most)**, `CylWeak` 4; **4 the weakest at −12.0 %, 3 at −8.0, 1 +4.0, 2 +15.5 %** (`CylNamed`) — a spell of 4's after a long drive, as 22/11 night's, 23/11 afternoon's and 24–25/11 night's; 0x606 **67 / 6.0 a minute / −13.5 %**, 0x607 the part before the last break **69 / 6.8 / −12.5 %**. *Owner*: nothing as calm as the night before. **One day, not a change of S1** |
 | 26/11 early | display, 0x604–0x607 (photos, the album 05:38–06:05), VCDS 014 033 036 | kept (032 −6.3 / +7.8 cold before, −3.9 / +4.7 warm after) | `plan.md` 8ac, **the first drive on both probes' new sockets** (the old rear probe on): about 32 min of town, a steady stretch and hard driving to 4,960 rpm, then a warm standing idle, VCDS to 05:46, the display to about 25.5 min of warm idle (06:05); oil 98–100 °C, coolant 97–99 °C; the supply 13.0–13.2 V; the everyday state (no other said) | **the first 8 min 3 at −7.5 to +1 %, mostly −2.5 to +0.5, 4 the weakest at −4 to −8.5** (1 +5 to +10.5, `CylNamed` set only in the first minute) — a spell of 4's after a hard drive, as 22/11 night's, 23/11 afternoon's, 24–25/11 night's and 25/11 midday's; **53–82**; 014 10 misfires in 8.4 min (0.14 % of combustions); **3's swell at about 20 min, to −18.5 %** (4 +1 to +3, 1 +12 to +15, 46–56 in it), gone within about two minutes; at 06:05 3 −7.0, 43–48; `Misfires` 2–4; 0x606 at 25.5 min **53 / 3.1 a minute / −7.0 %**, 0x607 the previous drive (25/11, the old sockets) **82 / 5.2 / −11.0 %**. *Owner*: a very calm idle until the swell. **One stop, not a change of S1**: 8aa's stop read 56 / 3.4 / −7.5 on the old sockets |
+| 26/11 afternoon | `55`, VCDS 014 020 033, 026 014, 014 001 003 | 032 −4.7 / +6.3 cold before, **−5.5 / +7.0 after** | 8ad, **the captured drive on the probes' new sockets**: about 33 min of town and motorway with full-throttle pulls, a queue, then **a warm stop of 29 min at a petrol station** (two sweeps in neutral near its end), a queue home and **11 min at the house**; oil 96–102 °C, the everyday state, the A/C off, **no cut** | petrol station **75, 65, 69, 66, 68, 73, 56, 58, 56, 51, 65** a minute in 3's swell, **54, 47, 42, 43, 52, 44, 41, 47** after its fall at 14:58:40, 59 and 47 in the second swell, 43, 37, 46 after it; after the sweeps **36, 33, 37, 44** — the calmest of the drive; the house **69, 67, 67, 65, 59, 67, 57, 64, 58, 68, 75** (3's swell from the ninth minute); 014 0.23 % at the station (S3, 26/11). **One drive, as before**: 1 the strongest, 4 the weakest for minutes at the house (S1, 26/11) |
 
 **The dips themselves on the original map** (3/11, `42` against `24`–`40`;
 standing idles settled 30 s and more, oil 93 °C and over, dips against the
@@ -515,7 +526,29 @@ strokes — a step 12 rpm or more under the cylinder's own median — per
 | `50` (12/11 evening, the queue drive's last stop) | +5 | **−16** | +4 | +7 | 2 / 22 / 5 / 1 | 74 % |
 | `53` (15/11, 8h: 39 minutes, ten of plain idle, then the loads) | +7 | **−11** | −2 | +5 | 3 / 11 / 4 / 2 | 59 % |
 | `54` (17/11, the new lower gasket, **injectors 2 and 3 swapped**; the two warm stops) | +4, +3 | **−12, −10** | +2, +2 | +6, +5 | 5 / 18 / 4 / 1 and 8 / 15 / 2 / 1 | 63 % |
+| `55` (26/11, 8ad, after the earth brushed and the probes' sockets; the petrol station's 24 min before the sweeps, and the house) | **+10**, +7 | **−11, −9** | −2, **−6** | +3, +9 | 1 / 12 / 2 / 1 and 2 / 8 / 4 / 1 | 69 % |
 
+- **26/11 (`55`; *the owner's question*: is 1 now the strongest, and
+  apart from 3's swell are 4 and 3 now the weakest?)**: **yes at this
+  drive's stops, and it is a return rather than something new.** At the
+  petrol station 1 +10 is the highest since early October (`24`–`31`
+  +6 to +13; `47`–`54` +2 to +7) and 2 the lowest in this table (+3,
+  about 0 for the ten minutes after 3's first swell fell, *below*); at
+  the house 4 −6, the lowest since `24`–`31` (−7 to +1), and **4 the
+  weakest of the four in five of the first eight minutes** (*the
+  owner*'s blocks at 15:37 and 15:40), 3 the weakest again from the
+  ninth. `drivescan.py --cylinders` gives the same standing (1 +10, 2
+  +5, 4 −3, 3 −12; `54` +4, +7, +2, −13) — **3's deficit as before**,
+  1 and 4 a step apart that `54` did not have (`cylshare.py`: 1 +5.3,
+  4 −6.3, the most apart since `37`, 15/10). Off idle nothing moved: 1
+  less 4 +3 to +4 % at b7 45–90 (*Off idle*, A). 4's weak strokes 2–4
+  per 1000, inside 2–7, and one of the house stop's 18 rises of 014
+  was 4's — **4's spell is a share, not misfires**. 020 read no retard
+  at any standing idle it was logged at (1,837 samples, among them the
+  petrol station's one minute with 4 the weakest); **at the house, where
+  4 led, 001 and 003 were logged, not 020**, so whether the ECU retards
+  4 in a spell is still not read (`plan.md` 8w). Why 1 leads and 4
+  trails more today is not known; one drive.
 - **Cylinder 3 is the weak one in every warm idle on record, 10–20 %
   under the mean** — from 24/9 on (`19`, the first warm idle long
   enough to read), on three sets of plugs and of leads, two MAFs and
@@ -579,7 +612,16 @@ strokes — a step 12 rpm or more under the cylinder's own median — per
   thirteenth — then, with the loads switched, **three swells to −20,
   −20 and −22** (minutes 17, 25 and 31 of the stop) with 7–12, the
   bottoms about seven minutes apart, and −4 to −7 with 0–3 for the
-  last six minutes (S1, *8h's plain idle*).
+  last six minutes (S1, *8h's plain idle*); `55` (26/11, 8ad, the
+  petrol station after the pulls), **no cut**: −11, −5, −12, −12, −14,
+  −14, −14, −13, −13, −14, **−16, −17** with 9, 5, 10, 11, 12, 6, 5, 5,
+  6, 6, 7, 3, then the fall at 14:58:40 (−18 to −3 % in about two
+  minutes, `swellscan.py --falls`) and **−4 to −9 for seven minutes with
+  0–4 — 2 at about 0 through them** (+4 to +8 before) — a second swell
+  at 15:06–15:09 to −17, then −4 to −7; after the two sweeps in neutral
+  −8 to −11 with 0–3 in **the calmest minutes of the drive** (`IdleHealth`
+  33–44); the house stop (no pulls before it): −6 to −9 for eight
+  minutes, then a swell to −17 from the ninth.
   So **"a warm stop starts rough and settles" is 3's state**, it is
   not tied to the stop's first minutes (`40`, `47`), and **what ends it
   is a jolt — a cylinder cut, a load, or nothing seen** — not time.
@@ -1100,6 +1142,7 @@ display's byte.
 | `47`, `48`, 10/11 | 49 | 62 | 8.2 | 13 | 2.0 | 3.09 | −14 / +4 / +4 / +6 | 24 % |
 | `49`–`51`, the canister | 166 | 61 | 4.3 | 13 | 3.0 | 2.97 | −12 / +1 / +5 / +6 | 42 % |
 | `54`, 17/11, the lower gasket renewed, injectors 2 and 3 swapped (`52`, `53` before it: grade 61, 58; common part 2.63, 3.16) | 44 | 63 | 3.1 | 19 | 3.5 | 2.96 | −12 / +2 / +4 / +7 | 34 % |
+| `55`, 26/11, after the earth brushed (8aa) and the probes' sockets (8e's wiring) | 76 | 55 | 5.8 | 10 | 1.4 | 2.83 | −10 / −3 / +9 / +5 | 50 % |
 
 - **The idle moved twice, and both times at a repair.** **The MAF**
   (24/9, `19` against `24` the same day): the grade 113 → 91, dips of
@@ -1367,6 +1410,7 @@ completing rather than load (`refuted.md` C19).
   | `51` (14/11, the new N80: the pump's idle and the two stops' logged parts; after the count above) | 10 | 0 | **7** | 3 | 0 |
 | `53` (15/11, 8h's ten minutes of plain idle; after the count above; the three strokes 12 rpm and more down all 3's) | 18 | 1 | **11** | 4 | 2 |
 | `54` (17/11, the new lower gasket, injectors 2 and 3 swapped: the second stop, 07:17–07:24; after the count above; 14 of 16 strokes 12 rpm and more down 3's) | 23 | 2 | **16** | 4 | 1 |
+| `55` (26/11, 8ad: the petrol station's first 18.5 min, the sweeps in neutral, the queue home, the house stop set by its header's clock, `cylscan.py --offset`; after the count above; 60 of 67 strokes 12 rpm and more down 3's) | 105 | 2 | **93 (89 %)** | 8 | 2 |
 
   Where the weakest stroke is at least 12 rpm under its median — the
   name is surest there — 3 has 63 % and 4 34 % of 580 up to 18/10, **3
@@ -1490,6 +1534,17 @@ completing rather than load (`refuted.md` C19).
   counts on the floor too, rarely**; `42` counted nothing at all,
   fresh from the map's reset. What 014 counts is 3's swell above all.
 
+- **26/11 (`55`, 8ad; *the owner's question*: how 014 behaves now, and
+  on which cylinders)**: at the petrol station **73 misfires in 20.4
+  minutes standing, 0.23 % of combustions**, 1.9 episodes a minute, 44 %
+  of them climbing past 12, the longest silence 4.1 min (`misfshare.py`;
+  `54`'s second stop 0.23 %); 0.17 % through the sweeps' log, 0.13 % at
+  the house — **the era of the new valve and after, not the canister's
+  storms**. **89 % of the standing rises on 3** (*What 014 counts, by
+  cylinder*), 4 8, 1 and 2 two each. On the road 8 rises, 6 of them at a
+  light pedal under 2,820 rpm, **none on the pulls** (`drivescan.py
+  --vcds`).
+
 - **On the new N80** (14–15/11, `51`, `52`; condensed 17/11, the phases
   in `git show 5741dfa:docs/engine-health/open.md`, this list): at the pump's idle 0.29 % of combustions, at the
   second stop one count in 7.7 minutes; the next day's warm stop **89
@@ -1587,6 +1642,7 @@ the share of samples in which each cylinder retards, and its most):
 | 3/11 evening (`vcds-step5b-*`) | 4 1 of 57 | 4 46 %, to 4.5 | 4 93 %, to 3.0 |
 | **12/11** (`vcds-step6w-*-2`) | **4 29 %, to 12.7**; 1 1 % | 4 53 %, to 12.7 | **4 84 %, to 7.5; 2 57 %, to 6.0**; 1 and 3 9 % |
 | 17/11 (`vcds-step8z-pulls-*-2`, the new lower gasket, injectors 2 and 3 swapped; the limiter in 2nd and 3rd) | 4 19 %, to 6.0; 1 2 % | 4 30 %, to 9.0; 1 13 %, 3 9 % | **4 96 %, to 9.7; 2 44 %, to 9.7**; 1 28 %, 3 16 % |
+| 26/11 (`vcds-step8ad-drive-b-*`, 8ad, the probes' new sockets; pulls in 3rd–5th to 6,438 rpm, oil 92 °C) | 4 24 %, to 12.0; 2 1 % | 4 40 %, to 3.7; 2 10 %, 3 3 % | **4 51 %, to 6.0; 2 51 %, to 5.2**; 3 22 %, to 6.0; 1 never |
 
 - **17/11** (`54`): as 12/11 — 4 the most, 2 beside it only above
   5,300 rpm; over every full-load sample above 3,000 rpm 4 in 36 %,
@@ -1594,8 +1650,24 @@ the share of samples in which each cylinder retards, and its most):
   6,160 rpm and 7.8 % load, the lift after a pull, not under load.
   The swapped injectors moved nothing here either: 2 (now injector 3's)
   and 4 retard as before.
+- **26/11** (`55`, 8ad; *the owner*, watching 020 on the pulls: 4 "no
+  longer jumps nearly as much", and near the limiter almost all
+  retard): **at the limiter 4 about half as often as on 12/11 and
+  17/11** (51 % against 84–96 %), **2 as often as 4, 3 in a fifth, 1
+  never**; over every full-load sample above 3,000 rpm 4 in 35 %, mean
+  1.2 °CA (17/11 36 %, 1.5). **And 2 without 4 for the first time**: 7
+  of 82 samples above 5,300 rpm, 3.0 °CA at 6,000–6,200 rpm, and 2
+  more walking back at 4,640–4,840. **Off full load 4 reached 15.0
+  °CA, VW's limit** — on tip-ins after lifts on the motorway right after
+  the pulls (14:40:30–14:41:10, 3,280–3,680 rpm, 24–64 % load, in 5th at
+  115–135 km/h), 15 samples of 12–15° in a minute and a half, 1–3 at
+  zero: 12/11's 14.2 on a tip-in at 16 % load, deeper. The owner read
+  the screen on the pulls, not there. *Reasoned*: the top fits a
+  mixture or charge change on all four (H11, H21's new joints)
+  better than a noise of 4's alone (H5); the tip-ins are S4's oldest
+  form. No mark changes.
 - **2 retards only above 5,300 rpm and never without 4** (0 of 43
-  samples on its own); 1 and 3 there in one sample in eleven. On 3/11's
+  samples on its own; *26/11 7 of 82, above*); 1 and 3 there in one sample in eleven. On 3/11's
   pulls to the same speeds 2 was in 9 %. So at the limiter all four
   retard a little on 12/11, 4 and 2 the most — **and 2 is the strongest
   cylinder at a warm idle** (S1, *Every stroke named*: +3 to +10 % of a
@@ -1715,6 +1787,12 @@ cylinder 1. So **not knock** — knock needs cylinder pressure. At idle all four
 sit on the floor. 1 and 4 reading twice 2 and 3 is explained without a fault
 (`refuted.md` B2). ⚠ 026 includes the ECU's amplifier factor, and 1 and 4 are
 probably on different sensors.
+**26/11, warm, standing, two slow sweeps to about 3,500 rpm** (`plan.md`
+8ad, `vcds-step8ad-neutral-026-014.csv`, 113 samples off idle): **as
+before** — 4 over 1 by 10–16 % at 1,000–2,000 rpm, **53 % at
+2,000–2,700**, 24 % at 2,700–3,350, and 1 over 4 by a fifth above
+3,350; at idle all four 0.32–0.45 V. On the probes' new sockets and
+the brushed earth, so neither is in S5 (*reasoned*).
 
 ### S11. A hiss at the back of the engine at a warm idle
 
@@ -1758,10 +1836,26 @@ lambda control runs, and not at full throttle, where the engine goes on
 its map and runs well. **Read against the captures** (*Naming the
 cylinder*, *Off idle*, F): the scatter from stroke to stroke is largest
 at a light pedal and **the same on all four cylinders** — the common
-part, not cylinder 3; whether the probes' circuit is in it is read
-on the drive after their sockets were renewed (H21, *The drive after
+part, not cylinder 3; whether the probes' circuit is in it was to be
+read on the drive after their sockets were renewed (H21, *The drive after
 the sockets*: no capture, so the scatter is not read; the hopping not
-reported on it; F; H21, *Why a probe's fault shows most at a light load*).
+reported on it; F; H21, *Why a probe's fault shows most at a light load*)
+and **was read on 8ad's captured drive, 26/11: the four alike and the
+scatter as before** (H21, *The captured drive on the sockets*) — and
+the hopping came back on it (below).
+**On the bus, 26/11** (`55`, 8ad; *the owner*'s "teď" at about
+15:23–15:24 by the message, about 25 km/h and 1,900 rpm, about 20 s):
+the queue home, **4,370–4,422 s by the capture (15:23:28–15:24:20 on
+VCDS's clock), 21–25 km/h at 1,615–1,960 rpm in a low gear, the fuel on
+throughout, and the pedal (0x280 b5) at its rest 80 % of the time,
+touching 49–57 about once a second** (64 times in 52 s); no 014 rise
+and no cylinder of its own (the scatter by load the four's alike, *Off
+idle*, F, 26/11). *Reasoned*: a pedal at the edge of its rest is where
+the ECU passes between its closed-throttle control and part load with
+every touch, and whether the foot followed the car's hop or the car
+the foot the bus cannot say. **What would tell**: the hopping at the
+same speed with the pedal held clearly off its rest — reported with
+"teď" as before; the capture reads the pedal.
 
 
 *Reopened 10/11 night at the owner's request*, in a new form; its
@@ -2095,6 +2189,7 @@ under *The new probes, 10/11* to *The cell over the three months*):
 | 22/11 | five days of driving on 6t's first can, the second's first drive (the album 00:29) | **−4.7 / +7.8**, the fault memory empty |
 | 24–25/11 | **the earth point by the ECU brushed clean, the ECU unplugged an hour** (8aa; `refuted.md` C27) | **−2.3 / +3.9** after a brisk drive and 30 min of warm idle, **−1.6 / +3.9** after the blips and at home — the idle cell nearest zero of any reading; **back to −6.3 / +7.8 by 26/11's cold reading** (25/11's drives on it), so the move was the reset's, not the earth's (*reasoned*) |
 | 26/11 | **both probes' sockets renewed** (25–26/11 night; the battery and the ECU not unplugged, so the old wiring's cells the before) | **−6.3 / +7.8** cold before, **−3.9 / +4.7** after one drive of 32 min and 8 min of warm idle, the fault memory empty — both cells towards zero, inside what they have read with nothing changed; 8f's next drives tell |
+| 26/11 afternoon | nothing; the first of the two drives of 032 before 8ab (`55`, 8ad: 53 km, the pulls, 29 + 11 min of warm idle) | **−4.7 / +6.3** cold before, **−5.5 / +7.0** at the end; 055 −0.92 → −1.17 g/s, the fault memory empty — **both cells back towards 8ac's before**, short of −6 %; the second drive tells |
 
 **No repair before 24/11 moved the idle cell towards zero** (*the owner's
 observation* that it grows more negative is not shown: each reading
@@ -3943,6 +4038,27 @@ closes (the wires to the ECU left to 6n); held at about −4 % or
 shallower, the sockets were a part of the cell. **Those two drives
 come before 8ab's rings**, so that the earth does not change with them.
 
+**The captured drive on the sockets, 26/11** (`plan.md` 8ad, done;
+`55`; `idle-log.md`): **the first of the two drives** —
+- **032 −4.7 / +6.3 % cold, −5.5 / +7.0 % at the end** (8ac's end
+  −3.9 / +4.7): **both cells back towards the old wiring's −6.3 /
+  +7.8**, the idle cell short of the −6 % agreed; the second drive
+  settles it. 033 at the stop and on the road not re-read: 8ac found it
+  too coarse to name a cause.
+- **The scatter by load as before** (*Off idle*, F, 26/11): the four's
+  alike, at 1,600–2,100 rpm 47–51 % of a stroke at b7 10–27, 22–23 at
+  27–35, 13–16 at 45–55, 7–8 at 55–70 — **inside `54`'s** (52–56,
+  22–23, 14, 12–17) and a little under the corpus (`19`–`54`: 60–63,
+  29–30, 18, 10–11). **The renewed sockets did not take the common
+  part off idle away**; nor the idle's: the common part 2.83 rpm rms
+  (2.6–3.1 since 24/9), 3's floor −7.4 % and swell to −19 as before
+  (S1).
+- **The front probe on the new joints through the pulls**: no code at
+  thirteen reads; the knock control at the limiter on all four but 1
+  (S4, 26/11).
+**No mark changes, the ranking as it was** (*reasoned*): for the
+sockets' form only 032 is left, and it is moving back.
+
 **Tests:** the sockets of both probes looked into and renewed
 (25–26/11 night, *Opened*; **the drive after them, 26/11**, below);
 the rear lead's run (`plan.md` 8e); the
@@ -4215,7 +4331,9 @@ drives, `19`–`50`; warm (oil 80 °C and over).*
   `19` (24/9) −1.4 to −2.8, `54` (17/11) −2.7 to −3.7; 1 less 4 +1 to +3, a few +5 to +10 above 3,300 rpm on
   windows of ±1–2; the excess of weak strokes at full load −0.8 to
   +0.03 % of the work in every capture — none; `--pulls` 0.82–1.15 by
-  capture with no trend (`19` 1.04, `54` 0.99); **the air at full
+  capture with no trend (`19` 1.04, `54` 0.99; **`55` 1.18**, seven
+  pulls in 3rd and 4th, the motorway's slope not known — the car
+  accelerating harder than b7 claims, not weaker); **the air at full
   throttle 495–528 mg a stroke at 4,000–5,000 rpm** in the 003 logs
   from 24/9 (the new MAF) to 17/11, 85–93 g/s at the top (two short
   logs lower, 3/11 `step5b-pull` and 9/11 `step8-home-2`, 441–444). **What
@@ -4328,8 +4446,14 @@ drives, `19`–`50`; warm (oil 80 °C and over).*
     against. **What would split them**: **this table read again after
     8e's sockets** (renewed 25–26/11 night), the before being
     `19`–`54`, beside 032's idle cell — **not read on 8ac** (26/11,
-    VCDS only, no capture; H21, *The drive after the sockets*); the next
-    captured drive reads it. *VCDS on 001 or 033 alone was
+    VCDS only, no capture; H21, *The drive after the sockets*); **read
+    on 8ad's captured drive the same afternoon** (`55`): the four alike
+    as before, 47–51 % at 1,600–2,100 rpm and b7 10–27, 22–23 at 27–35,
+    24–27 at 35–45, 13–16 at 45–55, 7–8 at 55–70 — inside `54`'s and a
+    little under the corpus's; standing 1 8, 2 6, 4 9, 3 11. **The
+    sockets moved neither side** (H21, *The captured drive on the
+    sockets*). 3 less 2 by load as in the table (−22 at b7 10–27 to
+    1,600 rpm, −3 to −4 at 45–90). *VCDS on 001 or 033 alone was
     proposed and dropped* (*the owner*, 25/11): at about a sample a
     second it sees only a probe that switches slowly, which this one
     does not (H21, *Why a probe's fault shows most at a light load*).
@@ -4808,7 +4932,7 @@ list C for 3's floor apart from its swell — the floor reads as A's in
 | A5 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it (shared with H16 until 17/11, `refuted.md` C30). Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; **17/11**: nor a return restriction, which would pull both cells negative (S19, *re-reckoned*); the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
 | A6 | **H2** a leak ahead of the converter | Widened 10/11 to the zone between the probes (the joint, the flex, the plugged boss), which gives a lean rear probe at idle but not 032 or the dips; S2, S11 and S14's air. Against: the cold tailpipe and smoke tests found nothing; the visible manifold has no soot and no holes (31/10); 032's idle cell takes fuel away, where air ahead of the front probe would add it; the front loop holds through 3's swell; the rear probe's sinking was the old probe's; cannot pick a cylinder. Untested: a crack open only hot, the part under the heat shield | none planned (the warm tailpipe test dropped 15/11, *the owner*) |
 | A7 | **H18** oil past the stem seals | All four alike: worse after idling, calm after a working drive; for one valve it is the swell's second reading (list B's matter, S1, *The swell's shape*). **For, 17/11**: a brown liquid stood round the backs of inlet valves 2, 3 and 4 with the manifold off, there before the wash (*owner*) — the first direct sight of oil at the valves, though the old joint left the same and it does not pick 3; **17/11 (`54`)**: the joint new and the swell as before, so the joint's oil was not it (`refuted.md` C28). Against: it does not grow with the time into a stop; **no blue smoke ever**, the plugs dry; **17/11**: 3 no worse in the first seconds after a coast-down, the deepest vacuum | the oil level on the fresh oil (`plan.md` 6i); the plugs at the next change (8v) |
-| A8 | **H21** the front probe's signal-earth wire | What is left after 8h (`53`, 15/11: only the supply stepped with a load, `refuted.md` C26): the front probe's damaged signal-earth wire, which reaches the common part only through a mixture; S19's idle cell if a signal earth carries heater current (*reasoned*). Weak for the idle: the new rear probe read healthy for 18 minutes and the idle was as rough | the sockets renewed 25–26/11 night with the old rear probe on, every pin found corroded, the heater's worst (*the owner*); **8ac** the drive after them (26/11): both probes working, 032 −6.3 / +7.8 → −3.9 / +4.7 on one drive, the scatter by load not read (no capture); 032 over 8f's drives; each wire to the ECU's pin with the plug off (with 6n) |
+| A8 | **H21** the front probe's signal-earth wire | What is left after 8h (`53`, 15/11: only the supply stepped with a load, `refuted.md` C26): the front probe's damaged signal-earth wire, which reaches the common part only through a mixture; S19's idle cell if a signal earth carries heater current (*reasoned*). Weak for the idle: the new rear probe read healthy for 18 minutes and the idle was as rough | the sockets renewed 25–26/11 night with the old rear probe on, every pin found corroded, the heater's worst (*the owner*); **8ac** the drive after them (26/11): both probes working, 032 −6.3 / +7.8 → −3.9 / +4.7 on one drive; **8ad** (26/11, `55`): **the scatter by load as before**, 032 back to −4.7 cold and −5.5 / +7.0 after the drive; 032 on the second drive before 8ab; each wire to the ECU's pin with the plug off (with 6n) |
 
 **More than one at once** (*the owner's point*, 12/10): each repair may help
 only in part; a partial improvement is read as a share, not a miss.

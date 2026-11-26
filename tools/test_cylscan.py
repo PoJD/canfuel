@@ -190,5 +190,26 @@ class Corpus(unittest.TestCase):
             self.assertAlmostEqual(mean, sign * WHEEL_ALT, delta=0.0004)
 
 
+class TheHeaderClockForAStandingLog(unittest.TestCase):
+    """55's home stop: 014 001 003 taken wholly at a standing idle, which
+    engine speed aligns 2.6 s out (5,210.7 s); its header against the drive
+    log's sets it at 5,208.2 s, and only that puts the rises where the
+    driving logs of the same session put theirs, on 3."""
+
+    def test_the_offset_from_the_header_puts_the_rises_on_three(self):
+        data = cylscan.read(os.path.join(FIXTURES, "55_8ad_harness_drive_z1.txt"))
+        runs = cylscan.idle_runs(data)
+        log = os.path.join(FIXTURES, "vcds", "vcds-step8ad-home-stop-014-001-003.csv")
+        got = cylscan.misfires_014(log, data, runs, offset=5208.2)
+        self.assertEqual(len(got), 18)
+        self.assertGreaterEqual(sum(1 for x in got if x[1] == 3), 15)
+        by_speed = cylscan.misfires_014(log, data, runs)
+        self.assertLess(sum(1 for x in by_speed if x[1] == 3), 12)
+
+    def test_offset_needs_a_vcds_log(self):
+        with self.assertRaises(SystemExit):
+            cylscan.main(["--offset", "1", "x.txt"])
+
+
 if __name__ == "__main__":
     unittest.main()

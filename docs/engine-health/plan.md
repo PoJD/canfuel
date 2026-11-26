@@ -18,10 +18,9 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Now: 8ad**, the captured
-drive on the USBtin's new harness (26/11) — the first of **the two
-drives of 032 before 8ab**; the second any drive after it with 032 read
-at its end (8f). **Then 8ab**,
+Captures only where an item asks for one. **Now: the second of the two
+drives of 032 before 8ab** — any drive with 032 read at its end (8f);
+the first was 8ad's captured drive (26/11, done). **Then 8ab**,
 the earth point by the ECU on new rings (*the owner*, 25/11; the rings bought at GME, VW
 had none). **Then 8e**, **the new rear probe when it comes (bought
 24/11, expected 26/11)**; **8q, the timing belt
@@ -71,7 +70,8 @@ comes out for them — the converter goes with the MFD.
 **6i. The oil level on the new oil, about every 500 km** from the first
 reading (27/10, 155,024 km, at the top mark; 11/11 evening about
 1–2 mm under it; **26/11 about 1 mm under it, as the week before**
-(*the owner*; the odometer from 8ad's capture, 0x520); **next about
+(*the owner*; 156,868 km, the bus at the start of that day's captured
+drive); **next about
 500 km after that**): the car on level ground
 and **at least 5 minutes standing**, the dipstick out, wiped, in, out,
 and **photographed**; the odometer into the chat. Any top-up: the litres and the odometer
@@ -184,72 +184,11 @@ of this plan, *the owner's decision* of 9/10):
   open: someone holds 3,000 rpm while the other listens and feels
   along the brackets, the heat shields and the ancillaries for a
   buzz.
-- **026 in neutral and 020 on a drive with pulls**, with VCDS
-  connected anyway (020 on 8q's captured drive or any drive with VCDS on): 026 from
-  idle to about 3,500 rpm in neutral, slowly; 020 on two or three
-  full-throttle pulls in 3rd or 4th.
-- **4's spells at a warm stop** (*the owner*, 25/11), on the first
-  captured drives once the USBtin's harness is made: a long or brisk
-  drive to a warm standing idle of ten minutes or more, **020 logged
-  with 014 through the whole stop** (VCDS, beside the capture); the
-  capture says afterwards when 4 led.
-
-**8ad. The captured drive on the USBtin's new harness — one step,
-started by one message** (*the owner*, 26/11). A laptop session; the
-MFD out, the USBtin in plug C in its place. **One drive for every item
-that waited for the USBtin**: the first of the two drives of 032
-before 8ab, the capture the sockets' drive (26/11) lacked, 6's
-captured drive with its pulls, and from 8w 020 on the pulls, 4's
-spells at a warm stop and 026 in neutral.
-**The owner touches no tool**: Claude runs VCDS, the capture and
-livewatch, and tells him only when to start the engine.
-
-**The owner, before his message**: the harness in plug C, the
-ignition off, a multimeter on ohms across the USBtin's H and L
-terminals — **about 60 Ω** goes (**measured 60 Ω, 26/11**, *the
-owner*); about 40 Ω is the USBtin's own
-terminator on, switched off first; open or 0 Ω, no drive. White (C7)
-on H, yellow (C8) on L, ⊥ free. The USBtin and VCDS's cable plugged
-into the laptop; then the ignition on, the engine **not** started.
-
-**His message**, e.g. *"naměřil jsem 60 Ω, kabely připojené,
-zapalování zapnuté, jedeme 8ad"*. If the figure is not about 60 Ω,
-Claude stops there and says why.
-
-**Claude, in this order, with no further question**:
-**Everything runs before the engine starts** (*the owner*, 26/11):
-the capture, livewatch and the drive's VCDS log are all running
-before Claude says "nastartuj".
-1. **The capture started at once** (`tools/usbtin_capture.py`, the
-   next free fixture, `55`), and `tools/livewatch.py` on it. Frames
-   within 10 s, or H and L are swapped: the capture stopped, the owner
-   told to swap the two wires, started again.
-2. **Cold, the engine off**: the fault memory, 032 and 055 for 20 s,
-   the fault memory again (`vcds_log.py --groups 032 055 --seconds 20`).
-3. **The drive log started**, **014 020 033**, in the background,
-   reconnecting by itself (the ECU drops at the crank; the log goes on
-   into `-2`); **once it logs, "nastartuj"** to the owner.
-4. **Through the drive**, to the owner once a minute: livewatch's
-   line — oil, coolant, and at a stop `IdleHealth` and `Misfires`.
-   **The drive** (his): warm, some town at a light pedal, some steady
-   driving out of town, **a warm standing idle of ten minutes or more
-   at the end** (a petrol station will do), the everyday state;
-   anything that feels different, the hopping at a light pedal above
-   all, with "teď". **Once the oil is at 90 °C or more, two or three
-   full-throttle pulls in 3rd or 4th to about 5,500 rpm** where it is
-   safe (Claude says when the oil is there). Claude says when the
-   stop has had its ten warm minutes.
-4a. **At the stop's end, standing, warm, in neutral**: Claude switches
-   VCDS to **026 014**; **the revs slowly from idle to about 3,500 rpm
-   and back, over about half a minute**, twice; then 014 020 033 again
-   for the drive on.
-5. **At "konec"**: the drive log's `.stop` (the fault memory read),
-   032 and 055 for 20 s, VCDS closed, the capture stopped.
-6. **While he drives on**: the laptop session's upload, one commit
-   and one push (`CLAUDE.md`, *Sessions at the car*).
-
-*Left of 8w for another day*: G66's connector and bolt, and the loose
-part at 3,000 rpm (it needs a second person).
+- **4's spells at a warm stop** (*the owner*, 25/11), on the next
+  captured drive with a warm stop: a long or brisk drive to a warm
+  standing idle of ten minutes or more, **020 logged with 014 through
+  the whole stop** (VCDS, beside the capture); the capture says
+  afterwards when 4 led.
 
 **8ab. The earth point by the ECU on new rings** (*the owner*, 25/11).
 1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
@@ -524,37 +463,13 @@ change together: 8ac read the wiring alone (26/11, `open.md` H21,
 lets a capture or a VCDS log be read at that moment — the stroke, the
 load, 014, and from a capture the cylinder (`open.md` S12).
 
-**8ad, the captured drive on the USBtin's new harness** (*the owner*,
-26/11; the harness made that day): 8ac (26/11) ran on VCDS alone, so
-the stroke-to-stroke scatter by load after the sockets was not read
-(`open.md` *Off idle*, F; H21, *The drive after the sockets*); this
-drive reads it against `19`–`54`, and is also the first of the two
-drives of 032 below. **014 020 033**: 014 is never left out; 020 with
-014 through the warm stop is 8w's 4's spells (the stop of ten minutes
-or more is that item's); 033 keeps the front probe on the new joints
-in view — 036 read healthy on 8ac and is dropped for 020. The 60 Ω
-across H and L before the ignition is the bus's two terminators
-(60.1 Ω measured, `docs/firmware/install.md`): it proves the harness
-sits on the CAN pair, and 40 Ω would be a third terminator, the
-USBtin's own. The capture is listen-only (`tools/usbtin_capture.py`),
-so H and L swapped disturb nothing on the bus and only give no frames.
-**Everything else that waited for the USBtin goes on the same drive**
-(*the owner*, 26/11): the pulls are 6's and 8w's 020 under load (S4,
-read with 014 and the capture's strokes), and 033 keeps the front
-probe in view through them; 026 in neutral at the stop is 8w's S5,
-warm and standing, with 014 beside it. The oil level (6i) was read
-the same day before the drive (*the owner*), so it is not in 8ad.
-The capture starts with the ignition already on (*the owner*, 26/11:
-one message, then nothing to run): it loses only the bus waking up,
-not the engine's start, which waits for Claude's "nastartuj".
-Not 6t's: that tank has about 15 l left (*the owner*, 26/11), and 6t
-reads its two captured drives at the tank's end.
-
 **The two drives of 032 before 8ab** (*the owner*, 26/11; `open.md`
 H21, *The drive after the sockets*): one drive after the sockets moved
 032 towards zero, but inside the cell's own spread; two more settle
 whether the sockets were a part of it, and they come before the rings
-so that the earth and the sockets are not changed together.
+so that the earth and the sockets are not changed together. **The
+first was 8ad's** (26/11, `55`): −4.7 cold, −5.5 / +7.0 at the end,
+moving back towards −6 %.
 
 **S12's hopping at a light pedal by the clock** (`open.md` S12 and
 *Off idle*, F): off idle the scatter from stroke to stroke is the same
@@ -848,10 +763,10 @@ books anything at cylinder 4's crank angle to cylinder 4 — G66 loose
 or its contact poor, a part buzzing in a speed band, an arc at a
 plug's end — and S5's excess shows in neutral with no combustion, so
 it is not knock. G66's bolt because a knock sensor reads by its
-contact with the block and VW gives it a torque; 026 in neutral
-because that is where S5 lives, against
-`vcds/vcds-neutral-026-003.csv`; 020 on pulls because 4's retard shows
-only there, against `vcds/vcds-step2c-020-026-003.csv`.
+contact with the block and VW gives it a torque. **026 in neutral and
+020 on the pulls were read on 8ad** (26/11, `open.md` S4 and S5): 026
+as before; at the limiter 4 half as often as on 12/11 and 17/11 and 2
+as often as 4.
 
 **8w, 4's spells at a warm stop** (*the owner*, 25/11): four times
 since 22/11 — 22/11 night, 23/11 afternoon, 24–25/11 night, 25/11
@@ -865,7 +780,10 @@ leaves them with S1 and S3. **And whether 4 always did it** (*the
 owner*): with 3's swells shorter and shallower lately, a weakness of
 4's that was always there may only show more; Claude reads 4's spells
 after a drive in the old captures (`cylscan.py --minutes`) against
-the new ones before calling it new. **Read 25/11** (`cylscan.py
+the new ones before calling it new. **8ad, 26/11** (`55`): 4 led one
+minute of the petrol station's 29 with 020 at zero, and five of the
+first eight at the house, where 020 was not logged (001 003 instead) —
+so the spells' 020 is still not read; hence the item stays. **Read 25/11** (`cylscan.py
 --minutes` on `19`–`54`; a minute counted where 4 is the weakest of
 the four and at −5 % or under): **6 of about 410 warm minutes**, and
 only in `19` (the old MAF, 4 to −16 %, ahead of 3's −10 to −12) clearly

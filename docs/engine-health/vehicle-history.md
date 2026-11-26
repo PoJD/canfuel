@@ -63,6 +63,7 @@ symptom in `docs/` is dated after it, with a working lamp.
 | At 17 Nov 2026 | **156,204 → 156,243 km**, the first drive on the new lower manifold gasket (the bus, 0x520, capture `54`) |
 | At 18 Nov 2026 | **156,365 km**, the top-up with the first can of 6t (*owner*) |
 | At 22 Nov 2026 | **156,539 km**, the fill with the second can of 6t (the album 23:16) |
+| At 26 Nov 2026 | **156,868 → 156,921 km**, the captured drive of 8ad (the bus, 0x520, capture `55`) |
 | **Covered in ownership** | **29,800 km over 9.1 years** (to 12 Nov 2026), about 3,300 km a year *(derived)* |
 
 Odometer at the start of each year, from the owner's expense sheet

@@ -658,7 +658,7 @@ python tools/canlog.py FILE          # per-ID summary; --dump --id 0x480; --stat
 python tools/replay.py --every 100 FILE
 python tools/idledips.py --roughness FILE
 python tools/afterpull.py FILE       # the warm idle after high revs
-python tools/cylscan.py --minutes FILE   # every stroke on its cylinder; --vcds LOG: 014 by cylinder
+python tools/cylscan.py --minutes FILE   # every stroke on its cylinder; --vcds LOG: 014 by cylinder (--offset S: a standing log, by its header)
 python tools/cylshare.py add FILE --event-en ".." --event-cs ".."; render [--lang cs --out X]   # the cylinder figure, one capture at a time
 python tools/drivescan.py FILE          # the same through a whole drive: 3 less 2, 1 less 4 by speed and load; --weak, --vcds LOG, --count, --pulls
 python tools/swellscan.py --series --falls FILE   # cylinder 3's swell and the common part; --corr over many

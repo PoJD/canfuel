@@ -331,8 +331,11 @@ error as in its place, and 001's queue log missed `cutscan.align()`'s
 a driving log of the same session gives the capture's start as its header's
 time less its offset (16:19:07.5 on 12/11, from two logs to 0.05 s), and
 the standing log is then trimmed within a few seconds on engine speed.
-`cylscan.py --vcds` has no option for it; check the offset it prints
-against the clock before believing a stop's 014 by cylinder.
+`cylscan.py --vcds LOG --offset S` takes the offset so found (26/11,
+`55`: the house stop's 014 001 003 aligned 2.6 s out on engine speed,
+which put half its rises on 1 and 4; at +5,208.2 s from the headers, 15
+of 18 on 3); without `--offset` it aligns on engine speed, which holds
+only for a log with driving in it.
 
 ⚠ **A capture's clock is short by whole minutes after a key-off of more
 than a minute** (14/11, `51`): the adapter's timestamp wraps every

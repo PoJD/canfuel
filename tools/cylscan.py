@@ -401,10 +401,17 @@ def align(vcds_rpm, e):
                key=err)
 
 
-def misfires_014(vcds_path, data, runs):
+def misfires_014(vcds_path, data, runs, offset=None):
     """[(capture time, cylinder, the stroke's residual rpm, rise)] for every
     rise of 014's count between two samples at a standing idle with
-    recognition on, in a named run and outside the cuts."""
+    recognition on, in a named run and outside the cuts.
+
+    `offset`, seconds to add to VCDS time for capture time, replaces the
+    alignment by engine speed: a log taken wholly at a standing idle has
+    nothing for it to lock on to and is set by its header's clock instead
+    (docs/engine-health/vcds.md, *Recording VCDS and the CAN bus
+    together*; 55's home stop aligned 2.6 s out and put half its rises
+    on 1 and 4)."""
     g = cutscan.read_vcds(vcds_path).get("014")
     if not g:
         raise SystemExit(f"{vcds_path}: no group 014")
@@ -414,7 +421,8 @@ def misfires_014(vcds_path, data, runs):
             pts.append((t, float(f[0]), int(float(f[2])), f[3].startswith("aktiv")))
         except (ValueError, IndexError):
             continue
-    off = align([(t, r) for t, r, _, _ in pts], data["e"])
+    off = (align([(t, r) for t, r, _, _ in pts], data["e"])
+           if offset is None else offset)
     out = []
     for (t0, r0, m0, a0), (t1, r1, m1, a1) in zip(pts, pts[1:]):
         if not (a0 and a1 and m1 > m0 and t1 - t0 <= VCDS_MAX_GAP_S
@@ -603,8 +611,8 @@ def report(path, data, runs, show_all=False, minutes=False, out=sys.stdout):
     return tw, tn
 
 
-def report_014(vcds_path, data, runs, out=sys.stdout):
-    got = misfires_014(vcds_path, data, runs)
+def report_014(vcds_path, data, runs, out=sys.stdout, offset=None):
+    got = misfires_014(vcds_path, data, runs, offset)
     print(f"{os.path.basename(vcds_path)}: {len(got)} rises of 014 at a "
           f"standing idle, by the cylinder of the weakest stroke before each",
           file=out)
@@ -672,6 +680,10 @@ def main(argv=None):
                     help="each run minute by minute")
     ap.add_argument("--vcds", metavar="LOG",
                     help="a VCDS log with group 014 taken beside the (one) capture")
+    ap.add_argument("--offset", type=float, metavar="S",
+                    help="with --vcds: capture time = VCDS time + S, from the "
+                         "header clocks, instead of aligning by engine speed "
+                         "(a log taken wholly at a standing idle)")
     ap.add_argument("--wheel", action="store_true",
                     help="the crank wheel's alternation on the overrun")
     args = ap.parse_args(argv)
@@ -680,11 +692,13 @@ def main(argv=None):
         return 0
     if args.vcds and len(args.captures) != 1:
         ap.error("--vcds reads one capture")
+    if args.offset is not None and not args.vcds:
+        ap.error("--offset goes with --vcds")
     for p in args.captures:
         data = read(p)
         runs = idle_runs(data)
         if args.vcds:
-            report_014(args.vcds, data, runs)
+            report_014(args.vcds, data, runs, offset=args.offset)
         else:
             report(p, data, runs, show_all=args.all, minutes=args.minutes)
     return 0

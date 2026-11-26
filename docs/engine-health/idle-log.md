@@ -2268,4 +2268,52 @@ wiring's hand (`open.md` S19); the display's figures are those of 8aa's stop
 
 - **Tests:** the oil level read on the dipstick (*the owner*): **about
   1 mm under the top mark**, as the week before; the odometer from
-  `plan.md` 8ad's capture (0x520).
+  `plan.md` 8ad's capture (0x520): 156,868 km at its start.
+
+## 26 November 2026 afternoon — the captured drive on the USBtin's new harness (8ad)
+
+- **Tests:** 60 Ω across the USBtin's H and L before the ignition
+  (*the owner*); the CAN capture (`55`, listen only) from the ignition
+  on to the house, the engine running throughout from 14:14; VCDS 032
+  055 cold before and warm at the end, 014 020 033 through the drive
+  (two logs, the ECU dropping at 14:14:50), 026 014 standing in neutral
+  with two slow sweeps to about 3,500 rpm, 014 020 033 home, 014 001
+  003 at the house stop; the fault memory before and after every log.
+  A drive of about 53 km (town, the motorway, **full-throttle pulls in
+  3rd–5th to 6,438 rpm**, seven in 3rd and 4th, about 14:31–14:41, a queue), **a
+  warm standing idle of about 29 minutes at a petrol station**
+  (14:47:40–15:16:37), a queue home and **11 minutes standing at the
+  house** (15:35:52–15:46:47), the everyday state, the A/C off.
+- **Changes after:**
+  - *measured:* **032 −4.7 / +6.3 % cold before, −5.5 / +7.0 % at the
+    end** (8ac's end −3.9 / +4.7); 055 −0.92 → −1.17 g/s; the fault
+    memory empty at all thirteen reads; the engine lamp never lit with
+    the engine running. **At the petrol station 3 −10.7 %, 1 +10.2, 2
+    +2.9, 4 −2.4** (`cylscan`): 3's swell to −16 % from about 2 to 12
+    minutes, a fall to −3 % at 14:58:40, a calm phase with 2 at about 0,
+    a second swell at 15:06–15:09 to −17 %, then after the sweeps **the
+    calmest minutes, `IdleHealth` 33–44** (65–75 in the swell, 41–53
+    in the calm phase; the owner's livewatch read 31 at 15:14); at the house 3 −9.1, 1 +6.8, 2
+    +8.5, **4 −6.1** (4 the weakest in five of the first eight minutes),
+    3's swell from its ninth minute to −17 %. 014 at standing idle **73
+    in 20.4 min** in the drive log (0.23 %), **90 % of the standing rises on 3**,
+    14 of 14 in neutral, 15 of 18 at the house. **020: no retard at idle
+    in 1,837 samples** (not logged at the house, where 4 led); **on the
+    pulls above 5,300 rpm 4 and 2 in 51 %, 3 in 22 %, 1 never — 4 about
+    half as often as on 12/11 and 17/11**; 4 to
+    **15.0 °CA** on tip-ins at 3,300–4,000 rpm and part load on the
+    motorway after the pulls. 026 in neutral as before (4 over 1 by
+    10–53 % at 1,400–3,350 rpm, 1 over 4 above). **The stroke-to-stroke
+    scatter by load as on `54`**, the four alike;
+  - *felt:* the idle restless at 14:52 (*owner*); **the hopping at a
+    light pedal at about 15:23–15:24**, 25 km/h and about 1,900 rpm,
+    for about 20 s (*owner*, "teď"); on the pulls 4 in 020 "no longer
+    jumps nearly as much" (*owner*, off the screen);
+  - *not known:* whether 032's idle cell goes on to −6 % or deeper (the
+    second drive, `plan.md` 8f); why 1 leads and 4 trails at this
+    drive's stops more than on any capture since early November.
+
+The first of the two drives of 032 before 8ab. 3's floor and swell, 014
+on 3 and the common part as before; the sockets moved neither the
+scatter by load nor the idle (`open.md` H21, *The captured drive on
+the sockets*).
