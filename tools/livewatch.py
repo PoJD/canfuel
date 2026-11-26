@@ -20,6 +20,12 @@ zero:
 * **Misfires** -- `idledips.misfires()`, the converter's estimate line for
   line: the events in the last minute of settled idle, the stop's total, and
   MisfAvg (events per minute of settled idle).
+* **Each cylinder's share** -- `idledips.cylinder_blocks()`, the converter's
+  0x605 line for line: the last finished block of the stop (512 strokes,
+  about 19 s at a warm idle), each cylinder's share of a stroke against the
+  four's mean in per cent, the weakest, and whether the strongest slot named
+  them. Once a line, not once a block (*the owner*, 26/11/2026: so the driver
+  knows whether cylinder 3's swell is on as the MFD would have shown it).
 
 ⚠ **These are the oracle's numbers over one stop, not the converter's over a
 trip.** The converter clears its grade at a start, not at a stop, so a
@@ -100,7 +106,19 @@ def status(rpm, oil, clt, gated, window_s=WINDOW_S):
         "misf_window": wsum,
         "misf_total": total,
         "misf_avg": None if avg is None else avg / 10.0,
+        "cyl": None,
     })
+    blocks = idledips.cylinder_blocks(gated, t_from=t0)
+    if blocks:
+        t_blk, dev, weak, named = blocks[-1]
+        out["cyl"] = {
+            # 0x605's bytes are 0.5 % of a stroke, 128 the four's mean
+            "share_pct": [(d - 128) * 0.5 for d in dev],
+            "weak": weak,
+            "named": named,
+            "blocks": len(blocks),
+            "age_s": t_end - t_blk,
+        }
     return out
 
 
@@ -118,7 +136,17 @@ def fmt(s, clock):
     return (line + f"  | standing {s['stop_s'] / 60:.1f} min: "
             f"IdleHealth {s['idle_health']:.0f} (last {s['idle_window_s']:.0f} s idle), "
             f"EWMA {s['ewma_index']}, Misfires {s['misf_window']} "
-            f"(stop {s['misf_total']}, MisfAvg {avg})")
+            f"(stop {s['misf_total']}, MisfAvg {avg})" + fmt_cyl(s["cyl"]))
+
+
+def fmt_cyl(cyl):
+    """The cylinder part of the line: 0x605 as the display would show it."""
+    if cyl is None:
+        return "  | cylinders: no block yet"
+    shares = " ".join(f"{i + 1}:{v:+.1f}%" for i, v in enumerate(cyl["share_pct"]))
+    return (f"  | cylinders {shares}, weakest {cyl['weak']}"
+            f"{'' if cyl['named'] else ' (not named)'}"
+            f", block {cyl['blocks']} {cyl['age_s']:.0f} s ago")
 
 
 def once(path, window_s=WINDOW_S):

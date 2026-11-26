@@ -52,6 +52,17 @@ class OnARealStop(unittest.TestCase):
         self.assertIn("standing", line)
         self.assertIn("IdleHealth", line)
 
+    def test_the_cylinders_are_0x605s_own(self):
+        path = os.path.join(FIXTURES, "47_relearn_drive_z1.txt")
+        rpm, oil, clt, gated = idledips.series(path)
+        s = status(rpm, oil, clt, gated)
+        t0 = gated[-1][0] - s["stop_s"]
+        dev, weak, _, named = idledips.cylinders(gated, t_from=t0)
+        self.assertEqual(s["cyl"]["share_pct"], [(d - 128) * 0.5 for d in dev])
+        self.assertEqual(s["cyl"]["weak"], weak)
+        self.assertEqual(s["cyl"]["named"], named)
+        self.assertIn("weakest", fmt(s, "12:00:00"))
+
 
 if __name__ == "__main__":
     unittest.main()
