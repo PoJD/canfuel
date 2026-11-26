@@ -1128,6 +1128,25 @@ the rings (`plan.md` 8ab); 032 over the drives after it settles it.
 drives on the brushed crimps, **−6.3 / +7.8 %**, the cell back where it
 had stood before — so 24–25/11's −1.6 was the reset's, not the
 earth's (*reasoned*); C27 as it was, 8ab's renewed rings still its test.
+**26/11 evening, read again** (*the owner's objection*: a reset does not
+always give so small a cell, and it usually comes back within one
+drive, here not): **the reset alone is not shown.** The first reading
+after each earlier reset: 3/11 −6.3 (one drive), 10/11 −6.3 within 37
+min and −3.9 at the end, 11–12/11 −3.9 / +2.3 then −7.0 / +8.6 after a
+brisk drive, 14–15/11 −8.6, 16/11 −5.5 — **−3.9 to −8.6, never under
+−3.9**; 8aa's −2.3 after 30 minutes of warm idle and −1.6 at home lie
+below all of them, after the longest warm idle of any first drive, so
+not for want of idle to learn on. Two readings remain (*reasoned*),
+neither measured: **(1) the first drive after a reset learns only part
+of both cells** — 11/11 did it too (−3.9 / +2.3, then −7.0 / +8.6), and
+8aa's part-load cell was low as well (+3.9 against +5.5 to +8.6), so
+the whole correction was small that night, not the idle cell alone;
+**(2) the earth helped for about a day** — the crimps brushed with bits
+left under the strands and the ECU's connectors sprayed the same night,
+either of which may have held for a few hours of heat and vibration.
+**Where it went back is not known**: 032 was not read on 25/11's three
+drives. Hence 8ab reads 032 after every drive for a few days, not
+after two (`plan.md` 8ab).
 
 ### C28. "A small unmetered air leak at runner 3 — the lower manifold's gasket — makes cylinder 3's floor" (`open.md` H3) — replaced
 

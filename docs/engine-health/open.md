@@ -169,8 +169,12 @@ belt and H11 above H7 in A.
 **8aa done** (24–25/11 night, VCDS and the display, no capture;
 `idle-log.md`): **032 −1.6 / +3.9 %, the idle cell nearest zero of any
 reading** (S19; `refuted.md` C27, not revived on one drive, *agreed with
-the owner*), **back to −6.3 / +7.8 by 26/11's cold reading** — the
-reset's, not the earth's (*reasoned*); the idle calm at the stop's end (26–37), 0x606 the weakest
+the owner*), **back to −6.3 / +7.8 by 26/11's cold reading** — *read
+as the reset's until 26/11 evening*; **not shown to be the reset**
+(*the owner's objection*: the first drives after the other resets read
+−3.9 to −8.6, never −1.6), so either that drive lacked something the
+cell learns from, or the earth helped for a day (`refuted.md` C27,
+26/11 evening); the idle calm at the stop's end (26–37), 0x606 the weakest
 −7.5 %, but 3's swells as before, from about 24 minutes.
 **8e's wiring done** (25–26/11 night, *the owner*; `idle-log.md`, `refuted.md` C31): both probes' sockets on new housings and VW repair wires, the
 old rear probe left on so that the wiring is the only change; every pin
@@ -2283,7 +2287,7 @@ under *The new probes, 10/11* to *The cell over the three months*):
 | 16/11 | **the MAF's plug and the ECU's earth cleaned** (C27) | −5.5 / +5.5 after one drive |
 | 17/11 | **the lower gasket, injectors 2 and 3 swapped** (`54`) | −7.0 in the warm stop, −6.3 / +7.8 at the end, learnt with 070's valve shut |
 | 22/11 | five days of driving on 6t's first can, the second's first drive (the album 00:29) | **−4.7 / +7.8**, the fault memory empty |
-| 24–25/11 | **the earth point by the ECU brushed clean, the ECU unplugged an hour** (8aa; `refuted.md` C27) | **−2.3 / +3.9** after a brisk drive and 30 min of warm idle, **−1.6 / +3.9** after the blips and at home — the idle cell nearest zero of any reading; **back to −6.3 / +7.8 by 26/11's cold reading** (25/11's drives on it), so the move was the reset's, not the earth's (*reasoned*) |
+| 24–25/11 | **the earth point by the ECU brushed clean, the ECU unplugged an hour** (8aa; `refuted.md` C27) | **−2.3 / +3.9** after a brisk drive and 30 min of warm idle, **−1.6 / +3.9** after the blips and at home — the idle cell nearest zero of any reading; **back to −6.3 / +7.8 by 26/11's cold reading** (25/11's three drives on it, 032 not read on them) — below every other first drive after a reset (−3.9 to −8.6), so **not shown to be the reset** (`refuted.md` C27, 26/11 evening) |
 | 26/11 | **both probes' sockets renewed** (25–26/11 night; the battery and the ECU not unplugged, so the old wiring's cells the before) | **−6.3 / +7.8** cold before, **−3.9 / +4.7** after one drive of 32 min and 8 min of warm idle, the fault memory empty — both cells towards zero, inside what they have read with nothing changed; 8f's next drives tell |
 | 26/11 afternoon | nothing; the first of the two drives of 032 before 8ab (`55`, 8ad: 53 km, the pulls, 29 + 11 min of warm idle) | **−4.7 / +6.3** cold before, **−5.5 / +7.0** at the end; 055 −0.92 → −1.17 g/s, the fault memory empty — **both cells back towards 8ac's before**, short of −6 %; the second drive tells |
 

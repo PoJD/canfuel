@@ -208,10 +208,15 @@ of this plan, *the owner's decision* of 9/10):
    the smaller connector's ring the lower, as now. Photographs of the
    new crimps.
 4. **The same voltage drop again** on the new rings, the same way.
-5. **A relearn drive**, VCDS only, no capture: the drive with `--groups 014 001 003`, a warm stop,
-   **032 and 055 for 20 s at its end**, the fault memory read and saved;
-   the MFD's `IdleHealth` and `Misfires` at the stop.
-6. **032 for 20 s on the next two drives after it** (8f).
+5. **A relearn drive**, VCDS only, no capture: the ECU's connectors
+   come off for the rings (no room otherwise, *the owner*, 26/11), so
+   032 starts from zero; **the drive as 8aa's** — a brisk drive with a
+   motorway stretch and a few pulls, then a warm standing idle of about
+   30 minutes — with `--groups 014 001 003`, **032 and 055 for 20 s at
+   the stop's end**, the fault memory read and saved; the MFD's
+   `IdleHealth` and `Misfires` at the stop.
+6. **032 for 20 s at the end of every drive for the next three or four
+   days** (8f), the date and the kind of drive with each.
 
 **8q. The timing belt renewed at a garage, 7/12** (*the owner's decision*,
 13/11; the date *the owner*, 16/11): the belt, its tensioner and idler, and the water pump.
@@ -730,6 +735,17 @@ and a 10 bar workshop gauge is not. **How it is read**:
 past the valve-stem seals leaves an oily deposit on the firing end,
 and a wet or sooty plug on 3 alone would point at 3's charge (list
 B); the photograph because the plugs go in the bin.
+
+**8ab, every drive's 032 after it** (*the owner's objection*, 26/11
+evening; `refuted.md` C27, *26/11 evening*): 8aa's −1.6 lay below every
+other first drive after a reset, and went back to −6.3 somewhere in
+25/11's three drives, none of them read. The rings take the ECU's
+connectors off, so the reset comes with them again; the relearn drive
+is made like 8aa's so that its first reading compares with −1.6, and
+**the drives after it are each read**, so that a cell that goes back is
+caught at the drive it goes back on: near −2 % for days revives C27's
+crimp form; back to −5 % or deeper within a day, as after 8aa, is the
+first drive's partial learning (or a contact that does not hold).
 
 **8ab, the earth on new rings** (*the owner*, 25/11): on
 the brushed crimps the relearn drive of 24–25/11 night (`idle-log.md`) put 032's idle cell at −2.3, then −1.6 % — nearer
