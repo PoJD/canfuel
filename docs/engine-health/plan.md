@@ -18,8 +18,10 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Now: 032 for 20 s at the
-end of each of the next two drives** (8f), **before 8ab**. **Then 8ab**,
+Captures only where an item asks for one. **Now: 8ad**, the captured
+drive on the USBtin's new harness (26/11) — the first of **the two
+drives of 032 before 8ab**; the second any drive after it with 032 read
+at its end (8f). **Then 8ab**,
 the earth point by the ECU on new rings (*the owner*, 25/11; the rings bought at GME, VW
 had none). **Then 8e**, **the new rear probe when it comes (bought
 24/11, expected 26/11)**; **8q, the timing belt
@@ -189,6 +191,30 @@ of this plan, *the owner's decision* of 9/10):
   drive to a warm standing idle of ten minutes or more, **020 logged
   with 014 through the whole stop** (VCDS, beside the capture); the
   capture says afterwards when 4 led.
+
+**8ad. The captured drive on the USBtin's new harness** (*the owner*,
+26/11). A laptop session; the MFD out, the USBtin in plug C in its
+place. One drive for three things: the first of the two drives of 032
+before 8ab, the capture the sockets' drive (26/11) lacked, and 8w's
+4's spells at a warm stop.
+1. **Before the ignition, the harness in plug C**: a multimeter on ohms
+   across the USBtin's H and L terminals — **about 60 Ω** is the CAN
+   pair (*the owner* reports it in the session's first message); about
+   40 Ω is the USBtin's own terminator on, switched off first; open or
+   0 Ω, do not drive. White (C7) is H, yellow (C8) is L, ⊥ free.
+2. **Cold, the ignition on, the engine off**: 032 and 055 for 20 s;
+   the fault memory read before and after.
+3. **The capture started before the ignition** (the next free
+   fixture, `55`), to "konec"; **VCDS through the drive on 014 020
+   033**. If the capture holds no frames, H and L are swapped: the
+   capture stopped, the two swapped, started again.
+4. **The drive**: warm, some town at a light pedal, some steady
+   driving out of town, **a warm standing idle of ten minutes or more
+   at the end** (a petrol station will do), the everyday state.
+   Anything that feels different, the hopping at a light pedal above
+   all, with "teď".
+5. **At "konec"**: the fault memory, **032 and 055 for 20 s**, VCDS
+   closed, the capture stopped.
 
 **8ab. The earth point by the ECU on new rings** (*the owner*, 25/11).
 1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
@@ -462,6 +488,23 @@ change together: 8ac read the wiring alone (26/11, `open.md` H21,
 **S12's jerk by the clock**: the bus cannot show a jerk at a crawl, so only its time
 lets a capture or a VCDS log be read at that moment — the stroke, the
 load, 014, and from a capture the cylinder (`open.md` S12).
+
+**8ad, the captured drive on the USBtin's new harness** (*the owner*,
+26/11; the harness made that day): 8ac (26/11) ran on VCDS alone, so
+the stroke-to-stroke scatter by load after the sockets was not read
+(`open.md` *Off idle*, F; H21, *The drive after the sockets*); this
+drive reads it against `19`–`54`, and is also the first of the two
+drives of 032 below. **014 020 033**: 014 is never left out; 020 with
+014 through the warm stop is 8w's 4's spells (the stop of ten minutes
+or more is that item's); 033 keeps the front probe on the new joints
+in view — 036 read healthy on 8ac and is dropped for 020. The 60 Ω
+across H and L before the ignition is the bus's two terminators
+(60.1 Ω measured, `docs/firmware/install.md`): it proves the harness
+sits on the CAN pair, and 40 Ω would be a third terminator, the
+USBtin's own. The capture is listen-only (`tools/usbtin_capture.py`),
+so H and L swapped disturb nothing on the bus and only give no frames.
+Not 6t's: that tank has about 15 l left (*the owner*, 26/11), and 6t
+reads its two captured drives at the tank's end.
 
 **The two drives of 032 before 8ab** (*the owner*, 26/11; `open.md`
 H21, *The drive after the sockets*): one drive after the sockets moved

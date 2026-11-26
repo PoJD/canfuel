@@ -181,7 +181,10 @@ both cells towards zero but inside what they have read with nothing
 changed; 014 and the display as at 8aa's stop, 4 the weakest for the
 first 8 minutes, **3's swell at about 20 min as before**. The scatter
 by load (*Off idle*, F) is not read without a capture. **Next**
-(`plan.md`): **032 on the next two drives, before 8ab** — back at −6 %
+(`plan.md`): **8ad**, a captured drive on the USBtin's new harness
+(26/11) with VCDS 014 020 033 and a warm stop of ten minutes — the
+scatter by load after the sockets, 8w's 4's spells, and the first of
+**032 on the next two drives, before 8ab** — back at −6 %
 or deeper and the sockets' form goes to `refuted.md` and H21 closes
 (*agreed with the owner*, 26/11); then **8ab**, the
 earth point by the ECU re-crimped on new rings (*the owner*, 25/11; the
