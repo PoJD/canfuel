@@ -424,7 +424,13 @@ halved). **What is not known: the healthy target** — every recording is
 of this engine, and none of a healthy AQY will be. The grade by repair
 since is the table in *Before and after each repair*, below.
 
-**When S1 closes** (*the owner's decision*, 12/11; he closes it):
+**When S1 closes** (*the owner's decision*, 26/11 night): **with S3** —
+when 014 counts nothing (S3, *When S3 closes*), S1 closes the same day.
+*Reasoned with him*: no healthy AQY's `IdleHealth` is known, some
+unevenness is this engine's own (H0), and a mark of its own only
+complicates; `IdleHealth` and `cylscan.py` are still read and recorded
+beside 014, but neither is a mark. Short of it, the owner may still
+close S1 as *acceptable, cause known*. *Until 26/11 the mark was:*
 **`IdleHealth` steadily under 30 at a warm idle, never above it, in the
 everyday state and with every load off alike**, oil 95–100 °C, after
 the adaptations have settled (032 and 055 not freshly reset), over
@@ -442,7 +448,8 @@ beside it to say which part moved, but is no mark of its own. Short of
 it, the owner may close S1 as *acceptable, cause known*. **A note,
 not a mark** (*the owner*, 18/11): if the belt (8q) moves neither part,
 S1 may be closed with the swells of 3's gone altogether, even with the
-grade above 30; the mark above stays as it is until he says otherwise. *Until 12/11
+grade above 30; the mark above stays as it is until he says otherwise
+(*he did, 26/11 night: above*). *Until 12/11
 the marks were three — the dips no longer keeping to a pair
 (`cutscan.py --shares`, removed), loads-off `IdleHealth` within about 25
 of loads-on, at least the best level shown, about 50–60 loads off
@@ -1348,7 +1355,8 @@ first logged. No fault code is stored (the ECU stores P0300 only above 2 %
 over 1000 revolutions, `vcds.md`); **it once did**: P0304 and P0172 in an
 old scan of 5/2019 (`vehicle-history.md`).
 
-**When S3 closes** (*the owner's decision*, 12/11): **no count at all —
+**When S3 closes** (*the owner's decision*, 12/11; **S1 closes with it
+since 26/11 night**, S1, *When S1 closes*): **no count at all —
 014 at 0 at a warm idle in the everyday state, on three drives on
 different days, after the adaptations have settled**, oil 95–100 °C,
 the whole idle long; not one rise, on any cylinder. Strict, by his

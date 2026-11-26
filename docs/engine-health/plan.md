@@ -393,8 +393,8 @@ stands*.
 
 ## Step 3 — why, and how it is read
 
-**Idle solved → stop and record** (`open.md` S1, *When S1 closes*; S3,
-*When S3 closes*). Otherwise each item decides whether the next is
+**Idle solved → stop and record** (`open.md` S3, *When S3 closes*;
+S1 closes with it since 26/11 night, *When S1 closes*). Otherwise each item decides whether the next is
 needed.
 
 **6n, the injector circuits to the ECU** (`open.md` H4, *What the loom
@@ -424,8 +424,8 @@ stop; the captures read where it got to. **Read**: `tools/cylscan.py
 by minute against the other three, and `--vcds` with the drive's 014
 log, 014's rises by cylinder (`open.md` S1, *Every stroke named*);
 `tools/swellscan.py --floors` for floor and swell; beside `IdleHealth`
-and 014 themselves, which are the closing marks (`open.md`, *When S1
-closes*, *When S3 closes*). **3 at its floor with no swell through ten
+and 014 itself, the closing mark (`open.md`, *When S3 closes*; S1
+closes with S3 since 26/11 night). **3 at its floor with no swell through ten
 minutes is list B's part gone; 3 swelling as before under a calm grade
 is list A's.** **No injector cut**: the strongest slot names the
 cylinders, and a cut is one of the things that ends a swell. The stop
@@ -969,8 +969,9 @@ worse beyond its spread are read as a seat getting worse.
   did not fit his driving — is now the one ruler, compared with itself. It
   sits between the two old states, calmer than every load off and rougher
   than every load on. **The closing reads it** (*the owner*, 12/11): S3 on
-  it alone, S1 on it and with every load off besides (`open.md`, *When S1
-  closes*, *When S3 closes*), probably with the overrun too (*owner*, 28/10).
+  it alone, and since 26/11 night S1 with S3 (`open.md`, *When S1
+  closes*, *When S3 closes*); *until then S1 on it and with every load
+  off besides, probably with the overrun too (*owner*, 28/10)*.
 - **The fault memory** (*owner*, 18/10/2026): every session starts from
   an empty memory, and the saved file keeps what the session stored.
   **A code before a logged drive pauses it** (*the owner*, 11/11/2026): every
