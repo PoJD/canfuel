@@ -520,6 +520,9 @@ across H and L before the ignition is the bus's two terminators
 sits on the CAN pair, and 40 Ω would be a third terminator, the
 USBtin's own. The capture is listen-only (`tools/usbtin_capture.py`),
 so H and L swapped disturb nothing on the bus and only give no frames.
+The capture starts with the ignition already on (*the owner*, 26/11:
+one message, then nothing to run): it loses only the bus waking up,
+not the engine's start, which waits for Claude's "nastartuj".
 Not 6t's: that tank has about 15 l left (*the owner*, 26/11), and 6t
 reads its two captured drives at the tank's end.
 
