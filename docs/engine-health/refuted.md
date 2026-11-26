@@ -1085,7 +1085,7 @@ faster than that is unseen; the rear probe's +0.02 to +0.07 V, upwards
 in all five steps, was not resolved either way. **Left over** and kept
 in `open.md`: H21 for the front probe's damaged signal-earth wire
 (S19's idle cell, S12's ~), from fifth to eighth in list A the same
-evening; H4's ~ for S4 and S5 on its other paths.
+evening (*settled against 26/11 when the sockets were renewed, C31*); H4's ~ for S4 and S5 on its other paths.
 
 ### C27. "The air mass meter's plug, or the earth point by the ECU, makes S19's idle cell" (`open.md` S19, its electrical form) — measured
 
@@ -1528,6 +1528,52 @@ found bypassed 11/11, `refuted.md` D14).
 stands, which no running test sees, and the rich start after standing.
 **Last in list A since 15/11** (*the owner's decision*); for the idle,
 nothing planned; 032 at every VCDS session (8f).
+
+
+### C31. "The probes' wiring and connectors on the harness side — the front probe's damaged signal-earth wire, the corroded sockets — make S19's idle cell, or reach the common part and S12 through the mixture" (`open.md` H21) — replaced
+
+**Believed:** from 10/11 evening (*the owner's idea*): the probes were
+renewed that day with their own leads and plugs, but the sockets, the
+wires to the ECU and their earths were the car's; the front probe's
+signal-earth wire was found worn and cracked in the harness box, the
+rear's heater lead cracked beside its signal. A resistance there would
+lift the front probe's reading at idle, where the heater runs most, and
+give S19's rich idle cell; a contact that comes and goes would throw the
+mixture of all four about — the common part off idle and S12's hopping
+at a light pedal, largest where the lambda control runs (25/11). Eighth
+in list A from 15/11, after its shared-earth form was settled against
+(C26).
+**Replaced:** both probes' sockets on the harness side renewed 25–26/11
+night by the owner (new housings, every wire on VW repair wires, the
+old rear probe left on so that the wiring was the only change); every
+pin found corroded, the heater's worst, no earlier repair
+(`vehicle-history.md`, `idle-log.md`).
+**Measured after it** (8ac and 8ad, 26/11): both probes working, no
+code at any read, the basic settings 034, 037 and 046 OK; **032
+−6.3 / +7.8 % cold before, −3.9 / +4.7 after one drive, −4.7 cold and
+−5.5 / +7.0 after the captured drive** — back towards the old wiring's
+cells, not towards zero; **the stroke-to-stroke scatter by load the
+four's alike and as on `54`** (`55`, `drivescan.py --cylinders`: at
+1,600–2,100 rpm 47–51 % of a stroke at b7 10–27 to 7–8 at 55–70); the
+common part 2.83 rpm rms; 3's floor and swell, 014 on 3, as before; the
+hopping at a light pedal felt again on `55`. **Settled against by the
+owner on that one captured drive** (26/11 evening), where two drives of
+032 back at −6 % had been agreed: the cell was moving back and nothing
+else had moved.
+**What it does not refute:** the wires from the sockets to the ECU's
+pins and their insulation (left to `plan.md` 6n, with the ECU's plug
+off); a glitch shorter than VCDS's sample; both probes reading alike
+off true (H11, read again after 8e's new rear probe, *the owner*).
+**What would revive it:** 032's idle cell moving to near zero and
+staying there with nothing else changed, or a probe code; the scatter
+off idle changing at a light load after work on the probes' wiring.
+
+**The entry as it stood in `open.md` until 26/11** — the fit table
+(S1 ~, S12 ~, S19 ~, the rest —), every for and against, *Found at the
+harness*, *Why a probe's fault shows most at a light load*, *8h, the
+loads at a warm stop*, *Opened*, *The drive after the sockets* and *The
+captured drive on the sockets* — is in `git show 1c9d9b8:docs/engine-health/open.md`,
+the heading *H21*.
 
 ## D. Symptoms closed
 

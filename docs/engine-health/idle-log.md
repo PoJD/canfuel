@@ -1744,8 +1744,8 @@ fall*, S3 and H16.
     −20 and −22 %, with the loads. 014 at 0.12 % of combustions in the
     plain idle; 032 −5.5 / +6.3 %, 055 −1.54 g/s at the end.
 
-The drive home was not recorded. Read in `open.md` H21, *8h, the loads
-at a warm stop*, and S1, *8h's plain idle and its loads*.
+The drive home was not recorded. Read in `refuted.md` C26 (until 26/11 `open.md` H21, *8h, the loads
+at a warm stop*), and S1, *8h's plain idle and its loads*.
 
 ## 15 November 2026 evening — the supply at the battery against the MFD
 
@@ -2315,5 +2315,5 @@ wiring's hand (`open.md` S19); the display's figures are those of 8aa's stop
 
 The first of the two drives of 032 before 8ab. 3's floor and swell, 014
 on 3 and the common part as before; the sockets moved neither the
-scatter by load nor the idle (`open.md` H21, *The captured drive on
-the sockets*).
+scatter by load nor the idle; H21 settled against the same evening
+(`refuted.md` C31, *the owner*).

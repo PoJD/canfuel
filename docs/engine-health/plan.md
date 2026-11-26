@@ -18,11 +18,10 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Now: the second of the two
-drives of 032 before 8ab** — any drive with 032 read at its end (8f);
-the first was 8ad's captured drive (26/11, done). **Then 8ab**,
+Captures only where an item asks for one. **Now: 8ab**,
 the earth point by the ECU on new rings (*the owner*, 25/11; the rings bought at GME, VW
-had none). **Then 8e**, **the new rear probe when it comes (bought
+had none) — the second drive of 032 before it dropped 26/11, when
+H21 was settled against (*the owner*). **Then 8e**, **the new rear probe when it comes (bought
 24/11, expected 26/11)**; **8q, the timing belt
 at a garage, 7/12**; then item 9; **8u, 8v, 8w by
 opportunity** (*the owner*, 15/11), and **6r**, the owner's scope, best
@@ -456,20 +455,21 @@ in the idle's mixture, so fitting it before 8q does not blur the belt's
 before-and-after; 032 read before and after (8f) shows any shift its
 trim makes. **The sockets** were renewed before it, 25–26/11 night, with the old
 rear probe on (*the owner*), so that the probe and the sockets do not
-change together: 8ac read the wiring alone (26/11, `open.md` H21,
-*The drive after the sockets*), the new probe its own part after.
+change together: 8ac and 8ad read the wiring alone (26/11; nothing
+moved, `refuted.md` C31), the new probe its own part after — and H11,
+both probes shifted, is read again after it (*the owner*, 26/11).
 
 **S12's jerk by the clock**: the bus cannot show a jerk at a crawl, so only its time
 lets a capture or a VCDS log be read at that moment — the stroke, the
 load, 014, and from a capture the cylinder (`open.md` S12).
 
-**The two drives of 032 before 8ab** (*the owner*, 26/11; `open.md`
-H21, *The drive after the sockets*): one drive after the sockets moved
-032 towards zero, but inside the cell's own spread; two more settle
-whether the sockets were a part of it, and they come before the rings
-so that the earth and the sockets are not changed together. **The
-first was 8ad's** (26/11, `55`): −4.7 cold, −5.5 / +7.0 at the end,
-moving back towards −6 %.
+**8ab straight after 8ad** (*the owner*, 26/11): two drives of 032
+were to settle the sockets before the rings, so that the earth and the
+sockets did not change together; the first (8ad, `55`: −4.7 cold,
+−5.5 / +7.0 at the end) moved back towards −6 %, and with the scatter
+by load and the idle unmoved the owner settled H21 against on it
+(`refuted.md` C31). The rings' before is that drive's −5.5 / +7.0 and
+the cold read of 8ab's step 1.
 
 **S12's hopping at a light pedal by the clock** (`open.md` S12 and
 *Off idle*, F): off idle the scatter from stroke to stroke is the same
@@ -480,10 +480,10 @@ lets a capture be read at that moment against the probe's swing.
 connectors are very likely sound and the leads well tucked in, so he
 follows the harness instead): a leak or a poor earth is as likely
 anywhere on the way as at a connector, and an earth eyelet the
-probes' returns share is H21's shared earth itself.
+probes' returns share is the shared earth of `refuted.md` C26.
 
-**The probes' sockets, renewed 25–26/11** (`open.md` H21; kept for
-6n): the swap of 10/11 changed the probes and
+**The probes' sockets, renewed 25–26/11** (`refuted.md` C31; the
+wires to the ECU kept for 6n): the swap of 10/11 changed the probes and
 their own plugs, not the harness side, so a fault there survives it —
 S19's idle cell perhaps; renewed terminals take the harness side's
 contacts out of it (25/11). **At the end** (*the owner*, 11/11): the rear

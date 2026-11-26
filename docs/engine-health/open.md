@@ -56,7 +56,9 @@ reading (oil round G62's pins), S21 P0440 and the summer overpressure
 the ECU's own check passed 15/11). **Hypotheses settled**: H3 (`refuted.md` C28: the lower
 manifold's gasket renewed 17/11 and 3's floor and swell as before),
 H16 (C30: the canister plumbed back and N80 renewed, and neither the
-idle nor S19's split moved; *the owner*, 17/11), H9, H10, H14, H15, H17, H19, and the forms C25 (the purge times the
+idle nor S19's split moved; *the owner*, 17/11), H21 (C31: both
+probes' sockets renewed 25–26/11 and neither the idle, the scatter by
+load nor 032 moved; *the owner*, 26/11), H9, H10, H14, H15, H17, H19, and the forms C25 (the purge times the
 swell), C26 (a shared earth under the probes and senders), C27 (the
 air mass meter's plug or the earth point by the ECU makes 032's idle
 cell) and C29 (H7's injector 3: injectors 2 and 3 swapped 17/11 and
@@ -132,8 +134,9 @@ coolant into 3 (H3 and H7's injector out 17/11, *agreed with the
 owner*).
 **A, the common part** — H0 normal for this engine, the timing belt a
 tooth out, H8 the throttle and idle control, H11 both probes, H7 the
-rail's pressure, H2 a leak ahead of the converter, H18 the stem seals,
-H21 the front probe's signal-earth wire. **18/11**: every cylinder has a
+rail's pressure, H2 a leak ahead of the converter, H18 the stem seals
+(H21, the probes' wiring and sockets, out 26/11, `refuted.md` C31,
+*the owner's decision*). **18/11**: every cylinder has a
 floor of its own (3 −9.7, 4 −4.4, 1 +1.6, 2 +2.8 % against 1, 2 and 4),
 only 3 swells; kept as A and B, not split (*agreed with the owner*).
 
@@ -169,12 +172,11 @@ reading** (S19; `refuted.md` C27, not revived on one drive, *agreed with
 the owner*), **back to −6.3 / +7.8 by 26/11's cold reading** — the
 reset's, not the earth's (*reasoned*); the idle calm at the stop's end (26–37), 0x606 the weakest
 −7.5 %, but 3's swells as before, from about 24 minutes.
-**8e's wiring done** (25–26/11 night, *the owner*; `idle-log.md`, H21,
-*Opened*): both probes' sockets on new housings and VW repair wires, the
+**8e's wiring done** (25–26/11 night, *the owner*; `idle-log.md`, `refuted.md` C31): both probes' sockets on new housings and VW repair wires, the
 old rear probe left on so that the wiring is the only change; every pin
 corroded, the heater's worst, no earlier repair. **8ac done** (26/11
 early morning, VCDS and the display, **no capture**, *the owner's
-choice*; `idle-log.md`; H21, *The drive after the sockets*): **both
+choice*; `idle-log.md`; `refuted.md` C31): **both
 probes work** — no code stored, the front switching, the rear
 `R1-S2 OK` after about 11 min, the basic settings 034, 037 and 046
 OK; **032 −6.3 / +7.8 cold before, −3.9 / +4.7 after one drive**,
@@ -183,7 +185,7 @@ changed; 014 and the display as at 8aa's stop, 4 the weakest for the
 first 8 minutes, **3's swell at about 20 min as before**. The scatter
 by load (*Off idle*, F) is not read without a capture. **8ad done**
 (26/11 afternoon, `55`, the captured drive on the USBtin's new harness;
-`idle-log.md`; H21, *The captured drive on the sockets*): **the scatter
+`idle-log.md`; `refuted.md` C31): **the scatter
 by load as before**, the four alike — the sockets took neither the
 common part nor 3's away; **032 −4.7 / +6.3 cold, −5.5 / +7.0 after**,
 moving back towards −6 %; the fault memory empty, the lamp never lit
@@ -194,10 +196,11 @@ the pulls (S3); **020 at the limiter: 4 half as often as on 12/11 and
 17/11, 2 as often as 4, and 2 for the first time without 4; 4 to 15.0
 °CA on tip-ins at part load** (S4); 026 in neutral as before (S5); the
 hopping at a light pedal with the pedal at the edge of its rest (S12).
-**Next** (`plan.md`): **the second of the two drives of 032 before
-8ab** — any drive with 032 read at its end (8f); back at −6 % or
-deeper and the sockets' form goes to `refuted.md` and H21 closes
-(*agreed with the owner*, 26/11); then **8ab**, the
+**H21 settled against the same evening** (`refuted.md` C31, *the
+owner's decision*, 26/11): the sockets moved neither the idle nor the
+scatter by load, and 032 went back towards −6 % on the one drive; the
+second drive of 032 agreed before is not waited for. H11 is read again
+after 8e's new rear probe (*the owner*). **Next** (`plan.md`): **8ab**, the
 earth point by the ECU re-crimped on new rings (*the owner*, 25/11; the
 rings bought at GME, VW had none), and 032 over the drives after it
 (8f); then **8e**'s new rear probe when it comes (*the owner*, 24/11:
@@ -1757,7 +1760,7 @@ the share of samples in which each cylinder retards, and its most):
   115–135 km/h), 15 samples of 12–15° in a minute and a half, 1–3 at
   zero: 12/11's 14.2 on a tip-in at 16 % load, deeper. The owner read
   the screen on the pulls, not there. *Reasoned*: the top fits a
-  mixture or charge change on all four (H11, H21's new joints)
+  mixture or charge change on all four (H11; the probes' new joints, `refuted.md` C31)
   better than a noise of 4's alone (H5); the tip-ins are S4's oldest
   form. No mark changes.
 - **2 retards only above 5,300 rpm and never without 4** (0 of 43
@@ -1861,12 +1864,12 @@ any work on 4's valve gear.
 - **H6** (knock control relearning after a disconnect): fits that S4
   changes between logs; 3/11 was the day of the flash and 12/11 two
   days after the disconnect, both on young adaptations — not telling.
-- **H4 / H21's shared earth** (S4, S5 through a common sender earth):
+- **H4 / the probes' shared earth** (S4, S5 through a common sender earth):
   noise there would reach all four windows, which the small retard on
   1 and 3 at the limiter allows; ~ as it was. *15/11, 8h*: the knock
   sensors' 026 voltages did not move with the electrical loads (±0.03 V)
-  and no sender referred to the ECU's earth moved on its own (H21,
-  *8h, the loads at a warm stop*) — against the common earth at VCDS's
+  and no sender referred to the ECU's earth moved on its own (8h,
+  `refuted.md` C26) — against the common earth at VCDS's
   second (`refuted.md` C26); H4's ~ kept on its other paths, the coil's
   feed and the loom.
 - **H1, H3** (3's valve, runner 3): nothing — 3 retards least.
@@ -1931,11 +1934,10 @@ its map and runs well. **Read against the captures** (*Naming the
 cylinder*, *Off idle*, F): the scatter from stroke to stroke is largest
 at a light pedal and **the same on all four cylinders** — the common
 part, not cylinder 3; whether the probes' circuit is in it was to be
-read on the drive after their sockets were renewed (H21, *The drive after
-the sockets*: no capture, so the scatter is not read; the hopping not
-reported on it; F; H21, *Why a probe's fault shows most at a light load*)
+read on the drive after their sockets were renewed (`refuted.md` C31: no capture, so the scatter is not read; the hopping not
+reported on it; F; `refuted.md` C31)
 and **was read on 8ad's captured drive, 26/11: the four alike and the
-scatter as before** (H21, *The captured drive on the sockets*) — and
+scatter as before** (`refuted.md` C31) — and
 the hopping came back on it (below).
 **On the bus, 26/11** (`55`, 8ad; *the owner*'s "teď" at about
 15:23–15:24 by the message, about 25 km/h and 1,900 rpm, about 20 s):
@@ -2306,8 +2308,9 @@ plug, the supply — in `git show 5741dfa:docs/engine-health/open.md`, this head
 - **Ruled out by repair or test**: the injectors (both sets), either
   MAF, either pair of probes, either map, the fuel, the regulator's
   vacuum reference (C20), the purge (C30), the MAF's plug and the
-  ECU's earth (C27), the supply as the ECU sees it (half a point for
-  half a volt at most).
+  ECU's earth (C27), the probes' sockets on the harness side (C31,
+  26/11), the supply as the ECU sees it (half a point for half a volt
+  at most).
 - **Left — VW's own list for an idle value low with part load normal**:
   **a leaking injector and fuel pressure too high**, both read by 8u's
   gauge; and **the return's form** (*reasoned*): a restriction between
@@ -3300,6 +3303,10 @@ marks, the relearn drive minute by minute and the four calm minutes of
 |---|---|---|---|---|---|---|---|---|---|---|
 | ~ | — | ~ | ~ | — | — | — | ~ | ~ | ~ | — |
 
+**26/11**: the probes' sockets renewed and nothing moved (H21 settled
+against, `refuted.md` C31); **H11 is settled after 8e's new rear
+probe** (*the owner*), not before.
+
 **What is left: the idle-only form** (*the owner's suspicion*, 9/11;
 *reasoned*): the front probe reads richer than the mixture only at
 idle — the coolest, slowest exhaust — and right under load. The ECU
@@ -3819,353 +3826,6 @@ at idle on that cylinder, eased by load, and a plug kept clean.
 
 ---
 
-### H21. The probes' wiring and connectors — the harness side, not changed with the probes
-
-*Added 10/11 evening at the owner's request* (his idea: a joint in the
-probes' wiring that moved that day, and the catalyst test that put it
-right for a while). Both probes were replaced on 10/11 with their own
-leads and plugs; **the sockets on the harness side, the wires to the
-ECU and their earths are the car's** (`vehicle-history.md`).
-
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | — | — | — | — | — | ~ | — | ~ | — |
-
-**S23 closed 12/11** (`refuted.md` D13; *the owner's decision*): the
-new rear probe's own fault, the old one healthy on the same harness on
-two drives — **so H21 lost its one ✔ with the column**; what is left of
-it is S19's idle cell (the front probe's damaged signal-earth wire,
-below) and S12's ~. **Eighth in list A since 15/11 evening** (fifth
-before; *agreed with the owner*, after 8h, below).
-
-- **For, S23** (*reasoned*; *S23 closed 12/11 as the new probe's own fault, so this no longer stands for the harness*): a leak to earth in a damp or oxidised
-  socket pulls the signal down in proportion, so the ceiling falls under
-  load as well as the idle, which is what the rear probe did from 16:57
-  on 10/11, before reading zero at full load; it came back after the
-  revs of the basic settings, not after cooling, which suits a contact
-  moved by vibration better than a lead melting on the exhaust. **One
-  circuit, two probes, three days**: the old rear probe sank at every
-  idle on 9/11 night, the new one switched to the front's swing after
-  18 minutes on 10/11 morning and failed under load that evening.
-- **For, found 10/11 evening** (S23, *Found at the harness*): the
-  front probe's signal-earth wire (grey at the probe, brown on the
-  harness side) worn and cracked inside the box the leads run through,
-  and the rear probe's heater lead cracked and corroding beside its
-  signal — both on the harness side the swap did not change.
-- **For, S19's idle cell** (*reasoned*, the wiring of this car not in
-  these files): the cell came back to −6.3 % on new probes (H11, *The
-  relearn drive*), so whatever makes the front probe read rich at idle
-  survived the swap. A resistance in the front probe's signal earth,
-  if heater current shares any of its path, would lift the reading by
-  the heater current times that resistance — and the heater runs most
-  at idle, where the exhaust is coolest (*general*), so the shift would
-  be largest there. Whether the signal and heater earths share a path
-  on M5.9.2 is *not known*.
-- **For, the idle (S1), and S12** (*the owner*, 10/11 night): a
-  resistance that comes and goes in the **front** probe's circuit makes
-  the ECU see false rich or lean, and it moves the mixture of all four
-  cylinders after it; the idle is where the engine runs nearest its
-  edge (the gas idle of 9/11, S1), so a mixture thrown about would show
-  there first — and a step of it at a crawl or a moving-off would be a
-  jerk (S12). *Reasoned*, and fair: nothing below rules out glitches
-  shorter than VCDS's sample.
-- **Against, for the idle (S1)**: (1) **the front probe's own trace**:
-  033 at a warm idle, about one sample a second, 9/11 night (664
-  samples, the old probe) and 10/11 morning (741, the new): **switching
-  regularly between 0.06–0.08 and 0.74–0.77 V, never more than 6 s on
-  one side, the correction within −4.7 to +3.9 %** — no dropout, no
-  stuck value, no excursion of the correction (*ad-hoc script, not
-  kept*); a glitch under a second would not show. (2) On 10/11 morning
-  the new rear probe read flat at 0.59–0.60 V, the healthy shape, for 18
-  minutes, and the idle was as rough and the A/C calmed it as much (H11,
-  *The reading after the swap*) — the mixture behind the converter was
-  right while the idle was rough. (3) A mixture moves all four
-  cylinders alike; the idle's misfires and its steady deficit are 3's
-  (S1, *Every stroke named*), which a mixture does
-  not make. **So a part of the idle at most** — its four-alike share,
-  not the cylinders' difference (*reasoned*).
-- **Against, S23 as the circuit**: the new probe failing early is not
-  ruled out; a lead and socket found sound leave the part. **The
-  owner's own view** (10/11 night): the connectors are very likely
-  sound and the leads well tucked in; he follows the harness on to the
-  ECU and its earths instead (`plan.md` 8e).
-
-**A shared earth, linking it to H4** (10/11 night, *the owner's
-question*: could one earth fault tie the probes to the idle; *reasoned*
-unless marked). An earth that both the probes' signal returns and other
-circuits share would carry their currents and shift every reading
-referred to it, **alike for both probes** — H11's literal form, which
-the swap could not test — and, if the crankshaft sender G28 and the
-knock sensors share it (VW's diagram for this engine lists a **sender
-earth, 220**, beside G28 and T3; which senders it carries the garbled
-text does not show, H4), noise there would reach 014's misfire count
-(S3) and the knock window (S4, S5) as well. **What is known**: the
-engine's earth under load measured clean (H4); the rear probe has been
-read under load twice, the old one never (10/11 morning fine, 10/11
-evening S23), and the front only at VCDS's ~1 s, so noise faster than
-that has never been seen. **One test in the data, against at idle**:
-the radiator fan, the largest load at a stop, runs while the coolant
-falls; over the queue stops of 16:55–17:27 on `47` the rear probe read
-a median **0.29 V with the coolant falling (386 samples) and 0.29 V
-with it rising (475)** — the fan's current moved nothing (*ad-hoc
-script, not kept*). **A second, on the bus** (10/11 night, *the
-owner's question*: correlate every voltage that could share an earth):
-the coolant is read twice — the ECU's sender on 0x288 b1 and the
-cluster's own on 0x420 b4, a separate circuit
-(`docs/firmware/can-decoding.md`, question 10) — so a load that lifts
-the ECU's sensor earth would step their difference. On `47` it held
-**8.6–9.2 °C with the A/C off and on, twice**, and 9.3 against 9.7 °C
-with the radiator fan off and running at the warm stop: within half a
-bit (0.75 °C). An NTC sender reads a few mV as a degree or more at its
-hot end (*general*), so an earth that moved with these loads by more
-than a few mV would have shown — **against, for the ECU's sensor
-earth**; whether the probes' signal earths share it is *not known*.
-**Measurable cheaply**: the voltage between the
-ECU's earth and the engine block, and between each probe's signal-earth
-pin on the harness side and the ECU's earth, at a warm idle with every
-load on — a few tens of mV is an earth fault (*general*). **And VCDS**
-(*the owner's request*, 10/11 night; `plan.md` 8h): the largest loads
-switched from the seat at a warm idle, each against 004's supply, the
-probes, the temperatures, the throttle's sensor voltage, the air mass,
-the knock sensors and the heaters' resistance — what moves with a load
-besides the supply shares its earth. **Read 15/11, below.**
-
-**8h, the loads at a warm stop** (15/11, `53`; `plan.md` 8h, done; a
-laptop session, read in a cloud session the same day; the windows by a
-script not kept). The car standing, oil 101 °C, the everyday state; the
-A/C (always with blower 1), the rear window heater, main beam and the
-blower on 4, about 45 s each, one at a time, three rounds on three sets
-of groups; each step's edges read off 004's supply (the owner's chat
-times ran 6–21 s late), the logs set on the capture by engine speed.
-Each figure is the mean over the load against the mean of the 20 s
-either side; the scatter is of one sample.
-
-| what | A/C + blower 1 | rear window | main beam | blower 4 | scatter |
-|---|---|---|---|---|---|
-| **supply (004)** | −0.25 V | −0.29 to −0.46 V | **−0.54 to −0.63 V** | −0.39 to −0.43 V | 0.1 V |
-| front probe (033) | +0.01 V | −0.06 V | −0.03 V | +0.01 V (blower 3: −0.04) | 0.26 V |
-| rear probe (036) | +0.07 V | +0.02 V | +0.03 V | +0.06 V (blower 3: +0.04) | 0.2 V |
-| throttle, G187 / G188 (060) | +2.6° / −6.7 % | −0.1° / +0.1 % | +0.4° / −0.6 % | +0.2° / −0.5 % | 0.2° / 0.4 % |
-| air mass (002) | +1.5 g/s | 0.0 | +0.13 g/s | +0.10 g/s | 0.1 g/s |
-| knock sensors (026) | +0.08 to +0.11 V | ±0.03 V | ±0.03 V | ±0.02 V | 0.06–0.09 V |
-| front heater's resistance (041) | one count down | one count down | one count down | one count down | — |
-| coolant, the ECU's / the cluster's (0x288 / 0x420) | −0.2 to +1.7 °C, both alike | +0.4 to +2.1 °C, both alike | 0 to +2.2 °C, both alike | +0.9 to +2.4 °C, both alike | — |
-
-- **Only the supply steps with every electrical load**; the A/C's
-  own figures are its load: the idle control opens the throttle, the
-  air and the injection time rise and the engine speed with them
-  (+40 to +75 rpm).
-- **The throttle's second sensor never moves on its own**: G188 goes
-  against G187 by 1.5–2.6 % a degree in every step that opened the
-  throttle, and by nothing where it did not.
-- **The coolant rose up to 2.4 °C in most loads, and the cluster's own
-  sender rose with it**: their difference held 8.6–10.4 °C before,
-  during and after every step, within a bit or so (0.75 °C), and
-  neither reading steps at a switching edge (no change over 1 °C in
-  the 4 s either side of any). A sender earth lifted by the load
-  would step the ECU's reading alone and at once; this is heat
-  (*reasoned*: the fan's cycle, or a fan slowed by the lower supply —
-  not read further).
-- **The front heater's resistance figure follows the supply, one
-  count**: 26.8 with the supply at 13.2 V and over, 25.5 at 13.0 V and
-  under, changing in the same second as the supply in every step both
-  ways; the rear's 22.9 flicks to 24.2 only at the highest supply. A
-  heater's real resistance does not step in a second; a figure the ECU
-  reckons from the heater's supply and current would (*reasoned*; how
-  M5.9.2 reckons it is *not known*).
-- **The probes**: the front's shift is under a quarter of its sample
-  scatter in every step and of either sign; the rear's is upwards in
-  all five, +0.02 to +0.07 V, against a scatter of 0.2 V a sample —
-  about what a 45 s window can resolve, so *not resolved either way*.
-
-**Read** (*reasoned*). **At VCDS's one sample a second, no sensor
-referred to an earth moved with a load on its own**: the ECU's coolant
-sender (against the cluster's), the intake air, the throttle's
-sensor, the air mass, the knock sensors and the front probe moved
-only as the load itself moved them, and the heater figure moved as a
-reckoning from the supply would. **So against a shared earth under the
-ECU's senders and the front probe** — the form of H21 that would tie
-the probes to H4 (S4, S5) and to the idle; the rear probe's few tens
-of mV are not resolved; noise faster than a second is unseen, as
-before. What is left of H21 is the front probe's damaged signal-earth
-wire for S19's idle cell, and S12's ~. **The shared-earth form
-settled against, `refuted.md` C26; H21 kept for the front probe's
-earth wire, from fifth to eighth in list A** (*agreed with the owner*,
-15/11 evening; the place Claude's): what is left reaches the common
-part only through a mixture, which the front probe's own trace has
-never shown thrown about.
-
-**25/11, the lambda control against the cylinders** (*Naming the
-cylinder*, *Off idle*, F; *the owner's view*: the trouble is wherever
-the lambda control runs). **Against, for cylinder 3**: its deficit is
-the same with the loop closed and open at full load and does not follow
-the correction's swing. **What is left is the common part**: off idle
-the stroke-to-stroke scatter is the same on all four, 1 and 2 too, and
-largest at a light pedal, where the loop runs and the owner feels the
-hopping (S12) — a mixture thrown about would do that; so would a light
-charge's ordinary burn and the driveline's play. Not settled; the test
-is in F.
-
-**Why a probe's fault shows most at a light load** (*the owner's
-question*, 25/11: a bad probe on other cars drove well on the throttle
-and made the idle terrible — does that hold here; *general*, with this
-car's figures where marked): (1) a small charge burns slowest and
-nearest its lean limit — much residual gas at the manifold's vacuum —
-so the same error of a few per cent in lambda costs the most
-smoothness there; (2) the loop is slowest there: the gas takes longest
-from the valve to the probe at the smallest flow (about 3 g/s at a warm
-idle against 85–93 at the top, 003), and the exhaust is coolest, the
-probe leaning most on its heater — a poor joint in the heater's feed or
-the signal slows it most there, and a slower loop swings the mixture
-wider; (3) at full load the loop is open (F: 001's correction stands
-still from b7 180) and the probe is not heard; (4) at idle there is no
-torque in reserve and no car's inertia to smooth a step. **So the
-owner's experience is the physics**, for a slow probe and for one
-reading a little off alike. **What this car shows at idle** (*ad-hoc
-script, not kept*): the front probe switches at least as fast as VCDS
-samples — 033 at a warm idle (389 samples on 25/10, 62 on 11/11, about
-0.9 s apart) crossing 0.45 V after a median of one to two samples, the
-longest 5.4 s — and 001's correction swings less at idle (sd 1.6 %)
-than at part load (2.7 %); the common part at a standing idle is 5.1–5.4
-rpm whichever way the correction stands. **Not the slow, wide swing of a
-failing probe; a small offset (S19's idle cell) and anything faster
-than a second are not excluded** — a mild form, if any, which fits the
-owner's "it reminds me of it, but not so bad". The proof is the sockets' before
-and after (F).
-
-**A note, not a finding** (*the owner*, 25/11, before opening the loom
-at 8e): VW's repair wires (000 979 021 EA) are as thin as the probes'
-own leads, **thinner than the harness wires they will be joined to**,
-and **a wrapped tape at the end of the loom** — he half suspects the
-harness was repaired once before, thicker wire on thinner. To be seen
-when it is opened. *Reasoned* (general electrical knowledge, no
-datasheet of these terminals here): the thicker wire is not itself a
-resistance — its copper is a few tens of mΩ a metre, and the probe's
-signal feeds an input of high impedance, where even 100 Ω in series is
-nothing — but **a wire too thick for its terminal or seal** is: a crimp
-that does not close or has lost strands, a seal that does not close
-round it, damp in, the copper oxidised — a contact that comes and goes
-with heat and vibration, a leak on the signal (read lean) or a drop in
-the heater's feed (a cooler, slower probe at idle). Either moves the
-mixture of all four alike, the common part, not 3's deficit. **What to
-look at when it is opened**: the crimps (tight, every strand in), green
-under the insulation, the seals.
-
-**Opened, 25–26/11 night** (*the owner*, at the car; the album; this
-outranks the note above): **no earlier repair** — the harness wires the
-same length as the probes' own, old, stiff and hard, the tape only the
-loom's wrap; **every pin and both housings corroded all over, the
-heater's outer pin the worst in both sockets** (whether it is the
-heater's feed or its earth he does not know), **the front's housing and
-crimps worse than the rear's**, the copper corroded inside most harness
-wires once stripped. **Read from the album** (26/11, 00:09–04:18;
-`vehicle-history.md`, the photographs): **the blue wire with the red
-seal is green with verdigris from the seal to the tip in both
-sockets**, the worst contact in each; in the rear socket two contacts
-gold-coloured and clean, two tin-coloured and corroded — gold does not
-corrode, tin does (*general*); whether the gold colour is plating or
-the base metal where tin wore through a photo cannot say. **The
-terminal the owner took for broken in half is split by design** (two
-straight parallel tines, the ends level, the gap even, the same fork
-on other old terminals; *his reading until then*: broken, or made so).
-The rear's blue had a crack in its insulation found 10/11, so damp had
-a way in along it. All eight now on VW repair wires and the new
-housings; the old rear probe on. *Reasoned*: a corroded heater
-contact is the form that weighs most at idle (*Why a probe's fault
-shows most at a light load*, (2)); what it did is read below.
-
-**The drive after the sockets, 26/11** (`plan.md` 8ac, done; VCDS 014
-033 036 and the display, **no capture**, *the owner's choice*;
-`idle-log.md`; the logs `vcds/vcds-step8ac-*`):
-- **Both probes work on the new joints**: the fault memory empty at
-  all nine reads; cold with the ignition on, 033 0.435 V and 036
-  0.425 V steady for 20 s, the biases of 10/11; the front probe switching about 80 s after a cold
-  start; the rear `R1-S2 OK` about 11 minutes from the cold start
-  (7–20 before, `vcds.md`) and every sample after; the owner's basic
-  settings at a warm standing engine all OK — 046 the converter, 034
-  the front probe's ageing (period 0.51 s), 037 the rear (0.515 V);
-  each verdict showed at once, so it is the ECU's last own result
-  rather than a test run then (*reasoned*: 034 said OK at 304 °C of
-  converter, under its own 352 °C gate).
-- **032 −6.3 / +7.8 % cold before** (the old wiring's cells, the ECU not
-  unplugged), **−3.9 / +4.7 % after one drive** of 32 minutes and an
-  8-minute warm stop; 055 −1.42 → −1.14 g/s. Both cells moved towards
-  zero, but −3.9 is inside what the idle cell has read with nothing
-  changed (−3.9 to −9.4 since 10/11, S19), so one drive does not show
-  the wiring's hand; 8f's drives tell. **For the form above** (a
-  resistance lifting the front probe's reading at idle, *reasoned*):
-  its removal would read leaner to the ECU and move the idle cell up,
-  which is the direction seen.
-- **033 at about a sample a second** (*ad-hoc script, not kept*; the
-  eight earlier 014-and-033 logs, `sessionB` to `8z`): the regulation's
-  scatter the same — at the warm stop sd 2.0 % (1.2–5.1 before), on
-  the road 2.3–3.0 % at every load band (2.2–5.0); the front probe's
-  voltage high in 60 % of the stop's samples against 42–52 % before,
-  58 % on the road against 51–60 %, its lean floor (lowest quarter)
-  0.13 V against 0.09–0.13. *Reasoned*: too coarse to name a cause —
-  the duty at a sample a second follows the ECU's own steps as much as
-  the probe — so it moves no mark.
-- **The old rear probe at the warm stop** (036, *ad-hoc script, not
-  kept*; the owner's question, 26/11): **a mean of 0.32 V, minute by
-  minute 0.23 on arrival, then 0.28–0.44, with no sinking over the 8.4
-  minutes**; under 0.10 V in 6 % of the samples, and its two lowest
-  (0.045 V) on arriving from an overrun, the fuel cut's tail. Against
-  the old probe's earlier logged stops: 12/11 night 0.21–0.29 (`8n`),
-  12/11 midday 0.55 → 0.34 over 12.5 min (`6w`), 15/11 flat at
-  0.44–0.47 (`8h`), 24–25/11 night 0.34 for a minute (`8aa`) — **in
-  their middle, not nearer zero**. On the road never at zero under
-  load (0.63 V mean, 0.835 V the highest, above 60 % load); 037 at
-  05:55 0.515 V. The 20 minutes of the stop after the log ended (to
-  06:05) are not logged, so `49`'s sinking towards 0.2 V over a long
-  stop is not tested (`refuted.md` D13).
-- **The idle as before**: 014 10 misfires in the stop's 8.4 minutes
-  (1.2 a minute; 0 to 12.1 in the first 8 minutes of the nine earlier
-  warm stops logged that long without a cut, 8aa's 2.7); on the display 4 the weakest for the first 8 minutes and 3's
-  swell at about 20 minutes, to −18.5 % (S1, the display table, 26/11).
-- **Not read**: the scatter by load (*Off idle*, F) — it needs a
-  capture.
-**No mark changes, the ranking as it was** (*reasoned*; a ranking
-change is agreed with the owner). **Decided with the owner, 26/11**:
-032 on the next two drives settles the sockets — the idle cell back at
-−6 % or deeper, and the sockets' form goes to `refuted.md` and H21
-closes (the wires to the ECU left to 6n); held at about −4 % or
-shallower, the sockets were a part of the cell. **Those two drives
-come before 8ab's rings**, so that the earth does not change with them.
-
-**The captured drive on the sockets, 26/11** (`plan.md` 8ad, done;
-`55`; `idle-log.md`): **the first of the two drives** —
-- **032 −4.7 / +6.3 % cold, −5.5 / +7.0 % at the end** (8ac's end
-  −3.9 / +4.7): **both cells back towards the old wiring's −6.3 /
-  +7.8**, the idle cell short of the −6 % agreed; the second drive
-  settles it. 033 at the stop and on the road not re-read: 8ac found it
-  too coarse to name a cause.
-- **The scatter by load as before** (*Off idle*, F, 26/11): the four's
-  alike, at 1,600–2,100 rpm 47–51 % of a stroke at b7 10–27, 22–23 at
-  27–35, 13–16 at 45–55, 7–8 at 55–70 — **inside `54`'s** (52–56,
-  22–23, 14, 12–17) and a little under the corpus (`19`–`54`: 60–63,
-  29–30, 18, 10–11). **The renewed sockets did not take the common
-  part off idle away**; nor the idle's: the common part 2.83 rpm rms
-  (2.6–3.1 since 24/9), 3's floor −7.4 % and swell to −19 as before
-  (S1).
-- **The front probe on the new joints through the pulls**: no code at
-  thirteen reads; the knock control at the limiter on all four but 1
-  (S4, 26/11).
-**No mark changes, the ranking as it was** (*reasoned*): for the
-sockets' form only 032 is left, and it is moving back.
-
-**Tests:** the sockets of both probes looked into and renewed
-(25–26/11 night, *Opened*; **the drive after them, 26/11**, below);
-the rear lead's run (`plan.md` 8e); the
-probes' loom and both connectors flexed with 033 and 036 logged, with
-the ignition only (a leak to earth pulls the bias off its steady
-0.43–0.44 V; never with the engine running, *the owner's decision*,
-10/11 night — a series resistance, which would show only on a hot
-probe, is left to the multimeter);
-a jump in either is the find (8g, *dropped 11/11*, the owner); each wire from the socket
-to the ECU's pin, resistance and insulation to earth, with the ECU's
-plug off when 6n is done (the pins from the current flow diagram, read
-first).
-
 ## Naming the cylinder
 
 The bus carries no cylinder identification and 014 has no per-cylinder
@@ -4550,23 +4210,22 @@ drives, `19`–`50`; warm (oil 80 °C and over).*
     and 2 carry as much of it as 3 and 4** — so it belongs to all four
     (list A), largest at the light pedal where the owner feels the
     hopping (S12). A mixture thrown about by the probes or their wiring
-    (H11, H21) would do that; so would an engine's ordinarily slower,
+    (H11; H21, the probes' wiring, until 26/11, `refuted.md` C31) would do that; so would an engine's ordinarily slower,
     more diluted burn at a light charge and the driveline's play at a
     small torque (H0, H12). No healthy AQY's figure is here to set it
     against. **What would split them**: **this table read again after
     8e's sockets** (renewed 25–26/11 night), the before being
     `19`–`54`, beside 032's idle cell — **not read on 8ac** (26/11,
-    VCDS only, no capture; H21, *The drive after the sockets*); **read
+    VCDS only, no capture; `refuted.md` C31); **read
     on 8ad's captured drive the same afternoon** (`55`): the four alike
     as before, 47–51 % at 1,600–2,100 rpm and b7 10–27, 22–23 at 27–35,
     24–27 at 35–45, 13–16 at 45–55, 7–8 at 55–70 — inside `54`'s and a
     little under the corpus's; standing 1 8, 2 6, 4 9, 3 11. **The
-    sockets moved neither side** (H21, *The captured drive on the
-    sockets*). 3 less 2 by load as in the table (−22 at b7 10–27 to
+    sockets moved neither side** (`refuted.md` C31). 3 less 2 by load as in the table (−22 at b7 10–27 to
     1,600 rpm, −3 to −4 at 45–90). *VCDS on 001 or 033 alone was
     proposed and dropped* (*the owner*, 25/11): at about a sample a
     second it sees only a probe that switches slowly, which this one
-    does not (H21, *Why a probe's fault shows most at a light load*).
+    does not (`refuted.md` C31).
 
 ### What the dip shares said, and what stands
 
@@ -5038,11 +4697,10 @@ list C for 3's floor apart from its swell — the floor reads as A's in
 | A1 | **H0** normal for this engine | A common part that no repair, day or drive has moved, and that answers only to the charge, is what an engine's own scatter looks like; a fixed fault reads the same, and no healthy AQY says which. Against: 014 far above VW's 0–5 — but that is 3's, list B. **17/11, the fourth research**: still no healthy M5.9.2 log found; it gains only as the belt loses | 014 on a healthy AQY, VCDS only (a capture is not obtainable) |
 | A2 | **the timing belt a tooth out** | The common part is a constant — the same within 5 % at every warm idle since 24/9, answering only to a load, the gas and temperature — which a fixed fault on all four gives and a source that varies by the day does not (S1, *The swell's shape*); the cam's timing sets the burnt gas kept at idle. **The marks, 8i (13/11)**: the cam's OT mark set; the crank pulley's only notch 30–60° of crank behind the groove on the block by eye and borescope, **2–3 cm along the rim, more likely more, not over 5 cm** by the owner's fingers the same evening (14–41°, if the pulley is 14–16 cm across — the diameter a guess); the cam advanced if both are the true marks (the direction the owner's, read off the part), and if they are not, the direction is open too (*the owner*, 14/11). **VW's references, read 17/11** (*What the forums say*, searched again 17/11): the damper's mark against the bottom belt guard's, the flywheel's in the gearbox window, **none on the block** — so the groove 8i read against is not one of VW's, unless it was the guard's; **a pulley bolted on turned** (*the owner*) is excluded by design, the damper and crank sprocket fitting one way only, but not the damper's outer ring slipped on its rubber. **A tooth is 13.85° of crank**: 30–60° is 2.2–4.3 teeth and 14–41° 1.0–3.0, the two meeting only at two. **Against more than about a tooth**: settled full throttle takes 496 mg of air a stroke at 2,400 rpm, 520 at 3,600–4,400, 485 at 5,200, 452 at 5,600 (85–90 g/s at the top, every 003 log; 84–90 g/s at 5,000–5,500 in sixteen logs from 9/2026 to 9/11), and the acceleration needs 0.94 of b7 with no tilt by gear or band (83 pulls; `drivescan.py --pulls`) — two teeth of advance or more would take the top of the filling away (*general*); a tooth or less is not excluded with no healthy AQY to set it against. The ECU compares the phases: VW's fault table for the family lists 16724 / P0340 and 17748 / P1340, the cam and crank senders' incorrect assignment, beside 16725 / P0341 for G40's signal out of place — none ever stored here; no tolerance is published, so one tooth may pass where two would not (*reasoned*). Belt from 10/2017. Kept first by the owner from 13/11 until **17/11 evening, when he agreed H0 above it** (the fourth research: the marks read against no VW reference) | **8q**: the mechanic's count of teeth before the old belt comes off, against VW's references (the flywheel's mark or the piston at plug 1), and the common part by capture before (`54`'s warm stop, 17/11, after the gasket: 2.96 rpm rms) and after the new belt, 7/12 (`plan.md` 8q) — and 3's floor and swells beside it, a cylinder at its edge perhaps answering to a tooth more than the rest (*the owner's question*, 17/11) |
 | A3 | **H8** throttle and idle control | The air and the idle regulation act on all four alike, and S12's wandering speed (S20 until 25/11) dates from this throttle (*owner*). Against: 055's two fields sum to the same correction at every warm idle (27/10), so a reset or the A/C gives no more air; the advance's scatter does not go with the common part (003, 12/11); 014 does not follow 055's learnt value (`refuted.md` C19); the regulator holds through 3's swells on 18 stops (15/11) | no test left for the idle; S12's wandering speed keeps it |
-| A4 | **H11** both probes shifted | What is left is the idle-only form — the front probe reading rich in the idle's cool exhaust, so the true mixture lean; it fits 032's negative idle cell with part load untouched. Against: both probes replaced 10/11 and the idle as rough; on the relearn drive its marks 1, 3, 4 and 5 failed (H11, *The relearn drive*); the rear probe's state never tracked `IdleHealth` | nothing planned; 036 watched at VCDS sessions (`plan.md` 8f) |
+| A4 | **H11** both probes shifted | What is left is the idle-only form — the front probe reading rich in the idle's cool exhaust, so the true mixture lean; it fits 032's negative idle cell with part load untouched. Against: both probes replaced 10/11 and the idle as rough; on the relearn drive its marks 1, 3, 4 and 5 failed (H11, *The relearn drive*); the rear probe's state never tracked `IdleHealth` | read again after 8e's new rear probe (*the owner*, 26/11, when H21 closed); 036 watched at VCDS sessions (`plan.md` 8f) |
 | A5 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it (shared with H16 until 17/11, `refuted.md` C30). Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; **17/11**: nor a return restriction, which would pull both cells negative (S19, *re-reckoned*); the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
 | A6 | **H2** a leak ahead of the converter | Widened 10/11 to the zone between the probes (the joint, the flex, the plugged boss), which gives a lean rear probe at idle but not 032 or the dips; S2, S11 and S14's air. Against: the cold tailpipe and smoke tests found nothing; the visible manifold has no soot and no holes (31/10); 032's idle cell takes fuel away, where air ahead of the front probe would add it; the front loop holds through 3's swell; the rear probe's sinking was the old probe's; cannot pick a cylinder. Untested: a crack open only hot, the part under the heat shield | none planned (the warm tailpipe test dropped 15/11, *the owner*) |
 | A7 | **H18** oil past the stem seals | All four alike: worse after idling, calm after a working drive; for one valve it is the swell's second reading (list B's matter, S1, *The swell's shape*). **For, 17/11**: a brown liquid stood round the backs of inlet valves 2, 3 and 4 with the manifold off, there before the wash (*owner*) — the first direct sight of oil at the valves, though the old joint left the same and it does not pick 3; **17/11 (`54`)**: the joint new and the swell as before, so the joint's oil was not it (`refuted.md` C28). Against: it does not grow with the time into a stop; **no blue smoke ever**, the plugs dry; **17/11**: 3 no worse in the first seconds after a coast-down, the deepest vacuum | the oil level on the fresh oil (`plan.md` 6i); the plugs at the next change (8v) |
-| A8 | **H21** the front probe's signal-earth wire | What is left after 8h (`53`, 15/11: only the supply stepped with a load, `refuted.md` C26): the front probe's damaged signal-earth wire, which reaches the common part only through a mixture; S19's idle cell if a signal earth carries heater current (*reasoned*). Weak for the idle: the new rear probe read healthy for 18 minutes and the idle was as rough | the sockets renewed 25–26/11 night with the old rear probe on, every pin found corroded, the heater's worst (*the owner*); **8ac** the drive after them (26/11): both probes working, 032 −6.3 / +7.8 → −3.9 / +4.7 on one drive; **8ad** (26/11, `55`): **the scatter by load as before**, 032 back to −4.7 cold and −5.5 / +7.0 after the drive; 032 on the second drive before 8ab; each wire to the ECU's pin with the plug off (with 6n) |
 
 **More than one at once** (*the owner's point*, 12/10): each repair may help
 only in part; a partial improvement is read as a share, not a miss.
