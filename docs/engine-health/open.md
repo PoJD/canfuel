@@ -3910,6 +3910,19 @@ shows most at a light load*, (2)); what it did is read below.
   0.13 V against 0.09–0.13. *Reasoned*: too coarse to name a cause —
   the duty at a sample a second follows the ECU's own steps as much as
   the probe — so it moves no mark.
+- **The old rear probe at the warm stop** (036, *ad-hoc script, not
+  kept*; the owner's question, 26/11): **a mean of 0.32 V, minute by
+  minute 0.23 on arrival, then 0.28–0.44, with no sinking over the 8.4
+  minutes**; under 0.10 V in 6 % of the samples, and its two lowest
+  (0.045 V) on arriving from an overrun, the fuel cut's tail. Against
+  the old probe's earlier logged stops: 12/11 night 0.21–0.29 (`8n`),
+  12/11 midday 0.55 → 0.34 over 12.5 min (`6w`), 15/11 flat at
+  0.44–0.47 (`8h`), 24–25/11 night 0.34 for a minute (`8aa`) — **in
+  their middle, not nearer zero**. On the road never at zero under
+  load (0.63 V mean, 0.835 V the highest, above 60 % load); 037 at
+  05:55 0.515 V. The 20 minutes of the stop after the log ended (to
+  06:05) are not logged, so `49`'s sinking towards 0.2 V over a long
+  stop is not tested (`refuted.md` D13).
 - **The idle as before**: 014 10 misfires in the stop's 8.4 minutes
   (1.2 a minute; 0 to 12.1 in the first 8 minutes of the nine earlier
   warm stops logged that long without a cut, 8aa's 2.7); on the display 4 the weakest for the first 8 minutes and 3's
