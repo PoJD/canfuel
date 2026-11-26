@@ -512,7 +512,9 @@ itself is not finished.
   VIN*; **the photo album** (Google Photos, every repair since 6/2026) is in
   the private artifact *New Beetle Photo Album* with how to page it from a
   cloud session — find both with the Artifact tool's `action: "list"`, never
-  copy either into a file here. **The ECU's two whole flash images** (the
+  copy either into a file here. **Whenever he says something is in the
+  album, look at it at once, unasked** — every frame of that series, by its
+  time — and report what the photos show (*the maintainer*, 26/11). **The ECU's two whole flash images** (the
   original calibration and the 2018 remap, 256 KB each, from the tuner
   3/11) are in the private artifact *Beetle AQY ECU flashes*, base64 with
   their SHA-256 and how to fetch them into the scratchpad; the comparison
