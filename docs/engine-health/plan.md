@@ -18,11 +18,12 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Now: 8ab**, the earth
-point by the ECU on new rings (*the owner*, 25/11; the rings bought at GME,
-VW had none). **Then 8e**, **the new rear probe when
-it comes (bought 24/11, expected 26/11)** **and both probes' sockets on
-new VW terminals with it** (*the owner*, 25/11); **8q, the timing belt
+Captures only where an item asks for one. **Now: 8ac**, the captured
+drive after both probes' sockets were renewed (25–26/11 night, *the
+owner*; the old rear probe left on). **Then 8ab**, the earth point by
+the ECU on new rings (*the owner*, 25/11; the rings bought at GME, VW
+had none). **Then 8e**, **the new rear probe when it comes (bought
+24/11, expected 26/11)**; **8q, the timing belt
 at a garage, 7/12**; then item 9; **8u, 8v, 8w by
 opportunity** (*the owner*, 15/11), and **6r**, the owner's scope, best
 before 8q, **6t**, the second tank of BG 44K Platinum driven down and two captured drives at its end, before 8q,
@@ -190,6 +191,30 @@ of this plan, *the owner's decision* of 9/10):
   with 014 through the whole stop** (VCDS, beside the capture); the
   capture says afterwards when 4 led.
 
+**8ac. The captured drive after the probes' sockets** (*the owner*,
+26/11; the sockets renewed 25–26/11 night, the old rear probe on, so
+the wiring is the only change). A laptop session; the MFD out, the
+capture in.
+1. **Cold, before the start, the ignition on, the engine off**: 032,
+   055 and 036 for 20 s; the fault memory read before and after. 032
+   and 055 still hold what the drives on the old wiring learnt (the
+   ECU has not run since). **If the battery or the ECU was unplugged
+   for the wiring, say so first** — then they read zero and there is
+   no before.
+2. **The capture started before the ignition**, to "konec"; VCDS
+   through the drive on **014 033 036**.
+3. **The drive**: warm, some town at a light pedal, some steady
+   driving out of town, **a warm stop at the end of at least five
+   minutes**. Anything that feels different, the hopping at a light
+   pedal above all, with "teď".
+4. **At "konec"**: the fault memory, **032 and 055 for 20 s**, VCDS
+   closed, the capture stopped.
+5. *By the owner's own hand, if he wants, afterwards*: VCDS's basic
+   settings 034 (the front probe's ageing, held at 2,200–2,800 rpm)
+   and 037 (the rear) at a warm standing engine, the verdicts into the
+   chat. Claude clicks neither.
+6. **032 on the next two drives** (8f).
+
 **8ab. The earth point by the ECU on new rings** (*the owner*, 25/11).
 1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
    the fault memory read and saved.
@@ -277,44 +302,17 @@ always** (a P0303 stored with no cut: its time is what the log gives).
   leak-down names 3's exhaust seat, the car is driven as it is and S1
   most likely closed as *acceptable, cause known*.
 
-**8e. The new rear probe when it comes, and both probes' sockets on new
-terminals** (*the owner*, 11/11, 12/11, 24/11 and 25/11; `refuted.md`
-D13). **A new rear probe, Bosch `0 258 010 032`, bought
+**8e. The new rear probe when it comes** (*the owner*, 11/11, 12/11,
+24/11 and 25/11; `refuted.md` D13; **both probes' sockets renewed
+25–26/11 night**, `idle-log.md`). **A new rear probe, Bosch `0 258 010 032`, bought
 24/11 from another shop, expected 26/11** (*the owner*, 25/11); the butt
 sleeves bought at GME 25/11; the old rear probe on the car
-until then. **After 8ab's two drives of 032** where the dates allow. 032
+until then. **After 8ac and 8ab's two drives of 032** where the dates allow. 032
 and 055 read before it goes in (8f). It
 is fitted as the first was: Bosch's paste on the thread only, nothing
 in the connector, the lead clear of the exhaust and not pressed into
 the harness box. Then, cold, the ignition off, from below:
 
-- **Both sockets on the harness side photographed first**, each
-  cavity's wire colour readable.
-- **The tape at the end of the loom unwound before anything is cut**:
-  what is under it photographed — an old joint, a wire of another
-  thickness than the probe's lead, a crimp that moves when the wire is
-  pulled gently, green under the insulation, a seal that does not
-  close round its wire; into the chat.
-- **Every wire of both sockets on a new terminal** (VW repair wires
-  `000 979 021 EA`, bought 25/11, a terminal crimped at each end, cut
-  in the middle: four make the eight; **gold-plated**, the tinned kind
-  not in stock, *the owner*). **Before the first cut**, a new
-  terminal beside an old one out of the socket: the same shape and
-  size, or nothing is cut and the part goes back. **The pins on the
-  probes' side** (the new rear probe's plug, the front probe's plug):
-  gold or tin, into the chat before the first cut (**the old front
-  probe's plug: all four gold**, *the owner*, 25/11).
-  **One wire at a time** — the harness wire cut
-  back past any damage to bright copper (the rear's blue and the
-  front's brown, taped 10/11, past their cracks), joined to the half
-  repair wire with a butt crimp sleeve, heat-shrink over it; the
-  joints staggered a few centimetres so the bundle does not swell in
-  one place; the new terminal pushed into **the same cavity** until it
-  latches, then a gentle pull on the wire. The red wire beside the
-  blue looked at on the way.
-- **Both connectors pushed until each latches with a click**; the
-  bundle wrapped again as on 10/11 night. Photographs of the joints and
-  the sockets into the chat.
 - **The rear probe's lead, all the way to its connector**: where it
   runs, whether it touches or lies within a finger's width of the
   exhaust or the converter, any melted, shiny or hardened
@@ -338,10 +336,6 @@ the harness box. Then, cold, the ignition off, from below:
   with, whether either turns further at the effort they were
   tightened with. Which, and about how far, into the chat; nothing
   undone.
-- **After it, one captured drive** (the MFD out, the capture in, as
-  usual): warm, some town at a light pedal, some steady driving out of
-  town, a warm stop at the end; 032 and 055 read at home (8f). The
-  before is already in hand.
 
 ## Standing items
 
@@ -485,65 +479,34 @@ outside the overrun — and its sinking at long warm stops is the one
 sign against it (`refuted.md` D13). The rear probe has no direct hand
 in the idle's mixture, so fitting it before 8q does not blur the belt's
 before-and-after; 032 read before and after (8f) shows any shift its
-trim makes. **The sockets with it** (*the owner*, 25/11: VW sells
-repair wires with the terminal crimped on, so every terminal is renewed
-and the damaged lengths cut away rather than mended in place; first
-written to wait for the belt). What it costs (*reasoned*): the probe and
-the sockets change together, so a P0137 that stays away does not say
-which mended it; and the front's brown wire is its signal earth (H21),
-which can reach S19's idle cell — so a move of 032 after 8e is not
-8ab's. Hence after 8ab's two drives of 032, and 032 again after 8e.
-The belt's before-and-after is not blurred: 8q's reading is the
-idle's floor and swell on 3, which neither probe makes. **The plating** (*the owner*, 25/11:
-the rear socket's terminals are tinned, the broken signal one too, and
-every new one is gold; *this said until then that the photographs of
-10/11 showed gold in these sockets*): gold against gold is the best
-contact for a probe's millivolts; **gold against tin is the pairing
-connector makers advise against** (*general*: the tin wears and
-oxidises at the touch by fretting, and the gold gains nothing), and
-tin against tin is how the car was built. So the probes' own pins
-decide it (**the old front probe's: all gold**, *the owner*, 25/11, so
-the car was built gold against tin at least there, and the probes now
-on it are most likely the same): gold there, the new terminals are an improvement; tin
-there, the owner decides between them and the tinned kind ordered.
-The bag says only *wires*; the counter picked it by the catalogue. **One wire at
-a time and the same cavity**: eight wires cut at once in a dark
-under-body is how a heater lead ends on a signal pin. A butt sleeve
-under heat-shrink on the harness side seals nothing the probe
-breathes through: its reference air comes along its own lead, on the
-other side of the connector.
+trim makes. **The sockets** were renewed before it, 25–26/11 night, with the old
+rear probe on (*the owner*), so that the probe and the sockets do not
+change together: 8ac reads the wiring alone, the new probe its own
+part after.
 
 **S12's jerk by the clock**: the bus cannot show a jerk at a crawl, so only its time
 lets a capture or a VCDS log be read at that moment — the stroke, the
 load, 014, and from a capture the cylinder (`open.md` S12).
 
-**8e's cracked wire and latches** (`refuted.md` D13 (S23), *Found at the
-harness*): a copper strand corroding in a crack is a resistance and, in
-the damp, a leak to whatever touches it; tape over it keeps the damp
-in, so the corroded length is cut out. Which wire it is tells what it
-explains: the signal or its earth fits S23 directly, a heater lead only
-through a shared path. A connector that does not latch lets its
-contacts move with the engine — it is redone before any reading.
-
-**8e's tape at the end of the loom** (*the owner*, 25/11; `open.md`
-H21, *A note, not a finding*): the repair wires are as thin as the
-probes' own leads and thinner than the harness wires they join, and
-the loom ends in a wrap of tape, so the harness may have been repaired
-before. A thicker wire is no resistance by itself; a wire too thick
-for its terminal or its seal is — a crimp that never closed, strands
-lost, damp in — and it moves the mixture of all four, the common part
-(`open.md` *Off idle*, F). Seen and photographed before the cut, it is
-a finding or nothing; after the cut it is gone.
-
-**8e's captured drive after** (`open.md` *Off idle*, F, and H21, *Why
-a probe's fault shows most at a light load*; *the owner*, 25/11): the
-stroke-to-stroke scatter by load (`drivescan.py --cylinders`) and 032's
-idle cell are the before and after of the probes' sockets; the before
-is `19`–`54`, and for 032 the reading taken just before the change
-(8f) — 24–25/11's −1.6 / +3.9 may have been chance (*the owner*). A light pedal is where
-a probe's fault weighs most and where the scatter is largest, so the
-drive needs it; the steady stretch is the load where nothing should
-move.
+**8ac, the drive after the probes' sockets** (`open.md` *Off idle*, F,
+and H21, *Opened* and *Why a probe's fault shows most at a light
+load*; *the owner*, 25/11 and 26/11): every pin was corroded, the
+heater's worst, and the joints could not be rung through once on the
+car, so the drive asks first whether both probes work — no probe or
+heater code stored, 033 switching, 036 reaching `R1-S2 OK` (7–20
+minutes from a cold start before, `vcds.md`) — and then whether
+anything moved. **032 cold before the start is the before** for the
+adaptations: they are what the drives on the old wiring learnt, the
+ECU not having run since; 24–25/11's −1.6 / +3.9 was one drive and
+may have been chance (*the owner*). The stroke-to-stroke scatter by
+load (`drivescan.py --cylinders`) is the other before-and-after, the
+before `19`–`54`. A light pedal is where a probe's fault weighs most
+and where the scatter is largest, so the drive needs it; the steady
+stretch is the load where nothing should move; the warm stop gives
+the idle's grade and 3's swell, which the wiring is not expected to
+touch. 034 and 037 are basic settings, so they are the owner's to run
+or not (`CLAUDE.md`: Claude only reads). 014 033 036: 014 is never
+left out, and the probes' two blocks are what the question is.
 
 **S12's hopping at a light pedal by the clock** (`open.md` S12 and
 *Off idle*, F): off idle the scatter from stroke to stroke is the same
@@ -556,7 +519,8 @@ follows the harness instead): a leak or a poor earth is as likely
 anywhere on the way as at a connector, and an earth eyelet the
 probes' returns share is H21's shared earth itself.
 
-**8e's sockets** (`open.md` H21): the swap changed the probes and
+**The probes' sockets, renewed 25–26/11** (`open.md` H21; kept for
+8ac's 036 with the ignition on): the swap of 10/11 changed the probes and
 their own plugs, not the harness side, so a fault there survives it —
 S19's idle cell perhaps; renewed terminals take the harness side's
 contacts out of it (25/11). **At the end** (*the owner*, 11/11): the rear

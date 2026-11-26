@@ -2202,3 +2202,25 @@ earth and on the same tank, read 3 at −2 to −4.5 % and `IdleHealth`
 alternating as the weakest" is partly the naming: the blocks where 4 read
 +9 % had `CylNamed` clear (`docs/firmware/frames.md`, 0x605). Recorded
 as one stop, not as a change of S1 (*agreed with the owner*, 25/11).
+
+## 25–26 November 2026 night — both probes' sockets on new terminals (8e, its wiring)
+
+- **Repairs:** both lambda probes' harness-side sockets renewed by the
+  owner after midnight — the new housings that came with the new
+  probes, all eight wires on VW repair wires `000 979 021 EA` with butt
+  crimp sleeves and heat-shrink, each terminal in its old cavity; the
+  bundle wrapped again; the corrugated sleeve's broken end held with
+  PVC tape. **The old rear probe left on**, so the wiring is the only
+  change.
+- **Tests:** the parts looked at as they came apart (the album): every
+  pin and both housings corroded, the heater's outer pin the worst in
+  both, the front worse than the rear, the copper corroded inside most
+  harness wires; one rear crimp broken in half; **no earlier repair**
+  (the owner's suspicion of 25/11 not confirmed).
+- **Changes after:**
+  - *not known:* whether either probe or 032 moves — the captured drive
+    after it (`plan.md` 8ac).
+
+The joints could not be rung through once fitted to the car (*owner*);
+whether every sleeve holds is the drive's first question.
+
