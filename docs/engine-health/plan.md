@@ -114,8 +114,10 @@ division, into the chat.
 analyser — under sigrok one analog channel (**1ACH**, ±10 V) and eight
 digital ones (0–5.3 V). **One analog channel**, so injectors 3 and 4 one
 after the other, not side by side; for G28 and G40, G28 on 1ACH and G40
-on a digital channel. **A laptop session; Claude runs it** with
-sigrok's command line, the owner only connects the wires.
+on a digital channel. **A laptop session; Claude sets it up and runs it**
+with sigrok's command line, on the desk with a 9 V battery first, then
+in the car (*the owner*, 26/11 night); the owner only connects the
+wires.
 - **Never straight onto the car**: the injector's contact 2 sits at
   the supply's 12–14 V and kicks higher when it closes. **A divider on
   the breadboard**: row 1 the wire from the injector and one leg of a
@@ -666,11 +668,13 @@ about 1.3 V and leaves the closing spike room under 10 V; the ratio is
 measured, not assumed, because the analyser's own input resistance is
 not documented and loads the 10 kΩ. The laptop runs on its battery so
 that the analyser's earth, which is the laptop's through USB, meets
-the car's at one point only. **The tools are prepared in a cloud
-session beforehand** (`CLAUDE.md`, *Sessions at the car*: a laptop
-session only runs them and gets the files to GitHub): a capture
-through `sigrok-cli` to a file and a reader for the injector's opening
-time, the closing spike and its hump, 3 against 4.
+the car's at one point only. **An exception to `CLAUDE.md`'s
+laptop rule** (*the owner*, 26/11 night: that rule is for the CAN and
+VCDS sessions in the car): the scope's laptop session sets up and
+builds its tools there — the drivers, `sigrok-cli`, a capture to a
+file and a reader for the injector's opening time, the closing spike
+and its hump, 3 against 4 — checked on the desk with the 9 V battery
+first, the laptop then off its charger and to the car.
 
 **6t, the 44K again** (*the owner's decision*, 17/11 evening;
 `open.md` S1, *The floor and the common part read apart*): the level of
