@@ -103,7 +103,8 @@ pierced, nothing written to the ECU:
   seconds with every load off and a few with the A/C on; if a capture
   runs, a few more in a swell when Claude says so. A current clamp on
   one injector's wire as well, if one is to hand.
-- **G28 and G40 together**, one channel on each sender's signal wire
+- **G28 and G40 together** (*another day*: the injectors first, *the
+  owner*, 26/11 night), one channel on each sender's signal wire
   (Claude says which before), 30 s of warm idle; the same again with
   the same settings after the new belt (8q).
 
