@@ -181,7 +181,9 @@ both cells towards zero but inside what they have read with nothing
 changed; 014 and the display as at 8aa's stop, 4 the weakest for the
 first 8 minutes, **3's swell at about 20 min as before**. The scatter
 by load (*Off idle*, F) is not read without a capture. **Next**
-(`plan.md`): **8ab**, the
+(`plan.md`): **032 on the next two drives, before 8ab** — back at −6 %
+or deeper and the sockets' form goes to `refuted.md` and H21 closes
+(*agreed with the owner*, 26/11); then **8ab**, the
 earth point by the ECU re-crimped on new rings (*the owner*, 25/11; the
 rings bought at GME, VW had none), and 032 over the drives after it
 (8f); then **8e**'s new rear probe when it comes (*the owner*, 24/11:
@@ -3930,7 +3932,12 @@ shows most at a light load*, (2)); what it did is read below.
 - **Not read**: the scatter by load (*Off idle*, F) — it needs a
   capture.
 **No mark changes, the ranking as it was** (*reasoned*; a ranking
-change is agreed with the owner).
+change is agreed with the owner). **Decided with the owner, 26/11**:
+032 on the next two drives settles the sockets — the idle cell back at
+−6 % or deeper, and the sockets' form goes to `refuted.md` and H21
+closes (the wires to the ECU left to 6n); held at about −4 % or
+shallower, the sockets were a part of the cell. **Those two drives
+come before 8ab's rings**, so that the earth does not change with them.
 
 **Tests:** the sockets of both probes looked into and renewed
 (25–26/11 night, *Opened*; **the drive after them, 26/11**, below);

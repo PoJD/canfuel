@@ -18,8 +18,9 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Now: 8ab**, the earth point by
-the ECU on new rings (*the owner*, 25/11; the rings bought at GME, VW
+Captures only where an item asks for one. **Now: 032 for 20 s at the
+end of each of the next two drives** (8f), **before 8ab**. **Then 8ab**,
+the earth point by the ECU on new rings (*the owner*, 25/11; the rings bought at GME, VW
 had none). **Then 8e**, **the new rear probe when it comes (bought
 24/11, expected 26/11)**; **8q, the timing belt
 at a garage, 7/12**; then item 9; **8u, 8v, 8w by
@@ -461,6 +462,12 @@ change together: 8ac read the wiring alone (26/11, `open.md` H21,
 **S12's jerk by the clock**: the bus cannot show a jerk at a crawl, so only its time
 lets a capture or a VCDS log be read at that moment — the stroke, the
 load, 014, and from a capture the cylinder (`open.md` S12).
+
+**The two drives of 032 before 8ab** (*the owner*, 26/11; `open.md`
+H21, *The drive after the sockets*): one drive after the sockets moved
+032 towards zero, but inside the cell's own spread; two more settle
+whether the sockets were a part of it, and they come before the rings
+so that the earth and the sockets are not changed together.
 
 **S12's hopping at a light pedal by the clock** (`open.md` S12 and
 *Off idle*, F): off idle the scatter from stroke to stroke is the same
