@@ -205,9 +205,9 @@ owner's decision*, 26/11): the sockets moved neither the idle nor the
 scatter by load, and 032 went back towards −6 % on the one drive; the
 second drive of 032 agreed before is not waited for. H11 is read again
 after 8e's new rear probe (*the owner*). **Next** (`plan.md`): **8ab**, the
-earth point by the ECU re-crimped on new rings (*the owner*, 25/11; the
-rings bought at GME, VW had none), and 032 over the drives after it
-(8f); then **8ae**, the air mass meter's plug renewed (the parts
+earth point by the ECU measured under current (the ignition on, then
+the engine running), its rings renewed only if found bad, then with 032
+over the drives after it (8f) (*the owner*, 26/11 night); then **8ae**, the air mass meter's plug renewed (the parts
 ordered 26/11, about 1/12; the battery and the ECU left connected, so
 032 is not reset), with 032 over the days after it; then **8e**'s new rear probe when it comes (*the owner*, 24/11:
 the warranty for the failed one refused, the same part bought

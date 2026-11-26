@@ -19,11 +19,12 @@ The full previous version, before it was condensed on 20/10/2026:
 
 One at a time; Claude says after each whether the next is needed.
 Captures only where an item asks for one. **Now: 8ab**,
-the earth point by the ECU on new rings (*the owner*, 25/11; the rings bought at GME, VW
-had none) — the second drive of 032 before it dropped 26/11, when
+the earth point by the ECU measured, its rings renewed only if found
+bad (*the owner*, 25/11 and 26/11 night) — the second drive of 032 before it dropped 26/11, when
 H21 was settled against (*the owner*). **Then 8ae**, the air mass
 meter's plug renewed (the parts ordered 26/11, expected about 1/12),
-once 8ab's days of 032 are read. **Then 8e**, **the new rear probe when it comes (bought
+once 8ab is done (at once if its rings read sound and stay; after
+its days of 032 if they are renewed). **Then 8e**, **the new rear probe when it comes (bought
 24/11, expected 26/11)**; **8q, the timing belt
 at a garage, 7/12**; then item 9; **8u, 8v, 8w by
 opportunity** (*the owner*, 15/11), and **6r**, the owner's scope, best
@@ -191,34 +192,39 @@ of this plan, *the owner's decision* of 9/10):
   the whole stop** (VCDS, beside the capture); the capture says
   afterwards when 4 led.
 
-**8ab. The earth point by the ECU on new rings** (*the owner*, 25/11).
+**8ab. The earth point by the ECU: measured, its rings renewed only
+if the measurement finds them bad** (*the owner*, 25/11; *measure
+first*, 26/11 night).
 1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
    the fault memory read and saved.
-2. **The voltage drop, before anything is undone**: the engine at a
-   warm idle, the everyday state plus the headlights and the rear
-   window heater; a multimeter on DC volts, the black lead on the
-   battery's minus post, the red lead in turn on the crimp of each of
-   the two rings (the metal barrel, not the bolt), then on bare metal
-   beside the bolt; each figure written down with which ring it is
-   (the smaller connector's or the larger's). Photographed.
-3. New crimp rings, non-insulated, for the two brown wires (not to be
-   had at VW 25/11, which sells only the whole ECU harness; bought at
-   GME the same day); the old
-   rings and their crimps cut off back to bright copper, if the wires
-   are long enough (if not, say so first); crimped with a
-   crimping tool, not soldered; both on the flanged bolt to bare metal,
-   the smaller connector's ring the lower, as now. Photographs of the
-   new crimps.
-4. **The same voltage drop again** on the new rings, the same way.
-5. **A relearn drive**, VCDS only, no capture: the ECU's connectors
-   come off for the rings (no room otherwise, *the owner*, 26/11), so
-   032 starts from zero; **the drive as 8aa's** — a brisk drive with a
-   motorway stretch and a few pulls, then a warm standing idle of about
-   30 minutes — with `--groups 014 001 003`, **032 and 055 for 20 s at
-   the stop's end**, the fault memory read and saved; the MFD's
-   `IdleHealth` and `Misfires` at the stop.
-6. **032 for 20 s at the end of every drive for the next three or four
-   days** (8f), the date and the kind of drive with each.
+2. **The voltage drop, nothing undone**: a multimeter on DC volts, the
+   black lead on the battery's minus post (a charger on the battery is
+   fine), the red lead in turn on **the crimp of each of the two
+   rings** (the metal barrel, not the bolt) and then on **bare metal
+   beside the bolt**; each figure written down with which ring it is
+   (the smaller connector's or the larger's). **Twice**: (a) the
+   ignition on, the engine off; (b) **the engine running for a minute
+   or two at idle**, cold is fine, the garage door open. Photographed.
+   The lights and the blower add nothing here.
+3. **The figures into the chat.** What counts is **each crimp less the
+   bare metal beside the bolt**.
+4. **Only if a ring reads hundreds of millivolts, or clearly more than
+   the bare metal beside it**: that ring renewed — the old crimp cut
+   back to bright copper if the wire is long enough (if not, say so
+   first), the new ring crimped with a crimping tool, not soldered (the
+   insulated rings: the metal barrel on the wire, the plastic collar
+   on the insulation, with the tool's die for insulated terminals), on
+   the flanged bolt flat to bare metal, the smaller connector's ring
+   the lower, as now; photographs; **the voltage drop again** (2b);
+   then, as the ECU's connectors come off for it (no room otherwise),
+   **the relearn drive as 8aa's** — a brisk drive with a motorway
+   stretch and a few pulls, then a warm standing idle of about 30
+   minutes, VCDS `--groups 014 001 003`, 032 and 055 for 20 s at the
+   stop's end, the fault memory — and **032 at the end of every drive
+   for three or four days** (8f).
+5. **If the rings read sound, they stay** (*the owner*: the GME rings
+   have the same hole but a smaller outer diameter than the originals):
+   8ab is done with the measurement, nothing is reset, and 8ae follows.
 
 **8q. The timing belt renewed at a garage, 7/12** (*the owner's decision*,
 13/11; the date *the owner*, 16/11): the belt, its tensioner and idler, and the water pump.
@@ -285,8 +291,9 @@ always** (a P0303 stored with no cut: its time is what the log gives).
 
 **8ae. The air mass meter's plug renewed** (*the owner*, 26/11; the
 parts ordered 26/11: the housing `1J0 973 999 A` and three repair
-wires `000 979 026 E`, `vehicle-history.md`). **After 8ab's three or
-four days of 032**, never on the same day as another change.
+wires `000 979 026 E`, `vehicle-history.md`). **After 8ab** — after its
+three or four days of 032 if its rings were renewed — never on the
+same day as another change.
 1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
    the fault memory read and saved.
 2. **The battery and the ECU stay connected** (*the owner*: it can be
@@ -763,6 +770,20 @@ past the valve-stem seals leaves an oily deposit on the firing end,
 and a wet or sooty plug on 3 alone would point at 3's charge (list
 B); the photograph because the plugs go in the bin.
 
+**8ab, measured first** (*the owner*, 26/11 night): the rings are
+renewed only on a bad reading. **Why the engine must run for part of
+it** (*reasoned*): the drop across a crimp is its resistance times the
+current through it; with the ignition on and the engine off only the
+ECU's own small current flows through its earth, so a poor crimp shows
+little, while running the injectors' current returns through it too.
+The lights and the blower return through the body's earths, not through
+these rings, so they raise the battery-to-body drop (the bare metal's
+reading) and not the crimp's own — hence each crimp is read **less the
+bare metal beside it**. **Why sound rings stay**: the spare rings are
+insulated crimp rings with a smaller outer diameter, so less area under
+the bolt's flange, and a renewal would also unplug the ECU and reset
+032, which is what made 8aa's −1.6 hard to read.
+
 **8ab, every drive's 032 after it** (*the owner's objection*, 26/11
 evening; `refuted.md` C27, *26/11 evening*): 8aa's −1.6 lay below every
 other first drive after a reset, and went back to −6.3 somewhere in
@@ -818,7 +839,7 @@ move is 032's idle cell (S19) — an offset on the meter's signal reads
 as more air at idle's small flow — not cylinder 3 (*reasoned*: one
 meter for all four). **Kept apart from 8ab**: with the battery and the
 ECU connected the adaptations are not reset, so a step in 032 after it
-is the plug's, against 8ab's days of 032 before it. **One wire at a
+is the plug's, against the 032 read before it (8ab's days of it if its rings were renewed). **One wire at a
 time** so that no two pins swap; the meter's pins are gold-plated, so
 the new terminals' plating is recorded — on the rear probe's old socket the
 gold-coloured contacts were clean and the tin-coloured ones corroded
