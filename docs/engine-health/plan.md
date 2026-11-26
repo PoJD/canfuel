@@ -194,9 +194,12 @@ of this plan, *the owner's decision* of 9/10):
 
 **8ad. The captured drive on the USBtin's new harness — one step,
 started by one message** (*the owner*, 26/11). A laptop session; the
-MFD out, the USBtin in plug C in its place. One drive for three things:
-the first of the two drives of 032 before 8ab, the capture the
-sockets' drive (26/11) lacked, and 8w's 4's spells at a warm stop.
+MFD out, the USBtin in plug C in its place. **One drive for every item
+that waited for the USBtin**: the first of the two drives of 032
+before 8ab, the capture the sockets' drive (26/11) lacked, 6's
+captured drive with its pulls, and from 8w 020 on the pulls, 4's
+spells at a warm stop and 026 in neutral; 6i's oil level at home
+(about 156,400 km is past).
 **The owner touches no tool**: Claude runs VCDS, the capture and
 livewatch, and tells him only when to start the engine.
 
@@ -226,12 +229,24 @@ Claude stops there and says why.
    driving out of town, **a warm standing idle of ten minutes or more
    at the end** (a petrol station will do), the everyday state;
    anything that feels different, the hopping at a light pedal above
-   all, with "teď". Claude says when the stop has had its ten warm
-   minutes.
+   all, with "teď". **Once the oil is at 90 °C or more, two or three
+   full-throttle pulls in 3rd or 4th to about 5,500 rpm** where it is
+   safe (Claude says when the oil is there). Claude says when the
+   stop has had its ten warm minutes.
+4a. **At the stop's end, standing, warm, in neutral**: Claude switches
+   VCDS to **026 014**; **the revs slowly from idle to about 3,500 rpm
+   and back, over about half a minute**, twice; then 014 020 033 again
+   for the drive on.
 5. **At "konec"**: the drive log's `.stop` (the fault memory read),
    032 and 055 for 20 s, VCDS closed, the capture stopped.
 6. **While he drives on**: the laptop session's upload, one commit
    and one push (`CLAUDE.md`, *Sessions at the car*).
+7. **At home** (his): 6i — the car on level ground, at least 5
+   minutes standing, the dipstick photographed, the odometer into the
+   chat.
+
+*Left of 8w for another day*: G66's connector and bolt, and the loose
+part at 3,000 rpm (it needs a second person).
 
 **8ab. The earth point by the ECU on new rings** (*the owner*, 25/11).
 1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
@@ -520,6 +535,12 @@ across H and L before the ignition is the bus's two terminators
 sits on the CAN pair, and 40 Ω would be a third terminator, the
 USBtin's own. The capture is listen-only (`tools/usbtin_capture.py`),
 so H and L swapped disturb nothing on the bus and only give no frames.
+**Everything else that waited for the USBtin goes on the same drive**
+(*the owner*, 26/11): the pulls are 6's and 8w's 020 under load (S4,
+read with 014 and the capture's strokes), and 033 keeps the front
+probe in view through them; 026 in neutral at the stop is 8w's S5,
+warm and standing, with 014 beside it; the oil level (6i) is due —
+156,400 km was its mark and the car is past it.
 The capture starts with the ignition already on (*the owner*, 26/11:
 one message, then nothing to run): it loses only the bus waking up,
 not the engine's start, which waits for Claude's "nastartuj".
