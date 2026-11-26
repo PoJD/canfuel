@@ -199,17 +199,20 @@ first*, 26/11 night).
    the fault memory read and saved.
 2. **The voltage drop, nothing undone**: a multimeter on DC volts, the
    black lead on the battery's minus post (a charger on the battery is
-   fine), the red lead in turn on **the crimp of each of the two
-   rings** (the metal barrel, not the bolt) and then on **bare metal
-   beside the bolt**; each figure written down with which ring it is
-   (the smaller connector's or the larger's). **Twice**: (a) the
+   fine), the red lead in turn on **three points**: (1) **bare metal
+   beside the bolt**; then for each of the two rings (2) **its metal
+   barrel** and (3) **the wire's copper just behind the barrel** — on
+   the strands where they leave it, or through the insulation with a
+   thin needle about 1 cm behind the crimp, the hole sealed after;
+   each figure written down with which ring it is (the smaller
+   connector's or the larger's). **Twice**: (a) the
    ignition on, the engine off; (b) **the engine running for a minute
    or two at idle**, cold is fine, the garage door open. Photographed.
    The lights and the blower add nothing here.
-3. **The figures into the chat.** What counts is **each crimp less the
-   bare metal beside the bolt**.
-4. **Only if a ring reads hundreds of millivolts, or clearly more than
-   the bare metal beside it**: that ring renewed — the old crimp cut
+3. **The figures into the chat.** What counts for each ring: **(2)
+   less (1)**, the ring's seat on the bolt, and **(3) less (2)**, the
+   crimp itself.
+4. **Only if one of those reads hundreds of millivolts**: that ring renewed — the old crimp cut
    back to bright copper if the wire is long enough (if not, say so
    first), the new ring crimped with a crimping tool, not soldered (the
    insulated rings: the metal barrel on the wire, the plastic collar
@@ -779,7 +782,16 @@ little, while running the injectors' current returns through it too.
 The lights and the blower return through the body's earths, not through
 these rings, so they raise the battery-to-body drop (the bare metal's
 reading) and not the crimp's own — hence each crimp is read **less the
-bare metal beside it**. **Why sound rings stay**: the spare rings are
+bare metal beside it**. **Three points, not two** (*the owner's
+question*, 26/11 night): the barrel is the ring's own metal, so a lead
+on it reads the body's path and the ring's seat on the bolt but not
+the barrel's grip on the strands, which is the suspect; the copper
+just behind the barrel adds that. **The two rings cannot be told apart
+this way** (*the owner's point*, the same night): on one bolt they
+share the body's path, and sound crimps add too little for the
+current through each to show, so which brown wire is the power earth
+stays unknown (a DC clamp meter on each wire with the engine running
+would tell, or the thicker wire, *general*). **Why sound rings stay**: the spare rings are
 insulated crimp rings with a smaller outer diameter, so less area under
 the bolt's flange, and a renewal would also unplug the ECU and reset
 032, which is what made 8aa's −1.6 hard to read.
