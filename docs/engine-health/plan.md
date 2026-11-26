@@ -617,7 +617,13 @@ the swells' depth and share. **Only a change past that spread counts**
 — the floor above about 80 % at more than one stop, or the swells
 clearly shallower and rarer. If it moves nothing,
 the oil's side (an EPR flush with the next oil change) is what is left
-of that week.
+of that week. **Read on them too, since 26/11** (`open.md` S1, *The
+long view of 1 and 4*): 1 less 4 at the warm stops, back at the level
+of before the VW leads from some time between 17/11 and 22/11, within
+the two cans; it fading as the treated tank runs out would point at
+the cleaner. `55` (26/11, about 15 l left in the tank) already reads
+the swells' depth at the shallow end (−17 to −19) and their share at
+12 %, inside the spread, so it counts as neither yet.
 
 **6s, the cleaner drawn in** (*the owner*, 17/11 evening; the fourth
 research, `open.md`, *What the forums say*, searched again 17/11): GM's

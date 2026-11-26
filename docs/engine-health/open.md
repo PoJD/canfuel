@@ -549,6 +549,70 @@ strokes — a step 12 rpm or more under the cylinder's own median — per
   4 led, 001 and 003 were logged, not 020**, so whether the ECU retards
   4 in a spell is still not read (`plan.md` 8w). Why 1 leads and 4
   trails more today is not known; one drive.
+- **The long view of 1 and 4** (26/11 evening, *the owner's question*:
+  not one drive's anomaly, the MFD has shown the same for days — new,
+  and the cleaner, the driving or the repairs?). **1 less 4 at a warm
+  standing idle** (`swellscan.py --floors`, warm loads-off windows,
+  every capture; per cent of a stroke against the four's mean; the two
+  cylinders the crank wheel reads alike):
+
+  | era | captures | 1 less 4 | 4's weak strokes per 1000 | 014's standing rises on 4 |
+  |---|---|---|---|---|
+  | 24/9–18/10, the old leads | `24`–`39` | **+7 to +18**, median +10 | 2–16 (38 on `19`) | 30 % (NGK leads 44 %) |
+  | 21/10–17/11, the VW leads to the lower gasket | `40`–`54` | **−2.5 to +9**, median +3 | 2–6 | 14 % |
+  | 26/11 | `55` | **+12**, and +12 to +15 in nearly every minute of both stops | 2–4 | 8 % |
+
+  **On the display since 22/11** (0x605, the photographs, S1's table):
+  outside 4's spells 1 less 4 about +3 to +7, **in them +13 to +16**
+  (22/11 night, 23/11 afternoon, 24–25/11 night, 25/11 midday, 26/11
+  early) — always after a brisk or long drive; 25/11 morning's gentle
+  drives +6.5. **So it is new against November and back at the level
+  of before the VW leads** — at `55` a steady offset through both
+  stops, not a spell. **It is an idle matter only**: off idle 1 less 4
+  is +3 to +4 % at b7 45–90 on `55` as on every drive since 24/9
+  (S4, *What cylinder 4 gives under load*), at 650–1,150 rpm and b7
+  10–27 +8.5 on `55` against +0.4 on `54` — **it fades with load, as
+  3's deficit does**. 2 at about 0 is not new (`43`, `48`, `49` lower).
+  **When it came**: after `54` (17/11, +1.6) and by 22/11 night (the
+  first drive on 6t's second can, the limiter several times), so
+  **before the earth (24/11) and the sockets (25–26/11)**; the window
+  holds both 44K cans (18/11, 22/11), more brisk driving and the cold.
+  0x605 was first read on 22/11 evening, so nothing on the display
+  before it. *Reasoned* — two readings, neither measured: **(1) 4's
+  charge**, like 3's floor — a seat or deposit on 4 that the cleaner
+  moved (the borescope's crust on 4's crown, H13): fits the fade with
+  load, the spells after a hot drive and **the deficit without misfires**
+  (4's weak strokes and 014's rises on 4 as low as since the leads);
+  **(2) lead or plug 4 again** — before the VW leads 4's idle deficit
+  came with misfires (30–44 % of 014's rises), which this one has not,
+  so weakly against. **What tells**: 6t's two captured drives at the
+  tank's end (`plan.md`) read 1 less 4 beside 3; if it fades as the
+  cleaner's tank is used up, the cleaner; if it stays, 4's valve side
+  or its lead. **No mark changes** (*the owner*, 26/11: kept in S1).
+- **The idle over time, and whether the cleaner shows** (26/11 evening,
+  *the owner's question*: the same as before, the minima, 3's swells'
+  frequency and depth — a trend or placebo?). **3's swells** in the
+  long warm stops (`swellscan.py --series`, 30 s windows, a swell
+  counted from −15 % back to above −10): November `44`–`54` 1.9–12.4 an
+  hour (median about 6), each −15 to −28 %, mostly −22; **`55` 5.3 an
+  hour, −19, −19, −17 — the shallowest set with `46`'s** (−19); on
+  the display since 22/11 −17 to −26.5, mostly −18 to −21; the first
+  swell 12–24 minutes into a stop on the display, 5.5 on `55` after the
+  pulls (S1, *After high revs*). **3's floor −7.4 %** (November −6.3
+  to −9.0); the time on the floor 50 % (8–81 %); the grade 55 (46–66),
+  in the swells 61 (64–86). **The calmest minutes**: `55` 33, `49`
+  30, the display 25–32 (18/11 eve, 23/11, 24–25/11 night) — **the
+  same minima as before**. **The drive's warm idle on 0x606's scale**
+  (`idledips.py` `drive_summary()`, every capture, against the
+  display's 0x606): `44`–`54` Health 54–76, Misf 4.2–8.8 a minute (mean
+  6.6), the weakest −9 to −15 %; **since 22/11 on the display 48–74,
+  2.5–7.6 (mean about 4.6), −7 to −13.5; `55` 61, 5.0, −10.5**. *Reasoned*:
+  **the same idle, with perhaps a little less of 3's swell** — fewer
+  misfires a minute and shallower swells since the second can — but
+  every figure lies inside the spread of single November drives
+  (`49`: 54, 4.2, −9), and the stops differ in length and in what came
+  before; **not shown beyond chance, not excluded either**. 6t's two
+  captured drives at the tank's end are the reading (`plan.md` 6t).
 - **Cylinder 3 is the weak one in every warm idle on record, 10–20 %
   under the mean** — from 24/9 on (`19`, the first warm idle long
   enough to read), on three sets of plugs and of leads, two MAFs and
@@ -4333,7 +4397,23 @@ drives, `19`–`50`; warm (oil 80 °C and over).*
   +0.03 % of the work in every capture — none; `--pulls` 0.82–1.15 by
   capture with no trend (`19` 1.04, `54` 0.99; **`55` 1.18**, seven
   pulls in 3rd and 4th, the motorway's slope not known — the car
-  accelerating harder than b7 claims, not weaker); **the air at full
+  accelerating harder than b7 claims, not weaker; **by era** (26/11
+  evening, *the owner*: the car pulls better and better, uphill it used
+  to stick at about 5,000 rpm and now goes willingly to the limiter,
+  on the same route each time; perhaps the weather, about 0 °C now):
+  24/9–3/11 `24`–`42` 0.82–0.96, median 0.89; 3/11–17/11 `43`–`54`
+  0.90–1.15, median 1.00; `55` 1.18 — **up by about a tenth since
+  November**; **the fuel per revolution at full throttle**, which follows
+  the air (0x480 over 0x280, the map's enrichment the same), **did not
+  move**: 96–110 µl at 4,000–5,000 rpm in every capture from `19`, `55`
+  100.7; **020's retard at the limiter fell** — the four's mean over full
+  load above 5,300 rpm 2.2 °CA on 17/11, 1.3 on 12/11, 0.9 on 26/11 (0.4
+  on 3/11's original map) — *reasoned*: so not more air but less of it
+  wasted to retard at the top, which cold air helps (*general*: knock
+  falls with the intake's temperature) and which is where the owner
+  feels it; a few per cent, inside what slope and wind move. The owner's
+  feeling reads S8's closed symptom from the other side (`refuted.md`
+  D3); not a symptom); **the air at full
   throttle 495–528 mg a stroke at 4,000–5,000 rpm** in the 003 logs
   from 24/9 (the new MAF) to 17/11, 85–93 g/s at the top (two short
   logs lower, 3/11 `step5b-pull` and 9/11 `step8-home-2`, 441–444). **What
