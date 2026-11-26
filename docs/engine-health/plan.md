@@ -18,9 +18,7 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Now: 8ac**, the captured
-drive after both probes' sockets were renewed (25–26/11 night, *the
-owner*; the old rear probe left on). **Then 8ab**, the earth point by
+Captures only where an item asks for one. **Now: 8ab**, the earth point by
 the ECU on new rings (*the owner*, 25/11; the rings bought at GME, VW
 had none). **Then 8e**, **the new rear probe when it comes (bought
 24/11, expected 26/11)**; **8q, the timing belt
@@ -191,30 +189,6 @@ of this plan, *the owner's decision* of 9/10):
   with 014 through the whole stop** (VCDS, beside the capture); the
   capture says afterwards when 4 led.
 
-**8ac. The captured drive after the probes' sockets** (*the owner*,
-26/11; the sockets renewed 25–26/11 night, the old rear probe on, so
-the wiring is the only change). A laptop session; the MFD out, the
-capture in.
-1. **Cold, before the start, the ignition on, the engine off**: 032,
-   055 and 036 for 20 s; the fault memory read before and after. 032
-   and 055 still hold what the drives on the old wiring learnt (the
-   ECU has not run since). **If the battery or the ECU was unplugged
-   for the wiring, say so first** — then they read zero and there is
-   no before.
-2. **The capture started before the ignition**, to "konec"; VCDS
-   through the drive on **014 033 036**.
-3. **The drive**: warm, some town at a light pedal, some steady
-   driving out of town, **a warm stop at the end of at least five
-   minutes**. Anything that feels different, the hopping at a light
-   pedal above all, with "teď".
-4. **At "konec"**: the fault memory, **032 and 055 for 20 s**, VCDS
-   closed, the capture stopped.
-5. *By the owner's own hand, if he wants, afterwards*: VCDS's basic
-   settings 034 (the front probe's ageing, held at 2,200–2,800 rpm)
-   and 037 (the rear) at a warm standing engine, the verdicts into the
-   chat. Claude clicks neither.
-6. **032 on the next two drives** (8f).
-
 **8ab. The earth point by the ECU on new rings** (*the owner*, 25/11).
 1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
    the fault memory read and saved.
@@ -307,7 +281,7 @@ always** (a P0303 stored with no cut: its time is what the log gives).
 25–26/11 night**, `idle-log.md`). **A new rear probe, Bosch `0 258 010 032`, bought
 24/11 from another shop, expected 26/11** (*the owner*, 25/11); the butt
 sleeves bought at GME 25/11; the old rear probe on the car
-until then. **After 8ac and 8ab's two drives of 032** where the dates allow. 032
+until then. **After 8ab's two drives of 032** where the dates allow. 032
 and 055 read before it goes in (8f). It
 is fitted as the first was: Bosch's paste on the thread only, nothing
 in the connector, the lead clear of the exhaust and not pressed into
@@ -481,32 +455,12 @@ in the idle's mixture, so fitting it before 8q does not blur the belt's
 before-and-after; 032 read before and after (8f) shows any shift its
 trim makes. **The sockets** were renewed before it, 25–26/11 night, with the old
 rear probe on (*the owner*), so that the probe and the sockets do not
-change together: 8ac reads the wiring alone, the new probe its own
-part after.
+change together: 8ac read the wiring alone (26/11, `open.md` H21,
+*The drive after the sockets*), the new probe its own part after.
 
 **S12's jerk by the clock**: the bus cannot show a jerk at a crawl, so only its time
 lets a capture or a VCDS log be read at that moment — the stroke, the
 load, 014, and from a capture the cylinder (`open.md` S12).
-
-**8ac, the drive after the probes' sockets** (`open.md` *Off idle*, F,
-and H21, *Opened* and *Why a probe's fault shows most at a light
-load*; *the owner*, 25/11 and 26/11): every pin was corroded, the
-heater's worst, and the joints could not be rung through once on the
-car, so the drive asks first whether both probes work — no probe or
-heater code stored, 033 switching, 036 reaching `R1-S2 OK` (7–20
-minutes from a cold start before, `vcds.md`) — and then whether
-anything moved. **032 cold before the start is the before** for the
-adaptations: they are what the drives on the old wiring learnt, the
-ECU not having run since; 24–25/11's −1.6 / +3.9 was one drive and
-may have been chance (*the owner*). The stroke-to-stroke scatter by
-load (`drivescan.py --cylinders`) is the other before-and-after, the
-before `19`–`54`. A light pedal is where a probe's fault weighs most
-and where the scatter is largest, so the drive needs it; the steady
-stretch is the load where nothing should move; the warm stop gives
-the idle's grade and 3's swell, which the wiring is not expected to
-touch. 034 and 037 are basic settings, so they are the owner's to run
-or not (`CLAUDE.md`: Claude only reads). 014 033 036: 014 is never
-left out, and the probes' two blocks are what the question is.
 
 **S12's hopping at a light pedal by the clock** (`open.md` S12 and
 *Off idle*, F): off idle the scatter from stroke to stroke is the same
@@ -520,7 +474,7 @@ anywhere on the way as at a connector, and an earth eyelet the
 probes' returns share is H21's shared earth itself.
 
 **The probes' sockets, renewed 25–26/11** (`open.md` H21; kept for
-8ac's 036 with the ignition on): the swap of 10/11 changed the probes and
+6n): the swap of 10/11 changed the probes and
 their own plugs, not the harness side, so a fault there survives it —
 S19's idle cell perhaps; renewed terminals take the harness side's
 contacts out of it (25/11). **At the end** (*the owner*, 11/11): the rear

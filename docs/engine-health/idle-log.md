@@ -2226,3 +2226,40 @@ as one stop, not as a change of S1 (*agreed with the owner*, 25/11).
 The joints could not be rung through once fitted to the car (*owner*);
 whether every sleeve holds is the drive's first question.
 
+
+## 26 November 2026 early morning — the drive after the probes' sockets (8ac)
+
+- **Tests:** 032, 055 and 036 cold before the start, the ignition on;
+  VCDS 014 033 036 through the warm-up, a drive of about 32 minutes
+  (town, a steady stretch, hard driving out of town to 4,960 rpm) and a
+  warm standing idle of about 8 minutes (05:38–05:46), 032 and 055
+  warm at its end; the fault memory before and after every log; the
+  owner's basic settings 046, 034 and 037 at a warm standing engine
+  (05:52–05:56, his own clicks); the MFD photographed through the stop
+  and on to about 25 minutes of warm idle (the album 05:38–06:05), the
+  everyday state (no other said). **No CAN capture**: the MFD in the
+  car (*the owner*).
+- **Changes after:**
+  - *measured:* **both probes work on the new sockets**: no code stored
+    at any of nine reads; the front probe switching about 80 s after
+    the start, 0.09–0.73 V warm; the rear `R1-S2 OK` about 11 minutes
+    from the cold start and through the rest of the drive; 046, 034
+    and 037 all OK. **032 −6.3 / +7.8 % cold before, −3.9 / +4.7 % warm
+    after**; 055 −1.42 → −1.14 g/s. 014 at the warm stop 10 misfires in
+    8.4 min (1.2 a minute), inside the range of the first 8 minutes of
+    the nine earlier warm stops logged that long without a cut (0 to 12.1
+    a minute; 8aa's 2.7). On the
+    display 3 at −1 to +1 % and 4 the weakest (−5.5 to −8.5 %) for the
+    first 8 minutes, `IdleHealth` 53–82; **3's swell from about
+    20 minutes**, to −18.5 %, gone within about two minutes; 0x606 at
+    25.5 min **53 / 3.1 a minute / −7.0 %**, against 0x607's previous
+    drive (25/11, on the old wiring) 82 / 5.2 / −11.0;
+  - *felt:* a calm idle until the swell (*owner*); the hopping at a
+    light pedal not reported;
+  - *not known:* the stroke-to-stroke scatter by load, which needs a
+    capture; whether 032's move holds (`plan.md` 8f).
+
+One drive. 032's −3.9 is inside what the cell has read with nothing
+changed (−3.9 to −9.4 since 10/11), so one reading does not show the
+wiring's hand (`open.md` S19); the display's figures are those of 8aa's stop
+(24–25/11 night) and 3's swell came as before (`open.md` S1).

@@ -1124,6 +1124,10 @@ as 22/11's −4.7. Not revived on one drive (*agreed
 with the owner*, 25/11): the crimps were brushed, not renewed, and the
 cell has moved by a few steps between drives before. The owner renews
 the rings (`plan.md` 8ab); 032 over the drives after it settles it.
+**26/11** (the cold reading before 8ac, `idle-log.md`): after 25/11's
+drives on the brushed crimps, **−6.3 / +7.8 %**, the cell back where it
+had stood before — so 24–25/11's −1.6 was the reset's, not the
+earth's (*reasoned*); C27 as it was, 8ab's renewed rings still its test.
 
 ### C28. "A small unmetered air leak at runner 3 — the lower manifold's gasket — makes cylinder 3's floor" (`open.md` H3) — replaced
 
