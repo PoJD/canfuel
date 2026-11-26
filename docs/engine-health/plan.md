@@ -192,29 +192,46 @@ of this plan, *the owner's decision* of 9/10):
   with 014 through the whole stop** (VCDS, beside the capture); the
   capture says afterwards when 4 led.
 
-**8ad. The captured drive on the USBtin's new harness** (*the owner*,
-26/11). A laptop session; the MFD out, the USBtin in plug C in its
-place. One drive for three things: the first of the two drives of 032
-before 8ab, the capture the sockets' drive (26/11) lacked, and 8w's
-4's spells at a warm stop.
-1. **Before the ignition, the harness in plug C**: a multimeter on ohms
-   across the USBtin's H and L terminals — **about 60 Ω** is the CAN
-   pair (*the owner* reports it in the session's first message); about
-   40 Ω is the USBtin's own terminator on, switched off first; open or
-   0 Ω, do not drive. White (C7) is H, yellow (C8) is L, ⊥ free.
-2. **Cold, the ignition on, the engine off**: 032 and 055 for 20 s;
-   the fault memory read before and after.
-3. **The capture started before the ignition** (the next free
-   fixture, `55`), to "konec"; **VCDS through the drive on 014 020
-   033**. If the capture holds no frames, H and L are swapped: the
-   capture stopped, the two swapped, started again.
-4. **The drive**: warm, some town at a light pedal, some steady
+**8ad. The captured drive on the USBtin's new harness — one step,
+started by one message** (*the owner*, 26/11). A laptop session; the
+MFD out, the USBtin in plug C in its place. One drive for three things:
+the first of the two drives of 032 before 8ab, the capture the
+sockets' drive (26/11) lacked, and 8w's 4's spells at a warm stop.
+**The owner touches no tool**: Claude runs VCDS, the capture and
+livewatch, and tells him only when to start the engine.
+
+**The owner, before his message**: the harness in plug C, the
+ignition off, a multimeter on ohms across the USBtin's H and L
+terminals — **about 60 Ω** goes; about 40 Ω is the USBtin's own
+terminator on, switched off first; open or 0 Ω, no drive. White (C7)
+on H, yellow (C8) on L, ⊥ free. The USBtin and VCDS's cable plugged
+into the laptop; then the ignition on, the engine **not** started.
+
+**His message**, e.g. *"naměřil jsem 60 Ω, kabely připojené,
+zapalování zapnuté, jedeme 8ad"*. If the figure is not about 60 Ω,
+Claude stops there and says why.
+
+**Claude, in this order, with no further question**:
+1. **The capture started at once** (`tools/usbtin_capture.py`, the
+   next free fixture, `55`), and `tools/livewatch.py` on it. Frames
+   within 10 s, or H and L are swapped: the capture stopped, the owner
+   told to swap the two wires, started again.
+2. **Cold, the engine off**: the fault memory, 032 and 055 for 20 s,
+   the fault memory again (`vcds_log.py --groups 032 055 --seconds 20`).
+3. **"Nastartuj"** to the owner; the drive log started at once,
+   **014 020 033**, in the background, reconnecting by itself.
+4. **Through the drive**, to the owner once a minute: livewatch's
+   line — oil, coolant, and at a stop `IdleHealth` and `Misfires`.
+   **The drive** (his): warm, some town at a light pedal, some steady
    driving out of town, **a warm standing idle of ten minutes or more
-   at the end** (a petrol station will do), the everyday state.
-   Anything that feels different, the hopping at a light pedal above
-   all, with "teď".
-5. **At "konec"**: the fault memory, **032 and 055 for 20 s**, VCDS
-   closed, the capture stopped.
+   at the end** (a petrol station will do), the everyday state;
+   anything that feels different, the hopping at a light pedal above
+   all, with "teď". Claude says when the stop has had its ten warm
+   minutes.
+5. **At "konec"**: the drive log's `.stop` (the fault memory read),
+   032 and 055 for 20 s, VCDS closed, the capture stopped.
+6. **While he drives on**: the laptop session's upload, one commit
+   and one push (`CLAUDE.md`, *Sessions at the car*).
 
 **8ab. The earth point by the ECU on new rings** (*the owner*, 25/11).
 1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
