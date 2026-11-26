@@ -1597,6 +1597,36 @@ completing rather than load (`refuted.md` C19).
   led), between 0.19 %, swell 0.56 % (575 rises, 65 min). **So 014
   counts on the floor too, rarely**; `42` counted nothing at all,
   fresh from the map's reset. What 014 counts is 3's swell above all.
+- **How deep 3 must be for 014 to count** (26/11 evening, *the owner's
+  question*: is there a threshold, about −15 %, and the same for the
+  others?; 223 warm standing 30 s windows, 112 minutes, of `43`–`55`
+  with a 014 log on them — `42` fresh from the map's reset and `54`
+  before 07:13 left out — each rise named by `cylscan.py --vcds`, the
+  logs aligned on engine speed and `55`'s house stop on its header;
+  *script not kept*). 3's rises a minute by 3's deficit in the window:
+
+  | 3's deficit, % | windows | 3's rises a minute | windows with one |
+  |---|---|---|---|
+  | −5 and shallower | 9 | 0 | 0 % |
+  | −5 to −7 | 24 | 0.1 | 4 % |
+  | −7 to −11 | 76 | 0.9 | 33 % |
+  | −11 to −13 | 24 | 2.0 | 58 % |
+  | −13 to −15 | 35 | 4.1 | 69 % |
+  | −15 to −17 | 16 | 4.3 | 81 % |
+  | −17 to −20 | 25 | 6.4 | 92 % |
+  | −20 to −25 | 13 | 12.0 | 100 % |
+  | deeper | 1 | 28 | 100 % |
+
+  **No edge at −15: a steady climb that starts at about −7** — nothing
+  above it, about one a minute on the floor's −7 to −11, and about
+  doubling with every 3–4 points deeper; at −15 four windows in five
+  hold a count. Each capture alone the same way (the floor 0–2 a
+  minute, the swell 4.5–12). A misfired stroke counts −100 %, so the
+  counted ones themselves make at most 3 of a swell's 20 points
+  (*reasoned*): the deficit is mostly strokes that burn short, the
+  misfires its tail. **The other three**: 4's rises 0.2 a minute with 4
+  level and 0.4 at −5 to −8 % (few: about 30 in all), so 4 counts
+  hardly at all at the deficits it shows; 1 and 2 0–0.2 at every level.
 
 - **26/11 (`55`, 8ad; *the owner's question*: how 014 behaves now, and
   on which cylinders)**: at the petrol station **73 misfires in 20.4
