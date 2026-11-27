@@ -2555,6 +2555,27 @@ on the alternator no longer charges it — fuse 32 about 12.7, **fuses
 made most of the difference; with the A/C and the rear window together
 under 12 V. The MFD read within 0.06 V of the battery in the first two
 states.
+**Read with September's lights** (*the owner's link*, 27/11;
+`vehicle-history.md`, *Voltage drops measured before the switch*): then
+0.9 V was lost to the dipped-beam bulb (1.6–1.9 V with main beam), **all
+on the positive side**, about half of it before the fuse box (~0.09 Ω);
+the new light switch took 0.3–0.7 V of it and about 0.45 V remained.
+**On 27/11 the lights pulled fuses 10 and 29 down with them and not
+fuse 32**: a fuse's voltage against the battery's minus is the
+positive side alone, so **the 0.3–0.4 V is on the positive side too**,
+in a feed shared by the lights and the ECU's fuses and not by fuse 32
+(the main cable at the battery is therefore not it, as fuse 32 would
+fall with it; *the owner's point*). Perhaps September's remaining
+loss and this one are one place (*reasoned*). Where the feeds part is
+not known without the wiring diagram: the fuse holder on the battery
+(its strip fuses and their nuts, in the engine bay, a known place for
+corrosion on this platform), the feed to the central electrics, the
+X-contact relief relay J59 that feeds the light switch (a forum
+report), or the ignition switch are the candidates (*reasoned*). **The
+earth enters only between the fuses and 004** (0.1–0.2 V under full
+load), so the earth points are the smaller part. The battery's minus
+cable runs on under the air box, not to a body point the owner could
+find (*owner*, 27/11).
 
 **Read** (*reasoned*): the MFD calibrated against the battery that
 evening and its feed loses about 0.4 V under a large load, so 12.1 V
