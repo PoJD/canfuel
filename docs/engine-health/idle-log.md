@@ -2333,3 +2333,31 @@ intake off for it is not worth the small chance of a finding (*the
 owner's decision*), so 6r's injectors 3 and 4 were dropped and back-probing
 3's wire at the ECU's connector not taken up. The scope stays for G28 and
 G40 another day; `tools/injscope.py` written for it.
+
+## 27 November 2026 evening — the supply against the fuses (8ab 2c)
+
+- **Tests:** parked outside in the snow, coolant 2 °C at the start; the
+  multimeter's black lead on the battery's minus, VCDS 004 beside it
+  (*the owner*). **Ignition on, the engine off, a seat heater on**:
+  004 11.69 V, the MFD 11.9, the battery 11.87, fuse 10 11.80, fuse 29
+  11.78, fuse 32 0 (behind J17, the pump primed and off). **Running,
+  past the cold fast idle and the secondary air pump, the same seat
+  heater only**: 004 14.0, the MFD 14.3, the battery 14.24, fuses 10
+  14.20, 29 14.16, 32 14.18, each the same on both pads, the readings
+  moving by hundredths. **Running, every consumer on** (both seats on
+  full, the rear window, the heated screens, the blower on full, the
+  lights; the A/C switched on but not engaged by the engine): 004
+  12.1, the MFD 12.4, the battery 12.68; **fuse 32 the highest, about
+  12.7; fuses 10 and 29 0.3–0.4 V below it on both pads, steadily over
+  several readings, 29 the lowest**; the lights made most of the
+  difference — the fuses read alike until they went on. With the A/C
+  and the rear window together the supply went under 12 V; everything
+  was switched off and the engine stopped.
+- **Changes after:**
+  - *not known:* which feed fuses 10 and 29 share with the lights (the
+    wiring diagram not read).
+
+The first reading of step 3 had fuse 29 at 12.7 with 32; the owner's
+repeated readings put 29 lowest. 8ab's rule (`plan.md`) asked for the
+earth point only if 004 fell more than 0.2 V short of fuses 10 and 29
+or the gap grew by 0.2 V; it grew by about 0.1 V.

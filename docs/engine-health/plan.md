@@ -644,6 +644,14 @@ by the fuse's own drop. The wire from fuse 32 to the injectors and T3
 are left out: at the injectors' current they lose hundredths
 (*reasoned*). Unplugging an injector to reach its contact 1 is not
 done: the engine on three, a stored code, and clearing it resets 032.
+**2c measured 27/11 evening** (`idle-log.md`; `open.md` S25, H22):
+fuses 10 and 29 0.3–0.4 V under fuse 32 with every consumer on, the
+lights the most of it; 004 0.2–0.3 V under fuses 10 and 29 then
+against 0.16–0.20 with a seat heater only — **the gap grew by about
+0.1 V, under the rule's 0.2, so by the rule the earth's points are not
+needed**; the loss is ahead of the ECU's fuses, in a feed they share
+with the lights. Whether 8ab ends here, and what is done about that
+feed, is the owner's to decide.
 **Why 2c can stand in for the earth's points** (*the owner's
 reasoning*, 27/11, checked): 004 is the voltage between the ECU's own
 supply pin and its own earth pin; fuses 10 and 29 against the

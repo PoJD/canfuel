@@ -2543,6 +2543,19 @@ battery being discharged: the alternator does not keep up at idle
   battery by 0.07 V — most of a load's step is lost between the battery
   and the consumers, not at the alternator.
 
+**27/11 evening, measured** (`plan.md` 8ab 2c; `idle-log.md`, 27/11
+evening; parked, coolant 2 °C at the start): **ignition on**, a seat
+heater on, the battery 11.87 V (about 12.07 without the seat heater,
+*owner*) — **low for a battery at rest**, which is 12.6–12.7 V full
+(*general*); **running, a seat heater only**: the battery 14.24, fuses
+10, 29 and 32 at 14.16–14.20, 004 14.0; **running, every consumer
+on but the A/C**: **the battery 12.68 V** — at idle with everything
+on the alternator no longer charges it — fuse 32 about 12.7, **fuses
+10 and 29 0.3–0.4 V under 32**, 004 12.1, the MFD 12.4; the lights
+made most of the difference; with the A/C and the rear window together
+under 12 V. The MFD read within 0.06 V of the battery in the first two
+states.
+
 **Read** (*reasoned*): the MFD calibrated against the battery that
 evening and its feed loses about 0.4 V under a large load, so 12.1 V
 on it is perhaps 12.5 V at the battery — still below a resting
@@ -4012,6 +4025,22 @@ so a load would widen the gap and enrich more (*reasoned*).
   is *not known* (the manual and the flash images not read for it);
   the gap at the injectors themselves never measured; H7's pressure
   and H11's probes explain S19 as well.
+- **27/11 evening, 8ab 2c measured** (`idle-log.md`; S25): with the
+  ignition on and no current, 004 0.09–0.11 V under fuses 10 and 29 —
+  taken as 004's own offset; **running with a seat heater only, 004
+  0.18 V under fuse 32, about 0.1 V once the offset is taken off;
+  running with every consumer on, 004 12.1 against fuse 32's 12.7 —
+  about 0.5 V** — and fuses 10 and 29, the ECU's, 0.3–0.4 V under fuse
+  32, the injectors', the lights making most of it. **The premise holds
+  and grows with the load as H22 needs** (*measured*); the loss is
+  mostly ahead of fuses 10 and 29 — a feed they share with the lights
+  and fuse 32 does not — and only about 0.1 V more between those fuses
+  and 004. **What it would cost the mixture is not known**: an
+  injector's opening delay grows by a fraction of a millisecond per
+  volt (*general*, not this injector's figure), against an idle pulse
+  of a few milliseconds, so a few per cent at most at idle with the
+  lights on (*reasoned*), the sign of 032's idle cell; and the lights
+  are on in every everyday drive.
 - **Tests:** `plan.md` 8ab 2c — 004 beside fuse 32's pads (and 10 and
   29's, and the battery's post), warm at idle, with no load, main beam
   and every consumer on. 004 lower than fuse 32 by tenths, growing with
