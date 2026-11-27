@@ -222,11 +222,9 @@ the multimeter's black lead **on the battery's plus post**:
    only on hundreds of millivolts.
 4. The figures into the chat, with what was on.
 5. **The flicker, with the LHT00SU1** (*the owner*, 27/11), the same
-   two loads: **no divider — GND on fuse 32's pad, 1ACH on fuse 10's**
-   (then on 29's; then GND on the battery's plus post, 1ACH on fuse
-   10), and **first of all GND on the battery's plus, 1ACH on fuse 32**
-   — the injectors' own feed, the one that acts on each pulse directly
-   — `tools/injscope.py capture`. **⚠ With GND off the car's minus,
+   two loads: **no divider, fuse against fuse only** (*the owner*,
+   27/11: not against the battery) — **GND on fuse 32's pad, 1ACH on
+   fuse 10's**, then on 29's; `tools/injscope.py capture`. **⚠ With GND off the car's minus,
    nothing else may join the laptop to the car**: no VCDS cable in the
    diagnostic socket, no USBtin, the laptop on its own battery, nothing
    else in its USB ports. **Never 1ACH straight on a fuse against the
@@ -234,8 +232,7 @@ the multimeter's black lead **on the battery's plus post**:
    **A 10 kΩ resistor in each lead**, at the clip or pin end, its legs
    sleeved; the fuse reached by a pin pushed into its test slot and
    taped, **never a wire pushed into the fuse's socket** (it spreads the
-   panel's contact); GND may be the owner's clamp on the battery's
-   plus post. **Fuse against fuse is the owner's choice** (27/11: short
+   panel's contact). **Fuse against fuse is the owner's choice** (27/11: short
    leads, the difference that matters), probes perhaps held by hand —
    **then first both probes on the two pads of one fuse** (32), the
    hand's own chatter, and only what stands clearly above it counts;
@@ -667,7 +664,11 @@ alternator's ripple at idle is of the order of a kilohertz and a few
 tenths of a volt (*general*), averaged in part over an opening; a
 failing diode raises it (S25, 8q's refurbishment). At 78 mV a step the
 analyser sees 0.25 V; a regular wave is the alternator, irregular
-jumps a joint.
+jumps a joint. **What fuse against fuse cannot see** (the owner's
+choice, 27/11): a flicker both fuses share cancels in the difference —
+the alternator's ripple, and anything on the injectors' feed that the
+ECU's feed carries too; what it shows is the flicker of the branch
+the ECU's fuses do not share with fuse 32, the one 2c found.
 
 **8q, the timing belt at a garage, 7/12** (*the owner's decision*, 13/11,
 after 8i): 8i read the cam's OT mark set and the crank pulley's one
