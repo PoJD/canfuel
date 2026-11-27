@@ -36,7 +36,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 26 November 2026
+## Where it stands — 27 November 2026
 
 *What was done and measured, day by day, is `idle-log.md`; each result
 is in the evidence of its symptom and hypotheses below. This section
@@ -211,7 +211,7 @@ over the drives after it (8f) (*the owner*, 26/11 night); then **8ae**, the air 
 ordered 26/11, about 1/12; the battery and the ECU left connected, so
 032 is not reset), with 032 over the days after it; then **8e**'s new rear probe when it comes (*the owner*, 24/11:
 the warranty for the failed one refused, the same part bought
-elsewhere, expected 26/11); then **8q**, the timing belt and water pump at a
+elsewhere, expected 26/11, not come by 27/11, now expected 28/11); then **8q**, the timing belt and water pump at a
 garage on **7/12**, the old marks read first, `54`'s stop the one it is
 set against; then **item 9** by what those show (the coolant's CO₂
 test, the stethoscope, the garage session with the intake off);

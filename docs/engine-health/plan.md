@@ -25,7 +25,7 @@ H21 was settled against (*the owner*). **Then 8ae**, the air mass
 meter's plug renewed (the parts ordered 26/11, expected about 1/12),
 once 8ab is done (at once if its rings read sound and stay; after
 its days of 032 if they are renewed). **Then 8e**, **the new rear probe when it comes (bought
-24/11, expected 26/11)**; **8q, the timing belt
+24/11; expected 26/11, not come by 27/11, now 28/11)**; **8q, the timing belt
 at a garage, 7/12**; then item 9; **8u, 8v, 8w by
 opportunity** (*the owner*, 15/11), and **6r**, the owner's scope on
 G28 and G40 another day, best before 8q, **6t**, the second tank of BG 44K Platinum driven down and two captured drives at its end, before 8q,
@@ -330,7 +330,7 @@ same day as another change.
 **8e. The new rear probe when it comes** (*the owner*, 11/11, 12/11,
 24/11 and 25/11; `refuted.md` D13; **both probes' sockets renewed
 25–26/11 night**, `idle-log.md`). **A new rear probe, Bosch `0 258 010 032`, bought
-24/11 from another shop, expected 26/11** (*the owner*, 25/11); the butt
+24/11 from another shop, expected 26/11, not come by 27/11, now expected 28/11** (*the owner*, 25/11 and 27/11); the butt
 sleeves bought at GME 25/11; the old rear probe on the car
 until then. **After 8ab's two drives of 032** where the dates allow. 032
 and 055 read before it goes in (8f). It
