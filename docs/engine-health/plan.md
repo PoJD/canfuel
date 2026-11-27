@@ -213,8 +213,8 @@ if the measurement finds them bad** (*the owner*, 25/11; *measure
 first*, 26/11 night). **2c first, the earth's points (2) only if 2c
 asks for them** (*the owner*, 27/11: the earth point needs the
 dashboard's top off): **004 more than 0.2 V under fuses 10 and 29's
-pads in any of the three states, or the gap growing by 0.2 V or more
-with the loads**, sends him to step 2; otherwise 8ab is done with 2c,
+pads in either state, or the gap growing by 0.2 V or more
+from the everyday load to every consumer on**, sends him to step 2; otherwise 8ab is done with 2c,
 nothing taken apart and nothing reset.
 1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
    the fault memory read and saved.
@@ -231,8 +231,9 @@ nothing taken apart and nothing reset.
    or two at idle**, cold is fine, the garage door open. Photographed.
    The lights and the blower add nothing here.
 2c. **The supply, the same session, the engine running warm at idle**
-   (*the owner*, 27/11; `open.md` H22, S25), **in three states**: no
-   load; main beam; every consumer usually on at once. In each, written
+   (*the owner*, 27/11; `open.md` H22, S25), **in two states** (*the
+   owner*, 27/11: main beam cannot be used where he measures): the
+   everyday load as he drives; every consumer usually on at once. In each, written
    down together: **VCDS 004 field 2** (the ECU's own supply) and, the
    multimeter's black lead on the battery's minus post, the red on
    **(a) the battery's plus post**, **(b) both test pads on top of fuse
