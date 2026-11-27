@@ -125,7 +125,8 @@ cylinder*):
   scatter is largest there and the same on all four (*Off idle*, F).
 - **S22** a tick once per engine cycle, warm.
 - **Not pursued**: S16 a tick in neutral, cold, clutch up; S17 a
-  resonance at about 2,200 rpm.
+  resonance at about 2,200 rpm, on the exhaust and still there (*owner*,
+  27/11), placed only as 8w's loose part.
 
 **Ranked** (*The idle's candidates, ranked*; re-ranked 17/11 evening,
 *agreed with the owner*): **B, cylinder 3** — H1 a seat on 3 (its
@@ -2230,6 +2231,17 @@ thresholds may simply be lowest there. **A test without new kit**: hold
 2200 rpm on the road in two gears, VCDS on 014, and say in the chat
 when the resonance is heard; counts that follow the engine speed and
 the sound, not the gear, would make it one thing.
+**27/11, still there** (*owner*): something resonates at certain
+engine speeds, always, somewhere on the exhaust, and he hears it
+himself; **not the joint he repaired** behind the converter (S6,
+`refuted.md` D1). The band not given this time. **It is the buzzing
+part 8w looks for** (`plan.md` 8w; S5): a part vibrating in a speed
+band near the engine reaches G66 through the block and is booked to
+whichever cylinder's window it falls in (*reasoned*). S5's excess on
+4 on 26/11 (`vcds-step8ad-neutral-026-014.csv`) is largest against 1
+at 2,000–2,700 rpm (+52 %, against +25 % at 2,700–3,350), the band
+S17 was heard in, though 4's own voltage still rises to 3,350 — so a
+peak in the ratio, not in the signal (*reasoned*; one log).
 
 ### S19. P0172 stored, too rich — with one start that died at once
 
