@@ -142,8 +142,9 @@ coolant into 3 (H3 and H7's injector out 17/11, *agreed with the
 owner*).
 **A, the common part** — H0 normal for this engine, the timing belt a
 tooth out, H8 the throttle and idle control, H11 both probes, H7 the
-rail's pressure, H2 a leak ahead of the converter, H18 the stem seals
-(H21, the probes' wiring and sockets, out 26/11, `refuted.md` C31,
+rail's pressure, H2 a leak ahead of the converter, H18 the stem seals,
+**H22 the ECU's supply below the injectors'** (added last 27/11, *agreed
+with the owner*: S19 and S25, not the roughness) (H21, the probes' wiring and sockets, out 26/11, `refuted.md` C31,
 *the owner's decision*). **18/11**: every cylinder has a
 floor of its own (3 −9.7, 4 −4.4, 1 +1.6, 2 +2.8 % against 1, 2 and 4),
 only 3 swells; kept as A and B, not split (*agreed with the owner*).
@@ -2609,7 +2610,7 @@ the exhaust made a full symptom) — ✔ for H5, whose loose part it may
 be; ~ for H2, the flex between the probes (a broken inner liner rattles,
 and one cracked through leaks; *reasoned*); — everywhere else.
 **S25** (a column since 27/11, *at the owner's request*: the supply
-sagging at idle under load) — ~ for H4, the supply's side (weak: the
+sagging at idle under load) — ✔ for H22, ~ for H4, the supply's side (weak: the
 idle is calmer with the loads on, and the supply is common to all
 four); — everywhere else.
 Left out: S16 (the gearbox side, shown not to touch
@@ -3977,6 +3978,44 @@ at idle on that cylinder, eased by load, and a plug kept clean.
 
 ---
 
+### H22. The ECU sees a lower supply than the injectors get — their opening delay over-allowed, rich at idle (S19, S25)
+
+*Added 27/11, agreed with the owner* (his question where the supply's
+voltage is lost, and whether it touches the engine; the research of
+27/11). **The mechanism** (*general*; HP Academy's injector dead-time
+course and forum, SAE 2025-36-0174): an injector opens late by a time
+that grows as its voltage falls, and an ECU adds that time to every
+pulse from the voltage it measures — on its own supply pins. **Here the
+two are fed apart** (*reasoned*, from the fuse card and VW's manual):
+the ECU from fuses 10 and 29 (VW's *Checking control unit voltage
+supply*, Golf Mk4 2.0: 004 field 2 at least 11.5 V; terminal 30 on the
+test box's sockets 2+3, terminal 15 on 1+2), the injectors from the
+fuel pump relay J17 through fuse 32. **If the ECU sees less than the
+injectors get, it allows too long a delay and over-fuels**, most at the
+shortest pulses — idle — by a fixed time, an additive error: what 032's
+idle cell learns, and it takes fuel away there (−6 to −9 %, S19). Main
+beam took 0.07 V off the battery and 0.54–0.63 V off 004 (15/11, H4),
+so a load would widen the gap and enrich more (*reasoned*).
+
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 | S25 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| — | — | — | — | — | — | — | ~ | — | — | ✔ | — | ✔ |
+
+- **For:** 004 sits 0.4–0.5 V under the battery with no large load
+  (13.1 against 13.57 V, 15/11) and loses most of a load's step on the
+  way (S25); 032's idle cell is additive and negative, as a fixed
+  over-allowance at short pulses would make it; S12 ~ where a load or
+  the pulse changes at a crawl.
+- **Against:** it acts on all four alike, so **it does not pick 3**
+  (S1, S3); whether M5.9.2 corrects the delay from its own supply pins
+  is *not known* (the manual and the flash images not read for it);
+  the gap at the injectors themselves never measured; H7's pressure
+  and H11's probes explain S19 as well.
+- **Tests:** `plan.md` 8ab 2c — 004 beside fuse 32's pads (and 10 and
+  29's, and the battery's post), warm at idle, with no load, main beam
+  and every consumer on. 004 lower than fuse 32 by tenths, growing with
+  the loads, is the premise; equal, H22 falls.
+
 ## Naming the cylinder
 
 The bus carries no cylinder identification and 014 has no per-cylinder
@@ -4852,6 +4891,7 @@ list C for 3's floor apart from its swell — the floor reads as A's in
 | A5 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it (shared with H16 until 17/11, `refuted.md` C30). Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; **17/11**: nor a return restriction, which would pull both cells negative (S19, *re-reckoned*); the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
 | A6 | **H2** a leak ahead of the converter | Widened 10/11 to the zone between the probes (the joint, the flex, the plugged boss), which gives a lean rear probe at idle but not 032 or the dips; S2, S11 and S14's air; **27/11** S17's knock on the exhaust, the flex behind the manifold suspected (*owner*; weak, a rattle is not a leak). Against: the cold tailpipe and smoke tests found nothing; the visible manifold has no soot and no holes (31/10); 032's idle cell takes fuel away, where air ahead of the front probe would add it; the front loop holds through 3's swell; the rear probe's sinking was the old probe's; cannot pick a cylinder. Untested: a crack open only hot, the part under the heat shield | none planned (the warm tailpipe test dropped 15/11, *the owner*) |
 | A7 | **H18** oil past the stem seals | All four alike: worse after idling, calm after a working drive; for one valve it is the swell's second reading (list B's matter, S1, *The swell's shape*). **For, 17/11**: a brown liquid stood round the backs of inlet valves 2, 3 and 4 with the manifold off, there before the wash (*owner*) — the first direct sight of oil at the valves, though the old joint left the same and it does not pick 3; **17/11 (`54`)**: the joint new and the swell as before, so the joint's oil was not it (`refuted.md` C28). Against: it does not grow with the time into a stop; **no blue smoke ever**, the plugs dry; **17/11**: 3 no worse in the first seconds after a coast-down, the deepest vacuum | the oil level on the fresh oil (`plan.md` 6i); the plugs at the next change (8v) |
+| A8 | **H22** the ECU's supply below the injectors' | Not the common part's roughness: S19's idle cell and S25 — a fixed over-allowed opening delay where the ECU sees less voltage than the injectors get (*reasoned*; the dead-time mechanism, HP Academy, SAE 2025-36-0174); 004 0.4–0.5 V under the battery with no load, 0.54–0.63 V more with main beam. Against: all four alike, not 3; whether M5.9.2 corrects from its supply pins not known. Added last, *agreed with the owner*, 27/11 | `plan.md` 8ab 2c: 004 against fuse 32's pads, three loads |
 
 **More than one at once** (*the owner's point*, 12/10): each repair may help
 only in part; a partial improvement is read as a share, not a miss.

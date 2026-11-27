@@ -224,6 +224,15 @@ first*, 26/11 night).
    ignition on, the engine off; (b) **the engine running for a minute
    or two at idle**, cold is fine, the garage door open. Photographed.
    The lights and the blower add nothing here.
+2c. **The supply, the same session, the engine running warm at idle**
+   (*the owner*, 27/11; `open.md` H22, S25), **in three states**: no
+   load; main beam; every consumer usually on at once. In each, written
+   down together: **VCDS 004 field 2** (the ECU's own supply) and, the
+   multimeter's black lead on the battery's minus post, the red on
+   **(a) the battery's plus post**, **(b) both test pads on top of fuse
+   32** (injectors), **(c) both pads of fuses 10 and 29** (engine
+   control) — no connector opened (the fuse card, the owner's page
+   *Pojistky New Beetle*; checked on the box's lid first).
 3. **The figures into the chat.** What counts for each ring: **(2)
    less (1)**, the ring's seat on the bolt, and **(3) less (2)**, the
    crimp itself.
@@ -613,6 +622,21 @@ level with the others (−1 to −5 %), so a leak-down made then tests a
 seat at its tightest; the engine cools while the intake comes off as
 it is, and a film on a seat may not last that either — a tight 3 there
 still clears nothing, a leaking one names it.
+
+**8ab's supply readings** (2c; `open.md` H22, S25): the ECU sets each
+injector's opening delay by the voltage it sees on its own pins, while
+the injectors are fed from J17 through fuse 32; on 15/11 main beam took
+0.07 V off the battery and 0.54–0.63 V off 004. **004 lower than fuse
+32 by tenths of a volt** is H22's premise measured, and larger with
+the loads it grows as H22 needs; 004 and fuse 32 together is H22 not
+standing. The battery's post against fuses 10 and 29 gives the
+positive side's loss as far as the fuses, and 8ab's earth readings
+the negative side's — together where 004's missing half volt goes.
+Measured at the pads, nothing back-probed; fuse 32's two pads differ
+by the fuse's own drop. The wire from fuse 32 to the injectors and T3
+are left out: at the injectors' current they lose hundredths
+(*reasoned*). Unplugging an injector to reach its contact 1 is not
+done: the engine on three, a stored code, and clearing it resets 032.
 
 **8q, the timing belt at a garage, 7/12** (*the owner's decision*, 13/11,
 after 8i): 8i read the cam's OT mark set and the crank pulley's one
