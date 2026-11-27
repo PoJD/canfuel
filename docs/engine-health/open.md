@@ -126,6 +126,9 @@ cylinder*):
   at a light pedal (*owner*, 25/11) — off idle the stroke-to-stroke
   scatter is largest there and the same on all four (*Off idle*, F).
 - **S22** a tick once per engine cycle, warm.
+- **S25** the supply sagging at idle under load, the MFD down to 12.1 V
+  (*owner*, 27/11; added at his request, to be closed after 8q's
+  refurbished alternator if it mends it).
 - **S17** a resonance on the exhaust over a wide band of engine
   speeds, metal knocking when the exhaust is moved by hand, the flex
   behind the manifold suspected (*owner*, 27/11; a full symptom since,
@@ -2510,6 +2513,46 @@ said "whether it is what ran down from the cover joint or a leak of its
 own is not known" until then.* **It bears on `plan.md` 6i**: with no
 engine leak, a falling dipstick level is oil burnt, not lost.
 
+### S25. The supply sags at idle under load — the MFD down to 12.1 V
+
+*Added 27/11 at the owner's request* ("so it can be set formally
+against the other symptoms and hypotheses"; to be closed after 8q's
+alternator, 7/12, if the refurbished alternator mends it). **What is
+seen** (*owner*, 27/11): on the MFD during drives, **at idle and with
+more consumers on, sometimes only 12.1 V**. A battery resting reads
+about 12.6–12.7 V (*general*), so a running engine below that is the
+battery being discharged: the alternator does not keep up at idle
+(*reasoned*).
+
+**What was measured before** — never everything at once:
+- **26/9, a multimeter on the battery** (`vehicle-history.md`, *The
+  alternator*): headlights, rear window heater and blower on —
+  **12.72 V at idle, 13.4 V at about 2,000–3,000 rpm**.
+- **VCDS 004, the ECU's own supply, at a warm idle (600–1,000 rpm)**,
+  read 27/11 from every 004 log: 4/10 (`vcds-sessionA2-004.csv`) median
+  13.09 V, lowest 12.88; 12/11's stop (`vcds-step6q-stop-004-055-014.csv`)
+  median 12.81, lowest 12.53; 15/11, 8h's loads one at a time
+  (`vcds-step8h-loads*.csv`) medians 13.09–13.16, lowest 12.39–12.46;
+  15/11's drive (`vcds-step8a2-drive-014-070-004-2.csv`) median 13.23,
+  lowest 12.53. Within the specification (12.0–14.5 V, `vcds.md`).
+- **15/11 evening, the battery against the MFD** (H4, *The supply as
+  the ECU sees it*): 13.57 V warm at idle, 13.50 with main beam; main
+  beam dropped 004 by 0.54–0.63 V and the MFD's feed by 0.4 V, the
+  battery by 0.07 V — most of a load's step is lost between the battery
+  and the consumers, not at the alternator.
+
+**Read** (*reasoned*): the MFD calibrated against the battery that
+evening and its feed loses about 0.4 V under a large load, so 12.1 V
+on it is perhaps 12.5 V at the battery — still below a resting
+battery's voltage, and lower than any load was ever measured at. The
+alternator is most likely the original of 1999 (`vehicle-history.md`).
+**It bears on the idle weakly**: the idle is calmer with the loads on,
+at a lower coil supply (H4), and the same supply feeds all four
+cylinders, so it does not pick 3. **Test**: `plan.md` 8q — the charging
+measured before the garage and after the refurbished alternator, with
+every consumer usually on at once and the MFD read beside the
+multimeter.
+
 ---
 
 ## How the symptoms relate — what is measured
@@ -2531,11 +2574,12 @@ engine leak, a falling dipstick level is oil burnt, not lost.
 | S3 on the road ↔ S17, S5 | **possible, one engine-speed band** (6/11) | 014's road episodes at 21–32 % load: 2000–2400 rpm about twice 1600–1800 and 2400–2600 (S17); the bus shows no stroke-to-stroke roughness peak there |
 | S16 ↔ S1 | **untested** (*general*) | a gearbox's rattle in neutral is driven by the crank's unevenness at idle (S16) |
 | S17 ↔ S5 | **possible** (27/11, *reasoned*; with S14, the owner's guess) | on 26/11 4's excess over 1 in 026 stood out most at 2,000–2,700 rpm, S17's band of 15/10; one log, and S17's band is wide (*owner*, 27/11) |
+| S25 ↔ S1 | **weak, against** (*reasoned*) | the idle is calmer with the loads on, at a lower supply (H4); the supply feeds all four (S25) |
 | S11 ↔ S1 | **untested** | if the hiss is a leak, H3 or H2; the owner reads it as the throttle's own air |
 
 **Two clusters**: **the idle** (S1, S2, S3, S14) and **the cylinder 4
 window** (S4, S5), with S17 perhaps beside it. S11 sits beside the idle, unplaced; S19 beside
-it, the trims. *S23, the new rear probe's
+it, the trims; S25 beside it, the supply. *S23, the new rear probe's
 signal, stood apart until it closed 12/11 (`refuted.md` D13).*
 
 ---
@@ -2564,6 +2608,10 @@ hypothesis expects the drive to calm it at once (H18).
 the exhaust made a full symptom) — ✔ for H5, whose loose part it may
 be; ~ for H2, the flex between the probes (a broken inner liner rattles,
 and one cracked through leaks; *reasoned*); — everywhere else.
+**S25** (a column since 27/11, *at the owner's request*: the supply
+sagging at idle under load) — ~ for H4, the supply's side (weak: the
+idle is calmer with the loads on, and the supply is common to all
+four); — everywhere else.
 Left out: S16 (the gearbox side, shown not to touch
 the idle); S24 (G62's reading, a
 sensor's own fault no hypothesis here explained) was never a column and
@@ -2588,9 +2636,9 @@ and temperature (a fifth more cold): a constant answering to the
 charge alone, as an engine's own scatter does. A fixed fault on all
 four would read the same; no healthy AQY says which.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ✘ | — | ~ | — | ~ | ✘ | — | ✘ | ~ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 | S25 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ✘ | — | ~ | — | ~ | ✘ | — | ✘ | ~ | — |
 
 - **Against:** 014 reads 12–120 against VW's 0–5; the old converter burned
   through; the misfires and the steady deficit are 3's (S1, *Every
@@ -2736,9 +2784,9 @@ or debris holds its valve a hair open, which costs compression and misses
 at a small charge and is covered by load — the case this hypothesis is
 about. The valve is closed by its spring; the lifter only removes the gap.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ✔ | ~ | ~ | — | ~ | ~ | — | — | ✔ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 | S25 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ✔ | ~ | ~ | — | ~ | ~ | — | — | ✔ | — |
 
 - **9/11, after the clean** (S1, *The clean of 9/11*; S22): 3's swell
   gone at stop 7 and its floor kept (−8 to −9 %), the swell back a day
@@ -2860,9 +2908,9 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in.
   air there reaches neither a cylinder nor the front probe, so the fit
   below is the first zone's.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ✔ | ~ | ✘ | ✘ | ✔ | ~ | ✔ | ~ | ✘ | ~ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 | S25 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ✔ | ~ | ✘ | ✘ | ✔ | ~ | ✔ | ~ | ✘ | ~ | — |
 
 - **For:** the puff (S2), the hiss (S11), air for S14's bangs; a 26-year-old
   manifold that has lived through years of misfires; **for the second zone,
@@ -2936,7 +2984,8 @@ neither the coil nor its feed can pick it (*this said "the dips sat on
 the injector loom where it reaches 3 (and 4), taped and oily — its wires at 4 whole outwardly (*owner*,
 19/10; tape renewed). The plug-end side moved to H15, refuted 4/11 (`refuted.md` C24).
 **The alternator refurbished at 8q's visit, 7/12** (*the owner*, 27/11;
-`plan.md` 8q): 12.72 V at idle under load on 26/9; the charging
+`plan.md` 8q): 12.72 V at idle under load on 26/9, the MFD down to
+12.1 V at idle with more consumers on (S25, 27/11); the charging
 measured before and after — a step in the idle with it would be the
 supply's or the crank load's, not the belt's alone.
 
@@ -2969,9 +3018,9 @@ plus to the ECU's supply pin and from the battery's minus to the ECU's
 earth, then to the fuse box's input — tenths of a volt on either side
 names the side.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | ~ | ~ | — | ✔ | ~ | — | ✘ | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 | S25 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | ~ | ~ | — | ✔ | ~ | — | ✘ | — | ~ |
 
 - **9/11** (S1, *The clean of 9/11*): 3's floor kept after the clean,
   its swell gone for a day: for 3's own circuit in the floor (its supply side and coil since measured sound, 6m of 17/11; the control wire is 6n's); with
@@ -3117,9 +3166,9 @@ The ECU books anything at cylinder 4's crank angle to cylinder 4: G66, its
 torque or connector; a loose ancillary part buzzing in a speed band; **an arc
 at lead 4's plug end** (`refuted.md` C24). Injector 4's click is settled against (B7).
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| — | — | — | — | ✔ | ✔ | — | — | — | ✔ | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 | S25 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| — | — | — | — | ✔ | ✔ | — | — | — | ✔ | — | — | — |
 
 **Tests** — `plan.md` 8w since 15/11 (*the owner*; not scheduled from
 9/10): G66's torque and connector; S17's resonance placed by a slow
@@ -3160,9 +3209,9 @@ neither the loop's regulation nor the injection time, so it is not
 3's fuel. The rail's pressure: the common part is the same after high
 revs as after none and the same on every day, within 5 %.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | — | — | — | ~ | ~ | — | ✔ | ~ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 | S25 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | — | — | — | ~ | ~ | — | ✔ | ~ | — |
 
 - **3 the one cylinder throughout, P0303 four times** (S1, *Every
   stroke named*; S3) — one injector in reach by the cylinder; 25/10
@@ -3290,9 +3339,9 @@ cleared the injector form (`refuted.md` C29).
 
 ### H8. Idle air control and the throttle body
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | — | ~ | — | — | — | ✔ | — | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 | S25 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | — | ~ | — | — | — | ✔ | — | — | — | — | — |
 
 **Against, the swell** (15/11, S1, *8h's plain idle and its loads*):
 the idle regulator (055 field 2) holds through cylinder 3's swells and
@@ -3401,9 +3450,9 @@ that it is not argued again.* *Condensed 17/11*; every reading, the five
 marks, the relearn drive minute by minute and the four calm minutes of
 10/11 are in `git show 5e1ddf2:docs/engine-health/open.md`, this heading.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | ~ | — | — | — | ~ | ~ | — | ~ | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 | S25 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | ~ | — | — | — | ~ | ~ | — | ~ | — | — |
 
 **26/11**: the probes' sockets renewed and nothing moved (H21 settled
 against, `refuted.md` C31); **H11 is settled after 8e's new rear
@@ -3457,9 +3506,9 @@ at VCDS sessions (`plan.md` 8f). Ranked A5.
 
 ### H12. Driveline play read as misfires
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ✘ | ~ | ~ | ~ | — | ✔ | ✘ | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 | S25 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | ✘ | ~ | ~ | ~ | — | ✔ | ✘ | — | — | — | — |
 
 **Against:** the MAF swap halved the dips; play repeats every 360°, the pairs
 1+4 and 2+3, while the dips sit on 3 and 4, 180° apart; the puffs come with
@@ -3522,9 +3571,9 @@ the ring soak of Kia/Hyundai's TSB 23-EM-007H.
 3000 rpm for at least nine years (*owner*). Gentle use builds deposits where
 hard use burns them off (*general*).
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ~ | ✔ | ~ | — | — | ~ | ~ | — | ~ | ~ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 | S25 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ~ | ✔ | ~ | — | — | ~ | ~ | — | ~ | ~ | — |
 
 - **11/11, the second research**: the clean's relief lasted a day
   (`47`), and **no source gives seat deposit forming again in a day** —
@@ -3640,9 +3689,9 @@ EPR flushes and fresh oil, done 26/10).
 original map (`refuted.md` C23, *agreed with the owner*). What is left is
 what the remap did change: the corner of highest load.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ✘ | — | ✘ | ✘ | ~ | ✘ | — | ✘ | ✘ | — | ~ | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 | S25 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✘ | — | ✘ | ✘ | ~ | ✘ | — | ✘ | ✘ | — | ~ | — | — |
 
 **What the remap changed** (the two whole flashes from the tuner, 3/11;
 compared byte for byte, the files not kept here; the tables with every
@@ -3797,9 +3846,9 @@ oil run down the valve guide, and the intake's vacuum, highest at idle,
 draws it into the cylinder, where it costs combustion; under load the
 vacuum falls, the flow stops, and what collected burns away.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ✘ | — | ~ | — | — | — | — | — | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 | S25 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ✘ | — | ~ | — | — | — | — | — | — | — | — | — |
 
 - **For: the shape of 26/10**, worse after idling and gentle driving,
   calmer after work, the calm lasting — what oil collecting at a small
@@ -3890,9 +3939,9 @@ gasket or a hairline in the head next to 3 enters where the cylinder's
 pressure is lowest, at idle vacuum, and steams the charge — a misfire
 at idle on that cylinder, eased by load, and a plug kept clean.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | — | — | — | — | ~ | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 | S25 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | — | — | — | — | ~ | — | — | — | — |
 
 - **For:** one cylinder at idle; load helps (a higher manifold pressure
   draws less in, *reasoned*); **plug 3 the cleanest** of the 10/10 set

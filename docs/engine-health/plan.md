@@ -258,11 +258,14 @@ stop of ten minutes.
 **The alternator refurbished the same visit** (*the owner*, 27/11,
 agreed with the garage by phone): it comes off for the belt anyway and
 goes to the refurbisher next door; a new one only if it proves really
-faulty. **Before the garage and after it, the charging measured as on
-26/9**: a multimeter on the battery's terminals, warm, the headlights,
-the rear window heater and the blower on — at idle and at about
-2,000–3,000 rpm; the figures into the chat, and what the refurbisher
-renewed (brushes, regulator, bearings, rectifier).
+faulty. **Before the garage and after it, the charging measured** (S25): a
+multimeter on the battery's terminals, warm, at idle and at about
+2,000–3,000 rpm, **twice**: as on 26/9 (the headlights, the rear window
+heater and the blower on), and with **every consumer usually on at
+once** (those three, the seat heater, the wipers if it rains), **the
+MFD's reading beside the multimeter's** each time; the figures into
+the chat, and what the refurbisher renewed (brushes, regulator,
+bearings, rectifier).
 **The same visit, asked of the garage** (*the owner*, 27/11; 8w's
 first item; the exhaust itself said to them on the spot): **the exhaust's resonance and knock (S17), and the slow
 puffing on engine braking downhill (S14)** — the car on the lift, the
@@ -654,7 +657,11 @@ before-and-after (the common part, 3's floor and swells, against
 charging measured before and after separates the voltage, not the
 torque it takes, so a step in the common part after 7/12 cannot be
 given to the belt alone (*reasoned*). Accepted by the owner: the
-alternator is due either way.
+alternator is due either way. **The measurement with every consumer
+on, and the MFD beside it, is S25's** (`open.md`): the MFD showed 12.1 V
+at idle with more consumers on (*the owner*, 27/11), lower than any
+load was ever measured at, and its feed loses about 0.4 V under a
+large load, so the battery's own figure is what closes S25 or keeps it.
 
 **Why the flywheel or the piston, not the pulley** (the fourth
 research, 17/11; `open.md`, *What the forums say*, searched again
