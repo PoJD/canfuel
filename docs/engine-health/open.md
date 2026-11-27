@@ -213,9 +213,10 @@ hopping at a light pedal with the pedal at the edge of its rest (S12).
 owner's decision*, 26/11): the sockets moved neither the idle nor the
 scatter by load, and 032 went back towards −6 % on the one drive; the
 second drive of 032 agreed before is not waited for. H11 is read again
-after 8e's new rear probe (*the owner*). **Next** (`plan.md`): **8ab**, the
-earth point by the ECU measured under current (the ignition on, then
-the engine running), its rings renewed only if found bad, then with 032
+after 8e's new rear probe (*the owner*). **Next** (`plan.md`): **8ab**, first the supply against fuses
+10, 29 and 32 with VCDS 004 (2c, H22), the earth point by the ECU
+measured only if 004 falls short of the fuses (the dashboard's top off;
+*the owner*, 27/11), its rings renewed only if found bad, then with 032
 over the drives after it (8f) (*the owner*, 26/11 night); then **8ae**, the air mass meter's plug renewed (the parts
 ordered 26/11, about 1/12; the battery and the ECU left connected, so
 032 is not reset), with 032 over the days after it; then **8e**'s new rear probe when it comes (*the owner*, 24/11:

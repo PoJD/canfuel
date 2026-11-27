@@ -18,8 +18,9 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Now: 8ab**,
-the earth point by the ECU measured, its rings renewed only if found
+Captures only where an item asks for one. **Now: 8ab**, the supply
+against fuses 10, 29 and 32 with VCDS 004 first (2c), then only if 004
+falls short the earth point by the ECU measured, its rings renewed only if found
 bad (*the owner*, 25/11 and 26/11 night) — the second drive of 032 before it dropped 26/11, when
 H21 was settled against (*the owner*). **Then 8ae**, the air mass
 meter's plug renewed (the parts ordered 26/11, expected about 1/12),
@@ -209,7 +210,12 @@ of this plan, *the owner's decision* of 9/10):
 
 **8ab. The earth point by the ECU: measured, its rings renewed only
 if the measurement finds them bad** (*the owner*, 25/11; *measure
-first*, 26/11 night).
+first*, 26/11 night). **2c first, the earth's points (2) only if 2c
+asks for them** (*the owner*, 27/11: the earth point needs the
+dashboard's top off): **004 more than 0.2 V under fuses 10 and 29's
+pads in any of the three states, or the gap growing by 0.2 V or more
+with the loads**, sends him to step 2; otherwise 8ab is done with 2c,
+nothing taken apart and nothing reset.
 1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
    the fault memory read and saved.
 2. **The voltage drop, nothing undone**: a multimeter on DC volts, the
@@ -637,6 +643,24 @@ by the fuse's own drop. The wire from fuse 32 to the injectors and T3
 are left out: at the injectors' current they lose hundredths
 (*reasoned*). Unplugging an injector to reach its contact 1 is not
 done: the engine on three, a stored code, and clearing it resets 032.
+**Why 2c can stand in for the earth's points** (*the owner's
+reasoning*, 27/11, checked): 004 is the voltage between the ECU's own
+supply pin and its own earth pin; fuses 10 and 29 against the
+battery's minus are the supply as far as the fuses. **The gap between
+them is the loss from the fuses to the ECU's supply pin (the wire, and
+J271 if it sits after the fuses — the diagram not read) plus the whole
+earth side** (the ECU's earth pin, its rings, the stud, the body, the
+battery's strap), under the engine's own running current. A small gap
+clears both; a large one says one of them and not which — then the
+earth's points (2) tell the earth's share, and the rest is the
+positive wire after the fuses. **The 0.2 V is a decision** (*Claude*,
+27/11): 004 moves in steps of about 0.07 V and is read beside the
+multimeter, not at the same instant, and the ECU's own measuring
+accuracy is not published; the change of the gap with the loads is
+the firmer reading, since an offset of 004's own cancels in it. What
+2c cannot see: a bad crimp on the ring that carries little current
+(the reference earth, if one of the two is), whose drop is small
+because its current is (*reasoned*).
 
 **8q, the timing belt at a garage, 7/12** (*the owner's decision*, 13/11,
 after 8i): 8i read the cam's OT mark set and the crank pulley's one
