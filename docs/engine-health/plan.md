@@ -221,6 +221,14 @@ the multimeter's black lead **on the battery's plus post**:
    with the ignition on and with the engine running; the rings renewed
    only on hundreds of millivolts.
 4. The figures into the chat, with what was on.
+5. **The flicker, with the LHT00SU1** (*the owner*, 27/11), the same
+   two loads: **no divider — GND on fuse 32's pad, 1ACH on fuse 10's**
+   (then on 29's; then GND on the battery's plus post, 1ACH on fuse
+   10), `tools/injscope.py capture`. **⚠ With GND off the car's minus,
+   nothing else may join the laptop to the car**: no VCDS cable in the
+   diagnostic socket, no USBtin, the laptop on its own battery, nothing
+   else in its USB ports. **Never 1ACH straight on a fuse against the
+   battery's minus**: 12–14 V is past its ±10 V.
 **The owner's intention** (27/11, the date not set): the fuse holder on
 the battery (`1C0 937 549 A`), the main positive cable from the
 battery and the cable to the alternator renewed; 2c's readings (004
@@ -616,7 +624,17 @@ ohms**: a meter's ohm range on a connected car reads through every load
 and its capacitors (27/11: 23 Ω and a reading creeping up from zero,
 where a starter's current through 23 Ω would leave nothing to turn it);
 a bad joint is milliohms, below a multimeter, so it is read as a drop
-under current.
+under current. **The flicker** (5; `open.md` H22, *the common part*): a
+multimeter and VCDS average over a fraction of a second or more, so a
+joint that flickers faster reads steady on both; the analyser reads
+the difference itself, under 1 V, inside its ±10 V without a divider,
+at 0.08 V a step — coarse, but a flicker of a tenth of a volt shows,
+and 0.19 s snippets at kilohertz rates see the alternator's ripple
+and a joint's chatter. GND on the positive side puts the laptop's
+ground at +12 V, hence nothing else on the laptop: VCDS's and the
+USBtin's cables join the laptop's ground to the car's minus, which
+would short the battery through the laptop (*general*). The input's
+absolute limit is not documented, so it is not tried.
 
 **8q, the timing belt at a garage, 7/12** (*the owner's decision*, 13/11,
 after 8i): 8i read the cam's OT mark set and the crank pulley's one
