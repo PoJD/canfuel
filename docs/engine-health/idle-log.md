@@ -2358,6 +2358,8 @@ G40 another day; `tools/injscope.py` written for it.
     wiring diagram not read).
 
 The first reading of step 3 had fuse 29 at 12.7 with 32; the owner's
-repeated readings put 29 lowest. 8ab's rule (`plan.md`) asked for the
+repeated readings put 29 nearer 10 and then under it — when it changed
+is not known, and the first may have had the fuses mixed up; the later
+readings are the ones he is sure of (*owner*). 8ab's rule (`plan.md`) asked for the
 earth point only if 004 fell more than 0.2 V short of fuses 10 and 29
 or the gap grew by 0.2 V; it grew by about 0.1 V.
