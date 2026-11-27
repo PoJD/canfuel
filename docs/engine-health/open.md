@@ -2575,7 +2575,10 @@ report), or the ignition switch are the candidates (*reasoned*). **The
 earth enters only between the fuses and 004** (0.1–0.2 V under full
 load), so the earth points are the smaller part. The battery's minus
 cable runs on under the air box, not to a body point the owner could
-find (*owner*, 27/11).
+find (*owner*, 27/11). **The owner expects the engine bay's earth
+points to be bad** (27/11): no undertray for at least ten years, and
+moisture there; only the earth point by the ECU, under the dashboard
+and drier, has been found so far.
 
 **Read** (*reasoned*): the MFD calibrated against the battery that
 evening and its feed loses about 0.4 V under a large load, so 12.1 V
