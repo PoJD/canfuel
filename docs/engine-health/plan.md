@@ -18,17 +18,13 @@ The full previous version, before it was condensed on 20/10/2026:
 ## Step 3 — the idle is not fixed
 
 One at a time; Claude says after each whether the next is needed.
-Captures only where an item asks for one. **Now: 8ab**, the supply
-against fuses 10, 29 and 32 with VCDS 004 first (2c), then only if 004
-falls short the earth point by the ECU measured, its rings renewed only if found
-bad (*the owner*, 25/11 and 26/11 night) — the second drive of 032 before it dropped 26/11, when
-H21 was settled against (*the owner*). **Then 8ae**, the air mass
-meter's plug renewed (the parts ordered 26/11, expected about 1/12),
-once 8ab is done (at once if its rings read sound and stay; after
-its days of 032 if they are renewed). **Then 8e**, **the new rear probe when it comes (bought
+Captures only where an item asks for one. **Now: 8ae**, the air mass
+meter's plug renewed when its parts come (ordered 26/11, expected
+about 1/12; 8ab ended 27/11 with nothing reset). **Then 8e**, **the new rear probe when it comes (bought
 24/11; expected 26/11, not come by 27/11, now 28/11)**; **8q, the timing belt
 at a garage, 7/12**; then item 9; **8u, 8v, 8w by
-opportunity** (*the owner*, 15/11), and **6r**, the owner's scope on
+opportunity** (*the owner*, 15/11), **8af, the ECU's supply branch,
+another day** (*the owner*, 27/11), and **6r**, the owner's scope on
 G28 and G40 another day, best before 8q, **6t**, the second tank of BG 44K Platinum driven down and two captured drives at its end, before 8q,
 and **6s**, the cleaner drawn in (17/11). *What is done is `idle-log.md` and
 `vehicle-history.md`; a step leaves this file when it is done.*
@@ -208,57 +204,27 @@ of this plan, *the owner's decision* of 9/10):
   the whole stop** (VCDS, beside the capture); the capture says
   afterwards when 4 led.
 
-**8ab. The earth point by the ECU: measured, its rings renewed only
-if the measurement finds them bad** (*the owner*, 25/11; *measure
-first*, 26/11 night). **2c first, the earth's points (2) only if 2c
-asks for them** (*the owner*, 27/11: the earth point needs the
-dashboard's top off): **004 more than 0.2 V under fuses 10 and 29's
-pads in either state, or the gap growing by 0.2 V or more
-from the everyday load to every consumer on**, sends him to step 2; otherwise 8ab is done with 2c,
-nothing taken apart and nothing reset.
-1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
-   the fault memory read and saved.
-2. **The voltage drop, nothing undone**: a multimeter on DC volts, the
-   black lead on the battery's minus post (a charger on the battery is
-   fine), the red lead in turn on **three points**: (1) **bare metal
-   beside the bolt**; then for each of the two rings (2) **its metal
-   barrel** and (3) **the wire's copper just behind the barrel** — on
-   the strands where they leave it, or through the insulation with a
-   thin needle about 1 cm behind the crimp, the hole sealed after;
-   each figure written down with which ring it is (the smaller
-   connector's or the larger's). **Twice**: (a) the
-   ignition on, the engine off; (b) **the engine running for a minute
-   or two at idle**, cold is fine, the garage door open. Photographed.
-   The lights and the blower add nothing here.
-2c. **The supply, the same session, the engine running at idle past the cold fast idle** (warm not needed: the gaps are read, not the levels; *the owner*, 27/11, parked in the snow)
-   (*the owner*, 27/11; `open.md` H22, S25), **in two states** (*the
-   owner*, 27/11: main beam cannot be used where he measures): the
-   everyday load as he drives; every consumer usually on at once. In each, written
-   down together: **VCDS 004 field 2** (the ECU's own supply) and, the
-   multimeter's black lead on the battery's minus post, the red on
-   **(a) the battery's plus post**, **(b) both test pads on top of fuse
-   32** (injectors), **(c) both pads of fuses 10 and 29** (engine
-   control) — no connector opened (the fuse card, the owner's page
-   *Pojistky New Beetle*; checked on the box's lid first).
-3. **The figures into the chat.** What counts for each ring: **(2)
-   less (1)**, the ring's seat on the bolt, and **(3) less (2)**, the
-   crimp itself.
-4. **Only if one of those reads hundreds of millivolts**: that ring renewed — the old crimp cut
-   back to bright copper if the wire is long enough (if not, say so
-   first), the new ring crimped with a crimping tool, not soldered (the
-   insulated rings: the metal barrel on the wire, the plastic collar
-   on the insulation, with the tool's die for insulated terminals), on
-   the flanged bolt flat to bare metal, the smaller connector's ring
-   the lower, as now; photographs; **the voltage drop again** (2b);
-   then, as the ECU's connectors come off for it (no room otherwise),
-   **the relearn drive as 8aa's** — a brisk drive with a motorway
-   stretch and a few pulls, then a warm standing idle of about 30
-   minutes, VCDS `--groups 014 001 003`, 032 and 055 for 20 s at the
-   stop's end, the fault memory — and **032 at the end of every drive
-   for three or four days** (8f).
-5. **If the rings read sound, they stay** (*the owner*: the GME rings
-   have the same hole but a smaller outer diameter than the originals):
-   8ab is done with the measurement, nothing is reset, and 8ae follows.
+**8af. The ECU's supply branch — another day** (*the owner*, 27/11;
+`open.md` S25, H22). The engine running, warm or past the cold fast
+idle, **every consumer on** (then the same with a seat heater only);
+the multimeter's black lead **on the battery's plus post**:
+1. **The fuse panel's map**: the upper pad of fuses **12, 9, 25, 26,
+   20, 21, 28, 10, 29 and 32** — each reading is the loss from the
+   battery to that fuse; those that sag with 10 and 29 share their
+   feed.
+2. Then the black lead **on the battery's minus post**: **bare metal on
+   the body** and **bare metal on the engine block**, with a seat
+   heater only and with everything on.
+3. **The earth point by the ECU** (the dashboard's top off) only if 2
+   or 004 against fuses 10 and 29 asks for it: bare metal beside the
+   bolt, each ring's barrel and the copper just behind each crimp,
+   with the ignition on and with the engine running; the rings renewed
+   only on hundreds of millivolts.
+4. The figures into the chat, with what was on.
+**The owner's intention** (27/11, the date not set): the fuse holder on
+the battery (`1C0 937 549 A`), the main positive cable from the
+battery and the cable to the alternator renewed; 2c's readings (004
+and fuses 10, 29 and 32, the two loads) taken again after it.
 
 **8q. The timing belt renewed at a garage, 7/12** (*the owner's decision*,
 13/11; the date *the owner*, 16/11): the belt, its tensioner and idler, and the water pump.
@@ -344,9 +310,8 @@ always** (a P0303 stored with no cut: its time is what the log gives).
 
 **8ae. The air mass meter's plug renewed** (*the owner*, 26/11; the
 parts ordered 26/11: the housing `1J0 973 999 A` and three repair
-wires `000 979 026 E`, `vehicle-history.md`). **After 8ab** — after its
-three or four days of 032 if its rings were renewed — never on the
-same day as another change.
+wires `000 979 026 E`, `vehicle-history.md`). Never on the same day
+as another change.
 1. **Before**, the engine cold, the ignition on: 032 and 055 for 20 s,
    the fault memory read and saved.
 2. **The battery and the ECU stay connected** (*the owner*: it can be
@@ -365,15 +330,14 @@ same day as another change.
 6. **Plugged onto the meter until it clicks**, the engine started, the
    fault memory read.
 7. **032 and 055 for 20 s at the end of every drive for the next three
-   or four days** (8f), the date and the kind of drive with each, as
-   after 8ab.
+   or four days** (8f), the date and the kind of drive with each.
 
 **8e. The new rear probe when it comes** (*the owner*, 11/11, 12/11,
 24/11 and 25/11; `refuted.md` D13; **both probes' sockets renewed
 25–26/11 night**, `idle-log.md`). **A new rear probe, Bosch `0 258 010 032`, bought
 24/11 from another shop, expected 26/11, not come by 27/11, now expected 28/11** (*the owner*, 25/11 and 27/11); the butt
 sleeves bought at GME 25/11; the old rear probe on the car
-until then. **After 8ab's two drives of 032** where the dates allow. 032
+until then. 032
 and 055 read before it goes in (8f). It
 is fitted as the first was: Bosch's paste on the thread only, nothing
 in the connector, the lead clear of the exhaust and not pressed into
@@ -555,14 +519,6 @@ both probes shifted, is read again after it (*the owner*, 26/11).
 lets a capture or a VCDS log be read at that moment — the stroke, the
 load, 014, and from a capture the cylinder (`open.md` S12).
 
-**8ab straight after 8ad** (*the owner*, 26/11): two drives of 032
-were to settle the sockets before the rings, so that the earth and the
-sockets did not change together; the first (8ad, `55`: −4.7 cold,
-−5.5 / +7.0 at the end) moved back towards −6 %, and with the scatter
-by load and the idle unmoved the owner settled H21 against on it
-(`refuted.md` C31). The rings' before is that drive's −5.5 / +7.0 and
-the cold read of 8ab's step 1.
-
 **S12's hopping at a light pedal by the clock** (`open.md` S12 and
 *Off idle*, F): off idle the scatter from stroke to stroke is the same
 on all four and largest at a light pedal, so a time when it is felt
@@ -630,46 +586,37 @@ seat at its tightest; the engine cools while the intake comes off as
 it is, and a film on a seat may not last that either — a tight 3 there
 still clears nothing, a leaking one names it.
 
-**8ab's supply readings** (2c; `open.md` H22, S25): the ECU sets each
-injector's opening delay by the voltage it sees on its own pins, while
-the injectors are fed from J17 through fuse 32; on 15/11 main beam took
-0.07 V off the battery and 0.54–0.63 V off 004. **004 lower than fuse
-32 by tenths of a volt** is H22's premise measured, and larger with
-the loads it grows as H22 needs; 004 and fuse 32 together is H22 not
-standing. The battery's post against fuses 10 and 29 gives the
-positive side's loss as far as the fuses, and 8ab's earth readings
-the negative side's — together where 004's missing half volt goes.
-Measured at the pads, nothing back-probed; fuse 32's two pads differ
-by the fuse's own drop. The wire from fuse 32 to the injectors and T3
-are left out: at the injectors' current they lose hundredths
-(*reasoned*). Unplugging an injector to reach its contact 1 is not
-done: the engine on three, a stored code, and clearing it resets 032.
-**2c measured 27/11 evening** (`idle-log.md`; `open.md` S25, H22):
-fuses 10 and 29 0.3–0.4 V under fuse 32 with every consumer on, the
-lights the most of it; 004 0.2–0.3 V under fuses 10 and 29 then
-against 0.16–0.20 with a seat heater only — **the gap grew by about
-0.1 V, under the rule's 0.2, so by the rule the earth's points are not
-needed**; the loss is ahead of the ECU's fuses, in a feed they share
-with the lights. Whether 8ab ends here, and what is done about that
-feed, is the owner's to decide.
-**Why 2c can stand in for the earth's points** (*the owner's
-reasoning*, 27/11, checked): 004 is the voltage between the ECU's own
-supply pin and its own earth pin; fuses 10 and 29 against the
-battery's minus are the supply as far as the fuses. **The gap between
-them is the loss from the fuses to the ECU's supply pin (the wire, and
-J271 if it sits after the fuses — the diagram not read) plus the whole
-earth side** (the ECU's earth pin, its rings, the stud, the body, the
-battery's strap), under the engine's own running current. A small gap
-clears both; a large one says one of them and not which — then the
-earth's points (2) tell the earth's share, and the rest is the
-positive wire after the fuses. **The 0.2 V is a decision** (*Claude*,
-27/11): 004 moves in steps of about 0.07 V and is read beside the
-multimeter, not at the same instant, and the ECU's own measuring
-accuracy is not published; the change of the gap with the loads is
-the firmer reading, since an offset of 004's own cancels in it. What
-2c cannot see: a bad crimp on the ring that carries little current
-(the reference earth, if one of the two is), whose drop is small
-because its current is (*reasoned*).
+**8af, the supply branch** (`open.md` S25, H22; `idle-log.md`, 27/11
+evening). **8ab ended on 27/11 with its 2c**: by its rule (004 more
+than 0.2 V under fuses 10 and 29, or the gap growing 0.2 V with the
+loads) the earth point needed no dashboard off, and nothing was reset;
+its rings and their reasoning — the three points, why the engine runs,
+the two forms by which an earth enters 032's idle cell — are in
+`git show 083fdc9:docs/engine-health/plan.md`, *8ab*. **What 2c found**:
+with every consumer on, fuses 10 and 29 (the ECU's) 0.3–0.4 V under
+fuse 32 (the injectors', from J17), the lights the most of it; 004
+about 0.5 V under fuse 32 against about 0.1 V with a seat heater only.
+**The fuse holder on the battery is not it**: 20–40 mV from the
+battery's post to every output, under full load (*the owner*, 27/11).
+So the loss lies after the holder, in a feed the ECU's fuses share
+with the lights and fuse 32 does not — the cable to the central
+electrics and its contact there, the X-contact relief relay J59 that
+feeds the light switch (a forum report), or the ignition switch
+(*reasoned*; the wiring diagram not read). **The map** names which:
+fuses that sag with 10 and 29 share their feed (fuse 12 stands for the
+constant supply, 25 and 26 for the X-contact's loads, 20 and 21 for
+the light switch's output, *as the card lists them*). **The earth**
+enters only between the fuses and 004, 0.1–0.2 V under full load once
+004's own offset (0.09–0.11 V with the ignition on) is taken off, and
+grew by about 0.1 V with the loads; the lights' current returns through
+the body and the battery's strap, which the ECU's earth shares, so the
+body's own reading (2) comes before the dashboard. **The owner expects
+the engine bay's earths to be bad** (no undertray for ten years). **Not
+ohms**: a meter's ohm range on a connected car reads through every load
+and its capacitors (27/11: 23 Ω and a reading creeping up from zero,
+where a starter's current through 23 Ω would leave nothing to turn it);
+a bad joint is milliohms, below a multimeter, so it is read as a drop
+under current.
 
 **8q, the timing belt at a garage, 7/12** (*the owner's decision*, 13/11,
 after 8i): 8i read the cam's OT mark set and the crank pulley's one
@@ -911,73 +858,6 @@ past the valve-stem seals leaves an oily deposit on the firing end,
 and a wet or sooty plug on 3 alone would point at 3's charge (list
 B); the photograph because the plugs go in the bin.
 
-**8ab, measured first** (*the owner*, 26/11 night): the rings are
-renewed only on a bad reading. **Why the engine must run for part of
-it** (*reasoned*): the drop across a crimp is its resistance times the
-current through it; with the ignition on and the engine off only the
-ECU's own small current flows through its earth, so a poor crimp shows
-little, while running the injectors' current returns through it too.
-The lights and the blower return through the body's earths, not through
-these rings, so they raise the battery-to-body drop (the bare metal's
-reading) and not the crimp's own — hence each crimp is read **less the
-bare metal beside it**. **Three points, not two** (*the owner's
-question*, 26/11 night): the barrel is the ring's own metal, so a lead
-on it reads the body's path and the ring's seat on the bolt but not
-the barrel's grip on the strands, which is the suspect; the copper
-just behind the barrel adds that. **The two rings cannot be told apart
-this way** (*the owner's point*, the same night): on one bolt they
-share the body's path, and sound crimps add too little for the
-current through each to show, so which brown wire is the power earth
-stays unknown (a DC clamp meter on each wire with the engine running
-would tell, or the thicker wire, *general*). **Why sound rings stay**: the spare rings are
-insulated crimp rings with a smaller outer diameter, so less area under
-the bolt's flange, and a renewal would also unplug the ECU and reset
-032, which is what made 8aa's −1.6 hard to read.
-
-**8ab, every drive's 032 after it** (*the owner's objection*, 26/11
-evening; `refuted.md` C27, *26/11 evening*): 8aa's −1.6 lay below every
-other first drive after a reset, and went back to −6.3 somewhere in
-25/11's three drives, none of them read. The rings take the ECU's
-connectors off, so the reset comes with them again; the relearn drive
-is made like 8aa's so that its first reading compares with −1.6, and
-**the drives after it are each read**, so that a cell that goes back is
-caught at the drive it goes back on: near −2 % for days revives C27's
-crimp form; back to −5 % or deeper within a day, as after 8aa, is the
-first drive's partial learning (or a contact that does not hold).
-
-**8ab, the earth on new rings** (*the owner*, 25/11): on
-the brushed crimps the relearn drive of 24–25/11 night (`idle-log.md`) put 032's idle cell at −2.3, then −1.6 % — nearer
-zero than any reading since 8/2026, on the same tank and cleaner as
-22/11's −4.7 (`open.md` S19; `refuted.md` C27). One drive cannot tell the
-earth from the reset itself, and the crimps were only brushed, with bits
-left under the strands. New rings crimped on bright copper take the
-crimps out of the question. **The reading**: if the idle cell settles
-near −2 % over the drives after it, the earth was part of the cell and
-C27's crimp form is revived; back at −5 % or deeper, it was the reset.
-**The voltage drop** (*the owner*, 25/11) reads the crimps under
-current and settles faster than 032's drive-to-drive spread (the cell
-has moved three and four VCDS steps between drives before). The
-idle cell is additive, a fixed amount of fuel, so an electrical cause
-would be an offset on the meter's signal or an error in the injectors'
-dead time, not the probes (*reasoned*). Two forms (*reasoned*, the
-pin assignment of the two brown wires not known here): (a) a contact
-in the ECU's connector on the meter's ground, which carries the meter's
-own current and lifts its signal — the meter over-reads, the cell takes
-fuel away; the connectors were sprayed on 24/11, and C27's 0.2–0.5 Ω
-were measured without current; (b) a difference between the two brown
-wires, if one is the injectors' power earth and the other the
-electronics' reference: a worse reference earth makes the ECU read a
-lower supply, lengthen the dead-time compensation and add fuel, which
-the cell takes back; a worse power earth gives the opposite sign.
-**The reading**: tens of millivolts on each ring is a sound earth;
-hundreds on one ring and not the other is (b) and revives C27 at once;
-the bare metal beside the bolt against the rings tells the bolt's
-contact from the crimps'.
-Not soldered: a soldered ring stiffens the wire where it vibrates
-(*general*, as `idle-log.md` 24/11). The idle itself is not expected to
-move with it: 3's swells came as before on the brushed earth
-(`open.md` S1), and C26 measured no shared earth under them.
-
 **8ae, the air mass meter's plug** (*the owner*, 26/11): the meter's
 renewal on 24/9 is one of the two repairs that ever moved the idle
 (`open.md` S1), and its plug was found with its contact lock broken and
@@ -987,9 +867,9 @@ contact resistance under the meter's own current, which C27's plug form
 needs, is not excluded. **A renewed plug takes it out.** What it can
 move is 032's idle cell (S19) — an offset on the meter's signal reads
 as more air at idle's small flow — not cylinder 3 (*reasoned*: one
-meter for all four). **Kept apart from 8ab**: with the battery and the
+meter for all four). **Kept apart from other changes**: with the battery and the
 ECU connected the adaptations are not reset, so a step in 032 after it
-is the plug's, against the 032 read before it (8ab's days of it if its rings were renewed). **One wire at a
+is the plug's, against the 032 read before it. **One wire at a
 time** so that no two pins swap; the meter's pins are gold-plated, so
 the new terminals' plating is recorded — on the rear probe's old socket the
 gold-coloured contacts were clean and the tin-coloured ones corroded

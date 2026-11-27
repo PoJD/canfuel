@@ -2362,4 +2362,9 @@ repeated readings put 29 nearer 10 and then under it — when it changed
 is not known, and the first may have had the fuses mixed up; the later
 readings are the ones he is sure of (*owner*). 8ab's rule (`plan.md`) asked for the
 earth point only if 004 fell more than 0.2 V short of fuses 10 and 29
-or the gap grew by 0.2 V; it grew by about 0.1 V.
+or the gap grew by 0.2 V; it grew by about 0.1 V. **8ab ended there**, nothing
+reset. **Later the same evening** (*the owner*): the fuse holder on the
+battery read with every consumer on, the black lead on the battery's
+plus — **20–40 mV to each of its five outputs**, so the 0.3–0.4 V lies
+after it; photographed (the album 22:25–22:29: copper strands splayed
+out of every ring's crimp, rust on the lower nuts; `open.md` S25).

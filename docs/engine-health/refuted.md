@@ -1147,6 +1147,12 @@ either of which may have held for a few hours of heat and vibration.
 **Where it went back is not known**: 032 was not read on 25/11's three
 drives. Hence 8ab reads 032 after every drive for a few days, not
 after two (`plan.md` 8ab).
+**27/11 evening** (8ab's 2c, `idle-log.md`; `open.md` S25, H22): the
+rings were not renewed — under current, 004 stood only 0.1–0.2 V under
+the ECU's fuses with every consumer on, the gap growing about 0.1 V
+with the loads, under 8ab's 0.2 V rule; the earth point by the ECU was
+left untouched and nothing reset (`plan.md` 8af keeps it, behind the
+body's own reading). C27 as it was; what would revive it stands.
 
 ### C28. "A small unmetered air leak at runner 3 — the lower manifold's gasket — makes cylinder 3's floor" (`open.md` H3) — replaced
 

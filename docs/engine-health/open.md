@@ -144,7 +144,9 @@ owner*).
 tooth out, H8 the throttle and idle control, H11 both probes, H7 the
 rail's pressure, H2 a leak ahead of the converter, H18 the stem seals,
 **H22 the ECU's supply below the injectors'** (added last 27/11, *agreed
-with the owner*: S19 and S25, not the roughness) (H21, the probes' wiring and sockets, out 26/11, `refuted.md` C31,
+with the owner*: S19 and S25, not the roughness); **re-read 27/11 evening with the
+supply's readings, at the owner's request: no change** — H22's premise
+measured, its weight on S19 small (H21, the probes' wiring and sockets, out 26/11, `refuted.md` C31,
 *the owner's decision*). **18/11**: every cylinder has a
 floor of its own (3 −9.7, 4 −4.4, 1 +1.6, 2 +2.8 % against 1, 2 and 4),
 only 3 swells; kept as A and B, not split (*agreed with the owner*).
@@ -213,15 +215,15 @@ hopping at a light pedal with the pedal at the edge of its rest (S12).
 owner's decision*, 26/11): the sockets moved neither the idle nor the
 scatter by load, and 032 went back towards −6 % on the one drive; the
 second drive of 032 agreed before is not waited for. H11 is read again
-after 8e's new rear probe (*the owner*). **Next** (`plan.md`): **8ab**, first the supply against fuses
-10, 29 and 32 with VCDS 004 (2c, H22), the earth point by the ECU
-measured only if 004 falls short of the fuses (the dashboard's top off;
-*the owner*, 27/11), its rings renewed only if found bad, then with 032
-over the drives after it (8f) (*the owner*, 26/11 night); then **8ae**, the air mass meter's plug renewed (the parts
+after 8e's new rear probe (*the owner*). **8ab ended 27/11** with the supply read against the fuses (its 2c;
+S25, H22): the earth point by the ECU not needed by its rule, nothing
+reset. **Next** (`plan.md`): **8ae**, the air mass meter's plug renewed (the parts
 ordered 26/11, about 1/12; the battery and the ECU left connected, so
 032 is not reset), with 032 over the days after it; then **8e**'s new rear probe when it comes (*the owner*, 24/11:
 the warranty for the failed one refused, the same part bought
-elsewhere, expected 26/11, not come by 27/11, now expected 28/11); then **8q**, the timing belt and water pump at a
+elsewhere, expected 26/11, not come by 27/11, now expected 28/11); **8af**, the ECU's supply
+branch mapped at the fuse panel and the body's earth read, another day
+(*the owner*, 27/11); then **8q**, the timing belt and water pump at a
 garage on **7/12**, the old marks read first, `54`'s stop the one it is
 set against; **the alternator refurbished the same visit** (the
 charging measured before and after; so the belt's before-and-after
@@ -2543,7 +2545,7 @@ battery being discharged: the alternator does not keep up at idle
   battery by 0.07 V — most of a load's step is lost between the battery
   and the consumers, not at the alternator.
 
-**27/11 evening, measured** (`plan.md` 8ab 2c; `idle-log.md`, 27/11
+**27/11 evening, measured** (`plan.md` 8af; `idle-log.md`, 27/11
 evening; parked, coolant 2 °C at the start): **ignition on**, a seat
 heater on, the battery 11.87 V (about 12.07 without the seat heater,
 *owner*) — **low for a battery at rest**, which is 12.6–12.7 V full
@@ -2587,7 +2589,26 @@ battery's voltage, and lower than any load was ever measured at. The
 alternator is most likely the original of 1999 (`vehicle-history.md`).
 **It bears on the idle weakly**: the idle is calmer with the loads on,
 at a lower coil supply (H4), and the same supply feeds all four
-cylinders, so it does not pick 3. **Test**: `plan.md` 8q — the charging
+cylinders, so it does not pick 3. **The fuse holder on the battery is
+sound** (27/11, *the owner*, every consumer on): 20–40 mV from the
+battery's post to each of its five outputs (the most, 40 mV at a
+cable's crimp and 35 at its bolt below, on the output that read oddly
+on the meter's ohm range; the rest 20–25 mV) — the 0.3–0.4 V is after
+it. **Its photographs** (the album 27/11 22:25–22:29, read by Claude):
+the main cable taped at the battery's clamp, then a grey sleeve into
+the holder; in the holder five bolted strip-fuse outputs, the first a
+cable sleeved in black heat-shrink, four red; **copper strands showing
+splayed out of every ring's crimp**, the copper brown to bright, not
+green; the nuts dull, **rust on the lower row**, most on the fourth;
+three green 30 A blade fuses beside them (the ones renewed for the ABS
+fault, *owner*); the holder marked `1C0 937 549 A`, a cover
+`1C0 972 545 C`. **The ohm readings of 27/11** (23 Ω from the battery's
+plus to the outputs, creeping up from zero; 2.3 Ω between two outputs)
+are the meter reading through the car's loads on a connected battery,
+not the cables (`plan.md` 8af). **The owner means to renew** the
+holder, the main positive cable and the cable to the alternator (the
+date not set). **Tests**: `plan.md` 8af — the fuse panel mapped; and
+8q — the charging
 measured before the garage and after the refurbished alternator, with
 every consumer usually on at once and the MFD read beside the
 multimeter.
@@ -4049,7 +4070,7 @@ so a load would widen the gap and enrich more (*reasoned*).
   is *not known* (the manual and the flash images not read for it);
   the gap at the injectors themselves never measured; H7's pressure
   and H11's probes explain S19 as well.
-- **27/11 evening, 8ab 2c measured** (`idle-log.md`; S25): with the
+- **27/11 evening, measured** (8ab's 2c, `idle-log.md`; S25): with the
   ignition on and no current, 004 0.09–0.11 V under fuses 10 and 29 —
   taken as 004's own offset; **running with a seat heater only, 004
   0.18 V under fuse 32, about 0.1 V once the offset is taken off;
@@ -4065,10 +4086,24 @@ so a load would widen the gap and enrich more (*reasoned*).
   of a few milliseconds, so a few per cent at most at idle with the
   lights on (*reasoned*), the sign of 032's idle cell; and the lights
   are on in every everyday drive.
-- **Tests:** `plan.md` 8ab 2c — 004 beside fuse 32's pads (and 10 and
-  29's, and the battery's post), warm at idle, with no load, main beam
-  and every consumer on. 004 lower than fuse 32 by tenths, growing with
-  the loads, is the premise; equal, H22 falls.
+- **What the gap does to the mixture, read on 15/11's logs** (27/11,
+  *an ad-hoc script, not kept*; `vcds-step8h-loads1*-004-033-036.csv`,
+  the loads switched one at a time, 004 from 12.67 to 13.38 V at idle):
+  033's lambda controller against 004, ten-sample means — **+0.4 to
+  +0.7 % per volt, r 0.17–0.20**: lower 004, a controller taking fuel
+  away, H22's sign, but weak, and **small** — for a gap of about
+  0.5 V, half a per cent or less, against an idle cell of −6 to −9 %
+  (*measured*, one evening; the controller follows every load's air as
+  well). So **H22 explains at most a small part of S19**.
+- **Not the common part** (*reasoned*, 27/11 at the owner's question):
+  the gap is a slow offset — it moves with the loads over seconds and
+  stayed within hundredths in each state — so it shifts the mean
+  mixture, which the loop and 032 take back, and gives no stroke-to-
+  stroke scatter on all four, which is what the common part is.
+- **Tests:** `plan.md` 8af — the branch the ECU's fuses share with the
+  lights found; 2c's readings taken again after the fuse holder and the
+  cables are renewed (the owner's intention) or the branch mended: the
+  gap's closing against 032's idle cell over the drives after it.
 
 ## Naming the cylinder
 
@@ -4945,7 +4980,7 @@ list C for 3's floor apart from its swell — the floor reads as A's in
 | A5 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it (shared with H16 until 17/11, `refuted.md` C30). Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; **17/11**: nor a return restriction, which would pull both cells negative (S19, *re-reckoned*); the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
 | A6 | **H2** a leak ahead of the converter | Widened 10/11 to the zone between the probes (the joint, the flex, the plugged boss), which gives a lean rear probe at idle but not 032 or the dips; S2, S11 and S14's air; **27/11** S17's knock on the exhaust, the flex behind the manifold suspected (*owner*; weak, a rattle is not a leak). Against: the cold tailpipe and smoke tests found nothing; the visible manifold has no soot and no holes (31/10); 032's idle cell takes fuel away, where air ahead of the front probe would add it; the front loop holds through 3's swell; the rear probe's sinking was the old probe's; cannot pick a cylinder. Untested: a crack open only hot, the part under the heat shield | none planned (the warm tailpipe test dropped 15/11, *the owner*) |
 | A7 | **H18** oil past the stem seals | All four alike: worse after idling, calm after a working drive; for one valve it is the swell's second reading (list B's matter, S1, *The swell's shape*). **For, 17/11**: a brown liquid stood round the backs of inlet valves 2, 3 and 4 with the manifold off, there before the wash (*owner*) — the first direct sight of oil at the valves, though the old joint left the same and it does not pick 3; **17/11 (`54`)**: the joint new and the swell as before, so the joint's oil was not it (`refuted.md` C28). Against: it does not grow with the time into a stop; **no blue smoke ever**, the plugs dry; **17/11**: 3 no worse in the first seconds after a coast-down, the deepest vacuum | the oil level on the fresh oil (`plan.md` 6i); the plugs at the next change (8v) |
-| A8 | **H22** the ECU's supply below the injectors' | Not the common part's roughness: S19's idle cell and S25 — a fixed over-allowed opening delay where the ECU sees less voltage than the injectors get (*reasoned*; the dead-time mechanism, HP Academy, SAE 2025-36-0174); 004 0.4–0.5 V under the battery with no load, 0.54–0.63 V more with main beam. Against: all four alike, not 3; whether M5.9.2 corrects from its supply pins not known. Added last, *agreed with the owner*, 27/11 | `plan.md` 8ab 2c: 004 against fuse 32's pads, three loads |
+| A8 | **H22** the ECU's supply below the injectors' | **Measured 27/11**: 004 about 0.5 V under fuse 32 with every consumer on, 0.1 V with a seat heater only; 033's controller only +0.4 to +0.7 % per volt on 15/11's logs, so a small part of S19 at most; a slow offset, not the common part's roughness. Not the common part: S19's idle cell and S25 — a fixed over-allowed opening delay where the ECU sees less voltage than the injectors get (*reasoned*; the dead-time mechanism, HP Academy, SAE 2025-36-0174); 004 0.4–0.5 V under the battery with no load, 0.54–0.63 V more with main beam. Against: all four alike, not 3; whether M5.9.2 corrects from its supply pins not known. Added last, *agreed with the owner*, 27/11 | `plan.md` 8af: the shared branch found and mended, then 2c again against 032's idle cell |
 
 **More than one at once** (*the owner's point*, 12/10): each repair may help
 only in part; a partial improvement is read as a share, not a miss.
