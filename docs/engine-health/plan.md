@@ -229,6 +229,11 @@ the multimeter's black lead **on the battery's plus post**:
    diagnostic socket, no USBtin, the laptop on its own battery, nothing
    else in its USB ports. **Never 1ACH straight on a fuse against the
    battery's minus**: 12–14 V is past its ±10 V.
+   **A 10 kΩ resistor in each lead**, at the clip or pin end, its legs
+   sleeved; the fuse reached by a pin pushed into its test slot and
+   taped, **never a wire pushed into the fuse's socket** (it spreads the
+   panel's contact); GND may be the owner's clamp on the battery's
+   plus post.
 **The owner's intention** (27/11, the date not set): the fuse holder on
 the battery (`1C0 937 549 A`), the main positive cable from the
 battery and the cable to the alternator renewed; 2c's readings (004
@@ -634,7 +639,13 @@ and a joint's chatter. GND on the positive side puts the laptop's
 ground at +12 V, hence nothing else on the laptop: VCDS's and the
 USBtin's cables join the laptop's ground to the car's minus, which
 would short the battery through the laptop (*general*). The input's
-absolute limit is not documented, so it is not tried.
+absolute limit is not documented, so it is not tried. **The resistors** (*reasoned*): both leads sit
+on the positive side with no fuse before them, so a bare end on the
+body would put the battery's current through a Dupont wire; 10 kΩ
+holds that to about 1.4 mA, and with the laptop floating almost no
+current flows in either lead, so against an input of perhaps 1 MΩ
+(*not documented*) they cost about a per cent of a 0.3 V difference,
+a few millivolts against a step of 78.
 
 **8q, the timing belt at a garage, 7/12** (*the owner's decision*, 13/11,
 after 8i): 8i read the cam's OT mark set and the crank pulley's one
