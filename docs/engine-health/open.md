@@ -109,7 +109,7 @@ cylinder*):
   the back at a warm idle (not the lower joint, 17/11; perhaps the
   throttle's own air), S14 bangs
   on an unblipped downshift and on engine braking, loudest downhill in
-  2nd, at a slow steady rhythm well into the fuel cut (27/11; the
+  2nd, at a slow steady rhythm, about 1.5 Hz, well into the fuel cut (27/11; the
   owner's to watch).
 - **The cylinder 4 knock window**: S4 knock retard on 4 (2 beside it
   near the limiter), S5 4 high in 026 in neutral — its tests in
@@ -2157,8 +2157,9 @@ precise** (*owner*): **on engine braking as well, loudest in 2nd and
 loudest downhill** — downhill every time, on the flat not on every
 overrun; **lasting well beyond the 1–2 s the ECU still injects for**;
 **at a steady rhythm, at least twice slower than S22's tick at idle**
-(once per engine cycle, about 6–7 Hz at 800 rpm), so about 3 Hz or
-less; **somewhat different from S2's puff at idle**; and in his own
+(once per engine cycle, about 6–7 Hz at 800 rpm) — **about three
+puffs in two seconds, about 1.5 Hz** (*owner*, the same day: his guess
+from memory, not measured); **somewhat different from S2's puff at idle**; and in his own
 reading perhaps the same thing as S17's resonance at a lower
 frequency, which the ear cannot tell. **What the bus says about it**
 (`coastscan.py` on `50`–`55`, 27/11): on an overrun in gear the
@@ -2168,7 +2169,7 @@ falls to about 1,400–1,750 rpm — 9–11 s without fuel on the longest
 what sounds after the first second or so is not commanded fuel burning
 — fuel there could only be an injector that does not seal (the reading
 `refuted.md` C1 once made of the old injectors; the new ones' circuits
-measured sound, 6m) — and a steady rhythm of about 3 Hz or less, with
+measured sound, 6m) — and a steady rhythm of about 1.5 Hz, with
 the engine at 2,000–3,000 rpm (a cycle rate of 17–25 Hz), does not
 follow the engine's cycle: a part with a period of its own, which
 fits a mechanical sound better than a burn — on the overrun the
