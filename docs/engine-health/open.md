@@ -4091,15 +4091,35 @@ so a load would widen the gap and enrich more (*reasoned*).
   the loads switched one at a time, 004 from 12.67 to 13.38 V at idle):
   033's lambda controller against 004, ten-sample means — **+0.4 to
   +0.7 % per volt, r 0.17–0.20**: lower 004, a controller taking fuel
-  away, H22's sign, but weak, and **small** — for a gap of about
-  0.5 V, half a per cent or less, against an idle cell of −6 to −9 %
-  (*measured*, one evening; the controller follows every load's air as
-  well). So **H22 explains at most a small part of S19**.
-- **Not the common part** (*reasoned*, 27/11 at the owner's question):
-  the gap is a slow offset — it moves with the loads over seconds and
-  stayed within hundredths in each state — so it shifts the mean
-  mixture, which the loop and 032 take back, and gives no stroke-to-
-  stroke scatter on all four, which is what the common part is.
+  away, H22's sign, but weak. *This said "small — half a per cent or
+  less for a 0.5 V gap — so H22 explains at most a small part of S19"
+  until the owner's objection the same evening*, which holds: the logs
+  were not made for it — the regression is against 004's level, not
+  against the gap, which was not measured then and is only part of
+  004's change; each load also changes the air and the idle control,
+  which the controller follows too; and an effect of the size the
+  mechanism predicts sits inside that scatter. **Not shown either
+  way.** The size from the mechanism (*general*, not this injector's
+  figures): an injector's opening delay changes by roughly a tenth of a
+  millisecond per volt near 12–14 V, so a 0.5 V gap over-allows some
+  tens of microseconds — **about 1–3 % of an idle pulse of a few
+  milliseconds**, against an idle cell of −6 to −9 % (*reasoned*).
+  Whether M5.9.2 corrects the delay from its supply pin at all, and how
+  much it filters that reading, is *not known* (its flash images not
+  read for it).
+- **The common part** (27/11, *the owner's question*): a poor joint
+  need not be steady — **a flicker faster than a multimeter or VCDS
+  shows** (both average over a fraction of a second or more) would
+  vary each pulse's fuel on all four, which is the common part's form
+  (*the owner's reasoning*, not excluded). **Against** (*reasoned*):
+  the gap is largest with every load on, and **the idle is calmest with
+  the loads on** (S1, *Load smooths it*), where a flickering joint
+  carrying more current would make it rougher; and an ECU usually
+  filters its supply reading (*general*, not known for M5.9.2), so a
+  flicker in what it sees would mostly be averaged away — a flicker on
+  the injectors' own feed (fuse 32) would act directly, but that feed
+  read steady and near the battery. Measurable only fast: the
+  analyser across the drop itself (8-bit, about 0.08 V a step, coarse).
 - **Tests:** `plan.md` 8af — the branch the ECU's fuses share with the
   lights found; 2c's readings taken again after the fuse holder and the
   cables are renewed (the owner's intention) or the branch mended: the
@@ -4980,7 +5000,7 @@ list C for 3's floor apart from its swell — the floor reads as A's in
 | A5 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it (shared with H16 until 17/11, `refuted.md` C30). Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; **17/11**: nor a return restriction, which would pull both cells negative (S19, *re-reckoned*); the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
 | A6 | **H2** a leak ahead of the converter | Widened 10/11 to the zone between the probes (the joint, the flex, the plugged boss), which gives a lean rear probe at idle but not 032 or the dips; S2, S11 and S14's air; **27/11** S17's knock on the exhaust, the flex behind the manifold suspected (*owner*; weak, a rattle is not a leak). Against: the cold tailpipe and smoke tests found nothing; the visible manifold has no soot and no holes (31/10); 032's idle cell takes fuel away, where air ahead of the front probe would add it; the front loop holds through 3's swell; the rear probe's sinking was the old probe's; cannot pick a cylinder. Untested: a crack open only hot, the part under the heat shield | none planned (the warm tailpipe test dropped 15/11, *the owner*) |
 | A7 | **H18** oil past the stem seals | All four alike: worse after idling, calm after a working drive; for one valve it is the swell's second reading (list B's matter, S1, *The swell's shape*). **For, 17/11**: a brown liquid stood round the backs of inlet valves 2, 3 and 4 with the manifold off, there before the wash (*owner*) — the first direct sight of oil at the valves, though the old joint left the same and it does not pick 3; **17/11 (`54`)**: the joint new and the swell as before, so the joint's oil was not it (`refuted.md` C28). Against: it does not grow with the time into a stop; **no blue smoke ever**, the plugs dry; **17/11**: 3 no worse in the first seconds after a coast-down, the deepest vacuum | the oil level on the fresh oil (`plan.md` 6i); the plugs at the next change (8v) |
-| A8 | **H22** the ECU's supply below the injectors' | **Measured 27/11**: 004 about 0.5 V under fuse 32 with every consumer on, 0.1 V with a seat heater only; 033's controller only +0.4 to +0.7 % per volt on 15/11's logs, so a small part of S19 at most; a slow offset, not the common part's roughness. Not the common part: S19's idle cell and S25 — a fixed over-allowed opening delay where the ECU sees less voltage than the injectors get (*reasoned*; the dead-time mechanism, HP Academy, SAE 2025-36-0174); 004 0.4–0.5 V under the battery with no load, 0.54–0.63 V more with main beam. Against: all four alike, not 3; whether M5.9.2 corrects from its supply pins not known. Added last, *agreed with the owner*, 27/11 | `plan.md` 8af: the shared branch found and mended, then 2c again against 032's idle cell |
+| A8 | **H22** the ECU's supply below the injectors' | **Measured 27/11**: 004 about 0.5 V under fuse 32 with every consumer on, 0.1 V with a seat heater only; the mechanism's size about 1–3 % of an idle pulse (*reasoned*), 15/11's logs not able to show it either way; the common part only through a fast flicker, against it the idle calmest with the loads on. Not the common part: S19's idle cell and S25 — a fixed over-allowed opening delay where the ECU sees less voltage than the injectors get (*reasoned*; the dead-time mechanism, HP Academy, SAE 2025-36-0174); 004 0.4–0.5 V under the battery with no load, 0.54–0.63 V more with main beam. Against: all four alike, not 3; whether M5.9.2 corrects from its supply pins not known. Added last, *agreed with the owner*, 27/11 | `plan.md` 8af: the shared branch found and mended, then 2c again against 032's idle cell |
 
 **More than one at once** (*the owner's point*, 12/10): each repair may help
 only in part; a partial improvement is read as a share, not a miss.
