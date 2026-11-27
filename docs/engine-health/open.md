@@ -108,7 +108,9 @@ cylinder*):
   misfire's charge, seen once on the tailpipe recording), S11 a hiss at
   the back at a warm idle (not the lower joint, 17/11; perhaps the
   throttle's own air), S14 bangs
-  on an unblipped downshift (the owner's to watch).
+  on an unblipped downshift and on engine braking, loudest downhill in
+  2nd, at a slow steady rhythm well into the fuel cut (27/11; the
+  owner's to watch).
 - **The cylinder 4 knock window**: S4 knock retard on 4 (2 beside it
   near the limiter), S5 4 high in 026 in neutral — its tests in
   `plan.md` 8w since 15/11 (*the owner*; out of the plan from 9/10).
@@ -2150,7 +2152,37 @@ bangs, 1–2 s after the clutch comes up; with a blip almost never; warm. Gone
 9–14/10, **back on 15/10, quieter** (*owner*), with the joint behind the
 converter tight — so that joint fed or carried it at most. **28/10**:
 on every downshift without a blip, **no more often than before, only more
-muffled since the joint was sealed** (*owner*). Read as
+muffled since the joint was sealed** (*owner*). **27/11, made
+precise** (*owner*): **on engine braking as well, loudest in 2nd and
+loudest downhill** — downhill every time, on the flat not on every
+overrun; **lasting well beyond the 1–2 s the ECU still injects for**;
+**at a steady rhythm, at least twice slower than S22's tick at idle**
+(once per engine cycle, about 6–7 Hz at 800 rpm), so about 3 Hz or
+less; **somewhat different from S2's puff at idle**; and in his own
+reading perhaps the same thing as S17's resonance at a lower
+frequency, which the ear cannot tell. **What the bus says about it**
+(`coastscan.py` on `50`–`55`, 27/11): on an overrun in gear the
+injectors shut 0.8–1.6 s after the lift and stay shut until the engine
+falls to about 1,400–1,750 rpm — 9–11 s without fuel on the longest
+— so **a downhill in 2nd is fuel-cut nearly throughout**. *Reasoned*:
+what sounds after the first second or so is not commanded fuel burning
+— fuel there could only be an injector that does not seal (the reading
+`refuted.md` C1 once made of the old injectors; the new ones' circuits
+measured sound, 6m) — and a steady rhythm of about 3 Hz or less, with
+the engine at 2,000–3,000 rpm (a cycle rate of 17–25 Hz), does not
+follow the engine's cycle: a part with a period of its own, which
+fits a mechanical sound better than a burn — on the overrun the
+engine's torque reverses and it rocks on its mounts the other way,
+most in a low gear braking steadily downhill, which could press the
+exhaust or the flex against a stop (S17's knock when it is moved by
+hand). The first 1–2 s, still fuelled, may still be the burn read
+below. **What would tell** (no second person needed): the phone
+recording in the cabin, put down, through a downhill in 2nd — the
+rhythm's frequency and whether it moves with the engine speed; the
+clutch pushed in briefly on the same hill, where safe — a sound that
+stops at once with the engine no longer braking is the load, not a
+burn; on a captured drive "teď" at it, against the fuel cut. *Not in
+`plan.md`*: S14 is the owner's to watch (below). The earlier reading
 (*reasoned*): the engine dragged up on a shut throttle is fuelled at its
 thinnest charge; a charge that fails to fire goes out as fuel and air and
 burns when the fuel cut pumps plain air in after it — **a misfire where 014
@@ -2483,7 +2515,8 @@ engine leak, a falling dipstick level is oil burnt, not lost.
 | S1 ↔ load | **strong** | every load on calms it (S1) |
 | S1 ↔ the drive before a warm stop | **medium, 11/11** | four captures of five after high revs (`46` the exception; `49` 12/11), nine after gentle drives: after high revs the stop starts rough on 3 and settles in 5–8 minutes, after a gentle drive it is level or slowly worse (S1, *The rough start of a warm stop*) |
 | S2 ↔ S3 | **likely** | the owner heard the puffs come with the dips (12/10); never aligned |
-| S14 ↔ S2 | **likely one mechanism** (*owner*) | a misfire's charge burning in the exhaust, loud when the fuel cut adds air |
+| S14 ↔ S2 | **likely one mechanism** (*owner*), **in doubt since 27/11** | a misfire's charge burning in the exhaust, loud when the fuel cut adds air; but S14 goes on through the fuel cut at a steady slow rhythm, and the owner hears it somewhat differently from S2 (S14) |
+| S14 ↔ S17 | **possible** (*owner*, 27/11) | both from the exhaust; S14's rhythm, slower than the engine's cycle, could be S17's part at a lower frequency, loudest when the engine brakes downhill in 2nd (S14) |
 | S14 ↔ S3 | **possible** | 014 is blind on the overrun, so it cannot be aligned |
 | S4 ↔ S5 | **very likely one thing** | same window, same speeds; S5 needs no combustion |
 | S4/S5 ↔ S1/S3 | **none measured** | no retard and no 026 signal at idle; 014's misfires sat on 3 and 4 until the VW leads and on 3 since (S3, *What 014 counts, by cylinder*; *this said "all four alike since" until 12/11*), and lead 4's end was the loosest (`refuted.md` C24) |
