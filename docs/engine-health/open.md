@@ -124,9 +124,11 @@ cylinder*):
   at a light pedal (*owner*, 25/11) — off idle the stroke-to-stroke
   scatter is largest there and the same on all four (*Off idle*, F).
 - **S22** a tick once per engine cycle, warm.
-- **Not pursued**: S16 a tick in neutral, cold, clutch up; S17 a
-  resonance at about 2,200 rpm, on the exhaust and still there (*owner*,
-  27/11), placed only as 8w's loose part.
+- **S17** a resonance on the exhaust over a wide band of engine
+  speeds, metal knocking when the exhaust is moved by hand, the flex
+  behind the manifold suspected (*owner*, 27/11; a full symptom since,
+  *the owner's decision*); at his garage some time (8w).
+- **Not pursued**: S16 a tick in neutral, cold, clutch up.
 
 **Ranked** (*The idle's candidates, ranked*; re-ranked 17/11 evening,
 *agreed with the owner*): **B, cylinder 3** — H1 a seat on 3 (its
@@ -2191,10 +2193,22 @@ A/C on, when the idle is calmer (S1)?
 
 ### S17. A new exhaust sound, from a new place
 
+**A full symptom since 27/11** (*the owner's decision*; until then
+"not pursued" and out of the fit tables, as unplaced and bearing on no
+hypothesis about the idle). **27/11** (*owner*): **over a wider band of
+engine speeds**, not one; under the car for the probes' sockets
+(25–26/11) he moved the exhaust by hand and heard **something knock
+metal on metal, as on a stop**, and **suspects the flex pipe right
+behind the manifold** (H2's second zone). To be tested at his garage
+some time, on his own list (`plan.md` 8w): he has no second person for
+the sweep. *Reasoned*: a flex whose inner liner or braid has broken
+rattles in exactly this way and through a band, and one cracked through
+leaks between the probes (H2); a part vibrating near the engine reaches
+G66 through the block (H5).
+
 *Owner*, 15/10: only at about 2200 rpm, **like a resonance**, perhaps the
 remade joint behind the converter, perhaps nearer the engine. A sound tied to
-one engine speed is a part vibrating, not a leak (*general*), so it bears on
-no hypothesis about the idle. Out of the fit tables until placed.
+one engine speed is a part vibrating, not a leak (*general*).
 
 **31/10: taken for the sheet-metal heat shields around the exhaust**
 (*owner*: "that is it"), **and still heard after their new clips** the
@@ -2234,7 +2248,7 @@ the sound, not the gear, would make it one thing.
 **27/11, still there** (*owner*): something resonates at certain
 engine speeds, always, somewhere on the exhaust, and he hears it
 himself; **not the joint he repaired** behind the converter (S6,
-`refuted.md` D1). The band not given this time. **It is the buzzing
+`refuted.md` D1); the band wide (above). **It may be the buzzing
 part 8w looks for** (`plan.md` 8w; S5): a part vibrating in a speed
 band near the engine reaches G66 through the block and is booked to
 whichever cylinder's window it falls in (*reasoned*). S5's excess on
@@ -2477,10 +2491,11 @@ engine leak, a falling dipstick level is oil burnt, not lost.
 | S12 ↔ S3 | **possible** (*reasoned*) | 014 counted seven single misfires on `47`, each in a window holding a moving-off (S12) |
 | S3 on the road ↔ S17, S5 | **possible, one engine-speed band** (6/11) | 014's road episodes at 21–32 % load: 2000–2400 rpm about twice 1600–1800 and 2400–2600 (S17); the bus shows no stroke-to-stroke roughness peak there |
 | S16 ↔ S1 | **untested** (*general*) | a gearbox's rattle in neutral is driven by the crank's unevenness at idle (S16) |
+| S17 ↔ S5 | **possible** (27/11, *reasoned*) | on 26/11 4's excess over 1 in 026 stood out most at 2,000–2,700 rpm, S17's band of 15/10; one log, and S17's band is wide (*owner*, 27/11) |
 | S11 ↔ S1 | **untested** | if the hiss is a leak, H3 or H2; the owner reads it as the throttle's own air |
 
 **Two clusters**: **the idle** (S1, S2, S3, S14) and **the cylinder 4
-window** (S4, S5). S11 sits beside the idle, unplaced; S19 beside
+window** (S4, S5), with S17 perhaps beside it. S11 sits beside the idle, unplaced; S19 beside
 it, the trims. *S23, the new rear probe's
 signal, stood apart until it closed 12/11 (`refuted.md` D13).*
 
@@ -2506,8 +2521,12 @@ rough start of a warm stop after a hot drive, cylinder 3's and settled
 in 5–8 minutes (S1, *The rough start of a warm stop*) — ✔ where a fault
 worst hot on 3 fits it (H1's exhaust seat, H13's flake), ✘ where the
 hypothesis expects the drive to calm it at once (H18).
+**S17** (a column since 27/11, *the owner's decision*: the resonance on
+the exhaust made a full symptom) — ✔ for H5, whose loose part it may
+be; ~ for H2, the flex between the probes (a broken inner liner rattles,
+and one cracked through leaks; *reasoned*); — everywhere else.
 Left out: S16 (the gearbox side, shown not to touch
-the idle) and S17 (a resonance, not placed); S24 (G62's reading, a
+the idle); S24 (G62's reading, a
 sensor's own fault no hypothesis here explained) was never a column and
 closed 12/11 (D12); S7 closed on 31/10 (D2)
 and its column went with it; the closed ones are in
@@ -2530,9 +2549,9 @@ and temperature (a fifth more cold): a constant answering to the
 charge alone, as an engine's own scatter does. A fixed fault on all
 four would read the same; no healthy AQY says which.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ✘ | — | ~ | — | ~ | ✘ | ✘ | ~ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ✘ | — | ~ | — | ~ | ✘ | — | ✘ | ~ |
 
 - **Against:** 014 reads 12–120 against VW's 0–5; the old converter burned
   through; the misfires and the steady deficit are 3's (S1, *Every
@@ -2678,9 +2697,9 @@ or debris holds its valve a hair open, which costs compression and misses
 at a small charge and is covered by load — the case this hypothesis is
 about. The valve is closed by its spring; the lifter only removes the gap.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ✔ | ✔ | ~ | ~ | — | ~ | ~ | — | ✔ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ✔ | ✔ | ~ | ~ | — | ~ | ~ | — | — | ✔ |
 
 - **9/11, after the clean** (S1, *The clean of 9/11*; S22): 3's swell
   gone at stop 7 and its floor kept (−8 to −9 %), the swell back a day
@@ -2802,14 +2821,18 @@ At idle the exhaust pulses dip below atmospheric and a crack draws air in.
   air there reaches neither a cylinder nor the front probe, so the fit
   below is the first zone's.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ✔ | ~ | ✘ | ✘ | ✔ | ~ | ✔ | ✘ | ~ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ✔ | ~ | ✘ | ✘ | ✔ | ~ | ✔ | ~ | ✘ | ~ |
 
 - **For:** the puff (S2), the hiss (S11), air for S14's bangs; a 26-year-old
   manifold that has lived through years of misfires; **for the second zone,
   the rear probe sinking towards lean at every idle** (9/11 night, H11),
   and a boss closed by a probe that was never meant as a plug.
+  **27/11** (S17, *owner*): the exhaust knocks metal on metal when moved
+  by hand and resonates over a wide band, the flex behind the manifold
+  suspected — a flex broken inside may also be cracked through
+  (*reasoned*); weak, a rattle is not a leak.
 - **The plugged boss, 10/11 night** (*owner*, the album 22:45–22:47):
   the cut-off old probe in it **would not turn further — tight**; the
   boss's weld on the pipe rusty and lumpy, a darker patch at one edge
@@ -2903,9 +2926,9 @@ plus to the ECU's supply pin and from the battery's minus to the ECU's
 earth, then to the fuse box's input — tenths of a volt on either side
 names the side.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | ~ | ~ | — | ✔ | ~ | ✘ | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | ~ | ~ | — | ✔ | ~ | — | ✘ | — |
 
 - **9/11** (S1, *The clean of 9/11*): 3's floor kept after the clean,
   its swell gone for a day: for 3's own circuit in the floor (its supply side and coil since measured sound, 6m of 17/11; the control wire is 6n's); with
@@ -3051,13 +3074,14 @@ The ECU books anything at cylinder 4's crank angle to cylinder 4: G66, its
 torque or connector; a loose ancillary part buzzing in a speed band; **an arc
 at lead 4's plug end** (`refuted.md` C24). Injector 4's click is settled against (B7).
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| — | — | — | — | ✔ | ✔ | — | — | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| — | — | — | — | ✔ | ✔ | — | — | — | ✔ | — | — |
 
 **Tests** — `plan.md` 8w since 15/11 (*the owner*; not scheduled from
-9/10): G66's torque and connector; a look for a loose bracket at ~3000
-rpm in neutral; after the VW leads, the neutral 026 holds and a 020
+9/10): G66's torque and connector; S17's resonance placed by a slow
+sweep in neutral to about 3,500 rpm, the flex first (at the owner's
+garage some time, 27/11); after the VW leads, the neutral 026 holds and a 020
 drive against `vcds/vcds-step2c-020-026-003.csv`.
 
 ### H6. Knock control relearning after the battery disconnects
@@ -3093,9 +3117,9 @@ neither the loop's regulation nor the injection time, so it is not
 3's fuel. The rail's pressure: the common part is the same after high
 revs as after none and the same on every day, within 5 %.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | — | — | — | ~ | ~ | ✔ | ~ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | — | — | — | ~ | ~ | — | ✔ | ~ |
 
 - **3 the one cylinder throughout, P0303 four times** (S1, *Every
   stroke named*; S3) — one injector in reach by the cylinder; 25/10
@@ -3223,9 +3247,9 @@ cleared the injector form (`refuted.md` C29).
 
 ### H8. Idle air control and the throttle body
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | — | ~ | — | — | — | ✔ | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | — | ~ | — | — | — | ✔ | — | — | — | — |
 
 **Against, the swell** (15/11, S1, *8h's plain idle and its loads*):
 the idle regulator (055 field 2) holds through cylinder 3's swells and
@@ -3334,9 +3358,9 @@ that it is not argued again.* *Condensed 17/11*; every reading, the five
 marks, the relearn drive minute by minute and the four calm minutes of
 10/11 are in `git show 5e1ddf2:docs/engine-health/open.md`, this heading.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ~ | ~ | — | — | — | ~ | ~ | ~ | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | ~ | ~ | — | — | — | ~ | ~ | — | ~ | — |
 
 **26/11**: the probes' sockets renewed and nothing moved (H21 settled
 against, `refuted.md` C31); **H11 is settled after 8e's new rear
@@ -3390,9 +3414,9 @@ at VCDS sessions (`plan.md` 8f). Ranked A5.
 
 ### H12. Driveline play read as misfires
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | — | ✘ | ~ | ~ | ~ | — | ✔ | ✘ | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | — | ✘ | ~ | ~ | ~ | — | ✔ | ✘ | — | — | — |
 
 **Against:** the MAF swap halved the dips; play repeats every 360°, the pairs
 1+4 and 2+3, while the dips sit on 3 and 4, 180° apart; the puffs come with
@@ -3455,9 +3479,9 @@ the ring soak of Kia/Hyundai's TSB 23-EM-007H.
 3000 rpm for at least nine years (*owner*). Gentle use builds deposits where
 hard use burns them off (*general*).
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ✔ | ✔ | ~ | ✔ | ~ | — | — | ~ | ~ | ~ | ~ |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✔ | ✔ | ~ | ✔ | ~ | — | — | ~ | ~ | — | ~ | ~ |
 
 - **11/11, the second research**: the clean's relief lasted a day
   (`47`), and **no source gives seat deposit forming again in a day** —
@@ -3573,9 +3597,9 @@ EPR flushes and fresh oil, done 26/10).
 original map (`refuted.md` C23, *agreed with the owner*). What is left is
 what the remap did change: the corner of highest load.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ✘ | — | ✘ | ✘ | ~ | ✘ | — | ✘ | ✘ | ~ | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ✘ | — | ✘ | ✘ | ~ | ✘ | — | ✘ | ✘ | — | ~ | — |
 
 **What the remap changed** (the two whole flashes from the tuner, 3/11;
 compared byte for byte, the files not kept here; the tables with every
@@ -3730,9 +3754,9 @@ oil run down the valve guide, and the intake's vacuum, highest at idle,
 draws it into the cylinder, where it costs combustion; under load the
 vacuum falls, the flow stops, and what collected burns away.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ✘ | — | ~ | — | — | — | — | — | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ✘ | — | ~ | — | — | — | — | — | — | — | — |
 
 - **For: the shape of 26/10**, worse after idling and gentle driving,
   calmer after work, the calm lasting — what oil collecting at a small
@@ -3823,9 +3847,9 @@ gasket or a hairline in the head next to 3 enters where the cylinder's
 pressure is lowest, at idle vacuum, and steams the charge — a misfire
 at idle on that cylinder, eased by load, and a plug kept clean.
 
-| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S19 | S22 |
-|---|---|---|---|---|---|---|---|---|---|---|
-| ~ | ~ | ~ | ~ | — | — | — | — | ~ | — | — |
+| S1 | S1s | S2 | S3 | S4 | S5 | S11 | S12 | S14 | S17 | S19 | S22 |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| ~ | ~ | ~ | ~ | — | — | — | — | ~ | — | — | — |
 
 - **For:** one cylinder at idle; load helps (a higher manifold pressure
   draws less in, *reasoned*); **plug 3 the cleanest** of the 10/10 set
@@ -4734,7 +4758,7 @@ list C for 3's floor apart from its swell — the floor reads as A's in
 | A3 | **H8** throttle and idle control | The air and the idle regulation act on all four alike, and S12's wandering speed (S20 until 25/11) dates from this throttle (*owner*). Against: 055's two fields sum to the same correction at every warm idle (27/10), so a reset or the A/C gives no more air; the advance's scatter does not go with the common part (003, 12/11); 014 does not follow 055's learnt value (`refuted.md` C19); the regulator holds through 3's swells on 18 stops (15/11) | no test left for the idle; S12's wandering speed keeps it |
 | A4 | **H11** both probes shifted | What is left is the idle-only form — the front probe reading rich in the idle's cool exhaust, so the true mixture lean; it fits 032's negative idle cell with part load untouched. Against: both probes replaced 10/11 and the idle as rough; on the relearn drive its marks 1, 3, 4 and 5 failed (H11, *The relearn drive*); the rear probe's state never tracked `IdleHealth` | read again after 8e's new rear probe (*the owner*, 26/11, when H21 closed); 036 watched at VCDS sessions (`plan.md` 8f) |
 | A5 | **H7** the rail's pressure | A hot rail after a hot drive fits the time of the rough start, not its one cylinder; S19 fits it (shared with H16 until 17/11, `refuted.md` C30). Against: the regulator answers its reference (`refuted.md` C20); a high base pressure does not fit 032's positive part load; **17/11**: nor a return restriction, which would pull both cells negative (S19, *re-reckoned*); the common part is the same after high revs as after none; never gauged | a rail gauge (`plan.md` 8u): 2.5 bar at idle, 3.0 with the regulator's hose off, 2.0 or more ten minutes after switching off (`vcds.md`) |
-| A6 | **H2** a leak ahead of the converter | Widened 10/11 to the zone between the probes (the joint, the flex, the plugged boss), which gives a lean rear probe at idle but not 032 or the dips; S2, S11 and S14's air. Against: the cold tailpipe and smoke tests found nothing; the visible manifold has no soot and no holes (31/10); 032's idle cell takes fuel away, where air ahead of the front probe would add it; the front loop holds through 3's swell; the rear probe's sinking was the old probe's; cannot pick a cylinder. Untested: a crack open only hot, the part under the heat shield | none planned (the warm tailpipe test dropped 15/11, *the owner*) |
+| A6 | **H2** a leak ahead of the converter | Widened 10/11 to the zone between the probes (the joint, the flex, the plugged boss), which gives a lean rear probe at idle but not 032 or the dips; S2, S11 and S14's air; **27/11** S17's knock on the exhaust, the flex behind the manifold suspected (*owner*; weak, a rattle is not a leak). Against: the cold tailpipe and smoke tests found nothing; the visible manifold has no soot and no holes (31/10); 032's idle cell takes fuel away, where air ahead of the front probe would add it; the front loop holds through 3's swell; the rear probe's sinking was the old probe's; cannot pick a cylinder. Untested: a crack open only hot, the part under the heat shield | none planned (the warm tailpipe test dropped 15/11, *the owner*) |
 | A7 | **H18** oil past the stem seals | All four alike: worse after idling, calm after a working drive; for one valve it is the swell's second reading (list B's matter, S1, *The swell's shape*). **For, 17/11**: a brown liquid stood round the backs of inlet valves 2, 3 and 4 with the manifold off, there before the wash (*owner*) — the first direct sight of oil at the valves, though the old joint left the same and it does not pick 3; **17/11 (`54`)**: the joint new and the swell as before, so the joint's oil was not it (`refuted.md` C28). Against: it does not grow with the time into a stop; **no blue smoke ever**, the plugs dry; **17/11**: 3 no worse in the first seconds after a coast-down, the deepest vacuum | the oil level on the fresh oil (`plan.md` 6i); the plugs at the next change (8v) |
 
 **More than one at once** (*the owner's point*, 12/10): each repair may help

@@ -191,13 +191,15 @@ of this plan, *the owner's decision* of 9/10):
   into, back on until it clicks; the sensor's bolt checked with a
   torque wrench at VW's figure (Claude reads it out of the manual
   first). What was found into the chat.
-- **A loose part in neutral**, warm, the bonnet open: **the
-  resonance the owner already hears on the exhaust** (27/11, not the
-  repaired joint): someone raises the revs slowly from idle to about
-  3,500 rpm and holds them where it sounds, while the other listens
-  and feels along the exhaust from the manifold back — its heat
-  shields, hangers and brackets — then the ancillaries; **the rpm where
-  it is loudest** and the place into the chat.
+- **S17, the resonance on the exhaust — at the owner's garage, some
+  time** (on his own list, 27/11: no second person at home): warm, in
+  neutral, the revs raised slowly from idle to about 3,500 rpm and held
+  where it sounds, while the other listens and feels along the exhaust
+  from the manifold back — **the flex behind the manifold first** (the
+  owner's suspicion), then its heat shields, hangers and brackets, then
+  the ancillaries; on a lift, the flex looked at and the exhaust moved
+  by hand for the knock. What was found and the band where it is
+  loudest into the chat.
 - **4's spells at a warm stop** (*the owner*, 25/11), on the next
   captured drive with a warm stop: a long or brisk drive to a warm
   standing idle of ten minutes or more, **020 logged with 014 through
@@ -907,12 +909,15 @@ it is not knock. G66's bolt because a knock sensor reads by its
 contact with the block and VW gives it a torque. **026 in neutral and
 020 on the pulls were read on 8ad** (26/11, `open.md` S4 and S5): 026
 as before; at the limiter 4 half as often as on 12/11 and 17/11 and 2
-as often as 4. **The loose part is S17's resonance** (*the owner*,
-27/11: always there at certain speeds, somewhere on the exhaust, not
-the joint behind the converter): placing it and its band tells
-whether it is the source of S5's excess, which on 26/11 stood out most
-against 1 at 2,000–2,700 rpm, S17's band. A sweep up to 3,500 rpm
-because the band was given as about 2,200 on 15/10 and not on 27/11.
+as often as 4. **The loose part may be S17's resonance** (*the owner*,
+27/11: always there over a wide band, on the exhaust, not the joint
+behind the converter; metal knocking on metal when he moved the
+exhaust by hand under the car, 25–26/11, the flex behind the manifold
+suspected): placing it tells whether it is the source of S5's excess,
+which on 26/11 stood out most against 1 at 2,000–2,700 rpm, and a
+broken flex would also be H2's second zone (`open.md` S17). A sweep up
+to 3,500 rpm because the band is wide. At a garage because the sweep
+needs a second person and the flex is best seen on a lift.
 
 **8w, 4's spells at a warm stop** (*the owner*, 25/11): four times
 since 22/11 — 22/11 night, 23/11 afternoon, 24–25/11 night, 25/11
