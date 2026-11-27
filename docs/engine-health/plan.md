@@ -230,7 +230,7 @@ nothing taken apart and nothing reset.
    ignition on, the engine off; (b) **the engine running for a minute
    or two at idle**, cold is fine, the garage door open. Photographed.
    The lights and the blower add nothing here.
-2c. **The supply, the same session, the engine running warm at idle**
+2c. **The supply, the same session, the engine running at idle past the cold fast idle** (warm not needed: the gaps are read, not the levels; *the owner*, 27/11, parked in the snow)
    (*the owner*, 27/11; `open.md` H22, S25), **in two states** (*the
    owner*, 27/11: main beam cannot be used where he measures): the
    everyday load as he drives; every consumer usually on at once. In each, written
