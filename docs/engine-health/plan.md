@@ -233,7 +233,11 @@ the multimeter's black lead **on the battery's plus post**:
    sleeved; the fuse reached by a pin pushed into its test slot and
    taped, **never a wire pushed into the fuse's socket** (it spreads the
    panel's contact); GND may be the owner's clamp on the battery's
-   plus post.
+   plus post. **Fuse against fuse is the owner's choice** (27/11: short
+   leads, the difference that matters), probes perhaps held by hand —
+   **then first both probes on the two pads of one fuse** (32), the
+   hand's own chatter, and only what stands clearly above it counts;
+   shorter series (`--count 10`) when held.
 **The owner's intention** (27/11, the date not set): the fuse holder on
 the battery (`1C0 937 549 A`), the main positive cable from the
 battery and the cable to the alternator renewed; 2c's readings (004
