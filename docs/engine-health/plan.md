@@ -224,7 +224,9 @@ the multimeter's black lead **on the battery's plus post**:
 5. **The flicker, with the LHT00SU1** (*the owner*, 27/11), the same
    two loads: **no divider — GND on fuse 32's pad, 1ACH on fuse 10's**
    (then on 29's; then GND on the battery's plus post, 1ACH on fuse
-   10), `tools/injscope.py capture`. **⚠ With GND off the car's minus,
+   10), and **first of all GND on the battery's plus, 1ACH on fuse 32**
+   — the injectors' own feed, the one that acts on each pulse directly
+   — `tools/injscope.py capture`. **⚠ With GND off the car's minus,
    nothing else may join the laptop to the car**: no VCDS cable in the
    diagnostic socket, no USBtin, the laptop on its own battery, nothing
    else in its USB ports. **Never 1ACH straight on a fuse against the
@@ -649,7 +651,23 @@ body would put the battery's current through a Dupont wire; 10 kΩ
 holds that to about 1.4 mA, and with the laptop floating almost no
 current flows in either lead, so against an input of perhaps 1 MΩ
 (*not documented*) they cost about a per cent of a 0.3 V difference,
-a few millivolts against a step of 78.
+a few millivolts against a step of 78. **What size and speed would
+matter** (*reasoned*, *general* figures, 27/11 at the owner's
+question): an injector opens later by roughly 0.1 ms per volt, so a dip
+of 0.25 V while it opens costs that one pulse about 1 % of its fuel;
+near stoichiometric the work hardly answers to a per cent of fuel, so
+the common part's per-stroke scatter would need dips of perhaps half a
+volt to a volt, different from pulse to pulse — from about 10 Hz (one
+injector fires every 150 ms at idle, the four every 37 ms) to
+kilohertz; slower moves the mixture, not stroke against stroke. That
+acts directly only on the injectors' feed (fuse 32); the ECU's own
+reading of its supply is usually filtered (*general*, not known for
+M5.9.2), so a flicker there mostly averages to S19's offset. The
+alternator's ripple at idle is of the order of a kilohertz and a few
+tenths of a volt (*general*), averaged in part over an opening; a
+failing diode raises it (S25, 8q's refurbishment). At 78 mV a step the
+analyser sees 0.25 V; a regular wave is the alternator, irregular
+jumps a joint.
 
 **8q, the timing belt at a garage, 7/12** (*the owner's decision*, 13/11,
 after 8i): 8i read the cam's OT mark set and the crank pulley's one
