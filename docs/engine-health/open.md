@@ -218,8 +218,10 @@ ordered 26/11, about 1/12; the battery and the ECU left connected, so
 the warranty for the failed one refused, the same part bought
 elsewhere, expected 26/11, not come by 27/11, now expected 28/11); then **8q**, the timing belt and water pump at a
 garage on **7/12**, the old marks read first, `54`'s stop the one it is
-set against, and the garage asked the same visit to place S17's
-knock and S14's puffing on the exhaust (*the owner*, 27/11); then **item 9** by what those show (the coolant's CO₂
+set against; **the alternator refurbished the same visit** (the
+charging measured before and after; so the belt's before-and-after
+reads both), and the garage asked to place S17's knock and S14's
+puffing on the exhaust (*the owner*, 27/11); then **item 9** by what those show (the coolant's CO₂
 test, the stethoscope, the garage session with the intake off);
 standing: **8f** at every VCDS session, **6i** the oil level
 every 500 km (26/11 about 1 mm under the top mark, as the week before), the MFD's `IdleHealth` and `Misfires` at warm stops;
@@ -2933,6 +2935,10 @@ neither the coil nor its feed can pick it (*this said "the dips sat on
 3 and 4 … on different coil outputs" until 12/11*). **What is left**:
 the injector loom where it reaches 3 (and 4), taped and oily — its wires at 4 whole outwardly (*owner*,
 19/10; tape renewed). The plug-end side moved to H15, refuted 4/11 (`refuted.md` C24).
+**The alternator refurbished at 8q's visit, 7/12** (*the owner*, 27/11;
+`plan.md` 8q): 12.72 V at idle under load on 26/9; the charging
+measured before and after — a step in the idle with it would be the
+supply's or the crank load's, not the belt's alone.
 
 **The supply as the ECU sees it, against the battery** (15/11 evening,
 *the owner's* observation and measurement; *not a symptom* — no

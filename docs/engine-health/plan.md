@@ -255,8 +255,16 @@ answer into the chat. Before the garage: **`54`'s warm stop** (17/11,
 after the gasket) is the one the belt is set against. After it: the
 fault memory read, 032/055 for 20 s, and a captured drive to a warm
 stop of ten minutes.
+**The alternator refurbished the same visit** (*the owner*, 27/11,
+agreed with the garage by phone): it comes off for the belt anyway and
+goes to the refurbisher next door; a new one only if it proves really
+faulty. **Before the garage and after it, the charging measured as on
+26/9**: a multimeter on the battery's terminals, warm, the headlights,
+the rear window heater and the blower on — at idle and at about
+2,000–3,000 rpm; the figures into the chat, and what the refurbisher
+renewed (brushes, regulator, bearings, rectifier).
 **The same visit, asked of the garage** (*the owner*, 27/11; 8w's
-first item): **the exhaust's resonance and knock (S17), and the slow
+first item; the exhaust itself said to them on the spot): **the exhaust's resonance and knock (S17), and the slow
 puffing on engine braking downhill (S14)** — the car on the lift, the
 flex behind the manifold looked at and the exhaust moved by hand for
 the metal knock; warm, in neutral, the revs raised slowly to about
@@ -630,6 +638,23 @@ edge may answer to it far more than the others (*reasoned*), so the
 belt may move list B as well. Nothing in 8i was loosened;
 VW's 5 mm at the crank was for the Mk4 2.0; VW's own procedure for
 the AQY's family was read 17/11 (the same section).
+
+**The alternator at the same visit** (*the owner's decision*, 27/11):
+on 26/9 it gave 12.72 V at idle with the headlights, the rear window
+heater and the blower on, and 13.4 V at 2,000–3,000 rpm
+(`vehicle-history.md`) — low for a 14 V machine at idle under load
+(*general*), and it is most likely the original of 1999. It bears on
+the idle only through the supply and the load it puts on the crank
+(*reasoned*): the supply's side is H4's, much weakened (the idle is
+calmer with the loads on, at a lower coil supply); a regulator that
+holds the voltage more steadily changes the torque it takes at idle,
+which the common part could show. **What it costs**: the belt's
+before-and-after (the common part, 3's floor and swells, against
+`54`'s stop) now reads the belt and the alternator together; the
+charging measured before and after separates the voltage, not the
+torque it takes, so a step in the common part after 7/12 cannot be
+given to the belt alone (*reasoned*). Accepted by the owner: the
+alternator is due either way.
 
 **Why the flywheel or the piston, not the pulley** (the fourth
 research, 17/11; `open.md`, *What the forums say*, searched again
