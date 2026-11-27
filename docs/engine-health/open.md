@@ -4105,8 +4105,16 @@ so a load would widen the gap and enrich more (*reasoned*).
   tens of microseconds — **about 1–3 % of an idle pulse of a few
   milliseconds**, against an idle cell of −6 to −9 % (*reasoned*).
   Whether M5.9.2 corrects the delay from its supply pin at all, and how
-  much it filters that reading, is *not known* (its flash images not
-  read for it).
+  much it filters that reading, is *not known*. **Searched 27/11** (the
+  owner's request): the original image (SW 1037352075, the private
+  artifact *Beetle AQY ECU flashes*, its SHA-256 checked) scanned for a
+  voltage axis of 5–16 points from about 6 to 16 V beside a falling
+  table, as bytes and as 16-bit words, with a count byte and without,
+  under several scalings — **nothing found**; without the software's
+  map definitions (a damos for 1037352075) the table, if it is shared
+  by axis or stored otherwise, cannot be named. The web gave nothing
+  for M5.9.2 itself; a Bosch injector's correction quoted at about
+  0.12 ms per volt (an HP Academy forum post, *general*).
 - **The common part** (27/11, *the owner's question*): a poor joint
   need not be steady — **a flicker faster than a multimeter or VCDS
   shows** (both average over a fraction of a second or more) would
