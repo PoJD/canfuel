@@ -191,8 +191,9 @@ of this plan, *the owner's decision* of 9/10):
   into, back on until it clicks; the sensor's bolt checked with a
   torque wrench at VW's figure (Claude reads it out of the manual
   first). What was found into the chat.
-- **S17, the resonance on the exhaust — at the owner's garage, some
-  time** (on his own list, 27/11: no second person at home): warm, in
+- **S17, the resonance on the exhaust — asked of the garage at 8q,
+  7/12** (*the owner*, 27/11: no second person at home; the steps are
+  8q's): warm, in
   neutral, the revs raised slowly from idle to about 3,500 rpm and held
   where it sounds, while the other listens and feels along the exhaust
   from the manifold back — **the flex behind the manifold first** (the
@@ -254,6 +255,14 @@ answer into the chat. Before the garage: **`54`'s warm stop** (17/11,
 after the gasket) is the one the belt is set against. After it: the
 fault memory read, 032/055 for 20 s, and a captured drive to a warm
 stop of ten minutes.
+**The same visit, asked of the garage** (*the owner*, 27/11; 8w's
+first item): **the exhaust's resonance and knock (S17), and the slow
+puffing on engine braking downhill (S14)** — the car on the lift, the
+flex behind the manifold looked at and the exhaust moved by hand for
+the metal knock; warm, in neutral, the revs raised slowly to about
+3,500 rpm while a mechanic listens along the exhaust from the manifold
+back (the flex, the heat shields, hangers and brackets). What they
+found into the chat.
 
 **8f. 032 for 20 s at every session with VCDS connected**, until both
 cells have held for three drives; **and 036 for a minute** at a warm
@@ -917,7 +926,12 @@ suspected): placing it tells whether it is the source of S5's excess,
 which on 26/11 stood out most against 1 at 2,000–2,700 rpm, and a
 broken flex would also be H2's second zone (`open.md` S17). A sweep up
 to 3,500 rpm because the band is wide. At a garage because the sweep
-needs a second person and the flex is best seen on a lift.
+needs a second person and the flex is best seen on a lift; **at 8q's
+visit** (*the owner*, 27/11) because the car is there and lifted
+anyway. S14 goes with it: the owner holds S14's slow puffing on engine
+braking and S17's knock to be perhaps one part, and both perhaps S5's
+source (*owner*; a guess, as he says) — a part found and fixed there
+is read against S5's 026 in neutral and S14's sound after.
 
 **8w, 4's spells at a warm stop** (*the owner*, 25/11): four times
 since 22/11 — 22/11 night, 23/11 afternoon, 24–25/11 night, 25/11

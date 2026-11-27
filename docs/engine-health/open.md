@@ -129,7 +129,7 @@ cylinder*):
 - **S17** a resonance on the exhaust over a wide band of engine
   speeds, metal knocking when the exhaust is moved by hand, the flex
   behind the manifold suspected (*owner*, 27/11; a full symptom since,
-  *the owner's decision*); at his garage some time (8w).
+  *the owner's decision*); asked of the garage at 8q, 7/12 (8w).
 - **Not pursued**: S16 a tick in neutral, cold, clutch up.
 
 **Ranked** (*The idle's candidates, ranked*; re-ranked 17/11 evening,
@@ -218,7 +218,8 @@ ordered 26/11, about 1/12; the battery and the ECU left connected, so
 the warranty for the failed one refused, the same part bought
 elsewhere, expected 26/11, not come by 27/11, now expected 28/11); then **8q**, the timing belt and water pump at a
 garage on **7/12**, the old marks read first, `54`'s stop the one it is
-set against; then **item 9** by what those show (the coolant's CO₂
+set against, and the garage asked the same visit to place S17's
+knock and S14's puffing on the exhaust (*the owner*, 27/11); then **item 9** by what those show (the coolant's CO₂
 test, the stethoscope, the garage session with the intake off);
 standing: **8f** at every VCDS session, **6i** the oil level
 every 500 km (26/11 about 1 mm under the top mark, as the week before), the MFD's `IdleHealth` and `Misfires` at warm stops;
@@ -2182,8 +2183,9 @@ recording in the cabin, put down, through a downhill in 2nd — the
 rhythm's frequency and whether it moves with the engine speed; the
 clutch pushed in briefly on the same hill, where safe — a sound that
 stops at once with the engine no longer braking is the load, not a
-burn; on a captured drive "teď" at it, against the fuel cut. *Not in
-`plan.md`*: S14 is the owner's to watch (below). The earlier reading
+burn; on a captured drive "teď" at it, against the fuel cut. **Asked
+of the garage with S17 at 8q's visit, 7/12** (*the owner*, 27/11;
+`plan.md` 8q); otherwise the owner's to watch (below). The earlier reading
 (*reasoned*): the engine dragged up on a shut throttle is fuelled at its
 thinnest charge; a charge that fails to fire goes out as fuel and air and
 burns when the fuel cut pumps plain air in after it — **a misfire where 014
@@ -2232,9 +2234,10 @@ hypothesis about the idle). **27/11** (*owner*): **over a wider band of
 engine speeds**, not one; under the car for the probes' sockets
 (25–26/11) he moved the exhaust by hand and heard **something knock
 metal on metal, as on a stop**, and **suspects the flex pipe right
-behind the manifold** (H2's second zone). To be tested at his garage
-some time, on his own list (`plan.md` 8w): he has no second person for
-the sweep. *Reasoned*: a flex whose inner liner or braid has broken
+behind the manifold** (H2's second zone). **To be asked of the garage
+at the timing belt's visit, 7/12** (*the owner*, 27/11; `plan.md` 8q,
+8w): he has no second person for the sweep. **He suspects one link
+between S17, S14 and S5** (*owner*, 27/11; "all only guesses"). *Reasoned*: a flex whose inner liner or braid has broken
 rattles in exactly this way and through a band, and one cracked through
 leaks between the probes (H2); a part vibrating near the engine reaches
 G66 through the block (H5).
@@ -2525,7 +2528,7 @@ engine leak, a falling dipstick level is oil burnt, not lost.
 | S12 ↔ S3 | **possible** (*reasoned*) | 014 counted seven single misfires on `47`, each in a window holding a moving-off (S12) |
 | S3 on the road ↔ S17, S5 | **possible, one engine-speed band** (6/11) | 014's road episodes at 21–32 % load: 2000–2400 rpm about twice 1600–1800 and 2400–2600 (S17); the bus shows no stroke-to-stroke roughness peak there |
 | S16 ↔ S1 | **untested** (*general*) | a gearbox's rattle in neutral is driven by the crank's unevenness at idle (S16) |
-| S17 ↔ S5 | **possible** (27/11, *reasoned*) | on 26/11 4's excess over 1 in 026 stood out most at 2,000–2,700 rpm, S17's band of 15/10; one log, and S17's band is wide (*owner*, 27/11) |
+| S17 ↔ S5 | **possible** (27/11, *reasoned*; with S14, the owner's guess) | on 26/11 4's excess over 1 in 026 stood out most at 2,000–2,700 rpm, S17's band of 15/10; one log, and S17's band is wide (*owner*, 27/11) |
 | S11 ↔ S1 | **untested** | if the hiss is a leak, H3 or H2; the owner reads it as the throttle's own air |
 
 **Two clusters**: **the idle** (S1, S2, S3, S14) and **the cylinder 4
@@ -3114,8 +3117,8 @@ at lead 4's plug end** (`refuted.md` C24). Injector 4's click is settled against
 
 **Tests** — `plan.md` 8w since 15/11 (*the owner*; not scheduled from
 9/10): G66's torque and connector; S17's resonance placed by a slow
-sweep in neutral to about 3,500 rpm, the flex first (at the owner's
-garage some time, 27/11); after the VW leads, the neutral 026 holds and a 020
+sweep in neutral to about 3,500 rpm, the flex first (asked of the
+garage at 8q's visit, 7/12; *the owner*, 27/11); after the VW leads, the neutral 026 holds and a 020
 drive against `vcds/vcds-step2c-020-026-003.csv`.
 
 ### H6. Knock control relearning after the battery disconnects
