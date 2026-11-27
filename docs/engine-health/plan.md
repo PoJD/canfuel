@@ -263,7 +263,11 @@ heater and the blower on), and with **every consumer usually on at
 once** (those three, the seat heater, the wipers if it rains), **the
 MFD's reading beside the multimeter's** each time; the figures into
 the chat, and what the refurbisher renewed (brushes, regulator,
-bearings, rectifier).
+bearings, rectifier). **And the ripple** (*the owner*, 27/11): the
+same multimeter on **V~ across the battery's posts** — first with the
+engine off (near 0; if it reads volts, the meter does not block DC and
+the reading cannot be made with it), then at idle with every consumer
+on; before the garage and after.
 **The same visit, asked of the garage** (*the owner*, 27/11; 8w's
 first item; the exhaust itself said to them on the spot): **the exhaust's resonance and knock (S17), and the slow
 puffing on engine braking downhill (S14)** — the car on the lift, the
@@ -718,6 +722,25 @@ on, and the MFD beside it, is S25's** (`open.md`): the MFD showed 12.1 V
 at idle with more consumers on (*the owner*, 27/11), lower than any
 load was ever measured at, and its feed loses about 0.4 V under a
 large load, so the battery's own figure is what closes S25 or keeps it.
+
+**The ripple** (S25; *general*): the alternator's three phases are
+rectified by diodes into a toothed voltage the battery smooths; at
+idle its frequency is of the order of 1–1.5 kHz (about six pole pairs,
+the alternator turning some 2.5–3 times the crank). A sound machine
+leaves about a tenth of a volt; **a failed diode drops a phase**, the
+ripple rises towards half a volt or a volt and the output falls —
+which would fit S25 too. A workshop's rule of thumb: up to about
+0.1 V AC sound, about 0.5 V and more the diodes. A multimeter's V~
+blocks the DC and shows the rest as RMS, but a cheap one is specified
+to a few hundred hertz and not true-RMS, so it reads the kilohertz
+ripple low and roughly — **the same meter before and after** is the
+reading, not its figure. What the ripple would do: about a cycle and a
+half falls in an injector's opening of about a millisecond, a
+different part of it for each pulse, so pulse against pulse — a tenth
+of a volt is a tenth of a per cent of fuel, a volt perhaps one
+(*reasoned*). A regulator or brushes that hunt act slower (hertz):
+the mixture and the alternator's drag on the crank sway over several
+strokes, not stroke against stroke (*reasoned*).
 
 **Why the flywheel or the piston, not the pulley** (the fourth
 research, 17/11; `open.md`, *What the forums say*, searched again
