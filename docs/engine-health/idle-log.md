@@ -2367,4 +2367,7 @@ reset. **Later the same evening** (*the owner*): the fuse holder on the
 battery read with every consumer on, the black lead on the battery's
 plus — **20–40 mV to each of its five outputs**, so the 0.3–0.4 V lies
 after it; photographed (the album 22:25–22:29: copper strands splayed
-out of every ring's crimp, rust on the lower nuts; `open.md` S25).
+out of every ring's crimp, rust on the lower nuts; `open.md` S25). **Then
+the ripple** on V~ across the battery: 0.1 mV off, about 17 mV at idle
+with no load, 20–25 mV with every consumer on, brief jumps to 120 mV
+(*owner*).

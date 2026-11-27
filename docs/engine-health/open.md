@@ -2607,7 +2607,23 @@ plus to the outputs, creeping up from zero; 2.3 Ω between two outputs)
 are the meter reading through the car's loads on a connected battery,
 not the cables (`plan.md` 8af). **The owner means to renew** the
 holder, the main positive cable and the cable to the alternator (the
-date not set). **Tests**: `plan.md` 8af — the fuse panel mapped; and
+date not set). **The ripple, 27/11 night** (*the owner*, the
+multimeter on V~ across the battery's posts; `plan.md` 8q): engine off
+0.1 mV (the meter blocks DC); at idle **about 17 mV with no load,
+20–25 mV with every consumer on**, jumps to 120 mV for a moment as
+something switched (the secondary air pump, he thinks). **Low: the
+rectifier's diodes are most likely sound** — a failed diode gives
+hundreds of millivolts to a volt, which a meter reading a kilohertz
+ripple low would still show (*general*, *reasoned*). **What that
+leaves of S25** (*reasoned*, *general* figures): a 90 A alternator
+gives perhaps 50–65 A at idle speed, and every consumer on with the
+engine's own draw is some 75–80 A (the lights about 12, the blower on
+full about 20, the rear window about 12, two seats about 16, the
+engine 15–20) — so **not keeping up at idle with everything on may be
+this machine's normal**; the battery's 11.87 V at rest (about 12.07
+without the seat heater) — about half charged — is the more telling
+reading, perhaps winter and short trips; charged and rested it should
+hold 12.6–12.7 V, and if it does not, it is the battery's. **Tests**: `plan.md` 8af — the fuse panel mapped; and
 8q — the charging
 measured before the garage and after the refurbished alternator, with
 every consumer usually on at once and the MFD read beside the
