@@ -36,7 +36,7 @@ bytes on 0x604 are one of the instruments (`docs/firmware/frames.md`).
 
 ---
 
-## Where it stands — 27 November 2026
+## Where it stands — 28 November 2026
 
 *What was done and measured, day by day, is `idle-log.md`; each result
 is in the evidence of its symptom and hypotheses below. This section
@@ -129,6 +129,11 @@ cylinder*):
 - **S25** the supply sagging at idle under load, the MFD down to 12.1 V
   (*owner*, 27/11; added at his request, to be closed after 8q's
   refurbished alternator if it mends it).
+- **S26** a loud squeal from the engine bay now and then, like a
+  bearing dragging, often when the A/C is switched on but not only,
+  not tied to the drive (*owner*, 28/11; added at his request); the
+  owner suspects the alternator under a larger load, the ribbed belt
+  slipping as likely (*general*); asked of the garage at 8q, 7/12.
 - **S17** a resonance on the exhaust over a wide band of engine
   speeds, metal knocking when the exhaust is moved by hand, the flex
   behind the manifold suspected (*owner*, 27/11; a full symptom since,
@@ -228,7 +233,7 @@ garage on **7/12**, the old marks read first, `54`'s stop the one it is
 set against; **the alternator refurbished the same visit** (the
 charging measured before and after; so the belt's before-and-after
 reads both), and the garage asked to place S17's knock and S14's
-puffing on the exhaust (*the owner*, 27/11); then **item 9** by what those show (the coolant's CO₂
+puffing on the exhaust (*the owner*, 27/11), and S26's squeal at the ribbed belt, its tensioner and the pulleys (28/11); then **item 9** by what those show (the coolant's CO₂
 test, the stethoscope, the garage session with the intake off);
 standing: **8f** at every VCDS session, **6i** the oil level
 every 500 km (26/11 about 1 mm under the top mark, as the week before), the MFD's `IdleHealth` and `Misfires` at warm stops;
@@ -2629,6 +2634,55 @@ measured before the garage and after the refurbished alternator, with
 every consumer usually on at once and the MFD read beside the
 multimeter.
 
+### S26. A loud squeal from the engine bay now and then — the accessory drive
+
+*Added 28/11 at the owner's request.* **What is heard** (*owner*,
+28/11): from time to time **a loud squeal from the engine bay**, "as if
+something with dragging bearings had started turning"; **not tied to
+the drive** (it is heard standing as well as driving); **often after
+the A/C is switched on, but not only then**. Never pursued until now.
+**He suspected the A/C itself for a long time** and now thinks it is
+**the alternator itself when a larger load is switched on**.
+
+**Read** (*general*, *reasoned*): everything that turns in the
+accessory drive at engine speed is a candidate — the ribbed belt
+slipping on a pulley, its tensioner, the idler, and the bearings of
+the alternator, the A/C compressor's pulley and the power steering
+pump. A squeal that **follows a load being switched on** is the
+classic sign of **the ribbed belt slipping**: the A/C compressor's
+clutch engaging, or the alternator's regulator raising its field when
+the lights, the blower or the rear window come on, both raise the
+torque the belt has to carry in one step, and a glazed or worn belt,
+or a weak tensioner, lets it slip and squeal for a few seconds. **That
+it comes with the A/C but not only with it argues for the belt or the
+alternator over the compressor alone** — the alternator's load is the
+one both have in common (*reasoned*); a compressor's own clutch or
+bearing would be heard only with the A/C on. A bearing on its way out
+usually growls or whines all the time and rises with engine speed, not
+in bursts after a load (*general*). **The ribbed belt's age is not
+known** (no row in `vehicle-history.md`); the alternator is most likely
+the original of 1999 (S25).
+
+**It bears on S25** (*reasoned*): a belt that slips under load
+delivers less than the alternator's speed asks for, and the sag at
+idle with every consumer on is the moment the belt carries the most;
+it would not show in the ripple, which was low (S25). **It bears on the
+idle not at all** that is known: the alternator's torque on the crank
+is H4's and the supply's side, common to all four.
+
+**On the bus** (*reasoned*): the A/C's state is on the bus (0x288 b2 bit 3,
+`canlog.py --states`; `docs/firmware/can-decoding.md`, *The bus byte by
+byte*), and the torque the compressor takes shows in 0x280's b7, so a
+squeal heard on a captured drive and given with its clock time can be
+set against the A/C switching and the lights; the bus carries no
+alternator load.
+
+**Tests**: `plan.md` 8q — the ribbed belt comes off for the timing belt
+anyway; the garage asked to look at it, its tensioner and the pulleys,
+and the refurbisher told of the squeal. If it stays after 7/12 with a
+new belt and the alternator refurbished, the compressor and the
+tensioner are what is left.
+
 ---
 
 ## How the symptoms relate — what is measured
@@ -2651,11 +2705,12 @@ multimeter.
 | S16 ↔ S1 | **untested** (*general*) | a gearbox's rattle in neutral is driven by the crank's unevenness at idle (S16) |
 | S17 ↔ S5 | **possible** (27/11, *reasoned*; with S14, the owner's guess) | on 26/11 4's excess over 1 in 026 stood out most at 2,000–2,700 rpm, S17's band of 15/10; one log, and S17's band is wide (*owner*, 27/11) |
 | S25 ↔ S1 | **weak, against** (*reasoned*) | the idle is calmer with the loads on, at a lower supply (H4); the supply feeds all four (S25) |
+| S26 ↔ S25 | **possible** (*reasoned*) | a ribbed belt slipping under load would leave the alternator short at the moment S25 is seen; the squeal follows loads switched on (S26) |
 | S11 ↔ S1 | **untested** | if the hiss is a leak, H3 or H2; the owner reads it as the throttle's own air |
 
 **Two clusters**: **the idle** (S1, S2, S3, S14) and **the cylinder 4
 window** (S4, S5), with S17 perhaps beside it. S11 sits beside the idle, unplaced; S19 beside
-it, the trims; S25 beside it, the supply. *S23, the new rear probe's
+it, the trims; S25 beside it, the supply, S26 beside S25, the accessory drive. *S23, the new rear probe's
 signal, stood apart until it closed 12/11 (`refuted.md` D13).*
 
 ---
@@ -2689,7 +2744,9 @@ sagging at idle under load) — ✔ for H22, ~ for H4, the supply's side (weak: 
 idle is calmer with the loads on, and the supply is common to all
 four); — everywhere else.
 Left out: S16 (the gearbox side, shown not to touch
-the idle); S24 (G62's reading, a
+the idle); **S26** (added 28/11, the squeal from the accessory drive:
+no hypothesis here is of the belt or its pulleys, so — everywhere; its
+link is to S25, in *How the symptoms relate*); S24 (G62's reading, a
 sensor's own fault no hypothesis here explained) was never a column and
 closed 12/11 (D12); S7 closed on 31/10 (D2)
 and its column went with it; the closed ones are in

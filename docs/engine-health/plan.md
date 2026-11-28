@@ -276,6 +276,15 @@ the metal knock; warm, in neutral, the revs raised slowly to about
 3,500 rpm while a mechanic listens along the exhaust from the manifold
 back (the flex, the heat shields, hangers and brackets). What they
 found into the chat.
+**And the squeal (S26)** (*the owner*, 28/11): the garage told of a
+loud squeal now and then, often when the A/C comes on; **the ribbed
+belt** looked at when it comes off for the timing belt (glazed,
+cracked, worn ribs: renewed), **its tensioner and the idler** turned by
+hand, **the A/C compressor's pulley and the power steering pump's**
+turned by hand for roughness; the refurbisher told of it too (the
+alternator's bearings and its pulley). What they found and renewed
+into the chat. **Until then**: when the squeal is heard on a captured
+drive, its clock time into the chat.
 
 **8f. 032 for 20 s at every session with VCDS connected**, until both
 cells have held for three drives; **and 036 for a minute** at a warm
@@ -741,6 +750,21 @@ of a volt is a tenth of a per cent of fuel, a volt perhaps one
 (*reasoned*). A regulator or brushes that hunt act slower (hertz):
 the mixture and the alternator's drag on the crank sway over several
 strokes, not stroke against stroke (*reasoned*).
+
+**The squeal at the same visit** (S26; *general*, *reasoned*): a
+squeal that follows a load switched on is most often the ribbed belt
+slipping as the torque it carries steps up — the compressor's clutch
+engaging, or the alternator's field raised for the lights or the
+blower; that it comes with the A/C but not only with it points at what
+both have in common, the belt and the alternator. The belt comes off
+for the timing belt anyway and the alternator goes to the refurbisher,
+so the visit reaches every candidate but the compressor and the
+steering pump, which are only turned by hand. **What it costs**: a
+squeal gone after 7/12 is not given to one part if the belt, the
+tensioner and the alternator's bearings were all renewed; one that
+stays leaves the compressor and the tensioner. The clock times
+before the garage set it against the A/C and the lights on the bus
+(`open.md` S26).
 
 **Why the flywheel or the piston, not the pulley** (the fourth
 research, 17/11; `open.md`, *What the forums say*, searched again
