@@ -133,7 +133,10 @@ cylinder*):
   bearing dragging, often when the A/C is switched on but not only,
   not tied to the drive (*owner*, 28/11; added at his request); the
   owner suspects the alternator under a larger load, the ribbed belt
-  slipping as likely (*general*); asked of the garage at 8q, 7/12.
+  slipping as likely (*general*), perhaps the water pump (*owner*);
+  asked of the garage at 8q, 7/12; **the owner expects it gone after
+  8q** (the belts, the pump, the alternator refurbished), and if it is
+  not, it stays open.
 - **S17** a resonance on the exhaust over a wide band of engine
   speeds, metal knocking when the exhaust is moved by hand, the flex
   behind the manifold suspected (*owner*, 27/11; a full symptom since,
@@ -2648,7 +2651,11 @@ the A/C is switched on, but not only then**. Never pursued until now.
 accessory drive at engine speed is a candidate — the ribbed belt
 slipping on a pulley, its tensioner, the idler, and the bearings of
 the alternator, the A/C compressor's pulley and the power steering
-pump. A squeal that **follows a load being switched on** is the
+pump; and **the water pump** (*the owner*, 28/11, "hard to say"),
+which on this engine the timing belt drives, with the timing belt's
+own tensioner and idler (*general*) — its bearing would be tied to
+engine speed, not to a load switched on, which argues against it but
+does not rule it out (*reasoned*). A squeal that **follows a load being switched on** is the
 classic sign of **the ribbed belt slipping**: the A/C compressor's
 clutch engaging, or the alternator's regulator raising its field when
 the lights, the blower or the rear window come on, both raise the
@@ -2679,9 +2686,12 @@ alternator load.
 
 **Tests**: `plan.md` 8q — the ribbed belt comes off for the timing belt
 anyway; the garage asked to look at it, its tensioner and the pulleys,
-and the refurbisher told of the squeal. If it stays after 7/12 with a
-new belt and the alternator refurbished, the compressor and the
-tensioner are what is left.
+and the refurbisher told of the squeal; the water pump and the timing
+belt's tensioner and idler are renewed that visit regardless. **The
+owner expects the squeal gone after 7/12** (28/11); **closed only if
+it does not come back** — if it stays, with the timing belt's side,
+the pump and the alternator renewed, the compressor, the steering pump
+and the ribbed belt's tensioner are what is left.
 
 ---
 

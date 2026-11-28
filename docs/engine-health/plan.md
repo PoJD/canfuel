@@ -758,11 +758,14 @@ engaging, or the alternator's field raised for the lights or the
 blower; that it comes with the A/C but not only with it points at what
 both have in common, the belt and the alternator. The belt comes off
 for the timing belt anyway and the alternator goes to the refurbisher,
-so the visit reaches every candidate but the compressor and the
-steering pump, which are only turned by hand. **What it costs**: a
-squeal gone after 7/12 is not given to one part if the belt, the
-tensioner and the alternator's bearings were all renewed; one that
-stays leaves the compressor and the tensioner. The clock times
+and the water pump (*the owner*'s other candidate, 28/11) is renewed
+with the timing belt, so the visit reaches every candidate but the
+compressor and the steering pump, which are only turned by hand.
+**What it costs**: a squeal gone after 7/12 is not given to one part
+if the belt, the pump and the alternator's bearings were all renewed;
+**the owner expects it gone** and S26 stays open if it is not, the
+compressor, the steering pump and the ribbed belt's tensioner then
+what is left. The clock times
 before the garage set it against the A/C and the lights on the bus
 (`open.md` S26).
 
